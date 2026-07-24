@@ -46,7 +46,7 @@
 | [OH_AVCapability **OH_AVCodec_GetCapabilityList(OH_AVCodecType codecType, uint32_t *count)](#oh_avcodec_getcapabilitylist) | 获取指定编解码器类型的能力列表。此功能会根据提供的编解码器类型检索出系统支持的所有匹配的编解码器能力。 |
 | [bool OH_AVCapability_IsHardware(OH_AVCapability *capability)](#oh_avcapability_ishardware) | 检查能力实例是否描述了硬件编解码器。 |
 | [bool OH_AVCapability_IsSecure(OH_AVCapability *capability)](#oh_avcapability_issecure) | 检查能力实例是否描述了一个DRM解码器。 |
-| [const char *OH_AVCapability_GetName(OH_AVCapability *capability)](#oh_avcapability_getname) | 获取编解码器名称。 |
+| [const char *OH_AVCapability_GetName(OH_AVCapability *capability)](#oh_avcapability_getname) | 获取对应的编解码器名称。 |
 | [const char *OH_AVCapability_GetMimeType(OH_AVCapability *capability)](#oh_avcapability_getmimetype) | 获取编解码器的MIME类型。 |
 | [bool OH_AVCapability_CheckMimeType(OH_AVCapability *capability, const char *mimeType)](#oh_avcapability_checkmimetype) | 检查编解码器的MIME类型是否与指定的MIME类型匹配。 |
 | [int32_t OH_AVCapability_GetMaxSupportedInstances(OH_AVCapability *capability)](#oh_avcapability_getmaxsupportedinstances) | 获取编解码器支持的最大实例数。 |
@@ -284,7 +284,7 @@ const char *OH_AVCapability_GetName(OH_AVCapability *capability)
 
 **描述**
 
-获取编解码器名称。
+获取对应的编解码器名称。
 
 **系统能力：** SystemCapability.Multimedia.Media.CodecBase
 
@@ -864,7 +864,7 @@ OH_AVErrCode OH_AVCapability_GetVideoSupportedPixelFormats(OH_AVCapability *capa
 | 参数项 | 描述 |
 | -- | -- |
 | [OH_AVCapability](capi-avcapability-oh-avcapability.md) *capability | 视频编解码能力指针。如果给的是音频编解码器能力指针，会导致未定义行为。 |
-| const int32_t **pixelFormats | 输出参数。指向视频像素格式数组的指针。 |
+| const int32_t **pixelFormats | 输出参数。指向视频像素格式数组的指针。参考[OH_AVPixelFormat](../../reference/apis-avcodec-kit/capi-native-avformat-h.md#oh_avpixelformat)。 |
 | uint32_t *pixelFormatNum | 输出参数。像素格式数组的元素数目。 |
 
 **返回：**
@@ -920,7 +920,7 @@ OH_AVErrCode OH_AVCapability_GetSupportedProfiles(OH_AVCapability *capability, c
 | 参数项 | 描述 |
 | -- | -- |
 | [OH_AVCapability](capi-avcapability-oh-avcapability.md) *capability | 编解码能力指针。 |
-| const int32_t **profiles | 输出参数。指向档次数组的指针。 |
+| const int32_t **profiles | 输出参数。指向档次数组的指针。例如，H.264档次参考[OH_AVCProfile](../../reference/apis-avcodec-kit/capi-native-avcodec-base-h.md#oh_avcprofile)。 |
 | uint32_t *profileNum | 输出参数。档次数组的元素数目。 |
 
 **返回：**
@@ -949,7 +949,7 @@ OH_AVErrCode OH_AVCapability_GetSupportedLevelsForProfile(OH_AVCapability *capab
 | -- | -- |
 | [OH_AVCapability](capi-avcapability-oh-avcapability.md) *capability | 编解码能力指针。 |
 | int32_t profile | 编解码器档次。 |
-| const int32_t **levels | 输出参数。指向级别数组的指针。 |
+| const int32_t **levels | 输出参数。指向级别数组的指针。例如，H.264级别参考[OH_AVCLevel](../../reference/apis-avcodec-kit/capi-native-avcodec-base-h.md#oh_avclevel)。 |
 | uint32_t *levelNum | 输出参数。级别数组的元素数目。 |
 
 **返回：**

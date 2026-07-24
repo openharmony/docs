@@ -10,7 +10,7 @@
 
 > **说明：**
 >
-> 本模块首批接口从API version 9 开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
+> 本模块首批接口从API version 9开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 >
 > 本模块为系统接口。
 
@@ -244,7 +244,7 @@ getRemoteAbilityInfo(elementNames: Array\<ElementName>): Promise\<Array\<RemoteA
 
 | 类型                                                         | 说明                              |
 | ------------------------------------------------------------ | --------------------------------- |
-| Promise\<Array<[RemoteAbilityInfo](js-apis-bundleManager-remoteAbilityInfo-sys.md)>> | Promise对象，调用成功返回RemoteAbilityInfo对象；调用失败返回错误对象。 |
+| Promise\<Array<[RemoteAbilityInfo](js-apis-bundleManager-remoteAbilityInfo-sys.md)>> | Promise对象，调用成功返回RemoteAbilityInfo对象列表；调用失败返回错误对象。 |
 
 **错误码：**
 
@@ -433,9 +433,9 @@ getRemoteAbilityInfo(elementNames: Array\<ElementName>, locale: string, callback
 
 | 参数名        | 类型                                                         | 必填 | 说明                                               |
 | ------------ | ------------------------------------------------------------ | ---- | -------------------------------------------------- |
-| elementNames | Array<[ElementName](js-apis-bundleManager-elementName.md)>          | 是   | ElementName信息,最大数组长度为10。                   |
+| elementNames | Array<[ElementName](js-apis-bundleManager-elementName.md)>          | 是   | ElementName信息，最大数组长度为10。                   |
 | locale  | string |是 | 语言地区。 |
-| callback     | AsyncCallback\<Array\<[RemoteAbilityInfo](js-apis-bundleManager-remoteAbilityInfo-sys.md)>> | 是   | [AsyncCallback](../apis-basic-services-kit/js-apis-base.md#asynccallback)，调用成功返回err为null，data为RemoteAbilityInfo数组对象；调用失败err为错误对象, data为undefined。 |
+| callback     | AsyncCallback\<Array\<[RemoteAbilityInfo](js-apis-bundleManager-remoteAbilityInfo-sys.md)>> | 是   | [AsyncCallback](../apis-basic-services-kit/js-apis-base.md#asynccallback)，调用成功返回err为null，data为RemoteAbilityInfo数组对象；调用失败err为错误对象，data为undefined。 |
 
 **错误码：**
 

@@ -27,7 +27,7 @@ import { bundleManager } from '@kit.AbilityKit';
 | -------- | ------ | ---- | ---- | ---------- |
 | actions     | Array\<string> | 是   | 否   | Skill接收的[Action集合](js-apis-ability-wantConstant.md#action)。 |
 | entities    | Array\<string> | 是   | 否   | Skill接收的[Entity集合](js-apis-ability-wantConstant.md#entity)。   |
-| uris | Array\<SkillUri> | 是   | 否   | Want匹配的Uri集合。 |
+| uris | Array\<[SkillUri](#skilluri)> | 是   | 否   | Want匹配的Uri集合。 |
 | domainVerify     | boolean | 是   | 否   | 标识是否开启域名校验，仅在AbilityInfo中存在。取值为true表示开启域名校验，需要进行域名验证；取值为false表示未开启域名校验。 |
 
 ## SkillUri

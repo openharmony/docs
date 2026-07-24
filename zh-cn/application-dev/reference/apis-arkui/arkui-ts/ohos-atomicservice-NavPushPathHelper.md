@@ -27,6 +27,10 @@ import { NavPushPathHelper } from '@kit.ArkUI';
 
 不支持[通用属性](ts-component-general-attributes.md)
 
+## 事件
+
+不支持[通用事件](ts-component-general-events.md)
+
 ## NavPushPathHelper
 
 对Navigation路由栈[NavPathStack](ts-basic-components-navigation.md#navpathstack10)的所有路由跳转接口进行了封装，在NavPushPathHelper中持有一个NavPathStack对象，在封装的跳转接口中，去判断子包是否存在，如果不存在则进行动态下载子包，等结果返回后调用NavPathStack的相应的接口将指定的[NavDestination](ts-basic-components-navdestination.md)页面信息入栈。使用示例参见[示例](#示例)。
@@ -427,10 +431,6 @@ replacePathByName(moduleName: string, name: string, param: Object, animated?: bo
 | 错误码ID   | 错误信息 |
 | --------- | ------- |
 | 300001    | hsp silent install fail.|
-
-## 事件
-
-不支持[通用事件](ts-component-general-events.md)
 
 ## 示例
 

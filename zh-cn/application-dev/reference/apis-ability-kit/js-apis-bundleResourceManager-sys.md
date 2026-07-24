@@ -10,9 +10,9 @@
 
 > **说明：**
 >
-> 本模块首批接口从API version 11 开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
+> 本模块首批接口从API version 11开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 >
-> 本模块从API version 12 开始支持查询被禁用应用和设备上已安装应用(不区用户)的图标和名称资源。
+> 本模块从API version 12开始支持查询被禁用应用和设备上已安装应用（不区分用户）的图标和名称资源。
 >
 > 本模块为系统接口。
 
@@ -30,7 +30,7 @@ import { bundleResourceManager } from '@kit.AbilityKit';
 
 **系统接口：** 此接口为系统接口。
 
-**系统能力：** SystemCapability.BundleManager.BundleFramework.Resource。
+**系统能力：** SystemCapability.BundleManager.BundleFramework.Resource
 
 | 名称                                                     | 值         | 说明                                                         |
 | -------------------------------------------------------- | ---------- | ------------------------------------------------------------ |
@@ -205,6 +205,7 @@ try {
   });
 } catch (err) {
   let message = (err as BusinessError).message;
+  hilog.error(0x0000, 'testTag', 'getAllBundleResourceInfo failed: %{public}s', message);
 }
 ```
 

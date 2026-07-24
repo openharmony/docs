@@ -16,13 +16,13 @@ Native内存使用转移方式传输时，传输后原线程将无法使用此Ar
 
 ![transfer](figures/transfer.png)
 
-ArrayBuffer可以用来表示图片等资源，在应用开发中，处理图片（如调整亮度、饱和度、大小等）会比较耗时，为了避免长时间阻塞UI主线程，可以将图片传递到子线程中进行处理。采用转移方式传递ArrayBuffer可提高传输性能，但原线程将无法再访问该ArrayBuffer对象。如果两个线程都需要访问该对象，只能采用拷贝方式。反之，建议采用转移方式以提升性能。
+ArrayBuffer常用于表示图片等二进制资源，在应用开发中，处理图片（如调整亮度、饱和度、大小等）会比较耗时，为了避免长时间阻塞UI主线程，可以将图片传递到子线程中进行处理。采用转移方式传递ArrayBuffer可提高传输性能，但原线程将无法再访问该ArrayBuffer对象。如果两个线程都需要访问该对象，只能采用拷贝方式。反之，建议采用转移方式以提升性能。
 
 以下将通过具体的代码案例分别介绍拷贝和转移两种方式，实现图片跨ArkTS线程传输。
 
 ## ArrayBuffer拷贝传输方式
 
-在ArkTS中，TaskPool传递ArrayBuffer数据时，默认采用转移方式。通过调用setTransferList()接口，可以指定部分数据的传递方式为转移方式，其他部分数据可以切换为拷贝方式。
+在ArkTS中，TaskPool传递ArrayBuffer数据时，默认采用转移方式。通过调用[setTransferList()](../reference/apis-arkts/js-apis-taskpool.md#settransferlist10)接口，可以指定部分数据的传递方式为转移方式，其他部分数据可以切换为拷贝方式。
 
 首先，实现一个处理ArrayBuffer的接口，该接口在Task中执行。
 
@@ -46,11 +46,11 @@ function adjustImageValue(arrayBuffer: ArrayBuffer): ArrayBuffer {
 
 /*
  * 创建一个Task，用于将ArrayBuffer传入Task执行
- * isParamsByTransfer用于控制ArrayBuffer是“拷贝”还是“转移”传递
+ * isParamsByCopy用于控制ArrayBuffer是“拷贝”还是“转移”传递
  */
-function createImageTask(arrayBuffer: ArrayBuffer, isParamsByTransfer: boolean): taskpool.Task {
+function createImageTask(arrayBuffer: ArrayBuffer, isParamsByCopy: boolean): taskpool.Task {
   let task: taskpool.Task = new taskpool.Task(adjustImageValue, arrayBuffer);
-  if (!isParamsByTransfer) {
+  if (isParamsByCopy) {
     // 传递空数组[]，全部arrayBuffer参数传递均采用拷贝方式
     try {
       task.setTransferList([]);
@@ -85,16 +85,17 @@ struct Index {
           for (let i: number = 0; i < taskNum; i++) {
             let arrayBufferSlice: ArrayBuffer =
               arrayBuffer.slice(arrayBuffer.byteLength / taskNum * i, arrayBuffer.byteLength / taskNum * (i + 1));
-            // 使用拷贝方式传入ArrayBuffer，所以isParamsByTransfer为false，改成true，就可以实现转移方式的传输
-            taskPoolGroup.addTask(createImageTask(arrayBufferSlice, false));
+            // isParamsByCopy为true时，就可以实现拷贝方式的传输
+            taskPoolGroup.addTask(createImageTask(arrayBufferSlice, true));
           }
           // 执行Task，UI主线程接收处理完成后的结果
           taskpool.execute(taskPoolGroup).then((data) => {
-            // 将各Task返回的ArrayBuffer数据进行拼接
+            // 将各Task返回的ArrayBuffer数据（即data，此处data为包含4组arrayBufferSlice的长度为4的数组）进行拼接等后续处理，此处不再列举具体操作
+            // ...
           }).catch((e: BusinessError) => {
-            console.error(e.message);
+            this.message = 'fail';
+               console.error(`taskpool: execute task: code: ${e.code}, message: ${e.message}`);
           })
-          // ...
         })
     }
     .height('100%')
@@ -105,4 +106,4 @@ struct Index {
 
 ## ArrayBuffer转移传输方式
 
-在TaskPool中，传递ArrayBuffer数据时，默认使用转移方式，原线程将无法再使用已传输给子线程的ArrayBuffer。 在上文示例的基础上去除task.setTransferList接口调用，即在createImageTask的第二个参数传入true，就可以实现转移方式的传输。
+在TaskPool中，传递ArrayBuffer数据时，默认使用转移方式，原线程将无法再使用已传输给子线程的ArrayBuffer。 在上文示例的基础上去除task.setTransferList接口调用，即在createImageTask的第二个参数传入false，就可以实现转移方式的传输。

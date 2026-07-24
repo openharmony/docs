@@ -1847,3 +1847,38 @@ struct SliderExample {
 ```
 
 ![slider_9](figures/slider_9.png)
+
+### 示例10（设置滑动条的系统材质）
+
+该示例通过通用属性[systemMaterial](ts-universal-attributes-image-effect.md#systemmaterial)为滑动条设置沉浸式材质。
+
+从API版本26.0.0开始，新增systemMaterial接口。
+
+```ts
+// xxx.ets
+import { uiMaterial } from '@kit.ArkUI';
+
+@Entry
+@Component
+struct SliderSystemMaterial {
+  build() {
+    RelativeContainer() {
+      Slider({
+        style: SliderStyle.InSet
+      })
+        .alignRules({
+          center: { anchor: '__container__', align: VerticalAlign.Center },
+          middle: { anchor: '__container__', align: HorizontalAlign.Center },
+        })
+        .systemMaterial(new uiMaterial.ImmersiveMaterial({
+          style: uiMaterial.ImmersiveStyle.ULTRA_THIN,
+        }))
+    }
+    .height('100%')
+    .width('100%')
+    .backgroundColor(Color.Grey)
+  }
+}
+```
+
+![slider_10](figures/slider_10.png)

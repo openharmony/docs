@@ -38,10 +38,11 @@
 |OH_NativeDisplayManager_UnregisterFoldDisplayModeChangeListener(uint32_t listenerIndex)|取消屏幕展开、折叠状态变化监听。|
 
 ## 在CMake脚本中链接动态库
+<!-- @[add_display_target_link](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkUISample/NativeDisplayBasicSample/entry/src/main/cpp/CMakeLists.txt) -->
 
-``` text
-target_link_libraries(entry PUBLIC libhilog_ndk.z.so)
-target_link_libraries(entry PUBLIC libnative_display_manager.so )
+``` Text
+target_link_libraries(nativedisplay PUBLIC libhilog_ndk.z.so)
+target_link_libraries(nativedisplay PUBLIC libnative_display_manager.so)
 ```
 
 ## 添加头文件
@@ -274,23 +275,6 @@ EXTERN_C_END
 ## 注册模块
 
 <!-- @[register_display_module](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkUISample/NativeDisplayBasicSample/entry/src/main/cpp/napi_init.cpp) -->
-
-``` C++
-static napi_module displayModule = {
-    .nm_version = 1,
-    .nm_flags = 0,
-    .nm_filename = nullptr,
-    .nm_register_func = Init,
-    .nm_modname = "nativedisplay",
-    .nm_priv = ((void*)0),
-    .reserved = { 0 },
-};
-
-extern "C" __attribute__((constructor)) void RegisterEntryModule(void)
-{
-    napi_module_register(&displayModule);
-}
-```
 
 ``` C++
 static napi_module displayModule = {

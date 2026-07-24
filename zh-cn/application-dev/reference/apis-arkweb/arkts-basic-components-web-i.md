@@ -220,7 +220,7 @@ Web同层渲染的配置。
 | 名称             | 类型      | 只读 | 可选   | 说明                                       |
 | -------------- | ---- | ---- | ------|---------------------------------- |
 | request | [WebResourceRequest](./arkts-basic-components-web-WebResourceRequest.md) | 否 | 否 | 网页请求的封装信息。      |
-| error   | [WebResourceError](./arkts-basic-components-web-WebResourceError.md)     | 否 | 否 | 网页加载资源错误的封装信息 。 |
+| error   | [WebResourceError](./arkts-basic-components-web-WebResourceError.md)     | 否 | 否 | 网页加载资源错误的封装信息。 |
 
 ## OnHttpErrorReceiveEvent<sup>12+</sup>
 

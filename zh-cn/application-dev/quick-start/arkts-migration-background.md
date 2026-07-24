@@ -29,8 +29,8 @@ class Person {
   }
   
   getName(): string {
-  // 开发者使用"string"作为返回类型，这隐藏了name可能为"undefined"的事实。
-  // 更合适的做法是将返回类型标注为"string | undefined"，以告诉开发者这个API所有可能的返回值的类型。
+  // 开发者使用"string"作为返回类型，这隐藏了name可能为"undefined"的事实
+  // 更合适的做法是将返回类型标注为"string | undefined"，以告诉开发者这个API所有可能的返回值的类型
     return this.name;
   }
 }
@@ -60,7 +60,7 @@ class Person {
 // ...
   let buddy = new Person()
   // 假设代码中没有对name的赋值，例如没有调用"buddy.setName('John')"
-  let len = buddy.getName().length; // 0, 没有运行时异常
+  let len = buddy.getName().length; // 0，没有运行时异常
 ```
 
 如果`name`可以是`undefined`，其类型应在代码中精确标注。

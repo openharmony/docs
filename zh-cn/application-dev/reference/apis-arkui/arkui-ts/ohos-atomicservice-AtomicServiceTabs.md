@@ -88,6 +88,8 @@ type TabContentBuilder = () => void
 
 ## TabBarOptions
 
+页签容器。
+
 ### constructor
 constructor(icon: ResourceStr | TabBarSymbol, text: ResourceStr, unselectedColor?: ResourceColor, selectedColor?: ResourceColor)
 
@@ -107,6 +109,8 @@ TabBarOptions的构造函数。
 | selectedColor | [ResourceColor](ts-types.md#resourcecolor) | 否 | 被选择时的页签颜色，默认值：#FF007DFF。 |
 
 ## TabBarPosition 
+
+设置页签栏位置，默认值为TabBarPosition.BOTTOM。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 

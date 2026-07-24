@@ -32,6 +32,10 @@ import { AtomicServiceWeb } from '@kit.ArkUI';
 
 不支持[通用属性](ts-component-general-attributes.md)
 
+## 事件
+
+不支持[通用事件](ts-component-general-events.md)
+
 ## AtomicServiceWeb
 
 ```ts
@@ -450,10 +454,6 @@ type OnLoadInterceptCallback = (event: OnLoadInterceptEvent) => boolean
 | 类型      | 说明        |
 |---------|-----------|
 | boolean | 返回资源是否被拦截，true表示被拦截。 |
-
-## 事件
-
-不支持[通用事件](ts-component-general-events.md)
 
 ## 示例
 

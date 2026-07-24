@@ -222,7 +222,7 @@ export default class EntryAbility extends UIAbility {
       // 隐藏底部导航区域
       windowClass.setSpecificSystemBarEnabled('navigationIndicator', false);
     } catch (exception) {
-      console.error('Failed to obtain isImmersiveLayout. Cause: ' + JSON.stringify(exception));
+      console.error('Failed to set status bar or navigation indicator bar invisible. Cause: ' + JSON.stringify(exception));
     }
   }
 }
@@ -253,7 +253,7 @@ export default class EntryAbility extends UIAbility {
       // 获取状态栏避让区高度
       let statusBarHeight = windowClass.getWindowAvoidArea(window.AvoidAreaType.TYPE_SYSTEM).topRect.height;
     } catch (exception) {
-      console.error(`Failed to enable the listener for system avoid area changes. Cause code: ${exception.code}, message: ${exception.message}`);
+      console.error(`Failed to get window avoid area. Cause code: ${exception.code}, message: ${exception.message}`);
     }
   }
 }

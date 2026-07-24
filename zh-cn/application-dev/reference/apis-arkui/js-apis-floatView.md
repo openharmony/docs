@@ -624,7 +624,7 @@ let newSize: window.Size = {
 let templateProperty: floatView.TemplateProperty = {
   templateType: floatView.FloatViewTemplateType.HORIZONTAL_BAR,
   size: newSize
-}
+};
 try {
   // 切换闪控窗模板并改变窗口尺寸
   this.floatViewController?.switchTemplate(templateProperty).then(() => {

@@ -463,7 +463,7 @@ libace_napi.z.so
 
 - 该导出接口暂时不支持async_hooks资源管理机制。
 
-- 该导出接口不会校验入参async_resource_name是否为String类型对象，入参async_resource_name推荐传入String对象，用于描述创建的异步工作对象。入参async_resource_name为String时，trace信息将包含该描述，反之传入非String对象，trace信息将不包含该描述。
+- 该导出接口不校验async_resource_name参数类型，建议传入String对象描述异步工作对象。String类型参数会在trace信息中显示，null或undefined则不会显示，其他类型将导致崩溃。
 
 - 由于当前暂不支持async_hooks资源管理机制，入参async_resource暂时也不做处理。
 

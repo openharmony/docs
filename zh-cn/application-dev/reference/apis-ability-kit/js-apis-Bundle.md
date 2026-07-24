@@ -466,7 +466,7 @@ bundle.getBundleInfo(bundleName, bundleFlags, options, (err, data) => {
 
 getAllApplicationInfo(bundleFlags: number, userId?: number): Promise\<Array\<ApplicationInfo\>\>
 
-获取指定用户下所有已安装的应用信息，使用promise异步回调。
+获取指定用户下所有已安装的应用信息，使用Promise异步回调。
 
 **需要权限：**
 

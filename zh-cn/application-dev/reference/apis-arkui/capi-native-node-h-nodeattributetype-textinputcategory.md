@@ -1734,8 +1734,8 @@ NODE_TEXT_AREA_CARET_OFFSET = 8015
 | 类型 | 说明 |
 | -- | -- |
 | .value[0].i32 | 光标所在位置的索引值。 |
-| .value[1].f32 | 光标相对输入框的x坐标位值，单位为px。 |
-| .value[2].f32 | 光标相对输入框的y坐标位值，单位为px。 |
+| .value[1].f32 | 光标相对输入框的x坐标值，单位为px。 |
+| .value[2].f32 | 光标相对输入框的y坐标值，单位为px。 |
 
 ## NODE_TEXT_AREA_CONTENT_RECT
 

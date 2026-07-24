@@ -9,7 +9,7 @@
 Ability信息，可以通过[bundleManager.getBundleInfoForSelf](js-apis-bundleManager.md#bundlemanagergetbundleinfoforself)获取Ability信息，其中参数[bundleFlags](js-apis-bundleManager.md#bundleflag)至少包含GET_BUNDLE_INFO_WITH_HAP_MODULE和GET_BUNDLE_INFO_WITH_ABILITY。
 
 > **说明：**
-> 本模块首批接口从API version 9 开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
+> 本模块首批接口从API version 9开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 
 ## 导入模块
 
@@ -63,8 +63,8 @@ import { bundleManager } from '@kit.AbilityKit';
 
 | 名称               | 类型    | 只读 | 可选 | 说明                               |
 | -------------------| ------- | ---- | ---- | ---------------------------------- |
-| maxWindowRatio     | number  | 是   | 否   | 表示自由窗口状态下窗口的最大宽高比（宽度/高度）。<br>取值范围：[0-1]，例如，0.62表示窗口最大宽度为高度的0.62倍。该属性用于限制窗口的显示比例。 |
-| minWindowRatio     | number  | 是   | 否   | 表示自由窗口状态下窗口的最小宽高比（宽度/高度）。<br>取值范围：[0-1]，例如，0.12表示窗口最大宽度为高度的0.12倍。该属性用于限制窗口的显示比例。 |
+| maxWindowRatio     | number  | 是   | 否   | 表示自由窗口状态下窗口的最大宽高比（宽度/高度）。<br>取值范围：[0, 1]，例如，0.62表示窗口最大宽度为高度的0.62倍。该属性用于限制窗口的显示比例。 |
+| minWindowRatio     | number  | 是   | 否   | 表示自由窗口状态下窗口的最小宽高比（宽度/高度）。<br>取值范围：[0, 1]，例如，0.12表示窗口最小宽度为高度的0.12倍。该属性用于限制窗口的显示比例。 |
 | maxWindowWidth     | number  | 是   | 否   | 表示自由窗口状态下窗口的最大宽度，宽度单位为vp。 |
 | minWindowWidth     | number  | 是   | 否   | 表示自由窗口状态下窗口的最小宽度，宽度单位为vp。 |
 | maxWindowHeight    | number  | 是   | 否   | 表示自由窗口状态下窗口的最大高度，高度单位为vp。 |

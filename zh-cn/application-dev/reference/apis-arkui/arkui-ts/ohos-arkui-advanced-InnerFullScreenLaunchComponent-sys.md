@@ -28,7 +28,12 @@ import { InnerFullScreenLaunchComponent, LaunchController } from '@kit.ArkUI';
 无
 
 ## 属性
+
 不支持[通用属性](ts-component-general-attributes.md)
+
+## 事件
+
+不支持[通用事件](ts-component-general-events.md)
 
 ## InnerFullScreenLaunchComponent
 
@@ -52,9 +57,13 @@ InnerFullScreenLaunchComponent({ content: Callback\<void>, controller: LaunchCon
   
 > **说明：**
 >
-> 从API版本26.0.0开始，原子化服务通过手势侧滑退出触发onTerminated回调。
+> - 若原子化服务通过调用[terminateSelfWithResult](../../apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#terminateselfwithresult)退出，其携带的信息会传给回调函数的入参；
+> - 若原子化服务通过调用[terminateSelf](../../apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#terminateself)退出，上述回调函数的入参中，"code"取默认值"0"，"want"为"undefined"；
+> - 从API版本26.0.0开始，原子化服务通过手势侧滑退出触发onTerminated回调。
 
 ## LaunchController
+
+拉起原子化服务控制器。
 
 **系统接口：** 此接口为系统接口。
 
@@ -81,10 +90,14 @@ type LaunchAtomicServiceCallback = (appId: string, options?: AtomicServiceOption
 |appId | string |是| 原子化服务的appId。 |
 | options | [AtomicServiceOptions](../../apis-ability-kit/js-apis-app-ability-atomicServiceOptions.md) | 否 | 拉起原子化服务参数。 |
 
-## 事件
-不支持[通用事件](ts-component-general-events.md)
-
 ## 示例
+
+> **说明：**
+>
+>由于嵌入式原子化服务运行在独立进程，其崩溃异常不会直接暴露在宿主的日志中。本地调试时可通过以下方式查看真实报错栈：  
+>1. 打开DevEco Studio的HiLog面板。  
+>2. 将左上角的模式切换为User logs of selected app。  
+>3. 在右侧进程列表中，选择被拉起的原子化服务进程（被拉起原子化服务的包名，且后缀带有embeddable字样）。
 
 ```ts
 import { InnerFullScreenLaunchComponent, LaunchController } from '@kit.ArkUI';

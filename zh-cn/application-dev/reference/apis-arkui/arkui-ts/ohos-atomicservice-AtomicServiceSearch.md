@@ -70,10 +70,10 @@ AtomicServiceSearch中“选择区”的可选属性。
 | font                    | [Font](ts-types.md#font) | 否 | 是 | 下拉按钮本身的文本样式。默认值：`{size: $r('sys.float.ohos_id_text_size_body1')}`。 |
 | fontColor               | [ResourceColor](ts-types.md#resourcecolor) | 否 | 是 | 下拉菜单选中项的文本颜色。默认值：`{fontColor: $r('sys.color.ohos_id_color_text_primary')}`。   |
 | selectedOptionBgColor   | [ResourceColor](ts-types.md#resourcecolor) | 否 | 是 | 下拉菜单选中项的背景色。默认值：`$r('sys.color.ohos_id_color_component_activated')`混合`$r('sys.color.ohos_id_alpha_highlight_bg')`的透明度。 |
-| selectedOptionFont      | [Font](ts-types.md#font) | 否 | 是 | 下拉菜单选中项的文本样式。默认值：`{size:&nbsp;$r('sys.color.ohos_id_text_size_body1'), weight:&nbsp;FontWeight.Regular}`。 |
+| selectedOptionFont      | [Font](ts-types.md#font) | 否 | 是 | 下拉菜单选中项的文本样式。默认值：`{size: $r('sys.color.ohos_id_text_size_body1'), weight: FontWeight.Regular}`。 |
 | selectedOptionFontColor | [ResourceColor](ts-types.md#resourcecolor) | 否 | 是 | 下拉菜单选中项的文本颜色。默认值：`$r('sys.color.ohos_id_color_text_primary_activated')`。 |
 | optionBgColor           | [ResourceColor](ts-types.md#resourcecolor) | 否 | 是 | 下拉菜单项的背景色。默认值：`Color.Transparent`。 |
-| optionFont              | [Font](ts-types.md#font) | 否 | 是 | 下拉菜单项的文本样式。默认值：`{size:&nbsp;$r('sys.float.ohos_id_text_size_body1'), weight:&nbsp;FontWeight.Regular}`。 |
+| optionFont              | [Font](ts-types.md#font) | 否 | 是 | 下拉菜单项的文本样式。默认值：`{size: $r('sys.float.ohos_id_text_size_body1'), weight: FontWeight.Regular}`。 |
 | optionFontColor         | [ResourceColor](ts-types.md#resourcecolor) | 否 | 是 | 下拉菜单项的文本颜色。默认值：`$r('sys.color.ohos_id_color_text_primary')`。 |
 | optionWidth             | [Dimension](ts-types.md#dimension10) \| [OptionWidthMode](ts-appendix-enums.md#optionwidthmode11) | 否 | 是 | 设置下拉菜单项的宽度，不支持设置百分比。OptionWidthMode类型为枚举类型，OptionWidthMode决定下拉菜单是否继承下拉按钮宽度。当设置为异常值或小于最小宽度56vp时，属性不生效，菜单项宽度设为默认值，即菜单默认宽度为2栅格。 |
 | optionHeight            | [Dimension](ts-types.md#dimension10) | 否 | 是 | 设置下拉菜单显示的最大高度，不支持设置百分比。下拉菜单的默认最大高度是屏幕可用高度的80%，设置的菜单最大高度不能超过默认最大高度。 |

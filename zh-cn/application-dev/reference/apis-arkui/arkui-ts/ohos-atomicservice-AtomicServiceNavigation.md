@@ -95,7 +95,7 @@ AtomicServiceNavigation({
 
 | 名称 | 类型 | 只读 | 可选 | 说明 |
 | --------------- | ------ | ---- | -- |----|
-| primaryColor | [ResourceColor](ts-types.md#resourcecolor)  | 否 | 否 | 单色渐变色彩值和双色渐变第一色彩值。默认值为空，即无颜色设置。 |
+| primaryColor | [ResourceColor](ts-types.md#resourcecolor)  | 否 | 否 | 单色渐变色彩值和双色渐变第一色彩值。 |
 | secondaryColor |[ResourceColor](ts-types.md#resourcecolor)  | 否 | 是 | 双色渐变色第二色彩值。默认值为空，即无颜色设置。 |
 | backgroundTheme |[BackgroundTheme](#backgroundtheme18)  | 否 | 是 | 导航栏背景底色。默认值为DEFAULT。 |
 | mixMode | [MixMode](#mixmode18)  | 否 | 是 | 同时设置primaryColor和secondaryColor时此参数生效。代表双色渐变下两种颜色的融合方式。默认值为TOWARDS。 |

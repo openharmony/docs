@@ -114,7 +114,7 @@ function factorial(n: number): number {
   factorial(n4) // 9900
 ```
 
-`number`类型在表示大整数（即超过-9007199254740991~9007199254740991）时会造成精度丢失。在开发时可以按需使用`bigint`类型来确保精度：
+`number`类型在表示大整数（即超过`Number.MIN_SAFE_INTEGER`（-9007199254740991）~`Number.MAX_SAFE_INTEGER`（9007199254740991））时会造成精度丢失。在开发时可以按需使用`bigint`类型来确保精度：
 
 <!-- @[big_int_type](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/Start/LearningArkTs/IntroductionToArkTS/entry/src/main/ets/pages/BasicKnowledge.ets) -->  
 
@@ -160,7 +160,7 @@ let s3 = `The result is ${a}`;
 
 `void`类型用于指定函数没有返回值。
 
-此类型只有一个值，同样是`void`。由于`void`是引用类型，因此它可以用于泛型类型参数。
+此类型只有一个值，同样是`void`。`void`可用于泛型类型参数。
 
 <!-- @[generic_class](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/Start/LearningArkTs/IntroductionToArkTS/entry/src/main/ets/pages/BasicKnowledge.ets) -->   
 
@@ -222,9 +222,9 @@ enum ColorSet { White = 0xFF, Grey = 0x7F, Black = 0x00 }
 let c: ColorSet = ColorSet.Black;
 ```
 
-**`Union`类型**
+**联合类型（Union）**
 
-`Union`类型，即联合类型，是由多个类型组合成的引用类型。联合类型包含了变量可能的所有类型。
+联合类型（Union）是由多个类型组合成的类型。联合类型包含了变量可能的所有类型。
 
 <!-- @[union_type_animal](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/Start/LearningArkTs/IntroductionToArkTS/entry/src/main/ets/pages/BasicKnowledge.ets) -->    
 
@@ -276,9 +276,9 @@ function foo(animal: Animal) {
 }
 ```
 
-**`Aliases`类型**
+**类型别名（Aliases）**
 
-`Aliases`类型为匿名类型（如数组、函数、对象字面量或联合类型）提供名称，或为已定义的类型提供替代名称。
+类型别名（Aliases）为匿名类型（如数组、函数、对象字面量或联合类型）提供名称，或为已定义的类型提供替代名称。
 
 <!-- @[type_aliases](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/Start/LearningArkTs/IntroductionToArkTS/entry/src/main/ets/pages/BasicKnowledge.ets) -->   
 
@@ -329,8 +329,8 @@ let emptyData: NullableObject = null;
 | -------- | ------------------------------------------------------------ |
 | `===`    | 如果两个操作数严格相等（对于不同类型的操作数认为是不相等的），则返回true。 |
 | `!==`    | 如果两个操作数严格不相等（对于不同类型的操作数认为是不相等的），则返回true。 |
-| `==`     | 如果两个操作数相等，则返回true。 |
-| `!=`     | 如果两个操作数不相等，则返回true。    |
+| `==`     | 如果两个操作数相等，则返回true。建议使用`===`替代。 |
+| `!=`     | 如果两个操作数不相等，则返回true。建议使用`!==`替代。    |
 | `>`      | 如果左操作数大于右操作数，则返回true。 |
 | `>=`     | 如果左操作数大于或等于右操作数，则返回true。 |
 | `<`      | 如果左操作数小于右操作数，则返回true。    |
@@ -1076,8 +1076,8 @@ class Person {
   }
   
   getName(): string {
-    // 开发者使用"string"作为返回类型，这隐藏了name可能为"undefined"的事实。
-    // 更合适的做法是将返回类型标注为"string | undefined"，以告诉开发者这个API所有可能的返回值。
+    // 开发者使用"string"作为返回类型，这隐藏了name可能为"undefined"的事实
+    // 更合适的做法是将返回类型标注为"string | undefined"，以告诉开发者这个API所有可能的返回值
     return this.name;
   }
 }
@@ -1584,7 +1584,7 @@ let x = new Derived(666);
 
 ```typescript
 class Y {
-  abstract method(p: string)  // 编译时错误：抽象方法只能在抽象类内。
+  abstract method(p: string)  // 编译时错误：抽象方法只能在抽象类内
 }
 ```
 
@@ -2059,7 +2059,7 @@ Y // 表示来自Utils的Y
 如果标识符列表定义了`ident as alias`，则实体`ident`将绑定在名称`alias`下：
 
 ```typescript
-import { X as Z, Y } from './utils';
+import { X as Z, Y } from './Utils';
 Z // 表示来自Utils的X
 Y // 表示来自Utils的Y
 X // 编译时错误：'X'不可见

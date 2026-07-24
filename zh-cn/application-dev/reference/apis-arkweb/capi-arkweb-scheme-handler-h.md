@@ -831,7 +831,7 @@ bool OH_ArkWebHttpBodyStream_IsChunked(const ArkWeb_HttpBodyStream* httpBodyStre
 
 | 类型 | 说明 |
 | -- | -- |
-| bool | 如果采用分块传输则返回true;否则返回false。 |
+| bool | 如果采用分块传输则返回true；否则返回false。 |
 
 ### OH_ArkWebHttpBodyStream_IsEof()
 

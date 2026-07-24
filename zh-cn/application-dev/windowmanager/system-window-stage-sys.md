@@ -262,8 +262,7 @@ export default class EntryAbility extends UIAbility {
 
 ```ts
 // xxx.ets 实现子窗口的属性设置
-import { window, router } from '@kit.ArkUI';
-import { common } from '@kit.AbilityKit';
+import { window } from '@kit.ArkUI';
 
 @Entry
 @Component
@@ -294,9 +293,8 @@ struct transferCtrlSubWindow {
 
 ```ts
 // xxx.ets 实现子窗口的创建以及显示、隐藏窗口时的动效操作
-import { window, router } from '@kit.ArkUI';
-import { common, Want } from '@kit.AbilityKit';
-import { BusinessError } from '@kit.BasicServicesKit';
+import { window } from '@kit.ArkUI';
+import { common } from '@kit.AbilityKit';
 import { AnimationConfig } from '../entryability/AnimationConfig';
 
 @Entry
@@ -325,7 +323,7 @@ struct Index {
     promise.then(async(subWin: window.Window) => {
       this.subWindow_ = subWin;
       AppStorage.setOrCreate<window.Window>("systemTypeWindow", subWin);
-      await subWin.setUIContent("pages/transferCtrlSubWindow",()=>{});
+      await subWin.setUIContent("pages/transferCtrlSubWindow");
       await subWin.moveWindowTo(100,100);
       await subWin.resize(200,200);
     }).catch((err:Error)=>{

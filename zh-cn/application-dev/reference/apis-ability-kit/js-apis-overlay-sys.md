@@ -154,7 +154,7 @@ try {
 
 getOverlayModuleInfoByBundleName(bundleName: string, moduleName?: string): Promise\<Array\<OverlayModuleInfo>>
 
-获取指定应用中指定module的OverlayModuleInfo信息。使用promise异步回调。
+获取指定应用中指定module的OverlayModuleInfo信息。使用Promise异步回调。
 
 指定应用是调用方自身时不需要权限。
 
@@ -207,7 +207,7 @@ let moduleName = "feature";
   } catch (err) {
     let code = (err as BusinessError).code;
     let message = (err as BusinessError).message;
-    console.error('getTargetOverlayModuleInfos failed due to err code : ' + code + ' ' + 'message :' + message);
+    console.error('getOverlayModuleInfoByBundleName failed due to err code : ' + code + ' ' + 'message :' + message);
   }
 })();
 ```
@@ -334,7 +334,7 @@ try {
 
 getTargetOverlayModuleInfosByBundleName(targetBundleName: string, moduleName?: string): Promise\<Array\<OverlayModuleInfo>>
 
-获取指定应用中指定module关联的所有OverlayModuleInfo信息。使用promise异步回调。
+获取指定应用中指定module关联的所有OverlayModuleInfo信息。使用Promise异步回调。
 
 指定应用是调用方自身时不需要权限。
 

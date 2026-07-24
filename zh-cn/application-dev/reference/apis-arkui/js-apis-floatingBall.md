@@ -706,7 +706,7 @@ try {
 | template | [FloatingBallTemplate](#floatingballtemplate) | 否 | 否 | 闪控球模板。不同模板对其他参数有不同要求，详见FloatingBallTemplate枚举说明。 |
 | title | string | 否 | 否 | 闪控球标题，不可为空字符串，大小不超过64字节。传入空字符串或超过64字节时返回错误码[1300019](errorcode-window.md#1300019-闪控球参数校验错误)。 |
 | content | string | 否 | 是 | 闪控球内容，大小不超过64字节。不传入时默认为空字符串，不显示闪控球内容。超过64字节时返回错误码[1300019](errorcode-window.md#1300019-闪控球参数校验错误)。 |
-| backgroundColor | string | 否 | 是 | 闪控球背景颜色，为不带透明度的十六进制颜色格式（例如'#008EF5'或'#FF008EF5'），不传入时闪控球跟随系统深浅色模式的默认背景色。格式错误时返回错误码[1300019](errorcode-window.md#1300019-闪控球参数校验错误)。不传入时闪控球跟随系统深浅色模式的默认背景色。 |
+| backgroundColor | string | 否 | 是 | 闪控球背景颜色，为不带透明度的十六进制颜色格式（例如'#008EF5'或'#FF008EF5'）。格式错误时返回错误码[1300019](errorcode-window.md#1300019-闪控球参数校验错误)。不传入时闪控球跟随系统深浅色模式的默认背景色。 |
 | titleColor | string | 否 | 是 | 闪控球标题文字颜色，为不带透明度的十六进制颜色格式（例如'#008EF5'或'#FF008EF5'），不传入时根据背景色色度自动填充，若背景色为亮色则填充黑色('#E5000000')，若背景色为暗色则填充白色('#E5FFFFFF')。配置此属性时，必须配置背景色backgroundColor，否则返回错误码[1300019](errorcode-window.md#1300019-闪控球参数校验错误)。<br>**起始版本**：26.0.0 <br>**模型约束：** 此接口仅可在Stage模型下使用。 |
 | contentColor | string | 否 | 是 | 闪控球内容文字颜色，为不带透明度的十六进制颜色格式（例如'#008EF5'或'#FF008EF5'），不传入时根据背景色色度自动填充，若背景色为亮色则填充黑色('#99000000')，若背景色为暗色则填充白色('#99FFFFFF')。配置此属性时，必须配置背景色backgroundColor，否则返回错误码[1300019](errorcode-window.md#1300019-闪控球参数校验错误)。<br>**起始版本**：26.0.0 <br>**模型约束：** 此接口仅可在Stage模型下使用。 |
 | icon | [image.PixelMap](../apis-image-kit/arkts-apis-image-PixelMap.md) | 否 | 是 | 闪控球图标，图标像素的总字节数不超过192KB（图标像素的总字节数通过[getPixelBytesNumber](../apis-image-kit/arkts-apis-image-PixelMap.md#getpixelbytesnumber7)获取），超过192KB时返回错误码[1300019](errorcode-window.md#1300019-闪控球参数校验错误)。建议图标像素宽高为128px*128px。实际显示效果依赖于设备能力和闪控球UI样式。 |

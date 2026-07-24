@@ -238,7 +238,7 @@ Failed to install the HAP because the HAP path is invalid or the HAP is too larg
 
 1. 确认HAP或APP是否存在。
 2. 查看HAP或APP的可执行权限，是否可读。
-3. 查看HAP的大小是否超过4G。
+3. 查看HAP的大小是否超过4GB。
 
 ## 17700015 多个HAP配置信息不同导致应用安装失败
 
@@ -558,7 +558,7 @@ Failed to install the HAP because the overlay check of the HAP failed.
 
 1. 检查overlay特征应用是否为预置应用。
 2. 检查目标应用是否为预置应用。
-3. 检查目标应用是否不为overlay特征的应用
+3. 检查目标应用是否不为overlay特征的应用。
 4. 检查目标module是否不为overlay特征的module。<!--DelEnd-->
 
 ## 17700032 指定的应用不包含overlay特征的module

@@ -324,7 +324,7 @@ struct Index {
 
 从API version 23开始，在OnShowFileSelectorEvent的FileSelectorParam中新增接口getSuggestedName()、getDefaultPath()、getDescriptions()、isAcceptAllOptionExcluded()。
 
-新增接口对上传保存文件能力进行了增强，以对标W3C能力，用于支持用户获取到HTML前端通过`showSaveFilePicker`、`showOpenFilePicker`、`showDirectoryPicker`等方法传递的option参数(参考下方加载的html文件)里的数据。
+新增接口对上传保存文件能力进行了增强，以对标W3C能力，用于支持用户获取到HTML前端通过`showSaveFilePicker`、`showOpenFilePicker`、`showDirectoryPicker`等方法传递的option参数（参考下方加载的html文件）里的数据。
 
 API version 23 新增支持如下option中的成员：
 

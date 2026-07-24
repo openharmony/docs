@@ -74,7 +74,7 @@
 
 | 接口     | 功能描述                         |
 | -------- | -------------------------------- |
-| OH_AVCapability_GetName     | 获取能力实例对应编解码器的名称。 |
+| OH_AVCapability_GetName     | 获取对应的编解码器名称。 |
 
 当H.264软件解码器和H.264硬件解码器同时存在时，创建H.264软件解码器的示例代码如下。
 
@@ -581,7 +581,7 @@ bool isSupported = OH_AVCapability_AreProfileAndLevelSupported(capability, AVC_P
 
 ![](figures/formula-maxmbsperframe.png)
 
-*MaxMBsPerFrameLevelLimits*表示协议限定的编解码器最大每帧宏块数，*MaxMBsPerFrameSubmit*表示编解码器上报的最大每帧宏块数，实际能力取这两者的最小值。
+*MaxMBsPerFrameLevelLimits*表示协议限定的编解码器最大每帧宏块数，*MaxMBsPerFrameSubmit*表示编解码器上报的最大每帧宏块数，实际生效的每帧最大宏块数（*MaxMBsPerFrame*）取这两者的最小值。在此基础上，结合给定的视频高度（*height*）以及单个宏块的宽和高（*MBWidth*和*MBHeight*，通常为16），即可推算得出该高度下所支持的最大视频宽度（*maxWidth*）。
 
 | 接口     | 功能描述                         |
 | -------- | ---------------------------- |

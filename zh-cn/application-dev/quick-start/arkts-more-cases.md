@@ -201,7 +201,7 @@ type ControllerConstructor = {
   new (value: string): Controller;
 }
 
-class testMenu {
+class TestMenu {
   controller: ControllerConstructor = Controller
   createController() {
     if (this.controller) {
@@ -211,7 +211,7 @@ class testMenu {
   }
 }
 
-let t = new testMenu();
+let t = new TestMenu();
 console.info(t.createController()!.value);
 ```
 
@@ -359,7 +359,7 @@ interface ControllerConstructor {
   new (value: string): Controller;
 }
 
-class testMenu {
+class TestMenu {
   controller: ControllerConstructor = Controller
   createController() {
     if (this.controller) {
@@ -369,7 +369,7 @@ class testMenu {
   }
 }
 
-let t = new testMenu();
+let t = new TestMenu();
 console.info(t.createController()!.value);
 ```
 
@@ -1016,7 +1016,7 @@ let d = +'string';
 <!-- @[no_polymorphic](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/Start/LearningArkTs/MigrationFromTypeScriptToArkTS/AdaptationCases/entry/src/main/ets/pages/BasicAdaptation.ets) -->  
 
 ``` TypeScript
-let a = Number.parseInt('5'); // 使用Number.parseInt显示转换
+let a = Number.parseInt('5'); // 使用Number.parseInt显式转换
 let b = -Number.parseInt('5');
 let c = ~Number.parseInt('5');
 let d = new Number('123');
@@ -1450,7 +1450,7 @@ class Controller {
 
 type ControllerConstructor = new (value: string) => Controller;
 
-class testMenu {
+class TestMenu {
   controller: ControllerConstructor = Controller
   createController() {
     if (this.controller) {
@@ -1460,8 +1460,8 @@ class testMenu {
   }
 }
 
-let t = new testMenu()
-console.info(t.createController()!.value)
+let t = new TestMenu();
+console.info(t.createController()!.value);
 ```
 
 **建议改法**

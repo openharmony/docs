@@ -682,11 +682,11 @@
 | napi_create_external_string_utf16 | 需要通过外部UTF-16编码的字符串缓冲区创建ArkTS字符串值且避免内存拷贝时使用此函数。 | napi_invalid_arg | 入参env为nullptr | 确保入参正确 |
 | napi_create_external_string_utf16 | 需要通过外部UTF-16编码的字符串缓冲区创建ArkTS字符串值且避免内存拷贝时使用此函数。 | napi_invalid_arg | 入参str为nullptr | 确保入参正确 |
 | napi_create_external_string_utf16 | 需要通过外部UTF-16编码的字符串缓冲区创建ArkTS字符串值且避免内存拷贝时使用此函数。 | napi_invalid_arg | 入参result为nullptr | 确保入参正确 |
-| napi_create_external_string_utf16 | 需要通过外部UTF-16编码的字符串缓冲区创建ArkTS字符串值且避免内存拷贝时使用此函数。 | napi_invalid_arg | 入参length不等于NAPI_AUTO_LENGTH或length大于INT_MAX | 确保入参length等于NAPI_AUTO_LENGTH且length不大于INT_MAX |
+| napi_create_external_string_utf16 | 需要通过外部UTF-16编码的字符串缓冲区创建ArkTS字符串值且避免内存拷贝时使用此函数。 | napi_invalid_arg | 入参length不等于NAPI_AUTO_LENGTH或length大于INT_MAX | 确保入参length等于NAPI_AUTO_LENGTH或length不大于INT_MAX |
 | napi_create_external_string_ascii | 需要通过外部ASCII编码的字符串缓冲区创建ArkTS字符串值且避免内存拷贝时使用此函数。 | napi_invalid_arg | 入参env为nullptr | 确保入参正确 |
 | napi_create_external_string_ascii | 需要通过外部ASCII编码的字符串缓冲区创建ArkTS字符串值且避免内存拷贝时使用此函数。 | napi_invalid_arg | 入参str为nullptr | 确保入参正确 |
 | napi_create_external_string_ascii | 需要通过外部ASCII编码的字符串缓冲区创建ArkTS字符串值且避免内存拷贝时使用此函数。 | napi_invalid_arg | 入参result为nullptr | 确保入参正确 |
-| napi_create_external_string_ascii | 需要通过外部ASCII编码的字符串缓冲区创建ArkTS字符串值且避免内存拷贝时使用此函数。 | napi_invalid_arg | 入参length不等于NAPI_AUTO_LENGTH或length大于INT_MAX | 确保入参length等于NAPI_AUTO_LENGTH且length不大于INT_MAX |
+| napi_create_external_string_ascii | 需要通过外部ASCII编码的字符串缓冲区创建ArkTS字符串值且避免内存拷贝时使用此函数。 | napi_invalid_arg | 入参length不等于NAPI_AUTO_LENGTH或length大于INT_MAX | 确保入参length等于NAPI_AUTO_LENGTH或length不大于INT_MAX |
 | napi_create_strong_sendable_reference | 创建指向Sendable ArkTS对象的Sendable强引用。 | napi_invalid_arg | 入参env为nullptr | 确保入参正确 |
 | napi_create_strong_sendable_reference | 创建指向Sendable ArkTS对象的Sendable强引用。 | napi_invalid_arg | 入参value为nullptr | 确保入参正确 |
 | napi_create_strong_sendable_reference | 创建指向Sendable ArkTS对象的Sendable强引用。 | napi_invalid_arg | 入参result为nullptr | 确保入参正确 |

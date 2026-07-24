@@ -21,7 +21,7 @@
 
 示例代码如下：
 
-<!-- @[quick_start](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkUISample/ArkUIWindowSamples/DeviceDifferentiationSample/entry/src/main/ets/pages/Index.ets) -->
+<!-- @[quick_start](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkUISample/ArkUIWindowSamples/DeviceDifferentiationSample/entry/src/main/ets/pages/Index.ets) --> 
 
 ``` TypeScript
 import { window } from '@kit.ArkUI'
@@ -34,19 +34,22 @@ import { display } from '@kit.ArkUI';
 struct Index {
   @State currentOrientation: string = 'UNSPECIFIED';
   private stage: window.WindowStage = (this.getUIContext().getHostContext() as common.UIAbilityContext).windowStage;
+  private foldDisplayModeCallback: Callback<display.FoldDisplayMode> = (data: display.FoldDisplayMode) => {
+    console.info(`Listening enabled. Data: ${data}`);
+    this.getBreakPointAndSetOrientation();
+  };
 
   aboutToAppear() {
-    let ret: boolean = false;
-    ret = display.isFoldable();
+    const ret = display.isFoldable();
     if (ret) {
-      let callback: Callback<display.FoldDisplayMode> = (data: display.FoldDisplayMode) => {
-        console.info(`Listening enabled. Data: ${data}`);
-        this.getBreakPointAndSetOrientation();
-      };
-      display.on('foldDisplayModeChange', callback);
+      display.on('foldDisplayModeChange', this.foldDisplayModeCallback);
     } else {
       this.getBreakPointAndSetOrientation();
     }
+  }
+
+  aboutToDisappear() {
+    display.off('foldDisplayModeChange', this.foldDisplayModeCallback);
   }
 
   private getBreakPointAndSetOrientation(): void {
@@ -54,7 +57,7 @@ struct Index {
     let displayWidth = displayInfo.width;
     let displayHeight = displayInfo.height;
     let heightBp = displayHeight / displayWidth;
-    if(displayWidth > displayHeight) {
+    if (displayWidth > displayHeight) {
       let temp = displayWidth;
       displayWidth = displayHeight;
       displayHeight = temp;
@@ -70,13 +73,14 @@ struct Index {
       this.currentOrientation = 'PORTRAIT';
     }
   }
+
   build() {
     RelativeContainer() {
       Text(this.currentOrientation)
         .fontWeight(600)
         .fontSize(30)
         .textAlign(TextAlign.Center)
-        .position({y: 300})
+        .position({ y: 300 })
         .width('100%')
     }
     .height('100%')
@@ -123,7 +127,7 @@ struct Index {
 
 若开发者想准确知道当前窗口方向从而选择旋转策略（比如视频播放页面锁定当前方向），推荐获取到[display.rotation](../reference/apis-arkui/js-apis-display.md#属性)或[display.orientation](../reference/apis-arkui/js-apis-display.md#属性)后，再使用[convertOrientationAndRotation()](../reference/apis-arkui/arkts-apis-window-Window.md#convertorientationandrotation23)将屏幕方向转化为窗口方向，具体示例如下：
 
-1. 获取目标屏幕方向。调用[getDefaultDisplaySync()](../reference/apis-arkui/js-apis-display.md#displaygetdefaultdisplaysync9)获取屏幕方向。
+1. 获取目标屏幕方向。调用[getDefaultDisplaySync()](../reference/apis-arkui/js-apis-display.md#displaygetdefaultdisplaysync9)获取目标屏幕的Display对象，再通过其[display.orientation](../reference/apis-arkui/js-apis-display.md#属性)属性获取屏幕方向。
 
 2. 将屏幕方向转换为窗口方向。调用[convertOrientationAndRotation()](../reference/apis-arkui/arkts-apis-window-Window.md#convertorientationandrotation23)可以把屏幕方向[display.orientation](../reference/apis-arkui/js-apis-display.md#属性)转换为窗口方向[orientation](../reference/apis-arkui/arkts-apis-window-i.md#rotationchangeinfo19)。
 

@@ -444,7 +444,7 @@ bundle.getPermissionDef(permission, (err, data) => {
 
 getPermissionDef(permissionName: string): Promise&lt;PermissionDef&gt;
 
-按权限名称获取权限的详细信息，使用promise异步回调。
+按权限名称获取权限的详细信息，使用Promise异步回调。
 
 **需要权限：**
 
@@ -614,7 +614,7 @@ bundle.getBundleInfos(bundleFlag, userId, (err, data) => {
 
 getApplicationInfos(bundleFlags: number, userId?: number): Promise\<Array\<ApplicationInfo\>\>
 
-获取指定用户下所有已安装的应用信息，使用promise异步回调。
+获取指定用户下所有已安装的应用信息，使用Promise异步回调。
 
 > **说明：**
 >

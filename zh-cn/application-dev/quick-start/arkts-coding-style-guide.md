@@ -591,7 +591,7 @@ try {
   doSomething();
 }
 catch (err) {
-  // 处理错误。
+  // 处理错误
 }
 ```
 
@@ -603,7 +603,7 @@ catch (err) {
 try {
   doSomething();
 } catch (err) {
-  // 处理错误。
+  // 处理错误
 }
 ```
 
@@ -931,7 +931,7 @@ let y: Array<string> = ['a', 'b', 'c'];
 <!-- @[use_T_correctExample](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/Start/LearningArkTS/CodingStyleGuide/entry/src/main/ets/pages/Index.ets) -->  
 
 ``` TypeScript
-// 统一使用T[]语法。
+// 统一使用T[]语法
 let x: number[] = [1, 2, 3];
 let y: string[] = ['a', 'b', 'c'];
 ```

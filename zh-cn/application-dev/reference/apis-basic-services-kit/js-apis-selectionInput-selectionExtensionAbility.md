@@ -7,7 +7,7 @@
 <!--Tester: @dong-dongzhen-->
 <!--Adviser: @fang-jinxu-->
 
-本模块提供划词扩展能力，支持开发者通过继承SelectionExtensionAbility实现自定义的划词扩展服务，适用于在用户通过鼠标、触控板选中文本后提供搜索、翻译等扩展交互的场景。具体能力包括：
+本模块提供划词扩展能力，支持开发者通过继承SelectionExtensionAbility实现自定义的划词扩展服务，适用于在用户通过鼠标、触控板选中文本后提供搜索、翻译等扩展交互的场景。开发者需在工程配置中声明该ExtensionAbility。具体的配置请参见[实现一个划词扩展能力](../../basic-services/selectionInput/selection-services-application-guide.md)。本模块提供的具体能力包括：
 - 生命周期管理：通过[onConnect](#onconnect)和[onDisconnect](#ondisconnect)回调处理连接与断开逻辑。
 - 提供context属性：开发者可通过context调用[startAbility](js-apis-selectionInput-selectionExtensionContext.md#startability)拉起同应用内的目标Ability，或将context作为[createPanel](js-apis-selectionInput-selectionManager.md#createpanel)的入参创建划词面板。
 
@@ -35,7 +35,7 @@ import { SelectionExtensionAbility } from '@kit.BasicServicesKit';
 
 onConnect(want: Want): rpc.RemoteObject
 
-当客户端连接到SelectionExtensionAbility时，系统会触发该回调，开发者可在该回调中返回RPC通信对象，用于客户端与服务端建立IPC通信连接。开发者需返回一个实现了rpc.RemoteObject的通信桩对象，系统将该桩对象传递给客户端，客户端通过该桩对象与SelectionExtensionAbility进行IPC通信。
+当客户端连接到SelectionExtensionAbility时，系统会触发该回调，开发者可在该回调中返回RPC通信对象，用于客户端与服务端建立IPC通信连接。开发者需返回一个继承了rpc.RemoteObject的通信桩对象，系统将该桩对象传递给客户端，客户端通过该桩对象与SelectionExtensionAbility进行IPC通信。
 
 **系统能力：** SystemCapability.SelectionInput.Selection
 
