@@ -288,8 +288,8 @@ DriverExtensionAbility不支持以下模块的引用。
 | ArkData（方舟数据管理）| [@ohos.data.distributedData (分布式数据管理)](../apis-arkdata/js-apis-distributed-data.md)  |
 | ArkData（方舟数据管理）  | [@ohos.data.distributedDataObject (分布式数据对象)](../apis-arkdata/js-apis-data-distributedobject.md)  |
 | ArkData（方舟数据管理）  | [@ohos.data.distributedKVStore (分布式键值数据库)](../apis-arkdata/js-apis-distributedKVStore.md)  |
-| ArkData（方舟数据管理）  | [@ohos.data.rdb（关系型数据库）](../apis-arkdata/js-apis-data-rdb.md)  |
-|<!--DelRow-->ArkData（方舟数据管理）  | [@ohos.data.relationalStore（关系型数据库）（系统接口）](../apis-arkdata/js-apis-data-relationalStore-sys.md)  |
+| ArkData（方舟数据管理）  | [@ohos.data.rdb (关系型数据库)](../apis-arkdata/js-apis-data-rdb.md)  |
+|<!--DelRow-->ArkData（方舟数据管理）  | [@ohos.data.relationalStore (关系型数据库)(系统接口)](../apis-arkdata/js-apis-data-relationalStore-sys.md)  |
 |<!--DelRow-->ArkUI（方舟UI框架）| [@ohos.screen (屏幕)(系统接口)](../apis-arkui/js-apis-screen-sys.md)  |
 | ArkUI（方舟UI框架）  | [@ohos.screenshot (屏幕截图)](../apis-arkui/js-apis-screenshot.md)  |
 |<!--DelRow-->ArkUI（方舟UI框架）  | [@ohos.window (窗口)(系统接口)](../apis-arkui/js-apis-window-sys.md)  |
@@ -335,7 +335,7 @@ DriverExtensionAbility不支持以下模块的引用。
 | Location Kit | [@ohos.geolocation (位置服务)](../apis-location-kit/js-apis-geolocation.md)  |
 | Location Kit | [@ohos.geoLocationManager (位置服务)](../apis-location-kit/js-apis-geoLocationManager.md)  |
 | MDM Kit（企业设备管理服务）| [@ohos.enterprise.adminManager（admin权限管理）](../apis-mdm-kit/js-apis-enterprise-adminManager.md)  |
-|<!--DelRow-->MDM Kit（企业设备管理服务） | [@ohos.enterprise.dateTimeManager （系统时间管理）(系统接口)](../apis-mdm-kit/js-apis-enterprise-dateTimeManager-sys.md)  |
+|<!--DelRow-->MDM Kit（企业设备管理服务） | [@ohos.enterprise.dateTimeManager（系统时间管理）(系统接口)](../apis-mdm-kit/js-apis-enterprise-dateTimeManager-sys.md)  |
 | MDM Kit（企业设备管理服务） | [@ohos.enterprise.deviceInfo（设备信息管理）](../apis-mdm-kit/js-apis-enterprise-deviceInfo.md)  |
 |<!--DelRow-->Media Kit（媒体服务）| [@ohos.multimedia.media (媒体服务)(系统接口)](../apis-media-kit/js-apis-media-sys.md)  |
 | MultimediaKit | @ohos.multimedia.mediaLibrary (媒体库管理) |
