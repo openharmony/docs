@@ -163,11 +163,13 @@ struct IndexItem {
 
 ## @Builder方法赋值给类或者接口的属性
 
-使用\@Builder装饰器装饰的方法`MyBuilder`作为wrapBuilder的参数，然后将wrapBuilder的返回值赋值给接口`ChildOptions`中的属性，可以以数据的形式传递给其他子组件调用。
+使用\@Builder装饰器装饰的方法`myBuilder`作为wrapBuilder的参数，然后将wrapBuilder的返回值赋值给接口`ChildOptions`中的属性，可以以数据的形式传递给其他子组件调用。
 
-```ts
+<!-- @[wrapbuilder_as_field](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkUISample/wrapbuilder/entry/src/main/ets/pages/WrapBuilderAsField.ets) --> 
+
+``` TypeScript
 @Builder
-function MyBuilder(value: string, size: number) {
+function myBuilder(value: string, size: number) {
   Text(value)
     .fontSize(size)
     .margin(10)
@@ -181,7 +183,7 @@ interface ChildOptions {
 @Component
 struct Index {
   childOptions: ChildOptions = {
-    wrappedBuilder: wrapBuilder(MyBuilder)
+    wrappedBuilder: wrapBuilder(myBuilder)
   };
 
   build() {
