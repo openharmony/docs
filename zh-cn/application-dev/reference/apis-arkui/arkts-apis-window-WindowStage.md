@@ -226,7 +226,7 @@ createSubWindow(name: string, callback: AsyncCallback&lt;Window&gt;): void
 | 参数名   | 类型                                   | 必填 | 说明                                          |
 | -------- | -------------------------------------- | ---- | --------------------------------------------- |
 | name     | string                                 | 是   | 子窗口的名字，用于唯一标识子窗口。建议使用有意义的窗口名称作为标识符。 |
-| callback | AsyncCallback&lt;[Window](arkts-apis-window-Window.md)&gt; | 是   | 回调函数。返回当前WindowStage对应主窗的子窗口对象。 |
+| callback | AsyncCallback&lt;[Window](arkts-apis-window-Window.md)&gt; | 是   | 回调函数。返回当前WindowStage对应主窗下的子窗口对象。 |
 
 **错误码：**
 
@@ -299,7 +299,7 @@ createSubWindow(name: string): Promise&lt;Window&gt;
 
 | 类型                             | 说明                                             |
 | -------------------------------- | ------------------------------------------------ |
-| Promise&lt;[Window](arkts-apis-window-Window.md)&gt; | Promise对象。返回当前WindowStage对应主窗的子窗口对象。 |
+| Promise&lt;[Window](arkts-apis-window-Window.md)&gt; | Promise对象。返回当前WindowStage对应主窗下的子窗口对象。 |
 
 **错误码：**
 
@@ -367,7 +367,7 @@ createSubWindowWithOptions(name: string, options: SubWindowOptions): Promise&lt;
 
 | 类型                             | 说明                                             |
 | -------------------------------- | ------------------------------------------------ |
-| Promise&lt;[Window](arkts-apis-window-Window.md)&gt; | Promise对象。返回当前WindowStage对应主窗的子窗口对象。 |
+| Promise&lt;[Window](arkts-apis-window-Window.md)&gt; | Promise对象。返回当前WindowStage对应主窗下的子窗口对象。 |
 
 **错误码：**
 
