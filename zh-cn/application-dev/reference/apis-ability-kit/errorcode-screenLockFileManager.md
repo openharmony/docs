@@ -17,6 +17,10 @@
 
 Invalid DataType.
 
+**错误描述**
+
+当传入的dataType校验失败时，将返回该错误码。
+
 **可能原因**
 
 该错误码表示参数校验出现错误，传入的dataType不为MEDIA_DATA或ALL_DATA。
@@ -31,6 +35,10 @@ Invalid DataType.
 **错误信息**
 
 The system ability works abnormally.
+
+**错误描述**
+
+当系统服务工作异常时，将返回该错误码。
 
 **可能原因**
 
@@ -49,6 +57,10 @@ The system ability works abnormally.
 
 The application has not enabled the data protection function under lock screen.
 
+**错误描述**
+
+当应用未开启锁屏敏感数据保护功能时，将返回该错误码。
+
 **可能原因**
 
 1. 应用未在[requestpermissions](../../security/AccessToken/declare-permissions.md#在配置文件中声明权限)配置权限ohos.permission.PROTECT_SCREEN_LOCK_DATA开启应用锁屏敏感数据保护功能。
@@ -65,6 +77,10 @@ The application has not enabled the data protection function under lock screen.
 
 The file access is denied due to security strategy.
 
+**错误描述**
+
+文件访问被拒绝。当锁屏敏感数据访问权限已被释放时，将返回该错误码。
+
 **可能原因**
 
 锁屏敏感数据访问权限已释放。
@@ -79,6 +95,10 @@ The file access is denied due to security strategy.
 **错误信息**
 
 File access is not acquired.
+
+**错误描述**
+
+当未申请锁屏敏感数据访问权限时，将返回该错误码。
 
 **可能原因**
 
