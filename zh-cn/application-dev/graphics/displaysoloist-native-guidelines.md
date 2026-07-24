@@ -16,7 +16,7 @@
 | ------------------------------------------------------------ | ----------------------------------------------------- |
 | OH_DisplaySoloist* OH_DisplaySoloist_Create (bool useExclusiveThread) | 创建一个OH_DisplaySoloist实例。                       |
 | OH_DisplaySoloist_Destroy (OH_DisplaySoloist * displaySoloist) | 销毁一个OH_DisplaySoloist实例。                       |
-| OH_DisplaySoloist_Start (OH_DisplaySoloist * displaySoloist, OH_DisplaySoloist_FrameCallback callback, void * data ) | 设置每帧回调函数，每次VSync信号到来时启动每帧回调。   |
+| OH_DisplaySoloist_Start (OH_DisplaySoloist * displaySoloist, OH_DisplaySoloist_FrameCallback callback, void * data ) | 启动每帧回调，设置回调函数callback，每次VSync信号到来时调用该回调。   |
 | OH_DisplaySoloist_Stop (OH_DisplaySoloist * displaySoloist)  | 停止请求下一次VSync信号，并停止调用回调函数callback。 |
 | OH_DisplaySoloist_SetExpectedFrameRateRange (OH_DisplaySoloist* displaySoloist, DisplaySoloist_ExpectedRateRange* range) | 设置期望帧率范围。                                    |
 
