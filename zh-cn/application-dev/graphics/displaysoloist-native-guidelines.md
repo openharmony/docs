@@ -223,23 +223,25 @@ target_link_libraries(entry PUBLIC libace_napi.z.so libnative_drawing.so libnati
    
        std::string id(idStr);
        auto render = SampleXComponent::GetInstance(id);
-       OHNativeWindow *nativeWindow = render->GetNativeWindow();
-       uint64_t width;
-       uint64_t height;
+       if (render != nullptr) {
+           OHNativeWindow *nativeWindow = render->GetNativeWindow();
+           uint64_t width;
+           uint64_t height;
    
-       int32_t xSize = OH_NativeXComponent_GetXComponentSize(component, nativeWindow, &width, &height);
-       if ((xSize == OH_NATIVEXCOMPONENT_RESULT_SUCCESS) && (render != nullptr)) {
-           render->Prepare();
-           render->Create();
-           if (id == "xcomponentId_30") {
-               int offset = 16;
-               render->ConstructPath(offset, offset, render->defaultOffsetY);
+           int32_t xSize = OH_NativeXComponent_GetXComponentSize(component, nativeWindow, &width, &height);
+           if (xSize == OH_NATIVEXCOMPONENT_RESULT_SUCCESS) {
+               render->Prepare();
+               render->Create();
+               if (id == "xcomponentId_30") {
+                   int offset = 16;
+                   render->ConstructPath(offset, offset, render->defaultOffsetY);
+               }
+               if (id == "xcomponentId_120") {
+                   int offset = 4;
+                   render->ConstructPath(offset, offset, render->defaultOffsetY);
+               }
+               // ...
            }
-           if (id == "xcomponentId_120") {
-               int offset = 4;
-               render->ConstructPath(offset, offset, render->defaultOffsetY);
-           }
-           // ...
        }
    }
    ```
@@ -299,7 +301,7 @@ target_link_libraries(entry PUBLIC libace_napi.z.so libnative_drawing.so libnati
        }
        SAMPLE_LOGI("RegisterID = %{public}s", idStr);
        std::string id(idStr);
-       SampleXComponent *render = SampleXComponent().GetInstance(id);
+       SampleXComponent *render = SampleXComponent::GetInstance(id);
        if (render != nullptr) {
            DisplaySoloist_ExpectedRateRange range;
            bool useExclusiveThread = false;
