@@ -342,10 +342,11 @@ try {
 
 ## telephonyManager.getOutgoingCallPolicyNumbers
 
-getOutgoingCallPolicyNumbers(admin: Want | null, policy: adminManager.Policy): Array\<string>
+getOutgoingCallPolicyNumbers(admin: Want, policy: adminManager.Policy): Array\<string>
 
 获取通话呼出的允许或禁用名单。
 
+本接口通过传入Want查询对应企业设备管理应用设置的策略，如需查询实际生效的策略，请使用[telephonyManager.getOutgoingCallPolicyNumbers](#telephonymanagergetoutgoingcallpolicynumbers-1)接口。
 
 **需要权限：** ohos.permission.ENTERPRISE_MANAGE_TELEPHONY
 
@@ -359,7 +360,7 @@ getOutgoingCallPolicyNumbers(admin: Want | null, policy: adminManager.Policy): A
 
 | 参数名     | 类型                                                    | 必填 | 说明                                                         |
 | ---------- | ------------------------------------------------------- | ---- | ------------------------------------------------------------ |
-| admin     | [Want](../apis-ability-kit/js-apis-app-ability-want.md) \| null | 是   | 企业设备管理扩展组件。Want中必须包含企业设备管理扩展能力的abilityName和所在应用的bundleName。<br>当设备存在多个MDM应用时，API版本26.0.0之前，传入Want时查询对应企业设备管理应用设置的策略。从API版本26.0.0开始，新增支持传入null时查询实际生效的策略。|
+| admin     | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | 是   | 企业设备管理扩展组件。Want中必须包含企业设备管理扩展能力的abilityName和所在应用的bundleName。|
 | policy | [adminManager.Policy](js-apis-enterprise-adminManager.md#policy20)    | 是   | 允许或禁用名单策略。 BLOCK_LIST为禁用名单，TRUST_LIST为允许名单。  |
 
 
@@ -403,6 +404,64 @@ try {
 }
 ```
 
+
+## telephonyManager.getOutgoingCallPolicyNumbers
+
+getOutgoingCallPolicyNumbers(admin: Want | null, policy: adminManager.Policy): Array\<string>
+
+获取通话呼出的允许或禁用名单。
+
+**起始版本：** 26.0.0
+
+**需要权限：** ohos.permission.ENTERPRISE_MANAGE_TELEPHONY
+
+**系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
+
+**设备行为差异：** 该接口在Phone和Tablet设备中可正常调用，在其他设备中返回801错误码。
+
+**模型约束：** 此接口仅可在Stage模型下使用。
+
+**参数：**
+
+| 参数名     | 类型                                                    | 必填 | 说明                                                         |
+| ---------- | ------------------------------------------------------- | ---- | ------------------------------------------------------------ |
+| admin     | [Want](../apis-ability-kit/js-apis-app-ability-want.md) \| null | 是   | 企业设备管理扩展组件。Want中必须包含企业设备管理扩展能力的abilityName和所在应用的bundleName。<br>当设备存在多个MDM应用时，传入Want时查询对应企业设备管理应用设置的策略，传入null时查询实际生效的策略。|
+| policy | [adminManager.Policy](js-apis-enterprise-adminManager.md#policy20)    | 是   | 允许或禁用名单策略。 BLOCK_LIST为禁用名单，TRUST_LIST为允许名单。  |
+
+**返回值：**
+
+| 类型                                     | 说明                    |
+| ---------------------------------------- | ----------------------- |
+| Array\<string> | 通话呼出禁用或允许名单的号码数组。 |
+
+**错误码**：
+
+以下错误码的详细介绍请参见[企业设备管理错误码](errorcode-enterpriseDeviceManager.md)和[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| 9200001  | The application is not an administrator application of the device. |
+| 9200002  | The administrator application does not have permission to manage the device. |
+| 201      | Permission verification failed. The application does not have the permission required to call the API. |
+| 801      | Capability not supported. Failed to call the API due to limited device capabilities. |
+
+**示例：**
+
+```ts
+import { telephonyManager } from '@kit.MDMKit';
+import { adminManager } from '@kit.MDMKit';
+
+try {
+  // 设置策略类型为禁用名单
+  // 参数需根据实际情况进行替换
+  let policy: adminManager.Policy = adminManager.Policy.BLOCK_LIST;
+  // 获取通话呼出禁用名单
+  let numbers: Array<string> = telephonyManager.getOutgoingCallPolicyNumbers(null, policy);
+  console.info(`Succeeded in getting outgoing call policy. result: ${JSON.stringify(numbers)}`);
+} catch (err) {
+  console.error(`Failed to get outgoing call policy. Code: ${err.code}, message: ${err.message}`);
+}
+```
 ## telephonyManager.addIncomingCallPolicyNumbers
 
 addIncomingCallPolicyNumbers(admin: Want, policy: adminManager.Policy, numbers: Array\<string>): void
@@ -548,10 +607,11 @@ try {
 
 ## telephonyManager.getIncomingCallPolicyNumbers
 
-getIncomingCallPolicyNumbers(admin: Want | null, policy: adminManager.Policy): Array\<string>
+getIncomingCallPolicyNumbers(admin: Want, policy: adminManager.Policy): Array\<string>
 
 获取通话呼入的允许或禁用名单。
 
+本接口通过传入Want查询对应企业设备管理应用设置的策略，如需查询实际生效的策略，请使用[telephonyManager.getIncomingCallPolicyNumbers](#telephonymanagergetincomingcallpolicynumbers-1)接口。
 
 **需要权限：** ohos.permission.ENTERPRISE_MANAGE_TELEPHONY
 
@@ -565,7 +625,7 @@ getIncomingCallPolicyNumbers(admin: Want | null, policy: adminManager.Policy): A
 
 | 参数名     | 类型                                                    | 必填 | 说明                                                         |
 | ---------- | ------------------------------------------------------- | ---- | ------------------------------------------------------------ |
-| admin     | [Want](../apis-ability-kit/js-apis-app-ability-want.md) \| null | 是   | 企业设备管理扩展组件。Want中必须包含企业设备管理扩展能力的abilityName和所在应用的bundleName。<br>当设备存在多个MDM应用时，API版本26.0.0之前，传入Want时查询对应企业设备管理应用设置的策略。从API版本26.0.0开始，新增支持传入null时查询实际生效的策略。|
+| admin     | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | 是   | 企业设备管理扩展组件。Want中必须包含企业设备管理扩展能力的abilityName和所在应用的bundleName。|
 | policy | [adminManager.Policy](js-apis-enterprise-adminManager.md#policy20)    | 是   | 允许或禁用名单策略。BLOCK_LIST为禁用名单，TRUST_LIST为允许名单。   |
 
 
@@ -609,6 +669,64 @@ try {
 }
 ```
 
+
+## telephonyManager.getIncomingCallPolicyNumbers
+
+getIncomingCallPolicyNumbers(admin: Want | null, policy: adminManager.Policy): Array\<string>
+
+获取通话呼入的允许或禁用名单。
+
+**起始版本：** 26.0.0
+
+**需要权限：** ohos.permission.ENTERPRISE_MANAGE_TELEPHONY
+
+**系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
+
+**设备行为差异：** 该接口在Phone和Tablet设备中可正常调用，在其他设备中返回801错误码。
+
+**模型约束：** 此接口仅可在Stage模型下使用。
+
+**参数：**
+
+| 参数名     | 类型                                                    | 必填 | 说明                                                         |
+| ---------- | ------------------------------------------------------- | ---- | ------------------------------------------------------------ |
+| admin     | [Want](../apis-ability-kit/js-apis-app-ability-want.md) \| null | 是   | 企业设备管理扩展组件。Want中必须包含企业设备管理扩展能力的abilityName和所在应用的bundleName。<br>当设备存在多个MDM应用时，传入Want时查询对应企业设备管理应用设置的策略，传入null时查询实际生效的策略。|
+| policy | [adminManager.Policy](js-apis-enterprise-adminManager.md#policy20)    | 是   | 允许或禁用名单策略。BLOCK_LIST为禁用名单，TRUST_LIST为允许名单。   |
+
+**返回值：**
+
+| 类型                                     | 说明                    |
+| ---------------------------------------- | ----------------------- |
+| Array\<string> | 通话呼入禁用或允许名单的号码数组。 |
+
+**错误码**：
+
+以下错误码的详细介绍请参见[企业设备管理错误码](errorcode-enterpriseDeviceManager.md)和[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| 9200001  | The application is not an administrator application of the device. |
+| 9200002  | The administrator application does not have permission to manage the device. |
+| 201      | Permission verification failed. The application does not have the permission required to call the API. |
+| 801      | Capability not supported. Failed to call the API due to limited device capabilities. |
+
+**示例：**
+
+```ts
+import { telephonyManager } from '@kit.MDMKit';
+import { adminManager } from '@kit.MDMKit';
+
+try {
+  // 设置策略类型为禁用名单
+  // 参数需根据实际情况进行替换
+  let policy: adminManager.Policy = adminManager.Policy.BLOCK_LIST;
+  // 获取通话呼入禁用名单
+  let numbers: Array<string> = telephonyManager.getIncomingCallPolicyNumbers(null, policy);
+  console.info(`Succeeded in getting incoming call policy. result: ${JSON.stringify(numbers)}`);
+} catch (err) {
+  console.error(`Failed to get incoming call policy. Code: ${err.code}, message: ${err.message}`);
+}
+```
 ## telephonyManager.hangupCalling<sup>23+</sup>
 
 hangupCalling(admin: Want): void

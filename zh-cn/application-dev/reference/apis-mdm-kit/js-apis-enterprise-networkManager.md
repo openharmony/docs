@@ -194,9 +194,11 @@ try {
 
 ## networkManager.isNetworkInterfaceDisabledSync
 
-isNetworkInterfaceDisabledSync(admin: Want | null, networkInterface: string): boolean
+isNetworkInterfaceDisabledSync(admin: Want, networkInterface: string): boolean
 
 查询指定网络接口是否被禁用。适用于企业网络管理场景，例如检查网络接口状态、审计网络接口使用情况、验证网络策略执行效果，帮助企业确认网络接口管理策略是否生效，便于策略调整和问题排查。
+
+本接口通过传入Want查询对应企业设备管理应用设置的策略，如需查询实际生效的策略，请使用[networkManager.isNetworkInterfaceDisabledSync](#networkmanagerisnetworkinterfacedisabledsync-1)接口。
 
 **需要权限：** ohos.permission.ENTERPRISE_MANAGE_NETWORK
 
@@ -208,7 +210,7 @@ isNetworkInterfaceDisabledSync(admin: Want | null, networkInterface: string): bo
 
 | 参数名           | 类型                                                    | 必填 | 说明           |
 | ---------------- | ------------------------------------------------------- | ---- | -------------- |
-| admin     | [Want](../apis-ability-kit/js-apis-app-ability-want.md) \| null | 是   | 企业设备管理扩展组件。Want中必须包含企业设备管理扩展能力的abilityName和所在应用的bundleName。<br>当设备存在多个MDM应用时，API版本26.0.0之前，传入Want时查询对应企业设备管理应用设置的策略。从API版本26.0.0开始，新增支持传入null时查询实际生效的策略。|
+| admin     | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | 是   | 企业设备管理扩展组件。Want中必须包含企业设备管理扩展能力的abilityName和所在应用的bundleName。|
 | networkInterface | string                                                  | 是   | 指定网络接口。 |
 
 **返回值：**
@@ -249,6 +251,59 @@ try {
 }
 ```
 
+
+## networkManager.isNetworkInterfaceDisabledSync
+
+isNetworkInterfaceDisabledSync(admin: Want | null, networkInterface: string): boolean
+
+查询指定网络接口是否被禁用。适用于企业网络管理场景，例如检查网络接口状态、审计网络接口使用情况、验证网络策略执行效果，帮助企业确认网络接口管理策略是否生效，便于策略调整和问题排查。
+
+**起始版本：** 26.0.0
+
+**需要权限：** ohos.permission.ENTERPRISE_MANAGE_NETWORK
+
+**系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
+
+**模型约束：** 此接口仅可在Stage模型下使用。
+
+**参数：**
+
+| 参数名           | 类型                                                    | 必填 | 说明           |
+| ---------------- | ------------------------------------------------------- | ---- | -------------- |
+| admin     | [Want](../apis-ability-kit/js-apis-app-ability-want.md) \| null | 是   | 企业设备管理扩展组件。Want中必须包含企业设备管理扩展能力的abilityName和所在应用的bundleName。<br>当设备存在多个MDM应用时，传入Want时查询对应企业设备管理应用设置的策略，传入null时查询实际生效的策略。|
+| networkInterface | string                                                  | 是   | 指定网络接口。 |
+
+**返回值：**
+
+| 类型    | 说明                                                         |
+| ------- | ------------------------------------------------------------ |
+| boolean | 返回指定网络接口是否被禁用，true表示该网络接口被禁用，false表示该网络接口未被禁用。 |
+
+**错误码**：
+
+以下错误码的详细介绍请参见[企业设备管理错误码](errorcode-enterpriseDeviceManager.md)和[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| 9200001  | The application is not an administrator application of the device. |
+| 9200002  | The administrator application does not have permission to manage the device. |
+| 201      | Permission verification failed. The application does not have the permission required to call the API. |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+
+**示例：**
+
+```ts
+import { networkManager } from '@kit.MDMKit';
+
+try {
+  // 参数需根据实际情况进行替换
+  // 参数需根据实际情况进行替换
+  let result: boolean = networkManager.isNetworkInterfaceDisabledSync(null, 'eth0');
+  console.info(`Succeeded in querying network interface is disabled or not, result : ${result}`);
+} catch (err) {
+  console.error(`Failed to query network interface is disabled or not. Code: ${err.code}, message: ${err.message}`);
+}
+```
 ## networkManager.setNetworkInterfaceDisabledSync
 
 setNetworkInterfaceDisabledSync(admin: Want, networkInterface: string, isDisabled: boolean): void

@@ -155,13 +155,11 @@ try {
 
 ## usbManager.getAllowedUsbDevices
 
-getAllowedUsbDevices(admin: Want | null): Array\<UsbDeviceId>
+getAllowedUsbDevices(admin: Want): Array\<UsbDeviceId>
 
-获取USB设备可用名单。
+获取USB设备可用名单。一般使用场景：在修改策略前，需要先获取现有策略进行评估；管理界面需要展示当前的USB存储设备访问控制状态。
 
-**使用场景**：
-- 在修改策略前，需要先获取现有策略进行评估
-- 管理界面需要展示当前的USB存储设备访问控制状态
+本接口通过传入Want查询对应企业设备管理应用设置的策略，如需查询实际生效的策略，请使用[usbManager.getAllowedUsbDevices](#usbmanagergetallowedusbdevices-1)接口。
 
 **需要权限：** ohos.permission.ENTERPRISE_MANAGE_USB
 
@@ -174,7 +172,7 @@ getAllowedUsbDevices(admin: Want | null): Array\<UsbDeviceId>
 
 | 参数名 | 类型                                                    | 必填 | 说明                                   |
 | ------ | ------------------------------------------------------- | ---- | -------------------------------------- |
-| admin     | [Want](../apis-ability-kit/js-apis-app-ability-want.md) \| null | 是   | 企业设备管理扩展组件。Want中必须包含企业设备管理扩展能力的abilityName和所在应用的bundleName。<br>当设备存在多个MDM应用时，API版本26.0.0之前，传入Want时查询对应企业设备管理应用设置的策略。从API版本26.0.0开始，新增支持传入null时查询实际生效的策略。|
+| admin     | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | 是   | 企业设备管理扩展组件。Want中必须包含企业设备管理扩展能力的abilityName和所在应用的bundleName。|
 
 **返回值：**
 
@@ -212,6 +210,57 @@ try {
 }
 ```
 
+
+## usbManager.getAllowedUsbDevices
+
+getAllowedUsbDevices(admin: Want | null): Array\<UsbDeviceId>
+
+获取USB设备可用名单。一般使用场景：在修改策略前，需要先获取现有策略进行评估；管理界面需要展示当前的USB存储设备访问控制状态。
+
+**起始版本：** 26.0.0
+
+**需要权限：** ohos.permission.ENTERPRISE_MANAGE_USB
+
+**系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
+
+**模型约束：** 此接口仅可在Stage模型下使用。
+
+**参数：**
+
+| 参数名 | 类型                                                    | 必填 | 说明                                   |
+| ------ | ------------------------------------------------------- | ---- | -------------------------------------- |
+| admin     | [Want](../apis-ability-kit/js-apis-app-ability-want.md) \| null | 是   | 企业设备管理扩展组件。Want中必须包含企业设备管理扩展能力的abilityName和所在应用的bundleName。<br>当设备存在多个MDM应用时，传入Want时查询对应企业设备管理应用设置的策略，传入null时查询实际生效的策略。|
+
+**返回值：**
+
+| 类型                               | 说明                      |
+| ---------------------------------- | ------------------------- |
+| Array<[UsbDeviceId](#usbdeviceid)> | USB设备可用名单的设备ID数组。 |
+
+**错误码**：
+
+以下错误码的详细介绍请参见[企业设备管理错误码](errorcode-enterpriseDeviceManager.md)和[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| 9200001  | The application is not an administrator application of the device. |
+| 9200002  | The administrator application does not have permission to manage the device. |
+| 201      | Permission verification failed. The application does not have the permission required to call the API. |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+
+**示例：**
+
+```ts
+import { usbManager } from '@kit.MDMKit';
+
+try {
+  // 参数需根据实际情况进行替换
+  let result: Array<usbManager.UsbDeviceId> = usbManager.getAllowedUsbDevices(null);
+  console.info(`Succeeded in getting allowed USB devices. Result: ${JSON.stringify(result)}`);
+} catch (err) {
+  console.error(`Failed to get allowed USB devices. Code: ${err.code}, message: ${err.message}`);
+}
+```
 ## usbManager.setUsbStorageDeviceAccessPolicy
 
 setUsbStorageDeviceAccessPolicy(admin: Want, usbPolicy: UsbPolicy): void
@@ -288,14 +337,13 @@ try {
 
 ## usbManager.getUsbStorageDeviceAccessPolicy
 
-getUsbStorageDeviceAccessPolicy(admin: Want | null): UsbPolicy
+getUsbStorageDeviceAccessPolicy(admin: Want): UsbPolicy
 
 获取USB存储设备（baseClass = 0x08）访问策略。
 
-**需要权限：**
+本接口通过传入Want查询对应企业设备管理应用设置的策略，如需查询实际生效的策略，请使用[usbManager.getUsbStorageDeviceAccessPolicy](#usbmanagergetusbstoragedeviceaccesspolicy-1)接口。
 
-- API版本26.0.0之前：ohos.permission.ENTERPRISE_MANAGE_USB
-- API版本26.0.0开始：ohos.permission.ENTERPRISE_MANAGE_USB 或者 ohos.permission.PERSONAL_MANAGE_RESTRICTIONS（应用调用[adminManager.startAdminProvision](./js-apis-enterprise-adminManager.md#adminmanagerstartadminprovision15)接口激活为自带设备管理应用）。
+**需要权限：** ohos.permission.ENTERPRISE_MANAGE_USB 或者 ohos.permission.PERSONAL_MANAGE_RESTRICTIONS（应用调用[adminManager.startAdminProvision](./js-apis-enterprise-adminManager.md#adminmanagerstartadminprovision15)接口激活为自带设备管理应用）。
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
 
@@ -306,7 +354,7 @@ getUsbStorageDeviceAccessPolicy(admin: Want | null): UsbPolicy
 
 | 参数名 | 类型                                                    | 必填 | 说明                                   |
 | ------ | ------------------------------------------------------- | ---- | -------------------------------------- |
-| admin     | [Want](../apis-ability-kit/js-apis-app-ability-want.md) \| null | 是   | 企业设备管理扩展组件。Want中必须包含企业设备管理扩展能力的abilityName和所在应用的bundleName。<br>当设备存在多个MDM应用时，API版本26.0.0之前，传入Want时查询对应企业设备管理应用设置的策略。从API版本26.0.0开始，新增支持传入null时查询实际生效的策略。|
+| admin     | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | 是   | 企业设备管理扩展组件。Want中必须包含企业设备管理扩展能力的abilityName和所在应用的bundleName。|
 
 **返回值：**
 
@@ -344,17 +392,62 @@ try {
 }
 ```
 
+
+## usbManager.getUsbStorageDeviceAccessPolicy
+
+getUsbStorageDeviceAccessPolicy(admin: Want | null): UsbPolicy
+
+获取USB存储设备（baseClass = 0x08）访问策略。
+
+**起始版本：** 26.0.0
+
+**需要权限：** ohos.permission.ENTERPRISE_MANAGE_USB 或者 ohos.permission.PERSONAL_MANAGE_RESTRICTIONS（应用调用[adminManager.startAdminProvision](./js-apis-enterprise-adminManager.md#adminmanagerstartadminprovision15)接口激活为自带设备管理应用）。
+
+**系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
+
+**模型约束：** 此接口仅可在Stage模型下使用。
+
+**参数：**
+
+| 参数名 | 类型                                                    | 必填 | 说明                                   |
+| ------ | ------------------------------------------------------- | ---- | -------------------------------------- |
+| admin     | [Want](../apis-ability-kit/js-apis-app-ability-want.md) \| null | 是   | 企业设备管理扩展组件。Want中必须包含企业设备管理扩展能力的abilityName和所在应用的bundleName。<br>当设备存在多个MDM应用时，传入Want时查询对应企业设备管理应用设置的策略，传入null时查询实际生效的策略。|
+
+**返回值：**
+
+| 类型                    | 说明                  |
+| ----------------------- | --------------------- |
+| [UsbPolicy](#usbpolicy) | USB存储设备访问策略。设置为READ_WRITE表示允许读写USB存储设备；设置为READ_ONLY表示仅允许读取USB存储设备，禁止写入；设置为DISABLED表示完全禁止访问USB存储设备。 |
+
+**错误码**：
+
+以下错误码的详细介绍请参见[企业设备管理错误码](errorcode-enterpriseDeviceManager.md)和[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| 9200001  | The application is not an administrator application of the device. |
+| 9200002  | The administrator application does not have permission to manage the device. |
+| 201      | Permission verification failed. The application does not have the permission required to call the API. |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+
+**示例：**
+
+```ts
+import { usbManager } from '@kit.MDMKit';
+
+try {
+  // 参数需根据实际情况进行替换
+  let result: usbManager.UsbPolicy = usbManager.getUsbStorageDeviceAccessPolicy(null);
+  console.info(`Succeeded in getting USB storage device access policy. Result: ${JSON.stringify(result)}`);
+} catch (err) {
+  console.error(`Failed to get USB storage device access policy. Code: ${err.code}, message: ${err.message}`);
+}
+```
 ## usbManager.addDisallowedUsbDevices<sup>14+</sup>
 
 addDisallowedUsbDevices(admin: Want, usbDevices: Array\<UsbDeviceType>): void
 
-添加禁止使用的USB设备类型。
-
-**使用场景**：
-- 企业安全管理场景，需要禁用特定类型的USB设备
-- 防止数据泄露：禁用USB存储设备类型
-- 设备管理员需要根据安全策略，禁止使用某些类型的USB设备
-- 配合[removeDisallowedUsbDevices](#usbmanagerremovedisallowedusbdevices14)接口实现USB设备类型的动态管理
+添加禁止使用的USB设备类型。一般使用场景：企业安全管理场景，需要禁用特定类型的USB设备；防止数据泄露：禁用USB存储设备类型；设备管理员需要根据安全策略，禁止使用某些类型的USB设备；配合[removeDisallowedUsbDevices](#usbmanagerremovedisallowedusbdevices14)接口实现USB设备类型的动态管理。
 
 > **说明：**
 >
@@ -483,14 +576,11 @@ try {
 
 ## usbManager.getDisallowedUsbDevices<sup>14+</sup>
 
-getDisallowedUsbDevices(admin: Want | null): Array\<UsbDeviceType>
+getDisallowedUsbDevices(admin: Want): Array\<UsbDeviceType>
 
-获取禁止使用的USB设备类型。
+获取禁止使用的USB设备类型。一般使用场景：设备管理员需要查看当前禁止使用的USB设备类型列表；在修改禁用名单前，需要先获取现有名单进行比对；管理界面需要展示当前的USB设备类型禁用策略配置。
 
-**使用场景**：
-- 设备管理员需要查看当前禁止使用的USB设备类型列表
-- 在修改禁用名单前，需要先获取现有名单进行比对
-- 管理界面需要展示当前的USB设备类型禁用策略配置
+本接口通过传入Want查询对应企业设备管理应用设置的策略，如需查询实际生效的策略，请使用[usbManager.getDisallowedUsbDevices](#usbmanagergetdisallowedusbdevices)接口。
 
 **需要权限：** ohos.permission.ENTERPRISE_MANAGE_USB
 
@@ -503,7 +593,7 @@ getDisallowedUsbDevices(admin: Want | null): Array\<UsbDeviceType>
 
 | 参数名 | 类型                                                    | 必填 | 说明                                   |
 | ------ | ------------------------------------------------------- | ---- | -------------------------------------- |
-| admin     | [Want](../apis-ability-kit/js-apis-app-ability-want.md) \| null | 是   | 企业设备管理扩展组件。Want中必须包含企业设备管理扩展能力的abilityName和所在应用的bundleName。<br>当设备存在多个MDM应用时，API版本26.0.0之前，传入Want时查询对应企业设备管理应用设置的策略。从API版本26.0.0开始，新增支持传入null时查询实际生效的策略。|
+| admin     | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | 是   | 企业设备管理扩展组件。Want中必须包含企业设备管理扩展能力的abilityName和所在应用的bundleName。|
 
 **返回值：**
 
@@ -541,6 +631,57 @@ try {
 }
 ```
 
+
+## usbManager.getDisallowedUsbDevices
+
+getDisallowedUsbDevices(admin: Want | null): Array\<UsbDeviceType>
+
+获取禁止使用的USB设备类型。一般使用场景：设备管理员需要查看当前禁止使用的USB设备类型列表；在修改禁用名单前，需要先获取现有名单进行比对；管理界面需要展示当前的USB设备类型禁用策略配置。
+
+**起始版本：** 26.0.0
+
+**需要权限：** ohos.permission.ENTERPRISE_MANAGE_USB
+
+**系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
+
+**模型约束：** 此接口仅可在Stage模型下使用。
+
+**参数：**
+
+| 参数名 | 类型                                                    | 必填 | 说明                                   |
+| ------ | ------------------------------------------------------- | ---- | -------------------------------------- |
+| admin     | [Want](../apis-ability-kit/js-apis-app-ability-want.md) \| null | 是   | 企业设备管理扩展组件。Want中必须包含企业设备管理扩展能力的abilityName和所在应用的bundleName。<br>当设备存在多个MDM应用时，传入Want时查询对应企业设备管理应用设置的策略，传入null时查询实际生效的策略。|
+
+**返回值：**
+
+| 类型                                     | 说明                    |
+| ---------------------------------------- | ----------------------- |
+| Array<[UsbDeviceType](#usbdevicetype14)> | 禁止使用的USB设备类型。 |
+
+**错误码**：
+
+以下错误码的详细介绍请参见[企业设备管理错误码](errorcode-enterpriseDeviceManager.md)和[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| 9200001  | The application is not an administrator application of the device. |
+| 9200002  | The administrator application does not have permission to manage the device. |
+| 201      | Permission verification failed. The application does not have the permission required to call the API. |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+
+**示例：**
+
+```ts
+import { usbManager } from '@kit.MDMKit';
+
+try {
+  // 参数需根据实际情况进行替换
+  let result: Array<usbManager.UsbDeviceType> = usbManager.getDisallowedUsbDevices(null);
+  console.info(`Succeeded in getting disallowed USB devices. Result: ${JSON.stringify(result)}`);
+} catch (err) {
+  console.error(`Failed to get disallowed USB devices. Code: ${err.code}, message: ${err.message}`);
+}
+```
 ## usbManager.addDisallowedPermissiveUsbDevices
 
 addDisallowedPermissiveUsbDevices(admin: Want, usbDevices: Array\<PermissiveUsbDeviceType>): void
