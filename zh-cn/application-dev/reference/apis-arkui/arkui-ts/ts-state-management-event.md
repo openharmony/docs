@@ -7,7 +7,7 @@
 <!--Tester: @TerryTsao-->
 <!--Adviser: @zhang_yixin13-->
 
-@Event装饰回调方法，用于状态管理V2中，作为自定义组件的输出。@Event通常与@Param配合使用，@Param负责由父组件向子组件传递数据，@Event负责定义子组件向父组件传递消息的回调接口，适用于需要在子组件中触发父组件状态变更或事件处理的场景。
+@Event装饰回调方法，用于[状态管理V2](../../../ui/state-management/arkts-state-management-overview.md#状态管理v2)中，作为自定义组件的输出。@Event通常与[@Param](./ts-state-management-param.md)配合使用，@Param负责由父组件向子组件传递数据，@Event负责定义子组件向父组件传递消息的回调接口，适用于需要在子组件中触发父组件状态变更或事件处理的场景。
 
 开发指南参考：[@Event：规范组件输出](../../../ui/state-management/arkts-new-event.md)。
 
