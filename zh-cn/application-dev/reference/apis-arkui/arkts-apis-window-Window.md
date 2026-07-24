@@ -4007,7 +4007,7 @@ on(type: 'touchOutside', callback: Callback&lt;void&gt;): void
 
 | 参数名   | 类型                | 必填 | 说明                                                         |
 | -------- | ------------------- | ---- | ------------------------------------------------------------ |
-| type     | string              | 是   | 监听事件，固定为'touchOutside'，即本窗口范围外的点击事件。 |
+| type     | string              | 是   | 监听事件，固定为'touchOutside'，即本窗口范围外发生点击事件时的回调函数。 |
 | callback | Callback&lt;void&gt; | 是   | 回调函数。当点击事件发生在本窗口范围之外的回调。                               |
 
 **错误码：**
@@ -4232,7 +4232,7 @@ try {
 
 on(type: 'dialogTargetTouch', callback: Callback&lt;void&gt;): void
 
-开启模态窗口所遮盖窗口的点击或触摸事件的监听，除模态窗口以外其他窗口调用此接口不生效。
+开启模态窗口所遮罩区域的点击或触摸事件的监听，除模态窗口以外其他窗口调用此接口不生效。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -4242,8 +4242,8 @@ on(type: 'dialogTargetTouch', callback: Callback&lt;void&gt;): void
 
 | 参数名   | 类型                 | 必填 | 说明                                                          |
 | -------- | ------------------- | ---- | ------------------------------------------------------------ |
-| type     | string              | 是   | 监听事件，固定为'dialogTargetTouch'，即模态窗口所遮盖窗口的点击或触摸事件。 |
-| callback | Callback&lt;void&gt;| 是   | 回调函数。当点击或触摸事件发生在模态窗口所遮盖窗口的回调。 |
+| type     | string              | 是   | 监听事件，固定为'dialogTargetTouch'，即模态窗口所遮罩区域的点击或触摸事件。 |
+| callback | Callback&lt;void&gt;| 是   | 回调函数。当点击或触摸事件发生在模态窗口所遮罩区域的回调。 |
 
 **错误码：**
 
@@ -4269,7 +4269,7 @@ try {
 
 off(type: 'dialogTargetTouch', callback?: Callback&lt;void&gt;): void
 
-关闭模态窗口目标窗口的点击事件的监听。
+关闭模态窗口所遮罩区域的点击或触摸事件的监听。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -4279,8 +4279,8 @@ off(type: 'dialogTargetTouch', callback?: Callback&lt;void&gt;): void
 
 | 参数名   | 类型                    | 必填 | 说明                                                          |
 | -------- | ---------------------- | ---- | ------------------------------------------------------------ |
-| type     | string                 | 是   | 监听事件，固定为'dialogTargetTouch'，即模态窗口目标窗口的点击事件。 |
-| callback | Callback&lt;void&gt;      | 否   | 回调函数。当点击事件发生在模态窗口目标窗口的回调。若传入参数，则关闭该监听。若未传入参数，则关闭所有模态窗口目标窗口的点击事件的监听。 |
+| type     | string                 | 是   | 监听事件，固定为'dialogTargetTouch'，即模态窗口所遮罩区域的点击或触摸事件。 |
+| callback | Callback&lt;void&gt;      | 否   | 回调函数。当点击事件发生在模态窗口所遮罩区域的回调。若传入参数，则关闭该监听。若未传入参数，则关闭所有模态窗口所遮罩区域的点击事件的监听。 |
 
 **错误码：**
 
@@ -9944,7 +9944,7 @@ export default class EntryAbility extends UIAbility {
 
 setDialogBackGestureEnabled(enabled: boolean): Promise&lt;void&gt;
 
-设置模态窗口是否响应手势返回事件，非模态窗口调用返回错误码。
+设置模态窗口是否响应手势返回事件，非模态窗口调用返回1300004错误码。
 
 **系统能力**：SystemCapability.Window.SessionManager
 
@@ -9954,7 +9954,7 @@ setDialogBackGestureEnabled(enabled: boolean): Promise&lt;void&gt;
 
 | 参数名      | 类型    | 必填 | 说明                                                         |
 | ---------- | ------- | ---- | ------------------------------------------------------------ |
-| enabled    | boolean | 是   | 是否响应手势返回事件。<br>true表示响应手势返回事件，触发onBackPress回调；false表示不响应手势返回事件，不触发onBackPress回调。</br> |
+| enabled    | boolean | 是   | 是否响应手势返回事件。<br>true表示响应手势返回事件；false表示不响应手势返回事件。</br> |
 
 **返回值：**
 
