@@ -77,6 +77,8 @@
 
 **起始版本**：14
 
+**支持设备**：PC/2in1 | Wearable
+
 ## ohos.permission.ACCESS_BBOX_DIR
 
 允许系统应用读取bbox路径下的日志文件。
