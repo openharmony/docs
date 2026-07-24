@@ -801,9 +801,9 @@ on(type: 'error', callback: ErrorCallback): void
 
 | 错误码ID | 错误信息                         |
 | -------- | -------------------------------- |
-| 201      | permission denied. Possible cause: Missing required permissions. Suggestion: Please check and apply for the necessary permissions.     |
-| 5400103  | IO error. Return by ErrorCallback. Possible cause: System I/O operation failed. Suggestion: Please retry the operation. If the issue persists, restart the application. |
-| 5400105  | Service died. Return by ErrorCallback. Possible cause: System service terminated unexpectedly. Suggestion: Please release resources and retry. If the issue persists, restart the application. |
+| 201      | permission denied.     |
+| 5400103  | IO error. Return by ErrorCallback. |
+| 5400105  | Service died. Return by ErrorCallback. |
 
 **示例：**
 
