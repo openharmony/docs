@@ -417,8 +417,8 @@ getVolumeByUuid(uuid: string, callback: AsyncCallback&lt;Volume&gt;): void
     // 获取到卷设备信息
   });
   ```
-  
-  ## volumemanager.getVolumeById
+--
+## volumemanager.getVolumeById
 
 getVolumeById(volumeId: string): Promise&lt;Volume&gt;
 
@@ -1557,18 +1557,17 @@ volumeManager.formatPartition(diskId, partitionNum, params).then(() => {
 | uuid        | string  | 否 | 否 | 卷设备uuid是卷设备的通用唯一识别码，不会随着插卡顺序变化而变化，但是卷设备的格式化会改变卷设备的uuid。               |
 | diskId      | string  | 否 | 否 | 卷设备所属的磁盘ID，一个磁盘可以有一个或者多个卷设备。磁盘设备ID的格式为disk-{主设备号}-{次设备号}，与卷设备ID的格式结构类似，均采用{主设备号}-{次设备号}的命名规则。        |
 | description | string  | 否 | 否 | 卷设备描述。卷设备的格式化会改变卷设备描述。           |
-| removable   | boolean | 否 | 否 | 表示卷设备是否可移除。当前仅支持查询可移除存储设备，因此该字段值始终为true。true表示可移除；false表示不可移除。 |
+| removable   | boolean | 否 | 否 | 表示卷设备是否可移除。当前仅支持查询可移除存储设备。true表示可移除；false表示不可移除。 |
 | state       | number  | 否 | 否 | 卷设备状态标识：<br>0：卸载状态 UNMOUNTED。<br> 1：检查状态 CHECKING。<br> 2：挂载状态 MOUNTED。<br> 3：正在弹出状态 EJECTING。          |
 | path        | string  | 否 | 否 | 卷设备的挂载地址，一般为/mnt/data/external/{uuid}。卷设备的格式化会改变挂载路径。         |
 | fsType<sup>12+</sup>        | string  | 否 | 否 | 文件系统的类型，取值包括ext2、vfat、ntfs等。<br>**说明**：从API version 24开始，还支持ISO9660、UDF。      |
-| partitionNum   | number  | 否 | 是 | 卷设备的分区号。该字段为可选字段，不存在时表示无分区号信息。<br>**起始版本：** 26.0.0<br>**模型约束**：此接口仅可在Stage模型下使用。         |
+| partitionNum   | number  | 否 | 是 | 卷设备的分区号。参数缺省时，表示无分区号信息。<br>**起始版本：** 26.0.0<br>**模型约束**：此接口仅可在Stage模型下使用。         |
 | extraInfo   | string  | 否 | 是 | 卷设备的扩展信息，包含设备的附加属性数据，具体内容因设备类型不同而异。该字段为可选字段，不存在时表示无扩展信息。<br>**起始版本：** 26.0.0<br>**模型约束**：此接口仅可在Stage模型下使用。         |
 
 ## DiskType
 
 磁盘类型的枚举。
 
-### 枚举值
 
 **起始版本**：26.0.0
 
