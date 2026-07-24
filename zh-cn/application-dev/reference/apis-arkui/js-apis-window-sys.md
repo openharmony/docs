@@ -821,7 +821,7 @@ setGestureNavigationEnabled(enable: boolean): Promise&lt;void&gt;
 
 | 参数名 | 类型     | 必填  | 说明                 |
 | ------ | ------- | ---- | -------------------- |
-| enable | boolean | 是   | 设置手势导航启用状态。true表示启用手势导航；false表示禁用手势导航。 |
+| enable | boolean | 是   | 设置手势导航启用状态。true表示启用手势导航；false表示禁用手势导航。当前仅禁用从屏幕下拉的手势，其他手势未禁用。 |
 
 **返回值：**
 
@@ -871,7 +871,7 @@ setWaterMarkImage(pixelMap: image.PixelMap, enable: boolean, callback: AsyncCall
 | 参数名   | 类型                      | 必填 | 说明           |
 | -------- | ------------------------- | ---- | -------------- |
 | pixelMap | [image.PixelMap](../apis-image-kit/arkts-apis-image-PixelMap.md) | 是 | 水印图片。可通过[createPixelMap](../apis-image-kit/arkts-apis-image-f.md#imagecreatepixelmap8)接口获取。|
-| enable   | boolean                  | 是   | 设置是否显示水印图片。true表示显示水印图片；false表示不显示水印图片。设置显示水印后需主动设置为false才能关闭水印图片显示。|
+| enable   | boolean                  | 是   | 设置是否显示水印图片。true表示显示水印图片；false表示不显示水印图片。设置显示后需主动设置为false才能关闭。|
 | callback | AsyncCallback&lt;void&gt; | 是   | 回调信息。 |
 
 **错误码：**
@@ -1005,7 +1005,7 @@ setWaterMarkImage(pixelMap: image.PixelMap, enable: boolean, priority: number): 
 
 | 类型                | 说明                      |
 | ------------------- | ------------------------- |
-| Promise&lt;void&gt; | Promise对象，无返回结果。 |
+| Promise&lt;void&gt; | 无返回结果的Promise对象。 |
 
 **错误码：**
 
@@ -3679,9 +3679,9 @@ export default class EntryAbility extends UIAbility {
       try {
         // 调用hideNonSystemFloatingWindows接口，获取promise对象
         let promise = mainWindow.hideNonSystemFloatingWindows(shouldHide);
-        promise.then(()=> {
+        promise.then(() => {
           console.info('Succeeded in hiding the non-system floating windows.');
-        }).catch((err: BusinessError)=>{
+        }).catch((err: BusinessError) => {
           console.error(`Failed to hide the non-system floating windows. Cause code: ${err.code}, message: ${err.message}`);
         });
       } catch (exception) {
@@ -3934,9 +3934,9 @@ export default class EntryAbility extends UIAbility {
 
 setSingleFrameComposerEnabled(enable: boolean): Promise&lt;void&gt;
 
-禁止/使能单帧合成渲染节点的功能。使用Promise异步回调。
+启用/禁用单帧合成渲染节点的功能。使用Promise异步回调。
 
-单帧合成渲染节点的功能主要用于跟手性要求较高的场景，使能该功能之后可以降低渲染节点的上屏延时。通过setSingleFrameComposerEnabled接口，如果enable设置为true，则使能单帧合成渲染节点的功能，否则禁止单帧合成渲染节点的功能。
+单帧合成渲染节点的功能主要用于跟手性要求较高的场景，使能该功能之后可以降低渲染节点的上屏延时。通过setSingleFrameComposerEnabled接口，如果enable设置为true，则启用单帧合成渲染节点的功能，否则禁用单帧合成渲染节点的功能。
 
 **系统接口：** 此接口为系统接口。
 
@@ -3946,7 +3946,7 @@ setSingleFrameComposerEnabled(enable: boolean): Promise&lt;void&gt;
 
 | 参数名   | 类型                      | 必填 | 说明       |
 | -------- | ------------------------- | ---- | ---------- |
-| enable   | boolean                   | 是   | 设置单帧合成渲染节点的功能是否使能，true表示使能，false表示禁止。 |
+| enable   | boolean                   | 是   | 设置是否启用单帧合成渲染节点的功能，true表示启用，false表示禁用。 |
 
 **返回值：**
 
@@ -3973,9 +3973,9 @@ import { BusinessError } from '@kit.BasicServicesKit';
 let enable = true;
 try {
   let promise = windowClass.setSingleFrameComposerEnabled(enable);
-  promise.then(()=> {
+  promise.then(() => {
       console.info('Succeeded in enabling the single-frame-composer function.');
-  }).catch((err: BusinessError)=>{
+  }).catch((err: BusinessError) => {
       console.error(`Failed to enable the single-frame-composer function. code:${err.code}, message:${err.message}.`);
   });
 } catch (exception) {
