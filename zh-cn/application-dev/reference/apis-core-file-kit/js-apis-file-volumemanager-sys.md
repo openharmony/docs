@@ -417,7 +417,7 @@ getVolumeByUuid(uuid: string, callback: AsyncCallback&lt;Volume&gt;): void
     // 获取到卷设备信息
   });
   ```
---
+
 ## volumemanager.getVolumeById
 
 getVolumeById(volumeId: string): Promise&lt;Volume&gt;
