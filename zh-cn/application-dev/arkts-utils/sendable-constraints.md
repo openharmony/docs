@@ -511,19 +511,7 @@ let a2: SendableA = new A() as SendableA; // 编译报错
 
 <!-- @[counter_example](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/ArkTsConcurrent/ConcurrentThreadCommunication/RulesAndRestrictions/typecannot/src/main/ets/pages/Index.ets) --> 
 
-``` TypeScript
-// 正例：
-class A {
-  state: number = 0;
-}
 
-@Sendable
-class SendableA {
-  state: number = 0;
-}
-
-let a1: A = new SendableA() as A;
-```
 
 **反例：**
 
