@@ -237,7 +237,7 @@ ArkGraphics 3D提供创建光源及修改光源参数的功能，支持开发者
 
 3. 创建灯光并配置灯光参数。
 
-   调用 SceneResourceFactory.createLight()创建灯光，并配置灯光的类型、位置、颜色等参数。灯光类型决定了光线的照射方式，位置决定了光源的位置，颜色决定了光源的颜色。
+   调用SceneResourceFactory.createLight()创建灯光，并配置灯光的类型、位置、颜色等参数。灯光类型决定了光线的照射方式，位置决定了光源的位置，颜色决定了光源的颜色。
 
    <!-- @[light_create_and_config](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkGraphics3D/entry/src/main/ets/scene/light.ets) -->
    
