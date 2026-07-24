@@ -75,7 +75,7 @@ export struct AccessibilityTextCase01 {
 }
 ```
 
-示例2：在示例1的基础上，增加accessibilityText属性后，设置“播放，图片，单指双击即可执行”，用户通过语音播报可以感知此图片按钮的功能。
+示例2：在示例1的基础上，增加accessibilityText属性，设置无障碍文本为“播放”，用户通过语音播报可以感知此图片按钮的功能。
 
 <!-- @[accessibility_text_start02](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkUISample/UIExtensionAndAccessibility/entry/src/main/ets/pages/UniversalAttributesAccessibility/AccessibilityTextCase02.ets) -->
 

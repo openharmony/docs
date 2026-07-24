@@ -111,7 +111,7 @@ Cascading UIExtension components is not allowed.
 
 **错误描述**
 
-UIExtension组件禁止嵌套使用，检测到特殊场景嵌套。
+UIExtension组件不允许嵌套使用；在特殊场景下可能意外出现UIExtension组件间嵌套，此时会触发此错误码。
 
 **可能原因**
 
