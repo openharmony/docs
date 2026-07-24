@@ -523,5 +523,5 @@ enabled：布尔值类型，用于控制指定设备的头动跟踪开关。入�
   import { audio } from '@kit.AudioKit';
 
   // 取消订阅空间音频源类型变化事件。
-  aioSpatializationManager.offSpatialAudioSourceTypeChange();
+  audioSpatializationManager.offSpatialAudioSourceTypeChange();
   ```
