@@ -1,8 +1,8 @@
 # 使用命令行CMake构建NDK工程
 <!--Kit: ArkTS-->
 <!--Subsystem: arkcompiler-->
-<!--Owner: @huang_huijin-->
-<!--Designer: @huang_huijin-->
+<!--Owner: @liyiming13-->
+<!--Designer: @liyiming13-->
 <!--Tester: @zsw_zhushiwei-->
 <!--Adviser: @k1ngqaquuu-->
 
@@ -185,20 +185,20 @@ int sum(int a, int b)
 1. 采用OHOS_STL=c++_shared动态链接c++库方式构建工程，如不指定，默认采用c++_shared；OHOS_ARCH参数可根据系统架构来决定具体值，例如当OHOS_ARCH=armeabi-v7a会编译32位动态库，而当OHOS_ARCH=arm64-v8a会编译64位动态库。
 
    ```shell
-    >mkdir build && cd build
-    >cmake -D OHOS_STL=c++_shared -D OHOS_ARCH=arm64-v8a -D OHOS_PLATFORM=OHOS -D CMAKE_TOOLCHAIN_FILE={ohos-sdk}/linux/native/build/cmake/ohos.toolchain.cmake ..
-    >cmake --build .
+    mkdir build && cd build
+    cmake -D OHOS_STL=c++_shared -D OHOS_ARCH=arm64-v8a -D OHOS_PLATFORM=OHOS -D CMAKE_TOOLCHAIN_FILE={ohos-sdk}/linux/native/build/cmake/ohos.toolchain.cmake ..
+    cmake --build .
    ```
 
 2. 采用OHOS_STL=c++_static静态链接c++库方式构建工程，当OHOS_ARCH=armeabi-v7a会编译32位静态库，而当OHOS_ARCH=arm64-v8a会编译64位静态库。
 
    ```shell
-    >mkdir build && cd build
-    >cmake -D OHOS_STL=c++_static -D OHOS_ARCH=arm64-v8a -D OHOS_PLATFORM=OHOS -D CMAKE_TOOLCHAIN_FILE={ohos-sdk}/linux/native/build/cmake/ohos.toolchain.cmake ..
-    >cmake --build .
+    mkdir build && cd build
+    cmake -D OHOS_STL=c++_static -D OHOS_ARCH=arm64-v8a -D OHOS_PLATFORM=OHOS -D CMAKE_TOOLCHAIN_FILE={ohos-sdk}/linux/native/build/cmake/ohos.toolchain.cmake ..
+    cmake --build .
    ```
 
-   命令中，OHOS_ARCH与OHOS_PLATFORM两个变量最终会生成clang++的--target命令参数，在此例子中就是--target=arm-linux-ohos和--march=armv7a两个参数。
+   命令中，OHOS_ARCH与OHOS_PLATFORM两个变量最终会生成clang++的--target命令参数，在此例子中就是--target=arm-linux-ohos和--march=arm64-v8a两个参数。
    
    CMAKE_TOOLCHAIN_FILE指定了toolchain文件，在此文件中默认给clang++设置了--sysroot={ndk_sysroot目录}，告诉编译器查找系统头文件的根目录。
 
