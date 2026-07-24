@@ -92,9 +92,10 @@ struct Index {
           taskpool.execute(taskPoolGroup).then((data) => {
             // 将各Task返回的ArrayBuffer数据（即data，此处data为包含4组arrayBufferSlice的长度为4的数组）进行拼接等后续处理，此处不再列举具体操作
             // ...
+            this.message = 'success';
           }).catch((e: BusinessError) => {
             this.message = 'fail';
-               console.error(`taskpool: execute task: code: ${e.code}, message: ${e.message}`);
+            console.error(`taskpool: execute task: code: ${e.code}, message: ${e.message}`);
           })
         })
     }
