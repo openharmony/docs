@@ -431,7 +431,7 @@ UIExtensionAbility通过[UIExtensionContext](../reference/apis-ability-kit/js-ap
     }
     ```
 
-4. [UIExtensionAbility](../reference/apis-ability-kit/js-apis-app-ability-uiExtensionAbility.md)的[onSessionCreate](../reference/apis-ability-kit/js-apis-app-ability-uiExtensionAbility.md#onsessioncreate)中加载了入口页面文件pages/extension.ets, 并在entry\src\main\resources\base\profile\main_pages.json文件中添加"pages/Extension"声明，extension.ets内容如下。
+4. [UIExtensionAbility](../reference/apis-ability-kit/js-apis-app-ability-uiExtensionAbility.md)的[onSessionCreate](../reference/apis-ability-kit/js-apis-app-ability-uiExtensionAbility.md#onsessioncreate)中加载了入口页面文件pages/extension.ets，并在entry\src\main\resources\base\profile\main_pages.json文件中添加"pages/Extension"声明，extension.ets内容如下。
 
     ```ts
     import { UIExtensionContentSession } from '@kit.AbilityKit';

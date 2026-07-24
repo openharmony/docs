@@ -194,8 +194,8 @@ bundleInstall.getBundleInstaller().then(installer => {
 
 | 名称        | 类型    | 只读 | 可选 | 说明               |
 | ----------- | ------- | ---- | ---- | ------------------ |
-| userId      | number  | 否  | 否  | 指示用户id, 默认值：调用方的userId。 |
-| installFlag | number  | 否  | 否  | 指示安装标志, 默认值：1。 </br>取值范围：</br>1: 覆盖安装。</br>16: 免安装。|
+| userId      | number  | 否  | 否  | 指示用户id，默认值：调用方的userId。 |
+| installFlag | number  | 否  | 否  | 指示安装标志，默认值：1。 </br>取值范围：</br>1: 覆盖安装。</br>16: 免安装。|
 | isKeepData  | boolean | 否  | 否  | 指示应用卸载时是否保留包数据，默认值：false，true表示保留，false表示不保留。 |
 
 ## InstallStatus<sup>(deprecated)</sup>

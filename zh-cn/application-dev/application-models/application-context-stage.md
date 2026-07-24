@@ -244,7 +244,7 @@ struct CreateModuleContext {
   ```
 
 
-### 获取ExtensionAbilityContext (ExtensionAbility组件的上下文)
+### 获取ExtensionAbilityContext （ExtensionAbility组件的上下文）
 
 获取特定场景[ExtensionContext](../reference/apis-ability-kit/js-apis-inner-application-extensionContext.md)。以FormExtensionContext为例，表示卡片服务的上下文环境，继承自ExtensionContext，提供卡片服务相关的接口能力。
 

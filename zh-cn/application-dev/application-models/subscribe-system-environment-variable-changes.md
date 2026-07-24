@@ -16,7 +16,7 @@
 |------------|-------------------|-------------|-----------------|
 | [获取环境变量](#获取环境变量) | 开发者可以使用[getConfigurationSync](../reference/apis-localization-kit/js-apis-resource-manager.md#getconfigurationsync10)主动获取当前环境变量，包括深浅色模式、屏幕方向、语言地区、屏幕密度、设备类型等。        | 当前仅支持同步获取，使用方式参考[ResourceManager.getConfigurationSync](../reference/apis-localization-kit/js-apis-resource-manager.md#getconfigurationsync10)。  |应用运行过程中，可以主动获取当前应用深浅色模式，以更新用户界面显示。  |
 | [设置环境变量](#设置环境变量) | 当前仅支持应用自定义字体大小、深浅色、语言。<br>- [设置字体大小](#设置字体大小)<br>- [设置深浅色模式](#设置深浅色模式)<br>- [设置应用语言](#设置应用语言) |  当应用设置环境变量后，应用将无法通过订阅感知到对应的环境变量在系统中的变化。   |  应用自定义字体大小，以提升用户体验。 |
-| [订阅环境变量](#订阅环境变量) | 通过订阅环境变量，及时感知系统环境变化 。支持订阅的环境变量包括语言、深浅色、屏幕方向等，详见[Configuration](../reference/apis-ability-kit/js-apis-app-ability-configuration.md)。                   |    - 如果开发者将环境变量配置为不跟随系统变化（即[configuration标签](../quick-start/app-configuration-file.md#configuration标签)中的对应字段取值为“nonFollowSystem”），应用将无法通过订阅感知对应的环境变量在系统中的变化。<br>- 应用订阅环境变量后，当应用处于后台时，环境变量发生变更，应用将无法实时收到订阅通知。相关通知推送会被延迟处理，待应用切换回前台时，才会收到订阅通知。 | 当用户旋转设备屏幕时，应用可以通过订阅环境变量感知环境变化重新布局用户界面，以适应屏幕方向和尺寸。 |
+| [订阅环境变量](#订阅环境变量) | 通过订阅环境变量，及时感知系统环境变化。支持订阅的环境变量包括语言、深浅色、屏幕方向等，详见[Configuration](../reference/apis-ability-kit/js-apis-app-ability-configuration.md)。                   |    - 如果开发者将环境变量配置为不跟随系统变化（即[configuration标签](../quick-start/app-configuration-file.md#configuration标签)中的对应字段取值为“nonFollowSystem”），应用将无法通过订阅感知对应的环境变量在系统中的变化。<br>- 应用订阅环境变量后，当应用处于后台时，环境变量发生变更，应用将无法实时收到订阅通知。相关通知推送会被延迟处理，待应用切换回前台时，才会收到订阅通知。 | 当用户旋转设备屏幕时，应用可以通过订阅环境变量感知环境变化重新布局用户界面，以适应屏幕方向和尺寸。 |
 
 
 ## 获取环境变量
