@@ -1,7 +1,7 @@
 # 使用AppServiceExtensionAbility组件实现后台服务
 <!--Kit: Ability Kit-->
 <!--Subsystem: Ability-->
-<!--Owner: @yewei0794-->
+<!--Owner: @zhang_hao_zheng-->
 <!--Designer: @jsjzju-->
 <!--Tester: @liangchengguang-->
 <!--Adviser: @HelloCrease-->

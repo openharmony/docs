@@ -1,7 +1,7 @@
 # @ohos.app.ability.AppServiceExtensionAbility (应用后台服务扩展组件)
 <!--Kit: Ability Kit-->
 <!--Subsystem: Ability-->
-<!--Owner: @yewei0794-->
+<!--Owner: @zhang_hao_zheng-->
 <!--Designer: @jsjzju-->
 <!--Tester: @liangchengguang-->
 <!--Adviser: @HelloCrease-->
