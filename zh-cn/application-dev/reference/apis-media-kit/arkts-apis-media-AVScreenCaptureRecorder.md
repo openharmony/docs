@@ -204,7 +204,7 @@ pauseRecording(): Promise\<void>
 
 | 错误码ID | 错误信息                        |
 | -------- | -------------------------------- |
-| 5400102  | Operation be permitted. Return by promise. |
+| 5400102  | Operation not be permitted. Return by promise. |
 | 5400103  | IO error. Return by promise.     |
 | 5400105  | Service died. Return by promise. |
 
@@ -257,7 +257,7 @@ resumeRecording(): Promise\<void>
 
 | 错误码ID | 错误信息                        |
 | -------- | -------------------------------- |
-| 5400102  | Operation be permitted. Return by promise. |
+| 5400102  | Operation not be permitted. Return by promise. |
 | 5400103  | IO error. Return by promise.     |
 | 5400105  | Service died. Return by promise. |
 
