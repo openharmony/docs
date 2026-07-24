@@ -58,8 +58,8 @@ import { BoidsSimPlugin, BoidsSimWorld, BoidsSimParameters,
 | cohesionDistance | number | 否 | 是 | 凝聚规则的感知半径，单位为m。在该距离内（含边界）的邻近个体对凝聚力有贡献。取值 >= 0。默认值为0.0。 |
 | boundaryWeight | number | 否 | 是 | 边界约束力权重。个体在boundaryDistance范围内被边界墙推回的强度。取值 >= 0。默认值为0.0。 |
 | boundaryDistance | number | 否 | 是 | 边界约束力生效距离，单位为m。个体距边界墙面在该距离内时受到排斥力。取值 >= 0。默认值为0.0。 |
-| gravityWeight | number | 否 | 是 | 引力场对该个体的吸引强度。取值 >= 0。默认值为0.0。 |
-| repulsionWeight | number | 否 | 是 | 斥力场对该个体的排斥强度。取值 >= 0。默认值为0.0。 |
+| gravityWeight | number | 否 | 是 | 引力场权重。引力场对该个体的吸引强度。取值 >= 0。默认值为0.0。 |
+| repulsionWeight | number | 否 | 是 | 斥力场权重。斥力场对该个体的排斥强度。取值 >= 0。默认值为0.0。 |
 
 ## BoidsSimGravityParameters
 
@@ -432,7 +432,7 @@ getBoidsSimComponent(node: Node): BoidsSimParameters \| null
 
 **示例：**
 ```ts
-import { BoidsSimWorld, Node } from '@kit.ArkGraphics3D';
+import { BoidsSimParameters, BoidsSimWorld, Node } from '@kit.ArkGraphics3D';
 
 function queryBoidsSimComponent(world: BoidsSimWorld, node: Node): void {
   let params: BoidsSimParameters | null = world.getBoidsSimComponent(node);
@@ -468,7 +468,7 @@ getBoidsSimGravityComponent(node: Node): BoidsSimGravityParameters \| null
 
 **示例：**
 ```ts
-import { BoidsSimWorld, Node } from '@kit.ArkGraphics3D';
+import { BoidsSimGravityParameters, BoidsSimWorld, Node } from '@kit.ArkGraphics3D';
 
 function queryBoidsSimGravityComponent(world: BoidsSimWorld, node: Node): void {
   let params: BoidsSimGravityParameters | null = world.getBoidsSimGravityComponent(node);
@@ -504,7 +504,7 @@ getBoidsSimRepulsionComponent(node: Node): BoidsSimRepulsionParameters \| null
 
 **示例：**
 ```ts
-import { BoidsSimWorld, Node } from '@kit.ArkGraphics3D';
+import { BoidsSimRepulsionParameters, BoidsSimWorld, Node } from '@kit.ArkGraphics3D';
 
 function queryBoidsSimRepulsionComponent(world: BoidsSimWorld, node: Node): void {
   let params: BoidsSimRepulsionParameters | null = world.getBoidsSimRepulsionComponent(node);
