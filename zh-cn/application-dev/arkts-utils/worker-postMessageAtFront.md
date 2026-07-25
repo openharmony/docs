@@ -8,7 +8,7 @@
 
 ## 场景说明
 
-在Worker多线程开发中，Worker线程通过[postMessage](../reference/apis-arkts/js-apis-worker.md#postmessage9)向宿主线程（主线程或其他Worker线程）发送消息时，消息按照发送顺序依次排队处理。当宿主线程繁忙时，消息队列中可能积压大量待处理消息，导致某些需要及时处理的消息（如用户交互响应、关键状态更新等）无法被及时执行。
+在Worker多线程开发中，Worker线程通过[postMessage](../reference/apis-arkts/js-apis-worker.md#postmessage9-2)向宿主线程（主线程或其他Worker线程）发送消息时，消息按照发送顺序依次排队处理。当宿主线程繁忙时，消息队列中可能积压大量待处理消息，导致某些需要及时处理的消息（如用户交互响应、关键状态更新等）无法被及时执行。
 
 针对上述场景，从API版本26.0.0开始，ArkTS提供了[postMessageAtFront](../reference/apis-arkts/js-apis-worker.md#postmessageatfront)接口，允许Worker线程向宿主线程发送插队消息，使消息插入到对应优先级消息队列的头部，从而被提前处理。
 
