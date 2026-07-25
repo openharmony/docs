@@ -443,7 +443,7 @@ ImageReceiver的初始化选项。
 
 | 名称              | 类型              | 只读 | 可选 | 说明               |
 | ----------------- | ----------------- | ---- | ---- | ------------------ |
-| rowStride   | number[]  | 是   | 否   | 颜色分量的行跨距。单位：字节（Byte）。<br>对于编码后的图片如JPEG，该属性无意义。<br>读取相机预览流数据时，需要按rowStride进行读取，使用详情请参考[相机预览花屏解决方案](https://developer.huawei.com/consumer/cn/doc/best-practices/bpta-deal-stride-solution)。|
+| rowStride   | number[]  | 是   | 否   | 颜色分量的行跨距。单位：字节（Byte）。<br>对于编码后的图片如JPEG，该属性无意义。<br>读取相机预览流数据时，需要按rowStride进行读取，使用详情请参考[使用ImageReceiver完成图片接收](../../media/image/image-receiver.md)。|
 | pixelStride | number[]  | 是   | 否   | 颜色分量的像素间距。单位：字节（Byte）。<br>对于编码后的图片如JPEG，该属性无意义。     |
 | byteBuffer  | ArrayBuffer | 是   | 否   | 图像缓冲区。     |
 
