@@ -56,7 +56,7 @@ get varName(): T {
 | 支持类型           | getter访问器。 |
 | 从父组件初始化     | 禁止。 |
 | 可初始化子组件     | [\@Param](./arkts-new-param.md)。  |
-| 被执行的时机       | \@ComponentV2中的\@Computed会在自定义组件创建的时候初始化，触发\@Computed计算。</br>\@ObservedV2装饰的类中的\@Computed，会在\@ObservedV2装饰的类实例创建后，异步初始化，触发\@Computed计算。</br>在\@Computed中计算的状态变量被改变时，计算属性会重新计算。 |
+| 被执行的时机       | \@ComponentV2中的\@Computed会在自定义组件创建的时候初始化，触发\@Computed计算。</br>\@ObservedV2装饰的类中的\@Computed，会在\@ObservedV2装饰的类实例创建后，异步初始化，触发\@Computed计算。</br>参与\@Computed计算的状态变量被改变时，计算属性会重新计算。 |
 | 是否允许赋值       | @Computed装饰的属性是只读的，不允许赋值，详情见[使用限制](#使用限制)。 |
 
 ## 使用限制
@@ -347,7 +347,7 @@ get varName(): T {
    ![computed-sync-2](./figures/computed-sync-2.gif)
 
 ### \@Computed装饰的属性可以被\@Monitor监听变化
-如何使用计算属性求解fahrenheit和kelvin。示例如下：
+下面示例展示如何使用计算属性求解fahrenheit和kelvin，并使用\@Monitor监听计算属性的变化：
 - 点击“-”，celsius-- -> fahrenheit -> kelvin --> kelvin变化时调用onKelvinMonitor。
 - 点击“+”，celsius++ -> fahrenheit -> kelvin --> kelvin变化时调用onKelvinMonitor。
 

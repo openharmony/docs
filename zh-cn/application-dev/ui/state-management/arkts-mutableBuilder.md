@@ -57,7 +57,7 @@ mutableBuilder是一个模板函数，返回一个[MutableBuilder](../../referen
 ```ts
 declare function mutableBuilder<Args extends Object[]>(builder: BuilderCallback): MutableBuilder<Args>;
 ```
-同时`MutableBuilder`对象是一个模板类，继承自[WrappedBuilder](./arkts-wrapBuilder.md#接口说明)。
+同时`MutableBuilder`是一个模板类，继承自[WrappedBuilder](./arkts-wrapBuilder.md#接口说明)。
 
 ```ts
 declare class MutableBuilder<Args extends Object[]> extends WrappedBuilder<Args> {

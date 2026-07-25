@@ -51,7 +51,7 @@ struct Index {
 | \@CustomEnv装饰器 | 说明 |
 | ------------------- | ------------------------------------------------------------ |
 | 装饰器参数 | [\@CustomEnv](../reference/apis-arkui/arkui-ts/ts-custom-env-property.md#customenv)装饰器的入参必须为[CustomEnvKey\<S\>](../reference/apis-arkui/arkui-ts/ts-custom-env-property.md#customenvkeys)类型。 |
-| 可装饰的变量类型 | Object、class、string、number、boolean、enum等基本类型以及Array、Date、Map、Set等内置类型。支持null、undefined以及联合类型。 |
+| 可装饰的变量类型 | string、number、boolean、enum等基本类型以及Object、class等对象类型和Array、Date、Map、Set等内置类型。支持null、undefined以及联合类型。 |
 | 装饰变量的初始值 | 必须本地初始化，不允许外部传入初始化。 |
 
 ### 变量传递
@@ -877,6 +877,7 @@ struct SetSample {
 ### \@CustomEnv的V1/V2混用
 
 \@CustomEnv可以在\@Component和\@ComponentV2中使用，其遵循[V1V2混用的基本规则](./state-management/arkts-v1-v2-mixusage.md)。\@CustomEnv装饰的变量传递给V1时，遵循V1状态变量装饰器不能和[\@ObservedV2](./state-management/arkts-new-observedV2-and-trace.md)装饰的class的规则。\@CustomEnv装饰的变量传递给V2时，遵循V2只有[\@Param](./state-management/arkts-new-param.md)可以接收外部变量的规则。
+
 
 
 - \@CustomEnv装饰的变量传递给V1时，遵循V1状态变量装饰器不能接收\@ObservedV2装饰的class的规则。
