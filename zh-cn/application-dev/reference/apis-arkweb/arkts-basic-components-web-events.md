@@ -5124,7 +5124,7 @@ onRenderExited(callback: (event?: { detail: object }) => boolean)
 
 onCameraCaptureStateChange(callback: OnCameraCaptureStateChangeCallback)
 
-通知应用当前网页的摄像头状态，摄像头有三个状态：无状态、捕获中、暂停中。使用callback异步回调。
+通知应用当前网页的摄像头状态，摄像头有三个状态：未工作、捕获中、暂停中。使用callback异步回调。
 
 可以通过startCamera，stopCamera，closeCamera这三个接口来切换摄像头的状态。这三个接口分别对应开启，暂停，停止摄像头功能。示例使用场景详见[startCamera](arkts-apis-webview-WebviewController.md#startcamera12)。
 
