@@ -46,7 +46,7 @@ handleVolumeChanged(volume: number): void
 
 | 参数名 | 类型 | 必填 | 说明 |
 |--------|------|------|------|
-| volume | number | 是 | 播放器的音量，取值范围：[0, 1.0]。超出范围时，ArkWeb 内核将不会执行。|
+| volume | number | 是 | 播放器的音量，取值范围：[0, 1.0]。超出范围时，ArkWeb内核将不会执行。|
 
 **示例：**
 
@@ -82,7 +82,7 @@ handlePlaybackRateChanged(playbackRate: number): void
 
 | 参数名 | 类型 | 必填 | 说明 |
 |--------|------|------|------|
-| playbackRate | number | 是 | 播放速率，取值范围：[0, +∞)。传入负数时，ArkWeb 内核将不会执行。|
+| playbackRate | number | 是 | 播放速率，取值范围：[0, +∞)。传入负数时，ArkWeb内核将不会执行。|
 
 **示例：**
 
@@ -100,7 +100,7 @@ handleDurationChanged(duration: number): void
 
 | 参数名 | 类型 | 必填 | 说明 |
 |--------|------|------|------|
-| duration | number | 是 | 媒体的总时长。<br>单位：秒，取值范围：[0, +∞)。传入负数时，ArkWeb 内核将不会执行。|
+| duration | number | 是 | 媒体的总时长。<br>单位：秒，取值范围：[0, +∞)。传入负数时，ArkWeb内核将不会执行。|
 
 **示例：**
 
@@ -118,7 +118,7 @@ handleTimeUpdate(currentPlayTime: number): void
 
 | 参数名 | 类型 | 必填 | 说明 |
 |--------|------|------|------|
-| currentPlayTime | number | 是 | 当前播放时间。<br>单位：秒，取值范围：[0, duration]。超出范围时，ArkWeb 内核将不会执行。|
+| currentPlayTime | number | 是 | 当前播放时间。<br>单位：秒，取值范围：[0, duration]。超出范围时，ArkWeb内核将不会执行。|
 
 **示例：**
 
@@ -136,7 +136,7 @@ handleBufferedEndTimeChanged(bufferedEndTime: number): void
 
 | 参数名 | 类型 | 必填 | 说明 |
 |--------|------|------|------|
-| bufferedEndTime | number | 是 | 媒体缓冲的时长。<br>单位：秒，取值范围：[0, duration]。超出范围时，ArkWeb 内核将不会执行。|
+| bufferedEndTime | number | 是 | 媒体缓冲的时长。<br>单位：秒，取值范围：[0, duration]。超出范围时，ArkWeb内核将不会执行。|
 
 **示例：**
 
@@ -212,7 +212,7 @@ handleFullscreenChanged(fullscreen: boolean): void
 
 handleSeeking(): void
 
-当播放器进入 seek 状态时，调用该方法将 seek 进入事件通知 ArkWeb 内核。seek 完成后，应调用 handleSeekFinished 将 seek 完成事件通知 ArkWeb 内核。
+当播放器进入seek状态时，调用该方法将seek进入事件通知ArkWeb内核。seek完成后，应调用handleSeekFinished将seek完成事件通知ArkWeb内核。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -224,7 +224,7 @@ handleSeeking(): void
 
 handleSeekFinished(): void
 
-当播放器 seek 完成后，调用该方法将 seek 完成事件通知给 ArkWeb 内核。
+当播放器seek完成后，调用该方法将seek完成事件通知给ArkWeb内核。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -236,7 +236,7 @@ handleSeekFinished(): void
 
 handleError(error: MediaError, errorMessage: string): void
 
-当播放器发生错误时，调用该方法将错误通知给 ArkWeb 内核。
+当播放器发生错误时，调用该方法将错误通知给ArkWeb内核。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -255,7 +255,7 @@ handleError(error: MediaError, errorMessage: string): void
 
 handleVideoSizeChanged(width: number, height: number): void
 
-当播放器解析出视频的尺寸时，调用该方法将视频尺寸通知给 ArkWeb 内核。
+当播放器解析出视频的尺寸时，调用该方法将视频尺寸通知给ArkWeb内核。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -263,8 +263,8 @@ handleVideoSizeChanged(width: number, height: number): void
 
 | 参数名 | 类型 | 必填 | 说明 |
 |--------|------|------|------|
-| width  | number | 是 | 视频的宽，单位：像素，取值范围：[0, +∞)。传入负数时，ArkWeb 内核将忽略该值。|
-| height | number | 是 | 视频的高，单位：像素，取值范围：[0, +∞)。传入负数时，ArkWeb 内核将忽略该值。|
+| width  | number | 是 | 视频的宽，单位：像素，取值范围：[0, +∞)。传入负数时，ArkWeb内核将忽略该值。|
+| height | number | 是 | 视频的高，单位：像素，取值范围：[0, +∞)。传入负数时，ArkWeb内核将忽略该值。|
 
 **示例：**
 
