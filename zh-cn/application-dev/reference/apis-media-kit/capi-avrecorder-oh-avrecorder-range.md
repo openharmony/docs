@@ -7,12 +7,12 @@
 <!--Adviser: @w_Machine_cc-->
 
 ```c
-typedef struct OH_AVRecorder_Range {...} OH_AVRecorder_Range
+typedef struct OH_AVRecorder_Range {...} OH_AVRecorder_Range;
 ```
 
 ## 概述
 
-表示类型的范围。
+表示AVRecorder相关参数（如比特率、帧率等）的取值范围，用于限定录制参数的可配置范围，开发者应在min和max所界定的范围内设置参数值以确保配置有效。
 
 **起始版本：** 18
 
@@ -26,7 +26,7 @@ typedef struct OH_AVRecorder_Range {...} OH_AVRecorder_Range
 
 | 名称 | 描述 |
 | -- | -- |
-| int32_t min | 范围的最小值。 |
-| int32_t max | 范围的最大值。 |
+| int32_t min | AVRecorder相关参数取值范围的最小值。单位与所描述的参数一致。 |
+| int32_t max | AVRecorder相关参数取值范围的最大值。单位与所描述的参数一致。 |
 
 

@@ -534,8 +534,8 @@ async function setupPlayer() {
 | format                              | [AudioOutputFormat](arkts-apis-media-e.md#audiooutputformatdeprecated)      | 否   | 是   | 音频输出封装格式，默认设置为MPEG_4。<br/>**说明：** 从API version 6开始支持，从API version 8开始废弃，建议使用fileFormat替代。 |
 | location                            | [Location](#location)                        | 否   | 是   | 音频采集的地理位置。<br/>**说明：** 从API version 6开始支持，从API version 9开始废弃，建议使用[AVMetadata](#avmetadata11)中的location替代。 |
 | uri                                 | string                                       | 否   | 否   | 音频输出URI：fd://xx&nbsp;(fd&nbsp;number)<br/>![](figures/image-url.png) <br/>文件需要由调用者创建，并赋予适当的权限。<br/>**说明：** 从API version 6开始支持，从API version 9开始废弃，建议使用[AVRecorderConfig](#avrecorderconfig9)中的url替代。 |
-| audioEncoderMime<sup>8+</sup>       | [CodecMimeType](arkts-apis-media-e.md#codecmimetype8)             | 否   | 是   | 容器编码格式。<br/>**说明：** 从API version 8开始支持，从API version 9开始废弃，建议使用[AVRecorderProfile](#avrecorderprofile9)中的audioCodec替代。 |
-| fileFormat<sup>8+</sup>             | [ContainerFormatType](arkts-apis-media-e.md#containerformattype8) | 否   | 是   | 音频编码格式。<br/>**说明：** 从API version 8开始支持，从API version 9开始废弃，建议使用[AVRecorderProfile](#avrecorderprofile9)中的fileFormat替代。 |
+| audioEncoderMime<sup>8+</sup>       | [CodecMimeType](arkts-apis-media-e.md#codecmimetype8)             | 否   | 是   | 音频编码格式。<br/>**说明：** 从API version 8开始支持，从API version 9开始废弃，建议使用[AVRecorderProfile](#avrecorderprofile9)中的audioCodec替代。 |
+| fileFormat<sup>8+</sup>             | [ContainerFormatType](arkts-apis-media-e.md#containerformattype8) | 否   | 是   | 文件容器格式。<br/>**说明：** 从API version 8开始支持，从API version 9开始废弃，建议使用[AVRecorderProfile](#avrecorderprofile9)中的fileFormat替代。 |
 
 ## AVTimedMetaData
 

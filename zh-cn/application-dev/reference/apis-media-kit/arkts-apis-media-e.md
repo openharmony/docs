@@ -73,20 +73,20 @@ Codec MIME类型枚举。
 
 | 名称         | 值                    | 说明                     |
 | ------------ | --------------------- | ------------------------ |
-| VIDEO_H263   | 'video/h263'          | 表示视频/h263类型。      |
-| VIDEO_AVC    | 'video/avc'           | 表示视频/avc类型。 <br> **原子化服务API：** 从API version 22开始，该接口支持在原子化服务中使用。 |
-| VIDEO_MPEG2  | 'video/mpeg2'         | 表示视频/mpeg2类型。     |
-| VIDEO_MPEG4  | 'video/mp4v-es'         | 表示视频/mpeg4类型。     |
-| VIDEO_VP8    | 'video/x-vnd.on2.vp8' | 表示视频/vp8类型。       |
-| VIDEO_HEVC<sup>11+</sup>   | 'video/hevc'          | 表示视频/H265类型。 <br> **原子化服务API：** 从API version 22开始，该接口支持在原子化服务中使用。 |
-| AUDIO_AAC    | 'audio/mp4a-latm'     | 表示音频/mp4a-latm类型。 <br> **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
-| AUDIO_VORBIS | 'audio/vorbis'        | 表示音频/vorbis类型。    |
-| AUDIO_FLAC   | 'audio/flac'          | 表示音频/flac类型。      |
-| AUDIO_RAW    | 'audio/raw'           | 表示音频/raw类型。<br>**起始版本：** 26.0.0<br>**模型约束：** 此接口仅可在Stage模型下使用。 |
-| AUDIO_MP3<sup>12+</sup>   | 'audio/mpeg'          | 表示音频/mpeg类型。      |
-| AUDIO_G711MU<sup>12+</sup>   | 'audio/g711mu'     | 表示音频/G711-mulaw类型。 |
-| AUDIO_AMR_NB<sup>18+</sup>   | 'audio/3gpp'     | 表示音频/amr-nb类型。 |
-| AUDIO_AMR_WB<sup>18+</sup>   | 'audio/amr-wb'     | 表示音频/amr-wb类型。 |
+| VIDEO_H263   | 'video/h263'          | 表示视频/H.263类型。      |
+| VIDEO_AVC    | 'video/avc'           | 表示视频/H.264类型。 <br> **原子化服务API：** 从API version 22开始，该接口支持在原子化服务中使用。 |
+| VIDEO_MPEG2  | 'video/mpeg2'         | 表示视频/MPEG-2类型。     |
+| VIDEO_MPEG4  | 'video/mp4v-es'         | 表示视频/MPEG-4类型。     |
+| VIDEO_VP8    | 'video/x-vnd.on2.vp8' | 表示视频/VP8类型。       |
+| VIDEO_HEVC<sup>11+</sup>   | 'video/hevc'          | 表示视频/H.265类型。 <br> **原子化服务API：** 从API version 22开始，该接口支持在原子化服务中使用。 |
+| AUDIO_AAC    | 'audio/mp4a-latm'     | 表示音频/AAC类型。 <br> **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| AUDIO_VORBIS | 'audio/vorbis'        | 表示音频/Vorbis类型。    |
+| AUDIO_FLAC   | 'audio/flac'          | 表示音频/FLAC类型。      |
+| AUDIO_RAW    | 'audio/raw'           | 表示音频/RAW类型。<br>**起始版本：** 26.0.0<br>**模型约束：** 此接口仅可在Stage模型下使用。 |
+| AUDIO_MP3<sup>12+</sup>   | 'audio/mpeg'          | 表示音频/MPEG类型。      |
+| AUDIO_G711MU<sup>12+</sup>   | 'audio/g711mu'     | 表示音频/G.711 μ-law类型。 |
+| AUDIO_AMR_NB<sup>18+</sup>   | 'audio/3gpp'     | 表示音频/AMR-NB类型。 |
+| AUDIO_AMR_WB<sup>18+</sup>   | 'audio/amr-wb'     | 表示音频/AMR-WB类型。 |
 
 ## AacProfile<sup>22+</sup>
 

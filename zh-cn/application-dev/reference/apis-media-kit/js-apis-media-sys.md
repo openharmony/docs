@@ -1378,16 +1378,16 @@ videoRecorder.on('error', (error: BusinessError) => { // 设置'error'事件回�
 
 | 名称             | 类型                                         | 只读 | 可选 | 说明             |
 | ---------------- | -------------------------------------------- | ---- | ---- | ---------------- |
-| audioBitrate     | number                                       | 是   | 否   | 音频编码比特率，选择音频录制时必填。 |
-| audioChannels    | number                                       | 是   | 否   | 音频采集声道数，选择音频录制时必填。 |
-| audioCodec       | [CodecMimeType](arkts-apis-media-e.md#codecmimetype8)             | 是   | 否   | 音频编码格式，选择音频录制时必填。   |
-| audioSampleRate  | number                                       | 是   | 否   | 音频采样率，选择音频录制时必填。     |
-| fileFormat       | [ContainerFormatType](arkts-apis-media-e.md#containerformattype8) | 是   | 否   | 文件的容器格式。 |
-| videoBitrate     | number                                       | 是   | 否   | 视频编码比特率。 |
-| videoCodec       | [CodecMimeType](arkts-apis-media-e.md#codecmimetype8)             | 是   | 否   | 视频编码格式。   |
-| videoFrameWidth  | number                                       | 是   | 否   | 录制视频帧的宽。 |
-| videoFrameHeight | number                                       | 是   | 否   | 录制视频帧的高。 |
-| videoFrameRate   | number                                       | 是   | 否   | 录制视频帧率。   |
+| audioBitrate     | number                                       | 否   | 否   | 音频编码比特率，选择音频录制时必填。 |
+| audioChannels    | number                                       | 否   | 否   | 音频采集声道数，选择音频录制时必填。 |
+| audioCodec       | [CodecMimeType](arkts-apis-media-e.md#codecmimetype8)             | 否   | 否   | 音频编码格式，选择音频录制时必填。   |
+| audioSampleRate  | number                                       | 否   | 否   | 音频采样率，选择音频录制时必填。     |
+| fileFormat       | [ContainerFormatType](arkts-apis-media-e.md#containerformattype8) | 否   | 否   | 文件的容器格式。 |
+| videoBitrate     | number                                       | 否   | 否   | 视频编码比特率。 |
+| videoCodec       | [CodecMimeType](arkts-apis-media-e.md#codecmimetype8)             | 否   | 否   | 视频编码格式。   |
+| videoFrameWidth  | number                                       | 否   | 否   | 录制视频帧的宽。 |
+| videoFrameHeight | number                                       | 否   | 否   | 录制视频帧的高。 |
+| videoFrameRate   | number                                       | 否   | 否   | 录制视频帧率。   |
 
 ## WatermarkConfig<sup>13+</sup>
 
