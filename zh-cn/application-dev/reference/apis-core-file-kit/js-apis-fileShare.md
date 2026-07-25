@@ -98,7 +98,7 @@ import { fileShare } from '@kit.CoreFileKit';
 
 persistPermission(policies: Array&lt;PolicyInfo>): Promise&lt;void&gt;
 
-异步方法，用于对所选择的多个文件或目录URI进行持久化授权，使用Promise异步回调。持久化授权用于将已获取的临时权限保存为长期授权。该接口仅对具有该系统能力的设备开放（此接口不支持远端URI的持久化）。
+异步方法，用于对所选择的多个文件或目录URI进行持久化授权，使用Promise异步回调。持久化授权用于将已获取的临时权限保存为长期授权。该接口仅对具有该系统能力的设备开放，此接口不支持远端URI的持久化。
 > **说明：**
 >
 > 从API version 22开始，支持媒体类URI的持久化。
@@ -179,7 +179,7 @@ persistPermission(policies: Array&lt;PolicyInfo>): Promise&lt;void&gt;
 
 revokePermission(policies: Array&lt;PolicyInfo&gt;): Promise&lt;void&gt;
 
-异步方法，用于对所选择的多个文件或目录URI取消持久化授权，使用Promise异步回调。取消持久化授权后，需要重新获取临时权限才能再次持久化授权。该接口仅对具有该系统能力的设备开放（此接口不支持远端URI的持久化）。
+异步方法，用于对所选择的多个文件或目录URI取消持久化授权，使用Promise异步回调。取消持久化授权后，需要重新获取临时权限才能再次持久化授权。该接口仅对具有该系统能力的设备开放，此接口不支持远端URI的持久化。
 > **说明：**
 >
 > 从API version 22开始，支持媒体类URI的持久化。
@@ -260,7 +260,7 @@ revokePermission(policies: Array&lt;PolicyInfo&gt;): Promise&lt;void&gt;
 
 activatePermission(policies: Array&lt;PolicyInfo>): Promise&lt;void&gt;
 
-异步方法，用于激活多个已持久化授权的文件或目录，使用Promise异步回调。持久化授权是激活的前提，激活后可通过deactivatePermission取消激活。该接口仅对具有该系统能力的设备开放（此接口不支持远端URI的持久化）。
+异步方法，用于激活多个已持久化授权的文件或目录，使用Promise异步回调。持久化授权是激活的前提，激活后可通过deactivatePermission取消激活。该接口仅对具有该系统能力的设备开放，此接口不支持远端URI的持久化。
 > **说明：**
 >
 > 从API version 22开始，支持媒体类URI的持久化。
@@ -337,7 +337,7 @@ activatePermission(policies: Array&lt;PolicyInfo>): Promise&lt;void&gt;
 
 deactivatePermission(policies: Array&lt;PolicyInfo>): Promise&lt;void&gt;
 
-异步方法，用于取消激活授权过的多个文件或目录，使用Promise异步回调。取消激活后，持久化授权仍保留，可再次通过activatePermission激活。该接口仅对具有该系统能力的设备开放（此接口不支持远端URI的持久化）。
+异步方法，用于取消激活授权过的多个文件或目录，使用Promise异步回调。取消激活后，持久化授权仍保留，可再次通过activatePermission激活。该接口仅对具有该系统能力的设备开放，此接口不支持远端URI的持久化。
 > **说明：**
 >
 > 从API version 22开始，支持媒体类URI的持久化。
@@ -411,7 +411,7 @@ deactivatePermission(policies: Array&lt;PolicyInfo>): Promise&lt;void&gt;
 
 checkPersistentPermission(policies: Array&lt;PolicyInfo>): Promise&lt;Array&lt;boolean&gt;&gt;
 
-异步方法，用于校验所选择的多个文件或目录URI的持久化授权，使用Promise异步回调。该接口仅对具有该系统能力的设备开放（此接口不支持远端URI的持久化）。
+异步方法，用于校验所选择的多个文件或目录URI的持久化授权，使用Promise异步回调。
 
 **系统能力：** SystemCapability.FileManagement.AppFileService.FolderAuthorization
 
@@ -419,7 +419,7 @@ checkPersistentPermission(policies: Array&lt;PolicyInfo>): Promise&lt;Array&lt;b
 
 | 参数名 | 类型                                    | 必填 | 说明                      |
 | -------- |---------------------------------------| -------- |-------------------------|
-| policies| Array&lt;[PolicyInfo](#policyinfo11)&gt; | 是 | 需要校验持久化授权的URI策略信息数组，policies数组大小上限为500。不支持远端URI。|
+| policies| Array&lt;[PolicyInfo](#policyinfo11)&gt; | 是 | 需要校验持久化授权的URI策略信息数组，policies数组大小上限为500。|
 
 **返回值：**
 

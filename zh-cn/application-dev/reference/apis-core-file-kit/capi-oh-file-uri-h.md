@@ -143,7 +143,7 @@ bool OH_FileUri_IsValidUri(const char *uri, unsigned int length)
 
 | 类型 | 说明 |
 | -- | -- |
-| bool | 返回true表示传入URI是有效的URI；返回false表示传入的URI是无效的URI。 |
+| bool | true表示传入URI是有效的URI；false表示传入的URI是无效的URI。 |
 
 ### OH_FileUri_GetFileName()
 

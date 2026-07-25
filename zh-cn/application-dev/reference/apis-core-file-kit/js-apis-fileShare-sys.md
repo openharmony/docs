@@ -399,7 +399,7 @@ async function grantSharedDirectoryPermission() {
 
 revokeSharedDirectoryPermission(): Promise&lt;void&gt;
 
-撤销应用的捐献目录临时访问权限。使用Promise异步回调。该接口用于撤销grantSharedDirectoryPermission授予的临时访问权限。
+撤销应用的捐献目录临时访问权限。使用Promise异步回调。
 
 **起始版本：** 26.0.0
 
@@ -451,7 +451,7 @@ async function revokeSharedDirectoryPermission() {
 
 revokePermission(tokenID: number): Promise&lt;void&gt;
 
-撤销指定应用的全部持久化文件授权，使用Promise异步回调。如需仅撤销指定URI的持久化授权，请使用revokePermission(tokenID, policies)。
+撤销指定应用的全部持久化文件授权，使用Promise异步回调。
 
 **起始版本：** 26.0.0
 
@@ -511,7 +511,7 @@ async function revokeAllPermissionExample() {
 
 revokePermission(tokenID: number, policies: Array&lt;PolicyInfo&gt;): Promise&lt;void&gt;
 
-撤销指定应用对URI的持久化授权，使用Promise异步回调。该重载仅撤销policies指定的URI授权；如需撤销指定应用的全部持久化授权，请使用revokePermission(tokenID)。
+撤销指定应用对URI的持久化授权，使用Promise异步回调。该重载仅撤销policies指定的URI授权。
 
 **起始版本：** 26.0.0
 
