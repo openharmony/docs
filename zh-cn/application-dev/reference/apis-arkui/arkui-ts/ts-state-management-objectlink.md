@@ -38,7 +38,7 @@ class Info {
 
 @Component
 struct Child {
-  @ObjectLink info: Info; // @ObjectLink接受父组件@State变量
+  @ObjectLink info: Info; // @ObjectLink接收父组件@State变量
   build() {
     Column() {
       Text(`name: ${this.info.name}`)
