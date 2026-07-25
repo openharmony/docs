@@ -280,17 +280,23 @@ config.json配置方法参考 vendor/hisilicon/hispark_pegasus_minimal/config.js
 {
   "subsystem": "xts",
   "components": [
-    { "component": "acts", "features":[
-       "enable_ohos_test_xts_acts_use_thirdparty_lwip = false",
-       "hctest_rodata_opt = true",
-       "xts_overlay = true",
-       "hctest_task_stack_size = 2048",
-       "hctest_task_queue_size = 1",
-       "hctest_task_type = SHARED_TASK"
-    ] },
-    { "component": "tools", "features":[] }
-   ]
- },
+    {
+      "component": "acts",
+      "features": [
+        "enable_ohos_test_xts_acts_use_thirdparty_lwip = false",
+        "hctest_rodata_opt = true",
+        "xts_overlay = true",
+        "hctest_task_stack_size = 2048",
+        "hctest_task_queue_size = 1",
+        "hctest_task_type = SHARED_TASK"
+      ]
+    },
+    {
+      "component": "tools",
+      "features": []
+    }
+  ]
+}
 ```
 
 #### 链接脚本适配
@@ -609,8 +615,10 @@ hb build --gn-args ohos_stack_protector=strong ohos_mem_opt_extra=true
 参考hi3861与hi3863的minimal产品，在config.json中添加配置：
 
 ```json
-"ohos_stack_protector=strong",
-"ohos_mem_opt_extra=true"
+[
+  "ohos_stack_protector=strong",
+  "ohos_mem_opt_extra=true"
+]
 ```
 - 3861：
   - vendor/hisilicon/hispark_pegasus_minimal/config.json
