@@ -6,7 +6,7 @@
 <!--Tester: @ghiker-->
 <!--Adviser: @HelloShuo-->
 
-ScreenCaptureHandler 是 Web 组件提供的屏幕捕获权限处理类，用于响应网页发起的屏幕捕获请求。该类适用于在线教育、远程会议、屏幕录制等需要获取用户屏幕内容的应用场景。该类允许开发者通过 grant 或 deny 方法控制是否授予网页屏幕捕获权限，并通过 getOrigin 方法获取请求来源信息，帮助开发者在保护用户隐私的同时，灵活处理网页的屏幕捕获访问需求，提升应用的安全性和用户体验。示例代码参考[onScreenCaptureRequest](./arkts-basic-components-web-events.md#onscreencapturerequest10)事件。
+ScreenCaptureHandler是Web组件提供的屏幕捕获权限处理类，用于响应网页发起的屏幕捕获请求。该类适用于在线教育、远程会议、屏幕共享等需要获取用户屏幕内容的应用场景。该类允许开发者通过grant或deny方法控制是否授予网页屏幕捕获权限，并通过getOrigin方法获取请求来源信息，帮助开发者在保护用户隐私的同时，灵活处理网页的屏幕捕获访问需求，提升应用的安全性和用户体验。示例代码参考[onScreenCaptureRequest](./arkts-basic-components-web-events.md#onscreencapturerequest10)事件。
 
 > **说明：**
 >
@@ -16,7 +16,7 @@ ScreenCaptureHandler 是 Web 组件提供的屏幕捕获权限处理类，用于
 >
 > - 示例效果请以真机运行为准。
 >
-> -  [grant](./arkts-basic-components-web-ScreenCaptureHandler.md#grant10)()与 [deny](./arkts-basic-components-web-ScreenCaptureHandler.md#deny10)() 方法互斥，对同一个 ScreenCaptureHandler 实例的同一请求只能调用其中一个。
+> -  [grant](./arkts-basic-components-web-ScreenCaptureHandler.md#grant10)()与[deny](./arkts-basic-components-web-ScreenCaptureHandler.md#deny10)()方法互斥，对同一个ScreenCaptureHandler实例的同一请求只能调用其中一个。
 >
 > - 调用后不应再对同一请求调用另一个方法。
 
