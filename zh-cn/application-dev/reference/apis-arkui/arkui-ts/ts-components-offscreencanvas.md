@@ -20,9 +20,7 @@ OffscreenCanvas组件用于绘制自定义图形。
 
 不支持。
 
-## 接口
-
-### constructor
+## constructor
 
 constructor(width: number, height: number)
 
@@ -41,7 +39,7 @@ constructor(width: number, height: number)
 | width  | number   | 是  | OffscreenCanvas组件的宽度。<br>异常值NaN和Infinity按无效值处理，负数按0处理。<br>单位：vp。 |
 | height | number   | 是  | OffscreenCanvas组件的高度。<br>异常值NaN和Infinity按无效值处理，负数按0处理。<br>单位：vp。 |
 
-### constructor<sup>12+</sup>
+## constructor<sup>12+</sup>
 
 constructor(width: number, height: number, unit: LengthMetricsUnit)
 
