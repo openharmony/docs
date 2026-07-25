@@ -6209,7 +6209,7 @@ setWindowShadowEnabled(enable: boolean): Promise&lt;void&gt;
 
 **设备行为差异：**
 - 在<!--RP1-->OpenHarmony 6.1<!--RP1End-->之前，该接口在PC/2in1设备中可正常调用，在其他设备中返回801错误码。
-- 从<!--RP1-->OpenHarmony 6.1<!--RP1End-->开始，该接口在2in1和Tablet设备中可正常调用，在Tablet设备时仅在开启[自由多窗模式](../../windowmanager/window-terminology.md#free-windows自由多窗模式)或[电脑模式](../../windowmanager/window-terminology.md#pc-mode电脑模式)下生效，在其他设备中返回801错误码。
+- 从<!--RP1-->OpenHarmony 6.1<!--RP1End-->开始，该接口在PC/2in1和Tablet设备中可正常调用，在Tablet设备时仅在开启[自由多窗模式](../../windowmanager/window-terminology.md#free-windows自由多窗模式)或[电脑模式](../../windowmanager/window-terminology.md#pc-mode电脑模式)下生效，在其他设备中返回801错误码。
 
 **需要权限：** ohos.permission.SET_WINDOW_TRANSPARENT
 
@@ -6879,7 +6879,7 @@ snapshot(callback: AsyncCallback&lt;image.PixelMap&gt;): void
 
 | 参数名      | 类型                      | 必填 | 说明                 |
 | ----------- | ------------------------- | ---- | -------------------- |
-| callback    | AsyncCallback&lt;[image.PixelMap](../apis-image-kit/arkts-apis-image-PixelMap.md)&gt; | 是   | 回调函数。  |
+| callback    | AsyncCallback&lt;[image.PixelMap](../apis-image-kit/arkts-apis-image-PixelMap.md)&gt; | 是   | 回调函数，返回当前窗口截图。  |
 
 **错误码：**
 
@@ -10334,7 +10334,7 @@ setGestureBackEnabled(enabled: boolean): Promise&lt;void&gt;
 
 **系统能力：** SystemCapability.Window.SessionManager
 
-**设备行为差异：** 该接口在2in1、其他设备的电脑模式中调用会返回801错误码，在其他设备和其他模式中可正常调用。
+**设备行为差异：** 该接口在PC/2in1、其他设备的电脑模式中调用会返回801错误码，在其他设备和其他模式中可正常调用。
 
 **原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。
 
@@ -13519,7 +13519,7 @@ let promise = windowClass.setKeepScreenOn(isKeepScreenOn);
 promise.then(() => {
   console.info('Succeeded in setting the screen to be always on.');
 }).catch((err: BusinessError) => {
-  console.info(`Failed to set the screen to be always on. Cause code: ${err.code}, message: ${err.message}`);
+  console.error(`Failed to set the screen to be always on. Cause code: ${err.code}, message: ${err.message}`);
 });
 ```
 
