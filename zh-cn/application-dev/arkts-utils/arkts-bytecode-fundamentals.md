@@ -42,7 +42,7 @@
 **操作码与前缀**
 
 方舟字节码中的操作码通常被编码为一个8位的值，因此至多只能有256个操作码。随着方舟编译器运行时功能的演进，字节码的数量也在逐步增加，已经超过了256个。因此，方舟字节码引入了前缀（prefix），将操作码最大宽度从8位扩展到16位。8位操作码（无前缀的）用于表示频繁出现的指令，16位操作码（有前缀的）用于表示出现频率不高的指令。<br>
-带前缀的操作码为小端法存储的16位值，由8位操作码和8位前缀组成，编码规则为：操作码左移8位，再与前缀相或。
+带前缀的操作码为小端法存储的16位值，由8位操作码和8位前缀组成，编码规则为：16位操作码的高8位为具体操作码，低8位为前缀值。
 |     前缀操作码      |      助记符        |      描述        |
 |     ----------  |    ----------   |    ----------   |
 |  0xfe   |  throw  |  有条件/无条件的throw指令。 |
@@ -50,7 +50,7 @@
 |  0xfc   |  deprecated  |  方舟编译器不再会产生的指令，仅用于维护运行时兼容性；<br>本文后续章节中将省略对这些指令的说明。 |
 |  0xfb   |  callruntime |  调用运行时方法的指令。  |
 
-前缀操作码的助记符的形式为**前缀助记符.操作码助记符**，例如，wide.stlexvar。stlexvar指令的操作码是0x0d，前缀wide是0xfd，则此带前缀的指令（wide.stlexvar）的操作码是0x0dfd。
+前缀操作码的助记符的形式为**前缀助记符.操作码助记符**，例如，wide.stlexvar。stlexvar指令的操作码是0x0d，前缀wide是0xfd，则此带前缀的指令（wide.stlexvar）的操作码是0x0dfd，按小端字节序存储为字节序列`fd 0d`。
 
 
 **寄存器与累加器**
@@ -404,6 +404,8 @@ function foo3(a: number, b: number): void {}
 * *+CCCC*：16位立即数。
 * *vDD*：8位寄存器索引。
 
+> **说明：** 下表中部分指令标注为"预留指令"，这些指令为字节码优化预留，当前版本功能未使能，暂不可用。
+
 |    操作码   |   格式    |  助记符/语法   |     参数       |      说明     |
 |   -------   |  -------  |  ----------  |   ----------   |   --------   |
 |  0x00 |  NONE |  ldundefined  | - |   将**undefined**加载进acc。   |
@@ -469,7 +471,7 @@ function foo3(a: number, b: number): void {}
 |  0x3c |  IMM4_IMM4    |  ldlexvar +A, +B  |  A：词法环境层级<br>B：槽位号 |  将A个层次外的词法环境的B号槽位上的值存放到acc中。   |
 |  0x3d |  IMM4_IMM4    |  stlexvar +A, +B  |  默认入参：acc：值<br>A：词法环境层级<br>B：槽位号    |  将acc中的值存放到A个层次外的词法环境的B号槽位上。   |
 |  0x3e |  ID16 |  lda.str @AAAA    |  A：string id |  将索引A对应的字符串存放到acc中。   |
-|  0x3f |  IMM8_ID16    |  tryldglobalbyname RR, @AAAA  |  R：方舟运行时内部使用的8位保留数字<br>A：string id   |  将名称为索引A对应的字符串的全局变量存放进acc中，不存在名称为A的全局变量时，抛出异常。   |
+|  0x3f |  IMM8_ID16    |  tryldglobalbyname RR, @AAAA  |  R：方舟运行时内部使用的8位保留数字<br>A：string id   |  将名称为索引A对应的字符串的全局变量存放进acc中，不存在名称为索引A对应的字符串的全局变量时，抛出异常。   |
 |  0x40 |  IMM8_ID16    |  trystglobalbyname RR, @AAAA  |  默认入参：acc：值<br>R：方舟运行时内部使用的8位保留数字<br>A：string id  |  将acc中的值存放到名称为索引A对应的字符串的全局变量上，不存在名称为A的全局变量时，抛出异常。   |
 |  0x41 |  IMM16_ID16   |  ldglobalvar RRRR, @AAAA  |  R：方舟运行时内部使用的16位保留数字<br>A：string id  |  将名称为索引A对应的字符串的全局变量的值存放到acc中，该变量一定存在。   |
 |  0x42 |  IMM8_ID16    |  ldobjbyname RR, @AAAA    |  默认入参：acc：对象<br>R：方舟运行时内部使用的8位保留数字<br>A：string id    |  加载acc中所存对象的键值为索引A对应的字符串的属性，并将其存放到acc中。   |
@@ -488,20 +490,20 @@ function foo3(a: number, b: number): void {}
 |  0x4f |  IMM8 |  jeqz +AA |  默认入参：acc：值<br>A：有符号的分支偏移量   |  计算`acc == 0`，如果为真，则跳转到分支A。   |
 |  0x50 |  IMM16    |  jeqz +AAAA   |  默认入参：acc：值<br>A：有符号的分支偏移量   |  计算`acc == 0`，如果为真，则跳转到分支A。   |
 |  0x51 |  IMM8 |  jnez +AA |  默认入参：acc：值<br>A：有符号的分支偏移量   |  计算`acc != 0`，如果为真，则跳转到分支A。   |
-|  0x52 |  IMM8 |  jstricteqz +AA   |  默认入参：acc：值<br>A：有符号的分支偏移量   |  计算`acc === 0`，如果为真，则跳转到分支A。<br>指令功能未使能，暂不可用。   |
-|  0x53 |  IMM8 |  jnstricteqz +AA  |  默认入参：acc：值<br>A：有符号的分支偏移量   |  计算`acc !== 0`，如果为真，则跳转到分支A。<br>指令功能未使能，暂不可用。   |
-|  0x54 |  IMM8 |  jeqnull +AA  |  默认入参：acc：值<br>A：有符号的分支偏移量   |  计算`acc == null`，如果为真，则跳转到分支A。<br>指令功能未使能，暂不可用。   |
-|  0x55 |  IMM8 |  jnenull +AA  |  默认入参：acc：值<br>A：有符号的分支偏移量   |  计算`acc != null`，如果为真，则跳转到分支A。<br>指令功能未使能，暂不可用。   |
-|  0x56 |  IMM8 |  jstricteqnull +AA    |  默认入参：acc：值<br>A：有符号的分支偏移量   |  计算`acc === null`，如果为真，则跳转到分支A。<br>指令功能未使能，暂不可用。   |
-|  0x57 |  IMM8 |  jnstricteqnull +AA   |  默认入参：acc：值<br>A：有符号的分支偏移量   |  计算`acc !== null`，如果为真，则跳转到分支A。<br>指令功能未使能，暂不可用。   |
-|  0x58 |  IMM8 |  jequndefined +AA |  默认入参：acc：值<br>A：有符号的分支偏移量   |  计算`acc == undefined`，如果为真，则跳转到分支A。<br>指令功能未使能，暂不可用。   |
-|  0x59 |  IMM8 |  jneundefined +AA |  默认入参：acc：值<br>A：有符号的分支偏移量   |  计算`acc != undefined`，如果为真，则跳转到分支A。<br>指令功能未使能，暂不可用。   |
-|  0x5a |  IMM8 |  jstrictequndefined +AA   |  默认入参：acc：值<br>A：有符号的分支偏移量   |  计算`acc === undefined`，如果为真，则跳转到分支A。<br>指令功能未使能，暂不可用。   |
-|  0x5b |  IMM8 |  jnstrictequndefined +AA  |  默认入参：acc：值<br>A：有符号的分支偏移量   |  计算`acc !== undefined`，如果为真，则跳转到分支A。<br>指令功能未使能，暂不可用。   |
-|  0x5c |  V8_IMM8  |  jeq vAA, +BB |  默认入参：acc：值<br>A：值<br>B：有符号的分支偏移量  |  计算`acc == A`，如果为真，则跳转到分支B。<br>指令功能未使能，暂不可用。   |
-|  0x5d |  V8_IMM8  |  jne vAA, +BB |  默认入参：acc：值<br>A：值<br>B：有符号的分支偏移量  |  计算`acc != A`，如果为真，则跳转到分支B。<br>指令功能未使能，暂不可用。   |
-|  0x5e |  V8_IMM8  |  jstricteq vAA, +BB   |  默认入参：acc：对象<br>A：对象<br>B：有符号的分支偏移量  |  计算`acc === A`，如果为真，则跳转到分支B。<br>指令功能未使能，暂不可用。   |
-|  0x5f |  V8_IMM8  |  jnstricteq vAA, +BB  |  默认入参：acc：对象<br>A：对象<br>B：有符号的分支偏移量  |  计算`acc !== A`，如果为真，则跳转到分支B。<br>指令功能未使能，暂不可用。   |
+|  0x52 |  IMM8 |  jstricteqz +AA   |  默认入参：acc：值<br>A：有符号的分支偏移量   |  计算`acc === 0`，如果为真，则跳转到分支A。（预留指令）   |
+|  0x53 |  IMM8 |  jnstricteqz +AA  |  默认入参：acc：值<br>A：有符号的分支偏移量   |  计算`acc !== 0`，如果为真，则跳转到分支A。（预留指令）   |
+|  0x54 |  IMM8 |  jeqnull +AA  |  默认入参：acc：值<br>A：有符号的分支偏移量   |  计算`acc == null`，如果为真，则跳转到分支A。（预留指令）   |
+|  0x55 |  IMM8 |  jnenull +AA  |  默认入参：acc：值<br>A：有符号的分支偏移量   |  计算`acc != null`，如果为真，则跳转到分支A。（预留指令）   |
+|  0x56 |  IMM8 |  jstricteqnull +AA    |  默认入参：acc：值<br>A：有符号的分支偏移量   |  计算`acc === null`，如果为真，则跳转到分支A。（预留指令）   |
+|  0x57 |  IMM8 |  jnstricteqnull +AA   |  默认入参：acc：值<br>A：有符号的分支偏移量   |  计算`acc !== null`，如果为真，则跳转到分支A。（预留指令）   |
+|  0x58 |  IMM8 |  jequndefined +AA |  默认入参：acc：值<br>A：有符号的分支偏移量   |  计算`acc == undefined`，如果为真，则跳转到分支A。（预留指令）   |
+|  0x59 |  IMM8 |  jneundefined +AA |  默认入参：acc：值<br>A：有符号的分支偏移量   |  计算`acc != undefined`，如果为真，则跳转到分支A。（预留指令）   |
+|  0x5a |  IMM8 |  jstrictequndefined +AA   |  默认入参：acc：值<br>A：有符号的分支偏移量   |  计算`acc === undefined`，如果为真，则跳转到分支A。（预留指令）   |
+|  0x5b |  IMM8 |  jnstrictequndefined +AA  |  默认入参：acc：值<br>A：有符号的分支偏移量   |  计算`acc !== undefined`，如果为真，则跳转到分支A。（预留指令）   |
+|  0x5c |  V8_IMM8  |  jeq vAA, +BB |  默认入参：acc：值<br>A：值<br>B：有符号的分支偏移量  |  计算`acc == A`，如果为真，则跳转到分支B。（预留指令）   |
+|  0x5d |  V8_IMM8  |  jne vAA, +BB |  默认入参：acc：值<br>A：值<br>B：有符号的分支偏移量  |  计算`acc != A`，如果为真，则跳转到分支B。（预留指令）   |
+|  0x5e |  V8_IMM8  |  jstricteq vAA, +BB   |  默认入参：acc：对象<br>A：对象<br>B：有符号的分支偏移量  |  计算`acc === A`，如果为真，则跳转到分支B。（预留指令）   |
+|  0x5f |  V8_IMM8  |  jnstricteq vAA, +BB  |  默认入参：acc：对象<br>A：对象<br>B：有符号的分支偏移量  |  计算`acc !== A`，如果为真，则跳转到分支B。（预留指令）   |
 |  0x60 |  V8   |  lda vAA  |  A：寄存器索引    |  将寄存器A中的内容存放到acc中。   |
 |  0x61 |  V8   |  sta vAA  |  默认入参：acc<br>A：寄存器索引   |  将acc中的内容存放到寄存器A中。   |
 |  0x62 |  IMM32    |  ldai +AAAAAAAA   |  A：常量字面量    |  将整型字面量A存放到acc中。   |
@@ -516,7 +518,7 @@ function foo3(a: number, b: number): void {}
 |  0x6b |  NONE |  ldinfinity   | - |  将**infinity**存放到acc中。   |
 |  0x6c |  NONE |  getunmappedargs   | - |  将当前函数的**arguments**存放到acc中。   |
 |  0x6d |  NONE |  ldglobal  | - |  将**global**对象存放到acc中。 |
-|  0x6e |  NONE |  ldnewtarget   | - |  将当前函数的隐式参数NewTarget存放到acc中。<br>指令功能未使能，暂不可用。   |
+|  0x6e |  NONE |  ldnewtarget   | - |  将当前函数的隐式参数NewTarget存放到acc中。（预留指令）   |
 |  0x6f |  NONE |  ldthis   | - |  将`this`存放到acc中。   |
 |  0x70 |  NONE |  ldhole    | - |  将**hole**存放到acc中。   |
 |  0x71 |  IMM8_ID16_IMM8   |  createregexpwithliteral RR, @AAAA, +BB   |  R：方舟运行时内部使用的8位保留数字<br>A：string id<br>B：指代正则表达式修饰符    |  使用索引A对应的字符串和B指代的修饰符，创建一个正则表达式，并存放到acc中。<br>B和所指代的修饰符的对应关系为：0（默认值，无修饰符），1（g），2（i），4（m），8（s），16（u），32（y）；B也可以指代符合语法规范的修饰符的组合，例如3，指代的修饰符是gi。  |
@@ -546,7 +548,7 @@ function foo3(a: number, b: number): void {}
 |  0x89 |  IMM16_V8_IMM16   |  stobjbyindex RRRR, vAA, +BBBB    |  默认入参：acc：值<br>R：方舟运行时内部使用的16位保留数字<br>A：对象<br>B：属性键值   |  将acc中的值存放到对象A的键值为B的属性上。   |
 |  0x8a |  IMM8_IMM8    |  ldlexvar +AA, +BB    |  A：词法环境层级<br>B：槽位号 |  将A个层次外的词法环境的B号槽位上的值存放到acc中。   |
 |  0x8b |  IMM8_IMM8    |  stlexvar +AA, +BB    |  默认入参：acc：值<br>A：词法环境层级<br>B：槽位号    |  将acc中的值存放到A个层次外的词法环境的B号槽位上。   |
-|  0x8c |  IMM16_ID16   |  tryldglobalbyname RRRR, @AAAA    |  R：方舟运行时内部使用的16位保留数字<br>A：string id  |  将名称为索引A对应的字符串的全局变量存放进acc中，不存在名称为A的全局变量时，抛出异常。   |
+|  0x8c |  IMM16_ID16   |  tryldglobalbyname RRRR, @AAAA    |  R：方舟运行时内部使用的16位保留数字<br>A：string id  |  将名称为索引A对应的字符串的全局变量存放进acc中，不存在名称为索引A对应的字符串的全局变量时，抛出异常。   |
 |  0x8d |  IMM16_ID16   |  trystglobalbyname RRRR, @AAAA    |  默认入参：acc：值<br>R：方舟运行时内部使用的16位保留数字<br>A：string id |  将acc中的值存放到名称为索引A对应的字符串的全局变量上，不存在名称为A的全局变量时，抛出异常。   |
 |  0x8e |  IMM8_ID16_V8 |  stownbynamewithnameset RR, @AAAA, vBB    |  默认入参：acc：函数对象<br>R：方舟运行时内部使用的8位保留数字<br>A：string id<br>B：对象 |  将acc中的函数对象存放到对象B的键值为索引A对应的字符串的属性上，并将函数的名称设置为索引A对应的字符串。   |
 |  0x8f |  V16_V16  |  mov vAAAA, vBBBB |  A, B：寄存器索引 |  将寄存器B中的内容复制到寄存器A中。   |
@@ -563,20 +565,20 @@ function foo3(a: number, b: number): void {}
 |  0x9a |  IMM32    |  jeqz +AAAAAAAA   |  默认入参：acc：值<br>A：有符号的分支偏移量   |  计算`acc == 0`，如果为真，则跳转到分支A。   |
 |  0x9b |  IMM16    |  jnez +AAAA   |  默认入参：acc：值<br>A：有符号的分支偏移量   |  计算`acc != 0`，如果为真，则跳转到分支A。   |
 |  0x9c |  IMM32    |  jnez +AAAAAAAA   |  默认入参：acc：值<br>A：有符号的分支偏移量   |  计算`acc != 0`，如果为真，则跳转到分支A。   |
-|  0x9d |  IMM16    |  jstricteqz +AAAA |  默认入参：acc：值<br>A：有符号的分支偏移量   |  计算`acc === 0`，如果为真，则跳转到分支A。<br>指令功能未使能，暂不可用。   |
-|  0x9e |  IMM16    |  jnstricteqz +AAAA    |  默认入参：acc：值<br>A：有符号的分支偏移量   |  计算`acc !== 0`，如果为真，则跳转到分支A。<br>指令功能未使能，暂不可用。   |
-|  0x9f |  IMM16    |  jeqnull +AAAA    |  默认入参：acc：值<br>A：有符号的分支偏移量   |  计算`acc == null`，如果为真，则跳转到分支A。<br>指令功能未使能，暂不可用。   |
-|  0xa0 |  IMM16    |  jnenull +AAAA    |  默认入参：acc：值<br>A：有符号的分支偏移量   |  计算`acc != null`，如果为真，则跳转到分支A。<br>指令功能未使能，暂不可用。   |
-|  0xa1 |  IMM16    |  jstricteqnull +AAAA  |  默认入参：acc：值<br>A：有符号的分支偏移量   |  计算`acc === null`，如果为真，则跳转到分支A。<br>指令功能未使能，暂不可用。   |
-|  0xa2 |  IMM16    |  jnstricteqnull +AAAA |  默认入参：acc：值<br>A：有符号的分支偏移量   |  计算`acc !== null`，如果为真，则跳转到分支A。<br>指令功能未使能，暂不可用。   |
-|  0xa3 |  IMM16    |  jequndefined +AAAA   |  默认入参：acc：值<br>A：有符号的分支偏移量   |  计算`acc == undefined`，如果为真，则跳转到分支A。<br>指令功能未使能，暂不可用。   |
-|  0xa4 |  IMM16    |  jneundefined +AAAA   |  默认入参：acc：值<br>A：有符号的分支偏移量   |  计算`acc != undefined`，如果为真，则跳转到分支A。<br>指令功能未使能，暂不可用。   |
-|  0xa5 |  IMM16    |  jstrictequndefined +AAAA |  默认入参：acc：值<br>A：有符号的分支偏移量   |  计算`acc === undefined`，如果为真，则跳转到分支A。<br>指令功能未使能，暂不可用。   |
-|  0xa6 |  IMM16    |  jnstrictequndefined +AAAA    |  默认入参：acc：值<br>A：有符号的分支偏移量   |  计算`acc !== undefined`，如果为真，则跳转到分支A。<br>指令功能未使能，暂不可用。   |
-|  0xa7 |  V8_IMM16 |  jeq vAA, +BBBB   |  默认入参：acc：值<br>A：值<br>B：有符号的分支偏移量  |  计算`acc == A`，如果为真，则跳转到分支B。<br>指令功能未使能，暂不可用。   |
-|  0xa8 |  V8_IMM16 |  jne vAA, +BBBB   |  默认入参：acc：值<br>A：值<br>B：有符号的分支偏移量  |  计算`acc != A`，如果为真，则跳转到分支B。<br>指令功能未使能，暂不可用。   |
-|  0xa9 |  V8_IMM16 |  jstricteq vAA, +BBBB |  默认入参：acc：值<br>A：值<br>B：有符号的分支偏移量  |  计算`acc === A`，如果为真，则跳转到分支B。<br>指令功能未使能，暂不可用。   |
-|  0xaa |  V8_IMM16 |  jnstricteq vAA, +BBBB    |  默认入参：acc：值<br>A：值<br>B：有符号的分支偏移量  |  计算`acc !== A`，如果为真，则跳转到分支B。<br>指令功能未使能，暂不可用。   |
+|  0x9d |  IMM16    |  jstricteqz +AAAA |  默认入参：acc：值<br>A：有符号的分支偏移量   |  计算`acc === 0`，如果为真，则跳转到分支A。（预留指令）   |
+|  0x9e |  IMM16    |  jnstricteqz +AAAA    |  默认入参：acc：值<br>A：有符号的分支偏移量   |  计算`acc !== 0`，如果为真，则跳转到分支A。（预留指令）   |
+|  0x9f |  IMM16    |  jeqnull +AAAA    |  默认入参：acc：值<br>A：有符号的分支偏移量   |  计算`acc == null`，如果为真，则跳转到分支A。（预留指令）   |
+|  0xa0 |  IMM16    |  jnenull +AAAA    |  默认入参：acc：值<br>A：有符号的分支偏移量   |  计算`acc != null`，如果为真，则跳转到分支A。（预留指令）   |
+|  0xa1 |  IMM16    |  jstricteqnull +AAAA  |  默认入参：acc：值<br>A：有符号的分支偏移量   |  计算`acc === null`，如果为真，则跳转到分支A。（预留指令）   |
+|  0xa2 |  IMM16    |  jnstricteqnull +AAAA |  默认入参：acc：值<br>A：有符号的分支偏移量   |  计算`acc !== null`，如果为真，则跳转到分支A。（预留指令）   |
+|  0xa3 |  IMM16    |  jequndefined +AAAA   |  默认入参：acc：值<br>A：有符号的分支偏移量   |  计算`acc == undefined`，如果为真，则跳转到分支A。（预留指令）   |
+|  0xa4 |  IMM16    |  jneundefined +AAAA   |  默认入参：acc：值<br>A：有符号的分支偏移量   |  计算`acc != undefined`，如果为真，则跳转到分支A。（预留指令）   |
+|  0xa5 |  IMM16    |  jstrictequndefined +AAAA |  默认入参：acc：值<br>A：有符号的分支偏移量   |  计算`acc === undefined`，如果为真，则跳转到分支A。（预留指令）   |
+|  0xa6 |  IMM16    |  jnstrictequndefined +AAAA    |  默认入参：acc：值<br>A：有符号的分支偏移量   |  计算`acc !== undefined`，如果为真，则跳转到分支A。（预留指令）   |
+|  0xa7 |  V8_IMM16 |  jeq vAA, +BBBB   |  默认入参：acc：值<br>A：值<br>B：有符号的分支偏移量  |  计算`acc == A`，如果为真，则跳转到分支B。（预留指令）   |
+|  0xa8 |  V8_IMM16 |  jne vAA, +BBBB   |  默认入参：acc：值<br>A：值<br>B：有符号的分支偏移量  |  计算`acc != A`，如果为真，则跳转到分支B。（预留指令）   |
+|  0xa9 |  V8_IMM16 |  jstricteq vAA, +BBBB |  默认入参：acc：值<br>A：值<br>B：有符号的分支偏移量  |  计算`acc === A`，如果为真，则跳转到分支B。（预留指令）   |
+|  0xaa |  V8_IMM16 |  jnstricteq vAA, +BBBB    |  默认入参：acc：值<br>A：值<br>B：有符号的分支偏移量  |  计算`acc !== A`，如果为真，则跳转到分支B。（预留指令）   |
 |  0xab |  IMM16    |  getiterator RRRR |  默认入参：acc：对象<br>R：方舟运行时内部使用的16位保留数字   |  执行[GetIterator](https://262.ecma-international.org/12.0/#sec-getiterator)(acc, sync)方法，并将结果存放到acc中。   |
 |  0xac |  IMM16_V8 |  closeiterator RRRR, vAA  |  R：方舟运行时内部使用的16位保留数字<br>A：对象   |  以类型为[iteratorRecord](https://262.ecma-international.org/12.0/#sec-iterator-records)的A作为参数，执行[IteratorClose](https://262.ecma-international.org/12.0/#sec-iteratorclose)，并将结果存放到acc中。   |
 |  0xad |  NONE |  ldsymbol  | - |  加载**Symbol**对象到acc中。   |

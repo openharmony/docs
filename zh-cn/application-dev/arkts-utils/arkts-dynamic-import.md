@@ -325,7 +325,7 @@ import('../Calc').then((ns: ESObject) => {
 <!-- @[hap_const_dynamic_import_native](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/ArkTSRuntime/ArkTSModule/DynamicImport/entry/src/main/cpp/types/libentry/index.d.ts) -->
 
 ``` TypeScript
-// libnativeapi.so's index.d.ts
+// libentry.so's index.d.ts
 export const add: (a: number, b: number) => number;
 ```
 
@@ -334,7 +334,7 @@ export const add: (a: number, b: number) => number;
 ``` TypeScript
 // HAP's src/main/ets/pages/Index.ets
 import('libentry.so').then((ns: ESObject) => {
-  console.info('DynamicImport libnativeapi.so: ' + ns.default.add(2, 3));
+  console.info('DynamicImport libentry.so: ' + ns.default.add(2, 3));
 });
 ```
 
@@ -657,7 +657,7 @@ import(calcFilePath).then((ns: ESObject) => {
 <!-- @[hap_const_dynamic_import_native](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/ArkTSRuntime/ArkTSModule/DynamicImport/entry/src/main/cpp/types/libentry/index.d.ts) -->
 
 ``` TypeScript
-// libnativeapi.so's index.d.ts
+// libentry.so's index.d.ts
 export const add: (a: number, b: number) => number;
 ```
 
@@ -667,7 +667,7 @@ export const add: (a: number, b: number) => number;
 // HAP's src/main/ets/pages/Index.ets
 let soName = 'libentry.so';
 import(soName).then((ns: ESObject) => {
-  console.info('DynamicImport libnativeapi.so: ' + ns.default.add(2, 3));
+  console.info('DynamicImport libentry.so: ' + ns.default.add(2, 3));
 });
 ```
 
