@@ -64,7 +64,7 @@
     - [@ohos.util.Vector (线性容器Vector)](js-apis-vector.md)
 - 错误码<!--arkts-arkts-errcode-->
   - [语言基础类库错误码](errorcode-utils.md)
-  - [Typescript Compiler错误码](errorcode-tsc.md)
+  - [TypeScript Compiler错误码](errorcode-tsc.md)
   - [编译工具链错误码](errorcode-ets-loader.md)
   - [Es2abc编译器错误码](errorcode-es2abc.md)
   - [源码混淆错误码](errorcode-source-obfuscation.md)
