@@ -297,3 +297,44 @@ AudioCapturer创建成功，但调用[start](arkts-apis-audio-AudioCapturer.md#s
 
 1. 先根据前述案例排除对象状态、应用权限、音频焦点和录音并发问题。
 2. 停止并释放当前AudioCapturer，重新创建后重试一次。避免无条件反复重试。
+
+### 调用activateAudioSession激活音频会话失败-类型异常
+
+调用[activateAudioSession](../apis-audio-kit/arkts-apis-audio-AudioSessionManager.md#activateaudiosession12)返回错误码`6800301`，应用捕获到的错误信息为"System error. Activate audio session fail."时，根据系统日志按照以下场景进行排查。
+
+**判断依据**
+
+```text
+<音频客户端进程>: ActivateAudioSession failed,...
+```
+
+**可能原因**
+
+`concurrencyMode`取值不在接口支持的并发模式范围内。
+
+**处理步骤**
+
+根据[AudioConcurrencyMode](../apis-audio-kit/arkts-apis-audio-e.md#audioconcurrencymode12)检查`concurrencyMode`取值是否为DEFAULT（0）、MIX_WITH_OTHERS（1）、DUCK_OTHERS（2）或PAUSE_OTHERS（3），如果不是上述定义则不在支持的范围内。
+
+### 调用activateAudioSession/deactivateAudioSession/clearSelectedMediaInputDevice音频会话接口失败-系统异常
+
+**判断依据**
+
+调用[activateAudioSession](../apis-audio-kit/arkts-apis-audio-AudioSessionManager.md#activateaudiosession12)、[deactivateAudioSession](../apis-audio-kit/arkts-apis-audio-AudioSessionManager.md#deactivateaudiosession12)、[clearSelectedMediaInputDevice](../apis-audio-kit/arkts-apis-audio-AudioSessionManager.md#clearselectedmediainputdevice21)返回错误码`6800301`时，会出现以下内容。
+
+- 对应接口应用捕获到的错误信息：
+ "System error. Activate audio session fail."
+ "System error. Deactivate audio session fail."
+ "System error. Clear selected input device fail."
+- 同时出现以下一条或多条日志：
+ "<音频客户端进程>: audio policy manager proxy is NULL."
+ "<音频客户端进程>: ActivateAudioSession failed,..."
+
+**可能原因**
+
+1. 策略客户端代理获取失败，gsp对象为null。
+2. IPC传输失败。
+
+**处理步骤**
+
+收集完整日志由系统侧进行分析。
