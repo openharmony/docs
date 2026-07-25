@@ -78,6 +78,7 @@
       - [配置其他子系统](porting/porting-minichip-subsys-others.md)
     - [移植验证](porting/porting-minichip-verification.md)
     - [常见问题](porting/porting-chip-faqs.md)
+    - [轻量系统小型化适配指导](porting/porting-minichip-minimal.md)
   - 小型系统芯片移植指导
     - 移植准备
       - [移植须知](porting/porting-smallchip-prepare-needs.md)
