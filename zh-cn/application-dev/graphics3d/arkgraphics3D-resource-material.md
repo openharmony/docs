@@ -227,9 +227,9 @@ ArkGraphics 3D中的材质类型通过[MaterialType](../reference/apis-arkgraphi
    }
    ```
 
-7. 应用Shader材质到几何体节点。
+7. 将Shader材质绑定至几何体节点。
 
-   通过按钮点击事件调用不同的函数，可在运行时动态切换模型的材质，实现从默认材质到Shader材质的过渡效果。
+   将着色器资源绑定至Shader材质，再将Shader材质绑定至几何体节点，使用自定义渲染逻辑进行绘制。通过按钮点击事件可触发材质切换，实现运行时从默认材质到Shader材质的动态过渡。
 
    <!-- @[material_button_action](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkGraphics3D/entry/src/main/ets/arkgraphic/resource.ets) -->
    
