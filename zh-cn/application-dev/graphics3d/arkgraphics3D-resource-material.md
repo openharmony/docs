@@ -194,9 +194,9 @@ ArkGraphics 3D中的材质类型通过[MaterialType](../reference/apis-arkgraphi
    }
    ```
 
-6. 创建并绑定Shader资源。
+6. 创建Shader资源。
 
-   通过SceneResourceFactory.createShader()创建自定义着色器资源，并将其绑定到Shader材质上，实现自定义渲染逻辑。
+   通过SceneResourceFactory.createShader()创建自定义着色器资源，创建的shader资源可在后续步骤中绑定到Shader材质上，实现自定义渲染逻辑。
 
    <!-- @[create_shader_promise](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkGraphics3D/entry/src/main/ets/arkgraphic/resource.ets) -->
    
@@ -227,9 +227,9 @@ ArkGraphics 3D中的材质类型通过[MaterialType](../reference/apis-arkgraphi
    }
    ```
 
-7. 应用Shader材质到几何体节点。
+7. 将Shader材质绑定至几何体节点。
 
-   通过按钮点击事件调用不同的函数，可在运行时动态切换模型的材质，实现从默认材质到Shader材质的过渡效果。
+   将着色器资源绑定至Shader材质，再将Shader材质绑定至几何体节点，使用自定义渲染逻辑进行绘制。通过按钮点击事件可触发材质切换，实现运行时从默认材质到Shader材质的动态过渡。
 
    <!-- @[material_button_action](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkGraphics3D/entry/src/main/ets/arkgraphic/resource.ets) -->
    
@@ -417,9 +417,9 @@ ArkGraphics 3D中的材质类型通过[MaterialType](../reference/apis-arkgraphi
    }
    ```
 
-8. 切换粗糙度纹理。
+8. 切换清漆层粗糙度纹理。
 
-   类似于清漆层纹理切换，用户也可以在不同的粗糙度纹理之间切换。
+   类似于清漆层纹理切换，用户也可以在不同的清漆层粗糙度纹理之间切换。
 
    <!-- @[pbr_clearcoat_changeRoughnessTexture](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkGraphics3D/entry/src/main/ets/material/pbr_clearcoat.ets) -->
    
