@@ -21,14 +21,14 @@ Before reading this topic, you are advised to read [AppStorage](./arkts-appstora
 | accessibilityEnabled              | string                  | Whether to enable screen reader accessibility. **true**: enable; **false**: disable.|
 | colorMode              | [ColorMode](../../reference/apis-arkui/arkui-ts/ts-state-management-environment-variables.md#colormode)                  | Color mode.<br>- **ColorMode.LIGHT**: light color mode.<br>- **ColorMode.DARK**: dark color mode.                |
 | fontScale              | number                  | Font scale. To enable the font scale to change with the system, set the [configuration](../../quick-start/app-configuration-file.md#configuration) tag.<br>The default value follows the default system settings.               |
-| fontWeightScale              | number                  | Font weight. The value range varies by system or device model.<br>The default value follows the default system settings.               |
+| fontWeightScale              | number                  | Font weight scale. The value range varies by system or device model.<br>The default value follows the default system settings.               |
 | layoutDirection              | [LayoutDirection](../../reference/apis-arkui/arkui-ts/ts-state-management-environment-variables.md#layoutdirection)                  | Layout direction.<br>**LayoutDirection.LTR**: from left to right.<br>**LayoutDirection.RTL**: from right to left.                |
 | languageCode              | string                  | System language code. The value must be in lowercase, for example, **zh**.<br>The default value follows the default system settings.                |
 
 ## Constraints
 
 **Environment** can be called only when [UIContext](../../reference/apis-arkui/arkts-apis-uicontext-uicontext.md) is specified. You call this API inside [runScopedTask](../../reference/apis-arkui/arkts-apis-uicontext-uicontext.md#runscopedtask) to make context explicit. If the call is not made in a location where the UI context is explicit\, no device environment data can be obtained.
-  <!-- @[limiting_condition](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkUISample/EnvirommentProjet/entry/src/main/ets/entryability/EntryAbilityDemo.ets) -->
+  <!-- @[limiting_condition](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkUISample/EnvironmentProject/entry/src/main/ets/entryability/EntryAbilityDemo.ets) -->
   
   ``` TypeScript
   import { UIAbility } from '@kit.AbilityKit';

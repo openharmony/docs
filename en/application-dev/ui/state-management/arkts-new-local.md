@@ -1,12 +1,14 @@
 # \@Local Decorator: Representing the Internal State of Components
+
 <!--Kit: ArkUI-->
 <!--Subsystem: ArkUI-->
 <!--Owner: @jiyujia926-->
-<!--Designer: @s10021109-->
+<!--Designer: @zhangboren-->
 <!--Tester: @TerryTsao-->
 <!--Adviser: @zhang_yixin13-->
+<!-- md-trans-meta sourceCommit=2fe87adc16af5a903a1eb4a9624e4d36fa962e3d translatedAt=2026-07-25T08:57:05.799Z pushedAt=2026-07-25T09:21:44.734Z -->
 
-You can use \@Local, a variable decorator in state management V2, to observe the variable changes in custom components decorated by \@ComponentV2.
+To observe changes to variables in custom components decorated by @ComponentV2, developers can use the [@Local](../../reference/apis-arkui/arkui-ts/ts-state-management-local.md#local) decorator to decorate variables.
 
 Before reading this document, you are advised to read [\@ComponentV2](./arkts-create-custom-components.md#componentv2). For details about common problems, see [In-Component State Management FAQs](./arkts-state-management-faq-inner-component.md).
 
@@ -22,13 +24,13 @@ Before reading this document, you are advised to read [\@ComponentV2](./arkts-cr
 
 \@Local establishes the internal state of custom components with change observation capabilities.
 
-- Variables decorated by \@Local must be initialized inside the component declaration. They cannot be initialized externally..
+- Variables decorated by \@Local must be initialized inside the component declaration. They cannot be initialized externally.
 
 - When a variable decorated by \@Local changes, the component that uses the variable is re-rendered.
 
-- \@Local supports the following types: Primitive types: number, boolean, string<br>Object types: object, class<br>Built-in types: [Array](#decorating-variables-of-the-array-type), [Set](#decorating-variables-of-the-set-type), [Map](#decorating-variables-of-the-map-type), [Date](#decorating-variables-of-the-date-type)
+- @Local supports observing primitive types such as number, boolean, string, Object, and class, as well as built-in types such as [Array](#decorating-variables-of-the-array-type), [Set](#decorating-variables-of-the-set-type), [Map](#decorating-variables-of-the-map-type), and [Date](#decorating-variables-of-the-date-type).
 
-- \@Local can observe only the variable it decorates. If the decorated variable is of the primitive type, it can observe value changes to the variable; if the decorated variable is of the object type, it can observe value changes to the entire object; if the decorated variable is of the array type, it can observe changes of the entire array and its items; if the decorated variable is of the built-in types, such as Array, Set, Map, and Date, it can observe changes caused by calling the APIs. For details, see [Observed Changes](#observed-changes).
+- The observation capability of @Local is limited to the decorated variable itself. When decorating a primitive type, it can observe assignments to the variable; when decorating an object type, it can observe only overall assignments to the object; when decorating an array type, it can observe changes to the array as a whole and to array elements; when decorating built-in types such as Array, Set, Map, and Date, it can observe changes brought by API calls. For details, see [Observing Changes](#observing-changes).
 
 - \@Local supports **null**, **undefined**, and [union types](#decorating-variables-of-the-union-type).
 
@@ -80,7 +82,7 @@ In the preceding code, the \@State decorated **componentInfo** variable in the *
 | \@Local Variable Decorator| Description|
 | ------------------- | ------------------------------------------------------------ |
 | Decorator parameters| None.|
-| Allowed variable types| Basic types, such as object, class, string, number, boolean, and enum, and built-in types such as Array, Date, Map, and Set. null, undefined, and union types.|
+| Decoratable variable type | Object, class, string, number, boolean, enum, and other basic types, as well as Array, Date, Map, Set, and other built-in types. Supports null, undefined, and union types. |
 | Initial value for the decorated variable| Local initialization is required. External initialization is not allowed.|
 
 ## Variable Passing
@@ -90,14 +92,14 @@ In the preceding code, the \@State decorated **componentInfo** variable in the *
 | Initialization from the parent component| Variables decorated by \@Local can only be initialized locally.   |
 | Child component initialization  | Variables decorated by \@Local can initialize variables decorated by [\@Param](arkts-new-param.md) in child components.|
 
-## Observed Changes
+## Observing Changes
 
 Variables decorated by \@Local are observable. When a decorated variable changes, the UI component bound to the variable will be re-rendered.
 
 - When the decorated variable is of boolean, string, or number type, value changes to the variable can be observed.
 
   <!-- @[Local_Observe_Changes_Type](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkUISample/ParadigmStateManagement/entry/src/main/ets/pages/local/LocalObserveChangesType.ets) -->
-  
+
   ``` TypeScript
   @Entry
   @ComponentV2
@@ -124,10 +126,10 @@ Variables decorated by \@Local are observable. When a decorated variable changes
   }
   ```
 
-- When \@Local is used to decorate a variable of the class object type, only changes to the overall assignment of the class object can be observed. Direct observation of changes to class member property assignments is not supported. Observing class member properties requires the [\@ObservedV2](arkts-new-observedV2-and-trace.md) and [\@Trace](arkts-new-observedV2-and-trace.md) decorators. Note that before API version 19, \@Local cannot be used with class instance objects decorated by [\@Observed](./arkts-observed-and-objectlink.md). Since from API version 19, partial mixed usage of state management V1 and V2 is supported, allowing \@Local and \@Observed to be used together. For details, see [Mixing Use of State Management V1 and V2 (API Version 19 and Later)](../../ui/state-management/arkts-v1-v2-mixusage.md).
+- When the decorated variable is of a class object type, only overall assignments to the class object can be observed. Changes to class member properties cannot be directly observed. Observing class member properties relies on the [@ObservedV2](arkts-new-observedV2-and-trace.md) and [@Trace](arkts-new-observedV2-and-trace.md) decorators, or you can use [makeObserved](./arkts-new-makeObserved.md) to turn the object into an observed object. Note: Before API version 19, @Local cannot be used together with class instance objects decorated by [@Observed](./arkts-observed-and-objectlink.md). Starting from API version 19, partial interoperability between state management V1 and V2 is supported, allowing @Local and @Observed to be used together. For details, see [Guidelines for Using State Management V1 and V2 Together (API Version 19 and Later)](../../ui/state-management/arkts-v1-v2-mixusage.md).
 
     <!-- @[Local_Observe_Changes_Decorator](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkUISample/ParadigmStateManagement/entry/src/main/ets/pages/local/LocalObserveChangesDecorator.ets) -->
-    
+
     ``` TypeScript
     class RawObject {
       public name: string;
@@ -177,7 +179,7 @@ Variables decorated by \@Local are observable. When a decorated variable changes
 - When @Local is used to decorate an array of a primitive type, changes to both the entire array and individual array items can be observed.
 
     <!-- @[Local_Observe_Changes_Array](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkUISample/ParadigmStateManagement/entry/src/main/ets/pages/local/LocalObserveChangesArray.ets) -->
-    
+
     ``` TypeScript
     @Entry
     @ComponentV2
@@ -208,11 +210,11 @@ Variables decorated by \@Local are observable. When a decorated variable changes
       }
     }
     ```
-  
+
 - When \@Local is used to decorate a nested class or object array, changes of lower-level object properties cannot be observed. Observation of these lower-level object properties requires use of \@ObservedV2 and \@Trace decorators.
 
   <!-- @[Local_Observe_Changes_DeepObject](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkUISample/ParadigmStateManagement/entry/src/main/ets/pages/local/LocalObserveChangesDeepObject.ets) -->
-  
+
   ``` TypeScript
   @ObservedV2
   class Region {
@@ -329,7 +331,7 @@ The following table compares the usage and functionality of \@Local and \@State.
 
 | Usage| \@State                      | \@Local                         |
 | ------------------ | ---------------------------- | --------------------------------- |
-| Feature              | None.                         | None.                      |
+| Parameters              | None.                         | None.                      |
 | Initialization from the parent component        | Optional.                 | Not allowed.          |
 | Observation capability| Variables and top-level member properties can be observed, but lower-level member properties cannot.| The variable itself can be observed. Lower-level observation requires use of the \@Trace decorator.|
 | Data transfer| It can be used as a data source to synchronize with the state variables in a child component.| It can be used as a data source to synchronize with the state variables in a child component.|
@@ -380,6 +382,7 @@ struct Index {
   }
 }
 ```
+
 ![local-object](figures/local-object.gif)
 
 ### Decorating Variables of the Array Type
@@ -504,7 +507,7 @@ struct DatePickerExample {
 }
 ```
 
-
+![local-date](figures/local-date.gif)
 
 ### Decorating Variables of the Map Type
 
@@ -568,6 +571,7 @@ struct MapSample {
   }
 }
 ```
+
 ![local-map](figures/local-map.gif)
 
 ### Decorating Variables of the Set Type
@@ -585,7 +589,7 @@ struct SetSample {
   build() {
     Row() {
       Column() {
-        ForEach(Array.from(this.fruits.entries()), (item: [number, number]) => {
+        ForEach(Array.from(this.fruits.entries()), (item: [string, string]) => {
           Text(`${item[0]}`)
             .fontSize(20)
             .margin(10)
@@ -625,6 +629,7 @@ struct SetSample {
   }
 }
 ```
+
 ![local-set](figures/local-set.gif)
 
 ### Decorating Variables of the Union Type
@@ -664,6 +669,7 @@ struct Index {
   }
 }
 ```
+
 ![local-union](figures/local-union.gif)
 
 ## FAQs
@@ -672,7 +678,7 @@ struct Index {
 
 In the following scenario, [animateTo](../../reference/apis-arkui/arkts-apis-uicontext-uicontext.md#animateto) cannot be directly used in state management V2.
 
-<!-- @[Local_Question_V2_animateTo](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkUISample/ParadigmStateManagement/entry/src/main/ets/pages/local/LocalQuestionV2animateTo.ets) -->
+<!-- @[Local_AnimateTo_V2_Problem](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkUISample/ParadigmStateManagement/entry/src/main/ets/pages/local/LocalAnimateToV2Problem.ets) -->
 
 ``` TypeScript
 @Entry
@@ -714,9 +720,9 @@ In the above code, the expected animation effect is as follows: The green rectan
 
 ![arkts-new-local-animateTo-1](figures/arkts-new-local-animateTo-1.gif)
 
-Since API version 22, you can use the [applySync APIs](./arkts-new-applySync-flushUpdates-flushUIUpdates.md) to achieve the expected display effect.
+Since API version 22, you can use the [applySync API](./arkts-new-applySync-flushUpdates-flushUIUpdates.md) to achieve the expected display effect.
 
-<!-- @[Local_Question_Expected_Effect](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkUISample/ParadigmStateManagement/entry/src/main/ets/pages/local/LocalQuestionExpectedEffect.ets) -->
+<!-- @[Local_ApplySync_Effect](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkUISample/ParadigmStateManagement/entry/src/main/ets/pages/local/LocalApplySyncEffect.ets) -->
 
 ``` TypeScript
 import { UIUtils } from '@kit.ArkUI';
@@ -758,6 +764,6 @@ struct Index {
 }
 ```
 
-The principle is as follows: Use the **applySync** API to synchronously update the status variables changes in the closure function, and then execute the original animation to achieve the expected effect.
+The principle is as follows: Use the **applySync** API to synchronously update the state variable changes in the closure function, and then execute the original animation to achieve the expected effect.
 
 ![arkts-new-local-animateTo-2](figures/arkts-new-local-animateTo-2.gif)

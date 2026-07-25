@@ -5,8 +5,9 @@
 <!--Designer: @keerecles-->
 <!--Tester: @khq-->
 <!--Adviser: @zhang_yixin13-->
+<!-- md-trans-meta sourceCommit=3efb4ba336409dd0731ba011e1e227786db57fa2 translatedAt=2026-07-22T02:12:52.375Z pushedAt=2026-07-23T02:26:59.992Z -->
 
-Custom components decorated with \@Reusable support component reuse. When a custom component is removed from the component tree, it is cached in the cache pool. When new components of the same type are needed, the system reuses cached objects instead of creating new ones. This avoids repeated creation and destruction of components and improves performance.
+Custom components decorated by [\@Reusable](../../reference/apis-arkui/arkui-ts/ts-custom-component-decorator-reusable.md#reusable) support component reuse. When a custom component is removed from the component tree, it is stored in a cache pool. When a component node of the same type is subsequently created, the component object in the cache pool is preferentially reused, thereby avoiding repeated creation and destruction and improving performance.
 
 > **NOTE**
 >
@@ -161,6 +162,7 @@ struct IncorrectReuseComponent {
       IncorrectReuseComponentChild({ num: this.num })
       Button('plus')
         .onClick(() => {
+          // Increase by 10 on each tap.
           this.num += 10;
         })
     }
@@ -303,6 +305,7 @@ struct Index {
           this.showBranchA = !this.showBranchA;
         })
       if (this.showBranchA) {
+        // The component structures differ and need to be distinguished by reuseId.
         ReusableComponent({ flag: true })
       }
       Button('show/hide branch B')
@@ -310,6 +313,7 @@ struct Index {
           this.showBranchB = !this.showBranchB;
         })
       if (this.showBranchB) {
+        // The component structures differ and need to be distinguished by reuseId.
         ReusableComponent({ flag: false })
       }
     }
@@ -474,7 +478,7 @@ struct ReusableChildB {
   }
 }
 ```
-  
+
 ### Unsupported ComponentContent
 
 **ComponentContent** does not support passing \@Reusable decorated custom components.
@@ -830,7 +834,7 @@ export class MyDataSource<T> extends BasicDataSource<T> {
 
 ### List Scrolling with ForEach
 
-When the **ForEach** rendering control syntax is used to create reusable custom components, the full-expansion behavior of **ForEach** prevents component reuse. In the example: Clicking **update** successfully refreshes data, but **ListItemView** cannot be reused during list scrolling; clicking **clear** and then **update** allows **ListItemView** to be reused, as this triggers re-creation of multiple destroyed custom components within a single frame.
+When **ForEach** is used to create reusable custom components, the full-expansion behavior of the **ForEach** rendering control syntax prevents the reusable components from being reused. In the example: clicking **update** successfully refreshes the data, but when scrolling the list, ListItemView cannot be reused. Clicking **clear** and then clicking **update** again allows ListItemView to be reused successfully, because multiple custom components that have already been destroyed are re-created within a single frame.
 
 <!-- @[list_scrolling_with_for_each](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkUISample/ReusableComponent/entry/src/main/ets/pages/ListScrollingWithForEach.ets) -->
 
@@ -877,7 +881,7 @@ struct Index {
       this.data.pushData(i.toString());
     }
 
-    for (let i = 30; i <= 80; i++) { // Loop 50 times.
+    for (let i = 30; i < 80; i++) { // Loop 50 times.
       this.data02.pushData(i.toString());
     }
   }
@@ -927,7 +931,7 @@ struct ListItemView {
   @State item: string = '';
 
   aboutToAppear(): void {
-    // On first update click, scrolling fails to trigger reuse due to the full-expansion behavior of ForEach.
+    // Click update. When entering for the first time, swipe up and down. Reuse is not possible due to the ForEach collapse/expand attribute.
     hilog.info(DOMAIN, TAG, BUNDLE + '=====aboutToAppear=====ListItemView==created==' + this.item);
   }
 
@@ -1028,7 +1032,7 @@ struct MyComponent {
             // Use the reusable custom component.
             ReusableChildComponent({ item: item });
           }
-        }, (item: string) => item)
+        }, (item: number) => item.toString())
       }
       .cachedCount(2) // Set the number of cached GridItem components.
       .columnsTemplate('1fr 1fr 1fr')
@@ -1074,7 +1078,7 @@ struct ReusableChildComponent {
 - For **WaterFlow** scrolling scenarios where **FlowItem** and its child components are frequently created and destroyed, you can encapsulate components in **FlowItem** into a custom component and decorate it with \@Reusable to implement component reuse.
 
   <!-- @[reusable_for_water_flow_usage_scenario](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkUISample/ReusableComponent/entry/src/main/ets/pages/ReusableForWaterFlowUsageScenario.ets) -->
-  
+
   ``` TypeScript
   import { hilog } from '@kit.PerformanceAnalysisKit';
   
@@ -1163,7 +1167,6 @@ struct ReusableChildComponent {
   struct Index {
     @State minSize: number = 50; // Minimum value: 50.
     @State maxSize: number = 80; // Maximum value: 80.
-    @State fontSize: number = 24; // Font size: 24.
     @State colors: number[] = [0xFFC0CB, 0xDA70D6, 0x6B8E23, 0x6A5ACD, 0x00FFFF, 0x00FF7F];
     scroller: Scroller = new Scroller();
     dataSource: WaterFlowDataSource = new WaterFlowDataSource();
@@ -1221,8 +1224,8 @@ struct ReusableChildComponent {
 
 - For **Swiper** scrolling scenarios where child components are frequently created and destroyed, you can encapsulate the child components into a custom component and decorate it with \@Reusable to implement component reuse.
 
-  <!-- @[reusable_for_swiper_usage_scenario](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkUISample/ReusableComponent/entry/src/main/ets/pages/ReusableForSwiperUsageScenario.ets) -->
-  
+  <!-- @[reusable_for_swiper_usage_scenario](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkUISample/ReusableComponent/entry/src/main/ets/pages/ReusableForSwiperUsageScenario.ets) --> 
+
   ``` TypeScript
   @Entry
   @Component
@@ -1286,7 +1289,6 @@ struct ReusableChildComponent {
           })
           
         Image(this.itemData?.image)
-          .width('100%')
           .borderRadius(12)
           .objectFit(ImageFit.Contain)
           .margin({
@@ -1368,7 +1370,7 @@ struct ReusableChildComponent {
 - For list scrolling scenarios where the **ListItemGroup** component is used, you can encapsulate child components in **ListItem** that need to be destroyed and re-created into a custom component and decorate it with \@Reusable to implement component reuse.
 
   <!-- @[reusable_for_list_item_group_usage_scenario](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkUISample/ReusableComponent/entry/src/main/ets/pages/ReusableForListItemGroupUsageScenario.ets) -->
-  
+
   ``` TypeScript
   @Entry
   @Component
@@ -1570,18 +1572,18 @@ There are differences between reusable components, but the number of types is li
 
 ``` TypeScript
 class LimitedMyDataSource implements IDataSource {
-  private dataArray: string[] = [];
+  private dataArray: number[] = [];
   private listener: DataChangeListener | undefined;
 
   public totalCount(): number {
     return this.dataArray.length;
   }
 
-  public getData(index: number): string {
+  public getData(index: number): number {
     return this.dataArray[index];
   }
 
-  public pushData(data: string): void {
+  public pushData(data: number): void {
     this.dataArray.push(data);
   }
 
@@ -1605,7 +1607,7 @@ struct LimitedIndex {
 
   aboutToAppear() {
     for (let i = 0; i < 1000; i++) { // Loop 1000 times.
-      this.data.pushData(i + '');
+      this.data.pushData(i);
     }
   }
 
@@ -1755,7 +1757,7 @@ struct MyComponent {
         .onAppear(() => {
           hilog.info(DOMAIN, TAG, BUNDLE + `ListItem ${index} onAppear`);
         })
-      }, (item: number) => item.toString())
+      }, (item: string) => item)
     }
     .width('100%')
     .height('100%')
@@ -1860,3 +1862,5 @@ struct ChildComponentD {
   }
 }
 ```
+
+<!--no_check-->

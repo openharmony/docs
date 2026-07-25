@@ -1,17 +1,18 @@
 # stateStyles: Applying Polymorphic Styles
+
 <!--Kit: ArkUI-->
 <!--Subsystem: ArkUI-->
 <!--Owner: @yihao-lin-->
 <!--Designer: @piggyguy-->
 <!--Tester: @songyanhong-->
 <!--Adviser: @zhang_yixin13-->
-
+<!-- md-trans-meta sourceCommit=c6d2a51ae0d4d741fa9801df0b2e84e58290f6c1 translatedAt=2026-07-24T01:21:35.328Z pushedAt=2026-07-24T03:22:43.813Z -->
 
 Unlike \@Styles, which are used to reuse styles only on static pages, stateStyles enables you to set dynamic, state-specific styles. This topic explores the implementation of polymorphic styles through stateStyles.
 
 > **NOTE**
 >
-> Polymorphic styles support only universal attributes. If a polymorphic style does not take effect, the attribute may be a private, component-specific attribute, for example, [fontColor](../../reference/apis-arkui/arkui-ts/ts-basic-components-button.md#fontcolor) or [backgroundColor](../../reference/apis-arkui/arkui-ts/ts-universal-attributes-background.md) of the [TextInput](../../reference/apis-arkui/arkui-ts/ts-basic-components-textinput.md) component. In this case, you can use [attributeModifier](../../reference/apis-arkui/arkui-ts/ts-universal-attributes-attribute-modifier.md#attributemodifier) to dynamically set component attributes to enable the polymorphic style.
+> Polymorphic styles support only universal attributes. If a polymorphic style does not take effect, the attribute may be a private attribute of the component, such as [fontColor](../../reference/apis-arkui/arkui-ts/ts-basic-components-button.md#fontcolor) and the [backgroundColor](../../reference/apis-arkui/arkui-ts/ts-universal-attributes-background.md#backgroundcolor) attribute of the [TextInput](../../reference/apis-arkui/arkui-ts/ts-basic-components-textinput.md) component. In such cases, you can use [attributeModifier](../../reference/apis-arkui/arkui-ts/ts-universal-attributes-attribute-modifier.md#attributemodifier) to dynamically set component attributes as a workaround.
 
 ## Overview
 
@@ -33,13 +34,11 @@ stateStyles is an attribute method that sets the style based on the internal sta
 >
 > Currently, the focused state can be triggered only by pressing the **Tab** or arrow keys on an external keyboard. Triggering through key presses in nested scrollable components is not supported.
 
-
 ## Use Scenarios
-
 
 ### Common Scenarios
 
-This example shows the most basic application scenario of stateStyles. **Button1** is the first component and **Button2** the second component. When either of these components is pressed, the black style specified for **pressed** takes effect. When the **Tab** key is pressed for sequential navigation, **Button1** obtains focus and is displayed in the pink style specified for **focused**. When **Button 2** is focused, it is displayed in the pink style specified for **focused**, and **Button1** changes to the blue style specified for **normal**.
+The following example demonstrates the most basic usage of **stateStyles**. **Button1** is the first component, and **Button2** is the second. When pressed, a button is displayed in the gray color specified for the pressed state. When the **Tab** key is used to navigate focus, **Button1** gains focus and is displayed in the pink color specified for the **focused** state. When **Button2** gains focus, it is displayed in the pink color specified for the **focused** state, while **Button1** loses focus and is displayed in the blue color specified for the **normal** state.
 
 <!-- @[state_style](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkUISample/StateStyle/entry/src/main/ets/pages/StateStyle/StateStylesSample.ets) -->
 
@@ -79,17 +78,13 @@ struct StateStylesSample {
 }
 ```
 
-
-
   **Figure 1** Focused and pressed states 
 
 ![Video_2023-03-17_120758](figures/Video_2023-03-17_120758.gif)
 
-
 ### Combined Use of \@Styles and stateStyles
 
 The following example uses \@Styles to specify different states of stateStyles.
-
 
 <!-- @[normal_style](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkUISample/StateStyle/entry/src/main/ets/pages/NormalStyle/MyComponent.ets) -->
 
@@ -121,7 +116,6 @@ struct MyComponent {
   **Figure 2** Normal and pressed states 
 
 ![Video_2023-03-17_144824](figures/Video_2023-03-17_144824.gif)
-
 
 ### Using Regular Variables and State Variables in stateStyles
 

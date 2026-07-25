@@ -2,9 +2,10 @@
 <!--Kit: ArkUI-->
 <!--Subsystem: ArkUI-->
 <!--Owner: @jiyujia926-->
-<!--Designer: @s10021109-->
+<!--Designer: @zhangboren-->
 <!--Tester: @TerryTsao-->
 <!--Adviser: @zhang_yixin13-->
+<!-- md-trans-meta sourceCommit=5cbda8a742fe4c75db3800c28ccfc8ffcd9cebc0 translatedAt=2026-06-30T03:38:00.757Z pushedAt=2026-06-30T03:38:22.226Z -->
 
 During the migration of state management from V1 to V2, if you need to modify state variables before executing an animation with [animateTo](../../reference/apis-arkui/arkts-apis-uicontext-uicontext.md#animateto), you can refer to the adaptation solution in this document.
 

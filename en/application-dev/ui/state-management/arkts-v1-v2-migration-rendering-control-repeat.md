@@ -1,19 +1,19 @@
 # Migration for Repeated Content Rendering
+
 <!--Kit: ArkUI-->
 <!--Subsystem: ArkUI-->
 <!--Owner: @maorh-->
 <!--Designer: @keerecles-->
 <!--Tester: @TerryTsao-->
 <!--Adviser: @zhang_yixin13-->
+<!-- md-trans-meta sourceCommit=c6d2a51ae0d4d741fa9801df0b2e84e58290f6c1 translatedAt=2026-07-24T01:22:24.223Z pushedAt=2026-07-24T03:23:08.831Z -->
 
 This guide describes how to migrate components from V1 to V2, involving the following rendering control components.
-
 
 | Source Component| Destination Component|
 | -------- | -------- |
 | [ForEach](../rendering-control/arkts-rendering-control-foreach.md) | [Repeat](../rendering-control/arkts-new-rendering-control-repeat.md) |
 | [LazyForEach](../rendering-control/arkts-rendering-control-lazyforeach.md) | [Repeat](../rendering-control/arkts-new-rendering-control-repeat.md) |
-
 
 ## From ForEach to Repeat
 
@@ -24,7 +24,9 @@ For details how to use **ForEach**, see [Property Changes in Data Source Array I
 **Repeat** needs to be used with state management V2. State management V2 provides the \@ObservedV2 and \@Trace decorators to deeply observe sub-properties.
 
 - @Observed in V1 is replaced with the combination of @ObservedV2 and @Trace for deep observation.
+
 - Other V1 decorators are replaced with corresponding V2 decorators according to the migration rules.
+
 - Replace the **ForEach** structure with the **Repeat** structure.
 
 ```ts
@@ -127,9 +129,7 @@ struct ArticleCardChangeChild {
 }
 ```
 
-
 ## From LazyForEach to Repeat
-
 
 ### Initial Data Rendering
 
@@ -336,9 +336,7 @@ struct MyComponent {
 
 Running this sample code will display the following UI.
 
-
 ![LazyForEach-Repeat-Migration-Demo-1](../rendering-control/figures/LazyForEach-Repeat-Migration-Demo-1.gif)
-
 
 ### Data Updates
 
@@ -461,13 +459,17 @@ The above example demonstrates how **LazyForEach** re-renders child components f
    Replace **LazyForEach** with **Repeat** by following the steps in [Initial Data Rendering](#initial-data-rendering).
 
    1. Adopt state management V2 decorators.
+
    2. Prepare the data source.
+
    3. Prepare the component and key generation functions.
+
    4. Enable lazy loading.
 
 2. Update the data modification logic.
 
    - **LazyForEach** requires explicit API calls to notify the component of data changes.
+
    - For **Repeat**, state management V2 automatically detects data source modifications and triggers updates. Therefore, you only need to modify the data source.
 
    ```ts
@@ -549,7 +551,6 @@ Running this sample code will display the following UI.
 
 ![LazyForEach-Repeat-Migration-Demo-2](../rendering-control/figures/LazyForEach-Repeat-Migration-Demo-2.gif)
 
-
 ### Modifying Data Sub-Properties
 
 **LazyForEach Example**
@@ -629,9 +630,9 @@ struct ChildComponent {
 }
 ```
 
-**Migrating to Repeat**
+**Repeat Migration**
 
-**Repeat** is designed to work with state management V2, which provides the [@ObservedV2 and @Trace](./arkts-new-observedV2-and-trace.md) decorators for deep observation of sub-properties. During migration, you need to replace the \@Observe and \@Observe decorators with \@ObserveV2 and \@Trace respectively.
+**Repeat** must be used together with state management V2, which provides the [@ObservedV2 and @Trace](./arkts-new-observedV2-and-trace.md) decorators for deep observation of sub-properties. When migrating, replace the \@Observe and \@ObjectLink decorators with \@ObservedV2 and \@Trace respectively.
 
 The following example demonstrates the implementation after migration:
 
@@ -837,7 +838,6 @@ Running this sample code will display the following UI.
 
 ![LazyForEach-Repeat-Migration-Demo-4](../rendering-control/figures/LazyForEach-Repeat-Migration-Demo-4.gif)
 
-
 ### Observing External Input of Components with State Management V2
 
 **LazyForEach Example**
@@ -975,7 +975,6 @@ struct ChildComponent {
 Running this sample code will display the following UI.
 
 ![LazyForEach-Repeat-Migration-Demo-5](../rendering-control/figures/LazyForEach-Repeat-Migration-Demo-5.gif)
-
 
 ### Drag-and-Drop Sorting
 
@@ -1200,6 +1199,7 @@ struct ChildComponent {
 **Repeat** has built-in component reuse capability and can work with the [@ReusableV2](./arkts-new-reusableV2.md) decorator from state management V2. After migration, you can implement component reuse in one of two ways:
 
 1. Use the built-in reuse capability of **Repeat**.
+
 2. Use the reuse capability provided by the @ReusableV2 decorator.
 
 Note: The built-in reuse capability of **Repeat** is enabled by default and takes precedence over the \@ReusableV2 decorator. To use the \@ReusableV2 decorator, you must manually disable the built-in reuse capability of **Repeat**, that is, set **reusable** of [VirtualScrollOptions](../../reference/apis-arkui/arkui-ts/ts-rendering-control-repeat.md#virtualscrolloptions) in **Repeat** to **false**. (\@ReusableV2 is supported since API version 18, and **Repeat** supports disabling its built-in reuse capability since API version 18.)
@@ -1285,7 +1285,7 @@ struct MyComponent {
           }
         })
         .key((item: StringData, index: number) => index.toString())
-        .virtualScroll({ reusable: false }) // Disable the built-in reuse of Repeat (API version 19).
+        .virtualScroll({ reusable: false }) // Disable the reuse functionality of Repeat (API 18).
     }.cachedCount(5)
   }
 }
@@ -1319,7 +1319,6 @@ struct ChildComponent {
 Running this sample code will display the following UI.
 
 ![LazyForEach-Repeat-Migration-Demo-7](../rendering-control/figures/LazyForEach-Repeat-Migration-Demo-7.gif)
-
 
 ### Template Rendering
 
@@ -1586,7 +1585,7 @@ struct MyComponent {
           }
         })
         .key((item: StringData, index: number) => index.toString())
-        .virtualScroll({ reusable: false }) // Disable the built-in reuse of Repeat (API version 19) to prevent rendering issues.
+        .virtualScroll({ reusable: false }) // Disable Repeat's own reusability (API 18) to avoid rendering anomalies.
     }.cachedCount(5)
   }
 }
@@ -1646,7 +1645,6 @@ struct ChildComponentB {
 Running this sample code will display the following UI.
 
 ![LazyForEach-Repeat-Migration-Demo-8](../rendering-control/figures/LazyForEach-Repeat-Migration-Demo-8.gif)
-
 
 ## BasicDataSource Sample Code
 
@@ -1730,7 +1728,6 @@ class BasicDataSource implements IDataSource {
   }
 }
 ```
-
 
 ### BasicDataSource Implementation for the StringData Array
 

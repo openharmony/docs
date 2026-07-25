@@ -1,40 +1,41 @@
-# \@ObservedV2 and \@Trace Decorators: Observing Class Property Changes
+# @ObservedV2 and @Trace Decorators: Observing Property Changes in Classes
 <!--Kit: ArkUI-->
 <!--Subsystem: ArkUI-->
 <!--Owner: @jiyujia926-->
-<!--Designer: @s10021109-->
+<!--Designer: @zhangboren-->
 <!--Tester: @TerryTsao-->
 <!--Adviser: @zhang_yixin13-->
+<!-- md-trans-meta sourceCommit=3efb4ba336409dd0731ba011e1e227786db57fa2 translatedAt=2026-07-22T02:08:00.950Z pushedAt=2026-07-23T11:23:19.381Z -->
 
-To enable the state management framework to observe properties in class objects, you can use the \@ObservedV2 and \@Trace decorators to decorate classes and properties in classes.
+To enhance the capability of the state management framework in observing changes to properties within class objects, you can use the [@ObservedV2](../../reference/apis-arkui/arkui-ts/ts-state-management-observedv2.md#observedv2) decorator and the [@Trace](../../reference/apis-arkui/arkui-ts/ts-state-management-trace.md#trace) decorator to decorate classes and properties in classes.
 
 
-\@ObservedV2 and \@Trace provide the capability of directly observing the property changes of nested objects. They are one of the core capabilities of state management V2. Before reading this topic, you are advised to read [State Management Overview](./arkts-state-management-overview.md) to have a basic understanding of the overall capability architecture of state management V2.
+@ObservedV2 and @Trace provide the capability to directly observe changes to properties of nested class objects, which is one of the core capabilities in state management V2. Before reading this document, you are advised to read [State Management Overview](./arkts-state-management-overview.md) to understand the overall capability architecture of state management V2.
 
->**NOTE**
+> **NOTE**
 >
-> The \@ObservedV2 and \@Trace decorators are supported since API version 12.
+> The @ObservedV2 and @Trace decorators are supported since API version 12.
 >
-> The \@ObservedV2 and \@Trace decorators can be used in ArkTS widgets since API version 12.
+> Since API version 12, the @ObservedV2 and @Trace decorators are supported in ArkTS widgets.
 >
-> The \@ObservedV2 and \@Trace decorators can be used in atomic services since API version 12.
+> Since API version 12, the @ObservedV2 and @Trace decorators are supported in atomic services.
 
 ## Overview
 
-The \@ObservedV2 and \@Trace decorators are used to decorate classes and properties in classes so that changes to the classes and properties can be observed.
+The @ObservedV2 decorator and the @Trace decorator are used to decorate classes and properties in classes, so that the decorated classes and properties have the capability of deep observation:
 
-- \@ObservedV2 and \@Trace must come in pairs. Using either of them alone does not work.
-- When a property decorated with \@Trace changes, only the component bound to that property will re-render.
-- In a nested class, changes to a property trigger UI re-rendering only when the property is decorated with \@Trace and the class is decorated with \@ObservedV2.
-- In an inherited class, changes to a property of the parent or child class trigger UI re-rendering only when the property is decorated with \@Trace and the owning class is decorated with \@ObservedV2.
-- Attributes that are not decorated by \@Trace cannot detect changes nor trigger UI re-renders.
-- Classes decorated with \@ObservedV2 and \@Trace must be instantiated using the **new** operator to have change observation capabilities.
+- The @ObservedV2 decorator and the @Trace decorator must be used together. Using either the @ObservedV2 decorator or the @Trace decorator alone has no effect.
+- When a property decorated by the @Trace decorator changes, only the components associated with that property are notified to refresh.
+- In a nested class, a property in the nested class has the capability to trigger UI refresh only when it is decorated by @Trace and the nested class is decorated by @ObservedV2.
+- In an inheritance class, a property in the parent class or child class has the capability to trigger UI refresh only when it is decorated by @Trace and the class where the property resides is decorated by @ObservedV2.
+- A property not decorated by @Trace cannot be detected for changes when used in the UI, and cannot trigger UI refresh.
+- A class that uses the @ObservedV2 and @Trace decorators must be instantiated using the new operator before it has the capability of being observed for changes.
 
-## Limitations of State Management V1 on Observability of Properties in Nested Class Objects
+## Limitations of State Management V1 for Directly Observing Nested Class Object Property Changes
 
-With state management V1, properties of nested class objects are not directly observable.
+The existing state management V1 cannot directly observe property changes of nested class objects.
 
-<!-- @[Observed_Limitations](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkUISample/arktsobservedv2andtrace/entry/src/main/ets/pages/overview/Limitations.ets) -->
+<!-- @[Observed_Limitations](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkUISample/arktsobservedv2andtrace/entry/src/main/ets/pages/overview/Limitations.ets) -->  
 
 ``` TypeScript
 @Observed
@@ -69,6 +70,7 @@ struct Index {
           .fontSize(50)
           .fontWeight(FontWeight.Bold)
           .onClick(() => {
+            // Nested class object property changes cannot be observed.
             this.father.son.age++;
           })
       }
@@ -79,10 +81,11 @@ struct Index {
 }
 ```
 
+![observedv2-sync-0](./figures/observedv2-sync-0.png)
 
-In the preceding example, clicking the **Text** component increases the value of **age**, but does not trigger UI re-renders. The reason is that the **age** property in a nested class is not observable to the current state management framework. To resolve this issue, state management V1 uses [\@ObjectLink](arkts-observed-and-objectlink.md) with custom components.
+In the code above, tapping the Text component to increment the age value does not trigger a UI refresh. This is because the existing state management framework cannot observe changes to the age property in the nested class. The V1 solution is to use the [@ObjectLink decorator](arkts-observed-and-objectlink.md) with a custom component to enable observation.
 
-<!-- @[Realize_Observation](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkUISample/arktsobservedv2andtrace/entry/src/main/ets/pages/overview/RealizeObservation.ets) -->
+<!-- @[Realize_Observation](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkUISample/arktsobservedv2andtrace/entry/src/main/ets/pages/overview/RealizeObservation.ets) -->  
 
 ``` TypeScript
 @Observed
@@ -107,6 +110,7 @@ class Son {
 
 @Component
 struct Child {
+  // @Observed works with @ObjectLink to observe changes to properties of nested class objects.
   @ObjectLink son: Son;
 
   build() {
@@ -115,6 +119,7 @@ struct Child {
         Text(`name: ${this.son.name} age: ${this.son.age}`)
           .fontSize(50)
           .fontWeight(FontWeight.Bold)
+          .margin(10)
           .onClick(() => {
             this.son.age++;
           })
@@ -134,32 +139,34 @@ struct Index {
     Column() {
       Child({ son: this.father.son })
     }
+    .width('100%')
   }
 }
 ```
 
+![observedv2-sync-1](./figures/observedv2-sync-1.gif)
 
-Yet, this approach has its drawbacks: If the nesting level is deep, the code becomes unnecessarily complicated and the usability poor. This is where the class decorator \@ObservedV2 and member property decorator \@Trace come into the picture.
+Although this approach can observe property changes in nested classes, the code becomes extremely complex and difficult to use when the nesting level is deep. Therefore, the class decorator @ObservedV2 and the member variable decorator @Trace are introduced to enhance the capability of observing property changes in nested classes.
 
 ## Decorator Description
 
-| \@ObservedV2 Decorator| Description                                                 |
-| ------------------ | ----------------------------------------------------- |
-| Parameters        | N/A                                                   |
-| Class decorator          | Decorates a class. You must use **new** to create a class object before defining the class.|
+| @ObservedV2 Class Decorator | Description                                                  |
+| --------------------------- | ------------------------------------------------------------ |
+| Decorator parameter         | None.                                                        |
+| Class decorator             | Decorates a class. It must be placed before the class definition, and the class object is created using `new`. |
 
-| \@Trace member property decorator| Description                                                        |
-| --------------------- | ------------------------------------------------------------ |
-| Parameters           | N/A                                                          |
-| Supported type         | Member properties in classes in any of the following types: Member properties in classes in any of the following types: number, string, boolean, class, [Array](#decorating-an-array-of-a-built-in-type-with-trace), [Date](#decorating-a-property-of-the-date-type-with-trace), [Map](#decorating-a-property-of-the-map-type-with-trace), and [Set](#decorating-a-property-of-the-set-type-with-trace). \@Trace does not support the observation of data of the function type. If the data of the function type decorated by \@Trace is modified, the UI is not refreshed.|
+| @Trace Member Variable Decorator | Description                                                         |
+| -------------------------------- | ------------------------------------------------------------ |
+| Decorator parameter              | None.                                                           |
+| Decoratable variables            | Member properties in a class. The property type can be number, string, boolean, class, [Array](#decorating-basic-type-arrays-with-trace), [Date](#decorating-date-type-with-trace), [Map](#decorating-map-type), [Set](#decorating-set-types-with-trace), and others. @Trace does not support observing Function type data. If a Function type property decorated by @Trace is modified, the UI will not be refreshed. |
 
-## Observed Changes
+## Observing Changes
 
-In classes decorated by \@ObservedV2, properties decorated by \@Trace are observable. This means that, any of the following changes can be observed and will trigger UI re-renders of bound components:
+Properties decorated by @Trace in a class decorated by @ObservedV2 have the capability to be observed for changes. When the property value changes, the UI component bound to the property is refreshed.
 
-- Changes to properties decorated by \@Trace in nested classes decorated by \@ObservedV2
+- Properties decorated by @Trace in a nested class have the capability to be observed for changes.
 
-<!-- @[Observe_Changes](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkUISample/arktsobservedv2andtrace/entry/src/main/ets/pages/overview/ObserveChanges.ets) -->
+<!-- @[Observe_Changes](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkUISample/arktsobservedv2andtrace/entry/src/main/ets/pages/overview/ObserveChanges.ets) --> 
 
 ``` TypeScript
 @ObservedV2
@@ -178,19 +185,24 @@ struct Index {
 
   build() {
     Column() {
-      // If age is changed, the Text component is re-rendered.
+      // When age is changed by clicking, the Text component refreshes.
       Text(`${this.father.son.age}`)
+        .fontSize(20)
+        .margin(10)
         .onClick(() => {
           this.father.son.age++;
         })
     }
+    .width('100%')
   }
 }
 ```
 
-- Changes to properties decorated by \@Trace in inherited classes decorated by \@ObservedV2
+![observedv2-sync-2](./figures/observedv2-sync-2.gif)
 
-<!-- @[Inherited_Changes](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkUISample/arktsobservedv2andtrace/entry/src/main/ets/pages/overview/InheritedChanges.ets) -->
+- Properties decorated with \@Trace in an inherited class can be observed for changes.
+
+<!-- @[Inherited_Changes](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkUISample/arktsobservedv2andtrace/entry/src/main/ets/pages/overview/InheritedChanges.ets) --> 
 
 ``` TypeScript
 @ObservedV2
@@ -208,19 +220,24 @@ struct Index {
 
   build() {
     Column() {
-      // If name is changed, the Text component is re-rendered.
+      // When name is changed on click, the Text component refreshes.
       Text(`${this.son.name}`)
+        .fontSize(20)
+        .margin(10)
         .onClick(() => {
           this.son.name = 'Jack';
         })
     }
+    .width('100%')
   }
 }
 ```
 
-- Changes to static properties decorated by \@Trace in classes decorated by \@ObservedV2
+![observedv2-sync-3](./figures/observedv2-sync-3.gif)
 
-<!-- @[Static_Attribute](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkUISample/arktsobservedv2andtrace/entry/src/main/ets/pages/overview/StaticAttribute.ets) -->
+- Static properties decorated with \@Trace in a class can be observed for changes.
+
+<!-- @[Static_Attribute](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkUISample/arktsobservedv2andtrace/entry/src/main/ets/pages/overview/StaticAttribute.ets) --> 
 
 ``` TypeScript
 @ObservedV2
@@ -233,32 +250,37 @@ class Manager {
 struct Index {
   build() {
     Column() {
-      // If count is changed, the Text component is re-rendered.
+      // When count is changed on click, the Text component refreshes.
       Text(`${Manager.count}`)
+        .fontSize(20)
+        .margin(10)
         .onClick(() => {
           Manager.count++;
         })
     }
+    .width('100%')
   }
 }
 ```
 
-- Changes caused by the APIs listed below to properties of built-in types decorated by \@Trace
+![observedv2-sync-4](./figures/observedv2-sync-4.gif)
 
-  | Type | Change-Triggering API                                             |
+- When @Trace decorates built-in types, changes caused by their respective APIs can be observed:
+
+  | Type  | Observable API                                              |
   | ----- | ------------------------------------------------------------ |
-  | Array | push, pop, shift, unshift, splice, copyWithin, fill, reverse, sort|
+  | Array | push, pop, shift, unshift, splice, copyWithin, fill, reverse, sort |
   | Date  | setFullYear, setMonth, setDate, setHours, setMinutes, setSeconds, setMilliseconds, setTime, setUTCFullYear, setUTCMonth, setUTCDate, setUTCHours, setUTCMinutes, setUTCSeconds, setUTCMilliseconds |
   | Map   | set, clear, delete                                           |
   | Set   | add, clear, delete                                           |
 
-## Usage restriction
+## Restrictions
 
-Note the following constraints when using the \@ObservedV2 and \@Trace decorators:
+The @ObservedV2 and @Trace decorators have the following usage restrictions:
 
-- The member property that is not decorated by \@Trace cannot trigger UI re-renders.
+- Non-@Trace decorated member properties used in the UI cannot trigger UI refresh.
 
-<!-- @[UiRefresh_CannotTriggered](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkUISample/arktsobservedv2andtrace/entry/src/main/ets/pages/usagerestrictions/UiRefreshCannotTriggered.ets) -->
+<!-- @[UiRefresh_CannotTriggered](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkUISample/arktsobservedv2andtrace/entry/src/main/ets/pages/usagerestrictions/UiRefreshCannotTriggered.ets) --> 
 
 ``` TypeScript
 @ObservedV2
@@ -274,72 +296,79 @@ struct Index {
 
   build() {
     Column() {
-      // age is decorated by @Trace and can trigger re-renders when used in the UI.
+      // age is decorated by @Trace and can trigger UI refresh when used in the UI.
       Text(`${this.person.age}`)
+        .fontSize(20)
+        .margin(10)
         .onClick(() => {
-          this.person.age++; // The click event can trigger a UI re-render.
+          this.person.age++; // A click triggers UI refresh.
         })
-      // id is not decorated by @Trace and cannot trigger re-renders when used in the UI.
-      Text(`${this.person.id}`) // UI is not re-rendered when id changes.
+      // id is not decorated by @Trace and does not trigger UI refresh when used in the UI.
+      Text(`${this.person.id}`) // No refresh occurs when id changes.
+        .fontSize(20)
+        .margin(10)
         .onClick(() => {
-          this.person.id++; // The click event cannot trigger a UI re-render.
+          this.person.id++; // A click does not trigger UI refresh.
         })
     }
+    .width('100%')
   }
 }
 ```
 
-- \@ObservedV2 can decorate only classes.
+![observedv2-sync-5](./figures/observedv2-sync-5.gif)
+
+- \@ObservedV2 can only decorate classes, not custom components.
 
 ```ts
-@ObservedV2 // Incorrect usage. An error is reported during compilation.
+@ObservedV2 // Incorrect usage. This will cause a compilation error.
 struct Index {
   build() {
   }
 }
 ```
 
-- \@Trace cannot be used in classes that are not decorated by \@ObservedV2.
+- \@Trace cannot be used on a class that is not decorated by \@ObservedV2.
 
 ```ts
 class User {
   id: number = 0;
-  @Trace name: string = 'Tom'; // Incorrect usage. An error is reported at compile time.
+  @Trace name: string = 'Tom'; // Incorrect usage. This will cause a compilation error.
 }
 ```
 
-- \@Trace is a decorator for properties in classes and cannot be used in a struct.
+- \@Trace is a decorator for properties in a class and cannot be used in a struct.
 
 ```ts
 @ComponentV2
 struct Comp {
-  @Trace message: string = 'Hello World'; // Incorrect usage. An error is reported at compile time.
+  @Trace message: string = 'Hello World'; // Incorrect usage. A compilation error occurs.
 
   build() {
   }
 }
 ```
 
-- \@ObservedV2 and \@Trace cannot be used together with [\@Observed](arkts-observed-and-objectlink.md) and [\@Track](arkts-track.md).
+- \@ObservedV2 and \@Trace cannot be used together with [\@Observed](arkts-observed-and-objectlink.md) or [\@Track](arkts-track.md).
 
 ```ts
 @Observed
 class User {
-  @Trace name: string = 'Tom'; // Incorrect usage. An error is reported at compile time.
+  @Trace name: string = 'Tom'; // Incorrect usage. A compilation error occurs.
 }
 
 @ObservedV2
 class Person {
-  @Track name: string = 'Jack'; // Incorrect usage. An error is reported at compile time.
+  @Track name: string = 'Jack'; // Incorrect usage. A compilation error occurs.
 }
 ```
 
-- Classes decorated by @ObservedV2 and @Trace cannot be used together with [\@State](arkts-state.md) or other decorators of V1. Otherwise, an error is reported at compile time.
+- Classes decorated with @ObservedV2 and @Trace cannot be used together with V1 decorators such as [@State](arkts-state.md). A compilation error will occur.
 
-<!-- @[Use_Mixture](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkUISample/arktsobservedv2andtrace/entry/src/main/ets/pages/usagerestrictions/UseMixture.ets) -->
+<!-- @[Use_Mixture](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkUISample/arktsobservedv2andtrace/entry/src/main/ets/pages/usagerestrictions/UseMixture.ets) --> 
 
 ``` TypeScript
-// @State is used as an example.
+// Take the @State decorator as an example.
 @ObservedV2
 class Job {
   @Trace public jobName: string = 'Teacher';
@@ -355,33 +384,46 @@ class Info {
 @Entry
 @ComponentV2
 struct Index {
-  // @State info: Info = new Info(); As @State is not allowed here, an error is reported at compile time.
+  // @State info: Info = new Info(); Cannot be mixed. A compilation error will occur.
   @Local info: Info = new Info();
 
   build() {
     Column() {
       Text(`name: ${this.info.name}`)
+        .fontSize(20)
+        .margin(10)
       Text(`age: ${this.info.age}`)
+        .fontSize(20)
+        .margin(10)
       Text(`jobName: ${this.info.job.jobName}`)
+        .fontSize(20)
+        .margin(10)
       Button('change age')
+        .width(300)
+        .margin(10)
         .onClick(() => {
           this.info.age++;
         })
       Button('Change job')
+        .width(300)
+        .margin(10)
         .onClick(() => {
           this.info.job.jobName = 'Doctor';
         })
     }
+    .width('100%')
   }
 }
 ```
 
-- Classes extended from \@ObservedV2 cannot be used together with [\@State](arkts-state.md) or other decorators of V1. Otherwise, an error is reported during running.
+![observedv2-sync-6](./figures/observedv2-sync-6.gif)
 
-<!-- @[Inheritance_Mixture](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkUISample/arktsobservedv2andtrace/entry/src/main/ets/pages/usagerestrictions/InheritanceMixture.ets) -->
+- Classes that inherit from @ObservedV2 cannot be used together with V1 decorators such as @State. A runtime error will occur.
+
+<!-- @[Inheritance_Mixture](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkUISample/arktsobservedv2andtrace/entry/src/main/ets/pages/usagerestrictions/InheritanceMixture.ets) --> 
 
 ``` TypeScript
-// @State is used as an example.
+// Using the @State decorator as an example.
 @ObservedV2
 class Job {
   @Trace public jobName: string = 'Teacher';
@@ -403,43 +445,54 @@ class Message extends Info {
 @Entry
 @Component
 struct Index {
-  // @State message: Message = new Message();  @State is not allowed here, an error is reported during running.
+  // @State message: Message = new Message();  Cannot be used together; a runtime error occurs.
   message: Message = new Message();
 
   build() {
     Column() {
       Text(`name: ${this.message.name}`)
+        .fontSize(20)
+        .margin(10)
       Text(`age: ${this.message.age}`)
+        .fontSize(20)
+        .margin(10)
       Text(`jobName: ${this.message.job.jobName}`)
+        .fontSize(20)
+        .margin(10)
       Button('change age')
+        .width(300)
+        .margin(10)
         .onClick(() => {
           this.message.age++;
         })
       Button('Change job')
+        .width(300)
+        .margin(10)
         .onClick(() => {
           this.message.job.jobName = 'Doctor';
         })
     }
+    .width('100%')
   }
 }
 ```
 
-- Classes decorated with \@ObservedV2 and \@Trace must be instantiated using the **new** operator to have change observation capabilities.
-- The class instance of \@ObservedV2 cannot be directly deserialized using JSON.parse (the object obtained by directly deserializing JSON.parse cannot observe attribute changes). You can use the third-party library [class-transformer](https://gitcode.com/openharmony-tpc/openharmony_tpc_samples/tree/master/class-transformer) to deserialize the object and observe attribute changes. For details, see [Serialization and Deserialization of Objects Decorated with \@ObservedV2](#serialization-and-deserialization-of-objects-decorated-with-observedv2).
+- A class that uses the \@ObservedV2 and \@Trace decorators must be instantiated using the new operator before it has the capability to be observed for changes.
+- An \@ObservedV2 class instance cannot be obtained directly through JSON.parse deserialization (objects obtained directly through JSON.parse deserialization cannot have their property changes observed). You can use the third-party library [class-transformer](https://gitcode.com/CPF-ApplicationTPC/openharmony_tpc_samples/tree/master/class-transformer) to achieve observable deserialization. For an example, see [Serialization and Deserialization of @ObservedV2 Decorated Objects](#serialization-and-deserialization-of-observedv2-decorated-objects).
 
 ## When to Use
 
-### Nested Class
+### Nested Class Scenario
 
-In the following example, **Pencil** is the innermost class in the **Son** class. As **Pencil** is decorated by \@ObservedV2 and its **length** property is decorated by \@Trace, changes to **length** can be observed.
+In the following nested class scenario, the Pencil class is the innermost class within the Son class. The Pencil class is decorated by @ObservedV2 and its length property is decorated by @Trace, so changes to length can be observed.
 
-The example demonstrates how \@Trace is stacked up against [\@Track](arkts-track.md) and [\@State](arkts-state.md) under the existing state management framework: The @Track decorator offers property-level update capability for classes, but not deep observability; \@State can only observe the changes of the object itself and changes at the first layer; in multi-layer nesting scenarios, you must encapsulate custom components and use [\@Observed](arkts-observed-and-objectlink.md) and [\@ObjectLink](arkts-observed-and-objectlink.md) to observe the changes.
+The @Trace decorator differs in capability from the [@Track](arkts-track.md) and [@State](arkts-state.md) decorators in the existing state management framework. @Track enables property-level update for a class, but does not provide deep observation capability. @State can only observe changes to the object itself and its first-level properties. For multi-level nested scenarios, observation can only be achieved by encapsulating custom components with [@Observed](arkts-observed-and-objectlink.md) and [@ObjectLink](arkts-observed-and-objectlink.md).
 
-* Click **Button('change length')**, in which **length** is a property decorated by \@Trace. The change of **length** can trigger the re-render of the associated UI component, that is, **UINode (1)**, and output the log "id: 1 renderTimes: x" whose **x** increases according to the number of clicks.
-* Because **son** on the custom component **page** is a regular variable, no change is observed for clicks on **Button('assign Son')**.
-* Clicks on **Button('assign Son')** and **Button('change length')** do not trigger UI re-renders. The reason is that, the change to **son** is not updated to the bound component.
+* When Button('change length') is clicked, length is a property decorated by @Trace, and its change can trigger a refresh of the associated UI component, namely UINode (1), and output a log in the format "id: 1 renderTimes: x", where x increments with each click.
+* The `son` variable in the custom component Page is a regular variable, so clicking Button('assign Son') does not cause any change to be observed.
+* After clicking Button('assign Son'), clicking Button('change length') does not trigger a UI refresh. This is because the address of son has changed, and its associated UI component is not linked to the latest son.
 
-<!-- @[Nested_Class](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkUISample/arktsobservedv2andtrace/entry/src/main/ets/pages/usagescenarios/NestedClass.ets) -->
+<!-- @[Nested_Class](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkUISample/arktsobservedv2andtrace/entry/src/main/ets/pages/usagescenarios/NestedClass.ets) --> 
 
 ``` TypeScript
 import { hilog } from '@kit.PerformanceAnalysisKit';
@@ -449,7 +502,7 @@ const TAG = 'ArktsObservedV2AndTrace';
 
 @ObservedV2
 class Pencil {
-  @Trace public length: number = 21; // If length changes, the bound component is re-rendered.
+  @Trace public length: number = 21; // When length changes, the associated component is refreshed.
 }
 
 class Bag {
@@ -480,34 +533,41 @@ struct Page {
     Column() {
       Text('pencil length' + this.son.bag.pencil.length)
         .fontSize(this.isRender(1)) // UINode (1)
+        .margin(10)
       Button('change length')
+        .width(300)
+        .margin(10)
         .onClick(() => {
-          // The value of length is changed upon a click, which triggers a re-render of UINode (1).
+          // Click to change the length value. UINode (1) is refreshed.
           this.son.bag.pencil.length += 100;
         })
       Button('assign Son')
+        .width(300)
+        .margin(10)
         .onClick(() => {
-          // Changes to the regular variable son do not trigger UI re-renders of UINode (1).
+          // Since the variable son is not a state variable, UINode (1) cannot be refreshed.
           this.son = new Son();
         })
     }
+    .width('100%')
   }
 }
 ```
 
+![observedv2-sync-7](./figures/observedv2-sync-7.gif)
 
-### Inheritance
+### Inheritance Class Scenario
 
-Properties in base or derived classes are observable only when decorated by \@Trace.
+\@Trace supports use in class inheritance scenarios. Whether in a base class or a derived class, only properties decorated by \@Trace have the capability to be observed for changes.
 
-In the following example, classes **GrandFather**, **Father**, **Uncle**, **Son**, and **Cousin** are declared. The following figure shows the inheritance relationship.
+In the following example, classes GrandFather, Father, Uncle, Son, and Cousin are declared, with the inheritance relationships shown in the figure below.
 
 ![arkts-old-state-management](figures/arkts-new-observed-and-track-extend-sample.png)
 
 
-Create instances of the **Son** and **Cousin** classes. Clicks on **Button('change Son age')** and **Button('change Cousin age')** can trigger UI re-renders.
+Create instances of the Son and Cousin classes, and click Button('change Son age') and Button('change Cousin age') to trigger UI refresh.
 
-<!-- @[Inheritance_Class](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkUISample/arktsobservedv2andtrace/entry/src/main/ets/pages/usagescenarios/InheritanceClass.ets) -->
+<!-- @[Inheritance_Class](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkUISample/arktsobservedv2andtrace/entry/src/main/ets/pages/usagescenarios/InheritanceClass.ets) -->  
 
 ``` TypeScript
 import { hilog } from '@kit.PerformanceAnalysisKit';
@@ -517,6 +577,7 @@ const TAG = 'ArktsObservedV2AndTrace';
 
 @ObservedV2
 class GrandFather {
+  // Properties decorated by @Trace have the capability to be observed for changes.
   @Trace public age: number = 0;
 
   constructor(age: number) {
@@ -567,14 +628,20 @@ struct Index {
         Text(`Son ${this.son.age}`)
           .fontSize(this.isRender(1))
           .fontWeight(FontWeight.Bold)
+          .margin(10)
         Text(`Cousin ${this.cousin.age}`)
           .fontSize(this.isRender(2))
           .fontWeight(FontWeight.Bold)
+          .margin(10)
         Button('change Son age')
+          .width(300)
+          .margin(10)
           .onClick(() => {
             this.son.age++;
           })
         Button('change Cousin age')
+          .width(300)
+          .margin(10)
           .onClick(() => {
             this.cousin.age++;
           })
@@ -586,14 +653,15 @@ struct Index {
 }
 ```
 
+![observedv2-sync-8](./figures/observedv2-sync-8.gif)
 
-### Decorating an Array of a Built-in Type with \@Trace
+### Decorating Basic Type Arrays with @Trace
 
-With an array of a built-in type decorated by \@Trace, changes caused by supported APIs can be observed. For details about the supported APIs, see [Observed Changes](#observed-changes).
+When an array is decorated by @Trace, changes can be observed using supported APIs. For supported APIs, see [Observing Changes](#observing-changes).
 
-In the following example, the **numberArr** property in the \@ObservedV2 decorated **Arr** class is an \@Trace decorated array. If an array API is used to operate **numberArr**, the change caused can be observed. Perform length checks on arrays to prevent out-of-bounds access.
+In the following example, the property numberArr in the Arr class decorated by @ObservedV2 is an array decorated by @Trace. When using array APIs to operate on numberArr, the corresponding changes can be observed. Note: Use the array length for judgment to prevent out-of-bounds access.
 
-<!-- @[Decoration_Foundation](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkUISample/arktsobservedv2andtrace/entry/src/main/ets/pages/usagescenarios/DecorationFoundation.ets) -->
+<!-- @[Decoration_Foundation](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkUISample/arktsobservedv2andtrace/entry/src/main/ets/pages/usagescenarios/DecorationFoundation.ets) -->  
 
 ``` TypeScript
 let nextId: number = 0;
@@ -618,20 +686,24 @@ struct Index {
     Column() {
       Text(`length: ${this.arr.numberArr.length}`)
         .fontSize(40)
+        .margin(10)
       Divider()
       if (this.arr.numberArr.length >= 3) {
         Text(`${this.arr.numberArr[0]}`)
           .fontSize(40)
+          .margin(10)
           .onClick(() => {
             this.arr.numberArr[0]++;
           })
         Text(`${this.arr.numberArr[1]}`)
           .fontSize(40)
+          .margin(10)
           .onClick(() => {
             this.arr.numberArr[1]++;
           })
         Text(`${this.arr.numberArr[2]}`)
           .fontSize(40)
+          .margin(10)
           .onClick(() => {
             this.arr.numberArr[2]++;
           })
@@ -642,71 +714,94 @@ struct Index {
       ForEach(this.arr.numberArr, (item: number, index: number) => {
         Text(`${index} ${item}`)
           .fontSize(40)
+          .margin(10)
       })
 
+      // numberArr is an array decorated by @Trace.
+      // When using array APIs to operate on numberArr, the corresponding changes can be observed.
       Button('push')
+        .width(300)
+        .margin(10)
         .onClick(() => {
           this.arr.numberArr.push(50);
         })
 
       Button('pop')
+        .width(300)
+        .margin(10)
         .onClick(() => {
           this.arr.numberArr.pop();
         })
 
       Button('shift')
+        .width(300)
+        .margin(10)
         .onClick(() => {
           this.arr.numberArr.shift();
         })
 
       Button('splice')
+        .width(300)
+        .margin(10)
         .onClick(() => {
           this.arr.numberArr.splice(1, 0, 60);
         })
 
-
       Button('unshift')
+        .width(300)
+        .margin(10)
         .onClick(() => {
           this.arr.numberArr.unshift(100);
         })
 
       Button('copywithin')
+        .width(300)
+        .margin(10)
         .onClick(() => {
           this.arr.numberArr.copyWithin(0, 1, 2);
         })
 
       Button('fill')
+        .width(300)
+        .margin(10)
         .onClick(() => {
           this.arr.numberArr.fill(0, 2, 4);
         })
 
       Button('reverse')
+        .width(300)
+        .margin(10)
         .onClick(() => {
           this.arr.numberArr.reverse();
         })
 
       Button('sort')
+        .width(300)
+        .margin(10)
         .onClick(() => {
           this.arr.numberArr.sort();
         })
     }
+    .width('100%')
   }
 }
 ```
 
+![observedv2-sync-9](./figures/observedv2-sync-9.gif)
 
-### Decorating an Object Array with \@Trace
+### Decorating Object Arrays with @Trace
 
-* In the following example, the **personList** object array and the **age** property in the **Person** class are decorated by \@Trace. As such, changes to **personList** and **age** can be observed.
-* Clicking the **Text** component changes the value of **age** and thereby triggers a UI re-render of the **Text** component
+* @Trace decorates the object array `personList` and the `age` property in the `Person` class, so changes to both `personList` and `age` can be observed.
+* When you tap the Text component to change `age`, the Text component refreshes.
 
-<!-- @[Decorative_Object](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkUISample/arktsobservedv2andtrace/entry/src/main/ets/pages/usagescenarios/DecorativeObject.ets) -->
+<!-- @[Decorative_Object](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkUISample/arktsobservedv2andtrace/entry/src/main/ets/pages/usagescenarios/DecorativeObject.ets) -->  
 
 ``` TypeScript
 let nextId: number = 0;
 
 @ObservedV2
 class Person {
+  // @Trace decorates the age property in the Person class, making age observable.
   @Trace public age: number = 0;
 
   constructor(age: number) {
@@ -734,22 +829,26 @@ struct Index {
     Column() {
       Text(`length: ${this.info.personList.length}`)
         .fontSize(40)
+        .margin(10)
       Divider()
       if (this.info.personList.length >= 3) {
         Text(`${this.info.personList[0].age}`)
           .fontSize(40)
+          .margin(10)
           .onClick(() => {
             this.info.personList[0].age++;
           })
 
         Text(`${this.info.personList[1].age}`)
           .fontSize(40)
+          .margin(10)
           .onClick(() => {
             this.info.personList[1].age++;
           })
 
         Text(`${this.info.personList[2].age}`)
           .fontSize(40)
+          .margin(10)
           .onClick(() => {
             this.info.personList[2].age++;
           })
@@ -760,18 +859,22 @@ struct Index {
       ForEach(this.info.personList, (item: Person, index: number) => {
         Text(`${index} ${item.age}`)
           .fontSize(40)
+          .margin(10)
       })
     }
+    .width('100%')
   }
 }
 ```
 
-### Decorating a Property of the Map Type with \@Trace
+![observedv2-sync-10](./figures/observedv2-sync-10.gif)
 
-* With a property of the Map type decorated by \@Trace, changes caused by supported APIs, such as **set**, **clear**, and **delete**, can be observed.
-* In the following example, the **Info** class is decorated with \@ObservedV2 and its **memberMap** property is decorated with \@Trace; as such, changes to the **memberMap** property caused by clicking **Button('init map')** can be observed.
+### Decorating Map Type
 
-<!-- @[Decoration_Map](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkUISample/arktsobservedv2andtrace/entry/src/main/ets/pages/usagescenarios/DecorationMap.ets) -->
+* A Map type property decorated by @Trace can observe changes resulting from API calls, including set, clear, and delete.
+* Because the Info class is decorated by @ObservedV2 and the memberMap property is decorated by @Trace, clicking Button('init map') to assign a value to memberMap can also be observed.
+
+<!-- @[Decoration_Map](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkUISample/arktsobservedv2andtrace/entry/src/main/ets/pages/usagescenarios/DecorationMap.ets) -->  
 
 ``` TypeScript
 @ObservedV2
@@ -790,27 +893,40 @@ struct MapSample {
         ForEach(Array.from(this.info.memberMap.entries()), (item: [number, string]) => {
           Text(`${item[0]}`)
             .fontSize(30)
+            .margin(10)
           Text(`${item[1]}`)
             .fontSize(30)
+            .margin(10)
           Divider()
         })
+        // Observe changes brought by API calls on the Map type property decorated by @Trace.
         Button('init map')
+          .width(300)
+          .margin(10)
           .onClick(() => {
             this.info.memberMap = new Map([[0, 'a'], [1, 'b'], [3, 'c']]);
           })
         Button('set new one')
+          .width(300)
+          .margin(10)
           .onClick(() => {
             this.info.memberMap.set(4, 'd');
           })
         Button('clear')
+          .width(300)
+          .margin(10)
           .onClick(() => {
             this.info.memberMap.clear();
           })
         Button('set the key: 0')
+          .width(300)
+          .margin(10)
           .onClick(() => {
             this.info.memberMap.set(0, 'aa');
           })
         Button('delete the first one')
+          .width(300)
+          .margin(10)
           .onClick(() => {
             this.info.memberMap.delete(0);
           })
@@ -822,12 +938,14 @@ struct MapSample {
 }
 ```
 
-### Decorating a Property of the Set Type with \@Trace
+![observedv2-sync-11](./figures/observedv2-sync-11.gif)
 
-* With a property of the Set type decorated by \@Trace, changes caused by supported APIs, such as **add**, **clear**, and **delete**, can be observed.
-* In the following example, the **Info** class is decorated with \@ObservedV2 and its **memberSet** property is decorated with \@Trace; as such, changes to the **memberSet** property caused by clicking **Button('init set')** can be observed.
+### Decorating Set Types with @Trace
 
-<!-- @[Decoration_Set](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkUISample/arktsobservedv2andtrace/entry/src/main/ets/pages/usagescenarios/DecorationSet.ets) -->
+* A Set type property decorated by @Trace can observe changes brought by API calls, including add, clear, and delete.
+* Because the Info class is decorated by @ObservedV2 and the memberSet property is decorated by @Trace, clicking Button('init set') to assign a value to memberSet can also be observed.
+
+<!-- @[Decoration_Set](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkUISample/arktsobservedv2andtrace/entry/src/main/ets/pages/usagescenarios/DecorationSet.ets) -->  
 
 ``` TypeScript
 @ObservedV2
@@ -846,21 +964,31 @@ struct SetSample {
         ForEach(Array.from(this.info.memberSet.entries()), (item: [number, number]) => {
           Text(`${item[0]}`)
             .fontSize(30)
+            .margin(10)
           Divider()
         })
+        // The @Trace decorated Set type property can observe changes brought by API calls.
         Button('init set')
+          .width(300)
+          .margin(10)
           .onClick(() => {
             this.info.memberSet = new Set([0, 1, 2, 3, 4]);
           })
         Button('set new one')
+          .width(300)
+          .margin(10)
           .onClick(() => {
             this.info.memberSet.add(5);
           })
         Button('clear')
+          .width(300)
+          .margin(10)
           .onClick(() => {
             this.info.memberSet.clear();
           })
         Button('delete the first one')
+          .width(300)
+          .margin(10)
           .onClick(() => {
             this.info.memberSet.delete(0);
           })
@@ -872,13 +1000,14 @@ struct SetSample {
 }
 ```
 
+![observedv2-sync-12](./figures/observedv2-sync-12.gif)
 
-### Decorating a Property of the Date Type with \@Trace
+### Decorating Date Type with @Trace
 
-* With a property of the Date type decorated by \@Trace, changes caused by the following APIs can be observed: setFullYear, setMonth, setDate, setHours, setMinutes, setSeconds, setMilliseconds, setTime, setUTCFullYear, setUTCMonth, setUTCDate, setUTCHours, setUTCMinutes, setUTCSeconds, setUTCMilliseconds.
-* In the following example, the **Info** class is decorated with \@ObservedV2 and its **selectedDate** property is decorated with \@Trace; as such, changes to the **selectedDate** property caused by clicking **Button('set selectedDate to 2023-07-08')** can be observed.
+* @Trace decorated Date type properties can observe changes brought by API calls, including setFullYear, setMonth, setDate, setHours, setMinutes, setSeconds, setMilliseconds, setTime, setUTCFullYear, setUTCMonth, setUTCDate, setUTCHours, setUTCMinutes, setUTCSeconds, and setUTCMilliseconds.
+* Because the Info class is decorated by @ObservedV2 and the selectedDate property is decorated by @Trace, clicking Button('set selectedDate to 2023-07-08') to assign a value to selectedDate can also be observed as a change.
 
-<!-- @[Decorate_Date](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkUISample/arktsobservedv2andtrace/entry/src/main/ets/pages/usagescenarios/DecorateDate.ets) -->
+<!-- @[Decorate_Date](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkUISample/arktsobservedv2andtrace/entry/src/main/ets/pages/usagescenarios/DecorateDate.ets) -->  
 
 ``` TypeScript
 @ObservedV2
@@ -893,22 +1022,27 @@ struct DateSample {
 
   build() {
     Column() {
+      // The @Trace decorated Date type property can observe changes brought by API calls.
       Button('set selectedDate to 2023-07-08')
+        .width(300)
         .margin(10)
         .onClick(() => {
           this.info.selectedDate = new Date('2023-07-08');
         })
       Button('increase the year by 1')
+        .width(300)
         .margin(10)
         .onClick(() => {
           this.info.selectedDate.setFullYear(this.info.selectedDate.getFullYear() + 1);
         })
       Button('increase the month by 1')
+        .width(300)
         .margin(10)
         .onClick(() => {
           this.info.selectedDate.setMonth(this.info.selectedDate.getMonth() + 1);
         })
       Button('increase the day by 1')
+        .width(300)
         .margin(10)
         .onClick(() => {
           this.info.selectedDate.setDate(this.info.selectedDate.getDate() + 1);
@@ -918,16 +1052,19 @@ struct DateSample {
         end: new Date('2100-1-1'),
         selected: this.info.selectedDate
       })
-    }.width('100%')
+    }
+    .width('100%')
   }
 }
 ```
 
+![observedv2-sync-13](./figures/observedv2-sync-13.gif)
+
 ## FAQs
 
-### Serialization and Deserialization of Objects Decorated with \@ObservedV2
+### Serialization and Deserialization of @ObservedV2 Decorated Objects
 
-After an object decorated with \@ObservedV2 is serialized, the **__ob_** prefix is added to the attributes decorated with \@Trace.
+After serialization, objects decorated by @ObservedV2 will have the `__ob_` prefix added to properties decorated by @Trace.
 
 ```ts
 @ObservedV2
@@ -940,7 +1077,7 @@ let realInfo: Info = new Info();
 let jsonResult: string = JSON.stringify(realInfo); // '{"__ob_name":"Tom","__ob_age":24}'
 ```
 
-After an object decorated with @ObservedV2 is serialized by using JSON.stringify and then deserialized by using JSON.parse, the observation capability is lost.
+If an @ObservedV2 decorated object is serialized using JSON.stringify and then deserialized using JSON.parse, the observation capability will be lost.
 
 ```ts
 @ObservedV2
@@ -953,14 +1090,14 @@ let realInfo: Info = new Info();
 let jsonResult: string = JSON.stringify(realInfo); // '{"__ob_name":"Tom","__ob_age":24}'
 let parseInfo: Info = JSON.parse(jsonResult);
 
-// Different from the object created using the new operator, the object obtained by JSON.parse is not an instance of Info. Therefore, the attribute observation capability is unavailable.
+// Unlike objects created directly through the new operator, the object obtained by JSON.parse is not actually an instance of Info, so it has no property observation capability.
 let isInfoByNew: boolean = realInfo instanceof Info; // true
 let isInfoByParse: boolean = parseInfo instanceof Info; // false
 ```
 
-You can use the third-party library [class-transformer](https://gitcode.com/openharmony-tpc/openharmony_tpc_samples/tree/master/class-transformer) to implement observation after deserialization.
+You can use the third-party library [class-transformer](https://gitcode.com/CPF-ApplicationTPC/openharmony_tpc_samples/tree/master/class-transformer) to achieve observability after deserialization.
 
-You can run the following command to install class-transformer:
+class-transformer can be installed using the following command.
 
 ```text
 ohpm install class-transformer
@@ -981,14 +1118,14 @@ let transformedInfo: Info = plainToInstance(Info, parseInfo);
 let isInfoByTransformed: boolean = transformedInfo instanceof Info; // true
 ```
 
-If multiple layers of objects are nested, the following operations are required:
+For multi-level nested object scenarios, additional processing is required, including:
 
-- Remove the **__ob_** prefix from the serialization result. Otherwise, the inner object cannot be correctly converted.
-- Use the @Type decorator provided by the class-transformer library (re-named as **TypeFromLibrary** in the example for distinguishing from [@Type](arkts-new-type.md) in state management V2) to mark the type of the inner object.
+- Remove the `__ob_` prefix from the serialization result; otherwise, inner objects cannot be correctly converted.
+- Use the @Type decorator provided by the class-transformer library (renamed to `TypeFromLibrary` in the example to distinguish it from the [@Type decorator](arkts-new-type.md) in state management V2) to mark the type of inner objects.
 
-To use the @Type decorator of the third-party library, you need to install [reflect-metadata](https://gitcode.com/openharmony-tpc/openharmony_tpc_samples/tree/master/reflect-metadata).
+Using the @Type decorator of the third-party library requires installing [reflect-metadata](https://gitcode.com/CPF-ApplicationTPC/openharmony_tpc_samples/tree/master/reflect-metadata).
 
-You can run the following command to install reflect-metadata:
+reflect-metadata can be installed using the following command.
 
 ```text
 ohpm install reflect-metadata@0.2.1
@@ -996,7 +1133,7 @@ ohpm install reflect-metadata@0.2.1
 
 ```ts
 import { plainToInstance, Type as TypeFromLibrary} from 'class-transformer'; // Import the third-party library.
-import 'reflect-metadata'; // The @Type decorator of the third-party library is required.
+import 'reflect-metadata'; // Required by the @Type decorator of the third-party library.
 @ObservedV2
 class Info {
   @Trace name: string = 'Tom';
@@ -1004,13 +1141,13 @@ class Info {
 }
 @ObservedV2
 class InfoWrapper {
-  // Use the @Type decorator (renamed to TypeFromLibrary) of the third-party library to mark the type of the inner attribute.
+  // Use the @Type decorator of the third-party library (renamed to TypeFromLibrary) to mark the type of the inner property.
   @TypeFromLibrary(() => Info)
   @Trace info: Info = new Info();
 }
 let realWrapper: InfoWrapper = new InfoWrapper();
 let infoWrapperJson: string = JSON.stringify(realWrapper); // '{"__ob_info":{"__ob_name":"Tom","__ob_age":24}}'
-// Remove the '__ob_' prefix from the attribute key. This is only an example. You need to remove the '__ob_' prefix from the key based on the actual type definition.
+// Remove the '__ob_' prefix from property keys. This is for demonstration only. Developers need to complete the removal of the '__ob_' prefix from keys based on actual type definitions.
 let jsonHandled = infoWrapperJson.replaceAll('__ob_', ''); // '{"info":{"name":"Tom","age":24}}'
 let wrapperHandled = plainToInstance(InfoWrapper, JSON.parse(jsonHandled));
 
@@ -1018,15 +1155,15 @@ let isWrapper: boolean = wrapperHandled instanceof InfoWrapper; // true
 let isInfo: boolean = (wrapperHandled.info) instanceof Info; // true
 ```
 
-The following is a complete example.
+The complete example used in the UI is as follows.
 
-<!-- @[Serialization_And_Deserialization](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkUISample/arktsobservedv2andtrace/entry/src/main/ets/pages/faqs/SerializationAndDeserialization.ets) -->
+<!-- @[Serialization_And_Deserialization](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkUISample/arktsobservedv2andtrace/entry/src/main/ets/pages/faqs/SerializationAndDeserialization.ets) --> 
 
 ``` TypeScript
 import { plainToInstance, Type as TypeFromLibrary } from 'class-transformer'; // Import the third-party library.
-import 'reflect-metadata'; // The @Type decorator of the third-party library is required.
+import 'reflect-metadata'; // Required by the @Type decorator of the third-party library.
 
-// Simulate the JSON key-value pair object.
+// Simulate a JSON key-value pair object.
 let testJSON: Record<string, ESObject> = {
   'id': 1,
   'info': {
@@ -1054,10 +1191,10 @@ class Info {
 @ObservedV2
 class Person {
   public id?: number;
-  // Use the @Type decorator (renamed to TypeFromLibrary) of the third-party library to mark the type of the inner attribute.
+  // Use the @Type decorator (renamed to TypeFromLibrary) from the third-party library to mark the type of the inner property.
   @TypeFromLibrary(() => Info)
   @Trace public info?: Info;
-  // Use the @Type decorator (renamed to TypeFromLibrary) of the third-party library to mark the type of the inner attribute.
+  // Use the @Type decorator (renamed to TypeFromLibrary) from the third-party library to mark the type of the inner property.
   @TypeFromLibrary(() => Info)
   @Trace public friends?: Info[];
 }
@@ -1067,27 +1204,33 @@ class Person {
 struct SerializationAndDeserialization {
   @Local person: Person | undefined = undefined;
   aboutToAppear(): void {
-    this.person = plainToInstance(Person, testJSON); // Use plainToInstance to convert the object to a Person instance.
+    this.person = plainToInstance(Person, testJSON); // Directly convert the object to a Person instance through plainToInstance.
   }
 
   build() {
     Column() {
       Text(`name: ${this.person?.info?.name}, age: ${this.person?.info?.age}`)
+        .fontSize(20)
+        .margin(10)
         .onClick(() => {
           if (this.person?.info?.age) {
-            this.person!.info!.age++; // Modify the observable object.
+            this.person!.info!.age++; // Modify the observable.
           }
         })
       ForEach(this.person?.friends, (item: Info) => {
         Text(`friend name: ${item.name}, age: ${item.age}`)
+          .fontSize(20)
+          .margin(10)
           .onClick(() => {
             if (item.age) {
-              item.age++; // Modify the observable object.
+              item.age++; // Modify the observable.
             }
           })
       })
 
       Button('Refresh Info')
+        .width(300)
+        .margin(10)
         .onClick(() => {
           let json: string =
             `{
@@ -1108,22 +1251,25 @@ struct SerializationAndDeserialization {
                 }
               ]
             }`;
-          // Remove the '__ob_' prefix and convert the JSON string to a Person object using JSON.parse and plainToInstance.
+          // Remove the '__ob_' prefix, and then convert the JSON string into a Person object using JSON.parse and plainToInstance.
           this.person = plainToInstance(Person, JSON.parse(json.replaceAll('__ob_', '')));
         })
     }
+    .width('100%')
   }
 }
 ```
 
-### @ObservedV2 Type Transferred by router Is Abnormal
+![observedv2-sync-14](./figures/observedv2-sync-14.gif)
 
-The @ObservedV2 class transferred by router cannot be directly converted to the @ObservedV2 instance through the **as** type because the attribute name generated after serialization is different from the original attribute name in the class. Instead, deserialization needs to be performed to generate a new @ObservedV2 instance. For details about deserialization, see [Serialization and Deserialization of Objects Decorated with \@ObservedV2](#serialization-and-deserialization-of-objects-decorated-with-observedv2).
+### Abnormal display of @ObservedV2 type transferred via router
 
-**Incorrect Usage**
+For an @ObservedV2 class transferred via router, because the property names generated through serialization are inconsistent with the original property names in the class, it cannot be directly converted to an @ObservedV2 instance using the `as` type cast. Instead, it needs to be deserialized to regenerate the @ObservedV2 instance. For details about deserialization, see [Serialization and Deserialization of @ObservedV2 Decorated Objects](#serialization-and-deserialization-of-observedv2-decorated-objects).
+
+Counterexample
 
 ```ts
-// Content of the pages/faqs/RouterIndex.ets file.
+// Content of the pages/faqs/RouterIndex.ets file
 
 @ObservedV2
 export class RouterModel {
@@ -1140,7 +1286,7 @@ struct RouterIndex {
     this.paramsInfo.info = 'RouterModel';
     this.getUIContext().getRouter().pushUrl({
       url: 'pages/faqs/ChildPage',
-      params: this.paramsInfo // Pass the @ObservedV2 instance to the subpage.
+      params: this.paramsInfo // Pass the @ObservedV2 instance to the child page.
     }, (err) => {
       if (err) {
         console.error(`Invoke pushUrl failed, code is ${err.code}, message is ${err.message}`);
@@ -1153,17 +1299,22 @@ struct RouterIndex {
   build() {
     Column() {
       Text('Parent page')
+        .fontSize(20)
+        .margin(10)
       Button('Jump')
+        .width(300)
+        .margin(10)
         .onClick(() => {
           this.onJumpClick();
         })
     }
+    .width('100%')
   }
 }
 ```
 
 ```ts
-// Content of the pages/faqs/ChildPage.ets file.
+// Content of the file pages/faqs/ChildPage.ets
 
 import { RouterModel } from './RouterIndex';
 
@@ -1172,20 +1323,23 @@ import { RouterModel } from './RouterIndex';
 struct Detail {
   @Local params?: RouterModel
   aboutToAppear(): void {
-    //Incorrect usage. @ObservedV2 types cannot be directly converted when being passed through the router.
+    // Incorrect usage! @ObservedV2 type passed through router cannot be directly type-cast.
     this.params = this.getUIContext().getRouter().getParams() as RouterModel;
   }
   build() {
     Column() {
-      Text(`Detail Page: ${this.params?.id} ${this.params?.info}`) // If the data fails to be transferred, undefined is displayed.
+      Text(`Detail Page: ${this.params?.id} ${this.params?.info}`) // Because the data transfer fails, undefined is displayed here.
+        .fontSize(20)
+        .margin(10)
     }
+    .width('100%')
   }
 }
 ```
 
-**Correct Usage**
+Correct Example
 
-<!-- @[Router_Index](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkUISample/arktsobservedv2andtrace/entry/src/main/ets/pages/faqs/RouterIndex.ets) -->
+<!-- @[Router_Index](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkUISample/arktsobservedv2andtrace/entry/src/main/ets/pages/faqs/RouterIndex.ets) --> 
 
 ``` TypeScript
 @ObservedV2
@@ -1203,7 +1357,7 @@ struct RouterIndex {
     this.paramsInfo.info = 'RouterModel';
     this.getUIContext().getRouter().pushUrl({
       url: 'pages/faqs/ChildPage',
-      params: this.paramsInfo // Pass the @ObservedV2 instance to the subpage.
+      params: this.paramsInfo // Pass the @ObservedV2 instance to the child page.
     }, (err) => {
       if (err) {
         console.error(`Invoke pushUrl failed, code is ${err.code}, message is ${err.message}`);
@@ -1216,16 +1370,21 @@ struct RouterIndex {
   build() {
     Column() {
       Text('Parent page')
+        .fontSize(20)
+        .margin(10)
       Button('Jump')
+        .width(300)
+        .margin(10)
         .onClick(() => {
           this.onJumpClick();
         })
     }
+    .width('100%')
   }
 }
 ```
 
-<!-- @[Child_Page](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkUISample/arktsobservedv2andtrace/entry/src/main/ets/pages/faqs/ChildPage.ets) -->
+<!-- @[Child_Page](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkUISample/arktsobservedv2andtrace/entry/src/main/ets/pages/faqs/ChildPage.ets) --> 
 
 ``` TypeScript
 import { RouterModel } from './RouterIndex';
@@ -1242,7 +1401,10 @@ struct Detail {
   build() {
     Column() {
       Text(`Detail Page: ${this.params?.id} ${this.params?.info}`)
+        .fontSize(20)
+        .margin(10)
     }
+    .width('100%')
   }
 }
 ```

@@ -1,19 +1,19 @@
 # Migration for Built-in Objects
+
 <!--Kit: ArkUI-->
 <!--Subsystem: ArkUI-->
 <!--Owner: @jiyujia926-->
-<!--Designer: @s10021109-->
+<!--Designer: @zhangboren-->
 <!--Tester: @TerryTsao-->
 <!--Adviser: @zhang_yixin13-->
+<!-- md-trans-meta sourceCommit=5cbda8a742fe4c75db3800c28ccfc8ffcd9cebc0 translatedAt=2026-06-30T03:38:04.684Z pushedAt=2026-06-30T09:13:35.339Z -->
 
 This document describes how to migrate built-in objects in a component from V1 to V2, involving the following decorators.
-
 
 | V1 Decorator/Scenario| V2 Decorator|
 | -------- | -------- |
 | Scrollable component scenarios| [makeObserved](./arkts-new-makeObserved.md) |
 | [Modifier](../arkts-user-defined-modifier.md) | [makeObserved](./arkts-new-makeObserved.md), [\@ObservedV2](./arkts-new-observedV2-and-trace.md), and [\@Trace](./arkts-new-observedV2-and-trace.md) |
-
 
 ## Scrollable Component
 
@@ -59,7 +59,7 @@ struct ListExample {
           }.backgroundColor(Color.Pink)
         })
       }
-      .childrenMainSize(this.listChildrenSize) // 10
+      .childrenMainSize(this.listChildrenSize)
     }
   }
 }
@@ -106,12 +106,11 @@ struct ListExample {
           }.backgroundColor(Color.Pink)
         })
       }
-      .childrenMainSize(this.listChildrenSize) // 10
+      .childrenMainSize(this.listChildrenSize)
     }
   }
 }
 ```
-
 
 ### WaterFlow
 
@@ -127,7 +126,7 @@ In V1, you can use [\@State](./arkts-state.md) to observe API calls.
 
 The following is an example:
 
-<!-- @[Internal_Other_Migrations_WaterFlow_V1](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkUISample/ParadigmStateManagement/entry/src/main/ets/pages/internalmigrate/InternalOtherMigrationsWaterFlowV1.ets) -->
+<!-- @[Internal_Other_Migrations_WaterFlow_V1](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkUISample/ParadigmStateManagement/entry/src/main/ets/pages/internalmigrate/InternalOtherMigrationsWaterFlowV1.ets) --> 
 
 ``` TypeScript
 @Entry
@@ -161,6 +160,7 @@ struct WaterFlowSample {
     Column() {
       Text(`${this.arr.length}`)
 
+      // @State decorates sections, allowing observation of changes caused by calling the WaterFlowSections API.
       Button('push option').onClick(() => {
         let section: SectionOptions = {
           itemsCount: 1,
@@ -290,9 +290,7 @@ struct WaterFlowSample {
 }
 ```
 
-
 ## Modifier
-
 
 ### attributeModifier
 
@@ -304,7 +302,7 @@ In V1, you can use [@State](./arkts-state.md) to observe changes.
 
 The following is an example:
 
-<!-- @[Internal_attribute_Modifier_V1](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkUISample/ParadigmStateManagement/entry/src/main/ets/pages/internalmigrate/InternalattributeModifierV1.ets) -->
+<!-- @[Internal_attribute_Modifier_V1](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkUISample/ParadigmStateManagement/entry/src/main/ets/pages/internalmigrate/InternalattributeModifierV1.ets) --> 
 
 ``` TypeScript
 class MyButtonModifier implements AttributeModifier<ButtonAttribute> {
@@ -330,6 +328,7 @@ struct AttributeDemo {
         Button('Button')
           .attributeModifier(this.modifier)
           .onClick(() => {
+            // In V1 state management, @State can be used to observe changes to modifier.
             this.modifier.isDark = !this.modifier.isDark;
           })
       }
@@ -385,10 +384,9 @@ struct AttributeDemo {
 }
 ```
 
-
 ### CommonModifier
 
-The component modifier is used to dynamically set component attributes. The following uses [CommonModifier](../../reference/apis-arkui/arkui-ts/ts-universal-attributes-attribute-modifier.md#custom-modifier) as an example.
+A class for dynamically setting component attributes. Take [Custom Modifiers](../../reference/apis-arkui/arkui-ts/ts-universal-attributes-attribute-modifier.md#custom-modifiers) as an example.
 
 V1:
 
@@ -462,7 +460,7 @@ struct Index {
 
 V2:
 
-In V2, [@Local](./arkts-new-local.md) can only observe changes to the variable itself, but not its top-level changes. Since [CommonModifier](../../reference/apis-arkui/arkui-ts/ts-universal-attributes-attribute-modifier.md#custom-modifier) triggers UI re-renders through its property changes, [makeObserved](./arkts-new-makeObserved.md) must be used to enable proper observation.
+In state management V2, [@Local](./arkts-new-local.md) can only observe its own changes and cannot observe first-level changes. Additionally, because the [custom modifiers](../../reference/apis-arkui/arkui-ts/ts-universal-attributes-attribute-modifier.md#custom-modifier) trigger refresh through its attributes within the framework, [makeObserved](./arkts-new-makeObserved.md) can be used as an alternative.
 
 The following is an example:
 
@@ -531,7 +529,6 @@ struct Index {
 }
 ```
 
-
 ### Component Modifier
 
 The component modifier is used to dynamically set component attributes. The following uses the **Text** component as an example.
@@ -542,7 +539,7 @@ In V1, you can use [@State](./arkts-state.md) to observe changes.
 
 The following is an example:
 
-<!-- @[Internal_Module_Modifier_V1](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkUISample/ParadigmStateManagement/entry/src/main/ets/pages/internalmigrate/InternalModuleModifierV1.ets) --> 
+<!-- @[Internal_Module_Modifier_V1](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkUISample/ParadigmStateManagement/entry/src/main/ets/pages/internalmigrate/InternalModuleModifierV1.ets) -->  
 
 ``` TypeScript
 import { TextModifier } from '@kit.ArkUI';
@@ -551,7 +548,7 @@ import { hilog } from '@kit.PerformanceAnalysisKit';
 const DOMAIN = 0x0000;
 
 class MyModifier extends TextModifier {
-  applyNormalAttribute(instance: TextModifier): void {
+  applyNormalAttribute(instance: TextAttribute): void {
     super.applyNormalAttribute?.(instance);
   }
 
@@ -579,6 +576,7 @@ struct MyImage1 {
       Button($r('app.string.EntryAbility_label'))
         .margin(10)
         .onClick(() => {
+          // Change the index value by clicking to dynamically set the attribute class of Text
           hilog.info(DOMAIN, 'testTag', 'Modifier', 'onClick');
           this.index++;
           if (this.index % 2 === 1) {
@@ -629,7 +627,7 @@ import { hilog } from '@kit.PerformanceAnalysisKit';
 const DOMAIN = 0x0000;
 
 class MyModifier extends TextModifier {
-  applyNormalAttribute(instance: TextModifier): void {
+  applyNormalAttribute(instance: TextAttribute): void {
     super.applyNormalAttribute?.(instance);
   }
 
@@ -692,7 +690,6 @@ struct Index {
   }
 }
 ```
-
 
 ### AttributeUpdater
 
@@ -801,3 +798,4 @@ struct Index {
   }
 }
 ```
+<!--no_check-->

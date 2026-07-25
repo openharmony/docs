@@ -1,13 +1,14 @@
 # Migration for In-Application State Variables
+
 <!--Kit: ArkUI-->
 <!--Subsystem: ArkUI-->
 <!--Owner: @jiyujia926-->
-<!--Designer: @s10021109-->
+<!--Designer: @zhangboren-->
 <!--Tester: @TerryTsao-->
 <!--Adviser: @zhang_yixin13-->
+<!-- md-trans-meta sourceCommit=5cbda8a742fe4c75db3800c28ccfc8ffcd9cebc0 translatedAt=2026-06-30T03:37:57.348Z pushedAt=2026-06-30T04:36:46.447Z -->
 
 This guide provides migration instructions for in-application state variables.
-
 
 | V1 Decorator Name/Scenario| Migration Solution|
 | -------- | -------- |
@@ -17,7 +18,6 @@ This guide provides migration instructions for in-application state variables.
 | [PersistentStorage](./arkts-persiststorage.md) | [PersistenceV2](./arkts-new-persistencev2.md) |
 | Legacy migration scenarios| \@ObservedV2, \@Trace, [\@Monitor](./arkts-new-monitor.md)|
 
-
 ## LocalStorage->\@ObservedV2/\@Trace
 
 **Migration Rules**
@@ -25,7 +25,6 @@ This guide provides migration instructions for in-application state variables.
 LocalStorage is used to share state variables across pages. However, these variables are tightly coupled with the view layer in state management V1, requiring framework-level support for sharing.
 
 In state management V2, observation capabilities are embedded directly into the data itself, decoupling state from the view layer. As a result, LocalStorage-style functionality is no longer needed. Instead, you can create state instances using the \@ObservedV2 and \@Trace decorators, and then import or export these instances to enable cross-page state sharing.
-
 
 ### Basic Scenarios
 
@@ -140,11 +139,13 @@ When using **Navigation**, create a **src/main/resources/base/profile/route_map.
 V2:
 
 - Declare the \@ObservedV2 decorated **MyStorage** class and import it to the page to use.
+
 - Declare the \@Trace decorated properties as observable data shared between pages.
 
-<!-- @[Internal_@ObservedV2_@Trace_V2](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkUISample/ParadigmStateManagement/entry/src/main/ets/pages/internalmigrate/Internal@ObservedV2@TraceV2/storage.ets) -->
+<!-- @[Internal_@ObservedV2_@Trace_V2](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkUISample/ParadigmStateManagement/entry/src/main/ets/pages/internalmigrate/Internal@ObservedV2@TraceV2/storage.ets) --> 
 
 ``` TypeScript
+// Declare the MyStorage class decorated with @ObservedV2.
 @ObservedV2
 export class MyStorage {
   public static singleton_: MyStorage;
@@ -242,7 +243,9 @@ When using **Navigation**, create a **src/main/resources/base/profile/route_map.
 The following example demonstrates \@LocalStorageProp behavior, where local modifications do not synchronize back to LocalStorage:
 
 - In **Page1**, changes to the **count** variable decorated with \@LocalStorageProp remain local to the component and do not synchronize back to LocalStorage.
-- Clicking **push to Page2** navigates to **Page2**, where the **Text** component displays the original value **47** from LocalStorage.
+
+- Clicking **push to Page2** navigates to **Page2**, where the **Text** component displays the original value **47** from LocalStorage. This is because **count** modified on **Page1** is not synced to LocalStorage.
+
 - Clicking **change Storage Count** updates the value of **count** via **setOrCreate** of LocalStorage and triggers notifications to all bound variables.
 
 <!-- @[Internal_@Trace_setOrCreate_V1_pag1](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkUISample/ParadigmStateManagement/entry/src/main/ets/pages/internalmigrate/Internal@TracesetOrCreateV1/Page1.ets) -->
@@ -322,6 +325,7 @@ struct Page2 {
 In V2, you can use \@Local and \@Monitor to achieve the similar effect.
 
 - The **count** variable decorated with \@Local is local to the component. Changes to it will not synchronize back to **storage**.
+
 - \@Monitor listens for changes of **storage.count**. When **storage.count** changes, the \@Local value is updated in the callback of \@Monitor.
 
 <!-- @[Internal_@ObservedV2_@Trace_V2_pag1](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkUISample/ParadigmStateManagement/entry/src/main/ets/pages/internalmigrate/Internal@TracesetOrCreateV2/Page1.ets) -->
@@ -414,7 +418,6 @@ struct Page2 {
   }
 }
 ```
-
 
 ### Scenario Where a Custom Component Receives a LocalStorage Instance
 
@@ -577,9 +580,10 @@ V2:
 
 Declare the \@ObservedV2 decorated class to replace LocalStorage functionality. LocalStorage keys can be replaced with \@Trace decorated properties.
 
-<!-- @[Internal_Trace_customize_V2](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkUISample/ParadigmStateManagement/entry/src/main/ets/pages/internalmigrate/InternalTraceCustomize/storage.ets) -->
+<!-- @[Internal_Trace_customize_V2](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkUISample/ParadigmStateManagement/entry/src/main/ets/pages/internalmigrate/InternalTraceCustomize/storage.ets) --> 
 
 ``` TypeScript
+// @ObservedV2 decorated class replaces LocalStorage.
 @ObservedV2
 export class MyStorageA {
   @Trace public propA: string = 'Hello';
@@ -763,7 +767,6 @@ struct NavigationContentMsgStack {
 }
 ```
 
-
 ### LocalStorage Migration in Multi-instance Scenarios
 
 To share data between different abilities, LocalStorage supports data access across abilities.
@@ -788,10 +791,6 @@ struct Index {
       Text ('Use the file manager to open multiple PDF files in this application')
         .fontSize($r('app.float.page_text_font_size'))
         .fontWeight(FontWeight.Bold)
-        .alignRules({
-          center: { anchor: '__container__', align: VerticalAlign.Center },
-          middle: { anchor: '__container__', align: HorizontalAlign.Center }
-        })
       Button('Jump to PDF_A').onClick(() => {
         let wantInfo: Want = {
           bundleName: 'com.samples.paradigmstatemanagement',
@@ -856,7 +855,7 @@ export default class PDFData {
     return this.data;
   }
 
-  setFlage(value: string) {
+  setFlag(value: string) {
     this.flag = value;
   }
 
@@ -865,7 +864,6 @@ export default class PDFData {
   }
 }
 ```
-
 
 <!-- @[Internal_localStorage_multi_instance_3](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkUISample/ParadigmStateManagement/entry/src/main/ets/pages/internalmigrate/LocalStorageMultiInstance/PdfEntryAbility.ets) -->
 
@@ -879,12 +877,11 @@ export default class PDFAbility extends UIAbility {
     // Use the singleton to store data.
     const data = this.launchWant.parameters as Record<string, string>;
     PDFData.getInstance().setData(data.key, data.value);
-    PDFData.getInstance().setFlage(this.launchWant.uri || '');
+    PDFData.getInstance().setFlag(this.launchWant.uri || '');
     windowStage.loadContent('pages/internalmigrate/LocalStorageMultiInstance/PDF').catch();
   }
 }
 ```
-
 
 <!-- @[Internal_localStorage_multi_instance_4](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkUISample/ParadigmStateManagement/entry/src/main/ets/pages/internalmigrate/LocalStorageMultiInstance/PDF.ets) -->
 
@@ -917,10 +914,9 @@ struct PDF {
 }
 ```
 
-
 ## AppStorage->AppStorageV2
 
-The approach of creating global \@ObservedV2-and-\@Trace-decorated instances described in the previous section is not suitable for cross-ability data sharing. For this scenario, you can use AppStorageV2 instead.
+The modification of creating global \@ObservedV2 and \@Trace decorated instances in the previous section is not suitable for cross-Ability data sharing. AppStorageV2 can be used instead.
 
 V1:
 
@@ -1015,7 +1011,7 @@ struct Index {
 
   build() {
     Column() {
-      Text(`EntryAbility1 count: ${this.storage.count}`)
+      Text(`EntryAbility count: ${this.storage.count}`)
         .fontSize(50)
         .onClick(() => {
           this.storage.count++;
@@ -1169,13 +1165,13 @@ struct Index {
 
   @Monitor('storage.count')
   onCountChange(mon: IMonitor) {
-    hilog.info(DOMAIN, 'testTag', '%{public}s', `Index1 ${mon.value()?.before} to ${mon.value()?.now}`);
+    hilog.info(DOMAIN, 'testTag', '%{public}s', `Index ${mon.value()?.before} to ${mon.value()?.now}`);
     this.count = this.storage.count;
   }
 
   build() {
     Column() {
-      Text(`EntryAbility1 count: ${this.count}`)
+      Text(`EntryAbility count: ${this.count}`)
         .fontSize(25)
         .onClick(() => {
           this.count++;
@@ -1246,7 +1242,6 @@ struct Index1 {
 }
 ```
 
-
 ## Environment -> Direct API Calls to Obtain System Environment Variables
 
 In V1, you can obtain environment variables through **Environment**. However, the result obtained by **Environment** cannot be directly used. It must be combined with AppStorage to obtain the corresponding environment variable values.
@@ -1303,7 +1298,7 @@ export let env: Env = new Env();
 
 Obtain the required system environment variables from **onCreate**.
 
-<!-- @[Internal_Environment_V2_two](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkUISample/ParadigmStateManagement/entry/src/main/ets/pages/internalmigrate/InternalEnvironmentV2/EntryAbility.ets) -->
+<!-- @[Internal_Environment_V2_two](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkUISample/ParadigmStateManagement/entry/src/main/ets/pages/internalmigrate/InternalEnvironmentV2/EntryAbility.ets) --> 
 
 ``` TypeScript
 import { AbilityConstant, UIAbility, Want } from '@kit.AbilityKit';
@@ -1311,6 +1306,7 @@ import { window } from '@kit.ArkUI';
 import { env } from '../pages/Env';
 
 export default class EntryAbility extends UIAbility {
+  // Obtain the required system environment variables in onCreate.
   onCreate(want: Want, launchParam: AbilityConstant.LaunchParam): void {
     env.language = this.context.config.language;
     env.colorMode = this.context.config.colorMode;
@@ -1349,7 +1345,6 @@ struct Index {
 }
 ```
 
-
 ## PersistentStorage->PersistenceV2
 
 In V1, **PersistentStorage** provides UI data persistence. In V2, this functionality is replaced by the more convenient **PersistenceV2** API.
@@ -1358,7 +1353,7 @@ In V1, **PersistentStorage** provides UI data persistence. In V2, this functiona
 
 - **PersistentStorage** uses serialization and deserialization without explicit type information, resulting in type loss after persistence, and object methods cannot be persisted.
 
-**PersistenceV2** advantages:
+For **PersistenceV2**:
 
 - When an \@ObservedV2 object is associated with **PersistenceV2**, changes to its \@Trace properties automatically trigger persistence of the entire object.
 
@@ -1416,6 +1411,7 @@ V2:
 In this example:
 
 - Persisted data is migrated from PersistentStorage to PersistenceV2 (V2). In V2, properties decorated with \@Trace are automatically persisted, while non-\@Trace decorated properties require manual **save** calls for persistence.
+
 - The **move** function and the components to display are placed in the same .ets file in this example. You can define your own **move** functions and place them in appropriate locations for unified migration operations.
 
 <!-- @[Internal_Persistent_Storage_V2](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkUISample/ParadigmStateManagement/entry/src/main/ets/pages/internalmigrate/InternalPersistentStorageV2.ets) -->
@@ -1444,9 +1440,9 @@ class V2Data {
 
 @ObservedV2
 export class Sample {
+  @Trace public num: number = 1;
   // For complex objects, use the @Type decorator to ensure successful serialization.
   @Type(V2Data)
-  @Trace public num: number = 1;
   @Trace public V2: V2Data = new V2Data();
 }
 

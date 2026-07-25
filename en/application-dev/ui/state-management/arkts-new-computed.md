@@ -1,12 +1,14 @@
 # \@Computed Decorator: Declaring Computed Properties
+
 <!--Kit: ArkUI-->
 <!--Subsystem: ArkUI-->
 <!--Owner: @liwenzhen3-->
-<!--Designer: @s10021109-->
+<!--Designer: @zhangboren-->
 <!--Tester: @TerryTsao-->
 <!--Adviser: @zhang_yixin13-->
+<!-- md-trans-meta sourceCommit=3efb4ba336409dd0731ba011e1e227786db57fa2 translatedAt=2026-07-22T02:05:29.024Z pushedAt=2026-07-24T00:59:55.837Z -->
 
-When developers repeatedly bind the same calculation logic to the UI, to prevent redundant calculations, the \@Computed property can be used. A computed property is calculated only once when its dependent state variables change, addressing performance issues caused by repeated calculations in the UI. Example:
+When you use the same computation logic repeatedly bound to the UI, to prevent redundant computation, they can use the [\@Computed](../../reference/apis-arkui/arkui-ts/ts-state-management-computed.md#computed) computed property. When the state variables that the computed property depends on change, the computation is performed only once. This resolves the redundant computation and performance issues caused by the UI reusing the property multiple times. See the following example.
 
 <!-- @[computed_property](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkUISample/ArktsNewComputed/entry/src/main/ets/pages/ComputedProperty.ets) -->
 
@@ -16,6 +18,7 @@ get sum() {
   return this.count1 + this.count2 + this.count3;
 }
 ```
+
 <!-- @[computed_property_text](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkUISample/ArktsNewComputed/entry/src/main/ets/pages/ComputedProperty.ets) -->
 
 ``` TypeScript
@@ -42,6 +45,7 @@ Before reading this topic, it is advised to familiarize yourself with [\@Compone
 For simple calculations, using @Computed is not recommended due to its inherent overhead. For complex computations, \@Computed provides significant performance benefits.
 
 ## Decorator Description
+
 \@Computed syntax:
 
 ```ts
@@ -73,6 +77,7 @@ get varName(): T {
   func() { // Incorrect usage. An error is reported during compilation.
   }
   ```
+
 - Methods decorated with \@Computed only recompute during initialization or when the state variables used in their calculations change. Avoid performing logic operations other than data retrieval in \@Computed decorated getter methods, as shown in the example below.
 
   ```ts
@@ -96,17 +101,29 @@ get varName(): T {
     build() {
       Column() {
         Text(`${this.fullName}`) // Obtain fullName once.
+          .fontSize(20)
+          .margin(10)
         Text(`${this.fullName}`) // Obtain fullName again. fullName is obtained twice. However, no recomputation occurs, as the cached value is read.
+          .fontSize(20)
+          .margin(10)
   
         // Clicking the button obtains the value of fullNameRequestCount.
         Text(`count ${this.showFullNameRequestCount}`)
-        Button('get fullName').onClick(() => {
-          this.showFullNameRequestCount = this.fullNameRequestCount;
-        })
+          .fontSize(20)
+          .margin(10)
+        Button('get fullName')
+          .width(300)
+          .margin(10)
+          .onClick(() => {
+            this.showFullNameRequestCount = this.fullNameRequestCount;
+          })
       }
+      .width('100%')
     }
   }
   ```
+
+  ![computed-sync-0](./figures/computed-sync-0.gif)
 
 - In \@Computed decorated getter methods, do not modify properties involved in the calculation to prevent infinite recomputation leading to application freezes.
 
@@ -136,8 +153,13 @@ get varName(): T {
     build() {
       Column() {
         Text(`${this.fullName1}`)
+          .fontSize(20)
+          .margin(10)
         Text(`${this.fullName2}`)
+          .fontSize(20)
+          .margin(10)
       }
+      .width('100%')
     }
   }
   ```
@@ -152,6 +174,8 @@ get varName(): T {
   
     build() {
       Button('ChildChange')
+        .width(300)
+        .margin(10)
         .onClick(() => {
           this.$double(200);
         })
@@ -186,6 +210,7 @@ get varName(): T {
   ```
 
 - \@Computed is a feature of state management V2 and can only be used in @ComponentV2 and @ObservedV2.
+
 - When using multiple \@Computed decorated properties together, avoid circular dependencies to prevent infinite loops during computation.
 
   ```ts
@@ -201,18 +226,24 @@ get varName(): T {
   ```
 
 ## Use Cases
+
 ### The \@Computed Decorated Getter is Evaluated Only Once Upon Property Change
+
 1. Using a computed property in a custom component
 
    - Clicking the first button changes the value of **lastName**, triggering a recomputation of the \@Computed decorated property **fullName**.
+
    - **this.fullName** is bound to two **Text** components. The **fullName** log shows that the computation occurs only once.
+
    - For the first two **Text** components, the **this.lastName +' '+ this.firstName** logic is evaluated twice.
+
    - If multiple UI elements require the same computed logic **this.lastName +' '+ this.firstName**, you can use a computed property to reduce redundant calculations.
+
    - Clicking the second button increments the value of **age**, but the UI remains unchanged. This is because **age** is not a state variable, and only changes to observed variables can trigger the recomputation of the \@Computed decorated property **fullName**.
 
-   <!-- @[custom_component_use](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkUISample/ArktsNewComputed/entry/src/main/ets/pages/CustomComponentUse.ets) -->
+   <!-- @[custom_component_use](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkUISample/ArktsNewComputed/entry/src/main/ets/pages/CustomComponentUse.ets) --> 
 
-   ```ts
+   ``` TypeScript
    import { hilog } from '@kit.PerformanceAnalysisKit';
    
    const TAG = '[Sample_Textcomponent]';
@@ -235,16 +266,28 @@ get varName(): T {
      build() {
        Column() {
          Text(this.lastName + ' ' + this.firstName)
+           .fontSize(20)
+           .margin(10)
          Text(this.lastName + ' ' + this.firstName)
+           .fontSize(20)
+           .margin(10)
          Divider()
          Text(this.fullName)
+           .fontSize(20)
+           .margin(10)
          Text(this.fullName)
+           .fontSize(20)
+           .margin(10)
          Button('changed lastName')
+           .width(300)
+           .margin(10)
            .onClick(() => {
              this.lastName += 'a';
            })
    
          Button('changed age')
+           .width(300)
+           .margin(10)
            .onClick(() => {
              this.age++;  // Computed cannot be triggered.
            })
@@ -253,18 +296,21 @@ get varName(): T {
    }
    ```
 
+   ![computed-sync-1](./figures/computed-sync-1.gif)
+
    Computed properties inherently introduce performance overhead. In practical development, note the following:
 
    - For simple logic, avoid computed properties and compute directly.
+
    - If the logic is used only once in the view, skip the computed property and evaluate inline.
 
 2. Using a computed property in an \@ObservedV2 decorated class
 
    Clicking the button changes the value of **lastName**, triggering the \@Computed decorated property **fullName** to recompute once.
 
-   <!-- @[ObservedV2_Class_User](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkUISample/ArktsNewComputed/entry/src/main/ets/pages/ObservedV2ClassUser.ets) -->
+   <!-- @[ObservedV2_Class_User](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkUISample/ArktsNewComputed/entry/src/main/ets/pages/ObservedV2ClassUser.ets) -->  
 
-   ```ts
+   ``` TypeScript
    import { hilog } from '@kit.PerformanceAnalysisKit';
    
    const TAG = '[Sample_Textcomponent]';
@@ -293,22 +339,36 @@ get varName(): T {
      build() {
        Column() {
          Text(this.name1.fullName)
+           .fontSize(20)
+           .margin(10)
          Text(this.name1.fullName)
-         Button('changed lastName').onClick(() => {
-           this.name1.lastName += 'a';
-         })
+           .fontSize(20)
+           .margin(10)
+         // Tap the Button to change lastName, triggering fullName recomputation. The value is computed only once.
+         Button('changed lastName')
+           .width(300)
+           .margin(10)
+           .onClick(() => {
+             this.name1.lastName += 'a';
+           })
        }
+       .width('100%')
      }
    }
    ```
 
+   ![computed-sync-2](./figures/computed-sync-2.gif)
+
 ### \@Monitor Can Listen for the Changes of the \@Computed Decorated Properties
+
 The following example shows how to convert **celsius** to **fahrenheit** and **kelvin** Example:
+
 - Clicking **-** decrements **celsius**, updates **fahrenheit**, then updates **kelvin**, which triggers **onKelvinMonitor**.
+
 - Clicking **+** increments **celsius++**, updates **fahrenheit**, then updates **kelvin**, which triggers **onKelvinMonitor**.
 
-  <!-- @[Computing_Property_Resolution](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkUISample/ArktsNewComputed/entry/src/main/ets/pages/ComputingPropertyResolution.ets) -->
-  
+  <!-- @[Computing_Property_Resolution](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkUISample/ArktsNewComputed/entry/src/main/ets/pages/ComputingPropertyResolution.ets) --> 
+
   ``` TypeScript
   import { hilog } from '@kit.PerformanceAnalysisKit';
   
@@ -352,22 +412,32 @@ The following example shows how to convert **celsius** to **fahrenheit** and **k
             })
         }
   
-        Text(`Fahrenheit ${this.fahrenheit.toFixed(2)}`).fontSize(40)
-        Text(`Kelvin ${this.kelvin.toFixed(2)}`).fontSize(40)
+        Text(`Fahrenheit ${this.fahrenheit.toFixed(2)}`)
+          .fontSize(40)
+          .margin(10)
+        Text(`Kelvin ${this.kelvin.toFixed(2)}`)
+          .fontSize(40)
+          .margin(10)
       }
       .width('100%')
     }
   }
   ```
 
+  ![computed-sync-3](./figures/computed-sync-3.gif)
+
 ### \@Computed Decorated Properties Can Initialize \@Param
+
 The following example shows how to use an \@Computed decorated property to initialize \@Param.
+
 - Clicking **Button('-')** and **Button('+')** changes the value of **quantity**, which is decorated with \@Trace and can be observed when it is changed.
+
 - The change of **quantity** triggers the recomputation of **total** and **qualifiesForDiscount**.
+
 - The change of **total** and **qualifiesForDiscount** triggers the update of the **Text** component corresponding to the **Child** component.
 
-  <!-- @[Computed_Init_Param](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkUISample/ArktsNewComputed/entry/src/main/ets/pages/ComputedInitParam.ets) -->
-  
+  <!-- @[Computed_Init_Param](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkUISample/ArktsNewComputed/entry/src/main/ets/pages/ComputedInitParam.ets) -->  
+
   ``` TypeScript
   @ObservedV2
   class Article {
@@ -399,9 +469,13 @@ The following example shows how to use an \@Computed decorated property to initi
       Column() {
         Text(`Shopping List: `)
           .fontSize(30)
+          .margin(10)
         ForEach(this.shoppingBasket, (item: Article) => {
           Row() {
             Text(`unitPrice: ${item.unitPrice}`)
+              .fontSize(20)
+              .margin(10)
+            // Tap the Button to decrease quantity, triggering recomputation of total and qualifiesForDiscount.
             Button('-')
               .onClick(() => {
                 if (item.quantity > 0) {
@@ -409,16 +483,21 @@ The following example shows how to use an \@Computed decorated property to initi
                 }
               })
             Text(`quantity: ${item.quantity}`)
+              .fontSize(20)
+              .margin(10)
+            // Tap the Button to increase quantity, triggering recomputation of total and qualifiesForDiscount.
             Button('+')
               .onClick(() => {
                 item.quantity++;
               })
           }
+          .width('100%')
   
           Divider()
         })
         Child({ total: this.total, qualifiesForDiscount: this.qualifiesForDiscount })
-      }.alignItems(HorizontalAlign.Start)
+      }
+      .alignItems(HorizontalAlign.Start)
     }
   }
   
@@ -431,9 +510,13 @@ The following example shows how to use an \@Computed decorated property to initi
       Row() {
         Text(`Total: ${this.total} `)
           .fontSize(30)
+          .margin(10)
         Text(`Discount: ${this.qualifiesForDiscount} `)
           .fontSize(30)
+          .margin(10)
       }
     }
   }
   ```
+
+  ![computed-sync-4](./figures/computed-sync-4.gif)

@@ -1,12 +1,14 @@
 # \@Builder Decorator: Custom Builder Function
+
 <!--Kit: ArkUI-->
 <!--Subsystem: ArkUI-->
 <!--Owner: @zhangboren-->
 <!--Designer: @zhangboren-->
 <!--Tester: @TerryTsao-->
 <!--Adviser: @zhang_yixin13-->
+<!-- md-trans-meta sourceCommit=3efb4ba336409dd0731ba011e1e227786db57fa2 translatedAt=2026-07-22T01:59:51.954Z pushedAt=2026-07-23T02:26:39.976Z -->
 
-ArkUI provides a lightweight UI element reuse mechanism \@Builder. The internal UI structure of ArkUI is fixed and only data is transferred with the user. Developers can abstract UI elements that are repeatedly used as functions and call them in the build function.
+ArkUI provides a lightweight UI element reuse mechanism, [\@Builder](../../reference/apis-arkui/arkui-ts/ts-universal-builder-dynamic.md#builder), whose internal UI structure is fixed and only performs data transfer with the caller. You can abstract reusable UI elements into functions and call them in the **build** function.
 
 Functions decorated by \@Builder are also called custom build functions.
 
@@ -14,7 +16,7 @@ Before reading this topic, you are advised to read [Basic Syntax Overview](./ark
 
 The differences between the @Builder decorator and [@Component decorator](./arkts-create-custom-components.md#component) in functions and usage are as follows:
 
-1. The @Builder decorator is used to encapsulate reusable UI structures and extract repeated layout code to improve development efficiency. It is strictly prohibited to define [state variable](./arkts-state-management-glossary.md#state-variables) or use [custom-component-lifecycle](../../reference/apis-arkui/arkui-ts/ts-custom-component-lifecycle.md) in the decorator. Data interaction must be completed through parameter transfer or access to the state variable of the component to which the decorator belongs.
+1. The @Builder decorator is used to encapsulate reusable UI structures, improving development efficiency by extracting repetitive layout code. This decorator strictly prohibits defining [state variables](./arkts-state-management-glossary.md#state-variable) or using [custom component lifecycle functions](../../reference/apis-arkui/arkui-ts/ts-custom-component-lifecycle.md) within it. Data interaction must be completed through parameter passing or by accessing the state variables of the owning component.
 
 2. In the ArkUI framework, the @Component decorator is the core mechanism for encapsulating complex UI components. It allows developers to combine multiple basic components to build a reusable composite UI. This decorator not only supports the definition of internal state variables, but also manages the lifecycle of components.
 
@@ -25,7 +27,6 @@ The differences between the @Builder decorator and [@Component decorator](./arkt
 > This decorator can be used in ArkTS widgets since API version 9.
 >
 > This decorator can be used in atomic services since API version 11.
-
 
 ## How to Use
 
@@ -43,7 +44,7 @@ The following is an example:
 struct BuilderDemo {
   @Builder
   showTextBuilder() {
-    // @Builder decorates this function so that the Text component can be configured and built in chain mode.
+    // @Builder decorates this function, making it a custom builder function used to configure and build the Text component.
     Text('Hello World')
       .fontSize(30)
       .fontWeight(FontWeight.Bold)
@@ -73,7 +74,7 @@ Invocation pattern:
 
 - Private custom builder functions can be called in custom components, **build()**, and other custom builder functions.
 
-- In a custom component, **this** indicates the component to which the component belongs. The status variables of the component can be accessed in the custom builder functions. It is recommended that **this** be used to access the status variable of the component instead of being transferred through parameters.
+- In a custom component, **this** indicates the owning component. The state variables of the component can be accessed in the custom builder functions. It is recommended that **this** be used to access the state variable of the component instead of being transferred through parameters.
 
 ### Global Custom Builder Function
 
@@ -101,10 +102,9 @@ struct BuilderSample {
 }
 ```
 
-- If the component status variable does not change, you are advised to use the global custom build function.
+- If the component state variable does not change, you are advised to use the global custom build function.
 
 - Global custom build functions can be called in the **build** function and other custom build functions.
-
 
 ## Parameter Passing Rules
 
@@ -124,7 +124,7 @@ Parameters for custom builder functions can be passed [by callback](#passing-par
 
 From API version 20, you can use the **UIUtils.makeBinding()** function, the **Binding** class, and the **MutableBinding** class to refresh state variables in the \@Builder function. For details, see [State Variables Can Be Refreshed in the \@Builder](#state-variables-can-be-refreshed-in-the-builder).
 
-Use **UIUtils.makeBinding()** to wrap the callback function for reading status variables and transfer the callback function as a parameter to the @Builder function. The UI component in the @Builder function can be refreshed. The callback function of the write status variable transferred in **UIUtils.makeBinding()** can transfer the parameter changes in @Builder to the component that calls the @Builder function.
+Use **UIUtils.makeBinding()** to wrap the callback function for reading state variables and transfer the callback function as a parameter to the @Builder function. The UI component in the @Builder function can be refreshed. The callback function of the write state variable transferred in **UIUtils.makeBinding()** can transfer the parameter changes in @Builder to the component that calls the @Builder function.
 
 <!-- @[by_makebinding_parameter_passing](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkUISample/BuilderComponent/entry/src/main/ets/pages/ParameterMakeBinding.ets) -->
 
@@ -207,7 +207,7 @@ struct ParameterReference {
 
 ### By-Value Parameter Passing
 
-By default, parameters in the \@Builder decorated functions are passed by value. If the transferred parameter is a status variable, the change of the status variable does not cause the UI update in the \@Builder function. Therefore, when using state variables, you are advised to use [Passing Parameters By Callback](#passing-parameters-by-callback) or [Passing Parameters By Reference](#by-reference-parameter-passing).
+By default, parameters in the \@Builder decorated functions are passed by value. If the transferred parameter is a state variable, the change of the state variable does not cause the UI update in the \@Builder function. Therefore, when using state variables, you are advised to use [Passing Parameters By Callback](#passing-parameters-by-callback) or [Passing Parameters By Reference](#by-reference-parameter-passing).
 
 <!-- @[by_value_parameter_passing](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkUISample/BuilderComponent/entry/src/main/ets/pages/ParameterValue.ets) --> 
 
@@ -244,7 +244,6 @@ struct ParameterValue {
 4. If the parameters passed to \@Builder contain both value passing and reference passing, dynamic UI rendering will not be triggered. For details, see [Multiple Parameters in @Builder](#multiple-parameters-in-builder).
 
 5. Modifying properties of a parameter inside an @Builder function is not allowed; doing so will cause a runtime error. Starting from API version 23, error code [140109](../../reference/apis-arkui/errorcode-stateManagement.md#140109-builder-triggers-invalid-parameter-settings) will be returned. For an example, see [Changing the Input Parameters in the @Builder Decorated Function](#changing-the-input-parameters-in-the-builder-decorated-function).
-
 
 ## Use Cases
 
@@ -301,11 +300,12 @@ struct PrivateBuilder {
   }
 }
 ```
+
 Effect
 
 ![arkts-builder-usage-scenario1](figures/arkts-builder-usage-scenario1.gif)
 
-### Global Custom Builder Function
+### Using Global Custom Builder Functions
 
 Create a global **@Builder** function and call it in **overBuilder()** mode in **Column**. When transferring parameters, you can use the object literal form. Any change of the value will trigger the refresh of the UI, regardless of the simple or complex type.
 
@@ -398,6 +398,7 @@ struct ParentDemo {
   }
 }
 ```
+
 Effect
 
 ![arkts-builder-usage-scenario2](figures/arkts-builder-usage-scenario2.gif)
@@ -457,6 +458,7 @@ struct ParentSample {
   }
 }
 ```
+
 Effect
 
 ![arkts-builder-usage-scenario3](figures/arkts-builder-usage-scenario3.gif)
@@ -523,6 +525,7 @@ struct customBuilderDemo {
   }
 }
 ```
+
 Effect
 
 ![arkts-builder-usage-scenario4](figures/arkts-builder-usage-scenario4.gif)
@@ -668,13 +671,15 @@ struct ParentExample {
   }
 }
 ```
+
 Effect
 
 ![arkts-builder-usage-scenario5](figures/arkts-builder-usage-scenario5.gif)
 
-### \@Builder Function Union V2 Decorator
+### \@Builder Function Combined with V2 Decorator
 
 Class object instances decorated by [@ObservedV2](./arkts-new-observedV2-and-trace.md) and [@Trace](./arkts-new-observedV2-and-trace.md) have the capability of deeply observing attribute changes. In a custom component decorated by @ComponentV2, when the global builder or local builder is called and parameters are transferred in value transfer mode, modifying the object attributes decorated by @Trace can trigger UI refresh.
+
 <!-- @[builder_function_combined_with_the_v2_decorator](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkUISample/BuilderComponent/entry/src/main/ets/pages/BuilderCombined.ets) -->
 
 ``` TypeScript
@@ -768,6 +773,7 @@ struct ParentPage {
   }
 }
 ```
+
 Effect
 
 ![arkts-builder-usage-scenario6](figures/arkts-builder-usage-scenario6.gif)
@@ -859,6 +865,7 @@ struct ParentLocalPage {
   }
 }
 ```
+
 Effect
 
 ![arkts-builder-usage-scenario8](figures/arkts-builder-usage-scenario8.gif)
@@ -964,6 +971,7 @@ struct ReusableChildTwoPage {
   }
 }
 ```
+
 Effect
 
 ![arkts-builder-usage-scenario7](figures/arkts-builder-usage-scenario7.gif)
@@ -1087,6 +1095,7 @@ struct Single {
   }
 }
 ```
+
 Effect
 
 ![arkts-builder-refresh](figures/arkts-builder-refresh.gif)
@@ -1504,6 +1513,7 @@ struct ParentPage2 {
 When the \@Builder method assigns a value to a variable or array, the method cannot be used in the UI method, and the node display is abnormal during refresh.
 
 **Incorrect Usage**
+
 <!-- @[calling_builder_outside_incorrect_usage](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkUISample/BuilderComponent/entry/src/main/ets/pages/OutsideIncorrectUsage.ets) --> 
 
 ``` TypeScript
@@ -1559,12 +1569,15 @@ struct BackGround1 {
       })
     }
     .margin(10)
+    .width('100%')
   }
 }
 ```
+
 The \@Builder method cannot be used in UI methods after it is assigned to a variable or array. You should avoid using the \@Builder method after it is assigned to a variable or array.
 
 **Correct Usage**
+
 <!-- @[calling_builder_outside_correct_usage](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkUISample/BuilderComponent/entry/src/main/ets/pages/OutsideCorrectUsage.ets) --> 
 
 ``` TypeScript
@@ -1618,15 +1631,21 @@ struct BackGround2 {
       })
     }
     .margin(10)
+    .width('100%')
   }
 }
 ```
+
+Example effect:
+
+![arkts-builder-faq-notui.gif](./figures/arkts-builder-faq-notui.gif)
 
 ### The Set Accessor Is Not Passed When MutableBinding Is Used in the \@Builder Method
 
 When MutableBinding is used in the \@Builder method definition, the set accessor is not passed to the MutableBinding type parameter during construction. As a result, a runtime error occurs when the set accessor is triggered.
 
 **Incorrect Usage**
+
 <!-- @[not_passed_set_accessor_builder_incorrect_usage](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkUISample/BuilderComponent/entry/src/main/ets/pages/AccessorIncorrectUsage.ets) --> 
 
 ``` TypeScript
@@ -1637,15 +1656,18 @@ class GlobalTmp1 {
   @Trace public strValue: string = 'Hello';
 }
 
+// Define a @Builder function that receives parameters of the Binding and MutableBinding types.
 @Builder
 function builderWithTwoParams1(param1: Binding<GlobalTmp1>, param2: MutableBinding<number>) {
-  Column() {
+  Column({ space: 5 }) {
     Text(`strValue: ${param1.value.strValue}`)
     Button(`num: ${param2.value}`)
       .onClick(() => {
         param2.value += 1; // Click the button to trigger the set accessor, which causes a runtime error.
       })
-  }.borderWidth(1)
+  }
+  .borderWidth(1)
+  .padding(5)
 }
 
 @Entry
@@ -1655,21 +1677,25 @@ struct MakeBindingTest1 {
   @Local num: number = 0;
 
   build() {
-    Column() {
+    Column({ space: 5 }) {
       Text(`${this.GlobalTmp1.strValue}`)
       builderWithTwoParams1(UIUtils.makeBinding(() => this.GlobalTmp1),
         UIUtils.makeBinding<number>(() => this.num)) // SetterCallback is not passed when a parameter of the MutableBinding type is constructed.
       Button('Update Values').onClick(() => {
+        // Tap the button to update the value of the state variable.
         this.GlobalTmp1.strValue = 'Hello World 2025';
         this.num = 1;
       })
     }
+    .width('100%')
   }
 }
 ```
-For details, see [MutableBinding](../../reference/apis-arkui/js-apis-stateManagement.md#mutablebindingt20) in the statement management API reference.
+
+For details, see [MutableBinding](../../reference/apis-arkui/js-apis-stateManagement.md#mutablebindingt20) in the stat management API reference.
 
 **Correct Usage**
+
 <!-- @[not_passed_set_accessor_builder_correct_usage](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkUISample/BuilderComponent/entry/src/main/ets/pages/AccessorCorrectUsage.ets) -->
 
 ``` TypeScript
@@ -1680,15 +1706,17 @@ class GlobalTmp2 {
   @Trace public strValue: string = 'Hello';
 }
 
-@Builder
+// Define a @Builder function that receives parameters of the Binding and MutableBinding types.
 function builderWithTwoParams2(param1: Binding<GlobalTmp2>, param2: MutableBinding<number>) {
-  Column() {
+  Column({space: 5}) {
     Text(`strValue: ${param1.value.strValue}`)
     Button(`num: ${param2.value}`)
       .onClick(() => {
         param2.value += 1; // The value attribute of the MutableBinding parameter is modified.
       })
-  }.borderWidth(1)
+  }
+  .borderWidth(1)
+  .padding(5)
 }
 
 @Entry
@@ -1698,27 +1726,35 @@ struct MakeBindingTest2 {
   @Local num: number = 0;
 
   build() {
-    Column() {
+    Column({space: 5}) {
       Text(`${this.GlobalTmp2.strValue}`)
+      // Correct usage: Pass SetterCallback when constructing MutableBinding.
       builderWithTwoParams2(UIUtils.makeBinding(() => this.GlobalTmp2),
         UIUtils.makeBinding<number>(() => this.num,
           val => {
             this.num = val;
           }))
       Button('Update Values').onClick(() => {
+        // Tap the button to update the value of the state variable.
         this.GlobalTmp2.strValue = 'Hello World 2025';
         this.num = 1;
       })
     }
+    .width('100%')
   }
 }
 ```
+
+Example effect:
+
+![arkts-builder-faq-mutablebinding-no-setter.gif](./figures/arkts-builder-faq-mutablebinding-no-setter.gif)
 
 ### Changing the Input Parameters in the @Builder Decorated Function
 
 If [MutableBinding](../../reference/apis-arkui/js-apis-stateManagement.md#mutablebindingt20) is not used, the modification of parameter values in the function decorated by \@Builder does not take effect and may cause runtime errors. Since API version 23, error code [140109](../../reference/apis-arkui/errorcode-stateManagement.md#140109-builder-triggers-invalid-parameter-settings) will be returned.
 
 **Incorrect Usage**
+
 <!-- @[changing_input_parameters_builder_incorrect_usage](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkUISample/BuilderComponent/entry/src/main/ets/pages/ChangingIncorrectUsage.ets) -->
 
 ``` TypeScript
@@ -1777,6 +1813,7 @@ struct ParentMod1 {
       this.extendBlank();
       Button('click me')
         .onClick(() => {
+          // Click the button to modify the state variable and observe the UI refresh
           this.label = 'ArkUI';
         })
       this.extendBlank();
@@ -1785,9 +1822,11 @@ struct ParentMod1 {
   }
 }
 ```
+
 Correct use of [MutableBinding](../../reference/apis-arkui/js-apis-stateManagement.md#mutablebindingt20) helps developers modify parameter values in functions decorated by \@Builder.
 
 **Correct Usage**
+
 <!-- @[changing_input_parameters_builder_correct_usage](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkUISample/BuilderComponent/entry/src/main/ets/pages/ChangingCorrectUsage.ets) -->
 
 ``` TypeScript
@@ -1812,13 +1851,15 @@ interface TempMod2 {
 // Use MutableBinding to modify parameter values in the function decorated by @Builder.
 @Builder
 function overBuilderMod2(param: MutableBinding<TempMod2>) {
-  Column() {
+  Column({ space: 5 }) {
     Button(`Mod--overBuilder === ${param.value.paramA}`)
       .onClick(() => {
+        // Modify the property value of the object parameter
         param.value.paramA = 'Yes';
       })
     Button(`change`)
       .onClick(() => {
+        // Replace the entire object parameter
         param.value = { paramA: 'trialOne' };
       })
   }
@@ -1855,6 +1896,7 @@ struct ParentMod2 {
       this.extendBlank();
       Button('click me')
         .onClick(() => {
+          // Tap the button to modify the property of the state variable
           this.objectOne.paramA = 'ArkUI';
         })
       this.extendBlank();
@@ -1867,21 +1909,28 @@ struct ParentMod2 {
         )
       );
     }
+    .width('100%')
   }
 }
 ```
+
+Example effect:
+
+![arkts-builder-faq-change-parameter.gif](./figures/arkts-builder-faq-change-parameter.gif)
 
 ### Execute the \@Builder function in the \@Watch function.
 
 If the \@Builder function is executed in the [\@Watch](./arkts-watch.md) function, the UI refresh is abnormal.
 
 **Incorrect Usage**
+
 <!-- @[executing_builder_function_watch_incorrect_usage](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkUISample/BuilderComponent/entry/src/main/ets/pages/WatchIncorrectUsage.ets) -->
 
 ``` TypeScript
 @Entry
 @Component
 struct Child1 {
+  // Use the @Provide and @Watch decorators to trigger the provideWatch callback when content changes.
   @Provide @Watch('provideWatch') content: string = 'Index: hello world';
 
   @Builder
@@ -1891,6 +1940,7 @@ struct Child1 {
     }
   }
 
+  // @Watch callback function
   provideWatch() {
     this.watchBuilder(this.content); // Incorrect format. Use the @Builder function in the @Watch function.
   }
@@ -1899,6 +1949,7 @@ struct Child1 {
     Column() {
       Button(`content value: ${this.content}`)
         .onClick(() => {
+          // Tap the button to modify content and trigger the @Watch callback.
           this.content += '_world';
         })
       this.watchBuilder(this.content);
@@ -1906,15 +1957,18 @@ struct Child1 {
   }
 }
 ```
+
 The UI of the button may be abnormal. Therefore, you need to avoid using the \@Builder function in the \@Watch function.
 
 **Correct Usage**
+
 <!-- @[executing_builder_function_watch_correct_usage](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkUISample/BuilderComponent/entry/src/main/ets/pages/WatchCorrectUsage.ets) --> 
 
 ``` TypeScript
 @Entry
 @Component
 struct Child2 {
+  // Use the @Provide and @Watch decorators to trigger the provideWatch callback when content changes.
   @Provide @Watch('provideWatch') content: string = 'Index: hello world';
 
   @Builder
@@ -1924,19 +1978,28 @@ struct Child2 {
     }
   }
 
+  // @Watch callback function
   provideWatch() {
     // Correct format. Do not use the @Builder function in the @Watch function.
     console.info(`content value has changed.`);
   }
 
   build() {
-    Column() {
+    Column({ space: 5 }) {
       Button(`content value: ${this.content}`)
         .onClick(() => {
+          // Tap the button to modify content and trigger the @Watch callback.
           this.content += '_world';
         })
       this.watchBuilder(this.content);
     }
+    .width('100%')
   }
 }
 ```
+
+Example effect:
+
+![arkts-builder-faq-watch-builder.gif](./figures/arkts-builder-faq-watch-builder.gif)
+
+<!--no_check-->

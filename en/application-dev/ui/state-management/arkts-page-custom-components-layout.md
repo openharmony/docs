@@ -1,34 +1,42 @@
 # Custom Component Layout
+
 <!--Kit: ArkUI-->
 <!--Subsystem: ArkUI-->
 <!--Owner: @song-song-song-->
 <!--Designer: @lanshouren-->
 <!--Tester: @liuli0427-->
-<!--Adviser: @HelloCrease-->
+<!--Adviser: @Brilliantry_Rui-->
+<!-- md-trans-meta sourceCommit=3efb4ba336409dd0731ba011e1e227786db57fa2 translatedAt=2026-07-22T02:10:24.826Z pushedAt=2026-07-23T10:40:11.881Z -->
 
-If you need to lay out child components in a custom component through calculation, you are advised to use the following APIs:
+If the system-provided layout components (such as [Flex](../../reference/apis-arkui/arkui-ts/ts-container-flex.md), [Column](../../reference/apis-arkui/arkui-ts/ts-container-column.md), [Row](../../reference/apis-arkui/arkui-ts/ts-container-row.md), etc.) cannot meet complex layout requirements, or if you want to customize the calculation of the size and position of child components within a component, you are advised to use the following APIs in a custom component:
 
-- [onMeasureSize](../../reference/apis-arkui/arkui-ts/ts-custom-component-layout.md#onmeasuresize10): invoked upon layout to measure the size of the component's child components. It is executed before **onPlaceChildren**.
+- [onMeasureSize](../../reference/apis-arkui/arkui-ts/ts-custom-component-layout.md#onmeasuresize10): invoked upon layout. You can add custom logic in this callback to calculate the size of child components within the custom component and return the size information of the custom component. It is executed before onPlaceChildren.
 
-- [onPlaceChildren](../../reference/apis-arkui/arkui-ts/ts-custom-component-layout.md#onplacechildren10): invoked upon layout to set the start position of the component's child components.
+- [onPlaceChildren](../../reference/apis-arkui/arkui-ts/ts-custom-component-layout.md#onplacechildren10): invoked upon layout. You can add custom logic in this callback to set the positions of child components within the custom component.
+
+In the following example, the Index page contains a custom component that implements custom layout, and the child components of this custom component are passed in through a builder defined within the Index page.
+
+In the custom component, **onMeasureSize** and **onPlaceChildren** are called to set the size and position of child components. For example, in this sample, the component size is initialized to **100** in **onMeasureSize**, and each subsequent child component's size is increased by half of the previous child component's size, achieving an incremental sizing effect. In **onPlaceChildren**, **startPos** is defined as **300**, and the position of each child component is set to **startPos** minus the child component's own height, so that the bottom-right corners of all child components align at the vertex position (300, 300), achieving a **Stack**-like component that displays child components starting from the bottom-right corner.
 
 **Example**
 
-```
+<!-- @[CustomLayout](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkUISample/ComponentsLayout/entry/src/main/ets/pages/Index.ets) -->
+
+``` TypeScript
 // xxx.ets
 @Entry
 @Component
 struct Index {
   build() {
     Column() {
-      CustomLayout({ builder: ColumnChildren })
+      CustomLayout({ builder: columnChildren })
     }
   }
 }
 
 // Pass multiple components in a builder as level-1 child components of the custom component (that is, container components for example, <Column>, are not included).
 @Builder
-function ColumnChildren() {
+function columnChildren() {
   ForEach([1, 2, 3], (index: number) => { // LazyForEach is not supported.
     Text('S' + index)
       .fontSize(30)
@@ -46,7 +54,6 @@ struct CustomLayout {
   };
 
   @BuilderParam builder: () => void = this.doNothingBuilder;
-  @State startSize: number = 100;
   result: SizeResult = {
     width: 0,
     height: 0
@@ -80,7 +87,3 @@ struct CustomLayout {
 ```
 
 ![custom-component-custom-layout](figures/custom-component-custom-layout.png)
-
-In the preceding example, the **Index** page contains a custom component that implements a custom layout and whose child components are passed in a builder on the **Index** page.
-
-**onMeasureSize** and **onPlaceChildren** are called in the custom component to set the size and position of its child components. In **onMeasureSize**, the initial size is set at 100, and the size of each child component is increased by half of the size of the previous child component, leading to component size increment. In **onPlaceChildren**, **startPos** is **300**, the position of each child component is **startPos** minus its own height, and the lower right corner of all child components is at the corner point (300,300). In this way, child components are stacked, starting from the lower right corner.

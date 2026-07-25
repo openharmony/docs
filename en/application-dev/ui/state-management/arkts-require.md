@@ -1,12 +1,14 @@
 # \@Require Decorator: Validating Constructor Input Parameters
+
 <!--Kit: ArkUI-->
 <!--Subsystem: ArkUI-->
 <!--Owner: @VictorS67-->
-<!--Designer: @lixingchi1-->
+<!--Designer: @VictorS67-->
 <!--Tester: @TerryTsao-->
 <!--Adviser: @zhang_yixin13-->
+<!-- md-trans-meta sourceCommit=3efb4ba336409dd0731ba011e1e227786db57fa2 translatedAt=2026-07-22T02:11:33.065Z pushedAt=2026-07-23T02:27:02.040Z -->
 
-The \@Require decorator is used to declare that specific parameters – either regular variables (not decorated by any other decorator) or variables decorated with \@Prop, \@State, \@Provide, \@BuilderParam, or \@Param – must be passed in to the constructor.
+[\@Require](../../reference/apis-arkui/arkui-ts/ts-universal-require-dynamic.md#require) is a decorator that validates whether \@Prop, \@State, \@Provide, \@BuilderParam, \@Param, and regular variables (variables without stateless decorator modification) require constructor parameter passing.
 
 > **NOTE**
 >
@@ -89,8 +91,7 @@ struct Child {
 }
 ```
 
-
-The **ChildPage** component customized using [\@ComponentV2](./arkts-create-custom-components.md#componentv2) is initialized using the **ParentPage** component. Because \@Require is used to decorate \@Param, the parent component must be constructed and assigned a value.
+The **ChildPage** component customized using [\@ComponentV2](./arkts-create-custom-components.md#componentv2) is initialized using the **ParentPage** component. Because \@Require is used to decorate \@Param, the parent component must assign a value to it during construction.
 
 <!-- @[parent_require_start](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkUISample/RequireDemo/entry/src/main/ets/pages/ParentPage.ets) -->
 
@@ -154,9 +155,10 @@ struct ParentPage {
   }
 }
 ```
+
 ![](figures/arkts-require-1.gif)
 
-Since API version 18, \@Require can decorate state variables decorated with \@State, \@Prop, or \@Provide) without requiring a local initial value. These variables can be used directly in the component without compilation errors.
+Since API version 18, \@Require can decorate state variables decorated with \@State, \@Prop, or \@Provide without requiring a local initial value. These variables can be used directly in the component without compilation errors.
 
 <!-- @[page_one_require_start](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkUISample/RequireDemo/entry/src/main/ets/pages/PageOne.ets) -->
 
@@ -310,3 +312,5 @@ struct ChildV2 {
   }
 }
 ```
+
+<!--no_check-->

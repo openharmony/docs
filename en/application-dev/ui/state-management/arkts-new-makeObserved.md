@@ -1,13 +1,14 @@
 # makeObserved API: Changing Unobservable Data to Observable Data
+
 <!--Kit: ArkUI-->
 <!--Subsystem: ArkUI-->
 <!--Owner: @liwenzhen3-->
 <!--Designer: @zhangboren-->
 <!--Tester: @TerryTsao-->
 <!--Adviser: @zhang_yixin13-->
+<!-- md-trans-meta sourceCommit=3efb4ba336409dd0731ba011e1e227786db57fa2 translatedAt=2026-07-22T02:06:27.759Z pushedAt=2026-07-23T11:45:53.080Z -->
 
 To change the unobservable data to observable data, you can use the [makeObserved](../../reference/apis-arkui/js-apis-stateManagement.md#makeobserved) API.
-
 
 **makeObserved** can be used when \@Trace cannot be used. Before reading this topic, you are advised to read [\@Trace](./arkts-new-observedV2-and-trace.md).
 
@@ -23,10 +24,10 @@ To change the unobservable data to observable data, you can use the [makeObserve
 
   - The member attributes of the current class cannot be modified. @Trace observes class attributes and dynamically modifies the attributes of the class. This behavior is not allowed in the class decorated with [@Sendable](../../arkts-utils/arkts-sendable.md#sendable-decorator). In this case, you can use **makeObserved**.
 
-  - Anonymous object returned by API or JSON.parse does not have a class declaration. In this scenario, you cannot use @Trace to mark that the current attribute, therefore, **makeObserved** can be used instead.
-
+  - Anonymous object returned by **interface** or **JSON.parse** does not have a class declaration. In this scenario, you cannot use @Trace to mark that the current attribute. Therefore, **makeObserved** can be used instead.
 
 - To use the **makeObserved** API, you need to import UIUtils.
+
   ```ts
   import { UIUtils } from '@kit.ArkUI';
   ```
@@ -34,7 +35,9 @@ To change the unobservable data to observable data, you can use the [makeObserve
 ## Constraints
 
 - The parameters of **makeObserved** support only non-null object types.
+
   - Undefined and null: not supported. The parameters itself is returned and no processing is performed.
+
   - Non-object type: An error is reported during compilation.
 
   ```ts
@@ -50,6 +53,7 @@ To change the unobservable data to observable data, you can use the [makeObserve
   ```
 
 - **makeObserved** does not support passing in instances of classes decorated with [@ObservedV2](./arkts-new-observedV2-and-trace.md) or [@Observed](./arkts-observed-and-objectlink.md), nor proxy data that has been wrapped by **makeObserved**. To prevent data from being double-proxied, **makeObserved** directly returns the input parameter when it is one of the preceding types.
+
   ```ts
   import { UIUtils } from '@kit.ArkUI';
   @ObservedV2
@@ -68,18 +72,24 @@ To change the unobservable data to observable data, you can use the [makeObserve
   // Incorrect usage. The input object is the proxy data encapsulated by makeObserved, which is not processed this time.
   let observedInfo2: Info2 = UIUtils.makeObserved(observedInfo1);
   ```
+
 - makeObserved can be used in custom components decorated with [@Component](./arkts-create-custom-components.md#component), but cannot be used with the state variable decorator of state management V1. If they are used together, a runtime exception is thrown.
+
   ```ts
   // Incorrect usage. An exception occurs during running.
   @State message: Info = UIUtils.makeObserved(new Info(20));
   ```
+
   Note: The following writing method of **message2** does not throw an exception. The reason is as follows:
+
   - this.message is decorated with [@State](./arkts-state.md), and its implementation is equivalent to @Observed.
+
   - If the input parameter of UIUtils.makeObserved is the instance of the class decorated with @Observed, the instance is directly returned.
-  
+
   Therefore, the initial value of **message2** is not the proxy object returned by makeObserved, but **this.message** decorated with @State.
-  <!-- @[UI_will_not_refresh](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkUISample/MakeObserved/entry/src/main/ets/View/Page1.ets) -->
-  
+
+  <!-- @[UI_will_not_refresh](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkUISample/MakeObserved/entry/src/main/ets/View/Page1.ets) --> 
+
   ``` TypeScript
   import { UIUtils } from '@kit.ArkUI';
   class Person {
@@ -97,23 +107,32 @@ To change the unobservable data to observable data, you can use the [makeObserve
     build() {
       Column() {
         Text(`${this.message2.person.age}`)
+          .fontSize(20)
+          .margin(10)
           .onClick(() => {
             // The UI is not re-rendered because only the changes at the first layer can be observed by the @State.
             this.message2.person.age++;
           })
       }
+      .width('100%')
     }
   }
   ```
 
+![makeobserved-sync-0](./figures/makeobserved-sync-0.png)
+
 ### makeObserved performs deep observation only on the input object.
 
  - **message** is decorated with [@Local](./arkts-new-local.md) and has the capability of observing its own value changes. Its initial value is the return value of **makeObserved**, which supports in-depth observation. Note that makeObserved performs deep observation only on **message**, while the value change of **message** is observed by @Local.
+
  - Click **change id** to re-render the UI.
+
  - Click **change Info** to set **this.message** to unobservable data. Click **change id** again, UI cannot be re-rendered.
+
  - Click **change Info1** to set **this.message** to observable data. Click **change id** again, UI can be re-rendered.
-  <!-- @[MakeObserved_only_applies_to_input_parameters](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkUISample/MakeObserved/entry/src/main/ets/View/Page2.ets) --> 
-  
+
+  <!-- @[MakeObserved_only_applies_to_input_parameters](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkUISample/MakeObserved/entry/src/main/ets/View/Page2.ets) -->  
+
   ``` TypeScript
   import { UIUtils } from '@kit.ArkUI';
   class Info {
@@ -129,29 +148,44 @@ To change the unobservable data to observable data, you can use the [makeObserve
     @Local message: Info = UIUtils.makeObserved(new Info(20));
     build() {
       Column() {
-        Button(`change id`).onClick(() => {
-          this.message.id++;
-        })
-        Button(`change Info ${this.message.id}`).onClick(() => {
-          this.message = new Info(30);
-        })
-        Button(`change Info1 ${this.message.id}`).onClick(() => {
-          this.message = UIUtils.makeObserved(new Info(30));
-        })
+        Button(`change id`)
+          .width(300)
+          .margin(10)
+          .onClick(() => {
+            this.message.id++;
+          })
+        Button(`change Info ${this.message.id}`)
+          .width(300)
+          .margin(10)
+          .onClick(() => {
+            this.message = new Info(30);
+          })
+        Button(`change Info1 ${this.message.id}`)
+          .width(300)
+          .margin(10)
+          .onClick(() => {
+            this.message = UIUtils.makeObserved(new Info(30));
+          })
       }
+      .width('100%')
     }
   }
   ```
 
+![makeobserved-sync-1](./figures/makeobserved-sync-1.gif)
 
 ## Supported Types and Observed Changes
 
-### Material
+### Supported Types
 
 - Classes that are not decorated with [\@Observed](./arkts-observed-and-objectlink.md) or [\@ObservedV2](./arkts-new-observedV2-and-trace.md) are supported.
+
 - Array, Map, Set, and Date types are supported.
+
 - [collections.Array](../../reference/apis-arkts/arkts-apis-arkts-collections-Array.md), [collections.Set](../../reference/apis-arkts/arkts-apis-arkts-collections-Set.md) and [collections.Map](../../reference/apis-arkts/arkts-apis-arkts-collections-Map.md) are supported.
+
 - Object returned by JSON.parse.
+
 - @Sendable decorated class.
 
 ### Observed Changes
@@ -173,13 +207,18 @@ To change the unobservable data to observable data, you can use the [makeObserve
 [@Sendable](../../arkts-utils/arkts-sendable.md) is used to process concurrent tasks in application scenarios. The **makeObserved** and @Sendable can be used together to meet the requirements of big data processing in the sub-thread and **ViewModel** display and data observation in the UI thread in common application development. For details about @Sendable, see [Multithreaded Concurrency Overview (TaskPool and Worker)](../../arkts-utils/multi-thread-concurrency-overview.md).
 
 This section describes the following scenarios:
+
 - When **makeObserved** is used with @Sendable data, it enables observability of changes that can trigger UI refreshes.
+
 - A complete set of data is fetched from a child thread and used to replace the observable data in the UI thread entirely.
+
 - The data fetched from the child thread is reprocessed with **makeObserved** to become observable.
+
 - When data is passed from the main thread to a subthread, only unobservable data is passed. The return value of **makeObserved** is not directly passed to child threads.
 
 Example:
-<!-- @[SendableData](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkUISample/MakeObserved/entry/src/main/ets/Model/modelView.ets) -->
+
+<!-- @[SendableData](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkUISample/MakeObserved/entry/src/main/ets/Model/modelView.ets) --> 
 
 ``` TypeScript
 @Sendable
@@ -193,13 +232,15 @@ export class SendableData  {
 }
 ```
 
-<!-- @[function_threadGetData](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkUISample/MakeObserved/entry/src/main/ets/View/Page3.ets) -->
+<!-- @[function_threadGetData](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkUISample/MakeObserved/entry/src/main/ets/View/Page3.ets) -->   
 
 ``` TypeScript
 import { taskpool } from '@kit.ArkTS';
 import { SendableData } from '../Model/modelView';
 import { UIUtils } from '@kit.ArkUI';
 import { hilog } from '@kit.PerformanceAnalysisKit';
+
+const DOMAIN = 0x0000;
 
 @Concurrent
 function threadGetData(param: string): SendableData {
@@ -223,38 +264,57 @@ struct Page3 {
   build() {
     Column() {
       Text(this.send.name)
-      Button('change name').onClick(() => {
-        // Change of the attribute can be observed.
-        this.send.name += '0';
-      })
-
-      Button('task').onClick(() => {
-        // Enqueue the function to be executed in the task pool, waiting to be dispatched to a worker thread.
-        taskpool.execute(threadGetData, this.send.name).then(val => {
-          // Used together with @Local to observe changes to 'this.send'.
-          this.send = UIUtils.makeObserved(val as SendableData);
+        .fontSize(20)
+        .margin(10)
+      Button('change name')
+        .width(300)
+        .margin(10)
+        .onClick(() => {
+          // OK. Changes to properties can be observed.
+          this.send.name += '0';
         })
-      })
+
+      Button('task')
+        .width(300)
+        .margin(10)
+        .onClick(() => {
+          // Place the function to be executed into the taskpool internal task queue, where it waits to be dispatched to a worker thread for execution.
+          taskpool.execute(threadGetData, this.send.name)
+            .catch((err: Error) => {
+              hilog.error(DOMAIN, 'testTag', `taskpool execute fail. code is ${err.name}, message is ${err.message}`);
+            })
+            .then(val => {
+              // When used together with @Local, changes to this.send can be observed.
+              this.send = UIUtils.makeObserved(val as SendableData);
+            });
+        })
     }
+    .width('100%')
   }
 }
 ```
 
+![makeobserved-sync-2](./figures/makeobserved-sync-2.gif)
+
 Note: Data construction and processing can be done in the child thread, but observable data cannot be passed to the child thread (observable data can only be manipulated in the main thread). Therefore, in the preceding example, only the **name** attribute of **this.send** is passed to the subthread.
 
 ### Using makeObserved and collections.Array/collections.Set/collections.Map Together
+
 **collections** provide ArkTS container sets for high-performance data passing in concurrent scenarios. For details, see [@arkts.collections (ArkTS containers)](../../reference/apis-arkts/arkts-apis-arkts-collections.md).
 
-makeObserved enables importing observable collections into ArkUI, but is incompatible with state management V1 decorators like, such as @State and [@Prop](./arkts-prop.md). Combining them will result in runtime exceptions.
+**makeObserved** enables importing observable collections into ArkUI, but is incompatible with state management V1 decorators such as @State and [@Prop](./arkts-prop.md). Combining them will result in runtime exceptions.
 
 **collections.Array**
 
 The following APIs can trigger UI re-rendering:
+
 - Changing the array length: push, pop, shift, unshift, splice, shrinkTo, and extendTo
-- Changing the array items: sort and fill
+
+- Change the array items themselves: sort, fill, reverse
 
 Other APIs do not change the original array. Therefore, the UI re-rendering is not triggered.
-<!-- @[makeObserved_collections_Array_Set_Map](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkUISample/MakeObserved/entry/src/main/ets/View/Page4.ets) -->
+
+<!-- @[makeObserved_collections_Array_Set_Map](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkUISample/MakeObserved/entry/src/main/ets/View/Page4.ets) --> 
 
 ``` TypeScript
 import { collections } from '@kit.ArkTS';
@@ -407,12 +467,14 @@ struct Page4 {
   }
 }
 ```
+
 ![makeobserved-array](figures/makeobserved-array.gif)
 
 **collections.Map**
 
 The following APIs can trigger UI re-rendering: set, clear, and delete.
-<!-- @[foreach_mapCollect_keys](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkUISample/MakeObserved/entry/src/main/ets/View/Page5.ets) --> 
+
+<!-- @[foreach_mapCollect_keys](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkUISample/MakeObserved/entry/src/main/ets/View/Page5.ets) -->  
 
 ``` TypeScript
 import { collections } from '@kit.ArkTS';
@@ -477,12 +539,14 @@ struct Page5 {
   }
 }
 ```
+
 ![makeobserved-map](figures/makeobserved-map.gif)
 
 **collections.Set**
 
 The following APIs can trigger UI re-rendering: add, clear, and delete.
-<!-- @[Array_rom_shallow_copy](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkUISample/MakeObserved/entry/src/main/ets/View/Page6.ets) --> 
+
+<!-- @[Array_rom_shallow_copy](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkUISample/MakeObserved/entry/src/main/ets/View/Page6.ets) -->  
 
 ``` TypeScript
 import { collections } from '@kit.ArkTS';
@@ -545,11 +609,14 @@ struct Page6 {
   }
 }
 ```
+
 ![makeobserved-set](figures/makeobserved-set.gif)
 
 ### Input Parameter of makeObserved Is the Return Value of JSON.parse
+
 **JSON.parse** returns an object which cannot be decorated by @Trace. You can use **makeObserved** to make it observable.
-<!-- @[makeObserved_JSON.parse](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkUISample/MakeObserved/entry/src/main/ets/View/Page7.ets) --> 
+
+<!-- @[makeObserved_JSON.parse](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkUISample/MakeObserved/entry/src/main/ets/View/Page7.ets) -->  
 
 ``` TypeScript
 import { JSON } from '@kit.ArkTS';
@@ -598,12 +665,15 @@ struct Page7 {
 }
 ```
 
+![makeobserved-sync-3](figures/makeobserved-sync-3.gif)
 
 ### Using makeObserved and Decorators of V2 Together
+
 **makeObserved** can be used with the decorators of V2. For [@Monitor](./arkts-new-monitor.md) and [@Computed](./arkts-new-computed.md), because **makeObserved** returns the class instance itself when passed an instance decorated with @Observed or ObservedV2, @Monitor or @Computed cannot be defined within a class. They can only be defined inside custom components.
 
 Example:
-<!-- @[name_change_from_monitor_value](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkUISample/MakeObserved/entry/src/main/ets/View/Page8.ets) --> 
+
+<!-- @[name_change_from_monitor_value](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkUISample/MakeObserved/entry/src/main/ets/View/Page8.ets) -->  
 
 ``` TypeScript
 import { UIUtils } from '@kit.ArkUI';
@@ -684,11 +754,14 @@ struct Child {
   }
 }
 ```
+
 ![makeobserved-componentv2](figures/makeobserved-componentv2.gif)
 
 ### Using makeObserved in @Component
+
 **makeObserved** cannot be used with the state variable decorator of V1, but can be used in custom components decorated by @Component.
-<!-- @[makeObserved_Component](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkUISample/MakeObserved/entry/src/main/ets/View/Page9.ets) -->
+
+<!-- @[makeObserved_Component](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkUISample/MakeObserved/entry/src/main/ets/View/Page9.ets) --> 
 
 ``` TypeScript
 import { UIUtils } from '@kit.ArkUI';
@@ -711,6 +784,8 @@ struct Page9 {
     RelativeContainer() {
       Text(`${this.message.id}`)
         .id('textNumber')
+        .fontSize(20)
+        .margin(10)
         .onClick(() => {
           this.message.id++;
         })
@@ -721,17 +796,23 @@ struct Page9 {
 }
 ```
 
+![makeobserved-sync-4](figures/makeobserved-sync-4.gif)
 
 ## Common Issue
+
 ### Original Object Can Be Assigned Value Using getTarget but Fails to Trigger UI Re-render
+
 [getTarget](./arkts-new-getTarget.md) can be used to obtain the original object before adding a proxy in the state management.
 
 The observation object encapsulated by **makeObserved** can obtain its original object through **getTarget**. The value changes to the original object do not trigger UI re-rendering.
 
 Example:
+
 1. Click the first **Text** component and obtain its original object through **getTarget**. In this case, modifying the attributes of the original object does not trigger UI re-rendering, but a value is assigned to the data.
+
 2. Click the second **Text** component. If the **this.observedObj** attribute is modified, the UI is re-rendered and the value of **Text** is **21**.
-<!-- @[getTarget_observedObj](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkUISample/MakeObserved/entry/src/main/ets/View/Page10.ets) -->
+
+<!-- @[getTarget_observedObj](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkUISample/MakeObserved/entry/src/main/ets/View/Page10.ets) --> 
 
 ``` TypeScript
 import { UIUtils } from '@kit.ArkUI';
@@ -747,22 +828,27 @@ struct Page10 {
     Column() {
       Text(`${this.observedObj.id}`)
         .id('textobservedObj1')
-        .fontSize(50)
+        .fontSize(20)
+        .margin(10)
         .onClick(() => {
-          // Use getTarget to obtain the original object and assign this.observedObj to unobservable data.
-          let rawObj: Info= UIUtils.getTarget(this.observedObj);
+          // Obtain the original object of this.observedObj through getTarget. The original object is non-observable data.
+          let rawObj: Info = UIUtils.getTarget(this.observedObj);
           // The UI is not re-rendered, but a value is assigned to the data.
           rawObj.id = 20;
         })
 
       Text(`${this.observedObj.id}`)
         .id('textobservedObj2')
-        .fontSize(50)
+        .fontSize(20)
+        .margin(10)
         .onClick(() => {
           // Triggers UI re-rendering. The value of Text is 21.
           this.observedObj.id++;
         })
     }
+    .width('100%')
   }
 }
 ```
+
+![makeobserved-sync-5](figures/makeobserved-sync-5.gif)

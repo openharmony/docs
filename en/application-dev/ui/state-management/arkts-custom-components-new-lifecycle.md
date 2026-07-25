@@ -1,10 +1,12 @@
 # Lifecycle of a Custom Component (Recommended)
+
 <!--Kit: ArkUI-->
 <!--Subsystem: ArkUI-->
 <!--Owner: @xin11112-->
 <!--Designer: @zhangboren-->
 <!--Tester: @TerryTsao-->
 <!--Adviser: @zhang_yixin13-->
+<!-- md-trans-meta sourceCommit=3efb4ba336409dd0731ba011e1e227786db57fa2 translatedAt=2026-07-22T02:01:51.579Z pushedAt=2026-07-22T07:22:31.340Z -->
 
 ## Overview
 
@@ -38,7 +40,7 @@ The lifecycle of a custom component is restricted by the state machine. The foll
 
 2. Initialization of custom component member variables: The member variables are initialized with locally defined defaults or component constructor parameters. The initialization happens in the document order, which is the order in which the member variables are defined.
 
-3. On initial render, the **build** function of the built-in component is executed for rendering. If the child component is a custom component, the rendering creates an instance of the child component. During initial render, the framework records the mapping between state variables and components. When a state variable changes, the framework drives the related components to update.
+3. On initial render, the **build** function is executed for rendering built-in components. If the child component is a custom component, the rendering creates an instance of the child component. During initial render, the framework records the mapping between state variables and components. When a state variable changes, the framework drives the related components to update.
 
 ### Custom Component Deletion
 
@@ -46,7 +48,7 @@ For example, if the branch of the if component changes or the number of arrays i
 
 1. Before a component is deleted, the lifecycle function of the \@ComponentDisappear decorator is called, indicating that the node is to be destroyed. The component deletion mechanism of ArkUI is as follows:<br>(1) The backend component is directly removed from the component tree and destroyed.<br>(2) The reference to the destroyed component is released from the frontend components.<br>(3) The Ark Engine garbage collects the destroyed component.
 
-2. The custom component and its variables will be deleted. If the component has synchronous variables (such as [@Link](arkts-link.md), [@Prop](arkts-prop.md), and [@StorageLink](arkts-appstorage.md#storagelink)), the component is deregistered from the [Data Source](arkts-state-management-glossary.md#data-source)
+2. The custom component and its variables will be deleted. If the component has synchronized variables (such as [@Link](arkts-link.md), [@Prop](arkts-prop.md), [@StorageLink](arkts-appstorage.md#storagelink)), they will be deregistered from the [state data source](arkts-state-management-glossary.md#state-data-source).
 
 ## Active and Inactive Lifecycles of a Custom Component
 
@@ -74,6 +76,7 @@ struct Index {
   build() {
     Column() {
       Button('change')
+        .margin(10)
         .onClick(() => {
           // Switch the display status of the child component to trigger component recycling or reuse.
           this.changeChild = !this.changeChild;
@@ -130,11 +133,14 @@ struct Child {
 }
 ```
 
+![new-lifecycle-syn-0](./figures/new-lifecycle-syn-0.gif)
+
 You are advised to execute the preceding code in the following steps:
 
 1. Click Change. The child component is created for the first time.
 
 2. Click Change. The child component triggers the function and recycling event decorated by @ComponentInactive.
+
    ```text
    Child myInactive
    Child aboutToRecycle
@@ -142,6 +148,7 @@ You are advised to execute the preceding code in the following steps:
    ```
 
 3. Click Change. The child component triggers the reuse event and the function decorated by @ComponentActive.
+
    ```text
    Child aboutToReuse
    Child myReuse
@@ -168,18 +175,21 @@ struct Index {
     Column() {
       Navigation(this.pageStack) {
         Text(this.message)
+          .margin(10)
         Button(`PageOne`)
+          .margin(10)
           .onClick(() => {
             // Go to the PageOne page.
             this.pageStack.pushPath({ name: 'PageOne' });
           })
-          .width('80%')
+          .width('40%')
         Button(`PageTwo`)
+          .margin(10)
           .onClick(() => {
             // Go to the PageTwo page.
             this.pageStack.pushPath({ name: 'PageTwo' });
           })
-          .width('80%')
+          .width('40%')
       }
     }
   }
@@ -202,18 +212,21 @@ struct PageOne {
     NavDestination() {
       Column() {
         Text(`PageOne`)
+          .margin(10)
         Button('PageTwo')
+          .margin(10)
           .onClick(() => {
             // Go to the PageTwo page.
             this.pageStack.pushPath({ name: 'PageTwo' });
           })
-          .width('80%')
+          .width('40%')
         Button(`back`)
+          .margin(10)
           .onClick(() => {
             // Return to the previous page.
             this.pageStack.pop();
           })
-          .width('80%')
+          .width('40%')
       }
     }
     .onReady((context: NavDestinationContext) => {
@@ -247,18 +260,21 @@ struct PageTwo {
     NavDestination() {
       Column() {
         Text(`PageTwo`)
+          .margin(10)
         Button(`PageOne`)
+          .margin(10)
           .onClick(() => {
             // Redirect to the PageOne page.
             this.pageStack.pushPath({ name: 'PageOne' });
           })
-          .width('80%')
+          .width('40%')
         Button(`back`)
+          .margin(10)
           .onClick(() => {
             // Return to the previous page.
             this.pageStack.pop();
           })
-          .width('80%')
+          .width('40%')
         Row() {
           Column() {
             Button(`change message`)
@@ -269,7 +285,7 @@ struct PageTwo {
           }
           .width('100%')
         }
-        .height('100%')
+        .margin(10)
       }
     }
     .onReady((context: NavDestinationContext) => {
@@ -318,6 +334,7 @@ struct TabsComponent {
         .onClick(() => {
           this.message++;
         })
+        .margin(10)
       Tabs() {
         ForEach(this.data, (item: number) => {
           TabContent() {
@@ -330,7 +347,7 @@ struct TabsComponent {
       .scrollable(true)
       .barMode(BarMode.Fixed)
       .barWidth(400)
-      .barHeight(150)
+      .barHeight(50)
       .animationDuration(400)
       .width('100%')
       .height(200)
@@ -341,6 +358,7 @@ struct TabsComponent {
 ```
 
 The subpage information is configured in the configuration file **route_map.json** as follows:
+
 ```json5
 {
   "routerMap": [
@@ -359,6 +377,7 @@ The subpage information is configured in the configuration file **route_map.json
 ```
 
 Configure the **routerMap** route mapping in the **module.json5** configuration file.
+
 ```json5
 {
   "module": {
@@ -368,6 +387,8 @@ Configure the **routerMap** route mapping in the **module.json5** configuration 
   }
 }
 ```
+
+![new-lifecycle-syn-1](./figures/new-lifecycle-syn-1.gif)
 
 **Scenario description and log output:**
 
@@ -380,22 +401,26 @@ You are advised to execute the preceding code in the following steps.
    tab0 is selected, and the FreezeChild component in tab0 is created.
 
 2. Click tab1. tab0 is no longer selected and becomes inactive. The FreezeChild component in tab0 triggers @ComponentInactive.
+
    ```text
    FreezeChild myInactive, index: 0
    ```
 
 3. Click tab0. tab0 is selected and becomes active. The FreezeChild component in tab0 triggers @ComponentActive. tab1 is no longer selected and becomes inactive. The FreezeChild component in tab1 triggers @ComponentInactive.
+
    ```text
    FreezeChild myActive, index: 0
    FreezeChild myInactive, index: 1
    ```
 
 4. Click PageOne. The PageOne page is displayed. tab0 in PageTwo is no longer selected and becomes inactive. FreezeChild in tab0 triggers @ComponentInactive.
+
    ```text
    FreezeChild myInactive, index: 0
    ```
 
 5. Click back. The page returns to PageTwo. tab0 in PageTwo is selected and becomes active. FreezeChild in tab0 triggers @ComponentActive.
+
    ```text
    FreezeChild myActive, index: 0
    ```
@@ -414,38 +439,41 @@ import { MyDataSource } from './BasicDataSource';
 @Component
 struct Index {
   @State dataSource: MyDataSource<string> = new MyDataSource();
-  private scrollerForList: Scroller = new Scroller();
   @State colors: number[] = [0xFFC0CB, 0xDA70D6, 0x6B8E23, 0x6A5ACD, 0x00FFFF, 0x00FF7F];
   @State changeShow: boolean = false;
 
   aboutToAppear(): void {
     for (let index = 1; index <= 50; index++) {
-      this.dataSource.pushData('page-' + index);
+      this.dataSource.pushData('page - ' + index);
     }
   }
 
   build() {
     Column() {
       Button('change')
+        .margin(10)
         .onClick(() => {
           // Control the creation and destruction of the list.
           this.changeShow = !this.changeShow;
         })
       if (this.changeShow) {
         List({ space: 10 }) {
-          LazyForEach(this.dataSource, (item: number, index: number) => {
+          LazyForEach(this.dataSource, (item: string, index: number) => {
             ListItem() {
               Child({ item: item.toString(), index: index.toString() })
             }
-            .backgroundColor(Color.Orange)
+            .backgroundColor(Color.Pink)
             .width('100%')
-          }, (item: number) => item.toString())
+            .height('15%')
+          }, (item: string) => item.toString())
         }
-        .height(360)
+        .width('80%')
+        .height('60%')
         // The number of nodes that can be contained in the preload area is 5.
         .cachedCount(5, false)
       }
     }
+    .width('100%')
   }
 }
 
@@ -521,23 +549,28 @@ export class MyDataSource<T> extends BasicDataSource<T> {
   }
 }
 ```
+
+![new-lifecycle-syn-2](./figures/new-lifecycle-syn-2.gif)
+
 Scenario description and log output:
 
 You are advised to execute the preceding code in the following steps.
 
 1. Click the **change** button. The component in the preload area triggers @ComponentInactive.
+
    ```text
-   Child myInactive, index: 13
-   Child myInactive, index: 14
-   Child myInactive, index: 15
-   Child myInactive, index: 16
-   Child myInactive, index: 17
+   Child myInactive, index: 6
+   Child myInactive, index: 7
+   Child myInactive, index: 8
+   Child myInactive, index: 9
+   Child myInactive, index: 10
    ```
 
-2. When you swipe down the list, the component in the loading area triggers @ComponentActive, the component in the preload area triggers @ComponentInactive, and the component in the preload area triggers @ComponentInactive.
+2. When you swipe down the list, the component entering in the loading area triggers @ComponentActive, the component entering in the preload area triggers @ComponentInactive, and the component leaving the load area triggers @ComponentInactive.
+
    ```text
-   Child myActive, index: 13
-   Child myInactive, index: 18
+   Child myActive, index: 6
+   Child myInactive, index: 11
    Child myInactive, index: 0
    ```
 
@@ -579,31 +612,36 @@ struct MyActiveSample {
 }
 ```
 
+![new-lifecycle-syn-3](./figures/new-lifecycle-syn-3.png)
+
 Scenario description and log output:
 
 You are advised to execute the preceding code in the following steps.
 
 1. When the screen is turned off, the @ComponentInactive event is triggered.
+
    ```text
    myInactive
    ```
 
 2. When the screen is turned on, the @ComponentActive event is triggered.
+
    ```text
    myActive
    ```
 
 ## Constraints
 
-- \@ComponentInit, \@ComponentAppear, \@ComponentBuilt, \@ComponentDisappear, \@ComponentActive, \@ComponentInactive, @ComponentReuse, and @ComponentRecycle can be used only in structs decorated with @Component or @ComponentV2. Otherwise, a compilation error will be reported.
+- \@ComponentInit, \@ComponentAppear, \@ComponentBuilt, \@ComponentDisappear, \@ComponentActive, \@ComponentInactive, @ComponentReuse, and @ComponentRecycle can be used only in structs decorated with \@Component or \@ComponentV2. Otherwise, a compilation error will be reported.
 
-- The functions decorated with @ComponentInactive and @ComponentRecycle cannot have input parameters. Otherwise, a compilation error will be reported.
+- The functions decorated with \@ComponentInit, \@ComponentAppear, \@ComponentBuilt, \@ComponentDisappear, \@ComponentActive, \@ComponentInactive, and \@ComponentRecycle cannot have input parameters. Otherwise, a compilation error will be reported.
 
 - In the struct decorated with @Component, the function decorated with @ComponentReuse can have no or one input parameter. Otherwise, a compilation error will be reported.
 
 - In the struct decorated with @ComponentV2, the function decorated with @ComponentReuse cannot have input parameters. Otherwise, a compilation error will be reported.
 
 - When a lifecycle decorator is added to a method, the method is called back when the corresponding event of the custom component occurs. It is recommended that the lifecycle decorator be used independently and not together with other state variable decorators. For example, when the lifecycle decorator is used together with [@Computed](./arkts-new-computed.md), the lifecycle decorator does not take effect.
+
   ```typescript
   @Computed
   @ComponentAppear
@@ -611,6 +649,7 @@ You are advised to execute the preceding code in the following steps.
     return 1 + 2 + 3; // Incorrect usage. The lifecycle decorator does not take effect for the get method.
   }
   ```
+
 - If the custom component does not use the lifecycle decorator and does not register a listener, the return value is always [CustomComponentLifecycleState.INIT](../../reference/apis-arkui/arkui-ts/ts-custom-component-new-lifecycle.md#customcomponentlifecyclestate) when [getCurrentState](../../reference/apis-arkui/arkui-ts/ts-custom-component-new-lifecycle.md#getcurrentstate) is used to query the current lifecycle status of the custom component.
 
 - After a custom component is created, it is activated by default. The callback function of @ComponentActive is not triggered.
@@ -634,6 +673,7 @@ struct Index {
     Column() {
       Button('delete Parent And Child')
         .margin(20)
+        .width('60%')
         .backgroundColor(this.btnColor)
         .onClick(() => {
           this.show = !this.show;
@@ -642,6 +682,7 @@ struct Index {
         Parent()
       }
     }
+    .width('100%')
   }
 }
 @Component
@@ -671,6 +712,7 @@ struct Parent {
         Child()
       }
       Button('delete Child')
+        .width('60%')
         .margin(20)
         .backgroundColor(this.btnColor)
         .onClick(() => {
@@ -709,7 +751,9 @@ struct Child {
 }
 ```
 
-In the preceding example, the Index page contains two custom components: Parent and Child. The Parent component and its child component Child declare the functions (myAppear/myBuilt/myDisappear) of the custom component lifecycle decorator.
+![new-lifecycle-syn-4](./figures/new-lifecycle-syn-4.gif)
+
+In the preceding example, the Index page contains two custom components: Parent and Child. The **Parent** component and its child component **Child** declare functions (**myAppear**/**myBuilt**/**myDisappear**) decorated with their custom component lifecycle decorator.
 
 - The initialization process of application cold start is as follows: **Parent myAppear** --&gt; **Parent build** --&gt; **Parent myBuilt** --&gt; **Child myAppear** --&gt; **Child build** --&gt; **Child myBuilt**. The lazy expansion feature of the custom component is reflected here. That is, the parent component executes myAppear of the child component only after executing myBuilt. The log information is as follows:
 
@@ -720,7 +764,7 @@ Child myAppear
 Child myBuilt
 ```
 
-- Click the button, change the value of showChild to false, delete the Child component, and execute the Child myDisappear function.
+- Click the button, change the value of **showChild** to **false**, delete the **Child** component, and execute the **Child myDisappear** function.
 
 - If you click the button, change the value of show to **false**, or directly exit the application, the **Parent myDisappear** --&gt; **Child myDisappear** lifecycle is triggered. In this case, the customized components are deleted from the parent component to the child component. The log information is as follows:
 
@@ -737,6 +781,7 @@ Child myDisappear
 Parent myAppear
 Parent myBuilt
 ```
+
 - If the default value of showChild is false and you click the button to change the value of show to false or directly exit the application, only the Parent myDisappear function is executed.
 
 - If the default value of showChild is false, click the button, change the value of showChild to true, and add the Child component. The process is **Child myAppear** --&gt; **Child build** --&gt; **Child myBuilt**. The log information is as follows:
@@ -745,7 +790,8 @@ Parent myBuilt
 Child myAppear
 Child myBuilt
 ```
-When **showchild** is set to the default value true, the lifecycle of this example is as follows:
+
+When **showChild** is set to the default value **true**, the lifecycle flowchart of this example is as follows:
 
 ![custom-component-lifecycle-demo2](figures/custom-component-lifecycle-nest.png)
 
@@ -766,26 +812,28 @@ export class Message {
 @Entry
 @Component
 struct Index {
-  @State switch: boolean = true;
+  @State changeChild: boolean = true;
+  @State btnColor: string = '#FF007DFF';
 
   build() {
     Column() {
-      Button('Hello')
-        .fontSize(30)
-        .fontWeight(FontWeight.Bold)
+      Button(this.changeChild ? 'recycle child' : 'reuse child')
+        .margin(20)
+        .backgroundColor(this.btnColor)
+        .width('50%')
         .onClick(() => {
-          this.switch = !this.switch;
+          this.changeChild = !this.changeChild;
         })
-      // Change the switch to reclaim and reuse the child.
-      // Change the value of this.switch to false, reclaim the Child subcomponent, and execute Child myRecycle.
-      // Change the value of this.switch to true, reuse the Child subcomponent, and execute Child myReuse.
-      if (this.switch) {
+      // Implement recycling and reuse of Child by changing changeChild.
+      // Set this.changeChild to false to recycle the Child child component, triggering Child myRecycle.
+      // Set this.changeChild to true to reuse the Child child component, triggering Child myReuse.
+      if (this.changeChild) {
         // If only one reusable component is used, reuseId is optional.
-        Child({ message: new Message('Child') })
+        Child({ message: new Message('child') })
           .reuseId('Child')
+          .margin(10)
       }
     }
-    .height('100%')
     .width('100%')
   }
 }
@@ -795,7 +843,8 @@ struct Index {
 struct Child {
   @State message: Message = new Message('Child');
   @State label: string = 'HelloWorld';
-  @State switch: boolean = true;
+  @State changeGrandChild: boolean = true;
+  @State btnColor: string = '#FF007DFF';
   @ComponentInit
   myInit() {
     hilog.info(0x0000, 'testTag', 'Child myInit');
@@ -830,19 +879,19 @@ struct Child {
     Column() {
       Text(this.message.value)
         .fontSize(30)
-      Button('Hello')
-        .fontSize(30)
-        .fontWeight(FontWeight.Bold)
+        .margin(10)
+      Button(this.changeGrandChild ? 'recycle grandchild' : 'reuse grandchild')
+        .width('50%')
+        .margin(20)
+        .backgroundColor(this.btnColor)
         .onClick(() => {
-          this.switch = !this.switch;
+          this.changeGrandChild = !this.changeGrandChild;
         })
-      if (this.switch) {
-        GrandChild({ message: new Message('GrandChild') })
+      if (this.changeGrandChild) {
+        GrandChild({ message: new Message('grandchild') })
           .reuseId('GrandChild')
       }
     }
-    .borderWidth(1)
-    .height(100)
   }
 }
 
@@ -851,7 +900,6 @@ struct Child {
 struct GrandChild {
   @State message: Message = new Message('GrandChild');
   @State label: string = 'HelloWorld';
-  @State switch: boolean = true;
   @ComponentInit
   myInit() {
     hilog.info(0x0000, 'testTag', 'GrandChild myInit');
@@ -886,12 +934,13 @@ struct GrandChild {
     Column() {
       Text(this.message.value)
         .fontSize(30)
+        .margin(10)
     }
-    .borderWidth(1)
-    .height(100)
   }
 }
 ```
+
+![new-lifecycle-syn-5](./figures/new-lifecycle-syn-5.gif)
 
 In the preceding example, the Index page contains the customized component Child, and the Child component contains the customized component GrandChild. Child and GrandChild declare the functions (myInit, myAppear, myBuilt, myRecycle, myReuse, and myDisappear) decorated by the custom component lifecycle decorator.
 
@@ -906,7 +955,7 @@ GrandChild myAppear
 GrandChild myBuilt
 ```
 
-- Click the button to change the value of showChild to false, so that the Child and GrandChild components are recycled, and the myRecycle functions of the Child and GrandChild components are executed.
+- Tap the **Button** button to change **changeChild** to **false**. The **Child** component and **GrandChild** component are recycled, and the **myRecycle** functions of **Child** and **GrandChild** are executed.
 
 ```text
 Child myRecycle
@@ -931,23 +980,23 @@ export class Message {
 @Entry
 @Component
 struct Index {
-  @State switch: boolean = true;
+  @State changeChild: boolean = true;
 
   build() {
     Column() {
-      Button('Hello')
+      Button(this.changeChild ? 'recycle child' : 'reuse child')
+        .margin(10)
         .fontSize(30)
         .fontWeight(FontWeight.Bold)
         .onClick(() => {
-          this.switch = !this.switch;
+          this.changeChild = !this.changeChild;
         })
-      if (this.switch) {
+      if (this.changeChild) {
         // If only one reusable component is used, reuseId is optional.
-        Child({ message: new Message('Child') })
+        Child({ message: new Message('child') })
           .reuseId('Child')
       }
     }
-    .height('100%')
     .width('100%')
   }
 }
@@ -956,7 +1005,6 @@ struct Index {
 @Component
 struct Child {
   @State message: Message = new Message('AboutToReuse');
-  @State label: string = 'HelloWorld';
   @ComponentInit
   myInit(): void {
     registerObserver(UIUtils.getLifecycle(this));
@@ -1007,9 +1055,11 @@ export function unRegisterObserver(lifeCycle: CustomComponentLifecycle) {
 }
 ```
 
+![new-lifecycle-syn-6](./figures/new-lifecycle-syn-6.gif)
+
 The listener is deregistered in the function decorated by @ComponentDisappear. Therefore, the listener cannot listen to aboutToDisappear.
 
-Press the Hello button twice and close the program. The log information is as follows:
+Press the button twice and then close the program. The log output is as follows:
 
 ```text
 MyObserver aboutToAppear
@@ -1051,9 +1101,7 @@ import { SwiperExample } from './SwiperPage';
 @Component
 struct Index {
   @State message: string = 'Hello World';
-  controller: TabsController = new TabsController();
   @State show: boolean = false;
-  @State currentTabIndex: number = 0;
 
   build() {
     RelativeContainer() {
@@ -1186,38 +1234,41 @@ export struct SwiperExample {
   }
 }
 ```
-After the program is started, click the start button. Only the five nodes cached by swipe start to execute aboutToAppear and myAppear. The non-cached nodes do not trigger aboutToAppear and myAppear.
+
+![new-lifecycle-syn-7](./figures/new-lifecycle-syn-7.gif)
+
+After the program is started, press the **start** button. At this point, only the five nodes cached by **Swiper** begin to execute **aboutToAppear** and **myAppear**, while the non-cached nodes do not trigger **aboutToAppear** or **myAppear**.
 
 The log information is as follows:
 
 ```text
-SwiperPage:aboutToAppear 0
-SwiperPage:myAppear 0
-SwiperPage:aboutToAppear 11
-SwiperPage:myAppear 11
-SwiperPage:aboutToAppear 1
-SwiperPage:myAppear 1
-SwiperPage:aboutToAppear 10
-SwiperPage:myAppear 10
-SwiperPage:aboutToAppear 2
-SwiperPage:myAppear 2
+SwiperPage aboutToAppear 0
+SwiperPage myAppear 0
+SwiperPage aboutToAppear 11
+SwiperPage myAppear 11
+SwiperPage aboutToAppear 1
+SwiperPage myAppear 1
+SwiperPage aboutToAppear 10
+SwiperPage myAppear 10
+SwiperPage aboutToAppear 2
+SwiperPage myAppear 2
 ```
 
 When the program is closed, aboutToDisappear is normally triggered on the five cache nodes. However, aboutToAppear is forcibly triggered before aboutToDisappear is triggered on the non-cache nodes. Regardless of whether the node is a cache node, myDisappear does not trigger myAppear by mistake.
 
 ```text
-SwiperPage:myDisappear 0
-SwiperPage:aboutToDisappear 0
-SwiperPage:myDisappear 1
-SwiperPage:aboutToDisappear 1
-SwiperPage:myDisappear 2
-SwiperPage:aboutToDisappear 2
-SwiperPage:aboutToAppear 3
-SwiperPage:myDisappear 3
-SwiperPage:aboutToDisappear 3
-SwiperPage:aboutToAppear 4
-SwiperPage:myDisappear 4
-SwiperPage:aboutToDisappear 4
+SwiperPage myDisappear 0
+SwiperPage aboutToDisappear 0
+SwiperPage myDisappear 1
+SwiperPage aboutToDisappear 1
+SwiperPage myDisappear 2
+SwiperPage aboutToDisappear 2
+SwiperPage aboutToAppear 3
+SwiperPage myDisappear 3
+SwiperPage aboutToDisappear 3
+SwiperPage aboutToAppear 4
+SwiperPage myDisappear 4
+SwiperPage aboutToDisappear 4
 ...
 ```
 
@@ -1239,12 +1290,14 @@ struct ReusableTest {
   build() {
     Column() {
       // Click the button to switch flag1 and trigger the recycling or reuse of ReusableComp1 and ReusableComp2.
-      Button('a')
+      Button('change flag 1')
+        .margin(10)
         .onClick(() => {
           this.flag1 = !this.flag1;
         })
       // Click the button to switch flag2 and trigger the recycling or reuse of ReusableComp1 and ReusableComp3.
-      Button('b')
+      Button('change flag 2')
+        .margin(10)
         .onClick(() => {
           this.flag2 = !this.flag2;
         })
@@ -1255,6 +1308,7 @@ struct ReusableTest {
         ReusableComp1({ flag: false })
       }
     }
+    .width('100%')
   }
 }
 
@@ -1275,7 +1329,8 @@ struct ReusableComp1 {
 @Component
 struct ReusableComp2 {
   build() {
-    Text('A')
+    Text('ReusableComp2')
+      .margin(10)
   }
 }
 
@@ -1302,12 +1357,15 @@ struct ReusableComp3 {
   }
 
   build() {
-    Text('B')
+    Text('ReusableComp3')
+      .margin(10)
   }
 }
 ```
 
-Press the **a** button. ReusableComp2 enters the recycling state. Press the **b** button. ReusableComp3 is created for the first time. The log information is as follows:
+![new-lifecycle-syn-8](./figures/new-lifecycle-syn-8.gif)
+
+Press the **change flag 1** button. **ReusableComp2** enters the recycling state. Press the change flag 2 button. **ReusableComp3** is created for the first time. The log output is as follows:
 
 ```text
 ReusableComp3 aboutToReuse
@@ -1316,5 +1374,6 @@ ReusableComp3 myAppear
 ReusableComp3 myBuilt
 ```
 
-ReusableComp3 has never been created. However, after the b button is pressed, aboutToReuse of ReusableComp3 is called by mistake, and aboutToAppear and myBuilt of ReusableComp3 are called. However, myReuse is not called by mistake because myReuse is restricted by the state machine. When the component is not in the RECYCLED state, myReuse is not executed.
+**ReusableComp3** has never been created before. However, after the change flag 2 button is pressed, **aboutToReuse** of **ReusableComp3** is mistakenly called, while **aboutToAppear** and **myBuilt** of** ReusableComp3** are also called. In contrast, **myReuse** is not mistakenly called, because **myReuse** is constrained by the state machine: when the component is not in the **RECYCLED** state, **myReuse** is not executed.
+
 <!--no_check-->

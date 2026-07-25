@@ -1,12 +1,13 @@
 # \@Type Decorator: Marking the Types of the Class Property
 <!--Kit: ArkUI-->
 <!--Subsystem: ArkUI-->
-<!--Owner: @zzq212050299-->
-<!--Designer: @s10021109-->
+<!--Owner: @jiyujia926-->
+<!--Designer: @zhangboren-->
 <!--Tester: @TerryTsao-->
 <!--Adviser: @zhang_yixin13-->
+<!-- md-trans-meta sourceCommit=3efb4ba336409dd0731ba011e1e227786db57fa2 translatedAt=2026-07-22T02:09:56.120Z pushedAt=2026-07-23T10:40:23.373Z -->
 
-To avoid losing complex types of the properties when serializing classes, you can use the \@Type Decorator to decorate class.
+To prevent the loss of complex types of properties during class serialization, developers can use the [@Type](../../reference/apis-arkui/arkui-ts/ts-state-management-type.md#type) decorator to decorate class properties.
 
 \@Type is used to mark class properties. Used together with **PersistenceV2**, \@Type can prevent class loss during serialization. Before reading this topic, you are advised to read [PersistenceV2](./arkts-new-persistencev2.md).
 
@@ -31,9 +32,9 @@ To avoid losing complex types of the properties when serializing classes, you ca
 
 1. @Type can be used only in classes decorated with [\@ObservedV2](./arkts-new-observedV2-and-trace.md) and cannot be used in custom components.
 
-   <!-- @[DataModel](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkUISample/NewType/entry/src/main/ets/pages/DataModel.ets) -->
+   <!-- @[DataModel](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkUISample/NewType/entry/src/main/ets/pages/DataModel.ets) --> 
 
-   ```ts
+   ``` TypeScript
    class Sample {
      private data: number = 0;
    }
@@ -71,7 +72,7 @@ To avoid losing complex types of the properties when serializing classes, you ca
 
 ### Saving Data for Persistence
 
-<!-- @[NewType](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkUISample/NewType/entry/src/main/ets/pages/Index.ets) -->
+<!-- @[NewType](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkUISample/NewType/entry/src/main/ets/pages/Index.ets) --> 
 
 ``` TypeScript
 import { PersistenceV2, Type } from '@kit.ArkUI';
@@ -98,13 +99,17 @@ struct TestCase {
   build() {
     Column() {
       Text('childNumber value:' + this.sample.sampleChild?.childNumber)
+        .fontSize(30)
+        .margin(10)
         .onClick(() => {
           this.sample.sampleChild = new SampleChild();
           this.sample.sampleChild.childNumber = 2;
           PersistenceV2.save(Sample);
         })
-        .fontSize(30)
     }
+    .width('100%')
   }
 }
 ```
+
+![type-sync-0](./figures/type-sync-0.gif)

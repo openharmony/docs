@@ -1,16 +1,18 @@
 # \@AnimatableExtend Decorator: Defining Animatable Properties
+
 <!--Kit: ArkUI-->
 <!--Subsystem: ArkUI-->
 <!--Owner: @hehongyang3-->
 <!--Designer: @hehongyang3-->
 <!--Tester: @lxl007-->
 <!--Adviser: @zhang_yixin13-->
+<!-- md-trans-meta sourceCommit=3efb4ba336409dd0731ba011e1e227786db57fa2 translatedAt=2026-07-22T01:59:37.937Z pushedAt=2026-07-22T03:42:26.928Z -->
 
 The @AnimatableExtend decorator enables animation capabilities for normally non-animatable component properties. During animation execution, frame-by-frame callbacks are executed to change the values of non-animatable properties to allow them to achieve animation effects. Additionally, you can implement frame-by-frame layout effects by changing the values of animatable properties in the per-frame callback function.
 
-- Animatable property: A property is considered animatable if, when its method is called before the [animation](../arkts-animation.md) attribute, changing its value triggers the animation effect specified by **animation**. Examples include **height**, **width**, **backgroundColor**, **translate**, and **fontSize** (of the **Text** component).
+- Animatable attribute: If an attribute method is called before the [animation](../arkts-animation.md) attribute, changing the value of this attribute can trigger the animation effect of the **animation** attribute. Such an attribute is called an animatable attribute. Examples include [height](../../reference/apis-arkui/arkui-ts/ts-universal-attributes-size.md#height), [width](../../reference/apis-arkui/arkui-ts/ts-universal-attributes-size.md#width), [backgroundColor](../../reference/apis-arkui/arkui-ts/ts-universal-attributes-background.md#backgroundcolor), [translate](../../reference/apis-arkui/arkui-ts/ts-universal-attributes-transformation.md#translate), and the [fontSize](../../reference/apis-arkui/arkui-ts/ts-basic-components-text.md#fontsize) attribute of the **Text** component.
 
-- Non-animatable property: A property is non-animatable if, when its method is called before the **animation** attribute, changing its value does not trigger the animation effect specified by **animation**. For example, the **points** property of the **Polyline** component is a non-animatable.
+- Non-animatable attribute: If an attribute method is called before the **animation** attribute, changing the value of this attribute cannot trigger the animation effect of the animation attribute. Such an attribute is called a non-animatable attribute. An example is the [points](../../reference/apis-arkui/arkui-ts/ts-drawing-components-polyline.md#points) attribute of the [Polyline](../../reference/apis-arkui/arkui-ts/ts-drawing-components-polyline.md) component.
 
 >  **NOTE**
 >
@@ -20,9 +22,7 @@ The @AnimatableExtend decorator enables animation capabilities for normally non-
 
 ## How to Use
 
-
 ### Syntax
-
 
 ```ts
 @AnimatableExtend(UIComponentName) function functionName(value: typeName) { 
@@ -31,11 +31,14 @@ The @AnimatableExtend decorator enables animation capabilities for normally non-
 ```
 
 - \@AnimatableExtend can be defined only globally.
+
 - The parameter of the \@AnimatableExtend decorated function must be of the number type or a custom type that implements the **AnimatableArithmetic\<T\>** API.
+
 - The function body of an \@AnimatableExtend decorated function can only access attribute methods of the component type specified within the parentheses of @AnimatableExtend.
 
 ### Available APIs
-The **AnimatableArithmetic\<T\>** API defines the animation operation rules for non-number data types. To animate non-number data (such as arrays, structs, and colors), you need to implement the addition, subtraction, multiplication, and equality checking functions in the **AnimatableArithmetic\<T\>** API. This enables the data to participate in animation interpolation calculations and to detect whether the data has changed. that is, the non-number data is defined as the types that implement the **AnimatableArithmetic\<T\>** API.
+
+The **AnimatableArithmetic\<T\>** API defines the animation operation rules for non-number data types. To animate non-number data (such as arrays, structs, and colors), you need to implement the addition, subtraction, multiplication, and equality checking functions in the **AnimatableArithmetic\<T\>** API. This enables the data to participate in animation interpolation calculations and to detect whether the data has changed. That is, the non-number data is defined as the types that implement the **AnimatableArithmetic\<T\>** API.
 
 | Name| Input Parameter Type| Return Value Type| Description|
 | -------- | -------- |-------- |-------- |
@@ -48,12 +51,12 @@ The **AnimatableArithmetic\<T\>** API defines the animation operation rules for 
 
 The following example implements the frame-by-frame layout effects by changing the width of the **Text** component.
 
-
-<!-- @[animatable_extend_text](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkUISample/ComponentExtension/entry/src/main/ets/pages/AnimatableExtendDecorator/AnimatablePropertyText.ets) -->
+<!-- @[animatable_extend_text](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkUISample/ComponentExtension/entry/src/main/ets/pages/AnimatableExtendDecorator/AnimatablePropertyText.ets) -->  
 
 ``` TypeScript
 @AnimatableExtend(Text)
 function animatableWidth(width: number) {
+  // Write the width to the width attribute of the Text component in the frame-by-frame callback.
   .width(width)
 }
 
@@ -67,6 +70,7 @@ struct AnimatablePropertyText {
       Text('AnimatableProperty')
         .animatableWidth(this.textWidth)
         .animation({ duration: 2000, curve: Curve.Ease })
+      // Switch textWidth by clicking the button, triggering the Text component to update the width frame by frame and produce an animation effect.
       Button('Play')
         .onClick(() => {
           this.textWidth = this.textWidth == 80 ? 160 : 80;
@@ -79,9 +83,7 @@ struct AnimatablePropertyText {
 
 ![image](figures/AnimatableProperty.gif)
 
-
 The following example implements a polyline animation effect. 
-
 
 <!-- @[animatable_extend_example](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkUISample/ComponentExtension/entry/src/main/ets/pages/AnimatableExtendDecorator/AnimatablePropertyExample.ets) -->
 

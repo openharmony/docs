@@ -1,16 +1,16 @@
 # $$ Syntax: Implementing Two-Way Synchronization for Built-in Components
+
 <!--Kit: ArkUI--> 
 <!--Subsystem: ArkUI--> 
 <!--Owner: @Cuecuexiaoyu--> 
-<!--Designer: @lixingchi1--> 
+<!--Designer: @VictorS67--> 
 <!--Tester: @TerryTsao-->
 <!--Adviser: @zhang_yixin13-->
+<!-- md-trans-meta sourceCommit=c6d2a51ae0d4d741fa9801df0b2e84e58290f6c1 translatedAt=2026-07-24T01:21:33.185Z pushedAt=2026-07-24T03:22:51.807Z -->
 
 The **$$** operator provides a TypeScript variable by-reference to a built-in component so that the variable's value and the component's internal state are kept in sync.
 
-
 The specific meaning of "internal state" varies by component. For example, for the [TextInput](../../reference/apis-arkui/arkui-ts/ts-basic-components-textinput.md) component, it refers to the **text** parameter.
-
 
 ## Usage Rules
 
@@ -46,14 +46,13 @@ The specific meaning of "internal state" varies by component. For example, for t
   | [GridItem](../../reference/apis-arkui/arkui-ts/ts-container-griditem.md) | selected | 10 |
   | [ListItem](../../reference/apis-arkui/arkui-ts/ts-container-listitem.md) | selected | 10 |
 
-
 ## Example
 
-This example demonstrates two-way data binding using the **$$** operator with the **text** parameter of the [TextInput](../../reference/apis-arkui/arkui-ts/ts-basic-components-textinput.md) component.
+Take the **text** parameter of the [TextInput](../../reference/apis-arkui/arkui-ts/ts-basic-components-textinput.md) component as an example:
+
 <!-- @[sync_state_manager_$$](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkUISample/ParadigmStateManagement/entry/src/main/ets/pages/syncStateManager/SyncUsageExample.ets) -->
 
 ``` TypeScript
-// xxx.ets
 @Entry
 @Component
 struct TextInputExample {
@@ -63,6 +62,9 @@ struct TextInputExample {
   build() {
     Column({ space: 20 }) {
       Text(this.text)
+        .fontSize(20)
+        .margin(10)
+      // The $$ operator provides a reference to a TS variable for a system component, keeping the TS variable synchronized with the internal state of the system component.
       TextInput({ text: $$this.text, placeholder: 'input your word...', controller: this.controller })
         .placeholderColor(Color.Grey)
         .placeholderFont({ size: 14, weight: 400 })
