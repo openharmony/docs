@@ -47,13 +47,13 @@ terminateSelf(callback: AsyncCallback&lt;void&gt;): void
 
 > **说明：**
 >
-> 从API version 9 开始支持，从API version 10 开始废弃，建议使用[destroy](./js-apis-inputmethod-extension-context.md#inputmethodextensioncontextdestroy)替代。
+> 从API version 9 开始支持，从API version 10 开始废弃，建议使用[destroy](./js-apis-inputmethod-extension-context.md#destroy)替代。
 
 **模型约束：** 此接口仅可在Stage模型下使用。
 
-**系统能力**：SystemCapability.MiscServices.InputMethodFramework
+**系统能力：** SystemCapability.MiscServices.InputMethodFramework
 
-**系统接口**：此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
 **参数：**
 
@@ -74,7 +74,7 @@ class MyInputMethodExtensionAbility extends InputMethodExtensionAbility {
         console.error(`terminateSelf failed, error.code: ${error.code}, error.message: ${error.message}`);
         return;
       }
-      console.info('terminateSelf succeeded');
+      console.info('terminateSelf succeed');
     });
   }
 }
@@ -88,7 +88,7 @@ terminateSelf(): Promise&lt;void&gt;
 
 > **说明：**
 >
-> 从API version 9 开始支持，从API version 10 开始废弃，建议使用[destroy](./js-apis-inputmethod-extension-context.md#inputmethodextensioncontextdestroy-1)替代。
+> 从API version 9 开始支持，从API version 10 开始废弃，建议使用[destroy](./js-apis-inputmethod-extension-context.md#destroy)替代。
 
 **模型约束：** 此接口仅可在Stage模型下使用。
 
@@ -111,7 +111,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 class MyInputMethodExtensionAbility extends InputMethodExtensionAbility {
   onCreate() {
     this.context.terminateSelf().then(() => {
-      console.info('terminateSelf succeeded');
+      console.info('terminateSelf succeed');
     }).catch((error: BusinessError) => {
       console.error(`terminateSelf failed, error.code: ${error.code}, error.message: ${error.message}`);
     });
@@ -131,11 +131,11 @@ startAbilityWithAccount(want: Want, accountId: number, callback: AsyncCallback&l
 
 **模型约束：** 此接口仅可在Stage模型下使用。
 
-**需要权限**：ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS
+**需要权限：** ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS
 
-**系统能力**：SystemCapability.MiscServices.InputMethodFramework
+**系统能力：** SystemCapability.MiscServices.InputMethodFramework
 
-**系统接口**：此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
 **参数：**
 
@@ -189,7 +189,7 @@ class MyInputMethodExtensionAbility extends InputMethodExtensionAbility {
         console.error(`startAbilityWithAccount failed, error.code: ${error.code}, error.message: ${error.message}`);
         return;
       }
-      console.info('startAbilityWithAccount succeeded');
+      console.info('startAbilityWithAccount succeed');
     });
   }
 }
@@ -207,11 +207,11 @@ startAbilityWithAccount(want: Want, accountId: number): Promise&lt;void&gt;
 
 **模型约束：** 此接口仅可在Stage模型下使用。
 
-**需要权限**：ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS
+**需要权限：** ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS
 
-**系统能力**：SystemCapability.MiscServices.InputMethodFramework
+**系统能力：** SystemCapability.MiscServices.InputMethodFramework
 
-**系统接口**：此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
 **参数：**
 
@@ -266,7 +266,7 @@ class MyInputMethodExtensionAbility extends InputMethodExtensionAbility {
     };
     let accountId = 100;
     this.context.startAbilityWithAccount(want, accountId).then(() => {
-      console.info('startAbilityWithAccount succeeded');
+      console.info('startAbilityWithAccount succeed');
     }).catch((error: BusinessError) => {
       console.error(`startAbilityWithAccount failed, error.code: ${error.code}, error.message: ${error.message}`);
     });
@@ -286,9 +286,9 @@ connectAbility(want: Want, options: ConnectOptions): number
 
 **模型约束：** 此接口仅可在Stage模型下使用。
 
-**系统能力**：SystemCapability.MiscServices.InputMethodFramework
+**系统能力：** SystemCapability.MiscServices.InputMethodFramework
 
-**系统接口**：此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
 **参数：**
 
@@ -307,19 +307,19 @@ connectAbility(want: Want, options: ConnectOptions): number
 
 以下错误码的详细介绍请参见[输入法框架错误码](errorcode-inputmethod-framework.md)，[元能力子系统错误码](../apis-ability-kit/errorcode-ability.md)，[通用错误码说明文档](../errorcode-universal.md)。
 
-| 错误码ID | 错误信息 |
-| ------- | -------- |
-| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
-| 16000001 | The specified ability does not exist. |
-| 16000005 | The specified process does not have the permission. |
-| 16000011 | The context does not exist. |
-| 16000050 | Internal error. Possible causes: 1. Connect to system service failed. 2. System service failed to communicate with dependency module. |
-| 16000002 | Incorrect ability type.<br>适用版本：10+ |
-| 16000004 | Cannot start an invisible component.<br>适用版本：10+ |
-| 16000006 | Cross-user operations are not allowed.<br>适用版本：10+ |
-| 16000008 | The crowdtesting application expires.<br>适用版本：10+ |
-| 16000053 | The ability is not on the top of the UI.<br>适用版本：10+ |
-| 16000055 | Installation-free timed out.<br>适用版本：10+ |
+| 错误码ID | 错误信息                                                |
+| -------- | ------------------------------------------------------- |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+| 16000001 | The specified ability does not exist.                   |
+| 16000002 | Incorrect ability type.<br>适用版本：10+                                 |
+| 16000004 | Cannot start an invisible component.<br>适用版本：10+                    |
+| 16000005 | The specified process does not have the permission.     |
+| 16000006 | Cross-user operations are not allowed.<br>适用版本：10+                  |
+| 16000008 | The crowdtesting application expires.<br>适用版本：10+                   |
+| 16000011 | The context does not exist.                             |
+| 16000050 | Internal error. Possible causes: 1. Connect to system service failed. 2. System service failed to communicate with dependency module.                                         |
+| 16000053 | The ability is not on the top of the UI.<br>适用版本：10+                |
+| 16000055 | Installation-free timed out.<br>适用版本：10+                           |
 
 **示例：**
 
@@ -372,9 +372,9 @@ connectAbilityWithAccount(want: Want, accountId: number): number
 
 **模型约束：** 此接口仅可在Stage模型下使用。
 
-**需要权限**：ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS
+**需要权限：** ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS
 
-**系统能力**：SystemCapability.MiscServices.InputMethodFramework
+**系统能力：** SystemCapability.MiscServices.InputMethodFramework
 
 **系统接口**：此接口为系统接口。
 
@@ -395,21 +395,21 @@ connectAbilityWithAccount(want: Want, accountId: number): number
 
 以下错误码的详细介绍请参见[输入法框架错误码](errorcode-inputmethod-framework.md)，[元能力子系统错误码](../apis-ability-kit/errorcode-ability.md)，[通用错误码说明文档](../errorcode-universal.md)。
 
-| 错误码ID | 错误信息 |
-| ------- | -------- |
-| 201 | The application does not have permission to call the interface. |
-| 202 | not system application. |
-| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
-| 16000001 | The specified ability does not exist. |
-| 16000005 | The specified process does not have the permission. |
-| 16000011 | The context does not exist. |
-| 16000050 | Internal error. Possible causes: 1. Connect to system service failed. 2. System service failed to communicate with dependency module. |
-| 16000002 | Incorrect ability type.<br>适用版本：10+ |
-| 16000004 | Cannot start an invisible component.<br>适用版本：10+ |
-| 16000006 | Cross-user operations are not allowed.<br>适用版本：10+ |
-| 16000008 | The crowdtesting application expires.<br>适用版本：10+ |
-| 16000053 | The ability is not on the top of the UI.<br>适用版本：10+ |
-| 16000055 | Installation-free timed out.<br>适用版本：10+ |
+| 错误码ID | 错误信息                                                |
+| -------- | ------------------------------------------------------- |
+| 201      | The application does not have permission to call the interface. |
+| 202      | not system application. |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+| 16000001 | The specified ability does not exist.                   |
+| 16000002 | Incorrect ability type.<br>适用版本：10+                                 |
+| 16000004 | Cannot start an invisible component.<br>适用版本：10+                    |
+| 16000005 | The specified process does not have the permission.     |
+| 16000006 | Cross-user operations are not allowed.<br>适用版本：10+                  |
+| 16000008 | The crowdtesting application expires.<br>适用版本：10+                   |
+| 16000011 | The context does not exist.                             |
+| 16000050 | Internal error. Possible causes: 1. Connect to system service failed. 2. System service failed to communicate with dependency module.                                         |
+| 16000053 | The ability is not on the top of the UI. <br>适用版本：10+               |
+| 16000055 | Installation-free timed out.<br>适用版本：10+                            |
 
 **示例：**
 
@@ -451,7 +451,7 @@ connectServiceExtensionAbility(want: Want, options: ConnectOptions): number
 
 **系统能力**：SystemCapability.MiscServices.InputMethodFramework
 
-**系统接口**：此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
 **参数：**
 
@@ -470,19 +470,19 @@ connectServiceExtensionAbility(want: Want, options: ConnectOptions): number
 
 以下错误码的详细介绍请参见[输入法框架错误码](errorcode-inputmethod-framework.md)，[元能力子系统错误码](../apis-ability-kit/errorcode-ability.md)，[通用错误码说明文档](../errorcode-universal.md)。
 
-| 错误码ID | 错误信息 |
-| ------- | -------- |
-| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
-| 16000001 | The specified ability does not exist. |
-| 16000005 | The specified process does not have the permission. |
-| 16000011 | The context does not exist. |
-| 16000050 | Internal error. Possible causes: 1. Connect to system service failed. 2. System service failed to communicate with dependency module. |
-| 16000002 | Incorrect ability type.<br>适用版本：10+ |
-| 16000004 | Cannot start an invisible component.<br>适用版本：10+ |
-| 16000006 | Cross-user operations are not allowed.<br>适用版本：10+ |
-| 16000008 | The crowdtesting application expires.<br>适用版本：10+ |
-| 16000053 | The ability is not on the top of the UI.<br>适用版本：10+ |
-| 16000055 | Installation-free timed out.<br>适用版本：10+ |
+| 错误码ID | 错误信息                                                |
+| -------- | ------------------------------------------------------- |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+| 16000001 | The specified ability does not exist.                   |
+| 16000002 | Incorrect ability type.<br>适用版本：10+                                 |
+| 16000004 | Cannot start an invisible component.<br>适用版本：10+                    |
+| 16000005 | The specified process does not have the permission.     |
+| 16000006 | Cross-user operations are not allowed.<br>适用版本：10+                  |
+| 16000008 | The crowdtesting application expires.<br>适用版本：10+                   |
+| 16000011 | The context does not exist.                             |
+| 16000050 | Internal error. Possible causes: 1. Connect to system service failed. 2. System service failed to communicate with dependency module.                                         |
+| 16000053 | The ability is not on the top of the UI.<br>适用版本：10+                |
+| 16000055 | Installation-free timed out.<br>适用版本：10+                           |
 
 **示例：**
 
@@ -535,9 +535,9 @@ disconnectAbility(connection: number, callback: AsyncCallback&lt;void&gt;): void
 
 **模型约束：** 此接口仅可在Stage模型下使用。
 
-**系统能力**：SystemCapability.MiscServices.InputMethodFramework
+**系统能力：** SystemCapability.MiscServices.InputMethodFramework
 
-**系统接口**：此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
 **参数：**
 
@@ -575,7 +575,7 @@ class MyInputMethodExtensionAbility extends InputMethodExtensionAbility {
           console.error(`disconnectAbility failed, error.code: ${error.code}, error.message: ${error.message}`);
           return;
         }
-        console.info('disconnectAbility succeeded');
+        console.info('disconnectAbility succeed');
       });
     } catch (paramError) {
       commRemote = null;
@@ -593,9 +593,9 @@ disconnectAbility(connection: number): Promise&lt;void&gt;
 
 **模型约束：** 此接口仅可在Stage模型下使用。
 
-**系统能力**：SystemCapability.MiscServices.InputMethodFramework
+**系统能力：** SystemCapability.MiscServices.InputMethodFramework
 
-**系统接口**：此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
 **参数：**
 
@@ -633,7 +633,7 @@ class MyInputMethodExtensionAbility extends InputMethodExtensionAbility {
     let connection = 1;
     this.context.disconnectAbility(connection).then(() => {
       commRemote = null;
-      console.info('disconnectAbility succeeded');
+      console.info('disconnectAbility succeed');
     }).catch((error: BusinessError) => {
       commRemote = null;
       console.error(`disconnectAbility failed, error.code: ${error.code}, error.message: ${error.message}`);
@@ -654,9 +654,9 @@ disconnectServiceExtensionAbility(connection: number, callback: AsyncCallback&lt
 
 **模型约束：** 此接口仅可在Stage模型下使用。
 
-**系统能力**：SystemCapability.MiscServices.InputMethodFramework
+**系统能力：** SystemCapability.MiscServices.InputMethodFramework
 
-**系统接口**：此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
 **参数：**
 
@@ -694,7 +694,7 @@ class MyInputMethodExtensionAbility extends InputMethodExtensionAbility {
           console.error(`disconnectServiceExtensionAbility failed, error.code: ${error.code}, error.message: ${error.message}`);
           return;
         }
-        console.info('disconnectServiceExtensionAbility succeeded');
+        console.info('disconnectServiceExtensionAbility succeed');
       });
     } catch (paramError) {
       commRemote = null;
@@ -716,9 +716,9 @@ disconnectServiceExtensionAbility(connection: number): Promise&lt;void&gt;
 
 **模型约束：** 此接口仅可在Stage模型下使用。
 
-**系统能力**：SystemCapability.MiscServices.InputMethodFramework
+**系统能力：** SystemCapability.MiscServices.InputMethodFramework
 
-**系统接口**：此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
 **参数：**
 
@@ -756,7 +756,7 @@ class MyInputMethodExtensionAbility extends InputMethodExtensionAbility {
     let connection = 1;
     this.context.disconnectServiceExtensionAbility(connection).then(() => {
       commRemote = null;
-      console.info('disconnectServiceExtensionAbility succeeded');
+      console.info('disconnectServiceExtensionAbility succeed');
     }).catch((error: BusinessError) => {
       commRemote = null;
       console.error(`disconnectServiceExtensionAbility failed, error.code: ${error.code}, error.message: ${error.message}`);

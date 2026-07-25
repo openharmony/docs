@@ -6,11 +6,11 @@
 <!--Tester: @murphy84-->
 <!--Adviser: @zhang_yixin13-->
 
-本模块为系统输入法应用提供管理能力，包括创建软键盘窗口、插入/删除字符、选中文本、监听物理键盘按键事件等。
+本模块为系统输入法应用提供管理能力，包括创建软键盘窗口、插入/删除字符、选中文本、监听物理键盘按键事件等。适用于需要自定义输入法交互的场景，能提升输入体验。
 
 > **说明：**
 >
-> 本模块首批接口从API version 10开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
+> 本模块首批接口从API version 10开始支持。后续版本的新增接口，采用上角标标记接口起始版本。
 
 ## 导入模块
 
@@ -32,8 +32,8 @@ type SizeUpdateCallback = (size: window.Size, keyboardArea: KeyboardArea) => voi
 
 | 参数名       | 类型                                                 | 必填 | 说明                             |
 | ------------ | ---------------------------------------------------- | ---- | -------------------------------- |
-| size         | [window.Size](../apis-arkui/arkts-apis-window-i.md#size7) | 是   | 当前面板大小。                   |
-| keyboardArea | [KeyboardArea](./js-apis-inputmethodengine.md#keyboardarea15)    | 是   | 当前面板中可作为键盘区域的大小。 |
+| size         | [window.Size](../apis-arkui/arkts-apis-window-i.md#size7) | 是   | 当前面板大小，包含宽度和高度。                   |
+| keyboardArea | [KeyboardArea](./js-apis-inputmethodengine.md#keyboardarea15)    | 是   | 当前面板的键盘区域大小。 |
 
 ## Panel<sup>10+</sup>
 
@@ -43,11 +43,17 @@ type SizeUpdateCallback = (size: window.Size, keyboardArea: KeyboardArea) => voi
 
 on(type: 'sizeUpdate', callback: SizeUpdateCallback): void
 
-监听当前面板大小变化。使用callback异步回调。
+通过Panel实例监听当前面板大小变化，在变化发生时通过callback异步回调。
+
+**返回值：**
+
+| 类型 | 说明 |
+| --- | --- |
+| void | 无返回值，用于异步注册监听当前面板大小变化的事件 |
 
 > **说明:**
 >
-> 仅用于SOFT_KEYBOARD类型，状态为FLG_FIXED或FLG_FLOATING的面板。输入法通过[adjustPanelRect](./js-apis-inputmethodengine.md#adjustpanelrect15)等接口对面板大小进行调节时，系统会根据一定规则校验计算出最终的数值（例如：超出屏幕等场景）。输入法应用可通过该回调获取的真实面板大小，完成最终的面板布局刷新。
+> 仅用于SOFT_KEYBOARD类型，状态为FLG_FIXED或FLG_FLOATING的面板。输入法通过[adjustPanelRect](./js-apis-inputmethodengine.md#adjustpanelrect15)等接口对面板大小进行调节时，系统会根据一定规则校验计算出最终的数值（例如：超出屏幕等场景）。输入法应用可通过该回调获取最终的面板大小，完成最终的面板布局刷新。
 
 **系统能力：** SystemCapability.MiscServices.InputMethodFramework
 
@@ -57,15 +63,17 @@ on(type: 'sizeUpdate', callback: SizeUpdateCallback): void
 
 | 参数名   | 类型                                        | 必填 | 说明                                                   |
 | -------- | ------------------------------------------- | ---- | ------------------------------------------------------ |
-| type     | string                                      | 是   | 监听当前面板的大小是否产生变化，固定值为'sizeUpdate'。 |
-| callback | [SizeUpdateCallback](#sizeupdatecallback14) | 是   | 回调函数。返回当前软键盘面板的大小，包含宽度和高度值。 |
+| type     | string                                      | 是   | 监听当前面板的大小是否产生变化，固定取值为'sizeUpdate'。 |
+| callback | [SizeUpdateCallback](#sizeupdatecallback14) | 是   | 面板大小变化时的回调，参数包含当前软键盘面板的宽度和高度。 |
 
 **示例：**
 
 ```ts
 import { window } from '@kit.ArkUI';
 
+// 监听面板大小变化
 panel.on('sizeUpdate', (windowSize: window.Size, keyboardArea: inputMethodEngine.KeyboardArea) => {
+  // 打印面板大小和键盘区域信息
   console.info(`panel size changed, windowSize: ${windowSize.width}, ${windowSize.height}, ` +
     `keyboardArea: ${keyboardArea.top}, ${keyboardArea.bottom}, ${keyboardArea.left}, ${keyboardArea.right}`);
 });
@@ -75,11 +83,17 @@ panel.on('sizeUpdate', (windowSize: window.Size, keyboardArea: inputMethodEngine
 
 off(type: 'sizeUpdate', callback?: SizeUpdateCallback): void
 
-取消监听当前面板大小变化。使用callback异步回调。
+通过Panel实例取消监听当前面板大小变化，停止callback异步回调。
+
+**返回值：**
+
+| 类型 | 说明 |
+| --- | --- |
+| void | 无返回值，用于异步取消监听当前面板大小变化的事件 |
 
 > **说明:**
 >
-> 仅用于SOFT_KEYBOARD类型，状态为FLG_FIXED或FLG_FLOATING的面板。输入法通过[adjustPanelRect](./js-apis-inputmethodengine.md#adjustpanelrect15)等接口对面板大小进行调节时，系统会根据一定规则校验计算出最终的数值（例如：超出屏幕等场景）。输入法应用可通过该回调获取的真实面板大小，完成最终的面板布局刷新。
+> 仅用于SOFT_KEYBOARD类型，状态为FLG_FIXED或FLG_FLOATING的面板。
 
 **系统能力：** SystemCapability.MiscServices.InputMethodFramework
 
@@ -89,15 +103,17 @@ off(type: 'sizeUpdate', callback?: SizeUpdateCallback): void
 
 | 参数名   | 类型                                        | 必填 | 说明                                                     |
 | -------- | ------------------------------------------- | ---- | -------------------------------------------------------- |
-| type     | string                                      | 是   | 监听当前面板的大小是否产生变化，固定取值为'sizeUpdate'。 |
-| callback | [SizeUpdateCallback](#sizeupdatecallback14) | 否   | 回调函数。返回当前软键盘面板的大小，包含宽度和高度值。   |
+| type     | string                                      | 是   | 取消监听当前面板的大小是否产生变化，固定值为'sizeUpdate'。 |
+| callback | [SizeUpdateCallback](#sizeupdatecallback14) | 否   | 回调函数。用于指定要取消监听的回调函数，如果不填则取消所有sizeUpdate监听。 |
 
 **示例：**
 
 ```ts
 import { window } from '@kit.ArkUI';
 
-panel.off('sizeUpdate', (windowSize: window.Size, keyboardArea: inputMethodEngine.KeyboardArea) => {
+// 取消监听面板大小变化
+panel.off('sizeUpdate', (windowSize: window.Size, _keyboardArea: inputMethodEngine.KeyboardArea) => {
+  // 打印面板宽度、高度信息
   console.info(`panel size changed, width: ${windowSize.width}, height: ${windowSize.height}`);
 });
 ```
@@ -106,7 +122,13 @@ panel.off('sizeUpdate', (windowSize: window.Size, keyboardArea: inputMethodEngin
 
 setShadow(radius: number, color: string, offsetX: number, offsetY: number): void
 
-设置输入法窗口阴影效果。
+通过Panel实例设置输入法窗口阴影效果。
+
+**返回值：**
+
+| 类型 | 说明 |
+| --- | --- |
+| void | 无返回值，用于设置输入法窗口阴影效果 |
 
 > **说明:**
 >
@@ -120,10 +142,10 @@ setShadow(radius: number, color: string, offsetX: number, offsetY: number): void
 
 | 参数名  | 类型   | 必填 | 说明                                                         |
 | ------- | ------ | ---- | ------------------------------------------------------------ |
-| radius  | number | 是   | 表示窗口边缘阴影的模糊半径。该参数为浮点数，单位为px，取值范围为[0.0, +∞)，取值为0.0时表示关闭窗口边缘阴影。 |
-| color   | string | 是   | 表示窗口边缘阴影的颜色，为十六进制RGB或ARGB颜色，不区分大小写，例如`#000000`或`#FF000000`。 |
-| offsetX | number | 是   | 表示窗口边缘阴影的X轴的偏移量。该参数为浮点数，单位为px。    |
-| offsetY | number | 是   | 表示窗口边缘阴影的Y轴的偏移量。该参数为浮点数，单位为px。    |
+| radius  | number | 是   | 窗口边缘阴影的模糊半径，单位px，取值范围[0.0, +∞)，0.0时关闭窗口边缘阴影。 |
+| color   | string | 是   | 窗口边缘阴影的颜色，十六进制RGB或ARGB格式，不区分大小写，例如`#000000`或`#FF000000`。 |
+| offsetX | number | 是   | 窗口边缘阴影X轴的偏移量，单位px。正值向右偏移，负值向左偏移。 |
+| offsetY | number | 是   | 窗口边缘阴影Y轴的偏移量，单位px。正值向下偏移，负值向上偏移。 |
 
 **错误码：**
 
@@ -138,6 +160,7 @@ setShadow(radius: number, color: string, offsetX: number, offsetY: number): void
 **示例：**
 
 ```ts
+// 设置输入法窗口阴影效果，半径20px，颜色黑色，X/Y轴偏移量均为20px
 panel.setShadow(20, '#000000', 20, 20);
 ```
 ## FluidLightMode<sup>20+</sup>
@@ -151,7 +174,7 @@ panel.setShadow(20, '#000000', 20, 20);
 | 名称         | 值 | 说明               |
 | ------------ | -- | ------------------ |
 | NONE | 0 | 不使用流光模式。 |
-| BACKGROUND_FLUID_LIGHT  | 1 | 开启背景流光模式。此时系统面板会变为透明，流光效果需要由编辑框宿主应用实现。 |
+| BACKGROUND_FLUID_LIGHT  | 1 | 开启背景流光模式。系统面板变为透明，流光效果由编辑框宿主应用实现。 |
 
 ## EditorAttribute<sup>20+</sup>
 
@@ -163,7 +186,7 @@ panel.setShadow(20, '#000000', 20, 20);
 
 | 名称         | 类型 | 只读 | 可选 | 说明               |
 | ------------ | -------- | ---- | ---- | ------------------ |
-| fluidLightMode | [FluidLightMode](#fluidlightmode20) | 是 | 是 | 流光模式。如果没有设置或设置非法值，默认不使用流光模式。<br>该属性仅系统应用可以使用。|
+| fluidLightMode | [FluidLightMode](#fluidlightmode20) | 否 | 是 | 流光模式。未设置或设置非法值时，默认不使用流光模式。<br>该属性仅系统应用可以使用。|
 
 ## ImmersiveEffect<sup>20+</sup>
 
@@ -175,5 +198,5 @@ panel.setShadow(20, '#000000', 20, 20);
 
 | 名称   | 类型                                  | 只读 | 可选 | 说明           |
 | ------ | ------------------------------------ | ---- | ---- | -------------- |
-| fluidLightMode | [FluidLightMode](#fluidlightmode20) | 否   | 是   | 流光模式，如果不填充，则默认为NONE。<br>该属性仅系统应用可以使用。 |
+| fluidLightMode | [FluidLightMode](#fluidlightmode20) | 否   | 是   | 流光模式，未填充时默认为NONE。<br>该属性仅系统应用可以使用。 |
 <!--no_check-->
