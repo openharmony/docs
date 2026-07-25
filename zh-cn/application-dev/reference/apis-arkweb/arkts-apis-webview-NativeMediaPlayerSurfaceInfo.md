@@ -22,5 +22,5 @@ NativeMediaPlayerSurfaceInfo 使用[enableNativeMediaPlayer](./arkts-basic-compo
 
 | 名称 | 类型 | 只读 | 可选  | 说明 |
 |------|------|------|------|------|
-| id<sup>12+</sup> | string | 否 | 否 | surface 的 id，用于同层渲染的 NativeImage 的 surfaceId。<br>详见[NativeEmbedDataInfo](./arkts-basic-components-web-i.md#nativeembeddatainfo11)。 |
-| rect<sup>12+</sup> | [RectEvent](./arkts-apis-webview-i.md#rectevent12) | 否 | 否 | surface 的位置信息，用于指定同层渲染时 surface 的显示位置和尺寸。 |
+| id<sup>12+</sup> | string | 否 | 否 | surface的id，用于同层渲染的NativeImage的surfaceId。<br>详见[NativeEmbedDataInfo](./arkts-basic-components-web-i.md#nativeembeddatainfo11)。 |
+| rect<sup>12+</sup> | [RectEvent](./arkts-apis-webview-i.md#rectevent12) | 否 | 否 | surface的位置信息，用于指定同层渲染时surface的显示位置和尺寸。 |
