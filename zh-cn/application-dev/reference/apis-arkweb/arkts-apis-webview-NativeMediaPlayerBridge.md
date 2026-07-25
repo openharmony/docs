@@ -6,7 +6,7 @@
 <!--Tester: @ghiker-->
 <!--Adviser: @HelloShuo-->
 
-NativeMediaPlayerBridge 是[CreateNativeMediaPlayerCallback](./arkts-apis-webview-t.md#createnativemediaplayercallback12)回调函数的返回值类型，是接管网页媒体的播放器和 ArkWeb 内核之间的一个接口类。ArkWeb 内核通过该接口类的实例对象控制应用创建的用于接管网页媒体的播放器。该接口允许应用使用自定义的媒体播放器接管网页中的媒体内容播放，同时，该接口还支持播放器的挂起和恢复机制。
+NativeMediaPlayerBridge是[CreateNativeMediaPlayerCallback](./arkts-apis-webview-t.md#createnativemediaplayercallback12)回调函数的返回值类型，是接管网页媒体的播放器和ArkWeb内核之间的一个接口类。ArkWeb内核通过该接口类的实例对象控制应用创建的用于接管网页媒体的播放器。该接口允许应用使用自定义的媒体播放器接管网页中的媒体内容播放，同时，该接口还支持播放器的挂起和恢复机制。
 
 > **说明：**
 >
@@ -20,7 +20,7 @@ NativeMediaPlayerBridge 是[CreateNativeMediaPlayerCallback](./arkts-apis-webvie
 
 updateRect(x: number, y: number, width: number, height: number): void
 
-向应用通知 surface 位置信息。当网页布局变化、页面滚动或播放区域发生改变时由 ArkWeb 内核回调此方法，应用需据此更新原生播放器渲染表面的位置和大小。
+向应用通知surface位置信息。当网页布局变化、页面滚动或播放区域发生改变时由ArkWeb内核回调此方法，应用需据此更新原生播放器渲染表面的位置和大小。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -193,7 +193,7 @@ suspendPlayer?(type: SuspendType): void
 
 | 参数名 | 类型 | 必填 | 说明 |
 |--------|------|------|------|
-| type | [SuspendType](./arkts-apis-webview-e.md#suspendtype12) | 是 | 播放器挂起类型，用于指定播放器挂起的方式。不同 SuspendType 取值对应不同的挂起场景。|
+| type | [SuspendType](./arkts-apis-webview-e.md#suspendtype12) | 是 | 播放器挂起类型，用于指定播放器挂起的方式。不同SuspendType取值对应不同的挂起场景。|
 
 **示例：**
 
