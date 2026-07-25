@@ -6250,7 +6250,7 @@ export default class EntryAbility extends UIAbility {
     windowStage.loadContent('pages/page2', (err: BusinessError) => {
       let errCode: number = err.code;
       if (errCode) {
-        console.error('Failed to load the content. Cause: %{public}s', JSON.stringify(err));
+        console.error(`Failed to load the content. Cause code: ${err.code}, message: ${err.message}`);
         return;
       }
       console.info('Succeeded in loading the content.');
