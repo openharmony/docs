@@ -19,7 +19,7 @@
    import { photoAccessHelper } from '@kit.MediaLibraryKit';
    ```
 
-2. 创建图片-音频类型文件选择选项实例。
+2. 创建图片-视频类型文件选择选项实例。
 
    <!-- @[PickerMediaLibrary_createOptions](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/Media/Picker/PickerMediaLibrarySample/entry/src/main/ets/pages/Index.ets) -->
    
