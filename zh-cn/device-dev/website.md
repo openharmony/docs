@@ -507,7 +507,7 @@
   - [Docker编译环境](get-code/gettools-acquire.md)
   - [IDE集成开发环境](get-code/gettools-ide.md)
 - 示例教程
-  - [Demo示例](https://growing.openharmony.cn/mainPlay/sample)
+  - [Demo示例](https://growing.openharmony.cn/mainPlay/sample/)
   - [Codelabs](https://gitcode.com/openharmony/codelabs/blob/master/README.md) 
 - 参考
   - 常见问题
