@@ -124,7 +124,7 @@ struct OverlayExample {
 | 名称 | 类型 | 只读 | 可选 | 说明 |
 | -------- | -------- | -------- |--------| -------- |
 | levelOrder | [LevelOrder](js-apis-promptAction.md#levelorder18) | 否 | 是 | 浮层的显示顺序。<br>**说明：**<br>- 默认值：LevelOrder.clamp(0) |
-| levelMode | [LevelMode](js-apis-promptAction.md#levelmode15枚举说明) | 否 | 是 | 浮层的显示模式。<br>**说明：**<br>- 默认值：LevelMode.OVERLAY |
+| levelMode | [LevelMode](js-apis-promptAction.md#levelmode15) | 否 | 是 | 浮层的显示模式。<br>**说明：**<br>- 默认值：LevelMode.OVERLAY |
 | levelUniqueId | number | 否 | 是 | 浮层需要显示的层级下的节点uniqueId，uniqueId可通过[getUniqueId](js-apis-arkui-frameNode.md#getuniqueid12)接口获取。取值范围为大于等于0的数字，当且仅当levelMode设置为LevelMode.EMBEDDED时生效。 |
 
 ## addComponentContent<sup>12+</sup>
