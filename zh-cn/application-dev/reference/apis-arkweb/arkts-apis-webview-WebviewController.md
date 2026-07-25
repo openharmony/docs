@@ -10870,9 +10870,9 @@ pauseMicrophone(): void
 
 > **说明：**
 >
-> 与 resumeMicrophone 和 stopMicrophone 的区别：
+> 与resumeMicrophone和stopMicrophone的区别：
 >
-> pauseMicrophone 仅暂停麦克风捕获，可通过 resumeMicrophone 恢复；stopMicrophone 会停止捕获并释放资源。
+> pauseMicrophone仅暂停麦克风捕获，可通过resumeMicrophone恢复；stopMicrophone会停止捕获并释放资源。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
