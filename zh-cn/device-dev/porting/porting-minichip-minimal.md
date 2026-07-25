@@ -246,8 +246,8 @@ HCTEST为OpenHarmony兼容性测试框架，提供基本接口的测试验证能
 
 | Feature名 | 说明 | 默认值 | 小型化建议值 |
 | -------- | -------- | -------- | -------- |
-| hctest_rodata_opt | 是否开启测试套描述放.rodata | false | true |
-| xts_overlay | 是否开启最小集测试.bss共享同一VMA | false | true |
+| hctest_rodata_opt | 是否开启测试套件描述放在Flash(.rodata)减少RAM占用 | false | true |
+| xts_overlay | 是否开启多个测试模块的.bss复用同一块overlay区域 | false | true |
 | hctest_task_stack_size | 配置测试任务栈大小 | 6144 | 2048 |
 | hctest_task_queue_size | 配置测试任务队列大小 | 20 | 1 |
 | hctest_task_type | 配置测试任务类型 | `SINGLE_TASK` | `SHARED_TASK` |
@@ -392,8 +392,8 @@ OVERLAY 块中的 .a 文件名格式为 *libmodule_\<ModuleName\>.a，与 GN 编
 
 | Feature | 编译宏 | 作用 |
 | -------- | -------- | -------- |
-| xts_overlay | XTS_OVERLAY_ENABLE | 5 个测试模块 .bss 复用同一 VMA（overlay），省 BSS |
-| hctest_rodata_opt | HCTEST_RODATA_OPT | 测试套描述 放 Flash(.rodata) + xts 跑独立线程 |
+| xts_overlay | XTS_OVERLAY_ENABLE | 多个测试模块的.bss复用同一块overlay区域，节省BSS |
+| hctest_rodata_opt | HCTEST_RODATA_OPT | 测试套件描述放在 Flash(.rodata) 减少RAM占用。使能后xts跑在独立线程 |
 | （派生）任一开启 | HCTEST_NEW_RUNNER | 切换xts测试入口 + .xts_init 延迟注册机制 |
 
 > **说明：**
