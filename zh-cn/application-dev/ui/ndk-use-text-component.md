@@ -172,7 +172,7 @@ Manager::nodeAPI_->setAttribute(text3, NODE_TEXT_WORD_BREAK, &wordBreakItem);
 
 从API version 22开始，Text组件支持使用倍数模式设置行高。
 
-**表5** 行高属性
+**表4** 行高属性
 
 | 属性 | 说明 |
 |------|------|
@@ -202,7 +202,7 @@ Manager::nodeAPI_->setAttribute(text3, NODE_TEXT_WORD_BREAK, &wordBreakItem);
 
 通过如下属性设置文本溢出时的省略模式。
 
-**表6** 文本省略属性
+**表5** 文本省略属性
 
 | 属性 | 说明 |
 |------|------|
@@ -233,7 +233,7 @@ Manager::nodeAPI_->setAttribute(text20, NODE_TEXT_ELLIPSIS_MODE, &ellipsisModeIt
 
 通过如下属性设置每行结尾空格是否优化。从API version 20开始，Text组件支持设置每行结尾空格是否优化处理。
 
-**表7** 每行结尾空格处理属性
+**表6** 每行结尾空格处理属性
 
 | 属性 | 说明 |
 |------|------|
@@ -251,7 +251,7 @@ Manager::nodeAPI_->setAttribute(text14, NODE_TEXT_OPTIMIZE_TRAILING_SPACE, &opti
 
 通过如下属性设置首行缩进和行首标点压缩。从API version 23开始，Text组件支持设置行首标点压缩。
 
-**表8** 首行缩进和标点压缩属性
+**表7** 首行缩进和标点压缩属性
 
 | 属性 | 说明 |
 |------|------|
@@ -280,7 +280,7 @@ Manager::nodeAPI_->setAttribute(text14, NODE_TEXT_OPTIMIZE_TRAILING_SPACE, &opti
 
 通过如下属性设置文本尾部缩进。从API版本26.0.0开始，Text组件支持设置文本尾部缩进。
 
-**表9** 文本尾部缩进属性
+**表8** 文本尾部缩进属性
 
 | 属性 | 说明 |
 |------|------|
@@ -384,7 +384,7 @@ Text组件支持多种高级文本效果，如渐变、跑马灯等。
 
 通过如下属性设置渐变颜色效果。从API version 20开始，Text组件支持设置渐变颜色效果。
 
-**表10** 渐变效果属性
+**表9** 渐变效果属性
 
 | 属性 | 说明 |
 |------|------|

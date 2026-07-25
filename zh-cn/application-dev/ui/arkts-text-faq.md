@@ -570,7 +570,7 @@ struct TextExample8 {
 
 以下内容介绍了使用[TextInput](../reference/apis-arkui/arkui-ts/ts-basic-components-textinput.md)、[TextArea](../reference/apis-arkui/arkui-ts/ts-basic-components-textarea.md)和[Search](../reference/apis-arkui/arkui-ts/ts-basic-components-search.md)组件输入文本时可能遇到的问题。
 
-### TextInput被遮挡时光标仍然不消失
+### TextInput被遮挡时操作手柄仍然不消失
 
 **问题现象**
 

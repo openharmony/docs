@@ -29,7 +29,7 @@
 
 Web组件的KeyEvent流程与上述过程有所不同。在[onKeyPreIme](../reference/apis-arkui/arkui-ts/ts-universal-events-key.md#onkeypreime12)返回false时，Web组件不会匹配快捷键。而在第三次按键派发过程中，Web组件会将未消费的[KeyEvent](../reference/apis-arkui/arkui-ts/ts-universal-events-key.md#keyevent对象说明)重新派发回ArkUI，在重新派发过程中再执行匹配快捷键等操作。
 
-## onKeyEvent & onKeyPreIme
+## onKeyEvent、onKeyPreIme和onKeyEventDispatch
 
 ```ts
 onKeyEvent(event: (event: KeyEvent) => void): T
