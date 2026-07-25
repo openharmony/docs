@@ -25,7 +25,7 @@ AppServiceExtensionAbility组件当前仅支持2in1设备。
 
 - 应用集成AppServiceExtensionAbility组件需要申请ACL权限（ohos.permission.SUPPORT_APP_SERVICE_EXTENSION）。该ACL权限当前只对企业普通应用开放申请。
 
-> 针对AppServiceExtensionAbility接口调用限制，详细请参考[约束限制](../reference/apis-ability-kit/js-apis-app-ability-appServiceExtensionAbility.md)。
+> 针对AppServiceExtensionAbility接口调用限制，详细请参考[@ohos.app.ability.AppServiceExtensionAbility (应用后台服务扩展组件)](../reference/apis-ability-kit/js-apis-app-ability-appServiceExtensionAbility.md)。
 
 ## 运作机制
 
