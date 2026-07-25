@@ -7904,7 +7904,7 @@ restore(): Promise&lt;void&gt;
 
 **系统能力：** SystemCapability.Window.SessionManager
 
-**设备行为差异：** 该接口在PC/2in1设备、其他设备的[电脑模式](../../windowmanager/window-terminology.md#pc-mode电脑模式)下可正常调用，在其他设备和其他模式下返回801错误码。
+**设备行为差异：** 该接口在PC/2in1设备、Tablet设备的[电脑模式](../../windowmanager/window-terminology.md#pc-mode电脑模式)下可正常调用，在其他设备和其他模式下返回801错误码。
 
 **返回值：**
 
@@ -8510,7 +8510,7 @@ setTouchableAreas(rects: Array&lt;Rect&gt;): Promise&lt;void&gt;
 
 **设备行为差异：**
 
-在PC/2in1设备、其他设备的[电脑模式](../../windowmanager/window-terminology.md#pc-mode电脑模式)下，当窗口的大小或位置发生变化后，通过该接口设置的可触摸区域不会被重置；在其他设备和其他模式下，当窗口的大小或位置发生变化后，通过该接口设置的可触摸区域会被重置，需调用此接口重新设置。
+在PC/2in1设备、Tablet设备的[电脑模式](../../windowmanager/window-terminology.md#pc-mode电脑模式)下，当窗口的大小或位置发生变化后，通过该接口设置的可触摸区域不会被重置；在其他设备和其他模式下，当窗口的大小或位置发生变化后，通过该接口设置的可触摸区域会被重置，需调用此接口重新设置。
 
 **参数：**
 
@@ -10334,7 +10334,7 @@ setGestureBackEnabled(enabled: boolean): Promise&lt;void&gt;
 
 **系统能力：** SystemCapability.Window.SessionManager
 
-**设备行为差异：** 该接口在PC/2in1、其他设备的电脑模式中调用会返回801错误码，在其他设备和其他模式中可正常调用。
+**设备行为差异：** 该接口在PC/2in1设备、Tablet的[电脑模式](../../windowmanager/window-terminology.md#pc-mode电脑模式)中调用会返回801错误码，在其他设备和其他模式中可正常调用。
 
 **原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。
 
@@ -10408,7 +10408,7 @@ isGestureBackEnabled(): boolean
 
 **系统能力：** SystemCapability.Window.SessionManager
 
-**设备行为差异：** 该接口在2in1、其他设备的电脑模式中调用会返回801错误码，在其他设备和其他模式中可正常调用。
+**设备行为差异：** 该接口在PC/2in1设备、Tablet的[电脑模式](../../windowmanager/window-terminology.md#pc-mode电脑模式)中调用会返回801错误码，在其他设备和其他模式中可正常调用。
 
 **原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。
 
