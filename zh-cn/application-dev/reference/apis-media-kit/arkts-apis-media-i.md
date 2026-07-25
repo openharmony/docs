@@ -418,7 +418,7 @@ async function setupPlayer() {
 | -------- | -------- | ---- | ---- | -------------------- |
 | preferredWidth| number | 否   | 是   | 播放策略首选宽度，设置范围为大于0的整数，如1080，单位为像素（px）。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
 | preferredHeight | number | 否   | 是   | 播放策略首选高度，设置范围为大于0的整数，如1920，单位为像素（px）。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
-| preferredBufferDuration | number | 否   | 是   | 播放策略首选缓冲持续时间，单位为秒（s），取值范围[1, 20]。<br>具体使用方式可参考[在线视频播放卡顿优化实践](https://developer.huawei.com/consumer/cn/doc/best-practices/bpta-online-video-playback-lags-practice)。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| preferredBufferDuration | number | 否   | 是   | 播放策略首选缓冲持续时间，单位为秒（s），取值范围[1, 20]。<br>具体使用方式可参考[在线视频播放卡顿优化实践](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides/online-video-playback-lags-optimize)。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
 | preferredHdr | boolean | 否   | 是   | 表示播放策略是否为hdr。true表示是，false表示不是，默认为false。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
 | enableSuperResolution<sup>18+</sup> | boolean | 否   | 是   | 表示是否使能超分功能。true表示使能超分，false表示不使能超分，默认为false。<br>若不使能超分，则后续不能调用超分相关接口。若使能超分，则超分功能默认开启，默认目标分辨率为1920x1080，单位为像素。<br>**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。 |
 | showFirstFrameOnPrepare<sup>17+</sup> | boolean | 否   | 是   | 播放策略true是Prepare之后显示视频起播首帧，false是Prepare之后不显示视频起播首帧，默认不显示。<br>**原子化服务API：** 从API version 17开始，该接口支持在原子化服务中使用。 |
