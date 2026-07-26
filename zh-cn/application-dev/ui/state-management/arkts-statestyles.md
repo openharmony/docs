@@ -15,7 +15,7 @@
 
 ## 概述
 
-stateStyles是属性方法，可以根据UI内部状态来设置样式，类似于css伪类，但语法不同。ArkUI提供以下六种状态：
+stateStyles是属性方法，可以根据UI内部状态来设置样式，类似于css伪类，但语法不同。ArkUI提供以下七种状态：
 
 - focused：获焦态。
 
@@ -28,6 +28,8 @@ stateStyles是属性方法，可以根据UI内部状态来设置样式，类似�
 - clicked：点击态。
 
 - selected<sup>10+</sup>：选中态。
+
+- hovered<sup>26+</sup>：悬浮态。
 
 > **说明**：
 >
