@@ -58,16 +58,7 @@
 
    当录音需要退至后台持续运行时，应用需要申请`AUDIO_RECORDING`类型长时任务，使系统识别该后台任务与录音业务匹配。
 
-   ```ts
-   import { backgroundTaskManager } from '@kit.BackgroundTasksKit';
-
-   // 申请录音类型长时任务，wantAgentObj用于指定点击长时任务通知后跳转的界面。
-   await backgroundTaskManager.startBackgroundRunning(
-     this.context,
-     backgroundTaskManager.BackgroundMode.AUDIO_RECORDING,
-     wantAgentObj
-   );
-   ```
+   <!-- @[background_task](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/Media/Audio/AudioVoIPCallSampleC/entry/src/main/ets/pages/AudioPlayer.ets) -->
 
    长时任务启动失败时，应用需避免继续以后台录音方式运行，应停止录音或引导用户回到前台处理。长时任务的完整申请和取消流程请参考[长时任务(ArkTS)](../../task-management/continuous-task.md)。
 
@@ -75,9 +66,4 @@
 
    用户停止录音、录音异常中断或业务结束时，应用需要调用AudioCapturer的[release](../../reference/apis-audio-kit/arkts-apis-audio-AudioCapturer.md#release8)接口停止录音、释放音频采集资源，并同步取消录音类型长时任务。
 
-   ```ts
-   import { backgroundTaskManager } from '@kit.BackgroundTasksKit';
-
-   // 取消长时任务。
-   backgroundTaskManager.stopBackgroundRunning(context)
-   ```
+   <!-- @[background_task_cancel](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/Media/Audio/AudioVoIPCallSampleC/entry/src/main/ets/pages/AudioPlayer.ets) -->
