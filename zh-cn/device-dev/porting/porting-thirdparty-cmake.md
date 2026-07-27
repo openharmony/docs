@@ -202,37 +202,37 @@ CMake方式可通过指定工具链进行交叉编译，修改并编译该库，
 
 
      ```gn
-    import("//build/ohos.gni")
+     import("//build/ohos.gni")
 
-    config("double_conversion_config") {
-      cflags = [ "-Wno-error=implicit-fallthrough" ]
-      include_dirs = [ "double-conversion/double-conversion" ]
-      }
+     config("double_conversion_config") {
+       cflags = [ "-Wno-error=implicit-fallthrough" ]
+       include_dirs = [ "double-conversion/double-conversion" ]
+       }
 
-      config("cctest_config") {
-      cflags = [ "-Wno-error=implicit-fallthrough" ]
-      include_dirs = [
-      "double-conversion",
-      "double-conversion/test/cctest",
-      ]
-    }
+       config("cctest_config") {
+       cflags = [ "-Wno-error=implicit-fallthrough" ]
+       include_dirs = [
+       "double-conversion",
+       "double-conversion/test/cctest",
+       ]
+     }
 
-    ohos_static_library("double-conversion") {
-      sources = [
-      "double-conversion/double-conversion/bignum-dtoa.cc",
-      "double-conversion/double-conversion/bignum.cc",
-      "double-conversion/double-conversion/cached-powers.cc",
-      "double-conversion/double-conversion/double-to-string.cc",
-      "double-conversion/double-conversion/fast-dtoa.cc",
-      "double-conversion/double-conversion/fixed-dtoa.cc",
-      "double-conversion/double-conversion/string-to-double.cc",
-      "double-conversion/double-conversion/strtod.cc",
-      ]
+     ohos_static_library("double-conversion") {
+       sources = [
+       "double-conversion/double-conversion/bignum-dtoa.cc",
+       "double-conversion/double-conversion/bignum.cc",
+       "double-conversion/double-conversion/cached-powers.cc",
+       "double-conversion/double-conversion/double-to-string.cc",
+       "double-conversion/double-conversion/fast-dtoa.cc",
+       "double-conversion/double-conversion/fixed-dtoa.cc",
+       "double-conversion/double-conversion/string-to-double.cc",
+       "double-conversion/double-conversion/strtod.cc",
+       ]
 
-      public_configs = [ ":double_conversion_config" ]
-      part_name = "double-conversion"
-      subsystem_name = "thirdparty"
-    }
+       public_configs = [ ":double_conversion_config" ]
+       part_name = "double-conversion"
+       subsystem_name = "thirdparty"
+     }
      ```
 
    - **新增的config.gni用于配置该库，实现如下，其他采用CMake方式可独立编译的三方库移植到OpenHarmony时只需修改CMAKE_FLAG的配置即可。**
