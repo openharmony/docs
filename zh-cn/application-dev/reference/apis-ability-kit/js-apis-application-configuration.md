@@ -12,7 +12,7 @@
 > **说明：**
 >
 > 本模块首批接口从API version 8开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
-> 本模块从API version 9废弃，替换模块为[@ohos.app.ability.Configuration (Configuration)](js-apis-app-ability-configuration.md)。
+> 本模块从API version 9废弃，替换模块为[@ohos.app.ability.Configuration (环境变量)](js-apis-app-ability-configuration.md)。
 
 ## 导入模块
 
@@ -28,8 +28,6 @@ import Configuration from '@ohos.application.Configuration';
 | -------- | -------- | -------- | -------- | -------- |
 | language<sup>8+</sup> | string | 否 | 是 | 表示应用程序的当前语言。例如：zh。 |
 | colorMode<sup>8+</sup> | [ConfigurationConstant.ColorMode](js-apis-application-configurationConstant.md#colormode) | 否 | 是 | 表示深浅色模式，取值范围：浅色模式（COLOR_MODE_LIGHT），深色模式（COLOR_MODE_DARK）。默认为浅色。 |
-
-具体字段描述参考ohos.application.Configuration.d.ts文件
 
 **示例：**
 ```ts
