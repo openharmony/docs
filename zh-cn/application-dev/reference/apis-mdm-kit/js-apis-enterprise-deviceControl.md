@@ -6,7 +6,7 @@
 <!--Tester: @lpw_work-->
 <!--Adviser: @zhang_yixin13-->
 
-本模块提供设备控制能力。
+本模块提供设备控制能力，用于企业设备管理场景。管理员可以通过本模块远程控制设备，包括设备重启、关机、锁屏、恢复出厂设置等操作，帮助企业实现设备统一管理和安全管控。
 
 > **说明：**
 >
@@ -40,7 +40,7 @@ operateDevice(admin: Want, operate: string, addition?: string): void
 | 参数名   | 类型                                                    | 必填 | 说明                                                         |
 | -------- | ------------------------------------------------------- | ---- | ------------------------------------------------------------ |
 | admin    | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | 是   | 企业设备管理扩展组件。Want中必须包含企业设备管理扩展能力的abilityName和所在应用的bundleName。                                               |
-| operate  | string                                                  | 是   | 要执行的操作。<br/>- resetFactory：设备恢复出厂设置。接口调用后，设备将立即恢复出厂设置。恢复完成后，整机设备数据将全部被擦除且无法恢复。企业需要做好应用的安全设计，防止应用被攻击导致企业数据丢失。已经通过[setDisallowedPolicy](js-apis-enterprise-restrictions.md#restrictionssetdisallowedpolicydeprecated)接口禁用了恢复出厂，需要先解除禁用。<br/>- reboot：设备重启。<br/>- shutDown：设备关机。<br/>- lockScreen：设备锁屏。 <!--RP1--><!--RP1End-->|
+| operate  | string                                                  | 是   | 要执行的操作。仅支持以下操作类型：<br/>- resetFactory：设备恢复出厂设置。接口调用后，设备将立即恢复出厂设置。恢复完成后，整机设备数据将全部被擦除且无法恢复。企业需要做好应用的安全设计，防止应用被攻击导致企业数据丢失。已经通过[setDisallowedPolicy](js-apis-enterprise-restrictions.md#restrictionssetdisallowedpolicydeprecated)接口禁用了恢复出厂，需要先解除禁用。<br/>- reboot：设备重启。<br/>- shutDown：设备关机。<br/>- lockScreen：设备锁屏。 <!--RP1--><!--RP1End-->|
 | addition | string                                                  | 否   | <!--RP2-->执行时附加参数。当前为预留参数，无需传入。<!--RP2End-->       |
 
 **错误码：**

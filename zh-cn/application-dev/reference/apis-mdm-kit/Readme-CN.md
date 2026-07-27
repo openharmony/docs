@@ -1,4 +1,4 @@
-# Mdm Kit（企业设备管理服务）<!--mdm-api-->
+# MDM Kit（企业设备管理服务）<!--mdm-api-->
 <!--Kit: MDM Kit-->
 <!--Subsystem: Customization-->
 <!--Owner: @huanleima; @weizai16-->
