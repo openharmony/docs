@@ -6,7 +6,7 @@
 <!--Tester: @Filger-->
 <!--Adviser: @w_Machine_cc-->
 
-从API版本26.0.0开始，[OHAudioSuite](../../reference/apis-audio-kit/capi-ohaudiosuite.md)给开发者提供PCM音频格式转换能力，在纯音频转码等场景下支持开发者使用格式转换接口将PCM（Pulse Code Modulation）音频数据从一种格式转换为另一种格式，包括采样率、声道布局、采样格式（位深）的转换。
+从API版本26.0.0开始，[OHAudioSuite](../../reference/apis-audio-kit/capi-ohaudiosuite.md)给开发者提供PCM（Pulse Code Modulation）音频格式转换能力，在纯音频转码等场景下支持开发者使用格式转换接口将PCM音频数据从一种格式转换为另一种格式，包括采样率、声道布局、采样格式（位深）的转换。
 
 ## 开发步骤
 
