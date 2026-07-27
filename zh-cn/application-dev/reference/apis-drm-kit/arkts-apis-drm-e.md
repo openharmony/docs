@@ -20,8 +20,8 @@
 | 名称                       | 值   | 说明            |
 | ------------------------- | ---- | ------------    |
 | ERROR_UNKNOWN       | 24700101    | 未知错误，当发生无法归类的异常时返回。建议检查输入参数是否合法、DRM服务是否正常运行，或联系技术支持获取详细错误信息。   |
-| MAX_SYSTEM_NUM_REACHED   | 24700103    | MediaKeySystem实例数量超过上限（64个）。请释放不需要的MediaKeySystem实例后重试，可调用[release](arkts-apis-drm-MediaKeySystem.md#release)方法释放实例。    |
-| MAX_SESSION_NUM_REACHED    | 24700104    | MediaKeySession实例数量超过上限（64个）。请释放不需要的MediaKeySession实例后重试，可调用[release](arkts-apis-drm-MediaKeySession.md#release)方法释放实例。     |
+| MAX_SYSTEM_NUM_REACHED   | 24700103    | MediaKeySystem实例数量超过上限（64个）。请调用[destroy](arkts-apis-drm-MediaKeySystem.md#destroy)方法释放不需要的MediaKeySystem实例后重试。    |
+| MAX_SESSION_NUM_REACHED    | 24700104    | MediaKeySession实例数量超过上限（64个）。请调用[destroy](arkts-apis-drm-MediaKeySession.md#destroy)方法释放不需要的MediaKeySession实例后重试。     |
 | SERVICE_FATAL_ERROR  | 24700201    | DRM服务异常，当DRM服务发生致命错误时返回。可能原因：系统资源不足、DRM服务进程崩溃或系统异常。建议重启应用或重启设备后重试，如问题持续存在请联系技术支持。     |
 
 ## PreDefinedConfigName

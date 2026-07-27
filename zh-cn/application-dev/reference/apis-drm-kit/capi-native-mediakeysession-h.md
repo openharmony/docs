@@ -105,7 +105,7 @@ typedef  Drm_ErrCode (*MediaKeySession_KeyChangeCallback)(DRM_KeysInfo *keysInfo
 
 | 类型 | 说明 |
 | -- | -- |
-| [Drm_ErrCode](capi-native-drm-err-h.md#drm_errcode) | 错误码。 |
+| [Drm_ErrCode](capi-native-drm-err-h.md#drm_errcode) | DRM_ERR_OK：执行成功。<br>DRM_ERR_INVALID_VAL：参数检查失败。 |
 
 ### OH_MediaKeySession_EventCallback()
 
@@ -161,8 +161,7 @@ typedef Drm_ErrCode (*OH_MediaKeySession_KeyChangeCallback)(MediaKeySession *med
 
 | 类型 | 说明 |
 | -- | -- |
-| [Drm_ErrCode](capi-native-drm-err-h.md#drm_errcode) | 错误码。 |
-
+ | [Drm_ErrCode](capi-native-drm-err-h.md#drm_errcode) | DRM_ERR_OK：执行成功。<br>DRM_ERR_INVALID_VAL：参数检查失败。 |
 ### OH_MediaKeySession_GenerateMediaKeyRequest()
 
 ```c
