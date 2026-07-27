@@ -37,7 +37,7 @@
 | `utf16_length`   | `uleb128`  | 值为`len << 1 \| is_ascii`，其中`len`是字符串在UTF-16编码中的大小，`is_ascii`标记该字符串是否仅包含ASCII字符。 |
 | `data`           | `uint8_t[]` | 以'\0'结尾的MUTF-8（Modified UTF-8）编码字符序列。  |
 
-> **说明：** MUTF-8是标准UTF-8的变体，主要差异为：使用双字节序列编码U+0000空字符，以及使用代理对编码大于U+FFFF的补充字符。
+> **说明：**<br>MUTF-8是标准UTF-8的变体，主要差异为：使用双字节序列编码U+0000空字符，以及使用代理对编码大于U+FFFF的补充字符。
 
 
 ### TaggedValue
@@ -297,7 +297,7 @@ MethodIndexData是一个无符号32位整数，划分为3个部分。
 | `num_catches`    | `uleb128`        | 与TryBlock关联的[CatchBlock](#catchblock)的数量，值为1。 |
 | `catch_blocks`   | `CatchBlock[]`   | 与TryBlock关联的CatchBlock的数组，数组中有且仅有一个可以捕获所有类型的异常的CatchBlock。 |
 
-> **说明：** `num_catches`固定为1的原因是：ArkTS/TS/JS语言的异常处理机制中，`try-catch`语句仅支持单个`catch`块捕获所有类型的异常，不支持按异常类型分别捕获，因此每个TryBlock仅需关联一个CatchBlock。
+> **说明：**<br>`num_catches`固定为1的原因是：ArkTS/TS/JS语言的异常处理机制中，`try-catch`语句仅支持单个`catch`块捕获所有类型的异常，不支持按异常类型分别捕获，因此每个TryBlock仅需关联一个CatchBlock。
 
 
 ### CatchBlock

@@ -868,7 +868,7 @@ export { ClassHar3 } from './src/main/ets/utils/Calc';
 
 若未对HAR之间的**dependencies**和**runtimeOnly**配置进行依赖解耦，ohpm无法解决循环依赖，依赖安装失败。
 
-``` JSON5
+```text
 // HAP's oh-package.json5
 "dependencies": {
   "har1": "file:../har1"
