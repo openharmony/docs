@@ -594,3 +594,5 @@ struct UnionTypeSample {
 ```
 
 ![state-union](figures/state-union.gif)
+
+<!--no_check-->

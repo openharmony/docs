@@ -451,3 +451,5 @@ The procedure is as follows:
 5. The state management framework calls the \@Watch function **countUpdated** and the value of state variable **cabbage** is changed; the **if** logic condition is not met, the value of **fruit** does not change.
 
 6. The **Text** components bound to **cabbage** are re-rendered.
+
+<!--no_check-->

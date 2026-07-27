@@ -767,3 +767,5 @@ struct Index {
 The principle is as follows: Use the **applySync** API to synchronously update the state variable changes in the closure function, and then execute the original animation to achieve the expected effect.
 
 ![arkts-new-local-animateTo-2](figures/arkts-new-local-animateTo-2.gif)
+
+<!--no_check-->

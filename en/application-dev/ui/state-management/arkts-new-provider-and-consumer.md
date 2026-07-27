@@ -1097,3 +1097,5 @@ In the preceding example:
 - When **remove child** is clicked, the BuilderNode child node is unmounted from the component tree, the connection between \@Consumer in `TestRemove` and \@Provider in `RemoChildDisconnectProvider` is disconnected, \@Consumer in `TestRemove` is restored to the default value, and the \@Monitor method of \@Consumer is called back.
 
 - When **dispose child** is clicked, the child node `TestRemove` under BuilderNode is released. Subsequently, this child node is destroyed, and the **aboutToDisappear** callback is executed.
+
+<!--no_check-->

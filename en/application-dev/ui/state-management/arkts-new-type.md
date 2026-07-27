@@ -113,3 +113,5 @@ struct TestCase {
 ```
 
 ![type-sync-0](./figures/type-sync-0.gif)
+
+<!--no_check-->

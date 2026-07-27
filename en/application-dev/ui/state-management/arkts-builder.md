@@ -1692,7 +1692,7 @@ struct MakeBindingTest1 {
 }
 ```
 
-For details, see [MutableBinding](../../reference/apis-arkui/js-apis-stateManagement.md#mutablebindingt20) in the stat management API reference.
+For details, see [MutableBinding](../../reference/apis-arkui/js-apis-stateManagement.md#mutablebindingt20) in the state management API reference.
 
 **Correct Usage**
 

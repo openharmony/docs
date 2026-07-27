@@ -520,3 +520,5 @@ The following example shows how to use an \@Computed decorated property to initi
   ```
 
   ![computed-sync-4](./figures/computed-sync-4.gif)
+
+<!--no_check-->

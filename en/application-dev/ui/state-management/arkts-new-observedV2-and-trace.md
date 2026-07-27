@@ -1410,3 +1410,5 @@ struct Detail {
 ```
 
 ![observedv2_router_deserialize.gif](./figures/observedv2_router_deserialize.gif)
+
+<!--no_check-->

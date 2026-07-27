@@ -1387,3 +1387,5 @@ struct CustomWidgetChild {
 ```
 
 ![provide_consume_right](figures/provide_consume_right.gif)
+
+<!--no_check-->

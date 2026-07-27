@@ -184,3 +184,5 @@ after changeIndex 0
 ```
 
 This indicates that after **changeIndex** is called, the **index** in the parent component has changed, but the one in the child component has not changed yet.
+
+<!--no_check-->

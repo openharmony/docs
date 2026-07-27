@@ -54,7 +54,7 @@ Before reading this topic, you are advised to read [AppStorage](./arkts-appstora
 
 - Use Environment.[envProp](../../reference/apis-arkui/arkui-ts/ts-state-management.md#envprop10) to store device environment variables in AppStorage.
 
-  <!-- @[showfirst_details](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkUISample/EnvirommentProjet/entry/src/main/ets/pages/ShowDetails.ets) -->
+  <!-- @[showfirst_details](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkUISample/EnvironmentProject/entry/src/main/ets/pages/ShowDetails.ets) -->
   
   ``` TypeScript
   // Store languageCode to AppStorage. The default value is en.
@@ -63,7 +63,7 @@ Before reading this topic, you are advised to read [AppStorage](./arkts-appstora
 
 - Obtain the value of **languageCode** through @StorageProp in the custom component.
 
-  <!-- @[showsecond_details](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkUISample/EnvirommentProjet/entry/src/main/ets/pages/ShowDetails.ets) -->
+  <!-- @[showsecond_details](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkUISample/EnvironmentProject/entry/src/main/ets/pages/ShowDetails.ets) -->
   
   ``` TypeScript
   @StorageProp('languageCode') lang: string = 'en';
@@ -74,10 +74,10 @@ The chain of updates is as follows: Environment > AppStorage > Component.
 > **NOTE**
 >
 > The application cannot modify environment variables. Therefore, @StorageProp is used to obtain them. In this way, even if environment variables are modified in the component, the modification is not synchronized back to AppStorage, affecting the result of obtaining the environment variables in other components.
-  <!-- @[ui_Environment](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkUISample/EnvirommentProjet/entry/src/main/ets/pages/UiEnvironment.ets) -->
+  <!-- @[ui_Environment](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkUISample/EnvironmentProject/entry/src/main/ets/pages/UiEnvironment.ets) -->  
   
   ``` TypeScript
-  // Store languageCode to AppStorage.
+  // Store languageCode of the device to AppStorage.
   Environment.envProp('languageCode', 'en');
   
   @Entry
@@ -88,16 +88,22 @@ The chain of updates is as follows: Environment > AppStorage > Component.
     build() {
       Row() {
         Column() {
-          // Obtain the current device language code.
+          // Output: languageCode of the current device
           Text(this.languageCode)
+            .fontSize(20)
+            .margin(10)
         }
+        .width('100%')
       }
+      .height('100%')
     }
   }
   ```
 
+  ![environment-ui](figures/environment-ui.png)
+
 ### Using Environment in Application Logic
-  <!-- @[applied_logic](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkUISample/EnvirommentProjet/entry/src/main/ets/pages/AppliedLogic.ets) -->
+  <!-- @[applied_logic](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkUISample/EnvironmentProject/entry/src/main/ets/pages/AppliedLogic.ets) -->
   
   ``` TypeScript
   import { hilog } from '@kit.PerformanceAnalysisKit';

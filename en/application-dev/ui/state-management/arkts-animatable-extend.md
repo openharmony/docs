@@ -209,3 +209,5 @@ struct  AnimatablePropertyExample {
 ```
 
 ![image](figures/animatable-points.gif)
+
+<!--no_check-->
