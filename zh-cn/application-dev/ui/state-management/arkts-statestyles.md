@@ -29,7 +29,7 @@ stateStyles是属性方法，可以根据UI内部状态来设置样式，类似�
 
 - selected<sup>10+</sup>：选中态。
 
-- hovered<sup>26+</sup>：悬浮态。
+- hovered：悬浮态。**起始版本：** 26.0.0
 
 > **说明**：
 >
