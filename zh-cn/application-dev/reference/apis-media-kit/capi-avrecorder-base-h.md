@@ -118,11 +118,11 @@ enum OH_AVRecorder_CodecMimeType
 | AVRECORDER_VIDEO_AVC = 2 | H.264视频编码器MIME类型。 |
 | AVRECORDER_AUDIO_AAC = 3 | AAC音频编码器MIME类型。 |
 | AVRECORDER_AUDIO_MP3 = 4 | MP3音频编码器MIME类型。 |
-| AVRECORDER_AUDIO_G711MU = 5 | G711-mulaw音频编码器MIME类型，适用于VoIP语音通信等窄带语音编码场景。 |
-| AVRECORDER_VIDEO_MPEG4 = 6 | MPEG4视频编码器MIME类型，适用于对编码效率要求不高的传统视频编码场景。 |
-| AVRECORDER_VIDEO_HEVC = 8 | H.265视频编码器MIME类型，适用于需要更高压缩效率的视频编码场景，相比H.264压缩率更高但兼容性较低。 |
-| AVRECORDER_AUDIO_AMR_NB = 9 | AMR_NB音频编码器MIME类型，适用于低带宽窄带语音通话录制场景。 |
-| AVRECORDER_AUDIO_AMR_WB = 10 | AMR_WB音频编码器MIME类型，适用于较高质量的宽带语音通话录制场景，相比AMR_NB提供更宽的音频频带。 |
+| AVRECORDER_AUDIO_G711MU = 5 | G711-mulaw音频编码器MIME类型。 |
+| AVRECORDER_VIDEO_MPEG4 = 6 | MPEG4视频编码器MIME类型。 |
+| AVRECORDER_VIDEO_HEVC = 8 | H.265视频编码器MIME类型。 |
+| AVRECORDER_AUDIO_AMR_NB = 9 | AMR_NB音频编码器MIME类型。 |
+| AVRECORDER_AUDIO_AMR_WB = 10 | AMR_WB音频编码器MIME类型。 |
 
 ### OH_AVRecorder_ContainerFormatType
 
@@ -141,11 +141,11 @@ enum OH_AVRecorder_ContainerFormatType
 | 枚举项 | 描述 |
 | -- | -- |
 | AVRECORDER_CFT_MPEG_4 = 2 | 视频容器格式类型mp4。 |
-| AVRECORDER_CFT_MPEG_4A = 6 | 音频容器格式类型m4a，适用于仅录制音频内容的场景，与AAC编码搭配使用。 |
-| AVRECORDER_CFT_AMR = 8 | 音频容器格式类型amr，适用于语音通话录制场景，与AMR编码搭配使用。 |
+| AVRECORDER_CFT_MPEG_4A = 6 | 音频容器格式类型m4a。 |
+| AVRECORDER_CFT_AMR = 8 | 音频容器格式类型amr。 |
 | AVRECORDER_CFT_MP3 = 9 | 音频容器格式类型mp3。 |
-| AVRECORDER_CFT_WAV = 10 | 音频容器格式类型wav，适用于需要无损或高质量音频录制的场景。 |
-| AVRECORDER_CFT_AAC = 11 | 音频容器格式类型aac（带ADTS头），适用于需要AAC裸流输出（如流媒体传输）的场景。<br>**起始版本：** 20 |
+| AVRECORDER_CFT_WAV = 10 | 音频容器格式类型wav。 |
+| AVRECORDER_CFT_AAC = 11 | 音频容器格式类型aac（带ADTS头）。<br>**起始版本：** 20 |
 
 ### OH_AVRecorder_State
 
