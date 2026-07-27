@@ -174,7 +174,7 @@ import { manager } from '@kit.ConnectivityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 let onPairingStateEvent:(data: manager.PairingStateParam) => void = (data: manager.PairingStateParam) => {
-  console.info('onPairStateChange addr: ' + data.address + 'state:' + data.state);
+  console.info('onPairingStateChange addr: ' + data.address + 'state:' + data.state);
 };
 try {
   manager.onPairingStateChange(onPairingStateEvent);
