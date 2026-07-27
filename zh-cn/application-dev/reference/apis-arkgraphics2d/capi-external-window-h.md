@@ -1279,7 +1279,7 @@ int32_t OH_NativeWindow_Set3DMetadataValue(OHNativeWindow *window, OH_NativeBuff
 
 | 类型 | 说明 |
 | -- | -- |
-| int32_t | 执行成功时返回NATIVE_ERROR_OK。<br>window或metadata为空指针时返回NATIVE_ERROR_INVALID_ARGUMENTS。<br>传入不支持的metadataKey时返回NATIVE_ERROR_UNSUPPORTED。<br>其他返回值可参考[OHNativeErrorCode](capi-graphic-error-code-h.md#ohnativeerrorcode)。 |
+| int32_t | 执行成功时返回NATIVE_ERROR_OK。<br>window或metadata为空指针时返回NATIVE_ERROR_INVALID_ARGUMENTS。<br>设置3D元数据失败时返回NATIVE_ERROR_UNKNOWN。<br>传入不支持的metadataKey时返回NATIVE_ERROR_UNSUPPORTED。<br>其他返回值可参考[OHNativeErrorCode](capi-graphic-error-code-h.md#ohnativeerrorcode)。 |
 
 ### OH_NativeWindow_Get3DMetadataValue()
 
@@ -1310,4 +1310,4 @@ int32_t OH_NativeWindow_Get3DMetadataValue(OHNativeWindow *window, OH_NativeBuff
 
 | 类型 | 说明 |
 | -- | -- |
-| int32_t | 执行成功时返回NATIVE_ERROR_OK。<br>window、metadata或size为空指针时返回NATIVE_ERROR_INVALID_ARGUMENTS。<br>传入不支持的metadataKey时返回NATIVE_ERROR_UNSUPPORTED。<br>其他返回值可参考[OHNativeErrorCode](capi-graphic-error-code-h.md#ohnativeerrorcode)。 |
+| int32_t | 执行成功时返回NATIVE_ERROR_OK。<br>window、metadata或size为空指针时返回NATIVE_ERROR_INVALID_ARGUMENTS。<br>拷贝或分配内存失败，或者获取3D元数据失败时返回NATIVE_ERROR_UNKNOWN。<br>传入不支持的metadataKey时返回NATIVE_ERROR_UNSUPPORTED。<br>其他返回值可参考[OHNativeErrorCode](capi-graphic-error-code-h.md#ohnativeerrorcode)。 |

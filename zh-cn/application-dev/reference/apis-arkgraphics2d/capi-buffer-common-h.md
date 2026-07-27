@@ -264,6 +264,7 @@ enum OH_NativeBuffer_VideoDimensionType
 | OH_VIDEO_DIM_TYPE_2D = 0 | 二维视频。 |
 | OH_VIDEO_DIM_TYPE_3D_SBS | 三维视频，格式：左右排列。 |
 | OH_VIDEO_DIM_TYPE_3D_TAB | 三维视频，格式：上下排列。 |
+| OH_VIDEO_DIM_TYPE_BUTT | 无效视频维度类型。 |
 
 ### OH_NativeBuffer_3D_MetadataKey
 
