@@ -106,7 +106,7 @@ export BOARD_COMPANY
 --- 将ohos_device_company转化为BOARD_COMPANY环境变量
 ```
 
-在`//kernel/liteos_m/Kconfig`文件中使用这些导出的环境变量，`Kconfiglib`采用`ulfalizer`开发基于`python`的版本，[源码地址](https://github.com/ulfalizer/Kconfiglib)，[功能介绍连接参考](https://gitcode.com/GitHub_Trending/ze/zephyr/blob/main/scripts/kconfig/kconfiglib.py)，里面用到了`orsource`关键字，其中`o`表示`optional`，表示这个文件是否存在可选，`r`表示`relative`，表示这个文件相对当前文件的相对路径。
+在`//kernel/liteos_m/Kconfig`文件中使用这些导出的环境变量，`Kconfiglib`采用`ulfalizer`开发基于`python`的版本，[源码地址](https://gitcode.com/gh_mirrors/kc/Kconfiglib)，[功能介绍连接参考](https://gitcode.com/GitHub_Trending/ze/zephyr/blob/main/scripts/kconfig/kconfiglib.py)，里面用到了`orsource`关键字，其中`o`表示`optional`，表示这个文件是否存在可选，`r`表示`relative`，表示这个文件相对当前文件的相对路径。
 
 ```text
 config SOC_COMPANY
