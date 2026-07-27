@@ -124,7 +124,7 @@
 
    参数fd可以参考应用文件访问与管理的开发实例[新建并读写一个文件fd](../../file-management/app-file-access.md)。本示例中提供的openFile()仅作为参考。
 
-   2in1设备配置displayId为扩展屏Id，可拉起录屏窗口选择界面，用户在界面上选择录屏内容，最终录屏内容以用户在弹窗界面上的选择为准。
+   PC/2in1设备配置displayId为扩展屏ID，可拉起录屏窗口选择界面，用户在界面上选择录屏内容，最终录屏内容以用户在弹窗界面上的选择为准。
    
    <!-- @[screenCapture_arkts_config](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/Media/ScreenCapture/ScreenCaptureSample/entry/src/main/ets/pages/AVScreenCaptureDemo.ets) --> 
    

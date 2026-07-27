@@ -28,7 +28,7 @@ typedef struct OH_AVScreenCaptureConfig {...} OH_AVScreenCaptureConfig
 
 | 名称 | 描述 |
 | -- | -- |
-| [OH_CaptureMode](capi-native-avscreen-capture-base-h.md#oh_capturemode) captureMode | 屏幕录制的模式，用于指定屏幕录制的捕获方式。可取值包括OH_CAPTURE_HOME_SCREEN（录制主屏幕）和OH_CAPTURE_SPECIFIED_WINDOW（录制指定窗口）等，具体枚举值见[OH_CaptureMode](capi-native-avscreen-capture-base-h.md#oh_capturemode)。 |
+| [OH_CaptureMode](capi-native-avscreen-capture-base-h.md#oh_capturemode) captureMode | 屏幕录制的模式，用于指定屏幕录制的捕获方式。不同的captureMode值决定录制内容的范围和交互方式，开发者应根据需要录制的屏幕区域和交互需求选择合适的模式。可取值包括OH_CAPTURE_HOME_SCREEN（录制主屏幕）和OH_CAPTURE_SPECIFIED_WINDOW（录制指定窗口）等，具体枚举值见[OH_CaptureMode](capi-native-avscreen-capture-base-h.md#oh_capturemode)。 |
 | [OH_DataType](capi-native-avscreen-capture-base-h.md#oh_datatype) dataType | 屏幕录制流的数据格式，例如需要实时处理录制流数据时可选择流数据格式，需要保存为文件时可选择文件数据格式。取值原则参考[OH_DataType](capi-native-avscreen-capture-base-h.md#oh_datatype)枚举定义。当数据格式为OH_CAPTURE_FILE时，必须设置[OH_RecorderInfo](capi-avscreencapture-oh-recorderinfo.md)。 |
 | [OH_AudioInfo](capi-avscreencapture-oh-audioinfo.md) audioInfo | 音频录制参数，用于配置录制的音频相关属性。包含音频编码格式、采样率、声道数等配置项，具体属性见[OH_AudioInfo](capi-avscreencapture-oh-audioinfo.md)。 |
 | [OH_VideoInfo](capi-avscreencapture-oh-videoinfo.md) videoInfo | 视频录制参数，用于配置录制的视频相关属性。包含视频编码格式、分辨率、帧率等配置项，具体属性见[OH_VideoInfo](capi-avscreencapture-oh-videoinfo.md)。 |

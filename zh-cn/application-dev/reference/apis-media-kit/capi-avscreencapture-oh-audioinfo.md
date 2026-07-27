@@ -32,6 +32,6 @@ OH_AudioInfo作为OH_ScreenCaptureConfig的音频配置成员，包含麦克风�
 | -- | -- |
 | [OH_AudioCaptureInfo](capi-avscreencapture-oh-audiocaptureinfo.md) micCapInfo | 音频麦克风采样信息，用于配置麦克风音频采集的采样参数。 |
 | [OH_AudioCaptureInfo](capi-avscreencapture-oh-audiocaptureinfo.md) innerCapInfo | 音频内录采样信息，用于配置内录音频采集的采样参数。 |
-| [OH_AudioEncInfo](capi-avscreencapture-oh-audioencinfo.md) audioEncInfo | 音频编码信息，原始码流时不需要设置，未设置时默认不进行音频编码。 |
+| [OH_AudioEncInfo](capi-avscreencapture-oh-audioencinfo.md) audioEncInfo | 音频编码信息。采集原始码流时不需要设置编码参数。未设置时默认不进行音频编码。 |
 
 
