@@ -13,16 +13,17 @@
 路径：“base/startup/bootstrap_lite/services/source/system_init.c”
 
   
-```
+```c
 void OHOS_SystemInit(void)
 {
-    MODULE_INIT(bsp);           //执行.zinitcall.bspX.init段中的函数。
-    MODULE_INIT(device);        //执行.zinitcall.deviceX.init段中的函数。
-    MODULE_INIT(core);          //执行.zinitcall.coreX.init段中的函数。
-    SYS_INIT(service);          //执行.zinitcall.sys.serviceX.init段中的函数。
-    SYS_INIT(feature);          //执行.zinitcall.sys.featureX.init段中的函数。
-    MODULE_INIT(run);           //执行.zinitcall.runX.init段中的函数。
-    SAMGR_Bootstrap();          //SAMGR服务初始化。
+    MODULE_INIT(bsp);           // 执行.zinitcall.bspX.init段中的函数。
+    MODULE_INIT(device);        // 执行.zinitcall.deviceX.init段中的函数。
+    MODULE_INIT(core);          // 执行.zinitcall.coreX.init段中的函数。
+    SYS_INIT(service);          // 执行.zinitcall.sys.serviceX.init段中的函数。
+    SYS_INIT(feature);          // 执行.zinitcall.sys.featureX.init段中的函数。
+    MODULE_INIT(run);           // 执行.zinitcall.runX.init段中的函数。
+    SAMGR_Bootstrap();          // SAMGR服务初始化。
+    LiteParamService();         // 初始化参数服务并加载持久化参数。
 }
 ```
 
@@ -36,23 +37,26 @@ void OHOS_SystemInit(void)
    修改如下：
 
      
-   ```
+   ```json
    {
-       "subsystem": "startup",
-       "components": [
-           { "component": "bootstrap_lite", "features":[] },
-           { "component": "syspara_lite", "features":[] }
-       ]
-   },
+     "subsystem": "startup",
+     "components": [
+       { "component": "bootstrap_lite", "features":[] },
+       { "component": "init", "features":["init_lite_use_thirdparty_mbedtls = true"] }
+     ]
+   }
    ```
 
-   在startup子系统中有部分部件（如：syspara_lite等），会依赖“$ohos_product_adapter_dir/utils”中的模块。其中“ohos_product_adapter_dir”就是在config.json文件中配置的“product_adapter_dir”，我们通常配置其为“vendor/MyVendorCompany/MyProduct/hals”。
+   在startup子系统中有部分部件（如：init等），会依赖“$ohos_product_adapter_dir/utils”中的模块。其中“ohos_product_adapter_dir”就是在config.json文件中配置的“product_adapter_dir”，我们通常配置其为“vendor/MyVendorCompany/MyProduct/hals”。
 
 1. 添加zinitcall以及run定义。
+
+   参考文件路径：“device/soc/hisilicon/hi3861v100/sdk_liteos/build/link/link.ld.S”
+
    在厂商ld链接脚本中.text段中，添加如下代码：
 
      
-   ```
+   ```text
        __zinitcall_bsp_start = .;
        KEEP (*(.zinitcall.bsp0.init))
        KEEP (*(.zinitcall.bsp1.init))
@@ -126,25 +130,26 @@ void OHOS_SystemInit(void)
    ```
 
 1. 芯片SDK创建任务。
+
    配置任务参数，系统启动后，启动任务，示例如下：
 
      
-   ```
+   ```c
    void mainTask(void) {
-      //厂商自定义功能。
-       OHOS_SystemInit();        //启动子系统初始化。
+      // 厂商自定义功能。
+       OHOS_SystemInit();        // 启动子系统初始化。
        printf("MainTask running...\n");
    }
     
    void main(VOID) {
-      //硬件初始化，printf输出重定向到debug串口等。
-       if (LOS_KernelInit() == 0) {            //ohos内核初始化。
-           task_init_param.usTaskPrio = 10;    //任务优先级。
-           task_init_param.pcName = "mainTask"; //任务进程名。
-           task_init_param.pfnTaskEntry = (TSK_ENTRY_FUNC)mainTask; //任务入口函数。
-           task_init_param.uwStackSize = 8192;          //任务栈大小。
-           LOS_TaskCreate(&tid, &task_init_param);      //创建任务。
-           LOS_Start();                                 //启动任务。
+      // 硬件初始化，printf输出重定向到debug串口等。
+       if (LOS_KernelInit() == 0) {            // ohos内核初始化。
+           task_init_param.usTaskPrio = 10;    // 任务优先级。
+           task_init_param.pcName = "mainTask"; // 任务进程名。
+           task_init_param.pfnTaskEntry = (TSK_ENTRY_FUNC)mainTask; // 任务入口函数。
+           task_init_param.uwStackSize = 8192;          // 任务栈大小。
+           LOS_TaskCreate(&tid, &task_init_param);      // 创建任务。
+           LOS_Start();                                 // 启动任务。
        }
        else {
            printf("[BUG] LOS_KernelInit fail\n");

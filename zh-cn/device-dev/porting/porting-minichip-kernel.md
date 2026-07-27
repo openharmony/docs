@@ -9,38 +9,53 @@
 
 | **系列** | **型号** | 
 | -------- | -------- |
-| arm | arm9<br/>cortex-m3<br/>cortex-m4<br/>cortex-m7<br/>cortex-m33 | 
-| csky | v2 | 
-| risc-v | nuclei<br/>riscv32 | 
-| xtensa | lx6 | 
+| arm | arm9<br/>common<br/>cortex-m3<br/>cortex-m4<br/>cortex-m7<br/>cortex-m33<br/>cortex-m55 | 
+| csky | common<br/>v2 | 
+| risc-v | common<br/>nuclei<br/>riscv32 | 
+| xtensa | common<br/>lx6 | 
 
 
 如果当前OpenHarmony尚未支持对应芯片架构，则需要芯片厂商自行适配，arch/include目录包含了通用的芯片架构适配所需要实现的函数。部分芯片架构代码由汇编实现，而汇编代码会因编译器的不同而不同，因此在具体的芯片架构下，还包含使用不同编译器（iar、keil、gcc等）编译的架构代码。
 
 
   
-```
+```text
 kernel/liteos_m/arch          # 不同版本路径有差异。
 ├── arm                       # arm系列。
 │   ├── arm9
+│   ├── common
 │   ├── cortex-m3
+│   ├── cortex-m4
+│   │   ├── gcc               # 使用gcc编译器编译的架构代码。
+│   │   ├── iar               # 使用iar编译器编译的架构代码。
+│   │   └── keil              # 使用keil编译器编译的架构代码。
+│   ├── cortex-m7
+│   │   ├── gcc               # 使用gcc编译器编译的架构代码。
+│   │   └── iar               # 使用iar编译器编译的架构代码。
 │   ├── cortex-m33
 │   │   ├── gcc               # 使用gcc编译器编译的架构代码。
 │   │   └── iar               # 使用iar编译器编译的架构代码。
-│   ├── cortex-m4
-│   ├── cortex-m7
+│   ├── cortex-m55
+│   │    ├── gcc              # 使用gcc编译器编译的架构代码。
+│   │    └── iar              # 使用iar编译器编译的架构代码。
+│   └── include
 ├── csky                      # csky系列。
+│   ├── common
+│   └── v2
 ├── include                   # 包含通用的芯片架构所需要实现的函数。
 │   ├── los_arch.h            # 定义芯片架构初始化所需要的函数。
 │   ├── los_atomic.h          # 定义芯片架构所需要实现的原子操作函数。
 │   ├── los_context.h         # 定义芯片架构所需要实现的任务上下文相关函数。
 │   ├── los_interrupt.h       # 定义芯片架构所需要实现的中断和异常相关的函数。
+│   ├── los_mpu.h             # 定义芯片架构所需要实现的内存保护相关的函数。
 │   └── los_timer.h           # 定义芯片架构所需要实现的系统时钟相关的函数。
 ├── risc-v                    # risc-v系列。
+│   ├── common
 │   ├── nuclei
 │   └── riscv32
 └── xtensa                    # xtensa系列。
-     └── lx6
+    ├── common
+    └── lx6
 ```
 
 
@@ -50,69 +65,35 @@ kernel/liteos_m/arch          # 不同版本路径有差异。
 
 1. 将芯片厂商sdk置于device目录下合适的位置，SDK的编译脚本/镜像打包脚本整合进编译框架中。
    
-   参考编译脚本：“device/MyDeviceCompany/MyBoard/BUILD.gn”
+   参考编译脚本：“device/board/MyDeviceCompany/MyBoard/BUILD.gn”
 
      
-   ```
-   import("//build/lite/config/component/lite_component.gni")
-    
-   executable("OHOS_Image.elf") {    # 生成可执行程序。
-     libs = [
-       "xxx/xxx/libxxx.a",           # 链接厂商闭源静态库方法一。
-     ]
-     asmflags = [                    # 汇编编译参数。
-       "",
-     ]
-     ldflags = [
-       "-T./xxx/xxx/xxx.ld",         # 链接脚本文件。
-       "-Lxxx/xxx/",                 # 指定厂商静态库路径。
-       "-lxxx",                      # 链接厂商闭源静态库方法二。
-       "-Wl,--whole-archive",
-       "-lmodule_xxx",
-       "-Wl,--no-whole-archive",
-     ]
-     deps = [
-       "//build/lite:ohos",          # 依赖OpenHarmony静态库编译完成，链接OpenHarmony编译出来的静态库。
-       ":sdk",                       # 依赖厂商源码静态库编译完成，链接厂商源码生成的静态库。
-     ]
-   }
-    
-   copy("prebuilt") {                # 准备镜像生成工具等，一般把镜像生成工具拷贝到out目录。
-     sources = [ ]                   # 复制的源文件。
-     outputs = [ ]                   # 复制的目标文件。
-   }
-   static_library("sdk") {
-     sources = [ ]                   # 添加厂商源码编译成静态库。
-     include_dirs = [ ]              # 厂商源码包含头文件路径。
-   }
-   build_ext_component("image") {    # 调用shell命令，生成可烧写镜像文件 。                            
-     exec_path = rebase_path(root_out_dir)   #指定shell命令执行目录。
-     objcopy = "arm-none-eabi-objcopy"
-     objdump = "arm-none-eabi-objdump"
-     command = "$objcopy -O binary OHOS_Image.elf OHOS_Image.bin" 
-     command += " && sh -c '$objdump -t OHOS_Image.elf | sort > OHOS_Image.sym.sorted'" 
-     command += " && sh -c '$objdump -d OHOS_Image.elf > OHOS_Image.asm'"                  
-     deps = [
-       ":prebuilt",                  # 无需准备镜像生成工具等可以删除此依赖。
-       ":OHOS_Image.elf",            # 依赖elf文件的生成。
-     ]
-   }
+   ```gn
    group("MyBoard") {                # MyBoard与当前路径名称一致。
+     deps = []
+     if (ohos_kernel_type == "linux") {
+       deps += [
+         ......
+       ]
+     } else if (ohos_kernel_type == "liteos_a") {
+       deps += [ 
+         ......
+       ]
+     } else if (ohos_kernel_type == "liteos_m") {
+       deps += [ 
+         ......
+       ]
+     }
    }
    ```
-
-     
-   **图1** 目标的依赖执行顺序 
-
-   ![zh-cn_image_0000001378481233](figures/zh-cn_image_0000001378481233.png)
 
 2. 自定义芯片厂“target_config.h”文件。
 
-   厂商应在“device/MyDeviceCompany/MyBoard”下合适位置创建内核配置文件“target_config.h”，并根据芯片的硬件资源修改参数（具体参数介绍详见表2target_config.h文件主要配置项）。
+   厂商应在“device/board/MyDeviceCompany/MyBoard”下合适位置创建内核配置文件“target_config.h”，并根据芯片的硬件资源修改参数（具体参数介绍详见表2target_config.h文件主要配置项）。
 
-   参考文件路径：“device/hisilicon/hispark_pegasus/sdk_liteos/platform/os/Huawei_LiteOS/targets/hi3861v100/include/target_config.h”
+   参考文件路径：“device/soc/hisilicon/hi3861v100/sdk_liteos/platform/os/Huawei_LiteOS/targets/hi3861v100/include/target_config.h”
 
-   > ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
+   > <img src="public_sys-resources/icon-note.gif" alt="说明"/> <b>说明：</b>
    >
    > 1. 若已有的配置项不能满足需求，可查看“kernel/liteos_m/kernel/include/los_config.h”，其为liteos_m内核的全量配置文件。
    > 2. “target_config.h”文件中出现的配置将会覆盖“los_config.h”中的配置。
@@ -135,7 +116,6 @@ kernel/liteos_m/arch          # 不同版本路径有差异。
    | LOSCFG_BASE_IPC_QUEUE_LIMIT | 最大支持消息队列量的个数。 | 64 | 
    | LOSCFG_BASE_CORE_SWTMR_LIMIT | 支持的最大软件定时器数量，而不是可用的软件定时器数量。 | 80 | 
    | LOSCFG_BASE_MEM_NODE_SIZE_CHECK | 配置内存节点大小检查。 | NO | 
-   | LOSCFG_PLATFORM_EXC | 异常模块配置项。 | YES | 
    | LOSCFG_USE_SYSTEM_DEFINED_INTERRUPT | 是否使用OS默认的中断。 | NO | 
 
 3. 修改内核中断。
@@ -153,7 +133,7 @@ kernel/liteos_m/arch          # 不同版本路径有差异。
 
       将“target_config.h”中的宏"LOSCFG_USE_SYSTEM_DEFINED_INTERRUPT"和"LOSCFG_PLATFORM_HWI"置为YES (1)。
 
-      > ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
+      > <img src="public_sys-resources/icon-note.gif" alt="说明"/> <b>说明：</b>
       > 重定向后的中断向量表g_hwiForm需要根据arch手册要求进行字节对齐，通常0x200字节对齐。
 
 
@@ -167,15 +147,15 @@ kernel/liteos_m/arch          # 不同版本路径有差异。
 
      修改如下：
      
-   ```
+   ```json
    {
-     "subsystem": "kernel",          # 添加内核子系统
+     "subsystem": "kernel",
      "components": [
        { 
-         "component": "liteos_m", "features":[""] 
+         "component": "liteos_m", "features":[]
        }
      ]
-   },
+   }
    ```
 
 2. 开启/关闭内核特性。
@@ -184,86 +164,192 @@ kernel/liteos_m/arch          # 不同版本路径有差异。
 
    内核特性：liteos_m提供了包括文件系统、backtrace在内的一系列内核特性开关。
 
-   路径：“kernel/liteos_m/BUILD.gn”
+   liteos_m内核通过Kconfig对内核特性进行统一配置。各组件BUILD.gn通过module_switch和kernel_module模板根据LOSCFG变量是否定义来决定是否参与编译。
+
+   路径："kernel/liteos_m/Kconfig"
 
      
+   ```kconfig
+   menu "Kernel"
+
+   config KERNEL_EXTKERNEL
+       bool "Enable Extend Kernel"
+       default y                            # 扩展内核总开关，以下特性均依赖此项。
+       help
+         This option will enable extend Kernel of LiteOS.  Extend kernel include
+         cppsupport, cpup, etc. You can select one or some
+         of them.
+
+   config KERNEL_BACKTRACE
+       bool "Enable Backtrace"
+       default n                            # 默认关闭。
+       depends on KERNEL_EXTKERNEL
+       help
+         If you wish to build LiteOS with support for backtrace.
+
+   config KERNEL_CPPSUPPORT
+       bool "Enable C++ Support"
+       default n                            # 默认关闭。
+       depends on KERNEL_EXTKERNEL
+       help
+         If you wish to build LiteOS with support for C++.
+
+   config KERNEL_CPUP
+       bool "Enable Cpup"
+       default n                            # 默认关闭。
+       depends on KERNEL_EXTKERNEL
+       select BASE_CORE_CPUP
+       help
+         If you wish to build LiteOS with support for cpup.
+
+   config PLATFORM_EXC
+       bool "Enable Platform Exc Hook"
+       default n                            # 默认关闭。
+       depends on KERNEL_EXTKERNEL
+
+   endmenu
    ```
-   declare_args() {
-     enable_ohos_kernel_liteos_m_cppsupport = true        # cpp支持。
-     enable_ohos_kernel_liteos_m_cpup = true              # CPU占用率支持。
-     enable_ohos_kernel_liteos_m_exchook = true           # 异常处理支持。
-     enable_ohos_kernel_liteos_m_kal = true               # kal接口支持。
-     enable_ohos_kernel_liteos_m_fs = true                # 文件系统支持。
-     enable_ohos_kernel_liteos_m_backtrace = true         # backtrace支持。
+
+   各组件BUILD.gn通过module_switch判断对应的LOSCFG变量是否定义，决定是否编译。以cppsupport为例：
+
+   路径：“kernel/liteos_m/components/cppsupport/BUILD.gn”
+
+     
+   ```gn
+   import("//kernel/liteos_m/liteos.gni")
+
+   module_switch = defined(LOSCFG_KERNEL_CPPSUPPORT)    # 对应Kconfig中的KERNEL_CPPSUPPORT。
+   module_name = get_path_info(rebase_path("."), "name")
+   kernel_module(module_name) {
+     sources = [ "los_cppsupport.c" ]
+     configs += [ "$LITEOSTOPDIR:warn_config" ]
    }
-   group("kernel") {
-   deps = [
-       "components/bounds_checking_function:sec",
-       "kernel:kernel",
-       "utils:utils",
+   ```
+
+   特性：可以选择cmsis接口或posix接口支持。
+
+   路径："kernel/liteos_m/kal/cmsis/Kconfig"
+
+     
+   ```kconfig
+   config KAL_CMSIS
+       bool "Enable KAL CMSIS"
+       default y                            # cmsis接口，默认开启。
+       help
+         Answer Y to enable LiteOS Kernel Abstraction Layer support CMSIS API.
+   ```
+
+   路径：“kernel/liteos_m/kal/posix/Kconfig”
+
+     
+   ```kconfig
+   config POSIX_API
+       bool "Enable POSIX API"
+       default y                            # posix接口，默认开启。
+       help
+         Answer Y to enable LiteOS support POSIX API.
+
+   if POSIX_API
+   config POSIX_THREAD_API
+       bool "Enable POSIX Thread API"
+       default y                            # posix线程接口，默认开启。
+       help
+         Answer Y to enable LiteOS support POSIX Thread API.
+   ......
+   endif
+   ```
+
+   路径：“kernel/liteos_m/kal/cmsis/BUILD.gn”
+
+     
+   ```gn
+   import("//kernel/liteos_m/liteos.gni")
+   import("$THIRDPARTY_CMSIS_DIR/cmsis.gni")
+
+   module_switch = defined(LOSCFG_KAL_CMSIS)     # 如果cmsis enable，加入cmsis目录编译。
+   module_name = get_path_info(rebase_path("."), "name")
+   kernel_module(module_name) {
+     sources = [ "cmsis_liteos2.c" ]
+     configs += [ "$LITEOSTOPDIR:warn_config" ]
+   }
+
+   config("public") {
+     include_dirs = CMSIS_INCLUDE_DIRS + [ "." ]
+   }
+   ```
+
+   路径：“kernel/liteos_m/kal/posix/BUILD.gn”
+
+     
+   ```gn
+   import("//kernel/liteos_m/liteos.gni")
+
+   module_switch = defined(LOSCFG_POSIX_API)     # 如果posix enable，加入posix目录编译。
+   module_name = get_path_info(rebase_path("."), "name")
+   kernel_module(module_name) {
+     sources = [
+       "src/errno.c",
+       "src/libc.c",
+       "src/map_error.c",
      ]
-     if (enable_ohos_kernel_liteos_m_cppsupport == true) {
-       deps += [ "components/cppsupport:cppsupport" ]     # 如果内核特性true，则会加入相应的代码进行编译。
-     }
-     ……
-     if (enable_ohos_kernel_liteos_m_kal == true) {
-       deps += [ "kal:kal" ]
-     }
+     configs += [ "$LITEOSTOPDIR:warn_config" ]
    }
-   ```
-
-   特性：可以选择cmsis接口或者posix接口支持。
-
-   路径：“kernel/liteos_m/kal/BUILD.gn”
-
-     
-   ```
-   declare_args() {
-     enable_ohos_kernel_liteos_m_cmsis = true  # cmsis支持。
-     enable_ohos_kernel_liteos_m_posix = true  # posix支持。
-   }
-   static_library("kal") {
-     sources = [ "kal.c" ]
-     if (enable_ohos_kernel_liteos_m_cmsis == true) {
-       deps += [ "cmsis/" ]                    # 如果cmsis enable，加入cmsis目录编译。
-     }
-     if (enable_ohos_kernel_liteos_m_posix == true) {
-       deps += [ "posix/" ]                    # 如果posix enable，加入posix目录编译。
-     }
+   ......
+   config("public") {
+     include_dirs = [ "include" ]
    }
    ```
 
    特性：可以选择fatfs支持。
 
-   路径：“kernel/liteos_m/components/fs/BUILD.gn”
+   路径：“kernel/liteos_m/components/fs/fatfs/Kconfig”
 
      
+   ```kconfig
+   config FS_FAT
+       bool "Enable FAT"
+       default n                            # fatfs，默认关闭。
+       depends on FS_VFS
+       select SUPPORT_FATFS
+       help
+         Answer Y to enable LiteOS support fat filesystem.
    ```
-   declare_args() {
-     enable_ohos_kernel_liteos_m_fatfs = true   # fatfs支持
+
+   组件BUILD.gn通过module_switch控制：
+
+   路径：“kernel/liteos_m/components/fs/fatfs/BUILD.gn”
+
+     
+   ```gn
+   import("//kernel/liteos_m/liteos.gni")
+   import("$THIRDPARTY_FATFS_DIR/FatFs.gni")
+
+   module_switch = defined(LOSCFG_FS_FAT)        # 如果fatfs enable，加入fatfs目录编译。
+   module_name = get_path_info(rebase_path("."), "name")
+   kernel_module(module_name) {
+     configs += [ "$LITEOSTOPDIR:warn_config" ]
+     sources = FATFS_SRC_FILES + [ "fatfs.c" ]
    }
-   group("fs") {
-     deps = []
-     if (enable_ohos_kernel_liteos_m_fatfs == true) {
-       deps += [ "fatfs:fatfs" ] 
-     }
+
+   config("public") {
+     include_dirs = FATFS_INCLUDE_DIRS + [ "." ]
    }
    ```
 
-   > ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
-   > 内核特性开关可以在具体产品模组中配置。例如关闭fs和cppsupport特性。
-   > 
-   > “vendor/MyVendorCompany/MyProduct/config.json”
-   > 
-   >   
-   > ```
-   > "subsystem": "kernel",
-   > "components": [
-   >  { 
-   >     "component": "liteos_m", 
-   >     "features":["enable_ohos_kernel_liteos_m_fs = false",
-   >     "enable_ohos_kernel_liteos_m_cppsupport = false"] 
-   >   }
-   > ]
-   > }
-   > ```
+   内核特性开关在具体产品的目录下的kernel_configs配置文件实现。
+
+   路径："vendor/MyVendorCompany/MyProduct/kernel_configs/debug.config"
+
+     
+   ```conf
+   LOSCFG_KERNEL_CPPSUPPORT=y     # 启用C++支持。
+   LOSCFG_KERNEL_BACKTRACE=y      # 启用backtrace支持。
+   LOSCFG_KERNEL_CPUP=y           # 启用CPU占用率支持。
+   LOSCFG_FS_LITTLEFS=y           # 启用littlefs文件系统。
+   LOSCFG_NET_LWIP=y              # 启用lwip网络协议栈。
+   LOSCFG_SHELL=y                 # 启用shell调试。
+   ```
+
+   > <img src="public_sys-resources/icon-note.gif" alt="说明"/> <b>说明：</b>
+   > 1. 内核特性开关通过修改"vendor/MyVendorCompany/MyProduct/kernel_configs/"目录下的.config文件配置。
+   > 2. 更多Kconfig配置项可查看"kernel/liteos_m/Kconfig"及其子目录中的Kconfig文件。
