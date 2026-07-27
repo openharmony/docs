@@ -14,7 +14,7 @@
 
 处理[Promise](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides/use-napi-about-promise)对象：将Promise与C++回调绑定，处理异步结果。
 
-转换数据类型：在回调中将JavaScript结果转换为c++可用的数据。
+转换数据类型：在回调中将JavaScript结果转换为C++可用的数据。
 
 ### 示例代码
 - 模块注册

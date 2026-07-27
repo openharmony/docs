@@ -3439,7 +3439,7 @@ notificationManager.setNotificationEnableSlot(
 
 setNotificationEnableSlot(bundle: BundleOption, type: SlotType, enable: boolean, isForceControl?: boolean): Promise\<void>
 
-设置指定应用的指定渠道类型的使能状态。使用promise异步回调。
+设置指定应用的指定渠道类型的使能状态。使用Promise异步回调。
 
 **系统能力**：SystemCapability.Notification.Notification
 
