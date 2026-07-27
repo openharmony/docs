@@ -17,7 +17,7 @@
 请参考[获取源码](../get-code/sourcecode-acquire.md)完成源码下载并进行编译。
 
 > <img src="public_sys-resources/icon-note.gif" alt="说明"/> <b>说明：</b>
-> 本文档仅适用于OpenHarmony LTS 7.0.0及之前版本，所以请获取对应版本的源码。
+> 本文档仅适用于OpenHarmony LTS 6.1及之前版本，所以请获取对应版本的源码。
 
 
 ### 目录介绍
@@ -184,8 +184,8 @@ OpenHarmony源码重要目录介绍见表1 OpenHarmony重要目录，其中devic
    {
        "product_name": "MyProduct",
        "type": "mini",
-       "version": "7.0",
-       "ohos_version": "OpenHarmony 7.0",
+       "version": "6.1",
+       "ohos_version": "OpenHarmony 6.1",
        "device_company": "MyDeviceCompany",
        "device_build_path": "device/board/MyDeviceCompany/MyBoard",
        "board": "MyBoard",
@@ -217,7 +217,7 @@ OpenHarmony源码重要目录介绍见表1 OpenHarmony重要目录，其中devic
    | -------- | -------- |
    | product_name | 产品名称，hb&nbsp;set时显示产品名称。 | 
    | type | 系统类型，轻量系统填写"mini"。 | 
-   | version | 配置文件版本，当前为"7.0"。 | 
+   | version | 配置文件版本，当前为"6.1"。 | 
    | ohos_version | OpenHarmony版本号，与实际版本保持一致即可。 | 
    | device_company | 芯片厂商名称，与device的三级目录名称一致。 | 
    | device_build_path | 设备构建路径，指向device下的开发板目录。 |
