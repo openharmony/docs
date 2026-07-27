@@ -34,6 +34,6 @@ import { AgentUIExtensionAbility } from '@kit.AbilityKit';
 
 ## AgentUIExtensionAbility
 
-AgentUIExtensionAbility继承自[UIExtensionAbility](js-apis-app-ability-uiExtensionAbility.md)，为开发者提供接入端侧Agent UI界面显示能力。例如，如果Agent开发者希望能够在其他应用显示Agent返回的结果时，可以通过接入AgentUIExtensionAbility提供展示嵌入式弹窗的能力。
+AgentUIExtensionAbility继承自[UIExtensionAbility](js-apis-app-ability-uiExtensionAbility.md)，为开发者提供接入端侧Agent UI界面显示能力。例如，当Agent开发者希望在其他应用中显示Agent返回的结果时，可以通过接入AgentUIExtensionAbility提供展示嵌入式弹窗的能力。
 
 **系统能力**：SystemCapability.Ability.AgentRuntime.Core

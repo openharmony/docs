@@ -21,7 +21,7 @@ import { abilityDelegatorRegistry } from '@kit.TestKit';
 
 ## 使用说明
 
-可以作为abilityDelegator中的[addAbilityMonitor](../apis-test-kit/js-apis-inner-application-abilityDelegator.md#addabilitymonitor9)的入参来监听指定Ability的生命周期变化。
+可以作为abilityDelegator中的[addAbilityMonitor](../apis-test-kit/js-apis-inner-application-abilityDelegator.md#addabilitymonitor9)的入参来监听指定UIAbility的生命周期变化。
 
 ## AbilityMonitor
 

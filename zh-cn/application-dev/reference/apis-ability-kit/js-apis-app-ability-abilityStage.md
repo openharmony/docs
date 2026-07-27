@@ -82,7 +82,7 @@ onAcceptWant(want: Want): string
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| want | [Want](js-apis-app-ability-want.md) | 是 | Want类型参数，此处表示调用方传入的启动参数，如Ability名称，Bundle名称等。 |
+| want | [Want](js-apis-app-ability-want.md) | 是 | Want类型参数，此处表示调用方传入的启动参数，如Ability名称、Bundle名称等。 |
 
 **返回值：**
 
@@ -139,7 +139,7 @@ onNewProcessRequest(want: Want): string
 
 | 类型 | 说明 |
 | -------- | -------- |
-| string | 返回一个由开发者自行决定的进程字符串标识，如果之前此标识对应的进程已被创建，就让ability在此进程中运行，否则创建新的进程。 |
+| string | 返回一个由开发者自行决定的进程字符串标识，如果之前此标识对应的进程已被创建，就让Ability在此进程中运行，否则创建新的进程。 |
 
 **示例：**
 
@@ -251,7 +251,7 @@ onPrepareTermination(): AbilityConstant.PrepareTermination
 
 > **说明：**
 >
-> - 仅当应用正常退出（例如，通过doc栏/托盘关闭应用，或者应用随设备关机而退出）时会调用该接口。如果应用被强制关闭，则不会调用该接口。
+> - 仅当应用正常退出（例如，通过任务栏/托盘关闭应用，或者应用随设备关机而退出）时会调用该接口。如果应用被强制关闭，则不会调用该接口。
 >
 > - 当[AbilityStage.onPrepareTerminationAsync](#onprepareterminationasync15)实现时，本回调函数将不执行。
 
@@ -292,7 +292,7 @@ onPrepareTerminationAsync(): Promise\<AbilityConstant.PrepareTermination>
 
 > **说明：**
 >
-> - 仅当应用正常退出（例如，通过doc栏/托盘关闭应用，或者应用随设备关机而退出）时会调用该接口。如果应用被强制关闭，则不会调用该接口。
+> - 仅当应用正常退出（例如，通过任务栏/托盘关闭应用，或者应用随设备关机而退出）时会调用该接口。如果应用被强制关闭，则不会调用该接口。
 >
 > - 若异步回调内发生crash，按超时处理，执行等待超过10秒未响应，应用将被强制关闭。
 
@@ -354,13 +354,13 @@ onAcceptWantAsync(want: Want): Promise\<string\>
 **示例：**
 
 ```ts
-import { AbilityStage } from '@kit.AbilityKit';
+import { AbilityStage, Want } from '@kit.AbilityKit';
 
 class MyAbilityStage extends AbilityStage {
   async onAcceptWantAsync(want: Want): Promise<string> {
     await new Promise<string>((res, rej) => {
       setTimeout(res, 1000); // 延时1秒后执行
-      console.info(`onNewProcessRequestAsync, want: ${JSON.stringify(want)}`);
+      console.info(`onAcceptWantAsync, want: ${JSON.stringify(want)}`);
     });
     return 'default';
   }
@@ -400,7 +400,7 @@ onNewProcessRequestAsync(want: Want): Promise\<string\>
 **示例：**
 
 ```ts
-import { AbilityStage } from '@kit.AbilityKit';
+import { AbilityStage, Want } from '@kit.AbilityKit';
 
 class MyAbilityStage extends AbilityStage {
   async onNewProcessRequestAsync(want: Want): Promise<string> {
