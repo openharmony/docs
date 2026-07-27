@@ -132,8 +132,7 @@ arkOptions的transformLib字段配置文件标签说明：
 arkOptions中transformLib字段示例：
 
 在模块build-profile.json5配置文件buildOption标签的arkOptions属性中添加transformLib字段。
-```json5
-// 在/entry/build-profile.json5
+```json
 {
   "buildOption": {
     "arkOptions": {
@@ -141,7 +140,6 @@ arkOptions中transformLib字段示例：
     }
   }
 }
-
 ```
 修改方舟字节码能力可参考[编译期自定义修改方舟字节码](customize-bytecode-during-compilation.md)。
 
