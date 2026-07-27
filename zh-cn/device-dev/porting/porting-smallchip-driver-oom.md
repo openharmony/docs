@@ -18,7 +18,7 @@
    ```c
    int32_t LCDxxEntryInit(struct HdfDeviceObject *object)
    {
-       struct PanelData *panel = CreateYourPanel();
+       struct PanelData *panel = CreateYourPanel();   // 你的创建代码需要自己实现。
        // 注册模型实例。
        if (RegisterPanel(panel) != HDF_SUCCESS) {
            HDF_LOGE("%s: RegisterPanel failed", __func__);
@@ -100,7 +100,10 @@
        device->priv = (void *)chipDev;
 
        if(RegisterTouchChipDevice(chipDev) != HDF_SUCCESS) { // 注册ChipDevice模型。
+           HDF_LOGE("%s: RegisterTouchChipDevice fail", __func__);
            OsalMemFree(chipDev);
+           FreeChipConfig(chipCfg);
+           return HDF_FAILURE;
        }
        return HDF_SUCCESS;
    }
@@ -267,7 +270,7 @@ WLAN驱动分为两部分，一部分负责管理WLAN设备，另一个部分负
    > <img src="public_sys-resources/icon-note.gif" alt="说明"/> <b>说明：</b>
    > moduleName 要与HDF WLAN 芯片驱动中的moduleName相同。
 
-4. 修改Kconfig文件，让移植的WLAN模组出现在内核配置中。
+4. 修改Kconfig文件，让移植的WLAN模块出现在内核配置中。
 
    在`device/soc/vendor_name/common/platform/Kconfig`中增加配置菜单，模板如下：
 

@@ -85,7 +85,7 @@ HDF为所有的平台驱动都创建了驱动模型，移植平台驱动的主�
        return HDF_SUCCESS;
    }
    
-   // Init方法时驱动初始化的入口，我们需要在Init方法中完成模型实例的注册。
+   // Init方法是驱动初始化的入口，我们需要在Init方法中完成模型实例的注册。
    static int32_t GpioInit(struct HdfDeviceObject *device)
    {
        int32_t ret;
