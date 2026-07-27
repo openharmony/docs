@@ -54,7 +54,7 @@
 
 2. 执行编译
 
-   linux命令行中进入yxml的源文件目录（即表1所示目录），执行下列命令：
+   Linux命令行中进入yxml的源文件目录（即表1所示目录），执行下列命令：
 
 
    ```text
@@ -71,8 +71,8 @@
 
    | 名称 | 描述 |
    | -------- | -------- |
-   | OpenHarmony/third_party/yxml/yxml/out/lib/ | 编译生成的静态库的存放目录。 | 
-   | OpenHarmony/third_party/yxml/yxml/out/test/ | 编译生成的测试用例及其输入输出等文件的存放目录。 |
+   | OpenHarmony/third_party/yxml/yxml/test/ | 编译生成的静态库的存放目录。 | 
+   | OpenHarmony/third_party/yxml/yxml/test/ | 编译生成的测试用例及其输入输出等文件的存放目录。 |
 
 
 ## 测试
