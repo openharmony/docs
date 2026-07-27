@@ -1,11 +1,12 @@
 # ArkData FAQs
+
 <!--Kit: ArkData-->
 <!--Subsystem: DistributedDataManager-->
-<!--Owner: @widecode-->
-<!--Designer: @widecode-->
+<!--Owner: @baijidong-->
+<!--Designer: @htt1997-->
 <!--Tester: @logic42-->
 <!--Adviser: @ge-yafang-->
-<!-- md-trans-meta sourceCommit=dcae6f10c07044342acb5b2dc0416e100c5bcaa2 translatedAt=2026-06-17T06:39:43.893Z pushedAt=2026-06-22T08:07:53.099Z -->
+<!-- md-trans-meta sourceCommit=5d0cb74467535c2b664371e5a492050cebfe21a9 translatedAt=2026-07-27T08:15:44.155Z pushedAt=2026-07-27T08:37:57.302Z -->
 
 ## How do I view detailed SQL execution error logs of an RDB store?
 
@@ -23,7 +24,7 @@ Call [relationalStore.getQuerySqlInfo](../reference/apis-arkdata/arkts-apis-data
 
 ## Different Files in an RDB Store
 
-When relational data is used, different file artifacts may be generated. The purpose of each file is described in the following table.
+When an RDB store is used, different file artifacts may be generated. The purpose of each file is described in the following table.
 
 | **File Type** | **Description**                                                             |
 | ------------ | ----------------------------------------------------------------------- |
@@ -35,116 +36,17 @@ When relational data is used, different file artifacts may be generated. The pur
 | .db-dwr      | Used to save file header information.                                       |
 | .db-compare      | Used to save all DDL statements.                                    |
 
+## How to Configure the encryptionKey Parameter When Calling getRdbStore to Open an Encrypted Relational Database with a Raw Key?
 
-## Common Scenarios and Troubleshooting Steps for RDB Store Error Codes
-> **NOTE**
->
-> For details about the following error codes, see [RDB Error Codes](../reference/apis-arkdata/errorcode-data-rdb.md).
->
-> For details about how to obtain hilog system logs, see [Viewing Logs](../dfx/hilog.md#viewing-logs).
->
-> The searchable logs below may vary across different versions.
+In an RDB store, when you call [getRdbStore](../reference/apis-arkdata/arkts-apis-data-relationalStore-f.md#relationalstoregetrdbstore) to open an encrypted database with a raw key, configure the [CryptoParam.encryptionKey](../reference/apis-arkdata/arkts-apis-data-relationalStore-i.md#cryptoparam14) parameter as follows:
 
-### Error Code: 14800000
+```ts
+import { relationalStore } from '@kit.ArkData'
 
-**Possible causes:**
-- Distributed tables do not support composite primary keys. Therefore, APIs such as [setDistributedTables](../reference/apis-arkdata/arkts-apis-data-relationalStore-RdbStore.md#setdistributedtables) fail when used to set distributed tables.
-- The database is operated in multiple processes, and one of the processes is frozen. The database lock is held by the frozen process until it is unfrozen. During this period, other processes fail to obtain the lock when opening the database by calling APIs such as [getRdbStore](../reference/apis-arkdata/arkts-apis-data-relationalStore-f.md#relationalstoregetrdbstore).
-- A read connection is used for write operations. A read connection can be used only for read operations, not write operations.
-- The same batch of data is queried and deleted concurrently.
-- The root key fails to be generated. HUKS fails to generate the root key, so the key for the encrypted database cannot be generated. As a result, APIs such as [getRdbStore](../reference/apis-arkdata/arkts-apis-data-relationalStore-f.md#relationalstoregetrdbstore) fail to open the encrypted database.
-- No data is found during a remote query. If the data to query does not exist in the peer database, calling [remoteQuery](../reference/apis-arkdata/arkts-apis-data-relationalStore-RdbStore.md#remotequery) to perform a remote query succeeds in obtaining a result set, but subsequent calls to APIs such as [goToFirstRow](../reference/apis-arkdata/arkts-apis-data-relationalStore-ResultSet.md#gotofirstrow) fail to obtain data.
-- The data management service fails to start. In this case, distributed tables cannot be set, so APIs such as [setDistributedTables](../reference/apis-arkdata/arkts-apis-data-relationalStore-RdbStore.md#setdistributedtables) fail.
-
-**Troubleshooting steps:**
-1. Check whether the following log is printed around the time when the issue occurs: `Not support create distributed table with composite primary keys`.
-   - Yes: Do not use composite primary keys when setting a distributed table.
-   - No: Go to the next step.
-2. Check whether logs related to process freezing can be found by using a regular expression, such as `Freeze pid: process ID success` or `PID process ID has been frozen`, and whether the following database opening failure log exists: `ConnectionPool.*code:-15`.
-   - Yes: Do not operate the database when the process enters the background to avoid concurrent database operations across multiple processes. Call [requestSuspendDelay](../reference/apis-backgroundtasks-kit/js-apis-resourceschedule-backgroundTaskManager.md#backgroundtaskmanagerrequestsuspenddelay) to apply for a transient task or call [startBackgroundRunning](../reference/apis-backgroundtasks-kit/js-apis-resourceschedule-backgroundTaskManager.md#backgroundtaskmanagerstartbackgroundrunning) to apply for a continuous task, so that database operations can be completed before the process is frozen.
-   - No: Go to the next step.
-3. Check whether the service code performs the following operations: After [beginTransaction](../reference/apis-arkdata/arkts-apis-data-relationalStore-RdbStore.md#begintransaction) is called to start a transaction and before the transaction is committed, [execute](../reference/apis-arkdata/arkts-apis-data-relationalStore-RdbStore.md#execute12) or [executeSql](../reference/apis-arkdata/arkts-apis-data-relationalStore-RdbStore.md#executesql) is called to delete trigger a, delete table A, and recreate table A in sequence. Later, deleting trigger a again fails.
-   - Yes: Avoid performing similar operations before a transaction is committed, such as deleting trigger a, deleting table A, recreating table A, and then deleting trigger a again.
-   - No: Go to the next step.
-4. Check whether the service code performs the following operations: After obtaining the result set, [execute](../reference/apis-arkdata/arkts-apis-data-relationalStore-RdbStore.md#execute12), [executeSql](../reference/apis-arkdata/arkts-apis-data-relationalStore-RdbStore.md#executesql), or [delete](../reference/apis-arkdata/arkts-apis-data-relationalStore-RdbStore.md#delete) is called to delete the data to be queried, and then APIs such as [getLong](../reference/apis-arkdata/arkts-apis-data-relationalStore-ResultSet.md#getlong) are called to obtain data.
-   - Yes: Control the operation sequence properly. Do not query and delete the same batch of data concurrently.
-   - No: Go to the next step.
-5. Check whether the key log `01650.*Init.*retry.*error` can be found using a regular expression around the time when the issue occurs, where `error` is not `0`.
-   - Yes: The root key may have failed to be generated. Retry opening the encrypted database.
-   - No: Go to the next step.
-6. Check whether the data to query exists in the database on the peer device.
-   - Yes: Go to the next step.
-   - No: Ensure that the data to query exists before performing the remote query.
-7. Check whether the key log `Get distributed data manager failed` can be found around the time when the issue occurs.
-   - Yes: The data management service failed to start. Retry setting the distributed tables.
-   - No: Provide hilog system logs and contact technical support.
-
-### Error Code: 14800011
-
-**Possible causes:**
-- The custom key does not match when the encrypted database is opened. As a result, APIs such as [getRdbStore](../reference/apis-arkdata/arkts-apis-data-relationalStore-f.md#relationalstoregetrdbstore) fail to open the database.
-- The database file is abnormal. As a result, database operations such as insert, delete, update, and query fail.
-
-**Troubleshooting steps:**
-1. Check whether the custom key parameters are consistent with the key parameters used when creating the encrypted database.
-   - Yes: Go to the next step.
-   - No: Ensure that the custom key parameters are consistent each time the encrypted database is opened.
-2. Check whether the issue can be resolved by referring to the troubleshooting steps in [Database File Corrupted](../reference/apis-arkdata/errorcode-data-rdb.md#14800011-database-file-corrupted).
-   - Yes: Follow the troubleshooting steps for corrupted database files.
-   - No: Provide hilog system logs and contact technical support.
-
-### Error Code: 14800013
-
-**Possible causes:** The passed column index is greater than the number of columns in the table or is a negative value. As a result, APIs such as [getLong](../reference/apis-arkdata/arkts-apis-data-relationalStore-ResultSet.md#getlong) and [getString](../reference/apis-arkdata/arkts-apis-data-relationalStore-ResultSet.md#getstring) fail.
-
-**Troubleshooting steps:** Check whether the key log `index.*is out of range|Invalid columnIndex` can be found using a regular expression around the time when the issue occurs, and check whether the passed column index is greater than the number of columns in the table or is a negative value.
-   - Yes: Ensure that the passed parameter is as expected and does not exceed the number of columns in the database table.
-   - No: Provide hilog system logs and contact technical support.
-
-### Error Code: 14800021
-
-**Possible causes:**
-- The SQL statement is misspelled or has syntax errors. As a result, APIs such as [executeSql](../reference/apis-arkdata/arkts-apis-data-relationalStore-RdbStore.md#executesql), [execute](../reference/apis-arkdata/arkts-apis-data-relationalStore-RdbStore.md#execute12), and [executeSync](../reference/apis-arkdata/arkts-apis-data-relationalStore-RdbStore.md#executesync12) fail to execute the SQL statement.
-- A table does not exist in the database or a field does not exist in the table. As a result, APIs such as [executeSql](../reference/apis-arkdata/arkts-apis-data-relationalStore-RdbStore.md#executesql), [execute](../reference/apis-arkdata/arkts-apis-data-relationalStore-RdbStore.md#execute12), and [executeSync](../reference/apis-arkdata/arkts-apis-data-relationalStore-RdbStore.md#executesync12) fail to execute the SQL statement.
-- A field that already exists in a table is added repeatedly. As a result, APIs such as [executeSql](../reference/apis-arkdata/arkts-apis-data-relationalStore-RdbStore.md#executesql), [execute](../reference/apis-arkdata/arkts-apis-data-relationalStore-RdbStore.md#execute12), and [executeSync](../reference/apis-arkdata/arkts-apis-data-relationalStore-RdbStore.md#executesync12) fail to execute the SQL statement.
-- SQLite system limits are violated, such as an overly long string or BLOB, too many columns, too many SQL variables, an overly deep expression tree, too many compound SELECT terms, or too many attached databases. As a result, APIs such as [executeSql](../reference/apis-arkdata/arkts-apis-data-relationalStore-RdbStore.md#executesql), [execute](../reference/apis-arkdata/arkts-apis-data-relationalStore-RdbStore.md#execute12), and [executeSync](../reference/apis-arkdata/arkts-apis-data-relationalStore-RdbStore.md#executesync12) fail to execute the SQL statement.
-- The database file is abnormal. As a result, APIs such as [executeSql](../reference/apis-arkdata/arkts-apis-data-relationalStore-RdbStore.md#executesql), [execute](../reference/apis-arkdata/arkts-apis-data-relationalStore-RdbStore.md#execute12), and [executeSync](../reference/apis-arkdata/arkts-apis-data-relationalStore-RdbStore.md#executesync12) fail to execute the SQL statement.
-
-**Troubleshooting steps:**
-1. Check whether key logs such as `Error.*unrecognized token|Error.*syntax error|Error.*incomplete input` can be found using a regular expression around the time when the issue occurs.
-   - Yes: Ensure that the SQL statement is complete. Do not include the `RETURN` keyword in trigger statements. Do not start SQL statements with comments. If the SQL statement contains `in`, the values in parentheses must be `?` placeholders or specific values. Do not pass empty values. Do not use special characters such as `{`, `}`, or `   -  near table names or field names in SQL statements.
-   - No: Go to the next step.
-2. Check whether key logs such as `Error.*no such table|Error.*no such column` can be found using a regular expression around the time when the issue occurs.
-   - Yes: Create the table or add the field before operating the database. Harden the service by recreating the missing table or adding the missing field.
-   - No: Go to the next step.
-3. Check whether the key log `Error.*duplicate column name` can be found using a regular expression around the time when the issue occurs.
-   - Yes: Do not add a field that already exists in the table.
-   - No: Go to the next step.
-4. Check whether key logs such as `too many SQL variables|string or blob too big|too many columns|expression tree too deep|too many terms in compound SELECT|too many attached databases` can be found using a regular expression around the time when the issue occurs.
-   - Yes: Ensure that SQL execution does not violate SQLite system limits. For details, see the official documentation: [SQLite System Limits](https://sqlite.org/limits.html).
-   - No: Go to the next step.
-5. Check whether key logs such as `Error.*unsupported file format|Error.*database corruption` can be found using a regular expression around the time when the issue occurs.
-   - Yes: Resolve issues such as memory corruption caused by the service process or file descriptors being closed by mistake. Integrate backup and restore, or delete and recreate the database.
-   - No: Provide hilog system logs and contact technical support.
-
-### Error Code: 14800012
-
-**Possible causes:**
-- The SQL statement is misspelled, a table or field cannot be found, a field is added repeatedly, SQLite system limits are violated, or the database file is abnormal. For details, see the scenarios for error code 14800021. As a result, APIs such as [getLong](../reference/apis-arkdata/arkts-apis-data-relationalStore-ResultSet.md#getlong) fail to obtain data.
-- The size of a single queried data record exceeds 2 MB. As a result, APIs such as [getLong](../reference/apis-arkdata/arkts-apis-data-relationalStore-ResultSet.md#getlong) fail to obtain data.
-- The table contains no data. As a result, APIs such as [getLong](../reference/apis-arkdata/arkts-apis-data-relationalStore-ResultSet.md#getlong) fail to obtain data.
-- The table contains no data that meets the query conditions. As a result, APIs such as [getLong](../reference/apis-arkdata/arkts-apis-data-relationalStore-ResultSet.md#getlong) fail to obtain data.
-
-**Troubleshooting steps:**
-1. Check whether the issue can be located by following the troubleshooting steps for error code 14800021.
-   - Yes: Follow the troubleshooting steps for error code 14800021.
-   - No: Go to the next step.
-2. Check whether the key log `ResetStatement.*over 2MB` can be found using a regular expression around the time when the issue occurs, or check whether the size of a single data record exceeds 2 MB.
-   - Yes: Call [queryWithoutRowCount](../reference/apis-arkdata/arkts-apis-data-relationalStore-RdbStore.md#querywithoutrowcount23) to obtain the result set [LiteResultSet](../reference/apis-arkdata/arkts-apis-data-relationalStore-LiteResultSet.md), and then query data records whose size exceeds 2 MB.
-   - No: Go to the next step.
-3. Check whether the table contains data.
-   - Yes: Go to the next step.
-   - No: Insert data before querying.
-4. Check whether the table contains data that meets the query conditions.
-   - Yes: Provide hilog system logs and contact technical support.
-   - No: Ensure that the query conditions are as expected and can return data.
+let password: string = "x'3605d7de19311edba4d3c88143c61cdd79dd5a58bc829c8b1234567891234567'"; // Replace with the actual database password.
+let key = new Uint8Array(buffer.from(password, 'utf8').buffer); // Returns a Uint8Array.
+// Configure encryption parameters.
+const cryptoParam: relationalStore.CryptoParam = {
+  encryptionKey: key, // Mandatory. Specifies the key.
+};
+```

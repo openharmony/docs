@@ -1,4 +1,4 @@
-# Connectivity Kit Terminology
+# Glossary
 
 <!--Kit: Connectivity Kit-->
 <!--Subsystem: Communication-->
@@ -6,7 +6,7 @@
 <!--Designer: @chengguohong; @tangjia15-->
 <!--Tester: @wangfeng517-->
 <!--Adviser: @zhang_yixin13-->
-<!-- md-trans-meta sourceCommit=dcae6f10c07044342acb5b2dc0416e100c5bcaa2 translatedAt=2026-06-17T06:39:15.896Z pushedAt=2026-06-22T07:28:00.629Z -->
+<!-- md-trans-meta sourceCommit=f27c946fc782ac1d031692b6ff0d2063a86e9e01 translatedAt=2026-07-25T11:34:59.281Z pushedAt=2026-07-27T08:09:19.250Z -->
 
 ## A
 
@@ -65,6 +65,10 @@ Enhanced Data Rate, which enhances [BR](#br) by offering a higher data transmiss
 Generic Attribute Profile, which is the core protocol of [BLE](#ble) that defines the mechanism for Bluetooth communication and data transmission based on [services](#service), [characteristics](#characteristic), and [descriptors](#descriptor).
 
 ## H
+
+### High Accuracy Distance Measurement (HADM)
+
+A technology for measuring the distance between devices based on NearLink wireless signals. It calculates the distance by measuring the signal round-trip time or phase difference, achieving centimeter-level measurement accuracy.
 
 ### HF
 
@@ -166,7 +170,7 @@ Phone book server equipment in the [PBAP](#pbap) protocol that stores original p
 
 ### Profile
 
-Bluetooth technology protocol or capability in the Bluetooth subsystem, Typical examples include [A2DP](#a2dp), [HFP](#hfp), and [HID](#hid).
+Bluetooth technology protocol or capability in the Bluetooth subsystem. Typical examples include [A2DP](#a2dp), [HFP](#hfp), and [HID](#hid).
 
 ### PSM
 

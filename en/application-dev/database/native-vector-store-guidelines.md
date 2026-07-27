@@ -6,7 +6,7 @@
 <!--Designer: @widecode-->
 <!--Tester: @logic42-->
 <!--Adviser: @ge-yafang-->
-<!-- md-trans-meta sourceCommit=deff468b8adbfa4199da5cbe7b6cbc33f2bddb1e translatedAt=2026-06-24T07:37:54.719Z pushedAt=2026-06-25T08:32:33.621Z -->
+<!-- md-trans-meta sourceCommit=6174dbe83735166d6bba14dbb2029a3e65a74471 translatedAt=2026-07-27T08:16:40.882Z pushedAt=2026-07-27T09:50:10.761Z -->
 
 ## When to Use
 
@@ -331,7 +331,7 @@ libnative_rdb_ndk.z.so
 
    | Type  | Operator| Description  |
    | ------ | -------- | ---------- |
-   | L2     | <->      | Euclidean distance.|
+   | L2     | <->      | Euclidean distance. |
    | COSINE | <=>      | Cosine distance.|
 
    **Table 3** Extended syntax parameter (parameter)
