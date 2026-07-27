@@ -51,7 +51,7 @@ import { backup } from '@kit.CoreFileKit';
 
 > **说明：**
 >
-> FileManifestData使用完成后必须关闭，如不关闭会出现内存泄露问题。关闭的方法可参考[fileIo.closeSync](js-apis-file-fs.md#fileioclosesync)等关闭接口。
+> FileManifestData使用完成后必须关闭，如不关闭会出现内存泄漏问题。关闭的方法可参考[fileIo.closeSync](js-apis-file-fs.md#fileioclosesync)等关闭接口。
 
 **系统能力**：SystemCapability.FileManagement.StorageService.Backup
 
