@@ -509,7 +509,7 @@ console.info('expandPathHar NumberString.ets execute.');
 <!-- @[OptIndex](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/ArkTSModule/expandPath/entry/src/main/ets/pages/index2.ets) -->
 
 ``` TypeScript
-// src/main/ets/pages/Index2.ets
+// src/main/ets/pages/index2.ets
 import { One } from 'expandPathHar/src/main/ets/NumberString';
 
 console.info('One is ', One);
