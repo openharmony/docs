@@ -707,7 +707,7 @@ dsoftbus组件的运行需至少预留80KB RAM。如资源不够，可对其它�
 在文件`//foundation/communication/dsoftbus/core/authentication/include/auth_hichain.h`中新增TestOnSessionKeyReturned函数声明；
 
 ```c
-  void TestOnSessionKeyReturned(int64_t authSeq, const uint8_t *sessionKey, uint32_t sessionKeyLen);
+void TestOnSessionKeyReturned(int64_t authSeq, const uint8_t *sessionKey, uint32_t sessionKeyLen);
 ```
 
 在文件`//foundation/communication/dsoftbus/core/authentication/src/auth_hichain.c`中将OnSessionKeyReturned函数名变更为TestOnSessionKeyReturned，并取消static，将g_hichainCallback中nSessionKeyReturned修改为TestOnSessionKeyReturned给.onSessionKeyReturned赋值。在HichainStartAuth函数中新增如下两行，
@@ -740,11 +740,11 @@ int32_t HichainStartAuth(int64_t authSeq, HiChainAuthParam *hiChainParam, HiChai
 ```c
 static void TestSessionKeyReturn(void *para)
 {
-  uint8_t tmpKey[SESSION_KEY_LENGTH] = {0};
-  (void)memset_s(tmpKey, SESSION_KEY_LENGTH, 1, SESSION_KEY_LENGTH);
-  int64_t *authId = (int64_t *)para;
-  AUTH_LOGE(AUTH_FSM, "TEST sessionKey Return");
-  TestOnSessionKeyReturned(*authId, tmpKey, SESSION_KEY_LENGTH);
+    uint8_t tmpKey[SESSION_KEY_LENGTH] = {0};
+    (void)memset_s(tmpKey, SESSION_KEY_LENGTH, 1, SESSION_KEY_LENGTH);
+    int64_t *authId = (int64_t *)para;
+    AUTH_LOGE(AUTH_FSM, "TEST sessionKey Return");
+    TestOnSessionKeyReturned(*authId, tmpKey, SESSION_KEY_LENGTH);
 }
 #include "lnn_async_callback_utils.h"
 #define TEST_TIMES 500
@@ -753,52 +753,52 @@ static void TestSessionKeyReturn(void *para)
 ```c
 static void DeviceAuthStateEnter(FsmStateMachine *fsm)
 {
-if (fsm == NULL) {
-  return;
-  }     
-int32_t ret = SOFTBUS_OK;
-AuthFsm *authFsm = TO_AUTH_FSM(fsm);     
-if (authFsm == NULL) {
-  return;
-  }     
-authFsm->curState = STATE_DEVICE_AUTH;
-AuthSessionInfo *info = &authFsm->info;
-AUTH_LOGI(AUTH_FSM, "auth state enter, info->isServer=%{public}d authSeq=%{public}" PRId64, info->isServer,authFsm->authSeq);  // 新增
-if (info->normalizedType == NORMALIZED_SUPPORT || info->isSupportFastAuth) {
-  ret = TryRecoveryKey(authFsm);
-  if (ret != SOFTBUS_OK) {
-    goto ERR_EXIT;
+    if (fsm == NULL) {
+        return;
+    }     
+    int32_t ret = SOFTBUS_OK;
+    AuthFsm *authFsm = TO_AUTH_FSM(fsm);     
+    if (authFsm == NULL) {
+        return;
+    }     
+    authFsm->curState = STATE_DEVICE_AUTH;
+    AuthSessionInfo *info = &authFsm->info;
+    AUTH_LOGI(AUTH_FSM, "auth state enter, info->isServer=%{public}d authSeq=%{public}" PRId64, info->isServer,authFsm->authSeq);  // 新增
+    if (info->normalizedType == NORMALIZED_SUPPORT || info->isSupportFastAuth) {
+        ret = TryRecoveryKey(authFsm);
+        if (ret != SOFTBUS_OK) {
+            goto ERR_EXIT;
+        }
+        return;
     }
-  return;
-}
-if (info->credNegoState == CRED_NEGO_STATE_COMPATIBLE || info->credId == NULL) {
-  AUTH_LOGI(AUTH_FSM, "cred negotiation fail, get credType by credId, authSeq=%{public}" PRId64, authFsm->authSeq);
-  info->credNegoState = CRED_NEGO_STATE_COMPATIBLE;
-  GetCredTypeByCredId(info);
-}     
-if (!info->isServer) {
-  ret = ProcessClientAuthState(authFsm);
-  int64_t *tmpId = (int64_t *)SoftBusCalloc(sizeof(int64_t));       // 新增修改起始点
-  if (tmpId == NULL) {
-    goto ERR_EXIT;
+    if (info->credNegoState == CRED_NEGO_STATE_COMPATIBLE || info->credId == NULL) {
+        AUTH_LOGI(AUTH_FSM, "cred negotiation fail, get credType by credId, authSeq=%{public}" PRId64, authFsm->authSeq);
+        info->credNegoState = CRED_NEGO_STATE_COMPATIBLE;
+        GetCredTypeByCredId(info);
+    }     
+    if (!info->isServer) {
+        ret = ProcessClientAuthState(authFsm);
+        int64_t *tmpId = (int64_t *)SoftBusCalloc(sizeof(int64_t));       // 新增修改起始点
+        if (tmpId == NULL) {
+            goto ERR_EXIT;
+        }
+        *tmpId = authFsm->authSeq;
+        LnnAsyncCallbackDelayHelper(GetLooper(LOOP_TYPE_DEFAULT), TestSessionKeyReturn, tmpId, TEST_TIMES);      
+    } else {                
+        int64_t *tmpId = (int64_t *)SoftBusCalloc(sizeof(int64_t));
+        if (tmpId == NULL) {            
+            goto ERR_EXIT;        
+        }
+        *tmpId = authFsm->authSeq;
+        LnnAsyncCallbackDelayHelper(GetLooper(LOOP_TYPE_DEFAULT), TestSessionKeyReturn, tmpId, 0);  // 新增修改结束点         
     }
-  *tmpId = authFsm->authSeq;
-  LnnAsyncCallbackDelayHelper(GetLooper(LOOP_TYPE_DEFAULT), TestSessionKeyReturn, tmpId, TEST_TIMES);      
-  } else {                
-    int64_t *tmpId = (int64_t *)SoftBusCalloc(sizeof(int64_t));
-    if (tmpId == NULL) {            
-      goto ERR_EXIT;        
-      }
-    *tmpId = authFsm->authSeq;
-    LnnAsyncCallbackDelayHelper(GetLooper(LOOP_TYPE_DEFAULT), TestSessionKeyReturn, tmpId, 0);  // 新增修改结束点         
-  }
-  if (ret != SOFTBUS_OK) {
-    goto ERR_EXIT;
-  }
-return;
-ERR_EXIT:
-AUTH_LOGE(AUTH_FSM, "auth state enter, fail ret=%{public}d", ret);
-CompleteAuthSession(authFsm, ret);
+    if (ret != SOFTBUS_OK) {
+        goto ERR_EXIT;
+    }
+    return;
+    ERR_EXIT:
+        AUTH_LOGE(AUTH_FSM, "auth state enter, fail ret=%{public}d", ret);
+        CompleteAuthSession(authFsm, ret);
 }        
 ```
 
@@ -824,13 +824,13 @@ static int32_t PackDeviceJsonInfo(const AuthSessionInfo *info, JsonObj *obj)
 #else
     int32_t authVersion = AUTH_VERSION_VALUE;
 #endif
-     /*
-     if (!JSON_AddInt32ToObject(obj, AUTH_START_STATE, info->localState) ||
-      !JSON_AddInt32ToObject(obj, AUTH_VERSION_TAG, authVersion)) {
-      AUTH_LOGE(AUTH_FSM, "add auth info fail.");
-      return SOFTBUS_AUTH_PACK_DEVINFO_FAIL;
-   }  注释掉此判断
-   */
+    /*
+    if (!JSON_AddInt32ToObject(obj, AUTH_START_STATE, info->localState) ||
+        !JSON_AddInt32ToObject(obj, AUTH_VERSION_TAG, authVersion)) {
+        AUTH_LOGE(AUTH_FSM, "add auth info fail.");
+        return SOFTBUS_AUTH_PACK_DEVINFO_FAIL;
+    }   // 注释掉此判断
+    */
     return SOFTBUS_OK;
 }
 ```
