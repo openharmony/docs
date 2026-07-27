@@ -77,6 +77,8 @@ Allows a system service to set the keep-alive flag for other applications.
 
 **Valid since**: 14
 
+**Supported devices**: PCs/2-in-1 devices | wearables
+
 ## ohos.permission.ACCESS_BBOX_DIR
 
 Allows a system application to access the bbox directory.
