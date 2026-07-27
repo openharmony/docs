@@ -389,8 +389,6 @@ export default class EntryAbility extends UIAbility {
       hilog.info(DOMAIN, 'testTag', `20vp equals to ${pxValue}px`);
     });
     // loadContent是异步接口，在此处调用不能保证UI实例已经创建成功。
-    pxValue = vp2px(20);
-    hilog.info(DOMAIN, 'testTag', `20vp equals to ${pxValue}px`);
   }
 
   onWindowStageDestroy(): void {
