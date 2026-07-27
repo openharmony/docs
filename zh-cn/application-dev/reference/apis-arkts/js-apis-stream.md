@@ -408,7 +408,7 @@ doWrite(chunk: string | Uint8Array, encoding: string, callback: Function): void
 | 参数名 | 类型   | 必填 | 说明                       |
 | ------ | ------ | ---- | -------------------------- |
 | chunk  | string \| Uint8Array | 是 | 要写出的数据。 |
-| encoding  | string | 是   | 字符编码类型。默认值是'utf8'，当前版本支持'utf8'、'gb18030'、'gbk'以及'gb2312'。|
+| encoding  | string | 是   | 字符编码类型。当前版本支持'utf8'、'gb18030'、'gbk'以及'gb2312'。|
 | callback  | Function | 是   | 回调函数。 |
 
 **示例：**
@@ -479,7 +479,7 @@ Readable构造函数的选项信息。
 
 | 名称 | 类型 | 只读 | 可选 | 说明 |
 | ---- | -------- | ---- | ---- | -------------- |
-| encoding | string  | 否 | 是 | 指定数据的字符编码类型，如果传入非法字符串，将会在Readable构造函数中抛出异常。<br>-&nbsp;支持格式：utf-8、UTF-8、GBK、GB2312、gb2312、GB18030、gb18030、ibm866、iso-8859-2、iso-8859-3、iso-8859-4、iso-8859-5、iso-8859-6、iso-8859-7、iso-8859-8、iso-8859-8-i、iso-8859-10、iso-8859-13、iso-8859-14、iso-8859-15、koi8-r、koi8-u、macintosh、windows-874、windows-1250、windows-1251、windows-1252、windows-1253、windows-1254、windows-1255、windows-1256、windows-1257、windows-1258、gbk、big5、euc-jp、iso-2022-jp、shift_jis、euc-kr、x-mac-cyrillic、utf-16be、utf-16le。且'utf-8'兼容'utf8'的写法。 <br>-&nbsp; 默认值是：'utf-8'。|
+| encoding | string  | 否 | 是 | 指定数据的字符编码类型，如果传入非法字符串，将会在Readable构造函数中抛出异常。<br>-&nbsp;支持格式：utf-8、UTF-8、GBK、GB2312、gb2312、GB18030、gb18030、ibm866、iso-8859-2、iso-8859-3、iso-8859-4、iso-8859-5、iso-8859-6、iso-8859-7、iso-8859-8、iso-8859-8-i、iso-8859-10、iso-8859-13、iso-8859-14、iso-8859-15、koi8-r、koi8-u、macintosh、windows-874、windows-1250、windows-1251、windows-1252、windows-1253、windows-1254、windows-1255、windows-1256、windows-1257、windows-1258、gbk、big5、euc-jp、iso-2022-jp、shift_jis、euc-kr、x-mac-cyrillic、utf-16be、utf-16le。 <br>-&nbsp; 默认值是：'utf-8'。|
 
 ## Readable
 
@@ -1302,7 +1302,7 @@ doWrite(chunk: string | Uint8Array, encoding: string, callback: Function): void
 | 参数名 | 类型   | 必填 | 说明                       |
 | ------ | ------ | ---- | -------------------------- |
 | chunk  | string \| Uint8Array | 是 | 要写出的数据。 |
-| encoding  | string | 是   | 字符编码类型。默认值是'utf8'，当前版本支持'utf8'、'gb18030'、'gbk'以及'gb2312'。|
+| encoding  | string | 是   | 字符编码类型。当前版本支持'utf8'、'gb18030'、'gbk'以及'gb2312'。|
 | callback  | Function | 是   | 回调函数。 |
 
 **示例：**
@@ -1407,7 +1407,7 @@ doTransform(chunk: string, encoding: string, callback: Function): void
 | 参数名    | 类型     | 必填     | 说明 |
 | -------- | -------- | -------- | -------- |
 | chunk  | string | 是 | 需要写入的数据。 |
-| encoding  | string | 是   | 字符编码类型。默认值是'utf8'，当前版本支持'utf8'、'gb18030'、'gbk'以及'gb2312'。 |
+| encoding  | string | 是   | 字符编码类型。当前版本支持'utf8'、'gb18030'、'gbk'以及'gb2312'。 |
 | callback  | Function | 是   | 回调函数。 |
 
 **示例：**
