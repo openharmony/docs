@@ -7,7 +7,7 @@
 <!--Tester: @dong-dongzhen-->
 <!--Adviser: @fang-jinxu-->
 
-本模块主要提供管理USB设备的相关功能，包括主机上查询USB设备列表、批量数据传输、控制命令传输、权限控制等；设备上端口管理、功能切换及查询等。适用于需要与USB外设进行数据交互、管理USB设备权限、动态切换USB设备模式等场景。作为系统接口，本模块提供系统级权限控制机制，帮助系统应用实现灵活的USB设备管理，满足不同业务场景下的USB通信需求。
+本模块主要提供管理USB设备的相关功能，包括主机上查询USB设备列表、批量数据传输、控制命令传输、权限控制等；设备上端口管理、功能切换及查询等。适用于需要与USB外设进行数据交互、管理USB设备权限、动态切换USB设备模式等场景。作为系统接口，本模块提供系统级权限控制机制、设备侧USB功能配置能力以及端口角色管理能力，帮助系统应用实现灵活的USB设备管理，满足不同业务场景下的USB通信需求。
 
 > **说明：**
 > 
@@ -24,7 +24,7 @@ import { usbManager } from '@kit.BasicServicesKit';
 
 usbFunctionsFromString(funcs: string): number
 
-在设备模式下，将字符串形式的USB功能列表转化为数字掩码。适用于需要将配置文件或用户输入的字符串形式USB功能列表转换为系统内部使用的数字掩码的场景，以便后续调用setDeviceFunctions等接口设置USB功能。
+在设备模式下，将字符串形式的USB功能列表转换为数字掩码。适用于需要将配置文件或用户输入的字符串形式USB功能列表转换为系统内部使用的数字掩码的场景，以便后续调用setDeviceFunctions等接口设置USB功能。
 
 > **说明：**
 >
@@ -38,13 +38,13 @@ usbFunctionsFromString(funcs: string): number
 
 | 参数名 | 类型   | 必填 | 说明                   |
 | ------ | ------ | ---- | ---------------------- |
-| funcs  | string | 是   | 字符串形式的功能列表，可用值包括：'acm'，'ecm'，'hdc'，'mtp'，'ptp'等，可通过英文逗号分隔多个功能。 |
+| funcs  | string | 是   | 字符串形式的功能列表，可用值包括：'none'、'acm'、'ecm'、'hdc'、'mtp'、'ptp'、'rndis'、'midi'、'audio_source'、'ncm'，可通过英文逗号分隔多个功能。传入无效字符串时抛出异常。 |
 
 **返回值：**
 
 | 类型   | 说明               |
 | ------ | ------------------ |
-| number | 转化后的功能列表对应的数字掩码。 |
+| number | 转换后的功能列表对应的数字掩码。 |
 
 **错误码：**
 
@@ -68,7 +68,7 @@ let ret: number = usbManager.usbFunctionsFromString(funcs);
 
 usbFunctionsToString(funcs: FunctionType): string
 
-在设备模式下，将数字掩码形式的USB功能列表转化为字符串。适用于需要将当前USB功能状态以字符串形式显示或保存的场景，如在日志中记录当前功能配置、在UI界面展示当前功能等。
+在设备模式下，将数字掩码形式的USB功能列表转换为字符串。适用于需要将当前USB功能状态以字符串形式显示或保存的场景，如在日志中记录当前功能配置、在UI界面展示当前功能等。
 
 > **说明：**
 >
@@ -88,7 +88,7 @@ usbFunctionsToString(funcs: FunctionType): string
 
 | 类型   | 说明                           |
 | ------ | ------------------------------ |
-| string | 转化后的字符串形式的功能列表。 |
+| string | 转换后的字符串形式的功能列表。 |
 
 **错误码：**
 
@@ -146,7 +146,7 @@ setCurrentFunctions(funcs: FunctionType): Promise\<void\>
 **示例：**
 
 ```ts
-import {BusinessError} from '@kit.BasicServicesKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 // 设置USB功能类型为HDC
 let funcs: usbManager.FunctionType = usbManager.FunctionType.HDC;
 // 异步设置当前USB功能
@@ -233,7 +233,7 @@ let ret: Array<usbManager.USBPort> = usbManager.getPorts();
 
 getSupportedModes(portId: number): PortModeType
 
-获取指定的端口支持的模式列表的组合掩码。适用于系统应用需要查询USB-C端口能力判断是否支持特定模式（如Host，Device或DRP模式）的场景。返回值为PortModeType的组合掩码，可通过位运算判断端口是否支持特定模式。PortModeType包括：NONE(0，无模式)、UFP(1，上行端口模式，dataRole为DEVICE)、DFP(2，下行端口模式，dataRole为HOST)、DRP(3，双角色模式，可在UFP和DFP间切换)。开发者可根据返回值判断端口是否支持所需的电源角色和数据角色组合。
+获取指定的端口支持的模式列表的组合掩码。适用于系统应用需要查询USB-C端口能力判断是否支持特定模式（如Host、Device或DRP模式）的场景。返回值为PortModeType的组合掩码，可通过位运算判断端口是否支持特定模式。PortModeType包括：NONE（0，无模式）、UFP（1，上行端口模式，dataRole为DEVICE）、DFP（2，下行端口模式，dataRole为HOST）、DRP（3，双角色模式，可在UFP和DFP间切换）、NUM_MODES（4，当前不支持）。开发者可根据返回值判断端口是否支持所需的充电角色和数据传输角色组合。
 
 > **说明：**
 >
@@ -275,7 +275,7 @@ let ret: usbManager.PortModeType = usbManager.getSupportedModes(0);
 
 setPortRoles(portId: number, powerRole: PowerRoleType, dataRole: DataRoleType): Promise\<void\>
 
-设置指定端口当前的角色模式，包含充电角色、数据传输角色。使用Promise异步回调。调用成功后端口角色将切换为指定的角色。适用于系统应用需要动态切换USB端口角色的场景。开发者模式关闭时，如果没有设备接入，操作可能会失败，调用失败时抛出异常。
+设置指定端口当前的角色模式，包含电源角色、数据传输角色。使用Promise异步回调。调用成功后端口角色将切换为指定的角色。适用于系统应用需要动态切换USB端口角色的场景。开发者模式关闭时，如果没有设备接入，操作可能会失败，调用失败时抛出异常。
 
 > **说明：**
 >
@@ -290,8 +290,8 @@ setPortRoles(portId: number, powerRole: PowerRoleType, dataRole: DataRoleType): 
 | 参数名    | 类型                            | 必填 | 说明             |
 | --------- | ------------------------------- | ---- | ---------------- |
 | portId    | number                          | 是   | USB端口号，取值范围为非负整数，可通过[getPortList](#getportlist12)获取端口列表后得到。|
-| powerRole | [PowerRoleType](#powerroletype) | 是   | 充电角色类型，可选值包括：NONE(无)、SOURCE(对外提供电源)、SINK(需要外部供电)。|
-| dataRole  | [DataRoleType](#dataroletype)   | 是   | 数据传输角色类型，可选值包括：NONE(无)、HOST(主机角色)、DEVICE(设备角色)。|
+| powerRole | [PowerRoleType](#powerroletype) | 是   | 电源角色类型，可选值包括：NONE（无）、SOURCE（对外提供电源）、SINK（需要外部供电）。|
+| dataRole  | [DataRoleType](#dataroletype)   | 是   | 数据传输角色类型，可选值包括：NONE（无）、HOST（主机角色）、DEVICE（设备角色）。|
 
 **返回值：**
 
@@ -325,7 +325,7 @@ usbManager.setPortRoles(portId, usbManager.PowerRoleType.SOURCE, usbManager.Data
 
 addDeviceAccessRight(tokenId: string, deviceName: string): boolean
 
-添加应用程序访问设备的权限。系统应用默认拥有访问设备权限，调用此接口不会产生影响。适用于系统设置应用、设备管理应用等需要为第三方应用授权访问USB设备的场景。
+添加应用访问设备的权限。系统应用默认拥有访问设备权限，调用此接口不会产生影响。适用于系统设置应用、设备管理应用等需要为第三方应用授权访问USB设备的场景。授权立即生效并持久化存储，设备重启后仍然有效。授权范围为指定的USB设备实例，多个应用可以同时获得同一设备的访问权限。
 
 [usbManager.requestRight](js-apis-usbManager.md#usbmanagerrequestright)会触发弹窗请求用户授权；addDeviceAccessRight不会触发弹窗，而是直接添加应用程序访问设备的权限。
 
@@ -343,7 +343,7 @@ addDeviceAccessRight(tokenId: string, deviceName: string): boolean
 
 | 参数名     | 类型   | 必填 | 说明            |
 | ---------- | ------ | ---- | --------------- |
-| tokenId    | string | 是   | 应用程序的唯一标识符，可通过[bundleManager.getBundleInfoForSelf](../apis-ability-kit/js-apis-bundleManager.md#bundlemanagergetbundleinfoforself)获取。 |
+| tokenId    | string | 是   | 应用的唯一标识符，可通过[bundleManager.getBundleInfoForSelf](../apis-ability-kit/js-apis-bundleManager.md#bundlemanagergetbundleinfoforself)获取。 |
 | deviceName | string | 是   | 设备名称，格式为'bus-port'，例如'1-1'，可通过[getDevices](js-apis-usbManager.md#usbmanagergetdevices)接口获取设备列表后得到设备名称。|
 
 **返回值：**
@@ -369,36 +369,36 @@ addDeviceAccessRight(tokenId: string, deviceName: string): boolean
 import { bundleManager } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 // 设备名称示例值，实际使用时请通过usbManager.getDevices()接口获取设备列表后，从设备对象中获取deviceName字段
-let devicesName: string = '1-1';
+let deviceName: string = '1-1';
 // 定义tokenId变量
 let tokenId: string = '';
   // 为指定应用添加USB设备访问权限
-  try {
-    // 获取bundle信息标志
-    let bundleFlags = bundleManager.BundleFlag.GET_BUNDLE_INFO_DEFAULT;
-    // 异步获取当前应用的bundle信息
-    bundleManager.getBundleInfoForSelf(bundleFlags).then((bundleInfo) => {
-      console.info('testTag', 'getBundleInfoForSelf successfully. Data: %{public}s', JSON.stringify(bundleInfo));
-      // 获取应用的accessTokenId
-      let token = bundleInfo.appInfo.accessTokenId;
-      tokenId = token.toString();
-      // 添加设备访问权限
-      if (usbManager.addDeviceAccessRight(tokenId, devicesName)) {
-        console.info(`Succeed in adding right`);
-      }
-    }).catch((err : BusinessError) => {
-      console.error(`testTag getBundleInfoForSelf failed. Code: ${err.code}, message: ${err.message}`);
-    });
-  } catch (err : BusinessError) {
-    console.error(`testTag failed. Code: ${err.code}, message: ${err.message}`);
-  }
+try {
+  // 获取bundle信息标志
+  let bundleFlags = bundleManager.BundleFlag.GET_BUNDLE_INFO_DEFAULT;
+  // 异步获取当前应用的bundle信息
+  bundleManager.getBundleInfoForSelf(bundleFlags).then((bundleInfo) => {
+    console.info('testTag', 'getBundleInfoForSelf successfully. Data:', JSON.stringify(bundleInfo));
+    // 获取应用的accessTokenId
+    let token = bundleInfo.appInfo.accessTokenId;
+    tokenId = token.toString();
+    // 添加设备访问权限
+    if (usbManager.addDeviceAccessRight(tokenId, devicesName)) {
+      console.info(`Succeed in adding right`);
+    }
+  }).catch((err : BusinessError) => {
+    console.error(`testTag getBundleInfoForSelf failed. Code: ${err.code}, message: ${err.message}`);
+  });
+} catch (err : BusinessError) {
+  console.error(`testTag failed. Code: ${err.code}, message: ${err.message}`);
+}
 ```
 
 ## getFunctionsFromString<sup>12+</sup>
 
 getFunctionsFromString(funcs: string): number
 
-在设备模式下，将字符串形式的USB功能列表转化为数字掩码。适用于需要将配置文件或用户输入的字符串形式USB功能列表转换为系统内部使用的数字掩码的场景，以便后续调用setDeviceFunctions等接口设置USB功能。
+在设备模式下，将字符串形式的USB功能列表转换为数字掩码。适用于需要将配置文件或用户输入的字符串形式USB功能列表转换为系统内部使用的数字掩码的场景，以便后续调用setDeviceFunctions等接口设置USB功能。
 
 > **说明：**
 >
@@ -414,13 +414,13 @@ getFunctionsFromString(funcs: string): number
 
 | 参数名 | 类型   | 必填 | 说明                   |
 | ------ | ------ | ---- | ---------------------- |
-| funcs  | string | 是   | 字符串形式的功能列表。可用值包括：'acm'，'ecm'，'hdc'，'mtp'，'ptp'等，可通过英文逗号分隔多个功能。 |
+| funcs  | string | 是   | 字符串形式的功能列表。可用值包括：'none'、'acm'、'ecm'、'hdc'、'mtp'、'ptp'、'rndis'、'midi'、'audio_source'、'ncm'，可通过英文逗号分隔多个功能。 |
 
 **返回值：**
 
 | 类型   | 说明               |
 | ------ | ------------------ |
-| number | 转化后的功能列表对应的数字掩码。 |
+| number | 转换后的功能列表对应的数字掩码。 |
 
 **错误码：**
 
@@ -437,7 +437,7 @@ getFunctionsFromString(funcs: string): number
 
 ```ts
 // 定义USB功能字符串
-let funcs: string = "acm";
+let funcs: string = 'acm';
 // 将字符串转化为数字掩码
 let ret: number = usbManager.getFunctionsFromString(funcs);
 ```
@@ -446,7 +446,7 @@ let ret: number = usbManager.getFunctionsFromString(funcs);
 
 getStringFromFunctions(funcs: FunctionType): string
 
-在设备模式下，将数字掩码形式的USB功能列表转化为字符串。适用于需要将当前USB功能状态以字符串形式显示或保存的场景，如在日志中记录当前功能配置、在UI界面展示当前功能等。
+在设备模式下，将数字掩码形式的USB功能列表转换为字符串。适用于需要将当前USB功能状态以字符串形式显示或保存的场景，如在日志中记录当前功能配置、在UI界面展示当前功能等。
 
 > **说明：**
 >
@@ -462,13 +462,13 @@ getStringFromFunctions(funcs: FunctionType): string
 
 | 参数名 | 类型                          | 必填 | 说明              |
 | ------ | ----------------------------- | ---- | ----------------- |
-| funcs  | [FunctionType](#functiontype) | 是   | 功能列表对应的数字掩码，可通过位运算组合多个功能。 |
+| funcs  | [FunctionType](#functiontype) | 是   | 功能列表对应的数字掩码，可通过位运算组合多个功能。部分功能值当前暂不支持，具体参见[FunctionType](#functiontype)。 |
 
 **返回值：**
 
 | 类型   | 说明                           |
 | ------ | ------------------------------ |
-| string | 转化后的字符串形式的功能列表。 |
+| string | 转换后的字符串形式的功能列表。 |
 
 **错误码：**
 
@@ -510,7 +510,7 @@ setDeviceFunctions(funcs: FunctionType): Promise\<void\>
 
 | 参数名 | 类型                          | 必填 | 说明              |
 | ------ | ----------------------------- | ---- | ----------------- |
-| funcs  | [FunctionType](#functiontype) | 是   | 功能列表对应的数字掩码，可通过位运算组合多个功能。 |
+| funcs  | [FunctionType](#functiontype) | 是   | 功能列表对应的数字掩码，可通过位运算组合多个功能。部分功能可能不被当前设备支持，具体参见[FunctionType](#functiontype)。 |
 
 **返回值：**
 
@@ -580,7 +580,7 @@ getDeviceFunctions(): FunctionType
 **示例：**
 
 ```ts
-// 获取当前USB设备的数字掩码
+// 获取当前USB功能的数字掩码
 let ret: usbManager.FunctionType = usbManager.getDeviceFunctions();
 ```
 
@@ -627,7 +627,7 @@ let ret: Array<usbManager.USBPort> = usbManager.getPortList();
 
 getPortSupportModes(portId: number): PortModeType
 
-获取指定的端口支持的模式列表的组合掩码。适用于系统应用需要查询USB-C端口能力判断是否支持特定模式（如Host，Device或DRP模式）的场景。
+获取指定的端口支持的模式列表的组合掩码。适用于系统应用需要查询USB-C端口能力判断是否支持特定模式（如UFP，DFP或DRP模式）的场景。开发者模式关闭时，如果没有设备接入，接口返回undefined，注意需要对接口返回值做判空处理。
 
 > **说明：**
 >
@@ -673,7 +673,7 @@ let ret: usbManager.PortModeType = usbManager.getPortSupportModes(0);
 
 setPortRoleTypes(portId: number, powerRole: PowerRoleType, dataRole: DataRoleType): Promise\<void\>
 
-设置指定端口当前的角色模式，包含充电角色、数据传输角色。使用Promise异步回调。调用成功后端口的充电角色和数据传输角色将切换为指定的角色。适用于系统应用需要动态切换USB端口角色的场景。开发者模式关闭时，如果没有设备接入，操作可能会失败，调用失败时抛出异常。
+设置指定端口当前的角色类型，包含电源角色、数据传输角色。使用Promise异步回调。调用成功后端口的电源角色和数据传输角色将切换为指定的角色。适用于系统应用需要动态切换USB端口角色的场景。开发者模式关闭时，如果没有设备接入，操作可能会失败，调用失败时抛出异常。
 
 **使用建议：**
 - 建议先调用[getPortList](#getportlist12)获取端口列表，得到有效的portId
@@ -695,8 +695,8 @@ setPortRoleTypes(portId: number, powerRole: PowerRoleType, dataRole: DataRoleTyp
 | 参数名    | 类型                            | 必填 | 说明             |
 | --------- | ------------------------------- | ---- | ---------------- |
 | portId    | number                          | 是   | 端口号，可通过[getPortList](#getportlist12)获取端口列表后得到。|
-| powerRole | [PowerRoleType](#powerroletype) | 是   | 充电角色类型，可选值包括：NONE(无)、SOURCE(对外提供电源)、SINK(需要外部供电)。|
-| dataRole  | [DataRoleType](#dataroletype)   | 是   | 数据传输角色类型，可选值包括：NONE(无)、HOST(主机角色)、DEVICE(设备角色)。|
+| powerRole | [PowerRoleType](#powerroletype) | 是   | 充电角色类型，可选值包括：NONE（无）、SOURCE（对外提供电源）、SINK（需要外部供电）。|
+| dataRole  | [DataRoleType](#dataroletype)   | 是   | 数据传输角色类型，可选值包括：NONE（无）、HOST（主机角色）、DEVICE（设备角色）。|
 
 **返回值：**
 
@@ -735,9 +735,7 @@ usbManager.setPortRoleTypes(portId, usbManager.PowerRoleType.SOURCE, usbManager.
 
 addAccessoryRight(tokenId: number, accessory: USBAccessory): void
 
-为应用程序添加访问USB配件权限。适用于系统应用需要为第三方应用授权访问USB配件的场景。usbManager.requestAccessoryRight会触发弹窗请求用户授权；addAccessoryRight不会触发弹窗，而是直接添加应用程序访问设备的权限。授权立即生效并持久化存储，设备重启后仍然有效。授权范围为指定的USB配件实例，多个应用可以同时获得同一配件的访问权限。与requestAccessoryRight相比，addAccessoryRight不需要用户交互，适用于系统应用自动授权场景。
-
-usbManager.requestAccessoryRight会触发弹窗请求用户授权；addAccessoryRight不会触发弹窗，而是直接添加应用程序访问设备的权限。
+为应用添加访问USB配件权限。适用于系统应用需要为第三方应用授权访问USB配件的场景。usbManager.requestAccessoryRight会触发弹窗请求用户授权；addAccessoryRight不会触发弹窗，而是直接添加应用访问USB配件的权限。授权立即生效并持久化存储，设备重启后仍然有效。授权范围为指定的USB配件实例，多个应用可以同时获得同一配件的访问权限。与requestAccessoryRight相比，addAccessoryRight不需要用户交互，适用于系统应用自动授权场景。
 
 > **说明：**
 >
@@ -821,7 +819,7 @@ USB设备端口。
 
 ## USBPortStatus
 
-USB设备端口角色信息。currentMode表示端口的当前USB模式，其值应在USBPort的supportedModes范围内。currentPowerRole表示当前充电角色，currentDataRole表示当前数据传输角色。这些字段之间存在对应关系：在DFP模式下，dataRole通常为HOST、powerRole通常为SOURCE；在UFP模式下，dataRole通常为DEVICE、powerRole通常为SINK。端口状态变更受硬件和系统约束，某些模式或角色组合可能不被支持。
+USB设备端口角色信息。currentMode表示端口的当前USB模式，其值应在USBPort的supportedModes范围内。currentPowerRole表示当前电源角色，currentDataRole表示当前数据传输角色。这些字段之间存在对应关系：在DFP模式下，dataRole通常为HOST、powerRole通常为SOURCE；在UFP模式下，dataRole通常为DEVICE、powerRole通常为SINK。端口状态变更受硬件和系统约束，某些模式或角色组合可能不被支持。
 
 **系统接口：** 此接口为系统接口。
 
@@ -830,8 +828,8 @@ USB设备端口角色信息。currentMode表示端口的当前USB模式，其值
 | 名称             | 类型   | 只读 | 可选 | 说明                   |
 | ---------------- | ------ | ---- | ---- | ---------------------- |
 | currentMode      | number | 否   | 否   | 当前的USB模式。        |
-| currentPowerRole | number | 否   | 否   | 当前设备充电模式。     |
-| currentDataRole  | number | 否   | 否   | 当前设备数据传输模式。 |
+| currentPowerRole | number | 否   | 否   | 当前设备电源角色。     |
+| currentDataRole  | number | 否   | 否   | 当前设备数据传输角色。 |
 
 ## FunctionType
 
@@ -867,7 +865,7 @@ USB端口模式类型。
 | NONE      | 0  | 无。                                                 |
 | UFP       | 1  | 数据上行，需要外部供电。                             |
 | DFP       | 2  | 数据下行，对外提供电源。                             |
-| DRP       | 3  | 既可以做DFP(Host)，也可以做UFP(Device)，当前不支持。 |
+| DRP       | 3  | 既可以做DFP（Host），也可以做UFP（Device），当前不支持。 |
 | NUM_MODES | 4  | 当前不支持。                                         |
 
 ## PowerRoleType

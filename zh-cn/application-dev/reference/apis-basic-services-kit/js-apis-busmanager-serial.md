@@ -14,7 +14,7 @@
 ## 导入模块
 
 ```ts
-import { serial } from "@kit.BasicServicesKit";
+import { serial } from '@kit.BasicServicesKit';
 ```
 
 ## serial.getSerialPortList
@@ -134,7 +134,9 @@ serial.getSerialPortList().then(async (portList: serial.SerialPort[]) => {
     parity: serial.Parity.NONE
   };
   await port.open(config);
-  console.info('open success');
+  console.info('open success');
+  // 串口使用完毕后需调用port.close()释放资源
+  await port.close();
 }).catch((error: BusinessError) => {
   console.error(`Failed to open serial port. Code: ${error.code}, message: ${error.message}`);
 });
@@ -206,7 +208,7 @@ write(data: Uint8Array, timeout?: number): Promise&lt;number&gt;
 | 参数名   | 类型         | 必填 | 说明                                                                                                     |
 | -------- | ------------ | ---- | -------------------------------------------------------------------------------------------------------- |
 | data     | Uint8Array   | 是   | 待发送的数据。长度范围：(0, 4096]。发送超过4096字节的数据时，建议分多次调用write方法发送。                                                                        |
-| timeout  | number       | 否   | 超时时间，取值范围：[0, 300000]，整数，单位为毫秒。默认值0表示当数据无法写入端口时，不等待直接返回写入长度0。传入负数、非整数或大于300000时返回错误码35700002。 |
+| timeout  | number       | 否   | 超时时间，取值范围：[0, 300000]，整数，单位为毫秒。默认值0表示当数据无法写入串口时，不等待直接返回写入长度0。传入负数、非整数或大于300000时返回错误码35700002。 |
 
 **返回值：**
 
@@ -309,7 +311,7 @@ offDataRead(callback?: Callback&lt;Uint8Array&gt;): void
 
 | 参数名   | 类型                       | 必填 | 说明                                                   |
 | -------- | -------------------------- | ---- | ------------------------------------------------------ |
-| callback | Callback&lt;Uint8Array&gt; | 否   | 回调函数。不传入callback时，清除所有串口数据接收监听。 |
+| callback | Callback&lt;Uint8Array&gt; | 否   | 回调函数。传入callback时，取消指定的串口数据接收监听；不传入callback时，清除所有串口数据接收监听。 |
 
 **错误码：**
 
@@ -388,6 +390,15 @@ port.flush().then(() => {
 drain(): Promise&lt;void&gt;
 
 等待所有写请求完成。使用Promise异步回调。需在串口打开后调用。用于确保所有数据写入完成后再进行后续操作，如数据传输完成后关闭串口、发送数据后等待硬件响应等场景。
+
+**调用顺序：**
+- 必须先调用open()打开串口，才能调用drain()
+- 应在write()之后调用drain()，确保写入数据完全发送
+- 建议在close()之前调用drain()，确保所有数据完整传输后再关闭串口
+- 未调用open()就调用drain()会抛出错误码35700005（Port not open）"
+
+**与flush的区别：** 
+- drain等待写缓冲区中的数据正常发送完成，适用于需要确保数据完整传输的场景；flush直接丢弃缓冲区中的所有数据，适用于需要快速清空缓冲区或丢弃无效数据的场景。"
 
 **起始版本：** 26.0.0
 
@@ -480,6 +491,9 @@ port.setRts(true).then(() => {
 getCts(): Promise&lt;boolean&gt;
 
 获取CTS（清除发送）信号状态。使用Promise异步回调。需在串口打开后调用。用于查询硬件流控的清除发送信号状态，判断是否可以发送数据，如启用RTS/CTS硬件流控时检查发送权、与支持硬件流控的设备通信前检查状态等场景。
+
+**与getDsr的区别：** 
+- getCts查询CTS信号（清除发送），属于RTS/CTS硬件流控信号，用于判断是否可以发送数据；getDsr查询DSR信号（数据设备就绪），属于DTR/DSR设备状态信号，用于判断通信设备是否准备就绪。
 
 **起始版本：** 26.0.0
 
@@ -699,7 +713,11 @@ port.onDisconnect(() => {
 
 offDisconnect(callback?: Callback&lt;void&gt;): void
 
-取消监听串口断开事件。用于不再需要监听串口断开事件时释放监听资源，如应用切换到其他功能、主动断开连接后清理监听等场景。
+取消监听串口断开事件。需在串口打开后调用。用于不再需要监听串口断开事件时释放监听资源，如应用切换到其他功能、主动断开连接后清理监听等场景。
+
+**调用顺序：**
+- 必须先调用open()打开串口，才能调用offDisconnect()取消监听
+- 未调用open()就调用offDisconnect()会抛出错误码35700005（Port not open）
 
 **配对调用：**
 - 与onDisconnect()方法配对使用，用于取消onDisconnect()注册的监听
@@ -709,13 +727,13 @@ offDisconnect(callback?: Callback&lt;void&gt;): void
 
 **模型约束：** 此接口仅可在Stage模型下使用。
 
-**系统能力：**  SystemCapability.BusManager.Serial
+**系统能力：** SystemCapability.BusManager.Serial
 
 **参数：**
 
 | 参数名   | 类型                  | 必填 | 说明                                                   |
 | -------- | --------------------- | ---- | ------------------------------------------------------ |
-| callback | Callback&lt;void&gt;  | 否   | 回调函数。不传入callback时，清除所有串口断开事件监听。 |
+| callback | Callback&lt;void&gt;  | 否   | 回调函数，需先通过onDisconnect()注册回调后才能取消。传入callback时，取消指定的串口断开事件监听；不传入callback时，清除所有串口断开事件监听。 |
 
 **错误码：**
 
@@ -826,5 +844,5 @@ port.offDisconnect(disconnectedCallback);
 | parity | [Parity](#parity) | 否 | 是   | 校验位。默认值：NONE（无校验）。EVEN/ODD用于数据准确性要求高的场景；MARK/SPACE用于特殊通信协议。 |
 | rtscts   | boolean                  | 否   | 是   | 是否启用RTS/CTS硬件自动流控。RTS/CTS硬件流控是一种通过硬件信号实现的自动数据流控制机制，RTS和CTS信号线协同工作以防止缓冲区溢出。启用后，系统会自动控制RTS和CTS信号来管理数据流量。默认值：false。true表示启用，false表示未启用。                                   |
 | xon      | boolean                  | 否   | 是   | 是否启用XON（Xmitter On，传输继续控制字符）控制发送流。XON是软件流控协议中的一个控制字符（ASCII值为17），当接收端缓冲区有空间时发送XON字符通知发送端恢复发送数据。默认值：false。true表示启用，false表示未启用。                                  |
-| xoff     | boolean                  | 否   | 是   | 是否启用XOFF（Xmitter Off，传输停止控制字符）控制接收流。XOFF是软件流控协议中的一个控制字符（ASCII值为19），当接收端缓冲区即将溢出时发送XOFF字符通知发送端暂停发送数据。默认值：false。true表示启用，false表示未启用。                                 |
-| xany     | boolean                  | 否   | 是   | 是否启用XANY（Any Character Resume，任意字符恢复模式）控制流。XANY是软件流控协议中的一种扩展模式，当启用XANY时，任何字符都可以作为恢复发送的信号，而不仅仅是XON字符。默认值：false。true表示启用，false表示未启用。                                     |
+| xoff     | boolean                  | 否   | 是   | 是否启用XOFF（Xmitter Off，传输停止控制字符）控制发送流。XOFF是软件流控协议中的一个控制字符（ASCII值为19），当接收端缓冲区即将溢出时发送XOFF字符通知发送端暂停发送数据。默认值：false。true表示启用，false表示未启用。                                 |
+| xany     | boolean                  | 否   | 是   | 是否启用XANY（Any Character Resume，任意字符恢复模式）控制流。XANY是软件流控协议中的一种扩展模式，需在xon或xoff启用时才能生效。当启用XANY时，任何字符都可以作为恢复发送的信号，而不仅仅是XON字符；若未启用软件流控（xon/xoff），xany设置无效。默认值：false。true表示启用，false表示未启用。                                     |
