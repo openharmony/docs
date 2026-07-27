@@ -26,7 +26,7 @@ group("wifi") {
 
 | 接口 | 作用                             | 
 | -------- |--------------------------------|
-| EnableWifi | 启用Wi-Fista模式。                  | 
+| EnableWifi | 启用Wi-Fi&nbsp;sta模式。                  | 
 | DisableWifi | 禁用Wi-Fi&nbsp;sta模式。            | 
 | IsWifiActive | 检查Wi-Fi&nbsp;sta模式是否启用。        | 
 | Scan | 扫描热点信息。                        | 
