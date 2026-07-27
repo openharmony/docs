@@ -66,6 +66,8 @@ import { rpc } from '@kit.IPCKit';
 
 在RPC或IPC过程中，发送方可以使用MessageSequence提供的写方法，将待发送的数据以特定格式写入该对象。接收方可以使用MessageSequence提供的读方法从该对象中读取特定格式的数据。数据格式包括：基础类型及数组、IPC对象、接口描述符和自定义序列化对象。
 
+**系统能力：** SystemCapability.Communication.IPC.Core
+
 ### create<sup>9+</sup>
 
 static create(): MessageSequence
@@ -3956,7 +3958,7 @@ writeArrayBuffer(buf: ArrayBuffer, typeCode: TypeCode): void
   | 参数名    | 类型                      | 必填 | 说明                        |
   | --------- | ------------------------- | ---- | --------------------------- |
   | buf       | ArrayBuffer               | 是   | 要写入的ArrayBuffer数据，数据将根据typeCode指定的TypedArray类型进行格式化写入。   |
-  | typeCode  | [TypeCode](#typecode12)   | 是   | ArrayBuffer数据具体是以哪一种TypedArray来访问和操作(会根据业务传递的类型枚举值去决定底层的写入方式，需要业务正确传递枚举值。) |
+  | typeCode  | [TypeCode](#typecode12)   | 是   | ArrayBuffer数据具体是以哪一种TypedArray来访问和操作（会根据业务传递的类型枚举值去决定底层的写入方式，需要业务正确传递枚举值。） |
 
 **错误码：**
 
@@ -4014,7 +4016,7 @@ readArrayBuffer(typeCode: TypeCode): ArrayBuffer
 
   | 参数名   | 类型                     | 必填 | 说明                   |
   | -------- | ----------------------- | ---- | ------------------------|
-  | typeCode | [TypeCode](#typecode12) | 是   | ArrayBuffer数据具体是以哪一种TypedArray来访问和操作(会根据业务传递的类型枚举值去决定底层的读取方式，需要业务正确传递枚举值，读写枚举值不匹配会导致数据异常。)  |
+  | typeCode | [TypeCode](#typecode12) | 是   | ArrayBuffer数据具体是以哪一种TypedArray来访问和操作（会根据业务传递的类型枚举值去决定底层的读取方式，需要业务正确传递枚举值，读写枚举值不匹配会导致数据异常。）  |
 
 **返回值：**
 
@@ -4060,6 +4062,8 @@ try {
 ## MessageParcel<sup>(deprecated)</sup>
 
 在RPC过程中，发送方可以使用MessageParcel提供的写方法，将待发送的数据以特定格式写入该对象。接收方可以使用MessageParcel提供的读方法从该对象中读取特定格式的数据。数据格式包括：基础类型及数组、IPC对象、接口描述符和自定义序列化对象。
+
+**系统能力：** SystemCapability.Communication.IPC.Core
 
 > **说明：**
 >
