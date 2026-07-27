@@ -25,7 +25,7 @@ JSVM-API中新增创建和使用外部字符串的接口。
 
 JSVM-API接口开发流程参考[使用JSVM-API实现JS与C/C++语言交互开发流程](use-jsvm-process.md)，本文仅对接口对应C++相关代码进行展示。
 
-### 使用接口判断是否是Number Object
+### 创建外部字符串
 
 cpp部分代码
 
