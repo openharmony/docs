@@ -320,4 +320,4 @@ CMake方式可通过指定工具链进行交叉编译，修改并编译该库，
    hb build -T third_party/double-conversion:double-conversion
    ```
 
-   编译成功则out/hispark_taurus/ipcamera_hispark_taurus_linux/libs目录下会生成静态库文件。
+   编译成功则out/hispark_taurus/ipcamera_hispark_taurus_linux/libs目录下会生成libdouble-conversion.a静态库文件。
