@@ -3018,7 +3018,7 @@ try {
 
 setHandwritingFlag(enable: boolean): Promise&lt;void&gt;
 
-为当前窗口添加或移除手写标志，添加该标志后窗口只响应手写笔事件，不响应触屏事件。使用Promise异步回调。
+为当前窗口添加或移除手写标志，添加该标志后窗口只响应手写笔事件，不响应触屏事件。使用Promise异步回调。使用场景：用于手写笔记应用、绘图应用、电子白板应用等需要专门响应手写笔输入的场景。
 
 **系统接口：** 此接口为系统接口。
 
@@ -3987,11 +3987,11 @@ try {
 
 setTitleButtonVisible(isMaximizeVisible: boolean, isMinimizeVisible: boolean, isSplitVisible: boolean): void
 
-设置标题栏上的最大化、最小化、分屏按钮是否可见。
+设置标题栏最大化、最小化、分屏按钮的可见性。
 
 仅支持主窗和[独立子窗](../../windowmanager/window-type-overview.md#辅助窗口)调用此接口，其他窗口调用时将返回1300004错误码。
 
-仅对在当前场景下可见的标题栏按钮（最大化、最小化、分屏）生效。
+仅对在当前场景下可见的按钮生效。
 
 **系统接口：** 此接口为系统接口。
 
@@ -4546,7 +4546,7 @@ disableWindowDecor(): void
 
 禁止窗口装饰。
 
-禁止窗口装饰后，当主窗口进入全屏沉浸状态时，此时鼠标Hover到上方窗口标题栏热区上会显示悬浮标题栏。若想禁用悬浮标题栏显示，请使用[setTitleAndDockHoverShown()](arkts-apis-window-Window.md#settitleanddockhovershown14)接口。
+禁止后，主窗口进入全屏沉浸状态时，鼠标Hover到上方标题栏热区会显示悬浮标题栏。禁用悬浮标题栏需使用[setTitleAndDockHoverShown()](arkts-apis-window-Window.md#settitleanddockhovershown14)接口。
 
 **模型约束：** 此接口仅可在Stage模型下使用。
 
