@@ -702,38 +702,137 @@ dsoftbus组件的运行需至少预留80KB RAM。如资源不够，可对其它�
 
 `//foundation/communication/dsoftbus/components/nstackx/nstackx_ctrl/BUILD.gn`
 
-软总线的组网需要通过设备认证，在研发阶段，可以把认证跳过，先行调试组网以及传输能力，需将文件`//foundation/communication/dsoftbus/core/authentication/src/auth_manager.c`中的HandleReceiveDeviceId函数替换为如下实现：
+软总线的组网需要通过设备认证，在研发阶段，可以把认证跳过，先行调试组网以及传输能力，需将下面四个文件进行如下修改:
+
+在文件`//foundation/communication/dsoftbus/core/authentication/include/auth_hichain.h`中新增TestOnSessionKeyReturned函数声明；
 
 ```c
-void HandleReceiveDeviceId(AuthManager *auth, uint8_t *data)
+  void TestOnSessionKeyReturned(int64_t authSeq, const uint8_t *sessionKey, uint32_t sessionKeyLen);
+```
+
+在文件`//foundation/communication/dsoftbus/core/authentication/src/auth_hichain.c`中将OnSessionKeyReturned函数名变更为TestOnSessionKeyReturned，并取消static，将g_hichainCallback中nSessionKeyReturned修改为TestOnSessionKeyReturned给.onSessionKeyReturned赋值。在HichainStartAuth函数中新增如下两行，
+
+```c
+void TestOnSessionKeyReturned(int64_t authSeq, const uint8_t *sessionKey, uint32_t sessionKeyLen)
 {
-    uint8_t tempKey[SESSION_KEY_LENGTH] = {0};
-    if (auth == NULL || data == NULL) {
-        SoftBusLog(SOFTBUS_LOG_AUTH, SOFTBUS_LOG_ERROR, "invalid parameter");
-        return;
-    }
-    if (AuthUnpackDeviceInfo(auth, data) != SOFTBUS_OK) {
-        SoftBusLog(SOFTBUS_LOG_AUTH, SOFTBUS_LOG_ERROR, "AuthUnpackDeviceInfo failed");
-        AuthHandleFail(auth, SOFTBUS_AUTH_UNPACK_DEVID_FAILED);
-        return;
-    }
-    if (auth->side == SERVER_SIDE_FLAG) {
-        if (EventInLooper(auth->authId) != SOFTBUS_OK) {
-            SoftBusLog(SOFTBUS_LOG_AUTH, SOFTBUS_LOG_ERROR, "auth EventInLooper failed");
-            AuthHandleFail(auth, SOFTBUS_MALLOC_ERR);
-            return;
-        }
-        if (AuthSyncDeviceUuid(auth) != SOFTBUS_OK) {
-            AuthHandleFail(auth, SOFTBUS_AUTH_SYNC_DEVID_FAILED);
-        }
-        (void)memset_s(tempKey, SESSION_KEY_LENGTH, 1, SESSION_KEY_LENGTH);
-        AuthOnSessionKeyReturned(auth->authId, tempKey, SESSION_KEY_LENGTH); 
-        return;
-    }
-    //VerifyDeviceDevLvl(auth);                                            --- 这里注释认证过程
-    (void)memset_s(tempKey, SESSION_KEY_LENGTH, 1, SESSION_KEY_LENGTH);
-    AuthOnSessionKeyReturned(auth->authId, tempKey, SESSION_KEY_LENGTH);
+    AUTH_LOGI(AUTH_HICHAIN, "hichain TestOnSessionKeyReturned: authSeq=%{public}" PRId64 ", len=%{public}u", authSeq, sessionKeyLen);
+    //....
 }
+static DeviceAuthCallback g_hichainCallback = {
+     //....
+    .onSessionKeyReturned = TestOnSessionKeyReturned,
+     //....
+};
+int32_t HichainStartAuth(int64_t authSeq, HiChainAuthParam *hiChainParam, HiChainAuthMode authMode)
+{
+    AUTH_LOGE(AUTH_HICHAIN, "MHY TEST AUTH");
+    return SOFTBUS_OK;
+    //....
+}
+```
+
+在文件`//foundation/communication/dsoftbus/core/authentication/src/auth_session_fsm.c`中新增TestSessionKeyReturn函数，链接`lnn_async_callback_utils.h`头文件，在函数HandleMsgRecvDeviceId中新增两个AUTH_LOGE；在DeviceAuthStateEnter函数内新删除两个AUTH_LOGE，增如下内容;
+
+```c
+static void TestSessionKeyReturn(void *para)
+{
+ 	     uint8_t tmpKey[SESSION_KEY_LENGTH] = {0};
+ 	     (void)memset_s(tmpKey, SESSION_KEY_LENGTH, 1, SESSION_KEY_LENGTH);
+ 	     int64_t *authId = (int64_t *)para;
+ 	     AUTH_LOGE(AUTH_FSM, "TEST sessionKey Return");
+ 	     TestOnSessionKeyReturned(*authId, tmpKey, SESSION_KEY_LENGTH);
+}
+#include "lnn_async_callback_utils.h"
+#define TEST_TIMES 500
+
+```
+
+```c
+/*....
+  if (info->isServer) {
+ 	             if (PostDeviceIdMessage(authFsm->authSeq, info) != SOFTBUS_OK) {
+ 	                 ret = SOFTBUS_AUTH_SYNC_DEVID_FAIL;
+ 	                 break;
+ 	             }*/
+ 	             AUTH_LOGE(AUTH_FSM, "TEST server dump authID server");
+ 	        /* } else {*/
+ 	             AUTH_LOGE(AUTH_FSM, "TEST server dump authID client");
+ 	             /*if (ProcessCredNegoUnfinished(authFsm, info, &ret, CRED_NEGO_STATE_DECIDE)) {
+ 	                 break;
+ 	             }
+ 	             if (info->normalizedType == NORMALIZED_NOT_SUPPORT || info->peerState == AUTH_STATE_COMPATIBLE) {
+ 	                 NotifyNormalizeRequestSuccess(authFsm->authSeq, false);
+ 	             }
+ 	         }
+....*/
+```
+
+```c
+static void DeviceAuthStateEnter(FsmStateMachine *fsm)
+ 	 {/*
+ 	     if (fsm == NULL) {
+  
+ 	         return;
+     }
+ 	     int32_t ret = SOFTBUS_OK;
+ 	     AuthFsm *authFsm = TO_AUTH_FSM(fsm);
+ 	     if (authFsm == NULL) {
+  
+ 	         return;
+ 	     }
+ 	     authFsm->curState = STATE_DEVICE_AUTH;
+ 	     AuthSessionInfo *info = &authFsm->info;*/
+ 	     AUTH_LOGI(AUTH_FSM, "auth state enter, info->isServer=%{public}d authSeq=%{public}" PRId64, info->isServer,
+ 	         authFsm->authSeq);
+ 	     /*if (info->normalizedType == NORMALIZED_SUPPORT || info->isSupportFastAuth) {
+ 	         ret = TryRecoveryKey(authFsm);
+ 	         if (ret != SOFTBUS_OK) {
+ 	             goto ERR_EXIT;
+ 	         }
+ 	         return;
+ 	     }
+ 	     if (info->credNegoState == CRED_NEGO_STATE_COMPATIBLE || info->credId == NULL) {
+ 	         AUTH_LOGI(AUTH_FSM, "cred negotiation fail, get credType by credId, authSeq=%{public}" PRId64,
+ 	             authFsm->authSeq);
+ 	         info->credNegoState = CRED_NEGO_STATE_COMPATIBLE;
+ 	         GetCredTypeByCredId(info);
+ 	     }
+ 	     if (!info->isServer) {
+ 	         ret = ProcessClientAuthState(authFsm);*/
+ 	         int64_t *tmpId = (int64_t *)SoftBusCalloc(sizeof(int64_t));
+ 	         if (tmpId == NULL) {
+ 	             goto ERR_EXIT;
+ 	         }
+ 	         *tmpId = authFsm->authSeq;
+ 	         LnnAsyncCallbackDelayHelper(GetLooper(LOOP_TYPE_DEFAULT), TestSessionKeyReturn, tmpId, TEST_TIMES);      
+         } else {
+                  int64_t *tmpId = (int64_t *)SoftBusCalloc(sizeof(int64_t));
+ 	         if (tmpId == NULL) {
+ 	             goto ERR_EXIT;
+ 	         }
+ 	         *tmpId = authFsm->authSeq;
+ 	         LnnAsyncCallbackDelayHelper(GetLooper(LOOP_TYPE_DEFAULT), TestSessionKeyReturn, tmpId, 0);
+           }
+          /* if (ret != SOFTBUS_OK) {
+ 	         goto ERR_EXIT;
+ 	     }
+ 	     return;
+ 	 ERR_EXIT:
+ 	     AUTH_LOGE(AUTH_FSM, "auth state enter, fail ret=%{public}d", ret);
+ 	     CompleteAuthSession(authFsm, ret);
+   }*/
+```
+
+在文件`//foundation/communication/dsoftbus/core/authentication/src/auth_session_json.c`中删除PackDeviceJsonInfo函数中的以下内容；
+
+```c
+     //....
+    if (!JSON_AddInt32ToObject(obj, AUTH_START_STATE, info->localState) ||
+        !JSON_AddInt32ToObject(obj, AUTH_VERSION_TAG, authVersion)) {
+        AUTH_LOGE(AUTH_FSM, "add auth info fail.");
+        return SOFTBUS_AUTH_PACK_DEVINFO_FAIL;
+    }
+     //....
 ```
 
 在正确配置并编译烧录后，设备使用wifi_open指令连接路由，连接成功后，设备会自动进行组网。如下为组网成功截图：
