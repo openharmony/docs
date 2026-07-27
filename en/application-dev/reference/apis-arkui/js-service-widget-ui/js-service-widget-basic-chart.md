@@ -6,7 +6,7 @@
 <!--Designer: @xiangyuan6-->
 <!--Tester: @jiaoaozihao-->
 <!--Adviser: @Brilliantry_Rui-->
-<!-- md-trans-meta sourceCommit=907dbe833940a2647e3ff7ec970329a62449fd1c translatedAt=2026-06-23T08:17:24.381Z pushedAt=2026-06-23T08:19:18.881Z -->
+<!-- md-trans-meta sourceCommit=dfb15c325281e5e789ea7ade45dfdd45876606ad translatedAt=2026-07-27T02:28:04.468Z pushedAt=2026-07-27T09:23:36.762Z -->
 
 The **\<chart>** component displays line charts, gauge charts, and bar charts.
 
@@ -37,7 +37,7 @@ In addition to the [universal attributes](js-service-widget-common-attributes.md
 | ------ | --------- | ---- | ---- | ---------------------------------------- |
 | xAxis  | ChartAxis | -    | Yes   | X-axis parameters. You can set the minimum value, maximum value, and scale of the x-axis, and whether to display the x-axis.         |
 | yAxis  | ChartAxis | -    | Yes   | Y-axis parameters. You can set the minimum value, maximum value, and scale of the y-axis, and whether to display the y-axis.         |
-| series | ChartAxis | -    | No   | Data series. This parameter is only available for line charts. It includes the following settings:<br>- Line style, such as the line width and whether the line is smooth.<br>- Style and size of the white point at the start of the line..|
+| series | ChartSeries | -    | No    | Data series. This parameter is only available for line charts. It includes the following settings:<br>- Line style, such as the line width and whether the line is smooth.<br>- Style and size of the white point at the start of the line. |
 
   **Table 2** ChartDataset
 

@@ -1,27 +1,28 @@
 # CSS
+
 <!--Kit: ArkUI-->
 <!--Subsystem: ArkUI-->
 <!--Owner: @yihao-lin-->
 <!--Designer: @piggyguy-->
 <!--Tester: @songyanhong-->
 <!--Adviser: @Brilliantry_Rui-->
+<!-- md-trans-meta sourceCommit=dfb15c325281e5e789ea7ade45dfdd45876606ad translatedAt=2026-07-27T02:28:29.640Z pushedAt=2026-07-27T09:23:36.768Z -->
 
 Cascading Style Sheets (CSS) is a language used to describe the HML page structure. All HML components have default styles. You can customize styles for these components using CSS to design various pages.
-
 
 ## Size Unit
 
 1. Logical px set by **\<length>**:
+
    1. The default logical width of a service widget is 150 px. The page will be scaled to fit the actual width of the screen. For example, on a screen with the actual width of 300 physical px, 100 px is rendered on 200 physical px, with the size doubled from 150 px to 300 px.
+
    2. If you set **autoDesignWidth** to **true**, the logical pixels are scaled based on the screen density. For example, if the screen density is 3x, 100 px will be rendered on 300 physical px. This approach is recommended when your application needs to adapt to multiple devices.
 
 2. Percentage set by **\<percentage>**: The component size is represented by its percentage of the parent component size. For example, if the width **\<percentage>** of a component is set to **50%**, the width of the component is half of its parent component's width.
 
-
 ## Style Import
 
 CSS files can be imported using the **\@import** statement. This facilitates module management and code reuse.
-
 
 ## Style Declaration
 
@@ -35,7 +36,6 @@ The **.css** file with the same name as the **.hml** file in each page directory
      <text style="color: red">Hello World</text>
    </div>
    ```
-
 
    ```css
    /* index.css */
@@ -53,7 +53,6 @@ The **.css** file with the same name as the **.hml** file in each page directory
    }
    ```
 
-
    ```css
    /* index.css */
    @import '../../common/style.css';
@@ -61,7 +60,6 @@ The **.css** file with the same name as the **.hml** file in each page directory
      justify-content: center;
    }
    ```
-
 
 ## Selectors
 
@@ -74,7 +72,6 @@ A CSS selector is used to select elements for which styles need to be added to. 
 
 Example:
 
-
 ```html
 <!-- Pagelayoutexample.hml -->
 <div id="containerId" class="container">
@@ -84,7 +81,6 @@ Example:
   </div>
 </div>
 ```
-
 
 ```css
 /* Pagestyleexample.css */
@@ -97,7 +93,6 @@ Example:
   font-size: 20px;
 }
 ```
-
 
 ## Selector Specificity
 

@@ -1,10 +1,12 @@
 # calendar
+
 <!--Kit: ArkUI-->
 <!--Subsystem: ArkUI-->
 <!--Owner: @liyujie43-->
 <!--Designer: @weixin_52725220-->
 <!--Tester: @xiong0104-->
 <!--Adviser: @Brilliantry_Rui-->
+<!-- md-trans-meta sourceCommit=dfb15c325281e5e789ea7ade45dfdd45876606ad translatedAt=2026-07-27T02:28:01.805Z pushedAt=2026-07-27T09:23:36.760Z -->
 
 The **\<calendar>** component is used to display the calendar page.
 
@@ -16,7 +18,6 @@ The **\<calendar>** component is used to display the calendar page.
 
 Not supported.
 
-
 ## Attributes
 
 In addition to the [universal attributes](js-service-widget-common-attributes.md), the following attributes are supported.
@@ -26,7 +27,7 @@ In addition to the [universal attributes](js-service-widget-common-attributes.md
 | date           | string | Current date | No   | Date selected on the current page. The default value is the current date in the format of *YYYY-MM-DD*, for example, **2019-11-22**.|
 | cardcalendar   | boolean   | false | No   | Whether the current calendar is a widget calendar.<br>The default value is **false**, indicating that the current calendar is not a widget calendar.                          |
 | startdayofweek | int    | 6     | No   | Start day of a week on the widget calendar. The default value is Sunday. The value ranges from 0 to 6.            |
-| offdays        | string | 5, 6  | No   | Rest days of a week on the widget calendar. The default value is Saturday and Sunday. The value ranges from 0 to 6.        |
+| offdays        | string | "5,6"   | No    | Rest days of a week on the widget calendar. The default value is Saturday and Sunday. The value ranges from 0 to 6.         |
 | calendardata   | string | -     | Yes   | Data to be displayed on the monthly widget calendar. You can pass data of 5\*7 or 6\*7 days in the JSON format. For details about the **"data"** attributes, see **Table 1 "data" attributes of calendardata**.|
 | showholiday    | boolean   | true  | No   | Whether to display holiday information.<br>The default value is **true**, indicating that the holiday information is displayed.                          |
 
@@ -43,7 +44,7 @@ In addition to the [universal attributes](js-service-widget-common-attributes.md
 | markLunarDay   | boolean  | Whether to mark holidays on the lunar calendar in blue. The value **true** indicates that holidays are marked in blue on the lunar calendar. The value **false** indicates that holidays are not marked in blue on the lunar calendar.                      |
 | lunarDay       | string | Lunar date.                                  |
 | lunarMonth     | string | Lunar month.                                  |
-| dayMark        | string | Day mark.<br>- **"work"**: workday.<br>- **"off"**: rest day.|
+| dayMark        | string | Day mark.<br>- **"work"**: workday.<br>- "**"off""**: rest day. |
 | dayMarkValue   | string | Text to be displayed for a working day or a rest day.                    |
 
 Example of **calendardata**:
@@ -94,14 +95,11 @@ Example of **calendardata**:
 }
 ```
 
-
-
 ## Styles
 
 | Name              | Type           | Default Value | Mandatory  | Description     |
 | ---------------- | ------------- | ---- | ---- | ------- |
 | background-color | &lt;color&gt; | -    | No   | Background color.|
-
 
 ## Events
 
@@ -131,7 +129,6 @@ Example of **calendardata**:
 
 The following are examples only. Add date data during use.
 
-
 ```html
 <!-- xxx.hml -->
 <div class="container">
@@ -148,7 +145,6 @@ The following are examples only. Add date data during use.
 </div>
 ```
 
-
 ```css
 /* xxx.css */ 
 .container {
@@ -163,7 +159,6 @@ The following are examples only. Add date data during use.
     background-color: white;
 }
 ```
-
 
 ```json
 {
@@ -198,6 +193,7 @@ The following are examples only. Add date data during use.
     }
 }
 ```
+
 **4 x 4 widget**
 
 ![en-us_calendar-example](figures/calendar-example.png)
