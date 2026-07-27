@@ -6,7 +6,7 @@
 <!--Tester: @mateng_Holtens-->
 <!--Adviser: @Brilliantry_Rui-->
 
-RichEditor是支持图文混排和文本交互式编辑的组件，通常用于响应用户对图文混合内容的输入操作，例如可以输入图文的评论区。具体用法参考[RichEditor](../reference/apis-arkui/arkui-ts/ts-basic-components-richeditor.md)组件的API文档。
+RichEditor是支持图文混排和文本交互式编辑的组件，通常用于响应用户对图文混排内容的输入操作，例如可以输入图文的评论区。具体用法参考[RichEditor](../reference/apis-arkui/arkui-ts/ts-basic-components-richeditor.md)组件的API文档。
 
 对于仅需图文展示而不需要编辑的场景，建议使用[Text](../reference/apis-arkui/arkui-ts/ts-basic-components-text.md)组件。
 
@@ -314,7 +314,7 @@ build() {
 
 ### 添加SymbolSpan内容
 
-可通过[addSymbolSpan](../reference/apis-arkui/arkui-ts/ts-basic-components-richeditor.md#addsymbolspan11)添加Symbol内容。此接口可用于特殊符号的添加，例如在编辑学术论文时，此接口可用于添加各种数学符号。
+可通过[addSymbolSpan](../reference/apis-arkui/arkui-ts/ts-basic-components-richeditor.md#addsymbolspan11)添加Symbol内容。此接口可用于Symbol矢量图标的添加，例如在文本中插入图标、标志等可视化符号元素。
 
 添加Symbol内容时，如果组件是获焦状态并且光标在闪烁，那么添加Symbol后，光标将移动到新插入Symbol的右侧。
 
@@ -1212,7 +1212,7 @@ struct DisableMenuItem {
 
 组件原本具有默认的文本选择菜单，包含复制、剪切和全选的功能。用户可使用该属性设定自定义菜单，例如翻译英文、加粗字体等丰富的菜单功能。
 
-当自定义菜单超长时，建议内部嵌套Scroll组件使用，避免键盘被遮挡。
+当自定义菜单超长时，建议内部嵌套Scroll组件使用，避免菜单被键盘遮挡。
 
 <!-- @[richEditor_bindSelectionMenu](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkUISample/TextComponent/entry/src/main/ets/pages/richEditor/SetAttributes.ets) --> 
 
@@ -1544,7 +1544,7 @@ build() {
 
 通过[enableAutoSpacing](../reference/apis-arkui/arkui-ts/ts-basic-components-richeditor.md#enableautospacing20)设置是否开启中文与西文的自动间距。
 
-此接口优化文本排版，提升组件内文本的可读性。设置自动间距后，中文与西文间产生适当空隙，便于区分不同语种，减少视觉干扰。
+此接口优化文本排版，提升组件内文本的可读性。设置自动间距后，中西文间产生适当空隙，便于区分不同语种，减少视觉干扰。
 
 <!-- @[richEditor_enableAutoSpacing](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkUISample/TextComponent/entry/src/main/ets/pages/richEditor/SetAttributes.ets) --> 
 
