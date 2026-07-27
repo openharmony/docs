@@ -830,7 +830,7 @@ static int32_t PackDeviceJsonInfo(const AuthSessionInfo *info, JsonObj *obj)
         AUTH_LOGE(AUTH_FSM, "add auth info fail.");
         return SOFTBUS_AUTH_PACK_DEVINFO_FAIL;
     }   // 注释掉此判断
-    */
+     */
     return SOFTBUS_OK;
 }
 ```
