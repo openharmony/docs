@@ -422,7 +422,7 @@ async function setupPlayer() {
 | preferredHdr | boolean | 否   | 是   | 表示播放策略是否为hdr。true表示是，false表示不是，默认为false。<br>**原子化服务API：** 从API版本12开始，该接口支持在原子化服务中使用。 |
 | enableSuperResolution<sup>18+</sup> | boolean | 否   | 是   | 表示是否使能超分功能。true表示使能超分，false表示不使能超分，默认为false。<br>若不使能超分，则后续不能调用超分相关接口。若使能超分，则超分功能默认开启，默认目标分辨率为1920x1080，单位为像素。<br>**原子化服务API：** 从API版本18开始，该接口支持在原子化服务中使用。 |
 | showFirstFrameOnPrepare<sup>17+</sup> | boolean | 否   | 是   | 播放策略true是Prepare之后显示视频起播首帧，false是Prepare之后不显示视频起播首帧，默认不显示。<br>**原子化服务API：** 从API版本17开始，该接口支持在原子化服务中使用。 |
-| mutedMediaType | [MediaType](arkts-apis-media-e.md#mediatype8) | 否   | 是   | 关闭输出的媒体类型。<br>API版本12-19，仅支持设置MediaType.MEDIA_TYPE_AUD。API版本20起，增加支持MediaType.MEDIA_TYPE_VID。 |
+| mutedMediaType | [MediaType](arkts-apis-media-e.md#mediatype8) | 否   | 是   | 关闭输出的媒体类型。<br>对于API版本12-19，仅支持设置MediaType.MEDIA_TYPE_AUD。从API版本20开始，增加支持MediaType.MEDIA_TYPE_VID。 |
 | preferredAudioLanguage<sup>13+</sup> | string | 否   | 是   | 播放策略首选音轨语言。dash场景下应用可按需设置。非dash场景暂不支持，建议缺省。<br>**原子化服务API：** 从API版本13开始，该接口支持在原子化服务中使用。 |
 | preferredSubtitleLanguage<sup>13+</sup> | string | 否   | 是   | 播放策略首选字幕语言。dash场景下应用可按需设置。非dash场景暂不支持，建议缺省。<br>**原子化服务API：** 从API版本13开始，该接口支持在原子化服务中使用。 |
 | preferredBufferDurationForPlaying<sup>18+</sup> | number | 否   | 是   | 播放策略首选起播缓冲水线。当起播缓冲时间超过该值，开始播放。单位为秒（s），取值范围[0, 20]。<br>**原子化服务API：** 从API版本18开始，该接口支持在原子化服务中使用。 |
