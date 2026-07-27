@@ -559,3 +559,34 @@ struct TimePickerDialogExample {
 ```
 
 ![TimePickerDialog](figures/TimePickerDialog_BackgroundEffect.png)
+
+
+### 示例12（设置系统材质）
+
+该示例通过配置[systemMaterial](#timepickerdialogoptions对象说明)，实现系统材质效果。
+
+从API版本26.0.0开始，在TimePickerDialogOptions中新增了systemMaterial属性。
+
+```ts
+import { uiMaterial } from '@kit.ArkUI';
+
+@Entry
+@Component
+struct DatePickerDialogExample {
+  build() {
+    Stack({ alignContent: Alignment.Top }) {
+      Column() {
+        Button('TimePickerDialog')
+          .margin(20)
+          .onClick(() => {
+            this.getUIContext().showTimePickerDialog({
+              systemMaterial: new uiMaterial.ImmersiveMaterial({ style: uiMaterial.ImmersiveStyle.ULTRA_THICK })
+            });
+          })
+      }.width('100%')
+    }
+  }
+}
+```
+
+![time-picker-dialog-systemMaterial](figures/time-picker-dialog-systemMaterial.png)
