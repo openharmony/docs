@@ -167,7 +167,7 @@ writableStream.end("finish", "utf8", () => {
 
 setDefaultEncoding(encoding?: string): boolean
 
-设置可写流的默认字符编码。
+设置可写流的默认字符编码类型。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -177,7 +177,7 @@ setDefaultEncoding(encoding?: string): boolean
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| encoding | string | 否 | 设置默认字符编码。<br>-&nbsp;支持格式：utf-8、UTF-8、GBK、GB2312、gb2312、GB18030、gb18030、ibm866、iso-8859-2、iso-8859-3、iso-8859-4、iso-8859-5、iso-8859-6、iso-8859-7、iso-8859-8、iso-8859-8-i、iso-8859-10、iso-8859-13、iso-8859-14、iso-8859-15、koi8-r、koi8-u、macintosh、windows-874、windows-1250、windows-1251、windows-1252、windows-1253、windows-1254、windows-1255、windows-1256、windows-1257、windows-1258、gbk、big5、euc-jp、iso-2022-jp、shift_jis、euc-kr、x-mac-cyrillic、utf-16be、utf-16le。且'utf-8'兼容'utf8'的写法。 <br>-&nbsp; 默认值是：'utf-8'。|
+| encoding | string | 否 | 设置默认字符编码类型。<br>-&nbsp;支持格式：utf-8、UTF-8、GBK、GB2312、gb2312、GB18030、gb18030、ibm866、iso-8859-2、iso-8859-3、iso-8859-4、iso-8859-5、iso-8859-6、iso-8859-7、iso-8859-8、iso-8859-8-i、iso-8859-10、iso-8859-13、iso-8859-14、iso-8859-15、koi8-r、koi8-u、macintosh、windows-874、windows-1250、windows-1251、windows-1252、windows-1253、windows-1254、windows-1255、windows-1256、windows-1257、windows-1258、gbk、big5、euc-jp、iso-2022-jp、shift_jis、euc-kr、x-mac-cyrillic、utf-16be、utf-16le。且'utf-8'兼容'utf8'的写法。 <br>-&nbsp; 默认值是：'utf-8'。|
 
 **返回值：**
 
@@ -562,7 +562,7 @@ read(size?: number): string | null
 
 | 类型   | 说明                   |
 | ------ | ---------------------- |
-| string \| null | 可读流读取出的数据。 |
+| string \| null | 从可读流缓冲区读取出的数据。如果未读取到数据，则返回null。 |
 
 **错误码：**
 
@@ -661,9 +661,9 @@ console.info("Readable test pause", readableStream.isPaused()); // Readable test
 
 setEncoding(encoding?: string): boolean
 
-设置可读流的字符编码。
+设置可读流的字符编码类型。
 
-当缓冲区有数据时，不允许设置字符编码，返回值为false。
+当缓冲区有数据时，不允许设置字符编码类型，返回值为false。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -673,7 +673,7 @@ setEncoding(encoding?: string): boolean
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| encoding | string | 否 | 需要设置的字符编码。<br>-&nbsp;支持格式：utf-8、UTF-8、GBK、GB2312、gb2312、GB18030、gb18030、ibm866、iso-8859-2、iso-8859-3、iso-8859-4、iso-8859-5、iso-8859-6、iso-8859-7、iso-8859-8、iso-8859-8-i、iso-8859-10、iso-8859-13、iso-8859-14、iso-8859-15、koi8-r、koi8-u、macintosh、windows-874、windows-1250、windows-1251、windows-1252、windows-1253、windows-1254、windows-1255、windows-1256、windows-1257、windows-1258、gbk、big5、euc-jp、iso-2022-jp、shift_jis、euc-kr、x-mac-cyrillic、utf-16be、utf-16le。且'utf-8'兼容'utf8'的写法。 <br>-&nbsp; 默认值是：'utf-8'。 |
+| encoding | string | 否 | 需要设置的字符编码类型。<br>-&nbsp;支持格式：utf-8、UTF-8、GBK、GB2312、gb2312、GB18030、gb18030、ibm866、iso-8859-2、iso-8859-3、iso-8859-4、iso-8859-5、iso-8859-6、iso-8859-7、iso-8859-8、iso-8859-8-i、iso-8859-10、iso-8859-13、iso-8859-14、iso-8859-15、koi8-r、koi8-u、macintosh、windows-874、windows-1250、windows-1251、windows-1252、windows-1253、windows-1254、windows-1255、windows-1256、windows-1257、windows-1258、gbk、big5、euc-jp、iso-2022-jp、shift_jis、euc-kr、x-mac-cyrillic、utf-16be、utf-16le。且'utf-8'兼容'utf8'的写法。 <br>-&nbsp; 默认值是：'utf-8'。 |
 
 **返回值：**
 
@@ -780,9 +780,9 @@ class TestWritable extends stream.Writable {
   }
 }
 
-let readable = new TestReadable();
-let writable = new TestWritable();
-readable.pipe(writable);
+let readableStream = new TestReadable();
+let writableStream = new TestWritable();
+readableStream.pipe(writableStream);
 ```
 
 ### unpipe
@@ -831,11 +831,11 @@ class TestWritable extends stream.Writable {
   }
 }
 
-let readable = new TestReadable();
-let writable = new TestWritable();
-readable.pipe(writable);
-readable.unpipe(writable);
-readable.on("data", () => {
+let readableStream = new TestReadable();
+let writableStream = new TestWritable();
+readableStream.pipe(writableStream);
+readableStream.unpipe(writableStream);
+readableStream.on("data", () => {
   console.info("Readable test unpipe data event triggered");
 });
 // unpipe成功断开连接之后，data事件将不会触发，不会打印"Readable test unpipe data event triggered"
@@ -867,14 +867,14 @@ class TestReadable extends stream.Readable {
   }
 
   doRead(size: number) {
-    throw new Error('Simulated error');
+    throw new Error("Simulated error");
   }
 }
 
-let readable = new TestReadable();
-readable.push("test");
-readable.on("error", () => {
-  console.info("error event called"); // error event called
+let readableStream = new TestReadable();
+readableStream.push("test");
+readableStream.on("error", () => {
+  console.error("error event called"); // error event called
 });
 ```
 
@@ -907,16 +907,16 @@ class TestReadable extends stream.Readable {
   }
 }
 
-let readable = new TestReadable();
+let readableStream = new TestReadable();
 
 function read() {
   console.info("read() called");
 }
 
-readable.setEncoding("utf8");
-readable.on("readable", read);
-readable.off("readable");
-readable.push("test");
+readableStream.setEncoding("utf8");
+readableStream.on("readable", read);
+readableStream.off("readable");
+readableStream.push("test");
 // off注销对readable事件的监听后，read函数不会被调用，"read() called"也不会被打印
 ```
 
@@ -983,8 +983,8 @@ class TestReadable extends stream.Readable {
   }
 }
 
-let readable = new TestReadable();
-readable.on("data", () => {
+let readableStream = new TestReadable();
+readableStream.on("data", () => {
 });
 ```
 
@@ -1023,10 +1023,10 @@ class TestReadable extends stream.Readable {
   }
 }
 
-let readable = new TestReadable();
+let readableStream = new TestReadable();
 let testData = "Hello world";
-readable.push(testData);
-console.info("Readable push test", readable.readableLength); // Readable push test 11
+readableStream.push(testData);
+console.info("Readable push test", readableStream.readableLength); // Readable push test 11
 ```
 
 ## Duplex
@@ -1167,8 +1167,8 @@ class TestDuplex extends stream.Duplex {
   }
 
   doWrite(chunk: string | Uint8Array, encoding: string, callback: Function) {
-  console.info("Duplex chunk is", chunk); // Duplex chunk is test
-  callback();
+    console.info("Duplex chunk is", chunk); // Duplex chunk is test
+    callback();
   }
 }
 
@@ -1182,7 +1182,7 @@ duplexStream.end("test", "utf8", () => {
 
 setDefaultEncoding(encoding?: string): boolean
 
-设置双工流的默认字符编码，确保在读取数据时正确解析字符。
+设置双工流的默认字符编码类型，确保在读取数据时正确解析字符。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -1192,7 +1192,7 @@ setDefaultEncoding(encoding?: string): boolean
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| encoding | string | 否 | 需要设置的默认字符编码。<br>-&nbsp;支持格式：utf-8、UTF-8、GBK、GB2312、gb2312、GB18030、gb18030、ibm866、iso-8859-2、iso-8859-3、iso-8859-4、iso-8859-5、iso-8859-6、iso-8859-7、iso-8859-8、iso-8859-8-i、iso-8859-10、iso-8859-13、iso-8859-14、iso-8859-15、koi8-r、koi8-u、macintosh、windows-874、windows-1250、windows-1251、windows-1252、windows-1253、windows-1254、windows-1255、windows-1256、windows-1257、windows-1258、gbk、big5、euc-jp、iso-2022-jp、shift_jis、euc-kr、x-mac-cyrillic、utf-16be、utf-16le。且'utf-8'兼容'utf8'的写法。 <br>-&nbsp; 默认值是：'utf-8'。|
+| encoding | string | 否 | 需要设置的默认字符编码类型。<br>-&nbsp;支持格式：utf-8、UTF-8、GBK、GB2312、gb2312、GB18030、gb18030、ibm866、iso-8859-2、iso-8859-3、iso-8859-4、iso-8859-5、iso-8859-6、iso-8859-7、iso-8859-8、iso-8859-8-i、iso-8859-10、iso-8859-13、iso-8859-14、iso-8859-15、koi8-r、koi8-u、macintosh、windows-874、windows-1250、windows-1251、windows-1252、windows-1253、windows-1254、windows-1255、windows-1256、windows-1257、windows-1258、gbk、big5、euc-jp、iso-2022-jp、shift_jis、euc-kr、x-mac-cyrillic、utf-16be、utf-16le。且'utf-8'兼容'utf8'的写法。 <br>-&nbsp; 默认值是：'utf-8'。|
 
 **返回值：**
 
@@ -1389,7 +1389,7 @@ Transform的构造函数。
 **示例：**
 
 ```ts
-let transform = new stream.Transform();
+let transformStream = new stream.Transform();
 ```
 
 ### doTransform
@@ -1426,8 +1426,8 @@ class TestTransform extends stream.Transform {
   }
 }
 
-let tr = new TestTransform();
-tr.write("hello");
+let transformStream = new TestTransform();
+transformStream.write("hello");
 ```
 
 ### doFlush
@@ -1463,9 +1463,9 @@ class TestTransform extends stream.Transform {
   }
 }
 
-let transform = new TestTransform();
-transform.end("my test");
-transform.on("data", (data) => {
+let transformStream = new TestTransform();
+transformStream.end("my test");
+transformStream.on("data", (data) => {
   console.info("data is", data.data); // data is test
 });
 ```
