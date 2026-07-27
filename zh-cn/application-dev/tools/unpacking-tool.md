@@ -3,8 +3,8 @@
 <!--Subsystem: BundleManager-->
 <!--Owner: @jsjzju-->
 <!--Designer: @jsjzju-->
-<!--Tester: @lixueqing513-->
-<!--Adviser: @Brilliantry_Rui-->
+<!--Tester: @liangchengguang-->
+<!--Adviser: @HelloCrease-->
 
 拆包工具是OpenHarmony提供的一种调测工具，支持通过命令行方式将HAP、HSP、App等文件解压成文件夹，并且提供Java接口对HAP、HSP、App等文件进行解析。
 
@@ -236,6 +236,7 @@ java -jar app_unpacking_tool.jar --mode appqf --appqf-path <path> --out-path <pa
 | labels                         | HashMap\<String, String> | 标识多语言应用程序AppJson的标签。 | NA          |
 | descriptions                   | HashMap\<String, String> | 标识多语言应用程序AppJson的说明。 | NA          |
 | buildVersion                    | String  | 标识App中的[buildVersion](../quick-start/app-configuration-file.md#配置文件标签)信息。  | 从API version 23开始支持。          |
+| deduplicateSo                  | boolean | 标识App打包时是否启用so去重功能。true表示启用so去重，false表示不启用so去重。该字段来源于pack.info文件中的deduplicateSo配置。 | 从API版本26.0.0开始支持。 |
 | alternateIcons                  | List\<[AlternateIcon](#alternateicon)\> | 标识应用的动态图标列表。 | 从API版本26.0.0开始支持。  |
 
 ### AlternateIcon
@@ -625,3 +626,5 @@ java -jar app_unpacking_tool.jar --mode appqf --appqf-path <path> --out-path <pa
 | abilityName        | String         | 标识与该技能关联的组件名称。仅适用于entry、feature、shared类型的模块，对于skill类型的模块不支持该字段。缺省值为入口Ability名称。 | NA   |
 | srcEntries         | List\<String\> | 标识实现技能的代码文件路径列表，指向技能实现逻辑的.ets文件。每个元素为相对于当前模块skills目录的文件路径。 | NA   |
 | permissions        | List\<String\> | 标识调用该技能所需要的权限列表。 | NA   |
+| version        | String | 标识技能的版本号。 | 遵循语义化版本格式：主版本号.次版本号.补丁号   |
+| visibility        | String | 标识技能的可见性。 | private（仅本应用可见）/system（系统应用可见）/public（所有应用可见）。|
