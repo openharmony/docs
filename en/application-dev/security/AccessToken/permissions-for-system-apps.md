@@ -6230,7 +6230,7 @@ Allows a system application to access available functions.
 
 **Supported devices**: Phone | PC/2in1 | Tablet | TV | Wearable | Car
 
-**Valid since**: 26.1.0
+**Valid since**: 26.0.0
 
 ## ohos.permission.ACCESS_MAPDATA_DIR
 
