@@ -1,11 +1,11 @@
 # 轻量系统STM32F407芯片移植案例
 
-介绍基于`STM32F407IGT6`芯片在拓维信息[Niobe407](https://gitee.com/openharmony-sig/device_board_talkweb)开发板上移植OpenHarmony LiteOS-M轻量系统，提供交通、工业领域开发板解决方案。移植架构采用`Board`与`SoC`分离方案，使用`arm gcc`工具链`Newlib C`库，实现了`lwip`、`littlefs`、`hdf`等子系统及组件的适配，开发了配套应用示例代码，支持通过Kconfig图形化配置编译选项。
+介绍基于`STM32F407IGT6`芯片在拓维信息[Niobe407](https://gitcode.com/openharmony/device_board_talkweb)开发板上移植OpenHarmony LiteOS-M轻量系统，提供交通、工业领域开发板解决方案。移植架构采用`Board`与`SoC`分离方案，使用`arm gcc`工具链`Newlib C`库，实现了`lwip`、`littlefs`、`hdf`等子系统及组件的适配，开发了配套应用示例代码，支持通过Kconfig图形化配置编译选项。
 
-## 适配准备
+## 适配准备 
 
-- 下载[stm32cubemx](https://www.st.com/en/development-tools/stm32cubemx.html)图形工具。
-- 准备ubuntu20.04系统环境，安装[arm-none-eabi-gcc](https://gitee.com/openharmony/device_board_talkweb/blob/master/niobe407/docs/software/%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA%E4%B8%8E%E5%9B%BA%E4%BB%B6%E7%BC%96%E8%AF%91.md#6%E5%AE%89%E8%A3%85%E4%BA%A4%E5%8F%89%E7%BC%96%E8%AF%91%E5%B7%A5%E5%85%B7%E9%93%BE)交叉编译工具链。
+ - 下载[stm32cubemx](https://www.st.com/en/development-tools/stm32cubemx.html)图形工具。
+ - 准备ubuntu20.04系统环境，安装[arm-none-eabi-gcc](https://gitcode.com/openharmony/device_board_talkweb/blob/master/niobe407/docs/software/%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA%E4%B8%8E%E5%9B%BA%E4%BB%B6%E7%BC%96%E8%AF%91.md#%E5%AE%89%E8%A3%85%E4%BA%A4%E5%8F%89%E7%BC%96%E8%AF%91%E5%B7%A5%E5%85%B7%E9%93%BE)交叉编译工具链。
 ### 生成可用工程
 
 通过stm32cubemx工具生成`STM32F407IGT6`芯片的Makefile工程，在此给出如下配置建议：
@@ -17,7 +17,7 @@
 
 生成的工程目录如下：
 
-```
+```text
 ├── Core
 │   ├── Inc
 │   │    ├── main.h
@@ -41,7 +41,7 @@
 
 将生成的工程拷贝至Ubuntu，进入工程目录下执行make命令编译，确定能够编译成功。
 
-```
+```text
 arm-none-eabi-gcc build/main.o build/stm32f4xx_it.o build/stm32f4xx_hal_msp.o build/stm32f4xx_hal_tim.o build/stm32f4xx_hal_tim_ex.o build/stm32f4xx_hal_uart.o build/stm32f4xx_hal_rcc.o build/stm32f4xx_hal_rcc_ex.o build/stm32f4xx_hal_flash.o build/stm32f4xx_hal_flash_ex.o build/stm32f4xx_hal_flash_ramfunc.o build/stm32f4xx_hal_gpio.o build/stm32f4xx_hal_dma_ex.o build/stm32f4xx_hal_dma.o build/stm32f4xx_hal_pwr.o build/stm32f4xx_hal_pwr_ex.o build/stm32f4xx_hal_cortex.o build/stm32f4xx_hal.o build/stm32f4xx_hal_exti.o build/system_stm32f4xx.o build/startup_stm32f407xx.o -mcpu=cortex-m4 -mthumb -mfpu=fpv4-sp-d16 -mfloat-abi=hard -specs=nano.specs -TSTM32F407IGTx_FLASH.ld  -lc -lm -lnosys  -Wl,-Map=build/stm32f407_output.map,--cref -Wl,--gc-sections -o build/stm32f407_output.elf
 arm-none-eabi-size build/stm32f407_output.elf
    text    data     bss     dec     hex filename
@@ -51,7 +51,7 @@ arm-none-eabi-objcopy -O binary -S build/stm32f407_output.elf build/stm32f407_ou
 ```
 
 编译完成会生成一个.bin文件，为了确认该程序能在开发板中成功运行，需要main函数中的串口初始化之后，通过串口输出一段字符串，运行时若收到打印信息，则开发板启动成功。
-```
+```c
 printf("hello world!!\r\n");
 ```
 
@@ -72,22 +72,33 @@ int _write(int fd, char *ptr, int len)
 
 芯片适配目录规划为：
 
-```
+```text
 device
 ├── board                                --- 单板厂商目录
+│   ├── hihope                           --- hihope芯片相关目录，创建目录时可供参考
+│   ├── hisilicon                        --- hisilicon芯片相关目录，创建目录时可供参考
+│   ├── revoview                         --- revoview芯片相关目录，创建目录时可供参考
 │   └── talkweb                          --- 单板厂商名字：拓维信息
 │       └── niobe407                     --- 单板名：与产品名一致
-└── soc									 --- SoC厂商目录
+├── qemu                                 --- qemu相关
+└── soc                                  --- SoC厂商目录
+│   ├── hisilicon                        --- SoC厂商名字：hisilicon
+│   ├── rockchip                         --- SoC厂商名字：rockchip
+│   ├── unisoc                           --- SoC厂商名字：unisoc
     └── st                               --- SoC厂商名称
-        └── stm32f4xx					 --- SoC Series名：stm32f4xx是一个系列，包含该系列soc相关代码
+        └── stm32f4xx                    --- SoC Series名：stm32f4xx是一个系列，包含该系列soc相关代码
 ```
 
 产品样例目录规划为：
 
-```
+```text
 vendor
-└── talkweb							     --- 开发产品样例厂商目录
-    └── niobe407         			     --- 产品名字：niobe407
+├── hihope                               --- hihope产品相关目录，可供参考
+├── hisilicon                            --- hisilicon产品相关目录，可供参考
+├── ohemu                                --- hisilicon产品相关目录，可供参考
+├── revoview                             --- revoview产品相关目录，可供参考
+└── talkweb                              --- 开发产品样例厂商目录
+    └── niobe407                         --- 产品名字：niobe407
 ```
 
 获取[OpenHarmony源码](../get-code/sourcecode-acquire.md)，根据上述目录规划，创建相应文件夹。
@@ -100,22 +111,25 @@ vendor
 
 1. 在`vendor/talkweb/niobe407`目录下新增`config.json`文件，用于描述这个产品样例所使用的单板、内核等信息，描述信息可参考如下内容：
 
-   ```
+   ```json5
    {
-     "product_name": "niobe407",           --- 用于hb set进行选择时，显示的产品名称
-     "type": "mini",                       --- 构建系统的类型，mini/small/standard
-     "version": "3.0",                     --- 构建系统的版本，1.0/2.0/3.0
-     "device_company": "talkweb",          --- 单板厂商名，用于编译时找到/device/board/talkweb目录
-     "board": "niobe407",                  --- 单板名，用于编译时找到/device/board/talkweb/niobe407目录
-     "kernel_type": "liteos_m",            --- 内核类型，因为OpenHarmony支持多内核，一块单板可能适配了多个内核，所以需要指定某个内核进行编译
-     "kernel_version": "3.0.0",            --- 内核版本，一块单板可能适配了多个linux内核版本，所以需要指定某个具体的内核版本进行编译
-     "subsystems": [ ]                     --- 选择所需要编译构建的子系统
+     "product_name": "niobe407",           // 用于hb set进行选择时，显示的产品名称
+     "type": "mini",                       // 构建系统的类型，mini/small/standard
+     "version": "7.0",                     // 构建系统的版本，1.0/2.0/3.0/7.0
+     "ohos_version": "OpenHarmony 7.0",    // OpenHarmony系统版本
+     "device_company": "talkweb",          // 单板厂商名，用于编译时找到/device/board/talkweb目录
+     "device_build_path": "device/board/talkweb/niobe407", // 单板编译路径
+     "board": "niobe407",                  // 单板名，用于编译时找到/device/board/talkweb/niobe407目录
+     "kernel_type": "liteos_m",            // 内核类型，因为OpenHarmony支持多内核，一块单板可能适配了多个内核，所以需要指定某个内核进行编译
+     "kernel_version": "7.0.0",            // 内核版本，一块单板可能适配了多个linux内核版本，所以需要指定某个具体的内核版本进行编译
+     "subsystems": [],                     // 选择所需要编译构建的子系统
+     "third_party_dir": "//third_party"   // 第三方组件根目录路径
    }
    ```
 
 2. 在`//device/board/talkweb/niobe407`目录下创建`board`目录，在创建的目录下新增一个`config.gni`文件，用于描述该产品的编译配置信息：
 
-   ```
+   ```gni
    # Kernel type, e.g. "linux", "liteos_a", "liteos_m".
    kernel_type = "liteos_m"                --- 内核类型，跟config.json中kernel_type对应
 
@@ -147,7 +161,7 @@ vendor
 
 2. 打开`//kernel/liteos_m/Kconfig`文件，可以看到在该文件通过orsource命令导入了`//device/board`和`//device/soc`下多个Kconfig文件，后续需要创建并修改这些文件：
 
-   ```
+   ```Kconfig
    orsource "../../device/board/*/Kconfig.liteos_m.shields"
    orsource "../../device/board/$(BOARD_COMPANY)/Kconfig.liteos_m.defconfig.boards"
    orsource "../../device/board/$(BOARD_COMPANY)/Kconfig.liteos_m.boards"
@@ -158,7 +172,7 @@ vendor
 
 3. 在`//device/board/talkweb`下参考如下目录结构创建相应的Kconfig文件：
 
-   ```
+   ```text
    .
    ├── Kconfig.liteos_m.boards
    ├── Kconfig.liteos_m.defconfig.boards
@@ -174,7 +188,7 @@ vendor
 
    - 在`//device/board/talkweb/Kconfig.liteos_m.boards`文件中添加：
 
-     ```
+     ```boards
      if SOC_STM32F407
             orsource "niobe407/Kconfig.liteos_m.board"    --- 可根据SOC定义，加载指定board目录定义
      endif
@@ -182,35 +196,35 @@ vendor
 
    - 在`//device/board/talkweb/Kconfig.liteos_m.defconfig.boards`文件中添加：
 
-     ```
+     ```boards
      orsource "*/Kconfig.liteos_m.defconfig.board"
      ```
 
    - 在`//device/board/talkweb/Kconfig.liteos_m.defconfig.boards`文件中添加：
 
-     ```
+     ```boards
      orsource "shields/Kconfig.liteos_m.shields"
      ```
 
    - 在`//device/board/talkweb/niobe407/Kconfig.liteos_m.board`文件中添加：
 
-     ```
+     ```boards
      menuconfig BOARD_NIOBE407
          bool "select board niobe407"
-         depends on SOC_STM32F407	 --- niobe407使用的是stm32f407的SoC，只有SoC被选择后，niobe407的配置选项才可见、可以被选择。
+         depends on SOC_STM32F407    --- niobe407使用的是stm32f407的SoC，只有SoC被选择后，niobe407的配置选项才可见，可以被选择。
      ```
 
    - 在`//device/board/talkweb/niobe407/Kconfig.liteos_m.defconfig.board`中添加：
 
-     ```
+     ```boards
      if BOARD_NIOBE407
-         							 --- 用于添加BOARD_NIOBE407默认配置
+                                     --- 用于添加BOARD_NIOBE407默认配置
      endif #BOARD_NIOBE407
      ```
 
 5. 在`//device/soc/st`下参考如下目录结构创建相应的Kconfig文件，并将`stm32cubemx`自动生成工程中的Drivers目录拷贝至`stm32f4xx/sdk`目录下：
 
-   ```
+   ```Kconfig
    .
    ├── Kconfig.liteos_m.defconfig
    ├── Kconfig.liteos_m.series
@@ -230,19 +244,19 @@ vendor
 
    - 在`//device/soc/st/Kconfig.liteos_m.defconfig`中添加：
 
-     ```
+     ```defconfig
      rsource "*/Kconfig.liteos_m.defconfig.series"
      ```
 
    - 在`//device/soc/st/Kconfig.liteos_m.series`中添加：
 
-     ```
+     ```defconfig
      rsource "*/Kconfig.liteos_m.series"
      ```
 
    - 在`//device/soc/st/Kconfig.liteos_m.soc`中添加：
 
-     ```
+     ```defconfig
      config SOC_COMPANY_STMICROELECTRONICS
          bool
      if SOC_COMPANY_STMICROELECTRONICS
@@ -254,7 +268,7 @@ vendor
 
    - 在`//device/soc/st/stm32f4xx/Kconfig.liteos_m.defconfig.series`中添加：
 
-     ```
+     ```series
      if SOC_SERIES_STM32F4xx
      rsource "Kconfig.liteos_m.defconfig.stm32f4xx"
      config SOC_SERIES
@@ -265,7 +279,7 @@ vendor
 
    - 在`//device/soc/st/stm32f4xx/Kconfig.liteos_m.defconfig.stm32f4xx`中添加：
 
-     ```
+     ```defconfig
      config SOC
          string
          default "stm32f4xx"
@@ -274,7 +288,7 @@ vendor
 
    - 在`//device/soc/st/stm32f4xx/Kconfig.liteos_m.series`中添加：
 
-     ```
+     ```series
      config SOC_SERIES_STM32F4xx
          bool "STMicroelectronics STM32F4xx series"
          select ARCH_ARM
@@ -286,7 +300,7 @@ vendor
 
    - 在`//device/soc/st/stm32f4xx/Kconfig.liteos_m.soc`中添加：
 
-     ```
+     ```soc
      choice
          prompt "STMicroelectronics STM32F4xx series SoC"
          depends on SOC_SERIES_STM32F4xx
@@ -309,14 +323,14 @@ vendor
 
 1. 在 `kernel/liteos_m/BUILD.gn` 中，可以看到，通过`deps`指定了`Board`和`SoC`的编译入口：
 
-   ```
+   ```gn
    deps += [ "//device/board/$device_company" ]            --- 对应//device/board/talkweb目录。
    deps += [ "//device/soc/$LOSCFG_SOC_COMPANY" ]          --- 对应//device/soc/st目录。
    ```
 
 2. 在`//device/board/talkweb/BUILD.gn`中，新增内容如下：
 
-   ```
+   ```gn
    if (ohos_kernel_type == "liteos_m") {
        import("//kernel/liteos_m/liteos.gni")
        module_name = get_path_info(rebase_path("."), "name")
@@ -328,19 +342,19 @@ vendor
 
 3. 在niobe407目录下创建BUILD.gn，为了方便管理，将目录名作为模块名：
 
-   ```
+   ```gn
    import("//kernel/liteos_m/liteos.gni")
    module_name = get_path_info(rebase_path("."), "name")
    module_group(module_name) {
        modules = [ 
-       	"liteos_m",
+        "liteos_m",
        ]
    }
    ```
 
 4. 将stm32cubemx生成的示例工程Core目录下的文件、`startup_stm32f407xx.s`启动文件和`STM32F407IGTx_FLASH.ld`链接文件拷贝至`//device/board/talkweb/niobe407/liteos_m/`目录下，并在该目录下创建`BUILD.gn`，添加如下内容：
 
-   ```
+   ```gn
    import("//kernel/liteos_m/liteos.gni")
    module_name = get_path_info(rebase_path("."), "name")
    kernel_module(module_name) {
@@ -373,7 +387,7 @@ vendor
 
 6. 由于\_write函数会与kernel的文件操作函数重名，会导致编译失败。后续会换一种方法来适配printf函数，此处我们先将main.c文件中对_write函数的重写删除，将printf函数改用如下方式进行串口打印测试。
 
-   ```
+   ```c
    uint8_t test[]={"hello niobe407!!\r\n"};
    int len = strlen(test);
    HAL_UART_Transmit(&huart1, (uint8_t *)test, len, 0xFFFF);
@@ -381,7 +395,7 @@ vendor
 
 7. 同理`//device/soc/st/BUILD.gn`也是一样，按照目录结构层层依赖包含，最终在`//device/soc/st/stm32f4xx/sdk/BUILD.gn`中通过`kernel_module`模板中指定需要参与编译的文件及编译参数，参考如下：
 
-   ```
+   ```gn
    import("//kernel/liteos_m/liteos.gni")
    module_name = "stm32f4xx_sdk"
    kernel_module(module_name) {
@@ -411,12 +425,12 @@ vendor
 
 在预编译阶段，在`//device/board/talkweb/niobe407/liteos_m`目录下创建了一个config.gni文件，它其实就是gn脚本的头文件，可以理解为工程构建的全局配置文件。主要配置了CPU型号、交叉编译工具链及全局编译、链接参数等重要信息：
 
-```
+```gni
 # Kernel type, e.g. "linux", "liteos_a", "liteos_m".
 kernel_type = "liteos_m"
 
 # Kernel version.
-kernel_version = "3.0.0"
+kernel_version = "7.0.0"
 
 # Board CPU type, e.g. "cortex-a7", "riscv32".
 board_cpu = "cortex-m4"
@@ -471,14 +485,14 @@ board_cxx_flags = board_cflags
 board_ld_flags = board_opt_flags
 
 # Board related headfiles search path.
-board_include_dirs = [ "//utils/native/lite/include" ]
+board_include_dirs = [ "//commonlibrary/utils_lite/include" ]
 
 # Board adapter dir for OHOS components.
 board_adapter_dir = ""
 ```
 
 如上所示，比较难理解的就是board_opt_flags、board_cflags、board_asmflags等几个参数配置。可以参考如下描述，从stm32cubemx生成的工程中的`Makefile`文件中提取出来：
-```
+```text
 board_opt_flags : 编译器相关选项，一般为芯片架构、浮点类型、编译调试优化等级等选项。
 board_asmflags  ：汇编编译选项，与Makefile中的ASFLAGS变量对应。
 board_cflags    ：C代码编译选项，与Makefile中的CFLAGS变量对应。
@@ -490,15 +504,16 @@ board_ld_flags  ：链接选项，与Makefile中的LDFLAGS变量对应。
 
 在`//vendor/talkweb/niobe407/config.json`文件中添加内核子系统及相关配置,如下所示：
 
-```
+```json
 {
     "product_name": "niobe407",
     "type": "mini",
-    "version": "3.0",
+    "version": "7.0",
     "device_company": "talkweb",
+    "device_build_path": "device/board/talkweb/niobe407",
     "board": "niobe407",
     "kernel_type": "liteos_m",
-    "kernel_version": "3.0.0",
+    "kernel_version": "7.0.0",
     "subsystems": [ 
         {
             "subsystem": "kernel",
@@ -522,12 +537,12 @@ board_ld_flags  ：链接选项，与Makefile中的LDFLAGS变量对应。
 
 若前期不知如何配置，可以参考虚拟机qemu示例中`//device/qemu/arm_mps2_an386/liteos_m/board/target_config.h`的配置。
 
-```
+```h
 #ifndef _TARGET_CONFIG_H
 #define _TARGET_CONFIG_H
 
 #define LOSCFG_BASE_CORE_TICK_RESPONSE_MAX                  0xFFFFFFUL
-#include "stm32f4xx.h"			//包含了stm32f4平台大量的宏定义。
+#include "stm32f4xx.h"          // 包含了stm32f4平台大量的宏定义。
 
 #endif
 ```
@@ -542,7 +557,7 @@ board_ld_flags  ：链接选项，与Makefile中的LDFLAGS变量对应。
 
    在文件`//kernel/liteos_m/kernel/src/mm/los_memory.c`中，`OsMemSystemInit`函数通过LOS_MemInit进行了内存初始化。可以看到几个比较关键的宏需要我们指定，我们将其添加到`target_config.h`中：
 
-   ```
+   ```h
    extern unsigned int __los_heap_addr_start__;
    extern unsigned int __los_heap_addr_end__;
    #define LOSCFG_SYS_EXTERNAL_HEAP 1
@@ -552,7 +567,7 @@ board_ld_flags  ：链接选项，与Makefile中的LDFLAGS变量对应。
 
    其中，`__los_heap_addr_start__`与`__los_heap_addr_end__`变量在`STM32F407IGTx_FLASH.ld`链接文件中被定义, 将_user_heap_stack花括号内内容修改为：
 
-   ```
+   ```ld
    ._user_heap_stack :
    {
        . = ALIGN(0x40);
@@ -563,7 +578,7 @@ board_ld_flags  ：链接选项，与Makefile中的LDFLAGS变量对应。
 
    除此之外，我们还需要适配内存分配函数，由于内核中已经对_malloc_r等内存分配函数进行了实现，在此我们采用包装函数的方式来适配，用内核中的内存分配函数替换标准库中的内存分配函数即可，在`//device/board/talkweb/niobe407/liteos_m/config.gni`中board_ld_flags链接参数变量修改为：
 
-   ```
+   ```gni
    board_ld_flags = [
        "-Wl,--wrap=_calloc_r",
        "-Wl,--wrap=_malloc_r",
@@ -582,7 +597,7 @@ board_ld_flags  ：链接选项，与Makefile中的LDFLAGS变量对应。
 
    在main.c同级目录下创建dprintf.c文件，文件内容如下：
 
-   ```
+   ```c
    #include <stdarg.h>
    #include "los_interrupt.h"
    #include <stdio.h>
@@ -627,7 +642,7 @@ board_ld_flags  ：链接选项，与Makefile中的LDFLAGS变量对应。
 
    将dprintf.c文件加入BUILD.gn编译脚本，参与编译。
 
-   ```
+   ```gn
    kernel_module(module_name) {
        sources = [
            "startup_stm32f407xx.s",
@@ -649,20 +664,20 @@ board_ld_flags  ：链接选项，与Makefile中的LDFLAGS变量对应。
 
    在main函数中串口初始化之后，调用`LOS_KernelInit`进行初始化，创建任务示例，进入任务调度。
 
-   ```
+   ```c
    #include "los_task.h"
    
    UINT32 ret;
-   ret = LOS_KernelInit();  //初始化内核。
+   ret = LOS_KernelInit();  // 初始化内核。
    if (ret == LOS_OK) {
-       TaskSample();  //示例任务函数，在此函数中创建线程任务。
-       LOS_Start();   //开始任务调度，程序执行将阻塞在此，由内核接管调度。
+       TaskSample();  // 示例任务函数，在此函数中创建线程任务。
+       LOS_Start();   // 开始任务调度，程序执行将阻塞在此，由内核接管调度。
    }
    ```
 
    其中`TaskSample()`函数内容如下：  
 
-   ```
+   ```c
    VOID TaskSampleEntry2(VOID)
    {
        while (1) {
@@ -717,7 +732,7 @@ board_ld_flags  ：链接选项，与Makefile中的LDFLAGS变量对应。
 
 从上一节中打印信息输出时间间隔可以看出，`LOS_TaskDelay`函数的延时时间不准确，我们可以在`target_config.h`中定义如下宏进行内核时钟适配：
 
-  ```
+  ```h
   #define OS_SYS_CLOCK                                        168000000
   #define LOSCFG_BASE_CORE_TICK_PER_SECOND                    (1000UL)
   ```
@@ -729,7 +744,7 @@ board_ld_flags  ：链接选项，与Makefile中的LDFLAGS变量对应。
 
 内核已经对littlefs进行了适配，我们只需要开启Kconfig中的配置，然后适配Littlefs如下接口：
 
-```
+```c
   int32_t LittlefsRead(const struct lfs_config *cfg, lfs_block_t block,
                           lfs_off_t off, void *buffer, lfs_size_t size)
   {
@@ -760,7 +775,7 @@ board_ld_flags  ：链接选项，与Makefile中的LDFLAGS变量对应。
 
 由于SPI已经hdf化了，而littlefs依赖于spi驱动，为了方便对文件系统进行配置，可以将littlefs的配置加入至.hcs文件中，具体参考：`//device/board/talkweb/niobe407/liteos_m/hdf_config/hdf_littlefs.hcs`文件。
 
-```
+```hcs
 misc {
         littlefs_config {
             match_attr = "littlefs_config";
@@ -774,14 +789,14 @@ misc {
 
 ## 板级驱动移植
 
-驱动适配相关文件放置在`//drivers/adapter/platform`中，对应有`gpio`，`i2c`，`pwm`，`spi`，`uart`，`watchdog`，都是通过`HDF`机制加载，本章节以`pwm`为例进行说明。
+驱动适配相关文件放置在`//drivers/hdf_core/adapter/platform`中，对应有`gpio`，`i2c`，`pwm`，`spi`，`uart`，`watchdog`，都是通过`HDF`机制加载，本章节以`pwm`为例进行说明。
 
 ### PWM驱动适配
 在HDF框架中，PWM的接口适配模式采用独立服务模式，在这种模式下，每一个设备对象会独立发布一个设备服务来处理外部访问，设备管理器收到API的访问请求之后，通过提取该请求的参数，达到调用实际设备对象的相应内部方法的目的。独立服务模式可以直接借助HDF DeviceManager的服务管理能力，但需要为每个设备单独配置设备节点。
 
 - 接口说明
 
-  ```
+  ```text
   1. pwm open初始化函数:DevHandle PwmOpen(uint32_t num);
       参数说明: 
           num:     PWM设备编号。
@@ -801,7 +816,7 @@ misc {
 
   `device_info.hcs`文件位于`//device/board/talkweb/niobe407/liteos_m/hdf_config/device_info.hcs`，以下示例为使用TIM2、TIM3和TIM7定时器输出PWM信号：
 
-    ```
+    ```hcs
     device_pwm1 :: device {
         pwm1 :: deviceNode {
             policy = 2;
@@ -833,16 +848,16 @@ misc {
 
   `hdf.hcs`文件位于`//device/board/talkweb/niobe407/liteos_m/hdf_config/hdf.hcs`，在此文件中配置TIM定时器具体信息：
 
-    ```
+    ```hcs
     --- 注意：tim2-tim7、tim12-tim14时钟频率为84M，TIM1、TIM8~TIM11为168M，tim6和tim7不能输出pwm。
     --- tim1~tim5、tim8有4个channel，tim9、tim12有2个channel，tim10、tim11、tim13、tim14只有1个channel。
     
     pwm_config {
         pwm1_config {
             match_attr = "config_pwm1";
-            pwmTim = 1; 		--- 定时器ID tim2（0:tim1，1:tim2，...，tim6和tim7不可用）
-            pwmCh = 3; 			--- 对应channel数（0:ch1、1:ch2、2:ch3、3:ch4）
-            prescaler = 4199; 	--- 预分频数，例如tim2时钟为84M,(84M/(4199+1))=20khz，则以20khz为基准。
+            pwmTim = 1;         --- 定时器ID tim2（0:tim1，1:tim2，...，tim6和tim7不可用）
+            pwmCh = 3;          --- 对应channel数（0:ch1、1:ch2、2:ch3、3:ch4）
+            prescaler = 4199;   --- 预分频数，例如tim2时钟为84M,(84M/(4199+1))=20khz，则以20khz为基准。
         }       
         pwm2_config {
             match_attr = "config_pwm2";
@@ -859,7 +874,7 @@ misc {
     }
     ```
 
-`hdf pwm`适配代码请参考：`//drivers/adapter/platform/pwm/pwm_stm32f4xx.c`
+`hdf pwm`适配代码请参考：`//drivers/hdf_core/adapter/platform/pwm/pwm_stm32f4xx.c`
 
 `hdf pwm`使用示例可请参考：`//device/board/talkweb/niobe407/applications/206_hdf_pwm`
 
@@ -874,17 +889,17 @@ misc {
 
 `LiteOS-M kernel`通过Kconfig配置可以使lwip参与编译，并可以在`kernel`组件中指定`lwip`编译适配的目录。如下：
 
-```
+```Kconfig
 {
-	"subsystem": "kernel",
-	"components": [
-		{
+    "subsystem": "kernel",
+    "components": [
+        {
             "component": "liteos_m",
             "features": [
                 "ohos_kernel_liteos_m_lwip_path = \"//device/board/talkweb/niobe407/liteos_m/lwip_adapter\"" --- 指定适配路径
-			]
-		}
-	]
+            ]
+        }
+    ]
 }
 ```
 
@@ -894,7 +909,7 @@ misc {
 
 启动恢复子系统适配`bootstrap_lite`和`syspara_lite`两个组件。请在`//vendor/talkweb/niobe407/config.json`中新增对应的配置选项。
 
-```
+```json
 {
       "subsystem": "startup",
       "components": [
@@ -912,7 +927,7 @@ misc {
 
 适配`bootstrap_lite`部件时，需要在链接文件`//device/board/talkweb/niobe407/liteos_m/STM32F407IGTx_FLASH.ld`中手动新增如下段：
 
-```
+```ld
 __zinitcall_bsp_start = .;
 KEEP (*(.zinitcall.bsp0.init))
 KEEP (*(.zinitcall.bsp1.init))
@@ -985,7 +1000,7 @@ KEEP (*(.zinitcall.exit4.init))
 __zinitcall_exit_end = .;
 ```
 
-需要新增上述段是因为`bootstrap_init`提供的对外接口，见`//utils/native/lite/include/ohos_init.h`文件，采用的是灌段的形式，最终会保存到上述链接段中。主要的服务自动初始化宏如下表格所示：
+需要新增上述段是因为`bootstrap_init`提供的对外接口，见`//commonlibrary/utils_lite/include/ohos_init.h`文件，采用的是灌段的形式，最终会保存到上述链接段中。主要的服务自动初始化宏如下表格所示：
 
 | 接口名                 | 描述                             |
 | ---------------------- | -------------------------------- |
@@ -1000,21 +1015,20 @@ __zinitcall_exit_end = .;
 
 如在 `//vendor/talkweb/niobe407/config.json` 中配置了`bootstrap_lite` 部件
 
-```
+```json
     {
       "subsystem": "startup",
       "components": [
         {
           "component": "bootstrap_lite"
-        },
-        ...
+        }
       ]
-    },
+    }
 ```
 
-​	`bootstrap_lite`部件会编译`//base/startup/bootstrap_lite/services/source/bootstrap_service.c`，该文件中，通过`SYS_SERVICE_INIT`将`Init`函数符号灌段到`__zinitcall_sys_service_start`和`__zinitcall_sys_service_end`中，由于`Init`函数是没有显式调用它，所以需要将它强制链接到最终的镜像。如下：
+​`bootstrap_lite`部件会编译`//base/startup/bootstrap_lite/services/source/bootstrap_service.c`，该文件中，通过`SYS_SERVICE_INIT`将`Init`函数符号灌段到`__zinitcall_sys_service_start`和`__zinitcall_sys_service_end`中，由于`Init`函数是没有显式调用它，所以需要将它强制链接到最终的镜像。如下：
 
-```
+```c
 static void Init(void)
 {
     static Bootstrap bootstrap;
@@ -1028,14 +1042,15 @@ static void Init(void)
 SYS_SERVICE_INIT(Init);   --- 通过SYS启动即SYS_INIT启动就需要强制链接生成的lib
 ```
 
-​	在`//base/startup/bootstrap_lite/services/source/BUILD.gn`文件中，描述了在`//out/niobe407/niobe407/libs` 生成 `libbootstrap.a`，如下：
+在`//base/startup/bootstrap_lite/services/source/BUILD.gn`文件中，描述了在`//out/niobe407/niobe407/libs` 生成 `libbootstrap.a`，如下：
 
-```
+```gn
 static_library("bootstrap") {
   sources = [
     "bootstrap_service.c",
     "system_init.c",
   ]
+}
   ...
 ```
 
@@ -1048,7 +1063,7 @@ static_library("bootstrap") {
 
 进行`DFX`子系统适配需要添加`hilog_lite`和`hievent_lite`部件，直接在`config.json`文件配置即可。
 
-```
+```json
 {
     "subsystem": "hiviewdfx",
     "components": [
@@ -1066,7 +1081,7 @@ static_library("bootstrap") {
 
 配置完成之后，需要注册日志输出实现函数，并加入编译。
 
-```
+```c
 bool HilogProc_Impl(const HiLogContent *hilogContent, uint32_t len)
 {
     char tempOutStr[LOG_FMT_MAX_LEN];
@@ -1084,7 +1099,7 @@ HiviewRegisterHilogProc(HilogProc_Impl);
 
 进行系统服务管理子系统适配需要添加`samgr_lite`部件，直接在`config.json`配置即可。
 
-```
+```json
 {
       "subsystem": "systemabilitymgr",
       "components": [
@@ -1098,7 +1113,7 @@ HiviewRegisterHilogProc(HilogProc_Impl);
 
 在轻量系统中，`samgr_lite`配置的共享任务栈大小默认为`2048`。在适配时可以在features中，通过`config_ohos_systemabilitymgr_samgr_lite_shared_task_size`重新设置共享任务栈大小。
 
-```
+```samgr_lite
 "config_ohos_systemabilitymgr_samgr_lite_shared_task_size = 4096"
 ```
 
@@ -1106,7 +1121,7 @@ HiviewRegisterHilogProc(HilogProc_Impl);
 
 进行安全子系统适配需要添加`huks`组件，直接在`config.json`配置即可。
 
-```
+```json
 {
       "subsystem": "security",
       "components": [
@@ -1129,7 +1144,7 @@ HiviewRegisterHilogProc(HilogProc_Impl);
 
 公共基础库子系统适配添加了`kv_store`、`file`、`os_dump`组件，直接在`config.json`配置即可。
 
-```
+```json
 {
       "subsystem": "utils",
       "components": [
@@ -1148,7 +1163,7 @@ HiviewRegisterHilogProc(HilogProc_Impl);
           "features": []
         }
       ]
-},
+}
 ```
 
 与适配`syspara_lite`部件类似，适配`kv_store`部件时，键值对会写到文件中。在轻量系统中，文件操作相关接口有`POSIX`接口与`HalFiles`接口这两套实现。因为对接内核的文件系统，采用`POSIX`相关的接口，所以`features`需要增加`enable_ohos_utils_native_lite_kv_store_use_posix_kv_api = true`。如果对接`HalFiles`相关的接口实现的，则无须修改。
@@ -1157,7 +1172,7 @@ HiviewRegisterHilogProc(HilogProc_Impl);
 
 与启动恢复子系统适配类似，我们需要在链接文件`//device/board/talkweb/niobe407/liteos_m/STM32F407IGTx_FLASH.ld`中手动新增如下段:
 
-```
+```ld
 _hdf_drivers_start = .;
 KEEP(*(.hdf.driver))
 _hdf_drivers_end = .;
@@ -1165,7 +1180,7 @@ _hdf_drivers_end = .;
 
 然后，在kernel初始化完成后调用DeviceManagerStart函数，执行完成后，才能调用hdf接口控制外设。
 
-```
+```c
 #include "devmgr_service_start.h"   --- 注意需要包含该头文件
 
 #ifdef LOSCFG_DRIVERS_HDF
@@ -1173,7 +1188,7 @@ _hdf_drivers_end = .;
 #endif
 ```
 
-`devmgr_service_start.h`头文件所在路径为: `//drivers/framework/core/common/include/manager`,为保证编译时能找到该头文件，需要将其加入到include_dirs中：
+`devmgr_service_start.h`头文件所在路径为: `//drivers/hdf_core/framework/core/common/include/manager`,为保证编译时能找到该头文件，需要将其加入到include_dirs中：
 
 ### XTS兼容性测评子系统适配
 
@@ -1185,6 +1200,7 @@ _hdf_drivers_end = .;
 
 `XTS`测试参考资料见[xts参考资料](../device-test/xts.md)，进行`XTS`子系统适配需要添加`xts_acts`与`xts_tools`组件，直接在`config.json`配置即可，配置如下：
 
+```json
     {
           "subsystem": "xts",
           "components": [
@@ -1198,6 +1214,7 @@ _hdf_drivers_end = .;
             }
           ]
     }
+```
 
 我们可以在xts_acts组件的features数组中指定如下属性:
 
@@ -1210,9 +1227,9 @@ _hdf_drivers_end = .;
 
 在我们`//device/board/talkweb/liteos_m`下包含`kernel_module`的BUILD.gn 脚本中添加如下内容：
 
-```
+```gn
 config("public") {
-	if (build_xts) {
+    if (build_xts) {
         lib_dirs = [ "$root_out_dir/libs" ]
         ldflags += [
         "-Wl,--whole-archive",     --- 开启whole-archive特性，可以把在其后面出现的静态库包含的函数和变量输出到动态库
@@ -1237,19 +1254,19 @@ config("public") {
 
         "-Wl,--no-whole-archive",  --- 关掉whole-archive这个特性
         ]
-	}
+    }
 }
 ```
 
 由于Niobe407开发板内存有限，xts测试时需要分套件测试。执行如下编译命令，即可生成包含xts测试的固件。
 
-```
+```text
 hb build -f -b debug --gn-args build_xts=true
 ```
 
 此外，我们还需要修改`//vendor/talkweb/niobe407/hals/utils/sys_param/hal_sys_param.c`文件，将这些字符串定义正确。
 
-```
+```c
 static const char OHOS_DEVICE_TYPE[] = {"Evaluation Board"};
 static const char OHOS_DISPLAY_VERSION[] = {"OpenHarmony 3.1"};
 static const char OHOS_MANUFACTURE[] = {"Talkweb"};
@@ -1269,7 +1286,7 @@ static const char OHOS_SERIAL[] = {"1234567890"};  // provided by OEM.
 
 编译完成后，将固件烧录至开发板，xts全部跑完会有显示`xx Tests xx Failures xx Ignored`等信息，以下以公共基础库测试为例：
 
-```
+```text
 ../../../test/xts/acts/utils_lite/kv_store_hal/src/kvstore_func_test.c:590:testKvStoreClearCache002:PASS
 ../../../test/xts/acts/utils_lite/kv_store_hal/src/kvstore_func_test.c:625:testKvStoreCacheSize001:PASS
 ../../../test/xts/acts/utils_lite/kv_store_hal/src/kvstore_func_test.c:653:testKvStoreCacheSize002:PASS
