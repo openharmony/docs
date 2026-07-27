@@ -26,7 +26,7 @@ group("wifi") {
 
 | 接口 | 作用                             | 
 | -------- |--------------------------------|
-| EnableWifi | 启用Wi-Fi&nbsp;sta模式。                  | 
+| EnableWifi | 启用Wi-Fi&nbsp;sta模式。            | 
 | DisableWifi | 禁用Wi-Fi&nbsp;sta模式。            | 
 | IsWifiActive | 检查Wi-Fi&nbsp;sta模式是否启用。        | 
 | Scan | 扫描热点信息。                        | 
@@ -36,7 +36,7 @@ group("wifi") {
 | RemoveDevice | 删除指定的热点配置信息。                   | 
 | DisableDeviceConfig | 禁用指定的热点配置信息。                   | 
 | EnableDeviceConfig | 启用指定的热点配置信息。                   | 
-| ConnectTo | 接到指定的热点。                       | 
+| ConnectTo | 连接到指定的热点。                      | 
 | ConnectToDevice | 通过指定的配置连接到热点。                  |
 | Disconnect | 断开Wi-Fi连接。                     | 
 | GetLinkedInfo | 获取热点连接信息。                      | 
