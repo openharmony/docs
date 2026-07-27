@@ -20,9 +20,8 @@ target_link_libraries(sample PUBLIC libohaudiosuite.so)
 ### 添加头文件
 开发者通过引入头文件<[native_audio_converter.h](../../reference/apis-audio-kit/capi-native-audio-converter-h.md)>，使用音频格式转换相关API。
 
-```cpp
-#include <ohaudiosuite/native_audio_converter.h>
-```
+<!-- @[format_conversion_header_file](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/Media/Audio/AudioSuiteSample/entry/src/main/cpp/audio_format_converter.cpp) -->
+
 音频格式转换相关接口返回值请参考：[OH_AudioConverter_Result](../../reference/apis-audio-kit/capi-native-audio-converter-h.md#oh_audioconverter_result)。
 
 详细的API说明请参考：[OHAudioSuite](../../reference/apis-audio-kit/capi-ohaudiosuite.md)。
