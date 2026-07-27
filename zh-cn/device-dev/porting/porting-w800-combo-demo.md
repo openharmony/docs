@@ -4,7 +4,7 @@
 
 ## 适配准备
 
-准备ubuntu20.04系统环境，安装[csky-abiv2-elf-gcc](https://occ.t-head.cn/community/download?id=3885366095506644992)交叉编译工具链。
+准备ubuntu20.04系统环境，安装[csky-abiv2-elf-gcc](https://www.xrvm.cn/community/download?id=3885366095506644992)交叉编译工具链。
 
 ## 编译构建
 
@@ -13,11 +13,11 @@
 本方案的目录结构使用[Board和Soc解耦的思路](https://gitcode.com/openharmony-sig/sig-content/blob/master/devboard/docs/board-soc-arch-design.md)：
 
 芯片适配目录规划为：
-   ```
+   ```text
    device
    ├── board                                --- 单板厂商目录
-   │   └── hihope                           --- 单板厂商名字：HiHope
-   │       └── neptune100                   --- 单板名：Neptune100
+   │   └── hihope                           --- 单板厂商名字：HiHope
+   │       └── neptune100                   --- 单板名：Neptune100
    └── soc                                  --- SoC厂商目录
        └── winnermicro                      --- SoC厂商名字：联盛德
            └── wm800                        --- SoC Series名：w800系列芯片
@@ -25,7 +25,7 @@
 
 产品样例目录规划为：
 
-   ```
+   ```text
    vendor
    └── hihope                               --- 开发产品样例厂商目录，润和软件的产品样例
        ├── neptune_iotlink_demo             --- 产品名字：Neptune100产品样例代码
@@ -36,17 +36,82 @@
 
 `vendor/hihope/neptune_iotlink_demo/config.json`文件下，描述了产品使用的内核、单板、子系统等信息。其中，内核、单板型号、单板厂商需提前规划好，是预编译指令`hb set`关注的。例如：
 
-   ```
+   ```json5
    {
-     "product_name": "neptune_iotlink_demo",   --- 产品名
-     "ohos_version": "OpenHarmony 3.1",        --- 使用的OS版本
-     "type":"mini",                            --- 系统类型: mini
-     "version": "3.0",                         --- 系统版本: 3.0
-     "device_company": "hihope",               --- 单板厂商：hihope
-     "board": "neptune100",                    --- 单板名：neptune100
-     "kernel_type": "liteos_m",                --- 内核类型：liteos_m
-     "kernel_version": "3.0.0",                --- 内核版本：3.0.0
-     "subsystems": []                          --- 子系统
+      "product_name": "neptune_iotlink_demo",                // 产品名称
+      "ohos_version": "OpenHarmony 3.1",                     // 使用的OS版本
+      "type":"mini",                                         // 系统类型：mini
+      "version": "3.0",                                      // 系统版本：3.0
+      "device_company": "hihope",                            // 单板厂商：hihope
+      "board": "neptune100",                                 // 单板名：neptune100
+      "kernel_type": "liteos_m",                             // 内核类型：liteos_m
+      "kernel_version": "3.0.0",                             // 内核版本：3.0.0
+      "subsystems": [                                        // 子系统
+      {
+      "subsystem": "kernel",
+      "components": [
+          { "component": "liteos_m", "features": [] }
+        ]
+      },
+      {
+        "subsystem": "startup",
+        "components": [
+          { "component": "bootstrap_lite", "features":[] },
+          {
+            "component": "init_lite",
+            "features": [
+              "enable_ohos_startup_init_feature_begetctl_liteos = true",
+              "enable_ohos_startup_init_lite_use_posix_file_api = true",
+              "config_ohos_startup_init_lite_data_path = \"/data/\""
+            ]
+          }
+        ]
+      },
+      {
+        "subsystem": "hiviewdfx",
+        "components": [
+          { "component": "hilog_lite", "features":[] },
+          { "component": "hievent_lite", "features":[] }
+        ]
+      },
+      {
+        "subsystem": "systemabilitymgr",
+        "components": [
+          { "component": "samgr_lite", "features":[] }
+        ]
+      },
+        {
+          "subsystem": "communication",
+          "components": [
+            {
+              "component": "wifi_lite",
+              "optional": "true"
+            }
+          ]
+        },
+      {
+        "subsystem": "commonlibrary",
+        "components": [
+          { "component": "utils_lite", "features":[ "utils_lite_feature_file = true" ] }
+        ]
+      },
+        {
+          "subsystem": "xts",
+          "components": [
+            { 
+              "component": "acts",
+              "features":
+              [
+                "config_ohos_xts_acts_utils_lite_kv_store_data_path = \"/data\"",
+                "enable_ohos_test_xts_acts_use_thirdparty_lwip = true"
+              ]
+            },
+            { "component": "tools", "features":[] }
+          ]
+        }
+      ],
+      "third_party_dir": "//third_party",
+      "product_adapter_dir": "//vendor/hihope/neptune_iotlink_demo/hals"
    }
    ```
 填入的信息与规划的目录相对应，其中`device_company`和`board`用于关联出`device/board/<device_company>/`目录。
@@ -55,7 +120,7 @@
 
 关联到的\<board\>目录下，在`device/board/hihope/neptune100/liteos_m`目录下放置`config.gni`文件，该配置文件用于描述该单板信息，包括CPU型号、交叉编译工具链及全局编译、链接参数等重要信息：
 
-```
+```gni
 # Kernel type, e.g. "linux", "liteos_a", "liteos_m".
 kernel_type = "liteos_m"
 
@@ -134,7 +199,7 @@ storage_type = ""
 
 在工程根目录下输入预编译指令`hb set`可显示相关产品信息，如下：
 
-```
+```text
 hb set
 OHOS Which product do you need?  (Use arrow keys)
 
@@ -148,7 +213,7 @@ OHOS Which product do you need?  neptune_iotlink_demo
 
 通过`hb env`可以查看选择出来的预编译环境变量。
 
-```
+```text
 [OHOS INFO] root path: /home/xxxx/openharmony_w800
 [OHOS INFO] board: neptune100
 [OHOS INFO] kernel: liteos_m
@@ -170,7 +235,7 @@ OHOS Which product do you need?  neptune_iotlink_demo
 
 2. 打开`kernel/liteos_m/Kconfig`文件，可以看到在该文件通过orsource命令导入了`device/board`和`device/soc`下多个`Kconfig`文件，后续需要创建并修改这些文件：
 
-   ```
+   ```text
    orsource "../../device/board/*/Kconfig.liteos_m.shields"
    orsource "../../device/board/$(BOARD_COMPANY)/Kconfig.liteos_m.defconfig.boards"
    orsource "../../device/board/$(BOARD_COMPANY)/Kconfig.liteos_m.boards"
@@ -179,14 +244,14 @@ OHOS Which product do you need?  neptune_iotlink_demo
    orsource "../../device/soc/*/Kconfig.liteos_m.soc"
    ```
 
-3. 在`device/board/hihope`下创建相应的的`Kconfig`文件：
+3. 在`device/board/hihope`下创建相应的`Kconfig`文件：
 
-   ```
+   ```text
    ├──  neptune100                                  --- neptune100单板配置目录
    │   ├── Kconfig.liteos_m.board                   --- 单板的配置选项
-   │   ├── Kconfig.liteos_m.defconfig.board         --- 单板的默认配置项
-   │   └── liteos_m
-   │       └── config.gni                           --- 单板的配置文件
+   │   ├── Kconfig.liteos_m.defconfig.board         --- 单板的默认配置项
+   │   └── liteos_m
+   │       └── config.gni                           --- 单板的配置文件
    ├── Kconfig.liteos_m.boards                      --- 单板厂商下Boards配置信息
    └── Kconfig.liteos_m.defconfig.boards            --- 单板厂商下Boards默认配置信息
    ```
@@ -195,7 +260,7 @@ OHOS Which product do you need?  neptune_iotlink_demo
 
    在 `neptune100/Kconfig.liteos_m.board`中添加，
 
-   ```
+   ```text
    config BOARD_NEPTUNE100
        bool "select board neptune100"
        depends on SOC_WM800
@@ -205,7 +270,7 @@ OHOS Which product do you need?  neptune_iotlink_demo
 
    在 `neptune100/Kconfig.liteos_m.defconfig.board`中添加，
 
-     ```
+     ```text
      if BOARD_NEPTUNE100
 
      endif #BOARD_NEPTUNE100
@@ -213,9 +278,9 @@ OHOS Which product do you need?  neptune_iotlink_demo
 
      用于添加 BOARD_NEPTUNE100默认配置。
 
-5. 在`device/soc/winnermicro`下创建相应的的`Kconfig`文件：
+5. 在`device/soc/winnermicro`下创建相应的`Kconfig`文件：
 
-   ```
+   ```text
    ├── wm800                                        --- W800系列
    │   ├── Kconfig.liteos_m.defconfig.wm800         --- W800芯片默认配置
    │   ├── Kconfig.liteos_m.defconfig.series        --- W800系列默认配置
@@ -230,7 +295,7 @@ OHOS Which product do you need?  neptune_iotlink_demo
 
    在`wm800/Kconfig.liteos_m.defconfig.wm800`中添加：
 
-   ```
+   ```text
     config SOC
        string
        default "wm800"
@@ -239,7 +304,7 @@ OHOS Which product do you need?  neptune_iotlink_demo
 
    在`wm800/Kconfig.liteos_m.defconfig.series`中添加：
 
-   ```
+   ```text
    if SOC_SERIES_WM800
 
    rsource "Kconfig.liteos_m.defconfig.wm800"
@@ -253,7 +318,7 @@ OHOS Which product do you need?  neptune_iotlink_demo
 
    在 `wm800/Kconfig.liteos_m.series`中添加：
 
-   ```
+   ```text
    config SOC_SERIES_WM800
        bool "winnermicro 800 Series"
        select ARM
@@ -265,7 +330,7 @@ OHOS Which product do you need?  neptune_iotlink_demo
 
    在选择了 SOC_SERIES_WM800之后，才可选 `wm800/Kconfig.liteos_m.soc`文件中的 SOC_WM800：
 
-   ```
+   ```text
    choice
        prompt "Winnermicro 800 series SoC"
        depends on SOC_SERIES_WM800
@@ -283,7 +348,7 @@ OHOS Which product do you need?  neptune_iotlink_demo
 
    配置后的文件会默认保存在`vendor/hihope/neptune_iotlink_demo/kernel_configs/debug.config`,也可以直接填写`debug.config`：
 
-   ```
+   ```text
    LOSCFG_PLATFORM_QEMU_CSKY_SMARTL=y
    LOSCFG_SOC_SERIES_WM800=y
    ```
@@ -294,7 +359,7 @@ OHOS Which product do you need?  neptune_iotlink_demo
 
 1. 在`device/board/hihope`中新建文件`BUILD.gn`，新增内容如下：
 
-   ```
+   ```gn
    if (ohos_kernel_type == "liteos_m") {
      import("//kernel/liteos_m/liteos.gni")
      module_name = get_path_info(rebase_path("."), "name")
@@ -311,7 +376,7 @@ OHOS Which product do you need?  neptune_iotlink_demo
 
 2. 在`device/soc/winnermicro`中，新建文件`BUILD.gn`，按目录层级组织，新增内容如下：
 
-   ```
+   ```gn
    if (ohos_kernel_type == "liteos_m") {
      import("//kernel/liteos_m/liteos.gni")
      module_name = get_path_info(rebase_path("."), "name")
@@ -326,7 +391,7 @@ OHOS Which product do you need?  neptune_iotlink_demo
 
 3. 在`device/soc/winnermicro`各个层级模块下，同样新增文件`BUILD.gn`，将该层级模块加入编译。以`device/soc/winnermicro/wm800/board/platform/sys/BUILD.gn`为例：
 
-   ```
+   ```gn
    import("//kernel/liteos_m/liteos.gni")
    module_name = get_path_info(rebase_path("."), "name")
    kernel_module(module_name) {             --- 编译的模块
@@ -342,32 +407,40 @@ OHOS Which product do you need?  neptune_iotlink_demo
 
 4. 为了组织链接以及一些编译选项，在`device/soc/winnermicro/wm800/board/BUILD.gn`下的`config("board_config")`填入了相应的参数：
 
-   ```
+   ```gn
    config("board_config") {
      ldflags = []                            --- 链接参数，包括ld文件
      libs = []                               --- 链接库
      include_dirs = []                       --- 公共头文件
+   }
    ```
 
 
 5. 为了组织一些产品侧的应用，需要强制链接到产品工程中来，本方案在vendor相应的`config.json`加入了相应的list来组织，在`vendor/hihope/neptune_iotlink_demo/config.json`增加对应的list：
 
-   ```
-    "bin_list": [                            --- demo list
-      {
-        "elf_name": "hihope",
-        "enable": "false",                   --- list开关
-        "force_link_libs": [
-          "bootstrap",
-          "broadcast",
-          ...
-        ]
-      }
+   ```json5
+    {
+      "bin_list": [                            // demo list
+        {
+          "elf_name": "hihope",
+          "enable": "true",                    // list开关
+          "force_link_libs": [
+            "bootstrap",
+            "broadcast",
+            "hctest",
+            "module_ActsBootstrapTest",
+            "module_ActsDfxFuncTest",
+            "module_ActsHieventLiteTest",
+            "module_ActsSamgrTest"
+          ]
+        }
+      ]
+    }
    ```
 
    将demo应用作为模块库来管理，开启/关闭某个demo，在bin_list中增减相应库文件即可。bin_list在gn中可以直接被读取，在`device/board/hihope/neptune100/liteos_m/config.gni`新增内容：
 
-   ```
+   ```gni
    # config.json parse
    if (product_path != "") {
      product_conf = read_file("${product_path}/config.json", "json")
@@ -378,7 +451,7 @@ OHOS Which product do you need?  neptune_iotlink_demo
 
    读取list后即可在相应的链接选项上加入相关的组件库，在`//device/soc/winnermicro/wm800/BUILD.gn`添加内容：
 
-   ```
+   ```gn
    foreach(bin_file, bin_list) {
       build_enable = bin_file.enable
       ...
@@ -397,25 +470,29 @@ OHOS Which product do you need?  neptune_iotlink_demo
 
 在`vendor/hihope/neptune_iotlink_demo/config.json`添加内核子系统及相关配置，如下：
 
-   ```
-   "subsystems": [
-    {
-      "subsystem": "kernel",
-      "components": [
-        { 
-          "component": "liteos_m", "features":[] 
-        }
-      ]
-   },
+   ```json
+   {
+    "subsystems": [
+      {
+        "subsystem": "kernel",
+        "components": [
+          {
+            "component": "liteos_m",
+            "features": []
+          }
+        ]
+      }
+    ]
+   }
    ```
 
 ### 内核启动适配
 
-由于Neptune100开发板的芯片架构为OpenHarmony不支持的ck804ef架构，需要进行ck804ef架构移植。适配 `kernel\liteos_m\arch\include`中定义的通用的文件以及函数列表，并放在了 `kernel\liteos_m\arch\csky\v2\ck804\gcc`文件夹下。
+由于Neptune100开发板的芯片架构为OpenHarmony不支持的ck804ef架构，需要进行ck804ef架构移植。适配 `kernel/liteos_m/arch/include`中定义的通用的文件以及函数列表，并放在了 `kernel/liteos_m/arch/csky/v2/gcc`文件夹下。
 
 内核初始化示例如下：
 
-   ```
+   ```c
    osStatus_t ret = osKernelInitialize();                    --- 内核初始化
    if(ret == osOK)
    {
@@ -429,7 +506,7 @@ OHOS Which product do you need?  neptune_iotlink_demo
 
 board_main在启动OHOS_SystemInit之前，需要初始化必要的动作，如下：
 
-   ```
+   ```c
    ...
    UserMain();         --- 启动OpenHarmony  OHOS_SystemInit的之前完成驱动的初始化
    ...
@@ -439,7 +516,7 @@ board_main在启动OHOS_SystemInit之前，需要初始化必要的动作，如�
 
 UserMain函数在`device/soc/winnermicro/wm800/board/app/main.c`文件中，如下：
 
-   ```
+   ```c
    ...
    if (DeviceManagerStart()) {                                      --- HDF初始化
        printf("[%s] No drivers need load by hdf manager!",__func__);
@@ -451,18 +528,18 @@ UserMain函数在`device/soc/winnermicro/wm800/board/app/main.c`文件中，如�
 
 HDF驱动框架提供了一套应用访问硬件的统一接口，可以简化应用开发，添加HDF组件需要在`//vendor/hihope/neptune_iotlink_demo/kernel_configs`添加：
 
-   ```
+   ```text
    LOSCFG_DRIVERS_HDF=y
    LOSCFG_DRIVERS_HDF_PLATFORM=y
    ```
 
-驱动适配相关文件放置在`drivers/adapter/platform`中，对应有gpio，i2c，pwm，spi，uart，watchdog，都是通过HDF机制加载，本章节以GPIO和UART为例进行详细说明。
+驱动适配相关文件放置在`drivers/hdf_core/adapter/platform`中，对应有gpio，i2c，pwm，spi，uart，watchdog，都是通过HDF机制加载，本章节以GPIO和UART为例进行详细说明。
 
 #### GPIO适配
 
-1. 芯片驱动适配文件位于`drivers/adapter/platform`目录，在gpio目录增加`gpio_wm.c`文件，在`BUILD.gn`文件中，描述了W800驱动的编译适配。如下：
+1. 芯片驱动适配文件位于`drivers/hdf_core/adapter/platform`目录，在gpio目录增加`gpio_wm.c`文件，在`BUILD.gn`文件中，描述了W800驱动的编译适配。如下：
 
-   ```
+   ```gn
    ...
    if (defined(LOSCFG_SOC_COMPANY_WINNERMICRO)) {
      sources += [ "gpio_wm.c" ]
@@ -472,7 +549,7 @@ HDF驱动框架提供了一套应用访问硬件的统一接口，可以简化�
 
 2. `gpio_wm.c`中驱动描述文件如下：
 
-   ```
+   ```c
    /* HdfDriverEntry definitions */
    struct HdfDriverEntry g_GpioDriverEntry = {
        .moduleVersion = 1,
@@ -486,7 +563,7 @@ HDF驱动框架提供了一套应用访问硬件的统一接口，可以简化�
 
 3. 在`device/board/hihope/shields/neptune100/neptune100.hcs`添加gpio硬件描述信息, 添加内容如下：
 
-   ```
+   ```hcs
    root {
        platform {
         gpio_config {
@@ -500,7 +577,7 @@ HDF驱动框架提供了一套应用访问硬件的统一接口，可以简化�
 
 4. 在GpioDriverInit获取hcs参数进行初始化，如下：
 
-   ```
+   ```c
     ...
     gpioCntlr = GpioCntlrFromHdfDev(device);        --- gpioCntlr节点变量获取具体gpio配置
     if (gpioCntlr == NULL) {
@@ -512,9 +589,9 @@ HDF驱动框架提供了一套应用访问硬件的统一接口，可以简化�
 
 #### UART适配
 
-1. 芯片驱动适配文件位于`drivers/adapter/platform`目录，在uart目录增加`uart_wm.c`文件，在`BUILD.gn`文件中，描述了W800驱动的编译适配。如下：
+1. 芯片驱动适配文件位于`drivers/hdf_core/adapter/platform`目录，在uart目录增加`uart_wm.c`文件，在`BUILD.gn`文件中，描述了W800驱动的编译适配。如下：
 
-   ```
+   ```gn
    ...
    if (defined(LOSCFG_SOC_COMPANY_WINNERMICRO)) {
      sources += [ "uart_wm.c" ]
@@ -524,7 +601,7 @@ HDF驱动框架提供了一套应用访问硬件的统一接口，可以简化�
 
 2. `uart_wm.c`中驱动描述文件如下：
 
-   ```
+   ```c
    /* HdfDriverEntry definitions */
    struct HdfDriverEntry g_UartDriverEntry = {
        .moduleVersion = 1,
@@ -540,7 +617,7 @@ HDF驱动框架提供了一套应用访问硬件的统一接口，可以简化�
 
 3. 在`device/board/hihope/shields/neptune100/neptune100.hcs`添加uart硬件描述信息, 添加内容如下：
 
-   ```
+   ```hcs
    root {
        platform {
         uart_config {
@@ -568,7 +645,7 @@ HDF驱动框架提供了一套应用访问硬件的统一接口，可以简化�
 
 4. 在UartDriverInit获取hcs参数进行初始化，如下：
 
-   ```
+   ```c
     ...
     host = UartHostFromDevice(device);
     if (host == NULL) {
@@ -586,7 +663,7 @@ HDF驱动框架提供了一套应用访问硬件的统一接口，可以简化�
 
 首先，在`config.json`文件中，增加`communication`子系统的`wifi_lite`部件，如下：
 
-   ```
+   ```json
    {
      "subsystem": "communication",
      "components": [
@@ -595,23 +672,23 @@ HDF驱动框架提供了一套应用访问硬件的统一接口，可以简化�
          "optional": "true"
        }
      ]
-   },
+   }
    ```
 
 `wifi_lite`部件在 `build/lite/components/communication.json`文件中，描述如下：
 
-   ```
+   ```json5
    {
      "component": "wifi_lite",
      "targets": [
-       "//foundation/communication/wifi_lite:wifi"       --- wifi_lite的编译目标
+       "//foundation/communication/wifi_lite:wifi"    // wifi_lite的编译目标
      ]
-   },
+   }
    ```
 
 在本案例中，`wifi`适配源码可见`device/soc/winnermicro/wm800/board/src/wifi/wm_wifi.c`,如下：
 
-   ```
+   ```c
    int tls_wifi_netif_add_status_event(tls_wifi_netif_status_event_fn event_fn)   ---用于增加wifi事件功能
    {
      u32 cpu_sr;
@@ -634,7 +711,7 @@ HDF驱动框架提供了一套应用访问硬件的统一接口，可以简化�
 ### 系统服务管理子系统适配
 系统服务管理子系统适配添加`samgr_lite`部件，直接在`config.json`配置，如下：
 
-   ```
+   ```json
    {
      "subsystem": "systemabilitymgr",
      "components": [
@@ -642,56 +719,51 @@ HDF驱动框架提供了一套应用访问硬件的统一接口，可以简化�
          "component": "samgr_lite"
        }
      ]
-   },
+   }
    ```
 
 ### 公共基础库子系统适配
 
-公共基础库子系统适配添加了`kv_store、file`部件，直接在`config.json`配置，如下：
+公共基础库子系统适配添加了`utils_lite、file`部件，直接在`config.json`配置，如下：
 
-   ```
+   ```json
    {
-     "subsystem": "utils",
+     "subsystem": "commonlibrary",
      "components": [
-       {
-         "component": "kv_store",
-         "features": [
-           "enable_ohos_utils_native_lite_kv_store_use_posix_kv_api = true"
-         ]
-       },
+       { "component": "utils_lite", "features":["utils_lite_feature_file = true"] },
        { "component": "file", "features":[] }
      ]
-   },
+   }
    ```
 
 适配`kv_store`部件时，键值对会写到文件中。在轻量系统中，文件操作相关接口有`POSIX`接口与`HalFiles`接口这两套实现。
+
 因为对接内核的文件系统，采用`POSIX`相关的接口，所以`features`需要增加`enable_ohos_utils_native_lite_kv_store_use_posix_kv_api = true`。
 
 ### 启动恢复子系统适配
 
-启动恢复子系统适配添加了`bootstrap_lite、syspara_lite`部件，直接在`config.json`配置，如下：
+启动恢复子系统适配添加了`bootstrap_lite`、`init_lite`部件，直接在`config.json`配置，如下：
 
-   ```
+   ```json
    {
      "subsystem": "startup",
      "components": [
-       {
-         "component": "bootstrap_lite"
-       },
-       {
-         "component": "syspara_lite",
-         "features": [
-           "enable_ohos_startup_syspara_lite_use_posix_file_api = true",
-           "config_ohos_startup_syspara_lite_data_path = \"/data/\""
-         ]
-       }
+       { "component": "bootstrap_lite", "features":[] },
+       { 
+          "component": "init_lite", 
+          "features": [ 
+            "enable_ohos_startup_init_feature_begetctl_liteos = true", 
+            "enable_ohos_startup_init_lite_use_posix_file_api = true",
+            "config_ohos_startup_init_lite_data_path = \"/data/\""
+          ] 
+        }
      ]
-   },
+   }
    ```
 
 适配bootstrap_lite部件时，需要在链接脚本文件`device/soc/winnermicro/wm800/board/ld/w800/gcc_csky.ld`中手动新增如下段：
 
-   ```
+   ```ld
    .zinitcall_array :
    {
     . = ALIGN(0x4) ;
@@ -747,7 +819,7 @@ HDF驱动框架提供了一套应用访问硬件的统一接口，可以简化�
    } > REGION_RODATA
    ```
 
-需要新增上述段是因为`bootstrap_init`提供的对外接口，见`utils/native/lite/include/ohos_init.h`文件，采用的是灌段的形式，最终会保存到上述链接段中。主要的服务自动初始化宏如下表格所示：
+需要新增上述段是因为`bootstrap_init`提供的对外接口，见`commonlibrary/utils_lite/include/ohos_init.h`文件，采用的是灌段的形式，最终会保存到上述链接段中。主要的服务自动初始化宏如下表格所示：
 
 | 接口名                 | 描述                             |
 | ---------------------- | -------------------------------- |
@@ -762,21 +834,18 @@ HDF驱动框架提供了一套应用访问硬件的统一接口，可以简化�
 
 如在 `vendor/hihope/neptune_iotlink_demo/config.json` 中配置了`bootstrap_lite` 部件。
 
-   ```
+   ```json
    {
      "subsystem": "startup",
      "components": [
-       {
-         "component": "bootstrap_lite"
-       },
-       ...
+       { "component": "bootstrap_lite", "features":[] }
      ]
-   },
+   }
    ```
 
 ​`bootstrap_lite`部件会编译`base/startup/bootstrap_lite/services/source/bootstrap_service.c`，该文件中，通过`SYS_SERVICE_INIT`将`Init`函数符号灌段到`__zinitcall_sys_service_start`和`__zinitcall_sys_service_end`中，由于`Init`函数是没有显式调用它，所以需要将它强制链接到最终的镜像。如下：
 
-   ```
+   ```c
    static void Init(void)
    {
        static Bootstrap bootstrap;
@@ -792,13 +861,27 @@ HDF驱动框架提供了一套应用访问硬件的统一接口，可以简化�
 
 ​在`base/startup/bootstrap_lite/services/source/BUILD.gn`文件中，描述了在`out/neptune100/neptune_iotlink_demo/libs` 生成 `libbootstrap.a`，如下：
 
-   ```
+   ```gn
    static_library("bootstrap") {
      sources = [
        "bootstrap_service.c",
        "system_init.c",
      ]
-     ...
+     include_dirs = [
+       "../source",
+       "//foundation/systemabilitymgr/samgr_lite/interfaces/kits/samgr",
+       "//commonlibrary/utils_lite/include",
+       "//base/startup/init/interfaces/innerkits",
+     ]
+     if (ohos_kernel_type == "liteos_m" || ohos_kernel_type == "uniproton") {
+       include_dirs += []
+     } else if (ohos_kernel_type == "liteos_a" || ohos_kernel_type == "linux") {
+       include_dirs += [ "//third_party/bounds_checking_function/include" ]
+     }
+
+     deps = [ "//base/startup/init/interfaces/innerkits:libbegetutil" ]
+     cflags = [ "-Wall" ]
+   }
    ```
 
 
@@ -810,41 +893,43 @@ HDF驱动框架提供了一套应用访问硬件的统一接口，可以简化�
 
 XTS子系统的适配，直接在`config.json`中加入组件选项：
 
-   ```
+   ```json
    {
     "subsystem": "xts",
     "components": [
       { 
-        "component": "xts_acts",
+        "component": "acts",
         "features":
            [
           "config_ohos_xts_acts_utils_lite_kv_store_data_path = \"/data\"",
           "enable_ohos_test_xts_acts_use_thirdparty_lwip = true"
         ]
       },
-      { "component": "xts_tools", "features":[] }
+      { "component": "tools", "features":[] }
     ]
    }
    ```
 
 另外，XTS功能也使用了list来组织，在`config.json`文件中增减相应模块：
 
-   ```
-   "bin_list": [
-     {
-       "enable": "true",
-       "force_link_libs": [
-          "module_ActsParameterTest",
-          "module_ActsBootstrapTest",
-          "module_ActsDfxFuncTest",
-          "module_ActsHieventLiteTest",
-          "module_ActsSamgrTest",
-          "module_ActsUtilsFileTest",
-          "module_ActsKvStoreTest",
-          "module_ActsWifiServiceTest"
-       ]
-     }
-   ],
+   ```json
+   {
+    "bin_list": [
+      {
+        "enable": "true",
+        "force_link_libs": [
+            "module_ActsParameterTest",
+            "module_ActsBootstrapTest",
+            "module_ActsDfxFuncTest",
+            "module_ActsHieventLiteTest",
+            "module_ActsSamgrTest",
+            "module_ActsUtilsFileTest",
+            "module_ActsKvStoreTest",
+            "module_ActsWifiServiceTest"
+        ]
+      }
+    ]
+   }
    ```
 
 其它组件的适配过程与官方以及其它厂商的过程类似，不再赘述。
