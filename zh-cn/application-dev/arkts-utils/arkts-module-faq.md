@@ -10,7 +10,7 @@
 
 **问题现象**
 
-应用运行时报错：“Object is not initialized”导致应用无法正常运行。
+应用运行时报错："Object is not initialized"导致应用无法正常运行，具体报错信息中的Object为实际使用的变量，如"a is not initialized"。
 
 **可能原因**
 
@@ -65,7 +65,7 @@ import { Animal } from './B'
 
 export let a = "this is A";
 export function A() {
-  return new Animal;
+  return new Animal();
 }
 
 // B.ets
@@ -96,7 +96,7 @@ ModuleImportStack:
 
 **可能原因**
 
-应用在升级时并未升级版本号，或者应用使用了normalized特性，但是在升级或者更新时没有重启应用。
+应用在升级时并未升级版本号，或者应用使用了[normalized](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides/ide-hvigor-build-profile-app#section13181758123312)特性，但是在升级或者更新时没有重启应用。
 
 **解决措施**
 
@@ -130,7 +130,7 @@ ModuleImportStack:
 
 **可能原因**
 
-1. 该文件为动态加载表达式、动态加载文件等，但没有进行相关文件配置。
+1. 该文件使用了动态import加载模块，但未在build-profile.json5的"buildOption"中进行[相关配置](./arkts-dynamic-import.md#动态import变量表达式)。
 
 2. 文件路径配置错误，导致无法在hap包中找到对应文件。
 
@@ -138,7 +138,7 @@ ModuleImportStack:
 
 1. 检查动态加载文件的配置是否正确。
 
-   按照动态加载写法进行检查。
+   按照[动态加载写法](./arkts-dynamic-import.md#动态import实现中的关键点)进行检查。
 
 2. 检查文件路径和编译产物是否匹配。
 
