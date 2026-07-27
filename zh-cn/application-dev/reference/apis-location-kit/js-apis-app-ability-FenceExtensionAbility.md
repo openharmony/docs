@@ -118,7 +118,7 @@ class MyFenceExtensionAbility extends FenceExtensionAbility {
 
 ## 附录
 
-FenceExtensionAbility不支持一下模块的引用。
+FenceExtensionAbility不支持以下模块的引用。
 
 | Kit | 模块 |
 |--|--|
