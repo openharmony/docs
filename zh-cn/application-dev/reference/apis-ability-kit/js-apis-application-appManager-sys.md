@@ -7,7 +7,7 @@
 <!--Adviser: @HelloCrease-->
 <!--deprecated_code_no_check-->
 
-appManager模块提供App管理的能力，包括查询当前是否处于稳定性测试场景、查询是否为ram受限设备、获取应用程序的内存大小、获取有关运行进程的信息等。
+appManager模块提供App管理的能力，包括查询当前是否处于稳定性测试场景、查询是否为RAM受限设备、获取应用程序的内存大小、获取有关运行进程的信息等。
 
 > **说明：**
 > 
@@ -43,7 +43,7 @@ registerApplicationStateObserver(observer: ApplicationStateObserver): number
 
 | 类型 | 说明 |
 | --- | --- |
-| number | 已注册观测器的数字代码。|
+| number | 已注册观测器的数字代码，用于取消注册观测器。|
 
 **示例：**
     
@@ -223,7 +223,7 @@ getForegroundApplications(): Promise\<Array\<AppStateData>>
 
 killProcessWithAccount(bundleName: string, accountId: number): Promise\<void\>
 
-切断account进程。使用Promise异步回调。
+根据Bundle名称和账号ID终止指定账号下的应用进程。使用Promise异步回调。
 
 > **说明：** 
 >
@@ -276,11 +276,11 @@ killProcessWithAccount(bundleName: string, accountId: number, callback: AsyncCal
 >
 > 当accountId为当前用户时，不需要校验ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS权限。
 
+**需要权限**：ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS, ohos.permission.CLEAN_BACKGROUND_PROCESSES
+
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
 **系统接口**：此接口为系统接口。
-
-**需要权限**：ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS, ohos.permission.CLEAN_BACKGROUND_PROCESSES
 
 **参数：**
 
@@ -489,6 +489,8 @@ getProcessRunningInformation(): Promise\<Array\<ProcessRunningInfo>>
 | Promise\<Array\<[ProcessRunningInfo](js-apis-inner-application-processRunningInfo.md)>> | Promise对象，返回有关运行进程的信息。 |
 
 **错误码**：
+
+以下错误码详细介绍请参考[元能力子系统错误码](errorcode-ability.md)。
 
 | 错误码ID | 错误信息 |
 | ------- | -------- |

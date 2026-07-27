@@ -29,7 +29,7 @@ onConfig?(): StartupConfig
 
 在回调[AbilityStage.onCreate](js-apis-app-ability-abilityStage.md#oncreate)前，若该AbilityStage对应的HAP中启动框架配置文件中[定义了启动框架配置](../../application-models/app-startup.md#定义启动参数配置)，则会触发该回调。
 
-开发者可以在该回调中设置启动框架配置信息，详细使用方法可参考[设置启动参数](../../application-models/app-startup.md#设置启动参数)章节。
+开发者可以在该回调中设置启动框架配置信息，详细使用方法可参考[设置启动参数](../../application-models/app-startup.md#设置启动参数)章节。若需要自定义匹配规则，该回调完成后会触发[onRequestCustomMatchRule](#onrequestcustommatchrule20)回调。
 
 **系统能力**：SystemCapability.Ability.AppStartup
 

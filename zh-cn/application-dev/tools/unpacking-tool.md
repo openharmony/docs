@@ -202,7 +202,7 @@ java -jar app_unpacking_tool.jar --mode appqf --appqf-path <path> --out-path <pa
 | ------------ | ------------------------------ | ------------------------------------------ | --------------- |
 | hapName      | String                         | 标识当前解析的HAP包名称。                    | NA                                                           |
 | appInfo      | AppInfo结构体（见下述AppInfo）   | 标识App信息的结构体（见下述AppInfo信息）。   | NA                                                           |
-| deviceConfig | Map\<String,DeviceConfig>      | 标识设备信息。                               | 存储类型为Map\<String,String>，存储设备类型名称及对应设备类型的信息，在stage模型中，这个字段存储在app结构体中。 |
+| deviceConfig | Map\<String,DeviceConfig>      | 标识设备信息。                               | 存储类型为Map\<String,String>，存储设备类型名称及对应设备类型的信息，在Stage模型中，这个字段存储在app结构体中。 |
 | hapInfo      | HapInfo结构体（见下述HapInfo）   | 标识HAP包中module信息（见下述HapInfo信息）。 | NA                                                           |
 
 ### AppInfo结构体信息
@@ -227,9 +227,9 @@ java -jar app_unpacking_tool.jar --mode appqf --appqf-path <path> --out-path <pa
 | labelId                        | int     | 标识应用的label资源ID。  | NA          |
 | icon                           | String  | 标识应用的图标。 | NA          |
 | label                          | String  | 标识应用的label。  | NA          |
-| description                    | String  | 标识应用的描述信息。    | stage模型新增。   |
+| description                    | String  | 标识应用的描述信息。    | Stage模型新增。   |
 | minCompatibleVersionCode       | int     | 标识应用能够兼容的最低版本号。  | NA          |
-| distributedNotificationEnabled | boolean | 标记该应用是否开启分布式通知。true表示开启，false表示不开启。   | stage模型新增。   |
+| distributedNotificationEnabled | boolean | 标记该应用是否开启分布式通知。true表示开启，false表示不开启。   | Stage模型新增。   |
 | bundleType                     | String  | 标识bundle的类型，取值：<br/>- app：应用。<br/>- atomicService：原子化服务。 <br/>- shared：应用间共享库。 | NA   |
 | compileSdkVersion              | String  | 标识编译该应用时使用的sdk版本。   | 仅限API10及以后的应用。   |
 | compileSdkType                 | String  | 标识编译该应用时使用的sdk类别。   | 仅限API10及以后的应用。   |
@@ -266,20 +266,20 @@ java -jar app_unpacking_tool.jar --mode appqf --appqf-path <path> --out-path <pa
 | defPermissionsGroups | List\<DefPermissionsGroups> | 标识HAP包DefPermissionsGroups 信息。  | NA                             |
 | distro               | Distro结构体                 | 标识HAP包的distro信息。               | NA                      |
 | reqCapabilities      | List\<String>               | 标识HAP包reqCapabilities信息。        | NA                           |
-| deviceType           | List\<String>               | 标识HAP可以运行在哪类设备上。   对应stage模型中的deviceTypes。       |  NA |
+| deviceType           | List\<String>               | 标识HAP可以运行在哪类设备上。   对应Stage模型中的deviceTypes。       |  NA |
 | metaData             | MetaData结构体（见下述metaData）| 标识HAP的自定义元信息。                | NA           |
 | dependencies         | List\<DependencyItem>       | 标识HAP包DependencyItem信息。         | NA                   |
 | isJs                 | boolean                     | 标识该应用是否是js应用。true表示是js应用，false表示不是js应用。              | FA模型特有。            |
-| reqPermissions       | list\<ReqPermission>        | 标识应用申请的权限的集合。      | 对应stage模型的requestPermissions。 |
+| reqPermissions       | list\<ReqPermission>        | 标识应用申请的权限的集合。      | 对应Stage模型的requestPermissions。 |
 | commonEvents         | CommonEvent结构体（见下述CommonEvent）       | 标识静态事件。                         | NA     |
 | shortcuts            | list\<Shortcut>             | 标识应用的shortcuts信息。              | NA                  |
 | distroFilter         | DistroFilter结构体           | 标识应用市场按设备形态分发的信息。     | NA               |
-| srcEntrance          | String                      | 标识应用对应的入口代码路径。           | stage模型新增。          |
-| process              | String                      | 标识HAP的进程名。                      | stage模型新增。       |
-| mainElement          | String                      | 标识HAP的入口ability名称或者extension名称。 | stage模型新增，FA模型将mainAbility的值赋值给mainElement。 |
-| uiSyntax             | String                      | 定义该JS Component的语法类型。         | stage模型新增。       |
-| pages                | List\<String>               | 列举JS Component中每个页面信息。       | stage模型新增。       |
-| extensionAbilityInfos| List\<ExtensionAbilityInfo> | 描述extensionAbility的配置信息。       | stage模型新增。        |
+| srcEntrance          | String                      | 标识应用对应的入口代码路径。           | Stage模型新增。          |
+| process              | String                      | 标识HAP的进程名。                      | Stage模型新增。       |
+| mainElement          | String                      | 标识HAP的入口ability名称或者extension名称。 | Stage模型新增，FA模型将mainAbility的值赋值给mainElement。 |
+| uiSyntax             | String                      | 定义该JS Component的语法类型。         | Stage模型新增。       |
+| pages                | List\<String>               | 列举JS Component中每个页面信息。       | Stage模型新增。       |
+| extensionAbilityInfos| List\<ExtensionAbilityInfo> | 描述extensionAbility的配置信息。       | Stage模型新增。        |
 | moduleAtomicService  | ModuleAtomicService结构体（见下述ModuleAtomicService） | 描述HAP的原子化服务信息。 | NA              |
 | formInfos            | List\<AbilityFormInfo>      | 描述卡片的信息。                       | NA              |
 | descriptions         | HashMap\<String, String>    | 标识HAP的说明信息。                    | NA             |
@@ -346,25 +346,25 @@ java -jar app_unpacking_tool.jar --mode appqf --appqf-path <path> --out-path <pa
 
 | 字段           | 类型                 | 描述                             | 备注                      |
 | -------------- |----------------------| -------------------------------- | ------------------------- |
-| parameters     | List\<MetaDataInfo>  | 标识Metadata的参数信息。           | FA模型特有，stage模型废弃。  |
-| results        | List\<MetaDataInfo>  | 标识Metadata的results信息。        | FA模型特有，stage模型废弃。  |
+| parameters     | List\<MetaDataInfo>  | 标识Metadata的参数信息。           | FA模型特有，Stage模型废弃。  |
+| results        | List\<MetaDataInfo>  | 标识Metadata的results信息。        | FA模型特有，Stage模型废弃。  |
 | customizeDatas | List\<CustomizeData> | 标识Metadata的customizeDatas信息。 | NA                         |
 
 ### MetaDataInfo结构体信息
 
 | 字段        | 类型   | 描述                              | 备注                      |
 | ----------- | ------ | --------------------------------- | ------------------------- |
-| name        | String | 标识MetaDataInfo的name信息。        | FA模型特有，stage模型废弃。  |
-| description | String | 标识MetaDataInfo的description信息。 | FA模型特有，stage模型废弃。  |
-| type        | String | 标识MetaDataInfo的type信息。        | FA模型特有，stage模型废弃。  |
+| name        | String | 标识MetaDataInfo的name信息。        | FA模型特有，Stage模型废弃。  |
+| description | String | 标识MetaDataInfo的description信息。 | FA模型特有，Stage模型废弃。  |
+| type        | String | 标识MetaDataInfo的type信息。        | FA模型特有，Stage模型废弃。  |
 
 ### CustomizeData结构体信息
 
 | 字段  | 类型   | 描述                         | 备注                    |
 | ----- | ------ | ---------------------------- | ----------------------- |
-| name  | String | 标识CustomizeData的name信息。  | 对应stage模型的metadata。 |
-| value | String | 标识CustomizeData的value信息。 | 对应stage模型的metadata。 |
-| extra | String | 标识CustomizeData的extra信息。 | 对应stage模型的metadata。 |
+| name  | String | 标识CustomizeData的name信息。  | 对应Stage模型的metadata。 |
+| value | String | 标识CustomizeData的value信息。 | 对应Stage模型的metadata。 |
+| extra | String | 标识CustomizeData的extra信息。 | 对应Stage模型的metadata。 |
 
 ### ReqPermission结构体信息
 
@@ -448,20 +448,20 @@ java -jar app_unpacking_tool.jar --mode appqf --appqf-path <path> --out-path <pa
 
 | 字段            | 类型                     | 描述                                                  | 备注                |
 | --------------- | ------------------------ | ----------------------------------------------------- | ------------------ |
-| name            | String                   | 标识当前extensionAbility的逻辑名。       | stage模型支持。                      |
-| srcEntrance     | String                   | 标识extensionAbility所对应的js代码路径。  | stage模型支持。                   |
-| icon            | String                   | 标签标识extensionAbility图标。       | stage模型支持。                      |
-| label           | String                   | 标识extensionAbility对用户显示的名称。    | stage模型支持。           |
-| description     | String                   | 标识extensionAbility的描述。            | stage模型支持。                 |
-| type            | String                   | 标识extensionAbility的类型：form、workScheduler、inputMethod、service、accessibility、dataShare、fileShare、wallpaper、backup。 | stage模型支持，目前仅解析了form、staticSubscriber的信息、其他类型（如：workScheduler、inputMethod、service、accessibility、dataShare、fileShare、wallpaper、backup）暂未解析。        |
-| permissions     | List\<String>            | 标识被其它应用的ability调用时需要申请的权限的集合。 | stage模型支持。      |
-| readPermission  | String                   | 标识读取ability的数据所需的权限。                         | stage模型支持。  |
-| writePermission | String                   | 标识向ability写数据所需的权限。                           | stage模型支持。    |
-| visible         | boolean                  | 标识extensionAbility是否可以被其它应用调用。true表示可以被其他应用调用，false表示不可以被其他应用调用。              | stage模型支持。  |
-| skills          | List\<SkillInfo>         | 标识extensionAbility能够接收的意图的特征集。              | stage模型支持。   |
-| metadataInfos   | List\<ModuleMetadataInfo>| 标识extensionAbility能够接收的元数据信息。                | stage模型支持。  |
+| name            | String                   | 标识当前extensionAbility的逻辑名。       | Stage模型支持。                      |
+| srcEntrance     | String                   | 标识extensionAbility所对应的js代码路径。  | Stage模型支持。                   |
+| icon            | String                   | 标签标识extensionAbility图标。       | Stage模型支持。                      |
+| label           | String                   | 标识extensionAbility对用户显示的名称。    | Stage模型支持。           |
+| description     | String                   | 标识extensionAbility的描述。            | Stage模型支持。                 |
+| type            | String                   | 标识extensionAbility的类型：form、workScheduler、inputMethod、service、accessibility、dataShare、fileShare、wallpaper、backup。 | Stage模型支持，目前仅解析了form、staticSubscriber的信息、其他类型（如：workScheduler、inputMethod、service、accessibility、dataShare、fileShare、wallpaper、backup）暂未解析。        |
+| permissions     | List\<String>            | 标识被其它应用的ability调用时需要申请的权限的集合。 | Stage模型支持。      |
+| readPermission  | String                   | 标识读取ability的数据所需的权限。                         | Stage模型支持。  |
+| writePermission | String                   | 标识向ability写数据所需的权限。                           | Stage模型支持。    |
+| visible         | boolean                  | 标识extensionAbility是否可以被其它应用调用。true表示可以被其他应用调用，false表示不可以被其他应用调用。              | Stage模型支持。  |
+| skills          | List\<SkillInfo>         | 标识extensionAbility能够接收的意图的特征集。              | Stage模型支持。   |
+| metadataInfos   | List\<ModuleMetadataInfo>| 标识extensionAbility能够接收的元数据信息。                | Stage模型支持。  |
 | metadata        | MetaData结构体           | 标识extensionAbility的元信息。  | 将metadata中的信息赋值到CustomizeData中。 |
-| uri             | String                   | 标识extensionAbility提供的数据uri。                       | stage模型支持。      |
+| uri             | String                   | 标识extensionAbility提供的数据uri。                       | Stage模型支持。      |
 | descriptions    | HashMap\<String, String> | 标识多语言下extensionAbility的描述。    | NA                 |
 | labels          | HashMap\<String, String> | 标识多语言下extensionAbility对用户显示的名称。  | NA                   |
 
@@ -497,14 +497,14 @@ java -jar app_unpacking_tool.jar --mode appqf --appqf-path <path> --out-path <pa
 | supportDimensions   | List\<String>            | 标识卡片外观规格，取值为”1 * 2“，”2 * 2“，”2 * 4“，”4 * 4“。   | NA        |
 | defaultDimension    | String                   | 标识卡片默认外观规格，取值必须在supportDimensions配置的列表中。 | NA        |
 | MetaData            | MetaData                 | 标识卡片的自定义信息。                                         | NA        |
-| description         | String                   | 标识forms的描述。                             | stage模型新增。 |
+| description         | String                   | 标识forms的描述。                             | Stage模型新增。 |
 | src                 | String                   | 标签JS卡片对应的UI代码。                                       | NA        |
 | windowInfo          | ModuleWindowInfo结构体   | 标签能力窗体的窗口。                                       | NA        |
 | isDefault           | boolean                  | 标识该卡片是否为默认卡片，每个HAP有且只能有一个默认卡片。true表示默认卡片，false表示非默认卡片。      | NA        |
 | colorMode           | String                   | 标识卡片的色调，取值为auto、dark、light其中之一。              | NA        |
 | formConfigAbility   | String                   | 标识卡片调整的Ability名称。                                    | NA        |
 | formVisibleNotify   | String                   | 标识卡片是否被允许使用卡片可见性通知。                         | NA        |
-| providerAbility     | String                   | 卡片的提供方所在的Ability或者extension名称。<br/>1. FA模型：如果卡片配置在service类型的ability中，providerAbility配置为mainAbility。<br/>2. FA模型：如果卡片配置在Page类型的Ability中，providerAbility配置为当前Ability。<br/>3. FA模型：如果没有配置mainAbility，providerAbility配置为当前HAP包中的优先使用system.home，否则第一个page的Ability。<br/>4. stage模型中（follow上述规则），providerAbility配置为mainElement。 | NA |
+| providerAbility     | String                   | 卡片的提供方所在的Ability或者extension名称。<br/>1. FA模型：如果卡片配置在service类型的ability中，providerAbility配置为mainAbility。<br/>2. FA模型：如果卡片配置在Page类型的Ability中，providerAbility配置为当前Ability。<br/>3. FA模型：如果没有配置mainAbility，providerAbility配置为当前HAP包中的优先使用system.home，否则第一个page的Ability。<br/>4. Stage模型中（follow上述规则），providerAbility配置为mainElement。 | NA |
 | descriptions        | HashMap\<String, String> | 标识多语言下ability的描述。                                     | NA     |
 
 
