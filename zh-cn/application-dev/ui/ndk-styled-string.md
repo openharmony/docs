@@ -21,7 +21,7 @@
 
 ## 创建StyledString对象
 
-使用[OH_ArkUI_StyledString_Create](../reference/apis-arkui/capi-styled-string-h.md#oh_arkui_styledstring_create)接口创建StyledString对象，需要传入[段落样式](#设置段落样式)。
+使用[OH_ArkUI_StyledString_Create](../reference/apis-arkui/capi-styled-string-h.md#oh_arkui_styledstring_create)接口创建StyledString对象，需要传入[段落样式](#设置段落样式)和字体集合。
 
 <!-- @[styledstring_create](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkUISample/StyledStringSample/entry/src/main/cpp/manager.cpp) -->
 
@@ -138,7 +138,7 @@ nodeApi->setAttribute(text, NODE_TEXT_CONTENT_WITH_STYLED_STRING, &styledStringI
 
 ## 序列化与反序列化
 
-从API version 14开始，StyledString提供了序列化和反序列化功能，支持将格式化字符串转换为字节数组或HTML格式，便于数据的存储、传输和跨平台使用。
+从API version 14开始，StyledString提供了序列化和反序列化功能，支持将字节数据反序列化为描述符，或将描述符转换为HTML格式，便于数据的存储、传输和跨平台使用。
 
 **表3** 序列化与反序列化接口
 
