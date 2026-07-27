@@ -44,7 +44,7 @@ In addition to the [universal attributes](js-service-widget-common-attributes.md
 | markLunarDay   | boolean  | Whether to mark holidays on the lunar calendar in blue. The value **true** indicates that holidays are marked in blue on the lunar calendar. The value **false** indicates that holidays are not marked in blue on the lunar calendar.                      |
 | lunarDay       | string | Lunar date.                                  |
 | lunarMonth     | string | Lunar month.                                  |
-| dayMark        | string | Day mark.<br>- **"work"**: workday.<br>- "**"off""**: rest day. |
+| dayMark        | string | Day mark.<br>- **"work"**: workday.<br>- **"off""**: rest day. |
 | dayMarkValue   | string | Text to be displayed for a working day or a rest day.                    |
 
 Example of **calendardata**:
