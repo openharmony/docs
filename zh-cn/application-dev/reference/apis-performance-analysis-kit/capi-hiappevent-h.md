@@ -762,7 +762,7 @@ HiAppEvent_Watcher* OH_HiAppEvent_CreateWatcher(const char* name)
 
 | 类型 | 说明 |
 | -- | -- |
-| [HiAppEvent_Watcher](capi-hiappevent-hiappevent-watcher.md)* | 接口调用成功时返回指向的新建事件观察者的指针，当name为空指针时返回nullptr。 |
+| [HiAppEvent_Watcher](capi-hiappevent-hiappevent-watcher.md)* | 接口调用成功时返回指向的新建事件观察者的指针，当name为空指针时返回NULL。 |
 
 ### OH_HiAppEvent_DestroyWatcher()
 
@@ -1005,7 +1005,7 @@ HiAppEvent_Processor* OH_HiAppEvent_CreateProcessor(const char* name)
 
 | 类型 | 说明 |
 | -- | -- |
-| [HiAppEvent_Processor](capi-hiappevent-hiappevent-processor.md)* | 接口调用成功时返回指向的新建处理者的指针，name参数异常时返回nullptr。 |
+| [HiAppEvent_Processor](capi-hiappevent-hiappevent-processor.md)* | 接口调用成功时返回指向的新建处理者的指针，name参数异常时返回NULL。 |
 
 ### OH_HiAppEvent_SetReportRoute()
 
