@@ -48,8 +48,6 @@ Sendable class需同时满足以下两个规则：
 
 > **说明：**
 >
-> - 从API version 12开始，支持使用\@Sendable装饰器校验Sendable function。
->
 > - 针对API version 12的工程，开发者使用\@Sendable装饰器校验Sendable function时，需在工程中配置"compatibleSdkVersionStage": "beta3"，否则其Sendable特性将不生效。参考[build-profile.json5配置文件说明](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides-V5/ide-hvigor-build-profile-V5)。
 >
 > - 针对API version大于12的工程，可直接使用\@Sendable装饰器校验Sendable function，无需再进行其他配置。
@@ -200,24 +198,22 @@ struct enumusage {
 | 适用场景 | 1. 在TaskPool或Worker中使用类方法或Sendable函数。<br/>2. 传输对象数据量较大的场景。序列化耗时会随着数据量增大而增大，使用Sendable对数据进行改造后，传输100KB数据效率提升约20倍，传输1MB数据效率提升约100倍。 |
 
 **装饰器修饰Class使用示例：**
-<!-- @[example_modify_class](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/ArkTsConcurrent/ConcurrentThreadCommunication/SendableObjectIntroduction/class/Index.ets) --> 
+<!-- @[example_modify_class](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/ArkTsConcurrent/ConcurrentThreadCommunication/SendableObjectIntroduction/class/Index.ets) -->  
 
 ``` TypeScript
-export { MainPage } from './src/main/ets/components/MainPage';
-
 @Sendable
 class SendableTestClass {
   desc: string = 'sendable: this is SendableTestClass ';
   num: number = 5;
   printName() {
-    console.info('sendable: SendableTestClass desc is: ' + this.desc);
+    console.info(`sendable: SendableTestClass desc is: ${this.desc}`);
   }
   get getNum(): number {
     return this.num;
   }
 }
 
-let object = new SendableTestClass;
+let object = new SendableTestClass();
 export { object }
 ```
 

@@ -51,13 +51,14 @@ updateConfiguration(config: Configuration, callback: AsyncCallback\<void>): void
 | 参数名        | 类型                                       | 必填   | 说明             |
 | --------- | ---------------------------------------- | ---- | -------------- |
 | config    | [Configuration](js-apis-application-configuration.md)   | 是    | 新的配置项。 |
-| callback  | AsyncCallback\<void>                   | 是    | 回调函数，当通过修改配置来更新配置成功，err为undefined，否则为错误对象。      |
+| callback  | AsyncCallback\<void>                   | 是    | 回调函数。当更新配置成功，err为undefined，否则为错误对象。      |
 
 **示例**：
 
 ```ts
 import abilityManager from '@ohos.application.abilityManager';
 import { Configuration } from '@ohos.application.Configuration';
+import { BusinessError } from '@ohos.base';
 
 let config: Configuration = {
   language: 'chinese' 

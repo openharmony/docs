@@ -50,7 +50,7 @@ on(type: 'selectionCompleted', callback: Callback\<SelectionInfo>): void
 | 参数名   | 类型                                        | 必填 | 说明                                           |
 | -------- | ------------------------------------------- | ---- | ---------------------------------------------- |
 | type     | string                                      | 是   | 设置监听类型，固定取值为'selectionCompleted'。 |
-| callback | Callback\<[SelectionInfo](#selectioninfo)> | 是   | 回调函数，返回划词事件信息[SelectionInfo](#selectioninfo)。该回调仅在用户通过鼠标或触控板选中文本（左键双击/三击/按下滑动）后按下Ctrl键时触发。       |
+| callback | Callback\<[SelectionInfo](#selectioninfo)> | 是   | 回调函数，返回划词事件信息[SelectionInfo](#selectioninfo)。该回调仅在用户通过鼠标或触控板选中文本（双击/三击/滑动）后按下Ctrl键时触发。       |
 
 **错误码：**
 
@@ -360,7 +360,7 @@ export default ServiceExtAbility;
 
 setUiContent(path: string): Promise\<void>
 
-为当前的划词面板加载具体页面内容。需通过[createPanel](#createpanel)获取到Panel实例后调用。使用Promise异步回调。
+为当前的划词面板设置界面内容。需通过[createPanel](#createpanel)获取到Panel实例后调用。使用Promise异步回调。
 
 **系统能力：** SystemCapability.SelectionInput.Selection
 
@@ -599,8 +599,8 @@ moveToGlobalDisplay(x: number, y: number): Promise\<void>
 
 | 参数名   | 类型                   | 必填 | 说明     |
 | -------- | ---------------------- | ---- | -------- |
-| x | number | 是   |目标位置在屏幕全局坐标系下的x轴坐标，单位为px。|
-| y | number | 是   |目标位置在屏幕全局坐标系下的y轴坐标，单位为px。|
+| x | number | 是   |目标位置在屏幕全局坐标系下的x轴坐标，单位为px。全局坐标系以主屏幕左上角为原点，x轴正方向向右；扩展屏的x坐标视屏幕布局可能为负值。|
+| y | number | 是   |目标位置在屏幕全局坐标系下的y轴坐标，单位为px。全局坐标系以主屏幕左上角为原点，y轴正方向向下；扩展屏的y坐标视屏幕布局可能为负值。|
 
 **返回值：**
 

@@ -1,4 +1,4 @@
-# @ohos.data.dataAbility（DataAbility谓词）
+# @ohos.data.dataAbility (DataAbility谓词)
 <!--Kit: ArkData-->
 <!--Subsystem: DistributedDataManager-->
 <!--Owner: @baijidong-->

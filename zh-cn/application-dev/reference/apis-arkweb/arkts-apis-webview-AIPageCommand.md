@@ -19,7 +19,7 @@
 
 | method | 功能 | 入参格式 | 返回格式 | 说明 |
 | ---- | ---- | ---- | ---- | ---- |
-| [getFullDom](#getfulldom) | 获取完整DOM树 | [FullDomCommand](#fulldomcommand) | [FullDomResult](#fulldomresult) | 返回树结构，不按筛选规则过滤节点。 |
+| [getFullDom](#getfulldom) | 获取完整DOM树 | [FullDomCommand](#fulldomcommand) | [FullDomResult](#fulldomresult) | 返回树结构，不按筛选规则过滤节点。适用于需要完整层级结构的场景。 |
 | [getLiteDom](#getlitedom) | 获取轻量DOM节点列表 | [LiteDomCommand](#litedomcommand) | [LiteDomResult](#litedomresult) | 返回扁平列表，支持按规则筛选节点。 |
 | [screenCapture](#screencapture) | 获取网页元素截图 | [ScreenCaptureCommand](#screencapturecommand) | [ScreenCaptureResult](#screencaptureresult) | 返回Base64编码图片数据，支持获取当前网页视口截图或视口内目标元素截图。 |
 | [getZoomLevel](#getzoomlevel) | 获取网页缩放比例 | [GetZoomLevelCommand](#getzoomlevelcommand) | [ZoomLevelResult](#zoomlevelresult) | 获取当前网页的缩放比例。 |
@@ -31,7 +31,7 @@
 | 参数 | 子参数 | 参数项 | 类型 | 必填 | 说明 |
 | ---- | ---- | ---- | ---- | ---- | ---- |
 | method | - | - | string | 是 | 命令名称。支持的取值请参见[命令总览](#命令总览)。 |
-| params | - | - | Object | 否 | 命令参数。不同`method`对应的`params`格式不同。 |
+| params | - | - | Object | 否 | 命令参数。不同`method`对应的`params`格式不同。不传入时具体行为由各命令定义。 |
 
 ## getFullDom
 
@@ -117,19 +117,19 @@
 | children_nodes | - | role | string | 节点语义角色。 |
 | children_nodes | - | aria-description | string | 节点`aria-description`属性值。 |
 | children_nodes | - | rect | Object | 节点矩形信息。 |
-| children_nodes | rect | x | number | 节点矩形左上角x坐标。 |
-| children_nodes | rect | y | number | 节点矩形左上角y坐标。 |
-| children_nodes | rect | width | number | 节点矩形宽度。 |
-| children_nodes | rect | height | number | 节点矩形高度。 |
+| children_nodes | rect | x | number | 节点矩形左上角x坐标。单位：px。 |
+| children_nodes | rect | y | number | 节点矩形左上角y坐标，相对于当前节点所属frame的视口左上角。单位：px。 |
+| children_nodes | rect | width | number | 节点矩形宽度。单位：px。 |
+| children_nodes | rect | height | number | 节点矩形高度。单位：px。 |
 | children_nodes | - | bounds | Object | 节点矩形信息。 |
-| children_nodes | bounds | x | number | 节点矩形左上角x坐标。 |
-| children_nodes | bounds | y | number | 节点矩形左上角y坐标。 |
-| children_nodes | bounds | left | number | 节点矩形左边界。 |
-| children_nodes | bounds | top | number | 节点矩形上边界。 |
-| children_nodes | bounds | right | number | 节点矩形右边界。 |
-| children_nodes | bounds | bottom | number | 节点矩形下边界。 |
-| children_nodes | bounds | width | number | 节点矩形宽度。 |
-| children_nodes | bounds | height | number | 节点矩形高度。 |
+| children_nodes | bounds | x | number | 节点矩形左上角x坐标。单位：px。 |
+| children_nodes | bounds | y | number | 节点矩形左上角y坐标。单位：px。 |
+| children_nodes | bounds | left | number | 节点矩形左边界。单位：px。 |
+| children_nodes | bounds | top | number | 节点矩形上边界。单位：px。 |
+| children_nodes | bounds | right | number | 节点矩形右边界。单位：px。 |
+| children_nodes | bounds | bottom | number | 节点矩形下边界。单位：px。 |
+| children_nodes | bounds | width | number | 节点矩形宽度。单位：px。 |
+| children_nodes | bounds | height | number | 节点矩形高度。单位：px。 |
 | children_nodes | - | visible | boolean | 节点是否可见。true表示可见，false表示不可见。 |
 | children_nodes | - | isInViewport | boolean | 节点是否在当前视口内。true表示在当前视口内，false表示不在当前视口内。 |
 | children_nodes | - | clickable | boolean | 节点是否可点击。true表示可点击，false表示不可点击。 |
@@ -271,12 +271,12 @@
 | method | - | - | string | 是 | 命令名称，固定为`getLiteDom`。 |
 | params | - | - | Object | 否 | 命令参数。不传入时不按规则筛选节点，并使用默认返回字段。 |
 | params | rules | - | Object | 否 | 节点筛选规则。不传入时返回所有未被跳过的元素节点。 |
-| params | rules | tags | Array\<string> | 否 | 按HTML标签名称筛选节点。 |
+| params | rules | tags | Array\<string> | 否 | 按HTML标签名称筛选节点。当需要筛选特定类型的HTML元素时使用（如只获取按钮或链接），不传此条件时不按标签筛选。 |
 | params | rules | attributes | Array\<string> \| Object | 否 | 按HTML属性筛选节点。传入Array时，判断节点是否包含指定属性；传入Object时，key表示属性名，value为非空字符串时表示属性值需要包含该字符串。 |
 | params | rules | roles | Array\<string> | 否 | 按节点语义角色筛选节点。 |
-| params | rules | clickable | boolean | 否 | 按节点是否可点击筛选。 |
-| params | rules | scrollable | boolean | 否 | 按节点是否可滚动筛选。 |
-| params | rules | isInViewport | boolean | 否 | 按节点是否在当前视口内筛选。 |
+| params | rules | clickable | boolean | 否 | 按节点是否可点击筛选。true表示筛选可点击的节点，false表示筛选不可点击的节点。 |
+| params | rules | scrollable | boolean | 否 | 按节点是否可滚动筛选。true表示筛选可滚动的节点，false表示筛选不可滚动的节点。 |
+| params | rules | isInViewport | boolean | 否 | 按节点是否在当前视口内筛选。true表示筛选在当前视口内的节点，false表示筛选不在当前视口内的节点。 |
 | params | wants | - | Array\<string \| Object> | 否 | 指定需要在节点中追加返回的字段。`getLiteDom`会默认请求`tag`、`text`和`xpath`。 |
 | params | wants | - | string | 否 | 数组项为string时，表示需要追加返回的节点信息字段，取值请参见[getLiteDom的params.wants字段取值说明](#getlitedom的paramswants字段取值说明)。 |
 | params | wants | attributes | Array\<string> | 否 | 数组项为Object且包含`attributes`时，指定需要返回的HTML属性。 |
@@ -341,19 +341,19 @@
 | nodes | - | role | string | 节点语义角色。 |
 | nodes | - | aria-description | string | 节点`aria-description`属性值。 |
 | nodes | - | rect | Object | 节点矩形信息。 |
-| nodes | rect | x | number | 节点矩形左上角x坐标。 |
-| nodes | rect | y | number | 节点矩形左上角y坐标。 |
-| nodes | rect | width | number | 节点矩形宽度。 |
-| nodes | rect | height | number | 节点矩形高度。 |
+| nodes | rect | x | number | 节点矩形左上角x坐标。单位：px。 |
+| nodes | rect | y | number | 节点矩形左上角y坐标，相对于当前节点所属frame的视口左上角。单位：px。 |
+| nodes | rect | width | number | 节点矩形宽度。单位：px。 |
+| nodes | rect | height | number | 节点矩形高度。单位：px。 |
 | nodes | - | bounds | Object | 节点矩形信息。 |
-| nodes | bounds | x | number | 节点矩形左上角x坐标。 |
-| nodes | bounds | y | number | 节点矩形左上角y坐标。 |
-| nodes | bounds | left | number | 节点矩形左边界。 |
-| nodes | bounds | top | number | 节点矩形上边界。 |
-| nodes | bounds | right | number | 节点矩形右边界。 |
-| nodes | bounds | bottom | number | 节点矩形下边界。 |
-| nodes | bounds | width | number | 节点矩形宽度。 |
-| nodes | bounds | height | number | 节点矩形高度。 |
+| nodes | bounds | x | number | 节点矩形左上角x坐标。单位：px。 |
+| nodes | bounds | y | number | 节点矩形左上角y坐标。单位：px。 |
+| nodes | bounds | left | number | 节点矩形左边界。单位：px。 |
+| nodes | bounds | top | number | 节点矩形上边界。单位：px。 |
+| nodes | bounds | right | number | 节点矩形右边界。单位：px。 |
+| nodes | bounds | bottom | number | 节点矩形下边界。单位：px。 |
+| nodes | bounds | width | number | 节点矩形宽度。单位：px。 |
+| nodes | bounds | height | number | 节点矩形高度。单位：px。 |
 | nodes | - | visible | boolean | 节点是否可见。true表示可见，false表示不可见。 |
 | nodes | - | isInViewport | boolean | 节点是否在当前视口内。true表示在当前视口内，false表示不在当前视口内。 |
 | nodes | - | clickable | boolean | 节点是否可点击。true表示可点击，false表示不可点击。 |

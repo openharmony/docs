@@ -8,7 +8,7 @@
 
 ## 概述
 
-定义画中画功能的相关接口，包含创建、删除画中画控制器，以及启动、停止画中画等。主要用于视频播放、直播、视频通话或视频会议场景下，以小窗（画中画）模式呈现内容。从<!--RP2-->OpenHarmony 6.0<!--RP2End-->开始，支持在Phone、PC/2in1、Tablet设备使用画中画功能，其他设备不可用；从OpenHarmony 7.0.0开始，支持在Phone、PC/2in1、Tablet、Car设备使用画中画功能，其他设备不可用。
+定义画中画功能的相关接口，包含创建、删除画中画控制器，以及启动、停止画中画等。主要用于视频播放、直播、视频通话或视频会议场景下，以小窗（画中画）模式呈现内容。
 
 **引用文件：** <window_manager/oh_window_pip.h>
 
@@ -48,7 +48,7 @@
 | [typedef void (\*WebPipResizeCallback)(uint32_t controllerId, uint32_t width, uint32_t height, double scale)](#webpipresizecallback) | WebPipResizeCallback | 定义画中画窗口的尺寸变化回调函数。 |
 | [int32_t OH_PictureInPicture_CreatePipConfig(PictureInPicture_PipConfig* pipConfig)](#oh_pictureinpicture_createpipconfig) | - | 创建画中画参数配置器。 |
 | [int32_t OH_PictureInPicture_DestroyPipConfig(PictureInPicture_PipConfig* pipConfig)](#oh_pictureinpicture_destroypipconfig) | - | 销毁画中画参数配置器。 |
-| [int32_t OH_PictureInPicture_SetPipMainWindowId(PictureInPicture_PipConfig pipConfig, uint32_t mainWindowId)](#oh_pictureinpicture_setpipmainwindowid) | - | 设置拉起画中画的主窗口Id。 |
+| [int32_t OH_PictureInPicture_SetPipMainWindowId(PictureInPicture_PipConfig pipConfig, uint32_t mainWindowId)](#oh_pictureinpicture_setpipmainwindowid) | - | 设置拉起画中画的主窗口ID。 |
 | [int32_t OH_PictureInPicture_SetPipTemplateType(PictureInPicture_PipConfig pipConfig,PictureInPicture_PipTemplateType pipTemplateType)](#oh_pictureinpicture_setpiptemplatetype) | - | 设置画中画模板类型，默认为视频播放。 |
 | [int32_t OH_PictureInPicture_SetPipRect(PictureInPicture_PipConfig pipConfig, uint32_t width, uint32_t height)](#oh_pictureinpicture_setpiprect) | - | 设置画中画窗口大小，用于计算尺寸比例。 |
 | [int32_t OH_PictureInPicture_SetPipControlGroup(PictureInPicture_PipConfig pipConfig,PictureInPicture_PipControlGroup* controlGroup, uint8_t controlGroupLength)](#oh_pictureinpicture_setpipcontrolgroup) | - | 设置画中画控件组，需保证控件组与模板类型匹配。 |
@@ -208,8 +208,8 @@ typedef void (*WebPipStartPipCallback)(uint32_t controllerId, uint8_t requestId,
 
 | 参数项 | 描述 |
 | -- | -- |
-| uint32_t controllerId | 画中画控制器Id，为非负整数。 |
-|  uint8_t requestId | 请求Id，表示当前请求拉起画中画窗口的次数。 |
+| uint32_t controllerId | 画中画控制器ID，为非负整数。 |
+|  uint8_t requestId | 请求ID，表示当前请求拉起画中画窗口的次数。 |
 |  uint64_t surfaceId | 画中画内部XComponent组件的surfaceId，用于应用自行渲染。 |
 
 ### WebPipLifecycleCallback()
@@ -229,7 +229,7 @@ typedef void (*WebPipLifecycleCallback)(uint32_t controllerId, PictureInPicture_
 
 | 参数项 | 描述 |
 | -- | -- |
-| uint32_t controllerId | 画中画控制器Id，为非负整数。 |
+| uint32_t controllerId | 画中画控制器ID，为非负整数。 |
 |  PictureInPicture_PipState state | 当前画中画生命周期状态。 |
 |  int32_t errcode | 画中画接口的通用状态码。具体可见[WindowManager_ErrorCode](capi-oh-window-comm-h.md#windowmanager_errorcode)。 |
 
@@ -250,7 +250,7 @@ typedef void (*WebPipControlEventCallback)(uint32_t controllerId, PictureInPictu
 
 | 参数项 | 描述 |
 | -- | -- |
-| uint32_t controllerId | 画中画控制器Id，为非负整数。 |
+| uint32_t controllerId | 画中画控制器ID，为非负整数。 |
 |  PictureInPicture_PipControlType controlType | 画中画控制面板的控件类型。 |
 | [PictureInPicture_PipControlStatus](#pictureinpicture_pipcontrolstatus) status | 画中画控制面板的控件状态。 |
 
@@ -271,7 +271,7 @@ typedef void (*WebPipResizeCallback)(uint32_t controllerId, uint32_t width, uint
 
 | 参数项 | 描述 |
 | -- | -- |
-| uint32_t controllerId | 画中画控制器Id，为非负整数。 |
+| uint32_t controllerId | 画中画控制器ID，为非负整数。 |
 |  uint32_t width | 画中画窗口宽度，单位为px，该参数为正整数，不大于屏幕宽。 |
 |  uint32_t height | 画中画窗口高度，单位为px，该参数为正整数，不大于屏幕高。 |
 |  double scale | 画中画窗口缩放比，显示大小相对于width和height的缩放比，该参数为浮点数，取值范围大于0.0，小于等于1.0。等于1表示画中画窗口的实际显示宽高值与width和height一样大。 |
@@ -334,7 +334,7 @@ int32_t OH_PictureInPicture_SetPipMainWindowId(PictureInPicture_PipConfig pipCon
 
 **描述**
 
-设置拉起画中画的主窗口Id。
+设置拉起画中画的主窗口ID。
 
 **起始版本：** 20
 
@@ -344,7 +344,7 @@ int32_t OH_PictureInPicture_SetPipMainWindowId(PictureInPicture_PipConfig pipCon
 | 参数项 | 描述 |
 | -- | -- |
 | [PictureInPicture_PipConfig](capi-pictureinpicture-pipconfig.md) pipConfig | 画中画参数配置器。 |
-| uint32_t mainWindowId | 拉起画中画的主窗口Id。 |
+| uint32_t mainWindowId | 拉起画中画的主窗口ID。 |
 
 **返回：**
 
@@ -476,7 +476,7 @@ int32_t OH_PictureInPicture_CreatePip(PictureInPicture_PipConfig pipConfig, uint
 | 参数项 | 描述 |
 | -- | -- |
 | [PictureInPicture_PipConfig](capi-pictureinpicture-pipconfig.md) pipConfig | 画中画参数配置器。 |
-| uint32_t* controllerId | 用于接收创建画中画控制器的Id。 |
+| uint32_t* controllerId | 用于接收创建画中画控制器的ID。 |
 
 **返回：**
 
@@ -501,7 +501,7 @@ int32_t OH_PictureInPicture_DeletePip(uint32_t controllerId)
 
 | 参数项 | 描述 |
 | -- | -- |
-| uint32_t controllerId | 画中画控制器Id，为非负整数。 |
+| uint32_t controllerId | 画中画控制器ID，为非负整数。 |
 
 **返回：**
 
@@ -526,7 +526,7 @@ int32_t OH_PictureInPicture_StartPip(uint32_t controllerId)
 
 | 参数项 | 描述 |
 | -- | -- |
-| uint32_t controllerId | 画中画控制器Id，为非负整数。 |
+| uint32_t controllerId | 画中画控制器ID，为非负整数。 |
 
 **返回：**
 
@@ -551,7 +551,7 @@ int32_t OH_PictureInPicture_StopPip(uint32_t controllerId)
 
 | 参数项 | 描述 |
 | -- | -- |
-| uint32_t controllerId | 画中画控制器Id，为非负整数。 |
+| uint32_t controllerId | 画中画控制器ID，为非负整数。 |
 
 **返回：**
 
@@ -571,13 +571,13 @@ int32_t OH_PictureInPicture_UpdatePipContentSize(uint32_t controllerId, uint32_t
 
 **起始版本：** 20
 
-**设备行为差异：** 该接口在Phone、Tablet、PC/2in1设备中可正常调用，在其他设备中不报错也不生效。
+**设备行为差异：** 该接口在Phone、Tablet、PC/2in1、TV设备中可正常调用，在其他设备中不报错也不生效。
 
 **参数：**
 
 | 参数项 | 描述 |
 | -- | -- |
-| uint32_t controllerId | 画中画控制器Id，为非负整数。 |
+| uint32_t controllerId | 画中画控制器ID，为非负整数。 |
 | uint32_t width | 表示媒体内容宽度，单位为px，该参数应为正整数。用于更新画中画窗口比例。 |
 | uint32_t height | 表示媒体内容高度，单位为px，该参数应为正整数。用于更新画中画窗口比例。 |
 
@@ -604,7 +604,7 @@ int32_t OH_PictureInPicture_UpdatePipControlStatus(uint32_t controllerId, Pictur
 
 | 参数项 | 描述 |
 | -- | -- |
-| uint32_t controllerId | 画中画控制器Id，为非负整数。 |
+| uint32_t controllerId | 画中画控制器ID，为非负整数。 |
 | [PictureInPicture_PipControlType](#pictureinpicture_pipcontroltype) controlType | 表示画中画控制面板控件类型。目前仅支持VIDEO_PLAY_PAUSE、MICROPHONE_SWITCH、CAMERA_SWITCH和MUTE_SWITCH这几种控件类型，传入其他控件类型无效。 |
 | [PictureInPicture_PipControlStatus](#pictureinpicture_pipcontrolstatus) status | 表示画中画控制面板控件状态。 |
 
@@ -631,7 +631,7 @@ int32_t OH_PictureInPicture_SetPipControlEnabled(uint32_t controllerId, PictureI
 
 | 参数项 | 描述 |
 | -- | -- |
-| uint32_t controllerId | 画中画控制器Id，为非负整数。 |
+| uint32_t controllerId | 画中画控制器ID，为非负整数。 |
 | [PictureInPicture_PipControlType](#pictureinpicture_pipcontroltype) controlType | 表示画中画控制面板控件类型。 |
 | bool enabled | 表示画中画控制面板控件使能状态。true表示控件为可使用状态，false则为禁用状态。 |
 
@@ -658,7 +658,7 @@ int32_t OH_PictureInPicture_RegisterStartPipCallback(uint32_t controllerId, WebP
 
 | 参数项 | 描述 |
 | -- | -- |
-| uint32_t controllerId | 画中画控制器Id，为非负整数。 |
+| uint32_t controllerId | 画中画控制器ID，为非负整数。 |
 | [WebPipStartPipCallback](#webpipstartpipcallback) callback | 画中画窗口创建完成的回调函数。 |
 
 **返回：**
@@ -684,7 +684,7 @@ int32_t OH_PictureInPicture_UnregisterStartPipCallback(uint32_t controllerId, We
 
 | 参数项 | 描述 |
 | -- | -- |
-| uint32_t controllerId | 画中画控制器Id，为非负整数。 |
+| uint32_t controllerId | 画中画控制器ID，为非负整数。 |
 | [WebPipStartPipCallback](#webpipstartpipcallback) callback | 画中画窗口创建完成的回调函数。 |
 
 **返回：**
@@ -710,7 +710,7 @@ int32_t OH_PictureInPicture_UnregisterAllStartPipCallbacks(uint32_t controllerId
 
 | 参数项 | 描述 |
 | -- | -- |
-| uint32_t controllerId | 画中画控制器Id，为非负整数。 |
+| uint32_t controllerId | 画中画控制器ID，为非负整数。 |
 
 **返回：**
 
@@ -735,7 +735,7 @@ int32_t OH_PictureInPicture_RegisterLifecycleListener(uint32_t controllerId, Web
 
 | 参数项 | 描述 |
 | -- | -- |
-| uint32_t controllerId | 画中画控制器Id，为非负整数。 |
+| uint32_t controllerId | 画中画控制器ID，为非负整数。 |
 | [WebPipLifecycleCallback](#webpiplifecyclecallback) callback | 画中画窗口的生命周期回调函数。 |
 
 **返回：**
@@ -761,7 +761,7 @@ int32_t OH_PictureInPicture_UnregisterLifecycleListener(uint32_t controllerId, W
 
 | 参数项 | 描述 |
 | -- | -- |
-| uint32_t controllerId | 画中画控制器Id，为非负整数。 |
+| uint32_t controllerId | 画中画控制器ID，为非负整数。 |
 | [WebPipLifecycleCallback](#webpiplifecyclecallback) callback | 画中画窗口的生命周期回调函数。 |
 
 **返回：**
@@ -787,7 +787,7 @@ int32_t OH_PictureInPicture_UnregisterAllLifecycleListeners(uint32_t controllerI
 
 | 参数项 | 描述 |
 | -- | -- |
-| uint32_t controllerId | 画中画控制器Id，为非负整数。 |
+| uint32_t controllerId | 画中画控制器ID，为非负整数。 |
 
 **返回：**
 
@@ -812,7 +812,7 @@ int32_t OH_PictureInPicture_RegisterControlEventListener(uint32_t controllerId, 
 
 | 参数项 | 描述 |
 | -- | -- |
-| uint32_t controllerId | 画中画控制器Id，为非负整数。 |
+| uint32_t controllerId | 画中画控制器ID，为非负整数。 |
 | [WebPipControlEventCallback](#webpipcontroleventcallback) callback | 画中画窗口的控件点击事件回调函数。 |
 
 **返回：**
@@ -838,7 +838,7 @@ int32_t OH_PictureInPicture_UnregisterControlEventListener(uint32_t controllerId
 
 | 参数项 | 描述 |
 | -- | -- |
-| uint32_t controllerId | 画中画控制器Id，为非负整数。 |
+| uint32_t controllerId | 画中画控制器ID，为非负整数。 |
 | [WebPipControlEventCallback](#webpipcontroleventcallback) callback | 画中画窗口的控件点击事件回调函数。 |
 
 **返回：**
@@ -864,7 +864,7 @@ int32_t OH_PictureInPicture_UnregisterAllControlEventListeners(uint32_t controll
 
 | 参数项 | 描述 |
 | -- | -- |
-| uint32_t controllerId | 画中画控制器Id，为非负整数。 |
+| uint32_t controllerId | 画中画控制器ID，为非负整数。 |
 
 **返回：**
 
@@ -889,7 +889,7 @@ int32_t OH_PictureInPicture_RegisterResizeListener(uint32_t controllerId, WebPip
 
 | 参数项 | 描述 |
 | -- | -- |
-| uint32_t controllerId | 画中画控制器Id，为非负整数。 |
+| uint32_t controllerId | 画中画控制器ID，为非负整数。 |
 | [WebPipResizeCallback](#webpipresizecallback) callback | 画中画窗口尺寸变化的回调函数。 |
 
 **返回：**
@@ -915,7 +915,7 @@ int32_t OH_PictureInPicture_UnregisterResizeListener(uint32_t controllerId, WebP
 
 | 参数项 | 描述 |
 | -- | -- |
-| uint32_t controllerId | 画中画控制器Id，为非负整数。 |
+| uint32_t controllerId | 画中画控制器ID，为非负整数。 |
 | [WebPipResizeCallback](#webpipresizecallback) callback | 画中画窗口尺寸变化的回调函数。 |
 
 **返回：**
@@ -940,7 +940,7 @@ int32_t OH_PictureInPicture_UnregisterAllResizeListeners(uint32_t controllerId)
 
 | 参数项 | 描述 |
 | -- | -- |
-| uint32_t controllerId | 画中画控制器Id，为非负整数。 |
+| uint32_t controllerId | 画中画控制器ID，为非负整数。 |
 
 **返回：**
 
@@ -964,7 +964,7 @@ int32_t OH_PictureInPicture_SetPipInitialSurfaceRect(uint32_t controllerId, int3
 
 | 参数项 | 描述 |
 | -- | -- |
-| uint32_t controllerId | 画中画控制器Id，为非负整数。 |
+| uint32_t controllerId | 画中画控制器ID，为非负整数。 |
 | int32_t positionX | 拉起时画中画窗口相对页面左上角的X坐标，单位为px。 |
 | int32_t positionY | 拉起时画中画窗口相对页面左上角的Y坐标，单位为px。 |
 | uint32_t width | 拉起时画中画窗口的宽度，该参数值大于0，单位为px。 |
@@ -992,7 +992,7 @@ int32_t OH_PictureInPicture_UnsetPipInitialSurfaceRect(uint32_t controllerId)
 
 | 参数项 | 描述 |
 | -- | -- |
-| uint32_t controllerId | 画中画控制器Id，为非负整数。 |
+| uint32_t controllerId | 画中画控制器ID，为非负整数。 |
 
 **返回：**
 
@@ -1022,8 +1022,8 @@ int32_t OH_PictureInPicture_SetParentWindowId(uint32_t controllerId, uint32_t wi
 
 | 参数项 | 描述 |
 | -- | -- |
-| uint32_t controllerId | 画中画控制器Id，为非负整数。 |
-| uint32_t windowId | 表示画中画父窗口Id，为非负整数。 |
+| uint32_t controllerId | 画中画控制器ID，为非负整数。 |
+| uint32_t windowId | 表示画中画父窗口ID，为非负整数。 |
 
 **返回：**
 

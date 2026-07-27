@@ -6,7 +6,7 @@
 <!--Tester: @zhangyue283-->
 <!--Adviser: @ge-yafang-->
 
-本模块提供3D图形中场景资源节点的类型及操作方法。SceneNode是3D场景的基础构建单元，它允许开发者通过层级结构管理场景中的对象，实现高效的场景组织与交互控制。
+本模块提供ArkGraphics 3D中场景资源节点的类型及操作方法。SceneNode是3D场景的基础构建单元，它允许开发者通过层级结构管理场景中的对象，实现高效的场景组织与交互控制。
 
 > **说明：**
 >
@@ -169,7 +169,7 @@ insertAfter(item: T, sibling: T | null): void
 | 参数名 | 类型 | 必填 | 说明 |
 | ---- | ---- | ---- | ---- |
 | item | T | 是 | 要插入节点。 |
-| sibling | T \| null | 是 | 兄弟节点。 |
+| sibling | T \| null | 是 | 兄弟节点。当为null时，表示插入到容器的开头位置。 |
 
 **示例：**
 
@@ -260,8 +260,10 @@ function get(): void {
   scene.then(async (result: Scene) => {
     if (result) {
       let node : Node | null = result.getNodeByPath("rootNode/Scene/");
-      // 从children中get 0号节点
-      result.root?.children.get(0)?.children.insertAfter(node, null);
+      if (node) {
+        // 从children中get 0号节点
+        result.root?.children.get(0)?.children.insertAfter(node, null);
+      }
     }
   }).catch((error: Error) => {
     console.error('Scene load failed:', error);
@@ -336,7 +338,7 @@ function count(): void {
 
 ## Node
 
-3D场景由树状层次结构的节点组成，其中每个节点都实现了Node接口。继承自[SceneResource](js-apis-inner-scene-resources.md#sceneresource-1)。
+3D场景由树状层次结构的节点组成，其中每个节点都实现了Node接口。继承自[SceneResource](js-apis-inner-scene-resources.md#sceneresource)。
 
 ### 属性
 
@@ -352,7 +354,7 @@ function count(): void {
 | layerMask | [LayerMask](#layermask) | 是 | 否 | 节点的图层掩码。 |
 | path | string | 是 | 否 | 节点路径。 |
 | parent | [Node](#node) \| null | 是 | 否 | 节点的父节点，不存在则为空值。 |
-| children | [Container](js-apis-inner-scene-nodes.md#containert)\<[Node](#node)> | 是 | 否 | 节点的子节点，不存在则为空值。为只读属性，表示不能替换整个children容器，但可以通过容器方法操作子节点（如[append()](#append)、[insertAfter()](#insertafter)、[remove()](#remove)或[clear()](#clear)）。如果append或insertAfter的节点已存在于容器中，容器会先移除该节点再插入，因此数量不会增加，看似“无效”；添加新节点才会真正增加子节点数量。 |
+| children | [Container](#containert)\<[Node](#node)> | 是 | 否 | 节点的子节点，不存在则为空值。为只读属性，表示不能替换整个children容器，但可以通过容器方法操作子节点（如[append()](#append)、[insertAfter()](#insertafter)、[remove()](#remove)或[clear()](#clear)）。如果append或insertAfter的节点已存在于容器中，容器会先移除该节点再插入，因此数量不会增加，看似“无效”；添加新节点才会真正增加子节点数量。 |
 
 ### getNodeByPath
 
@@ -437,7 +439,7 @@ function printNodeTreeInRelativePath(node: Node | null): void {
 | 名称 | 值 | 说明 |
 | ---- | ---- | ---- |
 | DIRECTIONAL | 1 | 平行光类型。 |
-| SPOT | 2 | 点光源类型。 |
+| SPOT | 2 | 聚光灯类型。 |
 
 ## Light
 
@@ -449,7 +451,7 @@ function printNodeTreeInRelativePath(node: Node | null): void {
 | ---- | ---- | ---- | ---- | ---- |
 | lightType | [LightType](#lighttype) | 是 | 否 | 光源类型。 |
 | color | [Color](js-apis-inner-scene-types.md#color) | 否 | 否 | 颜色。 |
-| intensity | number | 否 | 否 | 光照密度，单位为坎德拉（cd），取值范围是大于0的实数。 |
+| intensity | number | 否 | 否 | 光照强度，单位为坎德拉（cd），取值范围是大于0的实数。 |
 | shadowEnabled | boolean | 否 | 否 | 是否使能阴影。true表示添加阴影，false表示没有阴影效果。 |
 | enabled | boolean | 否 | 否 | 是否使能光源。true表示使用光源，false表示不使用。 |
 
@@ -486,7 +488,7 @@ function printNodeTreeInRelativePath(node: Node | null): void {
 
 | 名称 | 类型 | 只读 | 可选 | 说明 |
 | ---- | ---- | ---- | ---- | ---- |
-| fov | number | 否 | 否 | 视场，单位为弧度（rad），取值在0到π弧度之间。 |
+| fov | number | 否 | 否 | 视场，单位为弧度（rad），取值范围为(0, π)。 |
 | nearPlane | number | 否 | 否 | 近平面，单位为世界坐标系下的场景单位（比如cm、m、km等），取值大于0。 |
 | farPlane | number | 否 | 否 | 远平面，单位为世界坐标系下的场景单位（比如cm、m、km等），取值大于nearPlane。 |
 | enabled | boolean | 否 | 否 | 是否使能相机。true表示使用相机，false表示不使用相机。 |
@@ -554,7 +556,7 @@ function Sub(l: Vec3, r: Vec3): Vec3 {
 }
 // 向量点积，返回l和r的内积
 function Dot(l: Vec3, r: Vec3): number {
-  return l.x * r.x + l.y * r.y + r.z * l.z;
+  return l.x * r.x + l.y * r.y + l.z * r.z;
 }
 // 向量归一化，返回l的单位向量
 function Normalize(l: Vec3): Vec3 {
@@ -623,7 +625,7 @@ function lookAt(node: Node, eye: Vec3, center: Vec3, up: Vec3) {
         y: m2.x - m0.z,
         z: m0.y - m1.x,
         w: t
-      }
+      };
     }
   }
   node.position = eye;

@@ -1,4 +1,4 @@
-# @ohos.data.relationalStore（关系型数据库）（系统接口）
+# @ohos.data.relationalStore (关系型数据库)(系统接口)
 <!--Kit: ArkData-->
 <!--Subsystem: DistributedDataManager-->
 <!--Owner: @baijidong-->

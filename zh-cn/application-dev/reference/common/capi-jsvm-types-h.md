@@ -412,8 +412,8 @@ enum JSVM_CacheType
 
 | 枚举项 | 描述 |
 | -- | -- |
-| JSVM_CACHE_TYPE_JS | JS 缓存, 由接口 OH_JSVM_CreateCodeCache 生成。 |
-| JSVM_CACHE_TYPE_WASM | WebAssembly 缓存, 由接口 OH_JSVM_CreateWasmCache 生成。 |
+| JSVM_CACHE_TYPE_JS | JS 缓存，由接口 OH_JSVM_CreateCodeCache 生成。 |
+| JSVM_CACHE_TYPE_WASM | WebAssembly 缓存，由接口 OH_JSVM_CreateWasmCache 生成。 |
 
 ### JSVM_MicrotaskPolicy
 
@@ -446,12 +446,12 @@ JSVM 内部 Trace 事件的类别。
 
 | 枚举项 | 描述 |
 | -- | -- |
-| JSVM_TRACE_VM | 采集 JSVM 主要接口调用, 例如执行 js 脚本。 |
-| JSVM_TRACE_COMPILE | 采集编译相关的接口调用, 例如后台编译。 |
-| JSVM_TRACE_EXECUTE | 采集与运行状态相关的接口调用, 例如中断与微任务。 |
+| JSVM_TRACE_VM | 采集 JSVM 主要接口调用，例如执行 js 脚本。 |
+| JSVM_TRACE_COMPILE | 采集编译相关的接口调用，例如后台编译。 |
+| JSVM_TRACE_EXECUTE | 采集与运行状态相关的接口调用，例如中断与微任务。 |
 | JSVM_TRACE_RUNTIME | 采集外部函数调用相关信息。 |
 | JSVM_TRACE_STACK_TRACE | 采集 JSVM 中堆栈相关信息。 |
-| JSVM_TRACE_WASM | 采集主要的 WASM 相关接口调用, 例如编译与实例化 WASM 模块。 |
+| JSVM_TRACE_WASM | 采集主要的 WASM 相关接口调用，例如编译与实例化 WASM 模块。 |
 | JSVM_TRACE_WASM_DETAILED | 采集更多更细节的 WASM 相关接口调用，例如后台编译、跳板编译。 |
 
 ### JSVM_CBTriggerTimeForGC

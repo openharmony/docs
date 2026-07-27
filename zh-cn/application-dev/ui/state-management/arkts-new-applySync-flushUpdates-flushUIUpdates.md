@@ -177,6 +177,14 @@ import { UIUtils } from '@kit.ArkUI';
   }
   ```
 
+- 三个同步刷新接口的刷新范围对比如下表所示：
+
+| 接口           | 刷新范围          | @Computed  | @Monitor   |
+| -------------- | ----------------- | ---------- | ---------- |
+| applySync      | 仅闭包内修改      | 同步执行   | 同步执行   |
+| flushUpdates   | 所有待处理修改    | 同步执行   | 同步执行   |
+| flushUIUpdates | 所有待处理修改    | 不同步执行 | 不同步执行 |
+
 ## 限制条件
 
 - 在applySync闭包函数中嵌套调用applySync，内层的applySync将会被跳过并返回undefined，同时打印出警告信息`UIUtils.applySync will be skipped when called within another UIUtils.applySync. The inner UIUtils.applySync will return undefined`。

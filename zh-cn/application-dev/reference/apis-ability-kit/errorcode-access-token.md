@@ -161,7 +161,7 @@ The specified application does not support the permissions granted or ungranted 
 
 **错误信息**
 
-The service is abnormal.
+Service exception.
 
 **错误描述**
 

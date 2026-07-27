@@ -169,7 +169,7 @@
 
    开发者可以通过配置触摸测试控制，来实现阻塞组件自身或其他组件的触摸测试。
 
-   - HitTestMode.Default：默认不配hitTestBehavior属性，自身如果命中会阻塞兄弟组件，但是不阻塞子组件。
+   - HitTestMode.Default：默认不配置hitTestBehavior属性，自身如果命中会阻塞兄弟组件，但是不阻塞子组件。
 
      ![hitTestModeDefault](figures/hitTestModeDefault.png)
 

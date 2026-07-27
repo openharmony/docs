@@ -1,4 +1,4 @@
-# @ohos.data.sendableRelationalStore（共享关系型数据库）
+# @ohos.data.sendableRelationalStore (共享关系型数据库)
 <!--Kit: ArkData-->
 <!--Subsystem: DistributedDataManager-->
 <!--Owner: @baijidong-->

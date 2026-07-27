@@ -44,7 +44,7 @@ getRequestInfo(want: Want): RequestInfo
 
 | 类型   | 说明                     |
 | ------ | ------------------------ |
-| [RequestInfo](#requestinfo) | 请求方RequestInfo，用于绑定模态窗口。 |
+| [RequestInfo](#requestinfo) | 请求方RequestInfo，用于绑定模态弹框。 |
 
 **错误码**：
 
@@ -143,7 +143,7 @@ export default class EntryAbility extends UIAbility {
 
 | 名称      | 类型       | 只读 | 可选   | 说明     |
 | ------------ | --------| ------ | ----- | ----------------- |
-| windowRect<sup>10+</sup>   | [WindowRect](#windowrect10)    | 否 | 是  | 表示模态弹框的位置属性。          |
+| windowRect<sup>10+</sup>   | [WindowRect](#windowrect10)    | 否 | 是  | 表示模态弹框的属性。当需要自定义模态弹框的位置和尺寸时传入此参数；不传入时使用系统默认的弹窗位置和尺寸。    |
 
 **示例：**
 

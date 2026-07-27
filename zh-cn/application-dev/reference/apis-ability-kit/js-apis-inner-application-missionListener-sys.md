@@ -66,7 +66,7 @@ onMissionDestroyed(mission: number): void
 
 onMissionSnapshotChanged(mission: number): void
 
-当系统更新任务缩略图时会触发该回调函数。
+当系统变更任务缩略图时会触发该回调函数。
 
 **系统接口**：此接口为系统接口。
 

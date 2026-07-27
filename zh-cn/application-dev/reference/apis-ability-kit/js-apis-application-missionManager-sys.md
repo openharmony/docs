@@ -47,7 +47,7 @@ registerMissionListener(listener: MissionListener): number
 
   | 类型 | 说明 |
   | -------- | -------- |
-  | number | 监听器的index值，由系统创建，在注册系统任务状态监听器时分配，和监听器一一对应&nbsp;。 |
+  | number | 监听器的index值，由系统创建，在注册系统任务状态监听器时分配，和监听器一一对应。 |
 
 **示例：**
 
@@ -104,6 +104,7 @@ unregisterMissionListener(listenerId: number, callback: AsyncCallback&lt;void&gt
 
 ```ts
 import missionManager from '@ohos.application.missionManager';
+import { BusinessError } from '@ohos.base';
 
 console.info('registerMissionListener');
 let listenerId = missionManager.registerMissionListener({
@@ -391,6 +392,7 @@ getMissionSnapShot(deviceId: string, missionId: number, callback: AsyncCallback&
 
   ```ts
   import missionManager from '@ohos.application.missionManager';
+  import { BusinessError } from '@ohos.base';
 
   let testMissionId = 2;
   try {
@@ -473,6 +475,7 @@ lockMission(missionId: number, callback: AsyncCallback&lt;void&gt;): void
 
   ```ts
   import missionManager from '@ohos.application.missionManager';
+  import { BusinessError } from '@ohos.base';
 
   let testMissionId = 2;
   try {
@@ -555,6 +558,7 @@ unlockMission(missionId: number, callback: AsyncCallback&lt;void&gt;): void
 
   ```ts
   import missionManager from '@ohos.application.missionManager';
+  import { BusinessError } from '@ohos.base';
 
   let testMissionId = 2;
   try {
@@ -637,6 +641,7 @@ clearMission(missionId: number, callback: AsyncCallback&lt;void&gt;): void
 
   ```ts
   import missionManager from '@ohos.application.missionManager';
+  import { BusinessError } from '@ohos.base';
 
   let testMissionId = 2;
   try {
@@ -792,6 +797,7 @@ moveMissionToFront(missionId: number, callback: AsyncCallback&lt;void&gt;): void
 
   ```ts
   import missionManager from '@ohos.application.missionManager';
+  import { BusinessError } from '@ohos.base';
 
   let testMissionId = 2;
   try {
@@ -832,6 +838,7 @@ moveMissionToFront(missionId: number, options: StartOptions, callback: AsyncCall
 
   ```ts
   import missionManager from '@ohos.application.missionManager';
+  import { BusinessError } from '@ohos.base';
 
   let testMissionId = 2;
   try {

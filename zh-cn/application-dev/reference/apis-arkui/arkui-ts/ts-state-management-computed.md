@@ -7,7 +7,7 @@
 <!--Tester: @TerryTsao-->
 <!--Adviser: @zhang_yixin13-->
 
-@Computed为方法装饰器，用于状态管理V2中，装饰getter方法，使被装饰的getter方法变为计算属性，其返回值会被缓存，仅当依赖的源数据发生变化时才重新计算，减少重复计算带来的开销。
+@Computed为方法装饰器，用于[状态管理V2](../../../ui/state-management/arkts-state-management-overview.md#状态管理v2)中，装饰getter方法，使其变为计算属性，其返回值会被缓存，仅当依赖的源数据发生变化时才重新计算，减少重复计算带来的开销。
 
 开发指南参考：[@Computed装饰器：计算属性](../../../ui/state-management/arkts-new-computed.md)。
 

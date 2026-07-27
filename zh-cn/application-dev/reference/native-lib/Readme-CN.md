@@ -24,7 +24,7 @@
     - [Vulkan External Memory开发指导](vulkan-oh-external-memory-guidelines.md)
   - [Vulkan支持能力](vulkan.md)
   - Vulkan扩展能力<!--vulkan-extensions-->
-    - [Vulkan模块](capi-vulkan.md)
+    - [Vulkan](capi-vulkan.md)
     - [vulkan_ohos.h](capi-vulkan-ohos-h.md)
     - [VkSurfaceCreateInfoOHOS](capi-vulkan-vksurfacecreateinfoohos.md)
     - [VkNativeBufferOHOS](capi-vulkan-vknativebufferohos.md) 
@@ -42,10 +42,10 @@
 <!--RP1-->
 <!--RP1End-->    
 - 附录<!--appendixes-->
-  - [libc中没有导出的符号列表](musl-peculiar-symbol.md)
-  - [NDK musl-libc接口受权限影响的说明](guidance-on-ndk-libc-interfaces-affected-by-permissions.md)
+  - [Native api中没有导出的符号列表](musl-peculiar-symbol.md)
+  - [NDK涉及的musl libc接口使用限制的说明](guidance-on-ndk-libc-interfaces-affected-by-permissions.md)
   - [Native api中导出的EGL符号列表](egl-symbol.md)
   - [Native api中导出的ICU4C符号列表](icu4c-symbol.md)
   - [Native api中导出的OpenGL ES 3.2符号列表](openglesv3-symbol.md)
-  - [Native api中导出的OpenGL符号列表](opengl-symbol.md)
+  - [OpenGL符号列表](opengl-symbol.md)
   - [Seccomp开放系统调用列表](seccomp-symbol.md)

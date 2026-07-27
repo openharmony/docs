@@ -46,11 +46,11 @@ function adjustImageValue(arrayBuffer: ArrayBuffer): ArrayBuffer {
 
 /*
  * 创建一个Task，用于将ArrayBuffer传入Task执行
- * isParamsByTransfer用于控制ArrayBuffer是“拷贝”还是“转移”传递
+ * isParamsByCopy用于控制ArrayBuffer是“拷贝”还是“转移”传递
  */
-function createImageTask(arrayBuffer: ArrayBuffer, isParamsByTransfer: boolean): taskpool.Task {
+function createImageTask(arrayBuffer: ArrayBuffer, isParamsByCopy: boolean): taskpool.Task {
   let task: taskpool.Task = new taskpool.Task(adjustImageValue, arrayBuffer);
-  if (!isParamsByTransfer) {
+  if (isParamsByCopy) {
     // 传递空数组[]，全部arrayBuffer参数传递均采用拷贝方式
     try {
       task.setTransferList([]);
@@ -85,16 +85,17 @@ struct Index {
           for (let i: number = 0; i < taskNum; i++) {
             let arrayBufferSlice: ArrayBuffer =
               arrayBuffer.slice(arrayBuffer.byteLength / taskNum * i, arrayBuffer.byteLength / taskNum * (i + 1));
-            // 使用拷贝方式传入ArrayBuffer，所以isParamsByTransfer为false，改成true，就可以实现转移方式的传输
-            taskPoolGroup.addTask(createImageTask(arrayBufferSlice, false));
+            // isParamsByCopy为true时，就可以实现拷贝方式的传输
+            taskPoolGroup.addTask(createImageTask(arrayBufferSlice, true));
           }
           // 执行Task，UI主线程接收处理完成后的结果
           taskpool.execute(taskPoolGroup).then((data) => {
-            // 将各Task返回的ArrayBuffer数据进行拼接
+            // 将各Task返回的ArrayBuffer数据（即data，此处data为包含4组arrayBufferSlice的长度为4的数组）进行拼接等后续处理，此处不再列举具体操作
+            // ...
           }).catch((e: BusinessError) => {
-            console.error(e.message);
+            this.message = 'fail';
+               console.error(`taskpool: execute task: code: ${e.code}, message: ${e.message}`);
           })
-          // ...
         })
     }
     .height('100%')

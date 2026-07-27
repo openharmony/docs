@@ -34,7 +34,7 @@
 
   相关参考：<!--RP1-->[@ohos.window.floatView (闪控窗)](../reference/apis-arkui/js-apis-floatView.md)<!--RP1End-->。
 
-### Free Multi-Window Mode；自由多窗模式
+### Free Windows；自由多窗模式
 
 自由多窗模式是一种支持用户在移动设备上进行多任务处理的交互方式。
 
@@ -63,8 +63,8 @@
 当前设备支持情况：
 
 -  **2in1设备**：2in1设备上的窗口，默认为[自由窗口](#freeform-window自由窗口)。
--  **Tablet设备**：部分Tablet设备，支持开启[自由多窗模式](#free-multi-window-mode自由多窗模式)（通过下拉控制中心，点击“自由多窗”按钮开启），开启此模式后，应用窗口默认为[自由窗口](#freeform-window自由窗口)。
--  **Phone设备**：部分Phone设备，支持开启[自由多窗模式](#free-multi-window-mode自由多窗模式)（通过下拉控制中心，点击“自由多窗”按钮开启），开启此模式后，应用窗口默认为[自由窗口](#freeform-window自由窗口)。
+-  **Tablet设备**：部分Tablet设备，支持开启[自由多窗模式](#free-windows自由多窗模式)（通过下拉控制中心，点击“自由多窗”按钮开启），开启此模式后，应用窗口默认为[自由窗口](#freeform-window自由窗口)。
+-  **Phone设备**：部分Phone设备，支持开启[自由多窗模式](#free-windows自由多窗模式)（通过下拉控制中心，点击“自由多窗”按钮开启），开启此模式后，应用窗口默认为[自由窗口](#freeform-window自由窗口)。
 
 ## G
 
@@ -95,7 +95,7 @@
 
 ## S
 
-### Smart Multi-Window；智慧多窗
+### Multi-Window；智慧多窗
 
 一个多种窗口模式组合使用的实践范例，它允许用户在同一时间、同一屏幕上以悬浮窗、分屏或全景多窗的方式同时运行多个应用窗口，从而实现多任务处理。智慧多窗包括智慧多窗悬浮窗、分屏和全景多窗等多种显示方式。
 
@@ -105,7 +105,7 @@
 
 ## L
 
-### Level-1 SubWindow；一级子窗
+### Level-1 Subwindow；一级子窗
 
 以主窗口为直接父级的子窗口，不包含其他二级及更深层次的子窗口。
 

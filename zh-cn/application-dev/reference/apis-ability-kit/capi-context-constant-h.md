@@ -30,7 +30,7 @@
 | [AbilityRuntime_AreaMode](#abilityruntime_areamode) | AbilityRuntime_AreaMode | 文件数据加密等级。 |
 | [AbilityRuntime_StartVisibility](#abilityruntime_startvisibility) | AbilityRuntime_StartVisibility | 启动Ability时的窗口和dock栏图标的显示模式。例如：需要在后台静默启动服务而不显示UI时使用隐藏模式；需要正常显示UI并与用户交互时使用显示模式。 |
 | [AbilityRuntime_WindowMode](#abilityruntime_windowmode) | AbilityRuntime_WindowMode | 窗口模式。 |
-| [AbilityRuntime_SupportedWindowMode](#abilityruntime_supportedwindowmode) | AbilityRuntime_SupportedWindowMode | 组件所支持的窗口模式。在应用内启动UIAbility时，指定窗口是否显示最大化/窗口化/分屏按键。 |
+| [AbilityRuntime_SupportedWindowMode](#abilityruntime_supportedwindowmode) | AbilityRuntime_SupportedWindowMode | 组件所支持的窗口模式。在应用内启动UIAbility时，指定窗口是否显示最大化、窗口化、分屏按键。 |
 
 ## 枚举类型说明
 

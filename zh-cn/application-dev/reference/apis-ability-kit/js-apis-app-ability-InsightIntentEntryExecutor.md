@@ -33,7 +33,7 @@ import { InsightIntentEntryExecutor } from '@kit.AbilityKit';
 
 | 名称 | 类型 | 只读 | 可选 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
-| executeMode | [insightIntent.ExecuteMode](./js-apis-app-ability-insightIntent.md#executemode) | 否 | 否 | 表示意图执行模式。即拉起绑定的Ability组件时支持的执行模式。 |
+| executeMode | [insightIntent.ExecuteMode](./js-apis-app-ability-insightIntent.md#executemode)[] | 否 | 否 | 表示意图执行模式。即拉起绑定的Ability组件时支持的执行模式。 |
 | context | [InsightIntentContext](./js-apis-app-ability-insightIntentContext.md) | 否 | 否 | 表示意图执行上下文。 |
 | windowStage | [window.WindowStage](../apis-arkui/arkts-apis-window-WindowStage.md) | 否 | 是 | 表示windowStage实例对象，和[onWindowStageCreate](./js-apis-app-ability-uiAbility.md#onwindowstagecreate)接口的windowStage实例是同一个，可用于加载意图执行的页面。仅当executeMode字段取值为UI_ABILITY_FOREGROUND（即意图执行需要将UIAbility显示在前台时），该属性生效。 |
 | uiExtensionSession | [UIExtensionContentSession](./js-apis-app-ability-uiExtensionContentSession.md) | 否 | 是 | 表示UIExtensionContentSession实例对象，和[onSessionCreate](./js-apis-app-ability-uiExtensionAbility.md#onsessioncreate)接口的UIExtensionContentSession实例是同一个，可用于加载意图执行的页面。仅当executeMode字段取值为UI_EXTENSION_ABILITY（即意图执行需要拉起UIExtensionAbility时），该属性生效。 |

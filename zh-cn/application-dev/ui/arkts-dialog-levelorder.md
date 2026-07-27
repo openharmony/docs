@@ -11,7 +11,7 @@ ArkUI的弹出框节点默认直接挂载在根节点上，会根据层级从小
 
 ## 使用约束
 
-目前[openCustomDialog](arkts-uicontext-custom-dialog.md)、[CustomDialog](arkts-common-components-custom-dialog.md)、[AlertDialog](arkts-fixes-style-dialog.md#警告弹窗-alertdialog)、[ActionSheet](arkts-fixes-style-dialog.md#列表选择弹窗-actionsheet)、[showDialog](arkts-fixes-style-dialog.md#对话框-showdialog)支持通过levelOrder参数来管理弹出框的层次。
+目前[openCustomDialog](arkts-uicontext-custom-dialog.md)、[CustomDialog](arkts-common-components-custom-dialog.md)、[AlertDialog](arkts-fixes-style-dialog.md#警告弹窗-alertdialog)、[ActionSheet](arkts-fixes-style-dialog.md#列表选择弹窗-actionsheet)、[showDialog](arkts-fixes-style-dialog.md#对话框-showdialog)支持通过levelOrder参数来管理弹出框的层级。
 
 > **说明：**
 > 

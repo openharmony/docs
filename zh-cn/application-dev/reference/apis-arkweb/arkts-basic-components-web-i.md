@@ -613,13 +613,13 @@ Web同层渲染的配置。
 
 ## OnGeolocationShowEvent<sup>12+</sup>
 
-定义通知用户收到地理位置信息获取请求。
+定义收到地理位置获取请求时触发的回调信息，包括源信息和地理对象。适用于需要处理地理位置权限的场景。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
 | 名称             | 类型      | 只读 | 可选    | 说明                                       |
 | -------------- | ---- | ---- | -------------|--------------------------- |
-| origin | string | 否 | 否 | 指定源的字符串索引。                       |
+| origin | string | 否 | 否 | 发起地理位置权限请求的网页源，用于标识特定网站的地理位置请求来源。 |
 | geolocation | [JsGeolocation](./arkts-basic-components-web-JsGeolocation.md) | 否 | 否 | 通知Web组件用户操作行为。                       |
 
 ## NativeEmbedVisibilityInfo<sup>12+</sup>

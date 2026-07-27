@@ -102,7 +102,7 @@ grantUriPermission(uri: string, flag: wantConstant.Flags, targetBundleName: stri
 
 > **说明：**
 >
->- 当应用拥有ohos.permission.PROXY_AUTHORIZATION_URI权限时, 可以授权不属于自身但具有访问权限的URI。如果不具备该权限，则仅支持授权属于自身的URI。
+>- 当应用拥有ohos.permission.PROXY_AUTHORIZATION_URI权限时，可以授权不属于自身但具有访问权限的URI。如果不具备该权限，则仅支持授权属于自身的URI。
 >- 因URI处理涉及编解码，传入的URI需要使用[getUriFromPath](../apis-core-file-kit/js-apis-file-fileuri.md#fileurigeturifrompath)接口获取。对于应用自行拼接的URI，系统无法保证其功能。
 
 **系统接口**：此接口为系统接口。
@@ -176,7 +176,7 @@ grantUriPermission(uri: string, flag: wantConstant.Flags, targetBundleName: stri
 
 > **说明：**
 > 
->- 当应用拥有ohos.permission.PROXY_AUTHORIZATION_URI权限时, 可以授权不属于自身但具有访问权限的URI。如果不具备该权限，则仅支持授权属于自身的URI。
+>- 当应用拥有ohos.permission.PROXY_AUTHORIZATION_URI权限时，可以授权不属于自身但具有访问权限的URI。如果不具备该权限，则仅支持授权属于自身的URI。
 >- 该接口支持给分身应用授权，需要指定目标应用的应用包名和分身索引。
 >- 因URI处理涉及编解码，传入的URI需要使用[getUriFromPath](../apis-core-file-kit/js-apis-file-fileuri.md#fileurigeturifrompath)接口获取。对于应用自行拼接的URI，系统无法保证其功能。
 
@@ -195,7 +195,7 @@ grantUriPermission(uri: string, flag: wantConstant.Flags, targetBundleName: stri
   | uri | string | 是 | 指向文件的URI，scheme固定为"file"，参考[FileUri](../apis-core-file-kit/js-apis-file-fileuri.md#fileuri10)。 | 
   | flag | [wantConstant.Flags](js-apis-app-ability-wantConstant.md#flags) | 是 | URI的读权限或写权限。 | 
   | targetBundleName | string | 是 | 被授权应用的应用包名。 |
-  | appCloneIndex | number | 是 | 被授权应用的分身索引，有效范围为[0, 1000], 取值为0时表示主应用。|
+  | appCloneIndex | number | 是 | 被授权应用的分身索引，有效范围为[0, 1000]，取值为0时表示主应用。|
 
 **返回值：**
 
@@ -288,7 +288,7 @@ revokeUriPermission(uri: string, targetBundleName: string, callback: AsyncCallba
   | 参数名 | 类型 | 必填 | 说明 | 
   | -------- | -------- | -------- | -------- |
   | uri | string | 是 | 指向文件的URI，scheme固定为"file"，参考[FileUri](../apis-core-file-kit/js-apis-file-fileuri.md#fileuri10)。 | 
-  | targetBundleName | string | 是 | 被撤销授权uri的应用包名。 | 
+  | targetBundleName | string | 是 | 被授权URI的应用包名。 | 
   | callback | AsyncCallback&lt;number&gt; | 是 | 回调函数。返回0表示有权限，返回-1表示无权限。 | 
 
 **错误码：**
@@ -407,7 +407,7 @@ revokeUriPermission(uri: string, targetBundleName: string, appCloneIndex: number
   | -------- | -------- | -------- | -------- |
   | uri | string | 是 | 指向文件的URI，scheme固定为"file"，参考[FileUri](../apis-core-file-kit/js-apis-file-fileuri.md#fileuri10)。 | 
   | targetBundleName | string | 是 | 被授权应用的应用包名。 |
-  | appCloneIndex | number | 是 | 被授权应用的分身索引，有效范围为[0, 1000], 取值为0时表示主应用。|
+  | appCloneIndex | number | 是 | 被授权应用的分身索引，有效范围为[0, 1000]，取值为0时表示主应用。|
 
 **返回值：**
 

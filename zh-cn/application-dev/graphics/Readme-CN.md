@@ -58,12 +58,12 @@
     - [自定义文本绘制与显示（C/C++）](text-custom-c.md)
   - [文本开发常见问题](text-faqs.md)
 - 离线图像处理<!--offline-image-processing-->
-  - [添加图像效果（C/C++）](effectkit-filter-c.md)
-- [NativeVsync开发指导 (C/C++)](native-vsync-guidelines.md)
+  - [添加图像效果 (C/C++)](effectkit-filter-c.md)
+- [NativeVSync开发指导 (C/C++)](native-vsync-guidelines.md)
 - 图形缓冲区<!--native-surface-->
   - [NativeBuffer开发指导 (C/C++)](native-buffer-guidelines.md)
   - [NativeImage开发指导 (C/C++)](native-image-guidelines.md)
   - [NativeWindow开发指导 (C/C++)](native-window-guidelines.md)
   - [GPU/CPU内存访问同步操作开发指南 (C/C++)](native-fence-guidelines.md)
-  - [图形缓冲区常见稳定性问题](native-common-mistakes.md)  
+  - [图形缓冲区常见稳定性问题 (C/C++)](native-common-mistakes.md)  
 - [ArkGraphics 2D术语](graphic-term.md)

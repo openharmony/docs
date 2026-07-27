@@ -16,7 +16,7 @@
 | ------------------------------------------------------------ | ----------------------------------------------------- |
 | OH_DisplaySoloist* OH_DisplaySoloist_Create (bool useExclusiveThread) | 创建一个OH_DisplaySoloist实例。                       |
 | OH_DisplaySoloist_Destroy (OH_DisplaySoloist * displaySoloist) | 销毁一个OH_DisplaySoloist实例。                       |
-| OH_DisplaySoloist_Start (OH_DisplaySoloist * displaySoloist, OH_DisplaySoloist_FrameCallback callback, void * data ) | 设置每帧回调函数，每次VSync信号到来时启动每帧回调。   |
+| OH_DisplaySoloist_Start (OH_DisplaySoloist * displaySoloist, OH_DisplaySoloist_FrameCallback callback, void * data ) | 启动每帧回调，设置回调函数callback，每次VSync信号到来时调用该回调。   |
 | OH_DisplaySoloist_Stop (OH_DisplaySoloist * displaySoloist)  | 停止请求下一次VSync信号，并停止调用回调函数callback。 |
 | OH_DisplaySoloist_SetExpectedFrameRateRange (OH_DisplaySoloist* displaySoloist, DisplaySoloist_ExpectedRateRange* range) | 设置期望帧率范围。                                    |
 
@@ -223,23 +223,25 @@ target_link_libraries(entry PUBLIC libace_napi.z.so libnative_drawing.so libnati
    
        std::string id(idStr);
        auto render = SampleXComponent::GetInstance(id);
-       OHNativeWindow *nativeWindow = render->GetNativeWindow();
-       uint64_t width;
-       uint64_t height;
+       if (render != nullptr) {
+           OHNativeWindow *nativeWindow = render->GetNativeWindow();
+           uint64_t width;
+           uint64_t height;
    
-       int32_t xSize = OH_NativeXComponent_GetXComponentSize(component, nativeWindow, &width, &height);
-       if ((xSize == OH_NATIVEXCOMPONENT_RESULT_SUCCESS) && (render != nullptr)) {
-           render->Prepare();
-           render->Create();
-           if (id == "xcomponentId_30") {
-               int offset = 16;
-               render->ConstructPath(offset, offset, render->defaultOffsetY);
+           int32_t xSize = OH_NativeXComponent_GetXComponentSize(component, nativeWindow, &width, &height);
+           if (xSize == OH_NATIVEXCOMPONENT_RESULT_SUCCESS) {
+               render->Prepare();
+               render->Create();
+               if (id == "xcomponentId_30") {
+                   int offset = 16;
+                   render->ConstructPath(offset, offset, render->defaultOffsetY);
+               }
+               if (id == "xcomponentId_120") {
+                   int offset = 4;
+                   render->ConstructPath(offset, offset, render->defaultOffsetY);
+               }
+               // ...
            }
-           if (id == "xcomponentId_120") {
-               int offset = 4;
-               render->ConstructPath(offset, offset, render->defaultOffsetY);
-           }
-           // ...
        }
    }
    ```
@@ -299,7 +301,7 @@ target_link_libraries(entry PUBLIC libace_napi.z.so libnative_drawing.so libnati
        }
        SAMPLE_LOGI("RegisterID = %{public}s", idStr);
        std::string id(idStr);
-       SampleXComponent *render = SampleXComponent().GetInstance(id);
+       SampleXComponent *render = SampleXComponent::GetInstance(id);
        if (render != nullptr) {
            DisplaySoloist_ExpectedRateRange range;
            bool useExclusiveThread = false;

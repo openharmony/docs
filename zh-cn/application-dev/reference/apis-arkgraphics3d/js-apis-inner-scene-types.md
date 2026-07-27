@@ -6,7 +6,7 @@
 <!--Tester: @zhangyue283-->
 <!--Adviser: @ge-yafang-->
 
-本模块提供3D图形中常用的数据类型。
+本模块提供ArkGraphics 3D中常用的数据类型。
 
 > **说明：**
 >
@@ -43,7 +43,7 @@ import { Vec2, Vec3, Vec4, Quaternion, Aabb, Color, Rect, RenderingPipelineType,
 
 ## Vec4
 
-四维向量，通常用于表示4D空间中的点、方向或向量变换，由x、y、z和w四个分量组成，增加第四个分量为各种计算和变换增加了规整性和便捷性。
+四维向量，通常用于表示4D空间中的点、方向或向量变换，由x、y、z和w四个分量组成。
 
 **系统能力：** SystemCapability.ArkUi.Graphics3D
 
@@ -232,7 +232,7 @@ import { Vec2, Vec3, Vec4, Quaternion, Aabb, Color, Rect, RenderingPipelineType,
 
 ## Mat4x4<sup>23+</sup>
 
-相机矩阵，它是一个将三维世界坐标映射到二维图像坐标的数学工具。
+4x4矩阵类型，可用于坐标变换。
 
 **系统能力：** SystemCapability.ArkUi.Graphics3D
 

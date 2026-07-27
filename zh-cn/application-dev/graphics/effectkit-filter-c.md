@@ -1,4 +1,4 @@
-# 添加图像效果（C/C++）
+# 添加图像效果 (C/C++)
 
 <!--Kit: ArkGraphics 2D-->
 <!--Subsystem: Multimedia-->

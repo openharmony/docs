@@ -44,6 +44,16 @@ static&nbsp;connect\<T extends object\>( <br>
 
 将键值对数据存储在应用内存中。如果给定的key已经存在于[AppStorageV2](../../ui/state-management/arkts-new-appstoragev2.md)中，返回对应的值；否则，通过获取默认值的构造器构造默认值，并返回。
 
+> **说明：**
+>
+> 1、若未指定key，使用第二个参数作为默认构造器；否则使用第三个参数（第二个参数非法也使用第三个参数作为默认构造器）。
+>
+> 2、确保数据已经存储在AppStorageV2中，可省略默认构造器，获取存储的数据；否则必须指定默认构造器，不指定将导致应用异常。
+>
+> 3、同一个key，connect不同类型的数据会导致应用异常，应用需要确保类型匹配。
+>
+> 4、key建议使用有意义的值，可由字母、数字、下划线组成，长度不超过255个字符，使用非法字符或空字符的行为是未定义的。
+
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
@@ -57,16 +67,6 @@ static&nbsp;connect\<T extends object\>( <br>
 | type | [TypeConstructorWithArgs\<T\>](#typeconstructorwithargst) | 是   | 指定的类型，若未指定key，则使用type的name作为key。 |
 | keyOrDefaultCreator | string&nbsp;\|&nbsp;[StorageDefaultCreator\<T\>](#storagedefaultcreatort) | 否   | 指定的key，或者是获取默认值的构造器。默认值为undefined。 |
 | defaultCreator | [StorageDefaultCreator\<T\>](#storagedefaultcreatort) | 否   | 获取默认值的构造器。默认值为undefined。如果数据未存储在AppStorageV2中，且没有传递默认构造器，则返回undefined。 |
-
->**说明：**
->
->1、若未指定key，使用第二个参数作为默认构造器；否则使用第三个参数（第二个参数非法也使用第三个参数作为默认构造器）。
->
->2、确保数据已经存储在AppStorageV2中，可省略默认构造器，获取存储的数据；否则必须指定默认构造器，不指定将导致应用异常。
->
->3、同一个key，connect不同类型的数据会导致应用异常，应用需要确保类型匹配。
->
->4、key建议使用有意义的值，可由字母、数字、下划线组成，长度不超过255个字符，使用非法字符或空字符的行为是未定义的。
 
 **返回值：**
 
@@ -100,6 +100,10 @@ static&nbsp;remove\<T\>(keyOrType:&nbsp;string&nbsp;|&nbsp;TypeConstructorWithAr
 
 将指定的键值对数据从[AppStorageV2](../../ui/state-management/arkts-new-appstoragev2.md)里面删除。如果指定的键值不存在于AppStorageV2中，将删除失败。
 
+> **说明：**
+>
+> 删除AppStorageV2中不存在的key会报警告。
+
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
@@ -109,10 +113,6 @@ static&nbsp;remove\<T\>(keyOrType:&nbsp;string&nbsp;|&nbsp;TypeConstructorWithAr
 | 参数名   | 类型   | 必填 | 说明               |
 | -------- | ------ | ---- | ---------------------- |
 | keyOrType | string \| [TypeConstructorWithArgs](#typeconstructorwithargst)\<T\> | 是   | 需要删除的key；如果指定的是type类型，删除的key为type的name。 |
-
->**说明：**
->
->删除AppStorageV2中不存在的key会报警告。
 
 
 **示例：**
@@ -135,6 +135,11 @@ static&nbsp;keys():&nbsp;Array\<string\>
 
 获取[AppStorageV2](../../ui/state-management/arkts-new-appstoragev2.md)中的所有key。
 
+> **说明：**
+>
+> key在Array中的顺序是无序的，与key插入到AppStorageV2中的顺序无关。
+
+
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
@@ -144,10 +149,6 @@ static&nbsp;keys():&nbsp;Array\<string\>
 | 类型                                   | 说明                                                         |
 | -------------------------------------- | ------------------------------------------------------------ |
 | Array\<string\> | 所有AppStorageV2中的key。 |
-
->**说明：**
->
->key在Array中的顺序是无序的，与key插入到AppStorageV2中的顺序无关。
 
 **示例：**
 
@@ -168,22 +169,6 @@ static globalConnect\<T extends object\>(type: ConnectOptions\<T\>): T | undefin
 
 将键值对数据存储在应用磁盘中。如果给定的key已经存在于[PersistenceV2](../../ui/state-management/arkts-new-persistencev2.md)中，返回对应的值；否则，会通过获取默认值的构造器构造默认值，并返回。如果通过globalConnect连接的对象是[\@ObservedV2](../../ui/state-management/arkts-new-observedV2-and-trace.md)对象，该对象[\@Trace](../../ui/state-management/arkts-new-observedV2-and-trace.md)属性的变化，会触发整个关联对象的自动刷新；非\@Trace属性变化则不会自动持久化，如需持久化非\@Trace属性的变化，可调用[PersistenceV2.save](#save)接口手动存储。
 
-**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
-
-**系统能力：** SystemCapability.ArkUI.ArkUI.Full
-
-**参数：**
-
-| 参数名   |类型   |必填   | 说明                                                      |
-| ------------- | ------------|-------------------|-------------------------- |
-| type    |[ConnectOptions\<T\>](#connectoptionst18)    |是  | globalConnect的配置参数，包含指定的类型、key、默认构造器和加密级别等配置项，详细说明见ConnectOptions参数说明。 |
-
-**返回值：**
-
-|类型   |说明                 |
-|----------|-----------------------------------|
-|T \| undefined    |创建或获取数据成功时，返回数据；否则返回undefined。    |
-
 > **说明：**
 >
 > 1、若未指定key，使用默认构造器defaultCreator返回数据的类名作为key存入PersistenceV2中。
@@ -203,6 +188,22 @@ static globalConnect\<T extends object\>(type: ConnectOptions\<T\>): T | undefin
 > 8、connect和globalConnect不建议混用，因为数据副本路径不同，如果混用，则key不可以一样，否则会crash。
 >
 > 9、EL5加密要想生效，需要开发者在module.json中配置字段ohos.permission.PROTECT_SCREEN_LOCK_DATA，使用说明见[声明权限](../../security/AccessToken/declare-permissions.md)。
+
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名   |类型   |必填   | 说明                                                      |
+| ------------- | ------------|-------------------|-------------------------- |
+| type    |[ConnectOptions\<T\>](#connectoptionst18)    |是  | globalConnect的配置参数，包含指定的类型、key、默认构造器和加密级别等配置项，详细说明见ConnectOptions参数说明。 |
+
+**返回值：**
+
+|类型   |说明                 |
+|----------|-----------------------------------|
+|T \| undefined    |创建或获取数据成功时，返回数据；否则返回undefined。    |
 
 **示例：**
 仅供开发者了解globalConnect用法，完整使用需开发者自行编写@Entry组件。
@@ -256,6 +257,15 @@ static globalConnect\<T extends CollectionType<S\>, S extends object\>( <br>
 
 将键值对数据存储在应用磁盘中。支持集合类型[`Array`，`Map`，`Set`，`collections.Array`，`collections.Map`，`collections.Set`类型的持久化](../../ui/state-management/arkts-new-persistencev2.md#globalconnect支持集合的类型)。注意在持久化`Array<ClassA>`类型的数据时，需要调用[`makeObserved`](#makeobserved)使返回的对象被观察到。不支持多个嵌套集合，例如不支持`Array<Array<ClassA>>`的持久化。
 
+> **说明：**
+>
+> 1、若未指定key，使用默认构造器defaultCreator返回数据的类名作为key存入PersistenceV2中。
+>
+> 2、key建议使用有意义的值，可由字母、数字、下划线组成，长度不超过255，使用非法字符或空字符的行为是未定义的。
+>
+> 3、connect和globalConnect不建议混用，因为数据副本路径不同，如果混用，则key不可以一样，否则会crash。
+>
+> 其他通用条件详见globalConnect<sup>18+</sup>的说明。
 
 **原子化服务API：** 从API version 23开始，该接口支持在原子化服务中使用。
 
@@ -297,16 +307,6 @@ struct Page1 {
 |类型   |说明                 |
 |----------|-----------------------------------|
 |T \| undefined    |创建或获取数据成功时，返回数据；否则返回undefined。    |
-
-> **说明：**
->
-> 1、若未指定key，使用默认构造器defaultCreator返回数据的类名作为key存入PersistenceV2中。
->
-> 2、key建议使用有意义的值，可由字母、数字、下划线组成，长度不超过255，使用非法字符或空字符的行为是未定义的。
->
-> 3、connect和globalConnect不建议混用，因为数据副本路径不同，如果混用，则key不可以一样，否则会crash。
->
-> 其他通用条件详见globalConnect<sup>18+</sup>的说明。
 
 **示例：**
 
@@ -352,6 +352,12 @@ static&nbsp;save\<T\>(keyOrType:&nbsp;string&nbsp;|&nbsp;TypeConstructorWithArgs
 
 将指定的键值对数据持久化一次。
 
+> **说明：**
+>
+> 由于非[\@Trace](../../ui/state-management/arkts-new-observedV2-and-trace.md)的数据改变不会触发[PersistenceV2](../../ui/state-management/arkts-new-persistencev2.md)的自动持久化，当非\@Trace的数据发生变化且需要持久化时，可调用该接口持久化对应key的数据。
+>
+> 手动持久化当前内存中不处于connect状态的key是无意义的。
+
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
@@ -361,12 +367,6 @@ static&nbsp;save\<T\>(keyOrType:&nbsp;string&nbsp;|&nbsp;TypeConstructorWithArgs
 | 参数名   | 类型   | 必填 | 说明               |
 | -------- | ------ | ---- | ---------------------- |
 | keyOrType | string \| [TypeConstructorWithArgs\<T\>](#typeconstructorwithargst) | 是   | 需要持久化的key；如果指定的是type类型，持久化的key为type的name。 |
-
->**说明：**
->
->由于非[\@Trace](../../ui/state-management/arkts-new-observedV2-and-trace.md)的数据改变不会触发[PersistenceV2](../../ui/state-management/arkts-new-persistencev2.md)的自动持久化，当非\@Trace的数据发生变化且需要持久化时，可调用该接口持久化对应key的数据。
->
->手动持久化当前内存中不处于connect状态的key是无意义的。
 
 **示例：**
 
@@ -2354,6 +2354,14 @@ preRender(builder: WrappedBuilder\<[]\>, times: number): Promise\<void\>
 
 调用空闲任务以预创建可复用组件并在首次使用前将其放入复用池。
 
+> **说明：**
+>
+> 1. `preRender`仅将池配置为接受的组件放入池中。预渲染池不接受的组件会立即创建并销毁。
+>
+> 2. 预渲染期间不会从池中复用组件；池仅接受新创建的实例。
+>
+> 3. @Builder函数执行完整的深度渲染，包括嵌套的子组件。
+
 **起始版本：** 26.0.0
 
 **原子化服务API：** 从API版本26.0.0开始，该接口支持在原子化服务中使用。
@@ -2374,14 +2382,6 @@ preRender(builder: WrappedBuilder\<[]\>, times: number): Promise\<void\>
 | 类型 | 说明  |
 | --------------- | ------------------------------------------------------------------------------------------------------------------- |
 | Promise\<void\> | 当空闲任务成功完成时兑现的Promise。Promise对象无返回结果。当预渲染任务执行失败时，Promise会被拒绝。|
-
-> **说明：**
->
-> 1. `preRender`仅将池配置为接受的组件放入池中。预渲染池不接受的组件会立即创建并销毁。
->
-> 2. 预渲染期间不会从池中复用组件；池仅接受新创建的实例。
->
-> 3. @Builder函数执行完整的深度渲染，包括嵌套的子组件。
 
 **示例：**
 

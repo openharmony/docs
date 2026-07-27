@@ -1,4 +1,4 @@
-# 使用MindSpore Lite实现语音识别（C/C++）
+# 使用MindSpore Lite实现语音识别 (C/C++)
 
 <!--Kit: MindSpore Lite Kit-->
 <!--Subsystem: AI-->

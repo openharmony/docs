@@ -36,7 +36,7 @@ enterKioskMode(context: UIAbilityContext): Promise&lt;void&gt;
 
 | 参数名 | 类型 | 必填 | 说明 |
 |--------|------|------|------|
-| context | [UIAbilityContext](../apis-ability-kit/js-apis-inner-application-uiAbilityContext.md) | 是 | 需要进入kiosk模式的UIAbility的上下文。 |
+| context | [UIAbilityContext](../apis-ability-kit/js-apis-inner-application-uiAbilityContext.md) | 是 | 需要进入Kiosk模式的UIAbility的上下文。 |
 
 **返回值：**
 
@@ -104,7 +104,7 @@ exitKioskMode(context: UIAbilityContext): Promise&lt;void&gt;
 
 | 参数名 | 类型 | 必填 | 说明 |
 |--------|------|------|------|
-| context | [UIAbilityContext](../apis-ability-kit/js-apis-inner-application-uiAbilityContext.md) | 是 | 需要退出kiosk模式的UIAbility的上下文。 |
+| context | [UIAbilityContext](../apis-ability-kit/js-apis-inner-application-uiAbilityContext.md) | 是 | 需要退出Kiosk模式的UIAbility的上下文。 |
 
 **返回值：**
 

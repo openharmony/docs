@@ -6,7 +6,7 @@
 <!--Tester: @zhangyue283-->
 <!--Adviser: @ge-yafang-->
 
-本模块提供3D图形中群组模拟动画的类型及操作方法。群组模拟动画是通过分离、对齐、凝聚等规则驱动群体中的个体，使其展现出类似自然界中鸟群、鱼群运动特征的计算机动画方法。
+本模块提供ArkGraphics 3D中群组模拟动画的类型及操作方法。群组模拟动画是通过分离、对齐、凝聚等规则驱动群体中的个体，使其展现出类似自然界中鸟群、鱼群运动特征的计算机动画方法。
 
 > **说明：** 
 > - 本模块接口为系统接口。
@@ -36,9 +36,9 @@ import { BoidsSimPlugin, BoidsSimWorld, BoidsSimParameters,
 > **说明：**
 >
 > 模拟帧是指群组模拟中按固定时间步长执行的更新周期，类似Unity中的FixedUpdate。默认时间步长为16ms（约62.5FPS），模拟通过累积真实时间并按固定步长消耗来驱动。下文部分参数的默认值基于该时间步长计算：
-> - **maxVelocityMag**：0.01 / 0.016 ≈ 0.625（m/s）。
-> - **maxAccelerationMag**：maxVelocityMag / 0.016 ≈ 39.06（m/s²）。
-> - **maxTurnRate**：π × 0.75 × 0.016 ≈ 0.0377（rad/模拟帧）。
+> - **maxVelocityMag：** 0.01 / 0.016 ≈ 0.625（m/s）。
+> - **maxAccelerationMag：** maxVelocityMag / 0.016 ≈ 39.06（m/s²）。
+> - **maxTurnRate：** π × 0.75 × 0.016 ≈ 0.0377（rad/模拟帧）。
 
 | 名称 | 类型 | 只读 | 可选 | 说明 |
 | ---- | ---- | ---- | ---- | ---- |
@@ -58,8 +58,8 @@ import { BoidsSimPlugin, BoidsSimWorld, BoidsSimParameters,
 | cohesionDistance | number | 否 | 是 | 凝聚规则的感知半径，单位为m。在该距离内（含边界）的邻近个体对凝聚力有贡献。取值 >= 0。默认值为0.0。 |
 | boundaryWeight | number | 否 | 是 | 边界约束力权重。个体在boundaryDistance范围内被边界墙推回的强度。取值 >= 0。默认值为0.0。 |
 | boundaryDistance | number | 否 | 是 | 边界约束力生效距离，单位为m。个体距边界墙面在该距离内时受到排斥力。取值 >= 0。默认值为0.0。 |
-| gravityWeight | number | 否 | 是 | 引力场对该个体的吸引强度。取值 >= 0。默认值为0.0。 |
-| repulsionWeight | number | 否 | 是 | 斥力场对该个体的排斥强度。取值 >= 0。默认值为0.0。 |
+| gravityWeight | number | 否 | 是 | 引力场权重。引力场对该个体的吸引强度。取值 >= 0。默认值为0.0。 |
+| repulsionWeight | number | 否 | 是 | 斥力场权重。斥力场对该个体的排斥强度。取值 >= 0。默认值为0.0。 |
 
 ## BoidsSimGravityParameters
 
@@ -76,7 +76,7 @@ import { BoidsSimPlugin, BoidsSimWorld, BoidsSimParameters,
 | 名称 | 类型 | 只读 | 可选 | 说明 |
 | ---- | ---- | ---- | ---- | ---- |
 | radius | number | 否 | 是 | 引力场的作用半径。仅严格在该距离内的个体受到吸引（边界处力为0）。取值 >= 0。默认值为0.0。 |
-| accelerationMag | number | 否 | 是 | 施加于个体，其方向指向引力场实体的吸引加速度大小。取值 >= 0。默认值为0.0。 |
+| accelerationMag | number | 否 | 是 | 施加于个体的吸引加速度大小，其方向指向引力场实体。取值 >= 0。默认值为0.0。 |
 
 ## BoidsSimRepulsionParameters
 
@@ -93,7 +93,7 @@ import { BoidsSimPlugin, BoidsSimWorld, BoidsSimParameters,
 | 名称 | 类型 | 只读 | 可选 | 说明 |
 | ---- | ---- | ---- | ---- | ---- |
 | radius | number | 否 | 是 | 斥力场的作用半径。仅严格在该距离内的个体受到排斥（边界处力为0）。取值 >= 0。默认值为0.0。 |
-| accelerationMag | number | 否 | 是 | 施加于个体，其方向远离斥力场实体的排斥加速度大小。取值 >= 0。默认值为0.0。 |
+| accelerationMag | number | 否 | 是 | 施加于个体的排斥加速度大小，其方向远离斥力场实体。取值 >= 0。默认值为0.0。 |
 
 ## BoidsSimWorld
 
@@ -121,7 +121,7 @@ import { BoidsSimPlugin, BoidsSimWorld, BoidsSimParameters,
 
 play(): void
 
-开始或恢复群组模拟。
+开始或恢复群组模拟。当群组模拟处于停止状态时，调用此方法可以开始群组模拟；当群组模拟处于暂停状态时，调用此方法可以恢复群组模拟。
 
 **起始版本：** 26.0.0
 
@@ -432,7 +432,7 @@ getBoidsSimComponent(node: Node): BoidsSimParameters \| null
 
 **示例：**
 ```ts
-import { BoidsSimWorld, Node } from '@kit.ArkGraphics3D';
+import { BoidsSimParameters, BoidsSimWorld, Node } from '@kit.ArkGraphics3D';
 
 function queryBoidsSimComponent(world: BoidsSimWorld, node: Node): void {
   let params: BoidsSimParameters | null = world.getBoidsSimComponent(node);
@@ -468,7 +468,7 @@ getBoidsSimGravityComponent(node: Node): BoidsSimGravityParameters \| null
 
 **示例：**
 ```ts
-import { BoidsSimWorld, Node } from '@kit.ArkGraphics3D';
+import { BoidsSimGravityParameters, BoidsSimWorld, Node } from '@kit.ArkGraphics3D';
 
 function queryBoidsSimGravityComponent(world: BoidsSimWorld, node: Node): void {
   let params: BoidsSimGravityParameters | null = world.getBoidsSimGravityComponent(node);
@@ -504,7 +504,7 @@ getBoidsSimRepulsionComponent(node: Node): BoidsSimRepulsionParameters \| null
 
 **示例：**
 ```ts
-import { BoidsSimWorld, Node } from '@kit.ArkGraphics3D';
+import { BoidsSimRepulsionParameters, BoidsSimWorld, Node } from '@kit.ArkGraphics3D';
 
 function queryBoidsSimRepulsionComponent(world: BoidsSimWorld, node: Node): void {
   let params: BoidsSimRepulsionParameters | null = world.getBoidsSimRepulsionComponent(node);
@@ -627,7 +627,7 @@ static getDefaultBoidsSimWorld(scene: Scene): BoidsSimWorld \| null
 **参数：**
 | 参数名 | 类型 | 必填 | 说明 |
 | ---- | ---- | ---- | ---- |
-| scene | [Scene](js-apis-inner-scene.md) | 是 | 目标场景的对象。 |
+| scene | [Scene](js-apis-inner-scene.md#scene-1) | 是 | 目标场景的对象。 |
 
 **返回值：**
 | 类型 | 说明 |

@@ -1,4 +1,4 @@
-# 系统定义的公共事件(系统接口)
+# 系统定义的公共事件（系统接口）
 <!--Kit: Basic Services Kit-->
 <!--Subsystem: Notification-->
 <!--Owner: @HuYueRong-->
@@ -256,7 +256,7 @@
 
 删除系统账号将会触发事件通知服务发布该系统公共事件，事件携带系统账号ID。
 
-与这个公共事件相关的接口：removeOsAccount, 为系统API，具体参看[@ohos.account.osAccount](../js-apis-osAccount.md)。
+与这个公共事件相关的接口：removeOsAccount，为系统API，具体参看[@ohos.account.osAccount](../js-apis-osAccount.md)。
 
 **系统接口：** 此接口为系统接口。
 
@@ -273,7 +273,7 @@
 
 域账号认证、删除、令牌更新、令牌失效将会触发事件通知服务发布该系统公共事件，事件携带域账号名、域名、域账号状态等信息。
 
-与这个公共事件相关的接口：removeOsAccount、DomainAccountManager.auth、updateAccountToken, 这些为系统API，具体参看[@ohos.account.osAccount](../js-apis-osAccount.md)。
+与这个公共事件相关的接口：removeOsAccount、DomainAccountManager.auth、updateAccountToken，这些为系统API，具体参看[@ohos.account.osAccount](../js-apis-osAccount.md)。
 
 **系统接口：** 此接口为系统接口。
 
@@ -290,7 +290,7 @@
 
 切换系统账号将会触发事件通知服务发布该系统公共事件，事件携带系统账号ID。
 
-与这个公共事件相关的接口：activateOsAccount, 为系统API，具体参看[@ohos.account.osAccount](../js-apis-osAccount.md)。
+与这个公共事件相关的接口：activateOsAccount，为系统API，具体参看[@ohos.account.osAccount](../js-apis-osAccount.md)。
 
 **系统接口：** 此接口为系统接口。
 
@@ -807,7 +807,7 @@
 
 提示音频质量发生变化。
 
-在设备音频质量发送变化时，将会触发事件通知服务发布该系统公共事件。
+在设备音频质量发生变化时，将会触发事件通知服务发布该系统公共事件。
 
 **系统接口：** 此接口为系统接口。
 

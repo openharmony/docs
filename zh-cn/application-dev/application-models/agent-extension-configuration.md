@@ -35,7 +35,7 @@
 | iconUrl | Agent图标的URL，提供Agent的可视化标识图标，用于在UI界面中展示，增强Agent的辨识度和用户体验，最大长度为512字节。<br>**说明**：系统不校验该字段内容，使用方需自行验证iconUrl的合法性和安全性。 | 字符串 | 否 |
 | category | Agent的类别，用于对Agent进行分类管理，常见的类别包括：“productivity”（生产力）、“entertainment”（娱乐）、“education”（教育）、“finance”（金融）、“health”（健康）等，最大长度为64字节。 | 字符串 | 否 |
 | type | Agent卡片的类型。支持数值枚举和字符串枚举名称：<br>- 0：表示应用型，取值也可采用APP。<br>- 1：表示原子化服务型，取值也可采用ATOMIC_SERVICE。<!--Del--><br>- 2：表示低代码型，取值也可采用LOW_CODE。该字段仅适用于系统应用。<!--DelEnd--> <br>如果未指定，默认为APP类型。<br>**说明**：从API版本26.0.0开始支持。 | 整数或字符串 | 可缺省，缺省为0（APP）。 |
-| extension | Agent的扩展配置项，用于存储自定义的扩展配置信息，如Agent开场白、版本协议号等，格式为JSON字符串，最大长度为5120字节。 | 字符串 | 可缺省，缺省为空。 |
+| extension | Agent的扩展配置项，用于存储自定义的扩展配置信息，如Agent开场白、版本协议号等，格式为JSON字符串，最大长度为5120字节。 | 字符串 | 否 |
 | [appInfo](#appinfo标签) | Agent所在的应用信息，包含Agent设备类型和可运行的最低版本号，用于定位和管理AgentExtensionAbility实例。 | 对象 | 可缺省，缺省值见[appInfo](#appinfo标签)。 |
 
 ### provider标签
@@ -57,7 +57,7 @@
 | pushNotifications | Agent是否支持为异步任务更新发送推送通知。<br>true：表示支持，当长时间运行的任务状态发生变化时（如任务完成、失败或进度更新），Agent可以主动推送通知给客户端。<br>false：表示不支持，客户端需要轮询查询任务状态。 | 布尔值 | 可缺省，缺省为false。 |
 | stateTransitionHistory | Agent是否支持查看任务状态变化历史。<br>true：表示支持，客户端可以查询任务从创建到完成的完整状态转换记录（如pending->running->completed）。<br>false：表示不支持状态历史查询。 | 布尔值 | 可缺省，缺省为false。 |
 | extendedAgentCard | Agent是否支持在认证时提供扩展的AgentCard。<br>true：表示支持，客户端在通过认证后可以获取包含额外信息（如私有配置、高级能力）的扩展AgentCard。<br>false：表示仅提供基础AgentCard。 | 布尔值 | 可缺省，缺省为false。 |
-| extension | Agent支持的协议扩展，用于存储自定义的扩展能力配置，格式为JSON字符串，可以包含协议级别的扩展参数和自定义字段，由开发者和Agent使用方约定，最大长度为2048字节。 | 字符串 | 可缺省，缺省为空。 |
+| extension | Agent支持的协议扩展，用于存储自定义的扩展能力配置，格式为JSON字符串，可以包含协议级别的扩展参数和自定义字段，由开发者和Agent使用方约定，最大长度为2048字节。 | 字符串 | 否 |
 
 ### skills标签
 
@@ -72,7 +72,7 @@
 | examples | skill可以处理的示例提示或使用场景，提供具体的示例可以帮助用户理解如何使用该技能，例如["规划从上海到北京的路线"]，单个元素的最大长度为256字节。 | 字符串数组 | 可缺省，缺省为空。 |
 | inputModes | skill支持的输入模式，使用MIME类型格式定义，例如["text/plain"]。如果未设置，将使用AgentCard级别的defaultInputModes，该字段允许为特定技能自定义输入类型，覆盖默认设置，数组的每一个元素的最大长度为32字节。 | 字符串数组 | 可缺省，缺省为空。 |
 | outputModes | skill支持的输出模式，使用MIME类型格式定义，例如["text/plain", "application/html", "video/mp4"]。如果未设置，将使用AgentCard级别的defaultOutputModes，该字段允许为特定技能自定义输出类型，覆盖默认设置，数组的每一个元素的最大长度为32字节。 | 字符串数组 | 可缺省，缺省为空。 |
-| extension | skill的扩展配置项，用于存储自定义扩展配置，格式为JSON字符串，可以包含技能特有的参数和配置信息，最大长度为1024字节。 | 字符串 | 可缺省，缺省为空。 |
+| extension | skill的扩展配置项，用于存储自定义扩展配置，格式为JSON字符串，可以包含技能特有的参数和配置信息，最大长度为1024字节。 | 字符串 | 否 |
 
 ### appInfo标签
 
@@ -120,7 +120,7 @@
           ],
           "inputModes": ["text/plain"],
           "outputModes": ["text/plain", "application/json"],
-          "extension": ""
+          "extension": "custom_protocol_v1"
         },
         {
           "id": "weather_forecast",
@@ -139,7 +139,7 @@
       "category": "生活服务",
       "type": "APP", // 字符串枚举类型
       // "type": "0", // 数值枚举类型
-      "extension": "",
+      "extension": "custom_protocol_v1",
       "appInfo": {
         "deviceTypes": ["phone", "tablet"],
         "minAppVersion": "1.0.0"

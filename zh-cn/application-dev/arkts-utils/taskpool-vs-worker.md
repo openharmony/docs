@@ -1,4 +1,4 @@
-# TaskPool和Worker的对比 (TaskPool和Worker)
+# TaskPool和Worker的对比
 <!--Kit: ArkTS-->
 <!--Subsystem: CommonLibrary-->
 <!--Owner: @wang_zhaoyong-->

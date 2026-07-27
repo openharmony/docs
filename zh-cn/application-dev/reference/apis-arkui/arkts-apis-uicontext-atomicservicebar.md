@@ -172,7 +172,7 @@ export default class EntryAbility extends UIAbility {
 
 setTitleFontStyle(font: FontStyle): void
 
-通过该方法设置原子化服务menuBar的字体样式。
+通过该方法设置原子化服务menuBar标题的字体样式。
 
 > **说明：**
 >
@@ -186,7 +186,7 @@ setTitleFontStyle(font: FontStyle): void
 
 | 参数名 | 类型 | 必填 | 说明 |
 | ------ | ------ | ------ | ------ |
-| font | [FontStyle](arkui-ts/ts-appendix-enums.md#fontstyle) | 是 | 原子化服务menuBar中的字体样式。 |
+| font | [FontStyle](arkui-ts/ts-appendix-enums.md#fontstyle) | 是 | 原子化服务menuBar标题中的字体样式。从API version 12开始，在原子化服务中该参数将被忽略。 |
 
 **示例：**
 

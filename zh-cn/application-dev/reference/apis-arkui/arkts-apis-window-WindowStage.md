@@ -974,7 +974,7 @@ export struct Index {
 
 releaseUIContent(): Promise&lt;void&gt;
 
-销毁WindowStage的主窗页面内容，使用Promise异步回调。<br>如果应用在前台时调用该接口，页面内容不会立即销毁，会等到应用退后台后再销毁。在主窗没有加载页面内容时调用该接口不生效不报错。
+销毁WindowStage的主窗口页面内容，使用Promise异步回调。<br>如果应用在前台时调用该接口，页面内容不会立即销毁，会等到应用退后台后再销毁。在主窗口没有加载页面内容时调用该接口不生效不报错。
 
 **模型约束：** 此接口仅可在Stage模型下使用。
 
@@ -1035,7 +1035,7 @@ export default class EntryAbility extends UIAbility {
 
 on(eventType: 'windowStageEvent', callback: Callback&lt;WindowStageEventType&gt;): void
 
-开启WindowStage生命周期变化的监听。
+开启WindowStage生命周期变化的监听。对于状态间的顺序有要求的情况下，推荐使用[on('windowStageLifecycleEvent')](#onwindowstagelifecycleevent20)接口。
 
 **模型约束：** 此接口仅可在Stage模型下使用。
 
@@ -1104,7 +1104,7 @@ off(eventType: 'windowStageEvent', callback?: Callback&lt;WindowStageEventType&g
 | 参数名   | 类型                                                         | 必填 | 说明                                                         |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | eventType  | string                                                       | 是   | 监听事件，固定为'windowStageEvent'，即WindowStage生命周期变化事件。 |
-| callback | Callback&lt;[WindowStageEventType](arkts-apis-window-e.md#windowstageeventtype9)&gt; | 否   | 回调函数。返回当前的WindowStage生命周期状态。若传入参数，则关闭该监听。若未传入参数，则关闭所有WindowStage生命周期变化的监听。                |
+| callback | Callback&lt;[WindowStageEventType](arkts-apis-window-e.md#windowstageeventtype9)&gt; | 否   | 回调函数，用于指定要注销的监听。若传入参数，则关闭该监听。若未传入参数，则关闭该WindowStage所有生命周期变化的监听。                |
 
 **错误码：**
 
@@ -1245,7 +1245,7 @@ off(eventType: 'windowStageLifecycleEvent', callback?: Callback&lt;WindowStageLi
 | 参数名   | 类型                                                         | 必填 | 说明                                                         |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | eventType  | string                                                       | 是   | 监听事件，固定为'windowStageLifecycleEvent'，即WindowStage生命周期变化事件。 |
-| callback | Callback&lt;[WindowStageLifecycleEventType](arkts-apis-window-e.md#windowstagelifecycleeventtype20)&gt; | 否   | 回调函数。返回当前的WindowStage生命周期状态。若传入参数，则关闭该监听。若未传入参数，则关闭所有WindowStage生命周期变化的监听。                |
+| callback | Callback&lt;[WindowStageLifecycleEventType](arkts-apis-window-e.md#windowstagelifecycleeventtype20)&gt; | 否   | 回调函数，用于指定要注销的监听。若传入参数，则关闭该监听。若未传入参数，则关闭该WindowStage所有生命周期变化的监听。                |
 
 **错误码：**
 
@@ -1376,7 +1376,7 @@ off(eventType: 'windowStageClose', callback?: Callback&lt;void&gt;): void
 | 参数名   | 类型                                                         | 必填 | 说明                                                         |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | eventType  | string                                                       | 是   | 监听事件，固定为'windowStageClose'，即关闭主窗口关闭事件的监听。 |
-| callback | Callback&lt;void&gt; | 否   | 回调函数。当点击主窗口右上角关闭按钮事件发生时的回调。该回调函数不返回任何参数。回调函数内部逻辑需要有boolean类型的返回值，该返回值决定当前主窗是否继续关闭，true表示不关闭，false表示关闭。如果传入参数，则关闭该监听。如果未传入参数，则关闭所有主窗口关闭的监听。 |
+| callback | Callback&lt;void&gt; | 否   | 回调函数，用于指定要注销的监听。如果传入参数，则关闭该监听。如果未传入参数，则关闭主窗口所有关闭事件的监听。 |
 
 **错误码：**
 

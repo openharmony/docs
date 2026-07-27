@@ -1,4 +1,4 @@
-# SceneResource
+# SceneResources
 <!--Kit: ArkGraphics 3D-->
 <!--Subsystem: Graphics-->
 <!--Owner: @zzhao0-->
@@ -6,7 +6,7 @@
 <!--Tester: @zhangyue283-->
 <!--Adviser: @ge-yafang-->
 
-本模块提供3D图形中常用的基本资源类型，包括着色器、材质、网格、动画、环境或图片等用于构建3D场景的各类资源。
+本模块提供ArkGraphics 3D中常用的基本资源类型，包括着色器、材质、网格、动画、环境或图片等用于构建3D场景的各类资源。
 
 > **说明：**
 >
@@ -87,7 +87,7 @@ function destroy(): void {
 
 ## Shader
 
-着色器，继承自[SceneResource](#sceneresource-1)。
+着色器，继承自[SceneResource](#sceneresource)。
 
 ### 属性
 
@@ -103,7 +103,7 @@ setShaderInputs(inputs: Record<string, number \| Vec2 \| Vec3 \| Vec4 \| Image>)
 
 设置[Shader](#shader)的输入，该接口性能优于直接设置inputs属性。
 
-**模型约束**： 此接口仅可在Stage模型下使用。
+**模型约束：**  此接口仅可在Stage模型下使用。
 
 **系统能力：** SystemCapability.ArkUi.Graphics3D
 
@@ -111,7 +111,7 @@ setShaderInputs(inputs: Record<string, number \| Vec2 \| Vec3 \| Vec4 \| Image>)
 
 | 参数名 | 类型 | 必填 | 说明 |
 | ---- | ---- | ---- | ---- |
-| inputs | Record<string, number \| [Vec2](js-apis-inner-scene-types.md#vec2) \| [Vec3](js-apis-inner-scene-types.md#vec3) \| [Vec4](js-apis-inner-scene-types.md#vec4) \| Image> | 是 | 一个字符串到值的映射，用于设置shader输入。 |
+| inputs | Record<string, number \| [Vec2](js-apis-inner-scene-types.md#vec2) \| [Vec3](js-apis-inner-scene-types.md#vec3) \| [Vec4](js-apis-inner-scene-types.md#vec4) \| Image> | 是 | 一个字符串到值的映射，用于设置着色器输入。 |
 
 **示例：**
 
@@ -139,7 +139,7 @@ function setinputs(): void {
       if (!image) {
         return;
       }
-      // 绑定shader到纹理上
+      // 设置材质的着色器
       material.colorShader = shader;
       // 设置shader输入
       material.colorShader.setShaderInputs({
@@ -212,7 +212,7 @@ function setinputs(): void {
 
 ## Material
 
-材质类型，继承自[SceneResource](#sceneresource-1)。
+材质类型，继承自[SceneResource](#sceneresource)。
 
 **系统能力：** SystemCapability.ArkUi.Graphics3D
 
@@ -221,7 +221,7 @@ function setinputs(): void {
 | materialType | [MaterialType](#materialtype) | 是 | 否 | 材质类型。 |
 | shadowReceiver<sup>20+</sup> | boolean | 否 | 是 | 材质是否接收阴影。true表示该材质接收阴影，false表示不接收，默认值为false。 |
 | cullMode<sup>20+</sup> | [CullMode](#cullmode20) | 否 | 是 | 当前材质的剔除模式设置，用于控制是否剔除背面几何面片，默认值为BACK。 |
-| blend<sup>20+</sup> | [Blend](#blend20) | 否 | 是 | 材质是否透明，默认值为false。|
+| blend<sup>20+</sup> | [Blend](#blend20) | 否 | 是 | 材质的透明效果设置，默认值为undefined。|
 | alphaCutoff<sup>20+</sup> | number | 否 | 是 | 透明通道阈值，如果像素的alpha值等于或高于此阈值，则渲染该像素；如果低于此阈值，则不会渲染该像素。设置值小于1时，则开启该模式，取值范围为[0, 1]，默认值为1。 |
 | renderSort<sup>20+</sup> | [RenderSort](#rendersort20) | 否 | 是 | 渲染排序设置，用于控制材质在渲染管线中的渲染顺序，渲染图层id默认值为32，同一图层内的渲染顺序默认值为0。 |
 | polygonMode<sup>23+</sup> | [PolygonMode](#polygonmode23) | 否 | 是 | 模型的多边形绘制模式，默认值为FILL。|
@@ -251,7 +251,7 @@ function setinputs(): void {
 | material | [MaterialProperty](#materialproperty20) | 否 | 否 | 金属材质参数。<br>粗糙度（Roughness）：表达材质因其表面细微的结构细节所导致的反光强弱程度。<br>金属度（Metallic）：表达材质的金属属性。<br>反射度（Reflectance）：材质的光反射率。|
 | ambientOcclusion | [MaterialProperty](#materialproperty20) | 否 | 否 | 环境光遮蔽贴图，用于模拟环境光在物体凹陷或细节部分的遮挡效果，增强局部阴影表现，提高细节真实感。|
 | emissive | [MaterialProperty](#materialproperty20) | 否 | 否 | 自发光颜色，表达材质自身作为光源向外发光的颜色信息。|
-| clearCoat | [MaterialProperty](#materialproperty20) | 否 | 否 | 透明图层，类似于车漆、碳纤、被水打湿的表面的材质需要在面上再增加一个透明的、具有一定反光特性的面。|
+| clearCoat | [MaterialProperty](#materialproperty20) | 否 | 否 | 透明图层，用于在材质表面叠加一层具有反光特性的透明图层，可模拟车漆、碳纤、被水打湿的表面等材质的光泽表现。|
 | clearCoatRoughness | [MaterialProperty](#materialproperty20) | 否 | 否 | 透明图层粗糙度。|
 | clearCoatNormal | [MaterialProperty](#materialproperty20) | 否 | 否 | 透明图层法线贴图。|
 | sheen | [MaterialProperty](#materialproperty20) | 否 | 否 | 微纤维漫反射材质光泽，可用于表示布料和织物材料。|
@@ -330,7 +330,7 @@ function setinputs(): void {
 | ---- | ---- | ---- | ---- | ---- |
 | name | string | 否 | 否 | 名称，没有特殊格式要求。 |
 | material | [Material](#material) | 否 | 否 | 材质。 |
-| aabb | [Aabb](js-apis-inner-scene-types.md#aabb) | 是 | 否 | 轴对齐边界盒。 |
+| aabb | [Aabb](js-apis-inner-scene-types.md#aabb) | 是 | 否 | 轴对齐包围盒。 |
 
 ## Morpher<sup>20+</sup>
 
@@ -344,7 +344,7 @@ function setinputs(): void {
 
 ## Mesh
 
-网格类型，继承自[SceneResource](#sceneresource-1)。
+网格类型，继承自[SceneResource](#sceneresource)。
 
 **系统能力：** SystemCapability.ArkUi.Graphics3D
 
@@ -356,13 +356,13 @@ function setinputs(): void {
 
 ## MeshResource<sup>18+</sup>
 
-网格资源，继承自[SceneResource](#sceneresource-1)。
+网格资源，继承自[SceneResource](#sceneresource)。
 
 **系统能力：** SystemCapability.ArkUi.Graphics3D
 
 ## Animation
 
-动画类型，继承自[SceneResource](#sceneresource-1)。
+动画类型，继承自[SceneResource](#sceneresource)。
 
 ### 属性
 
@@ -370,7 +370,7 @@ function setinputs(): void {
 
 | 名称 | 类型 | 只读 | 可选 | 说明 |
 | ---- | ---- | ---- | ---- | ---- |
-| enabled | boolean | 否 | 否 | 动画是否使能。true表示可以播放动画，false表示不可以播放动画。 |
+| enabled | boolean | 否 | 否 | 动画是否启用。true表示可以播放动画，false表示不可以播放动画。 |
 | speed<sup>20+</sup> | number | 否 | 是 | 动画的播放速度因子。默认值为1.0，表示正常速度播放。如果设置为负值，动画将以反向速度播放。 |
 | duration | number | 是 | 否 | 动画持续时间，单位为秒（s），取值范围大于等于0。 |
 | running | boolean | 是 | 否 | 动画运行状态。true表示动画正在播放，false表示动画停止播放。 |
@@ -500,7 +500,7 @@ function restart(): void {
 
 seek(position: number): void
 
-从指定位置开始播放动画。
+将动画进度跳转到指定位置，不改变动画的播放状态（已播放仍继续播放，已暂停仍暂停）。
 
 **系统能力：** SystemCapability.ArkUi.Graphics3D
 
@@ -558,7 +558,7 @@ function start(): void {
 
 stop(): void
 
-停止播放一个动画，并将动画的进度设置到未开始状态。
+停止播放一个动画，并将动画的进度设置为0。
 
 **系统能力：** SystemCapability.ArkUi.Graphics3D
 
@@ -573,7 +573,7 @@ function stop(): void {
   scene.then(async (result: Scene) => {
     if (result && result.animations && result.animations[0]) {
       let anim: Animation = result.animations[0];
-      // 停止播放动画，并将动画的进度设置到未开始状态
+      // 停止播放动画，并将动画的进度设置为0
       anim.stop();
     }
   });
@@ -584,7 +584,7 @@ function stop(): void {
 
 finish(): void
 
-直接跳转到动画的最后，并将动画的进度设置到已结束状态。
+直接跳转到动画的最后，并将动画的进度设置为1。
 
 **系统能力：** SystemCapability.ArkUi.Graphics3D
 
@@ -599,7 +599,7 @@ function finish(): void {
   scene.then(async (result: Scene) => {
     if (result && result.animations && result.animations[0]) {
       let anim: Animation = result.animations[0];
-      // 直接跳转到动画的最后，并将动画的进度设置到已结束状态。
+      // 直接跳转到动画的最后，并将动画的进度设置为1。
       anim.finish();
     }
   });
@@ -621,7 +621,7 @@ function finish(): void {
 
 ## Environment
 
-环境类型，继承自[SceneResource](#sceneresource-1)。
+环境类型，继承自[SceneResource](#sceneresource)。
 
 **系统能力：** SystemCapability.ArkUi.Graphics3D
 
@@ -638,7 +638,7 @@ function finish(): void {
 
 ## Image
 
-图片类型，继承自[SceneResource](#sceneresource-1)。
+图片类型，继承自[SceneResource](#sceneresource)。
 
 **系统能力：** SystemCapability.ArkUi.Graphics3D
 
@@ -650,9 +650,9 @@ function finish(): void {
 ## ImageStream
 流图片类型，继承自[Image](#image)。
 
-**起始版本**：26.0.0
+**起始版本：** 26.0.0
 
-**模型约束**：此接口仅可在Stage模型下使用。
+**模型约束：** 此接口仅可在Stage模型下使用。
 
 **系统能力：** SystemCapability.ArkUi.Graphics3D
 
@@ -662,7 +662,7 @@ function finish(): void {
 
 ## Effect<sup>21+</sup>
 
-特效类型，继承自[SceneResource](#sceneresource-1)。由[createEffect](js-apis-inner-scene.md#createeffect21)接口获得。
+特效类型，继承自[SceneResource](#sceneresource)。由[createEffect](js-apis-inner-scene.md#createeffect21)接口获得。
 
 ### 属性
 

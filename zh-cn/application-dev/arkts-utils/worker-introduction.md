@@ -121,13 +121,13 @@ const workerInstance4: worker.ThreadWorker = new worker.ThreadWorker('../../work
 >
 >* Worker线程文件的路径后缀（.ets/.ts）可以省略。
 >
->* 跨源码HSP/HAR的场景下，需在创建Worker的模块包对应的oh-package.json5文件中，配置所需HSP/HAR包的依赖项，详见[引用共享包](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides/ide-har-import)。
+>* 跨工程HSP/HAR的场景下，需在创建Worker的模块包对应的oh-package.json5文件中，配置所需HSP/HAR包的依赖项，详见[引用共享包](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides/ide-har-import)。
 >
 >* 当feature模块需加载其他模块的Worker线程文件时，应先完成对feature模块的调用。
 >
 >* 当开启useNormalizedOHMUrl（在工程目录中与entry同级别的应用级build-profile.json5文件中，将strictMode属性下的useNormalizedOHMUrl字段配置为true）或HAR包被打包成三方包使用时，HAR包中使用Worker仅支持通过相对路径的加载形式创建。
 
-| -    | entry     | feature                 | 应用内hsp                  | 跨工程hsp | 源码har                   | 三方har                                    |
+| 加载方\被加载方    | entry     | feature                 | 应用内hsp                  | 跨工程hsp | 源码har                   | 三方har                                    |
 |:------- | --------- | ----------------------- | ----------------------- | ------ | ----------------------- | ---------------------------------------- |
 | entry   | 支持（写法一、三） | 支持（写法一）                 | 支持（写法一）                 | 不支持    | 支持（写法二）                 | 不支持                                      |
 | feature | 不支持       | 跨包支持（写法一），包内场景支持（写法一、三） | 支持（写法一）                 | 不支持    | 支持（写法二）                 | 不支持                                      |
@@ -175,7 +175,7 @@ const workerInstance4: worker.ThreadWorker = new worker.ThreadWorker('../../work
    }
    ```
 
-4. 在entry模块中加载HAR包中的Worker线程文件。
+4. 在entry模块中加载HAR包中的Worker线程文件。注：该用例中用的worker.ets文件首字母为小写，实际创建的Worker文件默认为大写。
 
    <!-- @[load_har_worker](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/ArkTsConcurrent/MultithreadedConcurrency/WorkerIntroduction/entry/src/main/ets/managers/crosshar.ets) -->
    
@@ -238,7 +238,7 @@ const workerFA3: worker.ThreadWorker = new worker.ThreadWorker('ThreadFile/worke
 
 ## 生命周期注意事项
 
-- Worker创建后需要手动管理生命周期。Worker的创建和销毁会消耗较多的系统资源，建议开发者合理管理并重复使用已创建的Worker。Worker空闲时仍会占用资源，当不需要Worker时，可以调用[terminate()](../reference/apis-arkts/js-apis-worker.md#terminate9)接口或[close()](../reference/apis-arkts/js-apis-worker.md#close9)方法主动销毁Worker。需要注意的是，调用完terminate()接口或close()方法后，Worker线程的退出是异步的。若开发者注册[onexit()](https://developer.huawei.com/consumer/cn/doc/harmonyos-references/js-apis-worker#threadworker9)，则线程真正退出的时机是在onexit()回调完成之后。若Worker处于已销毁或正在销毁等非运行状态时，调用其功能接口，会抛出相应的错误。
+- Worker创建后需要手动管理生命周期。Worker的创建和销毁会消耗较多的系统资源，建议开发者合理管理并重复使用已创建的Worker。Worker空闲时仍会占用资源，当不需要Worker时，可以调用[terminate()](../reference/apis-arkts/js-apis-worker.md#terminate9)方法或[close()](../reference/apis-arkts/js-apis-worker.md#close9)方法主动销毁Worker。需要注意的是，调用完terminate()方法或close()方法后，Worker线程的退出是异步的。若开发者注册onexit()，则线程真正退出的时机是在onexit()回调完成之后。若Worker处于已销毁或正在销毁等非运行状态时，调用其功能接口，会抛出相应的错误。
 
 
 - Worker的数量由内存管理策略决定，设定的内存阈值为1.5GB和设备物理内存的60%中的较小值。在内存允许的情况下，系统最多可以同时运行64个Worker，并且与[napi_create_ark_runtime](../reference/native-lib/napi.md#napi_create_ark_runtime)创建的runtime总数不超过80。尝试创建的Worker数量超出上限时，系统将抛出错误：“Worker initialization failure, the number of workers exceeds the maximum.”。实际运行的Worker数量会根据当前内存使用情况实时调整。当所有Worker和主线程的累积内存占用超过设定的阈值时，系统将触发内存溢出（OOM）错误，导致应用程序崩溃。
@@ -249,7 +249,7 @@ const workerFA3: worker.ThreadWorker = new worker.ThreadWorker('ThreadFile/worke
 - 单次序列化传输的数据量大小限制为16MB。
 - 不支持在Worker工作线程中使用[AppStorage](../ui/state-management/arkts-appstorage.md)。
 - 在Worker文件中禁止使用export语法导出任何内容，否则会导致jscrash问题。
-- 应用挂起后，该应用的Worker线程会[暂停运行](../task-management/background-task-overview.md)。
+- 应用挂起切换到[后台](../task-management/background-task-overview.md)后，该应用的Worker线程会暂停运行。
 - 除上述注意事项外，使用Worker时还需注意[并发注意事项](multi-thread-concurrency-overview.md#并发注意事项)。
 
 ## Worker基本用法示例
@@ -447,6 +447,8 @@ workerPort.onmessage = (e: MessageEvents) => {
 
 不建议在父Worker销毁后，子Worker继续向父Worker发送消息。因为父Worker已被销毁，消息无法被正确处理。
 
+反例1
+
 <!-- @[not_recommended_example](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/ArkTsConcurrent/MultithreadedConcurrency/WorkerIntroduction/entry/src/main/ets/managers/notrecommendedone.ets) -->
 
 ``` TypeScript
@@ -473,6 +475,9 @@ parentWorker.onAllErrors = (err: ErrorEvent) => {
 // 向父Worker发送启动消息，用于触发其onmessage中的处理逻辑
 parentWorker.postMessage('宿主线程发送消息给父Worker');
 ```
+
+反例2
+
 <!-- @[not_recommended_example](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/ArkTsConcurrent/MultithreadedConcurrency/WorkerIntroduction/testworkers/src/main/ets/workers/ParentWorker.ets) -->
 
 ``` TypeScript

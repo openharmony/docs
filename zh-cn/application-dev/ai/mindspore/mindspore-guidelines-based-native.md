@@ -1,4 +1,4 @@
-# 使用MindSpore Lite实现图像分类（C/C++）
+# 使用MindSpore Lite实现图像分类 (C/C++)
 
 <!--Kit: MindSpore Lite Kit-->
 <!--Subsystem: AI-->

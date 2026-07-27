@@ -195,7 +195,7 @@ addPermissionUsedRecord(tokenID: number, permissionName: Permissions, successCou
 | 12100001 | Invalid parameter. The tokenID is 0, the permissionName exceeds 256 characters, the count value is invalid, usedType in [AddPermissionUsedRecordOptions](#addpermissionusedrecordoptions12) is invalid, or the enhancedIdentity in [AddPermissionUsedRecordOptions](#addpermissionusedrecordoptions12) exceeds 48 characters. |
 | 12100002 | The specified tokenID does not exist or refer to an application process. |
 | 12100003 | The specified permission does not exist or is not a user_grant permission. |
-| 12100007 | The service is abnormal. |
+| 12100007 | Service exception. |
 | 12100008 | Out of memory. |
 | 12100009 | Common inner error. A database error occurs. |
 
@@ -262,7 +262,7 @@ addPermissionUsedRecord(tokenID: number, permissionName: Permissions, successCou
 | 12100001 | Invalid parameter. The tokenID is 0, the permissionName exceeds 256 characters, or the count value is invalid. |
 | 12100002 | The specified tokenID does not exist or refer to an application process. |
 | 12100003 | The specified permission does not exist or is not a user_grant permission. |
-| 12100007 | The service is abnormal. |
+| 12100007 | Service exception. |
 | 12100008 | Out of memory. |
 | 12100009 | Common inner error. A database error occurs. |
 
@@ -317,7 +317,7 @@ getPermissionUsedRecord(request: PermissionUsedRequest): Promise&lt;PermissionUs
 | 202 | Not system app. Interface caller is not a system app. |
 | 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
 | 12100001 | Invalid parameter. The value of flag, begin, or end in request is invalid. |
-| 12100007 | The service is abnormal. |
+| 12100007 | Service exception. |
 
 **示例：**
 
@@ -373,7 +373,7 @@ getPermissionUsedRecord(request: PermissionUsedRequest, callback: AsyncCallback&
 | 202 | Not system app. Interface caller is not a system app. |
 | 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
 | 12100001 | Invalid parameter. The value of flag, begin, or end in request is invalid. |
-| 12100007 | The service is abnormal. |
+| 12100007 | Service exception. |
 
 **示例：**
 
@@ -437,7 +437,7 @@ status为true时，[addPermissionUsedRecord](#privacymanageraddpermissionusedrec
 | 201 | Permission denied. Interface caller does not have permission "ohos.permission.PERMISSION_RECORD_TOGGLE". |
 | 202 | Not system app. Interface caller is not a system app. |
 | 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
-| 12100007 | The service is abnormal. |
+| 12100007 | Service exception. |
 | 12100009 | Common inner error. Possible causes: 1. A database error occurs; 2. Failed to query applications under the user. |
 
 **示例：**
@@ -480,7 +480,7 @@ getPermissionUsedRecordToggleStatus(): Promise&lt;boolean&gt;
 | -------- | -------- |
 | 201 | Permission denied. Interface caller does not have permission "ohos.permission.PERMISSION_USED_STATS". |
 | 202 | Not system app. Interface caller is not a system app. |
-| 12100007 | The service is abnormal. |
+| 12100007 | Service exception. |
 
 **示例：**
 
@@ -541,7 +541,7 @@ startUsingPermission(tokenID: number, permissionName: Permissions): Promise&lt;v
 | 12100002 | (Deprecated in 12) The specified tokenID does not exist or refer to an application process. |
 | 12100003 | The specified permission does not exist or is not a user_grant permission. |
 | 12100004 | The API is used repeatedly with the same input. It means the application specified by the tokenID has been using the specified permission. |
-| 12100007 | The service is abnormal. |
+| 12100007 | Service exception. |
 | 12100008 | Out of memory. |
 
 **示例：**
@@ -600,7 +600,7 @@ startUsingPermission(tokenID: number, permissionName: Permissions, pid?: number,
 | 12100001 | Invalid parameter. The tokenID is 0, the permissionName exceeds 256 characters, the type of the specified tokenID is not of the application type, or usedType is invalid. |
 | 12100003 | The specified permission does not exist or is not a user_grant permission. |
 | 12100004 | The API is used repeatedly with the same input. It means the application specified by the tokenID has been using the specified permission. |
-| 12100007 | The service is abnormal. |
+| 12100007 | Service exception. |
 | 12100008 | Out of memory. |
 
 **示例：**
@@ -687,7 +687,7 @@ startUsingPermission(tokenID: number, permissionName: Permissions, pid?: number,
 | 12100001 | Invalid parameter. The tokenID is 0, the permissionName exceeds 256 characters, the type of the specified tokenID is not of the application type, usedType is invalid, or the enhancedIdentity in PermissionUsingOptions exceeds 48 characters. |
 | 12100003 | The specified permission does not exist or is not a user_grant permission. |
 | 12100004 | The API is used repeatedly with the same input. It means the application specified by the tokenID has been using the specified permission. |
-| 12100007 | The service is abnormal. |
+| 12100007 | Service exception. |
 | 12100008 | Out of memory. |
 
 **示例：**
@@ -768,7 +768,7 @@ startUsingPermission(tokenID: number, permissionName: Permissions, callback: Asy
 | 12100002 | (Deprecated in 12) The specified tokenID does not exist or refer to an application process. |
 | 12100003 | The specified permission does not exist or is not a user_grant permission. |
 | 12100004 | The API is used repeatedly with the same input. It means the application specified by the tokenID has been using the specified permission. |
-| 12100007 | The service is abnormal. |
+| 12100007 | Service exception. |
 | 12100008 | Out of memory. |
 
 **示例：**
@@ -827,7 +827,7 @@ stopUsingPermission(tokenID: number, permissionName: Permissions): Promise&lt;vo
 | 12100001 | Invalid parameter. The tokenID is 0, the permissionName exceeds 256 characters, or the type of the specified tokenID is not of the application type. |
 | 12100003 | The specified permission does not exist or is not a user_grant permission. |
 | 12100004 | The API is not used in pair with 'startUsingPermission'. |
-| 12100007 | The service is abnormal. |
+| 12100007 | Service exception. |
 | 12100008 | Out of memory. |
 
 **示例：**
@@ -865,7 +865,7 @@ pid需要与[startUsingPermission](#privacymanagerstartusingpermission18)传入�
 | -------------- | ------ | ---- | ------------------------------------ |
 | tokenID        | number | 是   | 目标应用的身份标识。可通过应用[BundleInfo](js-apis-bundleManager-bundleInfo.md)中的[ApplicationInfo](js-apis-bundleManager-applicationInfo.md#applicationinfo-1)的accessTokenId字段获取。该参数必须为大于0的整数，传入0时返回错误码12100001。|
 | permissionName | [Permissions](../../security/AccessToken/app-permissions.md) | 是   | 需要停止使用的权限名称。权限名长度不能超过256个字符，传入无效值时返回错误码12100001。|
-| pid            | number | 否   | 与[startUsingPermission](#privacymanagerstartusingpermission18)传入的pid相同。不满足配套关系可能导致API调用失败(错误码12100004)。<br>默认值：-1，表示不根据进程生命周期响应。|
+| pid            | number | 否   | 与[startUsingPermission](#privacymanagerstartusingpermission18)传入的pid相同。不满足配套关系可能导致API调用失败（错误码12100004）。<br>默认值：-1，表示不根据进程生命周期响应。|
 
 **返回值：**
 
@@ -885,7 +885,7 @@ pid需要与[startUsingPermission](#privacymanagerstartusingpermission18)传入�
 | 12100001 | Invalid parameter. The tokenID is 0, the permissionName exceeds 256 characters, or the type of the specified tokenID is not of the application type. |
 | 12100003 | The specified permission does not exist or is not a user_grant permission. |
 | 12100004 | The API is not used in pair with 'startUsingPermission'. |
-| 12100007 | The service is abnormal. |
+| 12100007 | Service exception. |
 | 12100008 | Out of memory. |
 
 **示例：**
@@ -957,7 +957,7 @@ pid需要与[startUsingPermission](#privacymanagerstartusingpermission-1)传入�
 | 12100001 | Invalid parameter. The tokenID is 0, the permissionName exceeds 256 characters, the type of the specified tokenID is not of the application type, or the enhancedIdentity in PermissionUsingOptions exceeds 48 characters. |
 | 12100003 | The specified permission does not exist or is not a user_grant permission. |
 | 12100004 | The API is not used in pair with 'startUsingPermission'. |
-| 12100007 | The service is abnormal. |
+| 12100007 | Service exception. |
 | 12100008 | Out of memory. |
 
 **示例：**
@@ -1026,7 +1026,7 @@ stopUsingPermission(tokenID: number, permissionName: Permissions, callback: Asyn
 | 12100001 | Invalid parameter. The tokenID is 0, the permissionName exceeds 256 characters, or the type of the specified tokenID is not of the application type. |
 | 12100003 | The specified permission does not exist or is not a user_grant permission. |
 | 12100004 | The API is not used in pair with 'startUsingPermission'. |
-| 12100007 | The service is abnormal. |
+| 12100007 | Service exception. |
 | 12100008 | Out of memory. |
 
 **示例：**
@@ -1084,7 +1084,7 @@ checkPermissionInUse(permissionName: Permissions): boolean
 | 202 | Not system application. Interface caller is not a system application. |
 | 12100001 | Invalid parameter. The permissionName is empty or exceeds 256 characters. |
 | 12100003 | The specified permission does not exist or is not a user_grant permission. |
-| 12100007 | The service is abnormal. |
+| 12100007 | Service exception. |
 
 **示例：**
 
@@ -1140,7 +1140,7 @@ on(type: 'activeStateChange', permissionList: Array&lt;Permissions&gt;, callback
 | 12100001 | Invalid parameter. The permissionList exceeds the size limit, or the permissionNames in the list are all invalid. |
 | 12100004 | The API is used repeatedly with the same input. |
 | 12100005 | The registration time has exceeded the limit. |
-| 12100007 | The service is abnormal. |
+| 12100007 | Service exception. |
 | 12100008 | Out of memory. |
 
 **示例：**
@@ -1196,7 +1196,7 @@ off(type: 'activeStateChange', permissionList: Array&lt;Permissions&gt;, callbac
 | 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
 | 12100001 | Invalid parameter. The permissionList is not in the listening list. |
 | 12100004 | The API is not used in pair with "on". |
-| 12100007 | The service is abnormal. |
+| 12100007 | Service exception. |
 | 12100008 | Out of memory. |
 
 **示例：**

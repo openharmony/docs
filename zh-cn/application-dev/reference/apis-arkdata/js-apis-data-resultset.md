@@ -1,4 +1,4 @@
-# resultSet（结果集）
+# resultSet (结果集)
 <!--Kit: ArkData-->
 <!--Subsystem: DistributedDataManager-->
 <!--Owner: @baijidong-->

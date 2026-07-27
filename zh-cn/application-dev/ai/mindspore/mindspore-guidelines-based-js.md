@@ -1,4 +1,4 @@
-# 使用MindSpore Lite实现图像分类（ArkTS）
+# 使用MindSpore Lite实现图像分类 (ArkTS)
 
 <!--Kit: MindSpore Lite Kit-->
 <!--Subsystem: AI-->

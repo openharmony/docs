@@ -79,7 +79,7 @@ HML是一套类HTML的标记语言，通过组件，事件构建出页面的内�
 
   | 选择器         | 样例     | 默认值      | 样例描述                                     |
   | ----------- | ------ | -------- | ---------------------------------------- |
-  | action      | string | "router" | 事件类型。<br/>- "router"：用于应用跳转。<br/>- "message"：自定义点击事件。 |
+  | action      | string | "router" | 事件类型。<br/>- "router"：用于应用跳转。 |
   | abilityName | string | -        | 跳转ability名。                              |
   | params      | Object | -        | 跳转应用携带的额外参数。                             |
 
@@ -103,7 +103,7 @@ HML是一套类HTML的标记语言，通过组件，事件构建出页面的内�
 
   | 选择器    | 样例     | 默认值     | 样例描述         |
   | ------ | ------ | ------- | ------------ |
-  | action | string | message | 表示事件类型。      |
+  | action | string | message | 表示事件类型。<br/>- "message"：自定义点击事件。      |
   | params | Object | -       | 跳转应用携带的额外参数。 |
 
 

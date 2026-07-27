@@ -8,7 +8,7 @@
 
 为了实现更好的转场效果，推荐使用[Navigation转场动画](./arkts-navigation-animation.md)和[模态转场](arkts-modal-transition.md)。
 
-两个页面间发生跳转，一个页面消失，另一个页面出现，这时可以配置各自页面的页面转场参数实现自定义的页面转场效果。[页面转场](../reference/apis-arkui/arkui-ts/ts-page-transition-animation.md)效果写在pageTransition函数中，通过[PageTransitionEnter](../reference/apis-arkui/arkui-ts/ts-page-transition-animation.md#pagetransitionenter)和[PageTransitionExit](../reference/apis-arkui/arkui-ts/ts-page-transition-animation.md#pagetransitionexit)指定页面进入和退出的动画效果。
+两个页面间发生跳转，一个页面消失，另一个页面出现，这时可以配置各自页面的页面转场参数实现自定义的页面转场效果。[页面间转场](../reference/apis-arkui/arkui-ts/ts-page-transition-animation.md)效果写在pageTransition函数中，通过[PageTransitionEnter](../reference/apis-arkui/arkui-ts/ts-page-transition-animation.md#pagetransitionenter)和[PageTransitionExit](../reference/apis-arkui/arkui-ts/ts-page-transition-animation.md#pagetransitionexit)指定页面进入和退出的动画效果。
 
 pageTransition的函数为：
 
@@ -87,7 +87,7 @@ pageTransition() {
 | back，从页面A返回到页面B       | 页面退出，PageTransitionExit生效，向左侧滑出屏幕  | 页面进入，PageTransitionEnter生效，从右侧滑入屏幕 |
 
 
-如果希望pushUrl进入的页面总是从右侧滑入，back时退出的页面总是从右侧滑出，则上表中的第3、4种情况不满足要求，那么需要完整的定义4个页面转场效果。
+如果希望pushUrl进入的页面总是从右侧滑入，back时退出的页面总是从右侧滑出，则上表中的第3、4种情况不满足要求，那么需要完整地定义4个页面转场效果。
 
 
 ## type配置为RouteType.Push或RouteType.Pop
@@ -137,7 +137,7 @@ pageTransition() {
 ```
 
 
-以上代码则完整的定义了所有可能的页面转场样式。假设页面跳转配置为多实例模式，即页面栈中允许存在重复的页面。可能会有4种场景，对应的页面转场效果如下表。
+以上代码则完整地定义了所有可能的页面转场样式。假设页面跳转配置为多实例模式，即页面栈中允许存在重复的页面。可能会有4种场景，对应的页面转场效果如下表。
 
 
 | 路由操作                         | 页面A转场效果                                  | 页面B转场效果                                  |

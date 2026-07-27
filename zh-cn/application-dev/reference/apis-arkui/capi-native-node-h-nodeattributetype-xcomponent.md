@@ -107,7 +107,7 @@ XComponent组件所持有的Surface显示区域，支持属性设置和属性获
 | -- | -- |
 | .value[0].i32 | Surface显示区域相对于XComponent组件左上角的x轴坐标，单位为px。 |
 | .value[1].i32 | Surface显示区域相对于XComponent组件左上角的y轴坐标，单位为px。 |
-| .value[2].i32 | Surface显示区域的宽度，取值应为非负整数，单位为px。 |
+| .value[2].i32 | Surface显示区域的宽度，单位为px，取值应为非负整数。 |
 | .value[3].i32 | Surface显示区域的高度，单位为px。 |
 
 ## NODE_XCOMPONENT_ENABLE_ANALYZER
@@ -131,4 +131,4 @@ XComponent组件是否支持图像分析的属性，支持属性设置和属性�
 
 | 类型 | 说明 |
 | -- | -- |
-| .value[0].i32 | 是否支持图像分析，`1`表示支持图像分析，`0`表示不支持图像分析，默认值：`0`。 |
+| .value[0].i32 | 是否支持图像分析，`1`表示支持图像分析，`0`表示不支持图像分析。 |

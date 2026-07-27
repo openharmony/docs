@@ -7,7 +7,7 @@
 <!--Tester: @TerryTsao-->
 <!--Adviser: @zhang_yixin13-->
 
-@Once作为辅助装饰器，用于状态管理V2中，需要搭配[@Param](../../../ui/state-management/arkts-new-param.md)使用，适用于仅从外部初始化一次且不接受后续同步变化的场景。若未与@Param配合使用，@Once单独使用将编译报错。
+@Once作为辅助装饰器，用于[状态管理V2](../../../ui/state-management/arkts-state-management-overview.md#状态管理v2)中，需要搭配[@Param](./ts-state-management-param.md)使用，适用于仅从外部初始化一次且不接受后续同步变化的场景。若未与@Param配合使用，@Once单独使用将编译报错。
 
 开发指南参考：[@Once：初始化同步一次](../../../ui/state-management/arkts-new-once.md)。
 

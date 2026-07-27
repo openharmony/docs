@@ -1527,7 +1527,7 @@ moveMissionsToForeground(missionIds: Array&lt;number&gt;, topMission?: number): 
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
   | missionIds | Array&lt;number&gt; | 是 | 任务ID数组。 |
-  | topMission | number | 否 | 待移动到最顶层的任务ID。默认值为-1，表示将默认任务移动到最顶层。 |
+  | topMission | number | 否 | 待移动到最顶层的任务ID。传入-1表示不指定特定任务，系统按照默认逻辑将任务移动到最顶层。 |
 
 **返回值：**
 

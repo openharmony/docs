@@ -16,4 +16,4 @@
 - [使用MindSpore Lite实现图像分类 (C/C++)](mindspore-guidelines-based-native.md)
 - [使用MindSpore Lite实现语音识别 (C/C++)](mindspore-asr-based-native.md)
 - 附录<!--mindspore-lite-appendix-->
-  - [MindSpore Lite支持的算子列表](mindspore-lite-supported-operators.md)
+  - [MindSpore Lite Kit算子支持列表](mindspore-lite-supported-operators.md)
