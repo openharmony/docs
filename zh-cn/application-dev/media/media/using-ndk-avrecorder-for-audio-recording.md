@@ -10,7 +10,7 @@ AVRecorder支持开发音频或视频单独录制，集成了音频捕获、音�
 
 本开发指导将以“开始录制-暂停录制-恢复录制-停止录制”的一次流程为示例，向开发者讲解如何使用AVRecorder进行音频录制。
 
-在进行应用开发的过程中，开发者可以通过AVRecorder的state属性主动获取当前状态，或使用OH_AVRecorder_SetStateCallback方法注册回调监听状态变化。开发过程中应该严格遵循状态机要求，例如只能在started状态下调用OH_AVRecorder_Pause()接口，只能在paused状态下调用OH_AVRecorder_Resume()接口。
+在进行应用开发的过程中，开发者可以通过AVRecorder的state属性主动获取当前状态，或使用OH_AVRecorder_SetStateCallback方法注册回调监听状态变化。开发过程中应该严格遵循状态机要求，例如只能在started状态下调用OH_AVRecorder_Pause()接口、在paused状态下调用OH_AVRecorder_Resume()接口。
 
 **图1** 录制状态变化示意图
 
@@ -158,7 +158,7 @@ target_link_libraries(entry PUBLIC libhilog_ndk.z.so)
    >
    > - prepare接口的入参OH_AVRecorder_Config中设置音频相关的配置参数，如示例代码所示。
    >
-   > - 录制输出的url地址（即示例里config中的url），形式为fd://xx（fd number）。需要调用基础文件操作接口实现应用文件访问能力，获取方式参考[应用文件访问与管理](../../file-management/native-fileio-guidelines.md)。
+   > - 录制输出的URL地址（即示例里config中的url），形式为fd://xx（fd number）。需要调用基础文件操作接口实现应用文件访问能力，获取方式参考[应用文件访问与管理](../../file-management/native-fileio-guidelines.md)。
 
    <!-- @[prepare_audio_recorder](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/Media/AVRecorder/AVRecorder/entry/src/main/cpp/avrecorder_ndk.cpp) -->
    

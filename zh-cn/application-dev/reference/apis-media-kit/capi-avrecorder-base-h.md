@@ -41,11 +41,11 @@
 | -- | -- | -- |
 | [OH_AVRecorder_AudioSourceType](#oh_avrecorder_audiosourcetype) | OH_AVRecorder_AudioSourceType | AVRecorder的音频源类型。 |
 | [OH_AVRecorder_VideoSourceType](#oh_avrecorder_videosourcetype) | OH_AVRecorder_VideoSourceType | AVRecorder的视频源类型。 |
-| [OH_AVRecorder_CodecMimeType](#oh_avrecorder_codecmimetype) | OH_AVRecorder_CodecMimeType | 编码器MIME类型。 |
-| [OH_AVRecorder_ContainerFormatType](#oh_avrecorder_containerformattype) | OH_AVRecorder_ContainerFormatType | 容器格式类型（CFT）。 |
+| [OH_AVRecorder_CodecMimeType](#oh_avrecorder_codecmimetype) | OH_AVRecorder_CodecMimeType | 编码器MIME类型，用于指定录制时音视频数据的编码格式。编码器类型需与容器格式类型匹配使用。 |
+| [OH_AVRecorder_ContainerFormatType](#oh_avrecorder_containerformattype) | OH_AVRecorder_ContainerFormatType | 容器格式类型（CFT），用于指定录制文件的封装格式。容器格式需与编码器MIME类型兼容，不同容器格式支持不同的编码器类型。 |
 | [OH_AVRecorder_State](#oh_avrecorder_state) | OH_AVRecorder_State | AVRecorder状态。 |
 | [OH_AVRecorder_StateChangeReason](#oh_avrecorder_statechangereason) | OH_AVRecorder_StateChangeReason | AVRecorder状态变化的原因。 |
-| [OH_AVRecorder_FileGenerationMode](#oh_avrecorder_filegenerationmode) | OH_AVRecorder_FileGenerationMode | 录制文件的生成模式。 |
+| [OH_AVRecorder_FileGenerationMode](#oh_avrecorder_filegenerationmode) | OH_AVRecorder_FileGenerationMode | 录制文件的生成模式，用于指定录制生成媒体文件的创建方式，适用于需要选择由应用自行管理文件还是由系统自动管理文件的录制场景。 |
 
 ### 函数
 
@@ -65,7 +65,7 @@ enum OH_AVRecorder_AudioSourceType
 
 **描述**
 
-AVRecorder的音频源类型，用于指定录制时采集音频的来源。不同音频源类型适用于不同的录制场景，开发者应根据实际需求选择合适的音频源类型。
+AVRecorder的音频源类型。
 
 **系统能力：** SystemCapability.Multimedia.Media.AVRecorder
 
@@ -107,7 +107,7 @@ enum OH_AVRecorder_CodecMimeType
 
 **描述**
 
-编码器MIME类型，用于指定录制时音视频数据的编码格式。编码器类型需与容器格式类型匹配使用，不同编码器适用于不同的录制场景。
+编码器MIME类型，用于指定录制时音视频数据的编码格式。编码器类型需与容器格式类型匹配使用。
 
 **系统能力：** SystemCapability.Multimedia.Media.AVRecorder
 
