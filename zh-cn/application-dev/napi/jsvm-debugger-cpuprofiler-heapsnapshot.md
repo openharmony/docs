@@ -55,9 +55,9 @@ JSVM，即标准JS引擎，是严格遵守ECMAScript规范的JavaScript代码执
    ```
 3. 在执行JS代码之前，调用OH_JSVM_OpenInspector在指定的主机和端口上激活inspector，创建socket。例如OH_JSVM_OpenInspector(env, "localhost", 9225)，在端侧本机端口9225创建socket。
 4. 调用OH_JSVM_WaitForDebugger，等待建立socket连接。
-5. 检查端侧端口是否打开成功。hdc shell "netstat -anp | grep 9225"。结果为9225端口状态为“LISTEN"即可。
+5. 检查端侧端口是否打开成功。hdc shell "netstat -anp | grep 9225"。结果为9225端口状态为"LISTEN"即可。
 6. 转发端口。hdc fport tcp:9229 tcp:9225。转发开发者个人计算机侧端口9229到端侧端口9225。结果为"Forwardport result:OK"即可。
-7. 推荐使用[Chrome inspect 页面](#使用-chrome-inspect-页面进行调试)进行调试。也可以获取“devtoolsFrontendUrl”字段进行调试，但该方式依赖Chrome DevTools Protocol及其WebSocket连接，不保证稳定连接，暂不支持Chrome 14x及以上版本。devtoolsFrontendUrl方式操作方法如下：在Chrome浏览器地址栏输入"localhost:9229/json"，回车获取端口连接信息；拷贝"devtoolsFrontendUrl"字段对应的url到地址栏，回车进入DevTools源码页。此时可以看到应用中通过OH_JSVM_RunScript执行的JS源码，并暂停在第一行JS源码处。(注："devtoolsFrontendUrl"字段对应的url只支持使用Chrome、Edge浏览器打开，不支持使用Firefox、Safari等浏览器打开。)
+7. 推荐使用[Chrome inspect 页面](#使用-chrome-inspect-页面进行调试)进行调试。也可以获取"devtoolsFrontendUrl"字段进行调试，但该方式依赖Chrome DevTools Protocol及其WebSocket连接，不保证稳定连接，暂不支持Chrome 14x及以上版本。devtoolsFrontendUrl方式操作方法如下：在Chrome浏览器地址栏输入"localhost:9229/json"，回车获取端口连接信息；拷贝"devtoolsFrontendUrl"字段对应的url到地址栏，回车进入DevTools源码页。此时可以看到应用中通过OH_JSVM_RunScript执行的JS源码，并暂停在第一行JS源码处。(注："devtoolsFrontendUrl"字段对应的url只支持使用Chrome、Edge浏览器打开，不支持使用Firefox、Safari等浏览器打开。)
 8. 用户可在源码页打断点，通过按钮发出各种调试命令控制JS代码执行，并查看变量。
 9. 调用OH_JSVM_CloseInspector关闭inspector，结束socket连接。
 
@@ -154,7 +154,7 @@ void TestJSVM() {
    ```
 
 2. 为避免debugger过程中的暂停被误报为无响应异常，可以[开启DevEco Studio的Debug模式](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides-V5/ide-debug-arkts-debug-V5)（无需设置断点），或者可以在非主线程的其他线程中运行JSVM。
-3. 打开 inspector 端口，连接 devtools 用于调试，其流程如下：在执行JS代码之前，调用OH_JSVM_OpenInspector在指定的主机和端口上激活inspector，创建socket。例如OH_JSVM_OpenInspectorWithName(env, 123, "test")，创建 tcp socket 及其对应的 unix domain 端口。
+3. 打开 inspector 端口，连接 devtools 用于调试，其流程如下：在执行JS代码之前，调用OH_JSVM_OpenInspectorWithName在指定的主机和端口上激活inspector，创建socket。例如OH_JSVM_OpenInspectorWithName(env, 123, "test")，创建 tcp socket 及其对应的 unix domain 端口。
 4. 调用OH_JSVM_WaitForDebugger，等待建立socket连接。
 5. 检查端侧端口是否打开成功。hdc shell "cat /proc/net/unix | grep jsvm"。结果出现可用的 unix 端口即可，如：jsvm_devtools_remote_9229_123，其中 9229 为 tcp 端口号，123 为对应的 pid。
 6. 转发端口。hdc fport tcp:9229 tcp:9229。转发开发者个人计算机侧端口9229到端侧端口9229。结果为"Forwardport result:OK"即可。
@@ -164,7 +164,7 @@ void TestJSVM() {
 
 **代码示例**
 
-对应的 enable inspector 替换为下面的即可
+对应的 EnableInspector 替换为下面的即可
 ```cpp
 // 开启debugger
 static void EnableInspector(JSVM_Env env) {
@@ -329,7 +329,8 @@ const char *srcCallNative = R"JS(runScriptWithStatistics();)JS";
 ```
 预计的输出结果：
 ```ts
-在对应鸿蒙设备内生成两个文件用于后续调优：
+在对应鸿蒙设备内生成三个文件用于后续调优：
+heap-snapshot-begin.heapsnapshot
 heap-snapshot-end.heapsnapshot,
 cpu-profile.cpuprofile
 文件功能见上文接口使用方法介绍

@@ -20,7 +20,7 @@ OpenHarmony JSVM-API是并发不安全接口，开发者需保障JSVM-API的并�
 
 > **注意：**
 >
-> JSVM-API仅支持JS与C/C++的交互，如果需要实现ArkTS与C/C++的交互，请参考[Node-API简介](napi-introduction.md)
+> JSVM-API仅支持JS与C/C++的交互，如果需要实现ArkTS与C/C++的交互，请参考[Node-API简介](napi-introduction.md)。
 
 ## JSVM-API的组成架构
 

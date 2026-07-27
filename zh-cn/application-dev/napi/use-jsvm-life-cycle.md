@@ -305,7 +305,7 @@ static JSVM_Value RunDemo(JSVM_Env env, JSVM_CallbackInfo info)
     JSVM_VM vm;
     OH_JSVM_GetVM(env, &vm);
     if (AddFinalizer(vm, env) != 0) {
-        OH_LOG_INFO(LOG_APP, "Run PromiseRegisterHandler failed");
+        OH_LOG_INFO(LOG_APP, "Run AddFinalizer failed");
     }
 
     return nullptr;
