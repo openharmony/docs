@@ -1,18 +1,26 @@
-# Applying for Location Permissions (ArkTS)
+# Applying for Location Permissions
+
+<!--Kit: Location Kit-->
+<!--Subsystem: Location-->
+<!--Owner: @xxthadsl-->
+<!--Designer: @liu-binjun-->
+<!--Tester: @gcw_MslijYkf-->
+<!--Adviser: @RayShih-->
+<!-- md-trans-meta sourceCommit=4f1f82da82ec1da992bee864d1f41f66de3c9d98 translatedAt=2026-07-28T02:35:50.307Z pushedAt=2026-07-28T03:22:12.833Z -->
 
 ## Scenario
 
-Before using the capabilities provided by [Location Kit](../../reference/apis-location-kit/js-apis-geoLocationManager.md), check whether your application has been granted the permission to access the device location information. If not, your application needs to obtain the permission from the user.
+Before using the system capabilities of Location Kit, check whether your application has been granted the permission to access the device location information. If not, your application needs to obtain the permission from the user.
 
-The system provides the following location permission:
+The system provides the following location permissions:
 
 - **ohos.permission.LOCATION**: used to obtain location accurate to meters.
 
 - **ohos.permission.APPROXIMATELY\_LOCATION**: used to obtain location accurate to 5 kilometers.
 
-- **ohos.permission.LOCATION_IN_BACKGROUND**: used to obtain location while the application is running at the background.
+- **ohos.permission.LOCATION_IN_BACKGROUND**: used to obtain location while the application is running in the background.
 
-For details about the permissions required for each API of Location Kit, see [Location Kit](../../reference/apis-location-kit/js-apis-geoLocationManager.md).
+For the permission requirements of Location Kit APIs, see [@ohos.geoLocationManager (Geolocation Manager)](../../reference/apis-location-kit/js-apis-geoLocationManager.md).
 
 ## How to Develop
 
@@ -31,6 +39,4 @@ If your application needs to access the device location when running in the back
 
 For details about how to request for a continuous task, see [Continuous Task](../../task-management/continuous-task.md)<!--Del--> and [Continuous Task Development Example](../../performance/reasonable-running-backgroundTask.md#continuous-task)<!--DelEnd-->.
 
-
-<!--RP1-->
-<!--RP1End-->
+<!--RP1--><!--RP1End-->

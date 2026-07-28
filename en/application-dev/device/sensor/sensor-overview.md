@@ -1,13 +1,14 @@
 # Sensor Overview
+
 <!--Kit: Sensor Service Kit-->
 <!--Subsystem: Sensors-->
 <!--Owner: @dilligencer-->
-<!--Designer: @butterls-->
-<!--Tester: @murphy84-->
+<!--Designer: @andeszhang-->
+<!--Tester: @liuhaonan2-->
 <!--Adviser: @hu-zhiqiong-->
+<!-- md-trans-meta sourceCommit=170a00b0e372b90729da5ee919e1bd4343fab341 translatedAt=2026-07-28T02:36:17.549Z pushedAt=2026-07-28T04:27:28.139Z -->
 
 ## Sensor Types
-
 
 Sensors are an abstraction of underlying sensor hardware. Your application can access the underlying sensor hardware via the sensors. Using the [@ohos.sensor (Sensor)](../../reference/apis-sensor-service-kit/js-apis-sensor.md) APIs, you can query sensors on your device, subscribe to sensor data, customize algorithms based on sensor data, and develop various sensor-based applications, such as compass, motion-controlled games, and fitness and health applications.
 
@@ -53,7 +54,6 @@ The following modules work cooperatively to implement sensors: Sensor API, Senso
 
 - HDF layer: selects proper policies based on the hardware first in first out (FIFO) and frequency, and adapts to different devices.
 
-
 ## Constraints
 
 1. To obtain data of the following sensors, you must request the required permissions.
@@ -63,6 +63,6 @@ The following modules work cooperatively to implement sensors: Sensor API, Senso
     | Acceleration sensor, uncalibrated acceleration sensor, and linear acceleration sensor| ohos.permission.ACCELEROMETER    | system_grant | The permission allows an application to read data from acceleration sensors, uncalibrated acceleration sensors, and linear acceleration sensors.|
     | Gyroscope sensor and uncalibrated gyroscope sensor                  | ohos.permission.GYROSCOPE        | system_grant | The permission allows an application to read data from gyroscope sensors and uncalibrated gyroscope sensors.|
     | Pedometer sensor                                            | ohos.permission.ACTIVITY_MOTION  | user_grant   | The permission allows an application to read an end user's motion status, for example, to determine whether the user is in motion or to record the number of steps that the user has walked. |
-    | Heart rate sensor                                            | ohos.permission.READ_HEALTH_DATA | user_grant   | The permission allows an application to obtain an end user's health data, such as heart rate data.          |
-    
+    | Heart rate sensor                                             | ohos.permission.READ_HEALTH_DATA | user_grant   | The permission allows an app to read the user's health data, such as heart rate data.           |
+
 2. The APIs for subscribing to and unsubscribing from sensor data work in pairs. If you do not need sensor data, call the unsubscription API to stop sensor data reporting.

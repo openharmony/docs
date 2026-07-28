@@ -1,17 +1,18 @@
 # Stationary Development
+
 <!--Kit: Multimodal Awareness Kit-->
 <!--Subsystem: MultimodalAwareness-->
 <!--Owner: @dilligencer-->
-<!--Designer: @zou_ye-->
+<!--Designer: @saga2025-->
 <!--Tester: @judan-->
 <!--Adviser: @hu-zhiqiong-->
-
+<!-- md-trans-meta sourceCommit=6f0a1695ab4f18a5c5302addc7947b60c1d6021e translatedAt=2026-07-28T02:37:11.928Z pushedAt=2026-07-28T06:28:15.686Z -->
 
 ## When to Use
 
 An application can call the **Stationary** module to obtain the device status, for example, whether the device is absolutely or relatively still.
 
-For details about the APIs, see [Stationary](../../reference/apis-multimodalawareness-kit/js-apis-stationary.md).
+For detailed API introduction, refer to [@ohos.stationary (Device Status Awareness Framework)](../../reference/apis-multimodalawareness-kit/js-apis-stationary.md).
 
 ## Device Status Type Parameters
 
@@ -20,7 +21,7 @@ For details about the APIs, see [Stationary](../../reference/apis-multimodalawar
 | still | Absolutely still.|
 | relativeStill | Relatively still.|
 
-## Parameters for Subscribing to Device Status events
+## Parameters for Subscribing to Device Status Events
 
 | Name                            | Value   | Description                                      |
 | ------------------------------ | ---- | ---------------------------------------- |
@@ -32,10 +33,10 @@ For details about the APIs, see [Stationary](../../reference/apis-multimodalawar
 
 | Name                            | Value   | Description                                      |
 | ------------------------------ | ---- | ---------------------------------------- |
-| ENTER         | 1    | Entering device status.  |
-| EXIT | 2   | Exiting device status.|
+| ENTER         | 1    | Returns the entering status.  |
+| EXIT | 2   | Returns the exiting status. |
 
-## Available APIs
+## API Description
 
 | Name                                                      | Description                                                        |
 | ------------------------------------------------------------ | ------------------------------------------------------------ |
@@ -51,7 +52,7 @@ Currently, only the algorithm framework is provided. The API test framework retu
 
 If the relative stationary and absolute stationary capabilities are required, you must implement them in **device_status/libs/src/algorithm**. The following code snippet is for reference:
 
-   ```ts
+   ```C++
    algoPara_.resultantAcc =
       sqrt((algoPara_.x * algoPara_.x) + (algoPara_.y * algoPara_.y) + (algoPara_.z * algoPara_.z));
    if ((algoPara_.resultantAcc > RESULTANT_ACC_LOW_THRHD) && (algoPara_.resultantAcc < RESULTANT_ACC_UP_THRHD)) {
@@ -74,60 +75,60 @@ If the relative stationary and absolute stationary capabilities are required, yo
 
 ## How to Develop
 
-1. Subscribe to the event indicating entering the absolute still state, and the event is reported every 1 second.
+1. Import the modules.
 
-   ```ts
+   <!-- @[import_the_stationary_module](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/Stationary/Stationary/entry/src/main/ets/pages/Index.ets) --> 
+
+   ``` TypeScript
    import { stationary } from '@kit.MultimodalAwarenessKit';
    import { BusinessError } from '@kit.BasicServicesKit';
+   ```
 
-   let reportLatencyNs = 1000000000;
+2. Subscribe to the event indicating entering the absolute still state, and the event is reported once per second.
+
+   <!-- @[stationary_subscribe](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/Stationary/Stationary/entry/src/main/ets/pages/Index.ets) --> 
+
+   ``` TypeScript
+   let reportLatencyNs = 1000000000; // Unit: nanoseconds
    try {
-      stationary.on('still', stationary.ActivityEvent.ENTER, reportLatencyNs, (data) => {
-         console.info('data=' + JSON.stringify(data));
-      })
+     stationary.on('still', stationary.ActivityEvent.ENTER, reportLatencyNs, (data) => {
+       console.info('data=' + JSON.stringify(data));
+     })
+     // ...
    } catch (error) {
-      let message = (error as BusinessError).message;
-      console.error('stationary on failed:' + message);
+     let message = (error as BusinessError).message;
+     console.error('stationary on failed:' + message);
    }
    ```
-   <!-- @[import_the_stationary_module](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/Stationary/Stationary/entry/src/main/ets/pages/Index.ets) -->
 
-   <!-- @[stationary_subscribe](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/Stationary/Stationary/entry/src/main/ets/pages/Index.ets) -->
+3. Obtain the event indicating entering the absolute still state.
 
-2. Obtain the event indicating entering the absolute still state.
+   <!-- @[stationary_getStatus](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/Stationary/Stationary/entry/src/main/ets/pages/Index.ets) --> 
 
-   ```ts
-   import { stationary } from '@kit.MultimodalAwarenessKit';
-   import { BusinessError } from '@kit.BasicServicesKit';
-
+   ``` TypeScript
    try {
-      stationary.once('still', (data) => {
-         console.info('data=' + JSON.stringify(data));
-      })
+     stationary.once('still', (data) => {
+       console.info('data=' + JSON.stringify(data));
+     })
+     // ...
    } catch (error) {
-      let message = (error as BusinessError).message;
-      console.error('stationary once failed:' + message);
+     let message = (error as BusinessError).message;
+     console.error('stationary once failed:' + message);
    }
    ```
-   <!-- @[import_the_stationary_module](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/Stationary/Stationary/entry/src/main/ets/pages/Index.ets) -->
 
-   <!-- @[stationary_getStatus](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/Stationary/Stationary/entry/src/main/ets/pages/Index.ets) -->
+4. Unsubscribe from the event indicating entering the absolute still state.
 
-3. Unsubscribe from the event indicating entering the absolute still state.
+   <!-- @[stationary_unsubscribe](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/Stationary/Stationary/entry/src/main/ets/pages/Index.ets) --> 
 
-   ```ts
-   import { stationary } from '@kit.MultimodalAwarenessKit';
-   import { BusinessError } from '@kit.BasicServicesKit';
-
+   ``` TypeScript
    try {
-      stationary.off('still', stationary.ActivityEvent.ENTER, (data) => {
-         console.info('data=' + JSON.stringify(data));
-      })
+     stationary.off('still', stationary.ActivityEvent.ENTER, (data) => {
+       console.info('data=' + JSON.stringify(data));
+     })
+     // ...
    } catch (error) {
-      let message = (error as BusinessError).message;
-      console.error('stationary off failed:' + message);
+     let message = (error as BusinessError).message;
+     console.error('stationary off failed:' + message);
    }
    ```
-   <!-- @[import_the_stationary_module](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/Stationary/Stationary/entry/src/main/ets/pages/Index.ets) -->
-
-   <!-- @[stationary_unsubscribe](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/Stationary/Stationary/entry/src/main/ets/pages/Index.ets) -->
