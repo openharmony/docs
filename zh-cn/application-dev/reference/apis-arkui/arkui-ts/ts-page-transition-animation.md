@@ -16,6 +16,10 @@
 
 ## PageTransitionEnter
 
+定义PageTransitionEnter组件。
+
+### PageTransitionEnter
+
 PageTransitionEnter(value: PageTransitionOptions)
 
 设置当前页面的自定义入场动效。继承自[CommonTransition](#commontransition)。
@@ -59,6 +63,10 @@ onEnter(event: PageTransitionCallback): PageTransitionEnterInterface
 ```
 
 ## PageTransitionExit
+
+定义PageTransitionExit组件。
+
+### PageTransitionExit
 
 PageTransitionExit(value: PageTransitionOptions)
 
