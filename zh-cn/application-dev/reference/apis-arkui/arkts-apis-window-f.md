@@ -224,7 +224,7 @@ getLastWindow(ctx: BaseContext, callback: AsyncCallback&lt;Window&gt;): void
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------------------------------------- | -- | ---------------------------------------- |
-| ctx      | [BaseContext](../apis-ability-kit/js-apis-inner-application-baseContext.md) | 是 | 当前应用上下文信息。|
+| ctx      | [BaseContext](../apis-ability-kit/js-apis-inner-application-baseContext.md) | 是 | 当前应用上下文信息。 |
 | callback | [AsyncCallback](../apis-basic-services-kit/js-apis-base.md#asynccallback)&lt;[Window](arkts-apis-window-Window.md)&gt; | 是 | 回调函数。当回调成功时，err为undefined，data为当前应用内层级最高的窗口对象；否则为错误对象。 |
 
 **错误码：**
@@ -1235,7 +1235,7 @@ try {
   window.onApplicationFocusStateChange((data) =>{
       console.info(`Succeeded in enabling the listener for application focus state changes. Data: ${data}`);
   })
-} catch(exception){
+} catch (exception){
   console.error(`Failed to enable the listener for application focus state changes. Cause code: ${exception.code}, message: ${exception.message}`);
 }
 ```
