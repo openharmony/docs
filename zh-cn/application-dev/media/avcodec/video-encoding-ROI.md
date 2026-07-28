@@ -1,4 +1,4 @@
-# ROI视频编码
+# 实现指定区域更清晰的ROI编码
 
 <!--Kit: AVCodec Kit-->
 <!--Subsystem: Multimedia-->
@@ -486,19 +486,62 @@ Buffer模式下，视频帧通过`OH_VideoEncoder_PushInputBuffer`送入编码�
 
 6. 在编码输入Buffer回调中配置ROI信息。
 
-   当编码器请求输入Buffer时，从帧队列弹出帧数据项，将像素数据拷贝到编码器Buffer中，并通过`OH_AVBuffer_GetParameter`获取格式后设置ROI字符串。
+   当编码器请求输入Buffer时，触发`OnNeedInputBuffer`回调，回调中将Buffer入队供消费线程处理。Buffer模式的消费线程从队列取出Buffer，调用`FillBufferModeInput`从帧队列弹出帧数据项，将像素数据拷贝到编码器Buffer中，并通过`OH_AVBuffer_GetParameter`获取格式后设置ROI字符串。
 
-   其中`FillBufferModeInput`的实现如下：
+   `OnNeedInputBuffer`回调将Buffer入队，供消费线程处理过程如下：
 
-   <!-- @[roi_buffer_mode_callback](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/Media/AVCodec/ROISample/entry/src/main/cpp/capbilities/codec/CodecCallback.cpp) -->
+   <!-- @[roi_buffer_input_callback_queue](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/Media/AVCodec/ROISample/entry/src/main/cpp/capbilities/codec/CodecCallback.cpp) -->
    
    ``` C++
-   static void FillBufferModeInput(OH_AVCodec *codec, uint32_t index, OH_AVBuffer *buffer,
-       CodecUserData *codecUserData)
+   void CodecCallback::OnNeedInputBuffer(OH_AVCodec *codec, uint32_t index, OH_AVBuffer *buffer, void *userData)
+   {
+       if (userData == nullptr) {
+           return;
+       }
+       CodecUserData *codecUserData = static_cast<CodecUserData *>(userData);
+       std::unique_lock<std::mutex> lock(codecUserData->inputMutex);
+       codecUserData->inputBufferInfoQueue.emplace(index, buffer);
+       codecUserData->inputCond.notify_all();
+   }
+   ```
+
+   Buffer模式消费线程从队列取出Buffer并调用`FillBufferModeInput`填充帧数据和ROI示例如下：
+
+   <!-- @[roi_buffer_mode_callback](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/Media/AVCodec/ROISample/entry/src/main/cpp/recorder/Recorder.cpp) -->
+   
+   ``` C++
+   void Recorder::VideoEncBufferInputThread()
+   {
+       while (isStarted_) {
+           CHECK_AND_BREAK_LOG(isStarted_, "Work done, thread out");
+           std::unique_lock<std::mutex> lock(encContext_->inputMutex);
+           bool condRet = encContext_->inputCond.wait_for(
+               lock, std::chrono::seconds(THREAD_WAIT_TIMEOUT_SEC),
+               [this]() { return !isStarted_ || !encContext_->inputBufferInfoQueue.empty(); });
+           CHECK_AND_BREAK_LOG(isStarted_, "Work done, thread out");
+           CHECK_AND_CONTINUE_LOG(!encContext_->inputBufferInfoQueue.empty(),
+               "Buffer queue is empty, continue, cond ret: %{public}d", condRet);
+   
+           CodecBufferInfo bufferInfo = encContext_->inputBufferInfoQueue.front();
+           encContext_->inputBufferInfoQueue.pop();
+           lock.unlock();
+   
+           OH_AVBuffer *buffer = reinterpret_cast<OH_AVBuffer *>(bufferInfo.buffer);
+           FillBufferModeInput(bufferInfo.bufferIndex, buffer);
+       }
+   }
+   ```
+
+   `FillBufferModeInput`的实现如下：
+
+   <!-- @[roi_buffer_mode_fill_input](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/Media/AVCodec/ROISample/entry/src/main/cpp/recorder/Recorder.cpp) -->
+   
+   ``` C++
+   void Recorder::FillBufferModeInput(uint32_t index, OH_AVBuffer *buffer)
    {
        FrameItem frameItem;
-       if (!codecUserData->frameQueue->Pop(frameItem, std::chrono::milliseconds(FRAME_QUEUE_POP_TIMEOUT_MS))) {
-           OH_VideoEncoder_PushInputBuffer(codec, index);
+       if (!encContext_->frameQueue->Pop(frameItem, std::chrono::milliseconds(FRAME_QUEUE_POP_TIMEOUT_MS))) {
+           OH_VideoEncoder_PushInputBuffer(videoEncoder_->GetCodec(), index);
            return;
        }
        uint8_t *bufferAddr = OH_AVBuffer_GetAddr(buffer);
@@ -517,19 +560,6 @@ Buffer模式下，视频帧通过`OH_VideoEncoder_PushInputBuffer`送入编码�
                OH_AVFormat_SetStringValue(format, OH_MD_KEY_VIDEO_ENCODER_ROI_PARAMS, frameItem.roiStr.c_str());
            }
        }
-       OH_VideoEncoder_PushInputBuffer(codec, index);
+       OH_VideoEncoder_PushInputBuffer(videoEncoder_->GetCodec(), index);
    }
-   
-   void CodecCallback::OnNeedInputBuffer(OH_AVCodec *codec, uint32_t index, OH_AVBuffer *buffer, void *userData)
-   {
-       if (userData == nullptr) {
-           return;
-       }
-       CodecUserData *codecUserData = static_cast<CodecUserData *>(userData);
-   
-       // Buffer模式：用帧队列的像素数据和ROI填充编码器Buffer。
-       if (codecUserData->roiPathType == ROI_PATH_BUFFER_MODE && codecUserData->frameQueue != nullptr) {
-           FillBufferModeInput(codec, index, buffer, codecUserData);
-           return;
-       }
    ```
