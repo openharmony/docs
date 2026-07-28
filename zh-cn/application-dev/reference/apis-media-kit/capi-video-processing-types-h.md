@@ -27,7 +27,7 @@
 | 名称 | typedef关键字 | 描述 |
 | -- | -- | -- |
 | [VideoProcessing_ColorSpaceInfo](capi-videoprocessing-videoprocessing-colorspaceinfo.md) | VideoProcessing_ColorSpaceInfo | 视频颜色空间信息数据结构。 |
-| [OH_VideoProcessing](capi-videoprocessing-oh-videoprocessing.md) | OH_VideoProcessing | 定义视频处理对象。<br>定义一个OH_VideoProcessing空指针，调用[OH_VideoProcessing_Create](capi-video-processing-h.md#oh_videoprocessing_create)创建视频处理实例，该指针在创建实例之前必须为空。用户可以对不同的处理类型创建不同的视频处理实例。 |
+| [OH_VideoProcessing](capi-videoprocessing-oh-videoprocessing.md) | OH_VideoProcessing | 定义视频处理对象。<br>定义一个OH_VideoProcessing空指针，用于调用[OH_VideoProcessing_Create](capi-video-processing-h.md#oh_videoprocessing_create)创建视频处理实例。用户可以对不同的处理类型创建不同的视频处理实例。 |
 | [NativeWindow](capi-videoprocessing-nativewindow.md) | OHNativeWindow | 定义NativeWindow对象。 |
 | [OH_AVFormat](capi-videoprocessing-oh-avformat.md) | OH_AVFormat | 定义OH_AVFormat对象。 |
 | [VideoProcessing_Callback](capi-videoprocessing-videoprocessing-callback.md) | VideoProcessing_Callback | 视频处理回调对象类型。<br>定义一个VideoProcessing_Callback空指针，调用[OH_VideoProcessingCallback_Create](capi-video-processing-h.md#oh_videoprocessingcallback_create)来创建一个回调对象。创建之前该指针必须为空。通过调用[OH_VideoProcessing_RegisterCallback](capi-video-processing-h.md#oh_videoprocessing_registercallback)来向视频处理实例注册回调对象。 |
@@ -53,8 +53,8 @@
 
 | 名称 | 描述 |
 | -- | -- |
-| const int32_t VIDEO_PROCESSING_TYPE_COLOR_SPACE_CONVERSION | 表示创建颜色空间转换视频处理实例。<br>调用[OH_VideoProcessing_Create](capi-video-processing-h.md#oh_videoprocessing_create)创建颜色空间转换视频处理实例，如果不支持该能力返回[VideoProcessing_ErrorCode](#videoprocessing_errorcode).VIDEO_PROCESSING_ERROR_UNSUPPORTED_PROCESSING。<br>**起始版本：** 12 |
-| const int32_t VIDEO_PROCESSING_TYPE_METADATA_GENERATION | 表示创建元数据生成视频处理实例。<br>调用[OH_VideoProcessing_Create](capi-video-processing-h.md#oh_videoprocessing_create)创建元数据生成视频处理实例，如果不支持该能力返回[VideoProcessing_ErrorCode](#videoprocessing_errorcode).VIDEO_PROCESSING_ERROR_UNSUPPORTED_PROCESSING。<br>**起始版本：** 12 |
+| const int32_t VIDEO_PROCESSING_TYPE_COLOR_SPACE_CONVERSION | 表示创建颜色空间转换视频处理实例。<br>调用[OH_VideoProcessing_Create](capi-video-processing-h.md#oh_videoprocessing_create)创建颜色空间转换视频处理实例，如果不支持该能力返回[VideoProcessing_ErrorCode](#videoprocessing_errorcode).VIDEO_PROCESSING_ERROR_UNSUPPORTED_PROCESSING。可以调用[OH_VideoProcessing_IsColorSpaceConversionSupported](capi-video-processing-h.md#oh_videoprocessing_iscolorspaceconversionsupported)来检查是否支持这种处理。<br>**起始版本：** 12<br>**系统能力：** SystemCapability.Multimedia.VideoProcessingEngine |
+| const int32_t VIDEO_PROCESSING_TYPE_METADATA_GENERATION | 表示创建元数据生成视频处理实例。<br>调用[OH_VideoProcessing_Create](capi-video-processing-h.md#oh_videoprocessing_create)创建元数据生成视频处理实例，如果不支持该能力返回[VideoProcessing_ErrorCode](#videoprocessing_errorcode).VIDEO_PROCESSING_ERROR_UNSUPPORTED_PROCESSING。可以调用[OH_VideoProcessing_IsMetadataGenerationSupported](capi-video-processing-h.md#oh_videoprocessing_ismetadatagenerationsupported)来检查是否支持这种处理。<br>**起始版本：** 12 |
 | const int32_t VIDEO_PROCESSING_TYPE_DETAIL_ENHANCER | 表示创建细节增强视频处理实例。<br>调用[OH_VideoProcessing_Create](capi-video-processing-h.md#oh_videoprocessing_create)创建细节增强视频处理实例，如果不支持该能力返回[VideoProcessing_ErrorCode](#videoprocessing_errorcode).VIDEO_PROCESSING_ERROR_UNSUPPORTED_PROCESSING。<br>**起始版本：** 12 |
 | const char* VIDEO_DETAIL_ENHANCER_PARAMETER_KEY_QUALITY_LEVEL | 指定视频细节增强的质量等级，参考[VideoDetailEnhancer_QualityLevel](#videodetailenhancer_qualitylevel)查看具体取值。<br>调用[OH_VideoProcessing_SetParameter](capi-video-processing-h.md#oh_videoprocessing_setparameter)设置质量等级。<br>调用[OH_VideoProcessing_GetParameter](capi-video-processing-h.md#oh_videoprocessing_getparameter)获取当前质量等级。<br>**起始版本：** 12 |
 | const char * VIDEO_METADATA_GENERATOR_STYLE_CONTROL | 指定视频元数据生成的风格模式。具体取值请参考[VideoMetadataGeneratorStyleControl](#videometadatageneratorstylecontrol)。调用[OH_AVFormat_SetIntValue](../apis-avcodec-kit/capi-native-avformat-h.md#oh_avformat_setintvalue)设置视频元数据生成的风格模式到AVFormat参数。调用[OH_VideoProcessing_SetParameter](capi-video-processing-h.md#oh_videoprocessing_setparameter)设置当前视频元数据生成的风格模式。调用[OH_VideoProcessing_GetParameter](capi-video-processing-h.md#oh_videoprocessing_getparameter)获取当前视频元数据生成的风格模式。<br>**起始版本：** 22 |
@@ -100,8 +100,8 @@ enum VideoMetadataGeneratorStyleControl
 
 | 枚举项 | 描述 |
 | -- | -- |
-| VIDEO_METADATA_GENERATOR_CONTRAST_MODE = 0 | 对比度优先模式。 |
-| VIDEO_METADATA_GENERATOR_BRIGHT_MODE = 1 | 亮度优先模式。 |
+| VIDEO_METADATA_GENERATOR_CONTRAST_MODE | 对比度优先模式。 |
+| VIDEO_METADATA_GENERATOR_BRIGHT_MODE | 亮度优先模式。 |
 
 **参考：**
 
@@ -128,12 +128,12 @@ enum VideoProcessing_ErrorCode
 | VIDEO_PROCESSING_SUCCESS | 处理成功。 |
 | VIDEO_PROCESSING_ERROR_INVALID_PARAMETER = 401 | 输入参数无效。以下情况都会返回该错误码：<br>1. 无效的输入或输出视频buffer，视频buffer为空。<br>2. 无效的参数，参数为空。<br>3. 无效的处理类型。 |
 | VIDEO_PROCESSING_ERROR_UNKNOWN = 29210001 | 未知错误，比如GPU计算失败或memcpy失败。 |
-| VIDEO_PROCESSING_ERROR_INITIALIZE_FAILED | 视频处理全局环境初始化失败，比如初始化GPU环境失败。 |
-| VIDEO_PROCESSING_ERROR_CREATE_FAILED | 创建视频处理实例失败，比如实例总数超出上限。 |
+| VIDEO_PROCESSING_ERROR_INITIALIZE_FAILED | 视频处理全局环境初始化失败，比如初始化GPU环境失败。请检查设备是否支持GPU加速，或尝试重启应用后重试。 |
+| VIDEO_PROCESSING_ERROR_CREATE_FAILE | 创建视频处理实例失败，比如实例总数超出上限。可调用{@link OH_VideoProcessing_Destroy}释放不再使用的实例后重试。 |
 | VIDEO_PROCESSING_ERROR_PROCESS_FAILED | 处理过程失败，比如处理时间超时。 |
-| VIDEO_PROCESSING_ERROR_UNSUPPORTED_PROCESSING | 不支持的处理类型，可以调用OH_VideoProcessing_IsXXXSupported来检查是否支持这种处理。 |
+| VIDEO_PROCESSING_ERROR_UNSUPPORTED_PROCESSING | 不支持的处理类型，比如试图创建不支持的视频处理实例。目前可对两种视频处理功能检查支持情况：[OH_VideoProcessing_IsColorSpaceConversionSupported](capi-video-processing-h.md#oh_videoprocessing_iscolorspaceconversionsupported)，[OH_VideoProcessing_IsMetadataGenerationSupported](capi-video-processing-h.md#oh_videoprocessing_ismetadatagenerationsupported)。 |
 | VIDEO_PROCESSING_ERROR_OPERATION_NOT_PERMITTED | 不允许的操作，比如不满足调用接口所需的运行状态下调用该接口。 |
-| VIDEO_PROCESSING_ERROR_NO_MEMORY | 内存不足。 |
+| VIDEO_PROCESSING_ERROR_NO_MEMORY | 内存不足。请释放不再使用的资源后重试，或减少视频处理的分辨率。 |
 | VIDEO_PROCESSING_ERROR_INVALID_INSTANCE | 视频处理实例无效，比如视频处理实例为空实例。 |
 | VIDEO_PROCESSING_ERROR_INVALID_VALUE | 输入值无效，以下情况都会造成这种错误：<br>1. 视频buffer宽高太大或者颜色空间错误。<br>2. 参数包含无效的值，比如细节增强的质量等级错误。 |
 
