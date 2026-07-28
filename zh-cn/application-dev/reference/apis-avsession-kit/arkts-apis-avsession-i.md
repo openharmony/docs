@@ -224,14 +224,14 @@
 
 ## AVCastPickerOptions<sup>14+</sup>
 
-拉起的投播组件包含的配置属性。
+拉起的投播组件包含的配置属性。<br>从API版本26.0.0开始支持Wearable设备使用本属性。
 
 **系统能力：** SystemCapability.Multimedia.AVSession.AVCast
 
 | 名称            | 类型                      | 只读 | 可选 | 说明               |
 | --------------- |-------------------------| ---- |  ---- |---------------------------------------------------------------------|
 | sessionType         | [AVSessionType](arkts-apis-avsession-t.md#avsessiontype10)  | 否 | 是  | 会话类型，默认值为audio。<br>当前仅支持的会话类型有audio和video。如果传入voice_call或video_call，将默认按照传入audio处理。<br>**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。            |
-| pickerStyle<sup>22+</sup>   |[AVCastPickerStyle](js-apis-avCastPickerParam.md#avcastpickerstyle12) | 否 | 是  | 设置组件样式。|
+| pickerStyle<sup>22+</sup>   |[AVCastPickerStyle](js-apis-avCastPickerParam.md#avcastpickerstyle12) | 否 | 是  | 设置组件样式。<br>Wearable设备上无需配置该属性，拉起的设备列表以全屏显示。|
 | menuPosition<sup>22+</sup>  |[MenuPosition](#menuposition-22) | 否 | 是  | 当pickerStyle设置为STYLE_MENU时，可以设置弹出菜单的位置。|
 
 ## AudioCapabilities<sup>20+</sup>
