@@ -16,9 +16,9 @@
 
   在使用方应用中定义使用，是ArkUI提供的组件。支持开发者使用ArkTS的声明式开发范式，在应用中直接定义与使用。
 
-- [UIExtensionAbility](../application-models/uiextensionability-sys.md)组件
+- [UIExtensionAbility](../application-models/uiextensionability-sys.md)
 
-  在提供方应用中定义的组件，运行于独立的进程中。该组件能够被使用方应用创建并嵌入其窗口，作为一种界面扩展，从而增强应用间的交互性与用户体验。
+  在提供方应用中定义的UIExtensionAbility，运行于独立的进程中。该UIExtensionAbility能够被使用方应用创建并嵌入其窗口，作为一种界面扩展，从而增强应用间的交互性与用户体验。
 
 
 ## 实现原理
@@ -53,7 +53,7 @@ UIExtension为了实现跨应用的能力共享，存在较开放的灵活性，
 
 **通用属性**
 
-当前组件可以通过属性影响其他组件或者使用方应用信息（应用上下文[UIContext](../reference/apis-arkui/arkts-apis-uicontext-uicontext.md)、[获取应用窗口信息](../dfx/hidumper.md#获取应用窗口信息)等）的能力，但由于跨进程的机制问题，UIExtension组件默认不支持。
+当前组件可以通过属性影响其他组件或者使用方应用信息（UI上下文[UIContext](../reference/apis-arkui/arkts-apis-uicontext-uicontext.md)、[获取应用窗口信息](../dfx/hidumper.md#获取应用窗口信息)等）的能力，但由于跨进程的机制问题，UIExtension组件默认不支持。
 
 组件支持的属性存在跨组件场景的情况下，不支持如下能力：
 
@@ -85,12 +85,12 @@ UIExtension为了实现跨应用的能力共享，存在较开放的灵活性，
 | ------------------------------------------------------------ | -------- | ------------------------------------------------------------ | ------------------------------------------------------------ |
 | [PluginComponent (系统接口)](../reference/apis-arkui/arkui-ts/ts-basic-components-plugincomponent-sys.md) | 不支持   | 用于给插件组件的使用者请求组件和数据，使用者发送组件模板和数据。支撑SystemUI实现插件化方式集成其他业务提供的UI。 | 1、和UIExtension能力类似，容易出现嵌套，增加复杂度。<br>2、由于UIExtension组件的提供方已经在另一个进程中，默认能力下，无法提供访问宿主组件的能力。 |
 | [FormComponent (系统接口)](../reference/apis-arkui/arkui-ts/ts-basic-components-formcomponent-sys.md) | 不支持   | 提供卡片组件，实现卡片的显示功能。                           | 卡片组件提供的是跨进程的组件调用能力，UIExtension中嵌套使用会导致进程关系复杂，导致功能性能方面的问题。 |
-| [IsolatedComponent (系统接口)](../reference/apis-arkui/arkui-ts/ts-container-isolated-component-sys.md) | 不支持   | IsolatedComponent用于支持在本页面内嵌入显示独立Abc（.abc文件）提供的UI，展示的内容在受限worker线程中运行。 | 由于IsolatedComponent所承载的能力（如云卡）涉及跨应用调度，在UIExtension跨进程场景下嵌套使用会导致进程关系复杂，UIExtension中暂不支持。 |
+| [IsolatedComponent (系统接口)](../reference/apis-arkui/arkui-ts/ts-container-isolated-component-sys.md) | 不支持   | IsolatedComponent用于支持在本页面内嵌入显示独立ABC（.abc文件）提供的UI，展示的内容在受限worker线程中运行。 | 由于IsolatedComponent所承载的能力（如云卡）涉及跨应用调度，在UIExtension跨进程场景下嵌套使用会导致进程关系复杂，UIExtension中暂不支持。 |
 | [FullScreenLaunchComponent (全屏启动元服务组件)](../reference/apis-arkui/arkui-ts/ohos-arkui-advanced-FullScreenLaunchComponent.md) | 不支持   | 全屏启动元服务组件，当被拉起方授权使用方可以嵌入式运行元服务时，使用方全屏嵌入式运行元服务；未授权时，使用方跳出式拉起元服务。 | 由于是一种跨应用调度的能力，UIExtension中暂不支持嵌套拉起。  |
 | [EmbeddedComponent](../reference/apis-arkui/arkui-ts/ts-container-embedded-component.md) | 不支持   | EmbeddedComponent用于支持在当前页面嵌入本应用内其他[EmbeddedUIExtensionAbility](../reference/apis-ability-kit/js-apis-app-ability-embeddedUIExtensionAbility.md)提供的UI。EmbeddedUIExtensionAbility在独立进程中运行，完成页面布局和渲染。 | 由于EmbeddedComponent涉及跨进程拉起独立的EmbeddedUIExtensionAbility进程，在UIExtension已有的跨进程场景下嵌套使用会导致进程关系复杂，UIExtension中暂不支持嵌套拉起。  |
 | [RemoteWindow](../reference/apis-arkui/arkui-ts/ts-basic-components-remotewindow-sys.md) | 不支持   | 远程控制窗口组件，可以通过此组件控制应用窗口，提供启动退出过程中控件动画和应用窗口联动动画能力。 | UIExtension中的组件已经在另一个进程中，无法影响控制宿主应用的窗口。 |
 | [RichText](../reference/apis-arkui/arkui-ts/ts-basic-components-richtext.md) | 不支持   | 富文本组件，解析并显示HTML格式文本。                         | —                                                            |
-| [FolderStack](../reference/apis-arkui/arkui-ts/ts-container-folderstack.md) | 不支持   | FolderStack继承于[Stack](../reference/apis-arkui/arkui-ts/ts-container-stack.md)(层叠布局)控件，新增了折叠屏悬停能力，通过识别upperItems自动避让折叠屏折痕区后移到上半屏。 | 折叠屏划分组件能力，需要和宿主方窗口形成联动，从而需要在提供方内获取宿主主窗的信息，目前无法支持。 |
+| [FolderStack](../reference/apis-arkui/arkui-ts/ts-container-folderstack.md) | 不支持   | FolderStack继承于[Stack](../reference/apis-arkui/arkui-ts/ts-container-stack.md)(层叠布局)组件，新增了折叠屏悬停能力，通过识别upperItems自动避让折叠屏折痕区后移到上半屏。 | 折叠屏划分组件能力，需要和宿主方窗口形成联动，从而需要在提供方内获取宿主主窗的信息，目前无法支持。 |
 | [XComponent](../reference/apis-arkui/arkui-ts/ts-basic-components-xcomponent.md) | 不支持   | 可用于[EGL/OpenGLES](../../third-party-cases/how-to-use-opengl-to-draw-3d-graphics.md)和媒体数据写入，并显示在XComponent组件上。   | —                                                            |
 | [FormLink](../reference/apis-arkui/arkui-ts/ts-container-formlink.md) | 不支持   | 提供静态卡片交互组件，用于静态卡片内部和提供方应用间的交互，当前支持router、message和call三种类型的事件。 | 卡片提供的是跨进程的组件调用能力，UIExtension中嵌套使用会导致进程关系复杂，导致功能性能方面的问题。 |
 | [HyperLink](../reference/apis-arkui/arkui-ts/ts-container-hyperlink.md) | 不支持   | 超链接组件，组件宽高范围内点击实现跳转。                     | —                                                            |
@@ -130,13 +130,13 @@ UIExtensionComponent组件（使用方）可以访问调用集成了UIExtensionA
 
 由于UIExtension能力（包含基于UIExtension衍生的相关能力，如提供给系统内CreateModalUIExtension）机制的灵活性，如果提供方应用存在安全方面的诉求，无法在现有UIExtension的场景下解决的，建议优先使用其他方案。如选择继续采用UIExtension能力，提供方应用以及使用方应用都需要承担一定的安全风险。
 
-使用模式
+**使用模式**
 
 - CreateModalUIExtension全屏模态模式：CreateModalUIExtension是一个内部类接口，该接口不对外开放，由系统应用通过开发Node-API或者组件的方式使用该接口实现跨进程的拉起。在该模式下，创建全屏模态页面覆盖在应用上，不允许使用方应用的组件、窗口遮挡UIExtension，不可调节组件大小。
 
 - UIExtensionComponent组件模式：只允许系统应用使用，可以通过ArkTS声明式开发范式在应用中使用。以组件的方式集成在应用中使用，能够实现和其他组件类似的交互效果。
 
-组件模式下避免被使用方的子窗遮挡
+**组件模式下避免被使用方的子窗遮挡**
 
 - 提供方应用可以根据自身业务的情况，设置是否允许使用方应用进行遮挡。
 
@@ -144,7 +144,7 @@ UIExtensionComponent组件（使用方）可以访问调用集成了UIExtensionA
 
 - 缺点：设置后使用方的交互行为将受限，使用方无法再创建任何子窗覆盖到提供方的窗口上。
 
-锁屏之上显示管控：
+**锁屏之上显示管控：**
 
 和`UIAbility`规格对齐，`UIExtension`被拉起方应用需要具备锁屏显示的权限才能够成功显示在锁屏之上（该管控仅针对设备处于未解锁状态有效，比如机主设置了锁屏密码、指纹、人脸识别等安全认证，用户主动锁屏后亮屏的场景）。
 
