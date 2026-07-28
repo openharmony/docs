@@ -1,11 +1,12 @@
 # button
+
 <!--Kit: ArkUI-->
 <!--Subsystem: ArkUI-->
 <!--Owner: @liyi0309-->
 <!--Designer: @liyi0309-->
 <!--Tester: @lxl007-->
 <!--Adviser: @Brilliantry_Rui-->
-
+<!-- md-trans-meta sourceCommit=dfb15c325281e5e789ea7ade45dfdd45876606ad translatedAt=2026-07-27T02:27:42.330Z pushedAt=2026-07-27T09:23:36.752Z -->
 
 The **\<button>** component includes capsule, circle, and text buttons.
 
@@ -17,7 +18,6 @@ The **\<button>** component includes capsule, circle, and text buttons.
 
 Not supported.
 
-
 ## Attributes
 
 In addition to the [universal attributes](js-service-widget-common-attributes.md), the following attributes are supported.
@@ -28,13 +28,11 @@ In addition to the [universal attributes](js-service-widget-common-attributes.md
 | value | string | - | No| Text value of the button. This attribute is unavailable for circle buttons.|
 | icon | string | - | No| Path of the button icon. The supported icon formats are JPG, PNG, and SVG.|
 | placement | string | end | No| Position of the button icon in text. This attribute is valid only when **type** is not set. Available values are as follows:<br>- **start**: The button icon is at the beginning of the text.<br>- **end**: The button icon is at the end of the text.<br>- **top**: The button icon is at the top of the text.<br>- **bottom**: The button icon is at the bottom of the text.|
-| waiting | boolean | false | No| Whether the button is in the waiting state. The value **true** means that the button is in the waiting state, and a loading animation is displayed on the left of the text. If its value is **false**, the loading animation is not displayed. This attribute does not work for download buttons.|
-
+| waiting | boolean | false | No | Whether the button is in the waiting state. The value **true** means that the button is in the waiting state, and a loading animation is displayed on the left of the text. If its value is **false**, the loading animation is not displayed. This attribute does not work for download buttons.|
 
 ## Events
 
 The [universal events](js-service-widget-common-events.md) are supported.
-
 
 ## Styles
 
@@ -58,9 +56,7 @@ In addition to the [universal styles](js-service-widget-common-styles.md), the f
 > 
 > - For text buttons, the text size is automatically adaptive, and **radius**, **width**, and **height** cannot be set. The **background-color** style is not supported when the background is completely transparent.
 
-
 ## Example
-
 
 ```html
 <!-- xxx.hml -->
@@ -70,7 +66,6 @@ In addition to the [universal styles](js-service-widget-common-styles.md), the f
   <button class="button text" type="text">Text button</button>
 </div>
 ```
-
 
 ```css
 /* xxx.css */ 
@@ -95,6 +90,7 @@ In addition to the [universal styles](js-service-widget-common-styles.md), the f
   font-style: normal;
 }
 ```
+
 **4 x 4 widget**
 
 ![button](figures/button.jpg)
