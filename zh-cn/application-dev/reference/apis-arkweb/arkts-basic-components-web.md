@@ -41,6 +41,7 @@ Web组件是ArkWeb Kit提供的具有网页显示能力的UI组件，用于在�
 - [WebResourceError](./arkts-basic-components-web-WebResourceError.md)：资源管理错误。
 - [WebResourceRequest](./arkts-basic-components-web-WebResourceRequest.md)：资源获取请求。
 - [WebResourceResponse](./arkts-basic-components-web-WebResourceResponse.md)：资源获取响应。
+- [VerifyPinHandler](./arkts-basic-components-web-VerifyPinHandler.md)：PIN码验证请求。
 
 ## 需要权限
 
