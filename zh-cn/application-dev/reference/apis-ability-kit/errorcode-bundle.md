@@ -1292,6 +1292,47 @@ The specified skillName is not found.
 1. 排查skillName，确认拼写无误。
 2. 使用[bm工具](../../tools/bm-tool.md)安装对应Skill所在的应用。
 
+<!--Del-->
+## 17700094 指定的应用未创建分身
+
+**错误信息**
+
+The specified bundle did not create a clone.
+
+**错误描述**
+
+设置应用分身偏好时，指定的应用未创建分身。
+
+**可能原因**
+
+指定的应用未创建任何分身。
+
+**处理步骤**
+
+1. 使用[bundleManager.getAppCloneBundleInfo](js-apis-bundleManager-sys.md#bundlemanagergetappclonebundleinfo12)确认应用是否已创建分身。
+2. 创建应用分身后重试。
+
+## 17700095 指定的应用未找到分身偏好
+
+**错误信息**
+
+The specified bundle not found app clone preference.
+
+**错误描述**
+
+查询应用分身偏好时，指定的应用未设置分身偏好。
+
+**可能原因**
+
+1. 应用从未设置过分身偏好。
+2. 应用分身偏好已被清除。
+
+**处理步骤**
+
+1. 确认应用是否需要分身偏好。
+2. 使用[bundleManager.setAppClonePreference](js-apis-bundleManager-sys.md#bundlemanagersetappclonepreference)设置分身偏好后重试。
+<!--DelEnd-->
+
 ## 17700101 包管理服务异常
 **错误信息**<br/>
 Bundle manager service exception.

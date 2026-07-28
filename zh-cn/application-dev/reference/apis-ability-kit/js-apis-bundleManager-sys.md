@@ -5456,6 +5456,135 @@ try {
   hilog.error(0x0000, 'testTag', 'getAllAppCloneBundleInfo failed. Cause: %{public}s', message);
 }
 ```
+
+## bundleManager.getAppClonePreference
+
+getAppClonePreference(bundleName: string): Promise\<AppClonePreference>;
+
+根据给定的bundleName查询应用分身偏好设置。使用Promise异步回调。
+
+**起始版本：** 26.0.0
+
+**系统接口：** 此接口为系统接口。
+
+**需要权限：** ohos.permission.MANAGE_CLONE_BUNDLE_PREFERENCES
+
+**系统能力：** SystemCapability.BundleManager.BundleFramework.Core
+
+**模型约束：** 此接口仅可在Stage模型下使用。
+
+**参数：**
+
+| 参数名     | 类型   | 必填 | 说明                       |
+| ---------- | ------ | ---- | ---------------------------|
+| bundleName | string |  是  | 表示目标应用的bundleName。   |
+
+**返回值：**
+
+| 类型                                                        | 说明                        |
+| ----------------------------------------------------------- | --------------------------- |
+| Promise\<[AppClonePreference](js-apis-bundleManager-AppClonePreference-sys.md#appclonepreference)> | Promise对象，返回应用的分身偏好设置。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[包管理子系统通用错误码](errorcode-bundle.md)。
+
+| 错误码ID | 错误信息                            |
+| -------- | --------------------------------------|
+| 201 | Permission denied. |
+| 202 | Permission denied, non-system app called system api. |
+| 17700001 | The specified bundleName is not found. |
+| 17700095 | The specified bundle not found app clone preference. |
+
+**示例：**
+
+```ts
+import { bundleManager } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { hilog } from '@kit.PerformanceAnalysisKit';
+
+let bundleName = 'com.example.myapplication';
+
+try {
+  bundleManager.getAppClonePreference(bundleName).then((res: bundleManager.AppClonePreference) => {
+    hilog.info(0x0000, 'testTag', 'getAppClonePreference res: AppClonePreference = %{public}s',
+      JSON.stringify(res));
+  }).catch((err: BusinessError) => {
+    hilog.error(0x0000, 'testTag', 'getAppClonePreference failed. Cause: %{public}s', err.message);
+  });
+} catch (err) {
+  let message = (err as BusinessError).message;
+  hilog.error(0x0000, 'testTag', 'getAppClonePreference failed. Cause: %{public}s', message);
+}
+```
+
+## bundleManager.setAppClonePreference
+
+setAppClonePreference(bundleName: string, appClonePreference: AppClonePreference): Promise\<void>;
+
+根据给定的bundleName设置应用分身偏好设置。使用Promise异步回调。
+
+**起始版本：** 26.0.0
+
+**系统接口：** 此接口为系统接口。
+
+**需要权限：** ohos.permission.MANAGE_CLONE_BUNDLE_PREFERENCES
+
+**系统能力：** SystemCapability.BundleManager.BundleFramework.Core
+
+**模型约束：** 此接口仅可在Stage模型下使用。
+
+**参数：**
+
+| 参数名     | 类型   | 必填 | 说明                       |
+| ---------- | ------ | ---- | ---------------------------|
+| bundleName | string |  是  | 表示目标应用的bundleName。   |
+| appClonePreference | [AppClonePreference](js-apis-bundleManager-AppClonePreference-sys.md#appclonepreference) |  是  | 表示要设置的应用分身偏好设置。   |
+
+**返回值：**
+
+| 类型                                                        | 说明                        |
+| ----------------------------------------------------------- | --------------------------- |
+| Promise\<void> | Promise对象。无返回结果的Promise对象。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[包管理子系统通用错误码](errorcode-bundle.md)。
+
+| 错误码ID | 错误信息                            |
+| -------- | --------------------------------------|
+| 201 | Permission denied. |
+| 202 | Permission denied, non-system app called system api. |
+| 17700001 | The specified bundleName is not found. |
+| 17700026 | The specified bundle is disabled. |
+| 17700061 | The specified app index is invalid. |
+| 17700094 | The specified bundle did not create a clone. |
+
+**示例：**
+
+```ts
+import { bundleManager } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { hilog } from '@kit.PerformanceAnalysisKit';
+
+let bundleName = 'com.example.myapplication';
+let appClonePreference: bundleManager.AppClonePreference = {
+  mode: bundleManager.AppClonePreferenceMode.CLONE_APP,
+  appIndex: 1
+};
+
+try {
+  bundleManager.setAppClonePreference(bundleName, appClonePreference).then(() => {
+    hilog.info(0x0000, 'testTag', 'setAppClonePreference successfully');
+  }).catch((err: BusinessError) => {
+    hilog.error(0x0000, 'testTag', 'setAppClonePreference failed. Cause: %{public}s', err.message);
+  });
+} catch (err) {
+  let message = (err as BusinessError).message;
+  hilog.error(0x0000, 'testTag', 'setAppClonePreference failed. Cause: %{public}s', message);
+}
+```
+
 ## bundleManager.verifyAbc<sup>11+</sup>
 
 verifyAbc(abcPaths: Array\<string>, deleteOriginalFiles: boolean, callback: AsyncCallback\<void>): void
@@ -6509,3 +6638,35 @@ type BundleOptions = _BundleInfo.BundleOptions
 | 类型                                                         | 说明           |
 | ------------------------------------------------------------ | -------------- |
 | [_BundleInfo.BundleOptions](js-apis-bundleManager-BundleInfo-sys.md#bundleoptions) |应用包选项，用于设置或查询应用相关信息。 |
+
+## AppClonePreferenceMode
+
+type AppClonePreferenceMode = _AppClonePreferenceMode
+
+应用分身偏好设置的模式。
+
+**起始版本：** 26.0.0
+
+**系统接口：** 此接口为系统接口。
+
+**系统能力：** SystemCapability.BundleManager.BundleFramework.Core
+
+| 类型                                                         | 说明           |
+| ------------------------------------------------------------ | -------------- |
+| [_AppClonePreferenceMode](js-apis-bundleManager-AppClonePreference-sys.md#appclonepreferencemode) |应用分身偏好设置的模式枚举，定义了应用启动时在主应用与分身应用之间的选择策略，包括每次询问、默认主应用、默认分身应用三种取值。 |
+
+## AppClonePreference
+
+type AppClonePreference = _AppClonePreference
+
+应用分身偏好设置，用于配置应用启动时主应用和分身应用的选择策略。
+
+**起始版本：** 26.0.0
+
+**系统接口：** 此接口为系统接口。
+
+**系统能力：** SystemCapability.BundleManager.BundleFramework.Core
+
+| 类型                                                         | 说明           |
+| ------------------------------------------------------------ | -------------- |
+| [_AppClonePreference](js-apis-bundleManager-AppClonePreference-sys.md#appclonepreference) |应用分身偏好设置，用于配置应用启动时主应用和分身应用的选择策略。通过[bundleManager.getAppClonePreference](#bundlemanagergetappclonepreference)查询当前偏好设置，通过[bundleManager.setAppClonePreference](#bundlemanagersetappclonepreference)设置新的偏好。其mode字段决定启动时的选择行为，appIndex字段在mode取值为CLONE_APP时用于指定具体的分身索引。|
