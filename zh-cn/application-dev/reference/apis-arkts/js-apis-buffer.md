@@ -58,7 +58,7 @@ alloc(size: number, fill?: string | Buffer | number, encoding?: BufferEncoding):
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| size | number | 是 | 指定的Buffer对象长度，单位：字节。取值为正整数，最大值为4294967295。 |
+| size | number | 是 | 指定的Buffer对象长度，单位：字节。取值为正整数，最大值为2^32-1，即4294967295。 |
 | fill | string \| [Buffer](#buffer) \| number | 否 | 填充至新缓冲区的值，默认值：0。 |
 | encoding | [BufferEncoding](#bufferencoding) | 否 | 编码格式（当`fill`参数为string时，才有意义）。默认值：'utf8'。 |
 
