@@ -12,10 +12,10 @@ Asset Store Kit（关键资产存储服务，简称ASSET）用于提供用户短
 关键资产存储服务提供安全存储能力，主要体现在以下几个方面：
 
 - **安全环境执行：** 关键资产的加解密操作和访问控制校验均在安全环境（如可信执行环境）中完成，使用AES256-GCM算法进行加密，密钥存储在[通用密钥库系统](../UniversalKeystoreKit/huks-overview.md)中，保证用户敏感数据不发生泄露。
-- **身份隔离：** 关键资产服务会对应用身份校验，确保应用只能读取或修改本应用的数据，无法读取或修改其他应用数据。相同群组的应用之间数据可以互相访问，详情请参见[管理群组关键资产(ArkTS)](asset-js-group-access-control.md)/[管理群组关键资产(C/C++)](asset-native-group-access-control.md)。
+- **身份隔离：** 关键资产存储服务会对应用身份（应用的[appId](../../quick-start/common-problem-of-application.md#什么是appid)）校验，确保应用只能读取或修改本应用的数据，无法读取或修改其他应用数据。相同群组的应用之间数据可以互相访问，详情请参见[管理群组关键资产(ArkTS)](asset-js-group-access-control.md)/[管理群组关键资产(C/C++)](asset-native-group-access-control.md)。
 - **访问控制：** 支持基于属主、群组、锁屏状态、锁屏密码设置状态、用户认证等多维度访问控制策略。
 
-ASSET数据存储结果如下图所示。
+ASSET数据存储结构如下图所示。
 
 ![asset-store-architecture](figures/asset-store-architecture.png)
 
@@ -88,7 +88,7 @@ ASSET数据存储结果如下图所示。
 
 关键资产有且仅有以下删除时机：
 - 业务主动调用remove删除关键资产时，删除符合条件的数据。详见[删除关键资产(ArkTS)](asset-js-remove.md)/[删除关键资产(C/C++)](asset-native-remove.md)开发指导。
-- 应用卸载时，关键资产服务会清除对应的数据。[IS_PERSISTENT](../../reference/apis-asset-store-kit/js-apis-asset.md#tag)属性设置为true的数据将保留。
+- 应用卸载时，关键资产存储服务会清除对应的数据。[IS_PERSISTENT](../../reference/apis-asset-store-kit/js-apis-asset.md#tag)属性设置为true的数据将保留。
     - 从API 21开始：清除存储在ASSET中的非群组数据。群组数据仅在群组内所有应用卸载时清除。
     - 在API 20及之前的版本：清除存储在ASSET中的非群组和群组数据。
 - 系统子用户删除时，清除该用户下ASSET中所有数据。
