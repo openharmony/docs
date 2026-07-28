@@ -10,32 +10,32 @@
 
   **表1** 源码目录结构
 
-| 名称 | 描述 | 
+| 名称 | 描述 |
 | -------- | -------- |
-| yxml/bench/ | benchmark相关代码。 | 
-| yxml/test/ | 测试输入输出文件，及测试脚本。 | 
-| yxml/Makefile | 编译组织文件。 | 
-| yxml/.gitattributes | - | 
-| yxml/.gitignore | - | 
-| yxml/COPYING | - | 
-| yxml/yxml.c | - | 
-| yxml/yxml.c.in | - | 
-| yxml/yxml-gen.pl | - | 
-| yxml/yxml.h | - | 
-| yxml/yxml.md | - | 
-| yxml/yxml-states | - | 
-
+| yxml/bench/ | benchmark相关代码。 |
+| yxml/test/ | 测试输入输出文件，及测试脚本。 |
+| yxml/Makefile | 编译组织文件。 |
+| yxml/.gitattributes | - |
+| yxml/.gitignore | - |
+| yxml/COPYING | - |
+| yxml/yxml.c | - |
+| yxml/yxml.c.in | - |
+| yxml/yxml-gen.pl | - |
+| yxml/yxml.h | - |
+| yxml/yxml.md | - |
+| yxml/yxml-states | - |
 
 ## 设置交叉编译
 
 设置Makefile的交叉编译工具链，修改并编译该库，生成OpenHarmony平台的可执行文件，步骤如下：
 
 1. 设置工具链
+
    将下列clang工具链配置替换掉yxml库根目录的Makefile（即表1中的文件）中的原有配置。
 
      clang工具链配置：
-     
-   ```
+
+   ```text
    #设置交叉编译工具链，确保工具链所在路径已经添加到了PATH环境变量中
    CC:=clang
    AR:=llvm-ar
@@ -45,32 +45,34 @@
 
    原有配置：
 
-     
-   ```
+
+   ```text
    CC:=gcc
    AR:=ar
    CFLAGS:=-Wall -Wextra -Wno-unused-parameter -O2 -g
    ```
 
 2. 执行编译
-   linux命令行中进入yxml的源文件目录（即图1所示目录），执行下列命令：
 
-     
-   ```
+   Linux命令行中进入yxml的源文件目录（即表1所示目录），执行下列命令：
+
+
+   ```text
    make test OHOS_SYSROOT_PATH=...
    ```
 
    其中OHOS_SYSROOT_PATH需用绝对路径指定出sysroot所在目录，以OpenHarmony为例即源码根目录下out/hispark_xxx/ipcamera_hispark_xxx/sysroot目录的绝对路径。上述目录会在全量编译后生成，因此移植前先完成一次全量编译。
 
 3. 查看结果
+
    步骤2操作完成后，yxml下会生成out目录，里面有静态库文件和测试用例：
 
      **表2** yxml编译生成目录
-   
-   | 名称 | 描述 | 
+
+   | 名称 | 描述 |
    | -------- | -------- |
-   | OpenHarmony/third_party/yxml/yxml/out/lib/ | 编译生成的静态库的存放目录。 | 
-   | OpenHarmony/third_party/yxml/yxml/out/test/ | 编译生成的测试用例及其输入输出等文件的存放目录。 | 
+   | OpenHarmony/third_party/yxml/yxml/test/ | 编译生成的静态库的存放目录。 | 
+   | OpenHarmony/third_party/yxml/yxml/test/ | 编译生成的测试用例及其输入输出等文件的存放目录。 |
 
 
 ## 测试
@@ -79,17 +81,17 @@ yxml库测试步骤与double-conversion库基本一致，可参考[CMake方式�
 
   **表3** 生成的test目录结构示意
 
-| 名称 | 描述 | 
+| 名称 | 描述 |
 | -------- | -------- |
-| OpenHarmony/third_party/yxml/yxml/out/test/test.sh | 自动化测试脚本，由于OpenHarmony不支持脚本运行，因此无法使用，可参考其内容手动测试。 | 
-| OpenHarmony/third_party/yxml/yxml/out/test/test | 用于测试的可执行文件。 | 
-| OpenHarmony/third_party/yxml/yxml/out/test/\*.xml | 测试输入文件。 | 
-| OpenHarmony/third_party/yxml/yxml/out/test/\*.out | 期望的输出文件。 | 
+| OpenHarmony/third_party/yxml/yxml/out/test/test.sh | 自动化测试脚本，由于OpenHarmony不支持脚本运行，因此无法使用，可参考其内容手动测试。 |
+| OpenHarmony/third_party/yxml/yxml/out/test/test | 用于测试的可执行文件。 |
+| OpenHarmony/third_party/yxml/yxml/out/test/\*.xml | 测试输入文件。 |
+| OpenHarmony/third_party/yxml/yxml/out/test/\*.out | 期望的输出文件。 |
 
 test.sh内容如下所示：
 
-  
-```
+
+```sh
 #!/bin/sh
 for i in *.xml; do
   b=`basename $i .xml`
@@ -110,23 +112,25 @@ echo "All tests completed successfully."
 下列操作假定已按照2.4节的步骤搭建OpenHarmony，挂载并进入nfs目录：
 
 1. 执行下列命令。
-     
-   ```
+
+   ```text
    ./test
    ```
 
 2. 复制\*.xml内容到shell。
+
      以表3test目录下pi01.xml为例，内容如下，输入到shell并回车：
-     
-   ```
+
+   ```xml
    <?SomePI abc?><a/>
    ```
 
 3. 比较shell中输出的内容与表3test目录中对应的\*.out文件是否一致。
+
    输出结果如下：
 
-     
-   ```
+
+   ```text
    pistart SomePI
    picontent abc
    piend
@@ -144,15 +148,15 @@ yxml库添加的过程除了适配文件build.gn和config.gni有些许变化外�
 
 - yxml库新增的BUILD.gn实现如下：
 
-  
-```
+
+```gn
 import("config.gni")
 group("yxml") {
-    if (ohos_build_thirdparty_migrated_from_fuchisa == true) {
+    if (ohos_build_thirdparty_migrated_from_fuchsia == true) {
         deps = [":make"]
     }
 }
-if (ohos_build_thirdparty_migrated_from_fuchisa == true) {
+if (ohos_build_thirdparty_migrated_from_fuchsia == true) {
     action("make") {
         script = "//third_party/yxml/build_thirdparty.py"
         outputs = ["$target_out_dir/log_yxml.txt"]
@@ -168,8 +172,8 @@ if (ohos_build_thirdparty_migrated_from_fuchisa == true) {
 
 - yxml库新增的config.gni配置如下：
 
-  
-```
+
+```gni
 TEST_ENABLE = "YES"
 
 if (TEST_ENABLE == "YES") {
@@ -183,9 +187,9 @@ if (TEST_ENABLE == "YES") {
 
   **表4** 添加到工程后的目录结构
 
-| 名称 | 描述 | 
+| 名称 | 描述 |
 | -------- | -------- |
-| OpenHarmony/third_party/yxml/BUILD.gn | 将三方库加入工程的gn适配文件。 | 
-| OpenHarmony/third_party/yxml/build_thirdparty.py | GN调用shell命令脚本文件，由上面GN文件将相关命令传入，实现GN转Makefile。 | 
-| OpenHarmony/third_party/yxml/config.gni | 三方库编译配置文件，可修改该文件来配置用例是否参与构建等。 | 
-| OpenHarmony/third_party/yxml/yxml/ | 要移植的三方库目录。 | 
+| OpenHarmony/third_party/yxml/BUILD.gn | 将三方库加入工程的gn适配文件。 |
+| OpenHarmony/third_party/yxml/build_thirdparty.py | GN调用shell命令脚本文件，由上面GN文件将相关命令传入，实现GN转Makefile。 |
+| OpenHarmony/third_party/yxml/config.gni | 三方库编译配置文件，可修改该文件来配置用例是否参与构建等。 |
+| OpenHarmony/third_party/yxml/yxml/ | 要移植的三方库目录。 |
