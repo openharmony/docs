@@ -70,7 +70,7 @@ ConsoleMessage的日志来源。
 
 > **说明：**
 >
-> 从API version9开始支持，从API version 21开始废弃。建议使用[WebHitTestType](./arkts-apis-webview-e.md#webhittesttype)替代。
+> 从API version 9开始支持，从API version 21开始废弃。建议使用[WebHitTestType](./arkts-apis-webview-e.md#webhittesttype)替代。
 
 | 名称            | 值 | 说明                       |
 | ------------- | -- | ------------------------ |
@@ -105,8 +105,8 @@ ConsoleMessage的日志来源。
 
 | 名称     | 值 | 说明          |
 | ------ | -- | ----------- |
-| NEVER  | 0 | Web过滚动模式关闭。 |
-| ALWAYS | 1 | Web过滚动模式开启。 |
+| NEVER  | 0 | Web过滚动模式关闭。适用于不需要额外滚动效果的页面，如内容高度与容器高度匹配的场景。 |
+| ALWAYS | 1 | Web过滚动模式开启。适用于需要增强滚动反馈的场景，如列表页面或需要明确滚动边界指示的场景。 |
 
 ## BlurOnKeyboardHideMode<sup>14+</sup>
 
@@ -187,7 +187,7 @@ onSslErrorEventReceive接口返回的SSL错误的具体原因。
 
 ## FileSelectorMode<sup>9+</sup>
 
-文件选择器的模式。
+文件选择器的模式，用于控制文件选择器的打开方式和行为，帮助开发者实现文件上传等文件操作场景。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -277,7 +277,7 @@ Web布局模式的配置。
 
 | 名称        | 值 | 说明                          |
 | --------- | -- | --------------------------- |
-| None      | 0 | 非输入框。                       |
+| None      | 0 | 非输入框，指不可编辑的网页元素，如按钮、div、span等普通HTML元素。                       |
 | PlainText | 1 | 纯文本类型，包括text、search、email等。 |
 | Password  | 2 | 密码类型。                       |
 | Number    | 3 | 数字类型。                       |

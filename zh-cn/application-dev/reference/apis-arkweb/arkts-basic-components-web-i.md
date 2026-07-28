@@ -66,7 +66,7 @@ Web媒体策略的配置。
 
 ## NestedScrollOptionsExt<sup>14+</sup>
 
-通过NestedScrollOptionsExt可以设置上下左右四个方向的嵌套滚动规则。
+用于设置Web组件嵌套滚动规则，支持上下左右四个方向的滚动选项。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -90,10 +90,11 @@ Web媒体策略的配置。
 
 ## ExpandedMenuItemOptions<sup>(deprecated)</sup>
 
+自定义菜单扩展项。
+
 > **说明：**
 >
-> 从API version 12开始支持，从API version 20开始废弃，建议使用[editMenuOptions](./arkts-basic-components-web-attributes.md#editmenuoptions12)替代。
-自定义菜单扩展项。
+> 从API version 12开始支持，从API version 20开始废弃。建议使用[editMenuOptions](./arkts-basic-components-web-attributes.md#editmenuoptions12)替代。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -101,7 +102,7 @@ Web媒体策略的配置。
 | ---------- | -----------------------------------------------------| ------ | ------ | ---------------- |
 | content   | [ResourceStr](../apis-arkui/arkui-ts/ts-types.md#resourcestr)  | 否     | 否     | 显示内容。     |
 | startIcon | [ResourceStr](../apis-arkui/arkui-ts/ts-types.md#resourcestr)  | 否     | 是     | 显示图标。默认值为空，不显示图标。     |
-| action    | (selectedText: {plainText: string}) => void                    | 否     | 否     | 选中的文本信息。|
+| action    | (selectedText: {plainText: string}) => void                    | 否     | 否     | 回调函数，用于接收用户选择菜单扩展项后的操作。回调参数selectedText包含plainText字段，表示用户选中的文本内容。|
 
 ## AdsBlockedDetails<sup>12+</sup>
 
@@ -132,7 +133,7 @@ Web媒体策略的配置。
 
 ## PreviewMenuOptions<sup>20+</sup>
 
-预览菜单选项。
+用于配置预览菜单选项，支持设置菜单弹出时的振动效果。适用于需要增强菜单交互反馈的场景，提升用户体验。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -271,7 +272,7 @@ Web同层渲染的配置。
 
 ## OnShowFileSelectorEvent<sup>12+</sup>
 
-定义文件选择器结果。
+定义文件选择器结果的回调信息，包括结果和参数详情。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -345,7 +346,7 @@ Web同层渲染的配置。
 
 ## OnContextMenuShowEvent<sup>12+</sup>
 
-定义调用时触发的回调，以允许自定义显示上下文菜单。
+定义调用时触发的回调信息，以允许自定义显示上下文菜单。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -368,7 +369,7 @@ Web同层渲染的配置。
 
 ## OnScrollEvent<sup>12+</sup>
 
-定义滚动条滑动到指定位置时触发。
+定义滚动条滑动到指定位置时触发的回调信息，包括水平和垂直偏移量。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -546,7 +547,7 @@ Web同层渲染的配置。
 
 ## OnOverScrollEvent<sup>12+</sup>
 
-定义网页过度滚动时触发的回调。
+定义网页过度滚动时触发的回调信息，包括水平和垂直偏移量。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -933,7 +934,7 @@ Web屏幕捕获的配置。
 
 ## AcceptableFileType<sup>23+</sup>
 
-定义文件选择器拉取文件时网页推荐的文件类型信息。
+提供文件选择器推荐的文件类型信息，包括MIME类型和类型数组。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -956,7 +957,7 @@ Web屏幕捕获的配置。
 
 ## AISessionEvent
 
-自定义AI会话配置对象，用于定义AI会话的生命周期回调。
+自定义AI会话配置对象，用于定义AI会话的生命周期回调，包括创建、执行和销毁。
 
 **起始版本：** 26.0.0
 
