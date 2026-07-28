@@ -11311,3 +11311,143 @@ struct WebComponent {
   }
 }
 ```
+
+## setErrorPageEnabled
+
+setErrorPageEnabled(enable: boolean, includeSubframe: boolean): void
+
+设置是否启用mainframe错误页功能，并可控制是否同时启用subframe错误页功能。
+
+当enable设置为true时，mainframe加载发生错误将展示错误页：若设置了[onOverrideErrorPage](./arkts-basic-components-web-events.md#onoverrideerrorpage20)回调，则展示用户自定义的错误页；若未设置，则展示ArkWeb提供的默认错误页。当enable和includeSubframe同时设置为true时，subframe加载发生错误也会展示错误页，onOverrideErrorPage回调对subframe同样生效。
+
+> **说明：**
+>
+> - 当enable设置为false时，无论includeSubframe取何值，mainframe和subframe的错误页功能均不启用。
+> - 当includeSubframe设置为false时，本接口行为与[setErrorPageEnabled](#seterrorpageenabled20)<sup>20+</sup>一致，即仅启用mainframe错误页功能，不启用subframe错误页功能。
+> - 可通过[errorPageEvent.request.isMainFrame()](./arkts-basic-components-web-WebResourceRequest.md#ismainframe)判断错误来源是mainframe还是subframe，以便在onOverrideErrorPage回调中分别设置对应的自定义错误页。
+
+**起始版本：** 26.0.0
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
+**模型约束：** 此接口仅可在Stage模型下使用。
+
+**参数：**
+
+| 参数名   | 类型    | 必填 | 说明                      |
+| -------- | ------- | ---- | -------------------------------------- |
+| enable | boolean | 是 | 表示是否启用mainframe错误页功能。true表示启用，false表示不启用。启用后mainframe加载出错将展示错误页。|
+| includeSubframe | boolean | 是 | 表示是否同时启用subframe错误页功能。true表示启用，false表示不启用。启用后subframe加载出错也将展示错误页。仅在enable为true时有效。|
+
+**错误码：**
+
+以下错误码的详细介绍请参见[Webview错误码](errorcode-webview.md)。
+
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| 17100001 | Init error. The WebviewController must be associated with a Web component. |
+
+**示例：**
+
+```ts
+// xxx.ets
+import { webview } from '@kit.ArkWeb';
+
+@Entry
+@Component
+struct WebComponent {
+  controller: webview.WebviewController = new webview.WebviewController();
+
+  build() {
+    Column() {
+      Web({ src: $rawfile("iframe_error.html"), controller: this.controller })
+        .onControllerAttached(() => {
+          // 启用mainframe和subframe错误页功能
+          this.controller.setErrorPageEnabled(true, true);
+        })
+        .onOverrideErrorPage((event) => {
+          if (event.request.isMainFrame()) {
+            return "<html><body><h1>主页面加载失败</h1><p>错误码：" + event.error.getErrorCode() + "</p></body></html>";
+          }
+          return "<html><body><h1>子页面加载失败</h1><p>错误码：" + event.error.getErrorCode() + "</p></body></html>";
+        })
+    }
+  }
+}
+```
+
+```html
+<!-- resources/rawfile/iframe_error.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>iframe</title>
+</head>
+<body>
+<iframe src="https://error-test.com/" title="iframe_error.html" loading="lazy" referrerpolicy="no-referrer" allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture"></iframe>
+</body>
+</html>
+```
+
+> **示例说明：** 示例中使用的`iframe_error.html`文件需放置在应用资源的`resources/rawfile/`目录下，该HTML文件中包含一个加载失败URL的iframe，用于触发subframe错误页。
+
+## getSubframeErrorPageEnabled
+
+getSubframeErrorPageEnabled(): boolean
+
+查询是否启用了subframe错误页功能。
+
+**起始版本：** 26.0.0
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
+**模型约束：** 此接口仅可在Stage模型下使用。
+
+**返回值：**
+
+| 类型                 | 说明                      |
+| -------------------- | ------------------------- |
+| boolean | 返回是否启用subframe错误页功能。<br>- true：已启用subframe错误页功能（即enable和includeSubframe均为true）；<br>- false：未启用subframe错误页功能（包括未启用错误页功能、或启用了错误页功能但未启用subframe错误页功能两种情况）。|
+
+**错误码：**
+
+以下错误码的详细介绍请参见[Webview错误码](errorcode-webview.md)。
+
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| 17100001 | Init error. The WebviewController must be associated with a Web component. |
+
+**示例：**
+
+```ts
+// xxx.ets
+import { webview } from '@kit.ArkWeb';
+
+@Entry
+@Component
+struct WebComponent {
+  controller: webview.WebviewController = new webview.WebviewController();
+
+  build() {
+    Column() {
+      Web({ src: $rawfile("iframe_error.html"), controller: this.controller })
+        .onControllerAttached(() => {
+          // 启用mainframe和subframe错误页功能
+          this.controller.setErrorPageEnabled(true, true);
+          // 查询subframe错误页功能是否已启用
+          let isSubframeEnabled: boolean = this.controller.getSubframeErrorPageEnabled();
+          console.info("Subframe error page enabled: " + isSubframeEnabled);
+
+          // 仅启用mainframe错误页功能，不启用subframe
+          this.controller.setErrorPageEnabled(true, false);
+          let isSubframeEnabled2: boolean = this.controller.getSubframeErrorPageEnabled();
+          console.info("Subframe error page enabled after disable: " + isSubframeEnabled2);
+        })
+    }
+  }
+}
+```
+
+> **示例说明：** 示例中使用的`iframe_error.html`文件与[setErrorPageEnabled](#seterrorpageenabled)示例中相同，需放置在应用资源的`resources/rawfile/`目录下。
