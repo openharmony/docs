@@ -70,10 +70,10 @@
        // ...
        "skillProfiles": [
          {
-           "name": "music-assistant", // Skill名，需与SKILL.md的name一致
-           "abilityName": "EntryAbility", // 与该Skill关联的组件名称
-           "srcEntries": [  // 实现Skill的代码文件路径列表
-             "../../skills/music-assistant/scripts/MusicSkill.ets"
+           "name": "example-org-music-assistant",  // Skill名，需与SKILL.md的name一致
+           "abilityName": "EntryAbility",          // 与该Skill关联的组件名称
+           "srcEntries": [                         // 实现Skill的代码文件路径列表
+             "../../skills/example-org-music-assistant/scripts/MusicSkill.ets"
            ],
            "version": "1.0.0"
          }
