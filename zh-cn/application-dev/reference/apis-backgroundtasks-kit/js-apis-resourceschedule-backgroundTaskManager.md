@@ -67,7 +67,6 @@ requestSuspendDelay(reason: string, callback: Callback&lt;void&gt;): DelaySuspen
 import { BusinessError } from '@kit.BasicServicesKit';
 import { backgroundTaskManager } from '@kit.BackgroundTasksKit';
 
-
 // 申请短时任务的原因
 let myReason = 'test requestSuspendDelay';
 try {
