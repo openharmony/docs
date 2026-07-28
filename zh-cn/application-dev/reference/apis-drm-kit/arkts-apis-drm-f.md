@@ -7,7 +7,7 @@
 <!--Adviser: @w_Machine_cc-->
 > **说明：**
 >
-> 本模块首批接口从API version 11开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
+> 本模块首批接口从API版本11开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 
 ## 导入模块
 
@@ -114,7 +114,7 @@ isMediaKeySystemSupported(name: string, mimeType: string): boolean
 | 参数名     | 类型                                             | 必填 | 说明                                                                                                          |
 | -------- | ----------------------------------------------- | ---- |-------------------------------------------------------------------------------------------------------------|
 | name  | string     | 是   | DRM解决方案名称。从API版本12开始，可通过[drm.getMediaKeySystems](arkts-apis-drm-f.md#drmgetmediakeysystems12)接口获取设备支持的DRM解决方案名称，如"com.clearplay.drm"。                   |
-| mimeType  | string     | 是   | 媒体类型，支持的媒体类型取决于DRM解决方案，如：video/avc、video/webm。                                                               |
+| mimeType  | string     | 是   | 媒体类型，支持的媒体类型取决于DRM解决方案，如：video/avc、video/hevc。                                                               |
 
 **返回值：**
 

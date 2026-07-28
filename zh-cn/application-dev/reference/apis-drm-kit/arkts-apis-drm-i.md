@@ -7,12 +7,12 @@
 <!--Adviser: @w_Machine_cc-->
 > **说明：**
 >
-> 本模块首批接口从API version 11开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
+> 本模块首批接口从API版本11开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 ## ProvisionRequest
 
 设备证书请求。
 
-**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API版本14开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.Drm.Core
 
@@ -25,34 +25,34 @@
 
 设备证书请求的可选数据。
 
-**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API版本12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.Drm.Core
 
 | 名称      | 类型                        | 只读 | 可选 | 说明         |
 | -------- | --------------------------|----|----| ------------- |
-| name   | string | 否  | 否  | 可选数据名，用于标识可选数据的键名。具体可用的名称由DRM解决方案决定。      |
-| value     | string             | 否  | 否  | 可选数据值，与可选数据名对应的值。具体格式和取值范围由DRM解决方案决定。 |
+| name   | string | 否  | 否  | 可选数据名，用于标识可选数据的键名。      |
+| value     | string             | 否  | 否  | 可选数据值，与可选数据名对应的值。 |
 
 ## MediaKeyRequest
 
 媒体密钥请求参数。
 
-**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API版本12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.Drm.Core
 
 | 名称      | 类型                       | 只读 | 可选 | 说明         |
 | -------- | --------------------------|----|----| ------------- |
 | mediaKeyRequestType   | [MediaKeyRequestType](arkts-apis-drm-e.md#mediakeyrequesttype)| 否  | 否  | 媒体密钥请求类型。用于指定请求密钥的场景，包括初始请求、续订请求、释放请求、更新请求等不同类型。      |
-| data     | Uint8Array               |  否  | 否  | 媒体密钥请求数据，包含媒体密钥请求的原始字节数据。具体格式和大小由DRM解决方案决定。       |
+| data     | Uint8Array               |  否  | 否  | 媒体密钥请求数据，包含媒体密钥请求的原始字节数据。       |
 | defaultURL     | string              |  否  | 否  | 媒体密钥服务URL。需符合URL格式规范，建议使用HTTPS协议。       |
 
 ## EventInfo
 
 事件信息。
 
-**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API版本12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.Drm.Core
 
@@ -65,33 +65,33 @@
 
 度量记录。
 
-**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API版本14开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.Drm.Core
 
 | 名称      | 类型                       | 只读 | 可选   | 说明         |
 | -------- | -------------------------|----|------| ------------- |
-| name   | string | 否  | 否     | 度量记录名，用于标识度量指标的键名。具体可用的名称由DRM解决方案决定。      |
-| value     | string              | 否   | 否   | 度量记录值，表示度量指标的数值或状态。具体格式和取值范围由DRM解决方案决定。 |
+| name   | string | 否  | 否     | 度量记录名，用于标识度量指标的键名。      |
+| value     | string              | 否   | 否   | 度量记录值，表示度量指标的数值或状态。 |
 
 ## MediaKeyStatus
 
 媒体密钥状态。
 
-**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API版本12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.Drm.Core
 
 | 名称      | 类型                        | 只读 | 可选      | 说明         |
 | -------- | -------------------------|----|---------| ------------- |
-| name   | string | 否  |  否       | 媒体密钥状态类型名称。常见类型包括：媒体密钥过期时间、内容保护安全级别等。具体可选类型由DRM解决方案决定。      |
-| value     | string            | 否   | 否  | 媒体密钥状态值，表示与状态名称对应的具体状态信息。具体取值由DRM解决方案决定。 |
+| name   | string | 否  |  否       | 媒体密钥状态类型名称。常见类型包括：媒体密钥过期时间、内容保护安全级别等。      |
+| value     | string            | 否   | 否  | 媒体密钥状态值，表示与状态名称对应的具体状态信息。 |
 
 ## KeysInfo
 
 媒体密钥中密钥信息。
 
-**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API版本12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.Drm.Core
 
@@ -104,7 +104,7 @@
 
 加密媒体内容的DRM信息。
 
-**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API版本12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.Drm.Core
 
@@ -117,7 +117,7 @@
 
 插件信息。
 
-**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API版本14开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.Drm.Core
 
