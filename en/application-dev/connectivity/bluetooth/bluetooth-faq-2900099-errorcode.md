@@ -6,7 +6,7 @@
 <!--Designer: @chengguohong; @tangjia15-->
 <!--Tester: @wangfeng517-->
 <!--Adviser: @zhang_yixin13-->
-<!-- md-trans-meta sourceCommit=fac6c0d3e5a1ac47e7aa04e66b7ef4e1b1d65bd6 translatedAt=2026-05-29T13:23:18.482Z pushedAt=2026-05-29T13:26:49.805Z -->
+<!-- md-trans-meta sourceCommit=c5454edb9d69e9ac0b87689695c36e5d50208175 translatedAt=2026-07-25T11:34:47.332Z pushedAt=2026-07-27T08:00:42.028Z -->
 
 ## Symptom
 
@@ -14,7 +14,7 @@ During BLE Bluetooth application development, error 2900099 occurs when the [set
 
 ## Background
 
-- Error [2900099](../../reference/apis-connectivity-kit/errorcode-bluetoothManager.md#2900099) indicates that the API call failed. This error code is typically returned when an API call is blocked.
+- [2900099](../../reference/apis-connectivity-kit/errorcode-bluetoothManager.md#2900099) indicates that the API call failed. This error code is typically returned when an API call is blocked.
 
 - The **setCharacteristicChangeNotification** API enables or disables the client from receiving notifications about characteristic value changes from the server. Read the notes below the API carefully before using it.
 

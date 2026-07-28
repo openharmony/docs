@@ -6,7 +6,7 @@
 <!--Designer: @qq_43802146-->
 <!--Tester: @furryfurry123-->
 <!--Adviser: @zhang_yixin13-->
-<!-- md-trans-meta sourceCommit=dcae6f10c07044342acb5b2dc0416e100c5bcaa2 translatedAt=2026-06-17T06:39:10.141Z pushedAt=2026-06-22T07:24:04.778Z -->
+<!-- md-trans-meta sourceCommit=68836b0c29b9c1d0b7d543a858c20c41f6022776 translatedAt=2026-07-25T11:34:39.261Z pushedAt=2026-07-27T08:03:10.428Z -->
 
 - [About This Kit](connectivity-kit-intro.md)
 
@@ -32,7 +32,7 @@
 
   - Bluetooth FAQs<!--bluetooth-faq-->
 
-    - [2900099 Bluetooth API Call Error](bluetooth/bluetooth-faq-2900099-errorcode.md)
+    - [2900099 Bluetooth API Call Error](bluetooth/bluetooth-faq-2900099-errorcode.md)<!--RP1--><!--RP1End-->
 
 - NFC<!--nfc-->
 
@@ -60,4 +60,4 @@
 
   - [Interconnection Between Partner Devices and OpenHarmony Devices](fusion-connectivity/partneragent-life-application-guide.md)
 
-- [Terminology](terminology.md)
+- [Glossary](terminology.md)

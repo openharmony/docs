@@ -6,7 +6,7 @@
 <!--Designer: @htt1997-->
 <!--Tester: @logic42-->
 <!--Adviser: @ge-yafang-->
-<!-- md-trans-meta sourceCommit=dcae6f10c07044342acb5b2dc0416e100c5bcaa2 translatedAt=2026-06-17T06:40:06.647Z pushedAt=2026-06-22T10:04:33.363Z -->
+<!-- md-trans-meta sourceCommit=b370e209c091d2372f3f4630d52668e908547bd5 translatedAt=2026-07-27T08:15:27.115Z pushedAt=2026-07-27T08:42:28.112Z -->
 
 ## When to Use
 
@@ -79,12 +79,14 @@ If error 14800011 is thrown, you need to rebuild the database and restore data t
 
    Stage model:
 
-   <!--@[persistence_get_store](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkData/RelationalStore/DataSyncAndPersistence/entry/src/main/ets/pages/datapersistence/RdbDataPersistence.ets)--> 
+   <!--@[persistence_get_store](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkData/RelationalStore/DataSyncAndPersistence/entry/src/main/ets/pages/datapersistence/RdbDataPersistence.ets)-->  
 
    ``` TypeScript
    import { relationalStore } from '@kit.ArkData'; // Import a module.
    import { BusinessError } from '@kit.BasicServicesKit';
    import { hilog } from '@kit.PerformanceAnalysisKit';
+   import { UIContext } from '@kit.ArkUI';
+   import { common } from '@kit.AbilityKit';
    const DOMAIN = 0x0000;
    
    let store: relationalStore.RdbStore | undefined = undefined;
@@ -116,6 +118,7 @@ If error 14800011 is thrown, you need to rebuild the database and restore data t
        'CREATE TABLE IF NOT EXISTS EMPLOYEE (ID INTEGER PRIMARY KEY AUTOINCREMENT, NAME TEXT NOT NULL, AGE INTEGER, SALARY REAL, CODES BLOB, ADDRESS TEXT)';
      if (store === undefined) {
        try {
+         const context = new UIContext().getHostContext() as common.UIAbilityContext;
          store = await relationalStore.getRdbStore(context, STORE_CONFIG);
        } catch (e) {
          const err = e as BusinessError;
@@ -257,7 +260,7 @@ If error 14800011 is thrown, you need to rebuild the database and restore data t
    > 
    > - For details about the error codes, see [Universal Error Codes](../reference/errorcode-universal.md) and [RDB Store Error Codes](../reference/apis-arkdata/errorcode-data-rdb.md).
 
-2. Call **insert()** to insert data. <br>Example:
+2. After obtaining the RDB store and creating the data table, call **insert()** to insert data. <br>Example:
 
    <!--@[persistence_insert_data](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkData/RelationalStore/DataSyncAndPersistence/entry/src/main/ets/pages/datapersistence/RdbDataPersistence.ets)-->
 
@@ -293,6 +296,7 @@ If error 14800011 is thrown, you need to rebuild the database and restore data t
 3. Modify or delete data based on the specified **Predicates** instance.
 
 Call **update()** to modify data, and call **delete()** to delete data. The sample code is as follows:
+
    <!--@[persistence_update_and_delete_data](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkData/RelationalStore/DataSyncAndPersistence/entry/src/main/ets/pages/datapersistence/RdbDataPersistence.ets)-->
 
    ``` TypeScript
@@ -340,6 +344,7 @@ Call **update()** to modify data, and call **delete()** to delete data. The samp
 4. Query data based on the conditions specified by **Predicates**.
 
 Call **query()** to query data, which returns a **ResultSet**. The sample code is as follows:
+
    <!--@[persistence_query_data](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkData/RelationalStore/DataSyncAndPersistence/entry/src/main/ets/pages/datapersistence/RdbDataPersistence.ets)-->
 
    ``` TypeScript
@@ -375,7 +380,8 @@ Call **query()** to query data, which returns a **ResultSet**. The sample code i
    The RDB store also supports full-text search (FTS) in Chinese or English. The ICU tokenizer is supported.
 
 The following example demonstrates how to perform FTS with Chinese keywords:
-   <!--@[persistence_chinese_query_data](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkData/RelationalStore/DataSyncAndPersistence/entry/src/main/ets/pages/datapersistence/RdbDataPersistence.ets)-->
+
+   <!--@[persistence_chinese_query_data](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkData/RelationalStore/DataSyncAndPersistence/entry/src/main/ets/pages/datapersistence/RdbDataPersistence.ets)--> 
 
    ``` TypeScript
    // Query data using Chinese keywords.
@@ -387,7 +393,7 @@ The following example demonstrates how to perform FTS with Chinese keywords:
        hilog.info(DOMAIN, 'rdbDataPersistence', 'Succeeded in creating fts table.');
      } catch (error) {
        const err = error as BusinessError;
-       hilog.error(DOMAIN, 'rdbDataPersistence', `Failed to creating fts table. code: ${err.code}, message: ${err.message}.`);
+       hilog.error(DOMAIN, 'rdbDataPersistence', `Failed to create fts table. code: ${err.code}, message: ${err.message}.`);
      }
    }
    if (store !== undefined) {
@@ -412,6 +418,7 @@ The following example demonstrates how to perform FTS with Chinese keywords:
    The supported transaction types are **DEFERRED** (default), **IMMEDIATE**, and **EXCLUSIVE**.
 
    For details, see [createTransaction](../reference/apis-arkdata/arkts-apis-data-relationalStore-RdbStore.md#createtransaction14).
+
    <!--@[persistence_transaction_insert_update_and_delete_data](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkData/RelationalStore/DataSyncAndPersistence/entry/src/main/ets/pages/datapersistence/RdbDataPersistence.ets)-->
 
    ``` TypeScript
@@ -474,6 +481,7 @@ The following example demonstrates how to perform FTS with Chinese keywords:
 6. Back up the database in the same directory. <br>Two backup modes are available: manual backup and automatic backup (available only for system applications). For details, see [Backing Up an RDB Store](data-backup-and-restore.md#backing-up-an-rdb-store).
 
    Example: Perform manual backup of an RDB store.
+
    <!--@[persistence_backup_store](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkData/RelationalStore/DataSyncAndPersistence/entry/src/main/ets/pages/datapersistence/RdbDataPersistence.ets)-->
 
    ``` TypeScript
@@ -493,6 +501,7 @@ The following example demonstrates how to perform FTS with Chinese keywords:
 7. Restore data from the database backup. <br>You can restore an RDB store from the manual backup data or automatic backup data (available only for system applications). For details, see [Restoring RDB Store Data](data-backup-and-restore.md#restoring-rdb-store-data).
 
    Example: Call [restore](../reference/apis-arkdata/arkts-apis-data-relationalStore-RdbStore.md#restore) to restore an RDB store from the data that is manually backed up.
+
    <!--@[persistence_restore](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkData/RelationalStore/DataSyncAndPersistence/entry/src/main/ets/pages/datapersistence/RdbDataPersistence.ets)-->
 
    ``` TypeScript
@@ -510,13 +519,15 @@ The following example demonstrates how to perform FTS with Chinese keywords:
 
 8. Delete the RDB store.
 
-   Call **deleteRdbStore()** to delete the store and relavant files. The sample code is as follows:
+   Call **deleteRdbStore()** to delete the store and relevant files. The sample code is as follows:
 
    Stage model:
-   <!--@[persistence_delete_store](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkData/RelationalStore/DataSyncAndPersistence/entry/src/main/ets/pages/datapersistence/RdbDataPersistence.ets)-->
+
+   <!--@[persistence_delete_store](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkData/RelationalStore/DataSyncAndPersistence/entry/src/main/ets/pages/datapersistence/RdbDataPersistence.ets)--> 
 
    ``` TypeScript
    // Delete the database.
+   const context = new UIContext().getHostContext() as common.UIAbilityContext;
    relationalStore.deleteRdbStore(context, 'RdbTest.db', (err: BusinessError) => {
      if (err) {
        hilog.error(DOMAIN, 'rdbDataPersistence', `Failed to delete RdbStore. Code:${err.code}, message:${err.message}`);
@@ -526,8 +537,8 @@ The following example demonstrates how to perform FTS with Chinese keywords:
    });
    ```
 
+## Samples
 
+For RDB store development, the following samples are available:
 
- 
-
- 
+- [`Rdb` (ArkTS) (API9)](https://gitcode.com/openharmony/codelabs/tree/master/Data/Rdb)
