@@ -323,76 +323,170 @@ export struct OverlayManagerWithOrder {
 <!-- @[OverlayManager_Demo4](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkUISample/DialogProject/entry/src/main/ets/pages/OverlayManager/OverlayManagerOnBackPress.ets) -->
 
 ``` TypeScript
-import { ComponentContent, OverlayManager } from '@kit.ArkUI';
-import { hilog } from '@kit.PerformanceAnalysisKit';
+import { ComponentContent, OverlayManagerOptions } from '@kit.ArkUI'
+import { BusinessError } from '@kit.BasicServicesKit';
 
-const TAG: string = '[Sample_dialogproject]';
-const DOMAIN: number = 0xFF00;
+class FloatParams {
+  public message: string = ''
+  public onDismiss: () => void = () => {}
 
-class Params {
-  public text: string = '';
-  public offset: Position;
-
-  constructor(text: string, offset: Position) {
-    this.text = text;
-    this.offset = offset;
+  constructor(message: string, onDismiss: () => void) {
+    this.message = message
+    this.onDismiss = onDismiss
   }
 }
 
 @Builder
-function builderText(params: Params) {
-  Column() {
-    Text(params.text)
-      .fontSize(30)
-      .fontWeight(FontWeight.Bold)
+function floatBuilder(params: FloatParams) {
+  Column({ space: 12 }) {
+    Text(params.message)
+      .fontSize(18)
+      .fontWeight(FontWeight.Medium)
+      .fontColor(Color.White)
+
+    Text('侧滑被overlay拦截，按关闭可关闭overlay')
+      .fontSize(12)
+      .fontColor('#FFFFFFAA')
+
+    Button('关闭')
+      .height(32)
+      .fontSize(13)
+      .fontColor(Color.White)
+      .onClick(() => params.onDismiss())
   }
-  .width(300)
+  .width('70%')
   .height(200)
-  .backgroundColor('#F7F7F7')
   .justifyContent(FlexAlign.Center)
-  .offset(params.offset)
+  .borderRadius(16)
+  .backgroundColor('#333333')
+  .shadow({ radius: 20, color: '#66000000', offsetX: 0, offsetY: 6 })
 }
 
 @Entry
 @Component
-export struct OverlayManagerBackPress {
-  private uiContext: UIContext = this.getUIContext();
-  private overlayContent: ComponentContent<Params>[] = [];
+export struct OverlayManagerOnBackPress {
+  @State showStatus: string = '无浮层';
+  @State logText: string = '';
+  private floatContent: ComponentContent<FloatParams> | null = null;
+  private optionsSet: boolean = false;
 
-  aboutToAppear(): void {
-    // 在调用getOverlayManager之前设置OverlayManagerOptions，
-    // 开启侧滑返回事件并注册onBackPress回调
-    this.uiContext.setOverlayManagerOptions({
+  // 追加一条日志，最新日志显示在最上方，便于观察onBackPress的拦截与透传。
+  addLog(msg: string): void {
+    let now = new Date();
+    let ts = `${now.getHours()}:${now.getMinutes()}:${now.getSeconds()}`;
+    this.logText = `[${ts}] ${msg}\n` + this.logText;
+  }
+
+  // 通过setOverlayManagerOptions设置enableBackPressedEvent为true并注册onBackPress回调，
+  // 即可拦截Overlay的侧滑返回事件。返回true表示拦截（事件被消费，不会向下层传递）；
+  // 返回false表示不拦截，事件向下层组件透传。
+  ensureOptions(): void {
+    if (this.optionsSet) {
+      return;
+    }
+    let ctx = this.getUIContext();
+    let ret = ctx.setOverlayManagerOptions({
       enableBackPressedEvent: true,
       onBackPress: (): boolean => {
-        hilog.info(DOMAIN, TAG, '%{public}s', 'overlay onBackPress');
-        // 返回true拦截侧滑返回事件，事件不会向下层组件传递；
-        // 返回false则不拦截，事件将向下层组件透传
-        return true;
+        if (this.floatContent !== null) {
+          this.addLog('onBackPress → 有浮层, return TRUE (拦截)');
+          try {
+            this.getUIContext().getPromptAction().showToast({
+              message: 'backPress事件被overlay拦截',
+              duration: 2000
+            });
+          } catch (error) {
+            let message = (error as BusinessError).message;
+            let code = (error as BusinessError).code;
+            console.error(`showToast args error code is ${code}, message is ${message}`);
+          }
+          return true;
+        }
+        this.addLog('onBackPress → 无浮层, return FALSE (透传)');
+        return false;
       }
-    });
-    let overlayNode: OverlayManager = this.uiContext.getOverlayManager();
-    let componentContent = new ComponentContent(
-      this.uiContext, wrapBuilder<[Params]>(builderText),
-      new Params('onBackPress', { x: 0, y: 100 })
-    );
-    overlayNode.addComponentContent(componentContent, 0);
-    this.overlayContent.push(componentContent);
+    } as OverlayManagerOptions);
+    this.optionsSet = ret;
+    this.addLog(`setOverlayManagerOptions: ${ret}`);
+  }
+
+  showFloat(): void {
+    if (this.floatContent !== null) {
+      this.addLog('浮层已存在');
+      return;
+    }
+    this.ensureOptions();
+    let ctx = this.getUIContext();
+    let om = ctx.getOverlayManager();
+    let params = new FloatParams('我是浮层', () => { this.dismissFloat(); });
+    this.floatContent = new ComponentContent(ctx, wrapBuilder<[FloatParams]>(floatBuilder), params);
+    om.addComponentContent(this.floatContent);
+    this.showStatus = '浮层显示中';
+    this.addLog('打开浮层');
+  }
+
+  dismissFloat(): void {
+    if (this.floatContent === null) {
+      return;
+    }
+    let ctx = this.getUIContext();
+    let om = ctx.getOverlayManager();
+    om.removeComponentContent(this.floatContent!);
+    this.floatContent = null;
+    this.showStatus = '无浮层';
+    this.addLog('关闭浮层');
   }
 
   aboutToDisappear(): void {
-    let componentContent = this.overlayContent.pop();
-    this.uiContext.getOverlayManager().removeComponentContent(componentContent);
+    this.dismissFloat();
   }
 
   build() {
     // ...
-      Column() {
+      Column({ space: 16 }) {
+        Text('overlayManager 侧滑拦截')
+          .fontSize(22)
+          .fontWeight(FontWeight.Bold)
 
+        Text('• 点击按钮添加浮层\n• 有浮层时侧滑/返回 → onBackPress return true 拦截\n• 无浮层时侧滑/返回 → onBackPress return false 透传')
+          .fontSize(13)
+          .fontColor('#666666')
+          .lineHeight(20)
+
+        Row({ space: 12 }) {
+          Button('显示浮层')
+            .fontSize(15)
+            .height(40)
+            .onClick(() => this.showFloat())
+
+          Button('关闭浮层')
+            .fontSize(15)
+            .height(40)
+            .onClick(() => this.dismissFloat())
+        }
+
+        Divider().margin({ top: 4, bottom: 4 })
+
+        Text(`状态: ${this.showStatus}`)
+          .fontSize(14)
+          .fontWeight(FontWeight.Medium)
+
+        Scroll() {
+          Text(this.logText)
+            .fontSize(10)
+            .fontColor('#333333')
+            .width('100%')
+        }
+        .height(120)
+        .width('100%')
+        .backgroundColor('#F5F5F5')
+        .borderRadius(8)
+        .padding(8)
       }
       .width('100%')
       .height('100%')
-    // ...
+      .padding(24)
+      // ...
   }
 }
 ```
