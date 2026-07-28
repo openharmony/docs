@@ -797,7 +797,7 @@ async function addAccessoryRightExample() {
     // 为应用添加USB配件访问权限
     usbManager.addAccessoryRight(tokenId, accList[0]);
     console.info('addAccessoryRight success');
-  } catch (error: BusinessError) {
+  } catch (error) {
     console.error(`addAccessoryRight error ${error.code}, message is ${error.message}`);
   }
 }
