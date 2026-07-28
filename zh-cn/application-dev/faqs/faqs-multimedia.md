@@ -16,7 +16,7 @@
 
 通过创建双路预览来实现。
 
-1. Xcomponent来创建预览流。
+1. XComponent来创建预览流。
 
    ```ts
    // 获取PreviewOutput(预览输出类)实例
@@ -239,7 +239,7 @@ soundpool支持的格式与底层一致，支持的格式可以参考文档：[�
 
 **解决措施**
 
-当前版本AVPlayer支持http、https、HLS。在直播场景中，将直播地址传给Avplayer，即可进行播放对端发来的数据；当前不支持推流，即Avplayer不支持使用当前设备进行直播。
+当前版本AVPlayer支持http、https、HLS。在直播场景中，将直播地址传给AVPlayer，即可进行播放对端发来的数据；当前不支持推流，即AVPlayer不支持使用当前设备进行直播。
 
 **参考资料**
 
