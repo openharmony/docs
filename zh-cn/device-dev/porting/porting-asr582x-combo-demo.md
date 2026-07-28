@@ -8,7 +8,7 @@
 
 本方案的目录结构使用[Board和Soc解耦的思路](https://gitcode.com/openharmony-sig/sig-content/blob/master/devboard/docs/board-soc-arch-design.md)：
 
-```
+```text
 device
 ├── board                                --- 单板厂商目录
 │   └── lango                            --- 单板厂商名字：朗国
@@ -20,7 +20,7 @@ device
 
 产品样例目录规划为：
 
-```
+```text
 vendor
 └── asrmicro                             --- 开发产品样例厂商目录，翱捷科技的产品样例
     ├── wifi_demo                        --- 产品名字：Wi-Fi样例代码
@@ -30,17 +30,16 @@ vendor
 ### 产品定义
 
 以`vendor/asrmicro/wifi_demo`为例，这里描述了产品使用的内核、单板、子系统等信息。其中，内核、单板型号、单板厂商需要提前规划好，也是预编译指令（`hb set`）所关注的。这里填入的信息与规划的目录相对应。例如：
-
-```
+```json5
 {
-    "product_name": "wifi_demo",          --- 产品名
-    "type": "mini",                       --- 系统类型: mini
-    "version": "3.0",                     --- 系统版本: 3.0
-    "device_company": "lango",            --- 单板厂商：lango
-    "board": "dev_wifi_a",                --- 单板名：dev_wifi_a
-    "kernel_type": "liteos_m",            --- 内核类型：liteos_m
-    "kernel_version": "3.0.0",            --- 内核版本：3.0.0
-    "subsystems": []                      --- 子系统
+  "product_name": "wifi_demo",   // 产品名
+  "type": "mini",                // 系统类型: mini
+  "version": "3.0",              // 系统版本: 3.0
+  "device_company": "lango",     // 单板厂商：lango
+  "board": "dev_wifi_a",         // 单板名：dev_wifi_a
+  "kernel_type": "liteos_m",     // 内核类型：liteos_m
+  "kernel_version": "3.0.0",     // 内核版本：3.0.0
+  "subsystems": []               // 子系统
 }
 ```
 这里的device_company和board用于关联出//device/board/<device_company>/\<board\>目录。
@@ -49,7 +48,7 @@ vendor
 
 在关联到的\<board\>目录下，以`device/board/lango/dev_wifi_a`为例，需要在liteos_m目录下放置config.gni文件，这个配置文件用于描述该单板的信息，包括CPU、toolchain、kernel、compile flags等。例如：
 
-```
+```gni
 # 内核类型。
 kernel_type = "liteos_m"
 
@@ -79,10 +78,9 @@ board_include_dirs = []
 
 在正确配置好产品的目录、产品定义、单板配置后，在工程根目录下输入预编译指令`hb set`，在显示的列表中就可以找到相关的产品。
 
-![ohos_config.json](figures/asr582x_ohos_config.png)
+![ohos_config](figures/asr582x_ohos_config.png)
 
 选择好产品后，输入回车就会在根目录下自动生成`ohos_config.json`文件，这里会将要编译的产品信息列出。
-
 
 ## 内核移植
 
@@ -91,7 +89,7 @@ board_include_dirs = []
 在//kernel/liteos_m的编译中，需要在相应的单板以及SoC目录下使用`Kconfig`文件进行索引。
 
 单板目录的`Kconfig`，以`//device/board/lango`为例：
-```
+```text
 ├── dev_wifi_a                                   --- dev_wifi_a单板配置目录
 │   ├── Kconfig.liteos_m.board                   --- 单板的配置选项
 │   ├── Kconfig.liteos_m.defconfig.board         --- 单板的默认配置项
@@ -103,7 +101,7 @@ board_include_dirs = []
 
 在 `dev_wifi_a/Kconfig.liteos_m.board`中，配置只有SOC_ASR5822S被选后，BOARD_DEV_WIFI_A才可被选：
 
-```
+```text
 config BOARD_DEV_WIFI_A
     bool "select board DEV_WIFI_A"
     depends on SOC_ASR5822S
@@ -111,7 +109,7 @@ config BOARD_DEV_WIFI_A
 
 SoC目录的`Kconfig`，以`//device/soc/asrmicro`为例：
 
-```
+```text
 ├── asr582x                                      --- ASR582X系列
 │   ├── Kconfig.liteos_m.defconfig.asr5822s      --- ASR5822S芯片默认配置
 │   ├── Kconfig.liteos_m.defconfig.series        --- ASR582X系列默认配置
@@ -124,7 +122,7 @@ SoC目录的`Kconfig`，以`//device/soc/asrmicro`为例：
 
 在 asr582x/Kconfig.liteos_m.series中：
 
-```
+```text
 config SOC_SERIES_ASR582X
     bool "ASR582X Series"
     select ARM
@@ -136,7 +134,7 @@ config SOC_SERIES_ASR582X
 
 只有选择了 SOC_SERIES_ASR582X，在 asr582x/Kconfig.liteos_m.soc中才可以选择SOC_ASR5822S：
 
-```
+```text
 choice
     prompt "ASR582X series SoC"
     depends on SOC_SERIES_ASR582X
@@ -149,11 +147,11 @@ endchoice
 
 综上所述，要编译单板BOARD_DEV_WIFI_A，则要分别选中：SOC_COMPANY_ASRMICRO、SOC_SERIES_ASR582X、SOC_ASR5822S，可以在`kernel/liteos_m`中执行`make menuconfig`进行选择配置。
 
-![asr5822s_select.json](figures/asr5822s_select.png)
+![asr5822s_select](figures/asr5822s_select.png)
 
 配置后的文件会默认保存在`//vendor/asrmicro/wifi_demo/kernel_configs/debug.config`,也可以直接填写debug.config：
 
-```
+```text
 LOSCFG_BOARD_DEV_WIFI_A=y
 LOSCFG_SOC_COMPANY_ASRMICRO=y
 LOSCFG_SOC_SERIES_ASR582X=y
@@ -166,16 +164,17 @@ LOSCFG_SOC_ASR5822S=y
 
 1. 在`//device/board/lango`中新建文件BUILD.gn，新增内容如下：
 
-   ```
+   ```gn
    if (ohos_kernel_type == "liteos_m") {
      import("//kernel/liteos_m/liteos.gni")
      module_name = get_path_info(rebase_path("."), "name")
-     module_group(module_name) {
-       modules = [
-         "dev_wifi_a",                     # 单板模块。
-         "hcs",                            # hcs文件的对应模块。
-       ]
-     }
+      module_group(module_name) {
+        modules = [
+          "dev_wifi_a",                     # 单板模块。
+          "shields",                        # 板级shields模块。
+          "hcs",                            # hcs文件的对应模块。
+        ]
+      }
    }
    ```
 
@@ -183,7 +182,7 @@ LOSCFG_SOC_ASR5822S=y
 
 2. 在`//device/soc/asrmicro`中，使用同样的方法，新建文件BUILD.gn，按目录层级组织，新增内容如下：
 
-   ```
+   ```gn
    if (ohos_kernel_type == "liteos_m") {
      import("//kernel/liteos_m/liteos.gni")
      module_name = get_path_info(rebase_path("."), "name")
@@ -197,7 +196,7 @@ LOSCFG_SOC_ASR5822S=y
 
 3. 在`//device/soc/asrmicro`各个层级模块下，同样新增文件BUILD.gn，将该层级模块加入编译，以`//device/soc/asrmicro/asr582x/liteos_m/sdk/startup/BUILD.gn`为例：
 
-   ```
+   ```gn
    import("//kernel/liteos_m/liteos.gni")
 
    config("public") {
@@ -219,7 +218,7 @@ LOSCFG_SOC_ASR5822S=y
 
 4. 为了组织链接以及一些编译选项，在`//device/soc/asrmicro/asr582x/liteos_m/sdk/config/BUILD.gn`下的config("public")填入了相应的参数：
 
-   ```
+   ```gn
    config("public") {
      include_dirs = []                       # 公共头文件。
      ldflags = []                            # 链接参数，包括ld文件。
@@ -227,17 +226,18 @@ LOSCFG_SOC_ASR5822S=y
      defines = []                            # 定义。
    ```
 
-   ![](../public_sys-resources/icon-note.gif) **说明：** 
-	建议公共的参数选项以及头文件不在各个组件中重复填写。
+   > <img src="public_sys-resources/icon-note.gif" alt=""/><b>说明：</b>
+   > 通过上面加载的组件编译出来的lib文件需要手动加入强制链接。
 
 5. 为了组织一些产品侧的应用，本方案在vendor相应的config.json加入了相应的list来组织，以`//vendor/asrmicro/wifi_demo/config.json`为例，在config.json增加对应的list：
-   ```
-   "tests_list": [                       --- demo list
+
+   ```json5
+   "tests_list": [            // demo list
      {
-       "enable": "true",                 --- list开关
+       "enable": "true",      // list开关
        "test_modules": [
-         "example",                      --- OS基础demo
-         "wifi_test"                     --- Wi-Fi demo
+         "example",           // OS基础demo
+         "wifi_test"          // Wi-Fi demo
        ]
      }
    ]
@@ -245,7 +245,7 @@ LOSCFG_SOC_ASR5822S=y
 
    这里将demo作为了模块来管理，开启/关闭某个demo，在tests_list中增减项即可。tests_list在gn中可以直接被读取，需要在`//device/board/lango/dev_wifi_a/liteos_m/config.gni`加入以下内容：
 
-   ```
+   ```gni
    product_conf = read_file("${product_path}/config.json", "json")
    product_name = product_conf.product_name
    tests_list = product_conf.tests_list
@@ -253,7 +253,7 @@ LOSCFG_SOC_ASR5822S=y
 
    读取list后即可在相应的链接选项上加入相关的组件库，需要在`//device/soc/asrmicro/asr582x/liteos_m/sdk/config/BUILD.gn`加入以下内容：
 
-   ```
+   ```gn
    foreach(test_item, tests_list) {
        test_enable = test_item.enable
        if(test_enable == "true")
@@ -269,13 +269,13 @@ LOSCFG_SOC_ASR5822S=y
 
 为了整个系统不区分用户态内核态，上层组件与内核共用一套基于musl的C库，本方案使用musl C，三方库见`//third_party/musl/porting/liteos_m/kernel/BUILD.gn`。
 
-kernel另外对malloc相应的code进行了改造适配，适配文件见`//kernel/liteos_m/kal/libc/musl/porting/src/malloc.c`。
+kernel另外对malloc相应的code进行了改造适配，适配文件见`//kernel/liteos_m/kal/posix/src/malloc.c`。
 
 在本方案中，printf相关的接口使用开源代码实现，适配文件见 `//device/soc/asrmicro/asr582x/liteos_m/sdk/drivers/platform/system/printf-stdarg.c`。
 
 为了满足printf相关接口的链接调用，需要在`//device/board/lango/dev_wifi_a/liteos_m/config.gni`的新增这些函数的wrap链接：
 
-```
+```gni
 board_ld_flags += [
   "-Wl,--wrap=printf",
   "-Wl,--wrap=sprintf",
@@ -288,9 +288,10 @@ board_ld_flags += [
 ### shell适配
 
 为了方便调试，本方案集成了内核的shell组件，可以在make menuconfig中的Debug中选中 Enable Shell，或者在`//vendor/asrmicro/wifi_demo/kernel_configs/debug.config`文件中填入LOSCFG_SHELL=y
+
 shell组件需要进行初始化，可参考`device/soc/asrmicro/asr582x/liteos_m/sdk/startup/board.c`：
 
-```
+```c
 ret = LosShellInit();
 if (ret != LOS_OK) {
     printf("LosShellInit failed! ERROR: 0x%x\n", ret);
@@ -303,7 +304,7 @@ if (ret != LOS_OK) {
 
 在初始化之后，每个shell命令需要进行注册，例如：`vendor/asrmicro/wifi_demo/tests/wifi/wifi_app.c`：
 
-```
+```c
 osCmdReg(CMD_TYPE_STD, "wifi_open", 0, (CMD_CBK_FUNC)ap_conn_func);    // 连接AP的指令，这里可以带参。
 osCmdReg(CMD_TYPE_EX, "wifi_close", 0, (CMD_CBK_FUNC)ap_close_func);   // 断开指令。
 ```
@@ -311,15 +312,16 @@ osCmdReg(CMD_TYPE_EX, "wifi_close", 0, (CMD_CBK_FUNC)ap_close_func);   // 断开
 ### 内核启动适配
 
 单板进入到main函数后，首先会进行单板初始化，然后需要注册中断，之后再进行内核的初始化和调度。
+
 注册中断，可参考`//device/soc/asrmicro/asr582x/liteos_m/sdk/startup/board.c`:
 
-```
+```c
 ArchHwiCreate(UART1_IRQn,configLIBRARY_NORMAL_INTERRUPT_PRIORITY,0,UART1_IRQHandler,0);   // UART中断。
 ArchHwiCreate(GPIO_IRQn,configLIBRARY_NORMAL_INTERRUPT_PRIORITY,0,GPIO_IRQHandler,0);     // GPIO中断。
 ```
 
 内核初始化示例如下：
-```
+```c
 osStatus_t ret = osKernelInitialize();                                                    // 内核初始化。
 
 if(ret == osOK)
@@ -335,7 +337,7 @@ if(ret == osOK)
 
 在`sys_init`中，需要对OpenHarmony的系统组件进行初始化：
 
-```
+```c
 ...
 DeviceManagerStart();           // HDF初始化。
 
@@ -347,7 +349,7 @@ OHOS_SystemInit();              // OpenHarmony系统组件初始化。
 
 HDF驱动框架提供了一套应用访问硬件的统一接口，可以简化应用开发，添加HDF组件需要在`//vendor/asrmicro/wifi_demo/kernel_configs/debug.config`添加：
 
-```
+```text
 LOSCFG_DRIVERS_HDF=y
 LOSCFG_DRIVERS_HDF_PLATFORM=y
 ```
@@ -358,7 +360,7 @@ LOSCFG_DRIVERS_HDF_PLATFORM=y
 
 1. 芯片驱动适配文件位于`//drivers/hdf_core/adapter/platform`目录，在gpio目录增加gpio_asr.c文件，在BUILD.gn中增加新增的驱动文件编译条件：
 
-   ```
+   ```gn
    if (defined(LOSCFG_SOC_COMPANY_ASRMICRO)) {
      sources += [ "gpio_asr.c" ]
    }
@@ -366,7 +368,7 @@ LOSCFG_DRIVERS_HDF_PLATFORM=y
 
 2. gpio_asr.c中驱动描述文件如下：
 
-   ```
+   ```c
    struct HdfDriverEntry g_GpioDriverEntry = {
        .moduleVersion = 1,
        .moduleName = "ASR_GPIO_MODULE_HDF",
@@ -378,7 +380,7 @@ LOSCFG_DRIVERS_HDF_PLATFORM=y
 
 3. 在`//device/board/lango/hcs`添加gpio硬件描述信息文件gpio.hcs, 映射后的gpio0控制板卡上的可编程LED，gpio1对应用户按键，hcs内容如下：
 
-   ```
+   ```hcs
    root {
        platform {
            gpio_config {
@@ -396,7 +398,7 @@ LOSCFG_DRIVERS_HDF_PLATFORM=y
 
 4. gpio.hcs的配置信息会在GpioDriverInit进行加载，并执行对应GPIO引脚的初始化。应用层控制LED灯和读取按键信息只需要以下简单的代码：
 
-   ```
+   ```c
    int32_t GpioKeyIrqFunc(uint16_t gpio, void *data)
    {
        printf("user key %d pressed\n", gpio);
@@ -410,9 +412,9 @@ LOSCFG_DRIVERS_HDF_PLATFORM=y
 
 #### UART适配
 
-1. 芯片驱动适配文件位于`//drivers/adapter/platform`目录，在uart目录增加uart_asr.c和uart_asr.h文件，在BUILD.gn中增加新增的驱动文件编译条件：
+1. 芯片驱动适配文件位于`//drivers/hdf_core/adapter/platform`目录，在uart目录增加uart_asr.c和uart_asr.h文件，在BUILD.gn中增加新增的驱动文件编译条件：
 
-   ```
+   ```gn
    if (defined(LOSCFG_SOC_COMPANY_ASRMICRO)) {
      sources += [ "uart_asr.c" ]
    }
@@ -420,7 +422,7 @@ LOSCFG_DRIVERS_HDF_PLATFORM=y
 
 2. uart_asr.c中驱动描述文件如下：
 
-   ```
+   ```c
    struct HdfDriverEntry g_hdfUartDevice = {
        .moduleVersion = 1,
        .moduleName = "HDF_PLATFORM_UART",
@@ -432,9 +434,9 @@ LOSCFG_DRIVERS_HDF_PLATFORM=y
    HDF_INIT(g_hdfUartDevice);
    ```
 
-3. 在`//device/board/lango/hcs`添加gpio硬件描述信息文件uart.hcs, hcs内容如下：
+3. 在`//device/board/lango/hcs`添加uart硬件描述信息文件uart.hcs, hcs内容如下：
 
-   ```
+   ```hcs
    controller_uart0 :: uart_controller {
        match_attr = "asr582x_uart_0";
        port = 0;                        /* UART_ID_0 */
@@ -448,9 +450,9 @@ LOSCFG_DRIVERS_HDF_PLATFORM=y
    }
    ```
 
-4. gpio.hcs的配置信息会在HdfUartDeviceInit进行加载，并执行对应串口引脚的初始化。应用层测试串口代码如下：
+4. uart.hcs的配置信息会在HdfUartDeviceInit进行加载，并执行对应串口引脚的初始化。应用层测试串口代码如下：
 
-   ```
+   ```c
    DevHandle uart_handle = UartOpen(0);
    UartSetBaud(uart_handle, 115200);
    ...
@@ -475,14 +477,11 @@ lwIP组件适配：
 
 lwIP是一个小型开源的TCP/IP协议栈，LiteOS-M已对开源lwIP做了适配和功能增强，lwIP代码分为两部分：
 
-
 - third_party/lwip目录下是lwIP开源代码，里面只做了少量的侵入式修改，为了适配增强功能。
 
 - kernel/liteos_m/components/net/lwip-2.1目录下是lwIP适配和功能增强代码，里面提供了lwIP的默认配置文件。
 
-
 如果需要使用lwIP组件，请按如下步骤适配：
-
 
 1. 在产品目录下新建一个目录用来存放产品的适配文件，如lwip_adapter。
 
@@ -490,27 +489,29 @@ lwIP是一个小型开源的TCP/IP协议栈，LiteOS-M已对开源lwIP做了适�
 
 3. 在include目录下新建目录lwip，并在lwip目录下新建头文件lwipopts.h，代码如下所示，如果默认配置不能满足产品使用，可自行根据产品使用情况修改配置，如关闭DHCP功能。
 
-   ```
+   ```c
    #ifndef _LWIP_ADAPTER_LWIPOPTS_H_
    #define _LWIP_ADAPTER_LWIPOPTS_H_
    
    #include_next "lwip/lwipopts.h"
    
-   #undef LWIP_DHCP#define LWIP_DHCP                       0 // 关闭DHCP功能。
+   #undef LWIP_DHCP
+   #define LWIP_DHCP                       0 // 关闭DHCP功能。
    
    #endif /* _LWIP_ADAPTER_LWIPOPTS_H_ */
    ```
 
 4. 将kernel/liteos_m/components/net/lwip-2.1目录下的BUILD.gn复制到lwip_adapter目录下，并按如下修改。
 
-   ```
+   ```gn
    import("//kernel/liteos_m/liteos.gni")
-   import("$LITEOSTHIRDPARTY/lwip/lwip.gni")
+   import("$THIRDPARTY_LWIP_DIR/lwip.gni")
    import("$LITEOSTOPDIR/components/net/lwip-2.1/lwip_porting.gni")
    module_switch = defined(LOSCFG_NET_LWIP_SACK)
-   module_name = "lwip"kernel_module(module_name) {
+   module_name = "lwip"
+   kernel_module(module_name) {
      sources = LWIP_PORTING_FILES + LWIPNOAPPSFILES - [ "$LWIPDIR/api/sockets.c" ]
-     include_dirs = [ "//utils/native/lite/include" ]
+     include_dirs = [ "$COMMONLIBRARY_UTILS_LITE_DIR/include" ]
    }
    #添加新增加的适配头文件路径include。
    config("public") {
@@ -520,24 +521,24 @@ lwIP是一个小型开源的TCP/IP协议栈，LiteOS-M已对开源lwIP做了适�
 
 5. 在产品的配置文件(如config.json)中设置lwIP的编译路径，即步骤4中BUILD.gn的路径。
 
-   ```
+   ```json
    {
      "subsystem": "kernel",
      "components": [
        { "component": "liteos_m", "features":["ohos_kernel_liteos_m_lwip_path = \"//xxx/lwip_adapter\"" ] }
      ]
-   },
+   }
    ```
 
-6. 在产品的内核编译配置文件中，如kernel_config/debug.config，打开编译lwIP的开关。
+6. 在产品的内核编译配置文件中，如kernel_configs/debug.config，打开编译lwIP的开关。
 
-   ```
+   ```text
    LOSCFG_NET_LWIP=y
    ```
 
 本案例在config.json中设置lwIP的路径如下：
 
-   ```
+   ```json
    "subsystem": "kernel",
    "components": [
      {
@@ -549,9 +550,9 @@ lwIP是一个小型开源的TCP/IP协议栈，LiteOS-M已对开源lwIP做了适�
    ]
    ```
 
-另外，需在内核编译配置文件kernel_config/debug.config中，打开编译lwIP的开关，如下：
+另外，需在内核编译配置文件kernel_configs/debug.config中，打开编译lwIP的开关，如下：
 
-```
+```text
 LOSCFG_NET_LWIP=y
 ```
 
@@ -559,31 +560,30 @@ LOSCFG_NET_LWIP=y
 
 security需要在config.json中打开相应的选项，本案例移植了三方库中的mbedtls（`//third_party/mbedtls`）作为加密模块，选项配置如下：
 
-```
-"subsystem": "security",
-"components": [
-  { "component": "huks", "features":
-    [
-      ...
-      "ohos_security_huks_mbedtls_porting_path = \"//device/soc/asrmicro/asr582x/liteos_m/components/mbedtls\""
-    ]
-  }
-]
-```
+  ```json
+  "subsystem": "security",
+  "components": [
+    { "component": "huks", "features":
+     [
+       "ohos_security_huks_mbedtls_porting_path = \"//device/soc/asrmicro/asr582x/liteos_m/components/mbedtls\""
+      ]
+    }
+  ]
+  ```
 
 在上述目录中，需要对mbedtls做配置，可见`config/config_liteos_m.h`。需要注意的是，如果使用mbedtls的RNG的能力（比如dsoftbus组件在`//foundation/communication/dsoftbus/adapter/common/mbedtls/softbus_adapter_crypto.c`中有使用），要指定产生随机数的熵源。本案例使用了ASR582X的硬件随机数能力，需要打开如下宏定义：
 
-```
+```c
 #define MBEDTLS_ENTROPY_HARDWARE_ALT
 ```
 
-打开此宏后，需要实现entropy_hardware_alt接口，可见`library/entropy_hardware_alt.c`。
+打开此宏后，需要自行实现entropy_hardware_alt接口（参考mbedtls官方文档，该文件需开发者自行创建）。
 
 ### wifi_lite组件
 
 wifi_lite组件的选项配置如下：
 
-```
+```json
 "subsystem": "communication",
 "components": [
   { "component": "wifi_lite", "features":[] }
@@ -605,7 +605,7 @@ wifi_lite组件的选项配置如下：
 
 xts组件的适配，以`//vendor/asrmicro/xts_demo/config.json`为例，需要加入组件选项：
 
-```
+```json
 "subsystem": "xts",
 "components": [
   { "component": "xts_acts", "features":
@@ -617,9 +617,9 @@ xts组件的适配，以`//vendor/asrmicro/xts_demo/config.json`为例，需要�
 ]
 ```
 
-另外，xts功能也使用了list来组织，可参考[模块化编译]，在config.json文件中增减相应模块：
+另外，xts功能也使用了list来组织，可参考[模块化编译](#模块化编译)，在config.json文件中增减相应模块：
 
-```
+```json
 "xts_list": [
   {
     "enable": "true",
@@ -634,7 +634,7 @@ xts组件的适配，以`//vendor/asrmicro/xts_demo/config.json`为例，需要�
       "ActsBootstrapTest"
     ]
   }
-],
+]
 ```
 
 ### dsoftbus组件
@@ -647,7 +647,7 @@ dsoftbus组件提供了设备间的发现连接、组网和传输能力，本方
 
 dsoftbus组件的选项配置如下：
 
-```
+```json
 "subsystem": "communication",
 "components": [
   { "component": "dsoftbus", "features":[] }
@@ -656,7 +656,7 @@ dsoftbus组件的选项配置如下：
 
 在`//vendor/asrmicro/wifi_demo`下提供了dsoftbus的测试Demo，打开该功能需修改`//vendor/asrmicro/wifi_demo/tests/BUILD.gn`：
 
-```
+```gn
 declare_args() {
   asr_dsoftbus_test = true              # 打开dsoftbus demo编译。
 }
@@ -664,13 +664,13 @@ declare_args() {
 
 另外，需在`//vendor/asrmicro/wifi_demo/config.json`中添加dsoftbus_test模块：
 
-```
+```json5
 "tests_list": [
     {
     "enable": "true",
     "test_modules": [
         "wifi_test",
-        "dsoftbus_test"                 # 打开dsoftbus_test模块。
+        "dsoftbus_test"                //打开dsoftbus_test模块。
     ]
     }
 ]
@@ -678,18 +678,20 @@ declare_args() {
 
 dsoftbus组件的启动接口可参考`//vendor/asrmicro/wifi_demo/tests/dsoftbus/dsoftbus_app.c`：
 
-```
+```c
 InitSoftBusServer();
 ```
 
 dsoftbus组件的运行需至少预留80KB RAM。如资源不够，可对其它地方进行剪裁。例如，可在以下文件修改lwIP组件：
-`//kernel_liteos_m/blob/master/components/net/lwip-2.1/porting/include/lwip/lwipopts.h`：
 
-```
-#define TCPIP_THREAD_STACKSIZE          0x2000              // 缩小TCPIP任务栈大小
+`//kernel/liteos_m/components/net/lwip-2.1/porting/include/lwip/lwipopts.h`：
+
+```c
+#define TCPIP_THREAD_STACKSIZE          0x2000              // 缩小TCPIP任务栈大小（默认值为0x6000）
 ```
 
 在communication_dsoftbus仓中，加入了-fPIC编译选项，这样会让编译器产生与位置无关代码，并使用相对地址，但是在LiteOS-M核中使用的是静态库，不推荐使用。
+
 建议开发者手动注释-fPIC编译选项，后续会推进OpenHarmony统一规划此编译选项的开关。修改方法是在如下的四个文件中，找到"-fPIC"选项，并全部注释：
 
 `//foundation/communication/dsoftbus/core/common/BUILD.gn`
@@ -698,46 +700,142 @@ dsoftbus组件的运行需至少预留80KB RAM。如资源不够，可对其它�
 
 `//foundation/communication/dsoftbus/sdk/BUILD.gn`
 
-`//foundation/communication/dsoftbus/components/nstackx_mini/nstackx_ctrl/BUILD.gn`
+`//foundation/communication/dsoftbus/components/nstackx/nstackx_ctrl/BUILD.gn`
 
-软总线的组网需要通过设备认证，在研发阶段，可以把认证跳过，先行调试组网以及传输能力，需将文件`//foundation/communication/dsoftbus/core/authentication/src/auth_manager.c`中的HandleReceiveDeviceId函数替换为如下实现：
+软总线的组网需要通过设备认证，在研发阶段，可以把认证跳过，先行调试组网以及传输能力，需将下面四个文件进行如下修改:
 
+在文件`//foundation/communication/dsoftbus/core/authentication/include/auth_hichain.h`中新增TestOnSessionKeyReturned函数声明；
+
+```c
+void TestOnSessionKeyReturned(int64_t authSeq, const uint8_t *sessionKey, uint32_t sessionKeyLen);
 ```
-void HandleReceiveDeviceId(AuthManager *auth, uint8_t *data)
+
+在文件`//foundation/communication/dsoftbus/core/authentication/src/auth_hichain.c`中将OnSessionKeyReturned函数名变更为TestOnSessionKeyReturned，并取消static，将g_hichainCallback中nSessionKeyReturned修改为TestOnSessionKeyReturned给.onSessionKeyReturned赋值。在HichainStartAuth函数中新增如下两行，
+
+```c
+void TestOnSessionKeyReturned(int64_t authSeq, const uint8_t *sessionKey, uint32_t sessionKeyLen)
 {
-    uint8_t tempKey[SESSION_KEY_LENGTH] = {0};
-    if (auth == NULL || data == NULL) {
-        SoftBusLog(SOFTBUS_LOG_AUTH, SOFTBUS_LOG_ERROR, "invalid parameter");
-        return;
-    }
-    if (AuthUnpackDeviceInfo(auth, data) != SOFTBUS_OK) {
-        SoftBusLog(SOFTBUS_LOG_AUTH, SOFTBUS_LOG_ERROR, "AuthUnpackDeviceInfo failed");
-        AuthHandleFail(auth, SOFTBUS_AUTH_UNPACK_DEVID_FAILED);
-        return;
-    }
-    if (auth->side == SERVER_SIDE_FLAG) {
-        if (EventInLooper(auth->authId) != SOFTBUS_OK) {
-            SoftBusLog(SOFTBUS_LOG_AUTH, SOFTBUS_LOG_ERROR, "auth EventInLooper failed");
-            AuthHandleFail(auth, SOFTBUS_MALLOC_ERR);
-            return;
-        }
-        if (AuthSyncDeviceUuid(auth) != SOFTBUS_OK) {
-            AuthHandleFail(auth, SOFTBUS_AUTH_SYNC_DEVID_FAILED);
-        }
-        (void)memset_s(tempKey, SESSION_KEY_LENGTH, 1, SESSION_KEY_LENGTH);
-        AuthOnSessionKeyReturned(auth->authId, tempKey, SESSION_KEY_LENGTH); 
-        return;
-    }
-    //VerifyDeviceDevLvl(auth);                                            --- 这里注释认证过程
-    (void)memset_s(tempKey, SESSION_KEY_LENGTH, 1, SESSION_KEY_LENGTH);
-    AuthOnSessionKeyReturned(auth->authId, tempKey, SESSION_KEY_LENGTH);
+    AUTH_LOGI(AUTH_HICHAIN, "hichain TestOnSessionKeyReturned: authSeq=%{public}" PRId64 ", len=%{public}u", authSeq, sessionKeyLen);
+    // ....
+}
+
+static DeviceAuthCallback g_hichainCallback = {
+    .onTransmit = OnTransmit,
+    .onSessionKeyReturned = TestOnSessionKeyReturned, // 修改点
+    .onFinish = OnFinish,
+    .onError = OnError,
+    .onRequest = OnRequest
+}
+
+int32_t HichainStartAuth(int64_t authSeq, HiChainAuthParam *hiChainParam, HiChainAuthMode authMode)
+{
+    AUTH_LOGE(AUTH_HICHAIN, "MHY TEST AUTH");
+    return SOFTBUS_OK;
+    // ....
 }
 ```
 
-在正确配置并编译烧录后，设备使用wifi_open指令连接路由，连接成功后，设备会自动进行组网。如下为组网成功截图：
+在文件`//foundation/communication/dsoftbus/core/authentication/src/auth_session_fsm.c`中新增TestSessionKeyReturn函数，链接`lnn_async_callback_utils.h`头文件；在DeviceAuthStateEnter函数内新删除两个AUTH_LOGE，增如下内容;
 
-![dsoftbus_join_LNN](figures/asr582x_dsoftbus_join_LNN.png)
+```c
+static void TestSessionKeyReturn(void *para)
+{
+    uint8_t tmpKey[SESSION_KEY_LENGTH] = {0};
+    (void)memset_s(tmpKey, SESSION_KEY_LENGTH, 1, SESSION_KEY_LENGTH);
+    int64_t *authId = (int64_t *)para;
+    AUTH_LOGE(AUTH_FSM, "TEST sessionKey Return");
+    TestOnSessionKeyReturned(*authId, tmpKey, SESSION_KEY_LENGTH);
+}
+#include "lnn_async_callback_utils.h"
+#define TEST_TIMES 500
+```
 
+```c
+static void DeviceAuthStateEnter(FsmStateMachine *fsm)
+{
+    if (fsm == NULL) {
+        return;
+    }     
+    int32_t ret = SOFTBUS_OK;
+    AuthFsm *authFsm = TO_AUTH_FSM(fsm);     
+    if (authFsm == NULL) {
+        return;
+    }     
+    authFsm->curState = STATE_DEVICE_AUTH;
+    AuthSessionInfo *info = &authFsm->info;
+    AUTH_LOGI(AUTH_FSM, "auth state enter, info->isServer=%{public}d authSeq=%{public}" PRId64, info->isServer,authFsm->authSeq);  // 新增
+    if (info->normalizedType == NORMALIZED_SUPPORT || info->isSupportFastAuth) {
+        ret = TryRecoveryKey(authFsm);
+        if (ret != SOFTBUS_OK) {
+            goto ERR_EXIT;
+        }
+        return;
+    }
+    if (info->credNegoState == CRED_NEGO_STATE_COMPATIBLE || info->credId == NULL) {
+        AUTH_LOGI(AUTH_FSM, "cred negotiation fail, get credType by credId, authSeq=%{public}" PRId64, authFsm->authSeq);
+        info->credNegoState = CRED_NEGO_STATE_COMPATIBLE;
+        GetCredTypeByCredId(info);
+    }     
+    if (!info->isServer) {
+        ret = ProcessClientAuthState(authFsm);
+        int64_t *tmpId = (int64_t *)SoftBusCalloc(sizeof(int64_t));       // 新增修改起始点
+        if (tmpId == NULL) {
+            goto ERR_EXIT;
+        }
+        *tmpId = authFsm->authSeq;
+        LnnAsyncCallbackDelayHelper(GetLooper(LOOP_TYPE_DEFAULT), TestSessionKeyReturn, tmpId, TEST_TIMES);      
+    } else {                
+        int64_t *tmpId = (int64_t *)SoftBusCalloc(sizeof(int64_t));
+        if (tmpId == NULL) {            
+            goto ERR_EXIT;        
+        }
+        *tmpId = authFsm->authSeq;
+        LnnAsyncCallbackDelayHelper(GetLooper(LOOP_TYPE_DEFAULT), TestSessionKeyReturn, tmpId, 0);  // 新增修改结束点         
+    }
+    if (ret != SOFTBUS_OK) {
+        goto ERR_EXIT;
+    }
+    return;
+    ERR_EXIT:
+        AUTH_LOGE(AUTH_FSM, "auth state enter, fail ret=%{public}d", ret);
+        CompleteAuthSession(authFsm, ret);
+}        
+```
+
+在文件`//foundation/communication/dsoftbus/core/authentication/src/auth_session_json.c`中删除PackDeviceJsonInfo函数中的注释内容；
+
+```c
+static int32_t PackDeviceJsonInfo(const AuthSessionInfo *info, JsonObj *obj)
+{
+    if ((info->connInfo.type == AUTH_LINK_TYPE_WIFI || info->connInfo.type == AUTH_LINK_TYPE_SESSION_KEY ||
+        info->connInfo.type == AUTH_LINK_TYPE_USB) && !info->isConnectServer) {
+        if (!JSON_AddStringToObject(obj, CMD_TAG, CMD_GET_AUTH_INFO)) {
+            AUTH_LOGE(AUTH_FSM, "add CMD_GET fail");
+            return SOFTBUS_AUTH_PACK_DEVINFO_FAIL;
+        }
+    } else {
+        if (!JSON_AddStringToObject(obj, CMD_TAG, CMD_RET_AUTH_INFO)) {
+            AUTH_LOGE(AUTH_FSM, "add CMD_RET fail");
+            return SOFTBUS_AUTH_PACK_DEVINFO_FAIL;
+        }
+    }
+#ifdef DISABLE_IDENTITY_SERVICE
+    int32_t authVersion = AUTH_VERSION_INVALID;
+#else
+    int32_t authVersion = AUTH_VERSION_VALUE;
+#endif
+    /*
+    if (!JSON_AddInt32ToObject(obj, AUTH_START_STATE, info->localState) ||
+        !JSON_AddInt32ToObject(obj, AUTH_VERSION_TAG, authVersion)) {
+        AUTH_LOGE(AUTH_FSM, "add auth info fail.");
+        return SOFTBUS_AUTH_PACK_DEVINFO_FAIL;
+    }   // 注释掉此判断
+     */
+    return SOFTBUS_OK;
+}
+```
+
+在正确配置并编译烧录后，设备使用wifi_open指令连接路由，连接成功后，设备会自动进行组网。
 
 其它组件的适配过程与官方以及其它厂商的过程类似，不再赘述。
 
