@@ -6,7 +6,7 @@
 <!--Tester: @kirl75; @zsw_zhushiwei-->
 <!--Adviser: @k1ngqaquuu-->
 
-Worker是与主线程并行的独立线程。创建Worker的线程称为宿主线程，Worker自身的线程称为Worker线程。创建Worker时传入的URL文件在Worker线程中执行，可以处理耗时操作，但不能直接操作UI。
+Worker是与宿主线程并行的独立线程。创建Worker的线程称为宿主线程，Worker自身的线程称为Worker线程。创建Worker时传入的URL文件在Worker线程中执行，可以处理耗时操作，但不能直接操作UI。
 
 Worker的主要作用是为应用程序提供多线程运行环境，使应用程序在执行过程中与宿主线程分离，在后台线程中运行脚本处理耗时操作，避免计算密集型或高延迟任务阻塞宿主线程。由于Worker一旦创建不会主动销毁，若不处于任务状态会一直运行，造成资源浪费，应及时销毁空闲的Worker。
 
@@ -133,7 +133,7 @@ ThreadWorker构造函数。
 
 **示例：**
 
-以下示例展示了在Stage模型的entry模块Index.ets文件中加载Worker文件的方法，使用Library加载Worker线程文件的场景参考[文件路径注意事项](../../arkts-utils/worker-introduction.md#文件路径注意事项)。
+以下示例展示了在Stage模型的entry模块Index.ets文件中加载Worker线程文件的方法，使用Library加载Worker线程文件的场景参考[文件路径注意事项](../../arkts-utils/worker-introduction.md#文件路径注意事项)。
 
 ```ts
 // Index.ets
@@ -336,7 +336,7 @@ workerInstance.postMessage(object);
 
 @Sendable
 export class SendableObject {
-  a:number = 45;
+  value:number = 45;
 }
 ```
 
@@ -353,7 +353,7 @@ const workerPort: ThreadWorkerGlobalScope = worker.workerPort;
 
 workerPort.onmessage = (e: MessageEvents) => {
   let obj: SendableObject = e.data;
-  console.info("sendable obj is: " + obj.a);
+  console.info("sendable obj is: " + obj.value);
 }
 ```
 
@@ -703,7 +703,7 @@ removeEventListener(type: string, callback?: WorkerEventListener): void
 | 参数名   | 类型                                         | 必填 | 说明                         |
 | -------- | -------------------------------------------- | ---- | ---------------------------- |
 | type     | string                                       | 是   | 需要删除的监听事件类型。事件类型通过[addEventListener<sup>9+</sup>](#addeventlistener9)设置。 |
-| callback | [WorkerEventListener](#workereventlistener9) | 否 | 回调函数，删除监听事件后执行。 |
+| callback | [WorkerEventListener](#workereventlistener9) | 否 | 需要删除的特定监听器回调函数。如果未传入此参数，则会删除该类型的所有监听器。 |
 
 **错误码：**
 
@@ -872,8 +872,8 @@ removeEventListener(type: string, callback?: WorkerEventListener): void
 
 | 参数名   | 类型                                         | 必填 | 说明                         |
 | -------- | -------------------------------------------- | ---- | ---------------------------- |
-| type     | string                                       | 是   | 需要删除的监听事件类型。     |
-| callback | [WorkerEventListener](#workereventlistener9) | 否 | 回调函数，删除监听事件后执行。 |
+| type     | string                                       | 是   | 需要删除的监听事件类型。事件类型通过[addEventListener<sup>9+</sup>](#addeventlistener9-1)设置。     |
+| callback | [WorkerEventListener](#workereventlistener9) | 否 | 需要删除的特定监听器回调函数。如果未传入此参数，则会删除该类型的所有监听器。 |
 
 **错误码：**
 
@@ -997,8 +997,8 @@ Worker线程用于与宿主线程通信的类。ThreadWorkerGlobalScope类继承
 
 | 名称   | 类型                    | 只读 | 可选 | 说明                                                         |
 | ------ | ---------------------- | ---- | --- | ------------------------------------------------------------ |
-| onmessage<sup>9+</sup> | (this: ThreadWorkerGlobalScope, ev: [MessageEvents](#messageevents9)) => void | 否 | 是 | 回调函数。表示Worker线程收到来自其宿主线程通过[postMessage](#postmessage9-1)或[postMessageWithSharedSendable](#postmessagewithsharedsendable12)接口发送的消息时被调用的事件处理程序，处理程序在Worker线程中执行。其中this指调用者对象本身[ThreadWorkerGlobalScope](#threadworkerglobalscope9)，ev类型为[MessageEvents](#messageevents9)，表示收到的宿主线程发送的消息数据。默认值为undefined。<br/>**原子化服务API**：从API version 11开始，该属性支持在原子化服务中使用。|
-| onmessageerror<sup>9+</sup> | (this: ThreadWorkerGlobalScope, ev: [MessageEvents](#messageevents9)) => void | 否 | 是 | 回调函数。表示当Worker线程的Worker对象接收到一条无法被反序列化的消息时被调用的事件处理程序，处理程序在Worker线程中执行。其中this指调用者对象本身[ThreadWorkerGlobalScope](#threadworkerglobalscope9)，ev类型为[MessageEvents](#messageevents9)，表示收到的消息数据。默认值为undefined。<br/>**原子化服务API**：从API version 11开始，该属性支持在原子化服务中使用。|
+| onmessage<sup>9+</sup> | (this: [ThreadWorkerGlobalScope](#threadworkerglobalscope9), ev: [MessageEvents](#messageevents9)) => void | 否 | 是 | 回调函数。表示Worker线程收到来自其宿主线程通过[postMessage](#postmessage9-1)或[postMessageWithSharedSendable](#postmessagewithsharedsendable12)接口发送的消息时被调用的事件处理程序，处理程序在Worker线程中执行。其中this指调用者对象本身[ThreadWorkerGlobalScope](#threadworkerglobalscope9)，ev类型为[MessageEvents](#messageevents9)，表示收到的宿主线程发送的消息数据。默认值为undefined。<br/>**原子化服务API**：从API version 11开始，该属性支持在原子化服务中使用。|
+| onmessageerror<sup>9+</sup> | (this: [ThreadWorkerGlobalScope](#threadworkerglobalscope9), ev: [MessageEvents](#messageevents9)) => void | 否 | 是 | 回调函数。表示当Worker线程的Worker对象接收到一条无法被反序列化的消息时被调用的事件处理程序，处理程序在Worker线程中执行。其中this指调用者对象本身[ThreadWorkerGlobalScope](#threadworkerglobalscope9)，ev类型为[MessageEvents](#messageevents9)，表示收到的消息数据。默认值为undefined。<br/>**原子化服务API**：从API version 11开始，该属性支持在原子化服务中使用。|
 
 ### postMessage<sup>9+</sup>
 
@@ -1391,24 +1391,24 @@ workerInstance.onmessage = (e: MessageEvents) => {
 import { worker, ThreadWorkerGlobalScope, MessageEvents, ErrorEvent, Priority } from '@kit.ArkTS';
 
 class ClassA {
-  public obj: string = ''
+  public obj: string = ""
 }
 
 const workerPort: ThreadWorkerGlobalScope = worker.workerPort;
 workerPort.onmessage = (e: MessageEvents) => {
   // 使用可选链操作符调用接口，传递字面量对象时会编译报错，需要显式标注对象字面量的类型。
-  // workerPort.postMessageAtFront?.({obj: 'obj'}, Priority.HIGH);
+  // workerPort.postMessageAtFront?.({obj: "obj"}, Priority.HIGH);
 
-  let a: ClassA = { obj: 'obj' };
-  workerPort.postMessageAtFront?.(a, Priority.HIGH);
+  let classAInstance: ClassA = { obj: "obj" };
+  workerPort.postMessageAtFront?.(classAInstance, Priority.HIGH);
 
   // 使用非空断言，直接调用。可以直接传递对象字面量。
-  workerPort.postMessageAtFront!({ obj: 'obj' }, Priority.HIGH);
+  workerPort.postMessageAtFront!({ obj: "obj" }, Priority.HIGH);
   // 判断方法存在后再使用。可以直接传递对象字面量。
   if (workerPort.postMessageAtFront) {
-    workerPort.postMessageAtFront({ obj: 'obj' }, Priority.HIGH);
+    workerPort.postMessageAtFront({ obj: "obj" }, Priority.HIGH);
   } else {
-    workerPort.postMessageWithSharedSendable({ obj: 'obj' });
+    workerPort.postMessageWithSharedSendable({ obj: "obj" });
   }
 }
 ```
@@ -1561,7 +1561,7 @@ Worker构造函数。
 
 **示例：**
 
-此处以在Stage模型的entry模块Index.ets文件中加载Worker文件为例，使用Library加载Worker线程文件的场景参考[文件路径注意事项](../../arkts-utils/worker-introduction.md#文件路径注意事项)。
+此处以在Stage模型的entry模块Index.ets文件中加载Worker线程文件为例，使用Library加载Worker线程文件的场景参考[文件路径注意事项](../../arkts-utils/worker-introduction.md#文件路径注意事项)。
 
 ```ts
 // Index.ets
@@ -1650,7 +1650,7 @@ on(type: string, listener: EventListener): void
 | 参数名   | 类型                                      | 必填 | 说明             |
 | -------- | ----------------------------------------- | ---- | ---------------- |
 | type     | string                                    | 是   | 监听的事件类型。 |
-| listener | [EventListener](#eventlistenerdeprecated) | 是   | 回调事件。       |
+| listener | [EventListener](#eventlistenerdeprecated) | 是   | 事件触发时的回调函数。 |
 
 **示例：**
 
@@ -1681,7 +1681,7 @@ once(type: string, listener: EventListener): void
 | 参数名   | 类型                                      | 必填 | 说明             |
 | -------- | ----------------------------------------- | ---- | ---------------- |
 | type     | string                                    | 是   | 监听的事件类型。 |
-| listener | [EventListener](#eventlistenerdeprecated) | 是   | 回调事件。       |
+| listener | [EventListener](#eventlistenerdeprecated) | 是   | 事件触发时的回调函数。 |
 
 **示例：**
 
@@ -1712,7 +1712,7 @@ off(type: string, listener?: EventListener): void
 | 参数名   | 类型                                      | 必填 | 说明                 |
 | -------- | ----------------------------------------- | ---- | -------------------- |
 | type     | string                                    | 是   | 需要删除的事件类型。事件类型通过[on<sup>(deprecated)</sup>](#ondeprecated)设置。 |
-| listener | [EventListener](#eventlistenerdeprecated) | 否   | 移除监听事件后所执行的回调事件。 |
+| listener | [EventListener](#eventlistenerdeprecated) | 否   | 需要删除的特定监听器回调函数。如果未传入此参数，则会删除该类型的所有监听器。 |
 
 **示例：**
 
@@ -1800,7 +1800,7 @@ removeEventListener(type: string, callback?: EventListener): void
 | 参数名   | 类型                                      | 必填 | 说明                     |
 | -------- | ----------------------------------------- | ---- | ------------------------ |
 | type     | string                                    | 是   | 需要移除的事件类型。事件类型通过[addEventListener<sup>(deprecated)</sup>](#addeventlistenerdeprecated)设置。 |
-| callback | [EventListener](#eventlistenerdeprecated) | 否   | 回调函数，删除监听事件后执行。 |
+| callback | [EventListener](#eventlistenerdeprecated) | 否   | 需要删除的特定监听器回调函数。如果未传入此参数，则会删除该类型的所有监听器。 |
 
 **示例：**
 
@@ -1924,8 +1924,8 @@ Worker线程用于与宿主线程通信的类。DedicatedWorkerGlobalScope类继
 
 | 名称   | 类型                    | 只读 | 可选 | 说明                                                         |
 | ------ | ---------------------- | ---- | --- | ------------------------------------------------------------ |
-| onmessage<sup>(deprecated)</sup> | (this: DedicatedWorkerGlobalScope, ev: [MessageEvent](#messageeventt)) => void | 否 | 是 | 回调函数，表示Worker线程收到来自其宿主线程通过postMessage接口发送的消息时被调用的事件处理程序，处理程序在Worker线程中执行。其中this指调用者对象本身[DedicatedWorkerGlobalScope](#dedicatedworkerglobalscopedeprecated)，ev类型为[MessageEvent](#messageeventt)，表示收到的Worker消息数据。默认值为undefined。<br/>**说明**：从API version 7开始支持，从API version 9开始废弃，建议使用[ThreadWorkerGlobalScope.onmessage](#属性-2)替代。 |
-| onmessageerror<sup>(deprecated)</sup> | (this: DedicatedWorkerGlobalScope, ev: [MessageEvent](#messageeventt)) => void | 否 | 是 | 回调函数，表示当Worker对象接收到一条无法被反序列化的消息时被调用的事件处理程序，处理程序在Worker线程中执行。其中this指调用者对象本身[DedicatedWorkerGlobalScope](#dedicatedworkerglobalscopedeprecated)，ev类型为[MessageEvent](#messageeventt)，表示收到的Worker消息数据。默认值为undefined。<br/>**说明**：从API version 7开始支持，从API version 9开始废弃，建议使用[ThreadWorkerGlobalScope.onmessageerror](#属性-2)替代。 |
+| onmessage<sup>(deprecated)</sup> | (this: [DedicatedWorkerGlobalScope](#dedicatedworkerglobalscopedeprecated), ev: [MessageEvent](#messageeventt)) => void | 否 | 是 | 回调函数，表示Worker线程收到来自其宿主线程通过postMessage接口发送的消息时被调用的事件处理程序，处理程序在Worker线程中执行。其中this指调用者对象本身[DedicatedWorkerGlobalScope](#dedicatedworkerglobalscopedeprecated)，ev类型为[MessageEvent](#messageeventt)，表示收到的Worker消息数据。默认值为undefined。<br/>**说明**：从API version 7开始支持，从API version 9开始废弃，建议使用[ThreadWorkerGlobalScope.onmessage](#属性-2)替代。 |
+| onmessageerror<sup>(deprecated)</sup> | (this: [DedicatedWorkerGlobalScope](#dedicatedworkerglobalscopedeprecated), ev: [MessageEvent](#messageeventt)) => void | 否 | 是 | 回调函数，表示当Worker对象接收到一条无法被反序列化的消息时被调用的事件处理程序，处理程序在Worker线程中执行。其中this指调用者对象本身[DedicatedWorkerGlobalScope](#dedicatedworkerglobalscopedeprecated)，ev类型为[MessageEvent](#messageeventt)，表示收到的Worker消息数据。默认值为undefined。<br/>**说明**：从API version 7开始支持，从API version 9开始废弃，建议使用[ThreadWorkerGlobalScope.onmessageerror](#属性-2)替代。 |
 
 ### postMessage<sup>(deprecated)</sup>
 
@@ -2212,7 +2212,7 @@ import { worker, MessageEvents } from '@kit.ArkTS';
 const workerInstance = new worker.ThreadWorker("workers/worker.ets");
 workerInstance.postMessage("message from main thread to worker");
 workerInstance.onmessage = (d: MessageEvents): void => {
-  // 当Worker线程传递obj2时，data即为obj2。data没有Init、SetName的方法
+  // 当Worker线程传递myModel时，data即为myModel。data没有init的方法
   let data: string  = d.data;
 }
 ```
@@ -2223,7 +2223,7 @@ import { worker, MessageEvents, ErrorEvent } from '@kit.ArkTS';
 const workerPort = worker.workerPort;
 class MyModel {
     name = "undefined";
-    Init() {
+    init() {
         this.name = "MyModel";
     }
 }
@@ -2234,8 +2234,8 @@ workerPort.onmessage = (d: MessageEvents): void => {
     console.info("post message is function");
   }
   // workerPort.postMessage(func1); 传递func1发生序列化错误
-  let obj2 = new MyModel();
-  workerPort.postMessage(obj2);     // 传递obj2不会发生序列化错误，obj2中的函数会丢失
+  let myModel = new MyModel();
+  workerPort.postMessage(myModel);     // 传递myModel不会发生序列化错误，myModel中的函数会丢失
 }
 workerPort.onmessageerror = () => {
     console.error("worker.ets onmessageerror");
