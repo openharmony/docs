@@ -528,7 +528,7 @@ audio.createAudioCapturer(audioCapturerOptions, (err, data) => {
 | 名称                         | 值     | 说明                              |
 |----------------------------| ------ |---------------------------------|
 | SELECT_STRATEGY_DEFAULT | 0 | 默认设备选择策略。 |
-| SELECT_STRATEGY_INDEPENDENT | 1 | 独立设备选择策略。 | 
+| SELECT_STRATEGY_INDEPENDENT | 1 | 独立设备选择策略。 |
 
 ## PolicyType<sup>12+</sup>
 
@@ -541,7 +541,7 @@ audio.createAudioCapturer(audioCapturerOptions, (err, data) => {
 | 名称                         | 值     | 说明                              |
 |----------------------------| ------ |---------------------------------|
 | EDM | 0 | 设备管理器下发的静音策略。 |
-| PRIVACY | 1 | 安全隐私模块下发的静音策略。 | 
+| PRIVACY | 1 | 安全隐私模块下发的静音策略。 |
 
 ## AudioCapturerOptions<sup>8+</sup>
 
@@ -555,7 +555,7 @@ audio.createAudioCapturer(audioCapturerOptions, (err, data) => {
 | ----------------------------------- |----------------------------------------------------------------------| ---- |---|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | preferredInputDevice<sup>22+</sup> | [AudioDeviceDescriptor](arkts-apis-audio-i.md#audiodevicedescriptor) | 否 | 是 | 当前音频采集器的偏好输入设备。<br/>此设备必须为输入设备，并且capturerInfo的source type必须为[SOURCE_TYPE_VOICE_RECOGNITION](arkts-apis-audio-e.md#sourcetype8)或[SOURCE_TYPE_VOICE_TRANSCRIPTION](#sourcetype8)。否则，此参数将会被忽略。<br/>1. 当调用者未指定偏好设备时，系统会自动选择一个设备。<br/>2. 当调用者指定了偏好设备创建语音识别或者语音转写流时：<br/>（1）设备在线，当前audiocapturer会使用偏好设备；如果运行过程中，偏好设备下线，系统会自动选择一个录音设备。<br/>（2）设备不在线，当前audiocapturer会自动选择一个录音设备；如果运行过程中，偏好设备上线，系统会自动切换到偏好设备上。<br/>3. 调用者可以通过[getCurrentAudioCapturerChangeInfo](arkts-apis-audio-AudioCapturer.md#getcurrentaudiocapturerchangeinfo11)查询当前实际使用的录音设备。 |
 
-                                                                                                  
+
 
 ## AudioManager
 
@@ -3721,6 +3721,117 @@ audioRoutingManager.getActiveOutputDeviceDescriptors().then((audioDeviceDescript
   console.error(`Failed to get active output device descriptors. Code: ${err.code}, message: ${err.message}`);
 });
 ```
+
+## AudioRecordingManager
+
+录音策略管理，提供协同录音和录音控制能力。
+
+通过[getRecordingManager](arkts-apis-audio-AudioManager.md#getrecordingmanager)获取AudioRecordingManager实例。
+
+**起始版本：** 26.0.0
+
+### onSystemRecordControllerEnabledChange
+
+onSystemRecordControllerEnabledChange(callback: Callback&lt;SystemRecordControllerChangeInfo&gt;): void
+
+订阅系统录音控制面板使能状态变更事件。
+
+订阅后，有应用调用[enableSystemRecordController](arkts-apis-audio-AudioRecordingManager.md#enablesystemrecordcontroller)时，会触发回调。
+
+系统录音控制面板的使能状态可由应用通过[enableSystemRecordController](arkts-apis-audio-AudioRecordingManager.md#enablesystemrecordcontroller)接口设定，其他应用程序可以使用本接口监听状态变更事件。
+
+**起始版本：** 26.0.0
+
+**模型约束：** 此接口仅可在Stage模型下使用。
+
+**系统接口：** 此接口为系统接口。
+
+**系统能力：** SystemCapability.Multimedia.Audio.Capturer
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明 |
+| --- | --- | --- | --- |
+| callback | Callback&lt;[SystemRecordControllerChangeInfo](#systemrecordcontrollerchangeinfo)&gt; | 是 | 回调函数。当系统录音控制面板使能状态变化时，返回变更信息。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[Audio错误码](errorcode-audio.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | --------------------------------------------|
+| 202 | Caller is not a system application. |
+| 6800101 | Parameter verification failed. |
+| 6800102 | Memory allocation failed. |
+| 6800301 | Audio service error occurs like service died. |
+
+**示例：**
+
+```ts
+import { audio } from '@kit.AudioKit';
+
+audioRecordingManager.onSystemRecordControllerEnabledChange((changeInfo: audio.SystemRecordControllerChangeInfo) => {
+  console.info(`System record controller enabled state changed: ${changeInfo.enabled}, uid: ${changeInfo.uid}, sourceType: ${changeInfo.sourceType}`);
+});
+```
+
+### offSystemRecordControllerEnabledChange
+
+offSystemRecordControllerEnabledChange(callback?: Callback&lt;SystemRecordControllerChangeInfo&gt;): void
+
+取消订阅系统录音控制面板使能状态变更事件。
+
+**起始版本：** 26.0.0
+
+**模型约束：** 此接口仅可在Stage模型下使用。
+
+**系统接口：** 此接口为系统接口。
+
+**系统能力：** SystemCapability.Multimedia.Audio.Capturer
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明 |
+| --- | --- | --- | --- |
+| callback | Callback&lt;[SystemRecordControllerChangeInfo](#systemrecordcontrollerchangeinfo)&gt; | 否 | 需要取消的回调函数，默认值为空。如果不使用此参数，则取消之前在当前进程中订阅的所有回调。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[Audio错误码](errorcode-audio.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | --------------------------------------------|
+| 202 | Caller is not a system application. |
+| 6800101 | Parameter verification failed. |
+| 6800301 | Audio service error occurs like service died. |
+
+**示例：**
+
+```ts
+import { audio } from '@kit.AudioKit';
+
+audioRecordingManager.offSystemRecordControllerEnabledChange();
+```
+
+## SystemRecordControllerChangeInfo
+
+系统录音控制面板状态变更时携带的信息，包含使能状态、应用UID和期望的音频源类型。
+
+用于[onSystemRecordControllerEnabledChange](#onsystemrecordcontrollerenabledchange)和[offSystemRecordControllerEnabledChange](#offsystemrecordcontrollerenabledchange)的回调参数。
+
+**起始版本：** 26.0.0
+
+**模型约束：** 此接口仅可在Stage模型下使用。
+
+**系统接口：** 此接口为系统接口。
+
+**系统能力：** SystemCapability.Multimedia.Audio.Capturer
+
+| 名称 | 类型 | 只读 | 可选 | 说明 |
+| :--- | :--- | :--- | :--- | :--- |
+| enabled | boolean | 否 | 否 | 系统录音控制面板是否启用。true表示启用，false表示禁用。 |
+| uid | number | 否 | 是 | 触发系统录音控制面板状态变更的应用UID。取值范围是所有整数。 |
+| sourceType | [SourceType](#sourcetype8) | 否 | 是 | 应用启用录音控制面板时配置的期望音频源类型，用于匹配对应的录音场景和降噪模式。 |
 
 ## AudioRendererChangeInfo<sup>9+</sup>
 
