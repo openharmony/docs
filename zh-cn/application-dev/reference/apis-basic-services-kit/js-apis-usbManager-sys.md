@@ -389,7 +389,7 @@ try {
   }).catch((err : BusinessError) => {
     console.error(`testTag getBundleInfoForSelf failed. Code: ${err.code}, message: ${err.message}`);
   });
-} catch (err : BusinessError) {
+} catch (err) {
   console.error(`testTag failed. Code: ${err.code}, message: ${err.message}`);
 }
 ```
