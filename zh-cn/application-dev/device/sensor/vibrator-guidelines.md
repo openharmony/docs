@@ -594,6 +594,6 @@ JSON文件共包含3个属性。
 
 针对振动开发，有以下相关实例可供参考：
 
-- [振动（ArkTS）（API9）](https://gitcode.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/DeviceManagement/Vibrator/BasicVibration)
+- [振动（ArkTS）（API9）](https://gitcode.com/openharmony/applications_app_samples/tree/master/code/DocsSample/Vibrator/BasicVibration)
 
-- [自定义振动（ArkTS）(Full SDK)（API10）](https://gitcode.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/DeviceManagement/Vibrator/CustomHaptic)
+- [自定义振动（ArkTS）(Full SDK)（API10）](https://gitcode.com/openharmony/applications_app_samples/tree/master/code/DocsSample/Vibrator/CustomHaptic)
