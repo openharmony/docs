@@ -290,7 +290,6 @@ Drm_ErrCode OH_MediaKeySession_GenerateOfflineReleaseRequest(MediaKeySession *me
 | [MediaKeySession](capi-drm-mediakeysession.md) *mediaKeySession | 输入参数，MediaKeySession实例。 |
 | uint8_t *offlineMediaKeyId | 输入参数，离线媒体密钥标识。取值范围为[1, 64]，单位为字节。 |
 | int32_t offlineMediaKeyIdLen | 输入参数，离线媒体密钥标识长度，取值范围为[1, 64]。 |
-
 | uint8_t *releaseRequest | 输出参数，离线媒体密钥释放请求。 |
 | int32_t *releaseRequestLen | 输出参数，离线媒体密钥释放请求长度。 |
 

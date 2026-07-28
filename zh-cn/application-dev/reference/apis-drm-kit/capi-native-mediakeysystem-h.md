@@ -31,8 +31,8 @@
 | [typedef Drm_ErrCode (\*OH_MediaKeySystem_Callback)(MediaKeySystem *mediaKeySystem, DRM_EventType eventType, uint8_t *info, int32_t infoLen, char *extra)](#oh_mediakeysystem_callback) | OH_MediaKeySystem_Callback | MediaKeySystem事件触发时将调用的回调函数，返回MediaKeySystem实例，适用于多个MediaKeySystem场景。 |
 | [Drm_ErrCode OH_MediaKeySystem_SetCallback(MediaKeySystem *mediaKeySystem, OH_MediaKeySystem_Callback callback)](#oh_mediakeysystem_setcallback) | - | 设置MediaKeySystem事件回调。 |
 | [Drm_ErrCode OH_MediaKeySystem_GetMediaKeySystems(DRM_MediaKeySystemDescription *descs, uint32_t *count)](#oh_mediakeysystem_getmediakeysystems) | - | 获取设备支持的DRM解决方案的名称和唯一标识的列表。 |
-| [bool OH_MediaKeySystem_IsSupported(const char *name)](#oh_mediakeysystem_issupported) | - | 查询设备是否支持对应的DRM解决方案名称及媒体类型。 |
-| [bool OH_MediaKeySystem_IsSupported2(const char *name, const char *mimeType)](#oh_mediakeysystem_issupported2) | - | 查询设备是否支持对应的DRM解决方案名称及媒体类型。可通过[OH_MediaKeySystem_IsSupported](#oh_mediakeysystem_issupported)接口先确认name参数对应的DRM解决方案是否是设备支持的。 |
+| [bool OH_MediaKeySystem_IsSupported(const char *name)](#oh_mediakeysystem_issupported) | - | 查询设备是否支持对应的DRM解决方案。 |
+| [bool OH_MediaKeySystem_IsSupported2(const char *name, const char *mimeType)](#oh_mediakeysystem_issupported2) | - | 查询设备是否支持对应的DRM解决方案名称及媒体类型。可通过[OH_MediaKeySystem_IsSupported](#oh_mediakeysystem_issupported)接口先确认DRM解决方案是否被设备支持。 |
 | [bool OH_MediaKeySystem_IsSupported3(const char *name, const char *mimeType, DRM_ContentProtectionLevel contentProtectionLevel)](#oh_mediakeysystem_issupported3) | - | 查询设备是否支持对应的DRM解决方案、媒体类型、内容保护级别。可通过[OH_MediaKeySystem_IsSupported2](#oh_mediakeysystem_issupported2)接口先判断mimeType是否支持。 |
 | [Drm_ErrCode OH_MediaKeySystem_Create(const char *name, MediaKeySystem **mediaKeySystem)](#oh_mediakeysystem_create) | - | 创建MediaKeySystem实例。 |
 | [Drm_ErrCode OH_MediaKeySystem_SetConfigurationString(MediaKeySystem *mediaKeySystem, const char *configName, const char *value)](#oh_mediakeysystem_setconfigurationstring) | - | 设置字符串类型的配置属性。 |
