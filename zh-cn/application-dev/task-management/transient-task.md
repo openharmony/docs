@@ -46,7 +46,7 @@
 
 ## 开发步骤
 
-1. 导入模块。
+1. 导入模块，无需配置权限。
 
    <!-- @[include](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/BackGroundTasksKit/TransientTask/entry/src/main/ets/pages/TransientTaskDialog.ets) -->
    
