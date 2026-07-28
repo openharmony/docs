@@ -139,7 +139,7 @@ try {
 }
 ```
 
-### remoteDevice.onPairingStateChange
+## remoteDevice.onPairingStateChange
 
 onPairingStateChange(callback: Callback&lt;PairingStateParam&gt;): void
 
@@ -183,7 +183,7 @@ try {
 }
 ```
 
-### remoteDevice.offPairingStateChange
+## remoteDevice.offPairingStateChange
 
 offPairingStateChange(callback?: Callback&lt;PairingStateParam&gt;): void
 
@@ -222,7 +222,7 @@ try {
 }
 ```
 
-### remoteDevice.onConnectionStateChange
+## remoteDevice.onConnectionStateChange
 
 onConnectionStateChange(callback: Callback&lt;ConnectionStateParam&gt;): void
 
@@ -266,7 +266,7 @@ try {
 }
 ```
 
-### remoteDevice.offConnectionStateChange
+## remoteDevice.offConnectionStateChange
 
 offConnectionStateChange(callback?: Callback&lt;ConnectionStateParam&gt;): void
 
@@ -305,7 +305,7 @@ try {
 }
 ```
 
-### remoteDevice.onAcbStateChange
+## remoteDevice.onAcbStateChange
 
 onAcbStateChange(callback: Callback&lt;AcbStateParam&gt;): void
 
@@ -349,7 +349,7 @@ try {
 }
 ```
 
-### remoteDevice.offAcbStateChange
+## remoteDevice.offAcbStateChange
 
 offAcbStateChange(callback?: Callback&lt;AcbStateParam&gt;): void
 
