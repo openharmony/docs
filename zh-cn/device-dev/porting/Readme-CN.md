@@ -1,5 +1,5 @@
 ## 概述
-目前OpenHarmony已经成立了SIG组[sig_devboard](https://gitee.com/openharmony/community/blob/master/sig/sig_devboard/sig_devboard_cn.md)。该SIG组以支持更多第三方开发板为目标，提供开发板移植的支撑。
+目前OpenHarmony已经成立了SIG组[sig_devboard](https://gitcode.com/openharmony/community/blob/master/sig/sig_devboard/sig_devboard_cn.md)。该SIG组以支持更多第三方开发板为目标，提供开发板移植的支撑。
 
 在了解开发板移植前，需要先了解一下OpenHarmony对设备的分类。不同设备类型的移植方法会有较大差异。
 
@@ -35,6 +35,7 @@ repo init -u https://gitee.com/openharmony-sig/manifest.git -b master -m devboar
     - [配置其他子系统](porting-minichip-subsys-others.md)
   - [移植验证](porting-minichip-verification.md)
   - [常见问题](porting-chip-faqs.md)
+  - [轻量系统小型化适配指导](porting-minichip-minimal.md)
 - 小型系统芯片移植指导
   - 移植准备
     - [移植须知](porting-smallchip-prepare-needs.md)
