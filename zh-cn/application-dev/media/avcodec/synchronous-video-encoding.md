@@ -61,7 +61,7 @@ target_link_libraries(sample PUBLIC libnative_media_venc.so)
    #include <shared_mutex>
    ```
    
-2. 全局变量（仅作示例，具体参数值，请据能力查询接口获取相应值范围来参考配置）。
+2. 定义全局变量（仅作示例，具体参数值，请据能力查询接口获取相应值范围来参考配置）。
 
    ```c++
    // 视频帧宽度。
