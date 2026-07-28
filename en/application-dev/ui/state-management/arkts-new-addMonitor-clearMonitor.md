@@ -1,10 +1,12 @@
 # addMonitor and clearMonitor APIs: Dynamically Adding and Removing Listeners
+
 <!--Kit: ArkUI-->
 <!--Subsystem: ArkUI-->
 <!--Owner: @liwenzhen3-->
-<!--Designer: @s10021109-->
+<!--Designer: @zhangboren-->
 <!--Tester: @TerryTsao-->
 <!--Adviser: @zhang_yixin13-->
+<!-- md-trans-meta sourceCommit=3efb4ba336409dd0731ba011e1e227786db57fa2 translatedAt=2026-07-22T02:06:35.594Z pushedAt=2026-07-22T09:54:10.562Z -->
 
 The [addMonitor](../../reference/apis-arkui/js-apis-stateManagement.md#addmonitor20) and [clearMonitor](../../reference/apis-arkui/js-apis-stateManagement.md#clearmonitor20) APIs enable you to dynamically add or remove listeners for state variables in state management V2.
 
@@ -14,8 +16,8 @@ Before using these APIs, it is recommended that you familiarize yourself with th
 >
 >The **addMonitor** and **clearMonitor** APIs from **UIUtils** are supported in state management V2 since API version 20.
 
-
 ## **Overview**
+
 If the decorator [\@Monitor](./arkts-new-monitor.md) is declared in [\@ObservedV2](./arkts-new-observedV2-and-trace.md) and [\@ComponentV2](./arkts-create-custom-components.md#componentv2), all \@ObservedV2 and \@ComponentV2 instances will have the same listening callback by default, and the corresponding listening callback cannot be canceled or deleted.
 
 For scenarios requiring dynamic management of listeners, use the [addMonitor](../../reference/apis-arkui/js-apis-stateManagement.md#addmonitor20) and [clearMonitor](../../reference/apis-arkui/js-apis-stateManagement.md#clearmonitor20) APIs to add or remove listeners on individual \@ObservedV2 and \@ComponentV2 instances.
@@ -25,12 +27,15 @@ For scenarios requiring dynamic management of listeners, use the [addMonitor](..
   ```ts
   import { UIUtils } from '@kit.ArkUI';
   ```
+
 - These APIs only support state variables from state management V2.
 
 - The **clearMonitor** API can only remove listeners added dynamically via **addMonitor**; it cannot remove static callbacks defined using the \@Monitor decorator.
 
 ## Use Rules
+
 - The **addMonitor** and **clearMonitor** APIs support batch processing by accepting an array of state variable paths to add or remove listeners for multiple properties simultaneously.
+
 ```ts
 import { UIUtils } from '@kit.ArkUI';
 
@@ -79,7 +84,9 @@ struct Page {
   }
 }
 ```
+
 - A single state variable path can have multiple listeners registered via **addMonitor**. However, attempting to register a listener with the same function name more than once for the same path will result in operation failure and generate an error log.
+
 ```ts
 import { UIUtils } from '@kit.ArkUI';
 
@@ -120,7 +127,7 @@ struct Page {
 
   aboutToAppear(): void {
     // Error: Attempting to register another listener named onChange1 for age
-    // Fails with this log: FIX THIS APPLICATION ERROR: AddMonitor onChange1 failed when adding path age because duplicate key.
+    // Print an error log indicating the addition failure: FIX THIS APPLICATION ERROR: AddMonitor 'onChange1' owned by 'User' path: 'age' - failed when adding duplicate path
     UIUtils.addMonitor(this.user, 'age', this.onChange1);
   }
 
@@ -136,7 +143,9 @@ struct Page {
   }
 }
 ```
+
 - The [isSynchronous](../../reference/apis-arkui/js-apis-stateManagement.md#monitoroptions20) configuration option for a listener is established during its initial registration and becomes immutable thereafter. Any subsequent attempt to modify it for the same listener will fail and produce an error log.
+
 ```ts
 import { UIUtils } from '@kit.ArkUI';
 
@@ -151,7 +160,7 @@ class User {
   }
 
   constructor() {
-    // Correct usage: Register the onChange1 listener with the default synchronization mode configuration.
+    // Correct usage: register the listener function onChange1 for age. When options is not set, the default is an asynchronous listener callback.
     UIUtils.addMonitor(this, 'age', this.onChange1);
     // Error: Attempting to modify the synchronization mode after initial registration
     // Fails with this log: FIX THIS APPLICATION ERROR: addMonitor failed, current function onChange1 has already register as async, cannot change to sync anymore.
@@ -178,10 +187,13 @@ struct Page {
   }
 }
 ```
+
 - The **clearMonitor** API enables removal of listeners for specified paths. You can either remove a specific listener by providing the listener parameter, or remove all listeners for the path by omitting this parameter.
 
-  Note: A warning log is generated if the specified listener is not registered for the given path, or if the path has no registered listeners.
-Once the listener is removed, state changes no longer invoke the corresponding callback.
+  Note that when **clearMonitor** is called, if it is found that the current callback has not been registered on the state variable corresponding to the path, or if the state variable currently has no listener functions, a warning log will be printed to alert you that the deletion has failed.
+
+After a listener function is removed, changes to the state variable will no longer trigger the corresponding listener function.
+
 ```ts
 import { UIUtils } from '@kit.ArkUI';
 
@@ -249,9 +261,11 @@ struct Page {
 ```
 
 ## Constraints
+
 - The **addMonitor** and **clearMonitor** APIs only support adding or removing listeners for instances decorated with \@ComponentV2 or \@ObservedV2 that contain at least one \@Trace decorated variable. Attempting to use these APIs on non-conforming instances will result in a runtime error (error code: 130000).
 
   The following example demonstrates this constraint for **addMonitor**; the same limitation applies to **clearMonitor**.
+
   ```ts
   import { UIUtils } from '@kit.ArkUI';
 
@@ -311,9 +325,11 @@ struct Page {
   let b: B = new B();
   let c: C = new C();
   ```
+
 - The observation path in **addMonitor** and **clearMonitor** must be a string or array. Passing any unsupported type will trigger a runtime error with code 130001.
 
   The following example demonstrates this constraint for **addMonitor**; the same limitation applies to **clearMonitor**.
+
   ```ts
   import { UIUtils } from '@kit.ArkUI';
   
@@ -343,9 +359,11 @@ struct Page {
   
   let a: A = new A();
   ```
+
 - The callback function in **addMonitor** is mandatory and must be a named function (not anonymous) and of method type. Passing an unsupported type will trigger a runtime error with code 130002.
 
   For **clearMonitor**, the callback function is optional. When provided, it must be a named function (not anonymous) and of function type.
+
   ```ts
   import { UIUtils } from '@kit.ArkUI';
   
@@ -388,36 +406,45 @@ struct Page {
   UIUtils.clearMonitor(a, 'a', a.onChange1);
   // Correct usage: Remove all listeners for a.
   UIUtils.clearMonitor(a, 'a');
-  // Correct usage: equivalent to omitting the listener parameter, removing all listeners for b.
+  // Correct usage. Equivalent to passing no parameters, which removes all listener functions of a.
   UIUtils.clearMonitor(a, 'a', undefined);
   // Error: Anonymous functions are not supported (error code: 130002).
   UIUtils.clearMonitor(a, 'a', (mon: IMonitor) => {});
   ```
 
 ## Rules for Listening for Changes with addMonitor
+
 The rules for listening for changes with **addMonitor** and the [\@Monitor](./arkts-new-monitor.md) decorator are largely consistent. The comparison is shown in the table below.
 
-|  When to Use| addMonitor| @Monitor  |
+|  Scenario | addMonitor| @Monitor  |
 |------|----|------|
 | [Listening for @Trace decorated properties in \@ObservedV2 classes](#listening-for-trace-decorated-properties-in-observedv2-classes-and-state-variables-in-componentv2-components)   | Supported| Supported|
 | [Listening for state variables in \@ComponentV2 components](#listening-for-trace-decorated-properties-in-observedv2-classes-and-state-variables-in-componentv2-components) | Supported| Supported|
-| [Listening for index and length changes of array-type state variables](#listening-for-index-and-length-changes-of-array-type-state-variables) | Supported| Supported|
-| Listening for changes of state variables of the Map, Set, and Date types | Not supported| Not supported|
-| [Listening for paths independently](#listening-for-paths-independently) | Supported| Not supported|
-| [Listening for variable accessibility changes](#listening-for-variable-accessibility-changes) | Supported| Not supported|
-| [Configuring synchronous listeners](#configuring-synchronous-listeners) | Supported| Not supported|
-| [Listening for synchronous state variable changes in constructors](#listening-for-synchronous-state-variable-changes-in-constructors)  | Supported| Not supported|
-| [Dynamically canceling listening of \@ObservedV2/\@ComponentV2 instances](#dynamically-canceling-listening-of-observedv2componentv2-instances)  | Supported| Not supported|
+| [Listening for Index and Length Changes of Array-Type State Variables](#listening-for-index-and-length-changes-of-array-type-state-variables) | Supported| Supported|
+| [Monitoring API Calls on Built-in Type State Variables](#monitoring-api-calls-on-built-in-type-state-variables) | Not supported by default. Supported via configuration options starting from API version 26.0.0 | Not supported by default. Supported via configuration options starting from API version 26.0.0 |
+| [Independent Path Change Monitoring](#listening-for-paths-independently) | Supported | Not supported by default. Supported via configuration options starting from API version 26.0.0 |
+| [Listening for Variable Accessibility Changes](#listening-for-variable-accessibility-changes) | Supported | Not supported by default. Supported via configuration options starting from API version 26.0.0 |
+| [Configuring Synchronous Listeners](#configuring-synchronous-listeners) | Supported| Not supported|
+| [Listening for Synchronous State Variable Changes in Constructors](#listening-for-synchronous-state-variable-changes-in-constructors)  | Supported| Not supported|
+| [Dynamically Canceling Listening of \@ObservedV2/\@ComponentV2 Instances](#dynamically-canceling-listening-of-observedv2componentv2-instances)  | Supported| Not supported|
+| [Using Paths with Wildcards](#using-paths-with-wildcards) | Not supported by default. Supported via configuration options starting from API version 26.0.0 | Not supported by default. Supported via configuration options starting from API version 26.0.0 |
 
 ## When to Use
+
 ### Listening for @Trace Decorated Properties in \@ObservedV2 Classes and State Variables in \@ComponentV2 Components
 
 In the following example:
+
 - An **onChange** listener is added for **age** and **name** in the constructor of **User**.
+
 - In the **aboutToAppear** lifecycle callback of the custom component **Page**, an **onChangeInView** listener is added for **user**.
+
 - Clicking **Text(`User name ${this.user.name}`)** changes the value of **name** and triggers **onChange**.
+
 - Clicking **Text(`User age ${this.user.age}`)** changes the value of **age** and triggers **onChange**.
+
 - Clicking **Text(`reset User`)** reassigns the entire **user** object and triggers **onChangeInView**.
+
 ```ts
 import { UIUtils } from '@kit.ArkUI';
 
@@ -480,6 +507,7 @@ struct Page {
 ### Listening for Index and Length Changes of Array-Type State Variables
 
 The following example shows how to listen for index and length changes of an array.
+
 ```ts
 import { UIUtils } from '@kit.ArkUI';
 
@@ -518,7 +546,7 @@ struct Page {
         this.arr[2] += 'z';
       })
       Text(`push`).fontSize(20).onClick(() => {
-        // Push new item d to the end of the array (index 4, for which no listener is added).
+        // Push a new array item 'd' at the end of the array, with index 3, which is not monitored.
         // The array length changes, and length changes are monitored.
         // onChange output: onChange: View property arr.length change from 3 to 4
         this.arr.push('d');
@@ -542,9 +570,11 @@ struct Page {
 ```
 
 ### Listening for Paths Independently
+
 \@Monitor does not support independent path listening, requiring correct parameters to be passed. [Passing non-state variables may cause unintended side-effect monitoring](./arkts-new-monitor.md#passing-correct-input-parameters-to-monitor).
 
 **addMonitor** implements independent listening for different paths. In this example, clicking **Button('change age&name')** outputs:
+
 ``` ts
 property path:age change from 24 to 25
 ```
@@ -585,7 +615,8 @@ struct Index {
 ```
 
 ### Listening for Variable Accessibility Changes
-[\@Monitor](./arkts-new-monitor.md#variables-cannot-be-observed-during-accessibility-changes) does not record the state of a state variable when it is inaccessible, so it cannot listen for accessibility changes.
+
+[\@Monitor does not record the state of a state variable when it is inaccessible](./arkts-new-monitor.md#variables-cannot-be-observed-during-accessibility-changes), so it cannot listen for accessibility changes.
 
 **addMonitor** records inaccessible states, enabling listening for accessibility changes. Example:
 
@@ -634,12 +665,16 @@ struct Page {
   }
 }
 ```
+
 ### Configuring Synchronous Listeners
+
 Unlike \@Monitor, which only supports asynchronous listening, **addMonitor** can be configured with synchronous listeners. In the following example, clicking **Text(`User age ${this.user.age}`)** increments the value of **age** twice, triggering the **onChange** listener twice:
+
 ``` ts
 onChange: User property user.age change from 10 to 11
 onChange: User property user.age change from 11 to 12
 ```
+
 ```ts
 import { UIUtils } from '@kit.ArkUI';
 
@@ -660,6 +695,7 @@ struct Page {
   }
 
   aboutToAppear(): void {
+    // addMonitor supports configuration as a synchronous listener function.
     UIUtils.addMonitor(this, 'user.age', this.onChange, { isSynchronous: true })
   }
 
@@ -673,7 +709,9 @@ struct Page {
   }
 }
 ```
+
 With \@Monitor, only one callback is triggered:
+
 ``` ts
 onChange: User property user.age change from 10 to 12
 ```
@@ -689,6 +727,7 @@ class User {
 struct Page {
   @Local user: User = new User();
 
+  // @Monitor supports only asynchronous listening.
   @Monitor('user.age')
   onChange(mon: IMonitor) {
     mon.dirty.forEach((path: string) => {
@@ -708,11 +747,15 @@ struct Page {
 ```
 
 ### Listening for Synchronous State Variable Changes in Constructors
+
 Unlike [\@Monitor, which constructs asynchronously](./arkts-new-monitor.md#effective-and-expiration-time-of-variable-listening-by-the-monitor-in-the-class), **addMonitor** operates synchronously. The listener **this.onMessageChange** is added to **message** immediately after **UIUtils.addMonitor(this, 'message', this.onMessageChange);** execution. In the following example:
+
 - Page initialization constructs an **Info** instance, triggering **onMessageChange**.
+
 - Clicking **Button('change message')** also triggers **onMessageChange**.
 
 The output logs are as follows:
+
 ``` ts
 message change from not initialized to initialized
 message change from initialized to Index aboutToAppear
@@ -727,6 +770,7 @@ class Info {
   @Trace message: string = 'not initialized';
 
   constructor() {
+    // addMonitor can monitor changes to message in the constructor.
     UIUtils.addMonitor(this, 'message', this.onMessageChange);
     this.message = 'initialized';
   }
@@ -830,6 +874,475 @@ struct Child {
   build() {
     Column() {
       Text(`${this.count}`).fontSize(20)
+    }
+  }
+}
+```
+
+### Using Paths with Wildcards
+
+Starting from API version 26.0.0, **MonitorOptions** introduces the `enableWildcard` configuration option (default value: **false**). When explicitly set to **true**, **addMonitor** supports the use of wildcard paths. If `enableWildcard` is not set to **true** but a wildcard path is used, the path is considered invalid and the **addMonitor** call does not take effect.
+
+`enableWildcard` takes effect when a listener is created for the function for the first time and cannot be changed thereafter. The check on the `enableWildcard` value occurs when a wildcard is detected in the path. When a listener is created for the first time with `enableWildcard` set to **true**, subsequent paths that do not contain wildcards will not trigger a check on the `enableWildcard` value. Therefore, even if `enableWildcard` is passed as **false** at that point, the **false** value is ignored and the listener is still added. When a listener is created for the first time with `enableWildcard` set to **false**, any subsequent path containing a wildcard is considered invalid regardless of whether `enableWildcard` is passed as **true**, and the **addMonitor** call does not take effect.
+
+The correct way to use wildcards is as follows:
+
+```ts
+UIUtils.addMonitor(this, 'obj.*', this.onChange, { enableWildcard: true });
+```
+
+The following usage retains the original behavior and does not take effect:
+
+```ts
+// enableWildcard is not configured to true, and the path is invalid.
+UIUtils.addMonitor(this, 'obj.*', this.onChange);
+```
+
+For the rules on using wildcard paths, refer to the description of [listening for paths with wildcards](arkts-new-monitor.md#listening-for-paths-with-wildcards) in the @Monitor documentation.
+
+The following is an example of using **addMonitor** with wildcards to observe object property changes.
+
+```ts
+import { hilog } from '@kit.PerformanceAnalysisKit';
+import { UIUtils } from '@kit.ArkUI';
+@ObservedV2
+class ClassA {
+  @Trace propA: number = 8;
+  @Trace propB: number = 99;
+
+  constructor(a: number, b: number) {
+    this.propA = a;
+    this.propB = b;
+  }
+}
+
+@Entry
+@ComponentV2
+struct MonitorWildcardObject {
+  @Local cls: ClassA = new ClassA(100, 100);
+
+  onClsChanged(m: IMonitor) {
+    hilog.info(0xFF00, 'testTag', '%{public}s', `onClsChanged, dirty: ${m.dirty.toString()}`);
+  }
+
+  aboutToAppear(): void {
+    UIUtils.addMonitor(this, 'cls.*', this.onClsChanged, { enableWildcard: true });
+  }
+
+  build() {
+    Column() {
+      Button(`Change propA: ${this.cls.propA}`)
+        .onClick(() => {
+          this.cls.propA += 1; // Triggers onClsChanged.
+        })
+      Button(`Change propB: ${this.cls.propB}`)
+        .onClick(() => {
+          this.cls.propB += 1; // Triggers onClsChanged.
+        })
+      Button('Assign new object')
+        .onClick(() => {
+          this.cls = new ClassA(-200, -200); // Triggers onClsChanged.
+        })
+      Button('clearMonitor')
+        .onClick(() => {
+          UIUtils.clearMonitor(this, 'cls.*'); // Cancel monitoring.
+        })
+    }
+  }
+}
+```
+
+### Monitoring API Calls on Built-in Type State Variables
+
+Starting from API version 26.0.0, you can monitor API calls on Array, Map, Set, and Date type state variables by configuring wildcards.
+
+**Using Wildcards to Monitor Array Object Changes**
+
+addMonitor with wildcards enabled can monitor Array API calls. When any Array method is called, the callback registered by addMonitor is executed, even if the array is empty or the method does not actually modify the array content. The APIs include `push`, `pop`, `shift`, `splice`, `unshift`, `copyWithin`, `fill`, `reverse`, and `sort`.
+
+```ts
+import { UIUtils } from '@kit.ArkUI';
+import { hilog } from '@kit.PerformanceAnalysisKit';
+
+@ObservedV2
+class Person {
+  @Trace firstName: string = 'first';
+  @Trace lastName: string = 'last';
+  constructor(first: string = 'no first', last: string = 'no last') {
+    this.firstName = first;
+    this.lastName = last;
+  }
+}
+
+@ObservedV2
+class ArrayOfPerson extends Array<Person> {}
+
+@ObservedV2
+class TopArray extends Array<ArrayOfPerson> {}
+
+@Entry
+@ComponentV2
+struct DocAddMonitorAPIArrayOfArrays {
+  @Local topArray: TopArray = this.makeNewTopArray();
+
+  topArrayMonitor1Star(monitor: IMonitor) {
+    hilog.info(0xFF00, 'testTag', '%{public}s', `TopArray[1]: ${monitor.dirty.toString()}`);
+  }
+
+  topArrayMonitorStar(monitor: IMonitor) {
+    hilog.info(0xFF00, 'testTag', '%{public}s', `TopArray: ${monitor.dirty.toString()}`);
+  }
+
+  makeNewTopArray(): TopArray {
+    return new TopArray(
+      new ArrayOfPerson(new Person('Adrian'), new Person('Andrew'), new Person('Aaliyah'), new Person('Amir'), new Person('Angel')),
+      new ArrayOfPerson(new Person('Carter'), new Person('Charlie'), new Person('Cooper'), new Person('Cole'), new Person('Callie')),
+      new ArrayOfPerson(new Person('Daniel'), new Person('Daisy'), new Person('Dawson'), new Person('Dana'), new Person('Dalton'))
+    );
+  }
+
+  aboutToAppear(): void {
+    // Enable wildcard.
+    UIUtils.addMonitor(this, 'topArray.1.*', this.topArrayMonitor1Star, { enableWildcard: true });
+    UIUtils.addMonitor(this, 'topArray.*', this.topArrayMonitorStar, { enableWildcard: true });
+  }
+
+  build() {
+    Column() {
+      // Both topArrayMonitor1Star and topArrayMonitorStar callbacks are triggered.
+      Button('topArray = new TopArray')
+        .onClick(() => {
+          this.topArray = this.makeNewTopArray();
+        })
+
+      // When topArray[1][0] exists, the topArrayMonitor1Star callback is triggered, and the topArrayMonitorStar callback is not triggered.
+      Button('topArray[1][0] = new Person')
+        .onClick(() => {
+          if (this.topArray.length > 1 && this.topArray[1].length > 0) {
+            this.topArray[1][0] = new Person();
+          }
+        })
+
+      // When topArray[0][1] exists, neither the topArrayMonitor1Star nor the topArrayMonitorStar callback is triggered.
+      Button('topArray[0][1] = new Person')
+        .onClick(() => {
+          if (this.topArray.length > 0 && this.topArray[0].length > 1) {
+            this.topArray[0][1] = new Person();
+          }
+        })
+
+      // When topArray[1] exists, the topArrayMonitor1Star callback is triggered, and the topArrayMonitorStar callback is not triggered.
+      Button('topArray[1].push')
+        .onClick(() => {
+          if (this.topArray.length > 1 && this.topArray[1] instanceof ArrayOfPerson) {
+            this.topArray[1].push(new Person());
+          }
+        })
+
+      // When the length of topArray is greater than 2, both topArrayMonitor1Star and topArrayMonitorStar callbacks are triggered.
+      Button('topArray.shift (length>2)')
+        .onClick(() => {
+          if (this.topArray.length > 2) {
+            this.topArray.shift();
+          }
+        })
+
+      // When topArray[0] exists, the topArrayMonitor1Star callback is not triggered, and the topArrayMonitorStar callback is triggered.
+      Button('topArray[0] = new ArrayOfPerson')
+        .onClick(() => {
+          if (this.topArray.length > 0) {
+            this.topArray[0] = new ArrayOfPerson(new Person(), new Person());
+          }
+        })
+
+      // When topArray[1][0] exists, neither the topArrayMonitor1Star nor the topArrayMonitorStar callback is triggered.
+      Button('topArray[1][0].last update')
+        .onClick(() => {
+          if (this.topArray.length > 1 && this.topArray[1].length > 0 && this.topArray[1][0] instanceof Person) {
+            this.topArray[1][0].lastName += '~';
+          }
+        })
+
+      // The topArrayMonitor1Star callback is not triggered, and the topArrayMonitorStar callback is triggered.
+      Button('topArray = new TopArray, keep [1]')
+        .onClick(() => {
+          let newTop = this.makeNewTopArray();
+          newTop[1] = this.topArray[1]; // topArray.1 is unchanged, and the last determined value before the wildcard in the path 'topArray.1.*' is unchanged.
+          this.topArray = newTop;
+        })
+
+      // The topArrayMonitor1Star callback is not triggered, and the topArrayMonitorStar callback is triggered.
+      Button('topArray.push')
+        .onClick(() => {
+          this.topArray.push(new ArrayOfPerson(new Person(), new Person()));
+        })
+
+      // Cancel monitoring.
+      Button('clearMonitor')
+        .onClick(() => {
+          UIUtils.clearMonitor(this, 'topArray.1.*');
+          UIUtils.clearMonitor(this, 'topArray.*');
+        })
+    }
+  }
+}
+```
+
+**Using Wildcards to Monitor Date Object Changes**
+
+Wildcards can be used to monitor API calls on Date objects.
+
+```ts
+UIUtils.addMonitor(target, 'dateInstance.*', callback, { enableWildcard: true });
+```
+
+The listener registered by addMonitor is invoked in the following cases:
+
+- `dateInstance` is assigned a new value.
+
+- Any Date API is called, including `setFullYear`, `setMonth`, `setDate`, `setHours`, `setMinutes`, `setSeconds`, `setMilliseconds`, `setTime`, `setUTCFullYear`, `setUTCMonth`, `setUTCDate`, `setUTCHours`, `setUTCMinutes`, `setUTCSeconds`, and `setUTCMilliseconds`. The listener callback registered by addMonitor is triggered even if these APIs do not actually change the Date value.
+
+The following is an example of using wildcards to monitor a Date object.
+
+```ts
+import { UIUtils } from '@kit.ArkUI';
+import { hilog } from '@kit.PerformanceAnalysisKit';
+
+@Entry
+@ComponentV2 struct DocAddMonitorAPIDate {
+  @Local date: Date = new Date();
+
+  onDateChanged(m: IMonitor) {
+    hilog.info(0xFF00, 'testTag', '%{public}s', `onDateChanged, dirty: ${m.dirty.toString()}`);
+  }
+
+  aboutToAppear(): void {
+    // Enable wildcard.
+    UIUtils.addMonitor(this, 'date.*', this.onDateChanged, { enableWildcard: true });
+  }
+
+  build() {
+    Column({ space: 5 }) {
+      // The API call triggers onDateChanged.
+      Button(`date.setMilliseconds(1000)`)
+        .onClick(() => {
+          this.date.setMilliseconds(1000);
+        })
+      // The API call triggers onDateChanged.
+      Button(`date.setTime(1000000)`)
+        .onClick(() => {
+          this.date.setTime(1000000);
+        })
+      // The API call triggers onDateChanged.
+      Button(`Assign new Date`)
+        .onClick(() => {
+          this.date = new Date();
+        })
+      // Assigning the same value as a whole does not trigger onDateChanged.
+      Button(`Re-assign the same Date`)
+        .onClick(() => {
+          let sameDate = this.date;
+          this.date = sameDate;
+        })
+      // Cancel monitoring.
+      Button('clearMonitor')
+        .onClick(() => {
+          UIUtils.clearMonitor(this, 'date.*');
+        })
+    }
+  }
+}
+```
+
+**Using Wildcards to Listening for Map Object Changes**
+
+Wildcards can be used to listen for API calls on **Map** objects.
+
+```ts
+UIUtils.addMonitor(target, 'mapInstance.*', callback, { enableWildcard: true });
+```
+
+The listener registered by **addMonitor** is invoked in the following cases:
+
+- `mapInstance` is assigned a new value.
+
+- **Map** APIs such as `set`, `delete`, and `clear` are called. Unlike **Array** and **Date**, the callback is triggered only when a change actually occurs. This means that calling `clear` on an empty **Map**, calling `delete` on a non-existent **Map** key, and calling `set` without actually changing the value do not trigger the listener callback registered by **addMonitor**.
+
+Unlike **Array**, **addMonitor** cannot monitor a specific key of a **Map**.
+
+The following is an example of using wildcards to monitor a Map object.
+
+```ts
+import { UIUtils } from '@kit.ArkUI';
+import { hilog } from '@kit.PerformanceAnalysisKit';
+
+@Entry
+@ComponentV2
+struct DocAddMonitorAPIMap {
+  @Local map: Map<string, string> = new Map<string, string>();
+  cnt: number = 0;
+
+  onMapSizeChanged(m: IMonitor) {
+    hilog.info(0xFF00, 'testTag', '%{public}s', `onMapSizeChanged, size dirty: ${m.dirty.toString()}`);
+  }
+
+  onMapChanged(m: IMonitor) {
+    hilog.info(0xFF00, 'testTag', '%{public}s', `onMapChanged, dirty: ${m.dirty.toString()}`);
+  }
+
+  aboutToAppear(): void {
+    UIUtils.addMonitor(this, 'map.size', this.onMapSizeChanged);
+    // Enable wildcard.
+    UIUtils.addMonitor(this, 'map.*', this.onMapChanged, { enableWildcard: true });
+  }
+
+  build() {
+    Column({ space: 5 }) {
+      Text(`map.size: ${this.map.size}`)
+      Text(`map.get('one'): ${this.map.get('one')}`)
+      // On the first tap, both onMapSizeChanged and onMapChanged callbacks are triggered.
+      Button(`Init, map.set('one', 'A'), map.set('two', 'B')`)
+        .onClick(() => {
+          this.map.set('one', 'A');
+          this.map.set('two', 'B');
+        })
+      // Both onMapSizeChanged and onMapChanged callbacks are triggered.
+      Button(`Add new, map.set('three' + this.cnt, 'C')`)
+        .onClick(() => {
+          this.cnt++;
+          this.map.set('three' + this.cnt, 'C')
+        })
+      // When 'one' does not exist, neither the onMapSizeChanged nor the onMapChanged callback is triggered.
+      // When 'one' exists, both onMapSizeChanged and onMapChanged callbacks are triggered.
+      Button(`Delete from map: map.delete('one')`)
+        .onClick(() => {
+          this.map.delete('one')
+        })
+      // When the map is not empty, both onMapSizeChanged and onMapChanged callbacks are triggered.
+      // When the map is empty, neither the onMapSizeChanged nor the onMapChanged callback is triggered.
+      Button(`Clear map`)
+        .onClick(() => {
+          this.map.clear();
+        })
+      // On the first tap and assuming ('one' -> 'A') exists, only the onMapChanged callback is triggered.
+      // If ('one' -> 'TWO') has already been set, neither the onMapSizeChanged nor the onMapChanged callback is triggered.
+      Button(`Update one to 'TWO' - map.set('one', 'TWO')`)
+        .onClick(() => {
+          this.map.set('one', 'TWO');
+        })
+      // When 'one' does not exist in the Map, both onMapSizeChanged and onMapChanged callbacks are triggered.
+      // When 'one' exists in the Map, neither the onMapSizeChanged nor the onMapChanged callback is triggered.
+      Button(`Update one to the same - map.set('one', sameval)`)
+        .onClick(() => {
+          const sameval = this.map.get('one') ?? 'one' ;
+          this.map.set('one', sameval);
+        })
+      // When 'one' does not exist in the Map, both onMapSizeChanged and onMapChanged callbacks are triggered.
+      // When 'one' exists in the Map, only the onMapChanged callback is triggered.
+      Button(`Update one to new value - map.set('one', newval)`)
+        .onClick(() => {
+          let newval = 'x' + (++this.cnt);
+          this.map.set('one', newval);
+        })
+      // When the map is empty, only the onMapChanged callback is triggered.
+      // When the map is not empty, both onMapChanged and onMapSizeChanged callbacks are triggered.
+      Button(`new map`)
+        .onClick(() => {
+          this.map = new Map();
+        })
+      // Cancel monitoring.
+      Button('clearMonitor')
+        .onClick(() => {
+          UIUtils.clearMonitor(this, 'map.size');
+          UIUtils.clearMonitor(this, 'map.*');
+        })
+    }
+    .border({ style: BorderStyle.Solid, width: 2, color: Color.Green })
+  }
+}
+```
+
+**Using Wildcards to Listening for Set Object Changes**
+
+Wildcards can be used to listen for API calls on **Set** objects.
+
+```ts
+UIUtils.addMonitor(target, 'setInstance.*', callback, { enableWildcard: true });
+```
+
+The listener registered by **addMonitor** is invoked in the following cases:
+
+- `setInstance` is assigned a new value.
+
+- **Set** APIs such as `add`, `delete`, and `clear` are called. Unlike **Array** and **Date**, the callback is triggered only when a change actually occurs. This means that calling `clear` on an empty **Set**, calling `delete` on a non-existent **Set** element, and calling `add` without actually adding a new element do not trigger the listener callback registered by **addMonitor**.
+
+Unlike **Array**, **addMonitor** cannot monitor a specific element of a Set.
+
+The following is an example of using wildcards to monitor a **Set** object.
+
+```ts
+import { UIUtils } from '@kit.ArkUI';
+import { hilog } from '@kit.PerformanceAnalysisKit';
+
+@Entry
+@ComponentV2 struct DocAddMonitorAPISet {
+  @Local set: Set<string> = new Set<string>();
+  cnt: number = 0;
+
+  onSetChanged(m: IMonitor) {
+    hilog.info(0xFF00, 'testTag', '%{public}s', `onSetChanged, dirty: ${m.dirty.toString()}`);
+  }
+
+  onSetSizeChanged(m: IMonitor) {
+    hilog.info(0xFF00, 'testTag', '%{public}s', `onSetSizeChanged, size dirty: ${m.dirty.toString()}`);
+  }
+
+  aboutToAppear(): void {
+    // Enable wildcard.
+    UIUtils.addMonitor(this, 'set.*', this.onSetChanged, { enableWildcard: true });
+    UIUtils.addMonitor(this, 'set.size', this.onSetSizeChanged);
+    this.set.add('one');
+    this.set.add('two');
+  }
+
+  build() {
+    Column({ space: 5 }) {
+      // Both onSetChanged and onSetSizeChanged callbacks are triggered.
+      Button(`Add three<Num> to the set`)
+        .onClick(() => {
+          this.cnt++;
+          this.set.add('three' + this.cnt);
+        })
+      // When the element does not exist, neither the onSetChanged nor the onSetSizeChanged callback is triggered.
+      // When the element exists, both onSetChanged and onSetSizeChanged callbacks are triggered.
+      Button(`Delete 'three<Num>' from the set - set.delete(...)`)
+        .onClick(() => {
+          this.set.delete('three' + this.cnt);
+        })
+      // When the set is not empty, both onSetChanged and onSetSizeChanged callbacks are triggered.
+      // When the set is empty, neither the onSetChanged nor the onSetSizeChanged callback is triggered.
+      Button(`Clear the set - set.clear()`)
+        .onClick(() => {
+          this.set.clear();
+        })
+      // When the set is not empty, both onSetChanged and onSetSizeChanged callbacks are triggered.
+      // When the set is empty, only the onSetChanged callback is triggered.
+      Button(`Assign new set`)
+        .onClick(() => {
+          this.set = new Set();
+        })
+      // When the set does not contain 'one', both onSetChanged and onSetSizeChanged callbacks are triggered.
+      // When the set contains 'one', neither the onSetChanged nor the onSetSizeChanged callback is triggered.
+      Button(`Add 'one' to the set`)
+        .onClick(() => {
+          this.set.add('one');
+        })
+      // Cancel monitoring.
+      Button('clearMonitor')
+        .onClick(() => {
+          UIUtils.clearMonitor(this, 'set.*');
+          UIUtils.clearMonitor(this, 'set.size');
+        })
     }
   }
 }
