@@ -6,11 +6,71 @@
 <!--Tester: @murphy84-->
 <!--Adviser: @zhang_yixin13-->
 
-本模块面向输入法应用（包括系统输入法应用、三方输入法应用），为输入法应用提供能力，包括：创建软键盘窗口、插入/删除字符、选中文本、监听物理键盘按键事件等。
+@ohos.inputMethodEngine模块是面向输入法应用（包括系统输入法和第三方输入法）的服务端API模块，提供了输入法应用与系统输入法框架之间的交互能力。
+
+本模块是输入法应用的服务端接口，定义了输入法应用在运行期间所需的全部开放能力，包括输入法生命周期管理、软键盘面板的创建与控制、文本编辑操作（插入、删除、选中文本）、光标控制、物理键盘事件监听、安全模式管理、私有数据通信等。
+
+输入法应用通过本模块可以：1）订阅输入法绑定/解绑事件，感知编辑框的连接与断开；2）创建和管理软键盘面板（固定态、悬浮态、候选态）及状态栏面板，控制面板的显示、隐藏、大小调整、位置移动、沉浸模式等；3）通过InputClient对编辑框进行文本插入、删除、选中文本、移动光标、发送功能键和扩展编辑动作等操作；4）通过KeyboardDelegate监听物理键盘按键事件、光标位置变化、文本选择变化、文本内容变化、编辑框属性变化等；5）管理安全模式（基础模式/完全访问模式），支持隐私面板设置；6）与编辑框应用进行私有数据通信和自定义消息通信。
+
+当开发输入法应用时使用本模块。本模块需在InputMethodExtensionAbility中使用，适用于系统输入法开发、第三方输入法开发、自定义键盘布局等场景。
 
 > **说明：**
 >
 >本模块首批接口从API version 8开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
+
+本模块的核心开放能力由以下关键Interface承载：
+
+| Interface/Class | 说明 |
+|---|---|
+| InputMethodAbility | 输入法能力对象，是输入法应用的核心入口。提供输入法生命周期事件订阅（绑定/解绑/键盘显示隐藏/子类型切换/安全模式变化等）、面板创建与销毁、安全模式获取等能力。通过`getInputMethodAbility()`获取实例。 |
+| KeyboardDelegate | 键盘代理对象，提供物理键盘按键事件监听、光标位置变化监听、文本选择变化监听、文本内容变化监听、编辑框属性变化监听等能力。通过`getKeyboardDelegate()`获取实例。 |
+| InputClient | 输入客户端对象，提供对编辑框的文本操作能力，包括插入文本、删除文本（前删/后删）、获取光标前后文本、移动光标、选中文本、发送功能键和扩展编辑动作、设置预览文本、发送私有数据、自定义消息通信等。通过订阅`inputStart`事件在回调中获取实例。 |
+| KeyboardController | 键盘控制器对象，提供隐藏键盘、退出当前输入类型等能力。通过订阅`inputStart`事件在回调中获取实例。 |
+| Panel | 输入法面板对象，提供面板页面内容加载、大小调整、位置移动、显示/隐[destroyPanel]藏、面板状态切换、隐私模式设置、沉浸模式与效果设置、面板矩形区域预设置、热区更新等能力。通过`createPanel()`获取实例。 |
+| MessageHandler | 自定义通信对象，用于接收编辑框应用发送的自定义通信数据，并提供终止通知回调。通过`InputClient.recvMessage()`注册。 |
+
+输入法应用的典型使用流程涉及多个API的组合调用，核心流程为：获取InputMethodAbility实例 -> 订阅inputStart事件 -> 在回调中获取KeyboardController和InputClient -> 创建Panel -> 加载面板页面内容 -> 通过InputClient操作编辑框文本 -> 通过KeyboardController控制键盘显隐。
+
+```javascript
+// 以下为阐述调用逻辑的伪代码
+
+// 1. 获取输入法能力对象
+let inputMethodAbility = inputMethodEngine.getInputMethodAbility();
+
+// 2. 获取键盘代理对象，监听物理键盘和编辑框变化事件
+let keyboardDelegate = inputMethodEngine.getKeyboardDelegate();
+keyboardDelegate.on('keyDown', (event) => { return true; });
+keyboardDelegate.on('cursorContextChange', (x, y, height) => {});
+keyboardDelegate.on('selectionChange', (oldBegin, oldEnd, newBegin, newEnd) => {});
+
+// 3. 订阅输入法绑定事件，获取KeyboardController和InputClient
+inputMethodAbility.on('inputStart', (kbController, inputClient) => {
+
+  // 4. 创建输入法面板
+  let panelInfo = { type: inputMethodEngine.PanelType.SOFT_KEYBOARD, flag: inputMethodEngine.PanelFlag.FLG_FIXED };
+  let panel = inputMethodAbility.createPanel(context, panelInfo);
+
+  // 5. 加载面板页面内容
+  panel.setUiContent('pages/Index');
+
+  // 6. 显示面板
+  panel.show();
+
+  // 7. 通过InputClient操作编辑框
+  inputClient.insertText('Hello');
+  inputClient.deleteForward(1);
+  inputClient.moveCursor(inputMethodEngine.CURSOR_RIGHT);
+
+  // 8. 通过KeyboardController隐藏键盘
+  kbController.hide();
+});
+
+// 9. 订阅输入法解绑事件
+inputMethodAbility.on('inputStop', () => {
+  // 销毁面板
+  inputMethodAbility.destroyPanel(panel);
+});
+```
 
 ## 导入模块
 
@@ -20,7 +80,13 @@ import { inputMethodEngine } from '@kit.IMEKit';
 
 ## 常量
 
-功能键常量值、编辑框常量值及光标常量值。
+功能键常量值、编辑框常量值及光标常量值，用于输入法应用识别编辑框类型、回车键功能、光标移动方向等属性。输入法应用可根据这些常量值调整键盘布局和输入行为，例如：根据编辑框类型（PATTERN_TEXT/PATTERN_NUMBER等）切换不同的键盘布局，根据回车键功能（ENTER_KEY_TYPE_SEARCH/ENTER_KEY_TYPE_SEND等）调整回车键的显示文本和图标。
+
+以下常量按功能分为三类：
+
+- 功能键常量（ENTER_KEY_TYPE系列）：定义编辑框回车键的功能类型，输入法应用可根据功能键类型在软键盘上显示对应的按键标签（如"搜索""发送"等）。
+- 编辑框常量（PATTERN/OPTION/FLAG/DISPLAY_MODE系列）：定义编辑框的输入类型、输入属性、状态标识和显示模式，输入法应用据此调整键盘布局和输入策略。
+- 光标常量（CURSOR系列）：定义光标移动方向，用于[moveCursor](#movecursor9)和[moveCursorSync](#movecursorsync10)接口指定光标移动方向。
 
 **系统能力：** SystemCapability.MiscServices.InputMethodFramework
 
@@ -28,10 +94,10 @@ import { inputMethodEngine } from '@kit.IMEKit';
 | -------- | -------- | -------- | -------- |
 | ENTER_KEY_TYPE_UNSPECIFIED | number | 0 | 无功能键。 |
 | ENTER_KEY_TYPE_GO | number | 2 | “前往”功能键。 |
-| ENTER_KEY_TYPE_SEARCH | number | 3 | “搜索”功能键。 |
+| ENTER_KEY_TYPE_SEARCH| number | 3 | “搜索”功能键。 |
 | ENTER_KEY_TYPE_SEND | number | 4 | “发送”功能键。 |
 | ENTER_KEY_TYPE_NEXT | number | 5 | “下一个”功能键。 |
-| ENTER_KEY_TYPE_DONE | number | 6 | “回车”功能键。 |
+| ENTER_KEY_TYPE_DONE| number | 6 | “回车”功能键。 |
 | ENTER_KEY_TYPE_PREVIOUS | number | 7 | “前一个”功能键。 |
 | ENTER_KEY_TYPE_NEWLINE<sup>12+</sup> | number | 8 | “换行”功能键。 |
 | PATTERN_NULL | number | -1 | 无特殊性编辑框。 |
@@ -69,7 +135,7 @@ import { inputMethodEngine } from '@kit.IMEKit';
 
 getInputMethodAbility(): InputMethodAbility
 
-获取输入法应用客户端实例[InputMethodAbility](#inputmethodability)，仅支持输入法应用调用。<br/>输入法应用获取该实例后，可订阅软键盘显示/隐藏请求事件、创建/销毁输入法面板等。
+获取输入法应用客户端实例[InputMethodAbility](#inputmethodability)（输入法能力对象），仅支持输入法应用调用。<br/>输入法应用获取该实例后，可订阅软键盘显示/隐藏请求事件、创建/销毁输入法面板等。
 
 **系统能力：** SystemCapability.MiscServices.InputMethodFramework
 
@@ -82,6 +148,7 @@ getInputMethodAbility(): InputMethodAbility
 **示例：**
 
 ```ts
+// 获取输入法应用客户端实例
 let InputMethodAbility: inputMethodEngine.InputMethodAbility = inputMethodEngine.getInputMethodAbility();
 ```
 
@@ -89,7 +156,7 @@ let InputMethodAbility: inputMethodEngine.InputMethodAbility = inputMethodEngine
 
 getKeyboardDelegate(): KeyboardDelegate
 
-获取客户端编辑事件监听代理实例[KeyboardDelegate](#keyboarddelegate)。<br/>输入法应用获取该实例后，可订阅物理键盘按键事件、选中文本变化事件等。
+获取客户端编辑事件监听代理实例[KeyboardDelegate](#keyboarddelegate)（键盘代理对象）。<br/>输入法应用获取该实例后，可订阅物理键盘按键事件、选中文本变化事件等。
 
 **系统能力：** SystemCapability.MiscServices.InputMethodFramework
 
@@ -102,6 +169,7 @@ getKeyboardDelegate(): KeyboardDelegate
 **示例：**
 
 ```ts
+// 获取客户端编辑事件监听代理实例
 let KeyboardDelegate: inputMethodEngine.KeyboardDelegate = inputMethodEngine.getKeyboardDelegate();
 ```
 
@@ -109,11 +177,11 @@ let KeyboardDelegate: inputMethodEngine.KeyboardDelegate = inputMethodEngine.get
 
 getInputMethodEngine(): InputMethodEngine
 
-获取输入法应用客户端实例[InputMethodEngine](#inputmethodenginedeprecated)。<br/>输入法应用获取该实例后，可订阅软键盘显示/隐藏请求事件等。
+获取输入法应用客户端实例[InputMethodEngine](#inputmethodenginedeprecated)（输入法引擎）。<br/>输入法应用获取该实例后，可订阅软键盘显示/隐藏请求事件等。
 
 > **说明：**
 >
-> 从API version 8开始支持，API version 9开始废弃，建议使用[inputMethodEngine.getInputMethodAbility()](#inputmethodenginegetinputmethodability9)替代。
+> 从 API version 8开始支持，从API version 9开始废弃。建议使用[inputMethodEngine.getInputMethodAbility()](#inputmethodenginegetinputmethodability9)替代。
 
 **系统能力：** SystemCapability.MiscServices.InputMethodFramework
 
@@ -126,6 +194,7 @@ getInputMethodEngine(): InputMethodEngine
 **示例：**
 
 ```ts
+// 获取输入法应用客户端实例（已废弃）
 let InputMethodEngine: inputMethodEngine.InputMethodEngine = inputMethodEngine.getInputMethodEngine();
 ```
 
@@ -137,7 +206,7 @@ createKeyboardDelegate(): KeyboardDelegate
 
 > **说明：**
 >
->从API version 8开始支持，API version 9开始废弃，建议使用[inputMethodEngine.getKeyboardDelegate()](#inputmethodenginegetkeyboarddelegate9)替代。
+> 从 API version 8开始支持，从API version 9开始废弃。建议使用[inputMethodEngine.getKeyboardDelegate()](#inputmethodenginegetkeyboarddelegate9)替代。
 
 **系统能力：** SystemCapability.MiscServices.InputMethodFramework
 
@@ -180,15 +249,15 @@ type SizeChangeCallback = (size: window.Size, keyboardArea?: KeyboardArea) => vo
 | 参数名       | 类型                                                 | 必填 | 说明                             |
 | ------------ | ---------------------------------------------------- | ---- | -------------------------------- |
 | size         | [window.Size](../apis-arkui/arkts-apis-window-i.md#size7) | 是   | 当前面板大小。                   |
-| keyboardArea | [KeyboardArea](#keyboardarea15)                      | 否   | 当前面板中可作为键盘区域的大小。 |
+| keyboardArea | [KeyboardArea](#keyboardarea15)                      | 否   | 当前面板中可作为键盘区域的大小。当需要获取或监听键盘区域变化时传入此参数，不传入时默认为undefined（不返回键盘区域信息）。|
 
 ## InputMethodEngine<sup>(deprecated)</sup>
 
 > **说明：**
 >
-> 从API version 8开始支持，API version 23开始废弃，建议使用[InputMethodAbility](#inputmethodability)替代。
+> 从 API version 8开始支持，从API version 23开始废弃。建议使用[InputMethodAbility](#inputmethodability)替代。
 
-下列API均需使用[getInputMethodEngine](#inputmethodenginegetinputmethodenginedeprecated)获取到InputMethodEngine实例后，通过实例调用。
+下列API均需使用[getInputMethodEngine](js-apis-inputmethodengine.md#inputmethodenginegetinputmethodenginedeprecated)获取到InputMethodEngine实例后，通过实例调用。
 
 ### on('inputStart')<sup>(deprecated)</sup>
 
@@ -214,9 +283,8 @@ on(type: 'inputStart', callback: (kbController: KeyboardController, textInputCli
 ```ts
 inputMethodEngine.getInputMethodEngine()
   .on('inputStart',
-    (kbController: inputMethodEngine.KeyboardController, textClient: inputMethodEngine.TextInputClient) => {
-      let keyboardController: inputMethodEngine.KeyboardController = kbController;
-      let textInputClient: inputMethodEngine.TextInputClient = textClient;
+    (keyboardController: inputMethodEngine.KeyboardController, textInputClient: inputMethodEngine.TextInputClient) => {
+      // 使用kbController和textClient进行相关操作
     });
 ```
 
@@ -307,6 +375,22 @@ inputMethodEngine.getInputMethodEngine().off('keyboardHide');
 
 ## InputMethodAbility
 
+InputMethodAbility是输入法应用的核心能力对象，提供输入法生命周期管理、面板创建与销毁、事件订阅等功能。输入法应用通过[getInputMethodAbility](#inputmethodenginegetinputmethodability9)获取该实例。
+
+核心功能概述：
+- 生命周期事件订阅：通过on('inputStart')订阅输入法绑定事件获取[KeyboardController](#keyboardcontroller)和[InputClient](#inputclient9)实例，通过on('inputStop')订阅输入法解绑事件，通过on('keyboardShow'|'keyboardHide')订阅软键盘显示/隐藏事件。
+- 面板管理：通过[createPanel](#createpanel10)创建输入法面板，通过[destroyPanel](#destroypanel10)销毁面板。createPanel与destroyPanel需配对调用，防止资源泄漏。
+- 子类型与安全模式：通过on('setSubtype')订阅输入法子类型变化事件，通过on('securityModeChange')订阅安全模式变化事件，通过[getSecurityMode](#getsecuritymode11)获取当前安全模式。
+- 私有通信：通过on('privateCommand')订阅应用私有数据事件，用于输入法应用与绑定应用之间的私有数据交互。
+- 屏幕与窗口信息：通过on('setCallingWindow')订阅调用方窗口变化事件，通过on('callingDisplayDidChange')订阅屏幕ID变化事件，通过on('discardTypingText')订阅丢弃文本事件。
+
+典型调用顺序：
+1. 输入法应用在[InputMethodExtensionAbility](js-apis-inputmethod-extension-ability.md)的onCreate生命周期中调用getInputMethodAbility()获取实例。
+2. 订阅on('inputStart')事件，在回调中获取KeyboardController和InputClient实例。
+3. 在on('inputStart')回调中调用createPanel()创建面板，并调用panel.setUiContent()加载键盘页面。
+4. 订阅on('keyboardShow'|'keyboardHide')事件，在回调中调用panel.show()/panel.hide()显示/隐藏面板。
+5. 在InputMethodExtensionAbility的onDestroy生命周期中调用destroyPanel()销毁面板，取消所有事件订阅。
+
 下列API均需使用[getInputMethodAbility](#inputmethodenginegetinputmethodability9)获取到InputMethodAbility实例后，通过实例调用。
 
 ### on('inputStart')<sup>9+</sup>
@@ -315,6 +399,10 @@ on(type: 'inputStart', callback: (kbController: KeyboardController, inputClient:
 
 订阅输入法绑定成功事件。使用callback异步回调。
 
+使用场景：输入法应用需要在编辑框获得焦点并绑定输入法时，获取KeyboardController和InputClient实例以进行后续的键盘操作和文本交互。
+
+使用后效果：当编辑框绑定到输入法应用时，触发回调并返回KeyboardController和InputClient实例。输入法应用可在回调中创建面板、加载键盘页面、订阅KeyboardDelegate事件等。
+
 **系统能力：** SystemCapability.MiscServices.InputMethodFramework
 
 **参数：**
@@ -322,16 +410,15 @@ on(type: 'inputStart', callback: (kbController: KeyboardController, inputClient:
 | 参数名   | 类型                            | 必填 | 说明                                                         |
 | -------- | ------------------------------- | ---- | ------------------------------------------------------------ |
 | type     | string                        | 是   | 设置监听类型，固定取值为'inputStart'。 |
-| callback | (kbController: [KeyboardController](#keyboardcontroller), inputClient: [InputClient](#inputclient9)) => void | 是 | 回调函数，返回输入法操作相关实例。 |
+| callback | (kbController: [KeyboardController](#keyboardcontroller), inputClient: [InputClient](#inputclient9)) => void | 是 | 回调函数，返回输入法操作相关实例。kbController为键盘控制器实例，用于控制键盘显示/隐藏；inputClient为输入客户端实例，用于与编辑框进行文本交互。 |
 
 **示例：**
 
 ```ts
 inputMethodEngine.getInputMethodAbility()
   .on('inputStart',
-    (kbController: inputMethodEngine.KeyboardController, client: inputMethodEngine.InputClient) => {
-      let keyboardController: inputMethodEngine.KeyboardController = kbController;
-      let inputClient: inputMethodEngine.InputClient = client;
+    (keyboardController: inputMethodEngine.KeyboardController, inputClient: inputMethodEngine.InputClient) => {
+      // 使用kbController和client进行相关操作
     });
 ```
 
@@ -362,6 +449,10 @@ on(type: 'inputStop', callback: () => void): void
 
 订阅停止输入法应用事件。使用callback异步回调。
 
+使用场景：输入法应用需要在编辑框失去焦点或用户切换输入法时，执行清理操作（如隐藏面板、释放资源）。
+
+使用后效果：当输入法应用被停止绑定时触发回调。输入法应用应在回调中隐藏面板、取消事件订阅、释放InputClient相关资源。
+
 **系统能力：** SystemCapability.MiscServices.InputMethodFramework
 
 **参数：**
@@ -369,7 +460,7 @@ on(type: 'inputStop', callback: () => void): void
 | 参数名   | 类型   | 必填 | 说明                                                         |
 | -------- | ------ | ---- | ------------------------------------------------------------ |
 | type     | string | 是   | 设置监听类型，固定取值为'inputStop'。 |
-| callback | () => void   | 是   | 回调函数。                        |
+| callback | () => void | 是 | 回调函数，无返回参数。 |
 
 **示例：**
 
@@ -392,7 +483,7 @@ off(type: 'inputStop', callback: () => void): void
 | 参数名   | 类型   | 必填 | 说明                                                         |
 | -------- | ------ | ---- | ------------------------------------------------------------ |
 | type     | string | 是   | 设置监听类型，固定取值为'inputStop'。 |
-| callback | () => void   | 是   | 取消订阅的回调函数。参数不填写时，取消订阅type对应的所有回调事件。        |
+| callback | () => void   | 是   | 取消订阅的回调函数，用于取消特定的键盘显示/隐藏事件订阅。传入callback时取消指定回调的订阅，不传入时取消type对应的所有回调事件。|
 
 **示例：**
 
@@ -404,9 +495,13 @@ inputMethodEngine.getInputMethodAbility().off('inputStop', () => {
 
 ### on('setCallingWindow')<sup>9+</sup>
 
-on(type: 'setCallingWindow', callback: (wid: number) => void): void
+on(type: 'setCallingWindow', callback: (wid: number) => void): void;
 
 订阅设置调用窗口事件。使用callback异步回调。
+
+使用场景：输入法应用需要在绑定应用的窗口发生变化时（如应用切换窗口、多窗口场景），调整面板位置或重新定位。
+
+使用后效果：当调用方窗口发生变化时触发回调，返回新的窗口ID。输入法应用可根据窗口ID调整面板位置。
 
 **系统能力：** SystemCapability.MiscServices.InputMethodFramework
 
@@ -415,12 +510,12 @@ on(type: 'setCallingWindow', callback: (wid: number) => void): void
 | 参数名   | 类型   | 必填 | 说明                                                         |
 | -------- | ------ | ---- | ------------------------------------------------------------ |
 | type     | string | 是   | 设置监听类型，固定取值为'setCallingWindow'。 |
-| callback | (wid: number) => void | 是   | 回调函数，返回调用方窗口的Id。                     |
+| callback | (wid: number) => void | 是   | 回调函数，参数为调用方窗口的Id。                     |
 
 **示例：**
 
 ```ts
-inputMethodEngine.getInputMethodAbility().on('setCallingWindow', (wid: number) => {
+inputMethodEngine.getInputMethodAbility().on('setCallingWindow', (windowId: number) => {
   console.info('inputMethodAbility setCallingWindow');
 });
 ```
@@ -443,7 +538,7 @@ off(type: 'setCallingWindow', callback: (wid:number) => void): void
 **示例：**
 
 ```ts
-inputMethodEngine.getInputMethodAbility().off('setCallingWindow', (wid: number) => {
+inputMethodEngine.getInputMethodAbility().off('setCallingWindow', (windowId: number) => {
   console.info('inputMethodAbility delete setCallingWindow notification.');
 });
 ```
@@ -453,6 +548,10 @@ inputMethodEngine.getInputMethodAbility().off('setCallingWindow', (wid: number) 
 on(type: 'keyboardShow'|'keyboardHide', callback: () => void): void
 
 订阅输入法软键盘显示或隐藏事件。使用callback异步回调。
+
+使用场景：输入法应用需要在软键盘显示/隐藏时，执行相应的界面更新操作（如调整面板布局、更新候选词区域）。
+
+使用后效果：当软键盘显示请求触发时，'keyboardShow'回调被调用，输入法应用应在回调中调用panel.show()显示面板；当软键盘隐藏请求触发时，'keyboardHide'回调被调用，输入法应用应在回调中调用panel.hide()隐藏面板。
 
 **系统能力：** SystemCapability.MiscServices.InputMethodFramework
 
@@ -486,8 +585,8 @@ off(type: 'keyboardShow'|'keyboardHide', callback?: () => void): void
 
 | 参数名   | 类型   | 必填 | 说明                                                         |
 | -------- | ------ | ---- | ------------------------------------------------------------ |
-| type     | string | 是   | 设置监听类型。<br/>- 'keyboardShow'表示显示键盘。<br/>- 'keyboardHide'表示隐藏键盘。 |
-| callback | () => void   | 否   | 回调函数。 |
+| type     | string | 是   | 设置监听类型。<br/>- 'keyboardShow'表示显示输入法软键盘。<br/>- 'keyboardHide'表示隐藏输入法软键盘。 |
+| callback | () => void   | 否   | 取消订阅的回调函数。参数不填写时，取消订阅type对应的所有回调事件。 |
 
 **示例：**
 
@@ -506,6 +605,10 @@ on(type: 'setSubtype', callback: (inputMethodSubtype: InputMethodSubtype) => voi
 
 订阅设置输入法子类型事件。使用callback异步回调。
 
+使用场景：输入法应用需要在子类型（如语言、输入模式）发生变化时，切换到对应的键盘布局或输入逻辑。
+
+使用后效果：当输入法子类型变化时触发回调，返回新的输入法子类型信息。
+
 **系统能力：** SystemCapability.MiscServices.InputMethodFramework
 
 **参数：**
@@ -513,7 +616,7 @@ on(type: 'setSubtype', callback: (inputMethodSubtype: InputMethodSubtype) => voi
 | 参数名    | 类型 | 必填  | 说明 |
 | -------- | --- | ---- | --- |
 | type     | string | 是   | 设置监听类型，固定取值为'setSubtype'。 |
-| callback | (inputMethodSubtype: [InputMethodSubtype](js-apis-inputmethod-subtype.md)) => void | 是   | 回调函数，返回设置的输入法子类型。                         |
+| callback | (inputMethodSubtype: [InputMethodSubtype](js-apis-inputmethod-subtype.md)) => void | 是   | 回调函数，返回设置的输入法子类型（InputMethodSubtype，输入法子类型）。                         |
 
 **示例：**
 
@@ -553,6 +656,10 @@ inputMethodEngine.getInputMethodAbility().off('setSubtype', () => {
 on(type: 'securityModeChange', callback: Callback< SecurityMode>): void
 
 订阅输入法安全模式改变类型事件。使用callback异步回调。
+
+使用场景：输入法应用需要在安全模式发生变化时（如编辑框切换到密码输入模式、隐私模式等），调整键盘行为（如禁止截图、切换到安全键盘布局等）。
+
+使用后效果：当安全模式变化时触发回调，返回当前的安全模式值。
 
 **系统能力：** SystemCapability.MiscServices.InputMethodFramework
 
@@ -605,6 +712,10 @@ on(type: 'privateCommand', callback: Callback<Record<string, CommandDataType>>):
 
 订阅输入法私有数据事件。使用callback异步回调。
 
+使用场景：应用与输入法之间需要传递私有数据（如自定义命令、配置信息等）时使用。仅系统默认输入法应用可订阅此事件。
+
+使用后效果：当绑定应用向输入法发送私有数据时触发回调，返回私有数据记录。
+
 **系统能力：** SystemCapability.MiscServices.InputMethodFramework
 
 **参数：**
@@ -618,7 +729,7 @@ on(type: 'privateCommand', callback: Callback<Record<string, CommandDataType>>):
 
 以下错误码的详细介绍请参见[输入法框架错误码](errorcode-inputmethod-framework.md)。
 
-| 错误码ID | 错误信息                                       |
+| 错误码ID | 错误信息 |
 | -------- | ---------------------------------------------- |
 | 12800010 | not the preconfigured default input method. |
 
@@ -653,7 +764,7 @@ off(type: 'privateCommand', callback?: Callback<Record<string, CommandDataType>>
 
 以下错误码的详细介绍请参见[输入法框架错误码](errorcode-inputmethod-framework.md)。
 
-| 错误码ID | 错误信息                                       |
+| 错误码ID | 错误信息 |
 | -------- | ---------------------------------------------- |
 | 12800010 | not the preconfigured default input method. |
 
@@ -662,8 +773,8 @@ off(type: 'privateCommand', callback?: Callback<Record<string, CommandDataType>>
 ```ts
 let privateCommandCallback: (record: Record<string, inputMethodEngine.CommandDataType>) => void =
   (record: Record<string, inputMethodEngine.CommandDataType>) => {
-    for (let i: number = 0; i < record.length; i++) {
-      console.info(`private command key: ${i}, value: ${record[i]}`);
+    for (const key in record) {
+      console.info(`private command key: ${key}, value: ${record[key]}`);
     }
   }
 
@@ -675,6 +786,10 @@ inputMethodEngine.getInputMethodAbility().off('privateCommand', privateCommandCa
 on(type: 'callingDisplayDidChange', callback: Callback\<number>): void
 
 订阅编辑框对应窗口所在屏幕ID变化事件。使用callback异步回调。
+
+使用场景：多屏幕设备场景下，编辑框在不同屏幕间切换时，输入法应用需根据新的屏幕ID调整面板位置和大小。
+
+使用后效果：当编辑框所在屏幕ID发生变化时触发回调，返回新的屏幕ID。
 
 **系统能力：** SystemCapability.MiscServices.InputMethodFramework
 
@@ -689,16 +804,16 @@ on(type: 'callingDisplayDidChange', callback: Callback\<number>): void
 
 以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)。
 
-| 错误码ID | 错误信息                                       |
+| 错误码ID | 错误信息 |
 | -------- | ---------------------------------------------- |
 | 801 | capability not supported. |
 
 **示例：**
 
 ```ts
-let callingDisplayDidChangeCallback: (num: number) => void = (num: number) => {
-  console.info(`display id: ${num}`);
-}
+inputMethodEngine.getInputMethodAbility().on('callingDisplayDidChange', (displayId: number) => {
+  console.info(`display id: ${displayId}`);
+});
 inputMethodEngine.getInputMethodAbility().on('callingDisplayDidChange', callingDisplayDidChangeCallback);
 ```
 
@@ -720,16 +835,20 @@ off(type: 'callingDisplayDidChange', callback?: Callback\<number>): void
 **示例：**
 
 ```ts
-inputMethodEngine.getInputMethodAbility().off('callingDisplayDidChange', (num: number) => {
-  console.info('InputMethodAbility delete calling display  notification.');
+inputMethodEngine.getInputMethodAbility().off('callingDisplayDidChange', (displayId: number) => {
+  console.info('InputMethodAbility delete calling display notification.');
 });
 ```
 
 ### on('discardTypingText')<sup>20+</sup>
 
-on(type: 'discardTypingText', callback: Callback\<void>): void
+on(type: 'discardTypingText', callback: Callback&lt;void&gt; ): void
 
-订阅编辑框应用发送“清空候选词”事件到输入法。使用callback异步回调。
+订阅编辑框应用发送\u201c清空候选词\u201d事件到输入法。使用callback异步回调。
+
+使用场景：编辑框应用需要通知输入法清空当前候选词列表时使用（如用户切换输入框、提交表单后等场景）。
+
+使用后效果：当编辑框应用发送清空候选词请求时触发回调，输入法应用应在回调中清空候选词列表和预输入文本。
 
 **系统能力：** SystemCapability.MiscServices.InputMethodFramework
 
@@ -738,7 +857,7 @@ on(type: 'discardTypingText', callback: Callback\<void>): void
 | 参数名   | 类型                                          | 必填 | 说明                                       |
 | -------- | --------------------------------------------- | ---- | ------------------------------------------ |
 | type     | string                                        | 是   | 设置监听类型，固定取值为'discardTypingText'。<br/> - 'discardTypingText'：表示订阅编辑框应用发送“清空候选词”事件到输入法。 |
-| callback |  Callback\<void> | 是   | 回调函数。当命令发送成功，err为undefined，否则为错误对象。 |
+| callback |  Callback&lt;void&gt;  | 是   | 回调函数。 |
 
 **示例：**
 
@@ -750,9 +869,13 @@ inputMethodEngine.getInputMethodAbility().on('discardTypingText', () => {
 
 ### off('discardTypingText')<sup>20+</sup>
 
-off(type: 'discardTypingText', callback?: Callback\<void>): void
+off(type: 'discardTypingText', callback?: Callback&lt;void&gt; ): void
 
-取消订阅编辑框应用发送“清空候选词”事件到输入法。使用callback异步回调。
+取消订阅编辑框应用发送\u201c清空候选词\u201d事件到输入法。使用callback异步回调。
+
+使用场景：编辑框应用需要通知输入法清空当前候选词列表时使用（如用户切换输入框、提交表单后等场景）。
+
+使用后效果：当编辑框应用发送清空候选词请求时触发回调，输入法应用应在回调中清空候选词列表和预输入文本。
 
 **系统能力：** SystemCapability.MiscServices.InputMethodFramework
 
@@ -761,7 +884,7 @@ off(type: 'discardTypingText', callback?: Callback\<void>): void
 | 参数名   | 类型                                        | 必填 | 说明                                                         |
 | -------- | ------------------------------------------- | ---- | ------------------------------------------------------------ |
 | type     | string                                      | 是   | 设置监听类型，固定取值为'discardTypingText'。<br/> - 'discardTypingText'：表示取消订阅编辑框应用发送“清空候选词”事件到输入法。 |
-| callback | Callback\<void>  | 否   | 取消订阅的回调函数。参数不填写时，取消订阅type对应的所有回调事件。 |
+| callback | Callback&lt;void&gt;   | 否   | 取消订阅的回调函数。参数不填写时，取消订阅type对应的所有回调事件。 |
 
 **示例：**
 
@@ -789,9 +912,9 @@ getSecurityMode(): SecurityMode
 
 以下错误码的详细介绍请参见[输入法框架错误码](errorcode-inputmethod-framework.md)。
 
-| 错误码ID | 错误信息                       |
-| -------- | ------------------------------ |
-| 12800004 | not an input method application. |
+| 错误码ID   | 错误信息 |
+| ---------- | ----------------------------- |
+| 12800004   | not an input method application. |
 
 **示例：**
 
@@ -804,12 +927,17 @@ console.error(`getSecurityMode, securityMode is : ${security}`);
 
 createPanel(ctx: BaseContext, info: PanelInfo, callback: AsyncCallback\<Panel>): void
 
-创建输入法面板，仅支持输入法应用在[InputMethodExtensionAbility](js-apis-inputmethod-extension-ability.md#inputmethodextensionability)类中调用。使用callback异步回调。
+创建输入法面板，仅支持输入法应用在[InputMethodExtensionAbility](js-apis-inputmethod-extension-ability.md)（输入法扩展能力）类中调用。使用callback异步回调。
+
+配对调用：
+- 调用createPanel()创建面板后，必须在使用完毕后调用[destroyPanel](#destroypanel10)销毁面板以释放资源。
+- 未调用destroyPanel()会导致面板资源泄漏，影响系统资源使用。
+- 单个输入法应用仅允许创建一个软键盘类型和一个状态栏类型的面板。
 
 > **说明：**
 >
 > 单个输入法应用仅允许创建一个[软键盘类型](#paneltype10)和一个[状态栏类型](#paneltype10)的面板。<br>
-> 输入法面板不支持创建子窗口。例如：不支持使用[window.createWindow](../../windowmanager/application-window-fa.md#设置应用子窗口)、[bindContextMenu](../../reference/apis-arkui/arkui-ts/ts-universal-attributes-menu.md#bindcontextmenu8)、[CustomDialog](../../reference/apis-arkui/arkui-ts/ts-methods-custom-dialog-box.md)等接口创建子窗口弹窗。建议开发者采用非子窗的替代方案，如[弹出框](../../reference/apis-arkui/arkui-ts/ohos-arkui-advanced-Dialog.md)、[bindMenu](../../reference/apis-arkui/arkui-ts/ts-universal-attributes-menu.md#bindmenu)或设置showInSubwindow为false。
+> 输入法面板不支持创建子窗口。例如：不支持使用window.createWindow[设置应用子窗口](../../windowmanager/application-window-fa.md#设置应用子窗口)、[bindContextMenu](../apis-arkui/arkui-ts/ts-universal-attributes-menu.md#bindcontextmenu8)、[CustomDialog](../apis-arkui/arkui-ts/ts-methods-custom-dialog-box.md)等接口创建子窗口弹窗。建议开发者采用非子窗的替代方案，如[弹出框](../apis-arkui/arkui-ts/ohos-arkui-advanced-Dialog.md)、[bindMenu](../apis-arkui/arkui-ts/ts-universal-attributes-menu.md#bindmenu)或设置showInSubwindow为false。
 
 **系统能力：** SystemCapability.MiscServices.InputMethodFramework
 
@@ -827,7 +955,7 @@ createPanel(ctx: BaseContext, info: PanelInfo, callback: AsyncCallback\<Panel>):
 
 | 错误码ID   | 错误信息                       |
 | ---------- | ----------------------------- |
-| 401        | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+| 401        | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 12800004   | not an input method application. |
 
 **示例：**
@@ -837,6 +965,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 import { inputMethodEngine, InputMethodExtensionAbility } from '@kit.IMEKit';
 import { Want } from '@kit.AbilityKit';
 
+// 创建面板信息，设置面板类型为软键盘，状态为固定态
 let panelInfo: inputMethodEngine.PanelInfo = {
   type: inputMethodEngine.PanelType.SOFT_KEYBOARD,
   flag: inputMethodEngine.PanelFlag.FLG_FIXED
@@ -845,7 +974,9 @@ let panelInfo: inputMethodEngine.PanelInfo = {
 class InputMethodExt extends InputMethodExtensionAbility {
     onCreate(want: Want): void {
         console.info(`onCreate, want: ${want.abilityName}`);
-        if (!this.context) {
+        // context为InputMethodExtensionAbility类提供的上下文对象，无需额外获取
+        if (this.context) {
+            // 创建输入法面板
             inputMethodEngine.getInputMethodAbility()
             .createPanel(this.context, panelInfo, (err: BusinessError, panel: inputMethodEngine.Panel) => {
                 if (err) {
@@ -861,14 +992,14 @@ class InputMethodExt extends InputMethodExtensionAbility {
 
 ### createPanel<sup>10+</sup>
 
-createPanel(ctx: BaseContext, info: PanelInfo): Promise\<Panel>
+createPanel(ctx: BaseContext, info: PanelInfo): Promise&lt;Panel&gt;
 
-创建输入法面板，仅支持输入法应用在[InputMethodExtensionAbility](js-apis-inputmethod-extension-ability.md#inputmethodextensionability)类中调用。使用promise异步回调。
+创建输入法面板，仅支持输入法应用在[InputMethodExtensionAbility](js-apis-inputmethod-extension-ability.md)类中调用。使用promise异步回调。
 
 > **说明：**
 >
 > 单个输入法应用仅允许创建一个[软键盘类型](#paneltype10)和一个[状态栏类型](#paneltype10)的面板。<br>
-> 输入法面板不支持创建子窗口。例如：不支持使用[window.createWindow](../../windowmanager/application-window-fa.md#设置应用子窗口)、[bindContextMenu](../../reference/apis-arkui/arkui-ts/ts-universal-attributes-menu.md#bindcontextmenu8)、[CustomDialog](../../reference/apis-arkui/arkui-ts/ts-methods-custom-dialog-box.md)等接口创建子窗口弹窗。建议开发者采用非子窗的替代方案，如[弹出框](../../reference/apis-arkui/arkui-ts/ohos-arkui-advanced-Dialog.md)、[bindMenu](../../reference/apis-arkui/arkui-ts/ts-universal-attributes-menu.md#bindmenu)或设置showInSubwindow为false。
+> 输入法面板不支持创建子窗口。例如：不支持使用window.createWindow[设置应用子窗口](../../windowmanager/application-window-fa.md#设置应用子窗口)、[bindContextMenu](../apis-arkui/arkui-ts/ts-universal-attributes-menu.md#bindcontextmenu8)、[CustomDialog](../apis-arkui/arkui-ts/ts-methods-custom-dialog-box.md)等接口创建子窗口弹窗。建议开发者采用非子窗的替代方案，如[弹出框](../apis-arkui/arkui-ts/ohos-arkui-advanced-Dialog.md)、[bindMenu](../apis-arkui/arkui-ts/ts-universal-attributes-menu.md#bindmenu)或设置showInSubwindow为false。
 
 **系统能力：** SystemCapability.MiscServices.InputMethodFramework
 
@@ -882,7 +1013,7 @@ createPanel(ctx: BaseContext, info: PanelInfo): Promise\<Panel>
 **返回值：**
 | 类型   | 说明                                                                 |
 | ------- | ------------------------------------------------------------------ |
-| Promise\<[Panel](#panel10)> | 回调函数。当输入法面板创建成功，返回当前创建的输入法面板对象。  |
+| Promise&lt;[Panel](#panel10)&gt; | 回调函数。当输入法面板创建成功，返回当前创建的输入法面板对象。  |
 
 **错误码：**
 
@@ -890,7 +1021,7 @@ createPanel(ctx: BaseContext, info: PanelInfo): Promise\<Panel>
 
 | 错误码ID   | 错误信息                       |
 | ---------- | ----------------------------- |
-| 401        | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+| 401        | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 12800004   | not an input method application. |
 
 **示例：**
@@ -900,6 +1031,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 import { inputMethodEngine, InputMethodExtensionAbility } from '@kit.IMEKit';
 import { Want } from '@kit.AbilityKit';
 
+// 创建面板信息，设置面板类型为软键盘，状态为固定态
 let panelInfo: inputMethodEngine.PanelInfo = {
   type: inputMethodEngine.PanelType.SOFT_KEYBOARD,
   flag: inputMethodEngine.PanelFlag.FLG_FIXED
@@ -922,9 +1054,14 @@ class InputMethodExt extends InputMethodExtensionAbility {
 
 ### destroyPanel<sup>10+</sup>
 
-destroyPanel(panel: Panel, callback: AsyncCallback\<void>): void
+destroyPanel(panel: Panel, callback: AsyncCallback&lt;void&gt; ): void
 
-销毁输入法面板。使用callback异步回调。
+销毁输入法面板。需先通过 [createPanel](#createpanel10) 创建面板后调用。使用callback异步回调。
+
+配对调用：
+- 必须与[createPanel](#createpanel10)方法配合使用，用于销毁由createPanel()创建的输入法面板。
+- 销毁的面板必须是已成功创建的面板对象。
+- 未正确销毁面板会导致资源泄漏，建议在面板使用完毕后及时调用destroyPanel()释放资源。
 
 **系统能力：** SystemCapability.MiscServices.InputMethodFramework
 
@@ -933,7 +1070,7 @@ destroyPanel(panel: Panel, callback: AsyncCallback\<void>): void
 | 参数名   | 类型        | 必填 | 说明                     |
 | ------- | ----------- | ---- | ------------------------ |
 | panel     | [Panel](#panel10) | 是   | 要销毁的面板对象。 |
-| callback | AsyncCallback\<void> | 是   | 回调函数。当输入法面板销毁成功，err为undefined，否则为错误对象。  |
+| callback | AsyncCallback&lt;void&gt;  | 是   | 回调函数。当输入法面板销毁成功，err为undefined，否则为错误对象。  |
 
 **错误码：**
 
@@ -948,12 +1085,14 @@ destroyPanel(panel: Panel, callback: AsyncCallback\<void>): void
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 
+// 创建面板信息，设置面板类型为软键盘，状态为固定态
 let panelInfo: inputMethodEngine.PanelInfo = {
   type: inputMethodEngine.PanelType.SOFT_KEYBOARD,
   flag: inputMethodEngine.PanelFlag.FLG_FIXED
 }
 
 let inputPanel: inputMethodEngine.Panel | undefined = undefined;
+// context为InputMethodExtensionAbility类提供的上下文对象，无需额外获取
 if (this.context) {
   inputMethodEngine.getInputMethodAbility()
     .createPanel(this.context, panelInfo, (err: BusinessError, panel: inputMethodEngine.Panel) => {
@@ -968,7 +1107,7 @@ if (this.context) {
 
 if (inputPanel) {
   inputMethodEngine.getInputMethodAbility().destroyPanel(inputPanel, (err: BusinessError) => {
-    if (err !== undefined) {
+    if (err) {
       console.error(`Failed to destroy panel. Code is ${err.code}, message is ${err.message}`);
       return;
     }
@@ -979,9 +1118,14 @@ if (inputPanel) {
 
 ### destroyPanel<sup>10+</sup>
 
-destroyPanel(panel: Panel): Promise\<void>
+destroyPanel(panel: Panel): Promise&lt;void&gt; 
 
 销毁输入法面板。使用promise异步回调。
+
+配对调用：
+- 必须与[createPanel](#createpanel10)方法配合使用，用于销毁由createPanel()创建的输入法面板。
+- 销毁的面板必须是已成功创建的面板对象。
+- 未正确销毁面板会导致资源泄漏，建议在面板使用完毕后及时调用destroyPanel()释放资源。
 
 **系统能力：** SystemCapability.MiscServices.InputMethodFramework
 
@@ -994,7 +1138,7 @@ destroyPanel(panel: Panel): Promise\<void>
 **返回值：**
 | 类型    | 说明                                                                 |
 | ------- | -------------------------------------------------------------------- |
-| Promise\<void> | 无返回结果的Promise对象。|
+| Promise&lt;void&gt;  | Promise对象，无返回结果。|
 
 **错误码：**
 
@@ -1009,12 +1153,14 @@ destroyPanel(panel: Panel): Promise\<void>
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 
+// 创建面板信息，设置面板类型为软键盘，状态为固定态
 let panelInfo: inputMethodEngine.PanelInfo = {
   type: inputMethodEngine.PanelType.SOFT_KEYBOARD,
   flag: inputMethodEngine.PanelFlag.FLG_FIXED
 }
 
 let inputPanel: inputMethodEngine.Panel | undefined = undefined;
+// context为InputMethodExtensionAbility类提供的上下文对象，无需额外获取
 if (this.context) {
   inputMethodEngine.getInputMethodAbility()
     .createPanel(this.context, panelInfo, (err: BusinessError, panel: inputMethodEngine.Panel) => {
@@ -1038,6 +1184,17 @@ if (inputPanel) {
 
 ## KeyboardDelegate
 
+KeyboardDelegate是键盘事件监听代理对象，用于输入法应用监听物理键盘按键事件和编辑框文本/光标/选区变化事件。输入法应用通过[getKeyboardDelegate](#inputmethodenginegetkeyboarddelegate9)获取该实例。
+核心功能概述：
+- 物理键盘按键事件：通过on('keyDown'|'keyUp')订阅物理按键的按下/抬起事件，通过on('keyEvent')订阅更完整的按键事件（含组合键信息）。callback返回true表示按键事件被消费，返回false表示不消费。
+- 光标与选区变化事件：通过on('cursorContextChange')订阅光标位置变化事件，通过on('selectionChange')订阅文本选区变化事件。输入法应用可根据这些事件调整候选词位置或输入策略。
+- 文本变化事件：通过on('textChange')订阅编辑框文本内容变化事件，输入法应用可据此更新候选词或输入建议。
+- 编辑框属性变化事件：通过on('editorAttributeChanged')订阅编辑框属性变化事件，输入法应用可根据编辑框属性变化动态调整键盘布局。
+
+使用场景：
+- 开发物理键盘快捷键处理功能时，订阅on('keyDown'|'keyUp')或on('keyEvent')事件拦截特定按键。
+- 需要根据编辑框实时状态（光标、选区、文本、属性）调整输入法行为时，订阅对应的on事件。
+
 下列API均需使用[getKeyboardDelegate](#inputmethodenginegetkeyboarddelegate9)获取到KeyboardDelegate实例后，通过实例调用。
 
 ### on('keyDown'|'keyUp')
@@ -1045,6 +1202,10 @@ if (inputPanel) {
 on(type: 'keyDown'|'keyUp', callback: (event: KeyEvent) => boolean): void
 
 订阅硬键盘（即物理键盘）上物理按键的按下或抬起事件。使用callback异步回调。
+
+使用场景：实现快捷键功能、拦截特殊按键、处理功能键（如删除、回车等）等。
+
+使用后效果：当物理按键按下/抬起时触发回调，回调函数返回按键信息。若按键事件被事件订阅者消费，则callback应返回true，否则返回false。返回true时按键事件不再向编辑框传递，返回false时按键事件继续向编辑框传递。
 
 **系统能力：** SystemCapability.MiscServices.InputMethodFramework
 
@@ -1074,7 +1235,7 @@ inputMethodEngine.getKeyboardDelegate().on('keyDown', (keyEvent: inputMethodEngi
 
 off(type: 'keyDown'|'keyUp', callback?: (event: KeyEvent) => boolean): void
 
-取消订阅硬键盘（即物理键盘）上物理按键的按下或抬起事件。使用callback异步回调。
+取消订阅硬键盘（即物理键盘）上物理按键的按下或抬起事件。
 
 **系统能力：** SystemCapability.MiscServices.InputMethodFramework
 
@@ -1083,7 +1244,7 @@ off(type: 'keyDown'|'keyUp', callback?: (event: KeyEvent) => boolean): void
 | 参数名    | 类型     | 必填  | 说明  |
 | -------- | ------- | ---- | ----- |
 | type     | string  | 是   | 设置监听类型。<br/>- 'keyDown'表示键盘按下。<br/>- 'keyUp'表示键盘抬起。 |
-| callback | (event: [KeyEvent](#keyevent)) => boolean | 否   | 取消订阅的回调函数。参数不填写时，取消订阅type对应的所有回调事件。   |
+| callback | (event: [KeyEvent](#keyevent)) => boolean | 否   | 取消订阅的回调函数，用于取消特定的键盘按键事件订阅。传入callback时取消指定回调的订阅，参数不填写时，取消订阅type对应的所有回调事件。   |
 
 **示例：**
 
@@ -1102,7 +1263,11 @@ inputMethodEngine.getKeyboardDelegate().off('keyDown', (keyEvent: inputMethodEng
 
 on(type: 'keyEvent', callback: (event: InputKeyEvent) => boolean): void
 
-订阅硬键盘（即物理键盘）事件。使用callback异步回调。
+订阅硬键盘（即物理键盘）事件。使用callback异步回调。与on('keyDown'|'keyUp')相比，on('keyEvent')提供更完整的按键事件信息（包含组合键Ctrl/Shift/Alt状态、unicodeChar等），适用于需要处理组合键或获取更丰富按键信息的场景。
+
+使用场景：需要处理组合键（如Ctrl+C、Shift+Enter等）或获取更完整按键信息（如unicodeChar、ctrlKey等）的场景。
+
+使用后效果：当物理按键事件触发时回调被调用。若按键事件被事件订阅者消费，则callback应返回true，否则返回false。
 
 **系统能力：** SystemCapability.MiscServices.InputMethodFramework
 
@@ -1140,7 +1305,7 @@ off(type: 'keyEvent', callback?: (event: InputKeyEvent) => boolean): void
 | 参数名   | 类型     | 必填 | 说明                                                         |
 | -------- | -------- | ---- | ------------------------------------------------------------ |
 | type     | string   | 是   | 设置监听类型，固定取值为'keyEvent'。 |
-| callback | (event: [InputKeyEvent](../apis-input-kit/js-apis-keyevent.md#keyevent)) => boolean | 否   | 取消订阅的回调函数。参数不填写时，取消订阅type对应的所有回调事件。|
+| callback | (event: [InputKeyEvent](../apis-input-kit/js-apis-keyevent.md#keyevent)) => boolean | 否   | 取消订阅的回调函数，用于取消特定的键盘事件订阅。传入callback时取消指定回调的订阅，参数不填写时，取消订阅type对应的所有回调事件。|
 
 **示例：**
 
@@ -1160,6 +1325,10 @@ on(type: 'cursorContextChange', callback: (x: number, y:number, height:number) =
 
 订阅光标变化事件。使用callback异步回调。
 
+使用场景：实时更新候选词显示位置、根据光标位置调整输入法界面、实现跟随光标的浮动菜单等。
+
+使用后效果：当编辑框光标位置发生变化时触发回调，返回光标的x坐标、y坐标和高度信息，输入法应用可据此调整候选词窗口或面板的定位。
+
 **系统能力：** SystemCapability.MiscServices.InputMethodFramework
 
 **参数：**
@@ -1167,7 +1336,7 @@ on(type: 'cursorContextChange', callback: (x: number, y:number, height:number) =
 | 参数名    | 类型  | 必填  | 说明  |
 | -------- | ---- | ---- | ----- |
 | type     | string | 是   | 光标变化事件，固定取值为'cursorContextChange'。 |
-| callback | (x: number, y: number, height: number) => void | 是   | 回调函数，返回光标信息。<br/>- x为光标上端的x坐标值，y为光标上端的y坐标值，height为光标的高度值。 |
+| callback | (x: number, y: number, height: number) => void | 是   | 回调函数，返回光标信息。<br/>- x为光标上端的x坐标值，单位：px，y为光标上端的y坐标值，单位：px，height为光标的高度值，单位：px。 |
 
 **示例：**
 
@@ -1183,30 +1352,31 @@ inputMethodEngine.getKeyboardDelegate().on('cursorContextChange', (x: number, y:
 
 off(type: 'cursorContextChange', callback?: (x: number, y: number, height: number) => void): void
 
-取消订阅光标变化事件。使用callback异步回调。
+取消订阅光标变化事件。
 
 **系统能力：** SystemCapability.MiscServices.InputMethodFramework
 
-  **参数：**
+**参数：**
 
 | 参数名    | 类型  | 必填  | 说明   |
 | -------- | ---- | ---- | ------ |
 | type     | string  | 是   | 光标变化事件，固定取值为'cursorContextChange'。 |
 | callback | (x: number, y:number, height:number) => void | 否   | 取消订阅的回调函数。参数不填写时，取消订阅type对应的所有回调事件。 |
 
-
-  **示例：**
+**示例：**
 
 ```ts
-inputMethodEngine.getKeyboardDelegate().off('cursorContextChange', (x: number, y: number, height: number) => {
-  console.info('delete cursorContextChange notification.');
-});
+inputMethodEngine.getKeyboardDelegate().off('cursorContextChange');
 ```
 ### on('selectionChange')
 
 on(type: 'selectionChange', callback: (oldBegin: number, oldEnd: number, newBegin: number, newEnd: number) => void): void
 
 订阅文本选择范围变化事件。使用callback异步回调。
+
+使用场景：监听用户选中文本以提供剪切、复制、粘贴等快捷操作、根据选择文本显示相关建议、实现文本编辑辅助功能等。
+
+使用后效果：当编辑框中文本选择范围发生变化时触发回调，返回变化前后的选区起始和终止下标。
 
 **系统能力：** SystemCapability.MiscServices.InputMethodFramework
 
@@ -1233,7 +1403,7 @@ inputMethodEngine.getKeyboardDelegate()
 
 off(type: 'selectionChange', callback?: (oldBegin: number, oldEnd: number, newBegin: number, newEnd: number) => void): void
 
-取消订阅文本选择范围变化事件。使用callback异步回调。
+取消订阅文本选择范围变化事件。
 
 **系统能力：** SystemCapability.MiscServices.InputMethodFramework
 
@@ -1260,6 +1430,10 @@ on(type: 'textChange', callback: (text: string) => void): void
 
 订阅文本内容变化事件。使用callback异步回调。
 
+使用场景：输入法应用需要根据编辑框文本内容变化更新候选词、提供智能输入建议、实现联想输入等。
+
+使用后效果：当编辑框文本内容发生变化时触发回调，返回当前编辑框的完整文本内容。
+
 **系统能力：** SystemCapability.MiscServices.InputMethodFramework
 
 **参数：**
@@ -1267,7 +1441,7 @@ on(type: 'textChange', callback: (text: string) => void): void
 | 参数名   | 类型   | 必填 | 说明                                                         |
 | -------- | ------ | ---- | ------------------------------------------------------------ |
 | type     | string | 是   | 文本变化事件，固定取值为'textChange'。 |
-| callback | (text: string) => void | 是   | 回调函数，返回订阅的文本内容。|
+| callback | (text: string) => void | 是   | 回调函数，返回订阅的文本内容。 |
 
 **示例：**
 
@@ -1306,21 +1480,25 @@ on(type: 'editorAttributeChanged', callback: (attr: EditorAttribute) => void): v
 
 订阅编辑框属性变化事件。使用callback异步回调。
 
+使用场景：输入法应用需要根据编辑框属性变化（如输入类型从文本切换到数字、回车键类型从"搜索"切换到"发送"等）动态调整键盘布局。
+
+使用后效果：当编辑框属性发生变化时触发回调，返回变化后的编辑框属性信息（包括inputPattern和enterKeyType），输入法应用可据此重新调整键盘布局。
+
 **系统能力：** SystemCapability.MiscServices.InputMethodFramework
 
 **参数：**
 
 | 参数名   | 类型   | 必填 | 说明                                                         |
 | -------- | ------ | ---- | ------------------------------------------------------------ |
-| type     | string | 是   | 文本变化事件，固定取值为'editorAttributeChanged'。 |
+| type     | string | 是   | 编辑框属性变化事件，固定取值为'editorAttributeChanged'。 |
 | callback | (attr: [EditorAttribute](#editorattribute)) => void | 是   | 回调函数，返回变化的编辑框属性。|
 
 **示例：**
 
 ```ts
 inputMethodEngine.getKeyboardDelegate()
-  .on('editorAttributeChanged', (attr: inputMethodEngine.EditorAttribute) => {
-    console.info(`Succeeded in receiving attribute of editor, inputPattern = ${attr.inputPattern}, enterKeyType = ${attr.enterKeyType}`);
+  .on('editorAttributeChanged', (editorAttribute: inputMethodEngine.EditorAttribute) => {
+    console.info(`Succeeded in receiving attribute of editor, inputPattern = ${editorAttribute.inputPattern}, enterKeyType = ${editorAttribute.enterKeyType}`);
   });
 ```
 
@@ -1336,7 +1514,7 @@ off(type: 'editorAttributeChanged', callback?: (attr: EditorAttribute) => void):
 
 | 参数名   | 类型   | 必填 | 说明                                                         |
 | -------- | ------ | ---- | ------------------------------------------------------------ |
-| type     | string | 是   | 文本变化事件，固定取值为'editorAttributeChanged'。 |
+| type     | string | 是   | 编辑框属性变化事件，固定取值为'editorAttributeChanged'。 |
 | callback | (attr: [EditorAttribute](#editorattribute)) => void | 否   | 所要取消订阅的回调处理函数。参数不填写时，默认取消订阅type对应的所有回调事件。 |
 
 **示例：**
@@ -1347,11 +1525,27 @@ inputMethodEngine.getKeyboardDelegate().off('editorAttributeChanged');
 
 ## Panel<sup>10+</sup>
 
+Panel是输入法面板对象，提供面板页面加载、显示/隐藏、尺寸调整、位置移动、模式切换等功能。Panel实例通过InputMethodAbility的[createPanel](#createpanel10)接口获取，使用完毕后需调用[destroyPanel](#destroypanel10)销毁以释放资源。createPanel与destroyPanel必须配对调用。
+
+核心功能概述：
+- 页面加载：通过[setUiContent](#setuicontent10)为面板加载键盘页面内容，支持加载普通页面和与LocalStorage关联的页面。
+- 显示与隐藏：通过[show](#show10)显示面板，通过[hide](#hide10)隐藏面板。面板的显示/隐藏也可通过订阅on('show')/on('hide')事件监听状态变化。
+- 尺寸与位置调整：通过[resize](#resize10)调整面板尺寸，通过[moveTo](#moveto10)移动面板位置，通过[startMoving](#startmoving15)拖拽移动面板，通过[adjustPanelRect](#adjustpanelrect12)/[updatePanelRect](#updatepanelrect)/[updateRegion](#updateregion15)调整面板区域。
+- 模式设置：通过[changeFlag](#changeflag10)切换面板固定态/浮动态，通过[setPrivacyMode](#setprivacymode11)设置隐私模式，通过[setImmersiveMode](#setimmersivemode15)/[getImmersiveMode](#getimmersivemode15)设置/获取沉浸模式。
+- 事件监听：通过on('show')/on('hide')/on('sizeChange')监听面板状态变化事件。
+
+面板生命周期：
+1. 在InputMethodAbility的[createPanel](#createpanel10)中创建Panel实例并指定面板类型和标志位。
+2. 调用[setUiContent](#setuicontent10)加载键盘页面内容。
+3. 调用[show](#show10)显示面板，用户可交互。
+4. 根据需要调用resize、moveTo、changeFlag等接口动态调整面板。
+5. 使用完毕后调用[destroyPanel](#destroypanel10)销毁面板，释放资源。
+
 下列API均需使用[createPanel](#createpanel10)获取到Panel实例后，通过实例调用。
 
 ### setUiContent<sup>10+</sup>
 
-setUiContent(path: string, callback: AsyncCallback\<void>): void
+setUiContent(path: string, callback: AsyncCallback&lt;void&gt; ): void
 
 为当前的输入法面板加载具体页面内容，使用callback异步回调。
 
@@ -1361,8 +1555,8 @@ setUiContent(path: string, callback: AsyncCallback\<void>): void
 
 | 参数名   | 类型                   | 必填 | 说明     |
 | -------- | ---------------------- | ---- | -------- |
-| path | string | 是   | 具体页面的路径。 |
-| callback | AsyncCallback\<void> | 是   | 回调函数。当面板页面内容加载成功，err为undefined，否则err为错误对象。 |
+| path | string | 是   | 具体页面的路径。路径长度建议不超过1024字符。 |
+| callback | AsyncCallback&lt;void&gt;  | 是   | 回调函数。当面板页面内容加载成功，err为undefined，否则err为错误对象。 |
 
 **错误码：**
 
@@ -1377,6 +1571,8 @@ setUiContent(path: string, callback: AsyncCallback\<void>): void
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 
+// 设置输入法面板内容
+// panel对象通过createPanel接口获取，详见createPanel示例
 panel.setUiContent('pages/page2/page2', (err: BusinessError) => {
   if (err) {
     console.error(`Failed to setUiContent. Code is ${err.code}, message is ${err.message}`);
@@ -1388,7 +1584,7 @@ panel.setUiContent('pages/page2/page2', (err: BusinessError) => {
 
 ### setUiContent<sup>10+</sup>
 
-setUiContent(path: string): Promise\<void>
+setUiContent(path: string): Promise&lt;void&gt; 
 
 为当前的输入法面板加载具体页面内容，使用Promise异步回调。
 
@@ -1398,13 +1594,13 @@ setUiContent(path: string): Promise\<void>
 
 | 参数名   | 类型                   | 必填 | 说明     |
 | -------- | ---------------------- | ---- | -------- |
-| path | string | 是   |  具体页面的路径。 |
+| path | string | 是   | 具体页面的路径。路径长度建议不超过1024字符。 |
 
 **返回值：**
 
 | 类型   | 说明                             |
 | ------- | ------------------------------ |
-| Promise\<void> | 无返回结果的Promise对象。  |
+| Promise&lt;void&gt;  | Promise对象，无返回结果。 |
 
 **错误码：**
 
@@ -1428,7 +1624,7 @@ panel.setUiContent('pages/page2/page2').then(() => {
 
 ### setUiContent<sup>10+</sup>
 
-setUiContent(path: string, storage: LocalStorage, callback: AsyncCallback\<void>): void
+setUiContent(path: string, storage: LocalStorage, callback: AsyncCallback&lt;void&gt; ): void
 
 为当前的输入法面板加载与LocalStorage相关联的具体页面内容，使用callback异步回调。
 
@@ -1438,9 +1634,9 @@ setUiContent(path: string, storage: LocalStorage, callback: AsyncCallback\<void>
 
 | 参数名   | 类型                   | 必填 | 说明     |
 | -------- | ---------------------- | ---- | -------- |
-| path | string | 是   | LocalStorage相关联的具体页面的路径。 |
+| path | string | 是   | LocalStorage相关联的具体页面的路径。路径长度建议不超过1024字符。 |
 | storage | [LocalStorage](../apis-arkui/arkui-ts/ts-state-management.md#localstorage9) | 是   | 存储单元，为应用程序范围内的可变和不可变状态属性提供存储。|
-| callback | AsyncCallback\<void> | 是   | 回调函数。当面板页面内容加载成功，err为undefined，否则err为错误对象。 |
+| callback | AsyncCallback&lt;void&gt;  | 是   | 回调函数。当面板页面内容加载成功，err为undefined，否则err为错误对象。 |
 
 **错误码：**
 
@@ -1455,6 +1651,7 @@ setUiContent(path: string, storage: LocalStorage, callback: AsyncCallback\<void>
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 
+// 创建并初始化LocalStorage对象
 let storage: LocalStorage = new LocalStorage();
 storage.setOrCreate('storageSimpleProp', 121);
 panel.setUiContent('pages/page2/page2', storage, (err: BusinessError) => {
@@ -1468,7 +1665,7 @@ panel.setUiContent('pages/page2/page2', storage, (err: BusinessError) => {
 
 ### setUiContent<sup>10+</sup>
 
-setUiContent(path: string, storage: LocalStorage): Promise\<void>
+setUiContent(path: string, storage: LocalStorage): Promise&lt;void&gt; 
 
 为当前面板加载与LocalStorage相关联的具体页面内容，使用Promise异步回调。
 
@@ -1478,14 +1675,14 @@ setUiContent(path: string, storage: LocalStorage): Promise\<void>
 
 | 参数名   | 类型                   | 必填 | 说明     |
 | -------- | ---------------------- | ---- | -------- |
-| path | string | 是   | 设置加载页面的路径。 |
+| path | string | 是   | 具体页面的路径。路径长度建议不超过1024字符。 |
 | storage | [LocalStorage](../apis-arkui/arkui-ts/ts-state-management.md#localstorage9) | 是   | 存储单元，为应用程序范围内的可变状态属性和非可变状态属性提供存储。|
 
 **返回值：**
 
 | 类型   | 说明                             |
 | ------- | ------------------------------ |
-| Promise\<void> | 无返回结果的Promise对象。  |
+| Promise&lt;void&gt;  | Promise对象，无返回结果。 |
 
 **错误码：**
 
@@ -1500,6 +1697,7 @@ setUiContent(path: string, storage: LocalStorage): Promise\<void>
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 
+// 创建并初始化LocalStorage对象
 let storage: LocalStorage = new LocalStorage();
 storage.setOrCreate('storageSimpleProp', 121);
 panel.setUiContent('pages/page2/page2', storage).then(() => {
@@ -1511,7 +1709,7 @@ panel.setUiContent('pages/page2/page2', storage).then(() => {
 
 ### resize<sup>10+</sup>
 
-resize(width: number, height: number, callback: AsyncCallback\<void>): void
+resize(width: number, height: number, callback: AsyncCallback&lt;void&gt; ): void
 
 改变当前输入法面板的大小，使用callback异步回调。
 
@@ -1527,9 +1725,9 @@ resize(width: number, height: number, callback: AsyncCallback\<void>): void
 
 | 参数名   | 类型                   | 必填 | 说明     |
 | -------- | ---------------------- | ---- | -------- |
-| width | number | 是   | 目标面板的宽度，单位为px。该参数应为大于或等于0的整数，不超出屏幕宽度。|
-| height | number | 是   | 目标面板的高度，单位为px。该参数应为大于或等于0的整数，不高于屏幕高度的0.7倍。|
-| callback | AsyncCallback\<void> | 是   | 回调函数。当面板大小改变成功，err为undefined，否则err为错误对象。 |
+| width | number | 是   | 目标面板的宽度，单位为px。该参数应为大于或等于0的整数，不超出屏幕宽度。超出范围时返回错误码401。|
+| height | number | 是   | 目标面板的高度，单位为px。该参数应为大于或等于0的整数，不高于屏幕高度的0.7倍。超出范围时返回错误码401。|
+| callback | AsyncCallback&lt;void&gt;  | 是   | 回调函数。当面板大小改变成功，err为undefined，否则err为错误对象。 |
 
 **错误码：**
 
@@ -1544,6 +1742,7 @@ resize(width: number, height: number, callback: AsyncCallback\<void>): void
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 
+// 改变输入法面板大小
 panel.resize(500, 1000, (err: BusinessError) => {
   if (err) {
     console.error(`Failed to resize panel. Code is ${err.code}, message is ${err.message}`);
@@ -1555,7 +1754,7 @@ panel.resize(500, 1000, (err: BusinessError) => {
 
 ### resize<sup>10+</sup>
 
-resize(width: number, height: number): Promise\<void>
+resize(width: number, height: number): Promise&lt;void&gt; 
 
 改变当前输入法面板的大小，使用Promise异步回调。
 
@@ -1571,14 +1770,14 @@ resize(width: number, height: number): Promise\<void>
 
 | 参数名   | 类型                   | 必填 | 说明     |
 | -------- | ---------------------- | ---- | -------- |
-| width | number | 是   | 目标面板的宽度，单位为px。该参数应为大于或等于0的整数，不超出屏幕宽度。|
-| height | number | 是   | 目标面板的高度，单位为px。该参数应为大于或等于0的整数，不高于屏幕高度的0.7倍。|
+| width | number | 是   | 目标面板的宽度，单位为px。该参数应为大于或等于0的整数，不超出屏幕宽度。超出范围时返回错误码401。|
+| height | number | 是   | 目标面板的高度，单位为px。该参数应为大于或等于0的整数，不高于屏幕高度的0.7倍。超出范围时返回错误码401。|
 
 **返回值：**
 
 | 类型   | 说明                             |
 | ------- | ------------------------------ |
-| Promise\<void> | 无返回结果的Promise对象。  |
+| Promise&lt;void&gt;  | Promise对象，无返回结果。 |
 
 **错误码：**
 
@@ -1593,6 +1792,7 @@ resize(width: number, height: number): Promise\<void>
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 
+// 改变输入法面板大小
 panel.resize(500, 1000).then(() => {
   console.info('Succeeded in changing the panel size.');
 }).catch((err: BusinessError) => {
@@ -1602,7 +1802,7 @@ panel.resize(500, 1000).then(() => {
 
 ### moveTo<sup>10+</sup>
 
-moveTo(x: number, y: number, callback: AsyncCallback\<void>): void
+moveTo(x: number, y: number, callback: AsyncCallback&lt;void&gt; ): void
 
 移动面板位置，使用callback异步回调。[面板状态](#panelflag10)为固定态时，不产生实际移动效果。
 
@@ -1612,9 +1812,9 @@ moveTo(x: number, y: number, callback: AsyncCallback\<void>): void
 
 | 参数名   | 类型                   | 必填 | 说明     |
 | -------- | ---------------------- | ---- | -------- |
-| x | number | 是   | 横轴方向移动的值，值大于0表示右移，单位为px。该参数应为整数。|
-| y | number | 是   | 纵轴方向移动的值，值大于0表示下移，单位为px。该参数应为整数。|
-| callback | AsyncCallback\<void> | 是   | 回调函数。当面板位置移动成功，err为undefined，否则err为错误对象。 |
+| x | number | 是   | 横轴方向移动的值，单位为px。该参数应为整数。值大于0表示右移，小于0表示左移。超出屏幕范围时返回错误码401。|
+| y | number | 是   | 纵轴方向移动的值，单位为px。该参数应为整数。值大于0表示下移，小于0表示上移。超出屏幕范围时返回错误码401。|
+| callback | AsyncCallback&lt;void&gt;  | 是   | 回调函数。当面板位置移动成功，err为undefined，否则err为错误对象。 |
 
 **错误码：**
 
@@ -1629,6 +1829,7 @@ moveTo(x: number, y: number, callback: AsyncCallback\<void>): void
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 
+// 移动输入法面板位置
 panel.moveTo(300, 300, (err: BusinessError) => {
   if (err) {
     console.error(`Failed to move panel. Code is ${err.code}, message is ${err.message}`);
@@ -1640,7 +1841,7 @@ panel.moveTo(300, 300, (err: BusinessError) => {
 
 ### moveTo<sup>10+</sup>
 
-moveTo(x: number, y: number): Promise\<void>
+moveTo(x: number, y: number): Promise&lt;void&gt; 
 
 移动面板位置，使用promise异步回调。[面板状态](#panelflag10)为固定态时，不产生实际移动效果。
 
@@ -1657,7 +1858,7 @@ moveTo(x: number, y: number): Promise\<void>
 
 | 类型   | 说明                             |
 | ------- | ------------------------------ |
-| Promise\<void> | 无返回结果的Promise对象。  |
+| Promise&lt;void&gt;  | Promise对象，无返回结果。 |
 
 **错误码：**
 
@@ -1672,6 +1873,7 @@ moveTo(x: number, y: number): Promise\<void>
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 
+// 移动输入法面板位置
 panel.moveTo(300, 300).then(() => {
   console.info('Succeeded in moving the panel.');
 }).catch((err: BusinessError) => {
@@ -1683,7 +1885,7 @@ panel.moveTo(300, 300).then(() => {
 
 startMoving(): void
 
-发送移动命令给窗口，不产生实际移动效果（仅在鼠标点击作用才可以移动）。
+发送移动命令给窗口，使面板进入可拖动状态。不产生实际移动效果，仅在用户通过鼠标拖动面板时才会移动。
 
 **系统能力：** SystemCapability.MiscServices.InputMethodFramework
 
@@ -1706,9 +1908,9 @@ panel.startMoving();
 
 ### getDisplayId<sup>15+</sup>
 
-getDisplayId(): Promise\<number>
+getDisplayId(): Promise&lt;number&gt;
 
-获取当前窗口的所在id，使用Promise异步回调。
+获取当前窗口的displayId，使用Promise异步回调。
 
 **系统能力：** SystemCapability.MiscServices.InputMethodFramework
 
@@ -1716,13 +1918,13 @@ getDisplayId(): Promise\<number>
 
 | 类型   | 说明                             |
 | ------- | ------------------------------ |
-|Promise\<number>| Promise对象。返回窗口的displayId。  |
+| Promise&lt;number&gt;| Promise对象。返回窗口的displayId。 |
 
 **错误码：**
 
 以下错误码的详细介绍请参见[输入法框架错误码](errorcode-inputmethod-framework.md)。
 
-| 错误码ID | 错误信息                                                |
+| 错误码ID | 错误信息 |
 | -------- | ------------------------------------------------------- |
 | 12800002 | input method engine error. Possible causes: 1.input method panel not created. 2.the input method application does not subscribe to related events. |
 | 12800013 | window manager service error. |
@@ -1741,7 +1943,7 @@ panel.getDisplayId().then((result: number) => {
 
 ### show<sup>10+</sup>
 
-show(callback: AsyncCallback\<void>): void
+show(callback: AsyncCallback&lt;void&gt; ): void
 
 显示当前输入法面板，使用callback异步回调。输入法应用与编辑框绑定成功后可正常调用。
 
@@ -1751,7 +1953,7 @@ show(callback: AsyncCallback\<void>): void
 
 | 参数名   | 类型                   | 必填 | 说明     |
 | -------- | ---------------------- | ---- | -------- |
-| callback | AsyncCallback\<void> | 是   | 回调函数。当面板显示成功，err为undefined，否则err为错误对象。 |
+| callback | AsyncCallback&lt;void&gt;  | 是   | 回调函数。当面板显示成功，err为undefined，否则err为错误对象。 |
 
 **示例：**
 
@@ -1769,7 +1971,7 @@ panel.show((err: BusinessError) => {
 
 ### show<sup>10+</sup>
 
-show(): Promise\<void>
+show(): Promise&lt;void&gt; 
 
 显示当前输入法面板，使用promise异步回调。输入法应用与编辑框绑定成功后可正常调用。
 
@@ -1779,7 +1981,7 @@ show(): Promise\<void>
 
 | 类型   | 说明                             |
 | ------- | ------------------------------ |
-| Promise\<void> | 无返回结果的Promise对象。  |
+| Promise&lt;void&gt;  | Promise对象，无返回结果。 |
 
 **示例：**
 
@@ -1795,7 +1997,7 @@ panel.show().then(() => {
 
 ### hide<sup>10+</sup>
 
-hide(callback: AsyncCallback\<void>): void
+hide(callback: AsyncCallback&lt;void&gt; ): void
 
 隐藏当前输入法面板，使用callback异步回调。
 
@@ -1805,7 +2007,7 @@ hide(callback: AsyncCallback\<void>): void
 
 | 参数名   | 类型                   | 必填 | 说明     |
 | -------- | ---------------------- | ---- | -------- |
-| callback | AsyncCallback\<void> | 是   | 回调函数。当面板隐藏成功，err为undefined，否则err为错误对象。 |
+| callback | AsyncCallback&lt;void&gt;  | 是   | 回调函数。当面板隐藏成功，err为undefined，否则err为错误对象。 |
 
 **示例：**
 
@@ -1823,7 +2025,7 @@ panel.hide((err: BusinessError) => {
 
 ### hide<sup>10+</sup>
 
-hide(): Promise\<void>
+hide(): Promise&lt;void&gt; 
 
 隐藏当前输入法面板，使用promise异步回调。
 
@@ -1833,7 +2035,7 @@ hide(): Promise\<void>
 
 | 类型   | 说明                             |
 | ------- | ------------------------------ |
-| Promise\<void> | 无返回结果的Promise对象。  |
+| Promise&lt;void&gt;  | Promise对象，无返回结果。 |
 
 **示例：**
 
@@ -1868,7 +2070,7 @@ adjustPanelRect(flag: PanelFlag, rect: PanelRect): void
 | 参数名   | 类型                   | 必填 | 说明     |
 | -------- | ---------------------- | ---- | -------- |
 | flag | [PanelFlag](#panelflag10) | 是 | 目标面板状态类型。类型为FLG_FIXED或FLG_FLOATING。 |
-| rect | [PanelRect](#panelrect12) | 是   | 目标面板横屏状态及竖屏状态的横坐标，纵坐标，宽度以及高度。固定态：高度不能超过屏幕高度的70%，宽度不能超过屏幕宽度；悬浮态：高度不能超过屏幕高度，宽度不能超过屏幕宽度。|
+| rect | [PanelRect](#panelrect12) | 是   | 目标面板横屏状态及竖屏状态的横坐标，纵坐标，宽度以及高度。固定态：高度不能超过屏幕高度的70%，宽度不能超过屏幕宽度；悬浮态：高度不能超过屏幕高度，宽度不能超过屏幕宽度。超出范围时返回错误码401。|
 
 **错误码：**
 
@@ -1884,6 +2086,7 @@ adjustPanelRect(flag: PanelFlag, rect: PanelRect): void
 ```ts
 import { window } from '@kit.ArkUI';
 
+// 定义横屏状态下面板的矩形区域
 let landscapeRect: window.Rect = {
   left: 100,
   top: 100,
@@ -1891,6 +2094,7 @@ let landscapeRect: window.Rect = {
   height: 400
 };
 
+// 定义竖屏状态下面板的矩形区域
 let portraitRect: window.Rect = {
   left: 200,
   top: 200,
@@ -1898,13 +2102,14 @@ let portraitRect: window.Rect = {
   height: 300
 };
 
-// 目标面板状态类型
+// 设置面板状态为固定态
 let panelFlag: inputMethodEngine.PanelFlag = inputMethodEngine.PanelFlag.FLG_FIXED;
-// 目标面板横屏状态及竖屏状态的横坐标，纵坐标，宽度以及高度
+// 配置面板的横竖屏矩形区域
 let panelRect: inputMethodEngine.PanelRect = {
   landscapeRect: landscapeRect,
   portraitRect: portraitRect
 };
+// 预设置输入法应用横竖屏大小
 panel.adjustPanelRect(panelFlag, panelRect);
 ```
 
@@ -1976,7 +2181,7 @@ panel.adjustPanelRect(panelFlag, panelRect);
 
 ### updatePanelRect
 
-updatePanelRect(flag: PanelFlag, rect: PanelRect): Promise\<void>
+updatePanelRect(flag: PanelFlag, rect: PanelRect): Promise&lt;void&gt; 
 
 预设置输入法应用横竖屏大小。使用Promise异步回调。
 
@@ -1999,19 +2204,19 @@ updatePanelRect(flag: PanelFlag, rect: PanelRect): Promise\<void>
 | 参数名   | 类型                   | 必填 | 说明     |
 | -------- | ---------------------- | ---- | -------- |
 | flag | [PanelFlag](#panelflag10) | 是 | 目标面板状态类型。类型为FLG_FIXED或FLG_FLOATING。 |
-| rect | [PanelRect](#panelrect12) | 是   | 目标面板横屏状态及竖屏状态的横坐标，纵坐标，宽度以及高度。固定态：高度不能超过屏幕高度的70%，宽度不能超过屏幕宽度；悬浮态：高度不能超过屏幕高度，宽度不能超过屏幕宽度。|
+| rect | [PanelRect](#panelrect12) | 是   | 目标面板横屏状态及竖屏状态的横坐标，纵坐标，宽度以及高度。固定态：高度不能超过屏幕高度的70%，宽度不能超过屏幕宽度；悬浮态：高度不能超过屏幕高度，宽度不能超过屏幕宽度。超出范围时返回错误码401。|
 
 **返回值：**
 
 | 类型   | 说明               |
 | ------- |------------------|
-| Promise\<void> | Promise对象，无返回结果。 |
+| Promise&lt;void&gt;  | Promise对象，无返回结果。 |
 
 **错误码：**
 
 以下错误码的详细介绍请参见[输入法框架错误码](errorcode-inputmethod-framework.md)，[通用错误码说明文档](../errorcode-universal.md)。
 
-| 错误码ID | 错误信息                                                |
+| 错误码ID | 错误信息 |
 | -------- | ------------------------------------------------------- |
 | 12800013 | window manager service error. |
 
@@ -2046,7 +2251,7 @@ panel.updatePanelRect(panelFlag, panelRect);
 
 ### updatePanelRect
 
-updatePanelRect(flag: PanelFlag, rect: EnhancedPanelRect): Promise\<void>
+updatePanelRect(flag: PanelFlag, rect: EnhancedPanelRect): Promise&lt;void&gt; 
 
 预设置输入法应用横竖屏大小、位置、自定义避让区域以及热区。使用Promise异步回调。
 
@@ -2075,7 +2280,7 @@ updatePanelRect(flag: PanelFlag, rect: EnhancedPanelRect): Promise\<void>
 
 | 类型   | 说明               |
 | ------- |------------------|
-| Promise\<void> | Promise对象，无返回结果。 |
+| Promise&lt;void&gt;  | Promise对象，无返回结果。 |
 
 **错误码：**
 
@@ -2124,8 +2329,9 @@ panel.updatePanelRect(panelFlag, panelRect);
 updatePanelRectSync(flag: PanelFlag, rect: PanelRect): void
 
 预设置输入法应用横竖屏大小。
-
-> **说明:**
+> **说明：**
+> 
+> 同步接口阻塞主线程，容易影响UI交互，需谨慎使用。建议优先使用对应的异步接口[updatePanelRect](#updatepanelrect)。
 >
 > 仅用于SOFT_KEYBOARD类型，状态为FLG_FIXED或FLG_FLOATING的面板。
 >
@@ -2144,13 +2350,13 @@ updatePanelRectSync(flag: PanelFlag, rect: PanelRect): void
 | 参数名   | 类型                   | 必填 | 说明     |
 | -------- | ---------------------- | ---- | -------- |
 | flag | [PanelFlag](#panelflag10) | 是 | 目标面板状态类型。类型为FLG_FIXED或FLG_FLOATING。 |
-| rect | [PanelRect](#panelrect12) | 是   | 目标面板横屏状态及竖屏状态的横坐标，纵坐标，宽度以及高度。固定态：高度不能超过屏幕高度的70%，宽度不能超过屏幕宽度；悬浮态：高度不能超过屏幕高度，宽度不能超过屏幕宽度。|
+| rect | [PanelRect](#panelrect12) | 是   | 目标面板横屏状态及竖屏状态的横坐标，纵坐标，宽度以及高度。固定态：高度不能超过屏幕高度的70%，宽度不能超过屏幕宽度；悬浮态：高度不能超过屏幕高度，宽度不能超过屏幕宽度。超出范围时返回错误码401。|
 
 **错误码：**
 
 以下错误码的详细介绍请参见[输入法框架错误码](errorcode-inputmethod-framework.md)，[通用错误码说明文档](../errorcode-universal.md)。
 
-| 错误码ID | 错误信息                                                |
+| 错误码ID | 错误信息 |
 | -------- | ------------------------------------------------------- |
 | 12800013 | window manager service error. |
 
@@ -2188,8 +2394,9 @@ panel.updatePanelRectSync(panelFlag, panelRect);
 updatePanelRectSync(flag: PanelFlag, rect: EnhancedPanelRect): void
 
 预设置输入法应用横竖屏大小、位置、自定义避让区域以及热区。
-
-> **说明:**
+> **说明：**
+> 
+> 同步接口阻塞主线程，容易影响UI交互，需谨慎使用。建议优先使用对应的异步接口[updatePanelRect](#updatepanelrect)。
 >
 > 仅用于SOFT_KEYBOARD类型，状态为FLG_FIXED或FLG_FLOATING的面板。此接口兼容[adjustPanelRect](#adjustpanelrect12)的调用方法，若入参rect仅填写属性landscapeRect和portraitRect，则默认调用[adjustPanelRect](#adjustpanelrect12)。
 >
@@ -2301,7 +2508,7 @@ panel.updateRegion(inputRegion);
 
 on(type: 'show', callback: () => void): void
 
-监听当前面板显示状态，使用callback异步回调。
+监听当前面板显示状态，使用 callback 异步回调。
 
 **系统能力：** SystemCapability.MiscServices.InputMethodFramework
 
@@ -2370,10 +2577,12 @@ on(type: 'sizeChange', callback: SizeChangeCallback): void
 ```ts
 import { window } from '@kit.ArkUI';
 
+// 监听面板大小变化事件
 panel.on('sizeChange', (windowSize: window.Size) => {
   console.info(`panel size changed, width: ${windowSize.width}, height: ${windowSize.height}`);
 });
 
+// 监听面板大小变化事件（带键盘区域参数）
 panel.on('sizeChange', (windowSize: window.Size, keyboardArea: inputMethodEngine.KeyboardArea) => {
   console.info(`panel size changed, windowSize: ${windowSize.width}, ${windowSize.height}, ` +
     `keyboardArea: ${keyboardArea.top}, ${keyboardArea.bottom}, ${keyboardArea.left}, ${keyboardArea.right}`);
@@ -2458,7 +2667,7 @@ off(type: 'sizeChange', callback?: SizeChangeCallback): void
 | 参数名   | 类型                                        | 必填 | 说明                                                     |
 | -------- | ------------------------------------------- | ---- | -------------------------------------------------------- |
 | type     | string                                      | 是   | 监听当前面板的大小是否产生变化，固定取值为'sizeChange'。 |
-| callback | [SizeChangeCallback](#sizechangecallback15) | 否   | 回调函数。返回当前软键盘面板的大小，包含宽度和高度值。   |
+| callback | [SizeChangeCallback](#sizechangecallback15) | 否   | 回调函数。返回当前软键盘面板的大小，包含宽度和高度值。参数不填写时，取消订阅type对应的所有回调事件。   |
 
 **示例：**
 
@@ -2535,7 +2744,7 @@ panel.setPrivacyMode(isPrivacyMode);
 
 setImmersiveMode(mode: ImmersiveMode): void
 
-设置输入法应用的沉浸模式。只能设置不使用沉浸模式(NONE_IMMERSIVE)、浅色沉浸模式(LIGHT_IMMERSIVE)或深色沉浸模式(DARK_IMMERSIVE)。不能设置为沉浸模式(IMMERSIVE)。
+设置输入法应用的沉浸模式。只能设置为不使用沉浸模式(NONE_IMMERSIVE)、浅色沉浸模式(LIGHT_IMMERSIVE)或深色沉浸模式(DARK_IMMERSIVE)。
 
 **系统能力：** SystemCapability.MiscServices.InputMethodFramework
 
@@ -2627,7 +2836,7 @@ panel.setImmersiveEffect(effect);
 
 ### setKeepScreenOn<sup>20+</sup>
 
-setKeepScreenOn(isKeepScreenOn: boolean): Promise\<void>
+setKeepScreenOn(isKeepScreenOn: boolean): Promise&lt;void&gt; 
 
 设置屏幕常亮。使用Promise异步回调。
 
@@ -2648,13 +2857,13 @@ setKeepScreenOn(isKeepScreenOn: boolean): Promise\<void>
 
 | 类型   | 说明                             |
 | ------- | ------------------------------ |
-| Promise\<void> | 无返回结果的Promise对象。  |
+| Promise&lt;void&gt;  | Promise对象，无返回结果。 |
 
 **错误码：**
 
 以下错误码的详细介绍请参见[输入法框架错误码](errorcode-inputmethod-framework.md)。
 
-| 错误码ID | 错误信息                                                |
+| 错误码ID | 错误信息 |
 | -------- | ------------------------------------------------------- |
 | 12800013 | window manager service error. |
 
@@ -2671,7 +2880,7 @@ panel.setKeepScreenOn(true).then(() => {
 ```
 ### getSystemPanelCurrentInsets<sup>21+</sup>
 
-getSystemPanelCurrentInsets(displayId: number): Promise\<SystemPanelInsets>
+getSystemPanelCurrentInsets(displayId: number): Promise&lt;SystemPanelInsets&gt; 
 
 获取指定屏幕当前状态（例如：折叠或展开）下，当前输入法键盘状态（例如：悬浮或固定）下输入法软键盘相对系统面板的偏移区域。使用Promise异步回调。
 
@@ -2687,13 +2896,13 @@ getSystemPanelCurrentInsets(displayId: number): Promise\<SystemPanelInsets>
 
 | 类型   | 说明                             |
 | ------- | ------------------------------ |
-| Promise\<[SystemPanelInsets](#systempanelinsets21)> | Promise对象。输入法键盘与系统面板的偏移区域。 |
+| Promise&lt;[SystemPanelInsets](#systempanelinsets21)&gt;  | Promise对象。输入法键盘与系统面板的偏移区域。 |
 
 **错误码：**
 
 以下错误码的详细介绍请参见[输入法框架错误码](errorcode-inputmethod-framework.md)。
 
-| 错误码ID | 错误信息                                                |
+| 错误码ID | 错误信息 |
 | -------- | ------------------------------------------------------- |
 | 12800013 | window manager service error. |
 | 12800017 | invalid panel type or panel flag. Possible causes: 1. Current panel's type is not SOFT_KEYBOARD.  2. Panel's flag is not FLG_FIXED or FLG_FLOATING. |
@@ -2711,6 +2920,7 @@ let panelConfig: inputMethodEngine.PanelInfo = {
   flag: inputMethodEngine.PanelFlag.FLG_FIXED
 }
 // 以下逻辑需要在输入法InputMethodExtensionAbility中执行，this.context是InputMethodExtensionAbility的上下文
+// 创建输入法面板
 inputMethodAbility.createPanel(this.context, panelConfig).then( (panel: inputMethodEngine.Panel) =>{
   panel.getDisplayId().then((displayId: number) => {
     panel.getSystemPanelCurrentInsets(displayId).then((insets: inputMethodEngine.SystemPanelInsets) => {
@@ -2724,7 +2934,7 @@ inputMethodAbility.createPanel(this.context, panelConfig).then( (panel: inputMet
 
 ### setSystemPanelButtonColor<sup>22+</sup>
 
-setSystemPanelButtonColor(fillColor: string | undefined, backgroundColor: string | undefined): Promise\<void>
+setSystemPanelButtonColor(fillColor: string | undefined, backgroundColor: string | undefined): Promise&lt;void&gt; 
 
 设置当前面板功能键颜色和功能键的背景颜色。使用Promise异步回调。
 
@@ -2741,17 +2951,18 @@ setSystemPanelButtonColor(fillColor: string | undefined, backgroundColor: string
 
 | 类型   | 说明                             |
 | ------- | ------------------------------ |
-| Promise\<void> | Promise对象。无返回结果。  |
+| Promise&lt;void&gt;  | Promise对象。无返回结果。  |
 
 **示例：**
 
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 
+// 确保有panel实例，可以使用inputMethodEngine.getInputMethodAbility().createPanel(...)创建panel实例
 try {
   let fillColor = "#FFFF00";
   let backgroundColor = "#0000FF";
-  this.panel.setSystemPanelButtonColor(fillColor, backgroundColor).then(() => {
+  panel.setSystemPanelButtonColor(fillColor, backgroundColor).then(() => {
     console.info(`setSystemPanelButtonColor success.`);
   }).catch((error: BusinessError) => {
     console.error(`setSystemPanelButtonColor failed, code: ${error.code}, message: ${error.message}`);
@@ -2784,7 +2995,7 @@ hide(callback: AsyncCallback&lt;void&gt;): void
 
 以下错误码的详细介绍请参见[输入法框架错误码](errorcode-inputmethod-framework.md)。
 
-| 错误码ID | 错误信息                 |
+| 错误码ID | 错误信息 |
 | -------- | -------------------------- |
 | 12800003 | input method client error. Possible causes: 1.the edit box is not focused. 2.no edit box is bound to current input method application. 3.ipc failed due to the large amount of data transferred or other reasons. |
 
@@ -2814,13 +3025,13 @@ hide(): Promise&lt;void&gt;
 
 | 类型             | 说明                      |
 | ---------------- | ------------------------- |
-| Promise&lt;void> | 无返回结果的Promise对象。 |
+| Promise&lt;void&gt; | Promise对象，无返回结果。 |
 
 **错误码：**
 
 以下错误码的详细介绍请参见[输入法框架错误码](errorcode-inputmethod-framework.md)。
 
-| 错误码ID | 错误信息                 |
+| 错误码ID | 错误信息 |
 | -------- | -------------------------- |
 | 12800003 | input method client error. Possible causes: 1.the edit box is not focused. 2.no edit box is bound to current input method application. 3.ipc failed due to the large amount of data transferred or other reasons. |
 
@@ -2844,7 +3055,7 @@ hideKeyboard(callback: AsyncCallback&lt;void&gt;): void
 
 > **说明：**
 >
-> 从API version 8开始支持，API version 9开始废弃，建议使用[inputMethodEngine.KeyboardController.hide](#hide9)替代。
+> 从 API version 8开始支持，从API version 9开始废弃。建议使用[inputMethodEngine.KeyboardController.hide](#hide9)替代。
 
 **系统能力：** SystemCapability.MiscServices.InputMethodFramework
 
@@ -2876,7 +3087,7 @@ hideKeyboard(): Promise&lt;void&gt;
 
 > **说明：**
 >
-> 从API version 8开始支持，API version 9开始废弃，建议使用[inputMethodEngine.KeyboardController.hide](#hide9-1)替代。
+> 从 API version 8开始支持，从API version 9开始废弃。建议使用[inputMethodEngine.KeyboardController.hide](#hide9)替代。
 
 **系统能力：** SystemCapability.MiscServices.InputMethodFramework
 
@@ -2884,7 +3095,7 @@ hideKeyboard(): Promise&lt;void&gt;
 
 | 类型             | 说明                      |
 | ---------------- | ------------------------- |
-| Promise&lt;void> | 无返回结果的Promise对象。 |
+| Promise&lt;void&gt;| Promise对象，无返回结果。 |
 
 **示例：**
 
@@ -2894,7 +3105,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 keyboardController.hideKeyboard().then(() => {
   console.info('Succeeded in hiding keyboard.');
 }).catch((err: BusinessError) => {
-  console.info(`Failed to hideKeyboard. Code is ${err.code}, message is ${err.message}`);
+  console.error(`Failed to hideKeyboard. Code is ${err.code}, message is ${err.message}`);
 });
 ```
 
@@ -2916,7 +3127,7 @@ exitCurrentInputType(callback: AsyncCallback&lt;void&gt;): void
 
 以下错误码的详细介绍请参见[输入法框架错误码](errorcode-inputmethod-framework.md)。
 
-| 错误码ID | 错误信息                                       |
+| 错误码ID | 错误信息 |
 | -------- | ---------------------------------------------- |
 | 12800008 | input method manager service error. Possible cause: a system error, such as null pointer, IPC exception. |
 | 12800010 | not the preconfigured default input method. |
@@ -2947,13 +3158,13 @@ exitCurrentInputType(): Promise&lt;void&gt;
 
 | 类型             | 说明                      |
 | ---------------- | ------------------------- |
-| Promise&lt;void> | 无返回结果的Promise对象。 |
+| Promise&lt;void&gt; | Promise对象，无返回结果。 |
 
 **错误码：**
 
 以下错误码的详细介绍请参见[输入法框架错误码](errorcode-inputmethod-framework.md)。
 
-| 错误码ID | 错误信息                                       |
+| 错误码ID | 错误信息 |
 | -------- | ---------------------------------------------- |
 | 12800008 | input method manager service error. Possible cause: a system error, such as null pointer, IPC exception. |
 | 12800010 | not the preconfigured default input method. |
@@ -2974,7 +3185,7 @@ keyboardController.exitCurrentInputType().then(() => {
 
 输入法的安全模式，如BASIC或FULL。
 
-**系统能力**: SystemCapability.MiscServices.InputMethodFramework
+**系统能力:** SystemCapability.MiscServices.InputMethodFramework
 
 | 名称  | 值   | 说明                                         |
 | ----- | ---- | -------------------------------------------- |
@@ -2985,7 +3196,7 @@ keyboardController.exitCurrentInputType().then(() => {
 
 编辑框中文本的扩展编辑操作类型，如剪切、复制等。
 
-**系统能力**: SystemCapability.MiscServices.InputMethodFramework
+**系统能力:** SystemCapability.MiscServices.InputMethodFramework
 
 | 名称 | 值 |说明 |
 | -------- | -------- |-------- |
@@ -2998,7 +3209,7 @@ keyboardController.exitCurrentInputType().then(() => {
 
 光标的移动方向。
 
-**系统能力**: SystemCapability.MiscServices.InputMethodFramework
+**系统能力:** SystemCapability.MiscServices.InputMethodFramework
 
 | 名称 | 值 |说明 |
 | -------- | -------- |-------- |
@@ -3066,9 +3277,7 @@ onMessage(msgId: string, msgParam?: ArrayBuffer): void
 ```ts
 inputMethodEngine.getInputMethodAbility()
   .on('inputStart',
-    (kbController: inputMethodEngine.KeyboardController, client: inputMethodEngine.InputClient) => {
-      let keyboardController: inputMethodEngine.KeyboardController = kbController;
-      let inputClient: inputMethodEngine.InputClient = client;
+    (keyboardController: inputMethodEngine.KeyboardController, inputClient: inputMethodEngine.InputClient) => {
       let messageHandler: inputMethodEngine.MessageHandler = {
         onTerminated(): void {
           console.info('OnTerminated.');
@@ -3100,9 +3309,7 @@ onTerminated(): void
 ```ts
 inputMethodEngine.getInputMethodAbility()
   .on('inputStart',
-    (kbController: inputMethodEngine.KeyboardController, client: inputMethodEngine.InputClient) => {
-      let keyboardController: inputMethodEngine.KeyboardController = kbController;
-      let inputClient: inputMethodEngine.InputClient = client;
+    (keyboardController: inputMethodEngine.KeyboardController, inputClient: inputMethodEngine.InputClient) => {
       let messageHandler: inputMethodEngine.MessageHandler = {
         onTerminated(): void {
           console.info('OnTerminated.');
@@ -3111,11 +3318,26 @@ inputMethodEngine.getInputMethodAbility()
           console.info(`recv message, msgId is ${msgId}, msgParam is ${JSON.stringify(msgParam)}`);
         }
       }
-      inputClient.recvMessage(messageHandler);
+      client.recvMessage(messageHandler);
     });
 ```
 
 ## InputClient<sup>9+</sup>
+
+InputClient是输入法客户端对象，代表当前绑定到输入法应用的编辑框客户端。InputClient实例通过InputMethodAbility的[on('inputStart')](#oninputstart9)事件回调获取，每个绑定事件对应一个InputClient实例，输入法应用通过该实例与编辑框进行文本交互。
+
+核心功能概述：
+- 文本获取：通过[getForward](#getforward9)/[getForwardSync](#getforwardsync10)获取光标前的文本，通过[getBackward](#getbackward9)/[getBackwardSync](#getbackwardsync10)获取光标后的文本，用于分析已输入内容并提供智能补全。
+- 文本编辑：通过[insertText](#inserttext9)/[insertTextSync](#inserttextsync10)插入文本，通过[deleteForward](#deleteforward9)/[deleteForwardSync](#deleteforwardsync10)删除光标前的文本，通过[deleteBackward](#deletebackward9)/[deleteBackwardSync](#deletebackwardsync10)删除光标后的文本。
+- 功能键与光标：通过[sendKeyFunction](#sendkeyfunction9)发送功能键（如回车键），通过[moveCursor](#movecursor9)/[moveCursorSync](#movecursorsync10)移动光标。
+- 选区操作：通过[selectByRange](#selectbyrange10)/[selectByRangeSync](#selectbyrangesync10)按范围选中文本，通过[selectByMovement](#selectbymovement10)/[selectByMovementSync](#selectbymovementsync10)按方向选中文本。
+- 编辑框属性：通过[getEditorAttribute](#geteditorattribute9)/[getEditorAttributeSync](#geteditorattributesync10)获取编辑框属性信息（输入类型、回车键类型等），据此调整键盘布局。
+- 文本预览：通过[setPreviewText](#setpreviewtext12)/[setPreviewTextSync](#setpreviewtextsync12)设置预览文本，通过[finishTextPreview](#finishtextpreview12)/[finishTextPreviewSync](#finishtextpreviewsync12)结束文本预览。
+- 私有通信：通过[sendPrivateCommand](#sendprivatecommand12)向应用发送私有命令，通过[sendMessage](#sendmessage15)/[recvMessage](#recvmessage15)进行消息通信。
+
+注意事项：
+- InputClient实例与当前绑定的编辑框关联，当编辑框失去焦点或输入法解绑时，该实例可能失效。
+- 同名Sync后缀接口为同步接口，阻塞主线程，容易影响UI交互，需谨慎使用。
 
 下列API均需使用[on('inputStart')](#oninputstart9)获取到InputClient实例后，通过实例调用。
 
@@ -3127,12 +3349,12 @@ sendKeyFunction(action:number, callback: AsyncCallback&lt;boolean&gt;): void
 
 **系统能力：** SystemCapability.MiscServices.InputMethodFramework
 
-  **参数：**
+**参数：**
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | action | number | 是 | 功能键键值。<br/>- 当值为0时，表示无效按键。<br/>- 当值为1时，表示确认键（即回车键）。 |
-| callback | AsyncCallback&lt;boolean&gt; | 是 | 回调函数。当功能键发送成功，err为undefined，data为true；否则为错误对象。 |
+| callback | AsyncCallback&lt;boolean&gt; | 是 | 回调函数。当功能键发送成功，err为undefined，data为true；当功能键发送失败，err为undefined，data为false；否则为错误对象。 |
 
 **错误码：**
 
@@ -3143,7 +3365,7 @@ sendKeyFunction(action:number, callback: AsyncCallback&lt;boolean&gt;): void
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 12800003 | input method client error. Possible causes: 1.the edit box is not focused. 2.no edit box is bound to current input method application. 3.ipc failed due to the large amount of data transferred or other reasons. |
 
- **示例：**
+**示例：**
 
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
@@ -3181,7 +3403,7 @@ sendKeyFunction(action: number): Promise&lt;boolean&gt;
 
 | 类型                            | 说明                                                         |
 | ------------------------------- | ------------------------------------------------------------ |
-| Promise&lt;boolean&gt; |  Promise对象。返回true表示功能键发送成功；返回false表示功能键发送失败。|
+| Promise&lt;boolean&gt; |  Promise对象。resolve返回true表示功能键发送成功；resolve返回false表示功能键发送失败；reject时抛出错误对象，表示执行过程中发生错误。|
 
 **错误码：**
 
@@ -3214,6 +3436,8 @@ inputClient.sendKeyFunction(action).then((result: boolean) => {
 getForward(length:number, callback: AsyncCallback&lt;string&gt;): void
 
 获取光标前固定长度的文本。使用callback异步回调。
+使用场景：分析已输入文本内容以提供智能补全建议、检查文本格式、实现文本预测功能、实现文本语义分析等。
+使用后效果：成功时返回光标前指定长度的文本字符串，输入法应用可据此更新候选词或输入建议。
 
 **系统能力：** SystemCapability.MiscServices.InputMethodFramework
 
@@ -3297,6 +3521,9 @@ inputClient.getForward(length).then((text: string) => {
 getForwardSync(length:number): string
 
 获取光标前固定长度的文本。
+> **说明：**
+> 
+> 同步接口阻塞主线程，容易影响UI交互，需谨慎使用。建议优先使用对应的异步接口[getForward](#getforward9-1)。
 
 **系统能力：** SystemCapability.MiscServices.InputMethodFramework
 
@@ -3418,6 +3645,9 @@ inputClient.getBackward(length).then((text: string) => {
 getBackwardSync(length:number): string
 
 获取光标后固定长度的文本。
+> **说明：**
+> 
+> 同步接口阻塞主线程，容易影响UI交互，需谨慎使用。建议优先使用对应的异步接口[getBackward](#getbackward9)。
 
 **系统能力：** SystemCapability.MiscServices.InputMethodFramework
 
@@ -3457,6 +3687,10 @@ deleteForward(length:number, callback: AsyncCallback&lt;boolean&gt;): void
 
 删除光标前固定长度的文本。使用callback异步回调。
 
+使用场景：实现退格键功能、逐字删除输入、删除错误的输入、实现自定义删除逻辑等。
+
+使用后效果：成功时返回true，编辑框中光标前指定长度的文本被删除。
+
 **系统能力：** SystemCapability.MiscServices.InputMethodFramework
 
 **参数：**
@@ -3464,7 +3698,7 @@ deleteForward(length:number, callback: AsyncCallback&lt;boolean&gt;): void
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | length | number | 是 | 文本长度。不能小于0。 |
-| callback | AsyncCallback&lt;boolean&gt; | 是 | 回调函数。当光标前固定长度的文本删除成功，err为undefined，data为true；否则为错误对象。 |
+| callback | AsyncCallback&lt;boolean&gt; | 是 | 回调函数。当光标前固定长度的文本删除成功，err为undefined，data为true；当光标前固定长度的文本删除失败，err为undefined，data为false；否则为错误对象。 |
 
 **错误码：**
 
@@ -3513,7 +3747,7 @@ deleteForward(length:number): Promise&lt;boolean&gt;
 
 | 类型                   | 说明           |
 | ---------------------- | -------------- |
-| Promise&lt;boolean&gt; | Promise对象。返回true表示删除光标前固定长度的文本成功；返回false表示删除光标前固定长度的文本失败。|
+| Promise&lt;boolean&gt; | Promise对象。resolve返回true表示删除光标前固定长度的文本成功；resolve返回false表示删除光标前固定长度的文本失败；reject时抛出错误对象，表示执行过程中发生错误。|
 
 **错误码：**
 
@@ -3547,6 +3781,9 @@ inputClient.deleteForward(length).then((result: boolean) => {
 deleteForwardSync(length:number): void
 
 删除光标前固定长度的文本。
+> **说明：**
+> 
+> 同步接口阻塞主线程，容易影响UI交互，需谨慎使用。建议优先使用对应的异步接口[deleteForward](#deleteforward9)。
 
 **系统能力：** SystemCapability.MiscServices.InputMethodFramework
 
@@ -3578,6 +3815,10 @@ inputClient.deleteForwardSync(length);
 deleteBackward(length:number, callback: AsyncCallback&lt;boolean&gt;): void
 
 删除光标后固定长度的文本。使用callback异步回调。
+
+使用场景：实现删除键功能、删除光标后的字符、快速修正输入、实现自定义删除逻辑等。
+
+使用后效果：成功时返回true，编辑框中光标后指定长度的文本被删除。
 
 **系统能力：** SystemCapability.MiscServices.InputMethodFramework
 
@@ -3635,7 +3876,7 @@ deleteBackward(length:number): Promise&lt;boolean&gt;
 
 | 类型                            | 说明                                                         |
 | ------------------------------- | ------------------------------------------------------------ |
-| Promise&lt;boolean&gt; |  Promise对象。返回true表示删除光标后固定长度的文本成功；返回false表示删除光标后固定长度的文本失败。 |
+| Promise&lt;boolean&gt; |  Promise对象。resolve返回true表示删除光标后固定长度的文本成功；resolve返回false表示删除光标后固定长度的文本失败；reject时抛出错误对象，表示执行过程中发生错误。 |
 
 **错误码：**
 
@@ -3669,6 +3910,9 @@ inputClient.deleteBackward(length).then((result: boolean) => {
 deleteBackwardSync(length:number): void
 
 删除光标后固定长度的文本。
+> **说明：**
+> 
+> 同步接口阻塞主线程，容易影响UI交互，需谨慎使用。建议优先使用对应的异步接口[deleteBackward](#deletebackward9-1)。
 
 **系统能力：** SystemCapability.MiscServices.InputMethodFramework
 
@@ -3700,6 +3944,10 @@ inputClient.deleteBackwardSync(length);
 insertText(text:string, callback: AsyncCallback&lt;boolean&gt;): void
 
 插入文本。使用callback异步回调。
+
+使用场景：插入候选词、插入特殊符号、实现文本自动补全、快速插入常用短语等。
+
+使用后效果：成功时返回true，文本已插入到编辑框光标位置。
 
 **系统能力：** SystemCapability.MiscServices.InputMethodFramework
 
@@ -3757,7 +4005,7 @@ insertText(text:string): Promise&lt;boolean&gt;
 
 | 类型                            | 说明                                                         |
 | ------------------------------- | ------------------------------------------------------------ |
-| Promise&lt;boolean&gt;  |  Promise对象。返回true表示插入文本成功；返回false表示插入文本失败。  |
+| Promise&lt;boolean&gt;  |  Promise对象。resolve返回true表示插入文本成功；resolve返回false表示插入文本失败；reject时抛出错误对象，表示执行过程中发生错误。  |
 
 **错误码：**
 
@@ -3790,6 +4038,9 @@ inputClient.insertText('test').then((result: boolean) => {
 insertTextSync(text: string): void
 
 插入文本。
+> **说明：**
+> 
+> 同步接口阻塞主线程，容易影响UI交互，需谨慎使用。建议优先使用对应的异步接口[insertText](#inserttext9-1)。
 
 **系统能力：** SystemCapability.MiscServices.InputMethodFramework
 
@@ -3821,6 +4072,10 @@ getEditorAttribute(callback: AsyncCallback&lt;EditorAttribute&gt;): void
 
 获取编辑框属性值。使用callback异步回调。
 
+使用场景：根据编辑框类型调整输入法界面、根据编辑框配置提供不同的输入建议、实现特定输入逻辑、适配不同类型的输入框等。
+
+使用后效果：返回编辑框属性信息（包括inputPattern输入类型和enterKeyType回车键类型），输入法应用据此调整键盘布局。
+
 **系统能力：** SystemCapability.MiscServices.InputMethodFramework
 
 **参数：**
@@ -3833,10 +4088,9 @@ getEditorAttribute(callback: AsyncCallback&lt;EditorAttribute&gt;): void
 
 以下错误码的详细介绍请参见[输入法框架错误码](errorcode-inputmethod-framework.md)。
 
-| 错误码ID | 错误信息                 |
+| 错误码ID | 错误信息 |
 | -------- | -------------------------- |
 | 12800003 | input method client error. Possible causes: 1.the edit box is not focused. 2.no edit box is bound to current input method application. 3.ipc failed due to the large amount of data transferred or other reasons. |
-
 **示例：**
 
 ```ts
@@ -3870,7 +4124,7 @@ getEditorAttribute(): Promise&lt;EditorAttribute&gt;
 
 以下错误码的详细介绍请参见[输入法框架错误码](errorcode-inputmethod-framework.md)。
 
-| 错误码ID | 错误信息                 |
+| 错误码ID | 错误信息 |
 | -------- | -------------------------- |
 | 12800003 | input method client error. Possible causes: 1.the edit box is not focused. 2.no edit box is bound to current input method application. 3.ipc failed due to the large amount of data transferred or other reasons. |
 
@@ -3892,6 +4146,9 @@ inputClient.getEditorAttribute().then((editorAttribute: inputMethodEngine.Editor
 getEditorAttributeSync(): EditorAttribute
 
 获取编辑框属性值。
+> **说明：**
+> 
+> 同步接口阻塞主线程，容易影响UI交互，需谨慎使用。建议优先使用对应的异步接口[getEditorAttribute](#geteditorattribute9)。
 
 **系统能力：** SystemCapability.MiscServices.InputMethodFramework
 
@@ -3922,6 +4179,10 @@ console.info(`editorAttribute.enterKeyType:  ${editorAttribute.enterKeyType}`);
 moveCursor(direction: number, callback: AsyncCallback&lt;void&gt;): void
 
 移动光标。使用callback异步回调。
+
+使用场景：实现光标移动到特定位置、实现上下左右移动光标功能、实现快速定位、实现自定义光标控制等。
+
+使用后效果：成功时编辑框中的光标按指定方向移动一步。direction取值参见[光标常量](#常量)，1为上移，2为下移，3为左移，4为右移。
 
 **系统能力：** SystemCapability.MiscServices.InputMethodFramework
 
@@ -3973,7 +4234,7 @@ moveCursor(direction: number): Promise&lt;void&gt;
 
 | 类型                | 说明                      |
 | ------------------- | ------------------------- |
-| Promise&lt;void&gt; | 无返回结果的Promise对象。 |
+| Promise&lt;void&gt; | Promise对象，无返回结果。 |
 
 **错误码：**
 
@@ -4001,6 +4262,9 @@ inputClient.moveCursor(inputMethodEngine.Direction.CURSOR_UP).then(() => {
 moveCursorSync(direction: number): void
 
 移动光标。
+> **说明：**
+> 
+> 同步接口阻塞主线程，容易影响UI交互，需谨慎使用。建议优先使用对应的异步接口[moveCursor](#movecursor9)。
 
 **系统能力：** SystemCapability.MiscServices.InputMethodFramework
 
@@ -4054,6 +4318,8 @@ selectByRange(range: Range, callback: AsyncCallback&lt;void&gt;): void
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 
+// 设置预上屏文本的替换范围为第一个字符
+// 设置选中文本的起始和结束位置
 let range: inputMethodEngine.Range = { start: 0, end: 1 };
 inputClient.selectByRange(range, (err: BusinessError) => {
   if (err) {
@@ -4082,7 +4348,7 @@ selectByRange(range: Range): Promise&lt;void&gt;
 
 | 类型                | 说明                      |
 | ------------------- | ------------------------- |
-| Promise&lt;void&gt; | 无返回结果的Promise对象。 |
+| Promise&lt;void&gt; | Promise对象，无返回结果。 |
 
 **错误码：**
 
@@ -4098,6 +4364,8 @@ selectByRange(range: Range): Promise&lt;void&gt;
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 
+// 设置预上屏文本的替换范围为第一个字符
+// 设置选中文本的起始和结束位置
 let range: inputMethodEngine.Range = { start: 0, end: 1 };
 inputClient.selectByRange(range).then(() => {
   console.info('Succeeded in selecting by range.');
@@ -4111,6 +4379,9 @@ inputClient.selectByRange(range).then(() => {
 selectByRangeSync(range: Range): void
 
 根据索引范围选中文本。
+> **说明：**
+> 
+> 同步接口阻塞主线程，容易影响UI交互，需谨慎使用。建议优先使用对应的异步接口[selectByRange](#selectbyrange10)。
 
 **系统能力：** SystemCapability.MiscServices.InputMethodFramework
 
@@ -4132,6 +4403,8 @@ selectByRangeSync(range: Range): void
 **示例：**
 
 ```ts
+// 设置预上屏文本的替换范围为第一个字符
+// 设置选中文本的起始和结束位置
 let range: inputMethodEngine.Range = { start: 0, end: 1 };
 inputClient.selectByRangeSync(range);
 ```
@@ -4165,6 +4438,7 @@ selectByMovement(movement: Movement, callback: AsyncCallback&lt;void&gt;): void
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 
+// 设置选中时光标向上移动
 let movement: inputMethodEngine.Movement = { direction: 1 };
 inputClient.selectByMovement(movement, (err: BusinessError) => {
   if (err) {
@@ -4193,7 +4467,7 @@ selectByMovement(movement: Movement): Promise&lt;void&gt;
 
 | 类型                | 说明                      |
 | ------------------- | ------------------------- |
-| Promise&lt;void&gt; | 无返回结果的Promise对象。 |
+| Promise&lt;void&gt; | Promise对象，无返回结果。 |
 
 **错误码：**
 
@@ -4209,6 +4483,7 @@ selectByMovement(movement: Movement): Promise&lt;void&gt;
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 
+// 设置选中时光标向上移动
 let movement: inputMethodEngine.Movement = { direction: 1 };
 inputClient.selectByMovement(movement).then(() => {
   console.info('Succeeded in selecting by movement.');
@@ -4222,6 +4497,9 @@ inputClient.selectByMovement(movement).then(() => {
 selectByMovementSync(movement: Movement): void
 
 根据光标移动方向选中文本。
+> **说明：**
+> 
+> 同步接口阻塞主线程，容易影响UI交互，需谨慎使用。建议优先使用对应的异步接口[selectByMovement](#selectbymovement10-1)。
 
 **系统能力：** SystemCapability.MiscServices.InputMethodFramework
 
@@ -4243,6 +4521,7 @@ selectByMovementSync(movement: Movement): void
 **示例：**
 
 ```ts
+// 设置选中时光标向上移动
 let movement: inputMethodEngine.Movement = { direction: 1 };
 inputClient.selectByMovementSync(movement);
 ```
@@ -4259,7 +4538,7 @@ getTextIndexAtCursor(callback: AsyncCallback&lt;number&gt;): void
 
 | 参数名   | 类型                        | 必填 | 说明                                                         |
 | -------- | --------------------------- | ---- | ------------------------------------------------------------ |
-| callback | AsyncCallback&lt;number&gt; | 是   | 回调函数。当文本索引获取成功，err为undefined，否则为错误对象。 |
+| callback | AsyncCallback&lt;number&gt; | 是   | 回调函数。当文本索引获取成功，err为undefined，index为光标所在处的文本索引；否则err为错误对象，index为undefined。 |
 
 **错误码：**
 
@@ -4324,6 +4603,9 @@ inputClient.getTextIndexAtCursor().then((index: number) => {
 getTextIndexAtCursorSync(): number
 
 获取光标所在处的文本索引。
+> **说明：**
+> 
+> 同步接口阻塞主线程，容易影响UI交互，需谨慎使用。建议优先使用对应的异步接口[getTextIndexAtCursor](#gettextindexatcursor10)。
 
 **系统能力：** SystemCapability.MiscServices.InputMethodFramework
 
@@ -4418,7 +4700,7 @@ sendExtendAction(action: ExtendAction): Promise&lt;void&gt;
 
 | 类型                  | 说明                                    |
 | --------------------- | --------------------------------------- |
-| Promise&lt;void&gt; | 无返回结果的Promise对象。 |
+| Promise&lt;void&gt; | Promise对象，无返回结果。 |
 
 **错误码：**
 
@@ -4466,7 +4748,7 @@ sendPrivateCommand(commandData: Record&lt;string, CommandDataType&gt;): Promise&
 
 | 类型                | 说明                      |
 | ------------------- | ------------------------- |
-| Promise&lt;void&gt; | 无返回结果的Promise对象。 |
+| Promise&lt;void&gt; | Promise对象，无返回结果。 |
 
 **错误码：**
 
@@ -4491,8 +4773,8 @@ inputMethodEngine.getInputMethodAbility().on('inputStart', (kbController, textIn
   }
   textInputClient.sendPrivateCommand(record).then(() => {
   }).catch((err: BusinessError) => {
-    if (err !== undefined) {
-      console.error(`sendPrivateCommand catch error: ${err.code} ${err.message}`);
+    if (err) {
+      console.error(`sendPrivateCommand catch error: ${err.code}, message: ${err.message}`);
     }
   });
 })
@@ -4552,14 +4834,14 @@ setPreviewText(text: string, range: Range): Promise&lt;void&gt;
 <!--Table: auto; auto; 10%; 60%-->
 | 参数名 | 类型              | 必填 | 说明                                                         |
 | ------ | ----------------- | ---- | ------------------------------------------------------------ |
-| text   | string            | 是   | 将被预上屏的文本。                                           |
-| range  | [Range](#range10) | 是   | 目标替换的文本范围。<br/>- 当值为{ start: -1, end: -1 }时，默认将参数text替换当前预上屏区域全部文本。<br/>- 当start等于end，默认将参数text插入start对应的光标位置。<br/>- 当start不等于end，将参数text替换range对应区域的文本。<br/>- 当start与end为其他含有负数值的组合，按照参数错误返回。<br/>- 当输入框已有预上屏文本，参数range不得超过预上屏文本范围，否则按照参数错误返回。<br/>- 当输入框无预上屏文本，参数range不得超过输入框文本范围，否则按照参数错误返回。 |
+| text   | string            | 是   | 预上屏的文本。                                           |
+| range  | [Range](#range10) | 是   | 替换的文本范围。<br/>- 当值为{ start: -1, end: -1 }时，默认将参数text替换当前预上屏区域全部文本。<br/>- 当start等于end，默认将参数text插入start对应的光标位置。<br/>- 当start不等于end，将参数text替换range对应区域的文本。<br/>- 当start与end为其他含有负数值的组合，按照参数错误返回。<br/>- 当输入框已有预上屏文本，参数range不得超过预上屏文本范围，否则按照参数错误返回。<br/>- 当输入框无预上屏文本，参数range不得超过输入框文本范围，否则按照参数错误返回。 |
 
 **返回值：**
 
 | 类型                | 说明                      |
 | ------------------- | ------------------------- |
-| Promise&lt;void&gt; | 无返回结果的Promise对象。 |
+| Promise&lt;void&gt; | Promise对象，无返回结果。 |
 
 **错误码：**
 
@@ -4576,6 +4858,8 @@ setPreviewText(text: string, range: Range): Promise&lt;void&gt;
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 
+// 设置预上屏文本的替换范围为第一个字符
+// 设置选中文本的起始和结束位置
 let range: inputMethodEngine.Range = { start: 0, end: 1 };
 inputClient.setPreviewText('test', range).then(() => {
   console.info('Succeeded in setting preview text.');
@@ -4589,6 +4873,9 @@ inputClient.setPreviewText('test', range).then(() => {
 setPreviewTextSync(text: string, range: Range): void
 
 设置预上屏文本。
+> **说明：**
+> 
+> 同步接口阻塞主线程，容易影响UI交互，需谨慎使用。建议优先使用对应的异步接口[setPreviewText](#setpreviewtext12)。
 
 **系统能力：** SystemCapability.MiscServices.InputMethodFramework
 
@@ -4597,8 +4884,8 @@ setPreviewTextSync(text: string, range: Range): void
 <!--Table: auto; auto; 10%; 60%-->
 | 参数名 | 类型              | 必填 | 说明                                                         |
 | ------ | ----------------- | ---- | ------------------------------------------------------------ |
-| text   | string            | 是   | 将被预上屏的文本。                                           |
-| range  | [Range](#range10) | 是   | 目标替换的文本范围。<br/>- 当值为{ start: -1, end: -1 }时，默认将参数text替换当前预上屏区域全部文本。<br/>- 当start等于end，默认将参数text插入start对应的光标位置。<br/>- 当start不等于end，将参数text替换range对应区域的文本。<br/>- 当start与end为其他含有负数值的组合，按照参数错误返回。<br/>- 当输入框已有预上屏文本，参数range不得超过预上屏文本范围，否则按照参数错误返回。<br/>- 当输入框无预上屏文本，参数range不得超过输入框文本范围，否则按照参数错误返回。 |
+| text   | string            | 是   | 预上屏的文本。                                           |
+| range  | [Range](#range10) | 是   | 替换的文本范围。<br/>- 当值为{ start: -1, end: -1 }时，默认将参数text替换当前预上屏区域全部文本。<br/>- 当start等于end，默认将参数text插入start对应的光标位置。<br/>- 当start不等于end，将参数text替换range对应区域的文本。<br/>- 当start与end为其他含有负数值的组合，按照参数错误返回。<br/>- 当输入框已有预上屏文本，参数range不得超过预上屏文本范围，否则按照参数错误返回。<br/>- 当输入框无预上屏文本，参数range不得超过输入框文本范围，否则按照参数错误返回。 |
 
 **错误码：**
 
@@ -4613,6 +4900,8 @@ setPreviewTextSync(text: string, range: Range): void
 **示例：**
 
 ```ts
+// 设置预上屏文本的替换范围为第一个字符
+// 设置选中文本的起始和结束位置
 let range: inputMethodEngine.Range = { start: 0, end: 1 };
 inputClient.setPreviewTextSync('test', range);
 ```
@@ -4633,7 +4922,7 @@ finishTextPreview(): Promise&lt;void&gt;
 
 | 类型                | 说明                      |
 | ------------------- | ------------------------- |
-| Promise&lt;void&gt; | 无返回结果的Promise对象。 |
+| Promise&lt;void&gt; | Promise对象，无返回结果。 |
 
 **错误码：**
 
@@ -4661,10 +4950,11 @@ inputClient.finishTextPreview().then(() => {
 finishTextPreviewSync(): void
 
 结束预上屏。
-
->**说明：**
+> **说明：**
+> 
+> 同步接口阻塞主线程，容易影响UI交互，需谨慎使用。建议优先使用对应的异步接口[finishTextPreview](#finishtextpreview12)。
 >
->若当前输入框已有预上屏状态文本，调用此接口后，预上屏内容将被系统正式上屏。
+> 若当前输入框已有预上屏状态文本，调用此接口后，预上屏内容将被系统正式上屏。
 
 **系统能力：** SystemCapability.MiscServices.InputMethodFramework
 
@@ -4685,7 +4975,7 @@ inputClient.finishTextPreviewSync();
 
 ### sendMessage<sup>15+</sup>
 
-sendMessage(msgId: string, msgParam?: ArrayBuffer): Promise<void&gt;
+sendMessage(msgId: string, msgParam?: ArrayBuffer): Promise&lt;void&gt;
 
 发送自定义通信至已绑定当前输入法应用的编辑框应用。使用Promise异步回调。
 
@@ -4701,14 +4991,14 @@ sendMessage(msgId: string, msgParam?: ArrayBuffer): Promise<void&gt;
 
 | 参数名   | 类型        | 必填 | 说明                                                         |
 | -------- | ----------- | ---- | ------------------------------------------------------------ |
-| msgId    | string      | 是   | 需要发送至已绑定当前输入法应用的编辑框应用的自定义数据的标识符。 |
-| msgParam | ArrayBuffer | 否   | 需要发送至已绑定当前输入法应用的编辑框应用的自定义数据的消息体。 |
+| msgId    | string      | 是   | 需要发送至已绑定当前输入法应用的编辑框应用的自定义数据的标识符。最大长度256字节。超出范围时返回错误码401。 |
+| msgParam | ArrayBuffer | 否   | 需要发送至已绑定当前输入法应用的编辑框应用的自定义数据的消息体。最大大小128KB。超出范围时返回错误码401。 |
 
 **返回值：**
 
 | 类型                | 说明                      |
 | ------------------- | ------------------------- |
-| Promise&lt;void&gt; | 无返回结果的Promise对象。 |
+| Promise&lt;void&gt; | Promise对象，无返回结果。 |
 
 **错误码：**
 
@@ -4771,8 +5061,7 @@ recvMessage(msgHandler?: MessageHandler): void;
 inputMethodEngine.getInputMethodAbility()
   .on('inputStart',
     (kbController: inputMethodEngine.KeyboardController, client: inputMethodEngine.InputClient) => {
-      let keyboardController: inputMethodEngine.KeyboardController = kbController;
-      let inputClient: inputMethodEngine.InputClient = client;
+      // 创建消息处理器，用于接收编辑框应用发送的自定义通信数据
       let messageHandler: inputMethodEngine.MessageHandler = {
         onTerminated(): void {
           console.info('OnTerminated.');
@@ -4781,7 +5070,8 @@ inputMethodEngine.getInputMethodAbility()
           console.info('recv message.');
         }
       }
-      inputClient.recvMessage(messageHandler);
+      // 注册消息处理器
+      client.recvMessage(messageHandler);
     });
 ```
 
@@ -4805,7 +5095,7 @@ getAttachOptions(): AttachOptions
 
 | 错误码ID | 错误信息                                       |
 | -------- | ---------------------------------------------- |
-| 801 | Capability not supported. [since 19 - 19]. |
+| 801 | Capability not supported. [since 19 - 19] |
 
 > **注意：**
 >
@@ -4848,13 +5138,16 @@ on(type: 'attachOptionsDidChange', callback: Callback\<AttachOptions>): void
 **示例：**
 
 ```ts
+// 创建附加选项变更回调函数
 let attachOptionsDidChangeCallback: (attachOptions: inputMethodEngine.AttachOptions) => void =
-  (attachOptions: inputMethodEngine.AttachOptions) => {
+  (_attachOptions: inputMethodEngine.AttachOptions) => {
     console.info(`AttachOptionsDidChangeCallback1: attachOptionsDidChange event triggered`);
   };
 
+// 订阅绑定输入法时的附加选项变更事件
 inputClient.on('attachOptionsDidChange', attachOptionsDidChangeCallback);
 console.info(`attachOptionsDidChangeCallback subscribed to attachOptionsDidChange`);
+// 取消订阅绑定输入法时的附加选项变更事件
 inputClient.off('attachOptionsDidChange', attachOptionsDidChangeCallback);
 console.info(`attachOptionsDidChange unsubscribed from attachOptionsDidChange`);
 ```
@@ -4878,7 +5171,7 @@ off(type: 'attachOptionsDidChange', callback?: Callback\<AttachOptions>): void
 
 ```ts
 let attachOptionsDidChangeCallback: (attachOptions: inputMethodEngine.AttachOptions) => void =
-  (attachOptions: inputMethodEngine.AttachOptions) => {
+  (_attachOptions: inputMethodEngine.AttachOptions) => {
     console.info(`AttachOptionsDidChangeCallback1: attachOptionsDidChange event triggered`);
   };
 
@@ -4910,7 +5203,7 @@ console.info(`attachOptionsDidChange unsubscribed from attachOptionsDidChange`);
 | 名称                                   | 类型 | 只读 | 可选 | 说明                                                                                                                              |
 |--------------------------------------| -------- | ---- | ---- |---------------------------------------------------------------------------------------------------------------------------------|
 | enterKeyType                         | number   | 是   | 否   | 编辑框的功能属性，详见[常量中的功能键定义](#常量)。                                                                                                    |
-| inputPattern                         | number   | 是   | 否   | 编辑框的文本属性，详见[常量中的编辑框定义](#常量)。                                                                                                    |
+| inputPattern                        | number   | 是   | 否   | 编辑框的文本属性，详见[常量中的编辑框定义](#常量)。                                                                                                    |
 | isTextPreviewSupported<sup>12+</sup> | boolean | 否 | 否 | 编辑框是否支持预上屏。<br/>- 值为true，表示支持。<br/>- 值为false，表示不支持。                                                                             |
 | bundleName<sup>14+</sup>             | string | 是 | 是 | 编辑框所属应用包名；该值可能为""，使用该属性时需要考虑为""的场景。                                                                                             |
 | immersiveMode<sup>15+</sup>          | [ImmersiveMode](#immersivemode15) | 是   | 是   | 输入法沉浸模式。                                                                                                                        |
@@ -5075,7 +5368,7 @@ console.info(`attachOptionsDidChange unsubscribed from attachOptionsDidChange`);
 
 | 名称   | 类型                                  | 只读 | 可选 | 说明           |
 | ------ | ------------------------------------ | ---- | ---- | -------------- |
-| gradientHeight   | number                      | 否   | 否   | 渐变高度，不能超过屏幕高度的15%。|
+| gradientHeight   | number                      | 否   | 否   | 渐变高度，不能超过屏幕高度的15%。单位：px。|
 | gradientMode | [GradientMode](#gradientmode20) | 否   | 否   | 渐变模式。 |
 
 ## SystemPanelInsets<sup>21+</sup>
@@ -5094,9 +5387,9 @@ console.info(`attachOptionsDidChange unsubscribed from attachOptionsDidChange`);
 
 下列API示例中都需使用[on('inputStart')](#oninputstartdeprecated)回调获取到TextInputClient实例，再通过此实例调用对应方法。
 
-> **说明：** 
+> **说明：**
 >
-> 从API version 8开始支持，API version 9开始废弃，建议使用[InputClient](#inputclient9)替代。
+> 从 API version 8开始支持，从API version 9开始废弃。建议使用[InputClient](#inputclient9)替代。
 
 ### getForward<sup>(deprecated)</sup>
 
@@ -5104,9 +5397,13 @@ getForward(length:number, callback: AsyncCallback&lt;string&gt;): void
 
 获取光标前固定长度的文本。使用callback异步回调。
 
+使用场景：分析已输入文本内容以提供智能补全建议、检查文本格式、实现文本预测功能、实现文本语义分析等。
+
+使用后效果：成功时返回光标前指定长度的文本字符串，输入法应用可据此更新候选词或输入建议。
+
 > **说明：**
 >
-> 从API version 8开始支持，API version 9开始废弃，建议使用[inputMethodEngine.InputClient.getForward](#getforward9)替代。
+> 从 API version 8开始支持，从API version 9开始废弃。建议使用[inputMethodEngine.InputClient.getForward](#getforward9)替代。
 
 **系统能力：** SystemCapability.MiscServices.InputMethodFramework
 
@@ -5140,7 +5437,7 @@ getForward(length:number): Promise&lt;string&gt;
 
 > **说明：**
 >
-> 从API version 8开始支持，API version 9开始废弃，建议使用[inputMethodEngine.InputClient.getForward](#getforward9-1)替代。
+> 从 API version 8开始支持，从API version 9开始废弃。建议使用[inputMethodEngine.InputClient.getForward](#getforward9-1)替代。
 
 **系统能力：** SystemCapability.MiscServices.InputMethodFramework
 
@@ -5177,7 +5474,7 @@ getBackward(length:number, callback: AsyncCallback&lt;string&gt;): void
 
 > **说明：**
 >
-> 从API version 8开始支持，API version 9开始废弃，建议使用[inputMethodEngine.InputClient.getBackward](#getbackward9)替代。
+> 从 API version 8开始支持，从API version 9开始废弃。建议使用[inputMethodEngine.InputClient.getBackward](#getbackward9)替代。
 
 **系统能力：** SystemCapability.MiscServices.InputMethodFramework
 
@@ -5211,7 +5508,7 @@ getBackward(length:number): Promise&lt;string&gt;
 
 > **说明：**
 >
-> 从API version 8开始支持，API version 9开始废弃，建议使用[inputMethodEngine.InputClient.getBackward](#getbackward9)替代。
+> 从 API version 8开始支持，从API version 9开始废弃。建议使用[inputMethodEngine.InputClient.getBackward](#getbackward9)替代。
 
 **系统能力：** SystemCapability.MiscServices.InputMethodFramework
 
@@ -5246,9 +5543,13 @@ deleteForward(length:number, callback: AsyncCallback&lt;boolean&gt;): void
 
 删除光标前固定长度的文本。使用callback异步回调。
 
+使用场景：实现退格键功能、逐字删除输入、删除错误的输入、实现自定义删除逻辑等。
+
+使用后效果：成功时返回true，编辑框中光标前指定长度的文本被删除。
+
 > **说明：**
 >
-> 从API version 8开始支持，API version 9开始废弃，建议使用[inputMethodEngine.InputClient.deleteForward](#deleteforward9)替代。
+> 从 API version 8开始支持，从API version 9开始废弃。建议使用[inputMethodEngine.InputClient.deleteForward](#deleteforward9)替代。
 
 **系统能力：** SystemCapability.MiscServices.InputMethodFramework
 
@@ -5257,7 +5558,7 @@ deleteForward(length:number, callback: AsyncCallback&lt;boolean&gt;): void
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | length | number | 是 | 文本长度。不能小于0。 |
-| callback | AsyncCallback&lt;boolean&gt; | 是 | 回调函数。当光标前固定长度的文本删除成功，err为undefined，data为true；否则为错误对象。 |
+| callback | AsyncCallback&lt;boolean&gt; | 是 | 回调函数。当光标前固定长度的文本删除成功，err为undefined，data为true；当光标前固定长度的文本删除失败，err为undefined，data为false；否则为错误对象。 |
 
 **示例：**
 
@@ -5286,7 +5587,7 @@ deleteForward(length:number): Promise&lt;boolean&gt;
 
 > **说明：**
 >
-> 从API version 8开始支持，API version 9开始废弃，建议使用[inputMethodEngine.InputClient.deleteForward](#deleteforward9)替代。
+> 从 API version 8开始支持，从API version 9开始废弃。建议使用[inputMethodEngine.InputClient.deleteForward](#deleteforward9)替代。
 
 **系统能力：** SystemCapability.MiscServices.InputMethodFramework
 
@@ -5300,7 +5601,7 @@ deleteForward(length:number): Promise&lt;boolean&gt;
 
 | 类型                   | 说明           |
 | ---------------------- | -------------- |
-| Promise&lt;boolean&gt; | Promise对象。返回true表示删除光标前固定长度的文本成功；返回false表示删除光标前固定长度的文本失败。|
+| Promise&lt;boolean&gt; | Promise对象。resolve返回true表示删除光标前固定长度的文本成功；resolve返回false表示删除光标前固定长度的文本失败；reject时抛出错误对象，表示执行过程中发生错误。|
 
 **示例：**
 
@@ -5325,9 +5626,13 @@ deleteBackward(length:number, callback: AsyncCallback&lt;boolean&gt;): void
 
 删除光标后固定长度的文本。使用callback异步回调。
 
+使用场景：实现删除键功能、删除光标后的字符、快速修正输入、实现自定义删除逻辑等。
+
+使用后效果：成功时返回true，编辑框中光标后指定长度的文本被删除。
+
 > **说明：**
 >
-> 从API version 8开始支持，API version 9开始废弃，建议使用[inputMethodEngine.InputClient.deleteBackward](#deletebackward9)替代。
+> 从 API version 8开始支持，从API version 9开始废弃。建议使用[inputMethodEngine.InputClient.deleteBackward](#deletebackward9)替代。
 
 **系统能力：** SystemCapability.MiscServices.InputMethodFramework
 
@@ -5365,7 +5670,7 @@ deleteBackward(length:number): Promise&lt;boolean&gt;
 
 > **说明：**
 >
-> 从API version 8开始支持，API version 9开始废弃，建议使用[inputMethodEngine.InputClient.deleteBackward](#deletebackward9)替代。
+> 从 API version 8开始支持，从API version 9开始废弃。建议使用[inputMethodEngine.InputClient.deleteBackward](#deletebackward9)替代。
 
 **系统能力：** SystemCapability.MiscServices.InputMethodFramework
 
@@ -5405,7 +5710,7 @@ sendKeyFunction(action: number, callback: AsyncCallback&lt;boolean&gt;): void
 
 > **说明：**
 >
-> 从API version 8开始支持，API version 9开始废弃，建议使用[inputMethodEngine.InputClient.sendKeyFunction](#sendkeyfunction9)替代。
+> 从 API version 8开始支持，从API version 9开始废弃。建议使用[inputMethodEngine.InputClient.sendKeyFunction](#sendkeyfunction9)替代。
 
 **系统能力：** SystemCapability.MiscServices.InputMethodFramework
 
@@ -5414,7 +5719,7 @@ sendKeyFunction(action: number, callback: AsyncCallback&lt;boolean&gt;): void
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | action | number | 是 | 功能键键值。<br/>- 当值为0时，表示无效按键；<br/>- 当值为1时，表示确认键（即回车键）。 |
-| callback | AsyncCallback&lt;boolean&gt; | 是 | 回调函数。当功能键发送成功，err为undefined，data为true；否则为错误对象。 |
+| callback | AsyncCallback&lt;boolean&gt; | 是 | 回调函数。当功能键发送成功，err为undefined，data为true；当功能键发送失败，err为undefined，data为false；否则为错误对象。 |
 
 **示例：**
 
@@ -5443,7 +5748,7 @@ sendKeyFunction(action: number): Promise&lt;boolean&gt;
 
 > **说明：**
 >
-> 从API version 8开始支持，API version 9开始废弃，建议使用[inputMethodEngine.InputClient.sendKeyFunction](#sendkeyfunction9)替代。
+> 从 API version 8开始支持，从API version 9开始废弃。建议使用[inputMethodEngine.InputClient.sendKeyFunction](#sendkeyfunction9)替代。
 
 **系统能力：** SystemCapability.MiscServices.InputMethodFramework
 
@@ -5482,9 +5787,13 @@ insertText(text:string, callback: AsyncCallback&lt;boolean&gt;): void
 
 插入文本。使用callback异步回调。
 
+使用场景：插入候选词、插入特殊符号、实现文本自动补全、快速插入常用短语等。
+
+使用后效果：成功时返回true，文本已插入到编辑框光标位置。
+
 > **说明：**
 >
-> 从API version 8开始支持，API version 9开始废弃，建议使用[inputMethodEngine.InputClient.insertText](#inserttext9)替代。
+> 从 API version 8开始支持，从API version 9开始废弃。建议使用[inputMethodEngine.InputClient.insertText](#inserttext9)替代。
 
 **系统能力：** SystemCapability.MiscServices.InputMethodFramework
 
@@ -5521,7 +5830,7 @@ insertText(text:string): Promise&lt;boolean&gt;
 
 > **说明：**
 >
-> 从API version 8开始支持，API version 9开始废弃，建议使用[inputMethodEngine.InputClient.insertText](#inserttext9)替代。
+> 从 API version 8开始支持，从API version 9开始废弃。建议使用[inputMethodEngine.InputClient.insertText](#inserttext9)替代。
 
 **系统能力：** SystemCapability.MiscServices.InputMethodFramework
 
@@ -5559,9 +5868,13 @@ getEditorAttribute(callback: AsyncCallback&lt;EditorAttribute&gt;): void
 
 获取编辑框属性值。使用callback异步回调。
 
+使用场景：根据编辑框类型调整输入法界面、根据编辑框配置提供不同的输入建议、实现特定输入逻辑、适配不同类型的输入框等。
+
+使用后效果：返回编辑框属性信息（包括inputPattern输入类型和enterKeyType回车键类型），输入法应用据此调整键盘布局。
+
 > **说明：**
 >
-> 从API version 8开始支持，API version 9开始废弃，建议使用[inputMethodEngine.InputClient.getEditorAttribute](#geteditorattribute9)替代。
+> 从 API version 8开始支持，从API version 9开始废弃。建议使用[inputMethodEngine.InputClient.getEditorAttribute](#geteditorattribute9)替代。
 
 **系统能力：** SystemCapability.MiscServices.InputMethodFramework
 
@@ -5596,7 +5909,7 @@ getEditorAttribute(): Promise&lt;EditorAttribute&gt;
 
 > **说明：**
 >
-> 从API version 8开始支持，API version 9开始废弃，建议使用[inputMethodEngine.InputClient.getEditorAttribute](#geteditorattribute9)替代。
+> 从 API version 8开始支持，从API version 9开始废弃。建议使用[inputMethodEngine.InputClient.getEditorAttribute](#geteditorattribute9)替代。
 
 **系统能力：** SystemCapability.MiscServices.InputMethodFramework
 
@@ -5613,7 +5926,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 textInputClient.getEditorAttribute().then((editorAttribute: inputMethodEngine.EditorAttribute) => {
   console.info(`editorAttribute.inputPattern: ${editorAttribute.inputPattern}`);
-  console.info(`editorAttribute.enterKeyType: ${editorAttribute.enterKeyType}}`);
+  console.info(`editorAttribute.enterKeyType: ${editorAttribute.enterKeyType}`);
 }).catch((err: BusinessError) => {
   console.error(`Failed to getEditorAttribute. Code is ${err.code}, message is ${err.message}`);
 });
