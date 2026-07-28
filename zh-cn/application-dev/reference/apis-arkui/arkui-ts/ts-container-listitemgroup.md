@@ -674,3 +674,78 @@ struct ListItemGroupExample {
 ```
 
 ![list_multicolumn_layout](figures/list_multicolumn_layout.gif)
+
+### 示例5（设置悬浮态）
+
+该示例通过为ListItemGroup设置[headerStyle](#listitemgroupoptions对象说明)为[ListItemGroupHeaderFooterStyle.FLOATING](#listitemgroupheaderfooterstyle)，实现分组头部在滚动时悬浮显示的效果。
+
+```ts
+// xxx.ets
+export interface ContactGroup {
+  letter: string;
+  names: string[];
+}
+
+@Entry
+@Component
+struct Index {
+  private scroller: Scroller = new Scroller();
+  @State groups: ContactGroup[] = [];
+
+  aboutToAppear(): void {
+    this.groups = [
+      {
+        letter: 'A',
+        names: ['Alice', 'Anna', 'Aaron']
+      },
+      {
+        letter: 'B',
+        names: ['Bob', 'Bella', 'Brian']
+      },
+      {
+        letter: 'C',
+        names: ['Cindy', 'Charlie']
+      },
+      {
+        letter: 'D',
+        names: ['David', 'Diana', 'Doris']
+      }
+    ]
+  }
+
+  @Builder
+  private GroupHeader(letter: string) {
+    Row() {
+      Text(letter)
+        .fontSize("16.0fp")
+        .size({width: 40, height: 28})
+        .textAlign(TextAlign.Center)
+    }.margin({left: 14, right: 14})
+  }
+
+  build() {
+    List({ scroller: this.scroller , space: 8}) {
+      ForEach(this.groups, (group: ContactGroup) => {
+        ListItemGroup({ header: this.GroupHeader(group.letter), headerStyle: ListItemGroupHeaderFooterStyle.FLOATING }) {
+          ForEach(group.names, (name: string) => {
+            ListItem() {
+              Text(name)
+                .fontSize(16)
+                .fontColor('#182431')
+                .width('100%')
+                .height(72)
+                .padding({ left: 16 })
+            }
+          }, (name: string) => name)
+        }
+      }, (group: ContactGroup) => group.letter)
+    }
+    .height('100%')
+    .width('100%')
+    .scrollBar(BarState.Off)
+    .sticky(StickyStyle.Header)
+  }
+}
+```
+
+![zh-cn_image_listitemgroup_example05](figures/image-listitemgroup-example05.gif)
