@@ -944,7 +944,7 @@ updateBackgroundRunning(context: Context, request: ContinuousTaskRequest): Promi
 
 更新长时任务，使用Promise异步回调。长时任务更新成功后，会有通知栏消息，没有提示音。
 
-可用于应用功能从音视频播放切换到录音、需要调整长时任务类型以匹配新的业务需求。
+可用于如应用功能从音视频播放切换到录音、需要调整长时任务类型以匹配新的业务需求。
 
 更新长时任务还存在如下约束限制：
 1. 本接口仅支持更新如下接口申请的长时任务：[startBackgroundRunning(context: Context, request: ContinuousTaskRequest): Promise&lt;ContinuousTaskNotification&gt;](#backgroundtaskmanagerstartbackgroundrunning21)。
