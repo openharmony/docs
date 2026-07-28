@@ -667,8 +667,8 @@ void OH_ArkWebCookieManager_FetchCookieAsync(const char* url, bool incognito, bo
 | 参数项 | 描述 |
 | -- | -- |
 | const char* url | 指定cookie所属的URL。建议填写完整的URL。 |
-| bool incognito | true表示获取隐私模式下webview的内存cookie, false表示获取非隐私模式下的cookie。 |
-| bool includeHttpOnly | true表示标记为HTTP-Only属性的cookie也将包含在cookieValue中，false表示不包含。 |
+| bool incognito | true表示获取隐私模式下webview的内存cookies，false表示获取非隐私模式下的cookies。 |
+| bool includeHttpOnly | true表示标记为HTTP-Only属性的cookies也将包含在cookieValue中，false表示不包含。 |
 | bool includePartitionedCookies | true表示第一方partitioned cookies也将包含在cookieValue中，false表示不包含。 |
 | [OH_ArkWeb_OnCookieFetchCallback](#oh_arkweb_oncookiefetchcallback) callback | 获取cookies完成后执行该回调。 |
 
@@ -689,10 +689,10 @@ ArkWeb_ErrorCode OH_ArkWebCookieManager_FetchCookieSync(const char* url, bool in
 | 参数项 | 描述 |
 | -- | -- |
 | const char* url | 指定cookie所属的URL。建议填写完整的URL。 |
-| bool incognito | true表示获取隐私模式下webview的内存cookie, false表示获取非隐私模式下的cookie。 |
-| bool includeHttpOnly | true表示标记为HTTP-Only属性的cookie也将包含在cookieValue中，false表示不包含。 |
+| bool incognito | true表示获取隐私模式下webview的内存cookies，false表示获取非隐私模式下的cookies。 |
+| bool includeHttpOnly | true表示标记为HTTP-Only属性的cookies也将包含在cookieValue中，false表示不包含。 |
 | bool includePartitionedCookies | true表示第一方partitioned cookies也将包含在cookieValue中，false表示不包含。 |
-| char** cookieValue | 获取与URL对应的cookie值。函数将为cookieValue分配内存，开发者必须通过[OH_ArkWeb_ReleaseString](capi-arkweb-scheme-handler-h.md#oh_arkweb_releasestring)释放该字符串。 |
+| char** cookieValue | 获取与URL对应的cookies。函数将为cookieValue分配内存，开发者必须通过[OH_ArkWeb_ReleaseString](capi-arkweb-scheme-handler-h.md#oh_arkweb_releasestring)释放该字符串。 |
 
 **返回：**
 
