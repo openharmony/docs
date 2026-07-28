@@ -1893,7 +1893,7 @@ getCompatibilityInfo(bundleName: string, extInfo: string): Promise&lt;string&gt;
 
 | 错误码ID | 错误信息                                                                                       |
 | -------- | ---------------------------------------------------------------------------------------------- |
-| 201      | Permission verification failed, usually the ENAME_MODE仅支持临时授权”有充分的设result returned by VerifyAccessToken.              |
+| 201      | Permission verification failed, usually the result returned by VerifyAccessToken.              |
 | 202      | Permission verification failed, application which is not a system application uses system API. |
 
 **示例：**
