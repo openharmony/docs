@@ -12,7 +12,7 @@ typedef struct MediaKeySystem MediaKeySystem
 
 ## 概述
 
- MediaKeySystem结构。
+MediaKeySystem结构。
 
 **起始版本：** 11
 

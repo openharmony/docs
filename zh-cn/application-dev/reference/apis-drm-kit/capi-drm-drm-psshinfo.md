@@ -12,7 +12,7 @@ typedef struct DRM_PsshInfo {...} DRM_PsshInfo
 
 ## 概述
 
- DRM内容保护系统专用头（Protection System Specific Header）信息。
+DRM内容保护系统专用头（Protection System Specific Header）信息。
  
 **起始版本：** 11
 

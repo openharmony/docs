@@ -12,7 +12,7 @@ typedef struct DRM_OfflineMediakeyIdArray {...} DRM_OfflineMediakeyIdArray
 
 ## 概述
 
- 离线媒体密钥ID数组。
+离线媒体密钥ID数组。
 
 **起始版本：** 11
 

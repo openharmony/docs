@@ -12,8 +12,8 @@ typedef struct DRM_MediaKeySystemInfo {...} DRM_MediaKeySystemInfo
 
 ## 概述
 
- 加密媒体内容的DRM信息。
- 
+加密媒体内容的DRM信息。
+
 **起始版本：** 11
 
 **相关模块：** [Drm](capi-drm.md)

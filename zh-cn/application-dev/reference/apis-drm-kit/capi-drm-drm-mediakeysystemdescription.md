@@ -12,7 +12,7 @@ typedef struct DRM_MediaKeySystemDescription {...} DRM_MediaKeySystemDescription
 
 ## 概述
 
- DRM解决方案名称及其UUID的列表。
+DRM解决方案名称及其UUID的列表。
 
 **起始版本：** 12
 

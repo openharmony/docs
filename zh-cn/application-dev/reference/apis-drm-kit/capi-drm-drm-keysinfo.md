@@ -12,7 +12,7 @@ typedef struct DRM_KeysInfo {...} DRM_KeysInfo
 
 ## 概述
 
- 媒体密钥信息。
+媒体密钥信息。
 
 **起始版本：** 11
 

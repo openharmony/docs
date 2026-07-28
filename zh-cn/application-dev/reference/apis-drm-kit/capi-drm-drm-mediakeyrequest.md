@@ -12,7 +12,7 @@ typedef struct DRM_MediaKeyRequest {...} DRM_MediaKeyRequest
 
 ## 概述
 
- 媒体密钥请求。
+媒体密钥请求。
 
 **起始版本：** 11
 

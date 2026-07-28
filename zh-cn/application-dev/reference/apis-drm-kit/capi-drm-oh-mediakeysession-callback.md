@@ -12,7 +12,7 @@ typedef struct OH_MediaKeySession_Callback {...} OH_MediaKeySession_Callback
 
 ## 概述
 
- OH_MediaKeySession_Callback结构体，用于监听密钥过期、密钥更改等事件，返回媒体密钥会话实例，适用于多个媒体密钥会话的解密场景。
+OH_MediaKeySession_Callback结构体，用于监听密钥过期、密钥更改等事件，返回媒体密钥会话实例，适用于多个媒体密钥会话的解密场景。
 
 **起始版本：** 12
 
