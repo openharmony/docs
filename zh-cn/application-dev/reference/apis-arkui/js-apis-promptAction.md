@@ -357,7 +357,7 @@ getState(): CommonState
 ### clamp<sup>18+</sup>
 static clamp(order: number): LevelOrder
 
-创建指定顺序的弹窗层级。
+创建指定顺序的弹窗层级，数值越大弹窗显示越上层。
 
 **原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
