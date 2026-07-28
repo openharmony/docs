@@ -317,3 +317,83 @@ export struct OverlayManagerWithOrder {
 }
 ```
 ![overlayManager-demo3](figures/overlaymanager-demo_3.gif)
+
+从API版本26.0.0开始，可通过设置[OverlayManagerOptions](../reference/apis-arkui/arkts-apis-uicontext-i.md#overlaymanageroptions15)中的onBackPress回调拦截Overlay的侧滑返回事件。当enableBackPressedEvent设置为true并注册onBackPress回调时，侧滑返回事件不会自动关闭Overlay，而是调用该回调由开发者决定是否拦截：返回true表示拦截该事件（事件被消费，不会向下层传递），返回false表示事件向下层组件透传。该回调需在调用getOverlayManager之前通过[setOverlayManagerOptions](../reference/apis-arkui/arkts-apis-uicontext-uicontext.md#setoverlaymanageroptions15)设置。
+
+<!-- @[OverlayManager_Demo4](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkUISample/DialogProject/entry/src/main/ets/pages/OverlayManager/OverlayManagerOnBackPress.ets) -->
+
+``` TypeScript
+import { ComponentContent, OverlayManager } from '@kit.ArkUI';
+import { hilog } from '@kit.PerformanceAnalysisKit';
+
+const TAG: string = '[Sample_dialogproject]';
+const DOMAIN: number = 0xFF00;
+
+class Params {
+  public text: string = '';
+  public offset: Position;
+
+  constructor(text: string, offset: Position) {
+    this.text = text;
+    this.offset = offset;
+  }
+}
+
+@Builder
+function builderText(params: Params) {
+  Column() {
+    Text(params.text)
+      .fontSize(30)
+      .fontWeight(FontWeight.Bold)
+  }
+  .width(300)
+  .height(200)
+  .backgroundColor('#F7F7F7')
+  .justifyContent(FlexAlign.Center)
+  .offset(params.offset)
+}
+
+@Entry
+@Component
+export struct OverlayManagerBackPress {
+  private uiContext: UIContext = this.getUIContext();
+  private overlayContent: ComponentContent<Params>[] = [];
+
+  aboutToAppear(): void {
+    // 在调用getOverlayManager之前设置OverlayManagerOptions，
+    // 开启侧滑返回事件并注册onBackPress回调
+    this.uiContext.setOverlayManagerOptions({
+      enableBackPressedEvent: true,
+      onBackPress: (): boolean => {
+        hilog.info(DOMAIN, TAG, '%{public}s', 'overlay onBackPress');
+        // 返回true拦截侧滑返回事件，事件不会向下层组件传递；
+        // 返回false则不拦截，事件将向下层组件透传
+        return true;
+      }
+    });
+    let overlayNode: OverlayManager = this.uiContext.getOverlayManager();
+    let componentContent = new ComponentContent(
+      this.uiContext, wrapBuilder<[Params]>(builderText),
+      new Params('onBackPress', { x: 0, y: 100 })
+    );
+    overlayNode.addComponentContent(componentContent, 0);
+    this.overlayContent.push(componentContent);
+  }
+
+  aboutToDisappear(): void {
+    let componentContent = this.overlayContent.pop();
+    this.uiContext.getOverlayManager().removeComponentContent(componentContent);
+  }
+
+  build() {
+    // ...
+      Column() {
+
+      }
+      .width('100%')
+      .height('100%')
+    // ...
+  }
+}
+```
+![overlayManager-demo4](figures/overlaymanager-demo-4.png)
