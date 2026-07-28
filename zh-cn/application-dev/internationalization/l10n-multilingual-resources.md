@@ -19,7 +19,7 @@
 
 - 本地化接口调用
 
-  为了确保接口返回值与用户设置保持一致，通常需要在[国际化-I18n](../reference/apis-localization-kit/js-apis-i18n.md)和[国际化-Intl](../reference/apis-localization-kit/js-apis-intl.md)接口中传入系统区域ID或系统区域对象。系统区域ID和系统区域对象传入的示例如下：
+  为了确保接口返回值与用户设置保持一致，通常需要在[@ohos.i18n (国际化-I18n)](../reference/apis-localization-kit/js-apis-i18n.md)和[@ohos.intl (国际化-Intl)](../reference/apis-localization-kit/js-apis-intl.md)接口中传入系统区域ID或系统区域对象。系统区域ID和系统区域对象传入的示例如下：
 
   ``` TypeScript
   import { i18n } from '@kit.LocalizationKit';
