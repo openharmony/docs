@@ -27,7 +27,8 @@
 | double-conversion/README.md | - |
 | double-conversion/SConstruct | - |
 | double-conversion/WORKSPACE | - |
-
+| double-conversion/double-conversion.pc.in | - |
+| double-conversion/MODULE.bazel | - |
 
 ## 移植思路
 
@@ -47,17 +48,18 @@
 CMake方式可通过指定工具链进行交叉编译，修改并编译该库，生成OpenHarmony平台的可执行文件，步骤如下：
 
 1. 设置工具链。
+
      将下列clang工具链配置添加到该工程的顶层CMakeLists.txt（即表1中的该文件）中即可。
-     
-   ```
+
+   ```text
    set(CMAKE_CROSSCOMPILING TRUE)
    set(CMAKE_SYSTEM_NAME Generic)
    set(CMAKE_CXX_COMPILER_ID Clang)
    set(CMAKE_TOOLCHAIN_PREFIX llvm-)
-   #指定c编译工具（确保工具链所在路径已经添加到了PATH环境变量中）和编译标志，使用clang编译时标志中必须指定--target，否则无法交叉编译。
+   #指定c编译工具（确保工具链所在路径已经添加到了PATH环境变量中）和编译标志，使用clang编译时标志中必须指定--target，否则无法交叉编译，将 clang 替换为 OpenHarmony 源码目录下自带的编译器绝对路径("xxx/code/prebuilts/clang/ohos/linux-x86_64/llvm/bin/clang")。
    set(CMAKE_C_COMPILER clang)
    set(CMAKE_C_FLAGS "--target=arm-liteos -D__clang__ -march=armv7-a -w -mfloat-abi=softfp -mcpu=cortex-a7 -mfpu=neon-vfpv4")
-   #指定c++编译工具（确保工具链所在路径已经添加到了PATH环境变量中）和编译标志，必须指定--target，否则无法交叉编译。
+   #指定c++编译工具（确保工具链所在路径已经添加到了PATH环境变量中）和编译标志，必须指定--target，否则无法交叉编译，将 clang++ 替换为 OpenHarmony 源码目录下自带的编译器绝对路径("xxx/code/prebuilts/clang/ohos/linux-x86_64/llvm/bin/clang++")。
    set(CMAKE_CXX_COMPILER clang++) 
    set(CMAKE_CXX_FLAGS "--target=arm-liteos -D__clang__ -march=armv7-a -w -mfloat-abi=softfp -mcpu=cortex-a7 -mfpu=neon-vfpv4")
    #指定链接工具和链接标志，必须指定--target和--sysroot，其中OHOS_ROOT_PATH可通过cmake命令后缀参数来指定。
@@ -73,11 +75,13 @@ CMake方式可通过指定工具链进行交叉编译，修改并编译该库，
    set(CMAKE_SYSROOT ${OHOS_SYSROOT_PATH})
    ```
 
-2. 执行编译。
-   linux命令行中进入double-conversion的源文件目录（即标1所示目录），执行下列命令：
 
-   
-   ```
+2. 执行编译。
+
+   Linux命令行中进入double-conversion的源文件目录（即表1所示目录），执行下列命令：
+
+
+   ```text
    mkdir build && cd build
    cmake .. -DBUILD_TESTING=ON -DOHOS_SYSROOT_PATH="..."
    make -j
@@ -85,11 +89,13 @@ CMake方式可通过指定工具链进行交叉编译，修改并编译该库，
 
    其中OHOS_SYSROOT_PATH需用绝对路径指定出sysroot目录的位置，以OpenHarmony为例即目录out/hispark_xxx/ipcamera_hispark_xxx/sysroot的绝对路径。上述目录会在全量编译后生成，因此移植前先完成一次全量编译。
 
+
 3. 查看结果。
+
    步骤2操作完成后，build目录下会生成静态库文件和测试用例：
 
      **表2** 编译生成文件目录结构
-   
+
    | 名称 | 描述 |
    | -------- | -------- |
    | double-conversion/build/libdouble-conversion.a | 生成的静态库文件。 |
@@ -104,9 +110,11 @@ CMake方式可通过指定工具链进行交叉编译，修改并编译该库，
    | double-conversion/build/Testing/ | - |
 
 
+
 ## 测试
 
 1. 搭建OpenHarmony环境。
+
    以Hi3516DV300为例，编译出OpenHarmony镜像，烧写到开发板，相关操作可参考[快速入门小型系统部分](../quick-start/quickstart-overview.md)。
 
    进入系统如下所示：
@@ -115,23 +123,25 @@ CMake方式可通过指定工具链进行交叉编译，修改并编译该库，
 
      ![zh-cn_image_0000001218806027](figures/zh-cn_image_0000001218806027.png)
 
+
 2. 挂载nfs目录，将表2中test目录下cctest可执行文件放入nfs目录。
 
 3. 执行用例。
+
    该库采用非交叉编译时用例是通过make test执行，CMake会有相关的执行结果统计；交叉编译时无法使用该方法，因此可直接执行生成的测试文件完成测试。
 
    - 挂载成功后执行下列命令可列出用例所有条目：
 
-     
-     ```
+
+     ```text
      cd nfs
      ./cctest --list
      ```
 
      上述命令执行结果部分展示：
 
-     
-     ```
+
+     ```text
      test-bignum/Assign<
      test-bignum/ShiftLeft<
      test-bignum/AddUInt64<
@@ -158,26 +168,28 @@ CMake方式可通过指定工具链进行交叉编译，修改并编译该库，
 
    - 以test-bignum条目为例，执行下列命令开始测试：
 
-     
-     ```
+
+     ```text
      ./cctest test-bignum
      ```
 
      测试结果如下则表示通过：
 
-     
-     ```
+
+     ```text
      Ran 13 tests.
      ```
+
 
 
 ## 将该库编译添加到OpenHarmony工程中
 
 1. 复制库到OpenHarmony工程中。
+
    拷贝已经能够成功交叉编译的库到OpenHarmony的third_party目录，为了不修改要移植的三方库目录下的BUILD.gn文件，再添加一层目录放置新增的gn转CMake编译适配文件，新增的文件有BUILD.gn、build_thirdparty.py、 config.gni，新增后的目录结构如下所示。
 
      **表3** 添加到工程后的目录结构
-   
+
    | 名称 | 描述 |
    | -------- | -------- |
    | OpenHarmony/third_party/double-conversion/BUILD.gn | 将三方库加入工程的gn适配文件。 |
@@ -188,32 +200,45 @@ CMake方式可通过指定工具链进行交叉编译，修改并编译该库，
 2. 添加gn到CMake适配文件。
    - **新增的BUILD.gn文件实现如下，其他采用CMake方式可独立编译的三方库移植到OpenHarmony平台时只需修改路径即可**。
 
-     
-     ```
-     import("config.gni")
-     group("double-conversion") {
-         if (ohos_build_thirdparty_migrated_from_fuchisa == true) {
-             deps = [":make"]
-         }
+
+     ```gn
+     import("//build/ohos.gni")
+
+     config("double_conversion_config") {
+       cflags = [ "-Wno-error=implicit-fallthrough" ]
+       include_dirs = [ "double-conversion/double-conversion" ]
+       }
+
+       config("cctest_config") {
+       cflags = [ "-Wno-error=implicit-fallthrough" ]
+       include_dirs = [
+       "double-conversion",
+       "double-conversion/test/cctest",
+       ]
      }
-     if (ohos_build_thirdparty_migrated_from_fuchisa == true) {
-         action("make") {
-             script = "//third_party/double-conversion/build_thirdparty.py"
-             outputs = ["$root_out_dir/log_dc.txt"]
-             exec_path = rebase_path(rebase_path("./build", ohos_third_party_dir))
-             command = "rm * .* -rf && $CMAKE_TOOLS_PATH/cmake .. $CMAKE_FLAG $CMAKE_TOOLCHAIN_FLAG && make -j"
-             args = [
-                 "--path=$exec_path",
-                 "--command=${command}"
-             ]
-         }
+
+     ohos_static_library("double-conversion") {
+       sources = [
+       "double-conversion/double-conversion/bignum-dtoa.cc",
+       "double-conversion/double-conversion/bignum.cc",
+       "double-conversion/double-conversion/cached-powers.cc",
+       "double-conversion/double-conversion/double-to-string.cc",
+       "double-conversion/double-conversion/fast-dtoa.cc",
+       "double-conversion/double-conversion/fixed-dtoa.cc",
+       "double-conversion/double-conversion/string-to-double.cc",
+       "double-conversion/double-conversion/strtod.cc",
+       ]
+
+       public_configs = [ ":double_conversion_config" ]
+       part_name = "double-conversion"
+       subsystem_name = "thirdparty"
      }
      ```
 
    - **新增的config.gni用于配置该库，实现如下，其他采用CMake方式可独立编译的三方库移植到OpenHarmony时只需修改CMAKE_FLAG的配置即可。**
 
-     
-     ```
+
+     ```gni
      #CMAKE_FLAG: config compile feature
      CMAKE_FLAG = "-DBUILD_TESTING=ON -DCMAKE_CXX_STANDARD=11"
    
@@ -230,8 +255,7 @@ CMake方式可通过指定工具链进行交叉编译，修改并编译该库，
 
    - **新增的build_thirdparty.py实现如下，其他采用CMake方式可独立编译的三方库移植到OpenHarmony时无需修改即可使用。**
 
-     
-     ```
+     ```py
      import os
      import sys
      from subprocess import Popen
@@ -277,21 +301,23 @@ CMake方式可通过指定工具链进行交叉编译，修改并编译该库，
 
      在//build/lite/ohos_var.gni文件中添加下列配置：
 
-     
-     ```
+
+     ```gni
+
      declare_args() {
-         ohos_build_thirdparty_migrated_from_fuchisa = true
+         ohos_build_thirdparty_migrated_from_fuchsia = true
       }
      ```
 
 3. 编译构建
+
    手动单独构建：
 
    执行下列命令：
 
-   
-   ```
-   hb build -T //third_party/double-conversion:double-conversion
+
+   ```text
+   hb build -T third_party/double-conversion:double-conversion
    ```
 
-   编译成功则build目录下会生成静态库文件和测试用例。
+   编译成功则out/hispark_taurus/ipcamera_hispark_taurus_linux/libs目录下会生成libdouble-conversion.a静态库文件。
