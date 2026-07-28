@@ -2,9 +2,9 @@
 <!--Kit: ArkTS-->
 <!--Subsystem: ArkCompiler-->
 <!--Owner: @dwhuawei-->
-<!--Designer: @yingguofeng-->
+<!--Designer: @dwhuawei-->
 <!--Tester: @kirl75; @zsw_zhushiwei-->
-<!--Adviser: @HelloCrease-->
+<!--Adviser: @k1ngqaquuu-->
 
 GC（全称 Garbage Collection），即垃圾回收。在计算机领域，GC是指识别并释放内存中的不再使用的对象，以回收内存空间。目前广泛使用的编程语言实现的GC算法主要分为两大类：引用计数和对象追踪（即Tracing GC）。
 
@@ -18,7 +18,9 @@ GC（全称 Garbage Collection），即垃圾回收。在计算机领域，GC是
 
 - 优点：引用计数算法设计简单，而且会在对象成为垃圾时及时回收该部分内存，因此无需引入单独的暂停业务代码（Stop The World，STW）阶段。
 - 缺点：在对象操作时插入了计数环节，增加了内存分配和赋值的开销，影响性能。存在因循环引用而导致的内存泄漏问题。
-```ts
+<!-- @[reference_counting](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/ArkTSRuntime/ArkTSGC/entry/src/main/ets/ReferenceCounting.ts) -->
+
+``` TypeScript
 class Parent {
   constructor() {
     this.child = null;
@@ -235,7 +237,7 @@ Heap包含两种类型：LocalHeap和SharedHeap。LocalHeap是应用进程中每
 
 根据系统分配堆空间总大小64MB-128MB/128MB-256MB/大于256MB的三个范围，以下参数系统会设置不同的大小。如果表格内范围仅有一个值，则表示该参数值不随堆空间总大小变化。手机设备堆空间总大小默认为大于256MB。
 
-开发者可以查阅[hidebug接口文档](../reference/apis-performance-analysis-kit/js-apis-hidebug.md)，使用相关接口查询内存信息。
+开发者可以查阅[@ohos.hidebug](../reference/apis-performance-analysis-kit/js-apis-hidebug.md)，使用相关接口查询内存信息。
 
 **堆大小相关参数**
 
@@ -458,7 +460,9 @@ C03F00/ArkCompiler: Heap average alive rate: 0.635325
 
 **使用参考：**
 
-```ts
+<!-- @[arktools_hintGC](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/ArkTSRuntime/ArkTSGC/entry/src/main/ets/pages/Index.ets) -->
+
+``` TypeScript
 // 首先需要声明接口
 declare class ArkTools {
   static hintGC(): void;
@@ -475,8 +479,9 @@ struct Index {
         Text(this.message)
           .fontSize(50)
           .fontWeight(FontWeight.Bold)
-        Button("触发HintGC").onClick((event: ClickEvent) => {
+        Button('触发HintGC').onClick((event: ClickEvent) => {
           ArkTools.hintGC(); // 方法内直接调用
+          this.message = 'Success';
         })
       }
       .width('100%')
