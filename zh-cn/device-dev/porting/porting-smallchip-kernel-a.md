@@ -73,7 +73,7 @@ LiteOS-A提供系统运行所需的系统初始化流程和定制化配置选项
     ![zh-cn_image_0000001200252103](figures/zh-cn_image_0000001200252103.png)
 
 - main函数用于内核基础初始化和单板内核态业务初始化，流程如下图3所示，整体由内核启动框架主导初始化流程，图中浅蓝色部分为启动框架中可接受外部模块注册启动的阶段。
-  > ![icon-caution.gif](public_sys-resources/icon-caution.gif) **注意：**
+  > <img src="public_sys-resources/icon-caution.gif" alt="注意"/> <b>注意：</b>
   > 同一层级内的模块不能有依赖关系。
 
     **图3** 内核启动框架
@@ -97,7 +97,7 @@ LiteOS-A提供系统运行所需的系统初始化流程和定制化配置选项
 
   进行单板移植适配，推荐关注LOS_INIT_LEVEL_ARCH至LOS_INIT_LEVEL_KMOD_TASK之间的层级，且尽可能拆分初始化行为进行细化阶段注册。
 
-  > ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
+  > <img src="public_sys-resources/icon-note.gif" alt="说明"/> <b>说明：</b>
   > 启动框架中同一层级内的注册模块不能有依赖关系，建议新增模块按照上述启动阶段进行模块初始化的拆分，按需注册启动。
   > 
   > 可通过查看系统编译生成文件OHOS_Image.map中.rodata.init.kernel.\*段内的符号表来了解当前已注册进内核启动框架中的各个模块初始化入口，以及检查新注册的模块初始化入口是否生效。
@@ -107,7 +107,7 @@ LiteOS-A提供系统运行所需的系统初始化流程和定制化配置选项
 
   在单板SDK文件中
   
-```
+```text
 /* 内核启动框架头文件 */
 #include "los_init.h"
 ......
@@ -127,7 +127,7 @@ LOS_MODULE_INIT(OsSampleModInit, LOS_INIT_LEVEL_KMOD_EXTENDED);
 ## 验证
 
   
-```
+```text
 main core booting up...
 OsSampleModInit SUCCESS!
 releasing 1 secondary cores
@@ -140,7 +140,7 @@ cpu 0 entering scheduler
 系统启动完毕后进入内核态shell，能够运行task命令能够正常显示即可。
 
   
-```
+```shell
 OHOS # help
 ***shell commands:*
 
