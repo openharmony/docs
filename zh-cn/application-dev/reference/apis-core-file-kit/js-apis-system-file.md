@@ -1380,7 +1380,7 @@ export default {
 | uri | string | 否 | 否 | 本地文件URI。由于轻量级穿戴设备底层文件系统的限制，该值必须满足以下要求：<br/>1. URI 中不得包含以下特殊字符：\\"*+,:;<=>?[]\\|\x7F等。<br/>2. 最大允许字符长度为128个字符。 |
 | encoding | string | 否 | 是 | 编码格式，缺省为UTF-8。 |
 | position | number | 否 | 是 | 读取的起始位置，单位为Byte，默认为文件的起始位置。 |
-| length | number | 否 | 是 | 读取的长度，单位为Byte，默认值为4096。 |
+| length | number | 否 | 是 | 读取的长度，单位为Byte，如果不传长度参数，默认值为4096，传长度参数，最大值为4096。 |
 | success | (data: FileReadTextResponse) => void | 否 | 是 | 接口调用成功的回调函数。data为[FileReadTextResponse](#filereadtextresponse)。 |
 | fail | (data: string, code: number) => void | 否 | 是 | 接口调用失败的回调函数。<br/>data为错误信息。<br/>code为可能返回的错误码：<br/>202：出现参数错误。<br/>300：出现I/O错误。<br/>301：文件或目录不存在。<br/>302：要读取的文件内容超过4KB。 |
 | complete | () => void | 否 | 是 | 接口调用结束的回调函数。 |
