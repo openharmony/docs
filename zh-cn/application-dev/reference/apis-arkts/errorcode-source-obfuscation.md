@@ -28,7 +28,7 @@ Failed to open obfuscation config file from {path}.
 
 **处理步骤**
 
-检查{path}是否存在，路径是否有误。具体可以参考[混淆规则配置文件示例](../../arkts-utils/source-obfuscation-guide.md#开启源码混淆步骤)。
+检查{path}是否存在，路径是否有误。具体可以参考[混淆规则配置文件示例](../../arkts-utils/source-obfuscation-guide.md#混淆配置文件)。
 
 ## 10804002 nameCache.json文件内容格式错误
 
