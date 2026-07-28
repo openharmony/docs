@@ -136,3 +136,5 @@ The following table lists the associated modules you may use during development 
   - During the initialization and creation of an Extension process, the system loads the required system modules based on the list of restricted-access ArkTS APIs configured for the Extension. At runtime, if a restricted ArkTS API is called in DriverExtensionAbility, the API call fails because the corresponding system module was not loaded during the initialization and creation phases.
 
 - For the list of restricted ArkTS APIs in **DriverExtensionAbility**, see the **DriverExtension** configuration in [frameworks/native/ability/native/etc/extension_blocklist_config.json · OpenHarmony/ability_ability_runtime - AtomGit | GitCode](https://gitcode.com/openharmony/ability_ability_runtime/blob/master/frameworks/native/ability/native/etc/extension_blocklist_config.json).
+
+<!--no_check-->

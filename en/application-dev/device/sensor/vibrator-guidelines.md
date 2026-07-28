@@ -589,11 +589,3 @@ The following requirements must be met:
       console.error(`An unexpected error occurred. Code: ${e.code}, message: ${e.message}`);
     }
     ```
-
-## Related Examples
-
-The following sample is provided to help you better understand how to develop vibrators:
-
-- [Vibrator (ArkTS, API version 9)](https://gitcode.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/DeviceManagement/Vibrator/BasicVibration)
-
-- [CustomHaptic (ArkTS, Full SDK, API version 10)](https://gitcode.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/DeviceManagement/Vibrator/CustomHaptic)

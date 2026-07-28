@@ -50,3 +50,5 @@ HarmonyOS Device Connector (hdc) is a command-line debugging tool. It enables in
 - When developing an extended peripheral driver client or peripheral driver, you need an external USB device for debugging. Currently, **only external devices connected over the USB bus are supported**.
 
 - The product ID and vendor ID of the USB device are required for defining drivers and implementing IPC.
+
+<!--no_check-->
