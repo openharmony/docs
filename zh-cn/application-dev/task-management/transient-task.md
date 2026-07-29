@@ -29,7 +29,7 @@
   >
   > 任务完成后，应用需主动取消短时任务，否则会影响应用当日短时任务的剩余配额。
 
-- **超时**：短时任务即将超时时，系统会回调应用(一般在超时前6秒)，应用须在回调中取消短时任务。如果超时不取消，系统会对应用进行管控，包括进程挂起和进程终止。
+- **超时**：短时任务即将超时时，系统会回调应用（一般在超时前6秒），应用须在回调中取消短时任务。如果超时不取消，系统会对应用进行管控，包括进程挂起和进程终止。
 
 ## 接口说明
 
@@ -39,7 +39,7 @@
 
 | 接口名 | 描述 |
 | -------- | -------- |
-| [requestSuspendDelay(reason: string, callback: Callback&lt;void&gt;): DelaySuspendInfo](../reference/apis-backgroundtasks-kit/js-apis-resourceschedule-backgroundTaskManager.md#backgroundtaskmanagerrequestsuspenddelay) | 申请短时任务，[DelaySuspendInfo](../reference/apis-backgroundtasks-kit/js-apis-resourceschedule-backgroundTaskManager.md#delaysuspendinfo)返回requestId和actualDelayTime|
+| [requestSuspendDelay(reason: string, callback: Callback&lt;void&gt;): DelaySuspendInfo](../reference/apis-backgroundtasks-kit/js-apis-resourceschedule-backgroundTaskManager.md#backgroundtaskmanagerrequestsuspenddelay) | 申请短时任务，[DelaySuspendInfo](../reference/apis-backgroundtasks-kit/js-apis-resourceschedule-backgroundTaskManager.md#delaysuspendinfo)返回requestId和actualDelayTime。|
 | [getRemainingDelayTime(requestId: number): Promise&lt;number&gt;](../reference/apis-backgroundtasks-kit/js-apis-resourceschedule-backgroundTaskManager.md#backgroundtaskmanagergetremainingdelaytime-1) | 获取对应短时任务的剩余时间。 |
 | [cancelSuspendDelay(requestId: number): void](../reference/apis-backgroundtasks-kit/js-apis-resourceschedule-backgroundTaskManager.md#backgroundtaskmanagercancelsuspenddelay) | 取消短时任务。 |
 
