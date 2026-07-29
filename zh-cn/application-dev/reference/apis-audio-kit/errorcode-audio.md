@@ -310,8 +310,7 @@ AudioCapturer创建成功，但调用[start](arkts-apis-audio-AudioCapturer.md#s
 
 **可能原因**
 
-1. 策略客户端代理获取失败，gsp对象为null。
-2. IPC传输失败。
+系统服务异常无响应。
 
 **处理步骤**
 
