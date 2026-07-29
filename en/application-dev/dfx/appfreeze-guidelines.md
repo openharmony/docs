@@ -2,10 +2,11 @@
 
 <!--Kit: Performance Analysis Kit-->
 <!--Subsystem: HiviewDFX-->
-<!--Owner: @rr_cn-->
+<!--Owner: @Chenyufan466765692-->
 <!--Designer: @peterhuangyu-->
 <!--Tester: @gcw_KuLfPSbe;@lipengpeng97-->
-<!--Adviser: @foryourself-->
+<!--Adviser: @jinqiuheng-->
+<!-- md-trans-meta sourceCommit=69884e5262c53f0a947af1d2a8fa134d89b67ca7 translatedAt=2026-07-29T04:10:38.380Z pushedAt=2026-07-29T06:34:52.446Z -->
 
 ## Overview
 
@@ -21,16 +22,21 @@ Currently, AppFreeze detection supports the fault types listed in the following 
 
 > **NOTE**
 >
-> AppFreeze detection takes effect only for [applications of the release version](performance-analysis-kit-terminology.md#applications-of-the-release-version), but not for [applications of the debug version](performance-analysis-kit-terminology.md#applications-of-the-debug-version)
+> When you install and start an app by clicking the **Debug** button in DevEco Studio, the timeout detection mechanism of the current project is automatically disabled. This prevents timeout detection from interfering with your debugging process.
 
-| Fault| Description|
-| -------- | -------- |
-| THREAD_BLOCK_6S | The application main thread times out.|
-| APP_INPUT_BLOCK | The user input response times out.|
+| Event Type | Description | Fault Type |
+| -------- | -------- | -------- |
+| THREAD_BLOCK_3S | App freeze alarm event, triggered when the app main thread executes a task for more than 3s.<br>**Note:** This type is supported since API version 26.0.0. | [THREAD_BLOCK_6S App Main Thread Freeze Timeout](#thread_block_6s-app-main-thread-freeze-timeout) |
+| THREAD_BLOCK_6S | App freeze event, triggered when the app main thread executes a task for more than 6s. | [THREAD_BLOCK_6S App Main Thread Freeze Timeout](#thread_block_6s-app-main-thread-freeze-timeout) |
+| APP_INPUT_BLOCK | App freeze event, triggered when the user input response times out. | [APP_INPUT_BLOCK User Input Response Timeout](#app_input_block-user-input-response-timeout) |
+| LIFECYCLE_HALF_TIMEOUT | App freeze alarm event, triggered when the half-lifecycle threshold is exceeded during UIAbility lifecycle switching.<br>**Note:** This type is supported since API version 26.0.0. | [LIFECYCLE_TIMEOUT Lifecycle Switch Timeout](#lifecycle_timeout-lifecycle-switch-timeout) |
+| LIFECYCLE_TIMEOUT | App freeze event, triggered when UIAbility lifecycle switching times out.<br>**Note:** This type is supported since API version 26.0.0. | [LIFECYCLE_TIMEOUT Lifecycle Switch Timeout](#lifecycle_timeout-lifecycle-switch-timeout) |
 
-When any of the preceding faults occurs in an application, the application is killed to ensure that it is recoverable and the application freeze event is reported. You can subscribe to the [application freeze event](hiappevent-watcher-freeze-events.md) using HiAppEvent.
+When the preceding alarm events are triggered, an app freeze alarm event is reported. You can subscribe to [App Freeze Warning Event Overview](hiappevent-watcher-appfreezewarning-events.md) through HiAppEvent.
 
-### THREAD_BLOCK_6S Application Main Thread Timeout
+When any of the preceding app freeze faults occurs, the system kills the app to ensure that it is recoverable and reports the app freeze event. You can subscribe to [Application Freeze Event Overview](hiappevent-watcher-freeze-events.md) through HiAppEvent.
+
+### THREAD_BLOCK_6S App Main Thread Freeze Timeout
 
 **Description**: This fault indicates that the main thread of this application is suspended or too many tasks are executed, affecting task execution smoothness and experience.
 
@@ -46,6 +52,10 @@ The following figure shows the detection principle.
 
 **Description**: This fault occurs when the tap event is not responded within 5 seconds.
 
+> **NOTE**
+>
+> Since **API version 24**, the detection threshold has been extended from 5s to 8s.
+
 **Detection principle**: When a user taps an application, the input system sends a tap event to the application. If the application response times out, this fault is reported.
 
 The following figure shows the detection principle.
@@ -53,6 +63,42 @@ The following figure shows the detection principle.
 **Figure 2**
 
 ![app_input_block](figures/app_input_block.png)
+
+### LIFECYCLE_TIMEOUT Lifecycle Switch Timeout
+
+**Overview**: Lifecycle switch timeout means that the [UIAbility lifecycle](../application-models/uiability-lifecycle.md) switching process is not completed within the specified time. Possible causes include: the app performs time-consuming operations during lifecycle switching, or background tasks have low priority and insufficient resource supply.
+
+This fault occurs during lifecycle switching and affects the switching between Abilities within the app or between different PageAbilities.
+
+Since **API version 26.0.0**, you can configure the following environment variables in the **AppScope/app.json5** file to retrieve fault logs. For details about how to retrieve logs, see [Obtaining Logs](#obtaining-logs).
+
+> **NOTE**
+>
+> After log retrieval is configured, logs of this type are reported to third-party apps as the Appfreeze type, which increases Appfreeze fault statistics and is counted in Appfreeze fault metrics.
+
+```text
+"appEnvironments": [
+  {
+    "name": "DFX_APPFREEZE_LOG_OPTIONS",
+    "value": "report_lifecycle_as_appfreeze:enable;"
+  }
+]
+```
+
+**Detection principle**: Ability Manager Service (AMS), as the system service that coordinates Ability running and lifecycle scheduling, sends lifecycle switch instructions to the app process and waits for the app to return the result. If the task is not completed within the specified time, a fault is reported.
+
+Lifecycle switch timeout consists of two events: `LIFECYCLE_HALF_TIMEOUT` and `LIFECYCLE_TIMEOUT`. If the half-lifecycle threshold is exceeded during lifecycle switching without execution, a `LIFECYCLE_HALF_TIMEOUT` alarm event is reported. If the full lifecycle threshold is exceeded without execution, a `LIFECYCLE_TIMEOUT` deadlock event is reported. The two events are matched to generate an app not responding log. `LIFECYCLE_HALF_TIMEOUT` serves as the alarm event for `LIFECYCLE_TIMEOUT` and captures information such as `Binder`.
+
+Different lifecycle timeouts have different timeout durations, as shown in the following table.
+
+| Lifecycle | Timeout |
+| -------- | -------- |
+| Load | 10s |
+| Foreground | 5s |
+
+**Figure 3**
+
+![lifecycle_timeout](figures/lifecycle_timeout.png)
 
 ## Obtaining Logs
 
@@ -74,7 +120,7 @@ Enable **Developer options** and run the `hdc file recv /data/log/faultlog/fault
 
 You need to analyze AppFreeze problems based on AppFreeze logs and HiLog logs.
 
-The following example is for reference only. You should analyze the problem based on the actual situation.
+A fault analysis example is provided below. Analyze the problem based on the module information in the log.
 
 AppFreeze logs consist of the following information:
 
@@ -83,8 +129,10 @@ AppFreeze logs consist of the following information:
 ```text
 Generated by HiviewDFX@OpenHarmony
 ================================================================
-Device info:HUAWEI Mate 60 Pro
-Build info:ALN-AL00 6.0.0.328(C00E1R4P3DEVDUlog)
+<!--RP2-->
+Device info:OpenHarmony 3.2
+Build info:OpenHarmony 6.1.0.125
+<!--RP2End-->
 DeviceDebuggable:No
 Fingerprint:e18a33c12e1361173ec9ac1c93f2bd0c2daa88f03c7f76b228cca14bdc6a21b1
 Module name:com.samples.freezedebug
@@ -97,6 +145,7 @@ PreInstalled:No
 Foreground:Yes
 Pid:13680
 Uid:20020177
+App running unique id:124500628566978194
 Process life time:18s
 Process Memory(kB):163819(Rss)
 Device Memory(kB):Total 11679272, Free 3697424, Available 5814272
@@ -119,29 +168,32 @@ PID:13680
 UID:20020177
 PACKAGE_NAME:com.samples.freezedebug
 PROCESS_NAME:com.samples.freezedebug
-NOTE: Current fault may be caused by the system's low memory or thermal throttling, you may ignore it and analysis other faults.
+NOTE: Current fault may be caused by the system's low memory or thermal throttling, you may ignore it and analysis other faults.Current process has encountered fd leak which may lead to appfreeze, you may refer to resource overlimit event from hiAppEvent for further analysis.
 ***
 ```
 
-Since API version 20, the **NOTE** line is displayed when a device resource alarm is generated (for example, the device memory is low or thermal throttling is enabled). When this line is displayed, you can ignore the application freeze fault. In earlier API versions, this line is not displayed regardless of the system resource status.
+Since API version 20, when a device resource alarm is generated (for example, the device memory is low or thermal throttling is enabled), the system outputs a NOTE line. In this case, you can ignore the app freeze fault. In earlier API versions, the system does not output this NOTE line regardless of the device resource status.
 
-Since API version 20, the [HiTraceId](../reference/apis-performance-analysis-kit/js-apis-hitracechain.md#hitraceid) information is added to the log when the **THREAD_BLOCK_6S** fault occurs. Provided by HiTraceChain, the **HitraceId** uniquely identifies each service process call chain. You can use it to view the HiLog logs of the faulty process during the fault period, and analyze the logs to check the application execution status.
+Since API version 20, when a `THREAD_BLOCK_6S` fault occurs, [HiTraceId](../reference/apis-performance-analysis-kit/js-apis-hitracechain.md#hitraceid) information is added to the log. `HiTraceId` is a unique trace identifier provided by HiTraceChain, used to track the business process call chain. It can help you view the hilog logs of the fault process during the fault period and analyze the logs to check the execution status of the app.
 
-The AppFreeze event (**THREAD_BLOCK_6S** and **APP_INPUT_BLOCK**) contains the following information:
+Since API version 26.0.0, AppFreeze logs support associating [Resource Leak](https://developer.huawei.com/consumer/en/doc/harmonyos-guides/resource-leak-guidelines) detection event information. If the current process already has a memory leak before the freeze fault occurs, the fault log prompts the leak event and indicates that it may be the cause of the freeze.
+
+The following table lists information in AppFreeze events (`THREAD_BLOCK_6S` and `APP_INPUT_BLOCK`).
 
 | Field| Description|
 | -------- | -------- |
-| DeviceDebuggable | Whether the system version of the device can be debugged, which is irrelevant to **Developer options**.<br>Note: This field is supported since API version 23.|
-| ReleaseType | Application version type. The value **release** indicates that the application is a [release-type application](https://developer.huawei.com/consumer/en/doc/harmonyos-guides/ide-hvigor-compilation-options-customizing-guide#section192461528194916), and the value **debug** indicates that the application is a [debug-type application](https://developer.huawei.com/consumer/en/doc/harmonyos-guides/ide-hvigor-compilation-options-customizing-guide#section192461528194916).<br>Note: This field is supported since API version 23.|
-| CpuAbi | ABI type.<br>Note: This field is supported since API version 23.|
-| IsSystemApp | Whether the application is a system application.<br>Note: This field is supported since API version 23.|
+| DeviceDebuggable | Whether the device system version is debuggable. This field is independent of developer options.<br>**Note:** Supported since API version 23. |
+| ReleaseType | App version type. The value **release** indicates that the app is a [release-type app](https://developer.huawei.com/consumer/en/doc/harmonyos-guides/ide-hvigor-compilation-options-customizing-guide#section192461528194916), and the value **debug** indicates that the app is a [debug-type app](https://developer.huawei.com/consumer/en/doc/harmonyos-guides/ide-hvigor-compilation-options-customizing-guide#section192461528194916).<br>**Note:** Supported since API version 23. |
+| CpuAbi | Binary interface type.<br>**Note:** Supported since API version 23. |
+| IsSystemApp | Whether the app is a system app.<br>**Note:** Supported since API version 23. |
 | Reason | Reason why the application freezes, corresponding to the application freeze detection capability.|
 | PID | PID of the faulty process.|
 | PACKAGE_NAME | Application process package name.|
-|[Page switch history](./cppcrash-guidelines.md#faults-with-page-switching-history)| Since API version 20, the maintenance and debugging process records the application switching history. After an application fault occurs, the generated fault file contains the page switching history. If the maintenance and debugging service process is faulty or the switching history is not cached, this field is not displayed.|
-| Process life time | Lifetime of the faulty process, in seconds.<br>Note: This field is supported since API version 22.|
-| Process Memory(kB) | Memory usage of the faulty process.<br>Note: This field is supported since API version 22.|
-| Device Memory(kB) | Device memory status.<br>Note: This field is supported since API version 22.|
+|[Page switch history](./cppcrash-guidelines.md#faults-with-page-switching-history)| Starting from API version 20, the maintenance and debugging process records the app switch history. When an app fault occurs, the generated fault file includes the page switch history trace. This field is not included if the maintenance and debugging service process crashes or is terminated, or if the page switch history trace fails to be cached.|
+| App running unique id | Unique ID associated with the app at runtime.<br>**Note:** Supported since API version 26.0.0.|
+| Process life time | Survival time of the fault process. Unit: s.<br>**Note:** Supported since API version 22.|
+| Process Memory(kB) | Memory usage of the fault process.<br>**Note:** Supported since API version 22.|
+| Device Memory(kB) | Device memory information.<br>**Note:** Supported since API version 22.|
 
 ### General Information in the Log Body
 
@@ -157,6 +209,8 @@ PACKAGE_NAME = com.samples.freezedebug
 PROCESS_NAME = com.samples.freezedebug
 eventLog_action = ffrt,t,GpuStack,cmd:m,hot
 eventLog_interval = 10
+this thread has blocked 3000ms.
+IS_FROZEN = 0
 MSG =
 Fault time:2025/06/28-14:08:34
 App main thread is not response!
@@ -184,47 +238,51 @@ mainHandler dump is:
  Total event size : 2
 ```
 
-The AppFreeze event (**THREAD_BLOCK_6S** and **APP_INPUT_BLOCK**) contains the following information:
+AppFreeze events `THREAD_BLOCK_6S` and `APP_INPUT_BLOCK` both contain the following information:
 
-| Field| Description|
+Since API version 26.0.0, AppFreeze events additionally support `LIFECYCLE_TIMEOUT`.
+
+| Field | Description |
 | -------- | -------- |
-| EVENTNAME | Name of the fault event.|
-| TIMESTAMP | Time when the fault event reported. You can narrow down the time range to view HiLog logs based on the timeout duration described in the application freeze detection capability.|
-| PID | PID of the faulty process.|
-| UID | UID of the faulty process.|
-| TID | TID of the faulty process.|
-| PACKAGE_NAME | Application process package name.|
-| PROCESS_NAME | Application process name.|
-| MSG | Time when the fault occurs and **EventHandler** information.|
+| EVENTNAME | Composes the freeze detection event. |
+| TIMESTAMP | Time when the event is reported upon fault occurrence. You can narrow the log viewing time range in the corresponding hilog stream based on the timeout described in the application not responding detection capability. |
+| PID | PID at the time of fault occurrence. |
+| UID | UID at the time of fault occurrence. |
+| TID | TID at the time of fault occurrence. |
+| PACKAGE_NAME | App process package name. |
+| PROCESS_NAME | App process name. |
+| MSG | Fault occurrence time and EventHandler information. |
+| IS_FROZEN | Process frozen state at the time of fault occurrence.<br/>- 0 indicates that the process is not frozen.<br/>- 1 indicates that the process is frozen.<br>**Note:** Supported since API version 26.0.0.|
+| this thread has blocked 3000ms. | When a thread blocking fault occurs, the app thread task execution times out by 3 seconds (that is, the THREAD_BLOCK_3S threshold). The specific timeout is subject to the actual value in the log (3000ms in the example).<br>**Note:** Supported since API version 26.0.0.|
 
 **EventHandler** information. The details are as follows:
 
-Structure of the dump information.
+The following table lists fields in the dump information.
 
-| Field| Description|
+| Field | Description |
 | -------- | -------- |
-| EventHandler dump begin curTime | Time when the dump information is obtained.|
-| Event runner | Thread name and thread ID corresponding to **EventHandler**.|
-| Current Running | Complete information about the task that is being executed.|
-| History event queue information | Information about historical tasks.|
-| VIP priority event queue information | VIP task queue information.|
-| Immediate priority event queue information | Information about the task queue that is executed immediately.|
-| High priority event queue information | Information about the high-priority task queue.|
-| Low priority event queue information | Information about the low-priority task queue.|
-| Idle priority event queue information | Information about the suspended task queue.|
+| EventHandler dump begin curTime | Time when the dump information is obtained. |
+| Event runner | Thread name and thread ID corresponding to the EventHandler. |
+| Current Running | Complete information about the currently running task. |
+| History event queue information | Information about historically executed tasks. |
+| VIP priority event queue information | VIP-level task queue information. |
+| Immediate priority event queue information | Immediate execution task queue information. |
+| High priority event queue information | High-priority task queue information. |
+| Low priority event queue information | Low-priority task queue information. |
+| Idle priority event queue information | Suspended task queue information. |
 
-Task components.
+The following table lists fields in the task information.
 
-| Field| Description|
+| Field | Description |
 | -------- | -------- |
-| send thread | Thread ID of the submitted task.|
-| send time | Time when a task is submitted.|
-| task name | Task name in the task queue.|
-| priority | Task priority.|
-| caller | Method of submitting a task.|
-| handle time | Expected execution time of a task. The value may be different from the actual task execution time (**trigger time**).|
-| trigger time | Task execution time.|
-| completeTime time | Time when the task is complete. (If no information is displayed, the task is not complete.)|
+| send thread | Thread ID that submits the task. |
+| send time | Time when the task is submitted. |
+| task name | Task name in the task queue. |
+| priority | Task priority. |
+| caller | Task submission method. |
+| handle time | Expected task execution time, which may deviate from the actual task execution time (trigger time). |
+| trigger time | Task execution time. |
+| completeTime time | Task execution completion time (if not printed, the task has not been executed to completion). |
 
 > **NOTE**
 >
@@ -234,7 +292,7 @@ Task components.
 
 ### Stack Information
 
-Stack information of the faulty process is displayed.
+Stack information of the fault process.
 
 ```text
 Tid:13680, Name:les.freezedebug
@@ -270,11 +328,23 @@ state=S, utime=0, stime=0, priority=0, nice=-20, clk=100
 #28 pc 00000000000a9804 /system/lib/ld-musl-aarch64.so.1(libc_start_main_stage2+84)(f1a940981720250b920ee26d2d76af5b)
 ```
 
-In most cases, you can use the stack information of **THREAD_BLOCK_6S** and **APP_INPUT_BLOCK** to locate the abnormal code.
+<!--RP4--><!--RP4End-->
+
+In most cases, the stack information of `THREAD_BLOCK_6S`, `LIFECYCLE_TIMEOUT`, and `APP_INPUT_BLOCK` faults can help you locate the abnormal code.
 
 In other cases (for example, in the instant stack), the stack information cannot be obtained immediately due to the busy main thread. As a result, the abnormal code segment cannot be captured in a timely manner, and the stack top information is not as expected.
 
 To solve this problem, enhanced AppFreeze logs can be obtained since API version 21. For details, see [Implementation Principles](#implementation-principles).
+
+If the stack content of the fault process is missing, the following log information may appear:
+
+| Log Information | Description |
+| ------------- | ----------------------------------------------------------------------------------------------------------------- |
+| has been crashed | The target process has crashed. A stack capture request is received within 10s after the crash request of the target process is received. Refer to the crash logs near the fault time. Check whether the app uses signal handling functions correctly or uses non-signal-safe functions. |
+| SIGDUMP error | The target process has already exited when the stack capture request is received.|
+| is dumping | The target process is dumping. For consecutive requests within a short period, refer to other error logs of this process near the fault time.|
+| State: S | The target process is sleeping.|
+| errno(2) | The target process does not respond to signals. When no stack information is returned after a 1s timeout, the kernel stack and /proc/status are printed in the log.|
 
 > **NOTE**
 >
@@ -282,10 +352,10 @@ To solve this problem, enhanced AppFreeze logs can be obtained since API version
 >
 > Since API version 21, when the message "Failed to dump normal stacktrace" is displayed, the system uses the lightweight frame pointer backtracing mode. Stack backtracing may be interrupted in libraries that do not enable the frame pointer (when the **-fomit-frame-pointer** option is used during GCC compilation, the compilation product does not enable the frame pointer). In addition, the number of stack layers of a single thread may not exceed 50 due to lightweight restrictions.
 
-Since API version 23, information such as the thread state is added under the thread ID to determine whether the problem is caused by system freeze. **state** indicates the running state of the current thread, **priority** and **nice** indicate the scheduling priority of the current thread, and **stime** and **utime** indicate the running time of the current thread. The stack running time of **THREAD_BLOCK_3S** and **THREAD_BLOCK_6S** events does not change, indicating that the process is not scheduled. After analyzing the service code, it can be determined that the problem is caused by system scheduling. The format of thread state information in fault logs is as follows:
+Since API version 23, information such as the thread state is added under the thread ID to determine whether the problem is caused by system freeze. **state** indicates the thread running state, **priority** and **nice** indicate the scheduling priority, and **stime** and **utime** indicate the running time. If the stack running time of `THREAD_BLOCK_3S` and `THREAD_BLOCK_6S` shows no change, it indicates that the process is not scheduled. After analyzing the service code and confirming that there is no blocking call, you can determine that the problem is a system scheduling issue. When thread state information fails to be obtained, none of the following fields are displayed. The thread state information in the fault log is in the following format:
 
 ```text
-state=S, utime=0, priority=0, nice=-20, clk=100
+state=S, utime=0, stime=0, priority=0, nice=-20, clk=100
 ```
 
 The fields are described as follows:
@@ -332,7 +402,7 @@ The IPC information is described as follows.
 | code | Service code agreed by the client and server.|
 | wait | Communication waiting duration.|
 | frz_state | Process freeze state.<br>**-1**: Unknown.<br>**1**: Default.<br>**2**: The binder status information is being sent to the user mode.<br>**3**: The binder receiving thread is reached.|
-| ns | Client process ID and thread ID to server process ID and thread ID (**-1** for non-DroiTong processes).|
+| ns | Client process ID and thread ID to server process ID and thread ID. |
 | debug | Supplementary information about the IPC parties.|
 | active_code | Code of the asynchronous message that is being processed.|
 | active_thread | Thread that processes the asynchronous message.|
@@ -409,6 +479,139 @@ The preceding shows the system memory information. **ReclaimAvailBuffer** indica
 
 ## Log Differences
 
+**Lifecycle Timeout Event**
+
+The following is an example of lifecycle timeout log difference content:
+
+```text
+DOMAIN:AAFWK
+STRINGID:LIFECYCLE_TIMEOUT
+TIMEOUT TIMESTAMP:2025/02/10-21:40:59:113
+PID:1561
+UID:20010039
+PACKAGE_NAME:com.example.myapplication
+PROCESS_NAME:com.example.myapplication
+MSG:ability:EntryAbility background timeout
+server actions for ability:
+2025-02-10 21:40:56.376; AbilityRecord::ProcessForegroundAbility; the ProcessForegroundAbility lifecycle starts.
+2025-02-10 21:40:56.377; ServiceInner::UpdateAbilityState
+server actions for app:
+2025-02-10 21:40:56.397; AppRunningRecord::OnWindowVisibilityChanged
+2025-02-10 21:40:56.851; AppRunningRecord::OnWindowVisibilityChanged
+2025-02-10 21:40:58.668; AppRunningRecord::OnWindowVisibilityChanged
+client actions for ability:
+2025-02-10 21:40:56.378; AbilityThread::ScheduleAbilityTransaction
+2025-02-10 21:40:56.378; AbilityThread::HandleAbilityTransaction
+2025-02-10 21:40:56.382; JsUIAbility::OnStart begin
+2025-02-10 21:40:56.382; JsUIAbility::OnStart end
+2025-02-10 21:40:56.387; JsUIAbility::OnSceneCreated begin
+2025-02-10 21:40:56.388; JsUIAbility::OnSceneCreated end
+2025-02-10 21:40:56.388; JsUIAbility::WindowScene::GoForeground begin
+2025-02-10 21:40:56.389; UIAbilityImpl::WindowLifeCycleImpl::AfterForeground
+2025-02-10 21:40:56.392; JsUIAbility::IntentForeground execute start begin
+2025-02-10 21:40:56.397; JsUIAbility::IntentForeground end
+2025-02-10 21:40:56.397; JsUIAbility::OnForeground begin
+client actions for app:
+```
+
+The following table uses **two complete lifecycle switches** as an example to explain the information in MSG.
+
+> **NOTE**
+>
+> Each record carries a timestamp. The time-consuming step can be located by the timestamp difference between adjacent records.
+>
+> The "Failure Cause" column describes the possible cause of timeout for this step.
+>
+> The "Requires App Handling" column indicates whether app handling is required and how to handle it.
+>
+> Records marked with "(Exception Scenario)" appear only when the corresponding exception occurs. Records marked with "([InsightIntent](../application-models/insight-intent-overview.md) Scenario)" appear only when the intent framework is involved.
+
+1. Load phase events, using the case where the app process is not created as an example.
+
+   | server | client | Description | Failure Cause | Requires App Handling |
+   | ------------------------------------------------------------- | ---------------------------------------- | --------------------------------------------------------------- | --------------------------------------------------------------- | --------------------------------------------------------------- |
+   | AbilityRecord::LoadAbility; the LoadAbility lifecycle starts. | - | The Ability load lifecycle starts. The system prepares the resources and process required for loading the Ability. Marks the start of the load phase. | - | No, system-side scheduling. |
+   | AppMgrServiceInner::LoadAbility | - | Before creating the app process, the server starts processing the Ability load request and checks the process status. | - | No, system-side scheduling. |
+   | AppMgrService::AttachApplication | - | After the app process is created successfully, the process initiates an attach request to the server to establish a communication channel. | - | No, system-side scheduling. |
+   | ServiceInner::AttachApplication | - | The server processes the process attach, records process information, and prepares for subsequent scheduling. | - | No, system-side scheduling. |
+   | ServiceInner::LaunchApplication | - | The server schedules the app to execute the load process and notifies the app process to perform initialization. | - | No, system-side scheduling. |
+   | AppRunningRecord::LaunchApplication | - | Schedules the app to execute the load process. | - | No, system-side scheduling. |
+   | AppRunningRecord::LaunchApplication; null scheduler (Exception Scenario) | - | The scheduler is null when scheduling the app load process. Exception information is recorded. | - | No, system-side scheduling issue. |
+   | AppScheduler::ScheduleLaunchApplication | - | Sends the ScheduleLaunchApplication scheduling request to the app process through IPC. | - | No, system-side IPC. |
+   | write launchData fail (Exception Scenario) | - | Failed to serialize launchData. | - | No, system-side data issue. |
+   | write config fail (Exception Scenario) | - | Failed to serialize config. | - | No, system-side data issue. |
+   | ScheduleLaunchApplication ipc error * (Exception Scenario) | - | ScheduleLaunchApplication IPC call failed. The IPC error code is recorded. | IPC communication exception. | No, system-side IPC issue. |
+   | - | ScheduleLaunchApplication | The app process receives the app load scheduling request and starts preparing the load environment. | The main thread is blocked and does not process the IPC request in time. | Yes, check whether the main thread has time-consuming tasks or blocking calls. |
+   | - | HandleLaunchApplication begin | The app starts executing the load logic. | The Application initialization logic is time-consuming. | Yes, check whether the app has abnormal time consumption. |
+   | - | HandleLaunchApplication end | The app load logic execution ends. The load time can be calculated by comparing with begin. | - | Yes, check whether the app has abnormal time consumption. |
+   | AppRunningRecord::LaunchPendingAbilities | - | Schedules the pending abilities in the app and triggers specific Ability loading. | - | No, system-side scheduling. |
+   | AppLifeCycleDeal::LaunchAbility | - | The server schedules the app to load a specific Ability through IPC. | IPC communication failed, or serialization of [Want](../application-models/want-overview.md) failed. | No, system-side IPC issue. |
+   | AppLifeCycleDeal::LaunchAbility; write want fail (Exception Scenario) | - | Failed to serialize want data. Exception information is recorded. | The want parameter is too large or contains non-serializable objects. | Yes, check whether the want parameter contains excessively large or non-serializable data. |
+   | AppLifeCycleDeal::LaunchAbility; ipc error * (Exception Scenario) | - | ScheduleLaunchAbility IPC call failed. The IPC error code is recorded. | IPC communication exception. | No, system-side IPC issue. |
+   | - | MainThread::ScheduleLaunchAbility | The app process receives the request to load the Ability and prepares to execute the Ability creation process. | The main thread is blocked. | Yes, check whether the main thread has time-consuming tasks. |
+   | - | MainThread::HandleLaunchAbility | The app main thread processes the Ability load request. | - | No, system-side load process. |
+   | - | JsAbilityStage::Create | Loads [AbilityStage](../application-models/abilitystage.md). | - | No, system-side load process. |
+   | - | JsAbilityStage::OnCreate begin | The AbilityStage [onCreate](../reference/apis-ability-kit/js-apis-app-ability-abilityStage.md#oncreate) lifecycle starts. | Time-consuming operations are executed in AbilityStage onCreate. | Yes, avoid executing time-consuming operations in AbilityStage onCreate. |
+   | - | JsAbilityStage::OnCreate end | The AbilityStage onCreate lifecycle ends, and AbilityStage initialization is complete. The time can be calculated by comparing with begin. | AbilityStage onCreate takes too long. | Yes, optimize the AbilityStage onCreate logic. |
+   | - | JsAbilityStage::OnAboutToCreateAbility begin (InsightIntent Scenario) | AbilityStage is about to create an Ability ([onAboutToCreateAbility](../reference/apis-ability-kit/js-apis-app-ability-abilityStage.md#onabouttocreateability24) callback). | Time-consuming operations are executed in onAboutToCreateAbility. | Yes, avoid executing time-consuming operations in onAboutToCreateAbility. |
+   | - | JsAbilityStage::OnAboutToCreateAbility end (InsightIntent Scenario) | The onAboutToCreateAbility callback ends. The time can be calculated by comparing with begin. | onAboutToCreateAbility takes too long. | Yes, optimize the onAboutToCreateAbility logic. |
+   | - | JsAbilityStage::OnAboutToCreateAbilityAsync begin (InsightIntent Scenario) | Asynchronously creates an Ability (onAboutToCreateAbilityAsync callback). | The asynchronous Promise is not resolved in time. | Yes, ensure that the Promise returned by onAboutToCreateAbilityAsync is resolved in time. |
+   | - | JsAbilityStage::OnAboutToCreateAbilityAsync end (InsightIntent Scenario) | The onAboutToCreateAbilityAsync callback ends. | The asynchronous Promise is not resolved in time. | Yes, ensure that the Promise returned by onAboutToCreateAbilityAsync is resolved in time. |
+   | - | AbilityThread::CreateObjError (Exception Scenario) | Failed to create the Ability JS object. Exception information is recorded. | The Ability class is not registered, or JS engine initialization failed. | Yes, check whether the Ability class is correctly registered and exported. |
+   | - | AbilityThread::Attach | The Ability binder is attached to the server side to establish communication. | - | No, system-side IPC. |
+   | - | AbilityThread::Attach; error * (Exception Scenario) | AttachAbilityThread IPC call failed. The error code is recorded. | IPC communication exception. | No, system-side IPC issue. |
+   | AbilityManagerService::AttachAbilityThread; the end of load lifecycle. | - | The server confirms that AbilityThread attachment is complete, and the load lifecycle ends. | - | No, system-side scheduling. |
+
+2. Foreground phase events, with cold start of the app.
+
+   | server | client | Description | Failure Cause | Requires App Handling |
+   | ------------------------------------------------------------- | ---------------------------------------- | --------------------------------------------------------------- | --------------------------------------------------------------- | --------------------------------------------------------------- |
+   | AbilityRecord::ProcessForegroundAbility; the ProcessForegroundAbility lifecycle starts. | - | The start phase of the Ability entering the foreground lifecycle. Marks the start of the foreground phase. | - | No, system-side scheduling. |
+   | ServiceInner::UpdateAbilityState | - | Schedules the app to the foreground first. | - | No, system-side scheduling. |
+   | AppRunningRecord::ScheduleForegroundRunning | - | Schedules the app to the foreground and notifies the app process to enter the foreground running mode. | - | No, system-side scheduling. |
+   | AppRunningRecord::ScheduleForegroundRunning; null scheduler (Exception Scenario) | - | The scheduler is null when scheduling the app to the foreground. Exception information is recorded. | - | No, system-side scheduling issue. |
+   | ScheduleForegroundRunning fail (Exception Scenario) | - | ScheduleForegroundRunning scheduling failed. Exception information is recorded. | - | No, system-side scheduling issue. |
+   | AppScheduler::ScheduleForegroundApplication | - | Sends the ScheduleForegroundApplication scheduling request to the app through IPC. | - | No, system-side IPC. |
+   | ScheduleForegroundApplication ipc error * (Exception Scenario) | - | ScheduleForegroundApplication IPC call failed. The IPC error code is recorded. | IPC communication exception. | No, system-side IPC issue. |
+   | - | ScheduleForegroundApplication | The app process receives the scheduling instruction and starts processing the app foreground switch. | The main thread is blocked. | Yes, check whether the main thread has time-consuming tasks. |
+   | - | HandleForegroundApplication | The main thread executes scheduling and distributes app foreground tasks to specific modules. | - | Yes, check whether Application onForeground is time-consuming. |
+   | - | HandleForegroundApplication; fail (Exception Scenario) | PerformForeground execution failed. Exception information is recorded. | - | No, system-side scheduling issue. |
+   | AppMgrService::AppForegrounded | - | The app foreground is complete. The server records that the app state has switched to foreground. | - | No, system-side scheduling. |
+   | ServiceInner::AppForegrounded | - | The app foreground is complete. | - | No, system-side scheduling. |
+   | AppRunningRecord::OnWindowVisibilityChanged | - | Window visibility changes. | - | No, system-side window scheduling. |
+   | write want failed (Exception Scenario) | - | When the server schedules the Ability foreground transaction through ScheduleAbilityTransaction, serialization of [Want](../application-models/want-overview.md) failed. | The want parameter is too large or contains non-serializable objects. | Yes, check whether the want parameter contains excessively large or non-serializable data. |
+   | write sessionInfo failed (Exception Scenario) | - | Failed to serialize sessionInfo. | - | No, system-side data issue. |
+   | ScheduleAbilityTransaction ipc error * (Exception Scenario) | - | ScheduleAbilityTransaction IPC call failed. The IPC error code is recorded. | IPC communication exception. | No, system-side IPC issue. |
+   | - | AbilityThread::ScheduleAbilityTransaction | The app receives the Ability foreground scheduling and prepares to perform transaction processing on the specific Ability. | The main thread is blocked. | Yes, check whether the main thread has time-consuming tasks. |
+   | - | AbilityThread::HandleAbilityTransaction | The main thread executes Ability foreground scheduling and triggers the Ability lifecycle callback. | - | No, system-side recording. |
+   | - | JsUIAbility::OnStart begin | The [onCreate](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md#oncreate) lifecycle starts. The Ability performs initialization. | Time-consuming operations are executed in onCreate. | Yes, avoid executing time-consuming operations in onCreate. |
+   | - | JsUIAbility::OnStart end | The onCreate lifecycle ends, and the initial resources of the Ability are ready. The time can be calculated by comparing with begin. | onCreate takes too long. | Yes, avoid executing time-consuming operations in onCreate. |
+   | - | JsUIAbility::OnSceneCreated begin | Window scene creation starts. | Time-consuming operations are executed in [onWindowStageCreate](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md#onwindowstagecreate). | Yes, avoid executing time-consuming operations in onWindowStageCreate. |
+   | - | JsUIAbility::OnSceneCreated end | Window scene creation ends. The time can be calculated by comparing with begin. | onWindowStageCreate takes too long. | Yes, avoid executing time-consuming operations in onWindowStageCreate. |
+   | - | JsUIAbility::OnWillForeground begin | The [onWillForeground](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md#onwillforeground20) callback starts. | Time-consuming operations are executed in onWillForeground. | Yes, avoid executing time-consuming operations in onWillForeground. |
+   | - | JsUIAbility::OnWillForeground end | The onWillForeground callback ends. The time can be calculated by comparing with begin. | onWillForeground takes too long. | Yes, avoid executing time-consuming operations in onWillForeground. |
+   | - | JsUIAbility::WindowScene::GoForeground begin | Calling the window interface to execute GoForeground starts. | Window scene initialization failed, or the window system responds slowly. | No, window system issue. |
+   | - | JsUIAbility::DoOnForegroundForSceneIsNull; error * (Exception Scenario) | Window scene initialization failed. The error code is recorded. | Window scene creation failed, or displayId acquisition failed. | No, window system issue. |
+   | - | UIAbilityImpl::WindowLifeCycleImpl::AfterForeground | Callback after the window goes to the foreground. | Window GoForeground did not call back in time. | No, window system issue. |
+   | - | UIAbilityImpl::WindowLifeCycleImpl::ForegroundFailed; GoForeground failed (Exception Scenario) | Window GoForeground failed. Exception information is recorded. | - | No, window system issue. |
+   | - | JsUIAbility::IntentForeground execute start begin (InsightIntent Scenario) | Execution of app foreground-related [intent](../application-models/insight-intent-overview.md) operations starts, processing Intent tasks triggered by the foreground switch. | The InsightIntent executor did not return in time. | Yes, ensure that the Intent executor completes in time. |
+   | - | JsUIAbility::IntentForeground end (InsightIntent Scenario) | Execution of app foreground-related intent operations ends, and Intent-related logic has been processed. The time can be calculated by comparing with start. | The InsightIntent executor takes too long. | Yes, ensure that the Intent executor completes in time. |
+   | - | JsUIAbility::IntentRepeat execute start (InsightIntent Scenario) | Intent repeat execution mode starts. | The InsightIntent executor did not return in time. | Yes, ensure that the Intent executor completes in time. |
+   | - | JsUIAbility::IntentRepeat execute end (InsightIntent Scenario) | Intent repeat execution mode ends. The time can be calculated by comparing with start. | The InsightIntent executor takes too long. | Yes, ensure that the Intent executor completes in time. |
+   | - | JsUIAbility::IntentPage execute start (InsightIntent Scenario) | Intent page execution mode starts. | The InsightIntent executor did not return in time. | Yes, ensure that the Intent executor completes in time. |
+   | - | JsUIAbility::IntentPage execute end (InsightIntent Scenario) | Intent page execution mode ends. The time can be calculated by comparing with start. | The InsightIntent executor takes too long. | Yes, ensure that the Intent executor completes in time. |
+   | - | UIAbilityImpl::HandleExecuteInsightIntentForeground (InsightIntent Scenario) | Processes foreground intent execution. | InsightIntent parameter generation failed. | Yes, check the InsightIntent parameter configuration. |
+   | - | JsUIAbility::OnForeground begin | The [onForeground](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md#onforeground) lifecycle starts, notifying you that the Ability is displayed in the foreground. | Time-consuming operations are executed in onForeground. | Yes, avoid executing time-consuming operations in onForeground. |
+   | - | JsUIAbility::OnForeground end | The onForeground lifecycle ends, and the foreground lifecycle callback of the Ability is complete. The time can be calculated by comparing with begin. | onForeground takes too long. | Yes, avoid executing time-consuming operations in onForeground. |
+   | - | JsUIAbility::OnDidForeground begin | The [onDidForeground](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md#ondidforeground20) callback starts. | Time-consuming operations are executed in onDidForeground. | Yes, avoid executing time-consuming operations in onDidForeground. |
+   | - | JsUIAbility::OnDidForeground end | The onDidForeground callback ends. The time can be calculated by comparing with begin. | onDidForeground takes too long. | Yes, avoid executing time-consuming operations in onDidForeground. |
+   | - | AbilityManagerClient::AbilityTransitionDone | The client notifies AMS that the foreground switch is complete. | AbilityTransitionDone IPC call failed. | No, system-side IPC issue. |
+   | - | AbilityTransitionDone; write saveData failed (Exception Scenario) | The client failed to serialize saveData. Exception information is recorded. | - | No, system-side data issue. |
+   | - | AbilityTransitionDone; ipc error * (Exception Scenario) | AbilityTransitionDone IPC call failed. The IPC error code is recorded. | IPC communication exception. | No, system-side IPC issue. |
+   | AbilityManagerService::AbilityTransitionDone; the end of foreground lifecycle. | - | The server confirms that the foreground switch is complete, and the foreground lifecycle ends. | The client did not call AbilityTransitionDone in time. | No, system-side scheduling. |
+
+See [Log Specifications](#log-specifications) to analyze other log information. Note: If the main thread deadlocks during lifecycle switching, compare and analyze the stacks and `BinderCatcher` information from the two adjacent logs to locate the problem.
+
 **APP_INPUT_BLOCK** User Input Response Timeout
 
 ```text
@@ -424,13 +627,13 @@ DisplayPowerInfo:powerState:AWAKE
 
 Since API version 22, when an **APP_INPUT_BLOCK** fault occurs, the log will output a timeout event (**Wait Event**) for multi-mode input (including mouse, keyboard, touchpad, and touchscreen). The event information includes the event ID, event detection timeout threshold, and previous event ID.
 
-Event detection timeout threshold: 8000 ms for the log version and 5000 ms for the nolog version.
+Event detection timeout threshold: 8000 ms for the log version and 5000 ms for the nolog version. Since **API version 24**, the `APP_INPUT_BLOCK` detection threshold is 8000 ms regardless of the version.
 
 Previous events: **lastDispatchEvent** indicates the event dispatched last time; **lastProcessEvent** indicates the event processed last time; **lastMarkedEvent** indicates the event marked last time.
 
 In the preceding example, the last dispatched event is **430**, the last processed event is **429**, and the last marked event is **428**, indicating that the event 430 has been dispatched and the processing times out for 8000 ms. This log can be used to determine the **APP_INPUT_BLOCK** event and help analyze the problem.
 
-## Enhanced AppFreeze Logs
+## AppFreeze Enhanced Log Information (Sampling Stack)
 
 Since API version 21, enhanced AppFreeze logs can be obtained. In these logs, the running loads of the device and main thread are collected, and multiple call stacks of the main thread are captured to help you analyze the cause. Compared with the original logs, the enhanced AppFreeze logs address the following issues:
 
@@ -442,15 +645,15 @@ Since API version 21, enhanced AppFreeze logs can be obtained. In these logs, th
 
 The process of generating enhanced AppFreeze logs is as follows:
 
-1. When the **THREAD_BLOCK_3S** event occurs during the running of an application process, the main thread call stack is captured to record the current CPU information.
+1. When `THREAD_BLOCK_3S` or `LIFECYCLE_HALF_TIMEOUT` occurs during app process running, the main thread call stack collection process is started, and some CPU information at the current moment is recorded.
 
-2. When the **THREAD_BLOCK_6S** or **APP_INPUT_BLOCK** event occurs during the running of an application process, the main thread call stack capturing is stopped, and the CPU information within the period is calculated. Generally, the stack logs are captured 1 to 10 times.
+2. When `THREAD_BLOCK_6S`, `LIFECYCLE_TIMEOUT`, or `APP_INPUT_BLOCK` occurs during app process running, the main thread call stack collection process described above is stopped, and the CPU information within the period is calculated. Generally, 1 to 10 stack logs are captured.
 
    > **NOTE**
    >
-   > The sampling stack of the application freeze event conflicts with that of [MAIN_THREAD_JANK](hiappevent-watcher-mainthreadjank-events.md). If the number of sampling stacks is set through the **setEventConfig** API of **MAIN_THREAD_JANK**, the number of sampling stacks of the application freeze event is the same as that configured for the application.
+   > Since the sampling stack of app freeze events conflicts with [main thread timeout detection](apptask-timeout-guidelines.md#main-thread-timeout-detection), if the app accesses the setEventConfig API of `MAIN_THREAD_JANK` to customize the number of collected stacks, the number of stacks collected for app freeze events is the same as the number of stacks currently configured for the app.
    >
-   > Enhanced logs for **APP_INPUT_BLOCK** faults are generated only when **THREAD_BLOCK_3S** occurs first.
+   > The prerequisite for `APP_INPUT_BLOCK` faults to have enhanced logs is that `THREAD_BLOCK_3S` or `LIFECYCLE_HALF_TIMEOUT` occurs first.
 
 ### Obtaining Logs
 
@@ -458,7 +661,9 @@ You can obtain the path of the enhanced AppFreeze logs using any of the followin
 
 **Method 1: HiAppEvent APIs**
 
-Configure the following environment variables in the **AppScope/app.json5** file:
+Starting from system versions <!--RP3-->OpenHarmony 6.1.0.125<!--RP3End--> and later, the system merges the AppFreeze enhanced log content into the end of the log pointed to by [external_log](hiappevent-watcher-freeze-events.md#params) of the `APP_FREEZE` event by default.
+
+If you need a separate AppFreeze enhanced log file, configure the following environment variables in the **AppScope/app.json5** file:
 
    ```text
    "appEnvironments": [
@@ -481,13 +686,15 @@ Enable **Developer options** and run the `hdc file recv /data/log/faultlog/freez
 
 ### Log Specifications
 
-The enhanced log header contains the following fields.
+The enhanced log header contains the following fields:
+
 |Field|Description|Initial API Version|
 |---|---|---|
 | TimeStamp | Log generation time.| 21 |
 | Module name | Name of the faulty module.| 21 |
 
 The following table lists the fields of the total CPU time consumption information in enhanced logs.
+
 |Field|Description|Initial API Version|
 |---|---|---|
 | ProcessCpuTime | Process running time in a statistical period.| 21 |
@@ -501,7 +708,8 @@ The following table lists the fields of the total CPU time consumption informati
 | OptimalCpuTime | Running time of the main thread with the optimal load in a statistical period (using the maximum computing power of the maximum number of cores).| 21 |
 | SupplyAvailableTime | Time that can be optimized by scheduling. If the value is small, the main thread is busy. In this case, you need to optimize the main thread tasks.| 21 |
 
-The following table lists the stack information fields in enhanced logs.
+The main thread stack information fields in enhanced logs are as follows:
+
 |Field|Description|Initial API Version|
 |---|---|---|
 | SnapshotTime | Time when the main thread stack is captured.| 21 |
@@ -512,7 +720,7 @@ The following table lists the stack information fields in enhanced logs.
 
 ### Enhanced Log Specifications
 
-The following describes the common enhanced AppFreeze log specifications: You can use the [clustering script](#clustering-script) to obtain key information of the main thread stack, improving the efficiency and accuracy of fault locating.
+This section mainly describes the general log specifications of enhanced logs. The following is the core content of an AppFreeze enhanced log. You can use the [clustering rules](#enhanced-log-information-clustering) to extract key information of the main thread stack, improving the efficiency and accuracy of problem locating.
 
 ```text
 Generated by HiviewDFX @OpenHarmony
@@ -591,331 +799,36 @@ SnapshotTime: 2021-01-01-20-05-58.549685
 .......
 ```
 
-**Native Stack Frame Content**
+## AppFreeze Clustering
 
-For details, see the call stack frame description in [Log Specification of C++ Crash Common Faults](./cppcrash-guidelines.md#common-faults).
+### Clustering Introduction
 
-**JS Hybrid Stack Frame Content**
+AppFreeze issues generated by an app in different versions or at different times within the same version may have the same root cause. However, most information generated in AppFreeze fault logs varies depending on factors such as version and occurrence time, making it difficult to quickly determine whether multiple issues are duplicates.
 
-For details, see [JS Crash Exception Code Call Stack Formats](./jscrash-guidelines.md#exception-code-call-stack-formats).
+AppFreeze fault information contains call stacks from both the system side and the app side, which makes it difficult for app developers to quickly troubleshoot app-side issues.
 
-### Clustering Rules for Enhanced Logs
+Therefore, to avoid repeatedly analyzing multiple fault reports and improve the efficiency of app fault analysis, AppFreeze fault information needs to be clustered.
 
-**Clustering Rules**
+Clustering also helps you classify and collect statistics on issues with different causes.
 
-In a log file that contains multiple application main thread stacks (for example, 10 stacks), perform the following operations on each sampling stack:
+### Clustering Scope
 
-1. Filter out the system stack.
+The fault thread information in AppFreeze fault logs represents the code call information when a business thread encounters a fault. The same fault thread call stack information necessarily indicates the same fault cause.
 
-   Filter out system stack frames (for example, **/system/lib/...** and **ld-musl**) as required. Example of the system stack frame format:
-   ```text
-   # 00 pc 000e8400 /system/lib/ld-musl-arm.so.1(raise+176)(a40044d0acb68107cfc4adb5049c0725)
-   ```
-2. Retain the service stack.
+Therefore, using fault thread information as the clustering scope is the most accurate approach. You can add other fault log information based on service-specific clustering requirements.
 
-   Retain service stack frames (starting with **at** or containing **/data/storage**). JS stack frames are considered as service stack frames (from application code) by default. Example of the service stack frame format:
-   ```text
-   at onPageShow har1 (har1/src/main/ets/pages/Index.ets:7:13)
-   ```
-3. Standardize stack frames.
+For details about fault thread information, see [Stack Information](#stack-information).
 
-   Define the content of the standard stack frame, remove variable information (such as the line number, byte offset, and build ID), and retain the key information for clustering as required.
-   Perform the following cleaning operations on each service stack frame:
+### AppFreeze Fault Information Clustering
 
-  (1) Native stack frame standardization
+The clustering method for AppFreeze fault information is the same as that for Cpp Crash. For details, see [CppCrash Clustering](cppcrash-guidelines.md#cppcrash-clustering).
 
-   | Original Stack Frame Content| Standardized Stack Frame Content|
-   | ------------- | ---------------- |
-   | # 01 pc 00006e95 /data/crasher_cpp(DfxCrasher::RaiseSegmentFaultException()+92)(d6cead5be17c9bb7eee2a9b4df4b7626) | /data/crasher_cpp(DfxCrasher::RaiseSegmentFaultException()+92) |
+> **NOTE**
+>
+> If IPC stack frames exist in the fault thread stack, [binder](#peer-information-information-about-the-process-that-communicates-with-the-faulty-process) stack information can be obtained for clustering.
 
-   Steps:
+### Enhanced Log Information Clustering
 
-   a. Extract the function signature (including the class name, function name, and parameters in the brackets).
+The clustering specifications for enhanced log information are consistent with those for extracting stack information from AppFreeze fault information. Enhanced log information is mainly included in clustering to address cases where AppFreeze fault stack information is insufficient for clustering.
 
-   b. Ignore the PC offset and build ID.
-
-   c. Retain the complete function signature (including **const** and parameter types, if parsed in logs).
-
-  (2) JS stack frame standardization
-
-   | Original Stack Frame Content| Standardized Stack Frame Content|
-   | ------------- |---------------- |
-   | # 00 at onPageShow (entry\|har1\|1.0.0\|src/main/ets/pages/Index.ts:7:13) | onPageShow (entry\|har1\|1.0.0\|src/main/ets/pages/Index.ts:7:13) |
-
-   Steps:
-
-   a. Remove the line number.
-
-   b. Retain the function name (for example, **onPageShow**).
-
-   c. Retain the file path (for example, **src/main/ets/pages/Index.ts**).
-
-   d. Generate a standardized service call stack sequence for subsequent cluster analysis.
-
-4. Generate cluster features.
-
-  |Original Sampling Stack|Final Cluster Features (Calling Sequence from Top to Bottom)|
-  | ----------- |-------------- |
-  | # 00 pc 000e8400 /system/lib/ld-musl-arm.so.1(raise+176)(a40044d0...)<br># 01 pc 00006e95 /data/crasher_cpp(DfxCrasher::RaiseSegmentFaultException()+92)(d6ce...)<br># 02 pc 00008909 /data/crasher_cpp(DfxCrasher::ParseAndDoCrash(char const*) const+612)(d6ce...)<br># 03 at onPageShow (entry\|har1\|1.0.0\|src/main/ets/pages/Index.ts:7:13) | /data/crasher_cpp(DfxCrasher::RaiseSegmentFaultException()+92)<br>/data/crasher_cpp(DfxCrasher::ParseAndDoCrash(char const*) const+612)<br>at onPageShow (entry\|har1\|1.0.0\|src/main/ets/pages/Index.ts:7:13) |
-
-   Cluster all sampling stacks based on cluster features.
-
-### Clustering Script
-
-This script is used only for [AppFreeze enhanced logs](#enhanced-log-specifications). When the log content is too long and the main thread stack is repeated for multiple times, this script is used to extract service stack clustering information (service stack content, total number of occurrences, and typical complete stack) to quickly locate faults.
-
-1. Script functionalities
-
-   This script is used to process .zip log files in a specified folder in batches. Perform the following steps:
-
-   (1) Read the sampling stack files from all .zip files in the input folder.
-
-   (2) Automatically decompress, parse, and convert the files one by one.
-
-   (3) Output the processing result to the specified folder.
-
-2. Running method
-
-   ```python
-   get_all_result(input_dir: str, output_dir: str)
-   ```
-   | Parameter| Mandatory| Type| Description|
-   |----|----|----|----|
-   | input_dir |Yes| String| Path of the input folder, which must contain several .zip log files.|
-   | output_dir |Yes| String| Path of the output folder. The script writes the processing result to this directory.|
-
-   Example:
-   ```python
-   get_all_result(r"D:\log\input", r"D:\log\output")
-   ```
-
-3. Input requirements
-
-   The **input_dir** directory must contain several.zip files.
-
-   The file name is not limited. The file can be a nested structure (the script can support .zip files in .zip files).
-
-   The .zip file must contain sampling stack log files.
-
-4. Output description
-
-   The script generates the processing result in **output_dir**, for example:
-   ```text
-   output_dir/
-   ├─stack_summary.txt
-   ├─ Service stack clustering .txt
-   └─ Service stack clustering .xlsx
-   ```
-   The output type depends on the script logic (for example, decompressed file, converted file, summary text, JSON, or CSV).
-
-5. Preparations before running
-
-   Ensure that the local host or deployment environment meets the following requirements:
-
-   (1) Python 3.x has been installed.
-
-   (2) Script dependencies (such as **os**, **zipfile**, and **pandas**) have been installed.
-
-   (3) If **output_dir** does not exist, the script will be automatically created. (If the script does not support automatic creation, create the directory in advance.)
-    
-   (4) This script cannot be executed in DevEco Studio. Run it in the installed Python environment.
-
-6. Clustering script source code
-
-<!-- @[sample_stack_cluster](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/PerformanceAnalysisKit/Tools/SampleStack/cluster_script.py) --> 
-
-```python
-import re
-from collections import Counter, defaultdict
-import os
-import pandas as pd
-import zipfile
-import glob
-from pathlib import Path
-
-# Log directory
-log_dir = r"D:\log\input"  # Change it to your log directory.
-# Output the result.
-output_file = r"D:\log\stack_summary.txt"
-# Match the stack line.
-stack_line_pattern = re.compile(r'^\s*(#\d+\s+pc\s+[0-9a-f]+.*|#?\d*\s*at .+)$')
-
-
-# Determine whether it is a service stack.
-def is_business_stack(line):
-    line = line.strip()
-    return re.match(r'^(#\d+\s+)?at .+\(.+\)$', line) is not None
-
-
-def process_log_file(path):
-    with open(path, "r", encoding="utf-8", errors='ignore') as f:
-        lines = f.readlines()
-
-    all_stacks = []
-    current_stack = []
-    for line in lines:
-        if line.startswith("SnapshotTime:"):
-            if current_stack:
-                all_stacks.append(current_stack)
-                current_stack = []
-        elif stack_line_pattern.match(line):
-            # Ignore irrelevant system lines.
-            if re.match(r'#\d+\s+pc\s+[0-9a-f]+$', line.strip()):
-                continue
-            current_stack.append(line.strip())
-    if current_stack:
-        all_stacks.append(current_stack)
-
-    # Count the stacks of the same log.
-    stack_counter = Counter()
-    for stack in all_stacks:
-        business_lines = [line for line in stack if is_business_stack(line)]
-        if business_lines:
-            key = "\n".join(business_lines[0:5])
-        else:
-            key = "\n".join(stack)
-        stack_counter[key] += 1
-
-    # Retain only those that occur more than five times.
-    result = {k: v for k, v in stack_counter.items() if v >= 1}
-    return result
-
-
-def remove_lineno(line):
-    return re.sub(r'^#\d+\s+', '', line.strip())
-
-
-def normalize_frame(line: str) -> str:
-    """
-    Remove irrelevant information and extract the key part of the service stack.
-    """
-    line = line.strip()
-    # Delete "#number pc address" or "#number at".
-    line = re.sub(r'^#\d+\s+(pc\s+[0-9a-f]+\s+)?', '', line)
-    # Delete the line number (:123:1).
-    line = re.sub(r':\d+(:\d+)?', '', line)
-    return line
-
-
-def is_business_frame(line: str) -> bool:
-    """
-    Determine whether it is a service stack.
-    """
-    return (
-            line.startswith("at ") or
-            "/data/storage/" in line
-    )
-
-
-def unzip_all(src_dir, dest_dir):
-    # Ensure that the target directory exists.
-    os.makedirs(dest_dir, exist_ok=True)
-
-    # Find all .zip files.
-    zip_files = glob.glob(os.path.join(src_dir, "*.zip"))
-
-    for zip_path in zip_files:
-        # Use the zip file name (without the extension) as the subdirectory.
-        base_name = os.path.splitext(os.path.basename(zip_path))[0]
-        extract_path = os.path.join(dest_dir, base_name)
-
-        os.makedirs(extract_path, exist_ok=True)
-
-        # Decompress the files.
-        with zipfile.ZipFile(zip_path, "r") as zip_ref:
-            zip_ref.extractall(extract_path)
-
-        print(f"✅ Decompression completed: {zip_path} → {extract_path}")
-
-    print(f"\nAll decompression completed. A total of {len(zip_files)} .zip files are decompressed.")
-
-
-def get_cluster(input_dir):
-    input_file = os.path.join(input_dir, 'stack_summary.txt')
-    # Count the number of occurrences and representative stacks.
-    cluster_count = defaultdict(int)
-    cluster_sample = {}  # Segment key -> representative complete stack.
-
-    current_stack = []
-    current_count = 0
-
-    with open(input_file, "r", encoding="utf-8") as f:
-        for line in f:
-            line = line.rstrip()
-            if line.startswith("Number of occurrences:"):
-                current_count = int(re.search(r'\d+', line).group())
-                current_stack = []
-            elif line.startswith("=" * 10) or line == "":
-                if current_stack:
-                    # Find the first service stack.
-                    business_frame = None
-                    for frame in current_stack:
-                        norm = normalize_frame(frame)
-                        if is_business_frame(norm):
-                            business_frame = norm
-                            break
-                    if business_frame:
-                        cluster_count[business_frame] += 1
-                        if business_frame not in cluster_sample:  # Save the representative stack.
-                            cluster_sample[business_frame] = "\n".join(current_stack)
-                current_stack = []
-            else:
-                current_stack.append(line)
-    output_file = os.path.join(input_dir, 'Service stack clustering.txt')
-    # Output to a .txt file.
-    with open(output_file, "w", encoding="utf-8") as f:
-        for top_line, total_count in sorted(cluster_count.items(), key=lambda x: x[1], reverse=True):
-            f.write(f"Service stack: {top_line}\n")
-            f.write(f"Total occurrences: {total_count}\n")
-            f.write("Representative complete stack:\n")
-            f.write(cluster_sample[top_line] + "\n")
-            f.write("-" * 80 + "\n")
-
-    print(f"Service stack clustering is complete. The result is exported to {output_file}.")
-
-    # Output to an Excel file.
-    rows = []
-    for key, count in sorted(cluster_count.items(), key=lambda x: x[1], reverse=True):
-        rows.append({
-            "Service stack fragment": key,
-            "Total occurrences": count,
-            "Representative complete stack": cluster_sample[key]
-        })
-    output_excel = os.path.join(input_dir, 'Service stack clustering.xlsx')
-    df = pd.DataFrame(rows)
-    df.to_excel(output_excel, index=False)
-    print(f"Service stack clustering has been exported to {output_excel}.")
-
-
-def get_stack_summary(log_dir, output_dir):
-    all_results = {}
-    for root, dirs, files in os.walk(log_dir):
-        for filename in files:
-            if "freeze-cpuinfo-ext" in filename:
-                path = os.path.join(root, filename)
-                result = process_log_file(path)
-                if result:
-                    all_results[path] = result
-    folder = Path(output_dir)  #Convert the directory to Path.
-    output_file = folder / 'stack_summary.txt'  #Automatically combine the path.
-    folder.mkdir(parents=True, exist_ok=True)
-    # Output the result.
-    with open(output_file, "w", encoding="utf-8") as f:
-        for log_file, stacks in all_results.items():
-            f.write(f"Log file: {log_file}\n")
-            for stack_text, count in stacks.items():
-                f.write(f"Number of occurrences: {count}\n")
-                f.write(stack_text + "\n")
-                f.write("=" * 80 + "\n")
-    print(f"Processing is complete. The result is exported to {output_file}.")
-
-
-def get_all_result(log_dir, output_dir):
-    unzip_all(log_dir, log_dir)
-    get_stack_summary(log_dir, output_dir)
-    get_cluster(output_dir)
-
-
-if __name__ == "__main__":
-    get_all_result(r"D:\log\input", r"D:\log\output")
-```
+You can obtain clustering features for enhanced log information by referring to [AppFreeze Fault Information Clustering](#appfreeze-fault-information-clustering) and use these features for clustering enhanced log information.

@@ -6,7 +6,7 @@
 <!--Designer: @w00373942-->
 <!--Tester: @dong-dongzhen-->
 <!--Adviser: @hu-zhiqiong-->
-<!-- md-trans-meta sourceCommit=0bd849420b8023922f904909cad7f1ce911d0c8d translatedAt=2026-07-28T02:35:25.834Z pushedAt=2026-07-28T02:56:27.387Z -->
+<!-- md-trans-meta sourceCommit=0bd849420b8023922f904909cad7f1ce911d0c8d translatedAt=2026-07-29T01:37:44.650Z pushedAt=2026-07-29T02:08:17.814Z -->
 
 ## Development Tool and Configuration
 
@@ -16,7 +16,7 @@ Download and install [DevEco Studio](https://developer.huawei.com/consumer/en/do
 
 ## SDK Version Configuration
 
-The ArkTS APIs provided by the expansion peripheral management module are applicable only when the SDK is of API version 10 or later<!--Del-->. For details about updating the SDK, see [Update Guide](../../tools/openharmony_sdk_upgrade_assistant.md)<!--DelEnd-->.
+The ArkTS APIs provided by the extended peripheral management module are applicable only when the SDK is of API version 10 or later<!--Del-->. For details about updating the SDK, see [Update Guide](../../tools/openharmony_sdk_upgrade_assistant.md)<!--DelEnd-->.
 
 The following table lists the SDK versions required to develop dedicated peripheral drivers or enhanced peripheral drivers based on the DDK.
 
@@ -50,5 +50,3 @@ HarmonyOS Device Connector (hdc) is a command-line debugging tool. It enables in
 - When developing an extended peripheral driver client or peripheral driver, you need an external USB device for debugging. Currently, **only external devices connected over the USB bus are supported**.
 
 - The product ID and vendor ID of the USB device are required for defining drivers and implementing IPC.
-
-<!--no_check-->

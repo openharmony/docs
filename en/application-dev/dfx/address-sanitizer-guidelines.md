@@ -1,22 +1,24 @@
 # Address Sanitizer Detection
+
 <!--Kit: Performance Analysis Kit-->
 <!--Subsystem: HiviewDFX-->
 <!--Owner: @mlkgeek-->
 <!--Designer: @StevenLai1994-->
 <!--Tester: @gcw_KuLfPSbe-->
-<!--Adviser: @foryourself-->
+<!--Adviser: @jinqiuheng-->
+<!-- md-trans-meta sourceCommit=7d2af097640953124e9b1c3f7bd1ab79876767d6 translatedAt=2026-07-29T02:26:36.738Z pushedAt=2026-07-29T02:39:36.361Z -->
 
 ## Overview
 
-Out-of-bounds address access refers to the access to an invalid address. As a result, the program runs abnormally and the application may crash. Common causes include use after free, double-free, stack-overflow, and heap-overflow. As application crash logs are limited and not the first crash site, it is difficult to locate out-of-bounds address access issues. Typically, you can use detection tools such as ASan, HWASan, and GWP-ASan to obtain more memory operation information. Since API 13, you are advised to use HWASan to analyze out-of-bounds address access issues.
+Out-of-bounds address access refers to the access to an invalid address. As a result, the program runs abnormally and the application may crash. Common causes include use after free, double-free, stack-overflow, and heap-overflow. As application crash logs are limited and not the first crash site, it is difficult to locate out-of-bounds address access issues. Typically, you can use detection tools such as ASan, HWASan, and GWP-ASan to obtain more memory operation information. Since API 13, you are advised to use [HWASan](https://developer.huawei.com/consumer/en/doc/best-practices/bpta-stability-hwasan-detection) to analyze out-of-bounds address access issues.
 
 ## Common Out-of-bounds Types and Impacts
 
-For details, see Typical Types of Out-of-bounds Address Access.
+For details, see [Typical Out-of-Bounds Access Issues](https://developer.huawei.com/consumer/en/doc/best-practices/bpta-stability-address-sanitizer-catagory).
 
 ## Principle of Address Sanitizer Detection
 
-For details, see Address Sanitizer Detection.
+For details, see [Out-of-Bounds Access Detection](https://developer.huawei.com/consumer/en/doc/best-practices/bpta-stability-ram-detection).
 
 ## How to Obtain Logs
 
@@ -116,7 +118,7 @@ Shadow byte legend (one shadow byte represents 8 application bytes):
 
 ### HWASan Log Specifications
 
-HWASan logs are similar to ASan logs. Its title also displays key information such as device information, fault occurrence time, faulty process, and trigger cause. The log content includes the out-of-bounds address (for example, **0x0002013c0100**), access size (for example, **WRITE of size 4**), and thread and process information. In addition, the call stack displays the execution path of the function that triggers the out-of-bounds error, and lists the address, module, and offset of each layer to help you quickly locate the code. Unlike ASan, HWAsan also outputs the tags of pointers and memory blocks, and compares the tags to determine whether an invalid access exists.
+HWASan logs are similar to ASan logs. Its title also displays key information such as device information, fault occurrence time, faulty process, and trigger cause. The log content includes the out-of-bounds address (for example, **0x0002013c0100**), access size (for example, **WRITE of size 4**), and thread and process information. In addition, the call stack displays the execution path of the function that triggers the out-of-bounds error, and lists the address, module, and offset of each layer to help you quickly locate the code. Unlike ASan, HWASan also outputs the tags of pointers and memory blocks, and compares the tags to determine whether an invalid access exists.
 
 ```text
 Device info:XXX <- Device information
@@ -398,3 +400,123 @@ Use After Free at 0x5b46ddaff0 (0 bytes into a 16-byte allocation at 0x5b46ddaff
   #12 0xfffffffffffffffe
 * End GWP-ASan report *
 ```
+
+## AddrSanitizer Clustering
+
+### Clustering Introduction
+
+When an app runs on different versions or at different times within the same version, AddrSanitizer may report faults caused by the same root issue. However, most information in AddrSanitizer fault logs varies with version, time, and other factors, making it difficult to quickly determine whether the faults are duplicates. In addition, AddrSanitizer fault information includes both system-side and app-side call stacks, which hinders you from quickly locating and troubleshooting app-side issues.
+
+Therefore, to avoid repeatedly analyzing multiple fault reports and to improve the efficiency of app fault analysis, AddrSanitizer fault information must be clustered. Clustering also helps you categorize and count faults caused by different root issues.
+
+Determining whether multiple logs belong to the same issue is based on the following two dimensions:
+
+- The fault type of the address out-of-bounds.
+
+- The top two frames in the business-related call stack after filtering out basic libraries.
+
+The issue can be preliminarily scoped using the information above.
+
+### Extracting Clustering Information
+
+1. **Extract the fault type**
+
+    The fault type is extracted from different types of logs as follows:
+
+   - GWP-ASan
+
+     In [GWP-ASan logs](#gwp-asan-log-specifications), the fault type is extracted from the line containing "at" in the raw log. Possible fault types include Use After Free, Double Free, Invalid (Wild) Free, and others. For detailed type descriptions, see [GWP-ASan Anomaly Detection Types](https://developer.huawei.com/consumer/en/doc/best-practices/bpta-stability-gwpasan-detection#section73731529454).
+
+   - ASan/HWASan/MemDebug
+
+     In [ASan](#asan-log-specifications), [HWASan](#hwasan-log-specifications), and [MemDebug](#memdebug-log-specifications) logs, the fault cause is extracted from the "Reason" field in the log. The extraction result serves as the basis for subsequent clustering. For detailed field descriptions, see [AddrSanitizer Log Type Field Description](hiappevent-watcher-address-sanitizer-events.md).
+
+2. **Normalize stack information**
+
+    After extracting the fault type as a signature, use regular expression matching to filter the stack content. Then, to ensure clustering accuracy, the stack information must be normalized and cleaned. The main rules are as follows:
+
+   - Remove volatile information: line numbers, identical BuildIDs, and absolute addresses.
+
+   - Filter out base library stack frames:
+
+      ```text
+      libc.so
+      libc++.so
+      libclang_rt.hwasan.so
+      libclang_rt.asan.so
+      ld-musl-aarch64-asan.so
+      ld-musl-aarch64.so
+      ```
+
+   - Retain business-related stack frames: keep business .so paths as key signatures.
+
+    After normalizing the call stack, the resulting signature stack is as follows:
+
+    | Original Stack Frame Content                                                                                                                  | Normalized Stack Frame Content                                |
+    | ------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------- |
+    |#0 0x5b6d263a58  (/system/lib64/libclang_rt.hwasan.so+0x23a58) (BuildId: a1396c21a0290124b0e0ebd03a4cced52b1addcc)| Ignored (base library)|
+    | #1 0x661be0e870  (/data/storage/el1/bundle/libs/arm64/libentry.so+0x4e870) (BuildId: 5bc0684c2c3fc90841c2498efe1af4fd4792e5a8)| /data/storage/el1/bundle/libs/arm64/libentry.so+0x4e870 |
+
+### Extracting Clustering Features
+
+After normalization is complete, extract the key stack as a signature based on different fault types:
+
+1. Use After Free
+
+    | Fault Signature  | Source | Extraction Rule                                                      |
+    | ----------- | -------- | --------------------------------------------------------------- |
+    | Fault signature | Free stack | After filtering out base libraries, take the first two frames from the stack top (so name + relative offset) |
+
+2. Double Free
+
+    | Fault Signature  | Source       | Extraction Rule                                                      |
+    | ----------- | -------------- | --------------------------------------------------------------- |
+    | Fault signature 1 | First free stack | After filtering out base libraries, take the first two frames from the stack top (so name + relative offset) |
+    | Fault signature 2 | Second free stack | After filtering out base libraries, take the first two frames from the stack top (so name + relative offset) |
+
+3. Other fault types
+
+    | Fault Signature | Source     | Extraction Rule                                                      |
+    | ---------- | ------------ | --------------------------------------------------------------- |
+    | Fault signature | Error stack | After filtering out base libraries, take the first two frames from the stack top (so name + relative offset) |
+
+### Generating Clustering Features
+
+The final clustering signature consists of: fault type + several normalized business stack frames. Taking a GWP-ASan log as an example:
+
+```text
+*** GWP-ASan detected a memory error ***
+Use After Free at 0x5bab376000 (0 bytes into a 64-byte allocation at 0x5bab376000) by thread 52616 here:
+ #0 0x5cad4c7ba4  (/data/storage/el1/bundle/libs/arm64/libsample.so+0x7ba4) (BuildId: 2a3f1826c75a903f89c46b8ffcd1846295fdebcf)
+ #1 0x5cad4c849c  (/data/storage/el1/bundle/libs/arm64/libsample.so+0x849c) (BuildId: 2a3f1826c75a903f89c46b8ffcd1846295fdebcf)
+ #2 0x5aef3bc03c  (/lib/ld-musl-aarch64.so.1+0x1dd03c) (BuildId: c89ea5bf4368de59af764818c03eb41b)
+0x5bab376000 was deallocated by thread 52616 here:
+ #0 0x5aef331010  (/lib/ld-musl-aarch64.so.1+0x152010) (BuildId: c89ea5bf4368de59af764818c03eb41b)
+ #1 0x5aef329614  (/lib/ld-musl-aarch64.so.1+0x14a614) (BuildId: c89ea5bf4368de59af764818c03eb41b)
+ #2 0x5cad4c7b9c  (/data/storage/el1/bundle/libs/arm64/libsample.so+0x7b9c) (BuildId: 2a3f1826c75a903f89c46b8ffcd1846295fdebcf)
+ #3 0x5cad4c849c  (/data/storage/el1/bundle/libs/arm64/libsample.so+0x849c) (BuildId: 2a3f1826c75a903f89c46b8ffcd1846295fdebcf)
+ #4 0x5cad4c8434  (/data/storage/el1/bundle/libs/arm64/libsample.so+0x8434) (BuildId: 2a3f1826c75a903f89c46b8ffcd1846295fdebcf)
+0x5bab376000 was allocated by thread 52616 here:
+ #0 0x5aef331010  (/lib/ld-musl-aarch64.so.1+0x152010) (BuildId: c89ea5bf4368de59af764818c03eb41b)
+ #1 0x5aef3292e4  (/lib/ld-musl-aarch64.so.1+0x14a2e4) (BuildId: c89ea5bf4368de59af764818c03eb41b)
+ #2 0x5aef34b5e0  (/lib/ld-musl-aarch64.so.1+0x16c5e0) (BuildId: c89ea5bf4368de59af764818c03eb41b)
+ #3 0x5cad4c7b84  (/data/storage/el1/bundle/libs/arm64/libsample.so+0x7b84) (BuildId: 2a3f1826c75a903f89c46b8ffcd1846295fdebcf)
+ #4 0x5cad4c849c  (/data/storage/el1/bundle/libs/arm64/libsample.so+0x849c) (BuildId: 2a3f1826c75a903f89c46b8ffcd1846295fdebcf)
+*** End GWP-ASan report ***
+```
+
+Based on the clustering rules:
+
+- Extract the fault type from "at": Use After Free.
+
+- Normalize the free stack.
+
+- After filtering out base library stack frames, retrieve the first two frames from the stack top as the key signature.
+
+The final clustering signature is as follows:
+
+| Fault Signature   | Clustering Signature |
+|---|---|
+| Fault signature - free stack | /data/storage/el1/bundle/libs/arm64/libsample.so+0x7b9c<br>/data/storage/el1/bundle/libs/arm64/libsample.so+0x849c |
+
+You can merge AddrSanitizer faults by comparing the clustering signatures of multiple logs, or compute hash values for the fault type and fault signature content for issue categorization, statistics, and automated analysis.

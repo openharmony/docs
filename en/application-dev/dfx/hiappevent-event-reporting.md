@@ -3,15 +3,16 @@
 <!--Kit: Performance Analysis Kit-->
 <!--Subsystem: HiviewDFX-->
 <!--Owner: @liujiaxing2024-->
-<!--Designer: @junjie_shi-->
+<!--Designer: @jiangwenhao-->
 <!--Tester: @gcw_KuLfPSbe-->
-<!--Adviser: @foryourself-->
+<!--Adviser: @jinqiuheng-->
+<!-- md-trans-meta sourceCommit=592c7fbb76a6d10f1234d8c0e8928fce60796f0e translatedAt=2026-07-29T10:47:24.484Z pushedAt=2026-07-29T11:13:54.006Z -->
 
 HiAppEvent provides APIs for reporting events.
 
 ## Available APIs
 
-For details about how to use the APIs, see [Application Event Logging](../reference/apis-performance-analysis-kit/js-apis-hiviewdfx-hiappevent.md).
+For details about API usage (parameter usage restrictions, specific value ranges, and so on), refer to [@ohos.hiviewdfx.hiAppEvent](../reference/apis-performance-analysis-kit/js-apis-hiviewdfx-hiappevent.md).
 
 **Data Processor APIs**
 
@@ -41,7 +42,7 @@ The following describes how to develop event logging and reporting for the butto
 1. In the **entry/src/main/ets/ pages/Index.ets** file, add the **addprocessorTest** button with **Onclick()** to add the data processor. **analytics_demo** is the data processor library preset in the device.<!--Del--> For details, see [HiAppEvent Data Processor Library](../../device-dev/subsystems/subsys-dfx-hiappevent-extend-so.md).<!--DelEnd--> The sample code is as follows:
 
    <!-- @[EventEsc_Header_And_Add_Processor](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/PerformanceAnalysisKit/HiAppEvent/EventEsc/entry/src/main/ets/pages/Index.ets) -->    
-   
+
    ``` TypeScript
    import { BusinessError } from '@kit.BasicServicesKit';
    import { hiAppEvent, hilog } from '@kit.PerformanceAnalysisKit';
@@ -95,7 +96,7 @@ The following describes how to develop event logging and reporting for the butto
 2. In the **entry/src/main/ets/pages/index.ets** file, add a button with **onClick()** to add and view the user ID. The sample code is as follows:
 
    <!-- @[Button_Add_ID](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/PerformanceAnalysisKit/HiAppEvent/EventEsc/entry/src/main/ets/pages/Index.ets) -->    
-   
+
    ``` TypeScript
    Button('userIdTest')
      .type(ButtonType.Capsule)
@@ -118,7 +119,7 @@ The following describes how to develop event logging and reporting for the butto
 3. In the **entry/src/main/ets/pages/index.ets** file, add a button with **onClick()** to add and view the user property. The sample code is as follows:
 
    <!-- @[Button_Add_Property](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/PerformanceAnalysisKit/HiAppEvent/EventEsc/entry/src/main/ets/pages/Index.ets) -->    
-   
+
    ``` TypeScript
    Button('userPropertyTest')
      .type(ButtonType.Capsule)
@@ -141,7 +142,7 @@ The following describes how to develop event logging and reporting for the butto
 4. In the **entry/src/main/ets/pages/index.ets** file, add a button with **onClick()** to log the button click event. The sample code is as follows:
 
    <!-- @[Button_Add_Event](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/PerformanceAnalysisKit/HiAppEvent/EventEsc/entry/src/main/ets/pages/Index.ets) -->    
-   
+
    ``` TypeScript
    Button('writeTest')
      .type(ButtonType.Capsule)
@@ -172,10 +173,10 @@ The following describes how to develop event logging and reporting for the butto
      })
    ```
 
-5. In the **entry/src/main/ets/pages/index.ets** file, add a button with **onClick()** to remove the data processor. The sample code is as follows:
+5. Edit the **entry > src > main > ets > pages > Index.ets** file in the project, add a button, and remove the data processor in its **onClick** function (the data processor was added in step 2). The complete example code is as follows:
 
    <!-- @[Button_Remove_Processor](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/PerformanceAnalysisKit/HiAppEvent/EventEsc/entry/src/main/ets/pages/Index.ets) -->    
-   
+
    ``` TypeScript
    Button('removeProcessorTest')
      .type(ButtonType.Capsule)
@@ -193,7 +194,7 @@ The following describes how to develop event logging and reporting for the butto
 
 6. Click the **Run** button in DevEco Studio to run the project. Then, click the **addProcessorTest**, **userIdTest**, **userPropertyTest**, **writeTest**, and **removeProcessorTest** buttons one by one to trigger an event reporting.
 
-   Once the event handler receives the event data, you can view the following information in the **Log** window:
+Finally, the data processor successfully receives the event data, and the following log indicating successful event logging for the button click appears in the Log window:
 
    ```text
    HiAppEvent success to write event
