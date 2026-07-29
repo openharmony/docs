@@ -233,7 +233,7 @@ let ret: Array<usbManager.USBPort> = usbManager.getPorts();
 
 getSupportedModes(portId: number): PortModeType
 
-获取指定的端口支持的模式列表的组合掩码。适用于系统应用需要查询USB-C端口能力判断是否支持特定模式（如Host、Device或DRP模式）的场景。返回值为PortModeType的组合掩码，可通过位运算判断端口是否支持特定模式。PortModeType包括：NONE（0，无模式）、UFP（1，上行端口模式，dataRole为DEVICE）、DFP（2，下行端口模式，dataRole为HOST）、DRP（3，双角色模式，可在UFP和DFP间切换）、NUM_MODES（4，当前不支持）。开发者可根据返回值判断端口是否支持所需的充电角色和数据传输角色组合。
+获取指定的端口支持的模式列表的组合掩码。适用于系统应用需要查询USB-C端口能力判断是否支持特定模式（如Host、Device或DRP模式）的场景。返回值为PortModeType的组合掩码，可通过位运算判断端口是否支持特定模式。PortModeType包括：NONE（0，无模式）、UFP（1，上行端口模式，dataRole为DEVICE）、DFP（2，下行端口模式，dataRole为HOST）、DRP（3，双角色模式，可在UFP和DFP间切换）、NUM_MODES（4，当前不支持）。开发者可根据返回值判断端口是否支持所需的电源角色和数据传输角色组合。
 
 > **说明：**
 >
@@ -313,7 +313,7 @@ setPortRoles(portId: number, powerRole: PowerRoleType, dataRole: DataRoleType): 
 import {BusinessError} from '@kit.BasicServicesKit';
 // 定义端口号
 let portId: number = 1;
-// 设置端口角色：充电角色为SOURCE，数据角色为HOST
+// 设置端口角色：电源角色为SOURCE，数据角色为HOST
 usbManager.setPortRoles(portId, usbManager.PowerRoleType.SOURCE, usbManager.DataRoleType.HOST).then(() => {
     console.info('usb setPortRoles successfully.');
 }).catch((err: BusinessError) => {
@@ -695,7 +695,7 @@ setPortRoleTypes(portId: number, powerRole: PowerRoleType, dataRole: DataRoleTyp
 | 参数名    | 类型                            | 必填 | 说明             |
 | --------- | ------------------------------- | ---- | ---------------- |
 | portId    | number                          | 是   | 端口号，可通过[getPortList](#getportlist12)获取端口列表后得到。|
-| powerRole | [PowerRoleType](#powerroletype) | 是   | 充电角色类型，可选值包括：NONE（无）、SOURCE（对外提供电源）、SINK（需要外部供电）。|
+| powerRole | [PowerRoleType](#powerroletype) | 是   | 电源角色类型，可选值包括：NONE（无）、SOURCE（对外提供电源）、SINK（需要外部供电）。|
 | dataRole  | [DataRoleType](#dataroletype)   | 是   | 数据传输角色类型，可选值包括：NONE（无）、HOST（主机角色）、DEVICE（设备角色）。|
 
 **返回值：**
@@ -723,7 +723,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 // 定义端口号
 let portId: number = 1;
-// 设置端口角色类型：充电角色为SOURCE，数据角色为HOST
+// 设置端口角色类型：电源角色为SOURCE，数据角色为HOST
 usbManager.setPortRoleTypes(portId, usbManager.PowerRoleType.SOURCE, usbManager.DataRoleType.HOST).then(() => {
   console.info('usb setPortRoleTypes successfully.');
 }).catch((err : BusinessError) => {
