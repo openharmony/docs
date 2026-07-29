@@ -127,8 +127,6 @@ listener:mediaquery.MediaQueryListener = this.getUIContext().getMediaQuery().mat
 
   **表3** 媒体特征说明表
 
-比较height、width等宽高尺寸时，支持vp和px单位，无单位时默认为px。
-
 | 类型                | 说明                                       |
 | ----------------- | ---------------------------------------- |
 | height            | 应用页面可绘制区域的高度。                            |
@@ -151,9 +149,13 @@ listener:mediaquery.MediaQueryListener = this.getUIContext().getMediaQuery().mat
 | round-screen      | 屏幕类型，圆形屏幕为true，非圆形屏幕为false。              |
 | dark-mode         | 系统当前的深浅模式。可选值：true、false。 <br/> 深色模式为true，浅色模式为false。          |
 
->**说明：** 
+> **说明：**
+> 
+> - 比较height、width等数值型媒体特征时，支持vp和px单位，无单位时默认为px。
 >
->目前在卡片中使用媒体查询，只支持height、width。
+> - 比较height、width等数值型媒体特征时，需考虑浮点数精度损失对条件判定的影响。
+>
+> - 卡片中仅支持使用height、width两种媒体特征。
 
 ## 场景示例
 
