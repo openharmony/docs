@@ -395,7 +395,7 @@ export default {
 
 ### Sensor.unsubscribeAccelerometer
 
-unsubscribeAccelerometer(): void
+static unsubscribeAccelerometer(): void
 
 取消订阅加速度传感器数据。调用后，加速度传感器的回调函数将不再触发。
 
@@ -955,7 +955,7 @@ Sensor.unsubscribeHeartRate();
 
 | 参数名  | 类型                                                        | 必填 | 说明                   |
 | ------- | ----------------------------------------------------------- | ---- | ---------------------- |
-| options | [SubscribeOnBodyStateOptions](#subscribeonbodystateoptions) | 是   | 当穿着状态改变时调用。 |
+| options | [SubscribeOnBodyStateOptions](#subscribeonbodystateoptions) | 是   | 当佩戴状态改变时调用。 |
 
 **ArkTS示例**：
 
@@ -1037,7 +1037,7 @@ Sensor.unsubscribeOnBodyState();
 
 | 参数名  | 类型                                            | 必填 | 说明                       |
 | ------- | ----------------------------------------------- | ---- | -------------------------- |
-| options | [GetOnBodyStateOptions](#getonbodystateoptions) | 是   | 获取传感器所在设备穿戴状态时调用。 |
+| options | [GetOnBodyStateOptions](#getonbodystateoptions) | 是   | 获取传感器所在设备佩戴状态时调用。 |
 
 **ArkTS示例**：
 
@@ -1426,13 +1426,13 @@ Sensor.unsubscribeGyroscope();
 
 ## SubscribeOnBodyStateOptions
 
-用于设置设备佩戴状态订阅的参数，包括回调函数。佩戴状态分为已穿戴和未穿戴两种。
+用于设置设备佩戴状态订阅的参数，包括回调函数。佩戴状态分为已佩戴和未佩戴两种。
 
 **系统能力**：SystemCapability.Sensors.Sensor.Lite
 
 | 名称    | 类型                                        | 只读 | 可选 | 说明                       |
 | ------- | ------------------------------------------- | ---- | ---- | -------------------------- |
-| success | [OnBodyStateResponse](#onbodystateresponse) | 否   | 否   | 传感器所在设备穿戴状态改变后的回调函数，回调参数为OnBodyStateResponse对象。 |
+| success | [OnBodyStateResponse](#onbodystateresponse) | 否   | 否   | 传感器所在设备佩戴状态改变后的回调函数，回调参数为OnBodyStateResponse对象。 |
 | fail    | Function                                    | 否   | 是   | 接口调用失败的回调函数。回调参数为(data: string, code: number)，其中data为错误信息，code为错误码。不填写时，接口调用失败无回调通知。   |
 
 ## OnBodyStateResponse 
@@ -1447,7 +1447,7 @@ Sensor.unsubscribeGyroscope();
 
 ## GetOnBodyStateOptions
 
-获取传感器所在设备穿戴状态时的参数，包括回调函数。此接口为一次性获取，不会持续监听状态变化。
+获取传感器所在设备佩戴状态时的参数，包括回调函数。此接口为一次性获取，不会持续监听状态变化。
 
 **系统能力**：SystemCapability.Sensors.Sensor.Lite
 

@@ -45,4 +45,4 @@ The sensor is not supported by the device.
 
 **处理步骤**
 
-返回14500102表示设备不支持该传感器。请检查设备是否支持该传感器类型，或使用[getsensorlist](js-apis-sensor.md#sensorgetsensorlist9)接口获取设备支持的传感器列表，选择设备支持的传感器类型。
+返回14500102表示设备不支持该传感器。请检查设备是否支持该传感器类型，或使用[getSensorList](js-apis-sensor.md#sensorgetsensorlist9)接口获取设备支持的传感器列表，选择设备支持的传感器类型。

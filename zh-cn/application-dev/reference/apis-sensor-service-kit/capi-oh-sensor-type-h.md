@@ -153,7 +153,7 @@ Sensor_Info **OH_Sensor_CreateInfos(uint32_t count)
 
 用给定的数字创建一个实例数组，请参考[Sensor_Info](capi-sensor-sensor-info.md)。创建成功后，返回指向count个Sensor_Info实例的指针数组。
 
-调用此方法创建的实例数组，在使用完毕后必须调用OH_Sensor_DestroyInfos()销毁并回收内存，否则会导致资源泄漏。
+调用此函数创建的实例数组，在使用完毕后必须调用OH_Sensor_DestroyInfos()销毁并回收内存，否则会导致资源泄漏。
 
 **起始版本：** 11
 
@@ -388,7 +388,7 @@ int32_t OH_SensorEvent_GetTimestamp(Sensor_Event* sensorEvent, int64_t *timestam
 | 参数项 | 描述 |
 | -- | -- |
 | [Sensor_Event](capi-sensor-sensor-event.md)* sensorEvent | 指向传感器数据信息的指针。 |
-| int64_t *timestamp | 指向时间戳的指针，单位为纳秒，表示传感器数据采集的时间。 |
+| int64_t *timestamp | 指向时间戳的指针，单位为纳秒，表示传感器数据采集的时间，表示系统启动运行至今的纳秒数。 |
 
 **返回：**
 
@@ -413,7 +413,7 @@ int32_t OH_SensorEvent_GetAccuracy(Sensor_Event* sensorEvent, Sensor_Accuracy *a
 | 参数项 | 描述 |
 | -- | -- |
 | [Sensor_Event](capi-sensor-sensor-event.md)* sensorEvent | 指向传感器数据信息的指针。 |
-| [Sensor_Accuracy](capi-oh-sensor-type-h.md#sensor_accuracy) *accuracy | 指向精度的指针。 |
+| [Sensor_Accuracy](capi-oh-sensor-type-h.md#sensor_accuracy) *accuracy | 指向传感器数据精度级别的指针。 |
 
 **返回：**
 
@@ -455,7 +455,7 @@ int32_t OH_SensorEvent_GetData(Sensor_Event* sensorEvent, float **data, uint32_t
 
 | 参数项 | 描述 |
 | -- | -- |
-| [Sensor_Event](capi-sensor-sensor-event.md)* sensorEvent | 传感器数据信息。 |
+| [Sensor_Event](capi-sensor-sensor-event.md)* sensorEvent | 指向传感器数据信息的指针。 |
 | float **data | 出参，传感器数据数组指针。数据格式依赖传感器类型，具体格式参考函数描述。 |
 | uint32_t *length | 出参，数据数组的长度，表示data数组中有效数据的个数。 |
 
@@ -475,7 +475,7 @@ Sensor_SubscriptionId *OH_Sensor_CreateSubscriptionId(void)
 
 创建一个[Sensor_SubscriptionId](capi-sensor-sensor-subscriptionid.md)实例。
 
-调用此方法创建的实例，在使用完毕后必须调用OH_Sensor_DestroySubscriptionId()销毁并回收内存，否则会导致资源泄漏。
+调用此函数创建的实例，在使用完毕后必须调用OH_Sensor_DestroySubscriptionId()销毁并回收内存，否则会导致资源泄漏。
 
 **起始版本：** 11
 
@@ -569,7 +569,7 @@ Sensor_SubscriptionAttribute *OH_Sensor_CreateSubscriptionAttribute(void)
 
 创建[Sensor_SubscriptionAttribute](capi-sensor-sensor-subscriptionattribute.md)实例。
 
-调用此方法创建的实例，在使用完毕后必须调用OH_Sensor_DestroySubscriptionAttribute()销毁并回收内存，否则会导致资源泄漏。
+调用此函数创建的实例，在使用完毕后必须调用OH_Sensor_DestroySubscriptionAttribute()销毁并回收内存，否则会导致资源泄漏。
 
 **起始版本：** 11
 
@@ -681,7 +681,7 @@ Sensor_Subscriber *OH_Sensor_CreateSubscriber(void)
 
 创建一个[Sensor_Subscriber](capi-sensor-sensor-subscriber.md)实例。
 
-调用此方法创建的实例，在使用完毕后必须调用OH_Sensor_DestroySubscriber()销毁并回收内存，否则会导致资源泄漏。
+调用此函数创建的实例，在使用完毕后必须调用OH_Sensor_DestroySubscriber()销毁并回收内存，否则会导致资源泄漏。
 
 **起始版本：** 11
 

@@ -52,9 +52,9 @@ enum Vibrator_ErrorCode
 
 | 枚举项 | 描述 |
 | -- | -- |
-| PERMISSION_DENIED = 201 | 权限校验失败，请检查是否已申请所需权限（如ohos.permission.VIBRATE）。 |
-| PARAMETER_ERROR = 401 | 参数检查失败，包括必选参数未传入、参数类型错误等。 |
-| UNSUPPORTED = 801 | 设备不支持此API。通常在设备已支持该SysCap时，用于处理少量不支持的情况。 |
+| PERMISSION_DENIED = 201 | 权限校验失败，请检查是否已申请所需权限（如ohos.permission.VIBRATE）。解决措施：请检查应用是否已申请并获取ohos.permission.VIBRATE权限。 |
+| PARAMETER_ERROR = 401 | 参数检查失败，包括必选参数未传入、参数类型错误等。解决措施：请检查传入参数是否符合接口要求，确保参数类型和取值范围正确。 |
+| UNSUPPORTED = 801 | 设备不支持此API。通常在设备已支持该SysCap时，用于处理少量不支持的情况。解决措施：请确认当前设备是否支持该振动能力。 |
 | DEVICE_OPERATION_FAILED = 14600101 | 设备操作失败，请检查设备状态和参数配置。 |
 
 ### Vibrator_Usage
