@@ -235,7 +235,7 @@ WebViewController与Web组件的绑定状态。
 
 | 名称 | 类型 | 只读 | 可选 | 说明 |
 |------|------|------|------|------|
-| embedID | string | 否 | 否  | 网页中的 `<video>` 或 `<audio>` 的 ID 。|
+| embedID | string | 否 | 否  | 网页中的`<video>`或`<audio>`的 ID。|
 | mediaType | [MediaType](./arkts-apis-webview-e.md#mediatype12) | 否 | 否 | 媒体的类型。 |
 | mediaSrcList | [MediaSourceInfo](./arkts-apis-webview-MediaSourceInfo.md)[] | 否 | 否 | 媒体的源。可能有多个源，应用需要选择一个支持的源来播放。 |
 | surfaceInfo | [NativeMediaPlayerSurfaceInfo](./arkts-apis-webview-NativeMediaPlayerSurfaceInfo.md) | 否 | 否 | 用于同层渲染的 surface 信息。 |
