@@ -58,7 +58,7 @@ bindDevice(deviceAddress: PartnerDeviceAddress, deviceCapability: DeviceCapabili
 - 可以通过接口[isDeviceBound](#partneragentisdevicebound)判断设备是否已注册。若已注册，无需重复调用。
 - 应用需要先实现[PartnerAgentExtensionAbility](js-apis-fusionConnectivity-partnerAgentExtensionAbility.md)。
 - 应用注册该设备后，如果外设互通子系统检测到该设备，会激活应用的[PartnerAgentExtensionAbility](js-apis-fusionConnectivity-partnerAgentExtensionAbility.md)进程。应用可以在新进程中执行业务操作。每当已注册设备被发现或者已断连时，该进程将被激活并保持运行3分钟（时间随着新的通知刷新）。
-- 在应用注册前，需先与该设备完成[蓝牙配对](js-apis-bluetooth-connection.md#connectionpairdevice)。如果该设备已注册，且用户在此期间取消了与该设备的配对，该设备的发现和下线通知功能将自动关闭，但注册信息会保留30天。若在这30天内重新与该设备进行蓝牙配对，外设互通子系统可以恢复设备的发现和下线通知功能。否则，注册信息会被清除。
+- 在应用注册前，需先调用[connection.pairDevice](js-apis-bluetooth-connection.md#connectionpairdevice)与该设备完成蓝牙配对。如果该设备已注册，且用户在此期间取消了与该设备的配对，该设备的发现和下线通知功能将自动关闭，但注册信息会保留30天。若在这30天内重新与该设备进行蓝牙配对，外设互通子系统可以恢复设备的发现和下线通知功能。否则，注册信息会被清除。
 - 可以通过接口[getBoundDevices](#partneragentgetbounddevices)获取所有已注册过的设备。
 - 应用在使用该接口前，建议提示用户并获取应用注册该设备的授权。
 
@@ -72,9 +72,9 @@ bindDevice(deviceAddress: PartnerDeviceAddress, deviceCapability: DeviceCapabili
 
 | 参数名     | 类型                                     | 必填   | 说明                                  |
 | ------- | -------------------------------------- | ---- | ----------------------------------- |
-| deviceAddress | [PartnerDeviceAddress](#partneragentpartnerdeviceaddress) | 是    | 应用注册的设备地址信息。<br>应用需配置PartnerDeviceAddress类型的bluetoothAddress选项。 |
-| deviceCapability | [DeviceCapability](#partneragentdevicecapability) | 是     | 注册设备支持的能力。<br> - 配置[supportBR](#partneragentdevicecapability)选项后，外设互通子系统将监听与该设备的[ACL](../../connectivity/terminology.md#acl)连接状态，一旦建立ACL连接，即视为成功发现该设备；<br> - 配置[supportBleAdvertiser](#partneragentdevicecapability)选项后，系统将启动该设备的[BLE](../../connectivity/terminology.md#ble)扫描，扫描到该设备后，同样视为成功发现该设备。<br> 注意：<br>  为了减少系统功耗，若BLE扫描到该设备后，但应用在3分钟内未与该设备建立蓝牙连接，外设互通子系统将自动终止应用的PartnerAgentExtensionAbility进程。 |
-| businessCapability | [BusinessCapability](#partneragentbusinesscapability) | 是 | 应用注册设备的业务功能，包括媒体控制、通话控制。 |
+| deviceAddress | [PartnerDeviceAddress](#partnerdeviceaddress) | 是    | 应用注册的设备地址信息。<br>应用需配置PartnerDeviceAddress类型的bluetoothAddress选项。 |
+| deviceCapability | [DeviceCapability](#devicecapability) | 是     | 注册设备支持的能力。<br> - 配置supportBR选项后，外设互通子系统将监听与该设备的[ACL](../../connectivity/terminology.md#acl)连接状态，一旦建立ACL连接，即视为成功发现该设备；<br> - 配置supportBleAdvertiser选项后，系统将启动该设备的[BLE](../../connectivity/terminology.md#ble)扫描，扫描到该设备后，同样视为成功发现该设备。<br> 注意：<br>  为了减少系统功耗，若BLE扫描到该设备后，但应用在3分钟内未与该设备建立蓝牙连接，外设互通子系统将自动终止应用的PartnerAgentExtensionAbility进程。 |
+| businessCapability | [BusinessCapability](#businesscapability) | 是 | 应用注册设备的业务功能，包括媒体控制、通话控制。 |
 | partnerAgentExtensionAbilityName | string | 是 | 该参数需与应用模块级配置文件[module.json5](../../quick-start/module-configuration-file.md) 中的[extensionabilities](../../quick-start/module-configuration-file.md#extensionabilities标签) name属性值相同。 |
 
 **返回值**：
@@ -148,7 +148,7 @@ unbindDevice(deviceAddress: PartnerDeviceAddress): Promise&lt;void&gt;
 
 | 参数名     | 类型                                     | 必填   | 说明                                  |
 | ------- | -------------------------------------- | ---- | ----------------------------------- |
-| deviceAddress | [PartnerDeviceAddress](#partneragentpartnerdeviceaddress) | 是 | 应用注册的设备地址信息。<br>应用必须配置PartnerDeviceAddress类型的bluetoothAddress选项。 |
+| deviceAddress | [PartnerDeviceAddress](#partnerdeviceaddress) | 是 | 应用注册的设备地址信息。<br>应用必须配置PartnerDeviceAddress类型的bluetoothAddress选项。 |
 
 **返回值**：
 
@@ -210,7 +210,7 @@ isDeviceBound(deviceAddress: PartnerDeviceAddress): boolean
 
 | 参数名     | 类型                                     | 必填   | 说明                                  |
 | ------- | -------------------------------------- | ---- | ----------------------------------- |
-| deviceAddress | [PartnerDeviceAddress](#partneragentpartnerdeviceaddress) | 是    | 应用注册的设备地址信息。<br>应用需配置PartnerDeviceAddress类型的bluetoothAddress选项。 |
+| deviceAddress | [PartnerDeviceAddress](#partnerdeviceaddress) | 是    | 应用注册的设备地址信息。<br>应用需配置PartnerDeviceAddress类型的bluetoothAddress选项。 |
 
 **返回值**：
 
@@ -265,7 +265,7 @@ getBoundDevices(): PartnerDeviceAddress[]
 
 | 类型                  | 说明                  |
 | ------------------- | ------------------- |
-| [PartnerDeviceAddress](#partneragentpartnerdeviceaddress)[] | 应用注册过的所有设备。 |
+| [PartnerDeviceAddress](#partnerdeviceaddress)[] | 应用注册过的所有设备。 |
 
 **错误码**：
 
@@ -309,7 +309,7 @@ isDeviceControlEnabled(deviceAddress: PartnerDeviceAddress): boolean
 
 | 参数名     | 类型                                     | 必填   | 说明                                  |
 | ------- | -------------------------------------- | ---- | ----------------------------------- |
-| deviceAddress | [PartnerDeviceAddress](#partneragentpartnerdeviceaddress) | 是 | 应用注册的设备地址信息。<br>应用需在PartnerDeviceAddress中设置bluetoothAddress字段值。 |
+| deviceAddress | [PartnerDeviceAddress](#partnerdeviceaddress) | 是 | 应用注册的设备地址信息。<br>应用需在PartnerDeviceAddress中设置bluetoothAddress字段值。 |
 
 **返回值**：
 
@@ -346,7 +346,7 @@ try {
 }
 ```
 
-## partnerAgent.DeviceCapability
+## DeviceCapability
 
 描述设备支持的被发现能力。
 
@@ -357,9 +357,9 @@ try {
 | 名称                 | 类型   | 只读 | 可选   | 说明                                       |
 | ------------------ | ------ | ---- | ---- | ---------------------------------------- |
 | supportBR            | boolean | 否 | 是    | 该设备是否支持通过[ACL](../../connectivity/terminology.md#acl)连接的方式发现，建立ACL连接后会认为成功发现了该设备。发现设备后，会拉起[PartnerAgentExtensionAbility](js-apis-fusionConnectivity-partnerAgentExtensionAbility.md)进程，并调用进程中[onDeviceDiscovered](js-apis-fusionConnectivity-partnerAgentExtensionAbility.md#ondevicediscovered)方法。true表示支持通过连接的方式发现，false表示不支持通过连接的方式发现。未指定默认为false。 |
-| supportBleAdvertiser | boolean | 否 | 是    | 该设备是否支持通过[BLE](../../connectivity/terminology.md#ble)扫描的方式发现，扫描到该设备后会认为成功发现了该设备。发现设备后，会拉起PartnerAgentExtensionAbility进程，并调用进程中onDeviceDiscovered方法。true表示支持通过BLE扫描的方式发现，false表示不支持通过BLE扫描的方式发现。未指定默认为false。<br> 注意：<br>  选择[supportBleAdvertiser](#partneragentdevicecapability)选项，若扫描到该设备，3min内无ACL连接，会调用[onDestroyWithReason](js-apis-fusionConnectivity-partnerAgentExtensionAbility.md#ondestroywithreason)并销毁已拉起的PartnerAgentExtensionAbility进程。 |
+| supportBleAdvertiser | boolean | 否 | 是    | 该设备是否支持通过[BLE](../../connectivity/terminology.md#ble)扫描的方式发现，扫描到该设备后会认为成功发现了该设备。发现设备后，会拉起PartnerAgentExtensionAbility进程，并调用进程中onDeviceDiscovered方法。true表示支持通过BLE扫描的方式发现，false表示不支持通过BLE扫描的方式发现。未指定默认为false。<br> 注意：<br>  选择[devicecapability](#devicecapability)中的supportBleAdvertiser选项，若扫描到该设备，3min内无ACL连接，会调用[onDestroyWithReason](js-apis-fusionConnectivity-partnerAgentExtensionAbility.md#ondestroywithreason)并销毁已拉起的PartnerAgentExtensionAbility进程。 |
 
-## partnerAgent.BusinessCapability
+## BusinessCapability
 
 描述设备支持的业务功能。
 
@@ -370,9 +370,9 @@ try {
 | 名称                 | 类型   | 只读 | 可选   | 说明                                       |
 | ------------------ | ------ | ---- | ---- | ---------------------------------------- |
 | supportMediaControl | boolean | 否 | 是 | 该设备是否支持媒体控制功能，例如控制媒体播放、音量调节、上一首和下一首等功能。true表示支持，false表示不支持。未指定默认为false。 |
-| supportTelephonyControl | boolean | 否 | 是 | 该设备是否支持通话控制功能，如接听和挂断电话。 true表示支持，false表示不支持。未指定默认为false。 <br> 注意：<br>  supportMediaControl和supportTelephonyControl均选择false时，[设备发现](#partneragentdevicecapability)时不会拉起[PartnerAgentExtensionAbility](js-apis-fusionConnectivity-partnerAgentExtensionAbility.md)进程。 |
+| supportTelephonyControl | boolean | 否 | 是 | 该设备是否支持通话控制功能，如接听和挂断电话。 true表示支持，false表示不支持。未指定默认为false。 <br> 注意：<br>  supportMediaControl和supportTelephonyControl均选择false时，设备发现时不会拉起[PartnerAgentExtensionAbility](js-apis-fusionConnectivity-partnerAgentExtensionAbility.md)进程。 |
 
-## partnerAgent.PartnerDeviceAddress
+## PartnerDeviceAddress
 
 描述设备地址信息。
 
@@ -384,7 +384,7 @@ try {
 | ------------------ | ------ | ---- | ---- | ---------------------------------------- |
 | bluetoothAddress     | [common.BluetoothAddress](js-apis-bluetooth-common.md#bluetoothaddress) | 否 | 是    | 该设备的蓝牙地址信息。 |
 
-## partnerAgent.PartnerAgentExtensionAbilityDestroyReason
+## PartnerAgentExtensionAbilityDestroyReason
 
 枚举，PartnerAgentExtensionAbility被销毁的原因。
 
