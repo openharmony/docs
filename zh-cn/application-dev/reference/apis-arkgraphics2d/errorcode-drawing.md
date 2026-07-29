@@ -1,12 +1,12 @@
 # 图形绘制与显示错误码
-
-图形绘制与显示错误码定义了图形2D绘制过程中的异常情况，包括参数校验、文件操作等方面的错误标识。开发者可通过这些错误码快速定位和排查绘制相关的问题，提高开发调试效率。适用于使用ArkGraphics 2D进行图形绘制、图片处理等场景。
 <!--Kit: ArkGraphics 2D-->
 <!--Subsystem: Graphics-->
 <!--Owner: @dreamyhhh-->
 <!--Designer: @wanyanglan-->
 <!--Tester: @nobuggers-->
 <!--Adviser: @ge-yafang-->
+
+图形绘制与显示错误码定义了图形2D绘制过程中的异常情况，包括参数校验、文件操作等方面的错误标识。开发者可通过这些错误码快速定位和排查绘制相关的问题，提高开发调试效率。适用于使用ArkGraphics 2D进行图形绘制的场景。
 
 > **说明：**
 >
@@ -28,7 +28,7 @@ Parameter error. Possible causes: Incorrect parameter range.
 
 **处理步骤**
 
-在调用接口前，确保参数值符合接口参数要求。
+在定义接口参数前，确保参数值符合接口参数要求。
 
 ## 25900002 文件未找到
 
