@@ -1,0 +1,101 @@
+# Class (ClickActionProposal)
+<!--Kit: ArkUI-->
+<!--Subsystem: ArkUI-->
+<!--Owner: @yihao-lin-->
+<!--Designer: @piggyguy-->
+<!--Tester: @songyanhong-->
+<!--Adviser: @Brilliantry_Rui-->
+
+智慧手势点击动作处理。当通过[registerMonitor](./arkts-apis-uicontext-smartgesturecontroller.md#registermonitor)接口动态自定义智慧手势行为时，设置返回值[Class (GestureHandlingResolution)](./arkts-apis-uicontext-gesturehandlingresolution.md)的selectedProposal为该类型对象，会触发目标组件的点击操作。
+
+> **说明：**
+>
+> - 该动作处理遵循“先选中，再点击”的处理语义。
+> - 当目标节点尚未被选中时，本次处理会优先建立选中态，而不会立即触发点击。
+
+**起始版本：** 26.0.0
+
+## constructor
+
+constructor(node: FrameNode)
+
+智慧手势点击动作处理的构造函数。
+
+**起始版本：** 26.0.0
+
+**模型约束：** 此接口仅可在Stage模型下使用。
+
+**原子化服务API：** 从API版本26.0.0开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明 |
+| ---- | ---- | ---- | ---- |
+| node | [FrameNode](js-apis-arkui-frameNode.md#framenode-1) | 是 | 响应点击动作的目标节点。 |
+
+**示例：**
+
+本示例实现了在智慧手势监听回调中，自定义智慧手势动作处理为智慧手势点击动作处理，完整示例请参考[示例1（启用智慧手势并自定义动作处理）](./arkts-apis-uicontext-smartgesturecontroller.md#示例1启用智慧手势并自定义动作处理)。
+
+```ts
+import {
+  BaseGestureHandlingProposal,
+  ClickActionProposal,
+  GestureHandlingResolution,
+  TargetedGestureProposal,
+} from '@kit.ArkUI';
+
+@Entry
+@Component
+struct SmartGestureControllerExample {
+  private controller = this.getUIContext().getSmartGestureController();
+  private smartGestureMonitor = (proposal: BaseGestureHandlingProposal) => {
+    let targetProposal = proposal as TargetedGestureProposal;
+    // 消费当前智慧手势，后续通过selectedProposal改写默认动作处理。
+    let result = new GestureHandlingResolution(true);
+    console.info('smartGesture action is', targetProposal.action, ', operateIntention is',
+      targetProposal.operateIntention, ', nodeId is', targetProposal.node.getId());
+    if (targetProposal.node && targetProposal.node.getId() == 'target_text') {
+      let clickProposal = new ClickActionProposal(targetProposal.node);
+      result.selectedProposal = clickProposal;
+    }
+    return result;
+  };
+
+  aboutToAppear(): void {
+    this.controller.enableSmartTapAndSlideGestures(true);
+    this.controller.registerMonitor(this.smartGestureMonitor);
+  }
+
+  aboutToDisappear(): void {
+    this.controller.clearMonitors();
+    this.controller.enableSmartTapAndSlideGestures(false);
+  }
+
+  build() {
+    Scroll() {
+      Column({ space: 12 }) {
+        Text('文本组件')
+          .id('target_text')
+          .fontSize(18)
+          .width('100%')
+          .padding(12)
+          .borderRadius(10)
+          .borderWidth(1)
+          .smartGestureShortcut({ action: GestureShortcut.PRIMARY, enabled: true, selectable: true })
+          .onClick(() => {
+            console.info('smartGesture click is triggered');
+          })
+      }.width('100%')
+    }
+    .layoutWeight(1)
+    .width('100%')
+    .height('100%')
+    .padding(12)
+  }
+}
+```
+
+![smartgesture_01](figures/smartgesture_01.png)
