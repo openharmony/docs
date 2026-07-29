@@ -199,7 +199,7 @@
    
    > **说明：**
    > 
-   > - `-s 1904`：指向WorkScheduler系统服务发送命令（1904 为该服务 ID）。
+   > - `-s 1904`：指向WorkScheduler系统服务发送命令（1904为该服务ID）。
    > - `-a`：携带附加参数，需用引号包裹。
    > - `-t`：指定目标应用包名和 ExtensionAbility 名称，示例中的 `com.example.application` 和 `MyWorkSchedulerExtensionAbility` 需替换为实际值。
    
