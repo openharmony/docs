@@ -72,11 +72,11 @@ Kit `${moduleRequest}` 在ArkTS SDK中没有对应的配置文件。
 
 **错误信息**
 
-Identifier `${this.importName}` comes from `${this.symbol.source}` which can not be imported in .ts file.
+Identifier `${importName}` comes from `${source}` which can not be imported in .ts file.
 
 **错误描述**
 
-标识符`${this.importName}`来自`${this.symbol.source}`，该标识符不能在.ts文件中导入。
+标识符`${importName}`来自`${source}`，该标识符不能在.ts文件中导入。
 
 **可能原因**
 
@@ -90,11 +90,11 @@ Identifier `${this.importName}` comes from `${this.symbol.source}` which can not
 
 **错误信息**
 
-`${importName}` is not exported from Kit `${KitInfo.getCurrentKitName()}`.
+`${importName}` is not exported from Kit `${KitName}`.
 
 **错误描述**
 
-`${importName}`没有从Kit `${KitInfo.getCurrentKitName()}` 中导出。
+`${importName}`没有从Kit `${KitName}` 中导出。
 
 **可能原因**
 
@@ -129,11 +129,11 @@ Namespace import or export of Kit is not supported currently.
 
 **错误信息**
 
-Can not use empty import(side-effect import) statement with Kit `${(kitNode.moduleSpecifier as ts.StringLiteral).text.replace(/'|"/g, '')}`.
+Can not use empty import(side-effect import) statement with Kit `${KitName}`.
 
 **错误描述**
 
-无法在Kit `${(kitNode.moduleSpecifier as ts.StringLiteral).text.replace(/'|"/g, '')}` 中使用空导入（副作用导入）语句。
+无法在Kit `${KitName}` 中使用空导入（副作用导入）语句。
 
 **可能原因**
 
@@ -159,7 +159,7 @@ es2abc执行过程中出现错误。
 
 **处理步骤**
 
-请参考[Es2abc编译器错误码](errorcode-es2abc.md)进行处理。
+请参考[es2abc编译器错误码](errorcode-es2abc.md)进行处理。
 
 ## 10311010 懒加载导入重新导出错误
 
