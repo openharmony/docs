@@ -32,7 +32,7 @@ getMainWindow(callback: AsyncCallback&lt;Window&gt;): void
 
 获取该WindowStage实例下的主窗口，使用callback异步回调。
 
-调用该接口前，建议先通过[loadContent](../apis-arkui/arkts-apis-window-WindowStage.md#loadcontent9)方法或者[setUIContent](arkts-apis-window-Window.md#setuicontent9-1)方法完成页面加载。
+调用该接口前，建议先通过[loadContent](#loadcontent9)方法或者[setUIContent](arkts-apis-window-Window.md#setuicontent9-1)方法完成页面加载。
 
 **模型约束：** 此接口仅可在Stage模型下使用。
 
@@ -95,7 +95,7 @@ getMainWindow(): Promise&lt;Window&gt;
 
 获取该WindowStage实例下的主窗口，使用Promise异步回调。
 
-调用该接口前，建议先通过[loadContent](../apis-arkui/arkts-apis-window-WindowStage.md#loadcontent9)方法或者[setUIContent](arkts-apis-window-Window.md#setuicontent9-1)方法完成页面加载。
+调用该接口前，建议先通过[loadContent](#loadcontent9)方法或者[setUIContent](arkts-apis-window-Window.md#setuicontent9-1)方法完成页面加载。
 
 **模型约束：** 此接口仅可在Stage模型下使用。
 
@@ -156,7 +156,7 @@ getMainWindowSync(): Window
 
 获取该WindowStage实例下的主窗口，该接口为同步调用。
 
-调用该接口前，建议先通过[loadContent](../apis-arkui/arkts-apis-window-WindowStage.md#loadcontent9)方法或者[setUIContent](arkts-apis-window-Window.md#setuicontent9-1)方法完成页面加载。
+调用该接口前，建议先通过[loadContent](#loadcontent9)方法或者[setUIContent](arkts-apis-window-Window.md#setuicontent9-1)方法完成页面加载。
 
 **模型约束：** 此接口仅可在Stage模型下使用。
 
@@ -646,7 +646,6 @@ export default class EntryAbility extends UIAbility {
     } catch (exception) {
       console.error(`Failed to load the content. Cause code: ${exception.code}, message: ${exception.message}`);
     }
-    ;
   }
 };
 ```
