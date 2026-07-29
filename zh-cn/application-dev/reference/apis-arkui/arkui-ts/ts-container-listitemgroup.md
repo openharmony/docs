@@ -677,7 +677,7 @@ struct ListItemGroupExample {
 
 ### 示例5（设置悬浮态）
 
-该示例通过为ListItemGroup设置[headerStyle](#listitemgroupoptions对象说明)为[ListItemGroupHeaderFooterStyle.FLOATING](#listitemgroupheaderfooterstyle)，实现分组头部在滚动时悬浮显示的效果。
+该示例通过将ListItemGroup的[headerStyle](#listitemgroupoptions对象说明)设置为[ListItemGroupHeaderFooterStyle.FLOATING](#listitemgroupheaderfooterstyle)，实现分组头部在滚动时悬浮显示的效果。
 
 ```ts
 // xxx.ets
@@ -748,4 +748,4 @@ struct Index {
 }
 ```
 
-![zh-cn_image_listitemgroup_example05](figures/image-listitemgroup-example05.gif)
+![image-listitemgroup-example05](figures/image-listitemgroup-example05.gif)
