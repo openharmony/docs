@@ -100,8 +100,8 @@ enum VideoMetadataGeneratorStyleControl
 
 | 枚举项 | 描述 |
 | -- | -- |
-| VIDEO_METADATA_GENERATOR_CONTRAST_MODE | 对比度优先模式。 |
-| VIDEO_METADATA_GENERATOR_BRIGHT_MODE | 亮度优先模式。 |
+| VIDEO_METADATA_GENERATOR_CONTRAST_MODE = 0 | 对比度优先模式。 |
+| VIDEO_METADATA_GENERATOR_BRIGHT_MODE = 1 | 亮度优先模式。 |
 
 **参考：**
 
