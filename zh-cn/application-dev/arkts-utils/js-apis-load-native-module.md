@@ -38,7 +38,7 @@ loadNativeModule(moduleName: string): Object;
 1. 在模块级`oh-package.json5`文件中配置`dependencies`字段。
 
     <!-- @[hap_load_native_dependence](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/ArkTSRuntime/ArkTSModule/JsApisLoadNativeModule/entry/oh-package.json5) -->
-
+    
     ``` JSON5
     "dependencies": {
       "libentry.so": "file:./src/main/cpp/types/libentry"
