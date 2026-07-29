@@ -97,7 +97,7 @@ Linux内核移植主要涉及基于Linux内核基线合入三方芯片补丁后�
 
 2. 调试init进程和shell。
 
-   烧录`rootfs.img`并调试init进程和shell，不同厂商的开发板的烧录工具和流程可能不同，请按芯片解决方案提供的流程进行烧录。烧录`rootfs.img`前请确认bootloader和linux内核启动正常。如果`rootfs.img`被内核正常挂载，接着将运行`/bin/init`程序，init进程为用户态的第一个应用程序，它的运行意味着用户态的开始。
+   烧录`rootfs.img`并调试init进程和shell，不同厂商的开发板的烧录工具和流程可能不同，请按芯片解决方案提供的流程进行烧录。烧录`rootfs.img`前请确认bootloader和Linux内核启动正常。如果`rootfs.img`被内核正常挂载，接着将运行`/bin/init`程序，init进程为用户态的第一个应用程序，它的运行意味着用户态的开始。
 
    init程序首先会调用`/etc/init.d/rcS`脚本，rcS脚本执行第一条命令为`/bin/mount -a`，该命令会加载fstab文件，在fstab中的命令执行完后rcS将顺序调用Sxxx脚本完成设备节点创建和扫描、文件权限配置等操作。
 
