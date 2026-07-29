@@ -583,7 +583,7 @@ trace单位流量实测方法：limitSize设置为最大值500M，调用startApp
 
 | 参数名   | 类型     | 必填 | 说明                                 |
 | -------- | ------   | ---- |------------------------------------|
-| tags     | number[] | 是   | trace范围，详情请见[tags](#hidebugtags12)。   |
+| tags     | number[] | 是   | trace范围，详情请见[tags](#tags12)。   |
 | flag     | TraceFlag| 是   | 详情请见[TraceFlag](#traceflag12)。        |
 | limitSize| number   | 是   | 开启trace文件大小限制，单位为Byte，取值范围（0, 500MB]。超出范围时返回错误码401。 |
 
