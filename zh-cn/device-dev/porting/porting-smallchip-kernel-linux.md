@@ -3,7 +3,7 @@
 
 ## 移植概述
 
-Linux内核移植主要涉及基于linux内核基线合入三方芯片补丁后，进行基础的内核编译构建及验证。
+Linux内核移植主要涉及基于Linux内核基线合入三方芯片补丁后，进行基础的内核编译构建及验证。
 
 
 ### 基本信息
@@ -65,9 +65,9 @@ Linux内核移植主要涉及基于linux内核基线合入三方芯片补丁后�
 
 ## 验证
 
-调试init进程、启动shell和运行简单的用户态程序，验证内核移植是否成功。OpenHarmony小型系统的OS镜像结构以及linux用户态的启动流程如下图1所示：
+调试init进程、启动shell和运行简单的用户态程序，验证内核移植是否成功。OpenHarmony小型系统的OS镜像结构以及Linux用户态的启动流程如下图1所示：
 
-  **图1** 基于linux内核的OS镜像结构和用户态程序启动流程
+  **图1** 基于Linux内核的OS镜像结构和用户态程序启动流程
 
   ![zh-cn_image_0000001154372318](figures/zh-cn_image_0000001154372318.png)
 
@@ -79,7 +79,7 @@ Linux内核移植主要涉及基于linux内核基线合入三方芯片补丁后�
 
    - 组件配置
 
-     产品组件配置文件`vendor/{company}/{product}/config.json`需配置启动恢复子系统(startup)的`init`组件和内核子系统的`linux`组件。
+     产品组件配置文件`vendor/{company}/{product}/config.json`需配置启动恢复子系统(startup)的`init`组件和内核子系统的`Linux`组件。
 
    - 系统服务配置
 
