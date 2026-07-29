@@ -148,7 +148,7 @@ import { window } from '@kit.ArkUI';
 
 **系统接口：** 此接口为系统接口。
 
-**系统能力：**SystemCapability.WindowManager.WindowManager.Core
+**系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
 | 名称   | 类型 | 只读 | 可选 | 说明                                         |
 | ------ | -------- | ---- | ---- | --------------------------------------------|
@@ -163,7 +163,7 @@ import { window } from '@kit.ArkUI';
 
 **系统接口：** 此接口为系统接口。
 
-**系统能力：**SystemCapability.WindowManager.WindowManager.Core
+**系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
 | 名称   | 类型 | 只读 | 可选 | 说明                                          |
 | ------ | -------- | ---- |---- |---------------------------------------------|
@@ -179,7 +179,7 @@ import { window } from '@kit.ArkUI';
 
 **系统接口：** 此接口为系统接口。
 
-**系统能力：**SystemCapability.WindowManager.WindowManager.Core
+**系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
 | 名称 | 类型 | 只读 | 可选 | 说明                         |
 | ---- | -------- | ---- | ---- | ---------------------------- |
@@ -4639,7 +4639,7 @@ setImageForRecent(imgResourceId: number, value: ImageFit): Promise&lt;void&gt;
 
 **模型约束：** 此接口仅可在Stage模型下使用。
 
-**系统能力：**SystemCapability.Window.SessionManager
+**系统能力：** SystemCapability.Window.SessionManager
 
 **参数：**
 
@@ -4702,7 +4702,7 @@ export default class EntryAbility extends UIAbility {
 
 **系统接口：** 此接口为系统接口。
 
-**系统能力：**SystemCapability.WindowManager.WindowManager.Core
+**系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
 | 名称                  | 类型          | 只读 | 可选 | 说明             |
 | --------------------- | ----------------- | ---- | ---- | ---------------- |
@@ -4716,7 +4716,7 @@ completeTransition(isCompleted: boolean): void
 
 **系统接口：** 此接口为系统接口。
 
-**系统能力：**SystemCapability.WindowManager.WindowManager.Core
+**系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
 **参数：**
 
