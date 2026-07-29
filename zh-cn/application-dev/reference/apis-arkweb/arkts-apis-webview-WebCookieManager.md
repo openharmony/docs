@@ -6,7 +6,7 @@
 <!--Tester: @ghiker-->
 <!--Adviser: @HelloShuo-->
 
-WebCookieManager是Web组件的cookie管理器，提供对Web组件中cookie的全局管理能力。开发者通过该类可以实现cookie的获取、设置、保存、清除以及权限控制等操作。该类的所有方法均为静态方法，应用中的所有Web组件共享一个WebCookieManager实例。cookie的格式遵循[RFC6265](https://www.rfc-editor.org/rfc/rfc6265)标准。
+WebCookieManager是Web组件的cookie管理器，提供对Web组件中cookie的全局管理能力。开发者通过该类可以实现cookie的获取、设置、保存、清除以及权限控制等操作。该类的所有方法均为静态方法，应用中的所有Web组件共享一个WebCookieManager实例。cookie的格式遵循[RFC6265](https://www.rfc-editor.org/info/rfc6265)标准。
 
 使用隐私模式浏览网页时，cookie、缓存等数据不会写入本地持久化存储；隐私模式的Web组件销毁后，这些数据将被清除，不会保留。
 
