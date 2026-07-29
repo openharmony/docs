@@ -2476,6 +2476,8 @@ updateRegion(inputRegion: Array&lt;window.Rect&gt;): void
 > 仅用于SOFT_KEYBOARD类型，状态为FLG_FIXED或FLG_FLOATING的面板。
 >
 > 此接口为同步接口，接口返回仅代表系统侧收到更新热区的请求，不代表已完成热区更新。
+>
+> 在DAYU200设备上，输入法热区生效范围保持和软键盘区域一致。
 
 **系统能力：** SystemCapability.MiscServices.InputMethodFramework
 
