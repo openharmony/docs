@@ -31,7 +31,7 @@
     - [Functions](arkts-apis-arkts-utils-f.md)
     - [ArkTSUtils.locks](arkts-apis-arkts-utils-locks.md)
     - [ArkTSUtils.ASON](arkts-apis-arkts-utils-ASON.md)
-    - [SendableLruCache<K, V>](arkts-apis-arkts-utils-SendableLruCache.md)
+    - [SendableLruCache](arkts-apis-arkts-utils-SendableLruCache.md)
   - [@ohos.buffer (Buffer)](js-apis-buffer.md)
   - [@ohos.convertxml (xml转换JavaScript)](js-apis-convertxml.md)
   - [@ohos.fastbuffer (FastBuffer)](js-apis-fastbuffer.md)
@@ -64,7 +64,7 @@
     - [@ohos.util.Vector (线性容器Vector)](js-apis-vector.md)
 - 错误码<!--arkts-arkts-errcode-->
   - [语言基础类库错误码](errorcode-utils.md)
-  - [TypeScript Compiler错误码](errorcode-tsc.md)
+  - [TSC错误码介绍](errorcode-tsc.md)
   - [编译工具链错误码](errorcode-ets-loader.md)
   - [Es2abc编译器错误码](errorcode-es2abc.md)
   - [源码混淆错误码](errorcode-source-obfuscation.md)
