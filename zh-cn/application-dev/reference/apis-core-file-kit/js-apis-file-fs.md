@@ -1072,7 +1072,7 @@ connectDfs(networkId: string, listeners: DfsListeners): Promise&lt;void&gt;
 | 参数名 | 类型 | 必填 | 说明 |
 | ---- | ---- | ---- | ---- |
 | networkId | string | 是 | 设备的网络Id。通过[distributedDeviceManager](../apis-distributedservice-kit/js-apis-distributedDeviceManager.md)接口调用[DeviceBasicInfo](../apis-distributedservice-kit/js-apis-distributedDeviceManager.md#devicebasicinfo)获得。 |
-| listeners | [DfsListeners](#fileiodfslisteners12) | 是 | 分布式文件系统状态监听器。 |
+| listeners | [DfsListeners](#dfslisteners12) | 是 | 分布式文件系统状态监听器。 |
 
 **返回值：**
 
