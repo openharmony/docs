@@ -1258,7 +1258,7 @@ int32_t OH_NativeWindow_Set3DMetadataValue(OHNativeWindow *window, OH_NativeBuff
 
 **描述**
 
-为OHNativeWindow设置3D元数据属性值。、
+为OHNativeWindow设置3D元数据属性值。
 
 本接口为非线程安全类型接口。
 
