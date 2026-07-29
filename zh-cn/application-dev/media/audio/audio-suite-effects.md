@@ -147,9 +147,7 @@ OH_AudioSuiteEngine_SetSoundFieldType(*node, static_cast<OH_SoundFieldType>(para
 
 ### 设置方法
 
-可通过以下方式创建音源分离节点：
-
-<!-- @[audioSuite_SetAudioSeparationType](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/Media/Audio/AudioSuiteSample/entry/src/main/cpp/audio_effect/audio_effect.h) -->
+参考[音源分离场景](audio-suite-manual-rendering.md#音源分离场景)进行设置。
 
 ---
 
@@ -229,9 +227,7 @@ OH_AudioSuiteEngine_SetEnvironmentType(*node, static_cast<OH_EnvironmentType>(pa
 
 ### 设置方法
 
-可通过以下方式创建混音节点：
-
-<!-- @[audioSuite_SetAudioMixerType](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/Media/Audio/AudioSuiteSample/entry/src/main/cpp/audio_effect/audio_effect.h) -->
+参考[混音与级联](audio-suite-manual-rendering.md#音混音与级联)进行设置。
 
 ---
 
