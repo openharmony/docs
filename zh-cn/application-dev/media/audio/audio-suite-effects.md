@@ -95,6 +95,13 @@ OH_AudioSuiteEngine_SetEqualizerFrequencyBandGains(*node, gains);
 
 <!-- @[audioSuite_SetNoiseReductionType](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/Media/Audio/AudioSuiteSample/entry/src/main/cpp/audio_effect/audio_effect.h) -->
 
+``` C
+// 设置为降噪节点类型。
+OH_AudioSuiteNodeBuilder_SetNodeType(builder, OH_AudioNode_Type::EFFECT_NODE_TYPE_NOISE_REDUCTION);
+// 创建降噪节点。
+OH_AudioSuiteEngine_CreateNode(pipeline, builder, node);
+```
+
 ---
 
 ## 声场
@@ -117,6 +124,15 @@ OH_AudioSuiteEngine_SetEqualizerFrequencyBandGains(*node, gains);
 可通过以下方式创建声场节点：
 
 <!-- @[audioSuite_SetSoundFieldType](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/Media/Audio/AudioSuiteSample/entry/src/main/cpp/audio_effect/audio_effect.h) -->
+
+``` C
+// 设置为声场节点类型。
+OH_AudioSuiteNodeBuilder_SetNodeType(builder, OH_AudioNode_Type::EFFECT_NODE_TYPE_SOUND_FIELD);
+// 创建声场节点。
+OH_AudioSuiteEngine_CreateNode(pipeline, builder, node);
+// 设置声场节点效果。
+OH_AudioSuiteEngine_SetSoundFieldType(*node, static_cast<OH_SoundFieldType>(params.soundFieldType));
+```
 
 ---
 
@@ -163,7 +179,7 @@ OH_AudioSuiteNodeBuilder_SetNodeType(builder, OH_AudioNode_Type::EFFECT_NODE_TYP
 OH_AudioSuiteEngine_CreateNode(pipeline, builder, node);
 // 设置声音美化节点效果。
 OH_AudioSuiteEngine_SetVoiceBeautifierType(*node,
-                                             static_cast<OH_VoiceBeautifierType>(params.voiceBeautifierType));
+                                           static_cast<OH_VoiceBeautifierType>(params.voiceBeautifierType));
 ```
 
 ---
@@ -188,6 +204,15 @@ OH_AudioSuiteEngine_SetVoiceBeautifierType(*node,
 可通过以下方式创建环境效果节点：
 
 <!-- @[audioSuite_SetEnvironmentType](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/Media/Audio/AudioSuiteSample/entry/src/main/cpp/audio_effect/audio_effect.h) -->
+
+``` C
+// 设置为环境效果节点类型。
+OH_AudioSuiteNodeBuilder_SetNodeType(builder, OH_AudioNode_Type::EFFECT_NODE_TYPE_ENVIRONMENT_EFFECT);
+// 创建环境效果节点。
+OH_AudioSuiteEngine_CreateNode(pipeline, builder, node);
+// 设置环境效果节点效果。
+OH_AudioSuiteEngine_SetEnvironmentType(*node, static_cast<OH_EnvironmentType>(params.environmentType));
+```
 
 ---
 
@@ -255,6 +280,47 @@ OH_AudioSuiteEngine_SetVoiceBeautifierType(*node,
 
 <!-- @[audioSuite_SetSpaceRenderParams](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/Media/Audio/AudioSuiteSample/entry/src/main/cpp/audio_effect/audio_effect.h) -->
 
+``` C
+// 设置为空间渲染节点类型。
+OH_AudioSuiteNodeBuilder_SetNodeType(builder, OH_AudioNode_Type::EFFECT_NODE_TYPE_SPACE_RENDER);
+// 创建空间渲染节点。
+OH_AudioSuiteEngine_CreateNode(pipeline, builder, node);
+// 按场景设置空间渲染参数。
+switch (params.spaceRenderMode) {
+    /* 固定摆位模式 */
+    case SPACE_RENDER_MODE_POSITION: {
+        OH_AudioSuite_SpaceRenderPositionParams position;
+        position.x = params.spacePositionX;
+        position.y = params.spacePositionY;
+        position.z = params.spacePositionZ;
+        OH_AudioSuiteEngine_SetSpaceRenderPositionParams(*node, position);
+        break;
+    }
+    /* 旋转模式 */
+    case SPACE_RENDER_MODE_ROTATION: {
+        OH_AudioSuite_SpaceRenderRotationParams rotation;
+        rotation.x = params.spaceRotationX;
+        rotation.y = params.spaceRotationY;
+        rotation.z = params.spaceRotationZ;
+        rotation.surroundTime = params.spaceRotationSurroundTime;
+        rotation.surroundDirection =
+            static_cast<OH_AudioSuite_SurroundDirection>(params.spaceRotationSurroundDirection);
+        OH_AudioSuiteEngine_SetSpaceRenderRotationParams(*node, rotation);
+        break;
+    }
+    /* 扩展模式 */
+    case SPACE_RENDER_MODE_EXTENSION: {
+        OH_AudioSuite_SpaceRenderExtensionParams extension;
+        extension.extRadius = params.spaceExtensionRadius;
+        extension.extAngle = params.spaceExtensionAngle;
+        OH_AudioSuiteEngine_SetSpaceRenderExtensionParams(*node, extension);
+        break;
+    }
+    default:
+        break;
+}
+```
+
 ---
 
 ## 传统变声
@@ -289,6 +355,19 @@ OH_AudioSuiteEngine_SetVoiceBeautifierType(*node,
 
 <!-- @[audioSuite_SetPureVoiceChangeOption](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/Media/Audio/AudioSuiteSample/entry/src/main/cpp/audio_effect/audio_effect.h) -->
 
+``` C
+// 设置为传统变声节点类型。
+OH_AudioSuiteNodeBuilder_SetNodeType(builder, OH_AudioNode_Type::EFFECT_NODE_TYPE_PURE_VOICE_CHANGE);
+// 创建传统变声节点。
+OH_AudioSuiteEngine_CreateNode(pipeline, builder, node);
+// 设置传统变声节点效果。
+OH_AudioSuite_PureVoiceChangeOption option;
+option.optionGender = static_cast<OH_AudioSuite_PureVoiceChangeGenderOption>(params.pureVoiceChangeGender);
+option.optionType = static_cast<OH_AudioSuite_PureVoiceChangeType>(params.pureVoiceChangeType);
+option.pitch = params.pureVoiceChangePitch;
+OH_AudioSuiteEngine_SetPureVoiceChangeOption(*node, option);
+```
+
 ---
 
 ## 通用变声
@@ -318,6 +397,16 @@ OH_AudioSuiteEngine_SetVoiceBeautifierType(*node,
 
 <!-- @[audioSuite_SetGeneralVoiceChangeType](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/Media/Audio/AudioSuiteSample/entry/src/main/cpp/audio_effect/audio_effect.h) -->
 
+``` C
+// 设置为通用变声节点类型。
+OH_AudioSuiteNodeBuilder_SetNodeType(builder, OH_AudioNode_Type::EFFECT_NODE_TYPE_GENERAL_VOICE_CHANGE);
+// 创建通用变声节点。
+OH_AudioSuiteEngine_CreateNode(pipeline, builder, node);
+// 设置通用变声节点效果。
+OH_AudioSuiteEngine_SetGeneralVoiceChangeType(
+    *node, static_cast<OH_AudioSuite_GeneralVoiceChangeType>(params.generalVoiceChangeType));
+```
+
 ---
 
 ## 变速变调
@@ -338,6 +427,15 @@ OH_AudioSuiteEngine_SetVoiceBeautifierType(*node,
 可通过以下方式创建变速变调节点：
 
 <!-- @[audioSuite_SetTempoAndPitch](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/Media/Audio/AudioSuiteSample/entry/src/main/cpp/audio_effect/audio_effect.h) -->
+
+``` C
+// 设置为变速变调节点类型。
+OH_AudioSuiteNodeBuilder_SetNodeType(builder, OH_AudioNode_Type::EFFECT_NODE_TYPE_TEMPO_PITCH);
+// 创建变速变调节点。
+OH_AudioSuiteEngine_CreateNode(pipeline, builder, node);
+// 设置变速变调节点效果。
+OH_AudioSuiteEngine_SetTempoAndPitch(*node, params.tempoSpeed, params.tempoPitch);
+```
 
 ---
 

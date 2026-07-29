@@ -299,6 +299,18 @@ target_link_libraries(sample PUBLIC libohaudiosuite.so)
    ```
 
    <!-- @[audioSuite_IsSupportedSeparationNode](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/Media/Audio/AudioSuiteSample/entry/src/main/cpp/manual_rendering.cpp) -->
+   
+   ``` C++
+   // 判断是否支持音源分离节点。
+   bool isSupported = false;
+   OH_AudioSuiteEngine_IsNodeTypeSupported(OH_AudioNode_Type::EFFECT_MULTII_OUTPUT_NODE_TYPE_AUDIO_SEPARATION,
+                                           &isSupported);
+   if (!isSupported) {
+       OH_LOG_Print(LOG_APP, LOG_ERROR, GLOBAL_RESMGR, TAG, "Audio separation node is not supported on this device.");
+       nodes.isNodeSupported = false;
+       return nodes;
+   }
+   ```
 
    <!-- @[audioSuite_CreateSeparationNode](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/Media/Audio/AudioSuiteSample/entry/src/main/cpp/manual_rendering.cpp) -->
    
