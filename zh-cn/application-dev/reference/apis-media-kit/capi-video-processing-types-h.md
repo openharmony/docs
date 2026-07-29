@@ -129,7 +129,7 @@ enum VideoProcessing_ErrorCode
 | VIDEO_PROCESSING_ERROR_INVALID_PARAMETER = 401 | 输入参数无效。以下情况都会返回该错误码：<br>1. 无效的输入或输出视频buffer，视频buffer为空。<br>2. 无效的参数，参数为空。<br>3. 无效的处理类型。 |
 | VIDEO_PROCESSING_ERROR_UNKNOWN = 29210001 | 未知错误，比如GPU计算失败或memcpy失败。 |
 | VIDEO_PROCESSING_ERROR_INITIALIZE_FAILED | 视频处理全局环境初始化失败，比如初始化GPU环境失败。请检查设备是否支持GPU加速，或尝试重启应用后重试。 |
-| VIDEO_PROCESSING_ERROR_CREATE_FAILE | 创建视频处理实例失败，比如实例总数超出上限。可调用[OH_VideoProcessing_Destroy](capi-video-processing-h.md#oh_videoprocessing_destroy)释放不再使用的实例后重试。 |
+| VIDEO_PROCESSING_ERROR_CREATE_FAILED | 创建视频处理实例失败，比如实例总数超出上限。可调用[OH_VideoProcessing_Destroy](capi-video-processing-h.md#oh_videoprocessing_destroy)释放不再使用的实例后重试。 |
 | VIDEO_PROCESSING_ERROR_PROCESS_FAILED | 处理过程失败，比如处理时间超时。 |
 | VIDEO_PROCESSING_ERROR_UNSUPPORTED_PROCESSING | 不支持的处理类型，比如试图创建不支持的视频处理实例。目前可对两种视频处理功能检查支持情况：[OH_VideoProcessing_IsColorSpaceConversionSupported](capi-video-processing-h.md#oh_videoprocessing_iscolorspaceconversionsupported)，[OH_VideoProcessing_IsMetadataGenerationSupported](capi-video-processing-h.md#oh_videoprocessing_ismetadatagenerationsupported)。 |
 | VIDEO_PROCESSING_ERROR_OPERATION_NOT_PERMITTED | 不允许的操作，比如不满足调用接口所需的运行状态下调用该接口。 |
