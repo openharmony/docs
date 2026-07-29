@@ -3085,7 +3085,7 @@ raiseAboveTarget(windowId: number, callback: AsyncCallback&lt;void&gt;): void
 | 参数名   | 类型                      | 必填 | 说明       |
 | -------- | ------------------------- | ---- | ---------- |
 | windowId | number                    | 是   | 目标子窗口的id，通过[getWindowProperties](arkts-apis-window-Window.md#getwindowproperties9)接口获取[properties](arkts-apis-window-i.md#windowproperties)后，再通过properties.id获取。 |
-| callback | [AsyncCallback](../apis-basic-services-kit/js-apis-base.md#asynccallback)&lt;void&gt; | 是   | 回调函数。当调用成功时，err为undefined；否则为错误对象。 |
+| callback | AsyncCallback&lt;void&gt; | 是   | 回调函数。当调用成功时，err为undefined；否则为错误对象。 |
 
 **错误码：**
 
@@ -3247,7 +3247,7 @@ raiseMainWindowAboveTarget(windowId: number): Promise&lt;void&gt;
 
 | 参数名   | 类型                      | 必填 | 说明       |
 | -------- | ------------------------- | ---- | ---------- |
-| windowId | number                    | 是   | 目标主窗口的id，该参数为整数，通过[getWindowProperties](arkts-apis-window-Window.md#getwindowproperties9)接口获取到[properties](arkts-apis-window-i.md#windowproperties)后，再通过properties.id获取。窗口ID小于等于0，或窗口ID为null或者undefined时，会抛出1300016错误码；窗口ID大于0但是不存在会抛出1300002错误码。 |
+| windowId | number                    | 是   | 目标主窗口的id，该参数为整数，通过[getWindowProperties](arkts-apis-window-Window.md#getwindowproperties9)接口获取到[properties](arkts-apis-window-i.md#windowproperties)后，再通过properties.id获取。窗口ID小于等于0，或窗口ID为null或者undefined时，会抛出1300016错误码；窗口ID大于0但是不存在时会抛出1300002错误码。 |
 
 **返回值：**
 
@@ -3407,7 +3407,7 @@ setRaiseByClickEnabled(enable: boolean, callback: AsyncCallback&lt;void&gt;): vo
 | 参数名   | 类型                      | 必填 | 说明       |
 | -------- | ------------------------- | ---- | ---------- |
 | enable   | boolean                   | 是   | 设置子窗口点击抬升功能是否使能，true表示使能，false表示禁止。 |
-| callback | [AsyncCallback](../apis-basic-services-kit/js-apis-base.md#asynccallback)&lt;void&gt; | 是   | 回调函数。当调用成功时，err为undefined；否则为错误对象。 |
+| callback | AsyncCallback&lt;void&gt; | 是   | 回调函数。当调用成功时，err为undefined；否则为错误对象。 |
 
 **错误码：**
 
