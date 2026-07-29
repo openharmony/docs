@@ -6,7 +6,7 @@
 <!--Tester: @liuhaonan2-->
 <!--Adviser: @fang-jinxu-->
 
-request部件主要给应用提供上传下载文件、后台传输代理的基础能力。
+request部件主要给应用提供上传下载文件、后台传输代理的基础能力，适用于应用内文件上传下载及后台代理传输等场景，便于开发者便捷地完成文件传输任务并支持后台任务管理。
 
 > **说明：**
 >
@@ -25,25 +25,25 @@ import { request } from '@kit.BasicServicesKit';
 
 ## Filter<sup>10+</sup>
 
-过滤条件。
+过滤条件。用于在上传下载任务查询场景中，按应用程序包名过滤任务。
 
 **系统能力**：SystemCapability.Request.FileTransferAgent
 
 | 名称   | 类型     | 只读 | 可选 | 说明                            |
 |------|--------|----|----|-------------------------------|
-| bundle | string | 否 | 是 | 指定应用程序的包名，仅对系统应用开放。<br/>**系统接口**：此接口为系统接口。 |
+| bundle | string | 否 | 是 | 指定应用程序的包名，仅对系统应用开放。当需要按特定应用包名过滤任务时设置此字段，不设置时不对包名进行过滤（查询所有应用的任务）。<br>**系统接口**：此接口为系统接口。 |
 
 
 ## TaskInfo<sup>10+</sup> 
 
-查询结果的任务信息数据结构。提供普通查询和系统查询，两种字段的可见范围不同。
+查询结果的任务信息数据结构。提供普通查询（通过公开接口查询）和系统查询（通过系统接口查询），两种查询方式返回的字段可见范围不同。
 
 **系统能力**：SystemCapability.Request.FileTransferAgent
 
 | 名称   | 类型     | 只读 | 可选 | 说明                            |
 |------|--------|----|----|-------------------------------|
-| uid | string | 是 | 是 | 应用程序的UID，仅用于系统查询。<br/>**系统接口**：此接口为系统接口。|
-| bundle | string | 是 | 是 | 应用程序的包名，仅用于系统查询。<br/>**系统接口**：此接口为系统接口。|
+| uid | string | 是 | 是 | 应用的UID，仅用于系统查询。<br>**系统接口**：此接口为系统接口。|
+| bundle | string | 是 | 是 | 应用的包名，仅用于系统查询。<br>**系统接口**：此接口为系统接口。|
 
 ## Notification<sup>15+</sup>
 
@@ -56,13 +56,13 @@ import { request } from '@kit.BasicServicesKit';
 
 | 名称   | 类型     | 只读 | 可选 | 说明                            |
 |------|--------|----|----|-------------------------------|
-| disable<sup>20+</sup> | boolean | 否 | 是 | 是否关闭通知栏显示。true表示关闭通知栏显示，false表示不关闭通知栏显示。<br/>默认为false。<br/>**系统接口**：此接口为系统接口。 |
+| disable<sup>20+</sup> | boolean | 否 | 是 | 是否关闭通知栏显示。true表示关闭通知栏显示，false表示不关闭通知栏显示。<br>默认为false。<br>**系统接口**：此接口为系统接口。 |
 
 ## request.agent.query<sup>10+</sup>
 
 query(id: string, callback: AsyncCallback&lt;TaskInfo&gt;): void
 
-根据任务id查询任务的详细信息。使用callback异步回调。
+根据任务id查询任务的详细信息。使用callback异步回调。返回的TaskInfo中uid和bundle字段仅用于系统查询，详见TaskInfo说明。
 
 **需要权限**：ohos.permission.DOWNLOAD_SESSION_MANAGER 或 ohos.permission.UPLOAD_SESSION_MANAGER
 
@@ -74,8 +74,8 @@ query(id: string, callback: AsyncCallback&lt;TaskInfo&gt;): void
 
 | 参数名 | 类型                                           | 必填 | 说明 |
 |----------------------------------------------| -------- | -------- | -------- |
-| id | string                                       | 是 | 任务id。 |
-| callback | AsyncCallback&lt;[TaskInfo](#taskinfo10)&gt; | 是 | 回调函数，返回任务详细信息。 |
+| id | string                                       | 是 | 任务的唯一标识id，在创建上传/下载任务时返回，用于查询对应任务的详细信息。 |
+| callback | AsyncCallback&lt;[TaskInfo](#taskinfo10)&gt; | 是 | 回调函数，用于接收任务详细信息。回调签名：(err: BusinessError, taskInfo: TaskInfo) => void，其中err为错误对象，成功时为undefined；taskInfo为任务详细信息。 |
 
 **错误码：**
 
@@ -94,9 +94,10 @@ query(id: string, callback: AsyncCallback&lt;TaskInfo&gt;): void
   ```ts
   import { BusinessError } from '@kit.BasicServicesKit';
 
-  request.agent.query("123456", (err: BusinessError, taskInfo: request.agent.TaskInfo) => {
+  // taskId为已创建上传/下载任务的id，可通过request.agent.create接口创建任务后获取 
+  request.agent.query('123456', (err: BusinessError, taskInfo: request.agent.TaskInfo) => {
     if (err) {
-      console.error(`Failed to query an upload task, Code: ${err.code}, message: ${err.message}`);
+      console.error(`Failed to query an upload task. Code: ${err.code}, message: ${err.message}`);
       return;
     }
     console.info(`Succeeded in querying an upload task. result: ${taskInfo.uid}`);
@@ -108,7 +109,7 @@ query(id: string, callback: AsyncCallback&lt;TaskInfo&gt;): void
 
 query(id: string): Promise&lt;TaskInfo&gt;
 
-根据任务id查询任务的详细信息。使用Promise异步回调。
+根据任务id查询任务的详细信息。使用Promise异步回调。返回的TaskInfo中uid和bundle字段仅用于系统查询，详见TaskInfo说明。
 
 **需要权限**：ohos.permission.DOWNLOAD_SESSION_MANAGER 或 ohos.permission.UPLOAD_SESSION_MANAGER
 
@@ -120,7 +121,7 @@ query(id: string): Promise&lt;TaskInfo&gt;
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| id | string | 是 | 任务id。 |
+| id | string | 是 | 任务的唯一标识id，在创建上传/下载任务时返回，用于查询对应任务的详细信息。 |
 
 **返回值：**
 
@@ -145,9 +146,10 @@ query(id: string): Promise&lt;TaskInfo&gt;
   ```ts
   import { BusinessError } from '@kit.BasicServicesKit';
 
-  request.agent.query("123456").then((taskInfo: request.agent.TaskInfo) => {
+  // taskId为已创建上传/下载任务的id，可通过request.agent.create接口创建任务后获取 
+  request.agent.query('123456').then((taskInfo: request.agent.TaskInfo) => {
     console.info(`Succeeded in querying an upload task. result: ${taskInfo.uid}`);
   }).catch((err: BusinessError) => {
-    console.error(`Failed to query an upload task, Code: ${err.code}, message: ${err.message}`);
+    console.error(`Failed to query an upload task. Code: ${err.code}, message: ${err.message}`);
   });
   ```
