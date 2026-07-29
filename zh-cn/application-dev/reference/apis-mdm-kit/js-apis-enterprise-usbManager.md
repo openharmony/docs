@@ -30,6 +30,11 @@ addAllowedUsbDevices(admin: Want, usbDeviceIds: Array\<UsbDeviceId>): void
 
 添加USB设备可用名单。
 
+**使用场景**：
+- 企业安全管理场景，需要限制只有特定的USB设备可以接入设备
+- 设备管理员需要精确控制哪些USB设备能够被识别和使用
+- 配合[removeAllowedUsbDevices](#usbmanagerremoveallowedusbdevices)接口实现USB设备的动态管理
+
 以下情况下，调用本接口会报策略冲突：
 
 1. 已经通过[setDisallowedPolicy](js-apis-enterprise-restrictions.md#restrictionssetdisallowedpolicydeprecated)接口禁用了设备USB或者USB转串口能力。
@@ -94,6 +99,11 @@ removeAllowedUsbDevices(admin: Want, usbDeviceIds: Array\<UsbDeviceId>): void
 
 移除USB设备可用名单。
 
+**使用场景**：
+- 企业安全管理场景，需要撤销某些USB设备的访问权限
+- 设备管理员需要动态调整允许使用的USB设备列表
+- 当USB设备不再需要或存在安全风险时，从允许名单中移除
+
 **需要权限：** ohos.permission.ENTERPRISE_MANAGE_USB
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
@@ -148,6 +158,10 @@ try {
 getAllowedUsbDevices(admin: Want | null): Array\<UsbDeviceId>
 
 获取USB设备可用名单。
+
+**使用场景**：
+- 在修改策略前，需要先获取现有策略进行评估
+- 管理界面需要展示当前的USB存储设备访问控制状态
 
 **需要权限：** ohos.permission.ENTERPRISE_MANAGE_USB
 
@@ -298,7 +312,7 @@ getUsbStorageDeviceAccessPolicy(admin: Want | null): UsbPolicy
 
 | 类型                    | 说明                  |
 | ----------------------- | --------------------- |
-| [UsbPolicy](#usbpolicy) | USB存储设备访问策略。 |
+| [UsbPolicy](#usbpolicy) | USB存储设备访问策略。设置为READ_WRITE表示允许读写USB存储设备；设置为READ_ONLY表示仅允许读取USB存储设备，禁止写入；设置为DISABLED表示完全禁止访问USB存储设备。 |
 
 **错误码**：
 
@@ -335,6 +349,12 @@ try {
 addDisallowedUsbDevices(admin: Want, usbDevices: Array\<UsbDeviceType>): void
 
 添加禁止使用的USB设备类型。
+
+**使用场景**：
+- 企业安全管理场景，需要禁用特定类型的USB设备
+- 防止数据泄露：禁用USB存储设备类型
+- 设备管理员需要根据安全策略，禁止使用某些类型的USB设备
+- 配合[removeDisallowedUsbDevices](#usbmanagerremovedisallowedusbdevices14)接口实现USB设备类型的动态管理
 
 > **说明：**
 >
@@ -405,6 +425,11 @@ removeDisallowedUsbDevices(admin: Want, usbDevices: Array\<UsbDeviceType>): void
 
 移除禁止使用的USB设备类型。
 
+**使用场景**：
+- 企业安全管理场景，需要解除对某些USB设备类型的禁用
+- 设备管理员需要动态调整禁止使用的USB设备类型列表
+- 当某些USB设备类型不再存在安全风险时，从禁用名单中移除
+
 **需要权限：** ohos.permission.ENTERPRISE_MANAGE_USB
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
@@ -461,6 +486,11 @@ try {
 getDisallowedUsbDevices(admin: Want | null): Array\<UsbDeviceType>
 
 获取禁止使用的USB设备类型。
+
+**使用场景**：
+- 设备管理员需要查看当前禁止使用的USB设备类型列表
+- 在修改禁用名单前，需要先获取现有名单进行比对
+- 管理界面需要展示当前的USB设备类型禁用策略配置
 
 **需要权限：** ohos.permission.ENTERPRISE_MANAGE_USB
 

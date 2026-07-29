@@ -8,6 +8,22 @@
 
 本模块提供设置通用限制类策略能力。可以全局禁用和解除禁用蓝牙、HDC、USB、Wi-Fi、蜂窝数据、相机、麦克风等特性。
 
+**使用场景**：
+- 企业设备管理场景下，管理员需要对员工设备进行功能限制，防止数据泄露或非授权使用。
+- BYOD（Bring Your Own Device）场景下，企业空间需要限制设备功能以符合企业安全策略。
+- 设备安全管控场景下，需要禁用特定功能以保护企业敏感信息。
+
+**能解决的问题**：
+- 防止员工通过蓝牙、USB等方式传输企业敏感数据。
+- 限制设备调试能力（HDC）以提升设备安全性。
+- 控制网络访问能力（Wi-Fi、蜂窝数据等）以符合企业网络策略。
+- 管理设备多媒体能力（相机、麦克风等）以保护隐私和企业机密。
+
+**带来的收益**：
+- 提升企业设备安全性，降低数据泄露风险。
+- 满足企业合规要求，符合安全审计标准。
+- 实现精细化的设备功能管控，平衡安全与使用体验。
+
 > **说明：**
 >
 > 本模块首批接口从API version 12 开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
@@ -27,6 +43,10 @@ import { restrictions } from '@kit.MDMKit';
 setDisallowedPolicy(admin: Want, feature: string, disallow: boolean): void
 
 设置禁用/启用某特性。
+
+> **说明：**
+> 
+> 本接口为设备级禁用策略，影响设备所有用户。如需针对特定用户设置禁用策略，请使用[setDisallowedPolicyForAccount](#restrictionssetdisallowedpolicyforaccountdeprecated)接口。
 
 **起始版本：** 12
 
@@ -542,7 +562,7 @@ setUserRestriction(admin: Want, settingsItem: string, restricted: boolean): void
 | 参数名   | 类型                                                    | 必填 | 说明                                                         |
 | -------- | ------------------------------------------------------- | ---- | ------------------------------------------------------------ |
 | admin    | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | 是   | 企业设备管理扩展组件。Want中必须包含企业设备管理扩展能力的abilityName和所在应用的bundleName。                                   |
-| settingsItem  | string                                                  | 是   | 行为名称。<br/>- setApn：APN设置，当前仅支持手机、平板使用。<br/>- powerLongPress：长按电源键打开电源菜单，当前仅支持手机、平板使用。<br/>- setEthernetIp：修改以太网IP地址，当前仅支持PC/2in1设备使用。<br/>- setDeviceName：修改设备名称，当前仅支持PC/2in1设备、手机、平板使用。禁用后，PC/2in1设备的设置中以下设备名称无法修改，包括关于本机、蓝牙、多设备协同->星闪。手机、平板设备设置中的关于本机、蓝牙、个人热点的设备名称无法修改。<br/>- setBiometricsAndScreenLock：修改锁屏密码，当前仅支持PC/2in1设备、手机、平板使用。|
+| settingsItem  | string                                                  | 是   | 行为名称，仅支持以下值，传入其他值会报错。<br/>- setApn：APN设置，当前仅支持手机、平板使用。<br/>- powerLongPress：长按电源键打开电源菜单，当前仅支持手机、平板使用。<br/>- setEthernetIp：修改以太网IP地址，当前仅支持PC/2in1设备使用。<br/>- setDeviceName：修改设备名称，当前仅支持PC/2in1设备、手机、平板使用。禁用后，PC/2in1设备的设置中以下设备名称无法修改，包括关于本机、蓝牙、多设备协同->星闪。手机、平板设备设置中的关于本机、蓝牙、个人热点的设备名称无法修改。<br/>- setBiometricsAndScreenLock：修改锁屏密码，当前仅支持PC/2in1设备、手机、平板使用。|
 | restricted | boolean                                                 | 是   | 是否禁用行为。true表示禁用，false表示不禁用。                       |
 
 **错误码**：
