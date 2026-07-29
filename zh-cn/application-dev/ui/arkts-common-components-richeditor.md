@@ -1546,15 +1546,14 @@ build() {
 
 此接口优化文本排版，提升组件内文本的可读性。设置自动间距后，中西文间产生适当空隙，便于区分不同语种，减少视觉干扰。
 
-<!-- @[richEditor_enableAutoSpacing](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkUISample/TextComponent/entry/src/main/ets/pages/richEditor/SetAttributes.ets) --> 
+<!-- @[richEditor_enableAutoSpacing](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkUISample/TextComponent/entry/src/main/ets/pages/richEditor/SetAttributes.ets) -->  
 
 ``` TypeScript
 @Component
 struct EnableAutoSpacing {
   controller: RichEditorController = new RichEditorController();
   options: RichEditorOptions = { controller: this.controller };
-  @State
-  enableAutoSpace:boolean = false;
+  @State enableAutoSpace: boolean = false;
 
   build() {
     Column() {
