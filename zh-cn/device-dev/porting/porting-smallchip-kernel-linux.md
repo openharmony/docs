@@ -3,7 +3,7 @@
 
 ## 移植概述
 
-Linux内核移植主要涉及基于linux内核基线合入三方芯片补丁后，进行基础的内核编译构建及验证。
+Linux内核移植主要涉及基于Linux内核基线合入三方芯片补丁后，进行基础的内核编译构建及验证。
 
 
 ### 基本信息
@@ -13,7 +13,7 @@ Linux内核移植主要涉及基于linux内核基线合入三方芯片补丁后�
 
 ### Bootloader
 
-可以使用芯片厂商自带的Bootloader，或者是开源Uboot等加载内核镜像。比如为支持Hi3516DV300开发板，OpenHarmony引入的开源[Uboot](https://gitcode.com/openharmony/third_party_u-boot)。
+可以使用芯片厂商自带的Bootloader，或者是开源Uboot等加载内核镜像。
 
 
 ## 适配编译和烧录启动
@@ -65,9 +65,9 @@ Linux内核移植主要涉及基于linux内核基线合入三方芯片补丁后�
 
 ## 验证
 
-调试init进程、启动shell和运行简单的用户态程序，验证内核移植是否成功。OpenHarmony小型系统的OS镜像结构以及linux用户态的启动流程如下图1所示：
+调试init进程、启动shell和运行简单的用户态程序，验证内核移植是否成功。OpenHarmony小型系统的OS镜像结构以及Linux用户态的启动流程如下图1所示：
 
-  **图1** 基于linux内核的OS镜像结构和用户态程序启动流程
+  **图1** 基于Linux内核的OS镜像结构和用户态程序启动流程
 
   ![zh-cn_image_0000001154372318](figures/zh-cn_image_0000001154372318.png)
 
@@ -79,7 +79,7 @@ Linux内核移植主要涉及基于linux内核基线合入三方芯片补丁后�
 
    - 组件配置
 
-     产品组件配置文件`vendor/{company}/{product}/config.json`需配置启动恢复子系统(startup)的`init`组件和内核子系统的`linux`组件。
+     产品组件配置文件`vendor/{company}/{product}/config.json`需配置启动恢复子系统(startup)的`init`组件和内核子系统的`Linux`组件。
 
    - 系统服务配置
 
@@ -97,7 +97,7 @@ Linux内核移植主要涉及基于linux内核基线合入三方芯片补丁后�
 
 2. 调试init进程和shell。
 
-   烧录`rootfs.img`并调试init进程和shell，不同厂商的开发板的烧录工具和流程可能不同，请按芯片解决方案提供的流程进行烧录。烧录`rootfs.img`前请确认bootloader和linux内核启动正常。如果`rootfs.img`被内核正常挂载，接着将运行`/bin/init`程序，init进程为用户态的第一个应用程序，它的运行意味着用户态的开始。
+   烧录`rootfs.img`并调试init进程和shell，不同厂商的开发板的烧录工具和流程可能不同，请按芯片解决方案提供的流程进行烧录。烧录`rootfs.img`前请确认bootloader和Linux内核启动正常。如果`rootfs.img`被内核正常挂载，接着将运行`/bin/init`程序，init进程为用户态的第一个应用程序，它的运行意味着用户态的开始。
 
    init程序首先会调用`/etc/init.d/rcS`脚本，rcS脚本执行第一条命令为`/bin/mount -a`，该命令会加载fstab文件，在fstab中的命令执行完后rcS将顺序调用Sxxx脚本完成设备节点创建和扫描、文件权限配置等操作。
 
