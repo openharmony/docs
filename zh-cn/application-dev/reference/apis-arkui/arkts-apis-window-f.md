@@ -225,7 +225,7 @@ getLastWindow(ctx: BaseContext, callback: AsyncCallback&lt;Window&gt;): void
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------------------------------------- | -- | ---------------------------------------- |
 | ctx      | [BaseContext](../apis-ability-kit/js-apis-inner-application-baseContext.md) | 是 | 当前应用上下文信息。 |
-| callback | AsyncCallback&lt;[Window](arkts-apis-window-Window.md)&gt; | 是 | 回调函数。 |
+| callback | AsyncCallback&lt;[Window](arkts-apis-window-Window.md)&gt; | 是 | 回调函数。返回当前应用内层级最高的窗口对象。 |
 
 **错误码：**
 
