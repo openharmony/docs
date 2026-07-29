@@ -1058,7 +1058,7 @@ VM内存信息。
 | threadId           | number  | 否  | 否  | 线程号。      |
 | cpuUsage           | number  | 否  | 否  | 线程CPU使用率。 |
 
-## hidebug.tags<sup>12+</sup>
+## tags<sup>12+</sup>
 
 ### 常量
 
