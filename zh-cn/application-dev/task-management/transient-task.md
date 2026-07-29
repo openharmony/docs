@@ -39,7 +39,7 @@
 
 | 接口名 | 描述 |
 | -------- | -------- |
-| [requestSuspendDelay(reason: string, callback: Callback&lt;void&gt;): DelaySuspendInfo](../reference/apis-backgroundtasks-kit/js-apis-resourceschedule-backgroundTaskManager.md#backgroundtaskmanagerrequestsuspenddelay) | 申请短时任务。DelaySuspendInfo返回的requestId和actualDelayTime分别表示短时任务请求ID和应用实际申请的短时任务时间（单位：ms）|
+| [requestSuspendDelay(reason: string, callback: Callback&lt;void&gt;): DelaySuspendInfo](../reference/apis-backgroundtasks-kit/js-apis-resourceschedule-backgroundTaskManager.md#backgroundtaskmanagerrequestsuspenddelay) | 申请短时任务DelaySuspendInfo链接格式|
 | [getRemainingDelayTime(requestId: number): Promise&lt;number&gt;](../reference/apis-backgroundtasks-kit/js-apis-resourceschedule-backgroundTaskManager.md#backgroundtaskmanagergetremainingdelaytime-1) | 获取对应短时任务的剩余时间。 |
 | [cancelSuspendDelay(requestId: number): void](../reference/apis-backgroundtasks-kit/js-apis-resourceschedule-backgroundTaskManager.md#backgroundtaskmanagercancelsuspenddelay) | 取消短时任务。 |
 
