@@ -497,7 +497,7 @@
 **系统能力：** SystemCapability.Window.SessionManager
 | 名称             | 类型                                                                     | 只读 | 可选 | 说明                                                         |
 | ---------------- | ----------------------------------------------------------------------- | ---- | ---- | ------------------------------------------------------------ |
-| type             | [AnimationType](arkts-apis-window-e.md#animationtype20)                 | 否   | 否   | 窗口动画类型。|
+| type             | [AnimationType](arkts-apis-window-e.md#animationtype20)                 | 否   | 否   | 窗口动画类型，用于指定窗口启动时使用的动画效果，如淡入淡出等。|
 
 ## WindowCreateParams<sup>20+</sup>
 
@@ -545,7 +545,7 @@
 
 | 名称   | 类型 | 只读  | 可选 | 说明                    |
 | ------ | ---- | ----- | ---- | ----------------------- |
-| type | [RotationChangeType](arkts-apis-window-e.md#rotationchangetype19) | 否 | 否 | 窗口旋转事件类型。 |
+| type | [RotationChangeType](arkts-apis-window-e.md#rotationchangetype19) | 否 | 否 | 窗口旋转事件类型，如窗口即将旋转、窗口旋转结束等。 |
 | orientation | number | 否 | 否 | 窗口显示方向。<br>- 0表示竖屏。<br>- 1表示反向横屏。<br>- 2表示反向竖屏。<br>- 3表示横屏。<br>开发者在使用时，需要注意该方向与display对象的属性orientation含义不一致。 |
 | displayId | number | 否 | 否 | 窗口所在屏幕Id。 |
 | displayRect | [Rect](arkts-apis-window-i.md#rect7) | 否 | 否 | 窗口所在屏幕旋转后的矩形区域大小。 |
@@ -562,7 +562,7 @@
 
 | 名称   | 类型 | 只读  | 可选 | 说明                    |
 | ------ | ---- | ----- | ---- | ----------------------- |
-| rectType | [RectType](arkts-apis-window-e.md#recttype19) | 否 | 否 | 窗口矩形区域坐标系类型。 |
+| rectType | [RectType](arkts-apis-window-e.md#recttype19) | 否 | 否 | 窗口矩形区域坐标系类型，用于指定窗口矩形区域使用的坐标系，如屏幕坐标系、父窗口坐标系等。 |
 | windowRect | [Rect](arkts-apis-window-i.md#rect7) | 否 | 否 | 相对于屏幕或父窗坐标系的窗口矩形区域信息。|
 
 ## OrientationResult
@@ -579,7 +579,7 @@
 
 | 名称   | 类型 | 只读  | 可选 | 说明                    |
 | ------ | ---- | ----- | ---- | ----------------------- |
-| executionResult | [OrientationExecutionResult](arkts-apis-window-e.md#orientationexecutionresult) | 否 | 否 | 窗口显示方向的执行结果枚举。|
+| executionResult | [OrientationExecutionResult](arkts-apis-window-e.md#orientationexecutionresult) | 否 | 否 | 窗口显示方向的执行结果枚举，表示设置窗口显示方向的操作结果，例如生效、不生效、挂起等。 |
 
 ## SubWindowOptions<sup>11+</sup>
 
