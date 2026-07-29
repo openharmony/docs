@@ -1921,6 +1921,8 @@ shortcutInfo列表中，存在bundleName和appIndex的组合与其他不一致�
 
 例如在调用[shortcutManager.addDynamicShortcutInfos](../apis-ability-kit/js-apis-shortcutManager-sys.md#shortcutmanageradddynamicshortcutinfos23)接口时传入了如下列表:
 ```ts
+import { shortcutManager } from '@kit.AbilityKit';
+
 const bundleName = "com.example.dynamic";
 const bundleName1 = "com.example.dynamic1";
 let moduleName = 'entry';
@@ -1929,10 +1931,12 @@ const arrShortcutInfo: Array<shortcutManager.ShortcutInfo> = [
   { id: "2", bundleName: bundleName, moduleName: moduleName, appIndex: 0, sourceType: 2 },
     // 校验失败，因为bundleName和appIndex与其他shortcutInfo不一样
   { id: "3", bundleName: bundleName1, moduleName: moduleName, appIndex: 0, sourceType: 2 }
-]
+];
 ```
 或者：
 ```ts
+import { shortcutManager } from '@kit.AbilityKit';
+
 const bundleName = "com.example.dynamic";
 let moduleName = 'entry';
 const arrShortcutInfo: Array<shortcutManager.ShortcutInfo> = [
@@ -1940,7 +1944,7 @@ const arrShortcutInfo: Array<shortcutManager.ShortcutInfo> = [
   { id: "2", bundleName: bundleName, moduleName: moduleName, appIndex: 0, sourceType: 2 },
   // 校验失败，因为bundleName和appIndex与其他shortcutInfo不一样
   { id: "3", bundleName: bundleName, moduleName: moduleName, appIndex: 1, sourceType: 2 }
-]
+];
 ```
 
 **处理步骤**
