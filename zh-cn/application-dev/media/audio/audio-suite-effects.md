@@ -10,20 +10,20 @@
 
 ## 效果节点类型
 
-| 效果类型 | 节点类型 | 起始API版本 | 用途 |
-|---------|---------|--------|------|
-| [均衡器](#均衡器) | EFFECT_NODE_TYPE_EQUALIZER | API版本22 | 频段调节，改变音频频率特性 |
-| [降噪](#降噪) | EFFECT_NODE_TYPE_NOISE_REDUCTION | API版本22 | 降低背景噪声，提升语音清晰度 |
-| [声场](#声场) | EFFECT_NODE_TYPE_SOUND_FIELD | API版本22 | 调整声音空间感和声场范围 |
-| [音源分离](#音源分离) | EFFECT_MULTII_OUTPUT_NODE_TYPE_AUDIO_SEPARATION | API版本22 | 分离人声与伴奏（多路输出） |
-| [声音美化](#声音美化) | EFFECT_NODE_TYPE_VOICE_BEAUTIFIER | API版本22 | 提升音质和听感 |
-| [环境效果](#环境效果) | EFFECT_NODE_TYPE_ENVIRONMENT_EFFECT | API版本22 | 模拟不同环境的声学效果 |
-| [混音](#混音) | EFFECT_NODE_TYPE_AUDIO_MIXER | API版本22 | 多路音频混合为一路 |
-| [空间渲染](#空间渲染) | EFFECT_NODE_TYPE_SPACE_RENDER | API版本23 | 3D空间音频定位与渲染 |
-| [传统变声](#传统变声) | EFFECT_NODE_TYPE_PURE_VOICE_CHANGE | API版本23 | 基于性别与音调的传统变声 |
-| [通用变声](#通用变声) | EFFECT_NODE_TYPE_GENERAL_VOICE_CHANGE | API版本23 | 多种风格化变声效果 |
-| [变速变调](#变速变调) | EFFECT_NODE_TYPE_TEMPO_PITCH | API版本23 | 改变音频速度与音调 |
-| [HOA转双耳空间音频](#hoa转双耳空间音频) | EFFECT_NODE_TYPE_HOA_SPACE_RENDER | API版本26.0.0 | HOA高阶 Ambisonics 转双耳渲染 |
+| 效果类型 | 节点类型 | 起始API版本 | 用途 | 特殊说明 |
+|---------|---------|--------|------|------|
+| [均衡器](#均衡器) | EFFECT_NODE_TYPE_EQUALIZER | API版本22 | 频段调节，改变音频频率特性 | 无 |
+| [降噪](#降噪) | EFFECT_NODE_TYPE_NOISE_REDUCTION | API版本22 | 降低背景噪声，提升语音清晰度 | 无 |
+| [声场](#声场) | EFFECT_NODE_TYPE_SOUND_FIELD | API版本22 | 调整声音空间感和声场范围 | 无 |
+| [音源分离](#音源分离) | EFFECT_MULTII_OUTPUT_NODE_TYPE_AUDIO_SEPARATION | API版本22 | 分离人声与伴奏（多路输出） | 调用[OH_AudioSuiteEngine_IsNodeTypeSupported()](../../reference/apis-audio-kit/capi-native-audio-suite-engine-h.md#oh_audiosuiteengine_isnodetypesupported)检查节点类型是否受支持 |
+| [声音美化](#声音美化) | EFFECT_NODE_TYPE_VOICE_BEAUTIFIER | API版本22 | 提升音质和听感 | 无 |
+| [环境效果](#环境效果) | EFFECT_NODE_TYPE_ENVIRONMENT_EFFECT | API版本22 | 模拟不同环境的声学效果 | 无 |
+| [混音](#混音) | EFFECT_NODE_TYPE_AUDIO_MIXER | API版本22 | 多路音频混合为一路 | 无 |
+| [空间渲染](#空间渲染) | EFFECT_NODE_TYPE_SPACE_RENDER | API版本23 | 3D空间音频定位与渲染 | 无 |
+| [传统变声](#传统变声) | EFFECT_NODE_TYPE_PURE_VOICE_CHANGE | API版本23 | 基于性别与音调的传统变声 | 无 |
+| [通用变声](#通用变声) | EFFECT_NODE_TYPE_GENERAL_VOICE_CHANGE | API版本23 | 多种风格化变声效果 | 无 |
+| [变速变调](#变速变调) | EFFECT_NODE_TYPE_TEMPO_PITCH | API版本23 | 改变音频速度与音调 | 无 |
+| [HOA转双耳空间音频](#hoa转双耳空间音频) | EFFECT_NODE_TYPE_HOA_SPACE_RENDER | API版本26.0.0 | HOA高阶 Ambisonics 转双耳渲染 | 无 |
 
 ---
 
@@ -163,7 +163,7 @@ OH_AudioSuiteNodeBuilder_SetNodeType(builder, OH_AudioNode_Type::EFFECT_NODE_TYP
 OH_AudioSuiteEngine_CreateNode(pipeline, builder, node);
 // 设置声音美化节点效果。
 OH_AudioSuiteEngine_SetVoiceBeautifierType(*node,
-                                           static_cast<OH_VoiceBeautifierType>(params.voiceBeautifierType));
+                                             static_cast<OH_VoiceBeautifierType>(params.voiceBeautifierType));
 ```
 
 ---
