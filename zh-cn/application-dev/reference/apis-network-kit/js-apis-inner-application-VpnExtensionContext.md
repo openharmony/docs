@@ -40,49 +40,4 @@ export default class MyVpnExtAbility extends VpnExtensionAbility {
 }
 ```
 
-## VpnExtensionAbility
-
-三方VPN拓展能力。
-
-**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
-
-**模型约束**：此接口仅可在Stage模型下使用。
-
-| 名称   | 类型                                                         | 只读 |可选| 说明           |
-|------| ------------------------------------------------------------ | ---- | ---|----------- |
-| context | [VpnExtensionContext](js-apis-inner-application-VpnExtensionContext.md) | 否   | 否|指定context。 |
-
-
-### onCreate
-
-onCreate(want: Want): void
-
-拓展VPN启动初始化的时候进行回调。
-
-> **说明：**
-> 
-> 建议配对调用[onDestroy](#ondestroy)监听拓展VPN的销毁，及时执行资源清理等操作。
-
-**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
-
-**模型约束**：此接口仅可在Stage模型下使用。
-
-**参数：**
-
-| 参数名 | 类型                                | 必填 | 说明        |
-| ------ | ----------------------------------- | ---- |-----------|
-| want   | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | 是   | 指示要启动的信息。 |
-
-### onDestroy
-
-onDestroy(): void
-
-拓展VPN销毁之前进行回调。
-
-**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
-
-**模型约束**：此接口仅可在Stage模型下使用。
-
-
-
 
