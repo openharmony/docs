@@ -48,7 +48,7 @@ loadNativeModule(moduleName: string): Object;
 2. 在模块级`build-profile.json5`文件中配置`runtimeOnly.packages`字段。
 
     <!-- @[hap_load_native_dependence_01](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/ArkTSRuntime/ArkTSModule/JsApisLoadNativeModule/entry/build-profile.json5) -->
-
+    
     ``` JSON5
     "buildOption": {
       "arkOptions": {
