@@ -18,7 +18,7 @@
 | samgr-系统服务管理 | 系统服务注册、发现与统一管理 |
 | DFX | 可维可测能力，包括日志、事件打点等 |
 | HCTEST-测试框架 | 兼容性测试框架，提供基本接口的测试验证能力 |
-| 三方库 | 三方库mbedtls算法feature化改造（可配置功能，目前仅支持ws63平台） |
+| 三方库 | 三方库mbedtls算法feature化改造（可配置功能，目前仅支持Hi3863） |
 | 编译链接 | 编译构建配置与链接脚本管理 |
 
 ## 适配流程
@@ -274,7 +274,7 @@ HCTEST的Feature通过编译参数`--gn-args`传入，也可以通过config.json
 hb build --gn-args hctest_rodata_opt=true xts_overlay=true hctest_task_stack_size=2048 hctest_task_queue_size=1 'hctest_task_type="SHARED_TASK"'
 ```
 
-config.json配置方法参考 vendor/hisilicon/hispark_pegasus_minimal/config.json
+config.json配置方法参考 vendor/MyVendorCompany/MyProduct/config.json
 
 ```json
 {
@@ -511,9 +511,9 @@ set_config('env_cfg', 'CONFIG_XTS_OVERLAY', 'y', ['-DXTS_OVERLAY_ENABLE'], 'link
 set_config('env_cfg', 'CONFIG_HCTEST_NEW_RUNNER', 'y', ['-DHCTEST_NEW_RUNNER'], 'link_scripts_flag', 'common')
 ```
 
-##### 3861 与 3863 已适配对比
+##### Hi3861 与 Hi3863 适配对比举例
 
-| 环节 | 3861 (hi3861v100) | 3863 (ws63v100) |
+| 环节 | Hi3861 | Hi3863 |
 | -------- | -------- | -------- |
 | SDK 构建系统 | scons | cmake |
 | 链接脚本 | device/soc/hisilicon/hi3861v100/sdk_liteos/build/link/link.ld.S | device/soc/hisilicon/ws63v100/sdk/drivers/boards/ws63/evb/linker/.../linker.prelds |
@@ -542,10 +542,10 @@ nm <elf> | grep xts_overlay      # xts_overlay_start / xts_overlay_end
 
 ## 三方库
 
-三方库模块，对thirdparty下mbedtls进行了算法feature化改造，以ws63产品为范例（当前仅适配了ws63），展现feature化对内存的影响。
+三方库模块，对thirdparty下mbedtls进行了算法feature化改造，以Hi3863产品为范例（当前仅适配了Hi3863），展现feature化对内存的影响。
 
 > **说明：**
-> 非必须，按需配置，当前对ws63内存无正面优化效果。
+> 非必须，按需配置，当前对Hi3863内存无正面优化效果。
 
 ### 使用方法
 
@@ -559,10 +559,10 @@ nm <elf> | grep xts_overlay      # xts_overlay_start / xts_overlay_end
 
 - 在third_party/mbedtls/mbedtls_feature.gni中配置了算法相关feature，
 - 通过 --gn-args mbedtls_feature_xxx = true的方式可开启
-- 以下为ws63上使用feature化的示例
-  - ws63切换mbedtls使用的源：
+- 以下为Hi3863上使用feature化的示例
+  - Hi3863切换mbedtls使用的源：
     - 一些产品使用了自己sdk特化的mbedtls，需先行切换
-    - （是否要切换到thirdparty下的，可根据实际判断，mbedtls_ohos_switch当前仅适配了ws63）
+    - （是否要切换到thirdparty下的，可根据实际判断，mbedtls_ohos_switch当前仅适配了Hi3863）
     - --gn-args mbedtls_ohos_switch=true
     - --gn-args 'huks_dependency_mbedtls_path="//third_party/mbedtls"'
     - --gn-args mbedtls_featureized=true
@@ -570,7 +570,7 @@ nm <elf> | grep xts_overlay      # xts_overlay_start / xts_overlay_end
     - --gn-args mbedtls_feature_x509=true
     - --gn-args mbedtls_feature_ssl_tls12=true
     - --gn-args mbedtls_feature_ssl_misc=true
-    - ws63的minimal产品暂不使用mbedtls
+    - Hi3863的minimal产品暂不使用mbedtls
 
 #### 注意事项
 
@@ -612,7 +612,7 @@ hb build --gn-args ohos_stack_protector=strong ohos_mem_opt_extra=true
 
 #### 链接脚本配置
 
-参考hi3861与hi3863的minimal产品，在config.json中添加配置：
+参考Hi3861与Hi3863的minimal产品，在config.json中添加配置：
 
 ```json
 [
@@ -620,10 +620,10 @@ hb build --gn-args ohos_stack_protector=strong ohos_mem_opt_extra=true
   "ohos_mem_opt_extra=true"
 ]
 ```
-- 3861：
+- Hi3861：
   - vendor/hisilicon/hispark_pegasus_minimal/config.json
   - product_wifiiot_hispark_pegasus_minimal的features
-- 3863：
+- Hi3863：
   - vendor/hihope/nearlink_dk_3863_xts_minimal/config.json
   - product_nearlink_dk_3863_xts_minimal的features
 
