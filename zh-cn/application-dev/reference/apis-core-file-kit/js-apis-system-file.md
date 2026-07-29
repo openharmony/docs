@@ -10,7 +10,7 @@
 >
 > - 模块维护策略：
 >   - 对于Lite Wearable设备类型，该模块长期维护，正常使用。
->   - 对于支持该模块的其他设备类型，该模块从API Version 10开始不再维护，推荐使用新接口[js-apis-file-fs.md](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-core-file-kit/js-apis-file-fs.md)。
+>   - 对于支持该模块的其他设备类型，该模块从API Version 10开始不再维护，推荐使用新接口[js-apis-file-fs.md](https://developer.huawei.com/consumer/cn/doc/harmonyos-references/js-apis-file-fs)。
 > - 本模块首批接口从API version 3开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 
 ## 导入模块
