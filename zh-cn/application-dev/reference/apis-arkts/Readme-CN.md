@@ -29,9 +29,9 @@
   - @arkts.utils (ArkTS工具库)<!--js-apis-arkts-utils-->
     - [模块描述](arkts-apis-arkts-utils.md)
     - [Functions](arkts-apis-arkts-utils-f.md)
-    - [ArkTSUtils.locks](arkts-apis-arkts-utils-locks.md)
-    - [ArkTSUtils.ASON](arkts-apis-arkts-utils-ASON.md)
-    - [SendableLruCache](arkts-apis-arkts-utils-SendableLruCache.md)
+    - [namespace (locks)](arkts-apis-arkts-utils-locks.md)
+    - [namespace (ASON)](arkts-apis-arkts-utils-ASON.md)
+    - [Class (SendableLruCache)](arkts-apis-arkts-utils-SendableLruCache.md)
   - [@ohos.buffer (Buffer)](js-apis-buffer.md)
   - [@ohos.convertxml (xml转换JavaScript)](js-apis-convertxml.md)
   - [@ohos.fastbuffer (FastBuffer)](js-apis-fastbuffer.md)

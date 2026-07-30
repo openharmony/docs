@@ -1,4 +1,4 @@
-# ArkTSUtils.ASON
+# namespace (ASON)
 <!--Kit: ArkTS-->
 <!--Subsystem: CommonLibrary-->
 <!--Owner: @wang_zhaoyong-->
