@@ -68,7 +68,7 @@ OH_Crypto_ErrCode OH_CryptoSymKeyGenerator_Create(const char *algoName, OH_Crypt
 
 | 类型 | 说明 |
 | -- | -- |
-| [OH_Crypto_ErrCode](capi-crypto-common-h.md#oh_crypto_errcode) | <ul><br>         <li>CRYPTO_SUCCESS：操作成功。</li><br>         <li>CRYPTO_INVALID_PARAMS：ctx为NULL或algoName为NULL。</li><br>         <li>CRYPTO_NOT_SUPPORTED：不支持的算法。</li><br>         <li>CRYPTO_MEMORY_ERROR：内存分配失败。</li><br>         <li>CRYPTO_OPERTION_ERROR：密码操作失败。</li><br>         </ul> |
+| [OH_Crypto_ErrCode](capi-crypto-common-h.md#oh_crypto_errcode) | CRYPTO_SUCCESS：操作成功。<br>CRYPTO_INVALID_PARAMS：ctx为NULL或algoName为NULL。<br>CRYPTO_NOT_SUPPORTED：不支持的算法。<br>CRYPTO_MEMORY_ERROR：内存分配失败。<br>CRYPTO_OPERTION_ERROR：密码操作失败。 |
 
 **参考：**
 
@@ -102,7 +102,7 @@ OH_Crypto_ErrCode OH_CryptoSymKeyGenerator_Generate(OH_CryptoSymKeyGenerator *ct
 
 | 类型 | 说明 |
 | -- | -- |
-| [OH_Crypto_ErrCode](capi-crypto-common-h.md#oh_crypto_errcode) | <ul><br>         <li>CRYPTO_SUCCESS：操作成功。</li><br>         <li>CRYPTO_INVALID_PARAMS：ctx或keyCtx为NULL。</li><br>         <li>CRYPTO_NOT_SUPPORTED：不支持的操作或算法。</li><br>         <li>CRYPTO_MEMORY_ERROR：内存操作失败。</li><br>         <li>CRYPTO_INVALID_CALL：无效的函数调用。可能的原因：算法不支持随机生成密钥<br>           （如RC2、RC4、Blowfish、CAST），请使用OH_CryptoSymKeyGenerator_Convert接口。[since 26.0.0]</li><br>         <li>CRYPTO_OPERTION_ERROR：密码操作失败。</li><br>         </ul> |
+| [OH_Crypto_ErrCode](capi-crypto-common-h.md#oh_crypto_errcode) | CRYPTO_SUCCESS：操作成功。<br>CRYPTO_INVALID_PARAMS：ctx或keyCtx为NULL。<br>CRYPTO_NOT_SUPPORTED：不支持的操作或算法。<br>CRYPTO_MEMORY_ERROR：内存操作失败。<br>CRYPTO_INVALID_CALL：无效的函数调用。可能的原因：算法不支持随机生成密钥（如RC2、RC4、Blowfish、CAST），请使用OH_CryptoSymKeyGenerator_Convert接口。适用版本：26.0.0+<br>CRYPTO_OPERTION_ERROR：密码操作失败。 |
 
 ### OH_CryptoSymKeyGenerator_Convert()
 
@@ -130,7 +130,7 @@ OH_Crypto_ErrCode OH_CryptoSymKeyGenerator_Convert(OH_CryptoSymKeyGenerator *ctx
 
 | 类型 | 说明 |
 | -- | -- |
-| [OH_Crypto_ErrCode](capi-crypto-common-h.md#oh_crypto_errcode) | <ul><br>         <li>CRYPTO_SUCCESS：操作成功。</li><br>         <li>CRYPTO_INVALID_PARAMS：ctx、keyData或keyCtx为NULL。</li><br>         <li>CRYPTO_NOT_SUPPORTED：不支持的操作或算法。</li><br>         <li>CRYPTO_MEMORY_ERROR：内存分配失败。</li><br>         <li>CRYPTO_OPERTION_ERROR：密码操作失败。</li><br>         </ul> |
+| [OH_Crypto_ErrCode](capi-crypto-common-h.md#oh_crypto_errcode) | CRYPTO_SUCCESS：操作成功。<br>CRYPTO_INVALID_PARAMS：ctx、keyData或keyCtx为NULL。<br>CRYPTO_NOT_SUPPORTED：不支持的操作或算法。<br>CRYPTO_MEMORY_ERROR：内存分配失败。<br>CRYPTO_OPERTION_ERROR：密码操作失败。 |
 
 ### OH_CryptoSymKeyGenerator_GetAlgoName()
 
@@ -223,7 +223,7 @@ OH_Crypto_ErrCode OH_CryptoSymKey_GetKeyData(OH_CryptoSymKey *keyCtx, Crypto_Dat
 
 | 类型 | 说明 |
 | -- | -- |
-| [OH_Crypto_ErrCode](capi-crypto-common-h.md#oh_crypto_errcode) | <ul><br>         <li>CRYPTO_SUCCESS：操作成功。</li><br>         <li>CRYPTO_INVALID_PARAMS：keyCtx或out为NULL。</li><br>         <li>CRYPTO_NOT_SUPPORTED：不支持的操作或算法。</li><br>         <li>CRYPTO_MEMORY_ERROR：内存操作失败。</li><br>         <li>CRYPTO_OPERTION_ERROR：密码操作失败。</li><br>         </ul> |
+| [OH_Crypto_ErrCode](capi-crypto-common-h.md#oh_crypto_errcode) | CRYPTO_SUCCESS：操作成功。<br>CRYPTO_INVALID_PARAMS：keyCtx或out为NULL。<br>CRYPTO_NOT_SUPPORTED：不支持的操作或算法。<br>CRYPTO_MEMORY_ERROR：内存操作失败。<br>CRYPTO_OPERTION_ERROR：密码操作失败。 |
 
 ### OH_CryptoSymKey_Destroy()
 

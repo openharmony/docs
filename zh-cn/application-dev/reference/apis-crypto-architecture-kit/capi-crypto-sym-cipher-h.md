@@ -97,7 +97,7 @@ OH_Crypto_ErrCode OH_CryptoSymCipherParams_Create(OH_CryptoSymCipherParams **par
 
 | 类型 | 说明 |
 | -- | -- |
-| [OH_Crypto_ErrCode](capi-crypto-common-h.md#oh_crypto_errcode) | <ul><br>         <li>CRYPTO_SUCCESS：操作成功。</li><br>         <li>CRYPTO_INVALID_PARAMS：params为NULL。</li><br>         <li>CRYPTO_NOT_SUPPORTED：不支持的操作或算法。</li><br>         <li>CRYPTO_MEMORY_ERROR：内存操作失败。</li><br>         <li>CRYPTO_OPERTION_ERROR：加解密操作失败。</li><br>         </ul> |
+| [OH_Crypto_ErrCode](capi-crypto-common-h.md#oh_crypto_errcode) | CRYPTO_SUCCESS：操作成功。<br>CRYPTO_INVALID_PARAMS：params为NULL。<br>CRYPTO_NOT_SUPPORTED：不支持的操作或算法。<br>CRYPTO_MEMORY_ERROR：内存操作失败。<br>CRYPTO_OPERTION_ERROR：加解密操作失败。 |
 
 **参考：**
 
@@ -128,7 +128,7 @@ OH_Crypto_ErrCode OH_CryptoSymCipherParams_SetParam(OH_CryptoSymCipherParams *pa
 
 | 类型 | 说明 |
 | -- | -- |
-| [OH_Crypto_ErrCode](capi-crypto-common-h.md#oh_crypto_errcode) | <ul><br>         <li>CRYPTO_SUCCESS：操作成功。</li><br>         <li>CRYPTO_INVALID_PARAMS：params或value为NULL，或paramsType无法识别。</li><br>         <li>CRYPTO_NOT_SUPPORTED：不支持的操作或算法。</li><br>         <li>CRYPTO_MEMORY_ERROR：内存操作失败。</li><br>         <li>CRYPTO_OPERTION_ERROR：加解密操作失败。</li><br>         </ul> |
+| [OH_Crypto_ErrCode](capi-crypto-common-h.md#oh_crypto_errcode) | CRYPTO_SUCCESS：操作成功。<br>CRYPTO_INVALID_PARAMS：params或value为NULL，或paramsType无法识别。<br>CRYPTO_NOT_SUPPORTED：不支持的操作或算法。<br>CRYPTO_MEMORY_ERROR：内存操作失败。<br>CRYPTO_OPERTION_ERROR：加解密操作失败。 |
 
 ### OH_CryptoSymCipherParams_Destroy()
 
@@ -173,7 +173,7 @@ OH_Crypto_ErrCode OH_CryptoSymCipher_Create(const char *algoName, OH_CryptoSymCi
 
 | 类型 | 说明 |
 | -- | -- |
-| [OH_Crypto_ErrCode](capi-crypto-common-h.md#oh_crypto_errcode) | <ul><br>         <li>CRYPTO_SUCCESS：操作成功。</li><br>         <li>CRYPTO_INVALID_PARAMS：ctx为NULL或algoName为NULL。</li><br>         <li>CRYPTO_NOT_SUPPORTED：不支持的算法。</li><br>         <li>CRYPTO_MEMORY_ERROR：内存分配失败。</li><br>         <li>CRYPTO_PARAMETER_CHECK_FAILED：参数无效。 [since 20]</li><br>         <li>CRYPTO_OPERTION_ERROR：加解密操作失败。</li><br>         </ul> |
+| [OH_Crypto_ErrCode](capi-crypto-common-h.md#oh_crypto_errcode) | CRYPTO_SUCCESS：操作成功。<br>CRYPTO_INVALID_PARAMS：ctx为NULL或algoName为NULL。<br>CRYPTO_NOT_SUPPORTED：不支持的算法。<br>CRYPTO_MEMORY_ERROR：内存分配失败。<br>CRYPTO_PARAMETER_CHECK_FAILED：参数无效。适用版本：20+<br>CRYPTO_OPERTION_ERROR：加解密操作失败。 |
 
 **参考：**
 
@@ -205,7 +205,7 @@ OH_Crypto_ErrCode OH_CryptoSymCipher_Init(OH_CryptoSymCipher *ctx, Crypto_Cipher
 
 | 类型 | 说明 |
 | -- | -- |
-| [OH_Crypto_ErrCode](capi-crypto-common-h.md#oh_crypto_errcode) | <ul><br>         <li>CRYPTO_SUCCESS：操作成功。</li><br>         <li>CRYPTO_INVALID_PARAMS：ctx或key为NULL，或非ECB模式下IV缺失或长度错误。</li><br>         <li>CRYPTO_NOT_SUPPORTED：不支持的操作。</li><br>         <li>CRYPTO_MEMORY_ERROR：内存分配失败。</li><br>         <li>CRYPTO_PARAMETER_CHECK_FAILED：参数无效。 [since 20]</li><br>         <li>CRYPTO_OPERTION_ERROR：加解密初始化失败。可能的原因：密钥长度与算法不匹配。</li><br>         </ul> |
+| [OH_Crypto_ErrCode](capi-crypto-common-h.md#oh_crypto_errcode) | CRYPTO_SUCCESS：操作成功。<br>CRYPTO_INVALID_PARAMS：ctx或key为NULL，或非ECB模式下IV缺失或长度错误。<br>CRYPTO_NOT_SUPPORTED：不支持的操作。<br>CRYPTO_MEMORY_ERROR：内存分配失败。<br>CRYPTO_PARAMETER_CHECK_FAILED：参数无效。适用版本：20+<br>CRYPTO_OPERTION_ERROR：加解密初始化失败。可能的原因：密钥长度与算法不匹配。 |
 
 **参考：**
 
@@ -240,7 +240,7 @@ OH_Crypto_ErrCode OH_CryptoSymCipher_Update(OH_CryptoSymCipher *ctx, Crypto_Data
 
 | 类型 | 说明 |
 | -- | -- |
-| [OH_Crypto_ErrCode](capi-crypto-common-h.md#oh_crypto_errcode) | <ul><br>         <li>CRYPTO_SUCCESS：操作成功。</li><br>         <li>CRYPTO_INVALID_PARAMS：ctx、in或out为NULL。</li><br>         <li>CRYPTO_NOT_SUPPORTED：不支持的操作或算法。</li><br>         <li>CRYPTO_MEMORY_ERROR：内存操作失败。</li><br>         <li>CRYPTO_PARAMETER_CHECK_FAILED：参数无效。 [since 20]</li><br>         <li>CRYPTO_OPERTION_ERROR：加解密更新失败。</li><br>         </ul> |
+| [OH_Crypto_ErrCode](capi-crypto-common-h.md#oh_crypto_errcode) | CRYPTO_SUCCESS：操作成功。<br>CRYPTO_INVALID_PARAMS：ctx、in或out为NULL。<br>CRYPTO_NOT_SUPPORTED：不支持的操作或算法。<br>CRYPTO_MEMORY_ERROR：内存操作失败。<br>CRYPTO_PARAMETER_CHECK_FAILED：参数无效。适用版本：20+<br>CRYPTO_OPERTION_ERROR：加解密更新失败。 |
 
 **参考：**
 
@@ -273,7 +273,7 @@ OH_Crypto_ErrCode OH_CryptoSymCipher_Final(OH_CryptoSymCipher *ctx, Crypto_DataB
 
 | 类型 | 说明 |
 | -- | -- |
-| [OH_Crypto_ErrCode](capi-crypto-common-h.md#oh_crypto_errcode) | <ul><br>         <li>CRYPTO_SUCCESS：操作成功。</li><br>         <li>CRYPTO_INVALID_PARAMS：ctx或out为NULL。</li><br>         <li>CRYPTO_NOT_SUPPORTED：不支持的操作或算法。</li><br>         <li>CRYPTO_MEMORY_ERROR：内存操作失败。</li><br>         <li>CRYPTO_PARAMETER_CHECK_FAILED：参数无效。 [since 20]</li><br>         <li>CRYPTO_OPERTION_ERROR：加解密完成失败。可能的原因：解密时IV或密钥错误；AEAD（GCM/CCM）<br>         认证标签验证失败（TAG、AAD、密文或密钥错误）；分组密码（如AES-CBC/ECB）解密时密文长度不是分组大小的整数倍；分组密码使用NoPadding<br>         加密时明文长度不是分组大小的整数倍。</li><br>         </ul> |
+| [OH_Crypto_ErrCode](capi-crypto-common-h.md#oh_crypto_errcode) | CRYPTO_SUCCESS：操作成功。<br>CRYPTO_INVALID_PARAMS：ctx或out为NULL。<br>CRYPTO_NOT_SUPPORTED：不支持的操作或算法。<br>CRYPTO_MEMORY_ERROR：内存操作失败。<br>CRYPTO_PARAMETER_CHECK_FAILED：参数无效。适用版本：20+<br>CRYPTO_OPERTION_ERROR：加解密完成失败。可能的原因：解密时IV或密钥错误；AEAD（GCM/CCM）认证标签验证失败（TAG、AAD、密文或密钥错误）；分组密码（如AES-CBC/ECB）解密时密文长度不是分组大小的整数倍；分组密码使用NoPadding加密时明文长度不是分组大小的整数倍。 |
 
 ### OH_CryptoSymCipher_GetAlgoName()
 
