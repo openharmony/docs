@@ -265,3 +265,5 @@ System events are notified via HiAppEvent callbacks to all event observers that 
 Events that occur after the application starts and before the watcher is registered are lost. Check whether multiple event watchers with the same name are registered.
 
 To prevent event loss, HiAppEvent, after the app starts but before the event observer is registered, first scans the subscription filter criteria of event observers that were not removed before the app last exited, and subscribes to and saves events accordingly. When an event observer with the same name is registered again, the later registration overwrites the previous observer's information, causing the subscription filter criteria to be overwritten and events to be lost.
+
+<!--no_check-->

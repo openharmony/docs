@@ -86,7 +86,7 @@ The **type** field in address sanitizer event information is described as follow
 | -------- | -------- |
 | GWP-ASAN | Error type triggered by [GWP-ASan](https://developer.huawei.com/consumer/en/doc/best-practices/bpta-stability-gwpasan-detection).|
 | UBSAN | Error type triggered by [UBSan](https://developer.huawei.com/consumer/en/doc/best-practices/bpta-stability-ubsan-detection).|
-| TSAN | Error type triggered by [TSan](https://developer.huawei.com/consumer/en/doc/best-practices/bpta-stability-tsan-detection).|
+| TSAN | Error type triggered by TSan.|
 | FDSAN | Since API version 20, you can subscribe to error types triggered by [fdsan](../napi/fdsan.md).|
 | ARKTS_ENVSAN | Since API version 26.0.0, you can subscribe to events reported by [Ark multi-thread detection](https://developer.huawei.com/consumer/en/doc/best-practices/bpta-stability-ark-runtime-detection#section75786272088).|
 | stack tag-mismatch | [HWASan](https://developer.huawei.com/consumer/en/doc/best-practices/bpta-stability-hwasan-detection) detects a stack tag mismatch, which may be caused by use after return, out-of-scope stack access, or out-of-bounds access.|

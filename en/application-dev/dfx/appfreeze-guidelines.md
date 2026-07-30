@@ -832,3 +832,5 @@ The clustering method for AppFreeze fault information is the same as that for Cp
 The clustering specifications for enhanced log information are consistent with those for extracting stack information from AppFreeze fault information. Enhanced log information is mainly included in clustering to address cases where AppFreeze fault stack information is insufficient for clustering.
 
 You can obtain clustering features for enhanced log information by referring to [AppFreeze Fault Information Clustering](#appfreeze-fault-information-clustering) and use these features for clustering enhanced log information.
+
+<!--no_check-->
