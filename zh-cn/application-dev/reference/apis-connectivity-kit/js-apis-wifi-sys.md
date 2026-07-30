@@ -1083,7 +1083,7 @@ on(type: "streamChange", callback: Callback&lt;number&gt;): void
   | **参数名** | **类型** | **必填** | **说明** |
   | -------- | -------- | -------- | -------- |
   | type | string | 是 | 固定填"streamChange"字符串。 |
-  | callback | Callback&lt;number&gt; | 是 | 状态改变回调函数，返回0:无，1：向下，2：向上，3：双向。 |
+| callback | Callback&lt;number&gt; | 是 | 状态改变回调函数，返回0：无，1：向下，2：向上，3：双向。 |
 
 ## wifi.off('streamChange')<sup>7+</sup>
 
@@ -1102,7 +1102,7 @@ off(type: "streamChange", callback?: Callback&lt;number&gt;): void
 | **参数名** | **类型** | **必填** | **说明** |
 | -------- | -------- | -------- | -------- |
 | type | string | 是 | 固定填"streamChange"字符串。 |
-| callback | Callback&lt;number&gt; | 否| 状态改变回调函数，返回0:无，1：向下，2：向上，3：双向。 |
+| callback | Callback&lt;number&gt; | 否| 状态改变回调函数，返回0：无，1：向下，2：向上，3：双向。 |
 
 **示例：**
 ```ts

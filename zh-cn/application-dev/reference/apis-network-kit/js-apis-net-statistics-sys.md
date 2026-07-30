@@ -197,7 +197,7 @@ getTrafficStatsByIface(ifaceInfo: IfaceInfo): Promise\<NetStatsInfo>
 **返回值：**
 | 类型 | 说明 |
 | -------- | -------- |
-| Promise\<[NetStatsInfo](#netstatsinfo)> | 以 Promise 形式返回获取结果,返回网卡历史流量信息。 |
+| Promise\<[NetStatsInfo](#netstatsinfo)> | 以 Promise 形式返回获取结果，返回网卡历史流量信息。 |
 
 **错误码：**
 
@@ -335,7 +335,7 @@ getTrafficStatsByUid(uidInfo: UidInfo): Promise\<NetStatsInfo>
 
 | 类型                                      | 说明                                               |
 | ----------------------------------------- | -------------------------------------------------- |
-| Promise\<[NetStatsInfo](#netstatsinfo)> | 以 Promise 形式返回获取结果,返回应用历史流量信息。 |
+| Promise\<[NetStatsInfo](#netstatsinfo)> | 以 Promise 形式返回获取结果，返回应用历史流量信息。 |
 
 **错误码：**
 

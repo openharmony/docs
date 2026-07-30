@@ -2181,8 +2181,8 @@ try {
 | 名称                            | 值  | 说明                                       |
 | ------------------------------- | --- | ------------------------------------------ |
 | NET_BACKGROUND_POLICY_NONE      | 0   | 默认值。                                   |
-| NET_BACKGROUND_POLICY_ENABLE    | 1   | 应用在后台可以使用计量网路。               |
-| NET_BACKGROUND_POLICY_DISABLE   | 2   | 应用在后台不可以使用计量网路。             |
+| NET_BACKGROUND_POLICY_ENABLE    | 1   | 应用在后台可以使用计量网络。               |
+| NET_BACKGROUND_POLICY_DISABLE   | 2   | 应用在后台不可以使用计量网络。             |
 | NET_BACKGROUND_POLICY_TRUSTLIST | 3   | 只有应用指定的列表在后台可以使用计量网络。 |
 
 ## NetQuotaPolicy

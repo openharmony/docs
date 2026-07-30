@@ -27,7 +27,7 @@
 
 | Interface/类型 | 说明 |
 |---|---|
-| InputMethodExtraConfig | 输入法扩展信息接口，包含`customSettings`属性，用于储存自定义键值对。这些键值对可以是任何与输入法相关的配置信息（如用户输入习惯、快捷键设置、主题颜色等），将在输入法应用绑定时加载，以提供个性化用户体验。信息总长度不超过32KB。 |
+| InputMethodExtraConfig | 输入法扩展信息接口，包含`customSettings`属性，用于存储自定义键值对。这些键值对可以是任何与输入法相关的配置信息（如用户输入习惯、快捷键设置、主题颜色等），将在输入法应用绑定时加载，以提供个性化用户体验。信息总长度不超过32KB。 |
 | CustomValueType | 扩展信息值的联合类型，支持`number`、`string`、`boolean`三种值类型，接口参数具体类型根据其功能而定。 |
 
 本模块为纯数据定义模块，`InputMethodExtraConfig`作为数据类型需与其他模块的API组合使用。典型组合为：在`@ohos.inputMethod`模块的`InputMethodController.attach()`方法中，通过`TextConfig`将`InputMethodExtraConfig`传递给输入法应用。
@@ -89,7 +89,7 @@ type CustomValueType = number | string | boolean
 
 | 名称   |类型    |只读    |可选    |说明    |
 |---------|----------|----------|--------|--------|
-| customSettings<sup>22+</sup>  |Record&lt;string, [CustomValueType](#customvaluetype22)&gt;    | 否   | 否    |输入法扩展信息，用于储存自定义的键值对。这些键值对可以是任何与输入法相关的配置信息。例如用户的输入习惯、快捷键设置、主题颜色等。这些设置信息将在输入法应用绑定时加载，以提供个性化的用户体验。|
+| customSettings<sup>22+</sup>  |Record\<string, [CustomValueType](#customvaluetype22)\>    | 否   | 否    |输入法扩展信息，用于存储自定义的键值对。这些键值对可以是任何与输入法相关的配置信息。例如用户的输入习惯、快捷键设置、主题颜色等。这些设置信息将在输入法应用绑定时加载，以提供个性化的用户体验。|
 
 customSettings参数使用建议：
 

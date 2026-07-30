@@ -77,7 +77,7 @@ VPN creation denied, please check the user type.
 
 **错误描述**
 
-拒绝创建VPN，请检测当前用户的类型。
+拒绝创建VPN，请检查当前用户的类型。
 
 **可能原因**
 

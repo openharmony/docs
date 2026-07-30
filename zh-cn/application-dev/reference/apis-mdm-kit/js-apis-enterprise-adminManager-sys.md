@@ -545,7 +545,7 @@ isAdminEnabled(admin: Want, userId?: number): Promise\<boolean>
 
 | 类型               | 说明                |
 | ----------------- | ------------------- |
-| Promise\<boolean> | Promise对象, 返回true表示指定的设备管理应用被激活，返回false表示指定的设备管理应用未激活。|
+| Promise\<boolean> | Promise对象，返回true表示指定的设备管理应用被激活，返回false表示指定的设备管理应用未激活。|
 
 **错误码**:
 
@@ -645,7 +645,7 @@ isSuperAdmin(bundleName: String): Promise\<boolean>
 
 | 类型           | 说明              |
 | ----------------- | ------------------- |
-| Promise\<boolean> | Promise对象, 返回true表示指定的超级设备管理应用被激活，返回false表示指定的超级设备管理应用未激活。 |
+| Promise\<boolean> | Promise对象，返回true表示指定的超级设备管理应用被激活，返回false表示指定的超级设备管理应用未激活。 |
 
 **错误码**:
 
@@ -1470,7 +1470,7 @@ setDelegatedPolicies(bundleName: string, accountId: number, policies: Array&lt;s
 | 参数名   | 类型                                  | 必填   | 说明      |
 | ----- | ----------------------------------- | ---- | ------- |
 | bundleName | String                  | 是    | 将要被委托的管理应用的包名。被委托应用的分发类型需为enterprise_normal和enterprise_mdm，可以通过[bundleManager.getBundleInfoForSelf](../apis-ability-kit/js-apis-bundleManager.md#bundlemanagergetbundleinfoforself)接口查询应用自身的BundleInfo，其中BundleInfo.appInfo.appDistributionType为应用的分发类型。        |
-| accountId         | number                              | 是    | 用户ID，指定具体用户，取值范围：大于等于0。可以通过[getOsAccountLocalId](../apis-basic-services-kit/js-apis-osAccount.md#getosaccountlocalid9-1) |
+| accountId         | number                              | 是    | 用户ID，指定具体用户，取值范围：大于等于0。可以通过[getOsAccountLocalId](../apis-basic-services-kit/js-apis-osAccount.md#getosaccountlocalid9) |
 | policies |  Array&lt;string&gt;                   | 是   | [委托策略列表](../../mdm/mdm-kit-appendix.md#可委托策略列表)。 |
 
 **错误码**：

@@ -249,7 +249,7 @@ struct TrackChild {
     "decoratorInfo": [{
         // 对象属性使用了@Track装饰时，装饰器名称固定为@Track
         "decoratorName": "@Track",
-        // 对象属性使用了@Track装饰时，stateVariableName表示被@Track装饰是的属性名称
+        // 对象属性使用了@Track装饰时，stateVariableName表示被@Track装饰的属性名称
         "stateVariableName": "name",
         // 对象属性使用了@Track装饰时，owningComponentOrClassName表示类的名称
         "owningComponentOrClassName": "TrackUser",
