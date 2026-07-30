@@ -21,7 +21,7 @@ import { FormEditExtensionAbility } from '@kit.FormKit';
 
 ## FormEditExtensionContext
 
-FormEditExtensionContext提供允许访问特定于FormEditExtensionAbility资源的能力，
+FormEditExtensionContext提供访问特定于FormEditExtensionAbility资源的能力。
 
 ### startSecondPage
 
@@ -30,8 +30,8 @@ startSecondPage(want: Want): Promise&lt;[AbilityResult](../apis-ability-kit/js-a
 拉起需要被编辑的卡片提供方页面。使用Promise异步回调。
 
 **使用场景：**
-- 用户在卡片编辑界面点击编辑按钮，需要打开卡片提供方的编辑页面
-- 用户需要修改卡片配置或内容时，拉起卡片提供方应用进行编辑
+- 用户在卡片编辑界面点击编辑按钮，需要打开卡片提供方的编辑页面。
+- 用户需要修改卡片配置或内容时，拉起卡片提供方应用进行编辑。
 
 **模型约束：** 此接口仅可在Stage模型下使用。
 

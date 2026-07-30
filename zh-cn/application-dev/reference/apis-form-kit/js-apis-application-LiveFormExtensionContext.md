@@ -27,7 +27,7 @@ import { common } from '@kit.AbilityKit';
 
 ## LiveFormExtensionContext
 
-LiveFormExtensionContext提供访问特定于LiveFormExtensionAbility资源的能力，继承自[ExtensionContext](../apis-ability-kit/js-apis-inner-application-extensionContext.md)。
+LiveFormExtensionContext提供访问特定于LiveFormExtensionAbility资源的能力。
 
 ### startAbilityByLiveForm
 

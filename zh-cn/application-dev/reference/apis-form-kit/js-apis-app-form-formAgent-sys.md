@@ -36,7 +36,7 @@ requestPublishForm(want: Want, callback: AsyncCallback&lt;string&gt;): void
 | 参数名   | 类型                                | 必填 | 说明                                                         |
 | -------- | ----------------------------------- | ---- | ------------------------------------------------------------ |
 | want     | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | 是   | 发布请求，需包含以下字段。<br>bundleName: 目标卡片所属应用的bundleName<br>abilityName: 目标卡片所属应用的Ability<br>parameters:<br>- ohos.extra.param.key.form_dimension: 目标卡片规格，取值原则：1-2x2、2-2x4、3-4x4等，具体规格见卡片配置<br>- ohos.extra.param.key.form_name: 目标卡片名<br>- ohos.extra.param.key.module_name: 目标卡片moduleName|
-| callback | AsyncCallback&lt;string&gt | 是 | 回调函数，用于异步返回卡片标识。回调参数：error为错误对象（成功时为null），data为卡片标识（string类型）。 |
+| callback | AsyncCallback&lt;string&gt; | 是 | 回调函数，用于异步返回卡片标识。回调参数：error为错误对象（成功时为null），data为卡片标识（string类型）。 |
 
 **错误码：**
 
