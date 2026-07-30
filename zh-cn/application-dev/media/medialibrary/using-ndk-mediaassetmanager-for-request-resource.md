@@ -79,7 +79,7 @@ static napi_value RequestMediaAssets(napi_env env, napi_callback_info info)
             options, destUri, callback);
         if (strcmp(requestIdStruct.requestId, ERROR_REQUEST_ID) == 0) {
             // 处理异常
-            printf("Request image failed requestId: %s\n", requestIdStruct.requestId);
+            printf("Request image failed requestId：%s\n", requestIdStruct.requestId);
             // ...
         } else {
             // 请求成功，打印请求Id

@@ -425,7 +425,7 @@
                console.info(`on setLoopMode , the loop mode is ${mode}`);
                // ...
                // 如暂不支持该指令，请勿注册；或在注册后但暂不使用时，通过session.off('setLoopMode')取消监听。
-               // 应用自定义下一个模式，处理完毕后，请使用SetAVPlaybackState上报切换后的LoopMode。
+               // 应用自定下一个模式，处理完毕后，请使用SetAVPlaybackState上报切换后的LoopMode。
              });
              session.on('toggleFavorite', (assetId) => {
                console.info(`on toggleFavorite , the target asset Id is ${assetId}`);
