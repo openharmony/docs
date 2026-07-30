@@ -46,7 +46,7 @@ enum ArkWeb_NetError
 
 | 枚举项 | 描述 |
 | -- | -- |
-| ARKWEB_NET_OK = 0 | 正常。 |
+| ARKWEB_NET_OK = 0 | 正常。|
 | ARKWEB_ERR_IO_PENDING = -1 | 异步IO操作尚未完成。这通常并不表示致命错误。通常，这个错误将作为通知生成，以等待某个外部通知，表明IO操作最终已完成。 |
 | ARKWEB_ERR_FAILED = -2 | 发生了通用故障。 |
 | ARKWEB_ERR_ABORTED = -3 | 操作被中止（由于用户操作）。 |
