@@ -117,7 +117,7 @@ usageStatistics.isIdleState('com.ohos.camera').then((res: boolean) => {
   console.error('BUNDLE_ACTIVE isIdleState promise failed. code is: ' + err.code + ',message is: ' + err.message);
 });
 ```
-## usageStatistics.isIdleStateSync<sup>10+<sup>
+## usageStatistics.isIdleStateSync<sup>10+</sup>
 
 isIdleStateSync(bundleName: string): boolean
 
@@ -257,7 +257,7 @@ usageStatistics.queryAppGroup((err: BusinessError, res: number) => {
 });
 ```
 
-## usageStatistics.queryAppGroupSync<sup>10+<sup>
+## usageStatistics.queryAppGroupSync<sup>10+</sup>
 
 queryAppGroupSync(): number
 
@@ -404,7 +404,7 @@ usageStatistics.queryAppGroup(bundleName, (err: BusinessError, res: number) => {
 });
 ```
 
-## usageStatistics.queryAppGroupSync<sup>10+<sup>
+## usageStatistics.queryAppGroupSync<sup>10+</sup>
 
 queryAppGroupSync(bundleName: string): number
 
