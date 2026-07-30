@@ -117,7 +117,7 @@ reclaim(): void
 
 Reclaims the **MessageSequence** object that is no longer used.
 
-**Pairing requirement**
+**Pairing requirements**
 
 This method and the **create ()** method must be used in pairs. For the **MessageSequence** object created via **create()**, you must call **reclaim()** to release its resources after use. If **reclaim()** is not called in a timely manner, memory resources leaks occur.
 
@@ -329,7 +329,7 @@ readInterfaceToken(): string
 
 Reads the interface token from this **MessageSequence** object. The interface token is read in the sequence in which it is written to the **MessageSequence** object. The local object can use it to verify the communication.
 
-**Pairing requirement**
+**Pairing requirements**
 
 - This method and the **writeInterfaceToken** method must be used in pairs.
 - The read sequence must be consistent with the write sequence.
@@ -802,7 +802,7 @@ readByte(): number
 
 Reads the byte value from this **MessageSequence** object.
 
-**Pairing reqirement**
+**Pairing requirements**
 
 - This method and the **writeByte** method must be used in pairs.
 - The read sequence must be consistent with the write sequence.
@@ -1445,7 +1445,7 @@ Writes a string to this **MessageSequence** object. After this method is called,
 
 **Atomic service API:** This API can be used in atomic services since API version 26.0.0.
 
-String stroage format:
+String storage format:
 
 - The string is stored in UTF-8 encoding.
 - The length (4 bytes) is written first, followed by the content.
@@ -2818,7 +2818,7 @@ writeNoException(): void
 
 Writes information to this **MessageSequence** object indicating that no exception occurred.
 
-**Pairing requirments**
+**Pairing requirements**
 
 - This method must be used in pairs with the [readException](#readexception9) method.
 - After processing a request, the server should call **writeNoException()** to write information indicating that no exception occurred.
@@ -2881,7 +2881,7 @@ Reads the exception information from this **MessageSequence** object. This metho
 2. If an exception occurs, handle it immediately and stop reading subsequent data.
 3. After handling the exception, you are advised to call the **reclaim()** method to release the **MessageSequence** object.
 
-**Pairing requirments**
+**Pairing requirements**
 
 - This method and the [writeNoException()](#writenoexception9) method must be used in pairs.
 - This method can be called only after the [writeNoException()](#writenoexception9) method is called on the server.
@@ -3484,7 +3484,7 @@ readFileDescriptor(): number
 
 Reads the file descriptor from this **MessageSequence** object. The receiver reads the mapped new file descriptor ID, which is different from the descriptor ID written by the sender but points to the same file resource. After reading, it is advised to use and close the descriptor in a timely manner to prevent resource leaks. If the descriptor needs to be used for a long time, you can call **dupFileDescriptor** to duplicate the descriptor.
 
-**Pairing reqirement**
+**Pairing requirements**
 
 - This method and the **writeFileDescriptor** method must be used in pairs.
 - After the read operation, the descriptor needs to be used or closed promptly.
@@ -3540,7 +3540,7 @@ writeAshmem(ashmem: Ashmem): void
 
 Writes an anonymous shared object to this **MessageSequence** object.
 
-**Pairing requirments**
+**Pairing requirements**
 
 - This method must be used in pairs with the **readAshmem()** method.
 - Call sequence: writeAshmem() → Transmit **MessageSequence** → readAshmem() → mapReadWriteAshmem() → readDataFromAshmem().
@@ -3934,7 +3934,7 @@ writeArrayBuffer(buf: ArrayBuffer, typeCode: TypeCode): void
 
 Writes data of the ArrayBuffer type to this **MessageSequence** object.
 
-**Pairing requirments**
+**Pairing requirements**
 
 - This method and the **readArrayBuffer()** method must be used in pairs.
 - **typeCode** written must be consistent with **typeCode** read. Otherwise, data exceptions may occur.
@@ -3998,7 +3998,7 @@ readArrayBuffer(typeCode: TypeCode): ArrayBuffer
 
 Reads data of the ArrayBuffer type from this **MessageSequence**.
 
-**Pairing requirments**
+**Pairing requirements**
 
 - This method and the **writeArrayBuffer** method must be used in pairs.
 - The read typeCode must be the same as the written typeCode.
