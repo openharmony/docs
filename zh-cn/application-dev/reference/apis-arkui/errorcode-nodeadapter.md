@@ -64,15 +64,15 @@ The corresponding node already has a child node and cannot add an adapter.
 
 移除子节点，或放弃在此处设置NodeAdapter。
 
-## 106107 参数下标越界
+## 106107 组件事件中的参数下标越界
 
 **错误信息**
 
-The parameter length in the parameter event exceeds the limit.
+The parameter index in the component event is out of range.
 
 **错误描述**
 
-组件事件中index参数超过数组长度限制。
+组件事件中的参数下标越界。
 
 **可能原因**
 
@@ -82,7 +82,7 @@ The parameter length in the parameter event exceeds the limit.
 
 检查index参数是否超出传入的数组长度限制。
 
-## 106108 数据不存在
+## 106108 组件事件中不存在调用方请求获取的数据
 
 **错误信息**
 
@@ -90,7 +90,7 @@ The data does not exist in the component event.
 
 **错误描述**
 
-组件事件中不存在该数据。
+组件事件中不存在调用方请求获取的数据。
 
 **可能原因**
 
