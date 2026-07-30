@@ -4447,7 +4447,7 @@ getAllPreinstalledApplicationInfo(): Promise\<Array\<PreinstalledApplicationInfo
 
 | 类型                                                         | 说明                                |
 | ------------------------------------------------------------ | ----------------------------------- |
-| Promise<Array\<[PreinstalledApplicationInfo](js-apis-bundleManager-ApplicationInfo-sys.md#preinstalledapplicationinfo12)>> | Promise对象，返回Array\<PreinstalledApplicationInfo>。 |
+| Promise<Array\<[PreinstalledApplicationInfo](js-apis-bundleManager-ApplicationInfo-sys.md#preinstalledapplicationinfo)>> | Promise对象，返回Array\<PreinstalledApplicationInfo>。 |
 
 **错误码：**
 
@@ -4496,7 +4496,7 @@ getAllNewPreinstalledApplicationInfo(): Promise\<Array\<PreinstalledApplicationI
 
 | 类型                                                         | 说明                                |
 | ------------------------------------------------------------ | ----------------------------------- |
-| Promise<Array\<[PreinstalledApplicationInfo](js-apis-bundleManager-ApplicationInfo-sys.md#preinstalledapplicationinfo12)>> | Promise对象，设备OTA升级期间当前用户下新增的所有预置应用信息。 |
+| Promise<Array\<[PreinstalledApplicationInfo](js-apis-bundleManager-ApplicationInfo-sys.md#preinstalledapplicationinfo)>> | Promise对象，设备OTA升级期间当前用户下新增的所有预置应用信息。 |
 
 **错误码：**
 
@@ -6454,7 +6454,7 @@ type PreinstalledApplicationInfo = _PreinstalledApplicationInfo
 
 | 类型                                                         | 说明           |
 | ------------------------------------------------------------ | -------------- |
-| [_PreinstalledApplicationInfo](js-apis-bundleManager-ApplicationInfo-sys.md#preinstalledapplicationinfo12) |预置应用信息。 |
+| [_PreinstalledApplicationInfo](js-apis-bundleManager-ApplicationInfo-sys.md#preinstalledapplicationinfo) |预置应用信息。 |
 
 ## PluginBundleInfo<sup>19+</sup>
 
