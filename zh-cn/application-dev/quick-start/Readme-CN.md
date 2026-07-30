@@ -36,7 +36,7 @@
     - [HAR转HSP指导](har-to-hsp.md)
     - [HSP转HAR指导](hsp-to-har.md)
     - [HAP转HAR指导](hap-to-har.md)
-    - [集成态HSP](integrated-hsp.md)
+    - [集成态HSP](integrated-hsp.md)<!--RP3--><!--RP3End-->
   - [应用程序包常见问题](common-problem-of-application.md)
   - [应用程序包术语](application-package-glossary.md)
 - [资源分类与访问](resource-categories-and-access.md)
