@@ -97,15 +97,15 @@ struct WebComponent {
 
 static fetchCookieSync(url: string, incognito?: boolean, includePartitionedCookies?: boolean): string
 
-获取指定url对应的cookies，可以通过可选参数incognito指定是否获取隐私模式下的cookies，也可以通过可选参数includePartitionedCookies指定是否获取第一方partitioned cookie。
+获取指定url对应的cookies，可以通过可选参数incognito指定是否获取隐私模式下的cookies，也可以通过可选参数includePartitionedCookies指定是否获取第一方partitioned cookies。
 
 > **说明：**
 >
-> - 系统会自动清理过期的cookie，对于同名key的数据，新数据将会覆盖前一个数据。
+> - 系统会自动清理过期的cookies，对于同名key的数据，新数据将会覆盖前一个数据。
 >
-> - 为了获取可正常使用的cookie值，fetchCookieSync需传入完整链接。
+> - 为了获取可正常使用的cookies，fetchCookieSync需传入完整链接。
 >
-> - fetchCookieSync用于获取所有的cookie值，每条cookie值之间会通过"; "进行分隔，但无法单独获取某一条特定的cookie值。
+> - fetchCookieSync用于获取所有的cookies，每条cookie值之间会通过"; "进行分隔，但无法单独获取某一条特定的cookie值。
 
 **起始版本：** 26.0.0
 
@@ -117,9 +117,9 @@ static fetchCookieSync(url: string, incognito?: boolean, includePartitionedCooki
 
 | 参数名 | 类型   | 必填 | 说明                      |
 | ------ | ------ | ---- | :------------------------ |
-| url    | string | 是   | 要获取的cookie所属的url，建议使用完整的url。 |
+| url    | string | 是   | 要获取的cookies所属的url，建议使用完整的url。 |
 | incognito    | boolean | 否   | true表示获取隐私模式下webview的内存cookies，false表示获取非隐私模式下的cookies。<br>默认值：false。<br>传入undefined或null会抛出异常错误码401。 |
-| includePartitionedCookies | boolean | 否 | true表示允许获取第一方partitioned cookies，false表示不允许获取第一方partitioned cookies。<br>默认值：false。<br>传入undefined或null会抛出异常错误码401。 |
+| includePartitionedCookies | boolean | 否 | 是否允许获取第一方partitioned cookies。true表示允许，false表示不允许。<br>默认值：false。<br>传入undefined或null会抛出异常错误码401。 |
 
 **返回值：**
 
@@ -356,7 +356,7 @@ struct WebComponent {
 
 static fetchCookie(url: string, incognito: boolean, includePartitionedCookies: boolean): Promise\<string>
 
-获取指定url对应的cookies，可以通过参数incognito指定是否获取隐私模式下的cookies，也可以通过参数includePartitionedCookies指定是否获取第一方partitioned cookie。使用Promise异步回调。
+获取指定url对应的cookies，可以通过参数incognito指定是否获取隐私模式下的cookies，也可以通过参数includePartitionedCookies指定是否获取第一方partitioned cookies。使用Promise异步回调。
 
 **起始版本：** 26.0.0
 
@@ -368,9 +368,9 @@ static fetchCookie(url: string, incognito: boolean, includePartitionedCookies: b
 
 | 参数名 | 类型   | 必填 | 说明                      |
 | ------ | ------ | ---- | :------------------------ |
-| url    | string | 是   | 要获取的cookie所属的url，建议使用完整的url。 |
+| url    | string | 是   | 要获取的cookies所属的url，建议使用完整的url。 |
 | incognito    | boolean | 是   | true表示获取隐私模式下webview的内存cookies，false表示获取非隐私模式下的cookies。 <br>传入undefined或null会抛出异常错误码401。 |
-| includePartitionedCookies | boolean | 是 | true表示允许获取第一方partitioned cookies，false表示不允许获取第一方partitioned cookies。 <br>传入undefined或null会抛出异常错误码401。 |
+| includePartitionedCookies | boolean | 是 | 是否允许获取第一方partitioned cookies。true表示允许，false表示不允许。 <br>传入undefined或null会抛出异常错误码401。 |
 
 **返回值：**
 
