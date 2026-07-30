@@ -2353,7 +2353,7 @@ resume(callback: AsyncCallback&lt;void&gt;): void
 | description | string | 否 | 否 | 待下载任务的描述信息。 |
 | downloadedBytes | number | 否 | 否 | 实时下载大小，单位为字节（B）。 |
 
-## request.agent<sup>10+</sup>
+## agent<sup>10+</sup>
 
 request.agent提供基于任务的后台上传下载代理能力。开发者通过[request.agent.create](#requestagentcreate10)创建任务并排入队列，通过[Task](#requestagenttask10)对象管理任务生命周期（启动、暂停、恢复、停止、移除）。支持前台和后台两种任务模式：前台任务在应用切到后台一段时间后会显示失败或暂停，后台任务不受影响。支持断点续传、网络条件控制、自动重试、超时控制等特性。与基础的[request.uploadFile](#requestuploadfile9)/[request.downloadFile](#requestdownloadfile9)相比，request.agent提供更完善的任务管理和状态查询能力。
 
