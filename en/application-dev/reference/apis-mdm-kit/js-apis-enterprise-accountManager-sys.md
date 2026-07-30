@@ -1,12 +1,12 @@
 # @ohos.enterprise.accountManager (Account Management) (System API)
 <!--Kit: MDM Kit-->
 <!--Subsystem: Customization-->
-<!--Owner: @huanleima-->
+<!--Owner: @huanleima; @weizai16-->
 <!--Designer: @hp_guo-->
 <!--Tester: @lpw_work-->
 <!--Adviser: @zhang_yixin13-->
 
-The **accountManager** module provides APIs for account management of enterprise devices.
+This module provides device account management capabilities, including forbidding the creation of local accounts.
 
 > **NOTE**
 >
@@ -14,7 +14,7 @@ The **accountManager** module provides APIs for account management of enterprise
 >
 > The APIs of this module can be used only in the stage model.
 >
-> The APIs of this module can be called only by a [device administrator application](../../mdm/mdm-kit-term.md#mdm-application-device-administrator-application) that is [enabled](js-apis-enterprise-adminManager-sys.md#adminmanagerenableadmin-2).
+> The APIs of this module are available only to [MDM applications](../../mdm/mdm-kit-term.md#mdm-application-device-administrator-application), and can be called only after the device administrator application is activated via [adminManager.enableAdmin](js-apis-enterprise-adminManager-sys.md#adminmanagerenableadmin-2).
 > 
 > This topic describes only system APIs provided by the module. For details about its public APIs, see [@ohos.enterprise.accountManager](js-apis-enterprise-accountManager.md).
 
@@ -24,11 +24,15 @@ The **accountManager** module provides APIs for account management of enterprise
 import { accountManager } from '@kit.MDMKit';
 ```
 
-## accountManager.disallowAddLocalAccount
+## accountManager.disallowAddLocalAccount<sup>(deprecated)</sup>
 
 disallowAddLocalAccount(admin: Want, disallow: boolean, callback: AsyncCallback&lt;void&gt;): void
 
-Disallows a device to create local user accounts. This API uses an asynchronous callback to return the result.
+Forbids the creation of local accounts on the device. This API uses an asynchronous callback to return the result.
+
+**Deprecated since:** 26.0.0
+
+**Substitutes:** [disallowOsAccountAddition](./js-apis-enterprise-accountManager.md#accountmanagerdisallowosaccountaddition)
 
 **Required permissions**: ohos.permission.ENTERPRISE_SET_ACCOUNT_POLICY
 
@@ -43,7 +47,7 @@ Disallows a device to create local user accounts. This API uses an asynchronous 
 | Name     | Type                                      | Mandatory  | Description                      |
 | -------- | ---------------------------------------- | ---- | ------------------------------- |
 | admin    | [Want](../apis-ability-kit/js-apis-app-ability-want.md)     | Yes   | EnterpriseAdminExtensionAbility. **Want** must contain the ability name of the EnterpriseAdminExtensionAbility and the bundle name of the application.     |
-| disallow    | boolean     | Yes   | Whether to forbid the creation of local user accounts. The value **true** means the creation of local user accounts is forbidden, and the value **false** means the opposite.                 |
+| disallow    | boolean     | Yes   | Whether to forbid the creation of local accounts. The value **true** indicates yes, and the value **false** indicates no.                 |
 | callback | AsyncCallback&lt;void&gt;            | Yes   | Callback invoked to return the result. If the operation is successful, **err** is **null**. Otherwise, **err** is an error object.      |
 
 **Error codes**
@@ -79,11 +83,15 @@ accountManager.disallowAddLocalAccount(wantTemp, true, (err) => {
 });
 ```
 
-## accountManager.disallowAddLocalAccount
+## accountManager.disallowAddLocalAccount<sup>(deprecated)</sup>
 
 disallowAddLocalAccount(admin: Want, disallow: boolean): Promise&lt;void&gt;
 
-Disallows a device to create local user accounts. This API uses a promise to return the result.
+Forbids the creation of local accounts on the device. This API uses a promise to return the result.
+
+**Deprecated since:** 26.0.0
+
+**Substitutes:** [disallowOsAccountAddition](./js-apis-enterprise-accountManager.md#accountmanagerdisallowosaccountaddition)
 
 **Required permissions**: ohos.permission.ENTERPRISE_SET_ACCOUNT_POLICY
 
@@ -98,7 +106,7 @@ Disallows a device to create local user accounts. This API uses a promise to ret
 | Name  | Type                                 | Mandatory  | Description     |
 | ----- | ----------------------------------- | ---- | ------- |
 | admin | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | Yes   | EnterpriseAdminExtensionAbility. **Want** must contain the ability name of the EnterpriseAdminExtensionAbility and the bundle name of the application.|
-| disallow    | boolean     | Yes   | Whether to forbid the creation of local user accounts. The value **true** means the creation of local user accounts is forbidden, and the value **false** means the opposite.                 |
+| disallow    | boolean     | Yes   | Whether to forbid the creation of local accounts. The value **true** indicates yes, and the value **false** indicates no.                 |
 
 **Return value**
 
@@ -138,11 +146,15 @@ accountManager.disallowAddLocalAccount(wantTemp, true).then(() => {
 });
 ```
 
-## accountManager.disallowAddOsAccountByUser<sup>11+</sup>
+## accountManager.disallowAddOsAccountByUser<sup>(deprecated)</sup>
 
 disallowAddOsAccountByUser(admin: Want, userId: number, disallow: boolean): void
 
 Disallows a user to add accounts.
+
+**Deprecated since:** 26.0.0
+
+**Substitutes:** [disallowOsAccountAddition](./js-apis-enterprise-accountManager.md#accountmanagerdisallowosaccountaddition)
 
 **Required permissions**: ohos.permission.ENTERPRISE_SET_ACCOUNT_POLICY
 
@@ -193,11 +205,15 @@ try {
 }
 ```
 
-## accountManager.isAddOsAccountByUserDisallowed<sup>11+</sup>
+## accountManager.isAddOsAccountByUserDisallowed<sup>(deprecated)</sup>
 
 isAddOsAccountByUserDisallowed(admin: Want, userId: number): boolean
 
 Queries whether to disallow a user to add accounts.
+
+**Deprecated since:** 26.0.0
+
+**Substitutes:** [isOsAccountAdditionDisallowed](./js-apis-enterprise-accountManager.md#accountmanagerisosaccountadditiondisallowed)
 
 **Required permissions**: ohos.permission.ENTERPRISE_SET_ACCOUNT_POLICY
 
@@ -253,11 +269,15 @@ try {
 }
 ```
 
-## accountManager.addOsAccount<sup>11+</sup>
+## accountManager.addOsAccount<sup>(deprecated)</sup>
 
 addOsAccount(admin: Want, name: string, type: osAccount.OsAccountType): osAccount.OsAccountInfo
 
 Adds an account in the background.
+
+**Deprecated since:** 26.0.0
+
+**Substitutes:** [addOsAccountAsync](./js-apis-enterprise-accountManager.md#accountmanageraddosaccountasync)
 
 **Required permissions**: ohos.permission.ENTERPRISE_SET_ACCOUNT_POLICY
 

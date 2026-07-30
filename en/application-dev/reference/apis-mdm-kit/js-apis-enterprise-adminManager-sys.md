@@ -1,7 +1,7 @@
 # @ohos.enterprise.adminManager (Administrator Permission Management) (System API)
 <!--Kit: MDM Kit-->
 <!--Subsystem: Customization-->
-<!--Owner: @huanleima-->
+<!--Owner: @huanleima; @weizai16-->
 <!--Designer: @hp_guo-->
 <!--Tester: @lpw_work-->
 <!--Adviser: @zhang_yixin13-->
@@ -12,7 +12,7 @@ The **adminManager** module provides administrator permission management capabil
 >
 > The initial APIs of this module are supported since API version 9. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 >
-> The APIs of this module can be called only by a [device administrator application](../../mdm/mdm-kit-term.md#mdm-application-device-administrator-application).
+> The APIs of this module are available only to [MDM applications](../../mdm/mdm-kit-term.md#mdm-application-device-administrator-application).
 > 
 > This topic describes only system APIs provided by the module. For details about its public APIs, see [@ohos.enterprise.adminManager](js-apis-enterprise-adminManager.md).
 
@@ -26,7 +26,7 @@ import { adminManager } from '@kit.MDMKit';
 
 enableAdmin(admin: Want, enterpriseInfo: EnterpriseInfo, type: AdminType, callback: AsyncCallback\<void>): void
 
-Enables a device administrator application. The super device administrator application can be activated only by the administrator. After the application is enabled, it cannot be uninstalled. The [EnterpriseAdminExtensionAbility](../../mdm/mdm-kit-term.md#enterpriseadminextensionability) component of the application will automatically start upon device startup and user switching. This API uses an asynchronous callback to return the result.
+Enables a device administrator application. The super device administrator application can be enabled only for the first user (u100). After the application is enabled, it cannot be uninstalled. Its [EnterpriseAdminExtensionAbility](../../mdm/mdm-kit-term.md#enterpriseadminextensionability) component will automatically start upon device startup and user switching. This API uses an asynchronous callback to return the result.
 
 **Required permissions**: ohos.permission.MANAGE_ENTERPRISE_DEVICE_ADMIN
 
@@ -88,7 +88,7 @@ adminManager.enableAdmin(wantTemp, enterpriseInfo, adminManager.AdminType.ADMIN_
 
 enableAdmin(admin: Want, enterpriseInfo: EnterpriseInfo, type: AdminType, userId: number, callback: AsyncCallback\<void>): void
 
-Enables a device administrator application for the specified user. The super device administrator application can be activated only by the administrator. This API uses an asynchronous callback to return the result.
+Enables a device administrator application for a user (specified by **userId**). The super device administrator application can be enabled only for the first user (u100). This API uses an asynchronous callback to return the result.
 
 **Required permissions**: ohos.permission.MANAGE_ENTERPRISE_DEVICE_ADMIN
 
@@ -151,7 +151,7 @@ adminManager.enableAdmin(wantTemp, enterpriseInfo, adminManager.AdminType.ADMIN_
 
 enableAdmin(admin: Want, enterpriseInfo: EnterpriseInfo, type: AdminType, userId?: number): Promise\<void>
 
-Enables a device administrator application for the current or specified user. The super device administrator application can be activated only by the administrator. This API uses a promise to return the result.
+Enables the device administrator application for the current or specified user. The super device administrator application can be enabled only for the first user (u100). This API uses a promise to return the result.
 
 **Required permissions**: ohos.permission.MANAGE_ENTERPRISE_DEVICE_ADMIN
 
@@ -581,7 +581,7 @@ adminManager.isAdminEnabled(wantTemp, 100).then((result) => {
 
 isSuperAdmin(bundleName: String, callback: AsyncCallback\<boolean>): void
 
-Checks whether a super device administrator application is enabled based on **bundleName**. This API uses an asynchronous callback to return the result.
+Checks whether the super device administrator application of the first user (u100) is enabled based on **bundleName**. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.Customization.EnterpriseDeviceManager
 
@@ -627,7 +627,7 @@ adminManager.isSuperAdmin(bundleName, (err, result) => {
 
 isSuperAdmin(bundleName: String): Promise\<boolean>
 
-Checks whether a super device administrator application is enabled based on **bundleName**. This API uses a promise to return the result.
+Checks whether the super device administrator application of the first user (u100) is enabled based on **bundleName**. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.Customization.EnterpriseDeviceManager
 
@@ -677,7 +677,7 @@ adminManager.isSuperAdmin(bundleName).then((result) => {
 
 getSuperAdmin(): Promise\<Want>
 
-Obtains the super device administrator application of this administrator. This API uses a promise to return the result.
+Queries the super device administrator application of this first user (u100). This API uses a promise to return the result.
 
 **System capability**: SystemCapability.Customization.EnterpriseDeviceManager
 
@@ -936,11 +936,15 @@ adminManager.getEnterpriseInfo(wantTemp).then((result) => {
 });
 ```
 
-## adminManager.subscribeManagedEvent
+## adminManager.subscribeManagedEvent<sup>(deprecated)</sup>
 
 subscribeManagedEvent(admin: Want, managedEvents: Array\<ManagedEvent>, callback: AsyncCallback\<void>): void
 
 Subscribes to system management events. This API uses an asynchronous callback to return the result.
+
+**Deprecated since:** 26.0.0
+
+**Substitutes:** [subscribeManagedEventSync](./js-apis-enterprise-adminManager.md#adminmanagersubscribemanagedeventsync)
 
 **Required permissions**: ohos.permission.ENTERPRISE_SUBSCRIBE_MANAGED_EVENT
 
@@ -992,11 +996,15 @@ adminManager.subscribeManagedEvent(wantTemp, events, (err) => {
 });
 ```
 
-## adminManager.subscribeManagedEvent
+## adminManager.subscribeManagedEvent<sup>(deprecated)</sup>
 
 subscribeManagedEvent(admin: Want, managedEvents: Array\<ManagedEvent>): Promise\<void>
 
 Subscribes to system management events. This API uses a promise to return the result.
+
+**Deprecated since:** 26.0.0
+
+**Substitutes:** [subscribeManagedEventSync](./js-apis-enterprise-adminManager.md#adminmanagersubscribemanagedeventsync)
 
 **Required permissions**: ohos.permission.ENTERPRISE_SUBSCRIBE_MANAGED_EVENT
 
@@ -1051,11 +1059,15 @@ adminManager.subscribeManagedEvent(wantTemp, events).then(() => {
 })
 ```
 
-## adminManager.unsubscribeManagedEvent
+## adminManager.unsubscribeManagedEvent<sup>(deprecated)</sup>
 
 unsubscribeManagedEvent(admin: Want, managedEvents: Array\<ManagedEvent>, callback: AsyncCallback\<void>): void
 
 Unsubscribes from system management events. This API uses an asynchronous callback to return the result.
+
+**Deprecated since:** 26.0.0
+
+**Substitutes:** [unsubscribeManagedEventSync](./js-apis-enterprise-adminManager.md#adminmanagerunsubscribemanagedeventsync)
 
 **Required permissions**: ohos.permission.ENTERPRISE_SUBSCRIBE_MANAGED_EVENT
 
@@ -1107,11 +1119,15 @@ adminManager.unsubscribeManagedEvent(wantTemp, events, (err) => {
 });
 ```
 
-## adminManager.unsubscribeManagedEvent
+## adminManager.unsubscribeManagedEvent<sup>(deprecated)</sup>
 
 unsubscribeManagedEvent(admin: Want, managedEvents: Array\<ManagedEvent>): Promise\<void>
 
 Unsubscribes from system management events. This API uses a promise to return the result.
+
+**Deprecated since:** 26.0.0
+
+**Substitutes:** [unsubscribeManagedEventSync](./js-apis-enterprise-adminManager.md#adminmanagerunsubscribemanagedeventsync)
 
 **Required permissions**: ohos.permission.ENTERPRISE_SUBSCRIBE_MANAGED_EVENT
 
@@ -1387,7 +1403,7 @@ try {
 
 setAdminRunningMode(admin: Want, mode: RunningMode): void
 
-Sets the running mode of the device management application.
+Sets the running mode of the device administrator application.
 
 **Required permissions**: ohos.permission.MANAGE_ENTERPRISE_DEVICE_ADMIN
 
@@ -1454,8 +1470,8 @@ Delegates other applications to set device management policies. The applications
 | Name  | Type                                 | Mandatory  | Description     |
 | ----- | ----------------------------------- | ---- | ------- |
 | bundleName | String                  | Yes   | Bundle name of the app to be delegated. The distribution type of the delegated app must be **enterprise_normal** or **enterprise_mdm**. You can call the [bundleManager.getBundleInfoForSelf](../apis-ability-kit/js-apis-bundleManager.md#bundlemanagergetbundleinfoforself) API to query the app **BundleInfo**. **BundleInfo.appInfo.appDistributionType** indicates the app distribution type.       |
-| accountId         | number                              | Yes   | User ID, which must be greater than or equal to 0. You can use [getOsAccountLocalId](../apis-basic-services-kit/js-apis-osAccount.md#getosaccountlocalid9) to obtain the user ID.|
-| policies |  Array&lt;string&gt;                   | Yes  | [Delegation policy list](./js-apis-enterprise-adminManager.md#delegation-policy-list).|
+| accountId         | number                              | Yes   | User ID, which must be greater than or equal to 0. You can use [getOsAccountLocalId](../apis-basic-services-kit/js-apis-osAccount.md#getosaccountlocalid9-1) to obtain the user ID.|
+| policies |  Array&lt;string&gt;                   | Yes  | [Delegable policy list](../../mdm/mdm-kit-appendix.md#delegable-policy-list).|
 
 **Error codes**
 
@@ -1509,8 +1525,8 @@ Enumerates the types of device administrator applications.
 
 | Name               | Value | Description   |
 | ----------------- | ---- | ----- |
-| ADMIN_TYPE_NORMAL | 0x00 | Common device administrator application.|
-| ADMIN_TYPE_SUPER  | 0x01 | Super device administrator application.|
+| ADMIN_TYPE_NORMAL | 0x00 | After a common device administrator application is enabled, it can be uninstalled. Its [EnterpriseAdminExtensionAbility](../../mdm/mdm-kit-term.md#enterpriseadminextensionability) component will automatically start upon device startup and can be restarted after the component process dies.|
+| ADMIN_TYPE_SUPER  | 0x01 | After a super device administrator application is enabled, it cannot be uninstalled. Its [EnterpriseAdminExtensionAbility](../../mdm/mdm-kit-term.md#enterpriseadminextensionability) component will automatically start upon device startup and can be restarted after the component process dies.|
 
 ## RunningMode<sup>19+</sup>
 
