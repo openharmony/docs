@@ -14,6 +14,7 @@
   - [应用接入AVSession场景介绍](avsession-access-scene.md)
   - [后台播放](avsession-background-scene.md)
   - [应用接入歌词组件](avsession-desktop-lyrics.md)
+  - [媒体会话控制方](using-avsession-controller.md)
   <!--Del-->
   - [媒体会话控制方(仅对系统应用开放)](using-avsession-controller-sys.md)
   <!--DelEnd-->
