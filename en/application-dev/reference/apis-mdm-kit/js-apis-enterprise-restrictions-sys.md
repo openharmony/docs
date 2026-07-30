@@ -1,7 +1,7 @@
 # @ohos.enterprise.restrictions (Restrictions) (System API)
 <!--Kit: MDM Kit-->
 <!--Subsystem: Customization-->
-<!--Owner: @huanleima-->
+<!--Owner: @huanleima; @weizai16-->
 <!--Designer: @hp_guo-->
 <!--Tester: @lpw_work-->
 <!--Adviser: @zhang_yixin13-->
@@ -14,7 +14,7 @@ This **restrictions** module provides APIs for setting general restriction polic
 >
 > The APIs of this module can be used only in the stage model.
 >
-> The APIs of this module can be called only by a [device administrator application](../../mdm/mdm-kit-term.md#mdm-application-device-administrator-application) that is [enabled](js-apis-enterprise-adminManager-sys.md#adminmanagerenableadmin-2).
+> The APIs of this module are available only to [MDM applications](../../mdm/mdm-kit-term.md#mdm-application-device-administrator-application), and can be called only after the device administrator application is activated via [enableAdmin](js-apis-enterprise-adminManager-sys.md#adminmanagerenableadmin-2).
 > 
 > This topic describes only system APIs provided by the module. For details about its public APIs, see [@ohos.enterprise.restrictions](js-apis-enterprise-restrictions.md).
 
@@ -24,11 +24,15 @@ This **restrictions** module provides APIs for setting general restriction polic
 import { restrictions } from '@kit.MDMKit';
 ```
 
-## restrictions.setPrinterDisabled
+## restrictions.setPrinterDisabled<sup>(deprecated)</sup>
 
 setPrinterDisabled(admin: Want, disabled: boolean, callback: AsyncCallback\<void>): void
 
 Enables or disables the printing capability of the device. This API uses an asynchronous callback to return the result.
+
+**Deprecated since:** 26.0.0
+
+**Substitutes:** [setDisallowedPolicy](./js-apis-enterprise-restrictions.md#restrictionssetdisallowedpolicy24)
 
 **Required permissions**: ohos.permission.ENTERPRISE_RESTRICT_POLICY
 
@@ -79,11 +83,15 @@ restrictions.setPrinterDisabled(wantTemp, true, (err) => {
 })
 ```
 
-## restrictions.setPrinterDisabled
+## restrictions.setPrinterDisabled<sup>(deprecated)</sup>
 
 setPrinterDisabled(admin: Want, disabled: boolean): Promise\<void>
 
 Enables or disables the printing capability of the device. This API uses a promise to return the result.
+
+**Deprecated since:** 26.0.0
+
+**Substitutes:** [setDisallowedPolicy](./js-apis-enterprise-restrictions.md#restrictionssetdisallowedpolicy24)
 
 **Required permissions**: ohos.permission.ENTERPRISE_RESTRICT_POLICY
 
@@ -138,11 +146,15 @@ restrictions.setPrinterDisabled(wantTemp, true).then(() => {
 })
 ```
 
-## restrictions.isPrinterDisabled
+## restrictions.isPrinterDisabled<sup>(deprecated)</sup>
 
 isPrinterDisabled(admin: Want, callback: AsyncCallback\<boolean>): void
 
 Queries whether the printing capability of a device is disabled. This API uses an asynchronous callback to return the result.
+
+**Deprecated since:** 26.0.0
+
+**Substitutes:** [getDisallowedPolicy](./js-apis-enterprise-restrictions.md#restrictionsgetdisallowedpolicy24)
 
 **Required permissions**: ohos.permission.ENTERPRISE_RESTRICT_POLICY
 
@@ -192,11 +204,15 @@ restrictions.isPrinterDisabled(wantTemp, (err, result) => {
 })
 ```
 
-## restrictions.isPrinterDisabled
+## restrictions.isPrinterDisabled<sup>(deprecated)</sup>
 
 isPrinterDisabled(admin: Want): Promise\<boolean>
 
 Queries whether the printing capability of a device is disabled. This API uses a promise to return the result.
+
+**Deprecated since:** 26.0.0
+
+**Substitutes:** [getDisallowedPolicy](./js-apis-enterprise-restrictions.md#restrictionsgetdisallowedpolicy24)
 
 **Required permissions**: ohos.permission.ENTERPRISE_RESTRICT_POLICY
 
@@ -216,7 +232,7 @@ Queries whether the printing capability of a device is disabled. This API uses a
 
 | Type  | Description                                 |
 | ----- | ----------------------------------- |
-| Promise\<boolean> | Promise used to return the result. The value **true** means that the printer is disabled; the value **false** means the opposite.|
+| Promise\<boolean> | Promise used to return the result. The value **true** means that the printing capability is disabled; the value **false** means the opposite.|
 
 **Error codes**
 
@@ -250,11 +266,15 @@ restrictions.isPrinterDisabled(wantTemp).then((result) => {
 })
 ```
 
-## restrictions.setHdcDisabled
+## restrictions.setHdcDisabled<sup>(deprecated)</sup>
 
 setHdcDisabled(admin: Want, disabled: boolean, callback: AsyncCallback\<void>): void
 
 Enables or disables [HDC](../../../device-dev/subsystems/subsys-toolchain-hdc-guide.md). This API uses an asynchronous callback to return the result.
+
+**Deprecated since:** 26.0.0
+
+**Substitutes:** [setDisallowedPolicy](./js-apis-enterprise-restrictions.md#restrictionssetdisallowedpolicy24)
 
 **Required permissions**: ohos.permission.ENTERPRISE_RESTRICT_POLICY
 
@@ -305,11 +325,15 @@ restrictions.setHdcDisabled(wantTemp, true, (err) => {
 })
 ```
 
-## restrictions.setHdcDisabled
+## restrictions.setHdcDisabled<sup>(deprecated)</sup>
 
 setHdcDisabled(admin: Want, disabled: boolean): Promise\<void>
 
 Enables or disables HDC on a device. This API uses a promise to return the result.
+
+**Deprecated since:** 26.0.0
+
+**Substitutes:** [setDisallowedPolicy](./js-apis-enterprise-restrictions.md#restrictionssetdisallowedpolicy24)
 
 **Required permissions**: ohos.permission.ENTERPRISE_RESTRICT_POLICY
 
@@ -364,11 +388,15 @@ restrictions.setHdcDisabled(wantTemp, true).then(() => {
 })
 ```
 
-## restrictions.isHdcDisabled
+## restrictions.isHdcDisabled<sup>(deprecated)</sup>
 
 isHdcDisabled(admin: Want, callback: AsyncCallback\<boolean>): void
 
 Queries whether HDC is disabled. This API uses an asynchronous callback to return the result.
+
+**Deprecated since:** 26.0.0
+
+**Substitutes:** [getDisallowedPolicy](./js-apis-enterprise-restrictions.md#restrictionsgetdisallowedpolicy24)
 
 **Required permissions**: ohos.permission.ENTERPRISE_RESTRICT_POLICY
 
@@ -418,11 +446,15 @@ restrictions.isHdcDisabled(wantTemp, (err, result) => {
 })
 ```
 
-## restrictions.isHdcDisabled
+## restrictions.isHdcDisabled<sup>(deprecated)</sup>
 
 isHdcDisabled(admin: Want): Promise\<boolean>
 
 Queries whether HDC is disabled. This API uses a promise to return the result.
+
+**Deprecated since:** 26.0.0
+
+**Substitutes:** [getDisallowedPolicy](./js-apis-enterprise-restrictions.md#restrictionsgetdisallowedpolicy24)
 
 **Required permissions**: ohos.permission.ENTERPRISE_RESTRICT_POLICY
 
@@ -442,7 +474,7 @@ Queries whether HDC is disabled. This API uses a promise to return the result.
 
 | Type  | Description                                 |
 | ----- | ----------------------------------- |
-| Promise\<boolean> | Promise used to return the result. The value **true** means HDC is disabled; the value **false** means the opposite.|
+| Promise\<boolean> | Promise used to return the result. The value **true** means that HDC is disabled; the value **false** means the opposite.|
 
 **Error codes**
 
@@ -476,11 +508,15 @@ restrictions.isHdcDisabled(wantTemp).then((result) => {
 })
 ```
 
-## restrictions.isMicrophoneDisabled<sup>11+</sup>
+## restrictions.isMicrophoneDisabled<sup>(deprecated)</sup>
 
 isMicrophoneDisabled(admin: Want): boolean
 
 Queries whether the microphone is disabled.
+
+**Deprecated since:** 26.0.0
+
+**Substitutes:** [getDisallowedPolicy](./js-apis-enterprise-restrictions.md#restrictionsgetdisallowedpolicy24)
 
 **Required permissions**: ohos.permission.ENTERPRISE_MANAGE_RESTRICTIONS
 
@@ -534,11 +570,15 @@ try {
 }
 ```
 
-## restrictions.disableMicrophone<sup>11+</sup>
+## restrictions.disableMicrophone<sup>(deprecated)</sup>
 
 disableMicrophone(admin: Want, disable: boolean): void
 
 Enables or disables the microphone.
+
+**Deprecated since:** 26.0.0
+
+**Substitutes:** [setDisallowedPolicy](./js-apis-enterprise-restrictions.md#restrictionssetdisallowedpolicy24)
 
 **Required permissions**: ohos.permission.ENTERPRISE_MANAGE_RESTRICTIONS
 
@@ -587,11 +627,15 @@ try {
 }
 ```
 
-## restrictions.setFingerprintAuthDisabled<sup>11+</sup>
+## restrictions.setFingerprintAuthDisabled<sup>(deprecated)</sup>
 
 setFingerprintAuthDisabled(admin: Want, disabled: boolean): void
 
 Enables or disables fingerprint authentication.
+
+**Deprecated since:** 26.0.0
+
+**Substitutes:** [setDisallowedPolicy](./js-apis-enterprise-restrictions.md#restrictionssetdisallowedpolicy24)
 
 **Required permissions**: ohos.permission.ENTERPRISE_MANAGE_RESTRICTIONS
 
@@ -641,11 +685,15 @@ try {
 
 ```
 
-## restrictions.isFingerprintAuthDisabled<sup>11+</sup>
+## restrictions.isFingerprintAuthDisabled<sup>(deprecated)</sup>
 
 isFingerprintAuthDisabled(admin: Want): boolean
 
 Queries whether fingerprint authentication is disabled.
+
+**Deprecated since:** 26.0.0
+
+**Substitutes:** [getDisallowedPolicy](./js-apis-enterprise-restrictions.md#restrictionsgetdisallowedpolicy24)
 
 **Required permissions**: ohos.permission.ENTERPRISE_MANAGE_RESTRICTIONS
 

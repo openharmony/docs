@@ -1,7 +1,7 @@
 # @ohos.enterprise.usbManager (USB Management) (System API)
 <!--Kit: MDM Kit-->
 <!--Subsystem: Customization-->
-<!--Owner: @huanleima-->
+<!--Owner: @huanleima; @weizai16-->
 <!--Designer: @hp_guo-->
 <!--Tester: @lpw_work-->
 <!--Adviser: @zhang_yixin13-->
@@ -14,7 +14,7 @@ The **usbManager** module provides APIs for USB management.
 >
 > The APIs of this module can be used only in the stage model.
 >
-> The APIs of this module can be called only by a [device administrator application](../../mdm/mdm-kit-term.md#mdm-application-device-administrator-application) that is [enabled](js-apis-enterprise-adminManager-sys.md#adminmanagerenableadmin-2).
+> The APIs of this module are available only to the [MDM application](../../mdm/mdm-kit-term.md#mdm-application-device-administrator-application), and can be called only after the device administrator application is activated via [enableAdmin](js-apis-enterprise-adminManager-sys.md#adminmanagerenableadmin-2).
 > 
 > This topic describes only system APIs provided by the module. For details about its public APIs, see [@ohos.enterprise.usbManager](js-apis-enterprise-usbManager.md).
 
@@ -24,11 +24,15 @@ The **usbManager** module provides APIs for USB management.
 import { usbManager } from '@kit.MDMKit';
 ```
 
-## usbManager.setUsbPolicy
+## usbManager.setUsbPolicy<sup>(deprecated)</sup>
 
 setUsbPolicy(admin: Want, usbPolicy: UsbPolicy, callback: AsyncCallback\<void>): void
 
 Sets the USB read/write policy. This API uses an asynchronous callback to return the result.
+
+**Deprecated since:** 26.0.0
+
+**Substitutes:** [setUsbStorageDeviceAccessPolicy](./js-apis-enterprise-usbManager.md#usbmanagersetusbstoragedeviceaccesspolicy)
 
 **Required permissions**: ohos.permission.ENTERPRISE_MANAGE_USB
 
@@ -80,11 +84,15 @@ usbManager.setUsbPolicy(wantTemp, policy, (err) => {
 })
 ```
 
-## usbManager.setUsbPolicy
+## usbManager.setUsbPolicy<sup>(deprecated)</sup>
 
 setUsbPolicy(admin: Want, usbPolicy: UsbPolicy): Promise\<void>
 
 Sets the USB read/write policy. This API uses a promise to return the result.
+
+**Deprecated since:** 26.0.0
+
+**Substitutes:** [setUsbStorageDeviceAccessPolicy](./js-apis-enterprise-usbManager.md#usbmanagersetusbstoragedeviceaccesspolicy)
 
 **Required permissions**: ohos.permission.ENTERPRISE_MANAGE_USB
 
@@ -140,11 +148,15 @@ usbManager.setUsbPolicy(wantTemp, policy).then(() => {
 })
 ```
 
-## usbManager.disableUsb<sup>11+</sup>
+## usbManager.disableUsb<sup>(deprecated)</sup>
 
 disableUsb(admin: Want, disable: boolean): void
 
 Enables or disables USB.
+
+**Deprecated since:** 26.0.0
+
+**Substitutes:** [setDisallowedPolicy](./js-apis-enterprise-restrictions.md#restrictionssetdisallowedpolicy24)
 
 **Required permissions**: ohos.permission.ENTERPRISE_MANAGE_USB
 
@@ -193,11 +205,15 @@ try {
 }
 ```
 
-## usbManager.isUsbDisabled<sup>11+</sup>
+## usbManager.isUsbDisabled<sup>(deprecated)</sup>
 
 isUsbDisabled(admin: Want): boolean
 
 Queries whether the USB is disabled.
+
+**Deprecated since:** 26.0.0
+
+**Substitutes:** [getDisallowedPolicy](./js-apis-enterprise-restrictions.md#restrictionsgetdisallowedpolicy24)
 
 **Required permissions**: ohos.permission.ENTERPRISE_MANAGE_USB
 

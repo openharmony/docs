@@ -1,12 +1,12 @@
 # @ohos.enterprise.bluetoothManager (Bluetooth Management) (System API)
 <!--Kit: MDM Kit-->
 <!--Subsystem: Customization-->
-<!--Owner: @huanleima-->
+<!--Owner: @huanleima; @weizai16-->
 <!--Designer: @hp_guo-->
 <!--Tester: @lpw_work-->
 <!--Adviser: @zhang_yixin13-->
 
-The **bluetoothManager** module provides Bluetooth management capabilities, including setting and obtaining Bluetooth information.
+This module provides Bluetooth management capabilities, including querying whether Bluetooth is disabled and disabling Bluetooth.
 
 > **NOTE**
 >
@@ -14,7 +14,7 @@ The **bluetoothManager** module provides Bluetooth management capabilities, incl
 >
 > The APIs of this module can be used only in the stage model.
 >
-> The APIs of this module can be called only by a [device administrator application](../../mdm/mdm-kit-term.md#mdm-application-device-administrator-application) that is [enabled](js-apis-enterprise-adminManager-sys.md#adminmanagerenableadmin-2).
+> The APIs of this module are available only to [MDM applications](../../mdm/mdm-kit-term.md#mdm-application-device-administrator-application), and can be called only after the device administrator application is activated via [enableAdmin](js-apis-enterprise-adminManager-sys.md#adminmanagerenableadmin-2).
 > 
 > This topic describes only system APIs provided by the module. For details about its public APIs, see [@ohos.enterprise.bluetoothManager](js-apis-enterprise-bluetoothManager.md).
 
@@ -24,11 +24,15 @@ The **bluetoothManager** module provides Bluetooth management capabilities, incl
 import { bluetoothManager } from '@kit.MDMKit';
 ```
 
-## bluetoothManager.isBluetoothDisabled
+## bluetoothManager.isBluetoothDisabled<sup>(deprecated)</sup>
 
 isBluetoothDisabled(admin: Want): boolean
 
 Queries whether Bluetooth is disabled.
+
+**Deprecated since:** 26.0.0
+
+**Substitutes:** [getDisallowedPolicy](./js-apis-enterprise-restrictions.md#restrictionsgetdisallowedpolicy24)
 
 **Required permissions**: ohos.permission.ENTERPRISE_MANAGE_BLUETOOTH
 
@@ -82,11 +86,15 @@ try {
 };
 ```
 
-## bluetoothManager.setBluetoothDisabled
+## bluetoothManager.setBluetoothDisabled<sup>(deprecated)</sup>
 
 setBluetoothDisabled(admin: Want, disabled: boolean): void
 
 Sets the policy for disabling Bluetooth.
+
+**Deprecated since:** 26.0.0
+
+**Substitutes:** [setDisallowedPolicy](./js-apis-enterprise-restrictions.md#restrictionssetdisallowedpolicy24)
 
 **Required permissions**: ohos.permission.ENTERPRISE_MANAGE_BLUETOOTH
 
