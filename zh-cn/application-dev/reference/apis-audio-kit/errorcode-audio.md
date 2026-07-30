@@ -314,4 +314,4 @@ AudioCapturer创建成功，但调用[start](arkts-apis-audio-AudioCapturer.md#s
 
 **处理步骤**
 
-重启设备后重试。
+重启设备后重试。<!--RP1--><!--RP1End-->
