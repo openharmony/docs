@@ -112,6 +112,7 @@
   - [模块化对象模型概述 (C/C++)](modular-object-extension-overview.md)
   - [使用ModularObjectExtensionAbility实现模块化对象 (C/C++)](modular-object-extension-development.md)
   - [使用Taihe实现ModularObjectExtensionAbility的IPC通信 (C/C++)](modular-object-extension-ability-taihe.md)
+  - [使用ModularObjectDispatcher实现动态接口调用 (C/C++)](modular-object-dispatcher-development.md)
 - Native子进程开发指导<!--native-childprocess-development-->
     - [创建Native子进程](capi-nativechildprocess-development-guideline.md)
     - [获取Native子进程退出信息](capi-nativechildprocess-exit-info.md)

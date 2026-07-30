@@ -9,6 +9,8 @@
 
 模块化对象是一种跨应用的能力开放方式。应用通过ModularObjectExtensionAbility（相关C API定义见[modular_object_extension_ability.h](../reference/apis-ability-kit/capi-modular-object-extension-ability-h.md)）组件将特定功能封装为独立的功能模块并对外暴露Proxy对象，其他应用获取Proxy对象后，即可跨进程调用这些能力。例如，文档编辑类应用可以提供文档处理能力，其他应用可调用该能力实现文档协同编辑；邮件类应用可以提供邮件发送能力，其他应用可调用该能力实现邮件群发等。
 
+在基于ModularObjectExtensionAbility的开发中，可借助[Taihe](ability-terminology.md#taihe)工具根据接口定义自动生成Proxy/Stub代码及类型库元数据，屏蔽IPC底层细节；客户端也可通过ModularObjectDispatcher在运行时动态查询并调用远端接口。
+
 ## 基本概念
 
 - 服务端：提供ModularObjectExtensionAbility组件的应用称为服务端。
