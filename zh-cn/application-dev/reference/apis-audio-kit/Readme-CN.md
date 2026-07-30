@@ -64,6 +64,7 @@
     - [native_audiostream_base.h](capi-native-audiostream-base-h.md)
     - [native_audiostreambuilder.h](capi-native-audiostreambuilder-h.md)
     - [native_audio_suite_base.h](capi-native-audio-suite-base-h.md)
+    - [native_audio_suite_download_manager.h](capi-native-audio-suite-download-manager-h.md)
     - [native_audio_suite_engine.h](capi-native-audio-suite-engine-h.md)
     - [native_audio_session_base.h](capi-native-audio-session-base-h.md)
     - [native_midi_base.h](capi-native-midi-base-h.md)
