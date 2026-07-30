@@ -584,8 +584,6 @@ isOtaUpdateNonceEnable(admin: Want): boolean
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
 
-**设备行为差异：** 该接口在PC/2in1企业设备中可正常调用，在其他设备中返回801错误码。
-
 **模型约束：** 此接口仅可在Stage模型下使用。
 
 **冲突规则：** [配置](../../mdm/mdm-kit-multi-mdm.md#规则3配置)。
