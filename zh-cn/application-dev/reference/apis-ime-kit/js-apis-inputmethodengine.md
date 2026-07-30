@@ -2126,10 +2126,8 @@ adjustPanelRect(flag: PanelFlag, rect: EnhancedPanelRect): void
 > 此接口为同步接口，接口返回成功仅代表系统侧收到设置的请求，不代表设置完成。如果需要感知执行过程中的异常，建议使用[updatePanelRect](#updatepanelrect-1)或[updatePanelRectSync](#updatepanelrectsync-1)。
 >
 > 手机的PanelFlag是FLG_FLOATING且面板宽度在0~288vp之间时，面板底部功能键将随面板宽度动态调整大小，为了保证最佳用户体验，建议面板宽度不小于90vp。
-<!--Del-->
- >
- > 在DAYU200设备上，输入法热区生效范围保持和软键盘区域一致。
-<!--DelEnd-->
+>
+> 当com.ohos.sceneboard进程不存在时，输入法热区生效范围保持和软键盘区域一致。
 
 **系统能力：** SystemCapability.MiscServices.InputMethodFramework
 
@@ -2266,10 +2264,8 @@ updatePanelRect(flag: PanelFlag, rect: EnhancedPanelRect): Promise&lt;void&gt;
 > 此接口为异步接口，接口返回仅代表系统侧收到设置的请求，不代表已完成设置。
 >
 > 手机的PanelFlag是FLG_FLOATING且面板宽度在0~288vp之间时，面板底部功能键将随面板宽度动态调整大小，为了保证最佳用户体验，建议面板宽度不小于90vp。
-<!--Del-->
- >
- > 在DAYU200设备上，输入法热区生效范围保持和软键盘区域一致。
-<!--DelEnd-->
+>
+> 当com.ohos.sceneboard进程不存在时，输入法热区生效范围保持和软键盘区域一致。
 
 **起始版本：** 26.0.0
 
@@ -2411,10 +2407,8 @@ updatePanelRectSync(flag: PanelFlag, rect: EnhancedPanelRect): void
 > 此接口为同步接口，接口返回代表系统侧收到设置的请求，并已完成设置。
 >
 > 手机的PanelFlag是FLG_FLOATING且面板宽度在0~288vp之间时，面板底部功能键将随面板宽度动态调整大小，为了保证最佳用户体验，建议面板宽度不小于90vp。
-<!--Del-->
- >
- > 在DAYU200设备上，输入法热区生效范围保持和软键盘区域一致。
-<!--DelEnd-->
+>
+> 当com.ohos.sceneboard进程不存在时，输入法热区生效范围保持和软键盘区域一致。
 
 **起始版本：** 26.0.0
 
@@ -2482,10 +2476,8 @@ updateRegion(inputRegion: Array&lt;window.Rect&gt;): void
 > 仅用于SOFT_KEYBOARD类型，状态为FLG_FIXED或FLG_FLOATING的面板。
 >
 > 此接口为同步接口，接口返回仅代表系统侧收到更新热区的请求，不代表已完成热区更新。
-<!--Del-->
- >
- > 在DAYU200设备上，输入法热区生效范围保持和软键盘区域一致。
-<!--DelEnd-->
+>
+> 当com.ohos.sceneboard进程不存在时，输入法热区生效范围保持和软键盘区域一致。
 
 **系统能力：** SystemCapability.MiscServices.InputMethodFramework
 
