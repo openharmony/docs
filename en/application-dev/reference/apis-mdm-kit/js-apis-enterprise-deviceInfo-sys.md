@@ -1,7 +1,7 @@
 # @ohos.enterprise.deviceInfo (Device Information Management) (System API)
 <!--Kit: MDM Kit-->
 <!--Subsystem: Customization-->
-<!--Owner: @huanleima-->
+<!--Owner: @huanleima; @weizai16-->
 <!--Designer: @hp_guo-->
 <!--Tester: @lpw_work-->
 <!--Adviser: @zhang_yixin13-->
@@ -14,7 +14,7 @@ The **deviceInfo** module provides APIs for enterprise device information manage
 >
 > The APIs of this module can be used only in the stage model.
 >
-> The APIs of this module can be called only by a [device administrator application](../../mdm/mdm-kit-term.md#mdm-application-device-administrator-application) that is [enabled](js-apis-enterprise-adminManager-sys.md#adminmanagerenableadmin-2).
+> The APIs of this module are available only to the [MDM application](../../mdm/mdm-kit-term.md#mdm-application-device-administrator-application), and can be called only after the device administrator application is activated via [enableAdmin](js-apis-enterprise-adminManager-sys.md#adminmanagerenableadmin-2).
 > 
 > This topic describes only system APIs provided by the module. For details about its public APIs, see [@ohos.enterprise.deviceInfo](js-apis-enterprise-deviceInfo.md).
 
@@ -24,11 +24,15 @@ The **deviceInfo** module provides APIs for enterprise device information manage
 import { deviceInfo } from '@kit.MDMKit';
 ```
 
-## deviceInfo.getDeviceSerial
+## deviceInfo.getDeviceSerial<sup>(deprecated)</sup>
 
 getDeviceSerial(admin: Want, callback: AsyncCallback&lt;string&gt;): void
 
 Obtains the device serial number. This API uses an asynchronous callback to return the result.
+
+**Deprecated since:** 26.0.0
+
+**Substitutes:** [getDeviceInfo](./js-apis-enterprise-deviceInfo.md#deviceinfogetdeviceinfo)
 
 **Required permissions**: ohos.permission.ENTERPRISE_GET_DEVICE_INFO
 
@@ -78,11 +82,15 @@ deviceInfo.getDeviceSerial(wantTemp, (err, result) => {
 });
 ```
 
-## deviceInfo.getDeviceSerial
+## deviceInfo.getDeviceSerial<sup>(deprecated)</sup>
 
 getDeviceSerial(admin: Want): Promise&lt;string&gt;
 
 Obtains the device serial number. This API uses a promise to return the result.
+
+**Deprecated since:** 26.0.0
+
+**Substitutes:** [getDeviceInfo](./js-apis-enterprise-deviceInfo.md#deviceinfogetdeviceinfo)
 
 **Required permissions**: ohos.permission.ENTERPRISE_GET_DEVICE_INFO
 
@@ -136,11 +144,15 @@ deviceInfo.getDeviceSerial(wantTemp).then((result) => {
 });
 ```
 
-## deviceInfo.getDisplayVersion
+## deviceInfo.getDisplayVersion<sup>(deprecated)</sup>
 
 getDisplayVersion(admin: Want, callback: AsyncCallback&lt;string&gt;): void
 
 Obtains the device version number. This API uses an asynchronous callback to return the result.
+
+**Deprecated since:** 26.0.0
+
+**Substitutes:** [getDeviceInfo](./js-apis-enterprise-deviceInfo.md#deviceinfogetdeviceinfo)
 
 **Required permissions**: ohos.permission.ENTERPRISE_GET_DEVICE_INFO
 
@@ -190,11 +202,15 @@ deviceInfo.getDisplayVersion(wantTemp, (err, result) => {
 });
 ```
 
-## deviceInfo.getDisplayVersion
+## deviceInfo.getDisplayVersion<sup>(deprecated)</sup>
 
 getDisplayVersion(admin: Want): Promise&lt;string&gt;
 
 Obtains the device version number. This API uses a promise to return the result.
+
+**Deprecated since:** 26.0.0
+
+**Substitutes:** [getDeviceInfo](./js-apis-enterprise-deviceInfo.md#deviceinfogetdeviceinfo)
 
 **Required permissions**: ohos.permission.ENTERPRISE_GET_DEVICE_INFO
 
@@ -248,11 +264,15 @@ deviceInfo.getDisplayVersion(wantTemp).then((result) => {
 });
 ```
 
-## deviceInfo.getDeviceName
+## deviceInfo.getDeviceName<sup>(deprecated)</sup>
 
 getDeviceName(admin: Want, callback: AsyncCallback&lt;string&gt;): void
 
 Obtains the device name. This API uses an asynchronous callback to return the result.
+
+**Deprecated since:** 26.0.0
+
+**Substitutes:** [getDeviceInfo](./js-apis-enterprise-deviceInfo.md#deviceinfogetdeviceinfo)
 
 **Required permissions**: ohos.permission.ENTERPRISE_GET_DEVICE_INFO
 
@@ -302,11 +322,15 @@ deviceInfo.getDeviceName(wantTemp, (err, result) => {
 });
 ```
 
-## deviceInfo.getDeviceName
+## deviceInfo.getDeviceName<sup>(deprecated)</sup>
 
 getDeviceName(admin: Want): Promise&lt;string&gt;
 
 Obtains the device name. This API uses a promise to return the result.
+
+**Deprecated since:** 26.0.0
+
+**Substitutes:** [getDeviceInfo](./js-apis-enterprise-deviceInfo.md#deviceinfogetdeviceinfo)
 
 **Required permissions**: ohos.permission.ENTERPRISE_GET_DEVICE_INFO
 

@@ -723,7 +723,7 @@ openPermissionOnSetting(context: Context, permission: Permissions): Promise&lt;S
 | 错误码ID | 错误信息 |
 | -------- | -------- |
 | 12100001 | Invalid parameter. Possible causes:<br>1. The context is invalid because it does not belong to the application itself;<br>2. The permission is invalid or not declared in the module.json file. |
-| 12100009 | Common inner error. An error occurs when creating the pop-up window or obtaining user operation result. |
+| 12100009 | Common inner error. An error occurs when creating the pop-up window or obtaining the user operation result. |
 | 12100014 | Unexpected permission. The permission is not a manual_settings permission. |
 
 **示例：**

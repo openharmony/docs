@@ -15,7 +15,7 @@ FormExtensionContext模块提供FormExtensionAbility具有的接口和能力。
 
 ## FormExtensionContext
 
-FormExtensionContext模块是[FormExtensionAbility](js-apis-app-form-formExtensionAbility.md)的上下文环境，继承自[ExtensionContext](../apis-ability-kit/js-apis-inner-application-extensionContext.md)。
+ FormExtensionContext模块是[FormExtensionAbility](js-apis-app-form-formExtensionAbility.md)的上下文环境，继承自[ExtensionContext](../apis-ability-kit/js-apis-inner-application-extensionContext.md)，用于获取卡片相关的上下文信息，适用于卡片开发场景。
 
 **系统能力：** SystemCapability.Ability.Form
 

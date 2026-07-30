@@ -31,7 +31,7 @@ upload(options: UploadRequestOptions): void
 
 > **说明：**
 >
-> 从API version 3 开始支持，从API version 9 开始废弃，建议使用[request.uploadFile](js-apis-request.md#requestuploadfile9)替代。
+> 从API version 3开始支持，从API version 9开始废弃。建议使用[request.uploadFile](js-apis-request.md#requestuploadfile9)替代。
 
 **参数：**
 
@@ -83,7 +83,7 @@ upload(options: UploadRequestOptions): void
 
 > **说明：**
 >
-> 从API version 3 开始支持，从API version 9 开始废弃，建议使用[UploadConfig](js-apis-request.md#uploadconfig)替代。
+> 从API version 3开始支持，从API version 9开始废弃。建议使用[UploadConfig](js-apis-request.md#uploadconfig)替代。
 
   | 名称 | 类型 | 只读 | 可选 | 说明 |
   | -------- | -------- | -------- | -------- | -------- |
@@ -170,7 +170,7 @@ download(options: DownloadRequestOptions): void
   try {
     Request.download(downloadRequestOptions);
     console.info('Start download');
-  } catch(err) {
+  } catch (err) {
     console.error('Failed to download, err:' + err);
   }
   ```
@@ -182,7 +182,7 @@ download(options: DownloadRequestOptions): void
 
 > **说明：**
 >
-> 从API version 3 开始支持，从API version 9 开始废弃，建议使用[UploadConfig](js-apis-request.md#uploadconfig)替代。
+> 从API version 3开始支持，从API version 9开始废弃。建议使用[UploadConfig](js-apis-request.md#uploadconfig)替代。
 
 **参数：**
   | 名称 | 类型 | 只读 | 可选 | 说明 |

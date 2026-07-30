@@ -24,7 +24,7 @@ import { backgroundTaskManager } from '@kit.BackgroundTasksKit';
 
 requestSuspendDelay(reason: string, callback: Callback&lt;void&gt;): DelaySuspendInfo
 
-申请短时任务。
+申请短时任务。适用于应用即将退至后台、需要短暂延迟挂起以便完成关键操作（如保存数据、上传进度等）等场景。
 
 >  **说明：**
 >
@@ -65,6 +65,7 @@ requestSuspendDelay(reason: string, callback: Callback&lt;void&gt;): DelaySuspen
 import { BusinessError } from '@kit.BasicServicesKit';
 import { backgroundTaskManager } from '@kit.BackgroundTasksKit';
 
+// 申请短时任务的原因
 let myReason = 'test requestSuspendDelay';
 try {
   let delayInfo = backgroundTaskManager.requestSuspendDelay(myReason, () => {
@@ -118,6 +119,7 @@ getRemainingDelayTime(requestId: number, callback: AsyncCallback&lt;number&gt;):
 import { BusinessError } from '@kit.BasicServicesKit';
 import { backgroundTaskManager } from '@kit.BackgroundTasksKit';
 
+// 短时任务的请求ID，用于查询剩余时间
 let id = 1;
 backgroundTaskManager.getRemainingDelayTime(id, (error: BusinessError, res: number) => {
   if(error) {
@@ -182,7 +184,7 @@ backgroundTaskManager.getRemainingDelayTime(id).then((res: number) => {
 
 cancelSuspendDelay(requestId: number): void
 
-取消短时任务。
+取消短时任务。适用于应用任务已完成、需要提前释放后台资源等场景。
 
 **系统能力：** SystemCapability.ResourceSchedule.BackgroundTaskManager.TransientTask
 
@@ -655,6 +657,7 @@ export default class EntryAbility extends UIAbility {
           // 申请主类型为MODE_LOCATION的长时任务
           let modeList: Array<number> = [backgroundTaskManager.BackgroundTaskMode.MODE_LOCATION];
           let subModeList: Array<number> = [backgroundTaskManager.BackgroundTaskSubmode.SUBMODE_NORMAL_NOTIFICATION];
+          // 创建长时任务请求对象
           let continuousTaskRequest = new backgroundTaskManager.ContinuousTaskRequest();
           continuousTaskRequest.backgroundTaskModes =  modeList;
           continuousTaskRequest.backgroundTaskSubmodes = subModeList;
@@ -683,7 +686,7 @@ export default class EntryAbility extends UIAbility {
 
 stopBackgroundRunning(context: Context, callback: AsyncCallback&lt;void&gt;): void
 
-取消当前UIAbility（FA模型则为ServiceAbility）下所有长时任务，使用callback异步回调。也可以通过[stopBackgroundRunning](#backgroundtaskmanagerstopbackgroundrunning21)接口取消指定Id的长时任务。
+取消当前UIAbility（FA模型则为ServiceAbility）下所有长时任务，使用callback异步回调。也可以通过[stopBackgroundRunning](#backgroundtaskmanagerstopbackgroundrunning21)接口取消指定Id的长时任务。适用于应用功能已完成、应用即将退出等场景。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -742,7 +745,7 @@ export default class EntryAbility extends UIAbility {
 
 stopBackgroundRunning(context: Context): Promise&lt;void&gt;
 
-取消当前UIAbility（FA模型则为ServiceAbility）下所有长时任务，使用Promise异步回调。也可以通过[stopBackgroundRunning](#backgroundtaskmanagerstopbackgroundrunning21)接口取消指定Id的长时任务。
+取消当前UIAbility（FA模型则为ServiceAbility）下所有长时任务，使用Promise异步回调。也可以通过[stopBackgroundRunning](#backgroundtaskmanagerstopbackgroundrunning21)接口取消指定Id的长时任务。适用于应用功能已完成、应用即将退出等场景。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -802,7 +805,9 @@ export default class EntryAbility extends UIAbility {
 
 stopBackgroundRunning(context: Context, continuousTaskId: number): Promise&lt;void&gt;
 
-取消指定Id的长时任务，使用Promise异步回调。也可以通过[stopBackgroundRunning](#backgroundtaskmanagerstopbackgroundrunning)取消当前UIAbility下所有长时任务。
+取消指定Id的长时任务，使用Promise异步回调。也可以通过[stopBackgroundRunning](#backgroundtaskmanagerstopbackgroundrunning)取消当前UIAbility下所有长时任务。适用于应用功能已完成、应用即将退出等场景。
+
+可用于应用功能已完成、应用即将退出等情况。
 
 **原子化服务API：** 从API版本26.0.0开始，该接口支持在原子化服务中使用。
 
@@ -860,7 +865,9 @@ export default class EntryAbility extends UIAbility {
 
 updateBackgroundRunning(context: Context, bgModes: string[]): Promise&lt;ContinuousTaskNotification&gt;
 
-更新长时任务类型，使用Promise异步回调。长时任务更新成功后，会有通知栏消息，没有提示音。</br>更新长时任务前，可以通过[getAllContinuousTasks](#backgroundtaskmanagergetallcontinuoustasks20)接口获取当前所有长时任务信息，如果当前没有已经存在的长时任务，会更新失败。</br>该接口仅支持更新如下三个接口申请的长时任务：</br>[startBackgroundRunning(context: Context, bgMode: BackgroundMode, wantAgent: WantAgent, callback: AsyncCallback&lt;void&gt;): void](#backgroundtaskmanagerstartbackgroundrunning)</br>[startBackgroundRunning(context: Context, bgMode: BackgroundMode, wantAgent: WantAgent): Promise&lt;void&gt;](#backgroundtaskmanagerstartbackgroundrunning-1)</br>[startBackgroundRunning(context: Context, bgModes: string[], wantAgent: WantAgent): Promise&lt;ContinuousTaskNotification&gt;](#backgroundtaskmanagerstartbackgroundrunning12)
+更新长时任务，使用Promise异步回调。更新成功后仅显示通知栏消息，不播放提示音。适用于应用功能切换（如从音视频播放切换到录音）等需要调整长时任务以匹配新业务的场景。
+
+更新长时任务前，可以通过[getAllContinuousTasks](#backgroundtaskmanagergetallcontinuoustasks20)接口获取当前所有长时任务信息，如果当前没有已经存在的长时任务，会更新失败。</br>该接口仅支持更新如下三个接口申请的长时任务：</br>[startBackgroundRunning(context: Context, bgMode: BackgroundMode, wantAgent: WantAgent, callback: AsyncCallback&lt;void&gt;): void](#backgroundtaskmanagerstartbackgroundrunning)</br>[startBackgroundRunning(context: Context, bgMode: BackgroundMode, wantAgent: WantAgent): Promise&lt;void&gt;](#backgroundtaskmanagerstartbackgroundrunning-1)</br>[startBackgroundRunning(context: Context, bgModes: string[], wantAgent: WantAgent): Promise&lt;ContinuousTaskNotification&gt;](#backgroundtaskmanagerstartbackgroundrunning12)
 
 **需要权限：** ohos.permission.KEEP_BACKGROUND_RUNNING
 
@@ -909,8 +916,8 @@ export default class EntryAbility extends UIAbility {
     try {
       // 必须先执行startBackgroundRunning，才能调用updateBackgroundRunning，这里假设已经申请过
       let list: Array<string> = ["audioPlayback"];
-      backgroundTaskManager.updateBackgroundRunning(this.context, list).then(() => {
-        console.info("Operation updateBackgroundRunning succeeded");
+      backgroundTaskManager.updateBackgroundRunning(this.context, list).then((res: backgroundTaskManager.ContinuousTaskNotification) => {
+        console.info('Operation updateBackgroundRunning succeeded. Data: ' + JSON.stringify(res));
       }).catch((error: BusinessError) => {
         console.error(`Operation updateBackgroundRunning failed. code is ${error.code} message is ${error.message}`);
       });
@@ -925,7 +932,7 @@ export default class EntryAbility extends UIAbility {
 
 updateBackgroundRunning(context: Context, request: ContinuousTaskRequest): Promise&lt;ContinuousTaskNotification&gt;
 
-更新长时任务，使用Promise异步回调。长时任务更新成功后，会有通知栏消息，没有提示音。
+更新长时任务，使用Promise异步回调。更新成功后仅显示通知栏消息，不播放提示音。适用于应用功能切换（如从音视频播放切换到录音）等需要调整长时任务以匹配新业务的场景。
 
 更新长时任务还存在如下约束限制：
 1. 本接口仅支持更新如下接口申请的长时任务：[startBackgroundRunning(context: Context, request: ContinuousTaskRequest): Promise&lt;ContinuousTaskNotification&gt;](#backgroundtaskmanagerstartbackgroundrunning21)。
@@ -1001,6 +1008,7 @@ export default class EntryAbility extends UIAbility {
           // 必须先执行startBackgroundRunning，才能调用updateBackgroundRunning，请开发者提前申请长时任务
           let modeList: Array<number> = [backgroundTaskManager.BackgroundTaskMode.MODE_LOCATION];
           let subModeList: Array<number> = [backgroundTaskManager.BackgroundTaskSubmode.SUBMODE_NORMAL_NOTIFICATION];
+          // 创建长时任务请求对象
           let continuousTaskRequest = new backgroundTaskManager.ContinuousTaskRequest();
           continuousTaskRequest.backgroundTaskModes = modeList;
           continuousTaskRequest.backgroundTaskSubmodes = subModeList;
@@ -1008,7 +1016,7 @@ export default class EntryAbility extends UIAbility {
           continuousTaskRequest.combinedTaskNotification = false;
           continuousTaskRequest.continuousTaskId = this.continuousTaskId; // 对于更新接口，长时任务ID必须要传且为存在的ID，否则更新失败
           backgroundTaskManager.updateBackgroundRunning(this.context, continuousTaskRequest).then((res: backgroundTaskManager.ContinuousTaskNotification) => {
-            console.info("Operation updateBackgroundRunning succeeded");
+            console.info('Operation updateBackgroundRunning succeeded. Data: ' + JSON.stringify(res));
             this.notificationId = res.notificationId;
           }).catch((error: BusinessError) => {
             console.error(`Operation updateBackgroundRunning failed. code is ${error.code} message is ${error.message}`);
@@ -1152,7 +1160,7 @@ on(type: 'continuousTaskCancel', callback: Callback&lt;ContinuousTaskCancelInfo&
 | 参数名       | 类型                                 | 必填   | 说明                                       |
 | --------- | ---------------------------------- | ---- | ---------------------------------------- |
 | type   | string                            | 是    | 事件回调类型，固定取值为'continuousTaskCancel'，表示长时任务取消。 |
-| callback   | Callback\<[ContinuousTaskCancelInfo](#continuoustaskcancelinfo15)>       | 是    | 回调函数，返回长时任务取消原因等信息。 |
+| callback   | Callback\<[ContinuousTaskCancelInfo](#continuoustaskcancelinfo15)>       | 是    | 回调函数，返回长时任务取消原因等信息。当长时任务被取消时触发此回调。 |
 
 **错误码：**
 
@@ -1199,7 +1207,7 @@ off(type: 'continuousTaskCancel', callback?: Callback&lt;ContinuousTaskCancelInf
 
 | 参数名       | 类型                                 | 必填   | 说明                                       |
 | --------- | ---------------------------------- | ---- | ---------------------------------------- |
-| type   | string                            | 是    | 取消长时任务，固定取值为'continuousTaskCancel'。 |
+| type   | string                            | 是    | 事件回调类型，固定取值为'continuousTaskCancel'，表示长时任务取消。 |
 | callback   | Callback\<[ContinuousTaskCancelInfo](#continuoustaskcancelinfo15)>       | 否    | 需要取消监听的回调函数，未传入则取消所有注册回调。 |
 
 **错误码：**
@@ -1248,7 +1256,7 @@ on(type: 'continuousTaskSuspend', callback: Callback&lt;ContinuousTaskSuspendInf
 | 参数名       | 类型                                 | 必填   | 说明                                       |
 | --------- | ---------------------------------- | ---- | ---------------------------------------- |
 | type   | string                            | 是    | 事件回调类型，固定取值为'continuousTaskSuspend'，表示长时任务暂停。 |
-| callback   | Callback\<[ContinuousTaskSuspendInfo](#continuoustasksuspendinfo20)>       | 是    | 回调函数，返回长时任务暂停原因等信息。 |
+| callback   | Callback\<[ContinuousTaskSuspendInfo](#continuoustasksuspendinfo20)>       | 是    | 回调函数，返回长时任务暂停原因等信息。当长时任务为暂停状态时触发此回调。 |
 
 **错误码：**
 
@@ -1347,7 +1355,7 @@ on(type: 'continuousTaskActive', callback: Callback&lt;ContinuousTaskActiveInfo&
 | 参数名       | 类型                                 | 必填   | 说明                                       |
 | --------- | ---------------------------------- | ---- | ---------------------------------------- |
 | type   | string                            | 是    | 事件回调类型，固定取值为'continuousTaskActive'，表示长时任务激活。 |
-| callback   | Callback\<[ContinuousTaskActiveInfo](#continuoustaskactiveinfo20)>       | 是    | 回调函数，返回长时任务激活相关信息。 |
+| callback   | Callback\<[ContinuousTaskActiveInfo](#continuoustaskactiveinfo20)>       | 是    | 回调函数，返回长时任务激活相关信息。当暂停的长时任务被激活时触发此回调。 |
 
 **错误码：**
 
@@ -1704,6 +1712,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 export default class EntryAbility extends UIAbility {
   onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
     let isModeSupported: boolean = false; 
+    // 创建长时任务请求对象
     let continuousTaskRequest = new backgroundTaskManager.ContinuousTaskRequest();
     let modeList: Array<number> = [backgroundTaskManager.BackgroundTaskMode.MODE_TASK_KEEPING];
     continuousTaskRequest.backgroundTaskModes = modeList;
@@ -1760,6 +1769,7 @@ function callbackAuth(authResult: backgroundTaskManager.UserAuthResult) {
 
 export default class EntryAbility extends UIAbility {
   onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
+    // 创建长时任务请求对象
     let continuousTaskRequest = new backgroundTaskManager.ContinuousTaskRequest();
     let modeList: Array<number> = [backgroundTaskManager.BackgroundTaskMode.MODE_SPECIAL_SCENARIO_PROCESSING];
     continuousTaskRequest.backgroundTaskModes = modeList;
@@ -1826,6 +1836,7 @@ export default class EntryAbility extends UIAbility {
         return;
       }
       try {
+        // 创建长时任务请求对象
         let continuousTaskRequest = new backgroundTaskManager.ContinuousTaskRequest();
         let modeList: Array<number> = [backgroundTaskManager.BackgroundTaskMode.MODE_SPECIAL_SCENARIO_PROCESSING];
         continuousTaskRequest.backgroundTaskModes = modeList;
@@ -1886,6 +1897,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 export default class EntryAbility extends UIAbility {
   onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
     try {
+      // 创建长时任务请求对象
       let continuousTaskRequest = new backgroundTaskManager.ContinuousTaskRequest();
       continuousTaskRequest.checkSpecialScenarioAuth(this.context).then((res: backgroundTaskManager.UserAuthResult) => {
         console.info('Operation checkSpecialScenarioAuth succeeded. data: ' + JSON.stringify(res));
@@ -1946,6 +1958,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 export default class EntryAbility extends UIAbility {
   onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
     try {
+      // 创建长时任务请求对象
       let continuousTaskRequest = new backgroundTaskManager.ContinuousTaskRequest();
       continuousTaskRequest.checkSpecialScenarioAuthResult(this.context).then((res: backgroundTaskManager.UserAuthResult) => {
         console.info('Operation checkSpecialScenarioAuthResult succeeded. data: ' + JSON.stringify(res));

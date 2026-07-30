@@ -29,7 +29,9 @@
 
 下面的例子为嵌套两层子组件的典型示例，使用了装饰器[\@State](./state-management/arkts-state.md)和 [\@Link](./state-management/arkts-link.md)。开发者可组合使用上述命令，展示前端组件树、状态变量和其影响的组件等信息。
 
-```ts
+<!-- @[ui_inspector_profiler](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkUISample/createCustomComponents/entry/src/main/ets/component/UIInspectorProfiler.ets) -->
+
+``` TypeScript
 @Entry
 @Component
 struct Page {

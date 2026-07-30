@@ -30,5 +30,5 @@ import { bundleManager } from '@kit.AbilityKit';
 | -------------- | ------ | ---- | ---- | -------------- |
 | permissionName | string | 是   | 否   | 用户权限名称。   |
 | grantMode      | number | 是   | 否   | [权限的授予方式](../../security/AccessToken/app-permission-mgmt-overview.md#授权方式)。0：表示用户授权，1：表示系统授权。 |
-| labelId        | number | 是   | 否   | 权限的标签ID。   |
-| descriptionId  | number | 是   | 否   | 描述权限的ID。   |
+| labelId        | number | 是   | 否   | 权限标签的资源ID，用于显示权限名称。   |
+| descriptionId  | number | 是   | 否   | 权限描述信息的资源ID。   |

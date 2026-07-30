@@ -6,7 +6,7 @@
 <!--Tester: @lpw_work-->
 <!--Adviser: @zhang_yixin13-->
 
-本模块提供浏览器管理能力，包括设置/取消浏览器策略、获取浏览器策略等。
+本模块提供浏览器管理能力，包括设置/取消浏览器策略、获取浏览器策略等。适用于企业设备管理、员工上网行为管控、安全合规审计等场景。
 
 浏览器策略指通过配置或管理浏览器行为的一系列规则和设置，以确保安全性、合规性、性能优化和用户体验的一致性。
 
@@ -28,7 +28,7 @@ import { browser } from '@kit.MDMKit';
 
 setPolicySync(admin: Want, appId: string, policyName: string, policyValue: string): void
 
-为指定的浏览器设置浏览器子策略。<!--RP1--><!--RP1End-->
+为指定的浏览器设置浏览器子策略，适用于企业统一管理员工浏览器行为的场景。<!--RP1--><!--RP1End-->
 
 **需要权限：** ohos.permission.ENTERPRISE_SET_BROWSER_POLICY
 
@@ -72,7 +72,9 @@ let wantTemp: Want = {
 
 // 此处参数appId的赋值应替换为开发者自己指定的浏览器的应用ID
 let appId: string = 'com.example.******_******/******5t5CoBM=';
+// 浏览器策略名称
 let policyName: string = 'InsecurePrivateNetworkRequestsAllowed';
+// 浏览器策略值
 let policyValue: string = '{"level":"mandatory","scope":"machine","source":"platform","value":true}';
 
 try {
@@ -87,7 +89,7 @@ try {
 
 getPoliciesSync(admin: Want | null, appId: string): string
 
-通过appid获取指定浏览器设置的策略。<!--RP1--><!--RP1End-->
+通过appid获取指定浏览器设置的策略，适用于查询当前浏览器策略配置的场景，例如在企业设备管理应用中展示策略详情、验证策略是否生效等。<!--RP1--><!--RP1End-->
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
 
@@ -142,7 +144,7 @@ try {
 
 setManagedBrowserPolicy(admin: Want, bundleName: string, policyName: string, policyValue: string): void
 
-为指定的浏览器设置浏览器策略，成功后会发布系统公共事件[COMMON_EVENT_MANAGED_BROWSER_POLICY_CHANGED](../apis-basic-services-kit/common_event/commonEventManager-definitions.md#common_event_managed_browser_policy_changed)。
+为指定的浏览器设置浏览器策略，适用于企业统一管理员工浏览器行为的场景，例如配置浏览器安全策略等。成功后会发布系统公共事件[COMMON_EVENT_MANAGED_BROWSER_POLICY_CHANGED](../apis-basic-services-kit/common_event/commonEventManager-definitions.md#common_event_managed_browser_policy_changed)。
 
 > **说明：**
 >
@@ -161,8 +163,8 @@ setManagedBrowserPolicy(admin: Want, bundleName: string, policyName: string, pol
 | 参数名      | 类型                                                    | 必填 | 说明                                                         |
 | ----------- | ------------------------------------------------------- | ---- | ------------------------------------------------------------ |
 | admin       | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | 是   | 企业设备管理扩展组件。Want中必须包含企业设备管理扩展能力的abilityName和所在应用的bundleName。                                               |
-| bundleName  | string                                                  | 是   | 应用包名，用于指定浏览器。                                     |
-| policyName  | string                                                  | 是   | 浏览器策略名。 |
+| bundleName  | string                                                  | 是   | 应用包名，用于指定浏览器，表示应用的唯一标识。                                     |
+| policyName  | string                                                  | 是   | 浏览器策略名，由接口调用方和指定浏览器约定。 |
 | policyValue | string                                                  | 是   | 浏览器策略值。当此值为空字符串时，表示取消浏览器策略名对应浏览器子策略。 |
 
 **错误码**：
@@ -188,8 +190,11 @@ let wantTemp: Want = {
   abilityName: 'EnterpriseAdminAbility'
 };
 // 需根据实际情况进行替换
+// 浏览器应用包名
 let bundleName: string = 'com.example.testbrowser';
+// 浏览器策略名称
 let policyName: string = 'InsecurePrivateNetworkRequestsAllowed';
+// 浏览器策略值
 let policyValue: string = '{"level":"mandatory","scope":"machine","source":"platform","value":true}';
 
 try {
@@ -204,7 +209,7 @@ try {
 
 getManagedBrowserPolicy(admin: Want, bundleName: string): ArrayBuffer
 
-通过应用包名获取指定浏览器的浏览器策略。
+通过应用包名获取指定浏览器的浏览器策略，适用于查询当前浏览器策略配置的场景，例如在企业设备管理应用中展示策略详情、验证策略是否生效等。
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
 

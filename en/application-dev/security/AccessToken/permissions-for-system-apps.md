@@ -6218,6 +6218,20 @@ Allows an agent application to stop a specific application using CLI commands.
 
 **Valid since**: 26.0.0
 
+## ohos.permission.ACCESS_FUNCTION
+
+Allows a system application to access available functions.
+
+**Permission level**: system_basic
+
+**Authorization mode**: system_grant
+
+**Certificate-based authorization**: true
+
+**Supported devices**: Phone | PC/2in1 | Tablet | TV | Wearable | Car
+
+**Valid since**: 26.0.0
+
 ## ohos.permission.ACCESS_MAPDATA_DIR
 
 Allows a system application to read and write map data.
@@ -6577,6 +6591,20 @@ With this permission, the application can manage smart file categorization, gene
 **Supported devices**: Phone | PC/2in1 | Tablet
 
 **Valid since**: 26.0.0
+
+## ohos.permission.UPDATE_FORM_CROSS_BUNDLE
+
+Allows an application to update widgets of other applications.
+
+**Permission level**: system_basic
+
+**Authorization mode**: system_grant
+
+**Certificate-based authorization**: true
+
+**Supported devices**: Phone | PC/2in1 | Tablet | TV | Car
+
+**Since**: 26.0.0
 
 ## ohos.permission.FILE_MANAGER_SERVICE_DATA_ACCESS
 

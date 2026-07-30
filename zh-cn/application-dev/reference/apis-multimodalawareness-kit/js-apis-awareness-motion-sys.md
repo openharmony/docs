@@ -89,6 +89,21 @@ import { motion } from '@kit.MultimodalAwarenessKit';
 | INVERTED  | 2    | 表示逻辑方向倒置。                       |
 | RIGHT     | 3    | 表示向右。                               |
 
+## HoverHandAction
+
+悬浮手动作枚举。
+
+**起始版本**：26.0.0
+
+**系统能力**：SystemCapability.MultimodalAwareness.Motion
+
+**系统接口**：该接口为系统接口。
+
+| 名称 | 值   | 说明                     |
+| ---- | ---- | ------------------------ |
+| DOWN | 0    | 表示悬浮手进入检测区域。 |
+| UP   | 1    | 表示悬浮手离开检测区域。 |
+
 ## SmartRotateEvent
 
 智能旋转传感器事件的基本数据结构。
@@ -103,6 +118,23 @@ import { motion } from '@kit.MultimodalAwarenessKit';
 | -------------------| ----------------------| ----------|----------|--------|
 | physicalOrientation       | [PhysicalOrientation](#physicalorientation)   | 否        | 否         | 重力传感器报告的物理方向。|
 | logicalOrientation        | [LogicalOrientation](#logicalorientation)     | 否        | 是          | 智能算法调整后的逻辑方向。|
+
+## HoverHandDetectionArea
+
+悬浮手矩形检测区域的基本数据结构。
+
+**起始版本**：26.0.0
+
+**系统能力**：SystemCapability.MultimodalAwareness.Motion
+
+**系统接口**：该接口为系统接口。
+
+| 名称   | 类型   | 只读 | 可选 | 说明                                                         |
+| ------ | ------ | ---- | ---- | ------------------------------------------------------------ |
+| left   | number | 否   | 否   | 矩形区域的左边界，单位为px，该参数应为整数，取值范围为：[-2147483648,2147483647]。 |
+| top    | number | 否   | 否   | 矩形区域的上边界，单位为px，该参数应为整数，取值范围为：[-2147483648,2147483647]。 |
+| width  | number | 否   | 否   | 矩形区域的宽度，单位为px，该参数应为整数，取值范围为：[1,2147483647]。 |
+| height | number | 否   | 否   | 矩形区域的高度，单位为px，该参数应为整数，取值范围为：[1,2147483647]。 |
 
 ## motion.onPickupChange
 
@@ -236,6 +268,120 @@ try {
 }
 ```
 
+## motion.onHoverHandChange
+
+onHoverHandChange(detectionArea: HoverHandDetectionArea, callback: Callback&lt;HoverHandAction&gt;): void
+
+订阅悬浮手事件，并立即开启悬浮手事件检测，检测时长为五秒。需与offHoverHandChange配对使用，使用完毕后应调用offHoverHandChange取消订阅以释放系统资源。
+
+> **说明：**
+>
+> 检测时长到期后，悬浮手事件检测将自动终止，不再上报悬浮手事件，需要开发者再次调用订阅此接口以重新开启检测。
+
+**起始版本**：26.0.0
+
+**系统能力**：SystemCapability.MultimodalAwareness.Motion
+
+**系统接口**：此接口为系统接口，仅系统应用可调用。
+
+**参数**：
+
+| 参数名        | 类型                                                | 必填 | 说明                                                         |
+| ------------- | --------------------------------------------------- | ---- | ------------------------------------------------------------ |
+| detectionArea | [HoverHandDetectionArea](#hoverhanddetectionarea)   | 是   | 悬浮手检测矩形区域，用于指定设备屏幕中检测悬浮手事件的区域。<br/>若重复调用此接口，会覆盖上一次传入的检测区域。<br/>若矩形区域超出屏幕，则默认检测该矩形区域与屏幕的重合部分。 |
+| callback      | Callback&lt;[HoverHandAction](#hoverhandaction)&gt; | 是   | 回调函数，用于接收悬浮手动作信息。                           |
+
+**错误码**：
+
+以下错误码的详细介绍请参见[动作感知错误码](errorcode-motion.md)和[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| 202      | Permission verification failed. A non-system application calls a system API. |
+| 801      | Capability not supported. Failed to call the API due to limited device capabilities. |
+| 31500001 | Service exception. Possible causes: 1. A system error, such as null pointer, container-related exception; 2. N-API invocation exception, invalid N-API status. |
+| 31500002 | Subscription failed. Possible causes: 1. Callback registration failure; 2. Failed to bind native object to js wrapper; 3. N-API invocation exception, invalid N-API status; 4. IPC request exception. |
+
+**示例**：
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+import { motion } from '@kit.MultimodalAwarenessKit';
+
+try {
+    let area: motion.HoverHandDetectionArea = {
+      left: 0,
+      top: 0,
+      width: 100,
+      height: 100
+    };
+    motion.onHoverHandChange(area, (data: motion.HoverHandAction) => {
+        console.info('callback succeeded: hoverHandAction=' + data);
+    });
+} catch (err) {
+    let error = err as BusinessError;
+    console.error(`Failed onHoverHandChange. Code: ${error.code}, message: ${error.message}`);
+}
+```
+
+## motion.onHoverHandChange
+
+onHoverHandChange(detectionArea: HoverHandDetectionArea, duration: int, callback: Callback&lt;HoverHandAction&gt;): void
+
+订阅悬浮手事件，并立即开启悬浮手事件检测，支持指定检测时长。需与offHoverHandChange配对使用，使用完毕后应调用offHoverHandChange取消订阅以释放系统资源。
+
+> **说明：**
+>
+> 检测时长到期后，悬浮手事件检测将自动终止，不再上报悬浮手事件，需要开发者再次调用订阅此接口以重新开启检测。
+
+**起始版本**：26.0.0
+
+**系统能力**：SystemCapability.MultimodalAwareness.Motion
+
+**系统接口**：此接口为系统接口，仅系统应用可调用。
+
+**参数**：
+
+| 参数名        | 类型                                                | 必填 | 说明                                                         |
+| ------------- | --------------------------------------------------- | ---- | ------------------------------------------------------------ |
+| detectionArea | [HoverHandDetectionArea](#hoverhanddetectionarea)   | 是   | 目标检测矩形区域，用于指定设备屏幕中检测悬浮手事件的区域。<br/>若重复调用此接口，会覆盖上一次传入的检测区域。<br/>若矩形区域超出屏幕，则默认检测该矩形区域与屏幕的重合部分。 |
+| duration      | number                                              | 是   | 目标检测时长，单位为秒，该参数应为整数，取值范围为：[1,10]。<br/>悬浮手检测为高功耗检测，建议开发者按需设置检测时长。 |
+| callback      | Callback&lt;[HoverHandAction](#hoverhandaction)&gt; | 是   | 回调函数，用于接收悬浮手动作信息。                           |
+
+**错误码**：
+
+以下错误码的详细介绍请参见[动作感知错误码](errorcode-motion.md)和[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| 202      | Permission verification failed. A non-system application calls a system API. |
+| 801      | Capability not supported. Failed to call the API due to limited device capabilities. |
+| 31500001 | Service exception. Possible causes: 1. A system error, such as null pointer, container-related exception; 2. N-API invocation exception, invalid N-API status. |
+| 31500002 | Subscription failed. Possible causes: 1. Callback registration failure; 2. Failed to bind native object to js wrapper; 3. N-API invocation exception, invalid N-API status; 4. IPC request exception. |
+
+**示例**：
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+import { motion } from '@kit.MultimodalAwarenessKit';
+
+try {
+    let area: motion.HoverHandDetectionArea = {
+      left: 0,
+      top: 0,
+      width: 100,
+      height: 100
+    };
+    let duration: number = 6;
+    motion.onHoverHandChange(area, duration, (data: motion.HoverHandAction) => {
+        console.info('callback succeeded: hoverHandAction=' + data);
+    });
+} catch (err) {
+    let error = err as BusinessError;
+    console.error(`Failed onHoverHandChange. Code: ${error.code}, message: ${error.message}`);
+}
+```
+
 ## motion.offPickupChange
 
 offPickupChange(callback?: Callback&lt;PickupEvent&gt;): void
@@ -359,5 +505,71 @@ try {
 } catch (err) {
     let error = err as BusinessError;
     console.error("Failed offSmartRotateChange and err code is " + error.code);
+}
+```
+
+## motion.offHoverHandChange
+
+offHoverHandChange(callback?: Callback&lt;HoverHandAction&gt;): void
+
+取消订阅悬浮手事件。当应用不再需要监听悬浮手事件时使用，应调用此接口取消订阅以释放系统资源。
+
+**起始版本**：26.0.0
+
+**系统能力**：SystemCapability.MultimodalAwareness.Motion
+
+**系统接口**：此接口为系统接口，仅系统应用可调用。
+
+**参数**：
+
+| 参数名   | 类型                                                | 必填 | 说明                                                         |
+| -------- | --------------------------------------------------- | ---- | ------------------------------------------------------------ |
+| callback | Callback&lt;[HoverHandAction](#hoverhandaction)&gt; | 否   | 需取消的悬浮手事件回调函数，若无此参数，则取消订阅悬浮手事件的所有回调函数。 |
+
+**错误码**：
+
+以下错误码的详细介绍请参见[动作感知错误码](errorcode-motion.md)和[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| 202      | Permission verification failed. A non-system application calls a system API. |
+| 31500001 | Service exception. Possible causes: 1. A system error, such as null pointer, container-related exception; 2. N-API invocation exception, invalid N-API status. |
+| 31500003 | Unsubscription failed. Possible causes: 1. Callback failure; 2. N-API invocation exception, invalid N-API status; 3. IPC request exception. |
+
+**示例**：
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+import { motion } from '@kit.MultimodalAwarenessKit';
+
+try {
+    const callback = (data: motion.HoverHandAction) => {
+        console.info('callback succeeded: ' + data);
+    };
+    let area: motion.HoverHandDetectionArea = {
+      left: 0,
+      top: 0,
+      width: 100,
+      height: 100
+    };
+    motion.onHoverHandChange(area, callback);
+    motion.offHoverHandChange(callback); // 取消指定回调
+    console.info('offHoverHandChange succeeded');
+} catch (err) {
+    let error = err as BusinessError;
+    console.error(`Failed offHoverHandChange. Code: ${error.code}, message: ${error.message}`);
+}
+```
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+import { motion } from '@kit.MultimodalAwarenessKit';
+
+try {
+    motion.offHoverHandChange(); // 取消所有回调
+    console.info('offHoverHandChange succeeded');
+} catch (err) {
+    let error = err as BusinessError;
+    console.error(`Failed offHoverHandChange. Code: ${error.code}, message: ${error.message}`);
 }
 ```

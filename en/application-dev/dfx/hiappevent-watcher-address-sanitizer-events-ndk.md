@@ -1,14 +1,16 @@
 # Subscribing to Address Sanitizer Events (C/C++)
+
 <!--Kit: Performance Analysis Kit-->
 <!--Subsystem: HiviewDFX-->
 <!--Owner: @mlkgeek-->
 <!--Designer: @StevenLai1994-->
 <!--Tester: @gcw_KuLfPSbe-->
-<!--Adviser: @foryourself-->
+<!--Adviser: @jinqiuheng-->
+<!-- md-trans-meta sourceCommit=0d7fc68be790c392e3877efaaaaf4b9e3eff81ca translatedAt=2026-07-29T10:48:30.504Z pushedAt=2026-07-29T12:29:35.918Z -->
 
 ## **Available APIs**
 
-For details about how to use the APIs (such as parameter usage restrictions and value ranges), see [hiappevent.h](../reference/apis-performance-analysis-kit/capi-hiappevent-h.md).
+For detailed API usage instructions (parameter usage restrictions, specific value ranges, etc.), refer to [hiappevent.h](../reference/apis-performance-analysis-kit/capi-hiappevent-h.md).
 
 **Subscription APIs**
 
@@ -78,7 +80,7 @@ The following describes how to subscribe an address sanitizer event for an array
       In the **napi_init.cpp** file, define the methods related to the watcher of the **onReceive** type.
 
       ```c++
-      // Define a variable to cache the pointer to the created watcher.
+      // Define a variable to cache the pointer of the created watcher.
       static HiAppEvent_Watcher *systemEventWatcher; 
       
       static void OnReceive(const char *domain, const struct HiAppEvent_AppEventGroup *appEventGroups, uint32_t groupLen) {
@@ -198,7 +200,7 @@ The following describes how to subscribe an address sanitizer event for an array
 
 ### Step 3: Constructing an Address Sanitizer Error
 
-1. In the **napi_init.cpp** file, define a **Test** method to perform out-of-bounds access on an integer array.
+1. Edit the `napi_init.cpp` file and define a `Test` method that performs an out-of-bounds access on an integer array:
 
    ```c++
    static napi_value Test(napi_env env, napi_callback_info info)

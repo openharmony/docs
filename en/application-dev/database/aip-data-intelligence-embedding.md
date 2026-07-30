@@ -69,7 +69,7 @@ The following table lists the APIs related to application data vectorization. Fo
 
 ## How to Develop Text Vectorization
 
-1. Import the **intelligence** module.
+1. Import the required modules.
 
    <!-- @[import_the_aip_module](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkData/Aip/entry/src/main/ets/pages/Index.ets) --> 
 

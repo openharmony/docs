@@ -61,7 +61,7 @@ target_link_libraries(sample PUBLIC libnative_media_venc.so)
    #include <shared_mutex>
    ```
    
-2. 全局变量（仅作参考，可以根据实际情况将其封装到对象中）。
+2. 定义全局变量（仅作示例，具体参数值，请据能力查询接口获取相应值范围来参考配置）。
 
    ```c++
    // 视频帧宽度。
@@ -169,7 +169,7 @@ target_link_libraries(sample PUBLIC libnative_media_venc.so)
 5. 调用OH_VideoEncoder_Start()启动编码器。
 
    ```c++
-   // 配置待编码文件路径。
+   // 配置待编码文件路径。可填写应用沙箱路径等可访问目录。
    std::string_view outputFilePath = "/*yourpath*.h264";
    std::unique_ptr<std::ofstream> outputFile = std::make_unique<std::ofstream>();
    if (outputFile != nullptr) {
@@ -423,7 +423,7 @@ target_link_libraries(sample PUBLIC libnative_media_venc.so)
     配置输入文件、输出文件。
 
     ```c++
-    // 配置待编码文件路径。
+    // 配置待编码文件路径。可填写应用沙箱路径等可访问目录。
     std::string_view inputFilePath = "/*yourpath*.yuv";
     std::string_view outputFilePath = "/*yourpath*.h264";
     std::unique_ptr<std::ifstream> inputFile = std::make_unique<std::ifstream>();

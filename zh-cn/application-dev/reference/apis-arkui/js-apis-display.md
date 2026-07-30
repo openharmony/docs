@@ -1319,7 +1319,7 @@ createVirtualScreen(config:VirtualScreenConfig): Promise&lt;number&gt;
 | ------- | ----------------------- |
 | 201     | Permission verification failed. The application does not have the permission required to call the API. |
 | 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
-| 801     | Capability not supported.function createVirtualScreen can not work correctly due to limited device capabilities. |
+| 801     | Capability not supported. Function createVirtualScreen can not work correctly due to limited device capabilities. |
 | 1400001 | Invalid display or screen. |
 
 **示例：**
@@ -1327,16 +1327,7 @@ createVirtualScreen(config:VirtualScreenConfig): Promise&lt;number&gt;
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 
-class VirtualScreenConfig {
-  name : string = '';
-  width : number = 0;
-  height : number = 0;
-  density : number = 0;
-  surfaceId : string = '';
-  supportsFocus ?: boolean = true;
-}
-
-let config: VirtualScreenConfig = {
+let config: display.VirtualScreenConfig = {
   name: 'screen01',
   width: 1080,
   height: 2340,
@@ -1382,7 +1373,7 @@ destroyVirtualScreen(screenId:number): Promise&lt;void&gt;
 | ------- | ----------------------- |
 | 201     | Permission verification failed. The application does not have the permission required to call the API. |
 | 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
-| 801     | Capability not supported.function destroyVirtualScreen can not work correctly due to limited device capabilities. |
+| 801     | Capability not supported. Function destroyVirtualScreen can not work correctly due to limited device capabilities. |
 | 1400001 | Invalid display or screen. |
 | 1400003 | This display manager service works abnormally. |
 
@@ -1431,7 +1422,7 @@ setVirtualScreenSurface(screenId:number, surfaceId: string): Promise&lt;void&gt;
 | ------- | ----------------------- |
 | 201     | Permission verification failed. The application does not have the permission required to call the API. |
 | 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
-| 801     | Capability not supported.function setVirtualScreenSurface can not work correctly due to limited device capabilities. |
+| 801     | Capability not supported. Function setVirtualScreenSurface can not work correctly due to limited device capabilities. |
 | 1400001 | Invalid display or screen. |
 | 1400003 | This display manager service works abnormally. |
 
@@ -1505,7 +1496,7 @@ makeUnique(screenId:number): Promise&lt;void&gt;
 | ------- | ----------------------- |
 | 201     | Permission verification failed. The application does not have the permission required to call the API. |
 | 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed. |
-| 801     | Capability not supported.function makeUnique can not work correctly due to limited device capabilities. |
+| 801     | Capability not supported. Function makeUnique can not work correctly due to limited device capabilities. |
 | 1400001 | Invalid display or screen. |
 | 1400003 | This display manager service works abnormally. |
 
@@ -1569,7 +1560,7 @@ let relativePosition: display.RelativePosition = {
 try {
    // 将相对坐标转换为全局坐标
   let position: display.Position = display.convertRelativeToGlobalCoordinate(relativePosition);
-  console.info(`The global coordinate is ${position.x}, ${position.y}`)
+  console.info(`The global coordinate is ${position.x}, ${position.y}`);
 } catch (exception) {
   console.error(`Failed to convert the relative coordinate to the global coordinate. Code: ${exception.code}, message: ${exception.message}`);
 }
@@ -1619,7 +1610,7 @@ let position: display.Position = {
 try {
   // 将全局坐标转换为相对坐标
   let relPos: display.RelativePosition = display.convertGlobalToRelativeCoordinate(position, 0);
-  console.info(`The relative coordinate is ${relPos.displayId}, ${relPos.position.x}, ${relPos.position.y}`)
+  console.info(`The relative coordinate is ${relPos.displayId}, ${relPos.position.x}, ${relPos.position.y}`);
 } catch (exception) {
   console.error(`Failed to convert the global coordinate to the relative coordinate. Code: ${exception.code}, message: ${exception.message}`);
 }

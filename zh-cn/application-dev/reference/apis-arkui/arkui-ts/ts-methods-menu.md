@@ -14,7 +14,7 @@
 
 ## ContextMenu.close<sup>(deprecated)</sup>
 
-static close(): void
+static close()
 
 在页面范围内关闭通过[bindContextMenu](./ts-universal-attributes-menu.md#bindcontextmenu12)绑定的菜单。常用于页面跳转、拖拽开始等需要主动关闭已显示菜单的交互场景。
 

@@ -118,6 +118,7 @@
     - [@ohos.app.ability.wantConstant (Want常量)](js-apis-app-ability-wantConstant.md)
     <!--Del-->
     - [@ohos.abilityAccessCtrl (程序访问控制管理)(系统接口)](js-apis-abilityAccessCtrl-sys.md)
+    - [@ohos.abilityToolAccessCtrl (工具访问控制)(系统接口)](js-apis-abilityToolAccessCtrl-sys.md)
     - [@ohos.ability.screenLockFileManager (锁屏敏感数据管理)(系统接口)](js-apis-screenLockFileManager-sys.md)
     - [@ohos.app.ability.abilityManager (AbilityManager)(系统接口)](js-apis-app-ability-abilityManager-sys.md)
     - [@ohos.app.ability.appManager (appManager)(系统接口)](js-apis-app-ability-appManager-sys.md)
@@ -383,4 +384,5 @@
   - [锁屏敏感数据管理错误码](errorcode-screenLockFileManager.md)
   <!--Del-->
   - [应用域名校验错误码](errorcode-appDomainVerify-sys.md)
+  - [工具访问控制错误码](errorcode-abilityToolAccessCtrl-sys.md)
   <!--DelEnd-->

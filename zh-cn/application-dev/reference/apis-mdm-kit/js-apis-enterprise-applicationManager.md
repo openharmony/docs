@@ -87,7 +87,7 @@ try {
 
 removeDisallowedRunningBundlesSync(admin: Want, appIds:  Array\<string>, accountId?: number): void
 
-将应用从当前/指定用户下的应用运行禁止名单中移除。
+将应用从当前/指定用户下的应用运行禁止名单中移除。移除后，该应用将允许在当前/指定用户下运行。
 
 **需要权限：** ohos.permission.ENTERPRISE_MANAGE_APPLICATION
 
@@ -263,7 +263,7 @@ try {
 
 removeAllowedRunningBundles(admin: Want, appIdentifiers: Array\<string>, accountId: number): void
 
-将应用从指定用户下的应用运行允许名单中移除。
+将应用从指定用户下的应用运行允许名单中移除。移除后，该应用将不允许在指定用户下运行。
 
 **需要权限：** ohos.permission.ENTERPRISE_MANAGE_APPLICATION
 
@@ -439,7 +439,7 @@ try {
 
 removeAutoStartApps(admin: Want, autoStartApps: Array\<Want>): void
 
-为当前用户删除开机自启动应用名单。
+为当前用户删除开机自启动应用名单。删除后，应用将不再开机自启动。
 
 **需要权限：** ohos.permission.ENTERPRISE_MANAGE_APPLICATION
 
@@ -1466,7 +1466,7 @@ try {
 
 removeUserNonStopApps(admin: Want, applicationInstances: Array&lt;common.ApplicationInstance&gt;): void
 
-为指定用户删除不可关停应用名单。执行删除策略时，若参数列表中包含未安装应用，删除操作仍能成功执行；已安装的应用将被删除，未安装的应用不影响删除操作。
+为指定用户删除不可关停应用名单。删除后，用户可以在设备上正常关停该应用。执行删除策略时，若参数列表中包含未安装应用，删除操作仍能成功执行；已安装的应用将被删除，未安装的应用不影响删除操作。
 
 **需要权限：** ohos.permission.ENTERPRISE_MANAGE_APPLICATION
 
@@ -1650,7 +1650,7 @@ try {
 
 removeFreezeExemptedApps(admin: Want, applicationInstances: Array&lt;common.ApplicationInstance&gt;): void
 
-为指定用户删除后台防冻结应用名单。执行删除策略时，若参数列表中包含未安装应用，删除操作仍能成功执行；已安装的应用将被删除，未安装的应用不影响删除操作。
+为指定用户删除后台防冻结应用名单。删除后，应用可以被系统冻结。执行删除策略时，若参数列表中包含未安装应用，删除操作仍能成功执行；已安装的应用将被删除，未安装的应用不影响删除操作。
 
 **需要权限：** ohos.permission.ENTERPRISE_MANAGE_APPLICATION
 

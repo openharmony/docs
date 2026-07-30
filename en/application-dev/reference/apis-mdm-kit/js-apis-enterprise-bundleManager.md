@@ -1,12 +1,12 @@
 # @ohos.enterprise.bundleManager (Bundle Management)
 <!--Kit: MDM Kit-->
 <!--Subsystem: Customization-->
-<!--Owner: @huanleima-->
+<!--Owner: @huanleima; @weizai16-->
 <!--Designer: @hp_guo-->
 <!--Tester: @lpw_work-->
 <!--Adviser: @zhang_yixin13-->
 
-The **bundleManager** module provides APIs for bundle management, including adding, obtaining, and removing a list of bundles that are allowed to install.
+This module provides package management capabilities, including installing and uninstalling application packages, and managing the installation trustlist, installation blocklist, uninstallation blocklist, and distribution types of installable applications. In enterprise device management scenarios, these capabilities enable fine-grained control over application installation and uninstallation, preventing unauthorized installations and uninstallations, thereby safeguarding enterprise device security and reducing security risks.
 
 > **NOTE**
 >
@@ -134,7 +134,7 @@ try {
 
 ## bundleManager.getAllowedInstallBundlesSync
 
-getAllowedInstallBundlesSync(admin: Want, accountId?: number): Array&lt;string&gt;
+getAllowedInstallBundlesSync(admin: Want | null, accountId?: number): Array&lt;string&gt;
 
 Obtains the applications that can be installed by the current or specified user.
 
@@ -148,14 +148,14 @@ Obtains the applications that can be installed by the current or specified user.
 
 | Name   | Type                                                   | Mandatory| Description                                                        |
 | --------- | ------------------------------------------------------- | ---- | ------------------------------------------------------------ |
-| admin     | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | Yes  | EnterpriseAdminExtensionAbility. **Want** must contain the ability name of the EnterpriseAdminExtensionAbility and the bundle name of the application.                                              |
+| admin     | [Want](../apis-ability-kit/js-apis-app-ability-want.md) \| null | Yes  | EnterpriseAdminExtensionAbility. **Want** must contain the ability name of the EnterpriseAdminExtensionAbility and the bundle name of the application.<br>When multiple MDM applications exist on the device, passing a **Want** parameter queries the policy set by the corresponding enterprise device administrator application for versions earlier than API version 26.0.0. Since API version 26.0.0, passing null is additionally supported to query the policy that actually takes effect.|
 | accountId | number                                                  | No  | User ID, which must be greater than or equal to 0.<br> You can call [getOsAccountLocalId](../apis-basic-services-kit/js-apis-osAccount.md#getosaccountlocalid9-1) of **@ohos.account.osAccount** to obtain the user ID.<br> - If **accountId** is passed in, this API applies to the specified user.<br> - If **accountId** is not passed in, this API applies to the current user.|
 
 **Return value**
 
 | Type               | Description                          |
 | ------------------- | ------------------------------ |
-| Array&lt;string&gt; | Array of applications that can be installed by the current user.|
+| Array&lt;string&gt; | List of bundles that are allowed to be installed by the current or specified user.|
 
 **Error codes**
 
@@ -300,7 +300,7 @@ try {
 
 ## bundleManager.getDisallowedInstallBundlesSync
 
-getDisallowedInstallBundlesSync(admin: Want, accountId?: number): Array&lt;string&gt;
+getDisallowedInstallBundlesSync(admin: Want | null, accountId?: number): Array&lt;string&gt;
 
 Obtains the applications that cannot be installed by the current or specified user.
 
@@ -314,14 +314,14 @@ Obtains the applications that cannot be installed by the current or specified us
 
 | Name   | Type                                                   | Mandatory| Description                                                        |
 | --------- | ------------------------------------------------------- | ---- | ------------------------------------------------------------ |
-| admin     | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | Yes  | EnterpriseAdminExtensionAbility. **Want** must contain the ability name of the EnterpriseAdminExtensionAbility and the bundle name of the application.                                              |
+| admin     | [Want](../apis-ability-kit/js-apis-app-ability-want.md) \| null | Yes  | EnterpriseAdminExtensionAbility. **Want** must contain the ability name of the EnterpriseAdminExtensionAbility and the bundle name of the application.<br>When multiple MDM applications exist on the device, passing a **Want** parameter queries the policy set by the corresponding enterprise device administrator application for versions earlier than API version 26.0.0. Since API version 26.0.0, passing null is additionally supported to query the policy that actually takes effect.|
 | accountId | number                                                  | No  | User ID, which must be greater than or equal to 0.<br> You can call [getOsAccountLocalId](../apis-basic-services-kit/js-apis-osAccount.md#getosaccountlocalid9-1) of **@ohos.account.osAccount** to obtain the user ID.<br> - If **accountId** is passed in, this API applies to the specified user.<br> - If **accountId** is not passed in, this API applies to the current user.|
 
 **Return value**
 
 | Type               | Description                          |
 | ------------------- | ------------------------------ |
-| Array&lt;string&gt; | Array of applications that cannot be installed by the current user.|
+| Array&lt;string&gt; | List of bundles that are not allowed to be installed by the current or specified user.|
 
 **Error codes**
 
@@ -469,9 +469,9 @@ try {
 
 ## bundleManager.getDisallowedUninstallBundlesSync
 
-getDisallowedUninstallBundlesSync(admin: Want, accountId?: number): Array&lt;string&gt;
+getDisallowedUninstallBundlesSync(admin: Want | null, accountId?: number): Array&lt;string&gt;
 
-Obtains the bundles that cannot be uninstalled by the current or specified user.
+Obtains the bundles that are not allowed to be uninstalled by the current or specified user.
 
 **Required permissions**: ohos.permission.ENTERPRISE_SET_BUNDLE_INSTALL_POLICY
 
@@ -483,14 +483,14 @@ Obtains the bundles that cannot be uninstalled by the current or specified user.
 
 | Name   | Type                                                   | Mandatory| Description                                                        |
 | --------- | ------------------------------------------------------- | ---- | ------------------------------------------------------------ |
-| admin     | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | Yes  | EnterpriseAdminExtensionAbility. **Want** must contain the ability name of the EnterpriseAdminExtensionAbility and the bundle name of the application.                                              |
+| admin     | [Want](../apis-ability-kit/js-apis-app-ability-want.md) \| null | Yes  | EnterpriseAdminExtensionAbility. **Want** must contain the ability name of the EnterpriseAdminExtensionAbility and the bundle name of the application.<br>When multiple MDM applications exist on the device, passing a **Want** parameter queries the policy set by the corresponding enterprise device administrator application for versions earlier than API version 26.0.0. Since API version 26.0.0, passing null is additionally supported to query the policy that actually takes effect.|
 | accountId | number                                                  | No  | User ID, which must be greater than or equal to 0.<br> You can call [getOsAccountLocalId](../apis-basic-services-kit/js-apis-osAccount.md#getosaccountlocalid9-1) of **@ohos.account.osAccount** to obtain the user ID.<br> - If **accountId** is passed in, this API applies to the specified user.<br> - If **accountId** is not passed in, this API applies to the current user.|
 
 **Return value**
 
 | Type               | Description                          |
 | ------------------- | ------------------------------ |
-| Array&lt;string&gt; | Array of bundles that cannot be uninstalled by the user.|
+| Array&lt;string&gt; | List of bundles that are not allowed to be uninstalled by the user.|
 
 **Error codes**
 
@@ -517,7 +517,7 @@ let wantTemp: Want = {
 
 try {
   // Replace parameters with actual values.
-  let result: Array<String> = bundleManager.getDisallowedUninstallBundlesSync(wantTemp, 100);
+  let result: Array<string> = bundleManager.getDisallowedUninstallBundlesSync(wantTemp, 100);
   console.info(`Succeeded in getting disallowed uninstall bundles, result : ${JSON.stringify(result)}`);
 } catch (err) {
   console.error(`Failed to get disallowed uninstall bundles. Code is ${err.code}, message is ${err.message}`);
@@ -528,7 +528,7 @@ try {
 
 uninstall(admin: Want, bundleName: string, userId?: number, isKeepData?: boolean): Promise&lt;void&gt;
 
-Uninstalls an application of the current or specified user. The **isKeepData** parameter specifies whether to retain the bundle data. This API uses a promise to return the result.
+Uninstalls a specified bundle of the current or specified user. The **isKeepData** parameter specifies whether to retain the bundle data. This API uses a promise to return the result. After the API is successfully called, the application is uninstalled, and the data is retained or deleted based on the **isKeepData** parameter.
 
 > **NOTE**
 >
@@ -591,7 +591,7 @@ bundleManager.uninstall(wantTemp, 'bundleName', 100, true).then(() => {
 
 install(admin: Want, hapFilePaths: Array\<string>, installParam?: InstallParam): Promise\<void>
 
-Installs specified applications. This API uses a promise to return the result.<br>This API can be used to install only applications of the **enterprise_mdm** (MDM application) or **enterprise_normal** (common enterprise application) distribution type. You can call the [getBundleInfoForSelf](../apis-ability-kit/js-apis-bundleManager.md#bundlemanagergetbundleinfoforself) API to query the [BundleInfo](../apis-ability-kit/js-apis-bundleManager-bundleInfo.md) of an application, where **BundleInfo.appInfo.appDistributionType** indicates the distribution type.
+Installs specified applications. This API uses a promise to return the result.<br>This API can be used to install only applications of the **enterprise_mdm** (MDM application) or **enterprise_normal** (common enterprise application) distribution type. You can call the [getBundleInfoForSelf](../apis-ability-kit/js-apis-bundleManager.md#bundlemanagergetbundleinfoforself) API to query the [BundleInfo](../apis-ability-kit/js-apis-bundleManager-bundleInfo.md) of an application, where **BundleInfo.appInfo.appDistributionType** indicates the distribution type. Since API version 26.0.0, you are advised to use [installForResult](#bundlemanagerinstallforresult) to obtain more detailed error code return values.
 > **NOTE**
 > 
 > This API is time-consuming. Subsequent calls to other synchronous APIs in the application main thread must wait for the asynchronous return of this API.
@@ -680,6 +680,124 @@ bundleManager.install(wantTemp, hapFilePaths, installParam).then(() => {
 });
 ```
 
+## bundleManager.installForResult
+
+installForResult(admin: Want, hapFilePaths: Array\<string>, installParam?: InstallParam): Promise\<void\>
+
+Installs the application bundle in the specified path and returns the installation result. This API uses a promise to return the result.<br>This API can be used to install only applications of the **enterprise_mdm** (MDM application) or **enterprise_normal** (common enterprise application) distribution type. You can call the [getBundleInfoForSelf](../apis-ability-kit/js-apis-bundleManager.md#bundlemanagergetbundleinfoforself) API to query the [BundleInfo](../apis-ability-kit/js-apis-bundleManager-bundleInfo.md) of an application, where **BundleInfo.appInfo.appDistributionType** indicates the distribution type.
+
+> **NOTE**
+> 
+> This API is time-consuming. Subsequent calls to other synchronous APIs in the application main thread must wait for the asynchronous return of this API.
+
+**Since:** 26.0.0
+
+**Required permissions**: ohos.permission.ENTERPRISE_INSTALL_BUNDLE
+
+**System capability**: SystemCapability.Customization.EnterpriseDeviceManager
+
+**Model restriction**: This API can be used only in the stage model.
+
+**Parameters**
+
+| Name      | Type                                                   | Mandatory| Description                  |
+| ------------ | ------------------------------------------------------- | ---- | ---------------------- |
+| admin        | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | Yes  | EnterpriseAdminExtensionAbility. **Want** must contain the ability name of the EnterpriseAdminExtensionAbility and the bundle name of the application.        |
+| hapFilePaths | Array\<string>                                          | Yes  | Applications to install. The app bundle must be stored in the path that the app has the permission to access, such as the app sandbox path. For details about the mapping between the app sandbox path and the actual physical path, see [Mappings Between App Sandbox Paths and Physical Paths](../../file-management/app-sandbox-directory.md#mappings-between-application-sandbox-paths-and-physical-paths).|
+| installParam | [InstallParam](#installparam)                           | No  | Application installation parameters.      |
+
+**Return value**
+
+| Type               | Description                                                   |
+| ------------------- | ------------------------------------------------------- |
+| Promise&lt;void&gt; | Promise that returns no value. If the operation fails, an error object will be thrown.|
+
+**Error codes**
+
+For details about the error codes, see [Enterprise Device Management Error Codes](errorcode-enterpriseDeviceManager.md) and [Universal Error Codes](../errorcode-universal.md).
+
+| ID| Error Message                                                    |
+| -------- | ------------------------------------------------------------ |
+| 9200001  | The application is not an administrator application of the device. |
+| 9200002  | The administrator application does not have permission to manage the device. |
+| 9201002  | Failed to install the application.                           |
+| 9201022  | Failed to install the HAP because of insufficient system disk space. |
+| 9201023  | Failed to install the HAP because enterprise device management disallows the installation. |
+| 9201024  | Failed to install the HAP because the HAP fails to be parsed. |
+| 9201025  | Failed to install the HAP because the HAP signature fails to be verified. |
+| 9201026  | Failed to install the HAP because the HAP path is invalid or the HAP is too large. |
+| 9201027  | Failed to install the HAPs because they have different configuration information. |
+| 9201028  | Failed to install the HAP because the isolationMode configured is not supported. |
+| 9201029  | Failed to install the HAP since the version of the HAP to install is too early. |
+| 9201030  | Failed to install the HAP because the VersionCode to be updated is not greater than the current VersionCode. |
+| 9201031  | Installation failed because the dependent module does not exist. |
+| 9201032  | The specified user ID is not found. |
+| 9201033  | Failed to install the HAP because the overlay check failed. |
+| 9201034  | Failed to install the HSP due to missing required permissions. |
+| 9201035  | Installation failed because the installation of cross-app shared libraries is not allowed. |
+| 9201036  | Failed to install the HAP due to incorrect URI in the data proxy. |
+| 9201037  | Failed to install the HAP due to incorrect permission configuration in the data proxy. |
+| 9201038  | Failed to install the HAP due to code signature verification failure. |
+| 9201039  | Failed to install the HAP due to enterprise device verification failure. |
+| 201      | Permission verification failed. The application does not have the permission required to call the API. |
+
+**Example**
+Example of not passing the **installParam** parameter:
+```ts
+import { bundleManager } from '@kit.MDMKit';
+import { Want } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+// Install the application for the current user.
+let wantTemp: Want = {
+  // Replace with actual values.
+  bundleName: 'com.example.myapplication',
+  abilityName: 'EnterpriseAdminAbility'
+};
+// Set bundleName based on the actual situation. For example, if bundleName is com.example.myapplication, the valid path is '/data/storage/el2/base/com.example.myapplication/haps/entry/testinstall/ExtensionTest.hap'.
+// Ensure that the file in the corresponding path exists and the application has the permission to access the file.
+let hapFilePaths: Array<string> = ['/data/storage/el2/base/bundleName/haps/entry/testinstall/ExtensionTest.hap'];
+
+bundleManager.installForResult(wantTemp, hapFilePaths).then(() => {
+  console.info('Succeeded in installing bundles.');
+}).catch((err: BusinessError) => {
+  // After obtaining the error code, rectify the fault based on the error cause in the API comment.
+  console.error(`Failed to install bundles. Code is ${err.code}, message is ${err.message}`);
+});
+```
+
+Example of passing the **installParam** parameter:
+```ts
+import { bundleManager } from '@kit.MDMKit';
+import { Want } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+// Install the application for all users.
+let wantTemp: Want = {
+  // Replace with actual values.
+  bundleName: 'com.example.myapplication',
+  abilityName: 'EnterpriseAdminAbility'
+};
+// Set bundleName based on the actual situation. For example, if bundleName is com.example.myapplication, the valid path is '/data/storage/el2/base/com.example.myapplication/haps/entry/testinstall/ExtensionTest.hap'.
+// Ensure that the file in the corresponding path exists and the application has the permission to access the file.
+let hapFilePaths: Array<string> = ['/data/storage/el2/base/bundleName/haps/entry/testinstall/ExtensionTest.hap'];
+const params: Record<string, string> = {
+  'ohos.bms.param.enterpriseForAllUser': 'true'
+};
+let installParam: bundleManager.InstallParam = {
+  // Replace with actual values.
+  userId: 100,
+  installFlag: 0,
+  parameters: params
+};
+bundleManager.installForResult(wantTemp, hapFilePaths, installParam).then(() => {
+  console.info('Succeeded in installing bundles.');
+}).catch((err: BusinessError) => {
+  // After obtaining the error code, rectify the fault based on the error cause in the API comment.
+  console.error(`Failed to install bundles. Code is ${err.code}, message is ${err.message}`);
+});
+```
+
 ## bundleManager.getInstalledBundleList<sup>20+</sup>
 
 getInstalledBundleList(admin: Want, accountId: number): Promise\<Array\<BundleInfo>>
@@ -696,8 +814,8 @@ Obtains the applications installed by a specified user on a device. This API use
 
 | Name      | Type                                                   | Mandatory| Description                  |
 | ------------ | ------------------------------------------------------- | ---- | ---------------------- |
-| admin        | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | Yes  | EnterpriseAdminExtensionAbility. **Want** must contain the ability name of the EnterpriseAdminExtensionAbility and the bundle name of the application.        |
-| accountId    | number                                                  | Yes  | User ID. The value is a positive integer greater than or equal to 0.<br> You can call [getOsAccountLocalId](../apis-basic-services-kit/js-apis-osAccount.md#getosaccountlocalid9-1) of @ohos.account.osAccount to obtain the user ID.|
+| admin        | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | Yes  | EnterpriseAdminExtensionAbility. **Want** must contain the ability name of the EnterpriseAdminExtensionAbility and the bundle name of the application.                                      |
+| accountId    | number                                                  | Yes  | User ID, which must be greater than or equal to 0.<br> You can call [getOsAccountLocalId](../apis-basic-services-kit/js-apis-osAccount.md#getosaccountlocalid9-1) of **@ohos.account.osAccount** to obtain the user ID.|
 
 **Return value**
 
@@ -753,7 +871,7 @@ Obtains the list of applications installed by a specified user based on the spec
 | Name      | Type                                                   | Mandatory| Description                  |
 | ------------ | ------------------------------------------------------- | ---- | ---------------------- |
 | admin        | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | Yes  | EnterpriseAdminExtensionAbility. **Want** must contain the ability name of the EnterpriseAdminExtensionAbility and the bundle name of the application.        |
-| accountId    | number                                                  | Yes  | User ID. The value is a positive integer greater than or equal to 0.<br> You can call [getOsAccountLocalId](../apis-basic-services-kit/js-apis-osAccount.md#getosaccountlocalid9-1) of @ohos.account.osAccount to obtain the user ID.|
+| accountId    | number                                                  | Yes  | User ID, which must be greater than or equal to 0.<br> You can call [getOsAccountLocalId](../apis-basic-services-kit/js-apis-osAccount.md#getosaccountlocalid9-1) of **@ohos.account.osAccount** to obtain the user ID.|
 | [bundleInfoGetFlag](js-apis-enterprise-bundleManager.md#bundleinfogetflag23)    | number              | Yes  | Type of the bundle information to obtain.|
 
 **Return value**
@@ -903,7 +1021,7 @@ try {
 
 ## bundleManager.getInstallationAllowedAppDistributionTypes<sup>20+</sup>
 
-getInstallationAllowedAppDistributionTypes(admin: Want): Array&lt;AppDistributionType&gt;
+getInstallationAllowedAppDistributionTypes(admin: Want | null): Array&lt;AppDistributionType&gt;
 
 Obtains the distribution type of the signing certificate used by applications that can be installed.
 
@@ -917,7 +1035,7 @@ Obtains the distribution type of the signing certificate used by applications th
 
 | Name      | Type                                                      | Mandatory| Description                                                        |
 | ------------ | -------------------------------------------------------    | ---- | ------------------------------------------------------------ |
-| admin        | [Want](../apis-ability-kit/js-apis-app-ability-want.md)    | Yes  | EnterpriseAdminExtensionAbility. **Want** must contain the ability name of the EnterpriseAdminExtensionAbility and the bundle name of the application.                                      |
+| admin     | [Want](../apis-ability-kit/js-apis-app-ability-want.md) \| null | Yes  | EnterpriseAdminExtensionAbility. **Want** must contain the ability name of the EnterpriseAdminExtensionAbility and the bundle name of the application.<br>When multiple MDM applications exist on the device, passing a **Want** parameter queries the policy set by the corresponding enterprise device administrator application for versions earlier than API version 26.0.0. Since API version 26.0.0, passing null is additionally supported to query the policy that actually takes effect.|
 
 **Return value**
 
@@ -1002,12 +1120,96 @@ let wantTemp: Want = {
 // Replace with actual values.
 let bundleNames: Array<string> = [ 'com.huaweicloud.m' ];
 try {
-    bundleManager.installMarketApps(wantTemp, bundleNames);
-    console.info(`Succeeded in installing market apps.`);
+  bundleManager.installMarketApps(wantTemp, bundleNames);
+  console.info(`Succeeded in installing market apps.`);
 } catch(err) {
-    console.error(`Failed to install market apps. Code: ${err.code}, message: ${err.message}`);
+  console.error(`Failed to install market apps. Code: ${err.code}, message: ${err.message}`);
 }
 ```
+
+## bundleManager.getInstalledBundleStorageStats
+
+getInstalledBundleStorageStats(admin: Want, bundleNames: Array\<string>, accountId: number): Promise\<Array\<BundleStorageStats>>
+
+Obtains the storage usage of installed applications of a specified user on a device. This API uses a promise to return the result.
+
+> **NOTE**
+> 
+> 1. Only the storage usage of installed applications can be obtained.
+>
+> 2. If **bundleNames** is empty or all bundle names passed are of uninstalled applications, error code 9200012 will be returned.
+>
+> 3. If some of the applications specified in the **bundleNames** parameter are installed and some are not, the API returns normally. For installed applications, their actual storage usage information is returned. For uninstalled applications, **0** is returned as their storage usage.
+>
+> 4. This API supports cross-user queries. For example, user 100 can query the storage usage of some applications of user 101.
+
+**Since:** 26.0.0
+
+**Required permissions**: ohos.permission.ENTERPRISE_GET_ALL_BUNDLE_INFO
+
+**System capability**: SystemCapability.Customization.EnterpriseDeviceManager
+
+**Model restriction**: This API can be used only in the stage model.
+
+**Parameters**
+
+| Name      | Type                                                   | Mandatory| Description                  |
+| ------------ | ------------------------------------------------------- | ---- | ---------------------- |
+| admin        | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | Yes  | EnterpriseAdminExtensionAbility. **Want** must contain the ability name of the EnterpriseAdminExtensionAbility and the bundle name of the application.        |
+| bundleNames  | Array&lt;string&gt;                                     | Yes  | Application bundle name list. The list must contain no more than 200 bundle names.|
+| accountId    | number                                                  | Yes  | User ID, which must be greater than or equal to 0.<br> You can call [getOsAccountLocalId](../apis-basic-services-kit/js-apis-osAccount.md#getosaccountlocalid9-1) of **@ohos.account.osAccount** to obtain the user ID.|
+
+**Return value**
+
+| Type               | Description                                                   |
+| ------------------- | ------------------------------------------------------- |
+| Promise&lt;Array&lt;[BundleStorageStats](#bundlestoragestats)&gt;&gt; | Promise used to return the storage usage information of the installed applications.|
+
+**Error codes**
+
+For details about the error codes, see [Enterprise Device Management Error Codes](errorcode-enterpriseDeviceManager.md) and [Universal Error Codes](../errorcode-universal.md).
+
+| ID| Error Message                                                    |
+| -------- | ------------------------------------------------------------ |
+| 9200001  | The application is not an administrator application of the device. |
+| 9200002  | The administrator application does not have permission to manage the device. |
+| 9200012  | Parameter verification failed.                               |
+| 201      | Permission verification failed. The application does not have the permission required to call the API. |
+
+**Example**
+
+```ts
+import { Want } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { bundleManager } from '@kit.MDMKit';
+
+let wantTemp: Want = {
+  // Replace with actual values.
+  bundleName: 'com.example.myapplication',
+  abilityName: 'EnterpriseAdminAbility'
+};
+// Replace with actual values.
+let bundleNames: Array<string> = ['com.example.app1', 'com.example.app2'];
+let accountId: number = 100;
+bundleManager.getInstalledBundleStorageStats(wantTemp, bundleNames, accountId).then((result) => {
+  console.info('Succeeded in getting installed bundle storage stats.');
+}).catch((err: BusinessError) => {
+  console.error(`Failed to get installed bundle storage stats. Code is ${err.code}, message is ${err.message}`);
+});
+```
+<!--code_no_check-->
+```ts
+// Return value example.
+[
+  {
+    "bundleName": "com.example.edmtest",
+    "appSize": 38185408,
+    "dataSize": 1216566
+  },
+  // ...
+]
+```
+
 
 ## InstallParam
 
@@ -1018,7 +1220,7 @@ Defines the parameters for application installation.
 | Name                    | Type                  | Read-Only| Optional| Description                                                        |
 | ------------------------ | ---------------------- | ---- | ---- | ------------------------------------------------------------ |
 | userId                   | number                 | No  | Yes| User ID, which must be greater than or equal to 0. The default value is the user ID of the caller.   |
-| installFlag              | number                 | No  | Yes|Installation flag.<br> - **0**: initial installation.<br>- **1**: overwrite installation.<br>- **2**: installation-free.<br>Default value: **0**|
+| installFlag              | number                 | No  | Yes|Installation flag.<br> **0** (default value) indicates fresh installation of the application, **1** indicates overlay installation of the application, and **2** indicates installation-free.|
 | parameters<sup>19+</sup> | Record&lt;string, string&gt; | No  | Yes| Extended parameters. The default value is null. The key can be **ohos.bms.param.enterpriseForAllUser**. If the corresponding value is set **true**, the application is installed for all users.|
 
 ## AppDistributionType<sup>20+</sup>
@@ -1092,7 +1294,7 @@ Defines the application information.
 | process                    | string                                                       | Yes  | No  | Process name.|
 | codePath                   | string                                                       | Yes  | No  | Installation directory of the application.|
 | removable                  | boolean                                                      | Yes  | No  | Whether the application is removable. **true** if removable, **false** otherwise.|
-| accessTokenId             | number                                                       | Yes  | No  | Access token ID of the application, which is used in the [application access control verification API](../apis-ability-kit/js-apis-abilityAccessCtrl.md#checkaccesstoken9).|
+| accessTokenId             | number                                                       | Yes  | No  | Access token ID of the application, which is used in the [checkAccessToken](../apis-ability-kit/js-apis-abilityAccessCtrl.md#checkaccesstoken9).|
 | uid                       | number                                                       | Yes  | No  | UID of the application.|
 | iconResource              | [Resource](#resource20) | Yes| No| Resource information of the application icon, including the bundle name, module name, and ID of the resource.|
 | labelResource             | [Resource](#resource20) | Yes| No| Resource information of the application label, including the bundle name, module name, and ID of the resource.|
@@ -1132,3 +1334,19 @@ Enumerates the bundle flags, which indicate the type of bundle information to ob
 | WITH_APPLICATION_INFO         | 1 << 0 | Obtains the default bundle information and **applicationInfo** (excluding **iconData**).|
 | WITH_SIGNATURE_INFO           | 1 << 1 | Obtains the default bundle information and **signatureInfo**.|
 | WITH_APPLICATION_ICON_INFO    | 1 << 2 | Obtains the default bundle information and **applicationInfo** (including **iconData**).|
+
+## BundleStorageStats
+
+Storage usage information of the application.
+
+**Since:** 26.0.0
+
+**System capability**: SystemCapability.Customization.EnterpriseDeviceManager
+
+**Model restriction**: This API can be used only in the stage model.
+
+| Name     | Type          | Read-Only| Optional| Description                       |
+| --------- | -------------- | ---- | ---- | --------------------------- |
+| bundleName| string         | No  | No  | Bundle name of the application.                |
+| appSize   | number         | No  | No  | Size of the application installation files, in bytes.<br>Application installation file directory:<br>/data/storage/el1/bundle         |
+| dataSize  | number         | No  | No  | Size of the local data, distributed data, and database data of the application, in bytes.<br>Local file directory (parent directory of the cache file directory):<br>/data/storage/\${el1-el5}/base<br>Distributed file directory:<br>/data/storage/el2/distributedfiles<br>Database file directory:<br>/data/storage/\${el1-el5}/database<br> **Note**: **\${el1-el5}** refers to the directories [el1, el2, el3, el4, el5](../../../application-dev/file-management/app-sandbox-directory.md#application-file-directory-and-application-file-path)|

@@ -1,4 +1,4 @@
-# MVVM V1
+# MVVM (V1)
 <!--Kit: ArkUI-->
 <!--Subsystem: ArkUI-->
 <!--Owner: @zzq212050299-->
@@ -6,7 +6,7 @@
 <!--Tester: @TerryTsao-->
 <!--Adviser: @zhang_yixin13-->
 
-After mastering the basic concepts of status management, developers usually try to develop their own applications. In the early stage of application development, if the project structure is not carefully planned, the number of status variables increases as the project expands and becomes complex. As a result, the relationships between components become complex. In this case, developing new functions may cause a chain reaction and increase maintenance costs. This document describes the MVVM mode and the relationship between the UI development mode of ArkUI and MVVM, and provides guidance for developers to design the project structure to facilitate product development and maintenance during product iteration and upgrade.
+After mastering the basic concepts of state management, developers usually try to develop their own applications. In the early stage of application development, if the project structure is not carefully planned, the number of state variables increases as the project expands and becomes complex. As a result, the relationships between components become complex. In this case, developing new functions may cause a chain reaction and increase maintenance costs. This document describes the MVVM mode and the relationship between the UI development mode of ArkUI and MVVM, and provides guidance for developers to design the project structure to facilitate product development and maintenance during product iteration and upgrade.
 
 
 Most decorators are covered in this topic, therefore, you are advised to read [State Management Overview](./arkts-state-management-overview.md) and topics related to decorators of V1 to have a basic understanding of state management V1 before getting started.
@@ -85,7 +85,7 @@ This section describes how to use the ArkUI framework to design your own applica
 
 ### @State
 
-* The [@State](./arkts-state.md) decorator is one of the most commonly used decorators and is used to define state variables. Generally, these status variables are used as the data source of the parent component. When a developer clicks a status variable, the status variable is updated and the UI is refreshed.
+* The [@State](./arkts-state.md) decorator is one of the most commonly used decorators and is used to define state variables. Generally, these state variables are used as the data source of the parent component. When a developer clicks a state variable, the state variable is updated and the UI is refreshed.
 
 <!-- @[state_source_update_refresh](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkUISample/ArktsMvvmSample/entry/src/main/ets/pages/StateIndex.ets) -->
 

@@ -796,7 +796,7 @@ struct Index {
   xComponentController: XComponentController = new XComponentController();
 
   setVirtualScreenSurface = () => {
-    let screenId: number = 1;
+    let screenId: number = 1;// 屏幕ID需通过getAllScreens()获取或从createVirtualScreen()返回值获取
     let surfaceId = this.xComponentController.getXComponentSurfaceId();
     // 设置虚拟屏幕的surface
     screen.setVirtualScreenSurface(screenId, surfaceId, (err: BusinessError) => {
@@ -874,7 +874,7 @@ struct Index {
   xComponentController: XComponentController = new XComponentController();
 
   setVirtualScreenSurface = () => {
-    let screenId: number = 1;
+    let screenId: number = 1;// 屏幕ID需通过getAllScreens()获取或从createVirtualScreen()返回值获取
     let surfaceId = this.xComponentController.getXComponentSurfaceId();
     // 设置虚拟屏幕的surface
     screen.setVirtualScreenSurface(screenId, surfaceId).then(() => {
@@ -1220,15 +1220,15 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 // 屏幕ID需通过getAllScreens()获取
 let mainScreenOptions: screen.MultiScreenPositionOptions = {
-  id : 0,  // 主屏ID
-  startX : 0,
-  startY : 0
+  id: 0,  // 主屏ID
+  startX: 0,
+  startY: 0
 }; // 主屏的位置信息
 
 let secondaryScreenOptions: screen.MultiScreenPositionOptions = {
-  id : 12,  // 扩展屏ID
-  startX : 1000,
-  startY : 1000
+  id: 12,  // 扩展屏ID
+  startX: 1000,
+  startY: 1000
 }; // 扩展屏幕的位置信息
 
 // 设置主屏和扩展屏幕的位置信息
@@ -1287,7 +1287,7 @@ let height: number = 1080;
 screen.resizeVirtualScreen(screenId, width, height).then(() => {
   console.info(`Succeeded in resizing virtual screen: screenId=${screenId}, width=${width}, height=${height}`);
 }).catch((err: BusinessError) => {
-  console.error(`Failed to set screen area mirroring. Code: ${err.code}, message: ${err.message}`);
+  console.error(`Failed to resize virtual screen. Code: ${err.code}, message: ${err.message}`);
 });
 ```
 
@@ -1334,10 +1334,10 @@ let mainScreenId: number = 0; // 主屏ID
 let mirrorScreenIds: Array<number> = [1, 2, 3]; // 镜像屏ID集合
 // 主屏创建镜像的矩形区域
 let mainScreenRegion: screen.Rect = {
-  left : 0,
-  top : 0,
-  width : 1920,
-  height : 1080
+  left: 0,
+  top: 0,
+  width: 1920,
+  height: 1080
 };
 // 将屏幕的某一矩形区域设置为镜像模式
 screen.makeMirrorWithRegion(mainScreenId, mirrorScreenIds, mainScreenRegion).then((data: number) => {

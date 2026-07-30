@@ -78,6 +78,7 @@
       - [配置其他子系统](porting/porting-minichip-subsys-others.md)
     - [移植验证](porting/porting-minichip-verification.md)
     - [常见问题](porting/porting-chip-faqs.md)
+    - [轻量系统小型化适配指导](porting/porting-minichip-minimal.md)
   - 小型系统芯片移植指导
     - 移植准备
       - [移植须知](porting/porting-smallchip-prepare-needs.md)
@@ -506,7 +507,7 @@
   - [Docker编译环境](get-code/gettools-acquire.md)
   - [IDE集成开发环境](get-code/gettools-ide.md)
 - 示例教程
-  - [Demo示例](https://growing.openharmony.cn/mainPlay/sample)
+  - [Demo示例](https://growing.openharmony.cn/mainPlay/sample/)
   - [Codelabs](https://gitcode.com/openharmony/codelabs/blob/master/README.md) 
 - 参考
   - 常见问题

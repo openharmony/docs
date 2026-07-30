@@ -222,7 +222,7 @@ Web布局模式的配置。
 
 ## ProtectedResourceType<sup>9+</sup>
 
-受保护的资源类型。
+ProtectedResourceType枚举定义了Web组件需要访问的受保护资源类型，用于控制MIDI、相机、麦克风、传感器等敏感资源的访问权限，帮助开发者在保护用户隐私的同时提供丰富的Web功能。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -405,7 +405,7 @@ Web布局模式的配置。
 
 ## AudioSessionType<sup>20+</sup>
 
-应用中Web音频类型。
+应用中Web音频类型，用于控制Web音频的音频流类型和行为，帮助开发者根据应用场景优化音频体验，如支持网页游戏声音与系统音乐同时播放。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -508,7 +508,7 @@ PIN码认证结果。
 
 ## CameraCaptureState<sup>23+</sup>
 
-定义摄像头使用状态的值。
+定义摄像头使用状态的值，用于标识摄像头的当前工作状态，帮助开发者实时监控摄像头资源使用情况，优化资源管理和用户隐私保护。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -520,7 +520,7 @@ PIN码认证结果。
 
 ## MicrophoneCaptureState<sup>23+</sup>
 
-定义麦克风使用状态的值。
+定义麦克风使用状态的值，用于标识麦克风的当前工作状态，帮助开发者实时监控麦克风资源使用情况，优化资源管理和用户隐私保护。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 

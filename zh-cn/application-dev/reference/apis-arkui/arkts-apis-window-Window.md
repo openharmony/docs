@@ -32,7 +32,7 @@ showWindow(callback: AsyncCallback&lt;void&gt;): void
 
 > **说明：**
 >
-> 调用该接口前，建议先通过[loadContent](../apis-arkui/arkts-apis-window-WindowStage.md#loadcontent9)方法或者[setUIContent](arkts-apis-window-Window.md#setuicontent9-1)方法完成页面加载。如果应用主窗口没有完成页面加载，直接调用该接口，界面会一直显示启动界面；如果系统窗口、应用子窗口、模态窗和全局悬浮窗没有完成页面加载，直接调用该接口，窗口会处于前台，但不可见。
+> 调用该接口前，建议先通过[loadContent](../apis-arkui/arkts-apis-window-WindowStage.md#loadcontent9)方法或者[setUIContent](#setuicontent9-1)方法完成页面加载。如果应用主窗口没有完成页面加载，直接调用该接口，界面会一直显示启动界面；如果系统窗口、应用子窗口、模态窗和全局悬浮窗没有完成页面加载，直接调用该接口，窗口会处于前台，但不可见。
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
@@ -112,7 +112,7 @@ showWindow(): Promise&lt;void&gt;
 
 > **说明：**
 >
-> 调用该接口前，建议优先通过[loadContent](../apis-arkui/arkts-apis-window-WindowStage.md#loadcontent9)方法或者[setUIContent](arkts-apis-window-Window.md#setuicontent9-1)方法完成页面加载。如果应用主窗口没有完成页面加载，直接调用该接口，界面会一直显示启动界面；如果系统窗口、应用子窗口、模态窗和全局悬浮窗没有完成页面加载，直接调用该接口，窗口会处于前台，但不可见。
+> 调用该接口前，建议优先通过[loadContent](../apis-arkui/arkts-apis-window-WindowStage.md#loadcontent9)方法或者[setUIContent](#setuicontent9-1)方法完成页面加载。如果应用主窗口没有完成页面加载，直接调用该接口，界面会一直显示启动界面；如果系统窗口、应用子窗口、模态窗和全局悬浮窗没有完成页面加载，直接调用该接口，窗口会处于前台，但不可见。
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
@@ -193,7 +193,7 @@ showWindow(options: ShowWindowOptions): Promise&lt;void&gt;
 
 > **说明：**
 >
-> 调用该接口前，建议优先通过[loadContent](../apis-arkui/arkts-apis-window-WindowStage.md#loadcontent9)方法或者[setUIContent](arkts-apis-window-Window.md#setuicontent9-1)方法完成页面加载。如果应用主窗口没有完成页面加载，直接调用该接口，界面会一直显示启动界面；如果系统窗口、应用子窗口和全局悬浮窗没有完成页面加载，直接调用该接口，窗口会处于前台，但不可见。
+> 调用该接口前，建议优先通过[loadContent](../apis-arkui/arkts-apis-window-WindowStage.md#loadcontent9)方法或者[setUIContent](#setuicontent9-1)方法完成页面加载。如果应用主窗口没有完成页面加载，直接调用该接口，界面会一直显示启动界面；如果系统窗口、应用子窗口和全局悬浮窗没有完成页面加载，直接调用该接口，窗口会处于前台，但不可见。
 
 **系统能力：** SystemCapability.Window.SessionManager
 
@@ -1195,7 +1195,7 @@ setWindowContainerColor(activeColor: string, inactiveColor: string): void
 | 201     | Permission verification failed. The application does not have the permission required to call the API. |
 | 801     | Capability not supported. Failed to call the API due to limited device capabilities. |
 | 1300002 | This window state is abnormal. Possible cause: The window is not created or destroyed. |
-| 1300004 | Unauthorized operation.                      |
+| 1300004 | Unauthorized operation. Possible cause: Invalid window type. Only main windows are supported. |
 
 **示例：**
 
@@ -1268,8 +1268,8 @@ setWindowContainerModalColor(activeColor: string, inactiveColor: string): void
 | ------- | ------------------------------ |
 | 201     | Permission verification failed. The application does not have the permission required or a non-system application calls the API. |
 | 801     | Capability not supported. Failed to call the API due to limited device capabilities. |
-| 1300002 | This window state is abnormal. |
-| 1300004 | Unauthorized operation. |
+| 1300002 | This window state is abnormal. Possible cause: The window is not created or destroyed. |
+| 1300004 | Unauthorized operation. Possible cause: Invalid window type. Only main windows are supported. |
 
 **示例：**
 
@@ -1618,7 +1618,7 @@ setTitleAndDockHoverShown(isTitleHoverShown?: boolean, isDockHoverShown?: boolea
 
 设置主窗口进入全屏模式时鼠标Hover到热区上是否显示窗口标题栏和Dock栏，使用Promise异步回调。
 
-**系统能力**：SystemCapability.Window.SessionManager
+**系统能力：** SystemCapability.Window.SessionManager
 
 **设备行为差异：** 该接口在支持并处于[自由窗口](../../windowmanager/window-terminology.md#freeform-window自由窗口)状态的设备上可正常调用；在支持但不处于[自由窗口](../../windowmanager/window-terminology.md#freeform-window自由窗口)状态的设备及不支持[自由窗口](../../windowmanager/window-terminology.md#freeform-window自由窗口)状态的设备上调用返回801错误码。
 
@@ -1817,7 +1817,7 @@ getImmersiveModeEnabledState(): boolean
 
 返回值与[setImmersiveModeEnabledState()](#setimmersivemodeenabledstate12)以及[setWindowLayoutFullScreen()](#setwindowlayoutfullscreen9)设置结果一致，若未调用上述两个接口则默认返回false。
 
-**系统能力**：SystemCapability.WindowManager.WindowManager.Core
+**系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -1938,7 +1938,7 @@ isImmersiveLayout(): boolean
 
 查询当前窗口是否处于[沉浸式布局](../../windowmanager/immersive-window-feature.md#沉浸式布局)。
 
-**系统能力**：SystemCapability.Window.SessionManager
+**系统能力：** SystemCapability.Window.SessionManager
 
 **返回值：**
 | 类型     | 说明                                                                                 |
@@ -1974,7 +1974,7 @@ setWindowDelayRaiseOnDrag(isEnabled: boolean): void
 
 调用此接口使能延迟抬升后，在跨窗拖拽场景，可拖拽组件所在窗口在鼠标左键按下时不会立即抬升，直到鼠标左键抬起。
 
-**系统能力**：SystemCapability.Window.SessionManager
+**系统能力：** SystemCapability.Window.SessionManager
 
 **原子化服务API：** 从API version 19开始，该接口支持在原子化服务中使用。
 
@@ -3132,7 +3132,7 @@ export default class EntryAbility extends UIAbility {
   onWindowStageCreate(windowStage: window.WindowStage) {
     console.info('onWindowStageCreate');
     let storage: LocalStorage = new LocalStorage();
-    let newValue: Number = 121;
+    let newValue: number = 121;
     storage.setOrCreate('storageSimpleProp', newValue);
     try {
       let windowClass: window.Window = windowStage.getMainWindowSync();
@@ -4170,7 +4170,7 @@ on(type: 'screenshotAppEvent', callback: Callback&lt;ScreenshotEventType&gt;): v
 
 | 错误码ID | 错误信息 |
 | ------- | ------------------------------ |
-| 1300002 | This window state is abnormal.                |
+| 1300002 | This window state is abnormal. Possible cause: The window is not created or destroyed. |
 | 1300003 | This window manager service works abnormally. |
 
 **示例：**
@@ -4207,7 +4207,7 @@ off(type: 'screenshotAppEvent', callback?: Callback&lt;ScreenshotEventType&gt;):
 
 | 错误码ID | 错误信息 |
 | ------- | ------------------------------ |
-| 1300002 | This window state is abnormal.                |
+| 1300002 | This window state is abnormal. Possible cause: The window is not created or destroyed. |
 | 1300003 | This window manager service works abnormally. |
 
 **示例：**
@@ -4411,7 +4411,7 @@ on(type: 'displayIdChange', callback: Callback&lt;number&gt;): void
 | ------- | ------------------------------ |
 | 401     | Parameter error. Possible cause: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 801     | Capability not supported. Failed to call the API due to limited device capabilities. |
-| 1300002 | This window state is abnormal.                |
+| 1300002 | This window state is abnormal. Possible cause: The window is not created or destroyed. |
 
 **示例：**
 
@@ -4449,7 +4449,7 @@ off(type: 'displayIdChange', callback?: Callback&lt;number&gt;): void
 | ------- | ------------------------------ |
 | 401     | Parameter error. Possible cause: 1. Incorrect parameter types; 2. Parameter verification failed. |
 | 801     | Capability not supported. Failed to call the API due to limited device capabilities. |
-| 1300002 | This window state is abnormal.                |
+| 1300002 | This window state is abnormal. Possible cause: The window is not created or destroyed. |
 
 **示例：**
 
@@ -4498,7 +4498,7 @@ on(type: 'windowVisibilityChange', callback: Callback&lt;boolean&gt;): void
 | ------- | ------------------------------ |
 | 401     | Parameter error. Possible cause: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 801     | Capability not supported. Failed to call the API due to limited device capabilities. |
-| 1300002 | This window state is abnormal.                |
+| 1300002 | This window state is abnormal. Possible cause: The window is not created or destroyed. |
 | 1300003 | This window manager service works abnormally. |
 
 **示例：**
@@ -4538,7 +4538,7 @@ off(type: 'windowVisibilityChange', callback?: Callback&lt;boolean&gt;): void
 | ------- | ------------------------------ |
 | 401     | Parameter error. Possible cause: 1. Incorrect parameter types; 2. Parameter verification failed. |
 | 801     | Capability not supported. Failed to call the API due to limited device capabilities. |
-| 1300002 | This window state is abnormal.                |
+| 1300002 | This window state is abnormal. Possible cause: The window is not created or destroyed. |
 | 1300003 | This window manager service works abnormally. |
 
 **示例：**
@@ -4585,7 +4585,7 @@ on(type: 'occlusionStateChanged', callback: Callback&lt;OcclusionState&gt;): voi
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------------------- |
 | 801     | Capability not supported. Failed to call the API due to limited device capabilities. |
-| 1300002 | This window state is abnormal. |
+| 1300002 | This window state is abnormal. Possible cause: The window is not created or destroyed. |
 | 1300003 | This window manager service works abnormally. |
 
 **示例：**
@@ -4623,7 +4623,7 @@ off(type: 'occlusionStateChanged', callback?: Callback&lt;OcclusionState&gt;): v
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------------------- |
 | 801     | Capability not supported. Failed to call the API due to limited device capabilities. |
-| 1300002 | This window state is abnormal. |
+| 1300002 | This window state is abnormal. Possible cause: The window is not created or destroyed. |
 | 1300003 | This window manager service works abnormally. |
 
 **示例：**
@@ -4668,7 +4668,7 @@ on(type: 'frameMetricsMeasured', callback: Callback&lt;FrameMetrics&gt;): void
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------------------- |
 | 801     | Capability not supported. Failed to call the API due to limited device capabilities. |
-| 1300002 | This window state is abnormal. |
+| 1300002 | This window state is abnormal. Possible cause: The window is not created or destroyed. |
 
 **示例：**
 
@@ -4705,7 +4705,7 @@ off(type: 'frameMetricsMeasured', callback?: Callback&lt;FrameMetrics&gt;): void
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------------------- |
 | 801     | Capability not supported. Failed to call the API due to limited device capabilities. |
-| 1300002 | This window state is abnormal. |
+| 1300002 | This window state is abnormal. Possible cause: The window is not created or destroyed. |
 
 **示例：**
 
@@ -4753,7 +4753,7 @@ on(type: 'systemDensityChange', callback: Callback&lt;number&gt;): void
 | ------- | ------------------------------ |
 | 401     | Parameter error. Possible cause: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 801     | Capability not supported. Failed to call the API due to limited device capabilities. |
-| 1300002 | This window state is abnormal.                |
+| 1300002 | This window state is abnormal. Possible cause: The window is not created or destroyed. |
 
 **示例：**
 
@@ -4797,7 +4797,7 @@ off(type: 'systemDensityChange', callback?: Callback&lt;number&gt;): void
 | ------- | ------------------------------ |
 | 401     | Parameter error. Possible cause: 1. Incorrect parameter types; 2. Parameter verification failed. |
 | 801     | Capability not supported. Failed to call the API due to limited device capabilities. |
-| 1300002 | This window state is abnormal.                |
+| 1300002 | This window state is abnormal. Possible cause: The window is not created or destroyed. |
 
 **示例：**
 
@@ -5094,7 +5094,7 @@ setWindowGrayScale(grayScale: number): Promise&lt;void&gt;
 | ------- | --------------------------------------------- |
 | 401     | Parameter error. Possible cause: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 801     | Capability not supported. Failed to call the API due to limited device capabilities. |
-| 1300002 | This window state is abnormal.                |
+| 1300002 | This window state is abnormal. Possible cause: The window is not created or destroyed. |
 | 1300003 | This window manager service works abnormally. |
 
 **示例：**
@@ -6233,9 +6233,9 @@ setWindowShadowEnabled(enable: boolean): Promise&lt;void&gt;
 | ------- | ------------------------------ |
 | 201     | Permission verification failed. The application does not have the permission required to call the API. |
 | 801     | Capability not supported. Failed to call the API due to limited device capabilities. |
-| 1300002 | This window state is abnormal. |
+| 1300002 | This window state is abnormal. Possible cause: The window is not created or destroyed. |
 | 1300003 | This window manager service works abnormally. |
-| 1300004 | Unauthorized operation.                      |
+| 1300004 | Unauthorized operation. Possible cause: Invalid window type. Only main windows are supported. |
 
 **示例：**
 
@@ -6578,7 +6578,7 @@ setWindowKeepScreenOn(isKeepScreenOn: boolean, callback: AsyncCallback&lt;void&g
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------------------- |
 | 401     | Parameter error. Possible cause: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
-| 1300002 | This window state is abnormal.               |
+| 1300002 | This window state is abnormal. Possible cause: The window is not created or destroyed. |
 | 1300003 | This window manager service works abnormally. |
 
 **示例：**
@@ -6632,7 +6632,7 @@ setWindowKeepScreenOn(isKeepScreenOn: boolean): Promise&lt;void&gt;
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------------------- |
 | 401     | Parameter error. Possible cause: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
-| 1300002 | This window state is abnormal.               |
+| 1300002 | This window state is abnormal. Possible cause: The window is not created or destroyed. |
 | 1300003 | This window manager service works abnormally. |
 
 **示例：**
@@ -9675,14 +9675,14 @@ struct Index {
     .height('100%')
     .width('100%')
     .onKeyEvent((event) => {
-      if(event) {
-        if(event.type === KeyType.Down) {
+      if (event) {
+        if (event.type === KeyType.Down) {
           keyUpEventAry = [];
         }
-        if(event.type === KeyType.Up) {
+        if (event.type === KeyType.Up) {
           keyUpEventAry.push(event.keyText);
           // 自定义快捷键 ctrl+T 执行主窗口置顶、取消置顶的操作
-          if(windowClass && keyUpEventAry.includes('KEYCODE_CTRL_LEFT') && keyUpEventAry.includes('KEYCODE_T')) {
+          if (windowClass && keyUpEventAry.includes('KEYCODE_CTRL_LEFT') && keyUpEventAry.includes('KEYCODE_T')) {
             let isWindowTopmost: boolean = false;
             windowClass.setWindowTopmost(isWindowTopmost);
           }
@@ -9758,7 +9758,7 @@ setRaiseByClickEnabled(enable: boolean): Promise&lt;void&gt;
 
 禁止/使能子窗点击抬升功能。使用Promise异步回调。
 
-通常来说，点击一个子窗口，会将该子窗口显示抬升到应用内同一个父窗口下同类型子窗口的最上方，如果设置为false，那么点击子窗口的时候，不会将该子窗口进行抬升，而是保持不变。
+默认情况下，点击一个子窗口，会将该子窗口显示到最上层，如果设置为false，那么点击子窗口的时候，不会将该子窗口显示到最上层，而是保持原有层级不变。
 
 使用该接口需要先创建子窗口，并确保该子窗口调用[showWindow()](#showwindow9)并执行完毕。
 
@@ -9946,7 +9946,7 @@ setDialogBackGestureEnabled(enabled: boolean): Promise&lt;void&gt;
 
 设置模态窗口是否响应手势返回事件，非模态窗口调用返回1300004错误码。
 
-**系统能力**：SystemCapability.Window.SessionManager
+**系统能力：** SystemCapability.Window.SessionManager
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -10708,7 +10708,7 @@ setWindowCornerRadius(cornerRadius: number): Promise&lt;void&gt;
 
 在调用此接口之前调用[getWindowCornerRadius()](#getwindowcornerradius17)接口可以获得窗口默认圆角半径值。
 
-**系统能力**：SystemCapability.Window.SessionManager
+**系统能力：** SystemCapability.Window.SessionManager
 
 **设备行为差异：**
 
@@ -10766,7 +10766,7 @@ getWindowCornerRadius(): number
 
 该接口用于获取子窗或全局悬浮窗的圆角半径值，在未调用[setWindowCornerRadius()](#setwindowcornerradius17)接口设置窗口圆角半径值时，调用此接口可获取窗口默认圆角半径值。
 
-**系统能力**：SystemCapability.Window.SessionManager
+**系统能力：** SystemCapability.Window.SessionManager
 
 **设备行为差异：**
 
@@ -11524,6 +11524,139 @@ try {
   windowClass.off('freeWindowModeChange');
 } catch (exception) {
   console.error(`Failed to disable the listener for free window mode change. Cause code: ${exception.code}, message: ${exception.message}`);
+}
+```
+
+## isInWindowPostureMode
+
+isInWindowPostureMode(mode: WindowPostureMode): boolean
+
+查询当前窗口是否处于指定的窗口姿态模式。
+
+**系统能力：** SystemCapability.Window.SessionManager
+
+**起始版本：** 26.0.0
+
+**模型约束：** 此接口仅可在Stage模型下使用。
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明 |
+| ---- | ---- | ---- | ---- |
+| mode | [WindowPostureMode](arkts-apis-window-e.md#windowposturemode) | 是 | 窗口姿态模式。 |
+
+**返回值：**
+
+| 类型 | 说明 |
+| ---- | ---- |
+| boolean | 当前窗口是否处于指定的窗口姿态模式。true表示当前窗口处于指定的窗口姿态模式，false表示不处于。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[窗口错误码](errorcode-window.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | -------------------------------------------- |
+| 1300002 | This window state is abnormal. Possible cause: The window is not created or destroyed. |
+| 1300003 | This window manager service works abnormally. Possible cause: The internal services of the window are not started normally. |
+| 1300016 | Parameter error. Possible cause: Invalid parameter range. |
+
+**示例：**
+
+```ts
+try {
+  let isInDesktopMode: boolean = windowClass.isInWindowPostureMode(window.WindowPostureMode.DESKTOP_MODE);
+  console.info(`isInDesktopMode: ${isInDesktopMode}`);
+} catch (exception) {
+  console.error(`Failed to check window posture mode. Cause code: ${exception.code}, message: ${exception.message}`);
+}
+```
+
+## onWindowPostureModeChange
+
+onWindowPostureModeChange(mode: WindowPostureMode, callback: Callback&lt;boolean&gt;): void
+
+开启窗口所处指定姿态模式变化的监听。
+
+**系统能力：** SystemCapability.Window.SessionManager
+
+**起始版本：** 26.0.0
+
+**模型约束：** 此接口仅可在Stage模型下使用。
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明 |
+| ---- | ---- | ---- | ---- |
+| mode | [WindowPostureMode](arkts-apis-window-e.md#windowposturemode) | 是 | 监听的窗口姿态模式。 |
+| callback | Callback&lt;boolean&gt; | 是 | 回调函数。当窗口所处指定窗口姿态模式变化时触发，返回当前窗口是否处于指定的窗口姿态模式，true表示处于，false表示不处于。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[窗口错误码](errorcode-window.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | -------------------------------------------- |
+| 1300002 | This window state is abnormal. Possible cause: The window is not created or destroyed. |
+| 1300003 | This window manager service works abnormally. Possible cause: The internal services of the window are not started normally. |
+| 1300016 | Parameter error. Possible cause: Invalid parameter range. |
+
+**示例：**
+
+```ts
+try {
+  windowClass.onWindowPostureModeChange(window.WindowPostureMode.DESKTOP_MODE, (isInDesktopMode: boolean) => {
+    console.info(`Succeeded in enabling the listener for window posture mode changes. isInDesktopMode: ${isInDesktopMode}`);
+  });
+} catch (exception) {
+  console.error(`Failed to enable the listener for window posture mode changes. Cause code: ${exception.code}, message: ${exception.message}`);
+}
+```
+
+## offWindowPostureModeChange
+
+offWindowPostureModeChange(mode: WindowPostureMode, callback?: Callback&lt;boolean&gt;): void
+
+关闭窗口所处指定姿态模式变化的监听。
+
+**系统能力：** SystemCapability.Window.SessionManager
+
+**起始版本：** 26.0.0
+
+**模型约束：** 此接口仅可在Stage模型下使用。
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明 |
+| ---- | ---- | ---- | ---- |
+| mode | [WindowPostureMode](arkts-apis-window-e.md#windowposturemode) | 是 | 监听的窗口姿态模式。 |
+| callback | Callback&lt;boolean&gt; | 否 | 回调函数。返回当前窗口是否处于指定的窗口姿态模式。如果传入参数，则关闭该监听；如果不传入参数，则关闭所有注册到指定窗口姿态模式的监听。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[窗口错误码](errorcode-window.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | -------------------------------------------- |
+| 1300002 | This window state is abnormal. Possible cause: The window is not created or destroyed. |
+| 1300003 | This window manager service works abnormally. Possible cause: The internal services of the window are not started normally. |
+| 1300016 | Parameter error. Possible cause: Invalid parameter range. |
+
+**示例：**
+
+```ts
+const callback = (isInDesktopMode: boolean) => {
+  // ...
+}
+try {
+  // 通过on接口开启监听
+  windowClass.onWindowPostureModeChange(window.WindowPostureMode.DESKTOP_MODE, callback);
+  // 关闭指定callback的监听
+  windowClass.offWindowPostureModeChange(window.WindowPostureMode.DESKTOP_MODE, callback);
+  // 如果通过on开启多个callback进行监听，同时关闭所有监听
+  windowClass.offWindowPostureModeChange(window.WindowPostureMode.DESKTOP_MODE);
+} catch (exception) {
+  console.error(`Failed to disable the listener for window posture mode change. Cause code: ${exception.code}, message: ${exception.message}`);
 }
 ```
 

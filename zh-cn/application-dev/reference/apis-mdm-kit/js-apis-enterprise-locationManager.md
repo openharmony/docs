@@ -8,6 +8,9 @@
 
 本模块提供设备位置服务策略管理的能力，包括设置和查询位置服务开关策略等。
 
+**使用场景**：
+适用于企业设备管理场景，管理员可通过此模块统一管控设备位置服务策略。
+
 > **说明：**
 >
 > 本模块首批接口从API version 12开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
@@ -27,7 +30,13 @@ import { locationManager } from '@kit.MDMKit';
 
 setLocationPolicy(admin: Want, policy: LocationPolicy): void
 
-设置位置服务管理策略。
+设置位置服务管理策略。可用于企业管控场景，如：在涉密区域禁用位置服务以保护信息安全，或在物流配送应用中强制开启位置服务以追踪设备位置。
+
+> **说明：**
+>
+> - 禁用：在需要保护隐私或节省电量的场景下设置。
+> - 强制开启：在设备安全追踪、资产管理等场景下设置。
+> - 默认：取消策略限制，由用户自主控制。
 
 **需要权限：** ohos.permission.ENTERPRISE_MANAGE_LOCATION
 
@@ -41,8 +50,8 @@ setLocationPolicy(admin: Want, policy: LocationPolicy): void
 
 | 参数名   | 类型                                  | 必填   | 说明      |
 | ----- | ----------------------------------- | ---- | ------- |
-| admin | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | 是    | 企业设备管理扩展组件。Want中必须包含企业设备管理扩展能力的abilityName和所在应用的bundleName。 |
-| policy | [LocationPolicy](#locationpolicy) | 是    | 位置服务策略。<br>- 0：默认策略。<br>- 1：禁用。<br>- 2：强制启用。 |
+| admin    | [Want](../apis-ability-kit/js-apis-app-ability-want.md)     | 是    | 企业设备管理扩展组件。Want中必须包含企业设备管理扩展能力的abilityName和所在应用的bundleName。        |
+| policy | [LocationPolicy](#locationpolicy) | 是    | 位置服务策略。<br>- 0：默认策略。<br>- 1：禁用位置服务。<br>- 2：强制开启位置服务。 |
 
 **错误码**：
 
@@ -78,7 +87,7 @@ try {
 
 getLocationPolicy(admin: Want | null): LocationPolicy
 
-查询位置服务管理策略。
+查询位置服务管理策略。可在企业设备管理应用中检查当前设备的位置服务策略状态，用于策略合规性验证或策略调整前的状态确认。适用于确认当前策略配置、设备管理应用启动时读取策略状态、排查位置服务问题时检查策略等场景。
 
 **需要权限：** ohos.permission.ENTERPRISE_MANAGE_LOCATION
 
@@ -96,7 +105,7 @@ getLocationPolicy(admin: Want | null): LocationPolicy
 
 | 类型                              | 说明                                                 |
 | --------------------------------- | ---------------------------------------------------- |
-| [LocationPolicy](#locationpolicy) | 位置服务策略枚举值。0：默认策略。1：禁用。2：强制启用。 |
+| [LocationPolicy](#locationpolicy) | 位置服务策略枚举值。0：默认策略。1：禁用位置服务。2：强制开启位置服务。 |
 
 **错误码**：
 
@@ -140,7 +149,7 @@ try {
 
 | 名称                        | 值  | 说明    |
 | ----------------------------| ----| ------------------------------- |
-| DEFAULT_LOCATION_SERVICE    | 0   | 默认策略。 |
-| DISALLOW_LOCATION_SERVICE | 1   | 禁用位置服务策略。 |
-| FORCE_OPEN_LOCATION_SERVICE | 2   | 强制开启位置服务策略。 |
+| DEFAULT_LOCATION_SERVICE    | 0   | 默认策略，不限制位置服务开关，允许用户自行控制。 |
+| DISALLOW_LOCATION_SERVICE | 1   | 禁用位置服务策略。适用于涉密区域、保密会议室等需要禁止位置服务的场景。 |
+| FORCE_OPEN_LOCATION_SERVICE | 2   | 强制开启位置服务策略。适用于物流追踪、外勤管理等需要确保位置服务可用的场景。 |
 

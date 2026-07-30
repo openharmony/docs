@@ -1,14 +1,14 @@
 # @ohos.file.BackupExtensionContext (备份恢复扩展能力)
 <!--Kit: Core File Kit-->
 <!--Subsystem: FileManagement-->
-<!--Owner: @lvzhenjie-->
-<!--Designer: @chenxi0605-->
+<!--Owner: @rainlost-->
+<!--Designer: @rainlost-->
 <!--Tester: @zsyztt; @yue-ye2; @fuwei-->
 <!--Adviser: @jinqiuheng-->
 
-BackupExtensionContext是BackupExtension的上下文环境，继承自ExtensionContext。
+BackupExtensionContext是BackupExtensionAbility的上下文环境，继承自ExtensionContext，用于在备份恢复过程中获取临时目录。
 
-BackupExtensionContext模块提供访问特定BackupExtension的资源的能力。对于扩展的BackupExtension，可直接将BackupExtensionContext作为上下文环境，或者定义一个继承自BackupExtensionContext的类型作为上下文环境。
+BackupExtensionContext模块提供访问特定BackupExtensionAbility资源的能力。应用实现备份恢复扩展能力时，可通过该上下文获取el1（设备级加密区）或el2（用户级加密区）对应的临时目录，用于临时保存待备份数据或读取待恢复数据，从而简化备份恢复扩展能力开发，并按数据安全等级隔离临时数据。对于扩展的BackupExtensionAbility，可直接将BackupExtensionContext作为上下文环境，或者定义一个继承自BackupExtensionContext的类型作为上下文环境。
 
 > **说明：**
 >
@@ -18,7 +18,7 @@ BackupExtensionContext模块提供访问特定BackupExtension的资源的能力�
 ## 导入模块
 
 ```ts
-import  { BackupExtensionContext } from '@kit.CoreFileKit';
+import { BackupExtensionContext } from '@kit.CoreFileKit';
 ```
 
 ## BackupExtensionContext
@@ -32,6 +32,7 @@ import  { BackupExtensionContext } from '@kit.CoreFileKit';
 | backupDir | string | 是 | 否 | 获取备份恢复时的临时路径，该路径只允许在备份恢复过程中作为临时路径使用，不允许应用将该路径作为其他用途来使用。目前只支持el1, el2路径，使用其他路径会返回空值。 |
 
 ### 使用场景
+
 BackupExtensionContext主要用于获取备份恢复过程中的临时路径。
 
 **示例：**
@@ -42,29 +43,29 @@ import { contextConstant } from '@kit.AbilityKit';
 
 export default class MyBackupExtAbility extends BackupExtensionAbility {
     async onBackup() {
-        console.info("onBackup begin");
-        // 使用者可通过改变 this.context.area 来进行切换el1，el2对应的沙箱路径
+        console.info('onBackup begin');
+        // 设置加密区域为el1（设备级加密区）
         this.context.area = contextConstant.AreaMode.EL1;
-        // 使用者可通过 this.context.backupDir 对沙箱路径进行获取
+        // 使用者可通过this.context.backupDir对沙箱路径进行获取
         let dir = this.context.backupDir;
         console.info(`onBackup el1 dir: ${dir}`);
         this.context.area = contextConstant.AreaMode.EL2;
         dir = this.context.backupDir;
         console.info(`onBackup el2 dir: ${dir}`);
-        console.info("onBackup end");
+        console.info('onBackup end');
     }
 
     async onRestore() {
-        console.info("onRestore begin");
+        console.info('onRestore begin');
+        // 设置加密区域为el1（设备级加密区）
         this.context.area = contextConstant.AreaMode.EL1;
+        // 使用者可通过this.context.backupDir对沙箱路径进行获取
         let dir = this.context.backupDir;
         console.info(`onRestore el1 dir: ${dir}`);
         this.context.area = contextConstant.AreaMode.EL2;
         dir = this.context.backupDir;
         console.info(`onRestore el2 dir: ${dir}`);
-        console.info("onRestore end");
+        console.info('onRestore end');
     }
 }
 ```
-
-

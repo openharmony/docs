@@ -1,21 +1,23 @@
 # UI-free Driver Development
+
 <!--Kit: Driver Development Kit-->
 <!--Subsystem: Driver-->
 <!--Owner: @zgene94-->
 <!--Designer: @w00373942-->
 <!--Tester: @dong-dongzhen-->
-<!--Adviser: @w_Machine_cc-->
+<!--Adviser: @hu-zhiqiong-->
+<!-- md-trans-meta sourceCommit=d51dfdf8c1c2eeb1bd1e359bc85351b94a81f5f2 translatedAt=2026-07-29T01:37:19.059Z pushedAt=2026-07-29T02:06:10.308Z -->
 
 ## When to Use
 
-Basic UI-free drivers are applicable to simple devices that do not require setting of driver capabilities via a UI, such as mouse devices and keyboards. These drivers are designed to ensure that these devices can be used immediately upon connection, enabling seamless plug-and-play functionality. You can use **DriverExtensionAbility** to develop such applications.
+Basic drivers without a UI are suitable for simple devices that do not require UI-based driver configuration, such as mice and keyboards, where only plug-and-play functionality is needed. You can use **DriverExtensionAbility** to develop such apps.
 
 ## Basic Concepts
 
  - DriverExtensionAbility
 
-    [DriverExtensionAbility](../../reference/apis-driverdevelopment-kit/js-apis-app-ability-driverExtensionAbility.md) is an **ExtensionAbility** of the driver type that provides the driver-related extension framework. If the capabilities of a device can be expanded by inserting an external hardware module, you can install the driver of the hardware module through an application. You can bind a [DriverExtensionAbility](../../reference/apis-driverdevelopment-kit/js-apis-app-ability-driverExtensionAbility.md) object to an application through **DriverExtensionManager** so that related transactions can be processed in the background based on the application request information.
-    
+    [DriverExtensionAbility](../../reference/apis-driverdevelopment-kit/js-apis-app-ability-driverExtensionAbility.md) is a Driver-type **ExtensionAbility** component that provides driver-related extension framework capabilities. For certain devices, external hardware modules can be plugged in to extend device capabilities, and the driver for the hardware module can be installed as an app. [DriverExtensionAbility](../../reference/apis-driverdevelopment-kit/js-apis-app-ability-driverExtensionAbility.md) can be bound by an app through the APIs provided by [@ohos.driver.deviceManager (Peripheral Management)](../../reference/apis-driverdevelopment-kit/js-apis-driver-deviceManager.md), and it processes related transactions in the background based on the app's requests.
+
     Each type of **ExtensionAbility** has its own context. The **DriverExtensionAbility** provides related capabilities through the [DriverExtensionContext](../../reference/apis-driverdevelopment-kit/js-apis-inner-application-driverExtensionContext.md).
 
 ## Environment Setup
@@ -35,7 +37,7 @@ To implement a driver, create a DriverExtensionAbility in the DevEco Studio proj
 4. Import the related kit, and define the request code.
 
    <!-- @[driver_service_step4](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/DriverDevelopmentKit/DriverDemo/entry/src/main/ets/driverextability/DriverExtAbility.ets) --> 
-   
+
    ``` TypeScript
    import { DriverExtensionAbility } from '@kit.DriverDevelopmentKit';
    import { Want } from '@kit.AbilityKit';
@@ -44,10 +46,10 @@ To implement a driver, create a DriverExtensionAbility in the DevEco Studio proj
    const REQUEST_CODE = 99; // Negotiate the request code with the peripheral client.
    ```
 
-5. Open the **DriverExtAbility.ets** file, import [@ohos.rpc (RPC)](../../reference/apis-ipc-kit/js-apis-rpc.md), reload the **onRemoteMessageRequest()** method, receive the message sent by the application, and return the processing result to the application. **REQUEST_CODE** is used to verify the service request code sent by the application.
+5. Open the **DriverExtAbility.ets** file, import [@ohos.rpc (RPC)](../../reference/apis-ipc-kit/js-apis-rpc.md), override the **onRemoteMessageRequest()** method, receive the message sent by the application, and return the processing result to the application. **REQUEST_CODE** is used to verify the service request code sent by the application.
 
    <!-- @[driver_service_step5](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/DriverDevelopmentKit/DriverDemo/entry/src/main/ets/driverextability/DriverExtAbility.ets) --> 
-   
+
    ``` TypeScript
    class StubTest extends rpc.RemoteObject {
      // Receive a message from the application and return the processing result to the client.
@@ -66,10 +68,10 @@ To implement a driver, create a DriverExtensionAbility in the DevEco Studio proj
    }
    ```
 
-6. In the **DriverExtAbility.ets** file, import the dependency package [DriverExtensionAbility](../../reference/apis-driverdevelopment-kit/js-apis-app-ability-driverExtensionAbility.md), which provides the **onInit()**, **onRelease()**, **onConnect()**, and **onDisconnect()** lifecycle callbacks. Then, customize a class to inherit from [DriverExtensionAbility](../../reference/apis-driverdevelopment-kit/js-apis-app-ability-driverExtensionAbility.md) and override the lifecycle callbacks as required.
+6. In the **DriverExtAbility.ets** file, add the import dependency for [DriverExtensionAbility](../../reference/apis-driverdevelopment-kit/js-apis-app-ability-driverExtensionAbility.md). This package provides the **onInit()**, **onRelease()**, **onConnect()**, and **onDisconnect()** lifecycle callbacks. Define a custom class that inherits from [DriverExtensionAbility](../../reference/apis-driverdevelopment-kit/js-apis-app-ability-driverExtensionAbility.md) and override the lifecycle callbacks as needed.
 
    <!-- @[driver_service_step6](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/DriverDevelopmentKit/DriverDemo/entry/src/main/ets/driverextability/DriverExtAbility.ets) --> 
-   
+
    ``` TypeScript
    export default class DriverExtAbility extends DriverExtensionAbility {
      onInit(want: Want) {
@@ -99,7 +101,7 @@ To implement a driver, create a DriverExtensionAbility in the DevEco Studio proj
 7. Register **DriverExtensionAbility** in the [**module.json5** file](../../quick-start/module-configuration-file.md) of the module in the project. Set **type** to **driver** and **srcEntry** to the code path of **DriverExtensionAbility**.
 
    <!-- @[driver_service_step7](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/DriverDevelopmentKit/DriverDemo/entry/src/main/module.json5) --> 
-   
+
    ``` JSON5
    {
      "module": {
@@ -188,14 +190,18 @@ To implement a driver, create a DriverExtensionAbility in the DevEco Studio proj
 
 ## Driver Development
 
-Currently, **DriverExtensionAbility** provides four capabilities: HidDdk, UsbDdk, USBSerialDDK, and ScsiPeripheralDDK, which are used to develop dedicated drivers for extended peripherals. Choose either mode depending on your need:
+Currently, **DriverExtensionAbility** provides four capabilities: HidDdk, UsbDdk, USBSerialDDK, and ScsiPeripheralDDK, which are used to develop dedicated drivers for extended peripherals. For details, see:
 
 * [HID DDK Development](hid-ddk-guidelines.md)
+
 * [USB DDK Development](usb-ddk-guidelines.md)
+
 * [USB Serial DDK Development](usb-serial-ddk-guidelines.md)
+
 * [SCSI Peripheral DDK Development](scsi-peripheral-ddk-guidelines.md)
 
 <!--RP1-->
+
 ## Application Signing
 
 > **NOTE**
@@ -203,6 +209,7 @@ Currently, **DriverExtensionAbility** provides four capabilities: HidDdk, UsbDdk
 > Configure the permission before enabling automatic signing.
 
 You need to configure a signature file for your application to run on a device. Besides, to develop a peripheral driver client, you need to declare the **ohos.permission.ACCESS_EXTENSIONAL_DEVICE_DRIVER** and **ohos.permission.ACCESS_DDK_DRIVERS** permissions for the peripheral.
+
 - ohos.permission.ACCESS_EXTENSIONAL_DEVICE_DRIVER (This permission is required for API version 10 or later.)
 
   To obtain authorization on this access permission, [declare it](../../security/AccessToken/declare-permissions.md) in the **requestPermissions** field in the **module.json5** file.
@@ -210,12 +217,15 @@ You need to configure a signature file for your application to run on a device. 
 - ohos.permission.ACCESS_DDK_DRIVERS (This permission is required for API version 18 or later.)
 
   1. [Declare the required permissions](../../security/AccessToken/declare-permissions.md) in the **requestPermissions** field in the **module.json5** file.
+
   2. Modify the **acls** field in the **HarmonyAppProvision** configuration file to request permissions via ACL. For details, see [Requesting Restricted Permissions](../../security/AccessToken/declare-permissions-in-acl.md).
+
   3. In the **HarmonyAppProvision** configuration file (that is, **Sdk/openharmony/_{Version} _/toolchains /lib/UnsgnedReleasedProfileTemplate.json** file), configure the bundle name of the driver server to connect. If there are multiple servers, separate their bundle names with a comma.
 
       The configuration procedure is as follows:
 
       Add the **app-services-capabilities** node to the root node of the file and configure the node as follows:
+
       ```json
       "app-services-capabilities": {
         "ohos.permission.ACCESS_DDK_DRIVERS": {"bundleNames": "bundleName0,bundleName1,bundleName2"}
@@ -223,4 +233,5 @@ You need to configure a signature file for your application to run on a device. 
       ```
 
 Automatic signing: For details, see [Signing Your App/Service Automatically](https://developer.huawei.com/consumer/en/doc/harmonyos-guides/ide-signing#section18815157237).
+
 <!--RP1End-->

@@ -1,4 +1,4 @@
-# ArkTSUtils.locks
+# namespace (locks)
 <!--Kit: ArkTS-->
 <!--Subsystem: CommonLibrary-->
 <!--Owner: @dwhuawei-->
