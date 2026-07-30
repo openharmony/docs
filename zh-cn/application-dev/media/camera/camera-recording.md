@@ -164,8 +164,8 @@
   <!-- @[camera_video_error](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/Media/Camera/PhotoSameSource/entry/src/main/ets/mode/CameraService.ets) -->   
   
   ``` TypeScript
-  previewOutput.on('error', (previewOutputError: BusinessError): void => {
-    Logger.info(TAG, `Preview output previewOutputError: ${JSON.stringify(previewOutputError)}`);
+  videoOutput.on('error', (error: BusinessError) => {
+    console.error(`Video output error code: ${error.code}`);
   });
   ```
 
