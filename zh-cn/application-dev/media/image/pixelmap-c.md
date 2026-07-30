@@ -217,7 +217,7 @@ static Image_ErrorCode PixelmapConvertAlphaTypeTest()
         OH_LOG_ERROR(LOG_APP, "OH_PixelmapNative_ConvertAlphaFormat failed, errCode: %{public}d.", errCode);
     }
 
-    // 释放Pixelmap、InitializationOptions实例。
+    // 释放Pixelmap，InitializationOptions实例。
     OH_PixelmapNative_Release(srcPixelmap);
     OH_PixelmapNative_Release(dstPixelmap);
     OH_PixelmapInitializationOptions_Release(createOpts);

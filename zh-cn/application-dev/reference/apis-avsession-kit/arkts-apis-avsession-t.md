@@ -57,7 +57,7 @@ type AVCastControlCommandType = 'play' | 'pause' | 'stop' | 'playNext' | 'playPr
 | 'fastForward'    | 快进。对应参数使用number类型，单位毫秒（ms）。       |
 | 'rewind'         | 快退。对应参数使用number类型，单位毫秒（ms）。        |
 | 'seek'           | 跳转到指定时间点。对应参数使用number类型，单位毫秒（ms）。 |
-| 'setVolume'      | 设置音量。对应参数使用number类型，可通过[AVPlaybackState.maxVolume](arkts-apis-avsession-i.md#avplaybackstate10)获取系统最大音量。     |
+| 'setVolume'      | 设置音量。对应参数使用number类型，可通过[AVPlaybackState.maxVolume](arkts-apis-avsession-i.md#avplaybackstate10)获取系统最大音量     |
 | 'setSpeed'       | 设置播放倍速。在音视频投播场景下，当远端设备使用DLNA协议进行连接时，不支持设置此项数据。对应参数使用[media.PlaybackSpeed](../apis-media-kit/arkts-apis-media-e.md#playbackspeed8)。 |
 | 'setLoopMode'    | 设置循环模式。对应参数使用[LoopMode](arkts-apis-avsession-e.md#loopmode10)。 |
 | 'toggleFavorite' | 切换收藏状态。无需传入参数。    |

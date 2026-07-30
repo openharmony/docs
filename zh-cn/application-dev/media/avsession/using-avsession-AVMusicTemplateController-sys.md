@@ -1,4 +1,4 @@
-# 音频模板概述(仅对系统应用开放)
+# 音频模板概述（仅对系统应用开放）
 <!--Kit: AVSession Kit-->
 <!--Subsystem: Multimedia-->
 <!--Owner: @gcw_gyH0B0hP-->

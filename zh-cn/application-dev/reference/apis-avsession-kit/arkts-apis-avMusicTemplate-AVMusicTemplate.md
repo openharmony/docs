@@ -2919,7 +2919,7 @@ export class TemplateManager {
     }
 
     /**
-     * 用户信息发生变化后通知界面刷新用户信息，如登陆账号后。
+     * 用户信息发生变化后通知界面刷新用户信息，如登录账号后。
      */
     public setUserInfo() {
         let userInfo: avMusicTemplate.UserInfo = {

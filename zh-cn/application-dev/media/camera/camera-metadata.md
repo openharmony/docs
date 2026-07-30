@@ -1,4 +1,4 @@
-# 元数据(ArkTS)
+# 元数据（ArkTS）
 <!--Kit: Camera Kit-->
 <!--Subsystem: Multimedia-->
 <!--Owner: @qano-->

@@ -1277,7 +1277,7 @@ async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper, cont
 
 requestPhotoUrisReadPermissionEx(srcFileUris: Array&lt;string&gt;): Promise&lt;RequestReadPermissionResult&gt;
 
-应用调用接口为未授权的URI授权。使用promise异步回调。
+应用调用接口为未授权的URI授权。使用Promise异步回调。
 
 返回授权结果，其中包含已创建并授予保存权限的URI列表以及无效的URI列表。
 
