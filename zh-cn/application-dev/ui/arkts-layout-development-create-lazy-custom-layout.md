@@ -28,7 +28,7 @@ LazyDynamicLayout适用于以下典型场景。
 
 ## 约束与限制
 
-1. LazyDynamicLayout需要配合可滚动父组件使用，其父组件支持[List](../reference/apis-arkui/arkui-ts/ts-container-list.md)、[WaterFlow](../reference/apis-arkui/arkui-ts/ts-container-waterflow.md)、[FlowItem](../reference/apis-arkui/arkui-ts/ts-container-flowitem.md)、[Scroll](../reference/apis-arkui/arkui-ts/ts-container-scroll.md)和[LazyColumnLayout](../reference/apis-arkui/arkui-ts/ts-container-lazycolumnlayout.md)，同时支持使用自定义组件或[NodeContainer](../reference/apis-arkui/arkui-ts/ts-basic-components-nodecontainer.md)组件封装后应用在上述组件中。
+1. LazyDynamicLayout需要配合可滚动父组件使用，仅限于[List](../reference/apis-arkui/arkui-ts/ts-container-list.md)、[Scroll](../reference/apis-arkui/arkui-ts/ts-container-scroll.md)、[WaterFlow](../reference/apis-arkui/arkui-ts/ts-container-waterflow.md)、[FlowItem](../reference/apis-arkui/arkui-ts/ts-container-flowitem.md)或[LazyColumnLayout](../reference/apis-arkui/arkui-ts/ts-container-lazycolumnlayout.md)，并支持使用自定义组件或[NodeContainer](../reference/apis-arkui/arkui-ts/ts-basic-components-nodecontainer.md)组件封装后应用在上述组件中。
 
 2. LazyDynamicLayout在不同父组件下的懒加载支持条件如下。
 
@@ -37,6 +37,8 @@ LazyDynamicLayout适用于以下典型场景。
    - 在List组件下，当List设置了[lanes](../reference/apis-arkui/arkui-ts/ts-container-list.md#lanes9)、[chainAnimation](../reference/apis-arkui/arkui-ts/ts-container-list.md#chainanimation)、[scrollSnapAlign](../reference/apis-arkui/arkui-ts/ts-container-list.md#scrollsnapalign10)属性中的任意一个时，该组件的懒加载功能会失效。
    
    - 在Scroll、List、WaterFlow组件下使用时，Scroll、List、WaterFlow的滚动方向（水平或垂直）必须和该组件布局方向相同，若布局方向不同会导致应用崩溃。该组件布局方向通过[LazyCustomLayoutAlgorithm](../reference/apis-arkui/js-apis-arkui-lazyLayoutAlgorithm.md#lazycustomlayoutalgorithm)的构造函数参数axis成员设置。
+
+   - 通过FlowItem、LazyColumnLayout、自定义组件或NodeContainer封装使用时，懒加载行为取决于其上层滚动组件（如WaterFlow、Scroll或List）的配置条件。
 
 3. 当布局算法为[LazyCustomLayoutAlgorithm](../reference/apis-arkui/js-apis-arkui-lazyLayoutAlgorithm.md#lazycustomlayoutalgorithm)时，LazyDynamicLayout组件[FrameNode](../reference/apis-arkui/js-apis-arkui-frameNode.md#framenode-1)的[setMeasuredSize](../reference/apis-arkui/js-apis-arkui-frameNode.md#setmeasuredsize12)方法优先级高于[尺寸设置](../reference/apis-arkui/arkui-ts/ts-universal-attributes-size.md)和[边框设置](../reference/apis-arkui/arkui-ts/ts-universal-attributes-border.md)属性，子组件[FrameNode](../reference/apis-arkui/js-apis-arkui-frameNode.md#framenode-1)的[measure](../reference/apis-arkui/js-apis-arkui-frameNode.md#measure12)和[layout](../reference/apis-arkui/js-apis-arkui-frameNode.md#layout12)方法优先级高于[ignoreLayoutSafeArea](../reference/apis-arkui/arkui-ts/ts-universal-attributes-expand-safe-area.md#ignorelayoutsafearea20)属性。
 
@@ -90,7 +92,7 @@ export class LazyColumnLayoutAlgorithm extends LazyCustomLayoutAlgorithm {
 
   // === 锚点信息（滚动时保持稳定） ===
   private anchorChildIndex: number = -1;              // 锚点元素的索引
-  private anchorChildRelativePos: number = 0;        // 锚点距离可视区域边缘的距离
+  private anchorChildRelativePos: number = 0;        // 锚点位置（正向距内容顶部，反向距内容底部）
 ```
 
 定义内边距变量用于存储容器的内边距信息。通过[getUserConfigPadding](../reference/apis-arkui/js-apis-arkui-frameNode.md#getuserconfigpadding12)方法获取用户设置的padding属性值，该方法返回的[LengthMetrics](../reference/apis-arkui/js-apis-arkui-graphics.md#lengthmetrics12)类型需要转换为像素值。
@@ -248,7 +250,7 @@ onMeasure(self: FrameNode, constraint: LayoutConstraint, helper?: LazyLayoutHelp
               this.anchorChildIndex = this.startIndex;
               const arrayIndex = this.anchorChildIndex - this.itemArrStartIndex;
               if (arrayIndex >= 0 && arrayIndex < this.itemArr.length) {
-                this.anchorChildRelativePos = this.itemArr[arrayIndex].start;
+                this.anchorChildRelativePos = this.itemArr[arrayIndex].start; // 锚点子组件距离总高度顶部的位置
               }
             }
           } else {
@@ -267,7 +269,7 @@ onMeasure(self: FrameNode, constraint: LayoutConstraint, helper?: LazyLayoutHelp
 
         测量完成后，锚点子组件的位置可能已经发生变化。需要计算新位置：
 
-        - 正向滚动时，新位置是锚点元素的start值。
+        - 正向滚动时，新位置是锚点元素的start值，即锚点子组件距离总高度顶部的位置。
         - 反向滚动时，新位置是锚点元素距离总高度底部的距离。
 
     - 调整滚动位置。
@@ -287,7 +289,7 @@ onMeasure(self: FrameNode, constraint: LayoutConstraint, helper?: LazyLayoutHelp
             if (helper.getLazyLayoutDirection() === LazyLayoutDirection.FORWARD) {
               const arrayIndex = this.anchorChildIndex - this.itemArrStartIndex;
               if (arrayIndex >= 0 && arrayIndex < this.itemArr.length) {
-                let newPos = this.itemArr[arrayIndex].start;
+                let newPos = this.itemArr[arrayIndex].start; // 锚点子组件重新测量后距离总高度顶部的位置
                 if (newPos !== this.anchorChildRelativePos) {
                   helper.setAdjustedOffset(this.anchorChildRelativePos - newPos);
                 }
@@ -309,15 +311,14 @@ onMeasure(self: FrameNode, constraint: LayoutConstraint, helper?: LazyLayoutHelp
 
     正向滚动时，锚点是可视区域第一个子组件。布局参数变化后，该子组件的实际位置可能变化。
 
-    反向滚动时，锚点是可视区域最后一个子组件，原理类似，但锚点位置是相对于总高度底部计算的。例如：
+    反向滚动时，锚点是可视区域最后一个子组件，锚点位置是相对于总高度底部计算的。例如，假设共有20个子组件，每个子组件高度为80vp，锚点子组件索引为10（即第11个子组件）：
 
     - 间距从5vp变为10vp
-    - 锚点子组件索引为10（即第11个子组件）
-    - 该子组件之前的位置：10 * 80vp + 10 * 5vp = 850vp（假设子组件高度80vp）
-    - 该子组件新的位置：10 * 80vp + 10 * 10vp = 900vp
-    - 偏移调整量：850vp - 900vp = -50vp
+    - 该子组件原来距离总高度底部的位置：9 * 80vp + 9 * 5vp = 765vp
+    - 该子组件新的距离总高度底部的位置：9 * 80vp + 9 * 10vp = 810vp
+    - 偏移调整量：810vp - 765vp = 45vp
 
-    调用setAdjustedOffset(-50vp)后，LazyDynamicLayout的父可滚动组件会向上滚动50vp，使锚点子组件保持在可视区域的相同相对位置。
+    调用setAdjustedOffset(45vp)后，LazyDynamicLayout的父可滚动组件会调整滚动位置，使锚点子组件保持在可视区域的相同相对位置。
 
 4. 测量可视范围内的元素。
 
@@ -325,7 +326,7 @@ onMeasure(self: FrameNode, constraint: LayoutConstraint, helper?: LazyLayoutHelp
 
     - 获取子组件。
 
-        通过[getChild](../reference/apis-arkui/js-apis-arkui-frameNode.md#getchild12)方法获取指定索引的子组件FrameNode。必须传入ExpandMode.LAZY_NOT_EXPAND参数，避免全量加载导致懒加载失效。
+        通过[getChild](../reference/apis-arkui/js-apis-arkui-frameNode.md#getchild12)方法获取指定索引的子组件[FrameNode](../reference/apis-arkui/js-apis-arkui-frameNode.md#framenode-1)。必须传入[ExpandMode.LAZY_NOT_EXPAND](../reference/apis-arkui/js-apis-arkui-frameNode.md#expandmode15)参数，避免全量加载导致懒加载失效。
 
         <!-- @[lazy_custom_layout_get_child_not_expand](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkUISample/ScrollableComponent/entry/src/main/ets/pages/lazyCustomLayout/LazyColumnLayoutAlgorithm.ets) -->
         
@@ -370,7 +371,7 @@ onMeasure(self: FrameNode, constraint: LayoutConstraint, helper?: LazyLayoutHelp
 
     - 调用子组件measure函数和获取测量大小。
 
-        调用子组件FrameNode的[measure](../reference/apis-arkui/js-apis-arkui-frameNode.md#measure12)方法，传入测量约束，触发子组件测量流程。测量完成后，通过[getMeasuredSize](../reference/apis-arkui/js-apis-arkui-frameNode.md#getmeasuredsize12)方法获取子组件的测量大小。
+        调用子组件[FrameNode](../reference/apis-arkui/js-apis-arkui-frameNode.md#framenode-1)的[measure](../reference/apis-arkui/js-apis-arkui-frameNode.md#measure12)方法，传入测量约束，触发子组件测量流程。测量完成后，通过[getMeasuredSize](../reference/apis-arkui/js-apis-arkui-frameNode.md#getmeasuredsize12)方法获取子组件的测量大小。
 
     **完整测量流程示例**
 
@@ -458,8 +459,8 @@ onMeasure(self: FrameNode, constraint: LayoutConstraint, helper?: LazyLayoutHelp
      * 作用：释放滚动后离开可视区域的元素，节省内存
      *
      * 回收范围：
-     * - 向前滚动：回收 this.prevStartIndex -> this.startIndex 之间的元素
-     * - 向后滚动：回收 this.endIndex -> this.prevEndIndex 之间的元素
+     * - 向前滚动：回收 [this.prevStartIndex, this.startIndex) 范围内的元素
+     * - 向后滚动：回收 (this.endIndex, this.prevEndIndex] 范围内的元素
      */
     private recycleChildren(helper: LazyLayoutHelper): void {
       let recycleList: number[] = [];
@@ -481,18 +482,18 @@ onMeasure(self: FrameNode, constraint: LayoutConstraint, helper?: LazyLayoutHelp
 
 6. 设置布局容器自身大小。
 
-    最后调用[setMeasuredSize](../reference/apis-arkui/js-apis-arkui-frameNode.md#setmeasuredsize12)设置容器的测量大小。容器宽度通常设置为constraint.maxSize.width，高度根据子组件排列情况、估算高度和垂直内边距（topPadding + bottomPadding）计算得出。
+    最后调用[setMeasuredSize](../reference/apis-arkui/js-apis-arkui-frameNode.md#setmeasuredsize12)设置容器的测量大小。容器宽度通常设置为constraint.maxSize.width，高度根据子组件排列情况、估算高度和垂直内边距（[topPadding](../reference/apis-arkui/arkui-ts/ts-universal-attributes-size.md#padding) + [bottomPadding](../reference/apis-arkui/arkui-ts/ts-universal-attributes-size.md#padding)）计算得出。
 
     **关键接口说明**
 
     | 接口 | 说明 |
     |------|------|
     | [getChildrenCount](../reference/apis-arkui/js-apis-arkui-frameNode.md#getchildrencount12) | 获取子组件总数。使用[ChildrenCountMode](../reference/apis-arkui/js-apis-arkui-frameNode.md#childrencountmode).ALL_NOT_EXPAND避免获取子组件总数时全量加载导致懒加载失效。 |
-    | [getChild](../reference/apis-arkui/js-apis-arkui-frameNode.md#getchild12) | 获取指定索引的子组件。使用ExpandMode.LAZY_NOT_EXPAND避免获取子组件时全量加载导致懒加载失效。 |
+    | [getChild](../reference/apis-arkui/js-apis-arkui-frameNode.md#getchild12) | 获取指定索引的子组件[FrameNode](../reference/apis-arkui/js-apis-arkui-frameNode.md#framenode-1)。使用[ExpandMode.LAZY_NOT_EXPAND](../reference/apis-arkui/js-apis-arkui-frameNode.md#expandmode15)避免获取子组件时全量加载导致懒加载失效。 |
     | [getViewStart](../reference/apis-arkui/js-apis-arkui-lazyLayoutAlgorithm.md#getviewstart) | 获取可视区域的起始位置（相对于LazyDynamicLayout内容区域顶部）。 |
     | [getViewEnd](../reference/apis-arkui/js-apis-arkui-lazyLayoutAlgorithm.md#getviewend) | 获取可视区域的结束位置。 |
     | [getLazyLayoutDirection](../reference/apis-arkui/js-apis-arkui-lazyLayoutAlgorithm.md#getlazylayoutdirection) | 获取当前布局方向。FORWARD表示正向布局（从上到下），BACKWARD表示反向布局（从下到上）。 |
-    | [setAdjustedOffset](../reference/apis-arkui/js-apis-arkui-lazyLayoutAlgorithm.md#setadjustedoffset) | 设置偏移调整量。用于布局参数变化后调整滚动位置，保持可视区域第一个子组件位置不变。 |
+    | [setAdjustedOffset](../reference/apis-arkui/js-apis-arkui-lazyLayoutAlgorithm.md#setadjustedoffset) | 设置偏移调整量。用于布局参数变化后调整滚动位置，使锚点子组件在可视区域内的相对位置保持不变；正向布局时锚点为可视区域第一个子组件，反向布局时为可视区域最后一个子组件。 |
     | [setChildrenInactive](../reference/apis-arkui/js-apis-arkui-lazyLayoutAlgorithm.md#setchildreninactive) | 将指定索引的子组件设置为非激活态。非激活态的子组件会被回收，释放内存。 |
     | [getUserConfigPadding](../reference/apis-arkui/js-apis-arkui-frameNode.md#getuserconfigpadding12) | 获取用户设置的padding属性值。返回LengthMetrics类型，需要转换为像素值。 |
     | [setMeasuredSize](../reference/apis-arkui/js-apis-arkui-frameNode.md#setmeasuredsize12) | 设置组件的测量大小。 |
@@ -542,7 +543,12 @@ export struct CustomLazyColumnLayoutSample {
   // ...
 
   aboutToAppear(): void {
-    this.lazyAlgorithm.setRowGap(this.getUIContext().vp2px(this.rowGap));
+    const uiContext = this.getUIContext();
+    if (!uiContext) {
+      return;
+    }
+    this.lazyAlgorithm.setUIContext(uiContext);
+    this.lazyAlgorithm.setRowGap(uiContext.vp2px(this.rowGap));
     for (let i = 0; i < 50; i++) {
       this.arr.pushData(`Item ${i}`);
     }
@@ -580,7 +586,7 @@ export struct CustomLazyColumnLayoutSample {
 }
 ```
 
-动态调整布局参数，配合@Watch装饰器监听参数变化。
+动态调整布局参数，配合[\@Watch](state-management/arkts-watch.md)装饰器监听参数变化。
 
 <!-- @[lazy_custom_layout_dynamic_param](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkUISample/ScrollableComponent/entry/src/main/ets/pages/lazyCustomLayout/CustomLazyColumnLayoutSample.ets) -->
 
@@ -594,7 +600,11 @@ export struct CustomLazyColumnLayoutSample {
 
 ``` TypeScript
 onRowGapChange(): void {
-  this.lazyAlgorithm.setRowGap(this.getUIContext().vp2px(this.rowGap));
+  const uiContext = this.getUIContext();
+  if (!uiContext) {
+    return;
+  }
+  this.lazyAlgorithm.setRowGap(uiContext.vp2px(this.rowGap));
 }
 ```
 
@@ -619,7 +629,7 @@ LazyDynamicLayout(this.lazyAlgorithm) {
 <!--RP1-->
 完整示例请参考[自定义懒加载单列布局示例](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkUISample/ScrollableComponent/entry/src/main/ets/pages/lazyCustomLayout/CustomLazyColumnLayoutSample.ets)。
 <!--RP1End-->
-上述示例中，点击底部按钮可以切换行间距。由于布局算法中实现了[setAdjustedOffset](../reference/apis-arkui/js-apis-arkui-lazyLayoutAlgorithm.md#setadjustedoffset)调整逻辑，切换间距后可视区域第一个子组件的位置保持不变，避免了滚动跳动。
+上述示例中，点击底部按钮可以切换行间距。由于布局算法中实现了[setAdjustedOffset](../reference/apis-arkui/js-apis-arkui-lazyLayoutAlgorithm.md#setadjustedoffset)调整逻辑，切换间距后锚点子组件（正向布局时为可视区域第一个子组件，反向布局时为可视区域最后一个子组件）的位置保持不变，避免了滚动跳动。
 
 ![LazyDynamicLayout1.gif](figures/customLazyColumnLayout.gif)
 
