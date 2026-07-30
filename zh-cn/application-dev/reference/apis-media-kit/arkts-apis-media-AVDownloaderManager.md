@@ -22,7 +22,7 @@ import { media } from '@kit.MediaKit';
 
 allowsCellularAccess(value: boolean): void
 
-设置是否允许在蜂窝网络环境下进行下载。默认情况下仅在Wi-Fi环境下进行下载。若不允许蜂窝网络下载且当前为蜂窝网络环境，下载任务将暂停等待Wi-Fi环境可用后继续。
+设置是否允许在蜂窝网络环境下进行下载。默认情况下仅在Wi-Fi环境下进行下载。如果设置不允许在蜂窝网络下载，但网络环境为蜂窝网络环境时，下载任务将暂停等待Wi-Fi环境可用后继续。
 
 **起始版本：** 26.0.0
 
@@ -61,7 +61,7 @@ setRequestTimeout(expired: number): void
 
 | 参数名   | 类型     | 必填 | 说明                 |
 | -------- | -------- | ---- | -------------------- |
-| expired | number | 是   | 超时时间，单位为毫秒。<br>取值限定为整数。<br>- 若值大于0，表示超时时间，取值范围(0, +∞)。<br>- 若值小于等于0，表示无超时限制，建议根据业务场景设置合理的超时时间以避免任务长时间挂起。<br>- 若不设置，使用默认超时时间，默认时间为60000毫秒。 |
+| expired | number | 是   | 超时时间，单位为毫秒。<br>取值限定为整数。<br>- 如果值大于0，表示超时时间，取值范围(0, +∞)。<br>- 如果值小于等于0，表示无超时限制，建议根据业务场景设置合理的超时时间以避免任务长时间挂起。<br>- 如果不设置，使用默认超时时间，默认时间为60000毫秒。 |
 
 **示例：**
 
@@ -162,7 +162,7 @@ pauseDownloadTask(taskId?: string): void
 
 | 参数名   | 类型     | 必填 | 说明                 |
 | -------- | -------- | ---- | -------------------- |
-| taskId | string | 否   | 要暂停的离线下载任务ID，任务需处于下载状态。<br>默认值：不指定此参数时，暂停所有下载任务。 |
+| taskId | string | 否   | 要暂停的离线下载任务ID。<br>默认值：不指定此参数时，暂停所有下载任务。 |
 
 **错误码：**
 
@@ -465,7 +465,7 @@ offStatusChange(callback?: OnAVDownloadTaskStateHandle): void
 
 | 参数名   | 类型     | 必填 | 说明                 |
 | -------- | -------- | ---- | -------------------- |
-| callback | [OnAVDownloadTaskStateHandle](arkts-apis-media-t.md#onavdownloadtaskstatehandle) | 否   | 状态变化事件的处理函数，需为通过onStatusChange注册过的处理函数。<br>默认值：不指定此参数时，取消注册该事件的所有处理函数。 |
+| callback | [OnAVDownloadTaskStateHandle](arkts-apis-media-t.md#onavdownloadtaskstatehandle) | 否   | 状态变化事件的处理函数，必须是通过onStatusChange注册过的处理函数。<br>默认值：不指定此参数时，取消注册该事件的所有处理函数。 |
 
 **示例：**
 
@@ -492,7 +492,7 @@ offProgressChange(callback?: OnAVDownloadProgressChangeHandle): void
 
 | 参数名   | 类型     | 必填 | 说明                 |
 | -------- | -------- | ---- | -------------------- |
-| callback | [OnAVDownloadProgressChangeHandle](arkts-apis-media-t.md#onavdownloadprogresschangehandle) | 否   | 进度变化事件的处理函数，需为通过onProgressChange注册过的处理函数。<br>默认值：不指定此参数时，取消注册该事件的所有处理函数。 |
+| callback | [OnAVDownloadProgressChangeHandle](arkts-apis-media-t.md#onavdownloadprogresschangehandle) | 否   | 进度变化事件的处理函数，必须是通过onProgressChange注册过的处理函数。<br>默认值：不指定此参数时，取消注册该事件的所有处理函数。 |
 
 **示例：**
 

@@ -22,7 +22,7 @@ import { media } from '@kit.MediaKit';
 
 addAdsMediaSource(src: MediaSource, start: number): Promise\<string>
 
-向广告控制器添加广告媒体源，指定广告在主媒体资源播放进度中的插入位置。例如，可在视频播放器中于主内容播放前插入片头广告，或在播放过程中插入片间广告。若同一位置插入多个广告，按添加顺序依次播放。使用Promise异步回调。
+向广告控制器添加广告媒体源，指定广告在主媒体资源播放进度中的插入位置。例如，可在视频播放器中的主内容播放前插入片头广告，或在播放过程中插入片间广告。如果同一位置插入多个广告，则按添加顺序依次播放。使用Promise异步回调。
 
 **起始版本：** 26.0.0
 
@@ -35,13 +35,13 @@ addAdsMediaSource(src: MediaSource, start: number): Promise\<string>
 | 参数名   | 类型     | 必填 | 说明                 |
 | -------- | -------- | ---- | -------------------- |
 | src | [MediaSource](arkts-apis-media-MediaSource.md) | 是   | 要插入到主内容中播放的媒体源。 |
-| start | number | 是   | 广告媒体源在主媒体资源播放进度中的插入位置，从主媒体资源开始播放时计算。<br>单位：毫秒。<br>取值限定为非负整数，且不得超过主媒体资源的总时长，否则会触发错误码5400108。 |
+| start | number | 是   | 广告媒体源在主媒体资源播放进度中的插入位置，从主媒体资源开始播放时计算。<br>单位为毫秒（ms）。<br>取值限定为非负整数，且不得超过主媒体资源的总时长，否则会触发错误码5400108。 |
 
 **返回值：**
 
 | 类型           | 说明                                       |
 | -------------- | ------------------------------------------ |
-| Promise\<string> | Promise对象，返回添加到广告控制器中的媒体源ID，该ID可用于removeAdsMediaSource接口移除对应的广告源。 |
+| Promise\<string> | Promise对象，返回添加到广告控制器中的媒体源ID，removeAdsMediaSource接口可用该ID移除对应的广告源。 |
 
 **错误码：**
 
@@ -70,7 +70,7 @@ async function test() {
 
 removeAdsMediaSource(id: string): void
 
-移除广告控制器中指定的广告媒体源。若该广告正在播放，广告播放完成后再移除。例如，当广告内容失效或用户购买免广告权益后，可调用此接口移除已添加的广告。
+移除广告控制器中指定的广告媒体源。如果该广告正在播放，则等广告播放完后再移除。例如，当广告内容失效或用户购买免广告权益后，可调用此接口移除已添加的广告。
 
 **起始版本：** 26.0.0
 
@@ -111,7 +111,7 @@ async function test() {
 
 skipCurrentAdsMediaSource(): void
 
-跳过当前正在播放的广告内容。跳过后将立即恢复主内容的播放，并触发onAdsListenerAdsSkipped的回调。例如，当用户点击播放器上的'跳过广告'按钮时，可调用此接口跳过当前广告并继续播放主内容。
+跳过当前正在播放的广告内容。跳过后将立即恢复主内容的播放，并触发onAdsListenerAdsSkipped的回调。例如，当用户点击播放器上的“跳过广告”按钮时，可调用此接口跳过当前广告并继续播放主内容。
 
 **起始版本：** 26.0.0
 
@@ -207,7 +207,7 @@ async function test() {
   let adsController: media.AVAdsController | undefined = await media.createAVAdsController(player);
   if (adsController) {
     adsController.onAdsEventListenerLoadingError((adsId: string, reason: BusinessError) => {
-      console.error(`Ads loading failed, adsId: ${adsId}, Code: ${reason.code}, message: ${reason.message}`);
+      console.error(`Failed to load ads, adsId: ${adsId}, Code: ${reason.code}, message: ${reason.message}`);
     });
   }
 }
@@ -229,7 +229,7 @@ onAdsListenerAdsStarted(callback: OnAdsEventAdsStartedHandle): void
 
 | 参数名   | 类型     | 必填 | 说明                 |
 | -------- | -------- | ---- | -------------------- |
-| callback | [OnAdsEventAdsStartedHandle](arkts-apis-media-t.md#onadseventadsstartedhandle) | 是   | 广告内容开始播放时的处理函数。常用于从主内容播放界面切换到广告播放界面的场景。<br>第一个参数表示正在播放的广告ID，第二个参数表示广告的时长，单位为毫秒。 |
+| callback | [OnAdsEventAdsStartedHandle](arkts-apis-media-t.md#onadseventadsstartedhandle) | 是   | 广告内容开始播放时的处理函数。常用于从主内容播放界面切换到广告播放界面的场景。<br>第一个参数表示正在播放的广告ID，第二个参数表示广告的时长，单位为毫秒（ms）。 |
 
 **示例：**
 
@@ -325,7 +325,7 @@ offAdsEventListenerLoadingError(callback?: OnAdsEventLoadingErrorHandle): void
 
 | 参数名   | 类型     | 必填 | 说明                 |
 | -------- | -------- | ---- | -------------------- |
-| callback | [OnAdsEventLoadingErrorHandle](arkts-apis-media-t.md#onadseventloadingerrorhandle) | 否   | 广告内容加载失败的处理函数。<br>传入指定回调时仅取消订阅该回调；不传入时默认取消订阅该事件的所有回调函数。 |
+| callback | [OnAdsEventLoadingErrorHandle](arkts-apis-media-t.md#onadseventloadingerrorhandle) | 否   | 广告内容加载失败的处理函数。<br>传入指定回调时，仅取消订阅该回调；不传入该参数时默认取消订阅该事件的所有回调函数。 |
 
 **示例：**
 
@@ -355,7 +355,7 @@ offAdsListenerAdsStarted(callback?: OnAdsEventAdsStartedHandle): void
 
 | 参数名   | 类型     | 必填 | 说明                 |
 | -------- | -------- | ---- | -------------------- |
-| callback | [OnAdsEventAdsStartedHandle](arkts-apis-media-t.md#onadseventadsstartedhandle) | 否   | 广告内容开始播放时的处理函数。常用于从主内容播放界面切换到广告播放界面的场景。<br>传入指定回调时仅取消订阅该回调；不传入时默认取消订阅该事件的所有回调函数。 |
+| callback | [OnAdsEventAdsStartedHandle](arkts-apis-media-t.md#onadseventadsstartedhandle) | 否   | 广告内容开始播放时的处理函数。常用于从主内容播放界面切换到广告播放界面的场景。<br>传入指定回调时，仅取消订阅该回调；不传入该参数时默认取消订阅该事件的所有回调函数。 |
 
 **示例：**
 
@@ -385,7 +385,7 @@ offAdsListenerAdsSkipped(callback?: Callback\<string>): void
 
 | 参数名   | 类型     | 必填 | 说明                 |
 | -------- | -------- | ---- | -------------------- |
-| callback | Callback\<string> | 否   | 广告跳过的处理函数。<br>传入指定回调时仅取消订阅该回调；不传入时默认取消订阅该事件的所有回调函数。 |
+| callback | Callback\<string> | 否   | 广告跳过的处理函数。<br>传入指定回调时，仅取消订阅该回调；不传入该参数时默认取消订阅该事件的所有回调函数。 |
 
 **示例：**
 
@@ -415,7 +415,7 @@ offAdsListenerAdsCompleted(callback?: Callback\<string>): void
 
 | 参数名   | 类型     | 必填 | 说明                 |
 | -------- | -------- | ---- | -------------------- |
-| callback | Callback\<string> | 否   | 广告播放完成的处理函数。<br>传入指定回调时仅取消订阅该回调；不传入时默认取消订阅该事件的所有回调函数。 |
+| callback | Callback\<string> | 否   | 广告播放完成的处理函数。<br>传入指定回调时，仅取消订阅该回调；不传入该参数时默认取消订阅该事件的所有回调函数。 |
 
 **示例：**
 
