@@ -143,9 +143,11 @@
   <!-- @[camera_video_frameStart](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/Media/Camera/PhotoSameSource/entry/src/main/ets/mode/CameraService.ets) -->    
   
   ``` TypeScript
-  previewOutput.on('frameStart', (): void => {
-    Logger.debug(TAG, 'Preview frame started');
-    AppStorage.setOrCreate('frameStart', ++this.frameStartFlag);
+  videoOutput.on('frameStart', (err: BusinessError) => {
+    if (err !== undefined && err.code !== 0) {
+      return;
+    }
+    console.info('Video frame started');
   });
   ```
 
