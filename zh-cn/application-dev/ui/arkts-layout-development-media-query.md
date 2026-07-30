@@ -23,7 +23,7 @@
 首先导入媒体查询模块。
 
 
-<!-- @[obtain_mediaquery_import](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkUISample/MediaQuerySample/entry/src/main/ets/pages/Index.ets) -->
+<!-- @[obtain_mediaquery_import](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkUISample/MediaQuerySample/entry/src/main/ets/pages/MediaQueryExample.ets) -->
 
 ``` TypeScript
 import { mediaquery } from '@kit.ArkUI';
@@ -32,19 +32,20 @@ import { mediaquery } from '@kit.ArkUI';
 通过matchMediaSync接口设置媒体查询条件，保存返回的条件监听句柄listener。例如监听横屏事件：
 
 
-<!-- @[obtain_mediaquery_listener](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkUISample/MediaQuerySample/entry/src/main/ets/pages/Index.ets) -->
+<!-- @[obtain_mediaquery_listener](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkUISample/MediaQuerySample/entry/src/main/ets/pages/MediaQueryExample.ets) -->
 
 ``` TypeScript
-listener:mediaquery.MediaQueryListener = this.getUIContext().getMediaQuery().matchMediaSync('(orientation: landscape)');
+listener: mediaquery.MediaQueryListener =
+  this.getUIContext().getMediaQuery().matchMediaSync('(orientation: landscape)');
 ```
 
 给条件监听句柄listener绑定回调函数onPortrait，当listener检测设备状态变化时执行回调函数。在回调函数内，根据不同设备状态更改页面布局或者实现业务逻辑。
 
 
-<!-- @[obtain_mediaquery_Portrait](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkUISample/MediaQuerySample/entry/src/main/ets/pages/Index.ets) -->
+<!-- @[obtain_mediaquery_Portrait](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkUISample/MediaQuerySample/entry/src/main/ets/pages/MediaQueryExample.ets) -->
 
 ``` TypeScript
-  onPortrait(mediaQueryResult:mediaquery.MediaQueryResult) {
+  onPortrait(mediaQueryResult: mediaquery.MediaQueryResult) {
     if (mediaQueryResult.matches as boolean) { // 若设备为横屏状态，更改相应的页面布局
     // ···
     } else {
@@ -162,7 +163,7 @@ listener:mediaquery.MediaQueryListener = this.getUIContext().getMediaQuery().mat
 示例一使用媒体查询，实现屏幕横竖屏切换时，为页面文本应用添加不同的内容和样式。
 
 <!--deprecated_code_no_check-->
-<!-- @[obtain_mediaquery_all](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkUISample/MediaQuerySample/entry/src/main/ets/pages/Index.ets) -->
+<!-- @[obtain_mediaquery_all](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkUISample/MediaQuerySample/entry/src/main/ets/pages/MediaQueryExample.ets) -->
 
 ``` TypeScript
 import { mediaquery } from '@kit.ArkUI';
@@ -175,10 +176,11 @@ struct MediaQueryExample {
   @State color: string = '#DB7093';
   @State text: string = 'Portrait';
   // 当设备横屏时条件成立
-  listener:mediaquery.MediaQueryListener = this.getUIContext().getMediaQuery().matchMediaSync('(orientation: landscape)');
+  listener: mediaquery.MediaQueryListener =
+    this.getUIContext().getMediaQuery().matchMediaSync('(orientation: landscape)');
 
   // 当满足媒体查询条件时，触发回调
-  onPortrait(mediaQueryResult:mediaquery.MediaQueryResult) {
+  onPortrait(mediaQueryResult: mediaquery.MediaQueryResult) {
     if (mediaQueryResult.matches as boolean) { // 若设备为横屏状态，更改相应的页面布局
       this.color = '#FFD700';
       this.text = 'Landscape';
@@ -192,7 +194,7 @@ struct MediaQueryExample {
     // 绑定当前应用实例
     // 绑定回调函数
     this.listener.on('change', (mediaQueryResult: mediaquery.MediaQueryResult) => {
-      this.onPortrait(mediaQueryResult);
+      this.onPortrait(mediaQueryResult)
     });
   }
 
@@ -204,24 +206,24 @@ struct MediaQueryExample {
   // 改变设备横竖屏状态函数
   private changeOrientation(isLandscape: boolean) {
     // 获取UIAbility实例的上下文信息
-    let context:common.UIAbilityContext = this.getUIContext().getHostContext() as common.UIAbilityContext;
+    let context: common.UIAbilityContext = this.getUIContext().getHostContext() as common.UIAbilityContext;
     // 调用该接口手动改变设备横竖屏状态
     window.getLastWindow(context).then((lastWindow) => {
-      lastWindow.setPreferredOrientation(isLandscape ? window.Orientation.LANDSCAPE : window.Orientation.PORTRAIT);
+      lastWindow.setPreferredOrientation(isLandscape ? window.Orientation.LANDSCAPE : window.Orientation.PORTRAIT)
     });
   }
 
   build() {
     Column({ space: 50 }) {
-      Text(this.text).fontSize(50).fontColor(this.color);
+      Text(this.text).fontSize(50).fontColor(this.color)
       Text('Landscape').fontSize(50).fontColor(this.color).backgroundColor(Color.Orange)
         .onClick(() => {
           this.changeOrientation(true);
-        });
+        })
       Text('Portrait').fontSize(50).fontColor(this.color).backgroundColor(Color.Orange)
         .onClick(() => {
           this.changeOrientation(false);
-        });
+        })
     }
     .width('100%').height('100%')
   }
@@ -238,18 +240,20 @@ struct MediaQueryExample {
 
 示例二使用媒体查询实现屏幕横竖屏切换时Flex组件的不同布局，竖屏时Flex采用垂直方向布局，横屏时采用水平方向布局。
 
+<!-- @[obtain_mediaquery_flex](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkUISample/MediaQuerySample/entry/src/main/ets/pages/MediaQueryFlex.ets) -->
+
 ```ts
 import { LengthMetrics, mediaquery, window } from '@kit.ArkUI';
 import { common } from '@kit.AbilityKit';
 
 @Entry
 @Component
-struct MediaQueryExample {
+struct ObtainMediaQueryFlex {
   @State color: string = '#DB7093';
   @State text: string = 'Portrait';
   @State dir: FlexDirection = FlexDirection.Column
-  @State textHeight: string = "30%"
-  @State textWidth: string = "100%"
+  @State textHeight: string = '30%'
+  @State textWidth: string = '100%'
   // 当设备横屏时条件成立
   listener: mediaquery.MediaQueryListener =
     this.getUIContext().getMediaQuery().matchMediaSync('(orientation: landscape)');
@@ -260,14 +264,14 @@ struct MediaQueryExample {
       this.color = '#FFD700';
       this.text = 'Landscape';
       this.dir = FlexDirection.Row;
-      this.textHeight = "100%"
-      this.textWidth = "33%"
+      this.textHeight = '100%'
+      this.textWidth = '33%'
     } else {
       this.color = '#DB7093';
       this.text = 'Portrait';
       this.dir = FlexDirection.Column;
-      this.textHeight = "33%"
-      this.textWidth = "100%"
+      this.textHeight = '33%'
+      this.textWidth = '100%'
     }
   }
 
@@ -321,7 +325,7 @@ struct MediaQueryExample {
           .textAlign(TextAlign.Center)
           .backgroundColor('rgb(240, 250, 255)')
       }.layoutWeight(1)
-      .width("100%")
+      .width('100%')
     }
     .width('100%').height('100%')
   }
