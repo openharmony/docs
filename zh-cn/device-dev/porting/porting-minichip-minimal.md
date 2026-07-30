@@ -557,12 +557,12 @@ nm <elf> | grep xts_overlay      # xts_overlay_start / xts_overlay_end
 
 #### Feature说明
 
-- 在third_party/mbedtls/mbedtls_feature.gni中配置了算法相关feature，
-- 通过 --gn-args mbedtls_feature_xxx = true的方式可开启
-- 以下为Hi3863上使用feature化的示例
+- 在third_party/mbedtls/mbedtls_feature.gni中配置了算法相关feature。
+- 通过 --gn-args mbedtls_feature_xxx = true的方式可开启。
+- 以下为Hi3863上使用feature化的示例。
   - Hi3863切换mbedtls使用的源：
-    - 一些产品使用了自己sdk特化的mbedtls，需先行切换
-    - （是否要切换到thirdparty下的，可根据实际判断，mbedtls_ohos_switch当前仅适配了Hi3863）
+    - 一些产品使用了自己sdk特化的mbedtls，需先行切换。
+    - 是否要切换到thirdparty下的，可根据实际判断，mbedtls_ohos_switch当前仅适配了Hi3863。
     - --gn-args mbedtls_ohos_switch=true
     - --gn-args 'huks_dependency_mbedtls_path="//third_party/mbedtls"'
     - --gn-args mbedtls_featureized=true
@@ -570,7 +570,7 @@ nm <elf> | grep xts_overlay      # xts_overlay_start / xts_overlay_end
     - --gn-args mbedtls_feature_x509=true
     - --gn-args mbedtls_feature_ssl_tls12=true
     - --gn-args mbedtls_feature_ssl_misc=true
-    - Hi3863的minimal产品暂不使用mbedtls
+    - Hi3863的minimal产品暂不使用mbedtls。
 
 #### 注意事项
 
@@ -594,9 +594,9 @@ nm <elf> | grep xts_overlay      # xts_overlay_start / xts_overlay_end
 ### Feature说明
 
 - **ohos_stack_protector**：设置栈保护（Stack Protector）级别。可选值：
-  - `strong`：强保护模式，为大部分函数插入栈保护代码，安全性高但略有性能开销
-  - `no`：无保护模式，内存优化最佳，安全性最低
-  - `""`：使用产品本身配置
+  - `strong`：强保护模式，为大部分函数插入栈保护代码，安全性高但略有性能开销。
+  - `no`：无保护模式，内存优化最佳，安全性最低。
+  - `""`：使用产品本身配置。
 
 - **ohos_mem_opt_extra**：控制是否使能额外的内存优化选项。开启后编译器会进行更激进的内存优化（如优化内存布局、减少冗余分配），适用于RAM资源受限的轻量系统芯片场景。
 
