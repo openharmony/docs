@@ -346,11 +346,13 @@ startHCE(aidList: string[]): boolean
 | ------- | -------------------------------------- |
 | boolean | true: 启动HCE功能或HCE已启动，&nbsp;false: 启动失败。 |
 
-**ArkTS示例：**
+**示例：**
+
+ArkTS示例：
 
 示例请参见[on](#on8)接口的示例。
 
-**JS示例：**
+JS示例：
 
 ```xml
 <!-- 适用于轻量级智能穿戴设备 -->
@@ -457,11 +459,13 @@ stopHCE(): boolean
 | ------- | -------------------------------------- |
 | boolean | true: 禁用HCE功能或HCE已禁用，false: 禁用失败。 |
 
-**ArkTS示例：**
+**示例：**
+
+ArkTS示例：
 
 示例请参见[on](#on8)接口的示例。
 
-**JS示例：**
+JS示例：
 
 ```xml
 <!-- 适用于轻量级智能穿戴设备 -->
@@ -575,7 +579,9 @@ on(type: 'hceCmd', callback: AsyncCallback\<number[]>): void
 |401 | Invalid parameter.                 |
 |801 | Capability not supported.          |
 
-**ArkTS示例：**
+**示例：**
+
+ArkTS示例：
 ```js
 // 适用于除轻量级智能穿戴产品之外其他设备
 import { hilog } from '@kit.PerformanceAnalysisKit';
@@ -608,7 +614,7 @@ export default class EntryAbility extends UIAbility {
 }
 ```
 
-**JS示例：**
+JS示例：
 <!--code_no_check_fa-->
 ```js
 // 适用于轻量级智能穿戴设备
@@ -731,11 +737,13 @@ sendResponse(responseApdu: number[]): void
 | ------------ | -------- | ---- | -------------------------------------------------- |
 | responseApdu | number[] | 是   | 发送到对端读卡设备的符合APDU协议的数据，每个number十六进制表示，范围是0x00~0xFF。 |
 
-**ArkTS示例：**
+**示例：**
+
+ArkTS示例：
 
 示例请参见[transmit](#transmit9)接口的示例。
 
-**JS示例：**
+JS示例：
 
 ```xml
 <!-- 适用于轻量级智能穿戴设备 -->
