@@ -273,7 +273,7 @@ OH_Crypto_ErrCode OH_CryptoSymCipher_Final(OH_CryptoSymCipher *ctx, Crypto_DataB
 
 | 类型 | 说明 |
 | -- | -- |
-| [OH_Crypto_ErrCode](capi-crypto-common-h.md#oh_crypto_errcode) | CRYPTO_SUCCESS：操作成功。<br>CRYPTO_INVALID_PARAMS：ctx或out为NULL。<br>CRYPTO_NOT_SUPPORTED：不支持的操作或算法。<br>CRYPTO_MEMORY_ERROR：内存操作失败。<br>CRYPTO_PARAMETER_CHECK_FAILED：参数无效。适用版本：20+<br>CRYPTO_OPERTION_ERROR：加解密完成失败。可能的原因：解密时IV或密钥错误；AEAD（GCM/CCM）认证标签验证失败（TAG、AAD、密文或密钥错误）；分组密码（如AES-CBC/ECB）解密时密文长度不是分组大小的整数倍；分组密码使用NoPadding加密时明文长度不是分组大小的整数倍。 |
+| [OH_Crypto_ErrCode](capi-crypto-common-h.md#oh_crypto_errcode) | CRYPTO_SUCCESS：操作成功。<br>CRYPTO_INVALID_PARAMS：ctx或out为NULL。<br>CRYPTO_NOT_SUPPORTED：不支持的操作或算法。<br>CRYPTO_MEMORY_ERROR：内存操作失败。<br>CRYPTO_PARAMETER_CHECK_FAILED：参数无效。适用版本：20+<br>CRYPTO_OPERTION_ERROR：加解密完成失败。可能的原因：<br>解密时IV或密钥错误；AEAD（GCM/CCM）认证标签验证失败（TAG、AAD、密文或密钥错误）；<br>分组密码（如AES-CBC/ECB）解密时密文长度不是分组大小的整数倍；<br>分组密码使用NoPadding加密时明文长度不是分组大小的整数倍。 |
 
 ### OH_CryptoSymCipher_GetAlgoName()
 
