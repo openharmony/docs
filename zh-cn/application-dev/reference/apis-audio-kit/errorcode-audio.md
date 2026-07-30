@@ -314,4 +314,4 @@ AudioCapturer创建成功，但调用[start](arkts-apis-audio-AudioCapturer.md#s
 
 **处理步骤**
 
-收集完整日志提issue单，由系统侧进行分析。
+重启设备后重试。
