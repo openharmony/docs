@@ -313,6 +313,7 @@ export default class EntryAbility extends UIAbility {
 **实现步骤**
 
 1. 在onCreate()生命周期回调中，通过按位或运算符（`|`）组合三种场景的标志位。
+
     标志位定义在[contextConstant.Scenarios](../reference/apis-ability-kit/js-apis-app-ability-contextConstant.md#scenarios20)中：
     - `SCENARIO_MOVE_MISSION_TO_FRONT`（0x00000001）
     - `SCENARIO_SHOW_ABILITY`（0x00000002）
