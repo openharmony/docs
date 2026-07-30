@@ -2577,7 +2577,7 @@ Camera_ErrorCode OH_CaptureSession_GetColorTintRange(const Camera_CaptureSession
 
 获取支持配置的白平衡色调调节范围。
 
-**起始版本：** 26
+**起始版本：** 26.0.0
 
 **参数：**
 
@@ -2603,7 +2603,7 @@ Camera_ErrorCode OH_CaptureSession_GetColorTint(const Camera_CaptureSession* ses
 
 获取当前白平衡的色调调节值。
 
-**起始版本：** 26
+**起始版本：** 26.0.0
 
 **参数：**
 
@@ -2628,7 +2628,7 @@ Camera_ErrorCode OH_CaptureSession_SetColorTint(Camera_CaptureSession* session, 
 
 设置白平衡的色调调节值。设置前，建议通过[OH_CaptureSession_GetColorTintRange](capi-capture-session-h.md#oh_capturesession_getcolortintrange)获取支持配置的白平衡色调调节范围。
 
-**起始版本：** 26
+**起始版本：** 26.0.0
 
 **参数：**
 
