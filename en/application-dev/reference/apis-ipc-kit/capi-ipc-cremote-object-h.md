@@ -295,7 +295,7 @@ Sends an IPC message from the proxy to the remote stub. This function supports b
 
 - It is advised to check whether the remote side is alive using [OH_IPCRemoteProxy_IsRemoteDead()](#oh_ipcremoteproxy_isremotedead) before making a call.
 
-- In case of call failure, It is advised to retry or perform error handling based on the returned error code.
+- In case of call failure, it is advised to retry or perform error handling based on the returned error code.
 
 - Frequent IPC calls may affect performance. It is advised to design the communication protocol properly to reduce the number of calls.
 
