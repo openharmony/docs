@@ -418,7 +418,7 @@ statistics.getAllRxBytes((error: BusinessError, stats: number) => {
 
 getAllRxBytes(): Promise\<number>
 
-获取所有网卡从最近一次开机开始至接口调用时刻的下行流量总和（单位：字节）。使用callback异步回调。
+获取所有网卡从最近一次开机开始至接口调用时刻的下行流量总和（单位：字节）。使用Promise异步回调。
 
 **原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。
 
