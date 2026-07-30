@@ -1942,7 +1942,7 @@ off(type: 'missionEvent', listenerId: number): Promise&lt;void&gt;
 
 > **说明：**
 >
-> 从API version 9开始支持，从API version 10开始废弃，建议使用[missionManager.off('mission')](#missionmanageroffmission)替代。
+> 从API version 9开始支持，从API version 10开始废弃，建议使用[missionManager.off('mission')](#missionmanageroffmission-1)替代。
 
 **需要权限**：ohos.permission.MANAGE_MISSIONS
 

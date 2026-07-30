@@ -170,7 +170,7 @@ startAbility(want: Want, options: StartOptions, callback: AsyncCallback&lt;void&
 | 16000019 | No matching ability is found. <br>适用版本：12+ |
 | 16000050 | Internal error. |
 | 16000053 | The ability is not on the top of the UI. |
-| 16000055 | Installation-free timed out. <br>适用版本：12+ |
+| 16000055 | Installation-free timed out. |
 | 16000067 | The StartOptions check failed. <br>适用版本：12+ |
 | 16000068 | The ability is already running. <br>适用版本：12+ |
 | 16300003 | The target application is not the current application. <br>适用版本：12+ |
