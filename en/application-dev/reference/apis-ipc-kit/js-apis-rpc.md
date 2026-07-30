@@ -22,7 +22,7 @@ import { rpc } from '@kit.IPCKit';
 
 ## ErrorCode<sup>9+</sup>
 
-The APIs of this module return exceptions since API version 9. The following table lists the error codes.
+The APIs of this module return exceptions since API version 9. The following table lists the error codes, values, and descriptions. For details, see [RPC Error Codes](errorcode-rpc.md).
 
 **System capability**: SystemCapability.Communication.IPC.Core
 
@@ -51,26 +51,36 @@ Since API version 12, [writeArrayBuffer](#writearraybuffer12) and [readArrayBuff
 
   | Name                        | Value    | Description                                         |
   | ---------------------------- | ------ | --------------------------------------------  |
-  | INT8_ARRAY                   | 0      | The TypedArray type is **INT8_ARRAY**.                 |
-  | UINT8_ARRAY                  | 1      | The TypedArray type is **UINT8_ARRAY**.                |
-  | INT16_ARRAY                  | 2      | The TypedArray type is **INT16_ARRAY**.                |
-  | UINT16_ARRAY                 | 3      | The TypedArray type is **UINT16_ARRAY**.               |
-  | INT32_ARRAY                  | 4      | The TypedArray type is **INT32_ARRAY**.                |
-  | UINT32_ARRAY                 | 5      | The TypedArray type is **UINT32_ARRAY**.               |
-  | FLOAT32_ARRAY                | 6      | The TypedArray type is **FLOAT32_ARRAY**.              |
-  | FLOAT64_ARRAY                | 7      | The TypedArray type is **FLOAT64_ARRAY**.              |
-  | BIGINT64_ARRAY               | 8      | The TypedArray type is **BIGINT64_ARRAY**.             |
-  | BIGUINT64_ARRAY              | 9      | The TypedArray type is **BIGUINT64_ARRAY**.            |
+  | INT8_ARRAY                   | 0      | The TypedArray type is INT8_ARRAY. Data is read and written in 8-bit signed integer format, with each element occupying 1 byte.                 |
+  | UINT8_ARRAY                  | 1      | The TypedArray type is UINT8_ARRAY. Data is read and written in 8-bit unsigned integer format, with each element occupying 1 byte.                |
+  | INT16_ARRAY                  | 2      | The TypedArray type is INT16_ARRAY. Data is read and written in 16-bit signed integer format, with each element occupying 2 bytes.                |
+  | UINT16_ARRAY                 | 3      | The TypedArray type is UINT16_ARRAY. Data is read and written in 16-bit unsigned integer format, with each element occupying 2 bytes.               |
+  | INT32_ARRAY                  | 4      | The TypedArray type is INT32_ARRAY. Data is read and written in 32-bit signed integer format, with each element occupying 4 bytes.                |
+  | UINT32_ARRAY                 | 5      | The TypedArray type is UINT32_ARRAY. Data is read and written in 32-bit unsigned integer format, with each element occupying 4 bytes.               |
+  | FLOAT32_ARRAY                | 6      | The TypedArray type is FLOAT32_ARRAY. Data is read and written in 32-bit single-precision floating-point format, with each element occupying 4 bytes.              |
+  | FLOAT64_ARRAY                | 7      | The TypedArray type is FLOAT64_ARRAY. Data is read and written in 64-bit double-precision floating-point format, with each element occupying 8 bytes.              |
+  | BIGINT64_ARRAY               | 8      | The TypedArray type is BIGINT64_ARRAY. Data is read and written in 64-bit big integer format, with each element occupying 8 bytes.             |
+  | BIGUINT64_ARRAY              | 9      | The TypedArray type is BIGUINT64_ARRAY. Data is read and written in 64-bit unsigned big integer format, with each element occupying 8 bytes.            |
 
 ## MessageSequence<sup>9+</sup>
 
 Provides APIs for reading and writing data in specific format. During RPC or IPC, the sender can use the **write()** method provided by **MessageSequence** to write data in specific format to a **MessageSequence** object. The receiver can use the **read()** method provided by **MessageSequence** to read data in specific format from a **MessageSequence** object. The data formats include basic data types and arrays, IPC objects, interface tokens, and custom sequenceable objects.
 
+**System capability**: SystemCapability.Communication.IPC.Core
+
 ### create<sup>9+</sup>
 
 static create(): MessageSequence
 
-Creates a **MessageSequence** object. This API is a static method.
+Creates a **MessageSequence** object. This API is a static method. After this method is called, the system allocates a contiguous buffer in memory for storing the serialized data to be transmitted. This object is used to encapsulate request and response data in IPC/RPC communication.
+
+**Constraints**
+
+- The created **MessageSequence** object must be released by calling **reclaim()** after use; otherwise, memory leaks may occur.
+- An **MessageSequence** object cannot be used across threads.
+- You are advised to create the object on demand when IPC/RPC communication is required, and to avoid frequent creation and release.
+
+**Paired calling**: For the **MessageSequence** object created via **create()**, you must call **reclaim()** to release its resources after use. Otherwise, memory resource leaks occur.
 
 **System capability**: SystemCapability.Communication.IPC.Core
 
@@ -88,6 +98,7 @@ import { hilog } from '@kit.PerformanceAnalysisKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
+  // Create a MessageSequence object.
   let data = rpc.MessageSequence.create();
   hilog.info(0x0000, 'testTag', 'data is ' + data);
 
@@ -105,6 +116,17 @@ try {
 reclaim(): void
 
 Reclaims the **MessageSequence** object that is no longer used.
+
+**Pairing requirement**
+
+This method and the **create ()** method must be used in pairs. For the **MessageSequence** object created via **create()**, you must call **reclaim()** to release its resources after use. If **reclaim()** is not called in a timely manner, memory resources leaks occur.
+
+**Constraints**
+
+- This method must be called after the **MessageSequence** object is used.
+- After this method is called, the object cannot be used anymore.
+- It is advised to call this method in a finally block or at the end of a task to ensure resource release.
+- Do not release the object across threads in asynchronous operations.
 
 **System capability**: SystemCapability.Communication.IPC.Core
 
@@ -129,7 +151,14 @@ try {
 
 writeRemoteObject(obj: IRemoteObject): void
 
-Serializes the remote object and writes it to the [MessageSequence](#messagesequence9) object.
+Serializes the remote object and writes it to the [MessageSequence](#messagesequence9) object. After this method is called, the **IRemoteObject** object is serialized into a specific format and stored in the buffer of **MessageSequence**. The internal write pointer position is updated accordingly. The serialized object can be deserialized and read on the receiving side via the **readRemoteObject** method.
+
+**Constraints**
+
+- Only a valid **IRemoteObject** object can be written. Passing an invalid object will cause an exception to be thrown.
+- The serialized object occupies a fixed amount of buffer space.
+- This method and the **readRemoteObject** method must be used in pairs.
+- You are advised to call **getWritableBytes** to check the remaining space before the write operation.
 
 **System capability**: SystemCapability.Communication.IPC.Core
 
@@ -170,6 +199,7 @@ class TestRemoteObject extends rpc.RemoteObject {
 try {
   let data = rpc.MessageSequence.create();
   let testRemoteObject = new TestRemoteObject("testObject");
+  // Write the remote object to the MessageSequence object.
   data.writeRemoteObject(testRemoteObject);
 } catch (error) {
   let e: BusinessError = error as BusinessError;
@@ -182,7 +212,14 @@ try {
 
 readRemoteObject(): IRemoteObject
 
-Reads the remote object from **MessageSequence**. You can use this API to deserialize the **MessageSequence** object to generate an **IRemoteObject**. The remote object is read in the order in which it is written to this **MessageSequence** object.
+Reads the remote object from **MessageSequence**. You can use this API to deserialize the **MessageSequence** object to generate an **IRemoteObject**. The remote object is read in the order in which it is written to this **MessageSequence** object. After this method is called, the serialized remote object data is read from the **MessageSequence** buffer and deserialized into an **IRemoteObject** instance. The read operation updates the internal read pointer position.
+
+**Constraints**
+
+- The read sequence must be the same as the write sequence. Otherwise, data parsing errors occurs.
+- Before reading, ensure that there is readable data available in the buffer. You can call **getReadableBytes** to check.
+- If a **RemoteObject** was written, the read result will be a **RemoteProxy**.
+- If the read operation fails, an exception will be thrown. It is advised to use a try-catch block to catch it.
 
 **System capability**: SystemCapability.Communication.IPC.Core
 
@@ -236,7 +273,20 @@ try {
 
 writeInterfaceToken(token: string): void
 
-Writes an interface token to this **MessageSequence** object. The remote object can use this interface token to verify the communication.
+Writes an interface token to this **MessageSequence** object. The remote object can use this interface token to verify the communication. This method is applicable to scenarios where the consistency of communication interfaces between both parties needs to be verified, such as cross-process service calls and secure communication verification. It is advised to use a unique and meaningful string as the interface token, such as **com.example.service**, and avoid including sensitive information. The length of the token should be less than 40960. After this method is called, the interface token string is serialized and stored in the **MessageSequence** buffer. Upon receiving a communication request, the remote side can read the interface token to verify the legitimacy of the request source.
+
+Functions of the interface token:
+
+- Identifies the interface type provided by the server.
+- Used by the remote side to determine whether the client calls the matching interface.
+- Enables interface identity verification between the communicating parties.
+
+**Constraints**
+
+- The interface token length must be less than 40960.
+- It is advised that a meaningful name as the interface token.
+- This method and the **readInterfaceToken** method must be used in pairs.
+- If the length limit is exceeded, a parameter error exception will be thrown.
 
 **System capability**: SystemCapability.Communication.IPC.Core
 
@@ -244,7 +294,7 @@ Writes an interface token to this **MessageSequence** object. The remote object 
 
   | Name| Type  | Mandatory| Description              |
   | ------ | ------ | ---- | ------------------ |
-  | token  | string | Yes  | Interface token to write. The length of the string must be less than 40960 bytes.|
+  | token  | string | Yes  | Interface token of the string type. It is used to verify the interface identity for the current communication. The remote object can use this information to verify the validity of the communication. The value length must be less than 40960.|
 
 **Error codes**
 
@@ -252,7 +302,7 @@ For details about the error codes, see [RPC Error Codes](errorcode-rpc.md).
 
   | ID| Error Message|
   | -------- | -------- |
-  | 401      | Parameter error. Possible causes:<br> 1.The number of parameters is incorrect;<br> 2.The parameter type does not match;<br> 3.The string length is greater than or equal to 40960 bytes;<br> 4.The number of bytes copied to the buffer is different from the length of the obtained string. |
+  | 401      | Parameter error. Possible causes:<br> 1.The number of parameters is incorrect;<br> 2.The parameter type does not match;<br> 3.The string length is greater than or equal to 40960;<br> 4.The number of bytes copied to the buffer is different from the length of the obtained string. |
   | 1900009  | Failed to write data to the message sequence. |
 
 **Example**
@@ -264,6 +314,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   let data = rpc.MessageSequence.create();
+  // Write the interface token to this MessageSequence object.
   data.writeInterfaceToken("aaa");
 } catch (error) {
   let e: BusinessError = error as BusinessError;
@@ -277,6 +328,13 @@ try {
 readInterfaceToken(): string
 
 Reads the interface token from this **MessageSequence** object. The interface token is read in the sequence in which it is written to the **MessageSequence** object. The local object can use it to verify the communication.
+
+**Pairing requirement**
+
+- This method and the **writeInterfaceToken** method must be used in pairs.
+- The read sequence must be consistent with the write sequence.
+- Before reading, ensure that there is readable data available in the buffer.
+- It is advised to read and verify the interface token immediately after receiving an IPC request.
 
 **System capability**: SystemCapability.Communication.IPC.Core
 
@@ -318,6 +376,12 @@ try {
 getSize(): number
 
 Obtains the data size of this **MessageSequence** object.
+
+**Use cases**
+
+- Check the total size of written data.
+- Check the buffer usage.
+- Check the data size before data transmission.
 
 **System capability**: SystemCapability.Communication.IPC.Core
 
@@ -685,7 +749,18 @@ try {
 
 writeByte(val: number): void
 
-Writes a byte value to this **MessageSequence** object.
+Writes a byte value to this **MessageSequence** object. After this method is called, the byte value is stored as an 8-bit unsigned integer at the current write pointer position in the buffer, and the write pointer is automatically updated. This method is suitable for transmitting small-range integers or flag data.
+
+Byte storage format:
+- 1 byte (8 bits) of storage space is occupied.
+- Storage range: 0 to 255 (unsigned) or -128 to 127 (signed).
+- Data alignment is byte-aligned.
+
+**Constraints**
+- The value must be within the byte range. Values outside this range may cause data truncation.
+- Before the write operation, you are advised to use **getWritableBytes** to ensure that there is sufficient space.
+- This method and the **readByte** method must be used in pairs.
+- This method is not suitable for transmitting large-range values. For large-range values, it is advised to use **writeInt** or **writeLong**.
 
 **System capability**: SystemCapability.Communication.IPC.Core
 
@@ -693,7 +768,7 @@ Writes a byte value to this **MessageSequence** object.
 
   | Name| Type  | Mandatory| Description |
   | ------ | ------ | ---- | ----- |
-  | val    | number | Yes  | Byte value to write.|
+  | val    | number | Yes  | Byte value to write. The value range is [0, 255]. If the value exceeds this range, it will be automatically truncated to 8 bits, which may result in loss of data precision. It is advised to check the value range before passing it.|
 
 **Error codes**
 
@@ -726,6 +801,12 @@ try {
 readByte(): number
 
 Reads the byte value from this **MessageSequence** object.
+
+**Pairing reqirement**
+
+- This method and the **writeByte** method must be used in pairs.
+- The read sequence must be consistent with the write sequence.
+- One write corresponds to one read.
 
 **System capability**: SystemCapability.Communication.IPC.Core
 
@@ -768,13 +849,19 @@ writeShort(val: number): void
 
 Writes a short integer to this **MessageSequence** object.
 
+**Constraints**
+
+- Values out of range will be truncated.
+- You are advised to call **getWritableBytes** to ensure that there is at least 2-byte space.
+- This method and the **readShort** method must be used in pairs.
+
 **System capability**: SystemCapability.Communication.IPC.Core
 
 **Parameters**
 
   | Name| Type  | Mandatory| Description|
   | ------ | ------ | ---  | ---  |
-  | val    | number | Yes  | Short integer to write.|
+  | val    | number | Yes  | Short integer to write. The value range is [-2^15, 2^15-1]. This is suitable for transmitting small-range integer data (such as port numbers and IDs). Values outside this range will cause data truncation or write failure. For values in the 0–255 range, it is advised to use **writeByte**. For standard integers, use **writeInt**. For large integers, use **writeLong**.|
 
 **Error codes**
 
@@ -847,7 +934,24 @@ try {
 
 writeInt(val: number): void
 
-Writes an integer to this **MessageSequence** object.
+Writes an integer to this **MessageSequence** object. After this method is called, the integer is stored as an 32-bit signed integer at the current write pointer position in the buffer, and the write pointer is automatically updated. This method is suitable for transmitting standard integer data.
+
+**Atomic service API:** This API can be used in atomic services since API version 26.0.0.
+
+Integer storage format:
+
+- 4 bytes (32 bits) of storage space are occupied.
+- Storage range: –2^31 to 2^31 – 1.
+- The data is stored in the system default byte order.
+- Data is 4-byte aligned.
+
+**Constraints**
+
+- The value range is [-2^31, 2^31-1].
+- Values outside this range will cause data truncation or write failure.
+- Before the write operation, you are advised to use **getWritableBytes** to ensure that there is at least 4-byte space.
+- For small-range values, it is advised to use **writeByte** or **writeShort** to improve efficiency.
+- You are advised to use **writeLong** for large-range values.
 
 **System capability**: SystemCapability.Communication.IPC.Core
 
@@ -855,7 +959,7 @@ Writes an integer to this **MessageSequence** object.
 
   | Name| Type  | Mandatory| Description            |
   | ------ | ------ | ---- | ---------------- |
-  | val    | number | Yes  | Integer to write.|
+  | val    | number | Yes  | Integer to write. The value range is [-2^31, 2^31-1]. This parameter is suitable for transmitting standard integer data (such as counters, index values, and configuration parameters). Values outside this range will cause data truncation or write failure. For small-range values (0-255 or -128-127), it is advised to use **writeByte** to improve efficiency. For small-range integers (-32768-32767), it is advised to use **writeShort**. For large integers, it is advised to use **writeLong**.|
 
 **Error codes**
 
@@ -869,6 +973,7 @@ For details about the error codes, see [RPC Error Codes](errorcode-rpc.md).
 **Example**
 
 ```ts
+// In atomic services, this example is used only to describe how to use the writeInt() API. However, rpc.MessageSequence.create() is currently not supported for use in atomic services.
 import { rpc } from '@kit.IPCKit';
 import { hilog } from '@kit.PerformanceAnalysisKit';
 import { BusinessError } from '@kit.BasicServicesKit';
@@ -889,6 +994,8 @@ readInt(): number
 
 Reads the integer from this **MessageSequence** object.
 
+**Atomic service API:** This API can be used in atomic services since API version 26.0.0.
+
 **System capability**: SystemCapability.Communication.IPC.Core
 
 **Return value**
@@ -908,6 +1015,7 @@ For details about the error codes, see [RPC Error Codes](errorcode-rpc.md).
 **Example**
 
 ```ts
+// In atomic services, this example is used only to describe how to use the readInt() API. However, rpc.MessageSequence.create() is currently not supported for use in atomic services.
 import { rpc } from '@kit.IPCKit';
 import { hilog } from '@kit.PerformanceAnalysisKit';
 import { BusinessError } from '@kit.BasicServicesKit';
@@ -936,7 +1044,7 @@ Writes a long integer to this **MessageSequence** object.
 
   | Name| Type  | Mandatory| Description            |
   | ------ | ------ | ---- | ---------------- |
-  | val    | number | Yes  | Long integer to write.|
+  | val    | number | Yes  | Long integer to write. The value range is [-2^63, 2^63-1]. Values outside this range will cause data truncation or write failure. You are advised to select a proper method (**writeByte**/**writeShort**/**writeInt**/**writeLong**) based on the value range to improve transmission efficiency.|
 
 **Error codes**
 
@@ -1049,7 +1157,7 @@ try {
 
 readFloat(): number
 
-Reads the double value from this **MessageSequence** object.
+Reads a float value from this **MessageSequence** instance. Since the system internally processes float data as double, the read data is returned with double precision.
 
 **System capability**: SystemCapability.Communication.IPC.Core
 
@@ -1057,7 +1165,7 @@ Reads the double value from this **MessageSequence** object.
 
   | Type  | Description        |
   | ------ | ------------ |
-  | number | Double value read.|
+  | number | Double value read. Since the system internally processes float data as double, the read data is returned with double precision.|
 
 **Error codes**
 
@@ -1179,7 +1287,7 @@ Writes a Boolean value to this **MessageSequence** object.
 
   | Name| Type   | Mandatory| Description            |
   | ------ | ------- | ---- | ---------------- |
-  | val    | boolean | Yes  | Boolean value to write.|
+  | val    | boolean | Yes  | Boolean value to write. The value **true** indicates logical true, and the value **false** indicates logical false. The value occupies 1 byte of storage space after being written.|
 
 **Error codes**
 
@@ -1260,7 +1368,7 @@ Writes a character to this **MessageSequence** object.
 
   | Name| Type  | Mandatory| Description                |
   | ------ | ------ | ---- | -------------------- |
-  | val    | number | Yes  | **Char** value to write.|
+  | val    | number | Yes  | **Char** value to write. The value range is [0, 65535], which corresponds to the Unicode character encoding range. Values outside this range may cause character encoding errors.|
 
 **Error codes**
 
@@ -1333,7 +1441,24 @@ try {
 
 writeString(val: string): void
 
-Writes a string to this **MessageSequence** object.
+Writes a string to this **MessageSequence** object. After this method is called, the string is converted into UTF-8 encoding and serialized into the buffer. During the write operation, the string length is stored first, followed by the UTF-8 byte data.
+
+**Atomic service API:** This API can be used in atomic services since API version 26.0.0.
+
+String stroage format:
+
+- The string is stored in UTF-8 encoding.
+- The length (4 bytes) is written first, followed by the content.
+- Multilingual character sets are supported.
+- The length information helps **readString** determine the reading boundary.
+
+**Constraints**
+
+- The length of the UTF-8 encoded string must be less than 40,960.
+- Note the difference between the number of characters and the number of bytes. Chinese characters occupy more bytes.
+- Long strings consume more buffer space.
+- You are advised to use **getWritableBytes** before writing data.
+- An empty string can also be written normally.
 
 **System capability**: SystemCapability.Communication.IPC.Core
 
@@ -1341,7 +1466,7 @@ Writes a string to this **MessageSequence** object.
 
   | Name| Type  | Mandatory| Description                                     |
   | ------ | ------ | ---- | ----------------------------------------- |
-  | val    | string | Yes  | String to write. The length of the string must be less than 40960 bytes.|
+  | val    | string | Yes  | String to write. The length of the string must be less than 40960.|
 
 **Error codes**
 
@@ -1349,12 +1474,13 @@ For details about the error codes, see [RPC Error Codes](errorcode-rpc.md).
 
   | ID| Error Message|
   | -------- | -------- |
-  | 401      | Parameter error. Possible causes: <br> 1.The number of parameters is incorrect; <br> 2.The parameter type does not match; <br> 3.The string length is greater than or equal to 40960 bytes; <br> 4.The number of bytes copied to the buffer is different from the length of the obtained string. |
+  | 401      | Parameter error. Possible causes: <br> 1.The number of parameters is incorrect; <br> 2.The parameter type does not match; <br> 3.The string length is greater than or equal to 40960; <br> 4.The number of bytes copied to the buffer is different from the length of the obtained string. |
   | 1900009  | Failed to write data to the message sequence. |
 
 **Example**
 
 ```ts
+// In atomic services, this example is used only to describe how to use the writeString() API. However, rpc.MessageSequence.create() is currently not supported for use in atomic services.
 import { rpc } from '@kit.IPCKit';
 import { hilog } from '@kit.PerformanceAnalysisKit';
 import { BusinessError } from '@kit.BasicServicesKit';
@@ -1375,6 +1501,8 @@ readString(): string
 
 Reads the string from this **MessageSequence** object.
 
+**Atomic service API:** This API can be used in atomic services since API version 26.0.0.
+
 **System capability**: SystemCapability.Communication.IPC.Core
 
 **Return value**
@@ -1394,6 +1522,7 @@ For details about the error codes, see [RPC Error Codes](errorcode-rpc.md).
 **Example**
 
 ```ts
+// In atomic services, this example is used only to describe how to use the readString() API. However, rpc.MessageSequence.create() is currently not supported for use in atomic services.
 import { rpc } from '@kit.IPCKit';
 import { hilog } from '@kit.PerformanceAnalysisKit';
 import { BusinessError } from '@kit.BasicServicesKit';
@@ -1414,7 +1543,28 @@ try {
 
 writeParcelable(val: Parcelable): void
 
-Writes a **Parcelable** object to this **MessageSequence** object.
+Writes a **Parcelable** object to this **MessageSequence** object. After this method is called, the **marshalling** method of the **Parcelable** object is called to serialize the member variables of the object one by one and write them to **MessageSequence**. This method supports the transmission of custom data structure objects. It is applicable to scenarios such as transmitting complex data structures, service objects, and configuration information.
+
+Working principle of **Parcelable**:
+
+- The **Parcelable** API defines standard methods for serialization and deserialization.
+- The **marshalling** method is responsible for writing the object state to **MessageSequence**.
+- The **unmarshalling** method is responsible for restoring the object state from **MessageSequence**.
+- The service must implement the specific serialization logic itself.
+
+**Constraints**
+
+- Only objects that implement the **Parcelable** API can be passed.
+- The **marshalling** method must correctly implement the writing of all member variables.
+- The serialization order must be consistent with the deserialization order.
+- It is advised to handle exceptions within the **marshalling** method.
+- Complex objects may occupy a significant amount of buffer space.
+
+Suggestions for implementing the Parcelable APIs:
+
+1. All necessary fields are written in a fixed order in the **marshalling** method.
+2. The same order must be followed when reading the fields in the **unmarshalling** method.
+3. Ensure that the marshalling and unmarshalling logic is symmetric to avoid missing or redundant data during transmission.
 
 **System capability**: SystemCapability.Communication.IPC.Core
 
@@ -1476,13 +1626,20 @@ readParcelable(dataIn: Parcelable): void
 
 Reads the **Parcelable** object from this **MessageSequence** object to the specified object (**dataIn**).
 
+**Constraints**
+
+- The **dataIn** parameter must be an instantiated **Parcelable** object.
+- The **unmarshalling** method must read data in the same sequence as the **marshalling** method.
+- The deserialization order must be consistent with the serialization order.
+- It is advised to handle exceptions within the **unmarshalling** method.
+
 **System capability**: SystemCapability.Communication.IPC.Core
 
 **Parameters**
 
 | Name| Type                      | Mandatory| Description                                     |
 | ------ | -------------------------- | ---- | ----------------------------------------- |
-| dataIn | [Parcelable](#parcelable9) | Yes  | **Parcelable** object to read.|
+| dataIn | [Parcelable](#parcelable9) | Yes  | Object that reads member variables from the **MessageSequence** object. Instantiate the serializable object before using it.|
 
 **Error codes**
 
@@ -1566,6 +1723,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 try {
   let data = rpc.MessageSequence.create();
   let ByteArrayVar = [1, 2, 3, 4, 5];
+  // Write the byte array to the MessageSequence Object
   data.writeByteArray(ByteArrayVar);
 } catch (error) {
   let e: BusinessError = error as BusinessError;
@@ -1578,7 +1736,7 @@ try {
 
 readByteArray(dataIn: number[]): void
 
-Reads the byte array from this **MessageSequence** object and writes it to the created empty array.
+Reads the byte array from this **MessageSequence** object and writes it to the created empty array. After reading, the **dataIn** array will be filled with the read byte data, and the read pointer advances by the corresponding number of bytes.
 
 **System capability**: SystemCapability.Communication.IPC.Core
 
@@ -1586,7 +1744,7 @@ Reads the byte array from this **MessageSequence** object and writes it to the c
 
   | Name| Type    | Mandatory| Description              |
   | ------ | -------- | ---- | ------------------ |
-  | dataIn | number[] | Yes  | Byte array to read.|
+  | dataIn | number[] | Yes  | Stores the byte array read from **MessageSequence**. It must be pre-allocated as an empty array, and its length must match the length of the array that was written.|
 
 **Error codes**
 
@@ -1607,6 +1765,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 try {
   let data = rpc.MessageSequence.create();
   let ByteArrayVar = [1, 2, 3, 4, 5];
+  // Write the byte array to the MessageSequence Object
   data.writeByteArray(ByteArrayVar);
   let array: Array<number> = new Array(5);
   data.readByteArray(array);
@@ -1622,7 +1781,7 @@ try {
 
 readByteArray(): number[]
 
-Reads the byte array from this **MessageSequence** object.
+Reads the byte array from this **MessageSequence** object. After the read operation, the byte array data is returned, the read pointer advances by the number of bytes read.
 
 **System capability**: SystemCapability.Communication.IPC.Core
 
@@ -1650,6 +1809,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 try {
   let data = rpc.MessageSequence.create();
   let ByteArrayVar = [1, 2, 3, 4, 5];
+  // Write the byte array to the MessageSequence Object
   data.writeByteArray(ByteArrayVar);
   let array = data.readByteArray();
   hilog.info(0x0000, 'testTag', 'readByteArray is  ' + array);
@@ -1712,7 +1872,7 @@ Reads the short array from this **MessageSequence** object and writes it to the 
 
   | Name| Type    | Mandatory| Description                |
   | ------ | -------- | ---- | -------------------- |
-  | dataIn | number[] | Yes  | Short array to read.|
+  | dataIn | number[] | Yes  | Stores the short integer array read from the MessageSequence. A pre-allocated empty array is required, and its length must match the length of the array that was written.|
 
 **Error codes**
 
@@ -1796,7 +1956,7 @@ Writes an integer array to this **MessageSequence** object.
 
   | Name  | Type    | Mandatory| Description              |
   | -------- | -------- | ---- | ------------------ |
-  | intArray | number[] | Yes  | Integer array to write.|
+  | intArray | number[] | Yes  | Integer array to write. The value range of array elements is [-2^31, 2^31-1]. Values outside this range will cause data truncation or write failure.|
 
 **Error codes**
 
@@ -1836,7 +1996,7 @@ Reads the integer array from this **MessageSequence** object and writes it to th
 
   | Name| Type    | Mandatory| Description              |
   | ------ | -------- | ---- | ------------------ |
-  | dataIn | number[] | Yes  | Integer array to read.|
+  | dataIn | number[] | Yes  | Stores the integer array read from **MessageSequence**. It must be pre-allocated as an empty array, and its length must match the length of the array that was written.|
 
 **Error codes**
 
@@ -1920,7 +2080,7 @@ Writes a long array to this **MessageSequence** object.
 
   | Name   | Type    | Mandatory| Description                |
   | --------- | -------- | ---- | -------------------- |
-  | longArray | number[] | Yes  | Long array to write.|
+  | longArray | number[] | Yes  | Long integer array to write. Each element is a 64-bit integer. Values out of range will be truncated. You are advised to use **BigInt** to process ultra-large values.|
 
 **Error codes**
 
@@ -1952,7 +2112,7 @@ try {
 
 readLongArray(dataIn: number[]): void
 
-Reads the long array from this **MessageSequence** object and writes it to the created empty array.
+Reads a long array from this **MessageSequence** object and writes it to a created empty array.
 
 **System capability**: SystemCapability.Communication.IPC.Core
 
@@ -1960,7 +2120,7 @@ Reads the long array from this **MessageSequence** object and writes it to the c
 
   | Name| Type    | Mandatory| Description                |
   | ------ | -------- | ---- | -------------------- |
-  | dataIn | number[] | Yes  | Long array to read.|
+  | dataIn | number[] | Yes  | Stores the long integer array read from **MessageSequence**. It must be pre-allocated as an empty array, and its length must match the length of the array that was written.|
 
 **Error codes**
 
@@ -1995,7 +2155,7 @@ try {
 
 readLongArray(): number[]
 
-Reads the long integer array from this **MessageSequence** object.
+Reads a long array from this **MessageSequence** object.
 
 **System capability**: SystemCapability.Communication.IPC.Core
 
@@ -2042,8 +2202,8 @@ Writes a double array to this **MessageSequence** object.
 
 **Parameters**
 
-  | Name    | Type    | Mandatory| Description                                                                                                                   |
-  | ---------- | -------- | ---- | ----------------------------------------------------------------------------------------------------------------------- |
+  | Name    | Type    | Mandatory| Description                     |
+  | ---------- | -------- | ---- | -------------------------|
   | floatArray | number[] | Yes  | Double array to write. The system processes float data as that of the double type. Therefore, the total number of bytes occupied by a float array must be calculated as the double type.|
 
 **Error codes**
@@ -2119,7 +2279,7 @@ try {
 
 readFloatArray(): number[]
 
-Reads the double array from this **MessageSequence** object.
+Reads the double array from this **MessageSequence** object. The system processes float data as that of the double type. Therefore, the total number of bytes occupied by a float array must be calculated as the double type.
 
 **System capability**: SystemCapability.Communication.IPC.Core
 
@@ -2208,7 +2368,7 @@ Reads the double array from this **MessageSequence** object and writes it to the
 
   | Name| Type    | Mandatory| Description                    |
   | ------ | -------- | ---- | ------------------------ |
-  | dataIn | number[] | Yes  | Double array to read.|
+  | dataIn | number[] | Yes  | Stores the double-precision floating-point number array read from **MessageSequence**. It must be pre-allocated as an empty array, and its length must match the length of the array that was written.|
 
 **Error codes**
 
@@ -2243,7 +2403,7 @@ try {
 
 readDoubleArray(): number[]
 
-Reads the double array from this **MessageSequence** object.
+Reads the double array from this **MessageSequence** object. The system processes float data as that of the double type. Therefore, the total number of bytes occupied by a float array must be calculated as the double type.
 
 **System capability**: SystemCapability.Communication.IPC.Core
 
@@ -2332,7 +2492,7 @@ Reads the Boolean array from this **MessageSequence** object and writes it to th
 
   | Name| Type     | Mandatory| Description              |
   | ------ | --------- | ---- | ------------------ |
-  | dataIn | boolean[] | Yes  | Boolean array to read.|
+  | dataIn | boolean[] | Yes  | Boolean array read from the message sequence. An empty array must be created in advance, and the length of the array must be the same as that of the array written.|
 
 **Error codes**
 
@@ -2367,7 +2527,7 @@ try {
 
 readBooleanArray(): boolean[]
 
-Reads the Boolean array from this **MessageSequence** object.
+Reads a boolean array from this MessageSequence instance.
 
 **System capability**: SystemCapability.Communication.IPC.Core
 
@@ -2456,7 +2616,7 @@ Reads the character array from this **MessageSequence** object and writes it to 
 
   | Name| Type    | Mandatory| Description                  |
   | ------ | -------- | ---- | ---------------------- |
-  | dataIn | number[] | Yes  | Character array to read.|
+  | dataIn | number[] | Yes  | Stores the character array read from **MessageSequence**. It must be pre-allocated as an empty array, and its length must match the length of the array that was written.|
 
 **Error codes**
 
@@ -2540,7 +2700,7 @@ Writes a string array to this **MessageSequence** object.
 
   | Name     | Type    | Mandatory| Description                                                   |
   | ----------- | -------- | ---- | ------------------------------------------------------- |
-  | stringArray | string[] | Yes  | String array to write. The length of a single element in the array must be less than 40960 bytes.|
+  | stringArray | string[] | Yes  | String array to write. Each string element must be less than 40960 in length.|
 
 **Error codes**
 
@@ -2548,7 +2708,7 @@ For details about the error codes, see [RPC Error Codes](errorcode-rpc.md).
 
   | ID| Error Message|
   | -------- | -------- |
-  | 401      | Parameter error. Possible causes: <br> 1.The parameter is an empty array; <br> 2.The number of parameters is incorrect; <br> 3.The parameter type does not match; <br> 4.The string length is greater than or equal to 40960 bytes; <br> 5.The number of bytes copied to the buffer is different from the length of the obtained string. |
+  | 401      | Parameter error. Possible causes: <br> 1.The parameter is an empty array; <br> 2.The number of parameters is incorrect; <br> 3.The parameter type does not match; <br> 4.The string length is greater than or equal to 40960; <br> 5.The number of bytes copied to the buffer is different from the length of the obtained string. |
   | 1900009  | Failed to write data to the message sequence. |
 
 **Example**
@@ -2658,6 +2818,18 @@ writeNoException(): void
 
 Writes information to this **MessageSequence** object indicating that no exception occurred.
 
+**Pairing requirments**
+
+- This method must be used in pairs with the [readException](#readexception9) method.
+- After processing a request, the server should call **writeNoException()** to write information indicating that no exception occurred.
+- After receiving the response, the client should call [readException](#readexception9) to retrieve exception information.
+- If the server does not call **writeNoException()**, the client's call to [readException](#readexception9) will fail.
+
+**Use cases**
+
+- This method is used on the server side in IPC/RPC communication.
+- This method is usually called in the **onRemoteMessageRequest** callback.
+
 **System capability**: SystemCapability.Communication.IPC.Core
 
 **Error codes**
@@ -2703,7 +2875,23 @@ class TestRemoteObject extends rpc.RemoteObject {
 
 readException(): void
 
-Reads the exception information from this **MessageSequence** object.
+Reads the exception information from this **MessageSequence** object. This method is applicable to scenarios where the exception status needs to be checked after a response from the remote service is received.
+
+1. It is advised to call this method first after each IPC/RPC call.
+2. If an exception occurs, handle it immediately and stop reading subsequent data.
+3. After handling the exception, you are advised to call the **reclaim()** method to release the **MessageSequence** object.
+
+**Pairing requirments**
+
+- This method and the [writeNoException()](#writenoexception9) method must be used in pairs.
+- This method can be called only after the [writeNoException()](#writenoexception9) method is called on the server.
+- Calling sequence: the server processes a request → call [writeNoException()](#writenoexception9) → the client receives the response → call [readException](#readexception9). If the server does not call [writeNoException()](#writenoexception9), calling this method will fail.
+
+**Use cases**
+
+- This method is used on the client side in IPC/RPC communication.
+- This method is called after the response to a **sendMessageRequest** API call is received.
+- This method is used to checks whether an exception occurs on the server.
 
 **System capability**: SystemCapability.Communication.IPC.Core
 
@@ -2871,7 +3059,7 @@ Reads the **Parcelable** array from this **MessageSequence** object.
 
 | Name         | Type        | Mandatory| Description                      |
 | --------------- | ------------ | ---- | -------------------------- |
-| parcelableArray | [Parcelable](#parcelable9)[] | Yes  | **Parcelable** array to read.|
+| parcelableArray | [Parcelable](#parcelable9)[] | Yes  | Array of **Parcelable** objects to read. Instantiate the objects before use. The lengths of the serialized and deserialized arrays must be consistent.|
 
 **Error codes**
 
@@ -3090,6 +3278,18 @@ static closeFileDescriptor(fd: number): void
 
 Closes a file descriptor. This API is a static method.
 
+**Use cases**
+
+- Close the file descriptor in a timely manner after file use.
+- Close the file descriptor after the file transfer is complete.
+- Avoid resource leakage.
+
+**Constraints**
+
+- Ensure that the file operations are complete before closing the file descriptor.
+- Do not close a file descriptor that has already been closed.
+- After the file descriptor is closed, the file cannot be read or written.
+
 **System capability**: SystemCapability.Communication.IPC.Core
 
 **Parameters**
@@ -3130,6 +3330,18 @@ try {
 static dupFileDescriptor(fd: number): number
 
 Duplicates a file descriptor. This API is a static method.
+
+**Use cases**
+
+- The file descriptor should be duplicated before IPC transmission to prevent the original descriptor from being closed.
+- Multiple processes can share the same file.
+- The file offset needs to be managed independently.
+
+**Constraints**
+
+- After duplication, both the original and the duplicated descriptors must be closed separately.
+- An invalid file descriptor should not be duplicated.
+- The lifecycle of each descriptor must be managed independently after duplication.
 
 **System capability**: SystemCapability.Communication.IPC.Core
 
@@ -3212,7 +3424,22 @@ try {
 
 writeFileDescriptor(fd: number): void
 
-Writes a file descriptor to this **MessageSequence** object.
+Writes a file descriptor to this **MessageSequence** object. After this method is called, the file descriptor is encapsulated and transmitted across processes through the Binder mechanism. The receiving side can obtain the file descriptor via **readFileDescriptor** and perform file operations accordingly.
+
+File descriptor transfer mechanism:
+
+- The file descriptor is transmitted across processes through Binder's FD passing mechanism.
+- The receiving side obtains a new mapped file descriptor.
+- Both descriptors actually point to the same file resource.
+- Various descriptor types, such as regular files, pipes, and sockets, are supported.
+
+**Constraints**
+
+- The file descriptor must be valid and already opened.
+- After the write operation, the original descriptor remains valid and must be managed by the service itself.
+- It is advised to duplicate the file descriptor using **dupFileDescriptor** before transmission.
+- After transmission, the receiving side should use the descriptor promptly to avoid resource waste.
+- After reading, it is advised to close the descriptor in a timely manner to prevent resource leaks.
 
 **System capability**: SystemCapability.Communication.IPC.Core
 
@@ -3220,7 +3447,7 @@ Writes a file descriptor to this **MessageSequence** object.
 
   | Name| Type  | Mandatory| Description        |
   | ------ | ------ | ---- | ------------ |
-  | fd     | number | Yes  | File descriptor to write.|
+  | fd     | number | Yes  | File descriptor, which is usually obtained through a file operation API (such as **fileIo.open**).|
 
 **Error codes**
 
@@ -3255,7 +3482,19 @@ try {
 
 readFileDescriptor(): number
 
-Reads the file descriptor from this **MessageSequence** object.
+Reads the file descriptor from this **MessageSequence** object. The receiver reads the mapped new file descriptor ID, which is different from the descriptor ID written by the sender but points to the same file resource. After reading, it is advised to use and close the descriptor in a timely manner to prevent resource leaks. If the descriptor needs to be used for a long time, you can call **dupFileDescriptor** to duplicate the descriptor.
+
+**Pairing reqirement**
+
+- This method and the **writeFileDescriptor** method must be used in pairs.
+- After the read operation, the descriptor needs to be used or closed promptly.
+- Do not rely on the fd ID of the source end.
+
+**Constraints**
+
+- After the read operation, the lifecycle of the file descriptor needs to be managed.
+- You are advised to use the descriptor promptly to avoid resource waste.
+- Close the file descriptor in a timely manner after use.
 
 **System capability**: SystemCapability.Communication.IPC.Core
 
@@ -3300,6 +3539,26 @@ try {
 writeAshmem(ashmem: Ashmem): void
 
 Writes an anonymous shared object to this **MessageSequence** object.
+
+**Pairing requirments**
+
+- This method must be used in pairs with the **readAshmem()** method.
+- Call sequence: writeAshmem() → Transmit **MessageSequence** → readAshmem() → mapReadWriteAshmem() → readDataFromAshmem().
+- Before using this method, create an **Ashmem** object and write data to it.
+
+**Process**
+
+1. Create an **Ashmem** object: Ashmem.create()
+2. Perform memory mapping and write data: mapReadWriteAshmem() + writeDataToAshmem()
+3. Write **Ashmem** to **MessageSequence**: writeAshmem()
+4. Read **Ashmem** by the receiving side: readAshmem()
+5. Perform memory mapping and read data by the receiving side: mapReadWriteAshmem() + readDataFromAshmem()
+
+**Related methods**
+
+- **readAshmem()**: reads an anonymous shared object.
+- **Ashmem.create()**: creates an anonymous shared object.
+- **mapReadWriteAshmem()**: maps memory for read-write access.
 
 **System capability**: SystemCapability.Communication.IPC.Core
 
@@ -3352,7 +3611,21 @@ try {
 
 readAshmem(): Ashmem
 
-Reads the anonymous shared object from this **MessageSequence** object.
+Reads the anonymous shared object from this **MessageSequence** object. Before using this method, call the **mapReadWriteAshmem** method to perform memory mapping.
+
+**Process**
+
+1. readAshmem(): obtains an object.
+2. mapReadWriteAshmem(): performs memory mapping.
+3. readDataFromAshmem(): reads data.
+4. unmapAshmem(): cancels mapping.
+5. closeAshmem(): closes an object.
+
+**Constraints**
+
+- Data can be read only after memory mapping.
+- Mapping needs to be canceled after data is read.
+- The object needs to be closed in a timely manner to avoid memory leaks.
 
 **System capability**: SystemCapability.Communication.IPC.Core
 
@@ -3360,7 +3633,7 @@ Reads the anonymous shared object from this **MessageSequence** object.
 
 | Type  | Description              |
 | ------ | ------------------ |
-| [Ashmem](#ashmem8) | Anonymous share object obtained.|
+| [Ashmem](#ashmem8) | Anonymous share object obtained. Before reading data, call the **mapReadWriteAshmem** method to perform memory mapping.|
 
 **Error codes**
 
@@ -3561,7 +3834,7 @@ Reads raw data from this **MessageSequence** object.
 
   | Name| Type  | Mandatory| Description                    |
   | ------ | ------ | ---- | ------------------------ |
-  | size   | number | Yes  | Size of the raw data to read.|
+  | size   | number | Yes  | Size of the original data to read, in bytes.|
 
 **Return value**
 
@@ -3612,7 +3885,7 @@ Reads raw data from this **MessageSequence** object.
 
   | Name| Type  | Mandatory| Description                    |
   | ------ | ------ | ---- | ------------------------ |
-  | size   | number | Yes  | Size of the raw data to read.|
+  | size   | number | Yes  | Size of the original data to read, in bytes. The value must match the size of the data written.|
 
 **Return value**
 
@@ -3661,14 +3934,31 @@ writeArrayBuffer(buf: ArrayBuffer, typeCode: TypeCode): void
 
 Writes data of the ArrayBuffer type to this **MessageSequence** object.
 
+**Pairing requirments**
+
+- This method and the **readArrayBuffer()** method must be used in pairs.
+- **typeCode** written must be consistent with **typeCode** read. Otherwise, data exceptions may occur.
+- Calling sequence: call **writeArrayBuffer()** to write the data → call **readArrayBuffer()** to read the data
+
+**Constraint**
+
+- The **typeCode** parameter determines the data write and read methods.
+- A mismatch between the write and read **typeCode** values will cause data parsing errors.
+- You must select the correct TypeCode enumeration value based on the actual data type.
+
+**Related methods**
+
+- readArrayBuffer(): reads ArrayBuffer data.
+- TypeCode: enumeration of the TypedArray type.
+
 **System capability**: SystemCapability.Communication.IPC.Core
 
 **Parameters**
 
   | Name   | Type                     | Mandatory| Description                       |
   | --------- | ------------------------- | ---- | --------------------------- |
-  | buf       | ArrayBuffer               | Yes  | Data to write.  |
-  | typeCode  | [TypeCode](#typecode12)   | Yes  | TypedArray type of the ArrayBuffer data.<br>The underlying write mode is determined based on the enum value of **TypeCode** passed by the service.|
+  | buf       | ArrayBuffer               | Yes  | ArrayBuffer data to be written. The data is formatted and written based on the TypedArray type specified by **typeCode**.  |
+  | typeCode  | [TypeCode](#typecode12)   | Yes  | TypedArray type of the ArrayBuffer data. The underlying write mode is determined based on the enum value of **TypeCode** passed by the service.|
 
 **Error codes**
 
@@ -3708,13 +3998,25 @@ readArrayBuffer(typeCode: TypeCode): ArrayBuffer
 
 Reads data of the ArrayBuffer type from this **MessageSequence**.
 
+**Pairing requirments**
+
+- This method and the **writeArrayBuffer** method must be used in pairs.
+- The read typeCode must be the same as the written typeCode.
+- The sequence must match.
+
+**Constraints**
+
+- The typeCode must be correctly matched.
+- If they do not match, data exceptions or errors may occur.
+- You are advised to select a proper TypeCode based on the service type.
+
 **System capability**: SystemCapability.Communication.IPC.Core
 
 **Parameters**
 
   | Name  | Type                    | Mandatory| Description                  |
   | -------- | ----------------------- | ---- | ------------------------|
-  | typeCode | [TypeCode](#typecode12) | Yes  | TypedArray type of the ArrayBuffer data.<br>The underlying read mode is determined based on the enum value of **TypeCode** passed by the service. |
+  | typeCode | [TypeCode](#typecode12) | Yes  | Specifies which TypedArray type is used to access and operate on the ArrayBuffer data. (The underlying read/write method is determined based on the enumeration value passed by the service logic. The correct enumeration value must be provided; mismatched read and write enumeration values may cause data errors.) |
 
 **Return value**
 
@@ -3943,7 +4245,7 @@ Writes an interface token to this **MessageParcel** object. The remote object ca
 
   | Name| Type  | Mandatory| Description              |
   | ------ | ------ | ---- | ------------------ |
-  | token  | string | Yes  | Interface token to write. The length of the string must be less than 40960 bytes.|
+  | token  | string | Yes  | Interface token of the string type. The length of the string must be less than 40960.|
 
 **Return value**
 
@@ -4622,7 +4924,7 @@ Writes a long int value to this **MessageParcel** object.
 
   | Name| Type  | Mandatory| Description            |
   | ------ | ------ | ---- | ---------------- |
-  | val    | number | Yes  | Long int value to write.|
+  | val    | number | Yes  | Long integer to write.|
 
 **Return value**
 
@@ -4926,7 +5228,7 @@ Writes a single character value to this **MessageParcel** object.
 
   | Name| Type  | Mandatory| Description                |
   | ------ | ------ | ---- | -------------------- |
-  | val    | number | Yes  | **Char** value to write.|
+  | val    | number | Yes  | **Char** value to write. The value range is [0, 65535], which corresponds to the Unicode character encoding range. Values outside this range may cause character encoding errors.|
 
 **Return value**
 
@@ -5002,7 +5304,7 @@ Writes a string to this **MessageParcel** object.
 
   | Name| Type  | Mandatory| Description                                     |
   | ------ | ------ | ---- | ----------------------------------------- |
-  | val    | string | Yes  | String to write. The length of the string must be less than 40960 bytes.|
+  | val    | string | Yes  | String to write. The length of the string must be less than 40960.|
 
 **Return value**
 
@@ -5078,7 +5380,7 @@ Writes a **Sequenceable** object to this **MessageParcel** object.
 
   | Name| Type                         | Mandatory| Description                |
   | ------ | ----------------------------- | ---- | -------------------- |
-  | val    | [Sequenceable](#sequenceabledeprecated) | Yes  | **Sequenceable** object to write.|
+  | val    | [Sequenceable](#sequenceabledeprecated) | Yes  | **Parcelable** object to write. It is advised that you ensure data integrity when implementing the **marshalling** and **unmarshalling** methods. The data structures for serialization and deserialization must be consistent.|
 
 **Return value**
 
@@ -6107,7 +6409,7 @@ Writes a string array to this **MessageParcel** object.
 
   | Name     | Type    | Mandatory| Description            |
   | ----------- | -------- | ---- | ---------------- |
-  | stringArray | string[] | Yes  | String array to write. The length of a single element in the array must be less than 40960 bytes.|
+  | stringArray | string[] | Yes  | String array to write. Each string element must be less than 40960 in length.|
 
 **Return value**
 
@@ -6975,7 +7277,7 @@ Reads raw data from this **MessageParcel** object.
 
   | Name| Type  | Mandatory| Description                    |
   | ------ | ------ | ---- | ------------------------ |
-  | size   | number | Yes  | Size of the raw data to read.|
+  | size   | number | Yes  | Size of the original data to read, in bytes.|
 
 **Return value**
 
@@ -7417,16 +7719,16 @@ Defines the IPC context, including the PID and UID, local and remote device IDs,
 
 | Name   | Type           | Read-Only| Optional| Description                                 |
 | ------- | --------------- | ---- | ---- |-------------------------------------- |
-| callerPid | number          | Yes  | No  | PID of the caller.                             |
-| callerUid    | number          | Yes  | No  | UID of the caller.                           |
-| callerTokenId | number | Yes  | No  | Token ID of the caller.|
+| callerPid | number          | Yes  | No  | PID of the caller, which is valid only in the IPC scenario.                             |
+| callerUid    | number          | Yes  | No  | UID of the caller, which is valid only in the IPC scenario.                           |
+| callerTokenId | number | Yes  | No  | Token ID of the caller, which is valid only in the IPC scenario.|
 | remoteDeviceId   | string | Yes  | No  | Remote device ID. This parameter is valid only in RPC scenarios.  |
 | localDeviceId   | string | Yes  | No  | Local device ID. This parameter is valid only in RPC scenarios.  |
-| isLocalCalling   | boolean | Yes  | No  | Whether the peer end of the current communication is a process on the local device. Returns **true** if the local and peer processes are on the same device; returns **false** otherwise.  |
+| isLocalCalling   | boolean | Yes  | No  | Whether the peer end of the current communication is a process on the local device. The value **true** indicates that the local and peer processes are on the same device (IPC scenario), and the value **false** indicates that they are not on the same device (RPC scenario).  |
 
 ## IRemoteObject
 
-Provides methods to query of obtain interface descriptors, add or delete death notifications, dump object status to specific files, and send messages.
+Provides methods to query or obtain interface descriptors, add or delete death notifications, dump object status to specific files, and send messages.
 
 **System capability**: SystemCapability.Communication.IPC.Core
 
@@ -7442,13 +7744,13 @@ Obtains the string of the interface descriptor.
 
   | Name    | Type  | Mandatory| Description                |
   | ---------- | ------ | ---- | -------------------- |
-  | descriptor | string | Yes  | Interface descriptor.|
+  | descriptor | string | Yes  | String of the interface descriptor. The length of the string must be less than 40960.|
 
 **Return value**
 
 | Type         | Description                                         |
 | ------------- | --------------------------------------------- |
-| [IRemoteBroker](#iremotebroker) | **IRemoteBroker** object bound to the specified interface token.|
+| [IRemoteBroker](#iremotebroker) | **IRemoteBroker** object bound to the specified interface descriptor.|
 
 **Error codes**
 
@@ -7456,7 +7758,7 @@ For details about the error codes, see [RPC Error Codes](errorcode-rpc.md).
 
   | ID| Error Message|
   | -------- | -------- |
-  | 401      | Parameter error. Possible causes: <br> 1.The number of parameters is incorrect; <br> 2.The parameter type does not match; <br> 3.The string length is greater than or equal to 40960 bytes; <br> 4.The number of bytes copied to the buffer is different from the length of the obtained string. |
+  | 401      | Parameter error. Possible causes: <br> 1.The number of parameters is incorrect; <br> 2.The parameter type does not match; <br> 3.The string length is greater than or equal to 40960; <br> 4.The number of bytes copied to the buffer is different from the length of the obtained string. |
 
 ### queryLocalInterface<sup>(deprecated)</sup>
 
@@ -7480,13 +7782,13 @@ Obtains the string of the interface descriptor.
 
 | Type         | Description                                         |
 | ------------- | --------------------------------------------- |
-| [IRemoteBroker](#iremotebroker) | **IRemoteBroker** object bound to the specified interface token.|
+| [IRemoteBroker](#iremotebroker) | **IRemoteBroker** object bound to the specified interface descriptor.|
 
 ### sendRequest<sup>(deprecated)</sup>
 
 sendRequest(code: number, data: MessageParcel, reply: MessageParcel, options: MessageOption): boolean
 
-Sends a **MessageParcel** message to the remote process in synchronous or asynchronous mode. If asynchronous mode is set in **options**, a promise will be fulfilled immediately and the reply message does not contain any content. If synchronous mode is set in **options**, a promise will be fulfilled when the response to **sendRequest** is returned, and the reply message contains the returned information.
+Sends a **MessageParcel** message to the remote process in synchronous or asynchronous mode. If the asynchronous mode is set in **options**, the API returns immediately and **reply** is empty. If the synchronous mode is set in **options**, the response is returned when **sendRequest** returns, and **reply** contains the response content.
 
 > **NOTE**
 >
@@ -7513,7 +7815,7 @@ Sends a **MessageParcel** message to the remote process in synchronous or asynch
 
 sendMessageRequest(code: number, data: MessageSequence, reply: MessageSequence, options: MessageOption): Promise&lt;RequestResult&gt;
 
-Sends a **MessageSequence** message to the remote process in synchronous or asynchronous mode. If asynchronous mode is set in **options**, a promise will be fulfilled immediately and the reply message is empty. The specific reply needs to be obtained from the callback on the service side. If synchronous mode is set in **options**, a promise will be fulfilled when the response to **sendMessageRequest** is returned, and the reply message contains the returned information. This API returns the result asynchronously through a promise.
+Sends a **MessageSequence** message to the remote process in synchronous or asynchronous mode. If the asynchronous mode is set in **options**, the response result is returned immediately and **reply** is empty. The specific response needs to be obtained from the callback on the service side. If the synchronous mode is set in **options**, the response result is returned when **sendMessageRequest** returns, and **reply** contains the response content. This API returns the result asynchronously through a promise.
 
 **System capability**: SystemCapability.Communication.IPC.Core
 
@@ -7530,7 +7832,7 @@ Sends a **MessageSequence** message to the remote process in synchronous or asyn
 
   | Type                        | Description                                     |
   | ---------------------------- | ----------------------------------------- |
-  | Promise&lt;[RequestResult](#requestresult9)&gt; | Promise used to return a **requestResult** instance.|
+  | Promise&lt;[RequestResult](#requestresult9)&gt; | Promise used to return the response to the request.|
 
 **Error codes**
 
@@ -7544,7 +7846,7 @@ For details about the error codes, see [RPC Error Codes](errorcode-rpc.md).
 
 sendRequest(code: number, data: MessageParcel, reply: MessageParcel, options: MessageOption): Promise&lt;SendRequestResult&gt;
 
-Sends a **MessageParcel** message to the remote process in synchronous or asynchronous mode. If asynchronous mode is set in **options**, a promise will be fulfilled immediately and the reply message is empty. The specific reply needs to be obtained from the callback on the service side. If synchronous mode is set in **options**, a promise will be fulfilled when the response to **sendRequest** is returned, and the reply message contains the returned information. This API returns the result asynchronously through a promise.
+Sends a **MessageParcel** message to the remote process in synchronous or asynchronous mode. If the asynchronous mode is set in **options**, the response result is returned immediately and **reply** is empty. The specific response needs to be obtained from the callback on the service side. If the synchronous mode is set in **options**, the response result is returned when **sendRequest** returns, and **reply** contains the response content. This API returns the result asynchronously through a promise.
 
 > **NOTE**
 >
@@ -7565,13 +7867,13 @@ Sends a **MessageParcel** message to the remote process in synchronous or asynch
 
 | Type                                                        | Description                                         |
 | ------------------------------------------------------------ | --------------------------------------------- |
-| Promise&lt;[SendRequestResult](#sendrequestresultdeprecated)&gt; | Promise used to return a **sendRequestResult** instance.|
+| Promise&lt;[SendRequestResult](#sendrequestresultdeprecated)&gt; | Promise used to return the response to the request.|
 
 ### sendMessageRequest<sup>9+</sup>
 
 sendMessageRequest(code: number, data: MessageSequence, reply: MessageSequence, options: MessageOption, callback: AsyncCallback&lt;RequestResult&gt;): void
 
-Sends a **MessageSequence** message to the remote process in synchronous or asynchronous mode. If asynchronous mode is set in **options**, a callback will be called immediately, and the reply message is empty. The specific reply needs to be obtained from the callback on the service side. If synchronous mode is set in **options**, a callback will be invoked when the response to **sendRequest** is returned, and the reply message contains the returned information.
+Sends a **MessageSequence** message to the remote process in synchronous or asynchronous mode. If asynchronous mode is set in **options**, a callback will be called immediately, and the reply message is empty. The specific response needs to be obtained from the callback on the service side. If synchronous mode is set in **options**, a callback will be invoked when the response to **sendRequest** is returned, and the reply message contains the returned information.
 
 **System capability**: SystemCapability.Communication.IPC.Core
 
@@ -7597,7 +7899,7 @@ For details about the error codes, see [RPC Error Codes](errorcode-rpc.md).
 
 sendRequest(code: number, data: MessageParcel, reply: MessageParcel, options: MessageOption, callback: AsyncCallback&lt;SendRequestResult&gt;): void
 
-Sends a **MessageParcel** message to the remote process in synchronous or asynchronous mode. If asynchronous mode is set in **options**, a callback will be called immediately, and the reply message is empty. The specific reply needs to be obtained from the callback on the service side. If synchronous mode is set in **options**, a callback will be invoked when the response to **sendRequest** is returned, and the reply message contains the returned information.
+Sends a **MessageParcel** message to the remote process in synchronous or asynchronous mode. This API uses an asynchronous callback to return the result. If asynchronous mode is set in **options**, a callback will be called immediately, and the reply message is empty. The specific response needs to be obtained from the callback on the service side. If synchronous mode is set in **options**, a callback will be invoked when the response to **sendRequest** is returned, and the reply message contains the returned information.
 
 > **NOTE**
 >
@@ -7628,7 +7930,7 @@ Registers a callback for receiving death notifications of the remote object.
   | Name   | Type                             | Mandatory| Description          |
   | --------- | --------------------------------- | ---- | -------------- |
   | recipient | [DeathRecipient](#deathrecipient) | Yes  | Callback to register.|
-  | flags     | number                            | Yes  | Flag of the death notification.|
+  | flags     | number                            | Yes  | Flag of the death notification. This is a reserved parameter. Set it to **0**.|
 
 **Error codes**
 
@@ -7678,7 +7980,7 @@ Unregisters from the callback used to receive death notifications of the remote 
   | Name   | Type                             | Mandatory| Description          |
   | --------- | --------------------------------- | ---- | -------------- |
   | recipient | [DeathRecipient](#deathrecipient) | Yes  | Callback to unregister.|
-  | flags     | number                            | Yes  | Flag of the death notification.|
+  | flags     | number                            | Yes  | Flag of the death notification. This is a reserved parameter. Set it to **0**.|
 
 **Error codes**
 
@@ -7791,7 +8093,7 @@ Provides APIs to implement **IRemoteObject**.
 
 sendRequest(code: number, data: MessageParcel, reply: MessageParcel, options: MessageOption): boolean
 
-Sends a **MessageParcel** message to the remote process in synchronous or asynchronous mode. If asynchronous mode is set in **options**, a promise will be fulfilled immediately and the reply message is empty. The specific reply needs to be obtained from the callback on the service side. If synchronous mode is set in **options**, a promise will be fulfilled when the response to **sendRequest** is returned, and the reply message contains the returned information.
+Sends a **MessageParcel** message to the remote process in synchronous or asynchronous mode. If the asynchronous mode is set in **options**, the API returns immediately and **reply** is empty. The specific response needs to be obtained from the callback on the service side. If the synchronous mode is set in **options**, the response is returned when **sendRequest** returns, and **reply** contains the response content.
 
 > **NOTE**
 >
@@ -7891,7 +8193,7 @@ try {
 
 sendMessageRequest(code: number, data: MessageSequence, reply: MessageSequence, options: MessageOption): Promise&lt;RequestResult&gt;
 
-Sends a **MessageSequence** message to the remote process in synchronous or asynchronous mode. If asynchronous mode is set in **options**, a promise will be fulfilled immediately and the reply message is empty. The specific reply needs to be obtained from the callback on the service side. If synchronous mode is set in **options**, a promise will be fulfilled when the response to **sendMessageRequest** is returned, and the reply message contains the returned information. This API returns the result asynchronously through a promise.
+Sends a **MessageSequence** message to the remote process in synchronous or asynchronous mode. If the asynchronous mode is set in **options**, the response result is returned immediately and **reply** is empty. The specific response needs to be obtained from the callback on the service side. If the synchronous mode is set in **options**, the response result is returned when **sendMessageRequest** returns, and **reply** contains the response content. This API returns the result asynchronously through a promise.
 
 **System capability**: SystemCapability.Communication.IPC.Core
 
@@ -7908,7 +8210,7 @@ Sends a **MessageSequence** message to the remote process in synchronous or asyn
 
   | Type                        | Description                                     |
   | ---------------------------- | ----------------------------------------- |
-  | Promise&lt;[RequestResult](#requestresult9)&gt; | Promise used to return a **requestResult** instance.|
+  | Promise&lt;[RequestResult](#requestresult9)&gt; | Promise used to return the response to the request.|
 
 **Error codes**
 
@@ -8001,7 +8303,7 @@ try {
 
 sendRequest(code: number, data: MessageParcel, reply: MessageParcel, options: MessageOption): Promise&lt;SendRequestResult&gt;
 
-Sends a **MessageParcel** message to the remote process in synchronous or asynchronous mode. If asynchronous mode is set in **options**, a promise will be fulfilled immediately and the reply message is empty. The specific reply needs to be obtained from the callback on the service side. If synchronous mode is set in **options**, a promise will be fulfilled when the response to **sendRequest** is returned, and the reply message contains the returned information. This API returns the result asynchronously through a promise.
+Sends a **MessageParcel** message to the remote process in synchronous or asynchronous mode. If the asynchronous mode is set in **options**, the response result is returned immediately and **reply** is empty. The specific response needs to be obtained from the callback on the service side. If the synchronous mode is set in **options**, the response result is returned when **sendRequest** returns, and **reply** contains the response content. This API returns the result asynchronously through a promise.
 
 > **NOTE**
 >
@@ -8022,7 +8324,7 @@ Sends a **MessageParcel** message to the remote process in synchronous or asynch
 
 | Type                                                        | Description                                         |
 | ------------------------------------------------------------ | --------------------------------------------- |
-| Promise&lt;[SendRequestResult](#sendrequestresultdeprecated)&gt; | Promise used to return a **sendRequestResult** instance.|
+| Promise&lt;[SendRequestResult](#sendrequestresultdeprecated)&gt; | Promise used to return the response to the request.|
 
 **Example**
 
@@ -8109,7 +8411,7 @@ try {
 
 sendMessageRequest(code: number, data: MessageSequence, reply: MessageSequence, options: MessageOption, callback: AsyncCallback&lt;RequestResult&gt;): void
 
-Sends a **MessageSequence** message to the remote process in synchronous or asynchronous mode. If asynchronous mode is set in **options**, a callback will be called immediately, and the reply message is empty. The specific reply needs to be obtained from the callback on the service side. If synchronous mode is set in **options**, a callback will be invoked at certain time after the response to **RequestResult** is returned, and the reply contains the returned information.
+Sends a **MessageSequence** message to the remote process in synchronous or asynchronous mode. This API uses an asynchronous callback to return the result. If asynchronous mode is set in **options**, a callback will be called immediately, and the reply message is empty. The specific response needs to be obtained from the callback on the service side. If synchronous mode is set in **options**, a callback will be invoked at certain time after the response to **RequestResult** is returned, and the reply contains the returned information.
 
 **System capability**: SystemCapability.Communication.IPC.Core
 
@@ -8135,7 +8437,7 @@ For details about the error codes, see [RPC Error Codes](errorcode-rpc.md).
 
 sendRequest(code: number, data: MessageParcel, reply: MessageParcel, options: MessageOption, callback: AsyncCallback&lt;SendRequestResult&gt;): void
 
-Sends a **MessageParcel** message to the remote process in synchronous or asynchronous mode. If asynchronous mode is set in **options**, a callback will be called immediately, and the reply message is empty. The specific reply needs to be obtained from the callback on the service side. If synchronous mode is set in **options**, a callback will be invoked when the response to **sendRequest** is returned, and the reply message contains the returned information.
+Sends a **MessageParcel** message to the remote process in synchronous or asynchronous mode. If asynchronous mode is set in **options**, a callback will be called immediately, and the reply message is empty. The specific response needs to be obtained from the callback on the service side. If synchronous mode is set in **options**, a callback will be invoked when the response to **sendRequest** is returned, and the reply message contains the returned information.
 
 > **NOTE**
 >
@@ -8165,7 +8467,7 @@ Obtains the **LocalInterface** object of an interface token.
 
   | Name   | Type  | Mandatory| Description                  |
   | --------- | ------ | ---- | ---------------------- |
-  | interfaceDes | string | Yes  | Interface descriptor.|
+  | interfaceDes | string | Yes  | Interface token to be queried. Its length must be less than 40960.|
 
 **Return value**
 
@@ -8912,10 +9214,10 @@ Defines the options used to construct the **MessageOption** object.
 
   | Name         | Type  | Read-Only | Optional | Description                                                                     |
   | ------------- | ------ | ----- | ----- | ------------------------------------------------------------------------ |
-  | TF_SYNC       | number | Yes   | No   | Synchronous call.                                                           |
-  | TF_ASYNC      | number | Yes   | No   | Asynchronous call.                                                           |
-  | TF_ACCEPT_FDS | number | Yes   | No   | Indication to **sendMessageRequest<sup>9+</sup>** for passing the file descriptor.              |
-  | TF_WAIT_TIME  | number | Yes   | No   | RPC wait time, in seconds. This parameter cannot be used in IPC. The default waiting time is 8 seconds. You are advised not to change the waiting time.|
+  | TF_SYNC       | number | Yes   | No   | Synchronous call.<br>**Atomic service API**: This API can be used in atomic services since API version 26.0.0.                                                           |
+  | TF_ASYNC      | number | Yes   | No   | Asynchronous call.<br>**Atomic service API**: This API can be used in atomic services since API version 26.0.0.                                                           |
+  | TF_ACCEPT_FDS | number | Yes   | No   | Whether the [sendMessageRequest](#sendmessagerequest9-2) API can transfer the file descriptor.<br>**Atomic service API**: This API can be used in atomic services since API version 26.0.0.  |
+  | TF_WAIT_TIME  | number | Yes   | No   | RPC wait time, in seconds. This parameter cannot be used in IPC. The default waiting time is 8 seconds. You are advised not to change the waiting time.<br>**Atomic service API**: This API can be used in atomic services since API version 26.0.0.|
 
 ### constructor<sup>9+</sup>
 
@@ -8923,13 +9225,15 @@ constructor(async?: boolean)
 
 A constructor used to create a **MessageOption** object.
 
+**Atomic service API:** This API can be used in atomic services since API version 26.0.0.
+
 **System capability**: SystemCapability.Communication.IPC.Core
 
 **Parameters**
 
 | Name| Type   | Mandatory| Description                                                        |
 | ------ | ------- | ---- | ------------------------------------------------------------ |
-| async  | boolean | No  | Whether to execute the call asynchronously. The value **true** means to execute the call asynchronously; the value **false** means to execute the call synchronously. The default value is **synchronous**.|
+| async  | boolean | No  | Whether the call is asynchronous. **true** indicates an asynchronous call (use this value when you do not need to obtain the response immediately), and **false** indicates a synchronous call (use this value when you need to obtain the response immediately). If this parameter is not specified, the default value is **false** (synchronous call).|
 
 **Example**
 
@@ -8949,14 +9253,16 @@ constructor(syncFlags?: number, waitTime?: number)
 
 A constructor used to create a **MessageOption** object.
 
+**Atomic service API:** This API can be used in atomic services since API version 26.0.0.
+
 **System capability**: SystemCapability.Communication.IPC.Core
 
 **Parameters**
 
   | Name   | Type  | Mandatory| Description                                         |
   | --------- | ------ | ---- | --------------------------------------------- |
-  | syncFlags | number | No  | Call flag to set. The options are as follows: 0 (synchronous call) and 1 (asynchronous call). The default value is **synchronous**.       |
-  | waitTime  | number | No  | Maximum wait time for an RPC call, in seconds. The default value is **TF_WAIT_TIME**.|
+  | syncFlags | number | No  | Synchronous or asynchronous call flag. The value range is {0, 1}. The value **0** indicates synchronous call (use this value when you need to obtain the response immediately), and the value **1** indicates asynchronous call (use this value when you do not need to obtain the response immediately). If this parameter is not specified, **0** (synchronous call) is used by default.       |
+  | waitTime  | number | No  | Maximum wait time for an RPC call, in seconds.<br>Default value: **8**<br>Value range: (0, 3000]. If an RPC call takes a long time, you can increase the wait time. If a quick response is required, you can reduce the wait time. If this parameter is not specified, the default wait time of 8 seconds is used.|
 
 **Example**
 
@@ -8975,6 +9281,8 @@ class TestRemoteObject extends rpc.MessageOption {
 isAsync(): boolean
 
 Checks whether [sendMessageRequest](#sendmessagerequest9-2) is called asynchronously.
+
+**Atomic service API:** This API can be used in atomic services since API version 26.0.0.
 
 **System capability**: SystemCapability.Communication.IPC.Core
 
@@ -9004,6 +9312,8 @@ setAsync(isAsync: boolean): void
 
 Sets whether to call [sendMessageRequest](#sendmessagerequest9-2) asynchronously.
 
+**Atomic service API:** This API can be used in atomic services since API version 26.0.0.
+
 **System capability**: SystemCapability.Communication.IPC.Core
 
 **Parameters**
@@ -9032,6 +9342,8 @@ getFlags(): number
 
 Obtains the call flag, which can be synchronous or asynchronous.
 
+**Atomic service API:** This API can be used in atomic services since API version 26.0.0.
+
 **System capability**: SystemCapability.Communication.IPC.Core
 
 **Return value**
@@ -9048,13 +9360,13 @@ import { hilog } from '@kit.PerformanceAnalysisKit';
 
 try {
   let option = new rpc.MessageOption();
-  hilog.info(0x0000, 'testTag', 'create object successfully');
+  hilog.info(0x0000, 'testTag', 'Succeeded in creating object');
   let flag = option.getFlags();
-  hilog.info(0x0000, 'testTag', 'run getFlags success, flag is ' + flag);
+  hilog.info(0x0000, 'testTag', 'Succeeded in running getFlags, flag is ' + flag);
   option.setFlags(rpc.MessageOption.TF_ASYNC);
-  hilog.info(0x0000, 'testTag', 'run setFlags success');
+  hilog.info(0x0000, 'testTag', 'Succeeded in running setFlags');
   let flag2 = option.getFlags();
-  hilog.info(0x0000, 'testTag', 'run getFlags success, flag2 is ' + flag2);
+  hilog.info(0x0000, 'testTag', 'Succeeded in running getFlags, flag2 is ' + flag2);
 } catch (error) {
   hilog.error(0x0000, 'testTag', 'error ' + error);
 }
@@ -9066,13 +9378,15 @@ setFlags(flags: number): void
 
 Sets the call flag, which can be synchronous or asynchronous.
 
+**Atomic service API:** This API can be used in atomic services since API version 26.0.0.
+
 **System capability**: SystemCapability.Communication.IPC.Core
 
 **Parameters**
 
   | Name| Type  | Mandatory| Description                    |
   | ------ | ------ | ---- | ------------------------ |
-  | flags  | number | Yes  | Call flag to set. **0**: synchronous call flag; **1**: asynchronous call flag.|
+  | flags  | number | Yes  | Synchronous or asynchronous call flag. The value range is {0, 1}. **0**: synchronous call flag; **1**: asynchronous call flag.|
 
 **Example**
 
@@ -9083,9 +9397,9 @@ import { hilog } from '@kit.PerformanceAnalysisKit';
 try {
   let option = new rpc.MessageOption();
   option.setFlags(rpc.MessageOption.TF_ASYNC);
-  hilog.info(0x0000, 'testTag', 'run setFlags success');
+  hilog.info(0x0000, 'testTag', 'Succeeded in running setFlags');
   let flag = option.getFlags();
-  hilog.info(0x0000, 'testTag', 'run getFlags success, flag is ' + flag);
+  hilog.info(0x0000, 'testTag', 'Succeeded in running getFlags, flag is ' + flag);
 } catch (error) {
   hilog.error(0x0000, 'testTag', 'error ' + error);
 }
@@ -9097,13 +9411,15 @@ getWaitTime(): number
 
 Obtains the maximum wait time for an RPC call.
 
+**Atomic service API:** This API can be used in atomic services since API version 26.0.0.
+
 **System capability**: SystemCapability.Communication.IPC.Core
 
 **Return value**
 
   | Type  | Description             |
   | ------ | ----------------- |
-  | number | Maximum wait time for an RPC call, in seconds. The default value is **TF_WAIT_TIME**.|
+  | number | Maximum wait time for an RPC call, in seconds.|
 
 **Example**
 
@@ -9114,10 +9430,10 @@ import { hilog } from '@kit.PerformanceAnalysisKit';
 try {
   let option = new rpc.MessageOption();
   let time = option.getWaitTime();
-  hilog.info(0x0000, 'testTag', 'run getWaitTime success, time is ' + time);
+  hilog.info(0x0000, 'testTag', 'Succeeded in running getWaitTime, time is ' + time);
   option.setWaitTime(16);
   let time2 = option.getWaitTime();
-  hilog.info(0x0000, 'testTag', 'run getWaitTime success, time is ' + time2);
+  hilog.info(0x0000, 'testTag', 'Succeeded in running getWaitTime, time is ' + time2);
 } catch (error) {
   hilog.error(0x0000, 'testTag', 'error ' + error);
 }
@@ -9129,13 +9445,15 @@ setWaitTime(waitTime: number): void
 
 Sets the maximum wait time for an RPC call.
 
+**Atomic service API:** This API can be used in atomic services since API version 26.0.0.
+
 **System capability**: SystemCapability.Communication.IPC.Core
 
 **Parameters**
 
   | Name  | Type  | Mandatory| Description                 |
   | -------- | ------ | ---- | --------------------- |
-  | waitTime | number | Yes  | Maximum wait time for an RPC call, in seconds. The upper limit is 3000 seconds.|
+  | waitTime | number | Yes  | Maximum wait time for an RPC call, in seconds. The value range is (0, 3000].|
 
 **Example**
 
@@ -9147,7 +9465,7 @@ try {
   let option = new rpc.MessageOption();
   option.setWaitTime(16);
   let time = option.getWaitTime();
-  hilog.info(0x0000, 'testTag', 'run getWaitTime success, time is ' + time);
+  hilog.info(0x0000, 'testTag', 'Succeeded in running getWaitTime, time is ' + time);
 } catch (error) {
   hilog.error(0x0000, 'testTag', 'error ' + error);
 }
@@ -9163,7 +9481,7 @@ Obtains IPC context, including the UID and PID, local and remote device IDs, and
 
 static getContextObject(): IRemoteObject
 
-Obtains the system capability manager. This API is a static method.
+Obtains the system service manager (SAMGR) object. This method is static method.
 
 **System capability**: SystemCapability.Communication.IPC.Core
 
@@ -9538,7 +9856,7 @@ Restores the UID and PID to those of the remote user. This API is a static metho
 
   | Name  | Type  | Mandatory| Description                                                              |
   | -------- | ------ | ---- | ------------------------------------------------------------------ |
-  | identity | string | Yes  | A string containing the UID and PID of the remote user. The length of the string must be less than 40960 bytes. are returned by **resetCallingIdentity**.|
+  | identity | string | Yes  | String that contains the remote user UID and PID. Its length must be less than 40960. are returned by **resetCallingIdentity**.|
 
 **Error codes**
 
@@ -9546,7 +9864,7 @@ For details about the error codes, see [RPC Error Codes](errorcode-rpc.md).
 
   | ID| Error Message|
   | -------- | -------- |
-  | 401      | Parameter error. Possible causes: <br> 1.The number of parameters is incorrect; <br> 2.The parameter type does not match; <br> 3.The string length is greater than or equal to 40960 bytes; <br> 4.The number of bytes copied to the buffer is different from the length of the obtained string. |
+  | 401      | Parameter error. Possible causes: <br> 1.The number of parameters is incorrect; <br> 2.The parameter type does not match; <br> 3.The string length is greater than or equal to 40960; <br> 4.The number of bytes copied to the buffer is different from the length of the obtained string. |
 
 **Example**
 
@@ -9634,7 +9952,7 @@ A constructor used to create a **RemoteObject** object.
 
   | Name    | Type  | Mandatory| Description        |
   | ---------- | ------ | ---- | ------------ |
-  | descriptor | string | Yes  | Interface descriptor. The length of the string must be less than 40960 bytes.|
+  | descriptor | string | Yes  | Interface descriptor. Its length must be less than 40960.|
 
 **Example**
 
@@ -9652,7 +9970,7 @@ class TestRemoteObject extends rpc.RemoteObject {
 
 sendRequest(code: number, data: MessageParcel, reply: MessageParcel, options: MessageOption): boolean
 
-Sends a **MessageParcel** message to the remote process in synchronous or asynchronous mode. If asynchronous mode is set in **options**, a promise will be fulfilled immediately and the reply message is empty. The specific reply needs to be obtained from the callback on the service side. If synchronous mode is set in **options**, a promise will be fulfilled when the response to **sendRequest** is returned, and the reply message contains the returned information.
+Sends a **MessageParcel** message to the remote process in synchronous or asynchronous mode. If the asynchronous mode is set in **options**, the API returns immediately and **reply** is empty. The specific response needs to be obtained from the callback on the service side. If the synchronous mode is set in **options**, the response is returned when **sendRequest** returns, and **reply** contains the response content.
 
 > **NOTE**
 >
@@ -9716,7 +10034,7 @@ try {
 
 sendMessageRequest(code: number, data: MessageSequence, reply: MessageSequence, options: MessageOption): Promise&lt;RequestResult&gt;
 
-Sends a **MessageSequence** message to the remote process in synchronous or asynchronous mode. If asynchronous mode is set in **options**, a promise will be fulfilled immediately and the reply message is empty. The specific reply needs to be obtained from the callback on the service side. If synchronous mode is set in **options**, a promise will be fulfilled when the response to **sendMessageRequest** is returned, and the reply message contains the returned information. This API returns the result asynchronously through a promise.
+Sends a **MessageSequence** message to the remote process in synchronous or asynchronous mode. If the asynchronous mode is set in **options**, the response result is returned immediately and **reply** is empty. The specific response needs to be obtained from the callback on the service side. If the synchronous mode is set in **options**, the response result is returned when **sendMessageRequest** returns, and **reply** contains the response content. This API returns the result asynchronously through a promise.
 
 **System capability**: SystemCapability.Communication.IPC.Core
 
@@ -9733,7 +10051,7 @@ Sends a **MessageSequence** message to the remote process in synchronous or asyn
 
 | Type                                           | Description                                     |
 | ----------------------------------------------- | ----------------------------------------- |
-| Promise&lt;[RequestResult](#requestresult9)&gt; | Promise used to return a **RequestResult** instance.|
+| Promise&lt;[RequestResult](#requestresult9)&gt; | Promise used to return the response to the request.|
 
 **Error codes**
 
@@ -9793,7 +10111,7 @@ try {
 
 sendRequest(code: number, data: MessageParcel, reply: MessageParcel, options: MessageOption): Promise&lt;SendRequestResult&gt;
 
-Sends a **MessageParcel** message to the remote process in synchronous or asynchronous mode. If asynchronous mode is set in **options**, a promise will be fulfilled immediately and the reply message is empty. The specific reply needs to be obtained from the callback on the service side. If synchronous mode is set in **options**, a promise will be fulfilled when the response to **sendRequest** is returned, and the reply message contains the returned information. This API returns the result asynchronously through a promise.
+Sends a **MessageParcel** message to the remote process in synchronous or asynchronous mode. If the asynchronous mode is set in **options**, the response result is returned immediately and **reply** is empty. The specific response needs to be obtained from the callback on the service side. If the synchronous mode is set in **options**, the response result is returned when **sendRequest** returns, and **reply** contains the response content. This API returns the result asynchronously through a promise.
 
 > **NOTE**
 >
@@ -9814,7 +10132,7 @@ Sends a **MessageParcel** message to the remote process in synchronous or asynch
 
 | Type                                                        | Description                                         |
 | ------------------------------------------------------------ | --------------------------------------------- |
-| Promise&lt;[SendRequestResult](#sendrequestresultdeprecated)&gt; | Promise used to return a **sendRequestResult** instance.|
+| Promise&lt;[SendRequestResult](#sendrequestresultdeprecated)&gt; | Promise used to return the response to the request.|
 
 **Example**
 
@@ -9867,7 +10185,7 @@ try {
 
 sendMessageRequest(code: number, data: MessageSequence, reply: MessageSequence, options: MessageOption, callback: AsyncCallback&lt;RequestResult&gt;): void
 
-Sends a **MessageSequence** message to the remote process in synchronous or asynchronous mode. If asynchronous mode is set in **options**, a callback will be called immediately, and the reply message is empty. The specific reply needs to be obtained from the callback on the service side. If synchronous mode is set in **options**, a callback will be invoked when the response to **sendMessageRequest** is returned, and the reply message contains the returned information.
+Sends a **MessageSequence** message to the remote process in synchronous or asynchronous mode. This API uses an asynchronous callback to return the result. If asynchronous mode is set in **options**, a callback will be called immediately, and the reply message is empty. The specific response needs to be obtained from the callback on the service side. If synchronous mode is set in **options**, a callback will be invoked when the response to **sendMessageRequest** is returned, and the reply message contains the returned information.
 
 **System capability**: SystemCapability.Communication.IPC.Core
 
@@ -9893,7 +10211,7 @@ For details about the error codes, see [RPC Error Codes](errorcode-rpc.md).
 
 sendRequest(code: number, data: MessageParcel, reply: MessageParcel, options: MessageOption, callback: AsyncCallback&lt;SendRequestResult&gt;): void
 
-Sends a **MessageParcel** message to the remote process in synchronous or asynchronous mode. If asynchronous mode is set in **options**, a callback will be called immediately, and the reply message is empty. The specific reply needs to be obtained from the callback on the service side. If synchronous mode is set in **options**, a callback will be invoked when the response to **sendRequest** is returned, and the reply message contains the returned information.
+Sends a **MessageParcel** message to the remote process in synchronous or asynchronous mode. This API uses an asynchronous callback to return the result. If asynchronous mode is set in **options**, a callback will be called immediately, and the reply message is empty. The specific response needs to be obtained from the callback on the service side. If synchronous mode is set in **options**, a callback will be invoked when the response to **sendRequest** is returned, and the reply message contains the returned information.
 
 > **NOTE**
 >
@@ -9932,7 +10250,7 @@ Provides a response to **sendMessageRequest()**. The server processes the reques
   | data   | [MessageSequence](#messagesequence9) | Yes  | **MessageSequence** object that holds the parameters called by the client.|
   | reply  | [MessageSequence](#messagesequence9) | Yes  | **MessageSequence** object to which the result is written.          |
   | options | [MessageOption](#messageoption)      | Yes  | Whether the operation is synchronous or asynchronous.                 |
-  | callingInfo | [CallingInfo](#callinginfo23)      | No  | IPC context.                 |
+  | callingInfo | [CallingInfo](#callinginfo23)      | No  | IPC context. If this parameter is not specified, it defaults to **undefined**. Pass this parameter when you need to obtain information such as the caller's PID, UID, token ID, or device ID. You can obtain this information via **callingInfo.callerPid** and similar properties. If this parameter is not passed, IPC context information cannot be obtained directly, and you need to use other methods of **rpc.IPCSkeleton**, such as **getCallingPid** and **getCallingUid**|
 
 **Return value**
 
@@ -10036,6 +10354,8 @@ class TestRemoteObject extends rpc.RemoteObject {
 onRemoteMessageRequest(code: number, data: MessageSequence, reply: MessageSequence, options: MessageOption): boolean | Promise\<boolean>
 
 Called to return a response to **sendMessageRequest()**. The server processes the request synchronously or asynchronously and returns the result in this API.
+
+**Atomic service API:** This API can be used in atomic services since API version 26.0.0.
 
 > **NOTE**
 >
@@ -10284,13 +10604,13 @@ Obtains the string of the interface descriptor.
 
   | Name    | Type  | Mandatory| Description                |
   | ---------- | ------ | ---- | -------------------- |
-  | descriptor | string | Yes  | String of the interface descriptor. The length of the string must be less than 40960 bytes.|
+  | descriptor | string | Yes  | String of the interface descriptor. The length of the string must be less than 40960.|
 
 **Return value**
 
   | Type         | Description                                         |
   | ------------- | --------------------------------------------- |
-  | [IRemoteBroker](#iremotebroker) | **IRemoteBroker** object bound to the specified interface token.|
+  | [IRemoteBroker](#iremotebroker) | **IRemoteBroker** object bound to the specified interface descriptor.|
 
 **Error codes**
 
@@ -10298,7 +10618,7 @@ For details about the error codes, see [RPC Error Codes](errorcode-rpc.md).
 
   | ID| Error Message|
   | -------- | -------- |
-  | 401      | Parameter error. Possible causes: <br> 1.The number of parameters is incorrect; <br> 2.The parameter type does not match; <br> 3.The string length is greater than or equal to 40960 bytes; <br> 4.The number of bytes copied to the buffer is different from the length of the obtained string. |
+  | 401      | Parameter error. Possible causes: <br> 1.The number of parameters is incorrect; <br> 2.The parameter type does not match; <br> 3.The string length is greater than or equal to 40960; <br> 4.The number of bytes copied to the buffer is different from the length of the obtained string. |
 
 **Example**
 
@@ -10484,7 +10804,7 @@ Binds an interface descriptor to an **IRemoteBroker** object.
 | Name        | Type                           | Mandatory| Description                                 |
 | -------------- | ------------------------------- | ---- | ------------------------------------- |
 | localInterface | [IRemoteBroker](#iremotebroker) | Yes  | **IRemoteBroker** object.  |
-| descriptor     | string                          | Yes  | **IRemoteBroker** object bound to the interface descriptor. The length of the descriptor must be less than 40960 bytes.|
+| descriptor     | string                          | Yes  | Descriptor used for binding with the **IRemoteBroker** object. Its length should be less than 40960.|
 
 **Error codes**
 
@@ -10492,7 +10812,7 @@ For details about the error codes, see [RPC Error Codes](errorcode-rpc.md).
 
   | ID| Error Message|
   | -------- | -------- |
-  | 401      | Parameter error. Possible causes: <br> 1.The number of parameters is incorrect; <br> 2.The parameter type does not match; <br> 3.The string length is greater than or equal to 40960 bytes; <br> 4.The number of bytes copied to the buffer is different from the length of the obtained string. |
+  | 401      | Parameter error. Possible causes: <br> 1.The number of parameters is incorrect; <br> 2.The parameter type does not match; <br> 3.The string length is greater than or equal to 40960; <br> 4.The number of bytes copied to the buffer is different from the length of the obtained string. |
 
 **Example**
 
@@ -10581,6 +10901,21 @@ Provides methods related to anonymous shared memory objects, including creating,
 
 The shared memory applies only to cross-process communication within the local device.
 
+**Use cases**
+
+- Large data transmission: When transmitting large amounts of data (such as images or files), shared memory can be used to improve efficiency.
+- Cross-process data sharing: Multiple processes need to share access to the same block of memory data.
+
+**Resolved issues**
+
+- Transmission efficiency: Transmitting large data via shared memory avoids serialization overhead and improves transmission efficiency.
+- Memory reuse: Multiple processes can share access to the same memory, avoiding data duplication.
+
+**Benefits**
+
+- Improved transmission performance: The shared memory mechanism significantly improves the efficiency of large data transmission.
+- Reduced memory usage: Avoiding multiple data copies helps save memory resources.
+
 **System capability**: SystemCapability.Communication.IPC.Core
 
 ### Properties
@@ -10592,7 +10927,7 @@ The shared memory applies only to cross-process communication within the local d
   | PROT_EXEC  | number | Yes   | No   | Mapped memory protection type, indicating that the mapped memory is executable. |
   | PROT_NONE  | number | Yes   | No   | Mapped memory protection type, indicating that the mapped memory cannot be accessed.|
   | PROT_READ  | number | Yes   | No   | Mapped memory protection type, indicating that the mapped memory is readable.   |
-  | PROT_WRITE | number | Yes   | No   | Mapped memory protection type, indicating that the mapped memory is readable.   |
+  | PROT_WRITE | number | Yes   | No   | Mapped memory protection type, indicating that the mapped memory is writable.   |
 
 ### create<sup>9+</sup>
 
@@ -11161,7 +11496,7 @@ Writes data to the shared file associated with this **Ashmem** object.
   | Name| Type    | Mandatory| Description                                              |
   | ------ | -------- | ---- | -------------------------------------------------- |
   | buf    | ArrayBuffer | Yes  | Data to write.                            |
-  | size   | number   | Yes  | Size of the data to write.                                |
+  | size   | number   | Yes  | Size of the data to write, in bytes.                                |
   | offset | number   | Yes  | Start position of the data to write in the memory region associated with this **Ashmem** object.|
 
 **Error codes**
@@ -11216,7 +11551,7 @@ Writes data to the shared file associated with this **Ashmem** object.
   | Name| Type    | Mandatory| Description                                              |
   | ------ | -------- | ---- | -------------------------------------------------- |
   | buf    | number[] | Yes  | Data to write.                            |
-  | size   | number   | Yes  | Size of the data to write.                                |
+  | size   | number   | Yes  | Size of the data to write, in bytes.                                |
   | offset | number   | Yes  | Start position of the data to write in the memory region associated with this **Ashmem** object.|
 
 **Error codes**
@@ -11267,7 +11602,7 @@ Writes data to the shared file associated with this **Ashmem** object.
   | Name| Type    | Mandatory| Description                                              |
   | ------ | -------- | ---- | -------------------------------------------------- |
   | buf    | number[] | Yes  | Data to write.                            |
-  | size   | number   | Yes  | Size of the data to write.                                |
+  | size   | number   | Yes  | Size of the data to write, in bytes.                                |
   | offset | number   | Yes  | Start position of the data to write in the memory region associated with this **Ashmem** object.|
 
 **Return value**
@@ -11311,7 +11646,7 @@ Reads data from the shared file associated with this **Ashmem** object.
 
   | Name| Type  | Mandatory| Description                                              |
   | ------ | ------ | ---- | -------------------------------------------------- |
-  | size   | number | Yes  | Size of the data to read.                              |
+  | size   | number | Yes  | Size of the data to read, in bytes.                              |
   | offset | number | Yes  | Start position of the data to read in the memory region associated with this **Ashmem** object.|
 
 **Return value**
@@ -11374,7 +11709,7 @@ Reads data from the shared file associated with this **Ashmem** object.
 
   | Name| Type  | Mandatory| Description                                              |
   | ------ | ------ | ---- | -------------------------------------------------- |
-  | size   | number | Yes  | Size of the data to read.                              |
+  | size   | number | Yes  | Size of the data to read, in bytes.                              |
   | offset | number | Yes  | Start position of the data to read in the memory region associated with this **Ashmem** object.|
 
 **Return value**
@@ -11432,7 +11767,7 @@ Reads data from the shared file associated with this **Ashmem** object.
 
   | Name| Type  | Mandatory| Description                                              |
   | ------ | ------ | ---- | -------------------------------------------------- |
-  | size   | number | Yes  | Size of the data to read.                              |
+  | size   | number | Yes  | Size of the data to read, in bytes.                              |
   | offset | number | Yes  | Start position of the data to read in the memory region associated with this **Ashmem** object.|
 
 **Return value**
