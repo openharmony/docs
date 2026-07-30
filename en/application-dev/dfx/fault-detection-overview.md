@@ -5,11 +5,12 @@
 <!--Owner: @mzyan-->
 <!--Designer: @liyueric-->
 <!--Tester: @gcw_KuLfPSbe-->
-<!--Adviser: @foryourself-->
+<!--Adviser: @jinqiuheng-->
+<!-- md-trans-meta sourceCommit=552600b0ea7451a7ac2f58aae751acd2a0a9b5bf translatedAt=2026-07-29T10:46:45.221Z pushedAt=2026-07-29T11:06:23.355Z -->
 
 Performance Analysis Kit provides comprehensive capabilities such as fault detection and exception handling. As faults vary in causes and symptoms, application stability deteriorates, affecting application development efficiency, delivery costs, and user experience. Therefore, you need to improve quality by designing a fault management system, which includes the detection, analysis, locating and rectification of faults, and quality measurement.
 
-To help you quickly locate and rectify application faults, this topic describes the detection principles, log specifications, log obtaining methods, and restrictions of faults such as process crash, address out-of-bounds, application freeze, resource leak, task execution timeout, and application termination.
+To help you quickly locate and rectify app faults, this topic describes the detection principles, log specifications, log obtaining methods, and constraints of faults such as process crash, address out-of-bounds, app freeze, resource leak, task execution timeout, and app termination.
 
 > **NOTE**
 >
