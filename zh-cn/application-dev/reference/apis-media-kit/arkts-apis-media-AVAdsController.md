@@ -1,8 +1,8 @@
 # Interface (AVAdsController)
 <!--Kit: Media Kit-->
 <!--Subsystem: Multimedia-->
-<!--Owner: @chennotfound-->
-<!--Designer: @dongyu_dy-->
+<!--Owner: @chenkun613227-->
+<!--Designer: @zhaoyunfei-->
 <!--Tester: @xchaosioda-->
 <!--Adviser: @w_Machine_cc-->
 
@@ -261,7 +261,7 @@ onAdsListenerAdsSkipped(callback: Callback\<string>): void
 
 | 参数名   | 类型     | 必填 | 说明                 |
 | -------- | -------- | ---- | -------------------- |
-| callback | Callback\<string> | 是   | 广告跳过的处理函数。常用于恢复主内容播放页面的逻辑。参数为被跳过的广告ID。 |
+| callback | Callback\<string> | 是   | 广告跳过的处理函数。常用于恢复主内容播放。参数为被跳过的广告ID。 |
 
 **示例：**
 
@@ -293,7 +293,7 @@ onAdsListenerAdsCompleted(callback: Callback\<string>): void
 
 | 参数名   | 类型     | 必填 | 说明                 |
 | -------- | -------- | ---- | -------------------- |
-| callback | Callback\<string> | 是   | 广告播放完成的处理函数。常用于恢复主内容播放页面的逻辑。参数为播放完成的广告ID。 |
+| callback | Callback\<string> | 是   | 广告播放完成的处理函数。常用于恢复主内容播放。参数为播放完成的广告ID。 |
 
 **示例：**
 
@@ -325,7 +325,7 @@ offAdsEventListenerLoadingError(callback?: OnAdsEventLoadingErrorHandle): void
 
 | 参数名   | 类型     | 必填 | 说明                 |
 | -------- | -------- | ---- | -------------------- |
-| callback | [OnAdsEventLoadingErrorHandle](arkts-apis-media-t.md#onadseventloadingerrorhandle) | 否   | 广告内容加载失败的处理函数。<br>传入指定回调时，仅取消订阅该回调；不传入该参数时默认取消订阅该事件的所有回调函数。 |
+| callback | [OnAdsEventLoadingErrorHandle](arkts-apis-media-t.md#onadseventloadingerrorhandle) | 否   | 广告内容加载失败的处理函数。<br>传入指定回调时，仅取消订阅该回调；不传入该参数时，默认取消订阅该事件的所有回调函数。 |
 
 **示例：**
 
@@ -355,7 +355,7 @@ offAdsListenerAdsStarted(callback?: OnAdsEventAdsStartedHandle): void
 
 | 参数名   | 类型     | 必填 | 说明                 |
 | -------- | -------- | ---- | -------------------- |
-| callback | [OnAdsEventAdsStartedHandle](arkts-apis-media-t.md#onadseventadsstartedhandle) | 否   | 广告内容开始播放时的处理函数。常用于从主内容播放界面切换到广告播放界面的场景。<br>传入指定回调时，仅取消订阅该回调；不传入该参数时默认取消订阅该事件的所有回调函数。 |
+| callback | [OnAdsEventAdsStartedHandle](arkts-apis-media-t.md#onadseventadsstartedhandle) | 否   | 广告内容开始播放时的处理函数。常用于从主内容播放界面切换到广告播放界面的场景。<br>传入指定回调时，仅取消订阅该回调；不传入该参数时，默认取消订阅该事件的所有回调函数。 |
 
 **示例：**
 
@@ -385,7 +385,7 @@ offAdsListenerAdsSkipped(callback?: Callback\<string>): void
 
 | 参数名   | 类型     | 必填 | 说明                 |
 | -------- | -------- | ---- | -------------------- |
-| callback | Callback\<string> | 否   | 广告跳过的处理函数。<br>传入指定回调时，仅取消订阅该回调；不传入该参数时默认取消订阅该事件的所有回调函数。 |
+| callback | Callback\<string> | 否   | 广告跳过的处理函数。<br>传入指定回调时，仅取消订阅该回调；不传入该参数时，默认取消订阅该事件的所有回调函数。 |
 
 **示例：**
 

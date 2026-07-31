@@ -1,8 +1,8 @@
 # Interface (AVDownloaderManager)
 <!--Kit: Media Kit-->
 <!--Subsystem: Multimedia-->
-<!--Owner: @chennotfound-->
-<!--Designer: @dongyu_dy-->
+<!--Owner: @chenkun613227-->
+<!--Designer: @zhaoyunfei-->
 <!--Tester: @xchaosioda-->
 <!--Adviser: @w_Machine_cc-->
 
@@ -76,7 +76,7 @@ async function test() {
 
 addAVDownloadTask(source: MediaSource): string
 
-根据媒体源创建一个离线下载任务。默认情况下，下载任务仅在Wi-Fi环境下进行，如需在蜂窝网络环境下下载，请先调用allowsCellularAccess(true)。
+根据媒体源创建一个离线下载任务。默认情况下，下载任务仅在Wi-Fi环境下进行，如需在蜂窝网络环境下下载，请先设置allowsCellularAccess为true。
 
 **起始版本：** 26.0.0
 
@@ -436,7 +436,7 @@ onProgressChange(callback: OnAVDownloadProgressChangeHandle): void
 
 | 参数名   | 类型     | 必填 | 说明                 |
 | -------- | -------- | ---- | -------------------- |
-| callback | [OnAVDownloadProgressChangeHandle](arkts-apis-media-t.md#onavdownloadprogresschangehandle) | 是   | 进度变化事件的处理函数。由应用实现。<br>第一个参数为下载任务ID，第二个参数为下载进度值。<br>进度值范围：-1或[0.0, 1.0]，若为-1则表示资源大小未知。 |
+| callback | [OnAVDownloadProgressChangeHandle](arkts-apis-media-t.md#onavdownloadprogresschangehandle) | 是   | 进度变化事件的处理函数。由应用实现。<br>第一个参数为下载任务ID，第二个参数为下载进度值。<br>进度值取值范围为-1或[0.0, 1.0]。-1表示资源大小未知。 |
 
 **示例：**
 
