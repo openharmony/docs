@@ -49,7 +49,7 @@ ArkGraphics 3D中的材质类型通过[MaterialType](../reference/apis-arkgraphi
 
   适用场景：普通实体模型一般开启剔除背面提升渲染效率；透明或双面材质（如树叶、布料）需要禁用剔除以显示完整模型。
 
-- blend：是否启用材质的透明效果模式。true表示开启透明，false表示关闭透明，默认值为false。
+- blend：是否启用材质的透明效果模式。默认值为undefined。
 
   适用场景：表现透明或半透明材质时开启，如玻璃、水面、烟雾、透明塑料等。
 
