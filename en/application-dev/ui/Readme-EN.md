@@ -149,15 +149,15 @@
   - Using Popup Windows<!--arkts-use-dialog-->
      - [Popup Window Overview](arkts-dialog-overview.md)
      - Dialog Boxes (Dialog)<!--arkts-use-dialogs-->
-       - [Dialog Box Overview](arkts-base-dialog-overview.md)
+       - [Dialog Overview](arkts-base-dialog-overview.md)
        - [Global Custom Dialog Box Independent of UI Components (openCustomDialog) (Recommended)](arkts-uicontext-custom-dialog.md)
-       - [Basic Custom Dialog Box (CustomDialog) (Not Recommended)](arkts-common-components-custom-dialog.md)
-       - [Fixed Style Dialog Box](arkts-fixes-style-dialog.md)
+       - [Basic Custom Dialog (CustomDialog)](arkts-common-components-custom-dialog.md)
+       - [Fixed-Style Dialog Box](arkts-fixes-style-dialog.md)
        - [Page-Level Dialog Box](arkts-embedded-dialog.md)
        - [Dialog Box Layer Management](arkts-dialog-levelorder.md)
        - [Dialog Controller](arkts-dialog-controller.md)
        - [Dialog Box Focus Policy](arkts-dialog-focusable.md)
-       - [Popup Mask Control](arkts-dialog-mask.md)
+       - [Dialog Mask Control](arkts-dialog-mask.md)
      - Using Menus<!--arkts-use-menu-->
        - [Menu Overview](arkts-menu-overview.md)
        - [Menu Control (Menu)](arkts-popup-and-menu-components-menu.md)
