@@ -2,14 +2,14 @@
 
 <!--Kit: Image Kit-->
 <!--Subsystem: Multimedia-->
-<!--Owner: @xjtu_liushang-->
-<!--Designer: @changjiuy-->
-<!--Tester: @yangwang01-->
+<!--Owner: @zy_194-->
+<!--Designer: @gongzheng92-->
+<!--Tester: @gongzheng92-->
 <!--Adviser: @w_Machine_cc-->
 
 > **说明：**
 >
-> 以下仅介绍本模块特有错误码，通用错误码请参考[通用错误码说明文档](../errorcode-universal.md)。
+> 以下仅介绍本模块特有错误码，通用错误码请参考[通用错误码](../errorcode-universal.md)。
 
 ## 29200001 未知错误
 
@@ -75,7 +75,7 @@ Failed to process image buffer. For example, the processing times out.
 
 **错误描述**
 
-处理图像缓冲区失败。例如，处理超时。
+处理图像失败。例如，处理超时。
 
 **可能原因**
 
@@ -83,17 +83,17 @@ Failed to process image buffer. For example, the processing times out.
 
 **处理步骤**
 
-减小负载。
+检查输入参数是否符合预期。
 
 ## 29200005 不支持的处理
 
 **错误信息**
 
-The processing is not supported. You may call OH_ImageProcessing_IsXXXSupported to check whether the capability is supported.
+The processing is not supported. You may call OH_ImageProcessing_IsSupported to check whether the capability is supported.
 
 **错误描述**
 
-不支持该处理。可以调用OH_ImageProcessing_IsXXXSupported来检查是否支持该能力。
+不支持该处理。可以调用OH_ImageProcessing_IsSupported来检查是否支持该能力。
 
 **可能原因**
 
