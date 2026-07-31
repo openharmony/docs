@@ -1,4 +1,4 @@
-# Subscribing to App Freeze Warning  Events (ArkTS)
+# Subscribing to App Freeze Warning Events (ArkTS)
 
 <!--Kit: Performance Analysis Kit-->
 <!--Subsystem: HiviewDFX-->
