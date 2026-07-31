@@ -77,7 +77,7 @@ deinitializeEnvironment(): Promise\<void>
 
 **错误码：**
 
-以下错误码的详细介绍请参见[视频处理引擎错误码](errorcode-videoprocessingengine.md)
+以下错误码的详细介绍请参见[视频处理引擎错误码](errorcode-videoprocessingengine.md)。
 
 | 错误码ID  | 错误信息  |
 | :------------ | :------------ |
