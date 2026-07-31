@@ -1,9 +1,9 @@
 # oh_device_manager.h
 <!--Kit: Distributed Service Kit-->
 <!--Subsystem: DistributedSched-->
-<!--Owner: @hobbycao;@huangkai71-->
-<!--Designer: @gsxiaowen;@lee_jet520-->
-<!--Tester: @hanjiawei;@Ytt-test-->
+<!--Owner: @liwei_hw-->
+<!--Designer: @hwzhangchuang-->
+<!--Tester: @zhaodengqi-->
 <!--Adviser: @hu-zhiqiong-->
 
 ## 概述
