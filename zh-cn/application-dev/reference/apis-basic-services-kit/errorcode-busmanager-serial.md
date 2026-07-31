@@ -139,7 +139,7 @@ Port not open.
 操作串口通信相关接口时，串口端口未打开。
 
 **状态转换说明：**
-- 调用open()后，串口处于打开状态，可以调用[onDataRead](js-apis-busmanager-serial.md#ondataread)、[write](js-apis-busmanager-serial.md#write)等接口。onDataRead需与offDataRead配对调用，在close()前应先调用offDataRead取消订阅
+- 调用open()后，串口处于打开状态，可以调用[onDataRead](js-apis-busmanager-serial.md#ondataread)、[write](js-apis-busmanager-serial.md#write)等接口。onDataRead需与offDataRead配对调用，在close()前应先调用offDataRead取消订阅。
 - 调用close()后，串口处于关闭状态，上述接口将无法使用。
 - 必须在串口打开状态下才能进行读写等操作。
 
