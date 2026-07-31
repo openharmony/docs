@@ -383,7 +383,7 @@ try {
     let token = bundleInfo.appInfo.accessTokenId;
     tokenId = token.toString();
     // 添加设备访问权限
-    if (usbManager.addDeviceAccessRight(tokenId, devicesName)) {
+if (usbManager.addDeviceAccessRight(tokenId, deviceName)) {
       console.info(`Succeed in adding right`);
     }
   }).catch((err : BusinessError) => {
