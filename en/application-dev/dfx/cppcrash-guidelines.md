@@ -6,7 +6,7 @@
 <!--Designer: @Maplestory91-->
 <!--Tester: @gcw_KuLfPSbe-->
 <!--Adviser: @jinqiuheng-->
-<!-- md-trans-meta sourceCommit=9ef024c70eb3ae7edb61d2396b2b553cb7d287cd translatedAt=2026-07-31T01:27:34.897Z pushedAt=2026-07-31T02:41:39.413Z -->
+<!-- md-trans-meta sourceCommit=9ef024c70eb3ae7edb61d2396b2b553cb7d287cd translatedAt=2026-07-31T01:27:34.897Z pushedAt=2026-07-31T09:27:42.320Z -->
 
 ## Overview
 
@@ -698,7 +698,7 @@ Tid:29192, Name:OS_FFRT_2_0                 <- Fault thread ID and thread name
 
 ### Application Crash Log Configured by HiAppEvent
 
-The system provides a general crash log generation feature, but some apps require custom log content. Therefore, starting from **API version 20**, you can configure custom log content through the [setEventConfig](hiappevent-watcher-crash-events.md#seteventconfig) API.
+The system provides a general crash log generation feature, but some apps require custom log content. Therefore, starting from **API version 20**, you can configure custom log content through the [setEventConfig](hiappevent-watcher-crash-events.md#seteventconfig-api-description) API.
 
 The following is the core content of a system crash log archived by DevEco Studio in **FaultLog**:
 
@@ -1102,3 +1102,5 @@ App bundle name with pid xxxx exit with signal:13
 
 <!--RP10-->
 <!--RP10End-->
+
+<!--no_check-->

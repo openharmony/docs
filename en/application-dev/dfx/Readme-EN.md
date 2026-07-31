@@ -152,7 +152,7 @@
 
 - Check Mode<!--hichecker-->
 
-  - [Using HiChecker(ArkTS)](hichecker-guidelines-arkts.md)
+  - [Using HiChecker (ArkTS)](hichecker-guidelines-arkts.md)
 
 - Obtaining System Debugging Information<!--hidebug-->
 
@@ -164,9 +164,9 @@
 
 - Service Thread Timeout Detection<!--hicollie-->
 
-  - [Using HiCollie to Detect Service Thread Stuck and Jank Events](hicollie-guidelines-ndk.md)
+  - [Using HiCollie to Detect Service Thread Stuck and Jank Events (C/C++)](hicollie-guidelines-ndk.md)
 
-  - [Using HiCollie to Monitor the Function Execution Time (C/C++)](hicollie-settimer-guidelines-ndk.md)
+  - [Using HiCollie to Detect Function Execution Timeout Events (C/C++)](hicollie-settimer-guidelines-ndk.md)
 
 - Error Manager and Application Recovery<!--error-manager-->
 

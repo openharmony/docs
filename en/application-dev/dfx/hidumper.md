@@ -539,7 +539,7 @@ Run the **hidumper --mem-jsheap pid [-T tid] [--gc] [--leakobj] [--raw] [--clean
 
   ```shell
   $ hidumper --mem-heap 65097 --native  -> 65097 is the target app process ID.
-  $ ls | grep nativeheap -> 进入堆内存文件存放目录后执行
+  $ ls | grep nativeheap -> Navigate to the heap memory file directory and run the command.
   nativeheap-65097-1775640819058
   ```
 
