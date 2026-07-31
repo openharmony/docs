@@ -610,7 +610,6 @@ isOtaUpdateNonceEnable(admin: Want): boolean
 | 9200002  | The administrator application does not have permission to manage the device. |
 | 9200016  | Service timeout. |
 | 201      | Permission verification failed. The application does not have the permission required to call the API. |
-| 801      | Capability not supported. Failed to call the API due to limited device capabilities. |
 
 **示例：**
 
