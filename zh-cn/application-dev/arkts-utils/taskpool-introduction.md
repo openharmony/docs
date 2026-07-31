@@ -48,6 +48,7 @@ function testArrayBuffer() {
   const group = new taskpool.TaskGroup();
   const task = new taskpool.Task(printArrayBuffer, buffer);
   group.addTask(task);
+  // 设置任务需要克隆的参数列表，避免在不同线程间共享可变状态
   task.setCloneList([buffer]);
   for (let i = 0; i < 5; i++) {
     taskpool.execute(group).then(() => {
@@ -145,15 +146,6 @@ function add(num1: number, num2: number): number {
   return num1 + num2;
 }
 
-async function concurrentFunc(): Promise<void> {
-  try {
-    const task: taskpool.Task = new taskpool.Task(add, 1, 2);
-    console.info(`taskpool res is: ${await taskpool.execute(task)}`); // 输出结果：taskpool res is: 3
-  } catch (e) {
-    console.error(`taskpool execute error is: ${e}`);
-  }
-}
-
 @Entry
 @Component
 struct Index {
@@ -166,12 +158,12 @@ struct Index {
           .fontSize(50)
           .fontWeight(FontWeight.Bold)
           .onClick(() => {
-            concurrentFunc().then(() => {
-              this.message = 'success';
-            }).catch((e: object) => {
-              this.message = 'failed';
-              console.error(`taskpool execute concurrentFunc error is: ${e}`);
-            })
+            try {
+              const task: taskpool.Task = new taskpool.Task(add, 1, 2);
+              console.info(`taskpool res is: ${await taskpool.execute(task)}`); // 输出结果：taskpool res is: 3
+            } catch (e) {
+              console.error(`taskpool execute error is: ${e}`);
+            }
           })
       }
       .width('100%')
@@ -242,32 +234,32 @@ async function testConcurrentFunc() {
 
   taskpool.execute(task1).then((d: object) => {
     console.info(`task1 res is: ${d}`); // 输出结果：task1 res is: 3
-  }).catch((e: object) => {
+  }).catch((e: BusinessError) => {
     console.error(`task1 catch e: ${e}`);
   })
   taskpool.execute(task2).then((d: object) => {
     console.info(`task2 res is: ${d}`);
-  }).catch((e: object) => {
+  }).catch((e: BusinessError) => {
     console.error(`task2 catch e: ${e}`); // 输出结果：task2 catch e: Error: Can't return Promise in pending state
   })
   taskpool.execute(task3).then((d: object) => {
     console.info(`task3 res is: ${d}`); // 输出结果：task3 res is: 3
-  }).catch((e: object) => {
+  }).catch((e: BusinessError) => {
     console.error(`task3 catch e: ${e}`);
   })
   taskpool.execute(task4).then((d: object) => {
     console.info(`task4 res is: ${d}`); // 输出结果：task4 res is: 1
-  }).catch((e: object) => {
+  }).catch((e: BusinessError) => {
     console.error(`task4 catch e: ${e}`);
   })
   taskpool.execute(task5).then((d: object) => {
     console.info(`task5 res is: ${d}`); // 输出结果：task5 res is: 1
-  }).catch((e: object) => {
+  }).catch((e: BusinessError) => {
     console.error(`task5 catch e: ${e}`);
   })
   taskpool.execute(task6).then((d: object) => {
     console.info(`task6 res is: ${d}`); // 输出结果：task6 res is: Promise setTimeout after resolve
-  }).catch((e: object) => {
+  }).catch((e: BusinessError) => {
     console.error(`task6 catch e: ${e}`);
   })
 }
@@ -286,7 +278,7 @@ struct Index {
           .onClick(() => {
             testConcurrentFunc().then(() => {
               this.message = 'success';
-            }).catch((e: object) => {
+            }).catch((e: BusinessError) => {
               this.message = 'failed';
               console.error(`testConcurrentFunc catch e: ${e}`);
             })
@@ -401,7 +393,7 @@ export class MyTestA {
 }
 
 export class MyTestB {
-  static nameStr:string = 'MyTestB';
+  static nameStr: string = 'MyTestB';
 }
 ```
 
@@ -446,17 +438,17 @@ async function testConcurrentFunc() {
 
   taskpool.execute(task1).then((d: object) => {
     console.info(`task1 res is: ${d}`);
-  }).catch((e: object) => {
+  }).catch((e: BusinessError) => {
     console.error(`task1 catch e: ${e}`); // task1 catch e: Error: testPromise Error
   })
   taskpool.execute(task2).then((d: object) => {
     console.info(`task2 res is: ${d}`);
-  }).catch((e: object) => {
+  }).catch((e: BusinessError) => {
     console.error(`task2 catch e: ${e}`); // task2 catch e: testPromiseError1 Error msg
   })
   taskpool.execute(task3).then((d: object) => {
     console.info(`task3 res is: ${d}`);
-  }).catch((e: object) => {
+  }).catch((e: BusinessError) => {
     console.error(`task3 catch e: ${e}`); // task3 catch e: testPromiseError2 Error msg
   })
 }

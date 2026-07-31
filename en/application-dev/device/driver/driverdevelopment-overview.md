@@ -6,43 +6,43 @@
 <!--Designer: @w00373942-->
 <!--Tester: @dong-dongzhen-->
 <!--Adviser: @hu-zhiqiong-->
-<!-- md-trans-meta sourceCommit=0bd849420b8023922f904909cad7f1ce911d0c8d translatedAt=2026-07-28T02:35:23.664Z pushedAt=2026-07-28T02:55:15.113Z -->
+<!-- md-trans-meta sourceCommit=0bd849420b8023922f904909cad7f1ce911d0c8d translatedAt=2026-07-29T01:37:41.204Z pushedAt=2026-07-29T02:00:42.867Z -->
 
 Driver Development Kit (DDK) provides peripheral driver developers with efficient, secure, and feature-rich extended peripheral driver development solutions — ArkTS APIs and C APIs — enabling a seamless plug-and-play experience for end users.
 
 ## When to Use
 
-With DDK, you can develop dedicated or extended peripheral drivers in an efficient and secure manner.
+DDK allows you to efficiently and securely develop specialized peripheral devices and extend advanced peripheral capabilities:
 
-1. Professional and dedicated office peripheral driver development
+1. Driver development for specialized office peripherals
 
-   For example, professional and dedicated peripherals used in scenarios such as banking counters, enterprise offices, and medical testing, including high-speed document cameras, ID card scanners, fingerprint recognition devices, and blood oxygen/glucose monitoring devices.
+   Examples include document scanners, ID card scanners, fingerprint readers, and blood oxygen or blood glucose monitoring devices used at bank counters, in enterprise offices, and in medical testing scenarios.
 
-2. Capability expansion for customized peripheral extensions
+2. Capability extension for non-standard peripherals
 
-   For example, scenarios where vendors open enhanced capabilities for private non-standard HID peripherals, including shortcut customization for writing tablets, pressure sensitivity/drawing area configuration, extended capability settings, mouse lighting effect settings, mouse extra button customization, and advanced settings such as DPI and X/Y axes.
+   Examples include extending the capabilities of manufacturer-specific, non-standard HID peripherals, such as customizing shortcut keys for graphics tablets; configuring pressure sensitivity and drawing areas; setting extended features; configuring mouse lighting effects and extra button mappings; and adjusting advanced settings such as DPI and X/Y-axis controls.
 
 ## Typical Use Cases
 
-- You can develop advanced peripheral functions to meet user requirements.
+- You can implement advanced features for peripheral accessories to meet consumers' advanced usage needs.
 
-- The extended driver framework supports lifecycle management of peripheral drivers and provides APIs for querying and binding peripheral devices.
+- The extended driver framework supports lifecycle management for extended peripheral drivers and provides APIs for extended device applications to query and bind extended peripherals.
 
 ## Basic Concepts
 
-- Peripheral driver client: [basic UI-based driver](externaldevice-guidelines.md), which is used to query and bind drivers, and customize the communication mode and data processing mode.
+- Extended peripheral driver client: A UI-based basic driver that queries and binds drivers and customizes communication and data processing between the driver and device. For details, see [UI-based Driver Development](externaldevice-guidelines.md).
 
-- Peripheral driver: [basic UI-free driver](driverextensionability.md), which is the dedicated peripheral driver or enhanced peripheral driver developed based on DDK.
+- Extended peripheral driver: A UI-free basic driver for specialized extended peripherals or enhanced extended peripheral capabilities, developed based on DDK capabilities. For details, see [UI-free Driver Development](driverextensionability.md).
 
-- External Device Manager: performs lifecycle management of peripheral devices and driver packages.
+- External Device Manager: Provides extended device management and lifecycle management for driver packages.
 
-- Bundle Manager Service (BMS): manages application installation, uninstallation, and data on the system.
+- Bundle Manager Service (BMS): Provides bundle management. In OpenHarmony, it is primarily responsible for application installation, uninstallation, and data management.
 
-- Ability Manager Service (AMS): used to start and stop **DriverExtensionAbility**.
+- Ability Manager Service (AMS): Manages abilities and is used to start and stop the **DriverExtensionAbility** of an extended peripheral driver.
 
-- System Ability (SA): a system service that provides basic system capabilities for devices. For example, the driver extension SA is a system service that provides extended drivers for non-standard peripherals.
+- System ability (SA): A system service that provides capabilities to external clients. For example, the peripheral extension service SA provides system services for non-standard peripheral driver capabilities.
 
-- Non-standard peripheral: a peripheral that uses non-standard protocols (also called vendor-defined protocols) for communication.
+- Non-standard peripheral: A peripheral that uses a non-standard communication protocol, also known as a vendor-defined protocol.
 
 ## Implementation Principles
 
@@ -52,7 +52,7 @@ External Device Manager, the core service of user-mode peripheral management, pe
 
 ### Peripheral Driver Architecture
 
-  **Figure 1** Peripheral driver working mechanism 
+  **Figure 1** Peripheral driver working mechanism  
 
 ![driverExtension](figures/driverExtension.png)
 
@@ -62,21 +62,21 @@ Figure 2 shows the process for matching a peripheral driver client with a periph
 
 **Figure 2** Process for matching a peripheral driver client with a peripheral driver
 
-![timeSeries1](figures/timeSeries1.png)
+![Sequence diagram: peripheral-driver matching](figures/timeSeries1.png)
 
 Figure 3 shows the process for binding the peripheral driver client with a peripheral driver.
 
 **Figure 3** Process of binding the peripheral driver client with a peripheral driver
 
-![timeSeries2](figures/timeSeries2.png)
+![Sequence diagram: driver client-driver binding](figures/timeSeries2.png)
 
-## Notes and Constraints
+## Constraints
 
 To call the ArkTS or C APIs provided by DDK, you need to apply for specified permissions.
 
 The following table lists the required permissions.
 
-| API Type| DDK Type| Permission|
+| API Type | DDK Type | Permission |
 | --------- | --------- | --------- |
 | ArkTS-API | N/A | ohos.permission.ACCESS_EXTENSIONAL_DEVICE_DRIVER |
 | C-API     | UsbDdk | ohos.permission.ACCESS_DDK_USB |
@@ -92,22 +92,22 @@ For API call restrictions of DriverExtensionAbility, see [Constraints](../../ref
 
 The following table lists the associated modules you may use during development of peripheral drivers.
 
-| Name| Description|
+| Name | Description | 
 | --------- | --------- |
-| PerformanceAnalysisKit | Introduces [hilog](../../reference/apis-performance-analysis-kit/js-apis-hilog.md) for log printing.|
-| BasicServicesKit       | Introduces [BusinessError](../../reference/apis-basic-services-kit/js-apis-base.md#businesserror) to capture error information. |
-| IPCKit                 | Introduces [rpc](../../reference/apis-ipc-kit/js-apis-rpc.md) to implement inter-process communication between the driver and the client.|
-| AbilityKit             | Introduces [@ohos.application.Want (Want)](../../reference/apis-ability-kit/js-apis-application-want.md) for lifecycle management.|
+| PerformanceAnalysisKit | Imports [hilog](../../reference/apis-performance-analysis-kit/js-apis-hilog.md) for log printing. | 
+| BasicServicesKit       | Imports [BusinessError](../../reference/apis-basic-services-kit/js-apis-base.md#businesserror) for capturing error information. |
+| IPCKit                 | Imports [rpc](../../reference/apis-ipc-kit/js-apis-rpc.md) for IPC (Inter-Process Communication) between the driver and the client. |
+| AbilityKit             | Imports [@ohos.application.Want (Want)](../../reference/apis-ability-kit/js-apis-application-want.md) for lifecycle management. |
 
 ## Driver Application Specifications
 
 1. Driver application definition
 
-- A driver application is a user-mode driver developed based on DDK for non-standard peripherals.
+- A driver application is a user-mode driver for non-standard peripherals, developed using DDK.
 
-- Since driver applications are based on **DriverExtensionAbility**, you need to override its lifecycle callback APIs.
+- Driver applications are based on **DriverExtensionAbility**. You must override its lifecycle callback APIs.
 
-2. Driver application installation and uninstallation
+2. Driver application installation and uninstallation policies
 
 - Installation policy
 
@@ -117,24 +117,22 @@ The following table lists the associated modules you may use during development 
 
 - Uninstallation policy: When a user uninstalls a driver application in any user space, the system uninstalls it from all user spaces.
 
-3. DriverExtensionAbility-based lifecycle management
+3. **DriverExtensionAbility** lifecycle management
 
-- ExtensionAbility is a general term of scenario-based service extension abilities, such as user-mode peripheral drivers, service widgets, and input methods.
+- **ExtensionAbility** is a collective term for scenario-based service extension capabilities (such as user-mode peripheral drivers, service widgets, and input methods), designed to address diverse usage scenarios.
 
-- The lifecycle of each ExtensionAbility is managed by its SA. The SA calls **connectAbility** to start the ExtensionAbility and drive the execution of the defined service APIs. When the service is complete, the SA calls **disconnectAbility** to disconnect the ExtensionAbility. The AMS then determines whether to destroy the ExtensionAbility and its associated process based on whether the ExtensionAbility has any active SA connections. In the user-mode driver development scenario, the system SA that manages the **DriverExtensionAbility** lifecycle is the driver extension SA.
+- The lifecycle of each **ExtensionAbility** is managed by its corresponding SA. The SA calls **connectAbility** to start the ExtensionAbility and drive the execution of its defined service APIs. When the service completes, the SA calls **disconnectAbility** to disconnect. The AMS then determines whether to destroy the ExtensionAbility and its associated process based on whether any SA connection remains active. In the user-mode driver development scenario, the system SA responsible for managing the **DriverExtensionAbility** lifecycle is the driver extension SA.
 
 4. API access security control in **DriverExtensionAbility**
 
-- The system supports scenario-based extension abilities built on ExtensionAbility. **DriverExtensionAbility** is a type of ability designed to support the development of user-mode drivers.
+- The system supports building scenario-specific extension abilities based on **ExtensionAbility**. **DriverExtensionAbility** is a type of ability designed for developing user-mode peripheral drivers.
 
 - Within **DriverExtensionAbility**, only DDK APIs can be accessed to perform access control and data communication for non-standard peripherals.
 
 - Based on the security constraints and service scenarios in driver development, access to other ArkTS APIs is not allowed within DriverExtensionAbility, which is intended to prevent malicious behavior and data leakage.
 
-- Restricted access to ArkTS APIs in DriverExtensionAbility is implemented as follows:
+- Restricted ArkTS API access in **DriverExtensionAbility** is implemented as follows:
 
-  - During the initialization and creation of an Extension process, the system loads the required system modules based on the list of restricted-access ArkTS APIs configured for the Extension. At runtime, if a restricted ArkTS API is called in DriverExtensionAbility, the API call fails because the corresponding system module was not loaded during the initialization and creation phases.
+  - During initialization and creation of the **Extension** process, system modules are loaded according to the configured list of ArkTS APIs accessible to **DriverExtensionAbility**. At runtime, if a restricted ArkTS API is called within **DriverExtensionAbility**, the call fails because the corresponding system module was not loaded during initialization and creation.
 
-- For the list of restricted ArkTS APIs in **DriverExtensionAbility**, see the **DriverExtension** configuration in [frameworks/native/ability/native/etc/extension_blocklist_config.json · OpenHarmony/ability_ability_runtime - AtomGit | GitCode](https://gitcode.com/openharmony/ability_ability_runtime/blob/master/frameworks/native/ability/native/etc/extension_blocklist_config.json).
-
-<!--no_check-->
+- For the specific list of ArkTS APIs restricted in **DriverExtensionAbility**, refer to the **DriverExtension** configuration in [frameworks/native/ability/native/etc/extension_blocklist_config.json · OpenHarmony/ability_ability_runtime - AtomGit | GitCode](https://gitcode.com/openharmony/ability_ability_runtime/blob/master/frameworks/native/ability/native/etc/extension_blocklist_config.json).

@@ -3,9 +3,10 @@
 <!--Kit: Performance Analysis Kit-->
 <!--Subsystem: HiviewDFX-->
 <!--Owner: @liujiaxing2024-->
-<!--Designer: @junjie_shi-->
+<!--Designer: @jiangwenhao-->
 <!--Tester: @gcw_KuLfPSbe-->
-<!--Adviser: @foryourself-->
+<!--Adviser: @jinqiuheng-->
+<!-- md-trans-meta sourceCommit=83e3a48dffb345a35ffd2cec54f9c4fffdcf8535 translatedAt=2026-07-29T10:46:45.902Z pushedAt=2026-07-29T11:06:16.723Z -->
 
 ## Event Description
 
@@ -24,6 +25,8 @@ For details about the supported system events, detection principles, and fields 
 [Crash Event Overview](hiappevent-watcher-crash-events.md)
 
 [Application Freeze Event Overview](hiappevent-watcher-freeze-events.md)
+
+[App Freeze Warning Event Overview](hiappevent-watcher-appfreezewarning-events.md)
 
 [Resource Leak Event Overview](hiappevent-watcher-resourceleak-events.md)
 

@@ -6622,6 +6622,20 @@
 
 **起始版本**：26.0.0
 
+## ohos.permission.UPDATE_FORM_CROSS_BUNDLE
+
+允许应用更新其他应用的卡片。
+
+**权限级别**：system_basic
+
+**授权方式**：系统授权（system_grant）
+
+**是否支持证书授权**：true
+
+**支持设备**：Phone | PC/2in1 | Tablet | TV | Car
+
+**起始版本**：26.0.0
+
 ## ohos.permission.FILE_MANAGER_SERVICE_DATA_ACCESS
 
 允许应用获取和管理文件管理文件。
@@ -6635,5 +6649,19 @@
 **是否支持证书授权**：true
 
 **支持设备**：Phone | PC/2in1 | Tablet
+
+**起始版本**：26.0.0
+
+## ohos.permission.MANAGE_CLONE_BUNDLE_PREFERENCES
+
+允许应用管理分身偏好设置。
+
+**权限级别**：system_basic
+
+**授权方式**：系统授权（system_grant）
+
+**是否支持证书授权**：true
+
+**支持设备**：Phone | PC/2in1 | Tablet | TV | Wearable | Car
 
 **起始版本**：26.0.0

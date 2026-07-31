@@ -77,15 +77,16 @@ target_link_libraries(entry PUBLIC libohgame_controller.z.so)
 
 | 物理轴 | 轴值获取接口 | 
 | -------- | -------- |
-| LeftThumbstick | 通过OH_GamePad_AxisEvent_GetXAxisValue获取X轴的轴值。<br/>通过OH_GamePad_AxisEvent_GetYAxisValue获取Y轴的轴值。 | 
-| RightThumbstick | 通过OH_GamePad_AxisEvent_GetZAxisValue获取Z轴的轴值。<br/>通过OH_GamePad_AxisEvent_GetRZAxisValue获取RZ轴的轴值。 | 
-| DPAD | 通过OH_GamePad_AxisEvent_GetHatXAxisValue获取HatX轴的轴值。<br/>通过OH_GamePad_AxisEvent_GetHatYAxisValue获取HatY轴的轴值。 | 
-| LeftTrigger | 通过OH_GamePad_AxisEvent_GetBrakeAxisValue获取Brake轴的轴值。 | 
-| RightTrigger | 通过OH_GamePad_AxisEvent_GetGasAxisValue获取Gas轴的轴值。 | 
+| LeftThumbstick | 通过[OH_GamePad_AxisEvent_GetXAxisValue](../reference/apis-game-controller-kit/capi-game-pad-event-h.md#oh_gamepad_axisevent_getxaxisvalue)获取X轴的轴值。<br/>通过[OH_GamePad_AxisEvent_GetYAxisValue](../reference/apis-game-controller-kit/capi-game-pad-event-h.md#oh_gamepad_axisevent_getyaxisvalue)获取Y轴的轴值。 | 
+| RightThumbstick | 通过[OH_GamePad_AxisEvent_GetZAxisValue](../reference/apis-game-controller-kit/capi-game-pad-event-h.md#oh_gamepad_axisevent_getzaxisvalue)获取Z轴的轴值。<br/>通过[OH_GamePad_AxisEvent_GetRZAxisValue](../reference/apis-game-controller-kit/capi-game-pad-event-h.md#oh_gamepad_axisevent_getrzaxisvalue)获取RZ轴的轴值。 | 
+| DPAD | 通过[OH_GamePad_AxisEvent_GetHatXAxisValue](../reference/apis-game-controller-kit/capi-game-pad-event-h.md#oh_gamepad_axisevent_gethatxaxisvalue)获取HatX轴的轴值。<br/>通过[OH_GamePad_AxisEvent_GetHatYAxisValue](../reference/apis-game-controller-kit/capi-game-pad-event-h.md#oh_gamepad_axisevent_gethatyaxisvalue)获取HatY轴的轴值。 | 
+| LeftTrigger | 通过[OH_GamePad_AxisEvent_GetBrakeAxisValue](../reference/apis-game-controller-kit/capi-game-pad-event-h.md#oh_gamepad_axisevent_getbrakeaxisvalue)获取Brake轴的轴值。 | 
+| RightTrigger | 通过[OH_GamePad_AxisEvent_GetGasAxisValue](../reference/apis-game-controller-kit/capi-game-pad-event-h.md#oh_gamepad_axisevent_getgasaxisvalue)获取Gas轴的轴值。 | 
 
 以LeftThumbstick轴事件为例。
 
 ```c
+// 注册LeftThumbstick轴事件监听
 napi_value GamePad::LeftThumbstick_RegisterAxisInputMonitor(napi_env env, napi_callback_info info) {
     napi_value result;
     GameController_ErrorCode errorCode =
@@ -100,6 +101,7 @@ napi_value GamePad::LeftThumbstick_RegisterAxisInputMonitor(napi_env env, napi_c
     return result;
 }
 
+// 取消注册LeftThumbstick轴事件监听
 napi_value GamePad::LeftThumbstick_UnregisterAxisInputMonitor(napi_env env, napi_callback_info info) {
     napi_value result;
     GameController_ErrorCode errorCode = OH_GamePad_LeftThumbstick_UnregisterAxisInputMonitor();
@@ -155,6 +157,7 @@ void GamePad::LeftThumbstick_OnAxisEvent(const struct GamePad_AxisEvent *axisEve
 以LeftShoulder按键事件为例。
 
 ```c
+// 注册LeftShoulder按键事件监听
 napi_value GamePad::LeftShoulder_RegisterButtonInputMonitor(napi_env env, napi_callback_info info) {
     napi_value result;
     GameController_ErrorCode errorCode =
@@ -169,6 +172,7 @@ napi_value GamePad::LeftShoulder_RegisterButtonInputMonitor(napi_env env, napi_c
     return result;
 }
 
+// 取消注册LeftShoulder按键事件监听
 napi_value GamePad::LeftShoulder_UnregisterButtonInputMonitor(napi_env env, napi_callback_info info) {
     napi_value result;
     GameController_ErrorCode errorCode = OH_GamePad_LeftShoulder_UnregisterButtonInputMonitor();

@@ -24,7 +24,7 @@ SelectionContainer组件用于为多个文本节点提供跨节点文本选中�
 
 ## 接口
 
-SelectionContainer()
+SelectionContainer(value?: SelectionContainerOptions)
 
 创建一个SelectionContainer组件。
 
@@ -33,6 +33,12 @@ SelectionContainer()
 **原子化服务API：** 从API版本26.0.0开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明 |
+| ------ | ---- | ---- | ---- |
+| value | [SelectionContainerOptions](#selectioncontaineroptions) | 否 | 组件初始化配置项。 |
 
 ## 属性
 
@@ -362,6 +368,50 @@ SelectionContainer自定义编辑菜单选项。
 | onMenuItemClick | [OnMenuItemClickWithTextCallback](#onmenuitemclickwithtextcallback) | 否 | 是 | 点击菜单项时触发，可拦截系统默认菜单执行行为。默认值为空，不触发该回调。 |
 | onPrepareMenu | [OnPrepareMenuCallback](ts-text-common.md#onpreparemenucallback20) | 否 | 是 | 文本选中内容变化后、菜单显示前触发，可在该回调中调整菜单数据。默认值为空，不触发该回调。 |
 
+## SelectionContainerController
+
+SelectionContainer组件的控制器。
+
+**起始版本：** 26.0.0
+
+### closeSelectionMenu
+
+closeSelectionMenu(): void
+
+关闭SelectionContainer的自定义或默认选择菜单。
+
+**起始版本：** 26.0.0
+
+**原子化服务API：** 从API版本26.0.0开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+### clearTextSelection
+
+clearTextSelection(): void
+
+清除SelectionContainer当前的文本选中状态；若选择菜单正在显示，会同时关闭选择菜单。
+
+**起始版本：** 26.0.0
+
+**原子化服务API：** 从API版本26.0.0开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+## SelectionContainerOptions
+
+组件初始化配置项。
+
+**起始版本：** 26.0.0
+
+**原子化服务API：** 从API版本26.0.0开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 名称 | 类型 | 只读 | 可选 | 说明 |
+| ---- | ---- | ---- | ---- | ---- |
+| controller | [SelectionContainerController](#selectioncontainercontroller) | 否 | 否 | SelectionContainer控制器。 |
+
 ## 示例
 
 ### 示例1（跨节点选中文本并复制）
@@ -679,3 +729,60 @@ struct SelectionContainerExample3 {
 ```
 
 ![selectionContainerEditMenu](figures/selectionContainerEditMenu.png)
+
+### 示例4（通过控制器关闭选择菜单与清除文本选中）
+
+该示例通过[SelectionContainer](#接口)传入[SelectionContainerController](#selectioncontainercontroller)，调用[closeSelectionMenu](#closeselectionmenu)和[clearTextSelection](#cleartextselection)接口展示关闭选择菜单和清除选中文本的能力。
+
+从API版本26.0.0开始，新增[SelectionContainerController](#selectioncontainercontroller)和[SelectionContainerOptions](#selectioncontaineroptions)接口。
+
+```ts
+import {
+  SelectionContainer,
+  SelectionContainerController,
+  SelectionContainerAttribute
+} from '@kit.ArkUI';
+
+@Entry
+@Component
+struct SelectionContainerControllerExample {
+  private controller: SelectionContainerController = new SelectionContainerController();
+
+  build() {
+    Column({ space: 12 }) {
+      Text('请长按下方区域跨节点选中文本，再点击按钮关闭选择菜单或清除选中文本')
+        .fontSize(16)
+
+      SelectionContainer({ controller: this.controller }) {
+        Column({ space: 8 }) {
+          Text('第一段文本：SelectionContainer支持跨多个Text组件进行选中。')
+            .fontSize(18)
+            .copyOption(CopyOptions.InApp)
+          Text('第二段文本：选中后可通过控制器关闭选择菜单或清除选中文本。')
+            .fontSize(18)
+            .copyOption(CopyOptions.InApp)
+        }
+      }
+      .copyOption(CopyOptions.InApp)
+      .border({ width: 1, color: '#DCDCDC' })
+      .padding(12)
+      .width('100%')
+
+      Row({ space: 12 }) {
+        Button('关闭选择菜单')
+          .onClick(() => {
+            this.controller.closeSelectionMenu();
+          })
+        Button('清除文本选中')
+          .onClick(() => {
+            this.controller.clearTextSelection();
+          })
+      }
+    }
+    .width('100%')
+    .padding(16)
+  }
+}
+```
+
+![selectionContainerController](figures/selectionContainerController.gif)

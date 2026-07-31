@@ -242,7 +242,7 @@ userAuth.getAuthLockState(queryType)
     console.info('get auth lock state successfully.');
   })
   .catch((err: BusinessError) => {
-    console.info(`get auth lock state failed, err code is : ${err?.code}, err message is : ${err?.message}`);
+    console.error(`get auth lock state failed, err code is : ${err?.code}, err message is : ${err?.message}`);
   })
 ```
 
@@ -320,7 +320,7 @@ try {
 | 名称                 | 类型                                | 只读 | 可选 | 说明                                                         |
 | -------------------- | ----------------------------------- | ---- | ---- | ------------------------------------------------------------ |
 | title                | string                              |  否  |  否  | 用户认证界面的标题，建议传入认证目的，例如用于支付、登录应用等，不支持传空字串，最大长度为500字符。标题会显示在认证界面，帮助用户理解当前认证的目的，提升用户信任度和配合度。<br> **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
-| navigationButtonText | string                              |  否  |  是  | 导航按键的说明文本，最大长度为60字符。点击该按钮可触发应用自定义的操作，如跳转到自定义认证页面或取消认证等。在单指纹、单人脸场景下支持，从API 18开始，增加支持人脸+指纹组合认证场景。默认为不展示自定义导航按键。<br> **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
+| navigationButtonText | string                              |  否  |  是  | 导航按键的说明文本，最大长度为60字符。点击该按钮可触发应用自定义的操作，如跳转到自定义认证页面或取消认证等。在单指纹、单人脸场景下支持，从API版本18开始，增加支持人脸+指纹组合认证场景。默认为不展示自定义导航按键。<br> **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
 | uiContext<sup>18+</sup>            | Context               |  否  |  是  | 以模应用弹窗方式显示身份认证对话框，仅支持在2in1设备上使用。传入有效的uiContext后，认证对话框将以模应用弹窗方式显示，认证结果返回后应用需先获取控件释放消息（订阅[on('authTip')](#onauthtip20)并等待WIDGET_RELEASED状态）才能弹出其他窗口。如果没有此参数或其他类型的设备，身份认证对话框将以模系统弹窗方式显示，此时控件释放后应用可直接进行后续操作。<br>**默认值：** 以模系统弹窗方式显示身份认证对话框。<br> **原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。|
 
 ## UserAuthResult<sup>10+</sup>

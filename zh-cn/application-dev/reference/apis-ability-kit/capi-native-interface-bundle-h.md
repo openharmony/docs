@@ -114,7 +114,7 @@ OH_NativeBundle_ElementName OH_NativeBundle_GetMainElementName()
 **返回：**
 | 类型 | 说明 |
 | -- | -- |
-| [OH_NativeBundle_ElementName](capi-native-bundle-oh-nativebundle-elementname.md) | 返回新创建的OH_NativeBundle_ElementName对象。如果返回的对象为NULL，则表示创建失败。<br> 失败的可能原因是应用程序地址空间已满，导致空间分配失败。 |
+| [OH_NativeBundle_ElementName](capi-native-bundle-oh-nativebundle-elementname.md) | 返回新创建的OH_NativeBundle_ElementName对象。如果返回的对象中存在为NULL的字段，则表示创建失败。<br> 失败的可能原因是应用程序地址空间已满，导致空间分配失败。 |
 
 
 ### OH_NativeBundle_GetCompatibleDeviceType()

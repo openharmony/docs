@@ -2,14 +2,15 @@
 
 <!--Kit: Performance Analysis Kit-->
 <!--Subsystem: HiviewDFX-->
-<!--Owner: @rr_cn-->
+<!--Owner: @Chenyufan466765692-->
 <!--Designer: @peterhuangyu-->
 <!--Tester: @gcw_KuLfPSbe-->
-<!--Adviser: @foryourself-->
+<!--Adviser: @jinqiuheng-->
+<!-- md-trans-meta sourceCommit=f319e3e62d6356bf78f31e2e8f7ba3927caddf1e translatedAt=2026-07-29T10:50:43.764Z pushedAt=2026-07-29T12:40:37.025Z -->
 
 ## Overview
 
-This topic describes how to use the C/C++ APIs provided by HiAppEvent to subscribe to task execution timeout events. For details (such as parameter restrictions and value ranges), see [hiappevent.h](../reference/apis-performance-analysis-kit/capi-hiappevent-h.md).
+This section describes how to use the C/C++ APIs provided by HiAppEvent to subscribe to task execution timeout events. For detailed API usage instructions (parameter constraints, value ranges, etc.), refer to [hiappevent.h](../reference/apis-performance-analysis-kit/capi-hiappevent-h.md).
 
 ## Available APIs
 
@@ -26,7 +27,7 @@ The following describes how to subscribe to the freeze event triggered by a butt
 
 1. Obtain the **jsoncpp** file on which the sample project depends. Click [HiAppEvent Sample Project EventSub](https://gitcode.com/openharmony/applications_app_samples/tree/master/code/DocsSample/PerformanceAnalysisKit/HiAppEvent/EventSub) and **click Download the directory** to download the EventSub project file.
 
-2. Create a native C++ project. Copy the **jsoncpp** library file (**entry/libs** and **entry/src/main/cpp/thirdparty**) from the decompressed **EventSub** folder to the new project. The directory structure is as follows:
+2. In DevEco Studio, create a Native C++ project. Copy the jsoncpp library files (the **entry/libs** and **entry/src/main/cpp/thirdparty** folders) from the extracted EventSub project to the new project. The directory structure of the new project is as follows:
 
    ```yml
    entry:
@@ -48,9 +49,9 @@ The following describes how to subscribe to the freeze event triggered by a butt
              - Index.ets
    ```
 
-   The source code corresponding to the **jsoncpp** library file in this sample project is derived from [the third-party open-source library JsonCpp](https://github.com/open-source-parsers/jsoncpp/archive/refs/tags/1.9.6.tar.gz)
+The source code corresponding to the jsoncpp library file in this sample project is derived from [the third-party open-source library JsonCpp](https://codeload.github.com/open-source-parsers/jsoncpp/tar.gz/refs/tags/1.9.6).
 
-3. In the **CMakeLists.txt** file, add the required source files and dynamic libraries.
+3. Edit the **CMakeLists.txt** file under **entry > src > main > cpp** in the project to add the required source files and dynamic libraries.
 
    ```cmake
    add_library(entry SHARED napi_init.cpp)
@@ -70,15 +71,16 @@ The following describes how to subscribe to the freeze event triggered by a butt
    target_include_directories(entry PRIVATE ${DEST_DIR}/jsoncpp-1.9.6/include/json)
    ```
 
-4. Import the dependencies to the **napi_init.cpp** file, and define **LOG_TAG**.
+4. Edit the **napi_init.cpp** file under **entry > src > main > cpp** in the project to import the required header files and define `LOG_TAG`.
 
-   <!-- @[EventSub_napi_Header](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/PerformanceAnalysisKit/HiAppEvent/EventSub/entry/src/main/cpp/napi_init.cpp) -->    
-   
+   <!-- @[EventSub_napi_Header](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/PerformanceAnalysisKit/HiAppEvent/EventSub/entry/src/main/cpp/napi_init.cpp) -->     
+
    ``` C++
    #include "napi/native_api.h"
    // Adapt the path for referencing json.h based on the location of the third-party library jsoncpp in the project.
    #include "../../../build/jsoncpp-1.9.6/include/json/json.h"
    #include "hiappevent/hiappevent.h"
+   #include "hiappevent/hiappevent_param.h"
    #include "hilog/log.h"
    
    #undef LOG_TAG
@@ -89,15 +91,16 @@ The following describes how to subscribe to the freeze event triggered by a butt
 
    - Watcher of the **onReceive** type.
 
-   In the **napi_init.cpp** file, define the functions related to the watcher of the **onReceive** type.
+Edit the **napi_init.cpp** file under **entry > src > main > cpp** in the project to define the functions related to the watcher of the **onReceive** type:
+
    <!-- @[App_Hicollie_Watcher_R_ptr](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/PerformanceAnalysisKit/HiAppEvent/EventSub/entry/src/main/cpp/napi_init.cpp) -->
-   
+
    ``` C++
    // Define a variable to cache the pointer to the created watcher.
    static HiAppEvent_Watcher *appHicollieWatcherR;
    ```
 
-   <!-- @[App_Hicollie_OnReceive](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/PerformanceAnalysisKit/HiAppEvent/EventSub/entry/src/main/cpp/napi_init.cpp) -->
+   <!-- @[App_Hicollie_OnReceive](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/PerformanceAnalysisKit/HiAppEvent/EventSub/entry/src/main/cpp/napi_init.cpp) --> 
 
    ``` C++
    static void OnReceiveAppHicollie(const struct HiAppEvent_AppEventGroup *appEventGroups, int i, int j)
@@ -121,6 +124,7 @@ The following describes how to subscribe to the freeze event triggered by a butt
                auto memory =  writer.write(params["memory"]);
                auto externalLog = writer.write(params["external_log"]);
                auto logOverLimit = params["log_over_limit"].asBool();
+               auto externalCallbackLog = params["external_callback_log"].asString();
                OH_LOG_INFO(LogType::LOG_APP, "HiAppEvent eventInfo.params.time=%{public}lld", time);
                OH_LOG_INFO(LogType::LOG_APP, "HiAppEvent eventInfo.params.foreground=%{public}d", foreground);
                OH_LOG_INFO(LogType::LOG_APP, "HiAppEvent eventInfo.params.bundle_version=%{public}s",
@@ -135,6 +139,8 @@ The following describes how to subscribe to the freeze event triggered by a butt
                OH_LOG_INFO(LogType::LOG_APP, "HiAppEvent eventInfo.params.memory=%{public}s", memory.c_str());
                OH_LOG_INFO(LogType::LOG_APP, "HiAppEvent eventInfo.params.external_log=%{public}s", externalLog.c_str());
                OH_LOG_INFO(LogType::LOG_APP, "HiAppEvent eventInfo.params.log_over_limit=%{public}d", logOverLimit);
+               OH_LOG_INFO(LogType::LOG_APP, "HiAppEvent eventInfo.params.external_callback_log=%{public}s",
+                   externalCallbackLog.c_str());
            }
        }
    }
@@ -173,15 +179,16 @@ The following describes how to subscribe to the freeze event triggered by a butt
 
    - Watcher of the **onTrigger** type:
 
-   In the **napi_init.cpp** file, define the functions related to the watcher of the **OnTrigger** type.
-   <!-- @[App_Hicollie_Watcher_ptr](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/PerformanceAnalysisKit/HiAppEvent/EventSub/entry/src/main/cpp/napi_init.cpp) -->
+Edit the **napi_init.cpp** file under **entry > src > main > cpp** in the project to define the functions related to the watcher of the **onTrigger** type:
+
+   <!-- @[App_Hicollie_Watcher_T_ptr](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/PerformanceAnalysisKit/HiAppEvent/EventSub/entry/src/main/cpp/napi_init.cpp) -->
 
    ``` C++
    // Define a variable to cache the pointer to the created watcher.
    static HiAppEvent_Watcher *appHicollieWatcherT;
    ```
 
-   <!-- @[App_Hicollie_Trigger](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/PerformanceAnalysisKit/HiAppEvent/EventSub/entry/src/main/cpp/napi_init.cpp) -->
+   <!-- @[App_Hicollie_Trigger](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/PerformanceAnalysisKit/HiAppEvent/EventSub/entry/src/main/cpp/napi_init.cpp) --> 
 
    ``` C++
    // Implement the callback function used to return the listened events. The content pointed to by the events pointer is valid only in this function.
@@ -212,6 +219,7 @@ The following describes how to subscribe to the freeze event triggered by a butt
                    auto memory =  writer.write(eventInfo["memory"]);
                    auto externalLog = writer.write(eventInfo["external_log"]);
                    auto logOverLimit = eventInfo["log_over_limit"].asBool();
+                   auto externalCallbackLog = eventInfo["external_callback_log"].asString();
                    OH_LOG_INFO(LogType::LOG_APP, "HiAppEvent eventInfo.params.time=%{public}lld", time);
                    OH_LOG_INFO(LogType::LOG_APP, "HiAppEvent eventInfo.params.foreground=%{public}d", foreground);
                    OH_LOG_INFO(LogType::LOG_APP, "HiAppEvent eventInfo.params.bundle_version=%{public}s",
@@ -228,6 +236,8 @@ The following describes how to subscribe to the freeze event triggered by a butt
                    OH_LOG_INFO(LogType::LOG_APP, "HiAppEvent eventInfo.params.external_log=%{public}s",
                        externalLog.c_str());
                    OH_LOG_INFO(LogType::LOG_APP, "HiAppEvent eventInfo.params.log_over_limit=%{public}d", logOverLimit);
+                   OH_LOG_INFO(LogType::LOG_APP, "HiAppEvent eventInfo.params.external_callback_log=%{public}s",
+                       externalCallbackLog.c_str());
                }
            }
        }
@@ -260,18 +270,19 @@ The following describes how to subscribe to the freeze event triggered by a butt
 
 6. Add the **TestHiCollieTimerNdk** function.
 
-   In the **napi_init.cpp** file, add the **TestHiCollieTimerNdk** function to construct a task execution timeout event.
+Edit the **napi_init.cpp** file under **entry > src > main > cpp** in the project to add the `TestHiCollieTimerNdk` function, which constructs a task execution timeout event:
+
    <!-- @[Hicollie_Set_Timer_h](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/PerformanceAnalysisKit/HiAppEvent/EventSub/entry/src/main/cpp/napi_init.cpp) -->
-   
+
    ``` C++
    #include <unistd.h>
    #include "hicollie/hicollie.h"
    ```
 
    <!-- @[Hicollie_Set_Timer](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/PerformanceAnalysisKit/HiAppEvent/EventSub/entry/src/main/cpp/napi_init.cpp) -->
-   
+
    ``` C++
-   // Define the callback.
+   // Define the callback function.
    void CallBack(void*)
    {
        OH_LOG_INFO(LogType::LOG_APP, "HiCollieTimerNdk CallBack");  // Logs are printed in the callback.
@@ -294,80 +305,83 @@ The following describes how to subscribe to the freeze event triggered by a butt
 
 7. In the **napi_init.cpp** file, register **RegisterWatcher** and **TestHiCollieTimerNdk** as ArkTS APIs.
 
-   In the **napi_init.cpp** file, register the **TestHiCollieTimerNdk**, **RegisterAppHicollieWatcherR**, and **RegisterAppHicollieWatcherR** methods as ArkTS APIs in the **desc[]** array of the **Init** function.
+Edit the **napi_init.cpp** file under **entry > src > main > cpp** in the project. In the `desc[]` array within the `Init` function, register `TestHiCollieTimerNdk`, `RegisterAppHicollieWatcherR`, and `RegisterAppHicollieWatcherT` as ArkTS APIs.
+
    <!-- @[test_hicollie_timer](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/PerformanceAnalysisKit/HiAppEvent/EventSub/entry/src/main/cpp/napi_init.cpp) -->
-   
+
    ``` C++
    // Register TestHiCollieTimerNdk as an ArkTS API.
    { "TestHiCollieTimerNdk", nullptr, TestHiCollieTimerNdk, nullptr, nullptr, nullptr, napi_default, nullptr },
    ```
 
    <!-- @[register_app_hicollie_watcherR](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/PerformanceAnalysisKit/HiAppEvent/EventSub/entry/src/main/cpp/napi_init.cpp) -->
-   
+
    ``` C++
    { "RegisterAppHicollieWatcherR", nullptr, RegisterAppHicollieWatcherR, nullptr, nullptr, nullptr,
        napi_default, nullptr },
    ```
 
    <!-- @[register_app_hicollie_watcherT](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/PerformanceAnalysisKit/HiAppEvent/EventSub/entry/src/main/cpp/napi_init.cpp) -->
-   
+
    ``` C++
    { "RegisterAppHicollieWatcherT", nullptr, RegisterAppHicollieWatcherT, nullptr, nullptr, nullptr,
        napi_default, nullptr },
    ```
 
-   In the **index.d.ts** file, define the ArkTS API.
+Edit the **Index.ets** file under **entry > src > main > cpp > types > libentry** in the project to define the ArkTS APIs:
+
    <!-- @[test_hicollie_timer_Index.d.ts](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/PerformanceAnalysisKit/HiAppEvent/EventSub/entry/src/main/cpp/types/libentry/Index.d.ts) -->
-   
+
    ``` TypeScript
    export const TestHiCollieTimerNdk: () => void;
    ```
 
    <!-- @[Register_AppHicollie_WatcherR.d.ts](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/PerformanceAnalysisKit/HiAppEvent/EventSub/entry/src/main/cpp/types/libentry/Index.d.ts) -->
-   
+
    ``` TypeScript
    export const RegisterAppHicollieWatcherR: () => void;
    ```
 
    <!-- @[Register_AppHicollie_WatcherT.d.ts](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/PerformanceAnalysisKit/HiAppEvent/EventSub/entry/src/main/cpp/types/libentry/Index.d.ts) -->
-   
+
    ``` TypeScript
    export const RegisterAppHicollieWatcherT: () => void;
    ```
 
-8. In the **EntryAbility.ets** file, add the following API to **onCreate()**.
+8. Edit the **EntryAbility.ets** file under **entry > src > main > ets > entryability** in the project to add API calls in the `onCreate()` function.
 
    <!-- @[EventSub_Capi_Header](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/PerformanceAnalysisKit/HiAppEvent/EventSub/entry/src/main/ets/entryability/EntryAbility.ets) -->
-   
+
    ``` TypeScript
    import testNapi from 'libentry.so';
    ```
 
    <!-- @[Register_AppHicollie_WatcherR](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/PerformanceAnalysisKit/HiAppEvent/EventSub/entry/src/main/ets/entryability/EntryAbility.ets) -->
-   
+
    ``` TypeScript
    // Add an API in onCreate() to register the system event watcher R during startup.
    testNapi.RegisterAppHicollieWatcherR();
    ```
 
    <!-- @[Register_AppHicollie_WatcherT](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/PerformanceAnalysisKit/HiAppEvent/EventSub/entry/src/main/ets/entryability/EntryAbility.ets) -->
-   
+
    ``` TypeScript
    // Add an API in onCreate() to register the system event watcher T during startup.
    testNapi.RegisterAppHicollieWatcherT();
    ```
 
-9. In the **Index.ets** file, add a button to trigger the task execution timeout event.
+9. Edit the **Index.ets** file under **entry > src > main > ets > pages** in the project to add a button that triggers the task execution timeout event.
 
    <!-- @[EventSub_Index_Capi_Header](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/PerformanceAnalysisKit/HiAppEvent/EventSub/entry/src/main/ets/pages/Index.ets) -->
-   
+
    ``` TypeScript
    import testNapi from 'libentry.so';
    ```
 
-   Add a button on the **Index** page to trigger the **TestHiCollieTimerNdk** method.
+Edit the **Index.ets** file under **entry > src > main > ets > pages** in the project to add a button on the page that triggers the `TestHiCollieTimerNdk` method.
+
    <!-- @[hicollie_timer_ndk_Button](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/PerformanceAnalysisKit/HiAppEvent/EventSub/entry/src/main/ets/pages/Index.ets) -->
-   
+
    ``` TypeScript
    // Add a click event to trigger the TestHiCollieTimerNdk method.
    Button('TestHiCollieTimerNdk')
@@ -406,6 +420,7 @@ The application crashes. After restarting the application, you can view the foll
    HiAppEvent eventInfo.params.memory={"pss":0,"rss":124668,"sys_avail_mem":2220032,"sys_free_mem":526680,"sys_total_mem":11692576,"vss":4238700}
    HiAppEvent eventInfo.params.external_log=["/data/storage/el2/log/hiappevent/APP_HICOLLIE_1740993644458_26215.log"]
    HiAppEvent eventInfo.params.log_over_limit=0
+   HiAppEvent eventInfo.params.external_callback_log=THREAD_BLOCK_3S:log3s THREAD_BLOCK_6S:log6s
    ```
 
 ### Removing and Destroying an Event Watcher
@@ -413,7 +428,7 @@ The application crashes. After restarting the application, you can view the foll
 1. Remove the event watcher.
 
    <!-- @[APP_Hicollie_RemoveWatcher](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/PerformanceAnalysisKit/HiAppEvent/EventSub/entry/src/main/cpp/napi_init.cpp) --> 
-   
+
    ``` C++
    static napi_value RemoveWatcher(napi_env env, napi_callback_info info)
    {
@@ -429,7 +444,7 @@ The application crashes. After restarting the application, you can view the foll
 2. Destroy the event watcher.
 
    <!-- @[APP_Hicollie_DestroyWatcher](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/PerformanceAnalysisKit/HiAppEvent/EventSub/entry/src/main/cpp/napi_init.cpp) --> 
-   
+
    ``` C++
    static napi_value DestroyWatcher(napi_env env, napi_callback_info info)
    {

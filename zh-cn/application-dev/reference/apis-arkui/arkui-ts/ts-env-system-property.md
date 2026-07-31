@@ -165,12 +165,10 @@ protected constructor()
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-### 属性
-
 | 名称 | 类型 | 只读 | 可选 | 说明                                                                                              |
 | -------- | -------- | -------- | -------- |-------------------------------------------------------------------------------------------------|
-| DIRECTION | [WritableSystemEnvKey\<T\>](#writablesystemenvkeyt)| 是 | 否 |[\@Env](#env)变量参数，通过\@Env(WritableEnvKey.DIRECTION)可获取[Direction](./ts-appendix-enums.md#direction)枚举类型的值。<br/>当该装饰器声明在[\@Component](../../../ui/state-management/arkts-create-custom-components.md#component)或[\@ComponentV2](../../../ui/state-management/arkts-create-custom-components.md#componentv2)中时，用于获取窗口所在屏幕的布局方向。<br/>**起始版本：** 26.0.0<br/>**原子化服务API：** 从API版本26.0.0开始，该接口支持在原子化服务中使用。<br/>**模型约束：** 此接口仅可在Stage模型下使用。 |
-| FONT_SCALE | [WritableSystemEnvKey\<T\>](#writablesystemenvkeyt) | 是 | 否 |[\@Env](#env)变量参数，通过\@Env(WritableEnvKey.FONT_SCALE)可获取number类型的值，取值无上限，小于等于0的值按0处理。<br/>当该装饰器声明在[\@Component](../../../ui/state-management/arkts-create-custom-components.md#component)或[\@ComponentV2](../../../ui/state-management/arkts-create-custom-components.md#componentv2)中时，用于为后代组件提供局部字体缩放倍数。<br/>**起始版本：** 26.0.0<br/>**原子化服务API：** 从API版本26.0.0开始，该接口支持在原子化服务中使用。<br/>**模型约束：** 此接口仅可在Stage模型下使用。|
+| DIRECTION | [WritableSystemEnvKey](#writablesystemenvkeyt)\<Direction\>| 是 | 否 |[\@Env](#env)变量参数，通过\@Env(WritableEnvKey.DIRECTION)可获取[Direction](./ts-appendix-enums.md#direction)枚举类型的值。<br/>当该装饰器声明在[\@Component](../../../ui/state-management/arkts-create-custom-components.md#component)或[\@ComponentV2](../../../ui/state-management/arkts-create-custom-components.md#componentv2)中时，用于获取窗口所在屏幕的布局方向。|
+| FONT_SCALE | [WritableSystemEnvKey](#writablesystemenvkeyt)\<number\> | 是 | 否 |[\@Env](#env)变量参数，通过\@Env(WritableEnvKey.FONT_SCALE)可获取number类型的值，取值无上限，小于等于0的值按0处理。<br/>当该装饰器声明在[\@Component](../../../ui/state-management/arkts-create-custom-components.md#component)或[\@ComponentV2](../../../ui/state-management/arkts-create-custom-components.md#componentv2)中时，用于为后代组件提供局部字体缩放倍数。|
 
 ## ReadonlyEnvKey
 

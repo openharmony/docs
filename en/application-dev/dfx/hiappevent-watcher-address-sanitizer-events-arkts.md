@@ -1,14 +1,16 @@
 # Subscribing to Address Sanitizer Events (ArkTS)
+
 <!--Kit: Performance Analysis Kit-->
 <!--Subsystem: HiviewDFX-->
 <!--Owner: @mlkgeek-->
 <!--Designer: @StevenLai1994-->
 <!--Tester: @gcw_KuLfPSbe-->
-<!--Adviser: @foryourself-->
+<!--Adviser: @jinqiuheng-->
+<!-- md-trans-meta sourceCommit=7d2af097640953124e9b1c3f7bd1ab79876767d6 translatedAt=2026-07-29T10:48:21.687Z pushedAt=2026-07-29T12:25:51.358Z -->
 
 ## Available APIs
 
-For details about how to use the APIs, see [@ohos.hiviewdfx.hiAppEvent (Application Event Logging)](../reference/apis-performance-analysis-kit/js-apis-hiviewdfx-hiappevent.md).
+For detailed API usage instructions (including parameter usage restrictions, specific value ranges, and more), see [@ohos.hiviewdfx.hiAppEvent](../reference/apis-performance-analysis-kit/js-apis-hiviewdfx-hiappevent.md).
 
 | API| **Description**|
 | -------- | -------- |
@@ -44,6 +46,7 @@ The following describes how to subscribe an address sanitizer event for an array
 
    ```ts
    import { hiAppEvent, hilog } from '@kit.PerformanceAnalysisKit';
+   import { deviceInfo, BusinessError } from '@kit.BasicServicesKit';
    ```
 
 ### Step 2: Subscribing to Address Sanitizer Events
@@ -51,6 +54,21 @@ The following describes how to subscribe an address sanitizer event for an array
 1. In the **entry/src/main/ets/entryability/EntryAbility.ets** file of the project, add a watcher in **onCreate()** to subscribe to system events. The sample code is as follows: 
 
    ```ts
+   if (deviceInfo.sdkApiVersion >= 24) {  // API Version 24 and later supports setting page switch logs.
+     // Configure page switch logs.
+     let switchLogPolicy : hiAppEvent.EventPolicy = {
+       "addressSanitizerPolicy": {
+         "pageSwitchLogEnable": true
+       }
+     };
+     // Set address sanitizer log configuration parameters.
+     hiAppEvent.configEventPolicy(switchLogPolicy).then(() => {
+       hilog.info(0x0000, 'testTag', `HiAppEvent success to config event policy.`);
+     }).catch((err: BusinessError) => {
+       hilog.error(0x0000, 'testTag', `HiAppEvent code: ${err.code}, message: ${err.message}`);
+     });
+   }
+
    hiAppEvent.addWatcher({
      // Set the watcher name. The system identifies different watchers based on their names.
      name: "watcher",
@@ -80,6 +98,8 @@ The following describes how to subscribe an address sanitizer event for an array
            hilog.info(0x0000, 'testTag', `HiAppEvent eventInfo.type=${eventInfo.params['type']}`);
            hilog.info(0x0000, 'testTag', `HiAppEvent eventInfo.external_log=${JSON.stringify(eventInfo.params['external_log'])}`);
            hilog.info(0x0000, 'testTag', `HiAppEvent eventInfo.log_over_limit=${eventInfo.params['log_over_limit']}`);
+           // Obtain page switch logs for Address Sanitizer events.
+           hilog.info(0x0000, 'testTag', `HiAppEvent eventInfo.params.page_switch_log=${JSON.stringify(eventInfo.params['page_switch_log'])}`);
          }
        }
      }
@@ -172,4 +192,5 @@ The following describes how to subscribe an address sanitizer event for an array
    HiAppEvent eventInfo.type=stack-buffer-overflow
    HiAppEvent eventInfo.external_log=["/data/storage/el2/log/hiappevent/ADDRESS_SANITIZER_1713161197960_12889.log"]
    HiAppEvent eventInfo.log_over_limit=false
+   HiAppEvent eventInfo.params.page_switch_log=" ["/data/storage/el2/log/page_switch/snapshot/page_switch-com.example.myapplication-1-1-20260627152631822.log"]"
    ```

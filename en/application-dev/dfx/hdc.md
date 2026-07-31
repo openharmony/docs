@@ -3,9 +3,9 @@
 <!--Kit: Performance Analysis Kit-->
 <!--Subsystem: HiviewDFX-->
 <!--Owner: @kunsilva-->
-<!--Designer: @weimingjin-->
+<!--Designer: @MontSaintMichel-->
 <!--Tester: @gcw_KuLfPSbe-->
-<!--Adviser: @foryourself-->
+<!--Adviser: @jinqiuheng-->
 
 HarmonyOS Device Connector (hdc) is a command line tool used to interact with and debug devices, transmit data, view logs, and install applications. It can run on Windows, Linux, and MacOS to provide efficient and convenient device debugging capabilities.
 
@@ -142,6 +142,7 @@ hdc -t connect-key shell echo "Hello world"
 | [fport rm](#deleting-a-port-forwarding-task)| Deletes a port forwarding task.|
 | [start](#starting-a-service)| Starts the hdc server process.|
 | [kill](#terminating-a-service)| Terminates the hdc server process.|
+| [reconnect](#reconnecting-usb-devices)| Resets the session of a connected USB device and triggers USB re-enumeration.<br>**NOTE**: Supported since API version 26.0.0.|
 | [hilog](#printing-device-logs)| Obtains device log information.|
 | [jpid](#displaying-pids-of-started-applications)| Displays the PIDs of started applications on the device.|
 | [track-jpid](#displaying-pids-and-names-of-started-applications-in-real-time)| Displays the PIDs and names of started applications on the device in real time.|
@@ -151,6 +152,9 @@ hdc -t connect-key shell echo "Hello world"
 | [keygen](#security-commands)| Generates a new key pair.|
 | [version](#querying-the-hdc-version)| Displays the hdc version information. You can also run the **hdc -v** command to display the version information.|
 | [checkserver](#querying-the-client-and-server-versions)| Obtains the version information about the client process and server process.|
+| [bugreport](#exporting-system-information)| Exports system information.|
+| [spawn-sub](#starting-a-subserver)| Starts a subserver.<br>**NOTE**: Supported since API version 26.0.0.|
+| [killall-sub](#terminating-a-subserver)| Terminates a subserver.<br>**NOTE**: Supported since API version 26.0.0.|
 
 ## Basic Commands
 
@@ -167,6 +171,34 @@ hdc list targets
 ```shell
 hdc shell echo "Hello world"
 ```
+
+### Shell Command Commonly Used Debugging Tools
+
+hdc can work together with other debugging tools. Commonly used tools are as follows:
+
+| Command| Description|
+| -------- | -------- |
+| [aa](../tools/aa-tool.md) | Application debugging tool|
+| [anm](../tools/anm-tool.md) | Notification management tool|
+| [atm](../tools/atm-tool.md) | Program access control management tool|
+| [bm](../tools/bm-tool.md) | Bundle management tool|
+| [cem](../tools/cem-tool.md) | Common event management tool|
+| [devicedebug](../tools/devicedebug-tool.md) | Tool for sending debug signals to applications|
+| [edm](../tools/edm-tool.md) | Enterprise device management tool|
+| [hidumper](./hidumper.md) | System information export tool|
+| [hilog](./hilog.md) | Log management tool|
+| [hiperf](./hiperf.md) | Performance analysis tool|
+| [hitrace](./hitrace.md) | System tracing and collection tool|
+| [mediatool](../tools/mediatool.md) | Media library tool|
+| [param](../tools/param-tool.md) | OS parameter management tool|
+| [power-shell](../tools/power-shell.md) | Device power state transition tool|
+| [rawheap-translator](../tools/rawheap-translator.md) | rawheap file parsing tool|
+| [uinput](./uinput.md) | Input simulation tool|
+| <!--DelRow-->[sqlite](../database/sqlite-database-debug-tool.md) | SQLite debugging guide|
+| <!--DelRow-->[wukong](../application-test/wukong-guidelines.md) | Wukong stability tool|
+| <!--DelRow-->[UItest](../application-test/uitest-guidelines.md) | UI test framework|
+| <!--DelRow-->[SmartPerf Device daemon](../application-test/smartperf-guidelines.md#smartperf-device-daemon) | SmartPerf Device-daemon command reference|
+<!--RP1--><!--RP1End-->
 
 ### Obtaining the Help Information
 
@@ -1030,6 +1062,18 @@ $ hdc kill # Terminate the server.
 Kill server finish
 ```
 
+### Reconnecting USB Devices
+
+Reset the session of a connected USB device and trigger USB re-enumeration.
+
+```shell
+hdc reconnect
+```
+
+> **NOTE**
+>
+> This command is supported since API version 26.0.0.
+
 ### Quick Command Execution
 
 Executes a client command without querying the server process. If the service is not started, running this command does not restart the service. Before using the parameter, ensure that the service has been started. Run the following commands:
@@ -1078,7 +1122,7 @@ hdc -m
 | Value| Description|
 | -------- | -------- |
 | Initial failed. | The server process fails to be initialized.|
-| [I][1970-01-01 00:00:00.000] Program running. Ver: X.X.Xx Pid:XXX.<br>... | Logs of the corresponding level are printed to display the activity status of the server.|
+| \[I]\[1970-01-01 00:00:00.000] Program running. Ver: X.X.Xx Pid:XXX.<br>... | Logs of the corresponding level are printed to display the activity status of the server.|
 
 **Usage**
 
@@ -1374,6 +1418,16 @@ $ hdc checkserver
 Client version: Ver: 3.1.0e, Server version: Ver: 3.1.0e
 ```
 
+## Exporting System Information
+
+Run the following command:
+
+```shell
+hdc bugreport
+```
+
+This command exports system information for troubleshooting and diagnostics.
+
 ## hdc Debugging Logs
 
 ### Server Logs
@@ -1469,6 +1523,32 @@ hdc shell ls /data/log/hilog                          # View the flushed HiLog l
 hdc file recv /data/log/hilog {local_path}            # Obtain the flushed HiLog logs (including kernel logs). {local_path} varies according to the system. Replace it with the actual path.
 ```
 
+## Subserver Management
+
+### Starting a Subserver
+
+Run the following command:
+
+```shell
+hdc spawn-sub
+```
+
+> **NOTE**
+>
+> This command is supported since API version 26.0.0.
+
+### Terminating a Subserver
+
+Run the following command:
+
+```shell
+hdc killall-sub
+```
+
+> **NOTE**
+>
+> This command is supported since API version 26.0.0.
+
 ## Options
 
 ### OHOS_HDC_SERVER_PORT
@@ -1530,6 +1610,10 @@ This parameter is supported since API version 20.
 > **NOTE**
 >
 > When the server is running, it listens for port 8710 of the PC by default. You can customize the listening port by setting the system environment variable **OHOS_HDC_SERVER_PORT**.
+
+### OHOS_HDC_SUBSERVER_LOG_FILE
+
+Used to specify the log file path for subservers.
 
 ### Configuring Environment Variables
 
@@ -1971,6 +2055,44 @@ The network or USB connection is not established or unstable.
 
 After the device is connected, wait for about 10 seconds. After the connection is established, debug the device.
 
+### E000006 The Device Forbids Debugging from the Current Computer
+
+**Error Message**
+
+The current computer has not obtained the permission to debug the control device.
+
+**Symptom**
+
+The current computer does not have permission to debug the managed device, so the device rejects debugging authorization.
+
+**Possible Causes**
+
+The device forbids debugging from unauthorized computers.
+
+**Solution**
+
+Use a computer that has obtained debugging authorization.
+
+### E000010 Device-side Authentication Failed
+
+**Error Message**
+
+Auth failed, cannt login the device.
+
+**Symptom**
+
+Public key verification fails on the device side, and the current computer is rejected for debugging.
+
+**Possible Causes**
+
+1. The public key file is missing on the device side.
+
+2. The public key on the device side does not match the public key file on the computer side.
+
+**Solution**
+
+Retrieve the public key file used for debugging authentication again on the device side.
+
 ### E001000 tmode Does Not Support USB Debugging
 
 **Error Message**
@@ -2295,9 +2417,9 @@ The parameter is missing, correct your input by referring below: Usage...
 
 **Symptom**
 
-- Mandatory parameters are missing in the **hdc file send [-b bundlename][SOURCE][DEST]** command.
+- Mandatory parameters are missing in the command `hdc file send [-b bundlename][SOURCE][DEST]`.
 
-- Mandatory parameters are missing in the **hdc file recv [-b bundlename][DEST][SOURCE]** command.
+- Mandatory parameters are missing in the command `hdc file recv [-b bundlename][DEST][SOURCE]`.
 
 **Possible Causes**
 
@@ -2319,9 +2441,9 @@ The **hdc file send/recv** command contains the **-b** option, but the hdc in SD
 
 **Possible Causes**
 
-- Scenario 1: When the **hdc file send [-b bundlename] [SOURCE] [DEST]** command is executed, the device system does not support the **-b** option.
+- Scenario 1: When the command `hdc file send [-b bundlename] [SOURCE] [DEST]` is executed, the device system does not support the **-b** option.
 
-- Scenario 2: When the **hdc file recv [-b bundlename] [DEST] [SOURCE]** command is executed, the hdc in SDK does not support the **-b** option.
+- Scenario 2: When the command `hdc file recv [-b bundlename] [DEST] [SOURCE]` is executed, the hdc in SDK does not support the **-b** option.
 
 **Solution**
 
@@ -2359,9 +2481,9 @@ Remote path: xxx is invalid, no such file/directory or it's out of the applicati
 
 **Symptom**
 
-- The path specified by **DEST** in the **hdc file send [-b bundlename][SOURCE][DEST]** command does not exist or exceeds the application data directory.
+- The path specified by **DEST** in the command `hdc file send [-b bundlename][SOURCE][DEST]` does not exist or exceeds the application data directory.
 
-- The path specified by **DEST** in the **hdc file recv [-b bundlename][SOURCE][DEST]** command does not exist or exceeds the application data directory.
+- The path specified by **DEST** in the command `hdc file recv [-b bundlename][SOURCE][DEST]` does not exist or exceeds the application data directory.
 
 **Possible Causes**
 

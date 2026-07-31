@@ -6,6 +6,8 @@
 <!--Tester: @nobuggers-->
 <!--Adviser: @ge-yafang-->
 
+图形绘制与显示错误码定义了图形2D绘制过程中的异常情况，包括参数校验、文件操作等方面的错误标识。开发者可通过这些错误码快速定位和排查绘制相关的问题，提高开发调试效率。适用于使用ArkGraphics 2D进行图形绘制的场景。
+
 > **说明：**
 >
 > 以下仅介绍本模块特有错误码，通用错误码请参考[通用错误码说明文档](../errorcode-universal.md)。
@@ -45,8 +47,8 @@ File not found. The specified file does not exist or the path is incorrect.
 
 **处理步骤**
 
-1. 确保路径正确且文件存在。
-2. 确保文件路径大小写正确。
+1. 检查文件路径格式是否正确，确认文件存在于指定位置。
+2. 核对文件路径与实际文件名的大小写是否完全一致。
 
 ## 25900003 打开文件失败
 
@@ -65,7 +67,7 @@ Failed to open file. The file cannot be opened due to permission or I/O issues.
 
 **处理步骤**
 
-1. 检查文件权限，确保可读。
+1. 验证文件权限设置，确认当前用户对文件具有读取权限。
 2. 确保文件未被其他进程占用。
 
 ## 25900004 文件定位失败
@@ -140,7 +142,7 @@ Empty file. The specified file is empty.
 
 **处理步骤**
 
-确保文件大小大于0字节。
+检查文件大小属性，确认文件内容不为空（大小大于0字节）。
 
 ## 25900008 文件损坏
 

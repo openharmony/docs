@@ -1072,7 +1072,7 @@ connectDfs(networkId: string, listeners: DfsListeners): Promise&lt;void&gt;
 | 参数名 | 类型 | 必填 | 说明 |
 | ---- | ---- | ---- | ---- |
 | networkId | string | 是 | 设备的网络Id。通过[distributedDeviceManager](../apis-distributedservice-kit/js-apis-distributedDeviceManager.md)接口调用[DeviceBasicInfo](../apis-distributedservice-kit/js-apis-distributedDeviceManager.md#devicebasicinfo)获得。 |
-| listeners | [DfsListeners](#fileiodfslisteners12) | 是 | 分布式文件系统状态监听器。 |
+| listeners | [DfsListeners](#dfslisteners12) | 是 | 分布式文件系统状态监听器。 |
 
 **返回值：**
 
@@ -5316,13 +5316,17 @@ copySignal.onCancel();
 
 ## ProgressListener<sup>11+</sup>
 
+type ProgressListener = (progress: Progress) => void
+
 拷贝进度监听。
 
 **系统能力**：SystemCapability.FileManagement.File.FileIO
 
-| 类型 | 说明 |
-| ---- | ---- |
-|(progress: [Progress](#progress11)) => void| 拷贝进度监听|
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明 |
+| ---- | ---- | ---- | ---- |
+| progress | [Progress](#progress11) | 是 | 拷贝进度监听 |
 
 **示例：**
 
@@ -6989,7 +6993,7 @@ console.info("Succeeded in unmap.");
 fileIo.closeSync(file);
 ```
 
-## fileIo.DfsListeners<sup>12+</sup>
+## DfsListeners<sup>12+</sup>
 
 事件监听类。创建DFSListener对象，用于监听分布式文件系统状态。
 

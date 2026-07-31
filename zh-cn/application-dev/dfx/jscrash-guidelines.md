@@ -83,6 +83,7 @@ hdc file recv /data/log/faultlog/faultlogger 本地路径
 | HiLog | 故障之前打印的流水日志，最多1000行 | 20 | 是 | - |
 | AsyncStack | Promise异步栈 | 23 | 否 | ARM 64位系统下，若开启Promise异步栈开关，则包含此字段。 |
 | ModuleImportStack | 模块加载链路 | 26.0.0 | 否 | ARM 64位系统下，若开启[模块加载链路调试开关](../arkts-utils/arkts-module-debug.md)，则包含此字段。 |
+| NativeModuleErrorInfo | so加载失败信息，最多20个加载失败信息 | 26.0.0 | 是 | - |
 
 以下是JS Crash崩溃日志规格。
 ```text
@@ -371,6 +372,23 @@ HiLog:
 ...
 ```
 
+### NativeModuleErrorInfo 
+JS Crash日志中的NativeModuleErrorInfo可记录最早的20条so加载失败信息，如果总数超出20个，请在hilog根据'Load native module failed'关键字查找是否so加载失败。NativeModuleErrorInfo信息格式如下：
+
+```text
+...
+Stacktrace:
+...
+HybridStack:
+...
+NativeModuleErrorInfo:
+There are a total of 2 SO loading failure messages, and 2 of them are displayed here.
+#1 ModuleName:module1 Reason:dlopen failed: load module default/module1 failed.
+#2 ModuleName:module2 Reason:dlopen failed: load module default/module2 failed.
+...
+HiLog:
+...
+```
 ## JsCrash聚类
 
 Js Crash聚类信息以“Stacktrace:”字段开始，包含ARM 64系统的“HybridStack:”的调用栈。
