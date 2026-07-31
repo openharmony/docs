@@ -402,6 +402,8 @@ export default class DataShareExtAbility extends DataShareExtensionAbility {
 ```
 ## UpdateOperation<sup>12+</sup>
 
+type UpdateOperation = dataShare.UpdateOperation
+
 批量更新操作的参数结构。
 
 **系统能力：**  SystemCapability.DistributedDataManager.DataShare.Provider

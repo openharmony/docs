@@ -691,7 +691,7 @@ static notifyDataChange(extInfo: ExtraData, callback: AsyncCallback&lt;void&gt;)
 
 | 错误码ID | 错误信息                                             |
 | -------- | ---------------------------------------------------- |
-| 201      | Permission verification failed, usually the result returned by VerifyAccessToken.|
+| 201      | Permission verification failed, which is usually returned by VerifyAccessToken.|
 | 202      | Permission verification failed, application which is not a system application uses system API.|
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.|
 | 801      | Capability not supported.|
@@ -745,7 +745,7 @@ static notifyDataChange(extInfo: ExtraData, userId: number, callback: AsyncCallb
 
 | 错误码ID | 错误信息                                             |
 | -------- | ---------------------------------------------------- |
-| 201      | Permission verification failed, usually the result returned by VerifyAccessToken.|
+| 201      | Permission verification failed, which is usually returned by VerifyAccessToken.|
 | 202      | Permission verification failed, application which is not a system application uses system API.|
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.|
 | 801      | Capability not supported.|
@@ -805,7 +805,7 @@ static notifyDataChange(extInfo: ExtraData, userId?: number): Promise&lt;void&gt
 
 | 错误码ID | 错误信息                                             |
 | -------- | ---------------------------------------------------- |
-| 201      | Permission verification failed, usually the result returned by VerifyAccessToken.|
+| 201      | Permission verification failed, which is usually returned by VerifyAccessToken.|
 | 202      | Permission verification failed, application which is not a system application uses system API.|
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.|
 | 801      | Capability not supported.|
@@ -1216,7 +1216,7 @@ static cloudSync(bundleName: string, storeId: string, mode: relationalStore.Sync
 | 201      | Permission verification failed, usually the result returned by VerifyAccessToken.|
 | 202      | Permission verification failed, application which is not a system application uses system API.|
 | 801      | Capability not supported.|
-| 14800001 | Invalid arguments. Possible causes: 1. Parameter is out of valid range. |
+| 14800001 | Invalid arguments. Possible causes: 1. Empty conditions; 2. Missing GROUP BY clause. |
 
 **示例：**
 
@@ -1464,7 +1464,7 @@ static cloudSyncEx(bundleInfo: BundleInfo, config: relationalStore.CloudSyncConf
 | 错误码ID | 错误信息                                             |
 | -------- | ---------------------------------------------------- |
 | 201      | Permission verification failed, usually the result returned by VerifyAccessToken. |
-| 202      | Permission verification failed, application which is not a system application uses system API. |
+| 202      | Permission verification failed, application is not a system application. |
 | 801      | Capability not supported because the device does not support the device-cloud capability. |
 | 14800001 | Invalid arguments. Possible causes: Empty conditions. |
 
@@ -1533,7 +1533,7 @@ static stopCloudSync(bundleInfos: Array&lt;BundleInfo&gt;): Promise&lt;void&gt;
 | 错误码ID | 错误信息                                             |
 | -------- | ---------------------------------------------------- |
 | 201      | Permission verification failed, usually the result returned by VerifyAccessToken. |
-| 202      | Permission verification failed, application which is not a system application uses system API. |
+| 202      | if permission verification failed, application which is not a system application uses system API. |
 | 801      | Capability not supported because the device does not support the device-cloud capability. |
 | 14800001 | Invalid arguments. Possible causes: 1. bundlename is null; 2. the number of bundleInfos exceeds the upper limit or the number is 0. |
 
