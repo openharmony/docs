@@ -6,6 +6,7 @@
 <!--Designer: @buda_wy-->
 <!--Tester: @lpw_work-->
 <!--Adviser: @ningningW-->
+<!-- md-trans-meta sourceCommit=e46cb66ed03778f3d391571b857c2dcc154d1a03 translatedAt=2026-07-30T10:03:27.689Z pushedAt=2026-07-31T01:22:37.339Z -->
 
 The **resourceManager** module provides the resource management functionality. It allows an application to obtain the best matched application resources or system resources based on the specified [configuration](#configuration). For details about the matching rules, see [Matching Resources](../../quick-start/resource-categories-and-access.md#matching-resources).
 
@@ -58,7 +59,9 @@ Obtains the **ResourceManager** object of this application. This API uses an asy
 | callback | [AsyncCallback](#asynccallbackdeprecated)&lt;[ResourceManager](#resourcemanager)&gt; | Yes   | Callback used to return the **ResourceManager** object.|
 
 **Example**
+
 <!--code_no_check_fa-->
+
 ```js
 import resourceManager from '@ohos.resourceManager';
 // Use this method to import the module in the FA model.
@@ -102,7 +105,9 @@ Obtains the **ResourceManager** object of the specified application. This API us
 | callback   | [AsyncCallback](#asynccallbackdeprecated)&lt;[ResourceManager](#resourcemanager)&gt; | Yes   | Callback used to return the **ResourceManager** object.|
 
 **Example**
+
 <!--code_no_check_fa-->
+
 ```js
 import resourceManager from '@ohos.resourceManager';
 // Use this method to import the module in the FA model.
@@ -147,7 +152,9 @@ Obtains the **ResourceManager** object of this application. This API uses a prom
 | Promise&lt;[ResourceManager](#resourcemanager)&gt; | Promise used to return the **ResourceManager** object.|
 
 **Example**
+
 <!--code_no_check_fa-->
+
 ```js
 import resourceManager from '@ohos.resourceManager';
 // Use this method to import the module in the FA model.
@@ -192,7 +199,9 @@ Obtains the **ResourceManager** object of the specified application. This API us
 | Promise&lt;[ResourceManager](#resourcemanager)&gt; | Promise used to return the **ResourceManager** object.|
 
 **Example**
+
 <!--code_no_check_fa-->
+
 ```js
 import resourceManager from '@ohos.resourceManager';
 // Use this method to import the module in the FA model.
@@ -242,6 +251,7 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 | 9001009  | Failed to access the system resource. which is not mapped to application sandbox, This error code will be thrown. |
 
 **Example**
+
 ```js
 import { resourceManager } from '@kit.LocalizationKit';
 import { BusinessError } from '@kit.BasicServicesKit';
@@ -274,7 +284,6 @@ Enumerates the screen directions.
 | DIRECTION_VERTICAL   | 0    | Portrait  |
 | DIRECTION_HORIZONTAL | 1    | Landscape  |
 
-
 ## DeviceType
 
 Enumerates the device types.
@@ -282,7 +291,9 @@ Enumerates the device types.
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.Global.ResourceManager
+
 <!--RP1-->
+
 | Name                  | Value | Description  |
 | -------------------- | ---- | ---- |
 | DEVICE_TYPE_PHONE    | 0x00 | Phone  |
@@ -291,6 +302,7 @@ Enumerates the device types.
 | DEVICE_TYPE_TV       | 0x04 | Smart TV |
 | DEVICE_TYPE_WEARABLE | 0x06 | Wearable  |
 | DEVICE_TYPE_2IN1<sup>11+</sup>     | 0x07 | PC/2-in-1 device  |
+
 <!--RP1End-->
 
 ## ScreenDensity
@@ -310,7 +322,6 @@ Enumerates the screen density types.
 | SCREEN_XXLDPI  | 480  | Extra-extra-large-scale DPI.  |
 | SCREEN_XXXLDPI | 640  | Extra-extra-extra-large-scale DPI.|
 
-
 ## ColorMode<sup>12+</sup>
 
 Defines the color mode of the current device.
@@ -323,7 +334,6 @@ Defines the color mode of the current device.
 | ----- | ---- | ---------- |
 | DARK  | 0    | Dark mode.|
 | LIGHT | 1    | Light mode.|
-
 
 ## Configuration
 
@@ -341,8 +351,6 @@ Defines the device configuration.
 | mcc<sup>12+</sup>           | number                          | No  | No  | Mobile country code (MCC).<br>**Atomic service API**: This API can be used in atomic services since API version 12.      |
 | mnc<sup>12+</sup>           | number                          | No  | No  | Mobile network code (MNC).<br>**Atomic service API**: This API can be used in atomic services since API version 12.      |
 
-
-
 ## DeviceCapability
 
 Defines the device capability.
@@ -355,7 +363,6 @@ Defines the device capability.
 | ------------- | ------------------------------- | ---- | ---- | -------- |
 | screenDensity | [ScreenDensity](#screendensity) | No   | No   | Screen density of the device.|
 | deviceType    | [DeviceType](#devicetype)       | No   | No   | Device type.  |
-
 
 ## RawFileDescriptor<sup>9+</sup>
 
@@ -425,12 +432,13 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-| 401 | If the input parameter invalid. Possible causes: Incorrect parameter types.               |
+| 401 | Parameter error. Possible causes: Incorrect parameter types.               |
 | 9001001  | Invalid resource ID.                       |
 | 9001002  | No matching resource is found based on the resource ID.         |
 | 9001006  | The resource is referenced cyclically.            |
 
 **Example**
+
 ```json5
 // Resource file path: src/main/resources/base/element/string.json
 {
@@ -442,6 +450,7 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
   ]
 }
 ```
+
 ```ts
 import { AbilityConstant, UIAbility, Want } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
@@ -498,6 +507,7 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 | 9001007  | Failed to format the resource obtained based on the resource ID. |
 
 **Example**
+
 ```json5
 // Resource file path: src/main/resources/base/element/string.json
 {
@@ -509,6 +519,7 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
   ]
 }
 ```
+
 ```ts
 import { AbilityConstant, UIAbility, Want } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
@@ -563,6 +574,7 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 | 9001006  | The resource is referenced cyclically.            |
 
 **Example**
+
 ```json5
 // Resource file path: src/main/resources/base/element/string.json
 {
@@ -574,6 +586,7 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
   ]
 }
 ```
+
 ```ts
 import { AbilityConstant, UIAbility, Want } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
@@ -630,6 +643,7 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 | 9001008  | Failed to format the resource obtained based on the resource Name. |
 
 **Example**
+
 ```json5
 // Resource file path: src/main/resources/base/element/string.json
 {
@@ -641,6 +655,7 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
   ]
 }
 ```
+
 ```ts
 import { AbilityConstant, UIAbility, Want } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
@@ -684,12 +699,13 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-| 401 | If the input parameter invalid. Possible causes: Incorrect parameter types.               |
+| 401 | Parameter error. Possible causes: Incorrect parameter types.               |
 | 9001001  | Invalid resource ID.             |
 | 9001002  | No matching resource is found based on the resource ID.      |
 | 9001006  | The resource is referenced cyclically.         |
 
 **Example (stage)**
+
 ```json5
 // Resource file path: src/main/resources/base/element/string.json
 {
@@ -701,6 +717,7 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
   ]
 }
 ```
+
 ```ts
 import { AbilityConstant, UIAbility, Want } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
@@ -748,12 +765,13 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-| 401 | If the input parameter invalid. Possible causes: Incorrect parameter types.               |
+| 401 | Parameter error. Possible causes: Incorrect parameter types.               |
 | 9001001  | Invalid resource ID.                       |
 | 9001002  | No matching resource is found based on the resource ID.         |
 | 9001006  | The resource is referenced cyclically.            |
 
 **Example**
+
 ```json5
 // Resource file path: src/main/resources/base/element/string.json
 {
@@ -765,6 +783,7 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
   ]
 }
 ```
+
 ```ts
 import { AbilityConstant, UIAbility, Want } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
@@ -811,6 +830,7 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 | 9001006  | The resource is referenced cyclically.            |
 
 **Example**
+
 ```json5
 // Resource file path: src/main/resources/base/element/string.json
 {
@@ -822,6 +842,7 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
   ]
 }
 ```
+
 ```ts
 import { AbilityConstant, UIAbility, Want } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
@@ -875,6 +896,7 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 | 9001006  | The resource is referenced cyclically.            |
 
 **Example**
+
 ```json5
 // Resource file path: src/main/resources/base/element/string.json
 {
@@ -886,6 +908,7 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
   ]
 }
 ```
+
 ```ts
 import { AbilityConstant, UIAbility, Want } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
@@ -931,12 +954,13 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-| 401 | If the input parameter invalid. Possible causes: Incorrect parameter types.               |
+| 401 | Parameter error. Possible causes: Incorrect parameter types.               |
 | 9001001  | Invalid resource ID.                       |
 | 9001002  | No matching resource is found based on the resource ID.         |
 | 9001006  | The resource is referenced cyclically.            |
 
 **Example**
+
 ```json5
 // Resource file path: src/main/resources/base/element/strarray.json
 {
@@ -952,6 +976,7 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
   ]
 }
 ```
+
 ```ts
 import { AbilityConstant, UIAbility, Want } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
@@ -1006,6 +1031,7 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 | 9001006  | The resource is referenced cyclically.            |
 
 **Example**
+
 ```json5
 // Resource file path: src/main/resources/base/element/strarray.json
 {
@@ -1021,6 +1047,7 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
   ]
 }
 ```
+
 ```ts
 import { AbilityConstant, UIAbility, Want } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
@@ -1064,12 +1091,13 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-| 401 | If the input parameter invalid. Possible causes: Incorrect parameter types.               |
+| 401 | Parameter error. Possible causes: Incorrect parameter types.               |
 | 9001001  | Invalid resource ID.                       |
 | 9001002  | No matching resource is found based on the resource ID.         |
 | 9001006  | The resource is referenced cyclically.            |
 
 **Example**
+
 ```json5
 // Resource file path: src/main/resources/base/element/strarray.json
 {
@@ -1085,6 +1113,7 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
   ]
 }
 ```
+
 ```ts
 import { AbilityConstant, UIAbility, Want } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
@@ -1133,12 +1162,13 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-| 401 | If the input parameter invalid. Possible causes: Incorrect parameter types.               |
+| 401 | Parameter error. Possible causes: Incorrect parameter types. |
 | 9001001  | Invalid resource ID.                       |
 | 9001002  | No matching resource is found based on the resource ID.         |
 | 9001006  | The resource is referenced cyclically.            |
 
 **Example**
+
 ```json5
 // Resource file path: src/main/resources/base/element/strarray.json
 {
@@ -1154,6 +1184,7 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
   ]
 }
 ```
+
 ```ts
 import { AbilityConstant, UIAbility, Want } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
@@ -1202,6 +1233,7 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 | 9001006  | The resource is referenced cyclically.            |
 
 **Example**
+
 ```json5
 // Resource file path: src/main/resources/base/element/strarray.json
 {
@@ -1217,6 +1249,7 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
   ]
 }
 ```
+
 ```ts
 import { AbilityConstant, UIAbility, Want } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
@@ -1271,6 +1304,7 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 | 9001006  | The resource is referenced cyclically.            |
 
 **Example**
+
 ```json5
 // Resource file path: src/main/resources/base/element/strarray.json
 {
@@ -1286,6 +1320,7 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
   ]
 }
 ```
+
 ```ts
 import { AbilityConstant, UIAbility, Want } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
@@ -1347,6 +1382,7 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 | 9001007  | Failed to format the resource obtained based on the resource ID. |
 
 **Example**
+
 ```json5
 // Resource file path: src/main/resources/base/element/plural.json
 {
@@ -1367,6 +1403,7 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
   ]
 }
 ```
+
 ```ts
 import { AbilityConstant, UIAbility, Want } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
@@ -1431,6 +1468,7 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 | 9001008  | Failed to format the resource obtained based on the resource name. |
 
 **Example**
+
 ```json5
 // Resource file path: src/main/resources/base/element/plural.json
 {
@@ -1451,6 +1489,7 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
   ]
 }
 ```
+
 ```ts
 import { AbilityConstant, UIAbility, Want } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
@@ -1515,6 +1554,7 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 | 9001007  | Failed to format the resource obtained based on the resource ID. |
 
 **Example**
+
 ```json5
 // Resource file path: src/main/resources/base/element/plural.json
 {
@@ -1535,6 +1575,7 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
   ]
 }
 ```
+
 ```ts
 import { AbilityConstant, UIAbility, Want } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
@@ -1599,6 +1640,7 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 | 9001008  | Failed to format the resource obtained based on the resource name. |
 
 **Example**
+
 ```json5
 // Resource file path: src/main/resources/base/element/plural.json
 {
@@ -1619,6 +1661,7 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
   ]
 }
 ```
+
 ```ts
 import { AbilityConstant, UIAbility, Want } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
@@ -1670,11 +1713,12 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-| 401 | If the input parameter invalid. Possible causes: 1.Incorrect parameter types; 2.Parameter verification failed.               |
+| 401 | Parameter error. Possible causes: 1.Incorrect parameter types; 2.Parameter verification failed. |
 | 9001001  | Invalid resource ID.                       |
 | 9001002  | No matching resource is found based on the resource ID.         |
 
 **Example**
+
 ```ts
 import { AbilityConstant, UIAbility, Want } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
@@ -1731,11 +1775,12 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-| 401 | If the input parameter invalid. Possible causes: 1.Incorrect parameter types; 2.Parameter verification failed.               |
+| 401 | Parameter error. Possible causes: 1. Incorrect parameter types; 2. Parameter verification failed. |
 | 9001003  | Invalid resource name.                       |
 | 9001004  | No matching resource is found based on the resource name.         |
 
 **Example**
+
 ```ts
 import { AbilityConstant, UIAbility, Want } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
@@ -1786,11 +1831,12 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-| 401 | If the input parameter invalid. Possible causes: Incorrect parameter types.              | 
+| 401 | Parameter error. Possible causes: Incorrect parameter types.              |
 | 9001001  | Invalid resource ID.                       |
 | 9001002  | No matching resource is found based on the resource ID.         |
 
 **Example**
+
 ```ts
 import { AbilityConstant, UIAbility, Want } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
@@ -1840,11 +1886,12 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-| 401 | If the input parameter invalid. Possible causes: 1.Incorrect parameter types; 2.Parameter verification failed.               |
+| 401 | Parameter error. Possible causes: 1.Incorrect parameter types; 2.Parameter verification failed.               |
 | 9001001  | Invalid resource ID.                       |
 | 9001002  | No matching resource is found based on the resource ID.         |
 
 **Example**
+
 ```ts
 import { AbilityConstant, UIAbility, Want } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
@@ -1897,11 +1944,12 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-| 401 | If the input parameter invalid. Possible causes: Incorrect parameter types.               |
+| 401 | Parameter error. Possible causes: Incorrect parameter types.               |
 | 9001001  | Invalid resource ID.                       |
 | 9001002  | No matching resource is found based on the resource ID.         |
 
 **Example**
+
 ```ts
 import { AbilityConstant, UIAbility, Want } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
@@ -1953,11 +2001,12 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-| 401 | If the input parameter invalid. Possible causes: 1.Incorrect parameter types; 2.Parameter verification failed.               |
+| 401 | Parameter error. Possible causes: 1.Incorrect parameter types; 2.Parameter verification failed.               |
 | 9001001  | Invalid resource ID.                       |
 | 9001002  | No matching resource is found based on the resource ID.         |
 
 **Example**
+
 ```ts
 import { AbilityConstant, UIAbility, Want } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
@@ -2008,6 +2057,7 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 | 9001004  | No matching resource is found based on the resource name.       |
 
 **Example**
+
 ```ts
 import { AbilityConstant, UIAbility, Want } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
@@ -2056,11 +2106,12 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-| 401 | If the input parameter invalid. Possible causes: 1.Incorrect parameter types; 2.Parameter verification failed.               |
+| 401 | Parameter error. Possible causes: 1. Incorrect parameter types; 2. Parameter verification failed. |
 | 9001003  | Invalid resource name.                     |
 | 9001004  | No matching resource is found based on the resource name.       |
 
 **Example**
+
 ```ts
 import { AbilityConstant, UIAbility, Want } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
@@ -2118,6 +2169,7 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 | 9001004  | No matching resource is found based on the resource name.       |
 
 **Example**
+
 ```ts
 import { AbilityConstant, UIAbility, Want } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
@@ -2169,11 +2221,12 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-| 401 | If the input parameter invalid. Possible causes: 1.Incorrect parameter types; 2.Parameter verification failed.               |
+| 401 | Parameter error. Possible causes: 1.Incorrect parameter types; 2.Parameter verification failed.               |
 | 9001003  | Invalid resource name.                     |
 | 9001004  | No matching resource is found based on the resource name.       |
 
 **Example**
+
 ```ts
 import { AbilityConstant, UIAbility, Want } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
@@ -2225,11 +2278,12 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-| 401 | If the input parameter invalid. Possible causes: 1.Incorrect parameter types; 2.Parameter verification failed.               |
+| 401 | Parameter error. Possible causes: 1.Incorrect parameter types; 2.Parameter verification failed.               |
 | 9001001  | Invalid resource ID.                       |
 | 9001002  | No matching resource is found based on the resource ID.         |
 
 **Example**
+
 ```ts
 import { AbilityConstant, UIAbility, Want } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
@@ -2286,11 +2340,12 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-| 401 | If the input parameter invalid. Possible causes: 1.Incorrect parameter types; 2.Parameter verification failed.               |
+| 401 | Parameter error. Possible causes: 1.Incorrect parameter types; 2.Parameter verification failed.               |
 | 9001003  | Invalid resource name.                       |
 | 9001004  | No matching resource is found based on the resource name.         |
 
 **Example**
+
 ```ts
 import { AbilityConstant, UIAbility, Want } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
@@ -2341,11 +2396,12 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-| 401 | If the input parameter invalid. Possible causes: Incorrect parameter types.               |
+| 401 | Parameter error. Possible causes: Incorrect parameter types.               |
 | 9001001  | Invalid resource ID.                       |
 | 9001002  | No matching resource is found based on the resource ID.         |
 
 **Example**
+
 ```ts
 import { AbilityConstant, UIAbility, Want } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
@@ -2394,11 +2450,12 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-| 401 | If the input parameter invalid. Possible causes: 1.Incorrect parameter types; 2.Parameter verification failed.               |
+| 401 | Parameter error. Possible causes: 1.Incorrect parameter types; 2.Parameter verification failed.               |
 | 9001001  | Invalid resource ID.                       |
 | 9001002  | No matching resource is found based on the resource ID.         |
 
 **Example**
+
 ```ts
 import { AbilityConstant, UIAbility, Want } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
@@ -2451,11 +2508,12 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-| 401 | If the input parameter invalid. Possible causes: Incorrect parameter types.               |
+| 401 | Parameter error. Possible causes: Incorrect parameter types.               |
 | 9001001  | Invalid resource ID.                       |
 | 9001002  | No matching resource is found based on the resource ID.         |
 
 **Example**
+
 ```ts
 import { AbilityConstant, UIAbility, Want } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
@@ -2507,11 +2565,12 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-| 401 | If the input parameter invalid. Possible causes: 1.Incorrect parameter types; 2.Parameter verification failed.               |
+| 401 | Parameter error. Possible causes: 1. Incorrect parameter types; 2. Parameter verification failed. |
 | 9001001  | Invalid resource ID.                       |
 | 9001002  | No matching resource is found based on the resource ID.         |
 
 **Example**
+
 ```ts
 import { AbilityConstant, UIAbility, Want } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
@@ -2562,6 +2621,7 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 | 9001004  | No matching resource is found based on the resource name.       |
 
 **Example**
+
 ```ts
 import { AbilityConstant, UIAbility, Want } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
@@ -2592,10 +2652,6 @@ getMediaBase64ByName(resName: string, density: number, callback: _AsyncCallback&
 
 Obtains an image's Base64 code for the specified screen density based on the specified resource name. This API uses an asynchronous callback to return the result.
 
-> **NOTE**
->
-> You are advised to use [getMediaBase64ByName](#getmediacontentbase6410) or [getMediaContentBase64](#getmediacontentbase6410). For details, see [ResourceManager](#resourcemanager).
-
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.Global.ResourceManager
@@ -2614,11 +2670,12 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-| 401 | If the input parameter invalid. Possible causes: 1.Incorrect parameter types; 2.Parameter verification failed.               |
+| 401 | Parameter error. Possible causes: 1.Incorrect parameter types; 2.Parameter verification failed. |
 | 9001003  | Invalid resource name.                     |
 | 9001004  | No matching resource is found based on the resource name.       |
 
 **Example**
+
 ```ts
 import { AbilityConstant, UIAbility, Want } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
@@ -2676,6 +2733,7 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 | 9001004  | No matching resource is found based on the resource name.       |
 
 **Example**
+
 ```ts
 import { AbilityConstant, UIAbility, Want } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
@@ -2727,11 +2785,12 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-| 401 | If the input parameter invalid. Possible causes: 1.Incorrect parameter types; 2.Parameter verification failed.               |
+| 401 | Parameter error. Possible causes: 1.Incorrect parameter types; 2.Parameter verification failed.               |
 | 9001003  | Invalid resource name.                     |
 | 9001004  | No matching resource is found based on the resource name.       |
 
 **Example**
+
 ```ts
 import { AbilityConstant, UIAbility, Want } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
@@ -2784,11 +2843,12 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-| 401 | If the input parameter invalid. Possible causes: 1.Incorrect parameter types; 2.Parameter verification failed.               |
+| 401 | Parameter error. Possible causes: 1.Incorrect parameter types; 2.Parameter verification failed.               |
 | 9001001  | Invalid resource ID.                       |
 | 9001002  | No matching resource is found based on the resource ID.         |
 
 **Example**
+
 ```ts
 import { AbilityConstant, UIAbility, Want } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
@@ -2854,11 +2914,12 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-| 401 | If the input parameter invalid. Possible causes: 1.Incorrect parameter types; 2.Parameter verification failed.               |
+| 401 | Parameter error. Possible causes: 1.Incorrect parameter types; 2.Parameter verification failed.               |
 | 9001003  | Invalid resource name.                     |
 | 9001004  | No matching resource is found based on the resource name.       |
 
 **Example**
+
 ```ts
 import { AbilityConstant, UIAbility, Want } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
@@ -2922,12 +2983,13 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-| 401 | If the input parameter invalid. Possible causes: Incorrect parameter types.               |
+| 401 | Parameter error. Possible causes: Incorrect parameter types.               |
 | 9001001  | Invalid resource ID.                       |
 | 9001002  | No matching resource is found based on the resource ID.         |
 | 9001006  | The resource is referenced cyclically.            |
 
 **Example**
+
 ```json5
 // Resource file path: src/main/resources/base/element/boolean.json
 {
@@ -2939,6 +3001,7 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
   ]
 }
 ```
+
 ```ts
 import { AbilityConstant, UIAbility, Want } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
@@ -2993,6 +3056,7 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 | 9001006  | The resource is referenced cyclically.            |
 
 **Example**
+
 ```json5
 // Resource file path: src/main/resources/base/element/boolean.json
 {
@@ -3004,6 +3068,7 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
   ]
 }
 ```
+
 ```ts
 import { AbilityConstant, UIAbility, Want } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
@@ -3052,12 +3117,13 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-| 401 | If the input parameter invalid. Possible causes: Incorrect parameter types.               |
+| 401 | Parameter error. Possible causes: Incorrect parameter types.               |
 | 9001001  | Invalid resource ID.                       |
 | 9001002  | No matching resource is found based on the resource ID.         |
 | 9001006  | The resource is referenced cyclically.            |
 
 **Example**
+
 ```json5
 // Resource file path: src/main/resources/base/element/integer.json
 {
@@ -3081,6 +3147,7 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
   ]
 }
 ```
+
 ```ts
 import { AbilityConstant, UIAbility, Want } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
@@ -3115,7 +3182,6 @@ export default class EntryAbility extends UIAbility {
 }
 ```
 
-
 ### getNumberByName<sup>9+</sup>
 
 getNumberByName(resName: string): number
@@ -3144,12 +3210,13 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-| 401 | If the input parameter invalid. Possible causes: Incorrect parameter types.               |
+| 401 | Parameter error. Possible causes: Incorrect parameter types.               |
 | 9001003  | Invalid resource name.                     |
 | 9001004  | No matching resource is found based on the resource name.       |
 | 9001006  | The resource is referenced cyclically.            |
 
 **Example**
+
 ```json5
 // Resource file path: src/main/resources/base/element/integer.json
 {
@@ -3173,6 +3240,7 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
   ]
 }
 ```
+
 ```ts
 import { AbilityConstant, UIAbility, Want } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
@@ -3235,12 +3303,13 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-| 401 | If the input parameter invalid. Possible causes: Incorrect parameter types.               |
+| 401 | Parameter error. Possible causes: Incorrect parameter types.               |
 | 9001001  | Invalid resource ID.                       |
 | 9001002  | No matching resource is found based on the resource ID.         |
 | 9001006  | The resource is referenced cyclically.            |
 
 **Example**
+
 ```json5
 // Resource file path: src/main/resources/base/element/color.json
 {
@@ -3252,6 +3321,7 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
   ]
 }
 ```
+
 ```ts
 import { AbilityConstant, UIAbility, Want } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
@@ -3271,7 +3341,6 @@ export default class EntryAbility extends UIAbility {
     }
 }
 ```
-
 
 ### getColorByNameSync<sup>10+</sup>
 
@@ -3301,12 +3370,13 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-| 401 | If the input parameter invalid. Possible causes: Incorrect parameter types.               |
+| 401 | Parameter error. Possible causes: Incorrect parameter types.               |
 | 9001003  | Invalid resource name.                     |
 | 9001004  | No matching resource is found based on the resource name.       |
 | 9001006  | The resource is referenced cyclically.            |
 
 **Example**
+
 ```json5
 // Resource file path: src/main/resources/base/element/color.json
 {
@@ -3318,6 +3388,7 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
   ]
 }
 ```
+
 ```ts
 import { AbilityConstant, UIAbility, Want } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
@@ -3361,12 +3432,13 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-| 401 | If the input parameter invalid. Possible causes: Incorrect parameter types.               |
+| 401 | Parameter error. Possible causes: Incorrect parameter types.              |
 | 9001001  | Invalid resource ID.             |
 | 9001002  | No matching resource is found based on the resource ID.      |
 | 9001006  | The resource is referenced cyclically.         |
 
 **Example (stage)**
+
 ```json5
 // Resource file path: src/main/resources/base/element/color.json
 {
@@ -3378,6 +3450,7 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
   ]
 }
 ```
+
 ```ts
 import { AbilityConstant, UIAbility, Want } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
@@ -3425,12 +3498,13 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-| 401 | If the input parameter invalid. Possible causes: Incorrect parameter types.               |
+| 401 | Parameter error. Possible causes: Incorrect parameter types. |
 | 9001001  | Invalid resource ID.                       |
 | 9001002  | No matching resource is found based on the resource ID.         |
 | 9001006  | The resource is referenced cyclically.            |
 
 **Example**
+
 ```json5
 // Resource file path: src/main/resources/base/element/color.json
 {
@@ -3442,6 +3516,7 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
   ]
 }
 ```
+
 ```ts
 import { AbilityConstant, UIAbility, Want } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
@@ -3460,7 +3535,6 @@ export default class EntryAbility extends UIAbility {
     }
 }
 ```
-
 
 ### getColorByName<sup>10+</sup>
 
@@ -3485,12 +3559,13 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-| 401 | If the input parameter invalid. Possible causes: Incorrect parameter types.               |
+| 401 | Parameter error. Possible causes: Incorrect parameter types. |
 | 9001003  | Invalid resource name.                     |
 | 9001004  | No matching resource is found based on the resource name.       |
 | 9001006  | The resource is referenced cyclically.            |
 
 **Example**
+
 ```json5
 // Resource file path: src/main/resources/base/element/color.json
 {
@@ -3502,6 +3577,7 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
   ]
 }
 ```
+
 ```ts
 import { AbilityConstant, UIAbility, Want } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
@@ -3549,12 +3625,13 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-| 401 | If the input parameter invalid. Possible causes: Incorrect parameter types.               |
+| 401 | Parameter error. Possible causes: Incorrect parameter types. |
 | 9001003  | Invalid resource name.                     |
 | 9001004  | No matching resource is found based on the resource name.       |
 | 9001006  | The resource is referenced cyclically.            |
 
 **Example**
+
 ```json5
 // Resource file path: src/main/resources/base/element/color.json
 {
@@ -3566,6 +3643,7 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
   ]
 }
 ```
+
 ```ts
 import { AbilityConstant, UIAbility, Want } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
@@ -3617,6 +3695,7 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 | 9001005  | Invalid relative path.          |
 
 **Example**
+
 ```ts
 import { AbilityConstant, UIAbility, Want } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
@@ -3662,6 +3741,7 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 | 9001005  | Invalid relative path.          |
 
 **Example**
+
 ```ts
 import { AbilityConstant, UIAbility, Want } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
@@ -3718,6 +3798,7 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 | 9001005  | Invalid relative path.          |
 
 **Example**
+
 ```ts
 import { AbilityConstant, UIAbility, Want } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
@@ -3776,6 +3857,7 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 | 9001005  | Invalid relative path.       |
 
 **Example**
+
 ```ts
 import { AbilityConstant, UIAbility, Want } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
@@ -3828,6 +3910,7 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 | 9001005  | Invalid relative path.       |
 
 **Example**
+
 ```ts
 import { AbilityConstant, UIAbility, Want } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
@@ -3884,6 +3967,7 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 | 9001005  | Invalid relative path.          |
 
 **Example**
+
 ```ts
 import { AbilityConstant, UIAbility, Want } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
@@ -3940,6 +4024,7 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 | 9001005  | Invalid relative path.          |
 
 **Example**
+
 ```ts
 import { AbilityConstant, UIAbility, Want } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
@@ -3989,6 +4074,7 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 | 9001005  | Invalid relative path.          |
 
 **Example**
+
 ```ts
 import { AbilityConstant, UIAbility, Want } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
@@ -4052,6 +4138,7 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 | 9001005  | Invalid relative path.          |
 
 **Example**
+
 ```ts
 import { AbilityConstant, UIAbility, Want } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
@@ -4103,6 +4190,7 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 | 9001005  | Invalid relative path.          |
 
 **Example**
+
 ```ts
 import { AbilityConstant, UIAbility, Want } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
@@ -4152,6 +4240,7 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 | 9001005  | Invalid relative path.          |
 
 **Example**
+
 ```ts
 import { AbilityConstant, UIAbility, Want } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
@@ -4210,6 +4299,7 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 | 9001005  | Invalid relative path.          |
 
 **Example**
+
 ```ts
 import { AbilityConstant, UIAbility, Want } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
@@ -4248,6 +4338,7 @@ Obtains the device configuration. This API returns the result synchronously.
 | [Configuration](#configuration) | Device configuration.|
 
 **Example**
+
 ```ts
 import { AbilityConstant, UIAbility, Want } from '@kit.AbilityKit';
 
@@ -4281,6 +4372,7 @@ Obtains the device configuration. This API uses an asynchronous callback to retu
 | callback | [_AsyncCallback](../apis-basic-services-kit/js-apis-base.md#asynccallback)&lt;[Configuration](#configuration)&gt; | Yes   | Callback used to return the device configuration.|
 
 **Example**
+
 ```ts
 import { AbilityConstant, UIAbility, Want } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
@@ -4321,6 +4413,7 @@ Obtains the device configuration. This API uses a promise to return the result.
 | Promise&lt;[Configuration](#configuration)&gt; | Promise used to return the device configuration.|
 
 **Example**
+
 ```ts
 import { AbilityConstant, UIAbility, Want } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
@@ -4359,6 +4452,7 @@ Obtains the device capability. This API returns the result synchronously.
 | [DeviceCapability](#devicecapability) | Device capability.|
 
 **Example**
+
 ```ts
 import { AbilityConstant, UIAbility, Want } from '@kit.AbilityKit';
 
@@ -4392,6 +4486,7 @@ Obtains the device capability. This API uses an asynchronous callback to return 
 | callback | [_AsyncCallback](../apis-basic-services-kit/js-apis-base.md#asynccallback)&lt;[DeviceCapability](#devicecapability)&gt; | Yes   | Callback used to return the device capability.|
 
 **Example**
+
 ```ts
 import { AbilityConstant, UIAbility, Want } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
@@ -4432,6 +4527,7 @@ Obtains the device capability. This API uses a promise to return the result.
 | Promise&lt;[DeviceCapability](#devicecapability)&gt; | Promise used to return the device capability.|
 
 **Example**
+
 ```ts
 import { AbilityConstant, UIAbility, Want } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
@@ -4483,6 +4579,7 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 | 9001010  | Invalid overlay path.            |
 
 **Example**
+
 ```ts
 import { AbilityConstant, UIAbility, Want } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
@@ -4532,6 +4629,7 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 | 9001010  | Invalid overlay path.            |
 
 **Example**
+
 ```ts
 import { AbilityConstant, UIAbility, Want } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
@@ -4582,6 +4680,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | 401      | If the input parameter invalid. Possible causes: Incorrect parameter types. |
 
 **Example**
+
 ```ts
 import { AbilityConstant, UIAbility, Want } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
@@ -4644,12 +4743,13 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-| 401 | If the input parameter invalid. Possible causes: Incorrect parameter types.               |
+| 401 | Parameter error. Possible causes: Incorrect parameter types. |
 | 9001001  | Invalid resource ID.                       |
 | 9001002  | No matching resource is found based on the resource ID.         |
 | 9001006  | The resource is referenced cyclically.            |
 
 **Example**
+
 ```ts
 import { AbilityConstant, UIAbility, Want } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
@@ -4669,7 +4769,6 @@ export default class EntryAbility extends UIAbility {
     }
 }
 ```
-
 
 ### getSymbolByName<sup>11+</sup>
 
@@ -4699,12 +4798,13 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-| 401 | If the input parameter invalid. Possible causes: Incorrect parameter types.               |
+| 401 | Parameter error. Possible causes: Incorrect parameter types.               |
 | 9001003  | Invalid resource name.                     |
 | 9001004  | No matching resource is found based on the resource name.       |
 | 9001006  | The resource is referenced cyclically.            |
 
 **Example**
+
 ```ts
 import { AbilityConstant, UIAbility, Want } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
@@ -4757,6 +4857,7 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 | 9001005  | Invalid relative path.          |
 
 **Example**
+
 ```ts
 import { AbilityConstant, UIAbility, Want } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
@@ -4790,7 +4891,7 @@ getOverrideResourceManager(configuration?: Configuration): ResourceManager
 
 Obtains a **ResourceManager** object for loading differentiated resources. This API returns the result synchronously.
 
-The resource configuration (including the language, color mode, resolution, and orientation) obtained by a common **ResourceManager** object is determined by the system. With this API, an application can obtain resources of the specified configuration (that is, differentiated resources), for example, dark color resources in light color mode.
+The resource configuration (including the language, color mode, resolution, and orientation) obtained by a common **ResourceManager** object is determined by the system. With this API, an application can obtain resources of the specified configuration (that is, differentiated resources), for example, dark color resources in light color mode. Differentiated resources are limited to application resources and system resources, and do not include theme resources.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -4960,6 +5061,7 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 | 9001001  | Invalid resource ID.                     |
 
 **Example**
+
 ```json5
 // Resource file path: src/main/resources/base/element/string.json
 {
@@ -4971,6 +5073,7 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
   ]
 }
 ```
+
 ```ts
 import { AbilityConstant, UIAbility, Want } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
@@ -5006,6 +5109,7 @@ Releases a **ResourceManager** object. This API is not supported currently.
 **System capability**: SystemCapability.Global.ResourceManager
 
 **Example**
+
 ```ts
 try {
   this.context.resourceManager.release();
@@ -5034,6 +5138,7 @@ Obtains a string based on the specified resource ID. This API uses an asynchrono
 | callback | [AsyncCallback](#asynccallbackdeprecated)&lt;string&gt; | Yes   | Callback used to return the obtained string.|
 
 **Example**
+
 ```ts
 resourceManager.getResourceManager((error, mgr) => {
     mgr.getString($r('app.string.test').id, (error: Error, value: string) => {
@@ -5045,7 +5150,6 @@ resourceManager.getResourceManager((error, mgr) => {
     });
 });
 ```
-
 
 ### getString<sup>(deprecated)</sup>
 
@@ -5072,6 +5176,7 @@ Obtains a string based on the specified resource ID. This API uses a promise to 
 | Promise&lt;string&gt; | Promise used to return the obtained string.|
 
 **Example**
+
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 
@@ -5083,6 +5188,7 @@ resourceManager.getResourceManager((error, mgr) => {
     });
 });
 ```
+
 ### getStringSync<sup>(deprecated)</sup>
 
 getStringSync(resource: Resource): string
@@ -5123,6 +5229,7 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 | 9001006  | The resource is referenced cyclically.            |
 
 **Example**
+
 ```json5
 // Resource file path: src/main/resources/base/element/string.json
 {
@@ -5134,6 +5241,7 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
   ]
 }
 ```
+
 ```ts
 import { resourceManager } from '@kit.LocalizationKit';
 import { BusinessError } from '@kit.BasicServicesKit';
@@ -5196,6 +5304,7 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 | 9001007  | Failed to format the resource obtained based on the resource ID. |
 
 **Example**
+
 ```json5
 // Resource file path: src/main/resources/base/element/string.json
 {
@@ -5207,6 +5316,7 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
   ]
 }
 ```
+
 ```ts
 import { resourceManager } from '@kit.LocalizationKit';
 import { BusinessError } from '@kit.BasicServicesKit';
@@ -5226,6 +5336,7 @@ try {
   console.error(`getStringSync failed, error code: ${code}, message: ${message}.`);
 }
 ```
+
 ### getStringValue<sup>(deprecated)</sup>
 
 getStringValue(resource: Resource, callback: _AsyncCallback&lt;string&gt;): void
@@ -5261,6 +5372,7 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 | 9001006  | The resource is referenced cyclically.            |
 
 **Example**
+
 ```json5
 // Resource file path: src/main/resources/base/element/string.json
 {
@@ -5272,6 +5384,7 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
   ]
 }
 ```
+
 ```ts
 import { resourceManager } from '@kit.LocalizationKit';
 import { BusinessError } from '@kit.BasicServicesKit';
@@ -5331,6 +5444,7 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 | 9001006  | The resource is referenced cyclically.            |
 
 **Example**
+
 ```ts
 import { resourceManager } from '@kit.LocalizationKit';
 import { BusinessError } from '@kit.BasicServicesKit';
@@ -5370,6 +5484,7 @@ Obtains a string array based on the specified resource ID. This API uses an asyn
 | callback | [AsyncCallback](#asynccallbackdeprecated)&lt;Array&lt;string&gt;&gt; | Yes   | Callback used to return the obtained string array.|
 
 **Example**
+
 ```ts
 resourceManager.getResourceManager((error, mgr) => {
     mgr.getStringArray($r('app.strarray.test').id, (error: Error, value: Array<string>) => {
@@ -5381,7 +5496,6 @@ resourceManager.getResourceManager((error, mgr) => {
     });
 });
 ```
-
 
 ### getStringArray<sup>(deprecated)</sup>
 
@@ -5408,6 +5522,7 @@ Obtains a string array based on the specified resource ID. This API uses a promi
 | Promise&lt;Array&lt;string&gt;&gt; | Promise used to return the obtained string array.|
 
 **Example**
+
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 
@@ -5460,6 +5575,7 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 | 9001006  | The resource is referenced cyclically.            |
 
 **Example**
+
 ```json5
 // Resource file path: src/main/resources/base/element/strarray.json
 {
@@ -5475,6 +5591,7 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
   ]
 }
 ```
+
 ```ts
 import { resourceManager } from '@kit.LocalizationKit';
 import { BusinessError } from '@kit.BasicServicesKit';
@@ -5494,6 +5611,7 @@ try {
   console.error(`getStringArrayValueSync failed, error code: ${code}, message: ${message}.`);
 }
 ```
+
 ### getStringArrayValue<sup>(deprecated)</sup>
 
 getStringArrayValue(resource: Resource, callback: _AsyncCallback&lt;Array&lt;string&gt;&gt;): void
@@ -5529,6 +5647,7 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 | 9001006  | The resource is referenced cyclically.            |
 
 **Example**
+
 ```json5
 // Resource file path: src/main/resources/base/element/strarray.json
 {
@@ -5544,6 +5663,7 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
   ]
 }
 ```
+
 ```ts
 import { resourceManager } from '@kit.LocalizationKit';
 import { BusinessError } from '@kit.BasicServicesKit';
@@ -5603,6 +5723,7 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 | 9001006  | The resource is referenced cyclically.            |
 
 **Example**
+
 ```json5
 // Resource file path: src/main/resources/base/element/strarray.json
 {
@@ -5618,6 +5739,7 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
   ]
 }
 ```
+
 ```ts
 import { resourceManager } from '@kit.LocalizationKit';
 import { BusinessError } from '@kit.BasicServicesKit';
@@ -5657,6 +5779,7 @@ Obtains media file content based on the specified resource ID. This API uses an 
 | callback | [AsyncCallback](#asynccallbackdeprecated)&lt;Uint8Array&gt; | Yes   | Callback used to return the media file content.|
 
 **Example**
+
 ```ts
 resourceManager.getResourceManager((error, mgr) => {
     mgr.getMedia($r('app.media.test').id, (error: Error, value: Uint8Array) => {
@@ -5694,6 +5817,7 @@ Obtains media file content based on the specified resource ID. This API uses a p
 | Promise&lt;Uint8Array&gt; | Promise used to return the media file content.|
 
 **Example**
+
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 
@@ -5715,7 +5839,6 @@ Obtains the media file content for the default or specified screen density based
 > **NOTE**
 >
 > This API is supported since API version 10 and is deprecated since API version 20. You are advised to use [getMediaByNameSync](#getmediabynamesync10) or [getMediaContentSync](#getmediacontentsync10) instead.
-
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -5747,6 +5870,7 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 | 9001002  | No matching resource is found based on the resource ID.         |
 
 **Example**
+
 ```ts
 import { resourceManager } from '@kit.LocalizationKit';
 import { BusinessError } from '@kit.BasicServicesKit';
@@ -5807,6 +5931,7 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 | 9001002  | No matching resource is found based on the resource ID.         |
 
 **Example**
+
 ```ts
 import { resourceManager } from '@kit.LocalizationKit';
 import { BusinessError } from '@kit.BasicServicesKit';
@@ -5866,6 +5991,7 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 | 9001002  | No matching resource is found based on the resource ID.         |
 
 **Example**
+
 ```ts
 import { resourceManager } from '@kit.LocalizationKit';
 import { BusinessError } from '@kit.BasicServicesKit';
@@ -5929,6 +6055,7 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 | 9001002  | No matching resource is found based on the resource ID.         |
 
 **Example**
+
 ```ts
 import { resourceManager } from '@kit.LocalizationKit';
 import { BusinessError } from '@kit.BasicServicesKit';
@@ -5991,6 +6118,7 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 | 9001002  | No matching resource is found based on the resource ID.         |
 
 **Example**
+
 ```ts
 import { resourceManager } from '@kit.LocalizationKit';
 import { BusinessError } from '@kit.BasicServicesKit';
@@ -6033,6 +6161,7 @@ Obtains an image's Base64 code based on the specified resource ID. This API uses
 | callback | [AsyncCallback](#asynccallbackdeprecated)&lt;string&gt; | Yes   | Callback used to return the Base64 code of the image.|
 
 **Example**
+
 ```ts
 resourceManager.getResourceManager((error, mgr) => {
     mgr.getMediaBase64($r('app.media.test').id, ((error: Error, value: string) => {
@@ -6044,7 +6173,6 @@ resourceManager.getResourceManager((error, mgr) => {
     });
 });
 ```
-
 
 ### getMediaBase64<sup>(deprecated)</sup>
 
@@ -6071,6 +6199,7 @@ Obtains an image's Base64 code based on the specified resource ID. This API uses
 | Promise&lt;string&gt; | Promise used to return the Base64 code of the image.|
 
 **Example**
+
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 
@@ -6082,6 +6211,7 @@ resourceManager.getResourceManager((error, mgr) => {
     });
 });
 ```
+
 ### getMediaContentBase64Sync<sup>(deprecated)</sup>
 
 getMediaContentBase64Sync(resource: Resource, density?: number): string
@@ -6122,6 +6252,7 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 | 9001002  | No matching resource is found based on the resource ID.         |
 
 **Example**
+
 ```ts
 import { resourceManager } from '@kit.LocalizationKit';
 import { BusinessError } from '@kit.BasicServicesKit';
@@ -6147,6 +6278,7 @@ try {
   console.error(`getMediaContentBase64Sync failed, error code: ${code}, message: ${message}.`);
 }
 ```
+
 ### getMediaContentBase64<sup>(deprecated)</sup>
 
 getMediaContentBase64(resource: Resource, callback: _AsyncCallback&lt;string&gt;): void
@@ -6181,6 +6313,7 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 | 9001002  | No matching resource is found based on the resource ID.         |
 
 **Example**
+
 ```ts
 import { resourceManager } from '@kit.LocalizationKit';
 import { BusinessError } from '@kit.BasicServicesKit';
@@ -6240,6 +6373,7 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 | 9001002  | No matching resource is found based on the resource ID.         |
 
 **Example**
+
 ```ts
 import { resourceManager } from '@kit.LocalizationKit';
 import { BusinessError } from '@kit.BasicServicesKit';
@@ -6303,6 +6437,7 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 | 9001002  | No matching resource is found based on the resource ID.         |
 
 **Example**
+
 ```ts
 import { resourceManager } from '@kit.LocalizationKit';
 import { BusinessError } from '@kit.BasicServicesKit';
@@ -6365,6 +6500,7 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 | 9001002  | No matching resource is found based on the resource ID.         |
 
 **Example**
+
 ```ts
 import { resourceManager } from '@kit.LocalizationKit';
 import { BusinessError } from '@kit.BasicServicesKit';
@@ -6386,6 +6522,7 @@ try {
   console.error(`promise getMediaContentBase64 failed, error code: ${code}, message: ${message}.`);
 }
 ```
+
 ### getDrawableDescriptor<sup>(deprecated)</sup>
 
 getDrawableDescriptor(resource: Resource, density?: number, type?: number): DrawableDescriptor
@@ -6394,7 +6531,7 @@ Obtains a **DrawableDescriptor** object for icon display based on the specified 
 
 > **NOTE**
 >
-> This API is supported since API version 10 and is deprecated since API version 20. You are advised to use [getDrawableDescriptorByName](#getdrawabledescriptorbyname10) or [getDrawableDescriptor] (#getdrawabledescriptor10) instead.
+> This API is supported since API version 10 and is deprecated since API version 20. You are advised to use [getDrawableDescriptorByName](#getdrawabledescriptorbyname10) or [getDrawableDescriptor](#getdrawabledescriptor10) instead.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -6427,6 +6564,7 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 | 9001002  | No matching resource is found based on the resource ID.         |
 
 **Example**
+
 ```ts
 import { resourceManager } from '@kit.LocalizationKit';
 import { BusinessError } from '@kit.BasicServicesKit';
@@ -6504,6 +6642,7 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 | 9001007  | Failed to format the resource obtained based on the resource ID. |
 
 **Example**
+
 ```json5
 // Resource file path: src/main/resources/base/element/plural.json
 {
@@ -6524,6 +6663,7 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
   ]
 }
 ```
+
 ```ts
 import { resourceManager } from '@kit.LocalizationKit';
 import { BusinessError } from '@kit.BasicServicesKit';
@@ -6591,6 +6731,7 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 | 9001007  | Failed to format the resource obtained based on the resource ID. |
 
 **Example**
+
 ```json5
 // Resource file path: src/main/resources/base/element/plural.json
 {
@@ -6611,6 +6752,7 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
   ]
 }
 ```
+
 ```ts
 import { resourceManager } from '@kit.LocalizationKit';
 import { BusinessError } from '@kit.BasicServicesKit';
@@ -6675,6 +6817,7 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 | 9001006  | The resource is referenced cyclically.                       |
 
 **Example**
+
 ```json5
 // Resource file path: src/main/resources/base/element/plural.json
 {
@@ -6695,6 +6838,7 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
   ]
 }
 ```
+
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 
@@ -6748,12 +6892,13 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
-| 401      | If the input parameter invalid. Possible causes: Incorrect parameter types. |
+| 401      | Parameter error. Possible causes: Incorrect parameter types. |
 | 9001001  | Invalid resource ID.                                         |
 | 9001002  | No matching resource is found based on the resource ID.      |
 | 9001006  | The resource is referenced cyclically.                       |
 
 **Example**
+
 ```json5
 // Resource file path: src/main/resources/base/element/plural.json
 {
@@ -6774,6 +6919,7 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
   ]
 }
 ```
+
 ```ts
 import { resourceManager } from '@kit.LocalizationKit';
 import { BusinessError } from '@kit.BasicServicesKit';
@@ -6837,6 +6983,7 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 | 9001006  | The resource is referenced cyclically.                       |
 
 **Example**
+
 ```json5
 // Resource file path: src/main/resources/base/element/plural.json
 {
@@ -6857,6 +7004,7 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
   ]
 }
 ```
+
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 
@@ -6909,6 +7057,7 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 | 9001006  | The resource is referenced cyclically.                       |
 
 **Example**
+
 ```json5
 // Resource file path: src/main/resources/base/element/plural.json
 {
@@ -6929,6 +7078,7 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
   ]
 }
 ```
+
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 
@@ -6986,6 +7136,7 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 | 9001006  | The resource is referenced cyclically.                       |
 
 **Example**
+
 ```json5
 // Resource file path: src/main/resources/base/element/plural.json
 {
@@ -7006,6 +7157,7 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
   ]
 }
 ```
+
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 
@@ -7059,6 +7211,7 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 | 9001006  | The resource is referenced cyclically.                       |
 
 **Example**
+
 ```json5
 // Resource file path: src/main/resources/base/element/plural.json
 {
@@ -7079,6 +7232,7 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
   ]
 }
 ```
+
 ```ts
 import { resourceManager } from '@kit.LocalizationKit';
 import { BusinessError } from '@kit.BasicServicesKit';
@@ -7144,6 +7298,7 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 | 9001006  | The resource is referenced cyclically.                       |
 
 **Example**
+
 ```json5
 // Resource file path: src/main/resources/base/element/plural.json
 {
@@ -7164,6 +7319,7 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
   ]
 }
 ```
+
 ```ts
 import { resourceManager } from '@kit.LocalizationKit';
 import { BusinessError } from '@kit.BasicServicesKit';
@@ -7221,6 +7377,7 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 | 9001006  | The resource is referenced cyclically.                       |
 
 **Example**
+
 ```json5
 // Resource file path: src/main/resources/base/element/plural.json
 {
@@ -7241,6 +7398,7 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
   ]
 }
 ```
+
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 
@@ -7297,6 +7455,7 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 | 9001006  | The resource is referenced cyclically.                       |
 
 **Example**
+
 ```json5
 // Resource file path: src/main/resources/base/element/plural.json
 {
@@ -7317,6 +7476,7 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
   ]
 }
 ```
+
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 
@@ -7373,7 +7533,6 @@ resourceManager.getResourceManager((error, mgr) => {
 });
 ```
 
-
 ### getPluralString<sup>(deprecated)</sup>
 
 getPluralString(resId: number, num: number, callback: AsyncCallback&lt;string&gt;): void
@@ -7411,6 +7570,7 @@ resourceManager.getResourceManager((error, mgr) => {
     });
 });
 ```
+
 ### getBoolean<sup>(deprecated)</sup>
 
 getBoolean(resource: Resource): boolean
@@ -7451,6 +7611,7 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 | 9001006  | The resource is referenced cyclically.            |
 
 **Example**
+
 ```json5
 // Resource file path: src/main/resources/base/element/boolean.json
 {
@@ -7462,6 +7623,7 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
   ]
 }
 ```
+
 ```ts
 import { resourceManager } from '@kit.LocalizationKit';
 import { BusinessError } from '@kit.BasicServicesKit';
@@ -7481,6 +7643,7 @@ try {
   console.error(`getBoolean failed, error code: ${code}, message: ${message}.`);
 }
 ```
+
 ### getNumber<sup>(deprecated)</sup>
 
 getNumber(resource: Resource): number
@@ -7521,6 +7684,7 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 | 9001006  | The resource is referenced cyclically.            |
 
 **Example**
+
 ```json5
 // Resource file path: src/main/resources/base/element/integer.json
 {
@@ -7553,6 +7717,7 @@ try {
   console.error(`getNumber failed, error code: ${code}, message: ${message}.`);
 }
 ```
+
 ### getColorSync<sup>(deprecated)</sup>
 
 getColorSync(resource: Resource): number
@@ -7593,6 +7758,7 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 | 9001006  | The resource is referenced cyclically.            |
 
 **Example**
+
 ```json5
 // Resource file path: src/main/resources/base/element/color.json
 {
@@ -7604,6 +7770,7 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
   ]
 }
 ```
+
 ```ts
 import { resourceManager } from '@kit.LocalizationKit';
 import { BusinessError } from '@kit.BasicServicesKit';
@@ -7623,6 +7790,7 @@ try {
   console.error(`getColorSync failed, error code: ${code}, message: ${message}.`);
 }
 ```
+
 ### getColor<sup>(deprecated)</sup>
 
 getColor(resource: Resource, callback: _AsyncCallback&lt;number&gt;): void
@@ -7658,6 +7826,7 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 | 9001006  | The resource is referenced cyclically.            |
 
 **Example**
+
 ```json5
 // Resource file path: src/main/resources/base/element/color.json
 {
@@ -7669,6 +7838,7 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
   ]
 }
 ```
+
 ```ts
 import { resourceManager } from '@kit.LocalizationKit';
 import { BusinessError } from '@kit.BasicServicesKit';
@@ -7696,7 +7866,7 @@ Obtains a color value based on the specified resource object. This API uses a pr
 
 > **NOTE**
 >
-> This API is supported since API version 10 and is deprecated since API version 20. You are advised to use [getColorByName] (#getcolorbyname10-1) or [getColor] (#getcolor10-1) instead.
+> This API is supported since API version 10 and is deprecated since API version 20. You are advised to use [getColorByName](#getcolorbyname10-1) or [getColor](#getcolor10-1) instead.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -7728,6 +7898,7 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 | 9001006  | The resource is referenced cyclically.            |
 
 **Example**
+
 ```json5
 // Resource file path: src/main/resources/base/element/color.json
 {
@@ -7739,6 +7910,7 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
   ]
 }
 ```
+
 ```ts
 import { resourceManager } from '@kit.LocalizationKit';
 import { BusinessError } from '@kit.BasicServicesKit';
@@ -7757,7 +7929,9 @@ this.context.resourceManager.getColor(resource)
     console.error(`promise getColor failed, error code: ${error.code}, message: ${error.message}.`);
   });
 ```
+
 ### getSymbol<sup>(deprecated)</sup>
+
 getSymbol(resource: Resource): number
 
 Obtains the Unicode of a [symbol](https://developer.huawei.com/consumer/en/design/harmonyos-symbol) based on the specified resource object. This API returns the result synchronously.
@@ -7796,6 +7970,7 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 | 9001006  | The resource is referenced cyclically.            |
 
 **Example**
+
 ```ts
 import { resourceManager } from '@kit.LocalizationKit';
 import { BusinessError } from '@kit.BasicServicesKit';
@@ -7836,6 +8011,7 @@ Obtains the content of a rawfile in the **resources/rawfile** directory. This AP
 | callback | [AsyncCallback](#asynccallbackdeprecated)&lt;Uint8Array&gt; | Yes   | Callback used to return the rawfile content.|
 
 **Example**
+
 ```ts
 import { resourceManager } from '@kit.LocalizationKit';
 
@@ -7849,7 +8025,6 @@ resourceManager.getResourceManager((error, mgr) => {
     });
 });
 ```
-
 
 ### getRawFile<sup>(deprecated)</sup>
 
@@ -7876,6 +8051,7 @@ Obtains the content of a rawfile in the **resources/rawfile** directory. This AP
 | Promise&lt;Uint8Array&gt; | Promise used to return the rawfile content.|
 
 **Example**
+
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 
@@ -7887,7 +8063,6 @@ resourceManager.getResourceManager((error, mgr) => {
     });
 });
 ```
-
 
 ### getRawFileDescriptor<sup>(deprecated)</sup>
 
@@ -7909,6 +8084,7 @@ Obtains the fd of the rawfile in the **resources/rawfile** directory. This API u
 | callback | [AsyncCallback](#asynccallbackdeprecated)&lt;[RawFileDescriptor](#rawfiledescriptor9)&gt; | Yes   | Callback used to return the obtained fd.|
 
 **Example**
+
 ```ts
 import { resourceManager } from '@kit.LocalizationKit';
 
@@ -7950,6 +8126,7 @@ Obtains the fd of the rawfile in the **resources/rawfile** directory. This API u
 | Promise&lt;[RawFileDescriptor](#rawfiledescriptor9)&gt; | Promise used to return the obtained fd.|
 
 **Example**
+
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 
@@ -7984,6 +8161,7 @@ Closes the fd of the rawfile in the **resources/rawfile** directory. This API us
 | callback | [AsyncCallback](#asynccallbackdeprecated)&lt;void&gt; | Yes   | Callback used to return the result. If the operation is successful, **err** is **undefined**. Otherwise, **err** is an error object.|
 
 **Example**
+
 ```ts
 import { resourceManager } from '@kit.LocalizationKit';
 
@@ -8021,6 +8199,7 @@ Closes the fd of the rawfile in the **resources/rawfile** directory. This API us
 | Promise&lt;void&gt; | Promise that returns no value.|
 
 **Example**
+
 ```ts
 import { resourceManager } from '@kit.LocalizationKit';
 
@@ -8061,6 +8240,7 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 | 9001009  | Failed to access the system resource. which is not mapped to application sandbox, This error code will be thrown. |
 
 **Example**
+
 ```js
 import { resourceManager } from '@kit.LocalizationKit';
 import { BusinessError } from '@kit.BasicServicesKit';
@@ -8151,6 +8331,7 @@ Defines an asynchronous callback that carries an error parameter and asynchronou
   ```
 
 - Content of the **app.plural.test** file:
+
   ```json5
   // Resource file path: src/main/resources/base/element/plural.json
   {
@@ -8196,6 +8377,7 @@ Defines an asynchronous callback that carries an error parameter and asynchronou
   ```
 
 - Content of the **app.boolean.boolean_test** file:
+
   ```json5
   // Resource file path: src/main/resources/base/element/boolean.json
   {
@@ -8209,6 +8391,7 @@ Defines an asynchronous callback that carries an error parameter and asynchronou
   ```
 
 - Content of the **integer_test** and **float_test** files:
+
   ```json5
   // Resource file path: src/main/resources/base/element/integer.json
   {
@@ -8232,7 +8415,9 @@ Defines an asynchronous callback that carries an error parameter and asynchronou
     ]
   }
   ```
+
 - Content of the **app.color.test** file:
+
   ```json5
   // Resource file path: src/main/resources/base/element/color.json
   {
