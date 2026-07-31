@@ -17,7 +17,7 @@ Since API version 24, the [DynamicLayout](../reference/apis-arkui/arkui-ts/ts-co
 
 ## Creating a DynamicLayout
 
-Create a [DynamicLayout](../reference/apis-arkui/arkui-ts/ts-container-dynamiclayout.md#interface) component and set the layout algorithm by passing in a parameter of type [LayoutAlgorithm](../reference/apis-arkui/js-apis-arkui-layoutAlgorithm.md#layoutalgorithm-1). A variable of type [LayoutAlgorithm](../reference/apis-arkui/js-apis-arkui-layoutAlgorithm.md#layoutalgorithm-1) can be assigned a specific layout algorithm class object, including [built-in layout algorithms](#built-in-layout-algorithms) and [custom layout algorithms](#custom-layout-algorithms).
+Create a [DynamicLayout](../reference/apis-arkui/arkui-ts/ts-container-dynamiclayout.md#apis) component and set the layout algorithm by passing in a parameter of type [LayoutAlgorithm](../reference/apis-arkui/js-apis-arkui-layoutAlgorithm.md#layoutalgorithm-1). A variable of type [LayoutAlgorithm](../reference/apis-arkui/js-apis-arkui-layoutAlgorithm.md#layoutalgorithm-1) can be assigned a specific layout algorithm class object, including [built-in layout algorithms](#built-in-layout-algorithms) and [custom layout algorithms](#custom-layout-algorithms).
 
 <!-- @[CreateDynamicLayout](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkUISample/DynamicLayout/entry/src/main/ets/pages/basic/CreateDynamicLayout.ets) -->
 
