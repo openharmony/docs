@@ -26,9 +26,17 @@ Env\<T\>(key: SystemEnvKey\<T\> | SystemProperties): PropertyDecorator
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-|名称|类型|说明|
-| ----- | ----- | ------ |
-|Env| PropertyDecorator | 环境变量装饰器。|
+**参数：** 
+
+| 参数名| 类型| 必填 | 说明|
+| -------- | -------------------- | ---- | --------- | 
+|key|SystemEnvKey<T> \| SystemProperties|是|环境变量key。|
+
+**返回值：** 
+
+|类型|说明| 
+| ----- | ----- | 
+| PropertyDecorator| 属性装饰器，开发者无需关注该返回值。 | 
 
 **示例：**
 
@@ -99,6 +107,8 @@ type EnvDecorator = (value: SystemProperties) => PropertyDecorator
 
 系统环境变量Key对应的类型。
 
+### 属性
+
 **起始版本：** 26.0.0
 
 **模型约束：** 此接口仅可在Stage模型下使用。
@@ -106,9 +116,6 @@ type EnvDecorator = (value: SystemProperties) => PropertyDecorator
 **原子化服务API：** 从API版本26.0.0开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
-
-
-### 属性
 
 | 名称 | 类型 | 只读 | 可选 | 说明                                                                                              |
 | -------- | -------- | -------- | -------- |-------------------------------------------------------------------------------------------------|
