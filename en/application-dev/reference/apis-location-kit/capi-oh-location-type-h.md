@@ -1,10 +1,12 @@
 # oh_location_type.h
+
 <!--Kit: Location Kit-->
 <!--Subsystem: Location-->
 <!--Owner: @liu-binjun-->
 <!--Designer: @liu-binjun-->
 <!--Tester: @mhy123456789-->
 <!--Adviser: @RayShih-->
+<!-- md-trans-meta sourceCommit=0a518b37f78bdd259be3f4c562486aca296b2ff8 translatedAt=2026-07-31T06:40:51.513Z pushedAt=2026-07-31T07:55:06.921Z -->
 
 ## Overview
 
@@ -18,7 +20,7 @@ Defines common attributes of the location service.
 
 **Since**: 13
 
-**Related module**: [Location] (capi-location.md)
+**Related module**: [Location](capi-location.md)
 
 ## Summary
 
@@ -43,6 +45,7 @@ Defines common attributes of the location service.
 
 | Name| typedef Keyword| Description|
 | -- | -- | -- |
+| [bool OH_LocationInfo_IsFromMock(Location_Info* location)](#oh_locationinfo_isfrommock) | - | Checks whether the location information is from the mock location feature.<br />**Since:** 26.0.0 |
 | [Location_BasicInfo OH_LocationInfo_GetBasicInfo(Location_Info* location)](#oh_locationinfo_getbasicinfo) | - | Obtains basic location information.|
 | [Location_ResultCode OH_LocationInfo_GetAdditionalInfo(Location_Info* location, char* additionalInfo, uint32_t length)](#oh_locationinfo_getadditionalinfo) | - | Obtains the additional information in the location information.|
 | [typedef void (\*Location_InfoCallback)(Location_Info* location, void* userData)](#location_infocallback) | Location_InfoCallback | Defines the callback for receiving reported location information.|
@@ -72,7 +75,7 @@ Enumerates error codes of the location service.
 | LOCATION_SUCCESS = 0 | Operation success.|
 | LOCATION_PERMISSION_DENIED = 201 | Permission denied.|
 | LOCATION_INVALID_PARAM = 401 | The parameter is invalid.<br> Possible causes: 1. The input parameter is a null pointer. 2. The parameter value is out of the value range.|
-| LOCATION_NOT_SUPPORTED = 801 | Function not supported. due to limited device capabilities.|
+| LOCATION_NOT_SUPPORTED = 801 | Function not supported due to limited device capabilities.|
 | LOCATION_SERVICE_UNAVAILABLE = 3301000 | Location service unavailable.|
 | LOCATION_SWITCH_OFF = 3301100 | Location switch disabled.|
 
@@ -132,8 +135,31 @@ Defines the source of location information.
 | LOCATION_SOURCE_TYPE_INDOOR = 3 | Indoor high-precision positioning technology.|
 | LOCATION_SOURCE_TYPE_RTK = 4 | Outdoor high-precision positioning technology.|
 
-
 ## Function Description
+
+### OH_LocationInfo_IsFromMock()
+
+```c
+bool OH_LocationInfo_IsFromMock(Location_Info* location)
+```
+
+**Description**
+
+Checks whether the location information is from the mock location feature.
+
+**Since**: 26.0.0
+
+**Parameters**
+
+| Name | Description |
+| -- | -- |
+| [Location_Info](capi-location-location-info.md)* location | Pointer to the location information struct.<br> A non-null pointer must be passed in, which can be obtained in [Location_InfoCallback](capi-oh-location-type-h.md#location_infocallback). |
+
+**Returns**
+
+| Type | Description |
+| -- | -- |
+| bool | Whether the location is from the mock location feature.<br> The value **true** indicates that the location is from the mock location feature, and **false** indicates that the location is from the real system location result.<br> |
 
 ### OH_LocationInfo_GetBasicInfo()
 
@@ -151,7 +177,7 @@ Obtains basic location information.
 
 | Name| Description|
 | -- | -- |
-| [Location_Info](capi-location-location-info.md)* location | Pointer to the [Location_Info](capi-location-location-info.md) instance.<br> A non-null pointer must be passed. The pointer can be obtained from [Location_InfoCallback](capi-oh-location-type-h.md#location_infocallback).|
+| [Location_Info](capi-location-location-info.md)* location | Pointer to the location information struct.<br> A non-null pointer must be passed. The pointer can be obtained from [Location_InfoCallback](capi-oh-location-type-h.md#location_infocallback).|
 
 **Returns**
 
@@ -175,7 +201,7 @@ Obtains the additional information in the location information.
 
 | Name| Description|
 | -- | -- |
-| [Location_Info](capi-location-location-info.md)* location | Pointer to the [Location_Info](capi-location-location-info.md) instance.<br> A non-null pointer needs to be passed in. This pointer can be obtained from [Location_InfoCallback](capi-oh-location-type-h.md#location_infocallback).|
+| [Location_Info](capi-location-location-info.md)* location | Pointer to the location information struct.<br> A non-null pointer needs to be passed in. This pointer can be obtained from [Location_InfoCallback](capi-oh-location-type-h.md#location_infocallback).|
 | char* additionalInfo | Non-null pointer of the char type. This variable is used to store the additional location information in JSON format.<br> The pointer and the corresponding memory are created by the caller. It is recommended that the memory be greater than or equal to 256 bytes.<br> If a null pointer is passed in, an error code is returned.|
 | uint32_t length | Memory size of **additionalInfo**.|
 
@@ -201,7 +227,7 @@ Defines the callback for receiving reported location information.
 
 | Name| Description|
 | -- | -- |
-| [Location_Info](capi-location-location-info.md)* location | Pointer to the [Location_Info](capi-location-location-info.md) instance, which carries the latest location information.<br> The memory occupied by the instance will be reclaimed when [Location_InfoCallback](capi-oh-location-type-h.md#location_infocallback) is complete. Before that, call APIs such as [OH_LocationInfo_GetBasicInfo](#oh_locationinfo_getbasicinfo) to obtain the location information.|
+| [Location_Info](capi-location-location-info.md)* location | Pointer to the [Location_Info](capi-location-location-info.md) instance, which carries the latest location information.<br> The memory occupied by the instance will be reclaimed when [Location_InfoCallback](capi-oh-location-type-h.md#location_infocallback) is complete. Before that, call APIs such as [OH_LocationInfo_GetBasicInfo](capi-oh-location-type-h.md#oh_locationinfo_getbasicinfo) to obtain the location information.|
 |  void* userData | Pointer to the **userData** struct or object. This parameter is passed in through [OH_LocationRequestConfig_SetCallback](capi-oh-location-type-h.md#oh_locationrequestconfig_setcallback).|
 
 ### OH_Location_CreateRequestConfig()
