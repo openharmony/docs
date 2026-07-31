@@ -74,7 +74,7 @@ Operation not allowed.
 例如：（1）未设置源调用play 错误信息：errorCode 5400102 The current state is idle. Play operation only supports prepared/paused/completed.
 （2）Initialized 状态调用play 错误信息：errorCode 5400102 The current state is initialized. Play operation only supports prepared/paused/completed.
 （3）Playing 状态调用reset 后play() 错误信息：errorCode 5400102 the current state is idle. Play operation only supports prepared/paused/completed.
-（4）Initialized 状态调用seek（）错误信息：errorCode 5400102, errorMsg Operate Not Permit: The current state is initialized, seek operation only support prepared/playing/paused/completed state.
+（4）Initialized 状态调用seek() 错误信息：errorCode 5400102, errorMsg Operate Not Permit: The current state is initialized, seek operation only support prepared/playing/paused/completed state.
 
 **处理步骤**
 
