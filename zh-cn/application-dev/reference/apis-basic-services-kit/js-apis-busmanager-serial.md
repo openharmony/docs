@@ -134,7 +134,9 @@ serial.getSerialPortList().then(async (portList: serial.SerialPort[]) => {
     parity: serial.Parity.NONE
   };
   await port.open(config);
-  console.info('open success');
+console.info('open success');
+  // 串口使用完毕后需调用port.close()释放资源
+  await port.close();
   // 串口使用完毕后需调用port.close()释放资源
   await port.close();
 }).catch((error: BusinessError) => {
