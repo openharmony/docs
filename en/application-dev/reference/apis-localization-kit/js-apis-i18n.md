@@ -6,19 +6,21 @@
 <!--Designer: @sunyaozu-->
 <!--Tester: @lpw_work-->
 <!--Adviser: @ningningW-->
+<!-- md-trans-meta sourceCommit=f86c324189946cdd73af5fa71703997419ec43ae translatedAt=2026-07-31T01:30:00.306Z pushedAt=2026-07-31T01:58:40.602Z -->
 
 This module provides system-related and enhanced [i18n](../../internationalization/i18n-l10n.md) capabilities, such as locale management, phone number formatting, and calendar, through supplementary i18n APIs that are not defined in [ECMA 402](https://dev.ecma-international.org/publications-and-standards/standards/ecma-402/). The [Internationalization](js-apis-intl.md) module provides basic i18n APIs defined in ECMA 402. It works with this module to provide a complete suite of i18n capabilities. The terms used in the APIs are defined as follows:
+
 - Pattern string: a string that consists of [Unicode date field symbols](https://www.unicode.org/reports/tr35/tr35-dates.html#Date_Field_Symbol_Table) and custom text enclosed by single quotation marks.
+
 - Skeleton string: a string that consists of [Unicode date field symbols](https://www.unicode.org/reports/tr35/tr35-dates.html#Date_Field_Symbol_Table) and does not support custom text.
 
 >  **NOTE**
 >
 >  - The initial APIs of this module are supported since API version 7. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 >
->  - The APIs of this module are based on the [CLDR](https://cldr.unicode.org) internationalization database. The processing results of the APIs may be adjusted as the CLDR standard evolves. For example, the return value of the date and time formatting API is used only for UI display. Do not hardcode the return value or make assumptions about the return value. Otherwise, version compatibility problems may occur. API version 12 corresponds to [CLDR 42](https://cldr.unicode.org/index/downloads/cldr-42). For details about data changes, see the [official CLDR documentation](https://cldr.unicode.org/).
+>  - The APIs of this module are based on the [CLDR](https://cldr.unicode.org) internationalization database. The processing results of the APIs may be adjusted as the CLDR standard evolves. For example, the return value of the date and time formatting API is used only for UI display. Do not hardcode the return value or make assumptions about the return value. Otherwise, version compatibility problems may occur. API version 12 corresponds to [CLDR 42](https://cldr.unicode.org/downloads/cldr-42). For details about data changes, see the [official CLDR documentation](https://cldr.unicode.org/).
 >
 >  - Since API version 11, some APIs of this module are supported in ArkTS widgets.
-
 
 ## Modules to Import
 
@@ -72,6 +74,7 @@ For details about the error codes, see [ohos.i18n Error Codes](errorcode-i18n.md
 > The error message of 890001 is subject to the actual error.
 
 **Example**
+
   ```ts
   import { BusinessError } from '@kit.BasicServicesKit';
   import { i18n } from '@kit.LocalizationKit';
@@ -118,6 +121,7 @@ For details about the error codes, see [ohos.i18n Error Codes](errorcode-i18n.md
 | 890001 | Invalid parameter. Possible causes: Parameter verification failed. |
 
 **Example**
+
   ```ts
   import { BusinessError } from '@kit.BasicServicesKit';
   import { i18n } from '@kit.LocalizationKit';
@@ -148,6 +152,7 @@ Obtains the list of system languages.
 | Array&lt;string&gt; | List of system languages.|
 
 **Example**
+
   ```ts
   import { i18n } from '@kit.LocalizationKit';
 
@@ -191,6 +196,7 @@ For details about the error codes, see [ohos.i18n Error Codes](errorcode-i18n.md
 > The error message of 890001 is subject to the actual error.
 
 **Example**
+
   ```ts
   import { BusinessError } from '@kit.BasicServicesKit';
   import { i18n } from '@kit.LocalizationKit';
@@ -236,12 +242,12 @@ For details about the error codes, see [ohos.i18n Error Codes](errorcode-i18n.md
 | 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
 | 890001 | Invalid parameter. Possible causes: Parameter verification failed. |
 
-
 > **Description**
 >
 > The error message of 890001 is subject to the actual error.
 
 **Example**
+
   ```ts
   import { BusinessError } from '@kit.BasicServicesKit';
   import { i18n } from '@kit.LocalizationKit';
@@ -274,6 +280,7 @@ Obtains the current system language. To listen for system language changes, enab
 | string | Language ID.|
 
 **Example**
+
   ```ts
   import { i18n } from '@kit.LocalizationKit';
 
@@ -297,6 +304,7 @@ Obtains the current system country/region. To listen for system locale changes, 
 | string | Country/region ID.|
 
 **Example**
+
   ```ts
   import { i18n } from '@kit.LocalizationKit';
 
@@ -322,6 +330,7 @@ Obtains the current system locale.
 | string | Locale ID.|
 
 **Example**
+
   ```ts
   import { i18n } from '@kit.LocalizationKit';
 
@@ -339,11 +348,13 @@ Obtains the current system locale. To listen for system locale changes, enable l
 **System capability**: SystemCapability.Global.I18n
 
 **Return value**
+
 | Type    | Description     |
 | ------ | ------- |
-| [Intl.Locale](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Intl/Locale) | System locale.|
+| [Intl.Locale](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl/Locale) | System locale.|
 
 **Example**
+
   ```ts
   import { i18n } from '@kit.LocalizationKit';
 
@@ -369,12 +380,12 @@ Checks whether the 24-hour clock is used. To listen for system time format chang
 | boolean | Whether the 24-hour clock is used. The value **true** indicates that the 24-hour clock is used, and the value **false** indicates that the 12-hour clock is used.|
 
 **Example**
+
   ```ts
   import { i18n } from '@kit.LocalizationKit';
 
   let is24HourClock: boolean = i18n.System.is24HourClock(); // If the 24-hour clock is used, then is24HourClock is true.
   ```
-
 
 ### getPreferredLanguageList<sup>9+</sup>
 
@@ -393,6 +404,7 @@ Obtains the list of preferred languages.
 | Array&lt;string&gt; | List of preferred languages.|
 
 **Example**
+
   ```ts
   import { i18n } from '@kit.LocalizationKit';
 
@@ -416,6 +428,7 @@ Obtains the first language in the preferred language list.
 | string | First language in the preferred language list.|
 
 **Example**
+
   ```ts
   import { i18n } from '@kit.LocalizationKit';
 
@@ -448,6 +461,7 @@ For details about the error codes, see [ohos.i18n Error Codes](errorcode-i18n.md
 | 890001 | Invalid parameter. Possible causes: Parameter verification failed. |
 
 **Example**
+
   ```ts
   import { BusinessError } from '@kit.BasicServicesKit';
   import { i18n } from '@kit.LocalizationKit';
@@ -477,12 +491,12 @@ Obtains the preferred language of an application.
 | string | Preferred language of the application.|
 
 **Example**
+
   ```ts
   import { i18n } from '@kit.LocalizationKit';
 
   let appPreferredLanguage: string = i18n.System.getAppPreferredLanguage();
   ```
-
 
 ### getUsingLocalDigit<sup>9+</sup>
 
@@ -501,6 +515,7 @@ Checks whether use of local digits is enabled.
 | boolean | Whether use of local digits is enabled. The value **true** indicates that use of local digits is enabled, and the value **false** indicates the opposite.|
 
 **Example**
+
   ```ts
   import { i18n } from '@kit.LocalizationKit';
 
@@ -539,6 +554,7 @@ For details about the error codes, see [ohos.i18n Error Codes](errorcode-i18n.md
 | 890001 | Invalid parameter. Possible causes: Parameter verification failed. |
 
 **Example**
+
   ```ts
   import { BusinessError } from '@kit.BasicServicesKit';
   import { i18n } from '@kit.LocalizationKit';
@@ -571,6 +587,7 @@ Obtains the temperature unit of the system.
 | [TemperatureType](#temperaturetype18) | Temperature unit.|
 
 **Example**
+
   ```ts
   import { i18n } from '@kit.LocalizationKit';
 
@@ -607,12 +624,12 @@ For details about the error codes, see [i18n Error Codes](errorcode-i18n.md).
 | ------ | ---------------------- |
 | 890001 | Invalid parameter. Possible causes: Parameter verification failed. |
 
-
 > **Description**
 >
 > The error message of 890001 is subject to the actual error.
 
 **Example**
+
   ```ts
   import { BusinessError } from '@kit.BasicServicesKit';
   import { i18n } from '@kit.LocalizationKit';
@@ -643,6 +660,7 @@ Obtains the first day of a week in the system settings.
 | [WeekDay](#weekday18) | Start day of a week.|
 
 **Example**
+
   ```ts
   import { i18n } from '@kit.LocalizationKit';
 
@@ -681,7 +699,6 @@ Enumerates the first day of a week. The value ranges from Monday to Sunday.
 | SAT | 6 | Saturday.|
 | SUN | 7 | Sunday.|
 
-
 ## i18n.isRTL
 
 isRTL(locale: string): boolean
@@ -705,6 +722,7 @@ Checks whether a language is an RTL language. For an RTL language, [UI mirroring
 | boolean | Whether a language is an RTL language. The value **true** indicates that the language is an RTL language, and the value **false** indicates the opposite.|
 
 **Example**
+
   ```ts
   import { i18n } from '@kit.LocalizationKit';
 
@@ -746,6 +764,7 @@ For details about the error codes, see [ohos.i18n Error Codes](errorcode-i18n.md
 | 890001 | Invalid parameter. Possible causes: Parameter verification failed. |
 
 **Example**
+
   ```ts
   import { BusinessError } from '@kit.BasicServicesKit';
   import { i18n } from '@kit.LocalizationKit';
@@ -789,6 +808,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
 
 **Example**
+
   ```ts
   import { BusinessError } from '@kit.BasicServicesKit';
   import { i18n } from '@kit.LocalizationKit';
@@ -845,6 +865,7 @@ Obtains the **Calendar** object for the specified locale and calendar type.
 | [Calendar](#calendar) | **Calendar** object.|
 
 **Example**
+
 ```ts
 let calendar: i18n.Calendar = i18n.getCalendar('zh-Hans', 'chinese'); // Obtain the Calendar object for the Chinese lunar calendar.
 ```
@@ -871,9 +892,10 @@ Sets the date and time for a **Calendar** object based on the input **Date** obj
 
 | Name | Type  | Mandatory  | Description               |
 | ---- | ---- | ---- | ----------------- |
-| date | Date | Yes   | Date and time. Note: The month starts from **0**. For example, **0** indicates January.|
+| date | Date | Yes | Date and time.<br>**NOTE**<br>The month starts from **0**, indicating January. |
 
 **Example**
+
   ```ts
   import { i18n } from '@kit.LocalizationKit';
 
@@ -881,7 +903,6 @@ Sets the date and time for a **Calendar** object based on the input **Date** obj
   let date: Date = new Date(2021, 10, 7, 8, 0, 0); // The date and time is 2021.11.07 08:00:00.
   calendar.setTime(date);
   ```
-
 
 ### setTime<sup>8+</sup>
 
@@ -900,6 +921,7 @@ Sets the date and time for a **Calendar** object based on the input timestamp.
 | time | number | Yes   | Unix timestamp, which indicates the number of milliseconds that have elapsed since the Unix epoch.|
 
 **Example**
+
   ```ts
   import { i18n } from '@kit.LocalizationKit';
 
@@ -922,13 +944,14 @@ Sets the year, month, day, hour, minute, and second for this **Calendar** object
 | Name   | Type    | Mandatory  | Description    |
 | ------ | ------ | ---- | ------ |
 | year   | number | Yes   | Year to set. |
-| month  | number | Yes   | Month to set. Note: The month starts from **0**. For example, **0** indicates January. |
+| month  | number | Yes    | Month to set.<br>**NOTE**<br>The month starts from **0**, indicating January.  |
 | date   | number | Yes   | Day to set. |
-| hour   | number | No   | Hour to set. The default value is the current system time.|
-| minute | number | No   | Minute to set. The default value is the current system time.|
-| second | number | No   | Second to set. The default value is the current system time.|
+| hour   | number | No    | Hour to set. The default value is the system time. |
+| minute | number | No    | Minute to set. The default value is the system time. |
+| second | number | No    | Second to set. The default value is the system time. |
 
 **Example**
+
   ```ts
   import { i18n } from '@kit.LocalizationKit';
 
@@ -953,13 +976,13 @@ Sets the time zone of this **Calendar** object.
 | timezone | string | Yes   | Valid time zone ID, for example, Asia/Shanghai.|
 
 **Example**
+
   ```ts
   import { i18n } from '@kit.LocalizationKit';
 
   let calendar: i18n.Calendar = i18n.getCalendar('zh-Hans');
   calendar.setTimeZone('Asia/Shanghai');
   ```
-
 
 ### getTimeZone<sup>8+</sup>
 
@@ -978,6 +1001,7 @@ Obtains the time zone ID of this **Calendar** object.
 | string | Time zone ID.|
 
 **Example**
+
   ```ts
   import { i18n } from '@kit.LocalizationKit';
 
@@ -985,7 +1009,6 @@ Obtains the time zone ID of this **Calendar** object.
   calendar.setTimeZone('Asia/Shanghai');
   let timezone: string = calendar.getTimeZone(); // timezone = 'Asia/Shanghai'
   ```
-
 
 ### getFirstDayOfWeek<sup>8+</sup>
 
@@ -1004,13 +1027,13 @@ Obtains the first day of a week for this **Calendar** object.
 | number | First day of a week. The value **1** indicates Sunday, and the value **7** indicates Saturday.|
 
 **Example**
+
   ```ts
   import { i18n } from '@kit.LocalizationKit';
 
   let calendar: i18n.Calendar = i18n.getCalendar('en-US', 'gregory');
   let firstDayOfWeek: number = calendar.getFirstDayOfWeek(); // firstDayOfWeek = 1
   ```
-
 
 ### setFirstDayOfWeek<sup>8+</sup>
 
@@ -1029,6 +1052,7 @@ Sets the first day of a week for this **Calendar** object.
 | value | number | Yes   | Start day of a week. The value **1** indicates Sunday, and the value **7** indicates Saturday.|
 
 **Example**
+
   ```ts
   import { i18n } from '@kit.LocalizationKit';
 
@@ -1054,13 +1078,13 @@ Obtains the minimum number of days in the first week for this **Calendar** objec
 | number | Minimum number of days in the first week of a year.|
 
 **Example**
+
   ```ts
   import { i18n } from '@kit.LocalizationKit';
 
   let calendar: i18n.Calendar = i18n.getCalendar('zh-Hans');
   let minimalDaysInFirstWeek: number = calendar.getMinimalDaysInFirstWeek(); // minimalDaysInFirstWeek = 1
   ```
-
 
 ### setMinimalDaysInFirstWeek<sup>8+</sup>
 
@@ -1079,6 +1103,7 @@ Sets the minimum number of days in the first week for this **Calendar** object.
 | value | number | Yes   | Minimum number of days in the first week of a year.|
 
 **Example**
+
   ```ts
   import { i18n } from '@kit.LocalizationKit';
 
@@ -1086,7 +1111,6 @@ Sets the minimum number of days in the first week for this **Calendar** object.
   calendar.setMinimalDaysInFirstWeek(3);
   let minimalDaysInFirstWeek: number = calendar.getMinimalDaysInFirstWeek(); // minimalDaysInFirstWeek = 3
   ```
-
 
 ### get<sup>8+</sup>
 
@@ -1111,6 +1135,7 @@ Obtains the values of the calendar attributes in this **Calendar** object.
 | number | Value of the calendar attribute. For example, if the year of the internal date of the current **Calendar** object is 1990, **get('year')** returns **1990**.|
 
 **Example**
+
   ```ts
   import { i18n } from '@kit.LocalizationKit';
 
@@ -1118,7 +1143,6 @@ Obtains the values of the calendar attributes in this **Calendar** object.
   calendar.set(2021, 10, 1, 8, 0, 0); // Set the date and time to 2021.11.1 08:00:00.
   let hourOfDay: number = calendar.get('hour_of_day'); // hourOfDay = 8
   ```
-
 
 ### getDisplayName<sup>8+</sup>
 
@@ -1143,13 +1167,13 @@ Obtains calendar display name in the specified language.
 | string | Calendar display name in the specified language. For example, **buddhist** is displayed as **Buddhist Calendar** if the locale is **en-US**.|
 
 **Example**
+
   ```ts
   import { i18n } from '@kit.LocalizationKit';
 
   let calendar: i18n.Calendar = i18n.getCalendar('en-US', 'buddhist');
   let calendarName: string = calendar.getDisplayName('zh'); // calendarName = 'Buddhist'
   ```
-
 
 ### isWeekend<sup>8+</sup>
 
@@ -1165,7 +1189,7 @@ Checks whether a given date is a weekend in this **Calendar** object.
 
 | Name | Type  | Mandatory  | Description                                      |
 | ---- | ---- | ---- | ---------------------------------------- |
-| date | Date | No   | Date and time. Note: The month starts from **0**. For example, **0** indicates January.<br>The default value is current date of the **Calendar** object.|
+| date | Date | No | Date and time.<br>**NOTE**<br>The month starts from **0**, indicating January.<br>The default value is current date of the **Calendar** object. |
 
 **Return value**
 
@@ -1174,6 +1198,7 @@ Checks whether a given date is a weekend in this **Calendar** object.
 | boolean | The value **true** indicates that the specified date is a weekend, and the value **false** indicates the opposite.|
 
 **Example**
+
   ```ts
   import { i18n } from '@kit.LocalizationKit';
 
@@ -1183,7 +1208,6 @@ Checks whether a given date is a weekend in this **Calendar** object.
   let date: Date = new Date(2011, 11, 6, 9, 0, 0); // The date and time is 2011-12-06 09:00:00.
   isWeekend = calendar.isWeekend(date); // isWeekend = false
   ```
-
 
 ### add<sup>11+</sup>
 
@@ -1212,6 +1236,7 @@ For details about the error codes, see [ohos.i18n Error Codes](errorcode-i18n.md
 | 890001 | Invalid parameter. Possible causes: Parameter verification failed. |
 
 **Example**
+
   ```ts
   import { BusinessError } from '@kit.BasicServicesKit';
   import { i18n } from '@kit.LocalizationKit';
@@ -1226,7 +1251,6 @@ For details about the error codes, see [ohos.i18n Error Codes](errorcode-i18n.md
     console.error(`call Calendar.add failed, error code: ${err.code}, message: ${err.message}.`);
   }
   ```
-
 
 ### getTimeInMillis<sup>11+</sup>
 
@@ -1245,6 +1269,7 @@ Obtains the timestamp of this **Calendar** object.
 | number | Unix timestamp, which indicates the number of milliseconds that have elapsed since the Unix epoch.|
 
 **Example**
+
   ```ts
   import { i18n } from '@kit.LocalizationKit';
 
@@ -1252,7 +1277,6 @@ Obtains the timestamp of this **Calendar** object.
   calendar.setTime(5000);
   let millisecond: number = calendar.getTimeInMillis(); // millisecond = 5000
   ```
-
 
 ### compareDays<sup>11+</sup>
 
@@ -1268,7 +1292,7 @@ Compares the current date of this **Calendar** object with the specified date fo
 
 | Name | Type  | Mandatory  | Description                                      |
 | ---- | ---- | ---- | ---------------------------------------- |
-| date | Date | Yes   | Date and time. Note: The month starts from **0**. For example, **0** indicates January.|
+| date | Date | Yes | Date and time.<br>**NOTE**<br>The month starts from **0**, indicating January. |
 
 **Return value**
 
@@ -1285,6 +1309,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
 
 **Example**
+
   ```ts
   import { BusinessError } from '@kit.BasicServicesKit';
   import { i18n } from '@kit.LocalizationKit';
@@ -1327,6 +1352,7 @@ Obtains the lunar calendar object of a specified region.
 | [ChineseCalendar](#chinesecalendar) | Lunar calendar object.|
 
 **Example**
+
 ```ts
 let locale: Intl.Locale = i18n.System.getSystemLocaleInstance();
 let calendar: i18n.ChineseCalendar = i18n.getChineseCalendar(locale);
@@ -1357,6 +1383,7 @@ Sets the date and time for a lunar calendar object.
 | chineseCalendarTime | [ChineseCalendarTime](#chinesecalendar) | Yes   | Lunar calendar time object.|
 
 **Example**
+
 ```ts
 let locale: Intl.Locale = i18n.System.getSystemLocaleInstance();
 let calendar: i18n.ChineseCalendar = i18n.getChineseCalendar(locale);
@@ -1386,9 +1413,9 @@ Checks whether a month in a specified year is a leap month.
 
 | Name | Type  | Mandatory  | Description               |
 | ---- | ---- | ---- | ----------------- |
-| gregorianYear   | number |   Yes  |  Year in the Gregorian calendar.  |
-| cyclicalYear    | number |   Yes  |  Stem-branch year in the lunar calendar.  |
-| month           | number |   Yes  |  Month in the lunar calendar.  |
+| gregorianYear   | number |   Yes   |  Year in the Gregorian calendar.<br>Value range: [1900, 2100].   |
+| cyclicalYear    | number |   Yes   |  Stem-branch year in the lunar calendar.<br>Value range: [1, 60].   |
+| month           | number |   Yes   |  Month in the lunar calendar.<br>**NOTE**<br>The month starts from **0**, indicating January.   |
 
 **Return value**
 
@@ -1396,7 +1423,16 @@ Checks whether a month in a specified year is a leap month.
 | ---------------------- | ----- |
 | boolean | Whether a month is a leap month. The value **true** indicates yes and the value **false** indicates no.|
 
+**Error codes**
+
+For details about the error codes, see [i18n Error Codes](errorcode-i18n.md).
+
+| ID | Error Message                                                     |
+| -------- | ------------------------------------------------------------ |
+| 8900001   | Invalid parameter. Possible causes: Parameter verification failed. |
+
 **Example**
+
 ```ts
 let isExist = i18n.ChineseCalendar.checkLeapMonth(2026, 43, 2);
 ```
@@ -1415,9 +1451,9 @@ Describes the lunar calendar time object.
 
 | Name           | Type            |  Read-Only  |  Optional  |  Description                                  |
 | --------------- | ------- | ------- | ------- | --------------------------------------- |
-| gregorianYear   | number |   No  |   No  |  Year in the Gregorian calendar.  |
-| cyclicalYear    | number |   No  |   No  |  Stem-branch year in the lunar calendar.  |
-| month           | number |   No  |   No  |  Month in the lunar calendar. The month starts from **0**, indicating January.  |
+| gregorianYear   | number |   No   |   No   |  Year in the Gregorian calendar.<br>Value range: [1900, 2100]   |
+| cyclicalYear    | number |   No   |   No   |  Stem-branch year in the lunar calendar.<br>Value range: [1, 60]   |
+| month           | number |   No   |   No   |  Month in the lunar calendar.<br>**NOTE**<br>The month starts from **0**, indicating January.   |
 | date            | number |   No  |   No  |  Date in the lunar calendar.  |
 | isLeapMonth     | boolean |   No |   Yes  |  Whether a month is a leap month. The default value is **false**. |
 | hour            | number |   No  |   Yes  |  Hour in the lunar calendar. The default value is **0**.  |
@@ -1450,6 +1486,7 @@ Creates a **PhoneNumberFormat** object.
 | options | [PhoneNumberFormatOptions](#phonenumberformatoptions8) | No   | Options for **PhoneNumberFormat** object initialization. The default value is **NATIONAL**. |
 
 **Example**
+
   ```ts
   import { i18n } from '@kit.LocalizationKit';
 
@@ -1480,13 +1517,13 @@ Checks whether the phone number is valid for the country/region in the **PhoneNu
 | boolean | Whether the phone number is valid. The value **true** indicates that the phone number is valid, and the value **false** indicates the opposite.|
 
 **Example**
+
   ```ts
   import { i18n } from '@kit.LocalizationKit';
 
   let formatter: i18n.PhoneNumberFormat = new i18n.PhoneNumberFormat('CN');
   let isValidNumber: boolean = formatter.isValidNumber('158****2312'); // isValidNumber = true
   ```
-
 
 ### format<sup>8+</sup>
 
@@ -1514,6 +1551,7 @@ Formats a phone number.
 | string | Formatted phone number.|
 
 **Example**
+
   ```ts
   import { i18n } from '@kit.LocalizationKit';
 
@@ -1559,6 +1597,7 @@ Obtains the home location of a phone number.
 | string | Home location of the phone number. If the number is invalid, an empty string is returned.|
 
 **Example**
+
   ```ts
   import { i18n } from '@kit.LocalizationKit';
 
@@ -1578,7 +1617,6 @@ Obtains the home location of a phone number.
   formatResult = typingFormatter.getLocationName('133426', 'en'); // formatResult = 'Dongguan, Guangdong'
   ```
 
-
 ## PhoneNumberFormatOptions<sup>8+</sup>
 
 Options for **PhoneNumberFormat** object initialization.
@@ -1590,7 +1628,6 @@ Options for **PhoneNumberFormat** object initialization.
 | Name  | Type    | Read-Only  | Optional  | Description                                      |
 | ---- | ------ | ---- | ---- | ---------------------------------------- |
 | type | string | No   | Yes   | Type of the phone number. The value can be **E164**, **INTERNATIONAL**, **NATIONAL**, **RFC3966**, or **TYPING**.<br>- In API version 8, **type** is mandatory.<br>- In API version 9 or later, **type** is optional.<br>- In API version 12 or later, TYPING is supported, which indicates that the dialed number is formatted in real time.<br>- In API version 23 or later, TYPING supports real-time obtaining of the home location of a dialed number.|
-
 
 ## UnitInfo<sup>8+</sup>
 
@@ -1604,7 +1641,6 @@ Defines the measurement unit information.
 | ------------- | ------ | ---- | ---- | ---------------------------------------- |
 | unit          | string | No   | No   | Name of the measurement unit, for example, **meter**, **inch**, or **cup**.|
 | measureSystem | string | No   | No   | Measurement system. The value can be **SI**, **US**, or **UK**.|
-
 
 ## i18n.getInstance<sup>8+</sup>
 
@@ -1629,12 +1665,12 @@ Creates an **IndexUtil** object.
 | [IndexUtil](#indexutil8) | **IndexUtil** object created based on the specified locale ID.|
 
 **Example**
+
   ```ts
   import { i18n } from '@kit.LocalizationKit';
 
   let indexUtil: i18n.IndexUtil = i18n.getInstance('zh-CN');
   ```
-
 
 ## IndexUtil<sup>8+</sup>
 
@@ -1661,6 +1697,7 @@ Obtains the index list of the current locale.
 | Array&lt;string&gt; | Index list of the current locale. The first and last elements are **...**.|
 
 **Example**
+
   ```ts
   import { i18n } from '@kit.LocalizationKit';
 
@@ -1669,7 +1706,6 @@ Obtains the index list of the current locale.
   // 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z', '...' ]
   let indexList: Array<string> = indexUtil.getIndexList();
   ```
-
 
 ### addLocale<sup>8+</sup>
 
@@ -1688,6 +1724,7 @@ Adds the index list of a new locale to the index list of the current locale to f
 | locale | string | Yes   | [System locale](../../internationalization/i18n-locale-culture.md#how-it-works), which consists of the language, script, and country/region.|
 
 **Example**
+
   ```ts
   import { i18n } from '@kit.LocalizationKit';
 
@@ -1718,13 +1755,13 @@ Obtains the index of the **text** object.
 | string | Index of the **text** object. If no proper index is found, an empty string is returned.|
 
 **Example**
+
   ```ts
   import { i18n } from '@kit.LocalizationKit';
 
   let indexUtil: i18n.IndexUtil = i18n.getInstance('zh-CN');
   let index: string = indexUtil.getIndex('hi'); // index = 'H'
   ```
-
 
 ## i18n.getLineInstance<sup>8+</sup>
 
@@ -1749,12 +1786,12 @@ Obtains a **BreakIterator** object for locating line break points in text. This 
 | [BreakIterator](#breakiterator8) | **BreakIterator** object.|
 
 **Example**
+
   ```ts
   import { i18n } from '@kit.LocalizationKit';
 
   let iterator: i18n.BreakIterator = i18n.getLineInstance('en');
   ```
-
 
 ## BreakIterator<sup>8+</sup>
 
@@ -1781,13 +1818,13 @@ Sets the text to be processed by the **BreakIterator** object.
 | text | string | Yes   | Input text.|
 
 **Example**
+
   ```ts
   import { i18n } from '@kit.LocalizationKit';
 
   let iterator: i18n.BreakIterator = i18n.getLineInstance('en');
   iterator.setLineBreakText('Apple is my favorite fruit.'); // Set the text to be processed.
   ```
-
 
 ### getLineBreakText<sup>8+</sup>
 
@@ -1806,6 +1843,7 @@ Obtains the text processed by the **BreakIterator** object.
 | string | Text being processed by the **BreakIterator** object.|
 
 **Example**
+
   ```ts
   import { i18n } from '@kit.LocalizationKit';
 
@@ -1813,7 +1851,6 @@ Obtains the text processed by the **BreakIterator** object.
   iterator.setLineBreakText('Apple is my favorite fruit.');
   let breakText: string = iterator.getLineBreakText(); // breakText = 'Apple is my favorite fruit.'
   ```
-
 
 ### current<sup>8+</sup>
 
@@ -1832,6 +1869,7 @@ Obtains the position of the break iterator in the text.
 | number | Position of the break iterator in the text.|
 
 **Example**
+
   ```ts
   import { i18n } from '@kit.LocalizationKit';
 
@@ -1839,7 +1877,6 @@ Obtains the position of the break iterator in the text.
   iterator.setLineBreakText('Apple is my favorite fruit.');
   let currentPos: number = iterator.current(); // currentPos = 0
   ```
-
 
 ### first<sup>8+</sup>
 
@@ -1858,6 +1895,7 @@ Moves the break iterator to the first line break point, which is always at the b
 | number | Offset of the first line break point in the processed text.|
 
 **Example**
+
   ```ts
   import { i18n } from '@kit.LocalizationKit';
 
@@ -1865,7 +1903,6 @@ Moves the break iterator to the first line break point, which is always at the b
   iterator.setLineBreakText('Apple is my favorite fruit.');
   let firstPos: number = iterator.first(); // firstPos = 0
   ```
-
 
 ### last<sup>8+</sup>
 
@@ -1884,6 +1921,7 @@ Moves the break iterator to the last line break point, which is always the next 
 | number | Offset of the last line break point in the processed text.|
 
 **Example**
+
   ```ts
   import { i18n } from '@kit.LocalizationKit';
 
@@ -1891,7 +1929,6 @@ Moves the break iterator to the last line break point, which is always the next 
   iterator.setLineBreakText('Apple is my favorite fruit.');
   let lastPos: number = iterator.last(); // lastPos = 27
   ```
-
 
 ### next<sup>8+</sup>
 
@@ -1916,6 +1953,7 @@ Moves the break iterator backward by the specified number of line break points.
 | number | Position of the break iterator in the text after movement.<br>The value **-1** is returned if the position of the break iterator is outside of the processed text after movement.|
 
 **Example**
+
   ```ts
   import { i18n } from '@kit.LocalizationKit';
 
@@ -1925,7 +1963,6 @@ Moves the break iterator backward by the specified number of line break points.
   pos = iterator.next(); // pos = 6
   pos = iterator.next(10); // pos = -1
   ```
-
 
 ### previous<sup>8+</sup>
 
@@ -1944,6 +1981,7 @@ Moves the break iterator foreward by one line break point.
 | number | Position of the break iterator in the text after movement.<br>The value **-1** is returned if the position of the break iterator is outside of the processed text after movement.|
 
 **Example**
+
   ```ts
   import { i18n } from '@kit.LocalizationKit';
 
@@ -1953,7 +1991,6 @@ Moves the break iterator foreward by one line break point.
   pos = iterator.next(3); // pos = 12
   pos = iterator.previous(); // pos = 9
   ```
-
 
 ### following<sup>8+</sup>
 
@@ -1978,6 +2015,7 @@ Moves the line break iterator to the line break point after the specified positi
 | number | Position of the break iterator in the text after movement. The value **-1** is returned if the position of the break iterator is outside of the processed text after movement.|
 
 **Example**
+
   ```ts
   import { i18n } from '@kit.LocalizationKit';
 
@@ -1987,7 +2025,6 @@ Moves the line break iterator to the line break point after the specified positi
   pos = iterator.following(100); // pos = -1
   pos = iterator.current(); // pos = 27
   ```
-
 
 ### isBoundary<sup>8+</sup>
 
@@ -2012,6 +2049,7 @@ Checks whether the specified position is a line break point.
 | boolean | Whether the specified position is a line break point. The value **true** indicates that the specified position is a line break point, and the value **false** indicates the opposite.<br>If **true** is returned, the break iterator is moved to the position specified by **offset**. Otherwise, the break iterator is moved to the text line break point after the position specified by **offset**, which is equivalent to calling **following**.|
 
 **Example**
+
   ```ts
   import { i18n } from '@kit.LocalizationKit';
 
@@ -2020,7 +2058,6 @@ Checks whether the specified position is a line break point.
   let isBoundary: boolean = iterator.isBoundary(0); // isBoundary = true;
   isBoundary = iterator.isBoundary(5); // isBoundary = false;
   ```
-
 
 ## i18n.getTimeZone
 
@@ -2045,6 +2082,7 @@ Obtains the **TimeZone** object corresponding to the specified time zone ID.
 | [TimeZone](#timezone) | **TimeZone** object corresponding to the time zone ID.|
 
 **Example**
+
   ```ts
   import { i18n } from '@kit.LocalizationKit';
 
@@ -2076,13 +2114,13 @@ Obtains the ID of the specified **TimeZone** object.
 | string | Time zone ID corresponding to the **TimeZone** object.|
 
 **Example**
+
   ```ts
   import { i18n } from '@kit.LocalizationKit';
 
   let timezone: i18n.TimeZone = i18n.getTimeZone('Asia/Shanghai');
   let timezoneID: string = timezone.getID(); // timezoneID = 'Asia/Shanghai'
   ```
-
 
 ### getDisplayName
 
@@ -2108,13 +2146,13 @@ Obtains time zone display name in the specified language.
 | string | Time zone display name in the specified language.|
 
 **Example**
+
   ```ts
   import { i18n } from '@kit.LocalizationKit';
 
   let timezone: i18n.TimeZone = i18n.getTimeZone('Asia/Shanghai');
   let timezoneName: string = timezone.getDisplayName('zh-CN', false); // timezoneName = 'China Standard Time'
   ```
-
 
 ### getRawOffset
 
@@ -2130,16 +2168,16 @@ Obtains the raw offset of the specified time zone.
 
 | Type    | Description                 |
 | ------ | ------------------- |
-| number | Raw offset of the time zone, in milliseconds.|
+| number | Raw offset of the time zone, in milliseconds. |
 
 **Example**
+
   ```ts
   import { i18n } from '@kit.LocalizationKit';
 
   let timezone: i18n.TimeZone = i18n.getTimeZone('Asia/Shanghai');
   let offset: number = timezone.getRawOffset(); // offset = 28800000
   ```
-
 
 ### getOffset
 
@@ -2155,22 +2193,22 @@ Obtains the offset of the specified time zone at the specified time.
 
 | Name   | Type    | Mandatory  | Description    |
 | ------ | ------ | ---- | ------ |
-| date | number | No   | Specified time, in milliseconds. The default value is the system time.|
+| date | number | No | Time for calculating the time zone offset, in milliseconds. The default value is the system time. |
 
 **Return value**
 
 | Type    | Description                     |
 | ------ | ----------------------- |
-| number | Time zone offset, in milliseconds. When the DST is used, the time zone offset is the raw time zone offset plus the DST offset.|
+| number | Offset of the time zone, in milliseconds. When the DST is used, the time zone offset is the raw time zone offset plus the DST offset. |
 
 **Example**
+
   ```ts
   import { i18n } from '@kit.LocalizationKit';
 
   let timezone: i18n.TimeZone = i18n.getTimeZone('Asia/Shanghai');
   let offset: number = timezone.getOffset(1234567890); // offset = 28800000
   ```
-
 
 ### getAvailableIDs<sup>9+</sup>
 
@@ -2189,13 +2227,13 @@ Obtains the list of time zone IDs supported by the system.
 | Array&lt;string&gt; | List of time zone IDs supported by the system.|
 
 **Example**
+
   ```ts
   import { i18n } from '@kit.LocalizationKit';
 
   // ids = ['America/Adak', 'America/Anchorage', 'America/Bogota', 'America/Denver', 'America/Los_Angeles', 'America/Montevideo', 'America/Santiago', 'America/Sao_Paulo', 'Asia/Ashgabat', 'Asia/Hovd', 'Asia/Jerusalem', 'Asia/Magadan', 'Asia/Omsk', 'Asia/Shanghai', 'Asia/Tokyo', 'Asia/Yerevan', 'Atlantic/Cape_Verde', 'Australia/Lord_Howe', 'Europe/Dublin', 'Europe/London', 'Europe/Moscow', 'Pacific/Auckland', 'Pacific/Easter', 'Pacific/Pago-Pago']
   let ids: Array<string> = i18n.TimeZone.getAvailableIDs();
   ```
-
 
 ### getAvailableZoneCityIDs<sup>9+</sup>
 
@@ -2214,6 +2252,7 @@ Obtains the list of time zone city IDs supported by the system.
 | Array&lt;string&gt; | List of time zone city IDs supported by the system.|
 
 **Example**
+
   ```ts
   import { i18n } from '@kit.LocalizationKit';
 
@@ -2245,12 +2284,12 @@ Obtains time zone city display name in the specified language.
 | string | Time zone city display name in the specified language.|
 
 **Example**
+
   ```ts
   import { i18n } from '@kit.LocalizationKit';
 
   let displayName: string = i18n.TimeZone.getCityDisplayName('Shanghai', 'zh-CN'); // displayName = 'Shanghai (China)'
   ```
-
 
 ### getTimezoneFromCity<sup>9+</sup>
 
@@ -2275,6 +2314,7 @@ Creates a **TimeZone** object corresponding to the specified time zone city.
 | TimeZone | **TimeZone** object corresponding to the specified time zone city ID.|
 
 **Example**
+
   ```ts
   import { i18n } from '@kit.LocalizationKit';
 
@@ -2313,12 +2353,12 @@ For details about the error codes, see [ohos.i18n Error Codes](errorcode-i18n.md
 | 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
 | 890001 | Invalid parameter. Possible causes: Parameter verification failed. |
 
-
 > **Description**
 >
 > The error message of 890001 is subject to the actual error.
 
 **Example**
+
   ```ts
   import { BusinessError } from '@kit.BasicServicesKit';
   import { i18n } from '@kit.LocalizationKit';
@@ -2348,6 +2388,7 @@ Obtains the time zone transition rules. For details about the time zone transiti
 | [ZoneRules](#zonerules20) | Time zone transition rule, including the transition time and the offset before and after the transition.|
 
 **Example**
+
 ```ts
 import { i18n } from '@kit.LocalizationKit';
 
@@ -2389,7 +2430,7 @@ Checks whether the specified date and time is in the daylight saving time.
 
 | Name| Type  | Mandatory| Description                    |
 | ------ | ------ | ---- | ------------------------ |
-| date   | Date   | Yes  | Date and time. The month starts from **0**, indicating January.|
+| date   | Date   | Yes   | Date and time.<br>**NOTE**<br>The month starts from **0**, indicating January.|
 
 **Return value**
 
@@ -2513,7 +2554,7 @@ Obtains the **nextTransition** object for the specified time.
 
 | Name   | Type    | Mandatory  | Description    |
 | ------ | ------ | ---- | ------ |
-| date | number | No   | Timestamp of next transition. It is measured as the number of milliseconds from 00:00:00 on January 1, 1970 (UTC) to the specified time, which defaults to the current system time.|
+| date | number | No | Number of milliseconds from January 1, 1970, 00:00:00 UTC to the specified time.<br>The default value is the system time. |
 
 **Return value**
 
@@ -2522,6 +2563,7 @@ Obtains the **nextTransition** object for the specified time.
 | [ZoneOffsetTransition](#zoneoffsettransition20) | **ZoneOffsetTransition** object for next transition.|
 
 **Example**
+
 ```ts
 import { i18n } from '@kit.LocalizationKit';
 
@@ -2556,9 +2598,10 @@ Obtains the timestamp of the time zone transition point.
 
 | Type      | Description        |
 | -------- | ---------- |
-| number | Timestamp of the time zone transition point. It is measured as the number of milliseconds from 00:00:00 on January 1, 1970 (UTC) to the time zone transition point, for example, 1762074000000. If the [raw offset](#getrawoffset) remains unchanged and DST is not used, **0** is returned.|
+| number | Number of milliseconds from January 1, 1970, 00:00:00 UTC to the time zone transition point, in milliseconds, for example, **1762074000000**. If the [raw offset](#getrawoffset) remains unchanged and DST is not used, **0** is returned. |
 
 **Example**
+
 ```ts
 import { i18n } from '@kit.LocalizationKit';
 
@@ -2584,9 +2627,10 @@ Obtains the offset after the time zone transition.
 
 | Type      | Description        |
 | -------- | ---------- |
-| number | Post-transition offset, that is, the time difference between the post-transition time and UTC, measured in ms. For example, **-28800000** indicates that the time after the transition is 28800000 ms (8 hours) later than UTC.|
+| number | Offset after the time zone transition, representing the time difference between the post-transition time and UTC, in milliseconds. For example, **-28800000** indicates that the post‑transition time is 28,800,000 milliseconds (8 hours) behind UTC. |
 
 **Example**
+
 ```ts
 import { i18n } from '@kit.LocalizationKit';
 
@@ -2612,9 +2656,10 @@ Obtains the offset before the time zone transition.
 
 | Type      | Description        |
 | -------- | ---------- |
-| number | Pre-transition offset, that is, the time difference between the pre-transition time and UTC, measured in ms. For example, **-25200000** indicates that the pre-transition time is 25200000 ms (7 hours) slower than UTC.|
+| number | Offset before the time zone transition, representing the time difference between the pre-transition time and UTC, in milliseconds. For example, **-25200000** indicates that the pre-transition time is 25200000 ms (7 hours) behind UTC. |
 
 **Example**
+
 ```ts
 import { i18n } from '@kit.LocalizationKit';
 
@@ -2625,7 +2670,6 @@ let zoneOffsetTransition: i18n.ZoneOffsetTransition =
     zoneRules.nextTransition(date.getTime()); // Obtain the nextTransition object for time zone transition after May 13, 2025.
 zoneOffsetTransition.getOffsetBefore(); // Pre-transition offset: -25200000
 ```
-
 
 ## Transliterator<sup>9+</sup>
 
@@ -2652,6 +2696,7 @@ Obtains a list of IDs supported by the **Transliterator** object.
 | string[] | List of IDs supported by the **Transliterator** object.|
 
 **Example**
+
   ```ts
   import { i18n } from '@kit.LocalizationKit';
 
@@ -2659,7 +2704,6 @@ Obtains a list of IDs supported by the **Transliterator** object.
   // For more information, see ISO-15924.
   let ids: string[] = i18n.Transliterator.getAvailableIDs();
   ```
-
 
 ### getInstance<sup>9+</sup>
 
@@ -2684,12 +2728,12 @@ Creates a **Transliterator** object based on the specified ID.
 | [Transliterator](#transliterator9) | **Transliterator** object.|
 
 **Example**
+
   ```ts
   import { i18n } from '@kit.LocalizationKit';
 
   let transliterator: i18n.Transliterator = i18n.Transliterator.getInstance('Any-Latn');
   ```
-
 
 ### transform<sup>9+</sup>
 
@@ -2714,6 +2758,7 @@ Converts the input text from the source format to the target format.
 | string | Text after conversion.|
 
 **Example**
+
   ```ts
   import { i18n } from '@kit.LocalizationKit';
 
@@ -2733,7 +2778,6 @@ Converts the input text from the source format to the target format.
   let transliterateNames: string = transliterator.transform('Teacher Shan'); // transliterateNames = 'shàn lǎo shī'
   transliterateNames = transliterator.transform('Long Sun No Taboo'); // transliterateNames = 'zhǎng sūn wú jì'
   ```
-
 
 ## Unicode<sup>9+</sup>
 
@@ -2766,12 +2810,12 @@ Checks whether the input character is a digit.
 | boolean | **true** if the input character is a digit, and **false** otherwise.|
 
 **Example**
+
   ```ts
   import { i18n } from '@kit.LocalizationKit';
 
   let isDigit: boolean = i18n.Unicode.isDigit('1'); // isDigit = true
   ```
-
 
 ### isSpaceChar<sup>9+</sup>
 
@@ -2796,12 +2840,12 @@ Checks whether the input character is a space.
 | boolean | **true** if the input character is a space, and **false** otherwise.|
 
 **Example**
+
   ```ts
   import { i18n } from '@kit.LocalizationKit';
 
   let isSpacechar: boolean = i18n.Unicode.isSpaceChar('a'); // isSpacechar = false
   ```
-
 
 ### isWhitespace<sup>9+</sup>
 
@@ -2826,12 +2870,12 @@ Checks whether the input character is a whitespace character.
 | boolean | **true** if the input character is a white space, and **false** otherwise.|
 
 **Example**
+
   ```ts
   import { i18n } from '@kit.LocalizationKit';
 
   let isWhitespace: boolean = i18n.Unicode.isWhitespace('a'); // isWhitespace = false
   ```
-
 
 ### isRTL<sup>9+</sup>
 
@@ -2856,12 +2900,12 @@ Checks whether the input character is of the right to left (RTL) language.
 | boolean | **true** if the input character is of the RTL language, and **false** otherwise.|
 
 **Example**
+
   ```ts
   import { i18n } from '@kit.LocalizationKit';
 
   let isRtl: boolean = i18n.Unicode.isRTL('a'); // isRtl = false
   ```
-
 
 ### isIdeograph<sup>9+</sup>
 
@@ -2886,12 +2930,12 @@ Checks whether the input character is an ideographic character.
 | boolean | **true** if the input character an ideographic character, and **false** otherwise.|
 
 **Example**
+
   ```ts
   import { i18n } from '@kit.LocalizationKit';
 
   let isIdeograph: boolean = i18n.Unicode.isIdeograph('a'); // isIdeograph = false
   ```
-
 
 ### isLetter<sup>9+</sup>
 
@@ -2916,12 +2960,12 @@ Checks whether the input character is a letter.
 | boolean | **true** if the input character a letter, and **false** otherwise.|
 
 **Example**
+
   ```ts
   import { i18n } from '@kit.LocalizationKit';
 
   let isLetter: boolean = i18n.Unicode.isLetter('a'); // isLetter = true
   ```
-
 
 ### isLowerCase<sup>9+</sup>
 
@@ -2946,12 +2990,12 @@ Checks whether the input character is a lowercase letter.
 | boolean | **true** if the input character a lowercase letter, and **false** otherwise.|
 
 **Example**
+
   ```ts
   import { i18n } from '@kit.LocalizationKit';
 
   let isLowercase: boolean = i18n.Unicode.isLowerCase('a'); // isLowercase = true
   ```
-
 
 ### isUpperCase<sup>9+</sup>
 
@@ -2976,12 +3020,12 @@ Checks whether the input character is an uppercase letter.
 | boolean | **true** if the input character an uppercase letter, and **false** otherwise.|
 
 **Example**
+
   ```ts
   import { i18n } from '@kit.LocalizationKit';
 
   let isUppercase: boolean = i18n.Unicode.isUpperCase('a'); // isUppercase = false
   ```
-
 
 ### getType<sup>9+</sup>
 
@@ -3006,6 +3050,7 @@ Obtains the type of the input character.
 | string | Type of the input character. The options are as follows:<br>**U_UNASSIGNED**: Category for unassigned and non-character code points.<br>**U_GENERAL_OTHER_TYPES**: Same as **U_UNASSIGNED**.<br>**U_UPPERCASE_LETTER**: Uppercase letter.<br>**U_LOWERCASE_LETTER**: Lowercase letter.<br>**U_TITLECASE_LETTER**: Title case letter.<br>**U_MODIFIER_LETTER**: Modifier letter.<br>**U_OTHER_LETTER**: Letter other than the uppercase letter, lowercase letter, title case letter, and modifier letter.<br>**U_NON_SPACING_MARK**: Non-spacing mark, such as the accent symbol **'** and the variable symbol **#**.<br>**U_ENCLOSING_MARK**: Enclosing mark, for example, a circle or a box.<br>**U_COMBINING_SPACING_MARK**: Spacing mark, for example, the vowel symbol **[]**.<br>**U_DECIMAL_DIGIT_NUMBER**: Decimal number.<br>**U_LETTER_NUMBER**: Alphanumeric and Roman numeral.<br>**U_OTHER_NUMBER**: Other numbers used as encryption symbols or marker symbols, or non-Arabic numerals, such as **@**, **#**, **(1)**, and **①**.<br>**U_SPACE_SEPARATOR**: Whitespace separator, for example, space character, non-breaking space character, or fixed-width space character.<br>**U_LINE_SEPARATOR**: Line separator.<br>**U_PARAGRAPH_SEPARATOR**: Paragraph separator.<br>**U_CONTROL_CHAR**: Control character.<br>**U_FORMAT_CHAR**: Format character.<br>**U_PRIVATE_USE_CHAR**: Privately used character, for example, a company logo.<br>**U_SURROGATE**: Surrogate, which is used to represent supplementary characters in UTF-16.<br>**U_DASH_PUNCTUATION**: Dash punctuation.<br>**U_START_PUNCTUATION**: Start punctuation, for example, the left parenthesis.<br>**U_END_PUNCTUATION**: End punctuation, for example, the right parenthesis.<br>**U_INITIAL_PUNCTUATION**: Opening quotation mark, for example, the left double quotation mark or left single quotation mark.<br>**U_FINAL_PUNCTUATION**: Closing quotation mark, for example, the right double quotation mark or right single quotation mark.<br>**U_CONNECTOR_PUNCTUATION**: Connector punctuation.<br>**U_OTHER_PUNCTUATION**: Other punctuations.<br>**U_MATH_SYMBOL**: Mathematical symbol.<br>**U_CURRENCY_SYMBOL**: Currency symbol.<br>**U_MODIFIER_SYMBOL**: Modifier symbol.<br>**U_OTHER_SYMBOL**: Other symbols.<br> For details, see Unicode standard.|
 
 **Example**
+
   ```ts
   import { i18n } from '@kit.LocalizationKit';
 
@@ -3039,6 +3084,7 @@ Detects the encoding information of the input byte stream.
 | [EncodingInfo](#encodinginfo) | Encoding information, including the encoding name and confidence.|
 
 **Example**
+
   ```ts
   import { i18n } from '@kit.LocalizationKit';
 
@@ -3060,7 +3106,7 @@ Describes the encoding information.
 
 | Name | Type  | Read-Only  | Optional  | Description               |
 | ---- | ---- | ---- | ---- | ----------------- |
-| encodingName | string | No   | No   | Encoding name, for example, UTF-8.|
+| encodingName | string | No | No | Encoding name. The value can be any of the following: **UTF-8**, **UTF-16BE**, **UTF-16LE**, **UTF-32BE**, **UTF-32LE**, **Shift_JIS**, **ISO-2022-JP**, **ISO-2022-CN**, **ISO-2022-KR**, **GB18030**, **Big5**, **EUC-JP**, **EUC-KR**, **ISO-8859-1**, **ISO-8859-2**, **ISO-8859-5**, **ISO-8859-6**, **ISO-8859-7**, **ISO-8859-8**, **ISO-8859-9**, **windows-1250**, **windows-1251**, **windows-1252**, **windows-1253**, **windows-1254**, **windows-1255**, **windows-1256**, **KOI8-R**, **IBM420**, or **IBM424**. |
 | confidence | number | No   | No   | Confidence level of the detection result. The value ranges from 0 to 100. A larger value indicates a more reliable detection result.|
 
 ## I18NUtil<sup>9+</sup>
@@ -3098,6 +3144,7 @@ Converts one measurement unit into another and formats the unit based on the spe
 | string | String converted to the measurement unit after formatting.|
 
 **Example**
+
   ```ts
   import { i18n } from '@kit.LocalizationKit';
 
@@ -3130,12 +3177,12 @@ Obtains the sequence of the year, month, and day in the specified locale.
 | string | Sequence of the year, month, and day in the locale. **y** indicates the year, **L** indicates the month, and **d** indicates the day.|
 
 **Example**
+
   ```ts
   import { i18n } from '@kit.LocalizationKit';
 
   let order: string = i18n.I18NUtil.getDateOrder('zh-CN'); // order = 'y-L-d'
   ```
-
 
 ### getTimePeriodName<sup>11+</sup>
 
@@ -3170,6 +3217,7 @@ For details about the error codes, see [ohos.i18n Error Codes](errorcode-i18n.md
 | 890001 | Invalid parameter. Possible causes: Parameter verification failed. |
 
 **Example**
+
   ```ts
   import { BusinessError } from '@kit.BasicServicesKit';
   import { i18n } from '@kit.LocalizationKit';
@@ -3333,9 +3381,9 @@ Localizes a file path for the specified locale.<br>For example, **/data/out/tmp*
 
 | Name| Type  | Mandatory| Description                    |
 | ------ | ------ | ---- | ------------------------ |
-| path | string | Yes  | Path to mirror, for example, **/data/out/tmp**.|
+| path | string | Yes  | Path to process, for example, **/data/out/tmp**.|
 | delimiter | string | No  | Path delimiter. The default value is **/**.|
-| locale | [Intl.Locale](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Intl/Locale) | No  | **Locale** object. The default value is the current system locale.|
+| locale | [Intl.Locale](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl/Locale) | No  | **Locale** object. The default value is the current system locale.|
 
 **Return value**
 
@@ -3420,7 +3468,7 @@ try {
 
 static convertCanonicalLocaleIdentifier(locale: string): string
 
-Adjusts a locale ID to a format that complies with the [BCP47](https://www.rfc-editor.org/info/bcp47) standard.
+Adjusts a locale ID to a format that complies with the [BCP47](https://www.rfc-editor.org/info/bcp47/) standard.
 
 **Since**: 26.0.0
 
@@ -3440,7 +3488,7 @@ Adjusts a locale ID to a format that complies with the [BCP47](https://www.rfc-e
 
 | Type    | Description                 |
 | ------ | ------------------- |
-| string | If the input locale ID is valid, a locale ID that complies with the [BCP47](https://www.rfc-editor.org/info/bcp47) standard will be returned. If the input locale ID is invalid, an empty string is returned.|
+| string | If the input locale ID is valid, a locale ID that complies with the [BCP47](https://www.rfc-editor.org/info/bcp47/) standard will be returned. If the input locale ID is invalid, an empty string is returned. |
 
 **Example**
 
@@ -3539,6 +3587,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
 
 **Example**
+
   ```ts
   import { BusinessError } from '@kit.BasicServicesKit';
   import { i18n } from '@kit.LocalizationKit';
@@ -3550,7 +3599,6 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
     console.error(`call Normalizer.getInstance failed, error code: ${err.code}, message: ${err.message}.`);
   }
   ```
-
 
 ### normalize<sup>10+</sup>
 
@@ -3583,6 +3631,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
 
 **Example**
+
   ```ts
   import { BusinessError } from '@kit.BasicServicesKit';
   import { i18n } from '@kit.LocalizationKit';
@@ -3610,7 +3659,6 @@ Enumerates text normalization modes.
 | NFD | 2 | NFD.|
 | NFKC | 3 | NFKC.|
 | NFKD | 4 | NFKD.|
-
 
 ## HolidayManager<sup>11+</sup>
 
@@ -3646,6 +3694,7 @@ For details about the error codes, see [ohos.i18n Error Codes](errorcode-i18n.md
 | 890001 | Invalid parameter. Possible causes: Parameter verification failed. |
 
 **Example**
+
   ```ts
   import { BusinessError } from '@kit.BasicServicesKit';
   import { i18n } from '@kit.LocalizationKit';
@@ -3673,7 +3722,7 @@ Determines whether the specified date is a holiday.
 
 |   Name |      Type     | Mandatory|     Description     |
 | --------- | ---------------| ---- | ------------- |
-| date      | Date           | No  | Date and time. Note: The month starts from **0**. For example, **0** indicates January.<br>The default value is the current date.|
+| date      | Date           | No   | Date and time.<br>**NOTE**<br>The month starts from **0**, indicating January.<br>The default value is the current date.|
 
 **Return value**
 
@@ -3690,6 +3739,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
 
 **Example**
+
   ```ts
   import { BusinessError } from '@kit.BasicServicesKit';
   import { i18n } from '@kit.LocalizationKit';
@@ -3704,7 +3754,6 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
     console.error(`call holidayManager.isHoliday failed, error code: ${err.code}, message: ${err.message}.`);
   }
   ```
-
 
 ### getHolidayInfoItemArray<sup>11+</sup>
 
@@ -3738,6 +3787,7 @@ For details about the error codes, see [ohos.i18n Error Codes](errorcode-i18n.md
 | 890001 | Invalid parameter. Possible causes: Parameter verification failed. |
 
 **Example**
+
   ```ts
   import { BusinessError } from '@kit.BasicServicesKit';
   import { i18n } from '@kit.LocalizationKit';
@@ -3781,7 +3831,6 @@ Represents the name of a holiday in different languages.
 | language        | string           |   No   |   No   | Language, for example, **ar**, **en**, or **tr**.         |
 | name            | string           |   No   |   No   | Local name of a holiday. For example, the Turkish name of Sacrifice Feast is Kurban Bayrami.     |
 
-
 ## i18n.getSimpleDateTimeFormatByPattern<sup>20+</sup>
 
 getSimpleDateTimeFormatByPattern(pattern: string, locale?: Intl.Locale): SimpleDateTimeFormat
@@ -3814,6 +3863,7 @@ For details about the error codes, see [i18n Error Codes](errorcode-i18n.md).
 | 8900001 | Invalid parameter. Possible causes: Parameter verification failed. |
 
 **Example**
+
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 import { i18n } from '@kit.LocalizationKit';
@@ -3861,6 +3911,7 @@ For details about the error codes, see [i18n Error Codes](errorcode-i18n.md).
 | 890001 | Invalid parameter. Possible causes: Parameter verification failed. |
 
 **Example**
+
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 import { i18n, intl } from '@kit.LocalizationKit';
@@ -3906,6 +3957,7 @@ For details about the error codes, see [i18n Error Codes](errorcode-i18n.md).
 | 8900001 | Invalid parameter. Possible causes: Parameter verification failed. |
 
 **Example**
+
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 import { i18n } from '@kit.LocalizationKit';
@@ -3953,6 +4005,7 @@ For details about the error codes, see [i18n Error Codes](errorcode-i18n.md).
 | 890001 | Invalid parameter. Possible causes: Parameter verification failed. |
 
 **Example**
+
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 import { i18n, intl } from '@kit.LocalizationKit';
@@ -3988,7 +4041,7 @@ Formats the date and time.
 
 | Name | Type  | Mandatory  | Description               |
 | ---- | ---- | ---- | ----------------- |
-| date | Date | Yes   | Date and time. Note: The month starts from **0**. For example, **0** indicates January.|
+| date | Date | Yes | Date and time.<br>**NOTE**<br>The month starts from **0**, indicating January. |
 
 **Return value**
 
@@ -3997,6 +4050,7 @@ Formats the date and time.
 | string | String of the formatted date and time.|
 
 **Example**
+
   ```ts
   import { BusinessError } from '@kit.BasicServicesKit';
   import { i18n } from '@kit.LocalizationKit';
@@ -4054,6 +4108,7 @@ For details about the error codes, see [i18n Error Codes](errorcode-i18n.md).
 | 8900001 | Invalid parameter. Possible causes: Parameter verification failed. |
 
 **Example**
+
 ```ts
 import { i18n } from '@kit.LocalizationKit';
 
@@ -4082,7 +4137,7 @@ Formats the date and time into a date and time string that uses custom symbols.
 
 | Name | Type  | Mandatory  | Description               |
 | ---- | ---- | ---- | ----------------- |
-| date | Date \| number | No   | Date and time object or the millisecond value corresponding to the date and time. The default value is the current system time.|
+| date | Date \| number | No | Date and time object or the millisecond value corresponding to the date and time. In the date and time object, the month starts from **0**, indicating January.<br>The default value is the system time. |
 
 **Return value**
 
@@ -4091,6 +4146,7 @@ Formats the date and time into a date and time string that uses custom symbols.
 | string | Date and time string that uses custom symbols.|
 
 **Example**
+
 ```ts
 import { i18n } from '@kit.LocalizationKit';
 
@@ -4120,7 +4176,7 @@ Formats the date and time and returns an array of date and time elements using c
 
 | Name | Type  | Mandatory  | Description               |
 | ---- | ---- | ---- | ----------------- |
-| date | Date \| number | No   | Date and time object or the millisecond value corresponding to the date and time. The default value is the current system time.|
+| date | Date \| number | No | Date and time object or the millisecond value corresponding to the date and time. In the date and time object, the month starts from **0**, indicating January.<br>The default value is the system time. |
 
 **Return value**
 
@@ -4129,6 +4185,7 @@ Formats the date and time and returns an array of date and time elements using c
 | Intl.DateTimeFormatPart[] | Array of date and time elements using custom symbols.|
 
 **Example**
+
 ```ts
 import { i18n } from '@kit.LocalizationKit';
 
@@ -4158,8 +4215,8 @@ Formats the date and time range. This API does not support custom symbols curren
 
 | Name | Type  | Mandatory  | Description               |
 | ---- | ---- | ---- | ----------------- |
-| startDate | Date \| number \| bigint | Yes   | Date and time object or the millisecond value corresponding to the date and time.|
-| endDate | Date \| number \| bigint | Yes   | Date and time object or the millisecond value corresponding to the date and time.|
+| startDate | Date \| number \| bigint | Yes    | Date and time object or the millisecond value corresponding to the date and time. In the date and time object, the month starts from **0**, indicating January. |
+| endDate | Date \| number \| bigint | Yes    | Date and time object or the millisecond value corresponding to the date and time. In the date and time object, the month starts from **0**, indicating January. |
 
 **Return value**
 
@@ -4168,6 +4225,7 @@ Formats the date and time range. This API does not support custom symbols curren
 | string | String of the formatted date and time range.|
 
 **Example**
+
 ```ts
 import { i18n } from '@kit.LocalizationKit';
 
@@ -4199,8 +4257,8 @@ Formats a date and time range into an array of date and time elements. This API 
 
 | Name | Type  | Mandatory  | Description               |
 | ---- | ---- | ---- | ----------------- |
-| startDate | Date \| number \| bigint | Yes   | Date and time object or the millisecond value corresponding to the date and time.|
-| endDate | Date \| number \| bigint | Yes   | Date and time object or the millisecond value corresponding to the date and time.|
+| startDate | Date \| number \| bigint | Yes | Date and time object or the millisecond value corresponding to the date and time. In the date and time object, the month starts from **0**, indicating January. |
+| endDate | Date \| number \| bigint | Yes | Date and time object or the millisecond value corresponding to the date and time. In the date and time object, the month starts from **0**, indicating January. |
 
 **Return value**
 
@@ -4209,6 +4267,7 @@ Formats a date and time range into an array of date and time elements. This API 
 | Intl.DateTimeRangeFormatPart[] | Array of date and time range elements.|
 
 **Example**
+
 ```ts
 import { i18n } from '@kit.LocalizationKit';
 
@@ -4220,6 +4279,53 @@ let formatter = new i18n.SymbolDateTimeFormat(locale, {
 let startDate = new Date(2026, 3, 27, 14, 20, 0);
 let endDate = new Date(2026, 3, 27, 18, 20, 0);
 let parts = formatter.formatRangeToParts(startDate, endDate); // parts[0].type = 'dayPeriod'
+```
+
+### parse
+
+parse(text: string, lenientMode: boolean): number
+
+Parses a localized date and time string and returns the corresponding timestamp.
+
+**Since**: 26.0.0
+
+**Atomic service API**: This API can be used in atomic services since API version 26.0.0.
+
+**System capability**: SystemCapability.Global.I18n
+
+**Model restriction**: This API can be used only in the stage model.
+
+**Parameters**
+
+| Name  | Type   | Mandatory   | Description                |
+| ---- | ---- | ---- | ----------------- |
+| text | string | Yes    | Localized date and time string to parse. |
+| lenientMode | boolean | Yes    | Whether to use the lenient mode. The value **true** means to use the lenient mode, and **false** means the opposite.<br>In lenient mode, date and time values that do not follow conventional logic can be processed. For example, "May 32" is automatically converted to "June 1" for parsing. |
+
+**Return value**
+
+| Type                     | Description    |
+| ---------------------- | ----- |
+| number | Timestamp corresponding to the parsed date and time string, in milliseconds (ms). |
+
+**Error codes**
+
+For details about the error codes, see [i18n Error Codes](errorcode-i18n.md).
+
+| ID  | Error Message                   |
+| ------ | ---------------------- |
+| 8900001 | Invalid parameter. Possible causes: Parameter verification failed. |
+
+**Example:**
+
+```ts
+import { i18n } from '@kit.LocalizationKit';
+
+let locale = new Intl.Locale('zh-Hans-CN');
+let formatter = new i18n.SymbolDateTimeFormat(locale, {
+  dateStyle: 'full'
+});
+let result = formatter.parse('Sunday, May 10, 2026', false); // result = 1778342400000
 ```
 
 ### resolvedOptions
@@ -4243,6 +4349,7 @@ Parses the configuration items for customizing the date and time symbols.
 | [ResolvedSymbolDateTimeFormatOptions](#resolvedsymboldatetimeformatoptions)  | Parsing result of the configuration items of the time and date formatting object using custom symbols.|
 
 **Example**
+
 ```ts
 import { i18n } from '@kit.LocalizationKit';
 
@@ -4312,6 +4419,7 @@ Creates an object for formatting the time and date that needs to be displayed in
 | options | [StyledDateTimeFormatOptions](#styleddatetimeformatoptions23) | No| Specifies the configuration items of the time and date formatting object. The default value is the default text style. |
 
 **Example**
+
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 import { i18n } from '@kit.LocalizationKit';
@@ -4351,7 +4459,7 @@ try {
 
 format(date: Date): StyledString
 
-Formats the date and time as a rich text object.
+Formats the date and time and returns a rich text object.
 
 **Atomic service API**: This API can be used in atomic services since API version 23.
 
@@ -4361,7 +4469,7 @@ Formats the date and time as a rich text object.
 
 |   Name |      Type     | Mandatory|     Description     |
 | --------- | ------------- | ---- | ------------- |
-| date | Date | Yes| Date and time to be formatted. |
+| date | Date | Yes | Date and time.<br>**NOTE**<br>The month starts from **0**, indicating January. |
 
 **Return value**
 
@@ -4370,6 +4478,7 @@ Formats the date and time as a rich text object.
 | [StyledString](../apis-arkui/arkui-ts/ts-universal-styled-string.md#styledstring) | Rich text object after formatting.|
 
 **Example**
+
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 import { i18n } from '@kit.LocalizationKit';
@@ -4438,9 +4547,10 @@ Creates a date formatting object that complies with ISO 8601.
 
 | Name| Type  | Mandatory| Description                    |
 | ------ | ------ | ---- | ------------------------ |
-| options | [ISO8601DateTimeFormatOptions](#iso8601datetimeformatoptions) | No   | Options for creating a date formatting object that complies with ISO 8601. The default value is an **ISO8601DateTimeFormatOptions** object with all properties set to their default values.|
+| options | [ISO8601DateTimeFormatOptions](#iso8601datetimeformatoptions) | No | Configuration options for creating a date formatting object that complies with ISO 8601. Default value: configuration options with all properties set to their default values. |
 
 **Example**
+
 ```ts
 let formatter = new i18n.ISO8601DateTimeFormat({
   dateFormat: 'calendar',
@@ -4467,15 +4577,16 @@ Formats the date and time into a date and time string that complies with ISO 860
 
 | Name | Type  | Mandatory  | Description               |
 | ---- | ---- | ---- | ----------------- |
-| date | Date | Yes   | Date and time. The month starts from **0**, indicating January.|
+| date | Date | Yes | Date and time.<br>**NOTE**<br>The month starts from **0**, indicating January. |
 
 **Return value**
 
 | Type                    | Description   |
 | ---------------------- | ----- |
-| string | String of the formatted date and time.|
+| string | Date and time string that complies with ISO 8601. |
 
 **Example**
+
 ```ts
 let formatter = new i18n.ISO8601DateTimeFormat({
   dateFormat: 'calendar',
@@ -4487,7 +4598,7 @@ let result = formatter.format(new Date(2026, 2, 15, 12, 0, 0));
 
 ## ISO8601DateTimeFormatOptions
 
-Describes options for creating a date formatting object that complies with ISO 8601.
+Describes the configuration options for creating a date formatting object that complies with ISO 8601.
 
 **Since**: 26.0.0
 
@@ -4537,6 +4648,7 @@ For details about the error codes, see [i18n Error Codes](errorcode-i18n.md).
 | 8900001 | Invalid parameter. Possible causes: Parameter verification failed. |
 
 **Example**
+
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 import { i18n } from '@kit.LocalizationKit';
@@ -4584,6 +4696,7 @@ For details about the error codes, see [i18n Error Codes](errorcode-i18n.md).
 | 890001 | Invalid parameter. Possible causes: Parameter verification failed. |
 
 **Example**
+
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 import { i18n, intl } from '@kit.LocalizationKit';
@@ -4628,6 +4741,7 @@ Formats a number.
 | string | Formatted number.|
 
 **Example**
+
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 import { i18n } from '@kit.LocalizationKit';
@@ -4668,6 +4782,7 @@ Creates a number formatting object that uses custom symbols.
 | options | [SymbolNumberFormatOptions](#symbolnumberformatoptions) | No   | Configuration items for number formatting using custom symbols. The default value is the locale's default symbol set.|
 
 **Example**
+
 ```ts
 import { i18n } from '@kit.LocalizationKit';
 
@@ -4706,6 +4821,7 @@ Formats a number and returns a numeric string using a custom symbol.
 | string | Numeric string that uses a custom symbol.|
 
 **Example**
+
 ```ts
 import { i18n } from '@kit.LocalizationKit';
 
@@ -4745,6 +4861,7 @@ Formats a number and returns an array of numeric elements using custom symbols.
 | Intl.NumberFormatPart[] | Array of numeric elements using custom symbols.|
 
 **Example**
+
 ```ts
 import { i18n } from '@kit.LocalizationKit';
 
@@ -4785,6 +4902,7 @@ Formats a number range and returns a number range string using custom symbols.
 | string | Number range string using custom symbols.|
 
 **Example**
+
 ```ts
 import { i18n } from '@kit.LocalizationKit';
 
@@ -4825,6 +4943,7 @@ Formats a number range and returns an array of numeric elements using custom sym
 | Intl.NumberFormatPart[] | Array of numeric elements using custom symbols.|
 
 **Example**
+
 ```ts
 import { i18n } from '@kit.LocalizationKit';
 
@@ -4835,6 +4954,51 @@ let formatter = new i18n.SymbolNumberFormat(locale, {
   zero: '(0)'
 });
 let result = formatter.formatRangeToParts(10, 20); // result[0].type = 'integer'
+```
+
+### parse
+
+parse(text: string, lenientMode: boolean): number
+
+Parses a localized numeric string and returns the corresponding number. It cannot correctly parse localized numeric strings that use custom symbols.
+
+**Since**: 26.0.0
+
+**Atomic service API**: This API can be used in atomic services since API version 26.0.0.
+
+**System capability**: SystemCapability.Global.I18n
+
+**Model restriction**: This API can be used only in the stage model.
+
+**Parameters**
+
+| Name  | Type   | Mandatory   | Description                |
+| ---- | ---- | ---- | ----------------- |
+| text | string | Yes    | Localized number string to parse. |
+| lenientMode | boolean | Yes    | Whether to use the lenient mode. The value **true** means to use the lenient mode, and **false** means the opposite.<br>In lenient mode, incorrect thousand separators can be recognized. For example, "1,23,456" can be correctly parsed as "123456". |
+
+**Return value**
+
+| Type                     | Description    |
+| ---------------------- | ----- |
+| number | Number parsed from the localized number string. |
+
+**Error codes**
+
+For details about the error codes, see [i18n Error Codes](errorcode-i18n.md).
+
+| ID  | Error Message                   |
+| ------ | ---------------------- |
+| 8900001 | Invalid parameter. Possible causes: Parameter verification failed. |
+
+**Example:**
+
+```ts
+import { i18n } from '@kit.LocalizationKit';
+
+let locale = new Intl.Locale('zh-Hans-CN');
+let formatter = new i18n.SymbolNumberFormat(locale);
+let result = formatter.parse('125 m', false); // result = 125
 ```
 
 ### resolvedOptions
@@ -4858,6 +5022,7 @@ Parses the configuration items for customizing number symbols.
 | [ResolvedSymbolNumberFormatOptions](#resolvedsymbolnumberformatoptions)  | Parsing result of the configuration items of the number formatting object using custom symbols.|
 
 **Example**
+
 ```ts
 import { i18n } from '@kit.LocalizationKit';
 
@@ -4912,7 +5077,6 @@ Describes the parsing result of the configuration items of the number formatting
 | infinity     | string  |   No   |   Yes  |  Infinity symbol. The default value is the locale's default symbol.  |
 | groupingSeparator     | string |   No   |   Yes  |  Grouping symbol. The default value is the locale's default symbol.  |
 
-
 ## StyledNumberFormat<sup>18+</sup>
 
 Performs rich text number formatting.
@@ -4941,6 +5105,7 @@ Creates a **NumberFormat** object for rich text display.
 | options | [StyledNumberFormatOptions](#stylednumberformatoptions18) | No| Configuration options of the **NumberFormat** object. The default value is the default text style. |
 
 **Example**
+
   ```ts
   import { BusinessError } from '@kit.BasicServicesKit';
   import { i18n, intl } from '@kit.LocalizationKit';
@@ -4993,6 +5158,7 @@ Creates a **NumberFormat** object for rich text display.
 | options | [StyledNumberFormatOptions](#stylednumberformatoptions18) | No| Configuration options of the **NumberFormat** object. The default value is the default text style. |
 
 **Example**
+
   ```ts
   import { BusinessError } from '@kit.BasicServicesKit';
   import { i18n } from '@kit.LocalizationKit';
@@ -5050,6 +5216,7 @@ Formats a number as a rich text object.
 | [StyledString](../apis-arkui/arkui-ts/ts-universal-styled-string.md#styledstring) | Rich text object after formatting.|
 
 **Example**
+
   ```ts
   import { BusinessError } from '@kit.BasicServicesKit';
   import { i18n } from '@kit.LocalizationKit';
@@ -5105,7 +5272,7 @@ Represents optional configuration items for the **NumberFormat** object.
 
 ## AdvancedMeasureFormat<sup>23+</sup>
 
-Provides the number formatting capability.
+Provides the number formatting capability, supporting automatic conversion to the appropriate unit based on the usage scenario.
 
 **Atomic service API**: This API can be used in atomic services since API version 23.
 
@@ -5133,6 +5300,7 @@ Creates a **NumberForma**t object for the specified locale.
 | options | [AdvancedMeasureFormatOptions](#advancedmeasureformatoptions23) | No| Configuration options of the **NumberFormat** object. Default value: Same as [numberFormat](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl/NumberFormat) |
 
 **Example**
+
   ```ts
   import { i18n } from '@kit.LocalizationKit';
 
@@ -5167,6 +5335,7 @@ Formats a number.
 | string | Formatted text.|
 
 **Example**
+
   ```ts
   import { i18n } from '@kit.LocalizationKit';
 
@@ -5252,6 +5421,7 @@ Obtains the localized name of the specified country/region.
 | string | Localized script for the specified country.|
 
 **Example**
+
   ```ts
   import { i18n } from '@kit.LocalizationKit';
 
@@ -5284,13 +5454,13 @@ Obtains the localized script for the specified language.
 | string | Localized script for the specified language.|
 
 **Example**
+
   ```ts
   import { i18n } from '@kit.LocalizationKit';
 
   let languageName: string = i18n.getDisplayLanguage('zh', 'en-GB', true); // languageName = 'Chinese'
   languageName = i18n.getDisplayLanguage('zh', 'en-GB'); // languageName = 'Chinese'
   ```
-
 
 ## i18n.getSystemLanguage<sup>(deprecated)</sup>
 
@@ -5309,12 +5479,12 @@ Obtains the system language.
 | string | System language ID.|
 
 **Example**
+
   ```ts
   import { i18n } from '@kit.LocalizationKit';
 
   let systemLanguage: string = i18n.getSystemLanguage();
   ```
-
 
 ## i18n.getSystemRegion<sup>(deprecated)</sup>
 
@@ -5333,12 +5503,12 @@ Obtains the system region.
 | string | System region ID.|
 
 **Example**
+
   ```ts
   import { i18n } from '@kit.LocalizationKit';
 
   let region: string = i18n.getSystemRegion();
   ```
-
 
 ## i18n.getSystemLocale<sup>(deprecated)</sup>
 
@@ -5357,12 +5527,12 @@ Obtains the system locale.
 | string | System locale ID.|
 
 **Example**
+
   ```ts
   import { i18n } from '@kit.LocalizationKit';
 
   let locale: string = i18n.getSystemLocale();
   ```
-
 
 ## i18n.is24HourClock<sup>(deprecated)</sup>
 
@@ -5381,12 +5551,12 @@ Checks whether the 24-hour clock is used.
 | boolean | **true** if the 24-hour clock is used, and **false** otherwise.|
 
 **Example**
+
   ```ts
   import { i18n } from '@kit.LocalizationKit';
 
   let is24HourClock: boolean = i18n.is24HourClock();
   ```
-
 
 ## i18n.set24HourClock<sup>(deprecated)</sup>
 
@@ -5413,13 +5583,13 @@ Sets the 24-hour clock.
 | boolean | **true** if the setting is successful, and **false** otherwise.|
 
 **Example**
+
   ```ts
   import { i18n } from '@kit.LocalizationKit';
 
   // Set the system time to the 24-hour clock.
   let success: boolean = i18n.set24HourClock(true);
   ```
-
 
 ## i18n.addPreferredLanguage<sup>(deprecated)</sup>
 
@@ -5447,6 +5617,7 @@ Adds a preferred language to the specified position on the preferred language li
 | boolean | **true** if the operation is successful, and **false** otherwise.|
 
 **Example**
+
   ```ts
   import { i18n } from '@kit.LocalizationKit';
 
@@ -5455,7 +5626,6 @@ Adds a preferred language to the specified position on the preferred language li
   let index: number = 0;
   let success: boolean = i18n.addPreferredLanguage(language, index);
   ```
-
 
 ## i18n.removePreferredLanguage<sup>(deprecated)</sup>
 
@@ -5482,6 +5652,7 @@ Removes a preferred language from the specified position on the preferred langua
 | boolean | Whether the operation is successful. The value **true** indicates that the operation is successful, and the value **false** indicates the opposite.|
 
 **Example**
+
   ```ts
   import { i18n } from '@kit.LocalizationKit';
 
@@ -5489,7 +5660,6 @@ Removes a preferred language from the specified position on the preferred langua
   let index: number = 0;
   let success: boolean = i18n.removePreferredLanguage(index);
   ```
-
 
 ## i18n.getPreferredLanguageList<sup>(deprecated)</sup>
 
@@ -5508,12 +5678,12 @@ Obtains the list of preferred languages.
 | Array&lt;string&gt; | List of preferred languages.|
 
 **Example**
+
   ```ts
   import { i18n } from '@kit.LocalizationKit';
 
   let preferredLanguageList: Array<string> = i18n.getPreferredLanguageList();
   ```
-
 
 ## i18n.getFirstPreferredLanguage<sup>(deprecated)</sup>
 
@@ -5532,15 +5702,14 @@ Obtains the first language in the preferred language list.
 | string | First language in the preferred language list.|
 
 **Example**
+
   ```ts
   import { i18n } from '@kit.LocalizationKit';
 
   let firstPreferredLanguage: string = i18n.getFirstPreferredLanguage();
   ```
 
-
 ## Util<sup>(deprecated)</sup>
-
 
 ### unitConvert<sup>(deprecated)</sup>
 
@@ -5568,9 +5737,7 @@ Converts one measurement unit into another and formats the unit based on the spe
 | ------ | ----------------------- |
 | string | String obtained after formatting based on the measurement unit specified by **toUnit**.|
 
-
 ## Character<sup>(deprecated)</sup>
-
 
 ### isDigit<sup>(deprecated)</sup>
 
@@ -5594,7 +5761,6 @@ Checks whether the input character is a digit.
 | ------- | ------------------------------------ |
 | boolean | **true** if the input character is a digit, and **false** otherwise.|
 
-
 ### isSpaceChar<sup>(deprecated)</sup>
 
 isSpaceChar(ch: string): boolean
@@ -5616,7 +5782,6 @@ Checks whether the input character is a space.
 | Type     | Description                                    |
 | ------- | -------------------------------------- |
 | boolean | **true** if the input character is a space, and **false** otherwise.|
-
 
 ### isWhitespace<sup>(deprecated)</sup>
 
@@ -5640,7 +5805,6 @@ Checks whether the input character is a whitespace character.
 | ------- | -------------------------------------- |
 | boolean | **true** if the input character is a white space, and **false** otherwise.|
 
-
 ### isRTL<sup>(deprecated)</sup>
 
 isRTL(ch: string): boolean
@@ -5662,7 +5826,6 @@ Checks whether the input character is of the right to left (RTL) language.
 | Type     | Description                                      |
 | ------- | ---------------------------------------- |
 | boolean | **true** if the input character is of the RTL language, and **false** otherwise.|
-
 
 ### isIdeograph<sup>(deprecated)</sup>
 
@@ -5686,7 +5849,6 @@ Checks whether the input character is an ideographic character.
 | ------- | ---------------------------------------- |
 | boolean | **true** if the input character an ideographic character, and **false** otherwise.|
 
-
 ### isLetter<sup>(deprecated)</sup>
 
 isLetter(ch: string): boolean
@@ -5708,7 +5870,6 @@ Checks whether the input character is a letter.
 | Type     | Description                                  |
 | ------- | ------------------------------------ |
 | boolean | **true** if the input character a letter, and **false** otherwise.|
-
 
 ### isLowerCase<sup>(deprecated)</sup>
 
@@ -5732,7 +5893,6 @@ Checks whether the input character is a lowercase letter.
 | ------- | ---------------------------------------- |
 | boolean | **true** if the input character a lowercase letter, and **false** otherwise.|
 
-
 ### isUpperCase<sup>(deprecated)</sup>
 
 isUpperCase(ch: string): boolean
@@ -5754,7 +5914,6 @@ Checks whether the input character is an uppercase letter.
 | Type     | Description                                      |
 | ------- | ---------------------------------------- |
 | boolean | **true** if the input character an uppercase letter, and **false** otherwise.|
-
 
 ### getType<sup>(deprecated)</sup>
 

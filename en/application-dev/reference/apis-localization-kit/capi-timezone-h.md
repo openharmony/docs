@@ -6,6 +6,7 @@
 <!--Designer: @sunyaozu-->
 <!--Tester: @lpw_work-->
 <!--Adviser: @ningningW-->
+<!-- md-trans-meta sourceCommit=635c96c73146bacf985d294d6e608687bbdae586 translatedAt=2026-07-30T09:54:00.520Z pushedAt=2026-07-31T01:22:45.881Z -->
 
 ## Overview
 
@@ -105,7 +106,6 @@ Enumerates the time rule types.
 | WALL_TIME = 0 | Local clock time (not subject to time zone offset).|
 | STANDARD_TIME = 1 | Local standard time (not subject to DST offset).|
 | UTC_TIME = 2 | World standard time (UTC time).|
-
 
 ## Function Description
 
@@ -371,8 +371,8 @@ Obtains the start time of the time zone rule at the specified index based on Tim
 | Name| Description|
 | -- | -- |
 | [TimeArrayTimeZoneRule](capi-i18n-timearraytimezonerule.md)* rule | Time zone rule [TimeArrayTimeZoneRule](capi-i18n-timearraytimezonerule.md) defined by the start timestamp array.|
-| int32_t index | Index of the start time.|
-| double* result | Start time of the rule.|
+| int32_t index | Index of the start time. Value range: [0, rule.numStartTimes - 1]. |
+| double* result | Time when the rule takes effect, in milliseconds. The value is Unix timestamp. |
 
 **Returns**
 
