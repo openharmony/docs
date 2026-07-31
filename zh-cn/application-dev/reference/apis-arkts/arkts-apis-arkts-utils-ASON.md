@@ -153,9 +153,9 @@ let options2: ArkTSUtils.ASON.ParseOptions = {
 }
 let mapText = '{"largeNumber":112233445566778899}';
 let parsedMap = ArkTSUtils.ASON.parse(mapText, undefined, options2);
-console.info("parsedMap is " + parsedMap);
+console.info(`parsedMap is ${parsedMap}`);
 // 期望输出：parsedMap is [object SendableMap]
-console.info("largeNumber is " + (parsedMap as collections.Map<string,bigint>).get("largeNumber"));
+console.info(`largeNumber is ${(parsedMap as collections.Map<string,bigint>).get("largeNumber")}`);
 // 期望输出：largeNumber is 112233445566778899
 ```
 

@@ -40,9 +40,9 @@ constructor()
 
 构造函数，用于创建一个空ArkTS Uint16Array对象。
 
-**系统能力：** SystemCapability.Utils.Lang
-
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Utils.Lang
 
 **错误码：**
 
@@ -102,7 +102,7 @@ constructor(elements: Iterable\<number>)
 
 | 参数名  | 类型   | 必填 | 说明                                                         |
 | ------- | ------ | ---- | ------------------------------------------------------------ |
-| elements |  Iterable\<number> | 是 | 可迭代数字集合，用于构造ArkTS Uint16Array对象，每个元素的取值范围为 0 到 2^16-1，即 0 到 65535。 |
+| elements |  Iterable\<number> | 是 | 可迭代数字集合，用于构造ArkTS Uint16Array对象，每个元素的取值范围为0到2^16-1，即0到65535。如果元素超出此范围，该元素会通过取模运算转换为0~65535范围内的值（即执行 value & 0xFFFF 操作）。 |
 
 **错误码：**
 
@@ -196,10 +196,10 @@ constructor(buffer: ArrayBuffer, byteOffset?: number, length?: number)
 
 ```ts
 let uint16Array: collections.Uint16Array = collections.Uint16Array.from([1, 2, 3, 4, 5, 6]);
-console.info("byteLength: " + uint16Array.buffer.byteLength); // byteLength: 12
-// 从uint16Array对应buffer第2个字节开始，长度为5
+console.info(`byteLength: ${uint16Array.buffer.byteLength}`); // byteLength: 12
+// 从uint16Array对应buffer第3个字节开始，长度为5
 let uint16Array1: collections.Uint16Array = new collections.Uint16Array(uint16Array.buffer, 2, 5);
-console.info("[" + uint16Array1 + "]"); // [2, 3, 4, 5, 6]
+console.info(`[${uint16Array1}]`); // [2, 3, 4, 5, 6]
 ```
 
 ## from
@@ -377,7 +377,7 @@ console.info(stringArray); // 预期输出：1,2,3,4,5
 
 toLocaleString(): string
 
-根据当前应用的系统地区获取符合当前文化习惯的数字表示形式，让每个元素调用自己的toLocaleString方法把数字转换为字符串，然后使用逗号将每个元素的结果字符串按照顺序拼接成字符串。
+根据当前应用的系统地区获取符合当前文化习惯的数字表示形式，对每个元素调用toLocaleString方法，把数字转换为字符串，然后使用逗号将每个元素的结果字符串按照顺序拼接成字符串。
 
 **原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
@@ -422,7 +422,7 @@ copyWithin(target: number, start: number, end?: number): Uint16Array
 | ------- | ------ | ---- | ------------------------------------------------------------ |
 | target | number | 是 | 目标起始位置的下标，如果`target < 0`，则会从`target + Uint16Array.length`位置开始。 |
 | start | number | 是 | 源起始位置下标，如果`start < 0`，则会从`start + Uint16Array.length`位置开始。 |
-| end | number | 否 | 源终止位置下标（不包含end位置的元素），如果`end < 0`，则会从`end + Uint16Array.length`位置终止。默认为ArkTS Uint16Array的长度。|
+| end | number | 否 | 源终止位置下标（不包含end位置的元素），如果`end < 0`，则会到`end + Uint16Array.length`位置结束。默认为ArkTS Uint16Array的长度。|
 
 **返回值：**
 
@@ -536,7 +536,7 @@ fill(value: number, start?: number, end?: number): Uint16Array
 
 | 参数名  | 类型   | 必填 | 说明                                                      |
 | ------- | ------ | ---- | --------------------------------------------------------|
-| value | number | 是 | 待填充的值，取值范围为 0 到 2^16-1，即 0 到 65535。|
+| value | number | 是 | 待填充的值，取值范围为0到2^16-1，即0到65535。如果元素超出此范围，该元素会通过取模运算转换为0~65535范围内的值（即执行 value & 0xFFFF 操作）。|
 | start | number | 否 | 开始填充的索引，如果`start < 0`，则会从`start + Uint16Array.length`位置开始。默认值为0。|
 | end | number | 否 | 结束填充的索引（不包括该元素），如果`end < 0`，则会到`end + Uint16Array.length`位置结束。默认为ArkTS Uint16Array的长度。|
 
@@ -544,7 +544,7 @@ fill(value: number, start?: number, end?: number): Uint16Array
 
 | 类型         | 说明      |
 | ------------ | --------- |
-| Uint16Array | 填充后的Uint16Array。|
+| Uint16Array | 填充后的ArkTS Uint16Array。|
 
 **错误码：**
 
@@ -865,7 +865,7 @@ map(callbackFn: TypedArrayMapCallback\<number, Uint16Array>): Uint16Array
 
 ```ts
 let array: collections.Uint16Array = collections.Uint16Array.from([25, 36, 49]);
-const mapped: collections.Uint16Array = array.map(Math.sqrt); // Uint16Array [5, 6 ,7]
+const mapped: collections.Uint16Array = array.map(Math.sqrt); // Uint16Array [5, 6, 7]
 ```
 
 ## reduce
@@ -940,7 +940,7 @@ reduceRight(callbackFn: TypedArrayReduceCallback\<number, number, Uint16Array>):
 ```ts
 let array: collections.Uint16Array = collections.Uint16Array.from([1, 2, 3, 4, 5]);
 let reducedValue: number = array.reduceRight((accumulator: number, value: number) => accumulator + value);
-console.info(reducedValue + ''); // 预期输出： 15
+console.info(reducedValue + ''); // 预期输出：15
 ```
 
 ## reduce
@@ -1143,7 +1143,7 @@ slice(start?: number, end?: number): Uint16Array
 
 | 类型         | 说明      |
 | ------------ | --------- |
-| Uint16Array | 包含原ArkTS Uint16Array指定范围内容的新Uint16Array对象。 |
+| Uint16Array | 包含原ArkTS Uint16Array指定范围内容的新ArkTS Uint16Array对象。 |
 
 **错误码：**
 
@@ -1274,9 +1274,9 @@ at(index: number): number | undefined
 
 ```ts
 let array: collections.Uint16Array = collections.Uint16Array.from([1, 2, 3, 4, 5]);
-console.info("element: " + array.at(2));  // element: 3
-console.info("element: " + array.at(-1)); // element: 5
-console.info("element: " + array.at(6));  // element: undefined
+console.info(`element: ${array.at(2)}`);  // element: 3
+console.info(`element: ${array.at(-1)}`); // element: 5
+console.info(`element: ${array.at(6)}`);  // element: undefined
 ```
 
 ## includes
@@ -1314,9 +1314,9 @@ includes(searchElement: number, fromIndex?: number): boolean
 
 ```ts
 let array: collections.Uint16Array = collections.Uint16Array.from([1, 2, 3]);
-console.info("includes: " + array.includes(2));    // includes: true
-console.info("includes: " + array.includes(4));    // includes: false
-console.info("includes: " + array.includes(3, 3)); // includes: false
+console.info(`includes: ${array.includes(2)}`);    // includes: true
+console.info(`includes: ${array.includes(4)}`);    // includes: false
+console.info(`includes: ${array.includes(3, 3)}`); // includes: false
 ```
 
 ## entries
@@ -1348,9 +1348,9 @@ entries(): IterableIterator\<[number, number]>
 ```ts
 let array: collections.Uint16Array = collections.Uint16Array.from([11, 22, 33]);
 let iterator: IterableIterator<[number, number]> = array.entries();
-console.info("value: " + iterator.next().value); // value: 0,11
-console.info("value: " + iterator.next().value); // value: 1,22
-console.info("value: " + iterator.next().value); // value: 2,33
+console.info(`value: ${iterator.next().value}`); // value: 0,11
+console.info(`value: ${iterator.next().value}`); // value: 1,22
+console.info(`value: ${iterator.next().value}`); // value: 2,33
 ```
 
 ## keys
@@ -1383,7 +1383,7 @@ keys(): IterableIterator\<number>
 let array: collections.Uint16Array = collections.Uint16Array.from([1, 2, 3, 4, 5]);
 let iterator: IterableIterator<number> = array.keys();
 for (const key of iterator) {
-  console.info("" + key); // 依次输出 0,1,2,3,4
+  console.info(`${key}`); // 依次输出 0,1,2,3,4
 }
 ```
 
@@ -1417,7 +1417,7 @@ values(): IterableIterator\<number>
 let array: collections.Uint16Array = collections.Uint16Array.from([1, 2, 3, 4, 5]);
 let iterator: IterableIterator<number> = array.values();
 for (const value of iterator) {
-  console.info("" + value); // 依次输出 1,2,3,4,5
+  console.info(`${value}`); // 依次输出 1,2,3,4,5
 }
 ```
 
@@ -1485,5 +1485,5 @@ for (let item of uint16Array) {
 
 ```ts
 let uint16Array = collections.Uint16Array.from([1, 2, 4]);
-console.info("Element at index 1: ", uint16Array[1]);
+console.info(`Element at index 1: ${uint16Array[1]}`);
 ```

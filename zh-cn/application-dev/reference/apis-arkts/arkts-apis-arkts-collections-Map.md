@@ -346,7 +346,7 @@ delete(key: K): boolean
 ```ts
 // 创建Map对象
 const myMap = new collections.Map<string, string>([
-  ["hello", "world"],
+  ["hello", "world"]
 ]);
 // 删除Map中的指定键
 // Expected result: true
