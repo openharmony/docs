@@ -1,10 +1,12 @@
 # DRM_Statistics
+
 <!--Kit: Drm Kit-->
 <!--Subsystem: Multimedia-->
 <!--Owner: @qin_wei_jie-->
 <!--Designer: @chris2981-->
 <!--Tester: @xdlinc-->
 <!--Adviser: @w_Machine_cc-->
+<!-- md-trans-meta sourceCommit=29f3919446ee01733553b9b39493ee11224dad86 translatedAt=2026-07-31T02:12:20.893Z pushedAt=2026-07-31T03:50:32.440Z -->
 
 ```c
 typedef struct DRM_Statistics {...} DRM_Statistics
@@ -12,7 +14,7 @@ typedef struct DRM_Statistics {...} DRM_Statistics
 
 ## Overview
 
-The struct describes the metrics for a media key system.
+Statistics information of the MediaKeySystem.
 
 **Since**: 11
 
