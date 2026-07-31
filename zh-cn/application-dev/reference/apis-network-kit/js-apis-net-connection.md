@@ -2730,7 +2730,7 @@ let options: connection.TraceRouteOptions = {
 };
 
 connection.queryTraceRoute(dest, options).then((data: connection.TraceRouteInfo[]) => {
-    console.info('Succeeded to getdefaultHttpProxy:' + JSON.stringify(data));
+    console.info('Succeeded to getDefaultHttpProxy:' + JSON.stringify(data));
 }).catch((err: BusinessError) => {
     console.error(`Failed to get request. Code:${err.code}, message:${err.message}`);
 });
@@ -2789,7 +2789,7 @@ let duration: number = 10;
 connection.queryProbeResult(dest, duration).then((data: connection.ProbeResultInfo) => {
     console.info(`Succeeded to get LossRate: ${data.lossRate}, Succeeded to getRTT: ${data.rtt}`);
 }).catch((err: BusinessError) => {
-    console.error(`Failed to get request. Code:${error.code}, message:${error.message}`);
+    console.error(`Failed to get request. Code:${err.code}, message:${err.message}`);
 });
 ```
 
@@ -3251,7 +3251,7 @@ interface Data {
               port:8080,
               family:1} as socket.NetAddress, (error: Error) => {
       if (error) {
-        console.error(`Failed to bind.Code:${error.code}, message:${error.message}`);
+        console.error(`Failed to bind. Code:${error.code}, message:${error.message}`);
         return;
       }
       netHandle.bindSocket(tcp, (error: BusinessError, data: void) => {
@@ -3538,7 +3538,7 @@ connection.getDefaultNet().then((netHandle: connection.NetHandle) => {
   netHandle.getAddressesByNameWithOptions(host, option).then((data: connection.NetAddress[]) => {
     console.info(`Succeeded to get data: ${JSON.stringify(data)}`);
   }).catch((err: BusinessError) => {
-    console.error(`Failed to get addresses by name. Code:${error.code}, message:${error.message}`);
+    console.error(`Failed to get addresses by name. Code:${err.code}, message:${err.message}`);
   });
 });
 ```
