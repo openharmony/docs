@@ -47,7 +47,7 @@
 
 由于不同音频硬件设备通路多种多样，系统从设备获取的时间信息并无法确保准确，时间戳的计算过程也会存在一些预估值处理，因此与实际硬件数据时间并不完全对等，存在一定误差是正常的。
 
-典型的用途是音视频同步，音频时间戳在此场景的使用方式，可以参考：[音画同步最佳实践](https://developer.huawei.com/consumer/cn/doc/best-practices/bpta-audio-video-synchronization)。
+典型的用途是音视频同步，音频时间戳在此场景的使用方式，可以参考：[音画同步最佳实践](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides/audio-video-synchronization)。
 
 ## 音频性能分析方法
 

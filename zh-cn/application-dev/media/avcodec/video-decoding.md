@@ -1208,7 +1208,7 @@ target_link_libraries(sample PUBLIC libnative_media_vdec.so)
 
     硬件解码在处理buffer数据时（释放数据前），输出回调开发者收到的AVbuffer是宽、高对齐后的图像数据。
 
-一般需要获取数据的宽、高、跨距、像素格式来保证解码输出数据被正确地处理。
+    一般需要获取数据的宽、高、跨距、像素格式来保证解码输出数据被正确地处理。
 
     具体实现请参考：[Buffer模式](#buffer模式)的步骤3-调用OH_VideoDecoder_RegisterCallback()设置回调函数来获取数据的宽、高、跨距、像素格式。
 

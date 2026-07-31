@@ -73,7 +73,7 @@ setPlaybackStrategy(strategy: media.PlaybackStrategy): MovingPhotoViewAttribute
 **系统能力：** SystemCapability.FileManagement.PhotoAccessHelper.Core
 
 **参数：**
- 	 
+  
 | 参数名 | 类型                                                                          | 必填 | 说明                             |
 | ------ | ----------------------------------------------------------------------------- | ---- | -------------------------------- |
 | strategy  | [media.PlaybackStrategy](../../../application-dev/reference/apis-media-kit/arkts-apis-media-i.md#playbackstrategy12) | 是   | 设置动态照片边播边处理策略。 |
@@ -278,7 +278,7 @@ enableAutoPlay(enabled: boolean)
 | 202 | Non-system applications are not allowed to use system APIs. |
 
 ### notifyMovingPhotoTransition<sup>23+</sup>
- 	 
+  
 notifyMovingPhotoTransition(): void
 
 通知组件执行封面图的过渡动效。

@@ -10,7 +10,7 @@
 
 ## 开发步骤
 
-详细的相机功能API说明请参考Camera模块描述[OH_Camera](../../reference/apis-camera-kit/arkts-apis-camera.md)。
+详细的相机功能API说明请参考Camera[模块描述](../../reference/apis-camera-kit/arkts-apis-camera.md)OH_Camera。
 
 1. 导入依赖模块。
 

@@ -341,7 +341,7 @@
       }
       ```
 
-5. 在音频模板系统应用退出时及时取消事件监听，并释放资源。注销音频模板接口详情请查看[@ohos.multimedia.avMusicTemplate(音频模板)(系统接口)](../../reference/apis-avsession-kit/js-apis-avMusicTemplate-sys.md)，注销事件监听接口详情请查看[AVMusicTemplateController](../../reference/apis-avsession-kit/arkts-apis-avMusicTemplate-AVMusicTemplateController.md)。
+5. 在音频模板系统应用退出时及时取消事件监听，并释放资源。注销音频模板接口详情请查看[@ohos.multimedia.avMusicTemplate (音频模板)(系统接口)](../../reference/apis-avsession-kit/js-apis-avMusicTemplate-sys.md)，注销事件监听接口详情请查看[AVMusicTemplateController](../../reference/apis-avsession-kit/arkts-apis-avMusicTemplate-AVMusicTemplateController.md)。
 
    ``` TypeScript
    import { avMusicTemplate } from '@kit.AVSessionKit';
