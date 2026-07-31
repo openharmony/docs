@@ -2,10 +2,11 @@
 
 <!--Kit: Performance Analysis Kit-->
 <!--Subsystem: HiviewDFX-->
-<!--Owner: @qq_437963121-->
-<!--Designer: @kutcherzhou1; @MontSaintMichel-->
+<!--Owner: @yu_haoqiaida-->
+<!--Designer: @MontSaintMichel-->
 <!--Tester: @gcw_KuLfPSbe-->
-<!--Adviser: @foryourself-->
+<!--Adviser: @jinqiuheng-->
+<!-- md-trans-meta sourceCommit=2adb7aac313c0d1259fce6baf2f9705077b01aa9 translatedAt=2026-07-31T01:33:44.045Z pushedAt=2026-07-31T07:55:55.026Z -->
 
 ## Available APIs
 
@@ -13,35 +14,34 @@ The APIs for distributed call chain tracing are provided by the **HiTraceChain**
 
 The following table lists the APIs provided by HiTraceChain for implementing the basic distributed tracing functionality. The corresponding APIs are also available in ArkTS.
 
-| API| Description| 
+| API| Description|
 | -------- | -------- |
-| HiTraceId OH_HiTrace_BeginChain(const char \*name, int flags) | Starts call chain tracing and returns the created **HiTraceId**.| 
-| void OH_HiTrace_EndChain() | Stops call chain tracing.| 
-| HiTraceId OH_HiTrace_GetId() | Obtains the trace ID in TLS of the calling thread.| 
-| void OH_HiTrace_SetId(const HiTraceId \*id) | Sets the trace ID in TLS of the calling thread to **id**.| 
-| void OH_HiTrace_ClearId(void) | Clears the trace ID of the current thread.| 
-| HiTraceId OH_HiTrace_CreateSpan(void) | Creates a trace span. Specifically, create a **HiTraceId**, use the **chainId** and **spanId** in the Thread-Local Storage (TLS) of the current thread to initialize the **chainId** and **parentSpanId** of the **HiTraceId**, generate a new **spanId** for the **HiTraceId**, and return the **HiTraceId**.| 
-| bool OH_HiTrace_IsIdValid(const HiTraceId \*id) | Checks whether the **HiTraceId** is valid.<br>The value **true** indicates that **HiTraceId** is valid, and **false** indicates the opposite.| 
-| bool OH_HiTrace_IsFlagEnabled(const HiTraceId \*id, HiTrace_Flag flag) | Checks whether the trace flag specified by **HiTraceId** is enabled.<br>The value **true** indicates that the specified trace flag is enabled, and **false** indicates the opposite.| 
-| void OH_HiTrace_EnableFlag(const HiTraceId \*id, HiTrace_Flag flag) | Enables the trace flag specified in **HiTraceId**.| 
-| void OH_HiTrace_Tracepoint(HiTrace_Communication_Mode mode, HiTrace_Tracepoint_Type type, const HiTraceId \*id, const char \*fmt, ...) | Adds a trace point for the HiTraceMeter logging.| 
+| HiTraceId OH_HiTrace_BeginChain(const char \*name, int flags) | Starts call chain tracing and returns the created **HiTraceId**.|
+| void OH_HiTrace_EndChain() | Stops call chain tracing.|
+| HiTraceId OH_HiTrace_GetId() | Obtains the trace ID in TLS of the calling thread.|
+| void OH_HiTrace_SetId(const HiTraceId \*id) | Sets the trace ID in TLS of the calling thread to **id**.|
+| void OH_HiTrace_ClearId(void) | Clears the trace ID of the current thread.|
+| HiTraceId OH_HiTrace_CreateSpan(void) | Creates a trace span. Specifically, create a **HiTraceId**, use the **chainId** and **spanId** in the Thread-Local Storage (TLS) of the current thread to initialize the **chainId** and **parentSpanId** of the **HiTraceId**, generate a new **spanId** for the **HiTraceId**, and return the **HiTraceId**.|
+| bool OH_HiTrace_IsIdValid(const HiTraceId \*id) | Checks whether a **HiTraceId** is valid.<br>**true**: The HiTraceId is valid; **false**: The **HiTraceId** is invalid. |
+| bool OH_HiTrace_IsFlagEnabled(const HiTraceId \*id, HiTrace_Flag flag) | Checks whether a specified trace flag in a **HiTraceId** is enabled.<br>**true**: The specified trace flag is enabled; **false**: The specified trace flag is not enabled. |
+| void OH_HiTrace_EnableFlag(const HiTraceId \*id, HiTrace_Flag flag) | Enables the trace flag specified in **HiTraceId**.|
+| void OH_HiTrace_Tracepoint(HiTrace_Communication_Mode mode, HiTrace_Tracepoint_Type type, const HiTraceId \*id, const char \*fmt, ...) | Adds a trace point for the HiTraceMeter logging.|
 
-The following table describes the APIs provided to extend **HiTraceId**. These APIs are available only in C/C++.
+The APIs listed in the following table provide extended operations on **HiTraceId**. These APIs are available only in C/C++.
 
-| API| Description| 
+| API| Description|
 | -------- | -------- |
-| void OH_HiTrace_InitId(HiTraceId \*id) | Initializes a **HiTraceId**.| 
-| int OH_HiTrace_GetFlags(const HiTraceId \*id) | Obtains the trace flag set in **HiTraceId**.| 
-| void OH_HiTrace_SetFlags(HiTraceId \*id, int flags) | Sets the trace flag in **HiTraceId**.| 
-| uint64_t OH_HiTrace_GetChainId(const HiTraceId \*id) | Obtains the trace chain ID in **HiTraceId**.| 
-| void OH_HiTrace_SetChainId(HiTraceId \*id, uint64_t chainId) | Sets the trace chain ID in **HiTraceId**.| 
-| uint64_t OH_HiTrace_GetSpanId(const HiTraceId \*id) | Obtains the span ID in **HiTraceId**.| 
-| void OH_HiTrace_SetSpanId(HiTraceId \*id, uint64_t spanId) | Sets the span ID in **HiTraceId**.| 
-| uint64_t OH_HiTrace_GetParentSpanId(const HiTraceId \*id) | Obtains the parent span ID in **HiTraceId**.| 
-| void OH_HiTrace_SetParentSpanId(HiTraceId \*id, uint64_t parentSpanId) | Sets the parent span ID in **HiTraceId**.| 
-| int OH_HiTrace_IdToBytes(const HiTraceId\* id, uint8_t\* pIdArray, int len) | Converts **HiTraceId** into a byte array for cache or communication.| 
-| void OH_HiTrace_IdFromBytes(HiTraceId \*id, const uint8_t \*pIdArray, int len) | Creates a **HiTraceId** based on a byte array.| 
-
+| void OH_HiTrace_InitId(HiTraceId \*id) | Initializes a **HiTraceId**.|
+| int OH_HiTrace_GetFlags(const HiTraceId \*id) | Obtains the trace flag set in **HiTraceId**.|
+| void OH_HiTrace_SetFlags(HiTraceId \*id, int flags) | Sets the trace flag in **HiTraceId**.|
+| uint64_t OH_HiTrace_GetChainId(const HiTraceId \*id) | Obtains the trace chain ID in **HiTraceId**.|
+| void OH_HiTrace_SetChainId(HiTraceId \*id, uint64_t chainId) | Sets the trace chain ID in **HiTraceId**.|
+| uint64_t OH_HiTrace_GetSpanId(const HiTraceId \*id) | Obtains the span ID in **HiTraceId**.|
+| void OH_HiTrace_SetSpanId(HiTraceId \*id, uint64_t spanId) | Sets the span ID in **HiTraceId**.|
+| uint64_t OH_HiTrace_GetParentSpanId(const HiTraceId \*id) | Obtains the parent span ID in **HiTraceId**.|
+| void OH_HiTrace_SetParentSpanId(HiTraceId \*id, uint64_t parentSpanId) | Sets the parent span ID in **HiTraceId**.|
+| int OH_HiTrace_IdToBytes(const HiTraceId\* id, uint8_t\* pIdArray, int len) | Serializes a **HiTraceId** into a big-endian byte array, supporting local caching and cross-device transmission. |
+| void OH_HiTrace_IdFromBytes(HiTraceId \*id, const uint8_t \*pIdArray, int len) | Creates a **HiTraceId** from a big-endian byte array. |
 
 ## How to Develop
 
@@ -71,7 +71,9 @@ The following table describes the APIs provided to extend **HiTraceId**. These A
 
 2. In the **entry > src > main > cpp > CMakeLists.tx** file, add **libhitrace_ndk.z.so** and **libhilog_ndk.z.so**. The complete file content is as follows:
 
-   ```cmake
+   <!-- @[hitracechain_ndk_cmake_code](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/PerformanceAnalysisKit/HiTrace/HitraceChain_NDK/entry/src/main/cpp/CMakeLists.txt) -->
+
+   ``` cmake
    # Minimum version of CMake.
    cmake_minimum_required(VERSION 3.5.0)
    project(HiTraceChainTest03)
@@ -92,7 +94,7 @@ The following table describes the APIs provided to extend **HiTraceId**. These A
 3. In the **entry > src > main > cpp > napi_init.cpp** file, use HiTraceChain to trace multi-thread tasks. The sample code is as follows:
 
    <!-- @[hitracechain_ndk_native_code](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/PerformanceAnalysisKit/HiTrace/HitraceChain_NDK/entry/src/main/cpp/napi_init.cpp) -->
-   
+
    ``` C++
    #include <thread>
    
@@ -202,11 +204,11 @@ The following table describes the APIs provided to extend **HiTraceId**. These A
        napi_module_register(&demoModule);
    }
    ```
-   
+
    In the **entry > src > main > ets > pages > Index.ets** file, call the **Add** method in the button click event. The sample code is as follows:
-   
+
    <!-- @[hitracechain_ndk_page_code](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/PerformanceAnalysisKit/HiTrace/HitraceChain_NDK/entry/src/main/ets/pages/Index.ets) -->
-   
+
    ``` TypeScript
    import { hilog } from '@kit.PerformanceAnalysisKit';
    import testNapi from 'libentry.so';
@@ -240,11 +242,13 @@ The following table describes the APIs provided to extend **HiTraceId**. These A
      }
    }
    ```
-   
+
 4. Click the **Run** button in DevEco Studio to run the project. Then, click **clickTime=0** on the device to trigger the service logic.
 
 5. In the **Log** window of DevEco Studio, view the distributed tracing information.
+
    - If **clickTime=1** is displayed on the device screen, the button is clicked once and the service logic is triggered.
+
    - All HiLog logs in this example use **testTag**. You can filter logs by the keyword **testTag** to view the HiLog logs printed by the service code.
 
       ```txt
@@ -260,5 +264,7 @@ The following table describes the APIs provided to extend **HiTraceId**. These A
       ```
 
    - The **[chainId spanId parentSpanId]** information added before the HiLog log is **HiTraceId** information. For example, **[a92ab19ae90197d 236699a 2544fdb]** indicates that the trace chain ID (**chainId**) is **a92ab19ae90197d**, the span ID (**spanId**) is **236699a**, and the parent span ID (**parentSpanId**) is **2544fdb**.
+
    - Transfer the **HiTraceId**, create a **spanId**, and set it to the child thread created by **std::thread**. The HiLog logs of the Print1 and Print2 services running in the child thread also carry the same trace ID **a92ab19ae90197d** as that of the main thread.
+
    - After the distributed tracing is ended using **OH_HiTrace_EndChain()** or **OH_HiTrace_ClearId()**, the HiLog print information does not carry the **HiTraceId** information.

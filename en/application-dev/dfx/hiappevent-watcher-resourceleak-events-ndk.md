@@ -5,11 +5,12 @@
 <!--Owner: @xuxinao-->
 <!--Designer: @peterhuangyu-->
 <!--Tester: @gcw_KuLfPSbe-->
-<!--Adviser: @foryourself-->
+<!--Adviser: @jinqiuheng-->
+<!-- md-trans-meta sourceCommit=deda4f19015dd8c61f2e0d855c3c53292d681c7b translatedAt=2026-07-31T01:28:19.533Z pushedAt=2026-07-31T06:20:49.012Z -->
 
 ## Available APIs
 
-This topic describes how to use the C/C++ APIs provided by HiAppEvent to subscribe to resource leak events. For details about how to use the APIs (such as parameter usage restrictions and value ranges), see [hiappevent.h](../reference/apis-performance-analysis-kit/capi-hiappevent-h.md).
+This section describes how to use the C/C++ APIs provided by HiAppEvent to subscribe to resource leak events. For detailed API usage instructions (parameter constraints, value ranges, etc.), refer to [hiappevent.h](../reference/apis-performance-analysis-kit/capi-hiappevent-h.md).
 
 **Subscription APIs**
 
@@ -97,6 +98,7 @@ This topic describes how to use the C/C++ APIs provided by HiAppEvent to subscri
                           auto uid = params["uid"].asInt();
                           auto resourceType = params["resourceType"].asString();
                           auto bundleName = params["bundle_name"].asString();
+                          auto appRunningUniqueId = params["app_running_unique_id"].asString();
                           auto bundleVersion = params["bundle_version"].asString();
                           auto memory = writer.write(params["memory"]);
                           auto externalLog = writer.write(params["external_log"]);
@@ -106,6 +108,7 @@ This topic describes how to use the C/C++ APIs provided by HiAppEvent to subscri
                           OH_LOG_INFO(LogType::LOG_APP, "HiAppEvent eventInfo.params.uid=%{public}d", uid);
                           OH_LOG_INFO(LogType::LOG_APP, "HiAppEvent eventInfo.params.resource_type=%{public}s", resourceType.c_str());
                           OH_LOG_INFO(LogType::LOG_APP, "HiAppEvent eventInfo.params.bundle_name=%{public}s", bundleName.c_str());
+                          OH_LOG_INFO(LogType::LOG_APP, "HiAppEvent eventInfo.params.app_running_unique_id=%{public}s", appRunningUniqueId.c_str());
                           OH_LOG_INFO(LogType::LOG_APP, "HiAppEvent eventInfo.params.bundle_version=%{public}s", bundleVersion.c_str());
                           OH_LOG_INFO(LogType::LOG_APP, "HiAppEvent eventInfo.params.memory=%{public}s", memory.c_str());
                           OH_LOG_INFO(LogType::LOG_APP, "HiAppEvent eventInfo.params.external_log=%{public}s", externalLog.c_str());
@@ -123,7 +126,7 @@ This topic describes how to use the C/C++ APIs provided by HiAppEvent to subscri
           const char *names[] = {EVENT_RESOURCE_OVERLIMIT};
           // Add the events to watch, for example, system events.
           OH_HiAppEvent_SetAppEventFilter(systemEventWatcher, DOMAIN_OS, 0, names, 1);
-          // Set the implemented callback. After receiving the event, the watcher immediately triggers the OnReceive callback.
+          // Set the implemented callback function. The watcher triggers the OnReceive callback immediately after receiving an event.
           OH_HiAppEvent_SetWatcherOnReceive(systemEventWatcher, OnReceive);
           // Add a watcher to listen for the specified event.
           OH_HiAppEvent_AddWatcher(systemEventWatcher);
@@ -136,7 +139,7 @@ This topic describes how to use the C/C++ APIs provided by HiAppEvent to subscri
       In the **napi_init.cpp** file, define the methods related to **OnTrigger()**.
 
       ```c++
-      // Define a variable to cache the pointer to the created watcher.
+      // Define a variable to cache the pointer of the created watcher.
       static HiAppEvent_Watcher *systemEventWatcher; 
       
       // Implement the callback function used to return the listened events. The content pointed to by the events pointer is valid only in this function.
@@ -158,6 +161,7 @@ This topic describes how to use the C/C++ APIs provided by HiAppEvent to subscri
                       auto uid = eventInfo["uid"].asInt();
                       auto resourceType = eventInfo["resourceType"].asString();
                       auto bundleName = eventInfo["bundle_name"].asString();
+                      auto appRunningUniqueId = eventInfo["app_running_unique_id"].asString();
                       auto bundleVersion = eventInfo["bundle_version"].asString();
                       auto memory = writer.write(eventInfo["memory"]);
                       auto externalLog = writer.write(eventInfo["external_log"]);
@@ -167,6 +171,7 @@ This topic describes how to use the C/C++ APIs provided by HiAppEvent to subscri
                       OH_LOG_INFO(LogType::LOG_APP, "HiAppEvent eventInfo.params.uid=%{public}d", uid);
                       OH_LOG_INFO(LogType::LOG_APP, "HiAppEvent eventInfo.params.resource_type=%{public}s", resourceType.c_str());
                       OH_LOG_INFO(LogType::LOG_APP, "HiAppEvent eventInfo.params.bundle_name=%{public}s", bundleName.c_str());
+                      OH_LOG_INFO(LogType::LOG_APP, "HiAppEvent eventInfo.params.app_running_unique_id=%{public}s", appRunningUniqueId.c_str());
                       OH_LOG_INFO(LogType::LOG_APP, "HiAppEvent eventInfo.params.bundle_version=%{public}s", bundleVersion.c_str());
                       OH_LOG_INFO(LogType::LOG_APP, "HiAppEvent eventInfo.params.memory=%{public}s", memory.c_str());
                       OH_LOG_INFO(LogType::LOG_APP, "HiAppEvent eventInfo.params.external_log=%{public}s", externalLog.c_str());
@@ -237,34 +242,34 @@ This topic describes how to use the C/C++ APIs provided by HiAppEvent to subscri
 
 1. In the **entry/src/main/ets/pages/index.ets** file, add the **memoryleak** button and construct a scenario for triggering a resource leak event in **onClick()**.
 
-   In this case, use [hidebug.setAppResourceLimit](../reference/apis-performance-analysis-kit/js-apis-hidebug.md#hidebugsetappresourcelimit12) to set the memory limit to trigger a memory leak event, and enable **System resource leak log** in **Developer options**. (Restart the device to enable or disable this functionality.) The sample code is as follows:
+   Use [hidebug.setAppResourceLimit](../reference/apis-performance-analysis-kit/js-apis-hidebug.md#hidebugsetappresourcelimit12) to set a memory limit, which triggers a memory leak. Also enable **System resource leak log** in **Developer options** (restart the device after toggling the switch). The sample code is as follows:
 
    <!-- @[PssLeakEvent_Button](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/PerformanceAnalysisKit/HiAppEvent/EventSub/entry/src/main/ets/pages/Index.ets) -->
-   
+
    ``` TypeScript
    Button('pss leak')
-       .type(ButtonType.Capsule)
-       .margin({
-         top: 20
-       })
-       .backgroundColor('#0D9FFB')
-       .width('80%')
-       .height('5%')
-       .onClick(() => {
-         // Set a simple resource leak scenario.
-         hilog.info(0x0000, 'testTag', 'click pss leak button');
-         testNapi.leakMB(3072);
-       })
+     .type(ButtonType.Capsule)
+     .margin({
+       top: 20
+     })
+     .backgroundColor('#0D9FFB')
+     .width('80%')
+     .height('5%')
+     .onClick(() => {
+       // Set up a simple resource leak scenario.
+       hilog.info(0x0000, 'testTag', 'click pss leak button');
+       testNapi.leakMB(3072);
+     })
    ```
 
 2. Add the PSS leak-related content.
 
    Edit the **napi_init.cpp** file.
-   
+
    - Add the following header files:
 
    <!-- @[Pss_Leak_Header](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/PerformanceAnalysisKit/HiAppEvent/EventSub/entry/src/main/cpp/napi_init.cpp) -->
-   
+
    ``` C++
    #include <iostream>
    #include <fstream>
@@ -275,7 +280,7 @@ This topic describes how to use the C/C++ APIs provided by HiAppEvent to subscri
    - Define the PSS leak-related methods.
 
    <!-- @[Pss_Leak](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/PerformanceAnalysisKit/HiAppEvent/EventSub/entry/src/main/cpp/napi_init.cpp) -->
-   
+
    ``` C++
    // Read the PSS field in /proc/self/smaps_rollup to calculate the PSS of the current process (unit: KB).
    static int GetCurrentProcessPss()
@@ -400,10 +405,10 @@ This topic describes how to use the C/C++ APIs provided by HiAppEvent to subscri
    }
    ```
 
-	- Perform the initialization.
+    - Initialization:
 
-	<!-- @[Pss_Leak_Init](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/PerformanceAnalysisKit/HiAppEvent/EventSub/entry/src/main/cpp/napi_init.cpp) -->
-    
+    <!-- @[Pss_Leak_Init](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/PerformanceAnalysisKit/HiAppEvent/EventSub/entry/src/main/cpp/napi_init.cpp) -->
+
     ``` C++
     static napi_value Init(napi_env env, napi_value exports)
     {
@@ -415,13 +420,13 @@ This topic describes how to use the C/C++ APIs provided by HiAppEvent to subscri
         return exports;
     }
     ```
-	
-	Edit the **Index.d.ts** file.
 
-	- Add the following type declaration:
+    Edit the **Index.d.ts** file:
 
-	<!-- @[Pss_Leak_Index.d.ts](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/PerformanceAnalysisKit/HiAppEvent/EventSub/entry/src/main/cpp/types/libentry/Index.d.ts) -->
-    
+    - Add the type declaration:
+
+    <!-- @[Pss_Leak_Index.d.ts](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/PerformanceAnalysisKit/HiAppEvent/EventSub/entry/src/main/cpp/types/libentry/Index.d.ts) -->
+
     ``` TypeScript
     export const leakMB: (size: number) => void;
     ```
@@ -441,6 +446,7 @@ This topic describes how to use the C/C++ APIs provided by HiAppEvent to subscri
    08-07 03:53:35.349 1719-1738/? I A00000/testTag: HiAppEvent eventInfo.params.uid=20010043
    08-07 03:53:35.349 1719-1738/? I A00000/testTag: HiAppEvent eventInfo.params.resource_type=pss_memory
    08-07 03:53:35.349 1719-1738/? I A00000/testTag: HiAppEvent eventInfo.params.bundle_name=com.example.myapplication
+   08-07 03:53:35.349 1719-1738/? I A00000/testTag: HiAppEvent eventInfo.params.app_running_unique_id=12369547851223645271
    08-07 03:53:35.349 1719-1738/? I A00000/testTag: HiAppEvent eventInfo.params.bundle_version=1.0.0
    08-07 03:53:35.350 1719-1738/? I A00000/testTag: HiAppEvent eventInfo.params.memory={"pss":2100257,"rss":1352644,"sys_avail_mem":250272,"sys_free_mem":60004,"sys_total_mem":1992340,"vss":2462936}
    08-07 03:53:35.350 1719-1738/? I A00000/testTag: HiAppEvent eventInfo.params.external_log=["/data/storage/el2/log/resourcelimit/RESOURCE_OVERLIMIT_1725614572401_6808.log","/data/storage/el2/log/resourcelimit/RESOURCE_OVERLIMIT_1725614572412_6808.log"]

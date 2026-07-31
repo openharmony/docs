@@ -2,26 +2,23 @@
 
 <!--Kit: Performance Analysis Kit-->
 <!--Subsystem: HiviewDFX-->
-<!--Owner: @m0_55013956-->
+<!--Owner: @Lutao98-->
 <!--Designer: @milkbread123-->
 <!--Tester: @gcw_KuLfPSbe-->
-<!--Adviser: @foryourself-->
+<!--Adviser: @jinqiuheng-->
+<!-- md-trans-meta sourceCommit=8524fb94d9fdbb23f729551fe489ee4015dca550 translatedAt=2026-07-31T01:31:31.256Z pushedAt=2026-07-31T07:22:55.501Z -->
 
 hidumper is a command line tool used to export system information. It can analyze the usage of system resources such as CPU, memory, and storage, query the running status of system services, and locate resource usage exceptions and communication problems.
 
-
 Based on the application scenarios supported by hidumper, this topic describes the following basic capabilities: querying memory, CPU usage, system capabilities, process, storage, and system information, obtaining system fault logs, exporting inter-process communication records, and compressing and dumping exported information.
 
-
 For FAQs about hidumper, see [FAQs](#faqs).
-
 
 ## Environment Setup
 
 - The [environment setup](hdc.md#environment-setup) is complete.
 
 - The devices are properly connected and **hdc shell** is executed.
-
 
 ## Command Description
 
@@ -42,15 +39,17 @@ For FAQs about hidumper, see [FAQs](#faqs).
 | [--net [pid]](#querying-network-information)| Obtains network information, including network traffic, network API statistics, and IP information. If **pid** is specified, obtains only the network traffic usage of the specified process.|
 | [--storage [pid]](#querying-storage-information)| Obtains storage information, including disk statistics, disk usage, and file handles. If **pid** is specified, the I/O information of the specified process is displayed.|
 | [-p [pid]](#querying-process-information)| Obtains all process and thread information.|
+| [-p pid --fd/--thread [-v]](#querying-fd-and-thread-information) | Obtains the file handle or thread information of the specified process. <br />When -v is specified, prints detailed information.<br />**Note:** Since API version 26.0.0, supports this parameter.|
 | [--cpuusage [pid]](#querying-process-cpu-usage)| Obtains the CPU usage by process and category. If a PID is specified, the CPU usage of the specified PID is displayed. The value range is (0, Number of CPU cores].|
 | [--cpufreq](#querying-cpu-frequency)| Obtains the actual CPU frequency of each core, in kHz.|
 | [--mem [--prune]](#querying-device-memory)| Obtains the total memory usage. If **--prune** is specified, only simplified memory usage is exported.<br>Note: The **--prune** parameter is supported since API version 20.|
-| [--mem pid [--show-ashmem] [--show-dmabuf]](#querying-process-memory)| Obtains the memory usage of a specified process.<br>When **--show-ashmem** is specified, the ashmem usage details of the process are printed.<br>When **--show-dmabuf** is specified, the DMA memory usage details are printed.<br>**NOTE**<br>Since API version 20, the **--show-ashmem** parameter and the **--show-dmabuf** parameter of application processes are supported.<br>Since API version 23, the**--show-dmabuf** parameter of system service processes is supported.|
+| <!--RP11-->[--mem pid [--show-ashmem] [--show-dmabuf]](#querying-process-memory) | Obtains the memory usage of the specified process.<br />When --show-ashmem is specified, additionally prints detailed ashmem usage information for the process.<br />When --show-dmabuf is specified, additionally prints detailed DMA memory usage information.<br />**Note:**<br />Since API version 20, supports --show-ashmem and --show-dmabuf for application processes.<br/>Since API version 23, supports --show-dmabuf for system service processes.<!--RP11End--> |
 | [--zip](#compressing-exported-information)| Saves the command output to a compressed file in ZIP format in **/data/log/hidumper**.|
 | [--ipc [pid]/-a --start-stat/stat/--stop-stat](#obtaining-ipc-information)| Collects IPC information of a process in a specified period. If **-a** is used, IPC information of all processes is collected. **--start-stat** starts the IPC information collection. **--stat** obtains the IPC information. **--stop-stat** stops the IPC information collection.|
 | [--mem-smaps pid [-v]](#querying-process-memory)| Obtains the memory usage of a specified process from **/proc/pid/smaps**. **-v** is used to specify more details about the process. (This command is available only for [applications of the debug version](performance-analysis-kit-terminology.md#applications-of-the-debug-version).)<br>Note: This parameter is supported since API version 20.|
-| [--mem-jsheap pid [-T tid] [--gc] [--leakobj] [--raw]](#querying-vm-heap-memory)| Triggers GC and exports a heap snapshot for the JS thread of the ArkTS application. The **pid** parameter is mandatory. If **tid** is specified, only the thread's GC is triggered and its heap memory snapshot is exported. If **--gc** is specified, only GC is triggered and the snapshot is not exported. If **--leakobj** is specified, the list of leaked objects can be obtained after leak detection is enabled for the application.<br>The file is named in the format of <!--RP1-->jsheap-process ID-JS thread ID-timestamp<!--RP1End-->. The file content is a JS heap snapshot of the JSON structure.<br>If **--raw** is specified, the heap snapshot is exported in .rawheap format.<br>Note: The **--raw** parameter is supported since API version 19.|
+| [--mem-jsheap pid [-T tid] [--gc] [--leakobj] [--raw] [--clean] [--single]](#querying-vm-heap-memory) | pid is a mandatory parameter. Triggers GC and heap memory snapshot export for the JS thread of an ArkTS app. File naming format: <!--RP1-->jsheap-ProcessID-JSThreadID-Timestamp<!--RP1End-->. The file content is a JS heap snapshot in JSON structure.<br />When thread tid is specified, triggers GC and heap memory snapshot export only for that thread.<br />When --gc is specified, triggers only GC without exporting a snapshot.<br />When --leakobj is specified, the app enables leak detection to obtain a list of leaked objects.<br />When --raw is specified, the heap snapshot is exported in rawheap format.<br />When --clean is specified, triggers cleanup of nodeId information after snapshot export.<br />When --single is specified, exports one snapshot per process, supports only rawheap format, and must be used with the --raw command.<br />When exporting a snapshot, the app must be in a bright screen state.<br />**Note:**<br />Since API version 19, supports the --raw parameter.<br />Since API version 24, supports the --clean parameter.<br />Since API version 26.0.0, supports the --single parameter.<br />Since API version 26.0.0, [release version apps](performance-analysis-kit-terminology.md#applications-of-the-release-version) support this command, but must also meet the [profileable tag](../quick-start/app-configuration-file.md#tags-in-the-configuration-file), enterprise-type [appDistributionType](../reference/apis-ability-kit/js-apis-bundleManager-applicationInfo.md#applicationinfo-1), and developer mode enabled. |
 | <!--DelRow-->[--mem-cjheap pid [--gc]](#querying-vm-heap-memory)| Triggers GC and exports a heap snapshot for the Cangjie application. The **pid** parameter is mandatory. If **--gc** is specified, only GC is triggered. No snapshot is exported.<br>Note: This parameter is supported since API version 20.|
+| <!--RP13-->[--mem-heap pid ARG [--leakobj]](#querying-vm-heap-memory) | Exports memory snapshot information of the specified type. ARG specifies the snapshot type. Currently supports --native and --kotlin types.<br />When --leakobj is specified, triggers only printing of suspected memory leak points without snapshot export, and is used only with the --native parameter.<br />**Note:** Since API version 26.0.0, supports the --leakobj parameter and --kotlin type snapshot export.<!--RP13End--> |
 
 ## Querying Memory Information
 
@@ -148,10 +147,12 @@ PID        Total Pss(xxx in SwapPss)           GL     AdjLabel     Name
 
 AdjLabel indicates the memory reclaim priority of the process. The value ranges from -1000 to 1000. A larger value indicates that the process is less important, and the memory is reclaimed first.
 
-
 ### Querying Process Memory
 
 Run the **hidumper --mem pid** command to obtain the memory usage of a specified process. **pid** indicates the process ID.
+
+<!--RP18-->
+<!--RP18End-->
 
 Example:
 
@@ -290,6 +291,7 @@ m.xxx.xxx             7612        87        40960             2750      1424    
 Ashmem:
 Total Ashmem:144 kB
 ```
+
 Field description:
 
 | Field| Description|
@@ -305,6 +307,9 @@ Field description:
 | exp_name | Extension name of the ION buffer.|
 | buf_type | Type of the ION buffer.|
 | leak_type | Type of the ION buffer used for memory leak maintenance and debugging.|
+
+<!--RP12-->
+<!--RP12End-->
 
 Run the **hidumper --mem-smaps pid** command to obtain the detailed memory usage of a specified process. This command aggregates values for identical memory segments.
 
@@ -332,7 +337,6 @@ Statistics
 | Category | Memory category.|
 
 Run the **hidumper --mem-smaps pid -v** command to obtain the detailed memory usage of a specified process. This command directly prints all memory information of the process and does not perform secondary processing on the same memory information.
-
 
 Example:
 
@@ -367,30 +371,33 @@ If the application is a debug application, the following information is displaye
 
 To build a debug application, you need to use a debug certificate for signature. For details about how to request and use the debug certificate, see [Requesting a Debug Certificate](https://developer.huawei.com/consumer/en/doc/app/agc-help-add-debugcert-0000001914263178).
 
-
 ### Querying VM Heap Memory
 
 <!--RP2-->
-Run the **hidumper --mem-jsheap pid [-T tid] [--gc] [--leakobj] [--raw]** command to check the ArkTS application VM heap memory, and run the **hidumper --mem-cjheap pid [--gc]** command to check the Cangjie application VM heap memory. Heap memory files are stored in **/data/log/faultlog/temp**.
+
+Run the **hidumper --mem-jsheap pid [-T tid] [--gc] [--leakobj] [--raw] [--clean] [--single]** command to view the ArkTS app VM heap memory. Run the **hidumper --mem-cjheap pid [--gc]** command to view the Cangjie app VM heap memory. Run the **hidumper --mem-heap pid ARG [--leakobj]** command to view the specified VM heap memory, where ARG specifies the snapshot type. The generated heap memory files are stored in the /data/log/faultlog/temp directory.
+
 <!--RP2End-->
 
 > **NOTE**
 >
-> The **hidumper --mem-jsheap pid \[-T tid] \[--gc] \[--leakobj] \[--raw]** command should be used for [applications of the debug version](performance-analysis-kit-terminology.md#applications-of-the-debug-version).
+> The processes debugged by the **hidumper --mem-jsheap pid [-T tid] [--gc] [--leakobj] [--raw] [--clean] [--single]** and **hidumper --mem-heap pid ARG [--leakobj]** commands must be "apps signed with a debug certificate," the same as [debug version apps](performance-analysis-kit-terminology.md#applications-of-the-debug-version).
 >
-> For details about how to check whether the application specified by the command is debuggable, see "NOTE" in the **hidumper --mem-smaps [pid] [-v]** command.
+> To check whether the app specified by the command is a debuggable app, refer to the notes in the **hidumper --mem-smaps [pid] [-v]** command above.
 
 - Run the **hidumper --mem-jsheap pid** command to obtain the VM heap memory of all JS threads of a specified process. The file is named in the format of <!--RP1-->**jsheap-Process ID-JS thread ID-Timestamp**<!--RP1End-->. If there are multiple JS threads, multiple files will be generated.
 
   Example:
 
   <!--RP3-->
+
   ```shell
   $ hidumper --mem-jsheap 64949  -> 64949 indicates the process ID of the target application.
   $ ls | grep jsheap   -> Go to the heap memory file directory and run the command.
   jsheap-64949-64949-1751075546050
   jsheap-64949-64989-1751075546050
   ```
+
   <!--RP3End-->
 
 - Run the **hidumper --mem-jsheap pid -T tid** command to obtain the VM heap memory of a specified JS thread in a specified process. The file is named in the format of <!--RP1-->**jsheap-Process ID-JS thread ID-Timestamp**<!--RP1End-->.
@@ -398,11 +405,13 @@ Run the **hidumper --mem-jsheap pid [-T tid] [--gc] [--leakobj] [--raw]** comman
   Example:
 
   <!--RP4-->
+
   ```shell
   $ hidumper --mem-jsheap 64949 -T 64949  -> 64949 indicates the process ID of the target application.
   $ ls | grep jsheap   -> Go to the heap memory file directory and run the command.
   jsheap-64949-64949-1751075567710
   ```
+
   <!--RP4End-->
 
 - Run the **hidumper --mem-jsheap pid \[-T tid] --raw** command to obtain the VM heap memory of a specified process or JS thread. The generated heap memory file is in .rawheap format and is named in the format of <!--RP1-->**jsheap-Process ID-JS thread ID-Timestamp**<!--RP1End-->**.rawheap**. For details about how to parse and convert the .rawheap file, see [rawheap-translator](../tools/rawheap-translator.md).
@@ -410,6 +419,7 @@ Run the **hidumper --mem-jsheap pid [-T tid] [--gc] [--leakobj] [--raw]** comman
   Example:
 
   <!--RP5-->
+
   ```shell
   $ hidumper --mem-jsheap 64949 --raw  -> 64949 indicates the process ID of the target application.
   $ ls | grep jsheap   -> Go to the heap memory file directory and run the command.
@@ -419,6 +429,7 @@ Run the **hidumper --mem-jsheap pid [-T tid] [--gc] [--leakobj] [--raw]** comman
   $ ls | grep jsheap
   jsheap-64949-64949-1751075546055.rawheap
   ```
+
   <!--RP5End-->
 
 - Run the **hidumper --mem-jsheap pid --gc** command to trigger GC for a specified application process. If this command is executed successfully, no file is generated.
@@ -431,25 +442,153 @@ Run the **hidumper --mem-jsheap pid [-T tid] [--gc] [--leakobj] [--raw]** comman
 
 - Run the **hidumper --mem-jsheap pid --leakobj** command to obtain the VM heap memory and leaked object information of a specified process. The file is named in the format of <!--RP6-->**leaklist-Process ID-Timestamp**<!--RP6End-->.
 
-    Before obtaining the VM heap memory and leaked object information of a specified process, ensure that the leak detection functionality is enabled for the application using the [@ohos.hiviewdfx.jsLeakWatcher (JS Leak Detection)](../reference/apis-performance-analysis-kit/js-apis-jsleakwatcher.md) API.
+    The prerequisite for obtaining the VM heap memory and leaked object information of a specified process is that the app has enabled the leak detection feature through the [@ohos.hiviewdfx.jsLeakWatcher](../reference/apis-performance-analysis-kit/js-apis-jsleakwatcher.md) API.
 
     The procedure is as follows:
 
     1. The application calls the [jsLeakWatcher.enable](../reference/apis-performance-analysis-kit/js-apis-jsleakwatcher.md#jsleakwatcherenable) API.
+
     2. The application calls the [jsLeakWatcher.watch](../reference/apis-performance-analysis-kit/js-apis-jsleakwatcher.md#jsleakwatcherwatch) API.
+
     3. Run the **hidumper --mem-jsheap [pid] --leakobj** command to export the VM heap memory and leaked object information.
 
   Example:
 
   <!--RP7-->
+
   ```shell
   $ hidumper --mem-jsheap 64949 --leakobj
   $ ls | grep leaklist
   leaklist-64949-1730873210483
   ```
+
   <!--RP7End-->
 
+- Run the **hidumper --mem-jsheap pid --clean** command to obtain the VM heap memory of a specified process and trigger cleanup of nodeId node information. This command does not generate any files, and no output is displayed upon successful execution.
+
+  Example:
+
+  ```shell
+  $ hidumper --mem-jsheap 64949 --clean  -> 64949 is the target app process ID.
+  ```
+
+- Run the **hidumper --mem-jsheap pid --raw --single** command to obtain the VM heap memory of a specified process. The memory data of all threads under this process is generated into a single .rawheap file named <!--RP8-->jsheap-Process ID-Timestamp<!--RP8End-->.rawheap. For parsing and conversion of rawheap files, see [rawheap-translator](../tools/rawheap-translator.md).
+
+  Example:
+
+  ```shell
+  $ hidumper --mem-jsheap 64949 --raw --single  -> 64949 is the target app process ID.
+  ```
+
+- Run the **hidumper --mem-heap pid --native --leakobj** command to print suspected native heap memory leak points of a specified process. This command does not generate any files.
+
+  Example:
+
+  ```shell
+  $ hidumper --mem-heap 65097 --native --leakobj  -> 65097 is the target app process ID.
+  192 bytes leak directly at 0x59d4852740
+    first 32 memory:
+      0x59d4852740: 00 7f 80 d4 59 00 00 00 88 39 2f d4 59 00 00 00 ....Y....9/.Y...
+      0x59d4852750: 01 00 00 00 00 00 00 00 00 00 00 00 84 00 00 00 ................
+    last 32 memory:
+      0x59d48527e0: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 ................
+      0x59d48527f0: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 ................
+  8 bytes leak directly at 0x59d4809b40
+    referencing 8 bytes leak in 1 allocations
+    memory:
+      0x59d4809b40: 48 9b 80 d4 59 00 00 00                         H...Y...
+  8 bytes leak indirectly at 0x59d4809b48
+    referencing 8 bytes leak in 1 allocations
+    memory:
+      0x59d4809b48: 50 9b 80 d4 59 00 00 00                         P...Y...
+  8 bytes leak indirectly at 0x59d4809b40
+    memory:
+      0x59d4809b50: 00 00 00 00 00 00 00 00                         ........
+  ```
+
+  Parsing description:
+
+  192 bytes leak directly at 0x59d4852740 indicates that 192 bytes are directly leaked starting from 0x59d4852740. When the number of leaked bytes is greater than 64, only the first 32 bytes and the last 32 bytes are printed.
+
+  ```shell
+    8 bytes leak directly at 0x59d4809b40
+      referencing 8 bytes leak in 1 allocations
+      memory:
+        0x59d4809b40: 48 9b 80 d4 59 00 00 00                         H...Y...
+  ```
+
+  This indicates that 8 bytes are directly leaked starting from 0x59d4809b40. When the number of leaked bytes is less than 64, all bytes are printed.
+
+  "referencing" indicates that this address references another address. The printed content points to the referenced address. Reading from back to front, the pointed address is 0x59d4809b48. Therefore, the pointed-to 0x59d4809b48 and the next pointed-to 0x59d4809b40 are indirect leaks.
+
+  The print order follows these rules:
+
+  1. Direct leaks come first: "directly" entries appear before "indirectly" entries.
+
+  2. Larger sizes come first: the 192-byte entry appears before the 8-byte entry.
+
+  3. Larger referenced memory blocks come first: the "referencing 8 bytes" entry appears before entries with no reference or with references smaller than 8 bytes.
+
+  4. Smaller addresses come first.
+
+- Run the **hidumper --mem-heap pid --native** command to export the native heap memory snapshot file of a specified process. The file is named <!--RP9-->nativeheap-Process ID-Timestamp.<!--RP9End-->
+
+  Example:
+
+  <!--RP10-->
+
+  ```shell
+  $ hidumper --mem-heap 65097 --native  -> 65097 is the target app process ID.
+  $ ls | grep nativeheap -> 进入堆内存文件存放目录后执行
+  nativeheap-65097-1775640819058
+  ```
+
+  <!--RP10End-->
+
+  Parsing description:
+
+  > **NOTE**
+  >
+  > The content of this file is in binary format and must be viewed using a hex editor.
+
+  ```tex
+  4E 53 4E 41 50 31 2E 30 64 00 00 00 00 00 00 00
+  20 C0 E0 8F 5A 00 00 00 20 00 00 00 00 00 00 00
+  C0 B7 E0 8F 5A 00 00 00 40 00 00 00 00 00 00 00
+  60 80 E0 8F 5A 00 00 00 30 00 00 00 00 00 00 00
+  ...
+  ```
+
+  The first 8 bytes of the first line, 4E 53 4E 41 50 31 2E 30, represent "NSNAP1.0" when converted to characters, indicating the version number of this file. This field is fixed.
+
+  The last 8 bytes of the first line, 64 00 00 00 00 00 00 00, represent the number of leak points, which is 0x0000000000000064, or 100 in decimal. This indicates that 100 leak points were detected in this run. This value changes based on the number of reported nodes.
+
+  Based on the number of detected leak points, the corresponding number of information entries is displayed starting from the second line, with each entry occupying 16 bytes.
+
+  Taking the second line as an example, the first 8 bytes represent the address: 0x0000005A8FE0C020, and the last 8 bytes represent the size: 0x0000000000000020, which is 32 bytes.
+
+  <!--RP14-->
+  <!--RP14End-->
+
+  <!--RP15-->
+  <!--RP15End-->
+
+- Run the **hidumper --mem-heap pid --kotlin** command to export the Kotlin heap memory snapshot file of a specified process. The file is named <!--RP16-->kotlinheap-Process ID-Timestamp.<!--RP16End-->
+
+  Example:
+
+  <!--RP17-->
+
+  ```shell
+  $ hidumper --mem-heap 65097 --kotlin  -> 65097 is the target app process ID.
+  $ ls | grep kotlinheap -> 进入堆内存文件存放目录后执行
+  kotlinheap-65097-1775640819058
+  ```
+
+  <!--RP17End-->
+
 <!--Del-->
+
 - Run the **hidumper --mem-cjheap pid** command to obtain the VM heap memory of a specified Cangjie process. The file name format is **cjheap-Process ID-Timestamp**.
 
   Example:
@@ -467,14 +606,14 @@ Run the **hidumper --mem-jsheap pid [-T tid] [--gc] [--leakobj] [--raw]** comman
   ```shell
   $ hidumper --mem-cjheap 65012 --gc  -> 65012 indicates the process ID of the target application.
   ```
-<!--DelEnd-->
-You can run the hdc [file transfer](hdc.md#transferring-files) command to obtain the generated file from the device.
 
+<!--DelEnd-->
+
+You can run the hdc [file transfer](hdc.md#transferring-files) command to obtain the generated file from the device.
 
 ## Querying CPU Usage
 
 You can use the hidumper to query the CPU information, which includes the system CPU load.
-
 
 ### Querying Device CPU Usage
 
@@ -497,7 +636,6 @@ Details of Processes:
 ...
 ```
 
-
 ### Querying Process CPU Usage
 
 Run the **hidumper --cpuusage pid** command to obtain the CPU usage of a specified process.
@@ -516,7 +654,6 @@ Details of Processes:
     PID   Total Usage      User Space    Kernel Space    Page Fault Minor    Page Fault Major    Name
     1          0.00%           0.00%          0.00%           38368                1394            init
 ```
-
 
 ### Querying CPU Frequency
 
@@ -540,9 +677,7 @@ cmd is: cat /sys/devices/system/cpu/cpu0/cpufreq/cpuinfo_max_freq
 ...
 ```
 
-
 ## Querying System Services
-
 
 ### Querying System Service List
 
@@ -564,7 +699,6 @@ WifiP2p                          WifiScan                         1125
 NetPolicyManager                 NetStatsManager                  NetTetheringManager
 ...
 ```
-
 
 ### Obtaining System Service Details
 
@@ -591,12 +725,9 @@ h                             |help text for the tool
 ...
 ```
 
-
 - Run the **hidumper -s [SA0] [SA1]** command to obtain detailed information about one or more specified system services. You can run the **hidumper -ls** command to query the system capability names **[SA0] [SA1]**.
 
-
 The output is as follows:
-
 
 ```shell
 $ hidumper -s WindowManagerService
@@ -637,15 +768,11 @@ composer fps                   |dump the fps info of composer
 ...
 ```
 
-
 ### Obtaining Capabilities of a Specified System Service
-
 
 Run the **hidumper -s [SA] -a ["option"]** command to obtain the capabilities provided by a specified system service.
 
-
 The following example obtains the help information about RenderService:
-
 
 ```shell
 $ hidumper -s RenderService -a "h"
@@ -681,7 +808,6 @@ flushJankStatsRs              |flush rs jank stats hisysevent
 screen                        |dump all screen information in the system
 ```
 
-
 Run the following command to obtain the capability of obtaining GPU information:
 
 ```shell
@@ -699,11 +825,9 @@ GL_VERSION: OpenGL ES 3.2 B283
 GL_SHADING_LANGUAGE_VERSION: OpenGL ES GLSL ES 3.20
 ```
 
-
 ## Querying Process Information
 
 Run the **hidumper -p [pid]** command to obtain information about a specified process, including the mount, thread, thread runtime, and wait channel information.
-
 
 > **NOTE**
 >
@@ -711,9 +835,7 @@ Run the **hidumper -p [pid]** command to obtain information about a specified pr
 >
 > For details about how to check whether the application specified by the command is debuggable, see the description of the **hidumper --mem-smaps [pid] [-v]** command.
 
-
 The output is as follows:
-
 
 ```shell
 $ hidumper -p 64949
@@ -741,6 +863,119 @@ root             2     4     0  127 10:46:59 ?     00:00:00 [call_ebr]
 ...
 ```
 
+## Querying FD and Thread Information
+
+Starting from API version 26.0.0, you can use the **-p pid --fd/--thread [-v]** command to obtain summary information about the file descriptors or threads of a specified process. The **-v** option provides detailed information about the file descriptors or threads of the specified process.
+
+> **NOTE**
+>
+> The processes that can be debugged using the **-p pid --fd/--thread [-v]** command must be "apps signed with a debug certificate."
+>
+> To check whether the app specified by the command is a debuggable app, refer to the notes in [Querying Process Memory](#querying-process-memory).
+
+The output is as follows:
+
+```shell
+$ hidumper -p 2121 --fd
+fd num: 83
+Summary:
+Leaked fd:ashmem
+
+Leaked fd Top 10:
+23      ashmem
+10      /data/storage/el1/database/phone_launcher/rdb/Launcher.db
+8       socket
+7       eventfd
+6       eventpoll
+5       /data/storage/el1/database/phone_launcher/rdb/Launcher.db-dwr
+4       pipe
+3       /dev/null
+2       /proc/204/sched_rtg_ctrl
+2       dmabuf
+Top Dir 10:
+2       /proc/
+02      /proc/204/sched_rtg_ctrl
+2       anon_inode:malitl_
+01      anon_inode:malitl_2121_0xebd3d8a0
+01      anon_inode:malitl_2121_0xec5d6c70
+1       /dev/mali
+01      /dev/mali0
+
+$ hidumper -p 2121 --fd -v
+fd num: 83
+Summary:
+Leaked fd:ashmem
+
+Leaked fd Top 10:
+23      ashmem
+10      /data/storage/el1/database/phone_launcher/rdb/Launcher.db
+8       socket
+7       eventfd
+6       eventpoll
+5       /data/storage/el1/database/phone_launcher/rdb/Launcher.db-dwr
+4       pipe
+3       /dev/null
+2       /proc/204/sched_rtg_ctrl
+2       dmabuf
+Top Dir 10:
+2       /proc/
+02      /proc/204/sched_rtg_ctrl
+2       anon_inode:malitl_
+01      anon_inode:malitl_2121_0xebd3d8a0
+01      anon_inode:malitl_2121_0xec5d6c70
+1       /dev/mali
+01      /dev/mali0
+Fd link counts:
+anon_inode:malitl_2121_0xec5d6c70:1
+/system/app/com.ohos.contacts/Contacts.hap:1
+/dev/mali0:1
+/system/app/com.ohos.photos/Photos.hap:1
+...
+
+$ hidumper -p 2121 --thread
+Thread num: 43
+Top 10 Thread Names:
+4       mali-utility-wo
+4       OS_GC_Thread
+2       RSRenderThread
+1       OS_FFRT_2_0
+1       OS_FFRT_2_1
+1       OS_FFRT_2_2
+1       OS_FFRT_2_3
+1       OS_FFRT_3_0
+1       OS_FFRT_3_1
+1       OS_FFRT_3_2
+
+$ hidumper -p 2121 --thread -v
+Thread num: 43
+Top 10 Thread Names:
+4       mali-utility-wo
+4       OS_GC_Thread
+2       RSRenderThread
+1       OS_FFRT_2_0
+1       OS_FFRT_2_1
+1       OS_FFRT_2_2
+1       OS_FFRT_2_3
+1       OS_FFRT_3_0
+1       OS_FFRT_3_1
+1       OS_FFRT_3_2
+tid     thread_name     start_time
+2121    m.ohos.launcher 5033
+3047    OS_IPC_0_3047   24094
+3048    OS_DfxWatchdog  24095
+3049    OS_IPC_1_3049   24095
+3051    OS_IPC_2_3051   24098
+3052    OS_IPC_3_3052   24098
+3053    OS_FFRT_5_0     24099
+...
+```
+
+The **--fd** and **--thread** options cannot be used together:
+
+```shell
+$ hidumper -p 2121 --fd --thread
+hidumper: invalid arg: --fd and --thread cannot be used together
+```
 
 ## Querying Network Information
 
@@ -762,12 +997,9 @@ cmd is: netstat -nW  -> Run the netstat -nW command to query network information
 ...
 ```
 
-
 Run the **hidumper --net [pid]** command to obtain the network traffic information of a specified process.
 
-
 The output is as follows:
-
 
 ```shell
 $ hidumper --net 1
@@ -777,7 +1009,6 @@ $ hidumper --net 1
 Received Bytes:0
 Sent Bytes:51885
 ```
-
 
 ## Querying Storage Information
 
@@ -795,12 +1026,9 @@ cmd is: storaged -u -p
 ...
 ```
 
-
 - Run the **hidumper --storage [pid]** command to obtain the I/O information of a specified process.
 
-
 The output is as follows:
-
 
 ```shell
 $ hidumper --storage 1
@@ -819,9 +1047,7 @@ write_bytes: 10907648
 cancelled_write_bytes: 734003
 ```
 
-
 The fields in the I/O information are described as follows:
-
 
 - **rchar**: total number of characters read by the process from the cache or directly since it starts, in bytes.
 
@@ -837,7 +1063,6 @@ The fields in the I/O information are described as follows:
 
 - **cancelled_write_bytes**: number of bytes that are not written due to write cancellation since the process starts, in bytes. Generally, the value of this field is 0 unless an error occurs when data is written to the disk or the write operation is interrupted.  
 
-
 ## Querying System Information
 
 - Run the **hidumper -lc** command to obtain the system information cluster list.
@@ -850,7 +1075,7 @@ System cluster list:
 base                             system
 ```
 
-- Run the **hidumper -c [System information cluster name]** command to obtain the information of a specified cluster.
+- Run the **hidumper -c [system information cluster name]** command to obtain information about a specified information cluster.
 
 For example, run the **hidumper -c base** command to obtain the device information, kernel version, boot parameters, and boot time. The output is as follows:
 
@@ -976,7 +1201,6 @@ PID        Total Pss(xxx in SwapPss)    Total Vss    Total Rss    Total Uss     
 
 - Run the **hidumper -c** command to obtain all information clusters, including the **base** and **system** clusters.
 
-
 ## Obtaining System Fault Logs
 
 Run the **hidumper -e** command to obtain the system fault log and print its file name and details.
@@ -992,7 +1216,6 @@ $ hidumper -e
 Generated by HiviewDFX@OpenHarmony  -> Fault log details
 ...
 ```
-
 
 ## Obtaining Abnormal Exit Record List
 
@@ -1048,6 +1271,7 @@ time                  foreground               reason              record_id    
 $ hidumper -e --list --since '2025-09-26 12:42:05' --until '2025-09-26 12:42:05'
 no records found.
 ```
+
 Field description:
 
 | Field| Description|
@@ -1059,6 +1283,7 @@ Field description:
 | process_name | Name of the process where an abnormal exit occurs.|
 
 ### reason
+
 For the following reasons, refer to [Analysis Method and Procedure](appkilled-guidelines.md#analysis-method-and-procedure) to rectify the fault.
 
 | Type  | Description                      |
@@ -1194,7 +1419,6 @@ $ hidumper -e --print 23123453489239875544
 this type of record does not have faultlog.  -> Reason for failure.
 ```
 
-
 ## Obtaining IPC Information
 
 Run the **hidumper --ipc -a --start-stat/stop-stat/stat** command to obtain the IPC information within the collection period.
@@ -1251,7 +1475,6 @@ $ hidumper --ipc 1473 --stop-stat
 StopIpcStatistics pid:1473 success
 ```
 
-
 ## Compressing Exported Information
 
 HiDiumper provides the **--zip** command to export any type of exported information into a ZIP file in **/data/log/hidumper**. This command can be combined with other commands, and the file is named with the current timestamp, as shown in the following example.
@@ -1278,14 +1501,19 @@ $ hidumper -e --zip
 ```
 
 ## Common ArkUI Basic Information Display Capabilities
+
 ArkUI provides the capability of obtaining information such as the component tree based on the enhanced hidumper.
+
 ### Obtaining Application Window Information
+
 Run the following command to print the full window information. You can find the **WinId** of the corresponding window in the full information and pass it as a parameter to other commands to obtain related information.
 
 ```shell
 hdc shell hidumper -s WindowManagerService -a '-a'
 ```
+
  **Example**
+
 ```text
 -------------------------------[ability]-------------------------------
 
@@ -1309,6 +1537,7 @@ total window num: 10
 ```
 
 The following table lists the mapping between common **windowName** and built-in application windows.
+
 |windowName|Built-in Application Window|
 |---|---|
 | EntryView|Home screen.|
@@ -1318,11 +1547,13 @@ The following table lists the mapping between common **windowName** and built-in
 | ScreenLockWindow|Lock screen.|
 
 ### Obtaining an Application Component Tree
+
 Run the following command to view information about all components in an application:
 
 ```shell
 hdc shell "hidumper -s WindowManagerService -a '-w %windowId% -element'"
 ```
+
 **windowId** is the window ID of the target application.
 
 **Example**
@@ -1369,14 +1600,17 @@ TouchHotAreas: [ 0, 1208, 720, 72 ]
 ```
 
 ### Obtaining Component Information of a Specified Application Node
+
 Run the following command to view component information of a node:
 
 ```shell
 hdc shell "hidumper -s WindowManagerService -a '-w %windowId% -element -lastpage %nodeID%'"
 ```
+
 **windowId** indicates the window ID of the application, and **nodeID** indicates the ID of the specified node. You can obtain the **nodeID** by obtaining the target application component tree.
 
 **Example**
+
 ```text
 hdc shell "hidumper -s WindowManagerService -a '-w 5 -element -lastpage 3'"
 
@@ -1404,18 +1638,23 @@ TouchHotAreas: [ 0, 1208, 720, 72 ]
 ```
 
 ### Obtaining the Inspector Tree of an Application
+
 The **element/render** tree in the preceding example mainly contains multiple internal implementations, which cannot be mapped to components in the application code. You can print the Inspector tree to obtain the tree structure and basic information corresponding to the application components. The Inspector tree matches DevEco Testing and ArkUI Inspector in DevEco Studio.
 
 You need to enable ArkUI debug before using this functionality.
+
 ```shell
 hdc shell param set persist.ace.testmode.enabled 1
 ```
+
 **set**: command for setting; **persist.ace.testmode.enabled**: ArkUI debug switch name; **1**: the switch is set to **true** to enable the debug functionality.
 
 The command is as follows:
+
 ```shell
 hdc shell "hidumper -s WindowManagerService -a '-w %windowId% -inspector'"
 ```
+
 **Example**
 
 ```text
@@ -1482,7 +1721,9 @@ The command is as follows:
 ```shell
 hidumper -s WindowManagerService -a '-w %windowId% -navigation -c'
 ```
+
 **Example**
+
 ```text
 hidumper -s WindowManagerService -a '-w 15 -navigation -c'
 
@@ -1525,12 +1766,12 @@ Navigation number: 4
       | [1]{ ID: 5, Name: "pageSix", Mode: "STANDARD", IsOnShow: "FALSE" }
   | [2]{ ID: 6, Name: "pageThree", Mode: "STANDARD", IsOnShow: "TRUE" }
 ```
+
 > **NOTE**
 >
 > For the same-level nodes, the node displayed at the bottom is the stack top node.
 
 ## FAQs
-
 
 ### What is the difference between the memory usage queried by hidumper and that by the HiDebug APIs?
 
@@ -1553,12 +1794,11 @@ The following table compares the memory information obtained by the **hidumper -
 
 To obtain the graphics memory using HiDebug, see [HiDebug Overview](hidebug-guidelines.md).
 
-
-### What should I do if hidumper fails to obtain the process VM memory and leaked object information?
+### hidumper Fails to Obtain Process VM Memory and Leaked Object Information
 
 **Symptom**
 
-No file is generated when the **hidumper --mem-jsheap [pid] --leakobj** command is executed.
+When running the **hidumper --mem-jsheap [pid] --leakobj** command to obtain the VM heap memory and leaked object information of a specified process, the command does not generate files as expected.
 
 **Possible Causes and Solution**
 

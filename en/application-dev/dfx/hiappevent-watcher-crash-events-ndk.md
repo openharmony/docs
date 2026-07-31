@@ -1,14 +1,16 @@
 # Subscribing to Crash Events (C/C++)
+
 <!--Kit: Performance Analysis Kit-->
 <!--Subsystem: HiviewDFX-->
 <!--Owner: @chenshi51-->
 <!--Designer: @Maplestory91-->
 <!--Tester: @gcw_KuLfPSbe-->
-<!--Adviser: @foryourself-->
+<!--Adviser: @jinqiuheng-->
+<!-- md-trans-meta sourceCommit=e045b2c3e44ea3985eed61bc2f7a3828310d8c76 translatedAt=2026-07-31T01:25:56.948Z pushedAt=2026-07-31T02:43:51.981Z -->
 
 ## Overview
 
-The following describes how to subscribe to application crash events by using the C/C++ APIs provided by HiAppEvent. For details, see [hiappevent.h](../reference/apis-performance-analysis-kit/capi-hiappevent-h.md).
+This section describes how to use the C/C++ APIs provided by HiAppEvent to subscribe to app crash events. For detailed usage instructions, refer to [hiappevent.h](../reference/apis-performance-analysis-kit/capi-hiappevent-h.md).
 
 > **NOTE**
 >
@@ -31,7 +33,7 @@ The following example describes how to subscribe to a crash event triggered by b
 
 1. Obtain the **jsoncpp** file on which the sample project depends. Click [HiAppEvent Sample Project EventSub](https://gitcode.com/openharmony/applications_app_samples/tree/master/code/DocsSample/PerformanceAnalysisKit/HiAppEvent/EventSub) and **click Download the directory** to download the EventSub project file.
 
-2. Create a native C++ project and import the preceding files to the project. The directory structure is as follows:
+2. Create a Native C++ template project in DevEco Studio, and import the above files into the new project. The directory structure is as follows.
 
    ```yml
    entry:
@@ -53,7 +55,7 @@ The following example describes how to subscribe to a crash event triggered by b
                - Index.ets
    ```
 
-   The source code corresponding to the **jsoncpp** library file in this sample project is derived from [the third-party open-source library JsonCpp](https://github.com/open-source-parsers/jsoncpp/archive/refs/tags/1.9.6.tar.gz)
+   The source code corresponding to the jsoncpp library file in this sample project is derived from [the third-party open-source library JsonCpp](https://codeload.github.com/open-source-parsers/jsoncpp/tar.gz/refs/tags/1.9.6).
 
 3. In the **CMakeLists.txt** file, add the source file and dynamic libraries.
 
@@ -77,12 +79,13 @@ The following example describes how to subscribe to a crash event triggered by b
 4. In the **napi_init.cpp** file, import the dependency files and define **LOG_TAG**.
 
     <!-- @[EventSub_napi_Header](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/PerformanceAnalysisKit/HiAppEvent/EventSub/entry/src/main/cpp/napi_init.cpp) -->    
-    
+
     ``` C++
     #include "napi/native_api.h"
     // Adapt the path for referencing json.h based on the location of the third-party library jsoncpp in the project.
     #include "../../../build/jsoncpp-1.9.6/include/json/json.h"
     #include "hiappevent/hiappevent.h"
+    #include "hiappevent/hiappevent_param.h"
     #include "hilog/log.h"
     
     #undef LOG_TAG
@@ -96,33 +99,36 @@ The following example describes how to subscribe to a crash event triggered by b
       In the **napi_init.cpp** file, define **onReceive()** as follows:
 
       <!-- @[Sys_Crash_Crash_OnReceive](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/PerformanceAnalysisKit/HiAppEvent/EventSub/entry/src/main/cpp/napi_init.cpp) -->
-      
+
       ``` C++
       static void OnReceiveCrashEvent(const char *domain, const struct HiAppEvent_AppEventGroup *appEventGroups,
           uint32_t groupLen)
       {
           for (int i = 0; i < groupLen; ++i) {
               for (int j = 0; j < appEventGroups[i].infoLen; ++j) {
-                  OH_LOG_INFO(LogType::LOG_APP, "HiAppEvent eventInfo.domain=%{public}s",
-                      appEventGroups[i].appEventInfos[j].domain);
-                  OH_LOG_INFO(LogType::LOG_APP, "HiAppEvent eventInfo.name=%{public}s",
-                      appEventGroups[i].appEventInfos[j].name);
-                  OH_LOG_INFO(LogType::LOG_APP, "HiAppEvent eventInfo.eventType=%{public}d",
-                      appEventGroups[i].appEventInfos[j].type);
-                  if (strcmp(appEventGroups[i].appEventInfos[j].domain, DOMAIN_OS) != 0 ||
-                      strcmp(appEventGroups[i].appEventInfos[j].name, EVENT_APP_CRASH) != 0) {
+                  const struct HiAppEvent_AppEventInfo &appEventInfo = appEventGroups[i].appEventInfos[j];
+                  OH_LOG_INFO(LogType::LOG_APP, "HiAppEvent eventInfo.domain=%{public}s", appEventInfo.domain);
+                  OH_LOG_INFO(LogType::LOG_APP, "HiAppEvent eventInfo.name=%{public}s", appEventInfo.name);
+                  OH_LOG_INFO(LogType::LOG_APP, "HiAppEvent eventInfo.eventType=%{public}d", appEventInfo.type);
+                  if (strcmp(appEventInfo.domain, DOMAIN_OS) != 0 || strcmp(appEventInfo.name, EVENT_APP_CRASH) != 0) {
                       continue;
                   }
                   Json::Value params;
                   Json::Reader reader(Json::Features::strictMode());
                   Json::FastWriter writer;
-                  if (reader.parse(appEventGroups[i].appEventInfos[j].params, params)) {
+                  if (reader.parse(appEventInfo.params, params)) {
                       OH_LOG_INFO(LogType::LOG_APP, "HiAppEvent eventInfo.params.time=%{public}lld",
                           params["time"].asInt64());
                       OH_LOG_INFO(LogType::LOG_APP, "HiAppEvent eventInfo.params.crash_type=%{public}s",
                           params["crash_type"].asString().c_str());
                       OH_LOG_INFO(LogType::LOG_APP, "HiAppEvent eventInfo.params.foreground=%{public}d",
                           params["foreground"].asBool());
+                      OH_LOG_INFO(LogType::LOG_APP, "HiAppEvent eventInfo.params.release_type=%{public}s",
+                          params["release_type"].asString().c_str());
+                      OH_LOG_INFO(LogType::LOG_APP, "HiAppEvent eventInfo.params.cpu_abi=%{public}s",
+                          params["cpu_abi"].asString().c_str());
+                      OH_LOG_INFO(LogType::LOG_APP, "HiAppEvent eventInfo.params.app_running_unique_id=%{public}s",
+                          params["app_running_unique_id"].asString().c_str());
                       OH_LOG_INFO(LogType::LOG_APP, "HiAppEvent eventInfo.params.bundle_version=%{public}s",
                           params["bundle_version"].asString().c_str());
                       OH_LOG_INFO(LogType::LOG_APP, "HiAppEvent eventInfo.params.bundle_name=%{public}s",
@@ -163,6 +169,35 @@ The following example describes how to subscribe to a crash event triggered by b
           OH_HiAppEvent_SetWatcherOnReceive(systemEventWatcherR, OnReceiveCrashEvent);
           // Add a watcher to listen for the specified event.
           OH_HiAppEvent_AddWatcher(systemEventWatcherR);
+      
+          // 1. Create the configuration object.
+          HiAppEvent_Config* config = OH_HiAppEvent_CreateConfig();
+      
+          // 2. Set configuration parameters.
+          // Enable extended register memory printing.
+          OH_HiAppEvent_SetConfigItem(config, OH_APP_CRASH_PARAM_EXTEND_PC_LR_PRINTING, "true");
+      
+          // Set the log truncation size to 2 MB.
+          OH_HiAppEvent_SetConfigItem(config, OH_APP_CRASH_PARAM_LOG_FILE_CUTOFF_SZ_BYTES, "2097152");
+      
+          // Enable simplified VMA mapping information printing.
+          OH_HiAppEvent_SetConfigItem(config, OH_APP_CRASH_PARAM_SIMPLIFY_VMA_PRINTING, "true");
+      
+          // Enable app log concatenation.
+          OH_HiAppEvent_SetConfigItem(config, OH_APP_CRASH_PARAM_MERGE_CPPCRASH_APP_LOG, "true");
+      
+          // Enable minidump for native crash scenarios.
+          OH_HiAppEvent_SetConfigItem(config, OH_APP_CRASH_PARAM_COLLECT_MINIDUMP, "true");
+      
+          // 3. Apply the configuration to the EVENT_APP_CRASH event.
+          int ret = OH_HiAppEvent_SetEventConfig(EVENT_APP_CRASH, config);
+          if (ret == HIAPPEVENT_SUCCESS) {
+              OH_LOG_INFO(LogType::LOG_APP, "Successfully set APP_CRASH event configurations.");
+          }
+      
+          // 4. Destroy the configuration object.
+          OH_HiAppEvent_DestroyConfig(config);
+      
           return {};
       }
       ```
@@ -172,7 +207,7 @@ The following example describes how to subscribe to a crash event triggered by b
       Define **OnTrigger()** in the **napi_init.cpp** file.
 
       <!-- @[Sys_Crash_Event_OnTrigger](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/PerformanceAnalysisKit/HiAppEvent/EventSub/entry/src/main/cpp/napi_init.cpp) -->
-      
+
       ``` C++
       // Implement the callback function used to return the listened events. The content pointed to by the events pointer is valid only in this function.
       static void OnTakeCrash(const char *const *events, uint32_t eventLen)
@@ -196,6 +231,12 @@ The following example describes how to subscribe to a crash event triggered by b
                           eventInfo["crash_type"].asString().c_str());
                       OH_LOG_INFO(LogType::LOG_APP, "HiAppEvent eventInfo.params.foreground=%{public}d",
                           eventInfo["foreground"].asBool());
+                      OH_LOG_INFO(LogType::LOG_APP, "HiAppEvent eventInfo.params.release_type=%{public}s",
+                          eventInfo["release_type"].asString().c_str());
+                      OH_LOG_INFO(LogType::LOG_APP, "HiAppEvent eventInfo.params.cpu_abi=%{public}s",
+                          eventInfo["cpu_abi"].asString().c_str());
+                      OH_LOG_INFO(LogType::LOG_APP, "HiAppEvent eventInfo.params.app_running_unique_id=%{public}s",
+                          eventInfo["app_running_unique_id"].asString().c_str());
                       OH_LOG_INFO(LogType::LOG_APP, "HiAppEvent eventInfo.params.bundle_version=%{public}s",
                           eventInfo["bundle_version"].asString().c_str());
                       OH_LOG_INFO(LogType::LOG_APP, "HiAppEvent eventInfo.params.bundle_name=%{public}s",
@@ -252,8 +293,9 @@ The following example describes how to subscribe to a crash event triggered by b
 6. Register **RegisterWatcher** as an ArkTS API.
 
    In the **napi_init.cpp** file, register **RegisterWatcher** as an ArkTS API.
+
     <!-- @[Sys_Crash_Event_C++_Init](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/PerformanceAnalysisKit/HiAppEvent/EventSub/entry/src/main/cpp/napi_init.cpp) -->
-    
+
     ``` C++
     static napi_value Init(napi_env env, napi_value exports)
     {
@@ -273,7 +315,7 @@ The following example describes how to subscribe to a crash event triggered by b
    Define the ArkTS API in the **index.d.ts** file.
 
     <!-- @[Sys_Crash_Event_C++_Index.d.ts](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/PerformanceAnalysisKit/HiAppEvent/EventSub/entry/src/main/cpp/types/libentry/Index.d.ts) -->
-    
+
     ``` TypeScript
     export const registerWatcherClickCrash: () => void;
     export const registerWatcherCrashEvent: () => void;
@@ -282,7 +324,7 @@ The following example describes how to subscribe to a crash event triggered by b
 7. In the **EntryAbility.ets** file, add the following API to **onCreate()**.
 
     <!-- @[Sys_Crash_Event_Call_Capi_Function](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/PerformanceAnalysisKit/HiAppEvent/EventSub/entry/src/main/ets/entryability/EntryAbility.ets) -->
-    
+
     ``` TypeScript
     // Add the C API call in onCreate().
     // Register the crash event watcher at startup.
@@ -291,11 +333,12 @@ The following example describes how to subscribe to a crash event triggered by b
     testNapi.registerWatcherCrashEvent();
     ```
 
-
 8. In the **Index.ets** file, add a button to trigger a crash event.
 
+    - Construct a **JsError**
+
     <!-- @[JsError_CrashEvent_Button](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/PerformanceAnalysisKit/HiAppEvent/EventSub/entry/src/main/ets/pages/Index.ets) -->
-    
+
     ``` TypeScript
     Button('JsError')
       .type(ButtonType.Capsule)
@@ -311,7 +354,45 @@ The following example describes how to subscribe to a crash event triggered by b
       })
     ```
 
-9. Click **Run** to start the application project. Then, click the **JsError** button to trigger a crash event. The system generates crash logs and triggers the callback.
+    - Construct a crash of the MergeLogNativeCrash type that merges app logs
+
+      In the **entry/src/main/ets/pages/Index.ets** file, import the dependent modules. The sample code is as follows:
+
+      <!-- @[Native_CrashEvent_Log_Header](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/PerformanceAnalysisKit/HiAppEvent/EventSub/entry/src/main/ets/pages/Index.ets) -->
+
+      ``` TypeScript
+      import { fileIo } from '@kit.CoreFileKit';
+      ```
+
+      In the **entry/src/main/ets/pages/index.ets** file, add the **appCrash** button and construct a scenario for triggering a crash event in **onClick()**. The sample code is as follows:
+
+      <!-- @[Native_CrashEvent_Log](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/PerformanceAnalysisKit/HiAppEvent/EventSub/entry/src/main/ets/pages/Index.ets) -->
+
+      ``` TypeScript
+      Button('MergeLogNativeCrash')
+        .type(ButtonType.Capsule)
+        .margin({
+          top: 20
+        })
+        .backgroundColor('#0D9FFB')
+        .width('80%')
+        .height('5%')
+        .onClick(() => {
+          // Simulate creating an applog, assuming the app package name is com.samples.eventsub.
+          let filePath: string = "/data/storage/el2/log/com.samples.eventsub_CppCrash_AppMerge.log";
+          let file = fileIo.openSync(filePath, fileIo.OpenMode.CREATE | fileIo.OpenMode.READ_WRITE);
+          let str: string = "only test for merge app log!";
+      
+          let writeLen = fileIo.writeSync(file.fd, str);
+          console.info("hiappevent write data to file succeed and size is:" + writeLen);
+          fileIo.closeSync(file);
+      
+          // Construct a crash scenario in the button click function to trigger an app crash event.
+          testNapi.testNullptr();
+        })
+      ```
+
+9. Click the **Run** button to start the app project. In the app UI, tap the **JsError** or **MergeLogNativeCrash** button to trigger a crash event. The system generates crash logs and triggers the callback.
 
 > **NOTE**
 >
@@ -346,6 +427,9 @@ HiAppEvent eventInfo.eventType=1
 HiAppEvent eventInfo.params.time=1503045716054
 HiAppEvent eventInfo.params.crash_type=JsError
 HiAppEvent eventInfo.params.foreground=1
+HiAppEvent eventInfo.params.release_type=debug
+HiAppEvent eventInfo.params.cpu_abi=armeabi-v7a
+HiAppEvent eventInfo.params.app_running_unique_id=365426736245712514
 HiAppEvent eventInfo.params.bundle_version=1.0.0
 HiAppEvent eventInfo.params.bundle_name=com.samples.eventsub
 HiAppEvent eventInfo.params.pid=2610
@@ -364,7 +448,7 @@ HiAppEvent eventInfo.params.log_over_limit=0
 1. Remove the event watcher.
 
     <!-- @[Sys_Crash_Event_C++_RemoveWatcher](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/PerformanceAnalysisKit/HiAppEvent/EventSub/entry/src/main/cpp/napi_init.cpp) -->
-    
+
     ``` C++
     static napi_value RemoveWatcherCrash(napi_env env, napi_callback_info info)
     {
@@ -378,7 +462,7 @@ HiAppEvent eventInfo.params.log_over_limit=0
 2. Destroy the event watcher.
 
     <!-- @[Sys_Crash_Event_C++_DestroyWatcher](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/PerformanceAnalysisKit/HiAppEvent/EventSub/entry/src/main/cpp/napi_init.cpp) -->
-    
+
     ``` C++
     static napi_value DestroyWatcherCrash(napi_env env, napi_callback_info info)
     {

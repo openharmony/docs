@@ -1,15 +1,16 @@
 # JS Crash (Process Crash) Detection
+
 <!--Kit: Performance Analysis Kit-->
 <!--Subsystem: HiviewDFX-->
 <!--Owner: @wanghuan2025-->
 <!--Designer: @Maplestory91-->
 <!--Tester: @gcw_KuLfPSbe-->
-<!--Adviser: @foryourself-->
+<!--Adviser: @jinqiuheng-->
+<!-- md-trans-meta sourceCommit=deda4f19015dd8c61f2e0d855c3c53292d681c7b translatedAt=2026-07-31T01:35:29.798Z pushedAt=2026-07-31T08:25:40.850Z -->
 
 ## Overview
 
 Crash detection is an important monitoring capability in ArkTS applications, which helps you detect and fix problems in applications in a timely manner.
-
 
 ## Detection Principles
 
@@ -19,15 +20,13 @@ ArkCompiler runtime captures process exceptions. The fault log generation proces
 
 2. ArkCompiler runtime collects fault information and reports it to HiView.
 
-3. HiView supplements only the information (such as the device memory status and application page switching history) that it has permission to obtain, generates the corresponding crash log file, and stores the file in the **/data/log/faultlog/faultlogger** directory.
+3. The HiView DFX process supplements information that only it has permission to obtain (such as the overall memory status of the device and the app page switching trace), generates the corresponding crash log file, and stores it in the `/data/log/faultlog/faultlogger` directory.
 
 4. To report a crash event, you can use HiAppEvent to subscribe to the [crash event](hiappevent-watcher-crash-events.md).  
 
-
 ## Constraints
 
-If an exception is thrown in an asynchronous function, no JS crash will occur. You can observe the exception through [ErrorManager](../reference/apis-ability-kit/js-apis-app-ability-errorManager.md#errormanageronerror). For details about the sample code, see [Exception Handling in Async Functions](../arkts-utils/arkts-runtime-faq.md#exception-handling-in-async-functions).
-
+Throwing an exception in an asynchronous function modified by **async** does not cause a JS crash that leads to an app crash. You can observe the exception through [errorManager.on('error')](../reference/apis-ability-kit/js-apis-app-ability-errorManager.md#errormanageronerror). For sample code, see [Exception Handling in Async Functions](../arkts-utils/arkts-runtime-faq.md#exception-handling-in-async-functions). Starting from **API version 26.0.0**, when the app has registered ErrorManager to observe exceptions, exceptions other than non-catchable types (currently only OutOfMemoryError) will not generate HiAppEvent events for reporting.
 
 ## Obtaining Logs
 
@@ -44,14 +43,14 @@ HiAppEvent provides APIs for subscribing to faults. For details, see [Introducti
 **Method 3: hdc**
 
 When **Developer options** is enabled, you can run the following command to obtain logs to the local host:
+
 ```text
 hdc file recv /data/log/faultlog/faultlogger Local path.
 ```
-The fault log file name format is **jscrash-Process name-Process UID-Millisecond-level time .log**.
 
+The fault log file name format is **jscrash-Process name-Process UID-Millisecond-level time.log**.
 
 ## Log Specifications
-
 
 |Field|Description|Initial API Version|Mandatory|Optional|
 |---|---|---|---|---|
@@ -60,7 +59,7 @@ The fault log file name format is **jscrash-Process name-Process UID-Millisecond
 | DeviceDebuggable | Whether the system version of the device can be debugged, which is irrelevant to **Developer options**.| 23 | Yes| - |
 | Fingerprint | Fault feature, which is a hash value for faults of the same type.| 8 | Yes| - |
 | Timestamp | Timestamp.| 8 | Yes| - |
-| Module name | Bundle name or Process name.| 8 | Yes| - |
+| Module name | Bundle name. | 8 | Yes | - |
 | ReleaseType | Application version type. The value **release** indicates that the application is a [release-type application](https://developer.huawei.com/consumer/en/doc/harmonyos-guides/ide-hvigor-compilation-options-customizing-guide#section192461528194916), and the value **debug** indicates that the application is a [debug-type application](https://developer.huawei.com/consumer/en/doc/harmonyos-guides/ide-hvigor-compilation-options-customizing-guide#section192461528194916).| 23 | Yes| - |
 | CpuAbi | ABI type.| 23 | Yes| - |
 | Version | HAP version.| 8 | Yes| - |
@@ -68,6 +67,8 @@ The fault log file name format is **jscrash-Process name-Process UID-Millisecond
 | IsSystemApp | Whether the application is a system application.| 23 | Yes| - |
 | Pid | ID of the faulty process.| 8 | Yes| - |
 | Uid | User ID.| 8 | Yes| - |
+| Process name | Name of the faulty process. | 26 | Yes | - |
+| App running unique id | Unique ID associated with the app at runtime. | 26.0.0 | Yes | - |
 | Process life time | Lifetime of the faulty process.| 22 | Yes| - |
 | Process Memory(kB) | Process memory usage.| 20 | Yes| - |
 | Device Memory(kB) | Device memory information.| 20 | No| This field depends on the maintenance and debugging service process. If the maintenance and debugging service process stops or the device restarts when a fault occurs, this field does not exist. For details, see [Detection Principles](#detection-principles).|
@@ -80,15 +81,17 @@ The fault log file name format is **jscrash-Process name-Process UID-Millisecond
 | SubmitterStacktrace | Submitter thread stack.| 20 | No| By default, the asynchronous thread stack tracing functionality is enabled only in the ARM 64-bit system.<br>For versions earlier than API version 22, the functionality of submitting asynchronous tasks by third-party and system applications through [libuv](../reference/native-lib/libuv.md) and [ffrt](../reference/apis-ffrt-kit/capi-ffrt.md) is enabled only in the debug version by default.<br>Since API version 22, the functionality of submitting asynchronous tasks by third-party applications through **libuv** is enabled by default in both debug and release versions. The functionality of submitting asynchronous tasks by third-party and system applications through **ffrt** is enabled by default only in the debug version.|
 | HiLog | HiLog logs printed before the fault occurs. A maximum of 1000 lines can be printed.| 20 | Yes| - |
 | AsyncStack | Promise stack.| 23 | No| In ARM64, if the promise stack is enabled, this field is contained.|
+| ModuleImportStack | Module loading chain. | 26.0.0 | No | On ARM 64-bit systems, this field is included if the [module loading chain debug switch](../arkts-utils/arkts-module-debug.md) is enabled. |
 
 Example of the JS crash log specifications:
+
 ```text
 Device info:XXX <- Device information
 Build info:XXX-XXXX X.X.X.XX(XXXXXXXX) <- Build information
 DeviceDebuggable:No <- Whether the system version of the device can be debugged.
 Fingerprint:ed1811f3f5ae13c7262b51aab73ddd01df95b2c64466a204e0d70e6461cf1697 <- Fault features
 Timestamp:XXXX-XX-XX XX:XX:XX.XXX <- Timestamp
-Module name:com.example.myapplication <- Bundle name/Process name
+Module name:com.example.myapplication <- Package name
 ReleaseType:release <- Application version type.
 CpuAbi:arm64-v8a <- ABI type.
 Version:1.0.0 <- HAP version
@@ -96,9 +99,11 @@ VersionCode:1000000 <- Version code
 IsSystemApp:No <- Whether the application is a system application.
 Pid:579 <- Faulty process ID
 Uid:0 <- User ID
+Process name:com.example.myapplication <- Process name
+App running unique id:124500628566978194 <- Unique ID associated with the app runtime
 Process life time:1s  <- Process life time
 Process Memory(kB): 1897(Rss) <- Process memory usage
-Device Memory(kB): Total 1935820, Free 482136, Available 1204216  <- Device memory information
+Device Memory(kB): Total 1935820, Free 482136, Available 1204216  <- Device memory information (optional)
 Page switch history: <- Page switch history
   14:08:30:327 /ets/pages/Index:JsError
   14:08:28:986 /ets/pages/Index
@@ -135,6 +140,7 @@ HiLog:
  HiLog logs generated before the fault occurs are added to the generated crash log file. A maximum of 1000 lines are supported.
 
 ```
+
 ### Log Specifications for Asynchronous Thread Stack Tracing Faults
 
 When an asynchronous thread crashes, the stack of the thread that submits the asynchronous task is also printed to locate the fault. The call stack of the crash thread and that of the submission thread are separated by **SubmitterStacktrace**. The following is an example process crash log archived by DevEco Studio in FaultLog:
@@ -147,6 +153,7 @@ When an asynchronous thread crashes, the stack of the thread that submits the as
 >
 > Since API version 22, the functionality of submitting asynchronous tasks by third-party applications through **libuv** is enabled by default in both debug and release versions. The functionality of submitting asynchronous tasks by third-party and system applications through **ffrt** is enabled by default only in the debug version.
 The specifications of the **Stacktrace** field are as follows:
+
 ```text
 Stacktrace:
 #00 pc 00000000004d9d4c /system/lib64/platformsdk/libark_jsruntime.so(panda::ecmascript::Backtrace(std::__h::basic_ostringstream<char, std::__h::char_traits<char>, std::__h::allocator<char>>&, bool)+92)(723d1618fe2567539bed3038ccfe92d8)
@@ -180,6 +187,7 @@ Stacktrace:
 ### Page switch history
 
 Since API version 20, the **Page switch history** field is used to record the page switch history. A maximum of 10 latest history records can be recorded in the fault log. The format of a record is as follows:
+
 ```text
   14:08:30:327 /ets/pages/Index:JsError
        ^             ^            ^
@@ -188,7 +196,7 @@ Since API version 20, the **Page switch history** field is used to record the pa
 
 > **NOTE**
 >
-> The child page's name is available only when it is navigated to through **Navigation**.
+> The child page's name is available only when it is navigated to through **Navigation**. The page name is defined in the [system routing table](../ui/arkts-navigation-cross-package.md#system-routing-table).
 >
 > When the application switches between the foreground and background, the corresponding page URL is empty, but **enters foreground** and **leaves foreground** are displayed as special page names.
 >
@@ -200,7 +208,6 @@ Since API version 20, the **Page switch history** field is used to record the pa
 
 JS crashes are classified into the following types in the **Reason** field based on exception scenarios:
 
-
 - **Error**: The most basic error type. Other error types are inherited from this type. The **Error** object has two important attributes: **Error message** and **Error name**. Generally, exceptions of the **Error** type are thrown by developers.
 
 - **TypeError**: The most common error type at runtime, indicating a variable or parameter that is not of the expected type.
@@ -210,7 +217,9 @@ JS crashes are classified into the following types in the **Reason** field based
 - **RangeError**: Exception thrown when a value exceeds the valid range. Common range errors include the following:
 
   - The length of an array is negative or exceeds the maximum length.
+
   - The numeric parameter exceeds the predefined range.
+
   - The function stack call depth exceeds the upper limit.
 
 - **ReferenceError**: Error thrown when a variable that does not exist is referenced. Each time a variable is created, the variable name and its value are stored in the key-value format. When a variable is referenced, the value will be located based on the key and returned. If the variable referenced cannot be found, **ReferenceError** is thrown.
@@ -225,67 +234,51 @@ JS crashes are classified into the following types in the **Reason** field based
 
 - **EvalError**: Error occurs when the **eval()** function execution is abnormal. However, in practice, this error type is rarely used. The engine usually throws **SyntaxError** or **TypeError**.
 
-
 You can identify the cause of the JS crash, mostly application issues, based on **Error message** and **Stacktrace** in the logs.
-
 
 ### Exception Code Call Stack Formats
 
-
 The exception code call stack content in release mode is different from that in debug mode. In debug mode, the complete debugging information is retained. In release mode, debugging information is stripped through code optimization and obfuscation.
-
 
 **Release mode**
 
-
 In an application built in release mode, the standard format of exception stack information is as follows:
-
 
 at \<Execution method name> (\<Module name|Dependent module name|Version number|Compilation product path>:\<Line number>:\<Column number>)
 
-
 The following is an example:
-
 
 ```text
 at onPageShow (entry|har1|1.0.0|src/main/ets/pages/Index.ts:7:13)
 ```
 
-
 Format description:
-
 
 1. **at**: fixed start identifier of the stack call chain.
 
 2. Execution method name: **onPageShow** indicates the name of the calling method that triggers an exception.
 
 3. The structure of the compilation product is as follows:
+
    - Path: For details, see the key field in [Exception Stack Trace Analysis: Sourcemap Format](https://developer.huawei.com/consumer/en/doc/harmonyos-guides/ide-exception-stack-parsing-principle#section1145914292713).
 
    - File type: The file name extension is **.ts**. (For .js files, the exception can be located directly without SourceMap mapping.)
 
 4. Row and column number: Colons (:\) are used to separate row and column numbers of the exception.
 
-
 **Debug mode**
-
 
 In an application built in debug mode or a release application whose exception stack is translated using source map, the standard exception stack information format is as follows:
 
-
 at \<Execution method name> \<Dependent module name> (\<Source code path>:\<Line number>:\<Column number>)
 
-
 The following is an example:
-
 
 ```text
 at onPageShow har1 (har1/src/main/ets/pages/Index.ets:7:13)
 ```
 
-
 Format description:
-
 
 1. **at**: fixed start identifier of the stack call chain.
 
@@ -294,11 +287,12 @@ Format description:
 3. Dependent module name: **har1** indicates the name of the module to which the source code path belongs.
 
 4. The source code path structure is as follows:
+
    - Source code path: Source code file path based on the project directory.
+
    - File type: The file name extension is **.ets**.
 
 5. Row and column number: Colons (:\) are used to separate row and column numbers of the exception.
-
 
 ### HybridStack Format
 
@@ -311,26 +305,29 @@ For details about the JS call stack, see [JS Exception Code Call Stack Formats](
 ### Promise Stack
 
 The promise stack is disabled by default. Since API version 23, you can run the following command to enable it in ARM64. The setting takes effect for the entire device.
+
 ```cmd
 hdc shell param set persist.ark.properties 0x80105c
 hdc shell reboot
 ```
 
 Run the following command to disable the promise stack.
+
 ```cmd
 hdc shell param set persist.ark.properties 0x105c
 hdc shell reboot
 ```
 
-By default, an exception thrown in a promise task does not cause a JS crash. However, you can capture a rejected promise using [ErrorManager unhandledRejection](../reference/apis-ability-kit/js-apis-app-ability-errorManager.md#errormanageronunhandledrejection12) and then throw the exception to trigger a JS crash.
+Exceptions thrown in promise asynchronous tasks do not cause a JS crash by default. However, after capturing a rejected promise through [on('unhandledRejection')](../reference/apis-ability-kit/js-apis-app-ability-errorManager.md#errormanageronunhandledrejection12), you can actively throw the exception to trigger a JS crash.
 
 When the promise stack is enabled, if an exception is thrown in a promise task and a JS crash occurs, the JS crash log displays the stack information about the promise task creation.
 
 The format of the promise stack in the JS crash log is as follows:
 
 ```text
-Stacktrace:
 ...
+Stacktrace:
+    at onPageShow entry (entry/src/main/ets/pages/Index.ets:7:13)
 HybridStack:
 ...
 AsyncStack: <- After the promise stack is enabled, the stack information when the promise task is created is displayed.
@@ -364,3 +361,31 @@ AsyncStack: <- After the promise stack is enabled, the stack information when th
 HiLog:
 ...
 ```
+
+## JsCrash Clustering
+
+JsCrash clustering information starts with the `Stacktrace:` field and includes the call stack of `HybridStack:` on ARM 64-bit systems.
+
+```text
+...
+Stacktrace:
+    at onPageShow entry (entry/src/main/ets/pages/Index.ets:7:13)
+HybridStack:
+#00 pc 00000000004a814c /system/lib64/platformsdk/libark_jsruntime.so(173710293c3751dc676d24264bfac393)
+#01 pc 00000000004a6460 /system/lib64/platformsdk/libark_jsruntime.so(173710293c3751dc676d24264bfac393)
+#02 pc 00000000006a94e0 /system/lib64/platformsdk/libark_jsruntime.so(173710293c3751dc676d24264bfac393)
+#03 pc 0000000000334d38 /system/lib64/platformsdk/libark_jsruntime.so(173710293c3751dc676d24264bfac393)
+#04 pc 0000000000253da8 /system/lib64/platformsdk/libark_jsruntime.so(panda::ecmascript::ObjectFactory::GetJSError(panda::ecmascript::base::ErrorType const&, char const*, panda::ecmascript::StackCheck)+292)(173710293c3751dc676d24264bfac393)
+#05 pc 00000000005c25d4 /system/lib64/platformsdk/libark_jsruntime.so(173710293c3751dc676d24264bfac393)
+#06 pc 0000000000de3efc /system/lib64/module/arkcompiler/stub.an(RTStub_PushCallArgsAndDispatchNative+44)
+#07 pc 000000000044843c /system/lib64/module/arkcompiler/stub.an(BCStub_HandleCallarg1Imm8V8StwCopy+340)
+#08 at onPageShow entry (entry/src/main/ets/pages/Index.ets:7:13)
+#09 pc 00000000001e620c /system/lib64/platformsdk/libark_jsruntime.so(173710293c3751dc676d24264bfac393)
+#10 pc 00000000009ad560 /system/lib64/platformsdk/libark_jsruntime.so(panda::FunctionRef::Call(panda::ecmascript::EcmaVM const*, panda::Local<panda::JSValueRef>, panda::Local<panda::JSValueRef> const*, int)+456)(173710293c3751dc676d24264bfac393)
+#11 pc 0000000000a63f14 /system/lib64/platformsdk/libace_compatible.z.so(e236e26a38ac303814f43a3c8fc9b0a6)
+#12 pc 0000000000d836bc /system/lib64/platformsdk/libace_compatible.z.so(e236e26a38ac303814f43a3c8fc9b0a6)
+#13 pc 000000000111f338 /system/lib64/platformsdk/libace_compatible.z.so(e236e26a38ac303814f43a3c8fc9b0a6)
+...
+```
+
+The clustering method is the same as that for Cpp Crash. For details, see [CppCrash Clustering](cppcrash-guidelines.md#cppcrash-clustering).
