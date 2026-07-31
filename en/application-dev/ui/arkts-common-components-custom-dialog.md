@@ -1,37 +1,40 @@
-# Basic Custom Dialog Box (CustomDialog)
+# Basic Custom Dialog (CustomDialog)
+
 <!--Kit: ArkUI-->
 <!--Subsystem: ArkUI-->
 <!--Owner: @houguobiao-->
 <!--Designer: @houguobiao-->
 <!--Tester: @lxl007-->
 <!--Adviser: @Brilliantry_Rui-->
-A custom dialog box is a dialog box you customize by using APIs of the **CustomDialogController** class. It can be used for user interactions, showing ads, award announcements, alerts, software update notifications, and more. For details, see [Custom Dialog Box](../reference/apis-arkui/arkui-ts/ts-methods-custom-dialog-box.md).
+<!-- md-trans-meta sourceCommit=d0654055576ab02270c2677e50b67065ca2d2e7e translatedAt=2026-07-29T12:44:45.644Z pushedAt=2026-07-31T01:52:31.239Z -->
+
+CustomDialog is a custom dialog used for user interaction scenarios such as advertisements, prize notifications, warnings, and software updates. You can display a custom dialog through the **CustomDialogController** class. For details, see [Custom Dialog](../reference/apis-arkui/arkui-ts/ts-methods-custom-dialog-box.md).
 
 > **NOTE**
-> 
-> In ArkUI, dialog boxes do not close automatically when you switch pages unless you manually call **close**. To enable a dialog box to be dismissed during page navigation, consider using the [navigation page displayed in dialog mode](./arkts-navigation-navdestination.md#page-display-mode) or [page-level dialog box](arkts-embedded-dialog.md).
+>
+> Currently, ArkUI dialogs are non-page-level by default. When a page route transition occurs, the dialog will not close automatically unless you call the close method. To overlay a dialog during page navigation, you can use the [dialog type for component navigation subpage display](./arkts-navigation-navdestination.md#page-display-mode) or [page-level dialog](arkts-embedded-dialog.md).
 
-By default, dialog boxes are modal and include a mask. Interactions with underlying components are blocked (click and gesture events are not transmitted). You can configure dialog box modality by setting the **isModal** property in [CustomDialogControllerOptions](../reference/apis-arkui/arkui-ts/ts-methods-custom-dialog-box.md#customdialogcontrolleroptions). For details, see [Types of Popup Windows](arkts-dialog-overview.md#types-of-popup-windows).
+By default, the dialog is modal with a mask layer, and interaction with controls beneath the mask layer is not allowed (tap and gesture events cannot pass through to the underlying layer). You can configure the **isModal** attribute in [CustomDialogControllerOptions](../reference/apis-arkui/arkui-ts/ts-methods-custom-dialog-box.md#customdialogcontrolleroptions) to implement modal and non-modal dialogs. For details, see [Dialog Box Types](arkts-dialog-overview.md#types-of-popup-windows).
 
-When **isModal** is **true**, the dialog box is modal, and the mask area does not transmit events. When **isModal** is **false**, the dialog box is non-modal, and the mask area allows event transmission. To enable simultaneous interaction with both the dialog box and the page outside the dialog box, set the dialog box to non-modal.
+When **isModal** is set to **true**, the dialog is modal, and the mask area around the dialog does not support pass-through. When **isModal** is set to **false**, the dialog is non-modal, and the mask area around the dialog supports pass-through. Therefore, if you need to allow both interaction with the dialog and interaction with the page content outside the dialog, set the dialog to non-modal.
 
 ## Lifecycle
 
-Since API version 19, the custom dialog box provides lifecycle callbacks to notify users of dialog box state changes. The order in which these lifecycle events are triggered is as follows: **onWillAppear**, **onDidAppear**, **onWillDisappear**, **onDidDisappear**.
+Starting from API version 19, the custom dialog provides lifecycle functions to notify you of the dialog lifecycle. The lifecycle trigger sequence is: onWillAppear -> onDidAppear -> onWillDisappear -> onDidDisappear.
 
-| Name           |Type| Description                      |
+| Name            |Type| Description                       |
 | ----------------- | ------ | ---------------------------- |
-| onWillAppear    | Callback&lt;void&gt; | Triggered before the dialog box display animation.|
-| onDidAppear    | Callback&lt;void&gt;  | Triggered after the dialog box appears.   |
-| onWillDisappear | Callback&lt;void&gt; | Triggered before the dialog box exit animation.|
-| onDidDisappear | Callback&lt;void&gt;  | Triggered after the dialog box disappears.   |
+| onWillAppear    | Callback&lt;void&gt; | Callback for the event before the dialog display animation. |
+| onDidAppear    | Callback&lt;void&gt;  | Callback for the event after the dialog is displayed.    |
+| onWillDisappear | Callback&lt;void&gt; | Callback for the event before the dialog exit animation. |
+| onDidDisappear | Callback&lt;void&gt;  | Callback for the event after the dialog disappears.    |
 
 ## Creating a Custom Dialog Box
 
-1. Use the \@CustomDialog decorator to create a custom dialog box. You can define the content of the dialog box within the decorator. Note that **CustomDialogController** must be defined in @Component.
-   
+1. Use the \@CustomDialog decorator to decorate a custom dialog. You can customize the dialog content within this decorator. CustomDialogController must be defined inside @Component.
+
    <!-- @[create_custom_dialog_new_customDialog_controller_default](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkUISample/DialogProject/entry/src/main/ets/pages/customdialog/CreateCustomDialogNew.ets) -->
-   
+
    ``` TypeScript
    @CustomDialog
    struct CustomDialogExample {
@@ -39,19 +42,18 @@ Since API version 19, the custom dialog box provides lifecycle callbacks to noti
    
      build() {
        Column() {
-         // Replace $r('app.string.i_am_content') with the actual resource file. In this example, the value in the resource file is "I am content."
+         // Replace $r('app.string.i_am_content') with the actual resource file. In this example, the value of the resource file is "I am the content".
          Text($r('app.string.i_am_content'))
            .fontSize(20)
        }.height(60).justifyContent(FlexAlign.Center)
      }
    }
    ```
-   
 
+2. Create a constructor and connect it to the decorator.
 
-2. Create a constructor and associate it with the decorator.
    <!-- @[create_custom_dialog_new_customDialog_controller_constructor](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkUISample/DialogProject/entry/src/main/ets/pages/customdialog/CreateCustomDialogNew.ets) -->
-   
+
    ``` TypeScript
    @Entry
    @Component
@@ -62,12 +64,11 @@ Since API version 19, the custom dialog box provides lifecycle callbacks to noti
    // ···
    }
    ```
-   
 
-3. Click the component bound to the **onClick** event to display the dialog box.
-   
+3. Tap the component bound to the onClick event to display the dialog.
+
    <!-- @[create_custom_dialog_new_customDialog_controller_on_click](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkUISample/DialogProject/entry/src/main/ets/pages/customdialog/CreateCustomDialogNew.ets) -->
-   
+
    ``` TypeScript
    @Entry
    @Component
@@ -87,17 +88,17 @@ Since API version 19, the custom dialog box provides lifecycle callbacks to noti
      }
    }
    ```
-   
-   
+
    ![custom-dialog-create](figures/custom-dialog-create.png)
 
-## Implementing Dialog Box Interaction
+## Dialog Box Interaction
 
-Custom dialog boxes support data interactions to complete various operations.
+A dialog can be used for data interaction to complete a series of user response operations.
 
-1. Add buttons and data functions to the \@CustomDialog decorator.
+1. Add buttons and data functions inside the \@CustomDialog decorator.
+
    <!-- @[dialog_interaction_use_constructor_example](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkUISample/DialogProject/entry/src/main/ets/pages/customdialog/DialogInteractionUseConstructor.ets) -->
-   
+
    ``` TypeScript
    @CustomDialog
    struct CustomDialogExample {
@@ -109,7 +110,7 @@ Custom dialog boxes support data interactions to complete various operations.
    
      build() {
        Column() {
-         // Replace $r('app.string.i_am_content') with the actual resource file. In this example, the value in the resource file is "I am content."
+         // Replace $r('app.string.i_am_content') with the actual resource file. In this example, the value of this resource file is "I am the content".
          Text($r('app.string.i_am_content')).fontSize(20).margin({ top: 10, bottom: 10 })
          Flex({ justifyContent: FlexAlign.SpaceAround }) {
            Button('cancel')
@@ -131,12 +132,11 @@ Custom dialog boxes support data interactions to complete various operations.
      }
    }
    ```
-   
-   
-   
-2. Receive the page in the builder and create corresponding function operations.
+
+2. Receive them in the constructor on the page and create the corresponding function operations.
+
    <!-- @[dialog_interaction_use_constructor_user](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkUISample/DialogProject/entry/src/main/ets/pages/customdialog/DialogInteractionUseConstructor.ets) -->
-   
+
    ``` TypeScript
    @Entry
    @Component
@@ -171,10 +171,10 @@ Custom dialog boxes support data interactions to complete various operations.
 
    ![custom-dialog-interaction](figures/custom-dialog-interaction.png)
 
+3. You can use buttons in a dialog to navigate to another page and obtain the parameters passed from that page to the current page.
 
-3. Use dialog box buttons to implement navigation and obtain parameters from the target page.
     <!-- @[dialog_interaction_use_button](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkUISample/DialogProject/entry/src/main/ets/pages/customdialog/DialogInteractionUseButton.ets) -->
-    
+
     ``` TypeScript
     @CustomDialog
     struct CustomDialogExample {
@@ -188,11 +188,11 @@ Custom dialog boxes support data interactions to complete various operations.
       build() {
         Column({ space: 20 }) {
           if (this.textValue !== '') {
-            // Replace $r('app.string.the_second_page_is') with the actual resource file. In this example, the value in the resource file is "Content of the second page."
-            Text($r('app.string.the_second_page_is')+`: ${this.textValue}`)
+            // Replace $r('app.string.the_second_page_is') with the actual resource file. In this example, the value of this resource file is "The content of the second page is".
+            Text($r('app.string.the_second_page_is')+`:${this.textValue}`)
               .fontSize(20)
           } else {
-            // Replace $r('app.string.whether_to_get_the_second_page') with the actual resource file. In this example, the value in the resource file is "Obtain the content of the second page?"
+            // Replace $r('app.string.whether_to_get_the_second_page') with the actual resource file. In this example, the value of this resource file is "Whether to obtain the content of the second page".
             Text($r('app.string.whether_to_get_the_second_page'))
               .fontSize(20)
           }
@@ -236,7 +236,7 @@ Custom dialog boxes support data interactions to complete various operations.
         })
       });
     
-      // Set dialogController to null when the custom component is about to be destroyed.
+      // Set dialogController to null when the custom component is about to be destructed.
       aboutToDisappear() {
         this.dialogController = null; // Set dialogController to null.
       }
@@ -245,20 +245,20 @@ Custom dialog boxes support data interactions to complete various operations.
         const params = this.getUIContext().getRouter().getParams() as Record<string, string>; // Obtain the passed parameter object.
         if (params) {
           this.dialogController?.open();
-          this.textValue = params.info as string; // Obtain the value of the id attribute.
+          this.textValue = params.info as string; // Obtain the value of the info property.
         }
       }
     
       onCancel() {
-        hilog.info(DOMAIN, 'testTag', 'testTag', 'Callback when the first button is clicked');
+        hilog.info(DOMAIN, 'testTag', 'Callback when the first button is clicked');
       }
     
       onAccept() {
-        hilog.info(DOMAIN, 'testTag', 'testTag', 'Callback when the second button is clicked');
+        hilog.info(DOMAIN, 'testTag', 'Callback when the second button is clicked');
       }
     
       exitApp() {
-        hilog.info(DOMAIN, 'testTag', 'testTag', 'Click the callback in the blank area');
+        hilog.info(DOMAIN, 'testTag', 'Click the callback in the blank area');
       }
     
       build() {
@@ -275,15 +275,14 @@ Custom dialog boxes support data interactions to complete various operations.
       }
     }
     ```
-    
 
     <!-- @[index_new](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkUISample/DialogProject/entry/src/main/ets/pages/customdialog/IndexNew.ets) -->
-    
+
     ``` TypeScript
     @Entry
     @Component
     struct IndexNew {
-      // Replace $r('app.string.click_and_return') with the actual resource file. In this example, the value in the resource file is "Back."
+      // Replace $r('app.string.click_and_return') with the actual resource file. In this example, the value of this resource file is "tap to return".
       @State message: string = $r('app.string.click_and_return');
     
       build() {
@@ -304,15 +303,14 @@ Custom dialog boxes support data interactions to complete various operations.
       }
     }
     ```
-    
-   
-   ![DialogRouter](figures/DialogRouter.gif)
 
-## Defining the Custom Dialog Box Animation
+![DialogRouter](figures/DialogRouter.gif)
 
-You can define the custom dialog box animation, including its duration and speed, through **openAnimation** of [CustomDialogControllerOptions](../reference/apis-arkui/arkui-ts/ts-methods-custom-dialog-box.md#customdialogcontrolleroptions).
+## Dialog Box Animation
 
-<!-- @[dialog_animation_new](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkUISample/DialogProject/entry/src/main/ets/pages/customdialog/DialogAnimationNew.ets) -->
+A dialog controls parameters such as the duration and speed of the appearance animation through the **openAnimation** attribute defined in [CustomDialogControllerOptions](../reference/apis-arkui/arkui-ts/ts-methods-custom-dialog-box.md#customdialogcontrolleroptions).
+
+<!-- @[dialog_animation_new](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkUISample/DialogProject/entry/src/main/ets/pages/customdialog/DialogAnimationNew.ets) --> 
 
 ``` TypeScript
 @CustomDialog
@@ -331,7 +329,6 @@ struct CustomDialogExample {
 @Entry
 @Component
 export struct DialogAnimationNew {
-  @State textValue: string = '';
   @State inputValue: string = 'click me';
   dialogController: CustomDialogController | null = new CustomDialogController({
     builder: CustomDialogExample(),
@@ -341,7 +338,7 @@ export struct DialogAnimationNew {
       delay: 500,
       playMode: PlayMode.Alternate,
       onFinish: () => {
-        hilog.info(DOMAIN, 'testTag', 'play end')
+        hilog.info(DOMAIN, 'testTag', 'play end');
       }
     },
     autoCancel: true,
@@ -353,7 +350,7 @@ export struct DialogAnimationNew {
     cornerRadius: 10,
   });
 
-  // Set dialogController to null when the custom component is about to be destroyed.
+  // Set dialogController to null before the custom component is destructed.
   aboutToDisappear() {
     this.dialogController = null; // Set dialogController to null.
   }
@@ -373,12 +370,12 @@ export struct DialogAnimationNew {
 }
 ```
 
-
 ![openAnimator](figures/openAnimator.gif)
 
-## Customizing the Dialog Box Style
+## Dialog Box Styles
 
-Control the dialog box appearance by defining width, height, background color, and shadow.
+You can control the style of a dialog by defining parameters such as its width, height, background color, and shadow.
+
 <!-- @[dialog_style_new](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkUISample/DialogProject/entry/src/main/ets/pages/customdialog/DialogStyleNew.ets) -->
 
 ``` TypeScript
@@ -388,7 +385,7 @@ struct CustomDialogExample {
 
   build() {
     Column() {
-      // Replace $r('app.string.i_am_content') with the actual resource file. In this example, the value in the resource file is "I am content."
+      // Replace $r('app.string.i_am_content') with the actual resource file. In this example, the value of the resource file is "I am content".
       Text($r('app.string.i_am_content')).fontSize(16).margin({ bottom: 10 })
     }
   }
@@ -397,7 +394,6 @@ struct CustomDialogExample {
 @Entry
 @Component
 export struct DialogStyleNew {
-  @State textValue: string = '';
   @State inputValue: string = 'click me';
   dialogController: CustomDialogController | null = new CustomDialogController({
     builder: CustomDialogExample(),
@@ -411,8 +407,8 @@ export struct DialogStyleNew {
     width: '80%',
     height: '100px',
     borderWidth: 1,
-    borderStyle: BorderStyle.Dashed, // borderStyle must be used with borderWidth in pairs.
-    borderColor: Color.Blue, // borderColor must be used with borderWidth in pairs.
+    borderStyle: BorderStyle.Dashed, //The borderStyle attribute must be used together with the borderWidth attribute.
+    borderColor: Color.Blue, //The borderColor attribute must be used together with the borderWidth attribute.
     shadow: ({
       radius: 20,
       color: Color.Grey,
@@ -441,19 +437,19 @@ export struct DialogStyleNew {
 }
 ```
 
-
 ![custom_style](figures/custom_style.gif)
 
-## Nesting a Custom Dialog Box
+## Nesting Custom Dialog Boxes
 
-To nest a dialog box (dialog 2) inside another dialog box (dialog 1), it is recommended that you define dialog 2 within the parent component of dialog 1 so that you can then open dialog 2 through the callback sent from the parent component to dialog 1.
+When opening a second dialog from the first dialog, it is recommended to define the second dialog in the parent component of the first dialog, and open the second dialog through a callback passed from the parent component to the first dialog.
+
 <!-- @[nest_dialog_new](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkUISample/DialogProject/entry/src/main/ets/pages/customdialog/NestDialogNew.ets) -->
 
 ``` TypeScript
 @CustomDialog
 struct CustomDialogExampleTwo {
   controllerTwo?: CustomDialogController;
-  @State message: string = 'I am the second dialog box.';
+  @State message: string = 'I am the second dialog.';
   @State showIf: boolean = false;
 
   build() {
@@ -555,15 +551,14 @@ export struct NestDialogNew {
 }
 ```
 
-
 ![nested_dialog](figures/nested_dialog.gif)
 
-Note: Defining dialog 2 within dialog 1 is not recommended, as components cannot be created in dialog 2 after dialog 1 is destroyed (closed) due to state management dependencies.
+Because custom dialogs have a parent-child relationship in state management, if the second dialog is defined inside the first dialog, new components can no longer be created in the child component (the second dialog) when the parent component (the first dialog) is destroyed (closed).
 
-## Implementing Physical Back Button Interception
+## Implementing Physical Back Press Interception for a Dialog Box
 
-When the **onWillDismiss** callback in [CustomDialogControllerOptions](../reference/apis-arkui/arkui-ts/ts-methods-custom-dialog-box.md#customdialogcontrolleroptions) is registered, the dialog box will not be dismissed immediately after the user touches the mask or the Back button, presses the Esc key, or swipes left or right on the screen. The callback provides the dismissal reason via **reason** in [DismissDialogAction](../reference/apis-arkui/arkui-ts/ts-methods-custom-dialog-box.md#dismissdialogaction12), allowing conditional dismissal.
- 
+When you perform interactive operations such as tapping the mask layer to close, swiping left or right, pressing the three-key Back button, or pressing ESC to close the dialog, if the onWillDismiss callback in [CustomDialogControllerOptions](../reference/apis-arkui/arkui-ts/ts-methods-custom-dialog-box.md#customdialogcontrolleroptions) is registered, the dialog is not closed immediately. In the callback, you can obtain the type of operation that prevented the dialog from closing through the reason property in [DismissDialogAction](../reference/apis-arkui/arkui-ts/ts-methods-custom-dialog-box.md#dismissdialogaction12), and decide whether to close the dialog based on the reason.
+
 <!-- @[dialog_with_physical_back](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkUISample/DialogProject/entry/src/main/ets/pages/customdialog/DialogWithPhysicalBack.ets) -->
 
 ``` TypeScript
@@ -589,6 +584,9 @@ struct CustomDialogExample {
             if (this.controller !== undefined) {
               this.controller.close();
             }
+            if (this.cancel) {
+              this.cancel();
+            }
           })
           .backgroundColor(0xffffff)
           .fontColor(Color.Black)
@@ -596,6 +594,9 @@ struct CustomDialogExample {
           .onClick(() => {
             if (this.controller !== undefined) {
               this.controller.close();
+            }
+            if (this.confirm) {
+              this.confirm();
             }
           })
           .backgroundColor(0xffffff)
@@ -622,11 +623,11 @@ export struct DialogWithPhysicalBack {
     }),
     onWillDismiss: (dismissDialogAction: DismissDialogAction) => {
       hilog.info(DOMAIN, 'testTag', 'dialog onWillDismiss reason: ' + dismissDialogAction.reason);
-      // 1. PRESS_BACK: touching the Back button, swiping left or right on the screen, or pressing the Esc key.
-      // 2. TOUCH_OUTSIDE: touching the mask.
-      // 3. CLOSE_BUTTON: touching the Close button.
+      // 1. PRESS_BACK: Press the three-key Back button, swipe left or right, or press ESC.
+      // 2. TOUCH_OUTSIDE: Tap the mask layer.
+      // 3. CLOSE_BUTTON: Tap the close button.
       if (dismissDialogAction.reason === DismissReason.PRESS_BACK) {
-        // Proactively close the dialog box after handling the service logic.
+        // Process the service logic and then close the dialog by calling dismiss.
         dismissDialogAction.dismiss();
       }
       if (dismissDialogAction.reason === DismissReason.TOUCH_OUTSIDE) {
@@ -659,15 +660,14 @@ export struct DialogWithPhysicalBack {
 }
 ```
 
-
 ![onWillDismiss_dialog](figures/onWillDismiss_dialog.gif)
 
-## Setting the Distance Between the Dialog Box and the Soft Keyboard
+## Setting the Distance for Dialog Box to Avoid the Soft Keyboard
 
-To maintain dialog box independence, dialog boxes automatically avoid surrounding elements like status bars, navigation bars, and keyboards. When the soft keyboard appears, dialog boxes maintain a default 16 vp distance. Since API version 15, use **keyboardAvoidMode** and **keyboardAvoidDistance** in [CustomDialogControllerOptions](../reference/apis-arkui/arkui-ts/ts-methods-custom-dialog-box.md#customdialogcontrolleroptions) to configure keyboard avoidance behavior.
+To ensure the independence of the displayed dialog, it avoids surrounding elements such as the status bar, navigation bar, and keyboard by maintaining a margin when it appears. Therefore, when the soft keyboard appears, the dialog automatically avoids it and keeps a distance of 16 vp by default. Starting from API version 15, you can use the **keyboardAvoidMode** and **keyboardAvoidDistance** configuration options in [CustomDialogControllerOptions](../reference/apis-arkui/arkui-ts/ts-methods-custom-dialog-box.md#customdialogcontrolleroptions) to set the behavior of the dialog when the soft keyboard appears, including whether to avoid the soft keyboard and the distance from it.
 
-Note that the value of **keyboardAvoidMode** should be set to **KeyboardAvoidMode.DEFAULT**.
-  
+To set the distance from the soft keyboard, you must set **keyboardAvoidMode** to **KeyboardAvoidMode.DEFAULT**.
+
 <!-- @[dialog_avoid_soft_key_board](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkUISample/DialogProject/entry/src/main/ets/pages/customdialog/DialogAvoidSoftKeyboard.ets) -->
 
 ``` TypeScript
@@ -702,15 +702,15 @@ export struct DialogAvoidSoftKeyboard {
     customStyle: false,
     cornerRadius: 30,
     alignment: DialogAlignment.Bottom,
-    keyboardAvoidMode: KeyboardAvoidMode.DEFAULT, // The dialog box automatically avoids the soft keyboard.
-    keyboardAvoidDistance: LengthMetrics.vp(0) // The distance between the soft keyboard and the dialog box is 0 vp.
+    keyboardAvoidMode: KeyboardAvoidMode.DEFAULT, // The dialog automatically avoids the soft keyboard when it appears.
+    keyboardAvoidDistance: LengthMetrics.vp(0) // The distance between the dialog and the soft keyboard is 0 vp when the soft keyboard appears.
   })
 
   build() {
     NavDestination() {
       Row() {
         Row({ space: 20 }) {
-          // Replace $r('app.string.open_windows') with the actual resource file. In this example, the value in the resource file is "Open a dialog box."
+          // Replace $r('app.string.open_windows') with the actual resource file. In this example, the value of this resource file is "Open dialog".
           Text($r('app.string.open_windows'))
             .fontSize(30)
             .onClick(() => {
@@ -727,16 +727,15 @@ export struct DialogAvoidSoftKeyboard {
 }
 ```
 
+![UIContextPromptAction](figures/UIContextPromptActionCustomDialog.gif)
 
- ![UIContextPromptAction](figures/UIContextPromptActionCustomDialog.gif)
+## Obtaining the Dialog Box State
 
-## Obtaining the Dialog Box Status
+In a business module, multiple dialogs may appear on a page at the same time. To avoid opening the same dialog repeatedly, check its current state through the controller before displaying it. If the dialog is already in the displayed state, do not open it again.
 
-In service modules, multiple dialog boxes may appear simultaneously. To prevent duplicate openings, check the dialog box status via the controller before display. If a dialog box is already displayed, do not open it again.
+Starting from API version 20, the **getState** API is provided for obtaining the current state of a dialog. For details about dialog states, see the [CommonState](../reference/apis-arkui/js-apis-promptAction.md#commonstate20) enumeration.
 
-The **getState** API, available since API version 20, obtains the current dialog box status. For details about the dialog box status, see [CommonState](../reference/apis-arkui/js-apis-promptAction.md#commonstate20).
-
-The following example uses [getDialogController](../reference/apis-arkui/arkui-ts/ts-custom-component-api.md#getdialogcontroller18) and [CustomDialogController](../reference/apis-arkui/arkui-ts/ts-methods-custom-dialog-box.md#customdialogcontroller) to obtain the dialog box status.
+The following example demonstrates how to obtain the current state of a dialog using both [getDialogController](../reference/apis-arkui/arkui-ts/ts-custom-component-api.md#getdialogcontroller18) and [CustomDialogController](../reference/apis-arkui/arkui-ts/ts-methods-custom-dialog-box.md#customdialogcontroller).
 
 <!-- @[get_dialog_status](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkUISample/DialogProject/entry/src/main/ets/pages/customdialog/GetDialogStatus.ets) -->
 
@@ -748,7 +747,7 @@ struct CustomDialogExample {
 
   build() {
     Column() {
-      // Replace $r('app.string.search_by_dialog') with the actual resource file. In this example, the value in the resource file is "Check Status: Custom Component Controller."
+      // Replace $r('app.string.search_by_dialog') with the actual resource file. In this example, the value of the resource file is "Tap to query dialog state: via the custom component's built-in controller".
       Button($r('app.string.search_by_dialog'))
         .onClick(() => {
           if (this.getDialogController() !== undefined) {
@@ -757,12 +756,12 @@ struct CustomDialogExample {
             hilog.info(DOMAIN, 'testTag', 'state: no exist');
           }
         }).margin(20)
-      // Replace $r('app.string.search_by_dialog_controller') with the actual resource file. In this example, the value in the resource file is "Check Status: CustomDialogController."
+      // Replace $r('app.string.search_by_dialog_controller') with the actual resource file. In this sample, the value of this resource file is "Tap to query dialog status: via CustomDialogController".
       Button($r('app.string.search_by_dialog_controller'))
         .onClick(() => {
           hilog.info(DOMAIN, 'testTag', 'state:' + this.controller?.getState());
         }).margin(20)
-      // Replace $r('app.string.close_widows') with the actual resource file. In this example, the value in the resource file is "Close Dialog Box."
+      // Replace $r('app.string.close_widows') with the actual resource file. In this sample, the value of this resource file is "Tap to close the dialog".
       Button($r('app.string.close_widows'))
         .onClick(() => {
           if (this.getDialogController() !== undefined) {
@@ -799,3 +798,13 @@ export struct GetDialogStatus {
 ```
 
 ![getState1](figures/getState1.gif)
+
+## Samples
+
+The following samples are available for custom dialog box development:
+
+- [Custom Dialog Box (ArkTS) (API 9)](https://gitcode.com/openharmony/codelabs/tree/master/ETSUI/CustomDialog)
+
+- [Building Dialog Boxes with Multiple Styles (ArkTS) (API 9)](https://gitcode.com/openharmony/codelabs/tree/master/ETSUI/MultipleDialog)
+
+- [Target Management (ArkTS) (API 9)](https://gitcode.com/openharmony/codelabs/tree/master/ETSUI/TargetManagement)

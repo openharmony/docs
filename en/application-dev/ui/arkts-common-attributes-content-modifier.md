@@ -1,10 +1,12 @@
 # Content Modifier (ContentModifier)
+
 <!--Kit: ArkUI-->
 <!--Subsystem: ArkUI-->
 <!--Owner: @liyi0309-->
 <!--Designer: @liyi0309-->
 <!--Tester: @lxl007-->
 <!--Adviser: @Brilliantry_Rui-->
+<!-- md-trans-meta sourceCommit=b8421fa94775fa4bceb1b522857b705478302935 translatedAt=2026-07-29T12:44:05.939Z pushedAt=2026-07-30T02:09:11.986Z -->
 
 **ContentModifier** allows you to customize the content area of supported components. For example, you can display a star inside a **Checkbox** component.
 
@@ -13,7 +15,7 @@ Currently, the following components support **ContentModifier**: [Button](../ref
 The following example shows how to use **ContentModifier** to replace the default check box with a pentagon shape. When the check box is selected, a red triangle appears inside the pentagon and the title updates to **selected**. When the check box is deselected, the triangle disappears and the title changes to **not selected**.
 
  <!-- @[checkbox_demo](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkUISample/Modifier/entry/src/main/ets/pages/MyCheckboxStyle.ets) -->
- 
+
  ``` TypeScript
  import { hilog } from '@kit.PerformanceAnalysisKit';
  import { resourceManager } from '@kit.LocalizationKit';
@@ -88,7 +90,7 @@ The following example shows how to use **ContentModifier** to replace the defaul
    build() {
      Row() {
        Column() {
-         // Check boxes for selection and deselection
+         // Selected and unselected buttons
          // Replace $r('app.string.checkbox_status') with the actual resource file. In this example, the value in the resource file is "Check box status."
          Checkbox({ name: this.resmg?.getStringSync($r('app.string.checkbox_status').id), group: 'checkboxGroup' })
            .select(true)
