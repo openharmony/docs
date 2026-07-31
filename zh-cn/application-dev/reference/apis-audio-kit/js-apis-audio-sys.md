@@ -2628,6 +2628,80 @@ audioEffectManager.setAudioSeparationEffectVolume(audio.AudioSeparationVolumeTyp
 });
 ```
 
+## AudioDeviceEnhanceManager
+
+音频设备增强管理。
+
+在使用AudioDeviceEnhanceManager的接口前，需要先通过[getDeviceEnhanceManager](arkts-apis-audio-AudioManager.md#getdeviceenhancemanager)创建实例。
+
+**起始版本：** 26.0.0
+
+### getSoundCardInfo()
+
+getSoundCardInfo(): Promise\<SoundCardInfo\>
+
+获取当前音频设备的内置声卡信息，包括声卡名称、声卡厂商，声卡型号等。使用Promise异步回调。
+
+**起始版本：** 26.0.0
+
+**系统接口：** 此接口为系统接口。
+
+**模型约束：** 此接口仅可在Stage模型下使用。
+
+**系统能力：** SystemCapability.Multimedia.Audio.DeviceEnhance
+
+**返回值：**
+
+| 类型 | 说明 |
+| ------------------- | ------------------------------ |
+| Promise\<[SoundCardInfo](#soundcardinfo)\> | Promise对象，返回内置声卡信息。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | -------------------------------------------- |
+| 202 | Not system App. |
+| 801 | Capability not supported. Failed to call the API due to limited device capabilities. |
+
+**示例：**
+
+```ts
+import { audio } from '@kit.AudioKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+let audioManager = audio.getAudioManager();
+let deviceEnhanceManager = audioManager.getDeviceEnhanceManager();
+
+deviceEnhanceManager.getSoundCardInfo().then((soundCardInfo: audio.SoundCardInfo) => {
+  console.info(`Successfully obtained sound card info: ${JSON.stringify(soundCardInfo, null, 2)}`);
+})
+.catch((err: BusinessError) => {
+  console.error(`Failed to get sound card info. Code: ${err.code}, Message: ${err.message}`);
+});
+```
+
+## SoundCardInfo
+
+描述声卡信息。
+
+**起始版本：** 26.0.0
+
+**系统接口：** 此接口为系统接口。
+
+**模型约束：** 此接口仅可在Stage模型下使用。
+
+**系统能力：** SystemCapability.Multimedia.Audio.Core
+
+| 名称 | 类型 | 只读 | 可选 | 说明 |
+| :--- | :--- | :--- | :--- | :--- |
+| name | string | 是 | 否 | 声卡名称。 |
+| vendor | string | 是 | 否 | 声卡厂商。 |
+| model | string | 是 | 否 | 声卡型号。 |
+| busAddress | string | 是 | 否 | 声卡总线地址。 |
+| driver | string | 是 | 否 | 声卡驱动信息。 |
+
 ## AudioRoutingManager<sup>9+</sup>
 
 音频路由管理。在使用AudioRoutingManager的接口前，需要使用[getRoutingManager](arkts-apis-audio-AudioManager.md#getroutingmanager9)获取AudioRoutingManager实例。
