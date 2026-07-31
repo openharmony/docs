@@ -1,10 +1,13 @@
 # Functions
+
 <!--Kit: Drm Kit-->
 <!--Subsystem: Multimedia-->
 <!--Owner: @qin_wei_jie-->
 <!--Designer: @chris2981-->
 <!--Tester: @xdlinc-->
 <!--Adviser: @w_Machine_cc-->
+<!-- md-trans-meta sourceCommit=29f3919446ee01733553b9b39493ee11224dad86 translatedAt=2026-07-31T02:11:58.000Z pushedAt=2026-07-31T03:50:48.736Z -->
+
 > **NOTE**
 >
 > The initial APIs of this module are supported since API version 11. Newly added APIs will be marked with a superscript to indicate their earliest API version.
@@ -53,12 +56,12 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 ```ts
 import { drm } from '@kit.DrmKit';
 // name indicates the DRM solution name. You can obtain the DRM solution name supported by the device through the drm.getMediaKeySystems API, for example, **com.clearplay.drm**.
-let name = "com.clearplay.drm";
+let name = 'com.clearplay.drm';
 let mediaKeySystem: drm.MediaKeySystem = drm.createMediaKeySystem(name);
 console.info(`createMediaKeySystem success, name: ${name}`);
 ```
 
-## drm.isMediaKeySystemSupported 
+## drm.isMediaKeySystemSupported
 
 isMediaKeySystemSupported(name: string): boolean
 
@@ -95,7 +98,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 ```ts
 import { drm } from '@kit.DrmKit';
 
-let supported: boolean = drm.isMediaKeySystemSupported("com.clearplay.drm");
+let supported: boolean = drm.isMediaKeySystemSupported('com.clearplay.drm');
 console.info("isMediaKeySystemSupported: ", supported);
 ```
 
@@ -137,7 +140,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 ```ts
 import { drm } from '@kit.DrmKit';
 
-let supported: boolean = drm.isMediaKeySystemSupported("com.clearplay.drm", "video/avc");
+let supported: boolean = drm.isMediaKeySystemSupported('com.clearplay.drm', 'video/avc');
 console.info("isMediaKeySystemSupported: ", supported);
 ```
 
@@ -157,7 +160,7 @@ Checks whether the device supports the specified DRM solution, MIME type, and co
 | -------- | ----------------------------------------------- | ---- |-------------------------------------------------------------------------------------------------------------------------------|
 | name  | string     | Yes  | DRM solution name. You can obtain the DRM solution name supported by the device through the [drm.getMediaKeySystems](arkts-apis-drm-f.md#drmgetmediakeysystems12) API, for example, **com.clearplay.drm**.         |
 | mimeType  | string     | Yes  | MIME type. The supported MIME types depend on the DRM solution.|
-| level  | [ContentProtectionLevel](arkts-apis-drm-e.md#contentprotectionlevel)     | Yes  | Content protection level.                                                                                                                      |
+| level  | [ContentProtectionLevel](arkts-apis-drm-e.md#contentprotectionlevel)     | Yes   | Content protection level used to specify the security protection degree of DRM content. Different levels correspond to different decryption capabilities and security requirements.                                                                                                                       |
 
 **Return value**
 
@@ -180,13 +183,13 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 ```ts
 import { drm } from '@kit.DrmKit';
 
-let supported: boolean = drm.isMediaKeySystemSupported("com.clearplay.drm", "video/avc", drm.ContentProtectionLevel.CONTENT_PROTECTION_LEVEL_SW_CRYPTO);
+let supported: boolean = drm.isMediaKeySystemSupported('com.clearplay.drm', 'video/avc', drm.ContentProtectionLevel.CONTENT_PROTECTION_LEVEL_SW_CRYPTO);
 console.info("isMediaKeySystemSupported: ", supported);
 ```
 
 ## drm.getMediaKeySystemUuid<sup>12+</sup>
 
-getMediaKeySystemUuid(name: string): string;
+getMediaKeySystemUuid(name: string): string
 
 Obtains the UUID of the DRM content protection system supported by the specified DRM solution.
 
@@ -212,7 +215,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID        | Error Message       |
 | --------------- | --------------- |
-| 401                |  The parameter check failed.Possibly because: 1.Mandatory parameters are left unspecified. 2.Parameter verification failed.                |
+| 401                |  The parameter check failed. Possibly because: 1. Mandatory parameters are left unspecified. 2. Parameter verification failed.                |
 | 24700101                |  All unknown errors                  |
 | 24700201                |  Fatal service error, for example, service died                  |
 
@@ -221,7 +224,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 ```ts
 import { drm } from '@kit.DrmKit';
 
-let uuid: string = drm.getMediaKeySystemUuid("com.clearplay.drm");
+let uuid: string = drm.getMediaKeySystemUuid('com.clearplay.drm');
 console.info("getMediaKeySystemUuid: ", uuid);
 ```
 
@@ -239,7 +242,7 @@ Obtains the list of plugins supported by the device.
 
 | Type                                            | Description                          |
 | ----------------------------------------------- | ---------------------------- |
-| [MediaKeySystemDescription](arkts-apis-drm-i.md#mediakeysystemdescription12)           | Array of supported plugins.                  |
+| [MediaKeySystemDescription](arkts-apis-drm-i.md#mediakeysystemdescription12)[]           | List of plugin information supported by the device.                   |
 
 **Error codes**
 
