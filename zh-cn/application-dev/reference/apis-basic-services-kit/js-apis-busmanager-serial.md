@@ -729,7 +729,7 @@ offDisconnect(callback?: Callback&lt;void&gt;): void
 
 **模型约束：** 此接口仅可在Stage模型下使用。
 
-**系统能力：** SystemCapability.BusManager.Serial
+**系统能力：**  SystemCapability.BusManager.Serial
 
 **参数：**
 
