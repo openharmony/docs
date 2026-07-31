@@ -21,4 +21,5 @@
   
 > **说明：** 
 > 
-> 仅应用需要克隆、备份或同步用户公共目录的图片、视频类文件时，可申请ohos.permission.READ_IMAGEVIDEO、ohos.permission.WRITE_IMAGEVIDEO权限来读写图片视频文件，申请方式请参考<!--RP1-->[申请受控权限](../../security/AccessToken/declare-permissions-in-acl.md)<!--RP1End-->。
+> - 当通过弹窗向用户申请授权时，用户拒绝授权，可通过[isCameraMuted](../../reference/apis-camera-kit/arkts-apis-camera-CameraManager.md#iscameramuted)查询当前相机是否被禁用。
+> - 仅应用需要克隆、备份或同步用户公共目录的图片、视频类文件时，可申请ohos.permission.READ_IMAGEVIDEO、ohos.permission.WRITE_IMAGEVIDEO权限来读写图片视频文件，申请方式请参考<!--RP1-->[申请受控权限](../../security/AccessToken/declare-permissions-in-acl.md)<!--RP1End-->。
