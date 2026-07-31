@@ -3364,6 +3364,12 @@ onLoadIntercept(callback: Callback\<OnLoadInterceptEvent, boolean\>)
 
 > **说明：**
 >
+> - onLoadIntercept是在页面导航前同步触发的回调，回调返回前当前导航处于挂起状态。
+>
+> - 禁止在回调中直接调用会触发新导航的接口（如[refresh()](./arkts-apis-webview-WebviewController.md#refresh)、[loadurl()](./arkts-apis-webview-WebviewController.md#loadurl)、[setCustomUserAgent()](./arkts-apis-webview-WebviewController.md#setcustomuseragent10)等），否则会导致回调重入或导航状态混乱。
+>
+> - 如需在拦截后重新加载页面，应在回调返回后通过[setTimeout()](../common/js-apis-timer.md#settimeout)等异步方法延迟调用。
+>
 > - onLoadIntercept无法获取到完整的headers，如需获取完整headers建议在[onInterceptRequest](#oninterceptrequest9)或者通过WebSchemeHandler的[onRequestStart](./arkts-apis-webview-WebSchemeHandler.md#onrequeststart12)中获取。
 
 **系统能力：** SystemCapability.Web.Webview.Core
