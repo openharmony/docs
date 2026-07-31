@@ -332,6 +332,7 @@ NODE_IMAGE_SYNC_LOAD = 4012
 ```
 
 图源同步加载属性，支持属性设置，属性重置，属性获取接口。<br>
+[NODE_IMAGE_ALT](#node_image_alt)占位图始终为异步加载，syncLoad对其不生效。<br>
 作为属性设置方法参数、属性获取方法返回值[ArkUI_AttributeItem](capi-arkui-nativemodule-arkui-attributeitem.md)格式如下。<br>
 
 **起始版本：** 20
