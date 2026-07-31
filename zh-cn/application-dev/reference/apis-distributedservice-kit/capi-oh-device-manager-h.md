@@ -47,7 +47,7 @@ int32_t OH_DeviceManager_GetLocalDeviceName(char **localDeviceName, unsigned int
 
 **废弃版本：** 26.0.0
 
-**替代接口：** OH_DeviceManager_GetLocalDeviceNameC
+**替代接口：** [OH_DeviceManager_GetLocalDeviceNameC](#oh_devicemanager_getlocaldevicenamec)
 
 **参数：**
 
