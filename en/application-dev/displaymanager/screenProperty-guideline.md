@@ -1,10 +1,12 @@
 # Using Display to Obtain Display Properties and Listen for Status Changes (ArkTS)
+
 <!--Kit: ArkUI-->
 <!--Subsystem: Window-->
-<!--Owner: @oh_wangxk; @logn-->
-<!--Designer: @hejunfei1991-->
+<!--Owner: @oh_wangxk-->
+<!--Designer: @logn; @wulong158-->
 <!--Tester: @qinliwen0417-->
 <!--Adviser: @ge-yafang-->
+<!-- md-trans-meta sourceCommit=5894207a89aa0ba2ff5ba646c58fe095f9c1b27c translatedAt=2026-08-01T02:50:46.018Z pushedAt=2026-08-01T06:47:52.289Z -->
 
 ## When to Use
 
@@ -13,7 +15,9 @@
 Typical scenarios for utilizing display properties are as follows:
 
 - Display information query: You can query the display resolution, physical pixel density, logical pixel density, refresh rate, dimensions, rotation direction, and rotation angle. For details, see [Display Properties](../reference/apis-arkui/js-apis-display.md#attributes).
+
 - Display status monitoring: You can listen for changes in the rotation, resolution, and refresh rate of the display.
+
 - Folding state monitoring: You can check whether the device is foldable and listen for changes in its folding state (whether it is unfolded or folded).
 
 ## Available APIs
@@ -40,7 +44,9 @@ The following table lists the common APIs related to display properties. For det
 The display object provides APIs to obtain display properties and listen for changes. You can use any of the following methods to obtain a display object, depending on your service requirements:
 
 - Use **getDefaultDisplaySync()** to obtain the default display object.
+
 - Use **getAllDisplays()** to obtain all display objects.
+
 - Use **getDisplayByIdSync()** to obtain a display object with a specific display ID.
 
 The following example demonstrates how to use **getDefaultDisplaySync()** to obtain the default display object:
@@ -63,7 +69,7 @@ try {
 1. After the display object is acquired, you can query the basic information about the display through its properties.
 
     <!-- @[get_display_info](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkUISample/DisplayBasicSample/entry/src/main/ets/pages/Index.ets) -->
-    
+
     ``` TypeScript
     let displayClass: display.Display | null = null;
     try {
@@ -86,7 +92,7 @@ try {
 2. To enhance UI layout design, you can use **getCutoutInfo()** to obtain information about unusable areas of the display, including punch hole, notch, and curved area of a waterfall display. You can also use **getAvailableArea()** to obtain the available area of the display.
 
     <!-- @[get_cutoutInfo](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkUISample/DisplayBasicSample/entry/src/main/ets/pages/Index.ets) -->
-    
+
     ``` TypeScript
     let displayClass: display.Display | null = null;
     try {
@@ -114,7 +120,7 @@ try {
 3. Call **display.isCaptured()** to determine whether the device is engaged in activities such as screen capture, casting, or recording.
 
     <!-- @[get_display_captured](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkUISample/DisplayBasicSample/entry/src/main/ets/pages/Index.ets) -->
-    
+
     ``` TypeScript
     try {
       hilog.info(DOMAIN, 'DisplayTest', `The screen is captured or not : ${display.isCaptured()}`);
@@ -129,7 +135,7 @@ try {
 1. To listen for display changes, use **display.on('add'|'remove'|'change')** to subscribe to events such as the addition, removal, or alteration of displays. To unsubscribe from these events, call **display.off('add'|'remove'|'change')**.
 
     <!-- @[add_listen_callback](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkUISample/DisplayBasicSample/entry/src/main/ets/pages/Index.ets) -->
-    
+
     ``` TypeScript
     /**
      * The callback parameter used for subscription must be passed as an object.
@@ -158,7 +164,7 @@ try {
 2. To listen for screen capture, casting, or recording status changes, call **display.on('captureStatusChange')**. To end the listening, call **display.off('captureStatusChange')**.
 
     <!-- @[capture_listen_callback](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkUISample/DisplayBasicSample/entry/src/main/ets/pages/Index.ets) -->
-    
+
     ``` TypeScript
     let callback2: Callback<boolean> = (captureStatus: boolean) => {
       // For captureStatus, the value true means that the device starts screen capture, casting, or recording, and false means that the device stops screen capture, casting, or recording.
@@ -181,7 +187,7 @@ try {
 3. To listen for available area changes of the display, call **on('availableAreaChange')**. To end the listening, call **off('availableAreaChange')**.
 
     <!-- @[available_listen_callback](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkUISample/DisplayBasicSample/entry/src/main/ets/pages/Index.ets) -->
-    
+
     ``` TypeScript
     /**
      * The callback parameter used for subscription must be passed as an object.
@@ -210,7 +216,7 @@ try {
 1. Call **display.isFoldable()** to check whether the device is foldable.
 
     <!-- @[get_fold_device](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkUISample/DisplayBasicSample/entry/src/main/ets/pages/Index.ets) -->
-    
+
     ``` TypeScript
     let isFoldableDevice: boolean = false;
     try {
@@ -226,7 +232,7 @@ try {
 2. If the device is a foldable device, call **display.on('foldStatusChange')** to listen for folding state changes. To end the listening, call **display.off('foldStatusChange')**.
 
     <!-- @[fold_device_listen](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkUISample/DisplayBasicSample/entry/src/main/ets/pages/Index.ets) -->
-    
+
     ``` TypeScript
     /**
      * The callback parameter used for subscription must be passed as an object.

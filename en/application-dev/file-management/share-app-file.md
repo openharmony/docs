@@ -1,16 +1,18 @@
 # Sharing an Application File
+
 <!--Kit: Core File Kit-->
 <!--Subsystem: FileManagement-->
 <!--Owner: @gzhuangzhuang-->
 <!--Designer: @wang_zhangjun; @chenxi0605-->
 <!--Tester: @liuhonggang123-->
 <!--Adviser: @jinqiuheng-->
+<!-- md-trans-meta sourceCommit=db7022f0cb4327ce8c3bb45927411e792eeb9d9a translatedAt=2026-08-01T07:28:36.460Z pushedAt=2026-08-01T11:24:30.790Z -->
 
 An application can share a file with another application based on the uniform resource identifier (URI) of the file.
 
 ## Using startAbility to Start a File Application
 
-[startAbility](../application-models/file-processing-apps-startup.md)-based file sharing: You can use [wantConstant.Flags](../reference/apis-ability-kit/js-apis-app-ability-wantConstant.md#flags) to specify the read or read/write permission on the file for the target application (application with which the file is shared). The target application can call [fs.open](../reference/apis-core-file-kit/js-apis-file-fs.md#fsopen) to open the file based on the URI and perform read and write operations.
+Based on the sharing method of [file picker (startAbility)](../application-models/file-processing-apps-startup.md), an app can share a single file and grant read-only or read/write permissions to other apps through the [wantConstant.Flags API of ohos.app.ability.wantConstant](../reference/apis-ability-kit/js-apis-app-ability-wantConstant.md#flags). The receiving app can open the URI through [fileIo.open](../reference/apis-core-file-kit/js-apis-file-fs.md#fileioopen) and perform read/write operations.
 
 ## Shareable Application Directories
 
@@ -37,3 +39,8 @@ The file URIs are in the following format:
 > - URI processing involves encoding and decoding. The system cannot guarantee the availability of the URI address that an application combines by itself.
 > - You are advised to use the APIs provided by the system to obtain URIs, for example, [getUriFromPath](../reference/apis-core-file-kit/js-apis-file-fileuri.md#fileurigeturifrompath).
 
+## Samples
+
+The following sample is available:
+
+- [SandboxShare (ArkTS) (API9)](https://gitcode.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/FileManagement/FileShare/SandboxShare)

@@ -1,10 +1,12 @@
 # User File URI
+
 <!--Kit: Core File Kit-->
 <!--Subsystem: FileManagement-->
 <!--Owner: @gzhuangzhuang-->
 <!--Designer: @wang_zhangjun; @chenxi0605-->
-<!--Tester: @liuhonggang123; @yue-ye2; @juxiaopang-->
+<!--Tester: @zsyztt; @yue-ye2; @fuwei-->
 <!--Adviser: @jinqiuheng-->
+<!-- md-trans-meta sourceCommit=3afe01b8f5d863a620be98d6d8501c3267bd2e42 translatedAt=2026-08-01T07:29:31.412Z pushedAt=2026-08-01T11:33:45.062Z -->
 
 As a unique identifier of a user file, the uniform resource identifier (URI) is usually used to specify the user file to be accessed or modified. Avoid using part of a URI for service code development.
 
@@ -12,10 +14,11 @@ As a unique identifier of a user file, the uniform resource identifier (URI) is 
 
 URIs can be classified into the following types:
 
-- Document URI: URI of a file selected or saved by the file manager started by picker, or obtained via the **fileAccess** module. For details, see [Obtaining a Document URI](#obtaining-a-document-uri).
+- Document URI: Returned when you select or save a file through the file manager opened by picker. For details about the acquisition method, see [Obtaining a Document URI](#obtaining-a-document-uri).
+
 - Media file URI: URI of an image or video selected from **Gallery** by picker; URI of an image or video obtained via the **photoAccessHelper** module; URI of an image, video, or audio file obtained via the **userFileManager** module. For details, see [Obtaining a Media File URI](#obtaining-a-media-file-uri).
 
-![user-file-uri-intro](figures/user-file-uri-intro.png)
+![user-file-uri-intro](figures/user-file-uri-intro-new.png)
 
 ## Document URI
 
@@ -35,81 +38,13 @@ The following table describes the fields in a document URI.
 
 ### Obtaining a Document URI
 
-1. Call **select()** or **save()** of [DocumentViewPicker](../reference/apis-core-file-kit/js-apis-file-picker.md#documentviewpicker) to select or save a document.
+1. Call [DocumentViewPicker](../reference/apis-core-file-kit/js-apis-file-picker.md#documentviewpicker) to select or save a file, which returns the URI of the selected or saved file.
 
-2. Call **select()** or **save()** of [AudioViewPicker](../reference/apis-core-file-kit/js-apis-file-picker.md#audioviewpicker) to select or save an audio file.<!--Del-->
-
-3. Use [@ohos.file.fileAccess](../reference/apis-core-file-kit/js-apis-fileAccess-sys.md). The [FileInfo](../reference/apis-core-file-kit/js-apis-fileAccess-sys.md#fileinfo) object contains the URI of the file or directory. Note that the APIs of [@ohos.file.fileAccess](../reference/apis-core-file-kit/js-apis-fileAccess-sys.md) can be called only by system applications. The file URIs of the following directories can be obtained:
-   - External storage directory
-   - **Docs** directory
-   - **Download** directory
-   - **Desktop** directory
-   - **Documents** directory
-   - **Share** directory of the shared disk
-<!--DelEnd-->
+2. Call [AudioViewPicker](../reference/apis-core-file-kit/js-apis-file-picker.md#audioviewpicker) to select or save an audio file, which returns the URI of the selected or saved file.
 
 ### Using a Document URI
 
-Applications of the normal APL can call [@ohos.file.fs](../reference/apis-core-file-kit/js-apis-file-fs.md) APIs only to access files based on document URIs. For details about the sample code, see [Selecting Documents](./select-user-file.md#selecting-documents) and [Saving Documents](./save-user-file.md#saving-documents).<!--Del-->
-
-Applications of the system_basic or system_core APL can call **@ohos.file.fs** and [@ohos.file.fileAccess](../reference/apis-core-file-kit/js-apis-fileAccess-sys.md) APIs to access files based on the URIs. To call **@ohos.file.fileAccess** APIs, the application must have the ohos.permission.FILE_ACCESS_MANAGER and ohos.permission.GET_BUNDLE_INFO_PRIVILEGED permissions declared in the **module.json5** file. "Permission denied" will be reported if an API of other modules is used. The following example walks you through on how to use **@ohos.file.fileAccess** APIs to create a document and rename the document based on the URI.
-
-1. Use [@ohos.file.fileAccess](../reference/apis-core-file-kit/js-apis-fileAccess-sys.md) to create a document. The URI of the document is returned.
-2. Rename the document based on its URI.
-
-<!-- @[function_example](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/CoreFile/UserFile/UserFileURI/entry/src/main/ets/pages/Index.ets) -->    
-
-``` TypeScript
-import { BusinessError } from '@kit.BasicServicesKit';
-import { Want } from '@kit.AbilityKit';
-import { common } from '@kit.AbilityKit';
-import { fileAccess} from '@kit.CoreFileKit';
-// ...
-
-// ...
-// Obtain the context within the component.
-async function documentURIExample(context: common.UIAbilityContext) {
-  let fileAccessHelper: fileAccess.FileAccessHelper;
-  // Obtain wantInfos by using getFileAccessAbilityInfo().
-  let wantInfos: Want[] = [
-    {
-    bundleName: 'com.ohos.UserFile.ExternalFileManager',
-    abilityName: 'FileExtensionAbility',
-    },
-  ];
-  try {
-    fileAccessHelper = fileAccess.createFileAccessHelper(context, wantInfos);
-    if (!fileAccessHelper) {
-      console.error('createFileAccessHelper interface returns an undefined object');
-    }
-    // A built-in storage directory is used as an example.
-    // In the sample code, sourceUri indicates the Download directory. The URI is the URI in fileInfo.
-    // Use the URI obtained.
-    let sourceUri: string = 'file://docs/storage/Users/currentUser/Download';
-    let displayName: string = 'test1.txt';
-    let fileUri: string;
-    try {
-      // Create a document. The URI of the document created is returned.
-      fileUri = await fileAccessHelper.createFile(sourceUri, displayName);
-      if (!fileUri) {
-        console.error('createFile return undefined object');
-      }
-      console.info('createFile success, fileUri: ' + JSON.stringify(fileUri));
-      // Rename the document. The URI of the renamed document is returned.
-      let renameUri = await fileAccessHelper.rename(fileUri, 'renameFile.txt');
-      console.info('rename success, renameUri: ' + JSON.stringify(renameUri));
-    } catch (err) {
-      let error: BusinessError = err as BusinessError;
-      console.error('createFile failed, errCode:' + error.code + ', errMessage:' + error.message);
-    }
-  } catch (err) {
-    let error: BusinessError = err as BusinessError;
-    console.error('createFileAccessHelper failed, errCode:' + error.code + ', errMessage:' + error.message);
-  }
-}
-```
-
-<!--DelEnd-->
+Apps can use this type of URI for further processing through [file management](../reference/apis-core-file-kit/js-apis-file-fs.md). For sample code, see [Selecting Documents](./select-user-file.md#selecting-documents) and [Saving Documents](./save-user-file.md#saving-documents) in the picker documentation.
 
 ## Media File URI
 
@@ -140,27 +75,27 @@ The following table describes the fields in a media file URI.
 | 'IMG_datetime_0001' | Name of the image stored in the user file system without the file name extension.|
 | 'VID_datetime_0001' | Name of the video stored in the user file system without the file name extension.|
 | 'AUD_datetime_0001' | Name of the audio file stored in the user file system without the file name extension.|
-|<!--DelRow--> 'displayName.jpg' | Image name displayed. You can use [userFileManager.commitModify](../reference/apis-core-file-kit/js-apis-userFileManager-sys.md#commitmodify) to rename it. Note that the URI of the new image name is also changed.|
-|<!--DelRow--> 'displayName.mp4' | Video name displayed. You can use [userFileManager.commitModify](../reference/apis-core-file-kit/js-apis-userFileManager-sys.md#commitmodify) to rename it. Note that the URI of the new video name is also changed.|
-|<!--DelRow--> 'displayName.mp3' | Audio file name displayed. You can use [userFileManager.commitModify](../reference/apis-core-file-kit/js-apis-userFileManager-sys.md#commitmodify) to rename it. Note that the URI of the new audio name is also changed.|
+|<!--DelRow--> 'displayName.jpg' | Indicates the displayName of an image file shown externally. Renaming via the [photoAccessHelper.PhotoAsset.commitModify](../reference/apis-media-library-kit/arkts-apis-photoAccessHelper-PhotoAsset.md#commitmodify) API modifies this value. Note that the URI also changes after this value is modified. |
+|<!--DelRow--> 'displayName.mp4' | Indicates the displayName of a video file shown externally. Renaming via the [photoAccessHelper.PhotoAsset.commitModify](../reference/apis-media-library-kit/arkts-apis-photoAccessHelper-PhotoAsset.md#commitmodify) API modifies this value. Note that the URI also changes after this value is modified. |
+|<!--DelRow--> 'displayName.mp3' | Indicates the displayName of an audio file shown externally. Renaming via the [photoAccessHelper.PhotoAsset.commitModify](../reference/apis-media-library-kit/arkts-apis-photoAccessHelper-PhotoAsset.md#commitmodify) API modifies this value. Note that the URI also changes after this value is modified. |
 
 ### Obtaining a Media File URI
 
-1. Call [PhotoViewPicker of PhotoAccessHelper](../reference/apis-media-library-kit/arkts-apis-photoAccessHelper-PhotoViewPicker.md) to select media files. The URIs of the selected files are returned.
+1. Use [PhotoViewPicker](../reference/apis-media-library-kit/arkts-apis-photoAccessHelper-PhotoViewPicker.md) of PhotoAccessHelper to select image and video resources, which returns the URIs of the selected images and videos.
 
-2. Call [getAssets](../reference/apis-media-library-kit/arkts-apis-photoAccessHelper-PhotoAccessHelper.md#getassets) or [createAsset](../reference/apis-media-library-kit/arkts-apis-photoAccessHelper-PhotoAccessHelper.md#createasset) API in [photoAccessHelper](../reference/apis-media-library-kit/arkts-apis-photoAccessHelper.md) to obtain the URIs of the selected files.<!--Del-->
+2. Call [getAssets](../reference/apis-media-library-kit/arkts-apis-photoAccessHelper-PhotoAccessHelper.md#getassets) or [createAsset](../reference/apis-media-library-kit/arkts-apis-photoAccessHelper-PhotoAccessHelper.md#createasset) in the [photoAccessHelper](../reference/apis-media-library-kit/arkts-apis-photoAccessHelper.md) module to obtain the URI of the corresponding media file.
 
-3. Use [getPhotoAssets](../reference/apis-core-file-kit/js-apis-userFileManager-sys.md#getphotoassets), [getAudioAssets](../reference/apis-core-file-kit/js-apis-userFileManager-sys.md#getaudioassets), [createAudioAsset](../reference/apis-core-file-kit/js-apis-userFileManager-sys.md#createaudioasset10), or [createPhotoAsset](../reference/apis-core-file-kit/js-apis-userFileManager-sys.md#createphotoasset) of [userFileManager](../reference/apis-core-file-kit/js-apis-userFileManager-sys.md).
-<!--DelEnd-->
+3. Use [AudioViewPicker](../reference/apis-core-file-kit/js-apis-file-picker.md#audioviewpicker) of Picker to select and save audio file resources, which returns the URI of the selected or saved audio file.
 
 ### Using a Media File URI
 
-Applications of the normal APL can call [photoAccessHelper](../reference/apis-media-library-kit/arkts-apis-photoAccessHelper.md) APIs to process media files based on their URIs. For details about the sample code, see [Obtaining an Image or Video by URI](../media/medialibrary/photoAccessHelper-photoviewpicker.md#obtaining-an-image-or-video-by-uri). To call the API, the application must have the [ohos.permission.READ_IMAGEVIDEO](../media/medialibrary/photoAccessHelper-overview.md#available-capabilities) permission.<!--Del-->
+Apps of the normal level can use this type of URI for further processing through the [photoAccessHelper](../reference/apis-media-library-kit/arkts-apis-photoAccessHelper.md) module. For sample code, see [Obtaining an Image or Video by URI](../media/medialibrary/photoAccessHelper-photoviewpicker.md#obtaining-an-image-or-video-by-uri) in the media resource usage guide. This API requires the read permission for the album management module ([ohos.permission.READ_IMAGEVIDEO](../media/medialibrary/photoAccessHelper-overview.md#capabilities)). Pay attention to whether the app has this permission during use. <!--Del-->
 
-Applications of the system_basic or system_core level can call APIs of the **photoAccessHelper** and [userFileManager](../reference/apis-core-file-kit/js-apis-userFileManager-sys.md) modules to use the media file URI. For more details, see the API reference of these modules.
+In addition to using the photoAccessHelper module as described above, apps of the system_basic level and above can also use this type of URI for further processing through the [userFileManager](../reference/apis-core-file-kit/js-apis-userFileManager-sys.md) module. For details about how to use the APIs, see the API documentation.
+
 <!--DelEnd-->
 
-If you do not want to request the permission for a normal application, call [PhotoViewPicker of PhotoAccessHelper](../reference/apis-media-library-kit/arkts-apis-photoAccessHelper-PhotoViewPicker.md) to obtain the file URI and call [photoAccessHelper.getAssets](../reference/apis-media-library-kit/arkts-apis-photoAccessHelper-PhotoAccessHelper.md#getassets) to obtain the **PhotoAsset** object based on the URI. Based on the **PhotoAsset** object, you can use [getThumbnail](../reference/apis-media-library-kit/arkts-apis-photoAccessHelper-PhotoAsset.md#getthumbnail) to obtain the image thumbnail or use [get](../reference/apis-media-library-kit/arkts-apis-photoAccessHelper-PhotoAsset.md#get) to obtain information from [PhotoKeys](../reference/apis-media-library-kit/arkts-apis-photoAccessHelper-e.md#photokeys).
+If a normal-level app does not want to request permissions, it can use the URI obtained through [PhotoViewPicker](../reference/apis-media-library-kit/arkts-apis-photoAccessHelper-PhotoViewPicker.md) of PhotoAccessHelper via temporary authorization, and call the [photoAccessHelper.getAssets](../reference/apis-media-library-kit/arkts-apis-photoAccessHelper-PhotoAccessHelper.md#getassets) API to obtain the PhotoAsset object corresponding to the URI. The PhotoAsset object obtained in this way allows you to call the [getThumbnail](../reference/apis-media-library-kit/arkts-apis-photoAccessHelper-PhotoAsset.md#getthumbnail) method to obtain the thumbnail, and use the [get](../reference/apis-media-library-kit/arkts-apis-photoAccessHelper-PhotoAsset.md#get) API to read some information from [PhotoKeys](../reference/apis-media-library-kit/arkts-apis-photoAccessHelper-e.md#photokeys).
 
 The following information can be obtained from **PhotoKeys** through temporary authorization:
 
@@ -257,75 +192,3 @@ async function uriGetAssets(context: common.UIAbilityContext): Promise<string> {
   return 'ReadMediaUriFail';
 }
 ```
-
-<!--Del-->
-## Copying a File by URI (for System Applications Only)
-
-To copy a file to the specified directory based on the URI, perform the following:
-
-1. Call [createFileAccessHelper](../reference/apis-core-file-kit/js-apis-fileAccess-sys.md#fileaccesscreatefileaccesshelper) to create a **fileAccessHelper** instance.
-
-2. Obtain **srcUri** of the file to copy.
-
-3. Obtain **destUri** of the file.
-
-4. Obtain the alternative file name **fileName**.
-
-5. Call helper.[copyFile](../reference/apis-core-file-kit/js-apis-fileAccess-sys.md#copyfile11)(srcUri, destUri, fileName) to copy the file to the specified directory.
-
-Sample code:
-
-<!-- @[copy_file_uri_example](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/CoreFile/UserFile/UserFileURI/entry/src/main/ets/pages/Index.ets) -->    
-
-``` TypeScript
-import { BusinessError } from '@kit.BasicServicesKit';
-import { Want } from '@kit.AbilityKit';
-import { common } from '@kit.AbilityKit';
-import { fileAccess} from '@kit.CoreFileKit';
-// ...
-
-// ...
-// Obtain the context within the component.
-async function copyingFileByUriExample(context: common.UIAbilityContext) {
-  let fileAccessHelper: fileAccess.FileAccessHelper;
-  // Obtain wantInfos by using getFileAccessAbilityInfo().
-  let wantInfos: Want[] = [
-    {
-    bundleName: 'com.ohos.UserFile.ExternalFileManager',
-    abilityName: 'FileExtensionAbility',
-    },
-  ];
-  try {
-    fileAccessHelper = fileAccess.createFileAccessHelper(context, wantInfos);
-    if (!fileAccessHelper) {
-      console.error('createFileAccessHelper interface returns an undefined object');
-    }
-    // A built-in storage directory is used as an example.
-    // In the sample code, sourceUri indicates the Download directory. The URI is the URI in fileInfo.
-    // Use the URI obtained.
-    let sourceUri: string = 'file://docs/storage/Users/currentUser/Download/renameFile.txt';
-    // URI of the directory to which the file is copied.
-    let destUri: string = 'file://docs/storage/Users/currentUser/Documents';
-    // File name to use if a file name conflict occurs.
-    let displayName: string = 'file.txt';
-    // URI of the file to return.
-    let fileUri: string;
-    try {
-      // Copy a file and return the URI of the file generated.
-      fileUri = await fileAccessHelper.copyFile(sourceUri, destUri, displayName);
-      if (!fileUri) {
-        console.error('copyFile return undefined object');
-      }
-        console.info('copyFile success, fileUri: ' + JSON.stringify(fileUri));
-    } catch (err) {
-      let error: BusinessError = err as BusinessError;
-      console.error('copyFile failed, errCode:' + error.code + ', errMessage:' + error.message);
-    }
-  } catch (err) {
-    let error: BusinessError = err as BusinessError;
-    console.error('createFileAccessHelper failed, errCode:' + error.code + ', errMessage:' + error.message);
-  }
-}
-```
-
-<!--DelEnd-->
