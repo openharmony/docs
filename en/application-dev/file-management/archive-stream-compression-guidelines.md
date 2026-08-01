@@ -373,3 +373,5 @@ static napi_value StreamDecompressCancel(napi_env env, napi_callback_info info)
 - Canceling streaming compression: Verify that streaming compression is terminated successfully after cancellation, with no resource leaks.
 
 - Canceling streaming decompression: Verify that streaming decompression is terminated successfully after cancellation, with no resource leaks.
+
+<!--no_check-->

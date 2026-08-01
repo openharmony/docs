@@ -156,3 +156,5 @@ static napi_value BufferDecompress(napi_env env, napi_callback_info info)
 ## Key Points for Debugging and Verification
 
 Buffer compression and decompression: verify that the data decompressed after compression is completely consistent with the original data, with no data loss.
+
+<!--no_check-->

@@ -62,7 +62,7 @@
 
     - [Saving User Files](save-user-file.md)
 
-    - [Persisting Temporary Permissions (ArkTS)](file-persistPermission.md)
+    - [Persisting Temporary Permissions](file-persistPermission.md)
 
     - [Persisting Temporary Permissions (C/C++)](native-fileshare-guidelines.md)
 

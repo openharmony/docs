@@ -6,7 +6,7 @@
 <!--Designer: @gsxiaowen-->
 <!--Tester: @hanjiawei-->
 <!--Adviser: @hu-zhiqiong-->
-<!-- md-trans-meta sourceCommit=40fd7e4f4fdebce242bd9157200afe89faee2f0c translatedAt=2026-08-01T02:51:17.722Z pushedAt=2026-08-01T07:05:48.945Z -->
+<!-- md-trans-meta sourceCommit=40fd7e4f4fdebce242bd9157200afe89faee2f0c translatedAt=2026-08-01T02:51:17.722Z pushedAt=2026-08-01T12:49:03.580Z -->
 
 ## Introduction
 
@@ -75,7 +75,7 @@ You have logged in to devices A and B with the same HUAWEI ID and the two device
 
 3. Connect device A and device B to the PC using USB cables.
 
-4. Enable Wi-Fi and Bluetooth on devices A and B. If they are logged in with the same HUAWEI ID, they will automatically form a trusted network. If they use different HUAWEI IDs, establish a trusted relationship through [device discovery](devicemanager-guidelines.md#discovering-devices) and [device binding](devicemanager-guidelines.md#binding a device) to complete networking.
+4. Enable Wi-Fi and Bluetooth on devices A and B. If they are logged in with the same HUAWEI ID, they will automatically form a trusted network. If they use different HUAWEI IDs, establish a trusted relationship through [device discovery](devicemanager-guidelines.md#discovering-devices) and [device binding](devicemanager-guidelines.md#binding-a-device) to complete networking.
 
 ### Verifying the Environment
 

@@ -172,3 +172,5 @@ static napi_value ZipFileDecompress(napi_env env, napi_callback_info info)
 - Archive file compression: Verify that the generated ZIP file can be opened using standard decompression tools, with complete file content and correct directory structure.
 
 - Archive file decompression: Verify that the decompressed file and directory structure are consistent with those before compression, and that the file content is not corrupted.
+
+<!--no_check-->

@@ -6,7 +6,7 @@
 <!--Designer: @wang_zhangjun; @chenxi0605-->
 <!--Tester: @zsyztt; @yue-ye2; @fuwei-->
 <!--Adviser: @jinqiuheng-->
-<!-- md-trans-meta sourceCommit=3afe01b8f5d863a620be98d6d8501c3267bd2e42 translatedAt=2026-08-01T07:29:31.412Z pushedAt=2026-08-01T11:33:45.062Z -->
+<!-- md-trans-meta sourceCommit=3afe01b8f5d863a620be98d6d8501c3267bd2e42 translatedAt=2026-08-01T07:29:31.412Z pushedAt=2026-08-01T12:47:32.830Z -->
 
 As a unique identifier of a user file, the uniform resource identifier (URI) is usually used to specify the user file to be accessed or modified. Avoid using part of a URI for service code development.
 
@@ -89,7 +89,7 @@ The following table describes the fields in a media file URI.
 
 ### Using a Media File URI
 
-Apps of the normal level can use this type of URI for further processing through the [photoAccessHelper](../reference/apis-media-library-kit/arkts-apis-photoAccessHelper.md) module. For sample code, see [Obtaining an Image or Video by URI](../media/medialibrary/photoAccessHelper-photoviewpicker.md#obtaining-an-image-or-video-by-uri) in the media resource usage guide. This API requires the read permission for the album management module ([ohos.permission.READ_IMAGEVIDEO](../media/medialibrary/photoAccessHelper-overview.md#capabilities)). Pay attention to whether the app has this permission during use. <!--Del-->
+Apps of the normal level can use this type of URI for further processing through the [photoAccessHelper](../reference/apis-media-library-kit/arkts-apis-photoAccessHelper.md) module. For sample code, see [Obtaining an Image or Video by URI](../media/medialibrary/photoAccessHelper-photoviewpicker.md#obtaining-an-image-or-video-by-uri) in the media resource usage guide. This API requires the read permission for the album management module ([ohos.permission.READ_IMAGEVIDEO](../media/medialibrary/photoAccessHelper-overview.md#available-capabilities)). Pay attention to whether the app has this permission during use. <!--Del-->
 
 In addition to using the photoAccessHelper module as described above, apps of the system_basic level and above can also use this type of URI for further processing through the [userFileManager](../reference/apis-core-file-kit/js-apis-userFileManager-sys.md) module. For details about how to use the APIs, see the API documentation.
 
@@ -192,3 +192,5 @@ async function uriGetAssets(context: common.UIAbilityContext): Promise<string> {
   return 'ReadMediaUriFail';
 }
 ```
+
+<!--no_check-->
