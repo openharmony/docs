@@ -68,7 +68,7 @@ Creates a **FormBindingData** object.
 
 | Type                               | Description                                   |
 | ----------------------------------- | --------------------------------------- |
-| [FormBindingData](#formbindingdata) | FormBindingData object created based on the input data, which is used for widget data binding and provides the data to be displayed on the widget . |
+| [FormBindingData](#formbindingdata) | FormBindingData object created based on the input data, which is used for widget data binding and provides the data to be displayed on the widget. |
 
 **Error codes**
 
