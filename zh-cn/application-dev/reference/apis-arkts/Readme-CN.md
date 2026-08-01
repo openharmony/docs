@@ -33,7 +33,7 @@
     - [namespace (ASON)](arkts-apis-arkts-utils-ASON.md)
     - [Class (SendableLruCache)](arkts-apis-arkts-utils-SendableLruCache.md)
   - [@ohos.buffer (Buffer)](js-apis-buffer.md)
-  - [@ohos.convertxml (xml转换JavaScript)](js-apis-convertxml.md)
+  - [@ohos.convertxml (XML转换JavaScript)](js-apis-convertxml.md)
   - [@ohos.fastbuffer (FastBuffer)](js-apis-fastbuffer.md)
   - [@ohos.process (获取进程相关的信息)](js-apis-process.md)
   - [@ohos.taskpool (启动任务池)](js-apis-taskpool.md)
@@ -59,12 +59,12 @@
   <!--Del-->
   - [@ohos.worker (启动一个Worker)(系统接口)](js-apis-worker-sys.md)
   <!--DelEnd-->
-  - [@ohos.xml (xml解析与生成)](js-apis-xml.md)
+  - [@ohos.xml (XML解析与生成)](js-apis-xml.md)
   - 已停止维护的接口<!--arkts-arkts-dep-->
     - [@ohos.util.Vector (线性容器Vector)](js-apis-vector.md)
 - 错误码<!--arkts-arkts-errcode-->
   - [语言基础类库错误码](errorcode-utils.md)
   - [TSC错误码介绍](errorcode-tsc.md)
   - [编译工具链错误码](errorcode-ets-loader.md)
-  - [Es2abc编译器错误码](errorcode-es2abc.md)
+  - [es2abc编译器错误码](errorcode-es2abc.md)
   - [源码混淆错误码](errorcode-source-obfuscation.md)
