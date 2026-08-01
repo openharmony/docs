@@ -18,7 +18,7 @@ Init error. The WebviewController must be associated with a Web component.
 
 **错误描述**
 
-WebviewController还没有和具体的Web组件关联，无法进行相应的操作。
+WebviewController尚未与具体Web组件关联，无法进行相应操作。
 
 **可能原因**
 

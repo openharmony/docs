@@ -6101,7 +6101,7 @@ struct WebComponent {
 
 static setRenderProcessMode(mode: RenderProcessMode): void
 
-设置ArkWeb渲染子进程模式。
+设置ArkWeb渲染子进程模式，可根据应用对内存占用与渲染进程隔离的需求选择对应的模式。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -6811,7 +6811,7 @@ struct Index {
 
 static pauseAllTimers(): void
 
-暂停所有WebView的定时器。
+暂停所有WebView的定时器，定时器暂停期间，网页中的setInterval、setTimeout等定时操作将被挂起。建议在应用进入后台等场景暂停，前台时恢复，以节省资源，可以与[resumeAllTimers](#resumealltimers12)()成对使用，避免定时器状态混乱。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -10594,7 +10594,7 @@ struct WebComponent {
 
 setSiteIsolationMode(mode: SiteIsolationMode): void
 
-设置站点隔离模式。站点隔离机制将不同源的网站隔离在不同的Render进程中，减少跨域攻击面。例如：PC等设备上，在未启用站点隔离模式时，原有进程模型是每一个Tab对应一个Render进程，开启站点隔离后，一个Tab下不同源的Iframe可在独立的Render进程中运行。
+设置站点隔离模式。站点隔离机制将不同源的网站隔离在不同的渲染进程中，减少跨域攻击面。例如：PC等设备上，在未启用站点隔离模式时，原有进程模型是每一个Tab对应一个渲染进程，开启站点隔离后，一个Tab下不同源的Iframe可在独立的渲染进程中运行。
 
 对于仅加载可信网页的第三方应用，可以关闭此功能，以提升性能并减少内存占用，同时减少跨域访问的拦截。默认值根据不同的设备而定，PC/Table采用严格站点隔离[SiteIsolationMode.STRICT](./arkts-apis-webview-e.md#siteisolationmode21)，Phone默认部分站点隔离[SiteIsolationMode.PARTIAL](./arkts-apis-webview-e.md#siteisolationmode21)。[坚盾守护模式](../..//web/web-secure-shield-mode.md)下采用严格站点隔离。
 
@@ -11191,7 +11191,7 @@ struct WebComponent {
 
 static enableAdvancedSecurityMode(securityParams: SecurityParams): void
 
-通过配置安全特性选项禁用特定的Web引擎能力，以降低攻击面。
+通过配置安全特性选项禁用特定的Web引擎能力，以降低攻击面。典型使用场景包括：高安全要求的应用（如金融、政务类应用）应启用高级安全模式以禁用不必要的Web引擎能力。
 
 > **说明：**
 >

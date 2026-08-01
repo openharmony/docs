@@ -113,7 +113,7 @@ Web组件使用HTTPDNS的模式。
 
 ## RenderProcessMode<sup>12+</sup>
 
-ArkWeb渲染子进程模式类型。
+ArkWeb渲染子进程模式类型，可根据应用对内存占用与渲染进程隔离的需求选择对应的模式。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -413,13 +413,13 @@ ArkWeb内核版本，请参考[M114内核在OpenHarmony 6.0系统上的适配指
 
 ## SiteIsolationMode<sup>21+</sup>
 
-站点隔离机制将不同源的网站隔离在不同的渲染进程中，减少跨域攻击面。例如，PC上原有进程模型是每一个Tab对应一个Render进程，站点隔离打开后，让不同源的Iframe运行在独立的Render进程中。
+站点隔离机制将不同源的网站隔离在不同的渲染子进程中，减少跨域攻击面。例如，PC上原有进程模型是每一个Tab对应一个渲染子进程，站点隔离打开后，让不同源的Iframe运行在独立的渲染子进程中。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
 | 名称 | 值 | 说明 |
 | ------------------------------- | - | ---------- |
-| PARTIAL | 0 | 部分站点隔离，即在同一个Render进程内加载新站点。 |
+| PARTIAL | 0 | 部分站点隔离，即在同一个渲染进程内加载新站点。 |
 | STRICT  | 1 | 严格站点隔离，跨站点的Iframe将切换到新的渲染进程。 |
 
 

@@ -532,7 +532,7 @@ PIN码认证结果。
 
 ## NavigationPolicy<sup>23+</sup>
 
-WebView中新窗口的打开方式。
+WebView中新窗口的打开方式，支持弹窗、新窗口、前台和后台标签页等多种方式。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
