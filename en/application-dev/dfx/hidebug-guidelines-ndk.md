@@ -2,17 +2,17 @@
 
 <!--Kit: Performance Analysis Kit-->
 <!--Subsystem: HiviewDFX-->
-<!--Owner: @hello_harmony; @yu_haoqiaida-->
-<!--Designer: @kutcherzhou1-->
+<!--Owner: @leiguangyu-->
+<!--Designer: @mgce1-->
 <!--Tester: @gcw_KuLfPSbe-->
-<!--Adviser: @foryourself-->
+<!--Adviser: @jinqiuheng-->
+<!-- md-trans-meta sourceCommit=44da34c75e0877dd26e067a23f1dc0303066fdbb translatedAt=2026-07-31T01:30:37.918Z pushedAt=2026-07-31T07:06:45.446Z -->
 
 The HiDebug C/C++ APIs are independent. You can call them to obtain debugging information. For details, see the following examples.
 
 ## How to Develop
 
-
-The following describes how to use HiDebug NDK APIs to perform thread stack backtraces and obtain the CPU usage of threads in an application.
+The following demonstrates how to use HiDebug NDK APIs in an app to perform thread stack backtrace and obtain the CPU usage of threads within a process:
 
 Step 1: Create a project
 
@@ -38,7 +38,7 @@ Step 1: Create a project
 2. Edit the **test_backtrace.h** file as follows:
 
    <!-- @[TestHidebugNdk_Backtrace](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/PerformanceAnalysisKit/HiDebugTool/entry/src/main/cpp/test_backtrace.h) -->
-   
+
    ``` C
    #ifndef MYAPPLICATION_TESTBACKTRACE_H
    #define MYAPPLICATION_TESTBACKTRACE_H
@@ -51,7 +51,7 @@ Step 1: Create a project
 3. Edit the **test_backtrace.cpp** file as follows:
 
    <!-- @[TestHidebugNdk_Backtrace](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/PerformanceAnalysisKit/HiDebugTool/entry/src/main/cpp/test_backtrace.cpp) -->
-   
+
    ``` C++
    #include "test_backtrace.h"
    #include <condition_variable>
@@ -197,7 +197,7 @@ Step 1: Create a project
 5. In the **napi_init.cpp** file, import the dependencies and define the test method.
 
    <!-- @[TestHidebugNdk_Function](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/PerformanceAnalysisKit/HiDebugTool/entry/src/main/cpp/napi_init.cpp) -->
-   
+
    ``` C++
    #include <thread>
    #include "hidebug/hidebug.h"
@@ -238,7 +238,7 @@ Step 1: Create a project
    Register **TestHiDebugNdk** as an ArkTS API and initialize the signal handling function of the main thread.
 
    <!-- @[TestHidebugNdk_Define](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/PerformanceAnalysisKit/HiDebugTool/entry/src/main/cpp/napi_init.cpp) -->
-   
+
    ``` C++
    napi_property_descriptor desc[] = {
        { "testGetThreadCpuUsage", nullptr, TestGetThreadCpuUsage, nullptr, nullptr, nullptr, napi_default, nullptr },
@@ -247,8 +247,9 @@ Step 1: Create a project
    ```
 
 6. In the **index.d.ts** file, declare the ArkTS API.
+
    <!-- @[TestHidebugNdk](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/PerformanceAnalysisKit/HiDebugTool/entry/src/main/cpp/types/libentry/Index.d.ts) -->
-   
+
    ``` TypeScript
    export const testGetThreadCpuUsage: () => void;
    export const testBackTrace: () => void;
@@ -257,14 +258,17 @@ Step 1: Create a project
 7. In the **Index.ets** file, add a button to trigger the API call. The sample code is as follows:
 
    Import dependencies.
+
    <!-- @[TestHidebugNdk_Import](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/PerformanceAnalysisKit/HiDebugTool/entry/src/main/ets/pages/Index.ets) -->
-   
+
    ``` TypeScript
    import testNapi from 'libentry.so';
    ```
+
    Define the test method.
+
    <!-- @[TestHidebugNdk_Function](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/PerformanceAnalysisKit/HiDebugTool/entry/src/main/ets/pages/Index.ets) -->
-   
+
    ``` TypeScript
    function testBackTraceJsFrame(i : number) : void {
      if (i > 0) {
@@ -281,9 +285,11 @@ Step 1: Create a project
      testNapi.testGetThreadCpuUsage();
    }
    ```
+
    Add a button to trigger the API call.
+
    <!-- @[TestHidebugNdk_Buttons](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/PerformanceAnalysisKit/HiDebugTool/entry/src/main/ets/pages/Index.ets) -->
-   
+
    ``` TypeScript
    Button('testGetThreadCpuUsage')
      .type(ButtonType.Capsule)

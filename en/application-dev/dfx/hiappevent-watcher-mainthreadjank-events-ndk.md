@@ -2,14 +2,15 @@
 
 <!--Kit: Performance Analysis Kit-->
 <!--Subsystem: HiviewDFX-->
-<!--Owner: @rr_cn-->
+<!--Owner: @Chenyufan466765692-->
 <!--Designer: @peterhuangyu-->
 <!--Tester: @gcw_KuLfPSbe-->
-<!--Adviser: @foryourself-->
+<!--Adviser: @jinqiuheng-->
+<!-- md-trans-meta sourceCommit=f319e3e62d6356bf78f31e2e8f7ba3927caddf1e translatedAt=2026-07-31T01:27:35.896Z pushedAt=2026-07-31T03:59:41.550Z -->
 
 ## Overview
 
-This topic describes how to use the C/C++ APIs provided by HiAppEvent to subscribe to main thread jank events. For details (such as parameter restrictions and value ranges), see [hiappevent.h](../reference/apis-performance-analysis-kit/capi-hiappevent-h.md).
+This section describes how to use the C/C++ APIs provided by HiAppEvent to subscribe to main thread timeout events. For detailed API usage instructions (parameter constraints, value ranges, etc.), refer to [hiappevent.h](../reference/apis-performance-analysis-kit/capi-hiappevent-h.md).
 
 ## Available APIs
 
@@ -21,9 +22,10 @@ This topic describes how to use the C/C++ APIs provided by HiAppEvent to subscri
 ## How to Develop
 
 ### Adding an Event Watcher
+
 1. Obtain the **jsoncpp** file on which the sample project depends. Specifically, download the source code package from [JsonCpp](https://github.com/open-source-parsers/jsoncpp) and obtain the **jsoncpp.cpp**, **json.h**, and **json-forwards.h** files by following the procedure described in **Amalgamated source**.
 
-2. Create a native C++ project and import the preceding files to the project. The directory structure is as follows:
+2. In DevEco Studio, create a Native C++ project and import the above files into the new project. The directory structure is as follows.
 
    ```yml
    entry:
@@ -46,16 +48,16 @@ This topic describes how to use the C/C++ APIs provided by HiAppEvent to subscri
              - Index.ets
    ```
 
-3. In the **CMakeLists.txt** file, add the source file and dynamic libraries.
+3. Edit the **entry > src > main > cpp > CMakeLists.txt** file in the project to add source files and dynamic libraries.
 
    ```cmake
-   # Add the jsoncpp.cpp file, which is used to parse the JSON strings in the subscription events.
+   # Add the jsoncpp.cpp source file (for parsing JSON strings in subscribed events).
    add_library(entry SHARED napi_init.cpp jsoncpp.cpp)
-   # Add libhiappevent_ndk.z.so and libhilog_ndk.z.so (log output). 
+   # Add dynamic library dependencies libhiappevent_ndk.z.so and libhilog_ndk.z.so (for log output).
    target_link_libraries(entry PUBLIC libace_napi.z.so libhilog_ndk.z.so libhiappevent_ndk.z.so)
    ```
 
-4. Import the dependencies to the **napi_init.cpp** file, and define **LOG_TAG**.
+4. Edit the **napi_init.cpp** file under **entry > src > main > cpp** in the project to import the required files and define `LOG_TAG`.
 
    ```c++
    #include "napi/native_api.h"
@@ -71,10 +73,10 @@ This topic describes how to use the C/C++ APIs provided by HiAppEvent to subscri
 
    - Watcher of the **onReceive** type.
 
-      In the **napi_init.cpp** file, define the methods related to the watcher of the **onReceive** type.
+      Edit the **napi_init.cpp** file under **entry > src > main > cpp** in the project to define the methods related to the watcher of the **onReceive** type:
 
       ```c++
-      // Define a variable to cache the pointer to the created watcher.
+      // Define a variable to cache the pointer of the created watcher.
       static HiAppEvent_Watcher *systemEventWatcher; 
       
       static void OnReceive(const char *domain, const struct HiAppEvent_AppEventGroup *appEventGroups, uint32_t groupLen) {
@@ -137,7 +139,7 @@ This topic describes how to use the C/C++ APIs provided by HiAppEvent to subscri
 
 6. Register **RegisterWatcher** as an ArkTS API.
 
-   In the **napi_init.cpp** file, register **RegisterWatcher** as an ArkTS API.
+   Edit the **napi_init.cpp** file under **entry > src > main > cpp** in the project to register `RegisterWatcher` as an ArkTS API:
 
    ```c++
    static napi_value Init(napi_env env, napi_value exports)
@@ -150,7 +152,7 @@ This topic describes how to use the C/C++ APIs provided by HiAppEvent to subscri
    }
    ```
 
-   In the **index.d.ts** file, define the ArkTS API.
+   Edit the **Index.ets** file under **entry > src > main > cpp > types > libentry** in the project to define the ArkTS APIs:
 
    ```typescript
    export const registerWatcher: () => void;
@@ -159,15 +161,15 @@ This topic describes how to use the C/C++ APIs provided by HiAppEvent to subscri
 7. In the **entry/src/main/ets/entryability/EntryAbility.ets** file, add the following API call to **onCreate()**.
 
    ```typescript
-   // Import the dependent module.
+   // Import the dependency modules.
    import testNapi from 'libentry.so';
    
-   // Add the interface invocation to onCreate().
+   // Add the API call in the onCreate() function.
    // Register the system event watcher at startup.
    testNapi.registerWatcher();
    ```
 
-8. In the **entry/src/main/ets/pages/index.ets** file, add a button and simulate a main thread jank event in the **onClick** function. The sample code is as follows:
+8. Edit the **Index.ets** file under **entry > src > main > ets > pages** in the project, add a **Button**, and simulate a main thread timeout scenario in its `onClick` function. The sample code is as follows:
 
    ```typescript
       Button("timeOut350")
@@ -210,7 +212,7 @@ This topic describes how to use the C/C++ APIs provided by HiAppEvent to subscri
 
    ```c++
    static napi_value RemoveWatcher(napi_env env, napi_callback_info info) {
-       // Remove the watcher.
+       // Stop the watcher from listening for events.
        OH_HiAppEvent_RemoveWatcher(systemEventWatcher);
        return {};
    }
