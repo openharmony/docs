@@ -11268,7 +11268,7 @@ executeAIPageCommand(command: string): Promise\<string\>
 
 | 类型             | 说明 |
 | ---------------- | ---- |
-| Promise\<string\> | Promise对象，返回JSON格式的命令执行结果。不同命令的返回格式不同。命令无法分发或无返回值时，返回空字符串。 |
+| Promise\<string\> | Promise对象，执行成功时返回JSON格式的命令执行结果，执行失败或无返回值时返回空字符串。 |
 
 **错误码：**
 
