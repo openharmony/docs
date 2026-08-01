@@ -20,7 +20,7 @@
 
   - [Cross-Device UIAbility Connection Development (for System Applications Only)](abilityconnectmanager-guidelines-sys.md)
 
-  - [Distributed Extension Ability Development (for System Applications Only)](distributedextension-guidelines-sys.md)
+  - [DistributedExtensionAbility Development (for System Applications Only)](distributedextension-guidelines-sys.md)
 
   <!--DelEnd-->
 

@@ -71,7 +71,7 @@ You have logged in to devices A and B with the same HUAWEI ID and the two device
 
 1. Install [DevEco Studio](https://developer.huawei.com/consumer/en/download/deveco-studio) 4.1 or later on the PC.
 
-2. Update the public-SDK to API 18 or later. For details about how to update the SDK, see [OpenHarmony SDK Upgrade Assistant]( ../tools/openharmony_sdk_upgrade_assistant.md).
+2. Update the public-SDK to API 18 or later.
 
 3. Connect device A and device B to the PC using USB cables.
 
