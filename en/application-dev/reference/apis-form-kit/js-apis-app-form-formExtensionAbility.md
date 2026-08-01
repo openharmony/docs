@@ -6,21 +6,23 @@
 <!--Tester: @mahailong123456-->
 <!--Adviser: @HelloShuo-->
 
-The **FormExtensionAbility** module provides lifecycle callbacks invoked when a widget is created, destroyed, or updated.
+The **FormExtensionAbility** module provides lifecycle callbacks invoked when a widget is created, destroyed, or updated. This module is applicable to scenarios where you need to implement widget functions in your application. It helps you quickly build a widget data update mechanism, improving user experience in interacting with your application.
 
 > **NOTE**
 >
 > The initial APIs of this module are supported since API version 9. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 >
 > The formExtensionAbility is cleared after 10 seconds of inactivity.
->
-> The following modules cannot be referenced in the FormExtensionAbility, as doing so may cause the program to exit abnormally:
-> - @ohos.ability.particleAbility (ParticleAbility)
-> - @ohos.multimedia.audio (Audio Management)
-> - @ohos.multimedia.camera (Camera Management)
-> - @ohos.multimedia.media (Media)
-> - @ohos.resourceschedule.backgroundTaskManager (Background Task Management)
 
+## Constraints
+
+To ensure system security and stability and prevent **FormExtensionAbility** from abusing system resources, the system imposes certain restrictions. Importing the following modules is not supported:
+
+- [@ohos.ability.particleAbility (ParticleAbility)](../apis-ability-kit/js-apis-ability-particleAbility.md)
+- [@ohos.multimedia.audio (Audio Management)](../apis-audio-kit/arkts-apis-audio.md)
+- [@ohos.multimedia.camera (Camera Management)](../apis-camera-kit/arkts-apis-camera.md)
+- [@ohos.multimedia.media (Media)](../apis-media-kit/arkts-apis-media.md)
+- [@ohos.resourceschedule.backgroundTaskManager (Background Task Management)](../apis-backgroundtasks-kit/js-apis-resourceschedule-backgroundTaskManager.md)
 
 ## Modules to Import
 
@@ -32,25 +34,28 @@ import { FormExtensionAbility } from '@kit.FormKit';
 
 Widget extension class. It provides APIs to notify the widget provider that a widget is being created or the widget visibility status is being changed.
 
-**Model restriction**: This API can be used only in the stage model.
-
-**System capability**: SystemCapability.Ability.Form
-
 ### Attributes
 
 **Model restriction**: This API can be used only in the stage model.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.Ability.Form
 
 | Name   | Type                                                        | Read-Only| Optional| Description                                                        |
 | ------- | ------------------------------------------------------------ | ---- | ---- | ------------------------------------------------------------ |
-| context | [FormExtensionContext](js-apis-inner-application-formExtensionContext.md) | No  | No  | Context of the FormExtensionAbility. This context is inherited from [ExtensionContext](../apis-ability-kit/js-apis-inner-application-extensionContext.md).<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
+| context | [FormExtensionContext](js-apis-inner-application-formExtensionContext.md) | No  | No  | Context of the FormExtensionAbility. This context is inherited from [ExtensionContext](../apis-ability-kit/js-apis-inner-application-extensionContext.md).|
 
 ### FormExtensionAbility.onAddForm
 
 onAddForm(want: Want): formBindingData.FormBindingData
 
-Called to notify the widget provider that a widget is being created.
+Called to notify the widget provider that a widget is being created. Note that **FormExtensionAbility** will be cleared after 10 seconds of inactivity. Do not perform time-consuming operations in the callback.
+
+**Pairing usage**
+- You must call [formBindingData.createFormBindingData()](./js-apis-app-form-formBindingData.md#formbindingdatacreateformbindingdata) to create a widget data object.
+- Calling sequence: First create a data object (for example, **dataObj1**), and then call **formBindingData.createFormBindingData(dataObj1)** to create an **FormBindingData** object.
+- Return requirements: This function must return a **FormBindingData** object, and the data to be displayed on the widget is passed in through the parameters.
 
 **Model restriction**: This API can be used only in the stage model.
 
@@ -68,7 +73,7 @@ Called to notify the widget provider that a widget is being created.
 
 | Type                                                        | Description                                                       |
 | ------------------------------------------------------------ | ----------------------------------------------------------- |
-| [formBindingData.FormBindingData](js-apis-app-form-formBindingData.md#formbindingdata) | A **formBindingData.FormBindingData** object containing the data to be displayed on the widget.|
+| [formBindingData.FormBindingData](js-apis-app-form-formBindingData.md#formbindingdata) | A **formBindingData.FormBindingData** object containing the data to be displayed on the widget. It can be created via [formBindingData.createFormBindingData()](js-apis-app-form-formBindingData.md#formbindingdatacreateformbindingdata).|
 
 **Example**
 
@@ -79,13 +84,13 @@ import { Want } from '@kit.AbilityKit';
 export default class MyFormExtensionAbility extends FormExtensionAbility {
   onAddForm(want: Want) {
     console.info(`FormExtensionAbility onAddForm, want: ${want.abilityName}`);
-    let dataObj1: Record<string, string> = {
-      'temperature': '11c',
+    let temperatureData: Record<string, string> = {
+      'temperature': '11°C',
       'time': '11:00'
     };
 
-    let obj1: formBindingData.FormBindingData = formBindingData.createFormBindingData(dataObj1);
-    return obj1;
+    let formBindingDataObj: formBindingData.FormBindingData = formBindingData.createFormBindingData(temperatureData);
+    return formBindingDataObj;
   }
 }
 ```
@@ -94,7 +99,7 @@ export default class MyFormExtensionAbility extends FormExtensionAbility {
 
 onCastToNormalForm(formId: string): void
 
-Called to notify the widget provider that a temporary widget has been converted to a normal one. Temporary widgets and normal widgets are concepts of the widget host. Temporary widgets have a brief existence, appearing following particular events or user interactions and vanishing automatically upon task completion. Normal widgets maintain a lasting presence, continuing to exist unless explicitly removed or altered by the user. Function widgets developed in normal cases are normal widgets. Currently, the widget host does not use temporary widgets.
+Called to notify the widget provider that a temporary widget has been converted to a normal one. Temporary widgets and normal widgets are concepts of the widget host. Temporary widgets have a brief existence, appearing following particular events or user interactions and vanishing automatically upon task completion. Normal widgets are persistent and remain on the home screen until the user actively removes or changes them. The functional widgets used in daily development all fall into this category. Temporary widgets are not used by widget hosts in the current version.
 
 **Model restriction**: This API can be used only in the stage model.
 
@@ -118,14 +123,14 @@ export default class MyFormExtensionAbility extends FormExtensionAbility {
     // Called to notify the widget provider that a temporary widget has been converted to a normal one. You need to perform operations as required.
     console.info(`FormExtensionAbility onCastToNormalForm, formId: ${formId}`);
   }
-};
+}
 ```
 
 ### FormExtensionAbility.onUpdateForm
 
 onUpdateForm(formId: string, wantParams?: Record<string, Object>): void
 
-Called to notify the widget provider that a widget is being updated, with update parameters carried. After obtaining the latest data, your application should call [updateForm](js-apis-app-form-formProvider.md#formproviderupdateform) of **formProvider** to update the widget data.
+Called to notify the widget provider that a widget is being updated, with update parameters carried. After obtaining the latest data, your application should call [updateForm](js-apis-app-form-formProvider.md#formproviderupdateform) of **formProvider** to update the widget data. The **formId** and the **FormBindingData** object must be passed. The data object can be created via **formBindingData.createFormBindingData()**.
 
 **Model restriction**: This API can be used only in the stage model.
 
@@ -137,8 +142,8 @@ Called to notify the widget provider that a widget is being updated, with update
 
 | Name| Type  | Mandatory| Description              |
 | ------ | ------ | ---- | ------------------ |
-| formId | string | Yes  | ID of the widget that requests to be updated.|
-| wantParams<sup>12+</sup> | Record<string, Object> | No  | Parameters used for the update.|
+| formId | string | Yes  | ID of the widget to update.|
+| wantParams<sup>12+</sup> | Record<string, Object> | No  | Update parameters, which are used to carry additional information about the widget update. This parameter is passed when custom parameters need to be passed to update the widget. If this parameter is not passed, the value is **undefined**. Supported parameters include **ohos.extra.param.key.host_bg_inverse_color** (whether to enable host background inversion color).|
 
 **Example**
 
@@ -161,14 +166,14 @@ export default class MyFormExtensionAbility extends FormExtensionAbility {
       console.error(`FormExtensionAbility context updateForm failed, code: ${(error as BusinessError).code}, message: ${(error as BusinessError).message}`);
     });
   }
-};
+}
 ```
 
 ### FormExtensionAbility.onChangeFormVisibility
 
 onChangeFormVisibility(newStatus: Record\<string, number>): void
 
-Called to notify the widget provider that the widget visibility status is being changed. This API is valid only for system applications when **formVisibleNotify** is set to **true**.
+Called to notify the widget provider that the widget visibility status is being changed. This callback is triggered when the widget visibility on the home screen changes (for example, the widget is blocked or moved out of the screen). You can optimize the resource usage of the widget or suspend unnecessary update operations, and update the widget data through **formProvider.updateForm()**. This callback is triggered only when **FormExtensionAbility** is alive. This API is valid only for system applications when **formVisibleNotify** is set to **true**.
 
 **Model restriction**: This API can be used only in the stage model.
 
@@ -178,7 +183,7 @@ Called to notify the widget provider that the widget visibility status is being 
 
 | Name | Type  | Mandatory| Description                  |
 | ------- | ------ | ---- | ---------------------- |
-| newStatus  | Record\<string, number> | Yes  | ID and visibility status of the widget to be changed.<br>**Note**: The value of the **number** parameter is an integer within the range of [0, 2]. The value **0** indicates an unknown type, the value **1** indicates the visible state, and the value **2** indicates the invisible state.|
+| newStatus  | Record\<string, number> | Yes  | ID and visibility status of the widget to be changed.<br>**Note**: The value of the **number** parameter is an integer within the range of [0, 2]. The value **0** indicates an unknown type, the value **1** indicates the visible state, and the value **2** indicates the invisible state. Values beyond the range are invalid and have no effect. This API is valid only for system applications when **formVisibleNotify** is set to **true**.<br>For details, see [formInfo.VisibilityType](js-apis-app-form-formInfo.md#visibilitytype).|
 
 **Example**
 
@@ -197,30 +202,30 @@ export default class MyFormExtensionAbility extends FormExtensionAbility {
   onChangeFormVisibility(newStatus: Record<string, number>) {
     console.info(`FormExtensionAbility onChangeFormVisibility, newStatus: ${newStatus}`);
     let param: Record<string, string> = {
-      'temperature': '22c',
+      'temperature': '22°C',
       'time': '22:00'
     }
-    let obj2: formBindingData.FormBindingData = formBindingData.createFormBindingData(param);
+    let formBindingDataObj: formBindingData.FormBindingData = formBindingData.createFormBindingData(param);
 
     let keys: string[] = getObjKeys(newStatus);
 
     for (let i: number = 0; i < keys.length; i++) {
       console.info(`FormExtensionAbility onChangeFormVisibility, key: ${keys[i]}, value= ${newStatus[keys[i]]}`);
-      formProvider.updateForm(keys[i], obj2).then(() => {
+      formProvider.updateForm(keys[i], formBindingDataObj).then(() => {
         console.info('FormExtensionAbility context updateForm');
-      }).catch((error: BusinessError) => {
-        console.error(`Operation updateForm failed. , code: ${(error as BusinessError).code}, message: ${(error as BusinessError).message})`);
+      }).catch ((error: BusinessError) => {
+        console.error(`Operation updateForm failed, code: ${error.code}, message: ${error.message}`);
       });
     }
   }
-};
+}
 ```
 
 ### FormExtensionAbility.onFormEvent
 
 onFormEvent(formId: string, message: string): void
 
-Called to instruct the widget provider to process the widget event.
+API for the widget provider to receive and handle widget event notifications, such as custom events triggered by the widget host.
 
 **Model restriction**: This API can be used only in the stage model.
 
@@ -233,7 +238,7 @@ Called to instruct the widget provider to process the widget event.
 | Name | Type  | Mandatory| Description                  |
 | ------- | ------ | ---- | ---------------------- |
 | formId  | string | Yes  | ID of the widget that requests the event.|
-| message | string | Yes  | Event message.            |
+| message | string | Yes  | Event message, which is used to transfer detailed information about a widget event. The message content is defined by you and is usually a JSON string or a specific identifier, which is used to identify the event type or transfer event data.            |
 
 **Example**
 
@@ -244,7 +249,7 @@ export default class MyFormExtensionAbility extends FormExtensionAbility {
   onFormEvent(formId: string, message: string) {
     console.info(`FormExtensionAbility onFormEvent, formId: ${formId}, message: ${message}`);
   }
-};
+}
 ```
 
 ### FormExtensionAbility.onRemoveForm
@@ -274,7 +279,7 @@ export default class MyFormExtensionAbility extends FormExtensionAbility {
   onRemoveForm(formId: string) {
     console.info(`FormExtensionAbility onRemoveForm, formId: ${formId}`);
   }
-};
+}
 ```
 
 ### FormExtensionAbility.onConfigurationUpdate
@@ -307,14 +312,14 @@ export default class MyFormExtensionAbility extends FormExtensionAbility {
     // If no operation is performed within 10 seconds after a FormExtensionAbility instance is created, the instance will be deleted.
     console.info(`onConfigurationUpdate, config: ${newConfig?.language}`);
   }
-};
+}
 ```
 
 ### FormExtensionAbility.onAcquireFormState
 
 onAcquireFormState?(want: Want): formInfo.FormState
 
-Called to notify the widget provider that the widget host is requesting the widget state. By default, the initial widget state is returned. (You can override this API as required.)
+API for the widget provider to receive widget state query notifications. When the widget host (such as the home screen) needs to obtain the current state of a widget (for example, whether the widget is available, and whether it needs to be updated), this method is called. This method can be overridden. By default, the initial widget state is returned. (This method can be selectively overridden.)
 
 **Model restriction**: This API can be used only in the stage model.
 
@@ -345,7 +350,7 @@ export default class MyFormExtensionAbility extends FormExtensionAbility {
     console.info(`FormExtensionAbility onAcquireFormState, want: ${want}`);
     return formInfo.FormState.UNKNOWN;
   }
-};
+}
 ```
 
 ### FormExtensionAbility.onStop<sup>12+</sup>
@@ -376,7 +381,7 @@ export default class MyFormExtensionAbility extends FormExtensionAbility {
 
 onFormLocationChanged(formId: string, newFormLocation: formInfo.FormLocation): void
 
-Called when the widget location changes.
+Called when the widget location changes. You can adjust the widget display or preload related content based on the new location information.
 
 **Atomic service API**: This API can be used in atomic services since API version 20.
 
@@ -389,7 +394,7 @@ Called when the widget location changes.
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | formId | string | Yes| Widget ID.|
-| newFormLocation | [formInfo.FormLocation](js-apis-app-form-formInfo.md#formlocation20) | Yes| Enumerated value of the latest widget location.|
+| newFormLocation | [formInfo.FormLocation](js-apis-app-form-formInfo.md#formlocation20) | Yes| Enumeration value indicating the current location of the widget (such as home screen and widget center).|
 
 **Example**
 
@@ -405,7 +410,7 @@ export default class EntryFormAbility extends FormExtensionAbility {
     return formBindingData.createFormBindingData(formData);
   }
   onFormLocationChanged(formId: string, newFormLocation: formInfo.FormLocation) {
-    console.info("EntryFormAbility onFormLocationChanged current location: " + newFormLocation);
+    console.info('EntryFormAbility onFormLocationChanged current location: ' + newFormLocation);
   }
 }
 ```
@@ -414,7 +419,7 @@ export default class EntryFormAbility extends FormExtensionAbility {
 
 onSizeChanged(formId: string, newDimension: formInfo.FormDimension, newRect: formInfo.Rect): void
 
-Called when the widget size changes.
+Callback triggered when the widget size changes (for example, when the user adjusts the widget size).
 
 **Model restriction**: This API can be used only in the stage model.
 
@@ -426,7 +431,7 @@ Called when the widget size changes.
 
 | Name| Type  | Mandatory| Description              |
 | ------ | ------ | ---- | ------------------ |
-| formId | string | Yes  | Widget ID.|
+| formId | string | Yes  | ID of the widget whose size changes.|
 | newDimension | [formInfo.FormDimension](js-apis-app-form-formInfo.md#formdimension) | Yes| Widget dimension. For example, **Dimension_1_2** indicates a 1 x 2 widget.|
 | newRect | [formInfo.Rect](js-apis-app-form-formInfo.md#rect20) | Yes| Widget position information, including the X and Y coordinates of the widget's top-left corner, as well as its width and height.|
 
