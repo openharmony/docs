@@ -339,7 +339,7 @@ Requests to activate a widget. This API takes effect only for [scene-based widge
 
 **System capability**: SystemCapability.Ability.Form
 
-**Device behavior differences:** This API is supported on certain phone models. On unsupported devices, it returns error code [801](../errorcode-universal.md#801-the-device-does-not-support-this-api).
+**Device behavior differences:** This API is supported on certain phone models. On unsupported devices, it returns error code [801](../errorcode-universal.md#801-api-not-supported).
 
 **System API**: This is a system API.
 
@@ -398,7 +398,7 @@ Requests to deactivate a widget. This API takes effect only for [scene-based wid
 
 **System capability**: SystemCapability.Ability.Form
 
-**Device behavior differences:** This API is supported on certain phone models. On unsupported devices, it returns error code [801](../errorcode-universal.md#801-the-device-does-not-support-this-api).
+**Device behavior differences:** This API is supported on certain phone models. On unsupported devices, it returns error code [801](../errorcode-universal.md#801-api-not-supported).
 
 **System API**: This is a system API.
 
