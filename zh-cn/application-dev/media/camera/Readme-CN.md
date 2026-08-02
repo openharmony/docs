@@ -43,7 +43,7 @@
   - [性能提升实践(仅对系统应用开放)(ArkTS)](camera-performance-improvement-sys.md)
   <!--DelEnd-->
 - 开发相机应用必选能力(C/C++)<!--camera-dev-native-mandatory-->
-  - [相机管理(C/C++)](native-camera-device-management.md)
+  - [相机管理 (C/C++)](native-camera-device-management.md)
   - [设备输入(C/C++)](native-camera-device-input.md)
   - [会话管理(C/C++)](native-camera-session-management.md)
 - 开发相机应用基础能力(C/C++)<!--camera-dev-native-->
@@ -55,7 +55,7 @@
   - [录像(C/C++)](native-camera-recording.md)
   - [录像实践(C/C++)](native-camera-recording-case.md)
   - [元数据(C/C++)](native-camera-metadata.md)
-  - [手电筒使用(C/C++)](native-camera-torch-use.md)
+  - [手电筒使用(C++)](native-camera-torch-use.md)
   - [压力管控(C/C++)](native-camera-system-pressure.md)
   - [微距能力设置(C/C++)](native-camera-macro.md)
   - [多摄同开(C/C++)](native-camera-concurrent-open.md)
