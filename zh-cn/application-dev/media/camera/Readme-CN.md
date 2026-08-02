@@ -20,7 +20,7 @@
   - [拍照实践(ArkTS)](camera-shooting-case.md)
   - [录像(ArkTS)](camera-recording.md)
   - [录像实践(ArkTS)](camera-recording-case.md)
-  - [元数据(ArkTS)](camera-metadata.md)
+  - [元数据（ArkTS）](camera-metadata.md)
   - [手电筒使用(ArkTS)](camera-torch-use.md)
   - [适配不同折叠状态的摄像头变更(ArkTS)](camera-foldable-display.md)
   - [分段式拍照(ArkTS)](camera-deferred-capture.md)
