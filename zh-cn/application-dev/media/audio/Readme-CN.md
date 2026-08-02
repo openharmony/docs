@@ -31,7 +31,7 @@
   <!--DelEnd-->
   - [音频播放流管理](audio-playback-stream-management.md)
   <!--Del-->
-  - [分布式音频播放(仅对系统应用开放)](distributed-audio-playback-sys.md)
+  - [分布式音频播放（仅对系统应用开放）](distributed-audio-playback-sys.md)
   <!--DelEnd-->
   <!--Del-->
   - [移动全景声管理（仅对系统应用开放）](audio-collaborative-management-sys.md)

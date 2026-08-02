@@ -80,7 +80,7 @@ getHdrComposedPixelmap(): Promise\<PixelMap>
 | 错误码ID | 错误信息               |
 | -------- | ---------------------- |
 | 7600901  | Inner unknown error. Please check the logs for detailed information. |
-| 7600201  | Unsupported operation. e.g.,1. The picture does not have a gainmap. 2. MainPixelMap's allocator type is not DMA. |
+| 7600201  | Unsupported operation. e.g.,1. The picture does not has a gainmap. 2. MainPixelMap's allocator type is not DMA. |
 
 **示例：**
 

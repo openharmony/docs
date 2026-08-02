@@ -1359,7 +1359,7 @@ Data conversion failed.
 
 **错误信息**
 
-Unsupported allocator mode, e.g., use shared memory to create a HDR image as only DMA supported hdr metadata.
+Unsupported allocator mode, e.g., use share memory to create a HDR image as only DMA supported hdr metadata.
 
 **错误描述**
 
@@ -1451,7 +1451,7 @@ Image too large.
 
 **错误信息**
 
-Unsupported allocator type, e.g., use shared memory to decode a HDR image as only DMA supported hdr metadata.
+Unsupported allocator type, e.g., use share memory to decode a HDR image as only DMA supported hdr metadata.
 
 **错误描述**
 
