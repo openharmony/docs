@@ -7,11 +7,11 @@
 <!--Tester: @tinygreyy-->
 <!--Adviser: @zengyawen-->
 
-作为Page页面的根容器使用，其内部默认包含了标题栏、内容区，其中内容区默认首页显示导航内容或非首页显示（[NavDestination](ts-basic-components-navdestination.md)的子组件），首页和非首页通过路由进行切换。
+作为Page页面的根容器使用，其内部默认包含了标题栏、内容区，其中内容区在首页默认显示导航内容，在非首页显示[NavDestination](ts-basic-components-navdestination.md)的子组件，首页和非首页通过路由进行切换。
 
 > **说明：**
 >
-> 该组件从API version 12开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
+> 该组件从API version 12开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 
 ## 导入模块
 
@@ -60,17 +60,17 @@ AtomicServiceNavigation({
 | navigationContent | Callback\<void\> | 否 | @BuilderParam | Navigation容器内容。默认值为空，无内容展示。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
 | title | [ResourceStr](ts-types.md#resourcestr) | 否 |@Prop | 设置页面标题。默认值为空字符串。当titleOptions的titleBarType字段设置为[TitleBarType](#titlebartype18).ROUND_ICON或者[TitleBarType](#titlebartype18).SQUARED_ICON，且设置了titleIcon时，title标题内容将不会显示。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
 | titleOptions | [TitleOptions](#titleoptions) | 否 | @Prop | 标题栏选项。默认值为{ isBlurEnabled: true }。当titleBarType字段设置为[TitleBarType](#titlebartype18).ROUND_ICON或者[TitleBarType](#titlebartype18).SQUARED_ICON，且设置了titleIcon时，title标题内容将不会显示。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
-| gradientBackground<sup>18+</sup> | [GradientBackground](#gradientbackground18) | 否 | @Prop | 背景色选项。默认值见[GradientBackground](#gradientbackground18)。<br>**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。 |
+| gradientBackground<sup>18+</sup> | [GradientBackground](#gradientbackground18) | 否 | @Prop | 背景色选项。设置时各字段的默认值见[GradientBackground](#gradientbackground18)。<br>**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。 |
 | hideTitleBar | boolean | 否 | @Prop | 设置是否隐藏标题栏。默认为false。<br>false表示显示标题栏，true表示隐藏标题栏。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
 | navBarWidth | [Length](ts-types.md#length)| 否 | @Prop | 设置导航栏宽度。默认值为240vp。<br>仅在Navigation组件分栏时生效。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
 | mode| [NavigationMode](ts-basic-components-navigation.md#navigationmode9枚举说明) | 否 | @Prop | 设置导航栏的显示模式。默认值为Auto。<br>支持Stack、Split与Auto模式。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
 | navDestinationBuilder | [NavDestinationBuilder](#navdestinationbuilder) | 否 | @BuilderParam | 创建[NavDestination](ts-basic-components-navdestination.md)组件所需要的Builder数据。默认值为空，即无内容展示。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
-| navBarWidthRange | [[Dimension](ts-types.md#dimension10), [Dimension](ts-types.md#dimension10)] | 否 | @Prop | 设置导航栏最小和最大宽度（双栏模式下生效）。默认值：最小默认值为240vp，最大默认值为组件宽度的40%，且不大于432vp，如果只设置一个值，则未设置的值按照默认值计算。单位：vp。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| navBarWidthRange | [[Dimension](ts-types.md#dimension10), [Dimension](ts-types.md#dimension10)] | 否 | @Prop | 设置导航栏最小和最大宽度（双栏模式下生效）。默认值：最小为240vp，最大为组件宽度的40%，且不大于432vp，如果只设置一个值，则未设置的值按照默认值计算。单位：vp。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
 | minContentWidth | [Dimension](ts-types.md#dimension10) | 否 | @Prop | 设置导航栏内容区最小宽度（双栏模式下生效）。默认值为360vp。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
 | sideBarOptions<sup>18+</sup> | [SideBarOptions](#sidebaroptions18) | 否 | @Prop | 侧边栏的功能选项。默认值为{ sideBarBackground: $r('sys.color.ohos_id_color_sub_background'), sideBarIcon: $r('sys.symbol.open_sidebar') }。<br>**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。 |
 | sideBarContent<sup>18+</sup> | Callback\<void\> | 否 | @BuilderParam | 侧边栏的内容。默认值为空。<br>**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。 |
 | menus<sup>18+</sup> | [CustomBuilder](ts-types.md#custombuilder8) \| Array\<[NavigationMenuItem](ts-basic-components-navigation.md#navigationmenuitem)\> | 否 | @BuilderParam | 宽屏场景下用户自定义插入的布局样式。默认值为空，不显示任何样式。屏幕宽度低于600vp为非宽屏场景，大于等于600vp为宽屏场景。<br>**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。 |
-| stateChangeCallback | Callback\<boolean\> | 否 | - | 导航栏显示状态切换时触发该回调。true表示导航栏显示状态发生了切换。默认值为空。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| stateChangeCallback | Callback\<boolean\> | 否 | - | 导航栏显示状态切换时触发该回调。true表示导航栏显示，false表示导航栏隐藏。默认值为空。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
 | modeChangeCallback | Callback\<[NavigationMode](ts-basic-components-navigation.md#navigationmode9枚举说明)\> | 否 | - | 当Navigation首次显示或者单双栏状态发生变化时触发该回调。默认值为空。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
 
 ## TitleOptions
@@ -81,10 +81,10 @@ AtomicServiceNavigation({
 | 名称 | 类型 | 只读 | 可选 | 说明 |
 | --------------- | ------ | ---- | -- | ---------- |
 | backgroundColor | [ResourceColor](ts-types.md#resourcecolor) | 否 | 是 | 标题栏背景颜色。默认值为系统默认颜色。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
-| isBlurEnabled | boolean | 否 | 是 | 标题栏是否模糊，默认值：true，表示标题栏模糊。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
-| barStyle | [BarStyle](ts-basic-components-navigation.md#barstyle12枚举说明)  | 否 | 是 | 标题栏样式属性设置。默认值为BarStyle.STANDARD。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| isBlurEnabled | boolean | 否 | 是 | 标题栏是否模糊。true表示标题栏模糊，false表示标题栏不模糊。默认值：true。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| barStyle | [BarStyle](ts-basic-components-navigation.md#barstyle12枚举说明)  | 否 | 是 | 设置标题栏样式。默认值为BarStyle.STANDARD。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
 | titleBarType<sup>18+</sup> | [TitleBarType](#titlebartype18) | 否 | 是 | 设置标题栏类型。默认值为TitleBarType.ROUND_ICON。<br>**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。 |
-| titleIcon<sup>18+</sup> | [Resource](ts-types.md#resource) \| [SymbolGlyphModifier](ts-universal-attributes-attribute-modifier.md#自定义modifier) | 否 | 是 | 设置标题栏的图标。默认值为$r('sys.color.ohos_id_color_titlebar_icon')。<br>**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。 |
+| titleIcon<sup>18+</sup> | [Resource](ts-types.md#resource) \| [SymbolGlyphModifier](ts-universal-attributes-attribute-modifier.md#自定义modifier) | 否 | 是 | 设置标题栏的图标。默认值为$r('sys.media.ohos_id_color_titlebar_icon')。<br>**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。 |
 
 ## GradientBackground<sup>18+</sup>
 供开发者设置品牌渐变色。
@@ -98,14 +98,14 @@ AtomicServiceNavigation({
 | primaryColor | [ResourceColor](ts-types.md#resourcecolor)  | 否 | 否 | 单色渐变色彩值和双色渐变第一色彩值。 |
 | secondaryColor |[ResourceColor](ts-types.md#resourcecolor)  | 否 | 是 | 双色渐变色第二色彩值。默认值为空，即无颜色设置。 |
 | backgroundTheme |[BackgroundTheme](#backgroundtheme18)  | 否 | 是 | 导航栏背景底色。默认值为DEFAULT。 |
-| mixMode | [MixMode](#mixmode18)  | 否 | 是 | 同时设置primaryColor和secondaryColor时此参数生效。代表双色渐变下两种颜色的融合方式。默认值为TOWARDS。 |
+| mixMode | [MixMode](#mixmode18)  | 否 | 是 | 同时设置primaryColor和secondaryColor时此参数生效。表示双色渐变下两种颜色的融合方式。默认值为TOWARDS。 |
 | alpha | [GradientAlpha](#gradientalpha18)  | 否 | 是 | 设置渐变色显示区域的透明度。默认值为OPACITY_20。 |
 
 ## NavDestinationBuilder
 
 type NavDestinationBuilder = (name: string, param?: Object) => void
 
-NavDestination组件内容。
+用于创建NavDestination组件内容的构建器类型。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -119,7 +119,7 @@ NavDestination组件内容。
 | param | Object | 否 | [NavDestination](ts-basic-components-navdestination.md)页面详细参数。默认值为空。 |
 
 ## MixMode<sup>18+</sup>
-背景色颜色混合模式的可选项。
+背景色混合模式的可选项。
 
 **原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
@@ -182,7 +182,7 @@ NavDestination组件内容。
 | --------------- | ------ | ---- | -- |----|
 | sideBarBackground | [ResourceColor](ts-types.md#resourcecolor) | 否 | 是 | 设置侧边栏的背景颜色。默认值为$r('sys.color.ohos_id_color_sub_background')。 |
 | onChange | Callback\<boolean\> | 否 | 是 | 侧边栏显示隐藏回调。true表示显示，false表示隐藏。默认值为空，即无事件。 |
-| sideBarIcon | [Resource](ts-types.md#resource) \| [SymbolGlyphModifier](ts-universal-attributes-attribute-modifier.md#自定义modifier) | 否 | 是 | 侧边栏里的返回图标。默认值为$r('sys.symbol.open_sidebar')。 |
+| sideBarIcon | [Resource](ts-types.md#resource) \| [SymbolGlyphModifier](ts-universal-attributes-attribute-modifier.md#自定义modifier) | 否 | 是 | 侧边栏的展开图标。默认值为$r('sys.symbol.open_sidebar')。 |
 
 ## 示例
 
@@ -201,7 +201,7 @@ struct Index {
   tabContent1() {
     Text('first page')
       .onClick(() => {
-        this.childNavStack.pushPath({ name: 'page one' })
+        this.childNavStack.pushPath({ name: 'page one' });
       })
   }
 
@@ -294,7 +294,7 @@ export struct PageOne {
     NavDestination() {
       Button('Next')
         .onClick(() => {
-          this.pageInfo.pushPath({ name: 'page two'})
+          this.pageInfo.pushPath({ name: 'page two'});
         })
     }
     .title('PageOne')
@@ -340,7 +340,7 @@ struct Index {
   tabContent1() {
     Text('first page')
       .onClick(() => {
-        this.childNavStack.pushPath({ name: 'page one' })
+        this.childNavStack.pushPath({ name: 'page one' });
       })
   }
 
@@ -396,9 +396,6 @@ struct Index {
     }
   }
 
-  @State showText: string = 'time: ';
-  @State time: number = 0;
-
   @Builder
   insertComp() {
     Text('This is menus area')
@@ -437,7 +434,7 @@ export struct PageOne {
     NavDestination() {
       Button('Next')
         .onClick(() => {
-          this.pageInfo.pushPath({ name: 'page two'})
+          this.pageInfo.pushPath({ name: 'page two'});
         })
     }
     .title('PageOne')
@@ -482,7 +479,7 @@ struct Index {
   tabContent1() {
     Text('first page')
       .onClick(() => {
-        this.childNavStack.pushPath({ name: 'page one' })
+        this.childNavStack.pushPath({ name: 'page one' });
       })
   }
 
@@ -538,17 +535,6 @@ struct Index {
     }
   }
 
-  @State showText: string = 'time: ';
-  @State time: number = 0;
-
-  @Builder
-  insertComp() {
-    Text('This is menus area')
-      .fontColor(Color.Red)
-      .width(200)
-      .height('100%')
-  }
-
   @Builder
   sideBarContentBuilder() {
     Text('This is sideBar content area')
@@ -588,7 +574,7 @@ export struct PageOne {
     NavDestination() {
       Button('Next')
         .onClick(() => {
-          this.pageInfo.pushPath({ name: 'page two'})
+          this.pageInfo.pushPath({ name: 'page two'});
         })
     }
     .title('PageOne')
