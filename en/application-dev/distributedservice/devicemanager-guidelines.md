@@ -1,48 +1,59 @@
 # Distributed Device Management Development
+<!--Kit: Distributed Service Kit-->
+<!--Subsystem: DistributedHardware-->
+<!--Owner: @hwzhangchuang-->
+<!--Designer: @hwzhangchuang-->
+<!--Tester: @zhaodengqi-->
+<!--Adviser: @hu-zhiqiong-->
 
 ## Introduction
 
-The distributed service allows multiple physically separated devices to be integrated into a virtual Super Device, allowing one device to control others and sharing data among devices with distributed communication capabilities.
+As users own an increasing number of different types of terminal devices, distributed services allow one device to use the capabilities of other devices as an extension of its own capabilities so that devices can collaborate to complete complex service scenarios.
 
-As the entry of the distributed service, distributed device management implements unified management of trusted and untrusted devices nearby.
+Distributed device management serves as the entry to distributed services and provides unified management of nearby trusted and untrusted devices in distributed service scenarios.
 
-Distributed device management provides the following functionalities:
+Distributed device management provides the following four capabilities:
 
-- **Discovering devices**<br>
-  Discover and report the devices that are connected to the same LAN or have Bluetooth enabled. You can filter devices based on the device type, distance, and whether the device is trusted.
+- **Discovering devices**<br/>
+  Discovers and reports nearby terminal devices. Nearby devices must be connected to the same LAN or have Bluetooth enabled at the same time.
 
-- **Binding a device**<br>
-  Bind an untrusted device discovered to establish a trust relationship with each other. The device authentication framework provides a variety of authentication modes, such as PIN-based pairing, tap-to-pair, and scan-to-pair, and supports diversified authentication APIs.
+- **Binding a device**<br/>
+  Trust between devices is the prerequisite for devices to work together in distributed service scenarios. For nearby untrusted devices that are discovered, you can bind them to establish a trusted relationship. The framework provides device authentication capabilities such as PIN-based pairing, touch-to-pair, scan-to-pair, and proximity-based pairing, and supports integration with different authentication interaction APIs.
 
-- **Querying device information**<br>
-  Obtain local device information, brief information about all the trusted devices, and detailed information about a trusted device.
-
-- **Listening for devices**<br>
-  Listen for online/offline status of nearby devices. If a device goes online, the device is trusted and distributed operations can be performed. If a device goes offline, the distributed service is unavailable.
+- **Querying device information**<br/>
+  Queries local device information, nearby online trusted devices, and trusted device information.
+  
+- **Listening for devices**<br/>
+  Listens for device online and offline events. When a device goes online, the devices have become trusted and distributed operations can be initiated. When a device goes offline, distributed services are unavailable.
 
 ### Working Principles
 
-When discovering a device, the application initiates a request for binding the device to establish a trust relationship. When the service ends, the service determines whether to unbind the device.
+  As the entry to distributed services, device management requires the application to actively initiate binding to discovered devices in the corresponding service scenario to establish a trusted relationship. After the service ends, the application decides whether to remove the binding relationship. The application itself controls whether the trusted relationship between devices is released.
 
 ### Constraints
 
-The distributed service is available only for the devices connected to the same LAN or have Bluetooth enabled.
+  To use device management capabilities, the user must ensure that the devices are connected to the same LAN or that Bluetooth is enabled. Otherwise, the capability is unavailable.
 
-Device information is sensitive user data. Even if the devices are connected to the same LAN or have Bluetooth enabled, the application must request the ohos.permission.DISTRIBUTED_DATASYNC permission from the user before obtaining the device location. The system provides the device management capabilities for the application only after the user has granted the permission.
+  Device information is sensitive user data. Therefore, even if the devices are already connected to the same LAN or Bluetooth is enabled, the application must still request the data synchronization permission from the user before obtaining device information. Only after the user grants the permission does the system provide device management capabilities to the application.
+
+<!--RP1-->
+<!--RP1End-->
 
 ## Requesting Permissions
 
 ### Scenario
 
-To use the distributed device management capabilities, your application must have the ohos.permission.DISTRIBUTED_DATASYNC permission, which allows application data to be exchanged between devices. This permission is a user_grant permission, which means the application must apply for user authorization.
+Before using distributed device management capabilities, the application must check whether it has obtained user authorization to access distributed data synchronization information. If authorization has not been granted, the application can request the required permission from the user.
 
-Before using the distributed device management capabilities, the application must be checked for the required permission.
+`ohos.permission.DISTRIBUTED_DATASYNC`: permission for distributed data synchronization
+
+To use device management capabilities, you must request this permission and obtain user authorization.
 
 ### How to Develop
 
-The APIs used in this section are based on the stage model.
+This topic applies to the Stage model.
 
-1. Declare the ohos.permission.DISTRIBUTED_DATASYNC permission in the **module.json5** file.
+1. Declare the `ohos.permission.DISTRIBUTED_DATASYNC` permission in the `module.json5` configuration file.
 
    ```ts
    {
@@ -62,93 +73,145 @@ The APIs used in this section are based on the stage model.
      }
    }
    ```
-2. Import the **common** and **abilityAccessCtrl** modules.
+2. Import the `abilityAccessCtrl` module to obtain the permission request capability.
 
    ```ts
-   import { common, abilityAccessCtrl } from '@kit.AbilityKit';
+   import { abilityAccessCtrl } from '@kit.AbilityKit';
    ```
 
-3. Use **requestPermissionsFromUser** to request user authorization for the ohos.permission.DISTRIBUTED_DATASYNC permission.
+3. Authorization for distributed data synchronization is granted in `user_grant` mode. Therefore, call [requestPermissionsFromUser9+](../reference/apis-ability-kit/js-apis-abilityAccessCtrl.md#requestpermissionsfromuser9) to request authorization from the user through a dynamic dialog box.
 
-   ```ts
-   let context = getContext(this) as common.UIAbilityContext;
+   <!-- @[permissions_user_grant](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/DistributedAppDev/DistributedAuthentication/entry/src/main/ets/pages/Index.ets) -->
+   
+   ``` TypeScript
    let atManager = abilityAccessCtrl.createAtManager();
-   try {
-     atManager.requestPermissionsFromUser(context, ['ohos.permission.DISTRIBUTED_DATASYNC']).then((data) => {
-       console.log('data: ' + JSON.stringify(data));
-     }).catch((err: object) => {
-       console.log('err: ' + JSON.stringify(err));
+   atManager.requestPermissionsFromUser(context, ['ohos.permission.DISTRIBUTED_DATASYNC'])
+     .then(async (data) => {
+       logger.info(`data: ${JSON.stringify(data)}`);
+       // ...
      })
-   } catch (err) {
-     console.log('catch err->' + JSON.stringify(err));
-   }
+     .catch((err: BusinessError) => {
+       logger.error(`requestPermissionsFromUser error: ${JSON.stringify(err)}`);
+     });
    ```
+
 
 ## Discovering Devices
 
 ### Scenario
 
-Discover nearby devices.
+Developers can call the device discovery APIs to obtain nearby available devices.
 
 ### Available APIs
 
 startDiscovering(discoverParam: {[key:&nbsp;string]:&nbsp;Object;} , filterOptions?: {[key:&nbsp;string]:&nbsp;Object;} ): void;
 
-Starts to discover the devices that are in the same LAN or have Bluetooth enabled. For details, see [startDiscovering](../reference/apis-distributedservice-kit/js-apis-distributedDeviceManager.md#startdiscovering).
+Discovers devices on the same LAN or with Bluetooth enabled. For details, see [startDiscovering](../reference/apis-distributedservice-kit/js-apis-distributedDeviceManager.md#startdiscovering).
 
 
 ### How to Develop
 
-1. Request the ohos.permission.DISTRIBUTED_DATASYNC permission for your application.
+1. Request the distributed data synchronization permission.
 
-2. Import the **distributedDeviceManager** module, which provides APIs for device management.
+2. Import the `distributedDeviceManager` module, which provides all device management APIs.
    
    ```ts
    import { distributedDeviceManager } from '@kit.DistributedServiceKit';
    ```
 
-3. Import the **BusinessError** module, which provides the error codes thrown by the APIs of the **distributedDeviceManager** module.
+3. Import the `BusinessError` module, which provides the error codes thrown by the APIs in the `distributedDeviceManager` module.
    
    ```ts
    import { BusinessError } from '@kit.BasicServicesKit';
    ```
 
-4. Create a **DeviceManager** instance, which is the entry for calling distributed device management APIs and registering the callback for discovering devices.
+4. Create a device management instance, which serves as the entry for calling distributed device management APIs.
 
-   ```ts
-   try {
-     let dmInstance = distributedDeviceManager.createDeviceManager('ohos.samples.jsHelloWorld');
-     dmInstance.on('discoverSuccess', data => console.log('discoverSuccess on:' + JSON.stringify(data)));
-     dmInstance.on('discoverFailure', data => console.log('discoverFailure on:' + JSON.stringify(data)));
-   } catch(err) {
-     let e: BusinessError = err as BusinessError;
-     console.error('createDeviceManager errCode:' + e.code + ',errMessage:' + e.message);
+   <!-- @[create_device_manager](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/DistributedAppDev/DistributedAuthentication/entry/src/main/ets/model/RemoteDeviceModel.ets) -->
+   
+   ``` TypeScript
+   async createDeviceManager(): Promise<void> {
+     if (typeof (this.deviceManager) != 'undefined') {
+       return;
+     }
+   
+     logger.info('[DeviceManager.RemoteDeviceModel] deviceManager.createDeviceManager begin');
+     try {
+       let dmInstance = distributedDeviceManager.createDeviceManager('com.samples.devicemanager');
+       this.deviceManager = dmInstance
+       // ...
+       logger.info(`[DeviceManager.RemoteDeviceModel] createDeviceManager callback returned,
+       value= ${JSON.stringify(this.deviceManager)}`);
+     } catch (err) {
+       let error: BusinessError = err as BusinessError;
+       logger.error(`[DeviceManager.RemoteDeviceModel] createDeviceManager throw error,
+       error=${error} message=${error.message}`);
+     }
+     logger.info('[DeviceManager.RemoteDeviceModel] distributedDeviceManager.createDeviceManager end');
    }
    ```
 
-5. Start to discover devices. The discovery process lasts 2 minutes, and a maximum of 99 devices can be discovered.
+5. Register callbacks for device discovery and call the discovery API to discover nearby devices. Discovery lasts for 2 minutes. After 2 minutes, discovery stops automatically. Up to 99 devices can be discovered.
    
-   ```ts
-   interface DiscoverParam {
-     discoverTargetType: number;
+   <!-- @[start_discovering](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/DistributedAppDev/DistributedAuthentication/entry/src/main/ets/model/RemoteDeviceModel.ets) -->
+   
+   ``` TypeScript
+   startDeviceDiscovery(): void {
+     if (typeof (this.deviceManager) == 'undefined') {
+       logger.error('[DeviceManager.RemoteDeviceModel] deviceManager has not initialized');
+       this.showErrMsg('deviceManager has not initialized');
+       return;
+     }
+     let self = this;
+     try {
+       this.deviceManager.on('discoverSuccess', (data) => {
+         if (data == null) {
+           return;
+         }
+         logger.info('[DeviceManager.RemoteDeviceModel] deviceFound data=' + JSON.stringify(data));
+         self.deviceFound(data);
+       })
+       this.deviceManager.on('discoverFailure', (data) => {
+         logger.info('[DeviceManager.RemoteDeviceModel] discoverFail data=' + JSON.stringify(data));
+       })
+       // ...
+       let discoverParam: Record<string, number> = {
+         'discoverTargetType': 1
+       };
+       let filterOptions: Record<string, number> = this.getFilterOptions();
+       logger.info('[DeviceManager.RemoteDeviceModel] startDeviceDiscovery filterOptions = ' + JSON.stringify(filterOptions));
+       if (Object.entries(filterOptions).length == 0) {
+         this.deviceManager.startDiscovering(discoverParam);
+       } else {
+         this.deviceManager.startDiscovering(discoverParam, filterOptions);
+       }
+     } catch (err) {
+       let e: BusinessError = err as BusinessError;
+       logger.error('[DeviceManager.RemoteDeviceModel] startDeviceDiscovery failed err: ' + e.toString());
+     }
    }
-   interface FilterOptions {
-     availableStatus: number;
-     discoverDistance: number;
-     authenticationStatus: number;
-     authorizationType: number;
-   }
-   let discoverParam: Record<string, number> = {
-     'discoverTargetType': 1
-   };
-   let filterOptions: Record<string, number> = {
-     'availableStatus': 0
-   };
-   try {
-     dmInstance.startDiscovering(discoverParam, filterOptions);
-   } catch (err) {
-     let e: BusinessError = err as BusinessError;
-     console.error('startDiscovering errCode:' + e.code + ',errMessage:' + e.message);
+   ```
+
+
+6. When discovery ends or the page exits, call the API for stopping discovery to release the discovery listeners.
+
+   <!-- @[stop_discovering](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/DistributedAppDev/DistributedAuthentication/entry/src/main/ets/model/RemoteDeviceModel.ets) -->
+   
+   ``` TypeScript
+   stopDeviceDiscovery(): void {
+     if (typeof (this.deviceManager) == 'undefined') {
+       logger.error('[DeviceManager.RemoteDeviceModel] deviceManager has not initialized');
+       this.showErrMsg('deviceManager has not initialized');
+       return;
+     }
+     logger.info('[DeviceManager.RemoteDeviceModel] stopDeviceDiscovery');
+     try {
+       this.deviceManager.stopDiscovering();
+       this.deviceManager.off('discoverSuccess');
+       this.deviceManager.off('discoverFailure');
+     } catch (e) {
+       logger.error('[DeviceManager.RemoteDeviceModel] stopDeviceDiscovery failed err: ' + e.toString());
+     }
    }
    ```
 
@@ -156,7 +219,7 @@ Starts to discover the devices that are in the same LAN or have Bluetooth enable
 
 ### Scenario
 
-Bind an untrusted device discovered to establish a trust relationship.
+After discovering nearby untrusted devices, developers can establish a trusted relationship by using the binding API.
 
 ### Available APIs
 
@@ -166,105 +229,161 @@ Binds a device. For details, see [bindTarget](../reference/apis-distributedservi
 
 ### How to Develop
 
-1. Request the ohos.permission.DISTRIBUTED_DATASYNC permission for your application.
+1. Request the distributed data synchronization permission.
 
-2. Discover devices nearby.
+2. Discover nearby untrusted devices.
    
-3. Bind an untrusted device.
+3. Select the untrusted device ID and initiate device binding.
 
-   ```ts
-   class Data {
-     deviceId: string = '';
-   }
-   let deviceId = 'XXXXXXXX';
-   let bindParam: Record<string, string | number> = {
-     'bindType': 1, 
-     'targetPkgName': 'xxxx',
-     'appName': 'xxxx',
-     'appOperation': 'xxxx',
-     'customDescription': 'xxxx'
-   };
-   try {
-     dmInstance.bindTarget(deviceId, bindParam, (err: BusinessError, data: Data) => {
-       if (err) {
-         console.error('bindTarget errCode:' + err.code + ',errMessage:' + err.message);
-         return;
+   <!-- @[bind_target](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/DistributedAppDev/DistributedAuthentication/entry/src/main/ets/model/RemoteDeviceModel.ets) -->
+   
+   ``` TypeScript
+   authenticateDevice(device: distributedDeviceManager.DeviceBasicInfo): void {
+     logger.info('[DeviceManager.RemoteDeviceModel] authenticateDevice ' + JSON.stringify(device));
+     if (typeof (this.deviceManager) == 'undefined') {
+       logger.error('[DeviceManager.RemoteDeviceModel] deviceManager has not initialized');
+       this.showErrMsg('deviceManager has not initialized');
+       return;
+     }
+   
+     for (let i = 0; i < this.discoverList.length; i++) {
+       if (this.discoverList[i].deviceId != device.deviceId) {
+         continue;
        }
-       console.info('bindTarget result:' + JSON.stringify(data));
-     });
-   } catch (err) {
-     let e: BusinessError = err as BusinessError;
-     console.error('bindTarget errCode:' + e.code + ',errMessage:' + e.message);
+   
+       let bindParam: Record<string, number | string> = {
+         'bindLevel': 3,
+         'bindType': 1, // PIN-based authentication
+         'targetPkgName': 'ohos.samples.etsdevicemanager',
+         'appName': 'DeviceManager',
+       };
+       try {
+         this.deviceManager.bindTarget(device.deviceId, bindParam, (err: BusinessError, data: Object) => {
+           if (err) {
+             logger.error('[DeviceManager.RemoteDeviceModel] authenticateDevice error:' + JSON.stringify(err));
+             return;
+           }
+           logger.info('[DeviceManager.RemoteDeviceModel] authenticateDevice succeed:' + JSON.stringify(data));
+         })
+       } catch (err) {
+         let e: BusinessError = err as BusinessError;
+         logger.error('[DeviceManager.RemoteDeviceModel] authenticateDevice failed err: ' + e.toString());
+       }
+     }
    }
    ```
+
+
 
 ## Querying Device Information
 
 ### Scenario
 
-Obtain information about all the online and trusted devices.
+After a trusted relationship is established between devices, the device information query API can be used to obtain all nearby devices that are online and trusted.
 
 ### Available APIs
 
 getAvailableDeviceListSync(): Array&lt;DeviceBasicInfo&gt;;
 
-Obtains information about all the available devices. For details, see [getAvailableDeviceListSync](../reference/apis-distributedservice-kit/js-apis-distributedDeviceManager.md#getavailabledevicelistsync).
+Queries device information. For details, see [getAvailableDeviceListSync](../reference/apis-distributedservice-kit/js-apis-distributedDeviceManager.md#getavailabledevicelistsync).
 
 ### How to Develop
 
-1. Request the ohos.permission.DISTRIBUTED_DATASYNC permission for your application.
+1. Request the distributed data synchronization permission.
 
-2. Discover devices nearby.
+2. Discover nearby untrusted devices.
    
-3. Bind an untrust device to establish a trust relationship.
+3. Establish a trusted relationship between devices.
 
-4. Obtain information about all the online and trusted devices.
+4. Query nearby devices that are online and trusted.
 
-   ```ts
-   try {
-     let deviceInfoList: Array<distributedDeviceManager.DeviceBasicInfo> = dmInstance.getAvailableDeviceListSync();
-   } catch (err) {
-     let e: BusinessError = err as BusinessError;
-     console.error('getAvailableDeviceListSync errCode:' + e.code + ',errMessage:' + e.message);
+   <!-- @[get_available_device_list](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/DistributedAppDev/DistributedAuthentication/entry/src/main/ets/model/RemoteDeviceModel.ets) -->
+   
+   ``` TypeScript
+   getTrustedDeviceList(): void {
+     if (typeof (this.deviceManager) == 'undefined') {
+       logger.error('[DeviceManager.RemoteDeviceModel] deviceManager has not initialized');
+       this.showErrMsg('deviceManager has not initialized');
+       return;
+     }
+   
+     logger.info('[DeviceManager.RemoteDeviceModel] getTrustedDeviceList begin');
+     try {
+       this.trustedDeviceList = this.deviceManager.getAvailableDeviceListSync();
+       // ...
+     } catch (error) {
+       logger.error('[DeviceManager.RemoteDeviceModel] getTrustedDeviceList error: ${error}' + error.toString());
+       this.showErrMsg('getTrustedDeviceList failed');
+     }
    }
    ```
+
+
 
 ## Listening for Device Online/Offline Status
 
 ### Scenario
 
-You can listen for the device online/offline status. The service will be notified when a device goes offline or online.
+When a nearby trusted device becomes available, the service receives an online notification. When the device becomes unavailable, the service receives an offline notification.
 
 ### Available APIs
 
 on(type: 'deviceStateChange', callback: Callback&lt;{ action: DeviceStateChange; device: DeviceBasicInfo; }&gt;): void;
 
-Listens for device online/offline status. For details, see [on('deviceStateChange')](../reference/apis-distributedservice-kit/js-apis-distributedDeviceManager.md#ondevicestatechange).
+Listens for device online and offline status. For details, see [on('deviceStateChange')](../reference/apis-distributedservice-kit/js-apis-distributedDeviceManager.md#ondevicestatechange).
 
 ### How to Develop
 
-1. Request the ohos.permission.DISTRIBUTED_DATASYNC permission for your application.
+1. Request the distributed data synchronization permission.
 
-2. Import the **distributedDeviceManager** module, which provides APIs for device management.
+2. Import the `distributedDeviceManager` module, which provides all device management APIs.
    
    ```ts
    import { distributedDeviceManager } from '@kit.DistributedServiceKit';
    ```
 
-3. Import the **BusinessError** module, which provides the error codes thrown by the APIs of the **distributedDeviceManager** module.
+3. Import the `BusinessError` module, which provides the error codes thrown by the APIs in the `distributedDeviceManager` module.
    
    ```ts
    import { BusinessError } from '@kit.BasicServicesKit';
    ```
 
-4. Create a **DeviceManager** instance.
+4. Create a device management instance, which serves as the entry for calling distributed device management APIs, and register callbacks for device online and offline events.
 
-   ```ts
-   try {
-     let dmInstance = distributedDeviceManager.createDeviceManager('ohos.samples.jsHelloWorld');
-     dmInstance.on('deviceStateChange', data => console.log('deviceStateChange on:' + JSON.stringify(data)));
-   } catch(err) {
-     let e: BusinessError = err as BusinessError;
-     console.error('createDeviceManager errCode:' + e.code + ',errMessage:' + e.message);
+   <!-- @[device_state_change](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/DistributedAppDev/DistributedAuthentication/entry/src/main/ets/model/RemoteDeviceModel.ets) -->
+   
+   ``` TypeScript
+   registerDeviceStateListener(): void {
+     logger.info('[DeviceManager.RemoteDeviceModel] registerDeviceStateListener');
+     if (typeof (this.deviceManager) == 'undefined') {
+       logger.error('[DeviceManager.RemoteDeviceModel] deviceManager has not initialized');
+       this.showErrMsg('deviceManager has not initialized');
+       return;
+     }
+   
+     // ...
+     try {
+       this.deviceManager.on('deviceStateChange', (data: dataType) => {
+         if (data == null) {
+           return;
+         }
+         logger.info('[DeviceManager.RemoteDeviceModel] deviceStateChange data=' + JSON.stringify(data));
+         switch (data.action) {
+           case distributedDeviceManager.DeviceStateChange.AVAILABLE:
+             logger.info('[DeviceManager.RemoteDeviceModel] deviceStateChange ONLINE');
+             // ...
+             break;
+           case distributedDeviceManager.DeviceStateChange.UNAVAILABLE:
+             logger.info('[DeviceManager.RemoteDeviceModel] deviceStateChange OFFLINE');
+             // ...
+             break;
+           default:
+             break;
+         }
+       })
+     } catch(err) {
+       let e: BusinessError = err as BusinessError;
+       logger.error('[DeviceManager.RemoteDeviceModel] deviceStateChange failed err: ' + e.toString());
+     }
    }
    ```
