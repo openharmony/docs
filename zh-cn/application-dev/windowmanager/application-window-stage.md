@@ -217,7 +217,7 @@ export default class EntryAbility extends UIAbility {
             hilog.error(DOMAIN, TAG, `sub_windowClass is null`);
             return;
           }
-          // 3.显示子窗口。
+          // 4.显示子窗口。
           sub_windowClass.showWindow((err: BusinessError) => {
             let errCode: number = err.code;
             if (errCode) {
@@ -236,7 +236,7 @@ export default class EntryAbility extends UIAbility {
       hilog.error(DOMAIN, TAG, `sub_windowClass is null`);
       return;
     }
-    // 4.销毁子窗口。当不再需要子窗口时，可根据具体实现逻辑，使用destroy对其进行销毁。
+    // 5.销毁子窗口。当不再需要子窗口时，可根据具体实现逻辑，使用destroy对其进行销毁。
     sub_windowClass.destroyWindow((err: BusinessError) => {
       let errCode: number = err.code;
       if (errCode) {
