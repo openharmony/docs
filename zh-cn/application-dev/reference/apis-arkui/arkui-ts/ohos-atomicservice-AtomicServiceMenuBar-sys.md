@@ -7,11 +7,11 @@
 <!--Tester: @tinygreyy-->
 <!--Adviser: @zengyawen-->
 
-依赖当前元服务的上下文，创建AtomicServiceMenuBar对象，用于操控右上角菜单功能胶囊的显示与隐藏。
+依赖当前原子化服务的上下文，创建AtomicServiceMenuBar对象，用于操控右上角菜单功能胶囊的显示与隐藏。
 
 > **说明：**
 >
-> 该组件从API version 23开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
+> 该组件从API version 23开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 
 ## 导入模块
 
@@ -25,11 +25,11 @@ import { AtomicServiceMenuBar } from '@kit.ArkUI';
 
 ## 属性
 
-不支持[通用属性](ts-component-general-attributes.md)
+不支持[通用属性](ts-component-general-attributes.md)。
 
 ## AtomicServiceMenuBar
 
-使用当前元服务的UI上下文信息创建的对象，通过定义的接口操控当前元服务菜单功能胶囊的状态。示例参见[示例](#示例)。
+使用当前原子化服务的UI上下文信息创建的对象，通过定义的接口操控当前原子化服务菜单功能胶囊的显隐状态。示例参见[示例](#示例)。
 
 ### constructor
 
@@ -49,13 +49,13 @@ AtomicServiceMenuBar的构造函数。
 
 | 参数名   | 类型                            | 必填   |  说明         |
 | ---- | ----------------------------- | ---- | -------------------- |
-| uiContext | [UIContext](../arkts-apis-uicontext-uicontext.md) | 是    | 当前元服务的上下文信息。 |
+| uiContext | [UIContext](../arkts-apis-uicontext-uicontext.md) | 是    | 当前原子化服务的上下文信息。 |
 
 ### setVisible
 
 setVisible(visible: boolean): void
 
-设置当前元服务菜单功能胶囊的显隐状态。
+设置当前原子化服务菜单功能胶囊的显隐状态。
 
 **原子化服务API：** 从API version 23开始，该接口支持在原子化服务中使用。
 
@@ -83,7 +83,7 @@ struct Index {
   private menuBar: AtomicServiceMenuBar = new AtomicServiceMenuBar(this.getUIContext());
 
   @Builder
-  private EmbedCompLauncherShow(title: string, text: string, event?: () => void) {
+  private MenuCapsuleShow(title: string, text: string, event?: () => void) {
     Column() {
       if (typeof event === 'function') {
         Button(title)
@@ -105,10 +105,10 @@ struct Index {
 
   build() {
     Column() {
-      this.EmbedCompLauncherShow('显示菜单功能胶囊', '点击后菜单功能胶囊显示', () => {
+      this.MenuCapsuleShow('显示菜单功能胶囊', '点击后菜单功能胶囊显示', () => {
         this.menuBar.setVisible(true);
       });
-      this.EmbedCompLauncherShow('隐藏菜单功能胶囊', '点击后菜单功能胶囊消失', () => {
+      this.MenuCapsuleShow('隐藏菜单功能胶囊', '点击后菜单功能胶囊消失', () => {
         this.menuBar.setVisible(false);
       });
     }
