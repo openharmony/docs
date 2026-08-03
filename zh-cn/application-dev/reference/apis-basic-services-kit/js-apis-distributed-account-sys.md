@@ -158,6 +158,7 @@ setOsAccountDistributedInfoByLocalId(localId: number, distributedInfo: Distribut
 | 12300002 | Invalid distributedInfo. |
 | 12300003 | Account identified by localId or by distributedInfo not found. |
 | 12300008 | Restricted OS account. |
+| 12300406 | The distributed account information has already been bound to a sub-profile of the target OS account.<br>适用版本：26.0.0+ |
 
 **示例：**
 
@@ -218,6 +219,7 @@ setOsAccountDistributedInfoByLocalId(localId: number, distributedInfo: Distribut
 | 12300002 | Invalid distributedInfo. |
 | 12300003 | Account identified by localId or by distributedInfo not found. |
 | 12300008 | Restricted OS account. |
+| 12300406 | The distributed account information has already been bound to a sub-profile of the target OS account.<br>适用版本：26.0.0+ |
 
 **示例：**
 
