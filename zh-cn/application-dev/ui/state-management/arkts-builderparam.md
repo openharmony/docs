@@ -499,32 +499,6 @@ struct HelloWorldPage {
 }
 ```
 
-
-**router_map.json**
-这个文件位于项目的`resources/base/profile`目录下。
-```ts
-{
-  "routerMap": [
-    {
-      "name": "HelloWorldPage",
-      "buildFunction": "HelloWorldPageBuilder",
-      "pageSourceFile": "src/main/ets/pages/helloworld.ets"
-    }
-  ]
-}
-```
-**module.json5**
-这个文件位于应用模块的根目录下，例如`entry/src/main/module.json5`。
-
-```ts
-{
-  "module": {
-    "routerMap": "$profile:router_map",
-    ......
-  }
-}   
-```
-
 示例效果图
 
 ![builderparam-demo7](figures/builderparam-demo7.gif)
