@@ -92,6 +92,31 @@
    回调注册可参考AudioRendererSampleC页面代码中的`SetRendererWriteDataCallback`。
    <!-- @[Render_SetRendererWriteDataCallback](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/Media/Audio/AudioRendererSampleC/entry/src/main/cpp/renderer.cpp) -->
    
+   ``` C++
+   // 自定义写入数据函数。
+   static OH_AudioData_Callback_Result MyOnWriteData_New(
+       OH_AudioRenderer* renderer,
+       void* userData,
+       void* audioData,
+       int32_t audioDataSize)
+   {
+       // 将待播放的数据，按audioDataSize长度写入audioData。
+       // 如果开发者不希望播放某段audioData，返回AUDIO_DATA_CALLBACK_RESULT_INVALID即可。
+       size_t readCount = fread(audioData, audioDataSize, 1, g_fp);
+       if (readCount == 0) {
+           return AUDIO_DATA_CALLBACK_RESULT_INVALID;
+       }
+       if (feof(g_fp)) {
+           fseek(g_fp, 0, SEEK_SET);
+       }
+       return AUDIO_DATA_CALLBACK_RESULT_VALID;
+   }
+   // ...
+       // 配置写入音频数据回调函数。
+       OH_AudioRenderer_OnWriteDataCallback writeDataCb = MyOnWriteData_New;
+       OH_AudioStreamBuilder_SetRendererWriteDataCallback(builder, writeDataCb, nullptr);
+   ```
+   
 4. 如果收到`OH_AudioRenderer_OnWriteDataCallback`回调，并按正常周期写入数据但播放无声，检查数据写入和解析逻辑。
 
    检查项如下：
