@@ -18,7 +18,7 @@ DatePickerDialog提供了系统级的日期滑动选择器弹窗，支持设置�
 
 ## DatePickerDialogOptions
 
-日期选择器弹窗选项。DatePickerDialog通过弹窗方式展示日期滑动选择器，提供系统材质动画效果。
+日期滑动选择器弹窗选项。DatePickerDialog通过弹窗方式展示日期滑动选择器，提供系统材质动画效果。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 

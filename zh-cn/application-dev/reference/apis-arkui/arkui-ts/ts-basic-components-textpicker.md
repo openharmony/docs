@@ -640,7 +640,7 @@ onScrollStop(callback: TextPickerScrollStopCallback)
 
 | 参数名 | 类型                                       | 必填 | 说明                                              |
 | ------ | ------------------------------------------ | ---- | ------------------------------------------------- |
-| callback | [TextPickerScrollStopCallback](#textpickerscrollstopcallback14) | 是   | 文本选择器的选项列滑动停止时触发该事件。 |
+| callback | [TextPickerScrollStopCallback](#textpickerscrollstopcallback14) | 是   | 文本选择器的选项列滑动停止时触发该事件。回调签名：(value: string \| string[], index: number \| number[]) => void，其中value为当前选中项的文本，index为当前选中项的索引值（从0开始）。 |
 
 ### onScrollStop<sup>18+</sup>
 
@@ -694,7 +694,7 @@ onEnterSelectedArea(callback: TextPickerEnterSelectedAreaCallback)
 
 | 参数名   | 类型                       | 必填 | 说明                                       |
 | -------- | -------------------------- | ---- | ------------------------------------------ |
-| callback | [TextPickerEnterSelectedAreaCallback](#textpickerenterselectedareacallback18) | 是   | 滑动TextPicker过程中，选项进入分割线区域时触发的回调。 |
+| callback | [TextPickerEnterSelectedAreaCallback](#textpickerenterselectedareacallback18) | 是   | 滑动TextPicker过程中，选项进入分割线区域时触发的回调。回调签名：(value: string \| string[], index: number \| number[]) => void，其中value为当前选中项的文本，index为当前选中项的索引值（从0开始）。 |
 
 ### onAccept<sup>(deprecated) </sup>
 
