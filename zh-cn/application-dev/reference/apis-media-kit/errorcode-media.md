@@ -72,13 +72,11 @@ Operation not allowed.
 2. 媒体文件封装格式不规范，如MP4文件的moov box位置异常（moov位于文件尾部）、mdat box数据不完整或解封装器在解析过程中状态出错。
 3. 播放器在文件解析异常状态下被调用了播控操作（如seek、pause、play等），当前状态不支持该操作。
 
-例如：（1）未设置源调用play 错误信息：errorCode 5400102 The current state is idle. Play operation only supports prepared/paused/completed.
-
-（2）Initialized 状态调用play 错误信息：errorCode 5400102 The current state is initialized. Play operation only supports prepared/paused/completed.
-
-（3）Playing 状态调用reset 后play() 错误信息：errorCode 5400102 the current state is idle. Play operation only supports prepared/paused/completed.
-
-（4）Initialized 状态调用seek() 错误信息：errorCode 5400102, errorMsg Operate Not Permit: The current state is initialized, seek operation only support prepared/playing/paused/completed state.
+例如：
+   （1）当未设置数据源调用play方法时，错误信息：errorCode 5400102 The current state is idle. Play operation only supports prepared/paused/completed.
+   （2）当在Initialized状态调用play方法时，错误信息：errorCode 5400102 The current state is initialized. Play operation only supports prepared/paused/completed.
+   （3）当在Playing状态调用reset方法后调用play方法时，错误信息：errorCode 5400102 the current state is idle. Play operation only supports prepared/paused/completed.
+   （4）当在Initialized状态调用seek方法时，错误信息：errorCode 5400102, errorMsg Operate Not Permit: The current state is initialized, seek operation only support prepared/playing/paused/completed state.
 
 **处理步骤**
 
@@ -143,7 +141,8 @@ I/O error: video decode failed.
 
 1. 视频资源的编码格式（如H.264、H.265、VP8等）不被当前设备解码器支持，或视频流的profile/level超出硬件解码能力范围。
 2. 视频码流数据不完整或损坏，网络不稳定导致关键帧数据缺失，解码器无法正常启动或持续解码。
-例如：HLS返回HTML分片（content-Type:text/html）错误信息：errorCode 5400103, errorMsg IO Error: DEM_PARSE_ERR-unkown error, media data source error unknow, video/avc
+例如：当播放流媒体，HLS返回HTML分片（content-Type:text/html）时，错误信息：errorCode 5400103, errorMsg IO Error: DEM_PARSE_ERR-unkown error, media data source error unknow, video/avc.
+
 3. 解码器状态异常，在错误状态下调用了start/reset等操作，或底层HDI（Hardware Device Interface）驱动资源不足/异常导致解码失败。
 
 **处理步骤**
@@ -414,16 +413,15 @@ unsupport container format type.
 
 1. 媒体资源的封装格式（如MP4、MKV、FLV、TS等）不被系统支持。
 
-例如：播放AV1视频，错误信息为：errorCode 5400106, errorMsg Unsupported Format: VID_DEC_ERR-unsupport interface, unsupport video decoder type, video/av1-
+例如：当使用播放器播放AV1视频时，错误信息为：errorCode 5400106, errorMsg Unsupported Format: VID_DEC_ERR-unsupport interface, unsupport video decoder type, video/av1-
 
 2. 媒体资源文件损坏或不完整，解封装器无法正确识别容器类型。
 
-例如：（1）视频文件损坏（mp4 ftyp 头部正常，缺少moov和媒体数据）错误信息为：errorCode 5400106, errorMsg Unsupported Format: CONTAINER_ERR-unsupport interface, unsupport container 
+例如：
+   （1）当播放的视频文件损坏时（mp4 ftyp 头部正常，缺少moov和媒体数据），错误信息为：errorCode 5400106, errorMsg Unsupported Format: CONTAINER_ERR-unsupport interface, unsupport container 
 format type, null-
-
-（2）打开空文件，错误信息为：errorCode 5400106, errorMsg Unsupported Format: CONTAINER_ERR-unsupport interface, unsupport container format type, null-
-
-（3）文本伪装MP4 文件，错误信息为：errorCode 5400106, errorMsg Unsupported Format: CONTAINER_ERR-unsupport interface, unsupport container format type, null-
+   （2）当播放时打开的是空文件时，错误信息为：errorCode 5400106, errorMsg Unsupported Format: CONTAINER_ERR-unsupport interface, unsupport container format type, null-
+   （3）当播放文本伪装的MP4文件时，错误信息为：errorCode 5400106, errorMsg Unsupported Format: CONTAINER_ERR-unsupport interface, unsupport container format type, null-
 
 3. 媒体资源的URL或文件路径错误，导致加载到无效数据。
 4. 网络流资源因网络中断导致数据不完整，解封装器缺少关键头部信息而无法识别格式。
