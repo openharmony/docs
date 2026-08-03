@@ -748,6 +748,110 @@ struct Index {
 }
 ```
 
+## config.startBlinking
+
+startBlinking(mode: BlinkingMode, scenario: BlinkingScenario): BlinkResultCode
+
+启用闪光灯或屏幕以进行闪烁提醒。
+
+**起始版本：** 26.0.0
+
+**模型约束：** 此接口仅可在Stage模型下使用。
+
+**系统接口**：此接口为系统接口。
+
+**需要权限**：ohos.permission.WRITE_ACCESSIBILITY_CONFIG
+
+**系统能力**：SystemCapability.BarrierFree.Accessibility.Core
+
+**参数：**
+
+| 参数名 | 类型                                                                           | 必填 | 说明 |
+| -------- |------------------------------------------------------------------------------| -------- | -------- |
+| mode | [BlinkingMode](#blinkingmode) | 是 | 表示屏幕闪烁或闪光灯闪烁的模式。 |
+| scenario | [BlinkingScenario](#blinkingscenario) | 是 | 表示触发闪烁的场景。 |
+
+**返回值：**
+
+| 类型 | 说明 |
+| -------- | -------- |
+| [BlinkResultCode](#blinkresultcode) | 接口调用返回的结果码。|
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[无障碍子系统错误码](errorcode-accessibility.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | -------------------------------- |
+| 201 | Permission verification failed. The application does not have the permission required to call the API.  |
+| 202 | Permission verification failed. A non-system application calls a system API. |
+| 9300000 | System abnormality.Possible causes: <br>1.Internal operation failed. <br>2.Failed to obtain the required service or client object (null pointer).<br>3.IPC communication failed. <br>4.Failed to obtain the accessibility service proxy.|
+
+**示例：**
+
+```ts
+import { config } from '@kit.AccessibilityKit';
+
+try {
+  let code: config.BlinkResultCode = config.startBlinking(config.BlinkingMode.SINGLE_BLINK, config.BlinkingScenario.ALARM);
+  console.info(`Succeeded in startBlinking, result code: ${code}`);
+} catch (err) {
+  console.error(`Failed to call startBlinking, code is ${err.code}, message is ${err.message}`);
+}
+```
+
+## config.stopBlinking
+
+stopBlinking(mode: BlinkingMode, scenario: BlinkingScenario): BlinkResultCode
+
+停止闪光灯闪烁或屏幕闪烁。
+
+**起始版本：** 26.0.0
+
+**模型约束：** 此接口仅可在Stage模型下使用。
+
+**系统接口**：此接口为系统接口。
+
+**需要权限**：ohos.permission.WRITE_ACCESSIBILITY_CONFIG
+
+**系统能力**：SystemCapability.BarrierFree.Accessibility.Core
+
+**参数：**
+
+| 参数名 | 类型                                                                           | 必填 | 说明 |
+| -------- |------------------------------------------------------------------------------| -------- | -------- |
+| mode | [BlinkingMode](#blinkingmode) | 是 | 表示屏幕闪烁或闪光灯闪烁的模式。 |
+| scenario | [BlinkingScenario](#blinkingscenario) | 是 | 表示触发闪烁的场景。 |
+
+**返回值：**
+
+| 类型 | 说明 |
+| -------- | -------- |
+| [BlinkResultCode](#blinkresultcode) | 接口调用返回的结果码。|
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[无障碍子系统错误码](errorcode-accessibility.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | -------------------------------- |
+| 201 | Permission verification failed. The application does not have the permission required to call the API.  |
+| 202 | Permission verification failed. A non-system application calls a system API. |
+| 9300000 | System abnormality.Possible causes: <br>1.Internal operation failed. <br>2.Failed to obtain the required service or client object (null pointer).<br>3.IPC communication failed. <br>4.Failed to obtain the accessibility service proxy.|
+
+**示例：**
+
+```ts
+import { config } from '@kit.AccessibilityKit';
+
+try {
+  let code: config.BlinkResultCode = config.stopBlinking(config.BlinkingMode.SINGLE_BLINK, config.BlinkingScenario.ALARM);
+  console.info(`Succeeded in stopBlinking, result code: ${code}`);
+} catch (err) {
+  console.error(`Failed to call stopBlinking, code is ${err.code}, message is ${err.message}`);
+}
+```
+
 ## Config
 
 用于属性的设置、获取与监听。
@@ -1097,3 +1201,60 @@ type OnDisconnectCallback = () => void
 | bundleName | string | 否   | 否   | 应用包名，用于标识应用，格式如：'com.example.myapplication'。 |
 | appIndex | number | 否   | 是   | 应用包的分身索引标识。取值大于等于0的整数，缺省时默认为0。|
 | seniorModeState | boolean | 否   | 否   | 应用“长辈模式”启用状态，true表示已启用，false表示未启用。|
+
+## BlinkingMode
+
+表示闪烁模式的枚举。
+
+**起始版本：** 26.0.0
+
+**模型约束：** 此接口仅可在Stage模型下使用。
+
+**系统接口**：此接口为系统接口。
+
+**系统能力**：SystemCapability.BarrierFree.Accessibility.Core
+
+| 名称                        | 值   | 说明                     |
+| -------------------------- | ---- | ------------------------ |
+| SINGLE_BLINK                       |  1 | 表示单次闪烁。         |
+| CONTINUOUS_BLINK                |  2 | 表示持续闪烁。         |
+
+## BlinkingScenario
+
+表示闪烁场景的枚举。
+
+**起始版本：** 26.0.0
+
+**模型约束：** 此接口仅可在Stage模型下使用。
+
+**系统接口**：此接口为系统接口。
+
+**系统能力**：SystemCapability.BarrierFree.Accessibility.Core
+
+| 名称                        | 值   | 说明                     |
+| -------------------------- | ---- | ------------------------ |
+| ALARM                       |  1 | 表示闹钟触发闪烁。         |
+| NOTIFICATION                |  2 | 表示通知触发闪烁。         |
+| CALL                        |  3 | 表示来电触发闪烁。         |
+| TESTING                     |  4 | 表示测试场景触发闪烁。     |
+
+## BlinkResultCode
+
+表示闪烁操作的结果码枚举。
+
+**起始版本：** 26.0.0
+
+**模型约束：** 此接口仅可在Stage模型下使用。
+
+**系统接口**：此接口为系统接口。
+
+**系统能力**：SystemCapability.BarrierFree.Accessibility.Core
+
+| 名称                        | 值   | 说明                     |
+| -------------------------- | ---- | ------------------------ |
+| SUCCESS                         |  0 | 表示闪烁接口执行成功。          |
+| ALREADY_FLASHING                |  1 | 表示设备正在闪烁中。       |
+| DEVICE_IN_USE                   |  2 | 表示设备正在使用中。     |
+| FLASH_BLINKING_UNSUPPORTED      |  3 | 表示设备不支持闪光灯闪烁。   |
+| SCREEN_BLINKING_UNSUPPORTED     |  4 | 表示设备不支持屏幕闪烁。     |
+| FEATURE_DISABLED                |  5 | 表示闪烁功能开关未开启。 |
