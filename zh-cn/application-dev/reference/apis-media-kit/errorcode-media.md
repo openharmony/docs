@@ -71,9 +71,13 @@ Operation not allowed.
 1. 播放的媒体文件结尾包含不符合格式的数据或尾部信息已损坏的文件，导致解封装器在解析到文件末尾时触发状态异常，进而产生操作不允许错误。
 2. 媒体文件封装格式不规范，如MP4文件的moov box位置异常（moov位于文件尾部）、mdat box数据不完整或解封装器在解析过程中状态出错。
 3. 播放器在文件解析异常状态下被调用了播控操作（如seek、pause、play等），当前状态不支持该操作。
+
 例如：（1）未设置源调用play 错误信息：errorCode 5400102 The current state is idle. Play operation only supports prepared/paused/completed.
+
 （2）Initialized 状态调用play 错误信息：errorCode 5400102 The current state is initialized. Play operation only supports prepared/paused/completed.
+
 （3）Playing 状态调用reset 后play() 错误信息：errorCode 5400102 the current state is idle. Play operation only supports prepared/paused/completed.
+
 （4）Initialized 状态调用seek() 错误信息：errorCode 5400102, errorMsg Operate Not Permit: The current state is initialized, seek operation only support prepared/playing/paused/completed state.
 
 **处理步骤**
@@ -409,12 +413,18 @@ unsupport container format type.
 **可能原因**
 
 1. 媒体资源的封装格式（如MP4、MKV、FLV、TS等）不被系统支持。
+
 例如：播放AV1视频，错误信息为：errorCode 5400106, errorMsg Unsupported Format: VID_DEC_ERR-unsupport interface, unsupport video decoder type, video/av1-
+
 2. 媒体资源文件损坏或不完整，解封装器无法正确识别容器类型。
-例如：视频文件损坏（mp4 ftyp 头部正常，缺少moov和媒体数据）错误信息为：errorCode 5400106, errorMsg Unsupported Format: CONTAINER_ERR-unsupport interface, unsupport container 
+
+例如：（1）视频文件损坏（mp4 ftyp 头部正常，缺少moov和媒体数据）错误信息为：errorCode 5400106, errorMsg Unsupported Format: CONTAINER_ERR-unsupport interface, unsupport container 
 format type, null-
-例如：打开空文件，错误信息为：errorCode 5400106, errorMsg Unsupported Format: CONTAINER_ERR-unsupport interface, unsupport container format type, null-
-例如：文本伪装MP4 文件，错误信息为：errorCode 5400106, errorMsg Unsupported Format: CONTAINER_ERR-unsupport interface, unsupport container format type, null-
+
+（2）打开空文件，错误信息为：errorCode 5400106, errorMsg Unsupported Format: CONTAINER_ERR-unsupport interface, unsupport container format type, null-
+
+（3）文本伪装MP4 文件，错误信息为：errorCode 5400106, errorMsg Unsupported Format: CONTAINER_ERR-unsupport interface, unsupport container format type, null-
+
 3. 媒体资源的URL或文件路径错误，导致加载到无效数据。
 4. 网络流资源因网络中断导致数据不完整，解封装器缺少关键头部信息而无法识别格式。
 5. 资源包含DRM保护或其他加密机制，无法被标准的解封装器正常解析。
