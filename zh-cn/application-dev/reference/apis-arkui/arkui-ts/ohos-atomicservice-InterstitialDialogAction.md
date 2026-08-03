@@ -11,7 +11,7 @@ InterstitialDialogAction弹框在原子化服务中用于在保持当前的上�
 
 > **说明：**
 >
-> 该组件从API version 12开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
+> 该组件从API version 12开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 
 ## 导入模块
 
@@ -25,11 +25,11 @@ import { InterstitialDialogAction, IconStyle, TitlePosition, BottomOffset } from
 
 ## 属性
 
-不支持[通用属性](ts-component-general-attributes.md)
+不支持[通用属性](ts-component-general-attributes.md)。
 
 ## 事件
 
-不支持[通用事件](ts-component-general-events.md)
+不支持[通用事件](ts-component-general-events.md)。
 
 ## InterstitialDialogAction
 
@@ -39,7 +39,7 @@ import { InterstitialDialogAction, IconStyle, TitlePosition, BottomOffset } from
 
 constructor(dialogOptions: DialogOptions)
 
-InterstitialDialogAction的构造函数
+InterstitialDialogAction的构造函数。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -82,7 +82,7 @@ closeDialog(): void
 | 名称 | 类型 | 只读 | 可选 | 说明 |
 | - | - | - | - | - |
 | uiContext | [UIContext](../arkts-apis-uicontext-uicontext.md) | 否 | 否 | UI上下文实例。 |
-| bottomOffsetType | [BottomOffset](#bottomoffset) | 否 | 是 | 弹框距离底部偏移类型。默认值为[BottomOffset](#bottomoffset).OFFSET_FOR_BAR。 |
+| bottomOffsetType | [BottomOffset](#bottomoffset) | 否 | 是 | 弹框距离底部偏移类型，需根据是否存在菜单栏选择对应值。默认值为[BottomOffset](#bottomoffset).OFFSET_FOR_NONE。 |
 | title | [ResourceStr](ts-types.md#resourcestr) | 否 | 是 | 弹框标题文本。默认为空字符串。 |
 | subtitle | [ResourceStr](ts-types.md#resourcestr) | 否 | 是 | 弹框副标题文本。默认为空字符串。 |
 | titleColor | [ResourceStr](ts-types.md#resourcestr) \| [Color](ts-appendix-enums.md#color) | 否 | 是 | 弹框标题文本颜色。默认为$r('sys.color.ohos_id_color_text_primary_contrary')。 |
@@ -90,13 +90,13 @@ closeDialog(): void
 | backgroundImage | [Resource](ts-types.md#resource) | 否 | 是 | 弹框背景图片。默认为纯色背景，颜色值为#EBEEF5。 |
 | foregroundImage | [Resource](ts-types.md#resource) | 否 | 是 | 弹框前景图片。默认为空，即不显示前景图片。 |
 | iconStyle | [IconStyle](#iconstyle) | 否 | 是 | 关闭按钮图标的样式（亮调或者暗调）。<br>默认值：[IconStyle](#iconstyle).LIGHT |
-| titlePosition | [TitlePosition](#titleposition) | 否 | 是 | 标题在弹框中的位置，在副标题的上方或者在副标题的下方。<br>默认值：[TitlePosition](#titleposition).TOP |
-| onDialogClick | Callback\<void\> | 否 | 是 | 点击弹框任意位置后触发的用户自定义动作。默认为“执行关闭弹框的函数”，即仅关闭弹框。 |
-| onDialogClose | Callback\<void\> | 否 | 是 | 点击关闭按钮后触发的用户自定义动作。默认为“执行关闭弹框的函数”，即仅关闭弹框。 |
+| titlePosition | [TitlePosition](#titleposition) | 否 | 是 | 主标题在弹框中的位置，在副标题的上方或者在副标题的下方。<br>默认值：[TitlePosition](#titleposition).TOP |
+| onDialogClick | Callback\<void\> | 否 | 是 | 点击弹框任意位置后触发的用户自定义动作。默认调用closeDialog方法关闭弹框。<br>说明：点击关闭按钮区域时仅触发onDialogClose，不触发本回调；若需同时触发，请在onDialogClose中显式调用本回调逻辑。 |
+| onDialogClose | Callback\<void\> | 否 | 是 | 点击关闭按钮后触发的用户自定义动作。默认调用closeDialog方法关闭弹框。 |
 
 ## IconStyle
 
-设置关闭按钮的色调样式，默认设置关闭按钮为亮色调。
+设置关闭按钮的色调样式，默认为亮色调。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -181,7 +181,7 @@ export default class EntryAbility extends UIAbility {
     windowStage.getMainWindow((err: BusinessError, data) => {
       let errCode: number = err.code;
       if (errCode) {
-        console.error('Failed to obtain the main window. Cause: ' + JSON.stringify(err));
+        console.error(`Failed to obtain the main window, code: ${err.code}, message: ${err.message}`);
         return;
       }
       windowClass = data;
@@ -197,7 +197,7 @@ export default class EntryAbility extends UIAbility {
       }
       windowClass = data;
       console.info('Succeeded in obtaining the main window. Data: ' + JSON.stringify(data));
-      // 设置窗口全屏
+      // 设置窗口非全屏
       windowClass.setWindowLayoutFullScreen(false)
     })
   }
@@ -264,7 +264,7 @@ struct Index {
 
 ### 示例2
 
-为可选属性设置相应值，用两种不同参数类型分别为主标题，副标题设置颜色值，关闭按钮设置为亮色调，主副标题相对位置设置为主标题在副标题下方，底部距离类型设置为存在菜单栏情况下的距离。
+为可选属性设置相应值：使用两种不同参数类型分别为主标题、副标题设置颜色值；将关闭按钮设置为亮色调；将主副标题相对位置设置为主标题在副标题下方；将底部距离类型设置为存在菜单栏情况下的距离。
 
 <!--code_no_check-->
 ```ts
@@ -308,7 +308,7 @@ export default class EntryAbility extends UIAbility {
     windowStage.getMainWindow((err: BusinessError, data) => {
       let errCode: number = err.code;
       if (errCode) {
-        console.error('Failed to obtain the main window. Cause: ' + JSON.stringify(err));
+        console.error(`Failed to obtain the main window, code: ${err.code}, message: ${err.message}`);
         return;
       }
       windowClass = data;
@@ -319,12 +319,12 @@ export default class EntryAbility extends UIAbility {
     // 获取窗口
     windowStage.getMainWindow((err, data) => {
       if (err.code) {
-        console.error('Failed to obtain the main window. Cause: ' + JSON.stringify(err));
+        console.error(`Failed to obtain the main window, code: ${err.code}, message: ${err.message}`);
         return;
       }
       windowClass = data;
       console.info('Succeeded in obtaining the main window. Data: ' + JSON.stringify(data));
-      // 设置窗口全屏
+      // 设置窗口非全屏
       windowClass.setWindowLayoutFullScreen(false)
     })
   }
