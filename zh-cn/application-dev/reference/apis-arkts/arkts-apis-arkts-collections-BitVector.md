@@ -151,7 +151,7 @@ has(element: number, fromIndex: number, toIndex: number): boolean
 | --------- | ------ | ---- | ------------------------------------ |
 | element   | number | 是   | 待判断的bit值，0表示0，其余值表示1。 |
 | fromIndex | number | 是   | 范围起始索引，包含本索引值。fromIndex < 0或者fromIndex >= toIndex时，则会抛出错误。  |
-| toIndex   | number | 是   | 范围终止索引，包含本索引值。toIndex < 0或者toIndex > length时，则会抛出错误。       |
+| toIndex   | number | 是   | 范围终止索引，不包含本索引值。toIndex < 0或者toIndex >= length时，则会抛出错误。       |
 
 **返回值：**
 
@@ -459,7 +459,7 @@ getLastIndexOf(element: number, fromIndex: number, toIndex: number): number
 | --------- | ------ | ---- | ------------------------------------ |
 | element   | number | 是   | 待查找的bit值，0表示0，其余值表示1。 |
 | fromIndex | number | 是   | 范围起始索引，包含本索引值。fromIndex < 0或者fromIndex >= toIndex时，则会抛出错误。    |
-| toIndex   | number | 是   | 范围终止索引，不包含本索引值。toIndex < 0或者toIndex > length时，则会抛出错误。       |
+| toIndex   | number | 是   | 范围终止索引，不包含本索引值。toIndex < 0或者toIndex >= length时，则会抛出错误。       |
 
 **返回值：**
 
@@ -543,7 +543,7 @@ flipBitsByRange(fromIndex: number, toIndex: number): void
 | 参数名    | 类型   | 必填 | 说明                           |
 | --------- | ------ | ---- | ------------------------------ |
 | fromIndex | number | 是   | 范围起始索引，包含本索引值。fromIndex < 0或者fromIndex >= toIndex时，则会抛出错误。  |
-| toIndex   | number | 是   | 范围终止索引，不包含本索引值。toIndex < 0或者toIndex > length时，则会抛出错误。     |
+| toIndex   | number | 是   | 范围终止索引，不包含本索引值。toIndex < 0或者toIndex >= length时，则会抛出错误。     |
 
 **错误码：**
 
