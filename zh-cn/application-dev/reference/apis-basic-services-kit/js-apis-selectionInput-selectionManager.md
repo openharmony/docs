@@ -39,7 +39,7 @@ import { selectionManager } from '@kit.BasicServicesKit';
 
 on(type: 'selectionCompleted', callback: Callback\<SelectionInfo>): void
 
-订阅划词完成事件。使用callback异步回调。
+订阅划词完成事件，与[off('selectionCompleted')](#selectionmanageroffselectioncompleted)搭配使用取消订阅。使用callback异步回调。
 
 **系统能力：** SystemCapability.SelectionInput.Selection
 
@@ -360,7 +360,7 @@ export default ServiceExtAbility;
 
 setUiContent(path: string): Promise\<void>
 
-为当前的划词面板设置界面内容。需通过[createPanel](#createpanel)获取到Panel实例后调用。使用Promise异步回调。
+为当前的划词面板设置界面内容，例如展示翻译结果、搜索建议或自定义操作按钮等。需通过[createPanel](#createpanel)获取到Panel实例后调用。使用Promise异步回调。
 
 **系统能力：** SystemCapability.SelectionInput.Selection
 
@@ -535,7 +535,7 @@ RelativeContainer() {
 
 moveTo(x: number, y: number): Promise\<void>
 
-移动划词面板至屏幕指定位置。需通过[createPanel](#createpanel)获取到Panel实例后调用。使用Promise异步回调。
+移动划词面板至屏幕全局坐标系下的指定位置，支持移动到扩展屏上。需通过[createPanel](#createpanel)获取到Panel实例后调用。使用Promise异步回调。
 
 > **说明：**
 >
@@ -549,8 +549,8 @@ moveTo(x: number, y: number): Promise\<void>
 
 | 参数名   | 类型                   | 必填 | 说明     |
 | -------- | ---------------------- | ---- | -------- |
-| x | number | 是   |目标位置的x轴坐标，单位为px。|
-| y | number | 是   |目标位置的y轴坐标，单位为px。|
+| x | number | 是   |目标位置在屏幕全局坐标系下的x轴坐标，单位为px。全局坐标系以主屏幕左上角为原点，x轴正方向向右；扩展屏的x坐标视屏幕布局可能为负值。|
+| y | number | 是   |目标位置在屏幕全局坐标系下的y轴坐标，单位为px。全局坐标系以主屏幕左上角为原点，y轴正方向向下；扩展屏的y坐标视屏幕布局可能为负值。|
 
 **返回值：**
 
