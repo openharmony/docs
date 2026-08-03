@@ -25,14 +25,14 @@
 * 执行动作（SmartGestureAction）：系统根据操作意图推断的最终执行动作，即系统打算做什么。取值范围为CLICK（点击）、SELECT（选中）、SCROLL_FORWARD（滚动）、PAGE_FORWARD（翻页）、BACK_PRESS（返回）、NONE（无动作），详见[SmartGestureAction](../reference/apis-arkui/arkui-ts/ts-appendix-enums.md#smartgestureaction)。同一操作意图可对应不同执行动作，例如敲一敲（TAP）仅对应点击（CLICK），而划一划（SLIDE_FORWARD）可对应选中（SELECT）、滚动（SCROLL_FORWARD）或翻页（PAGE_FORWARD），系统会根据当前页面结构和目标组件自动推断最合适的执行动作。
 
 * 动作处理（ActionProposal）：开发者通过监听回调返回的具体操作方案，用于覆写系统默认动作。每种执行动作对应一个动作处理类，具体如下：
-  - [ClickActionProposal](../reference/apis-arkui/arkts-apis-uicontext-smartgesturecontroller.md#clickactionproposal)：点击动作处理，触发目标组件的onClick事件。遵循"先选中再点击"语义，若目标组件尚未被选中，敲一敲会先建立选中态，下次敲一敲才触发点击。
-  - [SelectActionProposal](../reference/apis-arkui/arkts-apis-uicontext-smartgesturecontroller.md#selectactionproposal)：选中动作处理，使目标组件进入选中态，适用于按钮、文本、列表项等可选中组件。
-  - [ScrollActionProposal](../reference/apis-arkui/arkts-apis-uicontext-smartgesturecontroller.md#scrollactionproposal)：滚动动作处理，使滚动容器（Scroll、List、Grid等）向前滚动指定距离，默认方向包括向下和向右。构造参数distance取值范围[0,+∞)，小于0时按0处理，单位为vp。
-  - [PageSwitchActionProposal](../reference/apis-arkui/arkts-apis-uicontext-smartgesturecontroller.md#pageswitchactionproposal)：翻页动作处理，使Swiper容器向前翻页，默认方向包括向右和向下。构造参数pageCount取值范围[0,+∞)，小于0时按0处理，单位为页。
-  - [BackPressActionProposal](../reference/apis-arkui/arkts-apis-uicontext-smartgesturecontroller.md#backpressactionproposal)：返回动作处理，模拟返回键触发页面返回。
-  - [NoneActionProposal](../reference/apis-arkui/arkts-apis-uicontext-smartgesturecontroller.md#noneactionproposal)：空动作处理，不触发任何操作，可用于拒绝本次手势。
+  - [ClickActionProposal](../reference/apis-arkui/arkts-apis-uicontext-clickactionproposal.md)：点击动作处理，触发目标组件的onClick事件。遵循"先选中再点击"语义，若目标组件尚未被选中，敲一敲会先建立选中态，下次敲一敲才触发点击。
+  - [SelectActionProposal](../reference/apis-arkui/arkts-apis-uicontext-selectactionproposal.md)：选中动作处理，使目标组件进入选中态，适用于按钮、文本、列表项等可选中组件。
+  - [ScrollActionProposal](../reference/apis-arkui/arkts-apis-uicontext-scrollactionproposal.md)：滚动动作处理，使滚动容器（Scroll、List、Grid等）向前滚动指定距离，默认方向包括向下和向右。构造参数distance取值范围[0,+∞)，小于0时按0处理，单位为vp。
+  - [PageSwitchActionProposal](../reference/apis-arkui/arkts-apis-uicontext-pageswitchactionproposal.md)：翻页动作处理，使Swiper容器向前翻页，默认方向包括向右和向下。构造参数pageCount取值范围[0,+∞)，小于0时按0处理，单位为页。
+  - [BackPressActionProposal](../reference/apis-arkui/arkts-apis-uicontext-backpressactionproposal.md)：返回动作处理，模拟返回键触发页面返回。
+  - [NoneActionProposal](../reference/apis-arkui/arkts-apis-uicontext-noneactionproposal.md)：空动作处理，不触发任何操作，可用于拒绝本次手势。
 
-* 手势处理结果（[GestureHandlingResolution](../reference/apis-arkui/arkts-apis-uicontext-smartgesturecontroller.md#gesturehandlingresolution)）：监听回调的返回值，声明是否消费本次手势以及选择何种动作处理。isConsumed为true时消费手势，若同时设置了selectedProposal则以自定义动作处理替代系统默认动作；isConsumed为false时不消费手势，系统将本次手势视为未处理，此时selectedProposal设置不生效。
+* 手势处理结果（[GestureHandlingResolution](../reference/apis-arkui/arkts-apis-uicontext-gesturehandlingresolution.md)）：监听回调的返回值，声明是否消费本次手势以及选择何种动作处理。isConsumed为true时消费手势，若同时设置了selectedProposal则以自定义动作处理替代系统默认动作；isConsumed为false时不消费手势，系统将本次手势视为未处理，此时selectedProposal设置不生效。
 
 * 选中态：组件成功进入选中态后会显示选中提示框，选中框样式根据设备有所不同。开发者可通过[requestSelected](../reference/apis-arkui/arkts-apis-uicontext-smartgesturecontroller.md#requestselected)主动请求组件进入选中态，通过[clearSelected](../reference/apis-arkui/arkts-apis-uicontext-smartgesturecontroller.md#clearselected)清空选中态。requestSelected仅当目标组件满足以下全部条件时请求才会生效：组件可以响应智慧手势（smartGestureShortcut中enabled为true）、组件在屏幕内可见、且组件绑定了onClick或绑定了单击手势[TapGesture](../reference/apis-arkui/arkui-ts/ts-basic-gestures-tapgesture.md)。
 
@@ -107,7 +107,7 @@
 
 3. 注册监听回调并动态决策。
 
-   在监听回调中，将[BaseGestureHandlingProposal](../reference/apis-arkui/arkts-apis-uicontext-smartgesturecontroller.md#basegesturehandlingproposal)转换为[TargetedGestureProposal](../reference/apis-arkui/arkts-apis-uicontext-smartgesturecontroller.md#targetedgestureproposal)以获取系统推断的目标节点，根据action类型构造对应的ActionProposal并返回GestureHandlingResolution。
+   在监听回调中，将[BaseGestureHandlingProposal](../reference/apis-arkui/arkts-apis-uicontext-basegesturehandlingproposal.md)转换为[TargetedGestureProposal](../reference/apis-arkui/arkts-apis-uicontext-targetedgestureproposal.md)以获取系统推断的目标节点，根据action类型构造对应的ActionProposal并返回GestureHandlingResolution。
 
 > **说明：**
 >
@@ -685,7 +685,7 @@ struct Demo3 {
 
 ### Swiper组件翻页场景
 
-当页面使用[Swiper](../reference/apis-arkui/arkui-ts/ts-container-swiper.md)组件展示多页内容时，划一划手势可翻页切换Swiper页面。此时需要使用[PageSwitchActionProposal](../reference/apis-arkui/arkts-apis-uicontext-smartgesturecontroller.md#pageswitchactionproposal)指定翻页目标容器和翻页数量。
+当页面使用[Swiper](../reference/apis-arkui/arkui-ts/ts-container-swiper.md)组件展示多页内容时，划一划手势可翻页切换Swiper页面。此时需要使用[PageSwitchActionProposal](../reference/apis-arkui/arkts-apis-uicontext-pageswitchactionproposal.md)指定翻页目标容器和翻页数量。
 
 该示例包含以下操作。
 - 划一划手势可翻页切换Swiper页面，使用PageSwitchActionProposal指定翻页数量为1页。
