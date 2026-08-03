@@ -54,6 +54,22 @@
 
    <!-- @[Render_ConfigStream](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/Media/Audio/AudioRendererSampleC/entry/src/main/cpp/renderer.cpp) -->
    
+   ``` C++
+   // 设置音频采样率。
+   // 从API版本26.0.0开始：音频渲染扩展支持8000Hz到384000Hz范围内以10Hz为步长的采样率值。具体设备支持的采样率规格会存在差异。
+   const int SAMPLING_RATE_48K = 48000;
+   OH_AudioStreamBuilder_SetSamplingRate(builder, SAMPLING_RATE_48K);
+   // 设置音频声道。
+   const int channelCount = 2;
+   OH_AudioStreamBuilder_SetChannelCount(builder, channelCount);
+   // 设置音频采样格式。
+   OH_AudioStreamBuilder_SetSampleFormat(builder, AUDIOSTREAM_SAMPLE_S16LE);
+   // 设置音频流的编码类型。
+   OH_AudioStreamBuilder_SetEncodingType(builder, AUDIOSTREAM_ENCODING_TYPE_RAW);
+   // 设置输出音频流的工作场景。
+   OH_AudioStreamBuilder_SetRendererInfo(builder, AUDIOSTREAM_USAGE_MUSIC);
+   ```
+   
 2. 确认`OH_AudioRenderer_OnWriteDataCallback`回调函数中的数据传输行为。
 
    检查项如下：
