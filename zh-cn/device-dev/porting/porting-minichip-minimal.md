@@ -1,29 +1,29 @@
 # 轻量系统小型化适配指导
 
-本文档面向轻量系统小型化适配场景，提供各核心模块Feature的说明与使用方法。
+本文档面向轻量系统小型化适配场景，提供各核心模块Feature的使用说明。
 
 ## 约束与限制
 
 - 本文档适用于OpenHarmony轻量系统的小型化适配场景
-- 目标芯片架构包括cortex-m、risc-v等系列
+- 目标芯片架构包括Cortex-M、RISC-V等系列
 - 各模块Feature以config.json中的features配置项为入口进行裁剪与使能
 
 ## 整体架构
 
-轻量系统小型化由以下核心模块组成：
+**表1** 轻量系统小型化由以下核心模块组成
 
 | 模块 | 职责 |
 | -------- | -------- |
 | startup-启动恢复 | 提供启动引导功能以及系统参数管理能力 |
 | samgr-系统服务管理 | 系统服务注册、发现与统一管理 |
 | DFX | 可维可测能力，包括日志、事件打点等 |
-| HCTEST-测试框架 | 兼容性测试框架，提供基本接口的测试验证能力 |
+| HCTEST-测试框架 | 兼容性测试框架，提供基本接口的验证能力 |
 | 三方库 | 三方库mbedtls算法feature化改造（可配置功能，目前仅支持Hi3863） |
 | 编译链接 | 编译构建配置与链接脚本管理 |
 
 ## 适配流程
 
-**表1** 小型化适配步骤
+**表2** 小型化适配步骤
 
 | 步骤 | 说明 |
 | -------- | -------- |
@@ -35,7 +35,7 @@
 
 ## startup-启动恢复
 
-在轻量系统中，startup包含两个模块：init和bootstrap_lite。init提供了系统属性设置、读取功能。bootstrap_lite提供了启动引导功能。
+在轻量系统中，startup包含两个模块：init和bootstrap_lite。init提供了系统属性设置和读取。bootstrap_lite提供了启动引导功能。
 
 ### Feature列表
 
@@ -43,9 +43,9 @@
 | -------- | -------- | -------- | -------- |
 | bootstrap_lite_enable_bootstrap_service | 是否使能Bootstrap服务任务 | true | false |
 | init_lite_memory_size | 参数空间总大小（字节） | 15360 | 8192 |
-| init_lite_param_const_value_len_max | 常量参数值的最大长度 | 4096 | 256 |
-| init_lite_param_value_len_max | 参数值的最大长度 | 96 | 48 |
-| init_lite_param_name_len_max | 参数名的最大长度 | 96 | 48 |
+| init_lite_param_const_value_len_max | 常量参数值的最大长度（字节） | 4096 | 256 |
+| init_lite_param_value_len_max | 参数值的最大长度（字节） | 96 | 48 |
+| init_lite_param_name_len_max | 参数名的最大长度（字节） | 96 | 48 |
 | init_lite_persist_all | 是否持久化所有参数 | true | false |
 | acts_lite_param_value_len_max_48 | 是否将xts用例中value的值替换为48字节的字符串（兼容测试） | false | true |
 
@@ -153,7 +153,7 @@
             "features": [
                 "enable_ohos_systemabilitymgr_samgr_lite_broadcast = false",
                 "enable_ohos_systemabilitymgr_samgr_lite_system_capability = false",
-                "config_ohos_systemabilitymgr_samgr_lite_shared_task_size = 2048",
+                "config_ohos_systemabilitymgr_samgr_lite_shared_task_size = 1024",
                 "enable_ohos_systemabilitymgr_samgr_lite_specified_task = false",
                 "enable_ohos_systemabilitymgr_samgr_lite_no_task = false"
             ]
@@ -240,7 +240,7 @@ DFX（Design for eXcellence）可维可测子系统提供日志、事件打点�
 
 ## HCTEST-测试框架
 
-HCTEST为OpenHarmony兼容性测试框架，提供基本接口的测试验证能力，用于在适配完成后对工程进行兼容性测试。
+HCTEST为OpenHarmony兼容性测试框架，提供基本接口的验证能力，用于在适配完成后对工程进行兼容性测试。
 
 ### Feature列表
 
@@ -248,7 +248,7 @@ HCTEST为OpenHarmony兼容性测试框架，提供基本接口的测试验证能
 | -------- | -------- | -------- | -------- |
 | hctest_rodata_opt | 是否开启测试套件描述放在Flash(.rodata)减少RAM占用 | false | true |
 | xts_overlay | 是否开启多个测试模块的.bss复用同一块overlay区域 | false | true |
-| hctest_task_stack_size | 配置测试任务栈大小 | 6144 | 2048 |
+| hctest_task_stack_size | 配置测试任务栈大小（字节） | 6144 | 2048 |
 | hctest_task_queue_size | 配置测试任务队列大小 | 20 | 1 |
 | hctest_task_type | 配置测试任务类型 | `SINGLE_TASK` | `SHARED_TASK` |
 
@@ -283,7 +283,6 @@ config.json配置方法参考 vendor/MyVendorCompany/MyProduct/config.json
     {
       "component": "acts",
       "features": [
-        "enable_ohos_test_xts_acts_use_thirdparty_lwip = false",
         "hctest_rodata_opt = true",
         "xts_overlay = true",
         "hctest_task_stack_size = 2048",
@@ -516,7 +515,7 @@ set_config('env_cfg', 'CONFIG_HCTEST_NEW_RUNNER', 'y', ['-DHCTEST_NEW_RUNNER'], 
 | 环节 | Hi3861 | Hi3863 |
 | -------- | -------- | -------- |
 | SDK 构建系统 | scons | cmake |
-| 链接脚本 | device/soc/hisilicon/hi3861v100/sdk_liteos/build/link/link.ld.S | device/soc/hisilicon/ws63v100/sdk/drivers/boards/ws63/evb/linker/.../linker.prelds |
+| 链接脚本 | device/soc/hisilicon/hi3861v100/sdk_liteos/build/link/link.ld.S | device/soc/hisilicon/ws63v100/sdk/drivers/boards/ws63/evb/linker/ws63_liteos_xts_linker/linker.prelds |
 | 预处理器入口 | device/soc/hisilicon/hi3861v100/sdk_liteos/build/make_scripts/config.mk + device/soc/hisilicon/hi3861v100/sdk_liteos/build/scripts/common_env.py | device/soc/hisilicon/ws63v100/sdk/build/cmake/build_linker.cmake |
 | BSS 段名 | .bss* | .bss + .bss* |
 | RAM 段名 | RAM | SRAM |
@@ -631,14 +630,14 @@ hb build --gn-args ohos_stack_protector=strong ohos_mem_opt_extra=true
 
 ## 相关能力
 
-完成最小系统适配后，可根据产品需求选配以下子系统能力，以扩展芯片功能。各子系统均提供独立的移植指导文档，按需适配即可。
+**表3** 完成最小系统适配后，可根据产品需求选配以下子系统能力，以扩展芯片功能。各子系统均提供独立的移植指导文档，按需适配即可
 
 | 子系统 | 能力说明 | 典型用途 | 资源影响 | 移植指导 |
 | -------- | -------- | -------- | -------- | -------- |
-| 通信子系统 | 提供Wi-Fi Station/SoftAP、蓝牙等无线通信能力 | 设备联网、数据交互、配网 | 增加ROM约100KB+，RAM约20KB+ | [移植通信子系统](porting-minichip-subsys-communication.md) |
+| 通信子系统 | 提供Wi-Fi Station/SoftAP、蓝牙等无线通信能力 | 设备联网、数据交互、配网 | 增加ROM约100KB，RAM约20KB | [移植通信子系统](porting-minichip-subsys-communication.md) |
 | 外设驱动子系统 | 提供GPIO、I2C、SPI、PWM、UART、FLASH、WATCHDOG等外设操作接口 | 传感器数据采集、外设控制、屏显驱动 | 按需引入，单接口增加ROM约2~10KB | [移植外设驱动子系统](porting-minichip-subsys-driver.md) |
-| 文件子系统 | 提供文件打开、关闭、读写、Seek等操作接口 | 日志存储、配置持久化、数据记录 | 增加ROM约10KB+，RAM约2KB+ | [移植文件子系统](porting-minichip-subsys-filesystem.md) |
-| 安全子系统 | 提供硬件随机数、密钥管理（huks）、设备认证（hichainsdk）等安全能力 | 安全连接、数据加密、设备鉴权 | 依赖mbedtls，增加ROM约50KB+ | [移植安全子系统](porting-minichip-subsys-security.md) |
+| 文件子系统 | 提供文件打开、关闭、读写、Seek等操作接口 | 日志存储、配置持久化、数据记录 | 增加ROM约10KB，RAM约2KB | [移植文件子系统](porting-minichip-subsys-filesystem.md) |
+| 安全子系统 | 提供硬件随机数、密钥管理（huks）、设备认证（hichainsdk）等安全能力 | 安全连接、数据加密、设备鉴权 | 依赖mbedtls，增加ROM约50KB | [移植安全子系统](porting-minichip-subsys-security.md) |
 
 > **说明：**
 > - 上表资源影响为参考值，实际占用与芯片架构、编译器优化等级、使能的具体Feature有关。
@@ -647,7 +646,7 @@ hb build --gn-args ohos_stack_protector=strong ohos_mem_opt_extra=true
 
 ## 参考配置
 
-以下为典型 minimal 产品的参考配置，可供适配时参考：
+**表4** 以下为典型 minimal 产品的参考配置，可供适配时参考
 
 | 芯片型号 | 产品路径 | 参考配置地址 |
 | -------- | -------- | -------- |
