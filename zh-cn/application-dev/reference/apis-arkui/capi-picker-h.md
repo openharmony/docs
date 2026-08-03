@@ -76,9 +76,9 @@ enum ArkUI_DatePickerMode
 
 | 枚举项 | 描述 |
 | -- | -- |
-| ARKUI_DATEPICKER_MODE_DATE = 0 | 默认值。日期列显示年、月、日三列。 |
-| ARKUI_DATEPICKER_YEAR_AND_MONTH = 1 | 日期列显示年、月二列。 |
-| ARKUI_DATEPICKER_MONTH_AND_DAY = 2 | 日期列显示月、日二列。 |
+| ARKUI_DATEPICKER_MODE_DATE = 0 | 默认值。日期列显示年、月、日三列，适用于需要完整日期信息的场景，如出生日期选择、预约日期选择等。 |
+| ARKUI_DATEPICKER_YEAR_AND_MONTH = 1 | 日期列显示年、月二列，适用于只需年月信息的场景，如信用卡有效期选择、合同期限选择等。 |
+| ARKUI_DATEPICKER_MONTH_AND_DAY = 2 | 日期列显示月、日二列，适用于只需月日信息的场景，如生日选择（不关注年份）、纪念日选择等。 |
 
 ### ArkUI_TextPickerRangeType
 
@@ -94,10 +94,10 @@ enum ArkUI_TextPickerRangeType
 
 | 枚举项 | 描述 |
 | -- | -- |
-| ARKUI_TEXTPICKER_RANGETYPE_SINGLE = 0 | 单列数据选择器。 |
-| ARKUI_TEXTPICKER_RANGETYPE_MULTI = 1 | 多列数据选择器。 |
-| ARKUI_TEXTPICKER_RANGETYPE_RANGE_CONTENT = 2 | 支持图片资源的单列数据选择器。 |
-| ARKUI_TEXTPICKER_RANGETYPE_CASCADE_RANGE_CONTENT = 3 | 支持联动的多列数据选择器。 |
+| ARKUI_TEXTPICKER_RANGETYPE_SINGLE = 0 | 单列数据选择器，适用于单列数据选择场景，如性别选择、学历选择等。 |
+| ARKUI_TEXTPICKER_RANGETYPE_MULTI = 1 | 多列数据选择器，适用于多列独立数据选择场景，如时间选择（时、分、秒）、日期选择（年、月、日）等。 |
+| ARKUI_TEXTPICKER_RANGETYPE_RANGE_CONTENT = 2 | 支持图片资源的单列数据选择器，适用于带图标的单列数据选择场景，如城市选择（带国旗图标）、产品分类选择等。 |
+| ARKUI_TEXTPICKER_RANGETYPE_CASCADE_RANGE_CONTENT = 3 | 支持联动的多列数据选择器，适用于多列联动数据选择场景，如省市区三级联动选择、年月日联动选择等。 |
 
 ### ArkUI_CalendarAlignment
 
@@ -131,8 +131,8 @@ enum ArkUI_PickerIndicatorType
 
 | 枚举项 | 描述 |
 | -- | -- |
-| ARKUI_PICKER_INDICATOR_BACKGROUND  = 0 | 背景样式。 |
-| ARKUI_PICKER_INDICATOR_DIVIDER  = 1 | 分割线样式。 |
+| ARKUI_PICKER_INDICATOR_BACKGROUND  = 0 | 背景样式，适用于需要突出选中项的场景，如深色主题选择器、需要强调选中项的表单选择等。 |
+| ARKUI_PICKER_INDICATOR_DIVIDER  = 1 | 分割线样式，适用于需要简洁风格的场景，如轻量级选择器、分割线风格UI设计等。 |
 
 ## 函数说明
 
@@ -198,7 +198,7 @@ void OH_ArkUI_TextPickerRangeContentArray_SetTextAtIndex(ArkUI_TextPickerRangeCo
 | -- | -- |
 | [ArkUI_TextPickerRangeContentArray](capi-arkui-nativemodule-arkui-textpickerrangecontentarray.md)* handle | 指向ArkUI_TextPickerRangeContentArray数组的指针，需先通过OH_ArkUI_TextPickerRangeContentArray_Create创建。 |
 | char* text | 文本内容。 |
-| int32_t index | 数组索引，取值范围为[0, 数组长度-1]，从0开始。 |
+| int32_t index | 数组索引，取值范围为[0, 数组长度-1]，从0开始。超出范围时不生效。 |
 
 ### OH_ArkUI_TextPickerRangeContentArray_Destroy()
 
@@ -258,9 +258,9 @@ void OH_ArkUI_TextCascadePickerRangeContentArray_SetTextAtIndex(ArkUI_TextCascad
 
 | 参数项 | 描述 |
 | -- | -- |
-| [ArkUI_TextCascadePickerRangeContentArray](capi-arkui-nativemodule-arkui-textcascadepickerrangecontentarray.md)* handle | 指向ArkUI_TextCascadePickerRangeContentArray数组的指针。 |
+| [ArkUI_TextCascadePickerRangeContentArray](capi-arkui-nativemodule-arkui-textcascadepickerrangecontentarray.md)* handle | 指向ArkUI_TextCascadePickerRangeContentArray数组的指针，需先通过OH_ArkUI_TextCascadePickerRangeContentArray_Create创建。 |
 | char* text | 文本内容。 |
-| int32_t index | 数组索引，取值范围为[0, 数组长度-1]，从0开始。 |
+| int32_t index | 数组索引，取值范围为[0, 数组长度-1]，从0开始。超出范围时不生效。 |
 
 ### OH_ArkUI_TextCascadePickerRangeContentArray_SetChildAtIndex()
 
@@ -278,9 +278,9 @@ void OH_ArkUI_TextCascadePickerRangeContentArray_SetChildAtIndex(ArkUI_TextCasca
 
 | 参数项 | 描述 |
 | -- | -- |
-| [ArkUI_TextCascadePickerRangeContentArray](capi-arkui-nativemodule-arkui-textcascadepickerrangecontentarray.md)* handle | 指向ArkUI_TextCascadePickerRangeContentArray数组的指针。 |
-| [ArkUI_TextCascadePickerRangeContentArray](capi-arkui-nativemodule-arkui-textcascadepickerrangecontentarray.md)* child | 指向级联选择器指定位置子级数据列表的指针。 |
-| int32_t index | 数组索引，取值范围为[0, 数组长度-1]，从0开始。 |
+| [ArkUI_TextCascadePickerRangeContentArray](capi-arkui-nativemodule-arkui-textcascadepickerrangecontentarray.md)* handle | 指向ArkUI_TextCascadePickerRangeContentArray数组的指针，需先通过OH_ArkUI_TextCascadePickerRangeContentArray_Create创建。 |
+| [ArkUI_TextCascadePickerRangeContentArray](capi-arkui-nativemodule-arkui-textcascadepickerrangecontentarray.md)* child | 指向级联选择器指定位置子级数据列表的指针，需先通过OH_ArkUI_TextCascadePickerRangeContentArray_Create创建。 |
+| int32_t index | 数组索引，取值范围为[0, 数组长度-1]，从0开始。超出范围时不生效。 |
 
 ### OH_ArkUI_TextCascadePickerRangeContentArray_Destroy()
 
