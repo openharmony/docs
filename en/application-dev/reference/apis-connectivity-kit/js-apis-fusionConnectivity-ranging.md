@@ -6,11 +6,11 @@
 <!--Designer: @tangjia15-->
 <!--Tester: @wangfeng517-->
 <!--Adviser: @zhang_yixin13-->
-<!-- md-trans-meta sourceCommit=f27c946fc782ac1d031692b6ff0d2063a86e9e01 translatedAt=2026-08-03T02:20:03.749Z pushedAt=2026-08-03T09:21:39.373Z -->
+<!-- md-trans-meta sourceCommit=f27c946fc782ac1d031692b6ff0d2063a86e9e01 translatedAt=2026-08-03T02:20:03.749Z pushedAt=2026-08-03T09:44:12.023Z -->
 
 This module uses the NearLink technology to provide the device ranging function for apps. The main features are as follows:
 
-- Supports NearLink [HADM](../../connectivity/terminology.md#hadm) ranging, enabling high-precision distance measurement.
+- Supports NearLink [HADM](../../connectivity/terminology.md#high-accuracy-distance-measurement-hadm)) ranging, enabling high-precision distance measurement.
 
 - Supports the active ranging mode, in which the distance, angle, and signal strength of the target device can be obtained.
 
@@ -66,7 +66,7 @@ Queries the ranging capability supported by the local device. This API uses a pr
 
 - You are advised to call [isRangingSupported](#rangingisrangingsupported) to check whether the local device supports ranging first. The fusion connectivity ranging feature can be used only when range is supported.
 
-- If the query is successful, a promise is used to return whether the ranging type is supported. You can call [startRanging](#rangingstartranging) to start NearLink [HADM](../../connectivity/terminology.md#hadm) ranging or call [startPassiveRanging](#rangingstartpassiveranging) to start passive ranging only when the value of [nearlinkHadm](#rangingcapabilitysupported) is **true**.
+- If the query is successful, a promise is used to return whether the ranging type is supported. You can call [startRanging](#rangingstartranging) to start NearLink [HADM](../../connectivity/terminology.md#high-accuracy-distance-measurement-hadm)) ranging or call [startPassiveRanging](#rangingstartpassiveranging) to start passive ranging only when the value of [nearlinkHadm](#rangingcapabilitysupported) is **true**.
 
 **Since**: 26.0.0
 
@@ -133,7 +133,7 @@ After ranging is started successfully, the ranging result will be frequently rep
 > **NOTE**
 >
 > - Before using this API, call [getRangingCapability](#ranginggetrangingcapability) to check whether the device supports the corresponding ranging type.
-> - When using the NearLink [HADM](../../connectivity/terminology.md#hadm) to perform ranging, the local device cannot use the passive ranging mode after initiating active ranging. To use passive ranging, call [stopRanging](#rangingstopranging) to stop active ranging first.
+> - When using the NearLink [HADM](../../connectivity/terminology.md#high-accuracy-distance-measurement-hadm)) to perform ranging, the local device cannot use the passive ranging mode after initiating active ranging. To use passive ranging, call [stopRanging](#rangingstopranging) to stop active ranging first.
 > - If [startRanging](#rangingstartranging) is repeatedly called for the same device, a message will be displayed indicating that the device has initialized ranging, and error code 34900051 will be returned.
 > - If the ranging service of the corresponding type has been taken offline when ranging is started, error code 34900053 will be returned when this API is called.
 > - The input parameters of this API must be set as required. If the input parameters do not meet the requirements, the API will return the corresponding error code. For details, see the parameter definition.
@@ -269,7 +269,7 @@ Starts the passive ranging mode. The local device broadcasts ranging data packet
 > **NOTE**
 >
 > - Before using the ranging API, call [getRangingCapability](#ranginggetrangingcapability) to check whether the device supports the corresponding ranging type.
-> - When using the NearLink [HADM](../../connectivity/terminology.md#hadm) to perform ranging, the local device cannot use the active ranging mode after initiating passive ranging. To use active ranging, call [stopPassiveRanging](#rangingstoppassiveranging) to stop passive ranging first.
+> - When using the NearLink [HADM](../../connectivity/terminology.md#high-accuracy-distance-measurement-hadm) to perform ranging, the local device cannot use the active ranging mode after initiating passive ranging. To use active ranging, call [stopPassiveRanging](#rangingstoppassiveranging) to stop passive ranging first.
 > - The [startPassiveRanging](#rangingstartpassiveranging) API can be called only once for the same ranging capability. After the call is successful, the returned handle corresponds to an independent broadcast session.
 > - To call [startPassiveRanging](#rangingstartpassiveranging) again for the same ranging capability, you need to call [stopPassiveRanging](#rangingstoppassiveranging) to stop the current passive ranging first. If you call [startPassiveRanging](#rangingstartpassiveranging) again without stopping the current passive ranging, the API will return error code 34900099.
 > - If the ranging service of the corresponding type has been taken offline when ranging is started, error code 34900053 will be returned when this API is called.
@@ -577,7 +577,7 @@ Describes the ranging types supported by the device.
 
 | Name         | Type    | Read-Only | Optional | Description                      |
 | ---------- | ------ | ---- | ---- | ----------------------- |
-| nearlinkHadm | boolean | No   | No   | Whether the NearLink [HADM](../../connectivity/terminology.md#hadm) ranging type is supported. If the value is true, you can call [startRanging](#rangingstartranging) or [startPassiveRanging](#rangingstartpassiveranging) to start ranging. |
+| nearlinkHadm | boolean | No   | No   | Whether the NearLink [HADM](../../connectivity/terminology.md#high-accuracy-distance-measurement-hadm)) ranging type is supported. If the value is true, you can call [startRanging](#rangingstartranging) or [startPassiveRanging](#rangingstartpassiveranging) to start ranging. |
 
 ## RangingMeasurement
 
@@ -606,7 +606,7 @@ Enumerates the ranging capability types.
 
 | Name           | Value   | Description                                        |
 | ------------ | ---- | ----------------------------------------- |
-| NEARLINK_HADM | 1    | NearLink [HADM](../../connectivity/terminology.md#hadm) ranging type. |
+| NEARLINK_HADM | 1    | NearLink [HADM](../../connectivity/terminology.md#high-accuracy-distance-measurement-hadm)) ranging type. |
 
 ## RangingState
 
