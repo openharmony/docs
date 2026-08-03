@@ -11,9 +11,9 @@
 
 > **说明：**
 >
-> 该组件从API version 18开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
+> 该组件从API version 18开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 >
-> 如果需要在该组件中实现一个可嵌入式运行的原子化服务时，原子化服务必须继承自[EmbeddableUIAbility](../../apis-ability-kit/js-apis-app-ability-embeddableUIAbility.md)。若不继承自EmbeddableUIAbility，系统无法确保原子化服务正常运行。
+> 当需要在该组件中实现一个可嵌入式运行的原子化服务时，原子化服务必须继承自[EmbeddableUIAbility](../../apis-ability-kit/js-apis-app-ability-embeddableUIAbility.md)。若不继承自EmbeddableUIAbility，系统无法确保原子化服务正常运行。
 
 ## 导入模块
 
@@ -26,13 +26,13 @@ import { HalfScreenLaunchComponent } from '@kit.ArkUI';
 无
 
 ## 属性
-不支持[通用属性](ts-component-general-attributes.md)
+不支持[通用属性](ts-component-general-attributes.md)。
 
 ## HalfScreenLaunchComponent
 
 HalfScreenLaunchComponent({ content: Callback\<void>, appId: string, options?: AtomicServiceOptions, onError?: ErrorCallback, onTerminated?: Callback\<TerminationInfo>, onReceive?: Callback<Record<string, Object>> })
 
-**装饰器类型：**[\@Component](../../../ui/state-management/arkts-create-custom-components.md#component)
+**装饰器类型：**[@Component](../../../ui/state-management/arkts-create-custom-components.md#component)
 
 **原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
@@ -42,16 +42,16 @@ HalfScreenLaunchComponent({ content: Callback\<void>, appId: string, options?: A
 
 | 名称 | 类型 | 必填 | 装饰器类型 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
-| content | Callback\<void> | 是 | [\@BuilderParam](../../../ui/state-management/arkts-builderparam.md) | 组件显示内容。 |
+| content | [Callback](../../apis-basic-services-kit/js-apis-base.md#callback)\<void> | 是 | [@BuilderParam](../../../ui/state-management/arkts-builderparam.md) | 组件显示内容。 |
 | appId | string | 是 | - | 原子化服务appId。 |
-| options | [AtomicServiceOptions](../../apis-ability-kit/js-apis-app-ability-atomicServiceOptions.md) | 否 | - | 拉起原子化服务参数，默认为空。 |
-| onError |[ErrorCallback](../../apis-basic-services-kit/js-apis-base.md#errorcallback) | 否 | - | 被拉起的原子化服务扩展在运行过程中发生异常时触发本回调。 |
-| onTerminated | [Callback](../../apis-basic-services-kit/js-apis-base.md#callback)\<[TerminationInfo](ts-container-embedded-component.md#terminationinfo)> | 否 | - | 被拉起的嵌入式运行原子化服务通过点击原子化服务退出按钮、手势侧滑、调用[terminateSelfWithResult](../../apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#terminateselfwithresult)或者[terminateSelf](../../apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#terminateself)正常退出时，触发本回调函数。 |
-| onReceive<sup>20+</sup> | [Callback](../../apis-basic-services-kit/js-apis-base.md#callback)\<Record<string, Object>> | 否 | - | 被拉起的嵌入式运行原子化服务通过[@ohos.window (窗口)](../arkts-apis-window.md)调用API时，触发本回调。<br/>**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。|
+| options | [AtomicServiceOptions](../../apis-ability-kit/js-apis-app-ability-atomicServiceOptions.md) | 否 | - | 拉起原子化服务参数。不填时使用默认参数拉起原子化服务。 |
+| onError |[ErrorCallback](../../apis-basic-services-kit/js-apis-base.md#errorcallback) | 否 | - | 被拉起的原子化服务在运行过程中发生异常时触发本回调。 |
+| onTerminated | [Callback](../../apis-basic-services-kit/js-apis-base.md#callback)\<[TerminationInfo](ts-container-embedded-component.md#terminationinfo)> | 否 | - | 被拉起的嵌入式运行原子化服务通过点击原子化服务退出按钮、手势侧滑、调用[terminateSelfWithResult](../../apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#terminateselfwithresult)或者[terminateSelf](../../apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#terminateself)正常退出时，触发本回调。 |
+| onReceive<sup>20+</sup> | [Callback](../../apis-basic-services-kit/js-apis-base.md#callback)\<Record<string, Object>> | 否 | - | 被拉起的嵌入式运行原子化服务通过[@ohos.window (窗口)](../arkts-apis-window.md)调用相关API时，触发本回调。<br>**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。|
 
 > **说明：**
 >
-> - 若原子化服务通过调用[terminateSelfWithResult](../../apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#terminateselfwithresult)退出，其携带的信息会传给回调函数的入参；
+> - 若原子化服务通过调用[terminateSelfWithResult](../../apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#terminateselfwithresult)退出，该方法携带的信息会传给回调函数的入参；
 > - 若原子化服务通过调用[terminateSelf](../../apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#terminateself)退出，上述回调函数的入参中，"code"取默认值"0"，"want"为"undefined"。
 
 ## 示例
@@ -71,18 +71,18 @@ import { HalfScreenLaunchComponent } from '@kit.ArkUI';
 @Entry
 @Component
 struct Index {
-  appId: string = "576****************"; // 原子化服务appId。
+  appId: string = '576****************'; // 原子化服务appId。
 
   build() {
     Column() {
       HalfScreenLaunchComponent({
         appId: this.appId,
         options: {},
-        onTerminated:  (info:TerminationInfo)=> {
-          console.info('onTerminated info = '+ info.want);
+        onTerminated:  (info:TerminationInfo) => {
+          console.info('onTerminated info = ' + info.want);
         },
         onError: (err) => {
-          console.error(" onError code: " + err.code + ", message: ", err.message);
+          console.error(`onError code: ${err.code}, message: ${err.message}`);
         },
         onReceive: (data) => {
           console.info("onReceive, data: " + data['ohos.atomicService.window']);
