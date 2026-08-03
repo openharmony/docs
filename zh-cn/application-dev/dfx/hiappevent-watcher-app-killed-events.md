@@ -37,6 +37,7 @@ HiAppEvent提供接口用于订阅应用终止事件。
 | foreground | boolean | 应用是否处于前台状态。true表示应用处于前台；false表示应用处于后台。 |
 | app_running_unique_id | string | 应用运行时唯一关联的id。<br>**说明**：从API version 24开始支持该参数。 |
 | bundle_version | string | 应用版本信息。<br>**说明**：从API version 24开始支持该参数。 |
+| last_exit_detail_info | string | 应用退出前的详细信息，详见[last_exit_detail_info字段说明](#last_exit_detail_info字段说明)。<br>**说明**：从API version 26开始支持该参数。 |
 
 ### reason字段说明
 
@@ -97,3 +98,17 @@ HiAppEvent提供接口用于订阅应用终止事件。
 | DmaKiller                     | 整机低内存，单进程Dma占用达到阈值。                      |
 | ThreadKiller                  | 单进程线程超限。                           |
 | UninstallStorage              | 卸载存储卡。                          |
+
+### last_exit_detail_info字段说明
+
+| 名称 | 类型 | 说明 |
+| -------- | -------- | -------- |
+| exit_msg | string | 应用退出信息。 |
+| kill_reason | string | 应用退出理由。 |
+| pid | string | 应用的进程ID。 |
+| process_name | string | 应用的进程名称。 |
+| process_state | string | 应用的进程状态。 |
+| pss | string | 进程实际使用的物理内存大小，单位KB。 |
+| rss | string | 进程实际占用内存大小，单位为KB。 |
+| timestamp | string | 故障发生时间戳。 |
+| uid | string | 应用的用户ID。 |

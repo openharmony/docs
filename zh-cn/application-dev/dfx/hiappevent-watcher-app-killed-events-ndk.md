@@ -100,6 +100,7 @@ API接口的具体使用说明（参数使用限制、具体取值范围等）�
                           auto foreground = params["foreground"].asString();
                           auto appRunningUniqueId = params["app_running_unique_id"].asString();
                           auto bundleVersion = params["bundle_version"].asString();
+                          auto lastExitDetailInfo = writer.write(params["last_exit_detail_info"]);
                           OH_LOG_INFO(LogType::LOG_APP, "HiAppEvent eventInfo.params.time=%{public}lld", time);
                           OH_LOG_INFO(LogType::LOG_APP, "HiAppEvent eventInfo.params.reason=%{public}s",
                                       reason.c_str());
@@ -109,6 +110,8 @@ API接口的具体使用说明（参数使用限制、具体取值范围等）�
                                       appRunningUniqueId.c_str());
                           OH_LOG_INFO(LogType::LOG_APP, "HiAppEvent eventInfo.params.bundle_version=%{public}s",
                                       bundleVersion.c_str());
+                          OH_LOG_INFO(LogType::LOG_APP, "HiAppEvent eventInfo.params.last_exit_detail_info=%{public}s",
+                                      lastExitDetailInfo.c_str());
                       }
                   }
               }
@@ -202,6 +205,7 @@ API接口的具体使用说明（参数使用限制、具体取值范围等）�
       HiAppEvent eventInfo.params.foreground=true
       HiAppEvent eventInfo.params.app_running_unique_id=207544
       HiAppEvent eventInfo.params.bundle_version=1000000
+      HiAppEvent eventInfo.params.last_exit_detail_info={"exit_msg":"THREAD_BLOCK_6S","kill_reason":"ThreadBlock6S","pid":"52036","process_name":"com.example.apphicollietest0108","process_state":"2","pss":"0","rss":"0","timestamp":"1785753171368","uid":"20020205"}
     ```
 
     > **说明：**
