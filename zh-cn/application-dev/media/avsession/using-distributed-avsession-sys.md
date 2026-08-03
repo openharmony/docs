@@ -1,4 +1,4 @@
-# 使用分布式媒体会话(仅对系统应用开放)
+# 使用分布式媒体会话（仅对系统应用开放）
 <!--Kit: AVSession Kit-->
 <!--Subsystem: Multimedia-->
 <!--Owner: @ccfriend; @devil_red-->

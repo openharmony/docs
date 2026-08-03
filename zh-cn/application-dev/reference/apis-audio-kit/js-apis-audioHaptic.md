@@ -435,7 +435,7 @@ start(): Promise&lt;void&gt;
 
 | 错误码ID   | 错误信息                              |
 |---------|-----------------------------------|
-| 5400102 | Operate not permit. |
+| 5400102 | Operate not permitted. |
 | 5400103 | IO error. |
 | 5400105 | Service died. |
 
@@ -471,7 +471,7 @@ stop(): Promise&lt;void&gt;
 
 | 错误码ID   | 错误信息                              |
 |---------|-----------------------------------|
-| 5400102 | Operate not permit. |
+| 5400102 | Operate not permitted. |
 | 5400105 | Service died. |
 
 **示例：**

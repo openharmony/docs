@@ -1,4 +1,4 @@
-# 媒体会话控制方(仅对系统应用开放)
+# 媒体会话控制方（仅对系统应用开放）
 <!--Kit: AVSession Kit-->
 <!--Subsystem: Multimedia-->
 <!--Owner: @ccfriend; @devil_red-->

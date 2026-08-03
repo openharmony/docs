@@ -2221,7 +2221,7 @@ readLatestImage(): Promise\<Image>
 从ImageReceiver读取最新的图片。使用promise异步回调。
 
 > **注意**：
->此接口需要在[on](#on)回调触发后调用，才能正常的接收到数据。且此接口返回的[Image](#image)对象使用完毕后需要调用[release](#release-2)方法释放，释放后才可以继续接收新的数据。
+>此接口需要在[on](#on)回调触发后调用，才能正常地接收到数据。且此接口返回的[Image](#image)对象使用完毕后需要调用[release](#release-2)方法释放，释放后才可以继续接收新的数据。
 
 **系统能力：** SystemCapability.Multimedia.Image.ImageReceiver
 
@@ -2259,7 +2259,7 @@ readNextImage(): Promise\<Image>
 从ImageReceiver读取下一张图片。使用promise异步回调。
 
 > **注意**：
->此接口需要在[on](#on)回调触发后调用，才能正常的接收到数据。且此接口返回的[Image](#image)对象使用完毕后需要调用[release](#release-2)方法释放，释放后才可以继续接收新的数据。
+>此接口需要在[on](#on)回调触发后调用，才能正常地接收到数据。且此接口返回的[Image](#image)对象使用完毕后需要调用[release](#release-2)方法释放，释放后才可以继续接收新的数据。
 
 **系统能力：** SystemCapability.Multimedia.Image.ImageReceiver
 
