@@ -79,7 +79,7 @@ export default class EntryAbility extends UIAbility {
   onCreate(want: Want, launchParam: AbilityConstant.LaunchParam): void {
     let moduleContext: common.Context;
     try {
-      application.createModuleContext(this.context, 'entry').then((data: Context) => {
+      application.createModuleContext(this.context, 'entry').then((data: common.Context) => {
         moduleContext = data;
         console.info('createModuleContext success!');
       }).catch((error: BusinessError) => {
@@ -104,7 +104,7 @@ getApplicationContext(): ApplicationContext
 
 重复调用该接口，将生成新的ApplicationContext对象。
 
-**原子化服务API**：从API version 14开始，该接口支持在元服务中使用。
+**原子化服务API**：从API version 14开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -149,7 +149,7 @@ getApplicationContextInstance(): ApplicationContext
 
 重复调用该接口，将获取同一个ApplicationContext实例。
 
-**原子化服务API**：从API version 23开始，该接口支持在元服务中使用。
+**原子化服务API**：从API version 23开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -219,7 +219,7 @@ export default class EntryAbility extends UIAbility {
     let moduleContext: common.Context;
     try {
       application.createPluginModuleContext(this.context, 'com.example.pluginBundleName', 'pluginModuleName')
-        .then((data: Context) => {
+        .then((data: common.Context) => {
           moduleContext = data;
           console.info('createPluginModuleContext success!');
         })
@@ -275,7 +275,7 @@ promoteCurrentToCandidateMasterProcess(insertToHead: boolean): Promise\<void>
 
 | 类型               | 说明                |
 | ------------------ | ------------------- |
-|Promise\<void> | Promise对象。无返回结果。 |
+|Promise\<void> | Promise对象，无返回结果。 |
 
 **错误码：**
 
@@ -326,7 +326,7 @@ demoteCurrentFromCandidateMasterProcess(): Promise\<void>
 
 | 类型               | 说明                |
 | ------------------ | ------------------- |
-|Promise\<void> | Promise对象。无返回结果。 |
+|Promise\<void> | Promise对象，无返回结果。 |
 
 **错误码：**
 
@@ -367,7 +367,7 @@ export default class EntryAbility extends UIAbility {
 
 exitMasterProcessRole(): Promise\<void>
 
-放弃当前进程的[主控进程](../../application-models/ability-terminology.md#masterprocess主控进程)身份。使用Promise异步回调。
+退出当前进程的[主控进程](../../application-models/ability-terminology.md#masterprocess主控进程)身份。使用Promise异步回调。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 

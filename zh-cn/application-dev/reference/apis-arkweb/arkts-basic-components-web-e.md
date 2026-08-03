@@ -70,7 +70,7 @@ ConsoleMessage的日志来源。
 
 > **说明：**
 >
-> 从API version9开始支持，从API version 21开始废弃。建议使用[WebHitTestType](./arkts-apis-webview-e.md#webhittesttype)替代。
+> 从API version 9开始支持，从API version 21开始废弃。建议使用[WebHitTestType](./arkts-apis-webview-e.md#webhittesttype)替代。
 
 | 名称            | 值 | 说明                       |
 | ------------- | -- | ------------------------ |
@@ -105,8 +105,8 @@ ConsoleMessage的日志来源。
 
 | 名称     | 值 | 说明          |
 | ------ | -- | ----------- |
-| NEVER  | 0 | Web过滚动模式关闭。 |
-| ALWAYS | 1 | Web过滚动模式开启。 |
+| NEVER  | 0 | Web过滚动模式关闭。适用于不需要额外滚动效果的页面，如内容高度与容器高度匹配的场景。 |
+| ALWAYS | 1 | Web过滚动模式开启。适用于需要增强滚动反馈的场景，如列表页面或需要明确滚动边界指示的场景。 |
 
 ## BlurOnKeyboardHideMode<sup>14+</sup>
 
@@ -187,7 +187,7 @@ onSslErrorEventReceive接口返回的SSL错误的具体原因。
 
 ## FileSelectorMode<sup>9+</sup>
 
-文件选择器的模式。
+文件选择器的模式，用于控制文件选择器的打开方式和行为，帮助开发者实现文件上传等文件操作场景。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -222,7 +222,7 @@ Web布局模式的配置。
 
 ## ProtectedResourceType<sup>9+</sup>
 
-受保护的资源类型。
+ProtectedResourceType枚举定义了Web组件需要访问的受保护资源类型，用于控制MIDI、相机、麦克风、传感器等敏感资源的访问权限，帮助开发者在保护用户隐私的同时提供丰富的Web功能。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -277,7 +277,7 @@ Web布局模式的配置。
 
 | 名称        | 值 | 说明                          |
 | --------- | -- | --------------------------- |
-| None      | 0 | 非输入框。                       |
+| None      | 0 | 非输入框，指不可编辑的网页元素，如按钮、div、span等普通HTML元素。                       |
 | PlainText | 1 | 纯文本类型，包括text、search、email等。 |
 | Password  | 2 | 密码类型。                       |
 | Number    | 3 | 数字类型。                       |
@@ -405,7 +405,7 @@ Web布局模式的配置。
 
 ## AudioSessionType<sup>20+</sup>
 
-应用中Web音频类型。
+应用中Web音频类型，用于控制Web音频的音频流类型和行为，帮助开发者根据应用场景优化音频体验，如支持网页游戏声音与系统音乐同时播放。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -508,7 +508,7 @@ PIN码认证结果。
 
 ## CameraCaptureState<sup>23+</sup>
 
-定义摄像头使用状态的值。
+定义摄像头使用状态的值，用于标识摄像头的当前工作状态，帮助开发者实时监控摄像头资源使用情况，优化资源管理和用户隐私保护。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -520,7 +520,7 @@ PIN码认证结果。
 
 ## MicrophoneCaptureState<sup>23+</sup>
 
-定义麦克风使用状态的值。
+定义麦克风使用状态的值，用于标识麦克风的当前工作状态，帮助开发者实时监控麦克风资源使用情况，优化资源管理和用户隐私保护。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 

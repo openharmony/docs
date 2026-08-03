@@ -297,3 +297,23 @@ AudioCapturer创建成功，但调用[start](arkts-apis-audio-AudioCapturer.md#s
 
 1. 先根据前述案例排除对象状态、应用权限、音频焦点和录音并发问题。
 2. 停止并释放当前AudioCapturer，重新创建后重试一次。避免无条件反复重试。
+
+### AudioSessionManager调用activateAudioSession/deactivateAudioSession/clearSelectedMediaInputDevice处理失败-系统异常
+
+**判断依据**
+
+从API版本26.0.0开始，调用[activateAudioSession](../apis-audio-kit/arkts-apis-audio-AudioSessionManager.md#activateaudiosession12)、[deactivateAudioSession](../apis-audio-kit/arkts-apis-audio-AudioSessionManager.md#deactivateaudiosession12)、[clearSelectedMediaInputDevice](../apis-audio-kit/arkts-apis-audio-AudioSessionManager.md#clearselectedmediainputdevice21)会返回错误码`6800301`。调用对应接口时，应用捕获到的错误信息如下：
+
+- "System error. Activate audio session fail."
+- "System error. Deactivate audio session fail."
+- "System error. Clear selected input device fail."
+
+**可能原因**
+
+系统服务异常无响应。
+
+**处理步骤**
+
+<!--RP1-->
+尝试重试或[提单](https://gitcode.com/openharmony/docs/issues/create/choose)处理。
+<!--RP1End-->

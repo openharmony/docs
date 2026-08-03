@@ -232,7 +232,7 @@ invalidate(): void
 
 请参考[示例1（通过DrawModifier进行自定义绘制）](#示例1通过drawmodifier进行自定义绘制)。
 
-### DrawContext
+## DrawContext
 
 type DrawContext = import('../api/arkui/Graphics').DrawContext
 

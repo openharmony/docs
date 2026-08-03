@@ -352,7 +352,7 @@ getHitTest(): HitTestType
 
 > **说明：**
 >
-> 从API version 8开始支持，从API version 9开始废弃，建议使用[getHitTest<sup>(deprecated)</sup>](./arkts-apis-webview-WebviewController.md#gethittestdeprecated)代替。
+> 从API version 8开始支持，从API version 9开始废弃。建议使用[getHitTest<sup>(deprecated)</sup>](./arkts-apis-webview-WebviewController.md#gethittestdeprecated)替代。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 

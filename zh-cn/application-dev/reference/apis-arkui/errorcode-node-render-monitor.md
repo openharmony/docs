@@ -26,4 +26,4 @@ The count of nodes monitoring render state is over the limitation.
 
 **处理步骤**
 
-请确保注册的监听渲染状态的节点数小于64。
+请确保单个UI实例中注册监听渲染状态的节点不超过64个。

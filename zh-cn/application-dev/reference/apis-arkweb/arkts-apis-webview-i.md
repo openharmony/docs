@@ -147,8 +147,8 @@ Web组件预编译JavaScript生成字节码缓存的配置对象，用于控制�
 
 | 名称 | 类型   | 只读 | 可选 | 说明                                                         |
 | ---- | ------ | ---- | ---- | ------------------------------------------------------------ |
-| x    | number | 否   | 否   | 网页在水平方向的滚动偏移量。取值为网页左边界x坐标与Web组件左边界x坐标的差值。<br/>当网页向右过滚动时，取值范围为负值。<br/>当网页没有过滚动或者网页向左过滚动时，取值为0或正值。<br/>单位：vp。 |
-| y    | number | 否   | 否   | 网页在垂直方向的滚动偏移量。取值为网页上边界y坐标与Web组件上边界y坐标的差值。<br/>当网页向下过滚动时，取值范围为负值。<br/>当网页没有过滚动或者网页向上过滚动时，取值为0或正值。<br/>单位：vp。 |
+| x    | number | 否   | 否   | 网页在水平方向的滚动偏移量。取值为网页左边界x坐标与Web组件左边界x坐标的差值。<br>当网页向右过滚动时，取值范围为负值。<br>当网页没有过滚动或者网页向左过滚动时，取值为0或正值。<br>单位：vp。 |
+| y    | number | 否   | 否   | 网页在垂直方向的滚动偏移量。取值为网页上边界y坐标与Web组件上边界y坐标的差值。<br>当网页向下过滚动时，取值范围为负值。<br>当网页没有过滚动或者网页向上过滚动时，取值为0或正值。<br>单位：vp。 |
 
 ## HitTestValue
 
@@ -235,7 +235,7 @@ WebViewController与Web组件的绑定状态。
 
 | 名称 | 类型 | 只读 | 可选 | 说明 |
 |------|------|------|------|------|
-| embedID | string | 否 | 否  | 网页中的 `<video>` 或 `<audio>` 的 ID 。|
+| embedID | string | 否 | 否  | 网页中的`<video>`或`<audio>`的 ID。|
 | mediaType | [MediaType](./arkts-apis-webview-e.md#mediatype12) | 否 | 否 | 媒体的类型。 |
 | mediaSrcList | [MediaSourceInfo](./arkts-apis-webview-MediaSourceInfo.md)[] | 否 | 否 | 媒体的源。可能有多个源，应用需要选择一个支持的源来播放。 |
 | surfaceInfo | [NativeMediaPlayerSurfaceInfo](./arkts-apis-webview-NativeMediaPlayerSurfaceInfo.md) | 否 | 否 | 用于同层渲染的 surface 信息。 |

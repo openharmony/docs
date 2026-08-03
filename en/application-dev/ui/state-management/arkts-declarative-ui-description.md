@@ -1,10 +1,12 @@
 # Declarative UI Description
+
 <!--Kit: ArkUI-->
 <!--Subsystem: ArkUI-->
 <!--Owner: @sunfei2021-->
 <!--Designer: @sunfei2021-->
 <!--Tester: @sally__-->
 <!--Adviser: @zhang_yixin13-->
+<!-- md-trans-meta sourceCommit=3efb4ba336409dd0731ba011e1e227786db57fa2 translatedAt=2026-07-22T02:01:44.299Z pushedAt=2026-07-22T07:38:43.451Z -->
 
 ArkTS describes an application's UI by combining and extending components in a declarative manner. It also provides basic methods for configuring attributes, events, and child components to help you implement application interaction logic.
 
@@ -20,13 +22,13 @@ You can create a component with or without parameters, depending on the componen
 
 If a component's API definition does not include mandatory constructor parameters, leave the parentheses empty. For example, the **Divider** component requires no parameters.
 
- <!-- @[segment1](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkUISample/DeclarativeUIDescription/entry/src/main/ets/pages/Index.ets) -->
- 
+ <!-- @[segment1](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkUISample/DeclarativeUIDescription/entry/src/main/ets/pages/Index.ets) --> 
+
  ``` TypeScript
  Column() {
-   Text('item 1')
+   // ...
    Divider()
-   Text('item 2')
+   // ...
  }
  ```
 
@@ -37,16 +39,15 @@ If a component's API definition includes constructor parameters, configure the r
 - **Image** component with a mandatory **src** parameter:
 
    <!-- @[segment2](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkUISample/DeclarativeUIDescription/entry/src/main/ets/pages/Index.ets) -->
-   
+
    ``` TypeScript
    Image('https://xyz/test.jpg')
    ```
 
-
 - **Text** component with an optional **content** parameter:
 
   <!-- @[segment3](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkUISample/DeclarativeUIDescription/entry/src/main/ets/pages/Index.ets) -->
-  
+
   ``` TypeScript
   // Parameter of the string type
   Text('test')
@@ -61,14 +62,13 @@ If a component's API definition includes constructor parameters, configure the r
   For example, set variables or expressions to construct parameters for **Image** and **Text** components:
 
   <!-- @[segment4](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkUISample/DeclarativeUIDescription/entry/src/main/ets/pages/Index.ets) -->
-  
+
   ``` TypeScript
   Image(this.imagePath)
   // Replace the URL with the correct one you need.
   Image('https://' + this.imageUrl)
   Text(`count: ${this.count}`)
   ```
-
 
 ## Configuring Attributes
 
@@ -77,7 +77,7 @@ Configure styles and other attributes using chained method calls, one per line r
 - Set the font size for the **Text** component:
 
   <!-- @[segment5](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkUISample/DeclarativeUIDescription/entry/src/main/ets/pages/Index.ets) -->
-  
+
   ``` TypeScript
   Text('test')
     .fontSize(12)
@@ -86,7 +86,7 @@ Configure styles and other attributes using chained method calls, one per line r
 - Set multiple attributes for the **Image** component:
 
   <!-- @[segment6](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkUISample/DeclarativeUIDescription/entry/src/main/ets/pages/Index.ets) -->
-  
+
   ``` TypeScript
   Image('test.jpg')
     .alt('error.jpg')
@@ -94,10 +94,10 @@ Configure styles and other attributes using chained method calls, one per line r
     .height(100)
   ```
 
-- Attribute methods accept expressions and variables as well constant parameters.<br>Use expressions and variables:
+- Attribute methods accept expressions and variables as well constant parameters.
 
   <!-- @[segment7](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkUISample/DeclarativeUIDescription/entry/src/main/ets/pages/Index.ets) -->
-  
+
   ``` TypeScript
   Text('hello')
     .fontSize(this.fontSize)
@@ -119,7 +119,6 @@ Configure styles and other attributes using chained method calls, one per line r
     .fontWeight(FontWeight.Bold)
   ```
 
-
 ## Configuring Events
 
 Configure built-in component events using chained method calls, one per line recommended.
@@ -138,7 +137,7 @@ Configure built-in component events using chained method calls, one per line rec
 - Use the arrow function expression syntax for event configuration, requiring the use of "() => {...}" to ensure that the function is bound to the component and complies with ArkTS syntax specifications:
 
   <!-- @[segment10](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkUISample/DeclarativeUIDescription/entry/src/main/ets/pages/Index.ets) -->
-  
+
   ``` TypeScript
   Button('add counter')
     .onClick(() => {
@@ -149,7 +148,7 @@ Configure built-in component events using chained method calls, one per line rec
 - Example of using a component's member function to configure the event of the component, where **this** binding is needed: (This usage is not recommended in ArkTS.)
 
   <!-- @[segment11](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkUISample/DeclarativeUIDescription/entry/src/main/ets/pages/Index.ets) -->
-  
+
   ``` TypeScript
     myClickHandler(): void {
       this.counter += 2;
@@ -163,7 +162,7 @@ Configure built-in component events using chained method calls, one per line rec
 - Use a pre-declared arrow function for event configuration, where binding **this** is not needed:
 
   <!-- @[segment12](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkUISample/DeclarativeUIDescription/entry/src/main/ets/pages/Index.ets) -->
-  
+
   ``` TypeScript
     fn = () => {
       hilog.info(0x0000, 'Declarative UI Description', `counter: ${this.counter}`);
@@ -174,7 +173,6 @@ Configure built-in component events using chained method calls, one per line rec
      Button('add counter')
        .onClick(this.fn)
   ```
-
 
 > **NOTE**
 >
@@ -187,7 +185,7 @@ For a component with child components, for example, a container component, add t
 - Configure child components for the **Column** component:
 
   <!-- @[segment13](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkUISample/DeclarativeUIDescription/entry/src/main/ets/pages/Index.ets) -->
-  
+
   ``` TypeScript
   Column() {
     Text('Hello')
@@ -202,7 +200,7 @@ For a component with child components, for example, a container component, add t
 - Configure nested child components in the **Column** component:.
 
   <!-- @[segment14](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkUISample/DeclarativeUIDescription/entry/src/main/ets/pages/Index.ets) -->
-  
+
   ``` TypeScript
   Column() {
     Row() {

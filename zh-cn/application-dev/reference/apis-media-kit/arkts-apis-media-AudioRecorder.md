@@ -43,7 +43,7 @@ prepare(config: AudioRecorderConfig): void
 
 | 错误码ID | 错误信息              |
 | -------- | --------------------- |
-| 201      | permission denied     |
+| 201      | permission denied. <br>适用版本：12+     |
 
 **示例：**
 

@@ -93,7 +93,7 @@ fileAccess(fileAccess: boolean)
 
 imageAccess(imageAccess: boolean)
 
-设置是否允许自动加载图片资源。当属性没有显式调用时，允许自动加载图片资源。
+设置是否允许自动加载图片资源。当属性没有显式调用时，默认允许。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -101,7 +101,7 @@ imageAccess(imageAccess: boolean)
 
 | 参数名         | 类型    | 必填   | 说明            |
 | ----------- | ------- | ---- | --------------- |
-| imageAccess | boolean | 是    | 设置是否允许自动加载图片资源。<br>true表示设置允许自动加载图片资源，false表示设置不允许自动加载图片资源。<br>传入undefined或null时为false。 |
+| imageAccess | boolean | 是    | 设置是否允许自动加载图片资源。<br>true表示允许，false表示不允许。<br>传入undefined或null时为false。 |
 
 **示例：**
   ```ts
@@ -236,7 +236,7 @@ javaScriptAccess(javaScriptAccess: boolean)
 
 overScrollMode(mode: OverScrollMode)
 
-设置Web过滚动模式。开启时，用户在Web根页面滑动到边缘会触发弹性动画弹回界面，但根页面上的内部页面不会触发回弹。该属性没有显式调用时，默认关闭过滚动模式。
+设置Web过滚动模式。开启时，用户在Web根页面滑动到边缘时，Web会通过弹性动画弹回界面，根页面上的内部页面不会触发回弹。该属性没有显式调用时，默认关闭。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -304,7 +304,7 @@ mixedMode(mixedMode: MixedMode)
 
 onlineImageAccess(onlineImageAccess: boolean)
 
-设置是否允许从网络加载图片资源（通过HTTP和HTTPS访问的资源）。当属性没有显式调用时，默认允许从网络加载图片资源。
+设置是否允许从网络加载图片资源（通过HTTP和HTTPS访问的资源）。当属性没有显式调用时，默认允许。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -312,7 +312,7 @@ onlineImageAccess(onlineImageAccess: boolean)
 
 | 参数名               | 类型    | 必填   | 说明             |
 | ----------------- | ------- | ---- | ---------------- |
-| onlineImageAccess | boolean | 是    | 设置是否允许从网络加载图片资源。<br>true表示设置允许从网络加载图片资源，false表示设置不允许从网络加载图片资源。<br>传入undefined或null时为false。 |
+| onlineImageAccess | boolean | 是    | 设置是否允许从网络加载图片资源。<br>true表示允许，false表示不允许。<br>传入undefined或null时为false。 |
 
 **示例：**
 
@@ -480,7 +480,7 @@ geolocationAccess(geolocationAccess: boolean)
 
 mediaPlayGestureAccess(access: boolean)
 
-设置有声视频的自动播放是否需要用户手动点击，静音视频播放不受该接口管控。当该属性未显式设置时，默认有声视频的自动播放需要用户手动点击。
+设置有声视频的自动播放是否需要用户手动点击，静音视频播放不受该接口管控。当该属性未显式设置时，默认需要用户手动点击。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -488,7 +488,7 @@ mediaPlayGestureAccess(access: boolean)
 
 | 参数名    | 类型    | 必填   | 说明                |
 | ------ | ------- | ---- | ------------------- |
-| access | boolean | 是    | 设置有声视频的自动播放是否需要用户手动点击。<br>true表示设置有声视频的自动播放需要用户手动点击，false表示设置有声视频的自动播放不需要用户手动点击，能自动播放。<br>传入undefined或null时为false。 |
+| access | boolean | 是    | 设置有声视频的自动播放是否需要用户手动点击。<br>true表示需要用户手动点击，false表示不需要，能自动播放。<br>传入undefined或null时为false。 |
 
 **示例：**
 
@@ -550,7 +550,7 @@ multiWindowAccess(multiWindow: boolean)
 
 horizontalScrollBarAccess(horizontalScrollBar: boolean)
 
-设置是否显示横向滚动条，包括系统默认滚动条和用户自定义滚动条。该属性没有显式调用时，默认显示横向滚动条。
+设置是否显示横向滚动条，包括系统默认滚动条和用户自定义滚动条。该属性没有显式调用时，默认显示。
 
 > **说明：**
 >
@@ -563,7 +563,7 @@ horizontalScrollBarAccess(horizontalScrollBar: boolean)
 
 | 参数名                 | 类型    | 必填   | 说明         |
 | ------------------- | ------- | ---- | ------------ |
-| horizontalScrollBar | boolean | 是    | 设置是否显示横向滚动条。<br>true表示设置显示横向滚动条，false表示设置不显示横向滚动条。<br>传入undefined或null时为false。 |
+| horizontalScrollBar | boolean | 是    | 设置是否显示横向滚动条。<br>true表示显示，false表示不显示。<br>传入undefined或null时为false。 |
 
 **示例：**
 
@@ -594,7 +594,7 @@ horizontalScrollBarAccess(horizontalScrollBar: boolean)
             try {
               this.controller.refresh();
             } catch (error) {
-              console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
+              console.error(`Failed to refresh Web. Code: ${(error as BusinessError).code}, message: ${(error as BusinessError).message}`);
             }
           }).height('10%').width('40%')
         Web({ src: $rawfile('index.html'), controller: this.controller }).height('90%')
@@ -632,7 +632,7 @@ horizontalScrollBarAccess(horizontalScrollBar: boolean)
 
 verticalScrollBarAccess(verticalScrollBar: boolean)
 
-设置是否显示纵向滚动条，包括系统默认滚动条和用户自定义滚动条。该属性没有显式调用时，默认显示纵向滚动条。
+设置是否显示纵向滚动条，包括系统默认滚动条和用户自定义滚动条。该属性没有显式调用时，默认显示。
 
 > **说明：**
 >
@@ -645,7 +645,7 @@ verticalScrollBarAccess(verticalScrollBar: boolean)
 
 | 参数名               | 类型    | 必填   | 说明         |
 | ----------------- | ------- | ---- | ------------ |
-| verticalScrollBar | boolean | 是    | 设置是否显示纵向滚动条。<br>true表示设置显示纵向滚动条，false表示设置不显示纵向滚动条。<br>传入undefined或null时为false。 |
+| verticalScrollBar | boolean | 是    | 设置是否显示纵向滚动条。<br>true表示显示，false表示不显示。<br>传入undefined或null时为false。 |
 
 **示例：**
 
@@ -676,7 +676,7 @@ verticalScrollBarAccess(verticalScrollBar: boolean)
             try {
               this.controller.refresh();
             } catch (error) {
-              console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
+              console.error(`Failed to refresh Web. Code: ${(error as BusinessError).code}, message: ${(error as BusinessError).message}`);
             }
           }).height('10%').width('40%')
         Web({ src: $rawfile('index.html'), controller: this.controller }).height('90%')
@@ -749,7 +749,11 @@ cacheMode(cacheMode: CacheMode)
 
 copyOptions(value: CopyOptions)
 
-设置剪贴板复制范围选项。该属性没有显式调用时，默认支持复制后在当前设备内所有应用内粘贴。
+设置剪贴板复制范围选项。该属性没有显式调用时，默认支持复制后在当前设备所有应用内粘贴。
+
+> **说明：**
+>
+> 当设置为CopyOptions.None时，[dataDetectorConfig](#datadetectorconfig20)中的enablePreviewMenu配置项无效。当[enableDataDetector](#enabledatadetector20)设置为true且此属性设置为CopyOptions.LocalDevice时，AI菜单功能将被激活。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -2082,7 +2086,7 @@ nestedScroll(value: NestedScrollOptions | NestedScrollOptionsExt)
 
 enableScrollDirectionalLock(value: boolean, type: ScrollDirectionalLockType) 
 
-设置Web组件滑动方向锁定。不调用该方法设置时，默认在嵌套滚动场景下支持滑动方向锁定。
+设置Web组件滑动方向锁定，防止用户在斜向滑动时同时触发水平和垂直滚动，提升滚动体验。不调用该方法设置时，默认在嵌套滚动场景下支持滑动方向锁定。ALL模式适用于所有需要锁定滑动的场景，NESTED_SCROLL模式仅适用于嵌套滚动场景。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -2206,7 +2210,7 @@ forceDisplayScrollBar(enabled: boolean)
 
 | 参数名  | 类型 | 必填 | 说明           |
 | ------- | -------- | ---- | ------------------ |
-| enabled | boolean  | 是   | 滚动条是否常驻。<br>true表示滚动条常驻，false表示滚动条不常驻。<br>传入undefined或null时属性设置不生效。 |
+| enabled | boolean  | 是   | 滚动条是否常驻。<br>true表示滚动条常驻，false表示滚动条不常驻。<br>当layoutMode为WebLayoutMode.FIT_CONTENT模式时，enabled参数强制为false，设置true也不生效。<br>传入undefined或null时属性设置不生效。 |
 
 
 **示例：**
@@ -2556,7 +2560,7 @@ enableNativeMediaPlayer(config: NativeMediaPlayerConfig)
 
 | 参数名  | 类型   | 必填   | 说明 |
 | ---- | ------ | ---- | ---------------------|
-| config | [NativeMediaPlayerConfig](./arkts-basic-components-web-i.md#nativemediaplayerconfig12) | 是    | enable: 是否开启该功能。<br/> shouldOverlay: 该功能开启后， 应用接管网页视频的播放器画面是否覆盖网页内容。<br>传入undefined或null时为`{enable: false, shouldOverlay: false}`。|
+| config | [NativeMediaPlayerConfig](./arkts-basic-components-web-i.md#nativemediaplayerconfig12) | 是    | 应用接管网页媒体播放功能的配置对象。包含以下属性：enable（boolean类型，是否开启该功能，默认为false），shouldOverlay（boolean类型，当功能开启后，应用接管网页视频的播放器画面是否覆盖网页内容，默认为false）。<br>传入undefined或null时为`{enable: false, shouldOverlay: false}`。|
 
   **示例：**
 
@@ -2677,6 +2681,12 @@ editMenuOptions(editMenu: EditMenuOptions)
 
 设置Web组件自定义文本选择菜单。
 
+> **说明：**
+> 本接口与bindSelectionMenu功能类似，差异如下：
+> - editMenuOptions：在系统默认菜单风格基础上添加扩展项，触发条件不变。
+> - [bindSelectionMenu](#bindselectionmenu13)：完全自定义菜单风格和触发条件，由开发者定义。
+> 两者不宜同时使用，建议根据自定义程度需求选择。
+
 用户可以通过该属性设置自定义的文本菜单。
 
 在[onCreateMenu](../apis-arkui/arkui-ts/ts-text-common.md#oncreatemenu12)中，可以修改、增加、删除菜单选项，如果希望不显示文本菜单，需要返回空数组。
@@ -2746,11 +2756,13 @@ struct WebComponent {
     if (menuItem.id.equals(TextMenuItemId.CUT)) {
       // 用户自定义行为
       console.info("拦截 id：CUT")
-      return true; // 返回true不执行系统回调
+      // 返回true表示拦截此菜单项，不执行系统默认的剪切操作
+      return true;
     } else if (menuItem.id.equals(TextMenuItemId.COPY)) {
       // 用户自定义行为
       console.info("不拦截 id：COPY")
-      return false; // 返回false执行系统回调
+      // 返回false表示不拦截此菜单项，执行系统默认的复制操作
+      return false;
     } else if (menuItem.id.equals(TextMenuItemId.of('customItem1'))) {
       // 用户自定义行为
       console.info("拦截 id：customItem1")
@@ -2832,7 +2844,7 @@ enableHapticFeedback(enabled: boolean)
 
 | 参数名     | 类型        | 必填   | 说明 |
 | --------- | ---------   | ------ | ------------- |
-| enabled   | boolean | 是  | 是否开启振动。<br>true表示开启振动，false表示不开启振动。<br>传入undefined或null时属性设置不生效。 |
+| enabled   | boolean | 是  | 是否开启振动。<br>true表示开启振动，false表示不开启振动。<br>传入undefined或null时保持默认值，即开启振动。 |
 
 **示例：**
 
@@ -2884,7 +2896,7 @@ bindSelectionMenu(elementType: WebElementType, content: CustomBuilder, responseT
 | elementType     | [WebElementType](./arkts-basic-components-web-e.md#webelementtype13)             | 是   | 菜单的类型。   |
 | content      | [CustomBuilder](../apis-arkui/arkui-ts/ts-types.md#custombuilder8)     | 是   | 菜单的内容。   |
 | responseType | [WebResponseType](./arkts-basic-components-web-e.md#webresponsetype13)           | 是   | 菜单的响应类型。 |
-| options      | [SelectionMenuOptionsExt](./arkts-basic-components-web-i.md#selectionmenuoptionsext13)   | 否   | 菜单的选项。|
+| options      | [SelectionMenuOptionsExt](./arkts-basic-components-web-i.md#selectionmenuoptionsext13)   | 否   | 菜单的选项。传入undefined或null时使用默认配置。|
 
 **示例：**
 
@@ -3031,7 +3043,7 @@ struct SelectionMenuLongPress {
                 }
               });
           } catch (error) {
-            console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
+            console.error(`Failed to clear selection. Code: ${(error as BusinessError).code}, message: ${(error as BusinessError).message}`);
           }
           this.clearSelection()
         }).backgroundColor(Color.Pink)
@@ -3089,6 +3101,7 @@ struct SelectionMenuLongPress {
               this.previewImage = event.param.getSourceUrl();
             }
             this.linkURL = event.param.getLinkUrl()
+            // 返回true表示拦截系统默认的上下文菜单，使用自定义菜单
             return true;
           }
           return false;
@@ -3442,6 +3455,10 @@ enableDataDetector(enable: boolean)
 
 设置是否识别网页文本特殊实体，如邮件、电话、网址等。该接口依赖设备底层具备文本识别能力，否则设置无效。该属性没有显式调用时，默认不启用。
 
+> **说明：**
+>
+> [dataDetectorConfig](#datadetectorconfig20)和[enableSelectedDataDetector](#enableselecteddatadetector22)等属性依赖此属性开启时才能正常生效。
+
 当enableDataDetector设置为true，同时不设置[dataDetectorConfig](#datadetectorconfig20)属性时，默认识别所有类型的实体，所识别实体的color和decoration会被更改为如下样式：
 <!--code_no_check-->
 ```ts
@@ -3647,7 +3664,7 @@ AI菜单生效时，需在选中范围内，包括一个完整的AI实体，才�
 
 gestureFocusMode(mode: GestureFocusMode)
 
-设置Web组件手势获焦模式。该属性没有显式调用时，默认表示手势按下时，任何手势均会使Web组件获焦。
+设置Web组件手势获焦模式，用于控制Web组件的焦点响应行为。该属性没有显式调用时，默认表示手势按下时，任何手势均会使Web组件获焦。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -4101,7 +4118,7 @@ enableDrag(value: boolean)
 
 | 参数名 | 类型    | 必填 | 说明                              |
 | ------ | ------- | ---- | --------------------------------- |
-| value  | boolean | 是   | 是否启用网页拖拽功能，true表示启用，false表示不启用。 |
+| value  | boolean | 是   | 是否启用网页拖拽功能，true表示启用，false表示不启用。传入undefined或null时为true。 |
 **示例：**
 
   ```ts
@@ -4157,7 +4174,7 @@ password(password: boolean)
 
 | 参数名          | 类型   | 必填  | 说明                             |
 | ------------ | ------ | ---- | -------------------------------- |
-| password | boolean | 是   | 设置为true时，表示允许Web保存密码。<br>设置为false时，表示不允许Web保存密码。 |
+| password | boolean | 是   | 设置为true时，表示允许Web保存密码。<br>设置为false时，表示不允许Web保存密码。<br>传入undefined或null时为false。 |
 
 ## textZoomAtio<sup>(deprecated)</sup>
 
@@ -4250,7 +4267,7 @@ tableData(tableData: boolean)
 
 | 参数名          | 类型   | 必填  | 说明                             |
 | ------------ | ------ | ---- | -------------------------------- |
-| tableData | boolean | 是   | 设置为true时，表示允许Web保存表单数据。<br>设置为false时，表示不允许Web保存表单数据。 |
+| tableData | boolean | 是   | 设置为true时，表示允许Web保存表单数据。<br>设置为false时，表示不允许Web保存表单数据。<br>传入undefined或null时为true。 |
 
 ## wideViewModeAccess<sup>(deprecated)</sup>
 
@@ -4279,6 +4296,8 @@ Web组件自定义菜单扩展项接口，允许用户设置扩展项的文本�
 该接口只支持选中纯文本，当选中内容包含图片及其他非文本内容时，action信息中会显示乱码。
 
 > **说明：**
+>
+> 本接口在与[editMenuOptions](#editmenuoptions12)同时使用时，本接口不生效。
 >
 > 从API version 12开始支持，从API version 20开始废弃。建议使用[editMenuOptions<sup>12+</sup>](#editmenuoptions12)替代。
 
@@ -4418,6 +4437,7 @@ struct DemoPage {
   onCreateAISession = (id: string, params: string, result: OnAISessionCallback): boolean => {
     this.sessions.set(id, params); // 模拟创建AI会话
     console.info(`[AISession]onCreateAISession params: ${params}`);
+    // 通知调用方AI会话创建成功
     result(AISessionResultType.SUCCESS, "AISession created");
     return true;
   }
@@ -4425,6 +4445,7 @@ struct DemoPage {
   onExecuteAIAction = (id: string, params: string, result: OnAISessionCallback): void => {
     this.sessions.get(id); // 模拟取出会话，并执行动作
     console.info(`[AISession]onExecuteAIAction params: ${params}`);
+    // 模拟流式返回AI执行结果：多次调用RUNNING表示任务执行中、返回数据块，最后返回SUCCESS表示任务完成
     result(AISessionResultType.RUNNING, "AISession chunk 1\n");
     result(AISessionResultType.RUNNING, "AISession chunk 2\n");
     result(AISessionResultType.SUCCESS, "AISession chunk end\n");
@@ -4513,7 +4534,7 @@ struct DemoPage {
 
 scrollbarLayoutPolicy(policy: ScrollbarLayoutPolicy)
 
-选择Web组件内垂直滚动条的布局方式。
+选择Web组件内垂直滚动条的布局方式，用于适配不同语言的书写方向。CONTENT模式适用于需要跟随网页CSS direction属性的场景，SYSTEM模式适用于多语言应用中需要跟随系统语言方向设置的场景，如阿拉伯语、希伯来语等从右到左书写的语言。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -4525,7 +4546,7 @@ scrollbarLayoutPolicy(policy: ScrollbarLayoutPolicy)
 
 | 参数名 | 类型| 必填 | 说明 |
 | ------ | -------------- | ---- | -------------- |
-| policy | [ScrollbarLayoutPolicy](./arkts-basic-components-web-e.md#scrollbarlayoutpolicy) | 是   | 设置Web组件内垂直滚动条布局模式，可选择跟随系统语言方向设置或网页css的direction属性设置。入参设置为：<br/>CONTENT，表示跟随网页css的direction属性设置。<br/>SYSTEM，滚动条会根据系统语种的左右书写方向进行布局。对于从右向左书写的语言，滚动条将布局在左侧。对于网页内嵌套的多层滚动条均适用。|
+| policy | [ScrollbarLayoutPolicy](./arkts-basic-components-web-e.md#scrollbarlayoutpolicy) | 是   | 设置Web组件内垂直滚动条布局模式。可选值：CONTENT（跟随网页css的direction属性设置），SYSTEM（根据系统语种的左右书写方向进行布局，对于从右向左书写的语言，滚动条将布局在左侧。对于网页内嵌套的多层滚动条均适用）。|
 
 **示例：**
 
@@ -4620,13 +4641,13 @@ enableFullscreenVideoOverlay(enabled: boolean)
 
 **模型约束：** 此接口仅可在Stage模型下使用。
 
-**设备行为差异：** 该接口在Phone/Tablet设备中可正常调用，在其他设备中无效。
+**设备行为差异：** 该接口在PC/2in1设备中无效果，在其他设备中可正常调用。
 
 **参数：**
 
 | 参数名 | 类型 | 必填 | 说明                         |
 | ------ | -------- | ---- | -------------------------------- |
-| enabled | boolean  | 是   | 设置Web组件是否开启覆盖式全屏播放功能。<br>true表示开启该功能。<br>false表示不开启。 |
+| enabled | boolean  | 是   | 设置Web组件是否开启覆盖式全屏播放功能。<br>true表示开启该功能。<br>false表示不开启。<br>传入undefined或null时为false。 |
 
 **示例：**
 

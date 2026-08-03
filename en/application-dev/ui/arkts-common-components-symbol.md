@@ -1,13 +1,14 @@
 # Symbol Glyph (SymbolGlyph/SymbolSpan)
+
 <!--Kit: ArkUI-->
 <!--Subsystem: ArkUI-->
 <!--Owner: @hddgzw-->
 <!--Designer: @xiangyuan6-->
 <!--Tester: @jiaoaozihao-->
 <!--Adviser: @Brilliantry_Rui-->
+<!-- md-trans-meta sourceCommit=58aa1a9b8318e579a2b513b7ba023ee57b8ecdda translatedAt=2026-07-29T12:45:15.722Z pushedAt=2026-07-31T01:40:00.423Z -->
 
-**SymbolGlyph** is a component designed for icon glyphs, making it easy to use sophisticated icons, including multi-colored and animated icons. You can add symbol glyphs in text through the use of the **SymbolSpan** component, a child of the **Text** component. For details, see [SymbolGlyph](../reference/apis-arkui/arkui-ts/ts-basic-components-symbolGlyph.md) and [SymbolSpan](../reference/apis-arkui/arkui-ts/ts-basic-components-symbolSpan.md).
-
+SymbolGlyph is an icon symbol component that facilitates the use of exquisite icons, such as rendering multicolor icons and using animated icons. SymbolSpan, as a child component of the Text component, allows icon symbols to be interspersed within text. For details about how to use them, see the API documentation for [SymbolGlyph](../reference/apis-arkui/arkui-ts/ts-basic-components-symbolGlyph.md) and [SymbolSpan](../reference/apis-arkui/arkui-ts/ts-basic-components-symbolSpan.md).
 
 ## Creating a Symbol Glyph
 
@@ -33,7 +34,7 @@ To embed a symbol glyph within a text string, use [SymbolSpan](../reference/apis
   A **SymbolSpan** component is only visible when embedded within a **Text** component. Using a **SymbolSpan** independently displays no content.
 
   <!-- @[creat_symbol_span](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkUISample/TextComponent/entry/src/main/ets/pages/symbol/SymbolAddToText.ets) -->
-  
+
   ``` TypeScript
   Text() {
     SymbolSpan($r('sys.symbol.ohos_trash'))
@@ -47,7 +48,7 @@ To embed a symbol glyph within a text string, use [SymbolSpan](../reference/apis
 - Set the size of the **SymbolSpan** component through [fontSize](../reference/apis-arkui/arkui-ts/ts-basic-components-symbolSpan.md#fontsize).
 
   <!-- @[symbol_span_font_size](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkUISample/TextComponent/entry/src/main/ets/pages/symbol/SymbolAddToText.ets) -->
-  
+
   ``` TypeScript
   Row() {
     Column() {
@@ -87,7 +88,7 @@ To embed a symbol glyph within a text string, use [SymbolSpan](../reference/apis
 - Set the weight of the **SymbolSpan** component through [fontWeight](../reference/apis-arkui/arkui-ts/ts-basic-components-symbolSpan.md#fontweight).
 
   <!-- @[symbol_span_font_weight](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkUISample/TextComponent/entry/src/main/ets/pages/symbol/SymbolAddToText.ets) -->
-  
+
   ``` TypeScript
   Row() {
     Column() {
@@ -118,13 +119,13 @@ To embed a symbol glyph within a text string, use [SymbolSpan](../reference/apis
     }
   }
   ```
-  
+
   ![symbolSpan_multi_fontWeight_trash](figures/symbol_multi_fontweight_trash.png)
 
 - Set the color of the **SymbolSpan** component through [fontColor](../reference/apis-arkui/arkui-ts/ts-basic-components-symbolSpan.md#fontcolor).
 
   <!-- @[symbol_span_font_color](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkUISample/TextComponent/entry/src/main/ets/pages/symbol/SymbolAddToText.ets) -->
-  
+
   ``` TypeScript
   Row() {
     Column() {
@@ -161,7 +162,7 @@ To embed a symbol glyph within a text string, use [SymbolSpan](../reference/apis
 - Set the rendering strategy of the **SymbolSpan** component through [renderingStrategy](../reference/apis-arkui/arkui-ts/ts-basic-components-symbolSpan.md#renderingstrategy).
 
   <!-- @[symbol_span_rendering_strategy](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkUISample/TextComponent/entry/src/main/ets/pages/symbol/SymbolAddToText.ets) -->
-  
+
   ``` TypeScript
   Row() {
     Column() {
@@ -204,7 +205,7 @@ To embed a symbol glyph within a text string, use [SymbolSpan](../reference/apis
 - Set the effect strategy of the **SymbolSpan** component through [effectStrategy](../reference/apis-arkui/arkui-ts/ts-basic-components-symbolSpan.md#effectstrategy).
 
   <!-- @[symbol_span_effect_strategy](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkUISample/TextComponent/entry/src/main/ets/pages/symbol/SymbolAddToText.ets) -->
-  
+
   ``` TypeScript
   Row() {
     Column() {
@@ -249,16 +250,16 @@ In addition to using the **effectStrategy** attribute, which triggers an animati
 
 For details about how **effectStrategy** works with **symbolEffect**, see [SymbolGlyph.symbolEffect](../reference/apis-arkui/arkui-ts/ts-basic-components-symbolGlyph.md#symboleffect12-1). 
 
-- Use the **symbolEffect** attribute to set both the effect strategy and playback state of **SymbolGlyph**.
+- By setting the **symbolEffect** attribute, you can configure both the effect strategy and the playback state of SymbolGlyph.
 
   <!-- @[symbol_variable_color_new](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkUISample/TextComponent/entry/src/main/ets/pages/symbol/SymbolCustomIconAnimation.ets) -->
-  
+
   ``` TypeScript
   @State isActive: boolean = true;
   ```
 
   <!-- @[symbol_variable_color](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkUISample/TextComponent/entry/src/main/ets/pages/symbol/SymbolCustomIconAnimation.ets) -->
-  
+
   ``` TypeScript
   Column() {
     // Replace $r('app.string.variable_color_animation') with the actual resource file. In this example, the value in the resource file is "Variable color effect."
@@ -276,16 +277,16 @@ For details about how **effectStrategy** works with **symbolEffect**, see [Symbo
 
   ![symbolGlyph_symbolEffect_isActive](figures/symbolGlyph_symbolEffect_isActive.gif)
 
-- Use the **symbolEffect** attribute to set both the effect strategy and the trigger for playback of **SymbolGlyph**.
+- By setting the **symbolEffect** attribute, you can specify both the animation effect strategy and the playback trigger condition of SymbolGlyph.
 
   <!-- @[symbol_bouncing_effect_new](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkUISample/TextComponent/entry/src/main/ets/pages/symbol/SymbolCustomIconAnimation.ets) -->
-  
+
   ``` TypeScript
   @State triggerValueReplace: number = 0;
   ```
 
   <!-- @[symbol_bouncing_effect](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkUISample/TextComponent/entry/src/main/ets/pages/symbol/SymbolCustomIconAnimation.ets) -->
-  
+
   ``` TypeScript
   Column() {
     // Replace $r('app.string.bounce_animation') with the actual resource file. In this example, the value in the resource file is "Bounce effect."
@@ -303,10 +304,10 @@ For details about how **effectStrategy** works with **symbolEffect**, see [Symbo
 
   ![BounceSymbolEffect](figures/symbolGlyph_bounceSymbolEffect_trigger.gif)
 
-- Since API version 20, you can configure the slash overlay effect of **SymbolGlyph** and its trigger conditions by setting **SymbolEffect** to [ReplaceSymbolEffect](../reference/apis-arkui/arkui-ts/ts-basic-components-symbolGlyph.md#replacesymboleffect12) and specifying [ReplaceEffectType](../reference/apis-arkui/arkui-ts/ts-basic-components-symbolGlyph.md#replaceeffecttype20) as **ReplaceEffectType.SLASH_OVERLAY**.
+- Starting from API version 20, you can set the **symbolEffect** attribute to [ReplaceSymbolEffect](../reference/apis-arkui/arkui-ts/ts-basic-components-symbolGlyph.md#replacesymboleffect12) and set [ReplaceEffectType](../reference/apis-arkui/arkui-ts/ts-basic-components-symbolGlyph.md#replaceeffecttype20) to `ReplaceEffectType.SLASH_OVERLAY` to specify the disabled animation effect and its playback trigger condition for **SymbolGlyph**.
 
   <!-- @[symbol_disable_effect_new](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkUISample/TextComponent/entry/src/main/ets/pages/symbol/SymbolCustomIconAnimation.ets) -->
-  
+
   ``` TypeScript
   @State triggerValueReplace: number = 0;
   replaceFlag: boolean = true;
@@ -314,7 +315,7 @@ For details about how **effectStrategy** works with **symbolEffect**, see [Symbo
   ```
 
   <!-- @[symbol_disable_effect](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkUISample/TextComponent/entry/src/main/ets/pages/symbol/SymbolCustomIconAnimation.ets) -->
-  
+
   ``` TypeScript
   Column() {
     // Replace $r('app.string.disable_animation') with the actual resource file. In this example, the value in the resource file is "Slash overlay."
@@ -333,17 +334,17 @@ For details about how **effectStrategy** works with **symbolEffect**, see [Symbo
 
   ![symbolGlyph_symbolEffect_disable](figures/symbolGlyph_symbolEffect_disable.gif)
 
-- Since API version 20, you can configure the cross-fade transition effect of **SymbolGlyph** and its trigger conditions by setting **SymbolEffect** to [ReplaceSymbolEffect](../reference/apis-arkui/arkui-ts/ts-basic-components-symbolGlyph.md#replacesymboleffect12) and specifying [ReplaceEffectType](../reference/apis-arkui/arkui-ts/ts-basic-components-symbolGlyph.md#replaceeffecttype20) as **ReplaceEffectType.CROSS_FADE**.
+- Starting from API version 20, you can set the **symbolEffect** attribute to [ReplaceSymbolEffect](../reference/apis-arkui/arkui-ts/ts-basic-components-symbolGlyph.md#replacesymboleffect12) and set [ReplaceEffectType](../reference/apis-arkui/arkui-ts/ts-basic-components-symbolGlyph.md#replaceeffecttype20) to `ReplaceEffectType.CROSS_FADE` to specify the quick replacement animation effect and its playback trigger condition for SymbolGlyph.
 
   <!-- @[symbol_quick_replacement_new](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkUISample/TextComponent/entry/src/main/ets/pages/symbol/SymbolCustomIconAnimation.ets) -->
-  
+
   ``` TypeScript
   @State triggerValueReplace: number = 0;
   replaceFlag: boolean = true;
   ```
 
   <!-- @[symbol_quick_replacement](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkUISample/TextComponent/entry/src/main/ets/pages/symbol/SymbolCustomIconAnimation.ets) -->
-  
+
   ``` TypeScript
   Column() {
     // Replace $r('app.string.quick_replacement_animation') with the actual resource file. In this example, the value in the resource file is "Cross-fade transition."
@@ -363,10 +364,10 @@ For details about how **effectStrategy** works with **symbolEffect**, see [Symbo
 
 ## Setting Shadow and Gradient Color Effects
 
-- Since API version 20, you can apply shadow effects to the **SymbolGlyph** component using the [symbolShadow](../reference/apis-arkui/arkui-ts/ts-basic-components-symbolGlyph.md#symbolshadow20) API.
+- Starting from API version 20, the [symbolShadow](../reference/apis-arkui/arkui-ts/ts-basic-components-symbolGlyph.md#symbolshadow20) API enables the SymbolGlyph component to display a shadow effect.
 
   <!-- @[shadow_color_1_new](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkUISample/TextComponent/entry/src/main/ets/pages/symbol/SymbolShadowAndColor.ets) -->
-  
+
   ``` TypeScript
   @State isActive: boolean = true;
   
@@ -379,7 +380,7 @@ For details about how **effectStrategy** works with **symbolEffect**, see [Symbo
   ```
 
   <!-- @[shadow_color_1](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkUISample/TextComponent/entry/src/main/ets/pages/symbol/SymbolShadowAndColor.ets) -->
-  
+
   ``` TypeScript
   Column() {
     // Replace $r('app.string.shadow_ability') with the actual resource file. In this example, the value in the resource file is "Shadow effect."
@@ -398,10 +399,10 @@ For details about how **effectStrategy** works with **symbolEffect**, see [Symbo
 
   ![SymbolShadowSymbolEffect](figures/symbolGlyph_symbolShadow.gif)
 
-- Since API version 20, you can implement gradient color effects for the **SymbolGlyph** component using the [shaderStyle](../reference/apis-arkui/arkui-ts/ts-basic-components-symbolGlyph.md#shaderstyle20) API.
+- Starting from API version 20, the [shaderStyle](../reference/apis-arkui/arkui-ts/ts-basic-components-symbolGlyph.md#shaderstyle20) API enables the SymbolGlyph component to display a gradient color effect.
 
   <!-- @[shadow_color_2_new](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkUISample/TextComponent/entry/src/main/ets/pages/symbol/SymbolShadowAndColor.ets) -->
-  
+
   ``` TypeScript
   radialGradientOptions: RadialGradientOptions = {
     center: ['50%', '50%'],
@@ -412,7 +413,7 @@ For details about how **effectStrategy** works with **symbolEffect**, see [Symbo
   ```
 
   <!-- @[shadow_color_2](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkUISample/TextComponent/entry/src/main/ets/pages/symbol/SymbolShadowAndColor.ets) -->
-  
+
   ``` TypeScript
   Column() {
     // Replace $r('app.string.radial_gradient') with the actual resource file. In this example, the value in the resource file is "Radial gradient."
@@ -449,7 +450,6 @@ SymbolGlyph($r('sys.symbol.ohos_wifi'))
   })
 ```
 
-
 ![symbolGlyph_onClick](figures/symbolGlyph_onClick.gif)
 
 ## Example
@@ -471,14 +471,11 @@ struct SymbolMusicDemo {
   @State symbolSourcesIndex: number = 0;
   @State symbolText: string[] = [
     // Replace $r('app.string.play_in_order') with the actual resource file. In this example, the value in the resource file is "Play in order."
-    this.getUIContext()
-      .getHostContext()!.resourceManager.getStringSync($r('app.string.play_in_order').id),
+    resourceGetString.resourceToString($r('app.string.play_in_order')),
     // Replace $r('app.string.play_in_single_repeat') with the actual resource file. In this example, the value in the resource file is "Loop song."
-    this.getUIContext()
-      .getHostContext()!.resourceManager.getStringSync($r('app.string.play_in_single_repeat').id),
+    resourceGetString.resourceToString($r('app.string.play_in_single_repeat')),
     // Replace $r('app.string.shuffle_play') with the actual resource file. In this example, the value in the resource file is "Shuffle."
-    this.getUIContext()
-      .getHostContext()!.resourceManager.getStringSync($r('app.string.shuffle_play').id),
+    resourceGetString.resourceToString($r('app.string.shuffle_play')),
   ];
   @State symbolTextIndex: number = 0;
   @State fontColorValue: ResourceColor = Color.Grey;
@@ -489,8 +486,7 @@ struct SymbolMusicDemo {
       Row() {
         Text() {
           // Replace $r('app.string.current_playlist') with the actual resource file. In this example, the value in the resource file is "Playlist."
-          Span(this.getUIContext()
-            .getHostContext()!.resourceManager.getStringSync($r('app.string.current_playlist').id))
+          Span(resourceGetString.resourceToString($r('app.string.current_playlist')))
             .fontSize(20)
             .fontWeight(FontWeight.Bolder)
           Span('(101)')
@@ -542,7 +538,7 @@ struct SymbolMusicDemo {
         .width('25%')
       }
 
-      Divider().width(5).color(this.fontColorValue1).width('98%')
+      Divider().color(this.fontColorValue1).width('98%')
       Row() {
         Row() {
           // Replace $r('app.string.song') with the actual resource file. In this example, the value in the resource file is "Song 1."

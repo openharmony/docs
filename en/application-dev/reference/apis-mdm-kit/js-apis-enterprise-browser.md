@@ -1,12 +1,12 @@
 # @ohos.enterprise.browser (Browser Management)
 <!--Kit: MDM Kit-->
 <!--Subsystem: Customization-->
-<!--Owner: @huanleima-->
+<!--Owner: @huanleima; @weizai16-->
 <!--Designer: @hp_guo-->
 <!--Tester: @lpw_work-->
 <!--Adviser: @zhang_yixin13-->
 
-The **browser** module provides browser management, including setting, canceling, and obtaining browser policies.
+The **browser** module provides browser management, including setting, canceling, and obtaining browser policies. It is applicable to scenarios such as enterprise device management, employee online behavior management, and security compliance audit.
 
 Browser policies are a collection of rules and settings that govern how a browser behaves, ensuring security, compliance, performance optimization, and a consistent user experience.
 
@@ -28,7 +28,7 @@ import { browser } from '@kit.MDMKit';
 
 setPolicySync(admin: Want, appId: string, policyName: string, policyValue: string): void
 
-Sets the sub-policy for a specified browser.
+Sets a browser sub-policy for a specified browser. This API is applicable to scenarios where an enterprise needs to manage employees' browser behavior in a unified manner.<!--RP1--><!--RP1End-->
 
 **Required permissions**: ohos.permission.ENTERPRISE_SET_BROWSER_POLICY
 
@@ -36,16 +36,16 @@ Sets the sub-policy for a specified browser.
 
 **Model restriction**: This API can be used only in the stage model.
 
-**Conflict rule**: [Latest configuration precedence](../../mdm/mdm-kit-multi-mdm.md#rule-3-latest-configuration-precedence).
+**Conflict rules:** The same policy of the same browser application is [exclusive](../../mdm/mdm-kit-multi-mdm.md#rule-2-policy-exclusivity). Policies for different browsers, or different policies for the same browser are [merged](../../mdm/mdm-kit-multi-mdm.md#rule-4-policy-merging).
 
 **Parameters**
 
 | Name     | Type                                                   | Mandatory| Description                                                        |
 | ----------- | ------------------------------------------------------- | ---- | ------------------------------------------------------------ |
 | admin       | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | Yes  | EnterpriseAdminExtensionAbility. **Want** must contain the ability name of the EnterpriseAdminExtensionAbility and the bundle name of the application.                                              |
-| appId       | string                                                  | Yes  | Application ID, which is used to specify the browser.                                    |
-| policyName  | string                                                  | Yes  | Name of the browser policy to set. If the value is an empty string, the browser policy corresponding to the application ID is set.|
-| policyValue | string                                                  | Yes  | Browser policy to set. If the value is an empty string, the policy corresponding to the policy name is removed.|
+| appId       | string                                                  | Yes  | Application ID, which uniquely identifies an application. This ID is used to specify the browser. For details, see [What Is appid](../../quick-start/common-problem-of-application.md#what-is-appid).                                                               |
+| policyName  | string                                                  | Yes  | Browser sub-policy name, which is agreed upon by the API caller and the specified browser. If the value is an empty string, the browser policy corresponding to **appId** is to be set.|
+| policyValue | string                                                  | Yes  | Browser sub-policy value, which is agreed upon by the API caller and the specified browser. If the value is an empty string, the policy corresponding to the policy name is removed.|
 
 **Error codes**
 
@@ -72,7 +72,9 @@ let wantTemp: Want = {
 
 // Replace the value of appId with the specified application ID of the browser.
 let appId: string = 'com.example.******_******/******5t5CoBM=';
+// Browser policy name.
 let policyName: string = 'InsecurePrivateNetworkRequestsAllowed';
+// Browser policy value.
 let policyValue: string = '{"level":"mandatory","scope":"machine","source":"platform","value":true}';
 
 try {
@@ -85,9 +87,9 @@ try {
 
 ## browser.getPoliciesSync
 
-getPoliciesSync(admin: Want, appId: string): string
+getPoliciesSync(admin: Want | null, appId: string): string
 
-Obtains the browser policy by app ID.
+Obtains the policy set for a specified browser based on **appid**. This API is applicable to scenarios where the current browser policy configuration needs to be queried, for example, displaying policy details in an enterprise device administrator application and verifying whether a policy has taken effect.<!--RP1--><!--RP1End-->
 
 **System capability**: SystemCapability.Customization.EnterpriseDeviceManager
 
@@ -97,8 +99,8 @@ Obtains the browser policy by app ID.
 
 | Name| Type                                                   | Mandatory| Description                    |
 | ------ | ------------------------------------------------------- | ---- | ------------------------ |
-| admin  | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | Yes  | EnterpriseAdminExtensionAbility. **Want** must contain the ability name of the EnterpriseAdminExtensionAbility and the bundle name of the application.          |
-| appId  | string                                                  | Yes  | Application ID, which is used to specify the browser.|
+| admin     | [Want](../apis-ability-kit/js-apis-app-ability-want.md) \| null | Yes  | EnterpriseAdminExtensionAbility. **Want** must contain the ability name of the EnterpriseAdminExtensionAbility and the bundle name of the application.<br>When multiple MDM applications exist on the device, passing a **Want** parameter queries the policies set by the corresponding enterprise device administrator application for versions earlier than API version 26.0.0. Since API version 26.0.0, passing null is additionally supported to query the policies that actually take effect.|
+| appId  | string                                                  | Yes  | Application ID, which is used to specify the browser. For details, see [What is appId?](../../quick-start/common-problem-of-application.md#what-is-appid).|
 
 **Return value**
 
@@ -142,7 +144,11 @@ try {
 
 setManagedBrowserPolicy(admin: Want, bundleName: string, policyName: string, policyValue: string): void
 
-Sets the browser policy. After the setting is successful, the system common event [COMMON_EVENT_MANAGED_BROWSER_POLICY_CHANGED](../apis-basic-services-kit/common_event/commonEventManager-definitions.md#common_event_managed_browser_policy_changed) is released.
+Sets a browser policy for a specified browser. This API is applicable to scenarios where an enterprise needs to manage employees' browser behavior in a unified manner, such as configuring browser security policies. After the setting is successful, the system common event [COMMON_EVENT_MANAGED_BROWSER_POLICY_CHANGED](../apis-basic-services-kit/common_event/commonEventManager-definitions.md#common_event_managed_browser_policy_changed) is released.
+
+> **NOTE**
+>
+> In multi-MDM application scenarios, once a policy for a specific browser is configured and takes effect by the first admin, it can no longer be configured by other admins.
 
 **Required permissions**: ohos.permission.ENTERPRISE_SET_BROWSER_POLICY
 
@@ -150,15 +156,15 @@ Sets the browser policy. After the setting is successful, the system common even
 
 **Model restriction**: This API can be used only in the stage model.
 
-**Conflict rule**: [Latest configuration precedence](../../mdm/mdm-kit-multi-mdm.md#rule-3-latest-configuration-precedence).
+**Conflict rules:** The same policy of the same browser application is [exclusive](../../mdm/mdm-kit-multi-mdm.md#rule-2-policy-exclusivity). Policies for different browsers, or different policies for the same browser are [merged](../../mdm/mdm-kit-multi-mdm.md#rule-4-policy-merging).
 
 **Parameters**
 
 | Name     | Type                                                   | Mandatory| Description                                                        |
 | ----------- | ------------------------------------------------------- | ---- | ------------------------------------------------------------ |
 | admin       | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | Yes  | EnterpriseAdminExtensionAbility. **Want** must contain the ability name of the EnterpriseAdminExtensionAbility and the bundle name of the application.                                              |
-| bundleName  | string                                                  | Yes  | Application bundle name, which is used to specify the browser.                                    |
-| policyName  | string                                                  | Yes  | Browser policy name.|
+| bundleName  | string                                                  | Yes  | Application bundle name, which is used to specify the browser. It uniquely identifies an application.                                    |
+| policyName  | string                                                  | Yes  | Browser policy name, which is agreed upon by the API caller and the specified browser.|
 | policyValue | string                                                  | Yes  | Browser policy value. If the value is an empty string, the policy corresponding to the policy name is removed.|
 
 **Error codes**
@@ -184,8 +190,11 @@ let wantTemp: Want = {
   abilityName: 'EnterpriseAdminAbility'
 };
 // Replace with actual values.
+// Browser application bundle name.
 let bundleName: string = 'com.example.testbrowser';
+// Browser policy name.
 let policyName: string = 'InsecurePrivateNetworkRequestsAllowed';
+// Browser policy value.
 let policyValue: string = '{"level":"mandatory","scope":"machine","source":"platform","value":true}';
 
 try {
@@ -200,7 +209,7 @@ try {
 
 getManagedBrowserPolicy(admin: Want, bundleName: string): ArrayBuffer
 
-Obtains the browser policy by application bundle name.
+Obtains the policy of a specified browser based on the application bundle name. This API is applicable to scenarios where the current browser policy configuration needs to be queried, for example, displaying policy details in an enterprise device administrator application and verifying whether a policy has taken effect.
 
 **System capability**: SystemCapability.Customization.EnterpriseDeviceManager
 
@@ -258,7 +267,7 @@ try {
 
 getSelfManagedBrowserPolicyVersion(): string
 
-Obtains the policy version of a specified browser.
+Obtains the browser policy version of the current device.
 
 **System capability**: SystemCapability.Customization.EnterpriseDeviceManager
 

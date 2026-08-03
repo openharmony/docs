@@ -1,18 +1,19 @@
 # Arc Button (ArcButton) (Recommended for Circular Screens)
+
 <!--Kit: ArkUI-->
 <!--Subsystem: ArkUI-->
 <!--Owner: @liyi0309-->
 <!--Designer: @liyi0309-->
 <!--Tester: @lxl007-->
 <!--Adviser: @Brilliantry_Rui-->
-
+<!-- md-trans-meta sourceCommit=c88ab947462f95e06ee03413c4608c88b4b79178 translatedAt=2026-07-31T03:31:12.985Z pushedAt=2026-07-31T03:49:19.952Z -->
 
 Supported since API version 18, the **ArcButton** component represents an arc button. It is recommended for circular screens. It offers various button styles, such as emphasized, normal, and warning, tailored for users. For details, see [ArcButton](../reference/apis-arkui/arkui-ts/ohos-arkui-advanced-ArcButton.md).
-
 
 ## Creating a Button
 
 To create an **ArcButton** component, use the following:
+
 <!-- @[button_align_top](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkUISample/ButtonComponent/entry/src/main/ets/pages/ButtonAlignTop.ets) -->
 
 ``` TypeScript
@@ -25,6 +26,7 @@ ArcButton({
   })
 })
 ```
+
   [label](../reference/apis-arkui/arkui-ts/ohos-arkui-advanced-ArcButton.md#arcbuttonoptions): sets the text displayed on the button.<br>[position](../reference/apis-arkui/arkui-ts/ohos-arkui-advanced-ArcButton.md#arcbuttonoptions): sets the type of the button.<br>[styleMode](../reference/apis-arkui/arkui-ts/ohos-arkui-advanced-ArcButton.md#arcbuttonoptions): sets the style mode of the button.
 
   ![top](figures/ArcButtonTop.png)
@@ -33,11 +35,12 @@ ArcButton({
 
 The **ArcButton** component offers two types: top arc button and bottom arc button. Use the [position](../reference/apis-arkui/arkui-ts/ohos-arkui-advanced-ArcButton.md#arcbuttonoptions) attribute to set the type.
 
-- Lower arc button (default type)
+- Bottom arc button (default type)
 
   Set [position](../reference/apis-arkui/arkui-ts/ohos-arkui-advanced-ArcButton.md#arcbuttonoptions) to **ArcButtonPosition.BOTTOM_EDGE**.
+
   <!-- @[button_align_bottom](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkUISample/ButtonComponent/entry/src/main/ets/pages/ButtonAlignBottom.ets) -->
-  
+
   ``` TypeScript
   ArcButton({
     options: new ArcButtonOptions({
@@ -49,13 +52,15 @@ The **ArcButton** component offers two types: top arc button and bottom arc butt
   
   })
   ```
+
   ![bottom](figures/ArcButtonBottom.png)
 
-- Upper arc button
+- Top arc button
 
   Set [position](../reference/apis-arkui/arkui-ts/ohos-arkui-advanced-ArcButton.md#arcbuttonoptions) to **ArcButtonPosition.TOP_EDGE**.
+
   <!-- @[button_align_top](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkUISample/ButtonComponent/entry/src/main/ets/pages/ButtonAlignTop.ets) -->
-  
+
   ``` TypeScript
   ArcButton({
     options: new ArcButtonOptions({
@@ -66,6 +71,7 @@ The **ArcButton** component offers two types: top arc button and bottom arc butt
     })
   })
   ```
+
   ![top](figures/ArcButtonTOP_EDGE.png)
 
 ## Customizing the Style
@@ -73,8 +79,9 @@ The **ArcButton** component offers two types: top arc button and bottom arc butt
 - Setting the background color
 
   Use the [backgroundColor](../reference/apis-arkui/arkui-ts/ohos-arkui-advanced-ArcButton.md#arcbuttonoptions) attribute to set the background color of the button.
+
   <!-- @[button_bcg_color](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkUISample/ButtonComponent/entry/src/main/ets/pages/ButtonBcgColor.ets) -->
-  
+
   ``` TypeScript
   ArcButton({
     options: new ArcButtonOptions({
@@ -84,13 +91,15 @@ The **ArcButton** component offers two types: top arc button and bottom arc butt
     })
   })
   ```
+
   ![custom_bg](figures/ArcButtonCustom_bg.png)
 
 - Setting the font color
 
   Use the [fontColor](../reference/apis-arkui/arkui-ts/ohos-arkui-advanced-ArcButton.md#arcbuttonoptions) attribute to set the font color of the button.
+
   <!-- @[button_font_color](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkUISample/ButtonComponent/entry/src/main/ets/pages/ButtonFontColor.ets) -->
-  
+
   ``` TypeScript
   ArcButton({
     options: new ArcButtonOptions({
@@ -101,13 +110,15 @@ The **ArcButton** component offers two types: top arc button and bottom arc butt
     })
   })
   ```
+
   ![custom_font](figures/ArcButtonCustom_font.png)
 
 - Setting the shadow color
 
   Enable the button shadow using the [shadowEnabled](../reference/apis-arkui/arkui-ts/ohos-arkui-advanced-ArcButton.md#arcbuttonoptions) attribute and set the shadow color using the [shadowColor](../reference/apis-arkui/arkui-ts/ohos-arkui-advanced-ArcButton.md#arcbuttonoptions) attribute.
+
   <!-- @[button_shadow_color](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkUISample/ButtonComponent/entry/src/main/ets/pages/ButtonShadow.ets) -->
-  
+
   ``` TypeScript
   ArcButton({
     options: new ArcButtonOptions({
@@ -117,13 +128,15 @@ The **ArcButton** component offers two types: top arc button and bottom arc butt
     })
   })
   ```
+
   ![custom_shadow](figures/ArcButtonCustom_shadow.png)
 
 ## Adding Events
 
 - Bind the **onClick** event to define custom behavior to be executed when the button is clicked.
+
   <!-- @[button_click](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkUISample/ButtonComponent/entry/src/main/ets/pages/ButtonAlignTop.ets) -->
-  
+
   ``` TypeScript
   ArcButton({
     options: new ArcButtonOptions({
@@ -135,9 +148,11 @@ The **ArcButton** component offers two types: top arc button and bottom arc butt
     })
   })
   ```
+
 - Bind the **onTouch** event to define custom behavior to be executed when the button is touched.
+
   <!-- @[button_touch](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkUISample/ButtonComponent/entry/src/main/ets/pages/ButtonAlignBottom.ets) -->
-  
+
   ``` TypeScript
   ArcButton({
     options: new ArcButtonOptions({
@@ -155,16 +170,18 @@ The **ArcButton** component offers two types: top arc button and bottom arc butt
 
 This example demonstrates a brightness settings screen where a slider displays the current brightness level at 30%. When the reset button is clicked, the brightness value is reset to the default value of 50%.
 
-You are advised to run this example on a wearable for optimal display effects and it can also run on other devices. To run the example on a wearable, configure **wearable** under the [deviceTypes](../quick-start/module-configuration-file.md#devicetypes) tag in the [module.json5] (../quick-start/module-configuration-file.md) configuration file in the **src/main** directory.
+You are advised to run this example on a wearable for optimal display effects and it can also run on other devices. To run the example on a wearable, configure **wearable** under the [deviceTypes](../quick-start/module-configuration-file.md#devicetypes) tag in the [module.json5](../quick-start/module-configuration-file.md) configuration file in the **src/main** directory.
+
 <!-- @[module_json_config](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkUISample/ButtonComponent/entry/src/main/module.json5) -->
 
 ``` JSON5
 "module": {
-  // ···
+  // ...
   "deviceTypes": [
+    "default",
     "wearable"
   ],
-  // ···
+  // ...
 }
 ```
 
@@ -245,4 +262,5 @@ struct BrightnessPage {
   }
 }
 ```
+
 ![example](figures/example_normal.png)

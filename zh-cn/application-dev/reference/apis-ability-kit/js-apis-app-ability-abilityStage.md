@@ -82,7 +82,7 @@ onAcceptWant(want: Want): string
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| want | [Want](js-apis-app-ability-want.md) | 是 | Want类型参数，此处表示调用方传入的启动参数，如Ability名称，Bundle名称等。 |
+| want | [Want](js-apis-app-ability-want.md) | 是 | Want类型参数，此处表示调用方传入的启动参数，如Ability名称、Bundle名称等。 |
 
 **返回值：**
 
@@ -139,7 +139,7 @@ onNewProcessRequest(want: Want): string
 
 | 类型 | 说明 |
 | -------- | -------- |
-| string | 返回一个由开发者自行决定的进程字符串标识，如果之前此标识对应的进程已被创建，就让ability在此进程中运行，否则创建新的进程。 |
+| string | 返回一个由开发者自行决定的进程字符串标识，如果之前此标识对应的进程已被创建，就让Ability在此进程中运行，否则创建新的进程。 |
 
 **示例：**
 
@@ -251,7 +251,7 @@ onPrepareTermination(): AbilityConstant.PrepareTermination
 
 > **说明：**
 >
-> - 仅当应用正常退出（例如，通过doc栏/托盘关闭应用，或者应用随设备关机而退出）时会调用该接口。如果应用被强制关闭，则不会调用该接口。
+> - 仅当应用正常退出（例如，通过任务栏/托盘关闭应用，或者应用随设备关机而退出）时会调用该接口。如果应用被强制关闭，则不会调用该接口。
 >
 > - 当[AbilityStage.onPrepareTerminationAsync](#onprepareterminationasync15)实现时，本回调函数将不执行。
 
@@ -292,7 +292,7 @@ onPrepareTerminationAsync(): Promise\<AbilityConstant.PrepareTermination>
 
 > **说明：**
 >
-> - 仅当应用正常退出（例如，通过doc栏/托盘关闭应用，或者应用随设备关机而退出）时会调用该接口。如果应用被强制关闭，则不会调用该接口。
+> - 仅当应用正常退出（例如，通过任务栏/托盘关闭应用，或者应用随设备关机而退出）时会调用该接口。如果应用被强制关闭，则不会调用该接口。
 >
 > - 若异步回调内发生crash，按超时处理，执行等待超过10秒未响应，应用将被强制关闭。
 
@@ -354,13 +354,13 @@ onAcceptWantAsync(want: Want): Promise\<string\>
 **示例：**
 
 ```ts
-import { AbilityStage } from '@kit.AbilityKit';
+import { AbilityStage, Want } from '@kit.AbilityKit';
 
 class MyAbilityStage extends AbilityStage {
   async onAcceptWantAsync(want: Want): Promise<string> {
     await new Promise<string>((res, rej) => {
       setTimeout(res, 1000); // 延时1秒后执行
-      console.info(`onNewProcessRequestAsync, want: ${JSON.stringify(want)}`);
+      console.info(`onAcceptWantAsync, want: ${JSON.stringify(want)}`);
     });
     return 'default';
   }
@@ -400,7 +400,7 @@ onNewProcessRequestAsync(want: Want): Promise\<string\>
 **示例：**
 
 ```ts
-import { AbilityStage } from '@kit.AbilityKit';
+import { AbilityStage, Want } from '@kit.AbilityKit';
 
 class MyAbilityStage extends AbilityStage {
   async onNewProcessRequestAsync(want: Want): Promise<string> {
@@ -444,6 +444,10 @@ onAboutToCreateAbility(): void
 
 开发者可以通过重写此方法来执行在创建第一个Ability之前的准备工作。
 
+> **说明：**
+>
+> - 从API版本26.0.0开始，若实现了[AbilityStage.onAboutToCreateAbilityAsync](#onabouttocreateabilityasync2600)，则不会触发本回调函数。
+
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
 **示例：**
@@ -455,6 +459,48 @@ export default class MyAbilityStage extends AbilityStage {
   onAboutToCreateAbility(): void {
     console.info('About to create first ability, preparing...');
     // 在此添加创建第一个Ability前的准备工作
+  }
+}
+```
+
+### onAboutToCreateAbilityAsync<sup>26.0.0+</sup>
+
+onAboutToCreateAbilityAsync(): Promise\<void\>
+
+当AbilityStage即将创建第一个Ability时调用。使用Promise异步回调。
+
+此方法返回的Promise成功resolve后，后续的生命周期回调才会继续执行；否则将被挂起。
+
+开发者可通过重写此方法，在AbilityStage创建首个Ability之前，执行必要的异步初始化与准备工作。
+
+> **说明：**
+>
+> 若同时实现[onAboutToCreateAbility](#onabouttocreateability24)和此方法，仅此方法生效。
+
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
+
+**返回值：**
+
+| 类型 | 说明 |
+| -------- | -------- |
+| Promise\<void\> | Promise对象，无返回值。在Promise成功resolve后，后续的生命周期回调才会继续执行。 |
+
+**示例：**
+
+```ts
+import { AbilityStage } from '@kit.AbilityKit';
+
+export default class MyAbilityStage extends AbilityStage {
+  async onAboutToCreateAbilityAsync(): Promise<void> {
+    console.info('About to create first ability, preparing...');
+    // 执行异步初始化操作
+    await new Promise<void>((resolve) => {
+      setTimeout(() => {
+        console.info('Async preparation completed');
+        resolve();
+      }, 1000);
+    });
+    // 初始化完成后，才会继续创建Ability
   }
 }
 ```

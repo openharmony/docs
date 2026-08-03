@@ -27,7 +27,7 @@ createModuleContext(context: Context, bundleName: string, moduleName: string): P
 
 > **说明：**
 >
-> - 从API version 18开始，Context支持获取当前应用的进程名[processName](js-apis-inner-application-context.md#context)。createModuleContext创建的Context中的processName属性与入参Context中的processName属性一致，其他属性根据入参Context、bundleName和moduleName获得相应的属性值。
+> - 从API version 18开始，[Context](js-apis-inner-application-context.md#context)支持获取当前应用的进程名processName。createModuleContext创建的Context中的processName属性与入参Context中的processName属性一致，其他属性根据入参Context、bundleName和moduleName获得相应的属性值。
 >
 > - 由于创建模块上下文的过程涉及资源查询与初始化，耗时相对较长，在对应用流畅性要求较高的场景下，不建议频繁或多次调用createModuleContext接口创建多个Context实例，以免影响用户体验。
 
@@ -42,7 +42,7 @@ createModuleContext(context: Context, bundleName: string, moduleName: string): P
 | 参数名        | 类型                                       | 必填   | 说明             |
 | --------- | ---------------------------------------- | ---- | -------------- |
 | context | [Context](../../reference/apis-ability-kit/js-apis-inner-application-context.md) | 是 | 表示应用上下文。 | 
-| bundleName | string   | 是    | 表示应用包名。取值为空字符串时，默认为当前应用。|
+| bundleName | string   | 是    | 表示应用包名。取值为空字符串时，默认取当前应用的包名。|
 | moduleName | string | 是 | 表示应用模块名。 |
 
 **返回值：**
@@ -71,7 +71,7 @@ export default class EntryAbility extends UIAbility {
   onCreate() {
     let moduleContext: common.Context;
     try {
-      application.createModuleContext(this.context, 'bundlename', 'entry').then((data: Context)=>{
+      application.createModuleContext(this.context, 'bundlename', 'entry').then((data: common.Context)=>{
         moduleContext = data;
         console.info('createModuleContext success!');
       }).catch((error : BusinessError)=>{
@@ -92,7 +92,7 @@ createBundleContext(context: Context, bundleName: string): Promise\<Context>
 
 > **说明：**
 >
-> 从API version 18开始，Context支持获取当前应用的进程名[processName](js-apis-inner-application-context.md#context)。createBundleContext创建的Context中的processName属性与入参Context中的processName属性一致，其他属性根据入参Context、bundleName和moduleName获得相应的属性值。
+> 从API version 18开始，[Context](js-apis-inner-application-context.md#context)支持获取当前应用的进程名processName。createBundleContext创建的Context中的processName属性与入参Context中的processName属性一致，其他属性根据入参Context和bundleName获得相应的属性值。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -134,7 +134,7 @@ export default class EntryAbility extends UIAbility {
   onCreate() {
     let moduleContext: common.Context;
     try {
-      application.createBundleContext(this.context, 'bundlename').then((data: Context)=>{
+      application.createBundleContext(this.context, 'bundlename').then((data: common.Context)=>{
         moduleContext = data;
         console.info('createBundleContext success!');
       }).catch((error : BusinessError)=>{
@@ -151,7 +151,7 @@ export default class EntryAbility extends UIAbility {
 
 createPluginModuleContextForHostBundle(context: Context, pluginBundleName: string, pluginModuleName: string, hostBundleName: string): Promise\<Context>
 
-根据入参Context、插件包名和插件模块名和应用包名，创建对应插件的Context，用于获取插件的基本信息。使用Promise异步回调。
+根据入参Context、插件包名、插件模块名和安装插件的应用包名，创建对应插件的Context，用于获取插件的基本信息。使用Promise异步回调。
 
 **需要权限**：ohos.permission.GET_BUNDLE_INFO_PRIVILEGED
 
@@ -194,7 +194,7 @@ export default class EntryAbility extends UIAbility {
     let moduleContext: common.Context;
     try {
       application.createPluginModuleContextForHostBundle(this.context, 'com.example.pluginBundleName', 'pluginModuleName', 'com.example.hostBundleName')
-        .then((data: Context) => {
+        .then((data: common.Context) => {
           moduleContext = data;
           console.info('createPluginModuleContextForHostBundle success!');
         })

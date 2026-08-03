@@ -22,7 +22,7 @@ import { quickFixManager } from '@kit.AbilityKit';
 
 ## HapModuleQuickFixInfo
 
-hap级别的快速修复信息。
+HAP级别的快速修复信息。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.QuickFix
 
@@ -31,7 +31,7 @@ hap级别的快速修复信息。
 | 名称        | 类型                 | 只读 | 可选 | 说明                                                         |
 | ----------- | -------------------- | ---- | ---- | ------------------------------------------------------------ |
 | moduleName    | string               | 是 |  否   | HAP的名称。                               |
-| originHapHash    | string            | 是 |  否   | 指示hap的哈希值。                               |
+| originHapHash    | string            | 是 |  否   | 指示HAP的哈希值。                               |
 | quickFixFilePath    | string         | 是 |  否   | 指示快速修复文件的安装路径。                               |
 
 ## ApplicationQuickFixInfo
@@ -49,7 +49,7 @@ hap级别的快速修复信息。
 | bundleVersionName    | string        | 是 | 否   | 应用版本号的文字描述。                               |
 | quickFixVersionCode    | number      | 是 | 否   | 快速修复补丁包的版本号。                               |
 | quickFixVersionName    | string      | 是 | 否   | 快速修复补丁包版本号的文字描述。                               |
-| hapModuleQuickFixInfo    | Array\<[HapModuleQuickFixInfo](#hapmodulequickfixinfo)>   | 是 | 否   | hap级别的快速修复信息。     |
+| hapModuleQuickFixInfo    | Array\<[HapModuleQuickFixInfo](#hapmodulequickfixinfo)>   | 是 | 否   | HAP级别的快速修复信息。     |
 
 ## quickFixManager.applyQuickFix
 
@@ -267,7 +267,7 @@ try {
 }
 ```
 
-## quickFixManager.revokeQuickFix<sup>10+<sup>
+## quickFixManager.revokeQuickFix<sup>10+</sup>
 
 revokeQuickFix(bundleName: string, callback: AsyncCallback\<void>): void;
 
@@ -298,7 +298,7 @@ revokeQuickFix(bundleName: string, callback: AsyncCallback\<void>): void;
 | 18500001 | The bundle does not exist or no patch has been applied. |
 | 18500009 | The application has an ongoing quick fix task. |
 
-在撤销补丁过程中发生的错误，其错误码及错误信息通过公共事件[COMMON_EVENT_QUICK_FIX_REVOKE_RESULT](../apis-basic-services-kit/common_event/commonEventManager-definitions.md#common_event_quick_fix_revoke_result10)的参数返回给应用开发者。
+在撤销补丁过程中发生的错误，其错误码及错误信息通过公共事件[COMMON_EVENT_QUICK_FIX_REVOKE_RESULT](../apis-basic-services-kit/common_event/commonEventManager-definitions.md#common_event_quick_fix_revoke_result10)的参数返回给应用开发者。这部分错误码及错误信息如下：
 
 **示例：**
 
@@ -314,7 +314,7 @@ quickFixManager.revokeQuickFix(bundleName, (err) => {
 });
 ```
 
-## quickFixManager.revokeQuickFix<sup>10+<sup>
+## quickFixManager.revokeQuickFix<sup>10+</sup>
 
 revokeQuickFix(bundleName: string): Promise\<void>;
 
@@ -350,7 +350,7 @@ revokeQuickFix(bundleName: string): Promise\<void>;
 | 18500001 | The bundle does not exist or no patch has been applied. |
 | 18500009 | The application has an ongoing quick fix task. |
 
-在撤销补丁过程中发生的错误，其错误码及错误信息通过公共事件[COMMON_EVENT_QUICK_FIX_REVOKE_RESULT](../apis-basic-services-kit/common_event/commonEventManager-definitions.md#common_event_quick_fix_revoke_result10)的参数返回给应用开发者。这部分错误码及错误信息如下：
+在撤销补丁过程中发生的错误，其错误码及错误信息通过公共事件[COMMON_EVENT_QUICK_FIX_REVOKE_RESULT](../apis-basic-services-kit/common_event/commonEventManager-definitions.md#common_event_quick_fix_revoke_result10)的参数返回给应用开发者。
 
 **示例：**
 

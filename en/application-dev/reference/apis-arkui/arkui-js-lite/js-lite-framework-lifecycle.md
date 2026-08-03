@@ -1,21 +1,23 @@
 # Lifecycle
+
 <!--Kit: ArkUI-->
 <!--Subsystem: ArkUI-->
 <!--Owner: @huangxiaolinabc-->
 <!--Designer: @fangzhiyuan1-->
 <!--Tester: @Giacinta-->
 <!--Adviser: @Brilliantry_Rui-->
-<!-- md-trans-meta sourceCommit=907dbe833940a2647e3ff7ec970329a62449fd1c translatedAt=2026-06-23T08:17:14.438Z pushedAt=2026-06-23T08:19:18.879Z -->
+<!-- md-trans-meta sourceCommit=dfb15c325281e5e789ea7ade45dfdd45876606ad translatedAt=2026-07-27T02:27:31.344Z pushedAt=2026-07-27T09:23:36.747Z -->
 
+The **Lifecycle** module describes state changes of an app or a page from creation, display, and hiding to destruction. Developers can use the app lifecycle and page lifecycle function to handle initialization, page show/hide responses, destruction, and clearing at the corresponding stages. This module is applicable to scenarios such as managing app startup and exit, page switching, and foreground-background state changes, facilitating service logic and resource management by stage.
 
 ## Application Lifecycle
 
-You can define the following application lifecycle methods in the **app.js** file.
+You can define the following app lifecycle methods in the **app.js** file.
 
 | Attribute     | Type      | Description    | Called When          |
 | --------- | ---------- | -------- | ------------------ |
-| onCreate  | () => void | Listens for application creation.| The application is created.|
-| onDestroy | () => void | Listens for application uninstallation.| The application exits.|
+| onCreate  | () => void | Listens for app creation. | The app is created. |
+| onDestroy | () => void | Listens for app uninstallation.| The app exits.|
 
 ## Page Lifecycle
 
@@ -36,10 +38,15 @@ You can define the following page lifecycle functions in the **.js** file of the
 The lifecycle functions of page A are called in the following sequence:
 
 - Open page A: **onInit()** -> **onReady()** -> **onShow()**
+
 - Open page B on page A: **onHide()** -> **onDestroy()**
+
 - Go back to page A from page B: **onInit()** -> **onReady()** -> **onShow()**
+
 - Exit page A: **onHide()** -> **onDestroy()**
+
 - Hide page A: **onHide()**
+
 - Show background page A on the foreground: **onShow()**
 
 ![img](figures/lifecycle.png)

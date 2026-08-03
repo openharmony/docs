@@ -1,20 +1,22 @@
 # Freezing a Custom Component (V2)
+
 <!--Kit: ArkUI-->
 <!--Subsystem: ArkUI-->
 <!--Owner: @liwenzhen3-->
-<!--Designer: @s10021109-->
+<!--Designer: @zhangboren-->
 <!--Tester: @TerryTsao-->
 <!--Adviser: @zhang_yixin13-->
+<!-- md-trans-meta sourceCommit=2fe87adc16af5a903a1eb4a9624e4d36fa962e3d translatedAt=2026-07-25T08:55:35.455Z pushedAt=2026-07-25T09:19:15.852Z -->
 
-When a custom component decorated by @ComponentV2 is inactive, it can be frozen so that its state variables do not respond to updates. This means that the [@Monitor](./arkts-new-monitor.md) decorated callback will not be triggered, and any nodes associated with these state variables will not be re-rendered. This freezing mechanism offers significant performance benefits in complex UI scenarios. It prevents inactive components from performing unnecessary updates when their state variables update, thereby reducing resource consumption. You can use the **freezeWhenInactive** attribute to specify whether to enable the freezing feature. If no parameter is passed in, this feature is disabled. The freezing feature is supported in the following scenarios and components: [page navigation and routing](../../reference/apis-arkui/js-apis-router.md), [TabContent](../../reference/apis-arkui/arkui-ts/ts-container-tabcontent.md), [Navigation](../../reference/apis-arkui/arkui-ts/ts-basic-components-navigation.md), [Repeat](../../reference/apis-arkui/arkui-ts/ts-rendering-control-repeat.md).
+When a custom component decorated by @ComponentV2 is in the inactive state, its state variables will not respond to updates. That is, [@Monitor](./arkts-new-monitor.md) will not be invoked, and the nodes associated with the state variables will not be refreshed. This freeze mechanism significantly optimizes performance in complex UI scenarios by preventing inactive components from performing unnecessary refreshes due to state variable updates, thereby reducing resource consumption. The [freezeWhenInactive](../../reference/apis-arkui/arkui-ts/ts-custom-component-parameter.md#componentoptions) attribute determines whether to enable the freeze feature. When no parameter is passed, the freeze feature is not used by default. Supported scenarios include [page routing](../../reference/apis-arkui/js-apis-router.md), [TabContent](../../reference/apis-arkui/arkui-ts/ts-container-tabcontent.md), [Navigation](../../reference/apis-arkui/arkui-ts/ts-basic-components-navigation.md), and [Repeat](../../reference/apis-arkui/arkui-ts/ts-rendering-control-repeat.md).
 
-To implement this feature, a solid understanding of the basic syntax for @ComponentV2 is required. You are advised to read [\@ComponentV2](./arkts-create-custom-components.md#componentv2) in advance.
+Before reading this document, a solid understanding of the basic syntax for @ComponentV2 is required. You are advised to read [\@ComponentV2](./arkts-create-custom-components.md#componentv2) in advance.
 
 > **NOTE**
 >
 > Freezing of @ComponentV2 decorated custom components is supported since API version 12.
 >
-> Since API version 18, custom components can be frozen and used together.
+> Since API version 18, mixed scenarios of custom component freezing are supported.
 >
 > Since API version 22, you can set [inheritFreezeOptions](../../reference/apis-arkui/js-apis-arkui-builderNode.md#inheritfreezeoptions20) of [BuilderNode](../../reference/apis-arkui/js-apis-arkui-builderNode.md) to true to implement the following scenario: When component freezing is enabled for the parent component and BuilderNode is enabled for the middle layer of the component tree, the child components of BuilderNode can be frozen. For details, see [Configuring BuilderNode Freeze Inheritance](../arkts-user-defined-arktsNode-builderNode.md#configuring-buildernode-freeze-inheritance).
 >
@@ -36,7 +38,7 @@ For details, see the following.
 
 Page 1:
 
-<!-- @[freeze_template1_Page1_start](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkUISample/FreezeV2/entry/src/main/ets/pages/freeze/template1/Page1.ets) -->    
+<!-- @[freeze_template1_Page1_start](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkUISample/FreezeV2/entry/src/main/ets/pages/freeze/template1/Page1.ets) -->     
 
 ``` TypeScript
 import { hilog } from '@kit.PerformanceAnalysisKit';
@@ -70,6 +72,7 @@ export struct Page1 {
         .onClick(() => {
           this.bookTest.name = 'The Old Man and the Sea';
         })
+      // Tap the button to navigate to page 2.
       Button('go to next page').fontSize(25)
         .onClick(() => {
           this.getUIContext().getRouter().pushUrl({ url: 'pages/freeze/template1/Page2' });
@@ -82,11 +85,9 @@ export struct Page1 {
 }
 ```
 
-
-
 Page 2:
 
-<!-- @[freeze_template1_Page2_start](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkUISample/FreezeV2/entry/src/main/ets/pages/freeze/template1/Page2.ets) -->
+<!-- @[freeze_template1_Page2_start](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkUISample/FreezeV2/entry/src/main/ets/pages/freeze/template1/Page2.ets) --> 
 
 ``` TypeScript
 @Entry
@@ -95,6 +96,7 @@ struct Page2 {
   build() {
     Column() {
       Text('This is the page2').fontSize(25)
+      // Tap the button to navigate back to page 1.
       Button('Back')
         .onClick(() => {
           this.getUIContext().getRouter().back();
@@ -104,12 +106,11 @@ struct Page2 {
 }
 ```
 
-
 In the preceding example:
 
 1. Click **changeBookName** on page 1. The name attribute of the bookTest variable is changed, and the onMessageChange method registered in @Monitor is called.
 
-2. Click **go to next page** on page 1 to jump to page 2, and then update the status variable bookTest after 1s. When **bookTest** is updated, page 1 is already in the inactive state, where the [@Local](./arkts-new-local.md) decorated state variable **bookTest** does not respond to updates. Therefore, the @Monitor is not called, and no UI re-rendering occurs for nodes bound to this state variable.
+2. Click **go to next page** on page 1 to jump to page 2, and then update the state variable bookTest after 1s. When **bookTest** is updated, page 1 is already in the inactive state, where the [@Local](./arkts-new-local.md) decorated state variable **bookTest** does not respond to updates. Therefore, the @Monitor is not called, and no UI re-rendering occurs for nodes bound to this state variable.
 
 The trace information is shown below.
 
@@ -121,7 +122,7 @@ The trace information is shown below.
 
 ### TabContent
 
-Freezes the TabContent that is currently invisible in Tabs. Modifying the status variable does not trigger the update of the frozen component.
+Freezes the TabContent that is currently invisible in Tabs. Modifying the state variable does not trigger the update of the frozen component.
 
 During initial rendering, only the **TabContent** component that is being displayed is created. The remaining **TabContent** components are created only when all TabContent components are switched.
 
@@ -129,7 +130,7 @@ For details, see the following.
 
 ![freezeWithTab](./figures/freezewithTabs.png)
 
-<!-- @[freeze_template2_start](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkUISample/FreezeV2/entry/src/main/ets/pages/freeze/template2/TabContentTest.ets) --> 
+<!-- @[freeze_template2_start](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkUISample/FreezeV2/entry/src/main/ets/pages/freeze/template2/TabContentTest.ets) -->
 
 ``` TypeScript
 import { hilog } from '@kit.PerformanceAnalysisKit';
@@ -145,6 +146,7 @@ struct TabContentTest {
   build() {
     Row() {
       Column() {
+        // Tap the button to modify message. The visible TabContent triggers the onMessageUpdated callback.
         Button('change message').onClick(() => {
           this.message++;
         })
@@ -170,7 +172,7 @@ struct FreezeChild {
 
   @Monitor('message')
   onMessageUpdated(mon: IMonitor) {
-    hilog.info(DOMAIN, 'testTag', `FreezeChild message callback func ${this.message}, index: ${this.index}`);
+    hilog.info(DOMAIN, 'FreezeChild', `FreezeChild message callback func ${this.message}, index: ${this.index}`);
   }
 
   build() {
@@ -181,17 +183,15 @@ struct FreezeChild {
 }
 ```
 
-
 In the preceding example:
 
 1. When **change message** is clicked, the value of **message** changes, triggering the @Monitor decorated **onMessageUpdated** callback of the **TabContent** component being displayed.
 
 2. When **tab1** in **TabBar** is clicked to navigate to another **TabContent** component, the component switches from inactive to active, triggering the corresponding **onMessageUpdated** callback registered via @Monitor.
 
-3. When **change message** is clicked again, the value of **message** changes, triggering only the **onMessageUpdated** callback registered via @Monitor in of the **TabContent** component being displayed. Other inactive **TabContent** components do not trigger @Monitor decorated callbacks.
+3. When **change message** is clicked again, the value of **message** changes, triggering only the **onMessageUpdated** callback registered via @Monitor of the **TabContent** component being displayed. Other inactive **TabContent** components do not trigger @Monitor decorated callbacks.
 
 ![TabContent.gif](figures/TabContent.gif)
-
 
 ### Navigation
 
@@ -217,7 +217,7 @@ struct MyNavigationTestStack {
 
   @Monitor('message')
   info() {
-    hilog.info(DOMAIN, 'testTag', `freeze-test MyNavigation message callback ${this.message}`);
+    hilog.info(DOMAIN, 'FreezeChild', `freeze-test MyNavigation message callback ${this.message}`);
   }
 
   @Builder
@@ -241,7 +241,7 @@ struct MyNavigationTestStack {
         Column() {
           Button('Next Page', { stateEffect: true, type: ButtonType.Capsule })
             .onClick(() => {
-              this.pageInfo.pushPath({ name: 'pageOne' }); // Push the navigation destination page specified by name to the navigation stack.
+              this.pageInfo.pushPath({ name: 'pageOne' }); // Push the NavDestination page information specified by name onto the stack.
             })
         }
       }.title('NavIndex')
@@ -347,8 +347,8 @@ struct NavigationContentMsgStack {
 
   @Monitor('message')
   info() {
-    hilog.info(DOMAIN, 'testTag', `freeze-test NavigationContent message callback ${this.message}`);
-    hilog.info(DOMAIN, 'testTag', `freeze-test ---- called by content ${this.index}`);
+    hilog.info(DOMAIN, 'FreezeChild', `freeze-test NavigationContent message callback ${this.message}`);
+    hilog.info(DOMAIN, 'FreezeChild', `freeze-test ---- called by content ${this.index}`);
   }
 
   build() {
@@ -359,7 +359,6 @@ struct NavigationContentMsgStack {
   }
 }
 ```
-
 
 In the preceding example:
 
@@ -466,12 +465,11 @@ struct ChildComponent {
 }
 ```
 
-
 In the preceding example:
 
 After **Reduce length to 5** is clicked, the two removed components enter the cache pool of **Repeat**. Then, clicking **Change bgColor** changes the value of **bgColor**, triggering component re-rendering.
 
-With component freezing enabled (**freezeWhenInactive: true**), only the @Monitor decorated **onBgColorChange** callback in the remaining active nodes is triggered. In the example, the five active nodes are re-rendered, causing five logs to be printed.
+With component freezing enabled (**freezeWhenInactive: true**), only the @Monitor decorated **onBgColorChange** callback in the remaining active nodes is triggered. In the example, the five visible nodes refresh and log five messages, but the cached nodes do not.
 
 ![freeze_repeat_L2.gif](figures/freeze_repeat_L2.gif)
 
@@ -502,8 +500,6 @@ struct ChildComponent1 {
 }
 ```
 
-
-
 When component freezing is disabled (**freezeWhenInactive: false** - the default setting when **freezeWhenInactive** is not specified), the @Monitor decorated **onBgColorChange** callback is triggered for both the remaining active components and components in the cache pool. This means all seven components are re-rendered, printing seven logs.
 
 ![freeze_repeat_L2_unfreeze.gif](figures/freeze_repeat_L2_unfreeze.gif)
@@ -512,7 +508,7 @@ When component freezing is disabled (**freezeWhenInactive: false** - the default
 
 You can selectively freeze specific child components by setting **freezeWhenInactive: true** only on those child components.
 
-<!-- @[freeze_template5_PageA_start](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkUISample/FreezeV2/entry/src/main/ets/pages/freeze/template5/PageA.ets) -->
+<!-- @[freeze_template5_PageA_start](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkUISample/FreezeV2/entry/src/main/ets/pages/freeze/template5/PageA.ets) --> 
 
 ``` TypeScript
 // src/main/ets/pages/freeze/template5/PageA.ets
@@ -539,6 +535,7 @@ struct PageA {
       Navigation(this.pageInfo) {
         Child()
 
+        // Tap the button to navigate to PageB.
         Button('Go to next page').fontSize(30)
           .onClick(() => {
             this.pageInfo.pushPathByName('PageB', null);
@@ -577,8 +574,7 @@ export struct Child {
 }
 ```
 
-
-<!-- @[freeze_template5_PageB_start](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkUISample/FreezeV2/entry/src/main/ets/pages/freeze/template5/PageB.ets) -->
+<!-- @[freeze_template5_PageB_start](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkUISample/FreezeV2/entry/src/main/ets/pages/freeze/template5/PageB.ets) --> 
 
 ``` TypeScript
 // src/main/ets/pages/freeze/template5/PageB.ets
@@ -596,6 +592,7 @@ struct PageB {
       Column() {
         Text('This is the PageB')
 
+        // Tap the button to navigate back to PageA.
         Button('Back').fontSize(30)
           .onClick(() => {
             this.pathStack.pop();
@@ -607,7 +604,6 @@ struct PageB {
   }
 }
 ```
-
 
 When using **Navigation**, create a **route_map.json** file as shown below in the **src/main/resources/base/profile** directory, replacing the value of **pageSourceFile** with the actual path to **PageB**. Then, add **"routerMap": "$profile: route_map"** to the **module.json5** file.
 
@@ -627,8 +623,11 @@ When using **Navigation**, create a **route_map.json** file as shown below in th
 ```
 
 In the preceding example:
+
 - The child component **Child** in **PageA** has **freezeWhenInactive: true** configured.
+
 - During the test, click the **change BookName** button; within 3 seconds, click the **Go to next page** button. When **bookTest** is updated, **PageA** is already in the inactive state after navigation to **PageB**. Due to component freezing enabled for **Child**, the **@Local bookTest** state variable does not respond to updates. This means that the @Monitor decorated method will not be called, and any nodes associated with the state variable will not be re-rendered.
+
 - After the **Back** button is clicked to return to the previous page, the @Monitor decorated callback is triggered, and components associated with the state variable will be re-rendered.
 
 ### Mixed Use of Component Freezing
@@ -637,7 +636,7 @@ When scenarios that support component freezing are used together, the freezing b
 
 **Mixed Use of Navigation and TabContent**
 
-<!-- @[freeze_template6_start](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkUISample/FreezeV2/entry/src/main/ets/pages/freeze/template6/MyNavigationTestStack.ets) -->
+<!-- @[freeze_template6_start](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkUISample/FreezeV2/entry/src/main/ets/pages/freeze/template6/MyNavigationTestStack.ets) -->  
 
 ``` TypeScript
 import { hilog } from '@kit.PerformanceAnalysisKit';
@@ -760,7 +759,7 @@ struct MyNavigationTestStack1 {
             .height(40)
             .margin(20)
             .onClick(() => {
-              this.pageInfo.pushPath({ name: 'pageOne' }); // Push the navigation destination page specified by name to the navigation stack.
+              this.pageInfo.pushPath({ name: 'pageOne' }); // Push the NavDestination page information specified by name onto the stack.
             })
         }
       }.title('NavIndex')
@@ -777,6 +776,7 @@ struct PageOneStack1 {
   build() {
     NavDestination() {
       Column() {
+        // Create TabContent in NavDestination.
         TabsComponent()
 
         Button('Next Page', { stateEffect: true, type: ButtonType.Capsule })
@@ -819,20 +819,19 @@ struct PageTwoStack2 {
 }
 ```
 
-
 For API version 17 or earlier:
 
-Navigating to the next page using the **Next page** button and then returning to the previous page will thaw all **TabContent** components.
+When you tap `Next Page` to navigate to the next page and then return, all tabs of **TabContent** are unfrozen.
 
 For API version 18 or later:
 
-Navigating to the next page using the **Next page** button and then returning to the previous page will thaw only the **TabContent** component being displayed.
+When you tap `Next Page` to navigate to the next page and then return, only the nodes of the corresponding tab are unfrozen.
 
 ## Constraints
 
-In API version 21 and earlier versions, as shown in the following example, the custom node [BuilderNode](../../reference/apis-arkui/js-apis-arkui-builderNode.md) is used in FreezeBuildNode. When a BuilderNode is used within a frozen component hierarchy, its imperative mounting mechanism conflicts with the functionality of component freezing, which relies on parent-child relationships. As a result, the child components of the BuilderNode remain active, regardless of their parent's frozen state. Since API version 22, you can [configuring BuilderNode freeze inheritance](../arkts-user-defined-arktsNode-builderNode.md#configuring-buildernode-freeze-inheritance).
+In API version 21 and earlier versions, as shown in the following example, the custom node [BuilderNode](../../reference/apis-arkui/js-apis-arkui-builderNode.md) is used in FreezeBuildNode. When a BuilderNode is used within a frozen component hierarchy, its imperative mounting mechanism conflicts with the functionality of component freezing, which relies on parent-child relationships. As a result, the child components of the BuilderNode remain active, regardless of their parent's frozen state. Since API version 22, you can [configure BuilderNode freeze inheritance](../arkts-user-defined-arktsNode-builderNode.md#configuring-buildernode-freeze-inheritance).
 
-<!-- @[freeze_template7_start](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkUISample/FreezeV2/entry/src/main/ets/pages/freeze/template7/BuilderNode.ets) -->
+<!-- @[freeze_template7_start](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkUISample/FreezeV2/entry/src/main/ets/pages/freeze/template7/BuilderNode.ets) --> 
 
 ``` TypeScript
 import { BuilderNode, FrameNode, NodeController, UIContext } from '@kit.ArkUI';
@@ -873,7 +872,7 @@ struct BuildNodeChild {
   // Use the @Monitor decorator to listen for the changes of storage.message.
   @Monitor('storage.message')
   onMessageChange(monitor: IMonitor) {
-    hilog.info(DOMAIN, 'onMessageChange',
+    hilog.info(DOMAIN, 'FreezeChild',
       `FreezeBuildNode BuildNodeChild message callback func ${this.storage.message}, index:${this.index}`);
   }
 
@@ -952,7 +951,7 @@ struct FreezeBuildNode {
   // Use the @Monitor decorator to listen for the changes of storage.message.
   @Monitor('storage.message')
   onMessageChange(monitor: IMonitor) {
-    hilog.info(DOMAIN, 'onMessageChange',
+    hilog.info(DOMAIN, 'FreezeChild',
       `FreezeBuildNode message callback func ${this.storage.message}, index: ${this.index}`);
   }
 

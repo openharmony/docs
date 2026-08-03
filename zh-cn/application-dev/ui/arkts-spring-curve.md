@@ -59,7 +59,7 @@ ArkUI提供了四种阻尼弹簧曲线接口。
 
 
 
-<!-- @[spring_curve](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkUISample/Animation/entry/src/main/ets/pages/springCurve/template1/SpringCurve.ets) -->
+<!-- @[spring_curve](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkUISample/Animation/entry/src/main/ets/pages/springCurve/template1/SpringCurve.ets) -->     
 
 ``` TypeScript
 import { curves } from '@kit.ArkUI';
@@ -129,8 +129,8 @@ export struct SpringCurve {
     // 请将$r('app.string.springCurve_text3')替换为实际资源文件，在本示例中该资源文件的value值为"初始速度10， 质量1， 刚度228， 阻尼30"
     new Spring('interpolating' + '\n' + 'Spring', $r('app.string.springCurve_text3'),
       curves.interpolatingSpring(10, 1, 228, 30)),
-    // 请将$r('app.string.springCurve_text1')替换为实际资源文件，在本示例中该资源文件的value值为"周期1, 阻尼0.25"
-    new Spring('springCurve', $r('app.string.springCurve_text1'),
+    // 请将$r('app.string.springCurve_text3')替换为实际资源文件，在本示例中该资源文件的value值为"初始速度10， 质量1， 刚度228， 阻尼30"
+    new Spring('springCurve', $r('app.string.springCurve_text3'),
       curves.springCurve(10, 1, 228, 30))
   ];
 

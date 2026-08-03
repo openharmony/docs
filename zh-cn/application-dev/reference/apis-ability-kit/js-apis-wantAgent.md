@@ -9,7 +9,7 @@
 
 <!--deprecated_code_no_check-->
 
-WantAgent模块提供了创建WantAgent实例、获取实例的用户ID、获取want信息、比较WantAgent实例和获取bundle名称等能力。
+WantAgent模块提供了创建WantAgent实例、获取实例的用户ID、获取Want信息、比较WantAgent实例和获取Bundle名称等能力。
 
 > **说明：**
 > 
@@ -822,8 +822,8 @@ wantAgent.getWantAgent({
 
 | 名称           | 类型                           | 只读 | 可选 | 说明                |
 | -------------- | ----------------------------- | ---- | ---- | ------------------ |
-| info           | WantAgent                       | 否   | 否   | 触发的wantAgent。       |
-| want           | Want                            | 否   | 否   | 存在的被触发的want。     |
+| info           | WantAgent                       | 否   | 否   | 触发的WantAgent。       |
+| want           | Want                            | 否   | 否   | 存在的被触发的Want。     |
 | finalCode      | number                          | 否   | 否   | 触发wantAgent的请求代码。|
 | finalData      | string                          | 否   | 否   | 公共事件收集的最终数据。  |
 | extraInfo      | { [key: string]: any }          | 否   | 是   | 额外数据。               |

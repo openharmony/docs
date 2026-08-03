@@ -1,7 +1,7 @@
 # @ohos.enterprise.dateTimeManager (System Time Management) (System API)
 <!--Kit: MDM Kit-->
 <!--Subsystem: Customization-->
-<!--Owner: @huanleima-->
+<!--Owner: @huanleima; @weizai16-->
 <!--Designer: @hp_guo-->
 <!--Tester: @lpw_work-->
 <!--Adviser: @zhang_yixin13-->
@@ -10,11 +10,11 @@ The **dateTimeManager** module provides APIs for system time management.
 
 > **NOTE**
 > 
-> The initial APIs of this module are supported since API version 9. Newly added APIs will be marked with a superscript to indicate their earliest API version.
+> The initial APIs of this module are supported since API version 9. Newly added APIs will be marked with a superscript to indicate their earliest API version. The APIs are deprecated since API version 26.0.0.
 >
 > The APIs of this module can be used only in the stage model.
 >
-> The APIs of this module can be called only by a [device administrator application](../../mdm/mdm-kit-term.md#mdm-application-device-administrator-application) that is [enabled](js-apis-enterprise-adminManager-sys.md#adminmanagerenableadmin-2).
+> The APIs of this module are available only to [MDM applications](../../mdm/mdm-kit-term.md#mdm-application-device-administrator-application), and can be called only after the device administrator application is activated via [enableAdmin](js-apis-enterprise-adminManager-sys.md#adminmanagerenableadmin-2).
 > 
 > The APIs provided by this module are system APIs.
 
@@ -24,11 +24,15 @@ The **dateTimeManager** module provides APIs for system time management.
 import { dateTimeManager } from '@kit.MDMKit';
 ```
 
-## dateTimeManager.setDateTime
+## dateTimeManager.setDateTime<sup>(deprecated)</sup>
 
 setDateTime(admin: Want, time: number, callback: AsyncCallback\<void>): void
 
 Sets the system time. This API uses an asynchronous callback to return the result.
+
+**Deprecated since:** 26.0.0
+
+**Substitutes:** [setValue](./js-apis-enterprise-deviceSettings.md#devicesettingssetvalue)
 
 **Required permissions**: ohos.permission.ENTERPRISE_SET_DATETIME
 
@@ -78,11 +82,15 @@ dateTimeManager.setDateTime(wantTemp, 1526003846000, (err) => {
 })
 ```
 
-## dateTimeManager.setDateTime
+## dateTimeManager.setDateTime<sup>(deprecated)</sup>
 
 setDateTime(admin: Want, time: number): Promise\<void>
 
 Sets the system time. This API uses a promise to return the result.
+
+**Deprecated since:** 26.0.0
+
+**Substitutes:** [setValue](./js-apis-enterprise-deviceSettings.md#devicesettingssetvalue)
 
 **Required permissions**: ohos.permission.ENTERPRISE_SET_DATETIME
 
@@ -103,7 +111,7 @@ Sets the system time. This API uses a promise to return the result.
 
 | Type  | Description                                 |
 | ----- | ----------------------------------- |
-| Promise\<void> | Promise that returns no value.|
+| Promise\<void> | Promise that returns no value. If the operations fails, an error object is thrown.|
 
 **Error codes**
 
@@ -138,11 +146,15 @@ dateTimeManager.setDateTime(wantTemp, 1526003846000).then(() => {
 })
 ```
 
-## dateTimeManager.disallowModifyDateTime<sup>10+</sup>
+## dateTimeManager.disallowModifyDateTime<sup>(deprecated)</sup>
 
 disallowModifyDateTime(admin: Want, disallow: boolean, callback: AsyncCallback\<void>): void
 
 Disallows the device to modify the system time. This API uses an asynchronous callback to return the result.
+
+**Deprecated since:** 26.0.0
+
+**Substitutes:** [setDisallowedPolicy](./js-apis-enterprise-restrictions.md#restrictionssetdisallowedpolicy24)
 
 **Required permissions**: ohos.permission.ENTERPRISE_SET_DATETIME
 
@@ -193,11 +205,15 @@ dateTimeManager.disallowModifyDateTime(wantTemp, true, (err) => {
 })
 ```
 
-## dateTimeManager.disallowModifyDateTime<sup>10+</sup>
+## dateTimeManager.disallowModifyDateTime<sup>(deprecated)</sup>
 
 disallowModifyDateTime(admin: Want, disallow: boolean): Promise\<void>
 
 Disallows the device to modify the system time. This API uses a promise to return the result.
+
+**Deprecated since:** 26.0.0
+
+**Substitutes:** [setDisallowedPolicy](./js-apis-enterprise-restrictions.md#restrictionssetdisallowedpolicy24)
 
 **Required permissions**: ohos.permission.ENTERPRISE_SET_DATETIME
 
@@ -252,11 +268,15 @@ dateTimeManager.disallowModifyDateTime(wantTemp, true).then(() => {
 })
 ```
 
-## dateTimeManager.isModifyDateTimeDisallowed<sup>10+</sup>
+## dateTimeManager.isModifyDateTimeDisallowed<sup>(deprecated)</sup>
 
 isModifyDateTimeDisallowed(admin: Want, callback: AsyncCallback\<boolean>): void
 
 Queries whether the system time of a device can be modified. This API uses an asynchronous callback to return the result.
+
+**Deprecated since:** 26.0.0
+
+**Substitutes:** [getDisallowedPolicy](./js-apis-enterprise-restrictions.md#restrictionsgetdisallowedpolicy24)
 
 **Required permissions**: ohos.permission.ENTERPRISE_SET_DATETIME
 
@@ -306,11 +326,15 @@ dateTimeManager.isModifyDateTimeDisallowed(wantTemp, (err, result) => {
 })
 ```
 
-## dateTimeManager.isModifyDateTimeDisallowed<sup>10+</sup>
+## dateTimeManager.isModifyDateTimeDisallowed<sup>(deprecated)</sup>
 
 isModifyDateTimeDisallowed(admin: Want): Promise\<boolean>
 
 Queries whether the system time of a device can be modified. This API uses a promise to return the result.
+
+**Deprecated since:** 26.0.0
+
+**Substitutes:** [getDisallowedPolicy](./js-apis-enterprise-restrictions.md#restrictionsgetdisallowedpolicy24)
 
 **Required permissions**: ohos.permission.ENTERPRISE_SET_DATETIME
 

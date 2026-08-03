@@ -539,7 +539,7 @@ isLocalWantAgent(agent: WantAgent): boolean
 **示例：**
 
 ```ts
-import { wantAgent } from '@kit.AbilityKit';
+import { wantAgent, Want } from '@kit.AbilityKit';
 import type { WantAgent } from '@kit.AbilityKit';
 
 // 声明wantAgent实例
@@ -589,4 +589,4 @@ try {
 
 | 名称                      | 值 | 说明                                            |
 |-------------------------|---|-----------------------------------------------|
-| START_SERVICE_EXTENSION<sup>12+</sup> | 6 | 启动一个ServiceExtension。<br/>**系统接口**：该接口为系统接口。 |
+| START_SERVICE_EXTENSION<sup>12+</sup> | 6 | 启动一个ServiceExtension。<br>**系统接口**：该接口为系统接口。 |

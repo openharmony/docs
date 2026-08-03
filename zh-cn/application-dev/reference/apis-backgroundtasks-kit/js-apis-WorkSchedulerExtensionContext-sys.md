@@ -37,7 +37,7 @@ class MyWorkSchedulerExtensionAbility extends WorkSchedulerExtensionAbility {
 
 startServiceExtensionAbility(want: Want): Promise\<void>
 
-启动ServiceExtensionAbility，使用Promise异步回调。
+启动ServiceExtensionAbility，用于在后台任务执行时需要启动关联的Service能力，使用Promise异步回调。
 
 **系统能力**：SystemCapability.ResourceSchedule.WorkScheduler
 
@@ -107,7 +107,7 @@ export default class MyWorkSchedulerExtensionAbility extends WorkSchedulerExtens
 
 stopServiceExtensionAbility(want: Want): Promise\<void>
 
-停止ServiceExtensionAbility，使用Promise异步回调。
+停止ServiceExtensionAbility，用于在后台任务结束或不再需要关联的Service能力，使用Promise异步回调。
 
 **系统能力**：SystemCapability.ResourceSchedule.WorkScheduler
 

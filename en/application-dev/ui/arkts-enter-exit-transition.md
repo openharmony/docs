@@ -1,14 +1,14 @@
 # Enter/Exit Transition
+
 <!--Kit: ArkUI-->
 <!--Subsystem: ArkUI-->
 <!--Owner: @CCFFWW-->
 <!--Designer: @CCFFWW-->
 <!--Tester: @lxl007-->
 <!--Adviser: @Brilliantry_Rui-->
+<!-- md-trans-meta sourceCommit=5c418d4bf2581cd8ca625b8865e73773ebc27789 translatedAt=2026-07-30T11:34:27.709Z pushedAt=2026-07-31T01:46:56.034Z -->
 
-
-You can use [transition](../reference/apis-arkui/arkui-ts/ts-transition-animation-component.md), a basic component transition API, to animate the process in which a component enters or exits the view. You can even use it with [TransitionEffect](../reference/apis-arkui/arkui-ts/ts-transition-animation-component.md#transitioneffect10) to up your animation game.
-
+[transition](../reference/apis-arkui/arkui-ts/ts-transition-animation-component.md) is a basic component transition interface used to implement animation effects when a component appears or disappears. Various effects can be defined through the combined use of [TransitionEffect<sup>10+</sup> objects](../reference/apis-arkui/arkui-ts/ts-transition-animation-component.md#transitioneffect10).
 
   **Table 1** Transition effect APIs
 
@@ -17,23 +17,22 @@ You can use [transition](../reference/apis-arkui/arkui-ts/ts-transition-animatio
 | IDENTITY | Disables the transition effect.| None.|
 | OPACITY | Applies the default opacity transition effect.| The component enters by changing the opacity from 0 to 1 and exits by changing the opacity from 1 to 0.|
 | SLIDE | Applies a sliding transition effect.| The component enters by sliding in from the left edge of the window and exits by sliding out from the right edge of the window.|
-| translate | Applies a translation transition effect.| The component enters by moving from the position set by the **translate** API to the default position (value **0**), and exits by moving from the default position (value **0**) to the position set by the **translate** API.|
-| rotate | Applies a rotation transition effect.| The component enters by rotating from the position set by the **rotate** API to the default position (value **0**), and exits by rotating from the default position (value **0**) to the position set by the **rotate** API.|
-| opacity | Applies an opacity transition effect.| The component enters by changing the opacity from the set value to **1** (default value) and exits by changing the opacity from **1** to the set value.|
+| translate | Creates a transition effect by setting component translation. | On appear, the translation parameter value changes from the value set by the translate interface to the default value 0; on disappear, it changes from the default value 0 to the value set by the translate interface. |
+| rotate | Creates a transition effect by setting component rotation. | On appear, the rotation parameter value changes from the value set by the rotate interface to the default value 0; on disappear, it changes from the default value 0 to the value set by the rotate interface. |
+| opacity | Creates a transition effect by setting the opacity parameter. | On appear, the opacity parameter value changes from the value set by opacity to the default opacity value 1; on disappear, it changes from the default opacity value 1 to the value set by opacity. |
 | move | Applies a transition effect by specifying which edge the component slides in and out of through [TransitionEdge](../reference/apis-arkui/arkui-ts/ts-transition-animation-component.md#transitionedge10).| The component enters by sliding in from the edge specified by **TransitionEdge** and exits by sliding out of the same edge.|
-| asymmetric | Applies an asymmetric transition effect.<br>- **appear**: enter transition effect.<br>- **disappear**: exit transition effect.| The component enters by applying the transition effect specified by **appear** and exits by applying the [TransitionEffect](../reference/apis-arkui/arkui-ts/ts-transition-animation-component.md#transitioneffect10) specified by **disappear**.|
-| combine | Combines with other transition effects.| The component enters and exits by combing with other transition effects.|
+| asymmetric | Combines asymmetric appear and disappear transition effects through this method. That is, appear and disappear use two independent sets of animations, and the effects are not inverse processes of each other. For details, see [asymmetric](../reference/apis-arkui/arkui-ts/ts-transition-animation-component.md#asymmetric10).<br/>- appear: effect of the appear transition.<br/>- disappear: effect of the disappear transition. | On appear, the TransitionEffect appear effect set by appear is used; on disappear, the [TransitionEffect](../reference/apis-arkui/arkui-ts/ts-transition-animation-component.md#transitioneffect10) disappear effect set by disappear is used. |
+| combine | Combines with other transition effects.| The component combines with other TransitionEffect and takes effect together.|
 | animation | Defines the animation settings for the transition effect.<br>- Unless otherwise specified, the animation settings of [animateTo](../reference/apis-arkui/arkui-ts/ts-explicit-animation.md) are used.<br>- Animation settings cannot be configured through the **animation** API of the component.<br>- The **onFinish** callback of the **animation** parameter in **TransitionEffect** does not take effect.| The API call sequence is from top to bottom. This means that the **animation** settings of **TransitionEffect** at the upper level also take effect on **TransitionEffect** at the lower level.|
 
-
 1. Create a **TransitionEffect** object.
-  
+
    <!-- @[transition_animation](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkUISample/Animation/entry/src/main/ets/pages/compTransition/template6/Index.ets) -->
-   
+
    ``` TypeScript
-   // The component enters by applying all enter transition effects and exits by applying all exit transition effects.
+   // On appear, all appear transition effects are superimposed, and on disappear, all disappear transition effects are superimposed.
    // Define the animation settings for each transition effect.
-   private effect: object =
+   private effect: TransitionEffect =
      TransitionEffect.OPACITY // Apply an opacity transition effect. As the animation API is not called here, the animation settings of animateTo are used.
        // Apply a scaling transition effect and specify springMotion (0.6, 1.2) as the curve.
        .combine(TransitionEffect.scale({ x: 0, y: 0 }).animation({ curve: curves.springMotion(0.6, 1.2) }))
@@ -51,14 +50,14 @@ You can use [transition](../reference/apis-arkui/arkui-ts/ts-transition-animatio
    ```
 
 2. Set the transition effects to the component by calling [transition](../reference/apis-arkui/arkui-ts/ts-transition-animation-component.md).
-  
+
    ```ts
    Text('test')
      .transition(this.effect)
    ```
 
 3. Add or delete the component to trigger transition.
-  
+
    ```ts
    @State isPresent: boolean = true;
    // ...
@@ -77,11 +76,10 @@ You can use [transition](../reference/apis-arkui/arkui-ts/ts-transition-animatio
    this.isPresent = false;
    ```
 
-
- The complete sample code and the resulting effect are shown below. In this example, transitions are triggered by directly adding or removing components. Alternatively, you can trigger transitions by modifying the component variables within the [animateTo](../reference/apis-arkui/arkui-ts/ts-explicit-animation.md) closure.
+ The complete sample code and the resulting effect are shown below. In this example, transitions are triggered by directly adding or removing components. Alternatively, you can trigger transitions by modifying the control variables within the [animateTo](../reference/apis-arkui/arkui-ts/ts-explicit-animation.md) closure.
 
    <!-- @[transition_effectExample4](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkUISample/Animation/entry/src/main/ets/pages/compTransition/template4/Index.ets) -->
-   
+
    ``` TypeScript
    import { curves } from '@kit.ArkUI';
    
@@ -145,15 +143,12 @@ You can use [transition](../reference/apis-arkui/arkui-ts/ts-transition-animatio
    }
    ```
 
-
-
 ![en-us_image_0000001599818064](figures/Enter-Exit-Transition.gif)
-
 
 When adding transition effects to multiple components, you can configure different delay values in [animation](../reference/apis-arkui/arkui-ts/ts-animatorproperty.md#animation) parameters of these effects so that the components exit one by one.
 
    <!-- @[transition_effectExample5](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkUISample/Animation/entry/src/main/ets/pages/compTransition/template5/Index.ets) -->
-   
+
    ``` TypeScript
    const ITEM_COUNTS = 9;
    const ITEM_COLOR = '#ED6F21';

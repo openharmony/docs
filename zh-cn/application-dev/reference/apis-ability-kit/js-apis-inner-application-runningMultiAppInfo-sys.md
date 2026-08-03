@@ -43,11 +43,11 @@ try {
     .then((info: appManager.RunningMultiAppInfo) => {
       console.info(`getRunningMultiAppInfo success, data: ${JSON.stringify(info)}`);
     }).catch((err: BusinessError) => {
-    console.error(`getRunningMultiAppInfo failed, code: ${err.code}, msg:${err.message}`);
+    console.error(`getRunningMultiAppInfo failed, code: ${err.code}, message: ${err.message}`);
   })
 } catch (err) {
   let code = (err as BusinessError).code;
   let msg = (err as BusinessError).message;
-  console.error(`getRunningMultiAppInfo error, code: ${code}, msg:${msg}`);
+  console.error(`getRunningMultiAppInfo error, code: ${code}, message: ${msg}`);
 }
 ```

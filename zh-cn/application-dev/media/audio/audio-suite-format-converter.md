@@ -6,11 +6,11 @@
 <!--Tester: @Filger-->
 <!--Adviser: @w_Machine_cc-->
 
-从API版本26.0.0开始，[AudioConverter](../../reference/apis-audio-kit/capi-audioconverter.md)给开发者提供PCM音频格式转换能力，在纯音频转码等场景下支持开发者使用格式转换接口将PCM（Pulse Code Modulation）音频数据从一种格式转换为另一种格式，包括采样率、声道布局、采样格式（位深）的转换。
+从API版本26.0.0开始，[OHAudioSuite](../../reference/apis-audio-kit/capi-ohaudiosuite.md)给开发者提供PCM（Pulse Code Modulation）音频格式转换能力，在纯音频转码等场景下支持开发者使用格式转换接口将PCM音频数据从一种格式转换为另一种格式，包括采样率、声道布局、采样格式（位深）的转换。
 
 ## 开发步骤
 
-开发者使用[AudioConverter](../../reference/apis-audio-kit/capi-audioconverter.md)提供的PCM音频格式转换能力，添加对应的头文件。
+开发者使用[OHAudioSuite](../../reference/apis-audio-kit/capi-ohaudiosuite.md)提供的PCM音频格式转换能力，添加对应的头文件。
 
 ### 在CMake脚本中链接动态库
 
@@ -25,7 +25,7 @@ target_link_libraries(sample PUBLIC libohaudiosuite.so)
 ```
 音频格式转换相关接口返回值请参考：[OH_AudioConverter_Result](../../reference/apis-audio-kit/capi-native-audio-converter-h.md#oh_audioconverter_result)。
 
-详细的API说明请参考：[AudioConverter](../../reference/apis-audio-kit/capi-audioconverter.md)。
+详细的API说明请参考：[OHAudioSuite](../../reference/apis-audio-kit/capi-ohaudiosuite.md)。
 
 **功能特性**
 

@@ -206,7 +206,7 @@ static JSVM_Value TriggerPromiseReject(JSVM_Env env, JSVM_CallbackInfo info)
     // 设置Promise Reject处理函数
     JSVM_CALL(OH_JSVM_SetHandlerForPromiseReject(vm, OnPromiseReject));
     JSVM_Value strVal;
-    char *str = "new Promise((resolve, reject) => { reject(42); })";
+    const char *str = "new Promise((resolve, reject) => { reject(42); })";
     OH_JSVM_CreateStringUtf8(env, str, JSVM_AUTO_LENGTH, &strVal);
     JSVM_Script script;
     OH_JSVM_CompileScript(env, strVal, nullptr, 0, false, nullptr, &script);

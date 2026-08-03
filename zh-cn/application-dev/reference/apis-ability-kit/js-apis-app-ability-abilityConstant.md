@@ -425,7 +425,7 @@ export default class MyAbility extends UIAbility {
 
 | 名称 | 值 | 说明 |
 | ------------- | --------- | ----------- |
-| TERMINATE_IMMEDIATELY | 0 | 表示立即执行结束动作，默认值。|
+| TERMINATE_IMMEDIATELY | 0 | 表示立即执行结束动作。|
 | CANCEL | 1 | 表示取消结束动作。|
 
 **示例：**

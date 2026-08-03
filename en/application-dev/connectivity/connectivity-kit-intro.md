@@ -6,7 +6,7 @@
 <!--Designer: @chengguohong; @tangjia15-->
 <!--Tester: @wangfeng517-->
 <!--Adviser: @zhang_yixin13-->
-<!-- md-trans-meta sourceCommit=dcae6f10c07044342acb5b2dc0416e100c5bcaa2 translatedAt=2026-06-17T06:39:23.440Z pushedAt=2026-06-18T07:14:00.555Z -->
+<!-- md-trans-meta sourceCommit=f27c946fc782ac1d031692b6ff0d2063a86e9e01 translatedAt=2026-07-25T11:35:19.292Z pushedAt=2026-07-27T08:00:50.041Z -->
 
 ## Overview
 
@@ -100,9 +100,13 @@ Provides card emulation capabilities, allowing electronic devices to complete ca
 
 The converged short-range communication service provides unified management of short-range communication technologies in the OpenHarmony system.
 
-- PartnerAgent service module<br/>
+- **PartnerAgent service module**<br/>
 
 Provides interconnection services between partner devices and OpenHarmony devices. Within the module, interconnection services such as media control, phone call reverse control, and health monitoring can be implemented. For details, see [@ohos.FusionConnectivity.partnerAgent (Device Status Notification Module)](../reference/apis-connectivity-kit/js-apis-fusionConnectivity-partnerAgent.md).
+
+- **Fusion connectivity module**<br/>
+
+  Provides the NearLink [HADM](terminology.md#high-accuracy-distance-measurement-hadm) ranging service. Within the module, the NearLink HADM ranging capability can be used. For details, see [@ohos.FusionConnectivity.ranging](../reference/apis-connectivity-kit/js-apis-fusionConnectivity-ranging.md).
 
 ### Working Principles
 
@@ -111,3 +115,11 @@ Connectivity Kit provides basic communication services for applications. Before 
 ### Constraints
 
 Device capabilities can be used only after the related switch is enabled after user authorization. Otherwise, the system does not provide services for third-party applications.
+
+### Samples
+
+For Bluetooth services, the following sample is available:
+
+- [Bluetooth](https://gitcode.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/Connectivity/Bluetooth)
+
+<!--no_check-->

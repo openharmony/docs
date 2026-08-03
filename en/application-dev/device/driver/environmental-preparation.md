@@ -1,46 +1,54 @@
 # Setting Up the Environment
+
 <!--Kit: Driver Development Kit-->
 <!--Subsystem: Driver-->
 <!--Owner: @zgene94-->
 <!--Designer: @w00373942-->
 <!--Tester: @dong-dongzhen-->
-<!--Adviser: @w_Machine_cc-->
+<!--Adviser: @hu-zhiqiong-->
+<!-- md-trans-meta sourceCommit=0bd849420b8023922f904909cad7f1ce911d0c8d translatedAt=2026-07-29T01:37:44.650Z pushedAt=2026-07-29T02:08:17.814Z -->
 
 ## Development Tool and Configuration
 
-DevEco Studio, as the driver development tool, allows you to develop, debug, and package drivers. [Download and install](https://developer.huawei.com/consumer/en/download/) DevEco Studio and verify basic operations to ensure that it can function properly. For details, see [Creating a Project](https://developer.huawei.com/consumer/en/doc/harmonyos-guides/ide-create-new-project) in [DevEco Studio User Guide](https://developer.huawei.com/consumer/en/doc/harmonyos-guides/ide-tools-overview).
+DevEco Studio is a required tool for driver development. You can use it to develop, debug, and package drivers.
 
-
+Download and install [DevEco Studio](https://developer.huawei.com/consumer/en/download/) using your HUAWEI ID. Then, follow the instructions in [Creating a Project](https://developer.huawei.com/consumer/en/doc/harmonyos-guides/ide-create-new-project) in the [tool overview](https://developer.huawei.com/consumer/en/doc/harmonyos-guides/ide-tools-overview) to perform basic verification and ensure that DevEco Studio runs properly.
 
 ## SDK Version Configuration
 
-The ArkTs APIs for peripheral management are applicable only when the SDK is of API version 10 or later.
+The ArkTS APIs provided by the extended peripheral management module are applicable only when the SDK is of API version 10 or later<!--Del-->. For details about updating the SDK, see [Update Guide](../../tools/openharmony_sdk_upgrade_assistant.md)<!--DelEnd-->.
 
 The following table lists the SDK versions required to develop dedicated peripheral drivers or enhanced peripheral drivers based on the DDK.
 
-| NDK API         | SDK Version   |
+| NDK API          | SDK Version    |
 |----------------|----------|
-| UsbDdk        | API version 10 or later|
-| HidDdk        | API version 11 or later|
-| USBSerialDDK | API version 18 or later|
-| ScsiPeripheralDDK  | API version 18 or later|
+| [UsbDdk](../../reference/apis-driverdevelopment-kit/capi-usbddk.md)  | API 10 or later |
+| [HidDdk](../../reference/apis-driverdevelopment-kit/capi-hidddk.md)        | API 11 or later |
+| [USBSerialDDK](../../reference/apis-driverdevelopment-kit/capi-serialddk.md) | API 18 or later |
+| [ScsiPeripheralDDK](../../reference/apis-driverdevelopment-kit/capi-scsiperipheralddk.md)  | API 18 or later |
 
 ## Verifying the Environment
 
-Check whether DevEco Studio is connected to the OpenHarmony device.
+Check whether DevEco Studio is connected to an OpenHarmony device.
 
 ![Device connection](figures/device-connected.png)
 
 ## HDC Configuration
 
-HarmonyOS Device Connector (hdc) is a command-line tool for debugging. It can be used to interact with real devices or the Emulators on Windows, Linux, and macOS. For details about the configuration, see [hdc](https://developer.huawei.com/consumer/en/doc/harmonyos-guides/hdc).
+HarmonyOS Device Connector (hdc) is a command-line debugging tool. It enables interaction with real devices or emulators on Windows, Linux, and Mac systems. For details, see [hdc](https://developer.huawei.com/consumer/en/doc/harmonyos-guides/hdc).
 
 > **NOTE**
 >   
 > Configuring the environment variable **hdc_server_port** and global environment variables is mandatory.
 
 ## Development Device
+
 <!--RP1-->
-- Currently, RK3568 is used as the device for development, debugging, and verification. For details about how to compile and burn the RK3568, see [Quick Start](../../../device-dev/quick-start/quickstart-pkg-3568-burn.md).<!--RP1End-->
-- During peripheral client and driver development, you need to connect an external USB device for debugging. Currently, **only an external USB device is supported**.
+
+- This section uses RK3568 as the device for development, debugging, and verification. For compiling and burning the RK3568, refer to [Burning an Image](../../../device-dev/quick-start/quickstart-pkg-3568-burn.md).<!--RP1End-->
+
+- When developing an extended peripheral driver client or peripheral driver, you need an external USB device for debugging. Currently, **only external devices connected over the USB bus are supported**.
+
 - The product ID and vendor ID of the USB device are required for defining drivers and implementing IPC.
+
+<!--no_check-->

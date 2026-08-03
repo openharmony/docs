@@ -1,10 +1,13 @@
 # Interfaces (Others)
+
 <!--Kit: Drm Kit-->
 <!--Subsystem: Multimedia-->
 <!--Owner: @qin_wei_jie-->
 <!--Designer: @chris2981-->
 <!--Tester: @xdlinc-->
 <!--Adviser: @w_Machine_cc-->
+<!-- md-trans-meta sourceCommit=1a12579b2a51516a60175d571afbafa0d14afbf6 translatedAt=2026-07-31T02:11:10.455Z pushedAt=2026-07-31T03:50:46.750Z -->
+
 > **NOTE**
 >
 > The initial APIs of this module are supported since API version 11. Newly added APIs will be marked with a superscript to indicate their earliest API version.
@@ -46,8 +49,8 @@ Defines a media key request.
 | Name     | Type                      | Read-Only| Optional| Description        |
 | -------- | --------------------------|----|----| ------------- |
 | mediaKeyRequestType   | [MediaKeyRequestType](arkts-apis-drm-e.md#mediakeyrequesttype)| No | No | Type of the media key request.     |
-| data     | Uint8Array               |  No | No | Binary data of the media key request.      |
-| defaultURL     | string              |  No | No | URL of the license server.      |
+| data     | Uint8Array               |  No | No | Data of the media key request.      |
+| defaultURL     | string              |  No | No | URL of the media key service.      |
 
 ## EventInfo
 
@@ -64,7 +67,7 @@ Defines the DRM event information.
 
 ## StatisticKeyValue
 
-Defines a key-value pair for DRM metrics.
+Defines a key-value pair for metrics.
 
 **Atomic service API**: This API can be used in atomic services since API version 14.
 
@@ -85,12 +88,12 @@ Defines a status attribute for a media key.
 
 | Name     | Type                       | Read-Only| Optional     | Description        |
 | -------- | -------------------------|----|---------| ------------- |
-| name   | string | No |  No      | Name of the media key status attrribute. Common names include the media key expiration time and content protection level. The available names are determined by the DRM solution.     |
+| name   | string | No  |  No       | Media key status name. Common names include media key expiration time and content protection security level. The specific available names are determined by the DRM solution.      |
 | value     | string            | No  | No | Value of the media key status attribute.|
 
 ## KeysInfo
 
-Defines the status information of a media key.
+Defines the key information of a media key.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 

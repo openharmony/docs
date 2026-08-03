@@ -18,7 +18,7 @@ The value of ${param} is out of range.
 
 **错误描述**
 
-调用接口时某个参数超出了其正常范围的取值。
+调用接口时某个参数超出了其正常范围的取值（如参数索引越界等）。
 
 **可能原因**
 
@@ -36,7 +36,7 @@ Invalid ${param} string.
 
 **错误描述**
 
-规范字符串解析失败。
+调用接口时，传入的字符串不符合该接口要求的格式规范，导致解析失败。
 
 **可能原因**
 
@@ -59,12 +59,12 @@ Worker initialization failed.
 **可能原因**
 
 1. 创建Worker的数量超出限制。
-2. 设置Worker对象的选择项不正确。
+2. 设置Worker对象的选项不正确。
 
 **处理步骤**
 
 1. 检查Worker的数量是否超出64个，如果超出，及时销毁空闲的Worker。
-2. 如果设置WorkerOptions，检查参数类型及其合法性。
+2. 如果设置[WorkerOptions](js-apis-worker.md#workeroptions)，检查参数类型及其合法性。
 
 ## 10200004 Worker处于非运行状态
 
@@ -82,7 +82,7 @@ The Worker instance is not running.
 
 **处理步骤**
 
-当调用接口时，确保Worker对象处于正常运行状态，未被执行销毁操作。
+调用接口前，确认Worker对象未被调用terminate()销毁，确保Worker对象处于正常运行状态。无法保证时，可通过Worker对象的onerror回调监听异常状态。
 
 ## 10200005 Worker不支持某API
 
@@ -92,7 +92,7 @@ The called API is not supported in the worker thread.
 
 **错误描述**
 
-Worker不支持某API。
+在Worker线程中调用了不支持的API。
 
 **可能原因**
 
@@ -100,7 +100,7 @@ Worker不支持某API。
 
 **处理步骤**
 
-确保使用Worker线程中支持的API。
+确保使用Worker线程中支持的API，支持的API范围请参考[Worker](js-apis-worker.md)接口说明。
 
 ## 10200006 Worker传输信息序列化异常
 
@@ -110,11 +110,11 @@ An exception occurred during serialization.
 
 **错误描述**
 
-Worker传输信息序列化异常。
+Worker线程间传输数据时，数据包含不支持序列化的类型，导致序列化失败。
 
 **可能原因**
 
-传输数据包含不支持序列化及外部引入的类型，导致序列化失败。
+传输数据包含不支持序列化的类型或外部引入的类型，导致序列化失败。
 
 **处理步骤**
 
@@ -128,11 +128,11 @@ The worker file path is invalid.
 
 **错误描述**
 
-文件路径异常，无法正确加载Worker。
+Worker文件路径格式不符合规范或路径不存在，无法正确加载Worker。
 
 **可能原因**
 
-Worker文件路径异常。
+Worker文件路径格式不符合规范，或路径指向的文件不存在。
 
 **处理步骤**
 
@@ -146,17 +146,17 @@ The buffer size must be a multiple of ${size}.
 
 **错误描述**
 
-Buffer的长度错误，不符合要求。
+Buffer的长度不符合要求，长度需为特定size（2字节、4字节或8字节）的整数倍。
 
 **可能原因**
 
-Buffer的长度错误，不符合要求。Buffer长度要求为size的整数倍。其中size为16-bits、32-bits或者64-bits。
+Buffer的长度错误，不符合要求。Buffer长度要求为size的整数倍。其中size为2字节、4字节或者8字节。
 
 **处理步骤**
 
 确保Buffer长度符合要求。
 
-Buffer长度要求为size的整数倍。其中size为16-bits、32-bits或者64-bits。
+Buffer长度要求为size的整数倍。其中size为2字节、4字节或者8字节。
 
 ## 10200010 容器为空
 
@@ -166,7 +166,7 @@ Container is empty.
 
 **错误描述**
 
-操作的容器为空。
+对空容器执行相关操作时，操作的容器为空。
 
 **可能原因**
 
@@ -174,7 +174,7 @@ Container is empty.
 
 **处理步骤**
 
-确保操作的容器不为空，空容器请先向容器内添加元素。
+确保操作的容器不为空，空容器请先向容器内添加元素。容器类接口参见相关容器类API参考文档。
 
 ## 10200011 传入的this.object不是容器类的实例
 
@@ -184,7 +184,7 @@ The {methodName} method cannot be bound.
 
 **错误描述**
 
-调用语言容器类的方法时，传入的this.object不是容器类的实例，容器类的方法不支持bind。
+调用内置容器类的方法时，传入的this.object不是容器类的实例，容器类的方法不支持bind。
 
 **可能原因**
 
@@ -192,8 +192,8 @@ The {methodName} method cannot be bound.
 
 **处理步骤**
 
-1. 检查是否使用bind API调用语言容器类的方法。
-2. 检查是否把语言容器类的方法赋值给不是语言容器实例的对象来调用。
+1. 检查是否使用bind API调用内置容器类的方法。
+2. 检查是否把内置容器类的方法赋值给不是内置容器实例的对象来调用。
 
 ## 10200012 构造函数调用异常
 
@@ -203,7 +203,7 @@ The {className}'s constructor cannot be directly invoked.
 
 **错误描述**
 
-构造语言容器类的构造方法不支持直接调用。
+构造内置容器类的构造函数不支持直接调用。
 
 **可能原因**
 
@@ -211,7 +211,7 @@ The {className}'s constructor cannot be directly invoked.
 
 **处理步骤**
 
-检查是否使用直接调用了语言容器类的方法，建议使用new关键字创建语言容器类。
+检查是否直接调用了内置容器类的方法，建议使用new关键字创建内置容器类。
 
 ## 10200013 只读属性设置错误
 
@@ -239,7 +239,7 @@ The function is not marked as concurrent.
 
 **错误描述**
 
-Function未被标记为concurrent。
+函数未被标记为@Concurrent。
 
 **可能原因**
 
@@ -293,7 +293,7 @@ The element does not exist in this container.
 
 **错误描述**
 
-删除的元素不存在此容器中。
+删除的元素不存在于此容器中。
 
 **可能原因**
 
@@ -301,7 +301,7 @@ The element does not exist in this container.
 
 **处理步骤**
 
-删除元素前，确保元素存在于此容器中。
+删除元素前，先使用容器提供的查询方法（如has()或contains()）确认元素存在于此容器中。
 
 ## 10200018 取消不存在的任务组错误
 
@@ -329,7 +329,7 @@ The globalCallObject is not registered.
 
 **错误描述**
 
-查询的对象未被注册。
+调用的对象未被注册，无法调用其方法。
 
 **可能原因**
 
@@ -347,7 +347,7 @@ The method to be called is not callable or is an async method or a generator.
 
 **错误描述**
 
-调用注册对象上的方法的类型错误。
+调用注册对象上的方法时，该方法不可调用、为异步方法或为生成器函数。
 
 **可能原因**
 
@@ -355,7 +355,7 @@ The method to be called is not callable or is an async method or a generator.
 
 **处理步骤**
 
-应确保该方法对应的属性是可调用的，且该方法本身或其底层不应存在异步方法。
+应确保该方法对应的属性是可调用的，该方法本身或其底层不应存在异步方法，且该方法不应是由生成器函数返回的。
 
 ## 10200021 全局调用等待超时错误
 
@@ -365,15 +365,15 @@ Waiting for a global call timed out.
 
 **错误描述**
 
-等待超时错误。
+全局调用等待结果返回超时。
 
 **可能原因**
 
-全局调用等待结果返回的时间超过了用户设置的时长，默认为5000ms。
+全局调用等待结果返回的时间超过了用户设置的时长（可通过相关接口设置超时时间），默认为5000ms。
 
 **处理步骤**
 
-应避免调用处理时间过长的方法，比如复杂计算、文件读写等，否则会导致工作线程阻塞时间过长，运行性能差。
+应避免调用处理时间过长的方法，比如复杂计算、文件读写等；或根据实际需要适当调整全局调用的超时时长设置（默认为5000ms），否则会导致工作线程阻塞时间过长，运行性能差。
 
 ## 10200022 未在任务池中调用的函数
 
@@ -387,7 +387,7 @@ The function is not called in the TaskPool thread.
 
 **可能原因**
 
-在UI主线程中或在非taskpool的其他线程中调用该函数。
+在UI主线程中或在非taskpool的其他线程中调用该函数，而非通过[taskpool.execute](js-apis-taskpool.md#taskpoolexecute-1)调用。
 
 **处理步骤**
 
@@ -405,7 +405,7 @@ The function is not called in the concurrent function.
 
 **可能原因**
 
-该函数在回调函数中调用。
+该函数在回调函数中调用，而非在@Concurrent标记的并发函数内部调用。
 
 **处理步骤**
 
@@ -419,15 +419,15 @@ The callback is not registered on the host side.
 
 **错误描述**
 
-该函数使用时未在宿主线程注册回调函数。
+该函数使用时，未在宿主线程通过注册接口注册回调函数，或注册的回调函数已被取消注册。
 
 **可能原因**
 
-该函数使用时未在宿主线程注册回调函数。
+调用该函数前，未在宿主线程通过注册接口注册回调函数，或注册的回调函数已被取消注册。
 
 **处理步骤**
 
-调用时，确保函数在宿主线程已注册。无法保证时，需要捕获异常。
+调用时，确保函数在宿主线程已通过注册接口注册回调。无法保证时，需要捕获异常。
 
 ## 10200025 串行队列中添加了存在依赖的任务
 
@@ -441,11 +441,11 @@ dependent task not allowed.
 
 **可能原因**
 
-当前串行队列中添加了存在依赖的任务。
+在串行队列中添加了使用addDependency()设置了依赖关系的任务，串行队列不允许存在依赖的任务。
 
 **处理步骤**
 
-排查找到串行队列里使用[addDependency()](js-apis-taskpool.md#adddependency11)添加依赖的任务，使用[removeDependency()](js-apis-taskpool.md#removedependency11)删除此任务的依赖。
+排查找到串行队列里使用[addDependency()](js-apis-taskpool.md#adddependency11)添加依赖的任务，使用[removeDependency()](js-apis-taskpool.md#removedependency11)删除此任务的依赖。无法保证时，需要捕获异常。
 
 ## 10200026 当前任务存在循环依赖
 
@@ -459,11 +459,11 @@ There is a circular dependency.
 
 **可能原因**
 
-当前任务存在循环依赖关系。
+多个任务之间通过addDependency()互相依赖，形成循环依赖链，导致任务无法正常执行。
 
 **处理步骤**
 
-排查找到循环依赖关系的相关任务，根据实际情况使用[removeDependency()](js-apis-taskpool.md#removedependency11)删除不需要的依赖关系，确保所有任务中不存在循环依赖关系。
+排查找到循环依赖关系的相关任务，根据实际情况使用[removeDependency()](js-apis-taskpool.md#removedependency11)删除不需要的依赖关系，确保所有任务中不存在循环依赖关系。无法保证时，需要捕获异常。
 
 ## 10200027 依赖关系不存在
 
@@ -495,11 +495,11 @@ The delayTime is less than zero.
 
 **可能原因**
 
-给定参数[delayTime](js-apis-taskpool.md#taskpoolexecutedelayed11)的值小于零。
+给定参数[delayTime](js-apis-taskpool.md#taskpoolexecutedelayed11)的值小于零（单位：ms）。
 
 **处理步骤**
 
-调用时，确保给定参数[delayTime](js-apis-taskpool.md#taskpoolexecutedelayed11)的值大于零。无法保证时，需要捕获异常。
+调用时，确保给定参数[delayTime](js-apis-taskpool.md#taskpoolexecutedelayed11)的值不小于零（单位：ms）。无法保证时，需要捕获异常。
 
 ## 10200029 无法将ArrayBuffer同时设置为transferList和cloneList
 
@@ -527,15 +527,15 @@ The lock does not exist.
 
 **错误描述**
 
-请求的锁不存在。
+调用异步锁函数时，使用了不存在的锁名称，无法获取锁。
 
 **可能原因**
 
-某个异步锁函数使用了一个不正确的锁名称作为参数。
+调用[lockAsync](arkts-apis-arkts-utils-locks.md#lockasync)等异步锁函数时，使用了一个不正确的锁名称作为参数。
 
 **处理步骤**
 
-确保在调用接口时，使用正确的锁名称。
+确保在调用接口前，已通过[ArkTSUtils.locks](arkts-apis-arkts-utils-locks.md)正确创建并注册了对应名称的异步锁实例，使用正确的锁名称进行调用。
 
 ## 10200031 lockAsync超时
 
@@ -549,7 +549,7 @@ Timeout exceeded.
 
 **可能原因**
 
-某处存在死锁。
+异步锁之间存在循环依赖，导致死锁。
 
 **处理步骤**
 
@@ -573,7 +573,7 @@ Concurrent modification error.
 
 使用collections提供的非并发安全的容器时，使用异步锁进行保护。
 
-## 10200034 监听任务未注册回调函数
+## 10200034 已执行的任务不支持注册监听器
 
 **错误信息**
 
@@ -581,15 +581,15 @@ The executed task does not support the registration of listeners.
 
 **错误描述**
 
-执行的任务不支持注册监听器。
+监听回调函数未在任务执行前注册。
 
 **可能原因**
 
-未注册回调函数或在执行任务之后注册回调函数。
+未通过回调注册接口注册回调函数，或在[taskpool.execute](js-apis-taskpool.md#taskpoolexecute-1)执行任务之后才注册回调函数。
 
 **处理步骤**
 
-确保在任务执行之前注册回调函数。
+确保在[taskpool.execute](js-apis-taskpool.md#taskpoolexecute-1)执行任务之前，通过回调注册接口注册回调函数。监听接口参见[TaskPool](js-apis-taskpool.md)参考文档。
 
 ## 10200035 doWrite接口未实现
 
@@ -603,7 +603,7 @@ doWrite接口未实现。
 
 **可能原因**
 
-继承Writable类，未实现[doWrite](js-apis-stream.md#dowrite)接口。
+继承[Writable](js-apis-stream.md#writable)类，未实现[doWrite](js-apis-stream.md#dowrite)接口。
 
 **处理步骤**
 
@@ -617,7 +617,7 @@ The stream has been ended.
 
 **错误描述**
 
-流已经结束仍然进行写操作。
+调用end接口结束流之后，仍尝试对已结束的流进行数据写操作，导致操作失败。
 
 **可能原因**
 
@@ -657,7 +657,7 @@ doRead接口未实现。
 
 **可能原因**
 
-继承Readable类，未实现[doRead](js-apis-stream.md#doread)接口。
+继承[Readable](js-apis-stream.md#readable)类，未实现[doRead](js-apis-stream.md#doread)接口。
 
 **处理步骤**
 
@@ -675,7 +675,7 @@ doTransform接口未实现。
 
 **可能原因**
 
-继承Transform类，未实现[doTransform](js-apis-stream.md#dotransform)接口。
+继承[Transform](js-apis-stream.md#transform)类，未实现[doTransform](js-apis-stream.md#dotransform)接口。
 
 **处理步骤**
 
@@ -752,7 +752,7 @@ The asyncRunner task discarded.
 **处理步骤**
 
 1. 增加等待任务列表容量。
-2. 定位任务执行慢的原因，排查任务执行逻辑。
+2. 定位任务执行慢的原因，排查任务执行逻辑。无法保证时，需要捕获异常。
 
 ## 10200055 异步任务被取消
 
@@ -772,7 +772,7 @@ The asyncRunner task has been canceled.
 
 取消任务前，确保任务进入任务池且开始执行。无法保证时，需要捕获异常。
 
-## 10200056 异步队列任务不能具有依赖项
+## 10200056 任务已被AsyncRunner执行
 
 **错误信息**
 
@@ -780,7 +780,7 @@ The task has been executed by AsyncRunner.
 
 **错误描述**
 
-异步队列任务不能具有依赖项。
+已被AsyncRunner执行的异步队列任务不能再添加或移除依赖项。
 
 **可能原因**
 
@@ -822,11 +822,11 @@ Task timed out.
 
 **可能原因**
 
-任务在被可以设置超时的接口[taskpool.execute](../apis-arkts/js-apis-taskpool.md#taskpoolexecute24)或可以设置超时的泛型接口[taskpool.execute](../apis-arkts/js-apis-taskpool.md#taskpoolexecute24-1)调用时，设置的超时时间较短，而任务执行时间超过了设置的超时时间。
+任务在被可以设置超时的接口[taskpool.execute](../apis-arkts/js-apis-taskpool.md#taskpoolexecute24)或可以设置超时的泛型接口[taskpool.execute](../apis-arkts/js-apis-taskpool.md#taskpoolexecute24-1)调用时，设置的超时时间（单位：ms）较短，而任务执行时间超过了设置的超时时间。
 
 **处理步骤**
 
-调用上述接口时，确保设置的超时时间的合理性。无法保证时，需要捕获异常。
+调用上述接口时，确保设置的超时时间（单位：ms）的合理性。无法保证时，需要捕获异常。
 
 ## 10200059 任务组不能重复执行
 
@@ -856,7 +856,7 @@ Precision limit exceeded.
 
 **错误描述**
 
-Decimal函数使用错误。
+使用Decimal提供的函数时，运算结果超出精度限制。
 
 **可能原因**
 
@@ -876,7 +876,7 @@ crypto unavailable.
 
 **错误描述**
 
-Decimal函数使用错误。
+在Decimal中使用加密方法失败，加密方法不可用。
 
 **可能原因**
 
@@ -940,7 +940,7 @@ Cannot be an empty string.
 
 **处理步骤**
 
-传入正确的不为空的字符串。
+传入正确的非空字符串。
 
 ## 10200065 元素开始标记与元素结束标记未匹配使用
 
@@ -982,7 +982,7 @@ Incorrect encoding format, only support utf-8.
 
 **错误信息**
 
-The underlying ArrayBuffer is null or detach.
+The underlying ArrayBuffer is null or detached.
 
 **错误描述**
 
@@ -990,7 +990,7 @@ The underlying ArrayBuffer is null or detach.
 
 **可能原因**
 
-ArrayBuffer已分离，或者ArrayBuffer为空。
+ArrayBuffer已分离，或者ArrayBuffer为null。
 
 **处理步骤**
 
@@ -1008,11 +1008,11 @@ TaskGroup timed out.
 
 **可能原因**
 
-[taskpool.execute](../apis-arkts/js-apis-taskpool.md#taskpoolexecute24-2)调用任务组时，设置的超时时间较短，而任务组整体执行时间超过了设置的超时时间。
+[taskpool.execute](../apis-arkts/js-apis-taskpool.md#taskpoolexecute24-2)调用任务组时，设置的超时时间（单位：ms）较短，而任务组整体执行时间超过了设置的超时时间。
 
 **处理步骤**
 
-调用上述接口时，确保设置的超时时间的合理性。无法保证时，需要捕获异常。
+调用上述接口时，确保设置的超时时间（单位：ms）的合理性。无法保证时，需要捕获异常。
 
 ## 10200301 加载native模块失败
 
@@ -1031,4 +1031,5 @@ Loading native module failed.
 
 **处理步骤**
 
-检查待加载的native模块是否在当前包内。
+1. 检查待加载的native模块是否在当前包内，确保模块路径正确。
+2. 检查native模块的内容是否完整且格式正确，确保模块可以被正确加载。

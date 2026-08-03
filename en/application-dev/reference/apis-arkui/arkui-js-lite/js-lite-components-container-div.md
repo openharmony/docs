@@ -5,6 +5,7 @@
 <!--Designer: @lanshouren-->
 <!--Tester: @liuli0427-->
 <!--Adviser: @Brilliantry_Rui-->
+<!-- md-trans-meta sourceCommit=dfb15c325281e5e789ea7ade45dfdd45876606ad translatedAt=2026-07-27T02:27:03.602Z pushedAt=2026-07-27T09:23:36.737Z -->
 
 The **\<div>** component is a basic container that is used as the root node of the page structure or is used to group the content.
 
@@ -50,7 +51,7 @@ Supported.
 | height | &lt;length&gt;&nbsp;\|&nbsp;&lt;percentage&gt;<sup>5+</sup> | - | No| Component height.<br>If this attribute is not set, the default value **0** is used.|
 | padding | &lt;length&gt; | 0 | No| Shorthand attribute to set the padding for all sides.<br>The attribute can have one to four values:<br>- If you set only one value, it specifies the padding for all the four sides.<br>- If you set two values, the first value specifies the top and bottom padding, and the second value specifies the left and right padding.<br>- If you set three values, the first value specifies the top padding, the second value specifies the left and right padding, and the third value specifies the bottom padding.<br>- If you set four values, they respectively specify the padding for top, right, bottom, and left sides (in clockwise order).|
 | padding-[left\|top\|right\|bottom] | &lt;length&gt; | 0 | No| Left, top, right, and bottom padding.|
-| margin | &lt;length&gt;&nbsp;\|&nbsp;&lt;percentage&gt;<sup>5+</sup> | 0 | No| Shorthand attribute to set the margin for all sides. The attribute can have one to four values:<br>- If you set only one value, it specifies the margin for all the four sides.<br>- If you set two values, the first value specifies the top and bottom margins, and the second value specifies the left and right margins.<br>- If you set three values, the first value specifies the top margin, the second value specifies the left and right margins, and the third value specifies the bottom margin.<br>- If you set four values, they respectively specify the margin for top, right, bottom, and left sides (in clockwise order).|
+| margin | &lt;length&gt;&nbsp;\|&nbsp;&lt;percentage&gt;<sup>5+</sup> | 0 | No | Shorthand attribute to set the margin for all sides. The attribute can have one to four values:<br/>-&nbsp;If you set only one value, it specifies the margin for all the four sides.<br/>-&nbsp;If you set two values, the first value specifies the top and bottom margins, and the second value specifies the left and right margins.<br/>-&nbsp;If you set three values, the first value specifies the top margin, the second value specifies the left and right margins, and the third value specifies the bottom margin.<br/>-&nbsp;If you set four values, they respectively specify the margin for top, right, bottom, and left sides&nbsp;(in clockwise order). |
 | margin-[left\|top\|right\|bottom] | &lt;length&gt;&nbsp;\|&nbsp;&lt;percentage&gt;<sup>5+</sup> | 0 | No| Left, top, right, and bottom margins.|
 | border-width | &lt;length&gt; | 0 | No| Shorthand attribute to set the border width for all sides.|
 | border-color | &lt;color&gt; | black | No| Shorthand attribute to set the color for all borders.|
@@ -63,7 +64,7 @@ Supported.
 ## Example
 
 1. Flex style
-  
+
    ```html
    <!-- xxx.hml -->
    <div class="container">
@@ -75,7 +76,7 @@ Supported.
    </div>
    ```
 
-   
+
    ```css
    /* xxx.css */
    .container {
@@ -111,7 +112,7 @@ Supported.
    ![div](figures/div.png)
 
 2. Flex wrap style
-  
+
    ```html
    <!-- xxx.hml -->
    <div class="container">
@@ -123,7 +124,7 @@ Supported.
    </div>
    ```
 
-   
+
    ```css
    /* xxx.css */
    .container {

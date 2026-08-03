@@ -2,21 +2,26 @@
 
 <!--Kit: Performance Analysis Kit-->
 <!--Subsystem: HiviewDFX-->
-<!--Owner: @rr_cn-->
+<!--Owner: @Chenyufan466765692-->
 <!--Designer: @peterhuangyu-->
 <!--Tester: @gcw_KuLfPSbe-->
-<!--Adviser: @foryourself-->
+<!--Adviser: @jinqiuheng-->
+<!-- md-trans-meta sourceCommit=f319e3e62d6356bf78f31e2e8f7ba3927caddf1e translatedAt=2026-07-31T01:29:34.782Z pushedAt=2026-07-31T07:05:33.734Z -->
 
 ## Overview
 
 Task execution timeout indicates that the execution duration of the monitored service code logic exceeds the expected duration. This topic describes the capability of the HiCollie module to detect function execution timeout events.
 
+> **NOTE**
+>
+> When you install and start an app by clicking the **Debug** button in DevEco Studio, the timeout detection mechanism of the current project is automatically disabled. This prevents timeout detection from interfering with your debugging process.
+
 ## Available APIs
 
 | API| Description|
 | -------- | -------- |
-| OH_HiCollie_SetTimer | Sets a timer to check whether the execution time of a function or code block exceeds the custom time.<br>This API is used before the time-consuming function is called. It must be used together with the **OH_HiCollie_CancelTimer** API.<br>Note: This API is supported since API version 18.|
-| OH_HiCollie_CancelTimer | Cancels a timer based on task ID.<br>This API is used after the function or code block is executed. It must be used together with the **OH_HiCollie_SetTimer** API.<br>If the timer is not canceled within the custom time, a callback function is executed to generate fault logs for the specified timeout event.<br>Note: This API is supported since API version 18.|
+| OH_HiCollie_SetTimer | Registers a timer to detect whether the execution of a function or code block exceeds a custom time.<br>Used together with the OH_HiCollie_CancelTimer API. Call this API before calling a time-consuming function.<br>Note: Supported since API version 18. |
+| OH_HiCollie_CancelTimer | Cancels a timer.<br>Used together with the OH_HiCollie_SetTimer API. Call this API after executing a function or code block. OH_HiCollie_CancelTimer cancels the task by ID.<br>If the timer is not canceled within the custom time, the callback function is executed, and a fault log is generated under the specified custom timeout action.<br>Note: Supported since API version 18. |
 
 - For details about how to use the APIs (such as parameter usage restrictions and value ranges), see [HiCollie](../reference/apis-performance-analysis-kit/capi-hicollie-h.md).
 
@@ -24,9 +29,9 @@ Task execution timeout indicates that the execution duration of the monitored se
 
 ## How to Develop
 
-The following describes how to add a button in the application and click the button to call the HiCollie APIs.
+The following demonstrates how to add a button in the app and click the button to call the HiCollie NDK APIs.
 
-1. Create a native C++ project. The directory structure is as follows:
+1. Create a native C++ project in DevEco Studio. The directory structure is as follows:
 
    ```yml
    entry:
@@ -45,19 +50,19 @@ The following describes how to add a button in the application and click the but
              - Index.ets
    ```
 
-2. In the **CMakeLists.txt** file, add the source file and dynamic libraries.
+2. Edit the **entry > src > main > cpp > CMakeLists.txt** file in the project to add source files and dynamic libraries.
 
    ```cmake
    # Add libhilog_ndk.z.so (log output) and libohhicollie.so (HiCollie external APIs).
    target_link_libraries(entry PUBLIC libace_napi.z.so libhilog_ndk.z.so libohhicollie.so)
    ```
 
-3. In the **napi_init.cpp** file, import dependency header files, define **LOG_TAG** and test methods, and register **TestHiCollieTimerNdk** as an ArkTS API.
+3. Edit the **napi_init.cpp** file under **entry > src > main > cpp** in the project to import dependency header files, define **LOG_TAG** and test methods, and register **TestHiCollieTimerNdk** as an ArkTS API.
 
    Import the header files and define **LOG_TAG**.
 
    <!-- @[EventSub_napi_nohiappevent_Header](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/PerformanceAnalysisKit/HiAppEvent/EventSub/entry/src/main/cpp/napi_init.cpp) -->
-   
+
    ``` C++
    #include "napi/native_api.h"
    // ...
@@ -68,7 +73,7 @@ The following describes how to add a button in the application and click the but
    ```
 
    <!-- @[Hicollie_Set_Timer_h](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/PerformanceAnalysisKit/HiAppEvent/EventSub/entry/src/main/cpp/napi_init.cpp) -->
-   
+
    ``` C++
    #include <unistd.h>
    #include "hicollie/hicollie.h"
@@ -76,10 +81,10 @@ The following describes how to add a button in the application and click the but
 
    Construct a scenario where the task execution times out, and use the **OH_HiCollie_SetTimer** and **OH_HiCollie_CancelTimer** functions to monitor the task.
 
-   <!-- @[Hicollie_Set_Timer](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/PerformanceAnalysisKit/HiAppEvent/EventSub/entry/src/main/cpp/napi_init.cpp) -->
-   
+   <!-- @[Hicollie_Set_Timer](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/PerformanceAnalysisKit/HiAppEvent/EventSub/entry/src/main/cpp/napi_init.cpp) --> 
+
    ``` C++
-   // Define the callback.
+   // Define the callback function.
    void CallBack(void*)
    {
        OH_LOG_INFO(LogType::LOG_APP, "HiCollieTimerNdk CallBack");  // Logs are printed in the callback.
@@ -103,34 +108,34 @@ The following describes how to add a button in the application and click the but
    Register **TestHiCollieTimerNdk** as an ArkTS API in the **desc[]** array in the **Init** function.
 
    <!-- @[test_hicollie_timer](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/PerformanceAnalysisKit/HiAppEvent/EventSub/entry/src/main/cpp/napi_init.cpp) -->
-   
+
    ``` C++
    // Register TestHiCollieTimerNdk as an ArkTS API.
    { "TestHiCollieTimerNdk", nullptr, TestHiCollieTimerNdk, nullptr, nullptr, nullptr, napi_default, nullptr },
    ```
 
-4. In the **index.d.ts** file, define the ArkTS API.
+4. Edit the **Index.ets** file under **entry > src > main > cpp > types > libentry** in the project to define the ArkTS APIs.
 
    <!-- @[test_hicollie_timer_Index.d.ts](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/PerformanceAnalysisKit/HiAppEvent/EventSub/entry/src/main/cpp/types/libentry/Index.d.ts) -->
-   
+
    ``` TypeScript
    export const TestHiCollieTimerNdk: () => void;
    ```
 
-5. Edit the **Index.ets** file.
-   
+5. Edit the **Index.ets** file under **entry > src > main > ets > pages** in the project.
+
    Import the header file for calling the C API.
 
    <!-- @[EventSub_Index_Capi_Header](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/PerformanceAnalysisKit/HiAppEvent/EventSub/entry/src/main/ets/pages/Index.ets) -->
-   
+
    ``` TypeScript
    import testNapi from 'libentry.so';
    ```
 
    Add a button on the **Index** page to trigger the **TestHiCollieTimerNdk** method.
 
-   <!-- @[hicollie_timer_ndk_Button](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/PerformanceAnalysisKit/HiAppEvent/EventSub/entry/src/main/ets/pages/Index.ets) -->
-   
+   <!-- @[hicollie_timer_ndk_Button](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/PerformanceAnalysisKit/HiAppEvent/EventSub/entry/src/main/ets/pages/Index.ets) --> 
+
    ``` TypeScript
    // Add a click event to trigger the TestHiCollieTimerNdk method.
    Button('TestHiCollieTimerNdk')
@@ -150,7 +155,7 @@ The following describes how to add a button in the application and click the but
 
 7. At the bottom of DevEco Studio, switch to the **Log** tab, choose **HiLog** and set the filter criteria to **testTag**.
 
-   (1) Click the **TestHiCollieTimerNdk** button to execute the timer, and the task ID is logged.
+   (1) Click the **TestHiCollieTimerNdk** button to execute the program, and the task ID is logged.
 
    ```text
    .../testTag ... HiCollieTimer taskId: x

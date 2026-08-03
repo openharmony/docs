@@ -5,7 +5,8 @@
 <!--Owner: @lyj_love_code-->
 <!--Designer: @tangyyan-->
 <!--Tester: @gcw_KuLfPSbe-->
-<!--Adviser: @foryourself-->
+<!--Adviser: @jinqiuheng-->
+<!-- md-trans-meta sourceCommit=21f16bae140f7b5f2abb79842e99b02e603814c2 translatedAt=2026-07-31T01:32:40.192Z pushedAt=2026-07-31T07:42:49.529Z -->
 
 hisysevent is a built-in tool that helps you subscribe to real-time system events and query historical system events.
 

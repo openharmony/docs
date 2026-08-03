@@ -47,7 +47,7 @@ onError(code: number, name: string, message: string): void
 | 参数名       | 类型                     | 必填   | 说明            |
 | -------- | ---------------------- | ---- | ------------- |
 | code | number | 是    | 拉起UIExtensionAbility执行失败时返回的结果码。 |
-| name | string | 是    | 拉起UIExtensionAbility执行失败时返回的名称。 |
+| name | string | 是    | 拉起UIExtensionAbility执行失败时返回的错误名称，用于标识错误类型。 |
 | message | string | 是    | 拉起UIExtensionAbility执行失败时返回的错误信息。 |
 
 **示例：**

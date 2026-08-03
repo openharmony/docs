@@ -29,9 +29,9 @@ import { collections } from '@kit.ArkTS';
 
 | 名称   | 类型   | 只读 | 可选 | 说明              |
 | ------ | ------ | ---- | ---- | ----------------|
-| buffer | ArrayBuffer | 是   | 否  | ArkTS Uint32Array底层使用的buffer。|
+| buffer | [ArrayBuffer](arkts-apis-arkts-collections-ArrayBuffer.md) | 是   | 否  | ArkTS Uint32Array底层使用的[ArrayBuffer](arkts-apis-arkts-collections-ArrayBuffer.md)对象。|
 | byteLength | number | 是   | 否   | ArkTS Uint32Array所占的字节数。|
-| byteOffset | number | 是   | 否   | ArkTS Uint32Array距离其ArrayBuffer起始位置的偏移。|
+| byteOffset | number | 是   | 否   | ArkTS Uint32Array距离其ArrayBuffer起始位置的字节偏移。|
 | length | number | 是   | 否  | ArkTS Uint32Array元素个数。|
 | BYTES_PER_ELEMENT | number | 是   | 否   | ArkTS Uint32Array中每个元素所占的字节数。|
 
@@ -71,11 +71,11 @@ constructor(length: number)
 
 | 参数名  | 类型   | 必填 | 说明                          |
 | ------- | ------ | ---- | --------------------------- |
-| length | number | 是 | 用于指定ArkTS Uint32Array的长度。 |
+| length | number | 是 | 用于指定ArkTS Uint32Array的长度，需为非负整数。 |
 
 **错误码：**
 
-以下错误码详细介绍请参考[语言基础类库错误码](errorcode-utils.md)。
+以下错误码的详细介绍请参见[语言基础类库错误码](errorcode-utils.md)。
 
 | 错误码ID | 错误信息                                                  |
 | -------- | -------------------------------------------------------  |
@@ -106,7 +106,7 @@ constructor(elements: Iterable\<number>)
 
 **错误码：**
 
-以下错误码详细介绍请参考[语言基础类库错误码](errorcode-utils.md)。
+以下错误码的详细介绍请参见[语言基础类库错误码](errorcode-utils.md)。
 
 | 错误码ID | 错误信息                                                |
 | -------- | ------------------------------------------------------- |
@@ -134,11 +134,11 @@ constructor(array: ArrayLike\<number> | ArrayBuffer)
 
 | 参数名  | 类型   | 必填 | 说明                                                         |
 | ------- | ------ | ---- | ------------------------------------------------------------ |
-| array |  ArrayLike\<number> \| ArrayBuffer | 是 | 用于构造ArkTS Uint32Array的对象。当参数类型是ArrayBuffer时buffer所占的字节数须是4的整数倍。 |
+| array |  ArrayLike\<number> \| ArrayBuffer | 是 | 用于构造ArkTS Uint32Array的对象。当参数类型是ArrayBuffer时buffer所占的字节数需是4的整数倍。当参数类型是ArrayLike时，将复制其中的元素并创建新的底层[ArrayBuffer](arkts-apis-arkts-collections-ArrayBuffer.md)。 |
 
 **错误码：**
 
-以下错误码详细介绍请参考[语言基础类库错误码](errorcode-utils.md)。
+以下错误码的详细介绍请参见[语言基础类库错误码](errorcode-utils.md)。
 
 | 错误码ID | 错误信息                                                |
 | -------- | ------------------------------------------------------- |
@@ -170,7 +170,7 @@ let uint32Array2: collections.Uint32Array = new collections.Uint32Array(uint32Ar
 ## constructor
 constructor(buffer: ArrayBuffer, byteOffset?: number, length?: number)
 
-构造函数，以ArrayBuffer创建一个ArkTS Uint32Array对象。
+构造函数，以ArrayBuffer创建一个ArkTS Uint32Array对象。Uint32Array与传入的ArrayBuffer共享同一份底层数据。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -180,13 +180,13 @@ constructor(buffer: ArrayBuffer, byteOffset?: number, length?: number)
 
 | 参数名  | 类型   | 必填 | 说明                                         |
 | ------- | ------ | ---- | ------------------------------------------ |
-| buffer | ArrayBuffer | 是 | 用于构造ArkTS Uint32Array的ArrayBuffer对象。buffer所占的字节数须是4的整数倍。|
-| byteOffset | number | 否 | 指定buffer的字节偏移，从0开始，默认为0。 |
-| length | number | 否 | 指定ArkTS Uint32Array的长度，默认为0。 |
+| buffer | [ArrayBuffer](arkts-apis-arkts-collections-ArrayBuffer.md) | 是 | 用于构造ArkTS Uint32Array的[ArrayBuffer](arkts-apis-arkts-collections-ArrayBuffer.md)对象。buffer所占的字节数需是4的整数倍。|
+| byteOffset | number | 否 | 指定buffer的字节偏移，需为非负整数且为4的整数倍。默认值为0。 |
+| length | number | 否 | 指定ArkTS Uint32Array的长度，需为非负整数。默认值为0，此时表示从byteOffset开始到buffer末尾的全部元素。 |
 
 **错误码：**
 
-以下错误码详细介绍请参考[语言基础类库错误码](errorcode-utils.md)。
+以下错误码的详细介绍请参见[语言基础类库错误码](errorcode-utils.md)。
 
 | 错误码ID | 错误信息                                                   |
 | -------- | -------------------------------------------------------   |
@@ -205,7 +205,7 @@ console.info("[" + uint32Array1 + "]"); // [2, 3, 4, 5, 6]
 ## from
 static from(arrayLike: ArrayLike\<number>): Uint32Array
 
-从一个ArrayLike或者可迭代对象中创建一个ArkTS Uint32Array对象。
+从一个ArrayLike中创建一个ArkTS Uint32Array对象。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -232,7 +232,7 @@ let array: collections.Uint32Array = collections.Uint32Array.from(arrayLike); //
 ## from
 static from\<T>(arrayLike: ArrayLike\<T>, mapFn: TypedArrayFromMapFn\<T, number>): Uint32Array
 
-从一个ArrayLike中创建一个ArkTS Uint32Array对象。
+从一个ArrayLike中创建一个ArkTS Uint32Array对象，通过映射函数对每个元素进行转换。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -241,7 +241,7 @@ static from\<T>(arrayLike: ArrayLike\<T>, mapFn: TypedArrayFromMapFn\<T, number>
 **参数：**
 | 参数名  | 类型   | 必填 | 说明                                        |
 | ------- | ------ | ---- | ------------------------------------------|
-| arrayLike | ArrayLike\<T> | 是 | 用于构造ArrayLike对象。              |
+| arrayLike | ArrayLike\<T> | 是 | 用于构造ArkTS Uint32Array的ArrayLike对象。              |
 | mapFn | [TypedArrayFromMapFn](arkts-apis-arkts-collections-Types.md#typedarrayfrommapfn)\<T, number> | 是 | 映射函数。|
 
 **返回值：**
@@ -255,21 +255,21 @@ static from\<T>(arrayLike: ArrayLike\<T>, mapFn: TypedArrayFromMapFn\<T, number>
 ```ts
 // 例1 从一个对象创建
 let array: collections.Uint32Array = collections.Uint32Array.from<number>(
-  { length: 5 }, (v: Object, k: number) => k);
+  { length: 5 }, (v: number, k: number) => k);
 // Uint32Array [0, 1, 2, 3, 4]
 ```
 
 ```ts
 // 例2 从一个字符数组创建
 let array: collections.Uint32Array = collections.Uint32Array.from<string>(
-  ["1", "3", "5"], (v: string, k: number) => parseInt(v));
+  ["1", "3", "5"], (value: string, k: number) => parseInt(value));
 // Uint32Array [1, 3, 5]
 ```
 
 ```ts
 // 例3 从一个字符串创建
 let array: collections.Uint32Array = collections.Uint32Array.from<string>(
-  "12345", (v: string, k: number) => parseInt(v));
+  "12345", (value: string, k: number) => parseInt(value));
 // Uint32Array [1, 2, 3, 4, 5]
 ```
 
@@ -285,7 +285,7 @@ static from(arrayLike: Iterable\<number>, mapFn?: TypedArrayFromMapFn\<number, n
 **参数：**
 | 参数名  | 类型   | 必填 | 说明                                |
 | ------- | ------ | ---- | -----------------------------------|
-| arrayLike | Iterable\<number> | 是 | 用于构造的可迭代对象。   |
+| arrayLike | Iterable\<number> | 是 | 用于构造ArkTS Uint32Array的可迭代对象。   |
 | mapFn | [TypedArrayFromMapFn](arkts-apis-arkts-collections-Types.md#typedarrayfrommapfn)\<number, number> | 否 | 映射函数。如果省略，则不对元素进行加工处理。|
 
 **返回值：**
@@ -307,7 +307,7 @@ let array: collections.Uint32Array = collections.Uint32Array.from(set);
 // 例2 指定映射函数
 let set: Set<number> = new Set<number>([1, 2, 3]);
 let array: collections.Uint32Array = collections.Uint32Array.from(
-  set, (v: number, k: number) => v + k);
+  set, (value: number, k: number) => value + k);
 // Uint32Array [1, 3, 5]
 ```
 
@@ -315,7 +315,7 @@ let array: collections.Uint32Array = collections.Uint32Array.from(
 
 static of(...items: number[]): Uint32Array
 
-通过可变数量的参数创建一个新的ArkTS Uint32Array对象，参数个数可以是0个、1个或者多个。
+通过可变数量的参数创建一个新的ArkTS Uint32Array对象。
 
 **原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
@@ -336,15 +336,15 @@ static of(...items: number[]): Uint32Array
 **示例：**
 
 ```ts
-let arr: collections.Uint32Array = collections.Uint32Array.of(1, 2, 3, 4);
-console.info(arr.toString()); // 预期输出：1,2,3,4
+let uint32Array: collections.Uint32Array = collections.Uint32Array.of(1, 2, 3, 4);
+console.info(uint32Array.toString()); // 预期输出：1,2,3,4
 ```
 
 ## toString<sup>18+</sup>
 
 toString(): string
 
-ArkTS Uint32Array转换为字符串。
+将ArkTS Uint32Array转换为字符串。
 
 **原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
@@ -358,7 +358,7 @@ ArkTS Uint32Array转换为字符串。
 
 **错误码：**
 
-以下错误码详细介绍请参考[语言基础类库错误码](errorcode-utils.md)。
+以下错误码的详细介绍请参见[语言基础类库错误码](errorcode-utils.md)。
 
 | 错误码ID    | 错误信息                                 |
 | -------- | ------------------------------------ |
@@ -391,7 +391,7 @@ toLocaleString(): string
 
 **错误码：**
 
-以下错误码详细介绍请参考[语言基础类库错误码](errorcode-utils.md)。
+以下错误码的详细介绍请参见[语言基础类库错误码](errorcode-utils.md)。
 
 | 错误码ID    | 错误信息                                       |
 | -------- | ------------------------------------------ |
@@ -410,7 +410,7 @@ console.info(stringArray); // 预期输出：1,000, 2,000, 3,000
 ## copyWithin
 copyWithin(target: number, start: number, end?: number): Uint32Array
 
-从ArkTS Uint32Array指定范围内的元素依次拷贝到目标位置。
+将ArkTS Uint32Array指定范围内的元素依次拷贝到目标位置。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -420,7 +420,7 @@ copyWithin(target: number, start: number, end?: number): Uint32Array
 
 | 参数名  | 类型   | 必填 | 说明                                                         |
 | ------- | ------ | ---- | ------------------------------------------------------------ |
-| target | number | 是 | 目标起始位置的下标，如果`target < 0`，则会从`target + array.length`位置开始。 |
+| target | number | 是 | 目标起始位置的下标，如果`target < 0`，则会从`target + Uint32Array.length`位置开始。 |
 | start | number | 是 | 源起始位置下标，如果`start < 0`，则会从`start + Uint32Array.length`位置开始。 |
 | end | number | 否 | 源终止位置下标（不包含end位置的元素），如果`end < 0`，则会从`end + Uint32Array.length`位置终止。默认为ArkTS Uint32Array的长度。|
 
@@ -428,11 +428,11 @@ copyWithin(target: number, start: number, end?: number): Uint32Array
 
 | 类型         | 说明      |
 | ------------ | --------- |
-| Uint32Array | 修改后的Uint32Array。 |
+| Uint32Array | 修改后的ArkTS Uint32Array对象。 |
 
 **错误码：**
 
-以下错误码详细介绍请参考[语言基础类库错误码](errorcode-utils.md)。
+以下错误码的详细介绍请参见[语言基础类库错误码](errorcode-utils.md)。
 
 | 错误码ID | 错误信息                                          |
 | -------- | ------------------------------------------------ |
@@ -450,7 +450,7 @@ let copied: collections.Uint32Array = array.copyWithin(3, 1, 3);
 ## some
 some(predicate: TypedArrayPredicateFn\<number, Uint32Array>): boolean
 
-测试ArkTS Uint32Array中是否存在元素满足指定条件。
+测试ArkTS Uint32Array中是否存在满足指定条件的元素。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -470,7 +470,7 @@ some(predicate: TypedArrayPredicateFn\<number, Uint32Array>): boolean
 
 **错误码：**
 
-以下错误码详细介绍请参考[语言基础类库错误码](errorcode-utils.md)。
+以下错误码的详细介绍请参见[语言基础类库错误码](errorcode-utils.md)。
 
 | 错误码ID | 错误信息                            |
 | -------- | ---------------------------------- |
@@ -508,7 +508,7 @@ every(predicate: TypedArrayPredicateFn\<number, Uint32Array>): boolean
 
 **错误码：**
 
-以下错误码详细介绍请参考[语言基础类库错误码](errorcode-utils.md)。
+以下错误码的详细介绍请参见[语言基础类库错误码](errorcode-utils.md)。
 
 | 错误码ID | 错误信息                                          |
 | -------- | ------------------------------------------------- |
@@ -544,11 +544,11 @@ fill(value: number, start?: number, end?: number): Uint32Array
 
 | 类型         | 说明      |
 | ------------ | --------- |
-| Uint32Array | 填充后的Uint32Array。|
+| Uint32Array | 填充后的ArkTS Uint32Array对象。|
 
 **错误码：**
 
-以下错误码详细介绍请参考[语言基础类库错误码](errorcode-utils.md)。
+以下错误码的详细介绍请参见[语言基础类库错误码](errorcode-utils.md)。
 
 | 错误码ID | 错误信息                                          |
 | -------- | ------------------------------------------------- |
@@ -587,7 +587,7 @@ filter(predicate: TypedArrayPredicateFn\<number, Uint32Array>): Uint32Array
 
 **错误码：**
 
-以下错误码详细介绍请参考[语言基础类库错误码](errorcode-utils.md)。
+以下错误码的详细介绍请参见[语言基础类库错误码](errorcode-utils.md)。
 
 | 错误码ID | 错误信息                                          |
 | -------- | ------------------------------------------------- |
@@ -625,7 +625,7 @@ find(predicate: TypedArrayPredicateFn\<number, Uint32Array>): number | undefined
 
 **错误码：**
 
-以下错误码详细介绍请参考[语言基础类库错误码](errorcode-utils.md)。
+以下错误码的详细介绍请参见[语言基础类库错误码](errorcode-utils.md)。
 
 | 错误码ID | 错误信息                                          |
 | -------- | ------------------------------------------------- |
@@ -663,7 +663,7 @@ findIndex(predicate: TypedArrayPredicateFn\<number, Uint32Array>): number
 
 **错误码：**
 
-以下错误码详细介绍请参考[语言基础类库错误码](errorcode-utils.md)。
+以下错误码的详细介绍请参见[语言基础类库错误码](errorcode-utils.md)。
 
 | 错误码ID | 错误信息                                          |
 | -------- | ------------------------------------------------- |
@@ -695,7 +695,7 @@ forEach(callbackFn: TypedArrayForEachCallback\<number, Uint32Array>): void
 
 **错误码：**
 
-以下错误码详细介绍请参考[语言基础类库错误码](errorcode-utils.md)。
+以下错误码的详细介绍请参见[语言基础类库错误码](errorcode-utils.md)。
 
 | 错误码ID | 错误信息                                          |
 | -------- | ------------------------------------------------- |
@@ -725,17 +725,17 @@ indexOf(searchElement: number, fromIndex?: number): number
 | 参数名        | 类型   | 必填 | 说明                        |
 | ------------- | ------ | ---- | ---------------------------|
 | searchElement | number | 是   | 待索引的值。                |
-| fromIndex     | number | 否   | 搜索的起始下标。默认值为0。如果下标大于等于ArkTS Uint32Array的长度，则返回-1。如果提供的下标值是负数，则被当做距离数组尾部的偏移，从前到后搜索。 |
+| fromIndex     | number | 否   | 搜索的起始下标。默认值为0。如果下标大于等于ArkTS Uint32Array的长度，则返回-1。如果下标为负数，则被视为距离数组尾部的偏移，从前到后搜索。 |
 
 **返回值：**
 
 | 类型         | 说明      |
 | ------------ | --------- |
-| number | 数组中元素的第一个索引；没有找到，则返回-1。 |
+| number | ArkTS Uint32Array中给定元素的第一个索引；没有找到，则返回-1。 |
 
 **错误码：**
 
-以下错误码详细介绍请参考[语言基础类库错误码](errorcode-utils.md)。
+以下错误码的详细介绍请参见[语言基础类库错误码](errorcode-utils.md)。
 
 | 错误码ID | 错误信息                                          |
 | -------- | ------------------------------------------------- |
@@ -756,7 +756,7 @@ array.indexOf(9, -2); // 2
 
 lastIndexOf(searchElement: number, fromIndex?: number): number
 
-返回ArkTS Uint32Array实例中最后一次出现searchElement的索引，如果对象不包含，则为-1。
+返回ArkTS Uint32Array实例中最后一次出现searchElement的索引，如果不包含该元素，则返回-1。
 
 **原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
@@ -767,13 +767,13 @@ lastIndexOf(searchElement: number, fromIndex?: number): number
 | 参数名           | 类型     | 必填  | 说明                                                                                |
 | ------------- | ------ | --- | --------------------------------------------------------------------------------- |
 | searchElement | number | 是   | 待索引的值。                                                                            |
-| fromIndex     | number | 否   | 搜索的起始下标。默认值为0。如果下标大于等于ArkTS Uint32Array的长度，则返回-1。如果提供的下标值是负数，则被当做距离数组尾部的偏移，从后到前搜索。 |
+| fromIndex     | number | 否   | 搜索的起始下标，从该位置开始往前查找。默认值为ArkTS Uint32Array长度减1（即从末尾开始）。如果提供的下标值是负数，则被当作距离数组尾部的偏移，从后到前搜索。 |
 
 **返回值：**
 
 | 类型     | 说明                      |
 | ------ | ----------------------- |
-| number | 数组中给定元素的最后一个索引；没有找到，则返回-1。 |
+| number | ArkTS Uint32Array中给定元素的最后一个索引；没有找到，则返回-1。 |
 
 **错误码：**
 
@@ -817,7 +817,7 @@ join(separator?: string): string
 
 **错误码：**
 
-以下错误码详细介绍请参考[语言基础类库错误码](errorcode-utils.md)。
+以下错误码的详细介绍请参见[语言基础类库错误码](errorcode-utils.md)。
 
 | 错误码ID | 错误信息                                          |
 | -------- | ------------------------------------------------- |
@@ -854,7 +854,7 @@ map(callbackFn: TypedArrayMapCallback\<number, Uint32Array>): Uint32Array
 
 **错误码：**
 
-以下错误码详细介绍请参考[语言基础类库错误码](errorcode-utils.md)。
+以下错误码的详细介绍请参见[语言基础类库错误码](errorcode-utils.md)。
 
 | 错误码ID | 错误信息                                          |
 | -------- | ------------------------------------------------- |
@@ -865,13 +865,13 @@ map(callbackFn: TypedArrayMapCallback\<number, Uint32Array>): Uint32Array
 
 ```ts
 let array: collections.Uint32Array = collections.Uint32Array.from([25, 36, 49]);
-const mapped: collections.Uint32Array = array.map(Math.sqrt); // Uint32Array [5, 6 ,7]
+const mapped: collections.Uint32Array = array.map(Math.sqrt); // Uint32Array [5, 6, 7]
 ```
 
 ## reduce
 reduce(callbackFn: TypedArrayReduceCallback\<number, number, Uint32Array>): number
 
-对ArkTS Uint32Array中的每个元素执行归约函数，并返回最终的归约结果。
+对每个元素执行归约函数，并返回最终的归约结果。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -890,7 +890,7 @@ reduce(callbackFn: TypedArrayReduceCallback\<number, number, Uint32Array>): numb
 
 **错误码：**
 
-以下错误码详细介绍请参考[语言基础类库错误码](errorcode-utils.md)。
+以下错误码的详细介绍请参见[语言基础类库错误码](errorcode-utils.md)。
 
 | 错误码ID |                      错误信息                     |
 | -------- | ------------------------------------------------ |
@@ -909,7 +909,7 @@ let reducedValue: number = array.reduce((accumulator: number, value: number) => 
 
 reduceRight(callbackFn: TypedArrayReduceCallback\<number, number, Uint32Array>): number
 
-反向遍历ArkTS Uint32Array，对ArkTS Uint32Array中的每个元素执行归约函数，并返回最终的归约结果。
+反向遍历ArkTS Uint32Array，对每个元素执行归约函数，并返回最终的归约结果。
 
 **原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
@@ -946,7 +946,7 @@ console.info(reducedValue + ''); // 预期输出： 15
 ## reduce
 reduce(callbackFn: TypedArrayReduceCallback\<number, number, Uint32Array>, initialValue: number): number
 
-对ArkTS Uint32Array中的每个元素执行归约函数，且接收一个初始值作为归约函数首次调用的参数，并返回最终的归约结果。
+对每个元素执行归约函数，接收初始值作为首次调用参数，并返回最终的归约结果。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -967,7 +967,7 @@ reduce(callbackFn: TypedArrayReduceCallback\<number, number, Uint32Array>, initi
 
 **错误码：**
 
-以下错误码详细介绍请参考[语言基础类库错误码](errorcode-utils.md)。
+以下错误码的详细介绍请参见[语言基础类库错误码](errorcode-utils.md)。
 
 | 错误码ID | 错误信息                                          |
 | -------- | ------------------------------------------------- |
@@ -986,7 +986,7 @@ let reducedValue: number = array.reduce((accumulator: number, value: number) => 
 
 reduceRight\<U = number>(callbackFn: TypedArrayReduceCallback\<U, number, Uint32Array>, initialValue: U): U
 
-反向遍历ArkTS Uint32Array，对ArkTS Uint32Array中的每个元素执行归约函数，且接收一个初始值作为归约函数首次调用的参数，并返回最终的归约结果。
+反向遍历ArkTS Uint32Array，对每个元素执行归约函数，接收初始值作为首次调用参数，并返回最终的归约结果。
 
 **原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
@@ -1024,7 +1024,7 @@ console.info(reducedValue + ''); // 预期输出： 16
 ## reduce
 reduce\<U>(callbackFn: TypedArrayReduceCallback\<U, number, Uint32Array>, initialValue: U): U
 
-对ArkTS Uint32Array中的每个元素执行归约函数，且接收一个初始值作为归约函数首次调用的参数，并返回最终的归约结果。
+对每个元素执行归约函数，接收初始值作为首次调用参数，并返回最终的归约结果。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -1045,7 +1045,7 @@ reduce\<U>(callbackFn: TypedArrayReduceCallback\<U, number, Uint32Array>, initia
 
 **错误码：**
 
-以下错误码详细介绍请参考[语言基础类库错误码](errorcode-utils.md)。
+以下错误码的详细介绍请参见[语言基础类库错误码](errorcode-utils.md)。
 
 | 错误码ID | 错误信息                                          |
 | -------- | ------------------------------------------------- |
@@ -1063,7 +1063,7 @@ let reducedValue: string = array.reduce<string>((accumulator: string, value: num
 ## reverse
 reverse(): Uint32Array
 
-反转ArkTS Uint32Array。
+原地反转ArkTS Uint32Array的元素顺序（修改原数组），并返回修改后的原数组引用。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -1104,11 +1104,11 @@ set(array: ArrayLike\<number>, offset?: number): void
 | 参数名    | 类型   | 必填 | 说明                                                 |
 | --------- | ------ | ---- | ---------------------------------------------------- |
 | array | ArrayLike\<number> | 是  | 用于设置的ArrayLike对象。|
-| offset | number | 否  | 写入的起始位置。默认为0。|
+| offset | number | 否  | 写入的起始位置，需为非负整数。默认值为0。|
 
 **错误码：**
 
-以下错误码详细介绍请参考[语言基础类库错误码](errorcode-utils.md)。
+以下错误码的详细介绍请参见[语言基础类库错误码](errorcode-utils.md)。
 
 | 错误码ID | 错误信息                                          |
 | -------- | ------------------------------------------------- |
@@ -1136,7 +1136,7 @@ slice(start?: number, end?: number): Uint32Array
 
 | 参数名 | 类型   | 必填 | 说明                                                   |
 | ------ | ------ | ---- | -----------------------------------------------------|
-| start  | number | 否   | 开始索引，如果`start < 0`，则会从`start + Uint32Array.length`位置开始。默认为0。 |
+| start  | number | 否   | 开始索引，如果`start < 0`，则会从`start + Uint32Array.length`位置开始。默认值为0。 |
 | end    | number | 否   | 结束索引（不包括该元素），如果`end < 0`，则会到`end + Uint32Array.length`位置结束。默认为ArkTS Uint32Array的长度。|
 
 **返回值：**
@@ -1147,7 +1147,7 @@ slice(start?: number, end?: number): Uint32Array
 
 **错误码：**
 
-以下错误码详细介绍请参考[语言基础类库错误码](errorcode-utils.md)。
+以下错误码的详细介绍请参见[语言基础类库错误码](errorcode-utils.md)。
 
 | 错误码ID | 错误信息                                          |
 | -------- | ------------------------------------------------- |
@@ -1166,7 +1166,7 @@ array.slice(-2); // Uint32Array [4, 5]
 ## sort
 sort(compareFn?: TypedArrayCompareFn\<number>): Uint32Array
 
-对ArkTS Uint32Array进行排序，并返回排序后的ArkTS Uint32Array对象。
+原地对ArkTS Uint32Array进行排序（修改原数组），并返回排序后的原数组引用。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -1186,7 +1186,7 @@ sort(compareFn?: TypedArrayCompareFn\<number>): Uint32Array
 
 **错误码：**
 
-以下错误码详细介绍请参考[语言基础类库错误码](errorcode-utils.md)。
+以下错误码的详细介绍请参见[语言基础类库错误码](errorcode-utils.md)。
 
 | 错误码ID | 错误信息                                    |
 | -------- | ------------------------------------------ |
@@ -1198,14 +1198,14 @@ sort(compareFn?: TypedArrayCompareFn\<number>): Uint32Array
 ```ts
 let array: collections.Uint32Array = collections.Uint32Array.from([1, 3, 5, 4, 2]);
 array.sort(); // Uint32Array [1, 2, 3, 4, 5]
-array.sort((a: number, b: number) => a - b); // Uint32Array [1, 2, 3, 4, 5]
-array.sort((a: number, b: number) => b - a); // Uint32Array [5, 4, 3, 2, 1]
+array.sort((first: number, second: number) => first - second); // Uint32Array [1, 2, 3, 4, 5]
+array.sort((first: number, second: number) => second - first); // Uint32Array [5, 4, 3, 2, 1]
 ```
 
 ## subarray
 subarray(begin?: number, end?: number): Uint32Array
 
-从指定的位置截取数组，返回一个新的、基于相同ArkTS ArrayBuffer的ArkTS Uint32Array对象。
+从指定的位置截取数组，返回一个新的、基于相同ArkTS ArrayBuffer的ArkTS Uint32Array对象。修改返回的subarray或原始ArkTS Uint32Array会互相影响，因为它们共享同一份底层[ArrayBuffer](arkts-apis-arkts-collections-ArrayBuffer.md)数据。如需创建独立副本，请使用[slice()](#slice)方法。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -1222,11 +1222,11 @@ subarray(begin?: number, end?: number): Uint32Array
 
 | 类型         | 说明      |
 | ------------ | --------- |
-| Uint32Array | 新的ArkTS Uint32Array对象。|
+| Uint32Array | 与原Uint32Array共享底层ArrayBuffer的ArkTS Uint32Array对象。 |
 
 **错误码：**
 
-以下错误码详细介绍请参考[语言基础类库错误码](errorcode-utils.md)。
+以下错误码的详细介绍请参见[语言基础类库错误码](errorcode-utils.md)。
 
 | 错误码ID |            错误信息                               |
 | -------- | -------------------------------------------------|
@@ -1253,7 +1253,7 @@ at(index: number): number | undefined
 **参数：**
 | 参数名 | 类型   | 必填 | 说明                                                         |
 | ------ | ------ | ---- | ------------------------------------------------------------ |
-| index  | number | 是   | 要返回的Array元素的索引（从零开始），取值为整数。如果`index < 0`，则会访问`index + Uint32Array.length`位置的元素。|
+| index  | number | 是   | 要返回的元素的索引（从0开始），取值为整数。如果`index < 0`，则会访问`index + Uint32Array.length`位置的元素。|
 
 **返回值：**
 
@@ -1263,7 +1263,7 @@ at(index: number): number | undefined
 
 **错误码：**
 
-以下错误码详细介绍请参考[语言基础类库错误码](errorcode-utils.md)。
+以下错误码的详细介绍请参见[语言基础类库错误码](errorcode-utils.md)。
 
 | 错误码ID |                       错误信息                    |
 | -------- | ------------------------------------------------ |
@@ -1303,7 +1303,7 @@ includes(searchElement: number, fromIndex?: number): boolean
 
 **错误码：**
 
-以下错误码详细介绍请参考[语言基础类库错误码](errorcode-utils.md)。
+以下错误码的详细介绍请参见[语言基础类库错误码](errorcode-utils.md)。
 
 | 错误码ID | 错误信息                                          |
 | -------- | ------------------------------------------------- |
@@ -1425,7 +1425,7 @@ for (const value of iterator) {
 
 [Symbol.iterator]\(): IterableIterator&lt;number&gt;
 
-返回一个迭代器，迭代器的每一项都是一个 JavaScript 对象，并返回该对象。
+返回一个迭代器，迭代器的每一项是ArkTS Uint32Array中对应位置的元素值。
 
 > **说明：**
 >
@@ -1448,6 +1448,7 @@ for (const value of iterator) {
 | 错误码ID | 错误信息                                    |
 | -------- | ------------------------------------------- |
 | 10200011 | The Symbol.iterator method cannot be bound. |
+| 10200201 | Concurrent modification error.              |
 
 **示例：**
 
@@ -1463,7 +1464,7 @@ for (let item of uint32Array) {
 
 &#91;index: number&#93;: number
 
-返回Uint32Array指定索引位置的元素。
+返回ArkTS Uint32Array指定索引位置的元素。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -1473,13 +1474,13 @@ for (let item of uint32Array) {
 
 | 参数名    | 类型   | 必填 | 说明                     |
 | ----- | ------ | ---- | -------------------------- |
-| index | number | 是   | 所需代码单元的从零开始的索引。|
+| index | number | 是   | 所需元素的从零开始的索引。取值范围为[0, Uint32Array.length-1]。|
 
 **返回值：**
 
 | 类型   | 说明                 |
 | ----- | ---------------------|
-| number | 返回number数据类型。 |
+| number | 返回指定索引位置的元素值。 |
 
 **示例：**
 

@@ -350,7 +350,8 @@ struct MarqueeExample {
 
 ### 示例2（设置跑马灯停止回调）
 
-该示例通过变更跑马灯状态来触发onStop回调，回调触发后使停止计数器numberSTOP的值加1。
+该示例通过变更跑马灯状态来触发onStop回调，回调触发后使停止计数器numberStop的值加1。
+
 
 从API版本26.0.0开始，新增[onStop](#onstop)接口。
 

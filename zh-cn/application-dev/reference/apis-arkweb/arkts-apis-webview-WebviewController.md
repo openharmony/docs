@@ -3401,7 +3401,7 @@ scrollByWithResult(deltaX: number, deltaY: number): boolean
 
 | 类型    | 说明                                     |
 | ------- | --------------------------------------- |
-| boolean | true表示当前网页可以滑动，false表示当前网页不可以滑动。<br>默认为false。 |
+| boolean | true表示当前网页可以滑动，false表示当前网页不可以滑动。 |
 
 **错误码：**
 
@@ -3840,11 +3840,7 @@ struct WebComponent {
 
 removeCache(clearRom: boolean): void
 
-清除与当前WebView上下文相关的资源缓存。
-
-> **说明：**
->
-> 可以通过在data/storage/el2/base/cache/web/Cache目录下查看Webview的缓存。
+清除应用内所有Webview产生的资源缓存。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -3896,10 +3892,6 @@ struct WebComponent {
 static removeAllCache(clearRom: boolean): void
 
 清除应用内所有Webview(含隐私模式)产生的资源缓存。
-
-> **说明：**
->
-> 可以通过在data/app/el2/100/base/\<applicationPackageName\>/cache/web/目录下查看Webview的缓存。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -4774,7 +4766,7 @@ struct Index {
 
 setAudioMuted(mute: boolean): void
 
-设置网页静音。
+设置网页静音。典型使用场景包括：应用需要控制网页音量（如提供静音开关）、后台播放时需要静音等。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -7282,7 +7274,7 @@ struct WebComponent {
 
 setServiceWorkerWebSchemeHandler(scheme: string, handler: WebSchemeHandler): void
 
-为当前应用的所有Web组件设置用于拦截ServiceWorker的WebSchemeHandler。
+为当前应用的所有Web组件设置WebSchemeHandler，用于拦截ServiceWorker中指定scheme的请求。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -9080,7 +9072,7 @@ getScrollOffset(): ScrollOffset
 
 | 类型                            | 说明                   |
 | :------------------------------ | ---------------------- |
-| [ScrollOffset](./arkts-apis-webview-i.md#scrolloffset13) | 网页当前的滚动偏移量（包含过滚动偏移量）。 |
+| [ScrollOffset](./arkts-apis-webview-i.md#scrolloffset13) | 网页当前的滚动偏移量（包含过滚动偏移量），包含x和y坐标，单位为vp。 |
 
 **示例：**
 
@@ -9172,7 +9164,7 @@ getPageOffset(): ScrollOffset
 
 | 类型                            | 说明                   |
 | :------------------------------ | ---------------------- |
-| [ScrollOffset](./arkts-apis-webview-i.md#scrolloffset13) | 网页当前的滚动偏移量（不包含过滚动偏移量）。 |
+| [ScrollOffset](./arkts-apis-webview-i.md#scrolloffset13) | 网页当前的滚动偏移量（不包含过滚动偏移量），包含x和y坐标，单位为vp。 |
 
 **错误码：**
 
@@ -9599,7 +9591,7 @@ getHitTest(): WebHitTestType
 
 > **说明：**
 >
-> 从API version11开始支持，从API version 18开始废弃。建议使用[getLastHitTest](#getlasthittest18)替代。
+> 从API version 11开始支持，从API version 18开始废弃。建议使用[getLastHitTest](#getlasthittest18)替代。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -9654,7 +9646,7 @@ getHitTestValue(): HitTestValue
 
 > **说明：**
 >
-> 从API version11开始支持，从API version 18开始废弃。建议使用[getLastHitTest](#getlasthittest18)替代。
+> 从API version 11开始支持，从API version 18开始废弃。建议使用[getLastHitTest](#getlasthittest18)替代。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -10767,6 +10759,10 @@ struct WebComponent {
   aboutToAppear(): void {
     let context: Context | undefined = this.uiContext.getHostContext() as common.UIAbilityContext;
     atManager.requestPermissionsFromUser(context, ['ohos.permission.MICROPHONE'], (err: BusinessError, data: PermissionRequestResult) => {
+      if (err) {
+        console.error(`ErrorCode: ${err.code}, Message: ${err.message}`);
+        return;
+      }
       console.info('data:' + JSON.stringify(data));
       console.info('data permissions:' + data.permissions);
       console.info('data authResults:' + data.authResults);
@@ -10867,6 +10863,12 @@ struct WebComponent {
 pauseMicrophone(): void
 
 暂停当前网页麦克风捕获。
+
+> **说明：**
+>
+> 与resumeMicrophone和stopMicrophone的区别：
+>
+> pauseMicrophone仅暂停麦克风捕获，可通过resumeMicrophone恢复；stopMicrophone会停止捕获并释放资源。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 

@@ -1,10 +1,12 @@
 # native_drm_err.h
+
 <!--Kit: Drm Kit-->
 <!--Subsystem: Multimedia-->
 <!--Owner: @qin_wei_jie-->
 <!--Designer: @chris2981-->
 <!--Tester: @xdlinc-->
 <!--Adviser: @w_Machine_cc-->
+<!-- md-trans-meta sourceCommit=e85a6f3dbc9e10801a5d673c235723e814e8051f translatedAt=2026-07-31T02:12:58.536Z pushedAt=2026-07-31T03:52:43.310Z -->
 
 ## Overview
 
@@ -54,9 +56,9 @@ Enumerates the DRM error codes.
 | DRM_ERR_IO = DRM_CAPI_ERR_BASE + 4 | I/O error.|
 | DRM_ERR_TIMEOUT = DRM_CAPI_ERR_BASE + 5 | Network timeout.|
 | DRM_ERR_UNKNOWN = DRM_CAPI_ERR_BASE + 6 | Unknown error.|
-| DRM_ERR_SERVICE_DIED = DRM_CAPI_ERR_BASE + 7 | DRM service unavailable.|
+| DRM_ERR_SERVICE_DIED = DRM_CAPI_ERR_BASE + 7 | The DRM service died. |
 | DRM_ERR_INVALID_STATE = DRM_CAPI_ERR_BASE + 8 | Invalid operation state.|
 | DRM_ERR_UNSUPPORTED = DRM_CAPI_ERR_BASE + 9 | Unsupported operation.|
 | DRM_ERR_MAX_SYSTEM_NUM_REACHED = DRM_CAPI_ERR_BASE + 10 | Too many MediaKeySystem instances.|
 | DRM_ERR_MAX_SESSION_NUM_REACHED = DRM_CAPI_ERR_BASE + 11 | Too many MediaKeySession instances.|
-| DRM_ERR_EXTEND_START  = DRM_CAPI_ERR_BASE + 100 | Extended error codes start.|
+| DRM_ERR_EXTEND_START  = DRM_CAPI_ERR_BASE + 100 | Extended error.|

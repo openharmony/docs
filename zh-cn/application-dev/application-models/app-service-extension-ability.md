@@ -1,7 +1,7 @@
 # 使用AppServiceExtensionAbility组件实现后台服务
 <!--Kit: Ability Kit-->
 <!--Subsystem: Ability-->
-<!--Owner: @yewei0794-->
+<!--Owner: @zhang_hao_zheng-->
 <!--Designer: @jsjzju-->
 <!--Tester: @liangchengguang-->
 <!--Adviser: @HelloCrease-->
@@ -25,7 +25,7 @@ AppServiceExtensionAbility组件当前仅支持2in1设备。
 
 - 应用集成AppServiceExtensionAbility组件需要申请ACL权限（ohos.permission.SUPPORT_APP_SERVICE_EXTENSION）。该ACL权限当前只对企业普通应用开放申请。
 
-- AppServiceExtensionAbility组件内不支持调用[window](../reference/apis-arkui/arkts-apis-window.md)相关API。
+- 针对AppServiceExtensionAbility接口调用限制，详情请参考 [@ohos.app.ability.AppServiceExtensionAbility (应用后台服务扩展组件)](../reference/apis-ability-kit/js-apis-app-ability-appServiceExtensionAbility.md) 的约束限制。
 
 ## 运作机制
 

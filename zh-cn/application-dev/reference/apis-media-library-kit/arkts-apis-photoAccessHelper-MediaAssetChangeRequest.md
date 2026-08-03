@@ -632,7 +632,12 @@ async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper, cont
 
 saveCameraPhoto(): void
 
-保存相机拍摄的照片。
+拍照场景下，使用该接口保存相机拍摄的照片资源。
+
+> **说明：**
+>
+> - 非YUV拍摄模式下，照片资源保存的编码格式与[CameraFormat](../apis-camera-kit/arkts-apis-camera-e.md#cameraformat)保持一致。
+> - YUV拍摄模式下，该接口无法指定编码格式，图片资源保存为默认的jpg格式。
 
 **系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
 
@@ -667,7 +672,13 @@ async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper, asse
 
 saveCameraPhoto(imageFileType: ImageFileType): void
 
-保存相机拍摄的照片。需要指定保存的类型。
+拍照场景下，使用该接口保存相机拍摄的照片资源。
+
+> **说明：**
+> 
+> - 非YUV拍摄模式下，照片资源保存的编码格式与[CameraFormat](../apis-camera-kit/arkts-apis-camera-e.md#cameraformat)保持一致。
+> - YUV拍摄模式下，该接口根据[ImageFileType](arkts-apis-photoAccessHelper-e.md#imagefiletype13)将YUV对象编码为指定格式。
+> - 当该接口与[addResource](#addresource11-1)组合使用时，照片资源保存的编码格式与[addResource](#addresource11-1)添加资源的编码格式保持一致。
 
 **系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
 

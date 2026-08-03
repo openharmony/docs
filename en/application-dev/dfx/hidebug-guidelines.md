@@ -2,16 +2,17 @@
 
 <!--Kit: Performance Analysis Kit-->
 <!--Subsystem: HiviewDFX-->
-<!--Owner: @hello_harmony; @yu_haoqiaida-->
-<!--Designer: @kutcherzhou1-->
+<!--Owner: @leiguangyu-->
+<!--Designer: @mgce1-->
 <!--Tester: @gcw_KuLfPSbe-->
-<!--Adviser: @foryourself-->
+<!--Adviser: @jinqiuheng-->
+<!-- md-trans-meta sourceCommit=6e728a6ae8365b95c031233aa4e6a63c3fee6545 translatedAt=2026-07-31T01:31:17.767Z pushedAt=2026-07-31T07:13:33.950Z -->
 
 HiDebug can obtain the memory, CPU, and GPU data of the system or application processes, and enable process trace collection.
 
 This topic describes the ArkTS and C/C++ APIs of the HiDebug module and classifies them by API capability.
 
-For details about the APIs, see [ArkTS API Reference](../reference/apis-performance-analysis-kit/js-apis-hidebug.md) and [C API Reference](../reference/apis-performance-analysis-kit/capi-hidebug-h.md).
+For API details, see [@ohos.hidebug](../reference/apis-performance-analysis-kit/js-apis-hidebug.md) and [hidebug.h](../reference/apis-performance-analysis-kit/capi-hidebug-h.md).
 
 ## Constraints
 
@@ -32,11 +33,12 @@ HiDebug can obtain the system memory, application process memory usage, applicat
 | hidebug.getVss | Obtains the virtual set size used by the application process. This API is implemented by reading the value of **size** (number of memory pages) from the **/proc/{pid}/statm** node and calculating the value using the following formula: **vss** = **size** × page size (4 KB/page).|
 | hidebug.getSharedDirty | Obtains the size of the shared dirty memory of a process. This API is implemented by reading the value of **Shared_Dirty** in **/proc/{pid}/smaps_rollup**.|
 | hidebug.getPrivateDirty | Obtains the size of the private dirty memory of a process. This API is implemented by reading the value of **Private_Dirty** in the **/proc/{pid}/smaps_rollup** node.|
-| hidebug.getAppNativeMemInfo | Obtains the memory information of the application process. This API is implemented by reading data from the **/proc/{pid}/smaps_rollup and /proc/{pid}/statm** node.|
+| hidebug.getAppNativeMemInfo | Obtains the memory information of the application process. This API is implemented by reading data from the **/proc/{pid}/smaps_rollup** and **/proc/{pid}/statm** node.|
 | hidebug.getAppNativeMemInfoAsync | Obtains the memory information of an application process in asynchronous mode.<br>Note: This API is supported since API version 20.|
 | hidebug.getAppNativeMemInfoWithCache | Obtains the memory information of an application process. This API has a cache mechanism to improve its performance.<br>Note: This API is supported since API version 20.|
 | hidebug.getSystemMemInfo | Obtains system memory information. This API is implemented by reading data from the **/proc/meminfo** node.|
 | hidebug.getAppMemoryLimit | Obtains the memory limit of an application process. **rsslimit** and **vsslimit** are the values of **RLIMIT_RSS** and **RLIMIT_AS** obtained through the **getrlimit** API, respectively.|
+| hidebug.getRssInfo | Gets the physical memory information used by the app process. Reads data from the **/proc/{pid}/status** node.<br/>Compared with **hidebug.getAppNativeMemInfo**, this API has lower overhead and is more lightweight.<br/>**Note:** Supported since API version 24. |
 
 ### APIs (C/C++)
 
@@ -108,7 +110,7 @@ The CPU statistics from left to right are as follows (**cpu** indicates the tota
 
 - **steal**: time when a process that is not running on the VM is running in the virtualization environment.
 
-- **guest**: time when non-low-priority processes (**nice** ≤ 0) are running on the VM (included in the **user** field).
+- **guest**: time when non-low-priority processes (**nice** <= 0) are running on the VM (included in the **user** field).
 
 - **guest_nice**: time when low-priority processes (**nice** > 0) are running on the VM (included in the **nice** field).
 
@@ -177,9 +179,9 @@ HiDebug can obtain VM memory data, GC statistics, and VM heap dump data.
 | hidebug.getAppVMMemoryInfo | Obtains VM memory information.|
 | hidebug.getVMRuntimeStats | Obtains the system [GC](../arkts-utils/gc-introduction.md) statistics.|
 | hidebug.getVMRuntimeStat | Obtains the specified system [GC](../arkts-utils/gc-introduction.md) statistics based on parameters.|
-| hidebug.dumpJsRawHeapData | Dumps the original VM heap snapshot for the current thread in asynchronous mode. This API is used for JavaScript memory leak analysis.<br>Note: This API is supported since API version 18.|
+| hidebug.dumpJsRawHeapData | Uses an asynchronous method to dump the VM raw heap snapshot for the current thread, assisting with [JS memory leak analysis](https://developer.huawei.com/consumer/en/doc/best-practices/bpta-stability-js-memleak-detection).<br/>**Note:**<br/>Supported since API version 18.<br/>Starting from API version 24, this API supports clearing nodeId cache.<br/>Starting from API version 26.0.0, this API supports dumping the VM raw heap snapshot of the process to which the current thread belongs.|
 | hidebug.setJsRawHeapTrimLevel | Sets the trimming level of the original heap snapshot stored by the current process.<br>Note: This API is supported since API version 20.|
-| hidebug.dumpJsHeapData | Dumps the VM heap data in synchronous mode. This API is used for JavaScript memory leak analysis.|
+| hidebug.dumpJsHeapData | Exports the VM heap synchronously, assisting with [JS memory leak analysis](https://developer.huawei.com/consumer/en/doc/best-practices/bpta-stability-js-memleak-detection).<br/>**Note:** Starting from API version 24, this API supports clearing nodeId cache. |
 | hidebug.getAppMemoryLimit | Obtains the memory limit of an application process. **vmHeapLimit** is the VM heap size limit of the current thread, and **vmTotalHeapSize** is the total size limit of all VM heaps in the current process.|
 | hidebug.getAppVMObjectUsedSize | Obtains the VM memory size occupied by ArkTS objects.<br>Note: This API is supported since API version 21.|
 
@@ -187,12 +189,15 @@ HiDebug can obtain VM memory data, GC statistics, and VM heap dump data.
 
 HiTrace provides APIs to implement call chain tracing throughout a service process. This can help you obtain the run log for the call chain of a service process and locate faults across devices, processes, and threads. For details, see [Introduction to HiTraceMeter](hitracemeter-intro.md). To implement automatic HiTrace collection, the HiDebug module provides APIs for starting and stopping a HiTrace collection.
 
+Starting from API version 24, trace collection APIs including kernel information are provided.
+
 ### APIs (ArkTS)
 
 | Name| Description  |
 | -------- | -------- |
 | hidebug.startAppTraceCapture | Starts an application trace collection.|
 | hidebug.stopAppTraceCapture | Stops an application trace collection.|
+| hidebug.requestTrace | Requests trace collection.<br/>**Note:** Supported since API version 24. |
 
 ### APIs (C/C++)
 
@@ -200,6 +205,7 @@ HiTrace provides APIs to implement call chain tracing throughout a service proce
 | -------- | -------- |
 | OH_HiDebug_StartAppTraceCapture | Starts an application trace collection.|
 | OH_HiDebug_StopAppTraceCapture | Stops an application trace collection.|
+| OH_HiDebug_RequestTrace | Requests trace collection.<br/>**Note:** Supported since API version 24. |
 
 ## Starting VM CpuProfiler
 
@@ -268,6 +274,7 @@ Tid: 52129, ThreadName: xample.perftest, Cputime: 3160ms, Count: 42
                               41 #15 pc 000000000000a228 /data/storage/el1/bundle/libs/arm64/libentry.so(TestMyFunc()+120)(94ed3a52d7ef751a94358709d11c99545960cdd4)
                               1 #15 pc 000000000000a21c /data/storage/el1/bundle/libs/arm64/libentry.so(TestMyFunc()+108)(94ed3a52d7ef751a94358709d11c99545960cdd4)
 ```
+
 The first line contains the thread ID, thread name, CPU time occupied by the target thread during API calling, and the number of samplings of the thread. (The CPU time occupied by the target thread is slightly greater than the actual CPU time during sampling because the API consumes performance.) The number of samplings per unit time may vary depending on the hardware capability and task scheduling uncertainty. Therefore, the sampling parameters of the next period should be dynamically adjusted based on the sampling time and number of samplings of the previous period, so that the actual number of samplings in the total time is as close as possible to the theoretical number of samplings (Sampling frequency (Hz) × Sampling time (ms) × Unit conversion (1s/1000 ms)).
 
 Except the first line, each line indicates a piece of stack information. The following describes the meaning of a line of stack frame information:
@@ -302,7 +309,7 @@ JS frame:
 
 > **NOTE**
 >
-> When Perf is used to sample the kernel stack backtrace, the sampling stack depth is less than 50, and the frame-pointer is required. If the collected call stack is interrupted in a third-party library, check whether the stack pointer functionality is enabled for the third-party library.
+> When Perf is used to sample the kernel stack backtrace, the sampling stack depth is less than 50, and the frame-pointer is required. If the collected call stack is interrupted in a third-party library, check whether the frame-pointer feature is enabled for the corresponding third-party library.
 
 ### APIs (C/C++)
 
@@ -322,7 +329,7 @@ HiDebug provides APIs for setting the threshold of system resource leak detectio
 
 ## Managing GWP-ASan
 
-HiDebug provides the capabilities of enabling and disabling GWP-ASan and querying the number of days when GWP-ASan is enabled.
+HiDebug provides the capabilities of enabling and disabling [GWP-ASan](https://developer.huawei.com/consumer/en/doc/best-practices/bpta-stability-gwpasan-detection) and querying the number of days when GWP-ASan is enabled.
 
 ### APIs (ArkTS)
 
@@ -342,6 +349,65 @@ HiDebug provides APIs for adding debugging information to crash logs. You can ad
 | -------- | -------- |
 | OH_HiDebug_SetCrashObj | Adds debugging information to crash logs. This API should be used with **OH_HiDebug_ResetCrashObj**. If a program crashes between **OH_HiDebug_SetCrashObj** and **OH_HiDebug_ResetCrashObj**, the debugging information set by **OH_HiDebug_SetCrashObj** is added to the crash logs.<br>Note: This API is supported since API version 23.|
 | OH_HiDebug_ResetCrashObj | Resets the debugging information object to the status before **OH_HiDebug_SetCrashObj** is called. This API should be used with **OH_HiDebug_SetCrashObj**.<br>Note: This API is supported since API version 23.|
+
+## Changing Heap Snapshot from Thread-Level to Process-Level
+
+HiDebug provides APIs for modifying the dump heap snapshot level.
+
+### APIs (ArkTS)
+
+| Name | Description |
+| -------- | -------- |
+| hidebug.setProcDumpInSharedOOM | When the memory type of a JS OOM event is SharedHeap, if the app has called this API with the parameter set to **true**, the dumped heap snapshot is changed from the thread level to the process level. Obtain the corresponding logs by [subscribing to resource leak events (ArkTS)](hiappevent-watcher-resourceleak-events-arkts.md).<br/>This API affects only the heap snapshot dumped when an OOM occurs in SharedHeap, and does not affect heap snapshots dumped in other scenarios.<br/>When you need to locate JS leak issues, it is recommended that you always call this API with the parameter set to **true**.<br/>**Note:** This API is supported since API version 24. |
+
+## Collecting Process Resource Call Stacks
+
+Starting from API version 24, HiDebug adds the resource collection capability, which supports collecting app process resource allocation stacks to the sandbox on demand, covering categories such as file descriptors, threads, Native/GPU memory, and global handles, to assist in locating resource leaks.
+
+### APIs (C/C++)
+
+| Name | Description |
+|--------|------|
+| OH_HiDebug_StartProfiler | Starts resource allocation stack information collection of the specified type. This API must be used in paired usage with OH_HiDebug_StopProfiler.<br/>**Note:** This API is supported since API version 24. |
+| OH_HiDebug_StopProfiler | Stops resource allocation stack information collection. This API must be used in paired usage with OH_HiDebug_StartProfiler.<br/>**Note:** This API is supported since API version 24. |
+
+## Exporting Memory Snapshots
+
+Starting from API version 26.0.0, HiDebug supports registering a memory dump listener, which is used to export an app memory snapshot when memory usage is high or when manually triggered by the [hidumper command](hidumper.md#querying-vm-heap-memory), facilitating local export or reporting.
+
+### APIs (C/C++)
+
+| Name | Description |
+| -------- | -------- |
+| OH_HiDebug_RegisterMemDumpListener | Registers a memory dump listener.<br/>**Note:** This API is supported since API version 26.0.0. |
+| OH_HiDebug_UnregisterMemDumpListener | Unregisters a registered memory dump listener.<br/>**Note:** This API is supported since API version 26.0.0. |
+
+## Managing Asynchronous Contexts
+
+Starting from API version 26.0.0, HiDebug provides asynchronous context management APIs for establishing and releasing asynchronous call chain relationships in custom asynchronous task scenarios. With these APIs, you can push and pop an asynchronous context when submitting and completing an asynchronous task, enabling performance analysis tools such as the [hiperf command-line tool](hiperf.md) and the [OH_HiDebug_RequestThreadLiteSampling API](../reference/apis-performance-analysis-kit/capi-hidebug-h.md#oh_hidebug_requestthreadlitesampling) to trace the complete asynchronous call stack.
+
+> **NOTE**
+>
+> This feature is supported only on the ARM64 architecture and can be used only in [apps of the debug version](performance-analysis-kit-terminology.md#applications-of-the-debug-version).
+
+### Procedure
+
+1. Before submitting an asynchronous task, call [OH_HiDebug_AcquireAsyncContext](../reference/apis-performance-analysis-kit/capi-hidebug-h.md#oh_hidebug_acquireasynccontext) to obtain an asynchronous context.
+
+2. When submitting an asynchronous task, call [OH_HiDebug_PushAsyncContext](../reference/apis-performance-analysis-kit/capi-hidebug-h.md#oh_hidebug_pushasynccontext) to push the asynchronous context into the running context of the current thread, establishing the asynchronous call chain.
+
+3. When the asynchronous task is completed, call [OH_HiDebug_PopAsyncContext](../reference/apis-performance-analysis-kit/capi-hidebug-h.md#oh_hidebug_popasynccontext) to pop the asynchronous context, releasing the asynchronous call chain.
+
+4. After the asynchronous task ends, call [OH_HiDebug_ReleaseAsyncContext](../reference/apis-performance-analysis-kit/capi-hidebug-h.md#oh_hidebug_releaseasynccontext) to release the asynchronous context resources and prevent resource leaks.
+
+### APIs (C/C++)
+
+| Name | Description |
+| -------- | -------- |
+| OH_HiDebug_AcquireAsyncContext | Acquires an asynchronous context (AsyncContext) for subsequent asynchronous stack tracing operations. The corresponding release function is [OH_HiDebug_ReleaseAsyncContext](../reference/apis-performance-analysis-kit/capi-hidebug-h.md#oh_hidebug_releaseasynccontext).<br/>**Note:** This API is supported since API version 26.0.0. |
+| OH_HiDebug_PushAsyncContext | Pushes an asynchronous context into the running context of the current thread to establish an asynchronous call chain relationship.<br/>**Note:** This API is supported since API version 26.0.0. |
+| OH_HiDebug_PopAsyncContext | Pops an asynchronous context from the running context of the current thread to release an asynchronous call chain relationship.<br/>**Note:** This API is supported since API version 26.0.0. |
+| OH_HiDebug_ReleaseAsyncContext | Releases the asynchronous context resource acquired through OH_HiDebug_AcquireAsyncContext.<br/>**Note:** This API is supported since API version 26.0.0. |
 
 ## Others
 

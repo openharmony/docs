@@ -1,13 +1,14 @@
 # Using Toasts (Toast)
+
 <!--Kit: ArkUI-->
 <!--Subsystem: ArkUI-->
 <!--Owner: @liyi0309-->
 <!--Designer: @liyi0309-->
 <!--Tester: @lxl007-->
 <!--Adviser: @Brilliantry_Rui-->
+<!-- md-trans-meta sourceCommit=d331d662789003e8c3f7c6d67ef1c2e9a890c1fd translatedAt=2026-07-30T11:30:13.970Z pushedAt=2026-07-30T12:01:20.937Z -->
 
 A toast is a temporary window that provides brief feedback or status information to users. It typically appears at the bottom or top of the screen for a short duration before automatically disappearing. The main purpose of a toast is to provide concise and non-intrusive information, avoiding disruption to the user's current workflow.
-
 
 You can use the [getPromptAction](../reference/apis-arkui/arkts-apis-uicontext-uicontext.md#getpromptaction) API in [UIContext](../reference/apis-arkui/arkts-apis-uicontext-uicontext.md) to obtain the [PromptAction](../reference/apis-arkui/arkts-apis-uicontext-promptaction.md) object associated with the current UI context, and then use the object to call [showToast](../reference/apis-arkui/arkts-apis-uicontext-promptaction.md#showtoast) to create and display a toast.
 
@@ -27,7 +28,7 @@ You can use the [getPromptAction](../reference/apis-arkui/arkts-apis-uicontext-u
 
  - Avoid displaying overlapping or frequent toasts.
 
-   As lightweight feedback mechanisms, toasts should not obscure other screen elements or cover important content. Continuous popups without adequate intervals can significantly disrupt the user experience. Avoid replacing one toast with another in quick succession. Ensure toast displays do not exceed 3 seconds to prevent disruption of user interactions.
+   As lightweight feedback mechanisms, toasts should not obscure other screen elements or cover important content. Continuous popups without any interval can significantly disrupt the user experience. Avoid replacing one toast with another in quick succession. Ensure toast displays do not exceed 3 seconds to prevent disruption of user interactions.
 
  - Follow the default toast positioning guidelines.
 
@@ -50,7 +51,7 @@ Before displaying a TOP_MOST toast, a full-screen subwindow is created (the size
 | Soft keyboard avoidance| The toast always moves up the soft keyboard when it is displayed.| The toast avoids the keyboard only if the toast is blocked, and after avoidance, the distance between the bottom of the toast and the soft keyboard is 80 vp.|
 | UIExtension layout| The toast is aligned with UIExtension as the main window, with alignment consistent with UIExtension.| The toast is aligned with the host window as the main window, with alignment consistent with the host window.|
 
-<!-- @[toast_showDefaultAndTop](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkUISample/DialogProject/entry/src/main/ets/pages/Toast/DefaultAndTopToast.ets) -->
+<!-- @[toast_showDefaultAndTop](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkUISample/DialogProject/entry/src/main/ets/pages/Toast/DefaultAndTopToast.ets) --> 
 
 ``` TypeScript
 import { promptAction } from '@kit.ArkUI';
@@ -81,7 +82,7 @@ export struct DefaultAndTopToastExample {
           } catch (error) {
             let message = (error as BusinessError).message;
             let code = (error as BusinessError).code;
-            hilog.error(DOMAIN, TAG, '%{public}s', 'showToast args error code is $\{code}, message is $\{message}');
+            hilog.error(DOMAIN, TAG, '%{public}s', `showToast args error code is ${code}, message is ${message}`);
           }
         })
 
@@ -99,7 +100,7 @@ export struct DefaultAndTopToastExample {
           }  catch (error) {
             let message = (error as BusinessError).message;
             let code = (error as BusinessError).code;
-            hilog.error(DOMAIN, TAG, '%{public}s', 'showToast args error code is $\{code}, message is $\{message}');
+            hilog.error(DOMAIN, TAG, '%{public}s', `showToast args error code is ${code}, message is ${message}`);
           }
         })
       }
@@ -108,13 +109,13 @@ export struct DefaultAndTopToastExample {
 }
 ```
 
-
+![defaultToast](figures/defaultToast.gif)
 
 ## Creating a Toast
 
 This mode is suitable for scenarios where the toast automatically disappears within a short period of time.
 
-<!-- @[toast_create](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkUISample/DialogProject/entry/src/main/ets/pages/Toast/CreateToast.ets) -->
+<!-- @[toast_create](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkUISample/DialogProject/entry/src/main/ets/pages/Toast/CreateToast.ets) --> 
 
 ``` TypeScript
 import { PromptAction } from '@kit.ArkUI';
@@ -142,7 +143,7 @@ export struct CreateToastExample {
             } catch (error) {
               let message = (error as BusinessError).message;
               let code = (error as BusinessError).code;
-              hilog.error(DOMAIN, TAG, '%{public}s', 'showToast args error code is $\{code}, message is $\{message}');
+              hilog.error(DOMAIN, TAG, '%{public}s', `showToast args error code is ${code}, message is ${message}`);
             }
           })
       }.height('100%').width('100%').justifyContent(FlexAlign.Center)
@@ -157,7 +158,7 @@ export struct CreateToastExample {
 
 This mode is suitable for scenarios where the dialog box has a longer retention period and the user can close it manually.
 
-<!-- @[toast_openClose](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkUISample/DialogProject/entry/src/main/ets/pages/Toast/OpenCloseToast.ets) -->
+<!-- @[toast_openClose](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkUISample/DialogProject/entry/src/main/ets/pages/Toast/OpenCloseToast.ets) --> 
 
 ``` TypeScript
 import { PromptAction } from '@kit.ArkUI';
@@ -191,7 +192,7 @@ export struct OpenCloseToastExample {
             } catch (error) {
               let message = (error as BusinessError).message;
               let code = (error as BusinessError).code;
-              hilog.error(DOMAIN, TAG, '%{public}s', 'OpenToast error code is $\{code}, message is $\{message}');
+              hilog.error(DOMAIN, TAG, '%{public}s', `OpenToast error code is ${code}, message is ${message}`);
             }
           })
         Blank().height(50);
@@ -204,7 +205,7 @@ export struct OpenCloseToastExample {
             } catch (error) {
               let message = (error as BusinessError).message;
               let code = (error as BusinessError).code;
-              hilog.error(DOMAIN, TAG, '%{public}s', 'CloseToast error code is $\{code}, message is $\{message}');
+              hilog.error(DOMAIN, TAG, '%{public}s', `CloseToast error code is ${code}, message is ${message}`);
             }
           })
       }.height('100%').width('100%').justifyContent(FlexAlign.Center)

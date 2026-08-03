@@ -417,3 +417,36 @@ struct CalendarPickerDialogExample {
 ```
 
 ![CalendarPickerDialog](figures/calendar_picker_dialog_backgroundEffect.png)
+
+### 示例9（设置系统材质）
+
+该示例通过配置[systemMaterial](#calendardialogoptions对象说明)，实现系统材质效果。
+
+从API版本26.0.0开始，在CalendarDialogOptions中新增了systemMaterial属性。
+
+```ts
+import { uiMaterial } from '@kit.ArkUI';
+
+@Entry
+@Component
+struct CalendarPickerDialogExample {
+  private selectedDate: Date = new Date('2025-08-05');
+
+  build() {
+    Stack({ alignContent: Alignment.Top }) {
+      Column() {
+        Button('Show CalendarPicker Dialog')
+          .margin(20)
+          .onClick(() => {
+            CalendarPickerDialog.show({
+              selected: this.selectedDate,
+              systemMaterial: new uiMaterial.ImmersiveMaterial({ style: uiMaterial.ImmersiveStyle.ULTRA_THICK })
+            });
+          })
+      }.width('100%')
+    }
+  }
+}
+```
+
+![calendar-picker-dialog-systemMaterial](figures/calendar-picker-dialog-systemMaterial.png)

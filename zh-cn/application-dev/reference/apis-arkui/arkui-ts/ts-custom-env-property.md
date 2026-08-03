@@ -29,7 +29,7 @@ CustomEnv\<T\>(key: CustomEnvKey\<T\>): PropertyDecorator
 
 **参数：**
 
-|名称|类型|必填|说明|
+|参数名|类型|必填|说明|
 | ----- | ----- | ------ |------ |
 |key|CustomEnvKey\<T\>|是|自定义环境变量Key，用于标识要获取的自定义环境变量。|
 

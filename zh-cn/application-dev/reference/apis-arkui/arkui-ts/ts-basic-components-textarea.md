@@ -64,6 +64,7 @@ TextArea初始化参数。
 placeholderColor(value: ResourceColor)
 
 设置placeholder文本颜色。未通过该接口设置时，默认placeholder文本颜色跟随主题，深色模式下显示为#ffffff（白色），浅色模式下显示为#000000（黑色）。
+
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
@@ -1649,10 +1650,10 @@ onDidInsert(callback: Callback\<InsertValue>)
 
 > **说明：**
 >
-> onWillDelete和onDidDelete形成will/did时序模式：
-> - onWillDelete在删除操作前触发，可通过返回false拦截删除操作；返回true则允许删除，随后触发onDidDelete。
-> - onDidDelete在删除完成后触发，无法拦截。
-> - 两者可以同时使用，onWillDelete用于拦截控制，onDidDelete用于获取删除结果。
+> onWillInsert和onDidInsert形成will/did时序模式：
+> - onWillInsert在插入操作前触发，可通过返回false拦截插入操作；返回true则允许插入，随后触发onDidInsert。
+> - onDidInsert在插入完成后触发，无法拦截。
+> - 两者可以同时使用，onWillInsert用于拦截控制，onDidInsert用于获取插入结果。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -1700,6 +1701,12 @@ onDidDelete(callback: Callback\<DeleteValue>)
 在删除完成时，触发该回调。
 
 点击清除按钮不触发onDidDelete回调。
+
+> **说明：**
+>
+> - onWillDelete在删除操作前触发，可通过返回false拦截删除操作；返回true则允许删除，随后触发onDidDelete。
+> - onDidDelete在删除完成后触发，无法拦截。
+> - 两者可以同时使用，onWillDelete用于拦截控制，onDidDelete用于获取删除结果。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 

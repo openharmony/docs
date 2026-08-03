@@ -735,7 +735,7 @@ export default function afterReturnTest() {
       let claser: ClassName = new ClassName();
       // 进行Mock操作，对ClassName类的method_1函数进行Mock
       let mockfunc: Function = mocker.mockFunc(claser, claser.method_1);
-      // 期望claser.method_1函数被Mock后, 以'testA'为入参时调用函数返回结果'1',以'testB''为入参时调用函数返回结果undefined
+      // 期望claser.method_1函数被Mock后, 以'testA'为入参时调用函数返回结果'1',以'testB'为入参时调用函数返回结果undefined
       when(mockfunc)('testA').afterReturn('1');
       when(mockfunc)('testB').afterReturnNothing();
       // 对Mock后的函数进行断言，看是否符合预期。分别传入参数'testA'和'testB'时，应该返回自定义的预期结果1和undefined
@@ -1017,7 +1017,7 @@ export default function afterThrowTest() {
       let mockfunc: Function = mocker.mockFunc(claser, claser.method_1);
       // 期望claser.method_1函数被Mock后, 以'test'为参数调用函数时抛出error xxx异常
       when(mockfunc)('test').afterThrow('error xxx');
-      // 执行Mock后的函数，捕捉异常并使用assertEqual对比msg否符合预期
+      // 执行Mock后的函数，捕捉异常并使用assertEqual对比msg是否符合预期
       try {
         claser.method_1('test');
       } catch (e) {

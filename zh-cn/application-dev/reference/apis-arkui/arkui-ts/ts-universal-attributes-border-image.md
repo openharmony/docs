@@ -103,7 +103,6 @@ struct Index {
         Text('This is gradient color.').textAlign(TextAlign.Center).height(50).width(200)
           .borderImage({
             source: {
-              angle: 90,
               direction: GradientDirection.Left,
               colors: [[0xAEE1E1, 0.0], [0xD3E0DC, 0.3], [0xFCD1D1, 1.0]],
               repeating: false

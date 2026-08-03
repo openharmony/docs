@@ -347,11 +347,11 @@ The self-activation credential of the enterprise device administrator is invalid
 
 **可能原因**
 
-1、企业ID不匹配。
+1. 企业ID不匹配。
 
-2、应用appIdentifier配置失败。
+2. 应用appIdentifier配置失败。
 
-3、激活凭证缺少必需字段或者证书链校验失败。
+3. 激活凭证缺少必需字段或者证书链校验失败。
 
 **处理步骤**
 

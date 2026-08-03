@@ -5,7 +5,8 @@
 <!--Owner: @xuxinao-->
 <!--Designer: @peterhuangyu-->
 <!--Tester: @gcw_KuLfPSbe-->
-<!--Adviser: @foryourself-->
+<!--Adviser: @jinqiuheng-->
+<!-- md-trans-meta sourceCommit=552600b0ea7451a7ac2f58aae751acd2a0a9b5bf translatedAt=2026-07-29T10:48:36.686Z pushedAt=2026-07-29T12:33:06.419Z -->
 
 ## Event Specifications
 
@@ -22,7 +23,7 @@ For details about how to use the APIs, see [@ohos.hiviewdfx.hiAppEvent (Applicat
 
 ## How to Develop
 
-To ensure that the event callback can be successfully received in the development phase, you are advised to create a native C++ project, implement subscription in the ArkTs code, and use the C ++ fault injection code to construct a fault to trigger the application killed event.
+To ensure smooth reception of event callbacks during development, you are advised to adopt the following approach: create a new Native C++ project, implement the subscription in ArkTS code, and use fault injection code in C++ to construct faults that trigger `APP_KILLED` events.
 
 1. In the **entry/src/main/ets/entryability/EntryAbility.ets** file of the project, import the dependent modules.
 
@@ -59,6 +60,8 @@ To ensure that the event callback can be successfully received in the developmen
            hilog.info(0x0000, 'testTag', `HiAppEvent eventInfo.params.foreground=${eventInfo.params['foreground']}`);
            // Obtain the cause of the application killed event.
            hilog.info(0x0000, 'testTag', `HiAppEvent eventInfo.params.reason=${eventInfo.params['reason']}`);
+           hilog.info(0x0000, 'testTag', `HiAppEvent eventInfo.params.app_running_unique_id=${eventInfo.params['app_running_unique_id']}`);
+           hilog.info(0x0000, 'testTag', `HiAppEvent eventInfo.params.bundle_version=${eventInfo.params['bundle_version']}`);
          }
        }
      }
@@ -155,4 +158,6 @@ To ensure that the event callback can be successfully received in the developmen
    HiAppEvent eventInfo.params.time=1717597063727
    HiAppEvent eventInfo.params.reason="RssThresholdKiller"
    HiAppEvent eventInfo.params.foreground=true
+   HiAppEvent eventInfo.params.app_running_unique_id=207544
+   HiAppEvent eventInfo.params.bundle_version=1000000
    ```

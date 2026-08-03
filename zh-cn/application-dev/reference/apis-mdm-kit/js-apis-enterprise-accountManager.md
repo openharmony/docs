@@ -26,7 +26,7 @@ import { accountManager } from '@kit.MDMKit';
 
 disallowOsAccountAddition(admin: Want, disallow: boolean, accountId?: number): void
 
-禁止用户添加账号。
+禁止用户添加账号。调用成功后，系统将禁止指定用户或所有用户添加新账号。适用于企业设备管理场景，如防止员工随意创建本地账号、加强设备安全管理等。
 
 **需要权限：** ohos.permission.ENTERPRISE_SET_ACCOUNT_POLICY
 
@@ -80,7 +80,7 @@ try {
 
 isOsAccountAdditionDisallowed(admin: Want | null, accountId?: number): boolean
 
-查询是否禁止用户添加账号。
+查询是否禁止用户添加账号。适用于企业审计和合规检查场景，帮助管理员确认账号策略执行情况。
 
 **需要权限：** ohos.permission.ENTERPRISE_SET_ACCOUNT_POLICY
 
@@ -138,7 +138,8 @@ try {
 
 addOsAccountAsync(admin: Want, name: string, type: osAccount.OsAccountType): Promise&lt;osAccount.OsAccountInfo&gt;
 
-后台添加账号。使用Promise异步回调。
+后台添加账号。使用Promise异步回调。适用于企业批量创建账号或远程管理场景，无需用户交互即可完成账号创建，提升管理效率。
+
 > **说明：**
 > 
 > 创建账号的流程比较耗时，当调用此接口后，后续如果在应用主线程调用其他同步接口时需要等待该接口异步返回。
@@ -293,7 +294,7 @@ async function setDomainAccountPolicy() {
 
 getDomainAccountPolicy(admin: Want, domainAccountInfo: osAccount.DomainAccountInfo): DomainAccountPolicy
 
-获取域账号策略。
+获取域账号策略。适用于企业管理场景，如查询当前域账号策略配置、策略合规性审计等。
 
 **需要权限：** ohos.permission.ENTERPRISE_SET_ACCOUNT_POLICY
 
@@ -387,8 +388,8 @@ async function getDomainAccountPolicy() {
 <!--Table: 28%; 10%; 8%; 8%; 46%-->
 | 名称                           | 类型   | 只读 | 可选 | 说明                                                         |
 | ------------------------------ | ------ | ---- | ---- |------------------------------------------------------------ |
-| authenticationValidityPeriod   | number | 否   | 是   |表示域账号认证Token的有效期（单位：s），取值范围是[-1,2147483647]。有效期起始时间为最后一次域账号的认证时间点，如登录、锁屏后解锁等。<br/>默认值为-1，表示Token永久有效。取值为0，表示Token立即失效。Token过期/失效后，用户进入系统时必须进行域账号认证，验证域账号和密码。 |
-| passwordValidityPeriod         | number | 否   | 是   |表示域账号密码有效期（单位：s），取值范围是[-1,2147483647]，有效期起始时间为设备侧最后一次修改密码的时间点。<br/>默认值为-1，表示域账号密码永久有效。 |
+| authenticationValidityPeriod   | number | 否   | 是   |表示域账号认证Token的有效期（单位：s），用于控制用户在Token有效期内无需重复认证即可访问系统资源。取值范围是[-1,2147483647]。有效期起始时间为最后一次域账号的认证时间点，如登录、锁屏后解锁等。<br/>默认值为-1，表示Token永久有效。取值为0，表示Token立即失效。Token过期/失效后，用户进入系统时必须进行域账号认证，验证域账号和密码。 |
+| passwordValidityPeriod         | number | 否   | 是   |表示域账号密码有效期（单位：s），用于用户定期修改密码以提升账号安全性。取值范围是[-1,2147483647]，有效期起始时间为设备侧最后一次修改密码的时间点。<br/>默认值为-1，表示域账号密码永久有效。 |
 | passwordExpirationNotification | number | 否   | 是   |表示域账号密码过期前提示时间（单位：s），取值范围是[0,2147483647]。<br/>默认值为0，表示域账号密码过期不提示。<br/>**说明：**passwordExpirationNotification需与passwordValidityPeriod配合使用，当系统时间大于或等于（设备侧最后一次修改域账号密码时间 + passwordValidityPeriod - passwordExpirationNotification）时，会发页面通知提示密码即将过期。 |
 
 ## accountManager.createNormalOsAccount

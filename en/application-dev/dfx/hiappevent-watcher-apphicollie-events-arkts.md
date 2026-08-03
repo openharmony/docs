@@ -2,14 +2,15 @@
 
 <!--Kit: Performance Analysis Kit-->
 <!--Subsystem: HiviewDFX-->
-<!--Owner: @rr_cn-->
+<!--Owner: @Chenyufan466765692-->
 <!--Designer: @peterhuangyu-->
 <!--Tester: @gcw_KuLfPSbe-->
-<!--Adviser: @foryourself-->
+<!--Adviser: @jinqiuheng-->
+<!-- md-trans-meta sourceCommit=f319e3e62d6356bf78f31e2e8f7ba3927caddf1e translatedAt=2026-07-29T10:50:09.143Z pushedAt=2026-07-29T12:39:20.321Z -->
 
 ## Overview
 
-Since API version 21, the ArkTS APIs are supported to subscribe to task execution timeout events. This topic describes how to use the ArkTS APIs provided by HiAppEvent to subscribe to task execution timeout events. For details about how to use the APIs (such as parameter restrictions and value ranges), see [@ohos.hiviewdfx.hiAppEvent (Application Event Logging)](../reference/apis-performance-analysis-kit/js-apis-hiviewdfx-hiappevent.md).
+Starting from API version 21, you can use ArkTS APIs to subscribe to task execution timeout events. This document describes how to use the ArkTS APIs provided by HiAppEvent to subscribe to task execution timeout events. For detailed API usage instructions (such as parameter constraints and value ranges), see [@ohos.hiviewdfx.hiAppEvent](../reference/apis-performance-analysis-kit/js-apis-hiviewdfx-hiappevent.md).
 
 ## Available APIs
 
@@ -24,7 +25,7 @@ Since API version 21, the ArkTS APIs are supported to subscribe to task executio
 
 To ensure that event callbacks can be successfully received in the development phase, you are advised to create a native C++ project, implement subscription in the ArkTS code, and use C++ code to construct fault injection to trigger task execution timeout events.
 
-1. Create a native C++ project. The directory structure is as follows:
+1. Create a native C++ project in DevEco Studio. The directory structure is as follows:
 
    ```yml
    entry:
@@ -43,20 +44,20 @@ To ensure that event callbacks can be successfully received in the development p
              - Index.ets
    ```
 
-2. In the **CMakeLists.txt** file, add the source file and dynamic libraries.
+2. Edit the **entry > src > main > cpp > CMakeLists.txt** file in the project to add source files and dynamic libraries.
 
    ```cmake
-   # Add **libhilog_ndk.z.so** (log output) and **libohhicollie.so** (HiCollie detection).
+   # Add dynamic library dependencies: libhilog_ndk.z.so (log output) and libohhicollie.so (HiCollie detection).
    target_link_libraries(entry PUBLIC libace_napi.z.so libhilog_ndk.z.so libohhicollie.so)
    ```
 
-3. In the **EntryAbility.ets** file, import the dependent modules. The sample code is as follows:
+3. Edit the **entry > src > main > ets > entryability > EntryAbility.ets** file in the project to import the dependency modules. The sample code is as follows:
 
    ```ts
    import { hiAppEvent, hilog } from '@kit.PerformanceAnalysisKit';
    ```
 
-4. Subscribe to system events. In the **EntryAbility.ets** file, add the subscription code to the **onCreate** function. The sample code is as follows:
+4. Subscribe to system events. Edit the **entry > src > main > ets > entryability > EntryAbility.ets** file in the project and add the subscription code in the `onCreate` function. The sample code is as follows:
 
    ```ts
    let watcher: hiAppEvent.Watcher = {
@@ -84,13 +85,14 @@ To ensure that event callbacks can be successfully received in the development p
            hilog.info(0x0000, 'testTag', `HiAppEvent eventInfo.params.process_name=${eventInfo.params['process_name']}`);
            hilog.info(0x0000, 'testTag', `HiAppEvent eventInfo.params.pid=${eventInfo.params['pid']}`);
            hilog.info(0x0000, 'testTag', `HiAppEvent eventInfo.params.uid=${eventInfo.params['uid']}`);
-           hilog.info(0x0000, 'testTag', `HiAppEvent eventInfo.params.uid=${eventInfo.params['uuid']}`);
+           hilog.info(0x0000, 'testTag', `HiAppEvent eventInfo.params.uuid=${eventInfo.params['uuid']}`);
            hilog.info(0x0000, 'testTag', `HiAppEvent eventInfo.params.exception=${eventInfo.params['exception']}`);
            hilog.info(0x0000, 'testTag', `HiAppEvent eventInfo.params.hilog.size=${eventInfo.params['hilog'].length}`);
            hilog.info(0x0000, 'testTag', `HiAppEvent eventInfo.params.peer_binder.size=${JSON.stringify(eventInfo.params['peer_binder'].length)}`);
            hilog.info(0x0000, 'testTag', `HiAppEvent eventInfo.params.memory=${eventInfo.params['memory']}`);
            hilog.info(0x0000, 'testTag', `HiAppEvent eventInfo.params.external_log=${JSON.stringify(eventInfo.params['external_log'])}`);
            hilog.info(0x0000, 'testTag', `HiAppEvent eventInfo.params.log_over_limit=${eventInfo.params['log_over_limit']}`);
+           hilog.info(0x0000, 'testTag', `HiAppEvent eventInfo.params.external_callback_log=${eventInfo.params['external_callback_log']}`);
          }
        }
      }
@@ -100,7 +102,7 @@ To ensure that event callbacks can be successfully received in the development p
 
 5. Add the **TestHiCollieTimerNdk** function.
 
-   In the **napi_init.cpp** file, add the **TestHiCollieTimerNdk** function to construct a task execution timeout event.
+   Edit the **entry > src > main > cpp > napi_init.cpp** file in the project and add the `TestHiCollieTimerNdk` function to construct a task execution timeout event:
 
    ```c++
    // Import the hicollie.h file.
@@ -131,7 +133,7 @@ To ensure that event callbacks can be successfully received in the development p
 
 6. Register **TestHiCollieTimerNdk** as an ArkTS API.
 
-   In the **napi_init.cpp** file, register **TestHiCollieTimerNdk** as an ArkTS API.
+   Edit the **entry > src > main > cpp > napi_init.cpp** file in the project and register `TestHiCollieTimerNdk` as an ArkTS API:
 
    ```c++
    EXTERN_C_START
@@ -159,13 +161,13 @@ To ensure that event callbacks can be successfully received in the development p
    }
    ```
 
-   In the **index.d.ts** file, define the ArkTS API.
+   Edit the **entry > src > main > cpp > types > libentry > Index.ets** file in the project and define the ArkTS API:
 
    ```typescript
    export const TestHiCollieTimerNdk: () => void;
    ```
 
-7. In the **Index.ets** file, add a button to trigger the task execution timeout event.
+7. Edit the **entry > src > main > ets > pages > Index.ets** file in the project and add a button to trigger the task execution timeout event.
 
    ```typescript
    import testNapi from 'libentry.so';
@@ -213,6 +215,7 @@ After the project crashes and exits, restart it. You can view the system event d
    HiAppEvent eventInfo.params.memory={"pss":0,"rss":150748,"sys_avail_mem":5387264,"sys_free_mem":218902,"sys_total_mem":11679236,"vss":38306936}
    HiAppEvent eventInfo.params.external_log=["/data/storage/el2/log/hiappevent/APP_HICOLLIE_1754914811140_20317.log"]
    HiAppEvent eventInfo.params.log_over_limit=false
+   HiAppEvent eventInfo.params.external_callback_log=THREAD_BLOCK_3S:log3s THREAD_BLOCK_6S:log6s
    ```
 
 ### Removing an Event Watcher

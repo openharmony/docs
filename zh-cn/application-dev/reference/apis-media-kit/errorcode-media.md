@@ -1,8 +1,8 @@
 # Media错误码
 <!--Kit: Media Kit-->
 <!--Subsystem: Multimedia-->
-<!--Owner: @wang-haizhou6-->
-<!--Designer: @HmQQQ-->
+<!--Owner: @chennotfound-->
+<!--Designer: @chris2981-->
 <!--Tester: @xchaosioda-->
 <!--Adviser: @w_Machine_cc-->
 
@@ -41,11 +41,13 @@ Operation not allowed.
 
 **可能原因**
 
-当前状态不支持此操作。
+1. 当前状态不支持此操作。
+2. 此应用录屏当前实例数量超过2个或此设备创建录屏实例数超过16个。
 
 **处理步骤**
 
-确认当前状态是否支持当前操作，把实例切换到正确的状态进行正确的操作。
+1. 先确认当前状态是否支持此操作，再把实例切换到正确状态进行正确操作。
+2. 释放所有已经创建的实例。
 
 ## 5400103 出现IO错误
 
