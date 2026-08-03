@@ -17,6 +17,7 @@ OpenHarmony为开发者提供了用于创建VPN的API解决方案。当前提供
 >- 为了保证应用的运行效率，所有API调用都是异步的，对于异步调用的API均提供了Promise的方式，以下示例均采用Promise方式，更多方式可以查阅[@ohos.net.vpnExtension (VPN增强管理)](../reference/apis-network-kit/js-apis-net-vpnExtension.md)。
 >- 完整的JS API说明以及示例代码请参考：[@ohos.net.vpnExtension (VPN增强管理)](../reference/apis-network-kit/js-apis-net-vpnExtension.md)。
 >- 使用该功能需要[ohos.permission.INTERNET](../security/AccessToken/permissions-for-all.md#ohospermissioninternet)权限。
+>- 针对VpnExtensionAbility接口调用限制，详细请参考API中的[约束限制](../reference/apis-network-kit/js-apis-net-vpnExtension.md#约束限制)。
 
 ## VPN应用的显示体验
 
