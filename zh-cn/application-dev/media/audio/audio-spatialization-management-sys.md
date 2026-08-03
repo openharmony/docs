@@ -1,4 +1,4 @@
-# 空间音频管理（仅对系统应用开放）
+# 空间音频管理(仅对系统应用开放)
 <!--Kit: Audio Kit-->
 <!--Subsystem: Multimedia-->
 <!--Owner: @tom_guo-->
