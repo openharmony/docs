@@ -551,7 +551,7 @@ type ControlPanelActionEventCallback = (event: PiPActionEventType, status?: numb
 | 参数名                       | 类型           | 必填    | 说明                                |
 |--------------------------|--------------|--------------|-----------------------------------|
 | event       |  [PiPActionEventType](#pipactioneventtype)       | 是 | 回调画中画控制面板控件动作事件类型。<br/>应用依据控件动作事件做相应处理，如触发'playbackStateChanged'事件时，需要开始或停止视频。 |
-| status | number | 否 | 表示可切换状态的控件当前的状态，如具备打开和关闭两种状态的麦克风控件组、摄像头控件组和静音控件组，打开为 1，关闭为 0；具备播放和暂停两种状态的播放 / 暂停控件组，播放为 1，暂停为 0。其余不具备可切换状态的控件该参数返回默认值 - 1。 |
+| status | number | 否 | 表示可切换状态的控件当前的状态，如具备打开和关闭两种状态的麦克风控件组、摄像头控件组和静音控件组，打开为1，关闭为0；具备播放和暂停两种状态的播放/暂停控件组，播放为1，暂停为0。其余不具备可切换状态的控件该参数返回默认值-1。 |
 
 ## ControlEventParam<sup>12+</sup>
 
@@ -913,7 +913,7 @@ try {
 ### isPiPActive<sup>23+</sup>
 isPiPActive(): Promise&lt;boolean&gt;
 
-获取画中画是否处于前台可见状态。使用 Promise 异步回调。
+获取画中画的可见状态。使用Promise异步回调。
 
 **原子化服务API：** 从API version 23开始，该接口支持在原子化服务中使用。
 
