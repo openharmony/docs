@@ -73,6 +73,7 @@ Operation not allowed.
 3. 播放器在文件解析异常状态下被调用了播控操作（如seek、pause、play等），当前状态不支持该操作。
 
    例如：
+
    （1）当未设置数据源调用play方法时，错误信息：errorCode 5400102 The current state is idle. Play operation only supports prepared/paused/completed.
 
    （2）当在Initialized状态调用play方法时，错误信息：errorCode 5400102 The current state is initialized. Play operation only supports prepared/paused/completed.
@@ -422,9 +423,11 @@ unsupport container format type.
 2. 媒体资源文件损坏或不完整，解封装器无法正确识别容器类型。
 
    例如：
-   （1）当播放的视频文件损坏时（mp4 ftyp 头部正常，缺少moov和媒体数据），错误信息为：errorCode 5400106, errorMsg Unsupported Format: CONTAINER_ERR-unsupport interface, unsupport container 
-format type, null-
+
+   （1）当播放的视频文件损坏时（mp4 ftyp 头部正常，缺少moov和媒体数据），错误信息为：errorCode 5400106, errorMsg Unsupported Format: CONTAINER_ERR-unsupport interface, unsupport container format type, null-
+
    （2）当播放时打开的是空文件时，错误信息为：errorCode 5400106, errorMsg Unsupported Format: CONTAINER_ERR-unsupport interface, unsupport container format type, null-
+
    （3）当播放文本伪装的MP4文件时，错误信息为：errorCode 5400106, errorMsg Unsupported Format: CONTAINER_ERR-unsupport interface, unsupport container format type, null-
 
 3. 媒体资源的URL或文件路径错误，导致加载到无效数据。
