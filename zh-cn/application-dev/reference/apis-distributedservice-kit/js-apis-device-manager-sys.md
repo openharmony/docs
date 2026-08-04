@@ -141,7 +141,7 @@ createDeviceManager(bundleName: string, callback: AsyncCallback&lt;DeviceManager
 | 名称      | 值  | 说明              |
 | ------- | ---- | --------------- |
 | ONLINE  | 0    | 设备物理上线状态。           |
-| READY   | 1    | 设备可用状态，表示设备间信息已在分布式数据中同步完成，可以运行分布式业务。 |
+| READY   | 1    | 设备可用状态，表示设备间信息已在分布式数据中同步完成, 可以运行分布式业务。 |
 | OFFLINE | 2    | 设备物理下线状态。           |
 | CHANGE  | 3    | 设备信息更改。         |
 
@@ -1961,7 +1961,7 @@ on(type: 'publishSuccess', callback: Callback&lt;{ publishId: number }&gt;): voi
 
   | 参数名     | 类型                                 | 必填 | 说明                       |
   | -------- | ---------------------------------------- | ---- | -------------------------- |
-  | type     | string                                   | 是   | 注册发布设备成功回调，以便在发布成功时通知应用程序，固定为publishSuccess。 |
+  | type     | string                                   | 是   | 注册发布设备成功回调，以便将发布成功时通知应用程序，固定为publishSuccess。 |
   | callback | Callback&lt;{&nbsp;publishId:&nbsp;number&nbsp;}&gt;    | 是   | 注册设备发布成功的回调方法。               |
 
 **错误码：**
