@@ -1,10 +1,12 @@
 # ContentSlot: Enabling Hybrid Development
+
 <!--Kit: ArkUI-->
 <!--Subsystem: ArkUI-->
 <!--Owner: @sd-wu-->
 <!--Designer: @sunbees-->
 <!--Tester: @liuli0427-->
 <!--Adviser: @zhang_yixin13-->
+<!-- md-trans-meta sourceCommit=82cbd61bf5a97c687ddb974e4186cc744a8f06f2 translatedAt=2026-08-03T09:15:22.761Z pushedAt=2026-08-03T09:27:00.312Z -->
 
 The **ContentSlot** component enables rendering and management of components created using C APIs on the native layer.
 
@@ -77,6 +79,7 @@ struct Parent {
 ```
 
 ### Native-side Implementation
+
 For details about the basic development knowledge of Node-API, see [Getting Started with the NDK](../../napi/ndk-development-overview.md).
 
 This topic only describes how to implement the logic code related to **ContentSlot**. For details about how to create a component on the C side, see [NDK API Overview](../ndk-build-ui-overview.md).
@@ -162,7 +165,7 @@ napi_value NodeManager::CreateNativeNode(napi_env env, napi_callback_info info)
       } else if (OH_ArkUI_NodeContentEvent_GetEventType(event) == NODE_CONTENT_EVENT_ON_DETACH_FROM_WINDOW) {
           // Logic to be triggered when a detach event occurs on ContentSlot.
           // ···
-      };
+      }
   };
   // Register an event with nodeContent.
   OH_ArkUI_NodeContent_RegisterCallback(nodeContentHandle_, nodeContentEvent);
@@ -185,7 +188,7 @@ napi_value NodeManager::CreateNativeNode(napi_env env, napi_callback_info info)
   <!-- @[contentslot_insert](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkUISample/RenderingControlContentslotNDK/entry/src/main/cpp/manager.cpp) -->
 
   ``` C++
-  size_t position = 0;
+  int32_t position = 0;
   ArkUI_NodeHandle component1 = CreateNodeHandle();
   // Insert a component into the specified position of the nodeContent manager.
   OH_ArkUI_NodeContent_InsertNode(nodeContentHandle_, component1, position);

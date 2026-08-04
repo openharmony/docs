@@ -1,20 +1,20 @@
 # Drawing Geometric Shapes (Shape)
+
 <!--Kit: ArkUI-->
 <!--Subsystem: ArkUI-->
 <!--Owner: @camlostshi-->
 <!--Designer: @fenglinbailu-->
 <!--Tester: @liuli0427-->
 <!--Adviser: @Brilliantry_Rui-->
-
+<!-- md-trans-meta sourceCommit=276d60289816e1dd5baf9329b4a307375826cd4b translatedAt=2026-08-01T00:26:06.862Z pushedAt=2026-08-01T02:32:21.198Z -->
 
 The drawing components are used to draw graphs on the page. The **Shape** component serves as the parent container for all drawing components and contains the common attributes shared by all drawing components. For details, see [Shape](../reference/apis-arkui/arkui-ts/ts-drawing-components-shape.md).
-
 
 ## Creating a Drawing Component
 
 You can create a drawing component through either of the following approaches:
 
-- Using the **Shape** component as the parental container: This can implement SVG-like effects. The API syntax is as follows:
+- Using the **Shape** component as the parent container: This can implement SVG-like effects. The API syntax is as follows:
 
   ```ts
   Shape(value?: PixelMap)
@@ -23,13 +23,12 @@ You can create a drawing component through either of the following approaches:
   The optional **value** parameter specifies the drawing target. When it is provided, graphics are rendered to the specified **PixelMap** object. If it is omitted, drawing occurs in the current rendering target.
 
   <!-- @[shape_one](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkUISample/ShapeDrawing/entry/src/main/ets/pages/Shape.ets) -->
-  
+
   ``` TypeScript
   Shape() {
     Rect().width(300).height(50)
   }
   ```
-
 
 - Using a standalone drawing component for a specific geometric shape. Seven shapes are supported: [Circle](../reference/apis-arkui/arkui-ts/ts-drawing-components-circle.md), [Ellipse](../reference/apis-arkui/arkui-ts/ts-drawing-components-ellipse.md), [Line](../reference/apis-arkui/arkui-ts/ts-drawing-components-line.md), [Polyline](../reference/apis-arkui/arkui-ts/ts-drawing-components-polyline.md), [Polygon](../reference/apis-arkui/arkui-ts/ts-drawing-components-polygon.md), [Path](../reference/apis-arkui/arkui-ts/ts-drawing-components-path.md), and [Rect](../reference/apis-arkui/arkui-ts/ts-drawing-components-rect.md). The following uses the **Circle** API as an example:
 
@@ -40,17 +39,14 @@ You can create a drawing component through either of the following approaches:
     This API draws a circle where the diameter is determined by the smaller of the width and height values.
 
   <!-- @[shape_two](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkUISample/ShapeDrawing/entry/src/main/ets/pages/Shape.ets) -->
-  
+
   ``` TypeScript
   Circle({ width: 150, height: 150 })
   ```
 
-
   ![creation-2](figures/creation-2.jpg)
 
-
 ## Shape Viewport
-
 
 ```ts
 viewPort(value: { x?: number | string, y?: number | string, width?: number | string, height?: number | string })
@@ -63,7 +59,7 @@ The following examples demonstrate how to use **viewPort**:
 - Scaling graphics with **viewPort**:
 
   <!-- @[view_port_one](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkUISample/ShapeDrawing/entry/src/main/ets/pages/ViewPort1.ets) -->
-  
+
   ``` TypeScript
   class Tmp {
     public x: number = 0;
@@ -94,7 +90,7 @@ The following examples demonstrate how to use **viewPort**:
   
         Row({ space: 10 }) {
           Column() {
-            // Create a Shape component with a 150 x 150 size and yellow background. Set the viewport to 75 x 75.
+          // Create a Shape component with a width and height of 150, a cyan background, and a viewPort with a width and height of 75.
             // Fill the viewport with a blue rectangle and draw a 75-diameter circle in the viewport.
             // After the drawing is complete, the viewport is scaled up to match the component size.
             // Replace $r('app.string.EnlargedCircle') with the actual resource file. In this example, the value in the resource file is "Enlarged Circle component within the shape."
@@ -110,8 +106,8 @@ The following examples demonstrate how to use **viewPort**:
           }
   
           Column() {
-            // Create a Shape component with a 150 x 150 size and yellow background. Set the viewport to 300 x 300.
-            // Fill the viewport with a green rectangle and draw a 75-diameter circle in the viewport.
+            // Create a Shape component with a width and height of 150, a cyan background, and a viewPort with a width and height of 300.
+            // Fill the viewPort with a gray rectangle, and draw a circle with a diameter of 75 in the viewPort.
             // After the drawing is complete, the viewport is scaled down to match the component size.
             // Replace $r('app.string.ShrunkCircle') with the actual resource file. In this example, the value in the resource file is "Reduced Circle component within the shape."
             Text($r('app.string.ShrunkCircle'))
@@ -135,7 +131,7 @@ The following examples demonstrate how to use **viewPort**:
 - Create a **Shape** component with a 300 x 300 size and yellow background. Set the viewport to 300 x 300. Fill the viewport with a blue rectangle and draw a 75-radius circle in the viewport.
 
   <!-- @[view_port_two](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkUISample/ShapeDrawing/entry/src/main/ets/pages/ViewPort2.ets) -->
-  
+
   ``` TypeScript
   class TmpTwo {
     public x: number = 0;
@@ -169,7 +165,7 @@ The following examples demonstrate how to use **viewPort**:
 - Create a **Shape** component with a 300 x 300 size and yellow background. Set the viewport to 300 x 300. Fill the viewport with a blue rectangle and draw a 75-radius circle in the viewport. Then, apply a translation of 150 units right and 150 units down to the viewport.
 
   <!-- @[view_port_three](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkUISample/ShapeDrawing/entry/src/main/ets/pages/ViewPort3.ets) -->
-  
+
   ``` TypeScript
   class TmpThree {
     public x: number = -150;
@@ -200,7 +196,6 @@ The following examples demonstrate how to use **viewPort**:
 
   ![viewport3](figures/viewport3.jpg)
 
-
 ## Setting Styles
 
 > **NOTE**
@@ -209,10 +204,10 @@ The following examples demonstrate how to use **viewPort**:
 
 You can customize the component style by setting various style attributes.
 
-- Use the [fill](../reference/apis-arkui/arkui-ts/ts-drawing-components-path.md#fill) attribute to set the fill color of the component.
+- Use [fill](../reference/apis-arkui/arkui-ts/ts-drawing-components-common.md#fill) to set the fill color of the component.
 
   <!-- @[fill](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkUISample/ShapeDrawing/entry/src/main/ets/pages/Fill.ets) -->
-  
+
   ``` TypeScript
   Path()
     .width(100)
@@ -224,10 +219,10 @@ You can customize the component style by setting various style attributes.
 
   ![2023022792216](figures/2023022792216.jpg)
 
-- Use the [stroke](../reference/apis-arkui/arkui-ts/ts-drawing-components-path.md#stroke) attribute to set the stroke color.
+- Use [stroke](../reference/apis-arkui/arkui-ts/ts-drawing-components-common.md#stroke) to set the stroke color of the component.
 
   <!-- @[stroke](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkUISample/ShapeDrawing/entry/src/main/ets/pages/Stroke.ets) -->
-  
+
   ``` TypeScript
   Path()
     .width(100)
@@ -239,10 +234,10 @@ You can customize the component style by setting various style attributes.
 
   ![stroke](figures/stroke.jpg)
 
-- Use the [strokeOpacity](../reference/apis-arkui/arkui-ts/ts-drawing-components-path.md#strokeopacity) attribute to control stroke opacity.
+- Use [strokeOpacity](../reference/apis-arkui/arkui-ts/ts-drawing-components-common.md#strokeopacity) to set the stroke opacity.
 
   <!-- @[stroke_opacity](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkUISample/ShapeDrawing/entry/src/main/ets/pages/StrokeOpacity.ets) -->
-  
+
   ``` TypeScript
   Path()
     .width(100)
@@ -256,10 +251,10 @@ You can customize the component style by setting various style attributes.
 
   ![strokeopacity](figures/strokeopacity.jpg)
 
-- Use [strokeLineJoin](../reference/apis-arkui/arkui-ts/ts-drawing-components-polyline.md#strokelinejoin) to define the join style of the stroke. Available options include **Bevel**, **Miter**, and **Round**.
+- Use [strokeLineJoin](../reference/apis-arkui/arkui-ts/ts-drawing-components-common.md#strokelinejoin) to set the stroke line join style. The line join style can be **Bevel** (using beveled connection path segments), **Miter** (using mitered connection path segments), or **Round** (using rounded connection path segments).
 
   <!-- @[stroke_line_join](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkUISample/ShapeDrawing/entry/src/main/ets/pages/StrokeLineJoin.ets) -->
-  
+
   ``` TypeScript
   Polyline()
     .width(100)
@@ -274,14 +269,14 @@ You can customize the component style by setting various style attributes.
 
   ![strokeLineJoin](figures/strokeLineJoin.jpg)
 
-- Use [strokeMiterLimit](../reference/apis-arkui/arkui-ts/ts-drawing-components-polyline.md#strokemiterlimit) to set the maximum ratio between the miter length and stroke width.
+- Use [strokeMiterLimit](../reference/apis-arkui/arkui-ts/ts-drawing-components-common.md#strokemiterlimit) to set the maximum ratio between the miter length and stroke width.
 
-  The miter length represents the distance from the outer corner point to the inner corner point, while the stroke width is defined by the [strokeWidth](../reference/apis-arkui/arkui-ts/ts-drawing-components-polyline.md#strokewidth) attribute.
-  
-  **strokeMiterLimit** requires values greater than or equal to 1 and takes effect when[strokeLineJoin](../reference/apis-arkui/arkui-ts/ts-drawing-components-polyline.md#strokelinejoin) is set to **LineJoinStyle.Miter**.
+The miter length represents the distance from the outer corner point to the inner corner point, while the stroke width is defined by the [strokeWidth](../reference/apis-arkui/arkui-ts/ts-drawing-components-common.md#strokewidth) attribute.
 
-  <!-- @[stroke_miter_limit](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkUISample/ShapeDrawing/entry/src/main/ets/pages/StrokeMiterLimit.ets) -->
-  
+The value of **strokeMiterLimit** must be greater than or equal to **1**, and it takes effect only when [strokeLineJoin](../reference/apis-arkui/arkui-ts/ts-drawing-components-common.md#strokelinejoin) is set to **LineJoinStyle.Miter**.
+
+  <!-- @[stroke_miter_limit](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkUISample/ShapeDrawing/entry/src/main/ets/pages/StrokeMiterLimit.ets) --> 
+
   ``` TypeScript
   Polyline()
     .width(100)
@@ -293,7 +288,7 @@ You can customize the component style by setting various style attributes.
     // Set the join style of the stroke to Miter.
     .strokeLineJoin(LineJoinStyle.Miter)
     // Set the maximum ratio between the miter length and stroke width.
-    .strokeMiterLimit(1/Math.sin(45))
+    .strokeMiterLimit(1 / Math.sin(45 * Math.PI / 180))
   Polyline()
     .width(100)
     .height(100)
@@ -307,10 +302,10 @@ You can customize the component style by setting various style attributes.
 
   ![2023032405917](figures/2023032405917.jpg)
 
-- Use [antiAlias](../reference/apis-arkui/arkui-ts/ts-drawing-components-circle.md#antialias) to control whether to enable anti-aliasing. The default value is **true**, indicating that anti-aliasing is enabled.
+- Use [antiAlias](../reference/apis-arkui/arkui-ts/ts-drawing-components-common.md#antialias) to set whether anti-aliasing is enabled. The default value is **true** (anti-aliasing enabled).
 
   <!-- @[antialias_open](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkUISample/ShapeDrawing/entry/src/main/ets/pages/AntiAlias.ets) --> 
-  
+
   ``` TypeScript
   // Enable anti-aliasing.
   Circle()
@@ -324,7 +319,7 @@ You can customize the component style by setting various style attributes.
   ![untitled](figures/untitled.png)
 
   <!-- @[antialias_close](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkUISample/ShapeDrawing/entry/src/main/ets/pages/AntiAlias.ets) --> 
-  
+
   ``` TypeScript
   // Disable anti-aliasing.
   Circle()
@@ -345,7 +340,7 @@ You can customize the component style by setting various style attributes.
   > The example uses the **commands** parameter to define the path. For detailed syntax rules of this parameter, see [SVG Path Syntax](../reference/apis-arkui/arkui-ts/ts-drawing-components-path.md#svg-path-syntax).
 
   <!-- @[mesh](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkUISample/ShapeDrawing/entry/src/main/ets/pages/Mesh.ets) -->
-  
+
   ``` TypeScript
   import { FrameNode, NodeController, RenderNode } from '@kit.ArkUI';
   import { image } from '@kit.ImageKit';
@@ -355,11 +350,6 @@ You can customize the component style by setting various style attributes.
   let ctx = offCanvas.getContext('2d');
   
   class DrawingRenderNode extends RenderNode {
-    private verts_: Array<number> = [0, 0, 50, 0, 410, 0, 0, 180, 50, 180, 410, 180, 0, 360, 50, 360, 410, 360];
-  
-    setVerts(verts: Array<number>): void {
-      this.verts_ = verts
-    }
   
     async draw(context: DrawContext) {
       const canvas = context.canvas;
@@ -367,7 +357,6 @@ You can customize the component style by setting various style attributes.
       const brush = new drawing.Brush(); // Only brush is supported. There is no drawing effect when pen is used.
       canvas.attachBrush(brush);
       let verts: number[] = [0, 0, 410, 0, 50, 0, 0, 180, 50, 180, 410, 180, 0, 360, 410, 360, 50, 360];
-      ; // 18
       canvas.drawPixelMapMesh(pixelMap, 2, 2, verts, 0, null, 0);
       canvas.detachBrush();
     }
@@ -504,14 +493,14 @@ You can customize the component style by setting various style attributes.
 
 ### Drawing a Closed Path
 
-  Draw a closed path at (-80, -5). The fill color is 0x317AF7, the stroke width is 3, the stroke color is red, and the stroke join style is miter (default value).
+Draw a closed path at the point (-80, -5) of the shape, with fill color rgb(213, 213, 213), line width 3, stroke color rgb(39, 135, 217), and miter join style (default value).
 
   > **NOTE**
   >
   > The example uses the **commands** parameter to define the path. For detailed syntax rules of this parameter, see [SVG Path Syntax](../reference/apis-arkui/arkui-ts/ts-drawing-components-path.md#svg-path-syntax).
 
   <!-- @[shape_example](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkUISample/ShapeDrawing/entry/src/main/ets/pages/ShapeExample.ets) -->
-  
+
   ``` TypeScript
   @Entry
   @Component
@@ -541,14 +530,14 @@ You can customize the component style by setting various style attributes.
 
 ### Drawing a Circle and Ring
 
-  Draw a circle with a diameter of 150  mm, and a ring with a diameter of 150 mm and a red dotted border. If the width and height differ, the drawing component will use the shorter side as the actual diameter.
+  Draw a circle with a diameter of 150, and a ring with a diameter of 150 and a red dotted border. If the width and height differ, the drawing component will use the shorter side as the actual diameter.
 
-  > **NOTE**
-  >
-  > This example uses the **strokeDashArray** attribute to create a red dashed ring by specifying the pattern of dashes and gaps along the border. For details about **strokeDashArray**, see [strokeDashArray](../reference/apis-arkui/arkui-ts/ts-drawing-components-shape.md#strokedasharray). 
+> **NOTE**
+>
+> In this example, the red dashed ring is implemented by setting the stroke dash pattern using the **strokeDashArray** attribute. For details about the **strokeDashArray** attribute, see [strokeDashArray](../reference/apis-arkui/arkui-ts/ts-drawing-components-common.md#strokedasharray).
 
   <!-- @[circle_example_one](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkUISample/ShapeDrawing/entry/src/main/ets/pages/CircleExample.ets) --> 
-  
+
   ``` TypeScript
   @Entry
   @Component
@@ -577,11 +566,10 @@ You can customize the component style by setting various style attributes.
 
 >  **NOTE**
 >
-> Universal style attributes such as [backgroundColor](../reference/apis-arkui/arkui-ts/ts-universal-attributes-background.md#backgroundcolor) and [linearGradient](../reference/apis-arkui/arkui-ts/ts-universal-attributes-gradient-color.md#lineargradient) are applied to the component's background area, not its content area.
-
+> Universal attributes such as [backgroundColor](../reference/apis-arkui/arkui-ts/ts-universal-attributes-background.md#backgroundcolor) and [linearGradient](../reference/apis-arkui/arkui-ts/ts-universal-attributes-gradient-color.md#lineargradient) are applied to the component's background area, not its content area.
 
   <!-- @[circle_example_two](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkUISample/ShapeDrawing/entry/src/main/ets/pages/CircleExample.ets) --> 
-  
+
   ``` TypeScript
   @Entry
   @Component
@@ -600,3 +588,5 @@ You can customize the component style by setting various style attributes.
   ```
 
   ![scenario-3](figures/VirtualEffect.jpg)
+
+  <!--no_check-->

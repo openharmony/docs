@@ -139,7 +139,7 @@
   - Lists and Grids<!--arkts-list-and-grid-->
     - [List and Grid Overview](arkts-list-grid-development-overview.md)
     - [Creating a List (List)](arkts-layout-development-create-list.md)
-    - [Creating an Arc List (ArcList)](arkts-layout-development-create-arclist.md) (Recommended for Circular Screens)
+    - [Creating an Arc List (ArcList) (Recommended for Circular Screens)](arkts-layout-development-create-arclist.md)
     - [Creating a Grid (Grid/GridItem)](arkts-layout-development-create-grid.md)<!--RP11--><!--RP11End-->
     - [Creating a Waterfall Flow (WaterFlow)](arkts-layout-development-create-waterflow.md)<!--RP12--><!--RP12End-->
     - [Creating Lazy Layouts (LazyColumnLayout/LazyVGridLayout/LazyVWaterFlowLayout)](arkts-layout-development-create-lazy-layout.md)
