@@ -57,7 +57,7 @@
 
     目前访问分身应用仅支持静默访问方式，不支持非静默访问方式。
 
-  - "user"仅支持设置为整型，表示要访问的数据提供方的用户ID。user的定义及获取参照[user](../reference/apis-basic-services-kit/js-apis-osAccount.md#getactivatedosaccountlocalids9)。user不填写时，默认为数据访问方所在的用户ID。目前跨用户访问功能仅支持增删改查功能，订阅通知功能不支持跨用户。
+  - "user"仅支持设置为整型，表示要访问的数据提供方的用户ID。user的定义及获取参照[getActivatedOsAccountLocalIds](../reference/apis-basic-services-kit/js-apis-osAccount.md#getactivatedosaccountlocalids9)。user不填写时，默认为数据访问方所在的用户ID。目前跨用户访问功能仅支持增删改查功能，订阅通知功能不支持跨用户。
 
     目前跨用户访问仅支持主空间和隐私空间之间的访问，且需要数据访问方配有跨用户访问权限ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS才可成功访问。
 
@@ -65,7 +65,7 @@
 
 - 目前持久化数据中仅关系型数据库支持静默数据访问方式。
 - 整个系统最多同时并发32路查询，有多出来的查询请求需要重试处理。
-- 查询完成后返回的数据共享结果集应在使用后及时释放，参见[DataShareResultSet](../reference/apis-arkdata/js-apis-data-DataShareResultSet-sys.md#close)。
+- 查询完成后返回的数据共享结果集应在使用后及时释放，参见[close](../reference/apis-arkdata/js-apis-data-DataShareResultSet-sys.md#close)。
 - 持久化数据不支持代理创建数据库，如果需要创建数据库，需要拉起数据提供方。
 - 数据提供方如果是normal级别签名的应用，配置的数据读写权限必须为system_basic及以上权限。
 - 调用静默访问接口（insert、delete、update或者query）时需遵循流量控制机制：每30秒为一个流控周期，若在该流控周期内调用对应接口的次数大于等于3000次，则该流控周期剩余时间内调用该接口均返回失败，到下一个流控周期重新开始计数，接口恢复正常。建议避免短时间高频调用接口，合理控制接口调用频率。
@@ -151,7 +151,7 @@
    | path  | 指定数据源路径，目前支持关系型数据库，配置为库名/表名。             | 是    |
    | type  | 标识数据库类型，目前支持配置为rdb，表示关系型数据库。             | 是    |
    | scope | 数据库所在范围。<br>1.module表示数据库位于本模块下。<br>2.application表示数据库位于本应用下。 | 否    |
-   | allowLists          | 包括appIdentifier和onlyMain。<br>allowLists中配置被允许访问的应用列表，最多配置256个授权信息。在跨应用数据访问时通过该配置校验数据访问方是否在数据提供方配置的列表内，若不在则拒绝访问。若无allowLists配置则不做白名单校验。不管是否配置allowLists，在[表1](#数据提供方应用的开发)中的读写权限依然会被正常校验。<br>**-appIdentifier：** 字符串，应用的唯一标识，由云端统一分配。数据提供方自行向访问方获取。<br>appIdentifier信息可参考[应用包信息](../reference/apis-ability-kit/js-apis-bundleManager-bundleInfo.md#signatureinfo)。 <br>**-onlyMain：** 布尔值，控制是否仅支持主应用。true: 只允许主应用访问，分身应用不可访问。false: 主应用和分身应用均可访问。该功能仅支持静默访问。 | 否   |
+   | allowLists          | 包括appIdentifier和onlyMain。<br>allowLists中配置被允许访问的应用列表，最多配置256个授权信息。在跨应用数据访问时通过该配置校验数据访问方是否在数据提供方配置的列表内，若不在则拒绝访问。若无allowLists配置则不做白名单校验。不管是否配置allowLists，在[表1](#数据提供方应用的开发)中的读写权限依然会被正常校验。<br>**-appIdentifier：** 字符串，应用的唯一标识，由云端统一分配。数据提供方自行向访问方获取。<br>appIdentifier信息可参考[SignatureInfo](../reference/apis-ability-kit/js-apis-bundleManager-bundleInfo.md#signatureinfo)。 <br>**-onlyMain：** 布尔值，控制是否仅支持主应用。true: 只允许主应用访问，分身应用不可访问。false: 主应用和分身应用均可访问。该功能仅支持静默访问。 | 否   |
 
    **my_config.json配置样例**
 
@@ -303,7 +303,7 @@
 | ----------------------- | ----------------------------- | ---- |
 | uri                     | 数据使用的URI，是跨应用数据访问的唯一标识。       | 是    |
 | requiredReadPermission  | 标识从该数据代理读取数据时所需要的权限，不配置默认不允许其他APP访问数据。支持权限可参考[权限列表](../security/AccessToken/app-permissions.md)。<br>注意：当前静默访问的权限约束方式与[DataShareExtensionAbility](share-data-by-datashareextensionability-sys.md)的权限约束方式不同，请注意区分，切勿混淆，具体可参考[DataShareExtensionAbility章节](share-data-by-datashareextensionability-sys.md)。 | 否    |
-| requiredWritePermission | 标识从该数据代理修改数据时所需要的权限，不配置默认不允许其他APP访问数据。支持权限可参考[权限列表](../security/AccessToken/app-permissions.md)。<br>注意：当前静默访问的权限约束方式与[DataShareExtensionAbility](share-data-by-datashareextensionability-sys.md)的权限约束方式不同，请注意区分，切勿混淆，具体可参考[DataShareExtensionAbility章节](share-data-by-datashareextensionability-sys.md)。 | 否    |
+| requiredWritePermission | 标识从该数据代理修改数据时所需要的权限，不配置默认不允许其他APP修改数据。支持权限可参考[权限列表](../security/AccessToken/app-permissions.md)。<br>注意：当前静默访问的权限约束方式与[DataShareExtensionAbility](share-data-by-datashareextensionability-sys.md)的权限约束方式不同，请注意区分，切勿混淆，具体可参考[DataShareExtensionAbility章节](share-data-by-datashareextensionability-sys.md)。 | 否    |
 
 **module.json5配置样例：**
 
