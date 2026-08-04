@@ -46,7 +46,7 @@ import { Want } from '@kit.AbilityKit';
 | type | string | 否 | 是 | 表示MIME type类型描述，打开文件的类型，主要用于文件管理器打开文件。比如：'text/xml' 、 'image/*'等，MIME定义请参见[Media Types](https://www.iana.org/assignments/media-types/media-types.xhtml?utm_source=ld246.com)。 |
 | parameters   | Record\<string, Object> | 否 | 是  | 表示WantParams描述。<br />一、以下Key均由系统赋值，开发者手动修改也不会生效，系统在数据传递时会自动修改为实际值。<br />- ohos.aafwk.param.callerPid：表示拉起方的pid，值为字符串类型。<br />- ohos.aafwk.param.callerBundleName：表示拉起方的BundleName，值为字符串类型。<br />- ohos.aafwk.param.callerAbilityName：表示拉起方的AbilityName，值为字符串类型。<br />- ohos.aafwk.param.callerNativeName：表示native调用时拉起方的进程名，值为字符串类型。<br />- ohos.aafwk.param.callerAppId：表示拉起应用的AppId信息，值为字符串类型。<br />- ohos.aafwk.param.callerAppIdentifier：表示拉起应用的AppIdentifier信息，值为字符串类型。<br />- ohos.aafwk.param.callerToken：表示拉起方的token，值为字符串类型。<br />- ohos.aafwk.param.callerUid：表示[BundleInfo](js-apis-bundleManager-bundleInfo.md#bundleinfo-1)中的uid，应用包里应用程序的uid，值为数值类型。<br />- ohos.param.callerAppCloneIndex：表示拉起方应用的分身索引，值为数值类型。<br />- component.startup.newRules：表示是否启用新的管控规则，值为布尔类型。<br />- moduleName：表示被拉起方的moduleName，值为字符串类型。<br />- ohos.ability.params.abilityRecoveryRestart：表示当前Ability是否发生了故障恢复重启，值为布尔类型。<br />- ohos.extra.param.key.showMode：表示拉起原子化服务的展示模式，值为枚举类型[wantConstant.ShowMode](js-apis-app-ability-wantConstant.md#showmode12)。<br/><br/>**说明**：<br/>在跨端场景中，以下三个字段不生效，不可用于身份或权限校验：ohos.aafwk.param.callerPid、ohos.aafwk.param.callerToken、ohos.aafwk.param.callerUid。<br /><br />二、提供了一些由系统定义、开发者按需赋值的Key。具体的key值与对应说明详见[wantConstant.Params](js-apis-app-ability-wantConstant.md#params)<!--Del-->以及[wantConstant.Params(仅系统应用可用)](js-apis-app-ability-wantConstant-sys.md#params)<!--DelEnd-->。<br /><br />三、除了上述情况，应用间还可以相互约定传入的键值对。<br /><br />**说明**：<br/>want的Params操作的常量的具体信息请参考[wantConstant](js-apis-app-ability-wantConstant.md)。<br/>需注意，WantParams支持传输的最大数据量遵循[Want约束限制](#约束限制)。当数据量超过该限制时，请使用[WriteRawDataBuffer](../apis-ipc-kit/js-apis-rpc.md#writerawdatabuffer11)或[uri](../apis-arkts/js-apis-uri.md)的方式进行数据传输。<br/>parameters的Value值仅支持基本数据类型：String、Number、Boolean、Object、undefined和null，不支持传递Object内部的function。 |
 | flags | number | 否 | 是 | 表示处理Want的方式。值为枚举类型[Flags](js-apis-app-ability-wantConstant.md#flags)，默认传数字。<br />例如取值为0x00000001（即wantConstant.Flags.FLAG_AUTH_READ_URI_PERMISSION）表示临时授予接收方读取该URI指向的数据的权限。 |
-| fds<sup>15+</sup> | Record\<string, number> | 是 | 是 | 表示文件描述符，在启动场景中拉起方写入的FD，会设置到该参数中。<br>**原子化服务API**：从API version 15开始，该接口支持在原子化服务中使用。 |
+| fds<sup>15+</sup> | Record\<string, number> | 是 | 是 | 表示文件描述符的集合。在应用启动场景中，拉起方通过[startAbility](js-apis-inner-application-uiAbilityContext.md#startability)传递Want时，需在parameters中以固定键值对形式传入文件描述符，被拉起方可通过该字段获取文件描述符，具体使用方式见“文件描述符（FD）”示例。<br>**原子化服务API**：从API version 15开始，该接口支持在原子化服务中使用。 |
 
 **示例：**
 
@@ -212,6 +212,7 @@ import { Want } from '@kit.AbilityKit';
     * 文件描述符（FD）
 
         ```ts
+        // 拉起方：在parameters中以{'type':'FD','value':fd}的固定键值对形式传入文件描述符
         import { UIAbility, Want } from '@kit.AbilityKit';
         import { window } from '@kit.ArkUI';
         import { BusinessError } from '@kit.BasicServicesKit';
@@ -234,7 +235,9 @@ import { Want } from '@kit.AbilityKit';
               abilityName: 'FuncAbility',
               moduleName: 'entry', // moduleName非必选
               parameters: {
-                'keyFd': { 'type': 'FD', 'value': fd } // {'type':'FD', 'value':fd}是固定用法，用于表示该数据是FD
+                // keyFd为自定义的key，被拉起方通过该key值查找对应value
+                // {'type':'FD','value':fd}是固定键值对，其中fd为开发者传递的文件描述符
+                'keyFd': { 'type': 'FD', 'value': fd }
               }
             };
 
@@ -243,6 +246,30 @@ import { Want } from '@kit.AbilityKit';
                 console.error(`Failed to startAbility. Code: ${err.code}, message: ${err.message}`);
               }
             });
+          }
+        }
+        ```
+
+        ```ts
+        // 被拉起方：通过want.fds获取拉起方传入的文件描述符
+        import { UIAbility, Want, AbilityConstant } from '@kit.AbilityKit';
+        import { fileIo } from '@kit.CoreFileKit';
+
+        export default class FuncAbility extends UIAbility {
+          onCreate(want: Want, launchParam: AbilityConstant.LaunchParam): void {
+            let fd: number = -1;
+            // 从want.fds中获取拉起方传入的文件描述符，keyFd需与拉起方传入时使用的key保持一致
+            const fds = want.fds;
+            if (fds && fds.keyFd !== undefined) {
+              fd = fds.keyFd;
+            }
+            // 校验文件描述符是否有效（非负整数表示有效），若无效则记录错误并立即退出，避免后续使用非法fd导致崩溃
+            if (fd < 0) {
+              console.error(`Failed to get fd from want.fds`);
+              return;
+            }
+            // ...
+            fileIo.closeSync(fd); // 使用完毕后关闭文件描述符，避免文件描述符泄漏
           }
         }
         ```
