@@ -7,7 +7,7 @@
 <!--Tester: @tinygreyy-->
 <!--Adviser: @zengyawen-->
 
-依赖当前原子化服务的上下文，创建AtomicServiceMenuBar对象，用于操控右上角菜单功能胶囊的显示与隐藏。
+依赖当前原子化服务的UI上下文，创建AtomicServiceMenuBar对象，用于操控右上角菜单功能胶囊的显隐状态。
 
 > **说明：**
 >
@@ -21,7 +21,7 @@ import { AtomicServiceMenuBar } from '@kit.ArkUI';
 
 ## 子组件
 
-无
+无。
 
 ## 属性
 
@@ -49,7 +49,7 @@ AtomicServiceMenuBar的构造函数。
 
 | 参数名   | 类型                            | 必填   |  说明         |
 | ---- | ----------------------------- | ---- | -------------------- |
-| uiContext | [UIContext](../arkts-apis-uicontext-uicontext.md) | 是    | 当前原子化服务的上下文信息。 |
+| uiContext | [UIContext](../arkts-apis-uicontext-uicontext.md) | 是    | 当前原子化服务的UI上下文信息。 |
 
 ### setVisible
 
@@ -83,7 +83,7 @@ struct Index {
   private menuBar: AtomicServiceMenuBar = new AtomicServiceMenuBar(this.getUIContext());
 
   @Builder
-  private MenuCapsuleShow(title: string, text: string, event?: () => void) {
+  private menuCapsuleShow(title: string, text: string, event?: () => void) {
     Column() {
       if (typeof event === 'function') {
         Button(title)
@@ -105,10 +105,10 @@ struct Index {
 
   build() {
     Column() {
-      this.MenuCapsuleShow('显示菜单功能胶囊', '点击后菜单功能胶囊显示', () => {
+      this.menuCapsuleShow('显示菜单功能胶囊', '点击后菜单功能胶囊显示', () => {
         this.menuBar.setVisible(true);
       });
-      this.MenuCapsuleShow('隐藏菜单功能胶囊', '点击后菜单功能胶囊消失', () => {
+      this.menuCapsuleShow('隐藏菜单功能胶囊', '点击后菜单功能胶囊隐藏', () => {
         this.menuBar.setVisible(false);
       });
     }
