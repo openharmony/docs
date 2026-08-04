@@ -11,7 +11,7 @@
 >
 > 以下仅介绍本模块特有错误码，通用错误码请参考[通用错误码](../errorcode-universal.md)说明文档。
 > Socket错误码映射关系：2301000 + [内核错误码](./errorcode-kernel.md)。
-> socket server错误码映射关系：2303100 + [内核错误码](./errorcode-kernel.md)。
+> Socket server错误码映射关系：2303100 + [内核错误码](./errorcode-kernel.md)。
 
 ## 2301001 操作不允许
 
