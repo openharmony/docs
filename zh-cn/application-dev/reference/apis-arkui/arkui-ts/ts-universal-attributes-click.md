@@ -7,7 +7,7 @@
 <!--Adviser: @Brilliantry_Rui-->
 <!--deprecated_code_no_check-->
 
-设置组件是否可以响应点击事件、触摸事件等手指交互事件。
+用于根据交互需求设置组件是否可以响应点击事件、触摸事件等手指交互事件，满足不同场景下对组件交互响应的控制需求。
 
 >  **说明：**
 >
@@ -17,7 +17,7 @@
 
 touchable(value: boolean): T
 
-设置当前组件是否可以响应点击事件、触摸事件等手指交互事件。
+设置当前组件的交互响应能力。
 
 > **说明：**
 >
@@ -43,26 +43,26 @@ touchable(value: boolean): T
 // xxx.ets
 @Entry
 @Component
-struct TouchAbleExample {
-  @State text1: string = ''
-  @State text2: string = ''
+struct TouchableExample {
+  @State text1: string = '';
+  @State text2: string = '';
 
   build() {
     Stack() {
       Rect()
         .fill(Color.Gray).width(150).height(150)
         .onClick(() => {
-          console.info(this.text1 = 'Rect Clicked')
+          console.info(this.text1 = 'Rect Clicked');
         })
         .overlay(this.text1, { align: Alignment.Bottom, offset: { x: 0, y: 20 } })
       Ellipse()
         .fill(Color.Pink).width(150).height(80)
         .touchable(false) // 点击Ellipse区域，不会打印 “Ellipse Clicked”
         .onClick(() => {
-          console.info(this.text2 = 'Ellipse Clicked')
+          console.info(this.text2 = 'Ellipse Clicked');
         })
         .overlay(this.text2, { align: Alignment.Bottom, offset: { x: 0, y: 20 } })
-    }.margin(100)
+    }.margin(100);
   }
 }
 ```

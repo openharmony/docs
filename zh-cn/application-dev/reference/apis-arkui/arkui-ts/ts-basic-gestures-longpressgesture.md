@@ -23,7 +23,7 @@ LongPressGesture(value?: { fingers?: number; repeat?: boolean; duration?: number
 
 创建长按手势对象。继承自[GestureInterface\<T>](ts-gesture-common.md#gestureinterfacet11)。
 
-当组件默认支持可拖拽时，如Text、TextInput、TextArea、HyperLink、Image和RichEditor等组件，长按手势与拖拽会出现冲突，事件优先级如下：
+当组件默认支持可拖拽时，如Text、TextInput、TextArea、Hyperlink、Image和RichEditor等组件，长按手势与拖拽会出现冲突，事件优先级如下：
 
 当长按触发时间小于500毫秒时，系统优先响应长按事件而非拖拽事件。
 
@@ -45,7 +45,7 @@ LongPressGesture(options?: LongPressGestureHandlerOptions)
 
 创建长按手势对象。与[LongPressGesture](#longpressgesture-1)相比，options参数新增了对isFingerCountLimited参数，表示是否检查触摸屏幕的手指数量。
 
-当组件默认支持可拖拽时，如Text、TextInput、TextArea、HyperLink、Image和RichEditor等组件，长按手势与拖拽会出现冲突，事件优先级如下：
+当组件默认支持可拖拽时，如Text、TextInput、TextArea、Hyperlink、Image和RichEditor等组件，长按手势与拖拽会出现冲突，事件优先级如下：
 
 当长按触发时间小于500毫秒时，系统优先响应长按事件而非拖拽事件。
 
