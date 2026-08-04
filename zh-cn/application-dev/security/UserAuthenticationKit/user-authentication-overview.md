@@ -7,6 +7,8 @@
 <!--Tester: @jane_lz-->
 <!--Adviser: @zengyawen-->
 
+<!--RP1-->
+
 User Authentication Kit（用户认证服务）提供了基于用户在设备本地注册的锁屏口令、人脸和指纹来认证用户身份的能力。从API版本26.0.0开始，新增伴随设备认证的方式。
 
 提供了系统级用户身份认证功能，并提供了多设备统一的、集多种认证方式（人脸、指纹、口令、伴随设备）于一体的系统级用户身份认证控件。
@@ -15,9 +17,7 @@ User Authentication Kit（用户认证服务）提供了基于用户在设备本
 
 用户身份认证可用于各种鉴权场景，如应用内账号登录、支付认证等。
 
-<!--RP1-->
 ![user-authentication-process](figures/user-authentication-process.png)
-<!--RP1End-->
 
 ## 亮点/特征
 
@@ -155,4 +155,4 @@ FAR越低，FRR越高，认证的安全性越高，但合法用户被错误拒�
 
 - 不允许三方应用在后台发起身份认证请求。
 
-<!--RP2--><!--RP2End-->
+<!--RP1End-->
