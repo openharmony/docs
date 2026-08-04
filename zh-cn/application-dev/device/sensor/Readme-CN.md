@@ -3,7 +3,7 @@
 <!--Subsystem: Sensors-->
 <!--Owner: @dilligencer-->
 <!--Designer: @andeszhang-->
-<!--Tester: @liuhaonan2-->
+<!--Tester: @zhaofangyuan-->
 <!--Adviser: @hu-zhiqiong-->
 
 - [Sensor Service Kit开发简介](sensorservice-kit-intro.md)
@@ -15,3 +15,4 @@
   - [振动开发概述](vibrator-overview.md)
   - [振动开发指导(ArkTS)](vibrator-guidelines.md)
   - [振动开发指导(C/C++)](vibrator-guidelines-capi.md)
+- [Sensor Service Kit术语](sensor-glossary.md)
