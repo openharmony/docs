@@ -1010,7 +1010,7 @@ udp.off('error');
 | -------- | ---------------------------------------------- | ---- | --- | ---------------------- |
 | address<sup>11+</sup> | string | 否   | 否   | IP地址。                                           |
 | port    | number | 否   | 否   | 端口号 ，范围0~65535。如果不指定系统随机分配端口。           |
-| family  | number | 否   | 否   | 网络协议类型，可选类型：<br />- 1：IPv4。默认为1。<br />- 2：IPv6。地址为IPV6类型，该字段必须被显式指定为2。<br />- 3：Domain<sup>18+</sup>。地址为Domain类型，该字段必须被显式指定为3。当前仅支持[TCPSocket.connect](#connect)和[TLSSocket.connect](#connect9)。|
+| family  | number | 否   | 否   | 网络协议类型，可选类型：<br />- 1：IPv4。默认为1。<br />- 2：IPv6。地址为IPv6类型，该字段必须被显式指定为2。<br />- 3：Domain<sup>18+</sup>。地址为Domain类型，该字段必须被显式指定为3。当前仅支持[TCPSocket.connect](#connect)和[TLSSocket.connect](#connect9)。|
 
 ## ProxyOptions<sup>18+</sup>
 
@@ -6898,7 +6898,7 @@ on(type: 'message', callback: Callback\<SocketMessageInfo\>): void
 | 参数名   | 类型                                                         | 必填 | 说明                                      |
 | -------- | ------------------------------------------------------------ | ---- | ----------------------------------------- |
 | type     | string                                                       | 是   | 订阅的事件类型。'message'：接收消息事件。 |
-| callback | Callback\<[SocketMessageInfo](#socketmessageinfo11)\> | 是   | 回调函数。TLSSocket连接订阅某类接受消息事件触发的调用函数，返回TLSSocket连接信息。 |
+| callback | Callback\<[SocketMessageInfo](#socketmessageinfo11)\> | 是   | 回调函数。TLSSocket连接订阅某类接收消息事件触发的调用函数，返回TLSSocket连接信息。 |
 
 **错误码：**
 
@@ -6952,7 +6952,7 @@ off(type: 'message', callback?: Callback\<SocketMessageInfo\>): void
 | 参数名   | 类型                                                         | 必填 | 说明                                      |
 | -------- | ------------------------------------------------------------ | ---- | ----------------------------------------- |
 | type     | string                                                       | 是   | 订阅的事件类型。'message'：接收消息事件。 |
-| callback | Callback\<[SocketMessageInfo](#socketmessageinfo11)\> | 否   | 回调函数。TLSSocket连接取消订阅某类接受消息事件触发的调用函数，返回TLSSocket连接信息。 |
+| callback | Callback\<[SocketMessageInfo](#socketmessageinfo11)\> | 否   | 回调函数。TLSSocket连接取消订阅某类接收消息事件触发的调用函数，返回TLSSocket连接信息。 |
 
 **错误码：**
 
@@ -8345,7 +8345,7 @@ TLSSocketServer连接。在调用TLSSocketServer的方法前，需要先通过[s
 
 listen(options: TLSConnectOptions, callback: AsyncCallback\<void\>): void
 
-绑定IP地址和端口，在TLSSocketServer上bind成功之后，监听客户端的连接，创建和初始化TLS会话，实现建立连接过程，加载证书秘钥并验证，使用callback异步回调。
+绑定IP地址和端口，在TLSSocketServer上bind成功之后，监听客户端的连接，创建和初始化TLS会话，实现建立连接过程，加载证书密钥并验证，使用callback异步回调。
 
 >**注意：**
 >
@@ -8415,7 +8415,7 @@ tlsServer.listen(tlsConnectOptions, (err: BusinessError) => {
 
 listen(options: TLSConnectOptions): Promise\<void\>
 
-绑定IP地址和端口，在TLSSocketServer上bind成功之后，监听客户端的连接，并创建和初始化TLS会话，实现建立连接过程，加载证书秘钥并验证，使用Promise异步回调。
+绑定IP地址和端口，在TLSSocketServer上bind成功之后，监听客户端的连接，并创建和初始化TLS会话，实现建立连接过程，加载证书密钥并验证，使用Promise异步回调。
 
 **需要权限**：ohos.permission.INTERNET
 

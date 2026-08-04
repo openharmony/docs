@@ -18,8 +18,8 @@
   - 可修改拦截器目前支持 [@ohos.net.http](../../reference/apis-network-kit/js-apis-http.md)、[net_http.h](capi-net-http-h.md)。
 
 - **触发条件**：
-  - 不拦截自动重定向的中间过程(仅暴露最终响应)。
-  - 不拦截缓存命中时的响应(因无实际网络请求)。
+  - 不拦截自动重定向的中间过程（仅暴露最终响应）。
+  - 不拦截缓存命中时的响应（因无实际网络请求）。
 
 **引用文件：** `<network/netstack/http_interceptor.h>`
 
