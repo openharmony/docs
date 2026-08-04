@@ -1,12 +1,14 @@
 # Redirecting to an Application Page (router Event)
+
 <!--Kit: Form Kit-->
 <!--Subsystem: Ability-->
 <!--Owner: @Qian-Win-->
 <!--Designer: @cx983299475-->
 <!--Tester: @mahailong123456-->
 <!--Adviser: @HelloShuo-->
+<!-- md-trans-meta sourceCommit=a08d450b4f575e3d4749ddeef9dd32275ec0a19e translatedAt=2026-08-03T02:26:20.391Z pushedAt=2026-08-03T06:41:49.511Z -->
 
-The **router** capability of the [postCardAction](../reference/apis-arkui/js-apis-postCardAction.md#postcardaction-1) API can be used in a dynamic widget to quickly start a specific UIAbility of the widget provider. By leveraging this capability, an application can provide in the widget multiple buttons, each of which targets a different target UIAbility. For example, a camera widget can provide the buttons that redirect the user to the UIAbility for taking a photo and the UIAbility for recording a video.
+The **router** capability of the [postCardAction](../reference/apis-arkui/js-apis-postCardAction.md#postcardaction-1) API can be used in a dynamic widget to quickly start a specific UIAbility of the widget provider. By leveraging this capability, an application can provide in the widget multiple buttons, each of which targets a different UIAbility. For example, a camera widget can provide the buttons that redirect the user to the UIAbility for taking a photo and the UIAbility for recording a video.
 
 ![WidgetCameraCard](figures/WidgetCameraCard.png)
 
@@ -15,12 +17,13 @@ The **router** capability of the [postCardAction](../reference/apis-arkui/js-api
 > This topic describes development for dynamic widgets. For static widgets, see [FormLink](../reference/apis-arkui/arkui-ts/ts-container-formlink.md).
 
 ## How to Develop
+
 1. Create a dynamic widget. In the entry module of the project, create an ArkTS widget named **WidgetEventRouterCard**.
 
 2. Build the code layout of the ArkTS widget page. Design two buttons on the widget page. When one of the buttons is tapped, **postCardAction** is called to send a router event to the specified UIAbility, with the content to be transferred defined in the event.
 
    <!-- @[widget_event_router_card](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ApplicationModels/StageServiceWidgetCards/entry/src/main/ets/widgeteventrouter/pages/WidgetEventRouterCard.ets) -->
-   
+
    ``` TypeScript
    // src/main/ets/widgeteventrouter/pages/WidgetEventRouterCard.ets
    @Entry
@@ -88,9 +91,9 @@ The **router** capability of the [postCardAction](../reference/apis-arkui/js-api
    ```
 
 3. Handle the router event. The UIAbility receives the router event and obtains parameters. It then starts the page specified by **params**.
-  
+
    <!-- @[entry_ability](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ApplicationModels/StageServiceWidgetCards/entry/src/main/ets/entryability/EntryAbility.ts) -->
-   
+
    ``` TypeScript
    // src/main/ets/entryability/EntryAbility.ts
    import { AbilityConstant, UIAbility, Want } from '@kit.AbilityKit';
@@ -160,7 +163,7 @@ The **router** capability of the [postCardAction](../reference/apis-arkui/js-api
 4. Create the UIAbility pages after redirection. Create **FunA.ets** and **FunB.ets** to build the page layout.
 
    <!-- @[fun_a](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ApplicationModels/StageServiceWidgetCards/entry/src/main/ets/funpages/FunA.ets) --> 
-   
+
    ``` TypeScript
    // src/main/ets/funpages/FunA.ets
    @Entry
@@ -211,7 +214,7 @@ The **router** capability of the [postCardAction](../reference/apis-arkui/js-api
    ```
 
    <!-- @[fun_b](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ApplicationModels/StageServiceWidgetCards/entry/src/main/ets/funpages/FunB.ets) --> 
-   
+
    ``` TypeScript
    // src/main/ets/funpages/FunB.ets
    @Entry
@@ -262,6 +265,7 @@ The **router** capability of the [postCardAction](../reference/apis-arkui/js-api
    ```
 
 5. Configure the **FunA.ets** and **FunB.ets** pages in the **main_pages.json** file under **resources/base/profile**.
+
    ```json
    // src/main/resources/base/profile/main_pages.json
    {
@@ -272,8 +276,10 @@ The **router** capability of the [postCardAction](../reference/apis-arkui/js-api
        ]
    }
    ```
+
 6. The resource file is as follows. Replace the resources with the actual ones.
-   ```json
+
+   ```json5
    // src/main/resources/en_US/element/string.json
    {
      "string": [
@@ -297,5 +303,7 @@ The **router** capability of the [postCardAction](../reference/apis-arkui/js-api
      ]
    }
    ```
+
 ## Running Effect
+
 ![WidgetPrinciple](figures/router-redirection.gif)

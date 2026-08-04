@@ -1,10 +1,12 @@
 # Creating and Using Material Resources
+
 <!--Kit: ArkGraphics 3D-->
 <!--Subsystem: Graphics-->
 <!--Owner: @zzhao0-->
 <!--Designer: @zdustc-->
 <!--Tester: @zhangyue283-->
 <!--Adviser: @ge-yafang-->
+<!-- md-trans-meta sourceCommit=347413418efa7bc77920c06f5cdec8cea53cbed3 translatedAt=2026-08-04T08:00:06.220Z pushedAt=2026-08-04T08:13:33.862Z -->
 
 Materials are essential resources that define the visual appearance of an object's surface. They determine how an object interacts with light, thereby affecting its final rendering result, such as color, metallic appearance, and roughness.
 
@@ -19,6 +21,7 @@ ArkGraphics 3D allows you to create custom shaders. By customizing shaders, you 
 Shaders are typically used with **MaterialType.SHADER** materials and are an important means of achieving customized rendering. They require a name and sandbox path for creation. Once created, they can be bound to materials to replace the default rendering behavior.
 
 ## Material Types
+
 Material types in ArkGraphics 3D are specified using the enum [MaterialType](../reference/apis-arkgraphics3d/js-apis-inner-scene-resources.md#materialtype). Currently, the following two types are supported:
 
 - **MaterialType.SHADER**: This material type is based on shaders and supports binding custom shaders. You can use custom rendering programs to achieve personalized visual effects. It is suitable for advanced graphics rendering needs.
@@ -27,14 +30,14 @@ Material types in ArkGraphics 3D are specified using the enum [MaterialType](../
 
 Materials are created by calling [SceneResourceFactory.createMaterial()](../reference/apis-arkgraphics3d/js-apis-inner-scene.md#creatematerial), which requires specifying the material name and type. Different material types support different parameter configurations. You can choose as needed to achieve the desired rendering effect.
 
-
 ## Material Properties
+
 Material properties define their visual behavior during rendering, such as color, metallic appearance, roughness, light response, and transparency control. By setting these properties, you can precisely control the appearance of objects in the scene.
 
 In ArkGraphics 3D, material properties are designed to provide both unified basic capabilities and differentiated extensions based on material type, meeting diverse needs from basic scene building to advanced visual customization.
 
-
 ### Universal Properties
+
 All materials have the following basic properties (such as **materialType**, **shadowReceiver**, and **blend**), which can be set through the [Material](../reference/apis-arkgraphics3d/js-apis-inner-scene-resources.md#material) type object to control the type of material and its basic rendering behavior:
 
 - **materialType**: material type, indicating whether it is a standard PBR material or a custom shader material.
@@ -49,7 +52,7 @@ All materials have the following basic properties (such as **materialType**, **s
 
   Use case: Enable for ordinary solid models to improve rendering efficiency. Disable for transparent or double-sided materials (such as leaves and fabrics) to display the complete model.
 
-- **blend**: whether to enable the material's transparency mode. **true** means to enable, **false** otherwise. The default value is **false**.
+- **blend**: transparency effect setting of the material. The default value is undefined, which disables the transparency property of the material.
 
   Use case: Enable for materials that need to display transparency or translucency, such as glass, water surfaces, smoke, and transparent plastics.
 
@@ -61,7 +64,12 @@ All materials have the following basic properties (such as **materialType**, **s
 
   Use case: For scenes with multiple transparent materials, overlay effects, and UI elements, where strict rendering order is required.
 
+- **polygonMode**: polygon rendering mode of the model. The default value is **FILL**.
+
+  Use case: Renders the mesh of a 3D object in wireframe mode, allowing intuitive display of the model's modeling structure.
+
 ### PBR Material Properties
+
 The metallic-roughness material based on PBR rendering, which conforms to the glTF standard, is implemented by setting [MetallicRoughnessMaterial](../reference/apis-arkgraphics3d/js-apis-inner-scene-resources.md#metallicroughnessmaterial20). Each property is encapsulated using the [MaterialProperty](../reference/apis-arkgraphics3d/js-apis-inner-scene-resources.md#materialproperty20) type, supporting binding textures and setting factor values. Specific properties include:
 
 - **baseColor**: base color and transparency, including texture and corresponding factor, used to define the main color of the material surface.
@@ -105,6 +113,7 @@ The metallic-roughness material based on PBR rendering, which conforms to the gl
   Use case: suitable for non-metallic materials such as glass, water surfaces, and plastics to enhance the specular reflection effect.
 
 ## Creating Shader Materials and Setting Properties
+
 You can create shader materials using the **MaterialType.SHADER** type when you need to customize rendering logic or implement unique visual effects. Shader materials support binding of custom .shader files, where you can write custom rendering logic to flexibly control the appearance of models, achieving personalized visual effects such as outlines, highlights, and emissive effects. This example demonstrates the process of creating and using shader materials, including loading scenes, creating and binding shader resources, and applying shader materials to target geometry nodes.
 
 1. Import the required modules.
@@ -112,7 +121,7 @@ You can create shader materials using the **MaterialType.SHADER** type when you 
    Import the core types provided by ArkGraphics 3D in the page script to create shader materials and bind shader resources.
 
    <!-- @[resource_header](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkGraphics3D/entry/src/main/ets/arkgraphic/resource.ets) -->
-   
+
    ``` TypeScript
    import { Camera, Environment, Geometry, Image, Material, MaterialType, Scene, SceneResourceFactory,
      SceneResourceParameters, Shader, ShaderMaterial, EnvironmentBackgroundType } from '@kit.ArkGraphics3D';
@@ -123,7 +132,7 @@ You can create shader materials using the **MaterialType.SHADER** type when you 
    Call **Scene.load()** to load model files in .glb or .gltf format, and obtain a scene object upon completion. Then, construct a SceneOptions object to specify the scene and rendering mode for rendering the scene content via Component3D.
 
    <!-- @[scene_load_init](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkGraphics3D/entry/src/main/ets/arkgraphic/resource.ets) -->
-   
+
    ``` TypeScript
    if (this.scene === null) {
      // Switched from .gltf to .glb; same content, different format
@@ -147,7 +156,7 @@ You can create shader materials using the **MaterialType.SHADER** type when you 
    Create a camera object, and set its enabled state and viewing position for subsequent model display.
 
    <!-- @[scene_camera_init](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkGraphics3D/entry/src/main/ets/arkgraphic/resource.ets) -->
-   
+
    ``` TypeScript
    this.cam = await this.rf.createCamera({ 'name': 'Camera1' });
    this.cam.enabled = true;
@@ -159,7 +168,7 @@ You can create shader materials using the **MaterialType.SHADER** type when you 
    Call **Scene.getNodeByPath()** to obtain the geometry node of the target model, and record its original material. This enables rollback or recovery in case the material is later modified.
 
    <!-- @[geometry_node_get](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkGraphics3D/entry/src/main/ets/arkgraphic/resource.ets) -->
-   
+
    ``` TypeScript
    this.geom = this.scene.getNodeByPath('rootNode_/Unnamed Node 1/AnimatedCube') as Geometry;
    
@@ -172,7 +181,7 @@ You can create shader materials using the **MaterialType.SHADER** type when you 
    Call **SceneResourceFactory.createMaterial()** to create a blank shader material in preparation for binding a custom shader.
 
    <!-- @[create_material_promise](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkGraphics3D/entry/src/main/ets/arkgraphic/resource.ets) -->
-   
+
    ``` TypeScript
    function createMaterialPromise(): Promise<Material> {
      return new Promise((resolve, reject) => {
@@ -194,12 +203,12 @@ You can create shader materials using the **MaterialType.SHADER** type when you 
    }
    ```
 
-6. Create and bind a shader resource.
+6. Create a shader resource.
 
-   Call **SceneResourceFactory.createShader()** to create a custom shader resource, and bind it to the shader material to implement custom rendering logic.
+   Create a custom shader resource through **SceneResourceFactory.createShader()**. The created shader resource can be bound to the shader material in subsequent steps to implement custom rendering logic.
 
    <!-- @[create_shader_promise](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkGraphics3D/entry/src/main/ets/arkgraphic/resource.ets) -->
-   
+
    ``` TypeScript
    function createShaderPromise(): Promise<Shader> {
      return new Promise((resolve, reject) => {
@@ -227,12 +236,12 @@ You can create shader materials using the **MaterialType.SHADER** type when you 
    }
    ```
 
-7. Apply the shader material to a geometry node.
+7. Bind the shader material to a geometry node.
 
-   By triggering button click events to call different functions, you can dynamically switch the model material at runtime, achieving a transition effect from the default material to the shader material.
+   Bind the shader resource to the shader material, and then bind the shader material to a geometry node to render with custom rendering logic. Material switching can be triggered through a button click event, achieving a dynamic transition from the default material to the shader material at runtime.
 
    <!-- @[material_button_action](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkGraphics3D/entry/src/main/ets/arkgraphic/resource.ets) -->
-   
+
    ``` TypeScript
    Button('Replace with a blank material')
      // ...
@@ -289,6 +298,7 @@ You can create shader materials using the **MaterialType.SHADER** type when you 
    ```
 
 ## Creating PBR Materials and Setting Properties
+
 In ArkGraphics 3D, Physically Based Rendering (PBR) materials allow you to precisely control the appearance of objects by adjusting parameters such as metallicity, roughness, and transparency, achieving highly realistic rendering effects. Since different models may have varying PBR properties when exported, you are advised to adapt the material settings based on the model content. This example uses the CompareClearcoat model, which comes with clear coat-related material parameters, making it suitable for demonstrating the adjustment of clear coat effects. By setting properties like **clearCoat** and **clearCoatRoughness**, you can observe the changes in the strength, gloss, and reflection characteristics of the clear coat layer.
 
 1. Import the required modules.
@@ -296,7 +306,7 @@ In ArkGraphics 3D, Physically Based Rendering (PBR) materials allow you to preci
    Import the core types provided by ArkGraphics 3D in the page script to create PBR materials and bind texture resources.
 
    <!-- @[pbr_clearcoat_header](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkGraphics3D/entry/src/main/ets/material/pbr_clearcoat.ets) -->
-   
+
    ``` TypeScript
    import { Scene, Camera, Material, Node, Image, SceneResourceFactory, Geometry, EnvironmentBackgroundType,
      PostProcessSettings, ToneMappingType, MetallicRoughnessMaterial, Vec4 } from '@kit.ArkGraphics3D';
@@ -308,7 +318,7 @@ In ArkGraphics 3D, Physically Based Rendering (PBR) materials allow you to preci
    Call **Scene.load()** to load model files in .glb or .gltf format, and obtain a scene object upon completion. Once the scene is loaded, you can access the resource factory of the scene to create materials and other resources.
 
    <!-- @[pbr_clearcoat_loadScene](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkGraphics3D/entry/src/main/ets/material/pbr_clearcoat.ets) -->
-   
+
    ``` TypeScript
    if (this.scene == null) {
      // Switched from .gltf to .glb; same content, different format
@@ -330,7 +340,7 @@ In ArkGraphics 3D, Physically Based Rendering (PBR) materials allow you to preci
    Obtain the target geometry node through the node path in the scene, extract its material, and preload the texture resources related to the clear coat layer.
 
    <!-- @[pbr_clearcoat_getMaterialAndTextures](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkGraphics3D/entry/src/main/ets/material/pbr_clearcoat.ets) -->
-   
+
    ``` TypeScript
    let pbrNode: Node | null | undefined = this.scene.root?.getNodeByPath('Unnamed Node 1/GeoSphere003');
    if (pbrNode) {
@@ -354,7 +364,7 @@ In ArkGraphics 3D, Physically Based Rendering (PBR) materials allow you to preci
    Create an Image-based Lighting (IBL) environment, and configure the environment and radiance maps to implement realistic environment lighting.
 
    <!-- @[pbr_clearcoat_createIBL](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkGraphics3D/entry/src/main/ets/material/pbr_clearcoat.ets) -->
-   
+
    ``` TypeScript
    scene.environment = await rf.createEnvironment({ name: 'env' });
    scene.environment.backgroundType = EnvironmentBackgroundType.BACKGROUND_CUBEMAP;
@@ -377,7 +387,7 @@ In ArkGraphics 3D, Physically Based Rendering (PBR) materials allow you to preci
    Create a camera object, set its position and target, and then enable orbit control to allow users to rotate and zoom the view with gestures.
 
    <!-- @[pbr_clearcoat_createCamera](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkGraphics3D/entry/src/main/ets/material/pbr_clearcoat.ets) -->
-   
+
    ``` TypeScript
    this.cam = await rf.createCamera({ 'name': 'ClearcoatCam' });
    this.cam.enabled = true;
@@ -391,7 +401,7 @@ In ArkGraphics 3D, Physically Based Rendering (PBR) materials allow you to preci
    To allow users to switch between different clear coat textures, provide a button or event trigger for dynamic texture switching.
 
    <!-- @[pbr_clearcoat_changeClearcoatTexture](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkGraphics3D/entry/src/main/ets/material/pbr_clearcoat.ets) -->
-   
+
    ``` TypeScript
    changeClearcoatTex() {
      if (this.textures.length > 0) {
@@ -406,7 +416,7 @@ In ArkGraphics 3D, Physically Based Rendering (PBR) materials allow you to preci
    To adjust the strength of the clear coat layer, use a slider to update the **clearCoat.factor** property of the material.
 
    <!-- @[pbr_clearcoat_setClearcoat](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkGraphics3D/entry/src/main/ets/material/pbr_clearcoat.ets) -->
-   
+
    ``` TypeScript
    setClearcoat(v: number) {
      if (this.material) {
@@ -417,12 +427,12 @@ In ArkGraphics 3D, Physically Based Rendering (PBR) materials allow you to preci
    }
    ```
 
-8. Switch the roughness texture.
+8. Switch the clear coat layer roughness texture.
 
-   Similar to switching clear coat textures, users can also switch between different roughness textures.
+   Similar to clear coat texture switching, you can also switch between different clear coat layer roughness textures.
 
    <!-- @[pbr_clearcoat_changeRoughnessTexture](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkGraphics3D/entry/src/main/ets/material/pbr_clearcoat.ets) -->
-   
+
    ``` TypeScript
    changeClearcoatRoughTex() {
      if (this.textures.length > 0) {
@@ -437,7 +447,7 @@ In ArkGraphics 3D, Physically Based Rendering (PBR) materials allow you to preci
    To adjust the roughness of the clear coat layer, use a slider to update the **clearCoatRoughness.factor** property of the material.
 
    <!-- @[pbr_clearcoat_setClearcoatRoughness](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkGraphics3D/entry/src/main/ets/material/pbr_clearcoat.ets) -->
-   
+
    ``` TypeScript
    setClearcoatRoughness(v: number) {
      if (this.material) {
@@ -449,11 +459,15 @@ In ArkGraphics 3D, Physically Based Rendering (PBR) materials allow you to preci
    ```
 
 <!--RP1-->
+
 ## Samples
 
 For detailed code implementations and examples, you can visit the corresponding samples directory to learn more:
+
 - [General Material Properties and PBR Material Example (ArkTS)](https://gitcode.com/openharmony/applications_app_samples/tree/master/code/DocsSample/ArkGraphics3D/entry/src/main/ets/material)
 
 The following sample is provided to help you better understand how to efficiently use 3D resources:
+
 - [3D Engine Interface Example (ArkTS) (API version 12)](https://gitcode.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/Graphics/Graphics3d)
+
 <!--RP1End-->

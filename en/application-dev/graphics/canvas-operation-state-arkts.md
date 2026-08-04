@@ -3,13 +3,14 @@
 <!--Kit: ArkGraphics 2D-->
 <!--Subsystem: Graphics-->
 <!--Owner: @hangmengxin-->
-<!--Designer: @wangyanglan-->
+<!--Designer: @wanyanglan-->
 <!--Tester: @nobuggers-->
 <!--Adviser: @ge-yafang-->
+<!-- md-trans-meta sourceCommit=d47aed805c9cbd62ce4e714ce8e213154a42a9a9 translatedAt=2026-08-03T11:15:27.303Z pushedAt=2026-08-04T02:34:45.069Z -->
 
 ## Overview
 
-After creating or obtaining a canvas, you can perform graphics operations and status processing based on the canvas. Canvas operations are optional. You need to perform canvas operations before subsequent drawing. Otherwise, the canvas operations do not take effect.
+After a canvas is created or obtained, you can further perform canvas operations and state processing on it. Canvas operations are optional and can be used as needed for your scenario. Canvas operations must be performed before subsequent drawing; otherwise, they will not take effect.
 
 Common canvas operations are as follows:
 
@@ -17,10 +18,9 @@ Common canvas operations are as follows:
 
 - Matrix transformation, such as translation, scaling, and rotation
 
-- Status saving and restoration
+- State saving and restoration
 
 For details about more canvas operations and API parameters, see [drawing.Canvas](../reference/apis-arkgraphics2d/arkts-apis-graphics-drawing-Canvas.md).
-
 
 ## Clipping
 
@@ -36,19 +36,16 @@ The following clipping operations are supported:
 
 - Clipping a region
 
-
 ### Available APIs
 
 The following table lists the APIs for clipping. For details, see [drawing.Canvas](../reference/apis-arkgraphics2d/arkts-apis-graphics-drawing-Canvas.md).
-
 
 | API| Description|
 | -------- | -------- |
 | clipRect(rect: common2D.Rect, clipOp?: ClipOp, doAntiAlias?: boolean): void | Clips a rectangle.|
 | clipRoundRect(roundRect: RoundRect, clipOp?: ClipOp, doAntiAlias?: boolean): void | Clips a rounded rectangle.|
 | clipPath(path: Path, clipOp?: ClipOp, doAntiAlias?: boolean): void | Clips a path.|
-| clipRegion(region: Region, clipOp?: ClipOp): void | Clips a rectangle.|
-
+| clipRegion(region: Region, clipOp?: ClipOp): void | Clips a region.|
 
 ### How to Develop
 
@@ -56,13 +53,11 @@ The following uses the rectangle clipping on the canvas as an example. The logic
 
 Use the **clipRect()** API to clip a rectangle. There are three input parameters:
 
-
 - **rect**: rectangle region to be clipped.
 
 - **clipOp**: clipping mode, including **INTERSECT** and **DIFFERENCE**. For details, see [ClipOp](../reference/apis-arkgraphics2d/arkts-apis-graphics-drawing-e.md#clipop12).
 
 - **doAntiAlias**: whether to enable anti-aliasing. If the value is **true**, the anti-aliasing function is enabled, which makes the edge pixels of a graph semi-transparent and blurred. If the value is **false**, the anti-aliasing function is disabled.
-
 
 <!-- @[arkts_graphics_draw_canvas_clip](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkGraphics2D/Drawing/ArkTSGraphicsDraw/entry/src/main/ets/drawing/pages/CanvasOperationState.ets) -->
 
@@ -83,11 +78,9 @@ canvas.drawCircle(VALUE_300, VALUE_300, VALUE_300);
 canvas.detachBrush();
 ```
 
-
 | Original Image| Clipped Image|
 | -------- | -------- |
 | ![Screenshot_20250120154655737](figures/Screenshot_20250120154655737.jpg) | ![Screenshot_20250118152812670](figures/Screenshot_20250118152812670.jpg) |
-
 
 ## Matrix Transformation
 
@@ -101,7 +94,6 @@ The following matrix transformation operations are supported:
 
 - Rotation
 
-
 ### Available APIs
 
 The following table lists the APIs for matrix transformation. For details, see [drawing.Canvas](../reference/apis-arkgraphics2d/arkts-apis-graphics-drawing-Canvas.md).
@@ -113,13 +105,11 @@ The following table lists the APIs for matrix transformation. For details, see [
 | rotate(degrees: number, sx: number, sy: number): void | Rotates a canvas by a given angle. A positive value indicates a clockwise rotation, and a negative value indicates a counterclockwise rotation.|
 | skew(sx: number, sy: number) : void | Skews a canvas in both the horizontal and vertical directions.|
 
-
 ### Translation
 
 Use the **translate()** API to translate the canvas. The API takes two parameters, which are the translation amount in the horizontal and vertical directions, respectively. The unit is px.
 
 The following shows the sample code and effect:
-
 
 <!-- @[arkts_graphics_draw_canvas_translation](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkGraphics2D/Drawing/ArkTSGraphicsDraw/entry/src/main/ets/drawing/pages/CanvasOperationState.ets) -->
 
@@ -138,20 +128,15 @@ canvas.drawRect({ left: VALUE_200, top: VALUE_200, right: VALUE_600, bottom: VAL
 canvas.detachBrush();
 ```
 
-
 | Original Image| Translated Image|
 | -------- | -------- |
 | ![Screenshot_20241129145853573](figures/Screenshot_20241129145853573.jpg) | ![Screenshot_20241129145920436](figures/Screenshot_20241129145920436.jpg) |
-
 
 ### Rotation
 
 Use the **rotate()** API to rotate the canvas. The API takes three parameters: rotation angle, and X and Y coordinates of the rotation center.
 
-
 The following shows the sample code and effect:
-
-
 
 <!-- @[arkts_graphics_draw_canvas_rotation](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkGraphics2D/Drawing/ArkTSGraphicsDraw/entry/src/main/ets/drawing/pages/CanvasOperationState.ets) -->
 
@@ -170,20 +155,15 @@ canvas.drawRect({ left: VALUE_200, top: VALUE_200, right: VALUE_600, bottom: VAL
 canvas.detachBrush();
 ```
 
-
 | Original Image| Rotated Image|
 | -------- | -------- |
 | ![Screenshot_20241129145853573](figures/Screenshot_20241129145853573.jpg) | ![Screenshot_20241129150512529](figures/Screenshot_20241129150512529.jpg) |
-
 
 ### Scaling
 
 Use the **scale()** API to scale the canvas. The API takes two parameters, which are the scaling factors along the X axis and Y axis, respectively.
 
-
 The following shows the sample code and effect:
-
-
 
 <!-- @[arkts_graphics_draw_canvas_scale](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkGraphics2D/Drawing/ArkTSGraphicsDraw/entry/src/main/ets/drawing/pages/CanvasOperationState.ets) -->
 
@@ -202,21 +182,17 @@ canvas.drawRect({ left: VALUE_200, top: VALUE_200, right: VALUE_600, bottom: VAL
 canvas.detachBrush();
 ```
 
-
-| Original Image| Scaled up Image|
+| Original Image| Scaled Image|
 | -------- | -------- |
 | ![Screenshot_20241129145853573](figures/Screenshot_20241129145853573.jpg) | ![Screenshot_20241129151044798](figures/Screenshot_20241129151044798.jpg) |
 
+## Saving and Restoring the Canvas State
 
-## Saving and Restoring the Canvas Status
-
-
-The saving operation is used to save the current canvas status to the top of the stack. The restoration operation is used to restore the canvas status saved at the top of the stack. Once the restoration operation is performed, a series of operations such as translation, scaling, and clipping between the saving and restoration operations are cleared.
-
+The save operation saves the current canvas state to the top of a stack, and the restore operation restores the canvas state saved at the top of the stack. Once the restore operation is executed, all translation, scaling, clipping, and other operations performed between the save and restore operations are cleared.
 
 ### Available APIs
 
-The following table lists the APIs used for saving and restoring the canvas status. For details about the usage and parameters, see [canvas](../reference/apis-arkgraphics2d/arkts-apis-graphics-drawing-Canvas.md).
+The following table lists the APIs used for canvas state saving and restoring. For details about usage and parameters, see [Class (Canvas)](../reference/apis-arkgraphics2d/arkts-apis-graphics-drawing-Canvas.md).
 
 | API| Description|
 | -------- | -------- |
@@ -225,8 +201,6 @@ The following table lists the APIs used for saving and restoring the canvas stat
 | restoreToCount(count: number): void | Restores to a given number of canvas statuses (canvas matrices).|
 
 The following shows the sample code and effect:
-
-
 
 <!-- @[arkts_graphics_draw_canvas_state_operation](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkGraphics2D/Drawing/ArkTSGraphicsDraw/entry/src/main/ets/drawing/pages/CanvasOperationState.ets) -->
 
@@ -256,9 +230,11 @@ canvas.detachPen();
 ![Screenshot_20241129152510415](figures/Screenshot_20241129152510415.jpg)
 
 <!--RP1-->
+
 ## Samples
 
 The following samples are provided to help you better understand how to use the **Drawing** APIs (ArkTS) for development:
 
 - [ArkTSGraphicsDraw (API20)](https://gitcode.com/openharmony/applications_app_samples/tree/master/code/DocsSample/ArkGraphics2D/Drawing/ArkTSGraphicsDraw)
+
 <!--RP1End-->

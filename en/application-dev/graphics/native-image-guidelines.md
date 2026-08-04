@@ -1,10 +1,13 @@
 # NativeImage Development (C/C++)
+
 <!--Kit: ArkGraphics 2D-->
 <!--Subsystem: Graphics-->
-<!--Owner: @Felix-fangyang; @BruceXu; @dingpy-->
+<!--Owner: @Felix-fangyang-->
 <!--Designer: @conan13234-->
 <!--Tester: @nobuggers-->
 <!--Adviser: @ge-yafang-->
+<!-- md-trans-meta sourceCommit=c9742d4d4a757fbb6f0510281af0e732af135c64 translatedAt=2026-08-03T11:21:26.218Z pushedAt=2026-08-04T07:00:06.417Z -->
+
 ## Overview
 
 The NativeImage module is used for associating a surface with an OpenGL external texture. It functions as the consumer of a graphics queue. You can use the APIs of this module to obtain and use a buffer, and output the buffer content to the associated OpenGL external texture.
@@ -19,18 +22,18 @@ The following scenario is common for NativeImage development:
 | ------------------------------------------------------------ | ------------------------------------------------------------ |
 | OH_NativeImage_Create (uint32_t textureId, uint32_t textureTarget) | Creates an **OH_NativeImage** instance to be associated with the specified OpenGL ES texture ID and target. This function must be used in pair with **OH_NativeImage_Destroy**. Otherwise, memory leak occurs.|
 | OH_NativeImage_AcquireNativeWindow (OH_NativeImage \*image)  | Obtains an **OHNativeWindow** instance associated with an **OH_NativeImage** instance. It is unnecessary to manually release this **OHNativeWindow** with **OH_NativeWindow_DestroyNativeWindow** as it will be automatically freed upon calling **OH_NativeImage_Destroy**. Failing to do so could result in memory access violations after the memory has been freed, which might cause the application to crash.|
-| OH_NativeImage_AttachContext (OH_NativeImage \*image, uint32_t textureId) | Attaches an **OH_NativeImage** instance to the current OpenGL ES context. The OpenGL ES texture will be bound to an **GL_TEXTURE_EXTERNAL_OES** instance and updated through the **OH_NativeImage** instance.|
+| OH_NativeImage_AttachContext (OH_NativeImage \*image, uint32_t textureId) | Attaches an **OH_NativeImage** instance to the current OpenGL ES context. The OpenGL ES texture will be bound to a **GL_TEXTURE_EXTERNAL_OES** instance and updated through the **OH_NativeImage** instance.|
 | OH_NativeImage_DetachContext (OH_NativeImage \*image)        | Detaches an **OH_NativeImage** instance from the current OpenGL ES context.             |
 | OH_NativeImage_UpdateSurfaceImage (OH_NativeImage \*image)   | Updates the OpenGL ES texture associated with the latest frame through an **OH_NativeImage** instance.     |
-| OH_NativeImage_GetTimestamp (OH_NativeImage \*image)         | Obtains the timestamp of the texture image that recently called the **OH_NativeImage_UpdateSurfaceImage** function.|
-| OH_NativeImage_GetTransformMatrixV2 (OH_NativeImage \*image, float matrix[16]) | Obtains the transformation matrix of the texture image that recently called the **OH_NativeImage_UpdateSurfaceImage** function.|
+| OH_NativeImage_GetTimestamp (OH_NativeImage \*image)         | Obtains the timestamp of the texture image for which **OH_NativeImage_UpdateSurfaceImage** was recently called.|
+| OH_NativeImage_GetTransformMatrixV2 (OH_NativeImage \*image, float matrix[16]) | Obtains the transformation matrix of the texture image for which **OH_NativeImage_UpdateSurfaceImage** was recently called.|
 | OH_NativeImage_Destroy (OH_NativeImage \*\*image)            | Destroys an **OH_NativeImage** instance created by calling **OH_NativeImage_Create**. After the instance is destroyed, the pointer to it is assigned **NULL**.|
 
 For details about the APIs, see [native_image](../reference/apis-arkgraphics2d/capi-oh-nativeimage.md).
 
 ## How to Develop
 
-The following steps describe how to use the NativeImage APIs to create an **OH_NativeImage** instance as the consumer and update the data to a OpenGL external texture.
+The following steps describe how to use the NativeImage APIs to create an **OH_NativeImage** instance as the consumer and update the data to an OpenGL external texture.
 
 **Adding Dynamic Link Libraries**
 
@@ -62,7 +65,8 @@ libnative_buffer.so
 1. Initialize the EGL environment.
 
     Refer to the code snippet below. For details about how to use the XComponent, see [XComponent Development](../ui/napi-xcomponent-guidelines.md).
-    <!-- @[init_egl](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/graphic/NdkNativeImage/entry/src/main/cpp/render/image_render.cpp) -->
+
+    <!-- @[init_egl](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkGraphics2D/NdkNativeImage/entry/src/main/cpp/render/image_render.cpp) -->
 
     ``` C++
     bool ImageRender::InitEGL(EGLNativeWindowType window, uint64_t width, uint64_t height)
@@ -91,7 +95,7 @@ libnative_buffer.so
         return true;
     }
 
-    // ···
+    // ...
     bool ImageRender::InitializeEGLDisplay()
     {
         display_ = eglGetDisplay(EGL_DEFAULT_DISPLAY);
@@ -162,7 +166,7 @@ libnative_buffer.so
     {
         glViewport(0, 0, static_cast<GLsizei>(width_), static_cast<GLsizei>(height_));
         OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "ImageRender",
-                    "Viewport updated to %{public}llu x %{public}llu", width_, height_);
+                     "Viewport updated to %{public}llu x %{public}llu", width_, height_);
     }
 
     bool ImageRender::CompileAndLinkShaders()
@@ -213,29 +217,32 @@ libnative_buffer.so
             std::unique_ptr<char[]> infoLog = std::make_unique<char[]>(infoLen);
             glGetProgramInfoLog(program, infoLen, nullptr, infoLog.get());
             OH_LOG_Print(LOG_APP, LOG_ERROR, LOG_PRINT_DOMAIN,
-                        "ImageRender", "Error linking program: %{public}s", infoLog.get());
+                         "ImageRender", "Error linking program: %{public}s", infoLog.get());
         }
     }
     ```
 
 2. Create an **OH_NativeImage** instance.
-    <!-- @[nativeimage_create](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/graphic/NdkNativeImage/entry/src/main/cpp/render/render_engine.cpp) -->
+
+    <!-- @[nativeimage_create](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkGraphics2D/NdkNativeImage/entry/src/main/cpp/render/render_engine.cpp) -->
 
     ``` C++
     glGenTextures(1, &nativeImageTexId_);
-    // ···
+    // ...
     nativeImage_ = OH_NativeImage_Create(nativeImageTexId_, GL_TEXTURE_EXTERNAL_OES);
     ```
 
 3. Obtain the **OHNativeWindow** instance that functions as the producer.
-    <!-- @[nativeimage_acquire_nativewindow](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/graphic/NdkNativeImage/entry/src/main/cpp/render/native_render.cpp) -->
+
+    <!-- @[nativeimage_acquire_nativewindow](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkGraphics2D/NdkNativeImage/entry/src/main/cpp/render/native_render.cpp) -->
 
     ``` C++
     nativeWindow_ = OH_NativeImage_AcquireNativeWindow(image);
     ```
 
 4. Set the width and height of the **OHNativeWindow** instance.
-    <!-- @[set_buffer_geometry](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/graphic/NdkNativeImage/entry/src/main/cpp/render/native_render.cpp) -->
+
+    <!-- @[set_buffer_geometry](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkGraphics2D/NdkNativeImage/entry/src/main/cpp/render/native_render.cpp) -->
 
     ``` C++
     int32_t result = OH_NativeWindow_NativeWindowHandleOpt(nativeWindow_, SET_BUFFER_GEOMETRY,
@@ -249,7 +256,8 @@ libnative_buffer.so
 5. Write the produced content to the **OHNativeWindowBuffer**.
 
     1. Obtain an **OHNativeWindowBuffer** instance from the **NativeWindow** instance.
-        <!-- @[nativewindow_request_buffer](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/graphic/NdkNativeImage/entry/src/main/cpp/render/native_render.cpp) -->
+
+        <!-- @[nativewindow_request_buffer](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkGraphics2D/NdkNativeImage/entry/src/main/cpp/render/native_render.cpp) -->
 
         ``` C++
         OHNativeWindowBuffer *buffer = nullptr;
@@ -257,15 +265,16 @@ libnative_buffer.so
         int32_t result = OH_NativeWindow_NativeWindowRequestBuffer(nativeWindow_, &buffer, &releaseFenceFd);
         if (result != SUCCESS || buffer == nullptr) {
             OH_LOG_Print(LOG_APP, LOG_ERROR, LOG_PRINT_DOMAIN,
-                        "OHNativeRender", "Failed to request buffer, ret : %{public}d.", result);
+                         "OHNativeRender", "Failed to request buffer, ret : %{public}d.", result);
             return;
         }
-        // ···
+        // ...
         BufferHandle *handle = OH_NativeWindow_GetBufferHandleFromNative(buffer);
         ```
 
     2. Write the produced content to the **OHNativeWindowBuffer**.
-        <!-- @[write_addr](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/graphic/NdkNativeImage/entry/src/main/cpp/render/native_render.cpp) -->
+
+        <!-- @[write_addr](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkGraphics2D/NdkNativeImage/entry/src/main/cpp/render/native_render.cpp) -->
 
         ``` C++
         // Use mmap to obtain the virtual address.
@@ -286,7 +295,7 @@ libnative_buffer.so
         if (result == FAILURE) {
             OH_LOG_Print(LOG_APP, LOG_ERROR, LOG_PRINT_DOMAIN, "OHNativeRender", "Failed to munmap buffer.");
         }
-        // ···
+        // ...
         void OHNativeRender::DrawGradient(uint32_t* pixel, uint64_t width, uint64_t height)
         {
             static double time = 0.0;
@@ -338,23 +347,25 @@ libnative_buffer.so
         ```
 
     3. Flush the **OHNativeWindowBuffer** to the **NativeWindow**.
-        <!-- @[flush_buffer](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/graphic/NdkNativeImage/entry/src/main/cpp/render/native_render.cpp) -->
+
+        <!-- @[flush_buffer](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkGraphics2D/NdkNativeImage/entry/src/main/cpp/render/native_render.cpp) -->
 
         ``` C++
-            // Set the refresh region.
-            Region region{nullptr, 0};
-            // Submit the buffer to the consumer.
-            result = OH_NativeWindow_NativeWindowFlushBuffer(nativeWindow_, buffer, NO_FENCE, region);
-            if (result != SUCCESS) {
-                OH_LOG_Print(LOG_APP, LOG_ERROR, LOG_PRINT_DOMAIN,
-                            "OHNativeRender", "Failed to flush buffer, result : %{public}d.", result);
-            }
+        // Set the dirty region.
+        Region region{nullptr, 0};
+        // Submit to the consumer.
+        result = OH_NativeWindow_NativeWindowFlushBuffer(nativeWindow_, buffer, NO_FENCE, region);
+        if (result != SUCCESS) {
+            OH_LOG_Print(LOG_APP, LOG_ERROR, LOG_PRINT_DOMAIN,
+                         "OHNativeRender", "Failed to flush buffer, result : %{public}d.", result);
+        }
         ```
 
 6. Update the content to the OpenGL texture.
-   <!-- @[update_surfaceimage](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/graphic/NdkNativeImage/entry/src/main/cpp/render/render_engine.cpp) -->
 
-    ``` C++
+   <!-- @[update_surfaceimage](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkGraphics2D/NdkNativeImage/entry/src/main/cpp/render/render_engine.cpp) -->
+
+   ``` C++
     int32_t ret = OH_NativeImage_UpdateSurfaceImage(nativeImage_);
     if (ret != 0) {
         OH_LOG_Print(LOG_APP, LOG_ERROR, LOG_PRINT_DOMAIN, "RenderEngine",
@@ -369,45 +380,46 @@ libnative_buffer.so
     } else {
         OH_LOG_Print(LOG_APP, LOG_ERROR, LOG_PRINT_DOMAIN, "RenderEngine", "ImageRender is null");
     }
-    // ···
+    // ...
 
-    void RenderEngine::UpdateTextureMatrix()
-    {
-        float matrix[16];
-        int32_t ret = OH_NativeImage_GetTransformMatrixV2(nativeImage_, matrix);
-        if (ret != 0) {
-            OH_LOG_Print(LOG_APP, LOG_ERROR, LOG_PRINT_DOMAIN, "RenderEngine",
+   void RenderEngine::UpdateTextureMatrix()
+   {
+       float matrix[16];
+       int32_t ret = OH_NativeImage_GetTransformMatrixV2(nativeImage_, matrix);
+       if (ret != 0) {
+           OH_LOG_Print(LOG_APP, LOG_ERROR, LOG_PRINT_DOMAIN, "RenderEngine",
                         "OH_NativeImage_GetTransformMatrix failed, ret: %{public}d", ret);
-            return;
-        }
-        imageRender_->SetTransformMatrix(matrix);
-    }
-    ```
+           return;
+       }
+       imageRender_->SetTransformMatrix(matrix);
+   }
+   ```
 
 7. Detach the **OH_NativeImage** from the current OpenGL texture and attach it to a new external texture.
-   <!-- @[nativeimage_change_context](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/graphic/NdkNativeImage/entry/src/main/cpp/render/render_engine.cpp) -->
 
-    ``` C++
-    // Detach an OH_NativeImage instance from the current OpenGL ES context.
-    OH_NativeImage_DetachContext(nativeImage_);
-    // [Start nativeimage_create]
-    glGenTextures(1, &nativeImageTexId_);
-    // [StartExclude nativeimage_create]
-    glBindTexture(GL_TEXTURE_EXTERNAL_OES, nativeImageTexId_);
-    // ···
-    int ret = OH_NativeImage_AttachContext(nativeImage_, nativeImageTexId_);
-    ```
+   <!-- @[nativeimage_change_context](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkGraphics2D/NdkNativeImage/entry/src/main/cpp/render/render_engine.cpp) -->
+
+   ``` C++
+   // Detach the OH_NativeImage instance from the current OpenGL ES context.
+   OH_NativeImage_DetachContext(nativeImage_);
+   glGenTextures(1, &nativeImageTexId_);
+   glBindTexture(GL_TEXTURE_EXTERNAL_OES, nativeImageTexId_);
+   // ...
+   int ret = OH_NativeImage_AttachContext(nativeImage_, nativeImageTexId_);
+   ```
 
 8. Destroy the **OH_NativeImage** instance when it is no longer needed.
-   <!-- @[destroy_nativeimage](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/graphic/NdkNativeImage/entry/src/main/cpp/render/render_engine.cpp) -->
 
-    ``` C++
-    OH_NativeImage_Destroy(&nativeImage_);
-    ```
+   <!-- @[destroy_nativeimage](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkGraphics2D/NdkNativeImage/entry/src/main/cpp/render/render_engine.cpp) -->
+
+   ``` C++
+   OH_NativeImage_Destroy(&nativeImage_);
+   ```
 
 ## Samples
 
 The following samples are provided to help you better understand how to use the NativeImage module for development:
 
-- [Native Window (API11)](https://gitcode.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/Native/NdkNativeWindow)
-- [Smooth Gradient Animation Effect Based on NdkNativeImage (API 12)](https://gitcode.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/Native/NdkNativeImage)
+- [Native Window (API12)](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkGraphics2D/NdkNativeWindow)
+
+- [Smooth Gradient Animation Effect Based on NdkNativeImage (API12)](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkGraphics2D/NdkNativeImage)

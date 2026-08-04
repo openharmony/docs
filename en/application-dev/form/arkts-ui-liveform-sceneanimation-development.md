@@ -1,10 +1,13 @@
 # Developing a Scene-based Widget
+
 <!--Kit: Form Kit-->
 <!--Subsystem: Ability-->
 <!--Owner: @Qian-Win-->
 <!--Designer: @cx983299475-->
 <!--Tester: @mahailong123456-->
 <!--Adviser: @HelloShuo-->
+<!-- md-trans-meta sourceCommit=a08d450b4f575e3d4749ddeef9dd32275ec0a19e translatedAt=2026-08-03T02:23:15.941Z pushedAt=2026-08-03T03:11:04.010Z -->
+
 This document outlines the development of scene-based widgets, covering UI designs for both inactive and active states, as well as related configuration files.
 
 ## Available APIs
@@ -32,7 +35,7 @@ The following table lists the key APIs for a scene-based widget.
     Create an interactive widget through [LiveFormExtensionAbility](../reference/apis-form-kit/js-apis-app-form-LiveFormExtensionAbility.md) and load the widget page.
 
     <!-- @[liveform_LiveFormExtensionAbility](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/Form/FormLiveDemo/entry/src/main/ets/myliveformextensionability/MyLiveFormExtensionAbility.ets) --> 
-    
+
     ``` TypeScript
     // entry/src/main/ets/myliveformextensionability/MyLiveFormExtensionAbility.ets
     import { formInfo, LiveFormInfo, LiveFormExtensionAbility } from '@kit.FormKit';
@@ -69,11 +72,10 @@ The following table lists the key APIs for a scene-based widget.
     };
     ```
 
-
 2. Implement an interactive widget page.
 
    <!-- @[liveform_MyLiveFormPage](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/Form/FormLiveDemo/entry/src/main/ets/myliveformextensionability/pages/MyLiveFormPage.ets) --> 
-   
+
    ``` TypeScript
    // entry/src/main/ets/myliveformextensionability/pages/MyLiveFormPage.ets
    import { formInfo, formProvider } from '@kit.FormKit';
@@ -209,13 +211,12 @@ The following table lists the key APIs for a scene-based widget.
    }
    ```
 
-
 3. Configure LiveFormExtensionAbility for interactive widgets.
 
     Configure LiveFormExtensionAbility in [extensionAbilities](../quick-start/module-configuration-file.md#extensionabilities) of the **module.json5** file.
 
     <!-- @[liveform_moudlejson5](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/Form/FormLiveDemo/entry/src/main/module.json5) --> 
-    
+
     ``` JSON5
     // entry/src/main/module.json5
     // ...
@@ -250,7 +251,7 @@ The following table lists the key APIs for a scene-based widget.
     The page development process of a widget in the inactive state is the same as that of a common widget and is completed in **widgetCard.ets**, which is automatically generated when a widget is created. For details about the widget creation process, see [Creating an ArkTS Widget](arkts-ui-widget-creation.md). On the inactive widget page, request the widget animation when the widget is tapped.
 
     <!-- @[liveform_WidgetCard](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/Form/FormLiveDemo/entry/src/main/ets/widget/pages/WidgetCard.ets) --> 
-    
+
     ``` TypeScript
     // entry/src/main/ets/widget/pages/WidgetCard.ets
     @Entry
@@ -283,7 +284,6 @@ The following table lists the key APIs for a scene-based widget.
       }
     }
     ```
-
 
 2. Configure the **form_config.json** file.
 
@@ -332,7 +332,7 @@ The following table lists the key APIs for a scene-based widget.
     Call the [formProvider.requestOverflow](../reference/apis-form-kit/js-apis-app-form-formProvider.md#formproviderrequestoverflow20) API, and specify the animation request range, animation duration, and whether to use the default switching animation provided by the system. For details, see [formInfo.OverflowInfo](../reference/apis-form-kit/js-apis-app-form-formInfo.md#overflowinfo20). You can call the [formProvider.getFormRect](../reference/apis-form-kit/js-apis-app-form-formProvider.md#formprovidergetformrect20) API to obtain the dimensions and position of the interactive widget in the window. The widget provider calculates the animation request range (in vp) based on these dimensions. For details about the calculation rules, see the [constraints on widget parameter request](arkts-ui-liveform-sceneanimation-overview.md#parameter-request).
 
     <!-- @[liveform_EntryFormAbility](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/Form/FormLiveDemo/entry/src/main/ets/entryformability/EntryFormAbility.ets) -->
-    
+
     ``` TypeScript
     // entry/src/main/ets/entryformability/EntryFormAbility.ets
     import { FormExtensionAbility, formInfo, formProvider } from '@kit.FormKit';
@@ -397,11 +397,10 @@ The following table lists the key APIs for a scene-based widget.
     }
     ```
 
-
 2. Implement the tool functions of the interactive widget animation.
 
    <!-- @[liveform_Constants](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/Form/FormLiveDemo/entry/src/main/ets/common/Constants.ets) --> 
-   
+
    ``` TypeScript
    // entry/src/main/ets/common/Constants.ets
    // Develop animation-related constants.
@@ -419,10 +418,9 @@ The following table lists the key APIs for a scene-based widget.
    }
    ```
 
-
 3. Configure the resource file **string.json**.
 
-    ```json
+    ```json5
     {
         "string": [
           // ...
@@ -439,6 +437,7 @@ The following table lists the key APIs for a scene-based widget.
     ```
 
 ## Effect
+
 The following is a demo developed based on the code examples in this document. When the demo is executed, the [formProvider.cancelOverflow](../reference/apis-form-kit/js-apis-app-form-formProvider.md#formprovidercanceloverflow20) API is called to interrupt the current overflow animation and the widget is switched to the inactive state.
 
 ![live-form-base-demo.gif](figures/live-form-base-demo.gif)
