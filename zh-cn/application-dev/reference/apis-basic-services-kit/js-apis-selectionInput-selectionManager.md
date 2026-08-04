@@ -39,7 +39,7 @@ import { selectionManager } from '@kit.BasicServicesKit';
 
 on(type: 'selectionCompleted', callback: Callback\<SelectionInfo>): void
 
-订阅划词完成事件，与[off('selectionCompleted')](#selectionmanageroffselectioncompleted)搭配使用取消订阅。使用callback异步回调。
+订阅划词完成事件，与[off('selectionCompleted')](#selectionmanageroffselectioncompleted)搭配使用取消订阅。
 
 **系统能力：** SystemCapability.SelectionInput.Selection
 
@@ -79,7 +79,7 @@ try {
 
 off(type: 'selectionCompleted', callback?: Callback\<SelectionInfo>): void
 
-取消订阅划词完成事件，与[on('selectionCompleted')](#selectionmanageronselectioncompleted)搭配使用。使用callback异步回调。
+取消订阅划词完成事件，与[on('selectionCompleted')](#selectionmanageronselectioncompleted)搭配使用。
 
 **系统能力：** SystemCapability.SelectionInput.Selection
 
@@ -90,7 +90,7 @@ off(type: 'selectionCompleted', callback?: Callback\<SelectionInfo>): void
 | 参数名   | 类型                                        | 必填 | 说明                                                         |
 | -------- | ------------------------------------------- | ---- | ------------------------------------------------------------ |
 | type     | string                                      | 是   | 取消订阅的事件类型，固定取值为'selectionCompleted'。               |
-| callback | Callback\<[SelectionInfo](#selectioninfo)> | 否   | 需要取消的回调函数（即之前通过on方法订阅时的回调实例），返回划词事件信息[SelectionInfo](#selectioninfo)。参数不填写时，取消订阅type对应的所有回调事件。 |
+| callback | Callback\<[SelectionInfo](#selectioninfo)> | 否   | 需要取消的回调函数（即之前通过on方法订阅时的回调实例）。参数不填写时，取消订阅type对应的所有回调事件。 |
 
 **示例：**
 
@@ -638,7 +638,7 @@ try {
 
 on(type: 'destroyed', callback: Callback\<void>): void
 
-订阅划词面板销毁事件，与[off('destroyed')](#offdestroyed)搭配使用。需通过[createPanel](#createpanel)获取到Panel实例后调用。使用callback异步回调。
+订阅划词面板销毁事件，与[off('destroyed')](#offdestroyed)搭配使用。需通过[createPanel](#createpanel)获取到Panel实例后调用。
 
 **系统能力：** SystemCapability.SelectionInput.Selection
 
@@ -649,7 +649,7 @@ on(type: 'destroyed', callback: Callback\<void>): void
 | 参数名   | 类型                                        | 必填 | 说明                                           |
 | -------- | ------------------------------------------- | ---- | ---------------------------------------------- |
 | type     | string                                      | 是   | 设置监听类型，固定取值为'destroyed'。 |
-| callback | Callback\<void> | 是   | 回调函数，调用[destroyPanel](#destroypanel)销毁面板时触发，返回值为空。       |
+| callback | Callback\<void> | 是   | 回调函数，调用[destroyPanel](#destroypanel)销毁面板时触发。       |
 
 **示例：**
 <!--code_no_check-->
@@ -668,7 +668,7 @@ try {
 
 off(type: 'destroyed', callback?: Callback\<void>): void
 
-取消订阅划词面板销毁事件，与[on('destroyed')](#ondestroyed)搭配使用。需通过[createPanel](#createpanel)获取到Panel实例后调用。使用callback异步回调。
+取消订阅划词面板销毁事件，与[on('destroyed')](#ondestroyed)搭配使用。需通过[createPanel](#createpanel)获取到Panel实例后调用。
 
 **系统能力：** SystemCapability.SelectionInput.Selection
 
@@ -679,7 +679,7 @@ off(type: 'destroyed', callback?: Callback\<void>): void
 | 参数名   | 类型                                        | 必填 | 说明                                                         |
 | -------- | ------------------------------------------- | ---- | ------------------------------------------------------------ |
 | type     | string                                      | 是   | 取消订阅的事件类型，固定取值为'destroyed'。               |
-| callback | Callback\<void> | 否   | 需要取消的回调函数（即之前通过on方法订阅时的回调实例），返回值为空。参数不填写时，取消订阅type对应的所有回调事件。|
+| callback | Callback\<void> | 否   | 需要取消的回调函数（即之前通过on方法订阅时的回调实例）。参数不填写时，取消订阅type对应的所有回调事件。|
 
 **示例：**
 <!--code_no_check-->
@@ -696,7 +696,7 @@ try {
 
 on(type: 'hidden', callback: Callback\<void>): void
 
-订阅划词面板隐藏事件，与[off('hidden')](#offhidden)搭配使用。面板调用[hide](#hide)隐藏或失焦自动隐藏时触发该事件。需通过[createPanel](#createpanel)获取到Panel实例后调用。使用callback异步回调。
+订阅划词面板隐藏事件，与[off('hidden')](#offhidden)搭配使用。面板调用[hide](#hide)隐藏或失焦自动隐藏时触发该事件。需通过[createPanel](#createpanel)获取到Panel实例后调用。
 
 **系统能力：** SystemCapability.SelectionInput.Selection
 
@@ -707,7 +707,7 @@ on(type: 'hidden', callback: Callback\<void>): void
 | 参数名   | 类型                                        | 必填 | 说明                                           |
 | -------- | ------------------------------------------- | ---- | ---------------------------------------------- |
 | type     | string                                      | 是   | 设置监听类型，固定取值为'hidden'。 |
-| callback | Callback\<void> | 是   | 回调函数，面板隐藏时触发，返回值为空。面板可通过调用[hide](#hide)主动隐藏，或在失焦时自动隐藏。       |
+| callback | Callback\<void> | 是   | 回调函数，面板隐藏时触发。面板可通过调用[hide](#hide)主动隐藏，或在失焦时自动隐藏。       |
 
 **示例：**
 <!--code_no_check-->
@@ -726,7 +726,7 @@ try {
 
 off(type: 'hidden', callback?: Callback\<void>): void
 
-取消订阅划词面板隐藏事件，与[on('hidden')](#onhidden)搭配使用。需通过[createPanel](#createpanel)获取到Panel实例后调用。使用callback异步回调。
+取消订阅划词面板隐藏事件，与[on('hidden')](#onhidden)搭配使用。需通过[createPanel](#createpanel)获取到Panel实例后调用。
 
 **系统能力：** SystemCapability.SelectionInput.Selection
 
@@ -737,7 +737,7 @@ off(type: 'hidden', callback?: Callback\<void>): void
 | 参数名   | 类型                                        | 必填 | 说明                                                         |
 | -------- | ------------------------------------------- | ---- | ------------------------------------------------------------ |
 | type     | string                                      | 是   | 取消订阅的事件类型，固定取值为'hidden'。               |
-| callback | Callback\<void> | 否   | 需要取消的回调函数（即之前通过on方法订阅时的回调实例），返回值为空。参数不填写时，取消订阅type对应的所有回调事件。 |
+| callback | Callback\<void> | 否   | 需要取消的回调函数（即之前通过on方法订阅时的回调实例）。参数不填写时，取消订阅type对应的所有回调事件。 |
 
 **示例：**
 <!--code_no_check-->
