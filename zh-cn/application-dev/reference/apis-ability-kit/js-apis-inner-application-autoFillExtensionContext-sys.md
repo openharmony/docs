@@ -140,7 +140,7 @@ struct AccountPage {
                 })
               }
             }
-          })
+          });
         }
         // ...
       }
