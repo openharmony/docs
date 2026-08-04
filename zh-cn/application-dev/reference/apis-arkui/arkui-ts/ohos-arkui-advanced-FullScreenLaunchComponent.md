@@ -247,3 +247,5 @@ struct Index {
   }
 }
 ```
+
+![](figures/FullScreenLaunchComponentDemo1.png)
