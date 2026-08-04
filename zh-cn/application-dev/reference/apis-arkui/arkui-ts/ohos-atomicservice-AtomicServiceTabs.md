@@ -7,7 +7,7 @@
 <!--Tester: @tinygreyy-->
 <!--Adviser: @zengyawen-->
 
-AtomicServiceTabs高级组件，对Tabs组件不需提供给用户自定义设计的属性进行简化，限制最多显示5个页签，固定页签的样式、位置和大小。
+AtomicServiceTabs高级组件，对Tabs组件中不需要暴露给用户进行自定义的属性进行简化，限制最多显示5个页签，固定页签的样式、位置和大小。
 
 > **说明：**
 >
@@ -21,7 +21,7 @@ import { AtomicServiceTabs, TabBarOptions, TabBarPosition, OnContentWillChangeCa
 
 ## 子组件
 
-无
+无。
 
 ## 属性
 
@@ -64,17 +64,17 @@ AtomicServiceTabs({
 
 | 名称 | 类型 | 必填 | 装饰器类型 | 说明 |
 | --------------- | ------ | ---- | ----|----|
-| tabContents | [[TabContentBuilder?](#tabcontentbuilder),[TabContentBuilder?](#tabcontentbuilder), [TabContentBuilder?](#tabcontentbuilder),[TabContentBuilder?](#tabcontentbuilder), [TabContentBuilder?](#tabcontentbuilder)] | 否 | @BuilderParam| 内容视图容器数组，最多支持5个页签，默认值为空，无内容展示。 |
-| tabBarOptionsArray | [[TabBarOptions](#tabbaroptions),[TabBarOptions](#tabbaroptions), [TabBarOptions?](#tabbaroptions),[TabBarOptions?](#tabbaroptions), [TabBarOptions?](#tabbaroptions)]  | 是 | @Prop | 页签容器数组，最多支持5个页签。 |
+| tabContents | [[TabContentBuilder?](#tabcontentbuilder),[TabContentBuilder?](#tabcontentbuilder), [TabContentBuilder?](#tabcontentbuilder),[TabContentBuilder?](#tabcontentbuilder), [TabContentBuilder?](#tabcontentbuilder)] | 否 | @BuilderParam| 内容视图容器数组，最多支持5个页签，默认值为空。 |
+| tabBarOptionsArray | [[TabBarOptions](#tabbaroptions),[TabBarOptions](#tabbaroptions), [TabBarOptions?](#tabbaroptions),[TabBarOptions?](#tabbaroptions), [TabBarOptions?](#tabbaroptions)]  | 是 | @Prop | 页签选项数组，最多支持5个页签。 |
 | tabBarPosition | [TabBarPosition](#tabbarposition) | 否   |@Prop | 设置页签栏位置，默认值为TabBarPosition.BOTTOM。 |
 | layoutMode<sup>18+</sup> | [LayoutMode](ts-container-tabcontent.md#layoutmode10) | 否   |@Prop | 设置底部页签的图片、文字排布的方式，默认值为LayoutMode.VERTICAL。<br>**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。 |
 | barBackgroundColor | [ResourceColor](ts-types.md#resourcecolor) | 否 | @Prop | 设置TabBar的背景颜色，默认值为透明。 |
 | index | number | 否 | @Prop | 设置当前显示页签的索引，索引值从0开始，取值范围为[0, 页签数-1]，最大不超过4。默认值为0。 |
 | barOverlap | boolean| 否 | @Prop | 设置TabBar是否背景变模糊并叠加在TabContent之上。true表示TabBar背景变模糊并叠加在TabContent之上，false表示TabBar背景不变模糊且不叠加在TabContent之上。默认值为true。 |
-| controller|[TabsController](ts-container-tabs.md#tabscontroller) | 否 | - | Tabs组件的控制器，用于控制Tabs组件进行页签切换。默认值为new TabsController()。 |
+| controller|[TabsController](ts-container-tabs.md#tabscontroller) | 否 | - | Tabs组件的控制器，用于控制页签切换。默认值为new TabsController()。 |
 | onChange | Callback\<number\> | 否 | - | Tabs页签切换后触发的事件，回调参数为切换后的页签索引，索引值从0开始。当onContentWillChange回调返回false拦截页面切换时，该事件不会被触发。默认值为空。 |
 | onTabBarClick | Callback\<number\> | 否 | - | Tabs页签点击后触发的事件，回调参数为被点击页签的索引值，索引值从0开始。默认值为空。 |
-| onContentWillChange | [OnContentWillChangeCallback](#oncontentwillchangecallback) | 否 | - | Tabs页面切换拦截事件，新页面即将显示时触发该回调。默认值为空。 |
+| onContentWillChange | [OnContentWillChangeCallback](#oncontentwillchangecallback) | 否 | - | Tabs页面切换拦截事件，新页面即将显示时触发该回调。当回调返回false拦截页面切换时，onChange事件不会被触发。默认值为空。 |
 
 ## TabContentBuilder
 
@@ -88,7 +88,7 @@ type TabContentBuilder = () => void
 
 ## TabBarOptions
 
-页签容器。
+页签选项。
 
 ### constructor
 constructor(icon: ResourceStr | TabBarSymbol, text: ResourceStr, unselectedColor?: ResourceColor, selectedColor?: ResourceColor)
@@ -105,8 +105,8 @@ TabBarOptions的构造函数。
 | --------------- | ------ |------ |------ |
 | icon | [ResourceStr](ts-types.md#resourcestr) \| [TabBarSymbol](ts-container-tabcontent.md#tabbarsymbol12对象说明) | 是 | 页签内的图标内容。 |
 | text | [ResourceStr](ts-types.md#resourcestr) | 是 | 页签内的文字内容。 |
-| unselectedColor | [ResourceColor](ts-types.md#resourcecolor) | 否 | 未选择时的页签颜色，默认值：#99182431。 |
-| selectedColor | [ResourceColor](ts-types.md#resourcecolor) | 否 | 已选择时的页签颜色，默认值：#FF007DFF。 |
+| unselectedColor | [ResourceColor](ts-types.md#resourcecolor) | 否 | 未选择时的页签颜色，默认值为#99182431。 |
+| selectedColor | [ResourceColor](ts-types.md#resourcecolor) | 否 | 已选择时的页签颜色，默认值为#FF007DFF。 |
 
 ## TabBarPosition 
 
@@ -208,7 +208,7 @@ struct Index {
       onContentWillChange: this.onContentWillChangeCallback,
     })
     Column() {
-      Text('onTabBarClick回调次数: '+ this.onClickNumber)
+      Text('onTabBarClick回调次数: ' + this.onClickNumber)
       Text('comingIndex = ' + this.comingIndex + ', currentIndex = ' + this.currentIndex)
     }.margin({top:500})
     }.height('100%')
@@ -314,7 +314,6 @@ struct Index {
   }
   onChange: Callback<number> = (index: number) => {
     console.info('onChange');
-    console.info('onChange2');
   }
 
   @Builder
