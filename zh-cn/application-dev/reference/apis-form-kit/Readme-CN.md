@@ -16,7 +16,7 @@
   <!--Del-->
   - [@ohos.app.form.formAgent (FormAgent)(系统接口)](js-apis-app-form-formAgent-sys.md)
   - [@ohos.app.form.FormExtensionAbility (FormExtensionAbility)(系统接口)](js-apis-app-form-formExtensionAbility-sys.md)
-  - [@ohos.app.form.formInfo (FormInfo)(系统接口)](js-apis-app-form-formInfo-sys.md)
+  - [@ohos.app.form.formInfo (formInfo)(系统接口)](js-apis-app-form-formInfo-sys.md)
   - [@ohos.app.form.formHost (formHost)(系统接口)](js-apis-app-form-formHost-sys.md)
   - [@ohos.app.form.formProvider (FormProvider)(系统接口)](js-apis-app-form-formProvider-sys.md)
   - [@ohos.app.form.formObserver (formObserver)(系统接口)](js-apis-app-form-formObserver-sys.md)
