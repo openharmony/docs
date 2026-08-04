@@ -52,23 +52,25 @@
 
 当前支持使用认证控件的认证类型包括：
 
-- 锁屏口令认证
+- 锁屏口令认证。
 
-- 人脸认证
+- 人脸认证。
 
-- 指纹认证
+- 指纹认证。
 
-- 人脸+锁屏口令认证
+- 人脸+锁屏口令认证。
 
-- 指纹+锁屏口令认证
+- 指纹+锁屏口令认证。
 
-- 人脸+指纹+锁屏口令认证
+- 人脸+指纹+锁屏口令认证。
 
-- 人脸+自定义导航按键
+- 人脸+自定义导航按键。
 
-- 指纹+自定义导航按键
+- 指纹+自定义导航按键。
 
-- 人脸+指纹+自定义导航按键<sup>18+</sup>
+- 从API版本18开始，支持人脸+指纹+自定义导航按键的认证类型。
+
+<!--RP3--><!--RP3End-->
 
 ## 开发步骤
 
@@ -300,4 +302,4 @@ initiatingUserAuthentication4() {
 
 ## 示例代码
 
-  - [发起认证](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/UserAuthentication)
+  - [发起认证](https://gitcode.com/openharmony/applications_app_samples/tree/master/code/DocsSample/UserAuthentication)
