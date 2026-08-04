@@ -1,8 +1,8 @@
 # ArkUI_PixelRoundPolicy
 <!--Kit: ArkUI-->
 <!--Subsystem: ArkUI-->
-<!--Owner: @little-bear-sleeps-->
-<!--Designer: @lanshouren-->
+<!--Owner: @zhangwentao96-->
+<!--Designer: @fenglinbailu-->
 <!--Tester: @liuli0427-->
 <!--Adviser: @Brilliantry_Rui-->
 

@@ -1,8 +1,8 @@
 # divider
 <!--Kit: ArkUI-->
 <!--Subsystem: ArkUI-->
-<!--Owner: @lanshouren-->
-<!--Designer: @lanshouren-->
+<!--Owner: @fenglinbailu-->
+<!--Designer: @fenglinbailu-->
 <!--Tester: @liuli0427-->
 <!--Adviser: @Brilliantry_Rui-->
 

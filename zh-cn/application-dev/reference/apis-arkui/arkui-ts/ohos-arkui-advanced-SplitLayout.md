@@ -1,8 +1,8 @@
 # SplitLayout
 <!--Kit: ArkUI-->
 <!--Subsystem: ArkUI-->
-<!--Owner: @wangrunsen-->
-<!--Designer: @YanSanzo-->
+<!--Owner: @song-song-song-->
+<!--Designer: @fenglinbailu-->
 <!--Tester: @ybhou1993-->
 <!--Adviser: @Brilliantry_Rui-->
 
