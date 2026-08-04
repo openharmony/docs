@@ -116,14 +116,14 @@ enum OH_HiCollie_Freeze_Type
 
 | 枚举项 | 描述 |
 | -- | -- |
-| OH_THREAD_BLOCK_3S | 主线程超时一个周期。<br>**起始版本：** 24 |
-| OH_THREAD_BLOCK_6S | 主线程超时两个周期。<br>**起始版本：** 24 |
-| OH_LIFECYCLE_HALF_TIMEOUT | Ability生命周期超时一个周期。<br>**起始版本：** 24 |
-| OH_LIFECYCLE_TIMEOUT | Ability生命周期超时两个周期。<br>**起始版本：** 24 |
-| OH_APP_INPUT_BLOCK | 输入事件超时。<br>**起始版本：** 24 |
-| OH_BUSINESS_THREAD_BLOCK_3S | 通过[OH_HiCollie_Report](capi-hicollie-h.md#oh_hicollie_report)上报3S冻屏事件。<br>**起始版本：** 24 |
-| OH_BUSINESS_THREAD_BLOCK_6S | 通过[OH_HiCollie_Report](capi-hicollie-h.md#oh_hicollie_report)上报6S冻屏事件。<br>**起始版本：** 24 |
-| OH_BUSINESS_INPUT_BLOCK | 通过[OH_HiCollie_ReportInputBlock](capi-hicollie-h.md#oh_hicollie_reportinputblock)上报冻屏事件。<br>**起始版本：** 24 |
+| OH_THREAD_BLOCK_3S | 主线程超时一个周期。|
+| OH_THREAD_BLOCK_6S | 主线程超时两个周期。|
+| OH_LIFECYCLE_HALF_TIMEOUT | Ability生命周期超时一个周期。|
+| OH_LIFECYCLE_TIMEOUT | Ability生命周期超时两个周期。|
+| OH_APP_INPUT_BLOCK | 输入事件超时。|
+| OH_BUSINESS_THREAD_BLOCK_3S | 通过[OH_HiCollie_Report](capi-hicollie-h.md#oh_hicollie_report)上报3S冻屏事件。|
+| OH_BUSINESS_THREAD_BLOCK_6S | 通过[OH_HiCollie_Report](capi-hicollie-h.md#oh_hicollie_report)上报6S冻屏事件。|
+| OH_BUSINESS_INPUT_BLOCK | 通过[OH_HiCollie_ReportInputBlock](capi-hicollie-h.md#oh_hicollie_reportinputblock)上报冻屏事件。|
 
 
 ## 函数说明
