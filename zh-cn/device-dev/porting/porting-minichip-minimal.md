@@ -575,7 +575,7 @@ nm <elf> | grep xts_overlay      # xts_overlay_start / xts_overlay_end
 
 算法间存在依赖关系，违反时编译失败。
 
-若要在产品的config.json文件中通过配置的方式开启，需将对应的feature声明在bundle.json的features中。
+若要在产品的config.json文件中通过配置的方式开启，需将对应的feature声明在config.json的features中。
 
 ---
 
