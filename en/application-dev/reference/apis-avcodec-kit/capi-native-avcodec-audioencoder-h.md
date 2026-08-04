@@ -301,9 +301,7 @@ OH_AVErrCode OH_AudioEncoder_Flush(OH_AVCodec *codec)
 
 **Description**
 
-Clears the input and output data in the internal buffer of an audio encoder.
-
-This function invalidates the indexes of all buffers previously reported through the asynchronous callback. Therefore, before calling this function, ensure that the buffers with the specified indexes are no longer required.
+Clears the input and output data in the internal buffer of an audio encoder.<br>This function invalidates the indexes of all buffers previously reported through the asynchronous callback. Therefore, before calling this function, ensure that the buffers with the specified indexes are no longer required.
 
 **System capability**: SystemCapability.Multimedia.Media.AudioEncoder
 
@@ -383,7 +381,7 @@ Obtains the description information about the output data of an audio encoder. T
 
 | Type| Description|
 | -- | -- |
-| [OH_AVFormat](capi-core-oh-avformat.md) * | Handle to an OH_AVFormat instance. The lifecycle of this instance is refreshed when **GetOutputDescription** is called again and destroyed when the OH_AVCodec instance is destroyed.|
+| [OH_AVFormat](capi-core-oh-avformat.md) * | Pointer to the OH_AVFormat handle.|
 
 ### OH_AudioEncoder_SetParameter()
 
@@ -393,9 +391,7 @@ OH_AVErrCode OH_AudioEncoder_SetParameter(OH_AVCodec *codec, OH_AVFormat *format
 
 **Description**
 
-Sets dynamic parameters for an audio encoder.
-
-This function can be called only after the encoder is started. Incorrect parameter settings may cause encoding failure.
+Sets dynamic parameters for an audio encoder.<br>This function can be called only after the encoder is started. Incorrect parameter settings may cause encoding failure.
 
 **System capability**: SystemCapability.Multimedia.Media.AudioEncoder
 
@@ -426,11 +422,7 @@ OH_AVErrCode OH_AudioEncoder_PushInputData(OH_AVCodec *codec, uint32_t index, OH
 
 **Description**
 
-Notifies the audio encoder that the input data has been written to the buffer identified by **index**.
-
-The [OH_AVCodecOnNeedInputData](capi-native-avcodec-base-h.md#oh_avcodeconneedinputdata) callback reports the available input buffer and the index. After being pushed to the encoder, a buffer is not accessible until the buffer with the same index is reported again through the [OH_AVCodecOnNeedInputData](capi-native-avcodec-base-h.md#oh_avcodeconneedinputdata) callback.
-
-In addition, some encoders require the input of specific data to initialize the encoding process.
+Notifies the audio encoder that the input data has been written to the buffer identified by **index**.<br>The [OH_AVCodecOnNeedInputData](capi-native-avcodec-base-h.md#oh_avcodeconneedinputdata) callback reports the available input buffer and the index. After being pushed to the encoder, a buffer is not accessible until the buffer with the same index is reported again through the [OH_AVCodecOnNeedInputData](capi-native-avcodec-base-h.md#oh_avcodeconneedinputdata) callback.<br>In addition, some encoders require the input of specific data to initialize the encoding process.
 
 **System capability**: SystemCapability.Multimedia.Media.AudioEncoder
 
