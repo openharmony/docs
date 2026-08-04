@@ -49,7 +49,7 @@ getReceivingSurfaceId(callback: AsyncCallback\<string>): void
 | -------- | ---------------------- | ---- | -------------------------- |
 | callback | AsyncCallback\<string> | 是   | 回调函数，当获取surface id成功，err为undefined，data为获取到的surface id；否则为错误对象。 |
 
-**示例:**
+**示例：**
 
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
@@ -100,6 +100,7 @@ readLatestImage(callback: AsyncCallback\<Image>): void
 从ImageReceiver读取最新的图片。使用callback异步回调。
 
 > **注意**：
+>
 > 此接口需要在[on](#on9)回调触发后调用，才能正常地接收到数据。且此接口返回的[Image](arkts-apis-image-Image.md)对象使用完毕后需要调用[release](arkts-apis-image-Image.md#release9)方法释放，释放后才可以继续接收新的数据。
 
 **系统能力：** SystemCapability.Multimedia.Image.ImageReceiver
@@ -145,6 +146,7 @@ readLatestImage(): Promise\<Image>
 从ImageReceiver读取最新的图片。使用Promise异步回调。
 
 > **注意**：
+>
 > 此接口需要在[on](#on9)回调触发后调用，才能正常地接收到数据。且此接口返回的[Image](arkts-apis-image-Image.md)对象使用完毕后需要调用[release](arkts-apis-image-Image.md#release9)方法释放，释放后才可以继续接收新的数据。
 
 **系统能力：** SystemCapability.Multimedia.Image.ImageReceiver
@@ -188,6 +190,7 @@ readNextImage(callback: AsyncCallback\<Image>): void
 从ImageReceiver读取下一张图片。使用callback异步回调。
 
 > **注意**：
+>
 > 此接口需要在[on](#on9)回调触发后调用，才能正常地接收到数据。且此接口返回的[Image](arkts-apis-image-Image.md)对象使用完毕后需要调用[release](arkts-apis-image-Image.md#release9)方法释放，释放后才可以继续接收新的数据。
 
 **系统能力：** SystemCapability.Multimedia.Image.ImageReceiver
@@ -233,6 +236,7 @@ readNextImage(): Promise\<Image>
 从ImageReceiver读取下一张图片。使用Promise异步回调。
 
 > **注意**：
+>
 > 此接口需要在[on](#on9)回调触发后调用，才能正常地接收到数据。且此接口返回的[Image](arkts-apis-image-Image.md)对象使用完毕后需要调用[release](arkts-apis-image-Image.md#release9)方法释放，释放后才可以继续接收新的数据。
 
 **系统能力：** SystemCapability.Multimedia.Image.ImageReceiver
