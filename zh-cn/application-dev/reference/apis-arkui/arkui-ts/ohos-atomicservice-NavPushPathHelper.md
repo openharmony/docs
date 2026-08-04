@@ -7,7 +7,7 @@
 <!--Tester: @tinygreyy-->
 <!--Adviser: @zengyawen-->
 
-当跳转的目标[NavDestination](ts-basic-components-navdestination.md)在不同的hsp分包，且未被主包依赖，首次运行元服务只会下载安装主包，需要使用NavPushPathHelper先下载安装相应hsp分包，再将指定的[NavDestination](ts-basic-components-navdestination.md)页面信息入栈或替换当前栈顶页面。使[Navigation](ts-basic-components-navigation.md)支持动态加载hsp分包后再跳转。
+当跳转的目标[NavDestination](ts-basic-components-navdestination.md)在不同的hsp分包且未被主包依赖时，首次运行原子化服务只会下载安装主包。此时需要使用NavPushPathHelper先下载安装相应hsp分包，再将指定的[NavDestination](ts-basic-components-navdestination.md)页面信息入栈或替换当前栈顶页面，从而使[Navigation](ts-basic-components-navigation.md)支持动态加载hsp分包后再跳转。
 
 > **说明：**
 >
@@ -21,7 +21,7 @@ import { NavPushPathHelper } from '@kit.ArkUI';
 
 ## 子组件
 
-无
+无。
 
 ## 属性
 
@@ -33,7 +33,7 @@ import { NavPushPathHelper } from '@kit.ArkUI';
 
 ## NavPushPathHelper
 
-对Navigation路由栈[NavPathStack](ts-basic-components-navigation.md#navpathstack10)的所有路由跳转接口进行了封装，在NavPushPathHelper中持有一个NavPathStack对象，在封装的跳转接口中，判断分包是否存在，如果不存在则动态下载分包，下载完成后调用NavPathStack的对应接口将指定的[NavDestination](ts-basic-components-navdestination.md)页面信息入栈。使用示例参见[示例](#示例)。
+对Navigation路由栈[NavPathStack](ts-basic-components-navigation.md#navpathstack10)的所有路由跳转接口进行了封装，在NavPushPathHelper中持有一个NavPathStack对象，在封装的跳转接口中，判断分包是否存在，如果不存在则动态下载分包，下载完成后调用NavPathStack的对应接口将指定的[NavDestination](ts-basic-components-navdestination.md)页面信息入栈或替换当前栈顶页面。使用方法参见[示例](#示例)。
 
 ### constructor
 
@@ -89,7 +89,7 @@ pushPath(moduleName: string, info: NavPathInfo, options?: NavigationOptions): Pr
 
 先判断分包是否存在，若不存在，则通过moduleName下载分包，再将info指定的[NavDestination](ts-basic-components-navdestination.md)页面信息入栈，使用Promise异步回调。
 
-具体根据options中指定不同的[LaunchMode](ts-basic-components-navigation.md#launchmode12枚举说明)，有不同的行为。
+具体根据options中指定的[LaunchMode](ts-basic-components-navigation.md#launchmode12枚举说明)不同，执行不同的跳转行为。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -134,7 +134,7 @@ pushPathByName(moduleName: string, name: string, param: Object, animated?: boole
 | moduleName | string | 是    | 目标[NavDestination](ts-basic-components-navdestination.md)所在分包的moduleName。 |
 | name  | string  | 是    | [NavDestination](ts-basic-components-navdestination.md)页面名称。   |
 | param | Object | 是    | [NavDestination](ts-basic-components-navdestination.md)页面详细参数。 |
-| animated | boolean | 否    | 是否支持转场动画。<br/>默认值：true。<br/>true：支持转场动画。<br/>false：不支持转场动画。 |
+| animated | boolean | 否    | 是否支持转场动画。<br>默认值：true。<br>true：支持转场动画。<br>false：不支持转场动画。 |
 
 **返回值：**
 
@@ -167,8 +167,8 @@ pushPathByName(moduleName: string, name: string, param: Object, onPop: Callback\
 | moduleName | string | 是    | 目标[NavDestination](ts-basic-components-navdestination.md)所在分包的moduleName。 |
 | name  | string  | 是    | [NavDestination](ts-basic-components-navdestination.md)页面名称。   |
 | param | Object | 是    | [NavDestination](ts-basic-components-navdestination.md)页面详细参数。 |
-| onPop | Callback\<[PopInfo](ts-basic-components-navigation.md#popinfo11)> | 是 | Callback回调，用于页面出栈时触发该回调处理返回结果。 |
-| animated | boolean | 否    | 是否支持转场动画。<br/>默认值：true。<br/>true：支持转场动画。<br/>false：不支持转场动画。 |
+| onPop | Callback\<[PopInfo](ts-basic-components-navigation.md#popinfo11)> | 是 | Callback回调，用于页面出栈时处理返回结果。 |
+| animated | boolean | 否    | 是否支持转场动画。<br>默认值：true。<br>true：支持转场动画。<br>false：不支持转场动画。 |
 
 **返回值：**
 
@@ -200,7 +200,7 @@ pushDestination(moduleName: string, info: NavPathInfo, animated?: boolean): Prom
 | ---- | ----------------------------- | ---- | -------------------- |
 | moduleName | string | 是    | 目标[NavDestination](ts-basic-components-navdestination.md)所在分包的moduleName。 |
 | info | [NavPathInfo](ts-basic-components-navigation.md#navpathinfo10) | 是    | [NavDestination](ts-basic-components-navdestination.md)页面的信息。 |
-| animated | boolean | 否    | 是否支持转场动画。<br/>默认值：true。<br/>true：支持转场动画。<br/>false：不支持转场动画。 |
+| animated | boolean | 否    | 是否支持转场动画。<br>默认值：true。<br>true：支持转场动画。<br>false：不支持转场动画。 |
 
 **返回值：**
 
@@ -348,8 +348,8 @@ replacePath(moduleName: string, info: NavPathInfo, animated?: boolean): Promise\
 | 参数名  | 类型                            | 必填   | 说明                   |
 | ---- | ----------------------------- | ---- | -------------------- |
 | moduleName | string | 是    | 目标[NavDestination](ts-basic-components-navdestination.md)所在分包的moduleName。 |
-| info | [NavPathInfo](ts-basic-components-navigation.md#navpathinfo10) | 是    | 新栈顶页面参数信息 |
-| animated | boolean | 否    | 是否支持转场动画。<br>默认值：true。<br>true：支持转场动画。<br/>false：不支持转场动画。 |
+| info | [NavPathInfo](ts-basic-components-navigation.md#navpathinfo10) | 是    | 新栈顶页面参数信息。 |
+| animated | boolean | 否    | 是否支持转场动画。<br>默认值：true。<br>true：支持转场动画。<br>false：不支持转场动画。 |
 
 **返回值：**
 
@@ -453,11 +453,10 @@ struct NavigationExample {
           .height(40)
           .margin(20)
           .onClick(() => {
-            this.helper.pushPath('hsptest1', { name: 'pageOne' }, false)
-              .catch((error: BusinessError) => {
-              console.error(`[pushPath]failed, error code = ${error.code}, error.message = ${error.message}.`);
-            }).then(() => {
+            this.helper.pushPath('hsptest1', { name: 'pageOne' }, false).then(() => {
               console.info(`[pushPath]success.`);
+            }).catch((error: BusinessError) => {
+              console.error(`[pushPath]failed, error code = ${error.code}, error.message = ${error.message}.`);
             }); // 将name指定的NavDestination页面信息入栈。
           })
       }
@@ -506,10 +505,10 @@ export struct PageOne {
           .onClick(() => {
             this.helper.pushPath('hsptest2', { name: 'pageTwo', param: new ParamWithOp(), onPop: (popInfo: PopInfo) => {
               this.message = '[pushPath]last page is: ' + popInfo.info.name + ', result: ' + JSON.stringify(popInfo.result);
-            }}).catch((error: BusinessError) => {
-              console.error(`[pushPath]failed, error code = ${error.code}, error.message = ${error.message}.`);
-            }).then(() => {
+            }}).then(() => {
               console.info(`[pushPath]success.`);
+            }).catch((error: BusinessError) => {
+              console.error(`[pushPath]failed, error code = ${error.code}, error.message = ${error.message}.`);
             });
           })
 
@@ -520,10 +519,10 @@ export struct PageOne {
           .onClick(() => {
             this.helper.pushPath('hsptest2', { name: 'pageTwo', param: new ParamWithOp(), onPop: (popInfo: PopInfo) => {
               this.message = '[pushPath with NavigationOptions]last page is: ' + popInfo.info.name + ', result: ' + JSON.stringify(popInfo.result);
-            }}, {launchMode:0, animated:true}).catch((error: BusinessError) => {
-              console.error(`[pushPath with NavigationOptions]failed, error code = ${error.code}, error.message = ${error.message}.`);
-            }).then(() => {
+            }}, {launchMode:0, animated:true}).then(() => {
               console.info(`[pushPath with NavigationOptions]success.`);
+            }).catch((error: BusinessError) => {
+              console.error(`[pushPath with NavigationOptions]failed, error code = ${error.code}, error.message = ${error.message}.`);
             });
           })
 
@@ -535,10 +534,10 @@ export struct PageOne {
             let navParam = new NavParam();
             this.helper.pushPathByName('hsptest2', 'pageTwo', navParam, (popInfo) => {
               this.message = '[pushPathByName]last page is: ' + popInfo.info.name + ', result: ' + JSON.stringify(popInfo.result);
-            }).catch((error: BusinessError) => {
-              console.error(`[pushPathByName]failed, error code = ${error.code}, error.message = ${error.message}.`);
             }).then(() => {
               console.info(`[pushPathByName]success.`);
+            }).catch((error: BusinessError) => {
+              console.error(`[pushPathByName]failed, error code = ${error.code}, error.message = ${error.message}.`);
             });
           })
 
@@ -548,11 +547,10 @@ export struct PageOne {
           .margin(10)
           .onClick(() => {
             let navParam = new NavParam();
-            this.helper.pushPathByName('hsptest2', 'pageTwo', navParam, true)
-            .catch((error: BusinessError) => {
-              console.error(`[pushPathByNameWithoutOnPop]failed, error code = ${error.code}, error.message = ${error.message}.`);
-            }).then(() => {
+            this.helper.pushPathByName('hsptest2', 'pageTwo', navParam, true).then(() => {
               console.info(`[pushPathByNameWithoutOnPop]success.`);
+            }).catch((error: BusinessError) => {
+              console.error(`[pushPathByNameWithoutOnPop]failed, error code = ${error.code}, error.message = ${error.message}.`);
             });
           })
 
@@ -563,10 +561,10 @@ export struct PageOne {
           .onClick(() => {
             this.helper.pushDestination('hsptest2', { name: 'pageTwo', param: new ParamWithOp(), onPop: (popInfo: PopInfo) => {
               this.message = '[pushDestination]last page is: ' + popInfo.info.name + ', result: ' + JSON.stringify(popInfo.result);
-            }}).catch((error: BusinessError) => {
-              console.error(`[pushDestination]failed, error code = ${error.code}, error.message = ${error.message}.`);
-            }).then(() => {
+            }}).then(() => {
               console.info(`[pushDestination]success.`);
+            }).catch((error: BusinessError) => {
+              console.error(`[pushDestination]failed, error code = ${error.code}, error.message = ${error.message}.`);
             });
           })
 
@@ -577,10 +575,10 @@ export struct PageOne {
           .onClick(() => {
             this.helper.pushDestination('hsptest2', { name: 'pageTwo', param: new ParamWithOp(), onPop: (popInfo: PopInfo) => {
               this.message = '[pushDestination with NavigationOptions]last page is: ' + popInfo.info.name + ', result: ' + JSON.stringify(popInfo.result);
-            }}, {launchMode:0, animated:true}).catch((error: BusinessError) => {
-              console.error(`[pushDestination with NavigationOptions]failed, error code = ${error.code}, error.message = ${error.message}.`);
-            }).then(() => {
+            }}, {launchMode:0, animated:true}).then(() => {
               console.info(`[pushDestination with NavigationOptions]success.`);
+            }).catch((error: BusinessError) => {
+              console.error(`[pushDestination with NavigationOptions]failed, error code = ${error.code}, error.message = ${error.message}.`);
             });
           })
 
@@ -592,10 +590,10 @@ export struct PageOne {
             let navParam = new NavParam();
             this.helper.pushDestinationByName('hsptest2', 'pageTwo', navParam, (popInfo) => {
               this.message = '[pushDestinationByName]last page is: ' + popInfo.info.name + ', result: ' + JSON.stringify(popInfo.result);
-            }).catch((error: BusinessError) => {
-              console.error(`[pushDestinationByName]failed, error code = ${error.code}, error.message = ${error.message}.`);
             }).then(() => {
               console.info(`[pushDestinationByName]success.`);
+            }).catch((error: BusinessError) => {
+              console.error(`[pushDestinationByName]failed, error code = ${error.code}, error.message = ${error.message}.`);
             });
           })
 
@@ -605,12 +603,11 @@ export struct PageOne {
           .margin(10)
           .onClick(() => {
             let navParam = new NavParam();
-            this.helper.pushDestinationByName('hsptest2', 'pageTwo', navParam, true)
-              .catch((error: BusinessError) => {
-                console.error(`[pushDestinationByNameWithoutOnPop]failed, error code = ${error.code}, error.message = ${error.message}.`);
-              }).then(() => {
+            this.helper.pushDestinationByName('hsptest2', 'pageTwo', navParam, true).then(() => {
               console.info(`[pushDestinationByNameWithoutOnPop]success.`);
-            });
+            }).catch((error: BusinessError) => {
+                console.error(`[pushDestinationByNameWithoutOnPop]failed, error code = ${error.code}, error.message = ${error.message}.`);
+              });
           })
 
         Button('replacePath', { stateEffect: true, type: ButtonType.Capsule })
@@ -620,10 +617,10 @@ export struct PageOne {
           .onClick(() => {
             this.helper.replacePath('hsptest2', { name: 'pageTwo', param: new ParamWithOp(), onPop: (popInfo: PopInfo) => {
               this.message = '[replacePath]last page is: ' + popInfo.info.name + ', result: ' + JSON.stringify(popInfo.result);
-            }}).catch((error: BusinessError) => {
-              console.error(`[replacePath]failed, error code = ${error.code}, error.message = ${error.message}.`);
-            }).then(() => {
+            }}).then(() => {
               console.info(`[replacePath]success.`);
+            }).catch((error: BusinessError) => {
+              console.error(`[replacePath]failed, error code = ${error.code}, error.message = ${error.message}.`);
             });
           })
 
@@ -634,10 +631,10 @@ export struct PageOne {
           .onClick(() => {
             this.helper.replacePath('hsptest2', { name: 'pageTwo', param: new ParamWithOp(), onPop: (popInfo: PopInfo) => {
               this.message = '[replacePath with NavigationOptions]last page is: ' + popInfo.info.name + ', result: ' + JSON.stringify(popInfo.result);
-            }}, {launchMode:0, animated:true}).catch((error: BusinessError) => {
-              console.error(`[replacePath with NavigationOptions]failed, error code = ${error.code}, error.message = ${error.message}.`);
-            }).then(() => {
+            }}, {launchMode:0, animated:true}).then(() => {
               console.info(`[replacePath with NavigationOptions]success.`);
+            }).catch((error: BusinessError) => {
+              console.error(`[replacePath with NavigationOptions]failed, error code = ${error.code}, error.message = ${error.message}.`);
             });
           })
 
@@ -647,11 +644,10 @@ export struct PageOne {
           .margin(10)
           .onClick(() => {
             let navParam = new NavParam();
-            this.helper.replacePathByName('hsptest2', 'pageTwo', navParam)
-              .catch((error: BusinessError) => {
-              console.error(`[replacePathByName]failed, error code = ${error.code}, error.message = ${error.message}.`);
-            }).then(() => {
+            this.helper.replacePathByName('hsptest2', 'pageTwo', navParam).then(() => {
               console.info(`[replacePathByName]success.`);
+            }).catch((error: BusinessError) => {
+              console.error(`[replacePathByName]failed, error code = ${error.code}, error.message = ${error.message}.`);
             });
           })
 
