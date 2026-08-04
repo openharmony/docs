@@ -2,9 +2,9 @@
 
 <!--Kit: ArkUI-->
 <!--Subsystem: ArkUI-->
-<!--Owner: @fangyuhao-->
-<!--Designer: @zcdqs-->
-<!--Tester: @liuzhenshuo-->
+<!--Owner: @rongShao-Z; @guozejun-->
+<!--Designer: @guozejun-->
+<!--Tester: @leiyuqian-->
 <!--Adviser: @Brilliantry_Rui-->
 
 You can use the [WaterFlow](../reference/apis-arkui/arkui-ts/ts-container-waterflow.md) component in ArkUI to create a waterfall flow layout, which is commonly used to display image collections, especially in e-commerce and news applications.
@@ -63,7 +63,7 @@ build() {
             .width('100%')
             .aspectRatio(this.itemHeightArray[item % 100] / this.itemWidthArray[item%100])
             .backgroundColor(this.colors[item % 5])
-          }, (item: string) => item)
+          }, (item: number) => item.toString())
         }
         .columnsTemplate('1fr '.repeat(this.columns))
         .backgroundColor(0xFAEEE0)
@@ -112,7 +112,7 @@ build() {
             .width('100%')
             .aspectRatio(this.itemHeightArray[item % 100] / this.itemWidthArray[item%100])
             .backgroundColor(this.colors[item % 5])
-          }, (item: string) => item)
+          }, (item: number) => item.toString())
         }
         .columnsTemplate('1fr '.repeat(this.columns))
         .backgroundColor(0xFAEEE0)
@@ -140,7 +140,7 @@ build() {
 
 ## Dynamically Adjusting the Column Count
 
-Dynamically adjusting the column count allows applications to switch between list and waterfall flow modes or adapt to screen width changes. For faster transitions, use the sliding window layout mode.
+Dynamically adjusting the column count allows applications to switch between list and waterfall flow modes or adapt to screen width changes. To dynamically set the number of columns, you are advised to use the waterfall moving window layout mode, that is, set the value to **SLIDING_WINDOW** in [WaterFlowLayoutMode](../reference/apis-arkui/arkui-ts/ts-container-waterflow.md#waterflowlayoutmode12). This can implement faster column conversion.
 
 <!-- @[waterFlowDynamicSwitchover_start](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkUISample/ScrollableComponent/entry/src/main/ets/pages/waterFlow/WaterFlowDynamicSwitchover.ets) -->
 
@@ -197,7 +197,7 @@ export struct WaterFlowDynamicSwitchover {
                 .width('100%')
                 .aspectRatio(this.columns === 2 ? this.itemHeightArray[item % 100] / this.itemWidthArray[item % 100] : 0)
                 .backgroundColor(this.colors[item % 5])
-              }, (item: string) => item)
+              }, (item: number) => item.toString())
             }
             .columnsTemplate('1fr '.repeat(this.columns))
             .backgroundColor(0xFAEEE0)
@@ -323,7 +323,7 @@ export struct WaterFlowGroupingMixing {
             .width('100%')
             .aspectRatio(item != 0 ? this.itemHeightArray[item % 100] / this.itemWidthArray[item % 100] : 0)
             .backgroundColor(item != 0 ? this.colors[item % 5] : Color.White)
-          }, (item: string) => item)
+          }, (item: number) => item.toString())
         }
         .backgroundColor(0xFAEEE0)
         .height('100%')
@@ -350,5 +350,11 @@ export struct WaterFlowGroupingMixing {
 >Footers are not supported in mixed section layouts. Use the last section as a footer instead.
 >
 >Always update the corresponding **itemCount** when adding or removing data to maintain layout consistency.
+
+<!--Del-->##  
+
+ 
+
+-  <!--DelEnd-->
 
 <!--RP1--><!--RP1End-->

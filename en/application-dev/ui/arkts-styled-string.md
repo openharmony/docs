@@ -1,10 +1,12 @@
 # Styled String (StyledString/MutableStyledString)
+
 <!--Kit: ArkUI-->
 <!--Subsystem: ArkUI-->
 <!--Owner: @hddgzw-->
 <!--Designer: @xiangyuan6-->
 <!--Tester: @jiaoaozihao-->
 <!--Adviser: @Brilliantry_Rui-->
+<!-- md-trans-meta sourceCommit=16d5012cdda87180d94e0c1ee3584d2af7b86146 translatedAt=2026-08-04T06:40:03.321Z pushedAt=2026-08-04T08:31:30.848Z -->
 
 Styled strings, implemented by **StyledString** or **MutableStyledString** (collectively referred to as **StyledString**, with **MutableStyledString** inheriting from **StyledString**), are powerful markup objects designed to set text styles at the character or paragraph level. By binding a **StyledString** object to a text component, you can modify the text in various ways, including changing the font size, adding font colors, making the text clickable, and customizing the drawing of text, among others. For details, see [Styled String](../reference/apis-arkui/arkui-ts/ts-universal-styled-string.md).
 
@@ -20,7 +22,7 @@ Styled strings provide a variety of style objects that cover various common text
   > Since API version 15, styled string content can be displayed upon page load when **setStyledString** is called in **aboutToAppear**.
 
   <!-- @[createStyledString_start](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkUISample/TextComponent/entry/src/main/ets/pages/propertyString/CreateApply.ets) -->
-  
+
   ``` TypeScript
   @Entry
   @Component
@@ -63,7 +65,7 @@ Styled strings offer multiple style objects, such as [TextStyle](../reference/ap
 - Creating and applying a **TextStyle** object
 
   <!-- @[styledStringTextStyle_start](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkUISample/TextComponent/entry/src/main/ets/pages/propertyString/StyledStringTextStyle.ets) -->
-  
+
   ``` TypeScript
   import { LengthMetrics } from '@kit.ArkUI';
   
@@ -119,7 +121,7 @@ Styled strings offer multiple style objects, such as [TextStyle](../reference/ap
 - Creating and applying a **TextShadowStyle** object
 
   <!-- @[styledStringTextShadowStyle_start](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkUISample/TextComponent/entry/src/main/ets/pages/propertyString/StyledStringTextShadowStyle.ets) -->
-  
+
   ``` TypeScript
   // xxx.ets
   @Entry
@@ -162,7 +164,7 @@ Styled strings offer multiple style objects, such as [TextStyle](../reference/ap
 - Creating and applying a **Text DecorationStyle** object
 
   <!-- @[styledStringDecorationStyle_start](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkUISample/TextComponent/entry/src/main/ets/pages/propertyString/StyledStringDecorationStyle.ets) -->
-  
+
   ``` TypeScript
   // xxx.ets
   @Entry
@@ -228,7 +230,7 @@ Styled strings offer multiple style objects, such as [TextStyle](../reference/ap
 - Creating and applying a **Text BaselineOffsetStyle** object
 
   <!-- @[styledStringBaselineOffsetStyle_start](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkUISample/TextComponent/entry/src/main/ets/pages/propertyString/StyledStringBaselineOffsetStyle.ets) -->
-  
+
   ``` TypeScript
   import { LengthMetrics } from '@kit.ArkUI';
   
@@ -268,7 +270,7 @@ Styled strings offer multiple style objects, such as [TextStyle](../reference/ap
 - Creating and applying a **LineHeightStyle** object
 
   <!-- @[styledStringLineHeightStyle_start](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkUISample/TextComponent/entry/src/main/ets/pages/propertyString/StyledStringLineHeightStyle.ets) -->
-  
+
   ``` TypeScript
   import { LengthMetrics } from '@kit.ArkUI';
   
@@ -309,7 +311,7 @@ Styled strings offer multiple style objects, such as [TextStyle](../reference/ap
 - Creating and applying a **LetterSpacingStyle** object
 
   <!-- @[styledStringLetterSpacingStyle_start](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkUISample/TextComponent/entry/src/main/ets/pages/propertyString/StyledStringLetterSpacingStyle.ets) -->
-  
+
   ``` TypeScript
   import { LengthMetrics, LengthUnit } from '@kit.ArkUI';
   
@@ -354,7 +356,7 @@ You can set the paragraph style using [ParagraphStyle](../reference/apis-arkui/a
 The following example shows how to create and apply a paragraph style. The style is applied to the start, end or any position within a paragraph; it does not apply to non-paragraph areas.
 
   <!-- @[styledStringParagraphStyleOne_start](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkUISample/TextComponent/entry/src/main/ets/pages/propertyString/StyledStringParagraphStyleOne.ets) -->
-  
+
   ``` TypeScript
   import { LengthMetrics} from '@kit.ArkUI';
   
@@ -420,11 +422,11 @@ The following example shows how to create and apply a paragraph style. The style
   ```
 
   ![styled_string_paragraph1](figures/styled_string_paragraph1.png)
-  
+
   In addition to presetting styles when creating a styled string, you can also clear the original styles and replace them with new ones later using the [replaceStyle](../reference/apis-arkui/arkui-ts/ts-universal-styled-string.md#replacestyle) API. After the replacement, you need to proactively trigger an update to the bound styled string on the attached text component's controller.
 
   <!-- @[styledStringReplaceParagraphStyle_start](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkUISample/TextComponent/entry/src/main/ets/pages/propertyString/StyledStringReplaceParagraphStyle.ets) -->
-  
+
   ``` TypeScript
   import { LengthMetrics } from '@kit.ArkUI';
   
@@ -434,7 +436,8 @@ The following example shows how to create and apply a paragraph style. The style
   struct Index {
     context = this.getUIContext().getHostContext();
     /* Replace $r('app.string.StyledStringParagraphStyle_Text_2') with the actual resource file. In this example, the value in the resource file is
-     "Paragraph Title\nFirst paragraph starts. 0123456789. First paragraph ends. Replace the original style with the new style through replaceStyle." */
+     * "Paragraph Title\nBody first paragraph starts 0123456789 body first paragraph ends. Clear the original style and replace it with a new style using replaceStyle."
+     */
     @State message1: string =
       this.context!.resourceManager.getStringSync($r('app.string.StyledStringParagraphStyle_Text_2').id);
     titleParagraphStyleAttr: ParagraphStyle = new ParagraphStyle({ textAlign: TextAlign.Center });
@@ -517,7 +520,7 @@ You can use [getParagraphs](../reference/apis-arkui/arkts-apis-uicontext-measure
 - The following example shows how to use the **getParagraphs** method of [MeasureUtils](../reference/apis-arkui/arkts-apis-uicontext-measureutils.md) to calculate the text. When the content exceeds the maximum number of lines that can be displayed, the text is truncated and the full text is displayed as "...Expand".
 
   <!-- @[styledStringConvertedToParagraph_start](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkUISample/TextComponent/entry/src/main/ets/pages/propertyString/StyledStringConvertedToParagraph.ets) -->
-  
+
   ``` TypeScript
   import { LengthMetrics } from '@kit.ArkUI';
   import { drawing } from '@kit.ArkGraphics2D';
@@ -728,27 +731,27 @@ You can use [getParagraphs](../reference/apis-arkui/arkts-apis-uicontext-measure
 
   ![StyledString_GetParagraphs](figures/StyledString_GetParagraphs.png)
 
-
 ## Using Images
 
 You can add images using [ImageAttachment](../reference/apis-arkui/arkui-ts/ts-universal-styled-string.md#imageattachment).
 
-The following example shows how to attach images and text to the same **MutableStyledString** object for mixed display of text and images.
+The example below demonstrates how to attach images and text to the same [MutableStyledString](../reference/apis-arkui/arkui-ts/ts-universal-styled-string.md#mutablestyledstring) object to achieve mixed image and text layout.
 
 > **NOTE**
 >
 > In the [constructor](../reference/apis-arkui/arkui-ts/ts-universal-styled-string.md#constructor) of styled strings, when input parameters are of ImageAttachment or CustomSpan type, the **styles** parameter does not take effect. To apply styles, use methods such as [setStyle](../reference/apis-arkui/arkui-ts/ts-universal-styled-string.md#setstyle) and [insertStyledString](../reference/apis-arkui/arkui-ts/ts-universal-styled-string.md#insertstyledstring).
 
   <!-- @[styledStringImageAttachment_start](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkUISample/TextComponent/entry/src/main/ets/pages/propertyString/StyledStringImageAttachment.ets) -->
-  
+
   ``` TypeScript
   // xxx.ets
   import { image } from '@kit.ImageKit';
   import { LengthMetrics } from '@kit.ArkUI';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
   
   @Entry
   @Component
-  export struct StyledStringImageAttachment {
+  struct StyledStringImageAttachment {
     @State abled: boolean = true;
     @State message: string = 'Hello World';
     imagePixelMap: image.PixelMap | undefined = undefined;
@@ -767,27 +770,32 @@ The following example shows how to attach images and text to the same **MutableS
     }]);
   
     async aboutToAppear() {
-      console.info('aboutToAppear initial imagePixelMap');
+      hilog.info(0x0000, 'testTag', 'aboutToAppear initial imagePixelMap');
       // Replace $r('app.media.sea') with the image resource file you use.
       this.imagePixelMap = await this.getPixmapFromMedia($r('app.media.sea'));
     }
   
     private async getPixmapFromMedia(resource: Resource) {
-      let unit8Array = await this.getUIContext().getHostContext()?.resourceManager?.getMediaContent(resource.id);
-      let imageSource = image.createImageSource(unit8Array?.buffer?.slice(0, unit8Array?.buffer?.byteLength));
-      let createPixelMap: image.PixelMap = await imageSource.createPixelMap({
-        desiredPixelFormat: image.PixelMapFormat.RGBA_8888
-      });
-      await imageSource.release();
-      return createPixelMap;
+      try {
+        let unit8Array = await this.getUIContext().getHostContext()?.resourceManager?.getMediaContent(resource.id);
+        let imageSource = image.createImageSource(unit8Array?.buffer?.slice(0, unit8Array?.buffer?.byteLength));
+        let createPixelMap: image.PixelMap = await imageSource.createPixelMap({
+          desiredPixelFormat: image.PixelMapFormat.RGBA_8888
+        });
+        await imageSource.release();
+        return createPixelMap;
+      } catch (error) {
+        hilog.error(0x0000, 'testTag', `Get Pixmap failed. error code: ${error.code}, error message: ${error.message}`);
+      }
+      return undefined;
     }
   
     leadingMarginValue: ParagraphStyle = new ParagraphStyle({ leadingMargin: LengthMetrics.vp(5)});
-    // Line height style object
-    lineHeightStyle1: LineHeightStyle= new LineHeightStyle(new LengthMetrics(24));
-    // Bold style
+    // Line height style object.
+    lineHeightStyle1: LineHeightStyle = new LineHeightStyle(new LengthMetrics(24));
+    // Bold style.
     boldTextStyle: TextStyle = new TextStyle({ fontWeight: FontWeight.Bold });
-    // Create a paragraph style object paragraphStyledString1.
+    // Create the object paragraphStyledString1 with paragraph style.
     // Replace $r('app.string.StyledStringImageAttachment_Text_1') with the actual resource file. In this example, the value in the resource file is "\n30 HD prints\nCYN5.15 off Limited offer."
     paragraphStyledString1: MutableStyledString =
       new MutableStyledString(this.getUIContext()
@@ -918,7 +926,7 @@ You can use [GestureStyle](../reference/apis-arkui/arkui-ts/ts-universal-styled-
 In addition to initializing styled strings with initial style objects, you can also use the [setStyle](../reference/apis-arkui/arkui-ts/ts-universal-styled-string.md#setstyle) API to overlay new styles or update existing ones. After making changes, you need to manually trigger an update of the bound styled string on the attached text component's controller. 
 
   <!-- @[styledStringGestureStyle_start](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkUISample/TextComponent/entry/src/main/ets/pages/propertyString/StyledStringGestureStyle.ets) -->
-  
+
   ``` TypeScript
   import { drawing } from '@kit.ArkGraphics2D';
   
@@ -1008,7 +1016,7 @@ In addition to initializing styled strings with initial style objects, you can a
   
   @Entry
   @Component
-  export struct StyledStringGestureStyle {
+  struct StyledStringGestureStyle {
     customSpan3: MyCustomSpan = new MyCustomSpan('99VIP88%off', 200, 40, 30);
     customSpanStyledString: MutableStyledString = new MutableStyledString(this.customSpan3);
     textController: TextController = new TextController();
@@ -1064,8 +1072,8 @@ In addition to initializing styled strings with initial style objects, you can a
           // ...
       }
       .backgroundColor('#f1f2f3')
-      // Replace $r('app.string.TStyledStringGestureStyle_title') with the actual resource file. In this example, the value in the resource file is "Set Event."
-      .title($r('app.string.TStyledStringGestureStyle_title'))
+      // Replace $r('app.string.StyledStringGestureStyle_title') with the actual resource file. In this example, the value of the resource file is "Set Event".
+      .title($r('app.string.StyledStringGestureStyle_title'))
     }
   }
   ```
@@ -1084,10 +1092,11 @@ You can use the [toHtml](../reference/apis-arkui/arkui-ts/ts-universal-styled-st
 // xxx.ets
 import { image } from '@kit.ImageKit';
 import { LengthMetrics } from '@kit.ArkUI';
+import { hilog } from '@kit.PerformanceAnalysisKit';
 
 @Entry
 @Component
-export struct StyledStringHtml {
+struct StyledStringHtml {
   imagePixelMap: image.PixelMap | undefined = undefined;
   @State html: string | undefined = undefined;
   @State styledString: StyledString | undefined = undefined;
@@ -1096,18 +1105,23 @@ export struct StyledStringHtml {
   private uiContext: UIContext = this.getUIContext();
 
   async aboutToAppear() {
-    console.info('aboutToAppear initial imagePixelMap');
+    hilog.info(0x0000, 'testTag', 'aboutToAppear initial imagePixelMap');
     this.imagePixelMap = await this.getPixmapFromMedia($r('app.media.startIcon'));
   }
 
   private async getPixmapFromMedia(resource: Resource) {
-    let unit8Array = await this.uiContext.getHostContext()?.resourceManager?.getMediaContent(resource.id);
-    let imageSource = image.createImageSource(unit8Array?.buffer.slice(0, unit8Array.buffer.byteLength));
-    let createPixelMap: image.PixelMap = await imageSource.createPixelMap({
-      desiredPixelFormat: image.PixelMapFormat.RGBA_8888
-    });
-    await imageSource.release();
-    return createPixelMap;
+    try {
+      let unit8Array = await this.uiContext.getHostContext()?.resourceManager?.getMediaContent(resource.id);
+      let imageSource = image.createImageSource(unit8Array?.buffer?.slice(0, unit8Array?.buffer?.byteLength));
+      let createPixelMap: image.PixelMap = await imageSource.createPixelMap({
+        desiredPixelFormat: image.PixelMapFormat.RGBA_8888
+      });
+      await imageSource.release();
+      return createPixelMap;
+    } catch (error) {
+      hilog.error(0x0000, 'testTag', `Get Pixmap failed. error code: ${error.code}, error message: ${error.message}`);
+    }
+    return undefined;
   }
 
   build() {
@@ -1165,9 +1179,9 @@ export struct StyledStringHtml {
 ![](figures/styled_string_html.gif)
 
 - Convert HTML tags including \<strong>, \<b>, \<a>, \<i>, \<em>, \<s>, \<u>, \<del>, \<sup>, and \<sub>, along with the **background-color** attribute in HTML style attributes, to styled strings and convert them back to HTML format.
- 
+
   <!-- @[styledStringHtmlOne_start](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkUISample/TextComponent/entry/src/main/ets/pages/propertyString/StyledStringHtmlOne.ets) -->
-  
+
   ``` TypeScript
   // xxx.ets
   @Entry
@@ -1215,7 +1229,8 @@ export struct StyledStringHtml {
   
         // Button 3: Convert HTML back to SpanString.
         /* Replace $r('app.string.Converted_HTML_back_to_SpanString') with the actual resource file.
-         In this example, the value in the resource file is "Convert HTML back to SpanString." */
+         * The value is "Converted HTML back to SpanString".
+         */
         Button($r('app.string.Converted_HTML_back_to_SpanString')).onClick(async () => {
           this.spanString = await StyledString.fromHtml(this.html);
           this.controller.setStyledString(this.spanString);
@@ -1240,7 +1255,7 @@ export struct StyledStringHtml {
 
 ## Example
 
-This example shows how to implement an expired membership notification using **ParagraphStyle**, **LineHeightStyle**, and **TextStyle** objects.
+This example demonstrates the effect of a membership expiration reminder using [ParagraphStyle](../reference/apis-arkui/arkui-ts/ts-universal-styled-string.md#paragraphstyle), [LineHeightStyle](../reference/apis-arkui/arkui-ts/ts-universal-styled-string.md#lineheightstyle), and [TextStyle](../reference/apis-arkui/arkui-ts/ts-universal-styled-string.md#textstyle) objects.
 
 <!-- @[styledStringSceneExample_start](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkUISample/TextComponent/entry/src/main/ets/pages/propertyString/StyledStringSceneExample.ets) -->
 
@@ -1249,13 +1264,13 @@ import { LengthMetrics } from '@kit.ArkUI';
 
 @Entry
 @Component
-export struct StyledStringSceneExample {
+struct StyledStringSceneExample {
   alignCenterParagraphStyleAttr: ParagraphStyle = new ParagraphStyle({ textAlign: TextAlign.Center });
-  // Line height style object
+  // Line height style object.
   lineHeightStyle1: LineHeightStyle = new LineHeightStyle(LengthMetrics.vp(24));
-  // Bold style
+  // Bold style.
   boldTextStyle: TextStyle = new TextStyle({ fontWeight: FontWeight.Bold });
-  // Create a paragraph style object paragraphStyledString1.
+  // Create an object with paragraph style paragraphStyledString1.
   // Replace $r('app.string.StyledStringSceneExample_Text_1') with the actual resource file. In this example, the value in the resource file is "Diamond Membership expired\nRenew to keep your perks."
   paragraphStyledString1: MutableStyledString =
     new MutableStyledString(this.getUIContext()

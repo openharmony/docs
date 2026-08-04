@@ -28,7 +28,7 @@ A layout is generally in a hierarchical structure. Below is a common page struct
 
 ![common-page-structure](figures/common-page-structure.png)
 
-To achieve the preceding effect, you need to declare the corresponding elements on the page. **Page** indicates the root node of the page, and other elements such as **Column** and **Row** are built-in components. ArkUI provides a wide variety of layout components, which you can draw on to implement different layouts. For example, you can use **Row** to implement a linear layout.
+To achieve the preceding effect, you need to declare the corresponding elements on the page. In the preceding information, Page indicates the root node of a page, and elements such as [Column](../reference/apis-arkui/arkui-ts/ts-container-column.md)/[Row](../reference/apis-arkui/arkui-ts/ts-container-row.md) are system components. ArkUI provides a wide variety of layout components, which you can draw on to implement different layouts. For example, you can use **Row** to implement a linear layout.
 
 
 ## Layout Elements
@@ -58,8 +58,10 @@ The declarative UI provides the following common layouts. Choose a layout that b
 | [Linear layout](arkts-layout-development-linear.md) (Row and Column)| Use this layout when there are multiple child components and they can be arranged linearly.|
 | [Stack layout](arkts-layout-development-stack-layout.md) (Stack)| Use this layout when you want to stack components. The stacking does not occupy or affect the layout space of other components in the same container. For example, when the [Panel](../reference/apis-arkui/arkui-ts/ts-container-panel.md) component is displayed as a child, superimposing it over other components makes more sense. In this case, the stack layout is preferred at the outer layer.|
 | [Flex layout](arkts-layout-development-flex-layout.md) (Flex) | The flex layout is similar to the linear layout. However, it empowers the container to adjust the size of its child components to best fill the available space. Use this layout when you need elements to stretch or shrink to fit into the container.|
-| [Relative layout](arkts-layout-development-relative-layout.md) (RelativeContainer)| The relative layout is a two-dimensional layout system. It does not need to comply with linear layout rules, and therefore exhibits more flexibility. By setting anchor rules (**AlignRules**) on a child component, you enable the component to position itself on the horizontal axis and vertical axis as relative to other child component in the container. Anchor rules support compression, stretching, stacking, and wrapping of child components. Use this layout when the distribution of elements is complex or when a linear layout may result in deeply nested components in the container.|
+| [Relative layout](arkts-layout-development-relative-layout.md) (RelativeContainer)| The relative layout is a two-dimensional layout system. It does not need to comply with linear layout rules, and therefore exhibits more flexibility. You can set anchor rules ([AlignRules](../reference/apis-arkui/arkui-ts/ts-universal-attributes-location.md#alignrules9)) on child components to align their positions along the horizontal and vertical axes with the container or other child components within the container. Anchor rules support compression, stretching, stacking, and wrapping of child components. Use this layout when the distribution of elements is complex or when a linear layout may result in deeply nested components in the container.|
 | [Responsive grid layout](arkts-layout-development-grid-layout.md) (GridRow and GridCol)| The responsive grid is an auxiliary positioning tool for a multi-device application, with capability of dividing space into rows and columns. Unlike the regular grid, the responsive grid is not allocating fixed-size space. Instead, it allows a layout to dynamically change based on the screen size. In this way, the design and development costs for adapting to different screen sizes are significantly reduced, and the overall design and development process is more orderly and rhythmic. In addition, the responsive grid offers a consistent display experience across devices. Use this layout when you are presenting the same content on different screen sizes.|
+| [Dynamic layout](arkts-layout-development-dynamiclayout.md) (DynamicLayout)|**DynamicLayout** supports dynamically switching layout algorithms while preserving the state of child components (such as input field content, scroll position), making it suitable for responsive layout scenarios (for example, landscape/portrait switching). It should be prioritized when the UI page needs to switch between different layout effects at runtime (for example, list, grid, and stack). When implementing custom irregular layouts such as waterfall flow or tag cloud, the custom layout capability of the **DynamicLayout** component is the preferred choice. **DynamicLayout** is supported starting from API version 24.|
+| [Container breakpoint (ContainerReader)](arkts-layout-development-container-reader.md)| **ContainerReader** is used to obtain breakpoint information based on the container size and perform responsive layout in dynamic scenarios. This component uses two-way binding to return the container size and breakpoints in real time, enabling you to create and lay out components based on the container size.|
 | [Tabs](arkts-navigation-tabs.md)                  | The **Tabs** component can quickly switch between views on a page, improving information search efficiency and reducing the amount of information that users receive at a time.|
 
 
@@ -102,3 +104,12 @@ Attributes such as **position** and **offset** affect the position of the layout
 
   This feature is governed by the [displayPriority](../reference/apis-arkui/arkui-ts/ts-universal-attributes-layout-constraints.md#displaypriority) attribute, which dictates the visibility of components.
 
+<!--Del-->## Samples
+
+The following samples are provided to help you better understand the layout development:
+
+- [Page Layout and Connection (ArkTS) (API9)](https://gitcode.com/openharmony/applications_app_samples/tree/master/code/UI/ArkTsComponentCollection/DefiningPageLayoutAndConnection)
+
+- [Common Alignment Modes of ArkUI Layout Containers (ArkTS) (API9)](https://gitcode.com/openharmony/codelabs/tree/master/ETSUI/OHLayoutAlign)
+
+- [Common Components and Layouts (ArkTS) (API9)](https://gitcode.com/openharmony/codelabs/tree/master/ETSUI/ArkTSComponents)<!--DelEnd-->
