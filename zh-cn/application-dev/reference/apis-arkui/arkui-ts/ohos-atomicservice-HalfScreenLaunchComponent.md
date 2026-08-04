@@ -23,14 +23,14 @@ import { HalfScreenLaunchComponent } from '@kit.ArkUI';
 
 ## 子组件
 
-无
+无。
 
 ## 属性
 不支持[通用属性](ts-component-general-attributes.md)。
 
 ## HalfScreenLaunchComponent
 
-HalfScreenLaunchComponent({ content: Callback\<void>, appId: string, options?: AtomicServiceOptions, onError?: ErrorCallback, onTerminated?: Callback\<TerminationInfo>, onReceive?: Callback<Record<string, Object>> })
+HalfScreenLaunchComponent({ content: Callback\<void>, appId: string, options?: AtomicServiceOptions, onError?: ErrorCallback, onTerminated?: Callback\<TerminationInfo>, onReceive?: Callback\<Record<string, Object>> })
 
 **装饰器类型：**[@Component](../../../ui/state-management/arkts-create-custom-components.md#component)
 
@@ -78,20 +78,20 @@ struct Index {
       HalfScreenLaunchComponent({
         appId: this.appId,
         options: {},
-        onTerminated:  (info:TerminationInfo) => {
+        onTerminated: (info: TerminationInfo) => {
           console.info('onTerminated info = ' + info.want);
         },
-        onError: (err) => {
+        onError: (err: BusinessError) => {
           console.error(`onError code: ${err.code}, message: ${err.message}`);
         },
-        onReceive: (data) => {
-          console.info("onReceive, data: " + data['ohos.atomicService.window']);
+        onReceive: (data: Record<string, Object>) => {
+          console.info('onReceive, data: ' + data['ohos.atomicService.window']);
         }
       }) {
         Column() {
           Image($r('app.media.app_icon'))
           Text('拉起手机充值')
-        }.width("80vp").height("80vp").margin({bottom:30})
+        }.width('80vp').height('80vp').margin({bottom:30})
       } // 通过尾随闭包形式传入content。
     }
   }
