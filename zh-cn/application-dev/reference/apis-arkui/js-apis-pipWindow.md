@@ -191,7 +191,7 @@ create(config: PiPConfiguration, contentNode: typeNode.XComponent): Promise&lt;P
 
 | 参数名          | 类型                                       | 必填        | 说明                                                                                                                                                                                                                                     |
 |--------------|------------------------------------------|-----------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| config       | [PiPConfiguration](#pipconfiguration)    | 是         | 创建画中画控制器的参数。该参数不能为空，并且构造该参数的context不能为空。构造该参数时，如果指定了templateType，需保证templateType是[PiPTemplateType](#piptemplatetype)类型；如果指定了controlGroups，需保证controlGroups与templateType匹配，详见[PiPControlGroup](#pipcontrolgroup12)。 |
+| config       | [PiPConfiguration](#pipconfiguration)    | 是         | 创建画中画控制器的参数。该参数不能为空，并且构造该参数的context和componentController不能为空。构造该参数时，如果指定了templateType，需保证templateType是[PiPTemplateType](#piptemplatetype)类型；如果指定了controlGroups，需保证controlGroups与templateType匹配，详见[PiPControlGroup](#pipcontrolgroup12)。 |
 | contentNode       | [typeNode.XComponent](js-apis-arkui-frameNode.md#xcomponent12)    | 是         | 用于渲染画中画窗口中的内容。该参数不能为空。|
 
 **返回值：**
@@ -269,12 +269,12 @@ struct Index {
 |---------------------|----------------------------------------------------------------------------|-----|-----|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | context             | [BaseContext](../apis-ability-kit/js-apis-inner-application-baseContext.md) | 否  | 否 | 表示上下文环境。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。                                                             |
 | componentController | [XComponentController](arkui-ts/ts-basic-components-xcomponent.md#xcomponentcontroller) | 否  | 否 | 表示原始[XComponent](arkui-ts/ts-basic-components-xcomponent.md)控制器。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。                                                             |
-| navigationId        | string                                                           | 否  | 是 | navigation控件ID，不传值则默认不需要缓存页面。<br/>1、UIAbility（应用组件）使用[Navigation](arkui-ts/ts-basic-components-navigation.md)管理页面时，需要设置Navigation控件的id属性，并将该id设置给画中画控制器，确保还原场景下能够从画中画窗口恢复到原页面。<br/>2、UIAbility使用[Router](js-apis-router.md)管理页面时，无需设置navigationId。<br/>3、UIAbility只有单页面时，无需设置navigationId，还原场景下也能够从画中画窗口恢复到原页面。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
-| handleId<sup>22+</sup>        | number                                                                     | 否  | 是 | navigation控件下的子页面ID，点击"恢复全屏窗口"按钮后，恢复到指定的页面。只适用于UIAbility（应用组件）使用[Navigation](arkui-ts/ts-basic-components-navigation.md)管理页面的场景，可以设置为Navigation下的子页面ID。默认为-1，恢复Navigation栈顶页面。推荐使用方法[getUniqueId()](arkui-ts/ts-custom-component-api.md#getuniqueid12)获取页面ID。使用[Navigation](arkui-ts/ts-basic-components-navigation.md)模块内页面路由时，推荐使用[系统路由表](../../ui/arkts-navigation-cross-package.md#系统路由表)，否则可能会出现[getUniqueId()](arkui-ts/ts-custom-component-api.md#getuniqueid12)获取页面ID不准确的情况。<br/>**原子化服务API：** 从API version 22开始，该接口支持在原子化服务中使用。|
+| navigationId        | string                                                           | 否  | 是 | Navigation控件ID，不传值则默认不需要缓存页面。<br/>1、UIAbility（应用组件）使用[Navigation](arkui-ts/ts-basic-components-navigation.md)管理页面时，需要设置Navigation控件的id属性，并将该id设置给画中画控制器，确保还原场景下能够从画中画窗口恢复到原页面。<br/>2、UIAbility使用[Router](js-apis-router.md)管理页面时，无需设置navigationId。<br/>3、UIAbility只有单页面时，无需设置navigationId，还原场景下也能够从画中画窗口恢复到原页面。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| handleId<sup>22+</sup>        | number                                                                     | 否  | 是 | Navigation控件下的子页面ID，点击"恢复全屏窗口"按钮后，恢复到指定的页面。只适用于UIAbility（应用组件）使用[Navigation](arkui-ts/ts-basic-components-navigation.md)管理页面的场景，可以设置为Navigation下的子页面ID。默认为-1，恢复Navigation栈顶页面。推荐使用方法[getUniqueId()](arkui-ts/ts-custom-component-api.md#getuniqueid12)获取页面ID。使用[Navigation](arkui-ts/ts-basic-components-navigation.md)模块内页面路由时，推荐使用[系统路由表](../../ui/arkts-navigation-cross-package.md#系统路由表)，否则可能会出现[getUniqueId()](arkui-ts/ts-custom-component-api.md#getuniqueid12)获取页面ID不准确的情况。<br/>**原子化服务API：** 从API version 22开始，该接口支持在原子化服务中使用。|
 | templateType        | [PiPTemplateType](#piptemplatetype)                                        | 否  | 是 | 模板类型，用以区分视频播放、视频通话、视频会议或视频直播，不传值则默认为视频播放模板。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。                                                             |
 | contentWidth        | number                                                                     | 否  | 是 | 原始内容宽度，单位为px，取值范围为正整数。用于确定画中画窗口比例。当使用typeNode的方式创建PiPController时（即使用[PiPWindow.create()](#pipwindowcreate12)传入contentNode参数），不传值则默认为1920。当不使用typeNode的方式创建PiPController时（即使用[PiPWindow.create()](#pipwindowcreate)不传入contentNode参数），不传值则默认为[XComponent](arkui-ts/ts-basic-components-xcomponent.md)组件的宽度。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。                                                             |
 | contentHeight       | number                                                           | 否  | 是 | 原始内容高度，单位为px，取值范围为正整数。用于确定画中画窗口比例。当使用typeNode的方式创建PiPController时（即使用[PiPWindow.create()](#pipwindowcreate12)传入contentNode参数），不传值则默认为1080。当不使用typeNode的方式创建PiPController时（即使用[PiPWindow.create()](#pipwindowcreate)不传入contentNode参数），不传值则默认为[XComponent](arkui-ts/ts-basic-components-xcomponent.md)组件的高度。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。                                                             |
-| controlGroups<sup>12+</sup>       | Array<[PiPControlGroup](#pipcontrolgroup12)>                               | 否 | 是  | 画中画控制面板的可选控件组列表，应用可以对此进行配置以决定是否显示。应用未配置时，面板显示基础控件（如视频播放控件组的播放/暂停控件）；应用选择配置时，则最多可以选择三个控件，超出三个create接口抛出401错误码。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。                                                                          |
+| controlGroups<sup>12+</sup>       | Array<[PiPControlGroup](#pipcontrolgroup12)>                               | 否 | 是  | 画中画控制面板的可选控件组列表，应用可以对此进行配置以决定是否显示。应用未配置时，面板显示基础控件（如视频播放控件组的播放/暂停控件、视频通话控件组的打开/关闭麦克风控件、视频会议控件组的打开/关闭摄像头控件、视频直播控件组的播放/暂停直播控件）；应用选择配置时，则最多可以选择三个控件，超出三个create接口抛出401错误码。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。                                                                          |
 | customUIController<sup>12+</sup>      | [NodeController](js-apis-arkui-nodeController.md)           | 否  | 是 | 自定义UI控制器，用于实现在画中画界面的自定义UI功能。此参数不填时，默认不使用自定义UI功能。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。                                                                          |
 | localStorage<sup>17+</sup>      | [LocalStorage](../../ui/state-management/arkts-localstorage.md)           | 否  | 是 | 页面级别的UI状态存储单元。多实例下可用来跟踪主窗实例的UI状态存储对象，不传值则无法通过画中画窗口获取主窗的UI状态存储对象。<br/>**原子化服务API：** 从API version 17开始，该接口支持在原子化服务中使用。                                                                          |
 | defaultWindowSizeType<sup>19+</sup>| number                                                                     | 否   | 是  |  当前应用第一次拉起画中画的窗口大小，取值范围为[0, 2]，且只能为整数。<br/>0：代表不设置大小。按照上个应用的画中画关闭前的大小启动；<br/>1：代表小窗；<br/>2：代表大窗；<br/>不传值则为默认值0。<br/>**原子化服务API：** 从API version 19开始，该接口支持在原子化服务中使用。                                                                 |
@@ -551,7 +551,7 @@ type ControlPanelActionEventCallback = (event: PiPActionEventType, status?: numb
 | 参数名                       | 类型           | 必填    | 说明                                |
 |--------------------------|--------------|--------------|-----------------------------------|
 | event       |  [PiPActionEventType](#pipactioneventtype)       | 是 | 回调画中画控制面板控件动作事件类型。<br/>应用依据控件动作事件做相应处理，如触发'playbackStateChanged'事件时，需要开始或停止视频。 |
-| status | number | 否 | 表示可切换状态的控件当前的状态，如具备打开和关闭两种状态的麦克风控件组、摄像头控件组和静音控件组，打开为1，关闭为0。其余控件该参数返回默认值-1。 |
+| status | number | 否 | 表示可切换状态的控件当前的状态，如具备打开和关闭两种状态的麦克风控件组、摄像头控件组和静音控件组，打开为 1，关闭为 0；具备播放和暂停两种状态的播放 / 暂停控件组，播放为 1，暂停为 0。其余不具备可切换状态的控件该参数返回默认值 - 1。 |
 
 ## ControlEventParam<sup>12+</sup>
 
@@ -563,7 +563,7 @@ type ControlPanelActionEventCallback = (event: PiPActionEventType, status?: numb
 
 | 名称                       | 类型           | 只读  | 可选   | 说明                                                                                                                                |
 |--------------------------|--------------|--------------|--------------|-----------------------------------------------------------------------------------------------------------------------------------|
-| controlType       |  [PiPControlType](#pipcontroltype12)      | 否  | 否| 回调画中画控制面板控件动作事件类型。应用依据控件类型做相应处理，如视频模板中暂停/播放控件被点击时，需要开始或停止视频。                                                                      |
+| controlType       |  [PiPControlType](#pipcontroltype12)      | 否  | 否| 回调画中画控制面板控件类型。应用依据控件类型做相应处理，如视频模板中暂停/播放控件被点击时，需要开始或停止视频。                                                                      |
 | status | [PiPControlStatus](#pipcontrolstatus12) | 否  | 是| 表示可切换状态的控件当前的状态，如具备打开和关闭两种状态的麦克风控件组、摄像头控件组和静音控件组，打开为PiPControlStatus.OPEN，关闭为PiPControlStatus.CLOSE。如不具备开/关和播放/暂停状态的挂断控件默认返回值为-1。 |
 
 ## PiPController
@@ -913,7 +913,7 @@ try {
 ### isPiPActive<sup>23+</sup>
 isPiPActive(): Promise&lt;boolean&gt;
 
-获取画中画的隐藏状态。使用Promise异步回调。
+获取画中画是否处于前台可见状态。使用 Promise 异步回调。
 
 **原子化服务API：** 从API version 23开始，该接口支持在原子化服务中使用。
 
@@ -923,7 +923,7 @@ isPiPActive(): Promise&lt;boolean&gt;
 
 | 类型                   | 说明                  |
 |----------------------|---------------------|
-| Promise&lt;boolean&gt;  | Promise对象，返回当前画中画的隐藏状态。true表示前台可见，false表示前台不可见（收入侧边栏）。画中画生命周期不为[STARTED](#pipstate)时调用本接口总是返回false。 |
+| Promise&lt;boolean&gt;  | Promise对象，返回当前画中画的可见状态。true表示前台可见，false表示前台不可见（收入侧边栏）。画中画生命周期不为[STARTED](#pipstate)时调用本接口总是返回false。 |
 
 **错误码：**
 
@@ -938,10 +938,10 @@ isPiPActive(): Promise&lt;boolean&gt;
 ``` ts
 let pipActiveStatus: boolean | undefined = undefined;
 try {
-  // 获取画中画的隐藏状态
+  // 获取画中画的可见状态
   let promise : Promise<boolean> | undefined = this.pipController?.isPiPActive();
   promise?.then((data) => {
-    // 保存获取到的画中画隐藏状态
+    // 保存获取到的画中画可见状态
     pipActiveStatus = data;
     console.info('Succeeded in getting pip active status. activeStatus: ' + JSON.stringify(data));
   }).catch((err: BusinessError) => {
@@ -1265,7 +1265,7 @@ try {
 
 on(type: 'activeStatusChange', callback: Callback&lt;boolean&gt;): void
 
-开启画中画窗口隐藏状态变化事件的监听，建议在不需要使用时关闭监听，否则可能存在内存泄漏。
+开启画中画窗口可见状态变化事件的监听，建议在不需要使用时关闭监听，否则可能存在内存泄漏。
 
 **原子化服务API：** 从API version 22开始，该接口支持在原子化服务中使用。
 
@@ -1275,8 +1275,8 @@ on(type: 'activeStatusChange', callback: Callback&lt;boolean&gt;): void
 
 | 参数名 | 类型 | 必填 | 说明 |
 |----------|---------------------------------------------|-------|---------------------------------------------------|
-| type | string | 是 | 事件类型，固定为'activeStatusChange'，即画中画隐藏状态变化事件。 |
-| callback | Callback\<boolean\> | 是 | 返回当前画中画的隐藏状态。true表示前台可见，false表示前台不可见（收入侧边栏）。 |
+| type | string | 是 | 事件类型，固定为'activeStatusChange'，即画中画可见状态变化事件。 |
+| callback | Callback\<boolean\> | 是 | 返回当前画中画的可见状态。true表示前台可见，false表示前台不可见（收入侧边栏）。 |
 
 **示例：**
 
@@ -1284,7 +1284,7 @@ on(type: 'activeStatusChange', callback: Callback&lt;boolean&gt;): void
 let callback = (activeStatus: boolean) => {
   console.info(`pip window is visible: ${activeStatus}`);
 }
-// 开启画中画窗口隐藏状态变化事件的监听
+// 开启画中画窗口可见状态变化事件的监听
 this.pipController.on('activeStatusChange', callback);
 ```
 
@@ -1292,7 +1292,7 @@ this.pipController.on('activeStatusChange', callback);
 
 off(type: 'activeStatusChange', callback?: Callback&lt;boolean&gt;): void
 
-关闭画中画窗口隐藏状态变化事件的监听。
+关闭画中画窗口可见状态变化事件的监听。
 
 **原子化服务API：** 从API version 22开始，该接口支持在原子化服务中使用。
 
@@ -1302,8 +1302,8 @@ off(type: 'activeStatusChange', callback?: Callback&lt;boolean&gt;): void
 
 | 参数名 | 类型 | 必填 | 说明 |
 |----------|------------|----|---------------------------------------------------------------------|
-| type | string | 是 | 事件类型，固定为'activeStatusChange'，即画中画隐藏状态变化事件。 |
-| callback | Callback\<boolean\> | 否 | 返回当前画中画的隐藏状态。true表示前台可见，false表示前台不可见（收入侧边栏）。如果未传入参数，解除type为'activeStatusChange'的所有回调。 |
+| type | string | 是 | 事件类型，固定为'activeStatusChange'，即画中画可见状态变化事件。 |
+| callback | Callback\<boolean\> | 否 | 返回当前画中画的可见状态。true表示前台可见，false表示前台不可见（收入侧边栏）。如果未传入参数，解除type为'activeStatusChange'的所有回调。 |
 
 **示例：**
 
@@ -1311,6 +1311,6 @@ off(type: 'activeStatusChange', callback?: Callback&lt;boolean&gt;): void
 let callback = (activeStatus: boolean) => {
   console.info(`pip window is visible: ${activeStatus}`);
 }
-// 关闭画中画窗口隐藏状态变化事件的监听
+// 关闭画中画窗口可见状态变化事件的监听
 this.pipController.off('activeStatusChange', callback);
 ```
