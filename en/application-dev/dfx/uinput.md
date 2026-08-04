@@ -6,6 +6,7 @@
 <!--Designer: @hanruofei-->
 <!--Tester: @Lyuxin-->
 <!--Adviser: @zhang_yixin13-->
+<!-- md-trans-meta sourceCommit=120b60d9b776e943724c636f3e7aa06338260cf8 translatedAt=2026-07-31T01:36:09.847Z pushedAt=2026-07-31T08:34:12.415Z -->
 
 uinput can simulate operations on devices such as the mouse, keyboard, and touchpad for pressure tests like stability tests.
 
@@ -18,11 +19,13 @@ uinput can simulate operations on devices such as the mouse, keyboard, and touch
 ## Features
 
 **Usage**
+
 ```bash
 uinput <option> <command> <arg> ...
 ```
 
 **Available Commands**
+
 | Abbreviation | Full Command  | Description       | 
 | -------- | --------   | --------       |
 | -M       | --mouse    | Injects a mouse event. | 
@@ -35,19 +38,21 @@ uinput <option> <command> <arg> ...
 
 > **NOTE**
 >
-> The unit of the coordinate-related parameters in the command is [px (pixel units)](../reference/apis-arkui/arkui-ts/ts-pixel-units.md).
+> All coordinate-related parameters in commands use px as the unit. For details, see [Pixel Units](../reference/apis-arkui/arkui-ts/ts-pixel-units.md).
 
 ## Help Command
 
 Displays the commands supported by uinput.
 
 **Command**
+
 ```bash
 uinput -? 
 uinput --help
 ```
 
 **Example**
+
 ```bash
 # Display the help information.
 uinput -? 
@@ -72,9 +77,11 @@ commands for keyboard:
 Simulates mouse move and click events.
 
 ### Mouse Move Event
+
 Simulates a mouse movement to the coordinates (dx, dy) in a relative coordinate system whose origin is the upper left corner of the specified screen.
 
 **Command**
+
 ```bash
 uinput -M -m <dx> <dy>
 uinput --mouse --move <dx> <dy>
@@ -83,12 +90,14 @@ uinput --mouse --move <dx> <dy>
 ```
 
 **Example**
+
 ```bash
 # Simulate a mouse movement to the coordinates (100, 100) in a relative coordinate system whose origin is the upper left corner of the specified screen.
 uinput -M -m 100 100
 ```
 
 **Extended Commands**
+
 ```bash
 uinput -M -m <dx1> <dy1> <dx2> <dy2> [smooth time] --trace
 uinput --mouse --move <dx1> <dy1> <dx2> <dy2> [smooth time] --trace
@@ -100,54 +109,65 @@ uinput --mouse --move <dx1> <dy1> <dx2> <dy2> [smooth time] --trace
 ```
 
 **Example**
+
 ```bash
 # Move a mouse pointer from (100, 100) to (200, 200) for 1500 ms.
 uinput -M -m 100 100 200 200 1500 --trace
 ```
 
 ### Mouse Down Event
+
 Simulates a mouse button press. You are advised to use this event together with the mouse up event to close the event. For details about values of **buttonId**, see [Mouse Buttons](#mouse-buttons).
 
 **Command**
+
 ```bash
 uinput -M -d <buttonId>
 uinput --mouse --down <buttonId>
 ```
 
 ### Mouse Up Event
+
 Simulates a mouse button release. You are advised to use this event together with the mouse down event to close the event. For details about values of **buttonId**, see [Mouse Buttons](#mouse-buttons).
 
 **Command**
+
 ```bash
 uinput -M -u <buttonId>
 uinput --mouse --up <buttonId>
 ```
 
 **Example**
+
 ```bash
 # Simulate pressing and releasing the left mouse button.
 uinput -M -d 0 -u 0
 ```
 
 ### Click Event
+
 Simulates a mouse click. For details about values of **buttonId**, see [Mouse Buttons](#mouse-buttons).
 
 **Command**
+
 ```bash
 uinput -M -c <buttonId>
 uinput --mouse --click <buttonId>
 ```
 
 **Example**
+
 ```bash
 # Simulate clicking the left mouse button.
 uinput -M -c 0
 ```
 
 ### Double-Click Event
+
 Simulates a double-click on the mouse button. For details about values of **buttonId**, see [Mouse Buttons](#mouse-buttons).
 
 **Command**
+
 ```bash
 uinput -M -b <dx> <dy> <buttonId> [press time] [click interval time]
 uinput --mouse --double_click <dx> <dy> <buttonId> [press time] [click interval time]
@@ -158,15 +178,18 @@ uinput --mouse --double_click <dx> <dy> <buttonId> [press time] [click interval 
 ```
 
 **Example**
+
 ```bash
 # Simulate a double-click on the left mouse button at (100, 150).
 uinput -M -b 100 150 0 10 10
 ```
 
 ### Mouse Scroll Event
+
 Simulates a forward or backward scrolling of the mouse wheel. This event must be used together with the mouse move event.
 
 **Command**
+
 ```bash
 uinput -M -m <dx1> <dy1> -s <number>
 uinput --mouse --move <dx1> <dy1> --scroll <number>
@@ -176,15 +199,18 @@ uinput --mouse --move <dx1> <dy1> --scroll <number>
 ```
 
 **Example**
+
 ```bash
 # Simulate a mouse movement to the coordinates (100, 200) in a relative coordinate system with the upper-left corner of the specified screen as the origin. Then, scroll the mouse wheel backward for three notches.
 uinput -M -m 100 200 -s 45
 ```
 
 ### Mouse Drag Event
+
 Simulates a mouse dragging.
 
 **Command**
+
 ```bash
 uinput -M -g <dx1> <dy1> <dx2> <dy2> [total time]
 uinput --mouse --drag <dx1> <dy1> <dx2> <dy2> [total time]
@@ -195,15 +221,18 @@ uinput --mouse --drag <dx1> <dy1> <dx2> <dy2> [total time]
 ```
 
 **Example**
+
 ```bash
 # Simulate clicking the left mouse button and dragging from (200, 650) to (500, 300) over 15000 ms, and then releasing the button.
 uinput -M -g 200 650 500 300 15000
 ```
 
 ### Mouse Event Interval
+
 Sets the interval between mouse events, in milliseconds. This command must be used with other mouse event commands. Otherwise, this command is invalid.
 
 **Command**
+
 ```bash
 uinput -M -i <time>
 uinput --mouse --interval <time>
@@ -212,12 +241,14 @@ uinput --mouse --interval <time>
 ```
 
 **Example**
+
 ```bash
 # Set the interval between two simulated click events to 500 ms.
 uinput -M -c 0 -i 500 -c 0
 ```
 
 ### Mouse Buttons
+
 | buttonId |  Description|
 | -------- | -------- |
 | 0  | Left mouse button.  |
@@ -230,11 +261,13 @@ uinput -M -c 0 -i 500 -c 0
 | 7  | Mouse task button.|
 
 ### Querying Mouse Pointer Information
+
 Queries the current mouse pointer information.
 
-When the mouse pointer is visible, the mouse pointer status and [style](../reference/apis-input-kit/js-apis-pointer.md#pointerstyle) are displayed. If the **filePath** parameter is passed in and the mouse pointer is a third-party custom pointer (the enumerated value of the style is **-100**), the mouse pointer style image is saved in binary format to the specified file. You need to create the **filePath** file. If the **filePath** parameter is not passed in, the style image is not saved. When the mouse pointer is not visible, the style information is not displayed, and the style image is not saved.
+If the mouse cursor is visible, the cursor display state and [PointerStyle](../reference/apis-input-kit/js-apis-pointer.md#pointerstyle) are output. If the `filePath` parameter is passed and the mouse cursor uses an app-defined custom style (style enumeration value -100), the cursor style image is saved to the specified file in binary format. You must create the `filePath` file beforehand. If the `filePath` parameter is not passed, the style image is not saved. When the mouse cursor is hidden, no style information is output and no style image is saved.
 
 **Command**
+
 ```bash
 uinput -M -q [filePath]
 
@@ -242,6 +275,7 @@ uinput -M -q [filePath]
 ```
 
 **Example**
+
 ```bash
 # Query the visible status and style ID of the current mouse pointer.
 uinput -M -q
@@ -256,33 +290,40 @@ uinput -M -q /data/local/tmp/testfile
 Simulates a keyboard input event.
 
 ### Key Down Event
-Simulates a key press. You are advised to use this event together with the key up event to close the event. For details about **keyCode**, see [@ohos.multimodalInput.keyCode (Keycode)](../reference/apis-input-kit/js-apis-keycode.md).
+
+Simulates a key press on the keyboard. It is recommended to use this together with the key up event to ensure event closure. For keyCode, see [@ohos.multimodalInput.keyCode (Keycode)](../reference/apis-input-kit/js-apis-keycode.md).
 
 **Command**
+
 ```bash
 uinput -K -d <keyCode>
 uinput --keyboard --down <keyCode>
 ```
 
 ### Key Up Event
-Simulates a key release. You are advised to use this event together with the key down event to close the event. For details about **keyCode**, see [@ohos.multimodalInput.keyCode (Keycode)](../reference/apis-input-kit/js-apis-keycode.md).
+
+Simulates a key release on the keyboard. This must be used together with the key down event to ensure event closure. For keyCode, see [@ohos.multimodalInput.keyCode (Keycode)](../reference/apis-input-kit/js-apis-keycode.md).
 
 **Command**
+
 ```bash
 uinput -K -u <keyCode>
 uinput --keyboard --up <keyCode>
 ```
 
 **Example**
+
 ```bash
 # Simulate pressing and releasing the A key.
 uinput -K -d 2017 -u 2017
 ```
 
 ### Long-Press Key Event
-Simulates a long press on the key for a specified duration. You do not need to inject the key release event. No key press event is injected during the long press. For details about **keyCode**, see [@ohos.multimodalInput.keyCode (Keycode)](../reference/apis-input-kit/js-apis-keycode.md).
+
+Simulates pressing a key on the keyboard and releasing it after a specified duration, without needing to inject a key up event again. During the long press, press events are not repeatedly injected. For keyCode, see [@ohos.multimodalInput.keyCode (Keycode)](../reference/apis-input-kit/js-apis-keycode.md).
 
 **Command**
+
 ```bash
 uinput -K -l <keyCode> [long press time]
 uinput --keyboard --long_press <keyCode> [long press time]
@@ -291,15 +332,18 @@ uinput --keyboard --long_press <keyCode> [long press time]
 ```
 
 **Example**
+
 ```bash
 # Simulate pressing and holding the A key for 6000 ms, and then releasing the key.
 uinput -K -l 2017 6000
 ```
 
 ### Repeat Key Event
-Simulates pressing a key and repeating the pressing for a specified time. You do not need to inject the key up event. Key press events are repeatedly injected during the long press. For details about **keyCode**, see [@ohos.multimodalInput.keyCode (Keycode)](../reference/apis-input-kit/js-apis-keycode.md).
+
+Simulates pressing a key on the keyboard, continuously injecting press events for a specified duration, and then releasing the key, without needing to inject a key up event again. During the long press, press events are repeatedly injected. For keyCode, see [@ohos.multimodalInput.keyCode (Keycode)](../reference/apis-input-kit/js-apis-keycode.md).
 
 **Command**
+
 ```bash
 uinput -K -r <keyCode> [repeat output time]
 uinput --keyboard --repeat <keyCode> [repeat output time]
@@ -308,15 +352,18 @@ uinput --keyboard --repeat <keyCode> [repeat output time]
 ```
 
 **Example**
+
 ```bash
 # Simulate pressing the A key and repeating the press within 4000 ms.
 uinput -K -r 2017 4000
 ```
 
 ### Keyboard Event Interval
+
 Sets the interval between keyboard events, in milliseconds. This command must be used with other keyboard event commands. Otherwise, this command is invalid.
 
 **Command**
+
 ```bash
 uinput -K -i <time>
 uinput --keyboard --interval <time>
@@ -325,21 +372,25 @@ uinput --keyboard --interval <time>
 ```
 
 **Example**
+
 ```bash
 # Simulate pressing and holding the A key for 500 ms and then releasing the key.
 uinput -K -d 2017 -i 500 -u 2017
 ```
 
 ### Keyboard Text Event
+
 Simulates text input using the keyboard. This command cannot be used together with other commands. Only a maximum of 2000 ASCII characters are supported.
 
 **Command**
+
 ```bash
 uinput -K -t <text>
 uinput --keyboard --text <text>
 ```
 
 **Example**
+
 ```bash
 # Simulate inputting a text "Hello, World!".
 uinput -K -t Hello,World!
@@ -347,13 +398,14 @@ uinput -K -t Hello,World!
 
 ## Controlling the Injected Modifier Key Status
 
-Since API version 22, the capability of controlling the injected modifier key status can be enabled or disabled. The supported modifier keys include **KEYCODE_ALT_LEFT**, **KEYCODE_ALT_RIGHT**, **KEYCODE_SHIFT_LEFT**, **KEYCODE_SHIFT_RIGHT**, **KEYCODE_CTRL_LEFT**, **KEYCODE_CTRL_RIGHT**, **KEYCODE_META_LEFT** and **KEYCODE_META_RIGHT**. For details, see [Keycode](../reference/apis-input-kit/js-apis-keycode.md).
+Starting from API version 22, you can enable or disable the capability of controlling the injected modifier key status. The supported modifier keys include: KEYCODE_ALT_LEFT, KEYCODE_ALT_RIGHT, KEYCODE_SHIFT_LEFT, KEYCODE_SHIFT_RIGHT, KEYCODE_CTRL_LEFT, KEYCODE_CTRL_RIGHT, KEYCODE_META_LEFT, and KEYCODE_META_RIGHT. For details, see [@ohos.multimodalInput.keyCode (Keycode)](../reference/apis-input-kit/js-apis-keycode.md).
 
 ### Enabling the Capability of Controlling the Injected Modifier Key Status
 
 You can enable the capability of controlling the injected modifier key status and set the duration. This command must be used together with the key down event. After the capability of controlling the injected modifier key status is enabled, you can specify the duration of the key down event. After the duration ends, the key up event is automatically triggered.
 
 **Command**
+
 ```bash
 uinput enable_key_status <enable> [duration]
 
@@ -362,6 +414,7 @@ uinput enable_key_status <enable> [duration]
 ```
 
 **Example**
+
 ```bash
 # Enable the capability of controlling the injected modifier key status and do not set the duration of the injected modifier key status. The injected **KEYCODE_SHIFT_LEFT** key (value: **2047**) press event can be maintained for 10s.
 uinput enable_key_status 1
@@ -377,12 +430,14 @@ uinput -K -d 2047
 Disable the capability of controlling the injected modifier key status. The capability can be enabled again next time.
 
 **Command**
+
 ```bash
 # <enable> specifies whether to enable the capability of controlling the injected modifier key status. The value can be 1 or 0. The value 1 means to enable the capability, and 0 means the opposite.
 uinput enable_key_status <enable>
 ```
 
 **Example**
+
 ```bash
 # Disable the capability of controlling the injected modifier key status.
 uinput enable_key_status 0
@@ -393,9 +448,11 @@ uinput enable_key_status 0
 Simulates stylus click and move events. The actual event injection effect is the same as that of [touch events](#touch-events). You are advised to use the touch event command.
 
 ### Stylus Down Event
+
 Simulates a stylus press at (dx, dy). You are advised to use this event together with the stylus up event to close the event.
 
 **Command**
+
 ```bash
 uinput -S -d <dx> <dy>
 uinput --stylus --down <dx> <dy>
@@ -404,9 +461,11 @@ uinput --stylus --down <dx> <dy>
 ```
 
 ### Stylus Up Event
+
 Simulates a stylus up at (dx, dy). You are advised to use this event together with the stylus down event to close the event.
 
 **Command**
+
 ```bash
 uinput -S -u <dx> <dy>
 uinput --stylus --up <dx> <dy>
@@ -415,15 +474,18 @@ uinput --stylus --up <dx> <dy>
 ```
 
 **Example**
+
 ```bash
 # Simulate pressing and releasing the stylus at (100, 100).
 uinput -S -d 100 100 -u 100 100
 ```
 
 ### Stylus Move Event
+
 Simulates moving a stylus from coordinates (dx1, dy1) to coordinates (dx2, dy2) within a specified time and then releasing the stylus.
 
 **Command**
+
 ```bash
 uinput -S -m <dx1> <dy1> <dx2> <dy2> [smooth time] [-k keep time]
 uinput --stylus --move <dx1> <dy1> <dx2> <dy2> [smooth time] [-k keep time]
@@ -435,15 +497,18 @@ uinput --stylus --move <dx1> <dy1> <dx2> <dy2> [smooth time] [-k keep time]
 ```
 
 **Example**
+
 ```bash
 # Simulate pressing the stylus at (100, 1000), moving to (100, 2000) over 1000 ms, holding for 1000 ms and then releasing it.
 uinput -S -m 100 1000 100 2000 1000 -k 1000
 ```
 
 ### Stylus Click Event
+
 Simulates a stylus click at (dx, dy).
 
 **Command**
+
 ```bash
 uinput -S -c <dx> <dy> [click interval]
 uinput --stylus --click <dx> <dy> [click interval]
@@ -453,15 +518,18 @@ uinput --stylus --click <dx> <dy> [click interval]
 ```
 
 **Example**
+
 ```bash
 # Simulate a stylus click at (100, 100).
 uinput -S -c 100 100
 ```
 
 ### Stylus Drag Event
+
 Simulates a stylus drag event.
 
 **Command**
+
 ```bash
 uinput -S -g <dx1> <dy1> <dx2> <dy2> [press time] [total time] 
 uinput --stylus --drag <dx1> <dy1> <dx2> <dy2> [press time] [total time] 
@@ -473,15 +541,18 @@ uinput --stylus --drag <dx1> <dy1> <dx2> <dy2> [press time] [total time]
 ```
 
 **Example**
+
 ```bash
 # Simulate pressing the stylus at (100, 150) for 500 ms and dragging it to (500, 300) after 1100 ms.
 uinput -S -g 100 150 500 300 500 1100
 ```
 
 ### Interval of Stylus Events
+
 Sets the interval between stylus events, in milliseconds. This command must be used with other stylus event commands. Otherwise, this command is invalid.
 
 **Command**
+
 ```bash
 uinput -S -i <time>
 uinput --stylus --interval <time>
@@ -490,6 +561,7 @@ uinput --stylus --interval <time>
 ```
 
 **Example**
+
 ```bash
 # Simulate pressing the stylus at (100, 100) and releasing it after 500 ms.
 uinput -S -d 100 100 -i 500 -u 100 100
@@ -500,9 +572,11 @@ uinput -S -d 100 100 -i 500 -u 100 100
 Simulates touch events such as finger click and move events.
 
 ### Touch Down Event
+
 Simulates touching at (dx, dy). You are advised to use this event together with the touch up event to close the event.
 
 **Command**
+
 ```bash
 uinput -T -d <dx> <dy>
 uinput --touch --down <dx> <dy>
@@ -511,9 +585,11 @@ uinput --touch --down <dx> <dy>
 ```
 
 ### Touch Up Event
+
 Simulates lifting the finger at (dx, dy). You are advised to use this event together with the touch down event to close the event.
 
 **Command**
+
 ```bash
 uinput -T -u <dx> <dy>
 uinput --touch --up <dx> <dy>
@@ -522,15 +598,18 @@ uinput --touch --up <dx> <dy>
 ```
 
 **Example**
+
 ```bash
 # Simulate touching at (100, 100) and then lifting the finger.
 uinput -T -d 100 100 -u 100 100
 ```
 
 ### Touch Move Event
+
 Simulate touching at (dx1, dy1), moving the finger to (dx2, dy2) within a specified time, and then lifting the finger. Up to three fingers can be used at the same time.
 
 **Command**
+
 ```bash
 uinput -T -m <dx1> <dy1> <dx2> <dy2> [-k keep time] [smooth time]
 uinput --touch --move <dx1> <dy1> <dx2> <dy2> [-k keep time] [smooth time]
@@ -542,18 +621,21 @@ uinput --touch --move <dx1> <dy1> <dx2> <dy2> [-k keep time] [smooth time]
 ```
 
 **Example**
+
 ```bash
 # Simulate touching at (100, 1000), moving to (100, 2000) over 1000 ms, holding for 1000 ms and then lifting the finger.
 uinput -T -m 100 1000 100 2000 -k 1000 1000
 
-# Simulate moving three fingers for 200 ms, with the first one from (300, 900) to (300,2000), the second one from (600, 900) to (600, 2000), and the third one from (900, 900) to (900, 2000). After the movement, hold the screen for 1000 ms and then lift the fingers.
+# Simulate a three-finger swipe. The first finger presses at (300, 900) and moves to (300, 2000), the second finger presses at (600, 900) and moves to (600, 2000), and the third finger presses at (900, 900) and moves to (900, 2000). The total movement duration is 200 ms. After the movement ends, the fingers pause on the screen for 1000 ms before lifting.
 uinput -T -m 300 900 300 2000 600 900 600 2000 900 900 900 2000 -k 1000 200
 ```
 
 ### Touch Click Event
+
 Simulates a finger click at coordinates (dx, dy).
 
 **Command**
+
 ```bash
 uinput -T -c <dx> <dy> [click interval]
 uinput --touch --click <dx> <dy> [click interval]
@@ -563,15 +645,18 @@ uinput --touch --click <dx> <dy> [click interval]
 ```
 
 **Example**
+
 ```bash
 # Simulate a finger click at (100, 100).
 uinput -T -c 100 100
 ```
 
 ### Touch Drag Event
+
 Simulates a finger drag.
 
 **Command**
+
 ```bash
 uinput -T -g <dx1> <dy1> <dx2> <dy2> [press time] [total time] 
 uinput --touch --drag <dx1> <dy1> <dx2> <dy2> [press time] [total time] 
@@ -583,15 +668,18 @@ uinput --touch --drag <dx1> <dy1> <dx2> <dy2> [press time] [total time]
 ```
 
 **Example**
+
 ```bash
 # Touch at (100, 150), drag to (500, 300) over 1100 ms, then lift the finger.
 uinput -T -g 100 150 500 300 500 1100
 ```
 
 ### Interval of Touch Events
+
 Sets the interval between touch events, in milliseconds. This command must be used with other touch event commands. Otherwise, this command is invalid.
 
 **Command**
+
 ```bash
 uinput -T -i <time>
 uinput --touch --interval <time>
@@ -600,15 +688,18 @@ uinput --touch --interval <time>
 ```
 
 **Example**
+
 ```bash
 # Simulate touching at (100, 100) and releasing the finger after 500 ms.
 uinput -T -d 100 100 -i 500 -u 100 100
 ```
 
 ### Single-Knuckle Double-Tap
+
 Simulates a single-knuckle double-tap on the touchscreen.
 
 **Command**
+
 ```bash
 uinput -T -k -s <dx1> <dy1> <dx2> <dy2> [interval time]
 uinput --touch --knuckle --single <dx1> <dy1> <dx2> <dy2> [interval time]
@@ -619,15 +710,18 @@ uinput --touch --knuckle --single <dx1> <dy1> <dx2> <dy2> [interval time]
 ```
 
 **Example**
+
 ```bash
 # Simulate a single-finger knuckle tap at (100, 100) and (100, 130) at an interval of 200 ms.
 uinput -T -k -s 100 100 100 130
 ```
 
 ### Two-Knuckle Double-Tap
+
 Simulates a two-knuckle double-tap on the touchscreen.
 
 **Command**
+
 ```bash
 uinput -T -k -d <dx1> <dy1> <dx2> <dy2> [interval time]
 uinput --touch --knuckle --double <dx1> <dy1> <dx2> <dy2> [interval time]
@@ -638,6 +732,7 @@ uinput --touch --knuckle --double <dx1> <dy1> <dx2> <dy2> [interval time]
 ```
 
 **Example**
+
 ```bash
 # Simulate a two-knuckle double-tap at (100, 100) and (100, 130) at an interval of 200 ms.
 uinput -T -k -d 100 100 100 130
@@ -646,9 +741,11 @@ uinput -T -k -d 100 100 100 130
 ## Touchpad Events
 
 ### Touchpad Pinch Event
+
 Simulates a finger pinch on the touchpad.
 
 **Command**
+
 ```bash
 uinput -P -p <dx> <dy> scalePercent
 uinput --touchpad --pinch <dx> <dy> scalePercent
@@ -658,15 +755,18 @@ uinput --touchpad --pinch <dx> <dy> scalePercent
 ```
 
 **Example**
+
 ```bash
 # Simulate a finger pinch on the touchpad.
 uinput -P -p 100 300 89
 ```
 
 ### Touchpad Swipe Event
+
 Simulates a swipe on the touchpad.
 
 **Command**
+
 ```bash
 uinput -P -s <startX> <startY> <endX> <endY>
 uinput --touchpad --swipe <startX> <startY> <endX> <endY>
@@ -676,17 +776,20 @@ uinput --touchpad --swipe <startX> <startY> <endX> <endY>
 ```
 
 **Example**
+
 ```bash
 # Simulate the three-finger swipe gesture on the touchpad.
 uinput -P -s 100 1100 100 300
 ```
 
 ### Touchpad Rotate Event
+
 Simulates a rotation on the touchpad.
 
 Currently, the touchpad rotate event does not take effect.
 
 **Command**
+
 ```bash
 uinput -P -r <rotateValue>
 uinput --touchpad --rotate <rotateValue>
@@ -695,6 +798,7 @@ uinput --touchpad --rotate <rotateValue>
 ```
 
 **Example**
+
 ```bash
 # Simulate a two-finger rotation of 180 degrees on the touchpad.
 uinput -P -r 180

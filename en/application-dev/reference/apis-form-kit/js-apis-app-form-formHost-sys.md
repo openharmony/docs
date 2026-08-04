@@ -38,9 +38,9 @@ Deletes a widget. After this API is called, the application can no longer use th
 
 **Error codes**
 
-For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Form Error Codes](errorcode-form.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Widget Error Codes](errorcode-form.md).
 
-| Error Code ID| Error Message|
+| ID| Error Message|
 | -------- | -------- |
 | 201 | Permissions denied. |
 | 202 | The application is not a system application. |
@@ -96,9 +96,9 @@ Deletes a widget. After this API is called, the application can no longer use th
 
 **Error codes**
 
-For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Form Error Codes](errorcode-form.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Widget Error Codes](errorcode-form.md).
 
-| Error Code ID| Error Message|
+| ID| Error Message|
 | -------- | -------- |
 | 201 | Permissions denied. |
 | 202 | The application is not a system application. |
@@ -122,7 +122,7 @@ try {
     console.error(`formHost deleteForm, code: ${error.code}, message: ${error.message}`);
   });
 } catch (error) {
-  console.error(`catch error, code: ${error.code}, message: ${error.message}`);
+  console.error(`catch error, code: ${(error as BusinessError).code}, message: ${(error as BusinessError).message}`);
 }
 ```
 
@@ -145,9 +145,9 @@ Releases a widget. After this API is called, the application can no longer use t
 
 **Error codes**
 
-For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Form Error Codes](errorcode-form.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Widget Error Codes](errorcode-form.md).
 
-| Error Code ID| Error Message|
+| ID| Error Message|
 | -------- | -------- |
 | 201 | Permissions denied. |
 | 202 | The application is not a system application. |
@@ -196,9 +196,9 @@ Releases a widget. After this API is called, the application can no longer use t
 
 **Error codes**
 
-For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Form Error Codes](errorcode-form.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Widget Error Codes](errorcode-form.md).
 
-| Error Code ID| Error Message|
+| ID| Error Message|
 | -------- | -------- |
 | 201 | Permissions denied. |
 | 202 | The application is not a system application. |
@@ -252,9 +252,9 @@ Releases a widget. After this API is called, the application can no longer use t
 
 **Error codes**
 
-For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Form Error Codes](errorcode-form.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Widget Error Codes](errorcode-form.md).
 
-| Error Code ID| Error Message|
+| ID| Error Message|
 | -------- | -------- |
 | 201 | Permissions denied. |
 | 202 | The application is not a system application. |
@@ -302,9 +302,9 @@ Requests a widget update. This API uses an asynchronous callback to return the r
 
 **Error codes**
 
-For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Form Error Codes](errorcode-form.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Widget Error Codes](errorcode-form.md).
 
-| Error Code ID| Error Message|
+| ID| Error Message|
 | -------- | -------- |
 | 201 | Permissions denied. |
 | 202 | The application is not a system application. |
@@ -357,9 +357,9 @@ Requests a widget update. This API uses a promise to return the result.
 
 **Error codes**
 
-For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Form Error Codes](errorcode-form.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Widget Error Codes](errorcode-form.md).
 
-| Error Code ID| Error Message|
+| ID| Error Message|
 | -------- | -------- |
 | 201 | Permissions denied. |
 | 202 | The application is not a system application. |
@@ -413,9 +413,9 @@ Carries parameters to request a widget update. This API uses a promise to return
 
 **Error codes**
 
-For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Form Error Codes](errorcode-form.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Widget Error Codes](errorcode-form.md).
 
-| Error Code ID| Error Message|
+| ID| Error Message|
 | -------- | -------- |
 | 201 | Permissions denied. |
 | 202 | The application is not a system application. |
@@ -466,9 +466,9 @@ Converts a temporary widget to a normal one. This API uses an asynchronous callb
 
 **Error codes**
 
-For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Form Error Codes](errorcode-form.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Widget Error Codes](errorcode-form.md).
 
-| Error Code ID| Error Message|
+| ID| Error Message|
 | -------- | -------- |
 | 201 | Permissions denied. |
 | 202 | The application is not a system application. |
@@ -521,9 +521,9 @@ Converts a temporary widget to a normal one. This API uses a promise to return t
 
 **Error codes**
 
-For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Form Error Codes](errorcode-form.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Widget Error Codes](errorcode-form.md).
 
-| Error Code ID| Error Message|
+| ID| Error Message|
 | -------- | -------- |
 | 201 | Permissions denied. |
 | 202 | The application is not a system application. |
@@ -543,7 +543,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 try {
   let formId: string = '12400633174999288';
   formHost.castToNormalForm(formId).then(() => {
-    console.info('formHost castTempForm success');
+    console.info('formHost castToNormalForm success');
   }).catch((error: BusinessError) => {
     console.error(`error, code: ${error.code}, message: ${error.message}`);
   });
@@ -571,9 +571,9 @@ Instructs the widget framework to make a widget visible. After this API is calle
 
 **Error codes**
 
-For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Form Error Codes](errorcode-form.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Widget Error Codes](errorcode-form.md).
 
-| Error Code ID| Error Message|
+| ID| Error Message|
 | -------- | -------- |
 | 201 | Permissions denied. |
 | 202 | The application is not a system application. |
@@ -614,7 +614,7 @@ Instructs the widget framework to make a widget visible. After this API is calle
 
 | Name| Type   | Mandatory| Description   |
 | ------ | ------ | ---- | ------- |
-| formIds | Array&lt;string&gt; | Yes  | List of widget IDs.|
+| formIds | Array&lt;string&gt; | Yes  | List of valid widget IDs.|
 
 **Return value**
 
@@ -624,9 +624,9 @@ Instructs the widget framework to make a widget visible. After this API is calle
 
 **Error codes**
 
-For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Form Error Codes](errorcode-form.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Widget Error Codes](errorcode-form.md).
 
-| Error Code ID| Error Message|
+| ID| Error Message|
 | -------- | -------- |
 | 201 | Permissions denied. |
 | 202 | The application is not a system application. |
@@ -672,9 +672,9 @@ Instructs the widget framework to make a widget invisible. After this API is cal
 
 **Error codes**
 
-For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Form Error Codes](errorcode-form.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Widget Error Codes](errorcode-form.md).
 
-| Error Code ID| Error Message|
+| ID| Error Message|
 | -------- | -------- |
 | 201 | Permissions denied. |
 | 202 | The application is not a system application. |
@@ -725,9 +725,9 @@ Instructs the widget framework to make a widget invisible. After this API is cal
 
 **Error codes**
 
-For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Form Error Codes](errorcode-form.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Widget Error Codes](errorcode-form.md).
 
-| Error Code ID| Error Message|
+| ID| Error Message|
 | -------- | -------- |
 | 201 | Permissions denied. |
 | 202 | The application is not a system application. |
@@ -773,9 +773,9 @@ Instructs the widget framework to make a widget updatable. After this API is cal
 
 **Error codes**
 
-For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Form Error Codes](errorcode-form.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Widget Error Codes](errorcode-form.md).
 
-| Error Code ID| Error Message|
+| ID| Error Message|
 | -------- | -------- |
 | 201 | Permissions denied. |
 | 202 | The application is not a system application. |
@@ -827,9 +827,9 @@ Instructs the widget framework to make a widget updatable. After this API is cal
 
 **Error codes**
 
-For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Form Error Codes](errorcode-form.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Widget Error Codes](errorcode-form.md).
 
-| Error Code ID| Error Message|
+| ID| Error Message|
 | -------- | -------- |
 | 201 | Permissions denied. |
 | 202 | The application is not a system application. |
@@ -876,9 +876,9 @@ Instructs the widget framework to make a widget not updatable. After this API is
 
 **Error codes**
 
-For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Form Error Codes](errorcode-form.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Widget Error Codes](errorcode-form.md).
 
-| Error Code ID| Error Message|
+| ID| Error Message|
 | -------- | -------- |
 | 201 | Permissions denied. |
 | 202 | The application is not a system application. |
@@ -931,9 +931,9 @@ Instructs the widget framework to make a widget not updatable. After this API is
 
 **Error codes**
 
-For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Form Error Codes](errorcode-form.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Widget Error Codes](errorcode-form.md).
 
-| Error Code ID| Error Message|
+| ID| Error Message|
 | -------- | -------- |
 | 201 | Permissions denied. |
 | 202 | The application is not a system application. |
@@ -980,7 +980,7 @@ Checks whether the system is ready. This API uses an asynchronous callback to re
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
-| Error Code ID| Error Message|
+| ID| Error Message|
 | -------- | -------- |
 | 202 | The application is not a system application.   |
 | 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed. |
@@ -1020,7 +1020,7 @@ Checks whether the system is ready. This API uses a promise to return the result
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
-| Error Code ID| Error Message|
+| ID| Error Message|
 | -------- | -------- |
 | 202 | The application is not a system application.   |
 
@@ -1059,9 +1059,9 @@ Obtains the widget information provided by all applications on the device (exclu
 
 **Error codes**
 
-For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Form Error Codes](errorcode-form.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Widget Error Codes](errorcode-form.md).
 
-| Error Code ID| Error Message|
+| ID| Error Message|
 | -------- | -------- |
 | 201 | Permissions denied. |
 | 202 | The application is not a system application. |
@@ -1106,9 +1106,9 @@ Obtains the widget information provided by all applications on the device (exclu
 
 **Error codes**
 
-For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Form Error Codes](errorcode-form.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Widget Error Codes](errorcode-form.md).
 
-| Error Code ID| Error Message|
+| ID| Error Message|
 | -------- | -------- |
 | 201 | Permissions denied. |
 | 202 | The application is not a system application. |
@@ -1151,9 +1151,9 @@ Obtains the widget information provided by a specified application on the device
 
 **Error codes**
 
-For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Form Error Codes](errorcode-form.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Widget Error Codes](errorcode-form.md).
 
-| Error Code ID| Error Message|
+| ID| Error Message|
 | -------- | -------- |
 | 201 | Permissions denied. |
 | 202 | The application is not a system application. |
@@ -1201,9 +1201,9 @@ Obtains the widget information provided by a specified application on the device
 
 **Error codes**
 
-For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Form Error Codes](errorcode-form.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Widget Error Codes](errorcode-form.md).
 
-| Error Code ID| Error Message|
+| ID| Error Message|
 | -------- | -------- |
 | 201 | Permissions denied. |
 | 202 | The application is not a system application. |
@@ -1256,9 +1256,9 @@ Obtains the widget information provided by a specified application on the device
 
 **Error codes**
 
-For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Form Error Codes](errorcode-form.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Widget Error Codes](errorcode-form.md).
 
-| Error Code ID| Error Message|
+| ID| Error Message|
 | -------- | -------- |
 | 201 | Permissions denied. |
 | 202 | The application is not a system application. |
@@ -1308,9 +1308,9 @@ Obtains the widget information provided by a specified application on the device
 
 **Error codes**
 
-For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Form Error Codes](errorcode-form.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Widget Error Codes](errorcode-form.md).
 
-| Error Code ID| Error Message|
+| ID| Error Message|
 | -------- | -------- |
 | 201 | Permissions denied. |
 | 202 | The application is not a system application.  |
@@ -1345,7 +1345,7 @@ try {
 
 deleteInvalidForms(formIds: Array&lt;string&gt;, callback: AsyncCallback&lt;number&gt;): void
 
-Deletes invalid widgets from the list. This API uses an asynchronous callback to return the result.
+Deletes widgets that are not in the valid widget list. This API uses an asynchronous callback to return the result.
 
 **Required permissions**: ohos.permission.REQUIRE_FORM
 
@@ -1355,14 +1355,14 @@ Deletes invalid widgets from the list. This API uses an asynchronous callback to
 
 | Name| Type   | Mandatory| Description   |
 | ------ | ------ | ---- | ------- |
-| formIds | Array&lt;string&gt; | Yes  | List of valid widget IDs.|
+| formIds | Array&lt;string&gt; | Yes  | List of valid widgets.|
 | callback | AsyncCallback&lt;number&gt; | Yes| Callback used to return the result. If the invalid widgets are deleted, **error** is undefined and **data** is the number of widgets deleted; otherwise, **error** is an error object.|
 
 **Error codes**
 
-For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Form Error Codes](errorcode-form.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Widget Error Codes](errorcode-form.md).
 
-| Error Code ID| Error Message|
+| ID| Error Message|
 | -------- | -------- |
 | 201 | Permissions denied. |
 | 202 | The application is not a system application. |
@@ -1414,9 +1414,9 @@ Deletes invalid widgets from the list. This API uses a promise to return the res
 
 **Error codes**
 
-For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Form Error Codes](errorcode-form.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Widget Error Codes](errorcode-form.md).
 
-| Error Code ID| Error Message|
+| ID| Error Message|
 | -------- | -------- |
 | 201 | Permissions denied. |
 | 202 | The application is not a system application. |
@@ -1461,9 +1461,9 @@ Obtains the widget state. This API uses an asynchronous callback to return the r
 
 **Error codes**
 
-For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Form Error Codes](errorcode-form.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Widget Error Codes](errorcode-form.md).
 
-| Error Code ID| Error Message|
+| ID| Error Message|
 | -------- | -------- |
 | 201 | Permissions denied. |
 | 202 | The application is not a system application. |
@@ -1527,9 +1527,9 @@ Obtains the widget state. This API uses a promise to return the result.
 
 **Error codes**
 
-For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Form Error Codes](errorcode-form.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Widget Error Codes](errorcode-form.md).
 
-| Error Code ID| Error Message|
+| ID| Error Message|
 | -------- | -------- |
 | 201 | Permissions denied. |
 | 202 | The application is not a system application. |
@@ -1590,7 +1590,7 @@ Subscribes to widget uninstall events. This API uses an asynchronous callback to
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
-| Error Code ID| Error Message|
+| ID| Error Message|
 | -------- | -------- |
 | 202 | The application is not a system application. |
 | 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed. |
@@ -1628,7 +1628,7 @@ Unsubscribes from widget uninstall events. This API uses an asynchronous callbac
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
-| Error Code ID| Error Message|
+| ID| Error Message|
 | -------- | -------- |
 | 202 | The application is not a system application. |
 | 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed. |
@@ -1663,9 +1663,9 @@ Instructs the widgets to make themselves visible. This API uses an asynchronous 
 
 **Error codes**
 
-For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Form Error Codes](errorcode-form.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Widget Error Codes](errorcode-form.md).
 
-| Error Code ID| Error Message|
+| ID| Error Message|
 | -------- | -------- |
 | 201 | Permissions denied. |
 | 202 | The application is not a system application. |
@@ -1718,9 +1718,9 @@ Instructs the widgets to make themselves visible. This API uses a promise to ret
 
 **Error codes**
 
-For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Form Error Codes](errorcode-form.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Widget Error Codes](errorcode-form.md).
 
-| Error Code ID| Error Message|
+| ID| Error Message|
 | -------- | -------- |
 | 201 | Permissions denied. |
 | 202 | The application is not a system application. |
@@ -1763,14 +1763,14 @@ Instructs the widgets to enable or disable updates. This API uses an asynchronou
 | Name| Type   | Mandatory| Description   |
 | ------ | ------ | ---- | ------- |
 | formIds | Array&lt;string&gt; | Yes  | List of widget IDs.|
-| isEnableUpdate | boolean | Yes  | Whether the widget can be updated.<br>**true**: The widget can be updated. **false**: The widget cannot be updated.|
+| isEnableUpdate | boolean | Yes  | Indicates whether the widget update state is enabled.<br>**true**: yes **false**: no|
 | callback | AsyncCallback&lt;void&gt; | Yes| Callback used to return the result. If the notification is sent, **error** is undefined; otherwise, **error** is an error object.|
 
 **Error codes**
 
-For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Form Error Codes](errorcode-form.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Widget Error Codes](errorcode-form.md).
 
-| Error Code ID| Error Message|
+| ID| Error Message|
 | -------- | -------- |
 | 201 | Permissions denied. |
 | 202 | The application is not a system application. |
@@ -1813,7 +1813,7 @@ Instructs the widgets to enable or disable updates. This API uses a promise to r
 | Name| Type   | Mandatory| Description   |
 | ------ | ------ | ---- | ------- |
 | formIds | Array&lt;string&gt; | Yes  | List of widget IDs.|
-| isEnableUpdate | boolean | Yes  | Whether the widget can be updated.<br>**true**: The widget can be updated.<br>**false**: The widget cannot be updated.|
+| isEnableUpdate | boolean | Yes  | Instructs the widgets to enable or disable updates.<br>**true**: yes<br>**false**: no|
 
 **Return value**
 
@@ -1823,9 +1823,9 @@ Instructs the widgets to enable or disable updates. This API uses a promise to r
 
 **Error codes**
 
-For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Form Error Codes](errorcode-form.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Widget Error Codes](errorcode-form.md).
 
-| Error Code ID| Error Message|
+| ID| Error Message|
 | -------- | -------- |
 | 201 | Permissions denied. |
 | 202 | The application is not a system application. |
@@ -1872,9 +1872,9 @@ Shares a specified widget with a remote device. This API uses an asynchronous ca
 
 **Error codes**
 
-For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Form Error Codes](errorcode-form.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Widget Error Codes](errorcode-form.md).
 
-| Error Code ID| Error Message|
+| ID| Error Message|
 | -------- | -------- |
 | 201 | Permissions denied. |
 | 202 | The application is not a system application. |
@@ -1928,9 +1928,9 @@ Shares a specified widget with a remote device. This API uses a promise to retur
 
 **Error codes**
 
-For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Form Error Codes](errorcode-form.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Widget Error Codes](errorcode-form.md).
 
-| Error Code ID| Error Message|
+| ID| Error Message|
 | -------- | -------- |
 | 201 | Permissions denied. |
 | 202 | The application is not a system application. |
@@ -1979,9 +1979,9 @@ Notifies that the privacy protection status of the specified widgets changes. Th
 
 **Error codes**
 
-For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Form Error Codes](errorcode-form.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Widget Error Codes](errorcode-form.md).
 
-| Error Code ID| Error Message|
+| ID| Error Message|
 | -------- | -------- |
 | 201 | Permissions denied. |
 | 202 | The application is not a system application. |
@@ -2033,9 +2033,9 @@ Notifies that the privacy protection status of the specified widgets changes. Th
 
 **Error codes**
 
-For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Form Error Codes](errorcode-form.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Widget Error Codes](errorcode-form.md).
 
-| Error Code ID| Error Message|
+| ID| Error Message|
 | -------- | -------- |
 | 201 | Permissions denied. |
 | 202 | The application is not a system application. |
@@ -2077,13 +2077,13 @@ Requests data from the widget provider. This API uses an asynchronous callback t
 | Name| Type   | Mandatory| Description   |
 | ------ | ------ | ---- | ------- |
 | formId | string | Yes  | Widget ID.|
-| callback | AsyncCallback\<Record\<string, Object> | Yes  | Callback used to return the API call result and the shared data.|
+| callback | AsyncCallback\<Record\<string, Object>> | Yes  | Callback used to return the API call result and the widget provider data.|
 
 **Error codes**
 
-For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Form Error Codes](errorcode-form.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Widget Error Codes](errorcode-form.md).
 
-| Error Code ID| Error Message|
+| ID| Error Message|
 | -------- | -------- |
 | 201 | Permissions denied. |
 | 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed. |
@@ -2099,7 +2099,7 @@ import { formHost } from '@kit.FormKit';
 
 let formId: string = '12400633174999288';
 try {
-  formHost.acquireFormData(formId, (error, data) => {
+  formHost.acquireFormData(formId, (error: BusinessError, data: Record<string, Object>) => {
     if (error) {
       console.error(`error, code: ${error.code}, message: ${error.message}`);
     } else {
@@ -2107,7 +2107,7 @@ try {
     }
   });
 } catch (error) {
-  console.error(`catch error, code: ${error.code}, message: ${error.message}`);
+  console.error(`catch error, code: ${(error as BusinessError).code}, message: ${(error as BusinessError).message}`);
 }
 ```
 
@@ -2133,13 +2133,13 @@ Requests data from the widget provider. This API uses a promise to return the re
 
 | Type               | Description                     |
 | ------------------- | ------------------------- |
-| Promise\<Record\<string, Object>>| Promise used to return the API call result and the shared data.|
+| Promise\<Record\<string, Object>> | Promise used to return the API call result and the widget provider data.|
 
 **Error codes**
 
-For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Form Error Codes](errorcode-form.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Widget Error Codes](errorcode-form.md).
 
-| Error Code ID| Error Message|
+| ID| Error Message|
 | -------- | -------- |
 | 201 | Permissions denied. |
 | 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed. |
@@ -2162,7 +2162,7 @@ try {
     console.error(`error, code: ${error.code}, message: ${error.message}`);
   });
 } catch (e) {
-  console.error(`catch error, code: ${e.code}, message: ${e.message}`);
+  console.error(`catch error, code: ${(e as BusinessError).code}, message: ${(e as BusinessError).message}`);
 }
 ```
 
@@ -2195,9 +2195,9 @@ Sets a router proxy for widgets and obtains the Want information required for re
 
 **Error codes**
 
-For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Form Error Codes](errorcode-form.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Widget Error Codes](errorcode-form.md).
 
-| Error Code ID| Error Message                                                    |
+| ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
 | 201      | Permissions denied.                                          |
 | 202      | The application is not a system application.                 |
@@ -2251,7 +2251,7 @@ struct CardExample {
               console.error(`set router proxy error, code: ${err.code}, message: ${err.message}`);
             })
           } catch (e) {
-            console.error(`formHost setRouterProxy, code: ${e.code}, message: ${e.message}`);
+            console.error(`formHost setRouterProxy, code: ${(e as BusinessError).code}, message: ${(e as BusinessError).message}`);
           }
         })
     }
@@ -2265,7 +2265,7 @@ struct CardExample {
 
 setRouterProxy(formIds: Array&lt;string&gt;, proxy: Callback&lt;Want&gt;): Promise&lt;void&gt;
 
-Sets a router proxy for widgets and obtains the Want information required for redirection. This API uses a promise to return the result. This API uses a promise to return the result.
+Sets a router proxy for widgets and obtains the Want information required for redirection. This API uses a promise to return the result.
 
 > **NOTE**
 >
@@ -2294,9 +2294,9 @@ Sets a router proxy for widgets and obtains the Want information required for re
 
 **Error codes**
 
-For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Form Error Codes](errorcode-form.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Widget Error Codes](errorcode-form.md).
 
-| Error Code ID| Error Message                                                    |
+| ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
 | 201      | Permissions denied.                                          |
 | 202      | The application is not a system application.                 |
@@ -2344,7 +2344,7 @@ struct CardExample {
               console.info('formHost recv router event.');
               // The widget host processes the redirection.
               this.context.startAbility(want, (err: BusinessError) => {
-                console.info(`formHost startAbility error, code: ${err.code}, message: ${err.message}`);
+                console.error(`formHost startAbility error, code: ${err.code}, message: ${err.message}`);
               });
             }).then(() => {
               console.info('formHost set router proxy success');
@@ -2377,13 +2377,13 @@ Clears the router proxy set for widgets. This API uses an asynchronous callback 
 | Name  | Type                     | Mandatory| Description                                                        |
 | -------- | ------------------------- | ---- | ------------------------------------------------------------ |
 | formIds  | Array&lt;string&gt;      | Yes  | Array of widget IDs.                                              |
-| callback | AsyncCallback&lt;void&gt; | Yes  | Callback used to return the result. If the router proxy is cleared, **error** is **undefined**; otherwise, an exception is thrown.|
+| callback | AsyncCallback&lt;void&gt; | Yes  | Callback used to return the result. If the operation is successful, **error** is **undefined**. Otherwise, an exception is thrown.|
 
 **Error codes**
 
-For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Form Error Codes](errorcode-form.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Widget Error Codes](errorcode-form.md).
 
-| Error Code ID| Error Message                                                    |
+| ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
 | 201      | Permissions denied.                                          |
 | 202      | The application is not a system application.                 |
@@ -2435,9 +2435,9 @@ Clears the router proxy set for widgets. This API uses a promise to return the r
 
 **Error codes**
 
-For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Form Error Codes](errorcode-form.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Widget Error Codes](errorcode-form.md).
 
-| Error Code ID| Error Message                                                    |
+| ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
 | 201      | Permissions denied.                                          |
 | 202      | The application is not a system application.                 |
@@ -2485,12 +2485,12 @@ Sets widgets to be recyclable. This API uses an asynchronous callback to return 
 
 **Error codes**
 
-For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Form Error Codes](errorcode-form.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Widget Error Codes](errorcode-form.md).
 
-| Error Code ID| Error Message                                                    |
+| ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
 | 201      | Permissions denied.                                          |
-| 202      | caller is not system app.                 |
+| 202      | The caller is not a system app.                |
 | 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed. |
 | 16500050 | IPC connection error.                            |
 | 16500060 | Service connection error. |
@@ -2540,12 +2540,12 @@ Sets widgets to be recyclable. This API uses a promise to return the result.
 
 **Error codes**
 
-For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Form Error Codes](errorcode-form.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Widget Error Codes](errorcode-form.md).
 
-| Error Code ID| Error Message                                                    |
+| ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
 | 201      | Permissions denied.                                          |
-| 202      | caller is not system app.                 |
+| 202      | The caller is not a system app.                |
 | 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed. |
 | 16500050 | IPC connection error.                            |
 | 16500060 | Service connection error. |
@@ -2572,7 +2572,7 @@ try {
 
 recoverForms(formIds: Array&lt;string&gt;, callback: AsyncCallback&lt;void&gt;): void
 
-Recovers widgets. This API uses an asynchronous callback to return the result.
+Recovers the specified widgets that have been recycled and updates their state to non‑recyclable. If a widget has not been recycled, its state is still updated to non‑recyclable. This API uses an asynchronous callback to return the result.
 
 **Model restriction**: This API can be used only in the stage model.
 
@@ -2589,12 +2589,12 @@ Recovers widgets. This API uses an asynchronous callback to return the result.
 
 **Error codes**
 
-For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Form Error Codes](errorcode-form.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Widget Error Codes](errorcode-form.md).
 
-| Error Code ID| Error Message                                                    |
+| ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
 | 201      | Permissions denied.                                          |
-| 202      | caller is not system app.                 |
+| 202      | The caller is not a system app.                |
 | 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed. |
 | 16500050 | IPC connection error.                            |
 | 16500060 | Service connection error. |
@@ -2644,12 +2644,12 @@ Recovers recycled widgets and updates their status to non-recyclable, or updates
 
 **Error codes**
 
-For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Form Error Codes](errorcode-form.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Widget Error Codes](errorcode-form.md).
 
-| Error Code ID| Error Message                                                    |
+| ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
 | 201      | Permissions denied.                                          |
-| 202      | caller is not system app.                 |
+| 202      | The caller is not a system app.                |
 | 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed. |
 | 16500050 | IPC connection error.                            |
 | 16500060 | Service connection error. |
@@ -2664,7 +2664,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 try {
   let formIds: string[] = ['12400633174999288'];
   formHost.recoverForms(formIds).then(() => {
-    console.info('recover forms success');
+    console.info('formHost recoverForms success');
   }).catch((err: BusinessError) => {
     console.error(`formHost recover forms error, code: ${err.code}, message: ${err.message}`);
   });
@@ -2699,9 +2699,9 @@ Recycles widgets, that is, reclaiming widget memory. This API uses a promise to 
 
 **Error codes**
 
-For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Form Error Codes](errorcode-form.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Widget Error Codes](errorcode-form.md).
 
-| Error Code ID| Error Message                                                    |
+| ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
 | 201      | Permissions denied.                                          |
 | 202      | The application is not a system application.                 |
@@ -2748,12 +2748,12 @@ Updates the widget location.
 
 **Error codes**
 
-For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Form Error Codes](errorcode-form.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Widget Error Codes](errorcode-form.md).
 
-| Error Code ID| Error Message                                                    |
+| ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
 | 201      | Permissions denied.                                          |
-| 202      | caller is not system app.                                    |
+| 202      | The caller is not a system app.                                   |
 | 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed. |
 | 16500050 | IPC connection error.                            |
 | 16500060 | Service connection error. |
@@ -2796,9 +2796,9 @@ Sets the result for the operation of adding a widget to the home screen.
 
 **Error codes**
 
-For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Form Error Codes](errorcode-form.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Widget Error Codes](errorcode-form.md).
 
-| Error Code ID| Error Message                                                    |
+| ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
 | 201      | Permissions denied.                                          |
 | 202      | The application is not a system application.                                    |
@@ -2849,12 +2849,12 @@ If an application is locked, its widget will also be locked and masked in a lock
 
 **Error codes**
 
-For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Form Error Codes](errorcode-form.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Widget Error Codes](errorcode-form.md).
 
-| Error Code ID| Error Message                                                    |
+| ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
 | 201      | Permissions denied.                                          |
-| 202      | caller is not a system app.                 |
+| 202      | The caller is not a system app.                |
 | 16500050 | IPC connection error.                            |
 | 16500060 | Service connection error. |
 | 16501000 | An internal functional error occurred.                       |
@@ -2900,7 +2900,7 @@ Subscribes to the interactive widget animation request event. This API uses an a
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
-| Error Code ID| Error Message                                                                                                 |
+| ID| Error Message                                                                                                 |
 |-------|-----------------------------------------------------------------------------------------------------------|
 | 202   | The application is not a system application.                                                              |
 
@@ -2940,7 +2940,7 @@ Unsubscribes from the interactive widget animation request event. This API uses 
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
-| Error Code ID| Error Message                                                                                               |
+| ID| Error Message                                                                                               |
 | --- |-----------------------------------------------------------------------------------------------------------|
 | 202 | The application is not a system application.                                                              |
 
@@ -2980,7 +2980,7 @@ Subscribes to the event of switching the interactive widget state. An interactiv
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
-| Error Code ID| Error Message                                                                                                 |
+| ID| Error Message                                                                                                 |
 |-------|-----------------------------------------------------------------------------------------------------------|
 | 202   | The application is not a system application.                                                              |
 
@@ -3020,7 +3020,7 @@ Unsubscribes from the event of switching the interactive widget state. An intera
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
-| Error Code ID| Error Message|
+| ID| Error Message|
 | -------- | -------- |
 | 202 | The application is not a system application. |
 
@@ -3054,13 +3054,13 @@ Subscribes to the event of requesting widget position and dimension. This API us
 | Name| Type   | Mandatory| Description                                                  |
 | ------ | ------ | ---- |------------------------------------------------------|
 | type | string | Yes  | Event callback type. The supported event is **'getFormRect'**, indicating requesting widget position and dimension.|
-| callback |[formInfo.GetFormRectInfoCallback](js-apis-app-form-formInfo-sys.md#getformrectinfocallback20) | Yes| Callback function used by the widget host to process the request and return the position and dimension of the widget relative to the upper-left corner of the screen. The unit is vp.|
+| callback |[formInfo.GetFormRectInfoCallback](js-apis-app-form-formInfo-sys.md#getformrectinfocallback20) | Yes| Callback function used by the widget host to process query requests and return the widget position relative to the upper-left corner of the screen and widget dimensions.|
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
-| Error Code ID| Error Message                                                                                                 |
+| ID| Error Message                                                                                                 |
 |-------|-----------------------------------------------------------------------------------------------------------|
 | 202   | The application is not a system application.                                                              |
 
@@ -3110,7 +3110,7 @@ Unsubscribes from the event of requesting widget position and dimension. This AP
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
-| Error Code ID| Error Message|
+| ID| Error Message|
 | -------- | -------- |
 | 202 | The application is not a system application. |
 
@@ -3149,12 +3149,12 @@ Updates the size of the widget.
 
 **Error codes**
 
-For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Form Error Codes](errorcode-form.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Widget Error Codes](errorcode-form.md).
 
-| Error Code ID| Error Message|
+| ID| Error Message|
 | -------- | -------- |
 | 201 | Permissions denied. |
-| 202 | caller is not system app. |
+| 202 | The caller is not a system app.|
 | 16501000 | An internal functional error occurred. |
 | 16501001 | The ID of the form to be operated does not exist. |
 | 16501012 | The dimension parameter is incorrect. |
@@ -3200,9 +3200,9 @@ Obtains the template widget information provided by all applications on the devi
 
 **Error codes**
 
-For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Form Error Codes](errorcode-form.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Widget Error Codes](errorcode-form.md).
 
-| Error Code ID| Error Message|
+| ID| Error Message|
 | -------- | -------- |
 | 201 | Permissions denied. |
 | 202 | The application is not a system application. |
@@ -3216,8 +3216,8 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   formHost.getAllTemplateFormsInfo().then((data: formInfo.FormInfo[]) => {
-    for (let formInfo of data) {
-      console.info(`getAllTemplateFormsInfo bundleName: ${formInfo.bundleName}, moduleName: ${formInfo.moduleName}, name: ${formInfo.name}`);
+    for (let info of data) {
+      console.info(`getAllTemplateFormsInfo bundleName: ${info.bundleName}, moduleName: ${info.moduleName}, name: ${info.name}`);
     }
   }).catch((error: BusinessError) => {
     console.error(`error, code: ${error.code}, message: ${error.message}`);
@@ -3255,9 +3255,9 @@ Obtains the template widget information provided by a specified application on t
 
 **Error codes**
 
-For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Form Error Codes](errorcode-form.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Widget Error Codes](errorcode-form.md).
 
-| Error Code ID| Error Message|
+| ID| Error Message|
 | -------- | -------- |
 | 201 | Permissions denied. |
 | 202 | The application is not a system application. |
@@ -3271,8 +3271,8 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   formHost.getTemplateFormsInfo('com.example.ohos.formjsdemo', 'entry').then((data: formInfo.FormInfo[]) => {
-    for (let formInfo of data) {
-      console.info(`getTemplateFormsInfo bundleName: ${formInfo.bundleName}, moduleName: ${formInfo.moduleName}, name: ${formInfo.name}`);
+    for (let info of data) {
+      console.info(`getTemplateFormsInfo bundleName: ${info.bundleName}, moduleName: ${info.moduleName}, name: ${info.name}`);
     }
   }).catch((error: BusinessError) => {
     console.error(`error, code: ${error.code}, message: ${error.message}`);
@@ -3304,9 +3304,9 @@ Subscribes to changes in the static configuration information of template widget
 
 **Error codes**
 
-For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Form Error Codes](errorcode-form.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Widget Error Codes](errorcode-form.md).
 
-| Error Code ID| Error Message|
+| ID| Error Message|
 | -------- | -------- |
 | 201 | Permissions denied. |
 | 202 | Permissions denied.Called by non-system application. |
@@ -3354,9 +3354,9 @@ Unsubscribes from changes in the static configuration information of template wi
 
 **Error codes**
 
-For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Form Error Codes](errorcode-form.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Widget Error Codes](errorcode-form.md).
 
-| Error Code ID| Error Message|
+| ID| Error Message|
 | -------- | -------- |
 | 201 | Permissions denied. |
 | 202 | Permissions denied.Called by non-system application. |
@@ -3404,9 +3404,9 @@ Obtains the list of widget IDs at a specified location on the device. This API u
 
 **Error codes**
 
-For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Form Error Codes](errorcode-form.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Widget Error Codes](errorcode-form.md).
 
-| Error Code ID| Error Message|
+| ID| Error Message|
 | -------- | -------- |
 | 201 | Permissions denied. |
 | 202 | The application is not a system application. |
@@ -3427,5 +3427,303 @@ try {
   });
 } catch (error) {
   console.error(`catch error, code: ${error.code}, message: ${error.message}`);
+}
+```
+
+## formHost.onGetWantParamsCallback
+
+onGetWantParamsCallback(callback: formInfo.GetWantParamsCallback): void
+
+Subscribes to widget parameter obtaining events. This API uses an asynchronous callback to return the result.
+
+**Since:** 26.0.0
+
+**Model restriction**: This API can be used only in the stage model.
+
+**Required permissions**: ohos.permission.GET_BUNDLE_INFO_PRIVILEGED
+
+**System capability**: SystemCapability.Ability.Form
+
+**System API**: This is a system API.
+
+**Parameters**
+
+| Name| Type   | Mandatory| Description   |
+| ------ | ------ | ---- | ------- |
+| callback | [formInfo.GetWantParamsCallback](js-apis-app-form-formInfo-sys.md#getwantparamscallback) | Yes  | Callback used to return the widget parameter information.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Widget Error Codes](errorcode-form.md).
+
+| ID| Error Message|
+| -------- | -------- |
+| 201 | Permissions denied. |
+| 202 | The application is not a system application. |
+| 16500050 | IPC connection error. |
+
+**Example**
+
+```ts
+import { formHost, formInfo } from '@kit.FormKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+try {
+  const callback = (formInfos: formInfo.FormInfo[]): Array<Record<string, Object>> => {
+    console.info(`onGetWantParamsCallback formInfos length: ${formInfos.length}`);
+    let wantParamsList: Array<Record<string, Object>> = [];
+    for (let formInfoItem of formInfos) {
+      let wantParams: Record<string, Object> = {};
+      wantParams['key'] = 'value';
+      wantParamsList.push(wantParams);
+    }
+    return wantParamsList;
+  };
+  formHost.onGetWantParamsCallback(callback);
+  console.info(`onGetWantParamsCallback success`);
+} catch (error) {
+  console.error(`catch error, code: ${(error as BusinessError).code}, message: ${(error as BusinessError).message}`);
+}
+```
+
+## formHost.offGetWantParamsCallback
+
+offGetWantParamsCallback(callback?: formInfo.GetWantParamsCallback): void
+
+Unsubscribes from widget parameter obtaining events. This API uses an asynchronous callback to return the result.
+
+**Since:** 26.0.0
+
+**Model restriction**: This API can be used only in the stage model.
+
+**Required permissions**: ohos.permission.GET_BUNDLE_INFO_PRIVILEGED
+
+**System capability**: SystemCapability.Ability.Form
+
+**System API**: This is a system API.
+
+**Parameters**
+
+| Name| Type   | Mandatory| Description   |
+| ------ | ------ | ---- | ------- |
+| callback | [formInfo.GetWantParamsCallback](js-apis-app-form-formInfo-sys.md#getwantparamscallback) | No  | Callback used to return the widget parameter information.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Widget Error Codes](errorcode-form.md).
+
+| ID| Error Message|
+| -------- | -------- |
+| 201 | Permissions denied. |
+| 202 | The application is not a system application. |
+| 16500050 | IPC connection error. |
+
+**Example**
+
+```ts
+import { formHost } from '@kit.FormKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+try {
+  formHost.offGetWantParamsCallback();
+  console.info(`offGetWantParamsCallback success`);
+} catch (error) {
+  console.error(`catch error, code: ${(error as BusinessError).code}, message: ${(error as BusinessError).message}`);
+}
+```
+
+## formHost.onUpdateFormsConfigCallback
+
+onUpdateFormsConfigCallback(callback: formInfo.UpdateFormsConfigCallback): void
+
+Subscribes to widget configuration update events. This API uses an asynchronous callback to return the result.
+
+**Since:** 26.0.0
+
+**Model restriction**: This API can be used only in the stage model.
+
+**Required permissions**: ohos.permission.GET_BUNDLE_INFO_PRIVILEGED
+
+**System capability**: SystemCapability.Ability.Form
+
+**System API**: This is a system API.
+
+**Parameters**
+
+| Name| Type   | Mandatory| Description   |
+| ------ | ------ | ---- | ------- |
+| callback | [formInfo.UpdateFormsConfigCallback](js-apis-app-form-formInfo-sys.md#updateformsconfigcallback) | Yes  | Callback used to return the widget parameter update information.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Widget Error Codes](errorcode-form.md).
+
+| ID| Error Message|
+| -------- | -------- |
+| 201 | Permissions denied. |
+| 202 | The application is not a system application. |
+| 16500050 | IPC connection error. |
+
+**Example**
+
+```ts
+import { formHost, formInfo } from '@kit.FormKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+try {
+  const callback = (configInfo: formInfo.FormCustomConfig[]): void => {
+    console.info(`onUpdateFormsConfigCallback configInfo length: ${configInfo.length}`);
+    for (let config of configInfo) {
+      console.info(`bundleName: ${config.bundleName}, moduleName: ${config.moduleName}`);
+    }
+  };
+  formHost.onUpdateFormsConfigCallback(callback);
+  console.info(`onUpdateFormsConfigCallback success`);
+} catch (error) {
+  console.error(`catch error, code: ${(error as BusinessError).code}, message: ${(error as BusinessError).message}`);
+}
+```
+
+## formHost.offUpdateFormsConfigCallback
+
+offUpdateFormsConfigCallback(callback?: formInfo.UpdateFormsConfigCallback): void
+
+Unsubscribes from widget configuration update events. This API uses an asynchronous callback to return the result.
+
+**Since:** 26.0.0
+
+**Model restriction**: This API can be used only in the stage model.
+
+**Required permissions**: ohos.permission.GET_BUNDLE_INFO_PRIVILEGED
+
+**System capability**: SystemCapability.Ability.Form
+
+**System API**: This is a system API.
+
+**Parameters**
+
+| Name| Type   | Mandatory| Description   |
+| ------ | ------ | ---- | ------- |
+| callback | [formInfo.UpdateFormsConfigCallback](js-apis-app-form-formInfo-sys.md#updateformsconfigcallback) | No  | Callback used to return the widget parameter update information.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Widget Error Codes](errorcode-form.md).
+
+| ID| Error Message|
+| -------- | -------- |
+| 201 | Permissions denied. |
+| 202 | The application is not a system application. |
+| 16500050 | IPC connection error. |
+
+**Example**
+
+```ts
+import { formHost } from '@kit.FormKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+try {
+  formHost.offUpdateFormsConfigCallback();
+  console.info(`offUpdateFormsConfigCallback success`);
+} catch (error) {
+  console.error(`catch error, code: ${(error as BusinessError).code}, message: ${(error as BusinessError).message}`);
+}
+```
+
+## formHost.onDeleteFormsCallback
+
+onDeleteFormsCallback(callback: formInfo.DeleteFormsCallback): void
+
+Subscribes to widget deletion events. This API uses an asynchronous callback to return the result.
+
+**Since:** 26.0.0
+
+**Model restriction**: This API can be used only in the stage model.
+
+**Required permissions**: ohos.permission.GET_BUNDLE_INFO_PRIVILEGED
+
+**System capability**: SystemCapability.Ability.Form
+
+**System API**: This is a system API.
+
+**Parameters**
+
+| Name| Type   | Mandatory| Description   |
+| ------ | ------ | ---- | ------- |
+| callback | [formInfo.DeleteFormsCallback](js-apis-app-form-formInfo-sys.md#deleteformscallback) | Yes  | Callback used to return the list of deleted widget IDs.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Widget Error Codes](errorcode-form.md).
+
+| ID| Error Message|
+| -------- | -------- |
+| 201 | Permissions denied. |
+| 202 | The application is not a system application. |
+| 16500050 | IPC connection error. |
+
+**Example**
+
+```ts
+import { formHost, formInfo } from '@kit.FormKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+try {
+  const callback = (formIds: string[]): void => {
+    console.info(`onDeleteFormsCallback formIds length: ${formIds.length}`);
+    for (let formId of formIds) {
+      console.info(`deleted formId: ${formId}`);
+    }
+  };
+  formHost.onDeleteFormsCallback(callback);
+  console.info(`onDeleteFormsCallback success`);
+} catch (error) {
+  console.error(`catch error, code: ${(error as BusinessError).code}, message: ${(error as BusinessError).message}`);
+}
+```
+
+## formHost.offDeleteFormsCallback
+
+offDeleteFormsCallback(callback?: formInfo.DeleteFormsCallback): void
+
+Unsubscribes from widget deletion events. This API uses an asynchronous callback to return the result.
+
+**Since:** 26.0.0
+
+**Model restriction**: This API can be used only in the stage model.
+
+**Required permissions**: ohos.permission.GET_BUNDLE_INFO_PRIVILEGED
+
+**System capability**: SystemCapability.Ability.Form
+
+**System API**: This is a system API.
+
+**Parameters**
+
+| Name| Type   | Mandatory| Description   |
+| ------ | ------ | ---- | ------- |
+| callback | [formInfo.DeleteFormsCallback](js-apis-app-form-formInfo-sys.md#deleteformscallback) | No  | Callback used to return the list of deleted widget IDs.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Widget Error Codes](errorcode-form.md).
+
+| ID| Error Message|
+| -------- | -------- |
+| 201 | Permissions denied. |
+| 202 | The application is not a system application. |
+| 16500050 | IPC connection error. |
+
+**Example**
+
+```ts
+import { formHost } from '@kit.FormKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+try {
+  formHost.offDeleteFormsCallback();
+  console.info(`offDeleteFormsCallback success`);
+} catch (error) {
+  console.error(`catch error, code: ${(error as BusinessError).code}, message: ${(error as BusinessError).message}`);
 }
 ```

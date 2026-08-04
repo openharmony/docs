@@ -6,7 +6,7 @@
 <!--Designer: @andeszhang-->
 <!--Tester: @liuhaonan2-->
 <!--Adviser: @hu-zhiqiong-->
-<!-- md-trans-meta sourceCommit=170a00b0e372b90729da5ee919e1bd4343fab341 translatedAt=2026-07-28T02:36:48.758Z pushedAt=2026-07-28T06:00:41.190Z -->
+<!-- md-trans-meta sourceCommit=0872f0c85c724bc927a95d8f0dcc76eacc3b64f2 translatedAt=2026-08-01T02:49:47.940Z pushedAt=2026-08-01T06:33:44.422Z -->
 
 ## When to Use
 
@@ -23,7 +23,7 @@ For details about the APIs, see [@ohos.vibrator (Vibrator)](../../reference/apis
 | stopVibration(stopMode: VibratorStopMode): Promise&lt;void&gt; | Stops vibration in the specified mode. This API uses a promise to return the result.                                               |
 | stopVibration(stopMode: VibratorStopMode, callback: AsyncCallback&lt;void&gt;): void | Stops vibration in the specified mode. This API uses an asynchronous callback to return the result.                                              |
 | stopVibration(): Promise&lt;void&gt;                         | Stops vibration in all modes. This API uses a promise to return the result.                                                 |
-| stopVibration(param?: VibratorInfoParam): Promise&lt;void&gt; | Stops vibration based on the specified vibrator parameters. This API uses a promise to return the result.                                |
+| stopVibration(param?: VibratorInfoParam): Promise&lt;void&gt; | Stops vibration based on the specified vibrator parameters. If no parameter is passed, stops vibration on all vibrators of the local device. This API uses a promise to return the result.                                |
 | stopVibration(callback: AsyncCallback&lt;void&gt;): void     | Stops vibration in all modes. This API uses an asynchronous callback to return the result.                                                |
 | isSupportEffect(effectId: string): Promise&lt;boolean&gt;    | Checks whether an effect ID is supported. This API uses a promise to return the result. The return value **true** means that the effect ID is supported, and **false** means the opposite.                       |
 | isSupportEffect(effectId: string, callback: AsyncCallback&lt;boolean&gt;): void | Checks whether an effect ID is supported. This API uses an asynchronous callback to return the result. The return value **true** means that the effect ID is supported, and **false** means the opposite.                      |
@@ -589,3 +589,11 @@ The following requirements must be met:
       console.error(`An unexpected error occurred. Code: ${e.code}, message: ${e.message}`);
     }
     ```
+
+## Samples
+
+The following samples are available:
+
+- [BasicVibration (ArkTS) (API9)](https://gitcode.com/openharmony/applications_app_samples/tree/master/code/DocsSample/Vibrator/BasicVibration)
+
+- [CustomHaptic (ArkTS) (Full SDK) (API10)](https://gitcode.com/openharmony/applications_app_samples/tree/master/code/DocsSample/Vibrator/CustomHaptic)

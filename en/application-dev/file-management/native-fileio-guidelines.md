@@ -1,14 +1,16 @@
-# Accessing Application Files (C/C++) 
+# Accessing Application Files (C/C++)
+
 <!--Kit: Core File Kit-->
 <!--Subsystem: FileManagement-->
 <!--Owner: @wangke25; @gsl_1234; @wuchengjun5-->
 <!--Designer: @gsl_1234; @wangke25-->
 <!--Tester: @liuhonggang123; @yue-ye2; @juxiaopang-->
 <!--Adviser: @jinqiuheng-->
+<!-- md-trans-meta sourceCommit=30b4207463e7d1146adb9b0c78d921b87bac29e1 translatedAt=2026-08-01T07:26:41.174Z pushedAt=2026-08-01T10:11:33.477Z -->
 
 ## When to Use
 
-The **FileIO** module provides some APIs for basic file operations. For details about other APIs, see [libc](../reference/native-lib/musl.md) and [libc++](../reference/native-lib/cpp.md).
+The FileIO module provides some basic file operation capabilities. For other capabilities, refer to the [libc standard library](../reference/native-lib/musl.md) and [C++ standard library](../reference/native-lib/cpp.md).
 
 ## Constraints
 
@@ -43,21 +45,24 @@ target_link_libraries(sample PUBLIC libohfileio.so)
 ```
 
 Call **OH_FileIO_GetFileLocation** to obtain the location of a file. <br>Example:
-```c
-void GetFileLocationExample() {
-    char *uri = "file://com.example.demo/data/storage/el2/base/files/test.txt";
+
+<!--@[get_file_location_example](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/CoreFile/NDKAppFileSample/entry/src/main/cpp/napi_init.cpp)-->
+
+``` C++
+void GetFileLocationExample(char *uri)
+{
     FileIO_FileLocation location;
     FileManagement_ErrCode ret = OH_FileIO_GetFileLocation(uri, strlen(uri), &location);
     if (ret == 0) {
         if (location == FileIO_FileLocation::LOCAL) {
-            printf("This file is on local.");
+            printf("Succeeded in getting file location, this file is on local.");
         } else if (location == FileIO_FileLocation::CLOUD) {
-            printf("This file is on cloud.");
+            printf("Succeeded in getting file location, this file is on cloud.");
         } else if (location == FileIO_FileLocation::LOCAL_AND_CLOUD) {
-            printf("This file is both on local and cloud.");
+            printf("Succeeded in getting file location, this file is on  local and cloud.");
         }
     } else {
-        printf("GetFileLocation failed, error code is %d", ret);
+        printf("Failed to get file location, error code is %d", ret);
     }
 }
 ```

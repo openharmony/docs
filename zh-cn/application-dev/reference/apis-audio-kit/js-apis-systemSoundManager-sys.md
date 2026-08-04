@@ -698,7 +698,7 @@ getGentleFileName(): string | null
 
 | 类型    | 说明  |
 |--------|-----|
-| string \| null | 柔和振动文件名，振动文件为Json格式。如果不存在柔和振动，则振动文件名为空。 |
+| string \| null | 柔和振动文件名，振动文件为JSON格式。如果不存在柔和振动，则振动文件名为空。 |
 
 **错误码：**
 
@@ -2415,7 +2415,7 @@ import { common } from '@kit.AbilityKit';
 
 // 请在组件内获取context，确保this.getUIContext().getHostContext()返回结果为UIAbilityContext。
 let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
-let hapticsUri = '/data/storage/el2/base/haptics/synchronized/alarms/test.json'; // 需更改为目标统铃音的振动的uri。
+let hapticsUri = '/data/storage/el2/base/haptics/synchronized/alarms/test.json'; // 需更改为目标系统铃音的振动的uri。
 
 let systemSoundManagerInstance: systemSoundManager.SystemSoundManager = systemSoundManager.getSystemSoundManager();
 systemSoundManagerInstance.openToneHaptics(context, hapticsUri).then((value: number) => {

@@ -163,7 +163,7 @@
 | 音乐         | STREAM_USAGE_MUSIC | 来电铃声     | STREAM_USAGE_RINGTONE | 开始响铃，音乐暂停播放。<br>不接通或者接通再挂断后，音乐恢复播放。 | 音乐应用注册焦点事件监听。接收到`INTERRUPT_HINT_PAUSE`事件时，直接暂停音乐播放，并更新UI界面。<br>当电话结束后，音频应用接收到`INTERRUPT_HINT_RESUME`事件，重新启动播放。 |
 | 音乐         | STREAM_USAGE_MUSIC | VoIP通话     | STREAM_USAGE_VOICE_COMMUNICATION | 通话接通时，音乐暂停播放。<br>通话挂断后，音乐恢复播放。 | 音乐应用注册焦点事件监听。<br>接收到`INTERRUPT_HINT_PAUSE`事件时，直接暂停音乐播放，并更新UI界面。<br>当通话结束后，音乐应用接收到`INTERRUPT_HINT_RESUME`事件，重新启动播放。 |
 
-**处理音频焦点示例:**
+**处理音频焦点示例：**
 
 为了带给用户更好的音频体验，针对不同的音频焦点事件内容，应用需要做出相应的处理操作。此处以[使用AudioRenderer开发音频播放功能(ArkTS)](using-audiorenderer-for-playback.md)为例，展示推荐应用采取的处理方法，提供伪代码供开发者参考。
 

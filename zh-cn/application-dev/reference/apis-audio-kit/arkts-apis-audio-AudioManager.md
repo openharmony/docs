@@ -685,7 +685,7 @@ getMinVolume(volumeType: AudioVolumeType): Promise&lt;number&gt;
 
 ```ts
 audioManager.getMinVolume(audio.AudioVolumeType.MEDIA).then((value: number) => {
-  console.info(`Promised returned to indicate that the minimum volume is obtained. ${value}`);
+  console.info(`Promise returned to indicate that the minimum volume is obtained. ${value}`);
 });
 ```
 
@@ -748,7 +748,7 @@ getMaxVolume(volumeType: AudioVolumeType): Promise&lt;number&gt;
 
 ```ts
 audioManager.getMaxVolume(audio.AudioVolumeType.MEDIA).then((data: number) => {
-  console.info('Promised returned to indicate that the maximum volume is obtained.');
+  console.info('Promise returned to indicate that the maximum volume is obtained.');
 });
 ```
 

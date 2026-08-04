@@ -8,7 +8,7 @@
 
 ## 概述
 
-XComponent组件的枚举类型定义。
+XComponent组件枚举类型定义，用于描述XComponent的渲染类型，支持EGL/OpenGLES绘制及媒体数据写入场景，可满足开发者定制内容单独或与组件合成展示的渲染需求。
 
 **引用文件：** <arkui/node_attributes/xcomponent.h>
 
@@ -47,4 +47,4 @@ enum ArkUI_XComponentType
 | 枚举项 | 描述 |
 | -- | -- |
 | ARKUI_XCOMPONENT_TYPE_SURFACE = 0 | 用于EGL/OpenGLES和媒体数据写入，开发者定制绘制内容单独显示在屏幕上。 |
-| ARKUI_XCOMPONENT_TYPE_TEXTURE = 2 | 用于EGL/OpenGLES和媒体数据写入，开发者定制绘制内容和XComponent组件内容合成后展示在屏幕上。 |
+| ARKUI_XCOMPONENT_TYPE_TEXTURE = 2 | 用于EGL/OpenGLES和媒体数据写入，开发者定制绘制内容和XComponent组件内容合成后显示在屏幕上。 |

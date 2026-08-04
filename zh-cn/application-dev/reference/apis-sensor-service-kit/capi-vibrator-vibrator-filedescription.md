@@ -3,7 +3,7 @@
 <!--Subsystem: Sensors-->
 <!--Owner: @dilligencer-->
 <!--Designer: @andeszhang-->
-<!--Tester: @liuhaonan2-->
+<!--Tester: @zhaofangyuan-->
 <!--Adviser: @hu-zhiqiong-->
 
 ```c

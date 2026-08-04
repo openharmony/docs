@@ -43,7 +43,7 @@ The user taps the device on an NFC tag without starting any application. Then, t
 
 - Reading or writing an NDEF tag to implement common features<br>
 
-An application can read custom tag content to start the AirTouch service, enabling direct access through touch-based services for fragmented user scenarios such as NFC tap ordering, payment, and event promotion. For detailed application integration guidance and tag production, see [AirTouch Service](https://developer.huawei.com/consumer/cn/airtouch/). For more NDEF tag format specifications, see the [NFC Forum](https://nfc-forum.org/).
+An application can read custom tag content to start the AirTouch service, enabling direct access through touch-based services for fragmented user scenarios such as NFC tap ordering, payment, and event promotion. For more NDEF tag format specifications, see the [NFC Forum](https://nfc-forum.org/).
 
 - Constraints<br>
 

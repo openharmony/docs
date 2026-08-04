@@ -277,7 +277,7 @@ export default class MyAbility extends UIAbility {
 | WINDOW_MODE_FULLSCREEN      | 1   | 全屏模式。仅在2in1和Tablet设备上生效。  |
 | WINDOW_MODE_SPLIT_PRIMARY   | 100 | 支持应用内拉起Ability时设置为分屏，左侧分屏。仅在Tablet设备、PC/2in1设备，以及支持横屏桌面且处于展开状态的折叠屏设备上生效。   |
 | WINDOW_MODE_SPLIT_SECONDARY | 101 | 支持应用内拉起Ability时设置为分屏，右侧分屏。仅在Tablet设备、PC/2in1设备，以及支持横屏桌面且处于展开状态的折叠屏设备上生效。   |
-| WINDOW_MODE_SPLIT | 105 | 支持应用内拉起Ability时设置为分屏，新增窗口默认显示在焦点窗口右侧。仅在折叠屏和Tablet设备上生效。<br>**起始版本：** 26.0.0<br>**原子化服务API：** 从API版本26.0.0开始，该接口支持在原子化服务中使用。   |
+| WINDOW_MODE_SPLIT | 105 | 支持应用内拉起Ability时设置为分屏，新增窗口默认显示在焦点窗口右侧。仅在折叠屏和Tablet设备上生效。<br>**起始版本：** 26.0.0   |
 
 **示例：**
 

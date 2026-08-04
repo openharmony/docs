@@ -13,8 +13,10 @@ LiveFormExtensionAbility（互动卡片扩展能力）模块提供互动卡片�
 > 本模块首批接口从API version 20开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 >
 > 本模块接口仅可在Stage模型下使用。
->
-> 本模块设置了不允许调用的API名单，调用名单中的API将导致功能异常，详情请参见[附录](#附录)。
+
+## 约束限制
+
+为保障系统安全性和稳定性，防止LiveFormExtensionAbility滥用系统资源，系统对其能力进行管控，不支持部分模块的引用，详情请参考[附录](js-apis-app-form-LiveFormExtensionAbility.md#附录)。
 
 ## 导入模块
 
@@ -123,11 +125,11 @@ export default class LiveFormExtAbility extends LiveFormExtensionAbility {
 
 ## 附录
 
-本模块不允许调用的API名单如下。
+LiveFormExtensionAbility不支持以下模块的引用。
 
 | Kit名称 | 模块名称 |
 | ------- | ------- |
-| AbilityKit | [@ohos.ability.featureAbility (FeatureAbility模块)](../apis-ability-kit/js-apis-ability-featureAbility.md)<br>[@ohos.ability.particleAbility (ParticleAbility模块)](../apis-ability-kit/js-apis-ability-particleAbility.md)<br>[@ohos.bundle.launcherBundleManager (launcherBundleManager模块)](../apis-ability-kit/js-apis-launcherBundleManager.md)<br>[@ohos.continuation.continuationManager (流转/协同管理)](../apis-ability-kit/js-apis-continuation-continuationManager.md)<br><!--Del-->[@ohos.app.ability.quickFixManager (quickFixManager)(系统接口)](../apis-ability-kit/js-apis-app-ability-quickFixManager-sys.md)<br>[@ohos.bundle.bundleMonitor (bundleMonitor模块)(系统接口)](../apis-ability-kit/js-apis-bundleMonitor-sys.md)<br>[@ohos.bundle.distributedBundleManager (distributedBundleManager模块)(系统接口)](../apis-ability-kit/js-apis-distributedBundleManager-sys.md)<br>[@ohos.bundle.freeInstall (freeInstall模块)(系统接口)](../apis-ability-kit/js-apis-freeInstall-sys.md)<br>[@ohos.bundle.innerBundleManager (innerBundleManager模块)(系统接口)](../apis-ability-kit/js-apis-Bundle-InnerBundleManager-sys.md)<br>[@ohos.bundle.installer (installer模块)(系统接口)](../apis-ability-kit/js-apis-installer-sys.md)<br>[@ohos.distributedBundle (分布式包管理)(系统接口)](../apis-ability-kit/js-apis-Bundle-distributedBundle-sys.md)<br>[@ohos.distributedMissionManager (分布式任务管理)(系统接口)](../apis-ability-kit/js-apis-distributedMissionManager-sys.md)<br>[@ohos.privacyManager (隐私管理)(系统接口)](../apis-ability-kit/js-apis-privacyManager-sys.md)<!--DelEnd--> |
+| AbilityKit | [Context (Stage模型的上下文基类)](../apis-ability-kit/js-apis-inner-application-context.md)<br>[UIAbilityContext](../apis-ability-kit/js-apis-inner-application-uiAbilityContext.md)<br>[@ohos.ability.featureAbility (FeatureAbility模块)](../apis-ability-kit/js-apis-ability-featureAbility.md)<br>[@ohos.ability.particleAbility (ParticleAbility模块)](../apis-ability-kit/js-apis-ability-particleAbility.md)<br>[@ohos.bundle.launcherBundleManager (launcherBundleManager模块)](../apis-ability-kit/js-apis-launcherBundleManager.md)<br>[@ohos.continuation.continuationManager (流转/协同管理)](../apis-ability-kit/js-apis-continuation-continuationManager.md)<br><!--Del-->[ServiceExtensionContext (系统接口)](../apis-ability-kit/js-apis-inner-application-serviceExtensionContext-sys.md)<br>[@ohos.app.ability.quickFixManager (quickFixManager)(系统接口)](../apis-ability-kit/js-apis-app-ability-quickFixManager-sys.md)<br>[@ohos.bundle.bundleMonitor (bundleMonitor模块)(系统接口)](../apis-ability-kit/js-apis-bundleMonitor-sys.md)<br>[@ohos.bundle.distributedBundleManager (distributedBundleManager模块)(系统接口)](../apis-ability-kit/js-apis-distributedBundleManager-sys.md)<br>[@ohos.bundle.freeInstall (freeInstall模块)(系统接口)](../apis-ability-kit/js-apis-freeInstall-sys.md)<br>[@ohos.bundle.innerBundleManager (innerBundleManager模块)(系统接口)](../apis-ability-kit/js-apis-Bundle-InnerBundleManager-sys.md)<br>[@ohos.bundle.installer (installer模块)(系统接口)](../apis-ability-kit/js-apis-installer-sys.md)<br>[@ohos.distributedBundle (分布式包管理)(系统接口)](../apis-ability-kit/js-apis-Bundle-distributedBundle-sys.md)<br>[@ohos.distributedMissionManager (分布式任务管理)(系统接口)](../apis-ability-kit/js-apis-distributedMissionManager-sys.md)<br>[@ohos.privacyManager (隐私管理)(系统接口)](../apis-ability-kit/js-apis-privacyManager-sys.md)<!--DelEnd--> |
 | BasicServicesKit | [@ohos.account.appAccount (应用账号管理)](../apis-basic-services-kit/js-apis-appAccount.md)<br>[@ohos.account.distributedAccount (分布式账号管理)](../apis-basic-services-kit/js-apis-distributed-account.md)<br>[@ohos.account.osAccount (系统账号管理)](../apis-basic-services-kit/js-apis-osAccount.md)<br>[@ohos.pasteboard (剪贴板)](../apis-basic-services-kit/js-apis-pasteboard.md)<br>[@ohos.request (上传下载)](../apis-basic-services-kit/js-apis-request.md)<br>[@ohos.wallpaper (壁纸)](../apis-basic-services-kit/js-apis-wallpaper.md)<!--Del--><br>[@ohos.update (升级)(系统接口)](../apis-basic-services-kit/js-apis-update-sys.md)<!--DelEnd--> |
 | BackgroundTasksKit | [@ohos.backgroundTaskManager (后台任务管理)](../apis-backgroundtasks-kit/js-apis-backgroundTaskManager.md)<br>[@ohos.resourceschedule.backgroundTaskManager (后台任务管理)](../apis-backgroundtasks-kit/js-apis-resourceschedule-backgroundTaskManager.md)<br>[@ohos.reminderAgent (后台代理提醒)](../apis-backgroundtasks-kit/js-apis-reminderAgent.md)<br>[@ohos.reminderAgentManager (后台代理提醒)](../apis-backgroundtasks-kit/js-apis-reminderAgentManager.md)<!--Del--><br>[@ohos.resourceschedule.usageStatistics (设备使用信息统计)(系统接口)](../apis-backgroundtasks-kit/js-apis-resourceschedule-deviceUsageStatistics-sys.md)<!--DelEnd--> |
 | CalendarKit | [@ohos.calendarManager (日程管理能力)](../apis-calendar-kit/js-apis-calendarManager.md) |

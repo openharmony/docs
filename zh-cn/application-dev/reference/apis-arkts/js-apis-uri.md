@@ -111,7 +111,7 @@ console.info(uriObj4.query); // foo=1&bar=2
 const uriObj5 = new uri.URI('dataability:///com.example.DataAbility');
 console.info(uriObj5.host); // null
 console.info(uriObj5.fragment); // null
-console.info(uriObj5.path); // /com.example.DataAbility:
+console.info(uriObj5.path); // /com.example.DataAbility
 console.info(uriObj5.scheme); // dataability
 console.info(uriObj5.userInfo); // null
 console.info(uriObj5.port); // -1

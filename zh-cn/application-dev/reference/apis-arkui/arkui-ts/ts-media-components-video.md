@@ -1290,7 +1290,7 @@ interface FullscreenObject {
 
 本示例展示VideoControllerAsync的[start](#start-1)、[pause](#pause-1)、[stop](#stop-1)、[reset](#reset)接口用法，通过Promise异步回调获取命令执行状态。
 
-从API version 26.0.0开始，新增VideoControllerAsync控制器及[start](#start-1)、[pause](#pause-1)、[stop](#stop-1)、[reset](#reset)接口。
+从API版本26.0.0开始，新增VideoControllerAsync控制器及[start](#start-1)、[pause](#pause-1)、[stop](#stop-1)、[reset](#reset)接口。
 
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';

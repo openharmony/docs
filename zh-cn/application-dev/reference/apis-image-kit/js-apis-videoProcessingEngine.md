@@ -2,7 +2,7 @@
 
 <!--Kit: Image Kit-->
 <!--Subsystem: Multimedia-->
-<!--Owner: @pxh123456-->
+<!--Owner: @zy_194-->
 <!--Designer: @gongzheng92-->
 <!--Tester: @gongzheng92-->
 <!--Adviser: @w_Machine_cc-->
@@ -39,7 +39,7 @@ initializeEnvironment(): Promise\<void>
 
 **错误码：**
 
-以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)和[视频处理引擎错误码](errorcode-videoprocessingengine.md)
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[视频处理引擎错误码](errorcode-videoprocessingengine.md)。
 
 
 | 错误码ID  | 错误信息  |
@@ -55,7 +55,7 @@ initializeEnvironment(): Promise\<void>
 import { videoProcessingEngine } from '@kit.ImageKit';
 
 async function initializeEnvironment() {
-  videoProcessingEngine.initializeEnvironment();
+  await videoProcessingEngine.initializeEnvironment();
 }
 ```
 
@@ -77,7 +77,7 @@ deinitializeEnvironment(): Promise\<void>
 
 **错误码：**
 
-以下错误码的详细介绍请参见[视频处理引擎错误码](errorcode-videoprocessingengine.md)
+以下错误码的详细介绍请参见[视频处理引擎错误码](errorcode-videoprocessingengine.md)。
 
 | 错误码ID  | 错误信息  |
 | :------------ | :------------ |
@@ -89,8 +89,8 @@ deinitializeEnvironment(): Promise\<void>
 import { videoProcessingEngine } from '@kit.ImageKit';
 
 async function deinitializeEnvironment() {
-  videoProcessingEngine.initializeEnvironment();
-  videoProcessingEngine.deinitializeEnvironment();
+  await videoProcessingEngine.initializeEnvironment();
+  await videoProcessingEngine.deinitializeEnvironment();
 }
 ```
 
@@ -112,7 +112,7 @@ create(): ImageProcessor
 
 **错误码：**
 
-以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)和[视频处理引擎错误码](errorcode-videoprocessingengine.md)
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[视频处理引擎错误码](errorcode-videoprocessingengine.md)。
 
 | 错误码ID  | 错误信息  |
 | :------------ | :------------ |
@@ -126,7 +126,7 @@ create(): ImageProcessor
 import { videoProcessingEngine } from '@kit.ImageKit';
 
 async function create() {
-  videoProcessingEngine.initializeEnvironment();
+  await videoProcessingEngine.initializeEnvironment();
   let imageProcessor = videoProcessingEngine.create() as videoProcessingEngine.ImageProcessor;
 }
 ```
@@ -167,7 +167,7 @@ enhanceDetail(sourceImage: image.PixelMap, width: number, height: number, level?
 
 **错误码：**
 
-以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)和[视频处理引擎错误码](errorcode-videoprocessingengine.md)
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[视频处理引擎错误码](errorcode-videoprocessingengine.md)。
 
 | 错误码ID  | 错误信息  |
 | :------------ | :------------ |
@@ -181,10 +181,10 @@ enhanceDetail(sourceImage: image.PixelMap, width: number, height: number, level?
 import { image, videoProcessingEngine } from '@kit.ImageKit';
 
 async function enhanceDetail(sourceImage: image.PixelMap, width: number, height: number) {
-  videoProcessingEngine.initializeEnvironment();
+  await videoProcessingEngine.initializeEnvironment();
   let imageProcessor = videoProcessingEngine.create() as videoProcessingEngine.ImageProcessor;
   // 示例：width可配置为1024，height可配置为1280。
-  let enhancedPixelmap: Promise<image.PixelMap> =
+  let enhancedPixelMap: Promise<image.PixelMap> =
     imageProcessor.enhanceDetail(sourceImage, width, height, videoProcessingEngine.QualityLevel.HIGH);
 }
 ```
@@ -204,7 +204,7 @@ enhanceDetail(sourceImage: image.PixelMap, scale: number, level?: QualityLevel):
 |  参数名 | 类型  | 必填  | 说明  |
 | :------------ | :------------ | :------------ | :------------ |
 |  sourceImage | [image.PixelMap](arkts-apis-image-PixelMap.md)  | 是  | 输入图像，内存类型需为DMA内存，具体情况请参考[PixelMap的内存类型介绍](../../media/image/image-allocator-type.md#内存类型介绍)。  |
-|  scale |  number |  是 |  目标缩放比例。取值范围(0.0, 32.0]（在满足[上述分辨率范围](#enhancedetail)的前提下，最高支持32倍放大）。 |
+|  scale |  number |  是 |  目标缩放比例。取值范围(0.0, 32.0]。 |
 |  level | [QualityLevel](#qualitylevel)| 否  |  算法档位（HIGH、MEDIUM、LOW、NONE），默认为NONE。 |
 
 **返回值：**
@@ -215,7 +215,7 @@ enhanceDetail(sourceImage: image.PixelMap, scale: number, level?: QualityLevel):
 
 **错误码：**
 
-以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)和[视频处理引擎错误码](errorcode-videoprocessingengine.md)
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[视频处理引擎错误码](errorcode-videoprocessingengine.md)。
 
 | 错误码ID  | 错误信息  |
 | :------------ | :------------ |
@@ -229,10 +229,10 @@ enhanceDetail(sourceImage: image.PixelMap, scale: number, level?: QualityLevel):
 import { image, videoProcessingEngine } from '@kit.ImageKit';
 
 async function enhanceDetail(sourceImage: image.PixelMap, scale: number) {
-  videoProcessingEngine.initializeEnvironment();
+  await videoProcessingEngine.initializeEnvironment();
   let imageProcessor = videoProcessingEngine.create() as videoProcessingEngine.ImageProcessor;
   // 示例：scale可配置为2.0。
-  let enhancedPixelmap: Promise<image.PixelMap> =
+  let enhancedPixelMap: Promise<image.PixelMap> =
     imageProcessor.enhanceDetail(sourceImage, scale, videoProcessingEngine.QualityLevel.HIGH);
 }
 ```
@@ -264,7 +264,7 @@ enhanceDetailSync(sourceImage: image.PixelMap, width: number, height: number, le
 
 **错误码：**
 
-以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)和[视频处理引擎错误码](errorcode-videoprocessingengine.md)
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[视频处理引擎错误码](errorcode-videoprocessingengine.md)。
 
 | 错误码ID  | 错误信息  |
 | :------------ | :------------ |
@@ -278,11 +278,11 @@ enhanceDetailSync(sourceImage: image.PixelMap, width: number, height: number, le
 ```ts
 import { image, videoProcessingEngine } from '@kit.ImageKit';
 
-async function enhanceDetailSync(sourceImage: image.PixelMap, width: number, height: number) {
+sync function enhanceDetailSync(sourceImage: image.PixelMap, width: number, height: number) {
   videoProcessingEngine.initializeEnvironment();
   let imageProcessor = videoProcessingEngine.create() as videoProcessingEngine.ImageProcessor;
   // 示例：width可配置为1024，height可配置为1280。
-  let enhancedPixelmap: image.PixelMap = imageProcessor.enhanceDetailSync(
+  let enhancedPixelMap: image.PixelMap = imageProcessor.enhanceDetailSync(
     sourceImage, width, height, videoProcessingEngine.QualityLevel.HIGH);
 }
 ```
@@ -302,7 +302,7 @@ enhanceDetailSync(sourceImage: image.PixelMap, scale: number, level?: QualityLev
 |  参数名 | 类型  | 必填  | 说明  |
 | :------------ | :------------ | :------------ | :------------ |
 |  sourceImage | [image.PixelMap](arkts-apis-image-PixelMap.md)  | 是  | 输入图像，内存类型需为DMA内存，具体情况请参考[PixelMap的内存类型介绍](../../media/image/image-allocator-type.md#内存类型介绍)。  |
-|  scale |  number |  是 |  目标缩放比例。取值范围(0.0, 32.0]（在满足[上述分辨率范围](#enhancedetail)的前提下，最高支持32倍放大）。 |
+|  scale |  number |  是 |  目标缩放比例。取值范围(0.0, 32.0]。 |
 |  level | [QualityLevel](#qualitylevel)| 否  |  算法档位（HIGH、MEDIUM、LOW、NONE），默认为NONE。 |
 
 **返回值：**
@@ -313,7 +313,7 @@ enhanceDetailSync(sourceImage: image.PixelMap, scale: number, level?: QualityLev
 
 **错误码：**
 
-以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)和[视频处理引擎错误码](errorcode-videoprocessingengine.md)
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[视频处理引擎错误码](errorcode-videoprocessingengine.md)。
 
 | 错误码ID  | 错误信息  |
 | :------------ | :------------ |
@@ -327,11 +327,11 @@ enhanceDetailSync(sourceImage: image.PixelMap, scale: number, level?: QualityLev
 ```ts
 import { image, videoProcessingEngine } from '@kit.ImageKit';
 
-async function enhanceDetailSync(sourceImage: image.PixelMap, scale: number) {
+sync function enhanceDetailSync(sourceImage: image.PixelMap, scale: number) {
   videoProcessingEngine.initializeEnvironment();
   let imageProcessor = videoProcessingEngine.create() as videoProcessingEngine.ImageProcessor;
   // 示例：scale可配置为2.0。
-  let enhancedPixelmap: image.PixelMap = imageProcessor.enhanceDetailSync(
+  let enhancedPixelMap: image.PixelMap = imageProcessor.enhanceDetailSync(
     sourceImage, scale, videoProcessingEngine.QualityLevel.HIGH);
 }
 ```

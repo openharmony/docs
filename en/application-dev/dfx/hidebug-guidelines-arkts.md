@@ -2,12 +2,13 @@
 
 <!--Kit: Performance Analysis Kit-->
 <!--Subsystem: HiviewDFX-->
-<!--Owner: @hello_harmony; @yu_haoqiaida-->
-<!--Designer: @kutcherzhou1-->
+<!--Owner: @leiguangyu-->
+<!--Designer: @mgce1-->
 <!--Tester: @gcw_KuLfPSbe-->
-<!--Adviser: @foryourself-->
+<!--Adviser: @jinqiuheng-->
+<!-- md-trans-meta sourceCommit=44da34c75e0877dd26e067a23f1dc0303066fdbb translatedAt=2026-07-31T01:29:12.416Z pushedAt=2026-07-31T07:06:14.705Z -->
 
-The HiDebug ArkTS APIs are independent. You can call them to obtain debugging information. For details about how to call the APIs, see the examples in [@ohos.hidebug (HiDebug)](../reference/apis-performance-analysis-kit/js-apis-hidebug.md).
+HiDebug ArkTS APIs are self-contained and can be called directly when debugging information is needed. For details about how to call these APIs, refer to the examples in [@ohos.hidebug](../reference/apis-performance-analysis-kit/js-apis-hidebug.md).
 
 ## How to Develop
 
@@ -18,15 +19,18 @@ This topic describes how to call the HiDebug ArkTS API to obtain the system CPU 
 2. In the **Project** window, click **entry** > **src** > **main** > **ets** > **pages** to open the **Index.ets** file.
 
    Import the required dependencies.
+
    <!-- @[TestHidebugArk_Import](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/PerformanceAnalysisKit/HiDebugTool/entry/src/main/ets/pages/Index.ets) -->
-   
+
    ``` TypeScript
    import { BusinessError } from '@kit.BasicServicesKit';
    import { hidebug, hilog } from '@kit.PerformanceAnalysisKit';
    ```
+
    Define the test method.
+
    <!-- @[TestHidebugArk_Function](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/PerformanceAnalysisKit/HiDebugTool/entry/src/main/ets/pages/Index.ets) -->
-   
+
    ``` TypeScript
    function testHiDebugArk () { // Implement the API as required.
      try {
@@ -39,8 +43,9 @@ This topic describes how to call the HiDebug ArkTS API to obtain the system CPU 
    ```
 
    Add a button to trigger the API call.
+
    <!-- @[TestHidebugArk_Button](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/PerformanceAnalysisKit/HiDebugTool/entry/src/main/ets/pages/Index.ets) -->
-   
+
    ``` TypeScript
    Button('testHiDebugArk')
      .type(ButtonType.Capsule)
