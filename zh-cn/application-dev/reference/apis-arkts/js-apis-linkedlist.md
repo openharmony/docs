@@ -839,7 +839,7 @@ getFirst(): T
 
 | 类型 | 说明 |
 | -------- | -------- |
-| T | 返回对应元素，如果元素为undefined则返回undefined，为null则返回null。 |
+| T | 返回对应元素，若元素为空则返回undefined。 |
 
 **错误码：**
 

@@ -2,10 +2,11 @@
 
 <!--Kit: Performance Analysis Kit-->
 <!--Subsystem: HiviewDFX-->
-<!--Owner: @lu-tao-->
-<!--Designer: @martin-duan-->
+<!--Owner: @Lutao98-->
+<!--Designer: @martin_duan-->
 <!--Tester: @gcw_KuLfPSbe-->
-<!--Adviser: @foryourself-->
+<!--Adviser: @jinqiuheng-->
+<!-- md-trans-meta sourceCommit=44da34c75e0877dd26e067a23f1dc0303066fdbb translatedAt=2026-07-31T01:28:27.885Z pushedAt=2026-07-31T06:55:39.479Z -->
 
 ## Overview
 
@@ -29,7 +30,7 @@ HiChecker is provided to check issues that may be easily ignored during applicat
 
 ## Available APIs
 
-The check APIs are provided by the HiChecker module. For details about the APIs, see [@ohos.hichecker (HiChecker)](../reference/apis-performance-analysis-kit/js-apis-hichecker.md).
+The detection mode interfaces are provided by the HiChecker module. For details about the APIs, see [@ohos.hichecker](../reference/apis-performance-analysis-kit/js-apis-hichecker.md).
 
 | API| Description|
 | -------- | -------- |
@@ -45,8 +46,9 @@ After the application startup execution page is loaded, the check starts. After 
 To detect time-consuming function calls and record them in logs, perform the following steps:
 
 1. Create an ArkTS application project. In the **Project** window, click **entry > src > main > ets > entryability** to open the **EntryAbility.ets** file. After the page is loaded, call the HiChecker to add check rules. The sample code is as follows:
+
    <!-- @[HiChecker](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/PerformanceAnalysisKit/PerformanceAnalysisTool/entry/src/main/ets/entryability/EntryAbility.ets) -->
-   
+
    ``` TypeScript
    import { AbilityConstant, UIAbility, Want } from '@kit.AbilityKit';
    import { hichecker, hilog } from '@kit.PerformanceAnalysisKit';
@@ -57,11 +59,11 @@ To detect time-consuming function calls and record them in logs, perform the fol
      onCreate(want: Want, launchParam: AbilityConstant.LaunchParam): void {
         // Add a check rule. For details about the rule, see HiChecker.
        hichecker.addCheckRule(hichecker.RULE_CAUTION_PRINT_LOG|hichecker.RULE_THREAD_CHECK_SLOW_PROCESS);
-       let filePath: string = this.context.cacheDir + '/test.JPG';
-       const imageSourceApi: image.ImageSource = image.createImageSource(filePath);
-       const imagePackerApi = image.createImagePacker();
+       let filePath: string = this.context.filesDir + '/test.JPG';
+       const imageSourceObj: image.ImageSource = image.createImageSource(filePath);
+       const imagePackerObj: image.ImagePacker = image.createImagePacker();
        let packOpts: image.PackingOption = { format:"image/jpeg", quality:98 };
-       imagePackerApi.packing(imageSourceApi, packOpts);
+       imagePackerObj.packToData(imageSourceObj, packOpts);
        // The preceding codes trigger the check rule through the image subsystem.
        hilog.info(0x0000, 'testTag', '%{public}s', 'Ability onCreate');
      }
@@ -100,7 +102,7 @@ To detect time-consuming function calls and record them in logs, perform the fol
    };
    ```
 
-2. Install and run the HAP. Use the Log plug-in of DevEco Studio to filter logs containing the keyword **HICHECKER** or run the **hdc shell "hilog | grep HICHECKER"** command. If the following call stack information is displayed, the check is successful (the call stack is the one that triggers the check rule).
+2. After installing and running the HAP, filter logs with the `HICHECKER` keyword using the DevEco Studio Log plugin, or query logs by running the `hdc shell "hilog | grep HICHECKER"` command. The following call stack information indicates successful detection (the call stack is the one at the time of detection triggering).
 
    ```shell
    08-05 23:11:07.206  1799  1799 I C02d0b/HICHECKER: StackTrace:

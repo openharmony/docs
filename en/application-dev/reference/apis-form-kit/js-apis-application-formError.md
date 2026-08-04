@@ -1,10 +1,12 @@
 # @ohos.application.formError (formError)
+
 <!--Kit: Form Kit-->
 <!--Subsystem: Ability-->
 <!--Owner: @Qian-Win-->
 <!--Designer: @cx983299475-->
 <!--Tester: @mahailong123456-->
 <!--Adviser: @HelloShuo-->
+<!-- md-trans-meta sourceCommit=6b0733adc9a538f18ea8143587feeecb737929d9 translatedAt=2026-07-31T08:24:04.002Z pushedAt=2026-07-31T09:16:45.145Z -->
 
 The **formError** module provides error codes for widgets.
 
@@ -25,7 +27,7 @@ None.
 
 ## FormError
 
-Enumerates the widget types.
+Enumerates the widget error codes.
 
 **System capability**: SystemCapability.Ability.Form
 
@@ -36,8 +38,8 @@ Enumerates the widget types.
 | ERR_GET_INFO_FAILED      | 4    | Failed to obtain the widget information.  |
 | ERR_GET_BUNDLE_FAILED    | 5    | Failed to obtain the bundle information.  |
 | ERR_GET_LAYOUT_FAILED    | 6    | Failed to obtain the layout information.  |
-| ERR_ADD_INVALID_PARAM     | 7    | Invalid parameters are detected.  |
-| ERR_CFG_NOT_MATCH_ID     | 8    | The widget ID does not match any widget. |
+| ERR_ADD_INVALID_PARAM     | 7    | An invalid parameter is passed in when adding a widget.   |
+| ERR_CFG_NOT_MATCH_ID     | 8    | The widget configuration does not match the ID.  |
 | ERR_NOT_EXIST_ID       | 9    | The widget ID does not exist.  |
 | ERR_BIND_PROVIDER_FAILED       | 10    | Failed to bind to the widget provider.  |
 | ERR_MAX_SYSTEM_FORMS      | 11    | The number of system widgets exceeds the upper limit.  |
@@ -45,11 +47,11 @@ Enumerates the widget types.
 | ERR_OPERATION_FORM_NOT_SELF     | 13    | The application is not allowed to operate widgets provided by other applications.  |
 | ERR_PROVIDER_DEL_FAIL       | 14    | The widget provider failed to delete the widget.  |
 | ERR_MAX_FORMS_PER_CLIENT       | 15    | The number of widgets applied for by the widget host exceeds the upper limit.  |
-| ERR_MAX_SYSTEM_TEMP_FORMS       | 16    | The number of temporary widgets exceeds the upper limit.  |
+| ERR_MAX_SYSTEM_TEMP_FORMS       | 16    | The number of system temporary widget instances exceeds the limit.   |
 | ERR_FORM_NO_SUCH_MODULE       | 17    | The module does not exist.  |
 | ERR_FORM_NO_SUCH_ABILITY       | 18    | The ability component does not exist.  |
 | ERR_FORM_NO_SUCH_DIMENSION      | 19    | The widget dimension does not exist.  |
 | ERR_FORM_FA_NOT_INSTALLED      | 20    | The FA where the widget is located is not installed.  |
 | ERR_SYSTEM_RESPONSES_FAILED        | 30    | The system service failed to respond.  |
 | ERR_FORM_DUPLICATE_ADDED        | 31    | The widget has been added.  |
-| ERR_IN_RECOVERY    | 36    | Failed to overwrite the widget data.  |
+| ERR_IN_RECOVERY    | 36    | The widget is in recovery state.   |

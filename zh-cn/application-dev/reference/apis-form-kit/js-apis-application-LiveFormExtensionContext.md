@@ -5,7 +5,8 @@
 <!--Designer: @cx983299475-->
 <!--Tester: @mahailong123456-->
 <!--Adviser: @HelloShuo-->
-LiveFormExtensionContext是[LiveFormExtensionAbility](./js-apis-app-form-LiveFormExtensionAbility.md)的上下文，继承自[ExtensionContext](../apis-ability-kit/js-apis-inner-application-extensionContext.md)。
+
+LiveFormExtensionContext是[LiveFormExtensionAbility](./js-apis-app-form-LiveFormExtensionAbility.md)的上下文，继承自[ExtensionContext](../apis-ability-kit/js-apis-inner-application-extensionContext.md)。它提供访问特定于LiveFormExtensionAbility资源的能力，支持在互动卡片中拉起应用页面，适用于需要在互动卡片中响应用户点击并跳转到应用页面的场景，解决了互动卡片无法主动拉起应用页面的限制问题。
 
 > **说明：**
 >
@@ -20,13 +21,13 @@ import { common } from '@kit.AbilityKit';
 
 >  **说明：**
 >
-> - 在API version 22以前，需要通过`import LiveFormExtensionContext from 'application/LiveFormExtensionContext'; `导入LiveFormExtensionContext。该导入方式在DevEco Studio中标红，但不影响编译运行，可以直接使用LiveFormExtensionContext。
+> - 在API version 22以前，需要通过`import LiveFormExtensionContext from 'application/LiveFormExtensionContext';`导入。该导入方式在DevEco Studio中标红，但不影响编译运行，可以直接使用LiveFormExtensionContext。
 >
-> - 在API version 22及以后，支持通过`import { common } from '@kit.AbilityKit'; `导入LiveFormExtensionContext，并通过common.LiveFormExtensionContext的方式使用。
+> - 在API version 22及以后，支持通过`import { common } from '@kit.AbilityKit';`导入，并通过common.LiveFormExtensionContext的方式使用。
 
 ## LiveFormExtensionContext
 
-LiveFormExtensionContext提供允许访问特定于LiveFormExtensionAbility资源的能力，继承自[ExtensionContext](../apis-ability-kit/js-apis-inner-application-extensionContext.md)。
+LiveFormExtensionContext提供访问特定于LiveFormExtensionAbility资源的能力。
 
 ### startAbilityByLiveForm
 
@@ -38,6 +39,9 @@ startAbilityByLiveForm(want: Want): Promise&lt;void&gt;
 
 该接口仅限在点击事件回调中调用，且需要直接调用，不支持延时后调用，否则会抛出错误码16501011。
 
+**使用场景：**
+- 互动卡片激活态中点击跳转到应用主页或详情页。
+
 **模型约束：** 此接口仅可在Stage模型下使用。
 
 **系统能力：** SystemCapability.Ability.Form
@@ -46,9 +50,9 @@ startAbilityByLiveForm(want: Want): Promise&lt;void&gt;
 
 **参数：**
 
-  | 参数名 | 类型    | 必填 | 说明                                   |
-  | ------ | ------ | ---- | ------------------------------------- |
-  | want  |  [Want](../apis-ability-kit/js-apis-app-ability-want.md)  | 是   | 需要被拉起的应用页面信息。[仅支持使用显式want。](../../../application-dev/application-models/ability-startup-with-explicit-want.md) |
+| 参数名 | 类型    | 必填 | 说明                                   |
+| ------ | ------ | ---- | ------------------------------------- |
+| want  |  [Want](../apis-ability-kit/js-apis-app-ability-want.md)  | 是   | 需要被拉起的应用页面信息。取值原则：仅支持使用显式Want，必须包含bundleName和abilityName字段。详见[使用显式Want启动应用组件](../../../application-dev/application-models/ability-startup-with-explicit-want.md)。 |
 
 **返回值：**  
   | 类型 | 说明    |
@@ -71,7 +75,7 @@ startAbilityByLiveForm(want: Want): Promise&lt;void&gt;
 
 ```ts
 // MyLiveFormExtensionAbility.ets
-import { formInfo, LiveFormInfo, LiveFormExtensionAbility } from '@kit.FormKit';
+import { LiveFormInfo, LiveFormExtensionAbility } from '@kit.FormKit';
 import { UIExtensionContentSession } from '@kit.AbilityKit';
 
 export default class MyLiveFormExtensionAbility extends LiveFormExtensionAbility {
@@ -113,8 +117,8 @@ struct MyLiveFormPage {
         .catch((err: BusinessError) => {
           console.error(`startAbilityByLiveForm failed, code is ${err?.code}, message is ${err?.message}`);
         });
-    } catch (e) {
-      console.error(`startAbilityByLiveForm failed, code is ${e?.code}, message is ${e?.message}`);
+    } catch (err) {
+      console.error(`startAbilityByLiveForm failed, code is ${err?.code}, message is ${err?.message}`);
     }
   }
 
@@ -136,7 +140,7 @@ struct MyLiveFormPage {
         return;
       }
       this.startAbilityByLiveForm();
-    })
+    });
   }
 }
 ```

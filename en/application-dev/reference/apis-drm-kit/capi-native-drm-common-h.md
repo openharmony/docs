@@ -6,6 +6,7 @@
 <!--Designer: @chris2981-->
 <!--Tester: @xdlinc-->
 <!--Adviser: @w_Machine_cc-->
+<!-- md-trans-meta sourceCommit=29f3919446ee01733553b9b39493ee11224dad86 translatedAt=2026-07-31T02:14:07.612Z pushedAt=2026-07-31T03:50:28.692Z -->
 
 ## Overview
 
@@ -79,8 +80,8 @@ The file declares the DRM data types.
 | MAX_MEDIA_KEY_STATUS_NAME_LEN 64 | Maximum length of a media key status name.<br>**Since**: 11|
 | MAX_MEDIA_KEY_STATUS_VALUE_LEN 256 | Maximum length of a media key status value.<br>**Since**: 11|
 | DRM_UUID_LEN 16 | Length of the UUID of a DRM solution.<br>**Since**: 11|
-| MAX_PSSH_DATA_LEN 2048 | Maximum length of PSSH data.<br>**Since**: 11|
-| MAX_PSSH_INFO_COUNT 8 | Maximum number of PSSH data entries.<br>**Since**: 11|
+| MAX_PSSH_DATA_LEN 2048 | Maximum length of Protection System Specific Header (PSSH) information.<br>**Since:** 11 |
+| MAX_PSSH_INFO_COUNT 8 | Maximum number of PSSH information entries.<br>**Since:** 11 |
 | MAX_MEDIA_KEY_SYSTEM_NAME_LEN 128 | Maximum length of a MediaKeySystem instance name.<br>**Since**: 12|
 | MAX_MEDIA_KEY_SYSTEM_NUM 8 | Maximum number of MediaKeySystem instances.<br>**Since**: 12|
 
@@ -207,14 +208,13 @@ Enumerates the device certificate statuses.
 
 **Since**: 11
 
-| Enum Item| Description|
+| Enum Item | Description |
 | -- | -- |
 | CERT_STATUS_PROVISIONED = 0 | A device certificate is provisioned.|
 | CERT_STATUS_NOT_PROVISIONED | No device certificate is provisioned or the certificate status is abnormal.|
 | CERT_STATUS_EXPIRED | The device certificate has expired.|
 | CERT_STATUS_INVALID | The device certificate is invalid.|
 | CERT_STATUS_UNAVAILABLE | The device certificate is unavailable.|
-
 
 ## Function Description
 
@@ -229,7 +229,6 @@ typedef void (*DRM_MediaKeySystemInfoCallback)(DRM_MediaKeySystemInfo *mediaKeyS
 Defines the callback function used to obtain DRM information from a media source.
 
 **Since**: 11
-
 
 **Parameters**
 

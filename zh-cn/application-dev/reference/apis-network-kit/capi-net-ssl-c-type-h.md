@@ -56,9 +56,9 @@ enum NetStack_CertType
 
 | 枚举项 | 描述 |
 | -- | -- |
-| NETSTACK_CERT_TYPE_PEM = 0 | PEM证书类型 |
-| NETSTACK_CERT_TYPE_DER = 1 | DER证书类型 |
-| NETSTACK_CERT_TYPE_INVALID | 错误证书类型 |
+| NETSTACK_CERT_TYPE_PEM = 0 | PEM证书类型。 |
+| NETSTACK_CERT_TYPE_DER = 1 | DER证书类型。 |
+| NETSTACK_CERT_TYPE_INVALID | 错误证书类型。 |
 
 ### NetStack_CertificatePinningKind
 
@@ -74,7 +74,7 @@ enum NetStack_CertificatePinningKind
 
 | 枚举项 | 描述 |
 | -- | -- |
-| PUBLIC_KEY | 公钥锁定类型 |
+| PUBLIC_KEY | 公钥锁定类型。 |
 
 ### NetStack_HashAlgorithm
 
@@ -90,5 +90,5 @@ enum NetStack_HashAlgorithm
 
 | 枚举项 | 描述 |
 | -- | -- |
-| SHA_256 | Sha256 |
+| SHA_256 | Sha256。 |
 

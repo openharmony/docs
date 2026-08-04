@@ -5,11 +5,12 @@
 <!--Owner: @mzyan-->
 <!--Designer: @liyueric-->
 <!--Tester: @gcw_KuLfPSbe-->
-<!--Adviser: @foryourself-->
+<!--Adviser: @jinqiuheng-->
+<!-- md-trans-meta sourceCommit=552600b0ea7451a7ac2f58aae751acd2a0a9b5bf translatedAt=2026-07-31T01:35:21.116Z pushedAt=2026-07-31T08:32:22.547Z -->
 
 Performance Analysis Kit provides the event, log, and tracing analysis tools to help you check the running status of your application for further behavior, fault, security, and statistical analysis.
 
-Performance Analysis Kit provides a collection of capabilities for improving application quality.
+Performance Analysis Kit provides a collection of capabilities for improving application quality. For details, see [Application Quality Overview](https://developer.huawei.com/consumer/en/doc/best-practices/bpta-quality-overview).
 
 ## When to Use
 
@@ -19,6 +20,7 @@ Performance Analysis Kit provides a collection of capabilities for improving app
 
 - Online monitoring: provides log, event, and tracing APIs to help you record and analyze the running status of your application.
 
+- Grayscale collection: works with the cloud side to enable full fault log collection on a small number of selected devices and upload the logs to the cloud, providing more detailed fault information to help you better locate faults.
 
 ## Available Capabilities
 
@@ -42,8 +44,9 @@ Performance Analysis Kit provides a collection of capabilities for improving app
 
 - [ErrorManager](errormanager-guidelines.md) and [AppRecovery](apprecovery-guidelines.md): provide the capability of capturing application runtime exceptions and restoring the startup status and data after an application exits unexpectedly.
 
-- Command line tools for debugging the system and applications: [hdc](hdc.md), [HiLog](hilog.md), [HiDumper](hidumper.md), [HiTrace](hitrace.md) and [HiPerf](hiperf.md) .
+- [App grayscale collection](hiretrieval-intro.md): provides the app grayscale collection capability, allowing you to enable full log collection on a small number of selected devices to obtain more detailed fault logs and better locate faults.
 
+- Command line tools for debugging the system and applications: [hdc](hdc.md), [HiLog](hilog.md), [HiDumper](hidumper.md), [HiTrace](hitrace.md) and [HiPerf](hiperf.md) .
 
 ## Features
 
@@ -61,6 +64,8 @@ Performance Analysis Kit provides a collection of capabilities for improving app
 
 - Provides a comprehensive exception detection mechanism to detect exceptions in real time, notify the application of exceptions, and automatically restart the application.
 
+- Provides the grayscale collection capability, which selects a small number of devices to precisely collect full fault logs for specific faults, balancing app performance and fault locating requirements.
+
 **Comprehensive Basic Maintenance and Debugging Capabilities**
 
 - Classifies logs by level and category and supports multiple languages, privacy processing, and traffic control. 
@@ -68,3 +73,5 @@ Performance Analysis Kit provides a collection of capabilities for improving app
 - Provides a complete event framework and mechanisms for event logging, recording, and reporting. 
 
 - Traces process tracks for performance analysis.
+
+<!--RP1--><!--RP1End-->

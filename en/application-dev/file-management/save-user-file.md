@@ -1,23 +1,40 @@
 # Saving User Files
+
 <!--Kit: Core File Kit-->
 <!--Subsystem: FileManagement-->
-<!--Owner: @wang_zhangjun; @gzhuangzhuang-->
-<!--Designer: @wang_zhangjun; @gzhuangzhuang; @renguang1116-->
-<!--Tester: @liuhonggang123; @yue-ye2; @juxiaopang-->
+<!--Owner: @yangwei_814916-->
+<!--Designer: @hwzhangchuang; @Dyylll-->
+<!--Tester: @zsyztt; @yue-ye2; @fuwei-->
 <!--Adviser: @jinqiuheng-->
+<!-- md-trans-meta sourceCommit=26db867956892783b25f638a74cb23fb0a676944 translatedAt=2026-08-01T07:28:27.106Z pushedAt=2026-08-01T11:09:43.815Z -->
 
 When a user needs to download a file from the Internet or save a file to another directory, use **FilePicker** to save the file. Pay attention to the following key points:
 
 **Permission Description**
 
 - The read and write permissions on the file URI granted by Picker is temporary by default, and will be automatically invalidated once the application exits.
-- If [autoCreateEmptyFile](../reference/apis-core-file-kit/js-apis-file-picker.md#documentsaveoptions) is set to **false**, the obtained URI has the temporary read and write permissions as well as the temporary creation and deletion permissions.
+
+- If the [autoCreateEmptyFile](../reference/apis-core-file-kit/js-apis-file-picker.md#documentsaveoptions) parameter is set to **false**, the obtained URI has **temporary create and delete permissions** in addition to **temporary read and write permissions**.
+
 - You can persist the permissions on the URI. For details, see [Persisting a Temporary Permission Granted by Picker](file-persistPermission.md#persisting-a-temporary-permission-granted-by-picker).
+
 - No permission is required if your application uses Picker to save audio clips, images, videos, and document files.
+
+**Constraints**
+
+When using APIs that require the `SystemCapability.FileManagement.UserFileService.FolderSelection` system capability, you can call [canIUse](../reference/common/js-apis-syscap.md#caniuse) to check whether the device has this system capability:
+
+```ts
+if (!canIUse('SystemCapability.FileManagement.UserFileService.FolderSelection')) {
+      console.error('This API is not supported on this device');
+      return;
+}
+```
 
 **System Isolation Description**
 
 - The files saved by the Picker are stored in the specified directory. They are isolated from the assets managed by **Gallery** and cannot be viewed in **Gallery**.
+
 - To save images and videos to Gallery, [use the SaveButton](../media/medialibrary/photoAccessHelper-savebutton.md#creating-a-media-asset-using-savebutton).
 
 ## Saving Images or Videos
@@ -32,19 +49,19 @@ If the security component cannot be called to save images and videos in your dev
 
    ```ts
    import { picker } from '@kit.CoreFileKit';
-   import { fileIo as fs } from '@kit.CoreFileKit';
+   import { fileIo } from '@kit.CoreFileKit';
    import { BusinessError } from '@kit.BasicServicesKit';
    import { common } from '@kit.AbilityKit';
    ```
 
-2. Configure the save options.
+2. Configure the file saving options [DocumentSaveOptions](../reference/apis-core-file-kit/js-apis-file-picker.md#documentsaveoptions) based on your actual service requirements. The following code only lists the configuration reference for each option.
 
    ```ts
    // Create a documentSaveOptions instance.
    const documentSaveOptions = new picker.DocumentSaveOptions();
    // (Optional) Name of the file to save. The default value is empty.
    documentSaveOptions.newFileNames = ["DocumentViewPicker01.txt"];
-   // Optional. Specify the path of the file or directory to save.
+   // Specify the URI of the file or directory to save (optional).
    documentSaveOptions.defaultFilePathUri = "file://docs/storage/Users/currentUser/test";
    // File type. The value is in ['Suffix type description|Suffix type'] format. To save all files, use 'All files (*.*)|.*' (optional). If multiple suffixes are selected (a maximum of 100 suffixes can be filtered), the first suffix is selected by default. If this parameter is not transferred, no suffix is filtered by default.
    documentSaveOptions.fileSuffixChoices = ['Document|.txt', '.pdf'];
@@ -52,7 +69,7 @@ If the security component cannot be called to save images and videos in your dev
    documentSaveOptions.autoCreateEmptyFile = false; 
    ```
 
-3. Create a [DocumentViewPicker](../reference/apis-core-file-kit/js-apis-file-picker.md#constructor12) instance, and call [save()](../reference/apis-core-file-kit/js-apis-file-picker.md#save) to start the FilePicker page to save the document.
+3. Create a [DocumentViewPicker](../reference/apis-core-file-kit/js-apis-file-picker.md#documentviewpicker) instance, and call [save()](../reference/apis-core-file-kit/js-apis-file-picker.md#save) to open the FilePicker interface for file saving.
 
    <!--@[save_file_picker](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/CoreFile/UserFile/SavingUserFiles/entry/src/main/ets/pages/Index.ets)-->
 
@@ -71,31 +88,28 @@ If the security component cannot be called to save images and videos in your dev
 
    > **NOTE**
    >
-   > - URI storage:
-   > 	- By default, the Picker [pre-creates empty files](../reference/apis-core-file-kit/js-apis-file-picker.md#documentsaveoptions) and returns a URI array of saved files. After obtaining the URI, the application can use [basic file APIs](../reference/apis-core-file-kit/js-apis-file-fs.md) to read and write files.
-   > 	- You should avoid directly using a URI in the Picker callback.
-   > 	- You are advised to define a global variable to save the URI for future use.
-   >
-   > - Quick saving:
-   > 	- You can directly access the download directory in [DOWNLOAD mode](#saving-files-to-the-download-directory).
+   > - By default, Picker presets an empty file and returns the URI array of the saved file. After obtaining the URI, the app can use the APIs provided by the [file management](../reference/apis-core-file-kit/js-apis-file-fs.md) module to read and write the file.
+   > - Avoid directly operating the URI in the Picker callback.
+   > - It is recommended that you use a global variable to store the URI for subsequent use.
+   > - You can go directly to the download directory through [DOWNLOAD mode](#saving-files-to-the-download-directory).
 
-4. After the application UI is returned from FilePicker, you can call [fs.openSync](../reference/apis-core-file-kit/js-apis-file-fs.md#fsopensync) to open a document based on the URI. The FD is returned after the document is opened.
+4. After the UI returns from FilePicker, use [fileIo.openSync](../reference/apis-core-file-kit/js-apis-file-fs.md#fileioopensync) to open the file through the URI and obtain the file descriptor (FD).
 
    ```ts
    if (uris.length > 0) {
       let uri: string = uris[0];
-      // Note that the permission specified by the mode parameter of fs.openSync() is fs.OpenMode.READ_WRITE.
-      let file = fs.openSync(uri, fs.OpenMode.READ_WRITE);
+      // Note that the interface permission parameter is fileIo.OpenMode.READ_WRITE.
+      let file = fileIo.openSync(uri, fileIo.OpenMode.READ_WRITE);
       console.info('file fd: ' + file.fd);
    }
    ```
 
-5. Call [fs.writeSync](../reference/apis-core-file-kit/js-apis-file-fs.md#writesync) to modify the document based on the FD, and call **fs.closeSync()** to close the FD.
+5. Use [fileIo.writeSync](../reference/apis-core-file-kit/js-apis-file-fs.md#fileiowritesync) to edit and modify the file through the FD, and close the FD after the modification is complete.
 
    ```ts
-   let writeLen: number = fs.writeSync(file.fd, 'hello, world');
+   let writeLen: number = fileIo.writeSync(file.fd, 'hello, world');
    console.info('write data to file succeed and size is:' + writeLen);
-   fs.closeSync(file);
+   fileIo.closeSync(file);
    ```
 
 ## Saving Audio Clips
@@ -104,7 +118,7 @@ If the security component cannot be called to save images and videos in your dev
 
    ```ts
    import { picker } from '@kit.CoreFileKit';
-   import { fileIo as fs } from '@kit.CoreFileKit';
+   import { fileIo } from '@kit.CoreFileKit';
    import { BusinessError } from '@kit.BasicServicesKit';
    import { common } from '@kit.AbilityKit';
    ```
@@ -136,31 +150,28 @@ If the security component cannot be called to save images and videos in your dev
 
    > **NOTE**
    >
-   > - URI storage:
-   > 	- By default, the Picker [pre-creates empty files](../reference/apis-core-file-kit/js-apis-file-picker.md#documentsaveoptions) and returns a URI array of saved files. After obtaining the URI, the application can use [basic file APIs](../reference/apis-core-file-kit/js-apis-file-fs.md) to read and write files.
-   > 	- You should avoid directly using a URI in the Picker callback.
-   > 	- You are advised to define a global variable to save the URI for future use.
-   >
-   > - Quick saving:
-   > 	- You can directly access the download directory in [DOWNLOAD mode](#saving-files-to-the-download-directory).
+   > - By default, Picker presets an empty file and returns the URI array of the saved file. After obtaining the URI, the app can use the APIs provided by the [file management](../reference/apis-core-file-kit/js-apis-file-fs.md) module to read and write the file.
+   > - Avoid directly operating the URI in the Picker callback.
+   > - It is recommended that you use a global variable to store the URI for subsequent use.
+   > - You can go directly to the download directory through [DOWNLOAD mode](#saving-files-to-the-download-directory).
 
-4. After the application UI is returned from FilePicker, call [fs.openSync](../reference/apis-core-file-kit/js-apis-file-fs.md#fsopensync) to open an audio clip based on the URI. The FD is returned after the audio clip is opened.
+4. After the UI returns from FilePicker, you can use [fileIo.openSync](../reference/apis-core-file-kit/js-apis-file-fs.md#fileioopensync) to open the file through the URI and obtain the file descriptor (FD).
 
    ```ts
    if (uris.length > 0) {
       let uri: string = uris[0];
       // Note that the permission specified by the mode parameter of fs.openSync() is fileIo.OpenMode.READ_WRITE.
-      let file = fs.openSync(uri, fs.OpenMode.READ_WRITE);
+      let file = fileIo.openSync(uri, fileIo.OpenMode.READ_WRITE);
       console.info('file fd: ' + file.fd);
    }
    ```
 
-5. Call [fs.writeSync](../reference/apis-core-file-kit/js-apis-file-fs.md#writesync) to modify the document based on the FD, and call **fs.closeSync()** to close the FD.
+5. Use [fileIo.writeSync](../reference/apis-core-file-kit/js-apis-file-fs.md#fileiowritesync) to edit and modify the file through the FD, and close the FD after the modification is complete.
 
    ```ts
-   let writeLen = fs.writeSync(file.fd, 'hello, world');
+   let writeLen = fileIo.writeSync(file.fd, 'hello, world');
    console.info('write data to file succeed and size is:' + writeLen);
-   fs.closeSync(file);
+   fileIo.closeSync(file);
  
    ```
 
@@ -169,7 +180,9 @@ If the security component cannot be called to save images and videos in your dev
 **Characteristics**
 
 - The directory is automatically created in `Download/bundle name/`.
+
 - Files can be directly saved without file selection.
+
 - You can create files under the returned URI that has persisting permissions.
 
 > **NOTE**
@@ -180,7 +193,7 @@ If the security component cannot be called to save images and videos in your dev
 
    ```ts
    import { fileUri, picker } from '@kit.CoreFileKit';
-   import { fileIo as fs } from '@kit.CoreFileKit';
+   import { fileIo } from '@kit.CoreFileKit';
    import { BusinessError } from '@kit.BasicServicesKit';
    import { common } from '@kit.AbilityKit';
    ```
@@ -206,9 +219,9 @@ If the security component cannot be called to save images and videos in your dev
      uri = documentSaveResult[0];
      console.info('documentViewPicker.save succeed and uri is:' + uri);
      const testFilePath = new fileUri.FileUri(uri + '/test.txt').path;
-     const file = fs.openSync(testFilePath, fs.OpenMode.CREATE | fs.OpenMode.READ_WRITE);
-     fs.writeSync(file.fd, 'Hello World!');
-     fs.closeSync(file.fd);
+     const file = fileIo.openSync(testFilePath, fileIo.OpenMode.CREATE | fileIo.OpenMode.READ_WRITE);
+     fileIo.writeSync(file.fd, 'Hello World!');
+     fileIo.closeSync(file.fd);
    }).catch((err: BusinessError) => {
      console.error(`Invoke documentViewPicker.save failed, code is ${err.code}, message is ${err.message}`);
    })

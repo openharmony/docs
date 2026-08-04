@@ -325,7 +325,7 @@ write(data: number[]): Promise&lt;void&gt;
 
 | **参数名** | **类型** | **必填** | **说明** |
 | -------- | -------- | -------- | -------- |
-| data | number[] | 是 | 有源标签内容, 由十六进制数字组成。范围：0x00至0xFF。 |
+| data | number[] | 是 | 有源标签内容，由十六进制数字组成。范围：0x00至0xFF。 |
 
 **返回值：**
 
@@ -408,7 +408,7 @@ write(data: number[], callback: AsyncCallback&lt;void&gt;): void
 
 | **参数名** | **类型** | **必填** | **说明** |
 | -------- | -------- | -------- | -------- |
-| data | number[] | 是 | 有源标签内容, 由十六进制数字组成。范围：0x00至0xFF。 |
+| data | number[] | 是 | 有源标签内容，由十六进制数字组成。范围：0x00至0xFF。 |
 | callback | AsyncCallback&lt;void&gt; | 是 | 回调函数。当写入标签成功，err为undefined，否则为错误对象。 |
 
 **错误码：**

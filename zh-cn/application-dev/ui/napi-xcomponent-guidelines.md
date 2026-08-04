@@ -240,6 +240,7 @@ XComponent推荐使用两种方式获取XComponent持有Surface的生命周期�
   ```
   
 - 通过ArkTS自定义组件节点来创建组件并结合XComponentController实现对Surface生命周期的管理。
+  <!-- @[xcomponent_type_node_controller_ets](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkUISample/NativeXComponent/entry/src/main/ets/pages/XComponentTypeNodeController.ets) -->
   ``` typescript
   // 重写XComponentController，设置生命周期回调
   class MyXComponentController extends XComponentController {
@@ -1621,25 +1622,35 @@ XComponent推荐使用两种方式获取XComponent持有Surface的生命周期�
     ```
 5. CMakeLists，使用CMake工具链将C++源代码编译成动态链接库文件。
 
+    <!-- @[cmake_lists](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkUISample/NativeXComponentSample/entry/src/main/cpp/CMakeLists.txt) -->
+
     ```CMake
     # the minimum version of CMake.
-    cmake_minimum_required(VERSION 3.5.0)
-    project(LCNXComponent2)
+    cmake_minimum_required(VERSION 3.4.1)
+    project(XComponent)
     
     set(NATIVERENDER_ROOT_PATH ${CMAKE_CURRENT_SOURCE_DIR})
+    add_definitions(-DOHOS_PLATFORM)
     
     if(DEFINED PACKAGE_FIND_FILE)
         include(${PACKAGE_FIND_FILE})
     endif()
     
-    include_directories(${NATIVERENDER_ROOT_PATH}
-                        ${NATIVERENDER_ROOT_PATH}/render
-                        ${NATIVERENDER_ROOT_PATH}/manager)
+    include_directories(
+        ${NATIVERENDER_ROOT_PATH}
+        ${NATIVERENDER_ROOT_PATH}/include
+        ${NATIVERENDER_ROOT_PATH}/render
+        ${NATIVERENDER_ROOT_PATH}/manager
+    )
     
     add_library(nativerender SHARED
-                render/EGLRender.cpp
-                manager/plugin_manager.cpp
-                napi_init.cpp)
+        render/EGLRender.cpp
+        render/egl_core.cpp
+        render/plugin_render.cpp
+        manager/plugin_manager.cpp
+        napi_init.cpp
+    )
+    
     find_library(
         # 设置路径变量的名称。
         EGL-lib
@@ -1682,7 +1693,8 @@ XComponent推荐使用两种方式获取XComponent持有Surface的生命周期�
         uv
     )
     
-    target_link_libraries(nativerender PUBLIC ${EGL-lib} ${GLES-lib} ${hilog-lib} ${libace-lib} ${libnapi-lib} ${libuv-lib} libnative_window.so)
+    target_link_libraries(nativerender PUBLIC
+        ${EGL-lib} ${GLES-lib} ${hilog-lib} ${libace-lib} ${libnapi-lib} ${libuv-lib} libnative_window.so)
     ```
 
     上述用例具体实现可参考<!--RP3-->[NativeXComponent](https://gitcode.com/openharmony/applications_app_samples/tree/master/code/DocsSample/ArkUISample/NativeXComponentSample)<!--RP3End-->。

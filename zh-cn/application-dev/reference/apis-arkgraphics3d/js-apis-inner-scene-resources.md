@@ -221,7 +221,7 @@ function setinputs(): void {
 | materialType | [MaterialType](#materialtype) | 是 | 否 | 材质类型。 |
 | shadowReceiver<sup>20+</sup> | boolean | 否 | 是 | 材质是否接收阴影。true表示该材质接收阴影，false表示不接收，默认值为false。 |
 | cullMode<sup>20+</sup> | [CullMode](#cullmode20) | 否 | 是 | 当前材质的剔除模式设置，用于控制是否剔除背面几何面片，默认值为BACK。 |
-| blend<sup>20+</sup> | [Blend](#blend20) | 否 | 是 | 材质的透明效果设置，默认值为undefined。|
+| blend<sup>20+</sup> | [Blend](#blend20) | 否 | 是 | 材质的透明效果设置，默认值为undefined，即禁用材质的透明属性。|
 | alphaCutoff<sup>20+</sup> | number | 否 | 是 | 透明通道阈值，如果像素的alpha值等于或高于此阈值，则渲染该像素；如果低于此阈值，则不会渲染该像素。设置值小于1时，则开启该模式，取值范围为[0, 1]，默认值为1。 |
 | renderSort<sup>20+</sup> | [RenderSort](#rendersort20) | 否 | 是 | 渲染排序设置，用于控制材质在渲染管线中的渲染顺序，渲染图层id默认值为32，同一图层内的渲染顺序默认值为0。 |
 | polygonMode<sup>23+</sup> | [PolygonMode](#polygonmode23) | 否 | 是 | 模型的多边形绘制模式，默认值为FILL。|

@@ -259,4 +259,4 @@ struct PanGestureWithFingerCount {
 }
 ```
 
-![parallelGesture2](figures/parallelGesture2.gif)
+![parallelGesture2](figures/zh-cn_image_0000001210195017.gif)

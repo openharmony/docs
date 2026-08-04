@@ -732,7 +732,7 @@ let buf = fastbuffer.from('buffer');
 // 获取entries迭代器
 let entryIterator = buf.entries();
 // 获取迭代器的第一个元素
-let nextEntry: IteratorResult<Object[]> = entryIterator.next();
+let nextEntry: IteratorResult<[number, number]> = entryIterator.next();
 // 遍历迭代器输出每个[key, value]对
 while (!nextEntry.done) {
   console.info('fastbuffer: ' + nextEntry.value);

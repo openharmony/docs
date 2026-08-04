@@ -8,7 +8,7 @@
 
 ## 概述
 
-为NativeNode API提供自定义节点事件定义。
+为NativeNode API提供自定义组件的测量、布局和绘制事件类型定义，用于注册和处理测量、布局以及内容层、前景层和浮层的绘制事件。
 
 **引用文件：** <arkui/node_attributes/custom_attributes.h>
 

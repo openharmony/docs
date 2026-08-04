@@ -134,7 +134,7 @@ libnative_window.so
         ```
 
 
-2. 设置OHNativeWindowBuffer的属性。使用`OH_NativeWindow_NativeWindowHandleOpt`设置`OHNativeWindowBuffer`的属性（默认携带NATIVEBUFFER_USAGE_CPU_READ usage参数，如果不使用CPU读写数据，建议去除NATIVEBUFFER_USAGE_CPU_READ usage参数，具体可见[关闭CPU访问窗口缓冲区数据](https://developer.huawei.com/consumer/cn/doc/harmonyos-faqs/faqs-arkgraphics-2d-14)）。
+2. 设置OHNativeWindow的属性。使用`OH_NativeWindow_NativeWindowHandleOpt`设置`OHNativeWindowBuffer`的属性（默认携带NATIVEBUFFER_USAGE_CPU_READ usage参数，如果不使用CPU读写数据，建议去除NATIVEBUFFER_USAGE_CPU_READ usage参数，具体可见[关闭CPU访问窗口缓冲区数据](https://developer.huawei.com/consumer/cn/doc/harmonyos-faqs/faqs-arkgraphics-2d-14)）。
     <!-- @[set_buffer_geometry](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkGraphics2D/NdkNativeWindow/entry/src/main/cpp/NativeRender.cpp) -->
     
     ``` C++
@@ -184,6 +184,7 @@ libnative_window.so
         close(releaseFenceFd);
     }
     uint32_t *pixel = static_cast<uint32_t *>(mappedAddr);
+    uint32_t value = flag_ ? 0xfff0000f : 0xff00ffff;
     for (uint64_t x = 0; x < bufferHandle->width; x++) {
         for (uint64_t y = 0; y < bufferHandle->height; y++) {
             *pixel++ = value;
@@ -196,9 +197,9 @@ libnative_window.so
     <!-- @[flush_buffer](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkGraphics2D/NdkNativeWindow/entry/src/main/cpp/NativeRender.cpp) -->
     
     ``` C++
-    struct Region *region = new Region();
+    struct Region region = {0};
     int acquireFenceFd = -1;
-    ret = OH_NativeWindow_NativeWindowFlushBuffer(nativeWindow, nativeWindowBuffer, acquireFenceFd, *region);
+    ret = OH_NativeWindow_NativeWindowFlushBuffer(nativeWindow, nativeWindowBuffer, acquireFenceFd, region);
     if (ret != NATIVE_ERROR_OK) {
         LOGE("flush failed");
         (void)OH_NativeWindow_NativeWindowAbortBuffer(nativeWindow, nativeWindowBuffer);

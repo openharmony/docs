@@ -205,7 +205,7 @@ async function fn(input: string) {
 }
 let cb = util.callbackWrapper(fn);
 cb('hello world', (err : Object, ret : string) => {
-  if (err) throw new Error;
+  if (err) throw new Error();
   console.info(ret);
 });
 // 输出结果：hello world

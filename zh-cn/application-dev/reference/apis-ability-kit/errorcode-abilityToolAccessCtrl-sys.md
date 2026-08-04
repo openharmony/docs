@@ -35,7 +35,7 @@ Invalid Parameter. Error message: messageInfo.
 
 **处理步骤**
 
-检查入参，修正参数值为有效值，有效值请参考各[接口参数说明][@ohos.abilityToolAccessCtrl](js-apis-abilityToolAccessCtrl-sys.md)。
+检查入参，修正参数值为有效值，有效值请参考各接口参数说明[@ohos.abilityToolAccessCtrl](js-apis-abilityToolAccessCtrl-sys.md)。
 
 ## 24010001 系统服务工作异常
 

@@ -5,10 +5,12 @@
 <!--Owner: @pxlstrong-->
 <!--Designer: @pxlstrong-->
 <!--Tester: @gcw_KuLfPSbe-->
-<!--Adviser: @foryourself-->
+<!--Adviser: @jinqiuheng-->
+<!-- md-trans-meta sourceCommit=07169fbcb3617d4f17a63e1705dbf0f8c5f6381c translatedAt=2026-07-31T01:28:11.430Z pushedAt=2026-07-31T06:41:40.456Z -->
 
 ## Introduction
-[ArkWeb](../web/web-component-overview.md) provides **Web** components for displaying web page content in applications, enabling you to control web pages. Page scrolling consists of two phases: dragging and flinging. Dragging refers to the scrolling when you touch the screen. Flinging refers to the page scrolling at a certain speed after your finger leaves the screen. Since API version 23, the ArkWeb fling jank events can be subscribed to. If a user scrolls the web page on an application and frame loss occurs and lasts for more than 50 ms, the ArkWeb fling jank event is triggered and related frame loss data is generated.
+
+[ArkWeb](../web/web-component-overview.md) provides the `Web` component for displaying web page content in apps, offering developers extensive control over web page behavior. Page scrolling generally consists of two phases: drag fling and fling. Drag fling refers to scrolling while touching the screen. Fling refers to the page continuing to scroll at a certain speed after the finger leaves the screen. Starting from API version 23, you can subscribe to ArkWeb fling jank events. When a user scrolls a web page in an app and a fling jank occurs with a stutter duration of 50 ms or longer, it is identified as an ArkWeb fling jank, and related jank data is generated.
 
 This topic describes the ArkWeb fling jank event detection principles, fields, and specifications. For details about how to use the HiAppEvent APIs to subscribe to ArkWeb fling jank events, see the following documents:
 

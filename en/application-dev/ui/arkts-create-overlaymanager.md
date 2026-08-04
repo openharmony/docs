@@ -1,10 +1,12 @@
 # Managing Overlays (OverlayManager)
+
 <!--Kit: ArkUI-->
 <!--Subsystem: ArkUI-->
 <!--Owner: @liyi0309-->
 <!--Designer: @liyi0309-->
 <!--Tester: @lxl007-->
 <!--Adviser: @Brilliantry_Rui-->
+<!-- md-trans-meta sourceCommit=233780541406c33f29af8bce3784afa16dc6ae50 translatedAt=2026-07-30T11:31:40.840Z pushedAt=2026-07-30T11:48:33.924Z -->
 
 Overlays, implemented using **OverlayManager**, are used to display custom UI content on top of a page, but below such components as created through **Dialog**, **Popup**, **Menu**, **BindSheet**, **BindContentCover**, and **Toast**. These overlays are confined to the safe area of the current window. They are applicable to scenarios such as persistent floating elements.
 
@@ -14,16 +16,21 @@ You can use the [getOverlayManager](../reference/apis-arkui/arkts-apis-uicontext
 
 ## Specifications Constraints
 
-* The nodes on **OverlayManager** are above the page level, but below such components as created through **Dialog**, **Popup**, **Menu**, **BindSheet**, **BindContentCover**, and **Toast**.
+* The nodes on **OverlayManager** are above the page level, but below such components such as **Dialog**, **Popup**, **Menu**, **BindSheet**, **BindContentCover**, and **Toast**.
+
 * There is no default animation when nodes on **OverlayManager** appear or disappear.
+
 * The drawing method inside and outside the safe area of nodes on **OverlayManager** is consistent with that of the page, and the keyboard avoidance method is also the same as that of the page.
+
 * You are advised to use AppStorage to store attributes related to **OverlayManager** to prevent service errors caused by attribute value changes during page switching.
-* For API versions earlier than 19, **OverlayManager** does not support swipe-to-close gestures (left or right). You must implement the logic to close the OverlayManager in [onBackPress](../reference/apis-arkui/arkui-ts/ts-custom-component-lifecycle.md#onbackpress). In API version 19 or later, you can set the **enableBackPressedEvent** property in [OverlayManagerOptions](../reference/apis-arkui/arkts-apis-uicontext-i.md#overlaymanageroptions15) to control whether the OverlayManager responds to the swipe-to-close gesture.
-* The event mechanism in **OverlayManager** gives priority to the component decorated with [WrappedBuilder](state-management/arkts-wrapBuilder.md). To allow events to pass through to the underlying layer, set [hitTestBehavior](../reference/apis-arkui/arkui-ts/ts-universal-attributes-hit-test-behavior.md#hittestbehavior) to **HitTestMode.Transparent**.
+
+* For API versions earlier than 19, **OverlayManager** does not support swipe-to-close gestures (left or right). You must add the logic to close the **OverlayManager** in [onBackPress](../reference/apis-arkui/arkui-ts/ts-custom-component-lifecycle.md#onbackpress). In API version 19 or later, you can set the **enableBackPressedEvent** property in [OverlayManagerOptions](../reference/apis-arkui/arkts-apis-uicontext-i.md#overlaymanageroptions15) to control whether **OverlayManager** responds to the swipe-to-close gesture.
+
+* The event mechanism in **OverlayManager** gives priority to the component decorated with [WrappedBuilder](state-management/arkts-wrapBuilder.md). To enable the bottom layer of the overlay to receive events, set [hitTestBehavior](../reference/apis-arkui/arkui-ts/ts-universal-attributes-hit-test-behavior.md#hittestbehavior) to **HitTestMode.Transparent** to pass events through to the underlying layers.
 
 ## Managing Overlays
 
-With **OverlayManager**, you can add a specified node ([addComponentContent](../reference/apis-arkui/arkts-apis-uicontext-overlaymanager.md#addcomponentcontent12)), remove a specified node ([removeComponentContent](../reference/apis-arkui/arkts-apis-uicontext-overlaymanager.md#removecomponentcontent12)), show all nodes ([showAllComponentContents](../reference/apis-arkui/arkts-apis-uicontext-overlaymanager.md#showallcomponentcontents12)), and hide all nodes ([hideAllComponentContents](../reference/apis-arkui/arkts-apis-uicontext-overlaymanager.md#hideallcomponentcontents12)).
+On the OverlayManager, add a specified node ([addComponentContent](../reference/apis-arkui/arkts-apis-uicontext-overlaymanager.md#addcomponentcontent12)), remove a specified node ([removeComponentContent](../reference/apis-arkui/arkts-apis-uicontext-overlaymanager.md#removecomponentcontent12)), show all nodes ([showAllComponentContents](../reference/apis-arkui/arkts-apis-uicontext-overlaymanager.md#showallcomponentcontents12)), and hide all nodes ([hideAllComponentContents](../reference/apis-arkui/arkts-apis-uicontext-overlaymanager.md#hideallcomponentcontents12)).
 
 <!-- @[OverlayManager_Demo](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkUISample/DialogProject/entry/src/main/ets/pages/OverlayManager/OverlayManagerComponent.ets) -->
 
@@ -141,6 +148,7 @@ export struct OverlayManagerComponent {
   }
 }
 ```
+
 ![overlayManager-demo1](figures/overlaymanager-demo_1.gif)
 
 The following example shows how to display a floating bubble that always stays on the left side of the screen, and clicking it displays an alert dialog box.
@@ -187,8 +195,7 @@ function builderOverlay(params: Params) {
 export struct OverlayManagerAlertDialog {
   private uiContext: UIContext = this.getUIContext();
   private overlayNode: OverlayManager = this.uiContext.getOverlayManager();
-  private overlayContent:ComponentContent<Params>[] = [];
-  controller: TextInputController = new TextInputController();
+  private overlayContent: ComponentContent<Params>[] = [];
 
   aboutToAppear(): void {
     let uiContext = this.getUIContext();
@@ -216,9 +223,10 @@ export struct OverlayManagerAlertDialog {
   }
 }
 ```
+
 ![overlayManager-demo2](figures/overlaymanager-demo_2.gif)
 
-Since API version 18, you can use the **getOverlayManager** API in **UIContext** to obtain an **OverlayManager** object. Using this object you can then call [addComponentContentWithOrder](../reference/apis-arkui/arkts-apis-uicontext-overlaymanager.md#addcomponentcontentwithorder18) to add components to specific layers, with overlays on higher layers covering those on lower ones.
+Starting from API version 18, you can use the **OverlayManager** object to add a specified node at a specified level ([addComponentContentWithOrder](../reference/apis-arkui/arkts-apis-uicontext-overlaymanager.md#addcomponentcontentwithorder18)). Overlays at higher levels cover those at lower levels.
 
 <!-- @[OverlayManager_Demo3](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkUISample/DialogProject/entry/src/main/ets/pages/OverlayManager/OverlayManagerWithOrder.ets) -->
 
@@ -317,4 +325,5 @@ export struct OverlayManagerWithOrder {
   }
 }
 ```
+
 ![overlayManager-demo3](figures/overlaymanager-demo_3.gif)

@@ -1,10 +1,12 @@
 # FileUri Development (C/C++)
+
 <!--Kit: Core File Kit-->
 <!--Subsystem: FileManagement-->
 <!--Owner: @lvzhenjie-->
 <!--Designer: @wang_zhangjun; @chenxi0605-->
-<!--Tester: @liuhonggang123-->
+<!--Tester: @zsyztt; @yue-ye2; @fuwei-->
 <!--Adviser: @jinqiuheng-->
+<!-- md-trans-meta sourceCommit=a4bb221ea8dcccf781d5793faa6c8f62723e3e12 translatedAt=2026-08-01T07:27:49.653Z pushedAt=2026-08-01T10:32:14.575Z -->
 
 ## When to Use
 
@@ -16,13 +18,13 @@ FileUri provides APIs for basic file URI operations, such as converting URIs to 
 
 ## Constraints
 
-- When converting a URI to a path, you are advised to use the system capability to obtain the URI source, for example, the URI returned by the picker, clipboard, dragging, and path-to-URI APIs provided by the system. If the URI combined by applications or users is converted, the converted path may fail to be accessed.
+- When converting a URI to a path, you are advised to use the system capability to obtain the URI source, for example, the URI returned by system capabilities such as the picker, clipboard, dragging, and the path-to-URI API provided by the system. If you convert a URI concatenated by an app or user, the converted path may be inaccessible.
 
-- To ensure data accuracy, only one object can be processed during the conversion or verification of a URI.
+- To ensure data accuracy, only one object can be processed during the conversion or verification of a URI to prevent data anomalies caused by resource contention.
 
 ## Available APIs
 
-For details about the APIs, see [API Reference](../reference/apis-core-file-kit/capi-oh-file-uri-h.md).
+For detailed API descriptions, see [oh_file_uri.h](../reference/apis-core-file-kit/capi-oh-file-uri-h.md).
 
 | API| Description|
 | -------- |-------|
@@ -48,10 +50,10 @@ target_link_libraries(sample PUBLIC libohfileuri.so)
 #include <filemanagement/file_uri/oh_file_uri.h>
 ```
 
-1. Call **OH_FileUri_GetUriFromPath** to obtain the URI from a path. The memory allocated must be released using **free()**. <br>Example:
+1. Call `OH_FileUri_GetUriFromPath`. The memory malloc'd in the API must be freed after use to avoid memory leaks. The sample code is as follows:
 
    <!-- @[get_uri_from_path_example](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/CoreFile/UserFile/FileUriDevelopment_C/entry/src/main/cpp/napi_init.cpp) -->    
-   
+
    ``` C++
    static napi_value NAPI_Global_OH_FileUri_GetUriFromPathExample(napi_env env, napi_callback_info info)
    {   
@@ -86,11 +88,10 @@ target_link_libraries(sample PUBLIC libohfileuri.so)
    }
    ```
 
+2. Call `OH_FileUri_GetPathFromUri` to convert a URI to the corresponding path. The memory malloc'd in the API must be freed after use to avoid memory leaks. The sample code is as follows:
 
-2. Call **OH_FileUri_GetPathFromUri** to convert the URI into a path. The memory allocated must be released using **free()**. The sample code is as follows:
+   <!-- @[get_path_from_uri_example](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/CoreFile/UserFile/FileUriDevelopment_C/entry/src/main/cpp/napi_init.cpp) -->
 
-   <!-- @[get_path_from_uri_example](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/CoreFile/UserFile/FileUriDevelopment_C/entry/src/main/cpp/napi_init.cpp) -->    
-   
    ``` C++
    static napi_value NAPI_Global_OH_FileUri_GetPathFromUriExample(napi_env env, napi_callback_info info)
    {
@@ -100,11 +101,11 @@ target_link_libraries(sample PUBLIC libohfileuri.so)
        napi_get_value_string_utf8(env, args[0], uri, strLength + 1, &strLength);
    
        unsigned int length = strlen(uri);
-       // Output the input URI string.
+       // Output the incoming URI string.
        OH_LOG_INFO(LogType::LOG_APP, "HiAppEvent eventInfo.WatcherType=OnTrigger: %{public}s", uri);
        char *pathResult = nullptr;
        FileManagement_ErrCode ret = OH_FileUri_GetPathFromUri(uri, length, &pathResult);
-       // Output the result string of the obtained path.
+       // Output the path result string.
        // ...
        if (ret == 0 && pathResult != nullptr) {
            // Convert the C string to napi_value.
@@ -125,11 +126,10 @@ target_link_libraries(sample PUBLIC libohfileuri.so)
    }
    ```
 
-
-3. Call **OH_FileUri_GetFullDirectoryUri** to obtain the URI of the directory where the specified URI is located. The memory allocated must be released using **free()**. The sample code is as follows:
+3. Call `OH_FileUri_GetFullDirectoryUri` to obtain the URI of the directory where the URI resides. The memory malloc'd in the API must be freed after use to avoid memory leaks. The sample code is as follows:
 
    <!-- @[get_full_directory_uri](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/CoreFile/UserFile/FileUriDevelopment_C/entry/src/main/cpp/napi_init.cpp) -->    
-   
+
    ``` C++
    static napi_value NAPI_Global_OH_FileUri_GetFullDirectoryUriExample(napi_env env, napi_callback_info info)
    {
@@ -159,11 +159,10 @@ target_link_libraries(sample PUBLIC libohfileuri.so)
    }
    ```
 
-
 4. Call **OH_FileUri_IsValidUri** to check whether a URI is valid. The sample code is as follows:
 
    <!-- @[is_valid_uri_example](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/CoreFile/UserFile/FileUriDevelopment_C/entry/src/main/cpp/napi_init.cpp) -->    
-   
+
    ``` C++
    static napi_value NAPI_Global_OH_FileUri_IsValidUriExample(napi_env env, napi_callback_info info)
    {
@@ -179,11 +178,10 @@ target_link_libraries(sample PUBLIC libohfileuri.so)
    }
    ```
 
-
-5. Call **OH_FileUri_GetFileName** to obtain the file name from the URI. The memory allocated must be released using **free()**. The sample code is as follows:
+5. Call OH_FileUri_GetFileName to obtain the file name from the URI. The memory malloc'd in the API must be freed after use to avoid memory leaks. The sample code is as follows:
 
    <!-- @[get_file_name_example](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/CoreFile/UserFile/FileUriDevelopment_C/entry/src/main/cpp/napi_init.cpp) -->    
-   
+
    ``` C++
    static napi_value NAPI_Global_OH_FileUri_GetFileNameExample(napi_env env, napi_callback_info info)
    {

@@ -46,7 +46,7 @@ Timeout.
 
 改用当前截图接口对应的异步接口。
 
-## 160003 截图选项不支持的色彩空间或动态范围模式
+## 160003 截图选项中设置的色彩空间或动态范围模式不受支持
 
 **错误信息**
 
@@ -54,7 +54,7 @@ Unsupported color space or dynamic range mode in snapshot options.
 
 **错误描述**
 
-截图选项中设置了不支持的色彩空间或动态范围模式。
+截图选项中设置的色彩空间或动态范围模式不受支持。
 
 **可能原因**
 
@@ -64,7 +64,7 @@ Unsupported color space or dynamic range mode in snapshot options.
 
 修改截图选项中设置的色彩空间或动态范围模式值为支持范围内的值。
 
-## 160004 离屏节点截图不支持色彩空间或动态范围模式的isAuto参数设置为true
+## 160004 离屏节点截图不支持将色彩空间或动态范围模式对应的isAuto参数设置为true
 
 **错误信息**
 
@@ -72,12 +72,12 @@ isAuto(true) is not supported for offscreen node snapshots.
 
 **错误描述**
 
-对离屏节点截图时，色彩空间或动态范围模式的isAuto参数被设置为true。
+离屏节点截图不支持将色彩空间或动态范围模式对应的isAuto参数设置为true。
 
 **可能原因**
 
-对离屏节点截图时，不支持截图选项中的色彩空间或动态范围模式的isAuto参数设置为true。
+对离屏节点进行截图时，不支持将截图选项中色彩空间或动态范围模式对应的isAuto参数设置为true。
 
 **处理步骤**
 
-将截图选项中色彩空间或动态范围模式的isAuto参数设置为false。
+将截图选项中色彩空间或动态范围模式对应的isAuto参数设置为false。

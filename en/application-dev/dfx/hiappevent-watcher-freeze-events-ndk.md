@@ -2,14 +2,15 @@
 
 <!--Kit: Performance Analysis Kit-->
 <!--Subsystem: HiviewDFX-->
-<!--Owner: @rr_cn-->
+<!--Owner: @Chenyufan466765692-->
 <!--Designer: @peterhuangyu-->
 <!--Tester: @gcw_KuLfPSbe-->
-<!--Adviser: @foryourself-->
+<!--Adviser: @jinqiuheng-->
+<!-- md-trans-meta sourceCommit=f319e3e62d6356bf78f31e2e8f7ba3927caddf1e translatedAt=2026-07-31T01:26:21.064Z pushedAt=2026-07-31T03:49:11.234Z -->
 
 ## Overview
 
-This topic describes how to subscribe to application freeze events by using the C/C++ APIs provided by HiAppEvent. For details (such as parameter restrictions and value ranges), see [hiappevent.h](../reference/apis-performance-analysis-kit/capi-hiappevent-h.md).
+This section describes how to use the C/C++ APIs provided by HiAppEvent to subscribe to app freeze events. For detailed API usage instructions (parameter constraints, value ranges, etc.), refer to [hiappevent.h](../reference/apis-performance-analysis-kit/capi-hiappevent-h.md).
 
 ## Available APIs
 
@@ -26,7 +27,7 @@ The following walks you through on how to subscribe to the application freeze ev
 
 1. Obtain the **jsoncpp** file on which the sample project depends. Specifically, download the source code package from [JsonCpp](https://github.com/open-source-parsers/jsoncpp) and obtain the **jsoncpp.cpp**, **json.h**, and **json-forwards.h** files by following the procedure described in **Amalgamated source**.
 
-2. Create a native C++ project and import the **jsoncpp** file to the project. The directory structure is as follows:
+2. In DevEco Studio, create a Native C++ project and import **jsoncpp** into the project. The directory structure is as follows.
 
    ```yml
    entry:
@@ -49,7 +50,7 @@ The following walks you through on how to subscribe to the application freeze ev
              - Index.ets
    ```
 
-3. In the **CMakeLists.txt** file, add the source file and dynamic libraries.
+3. Edit the **entry > src > main > cpp > CMakeLists.txt** file in the project to add source files and dynamic libraries.
 
    ```cmake
    # Add the jsoncpp.cpp file, which is used to parse the JSON strings in the subscription events.
@@ -58,7 +59,7 @@ The following walks you through on how to subscribe to the application freeze ev
    target_link_libraries(entry PUBLIC libace_napi.z.so libhilog_ndk.z.so libhiappevent_ndk.z.so)
    ```
 
-4. Import the dependencies to the **napi_init.cpp** file, and define **LOG_TAG**.
+4. Edit the **napi_init.cpp** file under **entry > src > main > cpp** in the project to import the required files and define `LOG_TAG`.
 
    ```c++
    #include "napi/native_api.h"
@@ -74,7 +75,7 @@ The following walks you through on how to subscribe to the application freeze ev
 
    - Watcher of the **onReceive** type.
 
-      In the **napi_init.cpp** file, define the methods related to **onReceive()**.
+      Edit the **napi_init.cpp** file under **entry > src > main > cpp** in the project to define the methods related to the watcher of the **onReceive** type:
 
       ```c++
       // Define a variable to cache the pointer to the created watcher.
@@ -94,6 +95,7 @@ The following walks you through on how to subscribe to the application freeze ev
                       if (reader.parse(appEventGroups[i].appEventInfos[j].params, params)) {
                           auto time = params["time"].asInt64();
                           auto foreground = params["foreground"].asBool();
+                          auto appRunningUniqueId = params["app_running_unique_id"].asString();
                           auto bundleVersion = params["bundle_version"].asString();
                           auto bundleName = params["bundle_name"].asString();
                           auto processName = params["process_name"].asString();
@@ -110,8 +112,10 @@ The following walks you through on how to subscribe to the application freeze ev
                           auto memory = writer.write(params["memory"]);
                           auto externalLog = writer.write(params["external_log"]);
                           auto logOverLimit = params["log_over_limit"].asBool();
+                          auto externalCallbackLog = params["external_callback_log"].asString();
                           OH_LOG_INFO(LogType::LOG_APP, "HiAppEvent eventInfo.params.time=%{public}lld", time);
                           OH_LOG_INFO(LogType::LOG_APP, "HiAppEvent eventInfo.params.foreground=%{public}d", foreground);
+                          OH_LOG_INFO(LogType::LOG_APP, "HiAppEvent eventInfo.params.app_running_unique_id=%{public}s", appRunningUniqueId.c_str());
                           OH_LOG_INFO(LogType::LOG_APP, "HiAppEvent eventInfo.params.bundle_version=%{public}s", bundleVersion.c_str());
                           OH_LOG_INFO(LogType::LOG_APP, "HiAppEvent eventInfo.params.bundle_name=%{public}s", bundleName.c_str());
                           OH_LOG_INFO(LogType::LOG_APP, "HiAppEvent eventInfo.params.process_name=%{public}s", processName.c_str());
@@ -128,6 +132,7 @@ The following walks you through on how to subscribe to the application freeze ev
                           OH_LOG_INFO(LogType::LOG_APP, "HiAppEvent eventInfo.params.memory=%{public}s", memory.c_str());
                           OH_LOG_INFO(LogType::LOG_APP, "HiAppEvent eventInfo.params.external_log=%{public}s", externalLog.c_str());
                           OH_LOG_INFO(LogType::LOG_APP, "HiAppEvent eventInfo.params.log_over_limit=%{public}d", logOverLimit);
+                          OH_LOG_INFO(LogType::LOG_APP, "HiAppEvent eventInfo.params.external_callback_log=%{public}s", externalCallbackLog.c_str());
                       }
                   }
               }
@@ -141,7 +146,7 @@ The following walks you through on how to subscribe to the application freeze ev
           const char *names[] = {EVENT_APP_FREEZE};
           // Add the events to watch, for example, system events.
           OH_HiAppEvent_SetAppEventFilter(systemEventWatcher, DOMAIN_OS, 0, names, 1);
-          // Set the implemented callback. After receiving the event, the watcher immediately triggers the OnReceive callback.
+          // Set the implemented callback function. When the watcher receives an event, the OnReceive callback is triggered immediately.
           OH_HiAppEvent_SetWatcherOnReceive(systemEventWatcher, OnReceive);
           // Add a watcher to listen for the specified event.
           OH_HiAppEvent_AddWatcher(systemEventWatcher);
@@ -151,10 +156,10 @@ The following walks you through on how to subscribe to the application freeze ev
 
    - Watcher of the **onTrigger** type.
 
-      In the **napi_init.cpp** file, define the methods related to **OnTrigger()**.
+      Edit the **napi_init.cpp** file under **entry > src > main > cpp** in the project to define the functions related to the watcher of the **onTrigger** type:
 
       ```c++
-      // Define a variable to cache the pointer to the created watcher.
+      // Define a variable to cache the pointer of the created watcher.
       static HiAppEvent_Watcher *systemEventWatcher;
       
       // Implement the callback function used to return the listened events. The content pointed to by the events pointer is valid only in this function.
@@ -173,6 +178,7 @@ The following walks you through on how to subscribe to the application freeze ev
                   if (domain ==  DOMAIN_OS && name == EVENT_APP_FREEZE) {
                       auto time = eventInfo["time"].asInt64();
                       auto foreground = eventInfo["foreground"].asBool();
+                      auto appRunningUniqueId = eventInfo["app_running_unique_id"].asString();
                       auto bundleVersion = eventInfo["bundle_version"].asString();
                       auto bundleName = eventInfo["bundle_name"].asString();
                       auto processName = eventInfo["process_name"].asString();
@@ -186,12 +192,14 @@ The following walks you through on how to subscribe to the application freeze ev
                       auto handleSize6s =  eventInfo["event_handler_size_6s"].asString();
                       auto peerBindSize =  eventInfo["peer_binder"].size();
                       auto threadSize =  eventInfo["threads"].size();
-                       auto memory =  writer.write(eventInfo["memory"]);
+                      auto memory =  writer.write(eventInfo["memory"]);
                       auto externalLog = writer.write(eventInfo["external_log"]);
                       auto logOverLimit = eventInfo["log_over_limit"].asBool();
                       auto process_life_time = eventInfo["process_life_time"].asString();
+                      auto externalCallbackLog = params["external_callback_log"].asString();
                       OH_LOG_INFO(LogType::LOG_APP, "HiAppEvent eventInfo.params.time=%{public}lld", time);
                       OH_LOG_INFO(LogType::LOG_APP, "HiAppEvent eventInfo.params.foreground=%{public}d", foreground);
+                      OH_LOG_INFO(LogType::LOG_APP, "HiAppEvent eventInfo.params.app_running_unique_id=%{public}s", appRunningUniqueId.c_str());
                       OH_LOG_INFO(LogType::LOG_APP, "HiAppEvent eventInfo.params.bundle_version=%{public}s", bundleVersion.c_str());
                       OH_LOG_INFO(LogType::LOG_APP, "HiAppEvent eventInfo.params.bundle_name=%{public}s", bundleName.c_str());
                       OH_LOG_INFO(LogType::LOG_APP, "HiAppEvent eventInfo.params.process_name=%{public}s", processName.c_str());
@@ -209,6 +217,7 @@ The following walks you through on how to subscribe to the application freeze ev
                       OH_LOG_INFO(LogType::LOG_APP, "HiAppEvent eventInfo.params.external_log=%{public}s", externalLog.c_str());
                       OH_LOG_INFO(LogType::LOG_APP, "HiAppEvent eventInfo.params.log_over_limit=%{public}d", logOverLimit);
                       OH_LOG_INFO(LogType::LOG_APP, "HiAppEvent eventInfo.params.process_life_time=%{public}s", process_life_time.c_str());
+                      OH_LOG_INFO(LogType::LOG_APP, "HiAppEvent eventInfo.params.external_callback_log=%{public}s", externalCallbackLog.c_str());
                   }
               }
           }
@@ -239,7 +248,7 @@ The following walks you through on how to subscribe to the application freeze ev
 
 6. Register **RegisterWatcher** as an ArkTS API.
 
-   In the **napi_init.cpp** file, register **RegisterWatcher** as an ArkTS API.
+   Edit the **napi_init.cpp** file under **entry > src > main > cpp** in the project to register `RegisterWatcher` as an ArkTS API:
 
    ```c++
    static napi_value Init(napi_env env, napi_value exports)
@@ -252,13 +261,13 @@ The following walks you through on how to subscribe to the application freeze ev
    }
    ```
 
-   In the **index.d.ts** file, define the ArkTS API.
+   Edit the **Index.ets** file under **entry > src > main > cpp > types > libentry** in the project to define the ArkTS APIs:
 
    ```typescript
    export const registerWatcher: () => void;
    ```
 
-7. In the **EntryAbility.ets** file, add the following API to **onCreate()**.
+7. Edit the **EntryAbility.ets** file under **entry > src > main > ets > entryability** in the project to add API calls in the `onCreate()` function.
 
    ```typescript
    // Import the dependent module.
@@ -269,19 +278,22 @@ The following walks you through on how to subscribe to the application freeze ev
    testNapi.registerWatcher();
    ```
 
-8. In the **Index.ets** file, add a button to trigger the freeze event.
+8. Edit the **Index.ets** file under **entry > src > main > ets > pages** in the project to add a button that triggers the freeze event.
 
    ```typescript
    Button("appFreeze").onClick(() => {
      setTimeout(()=>{
-       while(true) {}
+        // Simulate scenario fault
+        let date = Date.now();
+        while (Date.now() - date < 15000) {
+        };
      }, 1000)
    })
    ```
 
-9. In DevEco Studio, click the **Run** button to run the project. Then, click the **appfreeze** button to trigger an application freeze event.
+9. In DevEco Studio, click the **Run** button to run the project. Then, click the **appFreeze** button in the app UI to trigger an app freeze event.
 
-### Verifying the Subscription
+### Verifying That the Watcher Has Subscribed to App Freeze Events
 
 1. The application crashes. After restarting the application, you can view the following event information in the **Log** window.
 
@@ -291,6 +303,7 @@ The following walks you through on how to subscribe to the application freeze ev
    HiAppEvent eventInfo.eventType=1
    HiAppEvent eventInfo.params.time=1502049167732
    HiAppEvent eventInfo.params.foreground=1
+   HiAppEvent eventInfo.params.app_running_unique_id=382145346984526931478
    HiAppEvent eventInfo.params.bundle_version=1.0.0
    HiAppEvent eventInfo.params.bundle_name=com.example.myapplication
    HiAppEvent eventInfo.params.process_name=com.example.myapplication
@@ -308,6 +321,7 @@ The following walks you through on how to subscribe to the application freeze ev
    HiAppEvent eventInfo.params.external_log=["/data/storage/el2/log/hiappevent/APP_FREEZE_1502049185239_1587.log"]
    HiAppEvent eventInfo.params.log_over_limit=0
    HiAppEvent eventInfo.params.process_life_time=18
+   HiAppEvent eventInfo.params.external_callback_log=THREAD_BLOCK_3S:log3s THREAD_BLOCK_6S:log6s
    ```
 
 2. If the application fails to start or remains unstarted for a long time, you can delay the event notification by referring to [Using FaultLogExtensionAbility to Subscribe to Events](./fault-log-extension-app-events-arkts.md).

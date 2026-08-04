@@ -32,7 +32,7 @@ IsolatedComponent用于支持在本页面内嵌入显示独立Abc（方舟字节
 
 **体验约束**
 
-1、创建IsolatedComponent组件时，受限worker线程加载Abc布局渲染存在一定耗时，在此等待期间显示IsolatedComponent组件的背景色。
+1、创建IsolatedComponent组件时，受限worker线程加载Abc布局渲染存在耗时（具体耗时取决于Abc的复杂度），在此等待期间显示IsolatedComponent组件的背景色。
 
 2、主线程与受限worker线程之间布局渲染是异步处理，布局变化、旋转等导致的页面变化存在不同步现象。
 
@@ -78,8 +78,8 @@ IsolatedComponent(options: IsolatedOptions)
 
 | 名称  | 类型       | 只读 | 可选 | 说明 |
 | ---- | ------------ | ---- | ---- | --------------- |
-| want | [Want](../../apis-ability-kit/js-apis-app-ability-want.md) | 否 | 否 | 要加载的Abc信息。Want对象的parameters中需包含以下字段：resourcePath（资源路径，需为.hap文件路径）、abcPath（经[verifyAbc](../../apis-ability-kit/js-apis-bundleManager-sys.md#bundlemanagerverifyabc11)校验后的Abc文件路径，需以'/abcs'开头）、entryPoint（Abc入口，格式为'bundleName/页面路径'）。 |
-| worker | [RestrictedWorker](../../apis-arkts/js-apis-worker-sys.md#restrictedworker11) | 否 | 否 | 运行Abc的受限worker。 |
+| want | [Want](../../apis-ability-kit/js-apis-app-ability-want.md) | 否 | 否 | 要加载的Abc信息，Abc将在worker参数指定的受限worker中运行。Want对象的parameters中需包含以下字段：resourcePath（资源路径，需为.hap文件路径）、abcPath（经[verifyAbc](../../apis-ability-kit/js-apis-bundleManager-sys.md#bundlemanagerverifyabc11)校验后的Abc文件路径，需以'/abcs'开头）、entryPoint（Abc入口，格式为'bundleName/页面路径'）。 |
+| worker | [RestrictedWorker](../../apis-arkts/js-apis-worker-sys.md#restrictedworker11) | 否 | 否 | 运行Abc的受限worker。需注意主线程与受限worker线程之间的布局渲染和事件传递均为异步处理。 |
 
 ## 属性
 仅支持[width](ts-universal-attributes-size.md#width)、[height](ts-universal-attributes-size.md#height)、[backgroundColor](ts-universal-attributes-background.md#backgroundcolor)通用属性。

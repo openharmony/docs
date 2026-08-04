@@ -2,14 +2,15 @@
 
 <!--Kit: Performance Analysis Kit-->
 <!--Subsystem: HiviewDFX-->
-<!--Owner: @rr_cn-->
+<!--Owner: @Chenyufan466765692-->
 <!--Designer: @peterhuangyu-->
 <!--Tester: @gcw_KuLfPSbe-->
-<!--Adviser: @foryourself-->
+<!--Adviser: @jinqiuheng-->
+<!-- md-trans-meta sourceCommit=f319e3e62d6356bf78f31e2e8f7ba3927caddf1e translatedAt=2026-07-31T01:26:41.945Z pushedAt=2026-07-31T03:55:25.951Z -->
 
 ## Overview
 
-This topic describes how to use the ArkTS APIs provided by HiAppEvent to subscribe to main thread jank events. For details about how to use the APIs (such as parameter restrictions and value ranges), see [@ohos.hiviewdfx.hiAppEvent (Application Event Logging)](../reference/apis-performance-analysis-kit/js-apis-hiviewdfx-hiappevent.md).
+This document describes how to use the ArkTS APIs provided by HiAppEvent to subscribe to main thread timeout events. For detailed usage instructions (parameter constraints, value ranges, etc.) of the APIs, see [@ohos.hiviewdfx.hiAppEvent](../reference/apis-performance-analysis-kit/js-apis-hiviewdfx-hiappevent.md).
 
 ## Available APIs
 
@@ -24,12 +25,12 @@ This topic describes how to use the ArkTS APIs provided by HiAppEvent to subscri
 
 The following walks you through on how to subscribe to the main thread jank event.
 
-1. Create an ArkTS application project. In the **entry/src/main/ets/entryability/EntryAbility.ets** file of the project, import the dependent modules. The sample code is as follows:
+1. In DevEco Studio, create an ArkTS app project, edit the **entry > src > main > ets > entryability > EntryAbility.ets** file in the project, and import the dependent modules. The sample code is as follows:
 
    ```ts
     import { hiAppEvent, hilog } from '@kit.PerformanceAnalysisKit';
     import { buffer, util } from '@kit.ArkTS'
-    import { fileIo as fs } from '@kit.CoreFileKit';
+    import { fileIo } from '@kit.CoreFileKit';
    ```
 
 2. In the **entry/src/main/ets/entryability/EntryAbility.ets** file of the project, add a watcher in lifecycle APIs such as **onCreate()** and **onForeground()** at a proper position. The sample code is as follows:
@@ -85,7 +86,7 @@ The following walks you through on how to subscribe to the main thread jank even
             } else if (path.endsWith(".trace")) {
               targetPath= "/data/storage/el2/base/mainThreadJank.trace";
             }
-            fs.copyFileSync(path.toString(), targetPath.toString());
+            fileIo.copyFileSync(path.toString(), targetPath.toString());
           }
         }
       }
@@ -129,7 +130,7 @@ The following walks you through on how to subscribe to the main thread jank even
      import { hiAppEvent, hilog } from '@kit.PerformanceAnalysisKit';
      import { BusinessError } from '@kit.BasicServicesKit';
    
-     // Simulate a main thread jank event.
+     // Function definition for simulating timeout events. Sample code:
      function wait150ms() {
        let t = Date.now();
        while (Date.now() - t <= 150){
@@ -148,7 +149,7 @@ The following walks you through on how to subscribe to the main thread jank even
        build() {
          RelativeContainer() {
            Column() {
-             // Set the button for setting custom sampling stack parameters.
+             // Button for customizing sample stack parameters
              Button("customSample", { stateEffect:true, type: ButtonType.Capsule})
                .width('75%')
                .height(50)
@@ -175,7 +176,7 @@ The following walks you through on how to subscribe to the main thread jank even
                    hilog.error(0x0000, 'testTag', `HiAppEvent err.code: ${err.code}, err.message: ${err.message}`)
                  });
                })
-             // The button for triggering the event that times out for 150 ms.
+             // Button for triggering a 150 ms timeout event
              Button("timeOut150", { stateEffect:true, type: ButtonType.Capsule})
                .width('75%')
                .height(50)
@@ -235,7 +236,7 @@ The following walks you through on how to subscribe to the main thread jank even
    > If you use the **setEventConfig** API to set sampling stack parameters, the system starts main thread jank event detection after the time specified by **ignore_startup_time**.
 
    The main thread jank event is triggered when two consecutive timeout events are detected within the interval of the detection task.
-  
+
    You can quickly click the timeout button for two or three times (for example, **timeOut350**, **timeOut150**, or **timeOut500**) to trigger the main thread jank event.
 
 ### Verifying the Subscription

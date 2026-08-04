@@ -12,7 +12,9 @@ Exif（Exchangeable image file format）元数据。
 
 > **说明：**
 >
-> 本模块首批接口从API version 23开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
+> - 本模块首批接口从API version 23开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
+>
+> - 应用通过[PhotoAccessHelper](../apis-media-library-kit/arkts-apis-photoAccessHelper-PhotoAccessHelper.md)查询媒体库图片，在读取gpsLatitude、gpsLongitude、gpsAltitude、gpsTimestamp等GPS相关属性前，应先声明并向用户申请[ohos.permission.MEDIA_LOCATION](../../security/AccessToken/permissions-for-all-user.md#ohospermissionmedia_location)权限。如果GPS相关属性返回全为0或为空，请先检查该权限是否已获授权，并确认原始图片是否包含GPS信息。
 
 ## 导入模块
 

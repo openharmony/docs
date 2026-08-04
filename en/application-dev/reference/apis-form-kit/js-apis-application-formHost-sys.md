@@ -1,10 +1,12 @@
 # @ohos.application.formHost (formHost) (System API)
+
 <!--Kit: Form Kit-->
 <!--Subsystem: Ability-->
 <!--Owner: @Qian-Win-->
 <!--Designer: @cx983299475-->
 <!--Tester: @mahailong123456-->
 <!--Adviser: @HelloShuo-->
+<!-- md-trans-meta sourceCommit=e51968c7c56d4fd4ec628eff339eeb09ceb3837b translatedAt=2026-07-31T08:24:30.779Z pushedAt=2026-07-31T09:36:45.729Z -->
 
 The **formHost** module provides APIs related to the widget host, which is an application that displays the widget content and controls the position where the widget is displayed. You can use the APIs to delete, release, and update widgets installed by the same user, and obtain widget information and status.
 
@@ -201,7 +203,7 @@ Requests a widget update. This API uses an asynchronous callback to return the r
 | Name| Type   | Mandatory| Description   |
 | ------ | ------ | ---- | ------- |
 | formId | string | Yes  | Widget ID.|
-| callback | AsyncCallback&lt;void&gt; | Yes| Callback used to return the result. If the widget is updated, **err** is undefined; otherwise, **err** is an error object.|
+| callback | AsyncCallback&lt;void&gt; | Yes| Callback used to return the result. If the widget is updated, **error** is **undefined**; otherwise, **error** is an error object.|
 
 **Example**
 
@@ -338,8 +340,8 @@ Instructs the widget framework to make a widget visible. After this API is calle
 ```ts
 import Base from '@ohos.base';
 
-let formId: string[] = ['12400633174999288'];
-formHost.notifyVisibleForms(formId, (error: Base.BusinessError) => {
+let formIds: string[] = ['12400633174999288'];
+formHost.notifyVisibleForms(formIds, (error: Base.BusinessError) => {
   if (error.code) {
     console.error(`formHost notifyVisibleForms, error: ${JSON.stringify(error)}`);
   }
@@ -373,8 +375,8 @@ Instructs the widget framework to make a widget visible. After this API is calle
 ```ts
 import Base from '@ohos.base';
 
-let formId: string[] = ['12400633174999288'];
-formHost.notifyVisibleForms(formId).then(() => {
+let formIds: string[] = ['12400633174999288'];
+formHost.notifyVisibleForms(formIds).then(() => {
   console.info('formHost notifyVisibleForms success');
 }).catch((error: Base.BusinessError) => {
   console.error(`formHost notifyVisibleForms, error: ${JSON.stringify(error)}`);
@@ -403,8 +405,8 @@ Instructs the widget framework to make a widget invisible. After this API is cal
 ```ts
 import Base from '@ohos.base';
 
-let formId: string[] = ['12400633174999288'];
-formHost.notifyInvisibleForms(formId, (error: Base.BusinessError) => {
+let formIds: string[] = ['12400633174999288'];
+formHost.notifyInvisibleForms(formIds, (error: Base.BusinessError) => {
   if (error.code) {
     console.error(`formHost notifyInvisibleForms, error: ${JSON.stringify(error)}`);
   }
@@ -438,8 +440,8 @@ Instructs the widget framework to make a widget invisible. After this API is cal
 ```ts
 import Base from '@ohos.base';
 
-let formId: string[] = ['12400633174999288'];
-formHost.notifyInvisibleForms(formId).then(() => {
+let formIds: string[] = ['12400633174999288'];
+formHost.notifyInvisibleForms(formIds).then(() => {
   console.info('formHost notifyInvisibleForms success');
 }).catch((error: Base.BusinessError) => {
   console.error(`formHost notifyInvisibleForms, error: ${JSON.stringify(error)}`);
@@ -468,8 +470,8 @@ Instructs the widget framework to make a widget updatable. After this API is cal
 ```ts
 import Base from '@ohos.base';
 
-let formId: string[] = ['12400633174999288'];
-formHost.enableFormsUpdate(formId, (error: Base.BusinessError) => {
+let formIds: string[] = ['12400633174999288'];
+formHost.enableFormsUpdate(formIds, (error: Base.BusinessError) => {
   if (error.code) {
     console.error(`formHost enableFormsUpdate, error: ${JSON.stringify(error)}`);
   }
@@ -503,8 +505,8 @@ Instructs the widget framework to make a widget updatable. After this API is cal
 ```ts
 import Base from '@ohos.base';
 
-let formId: string[] = ['12400633174999288'];
-formHost.enableFormsUpdate(formId).then(() => {
+let formIds: string[] = ['12400633174999288'];
+formHost.enableFormsUpdate(formIds).then(() => {
   console.info('formHost enableFormsUpdate success');
 }).catch((error: Base.BusinessError) => {
   console.error(`formHost enableFormsUpdate, error: ${JSON.stringify(error)}`);
@@ -533,8 +535,8 @@ Instructs the widget framework to make a widget not updatable. After this API is
 ```ts
 import Base from '@ohos.base';
 
-let formId: string[] = ['12400633174999288'];
-formHost.disableFormsUpdate(formId, (error: Base.BusinessError) => {
+let formIds: string[] = ['12400633174999288'];
+formHost.disableFormsUpdate(formIds, (error: Base.BusinessError) => {
   if (error.code) {
     console.error(`formHost disableFormsUpdate, error: ${JSON.stringify(error)}`);
   }
@@ -568,8 +570,8 @@ Instructs the widget framework to make a widget not updatable. After this API is
 ```ts
 import Base from '@ohos.base';
 
-let formId: string[] = ['12400633174999288'];
-formHost.disableFormsUpdate(formId).then(() => {
+let formIds: string[] = ['12400633174999288'];
+formHost.disableFormsUpdate(formIds).then(() => {
   console.info('formHost disableFormsUpdate success');
 }).catch((error: Base.BusinessError) => {
   console.error(`formHost disableFormsUpdate, error: ${JSON.stringify(error)}`);
@@ -892,7 +894,7 @@ let want: Want = {
     'ohos.extra.param.key.form_dimension': 2
   }
 };
-formHost.acquireFormState(want, (error:Base.BusinessError, data: formInfo.FormStateInfo) => {
+formHost.acquireFormState(want, (error: Base.BusinessError, data: formInfo.FormStateInfo) => {
   if (error.code) {
     console.error(`formHost acquireFormState, error: ${JSON.stringify(error)}`);
   } else {
@@ -1115,16 +1117,16 @@ Instructs the widgets to enable or disable updates. This API uses a promise to r
 
 **Parameters**
 
-  | Name| Type   | Mandatory| Description   |
-  | ------ | ------ | ---- | ------- |
-  | formIds | Array&lt;string&gt; | Yes  | List of widget IDs.|
-  | isEnableUpdate | boolean | Yes  | Whether to make the widgets updatable.|
+| Name| Type   | Mandatory| Description   |
+| ------ | ------ | ---- | ------- |
+| formIds | Array&lt;string&gt; | Yes  | List of widget IDs.|
+| isEnableUpdate | boolean | Yes  | Whether to make the widgets updatable.|
 
 **Return value**
 
-  | Type| Description|
-  | -------- | -------- |
-  | Promise&lt;void&gt; | Promise that returns no value.|
+| Type| Description|
+| -------- | -------- |
+| Promise&lt;void&gt; | Promise that returns no value.|
 
 **Example**
 

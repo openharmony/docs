@@ -384,7 +384,7 @@ on(type: 'systemPressureLevelChange', callback: AsyncCallback\<SystemPressureLev
 | 参数名  | 类型                                                      | 必填 | 说明                                                              |
 |---------|----------------------------------------------------------|------|-------------------------------------------------------------------|
 |type     | string                                                   | 是   | 监听事件，固定为'systemPressureLevelChange'，session创建成功可监听。 |
-|callback | AsyncCallback\<[SystemPressureLevel](arkts-apis-camera-e.md#systempressurelevel20)\> | 是 | 回调函数，用于获取当前系统压力状态. |
+|callback | AsyncCallback\<[SystemPressureLevel](arkts-apis-camera-e.md#systempressurelevel20)\> | 是 | 回调函数，用于获取当前系统压力状态。 |
 
 **示例：**
 

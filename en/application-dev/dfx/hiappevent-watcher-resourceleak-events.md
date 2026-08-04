@@ -5,7 +5,8 @@
 <!--Owner: @xuxinao-->
 <!--Designer: @peterhuangyu-->
 <!--Tester: @gcw_KuLfPSbe-->
-<!--Adviser: @foryourself-->
+<!--Adviser: @jinqiuheng-->
+<!-- md-trans-meta sourceCommit=592c7fbb76a6d10f1234d8c0e8928fce60796f0e translatedAt=2026-07-31T01:30:20.102Z pushedAt=2026-07-31T06:32:03.221Z -->
 
 ## Overview
 
@@ -27,23 +28,23 @@ For details about the detection principles, see [Resource Leak Detection](https:
 
 ## Customizing Specifications
 
-### Available APIs
+### setEventConfig API Description
 
 | Name| Description|
 | -------- | -------- |
-| setEventConfig(name: string, config: Record<string, ParamType>): Promise&lt;void> | Sets the specifications of the resource leak log. **name** must be the resource leak event name constant **hiappevent.event.RESOURCE_OVERLIMIT**. Only JS memory leak is supported.<br>Note: This API is supported since API version 20.|
+| setEventConfig(name: string, config: Record<string, ParamType>): Promise&lt;void> | Sets the resource leak log specification parameters. The name parameter must be the resource leak event name constant **hiappevent.event.RESOURCE_OVERLIMIT**. **Only the JS memory leak type is supported.**<br>**Note:** This API is supported since API version 20. |
 
-### Parameters
+### setEventConfig Parameter Setting Description
 
 You can use the HiAppEvent APIs to set the log and callback event specifications of **RESOURCE_OVERLIMIT** in **Record<string, ParamType>**. The specific parameter descriptions are as follows.
 
 | Name         | Type  | Mandatory| Description                                                        |
 | --------------- | ------ | ---- | ------------------------------------------------------------ |
-| js_heap_logtype | string | No  | **event**: No heap snapshot is transferred when an OOM error occurs.<br>**event_rawheap**: The system generates and transfers a heap snapshot when an OOM error occurs.<br>Note: Only the preceding two values are supported. If other values are passed in, the API fails to be called and takes no effect.|
+| js_heap_logtype | string | No | **event**: When the app encounters OOM, no heap snapshot is passed.<br>**event_rawheap**: When the app encounters OOM, the system generates and passes a heap snapshot.<br>**Note:** Only the above two values are accepted. If any other value is passed, the method call fails without producing any effect. |
 
 > **NOTE**
 >
-> Even if the **js_heap_logtype** parameter is set to **event_rawheap**, the heap snapshot file may not be generated because the application may exit in advance due to a freeze event triggered by a performance problem.
+> Even if the **js_heap_logtype** parameter is set to **event_rawheap**, heap snapshot file generation is not guaranteed. This is because the app may exit prematurely due to screen freezing caused by performance issues when generating a heap snapshot.
 
 Parameter configuration example:
 
@@ -58,11 +59,50 @@ hiAppEvent.setEventConfig(hiappEvent.event.RESOURCE_OVERLIMIT, configParams);
 
 > **NOTE**
 >
-> When the **setEventConfig** API is called, it takes effect only in the current application lifecycle. After the application restarts, you need to call the **setEventConfig** API again.
+> When you call the **setEventConfig** API, each call takes effect only within the current app lifecycle. After the app restarts, you must call the **setEventConfig** API again.
 >
-> You can call the **setEventConfig** API multiple times within the same application lifecycle. The last successful call takes effect.
+> Within the same app lifecycle, you can call **setEventConfig** multiple times, and the value from the last successful call prevails.
 >
-> During debugging and self-testing, if the OOM error occurs too many times in a single day, you may fail to receive the JS memory leak event returned by the HiAppEvent. You can adjust the system time to one day later to avoid this issue.
+> During debugging and self-testing, if the OOM event is triggered too many times within a single day, you may not receive the JS memory leak event callback from HiAppEvent. You can work around this by adjusting the system time forward by one day.
+
+### configEventPolicy
+
+Page switch log configuration is supported since **API version 24**. When a resource leak fault occurs in the app, the system can collect and report page switch logs to help you locate the issue.
+
+Setting the log and callback event specifications for resource leak events is supported since **API version 26.0.0**.
+
+| Name | Description |
+| -------- | -------- |
+| [configEventPolicy](../reference/apis-performance-analysis-kit/js-apis-hiviewdfx-hiappevent.md#hiappeventconfigeventpolicy22) (policy: EventPolicy): Promise&lt;void>| Sets the resource leak event policy parameters. This API supports enabling page switch log collection for resource leak events and setting the log and callback event specifications for resource leak events. |
+
+### configEventPolicy Parameter Settings
+
+You can set the parameters of [EventPolicy](../reference/apis-performance-analysis-kit/js-apis-hiviewdfx-hiappevent.md#eventpolicy22) to enable page switch log collection for resource leak events and set the log and callback event specifications for resource leak events.
+
+| Name | Type | Read-only | Optional | Description |
+| ---------- | ------- | ---- | ---- | ------------------------------------------ |
+| resourceOverlimitPolicy | [ResourceOverlimitPolicy](../reference/apis-performance-analysis-kit/js-apis-hiviewdfx-hiappevent.md#resourceoverlimitpolicy24) | No | Yes | Resource leak event configuration policy. |
+
+Parameter configuration example:
+
+```ts
+import { deviceInfo, BusinessError } from '@kit.BasicServicesKit';
+import { hilog, hiAppEvent } from '@kit.PerformanceAnalysisKit';
+
+let policy: hiAppEvent.EventPolicy = {
+    resourceOverlimitPolicy: {
+        pageSwitchLogEnable: true, // Enable page switch logging. Supported since API version 24.
+        useRefinedLogFileName: true, // Enable the refined event log file name switch. Supported since API version 26.0.0.
+        js_heap_logtype: "event", // Obtain only events. Supported since API version 26.0.0.
+        // js_heap_logtype: "event_rawheap", // Obtain heap snapshots simultaneously. Supported since API version 26.0.0.
+    }
+};
+hiAppEvent.configEventPolicy(policy).then(() => {
+    hilog.info(0x0000, 'hiAppEvent', `Set resourceOverlimit config policy successfully.`);
+}).catch((err: BusinessError) => {
+    hilog.error(0x0000, 'hiAppEvent', `Failed to set resourceOverlimit config policy. code: ${err.code}, message: ${err.message}`);
+});
+```
 
 ## params
 
@@ -71,6 +111,7 @@ The **params** parameter in the event information is described as follows.
 | Name| Type| Description|
 | -------- | -------- | -------- |
 | time | number | Event triggering time, in ms.|
+| app_running_unique_id | string | Unique ID associated with the app runtime.<br>**Note:** This parameter is supported since API version 24. |
 | bundle_version | string | Application version.|
 | bundle_name | string | Application name.|
 | pid | number | Process ID of an application.|
@@ -81,14 +122,16 @@ The **params** parameter in the event information is described as follows.
 | thread | object | Thread information (only available for **thread**). For details, see **thread**.|
 | external_log | string[] | Path of the error log file. If the directory files exceed the threshold (for details, see **log_over_limit**), new log files may fail to be written. Therefore, delete the log files immediately after they are processed.|
 | log_over_limit | boolean | Whether the size of generated fault log files and existing log files exceeds the upper limit (2 GB). The value **true** indicates that the upper limit is exceeded and logs fail to be written. The value **false** indicates that the upper limit is not exceeded.|
+| page_switch_log | string | Page transition log path. For details about the log, see [Page Switch Logs](pageswitch-log.md).<br>**Note:** Supported since API version 24. |
 
 ### resource_type
 
 | Value| Description|
 | -------- | -------- |
 | pss_memory | PSS memory leak.|
-| ion_memory | ION memory leak.<br>Note: This field is supported since API version 20.|
-| gpu_memory | GPU memory leak.<br>Note: This field is supported since API version 20.|
+| rss_memory | RSS memory leak.<br>**Note:** This field is supported since API version 26.0.0. |
+| ion_memory | ION memory leak.<br>**Note:** This field is supported since API version 20. |
+| gpu_memory | GPU memory leak.<br>**Note:** This field is supported since API version 20. |
 | js_heap | JS memory leak.|
 | fd | Handle leak.|
 | thread | Thread leak.|
@@ -100,13 +143,37 @@ The **params** parameter in the event information is described as follows.
 | rss | number | Size of the memory allocated for a process (only available for **pss_memory**, **ion_memory**, and **gpu_memory**), in KB.|
 | vss | number | Size of the virtual memory applied by a process from the system (only available for **pss_memory**, **ion_memory**, and **gpu_memory**), in KB.|
 | pss | number | Size of the physical memory actually used by a process (only available for **pss_memory**, **ion_memory**, and **gpu_memory**), in KB.|
-| ion | number | Size of the ION memory actually used by a process (only available for **pss_memory**, **ion_memory**, and **gpu_memory**), in KB.<br>Note: This field is supported since API version 20.|
-| gpu | number | Size of the GPU memory actually used by a process (only available for **pss_memory**, **ion_memory**, and **gpu_memory**), in KB.<br>Note: This field is supported since API version 20.|
+| ion | number | Size of the ION memory actually used by a process (only available for **pss_memory**, **ion_memory**, and **gpu_memory**), in KB.<br>**Note:** Supported since API version 20. |
+| gpu | number | Size of the GPU memory actually used by a process (only available for **pss_memory**, **ion_memory**, and **gpu_memory**), in KB.<br>**Note:** Supported since API version 20. |
 | sys_free_mem | number | Size of the free memory (only available for **pss_memory**, **ion_memory**, and **gpu_memory**), in KB.|
 | sys_avail_mem | number | Size of the available memory (only available for **pss_memory**, **ion_memory**, and **gpu_memory**), in KB.|
 | sys_total_mem | number | Size of the total memory (only available for **pss_memory**, **ion_memory**, and **gpu_memory**), in KB.|
 | limit_size | number | Limit of memory size (only available for **js_heap**), in KB.|
 | live_object_size | number | Size of the used memory (only available for **js_heap**), in KB.|
+| rss_detail | object | Detailed distribution information of RSS memory (only available for **rss_memory**). For details, see [detail field description](#detail).<br>**Note:** Supported since API version 26.0.0. |
+| pss_detail | object | Detailed distribution information of PSS memory (only available for **pss_memory**). For details, see [detail field description](#detail).<br>**Note:** Supported since API version 26.0.0. |
+
+### detail
+
+| Name | Type | Description |
+| -------- | -------- | -------- |
+| .db | number | Memory occupied by database files, in KB. |
+| .hap | number | Memory occupied by HAP files, in KB. |
+| .so | number | Memory occupied by shared library files, in KB. |
+| .ttf | number | Memory occupied by font files, in KB. |
+| anon_page_other | number | Memory occupied by other anonymous pages, in KB. |
+| ark ts heap | number | Memory occupied by the ArkTS heap, in KB. |
+| arkweb-js heap | number | Memory occupied by the ArkWeb JS heap, in KB. |
+| arkweb-pa heap | number | Memory occupied by the ArkWeb PA heap, in KB. |
+| dart heap | number | Memory occupied by the Dart heap, in KB. |
+| dev | number | Memory occupied by various files under /dev, in KB. |
+| file_page_other | number | Memory occupied by other file pages, in KB. |
+| jsvm heap | number | Memory occupied by the JSVM heap, in KB. |
+| kotlin heap | number | Memory occupied by the Kotlin heap, in KB. |
+| native heap | number | Memory occupied by the Native heap, in KB. |
+| other | number | Memory occupied by other types, in KB. |
+| rn-hermes heap | number | Memory occupied by the React Native Hermes heap, in KB. |
+| stack | number | Memory occupied by the stack space, in KB. |
 
 ### fd
 
@@ -130,4 +197,4 @@ Currently, the resource leak event reports the JS memory leak event information,
 
 | Name| Description|
 | -------- | -------- |
-| setEventParam(params: Record&lt;string, ParamType>, domain: string, name?: string): Promise&lt;void> | Sets custom event parameters.<br>Note: This API is supported since API version 20.|
+| setEventParam(params: Record&lt;string, ParamType>, domain: string, name?: string): Promise&lt;void> | Sets custom event parameters.<br>**Note:** This API is supported since API version 20. |

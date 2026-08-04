@@ -16,7 +16,7 @@
 - [OpenGL](opengl.md)
 - [EGL](egl.md)
 - [ICU4C](icu4c.md)
-- [Zlib](zlib.md)
+- [zlib](zlib.md)
 - Vulkan<!--vulkan-guide-->
   - Vulkan开发指导<!--vulkan-guides-->
     - [Vulkan开发概述](vulkan-overview.md)

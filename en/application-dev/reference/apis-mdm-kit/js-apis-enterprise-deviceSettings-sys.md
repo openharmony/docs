@@ -1,12 +1,12 @@
 # @ohos.enterprise.deviceSettings (Device Settings Management) (System API)
 <!--Kit: MDM Kit-->
 <!--Subsystem: Customization-->
-<!--Owner: @huanleima-->
+<!--Owner: @huanleima; @weizai16-->
 <!--Designer: @hp_guo-->
 <!--Tester: @lpw_work-->
 <!--Adviser: @zhang_yixin13-->
 
-The **deviceSettings** module provides APIs for setting enterprise devices, including obtaining the screen-off time of a device.
+This module provides enterprise device settings capabilities, including obtaining the device screen-off time and power policy.
 
 > **NOTE**
 >
@@ -14,7 +14,7 @@ The **deviceSettings** module provides APIs for setting enterprise devices, incl
 >
 > The APIs of this module can be used only in the stage model.
 >
-> The APIs of this module can be called only by a [device administrator application](../../mdm/mdm-kit-term.md#mdm-application-device-administrator-application) that is [enabled](js-apis-enterprise-adminManager-sys.md#adminmanagerenableadmin-2).
+> The APIs of this module are available only to [MDM applications](../../mdm/mdm-kit-term.md#mdm-application-device-administrator-application), and can be called only after the device administrator application is activated via [enableAdmin](js-apis-enterprise-adminManager-sys.md#adminmanagerenableadmin-2).
 > 
 > This topic describes only system APIs provided by the module. For details about its public APIs, see [@ohos.enterprise.deviceSettings](js-apis-enterprise-deviceSettings.md).
 
@@ -24,11 +24,15 @@ The **deviceSettings** module provides APIs for setting enterprise devices, incl
 import { deviceSettings } from '@kit.MDMKit';
 ```
 
-## deviceSettings.setScreenOffTime<sup>11+</sup>
+## deviceSettings.setScreenOffTime<sup>(deprecated)</sup>
 
 setScreenOffTime(admin: Want, time: number): void
 
 Sets the device screen-off time.
+
+**Deprecated since:** 26.0.0
+
+**Substitutes:** [setValue](./js-apis-enterprise-deviceSettings.md#devicesettingssetvalue)
 
 **Required permissions**: ohos.permission.ENTERPRISE_SET_SCREENOFF_TIME
 
@@ -77,11 +81,15 @@ try {
 }
 ```
 
-## deviceSettings.getScreenOffTime
+## deviceSettings.getScreenOffTime<sup>(deprecated)</sup>
 
 getScreenOffTime(admin: Want, callback: AsyncCallback&lt;number&gt;): void
 
 Obtains the device screen-off time. This API uses an asynchronous callback to return the result.
+
+**Deprecated since:** 26.0.0
+
+**Substitutes:** [getValue](./js-apis-enterprise-deviceSettings.md#devicesettingsgetvalue)
 
 **Required permissions**: ohos.permission.ENTERPRISE_GET_SETTINGS
 
@@ -131,11 +139,15 @@ deviceSettings.getScreenOffTime(wantTemp, (err, result) => {
 });
 ```
 
-## deviceSettings.getScreenOffTime
+## deviceSettings.getScreenOffTime<sup>(deprecated)</sup>
 
 getScreenOffTime(admin: Want): Promise&lt;number&gt;
 
 Obtains the device screen-off time. This API uses an asynchronous promise to return the result.
+
+**Deprecated since:** 26.0.0
+
+**Substitutes:** [getValue](./js-apis-enterprise-deviceSettings.md#devicesettingsgetvalue)
 
 **Required permissions**: ohos.permission.ENTERPRISE_GET_SETTINGS
 
@@ -189,11 +201,15 @@ deviceSettings.getScreenOffTime(wantTemp).then((result) => {
 });
 ```
 
-## deviceSettings.installUserCertificate
+## deviceSettings.installUserCertificate<sup>(deprecated)</sup>
 
 installUserCertificate(admin: Want, certificate: CertBlob, callback: AsyncCallback&lt;string&gt;): void
 
 Installs a user certificate. This API uses a callback to return the result.
+
+**Deprecated since:** 26.0.0
+
+**Substitutes:** [installUserCertificate](./js-apis-enterprise-securityManager.md#securitymanagerinstallusercertificate)
 
 **Required permissions**: ohos.permission.ENTERPRISE_MANAGE_CERTIFICATE
 
@@ -257,11 +273,15 @@ context.resourceManager.getRawFileContent("test.cer").then((value) => {
 });
 ```
 
-## deviceSettings.installUserCertificate
+## deviceSettings.installUserCertificate<sup>(deprecated)</sup>
 
 installUserCertificate(admin: Want, certificate: CertBlob): Promise&lt;string&gt;
 
 Installs a user certificate. This API uses a promise to return the result.
+
+**Deprecated since:** 26.0.0
+
+**Substitutes:** [installUserCertificate](./js-apis-enterprise-securityManager.md#securitymanagerinstallusercertificate)
 
 **Required permissions**: ohos.permission.ENTERPRISE_MANAGE_CERTIFICATE
 
@@ -321,7 +341,7 @@ context.resourceManager.getRawFileContent("test.cer").then((value) => {
     .then((result) => {
       console.info(`Succeeded in installing user certificate, result : ${JSON.stringify(result)}`);
     }).catch((err: BusinessError) => {
-    console.error(`Failed to install user certificate. Code: ${err.code}, message: ${err.message}`);
+      console.error(`Failed to install user certificate. Code: ${err.code}, message: ${err.message}`);
   })
 }).catch((error: BusinessError) => {
   console.error(`Failed to get raw file content. message: ${error.message}`);
@@ -329,11 +349,15 @@ context.resourceManager.getRawFileContent("test.cer").then((value) => {
 });
 ```
 
-## deviceSettings.uninstallUserCertificate
+## deviceSettings.uninstallUserCertificate<sup>(deprecated)</sup>
 
 uninstallUserCertificate(admin: Want, certUri: string, callback: AsyncCallback&lt;void&gt;): void
 
 Uninstalls a user certificate. This API uses a callback to return the result.
+
+**Deprecated since:** 26.0.0
+
+**Substitutes:** [uninstallUserCertificate](./js-apis-enterprise-securityManager.md#securitymanageruninstallusercertificate)
 
 **Required permissions**: ohos.permission.ENTERPRISE_MANAGE_CERTIFICATE
 
@@ -348,7 +372,7 @@ Uninstalls a user certificate. This API uses a callback to return the result.
 | Name     | Type                                      | Mandatory  | Description                      |
 | -------- | ---------------------------------------- | ---- | ------------------------------- |
 | admin    | [Want](../apis-ability-kit/js-apis-app-ability-want.md)     | Yes   | EnterpriseAdminExtensionAbility. **Want** must contain the ability name of the EnterpriseAdminExtensionAbility and the bundle name of the application.           |
-| certUri    | string    | Yes   | Certificate URI, which is set and returned by the [installUserCertificate](#devicesettingsinstallusercertificate) API for installing a user certificate.|
+| certUri    | string    | Yes   | Certificate URI, which is set and returned by the user certification installation API [installUserCertificate](#devicesettingsinstallusercertificatedeprecated).|
 | callback | AsyncCallback&lt;void&gt;            | Yes   | Callback invoked to return the result. If the operation is successful, **err** is **null**. Otherwise, **err** is an error object.     |
 
 **Error codes**
@@ -386,11 +410,15 @@ deviceSettings.uninstallUserCertificate(wantTemp, aliasStr, (err) => {
 });
 ```
 
-## deviceSettings.uninstallUserCertificate
+## deviceSettings.uninstallUserCertificate<sup>(deprecated)</sup>
 
 uninstallUserCertificate(admin: Want, certUri: string): Promise&lt;void&gt;
 
 Uninstalls a user certificate. This API uses a promise to return the result.
+
+**Deprecated since:** 26.0.0
+
+**Substitutes:** [uninstallUserCertificate](./js-apis-enterprise-securityManager.md#securitymanageruninstallusercertificate)
 
 **Required permissions**: ohos.permission.ENTERPRISE_MANAGE_CERTIFICATE
 
@@ -405,7 +433,7 @@ Uninstalls a user certificate. This API uses a promise to return the result.
 | Name  | Type                                 | Mandatory  | Description     |
 | ----- | ----------------------------------- | ---- | ------- |
 | admin | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | Yes   | EnterpriseAdminExtensionAbility. **Want** must contain the ability name of the EnterpriseAdminExtensionAbility and the bundle name of the application.|
-| certUri    | string     | Yes   | Certificate URI, which is set and returned by the [installUserCertificate](#devicesettingsinstallusercertificate-1) API for installing a user certificate.|
+| certUri    | string     | Yes   | Certificate URI, which is set and returned by the user certification installation API [installUserCertificate](#devicesettingsinstallusercertificatedeprecated-1).|
 
 **Return value**
 
@@ -447,11 +475,15 @@ deviceSettings.uninstallUserCertificate(wantTemp, aliasStr).then(() => {
 });
 ```
 
-## deviceSettings.setPowerPolicy<sup>11+</sup>
+## deviceSettings.setPowerPolicy<sup>(deprecated)</sup>
 
 setPowerPolicy(admin: Want, powerScene: PowerScene, powerPolicy: PowerPolicy): void
 
 Sets the power policy.
+
+**Deprecated since:** 26.0.0
+
+**Substitutes:** [setValue](./js-apis-enterprise-deviceSettings.md#devicesettingssetvalue)
 
 **Required permissions**: ohos.permission.ENTERPRISE_MANAGE_SETTINGS
 
@@ -504,11 +536,15 @@ try {
 }
 ```
 
-## deviceSettings.getPowerPolicy<sup>11+</sup>
+## deviceSettings.getPowerPolicy<sup>(deprecated)</sup>
 
 getPowerPolicy(admin: Want, powerScene: PowerScene): PowerPolicy
 
 Obtains the power policy.
+
+**Deprecated since:** 26.0.0
+
+**Substitutes:** [getValue](./js-apis-enterprise-deviceSettings.md#devicesettingsgetvalue)
 
 **Required permissions**: ohos.permission.ENTERPRISE_MANAGE_SETTINGS
 
@@ -614,4 +650,3 @@ Enumerates the actions that can be performed to apply the power policy.
 | FORCE_SUSPEND | 2 | Forcibly enter the sleep mode.|
 | HIBERNATE | 3 | Enter the sleep mode. This policy does not take effect currently.|
 | SHUTDOWN | 4 | Shut down the system.|
-<!--no_check-->

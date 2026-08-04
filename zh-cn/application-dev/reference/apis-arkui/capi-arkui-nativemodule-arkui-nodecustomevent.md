@@ -12,7 +12,7 @@ typedef struct ArkUI_NodeCustomEvent ArkUI_NodeCustomEvent
 
 ## 概述
 
-定义自定义组件事件的通用结构类型。
+定义自定义组件事件的通用结构类型，用于在自定义组件的测量、布局和绘制事件回调中传递事件信息。
 
 **起始版本：** 12
 

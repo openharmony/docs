@@ -6,7 +6,7 @@
 <!--Tester: @fredyuan0912-->
 <!--Adviser: @Brilliantry_Rui-->
 
-提供注册组件布局和组件绘制送显完成回调通知的能力。适用于需要在组件布局或绘制送显完成后执行自定义逻辑的场景，帮助开发者精准掌控组件渲染时机。
+提供注册组件布局和组件绘制送显完成回调通知的能力。开发者可通过注册回调，在组件布局完成或绘制送显完成后及时获取通知，适用于需要精确感知组件渲染时机并据此执行自定义逻辑的场景。适用于需要在组件布局或绘制送显完成后执行自定义逻辑的场景，帮助开发者精准掌控组件渲染时机。
 
 > **说明：**
 >
@@ -65,7 +65,7 @@ let listener: inspector.ComponentObserver = inspector.createComponentObserver('C
 
 on(type: 'layout', callback: () => void): void
 
-通过句柄向对应的查询条件注册回调，当组件布局完成时会触发该回调。请注意，该接口无法监听窗口尺寸变化，相关需求请参考[on('windowSizeChange')](./arkts-apis-window-Window.md#onwindowsizechange7)。此外，布局回调和窗口尺寸变化回调之间不存在确定的执行顺序依赖。
+通过句柄为指定组件注册回调，当组件布局完成时会触发该回调。请注意，该接口无法监听窗口尺寸变化，相关需求请参考[on('windowSizeChange')](./arkts-apis-window-Window.md#onwindowsizechange7)。此外，布局回调和窗口尺寸变化回调之间不存在确定的执行顺序依赖。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -271,10 +271,10 @@ struct ImageExample {
     // this.listenerForRow.off('drawChildren', offFuncDrawChildren)
 
     let onLayoutChildrenComplete: () => void = (): void => {
-      // 监听到LayoutChildren事件后，用户可以自定义实现逻辑。
+      // 监听到layoutChildren事件后，用户可以自定义实现逻辑。
     };
 
-    let uniqueId: number = this.getUniqueId();
+    let uniqueId: number = 0; // 替换为实际组件的uniqueId
     let listenerForUniqueId: inspector.ComponentObserver = this.getUIContext().getUIInspector().createComponentObserver(uniqueId.toString());
     listenerForUniqueId.onLayoutChildren(onLayoutChildrenComplete);
   }
@@ -333,7 +333,7 @@ struct ImageExample {
 
   aboutToAppear() {
     let onDrawChildrenCompleteUniqueId: (childIds: number[]) => void = (childIds: number[]): void => {
-      // 从API version 24开始，新增onDrawChildren接口。监听到DrawChildren事件后，用户可以自定义实现逻辑。
+      // 从API version 24开始，新增onDrawChildren接口。监听到drawChildren事件后，用户可以自定义实现逻辑。
     };
 
     this.listenerForRow.onDrawChildren(onDrawChildrenCompleteUniqueId);

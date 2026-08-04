@@ -441,9 +441,9 @@ async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper) {
     
 | 名称  |  值 |  说明 |
 | ----- |  ---- |  ---- |
-| SPACIOUS |  0 |  宽松宫格档位。该挡位为标准宫格的列数减1。|
+| SPACIOUS |  0 |  宽松宫格档位。该档位为标准宫格的列数减1。|
 | STANDARD |  1 |  标准宫格档位。不同设备尺寸对应的标准宫格列数各不相同，当未配置标准宫格列数时，系统将使用默认列数。|
-| COMPACT |  2 |  紧密宫格档位。该挡位为标准宫格的列数加1。 |
+| COMPACT |  2 |  紧密宫格档位。该档位为标准宫格的列数加1。 |
 
 ## GridPinchModeType<sup>23+</sup>
     
@@ -508,4 +508,4 @@ async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper) {
 | ----- |  ---- |  ---- |
 | DEFAULT |  0 |  根据配置的资产兼容性功能执行转码。|
 | CURRENT |  1 |  不进行转码。资产将以其原始格式返回。|
-| COMPATIBLE |  2 |  所有资产都被转码为最广泛兼容的格式(如JPEG)。|
+| COMPATIBLE |  2 |  所有资产都被转码为最广泛兼容的格式（如JPEG）。|

@@ -1,10 +1,12 @@
 # About This Kit
+
 <!--Kit: Core File Kit-->
 <!--Subsystem: FileManagement-->
 <!--Owner: @wangke25; @gsl_1234; @wuchengjun5-->
 <!--Designer: @gsl_1234; @wangke25-->
 <!--Tester: @liuhonggang123; @yue-ye2; @juxiaopang-->
 <!--Adviser: @jinqiuheng-->
+<!-- md-trans-meta sourceCommit=4f18c57bcbc4988278ed782932d83b5e0aeec8ed translatedAt=2026-08-01T07:25:50.989Z pushedAt=2026-08-01T08:51:00.370Z -->
 
 Core File Kit provides capabilities for accessing and managing application files and user files. You can use the APIs provided by Core File Kit to manage, search for, and back up different types of files efficiently.
 
@@ -24,45 +26,81 @@ The file systems can be classified into the following types based on the file st
 
 - [Distributed file system](distributed-fs-overview.md): allows access to files across devices, which include not only the local device and its external storage devices, but also the devices connected over a computer network.
 
+<!--RP2--><!--RP2End-->
+
 **Figure 1** File classification model
 
 ![File classification model](figures/file-classification-model.png)
+
+Core File Kit provides high-performance [compression and decompression capabilities](archive-overview.md), which are classified into the following types based on usage scenarios:
+
+- File archive compression: Supports file- and directory-level archive compression and decompression.
+
+- Streaming compression: Supports streaming data compression and decompression.
+
+- Buffer compression: Supports buffer data compression and decompression.
 
 ## When to Use
 
 You can use Core File Kit in any of the following scenarios:
 
 - Access to and share of application files
+
 - Backup and restore of application data
+
 - Operations for selecting and saving user files
+
+- File compression and decompression
+
 - Cross-device file access and sharing
 
 ## Available Capabilities
 
-- Accessing application files, including viewing, creating, reading, writing, delete, moving, and copying an application file, and obtaining attributes of an application file.
+- Accessing application files, including viewing, creating, reading, writing, deleting, moving, and copying an application file, and obtaining attributes of an application file.
+
 - Uploading application files to a network server and downloading network resource files from a network server to the local application file directory.
+
 - Obtaining the storage space of an application, and the total and available space of a file system.
+
 - Sharing application files to other applications and using the files shared by other applications.
+
 - Accessing the data backup and restore framework to customize data backup and restore behaviors, such as whether to allow backup and restore and specifying the data to be backed up, by modifying the configuration file.<!--Del-->
+
 - Triggering data backup and restore (available only for system applications).
+
 <!--DelEnd-->
+
 - Accessing and managing user files with the [user file access framework](#user-file-access-framework). For example, selecting and saving user files<!--Del--> and developing a user file manager (available only for system applications)<!--DelEnd-->.
+
 - Accessing and copying files across devices.
+
+- File and directory archive compression and decompression, as well as streaming and buffer data compression and decompression.
+
+<!--RP3--><!--RP3End-->
 
 ## Features
 
 - Sandbox isolation:
 
   Each application has a dedicated [sandbox directory](app-sandbox-directory.md) in the internal storage. The sandbox directory is a collection of the [application file directory](app-sandbox-directory.md#application-file-directory-and-application-file-path) and the system files required for application running. The sandbox feature stands out with the following advantages:
+
   - Isolation: The application sandbox provides a completely isolated environment to ensure secure access to application files.
+
   - Security: The application sandbox defines the minimum data visible to each application, which protects application file security.
+
 - Application share:
 
   Files can be shared between applications by uniform resource identifier (URI) or file descriptor (FD). The application share feature has the following advantages:
+
   - Portability: Files can be easily shared between applications, without the need for the user to switch between different applications.
-  - High efficiency: Files can be quickly transferred between applications, which eliminates redirections and the response time.
+
+  - High efficiency: Files can be quickly transferred between applications, which eliminates redirections and the waiting time.
+
   - Data consistency: File share between applications ensures data integrity and consistency, preventing data corruption or loss during transmission.
+
   - Security: File share between applications prevents files from being illegally obtained or tampered with. In addition, authorized file access further enhances file security.
+
+  <!--RP4--><!--RP4End-->
 
 ## Working Principles
 
@@ -85,12 +123,23 @@ You can use the user file access framework to access and manage user files. This
 - **FileManager**: You can also develop your own file picker or file manager application as required. <!--RP1-->File picker is a subset of file manager. For details about how to develop a file manager application, see [Developing a File Manager Application (for System Applications Only)](dev-user-file-manager-sys.md).<!--RP1End-->
 
 - The user file access framework provides the following functional modules:
+
   - **File Access Helper**: provides APIs for the **FileManager** and **FilePicker** to access user files.
+
   - **File Access ExtensionAbility**: implements file access via the following services:
+
     - **UserFileManager**: implements management of the files on the built-in storage based on the File Access ExtensionAbility framework.
+
     - **ExternalFileManager**: implements management of the files on the external storage based on the File Access ExtensionAbility framework.
 
 ## Related Kits
 
 Ability Kit: The user file access framework of Core File Kit depends on the Extension capability provided by Ability Kit and is scheduled and managed by Ability Kit.
 
+## Samples
+
+The following sample is available:
+
+- [FileManager (ArkTS) (Full SDK) (API10)](https://gitcode.com/openharmony/applications_app_samples/tree/master/code/SystemFeature/FileManagement/FileManager)
+
+<!--RP5--><!--RP5End-->

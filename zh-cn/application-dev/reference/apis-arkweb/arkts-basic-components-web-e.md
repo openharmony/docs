@@ -123,7 +123,7 @@ ConsoleMessage的日志来源。
 
 ## WebDarkMode<sup>9+</sup>
 
-Web深色模式的配置。
+Web深色模式的配置，用于控制网页内容的深色主题显示，帮助开发者根据用户偏好和系统主题提升视觉体验和可读性。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -131,7 +131,7 @@ Web深色模式的配置。
 | ---- | -- | ------------ |
 | Off  | 0 | Web深色模式关闭。   |
 | On   | 1 | Web深色模式开启。   |
-| Auto | 2 | Web深色模式跟随系统。 |
+| Auto | 2 | Web深色模式跟随系统。适用于Web组件主题需要与系统保持一致的场景，推荐使用此模式以提供一致的用户体验。 |
 
 ## WebCaptureMode<sup>10+</sup>
 
@@ -200,14 +200,14 @@ onSslErrorEventReceive接口返回的SSL错误的具体原因。
 
 ## WebLayoutMode<sup>11+</sup>
 
-Web布局模式的配置。
+Web布局模式的配置，用于控制Web内容的页面布局方式，帮助开发者根据屏幕尺寸和显示需求优化网页的适配性和用户体验。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
 | 名称          | 值 | 说明                 |
 | ----------- | -- | ------------------ |
-| NONE        | 0 | Web布局跟随系统。         |
-| FIT_CONTENT | 1 | Web基于页面大小的自适应网页布局。 |
+| NONE        | 0 | Web布局跟随系统。适用于传统网页布局场景，保持与系统默认行为一致。         |
+| FIT_CONTENT | 1 | Web基于页面大小的自适应网页布局。适用于需要根据屏幕尺寸自动调整布局的场景，推荐用于移动端网页优化。 |
 
 ## RenderProcessNotRespondingReason<sup>12+</sup>
 
@@ -359,9 +359,9 @@ ProtectedResourceType枚举定义了Web组件需要访问的受保护资源类�
 
 | 名称                           | 值 | 说明           |
 | ----------------------------- | -- | ------------ |
-| AUTO                  | 0 | 默认值，整个网页可见。   |
-| CONTAINS      | 1 | 初始布局视口和视觉视口为适应设备显示屏的最大矩形内。   |
-| COVER      | 2| 初始布局视口和视觉视口为设备物理屏幕的外接矩形内。   |
+| AUTO                  | 0 | 默认值，整个网页可见。适用于希望网页完全在可视区域内显示的场景，推荐用于大多数常规网页。   |
+| CONTAINS      | 1 | 初始布局视口和视觉视口为适应设备显示屏的最大矩形内。适用于需要确保内容完全在安全区域内的场景，如避免刘海屏遮挡重要内容。   |
+| COVER      | 2| 初始布局视口和视觉视口为设备物理屏幕的外接矩形内。适用于需要网页内容延伸到屏幕边缘的场景，如全屏背景效果或沉浸式体验。   |
 
 ## WebKeyboardAvoidMode<sup>12+</sup>
 
@@ -464,7 +464,7 @@ ProtectedResourceType枚举定义了Web组件需要访问的受保护资源类�
 
 ## DetectedBlankScreenReason<sup>22+</sup>
 
-白屏的具体原因。
+白屏的具体原因，用于标识页面白屏现象的底层原因，帮助开发者快速定位问题来源，提升页面加载问题的排查效率和用户体验。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -475,7 +475,7 @@ ProtectedResourceType枚举定义了Web组件需要访问的受保护资源类�
 
 ## BlankScreenDetectionMethod<sup>22+</sup>
 
-白屏检测使用的检测策略的方法。
+白屏检测使用的检测策略的方法，用于定义页面内容检测的具体算法和点位，帮助开发者在检测准确性和性能开销之间取得平衡，及时发现页面渲染异常。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
