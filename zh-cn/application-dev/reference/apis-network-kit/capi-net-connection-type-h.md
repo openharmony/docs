@@ -138,7 +138,7 @@ enum NetConn_ErrorCode
 | NETCONN_PERMISSION_DENIED = 201 | 缺少权限 |
 | NETCONN_PARAMETER_ERROR = 401 | 参数错误 |
 | NETCONN_OPERATION_FAILED = 2100002 | 无法连接到服务 |
-| NETCONN_INTERNAL_ERROR = 2100003 | 内部错误。1. 内存异常, 比如内存不足或内存拷贝失败。2. 空指针, 比如访问已释放内存的指针。 |
+| NETCONN_INTERNAL_ERROR = 2100003 | 内部错误。1. 内存异常，比如内存不足或内存拷贝失败。2. 空指针，比如访问已释放内存的指针。 |
 
 ### NetConn_PacketsType
 
@@ -199,7 +199,7 @@ typedef void (*OH_NetConn_AppHttpProxyChange)(NetConn_HttpProxy *proxy)
 
 | 参数项                          | 描述 |
 |------------------------------| -- |
-| [NetConn_HttpProxy](capi-netconnection-netconn-httpproxy.md) *proxy | 变化的代理配置信息,可能是空指针。 |
+| [NetConn_HttpProxy](capi-netconnection-netconn-httpproxy.md) *proxy | 变化的代理配置信息，可能是空指针。 |
 
 ### OH_NetConn_GlobalHttpProxyRefreshCallback()
 

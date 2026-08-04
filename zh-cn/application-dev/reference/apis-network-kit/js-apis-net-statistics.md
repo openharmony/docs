@@ -376,7 +376,7 @@ statistics.getCellularTxBytes().then((stats: number) => {
 
 getAllRxBytes(callback: AsyncCallback\<number>): void
 
-获取所有网卡从最近一次开机开始至接口调用时刻的下行流量总和(单位:字节)。使用callback异步回调。
+获取所有网卡从最近一次开机开始至接口调用时刻的下行流量总和（单位：字节）。使用callback异步回调。
 
 **原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。
 
@@ -657,7 +657,7 @@ getUidTxBytes(uid: number, callback: AsyncCallback\<number>): void
 | 参数名   | 类型                   | 必填 | 说明                                                                                                                    |
 | -------- | ---------------------- | ---- | ---------------------------------------------------------------------------------------------------------------------- |
 | uid      | number                 | 是   | 指定查询的应用 uid。                                                                                                    |
-| callback | AsyncCallback\<number> | 是   | 回调函数。当成功获取应用实时上行流量时，error为undefined，stats为获取到的应用上行流量(单位:字节)；否则为错误对象。    |
+| callback | AsyncCallback\<number> | 是   | 回调函数。当成功获取应用实时上行流量时，error为undefined，stats为获取到的应用上行流量（单位：字节）；否则为错误对象。    |
 
 **错误码：**
 

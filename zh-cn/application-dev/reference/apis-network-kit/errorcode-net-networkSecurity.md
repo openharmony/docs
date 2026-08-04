@@ -63,7 +63,7 @@ Unable to get certificate revocation list (CRL).
 
 **处理步骤**
 
-检查网络、确认CRL URI正确、更新CRL文件或使用在线证书状态协议 (OCSP) 进行证书状态检查。
+检查网络、确认CRL URI正确、更新CRL文件或使用在线证书状态协议（OCSP）进行证书状态检查。
 
 ## 2305004 无法解密证书签名
 
