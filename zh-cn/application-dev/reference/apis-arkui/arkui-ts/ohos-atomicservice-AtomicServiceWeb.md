@@ -58,7 +58,7 @@ AtomicServiceWeb({
 })
 ```
 
-**装饰器类型：**@Component
+**装饰器类型：** @Component
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -70,7 +70,7 @@ AtomicServiceWeb({
 |----------------------|------------------------------------------------------------------------------------------------------------------|----|-------------|----------------------------------------------------------------------------------------------------------------------|
 | src                  | [ResourceStr](ts-types.md#resourcestr)                                                                           | 是  | -           | 网页资源地址，访问网络资源需要在AGC（AppGallery Connect）配置业务域名，访问本地资源仅支持包内文件（$rawfile）。不支持通过状态变量（例如@State）动态更新地址。加载的网页中支持通过JS SDK提供的接口调用系统能力，具体以JS SDK为准。 |
 | controller           | [AtomicServiceWebController](#atomicservicewebcontroller)                                                        | 是  | @ObjectLink | 通过AtomicServiceWebController可以控制AtomicServiceWeb组件各种行为。                                                              |
-| navPathStack         | [NavPathStack](ts-basic-components-navigation.md#navpathstack10)                                                 | 否  | -           | 路由栈信息。当使用NavDestination作为页面的根容器时，需传入NavDestination容器对应的NavPathStack处理页面路由。                                           |
+| navPathStack         | [NavPathStack](ts-basic-components-navigation.md#navpathstack10)                                                 | 否  | -           | 路由栈信息。当使用NavDestination作为页面的根容器时，需传入NavDestination容器对应的NavPathStack处理页面路由。默认值为空。                                           |
 | mixedMode            | [MixedMode](../../apis-arkweb/arkts-basic-components-web-e.md#mixedmode)                                          | 否  | @Prop       | 设置是否允许加载超文本传输协议（HTTP）和超文本传输安全协议（HTTPS）混合内容，默认不允许加载HTTP和HTTPS混合内容。                                                    |
 | darkMode             | [WebDarkMode](../../apis-arkweb/arkts-basic-components-web-e.md#webdarkmode9)                                     | 否  | @Prop       | 设置Web深色模式，默认关闭。                                                                                                      |
 | forceDarkAccess      | boolean                                                                                                          | 否  | @Prop       | 设置网页是否开启强制深色模式。true表示设置网页开启强制深色模式，false表示设置网页不开启强制深色模式。默认值：false。该属性仅在darkMode开启深色模式时生效。                                                                          |
@@ -82,7 +82,7 @@ AtomicServiceWeb({
 | onPageEnd            | Callback\<[OnPageEndEvent](#onpageendevent)\>                                                                    | 否  | -           | 网页加载完成时触发该回调，且只在主frame触发。                                                                                            |
 | onControllerAttached | Callback\<void\>                                                                                                 | 否  | -           | 当Controller成功绑定到Web组件时触发该回调，此回调中不能使用操作网页的相关接口。                                                                                         |
 | onLoadIntercept      | [OnLoadInterceptCallback](#onloadinterceptcallback) | 否  | -  | 当Web组件加载url之前触发该回调，用于判断是否阻止此次访问。默认允许加载。                                                                              |
-| onProgressChange     | Callback\<[OnProgressChangeEvent](../../apis-arkweb/arkts-basic-components-web-i.md#onprogresschangeevent12)\>        | 否  | -           | 网页加载进度变化时触发该回调。                                                                                                      |
+| onProgressChange     | Callback\<[OnProgressChangeEvent](#onprogresschangeevent)\>        | 否  | -           | 网页加载进度变化时触发该回调。                                                                                                      |
 
 ## AtomicServiceWebController
 
@@ -177,7 +177,7 @@ setCustomUserAgent(userAgent: string): void
 
 refresh(): void
 
-调用此接口通知AtomicServiceWeb组件刷新网页。
+通知AtomicServiceWeb组件刷新网页。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -329,7 +329,7 @@ loadUrl(url: string | Resource, headers?: Array\<WebHeader>): void
 
 | 错误码ID    | 错误信息                                                                                             |
 |----------|--------------------------------------------------------------------------------------------------|
-| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed. |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed. |
 | 17100001 | Init error. The AtomicServiceWebController must be associated with a AtomicServiceWeb component. |
 | 17100002 | Invalid url.                                                                                     |
 | 17100003 | Invalid resource path or file type.                                                              |
@@ -349,7 +349,7 @@ Web组件返回的请求/响应头对象。
 
 ## OnMessageEvent
 
-定义页面回退或销毁时触发该回调。
+定义页面返回或销毁时触发该回调。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -431,7 +431,7 @@ Web组件返回的请求/响应头对象。
 
 | 名称             | 类型      | 只读 | 可选  | 说明                                       |
 | -------------- | ---- | ---- | -- | -------------------------------------- |
-| newProgress | number | 否 | 否 | 新的加载进度，取值范围为0到100的整数。                       |
+| newProgress | number | 否 | 否 | 新的加载进度，取值范围为0到100的整数。单位：%。                       |
 
 ## OnLoadInterceptCallback
 
@@ -472,7 +472,7 @@ struct WebComponent {
   
   build() {
     Column() {
-      AtomicServiceWeb({ src: $rawfile("index.html"), controller: this.controller })
+      AtomicServiceWeb({ src: $rawfile('index.html'), controller: this.controller })
     }
   }
 }
@@ -519,7 +519,7 @@ struct WebComponent {
 
   build() {
     NavDestination() {
-      AtomicServiceWeb({ src: $rawfile("index.html"), controller: this.controller, navPathStack: this.navPathStack })
+      AtomicServiceWeb({ src: $rawfile('index.html'), controller: this.controller, navPathStack: this.navPathStack })
     }
     .onReady((context: NavDestinationContext) => {
       this.navPathStack = context.pathStack;
@@ -544,7 +544,7 @@ struct WebComponent {
   build() {
     Column() {
       AtomicServiceWeb({
-        src: $rawfile("index.html"),
+        src: $rawfile('index.html'),
         controller: this.controller,
         // H5页面点击“发送消息”后，再点击“返回上一页”，触发该回调
         onMessage: (event: OnMessageEvent) => {
@@ -730,36 +730,36 @@ struct WebComponent {
         forceDarkAccess: this.forceDarkAccess,
         controller: this.controller,
         onControllerAttached: () => {
-          console.info("AtomicServiceWebLog onControllerAttached call back success");
+          console.info('AtomicServiceWebLog onControllerAttached call back success');
         },
         onLoadIntercept: (event: OnLoadInterceptEvent) => {
-          console.info("AtomicServiceWebLog onLoadIntercept call back success " + JSON.stringify({
+          console.info('AtomicServiceWebLog onLoadIntercept call back success ' + JSON.stringify({
             getRequestUrl: event.data.getRequestUrl(),
             getRequestMethod: event.data.getRequestMethod(),
             getRequestHeader: event.data.getRequestHeader(),
             isRequestGesture: event.data.isRequestGesture(),
             isMainFrame: event.data.isMainFrame(),
             isRedirect: event.data.isRedirect(),
-          }))
+          }));
           return false;
         },
         onProgressChange: (event: OnProgressChangeEvent) => {
-          console.info("AtomicServiceWebLog onProgressChange call back success " + JSON.stringify(event));
+          console.info('AtomicServiceWebLog onProgressChange call back success ' + JSON.stringify(event));
         },
         onMessage: (event: OnMessageEvent) => {
-          console.info("AtomicServiceWebLog onMessage call back success " + JSON.stringify(event));
+          console.info('AtomicServiceWebLog onMessage call back success ' + JSON.stringify(event));
         },
         onPageBegin: (event: OnPageBeginEvent) => {
-          console.info("AtomicServiceWebLog onPageBegin call back success " + JSON.stringify(event));
+          console.info('AtomicServiceWebLog onPageBegin call back success ' + JSON.stringify(event));
         },
         onPageEnd: (event: OnPageEndEvent) => {
-          console.info("AtomicServiceWebLog onPageEnd call back success " + JSON.stringify(event));
+          console.info('AtomicServiceWebLog onPageEnd call back success ' + JSON.stringify(event));
         },
         onHttpErrorReceive: (event: OnHttpErrorReceiveEvent) => {
-          console.info("AtomicServiceWebLog onHttpErrorReceive call back success " + JSON.stringify(event));
+          console.info('AtomicServiceWebLog onHttpErrorReceive call back success ' + JSON.stringify(event));
         },
         onErrorReceive: (event: OnErrorReceiveEvent) => {
-          console.info("AtomicServiceWebLog onErrorReceive call back success " + JSON.stringify(event));
+          console.info('AtomicServiceWebLog onErrorReceive call back success ' + JSON.stringify(event));
         }
       })
     }
@@ -788,9 +788,9 @@ struct AtomicServiceNestedScroll {
   build() {
     Scroll() {
       Column() {
-        Text("嵌套AsWeb-头部")
-          .height("15%")
-          .width("100%")
+        Text('嵌套AsWeb-头部')
+          .height('15%')
+          .width('100%')
           .fontSize(30)
           .backgroundColor(Color.Yellow)
         Button(this.mode)
@@ -815,9 +815,9 @@ struct AtomicServiceNestedScroll {
           controller: this.controller,
           nestedScroll: this.nestedScroll
         })
-        Text("嵌套AsWeb-尾部")
-          .height("15%")
-          .width("100%")
+        Text('嵌套AsWeb-尾部')
+          .height('15%')
+          .width('100%')
           .fontSize(30)
           .backgroundColor(Color.Yellow)
       }
