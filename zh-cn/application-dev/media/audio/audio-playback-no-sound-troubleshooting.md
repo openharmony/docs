@@ -132,7 +132,7 @@
    检查项如下：
 
    - 音量设置：开发者可通过`OH_AudioRenderer_GetVolume`接口查询当前音频流的音量，也可通过`OH_AudioVolumeManager_OnStreamVolumeChangeCallback`监听当前音频流的音量变化，以确认当前是否存在音量值过小或异常的静音操作。
-   - 进入免打扰模式：在免打扰模式下，若开发者设置的音频流类型为铃音、通知类型，系统会将其静音播放。开发者可参考[情景模式](../../reference/apis-basic-services-kit/js-apis-intelligentScene.md)查询系统的免打扰功能是否开启、应用自身是否允许打扰等。
+   - 进入免打扰模式：在免打扰模式下，若开发者设置的音频流类型为铃音、通知类型，系统会将其静音播放。开发者可参考[@ohos.intelligentScene (情景模式)](../../reference/apis-basic-services-kit/js-apis-intelligentScene.md)查询系统的免打扰功能是否开启、应用自身是否允许打扰等。
    - 前后台（亮屏息屏）播放差异：系统内部存在功耗策略，当应用未申请长时任务即切换到后台时，会导致无声。如果发现应用在前台/亮屏时播放正常，后台/灭屏时出现持续无声的情况，请检查应用是否接入AVSession或申请[长时任务(ArkTS)](../../task-management/continuous-task.md)。详细的适配指南可参考[应用接入AVSession场景介绍](../avsession/avsession-access-scene.md)和[后台播放](../avsession/avsession-background-scene.md)。
 
 
