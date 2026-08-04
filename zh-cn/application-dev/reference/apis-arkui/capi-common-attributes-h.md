@@ -279,7 +279,7 @@ int32_t OH_ArkUI_SnapshotOptions_SetScale(ArkUI_SnapshotOptions* snapshotOptions
 
 | 参数项 | 描述 |
 | -- | -- |
-| [ArkUI_SnapshotOptions](capi-arkui-nativemodule-arkui-snapshotoptions.md)* snapshotOptions | 待配置的截图选项对象指针，用于设置截图的缩放属性。 |
+| [ArkUI_SnapshotOptions](capi-arkui-nativemodule-arkui-snapshotoptions.md)* snapshotOptions | 截图选项对象指针。使用该参数前需先通过[OH_ArkUI_CreateSnapshotOptions](#oh_arkui_createsnapshotoptions)创建有效的截图选项对象，用于设置截图的缩放属性。 |
 | float scale | 截图缩放值，用于控制截图输出的缩放比例。取值为大于0的浮点数，默认值为1.0。 |
 
 **返回：**
@@ -303,8 +303,8 @@ int32_t OH_ArkUI_SnapshotOptions_SetColorMode(ArkUI_SnapshotOptions* snapshotOpt
 
 | 参数项 | 描述 |
 | -- | -- |
-| [ArkUI_SnapshotOptions](capi-arkui-nativemodule-arkui-snapshotoptions.md)* snapshotOptions | 待配置的截图选项对象指针，用于设置截图的色彩空间。 |
-| int32_t colorSpace | 指定截图使用的色彩空间。<br>如果知道需要截图的组件使用的色彩空间，可以通过colorSpace参数指定，并将isAuto设置为false，以达到预期的截图效果。<br>支持的取值为：3（RGB色域为Display P3类型，适用于需要保留Display P3广色域内容的场景）、4（RGB色域为SRGB类型，适用于普通显示设备和兼容性优先的场景）、27（RGB色域为DISPLAY BT2020类型，适用于目标设备支持BT2020色域的场景）。<br>默认值：4<br>仅当isAuto设置为false时，该参数设置生效。 |
+| [ArkUI_SnapshotOptions](capi-arkui-nativemodule-arkui-snapshotoptions.md)* snapshotOptions | 截图选项对象指针。使用该参数前需先通过[OH_ArkUI_CreateSnapshotOptions](#oh_arkui_createsnapshotoptions)创建有效的截图选项对象，用于设置截图的色彩空间。 |
+| int32_t colorSpace | 指定截图使用的色彩空间。<br>如果知道需要截图的组件使用的色彩空间，可以通过colorSpace参数指定，并将isAuto设置为false，以达到预期的截图效果。<br>支持的取值为：3（RGB色域为Display P3类型，适用于需要保留Display P3广色域内容的场景）、4（RGB色域为sRGB类型，适用于普通显示设备和兼容性优先的场景）、27（RGB色域为DISPLAY BT2020类型，适用于目标设备支持BT2020色域的场景）。<br>默认值：4<br>仅当isAuto设置为false时，该参数设置生效。 |
 | bool isAuto | 是否由系统自动决定所使用的色彩空间。<br>true表示系统自动决定所使用的色彩空间。在不确定组件使用的色彩空间时，建议将isAuto设置为true，让系统根据实际情况自动决定使用的色彩空间。<br>false表示使用通过colorSpace字段设置的色彩空间类型进行截图。<br>默认值：false |
 
 **返回：**
@@ -329,7 +329,7 @@ int32_t OH_ArkUI_SnapshotOptions_SetDynamicRangeMode(ArkUI_SnapshotOptions* snap
 
 | 参数项 | 描述 |
 | -- | -- |
-| [ArkUI_SnapshotOptions](capi-arkui-nativemodule-arkui-snapshotoptions.md)* snapshotOptions | 待配置的截图选项对象指针，用于设置截图的动态范围模式。 |
+| [ArkUI_SnapshotOptions](capi-arkui-nativemodule-arkui-snapshotoptions.md)* snapshotOptions | 截图选项对象指针。使用该参数前需先通过[OH_ArkUI_CreateSnapshotOptions](#oh_arkui_createsnapshotoptions)创建有效的截图选项对象，用于设置截图的动态范围模式。 |
 | int32_t dynamicRangeMode | 指定截图使用的动态范围模式。<br>如果知道截图对象使用的动态范围模式，可通过dynamicRangeMode参数指定动态范围模式，并将isAuto设置为false，以达到预期的截图效果。<br>支持的取值为：[ArkUI_DynamicRangeMode](capi-image-h.md#arkui_dynamicrangemode)枚举值。其中，ARKUI_DYNAMIC_RANGE_MODE_HIGH适用于支持HDR显示的设备及HDR内容，ARKUI_DYNAMIC_RANGE_MODE_CONSTRAINT适用于需要兼容SDR的场景，ARKUI_DYNAMIC_RANGE_MODE_STANDARD适用于普通显示设备。<br>默认值：ARKUI_DYNAMIC_RANGE_MODE_STANDARD<br>仅当isAuto设置为false时，该参数设置生效。 |
 | bool isAuto | 是否由系统自动决定所使用的动态范围模式。<br>true表示系统自动决定所使用的动态范围模式。在不确定组件使用的动态范围模式时，建议将isAuto设置为true，让系统根据实际情况自动决定使用的动态范围模式。<br>false表示使用通过dynamicRangeMode字段设置的动态范围模式进行截图。<br>默认值：false |
 
@@ -347,7 +347,7 @@ ArkUI_VisibleAreaEventOptions* OH_ArkUI_VisibleAreaEventOptions_Create()
 
 **描述：**
 
-创建可见区域变化监听的参数，用于列表滚动曝光统计、图片或视频懒加载，以及在组件进入或离开屏幕时触发业务逻辑等场景。创建成功后，必须先完成相关参数配置和监听使用，使用完毕后调用[OH_ArkUI_VisibleAreaEventOptions_Dispose](#oh_arkui_visibleareaeventoptions_dispose)释放参数对象；调用Dispose后不得继续使用该参数对象。
+创建可见区域变化监听的参数，用于列表滚动曝光统计、图片或视频懒加载，以及在组件进入或离开屏幕时触发业务逻辑等场景。创建成功后，需先通过相关接口完成可见比例阈值、更新间隔等参数配置，再将该参数对象用于注册可见区域变化监听；系统根据配置的参数计算组件可见比例并触发相应监听事件。使用完毕后调用[OH_ArkUI_VisibleAreaEventOptions_Dispose](#oh_arkui_visibleareaeventoptions_dispose)释放参数对象；调用Dispose后不得继续使用该参数对象。
 
 **起始版本：** 17
 
@@ -392,8 +392,8 @@ int32_t OH_ArkUI_VisibleAreaEventOptions_SetRatios(ArkUI_VisibleAreaEventOptions
 | 参数项 | 描述 |
 | -- | -- |
 | [ArkUI_VisibleAreaEventOptions](capi-arkui-nativemodule-arkui-visibleareaeventoptions.md)* option | 可见区域变化监听的参数实例。使用该参数前需先通过[OH_ArkUI_VisibleAreaEventOptions_Create](#oh_arkui_visibleareaeventoptions_create)创建有效的参数实例。 |
-| float* value | 阈值数组。其中每个元素代表组件可见面积（即组件在屏幕显示区的面积，只计算父组件内的面积，超出父组件部分不会计算）与组件自身面积的比值。每个阈值的取值范围为[0.0, 1.0]：接近0.0适合监听组件刚进入可见区域的场景，约为0.5适合监听组件大部分可见的场景，接近1.0适合监听组件完全或几乎完全可见的场景。建议根据业务对组件可见程度的要求选择阈值；如果开发者设置的阈值超出该范围，则会实际取值0.0或1.0。 |
-| int32_t size | 阈值数组中的元素数量，用于指定value参数所传入的阈值个数。 |
+| float* value | 阈值数组。其中每个元素代表组件可见面积与组件自身面积的比值。默认情况下只计算父组件内的面积；当measureFromViewport设置为true且父组件的NODE_CLIP为false时，组件超出父组件区域的部分也会计入可见面积。每个阈值的取值范围为[0.0, 1.0]：接近0.0适合监听组件刚进入可见区域的场景，约为0.5适合监听组件大部分可见的场景，接近1.0适合监听组件完全或几乎完全可见的场景。建议根据业务对组件可见程度的要求选择阈值；如果开发者设置的阈值超出该范围，则会实际取值0.0或1.0。 |
+| int32_t size | 阈值数组中的元素数量，用于指定value参数所传入的阈值个数。取值应为非负整数，且应与value参数实际传入的阈值元素数量一致。 |
 
 **返回：**
 
