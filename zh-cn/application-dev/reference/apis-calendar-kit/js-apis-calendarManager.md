@@ -74,12 +74,10 @@ getCalendarManager(context: Context): CalendarManager
 // 文档后续示例代码都需要配置此文件才能正常运行
 import {
   abilityAccessCtrl,
-  AbilityConstant, 
   common, 
   PermissionRequestResult, 
   Permissions, 
-  UIAbility, 
-  Want
+  UIAbility
 } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 import { calendarManager } from '@kit.CalendarKit';
