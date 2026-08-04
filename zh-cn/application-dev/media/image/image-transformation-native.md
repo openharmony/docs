@@ -128,7 +128,7 @@ EXTERN_C_END
     export const testUnAccessPixels: (a: image.PixelMap) => image.PixelMap;
     ```
 
-2. 打开src\main\ets\pages\index.ets，导入"libentry.so"（根据工程名生成），调用Native接口，传入JS的资源对象。示例如下：
+2. 打开src\main\ets\pages\index.ets，导入"libentry.so"(根据工程名生成)；调用Native接口，传入JS的资源对象。示例如下：
 
     ```js
     import testNapi from 'libentry.so';
