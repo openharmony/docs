@@ -89,7 +89,7 @@ hidumper -s 4700 -a "buscenter -l remote_device_info"
 | -------------------------------------------------------------------- | -------------------------- |
 | onCreate(want: Want): void;                                          | 分布式协同触发创建。       |
 | onDestroy(): void;                                                   | 分布式协同销毁 。          |
-| onCollaborate(wantParam: Record): AbilityConstant.CollaborateResult; | 分布式协同有请求时时回调。 |
+| onCollaborate(wantParam: Record): AbilityConstant.CollaborateResult; | 分布式协同有请求时回调。 |
 
 ### 开发步骤
 
