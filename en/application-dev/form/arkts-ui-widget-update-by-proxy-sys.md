@@ -1,9 +1,9 @@
 # Updating Widget Content Through a Proxy (for System Applications Only)
 <!--Kit: Form Kit-->
 <!--Subsystem: Ability-->
-<!--Owner: @cx983299475-->
-<!--Designer: @xueyulong-->
-<!--Tester: @yangyuecheng-->
+<!--Owner: @Qian-Win-->
+<!--Designer: @cx983299475-->
+<!--Tester: @mahailong123456-->
 <!--Adviser: @HelloShuo-->
 
 A widget can be updated through a proxy – a system application that has data sharing enabled – when the widget provider is not running.
@@ -117,7 +117,7 @@ For details, see [Data Management](../database/share-data-by-silent-access-sys.m
     }
     ```
   
-- In the [widget page code file](arkts-ui-widget-creation.md), use the variable in LocalStorage to obtain the subscribed data. The variable in LocalStorage is bound to a string and updates the subscribed data in the key:value pair format. The key must be the same as that subscribed to by the widget provider. In this example, the subscribed data is obtained through **'city'** and displayed in the **Text** component.
+- In the [widget page code file](arkts-ui-widget-creation.md), use the variable in LocalStorage to obtain the subscribed data. The variable in LocalStorage is bound to a string and updates the subscribed data in the key:value pair format. The key must be the same as that subscribed to by the widget provider. In this example, the subscribed data is obtained through **'datashareproxy://com.samples.widgetupdatebyproxy/weather'** and displayed in the **Text** component.
 
     <!-- @[widget_process_data_card](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ApplicationModels/StageServiceWidgetCards/entry/src/main/ets/widgetprocessdata/pages/WidgetProcessDataCard.ets) -->
     
@@ -178,58 +178,58 @@ For details, see [Data Management](../database/share-data-by-silent-access-sys.m
   }
   ```
 
-- Add a subscription template <!--Del-->[<!--DelEnd-->addTemplate<!--Del-->](../reference/apis-arkdata/js-apis-data-dataShare-sys.md#addtemplate10)<!--DelEnd--> to the [onAddForm](../reference/apis-form-kit/js-apis-app-form-formExtensionAbility.md#formextensionabilityonaddform) callback and use the template predicates to notify the database of the subscribed data conditions. Then, configure the subscription information [proxyData](../reference/apis-form-kit/js-apis-app-form-formBindingData.md#proxydata10) and return it to the Widget Manager through [FormBindingData](../reference/apis-form-kit/js-apis-app-form-formBindingData.md#formbindingdata). In the example, the predicate is set to `"list" : "select type from TBL00 limit 0,1"`, indicating that the first data record in the **type** column is obtained from the **TBL00** database. The data is returned to the widget page code file **widgets.abc** in `{"list":[{"type":"value0"}]}` format. When the subscribed persistent data is updated, the system automatically updates the widget data.
+- Add a subscription template <!--Del-->[<!--DelEnd-->addTemplate<!--Del-->](../reference/apis-arkdata/js-apis-data-dataShare-sys.md#addtemplate10)<!--DelEnd--> to the [onAddForm](../reference/apis-form-kit/js-apis-app-form-formExtensionAbility.md#formextensionabilityonaddform) callback and use the template predicates to notify the database of the subscribed data conditions. Then, configure the subscription information [proxyData](../reference/apis-form-kit/js-apis-app-form-formBindingData.md#proxydata10) and return it to the Widget Manager through [FormBindingData](../reference/apis-form-kit/js-apis-app-form-formBindingData.md#formbindingdata). In the example, the predicate is set to `"list" : "select type from TBL00 where cityId = ${subscriberId}"`, indicating that **type** data that meets the **cityId** condition is obtained from the **TBL00** database. The data is returned to the widget page code file **widgets.abc** in `{"list":[{"type":"value0"}]}` format. When the subscribed persistent data is updated, the system automatically updates the widget data.
 
   > **NOTE**
   >
-  > - The value of **key** is a URI, which depends on the definition of the data release party.
+  > - The value of **key** is a URI, which depends on the definition of the data provider.
   > - The value of **subscriberId** can be customized. Ensure that the value of **subscriberId** in **addTemplate** is the same as that of **proxies.subscriberId**.
 
     <!-- @[persistent_data_form_ability](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ApplicationModels/StageServiceWidgetCards/entry/src/main/ets/persistentdataformability/PersistentDataFormAbility.ts) -->
     
-    ``` TypeScript
-    // entry/src/main/ets/persistentdataformability/PersistentDataFormAbility.ts
-    import { formBindingData, FormExtensionAbility, formInfo } from '@kit.FormKit';
-    import { Want } from '@kit.AbilityKit';
-    import { dataShare } from '@kit.ArkData';
-    
-    export default class PersistentDataFormAbility extends FormExtensionAbility {
-      onAddForm(want: Want): formBindingData.FormBindingData {
-        let dataShareHelper;
-        let subscriberId = '111';
-        let template = {
-          predicates: {
-            'list': `select type from TBL00 where cityId = ${subscriberId}`
-          },
-          scheduler: ''
-        };
-        dataShare.createDataShareHelper(this.context, 'datashareproxy://com.samples.widgetupdatebyproxy', {
-          isProxy: true
-        }).then((data) => {
-          dataShareHelper = data;
-          dataShareHelper.addTemplate('datashareproxy://com.samples.widgetupdatebyproxy/test', subscriberId, template);
-        });
-        let formData = {};
-        let proxies = [
-          {
-            key: 'datashareproxy://com.samples.widgetupdatebyproxy/test',
-            subscriberId: subscriberId
-          }
-        ];
-    
-        let formBinding = {
-          data: JSON.stringify(formData),
-          proxies: proxies
-        };
-        return formBinding;
-      }
-    
-      onAcquireFormState(want: Want): formInfo.FormState {
-        // Called when the widget host queries the widget state. The initial state is returned by default.
-        return formInfo.FormState.READY;
-      }
+  ``` TypeScript
+  // entry/src/main/ets/persistentdataformability/PersistentDataFormAbility.ts
+  import { formBindingData, FormExtensionAbility, formInfo } from '@kit.FormKit';
+  import { Want } from '@kit.AbilityKit';
+  import { dataShare } from '@kit.ArkData';
+
+  export default class PersistentDataFormAbility extends FormExtensionAbility {
+    onAddForm(want: Want): formBindingData.FormBindingData {
+      let dataShareHelper;
+      let subscriberId = '111';
+      let template = {
+        predicates: {
+          'list': `select type from TBL00 where cityId = ${subscriberId}`
+        },
+        scheduler: ''
+      };
+      dataShare.createDataShareHelper(this.context, 'datashareproxy://com.samples.widgetupdatebyproxy', {
+        isProxy: true
+      }).then((data) => {
+        dataShareHelper = data;
+        dataShareHelper.addTemplate('datashareproxy://com.samples.widgetupdatebyproxy/test', subscriberId, template);
+      });
+      let formData = {};
+      let proxies = [
+        {
+          key: 'datashareproxy://com.samples.widgetupdatebyproxy/test',
+          subscriberId: subscriberId
+        }
+      ];
+
+      let formBinding = {
+        data: JSON.stringify(formData),
+        proxies: proxies
+      };
+      return formBinding;
     }
-    ```
+
+    onAcquireFormState(want: Want): formInfo.FormState {
+      // Called when the widget host queries the widget state. The initial state is returned by default.
+      return formInfo.FormState.READY;
+    }
+  }
+  ```
 
 - In the [widget page code file](arkts-ui-widget-creation.md), use the variable in LocalStorage to obtain the subscribed data. The variable in LocalStorage is bound to a string and updates the subscribed data in the key:value pair format. The key must be the same as that subscribed to by the widget provider. In the example, the subscribed data is obtained through **'list'**, and the value of the first element is displayed on the **Text** component.
 
@@ -264,4 +264,10 @@ For details, see [Data Management](../database/share-data-by-silent-access-sys.m
     }
     ```
 <!--Del-->
+## Samples
+
+The following sample is provided for widget proxy development:
+
+- [Actively Adding a Data Proxy Widget to the Home Screen (ArkTS) (Full SDK) (API10)](https://gitcode.com/openharmony/applications_app_samples/tree/master/code/SystemFeature/Widget/RequestAddForm)
+
 <!--DelEnd-->

@@ -1,12 +1,14 @@
 # JS Widget Overview
+
 <!--Kit: Form Kit-->
 <!--Subsystem: Ability-->
 <!--Owner: @Qian-Win-->
 <!--Designer: @cx983299475-->
 <!--Tester: @mahailong123456-->
 <!--Adviser: @HelloShuo-->
+<!-- md-trans-meta sourceCommit=3ea38e3e177e0c91198fe7642b35a6c85a3a1bd1 translatedAt=2026-08-03T02:28:47.360Z pushedAt=2026-08-03T07:43:25.179Z -->
 
-JS widgets, developed using a web-like paradigm (HML + CSS + JSON), now support two [application models](../application-models/application-models.md): the FA model and the stage model. For details, see [Developing a JS Widget (Stage Model)](js-ui-widget-development.md) and [Developing a JS Widget (FA Model)](widget-development-fa.md). When developing a new widget, you are advised to use the ArkTS declarative syntax to build UIs. For details about the differences between the declarative paradigm and web-like paradigm, see [About This Kit](../ui/arkui-overview.md).
+A JS widget is a widget whose pages are developed using the web-like paradigm (HML+CSS+JSON). It now supports both the FA model and the stage model [app models](../application-models/stage-model-development-overview.md). For development guides, see [Developing a JS Widget (Stage Model)](js-ui-widget-development.md) and [Developing a JS Widget (FA Model)](widget-development-fa.md). When developing a new widget, you are advised to use ArkTS declarative development to build the UI. For differences between the declarative and web-like paradigms, see [About This Kit](../ui/arkui-overview.md).
 
 ## How to Implement
 

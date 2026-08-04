@@ -51,7 +51,7 @@ The **temporary** field in **FormComponent** specifies whether a widget is a tem
 
 - Normal widget: a widget persistently used by the widget host, for example, a widget added to the home screen.
 
-- Temporary widget: a widget temporarily used by the widget host, for example, the widget displayed when you swipe up on a widget application.
+- Temporary widget: a widget temporarily used by the widget host.
   
 Data of a temporary widget will be deleted on the Widget Manager if the widget framework is killed and restarted. The widget provider, however, is not notified of the deletion and still keeps the data. Therefore, the widget provider needs to clear the data of temporary widgets proactively if the data has been kept for a long period of time. If the widget host has converted a temporary widget into a normal one, the widget provider should change the widget data from temporary storage to persistent storage. Otherwise, the widget data may be deleted by mistake. 
 
@@ -115,7 +115,7 @@ struct formHostSample {
     descriptionId: 0,
     type: formInfo.FormType.eTS,
     jsComponentName: '',
-    // ...
+    colorMode: -1,
     isDefault: false,
     updateEnabled: false,
     formVisibleNotify: true,
@@ -285,13 +285,13 @@ struct formHostSample {
             this.getAllBundleFormsInfo();
           })
 
-        // After a user taps the button, a selection page is displayed. After the user taps OK, the selected widget of the default size is added.
-        // Replace $r('app.string.selectAddForm') with the actual resource file. In this example, the value of the resource file is "Add widget".
+        // After the button is tapped, a selection page is displayed. After a widget is selected, the selected widget is displayed through FormComponent.
+        // Replace $r('app.string.selectAddForm') with the actual resource file. In this example, the value of the resource file is "Select and add widget".
         Button($r('app.string.selectAddForm'))
           .enabled(this.showFormPicker)
           .onClick(() => {
             hilog.info(DOMAIN_NUMBER, TAG, 'TextPickerDialog: show()');
-            TextPickerDialog.show({
+            this.getUIContext().showTextPickerDialog({
               range: this.formInfoRecord,
               selected: this.pickDialogIndex,
               canLoop: false,
@@ -302,7 +302,7 @@ struct formHostSample {
                 this.currentFormKey = result.value[0] + '#' + result.value[1];
                 this.pickDialogIndex = result.index[0]
                 hilog.info(DOMAIN_NUMBER, TAG,
-                  `TextPickerDialog onAccept: ${this.currentFormKey}, ${this.pickDialogIndex}`);
+                  `TextPickerDialog onAccept： ${this.currentFormKey}, ${this.pickDialogIndex}`);
                 if (!this.formCardHashMap.hasKey(this.currentFormKey)) {
                   hilog.error(DOMAIN_NUMBER, TAG, `invalid formItemInfo by form key`);
                   return;
@@ -331,10 +331,10 @@ struct formHostSample {
       }
 
       if (this.showForm) {
-        Text('formId: ' + this.selectFormId)
+        Text('formId： ' + this.selectFormId)
           .margin({ top: 10, bottom: 10 })
 
-        // FormComponent
+        // FormComponent.
         FormComponent({
           id: Number.parseInt(this.selectFormId),
           name: this.focusFormInfo.name,
@@ -352,7 +352,7 @@ struct formHostSample {
           .borderRadius(10)
           .borderWidth(1)
           .onAcquired((form: FormCallbackInfo) => {
-            hilog.info(DOMAIN_NUMBER, TAG, `onAcquired: ${JSON.stringify(form)}`);
+            hilog.info(DOMAIN_NUMBER, TAG, `onAcquired: ${form.id}`);
             this.selectFormId = form.id.toString();
             this.formIds.add(this.selectFormId);
           })
@@ -360,7 +360,7 @@ struct formHostSample {
             hilog.info(DOMAIN_NUMBER, TAG, `onRouter`);
           })
           .onError((error) => {
-            hilog.error(DOMAIN_NUMBER, TAG, `onError: ${JSON.stringify(error)}`);
+            hilog.error(DOMAIN_NUMBER, TAG, `onError: code: ${error.errcode}, message: ${error.msg}`);
             this.showForm = false;
           })
           .onUninstall((info: FormCallbackInfo) => {
@@ -369,7 +369,7 @@ struct formHostSample {
             this.formIds.remove(this.selectFormId);
           })
 
-        // A select list that displays some formHost APIs
+        // Select list, which lists some formHost APIs.
         Row() {
           // Replace $r('app.string.deleteForm') with the actual resource file. In this example, the value of the resource file is "Delete widget".
           Select([{ value: $r('app.string.deleteForm') },
@@ -403,7 +403,7 @@ struct formHostSample {
               }
             })
 
-          // Operate the widget based on what selected in the select list.
+          // Operate the current widget based on the function selected in the select list.
           // Replace $r('app.string.execute') with the actual resource file. In this example, the value of the resource file is "Execute".
           Button($r('app.string.execute'), {
             type: ButtonType.Capsule
@@ -514,3 +514,8 @@ struct formHostSample {
 
 ![screenshot](./figures/widget-host-development-guide-2.jpeg)
 
+## Samples
+
+The following sample is provided for widget host development:
+
+- [Widget Host (Stage) (API12)](https://gitcode.com/openharmony/applications_app_samples/tree/master/code/DocsSample/Form/FormHost)

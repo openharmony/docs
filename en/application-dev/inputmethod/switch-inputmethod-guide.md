@@ -1,10 +1,12 @@
 # Switching Between Input Methods
+
 <!--Kit: IME Kit-->
 <!--Subsystem: MiscServices-->
-<!--Owner: @illybyy-->
+<!--Owner: @codexu62-->
 <!--Designer: @andeszhang-->
 <!--Tester: @murphy84-->
 <!--Adviser: @zhang_yixin13-->
+<!-- md-trans-meta sourceCommit=b8aa633cba260f62cfd1846a2d514205881380a2 translatedAt=2026-08-04T08:29:23.353Z pushedAt=2026-08-04T08:57:51.156Z -->
 
 You can use the APIs of the input method framework service to easily switch between input methods and input method subtypes.
 
@@ -19,24 +21,23 @@ You can use the APIs of the input method framework service to easily switch betw
 1. In the input method application in use, call [switchCurrentInputMethodSubtype](../reference/apis-ime-kit/js-apis-inputmethod.md#inputmethodswitchcurrentinputmethodsubtype9) with the target [InputMethodSubtype](../reference/apis-ime-kit/js-apis-inputmethod-subtype.md#inputmethodsubtype) to switch to another subtype of the current input method.
 
    <!-- @[input_case_input_switchInputMethodgetInputMethods](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/InputMethod/KikaInputMethod/entry/src/main/ets/components/Submenu.ets) -->
-   
+
    ``` TypeScript
    async switchCurrentInputMethodSubtype(item: InputMethodSubtype) {
      try {
        await inputMethod.switchCurrentInputMethodSubtype(item);
        this.currentInputMethodSubtype = inputMethod.getCurrentInputMethodSubtype().id;
      } catch (err) {
-       console.error(`SwitchCurrentInputMethodSubtype error: ${err.code} ${err.message}`);
        let error: BusinessError = err as BusinessError;
+       console.error(`SwitchCurrentInputMethodSubtype error: ${error.code} ${error.message}`);
      }
    }
    ```
 
-
-2. Register a listener in the input method application for subtype changes, so as to load a subtype-specific soft keyboard UI.
+2. Register a listener in the input method application for subtype changes, so as to load a subtype-specific keyboard UI.
 
    <!-- @[input_case_input_KeyboardControllersetSubtype](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/InputMethod/KikaInputMethod/entry/src/main/ets/InputMethodExtensionAbility/model/KeyboardController.ets) -->
-   
+
    ``` TypeScript
    // Register a listener in the input method application for subtype changes.
    inputMethodAbility.on('setSubtype', (inputMethodSubtype: InputMethodSubtype) => {
@@ -54,7 +55,7 @@ You can use the APIs of the input method framework service to easily switch betw
 In the input method application in use, call [switchInputMethod](../reference/apis-ime-kit/js-apis-inputmethod.md#inputmethodswitchinputmethod9) with the target [InputMethodProperty](../reference/apis-ime-kit/js-apis-inputmethod.md#inputmethodproperty8) to switch to another input method.
 
    <!-- @[input_case_input_switchInputMethod](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/InputMethod/KikaInputMethod/entry/src/main/ets/components/Submenu.ets) -->
-   
+
    ``` TypeScript
    async switchInputMethod(item: string) {
      try {
@@ -89,7 +90,7 @@ export class KeyboardController {
         if (inputMethods[i].name != currentInputMethod.name) { // If the current input method is not the specified one, switch to the specified one. You can enter a fixed input method as required.
           let subTypes = await inputMethod.getSetting().listInputMethodSubtype(inputMethods[i]); // Obtain the subtypes of the target input method.
           if (subTypes.length > 0) {
-            await inputMethod.switchCurrentInputMethodAndSubtype(inputMethods[i], subTypes[0]); // This example switches to the first obtained subtype.
+            await inputMethod.switchCurrentInputMethodAndSubtype(inputMethods[i], subTypes[0]); // This example switches to the first obtained subtype by default.
           }
           return;
         }

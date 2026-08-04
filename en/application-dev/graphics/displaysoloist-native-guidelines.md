@@ -1,10 +1,12 @@
 # Native DisplaySoloist Development (C/C++)
+
 <!--Kit: ArkGraphics 2D-->
 <!--Subsystem: Graphics-->
 <!--Owner: @wh_qwe-->
 <!--Designer: @wh_qwe-->
 <!--Tester: @zhaoxiaoguang2-->
 <!--Adviser: @ge-yafang-->
+<!-- md-trans-meta sourceCommit=1eef0e1140c123e13d7d8e64b360a32b63fc454f translatedAt=2026-08-03T11:18:19.103Z pushedAt=2026-08-04T03:49:42.728Z -->
 
 To develop a native service that controls the frame rate in an independent thread, you use **DisplaySoloist** to implement the services, such as gaming and self-drawing UI framework interconnection.
 
@@ -16,7 +18,7 @@ A **DisplaySoloist** instance can exclusively occupy a thread or share a thread 
 | ------------------------------------------------------------ | ----------------------------------------------------- |
 | OH_DisplaySoloist* OH_DisplaySoloist_Create (bool useExclusiveThread) | Creates an **OH_DisplaySoloist** instance.                      |
 | OH_DisplaySoloist_Destroy (OH_DisplaySoloist * displaySoloist) | Destroys an **OH_DisplaySoloist** instance.                      |
-| OH_DisplaySoloist_Start (OH_DisplaySoloist * displaySoloist, OH_DisplaySoloist_FrameCallback callback, void * data ) | Sets a callback function for each frame. The callback function is triggered each time a VSync signal arrives.  |
+| OH_DisplaySoloist_Start (OH_DisplaySoloist * displaySoloist, OH_DisplaySoloist_FrameCallback callback, void * data) | Starts per-frame callback, sets the callback function, and invokes it on each VSync signal. |
 | OH_DisplaySoloist_Stop (OH_DisplaySoloist * displaySoloist)  | Stops requesting the next VSync signal and triggering the callback function.|
 | OH_DisplaySoloist_SetExpectedFrameRateRange (OH_DisplaySoloist* displaySoloist, DisplaySoloist_ExpectedRateRange* range) | Sets the expected frame rate range.                                   |
 
@@ -31,6 +33,7 @@ For details, see [NativeDisplaySoloist](../reference/apis-arkgraphics2d/capi-nat
 **Adding Dynamic Link Libraries**
 
 Add the following libraries to **CMakeLists.txt**.
+
 <!-- @[display_soloist_add_lib](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkGraphics2D/DisplaySoloist/entry/src/main/cpp/CMakeLists.txt) -->
 
 ``` Text
@@ -38,6 +41,7 @@ target_link_libraries(entry PUBLIC libace_napi.z.so libnative_drawing.so libnati
 ```
 
 **Including Header Files**
+
 <!-- @[display_soloist_import_module_one](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkGraphics2D/DisplaySoloist/entry/src/main/cpp/samples/sample_xcomponent.h) -->
 
 ``` C
@@ -57,6 +61,7 @@ target_link_libraries(entry PUBLIC libace_napi.z.so libnative_drawing.so libnati
 #include <string>
 #include "napi/native_api.h"
 ```
+
 <!-- @[display_soloist_import_module_two](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkGraphics2D/DisplaySoloist/entry/src/main/cpp/samples/sample_xcomponent.cpp) -->
 
 ``` C++
@@ -66,8 +71,9 @@ target_link_libraries(entry PUBLIC libace_napi.z.so libnative_drawing.so libnati
 ### How to Develop
 
 1. Define an ArkTS API file and name it **XComponentContext.ts**, which is used to connect to the native layer.
+
    <!-- @[display_soloist_export_interface_xcomponent_context](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkGraphics2D/DisplaySoloist/entry/src/main/ets/interface/XComponentContext.ts) -->
-   
+
    ``` TypeScript
    export default interface XComponentContext {
      register(): void;
@@ -79,8 +85,9 @@ target_link_libraries(entry PUBLIC libace_napi.z.so libnative_drawing.so libnati
    ```
 
 2. Define a demo page, which contains two **XComponents**.
+
    <!-- @[display_soloist_create_xcomponent](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkGraphics2D/DisplaySoloist/entry/src/main/ets/pages/Index.ets) -->
-   
+
    ``` TypeScript
    import XComponentContext from '../interface/XComponentContext';
    // ...
@@ -131,9 +138,10 @@ target_link_libraries(entry PUBLIC libace_napi.z.so libnative_drawing.so libnati
 
 3. Obtain the native **XComponent** at the C++ layer. You are advised to save the **XComponent** in a singleton. This step must be performed during napi_init.
 
-    Create a **PluginManger** singleton to manage the native **XComponent**.
+    Create a PluginManager singleton class to manage the NativeXComponent.
+
    <!-- @[display_soloist_create_plugin_manager](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkGraphics2D/DisplaySoloist/entry/src/main/cpp/plugin/plugin_manager.h) -->
-   
+
    ``` C
    class PluginManager {
    public:
@@ -152,8 +160,9 @@ target_link_libraries(entry PUBLIC libace_napi.z.so libnative_drawing.so libnati
    ```
 
    The **SampleXComponent** class will be created in the step of drawing the graphic.
+
    <!-- @[display_soloist_export_api](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkGraphics2D/DisplaySoloist/entry/src/main/cpp/plugin/plugin_manager.cpp) -->
-   
+
    ``` C++
    void PluginManager::Export(napi_env env, napi_value exports)
    {
@@ -201,8 +210,9 @@ target_link_libraries(entry PUBLIC libace_napi.z.so libnative_drawing.so libnati
 4. Configure the frame rate and register the callback function at the native layer.
 
    Define the callback function for each frame.
+
    <!-- @[display_soloist_frame_rate_setting_and_subscription_function_registration](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkGraphics2D/DisplaySoloist/entry/src/main/cpp/samples/sample_xcomponent.cpp) -->
-   
+
    ``` C++
    static void TestCallback(long long timestamp, long long targetTimestamp, void *data)
    {
@@ -223,23 +233,25 @@ target_link_libraries(entry PUBLIC libace_napi.z.so libnative_drawing.so libnati
    
        std::string id(idStr);
        auto render = SampleXComponent::GetInstance(id);
-       OHNativeWindow *nativeWindow = render->GetNativeWindow();
-       uint64_t width;
-       uint64_t height;
+       if (render != nullptr) {
+           OHNativeWindow *nativeWindow = render->GetNativeWindow();
+           uint64_t width;
+           uint64_t height;
    
-       int32_t xSize = OH_NativeXComponent_GetXComponentSize(component, nativeWindow, &width, &height);
-       if ((xSize == OH_NATIVEXCOMPONENT_RESULT_SUCCESS) && (render != nullptr)) {
-           render->Prepare();
-           render->Create();
-           if (id == "xcomponentId_30") {
-               int offset = 16;
-               render->ConstructPath(offset, offset, render->defaultOffsetY);
+           int32_t xSize = OH_NativeXComponent_GetXComponentSize(component, nativeWindow, &width, &height);
+           if (xSize == OH_NATIVEXCOMPONENT_RESULT_SUCCESS) {
+               render->Prepare();
+               render->Create();
+               if (id == "xcomponentId_30") {
+                   int offset = 16;
+                   render->ConstructPath(offset, offset, render->defaultOffsetY);
+               }
+               if (id == "xcomponentId_120") {
+                   int offset = 4;
+                   render->ConstructPath(offset, offset, render->defaultOffsetY);
+               }
+               // ...
            }
-           if (id == "xcomponentId_120") {
-               int offset = 4;
-               render->ConstructPath(offset, offset, render->defaultOffsetY);
-           }
-           // ...
        }
    }
    ```
@@ -250,8 +262,9 @@ target_link_libraries(entry PUBLIC libace_napi.z.so libnative_drawing.so libnati
    >
    > - After the instance calls **NapiRegister**, it must call **NapiUnregister** when it no longer needs to control the frame rate, so as to avoid memory leakage.
    > - During page redirection, both **NapiUnregister** and **NapiDestroy** must be called to avoid memory leakage.
+
    <!-- @[display_soloist_napi_register_and_unregister](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkGraphics2D/DisplaySoloist/entry/src/main/cpp/samples/sample_xcomponent.cpp) -->
-   
+
    ``` C++
    static std::unordered_map<std::string, OH_DisplaySoloist *> g_displaySync;
    
@@ -299,15 +312,15 @@ target_link_libraries(entry PUBLIC libace_napi.z.so libnative_drawing.so libnati
        }
        SAMPLE_LOGI("RegisterID = %{public}s", idStr);
        std::string id(idStr);
-       SampleXComponent *render = SampleXComponent().GetInstance(id);
+       SampleXComponent *render = SampleXComponent::GetInstance(id);
        if (render != nullptr) {
            DisplaySoloist_ExpectedRateRange range;
            bool useExclusiveThread = false;
-           if (id == "xcomponentId30") {
+           if (id == "xcomponentId_30") {
                range = {30, 120, 30};
            }
    
-           if (id == "xcomponentId120") {
+           if (id == "xcomponentId_120") {
                range = {30, 120, 120};
            }
            ExecuteDisplaySoloist(id, range, useExclusiveThread, nativeXComponent);
@@ -350,8 +363,9 @@ target_link_libraries(entry PUBLIC libace_napi.z.so libnative_drawing.so libnati
    ```
 
 5. Register and deregister the callback function for each frame at the TS layer, and destroy the OH_DisplaySoloist instance.
+
    <!-- @[display_soloist_disappear](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkGraphics2D/DisplaySoloist/entry/src/main/ets/pages/Index.ets) -->
-   
+
    ``` TypeScript
    aboutToDisappear(): void {
      // ...
@@ -405,9 +419,11 @@ target_link_libraries(entry PUBLIC libace_napi.z.so libnative_drawing.so libnati
    ```
 
 <!--RP1-->
+
 ## Samples
 
 The following sample is provided to help you better understand how to develop the frame rate feature:
 
 - [DisplaySoloist Hierarchical Control (API Version 14)](https://gitcode.com/openharmony/applications_app_samples/tree/master/code/DocsSample/ArkGraphics2D/DisplaySoloist)
+
 <!--RP1End-->

@@ -3,9 +3,10 @@
 <!--Kit: ArkGraphics 2D-->
 <!--Subsystem: Graphics-->
 <!--Owner: @hangmengxin-->
-<!--Designer: @wangyanglan-->
+<!--Designer: @wanyanglan-->
 <!--Tester: @nobuggers-->
 <!--Adviser: @ge-yafang-->
+<!-- md-trans-meta sourceCommit=4e8c8649f5f2efb4d6a6d42fbee5df7e42731663 translatedAt=2026-08-03T11:24:19.984Z pushedAt=2026-08-04T07:53:48.440Z -->
 
 ## Overview
 
@@ -27,7 +28,7 @@ The following uses the **OH_Drawing_TextBlobCreateFromString()** API as an examp
 
 - Text string to be displayed.
 
-- Pointer to the **OH_Drawing_Font** object, which is used to set and obtain various font attributes, such as the font size, text style, font alignment mode, font rendering mode, and font stroke mode. For details about the APIs, see [draw_font](../reference/apis-arkgraphics2d/capi-drawing-font-h.md).
+- Pointer to an **OH_Drawing_Font** object. **OH_Drawing_Font** is used to set and obtain various font properties, such as font size, text style, font alignment, font rendering mode, and font stroke mode. For detailed API descriptions, see [drawing_font.h](../reference/apis-arkgraphics2d/capi-drawing-font-h.md).
 
 - Text encoding mode.
 
@@ -302,11 +303,11 @@ OH_Drawing_FontDestroy(font);
 > If `OH_Drawing_CanvasDrawSingleCharacterWithFeatures` and `OH_Drawing_FontMeasureSingleCharacter` are used together, or `OH_Drawing_CanvasDrawSingleCharacter` and `OH_Drawing_FontMeasureSingleCharacterWithFeatures` are used together, font drawing may overlap.
 
 <!--RP1-->
+
 ## Samples
 
 The following samples are provided to help you better understand how to use the **Drawing** APIs (C/C++) for development:
 
 - [NDKGraphicsDraw (API20)](https://gitcode.com/openharmony/applications_app_samples/tree/master/code/DocsSample/ArkGraphics2D/Drawing/NDKGraphicsDraw)
-<!--RP1End-->
 
-<!--no_check-->
+<!--RP1End-->

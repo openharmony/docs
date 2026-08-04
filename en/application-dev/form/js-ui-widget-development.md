@@ -702,4 +702,14 @@ To update the widget content to the course information of Mr. Li on July 18, you
 
 
 <!--Del-->
+## Samples
+
+The following samples are provided for widget development:
+
+- [Multi-Device Adaptive Service Widget (JS) (API9)](https://gitcode.com/openharmony/applications_app_samples/tree/master/code/SuperFeature/Widget/AdaptiveServiceWidget)
+
+- [Movie Card (JS) (API9)](https://gitcode.com/openharmony/codelabs/tree/master/Card/MovieCard)
+
+- [Step Counter Card (JS) (API9)](https://gitcode.com/openharmony/codelabs/tree/master/Card/StepsCardJS)
+
 <!--DelEnd-->

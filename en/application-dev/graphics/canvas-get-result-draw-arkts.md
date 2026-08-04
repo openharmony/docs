@@ -3,21 +3,18 @@
 <!--Kit: ArkGraphics 2D-->
 <!--Subsystem: Graphics-->
 <!--Owner: @hangmengxin-->
-<!--Designer: @wangyanglan-->
+<!--Designer: @wanyanglan-->
 <!--Tester: @nobuggers-->
 <!--Adviser: @ge-yafang-->
-
+<!-- md-trans-meta sourceCommit=aa0a67ae9790115e74a1e29268966a05ae945ba8 translatedAt=2026-08-03T11:14:40.055Z pushedAt=2026-08-04T02:12:19.625Z -->
 
 ## Overview
 
 Canvas provides the capability of drawing and processing basic graphics on the screen. You can use Canvas to implement custom drawing effects to enhance user experience.
 
-
 Canvas is the core of graphics drawing. All drawing operations mentioned in this topic (including drawing basic graphics, text, and images, and performing graphic transformation) are based on Canvas.
 
-
 In ArkTS, you can obtain a canvas in either of the following ways: [obtaining a canvas that can be directly displayed](#obtaining-a-canvas-that-can-be-directly-displayed) and [obtaining an off-screen canvas](#obtaining-and-displaying-an-offscreen-canvas). The former does not require additional operations after the drawing API is called, and the latter requires existing display approaches to display the drawing result.
-
 
 ## Obtaining a Canvas That Can Be Directly Displayed
 
@@ -26,13 +23,13 @@ Obtain the canvas that can be directly displayed through [RenderNode](../referen
 1. Import the required files.
 
    <!-- @[arkts_graphics_draw_import_ui](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkGraphics2D/Drawing/ArkTSGraphicsDraw/entry/src/main/ets/drawing/pages/CanvasGetResult.ets) -->
-   
+
    ``` TypeScript
    import { UIContext, NodeController, FrameNode, RenderNode, DrawContext} from '@kit.ArkUI';
    ```
 
    <!-- @[arkts_graphics_draw_import_graphics2d](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkGraphics2D/Drawing/ArkTSGraphicsDraw/entry/src/main/ets/drawing/pages/CanvasGetResult.ets) -->
-   
+
    ``` TypeScript
    import { drawing } from '@kit.ArkGraphics2D';
    ```
@@ -40,7 +37,7 @@ Obtain the canvas that can be directly displayed through [RenderNode](../referen
 2. Add a custom **RenderNode**.
 
    <!-- @[arkts_graphics_draw_direct_canvas_api](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkGraphics2D/Drawing/ArkTSGraphicsDraw/entry/src/main/ets/drawing/pages/CanvasGetResult.ets) -->
-   
+
    ``` TypeScript
    // Customize a RenderNode.
    class MyRenderNodeDirectDisplay extends RenderNode {
@@ -65,9 +62,9 @@ Obtain the canvas that can be directly displayed through [RenderNode](../referen
    ```
 
 3. Add a custom [NodeController](../reference/apis-arkui/js-apis-arkui-nodeController.md).
-   
+
    <!-- @[arkts_graphics_draw_direct_canvas_api_node_control](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkGraphics2D/Drawing/ArkTSGraphicsDraw/entry/src/main/ets/drawing/pages/CanvasGetResult.ets) -->
-   
+
    ``` TypeScript
    // Customize a NodeController.
    class MyNodeControllerDirectDisplay extends NodeController {
@@ -94,9 +91,9 @@ Obtain the canvas that can be directly displayed through [RenderNode](../referen
    ```
 
 4. Override the [draw()](../reference//apis-arkui/js-apis-arkui-renderNode.md#draw) function of the custom **RenderNode** to obtain the canvas for custom drawing operations.
-   
+
    <!-- @[arkts_graphics_draw_direct_canvas_api_rewrite](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkGraphics2D/Drawing/ArkTSGraphicsDraw/entry/src/main/ets/drawing/pages/CanvasGetResult.ets) -->
-   
+
    ``` TypeScript
    async draw(context: DrawContext) {
      const canvas = context.canvas;
@@ -120,7 +117,7 @@ Obtain the canvas that can be directly displayed through [RenderNode](../referen
 5. Display the custom **NodeController**.
 
    <!-- @[arkts_graphics_draw_direct_and_indirect_canvas](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkGraphics2D/Drawing/ArkTSGraphicsDraw/entry/src/main/ets/drawing/pages/CanvasGetResult.ets) -->
-   
+
    ``` TypeScript
    @Entry
    @Component
@@ -153,13 +150,12 @@ Obtain the canvas that can be directly displayed through [RenderNode](../referen
    }
    ```
 
-
 ## Obtaining and Displaying an Offscreen Canvas
 
 1. Import the required files.
-   
+
    <!-- @[arkts_graphics_draw_import_ui_and_graphics2d](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkGraphics2D/Drawing/ArkTSGraphicsDraw/entry/src/main/ets/drawing/pages/CanvasGetResult.ets) -->
-   
+
    ``` TypeScript
    import { UIContext, NodeController, FrameNode, RenderNode, DrawContext} from '@kit.ArkUI';
    import { image } from '@kit.ImageKit';
@@ -176,11 +172,13 @@ Obtain the canvas that can be directly displayed through [RenderNode](../referen
 5. Override the [draw()](../reference//apis-arkui/js-apis-arkui-renderNode.md#draw) function of the custom **RenderNode** to obtain the offscreen canvas for drawing.
 
    1. Use the **PixelMap** created in Step 4 to construct the offscreen canvas.
+
    2. Perform custom drawing operations on the offscreen canvas.
+
    3. Pass the drawing result of the offscreen canvas to the **RenderNode**.
 
    <!-- @[arkts_graphics_draw_indirect_canvas_api](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkGraphics2D/Drawing/ArkTSGraphicsDraw/entry/src/main/ets/drawing/pages/CanvasGetResult.ets) -->
-   
+
    ``` TypeScript
    // Customize a RenderNode.
    export class MyRenderNodeIndirectDisplay extends RenderNode {
@@ -251,9 +249,9 @@ Obtain the canvas that can be directly displayed through [RenderNode](../referen
    ```
 
 6. Display the custom **NodeController**.
-   
+
    <!-- @[arkts_graphics_draw_direct_and_indirect_canvas](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkGraphics2D/Drawing/ArkTSGraphicsDraw/entry/src/main/ets/drawing/pages/CanvasGetResult.ets) -->
-   
+
    ``` TypeScript
    @Entry
    @Component
@@ -287,9 +285,11 @@ Obtain the canvas that can be directly displayed through [RenderNode](../referen
    ```
 
 <!--RP1-->
+
 ## Samples
 
 The following samples are provided to help you better understand how to use the **Drawing** APIs (ArkTS) for development:
 
 - [ArkTSGraphicsDraw (API20)](https://gitcode.com/openharmony/applications_app_samples/tree/master/code/DocsSample/ArkGraphics2D/Drawing/ArkTSGraphicsDraw)
+
 <!--RP1End-->

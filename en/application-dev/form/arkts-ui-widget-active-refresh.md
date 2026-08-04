@@ -113,9 +113,16 @@ The following demonstrates how to add a widget to the home screen and update the
      }
    
      onUpdateForm(formId: string): void {
-       // ...
+       // If the widget supports interval-based updates, scheduled updates, or active update requests from the widget host, the widget provider needs to override this method to support data updates.
        hilog.info(DOMAIN_NUMBER, TAG, '[EntryFormAbility] onUpdateForm');
-       // ...
+       let obj: Record<string, string> = {
+         'title': 'titleOnUpdateForm',
+         'detail': 'detailOnUpdateForm'
+       };
+       let formData: formBindingData.FormBindingData = formBindingData.createFormBindingData(obj);
+       formProvider.updateForm(formId, formData).catch((error: BusinessError) => {
+         hilog.info(DOMAIN_NUMBER, TAG, '[EntryFormAbility] updateForm, error:' + JSON.stringify(error));
+       });
      }
    
      onChangeFormVisibility(newStatus: Record<string, number>): void {
@@ -126,13 +133,12 @@ The following demonstrates how to add a widget to the home screen and update the
      onFormEvent(formId: string, message: string): void {
        // ...
        hilog.info(DOMAIN_NUMBER, TAG, `FormAbility onFormEvent, formId = ${formId}, message: ${message}`);
-   
        class FormDataClass {
          title: string = 'Title Update.'; // It matches the widget layout.
          detail: string = 'Description update success.'; // It matches the widget layout.
        }
    
-       // ...
+       // Replace the following with the actual widget data to be updated.
        let formData = new FormDataClass();
        let formInfo: formBindingData.FormBindingData = formBindingData.createFormBindingData(formData);
        formProvider.updateForm(formId, formInfo).then(() => {
@@ -168,19 +174,19 @@ The following demonstrates how to add a widget to the home screen and update the
    // entry/src/main/resources/zh_CN/element/string.json
    {
       "string": [
-   	  // ...
-   	    {
-   	      "name": "default_title",
-   	      "value": "Title default."
-   	    },
-   	    {
-   	      "name": "DescriptionDefault",
-   	      "value": "Description default."
-   	    },
-   	    {
-   	      "name": "update",
-   	      "value": "update"
-   	    }
+      // ...
+        {
+          "name": "default_title",
+          "value": "Title default."
+        },
+        {
+          "name": "DescriptionDefault",
+          "value": "Description default."
+        },
+        {
+          "name": "update",
+          "value": "刷新"
+        }
       ]
    }
    ```
@@ -261,6 +267,7 @@ The following demonstrates how to add multiple widgets of an application to the 
    
        let formData = new FormDataClass();
        let formInfo: formBindingData.FormBindingData = formBindingData.createFormBindingData(formData);
+       // Update the widget data.
        formProvider.updateForm(formId, formInfo).then(() => {
          hilog.info(DOMAIN_NUMBER, TAG, 'FormAbility updateForm success.');
        }).catch((error: BusinessError) => {
@@ -304,14 +311,14 @@ The following demonstrates how to add multiple widgets of an application to the 
                let context: common.UIAbilityContext = this.getUIContext().getHostContext() as common.UIAbilityContext;
                let moduleName: string = 'entry';
                let abilityName: string = 'EntryFormAbility';
-               let formName: string = 'reloadByUIAbilityCard';
+               let formName: string = 'ReloadByUIAbility';
                formProvider.reloadForms(context, moduleName, abilityName, formName).then((reloadNum: number) => {
                  console.info(`reloadForms success, reload number: ${reloadNum}`);
                }).catch((error: BusinessError) => {
-                 console.error(`promise error, code: ${error.code}, message: ${error.message})`);
+                 console.error(`promise error, code: ${error.code}, message: ${error.message}`);
                });
              } catch (error) {
-               console.error(`catch error, code: ${(error as BusinessError).code}, message: ${(error as BusinessError).message})`);
+               console.error(`catch error, code: ${(error as BusinessError).code}, message: ${(error as BusinessError).message}`);
              }
            })
          Button('reloadAllForms')
@@ -324,7 +331,7 @@ The following demonstrates how to add multiple widgets of an application to the 
                  console.error(`promise error, code: ${error.code}, message: ${error.message})`);
                });
              } catch (error) {
-               console.error(`catch error, code: ${(error as BusinessError).code}, message: ${(error as BusinessError).message})`);
+               console.error(`catch error, code: ${(error as BusinessError).code}, message: ${(error as BusinessError).message}`);
              }
            })
        }
@@ -337,22 +344,25 @@ The following demonstrates how to add multiple widgets of an application to the 
 
 5. The resource file is as follows:
 
-   ```json
+   ```json5
    // entry/src/main/resources/base/element/string.json
    {
       "string": [
-   	  // ...
-   	    {
-   	      "name": "default_title",
-   	      "value": "Title default."
-   	    },
-   	    {
-   	      "name": "DescriptionDefault",
-   	      "value": "Description default."
-   	    }
+      // ...
+        {
+          "name": "default_title",
+          "value": "Title default."
+        },
+        {
+          "name": "DescriptionDefault",
+          "value": "Description default."
+        }
       ]
    }
    ```
+
+### Running Result
+![WidgetPrinciple](figures/batch-update-result.gif)
 
 <!--Del-->
 ## Active Update by Widget Host (for System Applications Only)
@@ -388,21 +398,21 @@ Due to the time limit of interval-based and time-specific updates, the widget ho
              temporary: false,
            })
              .size({
-               width:200,
-               height:200,
+               width: 200,
+               height: 200,
              })
              .borderColor(Color.Black)
              .borderRadius(10)
              .borderWidth(1)
              .onAcquired((form: FormCallbackInfo) => {
-               hilog.info(DOMAIN_NUMBER, TAG, `onAcquired: ${JSON.stringify(form)}`)
+               hilog.info(DOMAIN_NUMBER, TAG, `onAcquired: ${form.id}`)
                this.formId = form.id.toString();
              })
              .onRouter(() => {
                hilog.info(DOMAIN_NUMBER, TAG, `onRouter`)
              })
              .onError((error) => {
-               hilog.error(DOMAIN_NUMBER, TAG, `onError: ${JSON.stringify(error)}`)
+               hilog.error(DOMAIN_NUMBER, TAG, `onError: code: ${error?.errcode}, message: ${error?.msg}`)
              })
            // ...
            Button($r('app.string.button_update'))
@@ -413,7 +423,8 @@ Due to the time limit of interval-based and time-specific updates, the widget ho
                  formHost.requestForm(this.formId).then(() => {
                    hilog.info(DOMAIN_NUMBER, TAG, 'EntryFormAbility requestForm success.');
                  }).catch((error: BusinessError) => {
-                   hilog.error(DOMAIN_NUMBER, TAG, `EntryFormAbility requestForm fail, code: ${error?.code}, message: ${error?.message}`);
+                   hilog.error(DOMAIN_NUMBER, TAG,
+                     `EntryFormAbility requestForm fail, code: ${error?.code}, message: ${error?.message}`);
                    hilog.error(DOMAIN_NUMBER, TAG, `EntryFormAbility requestForm fail, code: ${this.formId}`);
                  })
                }
