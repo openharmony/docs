@@ -7,7 +7,7 @@
 <!--Adviser: @ge-yafang-->
 
 ```c
-typedef struct OH_NativeBuffer_Planes {...} OH_NativeBuffer_Planes
+typedef struct {...} OH_NativeBuffer_Planes
 ```
 ## 概述
 
