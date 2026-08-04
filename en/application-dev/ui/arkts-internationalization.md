@@ -1,12 +1,14 @@
 # Implementing UI Internationalization
+
 <!--Kit: ArkUI-->
 <!--Subsystem: ArkUI-->
 <!--Owner: @camlostshi-->
 <!--Designer: @lanshouren-->
 <!--Tester: @liuli0427-->
 <!--Adviser: @Brilliantry_Rui-->
+<!-- md-trans-meta sourceCommit=a38cd9231e6454f93fa0ce51eba86f35252da12c translatedAt=2026-08-01T00:30:26.100Z pushedAt=2026-08-03T02:23:20.391Z -->
 
-This topic explains how to implement UI internationalization in an application, including resource configuration and layout adaptation. For details about internationalization guidance, see [Localization Kit](../internationalization/i18n-l10n.md).
+This topic explains how to implement UI internationalization in an application, including resource configuration and mirroring. For details about internationalization guidance, see [Localization Kit](../internationalization/i18n-l10n.md).
 
 ## Configuring Internationalization Resources with Resource Qualifiers
 
@@ -14,7 +16,7 @@ To support multiple languages and regions, you can configure localized resources
 
 ## Using the Mirroring Capability
 
-Different text alignment modes and reading sequences may be used for different languages. For example, English is read from left-to-right (LTR), and Arabic and Greek are read from right-to-left (RTL). To accommodate diverse user reading habits, ArkUI provides a mirroring capability that can reverse the display content along the x-axis, switching the layout from left-to-right to right-to-left.
+Different text alignment modes and reading sequences may be used for different languages. For example, English uses a left-to-right (LTR) order, and Arabic and Greek use right-to-left (RTL) order. To accommodate diverse user reading habits, ArkUI provides a mirroring capability that can reverse the display content along the x-axis, switching the layout from left-to-right to right-to-left.
 
 | Before Mirroring         | After Mirroring                                 |
 | ----------- | ----------------------------------- |
@@ -29,11 +31,14 @@ The mirroring capability is activated on a component under either of these condi
 ### Basic Concepts
 
 - LTR: left-to-right reading direction
+
 - RTL: right-to-left reading direction
 
 ### Constraints
 
 ArkUI provides built-in mirroring support for the following capabilities.
+
+<!--Table: 20%; 80%-->
 
 | Category    | Name                                                        |
 | -------- | ------------------------------------------------------------ |
@@ -46,9 +51,9 @@ However, adaptation is still required in the following three scenarios:
 
 1. For layout and border settings, use the generalized direction terms **start** and **end** as parameter types instead of absolute terms such as **left**, **right**, **x**, and **y**, to accommodate mirroring.
 
-2. The **Canvas** component offers limited support for mirroring in text drawing only.
+2. The [Canvas](../reference/apis-arkui/arkui-ts/ts-components-canvas-canvas.md) component offers limited support for mirroring in text drawing only.
 
-3. The **XComponent** component does not support mirroring capabilities.
+3. The [XComponent](../reference/apis-arkui/arkui-ts/ts-basic-components-xcomponent.md) component does not support component mirroring.
 
 ### Layout and Border Settings
 
@@ -63,7 +68,7 @@ Size settings: [padding](../reference/apis-arkui/arkui-ts/ts-universal-attribute
 For example, with **position**, change the absolute directional descriptions of **x** and **y** to the new parameter types of **start** and **end**.
 
   <!-- @[Interface_Layout_Border_Settings](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkUISample/internationalization/entry/src/main/ets/homePage/InterfaceLayoutBorderSettings.ets) -->
-  
+
   ``` TypeScript
   import { LengthMetrics } from '@kit.ArkUI';
   
@@ -80,15 +85,14 @@ For example, with **position**, change the absolute directional descriptions of 
             .position({
               start: LengthMetrics.px(200),
               top: LengthMetrics.px(200)
-            }) // Use the new LocalizedEdges parameter type added since API version 12 for supporting both LTR and RTL.
-          // It is equivalent to .position({ x: '200px', y: '200px' }) when only LTR is supported.
+            }) // When both LTR and RTL need to be supported, use the LocalizedEdges parameter type introduced in API 12.
+          // When only LTR is supported, equivalent to .position({ x: '200px', y: '200px' }).
   
         }.backgroundColor(Color.Blue)
       }.width('100%').height('100%').border({ color: '#880606' })
     }
   }
   ```
-  
 
 ### Custom Drawing with the Canvas Component
 
@@ -96,12 +100,14 @@ The drawings and coordinates of the **Canvas** component do not support mirrorin
 
 [CanvasRenderingContext2D](../reference/apis-arkui/arkui-ts/ts-canvasrenderingcontext2d.md) supports mirroring for text rendering, which should be used with the **Canvas** component's **direction** attribute and the **direction** attribute of **CanvasRenderingContext2D**. The following table lists the specifications.
 
-1. Priority: The **direction** attribute of **CanvasRenderingContext2D** takes precedence over the **Canvas** component's **direction** attribute, which in turn follows the system language's horizontal display direction.
+1. Priority: CanvasRenderingContext2D.direction > Canvas.direction > system language's horizontal display direction
+
 2. The **Canvas** component does not automatically mirror with system language changes; applications must listen for system language changes and redraw the content on their own.
+
 3. Only symbols follow the direction setting during text drawing with **CanvasRenderingContext2D**; Latin characters and numbers do not.
 
   <!-- @[Customize_Canvas_Component_Drawing](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkUISample/internationalization/entry/src/main/ets/homePage/CustomizeCanvasComponentDrawing.ets) -->
-  
+
   ``` TypeScript
   import { BusinessError, commonEventManager } from '@kit.BasicServicesKit';
   
@@ -135,13 +141,13 @@ The drawings and coordinates of the **Canvas** component do not support mirrorin
               this.drawText();
             })
           } else {
-            console.error(`MayTest Need create subscriber`);
+              console.error(`Need create subscriber`);
           }
         })
     }
   
     drawText(): void {
-      console.error('MayTest drawText')
+      console.error('drawText')
       this.context.reset()
       this.context.direction = 'inherit'
       this.context.font = '30px sans-serif'
@@ -157,20 +163,19 @@ The drawings and coordinates of the **Canvas** component do not support mirrorin
           .onReady(() =>{
             this.drawText()
           })
-          .backgroundColor(Color.Pink)
       }
       .height('100%')
     }
   
   }
   ```
-  
-  
+
 | Before Mirroring         | After Mirroring                                 |
 | ----------- | ----------------------------------- |
 |![](figures/mirroring_2-0.jpg)|![](figures/mirroring_2-1.jpg)|
 
 ### Bidirectional Text Layout and Alignment
+
 Text direction ([Direction](../reference/apis-arkui/arkui-ts/ts-appendix-enums.md#direction)) defines the order of characters when text is presented on the screen. In left-to-right (LTR) scripts, the display order is from left to right; in right-to-left (RTL) scripts, the display order is from right to left.
 
 Text alignment ([TextAlign](../reference/apis-arkui/arkui-ts/ts-appendix-enums.md#textalign)) affects the layout of text as a whole, with specific positioning influenced by **Direction**. For example, when **TextAlign** is set to **start**, the text is left-aligned if **Direction** is **LTR**, and is right-aligned if **Direction** is **RTL**.
@@ -180,6 +185,7 @@ When LTR and RTL scripts are mixed (for example, an English sentence containing 
 ![alt text](figures/image-8.png)
 
 In this case, the text rendering engine uses a method called the Unicode Bidirectional Algorithm to determine the character display order. The following figure illustrates the character display order for mixed LTR and RTL scripts. The basic principles for determining character direction are as follows:
+
 1. Strong characters: Strong characters have a definite directionality. For example, Chinese characters are LTR, and Arabic characters are RTL. These characters influence the directionality of surrounding neutral characters.
 
 2. Weak characters: Weak characters do not have a definite directionality. These characters do not affect the directionality of surrounding neutral characters.
