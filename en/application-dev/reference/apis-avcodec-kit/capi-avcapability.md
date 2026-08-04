@@ -10,7 +10,7 @@
 
 ## Overview
 
-The AVCapability module provides functions for querying codec capabilities. With this module, You can obtain information about the codecs supported by the system at runtime, including basic codec information, supported parameter ranges, profile and level combinations, and optional codec features, so as to dynamically select appropriate codecs and configure parameters correctly.
+The AVCapability module provides functions for querying codec capabilities. With this module, you can obtain information about the codecs supported by the system at runtime, including basic codec information, supported parameter ranges, profile and level combinations, and optional codec features, so as to dynamically select appropriate codecs and configure parameters correctly.
 
 The main capabilities provided by this module include:
 
