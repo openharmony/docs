@@ -210,7 +210,12 @@ HarmonyAppProvision配置文件示例如下所示，修改"bundle-info" &gt; "ap
 
 > **说明：**
 >
-> 在API 12及以上版本，该权限等级变更为normal，应用可直接[声明使用](declare-permissions.md)；若需兼容API12之前版本，仍需按[受限权限申请方式](declare-permissions-in-acl.md)使用该权限。
+> 在API版本12，该权限等级变更为normal。
+> - 如果应用仅在本地调试：
+>   - 适配API版本12之前的版本，仍需按[受限权限申请方式](declare-permissions-in-acl.md)使用该权限。
+>   - 仅适配API版本12及之后的版本，可直接[声明使用](declare-permissions.md)。
+> - 如果应用需要上架应用市场：
+>   仍需按[受限权限申请方式](declare-permissions-in-acl.md)使用该权限。
 
 <!--RP18--><!--RP18End-->
 
