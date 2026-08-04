@@ -291,8 +291,14 @@ async function GetImageProperties(imageSourceObj : image.ImageSource) {
   let key = [image.PropertyKey.IMAGE_WIDTH, image.PropertyKey.IMAGE_LENGTH];
   imageSourceObj.getImageProperties(key).then((data) => {
     console.info(JSON.stringify(data));
-  }).catch((err: BusinessError) => {
-    console.error(`Failed to get the properties, error.code ${err.code}, error.message ${err.message}`);
+  }).catch((err: BusinessError | BusinessError[]) => {
+    if (Array.isArray(err)) {
+      (err as BusinessError[]).forEach(e => {
+        console.error(`Failed to get the properties, error.code ${e.code}, error.message ${e.message}`);
+      });
+    } else {
+      console.error(`Failed to get the properties, error.code ${err.code}, error.message ${err.message}`);
+    }
   });
 }
 ```
