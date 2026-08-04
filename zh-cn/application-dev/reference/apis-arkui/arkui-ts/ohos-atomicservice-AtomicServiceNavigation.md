@@ -7,7 +7,7 @@
 <!--Tester: @tinygreyy-->
 <!--Adviser: @zengyawen-->
 
-作为Page页面的根容器使用，其内部默认包含了标题栏、内容区，其中内容区在首页默认显示导航内容，在非首页显示[NavDestination](ts-basic-components-navdestination.md)的子组件，首页和非首页通过路由进行切换。
+作为Page页面的根容器使用，其内部默认包含了标题栏、内容区。其中，内容区在首页默认显示导航内容，在非首页显示[NavDestination](ts-basic-components-navdestination.md)的子组件，首页和非首页通过路由进行切换。
 
 > **说明：**
 >
@@ -60,7 +60,7 @@ AtomicServiceNavigation({
 | navigationContent | Callback\<void\> | 否 | @BuilderParam | Navigation容器内容。默认值为空，无内容展示。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
 | title | [ResourceStr](ts-types.md#resourcestr) | 否 |@Prop | 设置页面标题。默认值为空字符串。当titleOptions的titleBarType字段设置为[TitleBarType](#titlebartype18).ROUND_ICON或者[TitleBarType](#titlebartype18).SQUARED_ICON，且设置了titleIcon时，title标题内容将不会显示。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
 | titleOptions | [TitleOptions](#titleoptions) | 否 | @Prop | 标题栏选项。默认值为{ isBlurEnabled: true }。当titleBarType字段设置为[TitleBarType](#titlebartype18).ROUND_ICON或者[TitleBarType](#titlebartype18).SQUARED_ICON，且设置了titleIcon时，title标题内容将不会显示。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
-| gradientBackground<sup>18+</sup> | [GradientBackground](#gradientbackground18) | 否 | @Prop | 背景色选项。设置时各字段的默认值见[GradientBackground](#gradientbackground18)。<br>**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。 |
+| gradientBackground<sup>18+</sup> | [GradientBackground](#gradientbackground18) | 否 | @Prop | 渐变背景色选项。设置时各字段的默认值见[GradientBackground](#gradientbackground18)。<br>**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。 |
 | hideTitleBar | boolean | 否 | @Prop | 设置是否隐藏标题栏。默认为false。<br>false表示显示标题栏，true表示隐藏标题栏。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
 | navBarWidth | [Length](ts-types.md#length)| 否 | @Prop | 设置导航栏宽度。默认值为240vp。<br>仅在Navigation组件分栏时生效。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
 | mode| [NavigationMode](ts-basic-components-navigation.md#navigationmode9枚举说明) | 否 | @Prop | 设置导航栏的显示模式。默认值为Auto。<br>支持Stack、Split与Auto模式。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
@@ -83,11 +83,11 @@ AtomicServiceNavigation({
 | backgroundColor | [ResourceColor](ts-types.md#resourcecolor) | 否 | 是 | 标题栏背景颜色。默认值为系统默认颜色。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
 | isBlurEnabled | boolean | 否 | 是 | 标题栏是否模糊。true表示标题栏模糊，false表示标题栏不模糊。默认值：true。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
 | barStyle | [BarStyle](ts-basic-components-navigation.md#barstyle12枚举说明)  | 否 | 是 | 设置标题栏样式。默认值为BarStyle.STANDARD。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
-| titleBarType<sup>18+</sup> | [TitleBarType](#titlebartype18) | 否 | 是 | 设置标题栏类型。默认值为TitleBarType.ROUND_ICON。<br>**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。 |
-| titleIcon<sup>18+</sup> | [Resource](ts-types.md#resource) \| [SymbolGlyphModifier](ts-universal-attributes-attribute-modifier.md#自定义modifier) | 否 | 是 | 设置标题栏的图标。默认值为$r('sys.media.ohos_id_color_titlebar_icon')。<br>**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。 |
+| titleBarType<sup>18+</sup> | [TitleBarType](#titlebartype18) | 否 | 是 | 设置标题栏类型。默认值为TitleBarType.ROUND_ICON。<br>当titleBarType字段设置为TitleBarType.ROUND_ICON或者TitleBarType.SQUARED_ICON，且设置了titleIcon时，title标题内容将不会显示。<br>**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。 |
+| titleIcon<sup>18+</sup> | [Resource](ts-types.md#resource) \| [SymbolGlyphModifier](ts-universal-attributes-attribute-modifier.md#自定义modifier) | 否 | 是 | 设置标题栏的图标。默认值为$r('sys.media.ohos_id_color_titlebar_icon')。<br>当titleBarType字段设置为TitleBarType.ROUND_ICON或者TitleBarType.SQUARED_ICON时，设置此参数会导致title标题内容不显示。<br>**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。 |
 
 ## GradientBackground<sup>18+</sup>
-供开发者设置品牌渐变色。
+品牌渐变色选项。
 
 **原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
@@ -99,7 +99,7 @@ AtomicServiceNavigation({
 | secondaryColor |[ResourceColor](ts-types.md#resourcecolor)  | 否 | 是 | 双色渐变色第二色彩值。默认值为空，即无颜色设置。 |
 | backgroundTheme |[BackgroundTheme](#backgroundtheme18)  | 否 | 是 | 导航栏背景底色。默认值为DEFAULT。 |
 | mixMode | [MixMode](#mixmode18)  | 否 | 是 | 同时设置primaryColor和secondaryColor时此参数生效。表示双色渐变下两种颜色的融合方式。默认值为TOWARDS。 |
-| alpha | [GradientAlpha](#gradientalpha18)  | 否 | 是 | 设置渐变色显示区域的透明度。默认值为OPACITY_20。 |
+| alpha | [GradientAlpha](#gradientalpha18)  | 否 | 是 | 设置渐变色显示区域的不透明度。默认值为OPACITY_20。 |
 
 ## NavDestinationBuilder
 
@@ -145,7 +145,7 @@ type NavDestinationBuilder = (name: string, param?: Object) => void
 | DRAWER | 3 | 抽屉样式。 |
 
 ## GradientAlpha<sup>18+</sup>
-导航栏背景底色不透明度的可选项。
+渐变色显示区域不透明度的可选项。
 
 **原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
@@ -159,7 +159,7 @@ type NavDestinationBuilder = (name: string, param?: Object) => void
 | OPACITY_100| 4 | 不透明度为1.0。 |
 
 ## BackgroundTheme<sup>18+</sup>
-导航栏背景色底色的可选项。
+导航栏背景底色的可选项。
 
 **原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
@@ -187,7 +187,7 @@ type NavDestinationBuilder = (name: string, param?: Object) => void
 ## 示例
 
 ### 示例1（AtomicServiceNavigation页面布局与渐变色背景）
-AtomicServiceNavigation的基础样式，并展示渐变色背景。
+展示AtomicServiceNavigation的基础样式与渐变色背景。
 
 ```ts
 import { AtomicServiceNavigation, MixMode, GradientAlpha, BackgroundTheme } from '@kit.ArkUI';
@@ -322,9 +322,9 @@ export struct PageTwo {
 
 ![](figures/AtomicServiceNavigationDemo02.jpg)
 
-### 示例2（抽屉模式，宽屏场景下插入自定义布局）
+### 示例2（抽屉样式，宽屏场景下插入自定义布局）
 
-设备宽屏场景（宽度大于600vp）下设置抽屉模式，用户在标题栏插入自定义布局。
+设备宽屏场景（宽度大于600vp）下设置抽屉模式，在标题栏插入自定义布局。
 
 ```ts
 import { AtomicServiceNavigation, TitleBarType } from '@kit.ArkUI';
@@ -461,9 +461,9 @@ export struct PageTwo {
 ```
 ![](figures/AtomicServiceNavigationDemo03.png)
 
-### 示例3（边栏使用场景）
+### 示例3（侧边栏使用场景）
 
-设置边栏：背景色与内容样式。
+设置侧边栏：背景色与内容样式。
 
 ```ts
 import { AtomicServiceNavigation, TitleBarType } from '@kit.ArkUI';
