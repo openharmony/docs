@@ -41,7 +41,7 @@
 | 名称 | typedef关键字 | 描述 |
 | -- | -- | -- |
 | [PIXELMAP_ALPHA_TYPE](#pixelmap_alpha_type) | PIXELMAP_ALPHA_TYPE | Pixelmap透明度类型。 |
-| [PIXEL_FORMAT](#pixel_format) | PIXEL_FORMAT | 图像的像素格式，表示像素数据的颜色通道排列和位深信息。 |
+| [PIXEL_FORMAT](#pixel_format) | PIXEL_FORMAT | 图像的像素格式，包含像素数据的颜色通道排列和位深信息。 |
 | [OH_PixelmapNative_AntiAliasingLevel](#oh_pixelmapnative_antialiasinglevel) | OH_PixelmapNative_AntiAliasingLevel | Pixelmap缩放时采用的缩放算法。 |
 | [OH_Pixelmap_HdrMetadataKey](#oh_pixelmap_hdrmetadatakey) | OH_Pixelmap_HdrMetadataKey | Pixelmap使用的HDR相关元数据信息的关键字，用于[OH_PixelmapNative_SetMetadata](capi-pixelmap-native-h.md#oh_pixelmapnative_setmetadata)及[OH_PixelmapNative_GetMetadata](capi-pixelmap-native-h.md#oh_pixelmapnative_getmetadata)。 |
 | [OH_Pixelmap_HdrMetadataType](#oh_pixelmap_hdrmetadatatype) | OH_Pixelmap_HdrMetadataType | HDR_METADATA_TYPE关键字对应的值。 |
@@ -156,7 +156,7 @@ enum PIXEL_FORMAT
 
 **描述**
 
-图像的像素格式，表示像素数据的颜色通道排列和位深信息。
+图像的像素格式，包含像素数据的颜色通道排列和位深信息。
 
 **起始版本：** 12
 
