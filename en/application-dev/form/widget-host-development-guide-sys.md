@@ -302,7 +302,7 @@ struct formHostSample {
                 this.currentFormKey = result.value[0] + '#' + result.value[1];
                 this.pickDialogIndex = result.index[0]
                 hilog.info(DOMAIN_NUMBER, TAG,
-                  `TextPickerDialog onAccept： ${this.currentFormKey}, ${this.pickDialogIndex}`);
+                  `TextPickerDialog onAccept: ${this.currentFormKey}, ${this.pickDialogIndex}`);
                 if (!this.formCardHashMap.hasKey(this.currentFormKey)) {
                   hilog.error(DOMAIN_NUMBER, TAG, `invalid formItemInfo by form key`);
                   return;
@@ -331,7 +331,7 @@ struct formHostSample {
       }
 
       if (this.showForm) {
-        Text('formId： ' + this.selectFormId)
+        Text('formId: ' + this.selectFormId)
           .margin({ top: 10, bottom: 10 })
 
         // FormComponent.

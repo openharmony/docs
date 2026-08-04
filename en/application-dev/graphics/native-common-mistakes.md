@@ -69,8 +69,8 @@ Typical crash logs are as follows:
 00 /system/lib64/chipset-sdk-sp/libsurface.z.so(OH_NativeWindow_DestroyNativeWindow())
 
 **Typical crash log 2**
-00 /system/lib64/chipset-sdk-sp/libsurface.z.so(……)
-01 /system/lib64/chipset-sdk-sp/libsurface.z.so(……)
+00 /system/lib64/chipset-sdk-sp/libsurface.z.so(...)
+01 /system/lib64/chipset-sdk-sp/libsurface.z.so(...)
 02 /system/lib64/chipset-sdk-sp/libsurface.z.so(OH_NativeWindow_NativeWindowHandleOpt)
 
 **Typical crash log 3**
@@ -206,13 +206,13 @@ void OnSurfaceDestroyedCB(OH_NativeXComponent* component, void* window)
 Typical crash logs are as follows:
 
 ```text
-**典型崩溃日志1**
+**Typical crash log 1**
 00 /system/lib64/chipset-sdk-sp/libsurface.z.so(OH_NativeWindow_GetBufferHandleFromNative())
 
-**典型崩溃日志2**
+**Typical crash log 2**
 00 /system/lib64/chipset-sdk-sp/libsurface.z.so(OH_NativeWindow_NativeObjectUnreference())
 
-**典型崩溃日志3**
+**Typical crash log 3**
 00 /system/lib64/chipset-sdk-sp/libsurface.z.so(OH_NativeWindow_NativeObjectReference())
 ```
 

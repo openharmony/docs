@@ -6,7 +6,7 @@
 <!--Designer: @liumingxiang; @wanyanglan-->
 <!--Tester: @yhl0101; @nobuggers-->
 <!--Adviser: @ge-yafang-->
-<!-- md-trans-meta sourceCommit=05b6c240e981a77318190f74915b3427d158ac77 translatedAt=2026-08-03T11:22:07.713Z pushedAt=2026-08-04T07:58:24.529Z -->
+<!-- md-trans-meta sourceCommit=05b6c240e981a77318190f74915b3427d158ac77 translatedAt=2026-08-03T11:22:07.713Z pushedAt=2026-08-04T10:28:56.214Z -->
 
 - [About This Kit](arkgraphics2D-introduction.md)
 
@@ -54,11 +54,11 @@
 
   - Primitive Drawing<!--primitive-drawing-->
 
-    - [Overview of Primitive Drawing](primitive-drawing-overview.md)
+    - [Drawing Primitives](primitive-drawing-overview.md)
 
     - [Drawing Geometric Shapes (ArkTS)](geometric-shape-drawing-arkts.md)
 
-    - [Drawing Images](pixelmap-drawing-arkts.md)
+    - [Drawing Images (ArkTS)](pixelmap-drawing-arkts.md)
 
     - [Drawing TextBlobs (ArkTS)](textblock-drawing-arkts.md)
 

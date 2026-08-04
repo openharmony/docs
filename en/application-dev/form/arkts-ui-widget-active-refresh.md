@@ -185,7 +185,7 @@ The following demonstrates how to add a widget to the home screen and update the
         },
         {
           "name": "update",
-          "value": "刷新"
+          "value": "Update."
         }
       ]
    }
