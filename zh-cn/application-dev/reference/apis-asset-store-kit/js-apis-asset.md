@@ -250,7 +250,7 @@ remove(query: AssetMap): Promise\<void>
 
 | 错误码ID | 错误信息                                                    |
 | -------- | ---------------------------------------------------------- |
-| 401      | Parameter error. Possible causes: <br> 1. Incorrect parameter types.  <br> 2. Parameter verification failed. |
+| 401      | Parameter error. Possible causes: <br> 1. Mandatory parameters are left unspecified. <br> 2. Incorrect parameter types. <br> 3. Parameter verification failed. |
 | 24000001 | The ASSET service is unavailable.                          |
 | 24000002 | The asset is not found.                        |
 | 24000006 | Insufficient memory.                                       |
@@ -302,7 +302,7 @@ removeSync(query: AssetMap): void
 
 | 错误码ID | 错误信息                                                    |
 | -------- | ---------------------------------------------------------- |
-| 401      | Parameter error. Possible causes: <br> 1. Incorrect parameter types.  <br> 2. Parameter verification failed. |
+| 401      | Parameter error. Possible causes: <br> 1. Mandatory parameters are left unspecified. <br> 2. Incorrect parameter types. <br> 3. Parameter verification failed. |
 | 24000001 | The ASSET service is unavailable.                          |
 | 24000002 | The asset is not found.                        |
 | 24000006 | Insufficient memory.                                       |
@@ -620,7 +620,7 @@ preQuery(query: AssetMap): Promise\<Uint8Array>
 
 | 错误码ID | 错误信息                                                    |
 | -------- | ------------------------------------------------------------ |
-| 401      | Parameter error. Possible causes: <br> 1. Incorrect parameter types.  <br> 2. Parameter verification failed. |
+| 401      | Parameter error. Possible causes: <br> 1. Mandatory parameters are left unspecified. <br> 2. Incorrect parameter types. <br> 3. Parameter verification failed. |
 | 24000001 | The ASSET service is unavailable.                            |
 | 24000002 | The asset is not found.                          |
 | 24000005 | The screen lock status does not match.                           |
@@ -681,7 +681,7 @@ preQuerySync(query: AssetMap): Uint8Array
 
 | 错误码ID | 错误信息                                                    |
 | -------- | ------------------------------------------------------------ |
-| 401      | Parameter error. Possible causes: <br> 1. Incorrect parameter types.  <br> 2. Parameter verification failed. |
+| 401      | Parameter error. Possible causes: <br> 1. Mandatory parameters are left unspecified. <br> 2. Incorrect parameter types. <br> 3. Parameter verification failed. |
 | 24000001 | The ASSET service is unavailable.                            |
 | 24000002 | The asset is not found.                          |
 | 24000005 | The screen lock status does not match.                           |
@@ -743,7 +743,7 @@ query(query: AssetMap): Promise\<Array\<AssetMap>>
 
 | 错误码ID | 错误信息                                                    |
 | -------- | ---------------------------------------------------------- |
-| 401      | Parameter error. Possible causes: <br> 1. Incorrect parameter types.  <br> 2. Parameter verification failed. |
+| 401      | Parameter error. Possible causes: <br> 1. Mandatory parameters are left unspecified. <br> 2. Incorrect parameter types. <br> 3. Parameter verification failed. |
 | 24000001 | The ASSET service is unavailable.                          |
 | 24000002 | The asset is not found.                        |
 | 24000004 | Access denied.                             |
@@ -813,7 +813,7 @@ querySync(query: AssetMap): Array\<AssetMap>
 
 | 错误码ID | 错误信息                                                    |
 | -------- | ---------------------------------------------------------- |
-| 401      | Parameter error. Possible causes: <br> 1. Incorrect parameter types.  <br> 2. Parameter verification failed. |
+| 401      | Parameter error. Possible causes: <br> 1. Mandatory parameters are left unspecified. <br> 2. Incorrect parameter types. <br> 3. Parameter verification failed. |
 | 24000001 | The ASSET service is unavailable.                          |
 | 24000002 | The asset is not found.                        |
 | 24000004 | Access denied.                            |
@@ -939,7 +939,7 @@ import { asset } from '@kit.AssetStoreKit';
 let handle: asset.AssetMap = new Map();
 // 此处传入的new Uint8Array(32)仅作为示例，实际应传入asset.preQuerySync执行成功返回的挑战值。
 handle.set(asset.Tag.AUTH_CHALLENGE, new Uint8Array(32));
-asset.postQuerySync(handle)
+asset.postQuerySync(handle);
 ```
 
 ## asset.querySyncResult<sup>20+</sup>
@@ -1088,8 +1088,8 @@ type AssetMap = Map\<Tag, Value>
 | 名称                  | 值   | 说明                                                         |
 | --------------------- | ---- | ------------------------------------------------------------ |
 | DEVICE_POWERED_ON     | 0    | 开机后可访问。                                   |
-| DEVICE_FIRST_UNLOCKED | 1    | 首次解锁后可访问<br>**说明：** 未设置锁屏密码时，等同于开机后可访问。 |
-| DEVICE_UNLOCKED       | 2    | 解锁状态时可访问<br/>**说明：** 未设置锁屏密码时，等同于开机后可访问。 |
+| DEVICE_FIRST_UNLOCKED | 1    | 首次解锁后可访问。<br>**说明：** 未设置锁屏密码时，等同于开机后可访问。 |
+| DEVICE_UNLOCKED       | 2    | 解锁状态时可访问。<br/>**说明：** 未设置锁屏密码时，等同于开机后可访问。 |
 
 ## AuthType
 

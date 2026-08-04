@@ -17,6 +17,10 @@
 
 The ASSET service is unavailable.
 
+**错误描述**
+
+关键资产服务不可用。
+
 **可能原因**
 
 系统异常导致关键资产服务不可用。
@@ -30,6 +34,10 @@ The ASSET service is unavailable.
 **错误信息**
 
 The asset is not found.
+
+**错误描述**
+
+未找到关键资产。
 
 **可能原因**
 
@@ -47,6 +55,10 @@ The asset is not found.
 
 The asset already exists.
 
+**错误描述**
+
+关键资产已存在。
+
 **可能原因**
 
 已存在同别名（asset.Tag.ALIAS相同）的关键资产。
@@ -63,6 +75,10 @@ The asset already exists.
 **错误信息**
 
 Access denied.
+
+**错误描述**
+
+关键资产访问被拒绝。
 
 **可能原因**
 
@@ -82,6 +98,10 @@ Access denied.
 
 The screen lock status does not match.
 
+**错误描述**
+
+设备锁屏状态与关键资产访问控制要求不匹配。
+
 **可能原因**
 
 1. 在设备处于未设置锁屏密码的状态下，访问仅设置密码才允许访问的关键资产。
@@ -98,6 +118,10 @@ The screen lock status does not match.
 
 Insufficient memory.
 
+**错误描述**
+
+系统内存不足。
+
 **可能原因**
 
 系统内存不足。
@@ -112,6 +136,10 @@ Insufficient memory.
 
 The asset is corrupted.
 
+**错误描述**
+
+关键资产损坏。
+
 **可能原因**
 
 因设备掉电或存储系统异常导致的关键资产文件损坏。
@@ -125,6 +153,10 @@ The asset is corrupted.
 **错误信息**
 
 The database operation failed.
+
+**错误描述**
+
+关键资产数据库操作失败。
 
 **可能原因**
 
@@ -142,6 +174,10 @@ The database operation failed.
 
 The cryptography operation failed.
 
+**错误描述**
+
+密码算法操作失败。
+
 **可能原因**
 
 密码算法操作失败。
@@ -155,6 +191,10 @@ The cryptography operation failed.
 **错误信息**
 
 IPC failed.
+
+**错误描述**
+
+IPC通信失败。
 
 **可能原因**
 
@@ -170,6 +210,10 @@ IPC failed.
 
 Calling the Bundle Manager service failed.
 
+**错误描述**
+
+调用包管理服务失败。
+
 **可能原因**
 
 包管理服务异常。
@@ -183,6 +227,10 @@ Calling the Bundle Manager service failed.
 **错误信息**
 
 Calling the OS Account service failed.
+
+**错误描述**
+
+调用账号系统服务失败。
 
 **可能原因**
 
@@ -198,6 +246,10 @@ Calling the OS Account service failed.
 
 Calling the Access Token service failed.
 
+**错误描述**
+
+调用访问控制服务失败。
+
 **可能原因**
 
 访问控制服务异常。
@@ -211,6 +263,10 @@ Calling the Access Token service failed.
 **错误信息**
 
 The file operation failed.
+
+**错误描述**
+
+文件操作失败。
 
 **可能原因**
 
@@ -227,6 +283,10 @@ The file operation failed.
 
 Getting the system time failed.
 
+**错误描述**
+
+获取系统时间失败。
+
 **可能原因**
 
 系统时间被篡改。
@@ -240,6 +300,10 @@ Getting the system time failed.
 **错误信息**
 
 The cache exceeds the limit.
+
+**错误描述**
+
+关键资产预查询缓存数量超限。
 
 **可能原因**
 
@@ -255,6 +319,10 @@ The cache exceeds the limit.
 
 The capability is not supported.
 
+**错误描述**
+
+该子功能不支持。
+
 **可能原因**
 
 支持API，但是不支持API内部某些子特性（功能），如批量查询关键资产明文。
@@ -269,6 +337,10 @@ The capability is not supported.
 
 Parameter verify failed.
 
+**错误描述**
+
+参数校验失败。
+
 **可能原因**
 
 传入的参数不合法。
@@ -282,6 +354,10 @@ Parameter verify failed.
 **错误信息**
 
 Each value of [Tag.GROUP_ID](js-apis-asset.md#tag) and [Tag.REQUIRE_ATTR_ENCRYPTED](js-apis-asset.md#tag) in the array is not consistent.
+
+**错误描述**
+
+批量操作时，数组中关键资产的GROUP_ID和REQUIRE_ATTR_ENCRYPTED属性值不一致。
 
 **可能原因**
 
