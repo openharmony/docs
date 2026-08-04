@@ -11364,6 +11364,9 @@ struct WebComponent {
         .onControllerAttached(() => {
           // 启用mainframe和subframe错误页功能
           this.controller.setErrorPageEnabled(true, true);
+          // 查询subframe错误页功能是否已启用
+          let isSubframeEnabled: boolean = this.controller.getSubframeErrorPageEnabled();
+          console.info("Subframe error page enabled: " + isSubframeEnabled);
         })
         .onOverrideErrorPage((event) => {
           if (event.request.isMainFrame()) {
