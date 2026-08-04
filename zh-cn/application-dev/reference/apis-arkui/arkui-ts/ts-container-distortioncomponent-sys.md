@@ -12,7 +12,7 @@ DistortionComponent（空间形变组件）是一种容器型视效组件，可�
 >
 > - 本模块为系统接口。
 > 
-> - 空间扭曲感的形变视效支持动画，如在[animateTo](../../apis-arkui/arkts-apis-uicontext-uicontext.md#animateto)动画接口闭包中改变该视效参数，可以产生空间扭曲感的形变动画。
+> - 空间扭曲感的形变视效支持动画，需在[animateTo](../../apis-arkui/arkts-apis-uicontext-uicontext.md#animateto)动画接口闭包中修改distortion相关参数，才能实现参数的平滑过渡动画；直接修改参数时效果将立即生效，无过渡动画。
 
 **起始版本：** 26.0.0
 
@@ -65,7 +65,8 @@ DistortionComponent(options?: DistortionComponentOptions)
 > **说明：**
 > - 四个角的坐标可以按照如下坐标系设置。一个组件，左上角位置为[0, 0]，右上角位置为[1, 0]，左下角位置为[0, 1]，右下角位置为[1, 1]。
 > - 如bottomLeft属性设置为[0.5, 0.5]，则表示左下角形变到组件中心点的位置，使组件左下区域产生向内收缩的形变效果。
-> - 设置四个角坐标位置时请符合空间感逻辑。如topLeft = [0, 0.7]，bottomLeft = [0, 0.2]，左上角的位置低于左下角的位置，违背空间感的逻辑，可能导致渲染异常。
+> - 设置四个角坐标位置时请符合空间感逻辑，上边角点的y坐标应小于下边角点的y坐标，左边角点的x坐标应小于右边角点的x坐标，确保形变后的四边形保持合理的空间透视关系。（即角点坐标应保持合理的空间透视关系，避免上下翻转或交叉）。如topLeft = [0, 0.7]，bottomLeft = [0, 0.2]，左上角的位置低于左下角的位置，违背空间感的逻辑，可能导致渲染异常（如网格面片交叉翻转，使内容呈现错乱或不可预期的视觉结果）。
+> - 四个角点坐标可与barrelDistortion组合使用，构建更丰富的空间形变效果。
 
 **起始版本：** 26.0.0
 
@@ -77,11 +78,11 @@ DistortionComponent(options?: DistortionComponentOptions)
 
 | 名称           | 类型    | 只读  | 可选 | 说明                                                                                                                                  |
 | --------------- | --------- | ---- | ---- | ------------------------------------------------------------------------------------------------------------------------------------- |
-| topLeft        | [Vector2](#vector2) | 否  | 否   | 左上角的坐标。<br/>默认值：[0, 0]                                                                                      |
-| topRight       | [Vector2](#vector2) | 否  | 否   | 右上角的坐标。<br/>默认值：[1, 0]                                                                                     |
-| bottomLeft     | [Vector2](#vector2) | 否  | 否   | 左下角的坐标。<br/>默认值：[0, 1]                                                                                     |
-| bottomRight    | [Vector2](#vector2) | 否  | 否   | 右下角的坐标。<br/>默认值：[1, 1]                                                                                   |
-| barrelDistortion | [Vector4](#vector4) | 否   | 否   | 四条边的桶形扭曲程度参数。<br/>Vector4中四个值分别控制：x是左边，y是右边，z是上边，w是下边。<br/>默认值：[0, 0, 0, 0] <br/>正数表示边向外凸出的扭曲，负数表示边向内凹陷的扭曲。扭曲参数绝对值达到1时，扭曲程度为极端扭曲。<br/> x、y、z、w 各值建议设置范围：[-1, 1] <br/>**说明：**<br/>barrelDistortion的四个分量共同决定四条边的桶形扭曲强度，可与四个角点坐标组合使用，构建更丰富的空间形变。<br/>从几何意义上看，x、y决定左右两条竖直边的弯曲方向与幅度，z、w决定上下两条水平边的弯曲方向与幅度。当某一分量为正值时，对应边向组件外侧凸出，呈现“桶形外凸”效果；为负值时，对应边向组件内侧凹陷，呈现“枕形内凹”效果。四个分量取值相近时，整体呈现类似广角镜头的均匀桶形畸变；x、y与z、w取值差异较大时，则会产生横向拉伸或纵向拉伸的非对称形变。<br/>由于极端值可能导致画面折叠或采样异常，建议将x、y、z、w保持在[-1, 1]范围内使用。|
+| topLeft        | [Vector2](#vector2) | 否  | 否   | 左上角的坐标，取值原则：坐标值为相对于组件尺寸的比例，0表示0%，1表示100%，建议取值范围[0, 1]，需符合空间感逻辑以免渲染异常。<br>默认值：{0, 0}                                                                                      |
+| topRight       | [Vector2](#vector2) | 否  | 否   | 右上角的坐标，取值原则：坐标值为相对于组件尺寸的比例，0表示0%，1表示100%，建议取值范围[0, 1]，需符合空间感逻辑以免渲染异常。<br>默认值：{1, 0}                                                                                     |
+| bottomLeft     | [Vector2](#vector2) | 否  | 否   | 左下角的坐标，取值原则：坐标值为相对于组件尺寸的比例，0表示0%，1表示100%，建议取值范围[0, 1]，需符合空间感逻辑以免渲染异常。<br>默认值：{0, 1}                                                                                     |
+| bottomRight    | [Vector2](#vector2) | 否  | 否   | 右下角的坐标，取值原则：坐标值为相对于组件尺寸的比例，0表示0%，1表示100%，建议取值范围[0, 1]，需符合空间感逻辑以免渲染异常。<br>默认值：{1, 1}                                                                                   |
+| barrelDistortion | [Vector4](#vector4) | 否   | 否   | 四条边的桶形扭曲程度参数。<br>Vector4中四个值分别控制：x是左边，y是右边，z是上边，w是下边。<br>默认值：{x: 0, y: 0, z: 0, w: 0} <br>正数表示边向外凸出的扭曲，负数表示边向内凹陷的扭曲。扭曲参数绝对值达到1时，扭曲程度为极端扭曲。<br> x、y、z、w各值取值范围：[-1, 1] <br>**说明：**<br>barrelDistortion的四个分量共同决定四条边的桶形扭曲强度，可与四个角点坐标组合使用，构建更丰富的空间形变。<br>从几何意义上看，x、y决定左右两条竖直边的弯曲方向与幅度，z、w决定上下两条水平边的弯曲方向与幅度。当某一分量为正值时，对应边向组件外侧凸出，呈现“桶形外凸”效果；为负值时，对应边向组件内侧凹陷，呈现“枕形内凹”效果。四个分量取值相近时，整体呈现类似广角镜头的均匀桶形畸变；x、y与z、w取值差异较大时，则会产生横向拉伸或纵向拉伸的非对称形变。<br>由于极端值可能导致画面折叠（网格面片重叠翻转）或采样异常（纹理坐标超出有效采样范围），建议将x、y、z、w保持在[-1, 1]范围内使用。|
 
 ## Vector2
 
@@ -99,7 +100,7 @@ type Vector2 = Vector2
 
 | 类型   | 说明     |
 | ------ | -------- |
-| [Vector2](../../apis-arkui/js-apis-arkui-graphics.md#vector2)   | 包含x和y两个值的向量。<br/>x和y表示坐标值。<br/>取值范围：(-∞, +∞) |
+| [Vector2](../../apis-arkui/js-apis-arkui-graphics.md#vector2)   | 包含x和y两个值的向量。<br>x和y表示坐标值。<br>取值范围：(-∞, +∞) |
 
 
 ## Vector4
@@ -118,12 +119,12 @@ type Vector4 = Vector4
 
 | 类型   | 说明     |
 | ------ | -------- |
-| [Vector4](../../apis-arkui/js-apis-arkui-graphics.md#vector4)   | 包含x、y、z、w四个值的向量。<br/>x、y、z、w的值分别表示组件左边、右边、上边、下边的桶形形变程度。<br/>取值范围：(-∞, +∞) |
+| [Vector4](../../apis-arkui/js-apis-arkui-graphics.md#vector4)   | 包含x、y、z、w四个值的向量。<br>x、y、z、w的值分别表示组件左边、右边、上边、下边的桶形形变程度。<br>取值范围：(-∞, +∞) |
 
 
 ## 属性
 
-仅支持系统材质属性[systemMaterial](ts-universal-attributes-image-effect.md#systemmaterial)。
+仅支持系统材质属性[systemMaterial](ts-universal-attributes-image-effect.md#systemmaterial)，为组件提供系统预置的材质效果。
 
 ## 示例
 
@@ -313,7 +314,7 @@ struct DistortionCombinedExample {
             .width(200)
             .height(200)
             // 'app.media.icon'需要替换为开发者所需的图像资源文件
-            .backgroundImage($r('app.media.icon'))
+            .backgroundImage($r('app.media.icon')) // 需确保项目中存在icon媒体资源
             .backgroundImageSize(ImageSize.Cover)
             .opacity(0.8)
           Text('3D Feel')

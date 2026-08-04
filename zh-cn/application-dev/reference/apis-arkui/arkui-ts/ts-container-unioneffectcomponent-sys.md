@@ -6,7 +6,7 @@
 <!--Tester: @lxl007-->
 <!--Adviser: @Brilliantry_Rui-->
 
-形状融合容器，会收集该容器内所有使用[useUnionEffect](ts-universal-attributes-use-union-effect-sys.md#useunioneffect)的后代组件形状，将收集的形状融合生效在容器上，作为该容器的绘制形状。
+形状融合容器，配合后代组件的[useUnionEffect](ts-universal-attributes-use-union-effect-sys.md#useunioneffect)属性使用。该容器会收集所有设置了[useUnionEffect](ts-universal-attributes-use-union-effect-sys.md#useunioneffect)的后代组件形状，将收集的形状融合后作为该容器的绘制形状。若后代组件未设置[useUnionEffect](ts-universal-attributes-use-union-effect-sys.md#useunioneffect)属性，则容器不会产生融合效果。
 
 >  **说明：**
 >
@@ -54,7 +54,7 @@ UnionEffectContainer(options?: UnionEffectContainerOptions)
 
 | 名称        | 类型                                    | 只读 | 可选 | 说明                                                     |
 | ----------- | --------------------------------------- | ---- | ---------- | ---------------------------------------------- |
-| spacing | number | 否 | 是  | spacing表示后代组件发生融合形变的程度。它不代表实际的间距，只有设置了使用祖先组件UnionEffectContainer融合效果的后代组件且后代组件靠近到一定程度时才会发生融合。<br/>**说明：**<br/>设置的spacing大于0，且设置了祖先组件UnionEffectContainer融合效果的后代组件彼此靠近到一定程度，这些后代组件会开始相互融合形变，且随着距离的变近融合形变的效果越强。该值越大，后代组件彼此靠近时，它们的融合会越早开始，越容易发生融合形变。<br/>默认值：0，此时后代组件形状会融合在一起，但不会有形变效果。<br/>取值范围：[0, +∞)。小于0时按0处理。 |
+| spacing | number | 否 | 是  | spacing表示后代组件发生融合形变的程度。它不代表实际的间距，只有设置了使用祖先组件UnionEffectContainer融合效果的后代组件且后代组件靠近到一定程度时才会发生融合。<br>**说明：**<br>设置的spacing大于0，且设置了祖先组件UnionEffectContainer融合效果的后代组件彼此靠近到一定程度，这些后代组件会开始相互融合形变，且随着距离的变近融合形变的效果越强。该值越大，后代组件彼此靠近时，它们的融合会越早开始，越容易发生融合形变。<br>默认值：0，此时后代组件形状会融合在一起，但不会有形变效果。<br>取值范围：[0, +∞)。小于0时按0处理。 |
 
 ## 事件
 
@@ -66,15 +66,15 @@ UnionEffectContainer(options?: UnionEffectContainerOptions)
 
 > **说明：**
 >
-> - 融合过程中容器会变成粘连的非线性形变效果，边框会变成融合后的粘连效果，故与边框相关的能力会受到影响。目前与边框相关支持融合形变效果的属性：阴影[shadow](ts-universal-attributes-image-effect.md#shadow)、背景色[backgroundColor](ts-universal-attributes-background.md#backgroundcolor)、点光源[pointLight](#pointlight)。上述效果会绘制在融合后的形状上，属于UnionEffectContainer的绘制部分。
+> - 融合过程中容器会变成粘连的非线性形变效果，边框会变成融合后的粘连效果，故与边框相关的能力在融合形变过程中会发生变化，未支持融合形变效果的边框属性可能无法正常生效。目前与边框相关且支持融合形变效果的属性：阴影[shadow](ts-universal-attributes-image-effect.md#shadow)、背景色[backgroundColor](ts-universal-attributes-background.md#backgroundcolor)、点光源[pointLight](#pointlight)。上述效果会绘制在融合后的形状上，属于UnionEffectContainer的绘制部分。
 >
-> - 在该组件上设置上述与边框相关支持融合形变效果的属性，绘制体现在该组件上，如果后代组件设置了同一个属性，实际上两个属性的设置相互独立，会绘制两次，一次发生在UnionEffectContainer控件的绘制中，一次发生在后代组件自身的属性绘制中。通常情况下不需要在使用祖先组件UnionEffectContainer融合效果的后代组件中设置同一个支持融合形变效果的属性，避免融合效果劣化。
+> - 在该组件上设置上述与边框相关支持融合形变效果的属性，绘制体现在该组件上，如果后代组件设置了同一个属性，实际上两个属性的设置相互独立，会绘制两次，一次发生在UnionEffectContainer组件的绘制中，一次发生在后代组件自身的属性绘制中。在无特殊设计需求时，不需要在使用祖先组件UnionEffectContainer融合效果的后代组件中设置同一个支持融合形变效果的属性，避免融合效果因双重绘制而出现视觉异常。
 
 ### pointLight
 
 pointLight(value: PointLightStyle)
 
-设置点光源样式。
+设置点光源样式。点光源是从指定位置发出的光源，在融合后的形状上产生光照高亮效果。该属性效果绘制在融合后的形状上，需要后代组件使用[useUnionEffect](ts-universal-attributes-use-union-effect-sys.md#useunioneffect)才能生效。通常情况下不需要在使用融合效果的后代组件中同时设置pointLight属性，避免融合效果劣化。
 
 **系统接口：** 此接口为系统接口。
 
@@ -86,13 +86,13 @@ pointLight(value: PointLightStyle)
 
 | 参数名 | 类型                                                         | 必填 | 说明         |
 | ------ | ------------------------------------------------------------ | ---- | ------------ |
-| value  | [PointLightStyle](ts-universal-attributes-point-light-style-sys.md#pointlightstyle) | 是   | 点光源样式，用于设置UnionEffectContainer融合形状上的点光源效果。 |
+| value  | [PointLightStyle](ts-universal-attributes-point-light-style-sys.md#pointlightstyle) | 是   | 点光源样式，用于设置UnionEffectContainer融合形状上的点光源效果。pointLight为与边框相关且支持融合形变效果的属性，效果绘制在融合后的形状上；不建议在使用融合效果的后代组件中同时设置pointLight，避免融合效果劣化。 |
 
 ### unionMode
 
 unionMode(mode: UnionMode)
 
-设置融合效果模式。
+设置融合效果模式。需后代组件设置[useUnionEffect](ts-universal-attributes-use-union-effect-sys.md#useunioneffect)属性，融合效果才能生效。当融合效果模式为[UnionMode.GRAVITY_UNION](#unionmode枚举说明)时，需配合[useUnionEffect](ts-universal-attributes-use-union-effect-sys.md#useunioneffect-1)并设置[GravityCenterOptions](ts-universal-attributes-use-union-effect-sys.md#gravitycenteroptions)的gravityCenter为true才能生效。
 
 **起始版本：** 26.0.0
 
@@ -106,11 +106,11 @@ unionMode(mode: UnionMode)
 
 | 参数名 | 类型                                                         | 必填 | 说明         |
 | ------ | ------------------------------------------------------------ | ---- | ------------ |
-| mode  | [UnionMode](#unionmode枚举说明) | 是   | 融合效果模式。 |
+| mode  | [UnionMode](#unionmode枚举说明) | 是   | 融合效果模式。需配合后代组件使用[useUnionEffect](ts-universal-attributes-use-union-effect-sys.md#useunioneffect)属性才能生效。设置[UnionMode.GRAVITY_UNION](#unionmode枚举说明)时，需结合[useUnionEffect](ts-universal-attributes-use-union-effect-sys.md#useunioneffect-1)属性并设置[GravityCenterOptions](ts-universal-attributes-use-union-effect-sys.md#gravitycenteroptions)的gravityCenter为true才能生效。 |
 
 ## UnionMode枚举说明
 
-融合效果枚举。
+融合效果模式枚举。
 
 **起始版本：** 26.0.0
 
@@ -122,8 +122,8 @@ unionMode(mode: UnionMode)
 
 | 名称           | 值  | 说明                         |
 | -------------- | --- |---------------------------- |
-| SMOOTH_UNION       | 0   | 平滑的融合形变效果，适用于需要平滑过渡和自然连接的融合场景。            |
-| GRAVITY_UNION      | 1   | 引力作用下的融合形变效果，适用于需要模拟引力吸引效果的融合场景，如元素间存在吸引和靠近趋势的视觉表现。<br/>**说明：**<br/>设置该类型时，需要结合[useUnionEffect](ts-universal-attributes-use-union-effect-sys.md#useunioneffect-1)并设置[GravityCenterOptions](ts-universal-attributes-use-union-effect-sys.md#gravitycenteroptions)的gravityCenter为true才能生效。            |
+| SMOOTH_UNION       | 0   | 平滑的融合形变效果，适用于需要平滑过渡和自然连接的融合场景。<br>**说明：**<br>设置该类型时，需后代组件设置[useUnionEffect](ts-universal-attributes-use-union-effect-sys.md#useunioneffect)属性才能产生融合效果。            |
+| GRAVITY_UNION      | 1   | 引力作用下的融合形变效果，适用于需要模拟引力吸引效果的融合场景，如元素间存在吸引和靠近趋势的视觉表现。<br>**说明：**<br>设置该类型时，需配合[useUnionEffect](ts-universal-attributes-use-union-effect-sys.md#useunioneffect-1)并设置[GravityCenterOptions](ts-universal-attributes-use-union-effect-sys.md#gravitycenteroptions)的gravityCenter为true才能生效；不满足上述条件时，GRAVITY_UNION效果不生效。            |
 
 ## 示例
 
@@ -216,7 +216,7 @@ struct UnionEffectContainerPage {
             })
           Button('-20')
             .onClick(() => {
-              if (this.spacing <= 0 && this.spacing - 20 < 0) {
+              if (this.spacing <= 0) {
                 return;
               }
               this.getUIContext().animateTo({ duration: 200 }, () => {
