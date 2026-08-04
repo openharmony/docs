@@ -549,7 +549,7 @@ Callback<T, V = void> {
 | ------ | ---- | ----- | ---- | ----------------------- |
 | type | [RotationChangeType](arkts-apis-window-e.md#rotationchangetype19) | 否 | 否 | 窗口旋转事件类型，如窗口即将旋转、窗口旋转结束等。 |
 | orientation | number | 否 | 否 | 窗口显示方向。<br>- 0表示竖屏。<br>- 1表示反向横屏。<br>- 2表示反向竖屏。<br>- 3表示横屏。<br>开发者在使用时，需要注意该方向与display对象的属性orientation含义不一致。 |
-| displayId | number | 否 | 否 | 窗口所在屏幕Id。 |
+| displayId | number | 否 | 否 | 窗口所在屏幕Id，该参数为整数。 |
 | displayRect | [Rect](arkts-apis-window-i.md#rect7) | 否 | 否 | 窗口所在屏幕旋转后的矩形区域大小。 |
 
 ## RotationChangeResult<sup>19+</sup>
