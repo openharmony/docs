@@ -31,7 +31,6 @@ The following table lists the licenses of the third-party open source software u
 | third_party_musl | BSD 2-Clause License | The license does not require any product that uses such a repository to open their code.|
 | third_party_NuttX | BSD 3-Clause License | The license does not require any product that uses such a repository to open their code.|
 | third_party_openssl | OpenSSL License and Original SSLeay License | The license does not require any product that uses such a repository to open their code.|
-| third_party_qrcodegen| MIT License | The license does not require any product that uses such a repository to open their code.|
 | third_party_unity | MIT License | The license does not require any product that uses such a repository to open their code.|
 | third_party_wpa_supplicant | BSD 3-Clause License | The license does not require any product that uses such a repository to open their code.|
 | third_party_zlib | zlib/libpng License | The license does not require any product that uses such a repository to open their code.|
