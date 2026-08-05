@@ -20,7 +20,7 @@
 
 advancedBlendMode(effect: BlendMode | Blender, type?: BlendApplyType): T
 
-将当前组件的内容（包含子节点内容）与下方画布（可能为离屏画布）已有内容进行混合。不能与[blendMode](ts-universal-attributes-image-effect.md#blendmode11)接口同时使用。
+将当前组件的内容（包含子节点内容）与下方画布（可能为离屏画布）已有内容进行混合。不能与[blendMode](ts-universal-attributes-image-effect.md#blendmode11)接口同时使用，同时设置时仅advancedBlendMode效果生效。
 
 **卡片能力：** 从API version 13开始，该接口支持在ArkTS卡片中使用。
 
@@ -32,14 +32,14 @@ advancedBlendMode(effect: BlendMode | Blender, type?: BlendApplyType): T
 
 | 参数名 | 类型                            | 必填 | 说明                                                         |
 | ------ | ------------------------------- | ---- | ------------------------------------------------------------ |
-| effect  | [BlendMode](ts-universal-attributes-image-effect.md#blendmode11枚举说明)&nbsp;\|&nbsp;[Blender](../../apis-arkgraphics2d/js-apis-uiEffect-sys.md#blender13)  | 是   | 入参类型为BlendMode时表示混合模式。<br/>默认值：BlendMode.NONE <br/>入参类型为Blender时表示混合器类型，用于描述混合效果。<br/>需要使用uiEffect模块中的方法创建Blender实例。例如：[uiEffect.createBrightnessBlender](../../apis-arkgraphics2d/js-apis-uiEffect-sys.md#uieffectcreatebrightnessblender)。使用自定义object作为入参不会生效。  |
-| type   | [BlendApplyType](ts-universal-attributes-image-effect-sys.md#blendapplytype枚举说明)  |    否    | blendMode实现方式是否离屏。<br/>默认值：BlendApplyType.FAST<br/>**说明：**<br/>1. 设置为BlendApplyType.FAST，不离屏。<br/>2. 设置为BlendApplyType.OFFSCREEN，会创建当前组件大小的离屏画布，再将当前组件（含子组件）的内容绘制到离屏画布上，再用指定的混合模式与下方画布已有内容进行混合。<br/>3. 不离屏情况下对文字类组件中emoji表情不生效。<br/>4. 相比BlendApplyType.OFFSCREEN，设置为BlendApplyType.OFFSCREEN_WITH_BACKGROUND，系统在创建与当前组件大小一致的离屏画布时，会先复制一份带有背景的画布作为初始化底色（BlendApplyType.OFFSCREEN类型的画布初始为透明背景），随后在此基础上进行混合操作。两者在其他功能特性上保持一致。     |
+| effect  | [BlendMode](ts-universal-attributes-image-effect.md#blendmode11枚举说明)&nbsp;\|&nbsp;[Blender](../../apis-arkgraphics2d/js-apis-uiEffect-sys.md#blender13)  | 是   | 入参类型为BlendMode时表示混合模式，默认不进行混合操作。默认值：BlendMode.NONE，即不应用特殊混合效果，组件内容按默认方式绘制。<br>入参类型为Blender时表示混合器类型，用于描述混合效果。<br>需要使用uiEffect模块中的方法创建Blender实例。例如：[uiEffect.createBrightnessBlender](../../apis-arkgraphics2d/js-apis-uiEffect-sys.md#uieffectcreatebrightnessblender)。使用自定义object作为入参不会生效。  |
+| type   | [BlendApplyType](ts-universal-attributes-image-effect-sys.md#blendapplytype枚举说明)  |    否    | 混合效果blendMode实现方式是否离屏。<br>默认值：BlendApplyType.FAST<br>**说明：**<br>1. 设置为BlendApplyType.FAST，不离屏。<br>2. 设置为BlendApplyType.OFFSCREEN，会创建当前组件大小的离屏画布，再将当前组件（含子组件）的内容绘制到离屏画布上，再用指定的混合效果（BlendMode或Blender）与下方画布已有内容进行混合。<br>3. 不离屏情况下对文字类组件中emoji表情不生效。<br>4. 相比BlendApplyType.OFFSCREEN，设置为BlendApplyType.OFFSCREEN_WITH_BACKGROUND，系统在创建与当前组件大小一致的离屏画布时，会先复制一份带有背景的画布作为初始化底色（BlendApplyType.OFFSCREEN类型的画布初始为透明背景），随后在此基础上进行混合操作。两者在其他功能特性上保持一致。     |
 
 **返回值：**
 
 | 类型 | 说明 |
 | -------- | -------- |
-| T | 返回当前组件。 |
+| T | 返回当前组件，用于链式调用。 |
 
 ## BlendApplyType枚举说明
 
@@ -51,7 +51,7 @@ advancedBlendMode(effect: BlendMode | Blender, type?: BlendApplyType): T
 
 | 名称           | 值   | 说明                                                             |
 | ---------------| ------ | ---------------------------------------------------------------- |
-| OFFSCREEN_WITH_BACKGROUND<sup>23+</sup> | 2 |创建离屏画布时，先拷贝一份背景初始化画布，再将此组件和子组件内容绘制到离屏画布上，然后整体进行混合。 <br> **系统接口：** 此接口为系统接口。 |
+| OFFSCREEN_WITH_BACKGROUND<sup>23+</sup> | 2 |创建离屏画布时，先拷贝一份带有背景的画布作为初始化底色（BlendApplyType.OFFSCREEN类型的画布初始为透明背景），再将此组件和子组件内容绘制到离屏画布上，然后整体进行混合。两者在其他功能特性上与BlendApplyType.OFFSCREEN保持一致。 <br> **系统接口：** 此接口为系统接口。 |
 
 ## excludeFromRenderGroup<sup>22+</sup>
 
@@ -77,19 +77,19 @@ excludeFromRenderGroup(exclude: boolean \| undefined): T
 
 | 参数名  | 类型               | 必填 | 说明                                                         |
 | ------- | ------------------ | ---- | ------------------------------------------------------------ |
-| exclude | boolean \| undefined | 是   | 设置当前组件及其子组件是否从祖先组件的节点组中剔除。<br/>true表示当前组件及其子组件从祖先组件的节点组中剔除，不属于祖先组件的节点组；false表示当前组件及其子组件归属于祖先组件的节点组。<br/>当exclude的值为undefined时，按false处理。 |
+| exclude | boolean \| undefined | 是   | 设置当前组件及其子组件是否从祖先组件的节点组中剔除。<br>true表示当前组件及其子组件从祖先组件的节点组中剔除，不属于祖先组件的节点组；false表示当前组件及其子组件归属于祖先组件的节点组。<br>当exclude的值为undefined时，按false处理。<br>**说明：**<br>需搭配祖先组件设置节点组renderGroup属性使用，单独使用无效果。 |
 
 **返回值：**
 
 | 类型 | 说明 |
 | -------- | -------- |
-| T | 返回当前组件。 |
+| T | 返回当前组件，用于链式调用。 |
 
 ## systemMaterial<sup>23+</sup>
 
 systemMaterial(material: SystemUiMaterial | undefined): T
 
-设置组件的系统材质。不同系统材质对应不同的属性影响效果，该接口影响背景色[backgroundColor](ts-universal-attributes-background.md#backgroundcolor)、边框颜色[borderColor](ts-universal-attributes-border.md#bordercolor)、边框宽度[borderWidth](ts-universal-attributes-border.md#borderwidth)、阴影[shadow](ts-universal-attributes-image-effect.md#shadow)，不建议与上述接口一起使用。使用示例请参考[设置系统材质](../arkts-apis-uimaterial-sys.md#示例1设置系统材质)。
+设置组件的系统材质。不同系统材质对应不同的属性影响效果，该接口影响背景色[backgroundColor](ts-universal-attributes-background.md#backgroundcolor)、边框颜色[borderColor](ts-universal-attributes-border.md#bordercolor)、边框宽度[borderWidth](ts-universal-attributes-border.md#borderwidth)、阴影[shadow](ts-universal-attributes-image-effect.md#shadow)，不建议与上述接口一起使用，同时使用时systemMaterial的效果可能与上述接口的设置产生冲突，导致渲染结果不符合预期。使用示例请参考[设置系统材质](../arkts-apis-uimaterial-sys.md#示例1设置系统材质)。
 
 **模型约束：** 此接口仅可在Stage模型下使用。
 
@@ -105,13 +105,13 @@ systemMaterial(material: SystemUiMaterial | undefined): T
 
 | 参数名 | 类型                            | 必填 | 说明                                                         |
 | ------ | ------------------------------- | ---- | ------------------------------------------------------------ |
-| material  | [SystemUiMaterial](#systemuimaterial23) &nbsp;\|&nbsp; undefined  | 是   | 组件的系统材质对象。设置为undefined时恢复为无材质的效果。  |
+| material  | [SystemUiMaterial](#systemuimaterial23) &nbsp;\|&nbsp; undefined  | 是   | 组件的系统材质对象。设置为undefined时恢复为无材质的效果。<br>**说明：**<br>不建议与backgroundColor、borderColor、borderWidth、shadow等接口一起使用，否则可能导致显示效果冲突。  |
 
 **返回值：**
 
 | 类型 | 说明 |
 | -------- | -------- |
-| T | 返回当前组件。 |
+| T | 返回当前组件，用于链式调用。 |
 
 ## SystemUiMaterial<sup>23+</sup>
 
@@ -143,7 +143,7 @@ edgeLight(params: EdgeLightParams | undefined): T
 >
 > - 仅设置edgeLight不会产生边缘流光效果，需结合[animateTo](../arkts-apis-uicontext-uicontext.md#animateto)更改position参数达到流光效果。可参考[示例4（设置组件边缘流光效果）](#示例4设置组件边缘流光效果)。
 >
-> - 当position参数以对角线方式变更时（如从TOP_LEFT变更到BOTTOM_RIGHT）时，边缘流光将沿倾斜角45°的方式运行。
+> - 当position参数以对角线方式变更时（如从TOP_LEFT变更到BOTTOM_RIGHT），边缘流光将沿倾斜角45°的方式运行。
 
 **起始版本：** 26.0.0
 
@@ -163,7 +163,7 @@ edgeLight(params: EdgeLightParams | undefined): T
 
 | 类型 | 说明                     |
 | ---- | ------------------------ |
-| T    | 返回当前组件。 |
+| T    | 返回当前组件，用于链式调用。 |
 
 ## EdgeLightParams
 
@@ -180,10 +180,10 @@ edgeLight(params: EdgeLightParams | undefined): T
 | 名称     | 类型                                                       | 只读 | 可选 | 说明                                                    |
 | -------- | --------------------------------------------------------- | ---- | ---- |------------------------------------------------------- |
 | position | [EdgeLightPosition](./ts-appendix-enums-sys.md#edgelightposition枚举说明)          | 否   | 否   | 边缘流光位置。                                           |
-| length   | [Length](ts-types.md#length)                              | 否   | 否   | 沿流动方向的边缘流光的投影长度（不支持百分比）。<br/>取值范围：[0, +∞)<br/>单位：vp<br/>**说明：**<br/>设置小于0的值时，按值为0处理。 |
-| intensity | number                                                   | 否   | 是   | 边缘流光效果的发光强度。<br/>取值范围：[0, 1]<br/>默认值：1<br/>**说明：**<br/>值为0时，流光效果完全不可见。<br/>值为1时，流光效果达到最大亮度。<br/>设置大于1的值时，按值为1处理。<br/>设置小于0的值时，按值为0处理。 |
-| color    | [ResourceColor](ts-types.md#resourcecolor)                | 否   | 是   | 边缘流光颜色。<br/>默认值：#FFFFFF，显示为白色。 |
-| thickness | [Length](ts-types.md#length)                             | 否   | 是   | 边缘流光线条粗细（不支持百分比）。<br/>取值范围：[0, +∞)<br/>单位：vp<br/>默认值：0<br/>**说明：**<br/>设置小于0的值时，按值为0处理。 |
+| length   | [Length](ts-types.md#length)                              | 否   | 否   | 沿流动方向的边缘流光的投影长度（不支持百分比，传入百分比时不生效）。<br>取值范围：[0, +∞)<br>单位：vp<br>**说明：**<br>length为0时，无边缘流光投影效果。<br>设置小于0的值时，按值为0处理。 |
+| intensity | number                                                   | 否   | 是   | 边缘流光效果的发光强度。<br>取值范围：[0, 1]<br>默认值：1<br>**说明：**<br>值为0时，流光效果完全不可见。<br>值为1时，流光效果达到最大亮度。<br>设置大于1的值时，按值为1处理。<br>设置小于0的值时，按值为0处理。 |
+| color    | [ResourceColor](ts-types.md#resourcecolor)                | 否   | 是   | 边缘流光颜色。<br>默认值：#FFFFFF，显示为白色。 |
+| thickness | [Length](ts-types.md#length)                             | 否   | 是   | 边缘流光线条粗细（不支持百分比，传入百分比时不生效）。<br>取值范围：[0, +∞)<br>单位：vp<br>默认值：0<br>**说明：**<br>thickness为0时，边缘流光线条不可见。<br>设置小于0的值时，按值为0处理。 |
 
 ## 示例
 ### 示例1（设置组件提亮）
@@ -205,8 +205,8 @@ let blender: uiEffect.BrightnessBlender = uiEffect.createBrightnessBlender({
   negativeCoefficient: [0.5, 2.0, 0.5],
   fraction: 0.5
 });
-// 自定义object作为入参不会生效
-let blender1: uiEffect.BrightnessBlender = {
+// 注意：使用自定义object作为Blender入参不会生效，请使用uiEffect.createBrightnessBlender方法创建Blender实例。
+let customBlender: uiEffect.BrightnessBlender = {
   cubicRate: 0.5,
   quadraticRate: 0.5,
   linearRate: 0.5,
@@ -238,7 +238,7 @@ struct Index {
 
         Text(String.fromCodePoint(0x1F600) + 'TEST')
           .fontSize(60)
-          .advancedBlendMode(blender1)
+          .advancedBlendMode(customBlender)
       }
     }
   }
@@ -273,7 +273,8 @@ struct ExcludeFromRenderGroupDemo {
           .width(100)
           .height(100)
           .backgroundColor(this.myColor)
-          .excludeFromRenderGroup(this.isExcluded) // 设置excludeFromRenderGroup属性。该组件做背景色动画时，实际显示效果需频繁更新属性，且该组件区域只占节点组区域的一部分，因此设置excludeFromRenderGroup属性以复用节点组缓存
+          // 设置excludeFromRenderGroup属性。该组件做背景色动画时，实际显示效果需频繁更新属性，且该组件区域只占节点组区域的一部分，因此设置excludeFromRenderGroup属性以复用节点组缓存
+          .excludeFromRenderGroup(this.isExcluded)
           .onClick(() => {
             this.isExcluded = true; // 在播放动画前，修改节点组剔除属性为true
             this.animationCnt++;
@@ -281,7 +282,7 @@ struct ExcludeFromRenderGroupDemo {
               duration: 600,
               onFinish: () => {
                 this.animationCnt--;
-                if (this.animationCnt == 0) { // animationCnt变为0表示所有动画都结束
+                if (this.animationCnt === 0) { // animationCnt变为0表示所有动画都结束
                   this.isExcluded = false; // 在组件动画结束后，组件上不再发生属性变化时，可以重置节点组剔除属性
                 }
               }
