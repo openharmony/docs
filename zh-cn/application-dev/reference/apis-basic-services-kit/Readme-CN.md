@@ -20,7 +20,7 @@
     - [@ohos.busManager.serial (串口通信管理)](js-apis-busmanager-serial.md)
     - [@ohos.deviceInfo (设备信息)](js-apis-device-info.md)
     - [@ohos.power (系统电源管理)](js-apis-power.md)
-    - [@ohos.runningLock (Runninglock锁)](js-apis-runninglock.md)
+    - [@ohos.runningLock (RunningLock锁)](js-apis-runninglock.md)
     - [@ohos.thermal (热管理)](js-apis-thermal.md)
     - [@ohos.usbManager (USB管理)](js-apis-usbManager.md)
     - [@ohos.usbManager.serial (串口管理)](js-apis-serialManager.md)
@@ -98,9 +98,9 @@
     - [@ohos.systemTimer (系统定时器)(系统接口)](js-apis-system-timer-sys.md)
     <!--DelEnd-->
   - 已停止维护的接口<!--basic-services-arkts-dep-->
-    - [系统公共事件定义](common_event/commonEvent-definitions.md)
-    - [@ohos.commonEvent (公共事件模块)](js-apis-commonEvent.md)
-    - [@ohos.usb (USB管理)](js-apis-usb-deprecated.md)
+    - [系统公共事件定义 (已废弃)](common_event/commonEvent-definitions.md)
+    - [@ohos.commonEvent (公共事件模块)(已废弃)](js-apis-commonEvent.md)
+    - [@ohos.usb (USB管理)(已停止维护)](js-apis-usb-deprecated.md)
     - [@system.brightness (屏幕亮度)](js-apis-system-brightness.md)
     - [@system.battery (电量信息)](js-apis-system-battery.md)
     - [@system.device (设备信息)](js-apis-system-device.md)
