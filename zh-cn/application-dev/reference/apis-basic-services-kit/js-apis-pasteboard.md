@@ -2673,8 +2673,6 @@ getDataSync(): PasteData
 
 读取系统剪贴板内容，此接口为同步接口。适用于应用需要在关键业务流程中同步获取剪贴板数据，或需要立即处理剪贴板内容的场景。避免在UI线程调用此接口，以免阻塞界面；处理大量数据或远端数据时，建议使用异步接口[getData](#getdata9)。
 
-**开发建议：** 避免在UI线程调用此接口，以免阻塞界面；处理大量数据或远端数据时，建议使用异步接口getData。
-
 **需要权限：** ohos.permission.READ_PASTEBOARD，应用访问剪贴板内容需[申请访问剪贴板权限](../../basic-services/pasteboard/get-pastedata-permission-guidelines.md)。[使用粘贴控件](../../security/AccessToken/pastebutton.md)访问剪贴板内容的应用，可以无需申请权限。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
