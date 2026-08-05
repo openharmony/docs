@@ -762,7 +762,7 @@ setOrientation(orientation: number): void
 
 > **说明：**
 > 
-> - 不支持编辑exif的图片(如：bmp、gif、ico、svg、dng)，不支持设置旋转角度。
+> 不支持编辑exif的图片(如：bmp、gif、ico、svg、dng)，不支持设置旋转角度。
 
 **系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
 
