@@ -336,9 +336,9 @@ let vpnConfig: vpnExtension.VpnConfig = {
   mtu: 1400,
   // 配置VPN使用的DNS服务器。
   dnsAddresses: ['223.x.x.5', '223.x.x.6'],
-  // 受信任的应用信息列表。
+  // 受信任的应用信息列表。配置此项时，被阻止的应用信息列表应配置为空。
   trustedApplications: ['com.test.browser'],
-  // 被阻止的应用信息列表。
+  // 被阻止的应用信息列表。配置此项时，受信任的应用信息列表应配置为空。
   blockedApplications: ['com.test.games'],
 }
 ```
