@@ -1,10 +1,12 @@
 # Binding Basic Input Events
+
 <!--Kit: ArkUI-->
 <!--Subsystem: ArkUI-->
 <!--Owner: @yihao-lin-->
 <!--Designer: @piggyguy-->
 <!--Tester: @songyanhong-->
 <!--Adviser: @Brilliantry_Rui-->
+<!-- md-trans-meta sourceCommit=e2e68a0f64c4bfd46ed17299bdcf92e994092ae8 translatedAt=2026-08-05T01:27:46.469Z pushedAt=2026-08-05T06:42:30.464Z -->
 
 NDK APIs provide the capability of listening to and processing basic input events. You can bind click events ([NODE_ON_CLICK_EVENT](../reference/apis-arkui/capi-native-node-h.md#arkui_nodeeventtype)), touch events ([NODE_TOUCH_EVENT](../reference/apis-arkui/capi-native-node-h.md#arkui_nodeeventtype)), mouse events ([NODE_ON_MOUSE](../reference/apis-arkui/capi-native-node-h.md#arkui_nodeeventtype)), hover events ([NODE_ON_HOVER_EVENT](../reference/apis-arkui/capi-native-node-h.md#arkui_nodeeventtype)), axis events ([NODE_ON_AXIS](../reference/apis-arkui/capi-native-node-h.md#arkui_nodeeventtype)), and key events ([NODE_ON_KEY_EVENT](../reference/apis-arkui/capi-native-node-h.md#arkui_nodeeventtype)), and then obtain event details through the callback in the event receiver.
 
@@ -12,7 +14,7 @@ The following examples are based on [Integrating with ArkTS Pages](ndk-access-th
 
 ## Click Event
 
-A click event is triggered when a user clicks a component. Information such as the click position, number of touch points, pointer ID, and pressure value can be obtained.
+A click event is triggered when a user clicks a component. Information such as the click position, number of touch points, pointer ID, and pressure value can be obtained. The following handler can be bound to a node.
 
 <!-- @[handle_click_event](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkUISample/NdkBindInputEvent/entry/src/main/cpp/NormalTextListExample.h) -->
 
@@ -47,9 +49,17 @@ void HandleClickEvent(ArkUI_UIInputEvent *inputEvent)
 }
 ```
 
+Starting from API version 18, the [NODE_ON_CLICK_EVENT](../reference/apis-arkui/capi-native-node-h.md#arkui_nodeeventtype) enumeration is added. The node itself can register a **NODE_ON_CLICK_EVENT** event listener to respond to the handler described above.
+
+<!-- @[register_click_event](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkUISample/NdkBindInputEvent/entry/src/main/cpp/NormalTextListExample.h) -->
+
+``` C
+nativeModule_->registerNodeEvent(handle_, NODE_ON_CLICK_EVENT, 0, this);
+```
+
 ## Touch Event
 
-A touch event is triggered when a user touches the touchscreen. In addition to the click event information, the width and height of the touch area can also be obtained.
+A touch event is triggered when a user touches the screen. In addition to the click event information, the width and height of the touch area can also be obtained. The following handler can be bound to a node.
 
 <!-- @[handle_touch_event](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkUISample/NdkBindInputEvent/entry/src/main/cpp/NormalTextListExample.h) -->
 
@@ -87,9 +97,17 @@ void HandleTouchEvent(ArkUI_UIInputEvent *inputEvent)
 }
 ```
 
+The node itself must register a [NODE_TOUCH_EVENT](../reference/apis-arkui/capi-native-node-h.md#arkui_nodeeventtype) event listener to respond to the handler described above.
+
+<!-- @[register_touch_event](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkUISample/NdkBindInputEvent/entry/src/main/cpp/NormalTextListExample.h) -->
+
+``` C
+nativeModule_->registerNodeEvent(handle_, NODE_TOUCH_EVENT, 0, this);
+```
+
 ## Mouse Event
 
-A mouse event is triggered when a mouse operation is performed. Information such as the mouse button type, mouse action type, and scroll wheel delta.
+A mouse event is triggered when a mouse operation is performed. Information such as the mouse button type, mouse action type, and scroll wheel delta can be obtained. The following handler can be bound to a node.
 
 <!-- @[handle_mouse_event](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkUISample/NdkBindInputEvent/entry/src/main/cpp/NormalTextListExample.h) -->
 
@@ -116,9 +134,17 @@ void HandleMouseEvent(ArkUI_UIInputEvent *inputEvent)
 }
 ```
 
+The node itself must register a [NODE_ON_MOUSE](../reference/apis-arkui/capi-native-node-h.md#arkui_nodeeventtype) event listener to respond to the handler described above.
+
+<!-- @[register_mouse_event](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkUISample/NdkBindInputEvent/entry/src/main/cpp/NormalTextListExample.h) -->
+
+``` C
+nativeModule_->registerNodeEvent(handle_, NODE_ON_MOUSE, 0, this);
+```
+
 ## Hover Event
 
-A hover event is triggered when the mouse pointer moves over or away from a component, allowing you to obtain the hover state.
+A hover event is triggered when the mouse pointer moves over or away from a component. The hover state can be obtained. The following handler can be bound to a node.
 
 <!-- @[handle_hover_event](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkUISample/NdkBindInputEvent/entry/src/main/cpp/NormalTextListExample.h) -->
 
@@ -139,9 +165,17 @@ void HandleHoverEvent(ArkUI_UIInputEvent *inputEvent)
 }
 ```
 
+Starting from API version 17, the [NODE_ON_HOVER_EVENT](../reference/apis-arkui/capi-native-node-h.md#arkui_nodeeventtype) enumeration is added. The node itself can register a **NODE_ON_HOVER_EVENT** event listener to respond to the handler described above.
+
+<!-- @[register_hover_event](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkUISample/NdkBindInputEvent/entry/src/main/cpp/NormalTextListExample.h) -->
+
+``` C
+nativeModule_->registerNodeEvent(handle_, NODE_ON_HOVER_EVENT, 0, this);
+```
+
 ## Axis Event
 
-Axis events are triggered by devices such as the mouse scroll wheel and game analog stick. You can obtain information such as the axis action type, vertical axis value, horizontal axis value, pinch scale, and scroll step.
+An axis event is triggered by devices such as the mouse scroll wheel and game analog stick. Information such as the axis action type, vertical axis value, horizontal axis value, pinch scale, and scroll step can be obtained. The following handler can be bound to a node.
 
 <!-- @[handle_axis_event](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkUISample/NdkBindInputEvent/entry/src/main/cpp/NormalTextListExample.h) -->
 
@@ -165,9 +199,17 @@ void HandleAxisEvent(ArkUI_UIInputEvent *inputEvent)
 }
 ```
 
+Starting from API version 17, the [NODE_ON_AXIS](../reference/apis-arkui/capi-native-node-h.md#arkui_nodeeventtype) enumeration is added. The node itself can register a **NODE_ON_AXIS** event listener to respond to the handler described above.
+
+<!-- @[register_axis_event](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkUISample/NdkBindInputEvent/entry/src/main/cpp/NormalTextListExample.h) -->
+
+``` C
+nativeModule_->registerNodeEvent(handle_, NODE_ON_AXIS, 0, this);
+```
+
 ## Key Event
 
-A key event is triggered when a user presses or releases a key on the keyboard. Information such as the key type, key action, key pressed, modifier key status, and device ID can be obtained. A component can respond to key events only after obtaining the focus.
+A key event is triggered when a user presses or releases a key on the keyboard. Information such as the key type, key action, pressed key, modifier key status, and device ID can be obtained. A component must first gain focus before it can respond to key events. The following handler can be bound to a node.
 
 <!-- @[handle_key_event](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkUISample/NdkBindInputEvent/entry/src/main/cpp/NormalTextListExample.h) -->
 
@@ -188,12 +230,29 @@ void HandleKeyEvent(ArkUI_UIInputEvent *inputEvent)
 }
 ```
 
+Set the node to be focusable, bind a click event to it, and request focus upon a click. In addition, the node itself must register a [NODE_ON_KEY_EVENT](../reference/apis-arkui/capi-native-node-h.md#arkui_nodeeventtype) event listener to respond to the handler described above.
+
+<!-- @[register_key_event](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkUISample/NdkBindInputEvent/entry/src/main/cpp/NormalTextListExample.h) -->
+
+``` C
+// Set as focusable to receive key events.
+ArkUI_NumberValue focusable[] = {1};
+ArkUI_AttributeItem focusableItem = {focusable, 1};
+nativeModule_->setAttribute(handle_, NODE_FOCUSABLE, &focusableItem);
+
+// Register the click event and request focus on click.
+nativeModule_->registerNodeEvent(handle_, NODE_ON_CLICK_EVENT, 0, this);
+
+// Register the key event.
+nativeModule_->registerNodeEvent(handle_, NODE_ON_KEY_EVENT, 0, this);
+```
+
 ## Full Example
 
 1. Define the data structure of a basic input event.
 
    <!-- @[Cpp_InputEventTypes](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkUISample/NdkBindInputEvent/entry/src/main/cpp/InputEventTypes.h) -->
-   
+
    ``` C
    // InputEventTypes.h
    // Type definitions and helper functions related to input events.
@@ -237,7 +296,7 @@ void HandleKeyEvent(ArkUI_UIInputEvent *inputEvent)
 2. Register various basic input events and implement listeners for the corresponding events.
 
    <!-- @[Cpp_InputEventListExample](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkUISample/NdkBindInputEvent/entry/src/main/cpp/NormalTextListExample.h) -->
-   
+
    ``` C
    // NormalTextListExample.h
    // Input event example, demonstrating the binding and handling of basic input events.
