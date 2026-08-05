@@ -48,7 +48,7 @@ init(config: AVScreenCaptureRecordConfig): Promise\<void>
 
 | 错误码ID | 错误信息                                       |
 | -------- | ---------------------------------------------- |
-| 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. 3.Parameter verification failed. Return by promise. |
+| 401      | Parameter error. |
 | 5400103  | IO error. Return by promise.                   |
 | 5400105  | Service died. Return by promise.               |
 
@@ -470,11 +470,6 @@ setPickerMode(pickerMode: PickerMode): Promise\<void>
 设置Picker显示模式，在下一次显示Picker时生效。使用Promise异步回调。
 
 可根据录制需求选择不同模式。
-
-- SCREEN_ONLY适用于只需要录制整个屏幕的场景。
-- WINDOW_ONLY适用于只需要录制特定应用窗口的场景。
-- SCREEN_AND_WINDOW适用于需要让用户自由选择录制屏幕或窗口的场景。
-
 
 **系统能力：** SystemCapability.Multimedia.Media.AVScreenCapture
 
