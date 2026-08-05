@@ -438,7 +438,7 @@ status为true时，[addPermissionUsedRecord](#privacymanageraddpermissionusedrec
 | 202 | Not system app. Interface caller is not a system app. |
 | 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
 | 12100007 | Service exception. |
-| 12100009 | Common inner error. Possible causes: 1. A database error occurs; 2. Failed to query applications under the user. |
+| 12100009 | Common inner error. Possible causes: 1. A database error occurs; 2. Failed to query all applications under the user. |
 
 **示例：**
 
@@ -1081,7 +1081,7 @@ checkPermissionInUse(permissionName: Permissions): boolean
 | 错误码ID | 错误信息 |
 | -------- | -------- |
 | 201 | Permission denied. Interface caller does not have permission "ohos.permission.PERMISSION_USED_STATS". |
-| 202 | Not system application. Interface caller is not a system application. |
+| 202 | Not system app. Interface caller is not a system application. |
 | 12100001 | Invalid parameter. The permissionName is empty or exceeds 256 characters. |
 | 12100003 | The specified permission does not exist or is not a user_grant permission. |
 | 12100007 | Service exception. |

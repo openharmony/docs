@@ -1,10 +1,12 @@
 # image_pixel_map_napi.h
+
 <!--Kit: Image Kit-->
 <!--Subsystem: Multimedia-->
 <!--Owner: @yaozhupeng-->
 <!--Designer: @yaozhupeng-->
 <!--Tester: @zhaoxiaoguang2-->
 <!--Adviser: @w_Machine_cc-->
+<!-- md-trans-meta sourceCommit=6042d9d9617859b76ebd8cd6c8254c9a301271df translatedAt=2026-08-03T04:05:10.668Z pushedAt=2026-08-04T02:47:43.894Z -->
 
 ## Overview
 
@@ -40,8 +42,8 @@ The file declares the APIs used to lock, access, and unlock a PixelMap.
 
 | Name| Description|
 | -- | -- |
-| [int32_t OH_GetImageInfo(napi_env env, napi_value value, OhosPixelMapInfo *info)](#oh_getimageinfo) | Obtains the information about a PixelMap object and stores the information to the [OhosPixelMapInfo](capi-image-ohospixelmapinfo.md) struct.|
-| [int32_t OH_AccessPixels(napi_env env, napi_value value, void** addrPtr)](#oh_accesspixels) | Obtains the memory address of a PixelMap object and locks the memory.<br>**\*addrPtr** is the memory address obtained. After finishing the access, you must use [OH_UnAccessPixels](#oh_unaccesspixels) to unlock the memory. Then the memory cannot be accessed or operated.|
+| [int32_t OH_GetImageInfo(napi_env env, napi_value value, OhosPixelMapInfo *info)](#oh_getimageinfo) | Obtains the information of a PixelMap and records it in an [OhosPixelMapInfo](capi-image-ohospixelmapinfo.md) struct. |
+| [int32_t OH_AccessPixels(napi_env env, napi_value value, void** addrPtr)](#oh_accesspixels) | Obtains the memory address of a PixelMap object and locks the memory.<br>**\*addrPtr** is the memory address obtained. After finishing the access, you must use [OH_UnAccessPixels](#oh_unaccesspixels) to unlock the memory. Otherwise, resources cannot be released. After the unlocking, the memory cannot be accessed or operated.|
 | [int32_t OH_UnAccessPixels(napi_env env, napi_value value)](#oh_unaccesspixels) | Unlocks the memory of a PixelMap object. This function is used with [OH_AccessPixels](#oh_accesspixels) in pairs.|
 
 ## Enum Description
@@ -99,9 +101,8 @@ Enumerates the PixelMap scale modes.
 
 | Enum Item| Description|
 | -- | -- |
-| OHOS_PIXEL_MAP_SCALE_MODE_FIT_TARGET_SIZE = 0 | Adapting to the target image size.|
-| OHOS_PIXEL_MAP_SCALE_MODE_CENTER_CROP = 1 | Cropping the center portion of an image to the target size.|
-
+| OHOS_PIXEL_MAP_SCALE_MODE_FIT_TARGET_SIZE = 0 | Scaling mode that fits the target image size.
+| OHOS_PIXEL_MAP_SCALE_MODE_CENTER_CROP = 1 | Scaling mode from the center.|
 
 ## Function Description
 
@@ -113,12 +114,11 @@ int32_t OH_GetImageInfo(napi_env env, napi_value value, OhosPixelMapInfo *info)
 
 **Description**
 
-Obtains the information about a PixelMap object and stores the information to the [OhosPixelMapInfo](capi-image-ohospixelmapinfo.md) struct.
+Obtains the information of a PixelMap and records the information in an [OhosPixelMapInfo](capi-image-ohospixelmapinfo.md) struct.
 
 **Since**: 8
 
 **Deprecated from**: 10
-
 
 **Parameters**
 
@@ -144,12 +144,11 @@ int32_t OH_AccessPixels(napi_env env, napi_value value, void** addrPtr)
 
 Obtains the memory address of a PixelMap object and locks the memory.
 
-**\*addrPtr** is the memory address obtained. After finishing the access, you must use [OH_UnAccessPixels](#oh_unaccesspixels) to unlock the memory. Then the memory cannot be accessed or operated.
+**\*addrPtr** is the memory address obtained. After finishing the access, you must use [OH_UnAccessPixels](#oh_unaccesspixels) to unlock the memory. Otherwise, resources cannot be released. After the unlocking, the memory cannot be accessed or operated.
 
 **Since**: 8
 
 **Deprecated from**: 10
-
 
 **Parameters**
 
@@ -178,7 +177,6 @@ Unlocks the memory of a PixelMap object. This function is used with [OH_AccessPi
 **Since**: 8
 
 **Deprecated from**: 10
-
 
 **Parameters**
 

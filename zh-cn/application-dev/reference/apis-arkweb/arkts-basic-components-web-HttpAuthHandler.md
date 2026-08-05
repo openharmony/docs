@@ -44,8 +44,8 @@ confirm(userName: string, password: string): boolean
 
 | 参数名      | 类型   | 必填  | 说明       |
 | -------- | ------ | ---- | ---------- |
-| userName | string | 是   | HTTP认证用户名，需为非空字符串。 |
-| password      | string | 是   | HTTP认证密码，需为非空字符串。  |
+| userName | string | 是   | HTTP认证用户名，建议传入非空字符串。 |
+| password      | string | 是   | HTTP认证密码，建议传入非空字符串。  |
 
 **返回值：**
 

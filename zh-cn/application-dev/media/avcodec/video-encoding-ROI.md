@@ -123,7 +123,7 @@ Surface模式下，相机将视频帧输出到OH_NativeImage的Surface上，开�
 
 详细开发步骤如下：
 
-1. 在CMakeList.txt中链接动态库。
+1. 在CMakeLists.txt中链接动态库。
 
    <!-- @[roi_cmake_link_libraries](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/Media/AVCodec/ROISample/entry/src/main/cpp/CMakeLists.txt) -->
    

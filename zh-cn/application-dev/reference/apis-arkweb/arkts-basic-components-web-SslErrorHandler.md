@@ -52,4 +52,4 @@ handleCancel(abortLoading: boolean): void
 
 | 参数名          | 类型 | 必填  | 说明             |
 | --------------- | -------- | ----  |------- |
-| abortLoading    | boolean  | 是    | SSL错误页场景，参数abortLoading默认为false，即保持当前行为继续加载页面并展示错误页或者空白页，如果设置为true则停止加载页面。 |
+| abortLoading    | boolean  | 是    | SSL错误页场景，拒绝错误证书后是否终止页面加载；abortLoading为false时表示不终止，为true时表示终止。 |

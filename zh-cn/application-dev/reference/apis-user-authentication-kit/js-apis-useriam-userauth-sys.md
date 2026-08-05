@@ -9,7 +9,7 @@
 
 **userAuth**模块是OpenHarmony系统中用于用户身份认证的核心模块，提供了设备解锁、支付验证、应用登录等场景下的身份认证能力。
 
-当前页面仅包含本模块中面向系统应用和认证组件开发者的高级能力。这些API提供了认证组件管理、自定义通知发送、认证结果复用查询、隐私密码认证等系统级功能。
+当前页面仅包含本模块中面向系统应用和认证组件开发者的高级能力。这些API提供了认证组件管理、自定义通知发送、认证结果复用查询、隐私密码认证、远程认证等系统级功能。
 
 主要用于以下场景：
 
@@ -19,6 +19,7 @@
 - 需要查询可复用的认证结果以实现无感认证。
 - 需要使用隐私密码进行认证。
 - 需要指定特定用户或特定凭据进行认证。
+- 需要支持远程认证场景，在远程设备发起认证时获取认证页面参数并返回认证结果。
 
 > **说明：**
 >
@@ -65,6 +66,7 @@ import { userAuth } from '@kit.UserAuthenticationKit';
 | 名称                 | 类型                                | 只读 | 可选 | 说明                                                         |
 | -------------------- | ----------------------------------- | ---- | ---- | ------------------------------------------------------------ |
 | windowMode           | [WindowModeType](#windowmodetype10) | 否   | 是   | 用户认证界面的显示类型。用于控制系统身份认证组件的窗口样式，可选择对话框模式（DIALOG_BOX）或全屏模式（FULLSCREEN）。默认值为WindowModeType.DIALOG_BOX。<br>**系统接口：** 此接口为系统接口。 |
+| appWindow          | [window.Window](../apis-arkui/arkts-apis-window-Window.md) | 否   | 是   | 应用窗口对象。用于以模应用弹窗方式显示身份认证对话框，适用于需要通过窗口对象控制认证对话框显示的场景。如果已提供此参数，则uiContext将被忽略；若不传入此参数，则认证界面的显示由uiContext控制。<br>**起始版本：** 26.0.0<br>**系统接口：** 此接口为系统接口。<br>**模型约束：** 此接口仅可在Stage模型下使用。<br>**原子化服务API：** 从API版本26.0.0开始，该接口支持在原子化服务中使用。 |
 
 ## NoticeType<sup>10+</sup>
 
@@ -466,3 +468,169 @@ try {
 | AUTH_TOKEN_CHECK_FAILED<sup>18+</sup> | 12500015      | AuthToken校验失败。verifyAuthToken系统接口错误码，表示验证的AuthToken完整性校验失败，令牌可能被篡改或损坏。|
 | AUTH_TOKEN_EXPIRED<sup>18+</sup>      | 12500016      | AuthToken已过期。verifyAuthToken系统接口错误码，表示AuthToken的签发时间至发起验证时的时间间隔超过传入的最大有效时长（allowableDuration）。|
 | REUSE_AUTH_RESULT_FAILED<sup>20+</sup>| 12500017      | 复用认证结果失败。queryReusableAuthResult系统接口错误码，表示查询可复用的身份认证结果失败，可能原因包括：不存在满足复用条件的认证结果、认证结果已失效或凭据已变更。|
+
+## WidgetParamCallback
+
+type WidgetParamCallback = (challenge: Uint8Array) => WidgetParam
+
+获取远程认证页面参数的回调函数类型。该类型用于远程认证场景，在需要获取远程认证界面的配置参数时，系统会调用此回调函数。
+
+**起始版本：** 26.0.0
+
+**系统能力：** SystemCapability.UserIAM.UserAuth.Core
+
+**系统接口：** 此接口为系统接口。
+
+**模型约束：** 此接口仅可在Stage模型下使用。
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| challenge | Uint8Array | 是 | 随机挑战值，可用于防重放攻击。最大长度为32字节，可传Uint8Array([])。建议使用[加解密算法库框架](../apis-crypto-architecture-kit/js-apis-cryptoFramework.md)生成的随机数作为挑战值，以增强安全性。 |
+
+**返回值：**
+
+| 类型 | 说明 |
+| -------- | -------- |
+| [WidgetParam](js-apis-useriam-userauth.md#widgetparam10) | 用户认证界面配置参数。包含认证界面的标题、导航按钮文本等配置信息。 |
+
+## ResultCallback
+
+type ResultCallback = (challenge: Uint8Array, result: UserAuthResult) => void
+
+返回远程认证结果的回调函数类型。该类型用于远程认证场景，在远程认证完成后，系统会调用此回调函数返回认证结果。
+
+**起始版本：** 26.0.0
+
+**系统能力：** SystemCapability.UserIAM.UserAuth.Core
+
+**系统接口：** 此接口为系统接口。
+
+**模型约束：** 此接口仅可在Stage模型下使用。
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| challenge | Uint8Array | 是 | 挑战值。用于防止重放攻击的一次性随机数，与发起认证时传入的challenge值一致。 |
+| result | [UserAuthResult](js-apis-useriam-userauth.md#userauthresult10) | 是 | 用户认证结果。包含认证结果码、认证令牌等信息。 |
+
+## IRemoteAuthCallback
+
+远程认证回调接口。该接口用于远程认证场景，提供获取远程认证页面参数和返回认证结果的回调能力。
+
+**起始版本：** 26.0.0
+
+**系统能力：** SystemCapability.UserIAM.UserAuth.Core
+
+**系统接口：** 此接口为系统接口。
+
+**模型约束：** 此接口仅可在Stage模型下使用。
+
+| 名称 | 类型 | 只读 | 可选 | 说明 |
+| -------- | -------- | -------- | -------- | -------- |
+| onGetRemoteAuthWidgetParam | [WidgetParamCallback](#widgetparamcallback) | 否 | 否 | 获取远程认证页面参数的回调函数。在远程设备发起认证请求时，系统会调用此回调获取认证界面配置参数。 |
+| onRemoteAuthResult | [ResultCallback](#resultcallback) | 否 | 否 | 返回远程认证结果的回调函数。在远程认证完成后，系统会调用此回调将认证结果返回给发起方。 |
+
+## userAuth.registerRemoteAuthCallback
+
+registerRemoteAuthCallback(callback: IRemoteAuthCallback): void
+
+注册远程认证回调。该接口用于在远程认证场景下注册回调接口，注册后系统可通过回调获取远程认证所需的页面参数，并在认证完成后接收认证结果。不允许重复注册，在不使用时应调用[unregisterRemoteAuthCallback](#userauthunregisterremoteauthcallback)取消注册，避免回调无法释放。
+
+**起始版本：** 26.0.0
+
+**需要权限：** ohos.permission.ACCESS_USER_AUTH_INTERNAL
+
+**系统能力：** SystemCapability.UserIAM.UserAuth.Core
+
+**系统接口：** 此接口为系统接口。
+
+**模型约束：** 此接口仅可在Stage模型下使用。
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| callback | [IRemoteAuthCallback](#iremoteauthcallback) | 是 | 远程认证回调接口。包含获取认证页面参数和返回认证结果的回调函数。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[用户认证错误码](errorcode-useriam.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 201 | Permission denied. |
+| 202 | Permission denied. Called by non-system application. |
+| 12500002 | General operation error. |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+import { userAuth } from '@kit.UserAuthenticationKit';
+
+let remoteAuthCallback: userAuth.IRemoteAuthCallback = {
+  onGetRemoteAuthWidgetParam(challenge: Uint8Array): userAuth.WidgetParam {
+    console.info('Received challenge for remote auth, length: ' + challenge.length);
+    return {
+      title: 'Remote Authentication',
+      navigationButtonText: 'Cancel'
+    } as userAuth.WidgetParam;
+  },
+  onRemoteAuthResult(challenge: Uint8Array, result: userAuth.UserAuthResult): void {
+    console.info('remote auth result, result: ' + result.result + ', authType: ' + result.authType);
+  }
+};
+
+try {
+  userAuth.unregisterRemoteAuthCallback();
+  userAuth.registerRemoteAuthCallback(remoteAuthCallback);
+  console.info('Remote auth callback registered successfully');
+} catch (error) {
+  const err: BusinessError = error as BusinessError;
+  console.error(`failed to register remote auth callback. Code is ${err?.code}, message is ${err?.message}`);
+}
+```
+
+## userAuth.unregisterRemoteAuthCallback
+
+unregisterRemoteAuthCallback(): void
+
+注销远程认证回调。该接口用于注销已注册的远程认证回调，注销后系统不再接收远程认证的页面参数请求和认证结果通知。
+
+**起始版本：** 26.0.0
+
+**需要权限：** ohos.permission.ACCESS_USER_AUTH_INTERNAL
+
+**系统能力：** SystemCapability.UserIAM.UserAuth.Core
+
+**系统接口：** 此接口为系统接口。
+
+**模型约束：** 此接口仅可在Stage模型下使用。
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[用户认证错误码](errorcode-useriam.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 201 | Permission denied. |
+| 202 | Permission denied. Called by non-system application. |
+| 12500002 | General operation error. |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+import { userAuth } from '@kit.UserAuthenticationKit';
+
+try {
+  userAuth.unregisterRemoteAuthCallback();
+  console.info('Remote auth callback unregistered successfully');
+} catch (error) {
+  const err: BusinessError = error as BusinessError;
+  console.error(`failed to unregister remote auth callback. Code is ${err?.code}, message is ${err?.message}`);
+}
+```

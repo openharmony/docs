@@ -1,10 +1,13 @@
 # Page-Level Dialog Box
+
 <!--Kit: ArkUI-->
 <!--Subsystem: ArkUI-->
 <!--Owner: @liyi0309-->
 <!--Designer: @houguobiao-->
 <!--Tester: @lxl007-->
 <!--Adviser: @Brilliantry_Rui-->
+<!-- md-trans-meta sourceCommit=d0654055576ab02270c2677e50b67065ca2d2e7e translatedAt=2026-07-30T11:33:48.753Z pushedAt=2026-07-30T12:36:32.178Z -->
+
 By default, ArkUI dialog boxes are displayed at the global level, meaning the dialog box node is a subnode of the root node of the page and appears above all route and navigation pages in the application. If a dialog box is not explicitly closed using the **close** API during a route redirection, it will remain visible on the next page.
 
 Since API version 15, you can use a page-level dialog box that disappears with the previous routing page during page switching and reappears when the user returns to the previous page.
@@ -17,13 +20,13 @@ Since API version 15, you can use a page-level dialog box that disappears with t
 >
 > Before using a page-level dialog box, familiarize yourself with the basic dialog box usage in [Dialog Box Overview](arkts-base-dialog-overview.md).
 
-## Setting Page-Level Dialog Box Parameters
+## Setting Parameters
 
 > **NOTE**
 > 
-> For details about the variables, see [Example](#example).
+> For details about the variables, see [Complete Example](#complete-example).
 
-To enable the page-level capability for a dialog box, set [levelMode](../reference/apis-arkui/js-apis-promptAction.md#levelmode15) in the dialog box's **options** parameter to **LevelMode.EMBEDDED**.
+Set the [levelMode](../reference/apis-arkui/js-apis-promptAction.md#levelmode15) attribute in the **options** parameter of the dialog box. A value of **LevelMode.EMBEDDED** enables the page-level dialog box capability.
 
 When the dialog box is displayed, the current page is automatically obtained, and the dialog box node is mounted to this page. As a result, the dialog box appears above all navigation pages under the current page.
 
@@ -39,11 +42,12 @@ this.getUIContext().getPromptAction().openCustomDialog({
 })
 ```
 
-To display the dialog box in a specified page, use the second parameter [levelUniqueId](../reference/apis-arkui/js-apis-promptAction.md#basedialogoptions11). When this parameter is set to specify the target page's node ID, the system automatically locates the corresponding [Navigation](../reference/apis-arkui/arkui-ts/ts-basic-components-navigation.md) and mounts the dialog box to the [NavDestination](../reference/apis-arkui/arkui-ts/ts-basic-components-navdestination.md) node.
+To display the dialog box in a specific page, set the [levelUniqueId](../reference/apis-arkui/js-apis-promptAction.md#basedialogoptions11) attribute in the **options** parameter. This attribute accepts a node ID within the page. When set, the dialog box automatically queries the [Navigation](../reference/apis-arkui/arkui-ts/ts-basic-components-navigation.md) page where the node corresponding to this ID resides, and mounts the dialog box under the [NavDestination](../reference/apis-arkui/arkui-ts/ts-basic-components-navdestination.md) node of the child page.
 
 > **NOTE**
-> 
-> When the **levelMode** parameter is set to **LevelMode.EMBEDDED** but the node corresponding to the ID specified by **levelUniqueId** cannot be found, the page-level capability does not take effect. If the node mapped by **levelUniqueId** exists but there is no **NavDestination** node in the upper traversal, the dialog box node will be mounted to the **Page** node.
+>
+> - When the **levelMode** parameter is set to **LevelMode.EMBEDDED** but the node corresponding to the ID specified by **levelUniqueId** cannot be found, the page-level capability does not take effect. If the node mapped by **levelUniqueId** exists but no **NavDestination** node is found when traversing upward, the dialog box node is mounted under the **Page** node.
+> - **levelUniqueId** must be set to the **uniqueId** of a [FrameNode](../reference/apis-arkui/js-apis-arkui-frameNode.md#framenode-1). You are advised to use the [getUniqueId](../reference/apis-arkui/js-apis-arkui-frameNode.md#getuniqueid12) method of **FrameNode** to obtain the **uniqueId**.
 
 In the following example, a **Text** node is used as a reference node on a specific page. The [getFrameNodeById](../reference/apis-arkui/arkts-apis-uicontext-uicontext.md#getframenodebyid12) API obtains the node, and the [getUniqueId](../reference/apis-arkui/js-apis-arkui-frameNode.md#getuniqueid12) API obtains the internal ID of the node, which is then passed as the value of **levelUniqueId**.
 
@@ -67,7 +71,7 @@ Text(this.message).id('test_text')
   })
 ```
 
-If a mask is configured for a dialog box, its scope is adjusted based on the page level. By default, the mask covers the display area (Page or Navigation page) where the dialog box's parent node is located, but it does not cover the status bar or navigation bar. To extend the mask to cover the status bar and navigation bar, set [immersiveMode](../reference/apis-arkui/js-apis-promptAction.md#immersivemode15) to **ImmersiveMode.EXTEND**.
+If the dialog box is configured with a mask, the mask coverage adjusts based on changes in the page hierarchy. By default, the mask covers the display area of the dialog box's parent node (the **Page** or **Navigation** page). In this case, the status bar and navigation bar are not covered by the mask. To cover the status bar and navigation bar, set the [immersiveMode](../reference/apis-arkui/js-apis-promptAction.md#immersivemode15) parameter to **ImmersiveMode.EXTEND**.
 
 <!-- @[dialog_embedded](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkUISample/DialogProject/entry/src/main/ets/pages/customdialog/pageleveldialogbox/PageLevelDialogBox.ets) -->
 
@@ -99,9 +103,10 @@ The page-level dialog box interactions follow the interaction policies below:
 
 2. By default, clicking the dialog box mask closes the dialog box. Clicking outside the mask does not close the dialog box.
 
-## Example
+## Complete Example
 
 The following example describes a page-level dialog box in router mode.
+
 <!-- [page_level_dialog](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkUISample/DialogProject/entry/src/main/ets/pages/customdialog/pageleveldialogbox/PageLevelDialogBox.ets) -->
 
 ``` TypeScript
@@ -193,9 +198,10 @@ struct Next {
   }
 }
 ```
+
 ![embedded_dialog](figures/embedded_dialog.gif)
 
-The following example describes a page-level dialog box in navigation mode. Before started, you need to create and configure the index page and the **router_map.json** file by referring to [Using NavDestination as a Navigation Page in Navigation](../reference/apis-arkui/arkui-ts/ts-basic-components-navigation.md#example-16-using-navdestination-as-a-navigation-page-in-navigation). In addition, replace the **PageHome** and **PageOne** components described in the reference document with the **PageLevelDialogInNavigation** and **PageLevelDialogInNavigationTestTwo** components in the following sample code.
+The following example describes a page-level dialog box in navigation mode. Before getting started, you need to create and configure the index page and the **router_map.json** file by referring to [Using NavDestination as a Navigation Page in Navigation](../reference/apis-arkui/arkui-ts/ts-basic-components-navigation.md#example-16-using-navdestination-as-a-navigation-page-in-navigation). In addition, replace the **PageHome** and **PageOne** components described in the reference document with the **PageLevelDialogInNavigation** and **PageLevelDialogInNavigationTestTwo** components in the following sample code.
 
 <!-- [page_level_dialog](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkUISample/DialogProject/entry/src/main/ets/pages/customdialog/pageleveldialogbox/PageLevelDialogInNavigation.ets) -->
 

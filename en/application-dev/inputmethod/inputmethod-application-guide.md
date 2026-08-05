@@ -1,10 +1,12 @@
 # Implementing an Input Method Application
+
 <!--Kit: IME Kit-->
 <!--Subsystem: MiscServices-->
-<!--Owner: @illybyy-->
+<!--Owner: @codexu62-->
 <!--Designer: @andeszhang-->
 <!--Tester: @murphy84-->
 <!--Adviser: @zhang_yixin13-->
+<!-- md-trans-meta sourceCommit=50dd23f41cb3e600d8f371a868db33f7562e8a56 translatedAt=2026-08-04T08:29:36.745Z pushedAt=2026-08-04T08:46:14.126Z -->
 
 [InputMethodExtensionAbility](../reference/apis-ime-kit/js-apis-inputmethod-extension-ability.md) provides the **onCreate()** and **onDestroy()** callbacks, as described below. Override them as required. InputMethodExtensionAbility lifecycle:
 
@@ -46,7 +48,7 @@ To implement an input method application, manually create an InputMethodExtensio
    In the **InputMethodService.ets** file, add the dependency package for importing **InputMethodExtensionAbility**. Customize a class that inherits from **InputMethodExtensionAbility** and add the required lifecycle callbacks.
 
    <!-- @[input_case_module_import_InputMethodExtensionAbility](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/InputMethod/KikaInputMethod/entry/src/main/ets/InputMethodExtensionAbility/InputMethodService.ets) -->
-   
+
    ``` TypeScript
    
    import { InputMethodExtensionAbility } from '@kit.IMEKit';
@@ -73,13 +75,12 @@ To implement an input method application, manually create an InputMethodExtensio
    }
    ```
 
-
-2. **KeyboardController.ets** file. In addition to creating the input method window, setting input method event listeners, and implementing text insertion and deletion, KeyboardController can obtain the [offset area between the input method keyboard and the system panel](../reference/apis-ime-kit/js-apis-inputmethodengine.md#getsystempanelcurrentinsets21). The input method system panel varies by device, as illustrated in the figure below.
+2. **KeyboardController.ets** file. In addition to creating the input method window, setting input method event listeners, and implementing text insertion and deletion, KeyboardController can also use [getSystemPanelCurrentInsets](../reference/apis-ime-kit/js-apis-inputmethodengine.md#getsystempanelcurrentinsets21) to obtain the offset area between the input method keyboard and the system panel. The input method system panel varies across devices. When a device has a system panel, the offset area of the input method soft keyboard relative to the system panel is shown in the following figure:
 
    ![Offset area diagram](./figures/offset-area-between-the-system-panel-and-soft-keyboard.png)
 
    <!-- @[input_case_input_KeyboardController358](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/InputMethod/KikaInputMethod/entry/src/main/ets/InputMethodExtensionAbility/model/KeyboardController.ets) -->
-   
+
    ``` TypeScript
    class KeyboardController {
      private barPosition: number = 0;
@@ -243,10 +244,9 @@ To implement an input method application, manually create an InputMethodExtensio
        }
      }
    ```
-   
- 
+
    <!-- @[input_case_input_KeyboardController507](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/InputMethod/KikaInputMethod/entry/src/main/ets/InputMethodExtensionAbility/model/KeyboardController.ets) -->
-   
+
    ``` TypeScript
    private registerListener(): void {
      this.inputHandle.addLog('registerListener');
@@ -330,10 +330,9 @@ To implement an input method application, manually create an InputMethodExtensio
      }
    }
    ```
- 
 
    <!-- @[input_case_input_KeyboardController587](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/InputMethod/KikaInputMethod/entry/src/main/ets/InputMethodExtensionAbility/model/KeyboardController.ets) -->
-   
+
    ``` TypeScript
      public isShiftKeyHold(): boolean {
        if (this.keyCodes.length === 0) {
@@ -477,15 +476,12 @@ To implement an input method application, manually create an InputMethodExtensio
    export const keyboardController: KeyboardController = new KeyboardController();
    ```
 
-
- 
 3. **KeyboardKeyData.ets** file.
 
    In this file you can define the content displayed on the soft keyboard.
 
-
    <!-- @[input_case_input_KeyboardKeyData016](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/InputMethod/KikaInputMethod/entry/src/main/ets/model/KeyboardKeyData.ets) -->
-   
+
    ``` TypeScript
    export interface keySourceListType {
      title: string,
@@ -655,9 +651,8 @@ To implement an input method application, manually create an InputMethodExtensio
    ]
    ```
 
-
    <!-- @[input_case_input_KeyboardKeyData186](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/InputMethod/KikaInputMethod/entry/src/main/ets/model/KeyboardKeyData.ets) -->
-   
+
    ``` TypeScript
    export let numberSourceListData: sourceListType[] = [
      {
@@ -828,7 +823,7 @@ To implement an input method application, manually create an InputMethodExtensio
      }
    ]
    ```
- 
+
 4. **Index.ets** file:
 
    This file describes the functions of keys. For example, the number keys print numbers in the text box, and the delete key deletes what's entered.
@@ -836,7 +831,7 @@ To implement an input method application, manually create an InputMethodExtensio
    <!--Del-->Add the path to this file to the **src** field in the **resources/base/profile/main_pages.json** file.<!--DelEnd-->
 
    <!-- @[input_case_input_index](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/InputMethod/KikaInputMethod/entry/src/main/ets/InputMethodExtensionAbility/pages/Index.ets) -->
-   
+
    ``` TypeScript
    import { deviceInfo } from '@kit.BasicServicesKit';
    import Log from '../../model/Log';
@@ -875,7 +870,7 @@ To implement an input method application, manually create an InputMethodExtensio
        // Check whether the immersive mode is used. If the immersive mode is used, select the immersive mode.
        inputMethodEngine.getKeyboardDelegate().on("editorAttributeChanged", (attr : inputMethodEngine.EditorAttribute) => {
          console.info('recv editorAttributeChanged, immersiveMode: ', attr.immersiveMode);
-         if (attr.immersiveMode == 1) {
+         if (attr.immersiveMode == inputMethodEngine.ImmersiveMode.DARK_IMMERSIVE) {
            this.panel?.setImmersiveMode(inputMethodEngine.ImmersiveMode.DARK_IMMERSIVE);
            console.info('recv editorAttributeChanged, panel:', this.panel?.getImmersiveMode());
          }
@@ -953,9 +948,8 @@ To implement an input method application, manually create an InputMethodExtensio
 
 6. **module.json5** file:<br>Register the InputMethodExtensionAbility in the [module.json5 file](../quick-start/module-configuration-file.md) corresponding to the **Module** project. Set **type** to **"inputMethod"** and **srcEntry** to the code path of the **InputMethodExtensionAbility** component.
 
-
    <!-- @[input_case_entry_module_extensionAbilities](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/InputMethod/KikaInputMethod/entry/src/main/module.json5) -->
-   
+
    ``` JSON5
    "extensionAbilities": [
      {
@@ -975,9 +969,6 @@ To implement an input method application, manually create an InputMethodExtensio
    ],
    ```
 
-
-
-
 ## Constraints
 
 To protect the InputMethodExtensionAbility against abuse, functional constraints of the basic access mode are provided.
@@ -986,11 +977,12 @@ To protect the InputMethodExtensionAbility against abuse, functional constraints
 >
 > Strictly comply with the functional constraints of the basic access mode. In this mode, you should provide only basic typing features, not interaction with online services in any form. The system will gradually introduce measures for compliance with the basic access mode, including but not limited to running the Extension process as an independent process and in sandbox mode, preventing the Extension process from creating subprocesses, and restricting inter-process communication and network access. Violations may result in service exceptions.
 
-##  
+## Samples
 
- 
+The following sample is available for **InputMethodExtensionAbility** development:
 
--  
+- [KikaInput](https://gitcode.com/openharmony/applications_app_samples/tree/master/code/Solutions/InputMethod/KikaInput)
 
 ## Effect
+
 ![Example](./figures/implementing-an-input-method-application.png)

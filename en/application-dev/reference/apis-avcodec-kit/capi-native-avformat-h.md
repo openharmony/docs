@@ -45,21 +45,21 @@ The file declares the functions and enums related to OH_AVFormat.
 | [struct OH_AVFormat *OH_AVFormat_CreateVideoFormat(const char *mimeType, int32_t width, int32_t height)](#oh_avformat_createvideoformat) | Creates a video OH_AVFormat instance with specified parameters for reading and writing data.|
 | [void OH_AVFormat_Destroy(struct OH_AVFormat *format)](#oh_avformat_destroy) | Destroys an OH_AVFormat instance. The instance cannot be destroyed repeatedly.|
 | [bool OH_AVFormat_Copy(struct OH_AVFormat *to, struct OH_AVFormat *from)](#oh_avformat_copy) | Copies an OH_AVFormat instance.|
-| [bool OH_AVFormat_SetIntValue(struct OH_AVFormat *format, const char *key, int32_t value)](#oh_avformat_setintvalue) | Assigns a value of the int type to a [key](capi-codecbase.md#media-data-key-value-pairs) in an OH_AVFormat instance. This function can be used to set only parameters of the int type. For details, see [native_avcodec_base.h](capi-native-avcodec-base-h.md#variables).|
-| [bool OH_AVFormat_SetUintValue(struct OH_AVFormat *format, const char *key, uint32_t value)](#oh_avformat_setuintvalue) | Assigns an unsigned int value to the key of OH_AVFormat. This API can be used to set only parameters of the unsigned int type. For details, see [native_avcodec_base.h](capi-native-avcodec-base-h.md#variables).|
-| [bool OH_AVFormat_SetLongValue(struct OH_AVFormat *format, const char *key, int64_t value)](#oh_avformat_setlongvalue) | Assigns a value of the long type to a [key](capi-codecbase.md#media-data-key-value-pairs) in an OH_AVFormat instance. This function can be used to set only parameters of the long type. For details, see [native_avcodec_base.h](capi-native-avcodec-base-h.md#variables).|
-| [bool OH_AVFormat_SetFloatValue(struct OH_AVFormat *format, const char *key, float value)](#oh_avformat_setfloatvalue) | Assigns a value of the float type to a [key](capi-codecbase.md#media-data-key-value-pairs) in an OH_AVFormat instance. This function can be used to set only parameters of the float type. For details, see [native_avcodec_base.h](capi-native-avcodec-base-h.md#variables).|
-| [bool OH_AVFormat_SetDoubleValue(struct OH_AVFormat *format, const char *key, double value)](#oh_avformat_setdoublevalue) | Assigns a value of the double type to a [key](capi-codecbase.md#media-data-key-value-pairs) in an OH_AVFormat instance. This function can be used to set only parameters of the double type. For details, see [native_avcodec_base.h](capi-native-avcodec-base-h.md#variables).|
-| [bool OH_AVFormat_SetStringValue(struct OH_AVFormat *format, const char *key, const char *value)](#oh_avformat_setstringvalue) | Assigns a value of the string type to a [key](capi-codecbase.md#media-data-key-value-pairs) in an OH_AVFormat instance. This function can be used to set only parameters of the string type. For details, see [native_avcodec_base.h](capi-native-avcodec-base-h.md#variables).|
+| [bool OH_AVFormat_SetIntValue(struct OH_AVFormat *format, const char *key, int32_t value)](#oh_avformat_setintvalue) | Assigns a value of the int type to a key contained in an OH_AVFormat instance. This API can only set parameters of the int type. For details about the parameter type definitions, see [Media Data Key-Value Pairs](capi-codecbase.md#media-data-key-value-pairs).|
+| [bool OH_AVFormat_SetUintValue(struct OH_AVFormat *format, const char *key, uint32_t value)](#oh_avformat_setuintvalue) | Assigns an unsigned int value to the key of OH_AVFormat. This API can only set parameters of the unsigned int type. For details about the parameter type definitions, see [Media Data Key-Value Pairs](capi-codecbase.md#media-data-key-value-pairs).|
+| [bool OH_AVFormat_SetLongValue(struct OH_AVFormat *format, const char *key, int64_t value)](#oh_avformat_setlongvalue) | Assigns a value of the long type to a key contained in an OH_AVFormat instance. This API can only set parameters of the long type. For details about the parameter type definitions, see [Media Data Key-Value Pairs](capi-codecbase.md#media-data-key-value-pairs).|
+| [bool OH_AVFormat_SetFloatValue(struct OH_AVFormat *format, const char *key, float value)](#oh_avformat_setfloatvalue) | Assigns a value of the float type to a key contained in an OH_AVFormat instance. This API can only set parameters of the float type. For details about the parameter type definitions, see [Media Data Key-Value Pairs](capi-codecbase.md#media-data-key-value-pairs).|
+| [bool OH_AVFormat_SetDoubleValue(struct OH_AVFormat *format, const char *key, double value)](#oh_avformat_setdoublevalue) | Assigns a value of the double type to a key contained in an OH_AVFormat instance. This API can only set parameters of the double type. For details about the parameter type definitions, see [Media Data Key-Value Pairs](capi-codecbase.md#media-data-key-value-pairs).|
+| [bool OH_AVFormat_SetStringValue(struct OH_AVFormat *format, const char *key, const char *value)](#oh_avformat_setstringvalue) | Assigns a value of the string type to a key contained in an OH_AVFormat instance. This API can only set parameters of the string type. For details about the parameter type definitions, see [Media Data Key-Value Pairs](capi-codecbase.md#media-data-key-value-pairs).|
 | [bool OH_AVFormat_SetBuffer(struct OH_AVFormat *format, const char *key, const uint8_t *addr, size_t size)](#oh_avformat_setbuffer) | Writes data blocks of a specified length to an OH_AVFormat instance. This function can be used to set only parameters of the buffer type. For details, see [native_avcodec_base.h](capi-native-avcodec-base-h.md#variables).|
-| [bool OH_AVFormat_GetIntValue(struct OH_AVFormat *format, const char *key, int32_t *out)](#oh_avformat_getintvalue) | Obtains the value of the int type of a [key](capi-codecbase.md#media-data-key-value-pairs) in an OH_AVFormat instance.|
-| [bool OH_AVFormat_GetUintValue(struct OH_AVFormat *format, const char *key, uint32_t *out)](#oh_avformat_getuintvalue) | Obtains the value of the unsigned int type from an OH_AVFormat instance using a key|
-| [bool OH_AVFormat_GetLongValue(struct OH_AVFormat *format, const char *key, int64_t *out)](#oh_avformat_getlongvalue) | Obtains the value of the long type of a [key](capi-codecbase.md#media-data-key-value-pairs) in an OH_AVFormat instance.|
-| [bool OH_AVFormat_GetFloatValue(struct OH_AVFormat *format, const char *key, float *out)](#oh_avformat_getfloatvalue) | Obtains the value of the float type of a [key](capi-codecbase.md#media-data-key-value-pairs) in an OH_AVFormat instance.|
-| [bool OH_AVFormat_GetDoubleValue(struct OH_AVFormat *format, const char *key, double *out)](#oh_avformat_getdoublevalue) | Obtains the value of the double type of a [key](capi-codecbase.md#media-data-key-value-pairs) in an OH_AVFormat instance.|
-| [bool OH_AVFormat_GetStringValue(struct OH_AVFormat *format, const char *key, const char **out)](#oh_avformat_getstringvalue) | Obtains the value of the string type of a [key](capi-codecbase.md#media-data-key-value-pairs) in an OH_AVFormat instance.|
+| [bool OH_AVFormat_GetIntValue(struct OH_AVFormat *format, const char *key, int32_t *out)](#oh_avformat_getintvalue) | Obtains the value of the int type of a key contained in an OH_AVFormat instance. For details about the parameter type definitions, see [Media Data Key-Value Pairs](capi-codecbase.md#media-data-key-value-pairs).|
+| [bool OH_AVFormat_GetUintValue(struct OH_AVFormat *format, const char *key, uint32_t *out)](#oh_avformat_getuintvalue) | Obtains the value of the unsigned int type of a key contained in an OH_AVFormat instance. For details about the parameter type definitions, see [Media Data Key-Value Pairs](capi-codecbase.md#media-data-key-value-pairs).|
+| [bool OH_AVFormat_GetLongValue(struct OH_AVFormat *format, const char *key, int64_t *out)](#oh_avformat_getlongvalue) | Obtains the value of the long type of a key contained in an OH_AVFormat instance. For details about the parameter type definitions, see [Media Data Key-Value Pairs](capi-codecbase.md#media-data-key-value-pairs).|
+| [bool OH_AVFormat_GetFloatValue(struct OH_AVFormat *format, const char *key, float *out)](#oh_avformat_getfloatvalue) | Obtains the value of the float type of a key contained in an OH_AVFormat instance. For details about the parameter type definitions, see [Media Data Key-Value Pairs](capi-codecbase.md#media-data-key-value-pairs).|
+| [bool OH_AVFormat_GetDoubleValue(struct OH_AVFormat *format, const char *key, double *out)](#oh_avformat_getdoublevalue) | Obtains the value of the double type of a key contained in an OH_AVFormat instance. For details about the parameter type definitions, see [Media Data Key-Value Pairs](capi-codecbase.md#media-data-key-value-pairs).|
+| [bool OH_AVFormat_GetStringValue(struct OH_AVFormat *format, const char *key, const char **out)](#oh_avformat_getstringvalue) | Obtains the value of the string type of a key contained in an OH_AVFormat instance. For details about the parameter type definitions, see [Media Data Key-Value Pairs](capi-codecbase.md#media-data-key-value-pairs).|
 | [bool OH_AVFormat_GetBuffer(struct OH_AVFormat *format, const char *key, uint8_t **addr, size_t *size)](#oh_avformat_getbuffer) | Reads data blocks of a specified length from an OH_AVFormat instance.|
-| [bool OH_AVFormat_GetIntBuffer(struct OH_AVFormat *format, const char *key, int32_t **addr, size_t *size)](#oh_avformat_getintbuffer) | Reads an array of int32_t data from an OH_AVFormat instance.<br> Note that the buffer lifecycle is bound to the OH_AVFormat instance. The buffer becomes invalid automatically when the OH_AVFormat instance is destroyed.<br> To keep the data for an extended period, explicitly copy the data to newly allocated memory.|
+| [bool OH_AVFormat_GetIntBuffer(struct OH_AVFormat *format, const char *key, int32_t **addr, size_t *size)](#oh_avformat_getintbuffer) | Reads an array of int32_t data from an OH_AVFormat instance.<br> Note that the buffer lifecycle is bound to the OH_AVFormat instance. The buffer becomes invalid automatically when the OH_AVFormat instance is destroyed.<br> If you need to retain the buffer data for an extended period, the application must explicitly copy the data to newly allocated memory.|
 | [const char *OH_AVFormat_DumpInfo(struct OH_AVFormat *format)](#oh_avformat_dumpinfo) | Returns a string consisting of key-value pairs in an OH_AVFormat instance. A string of up to 1024 bytes can be returned. The string pointer is released when the OH_AVFormat instance is destroyed.|
 | [bool OH_AVFormat_SetIntBuffer(struct OH_AVFormat *format, const char *key, const int32_t *addr, size_t size)](#oh_avformat_setintbuffer) | Writes data blocks of the int32_t type with a specified length to an OH_AVFormat instance.|
 | [uint32_t OH_AVFormat_GetKeyCount(OH_AVFormat *format)](#oh_avformat_getkeycount) | Obtains the total number of keys in an OH_AVFormat instance.|
@@ -224,7 +224,7 @@ bool OH_AVFormat_SetIntValue(struct OH_AVFormat *format, const char *key, int32_
 
 **Description**
 
-Assigns a value of the int type to a [key](capi-codecbase.md#media-data-key-value-pairs) in an OH_AVFormat instance. This function can be used to set only parameters of the int type. For details, see [native_avcodec_base.h](capi-native-avcodec-base-h.md#variables).
+Assigns a value of the int type to a key contained in an OH_AVFormat instance. This API can only set parameters of the int type. For details about the parameter type definitions, see [Media Data Key-Value Pairs](capi-codecbase.md#media-data-key-value-pairs).
 
 **System capability**: SystemCapability.Multimedia.Media.Core
 
@@ -252,7 +252,7 @@ bool OH_AVFormat_SetUintValue(struct OH_AVFormat *format, const char *key, uint3
 
 **Description**
 
-Assigns an unsigned int value to the key of an OH_AVFormat instance. This API can be used to set only parameters of the unsigned int type. For details, see [native_avcodec_base.h](capi-native-avcodec-base-h.md#variables).
+Assigns an unsigned int value to the key of OH_AVFormat. This API can only set parameters of the unsigned int type. For details about the parameter type definitions, see [Media Data Key-Value Pairs](capi-codecbase.md#media-data-key-value-pairs).
 
 **Since**: 23
 
@@ -268,7 +268,7 @@ Assigns an unsigned int value to the key of an OH_AVFormat instance. This API ca
 
 | Type| Description|
 | -- | -- |
-| bool | **true** if the operation is successful; **false** otherwise.<br> The possible causes of an operation failure are as follows:<br> 1. The value of **format** is nullptr.<br> 2. The value of **format** fails parameter structure verification.<br> 3. The value of **key** is nullptr.|
+| bool | **true** if the operation is successful; **false** otherwise.<br> The possible causes of an operation failure are as follows:<br> 1. The value of **format** is nullptr.<br> 2. The value of **format** fails parameter structure verification.<br> 3. The value of **key** is nullptr.<br> 4. The value type corresponding to the key is incorrect.|
 
 ### OH_AVFormat_SetLongValue()
 
@@ -278,7 +278,7 @@ bool OH_AVFormat_SetLongValue(struct OH_AVFormat *format, const char *key, int64
 
 **Description**
 
-Assigns a value of the long type to a [key](capi-codecbase.md#media-data-key-value-pairs) in an OH_AVFormat instance. This function can be used to set only parameters of the long type. For details, see [native_avcodec_base.h](capi-native-avcodec-base-h.md#variables).
+Assigns a value of the long type to a key contained in an OH_AVFormat instance. This API can only set parameters of the long type. For details about the parameter type definitions, see [Media Data Key-Value Pairs](capi-codecbase.md#media-data-key-value-pairs).
 
 **System capability**: SystemCapability.Multimedia.Media.Core
 
@@ -306,7 +306,7 @@ bool OH_AVFormat_SetFloatValue(struct OH_AVFormat *format, const char *key, floa
 
 **Description**
 
-Assigns a value of the float type to a [key](capi-codecbase.md#media-data-key-value-pairs) in an OH_AVFormat instance. This function can be used to set only parameters of the float type. For details, see [native_avcodec_base.h](capi-native-avcodec-base-h.md#variables).
+Assigns a value of the float type to a key contained in an OH_AVFormat instance. This API can only set parameters of the float type. For details about the parameter type definitions, see [Media Data Key-Value Pairs](capi-codecbase.md#media-data-key-value-pairs).
 
 **System capability**: SystemCapability.Multimedia.Media.Core
 
@@ -334,7 +334,7 @@ bool OH_AVFormat_SetDoubleValue(struct OH_AVFormat *format, const char *key, dou
 
 **Description**
 
-Assigns a value of the double type to a [key](capi-codecbase.md#media-data-key-value-pairs) in an OH_AVFormat instance. This function can be used to set only parameters of the double type. For details, see [native_avcodec_base.h](capi-native-avcodec-base-h.md#variables).
+Assigns a value of the double type to a key contained in an OH_AVFormat instance. This API can only set parameters of the double type. For details about the parameter type definitions, see [Media Data Key-Value Pairs](capi-codecbase.md#media-data-key-value-pairs).
 
 **System capability**: SystemCapability.Multimedia.Media.Core
 
@@ -362,7 +362,7 @@ bool OH_AVFormat_SetStringValue(struct OH_AVFormat *format, const char *key, con
 
 **Description**
 
-Assigns a value of the string type to a [key](capi-codecbase.md#media-data-key-value-pairs) in an OH_AVFormat instance. This function can be used to set only parameters of the string type. For details, see [native_avcodec_base.h](capi-native-avcodec-base-h.md#variables).
+Assigns a value of the string type to a key contained in an OH_AVFormat instance. This API can only set parameters of the string type. For details about the parameter type definitions, see [Media Data Key-Value Pairs](capi-codecbase.md#media-data-key-value-pairs).
 
 **System capability**: SystemCapability.Multimedia.Media.Core
 
@@ -419,7 +419,7 @@ bool OH_AVFormat_GetIntValue(struct OH_AVFormat *format, const char *key, int32_
 
 **Description**
 
-Obtains the value of the int type of a [key](capi-codecbase.md#media-data-key-value-pairs) in an OH_AVFormat instance.
+Obtains the value of the int type of a key contained in an OH_AVFormat instance. For details about the parameter type definitions, see [Media Data Key-Value Pairs](capi-codecbase.md#media-data-key-value-pairs).
 
 **System capability**: SystemCapability.Multimedia.Media.Core
 
@@ -447,7 +447,7 @@ bool OH_AVFormat_GetUintValue(struct OH_AVFormat *format, const char *key, uint3
 
 **Description**
 
-Obtains the value of the unsigned int type from an OH_AVFormat instance using a key.
+Obtains the value of the unsigned int type of a key contained in an OH_AVFormat instance. For details about the parameter type definitions, see [Media Data Key-Value Pairs](capi-codecbase.md#media-data-key-value-pairs).
 
 **Since**: 23
 
@@ -463,7 +463,7 @@ Obtains the value of the unsigned int type from an OH_AVFormat instance using a 
 
 | Type| Description|
 | -- | -- |
-| bool | **true** if the operation is successful; **false** otherwise.<br> The possible causes of an operation failure are as follows:<br> 1. The value of **format** is nullptr.<br> 2. The value of **format** fails parameter structure verification.<br> 3. The value of **key** is nullptr.<br> 4. The value of **out** is nullptr.|
+| bool | **true** if the operation is successful; **false** otherwise.<br> The possible causes of an operation failure are as follows:<br> 1. The value of **format** is nullptr.<br> 2. The value of **format** fails parameter structure verification.<br> 3. The value of **key** is nullptr.<br> 4. The value of **out** is nullptr.<br> 5. The obtained key does not exist or is not set.|
 
 ### OH_AVFormat_GetLongValue()
 
@@ -473,7 +473,7 @@ bool OH_AVFormat_GetLongValue(struct OH_AVFormat *format, const char *key, int64
 
 **Description**
 
-Obtains the value of the long type of a [key](capi-codecbase.md#media-data-key-value-pairs) in an OH_AVFormat instance.
+Obtains the value of the long type of a key contained in an OH_AVFormat instance. For details about the parameter type definitions, see [Media Data Key-Value Pairs](capi-codecbase.md#media-data-key-value-pairs).
 
 **System capability**: SystemCapability.Multimedia.Media.Core
 
@@ -501,7 +501,7 @@ bool OH_AVFormat_GetFloatValue(struct OH_AVFormat *format, const char *key, floa
 
 **Description**
 
-Obtains the value of the float type of a [key](capi-codecbase.md#media-data-key-value-pairs) in an OH_AVFormat instance.
+Obtains the value of the float type of a key contained in an OH_AVFormat instance. For details about the parameter type definitions, see [Media Data Key-Value Pairs](capi-codecbase.md#media-data-key-value-pairs).
 
 **System capability**: SystemCapability.Multimedia.Media.Core
 
@@ -529,7 +529,7 @@ bool OH_AVFormat_GetDoubleValue(struct OH_AVFormat *format, const char *key, dou
 
 **Description**
 
-Obtains the value of the double type of a [key](capi-codecbase.md#media-data-key-value-pairs) in an OH_AVFormat instance.
+Obtains the value of the double type of a key contained in an OH_AVFormat instance. For details about the parameter type definitions, see [Media Data Key-Value Pairs](capi-codecbase.md#media-data-key-value-pairs).
 
 **System capability**: SystemCapability.Multimedia.Media.Core
 
@@ -557,7 +557,7 @@ bool OH_AVFormat_GetStringValue(struct OH_AVFormat *format, const char *key, con
 
 **Description**
 
-Obtains the value of the string type of a [key](capi-codecbase.md#media-data-key-value-pairs) in an OH_AVFormat instance.
+Obtains the value of the string type of a key contained in an OH_AVFormat instance. For details about the parameter type definitions, see [Media Data Key-Value Pairs](capi-codecbase.md#media-data-key-value-pairs).
 
 **System capability**: SystemCapability.Multimedia.Media.Core
 
@@ -569,7 +569,7 @@ Obtains the value of the string type of a [key](capi-codecbase.md#media-data-key
 | -- | -- |
 | [struct OH_AVFormat](capi-core-oh-avformat.md) *format | Pointer to an OH_AVFormat instance.|
 | const char *key | Pointer to the key of the data to read.|
-| const char **out | Double pointer to the string read. The lifecycle of the **out** data matches the string in **format**. To keep the **out** data for an extended period of time, you must copy it to the memory. The maximum length of the output string is 256 bytes. If the length exceeds 256 bytes, **false** is returned.|
+| const char **out | Pointer to the string to read. The lifecycle of the string pointed to by **out** is the same as that of the string in **format**. To retain the string for an extended period, you must copy it to newly allocated memory. The maximum output string length of **out** is 256 bytes. If the length exceeds 256 bytes, **false** is returned.|
 
 **Returns**
 
@@ -598,7 +598,7 @@ Reads data blocks of a specified length from an OH_AVFormat instance.
 | [struct OH_AVFormat](capi-core-oh-avformat.md) *format | Pointer to an OH_AVFormat instance.|
 | const char *key | Pointer to the key of the data to read.|
 | uint8_t **addr | Double pointer to the address where the data read is stored. The data read is destroyed when the OH_AVFormat instance is destroyed. To hold the data for an extended period of time, copy it to the memory.|
-| size_t *size | Pointer to the size of the data read.|
+| size_t *size | Length of the data read, in bytes.|
 
 **Returns**
 
@@ -633,7 +633,7 @@ Reads an array of int32_t data from an OH_AVFormat instance.<br> Note that the b
 
 | Type| Description|
 | -- | -- |
-| bool | **true** if the operation is successful; **false** otherwise.<br> The possible causes of an operation failure are as follows:<br> 1. The value of **format** is nullptr.<br> 2. The value of **format** fails parameter structure verification.<br> 3. The value of **key** is nullptr.<br> 4. The value of **addr** is nullptr.<br> 5. The value of **size** is nullptr.|
+| bool | **true** if the operation is successful; **false** otherwise.<br> The possible causes of an operation failure are as follows:<br> 1. The value of **format** is nullptr.<br> 2. The value of **format** fails parameter structure verification.<br> 3. The value of **key** is nullptr.<br> 4. The value of **addr** is nullptr.<br> 5. The value of **size** is nullptr.<br> 6. The obtained key does not exist or is not set.|
 
 ### OH_AVFormat_DumpInfo()
 

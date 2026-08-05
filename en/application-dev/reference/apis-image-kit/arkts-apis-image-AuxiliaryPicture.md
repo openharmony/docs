@@ -1,10 +1,12 @@
 # Interface (AuxiliaryPicture)
+
 <!--Kit: Image Kit-->
 <!--Subsystem: Multimedia-->
 <!--Owner: @aulight02-->
-<!--Designer: @liyang_bryan-->
+<!--Designer: @XiaoYao555-->
 <!--Tester: @xchaosioda-->
 <!--Adviser: @w_Machine_cc-->
+<!-- md-trans-meta sourceCommit=a569cef255f0bfd2be482f42d11f341117248869 translatedAt=2026-08-03T03:54:57.890Z pushedAt=2026-08-04T03:36:08.540Z -->
 
 The **AuxiliaryPicture** class is used to read or write auxiliary picture data of an image and obtain auxiliary picture information of an image. The supported types of auxiliary pictures can be found in [AuxiliaryPictureType](arkts-apis-image-e.md#auxiliarypicturetype13).
 
@@ -27,7 +29,7 @@ import { image } from '@kit.ImageKit';
 
 writePixelsFromBuffer(data: ArrayBuffer): Promise\<void>
 
-Reads pixels from an ArrayBuffer and writes the data to this AuxiliaryPicture object. This API uses a promise to return the result.
+Reads auxiliary picture data from the ArrayBuffer and writes the data to the AuxiliaryPicture object. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.Multimedia.Image.Core
 
@@ -41,7 +43,7 @@ Reads pixels from an ArrayBuffer and writes the data to this AuxiliaryPicture ob
 
 | Type          | Description                                  |
 | -------------- | -------------------------------------- |
-| Promise\<void> | Promise that returns no value.|
+| Promise\<void> | Promise that returns no value. |
 
 **Error codes**
 
@@ -67,7 +69,7 @@ async function WritePixelsFromBuffer(context: Context) {
   if(auxPictureObj != null) {
     let auxBuffer: ArrayBuffer = await auxPictureObj.readPixelsToBuffer();
     await auxPictureObj.writePixelsFromBuffer(auxBuffer);
-    console.info('Write pixels from buffer success.');
+    console.info('Succeeded in writing pixels from buffer.');
   } else {
     console.error('AuxPictureObj is null.');
   }
@@ -105,9 +107,9 @@ async function ReadPixelsToBuffer(context: Context) {
   let auxPictureObj: image.AuxiliaryPicture | null = pictureObj.getAuxiliaryPicture(image.AuxiliaryPictureType.GAINMAP);
   if(auxPictureObj != null) {
     await auxPictureObj.readPixelsToBuffer().then((pixelsBuffer: ArrayBuffer) => {
-      console.info('Read pixels to buffer success.' );
+      console.info('Succeeded in reading pixels to buffer success.' );
     }).catch((error: BusinessError) => {
-      console.error(`Read pixels to buffer failed error.code: ${error.code}, error.message: ${error.message}`);
+      console.error(`Failed to read pixels to buffer. error.code: ${error.code}, error.message: ${error.message}`);
     });
   } else {
     console.error('AuxPictureObj is null.');
@@ -135,9 +137,9 @@ Obtains the type of this auxiliary picture.
 async function GetAuxiliaryPictureType(auxPictureObj : image.AuxiliaryPicture) {
   if (auxPictureObj != null) {
     let type: image.AuxiliaryPictureType = auxPictureObj.getType();
-    console.info('Success get auxiliary picture type ' +  JSON.stringify(type));
+    console.info('Succeeded in getting auxiliary picture type ' +  JSON.stringify(type));
   } else {
-    console.error('Failed get auxiliary picture type ');
+    console.error('Failed to get auxiliary picture type.');
   }
 }
 ```
@@ -161,7 +163,7 @@ Sets the metadata for this auxiliary picture. This API uses a promise to return 
 
 | Type          | Description                                  |
 | -------------- | -------------------------------------- |
-| Promise\<void> | Promise that returns no value.|
+| Promise\<void> | Promise that returns no value. |
 
 **Error codes**
 
@@ -187,18 +189,18 @@ async function SetAuxPictureObjMetadata(exifContext: Context, auxPictureObj: ima
   let exifCommodityPixelMap: image.PixelMap = await exifImageSource.createPixelMap();
   let exifPictureObj: image.Picture = image.createPicture(exifCommodityPixelMap);
   if (exifPictureObj != null) {
-    console.info('Create picture succeeded');
+    console.info('Succeeded in creating picture.');
   } else {
-    console.error('Create picture failed');
+    console.error('Failed to create picture.');
   }
 
   if (auxPictureObj != null) {
     let metadataType: image.MetadataType = image.MetadataType.EXIF_METADATA;
     let exifMetaData: image.Metadata = await exifPictureObj.getMetadata(metadataType);
     auxPictureObj.setMetadata(metadataType, exifMetaData).then(() => {
-      console.info('Set metadata success');
+      console.info('Succeeded in setting metadata.');
     }).catch((error: BusinessError) => {
-      console.error(`Set metadata failed.error.code: ${error.code}, error.message: ${error.message}`);
+      console.error(`Failed to set metadata. error.code: ${error.code}, error.message: ${error.message}`);
     });
   } else {
     console.error('AuxPictureObjMetaData is null');
@@ -243,9 +245,9 @@ async function GetAuxPictureObjMetadata(auxPictureObj: image.AuxiliaryPicture) {
     let metadataType: image.MetadataType = image.MetadataType.EXIF_METADATA;
     let auxPictureObjMetaData: image.Metadata | null = await auxPictureObj.getMetadata(metadataType);
     if (auxPictureObjMetaData != null) {
-      console.info('Get AuxPictureObj Metadata success' );
+      console.info('Succeeded in getting AuxPictureObj Metadata.' );
     } else {
-      console.error('Get AuxPictureObj Metadata failed');
+      console.error('Failed to get AuxPictureObj Metadata.');
     }
   } else {
     console.error('Get AuxPictureObj is null.');
@@ -278,7 +280,7 @@ async function GetAuxiliaryPictureInfo(auxPictureObj: image.AuxiliaryPicture) {
       ' rowStride: ' +  auxinfo.rowStride +  ' pixelFormat: ' + auxinfo.pixelFormat +
       ' colorSpace: ' +  auxinfo.colorSpace);
   } else {
-    console.error('Get auxiliary picture information failed');
+    console.error('Failed to get auxiliary picture information.');
   }
 }
 ```

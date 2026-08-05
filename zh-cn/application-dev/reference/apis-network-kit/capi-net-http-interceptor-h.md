@@ -18,8 +18,8 @@
   - 可修改拦截器目前支持 [@ohos.net.http](../../reference/apis-network-kit/js-apis-http.md)、[net_http.h](capi-net-http-h.md)。
 
 - **触发条件**：
-  - 不拦截自动重定向的中间过程(仅暴露最终响应)。
-  - 不拦截缓存命中时的响应(因无实际网络请求)。
+  - 不拦截自动重定向的中间过程（仅暴露最终响应）。
+  - 不拦截缓存命中时的响应（因无实际网络请求）。
 
 **引用文件：** `<network/netstack/http_interceptor.h>`
 
@@ -55,7 +55,7 @@ int32_t OH_Http_AddReadOnlyInterceptor(struct OH_Http_Interceptor *interceptor)
 
 添加一个HTTP全局只读拦截器。
 
-- 当前仅支持只读响应(OH_STAGE_RESPONSE)拦截器。
+- 当前仅支持只读响应（OH_STAGE_RESPONSE）拦截器。
 - 拦截器添加后将持续生效，开发者需显式调用接口释放资源。可调用[OH_Http_RemoveInterceptor](#oh_http_removeinterceptor)移除单个拦截器，或调用[OH_Http_RemoveAllInterceptors](#oh_http_removeallinterceptors)移除整组拦截器以释放资源。
 - 支持按需启动控制。若拦截器[OH_Http_Interceptor](capi-netstack-http-interceptor.md)的 `enabled` 属性设为 0，调用添加接口后拦截器不会立即启动，后续需调用[OH_Http_StartAllInterceptors](#oh_http_startallinterceptors)接口以启用拦截器。若`enabled` 属性设为 1，也可调用[OH_Http_StopAllInterceptors](#oh_http_stopallinterceptors)接口以停用拦截器。
 

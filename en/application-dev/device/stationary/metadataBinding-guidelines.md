@@ -6,7 +6,7 @@
 <!--Designer: @yuxiaoyang-->
 <!--Tester: @zhaodengqi-->
 <!--Adviser: @hu-zhiqiong-->
-<!-- md-trans-meta sourceCommit=0552be7434d9a0bd203232639bf8b2f95bface50 translatedAt=2026-07-29T01:37:32.844Z pushedAt=2026-07-29T02:11:58.416Z -->
+<!-- md-trans-meta sourceCommit=bb5f34c63b327446022dbec4e8769016fef5f229 translatedAt=2026-08-01T02:50:17.925Z pushedAt=2026-08-01T06:37:00.915Z -->
 
 ## Overview
 
@@ -16,7 +16,7 @@ For detailed API introduction, refer to [@ohos.multimodalAwareness.metadataBindi
 
 ## Overview
 
-Third-party applications can use the metadata binding function to map the App Linking link to the desired content for easy access at a later time. For example, when a user is browsing a product in an e-commerce app and takes a screenshot of that product to save it, the system will record the mapping between the screenshot and the App Linking link provided by the e-commerce app. When the user views the screenshot again, the system will remind the user of whether to return to the e-commerce app to view the product details.
+Third-party apps can use the metadata binding function to map App Linking links to system apps or services that call the API. For example, when a user is browsing a product in an e-commerce app and takes a screenshot of that product, the system records the mapping between the screenshot and the App Linking link provided by the e-commerce app. When the user views the screenshot again and actively triggers the Celia Touch capability, the system reminds the user of whether to return to the e-commerce app to view the product details. The reminder style is configured by Celia.
 
 ## Demonstration Example
 

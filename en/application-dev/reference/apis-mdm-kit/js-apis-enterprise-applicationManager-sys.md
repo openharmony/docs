@@ -1,7 +1,7 @@
 # @ohos.enterprise.applicationManager (Application Management) (System API)
 <!--Kit: MDM Kit-->
 <!--Subsystem: Customization-->
-<!--Owner: @huanleima-->
+<!--Owner: @huanleima; @weizai16-->
 <!--Designer: @hp_guo-->
 <!--Tester: @lpw_work-->
 <!--Adviser: @zhang_yixin13-->
@@ -14,7 +14,7 @@ The **applicationManager** module provides application management capabilities, 
 >
 > The APIs of this module can be used only in the stage model.
 >
-> The APIs of this module can be called only by a [device administrator application](../../mdm/mdm-kit-term.md#mdm-application-device-administrator-application) that is [enabled](js-apis-enterprise-adminManager-sys.md#adminmanagerenableadmin-2).
+> The APIs of this module are available only to [MDM applications](../../mdm/mdm-kit-term.md#mdm-application-device-administrator-application), and can be called only after the device administrator application is activated via [enableAdmin](js-apis-enterprise-adminManager-sys.md#adminmanagerenableadmin-2).
 > 
 > This topic describes only system APIs provided by the module. For details about its public APIs, see [@ohos.enterprise.applicationManager](js-apis-enterprise-applicationManager.md).
 
@@ -24,11 +24,15 @@ The **applicationManager** module provides application management capabilities, 
 import { applicationManager } from '@kit.MDMKit';
 ```
 
-## applicationManager.addDisallowedRunningBundles
+## applicationManager.addDisallowedRunningBundles<sup>(deprecated)</sup>
 
 addDisallowedRunningBundles(admin: Want, appIds: Array\<string>, callback: AsyncCallback&lt;void&gt;): void
 
 Adds the applications that are not allowed to run under the current user. This API uses an asynchronous callback to return the result. From API version 21, if the allowed application list [addallowedRunningBundles](./js-apis-enterprise-applicationManager.md#applicationmanageraddallowedrunningbundles21) is not empty, the prohibited application list cannot be added using this API. Otherwise, the error code 9200010 is reported.
+
+**Deprecated since:** 26.0.0
+
+**Substitutes:** [addDisallowedRunningBundlesSync](./js-apis-enterprise-applicationManager.md#applicationmanageradddisallowedrunningbundlessync)
 
 **Required permissions**: ohos.permission.ENTERPRISE_MANAGE_SET_APP_RUNNING_POLICY
 
@@ -83,11 +87,15 @@ applicationManager.addDisallowedRunningBundles(wantTemp, appIds, (err) => {
 });
 ```
 
-## applicationManager.addDisallowedRunningBundles
+## applicationManager.addDisallowedRunningBundles<sup>(deprecated)</sup>
 
 addDisallowedRunningBundles(admin: Want, appIds: Array\<string>, userId: number, callback: AsyncCallback&lt;void&gt;): void
 
-Adds the applications that are not allowed to run under a specified user (specified by **userId**). This API uses an asynchronous callback to return the result. From API version 21, if the allowed application list [addallowedRunningBundles](./js-apis-enterprise-applicationManager.md#applicationmanageraddallowedrunningbundles21) is not empty, the prohibited application list cannot be added using this API. Otherwise, the error code 9200010 is reported.
+Adds the applications that are not allowed to run under a specified user (specified by **userId**). This API uses an asynchronous callback to return the result. From API version 21, if the allowed application list [addAllowedRunningBundles](./js-apis-enterprise-applicationManager.md#applicationmanageraddallowedrunningbundles21) is not empty, the prohibited application list cannot be added using this API. Otherwise, the error code 9200010 is reported.
+
+**Deprecated since:** 26.0.0
+
+**Substitutes:** [addDisallowedRunningBundlesSync](./js-apis-enterprise-applicationManager.md#applicationmanageradddisallowedrunningbundlessync)
 
 **Required permissions**: ohos.permission.ENTERPRISE_MANAGE_SET_APP_RUNNING_POLICY
 
@@ -142,11 +150,15 @@ applicationManager.addDisallowedRunningBundles(wantTemp, appIds, 100, (err) => {
 });
 ```
 
-## applicationManager.addDisallowedRunningBundles
+## applicationManager.addDisallowedRunningBundles<sup>(deprecated)</sup>
 
 addDisallowedRunningBundles(admin: Want, appIds: Array\<string>, userId?: number): Promise&lt;void&gt;
 
 Adds the applications that are not allowed to run by the current or specified user. This API uses a promise to return the result. From API version 21, if the allowed application list [addallowedRunningBundles](./js-apis-enterprise-applicationManager.md#applicationmanageraddallowedrunningbundles21) is not empty, the prohibited application list cannot be added using this API. Otherwise, the error code 9200010 is reported.
+
+**Deprecated since:** 26.0.0
+
+**Substitutes:** [addDisallowedRunningBundlesSync](./js-apis-enterprise-applicationManager.md#applicationmanageradddisallowedrunningbundlessync)
 
 **Required permissions**: ohos.permission.ENTERPRISE_MANAGE_SET_APP_RUNNING_POLICY
 
@@ -205,11 +217,15 @@ applicationManager.addDisallowedRunningBundles(wantTemp, appIds, 100).then(() =>
 });
 ```
 
-## applicationManager.removeDisallowedRunningBundles
+## applicationManager.removeDisallowedRunningBundles<sup>(deprecated)</sup>
 
 removeDisallowedRunningBundles(admin: Want, appIds: Array\<string>, callback: AsyncCallback&lt;void&gt;): void
 
 Removes an application from the applications that are not allowed to run under the current user. This API uses an asynchronous callback to return the result.
+
+**Deprecated since:** 26.0.0
+
+**Substitutes:** [removeDisallowedRunningBundlesSync](./js-apis-enterprise-applicationManager.md#applicationmanagerremovedisallowedrunningbundlessync)
 
 **Required permissions**: ohos.permission.ENTERPRISE_MANAGE_SET_APP_RUNNING_POLICY
 
@@ -262,11 +278,15 @@ applicationManager.removeDisallowedRunningBundles(wantTemp, appIds, (err) => {
 });
 ```
 
-## applicationManager.removeDisallowedRunningBundles
+## applicationManager.removeDisallowedRunningBundles<sup>(deprecated)</sup>
 
 removeDisallowedRunningBundles(admin: Want, appIds: Array\<string>, userId: number, callback: AsyncCallback&lt;void&gt;): void
 
 Removes an application from the applications that are not allowed to run under the current user (specified by **userId**). This API uses an asynchronous callback to return the result.
+
+**Deprecated since:** 26.0.0
+
+**Substitutes:** [removeDisallowedRunningBundlesSync](./js-apis-enterprise-applicationManager.md#applicationmanagerremovedisallowedrunningbundlessync)
 
 **Required permissions**: ohos.permission.ENTERPRISE_MANAGE_SET_APP_RUNNING_POLICY
 
@@ -320,11 +340,15 @@ applicationManager.removeDisallowedRunningBundles(wantTemp, appIds, 100, (err) =
 });
 ```
 
-## applicationManager.removeDisallowedRunningBundles
+## applicationManager.removeDisallowedRunningBundles<sup>(deprecated)</sup>
 
 removeDisallowedRunningBundles(admin: Want, appIds: Array\<string>, userId?: number): Promise&lt;void&gt;
 
-Removes an application from the applications that are not allowed to run under the current or specified user. This API uses a promise to return the result.
+Removes applications from the applications that are not allowed to run under the current or specified user. This API uses a promise to return the result.
+
+**Deprecated since:** 26.0.0
+
+**Substitutes:** [removeDisallowedRunningBundlesSync](./js-apis-enterprise-applicationManager.md#applicationmanagerremovedisallowedrunningbundlessync)
 
 **Required permissions**: ohos.permission.ENTERPRISE_MANAGE_SET_APP_RUNNING_POLICY
 
@@ -382,11 +406,15 @@ applicationManager.removeDisallowedRunningBundles(wantTemp, appIds, 100).then(()
 });
 ```
 
-## applicationManager.getDisallowedRunningBundles
+## applicationManager.getDisallowedRunningBundles<sup>(deprecated)</sup>
 
 getDisallowedRunningBundles(admin: Want, callback: AsyncCallback&lt;Array&lt;string&gt;&gt;): void
 
 Obtains applications that are not allowed to run by the current user. This API uses an asynchronous callback to return the result.
+
+**Deprecated since:** 26.0.0
+
+**Substitutes:** [getDisallowedRunningBundlesSync](./js-apis-enterprise-applicationManager.md#applicationmanagergetdisallowedrunningbundlessync)
 
 **Required permissions**: ohos.permission.ENTERPRISE_MANAGE_SET_APP_RUNNING_POLICY
 
@@ -434,11 +462,15 @@ applicationManager.getDisallowedRunningBundles(wantTemp, (err, result) => {
 });
 ```
 
-## applicationManager.getDisallowedRunningBundles
+## applicationManager.getDisallowedRunningBundles<sup>(deprecated)</sup>
 
 getDisallowedRunningBundles(admin: Want, userId: number, callback: AsyncCallback&lt;Array&lt;string&gt;&gt;): void
 
 Obtains an application from the applications that are not allowed to run by the current user (specified by **userId**). This API uses an asynchronous callback to return the result.
+
+**Deprecated since:** 26.0.0
+
+**Substitutes:** [getDisallowedRunningBundlesSync](./js-apis-enterprise-applicationManager.md#applicationmanagergetdisallowedrunningbundlessync)
 
 **Required permissions**: ohos.permission.ENTERPRISE_MANAGE_SET_APP_RUNNING_POLICY
 
@@ -489,11 +521,15 @@ applicationManager.getDisallowedRunningBundles(wantTemp, 100, (err, result) => {
 });
 ```
 
-## applicationManager.getDisallowedRunningBundles
+## applicationManager.getDisallowedRunningBundles<sup>(deprecated)</sup>
 
 getDisallowedRunningBundles(admin: Want, userId?: number): Promise&lt;Array&lt;string&gt;&gt;
 
-Obtains applications that are not allowed to run by the current user or a specified user. This API uses a promise to return the result.
+Obtains applications that are not allowed to run under the current user or a specified user. This API uses a promise to return the result.
+
+**Deprecated since:** 26.0.0
+
+**Substitutes:** [getDisallowedRunningBundlesSync](./js-apis-enterprise-applicationManager.md#applicationmanagergetdisallowedrunningbundlessync)
 
 **Required permissions**: ohos.permission.ENTERPRISE_MANAGE_SET_APP_RUNNING_POLICY
 

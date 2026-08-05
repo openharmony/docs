@@ -37,7 +37,7 @@
 #include <unicode/uloc.h>
 ```
 
-其次在CMakeLists.txt中添加以下动态库:
+其次在CMakeLists.txt中添加以下动态库：
 ```c
 libicu.so
 ```

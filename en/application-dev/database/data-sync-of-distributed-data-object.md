@@ -3,16 +3,16 @@
 <!--Kit: ArkData-->
 <!--Subsystem: DistributedDataManager-->
 <!--Owner: @lvcong_oh-->
-<!--Designer: @hollokin; @yuchaozhng-->
-<!--Tester: @lj_liujing; @yippo; @logic42-->
+<!--Designer: @lvcong_oh-->
+<!--Tester: @logic42; @hanjiawei-->
 <!--Adviser: @ge-yafang-->
-<!-- md-trans-meta sourceCommit=deff468b8adbfa4199da5cbe7b6cbc33f2bddb1e translatedAt=2026-06-24T07:38:01.687Z pushedAt=2026-06-25T07:20:59.837Z -->
+<!-- md-trans-meta sourceCommit=b504d26dfc97256c1aae157485692176a3eff938 translatedAt=2026-08-01T02:50:40.821Z pushedAt=2026-08-01T06:20:55.113Z -->
 
 ## When to Use
 
 The traditional implementation of data sync between devices involves heavy workload. You need to design the message processing logic for setting up a communication link, sending, receiving, and processing messages, and resolving data conflicts, as well as retry mechanism upon errors. In addition, the debugging complexity increases with the number of devices.
 
-The device status, message sending progress, and data transmitted are variables. If these variables support global access, they can be accessed as local variables by difference devices. This simplifies data sync across devices.
+The device status, message sending progress, and data transmitted are variables. If these variables support global access, they can be accessed as local variables by different devices. This simplifies data sync across devices.
 
 The distributed data object (**distributedDataObject**) module implements global access to variables. It provides basic data object management capabilities, including creating, querying, deleting, and modifying in-memory objects and subscribing to data or status changes. It also provides distributed capabilities. OpenHarmony provides easy-to-use JS APIs for distributed application scenarios. With these APIs, you can easily implement data collaboration for an application across devices and listening for status and data changes between devices. The **distributedDataObject** module implements data object collaboration for the same application across multiple devices that form a Super Device. It greatly reduces the development workloads compared with the traditional implementation.
 
@@ -47,12 +47,6 @@ The distributed data objects are encapsulated JS objects in distributed in-memor
 - When a distributed data object is instantiated, all properties of the object are traversed recursively. **Object.defineProperty** is used to define the **set()** and **get()** methods for all properties. The **set()** and **get()** methods correspond to the **put** and **get** operations of a record in the database, respectively. **Key** specifies the property name, and **Value** specifies the property value.
 
 - When a distributed data object is read or written, the **get()** or **set()** method is automatically called to perform the related operation on data in the database.
-
-**Table 1** Correspondence between a distributed data object and a distributed database
-
-| Distributed Data Object Instance | Object Instance | Property Name | Property Value | 
-| -------- | -------- | -------- | -------- |
-| Distributed in-memory database | Database identified by **sessionId** | Key of a database record | Value of a database record |
 
 ### Cross-Device Sync and Data Change Notification
 
@@ -93,7 +87,7 @@ dataObject['parents']['mom'] = "amy"; // Unsupported modification
 
 ### Persistence of Distributed Data Objects
 
-Distributed data objects primarily reside in an application's process. When a distributed data object persistence API is called, the object is persisted and synchronized through the distributed database. As a result, the data is retained even after the application process exits. The distributed database synchronizes data automatically, and you can listen for data changes by calling [on('change')](../reference/apis-arkdata/js-apis-data-distributedobject.md#onchange20).
+Distributed data objects primarily reside in an app's process. When a distributed data object persistence API is called, the object is persisted and synchronized through the distributed database. As a result, the data is retained even after the app process exits. The distributed database synchronizes data automatically, and you can listen for data changes by calling [on('change')](../reference/apis-arkdata/js-apis-data-distributedobject.md#onchange20).
 
 Persistent objects extend the capabilities of distributed data objects and are intended for scenarios such as the following:
 
@@ -125,7 +119,7 @@ Starting from API version 20, asset arrays ([Assets](../reference/apis-arkdata/j
 
 - Data synchronization of distributed data objects occurs within the same application and between the same **sessionId**.
 
-- If data of 1 KB data is modified on device A, device B can complete data update within 50 ms after receiving a data change notification.
+- If data of 1 KB is modified on device A, device B can complete data update within 50 ms after receiving a data change notification.
 
 - A maximum of 16 distributed data object instances can be created for an application.
 
@@ -154,10 +148,10 @@ The following are APIs for cross-device data sync of distributed data objects. F
 | bindAssetStore(assetKey: string, bindInfo: BindInfo, callback: AsyncCallback&lt;void&gt;): void | Binds an asset and its RDB store.|
 | setAsset(assetKey: string, uri: string): void | Sets an asset.|
 | setAssets(assetKey: string, uris: Array&lt;string&gt;): void | Sets assets.|
-| on(type: 'change', callback: DataObserver&lt;void&gt;): void | Subscribes to data changes of a distributed data object.|
-| off(type: 'change', callback?: DataObserver&lt;void&gt;): void |  Unsubscribes from data changes of a distributed data object.|
-| on(type: 'status', callback: StatusObserver&lt;void&gt;): void | Subscribes to the status changes of a distributed data object.|
-| off(type: 'status', callback?: StatusObserver&lt;void&gt;): void | Unsubscribes from status changes of a distributed data object.|
+| on(type: 'change', callback: DataObserver&lt;void&gt;): void | Subscribes to data changes of a distributed data object. |
+| off(type: 'change', callback?: DataObserver&lt;void&gt;): void | Unsubscribes from data changes of a distributed data object. |
+| on(type: 'status', callback: StatusObserver&lt;void&gt;): void | Subscribes to the status changes of a distributed data object. |
+| off(type: 'status', callback?: StatusObserver&lt;void&gt;): void | Unsubscribes from status changes of a distributed data object. |
 
 ## How to Develop
 
@@ -532,3 +526,11 @@ function getRemoteDeviceId() {
   return deviceId;
 }
 ```
+
+## Samples
+
+For distributed data object development, the following samples are available:
+
+- [DistributedAuthentication (ArkTS) (Full SDK) (API10)](https://gitcode.com/openharmony/applications_app_samples/tree/master/code/DocsSample/DistributedAppDev/DistributedAuthentication)
+
+- [DistributedNote (ArkTS) (Full SDK) (API10)](https://gitcode.com/openharmony/applications_app_samples/tree/master/code/SuperFeature/DistributedAppDev/DistributedNote)

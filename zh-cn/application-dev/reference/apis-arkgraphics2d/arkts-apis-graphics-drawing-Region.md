@@ -7,7 +7,7 @@
 <!--Tester: @nobuggers-->
 <!--Adviser: @ge-yafang-->
 
-区域对象，用于描述所绘制图形的区域信息。
+区域对象，用于描述所绘制图形的区域信息。Region支持设置矩形区域和路径区域，提供区域间的合并运算、相交判断、平移、边界获取等操作。
 
 > **说明：**
 >
@@ -144,7 +144,7 @@ class DrawingRenderNode extends RenderNode {
 
 isEqual(other: Region): boolean
 
-用于判断其他区域是否与当前区域相等。
+判断指定区域是否与当前区域相等。
 
 **系统能力：** SystemCapability.Graphics.Drawing
 
@@ -152,7 +152,7 @@ isEqual(other: Region): boolean
 
 | 参数名 | 类型   | 必填 | 说明                    |
 | ------ | ------ | ---- | ----------------------- |
-| other      | [Region](arkts-apis-graphics-drawing-Region.md) | 是   | 区域对象。 |
+| other      | [Region](arkts-apis-graphics-drawing-Region.md) | 是   | 用于与当前区域进行比较的其他区域对象。 |
 
 **返回值：**
 
@@ -225,14 +225,12 @@ class DrawingRenderNode extends RenderNode {
     pen.setStrokeWidth(10);
     canvas.attachPen(pen);
     let region = new drawing.Region();
-    let other = new drawing.Region();
     region.setRect(100, 100, 200, 200);
     region.op(new drawing.Region(220, 200, 280, 280), drawing.RegionOp.UNION);
     let flag: boolean = false;
     flag = region.isComplex();
     console.info('flag :', flag);
     canvas.drawRegion(region);
-    canvas.drawRegion(other);
     canvas.detachPen();
   }
 }
@@ -250,7 +248,7 @@ isEmpty(): boolean
 
 | 类型    | 说明                    |
 | ------- | --------------         |
-| boolean | 返回当前区域是否为空。true表示当前区域为空，false表示当前区域不为空。   |
+| boolean | 返回当前区域是否为空的结果。true表示当前区域为空，false表示当前区域不为空。 |
 
 **示例：**
 
@@ -330,7 +328,7 @@ let path = region.getBoundaryPath();
 
 ## isPointContained<sup>12+</sup>
 
-isPointContained(x: number, y: number) : boolean
+isPointContained(x: number, y: number): boolean
 
 判断测试点是否在区域内。
 
@@ -340,8 +338,8 @@ isPointContained(x: number, y: number) : boolean
 
 | 参数名 | 类型   | 必填 | 说明                    |
 | ------ | ------ | ---- | ----------------------- |
-| x      | number | 是   | 测试点的x轴坐标。该参数必须为整数。如果输入的数字包含小数部分，小数部分将被舍去。单位为物理像素px。 |
-| y      | number | 是   | 测试点的y轴坐标。该参数必须为整数。如果输入的数字包含小数部分，小数部分将被舍去。单位为物理像素px。 |
+| x      | number | 是   | 测试点的x轴坐标。该参数必须为整数。当输入的数字带小数时，小数部分会被舍去。单位为物理像素px。 |
+| y      | number | 是   | 测试点的y轴坐标。该参数必须为整数。当输入的数字带小数时，小数部分会被舍去。单位为物理像素px。 |
 
 **返回值：**
 
@@ -355,7 +353,7 @@ isPointContained(x: number, y: number) : boolean
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
-| 401 | Parameter error.Possible causes:1.Mandatory parameters are left unspecified;2.Incorrect parameter types. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 
 **示例：**
 
@@ -399,8 +397,8 @@ offset(dx: number, dy: number): void
 
 | 参数名 | 类型   | 必填 | 说明                    |
 | ------ | ------ | ---- | ----------------------- |
-| dx      | number | 是   | x轴方向平移量，正数往x轴正方向平移，负数往x轴负方向平移，该参数为整数。单位为物理像素px。 |
-| dy      | number | 是   | y轴方向平移量，正数往y轴正方向平移，负数往y轴负方向平移，该参数为整数。单位为物理像素px。|
+| dx      | number | 是   | x轴方向平移量，正数往x轴正方向平移，负数往x轴负方向平移，该参数必须为整数。当输入的数字带小数时，小数部分会被舍去。单位为物理像素px。 |
+| dy      | number | 是   | y轴方向平移量，正数往y轴正方向平移，负数往y轴负方向平移，该参数必须为整数。当输入的数字带小数时，小数部分会被舍去。单位为物理像素px。 |
 
 **示例：**
 
@@ -432,7 +430,7 @@ class DrawingRenderNode extends RenderNode {
 
 ## isRegionContained<sup>12+</sup>
 
-isRegionContained(other: Region) : boolean
+isRegionContained(other: Region): boolean
 
 判断其他区域是否在当前区域内。
 
@@ -442,7 +440,7 @@ isRegionContained(other: Region) : boolean
 
 | 参数名 | 类型   | 必填 | 说明                    |
 | ------ | ------ | ---- | ----------------------- |
-| other      | [Region](arkts-apis-graphics-drawing-Region.md) | 是   | 区域对象。 |
+| other      | [Region](arkts-apis-graphics-drawing-Region.md) | 是   | 用于判断是否在当前区域内的其他区域对象。 |
 
 **返回值：**
 
@@ -456,7 +454,7 @@ isRegionContained(other: Region) : boolean
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
-| 401 | Parameter error.Possible causes:1.Mandatory parameters are left unspecified;2.Incorrect parameter types. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 
 **示例：**
 
@@ -492,7 +490,7 @@ class DrawingRenderNode extends RenderNode {
 
 ## op<sup>12+</sup>
 
-op(region: Region, regionOp: RegionOp) : boolean
+op(region: Region, regionOp: RegionOp): boolean
 
 将当前区域与指定区域进行运算，并替换为运算结果。
 
@@ -502,14 +500,14 @@ op(region: Region, regionOp: RegionOp) : boolean
 
 | 参数名 | 类型   | 必填 | 说明                    |
 | ------ | ------ | ---- | ----------------------- |
-| region      | [Region](arkts-apis-graphics-drawing-Region.md) | 是   | 区域对象。 |
-| regionOp      | [RegionOp](arkts-apis-graphics-drawing-e.md#regionop12) | 是   | 区域合并操作类型。 |
+| region      | [Region](arkts-apis-graphics-drawing-Region.md) | 是   | 用于与当前区域进行运算的指定区域对象。 |
+| regionOp      | [RegionOp](arkts-apis-graphics-drawing-e.md#regionop12) | 是   | 区域运算操作类型。 |
 
 **返回值：**
 
 | 类型    | 说明           |
 | ------- | -------------- |
-| boolean | 返回区域运算结果是否成功替换当前区域。true表示区域运算结果替换当前区域成功，false表示区域运算结果替换当前区域失败。 |
+| boolean | 返回区域运算结果是否成功替换当前区域的结果。true表示区域运算结果替换当前区域成功，false表示区域运算结果替换当前区域失败。 |
 
 **错误码：**
 
@@ -517,7 +515,7 @@ op(region: Region, regionOp: RegionOp) : boolean
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
-| 401 | Parameter error.Possible causes:1.Mandatory parameters are left unspecified;2.Incorrect parameter types. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 
 **示例：**
 
@@ -554,7 +552,7 @@ class DrawingRenderNode extends RenderNode {
 
 quickReject(left: number, top: number, right: number, bottom: number) : boolean
 
-快速判断矩形和区域是否不相交，实际上比较的是矩形和区域的外接矩形是否不相交，因此会有误差。
+快速判断矩形和区域是否不相交。实际上比较的是矩形和区域的外接矩形是否不相交，因此当外接矩形相交但实际区域不相交时，会返回false（即误判为相交）。
 
 **系统能力：** SystemCapability.Graphics.Drawing
 
@@ -562,16 +560,16 @@ quickReject(left: number, top: number, right: number, bottom: number) : boolean
 
 | 参数名 | 类型   | 必填 | 说明                    |
 | ------ | ------ | ---- | ----------------------- |
-| left   | number | 是   | 矩形区域的左侧位置。该参数必须为整数。当输入的数字带小数时，小数部分会被舍去。单位为物理像素px。 |
-| top    | number | 是   | 矩形区域的顶部位置。该参数必须为整数。当输入的数字带小数时，小数部分会被舍去。单位为物理像素px。 |
-| right  | number | 是   | 矩形区域的右侧位置。该参数必须为整数。当输入的数字带小数时，小数部分会被舍去。单位为物理像素px。 |
-| bottom | number | 是   | 矩形区域的底部位置。该参数必须为整数。当输入的数字带小数时，小数部分会被舍去。单位为物理像素px。 |
+| left   | number | 是   | 矩形区域的左侧位置（矩形左上角横坐标）。该参数必须为整数。当输入的数字带小数时，小数部分会被舍去。单位为物理像素px。 |
+| top    | number | 是   | 矩形区域的顶部位置（矩形左上角纵坐标）。该参数必须为整数。当输入的数字带小数时，小数部分会被舍去。单位为物理像素px。 |
+| right  | number | 是   | 矩形区域的右侧位置（矩形右下角横坐标）。该参数必须为整数。当输入的数字带小数时，小数部分会被舍去。单位为物理像素px。 |
+| bottom | number | 是   | 矩形区域的底部位置（矩形右下角纵坐标）。该参数必须为整数。当输入的数字带小数时，小数部分会被舍去。单位为物理像素px。 |
 
 **返回值：**
 
 | 类型    | 说明           |
 | ------- | -------------- |
-| boolean | 返回矩形是否与区域不相交的结果。true表示矩形与区域不相交，false表示矩形与区域相交。 |
+| boolean | 返回矩形是否与区域不相交的结果。true表示矩形与区域不相交，false表示矩形与区域相交。当矩形与区域仅点或边相交时，也返回true。 |
 
 **错误码：**
 
@@ -579,7 +577,7 @@ quickReject(left: number, top: number, right: number, bottom: number) : boolean
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
-| 401 | Parameter error.Possible causes:1.Mandatory parameters are left unspecified;2.Incorrect parameter types. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 
 **示例：**
 
@@ -614,7 +612,7 @@ class DrawingRenderNode extends RenderNode {
 
 quickRejectRegion(region: Region): boolean
 
-判断当前区域是否与另一个区域不相交。实际上比较的是两个区域的外接矩形是否不相交，因此会有误差。
+判断当前区域是否与指定区域不相交。实际上比较的是两个区域的外接矩形是否不相交，因此当外接矩形相交但实际区域不相交时，会返回false（即误判为相交）。
 
 **系统能力：** SystemCapability.Graphics.Drawing
 
@@ -622,13 +620,13 @@ quickRejectRegion(region: Region): boolean
 
 | 参数名 | 类型   | 必填 | 说明                    |
 | ------ | ------ | ---- | ----------------------- |
-| region      | [Region](arkts-apis-graphics-drawing-Region.md) | 是   | 指定的区域对象。 |
+| region      | [Region](arkts-apis-graphics-drawing-Region.md) | 是   | 用于判断是否与当前区域不相交的指定区域对象。 |
 
 **返回值：**
 
 | 类型    | 说明           |
 | ------- | -------------- |
-| boolean | 返回是否当前区域与另外的区域不相交的结果。true表示不相交，false表示相交。仅点和边相交返回true。|
+| boolean | 返回当前区域与另一个区域是否不相交的结果。true表示不相交，false表示相交。当两个区域仅点或边相交时，也返回true。|
 
 **示例：**
 
@@ -662,7 +660,7 @@ class DrawingRenderNode extends RenderNode {
 
 ## setPath<sup>12+</sup>
 
-setPath(path: Path, clip: Region) : boolean
+setPath(path: Path, clip: Region): boolean
 
 设置一个与裁剪区域内路径轮廓相匹配的区域。
 
@@ -672,14 +670,14 @@ setPath(path: Path, clip: Region) : boolean
 
 | 参数名 | 类型   | 必填 | 说明                    |
 | ------ | ------ | ---- | ----------------------- |
-| path      | [Path](arkts-apis-graphics-drawing-Path.md) | 是   | 路径对象。 |
-| clip      | [Region](arkts-apis-graphics-drawing-Region.md) | 是   | 区域对象。 |
+| path      | [Path](arkts-apis-graphics-drawing-Path.md) | 是   | 用于设置区域轮廓的路径对象。 |
+| clip      | [Region](arkts-apis-graphics-drawing-Region.md) | 是   | 裁剪区域对象，用于限定路径轮廓的有效范围，仅路径在裁剪区域内的部分会被用于设置区域。 |
 
 **返回值：**
 
 | 类型    | 说明           |
 | ------- | -------------- |
-| boolean | 返回设置一个与裁剪区域内路径轮廓相匹配的区域是否成功。true表示设置成功，false表示设置失败。 |
+| boolean | 返回设置区域是否成功的结果。true表示设置成功，false表示设置失败。 |
 
 **错误码：**
 
@@ -687,7 +685,7 @@ setPath(path: Path, clip: Region) : boolean
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
-| 401 | Parameter error.Possible causes:1.Mandatory parameters are left unspecified;2.Incorrect parameter types. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 
 **示例：**
 
@@ -724,7 +722,7 @@ class DrawingRenderNode extends RenderNode {
 
 setRegion(region: Region): void
 
-设置当前区域为另一块区域。
+设置当前区域为指定区域。
 
 **系统能力：** SystemCapability.Graphics.Drawing
 
@@ -732,7 +730,7 @@ setRegion(region: Region): void
 
 | 参数名 | 类型   | 必填 | 说明                    |
 | ------ | ------ | ---- | ----------------------- |
-| region      | [Region](arkts-apis-graphics-drawing-Region.md) | 是   | 用于赋值的区域。 |
+| region      | [Region](arkts-apis-graphics-drawing-Region.md) | 是   | 用于设置当前区域内容的源区域对象。 |
 
 **示例：**
 
@@ -791,7 +789,7 @@ class DrawingRenderNode extends RenderNode {
 
 ## setRect<sup>12+</sup>
 
-setRect(left: number, top: number, right: number, bottom: number) : boolean
+setRect(left: number, top: number, right: number, bottom: number): boolean
 
 设置一个矩形区域。
 
@@ -801,10 +799,10 @@ setRect(left: number, top: number, right: number, bottom: number) : boolean
 
 | 参数名 | 类型   | 必填 | 说明                    |
 | ------ | ------ | ---- | ----------------------- |
-| left   | number | 是   | 矩形区域的左侧位置。该参数必须为整数。当输入的数字带小数时，小数部分会被舍去。单位为物理像素px。 |
-| top    | number | 是   | 矩形区域的顶部位置。该参数必须为整数。当输入的数字带小数时，小数部分会被舍去。单位为物理像素px。 |
-| right  | number | 是   | 矩形区域的右侧位置。该参数必须为整数。当输入的数字带小数时，小数部分会被舍去。单位为物理像素px。 |
-| bottom | number | 是   | 矩形区域的底部位置。该参数必须为整数。当输入的数字带小数时，小数部分会被舍去。单位为物理像素px。 |
+| left   | number | 是   | 矩形区域的左侧位置（矩形左上角横坐标）。该参数必须为整数。当输入的数字带小数时，小数部分会被舍去。单位为物理像素px。 |
+| top    | number | 是   | 矩形区域的顶部位置（矩形左上角纵坐标）。该参数必须为整数。当输入的数字带小数时，小数部分会被舍去。单位为物理像素px。 |
+| right  | number | 是   | 矩形区域的右侧位置（矩形右下角横坐标）。该参数必须为整数。当输入的数字带小数时，小数部分会被舍去。单位为物理像素px。 |
+| bottom | number | 是   | 矩形区域的底部位置（矩形右下角纵坐标）。该参数必须为整数。当输入的数字带小数时，小数部分会被舍去。单位为物理像素px。 |
 
 **返回值：**
 
@@ -818,7 +816,7 @@ setRect(left: number, top: number, right: number, bottom: number) : boolean
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
-| 401 | Parameter error.Possible causes:1.Mandatory parameters are left unspecified;2.Incorrect parameter types. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 
 **示例：**
 
@@ -922,7 +920,7 @@ quickContains(left: number, top: number, right: number, bottom: number): boolean
 
 | 类型    | 说明           |
 | ------- | -------------- |
-| boolean | 返回当前区域是否等同于单个矩形并且包含指定矩形的结果。true表示当前区域等同于单个矩形并且包含指定矩形，false表示当前区域不等同于单个矩形或不包含指定矩形。 |
+| boolean | 返回判断结果。true表示当前区域等同于单个矩形且包含指定矩形，false表示当前区域不等同于单个矩形或不包含指定矩形。 |
 
 **示例：**
 

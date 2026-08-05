@@ -70,7 +70,7 @@ isMainFrame(): boolean
 
 isRedirect(): boolean
 
-判断资源请求是否被服务端重定向。用于检查请求重定向链，识别恶意重定向。
+判断资源请求是否被服务端重定向，用于检查请求重定向链等场景。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 

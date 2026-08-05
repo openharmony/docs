@@ -1,10 +1,12 @@
 # Obtaining and Using System Fonts (C/C++)
+
 <!--Kit: ArkGraphics 2D-->
 <!--Subsystem: Graphics-->
 <!--Owner: @gmiao522-->
 <!--Designer: @liumingxiang-->
 <!--Tester: @yhl0101-->
 <!--Adviser: @ge-yafang-->
+<!-- md-trans-meta sourceCommit=cc9ab098c82a97707ffdb5b7d7053b861bc0839c translatedAt=2026-08-03T11:23:06.614Z pushedAt=2026-08-04T07:33:33.767Z -->
 
 ## Overview
 
@@ -13,7 +15,6 @@ System fonts are built-in fonts of the operating system. They show text when no 
 System fonts can be enabled when an application does not register custom fonts or does not explicitly specify the text style. There are multiple system fonts. You can obtain the configuration information about system fonts and switch and use system fonts based on the font family name in the information.
 
 System fonts can be disabled when you want to ensure that only custom fonts are used in your application, without being affected by the default fonts of the operating system. If the system font is enabled when there is no custom font, the system uses the default font. You can disable system fonts to ensure that the text rendering conforms to the design expectation and the visual style of the application is consistent.
-
 
 ## Available APIs
 
@@ -34,10 +35,10 @@ The following table lists the common APIs and structs related to system fonts. F
 | OH_Drawing_FontGenericInfo | Describes the information about generic fonts supported by the system.| 
 | OH_Drawing_FontFallbackGroup | Describes the information about a font fallback group.| 
 
-
 ## Obtaining System Font Information
 
 1. Add the following library to the `src/main/cpp/CMakeLists.txt` file of the project.
+
    ```c++
    libnative_drawing.so
    ```
@@ -51,10 +52,10 @@ The following table lists the common APIs and structs related to system fonts. F
    #include <hilog/log.h>
    ```
 
-3. Obtain the system font configuration. Check whether your attempt is successful according to the result code. For details, see [OH_Drawing_FontConfigInfoErrorCode](../reference/apis-arkgraphics2d/capi-drawing-text-typography-h.md#oh_drawing_fontconfiginfoerrorcode).
+3. Obtain the system font configuration information. You can determine whether the information is obtained successfully based on the returned status code. For details about the status codes and their meanings, see [OH_Drawing_FontConfigInfoErrorCode](../reference/apis-arkgraphics2d/capi-drawing-text-typography-h.md#oh_drawing_fontconfiginfoerrorcode).
 
    <!-- @[custom_font_c_print_system_font_metrics_step1](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkGraphics2D/TextEngine/NDKThemFontAndCustomFontText/entry/src/main/cpp/samples/sample_bitmap.cpp) -->
-   
+
    ``` C++
    OH_Drawing_FontConfigInfoErrorCode fontConfigInfoErrorCode;  // Used to receive the error code.
    OH_Drawing_FontConfigInfo* fontConfigInfo = OH_Drawing_GetSystemFontConfigInfo(&fontConfigInfoErrorCode);
@@ -80,7 +81,7 @@ The following table lists the common APIs and structs related to system fonts. F
    The following example shows how to obtain certain configuration information about system fonts:
 
    <!-- @[custom_font_c_print_system_font_metrics_step2](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkGraphics2D/TextEngine/NDKThemFontAndCustomFontText/entry/src/main/cpp/samples/sample_bitmap.cpp) -->
-   
+
    ``` C++
    // Obtaining system font configuration
    if (fontConfigInfo != nullptr) {
@@ -114,7 +115,6 @@ The following table lists the common APIs and structs related to system fonts. F
    OH_Drawing_DestroySystemFontConfigInfo(fontConfigInfo);
    ```
 
-
 ## Using or Switching System Fonts
 
 There are multiple system fonts. You can obtain the configuration information about system fonts and switch and use system fonts based on the font family name.
@@ -122,6 +122,7 @@ There are multiple system fonts. You can obtain the configuration information ab
 If no font is specified, the default system font "HarmonyOS Sans" is used to display text.
 
 1. Add the following library to the `src/main/cpp/CMakeLists.txt` file of the project.
+
    ```c++
    libnative_drawing.so
    ```
@@ -135,14 +136,14 @@ If no font is specified, the default system font "HarmonyOS Sans" is used to dis
    #include <hilog/log.h>
    ```
 
-3. Create a font manager. You are advised to use **OH_Drawing_CreateSharedFontCollection** to create a sharable font set object.
+3. Create a font collection object. It is recommended to preferentially use **OH_Drawing_CreateSharedFontCollection** to create a shareable font collection object.
 
    > **NOTE**
    >
    > **OH_Drawing_CreateFontCollection** and **OH_Drawing_CreateSharedFontCollection** both create an **OH_Drawing_FontCollection** object. However, **OH_Drawing_CreateFontCollection** creates font set pointers that cannot be shared across **OH_Drawing_TypographyCreate** objects. Therefore, you are advised to use **OH_Drawing_CreateSharedFontCollection** to create a sharable font set object.
 
    <!-- @[custom_font_c_create_shared_font_collection](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkGraphics2D/TextEngine/NDKThemFontAndCustomFontText/entry/src/main/cpp/samples/sample_bitmap.cpp) -->
-   
+
    ``` C++
    OH_Drawing_FontCollection *fontCollection = OH_Drawing_CreateSharedFontCollection();
    ```
@@ -150,14 +151,15 @@ If no font is specified, the default system font "HarmonyOS Sans" is used to dis
 4. Create an **OH_Drawing_TextStyle** object to set the text style.
 
    <!-- @[custom_font_c_create_text_style](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkGraphics2D/TextEngine/NDKThemFontAndCustomFontText/entry/src/main/cpp/samples/sample_bitmap.cpp) -->
-   
+
    ``` C++
    OH_Drawing_TextStyle *textStyle = OH_Drawing_CreateTextStyle();
    ```
 
 5. [Obtaining system font information](#obtaining-system-font-information): Obtain the font family name and set the system font in the text style.
+
    <!-- @[custom_font_c_print_system_font_metrics_step3](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkGraphics2D/TextEngine/NDKThemFontAndCustomFontText/entry/src/main/cpp/samples/sample_bitmap.cpp) -->
-   
+
    ``` C++
    // Case 1: Set the system font to "HarmonyOS Sans Condensed".
    const char *myFontFamilies[] = {"HarmonyOS Sans Condensed"};
@@ -171,7 +173,7 @@ If no font is specified, the default system font "HarmonyOS Sans" is used to dis
 6. Generate the final paragraph to implement text drawing and display.
 
    <!-- @[custom_font_c_print_system_font_metrics_step4](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkGraphics2D/TextEngine/NDKThemFontAndCustomFontText/entry/src/main/cpp/samples/sample_bitmap.cpp) -->
-   
+
    ``` C++
    // Set other text styles.
    OH_Drawing_SetTextStyleColor(textStyle, OH_Drawing_ColorSetArgb(0xFF, 0x00, 0x00, 0x00));
@@ -209,6 +211,7 @@ In some use cases, you may want to use only custom fonts to ensure font consiste
 1. Register a custom font. For details, see [Registering and Using Custom Fonts](custom-font-c.md).
 
 2. Add the following library to the `src/main/cpp/CMakeLists.txt` file of the project.
+
    ```c++
    libnative_drawing.so
    ```
@@ -222,10 +225,10 @@ In some use cases, you may want to use only custom fonts to ensure font consiste
    #include <hilog/log.h>
    ```
 
-4. Create a font manager. You are advised to use **OH_Drawing_CreateSharedFontCollection** to create a sharable font set object.
+4. Create a font collection object. It is recommended to preferentially use **OH_Drawing_CreateSharedFontCollection** to create a shareable font collection object.
 
    <!-- @[custom_font_c_disable_system_font_text_step_create](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkGraphics2D/TextEngine/NDKThemFontAndCustomFontText/entry/src/main/cpp/samples/sample_bitmap.cpp) -->
-   
+
    ``` C++
    OH_Drawing_FontCollection *fontCollection = OH_Drawing_CreateSharedFontCollection();
    ```
@@ -233,7 +236,7 @@ In some use cases, you may want to use only custom fonts to ensure font consiste
 5. Disable the system fonts.
 
    <!-- @[custom_font_c_disable_system_font_text](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkGraphics2D/TextEngine/NDKThemFontAndCustomFontText/entry/src/main/cpp/samples/sample_bitmap.cpp) -->
-   
+
    ``` C++
    OH_Drawing_DisableFontCollectionSystemFont(fontCollection);
    ```
@@ -245,13 +248,14 @@ In some use cases, you may want to use only custom fonts to ensure font consiste
    > If no font is set, the system font is used by default. If the system font is disabled and no custom font is set, the text cannot be displayed properly.
 
    <!-- @[custom_font_c_disable_system_font_text_step1](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkGraphics2D/TextEngine/NDKThemFontAndCustomFontText/entry/src/main/cpp/samples/sample_bitmap.cpp) -->
-   
+
    ``` C++
    OH_Drawing_TextStyle *textStyle = OH_Drawing_CreateTextStyle();
    // Possible cases when the system fonts are disabled:
    // Case 1: If the custom font is used, the text is displayed properly.
    // This path is the path of the custom font file to be registered on the application device. Ensure that the custom font file is properly placed in this path.
    // The font family name is required when the custom font is used.
+   // Case 2: If OH_Drawing_SetTextStyleFontFamilies is not called or empty parameters are passed, the text uses the system default font by default. However, since the system font is disabled at this point, the text cannot be displayed.
    const char* fontFamily = "HarmonyOS_Sans"; 
    const char* fontPath = "/system/fonts/HarmonyOS_Sans.ttf"; 
    // Returns **0** if the font is registered; returns **1** if the file does not exist; returns **2** if opening the file fails; returns **3** if reading the file fails; returns **4** if the file is not found; returns **5** if the file size is not obtained; returns **9** if the file is damaged.
@@ -259,20 +263,12 @@ In some use cases, you may want to use only custom fonts to ensure font consiste
    DRAWING_LOGI("errorCode = %{public}d", errorCode);
    const char *myFontFamilies[] = {"HarmonyOS_Sans"}; // Ensure that the custom font has been successfully registered and enter the family name of the custom font.
    OH_Drawing_SetTextStyleFontFamilies(textStyle, 1, myFontFamilies);
-   
-   // Case 2: If the system font is used, the text cannot be displayed.
-   // const char *myFontFamilies[] = {"HarmonyOS_Sans"};
-   // OH_Drawing_SetTextStyleFontFamilies(textStyle, 1, myFontFamilies);
-   
-   // Case 3: If no font is set, the default system font is used by default. However, the system fonts have been disabled. As a result, the text cannot be displayed.
-   // const char *myFontFamilies[] = {"HarmonyOS_Sans"};
-   // OH_Drawing_SetTextStyleFontFamilies(textStyle, 1, myFontFamilies);
    ```
 
 7. Generate the final paragraph to implement text drawing and display.
 
    <!-- @[custom_font_c_disable_system_font_text_step2](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkGraphics2D/TextEngine/NDKThemFontAndCustomFontText/entry/src/main/cpp/samples/sample_bitmap.cpp) -->
-   
+
    ``` C++
    // Set other text styles.
    OH_Drawing_SetTextStyleColor(textStyle, OH_Drawing_ColorSetArgb(0xFF, 0x00, 0x00, 0x00));

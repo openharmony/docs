@@ -2,20 +2,26 @@
 
 <!--Kit: Function Flow Runtime Kit-->
 <!--Subsystem: Resourceschedule-->
-<!--Owner: @chuchihtung; @yanleo-->
-<!--Designer: @geoffrey_guo; @huangyouzhong-->
-<!--Tester: @lotsof; @sunxuhao-->
+<!--Owner: @chuchihtung-->
+<!--Designer: @zhanglu161-->
+<!--Tester: @lotsof-->
 <!--Adviser: @jinqiuheng-->
+<!-- md-trans-meta sourceCommit=246cbb87769d7ba2d4f71c6a8b417a57ec2cbfa6 translatedAt=2026-08-03T08:17:13.819Z pushedAt=2026-08-03T09:36:02.639Z -->
 
 ## Overview
 
 The FFRT serial queue is implemented based on the coroutine scheduling model. It provides efficient message queue functions and supports multiple service scenarios, such as asynchronous communication, mobile data peak clipping, lock-free status and resource management, and architecture decoupling. The following functions are supported:
 
 - **Queue creation and destruction**: The queue name and priority can be specified during creation. Each queue is equivalent to an independent thread. Tasks in the queue are executed asynchronously compared with user threads.
+
 - **Task delay**: The `delay` can be set when a task is submitted. The unit is `μs`. The delayed task will be scheduled and executed after `uptime` (submission time + delay time).
+
 - **Serial scheduling**: Tasks in the same queue are sorted in ascending order of `uptime` and executed in serial mode. Ensure that the next task starts to be executed only after the previous task in the queue is complete.
+
 - **Task canceling**: You can cancel a task that is not dequeued based on the task handle. The task cannot be canceled if it has been started or completed.
+
 - **Task waiting**: You can wait for a task to complete based on the task handle. When a specified task is complete, all tasks whose `uptime` is earlier than the specified task in the queue have been executed.
+
 - **Task priority**: You can set the priority of a single task when submitting the task. Priorities take effect only after a task is dequeued relative to other system loads, and do not affect the serial task order in the same queue. If the task priority is not set, the priority of the queue is inherited by default.
 
 ## Example: Asynchronous Log System
@@ -26,53 +32,63 @@ With FFRT APIs, you only need to focus on service logic implementation and do no
 
 The example simplifies the logic for handling exceptions and ensuring thread security. The code is as follows:
 
-```c
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
+<!-- @[serial_c_header](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/FunctionFlowRuntime/SerialQueue/entry/src/main/cpp/serial_queue.h) -->
+
+``` C
+#include <cstdio>
+#include <cstdlib>
+#include <cstring>
 #include <unistd.h>
+#include "hilog/log.h"
 #include "ffrt/ffrt.h" // From the OpenHarmony third-party library "@ppd/ffrt"
+```
+
+<!-- @[serial_c](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/FunctionFlowRuntime/SerialQueue/entry/src/main/cpp/serial_queue.cpp) -->
+
+``` C++
+#undef LOG_TAG
+#define LOG_TAG "SerialTag"
 
 typedef struct {
-    FILE *logFile;          // Pointer to a log file.
+    FILE *logFile;          // Log file pointer.
     ffrt_queue_t queue;     // Task queue.
-} logger_t;
+} LoggerT;
 
-// Global logger variable.
-logger_t* g_logger = NULL;
+// Global Logger variable.
+LoggerT* g_logger = nullptr;
 
-// Initialize the log system.
-logger_t *logger_create(const char *filename)
+// Initialize the logging system.
+LoggerT *LoggerCreate(const char *filename)
 {
-    logger_t *logger = (logger_t *)malloc(sizeof(logger_t));
+    LoggerT *logger = (LoggerT *)malloc(sizeof(LoggerT));
     if (!logger) {
-        perror("Failed to allocate memory for logger_t");
-        return NULL;
+        OH_LOG_ERROR(LOG_APP, "Failed to allocate memory for LoggerT");
+        return nullptr;
     }
 
     // Open the log file.
-    logger->logFile = fopen(filename, "a");
+    logger->logFile = stdout;
     if (!logger->logFile) {
-        perror("Failed to open log file");
+        OH_LOG_ERROR(LOG_APP, "Failed to open log file");
         free(logger);
-        return NULL;
+        return nullptr;
     }
-    printf("Log file opened: %s\n", filename);
+    OH_LOG_INFO(LOG_APP, "Log file opened: %{public}s", filename);
 
-    // Create a task queue.
+    // Create the task queue.
     logger->queue = ffrt_queue_create(ffrt_queue_serial, "logger_queue_c", NULL);
     if (!logger->queue) {
-        perror("Failed to create queue");
+        OH_LOG_ERROR(LOG_APP, "Failed to create queue");
         fclose(logger->logFile);
         free(logger);
-        return NULL;
+        return nullptr;
     }
 
     return logger;
 }
 
-// Destroy the log system.
-void logger_destroy(logger_t *logger)
+// Destroy the logging system.
+void LoggerDestroy(LoggerT *logger)
 {
     if (logger) {
         // Destroy the queue.
@@ -83,7 +99,7 @@ void logger_destroy(logger_t *logger)
         // Close the log file.
         if (logger->logFile) {
             fclose(logger->logFile);
-            printf("Log file closed\n");
+            OH_LOG_INFO(LOG_APP, "Log file closed");
         }
 
         free(logger);
@@ -91,11 +107,11 @@ void logger_destroy(logger_t *logger)
 }
 
 // Log task.
-void write_task(void *arg)
+void WriteTask(void *arg)
 {
     char *message = (char *)arg;
     if (g_logger && g_logger->logFile) {
-        fprintf(g_logger->logFile, "%s\n", message);
+        OH_LOG_INFO(LOG_APP, "Writing message %{public}s", message);
         fflush(g_logger->logFile);
     }
 
@@ -103,7 +119,7 @@ void write_task(void *arg)
 }
 
 // Add a log task.
-void logger_log(logger_t *logger, const char *message)
+void LoggerLog(LoggerT *logger, const char *message)
 {
     if (!logger || !logger->queue) {
         return;
@@ -112,32 +128,32 @@ void logger_log(logger_t *logger, const char *message)
     // Copy the message string.
     char *messageCopy = strdup(message);
     if (!messageCopy) {
-        perror("Failed to allocate memory for message");
+        OH_LOG_ERROR(LOG_APP, "Failed to allocate memory for message");
         return;
     }
 
-    ffrt_queue_submit_f(logger->queue, write_task, messageCopy, NULL);
+    ffrt_queue_submit_f(logger->queue, WriteTask, messageCopy, NULL);
 }
 
-int main()
+int SerialQueueCExec()
 {
     // Initialize the global logger.
-    g_logger = logger_create("log_c.txt");
+    g_logger = LoggerCreate("log_c.txt");
     if (!g_logger) {
         return -1;
     }
 
-    // Use the global logger to add a log task.
-    logger_log(g_logger, "Log message 1");
-    logger_log(g_logger, "Log message 2");
-    logger_log(g_logger, "Log message 3");
+    // Add a log task using the global logger.
+    LoggerLog(g_logger, "Log message 1");
+    LoggerLog(g_logger, "Log message 2");
+    LoggerLog(g_logger, "Log message 3");
 
-    // Simulate the main thread to continue executing other tasks.
+    // Simulate the main thread continuing to execute other tasks.
     sleep(1);
 
     // Destroy the global logger.
-    logger_destroy(g_logger);
-    g_logger = NULL;
+    LoggerDestroy(g_logger);
+    g_logger = nullptr;
     return 0;
 }
 ```
@@ -159,10 +175,12 @@ The main FFRT APIs involved in the preceding example are as follows:
 > **NOTE**
 >
 > - For details about how to use FFRT C++ APIs, see [Using FFRT C++ APIs](ffrt-development-guideline.md#using-ffrt-c-api-1).
-> - When using FFRT C or C++ APIs, you can use the FFRT C++ API third-party library to simplify header file inclusion, that is, use the `#include "ffrt/ffrt.h"` header file to include statements.
+> - When using FFRT C or C++ APIs, you can use the FFRT C++ API third-party library to simplify header file inclusion, that is, use the `#include "ffrt/ffrt.h"` statement.
 
 ## Constraints
 
 - **Avoid submitting ultra-long tasks.** The FFRT has a built-in process-level queue task timeout detection mechanism. When the execution time of a serial task exceeds the preset threshold (30 seconds by default), the system prints and reports exception logs and triggers the preset process timeout callback function (if configured).
+
 - **Use synchronization primitives correctly.** Do not use `std::mutex`, `std::condition_variable`, or `std::recursive_mutex` in the task closure submitted to FFRT. As synchronization primitives in the standard library will occupy the FFRT Worker thread for a long time, you should use the synchronization primitives provided by FFRT: `ffrt::mutex`, `ffrt::condition_variable`, or `ffrt::recursive_mutex`. The usage is the same as that of the standard library.
+
 - **Manage queues in global variables.** If serial queues are managed in global variables and destroyed with service processes, pay attention to lifecycle decoupling in the test program. When the test is complete, the serial queue needs to be explicitly released. Other resources can be released with global variables. The reason is that global variables are destructed after the main function ends, and the release of serial queues depends on other resources in the FFRT framework, and the resources may have been destroyed.

@@ -8,7 +8,7 @@
 
 ## 概述
 
-定义ImageSpan相关的枚举和接口。
+定义ImageSpan相关的枚举，用于在富文本中嵌入图片并控制图片与文本的对齐方式。支持多种对齐模式，适用于图文混排场景，可实现图片与文本的精确对齐，提升富文本的展示效果。
 
 **引用文件：** <arkui/node_attributes/image_span.h>
 
@@ -46,7 +46,7 @@ enum ArkUI_ImageSpanAlignment
 
 | 枚举项 | 描述 |
 | -- | -- |
-| ARKUI_IMAGE_SPAN_ALIGNMENT_BASELINE = 0 | 图片下边沿与文本BaseLine对齐。 |
+| ARKUI_IMAGE_SPAN_ALIGNMENT_BASELINE = 0 | 图片下边沿与文本基线对齐。 |
 | ARKUI_IMAGE_SPAN_ALIGNMENT_BOTTOM = 1 | 图片下边沿与文本下边沿对齐。 |
 | ARKUI_IMAGE_SPAN_ALIGNMENT_CENTER = 2 | 图片中间与文本中间对齐。 |
 | ARKUI_IMAGE_SPAN_ALIGNMENT_TOP = 3 | 图片上边沿与文本上边沿对齐。 |

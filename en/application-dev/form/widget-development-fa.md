@@ -1,46 +1,46 @@
 # Developing a JS Widget (FA Model)
+
 <!--Kit: Form Kit-->
 <!--Subsystem: Ability-->
 <!--Owner: @Qian-Win-->
 <!--Designer: @cx983299475-->
 <!--Tester: @mahailong123456-->
 <!--Adviser: @HelloShuo-->
+<!-- md-trans-meta sourceCommit=6b0733adc9a538f18ea8143587feeecb737929d9 translatedAt=2026-08-03T02:30:37.481Z pushedAt=2026-08-03T08:12:33.832Z -->
+
 The FA model is supported since API version 7, and no longer recommended. Application components are specified by exporting anonymous objects and fixed entry files. You cannot perform derivation for capability expansion. Now, the stage model is recommended for application development.
 
 ## Available APIs
 
 The **FormAbility** has the following APIs.
 
+| API                                                           | Description                                                                                                                                                                |
+| ------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| onCreate(want: Want): formBindingData.FormBindingData       | Notifies the widget provider that a widget has been created.                                                                                                               |
+| onCastToNormal(formId: string): void                        | Notifies the widget provider that a temporary widget has been converted from a temporary widget to a normal widget.                                                        |
+| onUpdate(formId: string): void                              | Notifies the widget provider that a widget has been updated.                                                                                                               |
+| onVisibilityChange(newStatus: Record<string, number>): void | Notifies the widget provider of widget visibility changes.                                                                                                                 |
+| onEvent(formId: string, message: string): void              | Notifies the widget provider of a widget event.                                                                                                                            |
+| onDestroy(formId: string): void                             | Notifies the widget provider that a widget has been destroyed.                                                                                                             |
+| onAcquireFormState?(want: Want): formInfo.FormState         | Notifies the widget provider of a widget state query.                                                                                                                      |
+| onShare?(formId: string): {[key: string]: any}              | Notifies the widget provider of widget sharing.                                                                                                                            |
+| onShareForm?(formId: string): Record<string, Object>        | Notifies the widget provider of widget sharing. You are advised to use this API instead of **onShare()**. If this API is implemented, **onShare()** will not be triggered. |
+
+
+The FormProvider class provides the following APIs. For details about the APIs, see [@ohos.app.form.formProvider (formProvider)](../reference/apis-form-kit/js-apis-app-form-formProvider.md).
+
 | API| Description|
 | -------- | -------- |
-| onCreate(want: Want): formBindingData.FormBindingData | Called to notify the widget provider that a widget has been created.|
-| onCastToNormal(formId: string): void | Called to notify the widget provider that a temporary widget has been converted to a normal one.|
-| onUpdate(formId: string): void | Called to notify the widget provider that a widget has been updated.|
-| onVisibilityChange(newStatus:&nbsp;Record&lt;string,&nbsp;number&gt;):&nbsp;void | Called to notify the widget provider of the change in widget visibility.|
-| onEvent(formId: string, message: string): void | Called to instruct the widget provider to receive and process a widget event.|
-| onDestroy(formId: string): void | Called to notify the widget provider that a widget has been destroyed.|
-| onAcquireFormState?(want: Want): formInfo.FormState | Called to instruct the widget provider to receive the status query result of a widget.|
-| onShare?(formId: string): {[key: string]: any} | Called by the widget provider to receive shared widget data.|
-| onShareForm?(formId:&nbsp;string):&nbsp;Record&lt;string,&nbsp;Object&gt; | Called by the widget provider to receive shared widget data. You are advised to use this API, instead of **onShare()**. If this API is implemented, **onShare()** will not be triggered.|
-
-The **FormProvider** class has the following APIs. For details, see [FormProvider](../reference/apis-form-kit/js-apis-app-form-formProvider.md).
-
-
-| API| Description|
-| -------- | -------- |
-| setFormNextRefreshTime(formId: string, minute: number, callback: AsyncCallback&lt;void&gt;): void;| Sets the next refresh time for a widget. This API uses an asynchronous callback to return the result.|
-| setFormNextRefreshTime(formId: string, minute: number): Promise&lt;void&gt;;| Sets the next refresh time for a widget. This API uses a promise to return the result.|
+| setFormNextRefreshTime(formId:&nbsp;string,&nbsp;minute:&nbsp;number,&nbsp;callback:&nbsp;AsyncCallback&lt;void&gt;):&nbsp;void; | Sets the next refresh time for a specified widget. This API uses an asynchronous callback to return the result. |
+| setFormNextRefreshTime(formId:&nbsp;string,&nbsp;minute:&nbsp;number):&nbsp;Promise&lt;void&gt;; | Sets the next refresh time for a specified widget. This API uses a promise to return the result. |
 | updateForm(formId: string, formBindingData: formBindingData.FormBindingData,callback: AsyncCallback&lt;void&gt;): void; | Updates a widget. This API uses an asynchronous callback to return the result.|
 | updateForm(formId: string, formBindingData: FormBindingData): Promise&lt;void&gt;; | Updates a widget. This API uses a promise to return the result.|
 
+The FormBindingData class provides the following APIs. For details about the APIs, see [@ohos.app.form.formBindingData (formBindingData)](../reference/apis-form-kit/js-apis-app-form-formBindingData.md).
 
-The **FormBindingData** class has the following APIs. For details, see [FormBindingData](../reference/apis-form-kit/js-apis-app-form-formBindingData.md).
-
-
-| API| Description|
+| API | Description |
 | -------- | -------- |
-| createFormBindingData(obj?: Object \ string): FormBindingData| | Creates a **FormBindingData** object.|
-
+| createFormBindingData(obj?:&nbsp;Object&nbsp;\|&nbsp;string):&nbsp;FormBindingData | Creates a **FormBindingData** object. |
 
 ## How to Develop
 
@@ -58,13 +58,12 @@ The widget provider development based on the [FA model](../application-models/fa
 
 - [Developing Widget Events](#developing-widget-events): Add the router and message events for a widget.
 
-
 ### Implementing Widget Lifecycle Callbacks
 
 To create a widget in the FA model, implement the widget lifecycle callbacks. Before that, generate a widget template by referring to <!--RP1-->[Creating an ArkTS Widget](./arkts-ui-widget-creation.md)<!--RP1End-->.
 
 1. Import related modules to **form.ts**.
-   
+
     ```ts
     import type featureAbility from '@ohos.ability.featureAbility';
     import type Want from '@ohos.app.ability.Want';
@@ -76,17 +75,17 @@ To create a widget in the FA model, implement the widget lifecycle callbacks. Be
     ```
 
 2. Implement the widget lifecycle callbacks in **form.ts**.
-   
+
     ```ts
     const TAG: string = '[Sample_FAModelAbilityDevelop]';
     const domain: number = 0xFF00;
     
     const DATA_STORAGE_PATH: string = 'form_store';
     let storeFormInfo = async (formId: string, formName: string, tempFlag: boolean, context: featureAbility.Context): Promise<void> => {
-      // Only the widget ID (formId), widget name (formName), and whether the widget is a temporary one (tempFlag) are persistently stored.
+      // Here, only the widget name (formName) and whether it is a temporary widget (tempFlag) are persisted.
       let formInfo: Record<string, string | number | boolean> = {
-        'formName': 'formName',
-        'tempFlag': 'tempFlag',
+        'formName': formName,
+        'tempFlag': tempFlag,
         'updateCount': 0
       };
       try {
@@ -119,10 +118,6 @@ To create a widget in the FA model, implement the widget lifecycle callbacks. Be
       onUpdate: (formId: string) => void = (formId) => {
       };
       onVisibilityChange: (newStatus: Record<string, number>) => void = (newStatus) => {
-        let obj: Record<string, number> = {
-          'test': 1
-        };
-        return obj;
       };
       onEvent: (formId: string, message: string) => void = (formId, message) => {
       };
@@ -216,7 +211,8 @@ To create a widget in the FA model, implement the widget lifecycle callbacks. Be
 The widget configuration file is named **config.json**. Find the **config.json** file for the widget and edit the file depending on your need.
 
 - The **JS** module in the **config.json** file provides JavaScript resources of the widget. The internal structure is described as follows.
-    | Name| Description| Data Type| Initial Value Allowed|
+
+  | Name| Description| Data Type| Initial Value Allowed|
   | -------- | -------- | -------- | -------- |
   | name | Name of a JavaScript component. The default value is **default**.| String| No|
   | pages | Route information about all pages in the JavaScript component, including the page path and page name. The value is an array, in which each element represents a page. The first element in the array represents the home page of the JavaScript FA.| Array| No|
@@ -226,8 +222,7 @@ The widget configuration file is named **config.json**. Find the **config.json**
 
   Example configuration:
 
-  
-  ```json
+  ```json5
   "js": [
     // ...
     {
@@ -238,20 +233,21 @@ The widget configuration file is named **config.json**. Find the **config.json**
       "window": {
         "designWidth": 720,
         "autoDesignWidth": true
-    	},
+      },
         "type": "form"
       }
     ]
   ```
-  
+
 - The **abilities** module in the **config.json** file corresponds to **FormAbility** of the widget. The internal structure is described as follows.
-    | Name| Description| Data Type| Initial Value Allowed|
+
+  | Name| Description| Data Type| Initial Value Allowed|
   | -------- | -------- | -------- | -------- |
   | name | Class name of a widget. The value is a string with a maximum of 127 bytes.| String| No|
   | description | Description of the widget. The value can be a string or a resource index to descriptions in multiple languages. The value is a string with a maximum of 255 bytes.| String| Yes (initial value: left empty)|
   | isDefault | Whether the widget is a default one. Each ability has only one default widget.<br>**true**: The widget is the default one.<br>**false**: The widget is not the default one.| Boolean| No|
   | type | Type of the widget. The value can be:<br>**JS**: indicates a JavaScript-programmed widget.| String| No|
-  | colorMode<sup>(deprecated)</sup> | Color mode of the widget.<br>**auto**: The widget adopts the auto-adaptive color mode.<br>**dark**: The widget adopts the dark color mode.<br>**light**: The widget adopts the light color mode.<br>**NOTE**<br><br>This API is deprecated since API version 20. The color mode follows the system color mode.| String| Yes (initial value: **auto**)|
+  | colorMode<sup>(deprecated)</sup> | Color mode of the widget.<br>**auto**: The widget adopts the auto-adaptive color mode.<br>**dark**: The widget adopts the dark color mode.<br>**light**: The widget adopts the light color mode.<br>**Note:**<br>This API is deprecated since API version 20. The color mode follows the system color mode.| String| Yes (initial value: **auto**)|
   | supportDimensions | Grid styles supported by the widget.<br>**1 * 2**: indicates a grid with one row and two columns.<br>**2 * 2**: indicates a grid with two rows and two columns.<br>**2 * 4**: indicates a grid with two rows and four columns.<br>**4 * 4**: indicates a grid with four rows and four columns.| String array| No|
   | defaultDimension | Default grid style of the widget. The value must be available in the **supportDimensions** array of the widget.| String| No|
   | updateEnabled | Whether the widget can be updated periodically.<br>**true**: The widget can be updated at a specified interval (**updateDuration**) or at the scheduled time (**scheduledUpdateTime**). **updateDuration** takes precedence over **scheduledUpdateTime**.<br>**false**: The widget cannot be updated periodically.| Boolean| No|
@@ -265,8 +261,7 @@ The widget configuration file is named **config.json**. Find the **config.json**
 
   Example configuration:
 
-  
-  ```json
+  ```json5
   "abilities": [
     // ...
     {
@@ -300,11 +295,9 @@ The widget configuration file is named **config.json**. Find the **config.json**
   ]
   ```
 
-
 ### Persistently Storing Widget Data
 
 A widget provider is usually started when it is needed to provide information about a widget. The Widget Manager supports multi-instance management and uses the widget ID to identify an instance. If the widget provider supports widget data modification, it must persistently store the data based on the widget ID, so that it can access the data of the target widget when obtaining, updating, or starting a widget. You should override **onDestroy** to implement widget data deletion.
-
 
 ```ts
 const TAG: string = '[Sample_FAModelAbilityDevelop]';
@@ -312,10 +305,10 @@ const domain: number = 0xFF00;
 
 const DATA_STORAGE_PATH: string = 'form_store';
 let storeFormInfo = async (formId: string, formName: string, tempFlag: boolean, context: featureAbility.Context): Promise<void> => {
-  // Only the widget ID (formId), widget name (formName), and whether the widget is a temporary one (tempFlag) are persistently stored.
+  // Only the widget name (formName) and whether it is a temporary widget (tempFlag) are persisted here.
   let formInfo: Record<string, string | number | boolean> = {
-    'formName': 'formName',
-    'tempFlag': 'tempFlag',
+    'formName': formName,
+    'tempFlag': tempFlag,
     'updateCount': 0
   };
   try {
@@ -400,11 +393,9 @@ Converting a temporary widget to a normal one: After you swipe up on a widget ap
 
 Data of a temporary widget will be deleted on the Widget Manager if the widget framework is killed and restarted. The widget provider, however, is not notified of the deletion and still keeps the data. Therefore, the widget provider needs to clear the data of temporary widgets proactively if the data has been kept for a long period of time. If the widget host has converted a temporary widget into a normal one, the widget provider should change the widget data from temporary storage to persistent storage. Otherwise, the widget data may be deleted by mistake.
 
-
 ### Updating Widget Data
 
 When an application initiates a scheduled or periodic update, the application obtains the latest data and calls **updateForm()** to update the widget.
-
 
 ```ts
 const TAG: string = '[Sample_FAModelAbilityDevelop]';
@@ -425,7 +416,6 @@ onUpdate(formId: string) {
 }
 ```
 
-
 ### Developing the Widget UI Page
 
 You can use the web-like paradigm (HML+CSS+JSON) to develop JS widget pages. This section describes how to develop a page shown below.
@@ -436,7 +426,7 @@ You can use the web-like paradigm (HML+CSS+JSON) to develop JS widget pages. Thi
 > In the FA model, only the JavaScript-based web-like development paradigm is supported when developing the widget UI.
 
 - HML: uses web-like paradigm components to describe the widget page information.
-  
+
   ```html
   <div class="container">
       <stack>
@@ -451,9 +441,9 @@ You can use the web-like paradigm (HML+CSS+JSON) to develop JS widget pages. Thi
       </stack>
   </div>
   ```
-  
+
 - CSS: defines style information about the web-like paradigm components in HML.
-  
+
   ```css
   .container {
       flex-direction: column;
@@ -503,9 +493,9 @@ You can use the web-like paradigm (HML+CSS+JSON) to develop JS widget pages. Thi
       margin-top: 6px;
   }
   ```
-  
+
 - JSON: defines data and event interaction on the widget UI page.
-  
+
   ```json
   {
     "data": {
@@ -530,26 +520,30 @@ You can use the web-like paradigm (HML+CSS+JSON) to develop JS widget pages. Thi
   }
   ```
 
-
 ### Developing Widget Events
 
 You can set router and message events for components on a widget. The router event applies to ability redirection, and the message event applies to custom click events. The key steps are as follows:
 
-1. Set the **onclick** field in the HML file to **routerEvent** or **messageEvent**, depending on the **actions** settings in the JSON file.
+1. Set the **onclick** field in the HML file depending on the **actions** settings in the JSON file.
 
 2. Set the router event.
+
    - **action**: **"router"**, which indicates a router event.
-   - **abilityName**: name of the ability to redirect to (PageAbility component in the FA model and UIAbility component in the stage model). For example, the default UIAbility name created by DevEco Studio in the FA model is com.example.entry.EntryAbility.
-   - **params**: custom parameters passed to the target ability. Set them as required. The value can be obtained from **parameters** in **want** used for starting the target ability. For example, in the lifecycle function **onCreate** of the EntryAbility in the FA model, **featureAbility.getWant()** can be used to obtain **want** and its **parameters** field.
+
+   - **abilityName**: name of the ability to redirect to (supports redirecting to the PageAbility component in the FA model and the UIAbility component in the Stage model). For example, the default UIAbility name created by DevEco Studio in the Stage model is `com.example.entry.EntryAbility`.
+
+   - **params**: custom parameters passed to the target ability. Set them as needed. The values can be obtained from **parameters** in **want** when the target ability starts. For example, in the FA model, you can obtain **want** by calling `featureAbility.getWant()` in the PageAbility `onCreate` lifecycle, and then retrieve the configured parameters from its **parameters** field.
 
 3. Set the message event.
+
    - **action**: **"message"**, which indicates a message event.
+
    - **params**: custom parameters of the message event. Set them as required. The value can be obtained from **message** in the widget lifecycle function **onEvent**.
 
 The following is an example:
 
 - HML file:
-  
+
   ```html
   <div class="container">
       <stack>
@@ -564,9 +558,9 @@ The following is an example:
       </stack>
   </div>
   ```
-  
+
 - CSS file:
-  
+
   ```css
   .container {
       flex-direction: column;
@@ -616,9 +610,9 @@ The following is an example:
       margin-top: 6px;
   }
   ```
-  
+
 - JSON file:
-  
+
   ```json
   {
     "data": {

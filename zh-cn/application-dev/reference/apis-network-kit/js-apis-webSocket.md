@@ -985,7 +985,7 @@ createWebSocketServer(): WebSocketServer
 >
 > 从API version 23开始支持全设备使用，之前仅支持TV设备使用。
 
-**系统能力**: SystemCapability.Communication.NetStack
+**系统能力**： SystemCapability.Communication.NetStack
 
 **返回值：**
 
@@ -1013,9 +1013,9 @@ start(config: WebSocketServerConfig): Promise\<boolean\>
 >
 > 在多次调用该接口时，应避免监听同一端口。
 
-**需要权限**: ohos.permission.INTERNET
+**需要权限**： ohos.permission.INTERNET
 
-**系统能力**: SystemCapability.Communication.NetStack
+**系统能力**： SystemCapability.Communication.NetStack
 
 **参数：**
 
@@ -1077,9 +1077,9 @@ send(data: string \| ArrayBuffer, connection: WebSocketConnection): Promise\<boo
 >
 > send接口必须在监听到connect事件后才可以调用。
 
-**需要权限**: ohos.permission.INTERNET
+**需要权限**： ohos.permission.INTERNET
 
-**系统能力**: SystemCapability.Communication.NetStack
+**系统能力**： SystemCapability.Communication.NetStack
 
 **参数：**
 
@@ -1148,7 +1148,7 @@ listAllConnections(): WebSocketConnection[]
 
 获取与服务端连接的所有客户端信息。
 
-**需要权限**: ohos.permission.INTERNET
+**需要权限**： ohos.permission.INTERNET
 
 **系统能力**：SystemCapability.Communication.NetStack 
 

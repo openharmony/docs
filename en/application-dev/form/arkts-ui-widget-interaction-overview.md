@@ -1,18 +1,20 @@
 # Overview of ArkTS Widget Update
+
 <!--Kit: Form Kit-->
 <!--Subsystem: Ability-->
 <!--Owner: @Qian-Win-->
 <!--Designer: @cx983299475-->
 <!--Tester: @mahailong123456-->
 <!--Adviser: @HelloShuo-->
+<!-- md-trans-meta sourceCommit=a08d450b4f575e3d4749ddeef9dd32275ec0a19e translatedAt=2026-08-03T02:25:45.777Z pushedAt=2026-08-03T06:55:17.880Z -->
 
 Both the widget host (for example, the home screen) and the widget provider can trigger updates to the widget page. Moreover, the widget framework notifies the widget provider of updates according to the scheduled information. Therefore, widget updates include active updates initiated by the widget provider, active updates initiated by the widget host, and interval-based or time-specific updates. In all these update modes, the widget provider is responsible for pushing the widget data to be updated.
 
 ## Widget Data Interaction
 
-The ArkTS Widget Manager supports the data interaction between the widget provider (for example, applications) and widget. The widget transfers data to the widget provider through [postCardAction](../reference/apis-arkui/js-apis-postCardAction.md#postcardaction-1), and the widget provider can transfer data to the widget through [updateForm](../reference/apis-form-kit/js-apis-app-form-formProvider.md#formproviderupdateform). After the widget provider transfers data to the widget, the data can be used for page update.
+The ArkTS Widget Manager supports the data interaction between the widget provider (for example, applications) and widget. The widget transfers data to the widget provider through [postCardAction](../reference/apis-arkui/js-apis-postCardAction.md#postcardaction-1), and the widget provider can transfer data to the widget through [updateForm](../reference/apis-form-kit/js-apis-app-form-formProvider.md#formproviderupdateform). After the widget provider transfers data to the widget, the data can be used for widget page refresh.
 
-The widget provider and widget are independent of each other. Therefore, data can be transferred only through [LocalStorageProp](../ui/state-management/arkts-localstorage.md#localstorageprop), and the **getContext** method cannot be used. After the widget provider pushes data, the widget UI receives it via **LocalStorageProp**, and converts the received data to a string.
+The widget provider and widget are independent of each other. Therefore, data can be transferred only through [LocalStorageProp](../ui/state-management/arkts-localstorage.md#localstorageprop), and the **getContext** method cannot be used. After the widget provider pushes data, the widget UI receives it via **LocalStorageProp**, and the received data is converted to a string.
 
 ## Page Update Modes
 
@@ -32,7 +34,7 @@ If there is a need to update widget data, the widget provider, as long as it is 
 
 ![requestForm](figures/requestForm.PNG)
 
-If changes in system language or color scheme are detected, the widget host, as long as it is running, can proactively request to update the widget using the **requestForm** API provided by formHost. The Widget Manager then instructs the widget provider to complete the update.
+When the widget host detects a change in the system language or theme mode (such as light or dark mode), it can proactively request a widget update through the `requestForm` API provided by `formHost` (available only for system apps). The widget management service then notifies the widget provider to complete the update.
 
 ### Passive Update
 
@@ -43,7 +45,9 @@ Interval-based update: The widget content will be automatically updated at the s
 Time-specific update: The widget content will be automatically updated at a designated time every day.
 
 <!--Del-->
+
 Conditional update: The widget is updated when a certain condition is met. Currently, it is triggered when the network status of a device changes from unavailable to available.
+
 <!--DelEnd-->
 
 **Figure 3** Flowchart of interval-based and time-specific updates by the widget provider
@@ -55,5 +59,7 @@ Based on the scheduled update information configured by the widget provider, the
 ## Constraints
 
 1. The widget provider is only allowed to update its own widgets.
+
 2. The widget host is only allowed to update the widgets added to it.
-3. Since API version 20, if the widget data is updated using shared memory, the total size of the updated data cannot exceed 10 MB, and the number of updated images cannot exceed 20. In API version 19 and earlier versions, the maximum number of image files is 5, and the maximum memory size of each image is 2 MB. Exceeding this 2 MB limit for any image will result in abnormal display.
+
+3. Starting from API version 20, if the widget refresh data is updated through shared memory, the total refresh data size must not exceed 10 MB, and the number of refreshed images must not exceed 20. For API version 19 and earlier, the maximum number of image files is 5, with each image limited to 2 MB of memory. Images exceeding the limit may display abnormally.

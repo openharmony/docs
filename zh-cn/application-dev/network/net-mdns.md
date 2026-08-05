@@ -17,7 +17,7 @@ MDNS管理的典型场景有：
 - 发现本地服务，通过[DiscoveryService](../reference/apis-network-kit/js-apis-net-mdns.md#discoveryservice)对象，对指定类型的本地服务状态变化进行监听。
 
 > **说明：**
-> 为了保证应用的运行效率，大部分API调用都是异步的，对于异步调用的API均提供了callback和Promise两种方式，以下示例均采用promise函数，更多方式可以查阅[@ohos.net.mdns (MDNS管理)](../reference/apis-network-kit/js-apis-net-mdns.md)。
+> 为了保证应用的运行效率，大部分API调用都是异步的，对于异步调用的API均提供了callback和Promise两种方式，以下示例均采用Promise函数，更多方式可以查阅[@ohos.net.mdns (MDNS管理)](../reference/apis-network-kit/js-apis-net-mdns.md)。
 
 以下分别介绍具体开发方式。
 
@@ -27,8 +27,8 @@ MDNS管理的典型场景有：
 
 ## 管理本地服务
 
-1. 设备连接WiFi。
-2. 从@kit.NetworkKit里导入mdns、错误码、以及[common命名空间](../reference/apis-ability-kit/js-apis-app-ability-common.md)。
+1. 设备连接Wi-Fi。
+2. 从@kit.NetworkKit里导入mdns、错误码、以及[common](../reference/apis-ability-kit/js-apis-app-ability-common.md)命名空间。
 
    <!-- @[MDNS_case_module_import](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/NetWork_Kit/NetWorkKit_Datatransmission/MDNS_case/entry/src/main/ets/pages/Index.ets) -->
    

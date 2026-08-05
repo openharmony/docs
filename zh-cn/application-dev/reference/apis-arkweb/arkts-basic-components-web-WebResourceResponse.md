@@ -218,7 +218,7 @@ setResponseCode(code: number): void
 
 | 参数名  | 类型   | 必填   | 说明          |
 | ---- | ------ | ---- | ------------- |
-| code | number | 是   | 要设置的资源响应的状态码。如果该资源请求失败或响应状态为错误状态，请参考[@ohos.web.netErrorList](arkts-apis-netErrorList.md)设置相应错误码。常见错误码场景：404表示资源不存在，请检查资源路径；500表示服务器内部错误，请检查服务器状态；403表示无访问权限，请申请相应访问权限；401表示未授权，请检查认证信息。根据错误码检查网络配置、服务器状态或资源访问权限。避免设置错误码为 ERR_IO_PENDING，设置为该错误码可能会导致XMLHttpRequest同步请求阻塞。 |
+| code | number | 是   | 要设置的资源响应的状态码。如果该资源请求失败或响应状态为错误状态，请参考[@ohos.web.netErrorList](arkts-apis-netErrorList.md)设置相应错误码，避免设置错误码为 ERR_IO_PENDING，设置为该错误码可能会导致XMLHttpRequest同步请求阻塞。 |
 
 ## setResponseIsReady<sup>9+</sup>
 

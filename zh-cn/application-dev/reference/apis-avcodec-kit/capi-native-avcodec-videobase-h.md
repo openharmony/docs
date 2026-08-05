@@ -2,7 +2,7 @@
 <!--Kit: AVCodec Kit-->
 <!--Subsystem: Multimedia-->
 <!--Owner: @mr-chencxy-->
-<!--Designer: @dpy2650--->
+<!--Designer: @dpy2650-->
 <!--Tester: @baotianhao-->
 <!--Adviser: @w_Machine_cc-->
 
@@ -41,7 +41,7 @@
 | 名称 | 描述 |
 | -- | -- |
 | const char * OH_MD_KEY_VIDEO_METADATA_ROI_TOP | 用于描述单个ROI（感兴趣区域）矩形顶部坐标（y）的键，值类型为int32_t。坐标系的原点位于视频的左上角。取值范围为[0, OH_MD_KEY_VIDEO_METADATA_ROI_BOTTOM)。这是配置ROI参数时的必填键。<br>**起始版本：** 26.0.0<br>**系统能力：** SystemCapability.Multimedia.Media.CodecBase |
-| const char * OH_MD_KEY_VIDEO_METADATA_ROI_LEFT | 用于描述单个ROI矩形左侧坐标 (x) 的键，值类型为 int32_t。坐标系的原点位于视频的左上角。取值范围为[0, OH_MD_KEY_VIDEO_METADATA_ROI_RIGHT)。这是配置ROI参数时的必填键。<br>**起始版本：** 26.0.0 |
+| const char * OH_MD_KEY_VIDEO_METADATA_ROI_LEFT | 用于描述单个ROI矩形左侧坐标（x）的键，值类型为 int32_t。坐标系的原点位于视频的左上角。取值范围为[0, OH_MD_KEY_VIDEO_METADATA_ROI_RIGHT)。这是配置ROI参数时的必填键。<br>**起始版本：** 26.0.0 |
 | const char * OH_MD_KEY_VIDEO_METADATA_ROI_BOTTOM | 用于描述单个ROI矩形底部坐标（y）的键，值类型为int32_t。坐标系的原点位于视频的左上角。取值范围为(OH_MD_KEY_VIDEO_METADATA_ROI_TOP, OH_MD_KEY_VIDEO_HEIGHT]。这是配置ROI参数时的必填键。<br>**起始版本：** 26.0.0 |
 | const char * OH_MD_KEY_VIDEO_METADATA_ROI_RIGHT | 用于描述单个ROI矩形右侧坐标（x）的键，值类型为int32_t。坐标系的原点位于视频的左上角。取值范围为(OH_MD_KEY_VIDEO_METADATA_ROI_LEFT, OH_MD_KEY_VIDEO_WIDTH]。这是配置ROI参数时的必填键。<br>**起始版本：** 26.0.0 |
 | const char * OH_MD_KEY_VIDEO_METADATA_ROI_DELTA_QP | 用于描述单个ROI的量化参数（QP）相对偏移值的键，值类型为int32_t。该变量取值范围为[-51, 51]。这是配置ROI参数时的可选键。如果未设置此键，编码器将对此区域使用其默认的量化参数策略。<br>**起始版本：** 26.0.0 |
@@ -77,7 +77,7 @@ OH_AVErrCode OH_VideoMetadata_AppendRoiString(char **roiStrInOut, OH_AVFormat *f
 
 **描述**
 
-将OH_AVFormat句柄中的感兴趣区域（ROI）配置转化为字符串，并将其追加到目标字符串中。此函数从提供的格式句柄中提取ROI属性（如坐标、量化参数偏移量和语义标签），构建标准的ROI字符串表示，并将其追加到roiStrInOut指向的字符串中末尾。如果*roiStrInOut为NULL，则会分配一个新字符串，如果不为NULL，则会重新分配现有字符串的内存以追加新配置。
+将OH_AVFormat句柄中的感兴趣区域（ROI）配置转化为字符串，并将其追加到目标字符串中。此函数从提供的格式句柄中提取ROI属性（如坐标、量化参数偏移量和语义标签），构建标准的ROI字符串表示，并将其追加到roiStrInOut指向的字符串末尾。如果*roiStrInOut为NULL，则会分配一个新字符串，如果不为NULL，则会重新分配现有字符串的内存以追加新配置。
 
 > **说明：** 
 > 
@@ -98,7 +98,7 @@ OH_AVErrCode OH_VideoMetadata_AppendRoiString(char **roiStrInOut, OH_AVFormat *f
 
 | 类型 | 说明 |
 | -- | -- |
-| OH_AVErrCode | <ul><br>         <li>AV_ERR_OK：表示字符串成功转化并追加。</li><br>         <li>AV_ERR_INVALID_VAL：表示roiStrInOut指针或format句柄为NULL，或者格式缺少必需的ROI键。</li><br>         <li>AV_ERR_NO_MEMORY：表示内部内存分配或重新分配失败。</li><br>         </ul> |
+| OH_AVErrCode | AV_ERR_OK：表示字符串成功转化并追加。<br> AV_ERR_INVALID_VAL：表示roiStrInOut指针或format句柄为NULL，或者格式缺少必需的ROI键。<br> AV_ERR_NO_MEMORY：表示内部内存分配或重新分配失败。 |
 
 ### OH_VideoMetadata_GetRoiCount()
 
@@ -123,7 +123,7 @@ OH_AVErrCode OH_VideoMetadata_GetRoiCount(const char *roiStr, uint32_t *outCount
 
 | 类型 | 说明 |
 | -- | -- |
-| OH_AVErrCode | <ul><br>         <li>AV_ERR_OK：表示操作成功。</li><br>         <li>AV_ERR_INVALID_VAL：表示roiStr或outCount指针为NULL。</li><br>         </ul> |
+| OH_AVErrCode | AV_ERR_OK：表示操作成功。<br> AV_ERR_INVALID_VAL：表示roiStr或outCount指针为NULL。 |
 
 ### OH_VideoMetadata_ParseRoiString()
 
@@ -153,6 +153,6 @@ OH_AVErrCode OH_VideoMetadata_ParseRoiString(const char *roiStr, OH_AVFormat **o
 
 | 类型 | 说明 |
 | -- | -- |
-| OH_AVErrCode | <ul><br>        <li>AV_ERR_OK：表示操作成功。</li><br>        <li>AV_ERR_INVALID_VAL：表示roiStr、outOwnedFormats或outCount为NULL。</li><br>        </ul> |
+| OH_AVErrCode | AV_ERR_OK：表示操作成功。<br> AV_ERR_INVALID_VAL：表示roiStr、outOwnedFormats或outCount为NULL。 |
 
 

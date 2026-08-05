@@ -369,7 +369,7 @@ import('@ohos.matrix4').then((ns: ESObject) => {
 // ...
 import('@ohos.hilog').then((ns: ESObject) => {
   ns.default.info(0x0000, 'testTag', '%{public}s', 'DynamicImport @ohos.hilog.');
-  hilog.info(0x000, 'testTag', '%{public}s', ns.default.LogLevel.DEBUG);
+  hilog.info(0x000, 'testTag', '%{public}d', ns.default.LogLevel.DEBUG);
 });
 ```
 

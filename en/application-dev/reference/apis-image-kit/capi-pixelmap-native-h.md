@@ -8,7 +8,7 @@
 
 ## Overview
 
-The file declares the APIs for accessing a PixelMap.
+The file declares the APIs for accessing a PixelMap. The APIs provide capabilities for accessing PixelMaps, supporting the creation of PixelMaps through pixel data, surface, NativeBuffer, and other methods, as well as cloning PixelMaps, reading and writing PixelMaps, and performing image transformations such as scaling, rotation, flipping, translation, and cropping. They also support HDR metadata management, color space configuration, alpha type conversion, interoperability between Native and Napi objects, and direct memory access. These APIs are suitable for scenarios where pixel-level processing and transformation of decoded image bitmaps are required in the native layer.
 
 **File to include**: <multimedia/image_framework/image/pixelmap_native.h>
 
@@ -26,14 +26,14 @@ The file declares the APIs for accessing a PixelMap.
 
 | Name| typedef Keyword| Description|
 | -- | -- | -- |
-| [OH_Pixelmap_HdrStaticMetadata](capi-image-nativemodule-oh-pixelmap-hdrstaticmetadata.md) | OH_Pixelmap_HdrStaticMetadata | Describes the static metadata values available for the key **HDR_STATIC_METADATA**.|
-| [OH_Pixelmap_HdrDynamicMetadata](capi-image-nativemodule-oh-pixelmap-hdrdynamicmetadata.md) | OH_Pixelmap_HdrDynamicMetadata | Describes the dynamic metadata values available for the key **HDR_DYNAMIC_METADATA**.|
-| [OH_Pixelmap_HdrGainmapMetadata](capi-image-nativemodule-oh-pixelmap-hdrgainmapmetadata.md) | OH_Pixelmap_HdrGainmapMetadata | Describes the gain map metadata values available for the key **HDR_GAINMAP_METADATA**. For details, see ISO 21496-1.|
-| [OH_Pixelmap_HdrMetadataValue](capi-image-nativemodule-oh-pixelmap-hdrmetadatavalue.md) | OH_Pixelmap_HdrMetadataValue | Describes the HDR metadata values used by the PixelMap and available for the key **OH_Pixelmap_HdrMetadataKey**. It is used in [OH_PixelmapNative_SetMetadata](capi-pixelmap-native-h.md#oh_pixelmapnative_setmetadata) and [OH_PixelmapNative_GetMetadata](capi-pixelmap-native-h.md#oh_pixelmapnative_getmetadata). When an [OH_Pixelmap_HdrMetadataKey](capi-pixelmap-native-h.md#oh_pixelmap_hdrmetadatakey) is used as an API input parameter, the value of the corresponding metadata type in this struct is set or retrieved accordingly.|
-| [OH_PixelmapNative](capi-image-nativemodule-oh-pixelmapnative.md) | - | Describes an uncompressed PixelMap format, which is encapsulated at the native layer after images are decoded.<br> To create an OH_PixelmapNative object, call [OH_PixelmapNative_CreatePixelmap](#oh_pixelmapnative_createpixelmap). By default, BGRA_8888 is used for data processing.<br> To release an OH_PixelmapNative object, call [OH_PixelmapNative_Release](#oh_pixelmapnative_release).|
+| [OH_Pixelmap_HdrStaticMetadata](capi-image-nativemodule-oh-pixelmap-hdrstaticmetadata.md) | OH_Pixelmap_HdrStaticMetadata | Describes the metadata value type corresponding to the HDR_STATIC_METADATA key in [OH_Pixelmap_HdrMetadataKey](capi-pixelmap-native-h.md#oh_pixelmap_hdrmetadatakey), used to store HDR static metadata.|
+| [OH_Pixelmap_HdrDynamicMetadata](capi-image-nativemodule-oh-pixelmap-hdrdynamicmetadata.md) | OH_Pixelmap_HdrDynamicMetadata | Describes the metadata value type corresponding to the HDR_DYNAMIC_METADATA key in [OH_Pixelmap_HdrMetadataKey](capi-pixelmap-native-h.md#oh_pixelmap_hdrmetadatakey), used to store HDR dynamic metadata. The format conforms to relevant HDR dynamic metadata standards.|
+| [OH_Pixelmap_HdrGainmapMetadata](capi-image-nativemodule-oh-pixelmap-hdrgainmapmetadata.md) | OH_Pixelmap_HdrGainmapMetadata | Describes the metadata value type corresponding to the HDR_GAINMAP_METADATA key in [OH_Pixelmap_HdrMetadataKey](capi-pixelmap-native-h.md#oh_pixelmap_hdrmetadatakey), used to store HDR gain map metadata as defined in ISO 21496-1.|
+| [OH_Pixelmap_HdrMetadataValue](capi-image-nativemodule-oh-pixelmap-hdrmetadatavalue.md) | OH_Pixelmap_HdrMetadataValue | Describes the HDR metadata value used by the PixelMap, corresponding to a [OH_Pixelmap_HdrMetadataKey](capi-pixelmap-native-h.md#oh_pixelmap_hdrmetadatakey). When the corresponding [OH_Pixelmap_HdrMetadataKey](capi-pixelmap-native-h.md#oh_pixelmap_hdrmetadatakey) is passed as an input parameter, this struct can be used to set or retrieve the metadata value of the corresponding type via [OH_PixelmapNative_SetMetadata](capi-pixelmap-native-h.md#oh_pixelmapnative_setmetadata) or [OH_PixelmapNative_GetMetadata](capi-pixelmap-native-h.md#oh_pixelmapnative_getmetadata).|
+| [OH_PixelmapNative](capi-image-nativemodule-oh-pixelmapnative.md) | - | Uncompressed pixel map format struct encapsulated at the native layer after image decoding.<br> To create an OH_PixelmapNative object, call [OH_PixelmapNative_CreatePixelmap](#oh_pixelmapnative_createpixelmap). The default pixel format is BGRA_8888.<br> To release an OH_PixelmapNative object, call [OH_PixelmapNative_Release](#oh_pixelmapnative_release).|
 | [OH_NativeBuffer](capi-image-nativemodule-image-nativemodule-oh-nativebuffer.md) | - | Describes the native buffer, which is used to perform operations related to the native buffer.|
 | [OH_NativeColorSpaceManager](capi-image-nativemodule-oh-nativecolorspacemanager.md) | OH_NativeColorSpaceManager | Describes the native color space manager, which is used to perform operations related to the native color space manager.|
-| [OH_Pixelmap_InitializationOptions](capi-image-nativemodule-oh-pixelmap-initializationoptions.md) | - | Describes the initialization options encapsulated at the native layer. The struct is used to set the initialization parameters for a PixelMap.<br> To create an OH_Pixelmap_InitializationOptions object, call [OH_PixelmapInitializationOptions_Create](#oh_pixelmapinitializationoptions_create).<br> To release an OH_Pixelmap_InitializationOptions object, call [OH_PixelmapInitializationOptions_Release](#oh_pixelmapinitializationoptions_release).|
+| [OH_Pixelmap_InitializationOptions](capi-image-nativemodule-oh-pixelmap-initializationoptions.md) | - | Initialization parameter struct encapsulated at the native layer, used to set PixelMap initialization parameters.<br> To create an OH_Pixelmap_InitializationOptions object, call [OH_PixelmapInitializationOptions_Create](#oh_pixelmapinitializationoptions_create).<br> To release an OH_Pixelmap_InitializationOptions object, call [OH_PixelmapInitializationOptions_Release](#oh_pixelmapinitializationoptions_release).|
 | [OH_Pixelmap_ImageInfo](capi-image-nativemodule-oh-pixelmap-imageinfo.md) | - | Describes the image information.|
 
 ### Enums
@@ -57,10 +57,10 @@ The file declares the APIs for accessing a PixelMap.
 | [Image_ErrorCode OH_PixelmapInitializationOptions_SetHeight(OH_Pixelmap_InitializationOptions *options, uint32_t height)](#oh_pixelmapinitializationoptions_setheight) | Sets the image height.|
 | [Image_ErrorCode OH_PixelmapInitializationOptions_GetPixelFormat(OH_Pixelmap_InitializationOptions *options, int32_t *pixelFormat)](#oh_pixelmapinitializationoptions_getpixelformat) | Obtains the pixel format.|
 | [Image_ErrorCode OH_PixelmapInitializationOptions_SetPixelFormat(OH_Pixelmap_InitializationOptions *options, int32_t pixelFormat)](#oh_pixelmapinitializationoptions_setpixelformat) | Sets the pixel format.|
-| [Image_ErrorCode OH_PixelmapInitializationOptions_GetSrcPixelFormat(OH_Pixelmap_InitializationOptions *options, int32_t *srcpixelFormat)](#oh_pixelmapinitializationoptions_getsrcpixelformat) | Obtains the source pixel format.|
-| [Image_ErrorCode OH_PixelmapInitializationOptions_SetSrcPixelFormat(OH_Pixelmap_InitializationOptions *options, int32_t srcpixelFormat)](#oh_pixelmapinitializationoptions_setsrcpixelformat) | Sets the source pixel format.|
-| [Image_ErrorCode OH_PixelmapInitializationOptions_GetRowStride(OH_Pixelmap_InitializationOptions *options, int32_t *rowStride)](#oh_pixelmapinitializationoptions_getrowstride) | Obtains the row stride.<br> The stride is the actual memory size occupied by each row of the image, in bytes. Stride = Width \*Number of bytes per pixel + Padding, where padding refers to the extra space added at the end of each row for memory alignment purposes.|
-| [Image_ErrorCode OH_PixelmapInitializationOptions_SetRowStride(OH_Pixelmap_InitializationOptions *options, int32_t rowStride)](#oh_pixelmapinitializationoptions_setrowstride) | Sets the row stride.<br> The stride is the actual memory size occupied by each row of the image, in bytes. Stride = Width \*Number of bytes per pixel + Padding, where padding refers to the extra space added at the end of each row for memory alignment purposes.|
+| [Image_ErrorCode OH_PixelmapInitializationOptions_GetSrcPixelFormat(OH_Pixelmap_InitializationOptions *options, int32_t *srcpixelFormat)](#oh_pixelmapinitializationoptions_getsrcpixelformat) | Obtains the source pixel format (the pixel format of the input data used when creating an PixelMap).|
+| [Image_ErrorCode OH_PixelmapInitializationOptions_SetSrcPixelFormat(OH_Pixelmap_InitializationOptions *options, int32_t srcpixelFormat)](#oh_pixelmapinitializationoptions_setsrcpixelformat) | Sets the source pixel format (the pixel format of the input data used when creating an PixelMap).|
+| [Image_ErrorCode OH_PixelmapInitializationOptions_GetRowStride(OH_Pixelmap_InitializationOptions *options, int32_t *rowStride)](#oh_pixelmapinitializationoptions_getrowstride) | Obtains the row stride.<br> The stride is the actual memory size occupied by each row of pixels in the image. The unit is bytes. The stride is calculated as: stride = image width × bytes per pixel + padding, where the padding is the blank area added at the end of each row for memory alignment.|
+| [Image_ErrorCode OH_PixelmapInitializationOptions_SetRowStride(OH_Pixelmap_InitializationOptions *options, int32_t rowStride)](#oh_pixelmapinitializationoptions_setrowstride) | Sets the row stride.<br> The stride is the actual memory size occupied by each row of pixels in the image. The unit is bytes. The stride is calculated as: stride = image width × bytes per pixel + padding, where the padding is the blank area added at the end of each row for memory alignment.|
 | [Image_ErrorCode OH_PixelmapInitializationOptions_GetAlphaType(OH_Pixelmap_InitializationOptions *options, int32_t *alphaType)](#oh_pixelmapinitializationoptions_getalphatype) | Obtains the alpha type.|
 | [Image_ErrorCode OH_PixelmapInitializationOptions_SetAlphaType(OH_Pixelmap_InitializationOptions *options, int32_t alphaType)](#oh_pixelmapinitializationoptions_setalphatype) | Sets the alpha type.|
 | [Image_ErrorCode OH_PixelmapInitializationOptions_GetEditable(OH_Pixelmap_InitializationOptions *options, bool *editable)](#oh_pixelmapinitializationoptions_geteditable) | Obtains the editable flag.|
@@ -72,49 +72,57 @@ The file declares the APIs for accessing a PixelMap.
 | [Image_ErrorCode OH_PixelmapImageInfo_GetAlphaMode(OH_Pixelmap_ImageInfo *info, int32_t *alphaMode)](#oh_pixelmapimageinfo_getalphamode) | Obtains the alpha type of an image.|
 | [Image_ErrorCode OH_PixelmapImageInfo_GetRowStride(OH_Pixelmap_ImageInfo *info, uint32_t *rowStride)](#oh_pixelmapimageinfo_getrowstride) | Obtains the row stride.|
 | [Image_ErrorCode OH_PixelmapImageInfo_GetPixelFormat(OH_Pixelmap_ImageInfo *info, int32_t *pixelFormat)](#oh_pixelmapimageinfo_getpixelformat) | Obtains the pixel format.|
-| [Image_ErrorCode OH_PixelmapImageInfo_GetAlphaType(OH_Pixelmap_ImageInfo *info, int32_t *alphaType)](#oh_pixelmapimageinfo_getalphatype) | Obtains the default alpha type from OH_PixelmapImageInfo. To obtain the current alpha channel type of the image, call [OH_PixelmapImageInfo_GetAlphaMode](capi-pixelmap-native-h.md#oh_pixelmapimageinfo_getalphamode).|
+| [Image_ErrorCode OH_PixelmapImageInfo_GetAlphaType(OH_Pixelmap_ImageInfo *info, int32_t *alphaType)](#oh_pixelmapimageinfo_getalphatype) | Obtains the default alpha type of OH_PixelmapImageInfo. To obtain the current alpha type of the image, call [OH_PixelmapImageInfo_GetAlphaMode](capi-pixelmap-native-h.md#oh_pixelmapimageinfo_getalphamode).|
 | [Image_ErrorCode OH_PixelmapImageInfo_GetDynamicRange(OH_Pixelmap_ImageInfo *info, bool *isHdr)](#oh_pixelmapimageinfo_getdynamicrange) | Obtains the dynamic range of a PixelMap.|
 | [Image_ErrorCode OH_PixelmapImageInfo_Release(OH_Pixelmap_ImageInfo *info)](#oh_pixelmapimageinfo_release) | Releases the pointer to an OH_Pixelmap_ImageInfo struct.|
-| [Image_ErrorCode OH_PixelmapNative_CreatePixelmap(uint8_t *data, size_t dataLength, OH_Pixelmap_InitializationOptions *options, OH_PixelmapNative **pixelmap)](#oh_pixelmapnative_createpixelmap) | Creates a PixelMap based on the pixel data and image properties. The input pixel data is parsed in BGRA_8888 format by default. To use another format, see [OH_PixelmapInitializationOptions_SetSrcPixelFormat](capi-pixelmap-native-h.md#oh_pixelmapinitializationoptions_setsrcpixelformat).|
-| [Image_ErrorCode OH_PixelmapNative_CreatePixelmapUsingAllocator(uint8_t *data, size_t dataLength, OH_Pixelmap_InitializationOptions *options, IMAGE_ALLOCATOR_MODE allocator, OH_PixelmapNative **pixelmap)](#oh_pixelmapnative_createpixelmapusingallocator) | Creates a PixelMap based on the pixel data and image properties. You can specify the memory type via the allocator. The input pixel data is parsed in BGRA_8888 format by default. To use another format, see [OH_PixelmapInitializationOptions_SetSrcPixelFormat](capi-pixelmap-native-h.md#oh_pixelmapinitializationoptions_setsrcpixelformat). By default, the system selects an appropriate memory type based on the image type, image size, and platform capability. When processing the returned PixelMap object, consider the impact of stride.|
-| [Image_ErrorCode OH_PixelmapNative_ConvertPixelmapNativeToNapi(napi_env env, OH_PixelmapNative *pixelmapNative, napi_value *pixelmapNapi)](#oh_pixelmapnative_convertpixelmapnativetonapi) | Converts a nativePixelMap object to a PixelMapnapi object.|
-| [Image_ErrorCode OH_PixelmapNative_ConvertPixelmapNativeFromNapi(napi_env env, napi_value pixelmapNapi, OH_PixelmapNative **pixelmapNative)](#oh_pixelmapnative_convertpixelmapnativefromnapi) | Converts a PixelMapnapi object to a nativePixelMap object.|
-| [Image_ErrorCode OH_PixelmapNative_ReadPixels(OH_PixelmapNative *pixelmap, uint8_t *destination, size_t *bufferSize)](#oh_pixelmapnative_readpixels) | Reads the pixels of a PixelMap and writes the result to the buffer based on the pixel format of the PixelMap.|
-| [Image_ErrorCode OH_PixelmapNative_WritePixels(OH_PixelmapNative *pixelmap, uint8_t *source, size_t bufferSize)](#oh_pixelmapnative_writepixels) | Reads the pixels in the buffer and writes the result to the PixelMap based on the pixel format of the PixelMap.|
-| [Image_ErrorCode OH_PixelmapNative_ReadPixelsFromArea(OH_PixelmapNative *pixelmap, Image_PositionArea *area)](#oh_pixelmapnative_readpixelsfromarea) | Reads pixels from the specified area in a PixelMap and stores the result to the buffer. The read data is in BGRA_8888 format.|
-| [Image_ErrorCode OH_PixelmapNative_WritePixelsToArea(OH_PixelmapNative *pixelmap, Image_PositionArea *area)](#oh_pixelmapnative_writepixelstoarea) | Writes pixels in the buffer to the specified area in a PixelMap. The data source must be in BGRA_8888 format.|
+| [Image_ErrorCode OH_PixelmapNative_CreatePixelmap(uint8_t *data, size_t dataLength, OH_Pixelmap_InitializationOptions *options, OH_PixelmapNative **pixelmap)](#oh_pixelmapnative_createpixelmap) | Creates a PixelMap based on the pixel data and image properties.<br>This API cannot create PixelMaps in the PIXEL_FORMAT_RGBA_1010102, PIXEL_FORMAT_YCBCR_P010, or PIXEL_FORMAT_YCRCB_P010 format.|
+| [Image_ErrorCode OH_PixelmapNative_CreatePixelmapUsingAllocator(uint8_t *data, size_t dataLength, OH_Pixelmap_InitializationOptions *options, IMAGE_ALLOCATOR_MODE allocator, OH_PixelmapNative **pixelmap)](#oh_pixelmapnative_createpixelmapusingallocator) | Creates a PixelMap based on the pixel data and image properties. You can specify the memory type via the allocator.<br>By default, the system selects an appropriate memory type based on the image type, image size, and platform capability.<br>When processing the PixelMap returned by this API, consider the impact of the row stride. The row stride is the actual memory size occupied by each row of the image. It may be larger than the image width multiplied by the bytes per pixel due to memory alignment. For details, see [OH_PixelmapInitializationOptions_GetRowStride](capi-pixelmap-native-h.md#oh_pixelmapinitializationoptions_getrowstride).|
+| [Image_ErrorCode OH_PixelmapNative_ConvertPixelmapNativeToNapi(napi_env env, OH_PixelmapNative *pixelmapNative, napi_value *pixelmapNapi)](#oh_pixelmapnative_convertpixelmapnativetonapi) | Converts an OH_PixelmapNative object to a PixelmapNapi object.|
+| [Image_ErrorCode OH_PixelmapNative_ConvertPixelmapNativeFromNapi(napi_env env, napi_value pixelmapNapi, OH_PixelmapNative **pixelmapNative)](#oh_pixelmapnative_convertpixelmapnativefromnapi) | Converts a PixelmapNapi object to an OH_PixelmapNative object.|
+| [Image_ErrorCode OH_PixelmapNative_ReadPixels(OH_PixelmapNative *pixelmap, uint8_t *destination, size_t *bufferSize)](#oh_pixelmapnative_readpixels) | Reads the pixel data of a PixelMap and writes it to the buffer based on the pixel format of the PixelMap.|
+| [Image_ErrorCode OH_PixelmapNative_WritePixels(OH_PixelmapNative *pixelmap, uint8_t *source, size_t bufferSize)](#oh_pixelmapnative_writepixels) | Writes the pixel data in the buffer to a PixelMap based on the pixel format of the PixelMap.|
+| [Image_ErrorCode OH_PixelmapNative_ReadPixelsFromArea(OH_PixelmapNative *pixelmap, Image_PositionArea *area)](#oh_pixelmapnative_readpixelsfromarea) | Reads pixel data from the specified area in a PixelMap and stores the data to the buffer. If the pixel format of the PixelMap is YUV, the data is written to the buffer in the original YUV format; otherwise, it is written in the BGRA_8888 format.|
+| [Image_ErrorCode OH_PixelmapNative_WritePixelsToArea(OH_PixelmapNative *pixelmap, Image_PositionArea *area)](#oh_pixelmapnative_writepixelstoarea) | Writes pixel data in the buffer to the specified area in a PixelMap. If the pixel format of the PixelMap is YUV, the data source format must be the same as that of the PixelMap; otherwise, the data source must be in the BGRA_8888 format.|
 | [Image_ErrorCode OH_PixelmapNative_GetArgbPixels(OH_PixelmapNative *pixelmap, uint8_t *destination, size_t *bufferSize)](#oh_pixelmapnative_getargbpixels) | Reads data in ARGB format from a PixelMap.|
 | [Image_ErrorCode OH_PixelmapNative_ToSdr(OH_PixelmapNative *pixelmap)](#oh_pixelmapnative_tosdr) | Converts a PixelMap from the HDR format to the SDR format.|
 | [Image_ErrorCode OH_PixelmapNative_GetImageInfo(OH_PixelmapNative *pixelmap, OH_Pixelmap_ImageInfo *imageInfo)](#oh_pixelmapnative_getimageinfo) | Obtains the image information of a PixelMap.|
-| [Image_ErrorCode OH_PixelmapNative_Opacity(OH_PixelmapNative *pixelmap, float rate)](#oh_pixelmapnative_opacity) | Sets the opacity rate to enable the PixelMap to achieve the corresponding opacity effect.|
-| [Image_ErrorCode OH_PixelmapNative_Scale(OH_PixelmapNative *pixelmap, float scaleX, float scaleY)](#oh_pixelmapnative_scale) | Scales a PixelMap based on a given width and height.|
-| [Image_ErrorCode OH_PixelmapNative_ScaleWithAntiAliasing(OH_PixelmapNative *pixelmap, float scaleX, float scaleY, OH_PixelmapNative_AntiAliasingLevel level)](#oh_pixelmapnative_scalewithantialiasing) | Scales a PixelMap based on the specified anti-aliasing level, width, and height.|
-| [Image_ErrorCode OH_PixelmapNative_CreateScaledPixelMap(OH_PixelmapNative *srcPixelmap, OH_PixelmapNative **dstPixelmap, float scaleX, float scaleY)](#oh_pixelmapnative_createscaledpixelmap) | Creates an image that has been resized based on the scale factors of the width and height. The generated PixelMap is not editable.|
-| [Image_ErrorCode OH_PixelmapNative_CreateScaledPixelMapWithAntiAliasing(OH_PixelmapNative *srcPixelmap, OH_PixelmapNative **dstPixelmap, float scaleX, float scaleY, OH_PixelmapNative_AntiAliasingLevel level)](#oh_pixelmapnative_createscaledpixelmapwithantialiasing) | Creates an image that has been resized based on the specified anti-aliasing level and the scale factors of the width and height. The generated PixelMap is not editable.|
-| [Image_ErrorCode OH_PixelmapNative_CreateAlphaPixelmap(OH_PixelmapNative *srcPixelmap, OH_PixelmapNative **dstPixelmap)](#oh_pixelmapnative_createalphapixelmap) | Creates a PixelMap that contains only the alpha channel from the source PixelMap. The generated PixelMap is not editable.|
-| [Image_ErrorCode OH_PixelmapNative_Clone(OH_PixelmapNative *srcPixelmap, OH_PixelmapNative **dstPixelmap)](#oh_pixelmapnative_clone) | Clones a new PixelMap from the source PixelMap.|
-| [Image_ErrorCode OH_PixelmapNative_CreateCroppedAndScaledPixelMap(OH_PixelmapNative *srcPixelmap, Image_Region *region, Image_Scale *scale, OH_PixelmapNative_AntiAliasingLevel level, OH_PixelmapNative **dstPixelmap)](#oh_pixelmapnative_createcroppedandscaledpixelmap) | Creates a PixelMap that is cropped and resized based on the source PixelMap.|
-| [Image_ErrorCode OH_PixelmapNative_Translate(OH_PixelmapNative *pixelmap, float x, float y)](#oh_pixelmapnative_translate) | Translates a PixelMap based on given coordinates.|
-| [Image_ErrorCode OH_PixelmapNative_Rotate(OH_PixelmapNative *pixelmap, float angle)](#oh_pixelmapnative_rotate) | Rotates a PixelMap based on a given angle.|
-| [Image_ErrorCode OH_PixelmapNative_Flip(OH_PixelmapNative *pixelmap, bool shouldFlipHorizontally, bool shouldFlipVertically)](#oh_pixelmapnative_flip) | Flips a PixelMap based on a given angle.|
-| [Image_ErrorCode OH_PixelmapNative_Crop(OH_PixelmapNative *pixelmap, Image_Region *region)](#oh_pixelmapnative_crop) | Crops a PixelMap based on a given size.|
-| [Image_ErrorCode OH_PixelmapNative_Release(OH_PixelmapNative *pixelmap)](#oh_pixelmapnative_release) | Releases the pointer to an OH_PixelmapNative object. [OH_PixelmapNative_Destroy](capi-pixelmap-native-h.md#oh_pixelmapnative_destroy) is recommended.|
-| [Image_ErrorCode OH_PixelmapNative_Destroy(OH_PixelmapNative **pixelmap)](#oh_pixelmapnative_destroy) | Releases the pointer to an OH_PixelmapNative object.|
-| [Image_ErrorCode OH_PixelmapNative_ConvertAlphaFormat(OH_PixelmapNative* srcpixelmap, OH_PixelmapNative* dstpixelmap, const bool isPremul)](#oh_pixelmapnative_convertalphaformat) | Converts pixel data of a PixelMap from premultiplied alpha to non-premultiplied alpha, or vice versa.|
+| [Image_ErrorCode OH_PixelmapNative_SetOpacity(OH_PixelmapNative *pixelmap, float value)](#oh_pixelmapnative_setopacity) | Sets the opacity of a PixelMap. The specified opacity value is applied to all pixels.|
+| [Image_ErrorCode OH_PixelmapNative_Opacity(OH_PixelmapNative *pixelmap, float rate)](#oh_pixelmapnative_opacity) | Sets the opacity of a PixelMap. The specified opacity value is applied to all pixels.<br>     Since API version 26.0.0, you are advised to use [OH_PixelmapNative_SetOpacity](capi-pixelmap-native-h.md#oh_pixelmapnative_setopacity) instead, which provides more comprehensive error information.|
+| [Image_ErrorCode OH_PixelmapNative_ApplyScale(OH_PixelmapNative *pixelmap, float scaleX, float scaleY)](#oh_pixelmapnative_applyscale) | Scales a PixelMap horizontally or vertically by the specified width and height scaling factors.|
+| [Image_ErrorCode OH_PixelmapNative_Scale(OH_PixelmapNative *pixelmap, float scaleX, float scaleY)](#oh_pixelmapnative_scale) | Scales a PixelMap based on the input scale ratio.<br>     Since API version 26.0.0, you are advised to use [OH_PixelmapNative_ApplyScale](capi-pixelmap-native-h.md#oh_pixelmapnative_applyscale) instead, which provides more comprehensive error information.|
+| [Image_ErrorCode OH_PixelmapNative_ApplyScaleWithAntiAliasing(OH_PixelmapNative *pixelmap, float scaleX, float scaleY, OH_PixelmapNative_AntiAliasingLevel level)](#oh_pixelmapnative_applyscalewithantialiasing) | Scales a PixelMap horizontally or vertically by the specified scaling factors for width and height, using the specified anti-aliasing level.|
+| [Image_ErrorCode OH_PixelmapNative_ScaleWithAntiAliasing(OH_PixelmapNative *pixelmap, float scaleX, float scaleY, OH_PixelmapNative_AntiAliasingLevel level)](#oh_pixelmapnative_scalewithantialiasing) | Scales an image based on the specified anti-aliasing level and scale ratio.<br>     Since API version 26.0.0, you are advised to use [OH_PixelmapNative_ApplyScaleWithAntiAliasing](capi-pixelmap-native-h.md#oh_pixelmapnative_applyscalewithantialiasing) instead, which provides more comprehensive error information.|
+| [Image_ErrorCode OH_PixelmapNative_CreateScaledPixelMap(OH_PixelmapNative *srcPixelmap, OH_PixelmapNative **dstPixelmap, float scaleX, float scaleY)](#oh_pixelmapnative_createscaledpixelmap) | Creates an image that has been resized based on the scale factors of the width and height. The generated PixelMap is not editable. This API does not copy the HDR metadata or EXIF information from the original image.|
+| [Image_ErrorCode OH_PixelmapNative_CreateScaledPixelMapWithAntiAliasing(OH_PixelmapNative *srcPixelmap, OH_PixelmapNative **dstPixelmap, float scaleX, float scaleY, OH_PixelmapNative_AntiAliasingLevel level)](#oh_pixelmapnative_createscaledpixelmapwithantialiasing) | Creates an image that has been resized based on the specified anti-aliasing level and the scale factors of the width and height. The generated PixelMap is not editable. This API does not copy the HDR metadata or EXIF information from the original image.|
+| [Image_ErrorCode OH_PixelmapNative_CreateAlphaPixelmap(OH_PixelmapNative *srcPixelmap, OH_PixelmapNative **dstPixelmap)](#oh_pixelmapnative_createalphapixelmap) | Creates a new non-editable ALPHA_8 PixelMap that contains only the Alpha channel from the source PixelMap.<br>If the format of the source PixelMap is ALPHA_F16, the newly created PixelMap will retain the ALPHA_F16 format.|
+| [Image_ErrorCode OH_PixelmapNative_Clone(OH_PixelmapNative *srcPixelmap, OH_PixelmapNative **dstPixelmap)](#oh_pixelmapnative_clone) | Copies the source PixelMap to create a new PixelMap. This API does not copy the EXIF information from the original image.|
+| [Image_ErrorCode OH_PixelmapNative_CreateCroppedAndScaledPixelMap(OH_PixelmapNative *srcPixelmap, Image_Region *region, Image_Scale *scale, OH_PixelmapNative_AntiAliasingLevel level, OH_PixelmapNative **dstPixelmap)](#oh_pixelmapnative_createcroppedandscaledpixelmap) | Creates a PixelMap that is cropped and scaled based on the source PixelMap. This API does not copy the EXIF information from the original image.|
+| [Image_ErrorCode OH_PixelmapNative_ApplyTranslate(OH_PixelmapNative *pixelmap, float x, float y)](#oh_pixelmapnative_applytranslate) | Translates the PixelMap horizontally or vertically by the specified horizontal and vertical distances.<br>After translation, the image size becomes: width = original width + x, height = original height + y.|
+| [Image_ErrorCode OH_PixelmapNative_Translate(OH_PixelmapNative *pixelmap, float x, float y)](#oh_pixelmapnative_translate) | Translates an image by the specified translation distances.<br>After translation, the image size becomes: width = original width + x, height = original height + y.<br>     Since API version 26.0.0, you are advised to use [OH_PixelmapNative_ApplyTranslate](capi-pixelmap-native-h.md#oh_pixelmapnative_applytranslate) instead, which provides more comprehensive error information.|
+| [Image_ErrorCode OH_PixelmapNative_ApplyRotate(OH_PixelmapNative *pixelmap, float angle)](#oh_pixelmapnative_applyrotate) | Rotates a PixelMap by the specified angle. YUV formats support only rotation angles that are multiples of 90°.|
+| [Image_ErrorCode OH_PixelmapNative_Rotate(OH_PixelmapNative *pixelmap, float angle)](#oh_pixelmapnative_rotate) | Rotates an image by the specified angle. YUV formats support only rotation angles that are multiples of 90°.<br>     Since API version 26.0.0, you are advised to use [OH_PixelmapNative_ApplyRotate](capi-pixelmap-native-h.md#oh_pixelmapnative_applyrotate) instead, which provides more comprehensive error information.|
+| [Image_ErrorCode OH_PixelmapNative_ApplyFlip(OH_PixelmapNative *pixelmap, bool shouldFlipHorizontally, bool shouldFlipVertically)](#oh_pixelmapnative_applyflip) | Flips an image based on the specified horizontal or vertical flip conditions.|
+| [Image_ErrorCode OH_PixelmapNative_Flip(OH_PixelmapNative *pixelmap, bool shouldFlipHorizontally, bool shouldFlipVertically)](#oh_pixelmapnative_flip) | Flips a PixelMap based on a given angle.<br>     Since API version 26.0.0, you are advised to use [OH_PixelmapNative_ApplyFlip](capi-pixelmap-native-h.md#oh_pixelmapnative_applyflip) instead, which provides more comprehensive error information.|
+| [Image_ErrorCode OH_PixelmapNative_ApplyCrop(OH_PixelmapNative *pixelmap, Image_Region *region)](#oh_pixelmapnative_applycrop) | Crops a PixelMap based on the specified region information.|
+| [Image_ErrorCode OH_PixelmapNative_Crop(OH_PixelmapNative *pixelmap, Image_Region *region)](#oh_pixelmapnative_crop) | Crops a PixelMap based on the input region information.<br>     Since API version 26.0.0, you are advised to use [OH_PixelmapNative_ApplyCrop](capi-pixelmap-native-h.md#oh_pixelmapnative_applycrop) instead, which provides more comprehensive error information.|
+| [Image_ErrorCode OH_PixelmapNative_Release(OH_PixelmapNative *pixelmap)](#oh_pixelmapnative_release) | Releases the pointer to an OH_PixelmapNative object. (The pointer cannot be released when the memory is locked by [OH_PixelmapNative_AccessPixels](capi-pixelmap-native-h.md#oh_pixelmapnative_accesspixels).)<br>You are advised to use [OH_PixelmapNative_Destroy](capi-pixelmap-native-h.md#oh_pixelmapnative_destroy).|
+| [Image_ErrorCode OH_PixelmapNative_Destroy(OH_PixelmapNative **pixelmap)](#oh_pixelmapnative_destroy) | Releases the pointer to an OH_PixelmapNative object, regardless of whether the memory is locked by [OH_PixelmapNative_AccessPixels](capi-pixelmap-native-h.md#oh_pixelmapnative_accesspixels).|
+| [Image_ErrorCode OH_PixelmapNative_ConvertAlphaType(OH_PixelmapNative *srcPixelmap, OH_PixelmapNative *dstPixelmap, const bool toPremul)](#oh_pixelmapnative_convertalphatype) | Converts the alpha type of the PixelMap pixel data between premultiplied mode ([PIXELMAP_ALPHA_TYPE_PREMULTIPLIED](capi-pixelmap-native-h.md#pixelmap_alpha_type)) and non-premultiplied mode ([PIXELMAP_ALPHA_TYPE_UNPREMULTIPLIED](capi-pixelmap-native-h.md#pixelmap_alpha_type)). This conversion is supported only for pixel formats that contain an alpha channel, except RGBA_F16 and ASTC_4x4.<br>     For details about the pixel formats, see [PIXEL_FORMAT](capi-pixelmap-native-h.md#pixel_format).|
+| [Image_ErrorCode OH_PixelmapNative_ConvertAlphaFormat(OH_PixelmapNative* srcpixelmap, OH_PixelmapNative* dstpixelmap, const bool isPremul)](#oh_pixelmapnative_convertalphaformat) | Converts the alpha type of the PixelMap pixel data between premultiplied mode and non-premultiplied mode. This conversion is supported only for pixel formats that contain an alpha channel, except RGBA_F16 and ASTC_4x4.<br>     Since API version 26.0.0, you are advised to use [OH_PixelmapNative_ConvertAlphaType](capi-pixelmap-native-h.md#oh_pixelmapnative_convertalphatype) instead, which provides more comprehensive error information.|
 | [Image_ErrorCode OH_PixelmapNative_CreateEmptyPixelmap(OH_Pixelmap_InitializationOptions *options, OH_PixelmapNative **pixelmap)](#oh_pixelmapnative_createemptypixelmap) | Creates an empty PixelMap object based on **OH_Pixelmap_InitializationOptions**. The memory data is 0.|
-| [Image_ErrorCode OH_PixelmapNative_CreateEmptyPixelmapUsingAllocator(OH_Pixelmap_InitializationOptions *options, IMAGE_ALLOCATOR_MODE allocator, OH_PixelmapNative **pixelmap)](#oh_pixelmapnative_createemptypixelmapusingallocator) | Creates an empty PixelMap object based on the options and memory type, where **allocator** specifies the memory type of the PixelMap. By default, the system selects an appropriate memory type based on the image type, image size, and platform capability. When processing the returned PixelMap object, consider the impact of stride.|
-| [Image_ErrorCode OH_PixelmapNative_CreatePixelmapFromSurface(const char *surfaceId, size_t length, OH_PixelmapNative **pixelmap)](#oh_pixelmapnative_createpixelmapfromsurface) | Creates a PixelMap from a surface with the specified surface ID.|
-| [Image_ErrorCode OH_PixelmapNative_CreatePixelmapFromSurfaceWithTransformation(const char *surfaceId, size_t length, bool transformEnabled, OH_PixelmapNative **pixelmap)](#oh_pixelmapnative_createpixelmapfromsurfacewithtransformation) | Creates a PixelMap object for previewing a stream based on a surface ID. The surface may carry rotation or flipping information.|
-| [Image_ErrorCode OH_PixelmapNative_CreatePixelmapFromNativeBuffer(OH_NativeBuffer *nativeBuffer, OH_PixelmapNative **pixelmap)](#oh_pixelmapnative_createpixelmapfromnativebuffer) | Creates a PixelMap using a NativeBuffer. If the [CPU access permission](../apis-arkgraphics2d/capi-native-buffer-h.md#oh_nativebuffer_usage) is not configured for the NativeBuffer, the PixelMap cannot be created.<br> The supported pixel formats are RGBA_8888, NV21, NV12, YCBCR_P010, and YCRCB_P010.|
+| [Image_ErrorCode OH_PixelmapNative_CreateEmptyPixelmapUsingAllocator(OH_Pixelmap_InitializationOptions *options, IMAGE_ALLOCATOR_MODE allocator, OH_PixelmapNative **pixelmap)](#oh_pixelmapnative_createemptypixelmapusingallocator) | Creates an empty PixelMap object based on **options**. The memory type used by the PixelMap can be specified by **allocator**. By default, the system selects an appropriate memory type based on the image type, image size, and platform capability. When processing the PixelMap returned by this API, consider the impact of the row stride. The row stride is the actual memory size occupied by each row of the image. It may be larger than the image width multiplied by the bytes per pixel due to memory alignment. For details, see [OH_PixelmapInitializationOptions_GetRowStride](#oh_pixelmapinitializationoptions_getrowstride).|
+| [Image_ErrorCode OH_PixelmapNative_CreatePixelmapFromSurface(const char *surfaceId, size_t length, OH_PixelmapNative **pixelmap)](#oh_pixelmapnative_createpixelmapfromsurface) | Creates a PixelMap based on the surface ID. If the surface carries rotation or flipping information and processing is required, use [OH_PixelmapNative_CreatePixelmapFromSurfaceWithTransformation](#oh_pixelmapnative_createpixelmapfromsurfacewithtransformation).|
+| [Image_ErrorCode OH_PixelmapNative_CreatePixelmapFromSurfaceWithTransformation(const char *surfaceId, size_t length, bool transformEnabled, OH_PixelmapNative **pixelmap)](#oh_pixelmapnative_createpixelmapfromsurfacewithtransformation) | Creates a PixelMap object for a preview stream image based on a surface ID. The surface may carry rotation or flipping information.|
+| [Image_ErrorCode OH_PixelmapNative_CreatePixelmapFromNativeBuffer(OH_NativeBuffer *nativeBuffer, OH_PixelmapNative **pixelmap)](#oh_pixelmapnative_createpixelmapfromnativebuffer) | Creates a PixelMap based on a NativeBuffer. If the NativeBuffer usage does not have CPU access permission configured (for details, see [OH_NativeBuffer_Usage](../apis-arkgraphics2d/capi-native-buffer-h.md#oh_nativebuffer_usage)), creation is not supported.<br> The supported pixel formats are RGBA_8888, NV21, NV12, YCBCR_P010, and YCRCB_P010.|
 | [Image_ErrorCode OH_PixelmapNative_GetNativeBuffer(OH_PixelmapNative *pixelmap, OH_NativeBuffer **nativeBuffer)](#oh_pixelmapnative_getnativebuffer) | Obtains the NativeBuffer object from a PixelMap in the DMA memory.|
-| [Image_ErrorCode OH_PixelmapNative_GetMetadata(OH_PixelmapNative *pixelmap, OH_Pixelmap_HdrMetadataKey key, OH_Pixelmap_HdrMetadataValue **value)](#oh_pixelmapnative_getmetadata) | Obtains the metadata.|
-| [Image_ErrorCode OH_PixelmapNative_SetMetadata(OH_PixelmapNative *pixelmap, OH_Pixelmap_HdrMetadataKey key, OH_Pixelmap_HdrMetadataValue *value)](#oh_pixelmapnative_setmetadata) | Sets the metadata.|
-| [Image_ErrorCode OH_PixelmapNative_SetColorSpaceNative(OH_PixelmapNative *pixelmap, OH_NativeColorSpaceManager *colorSpaceNative)](#oh_pixelmapnative_setcolorspacenative) | Sets a NativeColorSpaceManager object.|
-| [Image_ErrorCode OH_PixelmapNative_GetColorSpaceNative(OH_PixelmapNative *pixelmap, OH_NativeColorSpaceManager **colorSpaceNative)](#oh_pixelmapnative_getcolorspacenative) | Obtains a NativeColorSpaceManager object.|
-| [Image_ErrorCode OH_PixelmapNative_SetMemoryName(OH_PixelmapNative *pixelmap, char *name, size_t *size)](#oh_pixelmapnative_setmemoryname) | Sets the memory name of a PixelMap.|
-| [Image_ErrorCode OH_PixelmapNative_GetByteCount(OH_PixelmapNative *pixelmap, uint32_t *byteCount)](#oh_pixelmapnative_getbytecount) | Obtains the total number of bytes occupied by all pixels in a PixelMap, excluding any memory padding.|
-| [Image_ErrorCode OH_PixelmapNative_GetAllocationByteCount(OH_PixelmapNative *pixelmap, uint32_t *allocationByteCount)](#oh_pixelmapnative_getallocationbytecount) | Obtains the number of bytes in the memory allocated by a PixelMap to store pixels.|
-| [Image_ErrorCode OH_PixelmapNative_AccessPixels(OH_PixelmapNative *pixelmap, void **addr)](#oh_pixelmapnative_accesspixels) | Obtains the memory address where the pixels of a PixelMap are stored and locks the memory.<br> When the memory is locked, any attempts to alter or free the pixel data of the PixelMap will fail or be ineffective.|
+| [Image_ErrorCode OH_PixelmapNative_GetMetadata(OH_PixelmapNative *pixelmap, OH_Pixelmap_HdrMetadataKey key, OH_Pixelmap_HdrMetadataValue **value)](#oh_pixelmapnative_getmetadata) | Obtains HDR metadata of a PixelMap.|
+| [Image_ErrorCode OH_PixelmapNative_SetMetadata(OH_PixelmapNative *pixelmap, OH_Pixelmap_HdrMetadataKey key, OH_Pixelmap_HdrMetadataValue *value)](#oh_pixelmapnative_setmetadata) | Sets the HDR metadata for a PixelMap.|
+| [Image_ErrorCode OH_PixelmapNative_SetColorSpaceNative(OH_PixelmapNative *pixelmap, OH_NativeColorSpaceManager *colorSpaceNative)](#oh_pixelmapnative_setcolorspacenative) | Sets the NativeColorSpaceManager object for a PixelMap to manage the color space information of the PixelMap.|
+| [Image_ErrorCode OH_PixelmapNative_GetColorSpaceNative(OH_PixelmapNative *pixelmap, OH_NativeColorSpaceManager **colorSpaceNative)](#oh_pixelmapnative_getcolorspacenative) | Obtains the NativeColorSpaceManager object of a PixelMap to query the color space information currently configured for the PixelMap.|
+| [Image_ErrorCode OH_PixelmapNative_SetMemoryName(OH_PixelmapNative *pixelmap, char *name, size_t *size)](#oh_pixelmapnative_setmemoryname) | Sets the memory name of a PixelMap to facilitate memory identification during debugging or issue troubleshooting.|
+| [Image_ErrorCode OH_PixelmapNative_GetByteCount(OH_PixelmapNative *pixelmap, uint32_t *byteCount)](#oh_pixelmapnative_getbytecount) | Obtains the total number of bytes occupied by all pixels in a PixelMap, excluding memory-alignment padding bytes.|
+| [Image_ErrorCode OH_PixelmapNative_GetAllocationByteCount(OH_PixelmapNative *pixelmap, uint32_t *allocationByteCount)](#oh_pixelmapnative_getallocationbytecount) | Obtains the actual number of memory bytes allocated for storing pixel data, including memory-alignment padding bytes. Unlike [OH_PixelmapNative_GetByteCount](#oh_pixelmapnative_getbytecount) (which does not include padding), this API returns the actual memory size allocated by the system for the PixelMap.|
+| [Image_ErrorCode OH_PixelmapNative_AccessPixels(OH_PixelmapNative *pixelmap, void **addr)](#oh_pixelmapnative_accesspixels) | Obtains the memory address where the pixels of a PixelMap are stored and locks the memory.<br> When the memory is locked, any attempts to alter or free the pixel data of the PixelMap will fail or be ineffective.<br> After use, you must call [OH_PixelmapNative_UnaccessPixels](capi-pixelmap-native-h.md#oh_pixelmapnative_unaccesspixels) to release the memory lock. The two APIs must be used in pairs.|
 | [Image_ErrorCode OH_PixelmapNative_UnaccessPixels(OH_PixelmapNative *pixelmap)](#oh_pixelmapnative_unaccesspixels) | Unlocks the memory allocated to store the pixels of a PixelMap.<br> This function must be used together with [OH_PixelmapNative_AccessPixels](capi-pixelmap-native-h.md#oh_pixelmapnative_accesspixels).|
 | [Image_ErrorCode OH_PixelmapNative_GetUniqueId(OH_PixelmapNative *pixelmap, uint32_t *uniqueId)](#oh_pixelmapnative_getuniqueid) | Obtains the unique ID of a PixelMap.|
 | [Image_ErrorCode OH_PixelmapNative_IsReleased(OH_PixelmapNative *pixelmap, bool *released)](#oh_pixelmapnative_isreleased) | Checks whether a PixelMap is released. If released, any attempt to access the internal data of this object will fail.|
@@ -166,6 +174,8 @@ Enumerates the image pixel formats.
 | PIXEL_FORMAT_RGBA_1010102 = 10 | RGBA_1010102 format.|
 | PIXEL_FORMAT_YCBCR_P010 = 11 | YCBCR_P010 format.|
 | PIXEL_FORMAT_YCRCB_P010 = 12 | YCRCB_P010 format.|
+| PIXEL_FORMAT_ALPHA_U8 = 15 | ALPHA_U8 format.<br>**Since:** 26.0.0|
+| PIXEL_FORMAT_ALPHA_F16 = 16 | ALPHA_F16 format.<br>**Since:** 26.0.0|
 
 ### OH_PixelmapNative_AntiAliasingLevel
 
@@ -203,7 +213,7 @@ Enumerates the keys of the HDR metadata information used by the PixelMap. It is 
 | HDR_METADATA_TYPE = 0 | Metadata type used by the PixelMap.|
 | HDR_STATIC_METADATA = 1 | Static metadata.|
 | HDR_DYNAMIC_METADATA = 2 | Dynamic metadata.|
-| HDR_GAINMAP_METADATA = 3 | Metadata used by gain maps.|
+| HDR_GAINMAP_METADATA = 3 | Metadata used by the gain map.|
 
 ### OH_Pixelmap_HdrMetadataType
 
@@ -293,7 +303,7 @@ Sets the image width.
 | Name| Description|
 | -- | -- |
 | [OH_Pixelmap_InitializationOptions](capi-image-nativemodule-oh-pixelmap-initializationoptions.md) *options | Pointer to an OH_Pixelmap_InitializationOptions struct.|
-| uint32_t width | Image width, in px.|
+| uint32_t width | Pointer to the image width, in px.|
 
 **Returns**
 
@@ -343,7 +353,7 @@ Sets the image height.
 | Name| Description|
 | -- | -- |
 | [OH_Pixelmap_InitializationOptions](capi-image-nativemodule-oh-pixelmap-initializationoptions.md) *options | Pointer to an OH_Pixelmap_InitializationOptions struct.|
-| uint32_t height | Image height, in px.|
+| uint32_t height | Pointer to the image height, in px.|
 
 **Returns**
 
@@ -409,7 +419,7 @@ Image_ErrorCode OH_PixelmapInitializationOptions_GetSrcPixelFormat(OH_Pixelmap_I
 
 **Description**
 
-Obtains the source pixel format.
+Obtains the source pixel format (the pixel format of the input data used when creating an PixelMap).
 
 **Since**: 12
 
@@ -418,7 +428,7 @@ Obtains the source pixel format.
 | Name| Description|
 | -- | -- |
 | [OH_Pixelmap_InitializationOptions](capi-image-nativemodule-oh-pixelmap-initializationoptions.md) *options | Pointer to an OH_Pixelmap_InitializationOptions struct.|
-| int32_t *srcpixelFormat | Pointer to the pixel format. For details about the available options, see [PIXEL_FORMAT](capi-pixelmap-native-h.md#pixel_format).|
+| int32_t *srcpixelFormat | Pointer to the [pixel format](#pixel_format).|
 
 **Returns**
 
@@ -434,7 +444,7 @@ Image_ErrorCode OH_PixelmapInitializationOptions_SetSrcPixelFormat(OH_Pixelmap_I
 
 **Description**
 
-Sets the source pixel format.
+Sets the source pixel format (the pixel format of the input data used when creating an PixelMap).
 
 **Since**: 12
 
@@ -459,7 +469,7 @@ Image_ErrorCode OH_PixelmapInitializationOptions_GetRowStride(OH_Pixelmap_Initia
 
 **Description**
 
-Obtains the row stride.<br> The stride is the actual memory size occupied by each row of the image, in bytes. Stride = Width \*Number of bytes per pixel + Padding, where padding refers to the extra space added at the end of each row for memory alignment purposes.
+Obtains the row stride.<br> The stride is the actual memory size occupied by each row of pixels in the image. The unit is bytes. The stride is calculated as: stride = image width × bytes per pixel + padding, where the padding is the blank area added at the end of each row for memory alignment.
 
 **Since**: 12
 
@@ -484,7 +494,7 @@ Image_ErrorCode OH_PixelmapInitializationOptions_SetRowStride(OH_Pixelmap_Initia
 
 **Description**
 
-Sets the row stride.<br> The stride is the actual memory size occupied by each row of the image, in bytes. Stride = Width \*Number of bytes per pixel + Padding, where padding refers to the extra space added at the end of each row for memory alignment purposes.
+Sets the row stride.<br> The stride is the actual memory size occupied by each row of pixels in the image. The unit is bytes. The stride is calculated as: stride = image width × bytes per pixel + padding, where the padding is the blank area added at the end of each row for memory alignment.
 
 **Since**: 12
 
@@ -493,7 +503,7 @@ Sets the row stride.<br> The stride is the actual memory size occupied by each r
 | Name| Description|
 | -- | -- |
 | [OH_Pixelmap_InitializationOptions](capi-image-nativemodule-oh-pixelmap-initializationoptions.md) *options | Pointer to an OH_Pixelmap_InitializationOptions struct.|
-| int32_t rowStride | Stride, in bytes.|
+| int32_t rowStride | Pointer to the stride. The unit is bytes.|
 
 **Returns**
 
@@ -543,7 +553,7 @@ Sets the alpha type.
 | Name| Description|
 | -- | -- |
 | [OH_Pixelmap_InitializationOptions](capi-image-nativemodule-oh-pixelmap-initializationoptions.md) *options | Pointer to an OH_Pixelmap_InitializationOptions struct.|
-| int32_t alphaType | Alpha type. For details about the alpha types, see [PIXELMAP_ALPHA_TYPE](capi-pixelmap-native-h.md#pixelmap_alpha_type).|
+| int32_t alphaType | Pointer to the alpha type. For details about the alpha types, see [PIXELMAP_ALPHA_TYPE](capi-pixelmap-native-h.md#pixelmap_alpha_type).|
 
 **Returns**
 
@@ -666,7 +676,7 @@ Obtains the image width.
 | Name| Description|
 | -- | -- |
 | [OH_Pixelmap_ImageInfo](capi-image-nativemodule-oh-pixelmap-imageinfo.md) *info | Pointer to an OH_Pixelmap_ImageInfo struct.|
-| uint32_t *width | Pointer to the image width, in px.|
+| uint32_t *width | Pointer to the image width. The unit is px.|
 
 **Returns**
 
@@ -691,7 +701,7 @@ Obtains the image height.
 | Name| Description|
 | -- | -- |
 | [OH_Pixelmap_ImageInfo](capi-image-nativemodule-oh-pixelmap-imageinfo.md) *info | Pointer to an OH_Pixelmap_ImageInfo struct.|
-| uint32_t *height | Pointer to the image height, in px.|
+| uint32_t *height | Pointer to the image height. The unit is px.|
 
 **Returns**
 
@@ -716,7 +726,7 @@ Obtains the alpha type of an image.
 | Name| Description|
 | -- | -- |
 | [OH_Pixelmap_ImageInfo](capi-image-nativemodule-oh-pixelmap-imageinfo.md) *info | Pointer to an OH_Pixelmap_ImageInfo struct.|
-| int32_t *AlphaMode | Pointer to the alpha format.|
+| int32_t *alphaMode | Obtained alpha type.|
 
 **Returns**
 
@@ -741,7 +751,7 @@ Obtains the row stride.
 | Name| Description|
 | -- | -- |
 | [OH_Pixelmap_ImageInfo](capi-image-nativemodule-oh-pixelmap-imageinfo.md) *info | Pointer to an OH_Pixelmap_ImageInfo struct.|
-| uint32_t *rowStride | Pointer to the row stride, which is the number of bytes from one row of pixels in memory to the next row of pixels in memory.|
+| uint32_t *rowStride | Pointer to the row stride, which is the number of bytes from one row of pixels in memory to the next row of pixels in memory. The unit is bytes.|
 
 **Returns**
 
@@ -782,7 +792,7 @@ Image_ErrorCode OH_PixelmapImageInfo_GetAlphaType(OH_Pixelmap_ImageInfo *info, i
 
 **Description**
 
-Obtains the default alpha type from OH_PixelmapImageInfo. To obtain the current alpha channel type of the image, call [OH_PixelmapImageInfo_GetAlphaMode](capi-pixelmap-native-h.md#oh_pixelmapimageinfo_getalphamode).
+Obtains the default alpha type of OH_PixelmapImageInfo. To obtain the current alpha type of the image, call [OH_PixelmapImageInfo_GetAlphaMode](capi-pixelmap-native-h.md#oh_pixelmapimageinfo_getalphamode).
 
 **Since**: 12
 
@@ -856,7 +866,7 @@ Image_ErrorCode OH_PixelmapNative_CreatePixelmap(uint8_t *data, size_t dataLengt
 
 **Description**
 
-Creates a PixelMap based on the pixel data and image properties. The input pixel data is parsed in BGRA_8888 format by default. To use another format, see [OH_PixelmapInitializationOptions_SetSrcPixelFormat](capi-pixelmap-native-h.md#oh_pixelmapinitializationoptions_setsrcpixelformat).
+Creates a PixelMap based on the pixel data and image properties.<br>This API cannot create PixelMaps in the PIXEL_FORMAT_RGBA_1010102, PIXEL_FORMAT_YCBCR_P010, or PIXEL_FORMAT_YCRCB_P010 format.
 
 **Since**: 12
 
@@ -864,9 +874,9 @@ Creates a PixelMap based on the pixel data and image properties. The input pixel
 
 | Name| Description|
 | -- | -- |
-| uint8_t *data | Pointer to the color array in BGRA_8888 format.|
-| size_t dataLength | Size of the array.|
-| [OH_Pixelmap_InitializationOptions](capi-image-nativemodule-oh-pixelmap-initializationoptions.md) *options | Pointer to the properties.|
+| uint8_t *data | Pixel data array.<br>The input pixel data is parsed in BGRA_8888 format by default. To use another format, see [OH_PixelmapInitializationOptions_SetSrcPixelFormat](#oh_pixelmapinitializationoptions_setsrcpixelformat).<br>If the pixel data contains padding bytes at the end of each row for memory alignment, you must use [OH_PixelmapInitializationOptions_SetRowStride](#oh_pixelmapinitializationoptions_setrowstride) to set the row stride.|
+| size_t dataLength | Length of the pixel data array. The unit is bytes.|
+| [OH_Pixelmap_InitializationOptions](capi-image-nativemodule-oh-pixelmap-initializationoptions.md) *options | Initialization properties for image creation.|
 | [OH_PixelmapNative](capi-image-nativemodule-oh-pixelmapnative.md) **pixelmap | Double pointer to the OH_PixelmapNative object created.|
 
 **Returns**
@@ -883,7 +893,7 @@ Image_ErrorCode OH_PixelmapNative_CreatePixelmapUsingAllocator(uint8_t *data, si
 
 **Description**
 
-Creates a PixelMap based on the pixel data and image properties. You can specify the memory type via the allocator. The input pixel data is parsed in BGRA_8888 format by default. To use another format, see [OH_PixelmapInitializationOptions_SetSrcPixelFormat](capi-pixelmap-native-h.md#oh_pixelmapinitializationoptions_setsrcpixelformat). By default, the system selects an appropriate memory type based on the image type, image size, and platform capability. When processing the returned PixelMap object, consider the impact of stride.
+Creates a PixelMap based on the pixel data and image properties. You can specify the memory type via the allocator.<br>By default, the system selects an appropriate memory type based on the image type, image size, and platform capability.<br>When processing the PixelMap returned by this API, consider the impact of the row stride. The row stride is the actual memory size occupied by each row of the image. It may be larger than the image width multiplied by the bytes per pixel due to memory alignment. For details, see [OH_PixelmapInitializationOptions_GetRowStride](#oh_pixelmapinitializationoptions_getrowstride).
 
 **Since**: 20
 
@@ -891,10 +901,10 @@ Creates a PixelMap based on the pixel data and image properties. You can specify
 
 | Name| Description|
 | -- | -- |
-| uint8_t *data | Pointer to the color array in BGRA_8888 format.|
-| size_t dataLength | Size of the array.|
-| [OH_Pixelmap_InitializationOptions](capi-image-nativemodule-oh-pixelmap-initializationoptions.md) *options | Pointer to the options used for creating the PixelMap.|
-| [IMAGE_ALLOCATOR_MODE](capi-image-common-h.md#image_allocator_mode) allocator | Type of memory allocation for the PixelMap.|
+| uint8_t *data | Pixel data array.<br>The input pixel data is parsed in BGRA_8888 format by default. To use another format, see [OH_PixelmapInitializationOptions_SetSrcPixelFormat](#oh_pixelmapinitializationoptions_setsrcpixelformat).<br>If the pixel data contains padding bytes at the end of each row for memory alignment, you must use [OH_PixelmapInitializationOptions_SetRowStride](#oh_pixelmapinitializationoptions_setrowstride) to set the row stride.|
+| size_t dataLength | Length of the pixel data array. The unit is bytes.|
+| [OH_Pixelmap_InitializationOptions](capi-image-nativemodule-oh-pixelmap-initializationoptions.md) *options | Initialization properties for image creation.|
+| [IMAGE_ALLOCATOR_MODE](capi-image-common-h.md#image_allocator_mode) allocator | PixelMap memory allocation type.|
 | [OH_PixelmapNative](capi-image-nativemodule-oh-pixelmapnative.md) **pixelmap | Double pointer to the OH_PixelmapNative object created.|
 
 **Returns**
@@ -911,7 +921,7 @@ Image_ErrorCode OH_PixelmapNative_ConvertPixelmapNativeToNapi(napi_env env, OH_P
 
 **Description**
 
-Converts a nativePixelMap object to a PixelMapnapi object.
+Converts an OH_PixelmapNative object to a PixelmapNapi object.
 
 **Since**: 12
 
@@ -919,9 +929,9 @@ Converts a nativePixelMap object to a PixelMapnapi object.
 
 | Name| Description|
 | -- | -- |
-| napi_env env | Pointer to the NAPI environment.|
+| napi_env env | Napi environment pointer.|
 | [OH_PixelmapNative](capi-image-nativemodule-oh-pixelmapnative.md) *pixelmapNative | Pointer to an OH_PixelmapNative object.|
-| napi_value *pixelmapNapi | Double pointer to the PixelMapnapi object.|
+| napi_value *pixelmapNapi | Pointer to the converted PixelmapNapi object.|
 
 **Returns**
 
@@ -937,7 +947,7 @@ Image_ErrorCode OH_PixelmapNative_ConvertPixelmapNativeFromNapi(napi_env env, na
 
 **Description**
 
-Converts a PixelMapnapi object to a nativePixelMap object.
+Converts a PixelmapNapi object to an OH_PixelmapNative object.
 
 **Since**: 12
 
@@ -945,15 +955,15 @@ Converts a PixelMapnapi object to a nativePixelMap object.
 
 | Name| Description|
 | -- | -- |
-| napi_env env | Pointer to the NAPI environment.|
-| napi_value pixelmapNapi | PixelMapNapi object.|
+| napi_env env | Napi environment pointer.|
+| napi_value pixelmapNapi | PixelMapNapi object to convert.|
 | [OH_PixelmapNative](capi-image-nativemodule-oh-pixelmapnative.md) **pixelmapNative | Double pointer to the OH_PixelmapNative object.|
 
 **Returns**
 
 | Type| Description|
 | -- | -- |
-| [Image_ErrorCode](capi-image-common-h.md#image_errorcode) | **IMAGE_SUCCESS**: The operation is successful.<br>         **IMAGE_BAD_PARAMETER**: **pixelmapNative** is nullptr or **pixelmapNapi** is not an PixelMapNapi object.|
+| [Image_ErrorCode](capi-image-common-h.md#image_errorcode) | **IMAGE_SUCCESS**: The operation is successful.<br>         **IMAGE_BAD_PARAMETER**: **pixelmapNative** is nullptr or **pixelmapNapi** is not an PixelmapNapi object.|
 
 ### OH_PixelmapNative_ReadPixels()
 
@@ -963,7 +973,7 @@ Image_ErrorCode OH_PixelmapNative_ReadPixels(OH_PixelmapNative *pixelmap, uint8_
 
 **Description**
 
-Reads the pixels of a PixelMap and writes the result to the buffer based on the pixel format of the PixelMap.
+Reads the pixel data of a PixelMap and writes it to the buffer based on the pixel format of the PixelMap.
 
 **Since**: 12
 
@@ -972,8 +982,8 @@ Reads the pixels of a PixelMap and writes the result to the buffer based on the 
 | Name| Description|
 | -- | -- |
 | [OH_PixelmapNative](capi-image-nativemodule-oh-pixelmapnative.md) *pixelmap | Pointer to an OH_PixelmapNative object.|
-| uint8_t *destination | Pointer to the buffer to which the pixels will be written.|
-| size_t *bufferSize | Pointer to the buffer size. The buffer size of the RGBA format is equal to width \* height \* 4, and the buffer size of the NV21 and NV12 formats is equal to width \* height+((width+1)/2) \* ((height+1)/2) \* 2.|
+| uint8_t *destination | Target buffer to which the obtained pixel data will be copied. The pixel format in the buffer is the same as that of the PixelMap and does not contain memory-alignment padding bytes.|
+| size_t *bufferSize | Pointer to the buffer size. The unit is bytes. It can be obtained via the [OH_PixelmapNative_GetByteCount](#oh_pixelmapnative_getbytecount) API. The buffer size of the RGBA format is equal to width \* height \* 4, and the buffer size of the NV21 and NV12 formats is equal to width \* height + ((width + 1)/2) \* ((height+1)/2) \* 2.|
 
 **Returns**
 
@@ -989,7 +999,7 @@ Image_ErrorCode OH_PixelmapNative_WritePixels(OH_PixelmapNative *pixelmap, uint8
 
 **Description**
 
-Reads the pixels in the buffer and writes the result to the PixelMap based on the pixel format of the PixelMap.
+Writes the pixel data in the buffer to a PixelMap based on the pixel format of the PixelMap.
 
 **Since**: 12
 
@@ -998,8 +1008,8 @@ Reads the pixels in the buffer and writes the result to the PixelMap based on th
 | Name| Description|
 | -- | -- |
 | [OH_PixelmapNative](capi-image-nativemodule-oh-pixelmapnative.md) *pixelmap | Pointer to an OH_PixelmapNative object.|
-| uint8_t *source | Pointer to the buffer from which the pixels will be read.|
-| size_t bufferSize | Buffer size.|
+| uint8_t *source | Source data buffer. The image pixel data in this buffer is written to the PixelMap. The pixel data in the buffer must cover the entire PixelMap and must be in the same pixel format as the PixelMap, without memory-alignment padding bytes.|
+| size_t bufferSize | Pointer to the buffer size. The unit is bytes. It can be obtained via the [OH_PixelmapNative_GetByteCount](#oh_pixelmapnative_getbytecount) API. The buffer size of the RGBA format is equal to width \* height \* 4, and the buffer size of the NV21 and NV12 formats is equal to width \* height + ((width + 1)/2) \* ((height+1)/2) \* 2.|
 
 **Returns**
 
@@ -1015,7 +1025,7 @@ Image_ErrorCode OH_PixelmapNative_ReadPixelsFromArea(OH_PixelmapNative *pixelmap
 
 **Description**
 
-Reads pixels from the specified area in a PixelMap and stores the result to the buffer. The read data is in BGRA_8888 format.
+Reads pixel data from the specified area in a PixelMap and stores the data to the buffer. If the pixel format of the PixelMap is YUV, the data is written to the buffer in the original YUV format; otherwise, it is written in the BGRA_8888 format.
 
 **Since**: 22
 
@@ -1024,7 +1034,7 @@ Reads pixels from the specified area in a PixelMap and stores the result to the 
 | Name| Description|
 | -- | -- |
 | [OH_PixelmapNative](capi-image-nativemodule-oh-pixelmapnative.md) *pixelmap | Pointer to the PixelMap from which pixels are read.|
-| [Image_PositionArea](capi-image-nativemodule-image-positionarea.md) *area | Pointer to the area in the PixelMap. The data is read and copied to `area->pixels`.|
+| [Image_PositionArea](capi-image-nativemodule-image-positionarea.md) *area | Pointer to the specified PixelMap area from which pixels are read. The pixel data in this area is read and copied to **area->pixels**. If the pixel format of the PixelMap is YUV, the retrieved pixel data remains in the same format as the PixelMap; otherwise, it is converted to the BGRA_8888 format.|
 
 **Returns**
 
@@ -1040,7 +1050,7 @@ Image_ErrorCode OH_PixelmapNative_WritePixelsToArea(OH_PixelmapNative *pixelmap,
 
 **Description**
 
-Writes pixels in the buffer to the specified area in a PixelMap. The data source must be in BGRA_8888 format.
+Writes pixel data in the buffer to the specified area in a PixelMap. If the pixel format of the PixelMap is YUV, the data source format must be the same as that of the PixelMap; otherwise, the data source must be in the BGRA_8888 format.
 
 **Since**: 22
 
@@ -1049,7 +1059,7 @@ Writes pixels in the buffer to the specified area in a PixelMap. The data source
 | Name| Description|
 | -- | -- |
 | [OH_PixelmapNative](capi-image-nativemodule-oh-pixelmapnative.md) *pixelmap | Pointer to the PixelMap to which pixels are written.|
-| [Image_PositionArea](capi-image-nativemodule-image-positionarea.md) *area | Pointer to the area in the PixelMap.|
+| [Image_PositionArea](capi-image-nativemodule-image-positionarea.md) *area | Pointer to the specified area in the PixelMap to which data is written. The pixel data in **area->pixels** is written to this area. If the pixel format of the PixelMap is YUV, the pixel data in **area->pixels** must be in the same format as the PixelMap; otherwise, it must be in the BGRA_8888 format.|
 
 **Returns**
 
@@ -1074,14 +1084,14 @@ Reads data in ARGB format from a PixelMap.
 | Name| Description|
 | -- | -- |
 | [OH_PixelmapNative](capi-image-nativemodule-oh-pixelmapnative.md) *pixelmap | Pointer to an OH_PixelmapNative object.|
-| uint8_t *destination | Pointer to the buffer to which the pixels will be written.|
-| size_t *bufferSize | Pointer to the buffer size.|
+| uint8_t *destination | Pointer to the buffer to which the pixels will be written. The buffer size must not be less than width × height × 4 bytes.|
+| size_t *bufferSize | Pointer to the buffer size. The unit is bytes.|
 
 **Returns**
 
 | Type| Description|
 | -- | -- |
-| [Image_ErrorCode](capi-image-common-h.md#image_errorcode) | **IMAGE_SUCCESS**: The operation is successful.<br>         **IMAGE_BAD_PARAMETER**: A parameter is incorrect.<br>         IMAGE_UNSUPPORTED_CONVERSION: The PixelMap format does not support reading ARGB data.<br>         **IMAGE_ALLOC_FAILED**: Memory allocation fails.<br>         **IMAGE_COPY_FAILED**: Memory data copy, read, or operation fails.|
+| [Image_ErrorCode](capi-image-common-h.md#image_errorcode) | **IMAGE_SUCCESS**: The operation is successful.<br>         **IMAGE_BAD_PARAMETER**: A parameter is incorrect.<br>         **IMAGE_UNSUPPORTED_CONVERSION**: The PixelMap format does not support reading ARGB data.<br>         **IMAGE_ALLOC_FAILED**: Memory allocation fails.<br>         **IMAGE_COPY_FAILED**: Memory data copy, read, or operation fails.|
 
 ### OH_PixelmapNative_ToSdr()
 
@@ -1132,6 +1142,31 @@ Obtains the image information of a PixelMap.
 | -- | -- |
 | [Image_ErrorCode](capi-image-common-h.md#image_errorcode) | **IMAGE_SUCCESS**: The operation is successful.<br>         **IMAGE_BAD_PARAMETER**: A parameter is incorrect.|
 
+### OH_PixelmapNative_SetOpacity()
+
+```c
+Image_ErrorCode OH_PixelmapNative_SetOpacity(OH_PixelmapNative *pixelmap, float value)
+```
+
+**Description**
+
+Sets the opacity of a PixelMap. The specified opacity value is applied to all pixels.
+
+**Since:** 26.0.0
+
+**Parameters**
+
+| Name| Description|
+| -- | -- |
+| [OH_PixelmapNative](capi-image-nativemodule-oh-pixelmapnative.md) *pixelmap | Pointer to an OH_PixelmapNative object.|
+| float value | Opacity value. The value range is (0.0, 1.0], where **1.0** indicates that the image is completely opaque. A value closer to **0.0** indicates higher transparency.|
+
+**Returns**
+
+| Type| Description|
+| -- | -- |
+| [Image_ErrorCode](capi-image-common-h.md#image_errorcode) | **IMAGE_SUCCESS**: The operation is successful.<br>         **IMAGE_GET_IMAGE_DATA_FAILED**: The image data fails to be obtained. Possible cause: The internal data is damaged. Check the log for details.<br>         **IMAGE_PIXELMAP_RELEASED**: The PixelMap has been released.<br>         **IMAGE_UNSUPPORTED_OPERATION**: The PixelMap is locked and the operation is not supported.<br>         **IMAGE_INVALID_PARAMETER**: Invalid parameter. Possible causes: 1. The opacity value is out of range.2. The input parameter is null.<br>         **IMAGE_UNSUPPORTED_DATA_FORMAT**: Unsupported data format. Possible cause: The alpha type is not supported.|
+
 ### OH_PixelmapNative_Opacity()
 
 ```c
@@ -1140,7 +1175,7 @@ Image_ErrorCode OH_PixelmapNative_Opacity(OH_PixelmapNative *pixelmap, float rat
 
 **Description**
 
-Sets the opacity rate to enable the PixelMap to achieve the corresponding opacity effect.
+Sets the opacity of a PixelMap. The specified opacity value is applied to all pixels.<br>     Since API version 26.0.0, you are advised to use [OH_PixelmapNative_SetOpacity](#oh_pixelmapnative_setopacity) instead, which provides more comprehensive error information.
 
 **Since**: 12
 
@@ -1149,13 +1184,39 @@ Sets the opacity rate to enable the PixelMap to achieve the corresponding opacit
 | Name| Description|
 | -- | -- |
 | [OH_PixelmapNative](capi-image-nativemodule-oh-pixelmapnative.md) *pixelmap | Pointer to an OH_PixelmapNative object.|
-| float rate | Opacity rate.|
+| float rate | Opacity value. The value range is (0.0, 1.0], where **1.0** indicates that the image is completely opaque. A value closer to **0.0** indicates higher transparency.|
 
 **Returns**
 
 | Type| Description|
 | -- | -- |
 | [Image_ErrorCode](capi-image-common-h.md#image_errorcode) | **IMAGE_SUCCESS**: The operation is successful.<br>         **IMAGE_BAD_PARAMETER**: A parameter is incorrect.|
+
+### OH_PixelmapNative_ApplyScale()
+
+```c
+Image_ErrorCode OH_PixelmapNative_ApplyScale(OH_PixelmapNative *pixelmap, float scaleX, float scaleY)
+```
+
+**Description**
+
+Scales a PixelMap horizontally or vertically by the specified width and height scaling factors.
+
+**Since:** 26.0.0
+
+**Parameters**
+
+| Name| Description|
+| -- | -- |
+| [OH_PixelmapNative](capi-image-nativemodule-oh-pixelmapnative.md) *pixelmap | Pointer to an OH_PixelmapNative object.|
+| float scaleX | Scale factor of the width. The value cannot be **0**.|
+| float scaleY | Scale factor of the height. The value cannot be **0**.|
+
+**Returns**
+
+| Type| Description|
+| -- | -- |
+| [Image_ErrorCode](capi-image-common-h.md#image_errorcode) | **IMAGE_SUCCESS**: The operation is successful.<br>         **IMAGE_GET_IMAGE_DATA_FAILED**: The image data fails to be obtained. Possible cause: The internal data is damaged. Check the log for details.<br>         **IMAGE_PIXELMAP_RELEASED**: The PixelMap has been released.<br>         **IMAGE_UNSUPPORTED_OPERATION**: The PixelMap is locked and the operation is not supported.<br>         **IMAGE_INVALID_PARAMETER**: Invalid parameter. Possible cause: The input parameter is null.<br>         **IMAGE_ALLOC_FAILED**: Memory allocation fails. Possible causes: 1. The size of the generated PixelMap is too large.2. Insufficient memory.|
 
 ### OH_PixelmapNative_Scale()
 
@@ -1165,7 +1226,7 @@ Image_ErrorCode OH_PixelmapNative_Scale(OH_PixelmapNative *pixelmap, float scale
 
 **Description**
 
-Scales a PixelMap based on a given width and height.
+Scales a PixelMap based on the input scale ratio.<br>     Since API version 26.0.0, you are advised to use [OH_PixelmapNative_ApplyScale](capi-pixelmap-native-h.md#oh_pixelmapnative_applyscale) instead, which provides more comprehensive error information.
 
 **Since**: 12
 
@@ -1174,14 +1235,41 @@ Scales a PixelMap based on a given width and height.
 | Name| Description|
 | -- | -- |
 | [OH_PixelmapNative](capi-image-nativemodule-oh-pixelmapnative.md) *pixelmap | Pointer to an OH_PixelmapNative object.|
-| float scaleX | Scale ratio of the width.|
-| float scaleY | Scale ratio of the height.|
+| float scaleX | Scale ratio of the width. The value cannot be **0**.|
+| float scaleY | Scale ratio of the height. The value cannot be **0**.|
 
 **Returns**
 
 | Type| Description|
 | -- | -- |
 | [Image_ErrorCode](capi-image-common-h.md#image_errorcode) | **IMAGE_SUCCESS**: The operation is successful.<br>         **IMAGE_BAD_PARAMETER**: A parameter is incorrect.|
+
+### OH_PixelmapNative_ApplyScaleWithAntiAliasing()
+
+```c
+Image_ErrorCode OH_PixelmapNative_ApplyScaleWithAntiAliasing(OH_PixelmapNative *pixelmap, float scaleX, float scaleY, OH_PixelmapNative_AntiAliasingLevel level)
+```
+
+**Description**
+
+Scales a PixelMap horizontally or vertically by the specified scaling factors for width and height, using the specified anti-aliasing level.
+
+**Since:** 26.0.0
+
+**Parameters**
+
+| Name| Description|
+| -- | -- |
+| [OH_PixelmapNative](capi-image-nativemodule-oh-pixelmapnative.md) *pixelmap | Pointer to an OH_PixelmapNative object.|
+| float scaleX | Scale factor of the width. The value cannot be **0**.|
+| float scaleY | Scale factor of the height. The value cannot be **0**.|
+| [OH_PixelmapNative_AntiAliasingLevel](#oh_pixelmapnative_antialiasinglevel) level | Anti-aliasing level. This parameter does not take effect for PixelMaps in ASTC format.|
+
+**Returns**
+
+| Type| Description|
+| -- | -- |
+| [Image_ErrorCode](capi-image-common-h.md#image_errorcode) | **IMAGE_SUCCESS**: The operation is successful.<br>         **IMAGE_GET_IMAGE_DATA_FAILED**: The image data fails to be obtained. Possible cause: The internal data is damaged. Check the log for details.<br>         **IMAGE_PIXELMAP_RELEASED**: The PixelMap has been released.<br>         **IMAGE_UNSUPPORTED_OPERATION**: The PixelMap is locked and the operation is not supported.<br>         **IMAGE_INVALID_PARAMETER**: Invalid parameter. Possible cause: The input parameter is null.<br>         **IMAGE_ALLOC_FAILED**: Memory allocation fails. Possible causes: 1. The size of the generated PixelMap is too large.2. Insufficient memory.|
 
 ### OH_PixelmapNative_ScaleWithAntiAliasing()
 
@@ -1191,7 +1279,7 @@ Image_ErrorCode OH_PixelmapNative_ScaleWithAntiAliasing(OH_PixelmapNative *pixel
 
 **Description**
 
-Scales a PixelMap based on the specified anti-aliasing level, width, and height.
+Scales an image based on the specified anti-aliasing level and scale ratio.<br>     Since API version 26.0.0, you are advised to use [OH_PixelmapNative_ApplyScaleWithAntiAliasing](#oh_pixelmapnative_applyscalewithantialiasing) instead, which provides more comprehensive error information.
 
 **Since**: 12
 
@@ -1200,9 +1288,9 @@ Scales a PixelMap based on the specified anti-aliasing level, width, and height.
 | Name| Description|
 | -- | -- |
 | [OH_PixelmapNative](capi-image-nativemodule-oh-pixelmapnative.md) *pixelmap | Pointer to an OH_PixelmapNative object.|
-| float scaleX | Scale ratio of the width.|
-| float scaleY | Scale ratio of the height.|
-| [OH_PixelmapNative_AntiAliasingLevel](capi-pixelmap-native-h.md#oh_pixelmapnative_antialiasinglevel) level | Anti-aliasing level.|
+| float scaleX | Scale ratio of the width. The value cannot be **0**.|
+| float scaleY | Scale ratio of the height. The value cannot be **0**.|
+| [OH_PixelmapNative_AntiAliasingLevel](#oh_pixelmapnative_antialiasinglevel) level | Anti-aliasing level. This parameter does not take effect for PixelMaps in ASTC format.|
 
 **Returns**
 
@@ -1218,7 +1306,7 @@ Image_ErrorCode OH_PixelmapNative_CreateScaledPixelMap(OH_PixelmapNative *srcPix
 
 **Description**
 
-Creates an image that has been resized based on the scale factors of the width and height. The generated PixelMap is not editable.
+Creates an image that has been resized based on the scale factors of the width and height. The generated PixelMap is not editable. This API does not copy the HDR metadata or EXIF information from the original image.
 
 **Since**: 18
 
@@ -1227,9 +1315,9 @@ Creates an image that has been resized based on the scale factors of the width a
 | Name| Description|
 | -- | -- |
 | [OH_PixelmapNative](capi-image-nativemodule-oh-pixelmapnative.md) *srcPixelmap | Pointer to the source PixelMap, which is an OH_PixelmapNative object.|
-| [OH_PixelmapNative](capi-image-nativemodule-oh-pixelmapnative.md) **dstPixelmap | Double pointer to the destination PixelMap, which is an OH_PixelmapNative object.|
-| float scaleX | Scale ratio of the width.|
-| float scaleY | Scale ratio of the height.|
+| [OH_PixelmapNative](capi-image-nativemodule-oh-pixelmapnative.md) **dstPixelmap | Pointer to the target PixelMap, which is an OH_PixelmapNative object.|
+| float scaleX | Scale ratio of the width. The value cannot be **0**.|
+| float scaleY | Scale ratio of the height. The value cannot be **0**.|
 
 **Returns**
 
@@ -1245,7 +1333,7 @@ Image_ErrorCode OH_PixelmapNative_CreateScaledPixelMapWithAntiAliasing(OH_Pixelm
 
 **Description**
 
-Creates an image that has been resized based on the specified anti-aliasing level and the scale factors of the width and height. The generated PixelMap is not editable.
+Creates an image that has been resized based on the specified anti-aliasing level and the scale factors of the width and height. The generated PixelMap is not editable. This API does not copy the HDR metadata or EXIF information from the original image.
 
 **Since**: 18
 
@@ -1254,10 +1342,10 @@ Creates an image that has been resized based on the specified anti-aliasing leve
 | Name| Description|
 | -- | -- |
 | [OH_PixelmapNative](capi-image-nativemodule-oh-pixelmapnative.md) *srcPixelmap | Pointer to the source PixelMap, which is an OH_PixelmapNative object.|
-| [OH_PixelmapNative](capi-image-nativemodule-oh-pixelmapnative.md) **dstPixelmap | Double pointer to the destination PixelMap, which is an OH_PixelmapNative object.|
-| float scaleX | Scale ratio of the width.|
-| float scaleY | Scale ratio of the height.|
-| [OH_PixelmapNative_AntiAliasingLevel](capi-pixelmap-native-h.md#oh_pixelmapnative_antialiasinglevel) level | Anti-aliasing level.|
+| [OH_PixelmapNative](capi-image-nativemodule-oh-pixelmapnative.md) **dstPixelmap | Pointer to the target PixelMap, which is an OH_PixelmapNative object.|
+| float scaleX | Scale ratio of the width. The value cannot be **0**.|
+| float scaleY | Scale ratio of the height. The value cannot be **0**.|
+| [OH_PixelmapNative_AntiAliasingLevel](#oh_pixelmapnative_antialiasinglevel) level | Anti-aliasing level. This parameter does not take effect for PixelMaps in ASTC format.|
 
 **Returns**
 
@@ -1273,7 +1361,7 @@ Image_ErrorCode OH_PixelmapNative_CreateAlphaPixelmap(OH_PixelmapNative *srcPixe
 
 **Description**
 
-Creates a PixelMap that contains only the alpha channel from the source PixelMap. The generated PixelMap is not editable.
+Creates a new non-editable ALPHA_8 PixelMap that contains only the Alpha channel from the source PixelMap.<br>     If the format of the source PixelMap is ALPHA_F16, the newly created PixelMap will retain the ALPHA_F16 format.
 
 **Since**: 22
 
@@ -1281,8 +1369,8 @@ Creates a PixelMap that contains only the alpha channel from the source PixelMap
 
 | Name| Description|
 | -- | -- |
-| [OH_PixelmapNative](capi-image-nativemodule-oh-pixelmapnative.md) *srcPixelmap | Pointer to the source PixelMap.|
-| [OH_PixelmapNative](capi-image-nativemodule-oh-pixelmapnative.md) **dstPixelmap | Double pointer to the destination PixelMap created.|
+| [OH_PixelmapNative](capi-image-nativemodule-oh-pixelmapnative.md) *srcPixelmap | Pointer to the source PixelMap that provides the alpha channel data.|
+| [OH_PixelmapNative](capi-image-nativemodule-oh-pixelmapnative.md) **dstPixelmap | Double pointer to the target PixelMap created.|
 
 **Returns**
 
@@ -1298,7 +1386,7 @@ Image_ErrorCode OH_PixelmapNative_Clone(OH_PixelmapNative *srcPixelmap, OH_Pixel
 
 **Description**
 
-Clones a new PixelMap from the source PixelMap.
+Copies the source PixelMap to create a new PixelMap. This API does not copy the EXIF information from the original image.
 
 **Since**: 22
 
@@ -1306,14 +1394,14 @@ Clones a new PixelMap from the source PixelMap.
 
 | Name| Description|
 | -- | -- |
-| [OH_PixelmapNative](capi-image-nativemodule-oh-pixelmapnative.md) *srcPixelmap | Pointer to the source PixelMap.|
-| [OH_PixelmapNative](capi-image-nativemodule-oh-pixelmapnative.md) **dstPixelmap | Double pointer to the destination PixelMap created.|
+| [OH_PixelmapNative](capi-image-nativemodule-oh-pixelmapnative.md) *srcPixelmap | Source PixelMap to be copied.|
+| [OH_PixelmapNative](capi-image-nativemodule-oh-pixelmapnative.md) **dstPixelmap | Created target PixelMap.|
 
 **Returns**
 
 | Type| Description|
 | -- | -- |
-| [Image_ErrorCode](capi-image-common-h.md#image_errorcode) | **IMAGE_SUCCESS**: The operation is successful.<br>         **IMAGE_BAD_PARAMETER**: Invalid parameters. For example, **srcPixelmap** or **dstPixelmap** is incorrect.<br>         **IMAGE_UNSUPPORTED_DATA_FORMAT**: The pixel format is not supported.<br>         **IMAGE_TOO_LARGE**: The source PixelMap is too large.<br>         **IMAGE_INIT_FAILED**: The destination PixelMap fails to be initialized.<br>         **IMAGE_ALLOC_FAILED**: Memory allocation or data copy fails.|
+| [Image_ErrorCode](capi-image-common-h.md#image_errorcode) | **IMAGE_SUCCESS**: The operation is successful.<br>         **IMAGE_BAD_PARAMETER**: Invalid parameters. For example, **srcPixelmap** or **dstPixelmap** is incorrect.<br>         **IMAGE_UNSUPPORTED_DATA_FORMAT**: The pixel format is not supported.<br>         **IMAGE_TOO_LARGE**: The source PixelMap is too large.<br>         **IMAGE_INIT_FAILED**: The target PixelMap fails to be initialized.<br>         **IMAGE_ALLOC_FAILED**: Memory allocation or data copy fails.|
 
 ### OH_PixelmapNative_CreateCroppedAndScaledPixelMap()
 
@@ -1323,7 +1411,7 @@ Image_ErrorCode OH_PixelmapNative_CreateCroppedAndScaledPixelMap(OH_PixelmapNati
 
 **Description**
 
-Creates a PixelMap that is cropped and resized based on the source PixelMap.
+Creates a PixelMap that is cropped and scaled based on the source PixelMap. This API does not copy the EXIF information from the original image.
 
 **Since**: 22
 
@@ -1334,14 +1422,40 @@ Creates a PixelMap that is cropped and resized based on the source PixelMap.
 | [OH_PixelmapNative](capi-image-nativemodule-oh-pixelmapnative.md) *srcPixelmap | Pointer to the source PixelMap.|
 | [Image_Region](capi-image-nativemodule-image-region.md) *region | Pointer to the region to crop.|
 | [Image_Scale](capi-image-nativemodule-image-scale.md) *scale | Pointer to the scale factor of the width and height. It must not be **0**.|
-| [OH_PixelmapNative_AntiAliasingLevel](capi-pixelmap-native-h.md#oh_pixelmapnative_antialiasinglevel) level | Scale interpolation algorithm.|
-| [OH_PixelmapNative](capi-image-nativemodule-oh-pixelmapnative.md) **dstPixelmap | Double pointer to the destination PixelMap created.|
+| [OH_PixelmapNative_AntiAliasingLevel](capi-pixelmap-native-h.md#oh_pixelmapnative_antialiasinglevel) level | Scale interpolation algorithm. This parameter does not take effect for PixelMaps in ASTC format.|
+| [OH_PixelmapNative](capi-image-nativemodule-oh-pixelmapnative.md) **dstPixelmap | Double pointer to the target PixelMap created.|
 
 **Returns**
 
 | Type| Description|
 | -- | -- |
-| [Image_ErrorCode](capi-image-common-h.md#image_errorcode) | **IMAGE_SUCCESS**: The operation is successful.<br>         **IMAGE_BAD_PARAMETER**: Invalid parameters. For example, **srcPixelmap**, **region**, **scale**, or **dstPixelmap** is incorrect.<br>         **IMAGE_UNSUPPORTED_DATA_FORMAT**: The pixel format is not supported.<br>         **IMAGE_TOO_LARGE**: The source PixelMap is too large.<br>         **IMAGE_INIT_FAILED**: The destination PixelMap fails to be initialized.<br>         **IMAGE_ALLOC_FAILED**: Memory allocation or data copy fails.|
+| [Image_ErrorCode](capi-image-common-h.md#image_errorcode) | **IMAGE_SUCCESS**: The operation is successful.<br>         **IMAGE_BAD_PARAMETER**: Invalid parameters. For example, **srcPixelmap**, **region**, **scale**, or **dstPixelmap** is incorrect.<br>         **IMAGE_UNSUPPORTED_DATA_FORMAT**: The pixel format is not supported.<br>         **IMAGE_TOO_LARGE**: The source PixelMap is too large.<br>         **IMAGE_INIT_FAILED**: The target PixelMap fails to be initialized.<br>         **IMAGE_ALLOC_FAILED**: Memory allocation or data copy fails.|
+
+### OH_PixelmapNative_ApplyTranslate()
+
+```c
+Image_ErrorCode OH_PixelmapNative_ApplyTranslate(OH_PixelmapNative *pixelmap, float x, float y)
+```
+
+**Description**
+
+Translates the PixelMap horizontally or vertically by the specified horizontal and vertical distances.<br>After translation, the image size becomes: width = original width + x, height = original height + y.
+
+**Since:** 26.0.0
+
+**Parameters**
+
+| Name| Description|
+| -- | -- |
+| [OH_PixelmapNative](capi-image-nativemodule-oh-pixelmapnative.md) *pixelmap | Pointer to an OH_PixelmapNative object.|
+| float x | Horizontal translation distance. Positive values move the image to the right; negative values move it to the left. The value range is (-image width, +∞). The unit is px.<br>When the value is negative, the translation is equivalent to cropping x columns of pixels from the left side of the image.|
+| float y | Vertical translation distance. Positive values move the image downward; negative values move it upward. The value range is (-image height, +∞). The unit is px.<br>When the value is negative, the translation is equivalent to cropping y rows of pixels from the top of the image.|
+
+**Returns**
+
+| Type| Description|
+| -- | -- |
+| [Image_ErrorCode](capi-image-common-h.md#image_errorcode) | **IMAGE_SUCCESS**: The operation is successful.<br>         **IMAGE_GET_IMAGE_DATA_FAILED**: The image data fails to be obtained. Possible cause: The internal data is damaged. Check the log for details.<br>         **IMAGE_PIXELMAP_RELEASED**: The PixelMap has been released.<br>         **IMAGE_UNSUPPORTED_OPERATION**: The PixelMap is locked and the operation is not supported.<br>         **IMAGE_INVALID_PARAMETER**: Invalid parameter. Possible cause: The input parameter is null.<br>         **IMAGE_ALLOC_FAILED**: Memory allocation fails. Possible causes: 1. The size of the generated PixelMap is too large.2. Insufficient memory.|
 
 ### OH_PixelmapNative_Translate()
 
@@ -1351,7 +1465,7 @@ Image_ErrorCode OH_PixelmapNative_Translate(OH_PixelmapNative *pixelmap, float x
 
 **Description**
 
-Translates a PixelMap based on given coordinates.
+Translates an image by the specified translation distances.<br>After translation, the image size becomes: width = original width + x, height = original height + y.<br>     Since API version 26.0.0, you are advised to use [OH_PixelmapNative_ApplyTranslate](capi-pixelmap-native-h.md#oh_pixelmapnative_applytranslate) instead, which provides more comprehensive error information.
 
 **Since**: 12
 
@@ -1360,14 +1474,39 @@ Translates a PixelMap based on given coordinates.
 | Name| Description|
 | -- | -- |
 | [OH_PixelmapNative](capi-image-nativemodule-oh-pixelmapnative.md) *pixelmap | Pointer to an OH_PixelmapNative object.|
-| float x | X coordinate to translate.|
-| float y | Y coordinate to translate.|
+| float x | Horizontal translation distance. Positive values move the image to the right; negative values move it to the left. The value range is (-image width, +∞). The unit is px.<br>When the value is negative, the translation is equivalent to cropping x columns of pixels from the left side of the image.|
+| float y | Vertical translation distance. Positive values move the image downward; negative values move it upward. The value range is (-image height, +∞). The unit is px.<br>When the value is negative, the translation is equivalent to cropping y rows of pixels from the top of the image.|
 
 **Returns**
 
 | Type| Description|
 | -- | -- |
 | [Image_ErrorCode](capi-image-common-h.md#image_errorcode) | **IMAGE_SUCCESS**: The operation is successful.<br>         **IMAGE_BAD_PARAMETER**: A parameter is incorrect.|
+
+### OH_PixelmapNative_ApplyRotate()
+
+```c
+Image_ErrorCode OH_PixelmapNative_ApplyRotate(OH_PixelmapNative *pixelmap, float angle)
+```
+
+**Description**
+
+Rotates a PixelMap by the specified angle. YUV formats support only rotation angles that are multiples of 90°.
+
+**Since:** 26.0.0
+
+**Parameters**
+
+| Name| Description|
+| -- | -- |
+| [OH_PixelmapNative](capi-image-nativemodule-oh-pixelmapnative.md) *pixelmap | Pointer to an OH_PixelmapNative object.|
+| float angle | Rotation angle. The unit is degrees (°).|
+
+**Returns**
+
+| Type| Description|
+| -- | -- |
+| [Image_ErrorCode](capi-image-common-h.md#image_errorcode) | **IMAGE_SUCCESS**: The operation is successful.<br>         **IMAGE_GET_IMAGE_DATA_FAILED**: The image data fails to be obtained. Possible cause: The internal data is damaged. Check the log for details.<br>         **IMAGE_PIXELMAP_RELEASED**: The PixelMap has been released.<br>         **IMAGE_UNSUPPORTED_OPERATION**: The PixelMap is locked and the operation is not supported.<br>         **IMAGE_INVALID_PARAMETER**: Invalid parameter. Possible cause: The input parameter is null.<br>         **IMAGE_ALLOC_FAILED**: Memory allocation fails. Possible causes: 1. The size of the generated PixelMap is too large.2. Insufficient memory.|
 
 ### OH_PixelmapNative_Rotate()
 
@@ -1377,7 +1516,7 @@ Image_ErrorCode OH_PixelmapNative_Rotate(OH_PixelmapNative *pixelmap, float angl
 
 **Description**
 
-Rotates a PixelMap based on a given angle.
+Rotates an image by the specified angle. YUV formats support only rotation angles that are multiples of 90°.<br>     Since API version 26.0.0, you are advised to use [OH_PixelmapNative_ApplyRotate](#oh_pixelmapnative_applyrotate) instead, which provides more comprehensive error information.
 
 **Since**: 12
 
@@ -1386,13 +1525,39 @@ Rotates a PixelMap based on a given angle.
 | Name| Description|
 | -- | -- |
 | [OH_PixelmapNative](capi-image-nativemodule-oh-pixelmapnative.md) *pixelmap | Pointer to an OH_PixelmapNative object.|
-| float angle | Image rotation angle, in degrees.|
+| float angle | Angle to rotate. The unit is degrees (°).|
 
 **Returns**
 
 | Type| Description|
 | -- | -- |
 | [Image_ErrorCode](capi-image-common-h.md#image_errorcode) | **IMAGE_SUCCESS**: The operation is successful.<br>         **IMAGE_BAD_PARAMETER**: A parameter is incorrect.|
+
+### OH_PixelmapNative_ApplyFlip()
+
+```c
+Image_ErrorCode OH_PixelmapNative_ApplyFlip(OH_PixelmapNative *pixelmap, bool shouldFlipHorizontally, bool shouldFlipVertically)
+```
+
+**Description**
+
+Flips an image based on the specified horizontal or vertical flip conditions.
+
+**Since:** 26.0.0
+
+**Parameters**
+
+| Name| Description|
+| -- | -- |
+| [OH_PixelmapNative](capi-image-nativemodule-oh-pixelmapnative.md) *pixelmap | Pointer to an OH_PixelmapNative object.|
+| bool shouldFlipHorizontally | Whether to flip horizontally. **true** to flip the image horizontally, **false** otherwise.|
+| bool shouldFlipVertically | Whether to flip vertically. **true** to flip the image vertically, **false** otherwise.|
+
+**Returns**
+
+| Type| Description|
+| -- | -- |
+| [Image_ErrorCode](capi-image-common-h.md#image_errorcode) | **IMAGE_SUCCESS**: The operation is successful.<br>         **IMAGE_GET_IMAGE_DATA_FAILED**: The image data fails to be obtained. Possible cause: The internal data is damaged. Check the log for details.<br>         **IMAGE_PIXELMAP_RELEASED**: The PixelMap has been released.<br>         **IMAGE_UNSUPPORTED_OPERATION**: The PixelMap is locked and the operation is not supported.<br>         **IMAGE_INVALID_PARAMETER**: Invalid parameter. Possible cause: The input parameter is null.<br>         **IMAGE_ALLOC_FAILED**: Memory allocation fails. Possible cause: The system memory is insufficient.|
 
 ### OH_PixelmapNative_Flip()
 
@@ -1402,7 +1567,7 @@ Image_ErrorCode OH_PixelmapNative_Flip(OH_PixelmapNative *pixelmap, bool shouldF
 
 **Description**
 
-Flips a PixelMap based on a given angle.
+Flips a PixelMap based on a given angle.<br>     Since API version 26.0.0, you are advised to use [OH_PixelmapNative_ApplyFlip](capi-pixelmap-native-h.md#oh_pixelmapnative_applyflip) instead, which provides more comprehensive error information.
 
 **Since**: 12
 
@@ -1420,6 +1585,31 @@ Flips a PixelMap based on a given angle.
 | -- | -- |
 | [Image_ErrorCode](capi-image-common-h.md#image_errorcode) | **IMAGE_SUCCESS**: The operation is successful.<br>         **IMAGE_BAD_PARAMETER**: A parameter is incorrect.|
 
+### OH_PixelmapNative_ApplyCrop()
+
+```c
+Image_ErrorCode OH_PixelmapNative_ApplyCrop(OH_PixelmapNative *pixelmap, Image_Region *region)
+```
+
+**Description**
+
+Crops a PixelMap based on the specified region information.
+
+**Since:** 26.0.0
+
+**Parameters**
+
+| Name| Description|
+| -- | -- |
+| [OH_PixelmapNative](capi-image-nativemodule-oh-pixelmapnative.md) *pixelmap | Pointer to an OH_PixelmapNative object.|
+| [Image_Region](capi-image-nativemodule-image-region.md) *region | Pointer to the cropping region.|
+
+**Returns**
+
+| Type| Description|
+| -- | -- |
+| [Image_ErrorCode](capi-image-common-h.md#image_errorcode) | **IMAGE_SUCCESS**: The operation is successful.<br>         **IMAGE_GET_IMAGE_DATA_FAILED**: The image data fails to be obtained. Possible cause: The internal data is damaged. Check the log for details.<br>         **IMAGE_PIXELMAP_RELEASED**: The PixelMap has been released.<br>         **IMAGE_UNSUPPORTED_OPERATION**: The PixelMap is locked and the operation is not supported.<br>         **IMAGE_INVALID_REGION**: The specified region is invalid or out of range.<br>         **IMAGE_INVALID_PARAMETER**: Invalid parameter. Possible cause: An input parameter is null.<br>         **IMAGE_ALLOC_FAILED**: Memory allocation fails. Possible causes: 1. Failed to process the pixel data.2. Insufficient memory.|
+
 ### OH_PixelmapNative_Crop()
 
 ```c
@@ -1428,7 +1618,7 @@ Image_ErrorCode OH_PixelmapNative_Crop(OH_PixelmapNative *pixelmap, Image_Region
 
 **Description**
 
-Crops a PixelMap based on a given size.
+Crops a PixelMap based on the input region information.<br>     Since API version 26.0.0, you are advised to use [OH_PixelmapNative_ApplyCrop](capi-pixelmap-native-h.md#oh_pixelmapnative_applycrop) instead, which provides more comprehensive error information.
 
 **Since**: 12
 
@@ -1437,7 +1627,7 @@ Crops a PixelMap based on a given size.
 | Name| Description|
 | -- | -- |
 | [OH_PixelmapNative](capi-image-nativemodule-oh-pixelmapnative.md) *pixelmap | Pointer to an OH_PixelmapNative object.|
-| [Image_Region](capi-image-nativemodule-image-region.md) *region | Pointer to the region of the image after cropping.|
+| [Image_Region](capi-image-nativemodule-image-region.md) *region | Cropping region, including the start coordinates, width, and height.|
 
 **Returns**
 
@@ -1453,7 +1643,7 @@ Image_ErrorCode OH_PixelmapNative_Release(OH_PixelmapNative *pixelmap)
 
 **Description**
 
-Releases the pointer to an OH_PixelmapNative object. [OH_PixelmapNative_Destroy](capi-pixelmap-native-h.md#oh_pixelmapnative_destroy) is recommended.
+Releases the pointer to an OH_PixelmapNative object. (The pointer cannot be released when the memory is locked by [OH_PixelmapNative_AccessPixels](capi-pixelmap-native-h.md#oh_pixelmapnative_accesspixels).)<br>You are advised to use [OH_PixelmapNative_Destroy](capi-pixelmap-native-h.md#oh_pixelmapnative_destroy).
 
 **Since**: 12
 
@@ -1477,7 +1667,7 @@ Image_ErrorCode OH_PixelmapNative_Destroy(OH_PixelmapNative **pixelmap)
 
 **Description**
 
-Releases the pointer to an OH_PixelmapNative object.
+Releases the pointer to an OH_PixelmapNative object, regardless of whether the memory is locked by [OH_PixelmapNative_AccessPixels](capi-pixelmap-native-h.md#oh_pixelmapnative_accesspixels).
 
 **Since**: 18
 
@@ -1493,6 +1683,32 @@ Releases the pointer to an OH_PixelmapNative object.
 | -- | -- |
 | [Image_ErrorCode](capi-image-common-h.md#image_errorcode) | **IMAGE_SUCCESS**: The operation is successful.<br>         **IMAGE_BAD_PARAMETER**: A parameter is incorrect.|
 
+### OH_PixelmapNative_ConvertAlphaType()
+
+```c
+Image_ErrorCode OH_PixelmapNative_ConvertAlphaType(OH_PixelmapNative *srcPixelmap, OH_PixelmapNative *dstPixelmap, const bool toPremul)
+```
+
+**Description**
+
+Converts the alpha type of the PixelMap pixel data between premultiplied mode ([PIXELMAP_ALPHA_TYPE_PREMULTIPLIED](capi-pixelmap-native-h.md#pixelmap_alpha_type)) and non-premultiplied mode ([PIXELMAP_ALPHA_TYPE_UNPREMULTIPLIED](capi-pixelmap-native-h.md#pixelmap_alpha_type)). This conversion is supported only for pixel formats that contain an alpha channel, except RGBA_F16 and ASTC_4x4.<br>     For details about the pixel formats, see [PIXEL_FORMAT](capi-pixelmap-native-h.md#pixel_format).
+
+**Since:** 26.0.0
+
+**Parameters**
+
+| Name| Description|
+| -- | -- |
+| [OH_PixelmapNative](capi-image-nativemodule-oh-pixelmapnative.md) *srcPixelmap | Pointer to the source PixelMap, which contains the pixel data to be converted. Its alpha type must be either premultiplied or non-premultiplied.|
+| [OH_PixelmapNative](capi-image-nativemodule-oh-pixelmapnative.md) *dstPixelmap | Pointer to an empty target PixelMap. Its attributes (width, height, pixel format, and more) must be the same as those of the source PixelMap, but its alpha type must be the opposite of the source PixelMap (for example, if the source PixelMap is premultiplied, the destination PixelMap must be non-premultiplied). The target PixelMap must be editable. The converted pixel data will be written to this PixelMap.|
+| const bool toPremul | Conversion direction. The value **true** indicates conversion from non-premultiplied to premultiplied, and the value **false** indicates conversion from premultiplied to non-premultiplied.|
+
+**Returns**
+
+| Type| Description|
+| -- | -- |
+| [Image_ErrorCode](capi-image-common-h.md#image_errorcode) | **IMAGE_SUCCESS**: The operation is successful.<br>         **IMAGE_GET_IMAGE_DATA_FAILED**: The image data fails to be obtained. Possible cause: The internal data is damaged. Check the log for details.<br>         **IMAGE_PIXELMAP_RELEASED**: Either of the PixelMaps has been released.<br>         **IMAGE_UNSUPPORTED_OPERATION**: The PixelMap is locked and the operation is not supported.<br>         **IMAGE_INVALID_PARAMETER**: Invalid parameter. Possible causes: 1. A PixelMap does not meet the requirements.2. An input parameter is null.<br>         **IMAGE_UNSUPPORTED_DATA_FORMAT**: The pixel format of a PixelMap is not supported.|
+
 ### OH_PixelmapNative_ConvertAlphaFormat()
 
 ```c
@@ -1501,7 +1717,7 @@ Image_ErrorCode OH_PixelmapNative_ConvertAlphaFormat(OH_PixelmapNative* srcpixel
 
 **Description**
 
-Converts pixel data of a PixelMap from premultiplied alpha to non-premultiplied alpha, or vice versa.
+Converts the alpha type of the PixelMap pixel data between premultiplied mode and non-premultiplied mode. This conversion is supported only for pixel formats that contain an alpha channel, except RGBA_F16 and ASTC_4x4.<br>     Since API version 26.0.0, you are advised to use [OH_PixelmapNative_ConvertAlphaType](capi-pixelmap-native-h.md#oh_pixelmapnative_convertalphatype) instead, which provides more comprehensive error information.
 
 **Since**: 12
 
@@ -1509,9 +1725,9 @@ Converts pixel data of a PixelMap from premultiplied alpha to non-premultiplied 
 
 | Name| Description|
 | -- | -- |
-| [OH_PixelmapNative](capi-image-nativemodule-oh-pixelmapnative.md)* srcpixelmap | Pointer to the source PixelMap, which is an OH_PixelmapNative object.|
-| [OH_PixelmapNative](capi-image-nativemodule-oh-pixelmapnative.md)* dstpixelmap | Pointer to the destination PixelMap, which is an OH_PixelmapNative object.|
-| const bool isPremul | Conversion mode. The value **true** means a conversion from premultiplied alpha to non-premultiplied alpha, and **false** means a conversion from non-premultiplied alpha to premultiplied alpha.|
+| [OH_PixelmapNative](capi-image-nativemodule-oh-pixelmapnative.md)* srcpixelmap | Pointer to the source PixelMap, which contains the pixel data to be converted. Its alpha type must be either premultiplied or non-premultiplied.|
+| [OH_PixelmapNative](capi-image-nativemodule-oh-pixelmapnative.md)* dstpixelmap | Pointer to an empty target PixelMap. Its attributes (width, height, pixel format, and more) must be the same as those of the source PixelMap, but its alpha type must be the opposite of the source PixelMap (for example, if the source PixelMap is premultiplied, the destination PixelMap must be non-premultiplied). The target PixelMap must be editable. The converted pixel data will be written to this PixelMap.|
+| const bool isPremul | Conversion direction. The value **true** means a conversion from premultiplied alpha to non-premultiplied alpha, and **false** means a conversion from non-premultiplied alpha to premultiplied alpha.|
 
 **Returns**
 
@@ -1535,7 +1751,7 @@ Creates an empty PixelMap object based on **OH_Pixelmap_InitializationOptions**.
 
 | Name| Description|
 | -- | -- |
-| [OH_Pixelmap_InitializationOptions](capi-image-nativemodule-oh-pixelmap-initializationoptions.md) *options | Pointer to the properties.|
+| [OH_Pixelmap_InitializationOptions](capi-image-nativemodule-oh-pixelmap-initializationoptions.md) *options | Initialization properties for image creation.|
 | [OH_PixelmapNative](capi-image-nativemodule-oh-pixelmapnative.md) **pixelmap | Double pointer to the OH_PixelmapNative object created.|
 
 **Returns**
@@ -1552,7 +1768,7 @@ Image_ErrorCode OH_PixelmapNative_CreateEmptyPixelmapUsingAllocator(OH_Pixelmap_
 
 **Description**
 
-Creates an empty PixelMap object based on the options and memory type, where **allocator** specifies the memory type of the PixelMap. By default, the system selects an appropriate memory type based on the image type, image size, and platform capability. When processing the returned PixelMap object, consider the impact of stride.
+Creates an empty PixelMap object based on **options**. The memory type used by the PixelMap can be specified by **allocator**. By default, the system selects an appropriate memory type based on the image type, image size, and platform capability. When processing the PixelMap returned by this API, consider the impact of the row stride. The row stride is the actual memory size occupied by each row of the image. It may be larger than the image width multiplied by the bytes per pixel due to memory alignment. For details, see [OH_PixelmapInitializationOptions_GetRowStride](#oh_pixelmapinitializationoptions_getrowstride).
 
 **Since**: 20
 
@@ -1560,7 +1776,7 @@ Creates an empty PixelMap object based on the options and memory type, where **a
 
 | Name| Description|
 | -- | -- |
-| [OH_Pixelmap_InitializationOptions](capi-image-nativemodule-oh-pixelmap-initializationoptions.md) *options | Pointer to the options used for creating the PixelMap.|
+| [OH_Pixelmap_InitializationOptions](capi-image-nativemodule-oh-pixelmap-initializationoptions.md) *options | Initialization properties for image creation.|
 | [IMAGE_ALLOCATOR_MODE](capi-image-common-h.md#image_allocator_mode) allocator | Type of memory allocation for the PixelMap.|
 | [OH_PixelmapNative](capi-image-nativemodule-oh-pixelmapnative.md) **pixelmap | Double pointer to the OH_PixelmapNative object created.|
 
@@ -1578,7 +1794,7 @@ Image_ErrorCode OH_PixelmapNative_CreatePixelmapFromSurface(const char *surfaceI
 
 **Description**
 
-Creates a PixelMap from a surface with the specified surface ID.
+Creates a PixelMap based on the surface ID. If the surface carries rotation or flipping information and processing is required, use [OH_PixelmapNative_CreatePixelmapFromSurfaceWithTransformation](#oh_pixelmapnative_createpixelmapfromsurfacewithtransformation).
 
 **Since**: 22
 
@@ -1587,14 +1803,14 @@ Creates a PixelMap from a surface with the specified surface ID.
 | Name| Description|
 | -- | -- |
 | const char *surfaceId | Pointer to the string of the surface ID.|
-| size_t length | Length of the surface ID string.|
+| size_t length | Length of the surface ID string. The unit is bytes.|
 | [OH_PixelmapNative](capi-image-nativemodule-oh-pixelmapnative.md) **pixelmap | Double pointer to the PixelMap created.|
 
 **Returns**
 
 | Type| Description|
 | -- | -- |
-| [Image_ErrorCode](capi-image-common-h.md#image_errorcode) | **IMAGE_SUCCESS**: The operation is successful.<br>         **IMAGE_BAD_PARAMETER**: Invalid parameters. For example, **surfaceId** or **pixelmap** is incorrect.<br>         **IMAGE_CREATE_PIXELMAP_FAILED**: Creating the PixelMap fails.|
+| [Image_ErrorCode](capi-image-common-h.md#image_errorcode) | **IMAGE_SUCCESS**: The operation is successful.<br>         **IMAGE_BAD_PARAMETER**: Invalid parameters. For example, **surfaceId** or **pixelmap** is incorrect.<br>         **IMAGE_CREATE_PIXELMAP_FAILED**: PixelMap creation fails.|
 
 ### OH_PixelmapNative_CreatePixelmapFromSurfaceWithTransformation()
 
@@ -1604,7 +1820,7 @@ Image_ErrorCode OH_PixelmapNative_CreatePixelmapFromSurfaceWithTransformation(co
 
 **Description**
 
-Creates a PixelMap object for previewing a stream based on a surface ID. The surface may carry rotation or flipping information.
+Creates a PixelMap object for a preview stream image based on a surface ID. The surface may carry rotation or flipping information.
 
 **Since**: 23
 
@@ -1613,7 +1829,7 @@ Creates a PixelMap object for previewing a stream based on a surface ID. The sur
 | Name| Description|
 | -- | -- |
 | const char *surfaceId | Surface ID.|
-| size_t length | Length of the surface ID.|
+| size_t length | Length of the surface ID. The unit is bytes.|
 | bool transformEnabled | Whether to perform inverse transformation on the surface that carries transformation information to eliminate the rotation or flipping effect of the PixelMap. If the surface does not carry transformation information, this parameter does not take effect.<br>     If this parameter is set to **true**, the inverse transformation is performed. The transform angle matches the angle carried by the surface but in the opposite direction, and the output PixelMap has no rotation or flipping effect.<br>     If this parameter is set to **false**, no inverse transformation is performed. The output PixelMap has the rotation or flipping effect based on the transformation information in the surface.|
 | [OH_PixelmapNative](capi-image-nativemodule-oh-pixelmapnative.md) **pixelmap | Double pointer to the PixelMap created.|
 
@@ -1621,7 +1837,7 @@ Creates a PixelMap object for previewing a stream based on a surface ID. The sur
 
 | Type| Description|
 | -- | -- |
-| [Image_ErrorCode](capi-image-common-h.md#image_errorcode) | **IMAGE_SUCCESS**: The operation is successful.<br>         **IMAGE_INVALID_PARAMETER**: Invalid parameters. For example, **surfaceId** or **pixelmap** is incorrect.<br>         **IMAGE_UNSUPPORTED_OPERATION**: The operation is not supported. For example, the operation is called across platforms.<br>         **IMAGE_GET_IMAGE_DATA_FAILED**: Failed to obtain the surface data.<br>         **IMAGE_CREATE_PIXELMAP_FAILED**: Creating the PixelMap fails.|
+| [Image_ErrorCode](capi-image-common-h.md#image_errorcode) | **IMAGE_SUCCESS**: The operation is successful.<br>         **IMAGE_INVALID_PARAMETER**: Invalid parameters. For example, **surfaceId** or **pixelmap** is incorrect.<br>         **IMAGE_UNSUPPORTED_OPERATION**: The operation is not supported. For example, the operation is called across platforms.<br>         **IMAGE_GET_IMAGE_DATA_FAILED**: Failed to obtain the surface data.<br>         **IMAGE_CREATE_PIXELMAP_FAILED**: PixelMap creation fails.|
 
 **Reference**
 
@@ -1636,7 +1852,7 @@ Image_ErrorCode OH_PixelmapNative_CreatePixelmapFromNativeBuffer(OH_NativeBuffer
 
 **Description**
 
-Creates a PixelMap using a NativeBuffer. If the [CPU access permission](../apis-arkgraphics2d/capi-native-buffer-h.md#oh_nativebuffer_usage) is not configured for the NativeBuffer, the PixelMap cannot be created.<br> The supported pixel formats are RGBA_8888, NV21, NV12, YCBCR_P010, and YCRCB_P010.
+Creates a PixelMap based on a NativeBuffer. If the NativeBuffer usage does not have CPU access permission configured (for details, see [OH_NativeBuffer_Usage](../apis-arkgraphics2d/capi-native-buffer-h.md#oh_nativebuffer_usage)), creation is not supported.<br> The supported pixel formats are RGBA_8888, NV21, NV12, YCBCR_P010, and YCRCB_P010.
 
 **Since**: 22
 
@@ -1644,14 +1860,14 @@ Creates a PixelMap using a NativeBuffer. If the [CPU access permission](../apis-
 
 | Name| Description|
 | -- | -- |
-| [OH_NativeBuffer](capi-image-nativemodule-image-nativemodule-oh-nativebuffer.md) *nativeBuffer | Pointer to the NativeBuffer object that contains PixelMap data.|
+| [OH_NativeBuffer](capi-image-nativemodule-image-nativemodule-oh-nativebuffer.md) *nativeBuffer | Pointer to the NativeBuffer object that contains PixelMap data. The NativeBuffer usage must have CPU access permission configured (for details, see [OH_NativeBuffer_Usage](../apis-arkgraphics2d/capi-native-buffer-h.md#oh_nativebuffer_usage)), and the pixel format must be RGBA_8888, NV21, NV12, YCBCR_P010, or YCRCB_P010.|
 | [OH_PixelmapNative](capi-image-nativemodule-oh-pixelmapnative.md) **pixelmap | Double pointer to the PixelMap created.|
 
 **Returns**
 
 | Type| Description|
 | -- | -- |
-| [Image_ErrorCode](capi-image-common-h.md#image_errorcode) | **IMAGE_SUCCESS**: The operation is successful.<br>         **IMAGE_BAD_PARAMETER**: The parameter is invalid. For example, **nativeBuffer** or **pixelmap** is incorrect, the pixel format is not supported, or the [CPU access permission](../apis-arkgraphics2d/capi-native-buffer-h.md#oh_nativebuffer_usage) is not configured.<br>         **IMAGE_CREATE_PIXELMAP_FAILED**: Creating the PixelMap fails.|
+| [Image_ErrorCode](capi-image-common-h.md#image_errorcode) | **IMAGE_SUCCESS**: The operation is successful.<br>         **IMAGE_BAD_PARAMETER**: Invalid parameters. For example, **nativeBuffer** or **pixelmap** is incorrect, the pixel format is not supported, or the CPU access permission is not configured.<br>         **IMAGE_CREATE_PIXELMAP_FAILED**: PixelMap creation fails.|
 
 ### OH_PixelmapNative_GetNativeBuffer()
 
@@ -1669,7 +1885,7 @@ Obtains the NativeBuffer object from a PixelMap in the DMA memory.
 
 | Name| Description|
 | -- | -- |
-| [OH_PixelmapNative](capi-image-nativemodule-oh-pixelmapnative.md) *pixelmap | Pointer to the PixelMap.|
+| [OH_PixelmapNative](capi-image-nativemodule-oh-pixelmapnative.md) *pixelmap | Source PixelMap from which to obtain the NativeBuffer. The memory type must be DMA.|
 | [OH_NativeBuffer](capi-image-nativemodule-image-nativemodule-oh-nativebuffer.md) **nativeBuffer | Double pointer to the NativeBuffer object obtained.|
 
 **Returns**
@@ -1686,7 +1902,7 @@ Image_ErrorCode OH_PixelmapNative_GetMetadata(OH_PixelmapNative *pixelmap, OH_Pi
 
 **Description**
 
-Obtains the metadata.
+Obtains HDR metadata of a PixelMap. The type of metadata to be obtained is specified by passing an [OH_Pixelmap_HdrMetadataKey](#oh_pixelmap_hdrmetadatakey) key, and the corresponding metadata value is returned via [OH_Pixelmap_HdrMetadataValue](capi-image-nativemodule-oh-pixelmap-hdrmetadatavalue.md).
 
 **Since**: 12
 
@@ -1694,9 +1910,9 @@ Obtains the metadata.
 
 | Name| Description|
 | -- | -- |
-| [OH_PixelmapNative](capi-image-nativemodule-oh-pixelmapnative.md) *pixelmap | Pointer to an OH_PixelmapNative object.|
+| [OH_PixelmapNative](capi-image-nativemodule-oh-pixelmapnative.md) *pixelmap | Pointer to the OH_PixelmapNative to be operated. The memory type of the PixelMap must be DMA.|
 | [OH_Pixelmap_HdrMetadataKey](capi-pixelmap-native-h.md#oh_pixelmap_hdrmetadatakey) key | HDR metadata key.|
-| [OH_Pixelmap_HdrMetadataValue](capi-image-nativemodule-oh-pixelmap-hdrmetadatavalue.md) **value | Double pointer to the value of the metadata key.|
+| [OH_Pixelmap_HdrMetadataValue](capi-image-nativemodule-oh-pixelmap-hdrmetadatavalue.md) **value | Double pointer to the value of the metadata key.<br>If the obtained metadata is dynamic metadata (HDR_DYNAMIC_METADATA) and the API is successfully called, you must call **free(value->dynamicMetadata.data)** to free the memory after using the metadata.|
 
 **Returns**
 
@@ -1712,7 +1928,7 @@ Image_ErrorCode OH_PixelmapNative_SetMetadata(OH_PixelmapNative *pixelmap, OH_Pi
 
 **Description**
 
-Sets the metadata.
+Sets the HDR metadata for a PixelMap. The type of metadata to be set is specified by passing an [OH_Pixelmap_HdrMetadataKey](#oh_pixelmap_hdrmetadatakey) key, and the corresponding metadata value is passed via [OH_Pixelmap_HdrMetadataValue](capi-image-nativemodule-oh-pixelmap-hdrmetadatavalue.md).
 
 **Since**: 12
 
@@ -1720,7 +1936,7 @@ Sets the metadata.
 
 | Name| Description|
 | -- | -- |
-| [OH_PixelmapNative](capi-image-nativemodule-oh-pixelmapnative.md) *pixelmap | Pointer to an OH_PixelmapNative object.|
+| [OH_PixelmapNative](capi-image-nativemodule-oh-pixelmapnative.md) *pixelmap | Pointer to the OH_PixelmapNative to be operated. The memory type of the PixelMap must be DMA.|
 | [OH_Pixelmap_HdrMetadataKey](capi-pixelmap-native-h.md#oh_pixelmap_hdrmetadatakey) key | HDR metadata key.|
 | [OH_Pixelmap_HdrMetadataValue](capi-image-nativemodule-oh-pixelmap-hdrmetadatavalue.md) *value | Pointer to the value of the metadata key.|
 
@@ -1738,7 +1954,7 @@ Image_ErrorCode OH_PixelmapNative_SetColorSpaceNative(OH_PixelmapNative *pixelma
 
 **Description**
 
-Sets a NativeColorSpaceManager object.
+Sets the NativeColorSpaceManager object for a PixelMap to manage the color space information of the PixelMap.
 
 **Since**: 13
 
@@ -1746,7 +1962,7 @@ Sets a NativeColorSpaceManager object.
 
 | Name| Description|
 | -- | -- |
-| [OH_PixelmapNative](capi-image-nativemodule-oh-pixelmapnative.md) *pixelmap | Pointer to the target PixelMap of the NativeColorSpaceManager object.|
+| [OH_PixelmapNative](capi-image-nativemodule-oh-pixelmapnative.md) *pixelmap | Pointer to the target PixelMap of the NativeColorSpaceManager object to set.|
 | [OH_NativeColorSpaceManager](capi-image-nativemodule-oh-nativecolorspacemanager.md) *colorSpaceNative | Pointer to a NativeColorSpaceManager object.|
 
 **Returns**
@@ -1763,7 +1979,7 @@ Image_ErrorCode OH_PixelmapNative_GetColorSpaceNative(OH_PixelmapNative *pixelma
 
 **Description**
 
-Obtains a NativeColorSpaceManager object.
+Obtains the NativeColorSpaceManager object of a PixelMap to query the color space information currently configured for the PixelMap.
 
 **Since**: 13
 
@@ -1771,7 +1987,7 @@ Obtains a NativeColorSpaceManager object.
 
 | Name| Description|
 | -- | -- |
-| [OH_PixelmapNative](capi-image-nativemodule-oh-pixelmapnative.md) *pixelmap | Pointer to the source PixelMap of the NativeColorSpaceManager.|
+| [OH_PixelmapNative](capi-image-nativemodule-oh-pixelmapnative.md) *pixelmap | Pointer to the source PixelMap of the NativeColorSpaceManager to be obtained.|
 | [OH_NativeColorSpaceManager](capi-image-nativemodule-oh-nativecolorspacemanager.md) **colorSpaceNative | Double pointer to the NativeColorSpaceManager object obtained.|
 
 **Returns**
@@ -1788,7 +2004,7 @@ Image_ErrorCode OH_PixelmapNative_SetMemoryName(OH_PixelmapNative *pixelmap, cha
 
 **Description**
 
-Sets the memory name of a PixelMap.
+Sets the memory name of a PixelMap to facilitate memory identification during debugging or issue troubleshooting.
 
 **Since**: 13
 
@@ -1797,14 +2013,14 @@ Sets the memory name of a PixelMap.
 | Name| Description|
 | -- | -- |
 | [OH_PixelmapNative](capi-image-nativemodule-oh-pixelmapnative.md) *pixelmap | Pointer to an OH_PixelmapNative object.|
-| char *name | Pointer to the memory name.|
-| size_t *size | Pointer to the memory size (in bytes).|
+| char *name | Pointer to the PixelMap memory name. For the DMA memory type, the value range is [1, 255]. For the SHARE_MEMORY memory type, the value range is [1, 244]. The unit is bytes.|
+| size_t *size | Byte size of the memory name to be set for the PixelMap. For the DMA memory type, the value range is [1, 255]. For the SHARE_MEMORY memory type, the value range is [1, 244]. The unit is bytes.|
 
 **Returns**
 
 | Type| Description|
 | -- | -- |
-| [Image_ErrorCode](capi-image-common-h.md#image_errorcode) | **IMAGE_SUCCESS**: The operation is successful.<br>         **IMAGE_BAD_PARAMETER**: The name length exceeds the value range. The name length for DMA memory settings should be within the range of 1 to 255 bytes. For ASHMEM memory settings, the name length should be within the range of 1 to 244 bytes.<br>         **IMAGE_UNSUPPORTED_MEMORY_FORMAT**: The memory is neither DMA memory nor ASHMEM memory.|
+| [Image_ErrorCode](capi-image-common-h.md#image_errorcode) | **IMAGE_SUCCESS**: The operation is successful.<br>         **IMAGE_BAD_PARAMETER**: The name length exceeds the value range. For the DMA memory type, the value range is [1, 255]. For the SHARE_MEMORY memory type, the value range is [1, 244]. The unit is bytes.<br>         **IMAGE_UNSUPPORTED_MEMORY_FORMAT**: The memory is neither DMA memory nor SHARE_MEMORY memory.|
 
 ### OH_PixelmapNative_GetByteCount()
 
@@ -1814,7 +2030,7 @@ Image_ErrorCode OH_PixelmapNative_GetByteCount(OH_PixelmapNative *pixelmap, uint
 
 **Description**
 
-Obtains the total number of bytes occupied by all pixels in a PixelMap, excluding any memory padding.
+Obtains the total number of bytes occupied by all pixels in a PixelMap, excluding memory-alignment padding bytes.
 
 **Since**: 18
 
@@ -1839,7 +2055,7 @@ Image_ErrorCode OH_PixelmapNative_GetAllocationByteCount(OH_PixelmapNative *pixe
 
 **Description**
 
-Obtains the number of bytes in the memory allocated by a PixelMap to store pixels.
+Obtains the actual number of memory bytes allocated for storing pixel data, including memory-alignment padding bytes. Unlike [OH_PixelmapNative_GetByteCount](#oh_pixelmapnative_getbytecount) (which does not include padding), this API returns the actual memory size allocated by the system for the PixelMap.
 
 **Since**: 18
 
@@ -1864,7 +2080,7 @@ Image_ErrorCode OH_PixelmapNative_AccessPixels(OH_PixelmapNative *pixelmap, void
 
 **Description**
 
-Obtains the memory address where the pixels of a PixelMap are stored and locks the memory.<br> When the memory is locked, any attempts to alter or free the pixel data of the PixelMap will fail or be ineffective.
+Obtains the memory address where the pixels of a PixelMap are stored and locks the memory.<br> When the memory is locked, any attempts to alter or free the pixel data of the PixelMap will fail or be ineffective.<br> After use, you must call [OH_PixelmapNative_UnaccessPixels](capi-pixelmap-native-h.md#oh_pixelmapnative_unaccesspixels) to release the memory lock. The two APIs must be used in pairs.
 
 **Since**: 15
 
@@ -1921,7 +2137,7 @@ Obtains the unique ID of a PixelMap.
 
 | Name| Description|
 | -- | -- |
-| [OH_PixelmapNative](capi-image-nativemodule-oh-pixelmapnative.md) *pixelmap | Pointer to the PixelMap.|
+| [OH_PixelmapNative](capi-image-nativemodule-oh-pixelmapnative.md) *pixelmap | Pointer to the unique ID of the PixelMap.|
 | uint32_t *uniqueId | Pointer to the unique ID obtained.|
 
 **Returns**
@@ -1946,7 +2162,7 @@ Checks whether a PixelMap is released. If released, any attempt to access the in
 
 | Name| Description|
 | -- | -- |
-| [OH_PixelmapNative](capi-image-nativemodule-oh-pixelmapnative.md) *pixelmap | Pointer to the PixelMap.|
+| [OH_PixelmapNative](capi-image-nativemodule-oh-pixelmapnative.md) *pixelmap | Pointer to the PixelMap to be checked.|
 | bool *released | Release status of the PixelMap. The value **true** indicates that the PixelMap is released, and **false** indicates the opposite.|
 
 **Returns**

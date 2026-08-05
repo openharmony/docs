@@ -1,7 +1,7 @@
 # @ohos.enterprise.wifiManager (Wi-Fi Management) (System API)
 <!--Kit: MDM Kit-->
 <!--Subsystem: Customization-->
-<!--Owner: @huanleima-->
+<!--Owner: @huanleima; @weizai16-->
 <!--Designer: @hp_guo-->
 <!--Tester: @lpw_work-->
 <!--Adviser: @zhang_yixin13-->
@@ -14,7 +14,7 @@ The **wifiManager** module provides Wi-Fi management capabilities for enterprise
 >
 > The APIs of this module can be used only in the stage model.
 >
-> The APIs of this module can be called only by a [device administrator application](../../mdm/mdm-kit-term.md#mdm-application-device-administrator-application) that is [enabled](js-apis-enterprise-adminManager-sys.md#adminmanagerenableadmin-2).
+> The APIs of this module are available only to [MDM applications](../../mdm/mdm-kit-term.md#mdm-application-device-administrator-application), and can be called only after the device administrator application is activated via [enableAdmin](js-apis-enterprise-adminManager-sys.md#adminmanagerenableadmin-2).
 >
 > This topic describes only system APIs provided by the module. For details about its public APIs, see [@ohos.enterprise.wifiManager](js-apis-enterprise-wifiManager.md).
 
@@ -24,11 +24,15 @@ The **wifiManager** module provides Wi-Fi management capabilities for enterprise
 import { wifiManager } from '@kit.MDMKit';
 ```
 
-## wifiManager.isWifiActive
+## wifiManager.isWifiActive<sup>(deprecated)</sup>
 
 isWifiActive(admin: Want, callback: AsyncCallback&lt;boolean&gt;): void
 
 Queries the Wi-Fi status of the current device. This API uses an asynchronous callback to return the result.
+
+**Deprecated since:** 26.0.0
+
+**Substitutes:** [isWifiActiveSync](./js-apis-enterprise-wifiManager.md#wifimanageriswifiactivesync)
 
 **Required permissions**: ohos.permission.ENTERPRISE_SET_WIFI
 
@@ -78,11 +82,15 @@ wifiManager.isWifiActive(wantTemp, (err, result) => {
 });
 ```
 
-## wifiManager.isWifiActive
+## wifiManager.isWifiActive<sup>(deprecated)</sup>
 
 isWifiActive(admin: Want): Promise&lt;boolean&gt;
 
 Queries the Wi-Fi status of the current device. This API uses a promise to return the result.
+
+**Deprecated since:** 26.0.0
+
+**Substitutes:** [isWifiActiveSync](./js-apis-enterprise-wifiManager.md#wifimanageriswifiactivesync)
 
 **Required permissions**: ohos.permission.ENTERPRISE_SET_WIFI
 
@@ -136,11 +144,15 @@ wifiManager.isWifiActive(wantTemp).then((result) => {
 });
 ```
 
-## wifiManager.setWifiProfile
+## wifiManager.setWifiProfile<sup>(deprecated)</sup>
 
 setWifiProfile(admin: Want, profile: WifiProfile, callback: AsyncCallback&lt;void&gt;): void
 
 Configures Wi-Fi for the current device to connect to a specified network. This API uses an asynchronous callback to return the result.
+
+**Deprecated since:** 26.0.0
+
+**Substitutes:** [setWifiProfileSync](./js-apis-enterprise-wifiManager.md#wifimanagersetwifiprofilesync)
 
 **Required permissions**: ohos.permission.ENTERPRISE_SET_WIFI
 
@@ -197,11 +209,15 @@ wifiManager.setWifiProfile(wantTemp, profile, (err) => {
 });
 ```
 
-## wifiManager.setWifiProfile
+## wifiManager.setWifiProfile<sup>(deprecated)</sup>
 
 setWifiProfile(admin: Want, profile: WifiProfile): Promise&lt;void&gt;
 
 Configures Wi-Fi for the current device to connect to a specified network. This API uses a promise to return the result.
+
+**Deprecated since:** 26.0.0
+
+**Substitutes:** [setWifiProfileSync](./js-apis-enterprise-wifiManager.md#wifimanagersetwifiprofilesync)
 
 **Required permissions**: ohos.permission.ENTERPRISE_SET_WIFI
 
@@ -262,11 +278,15 @@ wifiManager.setWifiProfile(wantTemp, profile).then(() => {
 });
 ```
 
-## wifiManager.isWifiDisabled<sup>11+</sup>
+## wifiManager.isWifiDisabled<sup>(deprecated)</sup>
 
 isWifiDisabled(admin: Want): boolean
 
 Queries whether Wi-Fi is disabled on the current device.
+
+**Deprecated since:** 26.0.0
+
+**Substitutes:** [getDisallowedPolicy](./js-apis-enterprise-restrictions.md#restrictionsgetdisallowedpolicy24)
 
 **Required permissions**: ohos.permission.ENTERPRISE_MANAGE_WIFI
 
@@ -319,11 +339,15 @@ try {
 };
 ```
 
-## wifiManager.setWifiDisabled<sup>11+</sup>
+## wifiManager.setWifiDisabled<sup>(deprecated)</sup>
 
 setWifiDisabled(admin: Want, disabled: boolean): void
 
 Sets the Wi-Fi disabling policy.
+
+**Deprecated since:** 26.0.0
+
+**Substitutes:** [setDisallowedPolicy](./js-apis-enterprise-restrictions.md#restrictionssetdisallowedpolicy24)
 
 **Required permissions**: ohos.permission.ENTERPRISE_MANAGE_WIFI
 

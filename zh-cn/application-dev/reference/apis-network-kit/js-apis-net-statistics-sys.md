@@ -197,7 +197,7 @@ getTrafficStatsByIface(ifaceInfo: IfaceInfo): Promise\<NetStatsInfo>
 **返回值：**
 | 类型 | 说明 |
 | -------- | -------- |
-| Promise\<[NetStatsInfo](#netstatsinfo)> | 以 Promise 形式返回获取结果,返回网卡历史流量信息。 |
+| Promise\<[NetStatsInfo](#netstatsinfo)> | 以Promise形式返回获取结果，返回网卡历史流量信息。 |
 
 **错误码：**
 
@@ -335,7 +335,7 @@ getTrafficStatsByUid(uidInfo: UidInfo): Promise\<NetStatsInfo>
 
 | 类型                                      | 说明                                               |
 | ----------------------------------------- | -------------------------------------------------- |
-| Promise\<[NetStatsInfo](#netstatsinfo)> | 以 Promise 形式返回获取结果,返回应用历史流量信息。 |
+| Promise\<[NetStatsInfo](#netstatsinfo)> | 以Promise形式返回获取结果，返回应用历史流量信息。 |
 
 **错误码：**
 
@@ -395,7 +395,7 @@ getTrafficStatsByNetwork(networkInfo: NetworkInfo): Promise\<UidNetStatsInfo>
 
 | 类型                                              | 说明                               |
 |-------------------------------------------------|----------------------------------|
-| Promise\<[UidNetStatsInfo](#uidnetstatsinfo12)> | 以 Promise 形式返回获取结果。返回所有应用历史流量信息。 |
+| Promise\<[UidNetStatsInfo](#uidnetstatsinfo12)> | 以Promise形式返回获取结果。返回所有应用历史流量信息。 |
 
 **错误码：**
 
@@ -454,7 +454,7 @@ getTrafficStatsByUidNetwork(uid: number, networkInfo: NetworkInfo): Promise\<Net
 
 | 类型                                                        | 说明                               |
 |-----------------------------------------------------------|----------------------------------|
-| Promise\<[NetStatsInfoSequence](#netstatsinfosequence12)> | 以 Promise 形式返回获取结果。返回应用历史流量统计信息。 |
+| Promise\<[NetStatsInfoSequence](#netstatsinfosequence12)> | 以Promise形式返回获取结果。返回应用历史流量统计信息。 |
 
 **错误码：**
 

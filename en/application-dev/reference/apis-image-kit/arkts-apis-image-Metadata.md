@@ -1,10 +1,12 @@
 # Interface (Metadata)
+
 <!--Kit: Image Kit-->
 <!--Subsystem: Multimedia-->
 <!--Owner: @aulight02-->
-<!--Designer: @liyang_bryan-->
+<!--Designer: @XiaoYao555-->
 <!--Tester: @xchaosioda-->
 <!--Adviser: @w_Machine_cc-->
+<!-- md-trans-meta sourceCommit=a569cef255f0bfd2be482f42d11f341117248869 translatedAt=2026-08-03T03:56:17.415Z pushedAt=2026-08-04T03:23:13.940Z -->
 
 The **Metadata** class provides APIs for storing image metadata. For details about the supported metadata types, see [MetadataType](arkts-apis-image-e.md#metadatatype13).
 
@@ -25,7 +27,7 @@ getProperties(key: Array\<string>): Promise\<Record\<string, string \| null>>
 
 Obtains the values of properties from the image's metadata. This API uses a promise to return the result.
 
-For details about how to query the property values, see [PropertyKey](arkts-apis-image-e.md#propertykey7), [FragmentMapPropertyKey](arkts-apis-image-e.md#fragmentmappropertykey13), [GifPropertyKey](arkts-apis-image-e.md#gifpropertykey20), and [HeifsPropertyKey](arkts-apis-image-e.md#heifspropertykey23).
+For information about the property values, see [PropertyKey](arkts-apis-image-e.md#propertykey7), [FragmentMapPropertyKey](arkts-apis-image-e.md#fragmentmappropertykey13), [GifPropertyKey](arkts-apis-image-e.md#gifpropertykey20), and [HeifsPropertyKey](arkts-apis-image-e.md#heifspropertykey23).
 
 **System capability**: SystemCapability.Multimedia.Image.Core
 
@@ -70,7 +72,7 @@ async function GetProperties(context: Context) {
     await metaData.getProperties(["ImageWidth", "ImageLength"]).then((data2) => {
       console.info('Get properties ',JSON.stringify(data2));
     }).catch((error: BusinessError) => {
-      console.error(`Get properties failed error.code is ${error.code}, error.message is ${error.message}`);
+      console.error(`Failed to get properties. error.code is ${error.code}, error.message is ${error.message}`);
     });
   } else {
     console.error('Metadata is null.');
@@ -82,9 +84,9 @@ async function GetProperties(context: Context) {
 
 setProperties(records: Record\<string, string \| null>): Promise\<void>
 
-Sets the values of properties for the image's metadata. This API uses a promise to return the result.
+Sets the values of properties for the image's metadata in batches. This API uses a promise to return the result.
 
-For details about how to query the property values, see [PropertyKey](arkts-apis-image-e.md#propertykey7), [FragmentMapPropertyKey](arkts-apis-image-e.md#fragmentmappropertykey13), [GifPropertyKey](arkts-apis-image-e.md#gifpropertykey20), and [HeifsPropertyKey](arkts-apis-image-e.md#heifspropertykey23).
+For information about the property values, see [PropertyKey](arkts-apis-image-e.md#propertykey7), [FragmentMapPropertyKey](arkts-apis-image-e.md#fragmentmappropertykey13), [GifPropertyKey](arkts-apis-image-e.md#gifpropertykey20), and [HeifsPropertyKey](arkts-apis-image-e.md#heifspropertykey23).
 
 **System capability**: SystemCapability.Multimedia.Image.Core
 
@@ -131,7 +133,7 @@ async function SetProperties(context: Context) {
       "ImageLength": "300"
     };
     await metaData.setProperties(setkey).then(async () => {
-      console.info('Set AuxPictureObj properties success.');
+      console.info('Succeeded in setting AuxPictureObj properties.');
     }).catch((error: BusinessError) => {
       console.error(`Failed to set metadata Properties. code is ${error.code}, message is ${error.message}`);
     })
@@ -147,7 +149,7 @@ getAllProperties(): Promise\<Record\<string, string \| null>>
 
 Obtains all properties and values from the image's metadata. This API uses a promise to return the result.
 
-For details about how to query the property values, see [PropertyKey](arkts-apis-image-e.md#propertykey7), [FragmentMapPropertyKey](arkts-apis-image-e.md#fragmentmappropertykey13), [GifPropertyKey](arkts-apis-image-e.md#gifpropertykey20), and [HeifsPropertyKey](arkts-apis-image-e.md#heifspropertykey23).
+For information about the property values, see [PropertyKey](arkts-apis-image-e.md#propertykey7), [FragmentMapPropertyKey](arkts-apis-image-e.md#fragmentmappropertykey13), [GifPropertyKey](arkts-apis-image-e.md#gifpropertykey20), and [HeifsPropertyKey](arkts-apis-image-e.md#heifspropertykey23).
 
 **System capability**: SystemCapability.Multimedia.Image.Core
 
@@ -179,7 +181,7 @@ async function GetAllProperties(context: Context) {
       console.info('Metadata have ', count, ' properties');
       console.info(`Get metadata all properties: ${data2}`);
     }).catch((error: BusinessError) => {
-      console.error(`Get metadata all properties failed error.code is ${error.code}, error.message is ${error.message}`);
+      console.error(`Failed to get metadata all properties. error.code is ${error.code}, error.message is ${error.message}`);
     });
   } else {
     console.error('Metadata is null.');
@@ -222,7 +224,7 @@ async function Clone(context: Context) {
     new_metadata.getProperties(["ImageWidth"]).then((data1) => {
       console.info(`Clone new_metadata and get Properties: ${data1}`);
     }).catch((err: BusinessError) => {
-      console.error(`Clone new_metadata failed, error : ${err}`);
+      console.error(`Failed to clone new_metadata, error : ${err}`);
     });
   } else {
     console.error('Metadata is null.');
@@ -267,7 +269,7 @@ async function GetBlob(context: Context) {
   if (metaData != null) {
     let blob = await metaData.getBlob();
     if (blob != undefined) {
-      console.info("get blob success");
+      console.info("Succeeded in getting blob.");
     }
   }
 }
@@ -324,7 +326,7 @@ async function setBlob(context: Context) {
   if (metaData != null) {
     let blob = await metaData.getBlob();
     if (blob != undefined) {
-      console.info("get blob success");
+      console.info("Succeeded in getting blob.");
       metaData.setBlob(blob);
     }
     let new_blob = metaData.getBlob();
@@ -334,4 +336,3 @@ async function setBlob(context: Context) {
   }
 }
 ```
-<!--no_check-->

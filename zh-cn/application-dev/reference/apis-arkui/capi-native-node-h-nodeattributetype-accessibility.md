@@ -42,7 +42,7 @@ NODE_ACCESSIBILITY_GROUP = 62
 
 | 类型 | 说明 |
 | -- | -- |
-| .value[0].i32 | 为1时表示该组件及其所有子组件为一整个可以选中的组件。无障碍服务将不再关注其子组件内容。参数取值为1或0。 |
+| .value[0].i32 | 为1时表示该组件及其所有子组件合并为一个可被无障碍服务整体聚焦的组件，无障碍服务将不再单独关注其子组件内容；为0时表示不启用无障碍分组，各子组件可被无障碍服务单独关注。参数取值为1或0。 |
 
 ## NODE_ACCESSIBILITY_TEXT
 
@@ -198,13 +198,13 @@ NODE_ACCESSIBILITY_STATE = 90
 
 | 参数项 | 描述 |
 | -- | -- |
-| .object | 无障碍状态属性，无障碍状态信息，参数类型[ArkUI_AccessibilityState](capi-arkui-nativemodule-arkui-accessibilitystate.md)。 |
+| .object | 无障碍状态信息，参数类型[ArkUI_AccessibilityState](capi-arkui-nativemodule-arkui-accessibilitystate.md)。 |
 
 **返回：**
 
 | 类型 | 说明 |
 | -- | -- |
-| .object | 参数类型为[ArkUI_AccessibilityState](capi-arkui-nativemodule-arkui-accessibilitystate.md)。 |
+| .object | 返回值类型为[ArkUI_AccessibilityState](capi-arkui-nativemodule-arkui-accessibilitystate.md)。 |
 
 ## NODE_ACCESSIBILITY_VALUE
 
@@ -222,10 +222,10 @@ NODE_ACCESSIBILITY_VALUE = 91
 
 | 参数项 | 描述 |
 | -- | -- |
-| .object | 无障碍信息属性，无障碍值信息，参数类型为[ArkUI_AccessibilityValue](capi-arkui-nativemodule-arkui-accessibilityvalue.md)。 |
+| .object | 无障碍值信息，参数类型为[ArkUI_AccessibilityValue](capi-arkui-nativemodule-arkui-accessibilityvalue.md)。 |
 
 **返回：**
 
 | 类型 | 说明 |
 | -- | -- |
-| .object | 参数类型为[ArkUI_AccessibilityValue](capi-arkui-nativemodule-arkui-accessibilityvalue.md)。 |
+| .object | 返回值类型为[ArkUI_AccessibilityValue](capi-arkui-nativemodule-arkui-accessibilityvalue.md)。 |

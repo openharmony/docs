@@ -196,10 +196,10 @@ constructor(buffer: ArrayBuffer, byteOffset?: number, length?: number)
 
 ```ts
 let uint8ClampedArray: collections.Uint8ClampedArray = collections.Uint8ClampedArray.from([1, 2, 3, 4, 5, 6]);
-console.info("byteLength: " + uint8ClampedArray.buffer.byteLength); // byteLength: 6
+console.info(`byteLength: ${uint8ClampedArray.buffer.byteLength}`); // byteLength: 6
 // 从uint8ClampedArray对应buffer第1个字节开始，长度为5，uint8ClampedArray1和uint8ClampedArray共享内存
 let uint8ClampedArray1: collections.Uint8ClampedArray = new collections.Uint8ClampedArray(uint8ClampedArray.buffer, 1, 5);
-console.info("[" + uint8ClampedArray1 + "]"); // [2, 3, 4, 5, 6]
+console.info(`[${uint8ClampedArray1}]`); // [2, 3, 4, 5, 6]
 ```
 
 ## from
@@ -420,7 +420,7 @@ copyWithin(target: number, start: number, end?: number): Uint8ClampedArray
 
 | 参数名  | 类型   | 必填 | 说明                                                         |
 | ------- | ------ | ---- | ------------------------------------------------------------ |
-| target | number | 是 | 目标起始位置的下标，如果`target < 0`，则会从`target + array.length`位置开始。 |
+| target | number | 是 | 目标起始位置的下标，如果`target < 0`，则会从`target + Uint8ClampedArray.length`位置开始。 |
 | start | number | 是 | 源起始位置下标，如果`start < 0`，则会从`start + Uint8ClampedArray.length`位置开始。 |
 | end | number | 否 | 源终止位置下标（不包含end位置的元素），如果`end < 0`，则会从`end + Uint8ClampedArray.length`位置终止。默认为ArkTS Uint8ClampedArray的长度。|
 
@@ -767,7 +767,7 @@ lastIndexOf(searchElement: number, fromIndex?: number): number
 | 参数名           | 类型     | 必填  | 说明                                                                                |
 | ------------- | ------ | --- | --------------------------------------------------------------------------------- |
 | searchElement | number | 是   | 待索引的值。                                                                            |
-| fromIndex     | number | 否   | 从后到前搜索的起始下标。默认值为ArkTS Uint8Array的长度减1。如果提供的下标值是负数，则被当做距离数组尾部的偏移。如果fromIndex的值导致搜索区间和数组范围没有重叠，则返回-1。 |
+| fromIndex     | number | 否   | 从后到前搜索的起始下标。默认值为ArkTS Uint8ClampedArray的长度减1。如果提供的下标值是负数，则被当做距离数组尾部的偏移。如果fromIndex的值导致搜索区间和数组范围没有重叠，则返回-1。 |
 
 **返回值：**
 
@@ -788,10 +788,10 @@ lastIndexOf(searchElement: number, fromIndex?: number): number
 
 ```ts
 let array: collections.Uint8ClampedArray = collections.Uint8ClampedArray.from([3, 5, 9]);
-console.info(array.lastIndexOf(3) + ''); // 预期输出：0
-console.info(array.lastIndexOf(7) + ''); // 预期输出：-1
-console.info(array.lastIndexOf(9, 2) + ''); // 预期输出：2
-console.info(array.lastIndexOf(9, -2) + ''); // 预期输出：-1
+console.info(`${array.lastIndexOf(3)}`); // 预期输出：0
+console.info(`${array.lastIndexOf(7)}`); // 预期输出：-1
+console.info(`${array.lastIndexOf(9, 2)}`); // 预期输出：2
+console.info(`${array.lastIndexOf(9, -2)}`); // 预期输出：-1
 ```
 
 ## join
@@ -940,7 +940,7 @@ reduceRight(callbackFn: TypedArrayReduceCallback\<number, number, Uint8ClampedAr
 ```ts
 let array: collections.Uint8ClampedArray = collections.Uint8ClampedArray.from([1, 2, 3, 4, 5]);
 let reducedValue: number = array.reduceRight((accumulator: number, value: number) => accumulator + value);
-console.info(reducedValue + ''); // 预期输出： 15
+console.info(`${reducedValue}`); // 预期输出： 15
 ```
 
 ## reduce
@@ -1018,7 +1018,7 @@ reduceRight\<U = number>(callbackFn: TypedArrayReduceCallback\<U, number, Uint8C
 ```ts
 let array: collections.Uint8ClampedArray = collections.Uint8ClampedArray.from([1, 2, 3, 4, 5]);
 let reducedValue: number = array.reduceRight((accumulator: number, value: number) => accumulator + value, 1);
-console.info(reducedValue + ''); // 预期输出： 16
+console.info(`${reducedValue}`); // 预期输出： 16
 ```
 
 ## reverse
@@ -1235,9 +1235,9 @@ at(index: number): number | undefined
 
 ```ts
 let array: collections.Uint8ClampedArray = collections.Uint8ClampedArray.from([1, 2, 3, 4, 5]);
-console.info("element: " + array.at(2));  // element: 3
-console.info("element: " + array.at(-1)); // element: 5
-console.info("element: " + array.at(6));  // element: undefined
+console.info(`element: ${array.at(2)}`);  // element: 3
+console.info(`element: ${array.at(-1)}`); // element: 5
+console.info(`element: ${array.at(6)}`);  // element: undefined
 ```
 
 ## includes
@@ -1275,9 +1275,9 @@ includes(searchElement: number, fromIndex?: number): boolean
 
 ```ts
 let array: collections.Uint8ClampedArray = collections.Uint8ClampedArray.from([1, 2, 3]);
-console.info("includes: " + array.includes(2));    // includes: true
-console.info("includes: " + array.includes(4));    // includes: false
-console.info("includes: " + array.includes(3, 3)); // includes: false
+console.info(`includes: ${array.includes(2)}`);    // includes: true
+console.info(`includes: ${array.includes(4)}`);    // includes: false
+console.info(`includes: ${array.includes(3, 3)}`); // includes: false
 ```
 
 ## entries
@@ -1309,9 +1309,9 @@ entries(): IterableIterator\<[number, number]>
 ```ts
 let array: collections.Uint8ClampedArray = collections.Uint8ClampedArray.from([11, 22, 33]);
 let iterator: IterableIterator<[number, number]> = array.entries();
-console.info("value: " + iterator.next().value); // value: 0,11
-console.info("value: " + iterator.next().value); // value: 1,22
-console.info("value: " + iterator.next().value); // value: 2,33
+console.info(`value: ${iterator.next().value}`); // value: 0,11
+console.info(`value: ${iterator.next().value}`); // value: 1,22
+console.info(`value: ${iterator.next().value}`); // value: 2,33
 ```
 
 ## keys
@@ -1344,7 +1344,7 @@ keys(): IterableIterator\<number>
 let array: collections.Uint8ClampedArray = collections.Uint8ClampedArray.from([1, 2, 3, 4, 5]);
 let iterator: IterableIterator<number> = array.keys();
 for (const key of iterator) {
-  console.info("" + key); // 依次输出 0,1,2,3,4
+  console.info(`${key}`); // 依次输出 0,1,2,3,4
 }
 ```
 
@@ -1378,7 +1378,7 @@ values(): IterableIterator\<number>
 let array: collections.Uint8ClampedArray = collections.Uint8ClampedArray.from([1, 2, 3, 4, 5]);
 let iterator: IterableIterator<number> = array.values();
 for (const value of iterator) {
-  console.info("" + value); // 依次输出 1,2,3,4,5
+  console.info(`${value}`); // 依次输出 1,2,3,4,5
 }
 ```
 
@@ -1386,7 +1386,7 @@ for (const value of iterator) {
 
 [Symbol.iterator]\(): IterableIterator&lt;number&gt;
 
-返回一个迭代器对象，用于遍历ArkTS Uint8Array中的每个元素值。迭代器遍历期间不能使用会改变ArkTS Uint8ClampedArray数组内容的方法。
+返回一个迭代器对象，用于遍历ArkTS Uint8ClampedArray中的每个元素值。迭代器遍历期间不能使用会改变ArkTS Uint8ClampedArray数组内容的方法。
 
 > **说明：**
 >
@@ -1446,5 +1446,5 @@ for (let item of uint8ClampedArray) {
 
 ```ts
 let uint8ClampedArray = collections.Uint8ClampedArray.from([1, 2, 4]);
-console.info("Element at index 1: ", uint8ClampedArray[1]);
+console.info(`Element at index 1: ${uint8ClampedArray[1]}`);
 ```

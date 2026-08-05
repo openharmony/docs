@@ -8,7 +8,7 @@
 
 在开启无障碍模式后，本模块提供无障碍控制操作拦截和无障碍节点获焦/失焦状态监听能力。开发者可通过onAccessibilityFocus监听组件的获焦与失焦状态变化，通过onAccessibilityActionIntercept在无障碍控制操作触发前进行拦截判断，适用于需要在无障碍模式下自定义组件交互逻辑的场景。
 
->**说明：**
+> **说明：**
 >
 > - 本模块首批接口从API version 18开始支持，后续版本的新增接口，采用上角标单独标记接口的起始版本。
 >
@@ -74,7 +74,7 @@ onAccessibilityActionIntercept(callback: AccessibilityActionInterceptCallback): 
 
 | 参数名   | 类型    | 必填 | 说明                                                         |
 | -------- | ------- | ---- | ------------------------------------------------------------ |
-| callback | [AccessibilityActionInterceptCallback](#accessibilityactioninterceptcallback20) | 是   | 在无障碍模式且组件支持点击的前提下，在无障碍控制操作触发前通知注册方该次无障碍控制操作，由注册方决定是否拦截该操作。未开启无障碍模式或组件不支持点击时，回调均不会触发。<br> 入参设置undefined时取消回调注册。 |
+| callback | [AccessibilityActionInterceptCallback](#accessibilityactioninterceptcallback20) | 是   | 在无障碍模式且组件支持点击的前提下，在无障碍控制操作触发前通知注册方该次无障碍控制操作，由注册方决定是否拦截该操作。未开启无障碍模式或组件不支持点击时，回调均不会触发。<br> 入参设置为undefined时，取消回调注册。 |
 
 **返回值：**
 

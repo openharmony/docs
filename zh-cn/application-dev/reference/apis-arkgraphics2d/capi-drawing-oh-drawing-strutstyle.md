@@ -6,7 +6,7 @@
 <!--Tester: @yhl0101-->
 <!--Adviser: @ge-yafang-->
 ```c
-typedef struct OH_Drawing_StrutStyle {...} OH_Drawing_StrutStyle
+typedef struct {...} OH_Drawing_StrutStyle
 ```
 
 ## 概述

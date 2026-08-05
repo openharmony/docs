@@ -23,7 +23,7 @@
 import { tag } from '@kit.ConnectivityKit';
 ```
 
-## **tag.TagInfo**
+## **tag.TagInfo示例**
 
 在对相关Tag类型卡片进行读写之前，必须先获取[TagInfo](#taginfo)相关属性值，以确认设备读取到的Tag卡片支持哪些技术类型。这样Tag应用程序才能调用正确的接口和所读取到的Tag卡片进行通信。
 ```js
@@ -1351,7 +1351,7 @@ NFC Tag有多种不同的技术类型，定义常量描述不同的技术类型�
 | MIFARE_CLASSIC               |  number | 8      | MIFARE Classic技术。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。        |
 | MIFARE_ULTRALIGHT            |  number | 9      | MIFARE Ultralight技术。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。      |
 | NFC_BARCODE<sup>18+</sup>    |  number | 10     | BARCODE技术。<br>**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。               |
-| SKIP_NDEF                    | number |     11  | 跳过NDEF检查的技术。<br>**起始版本：** 26.0.0 <br>**原子化服务API：** 从API版本26.0.0开始，该接口支持在原子化服务中使用。|
+| SKIP_NDEF                    | number |     11  | 跳过NDEF检查的技术。<br>**起始版本：** 26.0.0 <br>**原子化服务API：** 从API版本26.0.0开始，该接口支持在原子化服务中使用。<br>**模型约束：** 此接口仅可在Stage模型下使用。|
 | RTD_TEXT<sup>9+</sup>        | number[] | [0x54] | 文本类型的NDEF Record，参考NDEF标签技术规范《NFCForum-TS-NDEF_1.0》的定义细节。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
 | RTD_URI<sup>9+</sup>         | number[] | [0x55] | URI类型的NDEF Record，参考NDEF标签技术规范《NFCForum-TS-NDEF_1.0》的定义细节。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
 

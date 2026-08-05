@@ -3,12 +3,12 @@
 <!--Kit: ArkGraphics 2D-->
 <!--Subsystem: Graphics-->
 <!--Owner: @hangmengxin-->
-<!--Designer: @wangyanglan-->
+<!--Designer: @wanyanglan-->
 <!--Tester: @nobuggers-->
 <!--Adviser: @ge-yafang-->
+<!-- md-trans-meta sourceCommit=3c9498a5af1cedc12000d743f1689bf266862723 translatedAt=2026-08-03T11:16:28.543Z pushedAt=2026-08-04T02:41:09.270Z -->
 
 You can use a brush or a pen to implement complex drawing effects in addition to the basic fill color, stroke color, and style settings. For example:
-
 
 - Blend mode
 
@@ -17,7 +17,6 @@ You can use a brush or a pen to implement complex drawing effects in addition to
 - Shader effect, such as linear gradient and radial gradient
 
 - Filtering effect, such as blurring
-
 
 ## Blend Mode
 
@@ -62,7 +61,6 @@ function drawRenderNode(canvas: drawing.Canvas) {
 ```
 
 ![BlendMode-SrcIn.png](figures/BlendMode-SrcIn.png)
-
 
 ## Path Effect
 
@@ -109,14 +107,11 @@ canvas.detachPen();
 | -------- | -------- |
 | ![Screenshot_20241130160231398](figures/Screenshot_20241130160231398.jpg) | ![Screenshot_20241130160433593](figures/Screenshot_20241130160433593.jpg) |
 
-
 ## Shader Effect
 
 The shader effect is implemented based on the brush or pen. You can use the **setShaderEffect()** API to set the shader effect of the brush or pen. Currently, different shader effects are supported, such as linear gradient, radial gradient, and sector gradient.
 
-
 For details about shader-related APIs and parameters, see [ShaderEffect](../reference/apis-arkgraphics2d/arkts-apis-graphics-drawing-ShaderEffect.md).
-
 
 ### Linear Gradient Shader Effect
 
@@ -131,9 +126,13 @@ You can use the **createLinearGradient()** API to create the linear gradient sha
 - Matrix object, which is used to perform matrix transformation on the shader. The default value is **null**, indicating the unit matrix.
 
 - The tiling mode is used to determine how to continue the gradient effect outside the gradient area. The options are as follows:
+
   - **CLAMP**: Replicates the edge color if the image exceeds its original boundary.
+
   - **REPEAT**: Repeats the image in both horizontal and vertical directions.
+
   - **MIRROR**: Repeats the image in both horizontal and vertical directions and alternates the mirrored image between adjacent images.
+
   - **DECAL**: Renders the shader effect's image only within the original boundary, and returns transparent black elsewhere.
 
 The following uses the rectangle drawing and the linear gradient shader effect implemented by a brush as an example. The sample code and effect are as follows:
@@ -164,8 +163,7 @@ canvas.drawRect(rect);
 canvas.detachBrush();
 ```
 
-![Gradient-Shader-Effect](figures/Gradient-Shader-Effect.png)
-
+![Gradient Shader Effect](figures/Gradient-Shader-Effect.png)
 
 ### Radial Gradient Shader Effect
 
@@ -202,10 +200,9 @@ canvas.detachBrush();
 
 ![Screenshot_20241130164939281](figures/Screenshot_20241130164939281.jpg)
 
-
 ### Sector Gradient Shader Effect
 
-You can use the **createSweepGradient()** API to create the sector gradient shader effect to be set. The API takes seven parameters: which are the center coordinates (**centerPt**), color array (**colors**), tiling mode (**TileMode**), start angle of the sector gradient (**startAngle**), end angle of the sector gradient (**endAngle**), relative position array (**pos**), and matrix object (**matrix**).
+You can use the **createSweepGradient()** API to create the sector gradient shader effect to be set. The API takes seven parameters: the center coordinates (**centerPt**), color array (**colors**), tiling mode (**TileMode**), start angle of the sector gradient (**startAngle**), end angle of the sector gradient (**endAngle**), relative position array (**pos**), and matrix object (**matrix**).
 
 The implementation method is similar to that of the linear gradient shader. The difference is that the sector gradient is gradually changed during rotation around the center point.
 
@@ -238,13 +235,11 @@ canvas.detachBrush();
 
 ![Screenshot_20241130165741720](figures/Screenshot_20241130165741720.jpg)
 
-
 ## Filter Effects
 
 The filter effect can be implemented based on the brush or pen. Currently, different filter effects are supported, such as image filters, color filters, and mask filters.
 
 For details about the filter-related APIs and parameters, see [ImageFilter](../reference/apis-arkgraphics2d/arkts-apis-graphics-drawing-ImageFilter.md).
-
 
 ### Color Filter Effects
 
@@ -324,7 +319,6 @@ canvas.detachBrush();
 | -------- | -------- |
 | ![Screenshot_20241130173415925](figures/Screenshot_20241130173415925.jpg) | ![Screenshot_20241130173354704](figures/Screenshot_20241130173354704.jpg) |
 
-
 ### Image Filter Effects
 
 The image filter can be implemented based on the pen or brush. For details about the image filter-related APIs and parameters, see [ImageFilter](../reference/apis-arkgraphics2d/arkts-apis-graphics-drawing-ImageFilter.md).
@@ -374,7 +368,6 @@ canvas.detachPen();
 | -------- | -------- |
 | ![Screenshot_20241130170911500](figures/Screenshot_20241130170911500.jpg) | ![Screenshot_20241130170826458](figures/Screenshot_20241130170826458.jpg) |
 
-
 ### Mask Filter Effect
 
 The blur effect of the mask filter only blurs the transparency and shape edges, which is less costly than that of the image filter.
@@ -421,9 +414,11 @@ canvas.detachPen();
 | ![Screenshot_20241130170911500](figures/Screenshot_20241130170911500.jpg) | ![Screenshot_20241130170826458](figures/Screenshot_20241130170826458.jpg) |
 
 <!--RP1-->
+
 ## Samples
 
 The following samples are provided to help you better understand how to use the **Drawing** APIs (ArkTS) for development:
 
 - [ArkTSGraphicsDraw (API20)](https://gitcode.com/openharmony/applications_app_samples/tree/master/code/DocsSample/ArkGraphics2D/Drawing/ArkTSGraphicsDraw)
+
 <!--RP1End-->

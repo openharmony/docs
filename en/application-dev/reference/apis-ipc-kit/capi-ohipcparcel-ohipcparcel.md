@@ -6,6 +6,7 @@
 <!--Designer: @zhaopeng_gitee-->
 <!--Tester: @maxiaorong-->
 <!--Adviser: @zhang_yixin13-->
+<!-- md-trans-meta sourceCommit=6f4847d75b3f902aaed7dfe11fd309a2307ea051 translatedAt=2026-07-30T02:33:00.775Z pushedAt=2026-07-30T03:36:23.229Z -->
 
 ```c
 typedef struct OHIPCParcel OHIPCParcel
@@ -13,7 +14,7 @@ typedef struct OHIPCParcel OHIPCParcel
 
 ## Overview
 
-Defines an IPC serialized object.
+IPC serialization object used to serialize and deserialize data in cross-process communication.
 
 **Since**: 12
 

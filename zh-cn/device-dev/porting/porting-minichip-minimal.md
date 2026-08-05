@@ -1,11 +1,11 @@
 # 轻量系统小型化适配指导
 
-本文档面向轻量系统小型化适配场景，提供各核心模块Feature的说明与使用方法。
+本文档面向轻量系统小型化适配场景，提供各核心模块Feature的使用说明。
 
 ## 约束与限制
 
 - 本文档适用于OpenHarmony轻量系统的小型化适配场景
-- 目标芯片架构包括cortex-m、risc-v等系列
+- 目标芯片架构包括Cortex-M、RISC-V等系列
 - 各模块Feature以config.json中的features配置项为入口进行裁剪与使能
 
 ## 整体架构
@@ -17,13 +17,13 @@
 | startup-启动恢复 | 提供启动引导功能以及系统参数管理能力 |
 | samgr-系统服务管理 | 系统服务注册、发现与统一管理 |
 | DFX | 可维可测能力，包括日志、事件打点等 |
-| HCTEST-测试框架 | 兼容性测试框架，提供基本接口的测试验证能力 |
-| 三方库 | 三方库mbedtls算法feature化改造（可配置功能，目前仅支持ws63平台） |
+| HCTEST-测试框架 | 兼容性测试框架，提供基本接口的验证能力 |
+| 三方库 | 三方库mbedtls算法feature化改造（可配置功能，目前仅支持Hi3863） |
 | 编译链接 | 编译构建配置与链接脚本管理 |
 
 ## 适配流程
 
-**表1** 小型化适配步骤
+小型化适配步骤：
 
 | 步骤 | 说明 |
 | -------- | -------- |
@@ -35,7 +35,7 @@
 
 ## startup-启动恢复
 
-在轻量系统中，startup包含两个模块：init和bootstrap_lite。init提供了系统属性设置、读取功能。bootstrap_lite提供了启动引导功能。
+在轻量系统中，startup包含两个模块：init和bootstrap_lite。init提供了系统属性设置和读取。bootstrap_lite提供了启动引导功能。
 
 ### Feature列表
 
@@ -43,9 +43,9 @@
 | -------- | -------- | -------- | -------- |
 | bootstrap_lite_enable_bootstrap_service | 是否使能Bootstrap服务任务 | true | false |
 | init_lite_memory_size | 参数空间总大小（字节） | 15360 | 8192 |
-| init_lite_param_const_value_len_max | 常量参数值的最大长度 | 4096 | 256 |
-| init_lite_param_value_len_max | 参数值的最大长度 | 96 | 48 |
-| init_lite_param_name_len_max | 参数名的最大长度 | 96 | 48 |
+| init_lite_param_const_value_len_max | 常量参数值的最大长度（字节） | 4096 | 256 |
+| init_lite_param_value_len_max | 参数值的最大长度（字节） | 96 | 48 |
+| init_lite_param_name_len_max | 参数名的最大长度（字节） | 96 | 48 |
 | init_lite_persist_all | 是否持久化所有参数 | true | false |
 | acts_lite_param_value_len_max_48 | 是否将xts用例中value的值替换为48字节的字符串（兼容测试） | false | true |
 
@@ -110,7 +110,7 @@
 | -------- | -------- | -------- | -------- |
 | enable_ohos_systemabilitymgr_samgr_lite_broadcast | 是否使能广播能力 | true | false |
 | enable_ohos_systemabilitymgr_samgr_lite_system_capability | 是否使能系统能力 | true | false |
-| config_ohos_systemabilitymgr_samgr_lite_shared_task_size | 共享任务栈大小（字节） | 2048 | 1024 |
+| config_ohos_systemabilitymgr_samgr_lite_shared_task_size | 共享任务栈大小（字节） | 2048 | 2048 |
 | enable_ohos_systemabilitymgr_samgr_lite_specified_task | 是否使能指定任务模式 | true | false |
 | enable_ohos_systemabilitymgr_samgr_lite_no_task | 是否使能无任务模式 | true | false |
 | enable_ohos_test_xts_acts_use_samgr_lite_broadcast | 兼容性测试：是否使用广播能力 | true | false |
@@ -240,7 +240,7 @@ DFX（Design for eXcellence）可维可测子系统提供日志、事件打点�
 
 ## HCTEST-测试框架
 
-HCTEST为OpenHarmony兼容性测试框架，提供基本接口的测试验证能力，用于在适配完成后对工程进行兼容性测试。
+HCTEST为OpenHarmony兼容性测试框架，提供基本接口的验证能力，用于在适配完成后对工程进行兼容性测试。
 
 ### Feature列表
 
@@ -248,7 +248,7 @@ HCTEST为OpenHarmony兼容性测试框架，提供基本接口的测试验证能
 | -------- | -------- | -------- | -------- |
 | hctest_rodata_opt | 是否开启测试套件描述放在Flash(.rodata)减少RAM占用 | false | true |
 | xts_overlay | 是否开启多个测试模块的.bss复用同一块overlay区域 | false | true |
-| hctest_task_stack_size | 配置测试任务栈大小 | 6144 | 2048 |
+| hctest_task_stack_size | 配置测试任务栈大小（字节） | 6144 | 2048 |
 | hctest_task_queue_size | 配置测试任务队列大小 | 20 | 1 |
 | hctest_task_type | 配置测试任务类型 | `SINGLE_TASK` | `SHARED_TASK` |
 
@@ -274,7 +274,7 @@ HCTEST的Feature通过编译参数`--gn-args`传入，也可以通过config.json
 hb build --gn-args hctest_rodata_opt=true xts_overlay=true hctest_task_stack_size=2048 hctest_task_queue_size=1 'hctest_task_type="SHARED_TASK"'
 ```
 
-config.json配置方法参考 vendor/hisilicon/hispark_pegasus_minimal/config.json
+config.json配置方法参考 vendor/MyVendorCompany/MyProduct/config.json
 
 ```json
 {
@@ -283,7 +283,6 @@ config.json配置方法参考 vendor/hisilicon/hispark_pegasus_minimal/config.js
     {
       "component": "acts",
       "features": [
-        "enable_ohos_test_xts_acts_use_thirdparty_lwip = false",
         "hctest_rodata_opt = true",
         "xts_overlay = true",
         "hctest_task_stack_size = 2048",
@@ -511,12 +510,12 @@ set_config('env_cfg', 'CONFIG_XTS_OVERLAY', 'y', ['-DXTS_OVERLAY_ENABLE'], 'link
 set_config('env_cfg', 'CONFIG_HCTEST_NEW_RUNNER', 'y', ['-DHCTEST_NEW_RUNNER'], 'link_scripts_flag', 'common')
 ```
 
-##### 3861 与 3863 已适配对比
+##### Hi3861 与 Hi3863 适配对比举例
 
-| 环节 | 3861 (hi3861v100) | 3863 (ws63v100) |
+| 环节 | Hi3861 | Hi3863 |
 | -------- | -------- | -------- |
 | SDK 构建系统 | scons | cmake |
-| 链接脚本 | device/soc/hisilicon/hi3861v100/sdk_liteos/build/link/link.ld.S | device/soc/hisilicon/ws63v100/sdk/drivers/boards/ws63/evb/linker/.../linker.prelds |
+| 链接脚本 | device/soc/hisilicon/hi3861v100/sdk_liteos/build/link/link.ld.S | device/soc/hisilicon/ws63v100/sdk/drivers/boards/ws63/evb/linker/ws63_liteos_xts_linker/linker.prelds |
 | 预处理器入口 | device/soc/hisilicon/hi3861v100/sdk_liteos/build/make_scripts/config.mk + device/soc/hisilicon/hi3861v100/sdk_liteos/build/scripts/common_env.py | device/soc/hisilicon/ws63v100/sdk/build/cmake/build_linker.cmake |
 | BSS 段名 | .bss* | .bss + .bss* |
 | RAM 段名 | RAM | SRAM |
@@ -542,10 +541,10 @@ nm <elf> | grep xts_overlay      # xts_overlay_start / xts_overlay_end
 
 ## 三方库
 
-三方库模块，对thirdparty下mbedtls进行了算法feature化改造，以ws63产品为范例（当前仅适配了ws63），展现feature化对内存的影响。
+三方库模块，对thirdparty下mbedtls进行了算法feature化改造，以Hi3863产品为范例（当前仅适配了Hi3863），展现feature化对内存的影响。
 
 > **说明：**
-> 非必须，按需配置，当前对ws63内存无正面优化效果。
+> 非必须，按需配置，当前对Hi3863内存无正面优化效果。
 
 ### 使用方法
 
@@ -557,12 +556,12 @@ nm <elf> | grep xts_overlay      # xts_overlay_start / xts_overlay_end
 
 #### Feature说明
 
-- 在third_party/mbedtls/mbedtls_feature.gni中配置了算法相关feature，
-- 通过 --gn-args mbedtls_feature_xxx = true的方式可开启
-- 以下为ws63上使用feature化的示例
-  - ws63切换mbedtls使用的源：
-    - 一些产品使用了自己sdk特化的mbedtls，需先行切换
-    - （是否要切换到thirdparty下的，可根据实际判断，mbedtls_ohos_switch当前仅适配了ws63）
+- 在third_party/mbedtls/mbedtls_feature.gni中配置了算法相关feature。
+- 通过 --gn-args mbedtls_feature_xxx = true的方式可开启。
+- 以下为Hi3863上使用feature化的示例。
+  - Hi3863切换mbedtls使用的源：
+    - 一些产品使用了自己sdk特化的mbedtls，需先行切换。
+    - 是否要切换到thirdparty下的，可根据实际判断，mbedtls_ohos_switch当前仅适配了Hi3863。
     - --gn-args mbedtls_ohos_switch=true
     - --gn-args 'huks_dependency_mbedtls_path="//third_party/mbedtls"'
     - --gn-args mbedtls_featureized=true
@@ -570,13 +569,13 @@ nm <elf> | grep xts_overlay      # xts_overlay_start / xts_overlay_end
     - --gn-args mbedtls_feature_x509=true
     - --gn-args mbedtls_feature_ssl_tls12=true
     - --gn-args mbedtls_feature_ssl_misc=true
-    - ws63的minimal产品暂不使用mbedtls
+    - Hi3863的minimal产品暂不使用mbedtls。
 
 #### 注意事项
 
 算法间存在依赖关系，违反时编译失败。
 
-若要在产品的bundle.json文件中通过配置的方式开启，需将对应的feature声明在bundle.json的features中。
+若要在产品的config.json文件中通过配置的方式开启，需将对应的feature声明在bundle.json的features中。
 
 ---
 
@@ -594,9 +593,9 @@ nm <elf> | grep xts_overlay      # xts_overlay_start / xts_overlay_end
 ### Feature说明
 
 - **ohos_stack_protector**：设置栈保护（Stack Protector）级别。可选值：
-  - `strong`：强保护模式，为大部分函数插入栈保护代码，安全性高但略有性能开销
-  - `no`：无保护模式，内存优化最佳，安全性最低
-  - `""`：使用产品本身配置
+  - `strong`：强保护模式，为大部分函数插入栈保护代码，安全性高但略有性能开销。
+  - `no`：无保护模式，内存优化最佳，安全性最低。
+  - `""`：使用产品本身配置。
 
 - **ohos_mem_opt_extra**：控制是否使能额外的内存优化选项。开启后编译器会进行更激进的内存优化（如优化内存布局、减少冗余分配），适用于RAM资源受限的轻量系统芯片场景。
 
@@ -612,7 +611,7 @@ hb build --gn-args ohos_stack_protector=strong ohos_mem_opt_extra=true
 
 #### 链接脚本配置
 
-参考hi3861与hi3863的minimal产品，在config.json中添加配置：
+参考Hi3861与Hi3863的minimal产品，在config.json中添加配置：
 
 ```json
 [
@@ -620,10 +619,10 @@ hb build --gn-args ohos_stack_protector=strong ohos_mem_opt_extra=true
   "ohos_mem_opt_extra=true"
 ]
 ```
-- 3861：
+- Hi3861：
   - vendor/hisilicon/hispark_pegasus_minimal/config.json
   - product_wifiiot_hispark_pegasus_minimal的features
-- 3863：
+- Hi3863：
   - vendor/hihope/nearlink_dk_3863_xts_minimal/config.json
   - product_nearlink_dk_3863_xts_minimal的features
 
@@ -635,10 +634,10 @@ hb build --gn-args ohos_stack_protector=strong ohos_mem_opt_extra=true
 
 | 子系统 | 能力说明 | 典型用途 | 资源影响 | 移植指导 |
 | -------- | -------- | -------- | -------- | -------- |
-| 通信子系统 | 提供Wi-Fi Station/SoftAP、蓝牙等无线通信能力 | 设备联网、数据交互、配网 | 增加ROM约100KB+，RAM约20KB+ | [移植通信子系统](porting-minichip-subsys-communication.md) |
+| 通信子系统 | 提供Wi-Fi Station/SoftAP、蓝牙等无线通信能力 | 设备联网、数据交互、配网 | 增加ROM约100KB，RAM约20KB | [移植通信子系统](porting-minichip-subsys-communication.md) |
 | 外设驱动子系统 | 提供GPIO、I2C、SPI、PWM、UART、FLASH、WATCHDOG等外设操作接口 | 传感器数据采集、外设控制、屏显驱动 | 按需引入，单接口增加ROM约2~10KB | [移植外设驱动子系统](porting-minichip-subsys-driver.md) |
-| 文件子系统 | 提供文件打开、关闭、读写、Seek等操作接口 | 日志存储、配置持久化、数据记录 | 增加ROM约10KB+，RAM约2KB+ | [移植文件子系统](porting-minichip-subsys-filesystem.md) |
-| 安全子系统 | 提供硬件随机数、密钥管理（huks）、设备认证（hichainsdk）等安全能力 | 安全连接、数据加密、设备鉴权 | 依赖mbedtls，增加ROM约50KB+ | [移植安全子系统](porting-minichip-subsys-security.md) |
+| 文件子系统 | 提供文件打开、关闭、读写、Seek等操作接口 | 日志存储、配置持久化、数据记录 | 增加ROM约10KB，RAM约2KB | [移植文件子系统](porting-minichip-subsys-filesystem.md) |
+| 安全子系统 | 提供硬件随机数、密钥管理（huks）、设备认证（hichainsdk）等安全能力 | 安全连接、数据加密、设备鉴权 | 依赖mbedtls，增加ROM约50KB | [移植安全子系统](porting-minichip-subsys-security.md) |
 
 > **说明：**
 > - 上表资源影响为参考值，实际占用与芯片架构、编译器优化等级、使能的具体Feature有关。

@@ -210,7 +210,12 @@ HarmonyAppProvision配置文件示例如下所示，修改"bundle-info" &gt; "ap
 
 > **说明：**
 >
-> 在API 12及以上版本，该权限等级变更为normal，应用可直接[声明使用](declare-permissions.md)；若需兼容API12之前版本，仍需按[受限权限申请方式](declare-permissions-in-acl.md)使用该权限。
+> 在API版本12，该权限等级变更为normal。
+> - 如果应用仅在本地调试：
+>   - 适配API版本12之前的版本，仍需按[受限权限申请方式](declare-permissions-in-acl.md)使用该权限。
+>   - 仅适配API版本12及之后的版本，可直接[声明使用](declare-permissions.md)。
+> - 如果应用需要上架应用市场：
+>   仍需按[受限权限申请方式](declare-permissions-in-acl.md)使用该权限。
 
 <!--RP18--><!--RP18End-->
 
@@ -1336,6 +1341,22 @@ USB串口DDK API可用于开发以下类型的外设扩展驱动：
 **授权方式**：系统授权（system_grant）
 
 **支持设备**：PC/2in1
+
+**起始版本**：26.0.0
+
+## ohos.permission.ACCESS_GAME_BUDDY_SERVICE
+
+允许应用访问游戏伴随服务。
+
+获取该权限后，应用可使用游戏伴随服务提供的接口，比如获取正在运行的游戏应用截图、通过麦克风获取用户语音数据等。
+
+<!--RP93--><!--RP93End-->
+
+**权限级别**：system_basic
+
+**授权方式**：系统授权（system_grant）
+
+**支持设备**：Phone
 
 **起始版本**：26.0.0
 

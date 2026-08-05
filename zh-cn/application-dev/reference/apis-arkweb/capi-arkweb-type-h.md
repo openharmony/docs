@@ -103,7 +103,7 @@ JavaScript数据类型。
 | -- | -- |
 | ARKWEB_JAVASCRIPT_NONE = 0 | 错误数据。 |
 | ARKWEB_JAVASCRIPT_STRING | 字符串数据类型。 |
-| ARKWEB_JAVASCRIPT_BOOL | boolean数据类型。 |
+| ARKWEB_JAVASCRIPT_BOOL | 布尔数据类型。 |
 
 
 ## 函数说明

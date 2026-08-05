@@ -1,11 +1,12 @@
 # Drawing Geometric Shapes (ArkTS)
+
 <!--Kit: ArkGraphics 2D-->
 <!--Subsystem: Graphic-->
 <!--Owner: @hangmengxin-->
-<!--Designer: @wangyanglan-->
+<!--Designer: @wanyanglan-->
 <!--Tester: @nobuggers-->
 <!--Adviser: @ge-yafang-->
-
+<!-- md-trans-meta sourceCommit=3c9498a5af1cedc12000d743f1689bf266862723 translatedAt=2026-08-03T11:19:44.779Z pushedAt=2026-08-04T06:18:32.613Z -->
 
 ## Overview
 
@@ -27,7 +28,6 @@ The following geometric shapes can be drawn:
 
 Most geometric shapes can be drawn using a pen or brush. Points can only be drawn using a pen.
 
-
 ## Available APIs
 
 The following table lists the APIs for drawing geometric shapes. For details, see [drawing.Canvas](../reference/apis-arkgraphics2d/arkts-apis-graphics-drawing-Canvas.md).
@@ -41,7 +41,6 @@ The following table lists the APIs for drawing geometric shapes. For details, se
 | drawRegion(region: Region): void | Draws a region.|
 | drawRect(left: number, top: number, right: number, bottom: number): void | Draws a rectangle.|
 | drawRoundRect(roundRect: RoundRect): void | Draws a rounded rectangle.|
-
 
 ## Drawing Points
 
@@ -73,7 +72,6 @@ canvas.detachPen();
 The effect is as follows:
 
 ![Screenshot_20241129174520171](figures/Screenshot_20241129174520171.jpg)
-
 
 ## Drawing an Arc
 
@@ -114,8 +112,7 @@ canvas.detachPen();
 
 The effect is as follows:
 
-![Drawing-an-Arc](figures/Drawing-an-Arc.png)
-
+![Drawing an Arc](figures/Drawing-an-Arc.png)
 
 ## Drawing a Circle
 
@@ -124,6 +121,7 @@ You can use the pen or brush to draw a circle on the canvas by calling **drawCir
 To draw a circle, you need the X and Y coordinates of the center point and the radius of the circle.
 
 The following is an example of drawing a circle using a pen:
+
 <!-- @[arkts_graphics_draw_circle](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkGraphics2D/Drawing/ArkTSGraphicsDraw/entry/src/main/ets/drawing/pages/ShapeDrawing.ets) -->
 
 ``` TypeScript
@@ -149,7 +147,6 @@ canvas.detachPen();
 The effect is as follows:
 
 ![Screenshot_20241129172555673](figures/Screenshot_20241129172555673.jpg)
-
 
 ## Drawing a Path
 
@@ -222,14 +219,13 @@ The effect is as follows:
 
 ![Screenshot_20241129164326302](figures/Screenshot_20241129164326302.jpg)
 
-
 ## Drawing a Region
 
 A region is not a specific shape. You can set it to a specified rectangle or path, or combine two regions. You can use a pen or brush to draw a region. For details about the API, see [Region](../reference/apis-arkgraphics2d/arkts-apis-graphics-drawing-Region.md).
 
 You can call **setRect()** and **setPath()** to set the rectangle region and path region, respectively.
 
-The following is an example of drawing a rectangle region using a brush:
+The following is an example of drawing a combined rectangle region using a brush:
 
 <!-- @[arkts_graphics_draw_region](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkGraphics2D/Drawing/ArkTSGraphicsDraw/entry/src/main/ets/drawing/pages/ShapeDrawing.ets) -->
 
@@ -258,12 +254,11 @@ The effect is as follows:
 
 ![Screenshot_20241206112505234](figures/Screenshot_20241206112505234.jpg)
 
-
 ## Drawing a Rectangle
 
 You can use a pen or brush to draw a rectangle on the canvas. Use **drawRect()** to draw a rectangle. The API needs to pass four floating points, which indicate the coordinates of the left, top, right, and bottom positions of the rectangle. The four coordinates form a rectangle.
 
-The following is an example of drawing a five-pointed star using a pen and a brush:
+The following is an example of drawing a rectangle using a pen and a brush:
 
 <!-- @[arkts_graphics_draw_rect](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkGraphics2D/Drawing/ArkTSGraphicsDraw/entry/src/main/ets/drawing/pages/ShapeDrawing.ets) -->
 
@@ -282,8 +277,7 @@ canvas.detachBrush();
 
 The effect is as follows:
 
-![Drawing-a-Rectangle](figures/Drawing-a-Rectangle.png)
-
+![Drawing a Rectangle](figures/Drawing-a-Rectangle.png)
 
 ## Drawing a Rounded Rectangle
 
@@ -326,12 +320,14 @@ canvas.detachBrush();
 
 The effect is as follows:
 
-![Drawing-a-Rounded-Rectangle](figures/Drawing-a-Rounded-Rectangle.png)
+![Drawing a Rounded Rectangle](figures/Drawing-a-Rounded-Rectangle.png)
 
 <!--RP1-->
+
 ## Samples
 
 The following samples are provided to help you better understand how to use the **Drawing** APIs (ArkTS) for development:
 
 - [ArkTSGraphicsDraw (API20)](https://gitcode.com/openharmony/applications_app_samples/tree/master/code/DocsSample/ArkGraphics2D/Drawing/ArkTSGraphicsDraw)
+
 <!--RP1End-->

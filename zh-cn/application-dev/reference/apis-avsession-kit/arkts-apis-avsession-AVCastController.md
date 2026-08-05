@@ -1398,7 +1398,7 @@ avCastController.off('validCommandChange');
 ## on('videoSizeChange')<sup>12+</sup>
 on(type: 'videoSizeChange', callback: (width: number, height: number) => void): void
 
-媒体控制器监听视频尺寸变化变化的事件。
+媒体控制器监听视频尺寸变化的事件。
 
 每个指令支持注册多个回调，如果需要只执行最新监听，需要先注销旧的监听，否则新旧监听都会触发回调。
 

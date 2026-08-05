@@ -1,10 +1,12 @@
 # Managing External Storage Devices (for System Applications Only)
+
 <!--Kit: Core File Kit-->
 <!--Subsystem: FileManagement-->
 <!--Owner: @wang_zhangjun; @gzhuangzhuang-->
 <!--Designer: @wang_zhangjun; @gzhuangzhuang; @renguang1116-->
 <!--Tester: @liuhonggang123; @yue-ye2; @juxiaopang-->
 <!--Adviser: @jinqiuheng-->
+<!-- md-trans-meta sourceCommit=627d1390f6c7c70d53a7521026113714483cc0e8 translatedAt=2026-08-01T07:26:33.896Z pushedAt=2026-08-01T09:25:30.274Z -->
 
 Because external storage devices are pluggable, OpenHarmony provides functions for listening for the device insertion/removal events and mounting/unmounting an external storage device.
 
@@ -17,17 +19,20 @@ External storage devices are managed by the StorageManager and StorageDaemon ser
 - When an external storage device is inserted, the StorageDaemon process obtains an insertion event over netlink and creates a disk device and volume. The created volume is in the **UNMOUNTED** state.
 
 - Then, the StorageDaemon process checks the volume. The volume transits to the **CHECKING** state.
+
   - If the check is successful, the StorageDaemon process mounts the volume. If the mount operation is successful, the volume state changes to **MOUNTED** and StorageManager is instructed to send the COMMON_EVENT_VOLUME_MOUNTED broadcast.
+
   - If the check fails, the volume state changes to **UNMOUNTED**.
 
 - For a volume in the **MOUNTED** state:
-  - If the user chooses **Eject device**, the volume state changes to **EJECTING** and COMMON_EVENT_VOLUME_EJECT is broadcast. After StorageDaemon unmounts the volume, the volume state changes to **UNMOUNTED** and COMMON_EVENT_VOLUME_UNMOUNTED is broadcast.
-    <br>For a volume in the **UNMOUNTED** state, removing the device will delete the volume information and broadcast COMMON_EVENT_VOLUME_REMOVED.
+
+  - **User chooses to eject**: The volume device state changes to **EJECTING**, and the COMMON_EVENT_VOLUME_EJECT broadcast is sent. After the StorageDaemon process successfully unmounts the volume device, the volume state changes to **UNMOUNTED**, and the COMMON_EVENT_VOLUME_UNMOUNTED broadcast is sent.<br>When the volume device is in the unmounted state, removing the volume device will delete the related volume information and send the COMMON_EVENT_VOLUME_REMOVED broadcast.
+
   - If the user removes the device, the volume state changes to **EJECTING** and then to **UNMOUNTED**, and the broadcasts of the corresponding states are sent. After the device is removed, the volume information is deleted and the COMMON_EVENT_VOLUME_BAD_REMOVAL broadcast is sent.
 
 ## Available APIs
 
-For details about APIs related to external storage device management, see [Volume Management](../reference/apis-core-file-kit/js-apis-file-volumemanager-sys.md).
+For details about APIs related to external storage device management, see [@ohos.file.volumeManager (Volume Management)](../reference/apis-core-file-kit/js-apis-file-volumemanager-sys.md).
 
 The following table describes the broadcast related parameters.
 
@@ -54,9 +59,13 @@ You can subscribe to broadcast events to observe the insertion and removal of ex
    You can subscribe to the following events:
 
    - "usual.event.data.VOLUME_REMOVED": The device is removed.
+
    - "usual.event.data.VOLUME_UNMOUNTED": The volume is unmounted.
+
    - "usual.event.data.VOLUME_MOUNTED": The volume is mounted.
+
    - "usual.event.data.VOLUME_BAD_REMOVAL": The device is forcibly removed.
+
    - "usual.event.data.VOLUME_EJECT": The device is being ejected.
 
    ```ts
@@ -83,7 +92,7 @@ You can subscribe to broadcast events to observe the insertion and removal of ex
 
    ```ts
    let subscriber: commonEventManager.CommonEventSubscriber|undefined;
-   // Note that the subscriber value is obtained from await commonEventManager.createSubscriber (subscribeInfo) in step 2.
+   // Note: The subscriber parameter is obtained from await commonEventManager.createSubscriber(subscribeInfo) in step 2 of subscribing to broadcast events.
    if (subscriber !== undefined) {
     commonEventManager.subscribe(subscriber, (err: BusinessError, data: commonEventManager.CommonEventData) => {
       if (data.event === 'usual.event.data.VOLUME_MOUNTED' && data.parameters !== undefined) {

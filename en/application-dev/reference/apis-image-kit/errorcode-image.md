@@ -2,7 +2,7 @@
 <!--Kit: Image Kit-->
 <!--Subsystem: Multimedia-->
 <!--Owner: @aulight02-->
-<!--Designer: @liyang_bryan-->
+<!--Designer: @XiaoYao555-->
 <!--Tester: @xchaosioda-->
 <!--Adviser: @w_Machine_cc-->
 
@@ -1044,6 +1044,42 @@ This error code is reported when image data fails to be obtained.
 
 Verify the image data source or use new image data.
 
+## 7600105 PixelMap Object Has Been Released
+
+**Error Message**
+
+PixelMap has been released.
+
+**Symptom**
+
+The PixelMap object has been released.
+
+**Possible Cause**
+
+The PixelMap object has been released, and its associated native object no longer exists.
+
+**Solution**
+
+Check whether the PixelMap object may be released in advance (for example, released unexpectedly in an asynchronous task or another thread). Ensure that the object is not released before it is no longer used and all asynchronous methods are executed.
+
+## 7600106 PixelMap Has Been Passed to Another Thread
+
+**Error Message**
+
+PixelMap has been passed to another thread.
+
+**Symptom**
+
+The PixelMap has been passed to another thread.
+
+**Possible Cause**
+
+The PixelMap object has been passed to another thread, and the object in the original thread cannot continue to call the API.
+
+**Solution**
+
+Do not call the API of the PixelMap object in the original thread after the object has been passed to another thread.
+
 ## 7600173 DMA Memory Does Not Exist
 
 **Error Message**
@@ -1188,6 +1224,44 @@ An input parameter is invalid.
 
 Enter correct parameters.
 
+## 7600207 Unsupported Data Format
+
+**Error Message**
+
+Unsupported data format.
+
+**Symptom**
+
+Unsupported data format.
+
+**Possible Cause**
+
+1. The API does not support the input pixel data format.
+2. The data format in the object does not support the specific operation.
+
+**Solution**
+
+Check the API reference and use the data format supported by the API.
+
+## 7600208 Failed to Decompose an HDR Image
+
+**Error Message**
+
+HDR image decomposition failed. Possible causes: 1. Decomposition processing is not supported. 2. Processing error occurs.
+
+**Symptom**
+
+Failed to decompose the HDR image.
+
+**Possible Cause**
+
+1. The decomposition is not supported.
+2. An error occurred during HDR image processing.
+
+**Solution**
+
+Check whether the pixel format of the HDR PixelMap supports decomposition, or change the image and try again.
+
 ## 7600301 Memory Allocation Failure
 
 **Error Message**
@@ -1260,6 +1334,26 @@ This error code is reported when the PixelMap fails to be created.
 **Solution**
 
 Ensure that the input parameters are correct and the instance is available.
+
+## 7600306 Data Conversion Failed
+
+**Error Message**
+
+Data conversion failed.
+
+**Symptom**
+
+Data conversion failed.
+
+**Possible Cause**
+
+1. The size of the input pixel data buffer does not meet the expectation.
+2. The pixel data in the PixelMap is damaged.
+
+**Solution**
+
+1. If a buffer is passed, check whether the buffer size meets the expectation.
+2. Ensure that the pixel data and metadata of the PixelMap are normal.
 
 ## 7600501 Unsupported Allocator Mode
 

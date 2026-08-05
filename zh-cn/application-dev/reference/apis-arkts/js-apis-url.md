@@ -550,7 +550,7 @@ URL的构造函数。与[parseURL](#parseurl9)方法功能相同，但parseURL�
 let baseUrl = 'https://username:password@host:8080';
 let rootPathUrl = new url.URL("/", baseUrl); // Output 'https://username:password@host:8080/';
 let absoluteUrl = new url.URL(baseUrl); // Output 'https://username:password@host:8080/';
-new url.URL('path/path1', b); // Output 'https://username:password@host:8080/path/path1';
+new url.URL('path/path1', absoluteUrl); // Output 'https://username:password@host:8080/path/path1';
 let relativePathUrl = new url.URL('/path/path1', absoluteUrl);  // Output 'https://username:password@host:8080/path/path1'; 
 new url.URL('/path/path1', relativePathUrl); // Output 'https://username:password@host:8080/path/path1';
 new url.URL('/path/path1', rootPathUrl); // Output 'https://username:password@host:8080/path/path1';

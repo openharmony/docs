@@ -1,11 +1,12 @@
 # Drawing Geometric Shapes (C/C++)
+
 <!--Kit: ArkGraphics 2D-->
 <!--Subsystem: Graphic-->
 <!--Owner: @hangmengxin-->
-<!--Designer: @wangyanglan-->
+<!--Designer: @wanyanglan-->
 <!--Tester: @nobuggers-->
 <!--Adviser: @ge-yafang-->
-
+<!-- md-trans-meta sourceCommit=45d007888500c3db30c8747107b925a4f589723f translatedAt=2026-08-03T11:19:39.612Z pushedAt=2026-08-04T06:42:36.674Z -->
 
 ## Overview
 
@@ -27,7 +28,6 @@ The following geometric shapes can be drawn:
 
 Most geometric shapes can be drawn using a pen or brush. Points can only be drawn using a pen.
 
-
 ## Available APIs
 
 The following table lists the APIs for drawing geometric shapes. For details, see [drawing_canvas.h](../reference/apis-arkgraphics2d/capi-drawing-canvas-h.md).
@@ -46,7 +46,6 @@ The following table lists the APIs for drawing geometric shapes. For details, se
 | void OH_Drawing_CanvasDrawRect (OH_Drawing_Canvas\*, const OH_Drawing_Rect\*) | Draws a rectangle.|
 | OH_Drawing_RoundRect\* OH_Drawing_RoundRectCreate (const OH_Drawing_Rect\*, float xRad, float yRad) | Creates a rounded rectangle object.|
 | void OH_Drawing_CanvasDrawRoundRect (OH_Drawing_Canvas\*, const OH_Drawing_RoundRect\*) | Draws a rounded rectangle.|
-
 
 ## Drawing Points
 
@@ -83,12 +82,9 @@ OH_Drawing_CanvasDetachPen(canvas);
 OH_Drawing_PenDestroy(pen);
 ```
 
-
 The effect is as follows:
 
-
 ![Drawing-Points](figures/Drawing-Points.png)
-
 
 ## Drawing an Arc
 
@@ -117,7 +113,7 @@ OH_Drawing_PenSetWidth(pen, 20);
 OH_Drawing_CanvasAttachPen(canvas, pen);
 // Create a rectangle object. The upper left corner coordinates are (100, 200) and the lower right corner coordinates are (500, 300).
 OH_Drawing_Rect* rect = OH_Drawing_RectCreate(100, 200, 500, 300);
-// Draw an arc based on the rectangle object. The start angle is 10°, and the sweep angle is 200°.
+// Draw an arc based on the rectangle object, with a start angle of 10° and a sweep angle of 200°.
 OH_Drawing_CanvasDrawArc(canvas, rect, 10, 200);
 // Remove the pen from the canvas.
 OH_Drawing_CanvasDetachPen(canvas);
@@ -129,7 +125,6 @@ OH_Drawing_RectDestroy(rect);
 The effect is as follows:
 
 ![Drawing-Arc](figures/Drawing-Arc.png)
-
 
 ## Drawing a Circle
 
@@ -168,7 +163,6 @@ OH_Drawing_PointDestroy(point);
 The effect is as follows:
 
 ![Drawing-a-Circle](figures/Drawing-a-Circle.png)
-
 
 ## Drawing a Path
 
@@ -239,14 +233,13 @@ The effect is as follows:
 
 ![Drawing-a-Path](figures/Drawing-a-Path.png)
 
-
 ## Drawing a Region
 
 A region is not a specific shape. You can set it to a specified rectangle or path, or combine two regions. You can use a pen or brush to draw a region on the canvas. For details about the APIs, see [drawing_region.h](../reference/apis-arkgraphics2d/capi-drawing-region-h.md).
 
 You can call **OH_Drawing_RegionSetRect()** and **OH_Drawing_RegionSetPath()** to set the rectangle region and path region, respectively.
 
-The following is an example of drawing a rectangle region using a brush:
+The following is an example of drawing a combined region using a brush:
 
 <!-- @[ndk_graphics_draw_region](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkGraphics2D/Drawing/NDKGraphicsDraw/entry/src/main/cpp/samples/sample_graphics.cpp) -->
 
@@ -282,7 +275,6 @@ The effect is as follows:
 
 ![Screenshot_20241206112505234](figures/Screenshot_20241206112505234.jpg)
 
-
 ## Drawing a Rectangle
 
 You can use a pen or brush to draw a rectangle on the canvas. Use **OH_Drawing_RectCreate()** to create a rectangle. The API needs to pass four floating points, which indicate the coordinates of the left, top, right, and bottom positions of the rectangle. The four coordinates form a rectangle.
@@ -311,7 +303,6 @@ OH_Drawing_RectDestroy(rect);
 The effect is as follows:
 
 ![draw-rect](figures/draw-rect.png)
-
 
 ## Drawing a Rounded Rectangle
 
@@ -348,16 +339,16 @@ OH_Drawing_RectDestroy(rect);
 OH_Drawing_RoundRectDestroy(roundRect);
 ```
 
-
 The effect is as follows:
-
 
 ![Drawing-Rounded-Rectangle](figures/Drawing-Rounded-Rectangle.png)
 
 <!--RP1-->
+
 ## Samples
 
 The following samples are provided to help you better understand how to use the **Drawing** APIs (C/C++) for development:
 
 - [NDKGraphicsDraw (API20)](https://gitcode.com/openharmony/applications_app_samples/tree/master/code/DocsSample/ArkGraphics2D/Drawing/NDKGraphicsDraw)
+
 <!--RP1End-->

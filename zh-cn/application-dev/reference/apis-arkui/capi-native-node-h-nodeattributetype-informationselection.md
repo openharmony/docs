@@ -52,7 +52,7 @@ NODE_DATE_PICKER_LUNAR = MAX_NODE_SCOPE_NUM * ARKUI_NODE_DATE_PICKER = 13000
 NODE_DATE_PICKER_START = 13001
 ```
 
-设置日期选择器组件选择器的起始日期，支持属性设置，属性重置和属性获取接口。设置的起始日期会限定日期选择的有效范围，超出范围的选中日期会自动调整。<br>
+设置日期选择器组件的起始日期，支持属性设置，属性重置和属性获取接口。设置的起始日期会限定日期选择的有效范围，超出范围的选中日期会自动调整。<br>
 作为属性设置方法参数、属性获取方法返回值[ArkUI_AttributeItem](capi-arkui-nativemodule-arkui-attributeitem.md)格式如下。<br>
 
 **起始版本：** 12
@@ -76,7 +76,7 @@ NODE_DATE_PICKER_START = 13001
 NODE_DATE_PICKER_END = 13002
 ```
 
-设置日期选择器组件选择器的结束日期，支持属性设置，属性重置和属性获取接口。设置的结束日期会限定日期选择的有效范围，超出范围的选中日期会自动调整。<br>
+设置日期选择器组件的结束日期，支持属性设置，属性重置和属性获取接口。设置的结束日期会限定日期选择的有效范围，超出范围的选中日期会自动调整。<br>
 作为属性设置方法参数、属性获取方法返回值[ArkUI_AttributeItem](capi-arkui-nativemodule-arkui-attributeitem.md)格式如下。<br>
 
 **起始版本：** 12
@@ -134,13 +134,13 @@ NODE_DATE_PICKER_DISAPPEAR_TEXT_STYLE = 13004
 
 | 参数项 | 描述 |
 | -- | -- |
-| .string | 参数5个，格式为字符串，以 ';' 分割：<br>参数1： 文本颜色，#ARGB类型。<br>参数2： 文本大小，数字类型，单位fp。<br>参数3： 文本粗细，字符串枚举("bold", "normal", "bolder", "lighter", "medium", "regular")。<br>参数4： 文本字体列表，使用 ',' 进行分割。<br>参数5： 文本样式，字符串枚举("normal", "italic")。<br>如 "#ff182431;14;normal;Arial,HarmonyOS Sans;normal" 。未设置时使用系统默认样式。 |
+| .string | 参数5个，格式为字符串，以“;”分割：<br>参数1：文本颜色，#ARGB类型。<br>参数2：文本大小，数字类型，单位fp。<br>参数3：文本粗细，字符串枚举（“bold”，“normal”，“bolder”，“lighter”，“medium”，“regular”）。<br>参数4：文本字体列表，使用“,”进行分割。<br>参数5：文本样式，字符串枚举（“normal”, “italic”）。<br>如“#ff182431;14;normal;Arial,HarmonyOS Sans;normal”。未设置时使用系统默认样式。 |
 
 **返回：**
 
 | 类型 | 说明 |
 | -- | -- |
-| .string | 参数5个，格式为字符串，以 ';' 分割：<br>参数1： 文本颜色，#argb类型。<br>参数2： 文本大小，数字类型，单位fp。<br>参数3： 文本粗细，字符串枚举("bold", "normal", "bolder", "lighter", "medium", "regular")。<br>参数4： 文本字体列表，使用 ',' 进行分割。<br>参数5： 文本样式，字符串枚举("normal", "italic")。<br>如 "#ff182431;14;normal;Arial,HarmonyOS Sans;normal" 。 |
+| .string | 参数5个，格式为字符串，以“;”分割：<br>参数1：文本颜色，#ARGB类型。<br>参数2：文本大小，数字类型，单位fp。<br>参数3：文本粗细，字符串枚举（“bold”，“normal”，“bolder”，“lighter”，“medium”，“regular”）。<br>参数4：文本字体列表，使用“,”进行分割。<br>参数5：文本样式，字符串枚举（“normal”, “italic”）。<br>如“#ff182431;14;normal;Arial,HarmonyOS Sans;normal”。 |
 
 ## NODE_DATE_PICKER_TEXT_STYLE
 
@@ -158,13 +158,13 @@ NODE_DATE_PICKER_TEXT_STYLE = 13005
 
 | 参数项 | 描述 |
 | -- | -- |
-| .string | 参数5个，格式为字符串，以 ';' 分割：<br>参数1： 文本颜色，#argb类型。<br>参数2： 文本大小，数字类型，单位fp。<br>参数3： 文本粗细，字符串枚举("bold", "normal", "bolder", "lighter", "medium", "regular")。<br>参数4： 文本字体列表，使用 ',' 进行分割。<br>参数5： 文本样式，字符串枚举("normal", "italic")。<br>如 "#ff182431;14;normal;Arial,HarmonyOS Sans;normal" 。未设置时使用系统默认样式。 |
+| .string | 参数5个，格式为字符串，以“;”分割：<br>参数1：文本颜色，#ARGB类型。<br>参数2：文本大小，数字类型，单位fp。<br>参数3：文本粗细，字符串枚举（“bold”，“normal”，“bolder”，“lighter”，“medium”，“regular”）。<br>参数4：文本字体列表，使用“,”进行分割。<br>参数5：文本样式，字符串枚举（“normal”, “italic”）。<br>如“#ff182431;14;normal;Arial,HarmonyOS Sans;normal”。未设置时使用系统默认样式。 |
 
 **返回：**
 
 | 类型 | 说明 |
 | -- | -- |
-| .string | 参数5个，格式为字符串，以 ';' 分割：<br>参数1： 文本颜色，#argb类型。<br>参数2： 文本大小，数字类型，单位fp。<br>参数3： 文本粗细，字符串枚举("bold", "normal", "bolder", "lighter", "medium", "regular")。<br>参数4： 文本字体列表，使用 ',' 进行分割。<br>参数5： 文本样式，字符串枚举("normal", "italic")。<br>如 "#ff182431;14;normal;Arial,HarmonyOS Sans;normal" 。 |
+| .string | 参数5个，格式为字符串，以“;”分割：<br>参数1：文本颜色，#ARGB类型。<br>参数2：文本大小，数字类型，单位fp。<br>参数3：文本粗细，字符串枚举（“bold”，“normal”，“bolder”，“lighter”，“medium”，“regular”）。<br>参数4：文本字体列表，使用“,”进行分割。<br>参数5：文本样式，字符串枚举（“normal”, “italic”）。<br>如“#ff182431;14;normal;Arial,HarmonyOS Sans;normal”。 |
 
 ## NODE_DATE_PICKER_SELECTED_TEXT_STYLE
 
@@ -182,13 +182,13 @@ NODE_DATE_PICKER_SELECTED_TEXT_STYLE = 13006
 
 | 参数项 | 描述 |
 | -- | -- |
-| .string | 参数5个，格式为字符串，以 ';' 分割：<br>参数1： 文本颜色，#argb类型。<br>参数2： 文本大小，数字类型，单位fp。<br>参数3： 文本粗细，字符串枚举("bold", "normal", "bolder", "lighter", "medium", "regular")。<br>参数4： 文本字体列表，使用 ',' 进行分割。<br>参数5： 文本样式，字符串枚举("normal", "italic")。<br>如 "#ff182431;14;normal;Arial,HarmonyOS Sans;normal" 。未设置时使用系统默认样式。 |
+| .string | 参数5个，格式为字符串，以“;”分割：<br>参数1：文本颜色，#ARGB类型。<br>参数2：文本大小，数字类型，单位fp。<br>参数3：文本粗细，字符串枚举（“bold”，“normal”，“bolder”，“lighter”，“medium”，“regular”）。<br>参数4：文本字体列表，使用“,”进行分割。<br>参数5：文本样式，字符串枚举（“normal”, “italic”）。<br>如“#ff182431;14;normal;Arial,HarmonyOS Sans;normal”。未设置时使用系统默认样式。 |
 
 **返回：**
 
 | 类型 | 说明 |
 | -- | -- |
-| .string | 参数5个，格式为字符串，以 ';' 分割：<br>参数1： 文本颜色，#argb类型。<br>参数2： 文本大小，数字类型，单位fp。<br>参数3： 文本粗细，字符串枚举("bold", "normal", "bolder", "lighter", "medium", "regular")。<br>参数4： 文本字体列表，使用 ',' 进行分割。<br>参数5： 文本样式，字符串枚举("normal", "italic")。<br>如 "#ff182431;14;normal;Arial,HarmonyOS Sans;normal" 。 |
+| .string | 参数5个，格式为字符串，以“;”分割：<br>参数1：文本颜色，#ARGB类型。<br>参数2：文本大小，数字类型，单位fp。<br>参数3：文本粗细，字符串枚举（“bold”，“normal”，“bolder”，“lighter”，“medium”，“regular”）。<br>参数4：文本字体列表，使用“,”进行分割。<br>参数5：文本样式，字符串枚举（“normal”, “italic”）。<br>如“#ff182431;14;normal;Arial,HarmonyOS Sans;normal”。 |
 
 ## NODE_DATE_PICKER_MODE
 
@@ -330,13 +330,13 @@ NODE_TIME_PICKER_DISAPPEAR_TEXT_STYLE = 14002
 
 | 参数项 | 描述 |
 | -- | -- |
-| .string | 参数5个，格式为字符串，以 ';' 分割：<br>参数1： 文本颜色，#argb类型。<br>参数2： 文本大小，数字类型，单位fp。<br>参数3： 文本粗细，字符串枚举("bold", "normal", "bolder", "lighter", "medium", "regular")。<br>参数4： 文本字体列表，使用 ',' 进行分割。<br>参数5： 文本样式，字符串枚举("normal", "italic")。<br>如 "#ff182431;14;normal;Arial,HarmonyOS Sans;normal" 。未设置时使用系统默认样式。 |
+| .string | 参数5个，格式为字符串，以“;”分割：<br>参数1：文本颜色，#ARGB类型。<br>参数2：文本大小，数字类型，单位fp。<br>参数3：文本粗细，字符串枚举（“bold”，“normal”，“bolder”，“lighter”，“medium”，“regular”）。<br>参数4：文本字体列表，使用“,”进行分割。<br>参数5：文本样式，字符串枚举（“normal”, “italic”）。<br>如“#ff182431;14;normal;Arial,HarmonyOS Sans;normal”。未设置时使用系统默认样式。 |
 
 **返回：**
 
 | 类型 | 说明 |
 | -- | -- |
-| .string | 参数5个，格式为字符串，以 ';' 分割：<br>参数1： 文本颜色，#argb类型。<br>参数2： 文本大小，数字类型，单位fp。<br>参数3： 文本粗细，字符串枚举("bold", "normal", "bolder", "lighter", "medium", "regular")。<br>参数4： 文本字体列表，使用 ',' 进行分割。<br>参数5： 文本样式，字符串枚举("normal", "italic")。<br>如 "#ff182431;14;normal;Arial,HarmonyOS Sans;normal" 。 |
+| .string | 参数5个，格式为字符串，以“;”分割：<br>参数1：文本颜色，#ARGB类型。<br>参数2：文本大小，数字类型，单位fp。<br>参数3：文本粗细，字符串枚举（“bold”，“normal”，“bolder”，“lighter”，“medium”，“regular”）。<br>参数4：文本字体列表，使用“,”进行分割。<br>参数5：文本样式，字符串枚举（“normal”, “italic”）。<br>如“#ff182431;14;normal;Arial,HarmonyOS Sans;normal”。 |
 
 ## NODE_TIME_PICKER_TEXT_STYLE
 
@@ -354,13 +354,13 @@ NODE_TIME_PICKER_TEXT_STYLE = 14003
 
 | 参数项 | 描述 |
 | -- | -- |
-| .string | 参数5个，格式为字符串，以 ';' 分割：<br>参数1： 文本颜色，#argb类型。<br>参数2： 文本大小，数字类型，单位fp。<br>参数3： 文本粗细，字符串枚举("bold", "normal", "bolder", "lighter", "medium", "regular")。<br>参数4： 文本字体列表，使用 ',' 进行分割。<br>参数5： 文本样式，字符串枚举("normal", "italic")。<br>如 "#ff182431;14;normal;Arial,HarmonyOS Sans;normal" 。未设置时使用系统默认样式。 |
+| .string | 参数5个，格式为字符串，以“;”分割：<br>参数1：文本颜色，#ARGB类型。<br>参数2：文本大小，数字类型，单位fp。<br>参数3：文本粗细，字符串枚举（“bold”，“normal”，“bolder”，“lighter”，“medium”，“regular”）。<br>参数4：文本字体列表，使用“,”进行分割。<br>参数5：文本样式，字符串枚举（“normal”, “italic”）。<br>如“#ff182431;14;normal;Arial,HarmonyOS Sans;normal”。未设置时使用系统默认样式。 |
 
 **返回：**
 
 | 类型 | 说明 |
 | -- | -- |
-| .string | 参数5个，格式为字符串，以 ';' 分割：<br>参数1： 文本颜色，#argb类型。<br>参数2： 文本大小，数字类型，单位fp。<br>参数3： 文本粗细，字符串枚举("bold", "normal", "bolder", "lighter", "medium", "regular")。<br>参数4： 文本字体列表，使用 ',' 进行分割。<br>参数5： 文本样式，字符串枚举("normal", "italic")。<br>如 "#ff182431;14;normal;Arial,HarmonyOS Sans;normal" 。 |
+| .string | 参数5个，格式为字符串，以“;”分割：<br>参数1：文本颜色，#ARGB类型。<br>参数2：文本大小，数字类型，单位fp。<br>参数3：文本粗细，字符串枚举（“bold”，“normal”，“bolder”，“lighter”，“medium”，“regular”）。<br>参数4：文本字体列表，使用“,”进行分割。<br>参数5：文本样式，字符串枚举（“normal”, “italic”）。<br>如“#ff182431;14;normal;Arial,HarmonyOS Sans;normal”。 |
 
 ## NODE_TIME_PICKER_SELECTED_TEXT_STYLE
 
@@ -378,13 +378,13 @@ NODE_TIME_PICKER_SELECTED_TEXT_STYLE = 14004
 
 | 参数项 | 描述 |
 | -- | -- |
-| .string | 参数5个，格式为字符串，以 ';' 分割：<br>参数1： 文本颜色，#argb类型。<br>参数2： 文本大小，数字类型，单位fp。<br>参数3： 文本粗细，字符串枚举("bold", "normal", "bolder", "lighter", "medium", "regular")。<br>参数4： 文本字体列表，使用 ',' 进行分割。<br>参数5： 文本样式，字符串枚举("normal", "italic")。<br>如 "#ff182431;14;normal;Arial,HarmonyOS Sans;normal" 。未设置时使用系统默认样式。 |
+| .string | 参数5个，格式为字符串，以“;”分割：<br>参数1：文本颜色，#ARGB类型。<br>参数2：文本大小，数字类型，单位fp。<br>参数3：文本粗细，字符串枚举（“bold”，“normal”，“bolder”，“lighter”，“medium”，“regular”）。<br>参数4：文本字体列表，使用“,”进行分割。<br>参数5：文本样式，字符串枚举（“normal”, “italic”）。<br>如“#ff182431;14;normal;Arial,HarmonyOS Sans;normal”。未设置时使用系统默认样式。 |
 
 **返回：**
 
 | 类型 | 说明 |
 | -- | -- |
-| .string | 参数5个，格式为字符串，以 ';' 分割：<br>参数1： 文本颜色，#argb类型。<br>参数2： 文本大小，数字类型，单位fp。<br>参数3： 文本粗细，字符串枚举("bold", "normal", "bolder", "lighter", "medium", "regular")。<br>参数4： 文本字体列表，使用 ',' 进行分割。<br>参数5： 文本样式，字符串枚举("normal", "italic")。<br>如 "#ff182431;14;normal;Arial,HarmonyOS Sans;normal" 。 |
+| .string | 参数5个，格式为字符串，以“;”分割：<br>参数1：文本颜色，#ARGB类型。<br>参数2：文本大小，数字类型，单位fp。<br>参数3：文本粗细，字符串枚举（“bold”，“normal”，“bolder”，“lighter”，“medium”，“regular”）。<br>参数4：文本字体列表，使用“,”进行分割。<br>参数5：文本样式，字符串枚举（“normal”, “italic”）。<br>如“#ff182431;14;normal;Arial,HarmonyOS Sans;normal”。 |
 
 ## NODE_TIME_PICKER_START
 
@@ -553,13 +553,13 @@ NODE_TEXT_PICKER_DISAPPEAR_TEXT_STYLE = 15003
 
 | 参数项 | 描述 |
 | -- | -- |
-| .string | 参数5个，格式为字符串，以 ';' 分割：<br>参数1： 文本颜色，#argb类型；<br>参数2： 文本大小，数字类型，单位fp；<br>参数3： 文本粗细，字符串枚举("bold", "normal", "bolder", "lighter", "medium", "regular")；<br>参数4： 文本字体列表，使用 ',' 进行分割；<br>参数5： 文本样式，字符串枚举("normal", "italic")。<br>如 "#ff182431;14;normal;Arial,HarmonyOS Sans;normal" 。未设置时使用系统默认样式。 |
+| .string | 参数5个，格式为字符串，以“;”分割：<br>参数1：文本颜色，#ARGB类型；<br>参数2：文本大小，数字类型，单位fp；<br>参数3：文本粗细，字符串枚举（“bold”，“normal”，“bolder”，“lighter”，“medium”，“regular”）；<br>参数4：文本字体列表，使用“,”进行分割；<br>参数5：文本样式，字符串枚举（“normal”, “italic”）。<br>如“#ff182431;14;normal;Arial,HarmonyOS Sans;normal”。未设置时使用系统默认样式。 |
 
 **返回：**
 
 | 类型 | 说明 |
 | -- | -- |
-| .string | 参数5个，格式为字符串，以 ';' 分割：<br>参数1： 文本颜色，#argb类型；<br>参数2： 文本大小，数字类型，单位fp；<br>参数3： 文本粗细，字符串枚举("bold", "normal", "bolder", "lighter", "medium", "regular")；<br>参数4： 文本字体列表，使用 ',' 进行分割；<br>参数5： 文本样式，字符串枚举("normal", "italic")；<br>如 "#ff182431;14;normal;Arial,HarmonyOS Sans;normal" 。 |
+| .string | 参数5个，格式为字符串，以“;”分割：<br>参数1：文本颜色，#ARGB类型；<br>参数2：文本大小，数字类型，单位fp；<br>参数3：文本粗细，字符串枚举（“bold”，“normal”，“bolder”，“lighter”，“medium”，“regular”）；<br>参数4：文本字体列表，使用“,”进行分割；<br>参数5：文本样式，字符串枚举（“normal”, “italic”）；<br>如“#ff182431;14;normal;Arial,HarmonyOS Sans;normal”。 |
 
 ## NODE_TEXT_PICKER_TEXT_STYLE
 
@@ -577,13 +577,13 @@ NODE_TEXT_PICKER_TEXT_STYLE = 15004
 
 | 参数项 | 描述 |
 | -- | -- |
-| .string | 参数5个，格式为字符串，以 ';' 分割：<br>参数1： 文本颜色，#argb类型。<br>参数2： 文本大小，数字类型，单位fp。<br>参数3： 文本粗细，字符串枚举("bold", "normal", "bolder", "lighter", "medium", "regular")。<br>参数4： 文本字体列表，使用 ',' 进行分割。<br>参数5： 文本样式，字符串枚举("normal", "italic")。<br>如 "#ff182431;14;normal;Arial,HarmonyOS Sans;normal" 。未设置时使用系统默认样式。 |
+| .string | 参数5个，格式为字符串，以“;”分割：<br>参数1：文本颜色，#ARGB类型。<br>参数2：文本大小，数字类型，单位fp。<br>参数3：文本粗细，字符串枚举（“bold”，“normal”，“bolder”，“lighter”，“medium”，“regular”）。<br>参数4：文本字体列表，使用“,”进行分割。<br>参数5：文本样式，字符串枚举（“normal”, “italic”）。<br>如“#ff182431;14;normal;Arial,HarmonyOS Sans;normal”。未设置时使用系统默认样式。 |
 
 **返回：**
 
 | 类型 | 说明 |
 | -- | -- |
-| .string | 参数5个，格式为字符串，以 ';' 分割：<br>参数1： 文本颜色，#argb类型。<br>参数2： 文本大小，数字类型，单位fp。<br>参数3： 文本粗细，字符串枚举("bold", "normal", "bolder", "lighter", "medium", "regular")。<br>参数4： 文本字体列表，使用 ',' 进行分割。<br>参数5： 文本样式，字符串枚举("normal", "italic")。<br>如 "#ff182431;14;normal;Arial,HarmonyOS Sans;normal" 。 |
+| .string | 参数5个，格式为字符串，以“;”分割：<br>参数1：文本颜色，#ARGB类型。<br>参数2：文本大小，数字类型，单位fp。<br>参数3：文本粗细，字符串枚举（“bold”，“normal”，“bolder”，“lighter”，“medium”，“regular”）。<br>参数4：文本字体列表，使用“,”进行分割。<br>参数5：文本样式，字符串枚举（“normal”, “italic”）。<br>如“#ff182431;14;normal;Arial,HarmonyOS Sans;normal”。 |
 
 ## NODE_TEXT_PICKER_SELECTED_TEXT_STYLE
 
@@ -601,13 +601,13 @@ NODE_TEXT_PICKER_SELECTED_TEXT_STYLE = 15005
 
 | 参数项 | 描述 |
 | -- | -- |
-| .string | 参数5个，格式为字符串，以 ';' 分割：<br>参数1： 文本颜色，#argb类型；<br>参数2： 文本大小，数字类型，单位fp；<br>参数3： 文本粗细，字符串枚举("bold", "normal", "bolder", "lighter", "medium", "regular")；<br>参数4： 文本字体列表，使用 ',' 进行分割；<br>参数5： 文本样式，字符串枚举("normal", "italic")；<br>如 "#ff182431;14;normal;Arial,HarmonyOS Sans;normal" 。未设置时使用系统默认样式。 |
+| .string | 参数5个，格式为字符串，以“;”分割：<br>参数1：文本颜色，#ARGB类型；<br>参数2：文本大小，数字类型，单位fp；<br>参数3：文本粗细，字符串枚举（“bold”，“normal”，“bolder”，“lighter”，“medium”，“regular”）；<br>参数4：文本字体列表，使用“,”进行分割；<br>参数5：文本样式，字符串枚举（“normal”, “italic”）；<br>如“#ff182431;14;normal;Arial,HarmonyOS Sans;normal”。未设置时使用系统默认样式。 |
 
 **返回：**
 
 | 类型 | 说明 |
 | -- | -- |
-| .string | 参数5个，格式为字符串，以 ';' 分割：<br>参数1： 文本颜色，#argb类型；<br>参数2： 文本大小，数字类型，单位fp；<br>参数3： 文本粗细，字符串枚举("bold", "normal", "bolder", "lighter", "medium", "regular")；<br>参数4： 文本字体列表，使用 ',' 进行分割；<br>参数5： 文本样式，字符串枚举("normal", "italic")；<br>如 "#ff182431;14;normal;Arial,HarmonyOS Sans;normal" 。 |
+| .string | 参数5个，格式为字符串，以“;”分割：<br>参数1：文本颜色，#ARGB类型；<br>参数2：文本大小，数字类型，单位fp；<br>参数3：文本粗细，字符串枚举（“bold”，“normal”，“bolder”，“lighter”，“medium”，“regular”）；<br>参数4：文本字体列表，使用“,”进行分割；<br>参数5：文本样式，字符串枚举（“normal”, “italic”）；<br>如“#ff182431;14;normal;Arial,HarmonyOS Sans;normal”。 |
 
 ## NODE_TEXT_PICKER_SELECTED_INDEX
 
@@ -701,7 +701,8 @@ NODE_TEXT_PICKER_COLUMN_WIDTHS = 15009
 | -- | -- |
 | .value[0].f32 | 设置的第1个选择项列宽，为总宽度的百分比。默认情况下，所有选择项的列宽相等，默认值为不设置时各列均分。 |
 | .value[1]?.f32 | 设置的第2个选择项列宽，为总宽度的百分比。默认情况下，所有选择项的列宽相等。 |
-| .value[2]?.f32 | 设置的第3个选择项列宽，为总宽度的百分比。默认情况下，所有选择项的列宽相等。<br>...。 |
+| .value[2]?.f32 | 设置的第3个选择项列宽，为总宽度的百分比。默认情况下，所有选择项的列宽相等。 |
+| ... | ... |
 | .value[n]?.f32 | 设置的第n+1个选择项列宽，为总宽度的百分比。默认情况下，所有选择项的列宽相等。 |
 
 **返回：**
@@ -710,7 +711,8 @@ NODE_TEXT_PICKER_COLUMN_WIDTHS = 15009
 | -- | -- |
 | .value[0].f32 | 第1列宽度，总宽度的百分比。 |
 | .value[1].f32 | 第2列宽度，总宽度的百分比。 |
-| .value[2].f32 | 第3列宽度，总宽度的百分比。<br>...。 |
+| .value[2].f32 | 第3列宽度，总宽度的百分比。 |
+| ... | ... |
 | .value[n].f32 | 第n+1列宽度，总宽度的百分比。 |
 
 ## NODE_TEXT_PICKER_ENABLE_HAPTIC_FEEDBACK
@@ -757,7 +759,7 @@ NODE_TEXT_PICKER_SELECTED_BACKGROUND_STYLE = 15011
 | .value[1].f32 | 左上角的圆角半径，单位为VP。 |
 | .value[2].f32 | 右上角的圆角半径，单位为VP。 |
 | .value[3].f32 | 左下角的圆角半径，单位为VP。 |
-| .value[4].f32 | 右下角的圆角半径，单位为VP。<br>默认值：背景颜色：0x0C182431；圆角半径：24.0。 |
+| .value[4].f32 | 右下角的圆角半径，单位为VP。<br>背景颜色默认值：0x0C182431；圆角半径默认值：24.0。 |
 
 **返回：**
 
@@ -1087,7 +1089,7 @@ NODE_CALENDAR_PICKER_DISABLED_DATE_RANGE = 16006
 
 | 参数项 | 描述 |
 | -- | -- |
-| .string | 禁用日期区间字符串。禁用日期区间："第一个区间开始日期,第一个区间结束日期,第二个区间开始日期,第二个区间结束日期,...,第n个区间开始日期,第n个区间结束日期"。<br>设置的禁用日期区间格式："1910-01-01,1910-12-31,2020-01-01,2020-12-31"。默认值：空字符串，表示不设置禁用日期区间。 |
+| .string | 禁用日期区间字符串。禁用日期区间："第一个区间开始日期，第一个区间结束日期，第二个区间开始日期，第二个区间结束日期，……，第n个区间开始日期，第n个区间结束日期"。<br>设置的禁用日期区间格式："1910-01-01,1910-12-31,2020-01-01,2020-12-31"。默认值：空字符串，表示不设置禁用日期区间。 |
 
 **返回：**
 

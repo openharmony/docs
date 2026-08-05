@@ -401,7 +401,7 @@ target_link_libraries(entry PUBLIC
        return;
    }
 
-   // 设置自定义滤镜滤镜名。
+   // 设置自定义滤镜名。
    OH_EffectFilterInfo_SetFilterName(customFilterInfo, "CustomBrightness");
 
    // 设置自定义滤镜所支持的内存类型。

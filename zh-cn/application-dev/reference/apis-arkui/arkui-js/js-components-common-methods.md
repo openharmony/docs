@@ -16,7 +16,7 @@
 
 animate( keyframes: Keyframes, options: Options)：void
 
-设置动画样式和动画属性的对象列表。
+通过传入关键帧样式和动画参数，在组件上创建动画效果，返回animation对象用于控制动画的播放、暂停等操作。
 
 **参数：** 
 
@@ -39,10 +39,10 @@ animate( keyframes: Keyframes, options: Options)：void
 | height             | number                                   | -                    | 动画执行过程中设置到组件上的高度值。                       |
 | backgroundColor    | &lt;color&gt;                            | none                 | 动画执行过程中设置到组件上的背景颜色。                      |
 | opacity            | number                                   | 1                    | 设置到组件上的透明度，取值范围在0到1之间。                      |
-| backgroundPosition | string                                   | -                    | 格式为"x&nbsp;y"，单位为百分号或者px。<br/>第一个值是水平位置，第二个值是垂直位置。<br/>如果仅规定了一个值，另一个值为&nbsp;50%。 |
-| transformOrigin    | string                                   | 'center&nbsp;center' | 变换对象的中心点。<br/>第一个参数表示x轴的值，可以设置为left、center、right、长度值或百分比值。<br/>第二个参数表示y轴的值，可以设置为top、center、bottom、长度值或百分比值。 |
+| backgroundPosition | string                                   | -                    | 格式为"x&nbsp;y"，单位为百分号或者px。<br>第一个值是水平位置，第二个值是垂直位置。<br>如果仅规定了一个值，另一个值为&nbsp;50%。 |
+| transformOrigin    | string                                   | 'center&nbsp;center' | 变换对象的中心点。<br>第一个参数表示x轴的值，可以设置为left、center、right、长度值或百分比值。<br>第二个参数表示y轴的值，可以设置为top、center、bottom、长度值或百分比值。 |
 | transform          | [Transform](js-components-common-animation.md#属性) | -                    | 设置到变换对象上的类型。                             |
-| offset             | number                                   | -                    | -&nbsp;offset值（如果提供）必须在0.0到1.0（含）之间，并以升序排列。<br/>-&nbsp;若仅有两帧，offset参数可省略。<br/>-&nbsp;若超过两帧，offset必填。 |
+| offset             | number                                   | -                    | -&nbsp;offset值（如果提供）必须在0.0到1.0（含）之间，并以升序排列。<br>-&nbsp;若仅有两帧，offset参数可省略。<br>-&nbsp;若超过两帧，offset必填。 |
 
   **表3** Options说明
 
@@ -52,8 +52,8 @@ animate( keyframes: Keyframes, options: Options)：void
 | easing                 | string                     | linear | 描述动画的时间曲线，支持的具体类型参数请参见表4 easing有效值。           |
 | delay                  | number                     | 0      | 设置动画执行的延迟时间，默认值表示无延迟。                    |
 | iterations             | number&nbsp;\|&nbsp;string | 1      | 设置动画执行的次数。number表示固定次数，Infinity枚举表示无限次数播放。 |
-| direction<sup>6+</sup> | string                     | normal | 指定动画的播放模式：<br/>normal：&nbsp;动画正向循环播放；<br/>reverse：&nbsp;动画反向循环播放；<br/>alternate：动画交替循环播放，奇数次正向播放，偶数次反向播放；<br/>alternate-reverse：动画反向交替循环播放，奇数次反向播放，偶数次正向播放。 |
-| fill                   | string                     | none   | 指定动画开始和结束的状态：<br/>none：在动画执行之前和之后都不会应用任何样式到目标上。<br/>forwards：在动画结束后，目标将保留动画结束时的状态（在最后一个关键帧中定义）。<br/>backwards<sup>6+</sup>：动画将在animation-delay期间应用第一个关键帧中定义的值。当animation-direction为"normal"或"alternate"时应用from关键帧中的值，当animation-direction为"reverse"或"alternate-reverse"时应用to关键帧中的值。<br/>both：动画将遵循forwards和backwards的规则，从而在两个方向上扩展动画属性。 |
+| direction<sup>6+</sup> | string                     | normal | 指定动画的播放模式：<br>normal：&nbsp;动画正向循环播放；<br>reverse：&nbsp;动画反向循环播放；<br>alternate：动画交替循环播放，奇数次正向播放，偶数次反向播放；<br>alternate-reverse：动画反向交替循环播放，奇数次反向播放，偶数次正向播放。 |
+| fill                   | string                     | none   | 指定动画开始和结束的状态：<br>none：在动画执行之前和之后都不会应用任何样式到目标上。<br>forwards：在动画结束后，目标将保留动画结束时的状态（在最后一个关键帧中定义）。<br>backwards<sup>6+</sup>：动画将在animation-delay期间应用第一个关键帧中定义的值。当animation-direction为"normal"或"alternate"时应用from关键帧中的值，当animation-direction为"reverse"或"alternate-reverse"时应用to关键帧中的值。<br>both：动画将遵循forwards和backwards的规则，从而在两个方向上扩展动画属性。 |
 
   **表4** easing有效值说明
 
@@ -69,7 +69,7 @@ animate( keyframes: Keyframes, options: Options)：void
 | rhythm                                   | 节奏曲线，cubic-bezier(0.7,&nbsp;0.0,&nbsp;0.2,&nbsp;1.0)。 |
 | smooth                                   | 平滑曲线，cubic-bezier(0.4,&nbsp;0.0,&nbsp;0.4,&nbsp;1.0)。 |
 | cubic-bezier(x1,&nbsp;y1,&nbsp;x2,&nbsp;y2) | 在三次贝塞尔函数中定义动画变化过程，入参的x和y值必须处于0-1之间。      |
-| steps(number,&nbsp;step-position)<sup>6+</sup> | Step曲线。<br/>number必须设置，支持的类型为int。<br/>step-position参数可选，支持设置start或end，默认值为end。 |
+| steps(number,&nbsp;step-position)<sup>6+</sup> | Step曲线。<br>number必须设置，支持的类型为int。<br>step-position参数可选，支持设置start或end，默认值为end。 |
 
 **返回值：** 
   animation对象属性：
@@ -78,7 +78,7 @@ animate( keyframes: Keyframes, options: Options)：void
 | --------- | ------- | ---------------------------------------- |
 | finished  | boolean | 只读，用于表示当前动画是否已播放完成。返回true时，动画播放完成。返回false时，动画没播放完成。                      |
 | pending   | boolean | 只读，用于表示当前动画是否处于等待其他异步操作完成的等待状态（例如启动一个延时播放的动画）。返回true时，动画处于等待状态。返回false时，动画不处于等待状态。 |
-| playState | string  | 可读可写，动画的执行状态：<br/>-&nbsp;idle：未执行状态，包括已结束或未开始。<br/>-&nbsp;running：动画正在运行。<br/>-&nbsp;paused：动画暂停。<br/>-&nbsp;finished：动画播放完成。 |
+| playState | string  | 可读可写，动画的执行状态：<br>-&nbsp;idle：未执行状态，包括已结束或未开始。<br>-&nbsp;running：动画正在运行。<br>-&nbsp;paused：动画暂停。<br>-&nbsp;finished：动画播放完成。 |
 | startTime | number  | 可读可写，动画播放开始的预定时间，用途类似于options参数中的delay。  |
 
   animation对象方法：
@@ -104,7 +104,7 @@ animate( keyframes: Keyframes, options: Options)：void
 ```html
 <!-- xxx.hml -->
 <div class="container">
-  <div id="idName" class="box"></div>
+  <div id="animBox" class="box"></div>
   <div class="buttonBox">
     <button @click="start">
       start
@@ -176,7 +176,7 @@ export default {
     },
 
     start() {
-        this.animation = this.$element('idName').animate(this.frames, this.options);
+        this.animation = this.$element('animBox').animate(this.frames, this.options);
         this.animation.play();
     },
     cancel() {
@@ -214,7 +214,7 @@ console.info(`current element position is ${rect.left}, ${rect.top}`);
 
 createIntersectionObserver(param?:  ObserverParam): Observer
 
-监听元素在当前页面的可见范围。
+创建一个交叉观察器，通过设置阈值，监听元素在当前页面可见区域与交叉区域的比例变化。
 
 **参数：** 
 
