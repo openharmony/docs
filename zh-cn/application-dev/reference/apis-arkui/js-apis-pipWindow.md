@@ -6,7 +6,7 @@
 <!--Tester: @qinliwen0417-->
 <!--Adviser: @ge-yafang-->
 
-该模块提供画中画基础功能，包括判断当前系统是否支持画中画功能，以及创建画中画控制器用于启动或停止画中画等。支持用户在进行其他操作时以小窗形式继续观看视频内容，提升多任务处理效率。适用于视频播放、视频通话或视频会议场景。
+该模块提供画中画基础功能，包括判断当前设备是否支持画中画功能，以及创建画中画控制器用于启动或停止画中画等。支持用户在进行其他操作时以小窗形式继续观看视频内容，提升多任务处理效率。适用于视频播放、视频通话或视频会议场景。
 
 > **说明：**
 >
@@ -317,10 +317,10 @@ struct Index {
 
 | 名称            | 值   | 说明                                   |
 |---------------|-----|--------------------------------------|
-| VIDEO_PLAY    | 0   | 表示将要切换为画中画播放的媒体类型是视频，系统依此加载视频播放模板，该模板默认存在播放/暂停控件。   |
-| VIDEO_CALL    | 1   | 表示将要切换为画中画播放的媒体类型是视频通话，系统依此加载视频通话模板。 |
-| VIDEO_MEETING | 2   | 表示将要切换为画中画播放的媒体类型是视频会议，系统依此加载视频会议模板。 |
-| VIDEO_LIVE    | 3   | 表示将要切换为画中画播放的媒体类型是直播，系统依此加载直播模板。     |
+| VIDEO_PLAY    | 0   | 表示视频播放画中画模板类型，系统依此加载视频播放模板，该模板默认存在播放/暂停控件。   |
+| VIDEO_CALL    | 1   | 表示视频通话画中画模板类型，系统依此加载视频通话模板。 |
+| VIDEO_MEETING | 2   | 表示视频会议画中画模板类型，系统依此加载视频会议模板。 |
+| VIDEO_LIVE    | 3   | 表示直播画中画模板类型，系统依此加载直播模板。     |
 
 ## PiPState
 
@@ -533,7 +533,7 @@ type PiPLiveActionEvent = 'playbackStateChanged' | 'voiceStateChanged'
 | HANG_UP_BUTTON           | 5   | 挂断控件。 |
 | MICROPHONE_SWITCH | 6  | 打开/关闭麦克风控件。 |
 | CAMERA_SWITCH     | 7   | 打开/关闭摄像头控件。     |
-| MUTE_SWITCH       | 8   | 打开/关闭静音控件。     |
+| MUTE_SWITCH       | 8   | 静音/解除静音控件。     |
 
 
 ## ControlPanelActionEventCallback<sup>12+</sup>
@@ -551,7 +551,7 @@ type ControlPanelActionEventCallback = (event: PiPActionEventType, status?: numb
 | 参数名                       | 类型           | 必填    | 说明                                |
 |--------------------------|--------------|--------------|-----------------------------------|
 | event       |  [PiPActionEventType](#pipactioneventtype)       | 是 | 回调画中画控制面板控件动作事件类型。<br/>应用依据控件动作事件做相应处理，如触发'playbackStateChanged'事件时，需要开始或停止视频。 |
-| status | number | 否 | 表示可切换状态的控件当前的状态，如具备打开和关闭两种状态的麦克风控件组、摄像头控件组和静音控件组，打开为1，关闭为0；具备播放和暂停两种状态的播放/暂停控件组，播放为1，暂停为0。其余不具备可切换状态的控件该参数返回默认值-1。 |
+| status | number | 否 | 表示可切换状态的控件当前的状态，如具备打开和关闭两种状态的麦克风控件组和摄像头控件组，打开为1，关闭为0；具备静音和解除静音两种状态的静音控件组，静音为1，解除静音为0；具备播放和暂停两种状态的播放/暂停控件组，播放为1，暂停为0。其余不具备可切换状态的控件该参数返回默认值-1。 |
 
 ## ControlEventParam<sup>12+</sup>
 
@@ -688,7 +688,7 @@ updateContentSize(width: number, height: number): void
 
 **系统能力：** SystemCapability.Window.SessionManager
 
-**设备行为差异：** 该接口在Phone、Tablet、PC/2in1、TV设备中可正常调用；在Car设备中，<!--Del-->仅支持特定模板类型（具体可见[PiPTemplateType](js-apis-pipWindow-sys.md#piptemplatetype)）的画中画调用此接口更新尺寸，只能以固定大小尺寸更新，当宽高比>=1时更新为横屏小窗类型，当宽高比<1时更新为竖屏大窗类型，其他模板类型的画中画<!--DelEnd-->调用此接口不报错也不生效。
+**设备行为差异：** 该接口在Phone、Tablet、PC/2in1、TV设备中可正常调用；在Car设备中，<!--Del-->仅支持特定模板类型（具体可见[PiPTemplateType](js-apis-pipWindow-sys.md#piptemplatetype)）的画中画调用此接口更新尺寸，只能以固定尺寸更新，当宽高比>=1时更新为横屏小窗类型，当宽高比<1时更新为竖屏大窗类型，其他模板类型的画中画<!--DelEnd-->调用此接口不报错也不生效。
 
 **参数：**
 
