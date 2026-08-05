@@ -34,7 +34,7 @@ init(config: AVScreenCaptureRecordConfig): Promise\<void>
 
 | 参数名 | 类型                                                         | 必填 | 说明                     |
 | ------ | ------------------------------------------------------------ | ---- | ------------------------ |
-| config | [AVScreenCaptureRecordConfig](arkts-apis-media-i.md#avscreencapturerecordconfig12) | 是   | 配置屏幕录制的相关参数。关键配置项包括：fd（文件描述符）、frameWidth（视频宽度）、frameHeight（视频高度）等。详细配置说明请参考[AVScreenCaptureRecordConfig](arkts-apis-media-i.md#avscreencapturerecordconfig12)。文件（通常是MP4）需要先由开发者创建，并赋予写权限，再将文件fd传给此参数。 |
+| config | [AVScreenCaptureRecordConfig](arkts-apis-media-i.md#avscreencapturerecordconfig12) | 是   | 配置录屏的相关参数。关键配置项包括：fd（文件描述符）、frameWidth（视频宽度）、frameHeight（视频高度）等。详细配置说明请参考[AVScreenCaptureRecordConfig](arkts-apis-media-i.md#avscreencapturerecordconfig12)。文件（通常是MP4）需要先由开发者创建，并赋予写权限，再将文件fd传给此参数。 |
 
 **返回值：**
 
@@ -56,7 +56,6 @@ init(config: AVScreenCaptureRecordConfig): Promise\<void>
 
 ``` TypeScript
 import { BusinessError } from '@kit.BasicServicesKit';
-import { image } from '@kit.ImageKit';
 import { media } from '@kit.MediaKit';
 import { fileIo } from '@kit.CoreFileKit';
 
@@ -184,7 +183,7 @@ pauseRecording(): Promise\<void>
 
 暂停录屏。使用Promise异步回调。在录制过程中需要临时中断录制时调用此接口，例如用户临时离开或需要切换应用时。
 
-在使用前需要先调用[startRecording](arkts-apis-media-AVScreenCaptureRecorder.md#startrecording12)接口且录屏需处于录制状态。
+在使用前需要先调用[startRecording](#startrecording12)接口且录屏需处于录制状态。
 
 **起始版本：** 26.0.0
 
@@ -417,7 +416,6 @@ setMicEnabled(enable: boolean): Promise\<void>
 > **说明：**
 >
 > - 在需要录制或静音麦克风音频时调用此接口，例如用户需要临时关闭麦克风或重新开启麦克风录制。
-> - 需在[startRecording](arkts-apis-media-AVScreenCaptureRecorder.md#startrecording12)接口调用前调用此接口。
 
 **系统能力：** SystemCapability.Multimedia.Media.AVScreenCapture
 
@@ -762,7 +760,6 @@ on(type: 'stateChange', callback: Callback\<AVScreenCaptureStateCode>): void
 **示例：**
 
 ``` TypeScript
-import { BusinessError } from '@kit.BasicServicesKit';
 import { media } from '@kit.MediaKit';
 
 async function testOnStateChange() {
@@ -844,7 +841,6 @@ async function testOnError() {
 **示例：**
 
 ``` TypeScript
-import { BusinessError } from '@kit.BasicServicesKit';
 import { media } from '@kit.MediaKit';
 
 async function testOffStateChange() {
@@ -878,7 +874,6 @@ off(type: 'error', callback?: ErrorCallback): void
 **示例：**
 
 ``` TypeScript
-import { BusinessError } from '@kit.BasicServicesKit';
 import { media } from '@kit.MediaKit';
 
 async function testOffError() {
