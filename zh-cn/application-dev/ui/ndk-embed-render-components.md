@@ -10,11 +10,11 @@
 从API version 20开始，ArkUI开发框架针对NDK接口，提供了直接构建渲染节点的能力，包括节点树操作、属性设置及含动画的自定义绘制。开发者通过调用渲染节点相关能力，可以绕过[registerNodeCustomEvent](../reference/apis-arkui/capi-arkui-nativemodule-arkui-nativenodeapi-1.md#registernodecustomevent)的测量布局过程，直接对节点进行绘制并调整其大小和位置。
 
 
-- **渲染节点树操作相关的能力** ，例如[OH_ArkUI_RenderNodeUtils_AddRenderNode](../reference/apis-arkui/capi-native-render-h.md#oh_arkui_rendernodeutils_addrendernode)、[OH_ArkUI_RenderNodeUtils_AddChild](../reference/apis-arkui/capi-native-render-h.md#oh_arkui_rendernodeutils_addchild)等接口用于编辑渲染节点树的结构。仅类型为ARKUI_NODE_CUSTOM且无其他子节点的自定义节点能够挂载渲染节点，且最多挂载一个渲染节点。即渲染节点以子树形式挂载在类型为ARKUI_NODE_CUSTOM的叶子自定义节点上。
+- **渲染节点树操作相关的能力** ，例如[OH_ArkUI_RenderNodeUtils_AddRenderNode](../reference/apis-arkui/capi-native-render-h.md#oh_arkui_rendernodeutils_addrendernode)、[OH_ArkUI_RenderNodeUtils_AddChild](../reference/apis-arkui/capi-native-render-h.md#oh_arkui_rendernodeutils_addchild)等接口用于编辑渲染节点树的结构。仅类型为ARKUI_NODE_CUSTOM且无其他子节点的自定义节点（加超链接到nativeNode）能够挂载渲染节点，且最多挂载一个渲染节点。即渲染节点以子树形式挂载在类型为ARKUI_NODE_CUSTOM的叶子自定义节点上。
 
 - **渲染节点属性设置的能力** ，详情请参考[函数](../reference/apis-arkui/capi-native-render-h.md#函数)，查看当前渲染节点支持的属性能力。
 
-- **自定义绘制能力**，参考[OH_ArkUI_RenderNodeUtils_SetContentModifierOnDraw](../reference/apis-arkui/capi-native-render-h.md#oh_arkui_rendernodeutils_setcontentmodifierondraw)及其相关接口，同时可以通过[OH_ArkUI_RenderNodeUtils_SetFloatPropertyValue](../reference/apis-arkui/capi-native-render-h.md#oh_arkui_rendernodeutils_setfloatpropertyvalue)这一类绑定在ContentModifier上的接口对自定义绘制的内容进行动态修改。
+- **自定义绘制能力**，参考[OH_ArkUI_RenderNodeUtils_SetContentModifierOnDraw](../reference/apis-arkui/capi-native-render-h.md#oh_arkui_rendernodeutils_setcontentmodifierondraw)及其相关接口，同时可以通过[OH_ArkUI_RenderNodeUtils_SetFloatPropertyValue](../reference/apis-arkui/capi-native-render-h.md#oh_arkui_rendernodeutils_setfloatpropertyvalue)这一类绑定在ContentModifier的接口对自定义绘制的内容进行动态修改。
 
 
 
@@ -104,7 +104,7 @@
        // 简单的属性设置示例。
        OH_ArkUI_RenderNodeUtils_SetRotation(secondChildRenderNode, 45, 45, 0); // xy轴旋转45度，z轴旋转0度
    
-        // 边框属性示例。
+       // 边框属性实例。
        auto styleOption = OH_ArkUI_RenderNodeUtils_CreateNodeBorderStyleOption();
        OH_ArkUI_RenderNodeUtils_SetNodeBorderStyleOptionEdgeStyle(styleOption, ArkUI_BorderStyle::ARKUI_BORDER_STYLE_SOLID,
                                                                   ArkUI_EdgeDirection::ARKUI_EDGE_DIRECTION_ALL);
