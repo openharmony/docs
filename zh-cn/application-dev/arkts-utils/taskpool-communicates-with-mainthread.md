@@ -10,20 +10,7 @@
 
 下面以多个图片加载任务结果实时返回为例说明。
 
-1. 实现接收Task消息的方法。
-
-   <!-- @[receive_task_message](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/ArkTsConcurrent/ConcurrentThreadCommunication/InterThreadCommunicationScenario/entry/src/main/ets/managers/TaskSendDataUsage.ets) -->
-   
-   ``` TypeScript
-   import { taskpool } from '@kit.ArkTS';
-   import { IconItemSource } from './IconItemSource';
-   
-   function notice(data: number): void {
-     console.info('子线程任务已执行完，共加载图片: ', data);
-   }
-   ```
-
-2. 在需要执行的Task中，添加sendData()接口将消息发送给宿主线程。在宿主线程通过onReceiveData()接口接收消息。这样宿主线程就可以通过notice()接口接收到Task发送的数据。
+在需要执行的Task中，添加sendData()接口将消息发送给宿主线程。在宿主线程通过onReceiveData()接口接收消息。这样宿主线程就可以通过notice()接口接收到Task发送的数据。
 
    <!-- @[implement_child_thread_task](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/ArkTsConcurrent/ConcurrentThreadCommunication/InterThreadCommunicationScenario/entry/src/main/ets/managers/IconItemSource.ets) -->
    

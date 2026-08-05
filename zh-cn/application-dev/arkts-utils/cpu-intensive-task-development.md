@@ -13,9 +13,9 @@ CPU密集型任务是指需要占用系统资源进行大量计算的任务，�
 基于多线程并发机制处理CPU密集型任务可以提高CPU利用率，提升应用程序响应速度。
 
 
-当任务不需要长时间（3分钟）占用后台线程，而是一个个独立的任务时，推荐使用TaskPool，反之推荐使用Worker。
+当任务不需要长时间（超过3分钟同步执行时长）占用后台线程，而是一个个独立的任务时，推荐使用TaskPool，反之推荐使用Worker。
 
-接下来将分别以图像直方图处理和后台长时间模型预测任务为例进行说明。
+接下来将分别以使用TaskPool进行图像直方图处理和使用Worker进行长时间数据分析为例进行说明。
 
 
 ## 使用TaskPool进行图像直方图处理
@@ -186,7 +186,7 @@ struct Index {
     ``` TypeScript
     // Worker线程销毁后，执行onexit回调方法
     workerInstance.onexit = (): void => {
-      console.info('main thread terminate');
+      console.info('worker thread terminate');
     }
     ```
 

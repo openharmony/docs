@@ -61,7 +61,7 @@
 
 2. 定义可序列化模型。
    
-   通过@Serializable装饰器标记需序列化的类，添加generateSendable: true属性，并利用`@SerialName()`完成属性的定制化配置，其中：
+   通过@Serializable装饰器标记需序列化的类，添加generateSendable属性，并利用`@SerialName()`完成属性的定制化配置，其中：
    
    - `@Serializable({ generateSendable: true })`：表示需要生成与该模型对应的Sendable类型与转换方法。
    - `@SerialName({ name: 'xxx' })`：将类属性与JSON字段名绑定。
@@ -136,7 +136,7 @@
 
 4. 将普通对象转换为Sendable对象（toSendable）。
 
-   当`generateSendable: true`生效后，构建产物中会生成`toSendable()`，将普通对象转换为Sendable对象。其关键点在于会对普通对象做必要的容器转换，例如把`number[]`转换为`collections.Array<number>`。以下代码为编译时工具自动生成的，文件位于entry/src/generated/ets目录下。
+   当`generateSendable: true`生效后，构建产物中会生成`toSendable()`，将普通对象转换为Sendable对象。其关键点在于会对普通对象做必要的容器转换，例如把`number[]`转换为`collections.Array<number>`。以下代码为编译时工具自动生成的，文件位于entry/src/generated/ets/turbotrans_JSON目录下。
 
    ``` TypeScript
    import { collections } from '@kit.ArkTS';
@@ -152,7 +152,7 @@
    }
    ```
 
-   同时，生成的Sendable类型通常会提供`toOrigin()`，用于在需要继续按普通对象处理、复用原有逻辑或重新序列化时，将Sendable对象还原为普通对象。以下代码为编译时工具自动生成的，文件位于entry/src/generated/ets目录下。
+   同时，生成的Sendable类型通常会提供`toOrigin()`，用于在需要继续按普通对象处理、复用原有逻辑或重新序列化时，将Sendable对象还原为普通对象。以下代码为编译时工具自动生成的，文件位于entry/src/generated/ets/turbotrans_JSON目录下。
 
    ``` TypeScript
    @Sendable
@@ -270,7 +270,7 @@
      obj.value_float = 11;
      obj.value_double = 12;
      obj.value_bool = true;
-     obj.value_string = "TestProtobuf_Success";
+     obj.value_string = `TestProtobuf_Success`;
      obj.value_bytes?.fill(13);
    
      if (ArkTSUtils.isSendable(obj)) {
@@ -286,19 +286,20 @@
    
    function testdecode(data: ArrayBuffer | collections.ArrayBuffer) {
      let obj = test_pb.decode(data);
-     console.info("expect value_int32 " + obj?.value_int32 + " = 1");
-     console.info("expect value_double " + obj?.value_double + " = 12");
+     console.info(`expect value_int32 ${obj?.value_int32} = 1`);
+     console.info(`expect value_double ${obj?.value_double} = 12`);
      if (ArkTSUtils.isSendable(obj)) {
        console.info("decode a sendable object");
      }
    }
    
-   export function testProtobuf() {
+   export function testProtobuf(): test_pb {
      let obj = testCreate();
      let buf = testencode(obj);
      if (buf) {
        testdecode(buf);
      }
+     return obj;
    }
    ```
 
@@ -337,7 +338,7 @@ export function observeJSON2(): LayoutS {
 import { testProtobuf } from '../turbotrans_protobuf/test1'
 
 @Concurrent
-export function observeProtobuf() {
+export function observeProtobuf(): test_pb {
   return testProtobuf();
 }
 ```
@@ -363,7 +364,7 @@ runTests() {
 ``` TypeScript
 runTestsPb() {
   taskpool.execute(observeProtobuf).then((res) => {
-    this.pb = UIUtils.makeObserved(res)
+    this.pb = UIUtils.makeObserved(res as test_pb);
   })
 }
 ```

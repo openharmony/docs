@@ -10,7 +10,7 @@
 
 通过使用ArkTS提供的TaskPool能力，可以将不同的业务初始化任务移到子线程中。业务模块可通过下沉C++实现为[NativeBinding对象](transferabled-object.md)或在ArkTS层定义为[Sendable对象](arkts-sendable.md)，从而将初始化的模块返回给UI主线程调用，实现如下。
 
-1. 各业务功能（SDK）模块定义（这里以使用Sendable对象为例）。
+1. 在ets文件夹下新建文件夹sdk，存放各业务功能模块定义（这里以使用Sendable对象为例）。
 
    计算器业务模块定义如下：
 
