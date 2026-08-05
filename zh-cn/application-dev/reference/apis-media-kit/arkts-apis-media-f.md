@@ -926,7 +926,7 @@ createMediaSourceWithDirectory(path: string): Promise\<MediaSource | undefined>
 
 | 错误码ID | 错误信息                                  |
 | -------- | ----------------------------------------- |
-| 5411007  | The directory specified by the path parameter does not exist or unaccessed. |
+| 5411007  | The directory specified by the path parameter does not exist or inaccessible. |
 
 **示例：**
 
