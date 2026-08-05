@@ -3,18 +3,19 @@
 <!--Kit: Basic Services Kit-->
 <!--Subsystem: SelectionInput-->
 <!--Owner: @no86-->
-<!--Designer: @mmwwbb-->
+<!--Designer: @no86-->
 <!--Tester: @dong-dongzhen-->
 <!--Adviser: @fang-jinxu-->
+<!-- md-trans-meta sourceCommit=7bd9d64d06b09f010cde4ca5a86285027d09b51a translatedAt=2026-08-04T10:29:16.904Z pushedAt=2026-08-05T11:50:08.560Z -->
 
 **SelectionExtensionContext** is the context of [SelectionExtensionAbility](./js-apis-selectionInput-selectionExtensionAbility.md), which is inherited from [ExtensionContext](../apis-ability-kit/js-apis-inner-application-extensionContext.md).
 
-When a **SelectionExtensionAbility** component is instantiated, the system automatically creates the corresponding **SelectionExtensionContext**. You can use **SelectionExtensionContext** to start other abilities in the same application.
+When a **SelectionExtensionAbility** component is instantiated, the system automatically creates the corresponding **SelectionExtensionContext**. You can call the [startAbility](#startability) API in **SelectionExtensionContext** to start other abilities in the same app. This is applicable when you need to redirect to another ability in the same app in word selection extension, helping users quickly obtain the functions or information associated with the selected word.
 
 > **NOTE**
 >
 > - The initial APIs of this module are supported since API version 24. Newly added APIs will be marked with a superscript to indicate their earliest API version.
-> - This module is supported only on PCs/2-in-1 devices.
+> - This module is supported only on PCs/2-in-1 devices. You can use **canIUse('SystemCapability.SelectionInput.Selection')** to check whether the current device supports this function.
 
 ## Modules to Import
 
@@ -32,7 +33,7 @@ import { SelectionExtensionContext } from '@kit.BasicServicesKit';
 
 startAbility(want: Want): Promise\<void>
 
-Starts an ability. This API uses a promise to return the result.
+Starts the target ability in the same app. This method is applicable when you need to redirect to another ability in the app in word selection extension. The system matches and starts the target ability based on the values of **bundleName** and **abilityName** specified in the **Want** object. This API uses a promise to return the result. For details about the ability startup mechanism, see [ExtensionContext](../apis-ability-kit/js-apis-inner-application-extensionContext.md).
 
 **System capability**: SystemCapability.SelectionInput.Selection
 
@@ -42,7 +43,7 @@ Starts an ability. This API uses a promise to return the result.
 
 | Name| Type                                                   | Mandatory| Description                                                        |
 | ------ | ------------------------------------------------------- | ---- | ------------------------------------------------------------ |
-| want   | [Want](../apis-ability-kit/js-apis-app-ability-want.md#want) | Yes  | Want information of the ability to start, including the ability name and bundle name.|
+| want   | [Want](../apis-ability-kit/js-apis-app-ability-want.md#want) | Mandatory   | Information about the target app to start. The main fields include **bundleName** (bundle name of the target app) and **abilityName** (name of the target ability). After this parameter is set, the system searches for and starts the corresponding ability based on the specified bundle name and ability name. Only abilities within the same app can be started. |
 
 **Return value**
 
@@ -52,7 +53,7 @@ Starts an ability. This API uses a promise to return the result.
 
 **Error codes**
 
-For details about the error codes, see [Ability Error Codes](../apis-ability-kit/errorcode-ability.md).
+For details about the following error codes, see [Ability Error Codes](../apis-ability-kit/errorcode-ability.md). For details about other common error codes, see [Universal Error Codes](../errorcode-universal.md).
 
 | Error Code| Error Message                                               |
 | -------- | ------------------------------------------------------- |
@@ -85,8 +86,8 @@ import { rpc } from '@kit.IPCKit';
 import { Want } from '@kit.AbilityKit';
 
 class SelectionAbilityStub extends rpc.RemoteObject {
-  constructor(des: string) {
-    super(des);
+  constructor(descriptor: string) {
+    super(descriptor);
   }
   onRemoteMessageRequest(
     code: number,
@@ -102,17 +103,19 @@ class SelectionAbilityStub extends rpc.RemoteObject {
 class SelectionExtAbility extends SelectionExtensionAbility {
   onConnect(want: Want): rpc.RemoteObject {
     try {
+      // Construct a Want object to specify the target ability to start.
       let wantAbility: Want = {
-        bundleName: "com.selection.selectionapplication",
-        abilityName: "EntryAbility",
+        bundleName: 'com.selection.selectionapplication',
+        abilityName: 'EntryAbility',
       };
+      // Start the target Ability. this.context is automatically provided by the SelectionExtensionAbility instance and does not need to be obtained separately.
       this.context.startAbility(wantAbility).then(() => {
         console.info(`startAbility success`);
       }).catch((err: BusinessError) => {
-        console.error(`startAbility error: ${err.code}, error message: ${err.message}`);
-      })
+        console.error(`Failed to startAbility. Error code: ${err.code}, error message: ${err.message}`);
+      });
     } catch (err) {
-      console.error(`startAbility error: ${err.code}, error message: ${err.message}`);
+      console.error(`Failed to startAbility. Error code: ${err.code}, error message: ${err.message}`);
     }
     return new SelectionAbilityStub('remote');
   }
