@@ -1,10 +1,12 @@
 # Class (PngMetadata)
+
 <!--Kit: Image Kit-->
 <!--Subsystem: Multimedia-->
 <!--Owner: @aulight02-->
-<!--Designer: @liyang_bryan-->
+<!--Designer: @XiaoYao555-->
 <!--Tester: @xchaosioda-->
 <!--Adviser: @w_Machine_cc-->
+<!-- md-trans-meta sourceCommit=197abe4a5aa54f54569c5e91f1e0224d2d661fb7 translatedAt=2026-08-03T03:56:44.418Z pushedAt=2026-08-04T03:20:35.535Z -->
 
 PngMetadata.
 
@@ -43,3 +45,4 @@ import { image } from '@kit.ImageKit';
 | sRGBIntent | number | Yes  | Yes  | Standard Red Green Blue (sRGB) rendering intent of a PNG image.<br>- **0**: perceptual intent<br>- **1**: relative colorimetric intent<br>- **2**: saturation intent<br>- **3**: absolute colorimetric intent|
 | title | string | Yes  | Yes  | Title of a PNG image.|
 | warning | string | Yes  | Yes  | Warning information of a PNG image.|
+| chromaticities | number[] | Yes | Yes | Coordinate values of the white point and the three primary colors in the 1931 CIE xy chromaticity space for PNG images. For example, the chromaticity coordinates for the sRGB color space can be expressed as [0.3127, 0.3290, 0.6400, 0.3300, 0.3000, 0.6000, 0.1500, 0.0600], representing the x/y coordinates of the white point, red, green, and blue in that order. |

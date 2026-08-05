@@ -2,7 +2,7 @@
 <!--Kit: Image Kit-->
 <!--Subsystem: Multimedia-->
 <!--Owner: @aulight02-->
-<!--Designer: @liyang_bryan-->
+<!--Designer: @XiaoYao555-->
 <!--Tester: @xchaosioda-->
 <!--Adviser: @w_Machine_cc-->
 
@@ -32,9 +32,9 @@ import { image } from '@kit.ImageKit';
 | Name    | Type              | Read Only| Optional| Description                                              |
 | -------- | ------------------ | ---- | ---- | -------------------------------------------------- |
 | clipRect<sup>9+</sup> | [Region](arkts-apis-image-i.md#region8) | No  | No  | Image area to be cropped. It is always equal to the entire image and cannot be modified.                                |
-| size<sup>9+</sup>     | [Size](arkts-apis-image-i.md#size)      | Yes  | No  | Image size.<br>If the Image object stores camera preview stream data (YUV image data), the width and height in **size** reflect the dimensions of the YUV image.<br>If the Image object stores camera capture stream data (JPEG image data), given that it is an encoded file, the width in **size** is the size of the JPEG file, while the height is set to **1**.<br>The type of data stored in the Image object depends on whether the application passes the surface ID in the receiver to a previewOutput or captureOutput object of the camera.<br>For details about the best practices of camera preview and photo capture, see [Dual-Channel Preview (ArkTS)](../../media/camera/camera-dual-channel-preview.md) and [Photo Capture Sample (ArkTS)](../../media/camera/camera-shooting-case.md).|
+| size<sup>9+</sup>     | [Size](arkts-apis-image-i.md#size)      | Yes  | No  | Image size.<br>If the Image object stores camera preview stream data (YUV image data), the width and height in **size** reflect the dimensions of the YUV image.<br>If the Image object stores camera capture stream data (JPEG image data), given that it is an encoded file, the width in **size** is the size of the JPEG file, while the height is set to **1**.<br>Whether the data stored in the Image object is a preview stream or a capture stream depends on whether the application passes **surfaceId** in the receiver to the camera via the [createPreviewOutput](../../reference/apis-camera-kit/arkts-apis-camera-CameraManager.md#createpreviewoutput) or [createPhotoOutput](../../reference/apis-camera-kit/arkts-apis-camera-CameraManager.md#createphotooutputdeprecated) API.<br>For details about the best practices of camera preview and photo capture, see [Dual-Channel Preview (ArkTS)](../../media/camera/camera-dual-channel-preview.md) and [Photo Capture Sample (ArkTS)](../../media/camera/camera-shooting-case.md).|
 | format<sup>9+</sup>    | number             | Yes  | No  | Image format. For details, see [OH_NativeBuffer_Format](../apis-arkgraphics2d/capi-buffer-common-h.md#oh_nativebuffer_format).|
-| timestamp<sup>12+</sup> | number         | Yes     | No  | Image timestamp. Timestamps, measured in nanoseconds, are usually monotonically increasing. The specific meaning and baseline of these timestamps are determined by the image producer, which is the camera in the camera preview and photo scenarios. As a result, images from different producers may carry timestamps with distinct meanings and baselines, making direct comparison between them infeasible. To obtain the generation time of a photo, you can use [getImageProperty](arkts-apis-image-ImageSource.md#getimageproperty11) to read the related Exif information.|
+| timestamp<sup>12+</sup> | number         | Yes     | No  | Image timestamp. Timestamps, measured in nanoseconds, are usually monotonically increasing. The specific meaning and baseline of these timestamps are determined by the image producer, which is the camera in the camera preview and photo scenarios. As a result, images from different producers may carry timestamps with distinct meanings and baselines, making direct comparison between them infeasible. To obtain the generation time of a photo, you can use the [getImageProperty](arkts-apis-image-ImageSource.md#getimageproperty11) API to read the Exif timestamp information.|
 | colorSpace<sup>23+</sup> | [colorSpaceManager.ColorSpace](../apis-arkgraphics2d/js-apis-colorSpaceManager.md#colorspace) | Yes| No| Color space of the image.<br>**Model restriction**: This API can be used only in the stage model.|
 
 ## getComponent<sup>9+</sup>
@@ -243,8 +243,7 @@ async function GetMetadata(img : image.Image) {
     let staticMetadata = img.getMetadata(image.HdrMetadataKey.HDR_STATIC_METADATA);
     console.info(`getMetadata:${staticMetadata}`);
   } catch (err) {
-    console.error('getMetadata failed' + err);
+    console.error('Failed to getMetadata.' + err);
   }
 }
 ```
-<!--no_check-->

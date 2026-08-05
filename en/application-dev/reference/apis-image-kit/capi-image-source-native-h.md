@@ -2,7 +2,7 @@
 <!--Kit: Image Kit-->
 <!--Subsystem: Multimedia-->
 <!--Owner: @aulight02-->
-<!--Designer: @liyang_bryan-->
+<!--Designer: @XiaoYao555-->
 <!--Tester: @xchaosioda-->
 <!--Adviser: @w_Machine_cc-->
 
@@ -19,6 +19,8 @@ The file declares the APIs for image decoding.
 **Since**: 12
 
 **Related module**: [Image_NativeModule](capi-image-nativemodule.md)
+
+**Related development guidelines:** [Using Image_NativeModule to Decode Images](../../media/image/image-source-c.md), [Image Region Decoding and Downsampling (C/C++)](../../media/image/image-region-and-downsampling-c.md), [Decoding Animated Images Using Image_NativeModule](../../media/image/image-animated-decoding-c.md), [Decoding HDR Images Using Image_NativeModule](../../media/image/image-hdr-decoding-c.md), and [Using Image_NativeModule to Decode Pictures](../../media/image/image-source-picture-c.md)
 
 ## Summary
 
@@ -48,8 +50,8 @@ The file declares the APIs for image decoding.
 | [Image_ErrorCode OH_ImageSourceInfo_GetWidth(OH_ImageSource_Info *info, uint32_t *width)](#oh_imagesourceinfo_getwidth) | Obtains the image width. For an SVG image without the width property, the default value **0** is returned.|
 | [Image_ErrorCode OH_ImageSourceInfo_GetHeight(OH_ImageSource_Info *info, uint32_t *height)](#oh_imagesourceinfo_getheight) | Obtains the image height. For an SVG image without the height property, the default value **0** is returned.|
 | [Image_ErrorCode OH_ImageSourceInfo_GetDynamicRange(OH_ImageSource_Info *info, bool *isHdr)](#oh_imagesourceinfo_getdynamicrange) | Check whether an image is HDR.|
-| [Image_ErrorCode OH_ImageSourceInfo_GetMimeType(OH_ImageSource_Info *info, Image_MimeType *mimeType)](#oh_imagesourceinfo_getmimetype) | Obtains the MIME type of an image.|
-| [Image_ErrorCode OH_ImageSourceInfo_Release(OH_ImageSource_Info *info)](#oh_imagesourceinfo_release) | Releases the pointer to an OH_ImageSource_Info object. After this API is called, all properties related to the OH_ImageSource_Info struct are released. Therefore, before calling this API, ensure that the relevant properties are no longer needed or that a deep copy of these properties has been completed.|
+| [Image_ErrorCode OH_ImageSourceInfo_GetMimeType(OH_ImageSource_Info *info, Image_MimeType *mimetype)](#oh_imagesourceinfo_getmimetype) | Obtains the MIME type of an image.|
+| [Image_ErrorCode OH_ImageSourceInfo_Release(OH_ImageSource_Info *info)](#oh_imagesourceinfo_release) | Releases the pointer to an OH_ImageSource_Info object. After this API is called, **mimeType.data** obtained via **OH_ImageSourceInfo_GetMimeType()** becomes invalid. If you need to use the MIME type data after the release, perform a deep copy before the release.|
 | [Image_ErrorCode OH_DecodingOptions_Create(OH_DecodingOptions **options)](#oh_decodingoptions_create) | Creates the pointer to an OH_DecodingOptions object.|
 | [Image_ErrorCode OH_DecodingOptions_GetPixelFormat(OH_DecodingOptions *options, int32_t *pixelFormat)](#oh_decodingoptions_getpixelformat) | Obtains the pixel format.|
 | [Image_ErrorCode OH_DecodingOptions_SetPixelFormat(OH_DecodingOptions *options, int32_t pixelFormat)](#oh_decodingoptions_setpixelformat) | Sets the pixel format.|
@@ -97,6 +99,7 @@ The file declares the APIs for image decoding.
 | [Image_ErrorCode OH_ImageSourceNative_ModifyImagePropertyIntArray(OH_ImageSourceNative *source, Image_String *key, int32_t *value, size_t size)](#oh_imagesourcenative_modifyimagepropertyintarray) | Changes an image property value of the integer array type.|
 | [Image_ErrorCode OH_ImageSourceNative_ModifyImagePropertyDoubleArray(OH_ImageSourceNative *source, Image_String *key, double *value, size_t size)](#oh_imagesourcenative_modifyimagepropertydoublearray) | Changes an image property value of the floating-point array type.|
 | [Image_ErrorCode OH_ImageSourceNative_ModifyImagePropertyBlob(OH_ImageSourceNative *source, Image_String *key, void *value, size_t size)](#oh_imagesourcenative_modifyimagepropertyblob) | Changes an image property value of the binary object type.|
+| <!--DelRow--> [Image_ErrorCode OH_ImageSourceNative_ReadImageMetadataByType(OH_ImageSourceNative *source, uint32_t index, Image_MetadataType *metadataTypes, size_t typeCount, OH_PictureMetadata **outMetadataArray, size_t *metadataCount)](#oh_imagesourcenative_readimagemetadatabytype) | Reads the metadata of an image source. You can use **metadataType** to specify the metadata. If **metadataTypes** is not specified, all supported metadata is returned.|
 | [Image_ErrorCode OH_ImageSourceNative_GetImagePropertyWithNull(OH_ImageSourceNative *source, Image_String *key, Image_String *value)](#oh_imagesourcenative_getimagepropertywithnull) | Obtains the value of an image property. The output **value.data** ends with the string terminator **\0**.|
 | [Image_ErrorCode OH_ImageSourceNative_ModifyImageProperty(OH_ImageSourceNative *source, Image_String *key, Image_String *value)](#oh_imagesourcenative_modifyimageproperty) | Modifies the value of an image property.|
 | [Image_ErrorCode OH_ImageSourceNative_GetFrameCount(OH_ImageSourceNative *source, uint32_t *frameCount)](#oh_imagesourcenative_getframecount) | Obtains the number of image frames.|
@@ -105,6 +108,12 @@ The file declares the APIs for image decoding.
 | [Image_ErrorCode OH_DecodingOptionsForPicture_Create(OH_DecodingOptionsForPicture **options)](#oh_decodingoptionsforpicture_create) | Creates the pointer to an OH_DecodingOptionsForPicture object.|
 | [Image_ErrorCode OH_DecodingOptionsForPicture_GetDesiredAuxiliaryPictures(OH_DecodingOptionsForPicture *options, Image_AuxiliaryPictureType **desiredAuxiliaryPictures, size_t *length)](#oh_decodingoptionsforpicture_getdesiredauxiliarypictures) | Obtains desired auxiliary pictures in the decoding options (auxiliary pictures contained in **picture** expected to be decoded.)|
 | [Image_ErrorCode OH_DecodingOptionsForPicture_SetDesiredAuxiliaryPictures(OH_DecodingOptionsForPicture *options, Image_AuxiliaryPictureType *desiredAuxiliaryPictures, size_t length)](#oh_decodingoptionsforpicture_setdesiredauxiliarypictures) | Sets desired auxiliary pictures in the decoding options.|
+| <!--DelRow--> [Image_ErrorCode OH_DecodingOptionsForPicture_GetNeedsDecodeDfxData(OH_DecodingOptionsForPicture *options, bool *needsDecodeDfxData)](#oh_decodingoptionsforpicture_getneedsdecodedfxdata) | Obtains the **needsDecodeDfxData** parameter in the decoding options.|
+| <!--DelRow--> [Image_ErrorCode OH_DecodingOptionsForPicture_SetNeedsDecodeDfxData(OH_DecodingOptionsForPicture *options, bool needsDecodeDfxData)](#oh_decodingoptionsforpicture_setneedsdecodedfxdata) | Sets the **needsDecodeDfxData** parameter in the decoding options.|
+| <!--DelRow--> [Image_ErrorCode OH_DecodingOptionsForPicture_GetDesiredSizeForMainPixelmap(OH_DecodingOptionsForPicture *options, Image_Size *desiredSizeForMainPixelmap)](#oh_decodingoptionsforpicture_getdesiredsizeformainpixelmap) | Obtains the expected size of the main picture in the **DecodingOptionsForPicture** struct.|
+| <!--DelRow--> [Image_ErrorCode OH_DecodingOptionsForPicture_SetDesiredSizeForMainPixelmap(OH_DecodingOptionsForPicture *options, Image_Size desiredSizeForMainPixelmap)](#oh_decodingoptionsforpicture_setdesiredsizeformainpixelmap) | Sets the expected size of the main picture in the **DecodingOptionsForPicture** struct.|
+| <!--DelRow--> [Image_ErrorCode OH_DecodingOptionsForPicture_GetDesiredPixelFormat(OH_DecodingOptionsForPicture *options, PIXEL_FORMAT *desiredPixelFormat)](#oh_decodingoptionsforpicture_getdesiredpixelformat) | Obtains the pixel format in the **DecodingOptionsForPicture** struct.|
+| <!--DelRow--> [Image_ErrorCode OH_DecodingOptionsForPicture_SetDesiredPixelFormat(OH_DecodingOptionsForPicture *options, PIXEL_FORMAT desiredPixelFormat)](#oh_decodingoptionsforpicture_setdesiredpixelformat) | Sets the pixel format in the **DecodingOptionsForPicture** struct.|
 | [Image_ErrorCode OH_DecodingOptionsForPicture_Release(OH_DecodingOptionsForPicture *options)](#oh_decodingoptionsforpicture_release) | Releases the pointer to an OH_DecodingOptionsForPicture object.|
 | [Image_ErrorCode OH_ImageSourceNative_CreateImageRawData(const OH_ImageSourceNative *source, OH_ImageRawData **rawData)](#oh_imagesourcenative_createimagerawdata) | Obtains the rawData object from an image.|
 | [Image_ErrorCode OH_ImageSourceNative_GetBufferFromRawData(const OH_ImageRawData *rawData, uint8_t **data, size_t *length)](#oh_imagesourcenative_getbufferfromrawdata) | Obtains binary data from a rawData object.|
@@ -275,7 +284,7 @@ Check whether an image is HDR.
 ### OH_ImageSourceInfo_GetMimeType()
 
 ```c
-Image_ErrorCode OH_ImageSourceInfo_GetMimeType(OH_ImageSource_Info *info, Image_MimeType *mimeType)
+Image_ErrorCode OH_ImageSourceInfo_GetMimeType(OH_ImageSource_Info *info, Image_MimeType *mimetype)
 ```
 
 **Description**
@@ -312,7 +321,7 @@ Image_ErrorCode OH_ImageSourceInfo_Release(OH_ImageSource_Info *info)
 
 **Description**
 
-Releases the pointer to an OH_ImageSource_Info object. After this API is called, all properties related to the OH_ImageSource_Info struct are released. Therefore, before calling this API, ensure that the relevant properties are no longer needed or that a deep copy of these properties has been completed.
+Releases the pointer to an OH_ImageSource_Info object. After this API is called, **mimeType.data** obtained via **OH_ImageSourceInfo_GetMimeType()** becomes invalid. If you need to use the MIME type data after the release, perform a deep copy before the release.
 
 **Since**: 12
 
@@ -476,7 +485,7 @@ Obtains the rotation degree.
 | Name| Description|
 | -- | -- |
 | [OH_DecodingOptions](capi-image-nativemodule-oh-decodingoptions.md) *options | Pointer to an OH_DecodingOptions object.|
-| float *rotate | Pointer to the rotation degree, in deg. The default value is **0**.|
+| float *rotate | Pointer to the rotation degree, in deg. The default value is **0**. The value range is [0, 360].|
 
 **Returns**
 
@@ -502,7 +511,7 @@ Sets the rotation angle.
 | Name| Description|
 | -- | -- |
 | [OH_DecodingOptions](capi-image-nativemodule-oh-decodingoptions.md) *options | Pointer to an OH_DecodingOptions object.|
-| float rotate | Rotation degree, in deg. The default value is **0**.|
+| float rotate | Pointer to the rotation degree, in deg. The default value is **0**. The value range is [0, 360].|
 
 **Returns**
 
@@ -905,6 +914,10 @@ Image_ErrorCode OH_ImageSourceNative_CreateFromData(uint8_t *data, size_t dataSi
 
 Creates the pointer to an OH_ImageSourceNative object based on buffer data.<br> The passed **data** must be undecoded. Do not pass the pixel buffer data such as RGBA and YUV.<br> If you want to create a PixelMap based on the pixel buffer data, call [OH_PixelmapNative_CreatePixelmap](capi-pixelmap-native-h.md#oh_pixelmapnative_createpixelmap).
 
+Usage scenario: This API is applicable for scenarios where the application has already obtained complete encoded image data (such as binary data in JPEG, PNG, or WebP formats) through a network, file, or other modules. The API creates an image source object, which can then be used to call [OH_ImageSourceNative_GetImageInfo](#oh_imagesourcenative_getimageinfo) to read image information, or [OH_ImageSourceNative_CreatePixelmap](#oh_imagesourcenative_createpixelmap) to decode the data into a PixelMap.
+
+Resource management: The successfully created OH_ImageSourceNative object is held by the caller and must be released through [OH_ImageSourceNative_Release](#oh_imagesourcenative_release) after use. The input data is managed by the caller and should not be decoded pixel data. 
+
 **Since**: 12
 
 **Parameters**
@@ -930,6 +943,10 @@ Image_ErrorCode OH_ImageSourceNative_CreateFromDataWithUserBuffer(uint8_t *data,
 **Description**
 
 Creates an image source from data buffer. The data buffer is directly accessed by the image source object, and therefore the data buffer must remain accessible within the lifecycle of the image source object.
+
+Usage scenario: This API is applicable for scenarios where you want to reduce data copying during image source creation and the caller can guarantee the lifecycle of the input buffer.
+
+Resource management: Before calling [OH_ImageSourceNative_Release](#oh_imagesourcenative_release) to release the image source object, the buffer pointed to by **data** must not be freed, reused, or changed to other image data. Otherwise, subsequent operations such as reading image information, decoding, or reading metadata may result in accessing invalid data.
 
 **Since**: 20
 
@@ -983,6 +1000,12 @@ Image_ErrorCode OH_ImageSourceNative_CreatePixelmap(OH_ImageSourceNative *source
 
 Creates the pointer to an OH_PixelmapNative object based on decoding options.
 
+Usage scenario: This API is applicable for decoding encoded images such as JPEG, PNG, WebP, and single-frame GIF into PixelMaps that can be read, processed, or re-encoded. Before decoding, you can use OH_DecodingOptions to set parameters such as frame index, target pixel format, target size, crop region, and desired dynamic range.
+
+Restrictions: **source**, **options**, and **pixelmap** cannot be null pointers. Before calling this API, you need to create an OH_ImageSourceNative object. If you need to customize decoding options, create and set an OH_DecodingOptions object first. After the API is successfully called, **pixelmap** points to the newly created OH_PixelmapNative object. If the API fails to be executed, the object pointed to by **pixelmap** should not be used.
+
+Resource management: The successfully created OH_PixelmapNative object is held by the caller and must be released through [OH_PixelmapNative_Destroy](capi-pixelmap-native-h.md#oh_pixelmapnative_destroy) after use. The OH_DecodingOptions and OH_ImageSourceNative objects are not automatically released when the PixelMap is created. They must be released by calling [OH_DecodingOptions_Release](#oh_decodingoptions_release) and [OH_ImageSourceNative_Release](#oh_imagesourcenative_release), respectively.
+
 **Since**: 12
 
 
@@ -1009,6 +1032,12 @@ Image_ErrorCode OH_ImageSourceNative_CreatePixelmapUsingAllocator(OH_ImageSource
 **Description**
 
 Creates an OH_PixelmapNative object based on decoding options and memory type, where **allocatorType** specifies the memory type of the PixelMap.<br> By default, the system selects an appropriate memory type based on the image type, image size, and platform capability. When processing the returned PixelMap object, consider the impact of stride.
+
+Usage scenario: This API is applicable for scenarios where the caller needs to explicitly specify the memory type of the PixelMap. For example, when the subsequent image processing pipeline requires DMA memory, IMAGE_ALLOCATOR_TYPE_DMA can be specified.
+
+Restrictions: **source**, **options**, and **pixelmap** cannot be null pointers. The value of **allocator** must be a valid enumeration value defined in [IMAGE_ALLOCATOR_TYPE](#image_allocator_type). The specified memory type may be restricted by the image type, image size, system version, and device capability. The API may return **IMAGE_SOURCE_UNSUPPORTED_ALLOCATOR_TYPE**. If sandbox isolation is enabled for the calling process and **IMAGE_ALLOCATOR_TYPE_DMA** is specified or DMA memory is selected by **IMAGE_ALLOCATOR_TYPE_AUTO**, you need to configure the SELinux permission for the sandbox process to access DMA memory-related resources. Otherwise, the API call may be blocked or fail due to SELinux policy interception.
+
+Resource management: The successfully created PixelMap must be released by calling [OH_PixelmapNative_Destroy](capi-pixelmap-native-h.md#oh_pixelmapnative_destroy). When reading or writing pixel data, you cannot assume that the number of bytes per row equals the width multiplied by the number of bytes per pixel. Instead, you should use [OH_PixelmapImageInfo_GetRowStride](capi-pixelmap-native-h.md#oh_pixelmapimageinfo_getrowstride) to obtain the row stride.
 
 **Since**: 15
 
@@ -1038,6 +1067,12 @@ Image_ErrorCode OH_ImageSourceNative_CreatePixelmapList(OH_ImageSourceNative *so
 
 Creates an array of OH_PixelmapNative objects based on decoding options.<br> This function decodes all frames at once. If the number of frames is high or the size of individual frames is large, it can lead to significant memory usage. In these cases, you are advised to use the **Image** component for displaying animations. The **Image** component decodes frames one by one, which uses less memory than this function.
 
+Usage scenario: This API is applicable for scenarios where you need to obtain all frames of an animated image in one go and process them yourself, such as generating a thumbnail sequence, analyzing each frame, or re-encoding the animated image. If you only need to play an animated image, using this API is not recommended.
+
+Restrictions: **source**, **options**, and **resVecPixMap** cannot be null pointers. The caller needs to prepare a **resVecPixMap** array with sufficient length based on the number of frames. The size of the array must be the same as the number of elements that can be written to the array. Before calling this API, you can call [OH_ImageSourceNative_GetFrameCount](#oh_imagesourcenative_getframecount) to query the number of frames.
+
+Resource management: The **resVecPixMap** array is provided by the caller. Once successfully created, each OH_PixelmapNative object in the array is held by the caller. After use, you need to call [OH_PixelmapNative_Destroy](capi-pixelmap-native-h.md#oh_pixelmapnative_destroy) to release the objects one by one. On API failure, check the array for any non-null PixelMap pointers already written and release them as well.
+
 **Since**: 12
 
 
@@ -1065,6 +1100,8 @@ Image_ErrorCode OH_ImageSourceNative_CreatePicture(OH_ImageSourceNative *source,
 **Description**
 
 Creates the pointer to an OH_PictureNative object based on decoding options.
+
+Restrictions: **source**, **options**, and **picture** cannot be null pointers.
 
 **Since**: 13
 
@@ -1310,6 +1347,10 @@ Image_ErrorCode OH_ImageSourceNative_GetImagePropertyArraySize(OH_ImageSourceNat
 **Description**
 
 Obtains the length of a property array or a string property.
+
+Usage scenario: This API is applicable to query the required buffer size before reading image properties of the string, array, or binary object type. Typical process: Call this API to obtain the length, allocate the buffer (by the caller), and then call [OH_ImageSourceNative_GetImagePropertyString](#oh_imagesourcenative_getimagepropertystring), [OH_ImageSourceNative_GetImagePropertyIntArray](#oh_imagesourcenative_getimagepropertyintarray), [OH_ImageSourceNative_GetImagePropertyDoubleArray](#oh_imagesourcenative_getimagepropertydoublearray), or [OH_ImageSourceNative_GetImagePropertyBlob](#oh_imagesourcenative_getimagepropertyblob) to read the actual content.
+
+Resource management: This API does not allocate the buffer for property values. For subsequent property value reading, if the buffer is allocated by the caller, the caller is responsible for freeing it. If OH_ImageSourceNative_GetImageProperty](#oh_imagesourcenative_getimageproperty) or [OH_ImageSourceNative_GetImagePropertyWithNull](#oh_imagesourcenative_getimagepropertywithnull) is used and **value->data** is allocated by the system, you must call **free()** to release the buffer after use.
 
 **Since**: 23
 
@@ -1637,7 +1678,38 @@ Changes an image property value of the binary object type.
 | Type| Description|
 | -- | -- |
 | [Image_ErrorCode](capi-image-common-h.md#image_errorcode) | **IMAGE_SUCCESS**: The operation is successful.<br>         **IMAGE_SOURCE_INVALID_PARAMETER**: **source**, **key**, or **value** is **nullptr**.<br>         **IMAGE_SOURCE_UNSUPPORTED_MIME_TYPE**: Image properties for the current MIME type are not supported for querying.<br>         **IMAGE_SOURCE_UNSUPPORTED_METADATA**: The specified metadata does not exist or is not of the binary object type.|
+<!--Del-->
+### OH_ImageSourceNative_ReadImageMetadataByType()
 
+```c
+Image_ErrorCode OH_ImageSourceNative_ReadImageMetadataByType(OH_ImageSourceNative *source, uint32_t index, Image_MetadataType *metadataTypes, size_t typeCount, OH_PictureMetadata **outMetadataArray, size_t *metadataCount)
+```
+
+**Description**
+
+Reads the metadata of an image source. You can use **metadataTypes** to specify the metadata types to read. If **metadataTypes** is not specified, all supported metadata is returned.
+
+**Since:** 26.0.0
+
+**System API**: This is a system API.
+
+**Parameters**
+
+| Name| Description|
+| -- | -- |
+| [OH_ImageSourceNative](capi-image-nativemodule-oh-imagesourcenative.md) *source | Pointer to the image source.|
+| uint32_t index | Image index.|
+| [Image_MetadataType](capi-image-common-h.md#image_metadatatype) *metadataTypes | Metadata types.|
+| size_t typeCount | Number of the metadata types.|
+| [OH_PictureMetadata](capi-image-nativemodule-oh-picturemetadata.md) **outMetadataArray | Output parameter, which is used to receive the metadata array allocated by this function. After use, the caller needs to release the object.|
+| size_t *metadataCount | Number of **OH_PictureMetadata** elements returned in the output metadata array.|
+
+**Returns**
+
+| Type| Description|
+| -- | -- |
+| [Image_ErrorCode](capi-image-common-h.md#image_errorcode) | <ul><br>         <li>**IMAGE_SUCCESS**: The operation is successful.</li><br>         <li>**202**: This API is called by a non-system application.</li><br>         <li>**IMAGE_SOURCE_INVALID_PARAMETER**: **source**, **outMetadataArray**, or **metadataCount** is a null pointer.</li><br>         <li>**IMAGE_SOURCE_UNSUPPORTED_METADATA**: The metadata does not exist or the metadata type is not supported.</li><br>         <li>**IMAGE_SOURCE_ALLOC_FAILED**: The memory allocation fails.</li><br>         </ul> |
+<!--DelEnd-->
 ### OH_ImageSourceNative_GetImagePropertyWithNull()
 
 ```c
@@ -1647,6 +1719,12 @@ Image_ErrorCode OH_ImageSourceNative_GetImagePropertyWithNull(OH_ImageSourceNati
 **Description**
 
 Obtains the value of an image property. The output **value.data** ends with the string terminator **\0**.
+
+Usage scenario: This API is applicable for reading image properties in string format, such as the image orientation, capture time, and device information. Different from [OH_ImageSourceNative_GetImageProperty](#oh_imagesourcenative_getimageproperty), this API returns **value.data** that ends with **\0**, making it more suitable for direct handling as a C string.
+
+Restrictions: **source**, **key**, and **value** cannot be null pointers. Before calling this API, set **value.data** to **NULL** and **value.size** to **0**. After the API is executed successfully, the property value can be read through **value.data** and **value.size**. If the API fails to be executed, **value.data** should not be read.
+
+Resource management: After the API is successfully called, **value.data** is allocated by the system. The caller must call **free()** to release the memory after using it.
 
 **Since**: 19
 
@@ -1674,6 +1752,10 @@ Image_ErrorCode OH_ImageSourceNative_ModifyImageProperty(OH_ImageSourceNative *s
 **Description**
 
 Modifies the value of an image property.
+
+Usage scenario: This API is applicable for modifying image properties in an ImageSource, such as orientation, user comment, and other string properties. For properties of the short, long, double, array, or binary object type, you are advised to use the corresponding ModifyImagePropertyShort, ModifyImagePropertyLong, ModifyImagePropertyDouble, ModifyImagePropertyIntArray, ModifyImagePropertyDoubleArray, or ModifyImagePropertyBlob API to avoid type mismatches.
+
+Resource management: The memory pointed to by **key** and **value** is managed by the caller. The API does not take over their lifecycle. Modified properties are stored in the current ImageSource object. To generate an image file or image data containing the modified properties, you need to use the encoding API to re-output the image.
 
 **Since**: 12
 
@@ -1728,6 +1810,8 @@ Image_ErrorCode OH_ImageSourceNative_GetSupportedFormats(Image_MimeType **suppor
 
 Obtains the supported image formats that can be decoded.
 
+Usage scenario: This API is suitable for dynamically querying the decoding formats supported by the current system before creating an image source or displaying format options. The decoding capability for some formats may depend on the system version and device capabilities. You are advised to rely on the result returned by this API as the authoritative source.
+
 **Since**: 20
 
 
@@ -1754,6 +1838,8 @@ Image_ErrorCode OH_ImageSourceNative_Release(OH_ImageSourceNative *source)
 
 Releases the pointer to an OH_ImageSourceNative object.
 
+Resource management: Objects successfully created by **OH_ImageSourceNative_CreateFromUri**, **OH_ImageSourceNative_CreateFromFd**, **OH_ImageSourceNative_CreateFromData**, **OH_ImageSourceNative_CreateFromDataWithUserBuffer**, or **OH_ImageSourceNative_CreateFromRawFile** must be released using this API when they are no longer needed. After release, they must not be passed to any API for reading image information, decoding, or reading or modifying properties. Releasing an ImageSource does not automatically release any OH_PixelmapNative, OH_PictureNative, or OH_ImageRawData objects. These objects must be released by calling their respective release APIs.
+
 **Since**: 12
 
 
@@ -1779,6 +1865,8 @@ Image_ErrorCode OH_DecodingOptionsForPicture_Create(OH_DecodingOptionsForPicture
 
 Creates the pointer to an OH_DecodingOptionsForPicture object.
 
+Restrictions: **options** cannot be a null pointer. If the API returns a failure, the output parameter content cannot be used in the subsequent process.
+
 **Since**: 13
 
 
@@ -1803,6 +1891,10 @@ Image_ErrorCode OH_DecodingOptionsForPicture_GetDesiredAuxiliaryPictures(OH_Deco
 **Description**
 
 Obtains desired auxiliary pictures in the decoding options (auxiliary pictures contained in **picture** expected to be decoded.)
+
+Restrictions: **options**, **desiredAuxiliaryPictures**, and **length** cannot be null pointers. If no desired auxiliary picture is set, the API returns **IMAGE_BAD_PARAMETER**.
+
+Resource management: The **desiredAuxiliaryPictures** array returned by the API is allocated by the API. After the array is used, the caller needs to **use delete[]** to release it.
 
 **Since**: 13
 
@@ -1831,6 +1923,10 @@ Image_ErrorCode OH_DecodingOptionsForPicture_SetDesiredAuxiliaryPictures(OH_Deco
 
 Sets desired auxiliary pictures in the decoding options.
 
+Restrictions: **options** and **desiredAuxiliaryPictures** cannot be null pointers. The value of **length** must be greater than 0. The auxiliary picture type in the **desiredAuxiliaryPictures** array must be the currently supported **Image_AuxiliaryPictureType**.
+
+Resource management: The API saves the auxiliary picture type in the input array to the **OH_DecodingOptionsForPicture** object and does not hold the input array pointer. After the API returns, the caller can release or reuse the array. When this API is called multiple times, the newly input auxiliary picture types are added to the existing set. Only one copy of each type is retained.
+
 **Since**: 13
 
 
@@ -1847,7 +1943,169 @@ Sets desired auxiliary pictures in the decoding options.
 | Type| Description|
 | -- | -- |
 | [Image_ErrorCode](capi-image-common-h.md#image_errorcode) | **IMAGE_SUCCESS**: The operation is successful.<br>         **IMAGE_BAD_PARAMETER**: A parameter is incorrect.|
+<!--Del-->
+### OH_DecodingOptionsForPicture_GetNeedsDecodeDfxData()
 
+```c
+Image_ErrorCode OH_DecodingOptionsForPicture_GetNeedsDecodeDfxData(OH_DecodingOptionsForPicture *options, bool *needsDecodeDfxData)
+```
+
+**Description**
+
+Obtains the **needsDecodeDfxData** parameter in the decoding options.
+
+**Since:** 26.0.0
+
+**System API**: This is a system API.
+
+**Parameters**
+
+| Name| Description|
+| -- | -- |
+| [OH_DecodingOptionsForPicture](capi-image-nativemodule-oh-decodingoptionsforpicture.md) *options | Pointer to the **OH_DecodingOptionsForPicture** struct.|
+| bool *needsDecodeDfxData | Whether the image DFX data needs to be decoded. The value **true** indicates yes, and the value **false** indicates no.|
+
+**Returns**
+
+| Type| Description|
+| -- | -- |
+| [Image_ErrorCode](capi-image-common-h.md#image_errorcode) | <ul><br>         <li>**IMAGE_SUCCESS**: The operation is successful.</li><br>         <li>**202**: This API is called by a non-system application.</li><br>         <li>**IMAGE_SOURCE_INVALID_PARAMETER**: **options** or **needsDecodeDfxData** is a null pointer.</li><br>         </ul> |
+
+### OH_DecodingOptionsForPicture_SetNeedsDecodeDfxData()
+
+```c
+Image_ErrorCode OH_DecodingOptionsForPicture_SetNeedsDecodeDfxData(OH_DecodingOptionsForPicture *options, bool needsDecodeDfxData)
+```
+
+**Description**
+
+Sets the **needsDecodeDfxData** parameter in the decoding options.
+
+**Since:** 26.0.0
+
+**System API**: This is a system API.
+
+**Parameters**
+
+| Name| Description|
+| -- | -- |
+| [OH_DecodingOptionsForPicture](capi-image-nativemodule-oh-decodingoptionsforpicture.md) *options | Pointer to the **OH_DecodingOptionsForPicture** struct.|
+| bool needsDecodeDfxData | Whether the image DFX data needs to be decoded. The value **true** indicates yes, and the value **false** indicates no.|
+
+**Returns**
+
+| Type| Description|
+| -- | -- |
+| [Image_ErrorCode](capi-image-common-h.md#image_errorcode) | <ul><br>         <li>**IMAGE_SUCCESS**: The operation is successful.</li><br>         <li>**202**: This API is called by a non-system application.</li><br>         <li>**IMAGE_SOURCE_INVALID_PARAMETER**: **options** is a null pointer.</li><br>         </ul> |
+
+### OH_DecodingOptionsForPicture_GetDesiredSizeForMainPixelmap()
+
+```c
+Image_ErrorCode OH_DecodingOptionsForPicture_GetDesiredSizeForMainPixelmap(OH_DecodingOptionsForPicture *options, Image_Size *desiredSizeForMainPixelmap)
+```
+
+**Description**
+
+Obtains the expected size of the main picture in the **DecodingOptionsForPicture** struct.
+
+**Since:** 26.0.0
+
+**System API**: This is a system API.
+
+**Parameters**
+
+| Name| Description|
+| -- | -- |
+| [OH_DecodingOptionsForPicture](capi-image-nativemodule-oh-decodingoptionsforpicture.md) *options | Pointer to the **OH_DecodingOptionsForPicture** struct.|
+| [Image_Size](capi-image-nativemodule-image-size.md) *desiredSizeForMainPixelmap | Expected size of the main picture.|
+
+**Returns**
+
+| Type| Description|
+| -- | -- |
+| [Image_ErrorCode](capi-image-common-h.md#image_errorcode) | <ul><br>         <li>**IMAGE_SUCCESS**: The operation is successful.</li><br>         <li>**202**: This API is called by a non-system application.</li><br>         <li>**IMAGE_SOURCE_INVALID_PARAMETER**: **options** is a null pointer.</li><br>         </ul> |
+
+### OH_DecodingOptionsForPicture_SetDesiredSizeForMainPixelmap()
+
+```c
+Image_ErrorCode OH_DecodingOptionsForPicture_SetDesiredSizeForMainPixelmap(OH_DecodingOptionsForPicture *options, Image_Size desiredSizeForMainPixelmap)
+```
+
+**Description**
+
+Sets the expected size of the main picture in the **DecodingOptionsForPicture** struct.
+
+**Since:** 26.0.0
+
+**System API**: This is a system API.
+
+**Parameters**
+
+| Name| Description|
+| -- | -- |
+| [OH_DecodingOptionsForPicture](capi-image-nativemodule-oh-decodingoptionsforpicture.md) *options | Pointer to the **OH_DecodingOptionsForPicture** struct.|
+| [Image_Size](capi-image-nativemodule-image-size.md) desiredSizeForMainPixelmap | Expected size of the main picture.|
+
+**Returns**
+
+| Type| Description|
+| -- | -- |
+| [Image_ErrorCode](capi-image-common-h.md#image_errorcode) | <ul><br>         <li>**IMAGE_SUCCESS**: The operation is successful.</li><br>         <li>**202**: This API is called by a non-system application.</li><br>         <li>**IMAGE_SOURCE_INVALID_PARAMETER**: **options** is a null pointer.</li><br>         </ul> |
+
+### OH_DecodingOptionsForPicture_GetDesiredPixelFormat()
+
+```c
+Image_ErrorCode OH_DecodingOptionsForPicture_GetDesiredPixelFormat(OH_DecodingOptionsForPicture *options, PIXEL_FORMAT *desiredPixelFormat)
+```
+
+**Description**
+
+Obtains the pixel format in the **DecodingOptionsForPicture** struct.
+
+**Since:** 26.0.0
+
+**System API**: This is a system API.
+
+**Parameters**
+
+| Name| Description|
+| -- | -- |
+| [OH_DecodingOptionsForPicture](capi-image-nativemodule-oh-decodingoptionsforpicture.md) *options | Pointer to the **OH_DecodingOptionsForPicture** struct.|
+| [PIXEL_FORMAT](capi-pixelmap-native-h.md#pixel_format) *desiredPixelFormat | Pixel format in the decoding options.|
+
+**Returns**
+
+| Type| Description|
+| -- | -- |
+| [Image_ErrorCode](capi-image-common-h.md#image_errorcode) | <ul><br>         <li>**IMAGE_SUCCESS**: The operation is successful.</li><br>         <li>**202**: This API is called by a non-system application.</li><br>         <li>**IMAGE_SOURCE_INVALID_PARAMETER**: **options** is a null pointer.</li><br>         </ul> |
+
+### OH_DecodingOptionsForPicture_SetDesiredPixelFormat()
+
+```c
+Image_ErrorCode OH_DecodingOptionsForPicture_SetDesiredPixelFormat(OH_DecodingOptionsForPicture *options, PIXEL_FORMAT desiredPixelFormat)
+```
+
+**Description**
+
+Sets the pixel format in the **DecodingOptionsForPicture** struct.
+
+**Since:** 26.0.0
+
+**System API**: This is a system API.
+
+**Parameters**
+
+| Name| Description|
+| -- | -- |
+| [OH_DecodingOptionsForPicture](capi-image-nativemodule-oh-decodingoptionsforpicture.md) *options | Pointer to the **OH_DecodingOptionsForPicture** struct.|
+| [PIXEL_FORMAT](capi-pixelmap-native-h.md#pixel_format) desiredPixelFormat | Pixel format in the decoding options.|
+
+**Returns**
+
+| Type| Description|
+| -- | -- |
+| [Image_ErrorCode](capi-image-common-h.md#image_errorcode) | <ul><br>         <li>**IMAGE_SUCCESS**: The operation is successful.</li><br>         <li>**202**: This API is called by a non-system application.</li><br>         <li>**IMAGE_SOURCE_INVALID_PARAMETER**: **options** is a null pointer.</li><br>         </ul> |
+<!--DelEnd-->
 ### OH_DecodingOptionsForPicture_Release()
 
 ```c
@@ -1883,6 +2141,10 @@ Image_ErrorCode OH_ImageSourceNative_CreateImageRawData(const OH_ImageSourceNati
 
 Obtains the rawData object from an image. The rawData object usually occupies a large amount of memory because it contains raw data from the camera.<br>        When the rawData object is no longer needed, call the [OH_ImageSourceNative_DestroyImageRawData](capi-image-source-native-h.md#oh_imagesourcenative_destroyimagerawdata) method to destroy it in a timely manner to deallocate memory resources.
 
+Usage scenario: This API is applicable for reading raw data from an image source containing raw image data and passing it to custom image processing, algorithm analysis, or saving pipelines. For common image display or general pixel processing scenarios, you should use [OH_ImageSourceNative_CreatePixelmap](#oh_imagesourcenative_createpixelmap) to decode the image into a PixelMap.
+
+Resource management: The successfully created OH_ImageRawData object is held by the caller and must be destroyed using [OH_ImageSourceNative_DestroyImageRawData](#oh_imagesourcenative_destroyimagerawdata) after use. The lifecycle of the rawData object and the OH_ImageSourceNative object are independent of each other. Releasing ImageSource does not automatically destroy rawData.
+
 **Since**: 24
 
 **Parameters**
@@ -1907,6 +2169,8 @@ Image_ErrorCode OH_ImageSourceNative_GetBufferFromRawData(const OH_ImageRawData 
 **Description**
 
 Obtains binary data from a rawData object.
+
+Resource management: **data** returns the address of the internal binary buffer of the rawData object. The caller must not call **free()** on ***data**, nor continue to access this address after the rawData object has been destroyed by [OH_ImageSourceNative_DestroyImageRawData](#oh_imagesourcenative_destroyimagerawdata). If you need to use the data after rawData is destroyed, you must perform a deep copy before destroying it.
 
 **Since**: 24
 
@@ -1958,6 +2222,8 @@ Image_ErrorCode OH_ImageSourceNative_DestroyImageRawData(OH_ImageRawData *rawDat
 **Description**
 
 Destroys a rawData object.
+
+Resource management: This API only destroys the OH_ImageRawData object and its internal resources, but does not release the OH_ImageSourceNative object. After the destruction, the data address obtained through [OH_ImageSourceNative_GetBufferFromRawData](#oh_imagesourcenative_getbufferfromrawdata) becomes invalid immediately.
 
 **Since**: 24
 

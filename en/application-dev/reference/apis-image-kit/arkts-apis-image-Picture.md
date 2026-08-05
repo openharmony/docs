@@ -1,10 +1,12 @@
 # Interface (Picture)
+
 <!--Kit: Image Kit-->
 <!--Subsystem: Multimedia-->
 <!--Owner: @aulight02-->
-<!--Designer: @liyang_bryan-->
+<!--Designer: @XiaoYao555-->
 <!--Tester: @xchaosioda-->
 <!--Adviser: @w_Machine_cc-->
+<!-- md-trans-meta sourceCommit=a569cef255f0bfd2be482f42d11f341117248869 translatedAt=2026-08-03T03:56:57.248Z pushedAt=2026-08-04T03:21:17.349Z -->
 
 An image that contains special information can be decoded into a picture object, which generally contains the main picture, auxiliary picture, and metadata. The main picture contains most information about the image and is mainly used to render the image. The auxiliary picture is used to store data related to but different from the main picture, revealing more comprehensive details. The metadata is generally used to store information about the image file. The picture object class is used to read or write picture objects. Before calling any API in Picture, you must use [image.createPicture](arkts-apis-image-f.md#imagecreatepicture13) to create a Picture object.
 
@@ -47,14 +49,14 @@ async function GetMainPixelmap(pictureObj : image.Picture) {
     if (mainPixelmap != null) {
       mainPixelmap.getImageInfo().then((imageInfo: image.ImageInfo) => {
         if (imageInfo != null) {
-          console.info('GetMainPixelmap information height:' + imageInfo.size.height + ' width:' + imageInfo.size.width);
+          console.info(`Succeeded in getting main PixelMap information. Height: ${imageInfo.size.height}, width: ${imageInfo.size.width}.`);
         }
       }).catch((error: BusinessError) => {
-        console.error(funcName, `Failed error.code: ${error.code} ,error.message: ${error.message}`);
+        console.error(funcName, `Failed to get main PixelMap information. Code: ${error.code}, message: ${error.message}.`);
       });
     }
   } else {
-    console.error('PictureObj is null');
+    console.error('Picture object is null.');
   }
 }
 ```
@@ -94,14 +96,14 @@ async function GetHdrComposedPixelmap(pictureObj : image.Picture) {
     if (hdrComposedPixelmap != null) {
       hdrComposedPixelmap.getImageInfo().then((imageInfo: image.ImageInfo) => {
         if (imageInfo != null) {
-          console.info(`GetHdrComposedPixelmap information height:${imageInfo.size.height} width:${imageInfo.size.width}`);
+          console.info(`Succeeded in getting HDR composed PixelMap information. Height: ${imageInfo.size.height}, width: ${imageInfo.size.width}.`);
         }
       }).catch((error: BusinessError) => {
-        console.error(funcName, `Failed error.code: ${error.code} ,error.message: ${error.message}`);
+        console.error(funcName, `Failed to get HDR composed PixelMap information. Code: ${error.code}, message: ${error.message}.`);
       });
     }
   } else {
-    console.error('PictureObj is null');
+    console.error('Picture object is null.');
   }
 }
 ```
@@ -141,12 +143,13 @@ For details about the error codes, see [Image Error Codes](errorcode-image.md).
 **Example**
 
 ```ts
+// EntryAbility.ets
 import { image } from '@kit.ImageKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 async function GetHdrComposedPixelmapWithOptions(picture : image.Picture) {
   if (picture == null) {
-    console.error('picture is null');
+    console.error('Picture is null.');
     return;
   }
 
@@ -155,17 +158,65 @@ async function GetHdrComposedPixelmapWithOptions(picture : image.Picture) {
   };
   let hdrComposedPixelmap: image.PixelMap | undefined = await picture.getHdrComposedPixelmapWithOptions(opt);
   if (hdrComposedPixelmap == null || hdrComposedPixelmap == undefined) {
-    console.error(`GetHdrComposedPixelmapWithOptions failed`);
+    console.error(`Failed to get an HDR composed PixelMap with options.`);
     return;
   }
 
   hdrComposedPixelmap.getImageInfo().then((imageInfo: image.ImageInfo) => {
     if (imageInfo !== null) {
-      console.info(`GetHdrComposedPixelmapWithOptions information height:${imageInfo.size.height} width:${imageInfo.size.width}`);
+      console.info(`Succeeded in getting HDR composed PixelMap information with options. Height: ${imageInfo.size.height}, width: ${imageInfo.size.width}.`);
     }
   }).catch((error: BusinessError) => {
-    console.error(`GetHdrComposedPixelmapWithOptions information failed error.code: ${error.code} ,error.message: ${error.message}`);
+    console.error(`Failed to get HDR composed PixelMap information with options. Code: ${error.code}, message: ${error.message}.`);
   });
+}
+```
+
+## hdrComposeToMainPixelmap
+
+hdrComposeToMainPixelmap(): Promise\<void>
+
+Composes the main picture and gain map of a Picture object into an HDR image. After composition, the main picture of the original Picture is replaced with the HDR image, and the gain map of the original Picture is deleted. This API uses a promise to return the result.
+
+The Picture object on which this API is called must contain a main picture and a gain map.
+
+**Since:** 26.0.0
+
+**Model restriction**: This API can be used only in the stage model.
+
+**System capability:** SystemCapability.Multimedia.Image.Core
+
+**Returns**
+
+| Type                          | Description                        |
+| ----------------------------- | ---------------------------------- |
+| Promise\<void> | Promise that returns no value. |
+
+**Error codes**
+
+For details about the following error codes, see [Image Error Codes](errorcode-image.md).
+
+| ID   | Error Message               |
+| ---- | --------------------------- |
+| 7600201 | Unsupported operation. For example: 1. The picture does not have a gainmap. 2. pixelMap's allocator type is not DMA. |
+
+**Example**
+
+```ts
+// EntryAbility.ets
+import { image } from '@kit.ImageKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+async function HdrComposeToMainPixelmap(picture : image.Picture) {
+  if (picture == null) {
+    console.error('picture is null');
+    return;
+  }
+  try {
+    await picture.hdrComposeToMainPixelmap();
+  } catch(error) {
+    console.error(`Failed to do HdrComposeToMainPixelmap. error.code: ${error.code} ,error.message: ${error.message}`);
+  }
 }
 ```
 
@@ -195,18 +246,18 @@ async function GetGainmapPixelmap(pictureObj : image.Picture) {
     if (gainPixelmap != null) {
       gainPixelmap.getImageInfo().then((imageInfo: image.ImageInfo) => {
         if (imageInfo != null) {
-          console.info(`GetGainmapPixelmap information height:${imageInfo.size.height} width:${imageInfo.size.width}`);
+          console.info(`Succeeded in getting gainmap PixelMap information. Height: ${imageInfo.size.height}, width: ${imageInfo.size.width}.`);
         } else {
-          console.error('GainPixelmap is null');
+          console.error('Gainmap PixelMap is null.');
         }
       }).catch((error: BusinessError) => {
-        console.error(funcName, `Failed error.code: ${error.code} ,error.message: ${error.message}`);
+        console.error(funcName, `Failed to get gainmap PixelMap information. Code: ${error.code}, message: ${error.message}.`);
       });
     } else {
-      console.info('GainPixelmap is null');
+      console.info('Gainmap PixelMap is null.');
     }
   } else {
-    console.error('PictureObj is null');
+    console.error('Picture object is null.');
   }
 }
 ```
@@ -247,9 +298,9 @@ async function SetAuxiliaryPicture(context: Context) {
   let pixelMap: image.PixelMap = await imageSource.createPixelMap();
   let pictureObj: image.Picture = image.createPicture(pixelMap);
   if (pictureObj != null) {
-    console.info('Create picture succeeded');
+    console.info('Succeeded in creating picture.');
   } else {
-    console.error('Create picture failed');
+    console.error('Failed to create picture.');
   }
 
   if (pictureObj != null) {
@@ -320,7 +371,7 @@ Sets the metadata for this Picture object. This API uses a promise to return the
 
 | Type          | Description                                  |
 | -------------- | -------------------------------------- |
-| Promise\<void> | Promise that returns no value.|
+| Promise\<void> | Promise that returns no value. |
 
 **Error codes**
 
@@ -346,18 +397,18 @@ async function SetPictureObjMetadata(exifContext: Context) {
   let exifCommodityPixelMap: image.PixelMap = await exifImageSource.createPixelMap();
   let exifPictureObj: image.Picture = image.createPicture(exifCommodityPixelMap);
   if (exifPictureObj != null) {
-    console.info('Create picture succeeded');
+    console.info('Succeeded in creating picture.');
   } else {
-    console.error('Create picture failed');
+    console.error('Failed to create picture.');
   }
 
   if (exifPictureObj != null) {
     let metadataType: image.MetadataType = image.MetadataType.EXIF_METADATA;
     let exifMetaData: image.Metadata = await exifPictureObj.getMetadata(metadataType);
     exifPictureObj.setMetadata(metadataType, exifMetaData).then(() => {
-      console.info('Set metadata success');
+      console.info('Succeeded in setting metadata.');
     }).catch((error: BusinessError) => {
-      console.error('Failed to set metadata. error.code: ' +JSON.stringify(error.code) + ' ,error.message:' + JSON.stringify(error.message));
+      console.error(`Failed to set metadata. error.code: ${error.code} ,error.message: ${error.message}`);
     });
   } else {
     console.error('exifPictureObj is null');
@@ -402,9 +453,9 @@ async function GetPictureObjMetadataProperties(pictureObj : image.Picture) {
     let metadataType: image.MetadataType = image.MetadataType.EXIF_METADATA;
     let pictureObjMetaData: image.Metadata = await pictureObj.getMetadata(metadataType);
     if (pictureObjMetaData != null) {
-      console.info('get picture metadata success');
+      console.info('Succeeded in getting picture metadata.');
     } else {
-      console.error('get picture metadata is failed');
+      console.error('Failed to get picture metadata.');
     }
   } else {
     console.error(" pictureObj is null");
@@ -449,19 +500,19 @@ class MySequence implements rpc.Parcelable {
   marshalling(messageSequence: rpc.MessageSequence) {
     if(this.picture != null) {
       this.picture.marshalling(messageSequence);
-      console.info('Marshalling success !');
+      console.info('Succeeded in marshalling a picture.');
       return true;
     } else {
-      console.error('Marshalling failed !');
+      console.error('Failed to marshall a picture.');
       return false;
     }
   }
   unmarshalling(messageSequence : rpc.MessageSequence) {
     this.picture = image.createPictureFromParcel(messageSequence);
     this.picture.getMainPixelmap().getImageInfo().then((imageInfo : image.ImageInfo) => {
-      console.info(`Unmarshalling to get mainPixelmap information height:${imageInfo.size.height} width:${imageInfo.size.width}`);
+      console.info(`Succeeded in unmarshalling a picture and getting main PixelMap information. Height: ${imageInfo.size.height}, width: ${imageInfo.size.width}.`);
     }).catch((error: BusinessError) => {
-      console.error(`Unmarshalling failed error.code: ${error.code} ,error.message: ${error.message}`);
+      console.error(`Failed to unmarshall a picture. Code: ${error.code}, message: ${error.message}.`);
     });
     return true;
   }
@@ -477,7 +528,7 @@ async function Marshalling_UnMarshalling(pictureObj : image.Picture) {
     // Implement deserialization.
     data.readParcelable(ret);
   } else {
-    console.error('PictureObj is null');
+    console.error('Picture object is null.');
   }
 }
 ```
@@ -502,13 +553,12 @@ async function Release(pictureObj : image.Picture) {
   if (pictureObj != null) {
     pictureObj.release();
     if (pictureObj.getMainPixelmap() == null) {
-      console.info(funcName, 'Success !');
+      console.info(funcName, 'Succeeded in releasing a picture.');
     } else {
-      console.error(funcName, 'Failed !');
+      console.error(funcName, 'Failed to release a picture.');
     }
   } else {
-    console.error('PictureObj is null');
+    console.error('Picture object is null.');
   }
 }
 ```
-<!--no_check-->

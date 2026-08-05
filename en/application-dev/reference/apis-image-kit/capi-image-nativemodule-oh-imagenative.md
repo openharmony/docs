@@ -1,10 +1,12 @@
 # OH_ImageNative
+
 <!--Kit: Image Kit-->
 <!--Subsystem: Multimedia-->
 <!--Owner: @aulight02-->
-<!--Designer: @liyang_bryan-->
+<!--Designer: @XiaoYao555-->
 <!--Tester: @xchaosioda-->
 <!--Adviser: @w_Machine_cc-->
+<!-- md-trans-meta sourceCommit=9329f19aa2995f079ff9cf109a20aad0033a91a3 translatedAt=2026-08-03T03:59:29.177Z pushedAt=2026-08-04T03:02:20.932Z -->
 
 ```c
 typedef struct OH_ImageNative OH_ImageNative

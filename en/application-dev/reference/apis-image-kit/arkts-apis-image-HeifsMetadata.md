@@ -1,14 +1,16 @@
 # Class (HeifsMetadata)
+
 <!--Kit: Image Kit-->
 <!--Subsystem: Multimedia-->
 <!--Owner: @aulight02-->
-<!--Designer: @liyang_bryan-->
+<!--Designer: @XiaoYao555-->
 <!--Tester: @xchaosioda-->
 <!--Adviser: @w_Machine_cc-->
+<!-- md-trans-meta sourceCommit=a569cef255f0bfd2be482f42d11f341117248869 translatedAt=2026-08-03T03:55:02.159Z pushedAt=2026-08-04T03:37:35.823Z -->
 
 HeifsMetadata implements Metadata
 
-HEIF image sequence metadata.
+HEIF image sequence metadata class, which is used to store image metadata.
 
 > **NOTE**
 >
@@ -28,7 +30,10 @@ import { image } from '@kit.ImageKit';
 
 | Name                        | Type  | Read-Only| Optional| Description                                      |
 | ---------------------------- | ------ | ---- | ---- | ------------------------------------------ |
-| heifsDelayTime | number | Yes  | Yes  | Playback duration of each frame in an HEIF image sequence, in milliseconds.|
+| heifsDelayTime | number | Yes | Yes | Playback duration of each frame in the HEIF image sequence, in milliseconds (ms). |
+| heifsCanvasHeight | number | Yes | Yes | Canvas height of the HEIF image sequence.<br>Unit: px.<br>The value is a positive integer.<br>**Since:** 26.0.0 |
+| heifsCanvasWidth | number | Yes | Yes | Canvas width of the HEIF image sequence.<br>Unit: px.<br>The value is a positive integer.<br>**Since:** 26.0.0 |
+| heifsUnclampedDelayTime | number | Yes | Yes | Unclamped delay time of each frame in the HEIF image sequence.<br>Unit: ms.<br>The value is a positive integer.<br>**Since:** 26.0.0 |
 
 ## createInstance
 
@@ -52,7 +57,7 @@ Creates an empty [HeifsMetadata](arkts-apis-image-HeifsMetadata.md) instance.
 async function heifsMetadataCreateInstance(context: Context) {
   let heifsMetadata = image.HeifsMetadata.createInstance();
   if (heifsMetadata != undefined) {
-    console.info("createInstance success");
+    console.info("Succeeded in creating a HeifsMetadata instance.");
   }
 }
 ```
@@ -108,9 +113,9 @@ async function heifsMetadataGetProperties(context: Context) {
   let metaData = await imageSource.readImageMetadata(["HeifsDelayTime"]);
   if (metaData != undefined && metaData.heifsMetadata != undefined) {
     await metaData.heifsMetadata.getProperties(["HeifsDelayTime"]).then((data) => {
-      console.info('Get properties ',JSON.stringify(data));
+      console.info('Succeeded in getting properties. ',JSON.stringify(data));
     }).catch((error: BusinessError) => {
-      console.error(`Get properties failed error.code is ${error.code}, error.message is ${error.message}`);
+      console.error(`Failed to get properties. error.code is ${error.code}, error.message is ${error.message}`);
     });
   } else {
     console.error('Metadata is null.');
@@ -172,7 +177,7 @@ async function heifsMetadataSetProperties(context: Context) {
       "HeifsDelayTime": "200",
     };
     await metaData.heifsMetadata.setProperties(setkey).then(async () => {
-      console.info('Set properties success.');
+      console.info('Succeeded in setting properties.');
     }).catch((error: BusinessError) => {
       console.error(`Failed to set metadata Properties. code is ${error.code}, message is ${error.message}`);
     })
@@ -220,10 +225,9 @@ async function heifsMetadataGetAllProperties(context: Context) {
   if (metaData != undefined && metaData.heifsMetadata != undefined) {
     await metaData.heifsMetadata.getAllProperties().then((data) => {
       const count = Object.keys(data).length;
-      console.info('Metadata have ', count, ' properties');
-      console.info(`Get metadata all properties: ${data}`);
+      console.info(`Succeeded in getting all properties. Count: ${count}, data: ${JSON.stringify(data)}.`);
     }).catch((error: BusinessError) => {
-      console.error(`Get metadata all properties failed error.code is ${error.code}, error.message is ${error.message}`);
+      console.error(`Failed to get all properties. Code: ${error.code}, message: ${error.message}.`);
     });
   } else {
     console.error('Metadata is null.');
@@ -267,16 +271,15 @@ async function heifsMetadataClone(context: Context) {
   if (metaData != undefined && metaData.heifsMetadata != undefined) {
     let new_metadata = await metaData.heifsMetadata.clone();
     new_metadata.getProperties(["HeifsDelayTime"]).then((data1) => {
-      console.info(`Clone new_metadata and get Properties: ${data1}`);
+      console.info(`Succeeded in cloning metadata and getting properties. Data: ${JSON.stringify(data1)}.`);
     }).catch((err: BusinessError) => {
-      console.error(`Clone new_metadata failed, error : ${err}`);
+      console.error(`Failed to clone metadata and get properties. Code: ${err.code}, message: ${err.message}.`);
     });
   } else {
     console.error('Metadata is null.');
   }
 }
 ```
-
 
 ## getBlob
 
@@ -313,7 +316,7 @@ async function heifsMetadataGetBlob(context: Context) {
   if (metaData != undefined && metaData.heifsMetadata != undefined) {
     let blob = await metaData.heifsMetadata.getBlob();
     if (blob != undefined) {
-      console.info("get blob success");
+      console.info("Succeeded in getting blob.");
     }
   }
 }
@@ -368,7 +371,7 @@ async function heifsMetadataSetBlob(context: Context) {
   if (metaData != undefined && metaData.heifsMetadata != undefined) {
     let blob = await metaData.heifsMetadata.getBlob();
     if (blob != undefined) {
-      console.info("get blob success");
+      console.info("Succeeded in getting blob.");
       metaData.heifsMetadata.setBlob(blob);
     }
     let new_blob = metaData.heifsMetadata.getBlob();
@@ -378,4 +381,3 @@ async function heifsMetadataSetBlob(context: Context) {
   }
 }
 ```
-<!--no_check-->
