@@ -485,7 +485,7 @@ updateContact(contact: Contact, callback: AsyncCallback&lt;void&gt;): void
 >
 > 从API version 7 开始支持，从API version 10 开始废弃，建议使用[updateContact](#contactupdatecontact10)替代。
 
-**需要权限**：ohos.permission.WRITE_CONTACTS和ohos.permission.READ_CONTACTS
+**需要权限**：ohos.permission.WRITE_CONTACTS
 
 **系统能力**：SystemCapability.Applications.ContactsData
 
@@ -504,9 +504,7 @@ updateContact(contact: Contact, callback: AsyncCallback&lt;void&gt;): void
 
   // 通过selectContacts接口选择联系人。
   contact.selectContacts().then((data) => {
-    // 请在组件内获取context。
-    let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
-    contact.updateContact(context, {
+    contact.updateContact({
       id: data[0].id, // 选择联系人的id。
       name: {
         fullName: 'xxx'
@@ -597,7 +595,7 @@ updateContact(contact: Contact, attrs: ContactAttributes, callback: AsyncCallbac
 >
 > 从API version 7 开始支持，从API version 10 开始废弃，建议使用[updateContact](#contactupdatecontact10-1)替代。
 
-**需要权限**：ohos.permission.WRITE_CONTACTS和ohos.permission.READ_CONTACTS
+**需要权限**：ohos.permission.WRITE_CONTACTS
 
 **系统能力**：SystemCapability.Applications.ContactsData
 
@@ -712,7 +710,7 @@ updateContact(contact: Contact, attrs?: ContactAttributes): Promise&lt;void&gt;
 >
 > 从API version 7 开始支持，从API version 10 开始废弃，建议使用[updateContact](#contactupdatecontact10-2)替代。
 
-**需要权限**：ohos.permission.WRITE_CONTACTS和ohos.permission.READ_CONTACTS
+**需要权限**：ohos.permission.WRITE_CONTACTS
 
 **系统能力**：SystemCapability.Applications.ContactsData
 
@@ -4250,7 +4248,7 @@ promise.then((data) => {
 
 addContactViaUI(context: Context, contact: Contact): Promise&lt;number&gt;
 
-调用新建联系人接口，打开新建联系人UI界面，新建完成。使用Promise异步回调。
+调用新建联系人接口，打开新建联系人UI界面。使用Promise异步回调。
 
 **原子化服务API**: 从API version 15 开始，该接口支持在原子化服务中使用。
 
@@ -4556,7 +4554,7 @@ contact.hasMatchedCallLog(context, phoneNumber, minDuration).then((hasMatch:bool
 
 syncContacts(context: Context, mode: ContactSyncMode, progress: ContactSyncProgress, contacts: Array&lt;Contact&gt;): Promise&lt;Array&lt;number&gt;&gt;
 
-批量同步多个联系人至联系人数据库。每次最多可批量同步400个联系人。同步三方应用自身联系人至本机。调用方必须处于前台。
+批量同步多个联系人至联系人数据库。每次最多可批量同步400个联系人。调用方必须处于前台。
 
 **起始版本**：26.0.0
 
