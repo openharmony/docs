@@ -76,7 +76,7 @@ Sendable对象支持冻结操作。冻结后，对象变为只读，不能修改
    <!-- @[directly_operate_obj](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/ArkTsConcurrent/ConcurrentThreadCommunication/SendableObjectRelated/entry/src/main/ets/workers/Worker.ets) --> 
    
    ``` TypeScript
-   import { ErrorEvent, MessageEvents, ThreadWorkerGlobalScope, worker } from '@kit.ArkTS';
+   import { MessageEvents, ThreadWorkerGlobalScope, worker } from '@kit.ArkTS';
    // import { GlobalConfig } from '../pages/Index';
    import { GlobalConfig } from '../managers/SendableFreeze';
    
