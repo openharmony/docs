@@ -7,7 +7,7 @@
 <!--Tester: @nobuggers-->
 <!--Adviser: @ge-yafang-->
 
-提供字体属性配置的结构体。
+提供字体属性配置的类，用于配置可变字体的属性参数（如字重维度等轴标签及对应属性值）。
 
 > **说明：**
 >
@@ -39,14 +39,14 @@ constructor()
 
 ```ts
 import { drawing } from '@kit.ArkGraphics2D';
-let typeFaceArgument = new drawing.TypefaceArguments();
+let typefaceArgument = new drawing.TypefaceArguments();
 ```
 
 ## addVariation<sup>20+</sup>
 
 addVariation(axis: string, value: number)
 
-给字体属性设置字重值。
+给字体属性添加可变维度轴标签及对应的属性值。
 
 **原子化服务API：** 从API version 22开始，该接口支持在原子化服务中使用。
 
@@ -55,7 +55,7 @@ addVariation(axis: string, value: number)
 **参数：**
 | 参数名         | 类型                                       | 必填   | 说明             |
 | ----------- | ---------------------------------------- | ---- | -------------------   |
-| axis  | string           | 是   | 字体属性对象可变维度字重的标签'wght'。具体是否支持的该标签取决于加载的字体文件。请打开对应的字体文件具体查看支持的属性。   |
+| axis  | string           | 是   | 字体属性对象可变维度轴标签。具体支持哪些标签取决于加载的字体文件。具体支持的属性及标签值请参考对应的字体文件。   |
 | value | number           | 是   | 字体属性对象可变维度字重的标签'wght'对应的属性值，需要在字体文件支持的范围内，否则不会生效。如果属性值小于支持的最小值，则默认和最小值一致。如果属性值大于支持的最大值，则默认和最大值效果一致。请打开对应的字体文件具体查看支持的属性值。    |
 
 **错误码：**
@@ -71,6 +71,6 @@ addVariation(axis: string, value: number)
 ```ts
 import { drawing } from '@kit.ArkGraphics2D';
 
-let typeFaceArgument = new drawing.TypefaceArguments();
-typeFaceArgument.addVariation('wght', 10);
+let typefaceArgument = new drawing.TypefaceArguments();
+typefaceArgument.addVariation('wght', 10);
 ```
