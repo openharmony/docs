@@ -3,3 +3,4 @@
 - [Telephony Kit简介](telephony-overview.md)
 - [拨打电话](telephony-call.md)
 - [短信服务](telephony-sms.md)
+- [Telephony Kit术语](telephony-glossary.md)
