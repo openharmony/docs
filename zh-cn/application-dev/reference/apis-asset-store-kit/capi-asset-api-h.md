@@ -66,7 +66,7 @@ int32_t OH_Asset_Add(const Asset_Attr *attributes, uint32_t attrCnt)
 
 | 类型 | 说明 |
 | -- | -- |
-| int32_t | [Asset_ResultCode](capi-asset-type-h.md#asset_resultcode):<br>     ASSET_SUCCESS = 0：操作成功。<br>     ASSET_PERMISSION_DENIED = 201：调用方不是一个系统应用。<br>     ASSET_INVALID_ARGUMENT = 401：参数错误。 可能原因:<br>         1. 必选参数未指定。<br>         2. 参数类型错误。<br>         3. 参数校验失败。<br>     ASSET_SERVICE_UNAVAILABLE = 24000001：关键资产服务不可用。<br>     ASSET_DUPLICATED = 24000003：关键资产已存在。<br>     ASSET_STATUS_MISMATCH = 24000005：锁屏状态不匹配。<br>     ASSET_OUT_OF_MEMORY = 24000006：系统内存不足。<br>     ASSET_DATA_CORRUPTED = 24000007：关键资产损坏。<br>     ASSET_DATABASE_ERROR = 24000008：数据库操作失败。<br>     ASSET_CRYPTO_ERROR = 24000009：算法库操作失败。<br>     ASSET_IPC_ERROR = 24000010：进程通信错误。<br>     ASSET_BMS_ERROR = 24000011：包管理服务异常。<br>     ASSET_ACCOUNT_ERROR = 24000012：账号系统服务异常。<br>     ASSET_ACCESS_TOKEN_ERROR = 24000013：访问控制服务异常。<br>     ASSET_FILE_OPERATION_ERROR = 24000014：文件操作失败。<br>     ASSET_GET_SYSTEM_TIME_ERROR = 24000015：获取系统时间失败。 |
+| int32_t | [Asset_ResultCode](capi-asset-type-h.md#asset_resultcode)：<br>     ASSET_SUCCESS = 0：操作成功。<br>     ASSET_PERMISSION_DENIED = 201：调用者没有权限。<br>     ASSET_INVALID_ARGUMENT = 401：参数错误。 可能原因：<br>         1. 必选参数未指定。<br>         2. 参数类型错误。<br>         3. 参数校验失败。<br>     ASSET_SERVICE_UNAVAILABLE = 24000001：关键资产服务不可用。<br>     ASSET_DUPLICATED = 24000003：关键资产已存在。<br>     ASSET_STATUS_MISMATCH = 24000005：锁屏状态不匹配。<br>     ASSET_OUT_OF_MEMORY = 24000006：系统内存不足。<br>     ASSET_DATA_CORRUPTED = 24000007：关键资产损坏。<br>     ASSET_DATABASE_ERROR = 24000008：数据库操作失败。<br>     ASSET_CRYPTO_ERROR = 24000009：算法库操作失败。<br>     ASSET_IPC_ERROR = 24000010：进程通信错误。<br>     ASSET_BMS_ERROR = 24000011：包管理服务异常。<br>     ASSET_ACCOUNT_ERROR = 24000012：账号系统服务异常。<br>     ASSET_ACCESS_TOKEN_ERROR = 24000013：访问控制服务异常。<br>     ASSET_FILE_OPERATION_ERROR = 24000014：文件操作失败。<br>     ASSET_GET_SYSTEM_TIME_ERROR = 24000015：获取系统时间失败。 |
 
 ### OH_Asset_Remove()
 
@@ -97,7 +97,7 @@ int32_t OH_Asset_Remove(const Asset_Attr *query, uint32_t queryCnt)
 ### OH_Asset_Update()
 
 ```c
-int32_t OH_Asset_Update(const Asset_Attr *query, uint32_t queryCnt,const Asset_Attr *attributesToUpdate, uint32_t updateCnt)
+int32_t OH_Asset_Update(const Asset_Attr *query, uint32_t queryCnt, const Asset_Attr *attributesToUpdate, uint32_t updateCnt)
 ```
 
 **描述**
@@ -253,7 +253,7 @@ Asset_Attr *OH_Asset_ParseAttr(const Asset_Result *result, Asset_Tag tag)
 
 | 类型 | 说明 |
 | -- | -- |
-| [Asset_Attr](capi-assettype-asset-attr.md) | 如果操作成功，则以Asset_Attr的形式返回属性，该属性不需要业务进行释放；否则返回NULL。 |
+| [Asset_Attr](capi-assettype-asset-attr.md)* | 如果操作成功，则以Asset_Attr的形式返回属性，该属性不需要业务进行释放；否则返回NULL。 |
 
 ### OH_Asset_FreeBlob()
 
