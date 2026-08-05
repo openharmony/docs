@@ -12,9 +12,9 @@
 
 | 函数名称  | 说明     |
 |-----|--------|
-| OH_NativeXComponent_SetExpectedFrameRateRange (OH_NativeXComponent *component, OH_NativeXComponent_ExpectedRateRange *range) | 设置期望的帧率范围。 |
-| OH_NativeXComponent_RegisterOnFrameCallback(OH_NativeXComponent* component,void (*callback)(OH_NativeXComponent* component, uint64_t timestamp, uint64_t targetTimestamp)) | 设置每帧回调函数，同时启动每帧回调。 |
-| OH_NativeXComponent_UnregisterOnFrameCallback (OH_NativeXComponent *component) | 取消注册的每帧回调函数，同时停止调用回调函数。 |
+| OH_NativeXComponent_SetExpectedFrameRateRange(OH_NativeXComponent* component, OH_NativeXComponent_ExpectedRateRange* range) | 设置期望的帧率范围。 |
+| OH_NativeXComponent_RegisterOnFrameCallback(OH_NativeXComponent* component, void (\*callback)(OH_NativeXComponent* component, uint64_t timestamp, uint64_t targetTimestamp)) | 设置每帧回调函数，同时启动每帧回调。 |
+| OH_NativeXComponent_UnregisterOnFrameCallback(OH_NativeXComponent* component) | 取消注册的每帧回调函数，同时停止调用回调函数。 |
 
 详细的接口说明请参考[OH_NativeXComponent Native XComponent](../reference/apis-arkui/capi-oh-nativexcomponent-native-xcomponent.md)。
 
