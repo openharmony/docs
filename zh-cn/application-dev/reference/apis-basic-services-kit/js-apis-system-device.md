@@ -28,10 +28,10 @@ import Device from '@system.device';
 
 getInfo(options?: GetDeviceOptions): void
 
-获取当前设备的信息。该方法异步读取系统设备信息，通过回调函数返回设备品牌、型号、屏幕参数等数据。由于设备信息在系统启动时初始化，建议在首页onShow生命周期之后调用以确保数据完整性。
+获取当前设备的信息。该接口异步读取系统设备信息，通过回调函数返回设备品牌、型号、屏幕参数等数据。
 
 > **说明：**<br>
-> 在首页的onShow生命周期之前不建议调用device.getInfo接口。
+> 在首页的onShow生命周期之前不建议调用Device.getInfo接口。
 
 **系统能力：** SystemCapability.Startup.SystemInfo.Lite
 
@@ -52,23 +52,23 @@ getInfo(options?: GetDeviceOptions): void
 ArkTS（方舟编程语言）示例：
 
 ```typescript
+interface DeviceData {
+  brand: string;
+}
+
 export default class Page {
   getInfo() {
-    interface DeviceData {
-      brand: string;
-    }
-
     try {
       Device.getInfo({
         success: (data: DeviceData) => {
-          console.info('Device information obtained successfully. Device brand:' + data.brand);
+          console.info(`Device information obtained successfully. Device brand: ${data.brand}`);
         },
-        fail: (data: string, code: number) => {
+        fail: (data: any, code: number) => {
           console.error(`Failed to obtain device information. Code: ${code}, message: ${data}`);
         },
       });
     } catch (error) {
-      console.error('Device information API is not supported');
+      console.error('Failed to call device information API:', error);
     }
   }
 }
@@ -85,7 +85,7 @@ JS示例：
 ```
 
 ```css
-/*xxx.css*/
+/* xxx.css */
 .container {
     display: flex;
     flex-direction: column;
@@ -124,7 +124,7 @@ JS示例：
 ```
 
 ```js
-//xxx.js
+// xxx.js
 import Device from '@system.device';
 
 export default {
@@ -136,7 +136,7 @@ export default {
     try {
       Device.getInfo({
         success: (data) => {
-          console.info('Device information obtained successfully. Device brand:' + data.brand);
+          console.info(`Device information obtained successfully. Device brand: ${data.brand}`);
           this.brandInfo = 'Device brand: ' + data.brand;
         },
         fail: (data, code) => {
@@ -145,7 +145,7 @@ export default {
         },
       });
     } catch (error) {
-      console.error('Device information API is not supported');
+      console.error('Failed to call device information API:', error);
       this.brandInfo = 'Current device does not support this API';
     }
   }
@@ -160,9 +160,15 @@ export default {
 
 | 名称 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| success | (data: [DeviceResponse](#deviceresponsedeprecated)) => void | 否 | 接口调用成功的回调函数，在接口调用成功时执行。data 为成功返回的设备信息。不传入时无法获取设备信息，建议设置此回调。|
-| fail | (data: any, code: number) => void | 否 | 接口调用失败的回调函数。 code为失败返回的错误码。<br>code:200，表示返回结果中存在无法获得的信息。|
+| success | (data: [DeviceResponse](#deviceresponsedeprecated)) => void | 否 | 接口调用成功的回调函数，在接口调用成功时执行。data 为成功返回的设备信息。不传入时无法获取设备信息，建议设置此回调。 |
+| fail | (data: any, code: number) => void | 否 | 接口调用失败的回调函数，在接口调用失败时执行。data为失败时返回的错误信息对象或错误描述字符串，code为失败返回的错误码。<br>code:200，表示返回结果中存在无法获取的信息。建议设置此回调以处理错误情况。 |
 | complete | () => void | 否 | 接口调用结束的回调函数，在接口调用完成后（无论成功或失败）执行，适用于需执行清理或收尾工作的场景。不传入时不执行结束回调。 |
+
+**错误码**：
+
+| 错误码ID | 错误信息 |
+| --- | --- |
+| 200 | 返回结果中存在无法获取的信息。可能原因包括：设备不支持部分信息字段、系统权限受限或设备配置缺失。解决措施：建议检查设备兼容性、确认应用权限配置，并设置此回调以处理错误情况。 |
 
 ## DeviceResponse<sup>(deprecated)</sup>
 
@@ -175,14 +181,14 @@ export default {
 | brand | string | 品牌。 |
 | manufacturer | string | 生产商。 |
 | model | string | 型号。 |
-| product | string | 代号。 |
+| product | string | 产品代号。 |
 | language<sup>4+</sup> | string | 系统语言。 |
 | region<sup>4+</sup> | string | 系统地区。 |
-| windowWidth | number | 可使用的窗口宽度，单位px。 |
-| windowHeight | number | 可使用的窗口高度，单位px。 |
-| screenDensity<sup>4+</sup> | number | 屏幕密度，单位dpi。 |
+| windowWidth | number | 可使用的窗口宽度，单位px。不同设备的可使用窗口尺寸存在差异。 |
+| windowHeight | number | 可使用的窗口高度，单位px。不同设备的可使用窗口尺寸存在差异。 |
+| screenDensity<sup>4+</sup> | number | 屏幕像素密度。表示屏幕每英寸的像素点数量，单位为dpi(dots per inch)。不同设备的屏幕像素密度存在差异。 |
 | screenShape<sup>4+</sup> | string | 屏幕形状。可取值：<br>-&nbsp;rect：方形屏；<br>-&nbsp;circle：圆形屏。 |
 | apiVersion<sup>4+</sup> | number | 系统API版本号。 |
-| deviceType<sup>4+</sup> | string | 设备类型。 |
-| sdkMinorApiVersion | number | 系统软件Minor API版本。从API 26.0.0版本开始，系统API版本格式：apiVersion.sdkMinorApiVersion.sdkPatchApiVersion。该值获取失败时填充-1，且不影响getInfo接口的整体返回状态。<br/>**模型约束：** 此接口仅可在FA模型下使用。<br/>**起始版本：** 26.0.0<br/>示例：0 |
-| sdkPatchApiVersion | number | 系统软件Patch API版本。从API 26.0.0版本开始，系统API版本格式：apiVersion.sdkMinorApiVersion.sdkPatchApiVersion。该值获取失败时填充-1，且不影响getInfo接口的整体返回状态。<br/>**模型约束：** 此接口仅可在FA模型下使用。<br/>**起始版本：** 26.0.0<br/>示例：0 |
+| deviceType<sup>4+</sup> | string | 设备类型。常见取值：phone（手机）、tablet（平板）、tv（电视）、wearable（可穿戴设备）等。 |
+| sdkMinorApiVersion | number  | 系统软件Minor API版本。从API 26.0.0 版本开始，系统API版本格式：apiVersion.sdkMinorApiVersion.sdkPatchApiVersion。该值获取失败时填充 -1，且不影响 getInfo 接口的整体返回状态。<br/>**模型约束：** 此接口仅可在FA模型下使用。<br/>**起始版本**：26.0.0<br/>示例：0 |
+| sdkPatchApiVersion  | number  | 系统软件Patch API版本。从API 26.0.0 版本开始，系统API版本格式：apiVersion.sdkMinorApiVersion.sdkPatchApiVersion。该值获取失败时填充 -1，且不影响 getInfo 接口的整体返回状态。<br/>**模型约束：** 此接口仅可在FA模型下使用。<br/>**起始版本**：26.0.0<br/>示例：0 |
