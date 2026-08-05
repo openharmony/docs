@@ -49,6 +49,34 @@ Operation not allowed.
 1. 先确认当前状态是否支持此操作，再把实例切换到正确状态进行正确操作。
 2. 释放所有已经创建的实例。
 
+以下为SoundPool业务返回错误码`5400102`时的常见问题案例。
+
+
+### 触发场景1：调用play播放音频失败-音频资源未加载
+
+调用[play](js-apis-inner-multimedia-soundPool.md#play)返回错误码`5400102`时，根据系统日志按照以下场景进行排查。
+
+**判断依据**
+
+应用进程日志提示`has not been loaded completely`。
+
+```text
+<应用进程名>: #212 SoundPool::Play, soundID(x) has not been loaded completely
+```
+
+以上日志格式，从API版本23开始支持。
+
+**可能原因**
+
+`soundId`不存在或对应资源未完成加载。
+
+**处理步骤**
+
+确认所需音频资源对应的soundId正确，注册监听[on('loadComplete')](js-apis-inner-multimedia-soundPool.md#onloadcomplete)，等待回调到达后方可播放。
+
+以下为AVPlayer业务返回错误码`5400102`时的常见问题案例。
+
+
 ### 触发场景1：更换资源播放失败
 
 **可能原因**
