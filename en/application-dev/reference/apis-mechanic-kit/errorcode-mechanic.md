@@ -1,10 +1,12 @@
 # Mechanic Manager Error Codes
+
 <!--Kit: Mechanic Kit-->
 <!--Subsystem: Mechanic-->
-<!--Owner: @hobbycao-->
-<!--Designer: @saga2025-->
-<!--Tester: @zhaodengqi-->
+<!--Owner: @qxqxqxqxqx-->
+<!--Designer: @peter__1024-->
+<!--Tester: @Aullar-->
 <!--Adviser: @hu-zhiqiong-->
+<!-- md-trans-meta sourceCommit=daa1afa787d586cf2e119ff322b4912d4397cfb5 translatedAt=2026-08-05T01:25:08.816Z pushedAt=2026-08-05T01:28:11.384Z -->
 
 > **NOTE**
 >
