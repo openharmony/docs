@@ -1,4 +1,4 @@
-# @ohos.usbManager.serial (Serial Port Management)(System API)
+# @ohos.usbManager.serial (Serial Port Management) (System API)
 
 <!--Kit: Basic Services Kit-->
 <!--Subsystem: USB-->
@@ -6,7 +6,7 @@
 <!--Designer: @w00373942-->
 <!--Tester: @dong-dongzhen-->
 <!--Adviser: @fang-jinxu-->
-<!-- md-trans-meta sourceCommit=7d78cf8ce5ef00398ca468a04e8c8fa29c1ec233 translatedAt=2026-08-04T10:29:36.893Z pushedAt=2026-08-05T11:50:08.561Z -->
+<!-- md-trans-meta sourceCommit=7d78cf8ce5ef00398ca468a04e8c8fa29c1ec233 translatedAt=2026-08-04T10:29:36.893Z pushedAt=2026-08-05T12:15:47.683Z -->
 
 The serial port management module uses a system-level permission control mechanism. The system manages and verifies the access permissions of serial port devices in a centralized manner. Apps can read data from and write data to serial port devices only after obtaining the access permissions through system APIs. This ensures secure access control and device isolation.
 

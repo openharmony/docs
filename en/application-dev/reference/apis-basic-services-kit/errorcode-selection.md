@@ -1,4 +1,4 @@
-# Word Selection Service Error Codes
+# Word Selection Error Codes
 
 <!--Kit: Basic Services Kit-->
 <!--Subsystem: SelectionInput-->
@@ -6,7 +6,7 @@
 <!--Designer: @no86-->
 <!--Tester: @dong-dongzhen-->
 <!--Adviser: @fang-jinxu-->
-<!-- md-trans-meta sourceCommit=7bd9d64d06b09f010cde4ca5a86285027d09b51a translatedAt=2026-08-04T10:28:47.232Z pushedAt=2026-08-05T11:50:08.565Z -->
+<!-- md-trans-meta sourceCommit=7bd9d64d06b09f010cde4ca5a86285027d09b51a translatedAt=2026-08-04T10:28:47.232Z pushedAt=2026-08-05T12:15:50.142Z -->
 
 > **NOTE**
 >
