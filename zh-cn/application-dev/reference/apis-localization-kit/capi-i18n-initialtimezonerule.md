@@ -3,7 +3,7 @@
 <!--Kit: Localization Kit-->
 <!--Subsystem: Global-->
 <!--Owner: @yliupy-->
-<!--Designer: @zw_feifei->
+<!--Designer: @zw_feifei-->
 <!--Tester: @lpw_work-->
 <!--Adviser: @ningningW-->
 
