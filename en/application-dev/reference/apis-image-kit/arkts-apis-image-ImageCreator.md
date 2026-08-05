@@ -1,10 +1,12 @@
 # Interface (ImageCreator)
+
 <!--Kit: Image Kit-->
 <!--Subsystem: Multimedia-->
 <!--Owner: @aulight02-->
-<!--Designer: @liyang_bryan-->
+<!--Designer: @XiaoYao555-->
 <!--Tester: @xchaosioda-->
 <!--Adviser: @w_Machine_cc-->
+<!-- md-trans-meta sourceCommit=a569cef255f0bfd2be482f42d11f341117248869 translatedAt=2026-08-03T03:56:31.899Z pushedAt=2026-08-04T03:27:29.764Z -->
 
 The ImageCreator class, acting as an image producer, is used for writing images into a surface.
 
@@ -151,7 +153,7 @@ Places the drawn image in the queue. This API uses a promise to return the resul
 
 | Type           | Description          |
 | -------------- | ------------- |
-| Promise\<void> | Promise that returns no value.|
+| Promise\<void> | Promise that returns no value. |
 
 **Example**
 
@@ -223,7 +225,7 @@ Unregisters the callback function that is triggered when the buffer is released.
 | Name       | Type                    | Mandatory| Description                                        |
 | ------------- | -------------------------|----|--------------------------------------------|
 | type          | string                   | Yes | Type of event, which is **'imageRelease'**.                   |
-| callback      | AsyncCallback\<void>     | No | Callback used to return the result. If the operation is successful, **err** is null; otherwise, **err** is an error object.|
+| callback      | AsyncCallback\<void>     | No  | Callback used to return the result. If the unregistration is successful, **err** is **undefined**; otherwise, it is an error object. |
 
 **Example**
 
@@ -287,7 +289,7 @@ Before releasing the instance, ensure that all asynchronous operations associate
 
 | Type           | Description          |
 | -------------- | ------------- |
-| Promise\<void> | Promise that returns no value.|
+| Promise\<void> | Promise that returns no value. |
 
 **Example**
 

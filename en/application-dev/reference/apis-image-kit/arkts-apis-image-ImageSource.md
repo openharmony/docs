@@ -2,7 +2,7 @@
 <!--Kit: Image Kit-->
 <!--Subsystem: Multimedia-->
 <!--Owner: @aulight02-->
-<!--Designer: @liyang_bryan-->
+<!--Designer: @XiaoYao555-->
 <!--Tester: @xchaosioda-->
 <!--Adviser: @w_Machine_cc-->
 
@@ -30,7 +30,7 @@ import { image } from '@kit.ImageKit';
 
 | Name            | Type          | Read Only| Optional| Description                                                        |
 | ---------------- | -------------- | ---- | ---- | ------------------------------------------------------------ |
-| supportedFormats | Array\<string> | Yes  | No  | Supported image formats, including PNG, JPEG, BMP, GIF, WebP, DNG, HEIC<sup>12+</sup>, WBMP<sup>23+</sup>, HEIFS<sup>23+</sup>, and TIFF<sup>23+</sup>. Since API version 26.0.0, the AVIF format is supported. Decoding support for certain formats depends on the specific device hardware. You are advised to use the [image.getImageSourceSupportedFormats<sup>20+</sup>](arkts-apis-image-f.md#imagegetimagesourcesupportedformats20) API before calling this API to dynamically query the decoding capabilities of the current device.|
+| supportedFormats | Array\<string> | Yes  | No  | Supported image formats,<br>including PNG, JPEG, BMP, GIF, WebP, DNG, HEIC<sup>12+</sup>, WBMP<sup>23+</sup>, HEIFS<sup>23+</sup>, and TIFF<sup>23+</sup>. Since API version 26.0.0, the AVIF and AVIS formats are supported.<br>Decoding support for certain formats depends on the specific device hardware. You are advised to use the [image.getImageSourceSupportedFormats](arkts-apis-image-f.md#imagegetimagesourcesupportedformats20) API before calling this API to dynamically query the decoding capabilities of the current device.|
 
 ## getImageInfo
 
@@ -284,7 +284,7 @@ async function GetImageProperties(imageSourceObj : image.ImageSource) {
   imageSourceObj.getImageProperties(key).then((data) => {
     console.info(JSON.stringify(data));
   }).catch((err: BusinessError) => {
-    console.error(JSON.stringify(err));
+    console.error(`Failed to get the properties, error.code ${err.code}, error.message ${err.message}`);
   });
 }
 ```
@@ -354,7 +354,9 @@ This API applies only to images that are in JPEG, PNG, HEIF<sup>12+</sup>, or WE
 
 > **NOTE**
 >
-> The property byte length is changed when the **modifyImageProperty** API is called to modify the value of a property. Currently, you can call the API in an ImageSource instance created based on a file descriptor or path, but not an ImageSource instance created based on buffers.
+> - The property byte length is changed when the **modifyImageProperty** API is called to modify the value of a property. Currently, you can call the API in an ImageSource instance created based on a file descriptor or path, but not an ImageSource instance created based on buffers.
+> 
+> - When calling the **modifyImageProperty** API to modify the **Exif** field, ensure that the corresponding image file has write permission. Otherwise, the field modification will fail.
 
 **System capability**: SystemCapability.Multimedia.Image.ImageSource
 
@@ -411,7 +413,8 @@ This API applies only to images that are in JPEG, PNG, HEIF, or WEBP<sup>23+</su
 
 > **NOTE**
 >
-> The property byte length is changed when the **modifyImageProperties** API is called to modify the values of properties. Currently, you can call the API in an ImageSource instance created based on a file descriptor or path, but not an ImageSource instance created based on buffers.
+> - The property byte length is changed when the **modifyImageProperties** API is called to modify the values of properties. Currently, you can call the API in an ImageSource instance created based on a file descriptor or path, but not an ImageSource instance created based on buffers.
+> - When calling the **modifyImageProperties** API to modify the **Exif** field, ensure that the corresponding image file has write permission. Otherwise, the field modification will fail.
 
 **System capability**: SystemCapability.Multimedia.Image.ImageSource
 
@@ -472,6 +475,7 @@ Modifies image properties in batches. This API uses a promise to return the resu
 > - Calling this API to modify properties alters the property byte length. You are advised to create an [image.createImageSource](arkts-apis-image-f.md#imagecreateimagesource7) instance by passing a file descriptor or an [image.createImageSource](arkts-apis-image-f.md#imagecreateimagesource) instance by passing a URI.
 > - This API modifies batch data in memory and writes the data to the file in a single operation. It is more efficient than [modifyImageProperties](#modifyimageproperties12).
 > - This API applies only to images that are in JPEG, PNG, HEIF, or WEBP format and contain the Exif information.
+> - When calling the **modifyImagePropertiesEnhanced** API to modify the **Exif** field, ensure that the corresponding image file has write permission. Otherwise, the field modification will fail.
 
 **System capability**: SystemCapability.Multimedia.Image.ImageSource
 
@@ -526,7 +530,7 @@ readImageMetadata(propertyKeys?: string[], index?: number): Promise\<ImageMetada
 
 Reads image metadata. You can use **propertyKeys** to specify the keys of metadata. This API uses a promise to return the result.
 
-This API applies only to images that are in JPEG, PNG, HEIF, WEBP, DNG, GIF, TIFF, HEIFS, or JFIF format and contain the Exif information. (The supported formats may vary depending on the hardware.)
+This API applies only to images that are in JPEG, PNG, HEIF, WebP, DNG, GIF, TIFF, HEIFS, JFIF, or AVIS format and contain the Exif information. (The supported formats may vary depending on the hardware.)
 
 > **NOTE**
 >
@@ -544,6 +548,8 @@ This API applies only to images that are in JPEG, PNG, HEIF, WEBP, DNG, GIF, TIF
 > - Since API version 26.0.0, JFIF metadata can be read. For details about the properties, see [JfifPropertyKey](arkts-apis-image-e.md#jfifpropertykey).
 > - Since API version 26.0.0, TIFF metadata can be read. For details about the properties, see [TiffPropertyKey](arkts-apis-image-e.md#tiffpropertykey).
 > - Since API version 26.0.0, GIF metadata can be read. For details about the properties, see [GifPropertyKey](arkts-apis-image-e.md#gifpropertykey20).
+> - Since API version 26.0.0, XMP metadata of JPEG, PNG, GIF, DNG, and TIFF images can be read. For details about how to operate XMP metadata, see [XMPMetadata](arkts-apis-image-XMPMetadata.md).
+> - Since API version 26.0.0, AVIS metadata can be read. For details about the properties, see [AvisPropertyKey](arkts-apis-image-e.md#avispropertykey).
 
 **Model restriction**: This API can be used only in the stage model.
 
@@ -586,7 +592,7 @@ async function ReadImageMetadata(imageSourceObj : image.ImageSource) {
         " HwMnoteIsXmageSupported: " + metaData.makerNoteHuaweiMetadata.isXmageSupported);
     }
   }).catch((error: BusinessError) => {
-    console.error(`ReadImageMetadata failed error.code is ${error.code}, error.message is ${error.message}`);
+    console.error(`Failed to read image metadata. error.code is ${error.code}, error.message is ${error.message}`);
   })
 }
 ```
@@ -602,6 +608,8 @@ Modifies image properties in batches. This API uses a promise to return the resu
 > - Calling this API to modify properties alters the property byte length. You are advised to create an [image.createImageSource](arkts-apis-image-f.md#imagecreateimagesource7) instance by passing a file descriptor or an [image.createImageSource](arkts-apis-image-f.md#imagecreateimagesource) instance by passing a URI.
 > - This API modifies batch data in memory and writes the data to the file in a single operation. It is more efficient than [modifyImageProperties](#modifyimageproperties12).
 > - This API applies only to images that are in JPEG, PNG, or HEIF format and contain the Exif information. Before modifying properties, use the **supportedFormats** property to check whether the device supports Exif information read/write in HEIF format.
+> - Since API version 26.0.0, XMP metadata of JPEG, PNG, and GIF images can be read. For details about how to operate XMP metadata, see [XMPMetadata](arkts-apis-image-XMPMetadata.md).
+> - When calling the **writeImageMetadata** API to modify the **Exif** field, ensure that the corresponding image file has write permission. Otherwise, the field modification will fail.
 
 **Model restriction**: This API can be used only in the stage model.
 
@@ -641,9 +649,9 @@ async function WriteImageMetadata(imageSourceObj : image.ImageSource) {
     metaData.exifMetadata.imageLength = 3072;
   }
   await imageSourceObj.writeImageMetadata(metaData).then(() => {
-    console.info(`write image metadata success.`);
+    console.info(`Succeeded in writing image metadata.`);
   }).catch((error: BusinessError) => {
-    console.error(`writeImageMetadata failed error.code is ${error.code}, error.message is ${error.message}`);
+    console.error(`Failed to write image metadata. error.code is ${error.code}, error.message is ${error.message}`);
   });
 }
 ```
@@ -654,7 +662,7 @@ readImageMetadataByType(metadataTypes?: MetadataType[], index?: number): Promise
 
 Reads the metadata of an image source. You can use **metadataTypes** to specify the metadata types. If **metadataTypes** is not specified, all supported metadata is returned. This API uses a promise to return the result.
 
-This API applies only to images that are in JPEG, PNG, HEIF, WEBP, DNG, GIF, TIFF, HEIFS, or JFIF format. (The supported formats may vary depending on the hardware.)
+This API applies only to images that are in JPEG, PNG, HEIF, WebP, DNG, GIF, TIFF, HEIFS, JFIF, or AVIS format. (The supported formats may vary depending on the hardware.)
 
 > **NOTE**
 >
@@ -667,6 +675,8 @@ This API applies only to images that are in JPEG, PNG, HEIF, WEBP, DNG, GIF, TIF
 > - Since API version 26.0.0, JFIF metadata can be read. For details about the properties, see [JfifPropertyKey](arkts-apis-image-e.md#jfifpropertykey).
 > - Since API version 26.0.0, TIFF metadata can be read. For details about the properties, see [TiffPropertyKey](arkts-apis-image-e.md#tiffpropertykey).
 > - Since API version 26.0.0, GIF metadata can be read. For details about the properties, see [GifPropertyKey](arkts-apis-image-e.md#gifpropertykey20).
+> - Since API version 26.0.0, XMP metadata of JPEG, PNG, GIF, DNG, and TIFF images can be read. For details about how to operate XMP metadata, see [XMPMetadata](arkts-apis-image-XMPMetadata.md).
+> - Since API version 26.0.0, AVIS metadata can be read. For details about the properties, see [AvisPropertyKey](arkts-apis-image-e.md#avispropertykey).
 
 **Model restriction**: This API can be used only in the stage model.
 
@@ -708,7 +718,7 @@ async function ReadImageMetadataByType(imageSource : image.ImageSource, type: im
       console.info("ImageWidth: " + metaData.exifMetadata.imageWidth);
     }
   }).catch((error: BusinessError) => {
-    console.error(`ReadImageMetadataByType failed error.code is ${error.code}, error.message is ${error.message}`);
+    console.error(`Failed to read image metadata by type. error.code is ${error.code}, error.message is ${error.message}`);
   })
 }
 ```
@@ -744,7 +754,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 async function createImageRawData(imageSourceObj: image.ImageSource) {
   await imageSourceObj.createImageRawData().then((data: image.ImageRawData) => {
-    console.info(`createImageRawData success. length: ${data.buffer.byteLength}, bitPerPixel:${data.bitsPerPixel}`);
+    console.info(`createImageRawData successfully. length: ${data.buffer.byteLength}, bitPerPixel:${data.bitsPerPixel}`);
     if (data.bitsPerPixel == 16) {
       let array: Uint16Array = new Uint16Array();
       let value: string = "";
@@ -755,7 +765,7 @@ async function createImageRawData(imageSourceObj: image.ImageSource) {
       console.info(`get dng rawdata is:${value}.`);
     }
   }).catch((error: BusinessError) => {
-    console.error(`createImageRawData failed error.code is ${error.code}, error.message is ${error.message}`);
+    console.error(`Failed to create image rawData. error.code is ${error.code}, error.message is ${error.message}`);
   });
 }
 ```
@@ -865,7 +875,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
 | 401      | Parameter error.Possible causes: 1.Mandatory parameters are left unspecified.2.Incorrect parameter types; 3.Parameter verification failed. |
-| 7700203  | Unsupported options. For example, unsupported desiredPixelFormat causes a failure in converting an image into the desired pixel format. |
+| 7700203  | Unsupported options. For example, unsupported desiredPixelFormat causes a failure in converting an image into the desired pixel format. <br>Applicable versions: 24+|
 | 7700301  | Decode failed.                                               |
 
 **Example**
@@ -877,9 +887,9 @@ async function CreatePicture(imageSourceObj : image.ImageSource) {
   };
   let pictureObj: image.Picture = await imageSourceObj.createPicture(options);
   if (pictureObj != null) {
-    console.info('Create picture succeeded');
+    console.info('Succeeded in creating picture.');
   } else {
-    console.error('Create picture failed');
+    console.error('Failed to create picture.');
   }
 }
 ```
@@ -888,11 +898,13 @@ async function CreatePicture(imageSourceObj : image.ImageSource) {
 
 createPictureAtIndex(index: number): Promise\<Picture>
 
-Creates a **Picture** object using a specified image (only GIF and HEIF<sup>23+</sup> images currently). This API uses a promise to return the result.
+Creates a Picture object from the image with the specified index. This API uses a promise to return the result.
 
-Images occupy a large amount of memory. When you finish using a Picture instance, call [release](./arkts-apis-image-Picture.md#release13) to free the memory promptly.
-
-Before releasing the instance, ensure that all asynchronous operations associated with the instance have finished and the instance is no longer needed.
+> **NOTE**
+>
+> - The GIF and HEIF<sup>23+</sup> image sequence formats are supported. Since API version 26.0.0, the AVIS format is supported.
+> - Images occupy a large amount of memory. When you finish using a Picture instance, call [release](./arkts-apis-image-Picture.md#release13) to free the memory promptly.
+> - Before releasing the instance, ensure that all asynchronous operations associated with the instance have finished and the instance is no longer needed.
 
 **System capability**: SystemCapability.Multimedia.Image.ImageSource
 
@@ -928,9 +940,9 @@ async function CreatePictures(imageSourceObj : image.ImageSource) {
   for (let index = 0; index < frameCount; index++) {
     try {
       let pictureObj: image.Picture = await imageSourceObj.createPictureAtIndex(index);
-      console.info('Create picture succeeded for frame: ' + index);
+      console.info('Succeeded in creating picture for frame: ' + index);
     } catch (e) {
-      console.error('Create picture failed for frame: ' + index);
+      console.error('Failed to create picture for frame: ' + index);
     }
   }
 }
@@ -1148,7 +1160,7 @@ For dynamic images such as GIF and WebP images, this API returns the data of eac
 > - This method is not thread-safe and does not support concurrent calls on the same ImageSource instance.
 > - Images occupy a large amount of memory. When you finish using a PixelMap instance, call [release](./arkts-apis-image-PixelMap.md#release7) to free the memory promptly.
 > - Before releasing the instance, ensure that all asynchronous operations associated with the instance have finished and the instance is no longer needed.
-> - This function decodes all frames at once. If the number of frames is high or the size of individual frames is large, it can lead to significant memory usage. In these cases, you are advised to use the **Image** component for displaying animations. The **Image** component decodes frames one by one, which uses less memory than this function.
+> - This API decodes all frames at once. When there are too many frames or a single frame is too large (for example, a 100-frame GIF image with 2000 × 3000 pixels per frame), this API may consume a significant amount of memory, causing system memory pressure. In such cases, you are advised to use the **Image** component to display animated images, as the **Image** component decodes frames one by one and uses less memory than this API.
 
 **System capability**: SystemCapability.Multimedia.Image.ImageSource
 
@@ -1344,6 +1356,7 @@ Creates a PixelMap object based on decoding options and memory type. This API us
 > - This method is not thread-safe and does not support concurrent calls on the same ImageSource instance.
 > - Images occupy a large amount of memory. When you finish using a PixelMap instance, call [release](./arkts-apis-image-PixelMap.md#release7) to free the memory promptly.
 > - Before releasing the instance, ensure that all asynchronous operations associated with the instance have finished and the instance is no longer needed.
+> - When the calling process has sandbox isolation enabled and **AllocatorType.DMA** is specified, or when DMA memory is selected by **AllocatorType.AUTO**, the SELinux permissions for accessing DMA memory‑related resources must be configured for the sandbox process. Otherwise, the API call may be blocked or fail due to SELinux policy restrictions.
 
 **System capability**: SystemCapability.Multimedia.Image.ImageSource
 
@@ -1413,7 +1426,8 @@ Before releasing the instance, ensure that all asynchronous operations associate
 
 > **NOTE**
 >
-> This API operates synchronously and will block the current thread during execution. It should not be invoked from the main thread, as doing so can lead to application lag, frame drops, or delayed responsiveness. For details, see [Overview of Concurrency in Time-Consuming Tasks](../../arkts-utils/time-consuming-task-overview.md).
+> - This API operates synchronously and will block the current thread during execution. It should not be invoked from the main thread, as doing so can lead to application lag, frame drops, or delayed responsiveness. For details, see [Overview of Concurrency in Time-Consuming Tasks](../../arkts-utils/time-consuming-task-overview.md).
+> - When the calling process has sandbox isolation enabled and **AllocatorType.DMA** is specified, or when DMA memory is selected by **AllocatorType.AUTO**, the SELinux permissions for accessing DMA memory‑related resources must be configured for the sandbox process. Otherwise, the API call may be blocked or fail due to SELinux policy restrictions.
 
 **System capability**: SystemCapability.Multimedia.Image.ImageSource
 
@@ -2052,6 +2066,7 @@ This API applies only to images that are in JPEG, PNG, HEIF<sup>12+</sup>, or WE
 > - The property byte length is changed when the **modifyImageProperty** API is called to modify the value of a property. Currently, you can call the API in an ImageSource instance created based on a file descriptor or path, but not an ImageSource instance created based on buffers.
 >
 > - This API is supported since API version 9 and is deprecated since API version 11. You are advised to use [modifyImageProperty](#modifyimageproperty11) instead.
+> - When calling the **modifyImageProperty** API to modify the **Exif** field, ensure that the corresponding image file has write permission. Otherwise, the field modification will fail.
 
 **System capability**: SystemCapability.Multimedia.Image.ImageSource
 
@@ -2099,6 +2114,7 @@ This API applies only to images that are in JPEG, PNG, HEIF<sup>12+</sup>, or WE
 > - The property byte length is changed when the **modifyImageProperty** API is called to modify the value of a property. Currently, you can call the API in an ImageSource instance created based on a file descriptor or path, but not an ImageSource instance created based on buffers.
 >
 > - This API is supported since API version 9 and is deprecated since API version 11. You are advised to use [modifyImageProperty](#modifyimageproperty11) instead.
+> - When calling the **modifyImageProperty** API to modify the **Exif** field, ensure that the corresponding image file has write permission. Otherwise, the field modification will fail.
 
 **System capability**: SystemCapability.Multimedia.Image.ImageSource
 

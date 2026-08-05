@@ -41,13 +41,15 @@ The file declares the APIs for image encoding.
 | Name| Description|
 | -- | -- |
 | [Image_ErrorCode OH_PackingOptions_Create(OH_PackingOptions **options)](#oh_packingoptions_create) | Creates the pointer to an OH_PackingOptions struct.|
-| [Image_ErrorCode OH_PackingOptions_GetMimeType(OH_PackingOptions *options, Image_MimeType *format)](#oh_packingoptions_getmimetype) | Obtains the MIME type. **format.data** obtained through this API lacks the string terminator **\0**. Please use it with caution.|
-| [Image_ErrorCode OH_PackingOptions_GetMimeTypeWithNull(OH_PackingOptions *options, Image_MimeType *format)](#oh_packingoptions_getmimetypewithnull) | Obtains the MIME type in the packing options. The output **format.data** ends with the string terminator **\0**.|
+| [Image_ErrorCode OH_PackingOptions_GetMimeType(OH_PackingOptions *options, Image_MimeType *format)](#oh_packingoptions_getmimetype) | Obtains the MIME type in the encoding parameters. **format.data** obtained through this API lacks the string terminator **\0**. Please use it with caution.|
+| [Image_ErrorCode OH_PackingOptions_GetMimeTypeWithNull(OH_PackingOptions *options, Image_MimeType *format)](#oh_packingoptions_getmimetypewithnull) | Obtains the MIME type in the encoding parameters. **format.data** obtained by this API ends with the string terminator **\0**.|
 | [Image_ErrorCode OH_PackingOptions_SetMimeType(OH_PackingOptions *options, Image_MimeType *format)](#oh_packingoptions_setmimetype) | Sets the MIME type.|
 | [Image_ErrorCode OH_PackingOptions_GetQuality(OH_PackingOptions *options, uint32_t *quality)](#oh_packingoptions_getquality) | Obtains the encoding quality.|
 | [Image_ErrorCode OH_PackingOptions_SetQuality(OH_PackingOptions *options, uint32_t quality)](#oh_packingoptions_setquality) | Sets the encoding quality.|
 | [ Image_ErrorCode OH_PackingOptions_GetNeedsPackProperties(OH_PackingOptions *options, bool *needsPackProperties)](#oh_packingoptions_getneedspackproperties) | Obtains the **needsPackProperties** parameter in the OH_PackingOptions struct.|
 | [Image_ErrorCode OH_PackingOptions_SetNeedsPackProperties(OH_PackingOptions *options, bool needsPackProperties)](#oh_packingoptions_setneedspackproperties) | Sets the **needsPackProperties** parameter in the OH_PackingOptions struct.|
+| <!--DelRow--> [Image_ErrorCode OH_PackingOptions_GetNeedsPackDfxData(OH_PackingOptions *options, bool *needsPackDfxData)](#oh_packingoptions_getneedspackdfxdata) | Obtains the **needsPackDfxData** parameter in the OH_PackingOptions struct.|
+| <!--DelRow--> [Image_ErrorCode OH_PackingOptions_SetNeedsPackDfxData(OH_PackingOptions *options, bool needsPackDfxData)](#oh_packingoptions_setneedspackdfxdata) | Obtains the **needsPackDfxData** parameter in the OH_PackingOptions struct.|
 | [Image_ErrorCode OH_PackingOptions_GetDesiredDynamicRange(OH_PackingOptions *options, int32_t* desiredDynamicRange)](#oh_packingoptions_getdesireddynamicrange) | Obtains the desired dynamic range during encoding.|
 | [Image_ErrorCode OH_PackingOptions_SetDesiredDynamicRange(OH_PackingOptions *options, int32_t desiredDynamicRange)](#oh_packingoptions_setdesireddynamicrange) | Sets the desired dynamic range during encoding.|
 | [Image_ErrorCode OH_PackingOptions_Release(OH_PackingOptions *options)](#oh_packingoptions_release) | Releases the pointer to an OH_PackingOptions struct.|
@@ -105,6 +107,10 @@ Image_ErrorCode OH_PackingOptions_Create(OH_PackingOptions **options)
 
 Creates the pointer to an OH_PackingOptions struct.
 
+Restrictions: **options** cannot be a null pointer. If the API returns a failure, the output parameter content should not be used.
+
+Resource management: The OH_PackingOptions object returned by the API is managed by the caller and must be released using [OH_PackingOptions_Release](#oh_packingoptions_release) after use.
+
 **Since**: 12
 
 
@@ -128,7 +134,11 @@ Image_ErrorCode OH_PackingOptions_GetMimeType(OH_PackingOptions *options,Image_M
 
 **Description**
 
-Obtains the MIME type. **format.data** obtained through this API lacks the string terminator **\0**. Please use it with caution.
+Obtains the MIME type in the encoding parameters. **format.data** obtained through this API lacks the string terminator **\0**. Please use it with caution.
+
+Restrictions: **options** and **format** cannot be null pointers. If **format->size** is not **0** before the API is called, **format->size** must be greater than or equal to the length of the current MIME type. If the API returns a failure, **format.data** should not be read.
+
+Resource management: After the API is successfully executed, **format.data** is allocated by the API. The caller needs to use **free[]** to release it after use. **format.data** returned by this API is not null-terminated with the string terminator '\0'. If it needs to be handled as a C string, you are advised to use [OH_PackingOptions_GetMimeTypeWithNull](#oh_packingoptions_getmimetypewithnull).
 
 **Since**: 12
 
@@ -154,7 +164,13 @@ Image_ErrorCode OH_PackingOptions_GetMimeTypeWithNull(OH_PackingOptions *options
 
 **Description**
 
-Obtains the MIME type in the packing options. The output **format.data** ends with the string terminator **\0**.
+Obtains the MIME type in the encoding parameters. **format.data** obtained by this API ends with the string terminator **\0**.
+
+Usage scenario: This API is suitable for reading the MIME type in string format. Different from [OH_PackingOptions_GetMimeType](#oh_packingoptions_getmimetype), this API returns **format.data** that ends with **\0**, making it more suitable for direct handling as a C string.
+
+Restrictions: **options** and **format** cannot be null pointers. If **format->size** is not **0** before the API is called, **format->size** must be greater than or equal to the length of the current MIME type. If the API returns a failure, **format.data** should not be read.
+
+Resource management: After the API is successfully executed, **format.data** is allocated by the API. The caller needs to use **free[]** to release it after use.
 
 **Since**: 19
 
@@ -182,6 +198,12 @@ Image_ErrorCode OH_PackingOptions_SetMimeType(OH_PackingOptions *options,Image_M
 
 Sets the MIME type.
 
+Application scenario: You can use this API to set the target encoding format for OH_PackingOptions. Before using OH_PackingOptions to encode an ImageSource, PixelMap, or Picture, you must call this API to set the MIME type. If the MIME type is not set, the encoding API returns a parameter error.
+
+Restrictions: **options**, **format**, and **format->data** cannot be null pointers, and **format->size** must be greater than 0. **format** must be a MIME type that supports encoding. You can call [OH_ImagePackerNative_GetSupportedFormats](#oh_imagepackernative_getsupportedformats) to query the image formats that support encoding.
+
+Resource management: The API copies the input MIME type data and does not hold the **format->data** pointer passed by the caller. After the API returns, the caller still needs to manage the lifecycle of **format**.
+
 **Since**: 12
 
 
@@ -190,7 +212,7 @@ Sets the MIME type.
 | Name| Description|
 | -- | -- |
 | [OH_PackingOptions](capi-image-nativemodule-oh-packingoptions.md) *options | Pointer to an OH_PackingOptions struct.|
-| [Image_MimeType](capi-image-nativemodule-image-string.md) *format | Pointer to the image format.|
+| [Image_MimeType](capi-image-nativemodule-image-string.md) *format | Target encoding format.|
 
 **Returns**
 
@@ -207,6 +229,8 @@ Image_ErrorCode OH_PackingOptions_GetQuality(OH_PackingOptions *options,uint32_t
 **Description**
 
 Obtains the encoding quality.
+
+Restrictions: **options** and **quality** cannot be null pointers. If the API returns a failure, the output parameter content should not be used.
 
 **Since**: 12
 
@@ -234,6 +258,8 @@ Image_ErrorCode OH_PackingOptions_SetQuality(OH_PackingOptions *options,uint32_t
 
 Sets the encoding quality.
 
+Restrictions: **options** cannot be a null pointer. The value range of **quality** is [0, 100]. After OH_PackingOptions is created, the default value of **quality** is **0**. You are advised to set **quality** to a value greater than or equal to 80. The actual effect of **quality** depends on the target encoding format.
+
 **Since**: 12
 
 
@@ -242,7 +268,7 @@ Sets the encoding quality.
 | Name| Description|
 | -- | -- |
 | [OH_PackingOptions](capi-image-nativemodule-oh-packingoptions.md) *options | Pointer to an OH_PackingOptions struct.|
-| uint32_t quality | Encoding quality.|
+| uint32_t quality | Encoding quality. The value ranges from 0 to 100 and the default value is **0**.|
 
 **Returns**
 
@@ -259,6 +285,8 @@ Sets the encoding quality.
 **Description**
 
 Obtains the **needsPackProperties** parameter in the OH_PackingOptions struct.
+
+Restrictions: **options** and **needsPackProperties** cannot be null pointers. If the API returns a failure, the output parameter content should not be used.
 
 **Since**: 12
 
@@ -286,6 +314,10 @@ Image_ErrorCode OH_PackingOptions_SetNeedsPackProperties(OH_PackingOptions *opti
 
 Sets the **needsPackProperties** parameter in the OH_PackingOptions struct.
 
+Usage scenario: When you need to retain or write image property information (such as Exif information) into the encoding output, set **needsPackProperties** to **true**. Set **needsPackProperties** to **false** if you are only concerned about pixel content or want to reduce the size of the output data, or if the target format does not require the property information.
+
+Restrictions: **options** cannot be a null pointer.
+
 **Since**: 12
 
 
@@ -294,14 +326,68 @@ Sets the **needsPackProperties** parameter in the OH_PackingOptions struct.
 | Name| Description|
 | -- | -- |
 | [OH_PackingOptions](capi-image-nativemodule-oh-packingoptions.md) *options | Pointer to an OH_PackingOptions struct.|
-| bool needsPackProperties | Whether to encode image property information (for example, Exif). The values include **true** (yes) and **false** (no).|
+| bool needsPackProperties | Whether to encode image property information (for example, Exif). The values include **true** (yes) and **false** (no). The default value is **false**.<br>If the raw image does not have Exif data, the output file will not contain these properties even if **needsPackProperties** is set to **true**.|
 
 **Returns**
 
 | Type| Description|
 | -- | -- |
 | [Image_ErrorCode](capi-image-common-h.md#image_errorcode) | **IMAGE_SUCCESS**: The operation is successful.<br>**IMAGE_BAD_PARAMETER**: A parameter is incorrect.|
+<!--Del-->
+### OH_PackingOptions_GetNeedsPackDfxData()
 
+```c
+Image_ErrorCode OH_PackingOptions_GetNeedsPackDfxData(OH_PackingOptions *options, bool *needsPackDfxData)
+```
+
+**Description**
+
+Obtains the **needsPackDfxData** parameter in the OH_PackingOptions struct.
+
+**Since:** 26.0.0
+
+**System API**: This is a system API.
+
+**Parameters**
+
+| Name| Description|
+| -- | -- |
+| [OH_PackingOptions](capi-image-nativemodule-oh-packingoptions.md) *options | Pointer to the OH_PackingOptions struct.|
+| bool *needsPackDfxData | Whether the image DFX data needs to be encoded. The value **true** indicates yes, and the value **false** indicates no.|
+
+**Returns**
+
+| Type| Description|
+| -- | -- |
+| [Image_ErrorCode](capi-image-common-h.md#image_errorcode) | <ul><br>         <li>**IMAGE_SUCCESS**: The operation is successful.</li><br>         <li>**202**: This API is called by a non-system application.</li><br>         <li>**IMAGE_PACKER_INVALID_PARAMETER**: **options** or **needsPackDfxData** is a null pointer.</li><br>         </ul> |
+
+### OH_PackingOptions_SetNeedsPackDfxData()
+
+```c
+Image_ErrorCode OH_PackingOptions_SetNeedsPackDfxData(OH_PackingOptions *options, bool needsPackDfxData)
+```
+
+**Description**
+
+Obtains the **needsPackDfxData** parameter in the OH_PackingOptions struct.
+
+**Since:** 26.0.0
+
+**System API**: This is a system API.
+
+**Parameters**
+
+| Name| Description|
+| -- | -- |
+| [OH_PackingOptions](capi-image-nativemodule-oh-packingoptions.md) *options | Pointer to the OH_PackingOptions struct.|
+| bool needsPackDfxData | Whether the image DFX data needs to be encoded. The value **true** indicates yes, and the value **false** indicates no.|
+
+**Returns**
+
+| Type| Description|
+| -- | -- |
+| [Image_ErrorCode](capi-image-common-h.md#image_errorcode) | <ul><br>         <li>**IMAGE_SUCCESS**: The operation is successful.</li><br>         <li>**202**: This API is called by a non-system application.</li><br>         <li>**IMAGE_PACKER_INVALID_PARAMETER**: **options** is a null pointer.</li><br>         </ul> |
+<!--DelEnd-->
 ### OH_PackingOptions_GetDesiredDynamicRange()
 
 ```c
@@ -312,6 +398,8 @@ Image_ErrorCode OH_PackingOptions_GetDesiredDynamicRange(OH_PackingOptions *opti
 
 Obtains the desired dynamic range during encoding.
 
+Restrictions: **options** and **desiredDynamicRange** cannot be null pointers. If the API returns a failure, the content of the output parameter should not be used.
+
 **Since**: 12
 
 
@@ -320,7 +408,7 @@ Obtains the desired dynamic range during encoding.
 | Name| Description|
 | -- | -- |
 | [OH_PackingOptions](capi-image-nativemodule-oh-packingoptions.md) *options | Pointer to an OH_PackingOptions struct.|
-| int32_t* desiredDynamicRange | Desired dynamic range. For details about the available options, see [IMAGE_PACKER_DYNAMIC_RANGE](#image_packer_dynamic_range).|
+| int32_t* desiredDynamicRange | Desired dynamic range. For details, see [IMAGE_PACKER_DYNAMIC_RANGE](#image_packer_dynamic_range).|
 
 **Returns**
 
@@ -338,6 +426,8 @@ Image_ErrorCode OH_PackingOptions_SetDesiredDynamicRange(OH_PackingOptions *opti
 
 Sets the desired dynamic range during encoding.
 
+Restrictions: **options** cannot be a null pointer.
+
 **Since**: 12
 
 
@@ -346,7 +436,7 @@ Sets the desired dynamic range during encoding.
 | Name| Description|
 | -- | -- |
 | [OH_PackingOptions](capi-image-nativemodule-oh-packingoptions.md) *options | Pointer to an OH_PackingOptions struct.|
-| int32_t desiredDynamicRange | Desired dynamic range. For details about the available options, see [IMAGE_PACKER_DYNAMIC_RANGE](#image_packer_dynamic_range).|
+| int32_t desiredDynamicRange | Desired dynamic range. For details, see [IMAGE_PACKER_DYNAMIC_RANGE](#image_packer_dynamic_range). The default value is **IMAGE_PACKER_DYNAMIC_RANGE_SDR**.|
 
 **Returns**
 
@@ -363,6 +453,10 @@ Image_ErrorCode OH_PackingOptions_Release(OH_PackingOptions *options)
 **Description**
 
 Releases the pointer to an OH_PackingOptions struct.
+
+Restrictions: **options** cannot be a null pointer.
+
+Resource management: This API must be called to release objects successfully created by [OH_PackingOptions_Create](#oh_packingoptions_create) after encoding is complete. Releasing OH_PackingOptions does not affect the completed encoding output or release the OH_ImagePackerNative object. After this API is called, the OH_PackingOptions object to which **options** points is released and should not be used anymore.
 
 **Since**: 12
 
@@ -389,6 +483,10 @@ Image_ErrorCode OH_PackingOptionsForSequence_Create(OH_PackingOptionsForSequence
 
 Creates the pointer to an OH_PackingOptionsForSequence struct.
 
+Restrictions: **options** cannot be a null pointer. If the API returns a failure, the content of the output parameter should not be used.
+
+Resource management: The OH_PackingOptionsForSequence object returned by the API is managed by the caller and must be released using [OH_PackingOptionsForSequence_Release](#oh_packingoptionsforsequence_release) after use.
+
 **Since**: 18
 
 
@@ -413,6 +511,8 @@ Image_ErrorCode OH_PackingOptionsForSequence_SetFrameCount(OH_PackingOptionsForS
 **Description**
 
 Sets the number of frames for image sequence encoding.
+
+Restrictions: **options** cannot be a null pointer.
 
 **Since**: 18
 
@@ -440,6 +540,8 @@ Image_ErrorCode OH_PackingOptionsForSequence_GetFrameCount(OH_PackingOptionsForS
 
 Obtains the number of frames for image sequence encoding.
 
+Restrictions: **options** and **frameCount** cannot be null pointers. If the API returns a failure, the content of the output parameter should not be used.
+
 **Since**: 18
 
 
@@ -466,6 +568,10 @@ Image_ErrorCode OH_PackingOptionsForSequence_SetDelayTimeList(OH_PackingOptionsF
 
 Sets the delay time array for image sequence encoding.
 
+Restrictions: **options** cannot be a null pointer.
+
+Resource management: The API saves the input **delayTimeList** pointer and does not copy the array content. The caller must ensure that the data pointed to by **delayTimeList** is valid when the OH_PackingOptionsForSequence object is used. When this API is called for multiple times, the new **delayTimeList** pointer replaces the previously saved pointer.
+
 **Since**: 18
 
 
@@ -474,7 +580,7 @@ Sets the delay time array for image sequence encoding.
 | Name| Description|
 | -- | -- |
 | [OH_PackingOptionsForSequence](capi-image-nativemodule-oh-packingoptionsforsequence.md) *options | Pointer to OH_PackingOptionsForSequence.|
-| int32_t *delayTimeList | Pointer to the delay time array.|
+| int32_t *delayTimeList | Pointer to the delay time array. The unit of the delay time is 10 ms.|
 | size_t delayTimeListLength | Length of the delay time array.|
 
 **Returns**
@@ -492,6 +598,8 @@ Image_ErrorCode OH_PackingOptionsForSequence_GetDelayTimeList(OH_PackingOptionsF
 **Description**
 
 Obtains the delay time array for image sequence encoding.
+
+Restrictions: **options** and **delayTimeList** cannot be null pointers, and **delayTimeListLength** must be greater than 0. The API copies the configured delay time array to the **delayTimeList** buffer passed by the caller. If the API returns a failure, the output buffer content should not be used.
 
 **Since**: 18
 
@@ -520,6 +628,10 @@ Image_ErrorCode OH_PackingOptionsForSequence_SetDisposalTypes(OH_PackingOptionsF
 
 Sets the disposal type array for image sequence encoding.
 
+Restrictions: **options** cannot be a null pointer.
+
+Resource management: The API saves the input **disposalTypes** pointer and does not copy the array content. The caller must ensure that the data pointed to by **disposalTypes** is valid when the OH_PackingOptionsForSequence object is used. When this API is called for multiple times, the new **disposalTypes** pointer replaces the previously saved pointer.
+
 **Since**: 18
 
 
@@ -546,6 +658,8 @@ Image_ErrorCode OH_PackingOptionsForSequence_GetDisposalTypes(OH_PackingOptionsF
 **Description**
 
 Obtains the disposal type array for image sequence encoding.
+
+Restrictions: **options** and **disposalTypes** cannot be null pointers, and **disposalTypesLength** must be greater than 0. The API copies the configured disposal type array to the **disposalTypes** buffer passed by the caller. If the API returns a failure, the output buffer content should not be used.
 
 **Since**: 18
 
@@ -574,6 +688,8 @@ Image_ErrorCode OH_PackingOptionsForSequence_SetLoopCount(OH_PackingOptionsForSe
 
 Sets the number of loops for image sequence encoding. The value range is [0, 65535], where **0** means an infinite loop. If this field is not carried, loop playback is not performed.
 
+Restrictions: **options** cannot be a null pointer. This API saves only the input **loopCount**. If the value of **loopCount** is greater than 65535, this API returns success. However, a parameter error is returned when [OH_ImagePackerNative_PackToDataFromPixelmapSequence](#oh_imagepackernative_packtodatafrompixelmapsequence) or [OH_ImagePackerNative_PackToFileFromPixelmapSequence](#oh_imagepackernative_packtofilefrompixelmapsequence) is called for encoding.
+
 **Since**: 18
 
 
@@ -599,6 +715,8 @@ Image_ErrorCode OH_PackingOptionsForSequence_GetLoopCount(OH_PackingOptionsForSe
 **Description**
 
 Obtains the number of loops for image sequence encoding.
+
+Restrictions: **options** and **loopCount** cannot be null pointers. If the API returns a failure, the content of the output parameter should not be used.
 
 **Since**: 18
 
@@ -626,6 +744,10 @@ Image_ErrorCode OH_PackingOptionsForSequence_Release(OH_PackingOptionsForSequenc
 
 Releases the pointer to an OH_PackingOptionsForSequence struct.
 
+Restrictions: **options** cannot be a null pointer.
+
+Resource management: After this API is called, the OH_PackingOptionsForSequence object pointed to by **options** is released and should not be used any more. Releasing the OH_PackingOptionsForSequence object does not release the array passed through [OH_PackingOptionsForSequence_SetDelayTimeList](#oh_packingoptionsforsequence_setdelaytimelist) or [OH_PackingOptionsForSequence_SetDisposalTypes](#oh_packingoptionsforsequence_setdisposaltypes).
+
 **Since**: 18
 
 
@@ -651,6 +773,12 @@ Image_ErrorCode OH_ImagePackerNative_Create(OH_ImagePackerNative **imagePacker)
 
 Creates the pointer to an OH_ImagePackerNative struct.
 
+Usage scenario: This API is applicable for encoding ImageSource, PixelMap, Picture, or PixelMap sequence into data or files in formats such as JPEG, PNG, and WebP. After ImagePacker is created, you need to set parameters such as the encoding format, quality, and whether to retain image properties using OH_PackingOptions or OH_PackingOptionsForSequence.
+
+Restrictions: **imagePacker** cannot be a null pointer. If the API returns a failure, the content of the output parameter should not be used.
+
+Resource management: The successfully created OH_ImagePackerNative object is held by the caller and must be released using [OH_ImagePackerNative_Release](#oh_imagepackernative_release) after use. The Packer does not take over the lifecycle of the input ImageSource, PixelMap, Picture, or encoding parameter object.
+
 **Since**: 12
 
 
@@ -675,6 +803,12 @@ Image_ErrorCode OH_ImagePackerNative_PackToDataFromImageSource(OH_ImagePackerNat
 **Description**
 
 Encodes an image source into data in a given format.
+
+Application scenario: This API is applicable for transcoding an existing ImageSource to another image format, or re-outputting it as in-memory data after modifying image properties.
+
+Restrictions: **imagePacker**, **options**, **imageSource**, **outData**, and **size** cannot be null pointers. Before calling this API, set ***size** to the capacity of **outData**. If the API returns a failure, the content in **outData** or the output value of **size** should not be used.
+
+Resource management: The caller allocates and releases **outData**. Before calling this API, *set **size** to the size of the **outData** writable buffer. After this API is called successfully*, the value of **size** is updated to the actual length of the encoded data. The lifecycle of **imagePacker**, **options**, and **imageSource** is still managed by the caller. This API does not release these objects.
 
 **Since**: 12
 
@@ -705,6 +839,12 @@ Image_ErrorCode OH_ImagePackerNative_PackToDataFromPixelmap(OH_ImagePackerNative
 
 Encodes a PixelMap into data in a given format.
 
+Usage scenario: This API is applicable for encoding a PixelMap that has been decoded, edited, drawn, or algorithmically processed into in-memory data in formats such as JPEG, PNG, or WebP, for purposes such as uploading, caching, or further writing to a file.
+
+Restrictions: **imagePacker**, **options**, **pixelmap**, **outData**, and **size** cannot be null pointers. Before calling this API, set ***size** to the capacity of **outData**. If the API returns a failure, do not use the content in **outData** or the output value of **size**.
+
+Resource management: The caller allocates and releases **outData**. Before calling this API, *set **size** to the size of the **outData** writable buffer. After this API is called successfully*, the value of **size** is updated to the actual length of the encoded data. The lifecycle of **imagePacker**, **options**, and **pixelmap** is still managed by the caller. This API does not release these objects.
+
 **Since**: 12
 
 
@@ -733,6 +873,10 @@ Image_ErrorCode OH_ImagePackerNative_PackToDataFromPicture(OH_ImagePackerNative 
 **Description**
 
 Encodes a picture into data in a given format.
+
+Restrictions: **imagePacker**, **options**, **picture**, **outData**, and **size** cannot be null pointers. Before calling this API, set ***size** to the capacity of **outData**. If the API returns a failure, the content in **outData** or the output value of **size** should not be used.
+
+Resource management: The caller allocates and releases **outData**. Before calling this API, *set **size** to the size of the **outData** writable buffer. After this API is called successfully*, the value of **size** is updated to the actual length of the encoded data. The lifecycle of **imagePacker**, **options**, and **picture** is still managed by the caller. This API does not release these objects.
 
 **Since**: 13
 
@@ -763,6 +907,12 @@ Image_ErrorCode OH_ImagePackerNative_PackToDataFromPixelmapSequence(OH_ImagePack
 
 Encodes a PixelMap sequence into data.
 
+Usage scenario: This API is applicable for encoding multiple PixelMap frames into an animated image or other image formats that support sequential frames. Before encoding, use OH_PackingOptionsForSequence to set parameters such as the number of frames, delay time, and number of loops.
+
+Restrictions: If the API returns a failure, the content in **outData** or the output value of **outDataSize** should not be used.
+
+Resource management: The caller allocates and releases **outData**. The lifecycle of **imagePacker**, **options**, and the PixelMap object in pixelmapSequence is still managed by the caller. This API does not release these objects.
+
 **Since**: 18
 
 
@@ -770,12 +920,12 @@ Encodes a PixelMap sequence into data.
 
 | Name| Description|
 | -- | -- |
-| [OH_ImagePackerNative](capi-image-nativemodule-oh-imagepackernative.md) *imagePacker | Pointer to OH_ImagePackerNative.|
-| [OH_PackingOptionsForSequence](capi-image-nativemodule-oh-packingoptionsforsequence.md) *options | Pointer to an [OH_PackingOptionsForSequence](capi-image-nativemodule-oh-packingoptionsforsequence.md) struct.|
-| [OH_PixelmapNative](capi-image-nativemodule-oh-pixelmapnative.md) **pixelmapSequence | Double pointer to the PixelMap sequence to encode.|
-| size_t sequenceLength | Length of the PixelMap sequence.|
-| uint8_t *outData | Pointer to the buffer used to store the output data.|
-| size_t *outDataSize | Pointer to the size of the buffer.|
+| [OH_ImagePackerNative](capi-image-nativemodule-oh-imagepackernative.md) *imagePacker | Pointer to an OH_ImagePackerNative object. It must not be NULL.|
+| [OH_PackingOptionsForSequence](capi-image-nativemodule-oh-packingoptionsforsequence.md) *options | Encoding option parameter, which cannot be NULL. The value of **frameCount** must be greater than 0. A valid **delayTimeList** must be set. The value range of **loopCount** is [0, 65535]. Each delay time in **delayTimeList** must be greater than 0 and less than or equal to 65535. The unit is 10 ms. Each value in **disposalTypes** must be less than or equal to 3.|
+| [OH_PixelmapNative](capi-image-nativemodule-oh-pixelmapnative.md) **pixelmapSequence | Pointer to the PixelMap sequence to encode. It cannot be NULL. The PixelMap pointer used for encoding in the array cannot be NULL.|
+| size_t sequenceLength | Length of the PixelMap sequence to encode. The value must be greater than 0.|
+| uint8_t *outData | Pointer to the buffer used to store the image output data after encoding. It cannot be NULL.|
+| size_t *outDataSize | Pointer to the size of the buffer used to store the image output data after encoding. It cannot be NULL. Before calling this API, *set **outDataSize** to the size of the **outData** writable buffer. After this API is called successfully*, the value of **outDataSize** is updated to the actual length of the encoded data.|
 
 **Returns**
 
@@ -792,6 +942,12 @@ Image_ErrorCode OH_ImagePackerNative_PackToFileFromImageSource(OH_ImagePackerNat
 **Description**
 
 Encodes an image source into a file.
+
+Usage scenario: This API is applicable for transcoding an ImageSource and directly writing it to a file descriptor, eliminating the need for the caller to manage the encoded in-memory buffer.
+
+Restrictions: **imagePacker**, **options**, and **imageSource** cannot be null pointers. **fd** must be a writable file descriptor.
+
+Resource management: **fd** must be a writable file descriptor. The caller is responsible for opening and closing the file descriptor. The API does not release **imagePacker**, **options**, or **imageSource**.
 
 **Since**: 12
 
@@ -821,6 +977,12 @@ Image_ErrorCode OH_ImagePackerNative_PackToFileFromPixelmap(OH_ImagePackerNative
 
 Encodes a PixelMap into a file.
 
+Usage scenario: This API is applicable for directly saving a processed PixelMap as a file. Compared with PackToDataFromPixelmap, this API does not require the caller to pre-allocate an output data buffer.
+
+Restrictions: **imagePacker**, **options**, and **pixelmap** cannot be null pointers. **fd** must be a writable file descriptor.
+
+Resource management: **fd** must be a writable file descriptor. The caller is responsible for opening and closing the file descriptor. The API does not release **imagePacker**, **options**, or **pixelmap**.
+
 **Since**: 12
 
 
@@ -848,6 +1010,10 @@ Image_ErrorCode OH_ImagePackerNative_PackToFileFromPicture(OH_ImagePackerNative 
 **Description**
 
 Encodes a picture into a file.
+
+Restrictions: **imagePacker**, **options**, and **picture** cannot be null pointers. **fd** must be a writable file descriptor.
+
+Resource management: The caller is responsible for opening and closing the file descriptor (fd). The API does not release **imagePacker**, **options**, or **picture**.
 
 **Since**: 13
 
@@ -877,6 +1043,10 @@ Image_ErrorCode OH_ImagePackerNative_PackToFileFromPixelmapSequence(OH_ImagePack
 
 Encodes a PixelMap sequence into a file.
 
+Restrictions: If the API returns a failure, the content in the target file should not be used.
+
+Resource management: The caller is responsible for opening and closing the file descriptor (fd). The API does not release **imagePacker**, **options**, or the PixelMap object in pixelmapSequence.
+
 **Since**: 18
 
 
@@ -884,11 +1054,11 @@ Encodes a PixelMap sequence into a file.
 
 | Name| Description|
 | -- | -- |
-| [OH_ImagePackerNative](capi-image-nativemodule-oh-imagepackernative.md) *imagePacker | Pointer to OH_ImagePackerNative.|
-| [OH_PackingOptionsForSequence](capi-image-nativemodule-oh-packingoptionsforsequence.md) *options | Pointer to an [OH_PackingOptionsForSequence](capi-image-nativemodule-oh-packingoptionsforsequence.md) struct.|
-| [OH_PixelmapNative](capi-image-nativemodule-oh-pixelmapnative.md) **pixelmapSequence | Double pointer to the PixelMap sequence to encode.|
-| size_t sequenceLength | Length of the PixelMap sequence.|
-| int32_t fd | File descriptor, which is writable.|
+| [OH_ImagePackerNative](capi-image-nativemodule-oh-imagepackernative.md) *imagePacker | Pointer to an OH_ImagePackerNative object. It must not be NULL.|
+| [OH_PackingOptionsForSequence](capi-image-nativemodule-oh-packingoptionsforsequence.md) *options | Encoding option parameter, which cannot be NULL. The value of **frameCount** must be greater than 0. A valid **delayTimeList** must be set. The value range of **loopCount** is [0, 65535]. Each delay time in **delayTimeList** must be greater than 0 and less than or equal to 65535. Each value in **disposalTypes** must be less than or equal to 3.|
+| [OH_PixelmapNative](capi-image-nativemodule-oh-pixelmapnative.md) **pixelmapSequence | Pointer to the PixelMap sequence to encode. It cannot be NULL. The PixelMap pointer used for encoding in the array cannot be NULL.|
+| size_t sequenceLength | Length of the PixelMap sequence used for encoding. The value must be greater than 0.|
+| int32_t fd | File descriptor, which must be writable.|
 
 **Returns**
 
@@ -905,6 +1075,12 @@ Image_ErrorCode OH_ImagePackerNative_GetSupportedFormats(Image_MimeType **suppor
 **Description**
 
 Obtains the supported image formats that can be encoded.
+
+Application scenario: This API is applicable for dynamically querying the target formats supported by the current system before encoding, and setting the MIME type accordingly via OH_PackingOptions_SetMimeType.
+
+Restrictions: **supportedFormats** and **length** cannot be null pointers. If the API returns a failure, the content of the output parameter should not be used.
+
+Resource management: The **supportedFormats** array returned by the API is managed by the system. The caller does not need to and should not release or modify it. If long-term storage is required, copy the array content by yourself.
 
 **Since**: 20
 
@@ -931,6 +1107,10 @@ Image_ErrorCode OH_ImagePackerNative_Release(OH_ImagePackerNative *imagePacker)
 **Description**
 
 Releases the pointer to an OH_ImagePackerNative struct.
+
+Restrictions: **imagePacker** cannot be a null pointer.
+
+Resource management: The objects successfully created through [OH_ImagePackerNative_Create](#oh_imagepackernative_create) must be released using this API after use. Releasing a packer does not release the OH_PackingOptions, OH_PackingOptionsForSequence, OH_ImageSourceNative, OH_PixelmapNative, or OH_PictureNative object. Resource management: After this API is called, the OH_ImagePackerNative object pointed to by **imagePacker** is released and should not be used any more.
 
 **Since**: 12
 
