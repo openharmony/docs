@@ -1237,7 +1237,7 @@ getEncodedPem(format: string): string
 
 | 类型                        | 说明                              |
 | --------------------------- | --------------------------------- |
-| string | PEM编码的私钥数据。 |
+| string | PEM编码的公钥数据。 |
 
 **错误码：**
 以下错误码的详细介绍请参见[cryptoFramework错误码](errorcode-crypto-framework.md)。
@@ -2949,7 +2949,7 @@ function TestConvertPemKeyBySync() {
 
 convertPemKeySync(pubKey: string | null, priKey: string | null, password: string): KeyPair
 
-解析密钥数据，生成非对称密钥对象。支持加密的私钥，同步传入私钥口令解密私钥。使用同步方法。
+解析密钥数据，生成非对称密钥对象。支持加密的私钥，同步传入私钥口令解密私钥。
 
 > **说明：**
 > convertPemKeySync接口与convertPemKey接口注意事项相同，见[convertPemKey](#convertpemkey18)接口说明。
@@ -3404,7 +3404,7 @@ function testGeneratePriKey() {
 
 generatePriKey(): Promise\<PriKey>
 
-获取该非对称密钥生成器生成的密钥。使用Promise异步回调。
+获取该非对称密钥生成器生成的私钥。使用Promise异步回调。
 
 当使用[PRIVATE_KEY_SPEC](#asykeyspectype10)类型的密钥参数来创建密钥生成器时，可以得到指定的私钥；当使用[KEY_PAIR_SPEC](#asykeyspectype10)类型的密钥参数来创建密钥生成器时，可以从生成的密钥对中获取指定的私钥。
 
@@ -3477,7 +3477,7 @@ function testGeneratePriKey() {
 
 generatePriKeySync(): PriKey
 
-同步获取该非对称密钥生成器生成的密钥。
+同步获取该非对称密钥生成器生成的私钥。
 
 当使用[PRIVATE_KEY_SPEC](#asykeyspectype10)类型的密钥参数来创建密钥生成器时，可以得到指定的私钥；当使用[KEY_PAIR_SPEC](#asykeyspectype10)类型的密钥参数来创建密钥生成器时，可以从生成的密钥对中获取指定的私钥。
 
@@ -3624,7 +3624,7 @@ function testGeneratePubKey() {
 
 generatePubKey(): Promise\<PubKey>
 
-获取该非对称密钥生成器生成的密钥。使用Promise异步回调。
+获取该非对称密钥生成器生成的公钥。使用Promise异步回调。
 
 当使用[PUBLIC_KEY_SPEC](#asykeyspectype10)类型的密钥参数来创建密钥生成器时，可以得到指定的公钥；当使用[KEY_PAIR_SPEC](#asykeyspectype10)类型的密钥参数来创建密钥生成器时，可以从生成的密钥对中获取指定的公钥。
 
@@ -3697,7 +3697,7 @@ function testGeneratePubKey() {
 
 generatePubKeySync(): PubKey
 
-同步获取该非对称密钥生成器生成的密钥。
+同步获取该非对称密钥生成器生成的公钥。
 
 当使用[PUBLIC_KEY_SPEC](#asykeyspectype10)类型的密钥参数来创建密钥生成器时，可以得到指定的公钥；使用[KEY_PAIR_SPEC](#asykeyspectype10)类型的密钥参数时，可以从生成的密钥对中获取指定的公钥。
 
