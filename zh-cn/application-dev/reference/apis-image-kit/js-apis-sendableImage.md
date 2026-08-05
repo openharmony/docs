@@ -186,7 +186,7 @@ createPixelMapFromSurface(surfaceId: string, region: image.Region): Promise\<Pix
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
-| 62980115 | If the image parameter invalid.|
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. 3.Parameter verification failed.|
 | 62980105 | Failed to get the data|
 | 62980178 | Failed to create the PixelMap|
 

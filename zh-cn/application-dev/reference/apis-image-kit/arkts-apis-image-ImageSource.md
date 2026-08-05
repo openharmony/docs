@@ -395,7 +395,7 @@ modifyImageProperty(key: PropertyKey, value: string): Promise\<void>
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
-| 401  | Parameter error.Possible causes:1.Mandatory parameters are left unspecified;2.Incorrect parameter types;    |
+| 401  | Parameter error.Possible causes:1.Mandatory parameters are left unspecified; 2.Incorrect parameter types;    |
 | 62980123| The image does not support EXIF decoding.             |
 | 62980133| The EXIF data is out of range.             |
 | 62980135| The EXIF value is invalid.             |
@@ -891,7 +891,7 @@ createPicture(options?: DecodingOptionsForPicture): Promise\<Picture>
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
-| 401      | Parameter error.Possible causes: 1.Mandatory parameters are left unspecified.2.Incorrect parameter types; 3.Parameter verification failed. |
+| 401      | Parameter error.Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. 3.Parameter verification failed. |
 | 7700203  | Unsupported options. For example, unsupported desiredPixelFormat causes a failure in converting an image into the desired pixel format. <br>适用版本：24+ |
 | 7700301  | Decode failed.                                               |
 

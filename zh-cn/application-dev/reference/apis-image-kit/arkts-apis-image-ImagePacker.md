@@ -246,7 +246,7 @@ packToDataFromPixelmapSequence(pixelmapSequence: Array\<PixelMap>, options: Pack
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
-| 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. 3.Parameter verification failed. |
+| 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types;3.Parameter verification failed. |
 | 7800301  | Failed to encode image.                                      |
 
 **示例：**
