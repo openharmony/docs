@@ -1,4 +1,4 @@
- # Mechanic Kit术语
+ # 术语
 <!--Kit: Mechanic Kit-->
 <!--Subsystem: Mechanic-->
 <!--Owner: @qxqxqxqxqx-->
