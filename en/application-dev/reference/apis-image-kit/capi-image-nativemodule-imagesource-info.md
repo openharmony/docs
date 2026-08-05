@@ -44,3 +44,4 @@ The table below describes the content and operation mode of the OH_ImageSource_I
 **Header file**: [image_source_native.h](capi-image-source-native-h.md)
 
 **Related development guide:** [Using Image_NativeModule for Image Decoding](../../media/image/image-source-c.md), [Image Region Decoding and Downsampling (C/C++)](../../media/image/image-region-and-downsampling-c.md), [Using Image_NativeModule for Animated Image Decoding](../../media/image/image-animated-decoding-c.md), [Using Image_NativeModule for HDR Image Decoding](../../media/image/image-hdr-decoding-c.md)
+<!--no_check-->

@@ -2238,3 +2238,4 @@ Resource management: This API only destroys the OH_ImageRawData object and its i
 | Type| Description|
 | -- | -- |
 | [Image_ErrorCode](capi-image-common-h.md#image_errorcode) | **IMAGE_SUCCESS**: The operation is successful.<br>         **IMAGE_SOURCE_INVALID_PARAMETER**: The rawData object is invalid.|
+<!--no_check-->

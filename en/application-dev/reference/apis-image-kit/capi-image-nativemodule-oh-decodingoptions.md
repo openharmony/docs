@@ -47,3 +47,4 @@ The table below describes the content and operation mode of the OH_DecodingOptio
 **Header file**: [image_source_native.h](capi-image-source-native-h.md)
 
 **Related Development Guide:** [Image Decoding Using Image_NativeModule](../../media/image/image-source-c.md), [Image Region Decoding and Downsampling (C/C++)](../../media/image/image-region-and-downsampling-c.md), [HDR Image Decoding Using Image_NativeModule](../../media/image/image-hdr-decoding-c.md)
+<!--no_check-->

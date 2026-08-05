@@ -49,3 +49,4 @@ The table below describes the content and operation mode of the OH_ImageSourceNa
 **Header file**: [image_source_native.h](capi-image-source-native-h.md)
 
 **Related development guides:** [Image Decoding Using Image_NativeModule](../../media/image/image-source-c.md), [Image Region Decoding and Downsampling (C/C++)](../../media/image/image-region-and-downsampling-c.md), [Animated Image Decoding Using Image_NativeModule](../../media/image/image-animated-decoding-c.md), [HDR Image Decoding Using Image_NativeModule](../../media/image/image-hdr-decoding-c.md), [Multi-Image Object Decoding Using Image_NativeModule](../../media/image/image-source-picture-c.md)
+<!--no_check-->
