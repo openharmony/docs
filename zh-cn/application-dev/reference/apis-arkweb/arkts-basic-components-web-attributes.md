@@ -2212,6 +2212,11 @@ forceDisplayScrollBar(enabled: boolean)
 
 全量展开模式下不支持滚动条常驻，即layoutMode为WebLayoutMode.FIT_CONTENT模式时，参数enabled为false。
 
+> **说明：**
+>
+> - 该接口在当前应用的所有Web组件中全局生效。多个Web组件设置不同值时，以首次设置的值为准。
+> - 建议使用[setScrollbarMode](./arkts-apis-webview-WebviewController.md#setscrollbarmode23)设置当前应用所有Web组件的滚动条模式。若同时调用setScrollbarMode接口，forceDisplayScrollBar接口设置不生效。
+
 **系统能力：** SystemCapability.Web.Webview.Core
 
 **参数：**
