@@ -41,3 +41,5 @@ For details about how to use related APIs, see [IndexUtil](../reference/apis-loc
    // Obtain the index value of a string.
    let index = indexUtil.getIndex('Hello'); // index = 'N'
    ```
+
+<!--no_check-->

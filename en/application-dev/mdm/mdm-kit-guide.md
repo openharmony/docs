@@ -10,7 +10,7 @@
 
 ## Introduction
 
-MDM Kit provides capabilities for [MDM apps](./mdm-kit-term.md#mdm-app), including enterprise device management and event listening, application management, feature restriction management, security management, device settings, device control, device information acquisition, hardware peripheral management, system management, and network management. For details about the APIs, see <!--RP7-->[API Reference](../reference/apis-mdm-kit/Readme-EN.md)<!--RP7End-->.
+MDM Kit provides capabilities for [MDM apps](./mdm-kit-term.md#mdm-app), including enterprise device management and event listening, application management, feature restriction management, security management, device settings, device control, device information acquisition, hardware peripheral management, system management, and network management. For details about the APIs, see <!--RP7-->[API Reference](https://developer.huawei.com/consumer/en/doc/harmonyos-references/mdm-api)<!--RP7End-->.
 
 A device administrator application is an application with the [EnterpriseAdminExtensionAbility](./mdm-kit-admin.md).
 

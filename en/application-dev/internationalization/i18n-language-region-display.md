@@ -47,3 +47,5 @@ For details about the APIs, see [getDisplayCountry](../reference/apis-localizati
    // locale: locale ID, for example, en-GB, en-US, or zh-Hans-CN.
    // sentenceCase: whether the first letter of the country/region name needs to be capitalized. The default value is true.
    ```
+
+<!--no_check-->
