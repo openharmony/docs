@@ -13,7 +13,7 @@
 
 ## 随机生成AES密钥
 
-对应的算法规格请查看[对称密钥生成和转换规格：AES](crypto-sym-key-generation-conversion-spec.md#aes)。
+对应的算法规格请查看[对称密钥生成和转换规格：AES](crypto-key-generation-conversion.md#aes)。
 
 1. 调用[cryptoFramework.createSymKeyGenerator](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#cryptoframeworkcreatesymkeygenerator)，指定字符串参数'AES256'，创建密钥算法为AES、密钥长度为256位的对称密钥生成器（SymKeyGenerator）。
 
@@ -62,7 +62,7 @@
 
 ## 随机生成SM4密钥
 
-对应的算法规格请查看[对称密钥生成和转换规格：SM4](crypto-sym-key-generation-conversion-spec.md#sm4)。
+对应的算法规格请查看[对称密钥生成和转换规格：SM4](crypto-key-generation-conversion.md#sm4)。
 
 1. 调用[cryptoFramework.createSymKeyGenerator](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#cryptoframeworkcreatesymkeygenerator)，指定字符串参数'SM4_128'，创建密钥算法为SM4、密钥长度为128位的对称密钥生成器（SymKeyGenerator）。
 

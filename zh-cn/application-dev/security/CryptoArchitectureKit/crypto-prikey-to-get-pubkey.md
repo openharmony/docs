@@ -7,11 +7,11 @@
 <!--Tester: @PAFT-->
 <!--Adviser: @zengyawen-->
 
-从API version 23开始，算法库支持从私钥对象中获取公钥对象的操作。
+从API版本23开始，算法库支持从私钥对象中获取公钥对象的操作。
 
 以RSA为例，根据私钥对象获取公钥对象。
 
-对应的算法规格请查看[非对称密钥加解密算法规格：RSA](crypto-asym-encrypt-decrypt-spec.md#rsa)。
+对应的算法规格请查看[非对称密钥加解密算法规格：RSA](crypto-encryption-decryption.md#rsa)。
 
 ## 开发步骤
 

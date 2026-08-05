@@ -7,7 +7,7 @@
 <!--Tester: @PAFT-->
 <!--Adviser: @zengyawen-->
 
-从API version 22开始，算法库支持使用该算法进行密钥派生操作。
+从API版本22开始，算法库支持使用该算法进行密钥派生操作。
 
 对应的算法规格请查看[密钥派生算法规格：X963KDF](crypto-key-derivation-overview.md#x963kdf算法)。
 

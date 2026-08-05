@@ -7,7 +7,7 @@
 <!--Tester: @PAFT-->
 <!--Adviser: @zengyawen-->
 
-从API version 22开始，算法库支持使用该算法进行摘要计算操作。
+从API版本22开始，算法库支持使用该算法进行摘要计算操作。
 
 对应的算法规格请查看[消息摘要计算算法规格](crypto-generate-message-digest-overview.md#支持的算法与规格)。
 

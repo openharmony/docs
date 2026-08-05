@@ -23,9 +23,9 @@ Crypto Architecture Kit屏蔽了第三方密码学算法库实现差异的算法
 
 加解密算法库为开发者提供了以下相关功能，并提供了对应的算法规格说明和开发指导，请开发者参照开发。
 
-- [密钥生成和转换](crypto-key-generation-conversion-overview.md)
+- [密钥生成和转换](crypto-key-generation-conversion.md)
 
-- [加解密](crypto-encryption-decryption-overview.md)
+- [加解密](crypto-encryption-decryption.md)
 
 - [签名验签](crypto-sign-sig-verify-overview.md)
 
