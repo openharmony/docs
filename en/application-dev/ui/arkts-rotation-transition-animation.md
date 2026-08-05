@@ -1,10 +1,12 @@
 # Rotation Transition Animation
+
 <!--Kit: ArkUI-->
 <!--Subsystem: ArkUI-->
-<!--Owner: @CCFFWW-->
-<!--Designer: @CCFFWW-->
+<!--Owner: @hehongyang3-->
+<!--Designer: @hehongyang3-->
 <!--Tester: @lxl007-->
 <!--Adviser: @Brilliantry_Rui-->
+<!-- md-trans-meta sourceCommit=4074739ec104663f417d9981273bcd01b284c4ca translatedAt=2026-08-04T06:36:10.390Z pushedAt=2026-08-04T08:22:48.818Z -->
 
 Rotation transition animations are designed to create seamless visual transitions when the screen display orientation changes. There are two approaches to choose from:<br> [Rotation transition animation with layout switching](#rotation-transition-animation-with-layout-switching): This animation is your go-to solution for an out-of-the-box implementation experience. It can be achieved by simply configuring automatic rotation (or setting the window display orientation) in the **module.json5** file.<br> [Rotation transition animation with opacity changing](#rotation-transition-animation-with-opacity-changing): This animation adds a touch of sophistication with fade-in and fade-out effects for components during screen rotations. It requires additional setup beyond the **module.json5** configuration, including the preparation of two sets of visuals.
 
@@ -34,10 +36,12 @@ struct rotation {
 }
 ```
 
-
 Add **"orientation": "auto_rotation"** to the **abilities** list in the **module.json5** file of the project.
+
 ```json
-"orientation": "auto_rotation",
+{
+  "orientation": "auto_rotation"
+}
 ```
 
 The rotation transition animation with layout switching ensures a seamless transition of size and position for windows and application views that rotate in synchronization.
@@ -48,7 +52,7 @@ The rotation transition animation with layout switching ensures a seamless trans
 
 The rotation transition animation with opacity changing is activated upon changes in the screen display orientation. It applies a default opacity transition to components that are added or removed during the rotation, allowing for an elegant appearance and disappearance of components. This feature listens for window rotation events and switches the visual effects of components within these events. If the root nodes of the disappearing and appearing views have not been set with a transition effect, it will automatically apply a default opacity transition (that is, [TransitionEffect](../reference/apis-arkui/arkui-ts/ts-transition-animation-component.md#transitioneffect10).OPACITY), creating a smooth fade-in and fade-out effect.
 
-<!-- @[rotation_page](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkUISample/Animation/entry/src/main/ets/pages/rotation/template2/Index.ets) -->
+<!-- @[rotation_page](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkUISample/Animation/entry/src/main/ets/pages/rotation/template2/Index.ets) -->  
 
 ``` TypeScript
 import { display } from '@kit.ArkUI';
@@ -57,14 +61,14 @@ import { display } from '@kit.ArkUI';
 @Component
 struct rotation {
 
-  // Obtain the screen display orientation received by listening for the windowsSizeChange event.
+  // Get the screen display orientation obtained by listening to the window's windowSizeChange event.
   @StorageLink('orientation') myOrientation: display.Orientation = display.Orientation.PORTRAIT;
 
   build() {
     Stack() {
 
       // Switch the component's visual effect when the screen display orientation changes.
-      if (this.myOrientation == display.Orientation.PORTRAIT || this.myOrientation == display.Orientation.PORTRAIT_INVERTED) {
+      if (this.myOrientation === display.Orientation.PORTRAIT || this.myOrientation === display.Orientation.PORTRAIT_INVERTED) {
         // Replace $r('app.media.sky') with the actual resource file.
         Image($r('app.media.sky'))
           .size({ width: 100, height: 100 })
@@ -90,7 +94,8 @@ struct rotation {
 ```
 
 Listen for the **windowSizeChange** event to manage the transitions. For example, you can add processing logic to the [onWindowStageCreate](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md#onwindowstagecreate) method in the **EntryAbility.ets** file to obtain the display orientation of the screen.
-<!-- @[window_stage](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkUISample/Animation/entry/src/main/ets/entryability/EntryAbility.ets) -->
+
+<!-- @[window_stage](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkUISample/Animation/entry/src/main/ets/entryability/EntryAbility.ets) -->  
 
 ``` TypeScript
 import { display, window } from '@kit.ArkUI';
@@ -107,7 +112,7 @@ const TAG: string = 'EntryAbility';
       mainWindow = windowStage.getMainWindowSync();
       let displayClass: display.Display = display.getDefaultDisplaySync();
       AppStorage.setOrCreate('orientation', displayClass.orientation);
-      // Listen for the windowsSizeChange event, which is triggered when the screen is rotated.
+      // Listen for the window's windowSizeChange event, which is triggered during screen rotation.
       mainWindow.on('windowSizeChange', (data) => {
         hilog.info(DOMAIN, TAG, 'Succeeded in enabling the listener for window size changes. Data: ' + data);
         let displayClass: display.Display | null = null;
@@ -139,8 +144,11 @@ const TAG: string = 'EntryAbility';
 ```
 
 Add **"orientation": "auto_rotation"** to the **abilities** list in the **module.json5** file of the project.
+
 ```json
-"orientation": "auto_rotation",
+{
+  "orientation": "auto_rotation"
+}
 ```
 
 The rotation transition animation with opacity changing manages the transition of size and position for the window and smoothly switches between application views, providing a fade-out effect for the disappearing view and a fade-in effect for the appearing view.

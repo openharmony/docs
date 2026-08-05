@@ -1,8 +1,8 @@
 # Spring Curve
 <!--Kit: ArkUI-->
 <!--Subsystem: ArkUI-->
-<!--Owner: @CCFFWW-->
-<!--Designer: @CCFFWW-->
+<!--Owner: @hehongyang3-->
+<!--Designer: @hehongyang3-->
 <!--Tester: @lxl007-->
 <!--Adviser: @Brilliantry_Rui-->
 
@@ -54,7 +54,12 @@ ArkUI provides four types of damped spring curve APIs:
 
 The following shows a complete example and effect of spring curves. For details about how to connect gestures and animations using **responsiveSpringMotion** and **springMotion**, see [Animation Smoothing](arkts-animation-smoothing.md).
 
-<!-- @[spring_curve](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkUISample/Animation/entry/src/main/ets/pages/springCurve/template1/SpringCurve.ets) -->
+
+ 
+
+
+
+<!-- @[spring_curve](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkUISample/Animation/entry/src/main/ets/pages/springCurve/template1/SpringCurve.ets) -->     
 
 ``` TypeScript
 import { curves } from '@kit.ArkUI';
@@ -75,7 +80,7 @@ class Spring {
 // Spring component
 @Component
 struct Motion {
-  @Prop dRotate: number = 0;
+  @Prop dTranslate: number = 0;
   private title: string = '';
   private subTitle: ResourceStr = '';
   private iCurve: ICurve | undefined = undefined;
@@ -83,7 +88,7 @@ struct Motion {
   build() {
     Column() {
       Circle()
-        .translate({ y: this.dRotate })
+        .translate({ y: this.dTranslate })
         .animation({ curve: this.iCurve, iterations: -1 })
         .foregroundColor('#317AF7')
         .width(30)
@@ -114,7 +119,7 @@ struct Motion {
 @Component
 export struct SpringCurve {
   private context = this.getUIContext().getHostContext() as common.UIAbilityContext;
-  @State dRotate: number = 0;
+  @State dTranslate: number = 0;
   private springs: Spring[] = [
     // Replace $r('app.string.springCurve_text1') with the actual resource file. In this example, the value in the resource file is "Cycle 1; damping: 0.25."
     new Spring('springMotion', $r('app.string.springCurve_text1'), curves.springMotion(1, 0.25)),
@@ -124,8 +129,8 @@ export struct SpringCurve {
     // Replace $r('app.string.springCurve_text3') with the actual resource file. In this example, the value in the resource file is "Initial velocity: 10; quality: 1; stiffness: 228; damping: 30."
     new Spring('interpolating' + '\n' + 'Spring', $r('app.string.springCurve_text3'),
       curves.interpolatingSpring(10, 1, 228, 30)),
-    // Replace $r('app.string.springCurve_text1') with the actual resource file. In this example, the value in the resource file is "Cycle 1; damping: 0.25."
-    new Spring('springCurve', $r('app.string.springCurve_text1'),
+    // Replace $r('app.string.springCurve_text3') with the actual resource file. In this example, the value in the resource file is "Initial velocity: 10; quality: 1; stiffness: 228; damping: 30."
+    new Spring('springCurve', $r('app.string.springCurve_text3'),
       curves.springCurve(10, 1, 228, 30))
   ];
 
@@ -136,7 +141,7 @@ export struct SpringCurve {
           title: item.title,
           subTitle: item.subTitle,
           iCurve: item.iCurve,
-          dRotate: this.dRotate
+          dTranslate: this.dTranslate
         })
       })
     }
@@ -146,7 +151,7 @@ export struct SpringCurve {
     .height(437)
     .margin({ top: 20 })
     .onClick(() => {
-      this.dRotate = -50;
+      this.dTranslate = -50;
     })
   }
 }

@@ -30,12 +30,12 @@ Set the [wordBreak](../reference/apis-arkui/arkui-ts/ts-basic-components-text.md
 
 The sample code is as follows:
   <!-- @[Word_Break](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkUISample/TextComponent/entry/src/main/ets/pages/text/WordBreakd.ets) -->
-
+  
   ``` TypeScript
   import { common } from '@kit.AbilityKit';
   @Entry
   @Component
-  export struct WordBreakd {
+  struct WordBreakd {
     private context = this.getUIContext().getHostContext() as common.UIAbilityContext;
     private manager = this.context.resourceManager;
   
@@ -64,13 +64,13 @@ The sample code is as follows:
   }
   ```
 
-
+<!--Del-->![]  (figures/text_faq_Word_Break.gif)<!--DelEnd-->
 
 ### How Do I Implement Text Expansion at the End of the Line?
 
 **Solution**
 
-Calculate the truncated characters and append an expansion indicator (such as "...") at the end of the line as part of the component content. For details about the implementation, see [the API for converting a styled string to a paragraph array](../reference/apis-arkui/arkts-apis-uicontext-measureutils.md#getparagraphs20)<!--RP1--><!--RP1End-->.
+Calculate the truncated characters and append an expansion indicator (such as "...") at the end of the line as part of the component content. For details about the implementation, see the [getParagraphs](../reference/apis-arkui/arkts-apis-uicontext-measureutils.md#getparagraphs20) example<!--RP1--><!--RP1End-->.
 
 ### How Do I Implement Automatic Ellipsis for Overflowing Text?
 
@@ -84,13 +84,13 @@ Set [heightAdaptivePolicy](../reference/apis-arkui/arkui-ts/ts-basic-components-
 
 The sample code is as follows:
   <!-- @[Height_AdaptivePolicy](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkUISample/TextComponent/entry/src/main/ets/pages/text/HeightAdaptivePolicy.ets) --> 
-
+  
   ``` TypeScript
   import { common } from '@kit.AbilityKit';
   
   @Entry
   @Component
-  export struct HeightAdaptivePolicy {
+  struct HeightAdaptivePolicy {
     private context = this.getUIContext().getHostContext() as common.UIAbilityContext;
     private manager = this.context.resourceManager;
   
@@ -163,14 +163,14 @@ Implementation steps:
 Example:
 
   <!-- @[Length_Metric](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkUISample/TextComponent/entry/src/main/ets/pages/text/LengthMetric.ets) --> 
-
+  
   ``` TypeScript
   import { LengthMetrics } from '@kit.ArkUI';
   import { common } from '@kit.AbilityKit';
   
   @Entry
   @Component
-  export struct LengthMetric {
+  struct LengthMetric {
     private context = this.getUIContext().getHostContext() as common.UIAbilityContext;
     private manager = this.context.resourceManager;
   
@@ -183,10 +183,8 @@ Example:
     @State frontPaddingVp: number = 20;
     @State backPaddingVp: number = 10;
     @State fontTagWidthVp: Length = 0;
-    @State backTagWidthVp: Length = 0;
     @State backOffsetVpX: Length = 0;
     @State backOffsetVpY: Length = 0;
-    @State messageLines: number = 0;
     @State stackWidthVp: number = 300;
   
     // Calculate tag positions and text indentation before component rendering.
@@ -272,13 +270,13 @@ How do I convert emoji codes to images and display them alongside text in the **
 Parse emoji codes using a regular expression, map them to image resources, and display both text and emojis using [Span](../reference/apis-arkui/arkui-ts/ts-basic-components-span.md) and [ImageSpan](../reference/apis-arkui/arkui-ts/ts-basic-components-imagespan.md).
 
   <!-- @[Displayed_Together](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkUISample/TextComponent/entry/src/main/ets/pages/text/DisplayedTogether.ets) -->
-
+  
   ``` TypeScript
   // Replace $r('app.media.xxx') with the actual resource file.
   import { common } from '@kit.AbilityKit';
   @Entry
   @Component
-  export struct DisplayedTogether {
+  struct DisplayedTogether {
     private context = this.getUIContext().getHostContext() as common.UIAbilityContext;
     private manager = this.context.resourceManager;
   
@@ -389,11 +387,13 @@ Let the text wrap automatically. When the **Text** component's [height](../refer
 This example limits the **Text** component to three lines:
 
   <!-- @[Text_Long](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkUISample/TextComponent/entry/src/main/ets/pages/text/TextLong.ets) -->
-
+  
   ``` TypeScript
+  import { common } from '@kit.AbilityKit';
+
   @Entry
   @Component
-  export struct TextLong {
+  struct TextLong {
     private context = this.getUIContext().getHostContext() as common.UIAbilityContext;
     private manager = this.context.resourceManager;
   
@@ -425,11 +425,13 @@ This example limits the **Text** component to three lines:
 Solution 1 truncates content. To display all text, place the **Text** component inside a [Scroll](../reference/apis-arkui/arkui-ts/ts-container-scroll.md) container. This way, users can swipe to view the full content.
 
   <!-- @[Text_Long_Tow](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkUISample/TextComponent/entry/src/main/ets/pages/text/TextLongTow.ets) -->
-
+  
   ``` TypeScript
+  import { common } from '@kit.AbilityKit';
+  
   @Entry
   @Component
-  export struct TextLongTow {
+  struct TextLongTow {
     private context = this.getUIContext().getHostContext() as common.UIAbilityContext;
     private manager = this.context.resourceManager;
   
@@ -455,7 +457,7 @@ Solution 1 truncates content. To display all text, place the **Text** component 
   }
   ```
 
-
+<!--Del-->![]  (figures/text_too_long_scroll.gif)<!--DelEnd-->
 
 ### How Do I Trigger a Custom Menu via selection and Set Its Font Size?
 
@@ -466,63 +468,65 @@ Solution 1 truncates content. To display all text, place the **Text** component 
 **Solution**
 
 Set **TextResponseType** to **DEFAULT**. Use the **font** attribute of the [Menu](../reference/apis-arkui/arkui-ts/ts-basic-components-menu.md) component inside your custom builder to set the desired text size.
+  <!-- @[How_To_Set_Custom_Selection_Menu](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkUISample/TextComponent/entry/src/main/ets/pages/faq/HowToSetCustomSelectionMenu.ets) -->
 
-```ts
-// xxx.ets
-@Entry
-@Component
-struct TextExample8 {
-  controller: TextController = new TextController();
-  options: TextOptions = { controller: this.controller };
-  @State selectStart: number = 0;
-  @State selectEnd: number = 0;
+  ``` TypeScript
+  @Entry
+  @Component
+  export struct HowToSetCustomSelectionMenuExample {
+    @State selectStart: number = 0;
+    @State selectEnd: number = 0;
 
-  build() {
-    Column() {
+    build() {
+      NavDestination() {
+        Column() {
+          Column() {
+            // Replace $r('app.string.Set_Custom_Selection_Menu_Example_String') with the actual resource file. In this example, the value in the resource file is "TextTextTextText."
+            Text($r('app.string.Set_Custom_Selection_Menu_Example_String'))
+              .fontSize(14)
+              .selection(this.selectStart, this.selectEnd)
+              .copyOption(CopyOptions.InApp)
+              .bindSelectionMenu(TextSpanType.TEXT, this.CustomMenu, TextResponseType.DEFAULT, {
+                onDisappear: () => {
+                  this.selectStart = -1;
+                  this.selectEnd = -1;
+                },
+              })
+              .textAlign(TextAlign.Center)
+              .borderWidth(1)
+              .borderColor(Color.Red)
+            Button('Set selection')
+              .onClick(() => {
+                this.selectStart = 0;
+                this.selectEnd = 10;
+              })
+              .fontSize(14)
+              .margin({ top: 20 })
+          }
+          .width('100%')
+          .padding({ top: 300 })
+        }
+        .height('100%')
+      }
+    }
+  
+    @Builder
+    CustomMenu() {
       Column() {
-        Text("TextTextTextText")
-          .fontSize(14)
-          .selection(this.selectStart, this.selectEnd)
-          .copyOption(CopyOptions.InApp)
-          .bindSelectionMenu(TextSpanType.TEXT, this.CustomMenu, TextResponseType.DEFAULT, {
-            onDisappear: () => {
-              this.selectStart = -1;
-              this.selectEnd = -1;
-            },
-          })
-          .textAlign(TextAlign.Center)
-          .borderWidth(1)
-          .borderColor(Color.Red)
-        Button("Set selection")
-          .onClick(() => {
-            this.selectStart = 0;
-            this.selectEnd = 10;
-          })
-          .fontSize(14)
-          .margin({ top: 20 })
+        Menu() {
+          // Replace $r('app.string.Menu_Item_String') with the actual resource file. In this example, the value in the resource file is "Item Content."
+          MenuItem({ content: $r('app.string.Menu_Item_String') })
+          MenuItem({ content: $r('app.string.Menu_Item_String') })
+          MenuItem({ content: $r('app.string.Menu_Item_String') })
+        }
+        .font({ size: 14 })
+        .radius($r('sys.float.ohos_id_corner_radius_card'))
+        .clip(true)
+        .backgroundColor('#F0F0F0')
       }
-      .width('100%')
-      .padding({ top: 300 })
-    }
-    .height('100%')
-  }
-
-  @Builder
-  CustomMenu() {
-    Column() {
-      Menu() {
-        MenuItem({ content: "Item Content" })
-        MenuItem({ content: "Item Content" })
-        MenuItem({ content: "Item Content" })
-      }
-      .font({ size: 14 })
-      .radius($r('sys.float.ohos_id_corner_radius_card'))
-      .clip(true)
-      .backgroundColor('#F0F0F0')
     }
   }
-}
-```
+  ```
 
 ![](figures/selectionAndBindMenuAndFont.gif)
 
@@ -566,7 +570,7 @@ struct TextExample8 {
 
 This section describes FAQs about text input using the [TextInput](../reference/apis-arkui/arkui-ts/ts-basic-components-textinput.md), [TextArea](../reference/apis-arkui/arkui-ts/ts-basic-components-textarea.md), and [Search](../reference/apis-arkui/arkui-ts/ts-basic-components-search.md) components.
 
-### Why Does the Caret Not Disappear When TextInput Is Covered?
+### Why Does the Operation Handle Not Disappear When the TextInput Component Is Covered
 
 **Symptom**
 
