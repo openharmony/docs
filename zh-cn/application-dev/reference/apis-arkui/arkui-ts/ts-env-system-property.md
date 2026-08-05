@@ -30,7 +30,7 @@ Env\<T\>(key: SystemEnvKey\<T\> | SystemProperties): PropertyDecorator
 
 | 参数名| 类型| 必填 | 说明|
 | -------- | -------------------- | ---- | --------- | 
-|key|SystemEnvKey<T> \| SystemProperties|是|环境变量key。|
+|key|SystemEnvKey\<T> \| SystemProperties|是|环境变量key。|
 
 **返回值：** 
 
