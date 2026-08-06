@@ -1,4 +1,4 @@
-# @ohos.settingsLite (Settings)
+# @ohos.settingsLite (Setting Information)
 
 <!--Kit: Basic Services Kit-->
 <!--Subsystem: Applications-->
@@ -6,7 +6,7 @@
 <!--Designer: @tuonixiaositing-->
 <!--Tester: @c30034487-->
 <!--Adviser: @fang-jinxu-->
-<!-- md-trans-meta sourceCommit=462f4648dd9ab9b0e66d9e0fc6c427a01c28585a translatedAt=2026-08-05T12:18:38.777Z pushedAt=2026-08-06T02:22:24.502Z -->
+<!-- md-trans-meta sourceCommit=462f4648dd9ab9b0e66d9e0fc6c427a01c28585a translatedAt=2026-08-05T12:18:38.777Z pushedAt=2026-08-06T03:03:27.111Z -->
 
 This module provides lightweight setting capabilities and allows you to redirect to the settings page.
 

@@ -6,7 +6,7 @@
 <!--Designer: @lingminghw-->
 <!--Tester: @RayShih-->
 <!--Adviser: @fang-jinxu-->
-<!-- md-trans-meta sourceCommit=fa3fc214ef4b265f033bc3f0d0a2df54f511a497 translatedAt=2026-08-04T10:30:02.083Z pushedAt=2026-08-05T11:50:08.563Z -->
+<!-- md-trans-meta sourceCommit=fa3fc214ef4b265f033bc3f0d0a2df54f511a497 translatedAt=2026-08-04T10:30:02.083Z pushedAt=2026-08-06T03:03:16.900Z -->
 
 - ArkTS API<!--basic-services-arkts-->
 
@@ -68,7 +68,7 @@
 
     - [@ohos.usbManager (USB Management) (System API)](js-apis-usbManager-sys.md)
 
-    - [@ohos.usbManager.serial (Serial Port Management) (system API)](js-apis-serialManager-sys.md)
+    - [@ohos.usbManager.serial (Serial Port Management) (System API)](js-apis-serialManager-sys.md)
 
     - [@ohos.update (Update) (System API)](js-apis-update-sys.md)
 
