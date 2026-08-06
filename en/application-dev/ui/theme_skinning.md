@@ -1,20 +1,23 @@
 # Configuring In-Application Theme Skinning
+
 <!--Kit: ArkUI-->
 <!--Subsystem: ArkUI-->
 <!--Owner: @fangzhiyuan1-->
 <!--Designer: @fangzhiyuan1-->
 <!--Tester: @gouyuanyuan-->
 <!--Adviser: @Brilliantry_Rui-->
+<!-- md-trans-meta sourceCommit=8fb51013f309a5a08cfb368d72ebe2fd86aacfa1 translatedAt=2026-08-05T10:10:51.111Z pushedAt=2026-08-06T06:14:10.760Z -->
 
 ## Overview
 
 For applications developed with ArkTS, you can switch themes within the application, such as toggling between dark and light modes or changing the skin. Note that this feature is limited to in-application use and does not apply at the UIAbility or window level. It is not available for the C API and Node-API.
 
 ## Customizing Theme Colors
+
 To implement theme switching for your application, you must define custom theme colors. Use [CustomTheme](../reference/apis-arkui/js-apis-arkui-theme.md#customtheme) to specify the colors you wish to modify. Its properties are optional. Only values that need to be changed from system defaults should be specified. Unmodified values inherit from the system's default settings. For details, see [System Default Token Color Values](#system-default-token-color-values). The following is an example of how to define custom theme colors:
 
   <!-- @[app_theme](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkUISample/ThemeSkinning/entry/src/main/ets/pages/Theme1/AppTheme.ets) -->
-  
+
   ``` TypeScript
   import { CustomColors, CustomTheme } from '@kit.ArkUI';
   
@@ -33,18 +36,19 @@ To implement theme switching for your application, you must define custom theme 
   ```
 
 ## Setting Custom Theme Colors for Application Components
+
 - When setting custom theme colors at the page entry point, ensure that [ThemeControl](../reference/apis-arkui/js-apis-arkui-theme.md#themecontrol).[setDefaultTheme](../reference/apis-arkui/js-apis-arkui-theme.md#setdefaulttheme) is executed before the page is built.
 
   Use the [onWillApplyTheme](../reference/apis-arkui/arkui-ts/ts-custom-component-lifecycle.md#onwillapplytheme12) callback to allow custom components to access the currently active **Theme** object.
 
   <!-- @[display_page](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkUISample/ThemeSkinning/entry/src/main/ets/pages/Theme1/Theme1.ets) -->
-    
+
     ``` TypeScript
     // Index.ets
     import { Theme, ThemeControl } from '@kit.ArkUI';
     import { gAppTheme } from './AppTheme';
     
-    // Execute ThemeControl before the page builds.
+    // Execute ThemeControl before the page build.
     ThemeControl.setDefaultTheme(gAppTheme);
     
     @Entry
@@ -162,7 +166,7 @@ To implement theme switching for your application, you must define custom theme 
 - When setting custom theme colors in UIAbility, call [ThemeControl](../reference/apis-arkui/js-apis-arkui-theme.md#themecontrol).[setDefaultTheme](../reference/apis-arkui/js-apis-arkui-theme.md#setdefaulttheme) within the completion callback of windowStage.[loadContent](../reference/apis-arkui/arkts-apis-window-Window.md#loadcontent9) in the **onWindowStageCreate()** API.
 
     <!-- @[entry_ability](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkUISample/ThemeSkinning/entry/src/main/ets/entryability/EntryAbility.ets) -->
-    
+
     ``` TypeScript
     // EntryAbility.ets
     import {AbilityConstant, UIAbility, Want } from '@kit.AbilityKit';
@@ -213,16 +217,17 @@ To implement theme switching for your application, you must define custom theme 
   > - **setDefaultTheme** must be called after ArkUI initialization completes, specifically within the **windowStage.loadContent** completion callback.
 
 ## Setting a Custom Theme Style for Specific Application Pages
+
 You can use [WithTheme](../reference/apis-arkui/arkui-ts/ts-container-with-theme.md) to apply the color scheme of a custom theme to the default styles of internal components. Within the scope of **WithTheme**, the color scheme of components will be adjusted according to the theme's color scheme.
 
 > **NOTE**
 >
-> When using [WithTheme](../reference/apis-arkui/arkui-ts/ts-container-with-theme.md) in the custom node [BuilderNode](../reference/apis-arkui/js-apis-arkui-builderNode.md), to ensure the correct display effect, it is necessary to manually pass system environment change events to trigger a full update of the node. For details, see the [BuilderNode system environment change](../reference/apis-arkui/js-apis-arkui-builderNode.md#updateconfiguration12) section.
+> When using [WithTheme](../reference/apis-arkui/arkui-ts/ts-container-with-theme.md) in the custom node [BuilderNode](../reference/apis-arkui/js-apis-arkui-builderNode.md), to ensure correct display, you must manually pass system environment change events to trigger a full update of the node. For details, see [updateConfiguration](../reference/apis-arkui/js-apis-arkui-builderNode.md#updateconfiguration12) for BuilderNode system environment change updates.
 
-As demonstrated in the example, **WithTheme({ theme: this.CustomTheme })** applies the custom theme styling to all components within its scope. Theme styles can be dynamically updated by modifying **this.CustomTheme**. The [onWillApplyTheme](../reference/apis-arkui/arkui-ts/ts-custom-component-lifecycle.md#onwillapplytheme12) callback allows custom components to access the currently active **Theme** object.
+As demonstrated in the example, **WithTheme({ theme: this.customTheme })** applies the custom theme styling to all components within its scope. Theme styles can be dynamically updated by modifying **this.customTheme**. The [onWillApplyTheme](../reference/apis-arkui/arkui-ts/ts-custom-component-lifecycle.md#onwillapplytheme12) callback enables a custom component to obtain the currently active **Theme** object.
 
   <!-- @[custom_theme](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkUISample/ThemeSkinning/entry/src/main/ets/pages/Theme2/Theme2.ets) -->
-  
+
   ``` TypeScript
   import { CustomColors, CustomTheme, Theme } from '@kit.ArkUI';
   import { common } from '@kit.AbilityKit';
@@ -291,6 +296,7 @@ As demonstrated in the example, **WithTheme({ theme: this.CustomTheme })** appli
 ![customTheme](figures/customTheme.gif)
 
 ## Setting the Color Mode for Application Pages
+
 Using [WithTheme](../reference/apis-arkui/arkui-ts/ts-container-with-theme.md), you can set three color modes: following the system mode, light mode, and dark mode.
 
 Within the scope of **WithTheme**, component styles adapt to the specified color mode by accessing the corresponding system and application resource values. This means that the color schemes of components are adjusted according to the chosen color mode.
@@ -302,6 +308,7 @@ For the light and dark modes to take effect, add a **dark.json** resource file.
 ![resources_dark](figures/resources_dark.png)
 
 Example of the **dark.json** file content:
+
   ```ts
     {
       "color": [
@@ -314,7 +321,7 @@ Example of the **dark.json** file content:
   ```
 
   <!-- @[with_theme](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkUISample/ThemeSkinning/entry/src/main/ets/pages/Theme3/Theme3.ets) --> 
-  
+
   ``` TypeScript
   import { ThemeControl } from '@kit.ArkUI';
   
@@ -400,7 +407,7 @@ Example of the **dark.json** file content:
 | theme.colors.compEmphasizeTertiary         | 10% emphasis background.| #190a59f7 |![](figures/190a59f7.png "#190a59f7")| #19317af7 |![](figures/19317af7.png "#19317af7")|
 | theme.colors.compDivider                   | Divider color.| #33000000 |![](figures/33000000.png "#33000000")| #33ffffff |![](figures/33ffffff.png "#33ffffff")|
 | theme.colors.compCommonContrary            | Common invert color.| #ffffffff |![](figures/ffffffff.png "#ffffffff")| #ff000000 |![](figures/ff000000.png "#ff000000")|
-| theme.colors.compBackgroundFocus           | Background color in the focused state.| #fff1f3f5 |![](figures/fff1f3f5.png "#fff1f3f5")| #ff000000 |![](figures/fff1f3f5.png "#fff1f3f5")|
+| theme.colors.compBackgroundFocus           | Focus state background color. | #fff1f3f5 |![](figures/fff1f3f5.png "#fff1f3f5")| #ff000000 |![](figures/ff000000.png "#fff1f3f5")|
 | theme.colors.compFocusedPrimary            | Primary inverted color in the focused state.| #e5000000 |![](figures/e5000000.png "#e5000000")| #e5ffffff |![](figures/e5ffffff.png "#e5ffffff")|
 | theme.colors.compFocusedSecondary          | Secondary inverted color in the focused state.| #99000000 |![](figures/99000000.png "#99000000")| #99ffffff |![](figures/99ffffff.png "#99ffffff")|
 | theme.colors.compFocusedTertiary           | Tertiary inverted color in the focused state.| #66000000 |![](figures/66000000.png "#66000000")| #66ffffff |![](figures/66ffffff.png "#66ffffff")|

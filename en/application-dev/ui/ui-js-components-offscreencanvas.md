@@ -1,10 +1,12 @@
 # OffscreenCanvasRenderingContext2D
+
 <!--Kit: ArkUI-->
 <!--Subsystem: ArkUI-->
-<!--Owner: @sd-wu-->
-<!--Designer: @sunbees-->
+<!--Owner: @camlostshi-->
+<!--Designer: @fenglinbailu-->
 <!--Tester: @liuli0427-->
 <!--Adviser: @Brilliantry_Rui-->
+<!-- md-trans-meta sourceCommit=fb0d347d877563654272a130a8499c783ae68bdd translatedAt=2026-08-05T10:14:36.507Z pushedAt=2026-08-06T06:30:30.111Z -->
 
 **OffscreenCanvas** allows you to draw rectangles, text, images, and other objects on an offscreen canvas, a separate GPU-allocated buffer isolated from the current display buffer. For details, see [OffscreenCanvasRenderingContext2D](../reference/apis-arkui/arkui-js/js-offscreencanvasrenderingcontext2d.md).
 
@@ -94,14 +96,11 @@ export default {
 }
 ```
 
-
 ![OffscreenCanvasRenderingContext2D](figures/OffscreenCanvasRenderingContext2D.gif)
-
 
 ## Determining the Position
 
 Use **isPointInPath** to determine whether a coordinate is within the path area and use **isPointInStroke** to determine whether a coordinate is on the edge of the path.
-
 
 ```html
 <!-- xxx.hml -->
@@ -115,7 +114,6 @@ Use **isPointInPath** to determine whether a coordinate is within the path area 
   <button onclick="change">Add(50)</button>
 </div>
 ```
-
 
 ```css
 /* xxx.css */
@@ -155,7 +153,6 @@ button {
     margin-top: 50px;
 }
 ```
-
 
 ```js
 // xxx.js

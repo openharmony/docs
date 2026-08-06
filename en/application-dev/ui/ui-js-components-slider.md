@@ -100,7 +100,7 @@ Add the **min**, **max**, **value**, **step**, and **mode** attributes to set th
 >
 > The **mode** attribute indicates the slider style. The options are as follows:
 >
-> - **outset**: The slider is on the sliding bar.
+> - **outset**: The slider is on the slider bar.
 >
 > - **inset**: The slider is inside the sliding bar.
 
@@ -170,7 +170,7 @@ Adjust the value of the slider to change the image size and dynamically print th
 <!-- xxx.hml -->
 <div class="container">
   <image src="common/landscape3.jpg" style=" width: {{WidthVal}}px;height:{{HeightVal}}px;margin-top: -150px;"></image>
-  <div class="txt">
+  <div class="text">
     <slider min="0" max="100" value="{{value}}" onchange="setValue"></slider>
     <text>The width of this picture is {{WidthVal}}</text>
     <text>The height of this picture is {{HeightVal}}</text>
@@ -212,9 +212,18 @@ export default{
   },
   setValue(e) {
     this.WidthVal = 200 + e.value;
-    this.HeightVal = 200 + e.value
+    this.HeightVal = 200 + e.value;
   }
 }
 ```
 
 ![Example-Scenario-15](figures/Example-Scenario-15.gif)
+
+
+## Samples
+
+The following samples are provided to help you better understand how to develop **slider**:
+
+- [Using slider Components (JS, API version 9)](https://gitcode.com/openharmony/codelabs/tree/master/JSUI/SliderApplication)
+
+- [Simple Video Player (ArkTS, API version 9)](https://gitcode.com/openharmony/codelabs/tree/master/Media/VideoOpenHarmony)

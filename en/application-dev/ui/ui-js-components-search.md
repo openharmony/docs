@@ -1,19 +1,18 @@
 # search Development
+
 <!--Kit: ArkUI-->
 <!--Subsystem: ArkUI-->
-<!--Owner: @kangshihui-->
+<!--Owner: @jiaxiaguang-->
 <!--Designer: @xiangyuan6-->
 <!--Tester: @jiaoaozihao-->
 <!--Adviser: @Brilliantry_Rui-->
-
+<!-- md-trans-meta sourceCommit=9a5da59cdf4f4c3dc0f87035f85ddf06f80ecfc4 translatedAt=2026-08-05T10:14:12.585Z pushedAt=2026-08-06T07:16:57.981Z -->
 
 The **&lt;search&gt;** component provides an input area for users to search. For details, see [search](../reference/apis-arkui/arkui-js/js-components-basic-search.md).
-
 
 ## Creating a &lt;search&gt; Component
 
 Create a **&lt;search&gt;** component in the .hml file under **pages/index**.
-
 
 ```html
 <!-- xxx.hml-->
@@ -21,7 +20,6 @@ Create a **&lt;search&gt;** component in the .hml file under **pages/index**.
   <search></search>
 </div>
 ```
-
 
 ```css
 /* xxx.css */
@@ -37,11 +35,9 @@ Create a **&lt;search&gt;** component in the .hml file under **pages/index**.
 
 ![search-Component](figures/search-Component.png)
 
-
 ## Setting Attributes
 
 Set the **hint**, **icon**, and **searchbutton** to define the hint text, icon, and search button at the end of the search box.
-
 
 ```html
 <!-- xxx.hml-->
@@ -49,7 +45,6 @@ Set the **hint**, **icon**, and **searchbutton** to define the hint text, icon, 
   <search hint="Please enter the search content"  searchbutton="search" icon="/common/search1.png"></search>
 </div>
 ```
-
 
 ```css
 /* xxx.css */
@@ -65,11 +60,9 @@ Set the **hint**, **icon**, and **searchbutton** to define the hint text, icon, 
 
 ![Setting-Attributes-1](figures/Setting-Attributes-1.png)
 
-
 ## Adding Styles
 
 Set **color**, **placeholder-color**, and **caret-color** to set the text color, hint text color, and cursor color of the search box.
-
 
 ```html
 <!-- xxx.hml-->
@@ -77,7 +70,6 @@ Set **color**, **placeholder-color**, and **caret-color** to set the text color,
   <search hint="Please enter the search content"  searchbutton="search" ></search>
 </div>
 ```
-
 
 ```css
 /* xxx.css */
@@ -98,11 +90,9 @@ search{
 
 ![Adding-Styles](figures/Adding-Styles.gif)
 
-
 ## Binding Events
 
 Add the **change**, **search**, **submit**, **share**, and **translate** events to the **&lt;search&gt;** component to perform operations on the input information.
-
 
 ```html
 <!-- xxx.hml-->
@@ -115,7 +105,6 @@ Add the **change**, **search**, **submit**, **share**, and **translate** events 
   </search>
 </div>
 ```
-
 
 ```css
 /* xxx.css */
@@ -134,7 +123,6 @@ text{
   margin-bottom: 100px;
 }
 ```
-
 
 ```js
 // index.js
@@ -175,11 +163,9 @@ export default {
 
 ![Binding-Events-3](figures/Binding-Events-3.gif)
 
-
 ## Example Scenario
 
 In this example, you can select the **&lt;search&gt;**, **&lt;textarea&gt;**, or **&lt;input&gt;** component from the drop-down list box to implement the respective function.
-
 
 ```html
 <!-- xxx.hml-->
@@ -204,7 +190,6 @@ In this example, you can select the **&lt;search&gt;**, **&lt;textarea&gt;**, or
 </div>
 ```
 
-
 ```css
 /* xxx.css */
 .field {
@@ -220,7 +205,6 @@ In this example, you can select the **&lt;search&gt;**, **&lt;textarea&gt;**, or
   top: 50px;
 }
 ```
-
 
 ```js
 // index.js
@@ -256,7 +240,7 @@ export default {
   },
   change(e) {
     promptAction.showToast({
-      message: 'Content:' + e.text,
+      message: 'Content:' + e.value,
       duration: 2000
     })
   }

@@ -2,13 +2,13 @@
 
 <!--Kit: ArkUI-->
 <!--Subsystem: ArkUI-->
-<!--Owner: @yylong-->
-<!--Designer: @yylong-->
-<!--Tester: @liuzhenshuo-->
+<!--Owner: @rongShao-Z; @wind_-->
+<!--Designer: @yangcan18-->
+<!--Tester: @leiyuqian-->
 <!--Adviser: @Brilliantry_Rui-->
+<!-- md-trans-meta sourceCommit=608175d8fd85ddfce5e6f9d9b165b9d12862adb2 translatedAt=2026-08-05T10:13:23.451Z pushedAt=2026-08-06T06:29:04.113Z -->
 
 The **&lt;list&gt;** component provides a list container that presents a series of list items arranged in a column with the same width. Lists can be used for presenting the same type of data in a multiple and coherent row style. For details, see [list](../reference/apis-arkui/arkui-js/js-components-container-list.md).
-
 
 ## Creating a &lt;list&gt; Component
 
@@ -42,13 +42,12 @@ Create a **&lt;list&gt;** component in the .hml file under **pages/index**.
 }
 ```
 
-![list-Component](figures/list-Component.png)
+![List component](figures/list-Component.png)
 
 > **NOTE**
 > - **&lt;list-item-group&gt;** is a child component of the **&lt;list&gt;** component and is used to group items in a list. It can have a **&lt;list-item&gt;** nested inside, but not **&lt;list&gt;**.
 >
 > - **&lt;list-item&gt;** is a child component of the **&lt;list&gt;** component and is used to display items in a list.
-
 
 ## Adding a Scrollbar
 
@@ -86,12 +85,11 @@ To display a scrollbar on the right side of the screen, set **scrollbar** to **o
 }
 ```
 
-![Adding-Scrollbar](figures/Adding-Scrollbar.gif)
-
+![Adding a scrollbar](figures/Adding-Scrollbar.gif)
 
 ## Adding a Side Index Bar
 
-Set a custom **indexer** component to add an index bar at the right boundary of a list. By default, an alphabetical indexer is used.
+When the **indexer** property is set to a custom index, the index bar is displayed at the right edge of the list. If **indexer** is set to **true**, the default alphabetical index table is used.
 
 ```html
 <!-- xxx.hml -->
@@ -115,13 +113,12 @@ Set a custom **indexer** component to add an index bar at the right boundary of 
 }
 ```
 
-![Side-Index-Bar](figures/Side-Index-Bar.png)
+![Side index bar](figures/Side-Index-Bar.png)
 
 > **NOTE**
 > - This **indexer** attribute is valid only when **flex-direction** is set to **column** and **columns** is set to **1**.
 >
 > - You must include **"\#"** when using a customized indexer.
-
 
 ## Collapsing or Expanding a List
 
@@ -198,17 +195,15 @@ export default {
 }
 ```
 
-![Expanding-List](figures/Expanding-List.gif)
+![Expanding a list](figures/Expanding-List.gif)
 
 > **NOTE**
 >
 > The **groupcollapse** and **groupexpand** events can be used only by the **list-item-group** component.
 
-
 ## Example Scenario
 
 Search for contacts by using an alphabetical indexer.
-
 
 ```html
 <!-- xxx.hml -->
@@ -233,7 +228,6 @@ Search for contacts by using an alphabetical indexer.
   </list> 
 </div>
 ```
-
 
 ```css
 /* xxx.css */
@@ -270,7 +264,6 @@ Search for contacts by using an alphabetical indexer.
   justify-content: space-around;
 }
 ```
-
 
 ```js
 // xxx.js
@@ -313,5 +306,4 @@ export default {
  }
 ```
 
-
-![Example-Scenario-7](figures/Example-Scenario-7.gif)
+![Example scenario 7](figures/Example-Scenario-7.gif)

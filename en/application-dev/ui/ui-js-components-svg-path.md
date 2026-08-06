@@ -1,10 +1,12 @@
 # Path Drawing
+
 <!--Kit: ArkUI-->
 <!--Subsystem: ArkUI-->
 <!--Owner: @liyujie43-->
 <!--Designer: @weixin_52725220-->
 <!--Tester: @xiong0104-->
 <!--Adviser: @Brilliantry_Rui-->
+<!-- md-trans-meta sourceCommit=2fe06c91e0a27d15dbfdba21fc4a3873ff6d81b0 translatedAt=2026-08-05T10:14:35.520Z pushedAt=2026-08-06T07:20:08.974Z -->
 
 The [\<svg>](../reference/apis-arkui/arkui-js/js-components-svg.md) component uses instructions **M** (start point), **H** (horizontal line), and **a** (drawing an arc to a specified position) to control a path and sets the fill colors to create a pie chart.
 
@@ -32,27 +34,25 @@ The [\<svg>](../reference/apis-arkui/arkui-js/js-components-svg.md) component us
 }
 ```
 
-
 ![Path-Drawing](figures/Path-Drawing.png)
 
-
-> **Note:**
-> - M/m = moveto   The **x** and **y** parameters indicate the destination X and Y coordinates of a point. The **M** command only moves the brush, but does not draw a line between two points. Therefore, the **M** command is often used at the beginning of a path to indicate the start point.
+> **NOTE**
+> - M/m = moveto   The parameters **x** and **y** indicate the x-axis and y-axis coordinates of the point to move to. After moving the brush with the M command, only the brush is moved, and no line is drawn between the two points. Therefore, the M command often appears at the beginning of a path to indicate where to start drawing.
 >
-> - L/l = lineto   The **x** and **y** parameters indicate the X and Y coordinates of a point. The **L** command draws a line between the current position and the destination position (the previous point of the brush).
+> - L/l = lineto   The parameters **x** and **y** indicate the x-axis and y-axis coordinates of a point. The **L** command draws a line segment between the current position and the new position (the point where the brush was before L).
 >
 > - H/h = horizontal lineto    Draws a horizontal line.
 >
 > - V/v = vertical lineto   Draws a vertical line.
 >
-> - C/c = curveto  Draws a cubic Bézier curve. Three groups of coordinate parameters are required: **x1 y1**, **x2 y2**, **x y**.
+> - C/c = curveto  Cubic Bezier curve  Sets three sets of coordinate parameters: x1 y1, x2 y2, x y.
 >
-> - S/s = smooth curveto  Draws a cubic Bézier curve. Two groups of coordinate parameters are required: **x2 y2**, **x y**.
+> - S/s = smooth curveto  Cubic Bezier curve command   Sets two sets of coordinate parameters: x2 y2, x y.
 >
-> - Q/q = quadratic Bezier curve  Draws a quadratic Bézier curve. Two groups of coordinate parameters are required: **x1 y1**, **x y**.
+> - Q/q = quadratic Bezier curve  Quadratic Bezier curve  Sets two sets of coordinate parameters: x1 y1, x y.
 >
-> - T/t = smooth quadratic Bezier curveto  Draws a quadratic Bézier curve. One group of coordinate parameters are required: **x y**.
+> - T/t = smooth quadratic Bezier curveto  Quadratic Bezier curve command  Sets the parameter: x y.
 >
-> - A/a = elliptical Arc  Draws an arc. The following parameters are required: **rx ry x-axis-rotation** (rotation angle), **large-arc-flag** (angle), **sweep-flag** (arc direction), and **x y**. **large-arc-flag** determines whether the arc is less than 180 degrees. **0** indicates yes, and **1** indicates no. **sweep-flag** indicates the direction in which an arc is drawn. **0** indicates that the arc is drawn counterclockwise from the start point to the end point. **1** indicates that the arc is drawn clockwise from the start point to the end point.
+> - A/a = elliptical Arc  Arc command  Sets the parameters: rx ry x-axis-rotation large-arc-flag sweep-flag x y. **large-arc-flag** determines whether the arc is greater than or less than 180 degrees. **0** indicates a small-angle arc, and **1** indicates a large-angle arc. **sweep-flag** indicates the direction of the arc. **0** indicates drawing the arc counterclockwise from the start point to the end point, and **1** indicates drawing the arc clockwise from the start point to the end point.
 >
-> - Z/z = closepath  Draws a straight line from the current point to the start point of the path.
+> - Z/z = closepath   Draws a straight line from the current point to the start point of the path.
