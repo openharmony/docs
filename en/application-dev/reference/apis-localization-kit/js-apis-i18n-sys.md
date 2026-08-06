@@ -6,8 +6,9 @@
 <!--Designer: @sunyaozu-->
 <!--Tester: @lpw_work-->
 <!--Adviser: @ningningW-->
+<!-- md-trans-meta sourceCommit=635c96c73146bacf985d294d6e608687bbdae586 translatedAt=2026-07-30T09:56:05.953Z pushedAt=2026-07-31T01:22:38.930Z -->
 
- This module provides system-related or enhanced i18n capabilities, such as locale management, phone number formatting, and calendar, through supplementary i18n APIs that are not defined in ECMA 402. The [intl](js-apis-intl.md) module provides basic i18n capabilities through the standard i18n APIs defined in ECMA 402. It works with the **i18n** module to provide a complete suite of i18n capabilities.
+ This module provides system-related or enhanced i18n capabilities, such as locale management, phone number processing, and calendar, through supplementary i18n APIs that are not defined in ECMA 402. [Internationalization](js-apis-intl.md) provides basic i18n APIs defined in ECMA 402. It works with this module to provide a complete suite of i18n capabilities.
 
 >  **NOTE**
 >  - The initial APIs of this module are supported since API version 7. Newly added APIs will be marked with a superscript to indicate their earliest API version.
@@ -15,7 +16,6 @@
 >  - Since API version 11, some APIs of this module are supported in ArkTS widgets.
 >
 >  - This topic describes only system APIs provided by the module. For details about its public APIs, see [@ohos.i18n (Internationalization)](js-apis-i18n.md).
-
 
 ## Modules to Import
 
@@ -33,6 +33,13 @@ static setSystemLanguage(language: string): void
 
 Sets the system language.
 
+To listen for system language changes, enable listening for [COMMON_EVENT_LOCALE_CHANGED](../apis-basic-services-kit/common_event/commonEventManager-definitions.md#common_event_locale_changed).
+
+>  **NOTE**
+>  
+> You can call [i18n.System.getSystemLanguage()](js-apis-i18n.md#getsystemlanguage9) to obtain the system language.
+> Since API version 21, you can also run the **param get persist.global.language** command of the [param tool](../../tools/param-tool.md#get) to obtain the system language.
+
 **System API**: This is a system API.
 
 **Permission required**: ohos.permission.UPDATE_CONFIGURATION
@@ -43,7 +50,7 @@ Sets the system language.
 
 | Name     | Type    | Mandatory  | Description   |
 | -------- | ------ | ---- | ----- |
-| language | string | Yes   | [Valid language ID](../../internationalization/i18n-locale-culture.md#how-it-works).<br>**NOTE**<br>You can call [i18n.System.getSystemLanguage()](js-apis-i18n.md#getsystemlanguage9) to obtain the system language.<br>Since API version 21, you can also call **param get persist.global.language** of the [param tool](../../tools/param-tool.md#get) to obtain the system language.|
+| language | string | Yes | [Valid language ID](../../internationalization/i18n-locale-culture.md#how-it-works). |
 
 **Error codes**
 
@@ -56,6 +63,7 @@ For details about the error codes, see [ohos.i18n Error Codes](errorcode-i18n.md
 | 890001 | Invalid parameter. Possible causes: Parameter verification failed. |
 
 **Example**
+
   ```ts
   import { BusinessError } from '@kit.BasicServicesKit';
   import { i18n } from '@kit.LocalizationKit';
@@ -77,6 +85,10 @@ Sets the system region.
 
 To listen for system region changes, enable listening for [COMMON_EVENT_LOCALE_CHANGED](../apis-basic-services-kit/common_event/commonEventManager-definitions.md#common_event_locale_changed).
 
+>  **NOTE**
+>  
+> You can call [i18n.System.getSystemRegion()](js-apis-i18n.md#getsystemregion9) to obtain the system region.
+
 **System API**: This is a system API.
 
 **Permission required**: ohos.permission.UPDATE_CONFIGURATION
@@ -87,7 +99,7 @@ To listen for system region changes, enable listening for [COMMON_EVENT_LOCALE_C
 
 | Name   | Type    | Mandatory  | Description   |
 | ------ | ------ | ---- | ----- |
-| region | string | Yes   | Valid region ID.|
+| region | string | Yes | [Valid region ID](../../internationalization/i18n-locale-culture.md#how-it-works). |
 
 **Error codes**
 
@@ -100,6 +112,7 @@ For details about the error codes, see [ohos.i18n Error Codes](errorcode-i18n.md
 | 890001 | Invalid parameter. Possible causes: Parameter verification failed. |
 
 **Example**
+
   ```ts
   import { BusinessError } from '@kit.BasicServicesKit';
   import { i18n } from '@kit.LocalizationKit';
@@ -111,8 +124,6 @@ For details about the error codes, see [ohos.i18n Error Codes](errorcode-i18n.md
     console.error(`call System.setSystemRegion failed, error code: ${err.code}, message: ${err.message}.`);
   }
   ```
-
-
 
 ### setSystemLocale<sup>(deprecated)</sup>
 
@@ -147,6 +158,7 @@ For details about the error codes, see [ohos.i18n Error Codes](errorcode-i18n.md
 | 890001 | Invalid parameter. Possible causes: Parameter verification failed. |
 
 **Example**
+
   ```ts
   import { BusinessError } from '@kit.BasicServicesKit';
   import { i18n } from '@kit.LocalizationKit';
@@ -158,7 +170,6 @@ For details about the error codes, see [ohos.i18n Error Codes](errorcode-i18n.md
     console.error(`call System.setSystemLocale failed, error code: ${err.code}, message: ${err.message}.`);
   }
   ```
-
 
 ### set24HourClock<sup>9+</sup>
 
@@ -176,7 +187,7 @@ Sets whether to use the 24-hour clock.
 
 | Name   | Type     | Mandatory  | Description                                      |
 | ------ | ------- | ---- | ---------------------------------------- |
-| option | boolean | Yes   | Whether to use the 24-hour clock. The value **true** means to use the 24-hour clock, the the value **false** means the opposite.|
+| option | boolean | Yes   | Whether to use the 24-hour clock. The value **true** means to use the 24-hour clock, and the value **false** means the opposite.|
 
 **Error codes**
 
@@ -189,6 +200,7 @@ For details about the error codes, see [ohos.i18n Error Codes](errorcode-i18n.md
 | 890001 | Invalid parameter. Possible causes: Parameter verification failed. |
 
 **Example**
+
   ```ts
   import { BusinessError } from '@kit.BasicServicesKit';
   import { i18n } from '@kit.LocalizationKit';
@@ -219,7 +231,7 @@ Adds a preferred language to the specified position on the preferred language li
 | Name     | Type    | Mandatory  | Description        |
 | -------- | ------ | ---- | ---------- |
 | language | string | Yes   | [Valid language ID](../../internationalization/i18n-locale-culture.md#how-it-works). |
-| index    | number | No   | Position to which the preferred language is added. The default value is the length of the preferred language list.|
+| index    | number | No    | Position to which the preferred language is added.<br>The value range is [0, length of the system preferred language list]. Values less than 0 are treated as 0, and values greater than the list length are treated as the list length.<br>The default value is the length of the preferred language list. |
 
 **Error codes**
 
@@ -232,6 +244,7 @@ For details about the error codes, see [ohos.i18n Error Codes](errorcode-i18n.md
 | 890001 | Invalid parameter. Possible causes: Parameter verification failed. |
 
 **Example**
+
   ```ts
   import { BusinessError } from '@kit.BasicServicesKit';
   import { i18n } from '@kit.LocalizationKit';
@@ -263,7 +276,7 @@ Removes a preferred language from the specified position on the preferred langua
 
 | Name  | Type    | Mandatory  | Description                   |
 | ----- | ------ | ---- | --------------------- |
-| index | number | Yes   | Position of the preferred language to delete.|
+| index | number | Yes | Position of the preferred language to delete.<br>The value range is [0, length of the system preferred language list]. Values less than 0 are treated as 0, and values greater than the list length are treated as the list length. |
 
 **Error codes**
 
@@ -276,6 +289,7 @@ For details about the error codes, see [ohos.i18n Error Codes](errorcode-i18n.md
 | 890001 | Invalid parameter. Possible causes: Parameter verification failed. |
 
 **Example**
+
   ```ts
   import { BusinessError } from '@kit.BasicServicesKit';
   import { i18n } from '@kit.LocalizationKit';
@@ -319,6 +333,7 @@ For details about the error codes, see [ohos.i18n Error Codes](errorcode-i18n.md
 | 890001 | Invalid parameter. Possible causes: Parameter verification failed. |
 
 **Example**
+
   ```ts
   import { BusinessError } from '@kit.BasicServicesKit';
   import { i18n } from '@kit.LocalizationKit';
@@ -330,7 +345,6 @@ For details about the error codes, see [ohos.i18n Error Codes](errorcode-i18n.md
     console.error(`call System.setUsingLocalDigit failed, error code: ${err.code}, message: ${err.message}.`);
   }
   ```
-
 
 ### setTemperatureType<sup>18+</sup>
 
@@ -362,9 +376,10 @@ For details about the error codes, see [ohos.i18n Error Codes](errorcode-i18n.md
 
 > **NOTE**
 >
-> The error message of 890001 is subject to the actual error.
+> The error description of 890001 is subject to the actual error.
 
 **Example**
+
   ```ts
   import { BusinessError } from '@kit.BasicServicesKit';
   import { i18n } from '@kit.LocalizationKit';
@@ -410,6 +425,7 @@ For details about the error codes, see [ohos.i18n Error Codes](errorcode-i18n.md
 > The error message of 890001 is subject to the actual error.
 
 **Example**
+
   ```ts
   import { BusinessError } from '@kit.BasicServicesKit';
   import { i18n } from '@kit.LocalizationKit';
@@ -447,6 +463,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | 202 | Permission verification failed. A non-system application calls a system API. |
 
 **Example**
+
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 import { i18n } from '@kit.LocalizationKit';
@@ -484,6 +501,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | 202 | Permission verification failed. A non-system application calls a system API. |
 
 **Example**
+
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 import { i18n } from '@kit.LocalizationKit';
@@ -525,6 +543,7 @@ For details about the error codes, see [ohos.i18n Error Codes](errorcode-i18n.md
 | 8900001 | Invalid parameter. Possible causes: Parameter verification failed. |
 
 **Example**
+
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 import { i18n } from '@kit.LocalizationKit';
@@ -551,7 +570,7 @@ Obtains the numbering systems supported by the system and examples. The examples
 
 | Type                    | Description   |
 | ---------------------- | ----- |
-| Map&lt;string, string&gt; | Numbering systems supported by the system and examples. The **Map** object employs the key-value format, where the key is a string that indicates the numbering system, and the value indicates an example. The range of supported collation modes depends on the system language.|
+| Map&lt;string, string&gt; | Numbering systems supported by the system and examples. The **Map** object employs the key-value format, where the key is a string that indicates the numbering system, and the value indicates an example. The supported range depends on the system language.|
 
 **Error codes**
 
@@ -562,6 +581,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | 202 | Permission verification failed. A non-system application calls a system API. |
 
 **Example**
+
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 import { i18n } from '@kit.LocalizationKit';
@@ -603,6 +623,7 @@ For details about the error codes, see [ohos.i18n Error Codes](errorcode-i18n.md
 | 8900001 | Invalid parameter. Possible causes: Parameter verification failed. |
 
 **Example**
+
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 import { i18n } from '@kit.LocalizationKit';
@@ -640,6 +661,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | 202 | Permission verification failed. A non-system application calls a system API. |
 
 **Example**
+
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 import { i18n } from '@kit.LocalizationKit';
@@ -677,6 +699,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | 202 | Permission verification failed. A non-system application calls a system API. |
 
 **Example**
+
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 import { i18n } from '@kit.LocalizationKit';
@@ -718,6 +741,7 @@ For details about the error codes, see [ohos.i18n Error Codes](errorcode-i18n.md
 | 8900001 | Invalid parameter. Possible causes: Parameter verification failed. |
 
 **Example**
+
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 import { i18n } from '@kit.LocalizationKit';
@@ -755,6 +779,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | 202 | Permission verification failed. A non-system application calls a system API. |
 
 **Example**
+
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 import { i18n } from '@kit.LocalizationKit';
@@ -792,6 +817,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | 202 | Permission verification failed. A non-system application calls a system API. |
 
 **Example**
+
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 import { i18n } from '@kit.LocalizationKit';
@@ -833,6 +859,7 @@ For details about the error codes, see [ohos.i18n Error Codes](errorcode-i18n.md
 | 8900001 | Invalid parameter. Possible causes: Parameter verification failed. |
 
 **Example**
+
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 import { i18n } from '@kit.LocalizationKit';
@@ -870,6 +897,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | 202 | Permission verification failed. A non-system application calls a system API. |
 
 **Example**
+
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 import { i18n } from '@kit.LocalizationKit';
@@ -907,6 +935,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | 202 | Permission verification failed. A non-system application calls a system API. |
 
 **Example**
+
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 import { i18n } from '@kit.LocalizationKit';
@@ -948,6 +977,7 @@ For details about the error codes, see [ohos.i18n Error Codes](errorcode-i18n.md
 | 8900001 | Invalid parameter. Possible causes: Parameter verification failed. |
 
 **Example**
+
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 import { i18n } from '@kit.LocalizationKit';
@@ -975,12 +1005,12 @@ Creates a **SystemLocaleManager** object.
 **System capability**: SystemCapability.Global.I18n
 
 **Example**
+
   ```ts
   import { i18n } from '@kit.LocalizationKit';
 
   let systemLocaleManager: i18n.SystemLocaleManager = new i18n.SystemLocaleManager();
   ```
-
 
 ### getLanguageInfoArray<sup>10+</sup>
 
@@ -997,7 +1027,7 @@ Obtains the list of languages after sorting.
 |   Name |      Type     | Mandatory|     Description     |
 | --------- | ------------- | ---- | ------------- |
 | languages | Array&lt;string&gt; | Yes  | List of [valid language IDs](../../internationalization/i18n-locale-culture.md#how-it-works).|
-| options   | [SortOptions](#sortoptions10)   | No  | Language sorting option.|
+| options   | [SortOptions](#sortoptions10)   | No   | Language sorting option.<br>Default value: configuration options with all properties set to their default values. |
 
 **Return value**
 
@@ -1016,6 +1046,7 @@ For details about the error codes, see [ohos.i18n Error Codes](errorcode-i18n.md
 | 890001 | Invalid parameter. Possible causes: Parameter verification failed. |
 
 **Example**
+
   ```ts
   import { BusinessError } from '@kit.BasicServicesKit';
   import { i18n } from '@kit.LocalizationKit';
@@ -1033,12 +1064,11 @@ For details about the error codes, see [ohos.i18n Error Codes](errorcode-i18n.md
   }
   ```
 
-
 ### getRegionInfoArray<sup>10+</sup>
 
 getRegionInfoArray(regions: Array&lt;string&gt;, options?: SortOptions): Array&lt;LocaleItem&gt;
 
-Obtains the IDs of the countries or regions after sorting.
+Obtains the list of the countries or regions after sorting.
 
 **System API**: This is a system API.
 
@@ -1048,14 +1078,14 @@ Obtains the IDs of the countries or regions after sorting.
 
 |   Name |      Type     | Mandatory|     Description     |
 | --------- | ------------- | ---- | ------------- |
-| regions   | Array&lt;string&gt; | Yes  | Valid IDs of the countries or regions to be sorted.|
-| options   | [SortOptions](#sortoptions10)   | No  | Country/region sorting option.<br>By default, **locale** is the current system locale, **isUseLocalName** is **false**, and **isSuggestedFirst** is **true**.|
+| regions   | Array&lt;string&gt; | Yes   | List of countries or regions to be sorted. The value must be a [valid country or region ID](../../internationalization/i18n-locale-culture.md#how-it-works).|
+| options   | [SortOptions](#sortoptions10)   | No  | Country/region sorting option.<br>By default, the region ID is the current system region ID, **isUseLocalName** is **false**, and **isSuggestedFirst** is **true**.|
 
 **Return value**
 
 |       Type       |         Description         |
 | ----------------- | -------------------- |
-| Array&lt;[LocaleItem](#localeitem10)&gt; | IDs of the countries or regions after sorting.|
+| Array&lt;[LocaleItem](#localeitem10)&gt; | List of the countries or regions after sorting.|
 
 **Error codes**
 
@@ -1068,6 +1098,7 @@ For details about the error codes, see [ohos.i18n Error Codes](errorcode-i18n.md
 | 890001 | Invalid parameter. Possible causes: Parameter verification failed. |
 
 **Example**
+
   ```ts
   import { BusinessError } from '@kit.BasicServicesKit';
   import { i18n } from '@kit.LocalizationKit';
@@ -1110,6 +1141,7 @@ For details about the error codes, see [ohos.i18n Error Codes](errorcode-i18n.md
 | 202 | Permission verification failed. A non-system application calls a system API. |
 
 **Example**
+
   ```ts
   import { BusinessError } from '@kit.BasicServicesKit';
   import { i18n } from '@kit.LocalizationKit';
@@ -1128,7 +1160,7 @@ For details about the error codes, see [ohos.i18n Error Codes](errorcode-i18n.md
 
 ## LocaleItem<sup>10+</sup>
 
-Represents the locale information, which consists of the language, script, and country/region.
+Represents the locale information, which consists of the language and country/region.
 
 **System API**: This is a system API.
 
@@ -1154,10 +1186,9 @@ Represents a time zone and city combination item.
 | zoneId          | string          |   No   |   No   | Time zone ID, for example, **Asia/Shanghai**.             |
 | cityId          | string          |   No   |   No   | City ID, for example, Shanghai.                  |
 | cityDisplayName | string          |   No   |   No   | City display name in the system locale.         |
-| offset          | number             |   No   |   No   | Offset of the time zone ID.                        |
+| offset          | number             |   No    |   No    | Offset of the time zone ID, in milliseconds.                         |
 | zoneDisplayName | string          |   No   |   No   | Time zone display name in the system locale.         |
-| rawOffset       | number             |   No   |   Yes   | Fixed offset of the time zone ID.                      |
-
+| rawOffset       | number             |   No    |   Yes    | Fixed offset of the time zone ID, in milliseconds.                       |
 
 ## SuggestionType<sup>10+</sup>
 
@@ -1171,10 +1202,9 @@ Represents the language or country/region suggestion type.
 | ---------------------- | ---- | ---- |
 | SUGGESTION_TYPE_NONE   | 0x00 | Not a recommended language or country/region.|
 | SUGGESTION_TYPE_RELATED| 0x01 | Country/region recommended by the system language or language recommended by the system country/region.|
-| SUGGESTION_TYPE_SIM    | 0x02 | Language recommended by the country/region of the SIM card.|
+| SUGGESTION_TYPE_SIM    | 0x02 | Language recommended by the country/region of the SIM card. |
 
-
-## SortOptions<sup>10+<sup>
+## SortOptions<sup>10+</sup>
 
 Represents the language or country/region sorting option.
 

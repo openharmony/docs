@@ -1690,7 +1690,7 @@ function nfcTechDemo() {
 
 transferToBlock(blockIndex: number): Promise\<void>
 
-将临时寄存器的值转移到指定的块。使用Promise异步异步回调。
+将临时寄存器的值转移到指定的块。使用Promise异步回调。
 
 **需要权限：** ohos.permission.NFC_TAG
 

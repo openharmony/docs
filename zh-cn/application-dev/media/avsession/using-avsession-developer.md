@@ -343,6 +343,7 @@
 
    Session侧的固定播控命令主要包括播放、暂停、上一首、下一首等基础操作命令，详细介绍请参见[AVControlCommand](../../reference/apis-avsession-kit/arkts-apis-avsession-i.md#avcontrolcommand10)。
 
+   控制场景包括：播控中心点击、播控中心通知栏移除、蓝牙耳机佩戴、蓝牙耳机/有线耳机按键、语音助手控制等。
      
    <!-- @[fixedPlaybackControlCommands](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/Media/AVSession/LocalAVSession/AVSessionProvider/entry/src/main/ets/pages/FixedPlaybackControlCommands.ets) -->
    

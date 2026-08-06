@@ -10,27 +10,23 @@
 You can display a custom dialog box by creating a dialog controller or by creating a custom dialog content object, and then setting its styles and content.
 
 
-[Displaying a custom dialog box through a dialog controller](#displaying-a-custom-dialog-box-through-a-dialog-controller): In this approach, you use the APIs defined in a struct named **ArkUI_NativeDialogAPI_x** (where *x* denotes the version) for dialog box control.
+[Displaying a custom dialog box through a dialog controller](#displaying-a-custom-dialog-box-through-a-dialog-controller): In this approach, you use the APIs defined in a struct named **ArkUI_NativeDialogAPI_x** (where *x* denotes the version) for dialog box control. It is supported since API version 12. For details about the usage, see [openCustomDialogWithController](../reference/apis-arkui/arkts-apis-uicontext-promptaction.md#opencustomdialogwithcontroller18).
 
 
-[Displaying a custom dialog box through a custom dialog content object](#displaying-a-custom-dialog-box-through-a-custom-dialog-content-object): In this approach, you use the APIs defined in the functions of [native_dialog.h](../reference/apis-arkui/capi-native-dialog-h.md#functions).
+[Displaying a custom dialog box through a custom dialog content object](#displaying-a-custom-dialog-box-through-a-custom-dialog-content-object): In this approach, you use the APIs defined in the functions of [native_dialog.h](../reference/apis-arkui/capi-native-dialog-h.md#functions). It is supported since API version 19. For details about the usage, see [openCustomDialog](../reference/apis-arkui/arkts-apis-uicontext-promptaction.md#opencustomdialog12).
 
 
 > **NOTE**
 >
-> - For details about how to display a custom dialog box through a dialog controller, see [openCustomDialogWithController](../reference/apis-arkui/arkts-apis-uicontext-promptaction.md#opencustomdialogwithcontroller18).
-> 
-> - For details about how to display a custom dialog box through a custom dialog content object, see [openCustomDialog](../reference/apis-arkui/arkts-apis-uicontext-promptaction.md#opencustomdialog12).
-> 
 > - [OH_ArkUI_QueryModuleInterfaceByName](../reference/apis-arkui/capi-native-interface-h.md#oh_arkui_querymoduleinterfacebyname) is used to obtain a collection of native module APIs of a specified type. You can call APIs in the native module using the returned data of the **ArkUI_NativeDialogHandle** type.
 
 ## Creating and Destroying a Custom Dialog Box
 
 ### Displaying a Custom Dialog Box Through a Dialog Controller
 
-- Creating a Dialog Controller
+- Creating a dialog controller
 
-  [ArkUI_NativeDialogHandle](../reference/apis-arkui/capi-arkui-nativemodule-arkui-nativedialog8h.md) represents a pointer to the dialog controller, which you can create by calling the [create](../reference/apis-arkui/capi-arkui-nativemodule-arkui-nativedialogapi-1.md#create) API of [ArkUI_NativeDialogAPI_x](../reference/apis-arkui/capi-arkui-nativemodule-arkui-nativedialogapi-1.md).
+  [ArkUI_NativeDialogHandle](../reference/apis-arkui/capi-arkui-nativemodule-arkui-nativedialog8h.md) represents a pointer to the dialog controller, which you can create by calling the [create](../reference/apis-arkui/capi-arkui-nativemodule-arkui-nativedialogapi-1.md#create) API of [ArkUI_NativeDialogAPI_1](../reference/apis-arkui/capi-arkui-nativemodule-arkui-nativedialogapi-1.md).
 
   This API returns data of the **ArkUI_NativeDialogHandle** type.
   <!-- @[dialog_create](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkUISample/NativeDialogSample/entry/src/main/cpp/customdialog/nativedialogdemo.cpp) -->
@@ -45,7 +41,7 @@ You can display a custom dialog box by creating a dialog controller or by creati
       }
   ```
 
-- Destroying the Dialog Controller<br>When dialog box operations are no longer needed, actively call the **dispose** API to destroy the dialog controller object.
+- Destroying the dialog controller<br>When dialog operations are no longer needed, actively call the [dispose](../reference/apis-arkui/capi-arkui-nativemodule-arkui-nativedialogapi-1.md#dispose) API to destroy the dialog controller object.
   <!-- @[dialog_dispose](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkUISample/NativeDialogSample/entry/src/main/cpp/customdialog/nativedialogdemo.cpp) -->
   
   ``` C++
@@ -57,7 +53,7 @@ You can display a custom dialog box by creating a dialog controller or by creati
 
 ### Displaying a Custom Dialog Box Through a Custom Dialog Content Object
 
-- Creating a Dialog Content Object
+- Creating a dialog content object
 
   You can create a custom dialog content object [ArkUI_CustomDialogOptions](../reference/apis-arkui/capi-arkui-nativemodule-arkui-customdialogoptions.md) by calling the OH_ArkUI_CustomDialog_CreateOptions](../reference/apis-arkui/capi-native-dialog-h.md#oh_arkui_customdialog_createoptions) API,
 
@@ -72,11 +68,12 @@ You can display a custom dialog box by creating a dialog controller or by creati
           g_dialogOptions = OH_ArkUI_CustomDialog_CreateOptions(textNode->GetHandle());
       }
   ```
+
   > **NOTE**
   > 
-  > For details about how to declare **ArkUITextNode**, refer to the implementation of the text component in the [ArkUINode.h](../ui/ndk-access-the-arkts-page.md) file.
+  > For details about how to declare **ArkUITextNode**, refer to the implementation of the text component in the [ArkUINode.h](../ui/ndk-access-the-arkts-page.md#example) file.
 
-- Destroying the Dialog Controller<br>When dialog box operations are no longer needed, actively call the [OH_ArkUI_CustomDialog_DisposeOptions](../reference/apis-arkui/capi-native-dialog-h.md#oh_arkui_customdialog_disposeoptions) API to destroy the dialog controller object.
+- Destroying the dialog content object<br>When dialog operations are no longer needed, actively call the [OH_ArkUI_CustomDialog_DisposeOptions](../reference/apis-arkui/capi-native-dialog-h.md#oh_arkui_customdialog_disposeoptions) API to destroy the dialog content object.
   <!-- @[dialog_disposeOption](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkUISample/NativeDialogSample/entry/src/main/cpp/customdialog/nativedialogdemo.cpp) -->
   
   ``` C++
@@ -88,6 +85,11 @@ You can display a custom dialog box by creating a dialog controller or by creati
 You can set the alignment, offset, corner radius of the background, background color, mask color, and region of the dialog box.
 
 1. Create a dialog box content node.
+
+   > **NOTE**
+   >
+   > The resources used in this example are not located in the **src** > **main** > **resource** directory. Starting from DevEco Studio 6.0.0 Beta2, the resources that are located outside the **resources** directory are not packaged by default when a project or module is created. To package these resources, go to **buildOptions** > **resOptions** > **copyCodeResource** in the module's **build-profile.json5** file, and set **enable** to **true**. For details, see the description of [resOptions](https://developer.huawei.com/consumer/en/doc/harmonyos-guides/ide-hvigor-build-profile#section754823013348).
+
    <!-- @[create_content](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkUISample/NativeDialogSample/entry/src/main/cpp/customdialog/nativedialogdemo.cpp) -->
    
    ``` C++
@@ -102,7 +104,7 @@ You can set the alignment, offset, corner radius of the background, background c
        nodeAPI->setAttribute(text, NODE_WIDTH, &textWidthItem);
        ArkUI_NumberValue textHeightValue[] = {{.f32 = 300}};
        ArkUI_AttributeItem textHeightItem = {.value = textHeightValue,
-                                             .size = sizeof(textWidthValue) / sizeof(ArkUI_NumberValue)};
+                                             .size = sizeof(textHeightValue) / sizeof(ArkUI_NumberValue)};
        nodeAPI->setAttribute(text, NODE_HEIGHT, &textHeightItem);
        ArkUI_NodeHandle span = nodeAPI->createNode(ARKUI_NODE_SPAN);
        ArkUI_AttributeItem spanItem = {.string = "This is a dialog box"};
@@ -113,11 +115,11 @@ You can set the alignment, offset, corner radius of the background, background c
        nodeAPI->setAttribute(imageSpan, NODE_IMAGE_SPAN_SRC, &imageSpanItem);
        ArkUI_NumberValue imageSpanWidthValue[] = {{.f32 = 300}};
        ArkUI_AttributeItem imageSpanWidthItem = {.value = imageSpanWidthValue,
-                                                 .size = sizeof(textWidthValue) / sizeof(ArkUI_NumberValue)};
+                                                 .size = sizeof(imageSpanWidthValue) / sizeof(ArkUI_NumberValue)};
        nodeAPI->setAttribute(imageSpan, NODE_WIDTH, &imageSpanWidthItem);
        ArkUI_NumberValue imageSpanHeightValue[] = {{.f32 = 200}};
        ArkUI_AttributeItem imageSpanHeightItem = {.value = imageSpanHeightValue,
-                                                  .size = sizeof(textWidthValue) / sizeof(ArkUI_NumberValue)};
+                                                  .size = sizeof(imageSpanHeightValue) / sizeof(ArkUI_NumberValue)};
        nodeAPI->setAttribute(imageSpan, NODE_HEIGHT, &imageSpanHeightItem);
        nodeAPI->addChild(text, span);
        nodeAPI->addChild(text, imageSpan);
@@ -311,18 +313,23 @@ You can create an interactive page to open or close a dialog box.
      }
      ```
 
-![en-us_image_0000001902966196](figures/Interacting-Dialog-Box.gif)
+![zh-cn_image_0000001902966196](figures/Interacting-Dialog-Box.gif)
 
 
 ## Managing the Dialog Box Lifecycle
 
-Starting from API version 19, four lifecycle APIs are available for callbacks before and after a dialog box is displayed and closed: **registerOnWillAppear**, **registerOnDidAppear**, **registerOnWillDisappear**, and **registerOnDidDisappear**.
+From API version 19, four lifecycle callbacks are available before and after a dialog is displayed and closed: [registerOnWillAppear](../reference/apis-arkui/capi-arkui-nativemodule-arkui-nativedialogapi-3.md#registeronwillappear), [registerOnDidAppear](../reference/apis-arkui/capi-arkui-nativemodule-arkui-nativedialogapi-3.md#registerondidappear), [registerOnWillDisappear](../reference/apis-arkui/capi-arkui-nativemodule-arkui-nativedialogapi-3.md#registeronwilldisappear), and [registerOnDidDisappear](../reference/apis-arkui/capi-arkui-nativemodule-arkui-nativedialogapi-3.md#registerondiddisappear).
 
 These lifecycle APIs must be called before the **show** API is invoked. The sequence of lifecycle events is as follows:
 
-registerOnWillAppear -> Dialog box display animation starts -> Dialog box display animation ends -> registerOnDidAppear -> Dialog box display completes -> registerOnWillDisappear -> Dialog box close animation starts -> Dialog box close animation ends -> registerOnDidDisappear -> Dialog box close animation completes.
+registerOnWillAppear -> Dialog box display animation starts -> Dialog box display animation ends -> registerOnDidAppear -> Dialog box display completes-> registerOnWillDisappear -> Dialog box close animation starts -> Dialog box close animation ends -> registerOnDidDisappear -> Dialog box close animation completes.
 
 The following is an example of creating a dialog box that triggers lifecycle callback functions when the dialog box is displayed and closed. For details about how to obtain and use nodes of the ArkUI_NodeContentHandle type, see [Integrating with ArkTS Pages](ndk-access-the-arkts-page.md).
+
+> **NOTE**
+>
+> The resources used in this example are not located in the **src** > **main** > **resource** directory. Starting from DevEco Studio 6.0.0 Beta2, the resources that are located outside the **resources** directory are not packaged by default when a project or module is created. To package these resources, go to **buildOptions** > **resOptions** > **copyCodeResource** in the module's **build-profile.json5** file, and set **enable** to **true**. For details, see the description of [resOptions](https://developer.huawei.com/consumer/en/doc/harmonyos-guides/ide-hvigor-build-profile#section754823013348).
+ 
 <!-- @[dialog_lifecycle](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkUISample/NativeDialogSample/entry/src/main/cpp/customdialog/nativedialogdemo.cpp) -->
 
 ``` C++
@@ -337,7 +344,7 @@ ArkUI_NodeHandle CreateDialogContent()
     nodeAPI->setAttribute(text, NODE_WIDTH, &textWidthItem);
     ArkUI_NumberValue textHeightValue[] = {{.f32 = 300}};
     ArkUI_AttributeItem textHeightItem = {.value = textHeightValue,
-                                          .size = sizeof(textWidthValue) / sizeof(ArkUI_NumberValue)};
+                                          .size = sizeof(textHeightValue) / sizeof(ArkUI_NumberValue)};
     nodeAPI->setAttribute(text, NODE_HEIGHT, &textHeightItem);
     ArkUI_NodeHandle span = nodeAPI->createNode(ARKUI_NODE_SPAN);
     ArkUI_AttributeItem spanItem = {.string = "This is a dialog box"};
@@ -348,11 +355,11 @@ ArkUI_NodeHandle CreateDialogContent()
     nodeAPI->setAttribute(imageSpan, NODE_IMAGE_SPAN_SRC, &imageSpanItem);
     ArkUI_NumberValue imageSpanWidthValue[] = {{.f32 = 300}};
     ArkUI_AttributeItem imageSpanWidthItem = {.value = imageSpanWidthValue,
-                                              .size = sizeof(textWidthValue) / sizeof(ArkUI_NumberValue)};
+                                              .size = sizeof(imageSpanWidthValue) / sizeof(ArkUI_NumberValue)};
     nodeAPI->setAttribute(imageSpan, NODE_WIDTH, &imageSpanWidthItem);
     ArkUI_NumberValue imageSpanHeightValue[] = {{.f32 = 200}};
     ArkUI_AttributeItem imageSpanHeightItem = {.value = imageSpanHeightValue,
-                                               .size = sizeof(textWidthValue) / sizeof(ArkUI_NumberValue)};
+                                               .size = sizeof(imageSpanHeightValue) / sizeof(ArkUI_NumberValue)};
     nodeAPI->setAttribute(imageSpan, NODE_HEIGHT, &imageSpanHeightItem);
     nodeAPI->addChild(text, span);
     nodeAPI->addChild(text, imageSpan);

@@ -1,8 +1,8 @@
 # ArkUI_BarrierOption
 <!--Kit: ArkUI-->
 <!--Subsystem: ArkUI-->
-<!--Owner: @fenglinbailu-->
-<!--Designer: @lanshouren-->
+<!--Owner: @fenglinbailu; @zhangwentao96-->
+<!--Designer: @fenglinbailu-->
 <!--Tester: @liuli0427-->
 <!--Adviser: @Brilliantry_Rui-->
 

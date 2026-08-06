@@ -133,7 +133,7 @@ async function selectOutputDevice() {
 
 ### 获取最高优先级输出设备信息
 
-使用[getPreferOutputDeviceForRendererInfo](../../reference/apis-audio-kit/arkts-apis-audio-AudioRoutingManager.md#getpreferoutputdeviceforrendererinfo10)方法, 可以获取当前最高优先级的输出设备。
+使用[getPreferOutputDeviceForRendererInfo](../../reference/apis-audio-kit/arkts-apis-audio-AudioRoutingManager.md#getpreferoutputdeviceforrendererinfo10)方法，可以获取当前最高优先级的输出设备。
 
 > **说明：**
 >

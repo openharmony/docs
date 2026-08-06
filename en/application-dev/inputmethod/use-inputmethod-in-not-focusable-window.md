@@ -2,10 +2,11 @@
 
 <!--Kit: IME Kit-->
 <!--Subsystem: MiscServices-->
-<!--Owner: @illybyy-->
+<!--Owner: @codexu62-->
 <!--Designer: @andeszhang-->
 <!--Tester: @murphy84-->
 <!--Adviser: @zhang_yixin13-->
+<!-- md-trans-meta sourceCommit=3103aea9f27e22b8029f7224f57c27c4f91680cc translatedAt=2026-08-04T08:30:25.860Z pushedAt=2026-08-04T09:02:56.196Z -->
 
 ## When to Use
 
@@ -23,7 +24,7 @@ If you need to draw an input box in a non-focusable window and expect the input 
 
 1. Create a subwindow in the main window and set the subwindow to be non-focusable.
 
-   Effect: Tapping the input component in the main window displays the subwindow, while keeping the main window focused.
+   Effect: When you tap the input component in the main window, the subwindow pops up, and the focus remains on the input box in the main window.
 
    ```ts
    // Index.ets implements the layout of the main window.
@@ -42,9 +43,13 @@ If you need to draw an input box in a non-focusable window and expect the input 
          }
          let options: window.SubWindowOptions = { title: 'title', decorEnabled: true };
          let subWindow = await windowStage?.createSubWindowWithOptions('mySubWindow', options);
+         if (!subWindow) {
+          console.error('Failed to create subWindow');
+          return;
+         }
          const subWindowId: number | undefined = subWindow?.getWindowProperties().id;
          AppStorage.setOrCreate('subWindowId', subWindowId);
-         // 2. Set the subwindow to be non-focusable.
+         // 2. Set the child window as non-focusable. true indicates that focus is allowed, and false indicates that focus is not allowed.
          subWindow?.resize(500, 500);
          subWindow?.setUIContent("pages/SubWindowIndex");
          subWindow?.setWindowFocusable(false);
@@ -145,7 +150,7 @@ If you need to draw an input box in a non-focusable window and expect the input 
          }
          let subWindowList: window.Window[] = await windowStage?.getSubWindow();
          let subWindow: window.Window = subWindowList[0];
-         // Set the subwindow to be non-focusable.
+         // Set the child window to non-focusable. true means focus is allowed, and false means it is not.
          subWindow?.setWindowFocusable(false);
        } catch (exception) {
          console.error(`Failed to shift focus to main window. Cause code: ${exception.code}, message: ${exception.message}`);

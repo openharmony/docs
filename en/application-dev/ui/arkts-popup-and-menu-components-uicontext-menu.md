@@ -1,7 +1,7 @@
 # Global Menu Independent of UI Components (openMenu)
 <!--Kit: ArkUI-->
 <!--Subsystem: ArkUI-->
-<!--Owner: @Armstrong15-->
+<!--Owner: @H-xinwei-->
 <!--Designer: @zhanghaibo0-->
 <!--Tester: @lxl007-->
 <!--Adviser: @Brilliantry_Rui-->
@@ -11,9 +11,9 @@ The [Menu](arkts-popup-and-menu-components-menu.md) component is a great option 
 ## Displaying a Menu
 
 To display a menu, call the [openMenu](../reference/apis-arkui/arkts-apis-uicontext-promptaction.md#openmenu18). The following is a basic example:
-
+   
  <!-- @[open_menu](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkUISample/DialogProject/entry/src/main/ets/pages/Menu/globalmenusindependentofuicomponents/GlobalOpenMenu.ets) -->
-
+ 
  ``` TypeScript
  this.getUIContext().getPromptAction()
    .openMenu(this.contentNode, { id: targetId }, {
@@ -26,29 +26,29 @@ To display a menu, call the [openMenu](../reference/apis-arkui/arkts-apis-uicont
      hilog.error(0xFF00, 'globalOpenMenu', 'openMenu error: ' + err.code + ' ' + err.message);
    });
  ```
-
  
+ <!--Del-->![openMenu]  (figures/openMenu.gif)<!--DelEnd-->
 
 ### Creating a ComponentContent Instance
-
-Use the **openMenu** API to display a menu and define **ComponentContent** to customize the menu content. For details about the specifications, see [ComponentContent](../reference/apis-arkui/js-apis-arkui-ComponentContent.md).
-
+   
+   Use the **openMenu** API to display a menu and define **ComponentContent** to customize the menu content. For details about the specifications, see [ComponentContent](../reference/apis-arkui/js-apis-arkui-ComponentContent.md).
+   
   <!-- @[content_node](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkUISample/DialogProject/entry/src/main/ets/pages/Menu/globalmenusindependentofuicomponents/GlobalOpenMenu.ets) -->
-
+  
   ``` TypeScript
   private contentNode: ComponentContent<Object> =
-    new ComponentContent(this.getUIContext(), wrapBuilder(buildText), this.message);
+    new ComponentContent(this.getUIContext(), wrapBuilder(buildText), this.message, { nestingBuilderSupported: true });
   ```
-
-If **wrapBuilder** contains other components (such as [Popup](../reference/apis-arkui/arkui-ts/ohos-arkui-advanced-Popup.md) and [Chip](../reference/apis-arkui/arkui-ts/ohos-arkui-advanced-Chip.md)), you need to set [nestingBuilderSupported](../reference/apis-arkui/js-apis-arkui-builderNode.md#buildoptions12) to **true** when creating a **ComponentContent**.
-
+   
+   If **wrapBuilder** contains other components (such as [Popup](../reference/apis-arkui/arkui-ts/ohos-arkui-advanced-Popup.md) and [Chip](../reference/apis-arkui/arkui-ts/ohos-arkui-advanced-Chip.md)), you need to set [nestingBuilderSupported](../reference/apis-arkui/js-apis-arkui-builderNode.md#buildoptions12) to **true** when creating a **ComponentContent**.
+   
  <!-- @[build_text](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkUISample/DialogProject/entry/src/main/ets/pages/Menu/globalmenusindependentofuicomponents/GlobalOpenMenu.ets) -->
-
+ 
  ``` TypeScript
  @Builder
  export function buildText(params: Params) {
    Popup({
-     // Set the icon for the menu.
+     // Set the icon content.
      icon: {
        // Replace $r('app.media.app_icon') with the actual resource file.
        image: $r('app.media.app_icon'),
@@ -64,7 +64,7 @@ If **wrapBuilder** contains other components (such as [Popup](../reference/apis-
        fontColor: Color.Black,
        fontWeight: FontWeight.Normal
      } as PopupTextOptions,
-     // Set the text content.
+     // Set the message content.
      message: {
        text: `This is a Popup message 1`,
        fontSize: 15,
@@ -93,18 +93,18 @@ If **wrapBuilder** contains other components (such as [Popup](../reference/apis-
  let contentNode: ComponentContent<Object> =
    new ComponentContent(uiContext, wrapBuilder(buildText), message, { nestingBuilderSupported: true });
  ```
-
+ 
  
 
 
 ### Providing Bound Component Information
-
-When calling **openMenu**, you must provide the [TargetInfo](../reference/apis-arkui/arkts-apis-uicontext-i.md#targetinfo18) of the bound component. If no valid target is passed, the menu cannot be displayed.
-
-Currently, there are two ways to set the target node:
-
+   
+   When calling **openMenu**, you must provide the [TargetInfo](../reference/apis-arkui/arkts-apis-uicontext-i.md#targetinfo18) of the bound component. If no valid target is passed, the menu cannot be displayed.
+   
+   Currently, there are two ways to set the target node:
+   
 - If **id** is a number, you should set it to the component's **UniqueID**, whose uniqueness is guaranteed by the system.
-  
+   
    <!-- @[frame_node](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkUISample/DialogProject/entry/src/main/ets/pages/Menu/globalmenusindependentofuicomponents/GlobalOpenMenu.ets) -->
    
    ``` TypeScript
@@ -113,7 +113,7 @@ Currently, there are two ways to set the target node:
    ```
    
 - If **id** is a string, you should set it to the component's universal attribute [id](../reference/apis-arkui/arkui-ts/ts-universal-attributes-component-id.md#id). If the uniqueness of the ID cannot be ensured due to multiple-team development or reused custom component, you can set the **componentId** attribute to specify the ID range to accurately specify the target node. In this case, the **componentId** attribute can be set to the parent component or the **UniqueID** of the custom component.
-  
+   
    <!-- @[openMenuWithTargetIdString](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkUISample/DialogProject/entry/src/main/ets/pages/Menu/globalmenusindependentofuicomponents/OpenMenuWithTargetIdString.ets) -->
    
    ``` TypeScript
@@ -156,11 +156,11 @@ Currently, there are two ways to set the target node:
    
 
 ### Customizing the Menu Style
-
-When calling **openMenu**, you can customize the menu style using [MenuOptions](../reference/apis-arkui/arkui-ts/ts-universal-attributes-menu.md#menuoptions10). Note that the **title** property is not effective, and the **preview** parameter supports only the [MenuPreviewMode](../reference/apis-arkui/arkui-ts/ts-universal-attributes-menu.md#menupreviewmode11) type.
-
+   
+   When calling **openMenu**, you can customize the menu style using [MenuOptions](../reference/apis-arkui/arkui-ts/ts-universal-attributes-menu.md#menuoptions10). Note that the **title** property is not effective, and the **preview** parameter supports only the [MenuPreviewMode](../reference/apis-arkui/arkui-ts/ts-universal-attributes-menu.md#menupreviewmode11) type.
+   
   <!-- @[menu_options](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkUISample/DialogProject/entry/src/main/ets/pages/Menu/globalmenusindependentofuicomponents/GlobalOpenMenu.ets) -->
-
+  
   ``` TypeScript
   private options: MenuOptions = { enableArrow: true, placement: Placement.Bottom };
   ```
@@ -168,7 +168,7 @@ When calling **openMenu**, you can customize the menu style using [MenuOptions](
 ## Updating the Menu Style
 
 To update the menu style, use the [updateMenu](../reference/apis-arkui/arkts-apis-uicontext-promptaction.md#updatemenu18) API, supported since API version 18. You can update the style fully or incrementally. However, the following properties cannot be updated: **showInSubWindow** in [MenuOptions](../reference/apis-arkui/arkui-ts/ts-universal-attributes-menu.md#menuoptions10), **preview**, **previewAnimationOptions**, **transition**, **onAppear**, **aboutToAppear**, **onDisappear**, **aboutToDisappear**, **onWillAppear**, **onDidAppear**, **onWillDisappear**, and **onDidDisappear**.
-
+   
 <!-- @[update_menu](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkUISample/DialogProject/entry/src/main/ets/pages/Menu/globalmenusindependentofuicomponents/GlobalOpenMenu.ets) -->
 
 ``` TypeScript
@@ -183,13 +183,13 @@ this.getUIContext().getPromptAction()
     hilog.error(0xFF00, 'globalOpenMenu', 'updateMenu error: ' + err.code + ' ' + err.message);
   });
 ```
-
-
+   
+   <!--Del-->![openMenu] (figures/openMenu.gif)<!--DelEnd-->
 
 ## Closing the Menu
 
 To close the menu, use the [closeMenu](../reference/apis-arkui/arkts-apis-uicontext-promptaction.md#closemenu18) API, supported since API version 18.
-
+   
 <!-- @[close_menu](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkUISample/DialogProject/entry/src/main/ets/pages/Menu/globalmenusindependentofuicomponents/GlobalOpenMenu.ets) --> 
 
 ``` TypeScript
@@ -202,8 +202,8 @@ this.getUIContext().getPromptAction()
     hilog.error(0xFF00, 'globalOpenMenu', 'closeMenu error: ' + err.code + ' ' + err.message);
   });
 ```
-
-
+   
+<!--Del-->![openMenu]  (figures/openMenu.gif)<!--DelEnd-->
 
 > **NOTE**
 >

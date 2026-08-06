@@ -457,7 +457,7 @@ fileSync.getLastSyncTime((err: BusinessError, timeStamp: number) => {
 
 **系统能力**：SystemCapability.FileManagement.DistributedFileService.CloudSync.Core
 
-### construct<sup>11+</sup>
+### constructor<sup>11+</sup>
 
 constructor()
 
@@ -1435,7 +1435,7 @@ cloudSync.unregisterChange(uri);
 
 端云文件版本管理类。支持对端云文件的历史版本进行管理，提供获取文件历史版本信息列表的能力，通过历史版本信息，可将历史版本下载到本地；并提供历史版本文件替换当前本地文件的能力，针对版本冲突，提供查询冲突标志，解除冲突标志的能力。
 
-### construct<sup>20+</sup>
+### constructor<sup>20+</sup>
 
 constructor()
 

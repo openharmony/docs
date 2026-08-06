@@ -559,7 +559,7 @@ int OH_IPCParcel_WriteInt32(OHIPCParcel *parcel, int32_t value)
 
 **描述：**
 
-向OHIPCParcel对象写入int32_t值。写入数据受IPC序列化总大小限制，参见[OH_IPCParcel_Create](#oh_ipcparcel_create)。
+向OHIPCParcel对象写入int32_t值。写入数据受IPC序列化总大小限制（参见[OH_IPCParcel_Create](#oh_ipcparcel_create)）。
 
 **系统能力：** SystemCapability.Communication.IPC.Core
 

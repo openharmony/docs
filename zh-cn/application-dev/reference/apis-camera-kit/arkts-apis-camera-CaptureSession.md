@@ -1628,7 +1628,7 @@ on(type: 'focusStateChange', callback: AsyncCallback\<FocusState\>): void
 
 | 参数名     | 类型                                      | 必填 | 说明                       |
 | -------- | ----------------------------------------- | ---- | ------------------------ |
-| type     | string                                    | 是   | 监听事件，固定为'focusStateChange'，session 创建成功可监听。仅当自动对焦模式时,且相机对焦状态发生改变时可触发该事件。 |
+| type     | string                                    | 是   | 监听事件，固定为'focusStateChange'，session 创建成功可监听。仅当自动对焦模式时，且相机对焦状态发生改变时可触发该事件。 |
 | callback | AsyncCallback\<[FocusState](arkts-apis-camera-e.md#focusstate)\> | 是   | 回调函数，用于获取当前对焦状态。  |
 
 **示例：**

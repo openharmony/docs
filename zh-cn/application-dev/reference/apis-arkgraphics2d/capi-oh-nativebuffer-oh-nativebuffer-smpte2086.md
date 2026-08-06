@@ -11,7 +11,7 @@ typedef struct OH_NativeBuffer_Smpte2086 {...} OH_NativeBuffer_Smpte2086
 ```
 ## 概述
 
-表示smpte2086静态元数据。
+表示SMPTE 2086静态元数据。
 
 **起始版本：** 12
 

@@ -600,7 +600,7 @@ filter(predicate: TypedArrayPredicateFn\<number, Float32Array>): Float32Array
 ```ts
 let array: collections.Float32Array = collections.Float32Array.from([0, 1, 2, 3, 4]);
 // Float32Array [0, 2, 4]
-let filtered: collections.Float32Array = array.filter((element: number) => element % 2 == 0);
+let filtered: collections.Float32Array = array.filter((element: number) => element % 2 === 0);
 ```
 
 ## find

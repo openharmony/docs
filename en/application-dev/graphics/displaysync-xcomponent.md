@@ -1,10 +1,12 @@
 # Requesting Frame Rates for Custom Content
+
 <!--Kit: ArkGraphics 2D-->
 <!--Subsystem: Graphics-->
 <!--Owner: @wh_qwe-->
 <!--Designer: @wh_qwe-->
 <!--Tester: @zhaoxiaoguang2-->
 <!--Adviser: @ge-yafang-->
+<!-- md-trans-meta sourceCommit=740dcdea7b2e0f63c4b99baa0eb4f2e92e763430 translatedAt=2026-08-03T11:19:07.746Z pushedAt=2026-08-04T06:15:33.677Z -->
 
 When you use native APIs to develop an application based on the [XComponent](../ui/napi-xcomponent-guidelines.md), you can request an independent frame rate for custom content in scenarios such as gaming and custom UI framework interconnection.
 
@@ -12,9 +14,9 @@ When you use native APIs to develop an application based on the [XComponent](../
 
 | Name | Description    |
 |-----|--------|
-| OH_NativeXComponent_SetExpectedFrameRateRange (OH_NativeXComponent *component, OH_NativeXComponent_ExpectedRateRange *range) | Sets the expected frame rate range.|
+| OH_NativeXComponent_SetExpectedFrameRateRange (OH_NativeXComponent *component, OH_NativeXComponent_ExpectedRateRange *range) | Sets the expected frame rate range. |
 | OH_NativeXComponent_RegisterOnFrameCallback (OH_NativeXComponent *component, OH_NativeXComponent_OnFrameCallback *callback) | Registers the display update callback and enables the callback for each frame.|
-| OH_NativeXComponent_UnRegisterOnFrameCallback (OH_NativeXComponent *component) | Deregisters the display update callback and disables the callback for each frame.|
+| OH_NativeXComponent_UnregisterOnFrameCallback (OH_NativeXComponent *component) | Unregisters the per-frame callback function and stops invoking the callback. |
 
 For details about the APIs, see [OH_NativeXComponent Native XComponent](../reference/apis-arkui/capi-oh-nativexcomponent-native-xcomponent.md).
 
@@ -27,15 +29,17 @@ For details about the APIs, see [OH_NativeXComponent Native XComponent](../refer
 1. Add dependencies.
 
    Add the following library to **CMakeLists.txt**.
+
    <!-- @[display_sync_add_lib](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkGraphics2D/DisplaySync/entry/src/main/cpp/CMakeLists.txt) -->
-   
+
    ``` Text
    target_link_libraries(entry PUBLIC libace_napi.z.so libnative_drawing.so libnative_window.so libace_ndk.z.so)
    ```
 
    Import the required header files.
+
    <!-- @[display_sync_import_module_one](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkGraphics2D/DisplaySync/entry/src/main/cpp/samples/sample_xcomponent.h) -->
-   
+
    ``` C
    #include <ace/xcomponent/native_interface_xcomponent.h>
    #include <arpa/nameser.h>
@@ -53,15 +57,17 @@ For details about the APIs, see [OH_NativeXComponent Native XComponent](../refer
    #include <string>
    #include "napi/native_api.h"
    ```
+
    <!-- @[display_sync_import_module_two](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkGraphics2D/DisplaySync/entry/src/main/cpp/samples/sample_xcomponent.cpp) -->
-   
+
    ``` C++
    #include <native_drawing/drawing_text_typography.h>
    ```
 
 2. Define an ArkTS API file and name it **XComponentContext.ts**, which is used to connect to the native layer.
+
    <!-- @[display_sync_export_interface_xcomponent_context](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkGraphics2D/DisplaySync/entry/src/main/ets/interface/XComponentContext.ts) -->
-   
+
    ``` TypeScript
    export default interface XComponentContext {
      register(): void;
@@ -71,8 +77,9 @@ For details about the APIs, see [OH_NativeXComponent Native XComponent](../refer
    ```
 
 3. Define a demo page, which contains two **XComponents**.
-   <!-- @[display_sync_create_xcomponent](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkGraphics2D/DisplaySync/entry/src/main/ets/DispalySync/XComponentDisplaySync.ets) -->
-   
+
+   <!-- @[display_sync_create_xcomponent](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkGraphics2D/DisplaySync/entry/src/main/ets/DisplaySync/XComponentDisplaySync.ets) -->
+
    ``` TypeScript
    import XComponentContext from '../interface/XComponentContext';
    // ...
@@ -120,8 +127,9 @@ For details about the APIs, see [OH_NativeXComponent Native XComponent](../refer
    ```
 
 4. Configure the frame rate and register the callback function at the native layer.
+
    <!-- @[display_sync_napi_frame_rate_setting_and_subscription_function_registration](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkGraphics2D/DisplaySync/entry/src/main/cpp/samples/sample_xcomponent.cpp) -->
-   
+
    ``` C++
    static void TestCallback(OH_NativeXComponent *component, uint64_t timestamp, uint64_t targetTimestamp)
    {
@@ -150,8 +158,9 @@ For details about the APIs, see [OH_NativeXComponent Native XComponent](../refer
    > - After the instance calls **OH_NativeXComponent_RegisterOnFrameCallback**, it must call **OH_NativeXComponent_UnregisterOnFrameCallback** when it no longer needs to control the frame rate, so as to avoid memory leakage and impact on performance and power consumption.
    > - Before API version 18, if the application calls **OH_NativeXComponent_RegisterOnFrameCallback** to set the callback function and does not unregister the callback function, the application can receive the expected callback when the XComponent instance exists.
    > - From API version 18 onwards, if the application calls **OH_NativeXComponent_RegisterOnFrameCallback** to set the callback function and does not unregister the callback function, the application can receive the expected callback only when the XComponent is on the tree.
+
    <!-- @[display_sync_register_on_frame_callback](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkGraphics2D/DisplaySync/entry/src/main/cpp/samples/sample_xcomponent.cpp) -->
-   
+
    ``` C++
    void SampleXComponent::RegisterOnFrameCallback(OH_NativeXComponent *nativeXComponent)
    {
@@ -159,8 +168,9 @@ For details about the APIs, see [OH_NativeXComponent Native XComponent](../refer
        OH_NativeXComponent_RegisterOnFrameCallback(nativeXComponent, TestCallback);
    }
    ```
+
    <!-- @[display_sync_napi_register](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkGraphics2D/DisplaySync/entry/src/main/cpp/samples/sample_xcomponent.cpp) -->
-   
+
    ``` C++
    napi_value SampleXComponent::NapiRegister(napi_env env, napi_callback_info info)
    {
@@ -169,8 +179,9 @@ For details about the APIs, see [OH_NativeXComponent Native XComponent](../refer
            // ...
    }
    ```
+
    <!-- @[display_sync_napi_unregister](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkGraphics2D/DisplaySync/entry/src/main/cpp/samples/sample_xcomponent.cpp) -->
-   
+
    ``` C++
    napi_value SampleXComponent::NapiUnregister(napi_env env, napi_callback_info info)
    {
@@ -181,8 +192,9 @@ For details about the APIs, see [OH_NativeXComponent Native XComponent](../refer
    ```
 
 5. Register and deregister the callback function for each frame at the TS layer.
-   <!-- @[display_sync_start_and_stop_per_frame_callback](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkGraphics2D/DisplaySync/entry/src/main/ets/DispalySync/XComponentDisplaySync.ets) -->
-   
+
+   <!-- @[display_sync_start_and_stop_per_frame_callback](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkGraphics2D/DisplaySync/entry/src/main/ets/DisplaySync/XComponentDisplaySync.ets) -->
+
    ``` TypeScript
    Row() {
      Button('Start')
@@ -224,7 +236,9 @@ For details about the APIs, see [OH_NativeXComponent Native XComponent](../refer
    ```
 
 <!--RP1-->
+
 ## Samples
 
 - [DisplaySync (API14)](https://gitcode.com/openharmony/applications_app_samples/tree/master/code/DocsSample/ArkGraphics2D/DisplaySync)
+
 <!--RP1End-->

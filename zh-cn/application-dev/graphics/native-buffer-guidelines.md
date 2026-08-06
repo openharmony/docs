@@ -20,7 +20,7 @@ NativeBuffer的常见应用场景包括：图像数据处理、视频编解码�
 | OH_NativeBuffer_Unreference (OH_NativeBuffer \*buffer) | 将OH_NativeBuffer对象的引用计数减1，当引用计数为0的时候，该NativeBuffer对象会被析构掉。 | 
 | OH_NativeBuffer_GetConfig (OH_NativeBuffer \*buffer, OH_NativeBuffer_Config \*config) | 用于获取OH_NativeBuffer的属性。 | 
 | OH_NativeBuffer_Map (OH_NativeBuffer \*buffer, void \*\*virAddr) | 将OH_NativeBuffer对应的ION内存映射到进程空间。 | 
-| OH_NativeBuffer_Unmap (OH_NativeBuffer \*buffer) | 将OH_NativeBuffer对应的ION内存从进程空间移除。 | 
+| OH_NativeBuffer_Unmap (OH_NativeBuffer \*buffer) | 将OH_NativeBuffer对应的ION内存从进程空间解除映射。 | 
 | OH_NativeBuffer_GetSeqNum (OH_NativeBuffer \*buffer) | 获取OH_NativeBuffer的序列号。 | 
 
 详细的接口说明请参考[OH_NativeBuffer](../reference/apis-arkgraphics2d/capi-oh-nativebuffer.md)。

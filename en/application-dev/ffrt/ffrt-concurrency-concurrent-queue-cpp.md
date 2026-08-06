@@ -2,16 +2,18 @@
 
 <!--Kit: Function Flow Runtime Kit-->
 <!--Subsystem: Resourceschedule-->
-<!--Owner: @chuchihtung; @yanleo-->
-<!--Designer: @geoffrey_guo; @huangyouzhong-->
-<!--Tester: @lotsof; @sunxuhao-->
+<!--Owner: @chuchihtung-->
+<!--Designer: @zhanglu161-->
+<!--Tester: @lotsof-->
 <!--Adviser: @jinqiuheng-->
+<!-- md-trans-meta sourceCommit=246cbb87769d7ba2d4f71c6a8b417a57ec2cbfa6 translatedAt=2026-08-03T08:16:23.819Z pushedAt=2026-08-03T09:07:32.196Z -->
 
 ## Overview
 
 The FFRT concurrent queue provides the capability of setting the priority and queue concurrency. Tasks in the queue can be executed on multiple threads at the same time, achieving better effects.
 
 - **Queue concurrency**: You can set the maximum concurrency of a queue to control the number of tasks that can be executed at the same time. This avoids system resource impact caused by excessive concurrent tasks, ensuring system stability and performance.
+
 - **Task priority**: You can set a priority for each task. Different tasks are scheduled and executed strictly based on the priority. Tasks with the same priority are executed in sequence. Tasks with higher priorities are executed prior to those with lower priorities to ensure that key tasks can be processed in a timely manner.
 
 ## Example: Bank Service System
@@ -21,15 +23,30 @@ For example, each customer (common customer or VIP customer) submits a service r
 You can use the FFRT paradigm to perform the following modeling:
 
 - **Queuing logic**: concurrent queue.
+
 - **Service window**: concurrency of the concurrent queue, which also equals the number of FFRT Worker threads.
+
 - **Customer level**: priority of concurrent queue tasks.
 
 The implementation code is as follows:
 
-```cpp
-#include <iostream>
+<!-- @[concurrent_cpp_header](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/FunctionFlowRuntime/ConcurrentQueue/entry/src/main/cpp/concurrent_queue_cpp.h) -->
+
+``` C
 #include <unistd.h>
+#include "hilog/log.h"
 #include "ffrt/ffrt.h" // From the OpenHarmony third-party library "@ppd/ffrt"
+
+#undef LOG_TAG
+#define LOG_TAG "ConcurrentCppTag"
+```
+
+<!-- @[concurrent_cpp](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/FunctionFlowRuntime/ConcurrentQueue/entry/src/main/cpp/concurrent_queue_cpp.cpp) -->
+
+``` C++
+
+const int SLEEP_TIME = 100 * 1000;
+const int BANK_CONCURRENCY = 2;
 
 class BankQueueSystem {
 private:
@@ -40,13 +57,13 @@ public:
     {
         queue_ = std::make_unique<ffrt::queue>(
             ffrt::queue_concurrent, name, ffrt::queue_attr().max_concurrency(concurrency));
-        std::cout << "bank system has been initialized" << std::endl;
+        OH_LOG_INFO(LOG_APP, "bank system has been initialized");
     }
 
     ~BankQueueSystem()
     {
         queue_ = nullptr;
-        std::cout << "bank system has been destroyed" << std::endl;
+        OH_LOG_INFO(LOG_APP, "bank system has been destroyed");
     }
 
     // Start to queue, that is, submit queue tasks.
@@ -70,19 +87,19 @@ public:
 
 void BankBusiness()
 {
-    usleep(100 * 1000);
-    std::cout << "saving or withdraw ordinary customer" << std::endl;
+    usleep(SLEEP_TIME);
+    OH_LOG_INFO(LOG_APP, "saving or withdraw ordinary customer");
 }
 
 void BankBusinessVIP()
 {
-    usleep(100 * 1000);
-    std::cout << "saving or withdraw VIP" << std::endl;
+    usleep(SLEEP_TIME);
+    OH_LOG_INFO(LOG_APP, "saving or withdraw VIP");
 }
 
-int main()
+int ConcurrentQueueCppExec()
 {
-    BankQueueSystem bankQueue("Bank", 2);
+    BankQueueSystem bankQueue("Bank", BANK_CONCURRENCY);
 
     auto task1 = bankQueue.Enter(BankBusiness, "customer1", ffrt_queue_priority_low, 0);
     auto task2 = bankQueue.Enter(BankBusiness, "customer2", ffrt_queue_priority_low, 0);
@@ -113,7 +130,7 @@ The main FFRT APIs involved in the preceding example are as follows:
 > **NOTE**
 >
 > - For details about how to use FFRT C++ APIs, see [Using FFRT C++ APIs](ffrt-development-guideline.md#using-ffrt-c-api-1).
-> - When using FFRT C or C++ APIs, you can use the FFRT C++ API third-party library to simplify header file inclusion, that is, use the `#include "ffrt/ffrt.h"` header file to include statements.
+> - When using FFRT C or C++ APIs, you can use the FFRT C++ API third-party library to simplify header file inclusion, that is, use the `#include "ffrt/ffrt.h"` statement.
 
 ## Constraints
 

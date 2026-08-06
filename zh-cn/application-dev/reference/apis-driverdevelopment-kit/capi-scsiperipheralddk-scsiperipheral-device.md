@@ -12,7 +12,7 @@ typedef struct ScsiPeripheral_Device ScsiPeripheral_Device
 
 ## 概述
 
-不透明的SCSI设备结构体。
+不透明的SCSI设备结构体，用于表示与SCSI外设交互的设备句柄。
 
 **起始版本：** 18
 

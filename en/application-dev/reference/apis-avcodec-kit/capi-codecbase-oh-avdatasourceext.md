@@ -6,6 +6,7 @@
 <!--Designer: @dpy2650--->
 <!--Tester: @baotianhao-->
 <!--Adviser: @w_Machine_cc-->
+<!-- md-trans-meta sourceCommit=97963283502ff2ff5f7990ac58edac887f0764b9 translatedAt=2026-08-01T07:17:52.067Z pushedAt=2026-08-01T07:29:10.086Z -->
 
 ```c
 typedef struct OH_AVDataSourceExt {...} OH_AVDataSourceExt
@@ -27,5 +28,5 @@ The struct describes a user-defined data source. User-defined data can be passed
 
 | Name| Description|
 | -- | -- |
-| int64_t size | Size of the data source.|
-| [OH_AVDataSourceReadAtExt](capi-native-avcodec-base-h.md#oh_avdatasourcereadatext) readAt | Callback of the data source.|
+| int64_t size | Total size of the data source, in bytes. |
+| [OH_AVDataSourceReadAtExt](capi-native-avcodec-base-h.md#oh_avdatasourcereadatext) readAt | Callback for reading data from the data source. |

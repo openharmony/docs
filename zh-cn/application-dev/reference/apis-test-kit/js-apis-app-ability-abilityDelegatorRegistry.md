@@ -57,6 +57,7 @@ getAbilityDelegator(): AbilityDelegator
 ```ts
 import { abilityDelegatorRegistry } from '@kit.TestKit';
 import { Want } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 // 获取应用程序的AbilityDelegator对象
 let abilityDelegator = abilityDelegatorRegistry.getAbilityDelegator();
@@ -67,9 +68,9 @@ let want: Want = {
 };
 
 // 启动指定Ability
-abilityDelegator.startAbility(want, (err) => {
+abilityDelegator.startAbility(want, (err: BusinessError) => {
   if (err) {
-    console.error(`Failed start ability, error: ${JSON.stringify(err)}`);
+    console.error(`Failed start ability. code: ${err.code}, message: ${err.message}`);
   } else {
     console.info('Success start ability.');
   }

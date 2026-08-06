@@ -106,7 +106,7 @@ ArkTS Array的构造函数，通过开发者提供的元素进行初始化。
 
 | 参数名 | 类型 | 必填 | 说明                            |
 | ------ | ---- | ---- | ------------------------------- |
-| items  | T[]  | 否   | 初始化ArkTS Array的元素。       |
+| items  | T[]  | 否   | 初始化ArkTS Array的元素，默认值为空数组。       |
 
 **错误码：**
 
@@ -243,7 +243,7 @@ const mapper = new Map([
   ['2', 'b'],
 ]);
 let newArray: collections.Array<string> = collections.Array.from(mapper.values());
-console.info(newArray.toString()); // 预期输出： a,b
+console.info(newArray.toString()); // 预期输出： a, b
 ```
 
 ## from<sup>18+</sup>
@@ -252,7 +252,7 @@ static from\<T>(arrayLike: ArrayLike\<T> | Iterable\<T>, mapFn: ArrayFromMapFn\<
 
 从一个实现了ArrayLike接口的对象创建一个新的ArkTS Array，并且使用自定义函数处理每个数组元素。
 
-**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
+**原子化服务API**： 从API version 18开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -283,7 +283,7 @@ static from\<U, T>(arrayLike: ArrayLike\<U> | Iterable\<U>, mapFn: ArrayFromMapF
 
 从一个实现了ArrayLike接口的对象创建一个新的ArkTS Array，并且使用自定义函数处理每个数组元素，ArrayLike接口对象的元素类型可以和数组元素的类型不一样。
 
-**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
+**原子化服务API**： 从API version 18开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -314,7 +314,7 @@ static isArray(value: Object | undefined | null): boolean
 
 检查传入的参数是否是一个ArkTS Array。
 
-**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
+**原子化服务API**： 从API version 18开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -335,7 +335,7 @@ static isArray(value: Object | undefined | null): boolean
 ```ts
 let arr: collections.Array<string> = new collections.Array('a', 'b', 'c', 'd');
 let result: boolean = collections.Array.isArray(arr);
-console.info(result + ''); // 预期输出： true
+console.info(String(result)); // 预期输出： true
 ```
 
 ## of<sup>18+</sup>
@@ -344,7 +344,7 @@ static of\<T>(...items: T\[]): Array\<T>
 
 通过可变数量的参数创建一个新的ArkTS Array。
 
-**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
+**原子化服务API**： 从API version 18开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -372,7 +372,7 @@ copyWithin(target: number, start: number, end?: number): Array\<T>
 
 从ArkTS Array指定范围内的元素依次拷贝到目标位置。
 
-**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
+**原子化服务API**： 从API version 18开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -413,7 +413,7 @@ lastIndexOf(searchElement: T, fromIndex?: number): number
 
 返回ArkTS Array实例中最后一次出现searchElement的索引，如果对象不包含，则为-1。
 
-**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
+**原子化服务API**： 从API version 18开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -422,7 +422,7 @@ lastIndexOf(searchElement: T, fromIndex?: number): number
 | 参数名           | 类型     | 必填  | 说明                                                                                |
 | ------------- | ------ | --- | --------------------------------------------------------------------------------- |
 | searchElement | T | 是   | 待索引的值。                                                                            |
-| fromIndex     | number | 否   | 搜索的起始下标。默认值为0。如果下标大于等于ArkTS Array的长度，则返回-1。如果fromIndex < 0，则会从fromIndex + array.length位置开始搜索。 |
+| fromIndex     | number | 否   | 搜索的起始下标。默认值为-1。如果下标大于等于ArkTS Array的长度，则返回-1。如果fromIndex < 0，则会从fromIndex + array.length位置开始搜索。 |
 
 **返回值：**
 
@@ -443,10 +443,10 @@ lastIndexOf(searchElement: T, fromIndex?: number): number
 
 ```ts
 let array: collections.Array<number> = collections.Array.from([3, 5, 9]);
-console.info(array.lastIndexOf(3) + ''); // 预期输出： 0
-console.info(array.lastIndexOf(7) + ''); // 预期输出： -1
-console.info(array.lastIndexOf(9, 2) + ''); // 预期输出： 2
-console.info(array.lastIndexOf(9, -2) + ''); // 预期输出： -1
+console.info(String(array.lastIndexOf(3))); // 预期输出： 0
+console.info(String(array.lastIndexOf(7))); // 预期输出： -1
+console.info(String(array.lastIndexOf(9, 2))); // 预期输出： 2
+console.info(String(array.lastIndexOf(9, -2))); // 预期输出： -1
 ```
 
 ## some<sup>18+</sup>
@@ -454,7 +454,7 @@ some(predicate: ArrayPredicateFn\<T, Array\<T>>): boolean
 
 测试ArkTS Array是否存在满足指定条件的元素。
 
-**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
+**原子化服务API**： 从API version 18开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -483,7 +483,7 @@ some(predicate: ArrayPredicateFn\<T, Array\<T>>): boolean
 
 ```ts
 let newArray: collections.Array<number> = collections.Array.from([-10, 20, -30, 40, -50]);
-console.info(newArray.some((element: number) => element < 0) + ''); // 预期输出： true
+console.info(String(newArray.some((element: number) => element < 0))); // 预期输出： true
 ```
 
 ## reduceRight<sup>18+</sup>
@@ -492,7 +492,7 @@ reduceRight(callbackFn: ArrayReduceCallback\<T, T, Array\<T>>): T
 
 对Array中的每个元素按照从右到左顺序执行回调函数，将其结果作为累加值，并返回最终的结果。
 
-**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
+**原子化服务API**： 从API version 18开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -522,7 +522,7 @@ reduceRight(callbackFn: ArrayReduceCallback\<T, T, Array\<T>>): T
 ```ts
 let array = new collections.Array<number>(1, 2, 3, 4, 5);
 let reducedValue = array.reduceRight((accumulator, value) => accumulator + value); // 累加所有元素
-console.info(reducedValue + ''); // 预期输出： 15
+console.info(String(reducedValue)); // 预期输出： 15
 ```
 
 ## reduceRight<sup>18+</sup>
@@ -531,7 +531,7 @@ reduceRight\<U = T>(callbackFn: ArrayReduceCallback\<U, T, Array\<T>>, initialVa
 
 与 [reduceRight](#reduceright18)方法类似，但它接受一个初始值作为第二个参数，用于在Array从右到左顺序遍历开始前初始化累加器。
 
-**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
+**原子化服务API**： 从API version 18开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -563,7 +563,7 @@ reduceRight\<U = T>(callbackFn: ArrayReduceCallback\<U, T, Array\<T>>, initialVa
 // 此处使用一个初始值为0的累加器，并将其与Array中的每个元素相加，最终返回累加后的总和
 let array = new collections.Array<number>(1, 2, 3, 4, 5);
 let reducedValue = array.reduceRight<number>((accumulator: number, value: number) => accumulator + value, 0); // 累加所有元素，初始值为0
-console.info(reducedValue + ''); // 预期输出： 15
+console.info(String(reducedValue)); // 预期输出： 15
 ```
 
 ## pop
@@ -572,7 +572,7 @@ pop(): T | undefined
 
 从ArkTS Array中移除并返回最后一个元素。如果Array为空，则返回undefined，且Array不发生变化。
 
-**原子化服务API**：从API version 12 开始，该接口支持在原子化服务中使用。
+**原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -612,7 +612,7 @@ push(...items: T[]): number
 
 | 参数名 | 类型 | 必填 | 说明                               |
 | ------ | ---- | ---- | ---------------------------------- |
-| items  | T[]  | 否   | 要添加到Array末尾的元素。 |
+| items  | T[]  | 否   | 要添加到Array末尾的元素，默认值为空数组。 |
 
 **返回值：**
 
@@ -712,7 +712,7 @@ reverse(): Array\<T>
 
 反转ArkTS Array数组中的元素，并返回同一数组的引用。
 
-**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
+**原子化服务API**： 从API version 18开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -753,7 +753,7 @@ unshift(...items: T[]): number
 
 | 参数名 | 类型 | 必填 | 说明                     |
 | ------ | ---- | ---- | ------------------------ |
-| items  | T[]  | 否   | 要插入到Array首端的元素。 |
+| items  | T[]  | 否   | 要插入到Array首端的元素，默认值为空数组。 |
 
 **返回值：**
 
@@ -783,7 +783,7 @@ toString(): string
 
 ArkTS数组转换为字符串。
 
-**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
+**原子化服务API**： 从API version 18开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -807,7 +807,7 @@ ArkTS数组转换为字符串。
 ```ts
 let array = new collections.Array<number>(1, 2, 3, 4, 5);
 let stringArray = array.toString();
-console.info(stringArray); // 预期输出：1,2,3,4,5
+console.info(stringArray); // 预期输出： 1, 2, 3, 4, 5
 ```
 
 ## slice
@@ -999,7 +999,7 @@ let array = new collections.Array<string>('a', 'b', 'c');
 let mappedArray = array.map((value, index, array) => {
   return value.toUpperCase(); // 将每个字符串元素转换为大写
 });
-console.info("" + mappedArray); // 输出: A, B, C
+console.info(String(mappedArray)); // 输出: A, B, C
 ```
 
 ## filter
@@ -1124,7 +1124,7 @@ at(index: number): T | undefined
 
 返回Array中指定索引位置的元素。
 
-**原子化服务API**：从API version 12 开始，该接口支持在原子化服务中使用。
+**原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -1221,7 +1221,7 @@ keys(): IterableIterator\<number>
 let array = new collections.Array<number>(1, 2, 3, 4, 5);
 let iterator = array.keys();
 for (const key of iterator) {
-  console.info("" + key); // 依次输出 0,1,2,3,4
+  console.info(String(key)); // 依次输出 0,1,2,3,4
 }
 ```
 
@@ -1256,7 +1256,7 @@ values(): IterableIterator\<T>
 let array = new collections.Array<number>(1, 2, 3, 4, 5);
 let iterator = array.values();
 for(const value of iterator) {
-  console.info("" + value); // 依次输出 1,2,3,4,5
+  console.info(String(value)); // 依次输出 1,2,3,4,5
 }
 ```
 
@@ -1390,8 +1390,8 @@ fill(value: T, start?: number, end?: number): Array\<T>
 | 参数名 | 类型   | 必填 | 说明                                                   |
 | ------ | ------ | ---- | ------------------------------------------------------ |
 | value  | T      | 是   | 要填充的值。                                           |
-| start  | number | 否   | 开始填充的索引。默认值为0。如果start < 0，则从下标为0的元素开始。如果start > 数组长度或start > end，则不做填充。填充过程中包含start位置下标所在的元素。|
-| end    | number | 否   | 结束填充的索引（不包括该元素）。如果省略或end > 数组长度，则填充到Array的最后一个元素。如果end < 0或start > end，则不做填充。填充过程中不包含end位置下标所在的元素。|
+| start  | number | 否   | 开始填充的索引。默认值为0。如果start < 0，则取max(start + len, 0)。如果start > 数组长度或start > end，则不做填充。填充过程中包含start位置下标所在的元素。|
+| end    | number | 否   | 结束填充的索引（不包括该元素）。如果end < 0，则取max(end + len, 0)。如果省略或end > 数组长度，则填充到Array的最后一个元素。如果start > end，则不做填充。填充过程中不包含end位置下标所在的元素。|
 
 **返回值：**
 
@@ -1429,7 +1429,7 @@ shrinkTo(arrayLength: number): void
 
 | 参数名 | 类型   | 必填 | 说明                                                   |
 | ------ | ------ | ---- | ------------------------------------------------------ |
-| arrayLength  | number  | 是   | Array的新长度。如果arrayLength >= array.length，则Array不变。 |
+| arrayLength  | number  | 是   | Array的新长度。取值应为非负整数，否则会抛出异常。如果arrayLength >= array.length，则Array不变。 |
 
 **错误码：**
 
@@ -1464,7 +1464,7 @@ extendTo(arrayLength: number, initialValue: T): void
 
 | 参数名 | 类型   | 必填 | 说明                                                   |
 | ------ | ------ | ---- | ------------------------------------------------------ |
-| arrayLength  | number  | 是   | Array的新长度。如果arrayLength <= array.length，则Array不变。 |
+| arrayLength  | number  | 是   | Array的新长度。取值应为非负整数，否则会抛出异常。如果arrayLength <= array.length，则Array不变。 |
 | initialValue  | T  | 是   | 扩展的部分的填充值。 |
 
 **错误码：**
@@ -1492,7 +1492,7 @@ concat(...items: ConcatArray\<T>[]): Array\<T>
 
 拼接两个或多个数组。
 
-**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+**原子化服务API**： 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -1500,7 +1500,7 @@ concat(...items: ConcatArray\<T>[]): Array\<T>
 
 | 参数名 | 类型 | 必填 | 说明                               |
 | ------ | ---- | ---- | ---------------------------------- |
-| items  | ConcatArray\<T>[]  | 否   | 拼接两个或多个数组。 |
+| items  | ConcatArray\<T>[]  | 否   | 拼接两个或多个数组，省略时返回原数组的浅拷贝。 |
 
 **返回值：**
 
@@ -1541,7 +1541,7 @@ splice(start: number): Array\<T>
 
 | 参数名 | 类型  | 必填 | 说明                                                                |
 | ----- | ------ | -- | ------------------------------------------------------------------- |
-| start | number | 是 | 开始索引。如果`-array.length =< start < 0`，从`start + array.length`开始，如果`start < -array.length`，则从0开始。 |
+| start | number | 是 | 开始索引。如果`-array.length <= start < 0`，从`start + array.length`开始，如果`start < -array.length`，则从0开始。 |
 
 **返回值：**
 
@@ -1571,7 +1571,7 @@ every(predicate: ArrayPredicateFn\<T, Array\<T>>): boolean
 
 测试ArkTS Array中的所有元素是否满足指定条件。
 
-**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
+**原子化服务API**： 从API version 18开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -1608,7 +1608,7 @@ toLocaleString(): string
 
 根据当前应用的系统地区获取符合当前文化习惯的字符串表示形式，让每个元素调用自己的toLocaleString方法转换为字符串，然后使用逗号将每个元素的结果字符串按照顺序拼接成字符串。
 
-**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
+**原子化服务API**： 从API version 18开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -1633,7 +1633,7 @@ toLocaleString(): string
 // 当前应用所在系统为法国地区
 let array = new collections.Array<number | string>(1000, 'Test', 53621);
 let stringArray = array.toLocaleString();
-console.info(stringArray); // 预期输出：1,000,Test,53,621
+console.info(stringArray); // 预期输出：1, 000, Test, 53, 621
 ```
 
 ## splice
@@ -1650,7 +1650,7 @@ splice(start: number, deleteCount: number, ...items: T[]): Array\<T>
 
 | 参数名       | 类型   | 必填 | 说明                                                                |
 | ----------- | ------ | --  | ------------------------------------------------------------------- |
-| start       | number | 是  | 开始索引。如果`-array.length =< start < 0`，从`start + array.length`开始，如果`start < -array.length`，则从0开始。 |
+| start       | number | 是  | 开始索引。如果`-array.length <= start < 0`，从`start + array.length`开始，如果`start < -array.length`，则从0开始。 |
 | deleteCount | number | 是  | 删除元素的个数， 如果`deleteCount <= 0`，则不删除任何元素。 |
 | items       | T[]    | 否  | 从`start`位置开始插入的新元素。如果省略，仅删除Array内的指定元素。        |
 
@@ -1693,7 +1693,7 @@ let removeArray = array.splice(2, 2, 6, 7, 8); // array内容变为[1, 2, 6, 7, 
 >
 > 本接口不支持在.ets文件中使用。
 
-**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+**原子化服务API**： 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -1714,7 +1714,7 @@ let removeArray = array.splice(2, 2, 6, 7, 8); // array内容变为[1, 2, 6, 7, 
 **示例：**
 
 ```ts
-let array= new collections.Array<number>(1, 2, 3, 4);
+let array = new collections.Array<number>(1, 2, 3, 4);
 
 for (let item of array) {
   console.info(`value : ${item}`);
@@ -1727,7 +1727,7 @@ for (let item of array) {
 
 返回Array指定索引位置的元素。
 
-**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+**原子化服务API**： 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -1755,5 +1755,5 @@ for (let item of array) {
 
 ```ts
 let array = new collections.Array<number>(1, 2, 4);
-console.info("Element at index 1: ", array[1]);
+console.info(`Element at index 1: ${array[1]}`);
 ```

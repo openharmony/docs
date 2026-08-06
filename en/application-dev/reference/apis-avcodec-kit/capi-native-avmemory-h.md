@@ -6,6 +6,7 @@
 <!--Designer: @dpy2650--->
 <!--Tester: @cyakee-->
 <!--Adviser: @w_Machine_cc-->
+<!-- md-trans-meta sourceCommit=b0da05c8656be2c926d2afdc40baf27feef17127 translatedAt=2026-08-01T07:24:41.615Z pushedAt=2026-08-01T08:55:23.942Z -->
 
 ## Overview
 
@@ -33,10 +34,10 @@ The file declares the attribute definition of the media struct AVMemory.
 
 | Name| Description|
 | -- | -- |
-| [OH_AVMemory *OH_AVMemory_Create(int32_t size)](#oh_avmemory_create) | Creates an OH_AVMemory instance.|
+| [OH_AVMemory *OH_AVMemory_Create(int32_t size)](#oh_avmemory_create) | Creates a pointer to an OH_AVMemory instance.|
 | [uint8_t *OH_AVMemory_GetAddr(struct OH_AVMemory *mem)](#oh_avmemory_getaddr) | Obtains the virtual memory address.|
 | [int32_t OH_AVMemory_GetSize(struct OH_AVMemory *mem)](#oh_avmemory_getsize) | Obtains the memory length.|
-| [OH_AVErrCode OH_AVMemory_Destroy(struct OH_AVMemory *mem)](#oh_avmemory_destroy) | Releases an OH_AVMemory instance.|
+| [OH_AVErrCode OH_AVMemory_Destroy(struct OH_AVMemory *mem)](#oh_avmemory_destroy) | Destroys the resources occupied by an OH_AVMemory instance. |
 
 ## Function Description
 
@@ -57,7 +58,6 @@ Creates an OH_AVMemory instance.
 **Deprecated from**: 11
 
 **Substitute**: [OH_AVBuffer_Create](capi-native-avbuffer-h.md#oh_avbuffer_create)
-
 
 **Parameters**
 
@@ -89,7 +89,6 @@ Obtains the virtual memory address.
 
 **Substitute**: [OH_AVBuffer_GetAddr](capi-native-avbuffer-h.md#oh_avbuffer_getaddr)
 
-
 **Parameters**
 
 | Name| Description|
@@ -120,7 +119,6 @@ Obtains the memory length.
 
 **Substitute**: [OH_AVBuffer_GetCapacity](capi-native-avbuffer-h.md#oh_avbuffer_getcapacity)
 
-
 **Parameters**
 
 | Name| Description|
@@ -141,7 +139,7 @@ OH_AVErrCode OH_AVMemory_Destroy(struct OH_AVMemory *mem)
 
 **Description**
 
-Releases an OH_AVMemory instance.
+Releases the resources held by an OH_AVMemory instance.
 
 **System capability**: SystemCapability.Multimedia.Media.Core
 
@@ -150,7 +148,6 @@ Releases an OH_AVMemory instance.
 **Deprecated from**: 11
 
 **Substitute**: [OH_AVBuffer_Destroy](capi-native-avbuffer-h.md#oh_avbuffer_destroy)
-
 
 **Parameters**
 

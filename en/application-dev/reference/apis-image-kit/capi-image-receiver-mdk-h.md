@@ -1,10 +1,12 @@
 # image_receiver_mdk.h
+
 <!--Kit: Image Kit-->
 <!--Subsystem: Multimedia-->
 <!--Owner: @aulight02-->
-<!--Designer: @liyang_bryan-->
+<!--Designer: @XiaoYao555-->
 <!--Tester: @xchaosioda-->
 <!--Adviser: @w_Machine_cc-->
+<!-- md-trans-meta sourceCommit=1a9fd5f0ccee234fe1c8d19ee00da4a54d4f14a1 translatedAt=2026-08-03T04:07:17.109Z pushedAt=2026-08-04T02:40:33.802Z -->
 
 ## Overview
 
@@ -14,7 +16,7 @@ The file declares the APIs used to obtain image data from the native layer.
 
 **File to include**: <multimedia/image_framework/image_receiver_mdk.h>
 
-**System capability**: SystemCapability.Multimedia.Image.Core
+**System capability:** SystemCapability.Multimedia.Image.ImageReceiver
 
 **Since**: 10
 
@@ -71,7 +73,6 @@ Creates an ImageReceiver object at the application layer.
 
 **Since**: 10
 
-
 **Parameters**
 
 | Name| Description|
@@ -84,7 +85,7 @@ Creates an ImageReceiver object at the application layer.
 
 | Type| Description|
 | -- | -- |
-| int32_t | Result code defined in [IRNdkErrCode](capi-image-mdk-common-h.md#irndkerrcode):<br> **IMAGE_RESULT_SUCCESS**: The operation is successful.<br> **IMAGE_RESULT_BAD_PARAMETER**: A parameter is incorrect.<br> **IMAGE_RESULT_JNI_ENV_ABNORMAL**: The JNI environment is abnormal.<br>**IMAGE_RESULT_INVALID_PARAMETER**: A parameter is invalid.<br> **IMAGE_RESULT_INVALID_PARAMETER**: Obtaining parameters from the surface fails.<br> **IMAGE_RESULT_CREATE_SURFACE_FAILED**: The surface fails to be created.<br> **IMAGE_RESULT_SURFACE_GRALLOC_BUFFER_FAILED**: The buffer fails to be allocated to the surface.<br> **IMAGE_RESULT_GET_SURFACE_FAILED**: The surface fails to be obtained.<br> **IMAGE_RESULT_MEDIA_RTSP_SURFACE_UNSUPPORT**: The media RTSP surface is not supported.<br> **IMAGE_RESULT_DATA_UNSUPPORT**: The image type is not supported.<br> **IMAGE_RESULT_MEDIA_DATA_UNSUPPORT**: The media type is not supported.|
+| int32_t | [IRNdkErrCode](capi-image-mdk-common-h.md#irndkerrcode):<br> IMAGE_RESULT_SUCCESS: The operation is successful.<br> IMAGE_RESULT_BAD_PARAMETER: Parameter error.<br> IMAGE_RESULT_JNI_ENV_ABNORMAL: The JNI environment is abnormal.<br>IMAGE_RESULT_INVALID_PARAMETER: Invalid parameter.<br> IMAGE_RESULT_CREATE_SURFACE_FAILED: Failed to create the surface.<br> IMAGE_RESULT_SURFACE_GRALLOC_BUFFER_FAILED: Failed to allocate memory for the surface.<br> IMAGE_RESULT_GET_SURFACE_FAILED: Failed to obtain the surface.<br> IMAGE_RESULT_MEDIA_RTSP_SURFACE_UNSUPPORT: The media RTSP surface is not supported.<br> IMAGE_RESULT_DATA_UNSUPPORT: The image type is not supported.<br> IMAGE_RESULT_MEDIA_DATA_UNSUPPORT: The media type is not supported. |
 
 ### OH_Image_Receiver_InitImageReceiverNative()
 
@@ -97,7 +98,6 @@ ImageReceiverNative* OH_Image_Receiver_InitImageReceiverNative(napi_env env, nap
 Initializes an [ImageReceiverNative](capi-image-imagereceivernative-.md) object through an ImageReceiver object.
 
 **Since**: 10
-
 
 **Parameters**
 
@@ -128,7 +128,6 @@ Obtains the receiver ID through an [ImageReceiverNative](capi-image-imagereceive
 
 **Since**: 10
 
-
 **Parameters**
 
 | Name| Description|
@@ -157,7 +156,6 @@ This function can be called to receive data only after the [OH_Image_Receiver_On
 
 **Since**: 10
 
-
 **Parameters**
 
 | Name| Description|
@@ -185,7 +183,6 @@ This function can be called to receive data only after the [OH_Image_Receiver_On
 
 **Since**: 10
 
-
 **Parameters**
 
 | Name| Description|
@@ -211,7 +208,6 @@ Registers an [OH_Image_Receiver_On_Callback](#oh_image_receiver_on_callback) cal
 
 **Since**: 10
 
-
 **Parameters**
 
 | Name| Description|
@@ -227,7 +223,6 @@ Registers an [OH_Image_Receiver_On_Callback](#oh_image_receiver_on_callback) cal
 
 ### OH_Image_Receiver_GetSize()
 
-
 ```c
 int32_t OH_Image_Receiver_GetSize(const ImageReceiverNative* native, struct OhosImageSize* size)
 ```
@@ -237,7 +232,6 @@ int32_t OH_Image_Receiver_GetSize(const ImageReceiverNative* native, struct Ohos
 Obtains the size of the image receiver through an [ImageReceiverNative](capi-image-imagereceivernative-.md) object.
 
 **Since**: 10
-
 
 **Parameters**
 
@@ -264,7 +258,6 @@ Obtains the capacity of the image receiver through an [ImageReceiverNative](capi
 
 **Since**: 10
 
-
 **Parameters**
 
 | Name| Description|
@@ -289,7 +282,6 @@ int32_t OH_Image_Receiver_GetFormat(const ImageReceiverNative* native, int32_t* 
 Obtains the format of the image receiver through an [ImageReceiverNative](capi-image-imagereceivernative-.md) object.
 
 **Since**: 10
-
 
 **Parameters**
 
@@ -317,7 +309,6 @@ Releases an [ImageReceiverNative](capi-image-imagereceivernative-.md) object.
 This function is not used to release an ImageReceiver object.
 
 **Since**: 10
-
 
 **Parameters**
 

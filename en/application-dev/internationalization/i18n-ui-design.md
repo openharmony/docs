@@ -5,7 +5,8 @@
 <!--Owner: @yliupy-->
 <!--Designer: @sunyaozu-->
 <!--Tester: @lpw_work-->
-<!--Adviser: @Brilliantry_Rui-->
+<!--Adviser: @ningningW-->
+<!-- md-trans-meta sourceCommit=956fea084c5f89c2b8306f0b49ee44f16e3ae05f translatedAt=2026-08-04T12:26:05.135Z pushedAt=2026-08-04T13:16:34.236Z -->
 
 A set of effective internationalization guidelines for UI design can not only establish the tonality of products, but also ensure consistent user experience. Complying with the following guidelines can effectively improve the quality of your products targeted at global markets.
 
@@ -26,9 +27,9 @@ The length of translations can vary significantly across languages, which may ca
 
 ## UI Mirroring
 
-Different text alignment modes and reading sequences may be used for different languages. For example, English is read from left-to-right (LTR), and Arabic and Greek are read from right-to-left (RTL). To ensure that the displayed content complies with the local language habits, ensure that the UI element layout supports UI mirroring, as shown in Figure 1 and Figure 2. The key points for UI mirroring design are as follows:
+Different countries may have different text alignment modes and reading sequences. For example, English uses a left-to-right (LTR) order, while Arabic uses a right-to-left (RTL) order. To ensure that the UI content conforms to local language conventions, you must ensure that UI element layouts support UI mirroring, as shown in Figure 1 and Figure 2. The key design points for UI element mirroring are as follows:
 
-- UI layout mirroring. The UI should allow the content of an RTL language to be displayed in the original layout, meeting the bidirectional reading experience. For example, ABC is read ABC for an LTR language and CBA for an RTL language.
+- UI layout mirroring. The UI layout allows RTL content to be displayed in its original layout, meeting the bidirectional reading experience. For example, "ABC" should be displayed as "ABC" in LTR order and as "CBA" in RTL order.
 
 - UI element mirroring. UI controls and icons with directionality are required to comply with mirroring rules, as shown in Figure 3, Figure 4, and Figure 5. Some icons, for example, the clock face, do not need to be mirrored because they are not directional or related to real objects.
 
@@ -38,20 +39,20 @@ Different text alignment modes and reading sequences may be used for different l
 
 **Figure 1** Example general layout (English)
 
-![image_0000001784343297](figures/image_0000001784343297.png)
+![edit-phone-contact](figures/edit-phone-contact.png)
 
 **Figure 2** Example mirroring layout (Arabic)
 
-![image_0000001784263053](figures/image_0000001784263053.png)
+![edit-phone-contact-01](figures/edit-phone-contact-01.png)
 
 **Figure 3** General icon resources
 
-![image_0000001737423164](figures/image_0000001737423164.png)
+![phone-volume-right](figures/phone-volume-right.png)
 
 **Figure 4** Icon resources for RTL languages
 
-![image_0000001737264020](figures/image_0000001737264020.png)
+![phone-volume-left](figures/phone-volume-left.png)
 
 **Figure 5** Mirroring controls for RTL languages
 
-![image_0000001784343305](figures/image_0000001784343305.png)
+![internationalization-phone-calendar](figures/internationalization-phone-calendar.png)

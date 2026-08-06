@@ -422,7 +422,7 @@ openFormEditAbility(abilityName: string, formId: string, isMainPage?: boolean): 
 
 | 错误码ID    | 错误信息 |
 |----------| -------- |
-| 801      | Capability not supported.function openFormEditAbility can not work correctly due to limited device capabilities. |
+| 801      | Capability not supported.function openFormEditAbility cannot work correctly due to limited device capabilities. |
 | 16500050 | IPC connection error. |
 | 16500100 | Failed to obtain the configuration information. |
 | 16501000 | An internal functional error occurred. |
@@ -735,7 +735,7 @@ requestOverflow(formId: string, overflowInfo: formInfo.OverflowInfo): Promise&lt
 | 16501000 | An internal functional error occurred. |
 | 16501001 | The ID of the form to be operated does not exist. |
 | 16501003 | The form cannot be operated by the current application. |
-| 16501011 | The form can not support this operation. |
+| 16501011 | The form cannot support this operation. |
 
 **示例：**
 
@@ -808,7 +808,7 @@ cancelOverflow(formId: string): Promise&lt;void&gt;
 | 16501000 | An internal functional error occurred. |
 | 16501001 | The ID of the form to be operated does not exist. |
 | 16501003 | The form cannot be operated by the current application. |
-| 16501011 | The form can not support this operation. |
+| 16501011 | The form cannot support this operation. |
 
 **示例：**
 
@@ -857,7 +857,7 @@ getFormRect(formId: string): Promise&lt;formInfo.Rect&gt;
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
-| 801 |   Capability not supported.function getFormRect can not work correctly due to limited device capabilities. |
+| 801 |   Capability not supported.function getFormRect cannot work correctly due to limited device capabilities. |
 | 16500050 | IPC connection error. |
 | 16500060 | Service connection error. |
 | 16500100 | Failed to obtain the configuration information. |

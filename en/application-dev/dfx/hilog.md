@@ -2,13 +2,13 @@
 
 <!--Kit: Performance Analysis Kit-->
 <!--Subsystem: HiviewDFX-->
-<!--Owner: @liuyifeifei;@buzhenwang-->
-<!--Designer: @shenchenkai-->
-<!--Tester: @liyang2235-->
-<!--Adviser: @foryourself-->
+<!--Owner: @suxunquan-->
+<!--Designer: @milkbread123-->
+<!--Tester: @yufeifei-->
+<!--Adviser: @jinqiuheng-->
+<!-- md-trans-meta sourceCommit=f370d11b7e4c484c027e66cff1f0c0d08157ec33 translatedAt=2026-07-31T01:31:44.576Z pushedAt=2026-07-31T07:39:08.971Z -->
 
 HiLog is a log system that provides logging for the system framework, services, and applications to record information on user operations and system running status. You can run the hilog commands to query related log information.
-
 
 ## Environment Setup
 
@@ -17,6 +17,7 @@ HiLog is a log system that provides logging for the system framework, services, 
 - The devices are properly connected and **hdc shell** is executed.
 
 <!--RP15-->
+
 ## Overview
 
 ### Log Generation
@@ -48,78 +49,81 @@ If the HiLog API is called in the service code, HiLog logs are generated during 
 
 > **NOTE**
 >
-> Log level: **I** indicates the **Info** level. For details about other levels, see [Log Level](../reference/apis-performance-analysis-kit/capi-log-h.md#loglevel)
+> Log level: I indicates the Info level. For other levels, see the first letter of [LogLevel](../reference/apis-performance-analysis-kit/capi-log-h.md#loglevel).
 >
-> **domainID**: In **A03200**, **A** indicates application logs (**LOG_APP**), and **3200** indicates that the **domainID** is **0x3200**.
+> domainID: In A03200, A indicates an app log (LOG_APP), and 3200 indicates that the domainID is 0x3200.
+>
+> Log tag: The maximum length is 31 bytes. Tags exceeding this limit are truncated. Chinese characters are not recommended, as they may cause garbled text or alignment issues.
 
 <!--RP15End-->
 
 ## Commands
 
 <!--RP18-->
-| Short Option| Long Option| Parameter| Description| 
-| -------- | -------- | -------- | -------- |
-| -h | --help | - | Shows help information.| 
-| Default| Default| - | Performs a blocking read on logs, with no exiting after the read finishes.| 
-| -x | --exit | - | Performs a non-blocking read on logs, with exiting after the read finishes.| 
-| -a | --head | &lt;n&gt; | Shows the first several lines of logs. The parameter **\<n>** indicates the number of first lines to show.| 
-| -z | --tail | &lt;n&gt; | Shows the last several lines of logs. The parameter **\<n>** indicates the number of last lines to show.| 
-| -t | --type | &lt;type&gt; | Views logs of a specified type.| 
-|  |  | app | Views application logs.| 
-|  |  | core | Views system logs.| 
-|  |  | init | Views startup logs.| 
-|  |  | kmsg | Views kernel logs.| 
-|  |  | only_prerelease | Views logs that are printed before the system release version. Application developers do not need to pay attention to these logs.| 
-| -L | --level | &lt;level&gt; | Sets the log level, for example, **-L D/I/W/E/F**.| 
-| -D | --domain | &lt;domain&gt; | Sets the domain.| 
-| -T | --tag | &lt;tag&gt; | Sets the tag.| 
-| -P | --pid | &lt;pid&gt; | Identifies a process.| 
-| -e | --regex | &lt;expr&gt; | Prints only the lines of logs that match the regular expression specified through **\<expr>**.|
-| -v | --format | &lt;format&gt; | Sets the display format.|
-|  |  | color/colour | Displays logs in different colors. By default, logs are displayed in black and white.|  
-|  |  | time | Displays the local time.| 
-|  |  | epoch | Displays the amount of time elapsed since the epoch time.| 
-|  |  | monotonic | Displays the amount of time elapsed since the system startup time.| 
-|  |  | msec | Displays the time in milliseconds.|
-|  |  | usec | Displays the time in microseconds.| 
-|  |  | nsec | Displays the time in nanoseconds.| 
-|  |  | year | Displays the time with the year portion.| 
-|  |  | zone | Displays the time with the local time zone.| 
-|  |  | wrap | Displays logs in different lines without adding prefixes such as the timestamp to the new line.|
-|  |  | long | Displays all data fields separated by spaces.|
-| -r | - | - | Clears the buffer for logs of a specified type. This option is used together with **-t**, which specifies a log type. By default, the **app** or **core** types are used.| 
-| -g | - | - | Checks the buffer size for logs of a specified type. This option is used together with **-t**, which specifies a log type. By default, the **app** or **core** types are used.| 
-| -G | --buffer-size | &lt;size&gt; | Sets the size of the buffer for logs of a specified type. This option is used together with **-t**, which specifies a log type. By default, the **app** or **core** types are used. The unit can be B, KB, MB, or GB. The value ranges from 64 KB to 16 MB.| 
-| -s | --statistics | - | Shows statistics. This option must be used together with **-t** or **-D**.| 
-| -S | - | - | Clears statistics. This option must be used together with **-t** or **-D**.| 
-| -w | --write | &lt;control&gt; | Controls a flushing task.| 
-|  |  | query | Queries flushing tasks.| 
-|  |  | start | Starts a flushing task. The command line parameters are the file name, size of a single file, flushing mode, and number of rotated files.| 
-|  |  | stop | Stops a flushing task.|
-|  |  | refresh | Refreshes the logs in the buffer to the flushed file.|
-|  |  | clear | Deletes log files that are flushed to disks.| 
-| -f | --filename | &lt;filename&gt; | Sets the names of the files to be flushed to disk.| 
-| -l | --length | &lt;length&gt; | Sets the size of the files to be flushed to disk. The value must be greater than or equal to 64 KB.| 
-| -n | --number | &lt;number&gt; | Sets the number of files to be flushed to disk.| 
-| -m | --stream | &lt;algorithm&gt; | Sets the flushing mode.| 
-|  |  | none | Indicates that data is flushed to disks in non-compression mode.| 
-|  |  | zlib | Indicates that data is flushed to disks using the zlib compression algorithm. The flushed file is in .gz format.| 
-| -j | --jobid | &lt;jobid&gt; | Sets the ID of a flushing task.| 
-| -p | --privacy | &lt;on/off&gt; | Specifies whether to enable privacy for logs during system debugging.| 
-|  |  | on | Enables privacy so that parameters are displayed as **\<private>** in printed logs.| 
-|  |  | off | Disables privacy so that parameters are displayed as they are in printed logs.| 
-| -k | - | &lt;on/off&gt; | Specifies whether to enable kernel logging.| 
-|  |  | on | Enables kernel logging.| 
-|  |  | off | Disables kernel logging.| 
-| -Q | - | &lt;control-type&gt; | Controls whether to enable the default quota when the threshold is exceeded.| 
-|  |  | pidon | Enables the process flow control.| 
-|  |  | pidoff | Disables the process flow control.| 
-|  |  | domainon | Enables the domain flow control.| 
-|  |  | domainoff | Disables the domain flow control.| 
-| -b | --baselevel | &lt;loglevel&gt; | Sets the lowest level of logs that can be printed: D(DEBUG)/I(INFO)/W(WARN)/E(ERROR)/F(FATAL). This command can be used together with **-D** and **-T** to set the lowest log level.| 
-| - | --persist| - |Persists the log level setting command. (The setting will not be lost after the system is restarted.)|
-<!--RP18End-->
 
+| Short Option | Long Option | Parameter | Description |
+| -------- | -------- | -------- | -------- |
+| -h | --help | - | Help command. |
+| default | default | - | Blocking read of logs without exiting. |
+| -x | --exit | - | Non-blocking read of logs, exiting after reading. |
+| -a | --head | &lt;n&gt; | Display only the first &lt;n&gt; lines of logs. |
+| -z | --tail | &lt;n&gt; | Display only the last &lt;n&gt; lines of logs. |
+| -t | --type | &lt;type&gt; | View logs of a specified type. |
+| - | - | app | View app logs. |
+| - | - | core | View system logs. |
+| - | - | init | View init logs. |
+| - | - | kmsg | View kernel logs. |
+| - | - | only_prerelease | View logs printed only before the system release version. You do not need to pay attention to this type. |
+| -L | --level | &lt;level&gt; | Specify the log level, for example: -L D/I/W/E/F. |
+| -D | --domain | &lt;domain&gt; | Specify the domain. |
+| -T | --tag | &lt;tag&gt; | Specify the tag. |
+| -P | --pid | &lt;pid&gt; | Identify different PIDs. |
+| -e | --regex | &lt;expr&gt; | Print only lines whose log message matches &lt;expr&gt;, where &lt;expr&gt; is a regular expression. |
+| -v | --format | &lt;format&gt; | Display format control. |
+| - | - | color/colour | Display different colors for different levels. The default is black-and-white mode. |
+| - | - | time | Display local time. |
+| - | - | epoch | Display time relative to 1970. |
+| - | - | monotonic | Display time relative to system startup. |
+| - | - | msec | Display time with millisecond precision. |
+| - | - | usec | Display time with microsecond precision. |
+| - | - | nsec | Display time with nanosecond precision. |
+| - | - | year | Add the year to the displayed time. |
+| - | - | zone | Add the local time zone to the displayed time. |
+| - | - | wrap | When a log line wraps, do not add prefixes such as timestamps to the new line. |
+| - | - | long | Display all data fields, with information separated by spaces. |
+| -r | - | - | Clear buffer logs. Use with -t to specify a type. The default types are app and core. |
+| -g | - | - | Query the buffer size. Use with -t to specify a type. The default types are app and core. |
+| -G | --buffer-size | &lt;size&gt; | Set the buffer size for the specified log &lt;type&gt;. Use with -t to specify a type. The default types are app and core. The unit can be B/K/M, with a range of 64K to 16M. |
+| -s | --statistics | - | Query statistics. Must be used with -t or -D. |
+| -S | - | - | Clear statistics. Must be used with -t or -D. |
+| -w | --write | &lt;control&gt; | Persist task control. |
+| - | - | query | Query persist tasks. |
+| - | - | start | Start a persist task. The command-line parameters are the file name, single file size, persist algorithm, and number of rotate files. |
+| - | - | stop | Stop the persist task. |
+| - | - | refresh | Flush logs from the buffer to the persist file. |
+| - | - | clear | Delete the persisted log files. |
+| -f | --filename | &lt;filename&gt; | Set the persist file name. |
+| -l | --length | &lt;length&gt; | Set the persist file size, which must be greater than or equal to 64K. |
+| -n | --number | &lt;number&gt; | Set the number of persist files. |
+| -m | --stream | &lt;algorithm&gt; | Persist mode control. |
+| - | - | none | Persist without compression. |
+| - | - | zlib | Persist using the zlib compression algorithm. The persist file has the .gz extension. |
+| -j | --jobid | &lt;jobid&gt; | Set the persist task ID. |
+| -p | --privacy | &lt;on/off&gt; | Control the log privacy switch during system debugging. |
+| - | - | on | Turn on the privacy switch, displaying &lt;private&gt;. |
+| - | - | off | Turn off the privacy switch, displaying plaintext. |
+| -k | - | &lt;on/off&gt; | Control the kernel log read switch. |
+| - | - | on | Turn on kernel log reading. |
+| - | - | off | Turn off kernel log reading. |
+| -Q | - | &lt;control-type&gt; | Control the flow control default quota switch. |
+| - | - | pidon | Turn on process flow control. |
+| - | - | pidoff | Turn off process flow control. |
+| - | - | domainon | Turn on domain flow control. |
+| - | - | domainoff | Turn off domain flow control. |
+| -b | --baselevel | &lt;loglevel&gt; | Set the minimum log level that can be printed: D(DEBUG)/I(INFO)/W(WARN)/E(ERROR)/F(FATAL). Can be used with -D and -T to set the minimum log level for a specified log. |
+| - | --persist | - | Persist the log level setting command (the setting is retained after a restart). |
+
+<!--RP18End-->
 
 ## Displaying the Help Information
 
@@ -155,6 +159,7 @@ hilog -x
 **Example**
 
 <!--RP1-->
+
    ```shell
    $ hilog -x
    11-15 15:51:02.087  2823  2823 I A01B05/AOD: AodClockFullScreen --> timeTextLineHeight:313.3333333333333 clockMarginTop:99
@@ -164,6 +169,7 @@ hilog -x
    11-15 15:51:02.110  1197  1197 E C01406/OHOS::RS: [LoadImgsbyResolution] Can't find resolution (1084 x 2412) in config file
    11-15 15:51:02.127  1197  1197 E C01406/OHOS::RS: [LoadImgsbyResolution] Can't find resolution (1084 x 2412) in config file
    ```
+
 <!--RP1End-->
 
 ## **Viewing Logs of a Specified Level**
@@ -175,6 +181,7 @@ hilog -L D/I/W/E/F
 **Example**
 
 <!--RP2-->
+
    ```shell
    $ hilog -L E
    08-28 09:01:25.730  2678  2678 E A00F00/AiDataService_5.10.7.320: DataChangeNotifyManager: notifyDataChange CommonEntity no valid entity to notify
@@ -185,6 +192,7 @@ hilog -L D/I/W/E/F
    08-28 09:01:56.371  8586  8586 E A00500/SettingsData: DB not ready request =    datashare:///com.ohos.settingsdata/entry/settingsdata/SETTINGSDATA?Proxy=true&key=photo_network_connection_status , retry after DB startup
    08-28 09:01:56.408  8586  8586 E A00500/SettingsData: decoder failure: /data/migrate/settings_global.xml , error code:-1
    ```
+
 <!--RP2End-->
 
 ## **Viewing Logs of a Specified Type**
@@ -196,6 +204,7 @@ hilog -t app
 **Example**
 
 <!--RP3-->
+
    ```shell
    $ hilog -t app
    11-15 16:04:45.903  5630  5630 I A0A5A5/Diagnosis: [DetectionFilter]820001084: switch off
@@ -204,6 +213,7 @@ hilog -t app
    11-15 16:04:45.905  5630  5630 I A0A5A5/Diagnosis: [SmartNotifyHandler]no detections to detect
    11-15 16:04:45.924  5687  5687 I A01B06/KG: MetaBalls-SystemTopPanelController --> init charging status = 3
    ```
+
 <!--RP3End-->
 
 ## **Viewing Logs of a Specified Domain**
@@ -215,6 +225,7 @@ hilog -D 01B06
 **Example**
 
 <!--RP4-->
+
    ```shell
    $ hilog -D 01B06
    11-15 16:04:54.981  5687  5687 I A01B06/KG: MetaBalls-MetaBallRenderer --> pressTime = 0 appearTime = 1731657885972
@@ -223,6 +234,7 @@ hilog -D 01B06
    11-15 16:04:55.297  5687  5687 I A01B06/KG: MetaBalls-MetaBallRenderer --> chargingTextExitAnimation onFinish
    11-15 16:04:55.494  5687  5687 I A01B06/KG: MetaBalls-MetaBallRenderer --> uiExtension session send data success,type: exitAnimationFinish
    ```
+
 <!--RP4End-->
 
 ## **Viewing Logs of a Specified Domain**
@@ -234,6 +246,7 @@ hilog -T tag
 **Example**
 
 <!--RP5-->
+
    ```shell
    $ hilog -T SAMGR
    08-28 09:27:59.581   610 11504 I C01800/SAMGR: CommonEventCollect save extraData 1661
@@ -245,6 +258,7 @@ hilog -T tag
    08-28 09:27:59.965 11518 11518 I C01800/SAMGR: SA:10120 OpenSo spend 315ms
    08-28 09:27:59.965   610  4064 I C01800/SAMGR: AddProc:media_analysis_service. size:75
    ```
+
 <!--RP5End-->
 
 ## **Viewing the First n Lines of Logs in the Buffer**
@@ -256,6 +270,7 @@ hilog -a 8
 **Example**
 
 <!--RP6-->
+
    ```shell
    $ hilog -a 8
    11-15 16:04:08.628     0     0 I I00000/HiLog: ========Zeroth log of type: init
@@ -267,6 +282,7 @@ hilog -a 8
    11-15 16:04:48.749  5777  5901 I A00001/HiAI_Metadata: metadata is null
    11-15 16:04:48.749  5777  5901 I A00001/HiAI_PluginAbilityInfo: abilityInfo is null
    ```
+
 <!--RP6End-->
 
 ## **Viewing the Last n Lines of Logs in the Buffer**
@@ -278,6 +294,7 @@ hilog -z 8
 **Example**
 
 <!--RP7-->
+
    ```shell
    $ hilog -z 8
    11-15 16:12:19.015  1899  7867 W C01719/ffrt: 423:FFRTQosApplyForOther:244 tid 7867, Operation not permitted, ret:-1, eno:1
@@ -289,6 +306,7 @@ hilog -z 8
    11-15 16:12:19.691   800  1404 I C01713/SUSPEND_MANAGER: [(HasSpecialStateFromBgtask):759] 20020107_com.ohos.medialibrary.medialibrarydata
    11-15 16:12:19.691   800  1404 I C01713/SUSPEND_MANAGER: [(DozeFreezeUnit):890] Doze has special:ERR_HAS_PID_EFFICIENCY_RESOURCE
    ```
+
 <!--RP7End-->
 
 ## **Viewing Logs of a Specified Process**
@@ -300,6 +318,7 @@ hilog -P pid
 **Example**
 
 <!--RP8-->
+
    ```shell
    $ hilog -P 618
    08-28 10:19:16.872   618 17729 I C02D15/XPower: [task_52]#current system load is: 0.028767
@@ -310,6 +329,7 @@ hilog -P pid
    08-28 10:19:24.002   618 17580 W C01650/Rdb:  smtime: Wed Aug 28 00:34:30 2024
    08-28 10:19:24.002   618 17580 W C01650/Rdb:  sctime: Wed Aug 28 00:34:30 2024
    ```
+
 <!--RP8End-->
 
 ## **Viewing Logs That Match the Regular Expression Keyword**
@@ -321,6 +341,7 @@ hilog -e start
 **Example**
 
 <!--RP9-->
+
    ```shell
    $ hilog -e start
    11-15 16:17:17.578   547  4504 I C01800/SAMGR: AddProc start proc:media_analysis_service spend 223ms
@@ -332,6 +353,7 @@ hilog -e start
    11-15 16:17:18.225  1155  1633 I C02943/ThermalHdi: CreateLogFile start
    11-15 16:17:18.264  1155  1633 I C02943/ThermalHdi: CompressFile start
    ```
+
 <!--RP9End-->
 
 ## **Viewing Logs in Different Formats**
@@ -345,6 +367,7 @@ hilog -v time/color/epoch/monotonic/usec/nsec/year/zone/wrap
 Display the local time in milliseconds.
 
 <!--RP10-->
+
    ```shell
    $ hilog -v time
    11-15 16:36:21.027  1134  1723 I C02B01/HrilExt: [NotifyToBoosterTel-(hril_manager_ext.cpp:440)] RilExt:Notify to booster tel finish
@@ -367,6 +390,7 @@ Display the time in nanoseconds.
    11-15 16:37:09.011064805  1134  1723 I C02B01/HrilExt: [NotifyToBoosterNet-(hril_manager_ext.cpp:450)] RilExt: HNOTI_BOOSTER_NET_IND report to booster net
    11-15 16:37:09.011200742  1134  1723 I C02B01/HrilExt: [NotifyToBoosterNet-(hril_manager_ext.cpp:454)] RilExt: HNOTI_BOOSTER_NET_IND report to booster net finish
    ```
+
 <!--RP10End-->
 
 ## Checking and Setting Persisting Tasks
@@ -440,11 +464,15 @@ Persist task [jobid:2] stop successfully
 $ param get hilog.loggable.global
 I
 ```
+
 <!--RP17-->
-The default global log level is **INFO**.
+
+The global log level is INFO by default.
+
 <!--RP17End-->
 
 <!--RP16-->
+
 ## Setting Log Levels
 
    ```text
@@ -477,6 +505,7 @@ The default global log level is **INFO**.
    $ hilog -b E -T testTag
    Set tag testTag log level to E successfully
    ```
+
 <!--RP16End-->
 
 ## Other Common Commands
@@ -652,30 +681,32 @@ The flow control mechanism is as follows:
 The flow control is performed by process. The application logs printed in the **LOG_APP** buffer adapt to the PID flow control mechanism. When the number of logs of the **LOG_APP** type printed by a process exceeds the threshold within one second, the flow control is triggered. The following example shows the warning log:
 
 <!--RP11-->
+
 ```text
 04-19 17:02:34.219  5394  5394 W A00032/LOGLIMIT: ==com.example.myapplication LOGS OVER PROC QUOTA, 3091 DROPPED==
 ```
+
 <!--RP11End-->
 
 This log indicates that the number of logs printed by the** com.example.myapplication** process exceeds the upper limit. Before 17:02:34.219, 3091 lines of logs are discarded due to the upper limit control.
 
 **Solution**: Disable the process control mechanism by referring to [Setting Process Flow Control](#setting-process-flow-control).
 
-
 ### System Logs
 
 The flow control is performed by domain ID. The system logs printed in the **LOG_CORE** buffer adapt to the domain flow control mechanism. When the number of logs of the **LOG_CORE** type printed by a domain ID exceeds the threshold within one second, the flow control is triggered. The following is an example of the warning log:
 
 <!--RP12-->
+
 ```text
 04-19 17:02:34.219  5394  5394 W C02C02/LOGLIMIT: 108 line(s) dropped in a second!
 ```
+
 <!--RP12End-->
 
 This log indicates that the number of logs whose domain ID is **02C02** exceeds the upper limit. Before 17:02:34.219, 108 lines of logs are discarded due to the upper limit control.
 
 **Solution**: Disable the domain control mechanism by referring to [Setting Domain Flow Control](#setting-domain-flow-control).
-
 
 ## Handling Log Loss
 
@@ -691,19 +722,19 @@ You can use regular expressions to search for log lines containing the keywords 
 > 
 > If the log loss issue occurs in the online O&M scenario, rectify the fault by referring to the following method, reproduce the issue locally, and view the complete logs.
 
-
 ### LOGLIMIT
 
 **LOGLIMIT** indicates that the number of printed logs exceeds the threshold defined by the process or domain flow control. If domain logs exceed the HiLog specifications, you must reduce and correct them at the domain level. The following is an example of the warning log:
 
 <!--RP13-->
+
 ```text
 04-19 17:02:34.219  5394  5394 W A00032/LOGLIMIT: ==com.example.myapplication LOGS OVER PROC QUOTA, 3091 DROPPED==
 ```
+
 <!--RP13End-->
 
 **Solution**: Disable the corresponding control mechanism by referring to [HiLog Flow Control Mechanism](#hilog-flow-control-mechanism)
-
 
 ### Slow reader missed
 
@@ -733,15 +764,16 @@ You can use regular expressions to search for log lines containing the keywords 
 
 - Check whether logs are frequently printed in the background. If logs of a domain are frequently printed and log reading is affected, you can run the command to disable the log printing of the domain by referring to the "Solution" of **write socket failed**.
 
-
 ### write socket failed
 
 **write socket failed** indicates that logs fail to be written into the socket and packet loss occurs. The following is an example of the warning log:
 
 <!--RP14-->
+
 ```text
 04-19 17:02:34.219  5394  5394 W A00032/HiLog: write socket failed, 8 line(s) dropped!
 ```
+
 <!--RP14End-->
 
 **Cause**: Process logs are lost in any of the following situations:

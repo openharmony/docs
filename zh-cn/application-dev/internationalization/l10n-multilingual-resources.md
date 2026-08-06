@@ -3,7 +3,7 @@
 <!--Kit: Localization Kit-->
 <!--Subsystem: Global-->
 <!--Owner: @yliupy-->
-<!--Designer: @sunyaozu-->
+<!--Designer: @zw_feifei-->
 <!--Tester: @lpw_work-->
 <!--Adviser: @ningningW-->
 
@@ -19,7 +19,7 @@
 
 - 本地化接口调用
 
-  为了确保接口返回值与用户设置保持一致，通常需要在[i18n模块](../reference/apis-localization-kit/js-apis-i18n.md)和[intl模块](../reference/apis-localization-kit/js-apis-intl.md)接口中传入系统区域ID或系统区域对象。系统区域ID和系统区域对象传入的示例如下：
+  为了确保接口返回值与用户设置保持一致，通常需要在[@ohos.i18n (国际化-I18n)](../reference/apis-localization-kit/js-apis-i18n.md)和[@ohos.intl (国际化-Intl)](../reference/apis-localization-kit/js-apis-intl.md)接口中传入系统区域ID或系统区域对象。系统区域ID和系统区域对象传入的示例如下：
 
   ``` TypeScript
   import { i18n } from '@kit.LocalizationKit';
@@ -62,7 +62,7 @@
 
 ## 多语言资源配置
 
-为确保应用可以加载到不同国家和地区、不同语言等类型的内容，需要创建多个不同的资源目录，放置多种资源，当用户运行应用时，根据所在的语言区域自动选择并加载与设备最匹配的资源。为更好实现应用本地化，推荐作法是将本地化的内容与核心功能尽可能分开，本地化内容放置在资源目录下。
+为确保应用可以加载到不同国家和地区、不同语言等类型的内容，需要创建多个不同的资源目录，放置多种资源，当用户运行应用时，根据所在的语言区域自动选择并加载与设备最匹配的资源。为更好实现应用本地化，推荐做法是将本地化的内容与核心功能尽可能分开，本地化内容放置在资源目录下。
 
 对于应用开发者，仅需关注资源配置，资源文件配置完成后，根据业务需求对资源进行访问。资源文件配置和资源匹配规则请参考[资源分类与访问](../quick-start/resource-categories-and-access.md)。
 

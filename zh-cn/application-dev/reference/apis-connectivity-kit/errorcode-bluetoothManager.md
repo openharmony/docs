@@ -269,6 +269,9 @@ Device unpaired.
 
 ## 2900099 操作失败
 
+根据实际错误原因的不同，上报不同的错误信息，具体如下。
+
+### 操作失败
 **错误信息**
 
 Operation failed.
@@ -285,7 +288,331 @@ Operation failed.
 
 **处理步骤**
 
-1. 检查接口调用的前置依赖条件，具体处理步骤可参考[蓝牙接口调用报错2900099](../../connectivity/bluetooth/bluetooth-faq-2900099-errorcode.md)
+检查接口调用的前置依赖条件，具体处理步骤可参考[蓝牙接口调用报错2900099](../../connectivity/bluetooth/bluetooth-faq-2900099-errorcode.md)。
+
+### 无效参数
+**错误信息**
+
+Operation failed. Invalid parameter.
+
+**错误描述**
+
+入参无效。
+
+**可能原因**
+
+函数入参不在有效范围内。
+
+**处理步骤**
+
+检查接口调用传参是否符合接口说明或协议规范。
+
+### GATT特征值为空
+**错误信息**
+
+Operation failed. GATT character is nullptr.
+
+**错误描述**
+
+基于通用属性协议（Generic Attribute Profile，[GATT](../../connectivity/terminology.md#gatt)）的特征值为空。
+
+**可能原因**
+
+特征值为空。
+
+**处理步骤**
+
+检查接口调用传参。
+
+### 调用接口时前一个接口调用流程未完成
+**错误信息**
+
+Operation failed. Please call the interface only after the previous callback has been completed.
+
+**错误描述**
+
+在前一个接口回调完成后，再调用该接口。
+
+**可能原因**
+
+前一个接口的回调未完成。
+
+**处理步骤**
+
+等待前一个接口的回调完成。
+
+### 对端设备未被发现或被记录
+**错误信息**
+
+Operation failed. Address has not been discovered or recorded.
+
+**错误描述**
+
+设备尚未被发现或被记录。
+
+**可能原因**
+
+配对的对端设备未被发现或被记录。
+
+**处理步骤**
+
+配对已被发现或记录的对端设备。
+
+### 蓝牙开关已经打开
+**错误信息**
+
+Operation failed. Bluetooth switch state is turn on.
+
+**错误描述**
+
+蓝牙开关已经打开。
+
+**可能原因**
+
+蓝牙开关已经打开。
+
+**处理步骤**
+
+检查蓝牙开关状态，在蓝牙开关状态无误时重复操作。
+
+### 蓝牙开关状态正在切换
+**错误信息**
+
+Operation failed. Bluetooth switch state is turning state.
+
+**错误描述**
+
+蓝牙开关状态正在切换中。
+
+**可能原因**
+
+蓝牙开关状态正在切换中。
+
+**处理步骤**
+
+等待蓝牙开关状态切换完成，再尝试操作。
+
+### 蓝牙开关在受限状态
+**错误信息**
+
+Operation failed. In restrict bluetooth state.
+
+**错误描述**
+
+蓝牙开关在受限状态。
+
+**可能原因**
+
+蓝牙开关在受限状态。
+
+**处理步骤**
+
+等待蓝牙开关退出受限状态后，再尝试操作。
+
+### 云设备正在绑定
+**错误信息**
+
+Operation failed. Cloud device is bonding.
+
+**错误描述**
+
+云设备正在绑定中。
+
+**可能原因**
+
+云设备正在绑定中。
+
+**处理步骤**
+
+等待云设备绑定完成后，再尝试操作。
+
+### 设备处于发现流程中或处于已发现状态
+**错误信息**
+
+Operation failed. In DISCOVERYING or DISCOVERY_STARTED state.
+
+**错误描述**
+
+在发现流程中或处于已发现状态。
+
+**可能原因**
+
+设备处于发现流程中或处于已发现状态。
+
+**处理步骤**
+
+请勿重复发起蓝牙扫描。
+
+### 由于硬件资源不足无法启动扫描
+**错误信息**
+
+Operation failed. Fails to start scan as it is out of hardware resources.
+
+**错误描述**
+
+由于硬件资源不足，无法启动本次扫描。
+
+**可能原因**
+
+当前系统中本应用或其他应用已启动的扫描通道过多，导致硬件资源不足。
+
+**处理步骤**
+
+1. 本应用未启动过扫描，可重新关开蓝牙，释放其他应用占用的扫描资源。
+2. 本应用已启动过其他通道的扫描，可调用停止扫描接口，停止其他已启动的扫描，释放硬件资源后再重新启动本次扫描。
+
+### GATT未连接
+**错误信息**
+
+Operation failed. GATT not in connected state.
+
+**错误描述**
+
+GATT不在已连接状态。
+
+**可能原因**
+
+GATT未连接。
+
+**处理步骤**
+
+请先连接GATT，再尝试操作。
+
+### 业务扫描期间不允许发起连接
+**错误信息**
+
+Operation failed. Not allowed to connect during scanning.
+
+**错误描述**
+
+扫描期间不允许连接。
+
+**可能原因**
+
+业务扫描期间不允许发起连接。
+
+**处理步骤**
+
+请先完成业务扫描，再发起连接。
+
+### 无效蓝牙地址或传输类型
+**错误信息**
+
+Operation failed. Invalid bluetooth addr or transport type.
+
+**错误描述**
+
+无效蓝牙地址或传输类型。
+
+**可能原因**
+
+入参包含无效的蓝牙地址或传输类型。
+
+**处理步骤**
+
+检查入参是否符合协议要求。
+
+### IPC数据传输失败
+**错误信息**
+
+Operation failed. IPC trans failed.
+
+**错误描述**
+
+IPC数据传输失败。
+
+**可能原因**
+
+数据传输异常。
+
+**处理步骤**
+
+请检查传入数据，再尝试操作。
+
+### 已达到最大连接数
+**错误信息**
+
+Operation failed. Max connections has reached.
+
+**错误描述**
+
+已达到最大连接数。
+
+**可能原因**
+
+已达到最大连接数。
+
+**处理步骤**
+
+清理已连接设备后，再尝试发起新连接。
+
+### 设备已连接
+**错误信息**
+
+Operation failed. This device has connected.
+
+**错误描述**
+
+该设备已连接。
+
+**可能原因**
+
+该设备已连接。
+
+**处理步骤**
+
+该设备已连接。请勿重复操作。
+
+### 设备未连接
+**错误信息**
+
+Operation failed. This device isn't connected.
+
+**错误描述**
+
+该设备未连接。
+
+**可能原因**
+
+该设备未连接。
+
+**处理步骤**
+
+设备未连接，当前操作无效。请先连接设备。
+
+### GATT服务端准备写入队列已满
+**错误信息**
+
+Operation failed. The prepare write queue of GATT server is full.
+
+**错误描述**
+
+GATT服务端准备写入队列已满。
+
+**可能原因**
+
+GATT服务端准备写入队列已满，GATT客户端写入数据量过大。
+
+**处理步骤**
+
+GATT客户端写入数据量过大，建议将数据分片写入。
+
+### 对端设备存在错误行为
+**错误信息**
+
+Operation failed. Remote device has an error.
+
+**错误描述**
+
+对端设备出现错误。
+
+**可能原因**
+
+对端设备存在错误行为。
+
+**处理步骤**
+
+保证对端设备使用正确，再尝试操作。
 
 ## 2900100 IPC传输失败
 

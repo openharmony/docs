@@ -2,15 +2,15 @@
 
 <!--Kit: Performance Analysis Kit-->
 <!--Subsystem: HiviewDFX-->
-<!--Owner: @qq_437963121-->
-<!--Designer: @kutcherzhou1; @MontSaintMichel-->
+<!--Owner: @yu_haoqiaida-->
+<!--Designer: @MontSaintMichel-->
 <!--Tester: @gcw_KuLfPSbe-->
-<!--Adviser: @foryourself-->
+<!--Adviser: @jinqiuheng-->
+<!-- md-trans-meta sourceCommit=9e7305fd2d0bf3a25be65abfadf2e97b359f1ac7 translatedAt=2026-07-31T01:33:43.527Z pushedAt=2026-07-31T07:57:09.754Z -->
 
 ## Overview
 
 HiTraceChain is a lightweight implementation of the distributed call chain tracing. It allows applications to trace cross-thread, cross-process, and cross-device service calls. With HiTraceChain, a unique ID is generated for a service process, passed throughout the service process, and associated with various output information (including HiTraceMeter logging, application events, and HiLog logs). During debugging and fault locating, you can use the unique **chainId** to quickly correlate various information related to the service process. HiTraceChain provides APIs to implement call chain tracing throughout a service process. This can help you quickly obtain the run log for the call chain of a service process and locate faults across devices, processes, and threads.
-
 
 ## Basic Concepts
 
@@ -21,7 +21,6 @@ HiTraceChain is a lightweight implementation of the distributed call chain traci
 **spanId**: span ID, which is a part of **HiTraceId** and uniquely identifies a specific task of the service process in a service. Different span IDs can be created for distinguishing tasks. The default value is **0**. When an API is called to create a **spanId**, or **HiTraceId** is automatically passed, a new **spanId** is generated.
 
 **parentSpanId**: parent span ID, which is a part of **HiTraceId** and identifies the parent task of the current task. Different parent span IDs can be used to display the hierarchical relationship between tasks. The default value is **0**. A new **spanId** is created by assigning the current **spanId** to **parentSpanId**.
-
 
 ## Implementation Principles
 
@@ -35,7 +34,6 @@ HiTraceChain is a lightweight implementation of the distributed call chain traci
 
    ![hitracechain-principle](figures/hitracechain-principle.png)
 
-
 ## Constraints
 
 You can set [HiTraceFlag](../reference/apis-performance-analysis-kit/js-apis-hitracechain.md#hitraceflag) to enable asynchronous call tracing. **HiTraceId** can be automatically transferred in the automatic transfer mechanism of **HiTraceChain**.
@@ -44,5 +42,5 @@ The following table lists some common mechanisms that support and do not support
 
 | Scenario| Asynchronous Task| Cross-thread| Cross-process| Cross-device|
 | -------- | -------- | -------- | -------- | -------- |
-| Mechanism supporting HiTraceChain automatic transfer| [async/await](../arkts-utils/async-concurrency-overview.md#asyncawait)<br>[Promise](../arkts-utils/async-concurrency-overview.md#promise)  | [HiAppEvent](hiappevent-intro.md)<br>[napi_async_work](../napi/use-napi-asynchronous-task.md)<br>[FFRT](../ffrt/ffrt-overview.md) | [IPC](../ipc/ipc-rpc-overview.md) | [RPC](../ipc/ipc-rpc-overview.md) |
-| Mechanism not supporting HiTraceChain automatic transfer| Macro tasks and their asynchronous tasks (such as [setTimeout](../reference/common/js-apis-timer.md#settimeout) and [setInterval](../reference/common/js-apis-timer.md#setinterval))| [TaskPool](../arkts-utils/taskpool-introduction.md)<br>[Worker](../arkts-utils/worker-introduction.md)<br>Threads created using **std::thread**, **pthread_create**, and **std::async** of the C++ standard library.| [Socket](../network/socket-connection.md)<br>[Ashmem](../reference/apis-ipc-kit/js-apis-rpc.md#ashmem8) | - |
+| Mechanisms that support HiTraceChain automatic propagation | [async/await](../arkts-utils/async-concurrency-overview.md#asyncawait)<br>[Promise](../arkts-utils/async-concurrency-overview.md#promise) | [HiAppEvent](hiappevent-intro.md)<br>[napi_async_work](../napi/use-napi-asynchronous-task.md)<br>[FFRT](../ffrt/ffrt-overview.md) | [IPC](../ipc/ipc-rpc-overview.md) | [RPC](../ipc/ipc-rpc-overview.md) |
+| Mechanisms that do not support HiTraceChain automatic propagation | Macro tasks and their asynchronous tasks (for example, [setTimeout](../reference/common/js-apis-timer.md#settimeout), [setInterval](../reference/common/js-apis-timer.md#setinterval), etc.) | [TaskPool](../arkts-utils/taskpool-introduction.md)<br>[Worker](../arkts-utils/worker-introduction.md)<br>Threads created by the C++ standard library std::thread, pthread_create, std::async, etc. | [Socket](../network/socket-connection.md)<br>[Ashmem](../reference/apis-ipc-kit/js-apis-rpc.md#ashmem8) | - |

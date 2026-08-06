@@ -1,8 +1,8 @@
 # grid-container
 <!--Kit: ArkUI-->
 <!--Subsystem: ArkUI-->
-<!--Owner: @lanshouren-->
-<!--Designer: @lanshouren-->
+<!--Owner: @zju_ljz-->
+<!--Designer: @fenglinbailu-->
 <!--Tester: @liuli0427-->
 <!--Adviser: @Brilliantry_Rui-->
 

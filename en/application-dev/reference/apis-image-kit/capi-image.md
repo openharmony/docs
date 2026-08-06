@@ -1,10 +1,12 @@
 # Image
+
 <!--Kit: Image Kit-->
 <!--Subsystem: Multimedia-->
 <!--Owner: @aulight02-->
-<!--Designer: @liyang_bryan-->
+<!--Designer: @XiaoYao555-->
 <!--Tester: @xchaosioda-->
 <!--Adviser: @w_Machine_cc-->
+<!-- md-trans-meta sourceCommit=9329f19aa2995f079ff9cf109a20aad0033a91a3 translatedAt=2026-08-03T04:05:18.939Z pushedAt=2026-08-04T02:10:48.960Z -->
 
 ## Overview
 
@@ -13,9 +15,13 @@ The module enables access to image APIs.
 You can refer to the corresponding development guide and samples based on your development requirements.
 
 - [Image Decoding](../../media/image/image-decoding-native.md)
+
 - [Image Encoding](../../media/image/image-encoding-native.md)
+
 - [Image Transformation](../../media/image/image-transformation-native.md)
+
 - [PixelMap Operations](../../media/image/image-pixelmap-operation-native.md)
+
 - [Image Receiving](../../media/image/image-receiver-native.md)
 
 **Since**: 8

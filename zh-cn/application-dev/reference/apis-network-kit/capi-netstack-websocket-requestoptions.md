@@ -13,7 +13,7 @@ struct WebSocket_RequestOptions {...}
 
 ## 概述
 
-webSocket客户端和服务端建立连接的参数。
+WebSocket客户端和服务端建立连接的参数。
 
 **起始版本：** 11
 

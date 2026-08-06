@@ -93,7 +93,7 @@ MIDI功能的权限需求根据使用场景不同而有所区别。
 
 系统已定义[OH_MIDICallbacks](../../reference/apis-audio-kit/capi-ohmidi-oh-midicallbacks.md)结构体，开发者需要实现其中的回调函数：
 - onDeviceChange：当MIDI设备连接或断开时由系统自动调用。开发者在此回调中处理设备的接入和移除逻辑。
-- onError：当MIDI服务发生错误时调用。开发者在此回调中处理错误日志记录和异常恢复逻辑,如重新创建客户端。
+- onError：当MIDI服务发生错误时调用。开发者在此回调中处理错误日志记录和异常恢复逻辑，如重新创建客户端。
 
 通过调用[OH_MIDIClient_Create](../../reference/apis-audio-kit/capi-native-midi-h.md#oh_midiclient_create)接口创建MIDI客户端实例，传入回调结构体和用户数据。
 

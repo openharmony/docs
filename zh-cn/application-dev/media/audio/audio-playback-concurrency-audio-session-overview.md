@@ -113,5 +113,16 @@
 | 方案二 | 使用音频录制接口[setIndependentAudioSessionStrategy](../../reference/apis-audio-kit/arkts-apis-audio-AudioRenderer.md#setindependentaudiosessionstrategy24)，AudioSessionBehaviorFlags使用MUTE_WHEN_INTERRUPTED | 无需适配 | B抢占焦点后，A会继续静音播放，B完成提示播报后A恢复 | 复播会跳过静音期内容，对进度条敏感场景不建议使用 |
 | 方案三 | 无需适配 | 音频会话并发策略使用`CONCURRENCY_MIX_WITH_OTHERS` | TTS与音乐同时播放，互不影响 | - |
 
-## 同应用内不同音频流之间的焦点管理
-同应用内不同音频流默认使用相同的焦点策略，如需对各音频流进行差异化管理，应用需先将[焦点模式](./audio-playback-concurrency.md#焦点模式)设置为独立焦点模式，再分别为每条流设置对应的焦点策略。
+## 同应用内焦点管理场景概述
+
+同一应用内会存在同时创建多条音频流的现象，例如音乐播放器在播放背景音乐的同时重新播放一首音乐，短视频播放器在播放视频的同时背景音乐也在播放。
+
+系统提供了焦点模式（InterruptMode）来管控同应用内音频流之间的焦点决策行为，焦点模式的详细介绍及实践可参考[同应用内焦点管理](./audio-playback-concurrency.md#同应用内焦点管理)。
+
+**常见场景：同应用内音乐和视频冲突**
+
+| - | 流A | 流B | 适配方案 | 打断效果 |
+|--|-------|-------|-------------|---------|
+| 默认场景 | 播放音乐（MUSIC） | 播放视频（MOVIE） | 默认为SHARE_MODE模式，不触发焦点策略。 | 音乐A与视频B并发播放。 |
+| 方案一（推荐） | 播放音乐（MUSIC） | 播放视频（MOVIE） | 流A和流B均为SHARE_MODE模式，应用自行管控各流的行为。如图：![SHARE_MODE](figures/audio-focus-share-mode.png) | 音乐A被视频B打断，视频B暂停，音乐A恢复。 |
+| 方案二 | 播放音乐（MUSIC） | 播放视频（MOVIE） | 流A或流B其中一个或都为INDEPENDENT_MODE模式，两条流由系统进行焦点决策。 | 音乐A被视频B打断，视频B暂停，音乐A不恢复。 |

@@ -675,13 +675,13 @@ function foo3(a: number, b: number): void {}
 |  0x0bfb   |  PREF_IMM8    |  callruntime.newsendableenv +AA   |  A：共享词法环境中的槽位数目  |  创建一个槽位数为A的共享词法环境，并进入该词法环境。   |
 |  0x0bfc   |  (deprecated)  | - | - | （弃用的操作码） |
 |  0x0bfd   |  PREF_IMM16   |  wide.copyrestargs +AAAA  |  A：形参列表中剩余参数起始的位次  |  复制剩余参数，并将复制出的参数数组副本存放到acc中。   |
-|  0x0cfb   |  PREF_IMM16   |  callruntime.widenewsendableenv +AAAA |  A：共享词法环境中的槽位数目  | 创建一个槽位数为A的共享词法环境，并进入该词法环境 。   |
+|  0x0cfb   |  PREF_IMM16   |  callruntime.widenewsendableenv +AAAA |  A：共享词法环境中的槽位数目  | 创建一个槽位数为A的共享词法环境，并进入该词法环境。   |
 |  0x0cfc   |  (deprecated)  | - | - | （弃用的操作码） |
 |  0x0cfd   |  PREF_IMM16_IMM16 |  wide.ldlexvar +AAAA, +BBBB   |  A：词法环境层级<br>B：槽位号 |  将A个层次外的词法环境的B号槽位上的值存放到acc中。   |
 |  0x0dfb   |  PREF_IMM4_IMM4   |  callruntime.stsendablevar +A +B  |   默认入参：acc：值<br>A：共享词法环境层级<br>B：槽位号 |  将acc中的值存放到A个层次外的共享词法环境的B号槽位上。   |
 |  0x0dfc   |  (deprecated)  | - | - | （弃用的操作码） |
 |  0x0dfd   |  PREF_IMM16_IMM16 |  wide.stlexvar +AAAA, +BBBB   |  默认入参：acc：值<br>A：词法环境层级<br>B：槽位号    |  将acc中的值存放到A个层次外的词法环境的B号槽位上。   |
-|  0x0efb   |  PREF_IMM8_IMM8   |  callruntime.stsendablevar +AA +BB    | 默认入参：acc：值<br>A：共享词法环境层级<br>B：槽位号   | 将acc中的值存放到A个层次外的共享词法环境的B号槽位上 。   |
+|  0x0efb   |  PREF_IMM8_IMM8   |  callruntime.stsendablevar +AA +BB    | 默认入参：acc：值<br>A：共享词法环境层级<br>B：槽位号   | 将acc中的值存放到A个层次外的共享词法环境的B号槽位上。   |
 |  0x0efc   |  (deprecated)  | - | - | （弃用的操作码） |
 |  0x0efd   |  PREF_IMM16   |  wide.getmodulenamespace +AAAA    |  A：模块索引  |  对第A个模块，执行[GetModuleNamespace](https://262.ecma-international.org/12.0/#sec-getmodulenamespace)，并将结果存放到acc中。   |
 |  0x0ffb   |  PREF_IMM16_IMM16 |  callruntime.widestsendablevar +AAAA +BBBB    |  默认入参：acc：值<br>A：共享词法环境层级<br>B：槽位号 |  将acc中的值存放到A个层次外的共享词法环境的B号槽位上。   |

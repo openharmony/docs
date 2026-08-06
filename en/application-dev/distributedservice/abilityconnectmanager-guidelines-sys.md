@@ -1,20 +1,21 @@
-# Cross-Device UIAbility Connection Development (For System Applications Only)
+# Cross-Device UIAbility Connection Development (for System Applications Only)
+
 <!--Kit: Distributed Service Kit-->
 <!--Subsystem: DistributedSched-->
 <!--Owner: @hobbycao-->
 <!--Designer: @gsxiaowen-->
 <!--Tester: @hanjiawei-->
-<!--Adviser: @w_Machine_cc-->
-
+<!--Adviser: @hu-zhiqiong-->
+<!-- md-trans-meta sourceCommit=40fd7e4f4fdebce242bd9157200afe89faee2f0c translatedAt=2026-08-01T02:51:17.722Z pushedAt=2026-08-01T12:49:03.580Z -->
 
 ## Introduction
 
 Cross-device connection and communication (including data transmission) is supported since API version 18. This feature utilizes the distributed component management framework to enable multi-device collaboration (that is, applications on different devices working together to fulfill the same service scenario), which has become one of the core functionalities of the distributed system. A typical use case is that the photo control application on the smart watch can remotely invoke the camera function on the mobile phone and implement real-time bidirectional data interaction across devices.
 
-
 ### Available Capabilities
 
 - Cross-device application launch: Supports launching associated applications in a distributed networking environment to implement multi-device service collaboration (application adaptation required).
+
 - Cross-device data interaction: Supports cross-device data transmission. The cross-device data interaction capability varies depending on the application type. Specifically, system applications can transmit text, byte streams, images, and transport streams, while third-party applications can only transmit text.
 
 ### Fundamental Concepts
@@ -22,16 +23,15 @@ Cross-device connection and communication (including data transmission) is suppo
 Before you get started, familiarize yourself with the following concepts:
 
 - **DMS**
-  
+
   A framework that provides distributed component management capabilities.
 
 - **UIAbility**
 
   [UIAbility](https://developer.huawei.com/consumer/en/doc/harmonyos-guides/uiability-overview) is a component that implements tasks specific to application UIs, such as lifecycle management, user interaction, and UI rendering.
 
-
 - **Byte stream**
-  
+
   Data of the [ArrayBuffer](../arkts-utils/arraybuffer-object.md) type, which can be used to store binary data, for example, image or audio data.
 
 - **Transport stream**
@@ -45,7 +45,6 @@ Cross-device connection management is built on a distributed component managemen
 **Figure 1** Cross-device connection mechanism
 
 ![how-abilityconnectmanager-works](figures/how-abilityconnectmanager-works.png)
-
 
 ### Constraints
 
@@ -62,21 +61,21 @@ Cross-device connection management is built on a distributed component managemen
 <!--RP1-->
 <!--RP1End-->
 
-
 ## Environment setup
 
 ### Environment requirement
 
 You have logged in to devices A and B with the same HUAWEI ID and the two devices are successfully networked via [Device Manager](https://developer.huawei.com/consumer/en/doc/harmonyos-guides/devicemanager-guidelines) APIs.
 
-
 ### Setting Up the Environment
 
 1. Install [DevEco Studio](https://developer.huawei.com/consumer/en/download/deveco-studio) 4.1 or later on the PC.
-2. Update the public-SDK to API 18 or later. For details about how to update the SDK, see OpenHarmony SDK Upgrade Assistant.
-3. Connect device A and device B to the PC using USB cables.
-4. Enable Bluetooth on devices A and B to implement networking.
 
+2. Update the public-SDK to API 18 or later.
+
+3. Connect device A and device B to the PC using USB cables.
+
+4. Enable Wi-Fi and Bluetooth on devices A and B. If they are logged in with the same HUAWEI ID, they will automatically form a trusted network. If they use different HUAWEI IDs, establish a trusted relationship through [device discovery](devicemanager-guidelines.md#discovering-devices) and [device binding](devicemanager-guidelines.md#binding-a-device) to complete networking.
 
 ### Verifying the Environment
 
@@ -88,7 +87,6 @@ hidumper -s 4700 -a "buscenter -l remote_device_info"
 ```
 
 If the networking is successful, the number of networking devices is displayed, for example, **remote device num = 1**.
-
 
 ## How to Develop
 
@@ -115,7 +113,6 @@ The following table describes the APIs for cross-device connection management. F
 |<!--DelRow--> createStream(sessionId:&nbsp;number,&nbsp;param:&nbsp;StreamParam):&nbsp;Promise&lt;number&gt;; | Creates transport streams (supported only for system applications).|
 |<!--DelRow--> destroyStream(sessionId:&nbsp;number):&nbsp;void; | Destroys transport streams (supported only for system applications).|
 
-
 ### How to Develop
 
 The application on device A starts and connects to the application on device B through the cross-device application management module. After the connection is successful, the applications on device A and device B register a callback listener for corresponding events through the **on** interface. The application on device A or device B calls **sendMessage**, **sendData**, **sendImage**, or **createStream** to send text messages, byte streams, or transport streams. The peer end performs subsequent service coordination based on the received callback.
@@ -128,11 +125,9 @@ The application on device A starts and connects to the application on device B t
 import {abilityConnectionManager, distributedDeviceManager } from '@kit.DistributedServiceKit';
 ```
 
-
 **Discovering Devices**
 
-The application on device A needs to discover device B and use its **netWorkId** as the input parameter of the collaboration API. You can call APIs of the distributed device management module to discover and select the peer device. For details, see [Distributed Device Management Development](devicemanager-guidelines.md).
-
+The application on device A needs to discover device B and use its [networkId](../reference/apis-distributedservice-kit/js-apis-distributedDeviceManager.md#devicebasicinfo) as the input parameter of the collaboration API. You can call APIs of the distributed device management module to discover and select the peer device. For details, see [Distributed Device Management Development](devicemanager-guidelines.md).
 
 **Initiating a Session Between Applications**
 
@@ -220,7 +215,6 @@ function getRemoteDeviceId(): string | undefined {
   }
 ```
 
-
 **2. Device B**
 
 After the application on device A calls **connect()**, the application on device B is started in collaboration mode, and the collaboration lifecycle function **onCollaborate()** is triggered. You can configure the **createAbilityConnectionSession()** and **acceptConnect()** calls in this API.
@@ -266,37 +260,36 @@ createSessionFromWant(collabParam: Record<string, Object>): number {
 }
 ```
 
-
 **Enabling Event Listening**
 
 After the application creates a session and obtains the session ID, you can call **on()** to listen for the corresponding events and notify the listener through a callback.
+
 <!-- @[abilityconnectionmanager_on](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/DistributedCollab/entry/src/main/ets/entryability/EntryAbility.ets) -->
 
 ``` TypeScript
-  registerSessionEvent(sessionId: number) {
-    abilityConnectionManager.on('connect',sessionId,(callbackInfo) => {
-      AppStorage.setOrCreate<boolean>('isConnected', true);
-      AppStorage.setOrCreate<string>('receiveMessage', 'connect success');
-    });
-    abilityConnectionManager.on('disconnect',sessionId,(callbackInfo) => {
-      abilityConnectionManager.destroyAbilityConnectionSession(sessionId)
-      AppStorage.setOrCreate<boolean>('isConnected', false);
-      AppStorage.setOrCreate<string>('receiveMessage', 'session disconnect');
-    })
-    abilityConnectionManager.on('receiveMessage',sessionId,(callbackInfo) => {
-      AppStorage.setOrCreate<string>('receiveMessage', callbackInfo.msg);
-      if (callbackInfo.msg == 'startStream') {
-        hilog.info(0x0000, 'testTag', 'startStream');
-      }
-    })
-    abilityConnectionManager.on('receiveData',sessionId,(callbackInfo) => {
-      let decoder = util.TextDecoder.create('utf-8');
-      let str = decoder.decodeWithStream(new Uint8Array(callbackInfo.data));
-      AppStorage.setOrCreate<string>('receiveMessage', str);
-    })
-  }
+registerSessionEvent(sessionId: number) {
+  abilityConnectionManager.on('connect',sessionId,(callbackInfo) => {
+    AppStorage.setOrCreate<boolean>('isConnected', true);
+    AppStorage.setOrCreate<string>('receiveMessage', 'connect success');
+  });
+  abilityConnectionManager.on('disconnect',sessionId,(callbackInfo) => {
+    abilityConnectionManager.destroyAbilityConnectionSession(sessionId)
+    AppStorage.setOrCreate<boolean>('isConnected', false);
+    AppStorage.setOrCreate<string>('receiveMessage', 'session disconnect');
+  })
+  abilityConnectionManager.on('receiveMessage',sessionId,(callbackInfo) => {
+    AppStorage.setOrCreate<string>('receiveMessage', callbackInfo.msg);
+    if (callbackInfo.msg == 'startStream') {
+      hilog.info(0x0000, 'testTag', 'startStream');
+    }
+  })
+  abilityConnectionManager.on('receiveData',sessionId,(callbackInfo) => {
+    let decoder = util.TextDecoder.create('utf-8');
+    let str = decoder.decodeToString(new Uint8Array(callbackInfo.data));
+    AppStorage.setOrCreate<string>('receiveMessage', str);
+  })
+}
 ```
-
 
 **Sending Data**
 **1. Send messages.**
@@ -413,16 +406,20 @@ After the service collaboration is complete, the collaboration status must be en
   abilityConnectionManager.destroyAbilityConnectionSession(this.sessionId);
   ```
 
-
 ### Debugging and Verification
 
 After application development is complete, you can install the application on device A and device B. The test procedure is as follows:
 
 1. Tap the **Connect** button of the application on device A. The application on device B is started.
+
 2. Tap the **sendMessage** button of the application on device A. The application on device B triggers the callback of the **on()** API to receive the text strings.
+
 3. Tap the **sendData** button of the application on device A. The application on device B triggers the callback of the **on()** API to receive the byte streams.
+
 4. Tap the **sendImage** button of the application on device A. The application on device B triggers the callback of the **on()** API to receive the images.
+
 5. Tap the **createStream** button of the application on device A. The application on device B triggers the callback of the **on()** API to receive the transport streams.
+
 6. Tap the **Disconnect** button of the application on device A or device B. The connection between the two devices is disconnected. The callback of the **connect()** API is triggered to report a disconnection event to the applications on both devices.
 
 ## FAQs
@@ -438,11 +435,12 @@ After application development is complete, you can install the application on de
 **Solution**
 
 - For cause 1, enable the USB debugging function on device A and device B, and use a USB cable to connect the devices to the PC. Run the following shell command on the PC:
-   
+
   ```shell
   hdc shell
   hidumper -s 4700 -a "buscenter -l remote_device_info"
   ```
+
   If **remote device num = 0** is displayed in the command output, the networking has failed. Ensure that you log in to devices using the same HUAWEI ID and connect them through Bluetooth. If the networking is successful, the number of networking devices is displayed, for example, **remote device num = 1**.
 
 - For cause 2, add the desired to the device list to ensure that it is selected during device query and selection.

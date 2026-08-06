@@ -5,7 +5,8 @@
 <!--Owner: @yliupy-->
 <!--Designer: @sunyaozu-->
 <!--Tester: @lpw_work-->
-<!--Adviser: @Brilliantry_Rui-->
+<!--Adviser: @ningningW-->
+<!-- md-trans-meta sourceCommit=9d4329aa9b07ce81fc1a2c848fb4cea93e274a8e translatedAt=2026-08-04T12:25:32.004Z pushedAt=2026-08-04T13:10:15.294Z -->
 
 ## Use Cases
 
@@ -13,20 +14,32 @@ Multi-language users usually set the system language to one language (for exampl
 
 ## How to Develop
 
-For details about how to use related APIs, see [getAppPreferredLanguage](../reference/apis-localization-kit/js-apis-i18n.md#getapppreferredlanguage9).
+For details about the API usage and description, see the API documentation of [getAppPreferredLanguage](../reference/apis-localization-kit/js-apis-i18n.md#getapppreferredlanguage9). The sample code is as follows:
 
-1. Obtain the preferred language of the application.
-   ```ts
+1. Import the required module.
+
+   <!-- @[import_module](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/International/Internationalization/entry/src/main/ets/i18napplication/LanguagePreferenceSetting.ets) -->
+
+   ``` TypeScript
    import { i18n } from '@kit.LocalizationKit';
-
-   let appPreferredLanguage: string = i18n.System.getAppPreferredLanguage(); // Obtain the preferred language of the application.
+   import { BusinessError, commonEventManager } from '@kit.BasicServicesKit';
    ```
-   
-2. Set the preferred language of the application. After the preferred language of the application is set to the target language, the application UI is switched to the target language. The setting is subject only to the application. It does not affect the system language settings.
-   ```ts
-   import { i18n } from '@kit.LocalizationKit';
-   import { BusinessError } from '@kit.BasicServicesKit';
 
+2. Usage scenarios.
+
+- Obtain the preferred language of the app.
+
+   <!-- @[get_preferred_language](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/International/Internationalization/entry/src/main/ets/i18napplication/LanguagePreferenceSetting.ets) -->
+
+   ``` TypeScript
+   let appPreferredLanguage = i18n.System.getAppPreferredLanguage(); // Obtain the app preferred language.
+   ```
+
+- Set the preferred language of the app. After the preferred language of the app is set to the target language, the app UI switches to the target language. This affects only the app itself, not the system language settings.
+
+   <!-- @[set_preferred_language](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/International/Internationalization/entry/src/main/ets/i18napplication/LanguagePreferenceSetting.ets) -->
+
+   ``` TypeScript
    try {
      i18n.System.setAppPreferredLanguage('zh-Hans'); // Set the preferred language of the application to zh-Hans.
    } catch (error) {
@@ -35,14 +48,14 @@ For details about how to use related APIs, see [getAppPreferredLanguage](../refe
    }
    ```
 
-3. Clear the preferred language of the application. If the preferred language is set to **default**, the application's language will be the same as the system language, and the setting will take effect upon application restarting.
-   ```ts
-   import { i18n } from '@kit.LocalizationKit';
-   import { BusinessError } from '@kit.BasicServicesKit';
+- Clear the preferred language of the app. After the preferred language of the app is set to **default**, the app UI follows the system language. This feature takes effect after the app is restarted.
 
+   <!-- @[clear_preferred_language](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/International/Internationalization/entry/src/main/ets/i18napplication/LanguagePreferenceSetting.ets) -->
+
+   ``` TypeScript
    try {  
      i18n.System.setAppPreferredLanguage ('default'); // Clear the preferred language of the application.
-   } catch(error) {
+   } catch (error) {
      let err: BusinessError = error as BusinessError;
      console.error(`call System.setAppPreferredLanguage failed, error code: ${err.code}, message: ${err.message}.`);
    }

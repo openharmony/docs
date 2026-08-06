@@ -92,7 +92,7 @@ ModuleImportStack:
 
 **问题现象**
 
-应用启动时报错：cannot find module 'fileName', which is application Entry Point.
+应用启动时报错：cannot find module 'fileName', which is application Entry Point。
 
 **可能原因**
 

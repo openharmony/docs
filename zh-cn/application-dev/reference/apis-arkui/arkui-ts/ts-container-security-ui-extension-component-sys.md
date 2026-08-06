@@ -55,7 +55,7 @@ SecurityUIExtensionComponent(want: Want, options?: SecurityUIExtensionOptions)
 | -------- | -------- | -------- | -------- | -------- |
 | isTransferringCaller | boolean | 否 | 是 | 在使用SecurityUIExtensionComponent嵌套时，设置当前组件是否转发上一级调用方的Caller信息（即发起调用的Ability身份信息），用于支持多级嵌套场景下的调用链传递。<br>true：转发上一级的Caller信息；false：不转发上一级的Caller信息。<br>默认值：false |
 | placeholder | [ComponentContent](../js-apis-arkui-ComponentContent.md#componentcontent-1) | 否 | 是 | 设置占位符，在SecurityUIExtensionComponent与UIExtensionAbility建立连接前显示。未设置时不显示占位符。 |
-| dpiFollowStrategy | [SecurityDpiFollowStrategy](#securitydpifollowstrategy) | 否 | 是 | 设置SecurityUIExtensionComponent内容分辨率跟随策略，用于控制嵌入的UIExtensionAbility内容是跟随宿主应用的分辨率还是使用自身的分辨率。<br>默认值：FOLLOW_UI_EXTENSION_ABILITY_DPI |
+| dpiFollowStrategy | [SecurityDpiFollowStrategy](#securitydpifollowstrategy) | 否 | 是 | 设置SecurityUIExtensionComponent内容分辨率跟随策略，用于控制嵌入的UIExtensionAbility内容是跟随宿主应用的分辨率还是使用自身的分辨率。<br/>默认值：FOLLOW_UI_EXTENSION_ABILITY_DPI |
 
 ## SecurityDpiFollowStrategy
 
@@ -114,7 +114,7 @@ onReceive(callback: Callback\<Record\<string, Object\>\>)
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| callback | [Callback](../../apis-basic-services-kit/js-apis-base.md#callback)\<Record\<string, Object\>\> | 是 | 回调函数，返回收到的来自对端Ability的数据。 |
+| callback | [Callback](../../apis-basic-services-kit/js-apis-base.md#callback)\<Record\<string, Object\>\> | 是 | 回调函数，入参为收到的来自对端Ability的数据。数据为Record<string, Object>键值对，具体字段由发送方（被拉起的Ability）通过sendData方法自定义。 |
 
 ### onError
 
@@ -354,7 +354,7 @@ struct Index {
           hilog.info(0x0000, 'SUECDemo', 'onReceive: ' + this.receiveData);
         })
         .onError((error: BusinessError) => {
-          this.message = 'Error: ' + JSON.stringify(error);
+          this.message = `Error: ${JSON.stringify(error)}`;
           hilog.error(0x0000, 'SUECDemo', `onError. Code: ${error.code}, message: ${error.message}`);
         })
         .onTerminated((info: TerminationInfo) => {
@@ -562,7 +562,7 @@ const syncRegisterCallback = (proxy: UIExtensionProxy) => {
     }
   }
   
-  function receiveDataForResultCallback(data: Record<string, Object>): Record<string, Object> {
+  const receiveDataForResultCallback = (data: Record<string, Object>): Record<string, Object> => {
     let linkToMsg: SubscribedAbstractProperty<string> = AppStorage.link('message');
     linkToMsg.set(JSON.stringify(data));
     hilog.info(0x0000, 'SecurityExtension',

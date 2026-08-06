@@ -1,10 +1,12 @@
 # NativePixelMap_
+
 <!--Kit: Image Kit-->
 <!--Subsystem: Multimedia-->
 <!--Owner: @aulight02-->
-<!--Designer: @liyang_bryan-->
+<!--Designer: @XiaoYao555-->
 <!--Tester: @xchaosioda-->
 <!--Adviser: @w_Machine_cc-->
+<!-- md-trans-meta sourceCommit=c3fc7552ecc67e4184d5fea40476f98a1ca548f2 translatedAt=2026-08-03T04:03:04.003Z pushedAt=2026-08-04T03:05:51.132Z -->
 
 ```c
 typedef struct NativePixelMap_ NativePixelMap
@@ -12,7 +14,7 @@ typedef struct NativePixelMap_ NativePixelMap
 
 ## Overview
 
-The struct defines the data type name of the PixelMap at the native layer.
+This struct defines the PixelMap data type name at the native layer. It serves as a handle type for operating PixelMaps at the native layer, applicable to scenarios such as pixel read/write, property query, and image transformation on PixelMaps in the C/C++ layer.
 
 **Since**: 10
 

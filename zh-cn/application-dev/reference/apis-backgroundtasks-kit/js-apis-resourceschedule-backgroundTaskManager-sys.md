@@ -94,7 +94,7 @@ resetAllEfficiencyResources(): void
 | ---- | --------------------- |
 | 201 | Permission denied. |
 | 202 | Not System App. |
-| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. |
+| 401 | Parameter error. Possible causes: 1. Parameter verification failed. |
 | 9800001 | Memory operation failed. |
 | 9800002 | Failed to write data into parcel. Possible reasons: 1. Invalid parameters; 2. Failed to apply for memory. |
 | 9800003 | Internal transaction failed. |

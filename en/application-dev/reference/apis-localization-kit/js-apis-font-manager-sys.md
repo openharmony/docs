@@ -6,6 +6,7 @@
 <!--Designer: @buda_wy-->
 <!--Tester: @lpw_work-->
 <!--Adviser: @ningningW-->
+<!-- md-trans-meta sourceCommit=f15ffc49c326f442b810f078192c06c34633ea09 translatedAt=2026-07-30T09:56:03.818Z pushedAt=2026-07-31T01:22:40.415Z -->
 
 The **fontManager** module provides APIs for system applications to install and uninstall third-party fonts.
 
@@ -25,7 +26,7 @@ import { fontManager } from '@kit.LocalizationKit';
 
 installFont(path: string): Promise&lt;number&gt;
 
-Installs a font in the specified path. This API uses a promise to return the result.
+Installs the font at the specified path. This API uses a promise to return the result.
 
 **Required permissions**: ohos.permission.UPDATE_FONT
 
@@ -59,10 +60,11 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | 31100106 | Other error.     |
 
 **Example:**
+
   ```ts
   import { fontManager } from '@kit.LocalizationKit';
 
-  async installFont() {
+  async function installFont() {
     try {
       let res = await fontManager.installFont('fontPath');
       console.info('installFont suc. res is ' + res);
@@ -77,7 +79,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 uninstallFont(fullName: string): Promise&lt;number&gt;
 
-Uninstalls a font by name. This API uses a promise to return the result.
+Uninstalls the font with the specified name. This API uses a promise to return the result.
 
 **Required permissions**: ohos.permission.UPDATE_FONT
 
@@ -108,10 +110,11 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | 31100109 | Other error.                 |
 
 **Example:**
+
   ```ts
   import { fontManager } from '@kit.LocalizationKit';
 
-  async uninstallFont() {
+  async function uninstallFont() {
     try {
       let res = await fontManager.uninstallFont('fontName');
       console.info('uninstallFont suc. res is ' + res);
@@ -124,7 +127,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 ## dataMigration<sup>23+</sup>
 
-dataMigration(callback: DataMigrationCallback): int
+dataMigration(callback: DataMigrationCallback): number
 
 Starts a migration task during device upgrade.
 
@@ -142,7 +145,7 @@ Starts a migration task during device upgrade.
 
 | Type                   | Description                    |
 | --------------------- | ---------------------- |
-| int | Result of starting the data migration task. The value **0** indicates that the process is started successfully. Otherwise, the process fails to be started.|
+| number | Result of the data migration task. The value **0** indicates that the task is successfully started; otherwise, the task fails to start. |
 
 **Error codes**
 
@@ -156,18 +159,19 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | 31100111 | DataMigrationing.      |
 
 **Example:**
+
   ```ts
   import { fontManager } from '@kit.LocalizationKit';
 
-  dataMigration() {
+  async function dataMigration() {
     const callback: fontManager.DataMigrationCallback = {
       onHeartBeat: () => {
         console.info('onHeartBeat callback');
       },
-      onProgress(progress : fontManager.DataMigrationProgress) => {
+      onProgress: (progress : fontManager.DataMigrationProgress) => {
         console.info('onProgress callback');
       },
-      onResult(result : int) => {
+      onResult: (result : number) => {
         console.info('onResult callback');
       }
     }
@@ -177,7 +181,6 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
     } catch (error) {
       console.error('dataMigration err.' + error.code);
     }
-    return;
   }
   ```
 
@@ -194,18 +197,19 @@ Callback function used to return the heartbeat callback.
 **System capability**: SystemCapability.Global.FontManager
 
 **Example:**
+
   ```ts
   import { fontManager } from '@kit.LocalizationKit';
 
-  dataMigration() {
+  async function dataMigration() {
     const callback: fontManager.DataMigrationCallback = {
       onHeartBeat: () => {
         console.info('onHeartBeat callback');
       },
-      onProgress(progress : fontManager.DataMigrationProgress) => {
+      onProgress: (progress : fontManager.DataMigrationProgress) => {
         console.info('onProgress callback');
       },
-      onResult(result : int) => {
+      onResult: (result : number) => {
         console.info('onResult callback');
       }
     }
@@ -215,7 +219,6 @@ Callback function used to return the heartbeat callback.
     } catch (error) {
       console.error('dataMigration err.' + error.code);
     }
-    return;
   }
   ```
 
@@ -234,18 +237,19 @@ Callback used to return the data migration progress.
 | progress | [DataMigrationProgress](#datamigrationprogress23) | Yes  | Data migration progress.|
 
 **Example:**
+
   ```ts
   import { fontManager } from '@kit.LocalizationKit';
 
-  dataMigration() {
+  async function dataMigration() {
     const callback: fontManager.DataMigrationCallback = {
       onHeartBeat: () => {
         console.info('onHeartBeat callback');
       },
-      onProgress(progress : fontManager.DataMigrationProgress) => {
+      onProgress: (progress : fontManager.DataMigrationProgress) => {
         console.info('onProgress callback');
       },
-      onResult(result : int) => {
+      onResult: (result : number) => {
         console.info('onResult callback');
       }
     }
@@ -255,13 +259,12 @@ Callback used to return the data migration progress.
     } catch (error) {
       console.error('dataMigration err.' + error.code);
     }
-    return;
   }
   ```
 
 ### onResult<sup>23+</sup>
 
-onResult(result : int): void
+onResult(result : number): void
 
 Callback used to return the data migration result.
 
@@ -271,21 +274,22 @@ Callback used to return the data migration result.
 
 | Name | Type  | Mandatory| Description                              |
 | ------- | ------ | ---- | ---------------------------------- |
-| result | int | Yes  | Data migration result.<br>**0**: Data migration is successful.<br>**1**: No data migration required.<br>**2**: Failed to obtain the user ID.<br>**3**: Failed to check the directory.<br>**4**: Failed to initialize the cache directory.<br>**5**: Failed to open the source file.<br>**6**: Failed to copy the file.<br>**7**: Failed to rename the file.<br>**8**: Failed to delete the file.|
+| result | number | Yes | Data migration result.<br>**0**: Data migration succeeded.<br>**1**: No data migration required.<br>**2**: Failed to obtain the user ID.<br>**3**: Failed to check the directory.<br>**4**: Failed to initialize the cache directory.<br>**5**: Failed to open the source file.<br>**6**: Copy failed.<br>**7**: File rename failed.<br>**8**: File deletion failed. |
 
 **Example:**
+
   ```ts
   import { fontManager } from '@kit.LocalizationKit';
 
-  dataMigration() {
+  async function dataMigration() {
     const callback: fontManager.DataMigrationCallback = {
       onHeartBeat: () => {
         console.info('onHeartBeat callback');
       },
-      onProgress(progress : fontManager.DataMigrationProgress) => {
+      onProgress: (progress : fontManager.DataMigrationProgress) => {
         console.info('onProgress callback');
       },
-      onResult(result : int) => {
+      onResult: (result : number) => {
         console.info('onResult callback');
       }
     }
@@ -295,7 +299,6 @@ Callback used to return the data migration result.
     } catch (error) {
       console.error('dataMigration err.' + error.code);
     }
-    return;
   }
   ```
 
@@ -307,5 +310,5 @@ Describes the data migration progress.
 
 | Name    | Type| Read-Only| Optional   | Description |
 | -------- | ---------------|--------|---------|-------------------------------- |
-| timeRemaining | int  |Yes| No| Estimated remaining time, in seconds.   |
-| progressPercentage | int |Yes| No| Data migration progress, in percentage. The value ranges from 0 to 100.|
+| timeRemaining | number | Yes | No | Estimated remaining time, in seconds. |
+| progressPercentage | number | Yes | No | Progress percentage of data migration. The value ranges from 0 to 100. |

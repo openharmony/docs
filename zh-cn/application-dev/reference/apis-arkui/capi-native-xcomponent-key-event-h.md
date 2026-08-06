@@ -1,7 +1,7 @@
 # native_xcomponent_key_event.h
 <!--Kit: ArkUI-->
 <!--Subsystem: ArkUI-->
-<!--Owner: @sd-wu-->
+<!--Owner: @pengzhiwen3-->
 <!--Designer: @dutie123-->
 <!--Tester: @liuli0427-->
 <!--Adviser: @Brilliantry_Rui-->
@@ -202,7 +202,7 @@ enum OH_NativeXComponent_KeyCode
 | KEY_LINEFEED = 2609 | 换行键。 |
 | KEY_MACRO = 2610 | 宏键。 |
 | KEY_NUMPAD_PLUSMINUS = 2611 | 小键盘加号/减号键。 |
-| KEY_SCALE = 2612 | 扩展键。 |
+| KEY_SCALE = 2612 | 缩放键。 |
 | KEY_HANGUEL = 2613 | 韩语键。 |
 | KEY_HANJA = 2614 | 韩语汉字键。 |
 | KEY_YEN = 2615 | 日元键。 |
@@ -335,7 +335,7 @@ enum OH_NativeXComponent_KeyCode
 | KEY_CYCLEWINDOWS = 2811 | Windows循环键。 |
 | KEY_COMPUTER = 2812 | 计算机键。 |
 | KEY_EJECTCLOSECD = 2813 | 弹出CD键。 |
-| KEY_ISO = 2814 | ISO键。 |
+| KEY_ISO = 2814 | ISO键盘布局标准定义的特殊功能键。 |
 | KEY_MOVE = 2815 | 移动键。 |
 | KEY_F13 = 2816 | 按键'F13'。 |
 | KEY_F14 = 2817 | 按键'F14'。 |

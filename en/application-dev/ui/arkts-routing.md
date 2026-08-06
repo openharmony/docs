@@ -123,7 +123,7 @@ The **Router** module also provides two instance modes: **Standard** and **Singl
   
   @Entry
   @Component
-  struct Login {
+  struct Setting {
     // On the Setting page
     onJumpClick(): void {
       this.getUIContext().getRouter().pushUrl({
@@ -165,7 +165,7 @@ The **Router** module also provides two instance modes: **Standard** and **Singl
           hilog.error(DOMAIN, TAG, `Invoke replaceUrl failed, code is ${err.code}, message is ${err.message}`);
           return;
         }
-        hilog.error(DOMAIN, TAG, 'Invoke replaceUrl succeeded.');
+        hilog.info(DOMAIN, TAG, 'Invoke replaceUrl succeeded.');
       });
     }
   
@@ -413,9 +413,12 @@ struct MyComponent {
 
 
 
-<!-- @[life_page](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkUISample/Navigation/entry/src/main/ets/pages/pageRouter/lifeCycle/Page.ets) -->
+<!-- @[life_page](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkUISample/Navigation/entry/src/main/ets/pages/pageRouter/lifeCycle/Page.ets) -->   
 
 ``` TypeScript
+ import { hilog } from '@kit.PerformanceAnalysisKit';
+ const DOMAIN = 0xF811;
+ const TAG = '[Sample_ArkTSRouter]';
 // Page.ets
 @Entry
 @Component
@@ -425,18 +428,18 @@ struct Page {
 
   // Only components decorated with @Entry can call the lifecycle callbacks of a page.
   onPageShow() {
-    console.info('Page onPageShow');
+    hilog.info(DOMAIN, TAG, 'Page onPageShow');
     this.num = 5;
   }
 
   // Only components decorated with @Entry can call the lifecycle callbacks of a page.
   onPageHide() {
-    console.info('Page onPageHide');
+    hilog.info(DOMAIN, TAG, 'Page onPageHide');
   }
 
   // Only components decorated with @Entry can call the lifecycle callbacks of a page.
   onBackPress() { // If the value is not set, false is used.
-    console.info('Page onBackPress');
+    hilog.info(DOMAIN, TAG, 'Page onBackPress');
     this.textColor = Color.Grey;
     this.num = 0;
   }
@@ -537,7 +540,7 @@ In the event callback, call the [showDialog](../reference/apis-arkui/arkts-apis-
 <!-- @[page_showDialog1](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkUISample/Navigation/entry/src/main/ets/pages/pageRouter/pageTransition/ShowDialog.ets) -->
 
 ``` TypeScript
-import { promptAction} from '@kit.ArkUI';
+import { promptAction } from '@kit.ArkUI';
 import { BusinessError } from '@kit.BasicServicesKit';
 import { hilog } from '@kit.PerformanceAnalysisKit';
 const DOMAIN = 0xF811;
@@ -674,3 +677,10 @@ struct Index {
   }
 }
 ```
+
+
+<!--Del-->## Samples
+
+The following samples are provided to help you better understand the page routing development:
+
+- [Page Layout and Connection (ArkTS) (API9)](https://gitcode.com/openharmony/applications_app_samples/tree/master/code/UI/ArkTsComponentCollection/DefiningPageLayoutAndConnection)<!--DelEnd-->

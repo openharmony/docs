@@ -903,7 +903,7 @@ MDNS服务信息。
 | -------- | ---------------------------------------------- | ---- | --- | ---------------------- |
 | serviceType   | string                             |  否   | 否 | MDNS服务的类型。格式：_\<name>.<_tcp/_udp>，name长度小于63字符并且不能包含字符'.'。 |
 | serviceName | string                             |  否   | 否| MDNS服务的名字。                                                 |
-| port            | number           |  否   | 是 | MDNS服务的端口号。取值范围[0，65535]。                                  |
+| port            | number           |  否   | 是 | MDNS服务的端口号。取值范围[0, 65535]。                                  |
 | host           |  [NetAddress](js-apis-net-connection.md#netaddress) |  否   | 是 | MDNS服务设备的IP地址。采用设备的IP，添加服务和移除服务时候不生效。                      |
 | serviceAttribute     | Array\<[ServiceAttribute](#serviceattribute)> |  否   | 是 | MDNS服务属性信息。                                                |
 

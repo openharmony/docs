@@ -6,6 +6,7 @@
 <!--Designer: @sunyaozu-->
 <!--Tester: @lpw_work-->
 <!--Adviser: @ningningW-->
+<!-- md-trans-meta sourceCommit=635c96c73146bacf985d294d6e608687bbdae586 translatedAt=2026-07-30T09:53:30.093Z pushedAt=2026-07-31T01:23:16.367Z -->
 
 ```c
 typedef struct DateTimeRule {...} DateTimeRule
@@ -27,7 +28,7 @@ Rule of time and date.
 
 | Name| Description|
 | -- | -- |
-| int32_t month | Month.|
+| int32_t month | Month. The month starts from **0**, indicating January. |
 | int32_t dayOfMonth | Day of the month.|
 | int32_t dayOfWeek | Day of the week.|
 | int32_t weekInMonth | Week of the month.|

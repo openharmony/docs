@@ -1561,7 +1561,7 @@ class Info {
 
 @ObservedV2
 class UIStyle {
-  public info: Info = new Info();
+  @Trace public info: Info = new Info();
   @Trace public color: Color = Color.Black;
   @Trace public fontSize: number = 45;
 

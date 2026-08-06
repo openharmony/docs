@@ -29,7 +29,7 @@ enableDeviceControl(deviceAddress: PartnerDeviceAddress): Promise&lt;void&gt;
 
 开启外设互通功能，使用Promise异步回调。
 
-- 该接口仅对应用调用[BindDevice](js-apis-fusionConnectivity-partnerAgent.md#partneragentbinddevice)注册过的设备生效，调用后给应用提供[设备互通能力](js-apis-fusionConnectivity-partnerAgent.md)。
+- 该接口仅对应用调用[BindDevice](js-apis-fusionConnectivity-partnerAgent.md#partneragentbinddevice)注册过的设备生效，调用后给应用提供设备互通能力[partnerAgent](js-apis-fusionConnectivity-partnerAgent.md)。
 - 可以通过[isDeviceControlEnabled](js-apis-fusionConnectivity-partnerAgent.md#partneragentisdevicecontrolenabled)判断设备的外设互通是否已开启，若已开启，重复调用不生效。
 - 可以通过[disableDeviceControl](#partneragentdisabledevicecontrol)关闭外设互通功能。
 
@@ -43,7 +43,7 @@ enableDeviceControl(deviceAddress: PartnerDeviceAddress): Promise&lt;void&gt;
 
 | 参数名     | 类型                                     | 必填   | 说明                                  |
 | ------- | -------------------------------------- | ---- | ----------------------------------- |
-| deviceAddress | [PartnerDeviceAddress](js-apis-fusionConnectivity-partnerAgent.md#partneragentpartnerdeviceaddress) | 是    | 应用注册的设备地址信息。<br>应用需配置PartnerDeviceAddress类型的bluetoothAddress选项。 |
+| deviceAddress | [PartnerDeviceAddress](js-apis-fusionConnectivity-partnerAgent.md#partnerdeviceaddress) | 是    | 应用注册的设备地址信息。<br>应用需配置PartnerDeviceAddress类型的bluetoothAddress选项。 |
 
 **返回值**：
 
@@ -93,7 +93,7 @@ disableDeviceControl(deviceAddress: PartnerDeviceAddress): Promise&lt;void&gt;
 
 关闭外设互通功能，使用Promise异步回调。
 
-- 该接口仅对应用[BindDevice](js-apis-fusionConnectivity-partnerAgent.md#partneragentbinddevice)注册过的设备生效，调用后关闭给应用提供的[设备互通能力](js-apis-fusionConnectivity-partnerAgent.md)。
+- 该接口仅对应用[BindDevice](js-apis-fusionConnectivity-partnerAgent.md#partneragentbinddevice)注册过的设备生效，调用后关闭给应用提供的设备互通能力[partnerAgent](js-apis-fusionConnectivity-partnerAgent.md)。
 - 可以通过[isDeviceControlEnabled](js-apis-fusionConnectivity-partnerAgent.md#partneragentisdevicecontrolenabled)判断设备的外设互通是否已开启，若已关闭，重复调用不生效。
 - 关闭后，其他应用调用[BindDevice](js-apis-fusionConnectivity-partnerAgent.md#partneragentbinddevice)注册过设备的被发现时不会拉起应用注册的[PartnerAgentExtensionAbility](js-apis-fusionConnectivity-partnerAgentExtensionAbility.md)进程，可通过调用[enableDeviceControl](#partneragentenabledevicecontrol)重新开启的外设互通功能。
 
@@ -107,7 +107,7 @@ disableDeviceControl(deviceAddress: PartnerDeviceAddress): Promise&lt;void&gt;
 
 | 参数名     | 类型                                     | 必填   | 说明                                  |
 | ------- | -------------------------------------- | ---- | ----------------------------------- |
-| deviceAddress | [PartnerDeviceAddress](js-apis-fusionConnectivity-partnerAgent.md#partneragentpartnerdeviceaddress) | 是 | 应用注册的设备地址信息。<br>应用需配置PartnerDeviceAddress类型的bluetoothAddress选项。 |
+| deviceAddress | [PartnerDeviceAddress](js-apis-fusionConnectivity-partnerAgent.md#partnerdeviceaddress) | 是 | 应用注册的设备地址信息。<br>应用需配置PartnerDeviceAddress类型的bluetoothAddress选项。 |
 
 **返回值**：
 

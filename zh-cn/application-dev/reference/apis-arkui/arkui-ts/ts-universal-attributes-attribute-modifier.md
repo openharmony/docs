@@ -254,6 +254,7 @@ applyHoveredAttribute?(instance: T): void
 | <!--DelRow-->PluginComponentAttribute | PluginComponent的[属性](ts-basic-components-plugincomponent-sys.md#属性)。 |
 | <!--DelRow-->RemoteWindowAttribute | RemoteWindow的[属性](ts-basic-components-remotewindow-sys.md#属性)。 |
 | UIExtensionComponentAttribute | UIExtensionComponent的[属性](../js-apis-arkui-uiExtension.md#属性)。 |
+| ContainerReaderAttribute | ContainerReader的[属性](../arkui-ts/ts-container-containerreader.md#属性)。<br>**起始版本：** 26.0.0|
 
 > **说明：**
 >
@@ -360,6 +361,7 @@ applyHoveredAttribute?(instance: T): void
 | SymbolGlyphModifier | - |
 | ParticleModifier | - |
 | UIPickerComponentModifier<sup>22+</sup> | - |
+| ContainerReaderModifier| **起始版本：** 26.0.0 |
 
 未暴露的组件Modifier可以使用CommonModifier。
 

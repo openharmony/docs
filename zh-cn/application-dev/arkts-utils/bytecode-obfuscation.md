@@ -511,7 +511,7 @@ lastName
 **哪些属性名应该被保留?**
 1.如果代码中通过字符串拼接、变量访问或使用`defineProperty`方法来定义对象属性，则这些属性名应被保留。例如：
 
-  <!-- @[jsOptionExample_keepPropertyName](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/ArkTSCompilationToolchain/ArkGuardForBytecodeObfuscation/ArkGuardBytecodeObfuscation/entry/src/main/ets/bytecodeobfuscation/BytecodeObfuscation.js) -->         
+  <!-- @[jsOptionExample_keepPropertyName](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/ArkTSCompilationToolchain/ArkGuardForBytecodeObfuscation/ArkGuardBytecodeObfuscation/entry/src/main/ets/bytecodeobfuscation/BytecodeObfuscation.js) -->           
   
   ``` JavaScript
   // example.js
@@ -526,7 +526,7 @@ lastName
   
   obj.s1 = 'a';
   let key = 's1';
-  console.info(obj[key]); // key对应的变量值s应该被保留
+  console.info(obj[key]); // key对应的变量值s1应该被保留
   
   obj.t1 = 'b';
   console.info(obj['t' + '1']); // t1应该被保留

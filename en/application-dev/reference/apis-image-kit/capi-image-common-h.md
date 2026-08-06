@@ -2,7 +2,7 @@
 <!--Kit: Image Kit-->
 <!--Subsystem: Multimedia-->
 <!--Owner: @aulight02-->
-<!--Designer: @liyang_bryan-->
+<!--Designer: @XiaoYao555-->
 <!--Tester: @xchaosioda-->
 <!--Adviser: @w_Machine_cc-->
 
@@ -48,8 +48,13 @@ The file declares the common enums and structs used by the image interface.
 | [Image_ErrorCode OH_PictureMetadata_Create(Image_MetadataType metadataType, OH_PictureMetadata **metadata)](#oh_picturemetadata_create) | Creates the pointer to an OH_PictureMetadata struct.|
 | [Image_ErrorCode OH_PictureMetadata_GetProperty(OH_PictureMetadata *metadata, Image_String *key, Image_String *value)](#oh_picturemetadata_getproperty) | Obtains a property of metadata based on the key. **value.data** obtained through this API lacks the string terminator **\0**. Please use it with caution.|
 | [Image_ErrorCode OH_PictureMetadata_SetProperty(OH_PictureMetadata *metadata, Image_String *key, Image_String *value)](#oh_picturemetadata_setproperty) | Sets a property of metadata based on the key.|
+| [Image_ErrorCode OH_PictureMetadata_SetBlobData(OH_PictureMetadata *metadata, uint8_t *blob, uint32_t blobSize)](#oh_picturemetadata_setblobdata) | Replaces the current metadata with binary data.|
+| [Image_ErrorCode OH_PictureMetadata_GetBlobDataSize(OH_PictureMetadata *metadata, uint32_t *blobSize)](#oh_picturemetadata_getblobdatasize) | Obtains the size of the BLOB data in metadata.|
+| [Image_ErrorCode OH_PictureMetadata_GetBlobData(OH_PictureMetadata *metadata, uint8_t *blob, uint32_t blobSize)](#oh_picturemetadata_getblobdata) | Obtains the metadata in binary format.|
 | [Image_ErrorCode OH_PictureMetadata_GetPropertyWithNull(OH_PictureMetadata *metadata, Image_String *key, Image_String *value)](#oh_picturemetadata_getpropertywithnull) | Obtains the metadata value of an OH_PictureMetadata instance. The output **value.data** ends with the string terminator **\0**.|
 | [Image_ErrorCode OH_PictureMetadata_Release(OH_PictureMetadata *metadata)](#oh_picturemetadata_release) | Releases the pointer to an OH_PictureMetadata struct.|
+| <!--DelRow--> [Image_ErrorCode OH_PictureMetadata_GetMetadataByType(OH_PictureMetadata **metadatas, uint32_t metadataCount, int32_t type, OH_PictureMetadata *metadata)](#oh_picturemetadata_getmetadatabytype) | Obtains the PictureMetadata object that matches the specified type from the OH_PictureMetadata array.|
+| <!--DelRow--> [Image_ErrorCode OH_PictureMetadatas_Release(OH_PictureMetadata **metadatas, uint32_t metadatasCount)](#oh_picturemetadatas_release) | Releases an OH_PictureMetadata object array.|
 | [Image_ErrorCode OH_PictureMetadata_Clone(OH_PictureMetadata *oldMetadata, OH_PictureMetadata **newMetadata)](#oh_picturemetadata_clone) | Clones metadata.|
 
 ### Variables
@@ -226,7 +231,7 @@ The file declares the common enums and structs used by the image interface.
 | static const char * OHOS_DNG_PROPERTY_DEFAULT_SCALE = "DefaultScale" | Default scaling ratio. The value can be obtained via [OH_ImageSourceNative_GetImagePropertyArraySize](capi-image-source-native-h.md#oh_imagesourcenative_getimagepropertyarraysize) and [OH_ImageSourceNative_GetImagePropertyDoubleArray](capi-image-source-native-h.md#oh_imagesourcenative_getimagepropertydoublearray) together.<br>**Since**: 24|
 | static const char * OHOS_DNG_PROPERTY_DEFAULT_CROP_ORIGIN = "DefaultCropOrigin" | Default crop origin. The value can be obtained via [OH_ImageSourceNative_GetImagePropertyArraySize](capi-image-source-native-h.md#oh_imagesourcenative_getimagepropertyarraysize) and [OH_ImageSourceNative_GetImagePropertyDoubleArray](capi-image-source-native-h.md#oh_imagesourcenative_getimagepropertydoublearray) together.<br>**Since**: 24|
 | static const char * OHOS_DNG_PROPERTY_DEFAULT_CROP_SIZE = "DefaultCropSize" | Default crop dimensions. The value can be obtained via [OH_ImageSourceNative_GetImagePropertyArraySize](capi-image-source-native-h.md#oh_imagesourcenative_getimagepropertyarraysize) and [OH_ImageSourceNative_GetImagePropertyIntArray](capi-image-source-native-h.md#oh_imagesourcenative_getimagepropertyintarray) together.<br>**Since**: 24|
-| static const char * OHOS_DNG_PROPERTY_COLOR_MATRIX1 = "ColorMatrix1" | Transformation matrix under the first calibration illuminant. The value can be obtained via [OH_ImageSourceNative_GetImagePropertyArray](capi-image-source-native-h.md) and [OH_ImageSourceNative_GetImagePropertyDoubleArray](capi-image-source-native-h.md#oh_imagesourcenative_getimagepropertydoublearray) together.<br>**Since**: 24|
+| static const char * OHOS_DNG_PROPERTY_COLOR_MATRIX1 = "ColorMatrix1" | Transformation matrix under the first calibration illuminant. The value can be obtained via [OH_ImageSourceNative_GetImagePropertyArraySize](capi-image-source-native-h.md#oh_imagesourcenative_getimagepropertyarraysize) and [OH_ImageSourceNative_GetImagePropertyDoubleArray](capi-image-source-native-h.md#oh_imagesourcenative_getimagepropertydoublearray) together.<br>**Since**: 24|
 | static const char * OHOS_DNG_PROPERTY_COLOR_MATRIX2 = "ColorMatrix2" | Transformation matrix under the second calibration illuminant. The value can be obtained via [OH_ImageSourceNative_GetImagePropertyArraySize](capi-image-source-native-h.md#oh_imagesourcenative_getimagepropertyarraysize) and [OH_ImageSourceNative_GetImagePropertyDoubleArray](capi-image-source-native-h.md#oh_imagesourcenative_getimagepropertydoublearray) together.<br>**Since**: 24|
 | static const char * OHOS_DNG_PROPERTY_CAMERA_CALIBRATION1 = "CameraCalibration1" | Calibration matrix under the first calibration illuminant. The value can be obtained via [OH_ImageSourceNative_GetImagePropertyArraySize](capi-image-source-native-h.md#oh_imagesourcenative_getimagepropertyarraysize) and [OH_ImageSourceNative_GetImagePropertyDoubleArray](capi-image-source-native-h.md#oh_imagesourcenative_getimagepropertydoublearray) together.<br>**Since**: 24|
 | static const char * OHOS_DNG_PROPERTY_CAMERA_CALIBRATION2 = "CameraCalibration2" | Calibration matrix under the second calibration illuminant. The value can be obtained via [OH_ImageSourceNative_GetImagePropertyArraySize](capi-image-source-native-h.md#oh_imagesourcenative_getimagepropertyarraysize) and [OH_ImageSourceNative_GetImagePropertyDoubleArray](capi-image-source-native-h.md#oh_imagesourcenative_getimagepropertydoublearray) together.<br>**Since**: 24|
@@ -239,7 +244,7 @@ The file declares the common enums and structs used by the image interface.
 | static const char * OHOS_DNG_PROPERTY_BASELINE_NOISE = "BaselineNoise" | Baseline noise. The value can be obtained via [OH_ImageSourceNative_GetImagePropertyDouble](capi-image-source-native-h.md#oh_imagesourcenative_getimagepropertydouble).<br>**Since**: 24|
 | static const char * OHOS_DNG_PROPERTY_BASELINE_SHARPNESS = "BaselineSharpness" | Baseline sharpness. The value can be obtained via [OH_ImageSourceNative_GetImagePropertyDouble](capi-image-source-native-h.md#oh_imagesourcenative_getimagepropertydouble).<br>**Since**: 24|
 | static const char * OHOS_DNG_PROPERTY_BAYER_GREEN_SPLIT = "BayerGreenSplit" | Separation degree of the two green channels in a Bayer image. The value can be obtained via [OH_ImageSourceNative_GetImagePropertyShort](capi-image-source-native-h.md#oh_imagesourcenative_getimagepropertyshort).<br>**Since**: 24|
-| static const char * OHOS_DNG_PROPERTY_LINEAR_RESPONSE_LIMIT = "LinearResponseLimit" | Linear response limit. The value can be obtained via [OH_ImageSourceNative_GetImagePropertyArraySize](capi-image-source-native-h.md#oh_imagesourcenative_getimagepropertyarraysize) and [OH_ImageSourceNative_GetImagePropertyDoubleArray](capi-image-source-native-h.md#oh_imagesourcenative_getimagepropertydoublearray) together.<br>**Since**: 24|
+| static const char * OHOS_DNG_PROPERTY_LINEAR_RESPONSE_LIMIT = "LinearResponseLimit" | Linear response limit. The value can be obtained via [OH_ImageSourceNative_GetImagePropertyDouble](capi-image-source-native-h.md#oh_imagesourcenative_getimagepropertydouble).<br>**Since**: 24|
 | static const char * OHOS_DNG_PROPERTY_CAMERA_SERIAL_NUMBER = "CameraSerialNumber" | Camera serial number. The value can be obtained via [OH_ImageSourceNative_GetImagePropertyArraySize](capi-image-source-native-h.md#oh_imagesourcenative_getimagepropertyarraysize) and [OH_ImageSourceNative_GetImagePropertyString](capi-image-source-native-h.md#oh_imagesourcenative_getimagepropertystring) together.<br>**Since**: 24|
 | static const char * OHOS_DNG_PROPERTY_LENS_INFO = "LensInfo" | Lens information. The value can be obtained via [OH_ImageSourceNative_GetImagePropertyArraySize](capi-image-source-native-h.md#oh_imagesourcenative_getimagepropertyarraysize) and [OH_ImageSourceNative_GetImagePropertyDoubleArray](capi-image-source-native-h.md#oh_imagesourcenative_getimagepropertydoublearray) together.<br>**Since**: 24|
 | static const char * OHOS_DNG_PROPERTY_CHROMA_BLUR_RADIUS = "ChromaBlurRadius" | Chrominance blur radius, in pixels. The value can be obtained via [OH_ImageSourceNative_GetImagePropertyDouble](capi-image-source-native-h.md#oh_imagesourcenative_getimagepropertydouble).<br>**Since**: 24|
@@ -323,6 +328,7 @@ Enumerates the error codes.
 | IMAGE_UNKNOWN_MIME_TYPE = 7600102 | Unknown MIME type.|
 | IMAGE_TOO_LARGE = 7600103 | The data or image is too large.|
 | IMAGE_GET_IMAGE_DATA_FAILED = 7600104 |  Failed to obtain image data.<br>**Since**: 23|
+| IMAGE_PIXELMAP_RELEASED = 7600105 |  The PixelMap object has been released.<br>**Since:** 26.0.0|
 | IMAGE_DMA_NOT_EXIST = 7600173 | The memory is not the DMA memory.|
 | IMAGE_DMA_OPERATION_FAILED = 7600174 | The operation on the DMA memory fails.|
 | IMAGE_UNSUPPORTED_OPERATION = 7600201 | Unsupported operation.|
@@ -337,6 +343,7 @@ Enumerates the error codes.
 | IMAGE_LOCK_UNLOCK_FAILED = 7600303 |  Failed to lock or unlock the memory.<br>**Since**: 15|
 | IMAGE_INIT_FAILED = 7600304 |  Initialization failed.<br>**Since**: 22|
 | IMAGE_CREATE_PIXELMAP_FAILED = 7600305 |  Failed to create the PixelMap.<br>**Since**: 22|
+| IMAGE_DATA_CONVERSION_FAILED = 7600306 |  Data conversion failed.<br>**Since:** 26.0.0|
 | IMAGE_ALLOCATOR_MODE_UNSUPPORTED = 7600501 |  The memory allocator type is not supported, for example, creating HDR images using shared memory.<br> DMA memory supports HDR metadata.<br>**Since**: 20|
 | IMAGE_UNKNOWN_ERROR = 7600901 | Unknown error.|
 | IMAGE_BAD_SOURCE = 7700101 | Abnormal data source.|
@@ -401,6 +408,10 @@ Image_ErrorCode OH_PictureMetadata_Create(Image_MetadataType metadataType, OH_Pi
 
 Creates the pointer to an OH_PictureMetadata struct.
 
+Restrictions: **metadata** cannot be a null pointer. If the API returns a failure, the output parameter content should not be used.
+
+Resource management: The OH_PictureMetadata object returned by the API is managed by the caller and must be released using [OH_PictureMetadata_Release](#oh_picturemetadata_release) after use.
+
 **Since**: 13
 
 **Parameters**
@@ -408,7 +419,7 @@ Creates the pointer to an OH_PictureMetadata struct.
 | Name| Description|
 | -- | -- |
 | [Image_MetadataType](capi-image-common-h.md#image_metadatatype) metadataType | Metadata type.|
-| [OH_PictureMetadata](capi-image-nativemodule-oh-picturemetadata.md) **metadata | Double pointer to the OH_PictureMetadata struct created.|
+| [OH_PictureMetadata](capi-image-nativemodule-oh-picturemetadata.md) **metadata | Pointer to the OH_PictureMetadata object.|
 
 **Returns**
 
@@ -426,13 +437,17 @@ Image_ErrorCode OH_PictureMetadata_GetProperty(OH_PictureMetadata *metadata, Ima
 
 Obtains a property of metadata based on the key. **value.data** obtained through this API lacks the string terminator **\0**. Please use it with caution.
 
+Restrictions: **metadata**, **key**, **key->data**, and **value** cannot be null pointers, and **key->size** must be greater than 0. If the API returns a failure, **value.data** should not be read.
+
+Resource management: After the API is successfully executed, **value.data** is allocated by the API. The caller needs to use **delete[]** to release it after use. **value.data** returned by this API is not null-terminated with the string terminator '\0'. If it needs to be handled as a C string, you are advised to use [OH_PictureMetadata_GetPropertyWithNull](#oh_picturemetadata_getpropertywithnull).
+
 **Since**: 13
 
 **Parameters**
 
 | Name| Description|
 | -- | -- |
-| [OH_PictureMetadata](capi-image-nativemodule-oh-picturemetadata.md) *metadata | Pointer to an OH_PictureMetadata struct.|
+| [OH_PictureMetadata](capi-image-nativemodule-oh-picturemetadata.md) *metadata | Pointer to the OH_PictureMetadata object.|
 | [Image_String](capi-image-nativemodule-image-string.md) *key | Pointer to the key of the property.|
 | [Image_String](capi-image-nativemodule-image-string.md) *value | Pointer to the value of the property.|
 
@@ -452,13 +467,17 @@ Image_ErrorCode OH_PictureMetadata_SetProperty(OH_PictureMetadata *metadata, Ima
 
 Sets a property of metadata based on the key.
 
+Restrictions: **metadata**, **key**, **key->data**, **value**, and **value->data** cannot be null pointers. The values of **key->size** and **value->size** must be greater than 0.
+
+Resource management: The API reads the input **key** and **value** and does not hold the **Image_String** pointer passed by the caller. After the API returns, the caller still needs to manage the lifecycle of **key** and **value**.
+
 **Since**: 13
 
 **Parameters**
 
 | Name| Description|
 | -- | -- |
-| [OH_PictureMetadata](capi-image-nativemodule-oh-picturemetadata.md) *metadata | Pointer to an OH_PictureMetadata struct.|
+| [OH_PictureMetadata](capi-image-nativemodule-oh-picturemetadata.md) *metadata | Pointer to the OH_PictureMetadata object.|
 | [Image_String](capi-image-nativemodule-image-string.md) *key | Pointer to the key of the property.|
 | [Image_String](capi-image-nativemodule-image-string.md) *value | Pointer to the value of the property.|
 
@@ -467,6 +486,83 @@ Sets a property of metadata based on the key.
 | Type| Description|
 | -- | -- |
 | [Image_ErrorCode](capi-image-common-h.md#image_errorcode) | **IMAGE_SUCCESS**: The operation is successful.<br>         **IMAGE_BAD_PARAMETER**: A parameter is incorrect.<br>         **IMAGE_UNSUPPORTED_METADATA**: The metadata type is not supported, or the metadata type and the auxiliary picture type do not match.|
+
+### OH_PictureMetadata_SetBlobData()
+
+```c
+Image_ErrorCode OH_PictureMetadata_SetBlobData(OH_PictureMetadata *metadata, uint8_t *blob, uint32_t blobSize)
+```
+
+**Description**
+
+Replaces the current metadata with binary data.
+
+**Since:** 26.0.0
+
+**Parameters**
+
+| Name| Description|
+| -- | -- |
+| [OH_PictureMetadata](capi-image-nativemodule-oh-picturemetadata.md) *metadata | Pointer to the OH_PictureMetadata object.|
+| uint8_t *blob | Pointer to the binary data.|
+| uint32_t blobSize | Size of the binary data.|
+
+**Returns**
+
+| Type| Description|
+| -- | -- |
+| [Image_ErrorCode](capi-image-common-h.md#image_errorcode) | <ul><br>         <li>**IMAGE_SUCCESS**: The operation is successful.</li><br>         <li>**IMAGE_INVALID_PARAMETER**: **metadata** or **blob** is a null pointer, or **blobSize** is **0**.</li><br>         <li>**IMAGE_UNSUPPORTED_METADATA**: Unsupported metadata type.</li><br>         <li>**IMAGE_UNSUPPORTED_OPERATION**: The binary data is not set.</li><br>         </ul> |
+
+### OH_PictureMetadata_GetBlobDataSize()
+
+```c
+Image_ErrorCode OH_PictureMetadata_GetBlobDataSize(OH_PictureMetadata *metadata, uint32_t *blobSize)
+```
+
+**Description**
+
+Obtains the size of the BLOB data in metadata.
+
+**Since:** 26.0.0
+
+**Parameters**
+
+| Name| Description|
+| -- | -- |
+| [OH_PictureMetadata](capi-image-nativemodule-oh-picturemetadata.md) *metadata | Pointer to the OH_PictureMetadata object.|
+| uint32_t *blobSize | Pointer to the size of the binary data.|
+
+**Returns**
+
+| Type| Description|
+| -- | -- |
+| [Image_ErrorCode](capi-image-common-h.md#image_errorcode) | <ul><br>         <li>**IMAGE_SUCCESS**: The operation is successful.</li><br>         <li>**IMAGE_INVALID_PARAMETER**: **metadata** or **blobSize** is a null pointer.</li><br>         <li>**IMAGE_UNSUPPORTED_METADATA**: Unsupported metadata type.</li><br>         </ul> |
+
+### OH_PictureMetadata_GetBlobData()
+
+```c
+Image_ErrorCode OH_PictureMetadata_GetBlobData(OH_PictureMetadata *metadata, uint8_t *blob, uint32_t blobSize)
+```
+
+**Description**
+
+Obtains the metadata in binary format.
+
+**Since:** 26.0.0
+
+**Parameters**
+
+| Name| Description|
+| -- | -- |
+| [OH_PictureMetadata](capi-image-nativemodule-oh-picturemetadata.md) *metadata | Pointer to the OH_PictureMetadata object.|
+| uint8_t *blob | Pointer to the binary data obtained.|
+| uint32_t blobSize | Size of the binary data. The value must be greater than or equal to the value obtained by the **OH_PictureMetadata_GetBlobDataSize** method.|
+
+**Returns**
+
+| Type| Description|
+| -- | -- |
+| [Image_ErrorCode](capi-image-common-h.md#image_errorcode) | <ul><br>         <li>**IMAGE_SUCCESS**: The operation is successful.</li><br>         <li>**IMAGE_INVALID_PARAMETER**: **metadata** or **blob** is a null pointer, or **blobSize** is **0** or less than the value required.</li><br>         <li>**IMAGE_UNSUPPORTED_METADATA**: Unsupported metadata type.</li><br>         <li> **IMAGE_UNSUPPORTED_OPERATION**: Binary data cannot be obtained.</li><br>         </ul> |
 
 ### OH_PictureMetadata_GetPropertyWithNull()
 
@@ -477,6 +573,12 @@ Image_ErrorCode OH_PictureMetadata_GetPropertyWithNull(OH_PictureMetadata *metad
 **Description**
 
 Obtains the metadata value of an OH_PictureMetadata instance. The output **value.data** ends with the string terminator **\0**.
+
+Usage scenario: This API is suitable for reading metadata attribute values in string format. Different from [OH_PictureMetadata_GetProperty](#oh_picturemetadata_getproperty), this API returns **value.data** that ends with **\0**, making it more suitable for direct handling as a C string.
+
+Restrictions: **metadata**, **key**, **key->data**, and **value** cannot be null pointers. The value of **key->size** must be greater than 0. If the API returns a failure, **value.data** should not be read.
+
+Resource management: After the API is successfully executed, **value.data** is allocated by the API. The caller needs to use **delete[]** to release it after use.
 
 **Since**: 19
 
@@ -504,6 +606,10 @@ Image_ErrorCode OH_PictureMetadata_Release(OH_PictureMetadata *metadata)
 
 Releases the pointer to an OH_PictureMetadata struct.
 
+Restrictions: **metadata** cannot be a null pointer.
+
+Resource management: After this API is called, the OH_PictureMetadata object pointed to by **metadata** is released and should not be used any more.
+
 **Since**: 13
 
 **Parameters**
@@ -517,6 +623,63 @@ Releases the pointer to an OH_PictureMetadata struct.
 | Type| Description|
 | -- | -- |
 | [Image_ErrorCode](capi-image-common-h.md#image_errorcode) | **IMAGE_SUCCESS**: The operation is successful.<br>         **IMAGE_BAD_PARAMETER**: A parameter is incorrect.|
+<!--Del-->
+### OH_PictureMetadata_GetMetadataByType()
+
+```c
+Image_ErrorCode OH_PictureMetadata_GetMetadataByType(OH_PictureMetadata **metadatas, uint32_t metadataCount, int32_t type, OH_PictureMetadata *metadata)
+```
+
+**Description**
+
+Obtains the PictureMetadata object that matches the specified type from the OH_PictureMetadata array.
+
+**Since:** 26.0.0
+
+**System API**: This is a system API.
+
+**Parameters**
+
+| Name| Description|
+| -- | -- |
+| [OH_PictureMetadata](capi-image-nativemodule-oh-picturemetadata.md) **metadatas | Double pointer to the **OH_PictureMetadata** array.|
+| uint32_t metadataCount | Length of the **OH_PictureMetadata** array.|
+| int32_t type | Target metadata type to be matched.|
+| [OH_PictureMetadata](capi-image-nativemodule-oh-picturemetadata.md) *metadata | Pointer to the OH_PictureMetadata output object, which is used to store the matched content.|
+
+**Returns**
+
+| Type| Description|
+| -- | -- |
+| [Image_ErrorCode](capi-image-common-h.md#image_errorcode) | <ul><br>         <li>**IMAGE_SUCCESS**: The operation is successful.</li><br>         <li>**202**: This API is called by a non-system application.</li><br>         <li>**IMAGE_INVALID_PARAMETER**: **metadatas** or **metadata** is a null pointer, or the array length is 0.</li><br>         </ul> |
+
+### OH_PictureMetadatas_Release()
+
+```c
+Image_ErrorCode OH_PictureMetadatas_Release(OH_PictureMetadata **metadatas, uint32_t metadatasCount)
+```
+
+**Description**
+
+Releases an OH_PictureMetadata object array.
+
+**Since:** 26.0.0
+
+**System API**: This is a system API.
+
+**Parameters**
+
+| Name| Description|
+| -- | -- |
+| [OH_PictureMetadata](capi-image-nativemodule-oh-picturemetadata.md) **metadatas | Double pointer to the **OH_PictureMetadata** array.|
+| uint32_t metadatasCount | Length of the **OH_PictureMetadata** array.|
+
+**Returns**
+
+| Type| Description|
+| -- | -- |
+| [Image_ErrorCode](capi-image-common-h.md#image_errorcode) | <ul><br>         <li>**IMAGE_SUCCESS**: The operation is successful.</li><br>         <li>**202**: This API is called by a non-system application.</li><br>         <li>**IMAGE_INVALID_PARAMETER**: **metadatas** is a null pointer, or the array length is 0.</li><br>         </ul> |
+<!--DelEnd-->
 
 ### OH_PictureMetadata_Clone()
 
@@ -527,6 +690,10 @@ Image_ErrorCode OH_PictureMetadata_Clone(OH_PictureMetadata *oldMetadata, OH_Pic
 **Description**
 
 Clones metadata.
+
+Restrictions: **oldMetadata** and **newMetadata** cannot be null pointers. If the API returns a failure, the output parameter content should not be used.
+
+Resource management: **newMetadata** returned by the API is managed by the caller and must be released using [OH_PictureMetadata_Release](#oh_picturemetadata_release) after use.
 
 **Since**: 13
 

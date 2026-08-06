@@ -2,9 +2,9 @@
 
 <!--Kit: ArkUI-->
 <!--Subsystem: ArkUI-->
-<!--Owner: @fangyuhao-->
-<!--Designer: @zcdqs-->
-<!--Tester: @liuzhenshuo-->
+<!--Owner: @rongShao-Z; @guozejun-->
+<!--Designer: @guozejun-->
+<!--Tester: @leiyuqian-->
 <!--Adviser: @Brilliantry_Rui-->
 
 ## Overview
@@ -22,7 +22,7 @@ ArkUI provides the [Grid](../reference/apis-arkui/arkui-ts/ts-container-grid.md)
 Each item in the **Grid** container corresponds to a **GridItem** component, as shown below.
 
   **Figure 1** Relationship between Grid and GridItem components 
-![relationship](figures/relationship.png)
+![grid](figures/grid.png)
 
 >**NOTE**
 >
@@ -87,7 +87,7 @@ A common application with an uneven grid layout is the calculator. As shown in t
 
   **Figure 5** Calculator 
 
-![calculator](figures/calculator.png)
+![grid5](figures/grid5.png)
 
 In the grid, use the **onGetRectByIndex** callback to return the array [rowStart, columnStart, rowSpan, columnSpan] to achieve a layout that spans rows and columns, wherein **rowStart** and **columnStart** indicate the start row and column numbers of the current element, and **rowSpan** and **columnSpan** indicate how many rows and columns the current element spans.
 
@@ -161,28 +161,28 @@ Grid() {
   GridItem() {
     // The value in the app.string.Meeting resource file is 'Conference'.
     Text($r('app.string.Meeting'))
-    // ···
+    // ...
   }
 
   GridItem() {
-    // The value in the app.string.Check_in resource file is 'Vote'.
+    // The value in the app.string.Check_in resource file is 'Sign-in'.
     Text($r('app.string.Check_in'))
-    // ···
+    // ...
   }
 
   GridItem() {
-    // The value in the app.string.Voting resource file is 'Sign-in'.
+    // The value in the app.string.Voting resource file is 'Vote'.
     Text($r('app.string.Voting'))
-    // ···
+    // ...
   }
 
   GridItem() {
     // The value in the app.string.Printing resource file is 'Print'.
     Text($r('app.string.Printing'))
-    // ···
+    // ...
   }
 }
-// ···
+// ...
 .rowsTemplate('1fr 1fr')
 .columnsTemplate('1fr 1fr')
 ```
@@ -196,37 +196,37 @@ For multiple **GridItem** components with similar content structures, you are ad
 @Entry
 @Component
 export struct DataInGrid {
-// ···
+  // ...
 
   @State services: Array<string> = [
     // The value in the app.string.Meeting resource file is 'Conference'.
     this.context!.resourceManager.getStringSync($r('app.string.Meeting').id),
-    // The value in the app.string.Check_in resource file is 'Vote'.
+    // The value in the app.string.Check_in resource file is 'Sign-in'.
     this.context!.resourceManager.getStringSync($r('app.string.Check_in').id),
-    // The value in the app.string.Voting resource file is 'Sign-in'.
+    // The value in the app.string.Voting resource file is 'Vote'.
     this.context!.resourceManager.getStringSync($r('app.string.Voting').id),
     // The value in the app.string.Printing resource file is 'Print'.
     this.context!.resourceManager.getStringSync($r('app.string.Printing').id)
   ];
-// ···
+  // ...
 
   build() {
-    // ···
+    // ...
       Column() {
-        // ···
+        // ...
           Grid() {
             ForEach(this.services, (service: string) => {
               GridItem() {
                 Text(service)
               }
-            // ···
+              // ...
             }, (service: string): string => service)
           }
           .rowsTemplate(('1fr 1fr') as string)
           .columnsTemplate(('1fr 1fr') as string)
-        // ···
+          // ...
       }
-    // ···
+      // ...
   }
 }
 ```
@@ -256,9 +256,9 @@ Grid() {
 
 The scrollable grid layout is often used on the file list, product list, video list, and similar pages, as shown in the following figure. When only the number or proportion is set for rows and columns, that is, only the **rowsTemplate** or **columnsTemplate** attribute is set, the elements in the grid are arranged in the configured direction. When the content goes beyond the display area, the grid can be scrolled.
 
-**Figure 9** Horizontal scrollable grid layout
+<!--Del-->**Figure 9** Horizontal scrollable grid layout<!--DelEnd-->
 
-![grid9](figures/grid9.gif)
+<!--Del-->![en-us_image_0000001511740512] (figures/en-us_image_0000001511740512.gif)<!--DelEnd-->
 
 If **columnsTemplate** is set, the grid scrolls vertically. If **rowsTemplate** is set, the grid scrolls horizontally.
 
@@ -391,6 +391,54 @@ To add an external scrollbar to a [Grid](../reference/apis-arkui/arkui-ts/ts-con
 >- The [ScrollBar](../reference/apis-arkui/arkui-ts/ts-basic-components-scrollbar.md) component can also be used with other scrollable components such as [ArcList](../reference/apis-arkui/arkui-ts/ts-container-arclist.md), [List](../reference/apis-arkui/arkui-ts/ts-container-list.md), [Scroll](../reference/apis-arkui/arkui-ts/ts-container-scroll.md), and [WaterFlow](../reference/apis-arkui/arkui-ts/ts-container-waterflow.md).
 >- On devices with circular screens, you can use the [Grid](../reference/apis-arkui/arkui-ts/ts-container-grid.md) component with the [ArcScrollBar](../reference/apis-arkui/arkui-ts/ts-basic-components-arcscrollbar.md) component to add an arc scrollbar to your grid layout. For details, see [Adding an External Scrollbar: ArcScrollBar](./arkts-layout-development-create-arclist.md#adding-an-external-scrollbar-arcscrollbar).
 
+## Multi‑Selection by Swiping
+
+Starting from API version 26.0.0, the [Grid](../reference/apis-arkui/arkui-ts/ts-container-grid.md) component supports finger‑swipe multi‑select in edit mode. After entering edit mode, users can swipe a single finger across multiple [GridItem](../reference/apis-arkui/arkui-ts/ts-container-griditem.md) components to batch select or deselect grid items. The application can set whether each **GridItem** is selectable and record the selected items via callbacks. This capability is suitable for scenarios such as photo albums, file managers, video lists, and other use cases that require consecutive batch selection of grid items.
+
+**Effect of selecting multiple grid items by swiping**
+
+![gridSwipeSelect](figures/gridSwipeSelect.gif)
+
+### Setting the Edit Mode
+
+Call [enableEditMode](../reference/apis-arkui/arkui-ts/ts-container-grid.md#enableeditmode) to set whether to enter the edit mode. When set to **true**, the Grid enters edit mode, allowing users to swipe a single finger over multiple **GridItem** components to batch select or deselect them; when set to **false**, the Grid exits edit mode. Use [onEditModeChange](../reference/apis-arkui/arkui-ts/ts-container-grid.md#oneditmodechange) to listen for edit‑mode changes and synchronise changes triggered by system back, swipe‑back, or two‑finger swipe gestures with your application state.
+
+Configure multi‑select behaviour in edit mode via [editModeOptions](../reference/apis-arkui/arkui-ts/ts-container-grid.md#editmodeoptions23). The **editModeOptions** object provides two swipe‑related parameters: **useDefaultMultiSelectStyle** and **enableTwoFingerMultiSelect**, both defaulting to **true**. The former controls whether the system check box is displayed at the bottom‑right corner of each **GridItem**; the latter controls whether users can automatically enter edit mode and perform multi‑selection by swiping with two fingers. If you need a custom style, set **useDefaultMultiSelectStyle** to **false**. If you want to disable the two‑finger swipe‑to‑enter‑edit‑mode behaviour, set **enableTwoFingerMultiSelect** to **false**.
+<!-- @[Add_grid_select](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkUISample/ScrollableComponent/entry/src/main/ets/pages/grid/GridSwipeSelect.ets) -->
+
+``` TypeScript
+Grid() {
+  // ...
+}
+.enableEditMode(this.enableEditMode)
+.onEditModeChange((enabled: boolean) => {
+  this.setEditMode(enabled);
+})
+.editModeOptions({ useDefaultMultiSelectStyle: true, enableTwoFingerMultiSelect: true })
+```
+
+### Recording Grid Item Selection Results
+
+Configure [selectable](../reference/apis-arkui/arkui-ts/ts-container-griditem.md#selectable8), [selected](../reference/apis-arkui/arkui-ts/ts-container-griditem.md#selected10), and [onSelect](../reference/apis-arkui/arkui-ts/ts-container-griditem.md#onselect8) on **GridItem**. The **selectable** attribute is used to set whether a grid item is selectable, and the **selected** attribute is used to set whether a grid item is currently selected. During swipe multi‑selection, the component triggers the **onSelect** callback. Your application can record the latest selection state for each grid item inside this callback.
+<!-- @[Add_grid_item_select](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkUISample/ScrollableComponent/entry/src/main/ets/pages/grid/GridSwipeSelect.ets) -->
+
+``` TypeScript
+GridItem() {
+  this.GridCard(item, index)
+}
+.selectable(true)
+.selected(this.isSelected(item.id))
+.onSelect((selected: boolean) => {
+  this.updateSelected(item.id, selected);
+})
+```
+
+>**NOTE**
+>
+>- It is recommended to use a unique identifier that does not change with the item's position (e.g., a file ID) to record selection results. Avoid relying solely on the current index, as this may cause selected items to become misaligned after dynamic insertion or deletion of data.
+>- If your service logic requires preserving selection results after exiting edit mode, you can save them in the [onEditModeChange](../reference/apis-arkui/arkui-ts/ts-container-grid.md#oneditmodechange) callback.
+>- When using [LazyForEach](../ui/rendering-control/arkts-rendering-control-lazyforeach.md), after the data source changes, you must notify the component to refresh via [DataChangeListener](../reference/apis-arkui/arkui-ts/ts-rendering-control-lazyforeach.md#datachangelistener) to ensure that grid‑item states remain consistent with the data source during swipe multi‑selection.
+
 ## Performance Optimization
 
 Just as [LazyForEach](../ui/rendering-control/arkts-rendering-control-foreach.md) is recommended for [handling a long list](arkts-layout-development-create-list.md#handling-a-long-list), [LazyForEach](../ui/rendering-control/arkts-rendering-control-lazyforeach.md) is recommended for a scrolling grid layout when a large number of grid items are involved.
@@ -416,3 +464,15 @@ Grid() {
 >**NOTE**
 >
 >A greater **cachedCount** value may result in higher CPU and memory overhead of the UI. Adjust the value by taking into account both the comprehensive performance and user experience.
+
+<!--RP1-->
+<!--Del-->##  
+
+ 
+
+-  
+
+-  
+<!--DelEnd--><!--RP1End-->
+
+<!--no_check-->

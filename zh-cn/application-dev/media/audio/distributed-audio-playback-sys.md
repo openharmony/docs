@@ -1,4 +1,4 @@
-# 分布式音频播放(仅对系统应用开放)
+# 分布式音频播放（仅对系统应用开放）
 <!--Kit: Audio Kit-->
 <!--Subsystem: Multimedia-->
 <!--Owner: @songshenke-->

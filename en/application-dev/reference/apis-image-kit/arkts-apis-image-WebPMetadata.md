@@ -1,10 +1,12 @@
-# class (WebPMetadata)
+# Class (WebPMetadata)
+
 <!--Kit: Image Kit-->
 <!--Subsystem: Multimedia-->
 <!--Owner: @aulight02-->
-<!--Designer: @liyang_bryan-->
+<!--Designer: @XiaoYao555-->
 <!--Tester: @xchaosioda-->
 <!--Adviser: @w_Machine_cc-->
+<!-- md-trans-meta sourceCommit=9684f4c91c960456589583b38b0c172c143553da translatedAt=2026-08-03T03:56:56.745Z pushedAt=2026-08-04T03:14:31.311Z -->
 
 WebPMetadata
 

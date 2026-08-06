@@ -42,10 +42,10 @@ Worker构造函数的选项，用于为Worker添加其他信息。
 
 | 名称 | 类型 | 只读 | 可选 | 说明 |
 | ---- | -------- | ---- | ---- | -------------- |
-| type | 'classic' \| 'module' | 否   | 是 | Worker执行脚本的模式类型，暂不支持module类型，默认值为"classic"。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
-| name | string   | 否   | 是 | Worker的名称。<br/>默认值为undefined，此时线程名称为'WorkerThread'。<br/>非默认值情况下，对应的线程名称带有'WorkerThread_'前缀。比如name为'testName'时，对应的线程名称为'WorkerThread_testName'。<br/>线程名称可通过[HeapMemoryInfo](js-apis-util.md#heapmemoryinfo24)的threadName获取。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。|
-| shared | boolean | 否   | 是 | 表示Worker共享功能，此接口暂不支持。 <br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
-| priority<sup>18+</sup> | [ThreadWorkerPriority](#threadworkerpriority18) | 否   | 是 | 表示Worker线程优先级。默认值为MEDIUM。 <br/>**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。|
+| type | 'classic' \| 'module' | 否   | 是 | Worker执行脚本的模式类型，暂不支持module类型，默认值为"classic"。<br/>**原子化服务API**： 从API version 11开始，该接口支持在原子化服务中使用。 |
+| name | string   | 否   | 是 | Worker的名称。<br/>默认值为undefined，此时线程名称为'WorkerThread'。<br/>非默认值情况下，对应的线程名称带有'WorkerThread_'前缀。比如name为'testName'时，对应的线程名称为'WorkerThread_testName'。<br/>线程名称可通过[HeapMemoryInfo](js-apis-util.md#heapmemoryinfo24)的threadName获取。<br/>**原子化服务API**： 从API version 11开始，该接口支持在原子化服务中使用。|
+| shared | boolean | 否   | 是 | 表示Worker共享功能，此接口暂不支持。 <br/>**原子化服务API**： 从API version 12开始，该接口支持在原子化服务中使用。|
+| priority<sup>18+</sup> | [ThreadWorkerPriority](#threadworkerpriority18) | 否   | 是 | 表示Worker线程优先级。默认值为MEDIUM。 <br/>**原子化服务API**： 从API version 18开始，该接口支持在原子化服务中使用。|
 
 
 ## ThreadWorkerPriority<sup>18+</sup>
@@ -77,7 +77,7 @@ Worker线程的优先级枚举，各优先级对应关系请参考[QoS等级定�
 | ------ | ---------------------- | ---- | --- | ------------------------------------------------------------ |
 | onexit<sup>9+</sup> | (code: number) => void | 否 | 是 | 回调函数。表示Worker线程销毁时被调用的事件处理程序，该处理程序在宿主线程中执行。回调函数的code参数类型为number，异常退出时code为1，正常退出时code为0。默认值为undefined。<br/>**原子化服务API**：从API version 11开始，该属性支持在原子化服务中使用。|
 | onerror<sup>9+</sup> | (err: [ErrorEvent](#errorevent)) => void | 否 | 是 | 回调函数，用于处理onmessage回调函数中同步代码产生的异常，处理程序在宿主线程中执行。回调函数的err类型为[ErrorEvent](#errorevent)，表示收到的异常数据。默认值为undefined。<br/>**原子化服务API**：从API version 11开始，该属性支持在原子化服务中使用。|
-| onAllErrors<sup>18+</sup> | [ErrorCallback](#errorcallback18) | 否 | 是 | 回调函数。表示Worker线程生命周期内发生异常被调用的事件处理程序，处理程序在宿主线程中执行。<br/>**原子化服务API**：从API version 18开始，该属性支持在原子化服务中使用。|
+| onAllErrors<sup>18+</sup> | [ErrorCallback](#errorcallback18) | 否 | 是 | 回调函数。表示Worker线程生命周期内发生异常被调用的事件处理程序，处理程序在宿主线程中执行。默认值为undefined。<br/>**原子化服务API**：从API version 18开始，该属性支持在原子化服务中使用。|
 | onmessage<sup>9+</sup> | (event: [MessageEvents](#messageevents9)) => void | 否 | 是 | 回调函数。表示宿主线程接收到来自其创建的Worker通过workerPort.[postMessage](#postmessage9-3)或workerPort.[postMessageWithSharedSendable](#postmessagewithsharedsendable12-1)接口发送的消息时被调用的事件处理程序，处理程序在宿主线程中执行。其中回调函数中event类型为[MessageEvents](#messageevents9)，表示收到的Worker线程发送的消息数据。默认值为undefined。<br/>**原子化服务API**：从API version 11开始，该属性支持在原子化服务中使用。|
 | onmessageerror<sup>9+</sup> | (event: [MessageEvents](#messageevents9)) => void | 否 | 是 | 回调函数。用于处理Worker对象接收到的无法被序列化的消息。该处理程序在宿主线程中执行，event类型为[MessageEvents](#messageevents9)，表示收到的Worker消息数据。默认值为undefined。<br/>**原子化服务API**：从API version 11开始，该属性支持在原子化服务中使用。|
 
@@ -364,7 +364,7 @@ on(type: string, listener: WorkerEventListener): void
 
 向宿主线程的Worker实例对象添加一个事件监听，该接口与[addEventListener<sup>9+</sup>](#addeventlistener9)接口功能一致。
 
-**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+**原子化服务API**： 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -408,7 +408,7 @@ once(type: string, listener: WorkerEventListener): void
 
 向宿主线程的Worker实例对象添加一个事件监听，该事件监听只执行一次，执行完后会自动删除。
 
-**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+**原子化服务API**： 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -450,7 +450,7 @@ off(type: string, listener?: WorkerEventListener): void
 
 移除宿主线程的Worker实例对象中类型为type的事件监听，该接口与[removeEventListener<sup>9+</sup>](#removeeventlistener9)接口功能一致。
 
-**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+**原子化服务API**： 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -504,7 +504,7 @@ registerGlobalCallObject(instanceName: string, globalCallObject: Object): void
 
 在宿主线程的ThreadWorker实例上注册一个对象，该对象的方法可在Worker线程中调用。详情请参见[callGlobalCallObjectMethod](#callglobalcallobjectmethod11)。
 
-**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+**原子化服务API**： 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -575,7 +575,7 @@ unregisterGlobalCallObject(instanceName?: string): void
 
 取消在宿主线程ThreadWorker实例上注册的对象，该方法会释放ThreadWorker实例中与该键相匹配的对象的强引用。如果无匹配对象，该方法不会报错。
 
-**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+**原子化服务API**： 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -622,7 +622,7 @@ terminate(): void
 
 由宿主线程主动销毁Worker线程并停止Worker线程接收消息。
 
-**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+**原子化服务API**： 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -651,7 +651,7 @@ addEventListener(type: string, listener: WorkerEventListener): void
 
 向宿主线程的Worker实例对象添加一个事件监听，该接口与[on<sup>9+</sup>](#on9)接口功能一致。
 
-**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+**原子化服务API**： 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -694,7 +694,7 @@ removeEventListener(type: string, callback?: WorkerEventListener): void
 
 移除宿主线程的Worker实例对象中类型为type的事件监听，该接口与[off<sup>9+</sup>](#off9)接口功能一致。
 
-**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+**原子化服务API**： 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -737,7 +737,7 @@ dispatchEvent(event: Event): boolean
 
 在宿主线程将事件对象分发到Worker线程的事件系统，该系统会自动触发该类型事件对应的所有监听器回调。
 
-**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+**原子化服务API**： 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -787,7 +787,7 @@ removeAllListener(): void
 
 移除宿主线程中Worker实例对象的所有事件监听。
 
-**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+**原子化服务API**： 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -822,7 +822,7 @@ addEventListener(type: string, listener: WorkerEventListener): void
 
 向Worker线程的实例对象添加事件监听。
 
-**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+**原子化服务API**： 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -864,7 +864,7 @@ removeEventListener(type: string, callback?: WorkerEventListener): void
 
 移除Worker线程实例对象中类型为type的事件监听。
 
-**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+**原子化服务API**： 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -907,7 +907,7 @@ dispatchEvent(event: Event): boolean
 
 在Worker线程将事件对象分发到Worker线程的事件系统，并触发该类型事件的所有监听器回调。
 
-**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+**原子化服务API**： 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -957,7 +957,7 @@ removeAllListener(): void
 
 移除Worker线程的实例对象所有的事件监听。
 
-**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+**原子化服务API**： 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -1006,7 +1006,7 @@ postMessage(messageObject: Object, transfer: ArrayBuffer[]): void;
 
 Worker线程通过转移对象所有权的方式向宿主线程发送消息。
 
-**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+**原子化服务API**： 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -1056,7 +1056,7 @@ postMessage(messageObject: Object, options?: PostMessageOptions): void
 
 Worker线程通过转移对象所有权或拷贝数据的方式向宿主线程发送消息。在传递[Sendable对象](../../arkts-utils/arkts-sendable.md)时，使用拷贝数据的方式进行传递。
 
-**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+**原子化服务API**： 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -1177,7 +1177,7 @@ callGlobalCallObjectMethod(instanceName: string, methodName: string, timeout: nu
 
 Worker线程调用宿主线程上注册的对象的指定方法，此调用对Worker线程同步，对宿主线程异步，返回值通过数据拷贝传递。
 
-**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+**原子化服务API**： 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -1260,7 +1260,7 @@ close(): void
 
 销毁Worker线程，终止Worker接收消息。
 
-**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+**原子化服务API**： 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -1423,7 +1423,7 @@ workerPort.onmessage = (e: MessageEvents) => {
 
 指定要调用的回调函数。
 
-**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+**原子化服务API**： 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -1469,7 +1469,7 @@ workerInstance.dispatchEvent(eventToDispatch);
 
 Worker线程自身的运行环境，GlobalScope类继承[WorkerEventTarget](#workereventtarget9)。
 
-**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+**原子化服务API**： 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -1484,7 +1484,7 @@ Worker线程自身的运行环境，GlobalScope类继承[WorkerEventTarget](#wor
 
 消息类，持有Worker线程间传递的数据，MessageEvents类继承[Event](#event)。
 
-**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+**原子化服务API**： 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -1498,7 +1498,7 @@ type MessageType = 'message' | 'messageerror'
 
 表示消息类型。预留数据类型，暂未实现。
 
-**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+**原子化服务API**： 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -1513,7 +1513,7 @@ type ErrorCallback = (err: ErrorEvent) => void
 
 表示异常回调类型。
 
-**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
+**原子化服务API**： 从API version 18开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -2078,7 +2078,7 @@ parentPort.onmessage = (): void => {
 
 事件类。
 
-**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+**原子化服务API**： 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -2152,7 +2152,7 @@ workerInstance.addEventListener("alert", ()=>{
 
 消息类，持有Worker线程间传递的数据，MessageEvent类继承[Event](#event)。
 
-**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+**原子化服务API**： 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
