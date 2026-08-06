@@ -1488,7 +1488,7 @@ Unsupported metadata.
 
 **错误信息**
 
-Unsupported options, e.g, cannot convert image into desired pixel format.
+Unsupported options, e.g., cannot convert image into desired pixel format.
 
 **错误描述**
 

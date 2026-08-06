@@ -1,12 +1,12 @@
 # @ohos.enterprise.systemManager (System Management)
 <!--Kit: MDM Kit-->
 <!--Subsystem: Customization-->
-<!--Owner: @huanleima-->
+<!--Owner: @huanleima; @weizai16-->
 <!--Designer: @hp_guo-->
 <!--Tester: @lpw_work-->
 <!--Adviser: @zhang_yixin13-->
 
-The **systemManager** module provides system management capabilities.
+This module provides system management capabilities, including NTP time server settings, OTA update policy management, system update management, key event handling policies, log collection, and device activation lock management. It is suitable for enterprise device management scenarios, helping enterprise administrators uniformly manage device system configurations, update policies, and security policies, thereby improving enterprise device management efficiency and security.
 
 > **NOTE**
 > 
@@ -26,7 +26,7 @@ import { systemManager } from '@kit.MDMKit';
 
 setNTPServer(admin: Want, server: string): void
 
-Sets the NTP server.
+Sets the Network Time Protocol (NTP) time server. After successful configuration, the system will use the specified NTP server for time synchronization to calibrate the system time. This API is suitable for scenarios where enterprise devices require unified time synchronization, ensuring that device time remains consistent with standard time and avoiding business issues caused by inaccurate time, such as inconsistent log timestamps and certificate validation failures.
 
 **Required permissions**: ohos.permission.ENTERPRISE_MANAGE_SYSTEM
 
@@ -41,7 +41,7 @@ Sets the NTP server.
 | Name  | Type                                 | Mandatory  | Description     |
 | ----- | ----------------------------------- | ---- | ------- |
 | admin | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | Yes   | EnterpriseAdminExtensionAbility. **Want** must contain the ability name of the EnterpriseAdminExtensionAbility and the bundle name of the application.|
-| server | string | Yes| NTP server addresses separated by commas (,). For example, **ntpserver1.com,ntpserver2.com**. The value can contain a maximum of 96 bytes (including the end character).|
+| server | string | Yes| NTP server addresses separated by commas (,). For example, **ntpserver1.com,ntpserver2.com**. The value can contain a maximum of 96 bytes, including the null terminator (**\0**).|
 
 **Error codes**
 
@@ -79,7 +79,7 @@ try {
 
 getNTPServer(admin: Want): string
 
-Obtains the NTP server information.
+Obtains the NTP server information. This API is applicable to scenarios where you need to query the current NTP server address configured on the device, to verify whether the time synchronization configuration is correct, or to obtain the current configuration before making policy adjustments.
 
 **Required permissions**: ohos.permission.ENTERPRISE_MANAGE_SYSTEM
 
@@ -133,7 +133,7 @@ try {
 
 setOtaUpdatePolicy(admin: Want, policy: OtaUpdatePolicy): void
 
-Sets the update policy. In intranet updates, call [systemManager.notifyUpdatePackages](#systemmanagernotifyupdatepackages) to notify the system of the update packages and then call this API to set the upgrade policy.
+Sets the update policy. After the setting is successful, the system performs OTA updates based on the specified policy type. Different policy types correspond to different update behaviors. In intranet updates, call [systemManager.notifyUpdatePackages](#systemmanagernotifyupdatepackages) to notify the system of the update packages and then call this API to set the upgrade policy.
 
 **Required permissions**: ohos.permission.ENTERPRISE_MANAGE_SYSTEM
 
@@ -141,7 +141,7 @@ Sets the update policy. In intranet updates, call [systemManager.notifyUpdatePac
 
 **Model restriction**: This API can be used only in the stage model.
 
-**Conflict rule**: [Latest configuration precedence](../../mdm/mdm-kit-multi-mdm.md#rule-3-latest-configuration-precedence).
+**Conflict rule**: [Policy exclusivity](../../mdm/mdm-kit-multi-mdm.md#rule-2-policy-exclusivity).
 
 **Parameters**
 
@@ -249,7 +249,7 @@ try {
 
 getOtaUpdatePolicy(admin: Want): OtaUpdatePolicy
 
-Checks the update policy.
+Checks the update policy. This API is applicable to scenarios where you need to obtain the current OTA update policy configuration of the device, to verify whether the policy is correctly delivered, or to obtain the current policy configuration before making policy adjustments.
 
 **Required permissions**: ohos.permission.ENTERPRISE_MANAGE_SYSTEM
 
@@ -303,7 +303,7 @@ try {
 
 notifyUpdatePackages(admin: Want, packageInfo: UpdatePackageInfo): Promise&lt;void&gt;
 
-Notifies the system of the update packages. In intranet updates, call this API to notify the system of the update packages, and then call [systemManager.setOtaUpdatePolicy](#systemmanagersetotaupdatepolicy) to set the update policy.
+Notifies the system of the update packages. In intranet updates, call this API to notify the system of the update packages, and then call [systemManager.setOtaUpdatePolicy](#systemmanagersetotaupdatepolicy) to set the update policy. This API uses a promise to return the result.
 > **NOTE**
 > 
 > This API is time-consuming. Subsequent calls to other synchronous APIs in the application main thread must wait for the asynchronous return of this API.
@@ -408,7 +408,7 @@ systemManager.notifyUpdatePackages(wantTemp, updatePackageInfo).then(() => {
 
 getUpdateResult(admin: Want, version: string): Promise&lt;UpdateResult&gt;
 
-Obtains the system update result.
+Obtains the system update result. This API uses a promise to return the result. This API is applicable to scenarios where you need to check whether a system update is successful. It helps enterprise administrators understand the device update status and handle update failures in a timely manner to ensure that the device system version meets enterprise requirements.
 
 **Required permissions**: ohos.permission.ENTERPRISE_MANAGE_SYSTEM
 
@@ -453,16 +453,16 @@ let wantTemp: Want = {
   abilityName: 'EnterpriseAdminAbility'
 };
 systemManager.getUpdateResult(wantTemp, "1.0").then((result:systemManager.UpdateResult) => {
-    console.info(`Succeeded in getting update result: ${JSON.stringify(result)}`);
-  }).catch((error: BusinessError) => {
-    console.error(`Get update result failed. Code is ${error.code},message is ${error.message}`);
-  });
+  console.info(`Succeeded in getting update result: ${JSON.stringify(result)}`);
+}).catch((error: BusinessError) => {
+  console.error(`Get update result failed. Code is ${error.code},message is ${error.message}`);
+});
 ```
 ## systemManager.getUpdateAuthData<sup>19+</sup>
 
 getUpdateAuthData(admin: Want): Promise&lt;string&gt;
 
-Obtains the authentication data for system update verification. This API uses a promise to return the result.
+Obtains the authentication data for system update verification. This API uses a promise to return the result. This API is applicable to intranet update scenarios. Enterprise administrators can use the authentication data to verify the validity and integrity of the system update package, preventing malicious update packages and improving system security.
 
 **Required permissions**: ohos.permission.ENTERPRISE_MANAGE_SYSTEM
 
@@ -505,10 +505,132 @@ let wantTemp: Want = {
   abilityName: 'EnterpriseAdminAbility'
 };
 systemManager.getUpdateAuthData(wantTemp).then((result: string) => {
-    console.info(`Succeeded in getting update auth data: ${JSON.stringify(result)}`);
-  }).catch((error: BusinessError) => {
-    console.error(`Get update auth data failed. Code is ${error.code},message is ${error.message}`);
-  });
+  console.info(`Succeeded in getting update auth data: ${JSON.stringify(result)}`);
+}).catch((error: BusinessError) => {
+  console.error(`Get update auth data failed. Code is ${error.code},message is ${error.message}`);
+});
+```
+
+## systemManager.setOtaUpdateNonceEnable
+
+setOtaUpdateNonceEnable(admin: Want, isEnable: boolean): void
+
+Sets whether to enable nonce for OTA update (nonce is enabled by default). When nonce is enabled, the system verifies the validity of the nonce during the OTA update process to prevent replay attacks and enhance system security.
+> **NOTE**
+> 
+> To ensure system security, it is not advised to disable nonce verification unless required by specific use cases such as intranet updates.
+
+**Since:** 26.0.0
+
+**Required permissions**: ohos.permission.ENTERPRISE_MANAGE_SYSTEM
+
+**System capability**: SystemCapability.Customization.EnterpriseDeviceManager
+
+**Device behavior differences**: This API can be properly called on PCs/2-in-1 devices but returns error code 801 on other devices.
+
+**Model restriction**: This API can be used only in the stage model.
+
+**Conflict rule**: [Latest configuration precedence](../../mdm/mdm-kit-multi-mdm.md#rule-3-latest-configuration-precedence).
+
+**Parameters**
+
+| Name| Type                                                   | Mandatory| Description                  |
+| ------ | ------------------------------------------------------- | ---- | ---------------------- |
+| admin  | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | Yes  | EnterpriseAdminExtensionAbility. **Want** must contain the ability name of the EnterpriseAdminExtensionAbility and the bundle name of the application.|
+| isEnable | boolean | Yes| The value **true** means to enable nonce for OTA update, and the value **false** means to disable nonce for OTA update.|
+
+**Error codes**
+
+For details about the error codes, see [Enterprise Device Management Error Codes](errorcode-enterpriseDeviceManager.md) and [Universal Error Codes](../errorcode-universal.md).
+
+| ID| Error Message                                                    |
+| -------- | ------------------------------------------------------------ |
+| 9200001  | The application is not an administrator application of the device. |
+| 9200002  | The administrator application does not have permission to manage the device. |
+| 9200016  | Service timeout. |
+| 201      | Permission verification failed. The application does not have the permission required to call the API. |
+| 801      | Capability not supported. Failed to call the API due to limited device capabilities. |
+
+**Example**
+
+```ts
+import { systemManager } from '@kit.MDMKit';
+import { Want } from '@kit.AbilityKit';
+
+let wantTemp: Want = {
+  // Replace with actual values.
+  bundleName: 'com.example.myapplication',
+  abilityName: 'EnterpriseAdminAbility'
+};
+// Replace with actual values.
+let isEnable: boolean = true;
+try {
+  systemManager.setOtaUpdateNonceEnable(wantTemp, isEnable);
+  console.info('Succeeded in setting OTA update Nonce enable.');
+} catch (err) {
+  console.error(`Failed to set OTA update Nonce enable. Code is ${err.code}, message is ${err.message}`);
+}
+```
+
+## systemManager.isOtaUpdateNonceEnable
+
+isOtaUpdateNonceEnable(admin: Want): boolean
+
+Checks whether nonce is enabled for OTA update. This API is applicable to scenarios where you need to verify the OTA update security configuration on the device. It helps enterprise administrators confirm the status of the nonce verification feature to ensure system update security.
+
+**Since:** 26.0.0
+
+**Required permissions**: ohos.permission.ENTERPRISE_MANAGE_SYSTEM
+
+**System capability**: SystemCapability.Customization.EnterpriseDeviceManager
+
+**Device behavior differences**: This API can be properly called on PCs/2-in-1 devices but returns error code 801 on other devices.
+
+**Model restriction**: This API can be used only in the stage model.
+
+**Conflict rule**: [Latest configuration precedence](../../mdm/mdm-kit-multi-mdm.md#rule-3-latest-configuration-precedence).
+
+**Parameters**
+
+| Name| Type                                                   | Mandatory| Description                  |
+| ------ | ------------------------------------------------------- | ---- | ---------------------- |
+| admin  | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | Yes  | EnterpriseAdminExtensionAbility. **Want** must contain the ability name of the EnterpriseAdminExtensionAbility and the bundle name of the application.|
+
+**Return value**
+
+| Type  | Description                               |
+| ------ | ----------------------------------- |
+| boolean | The value **true** means that the nonce for OTA update is enabled, and the value **false** means that the nonce for OTA update is disabled.|
+
+**Error codes**
+
+For details about the error codes, see [Enterprise Device Management Error Codes](errorcode-enterpriseDeviceManager.md) and [Universal Error Codes](../errorcode-universal.md).
+
+| ID| Error Message                                                    |
+| -------- | ------------------------------------------------------------ |
+| 9200001  | The application is not an administrator application of the device. |
+| 9200002  | The administrator application does not have permission to manage the device. |
+| 9200016  | Service timeout. |
+| 201      | Permission verification failed. The application does not have the permission required to call the API. |
+| 801      | Capability not supported. Failed to call the API due to limited device capabilities. |
+
+**Example**
+
+```ts
+import { systemManager } from '@kit.MDMKit';
+import { Want } from '@kit.AbilityKit';
+
+let wantTemp: Want = {
+  // Replace with actual values.
+  bundleName: 'com.example.myapplication',
+  abilityName: 'EnterpriseAdminAbility'
+};
+try {
+  let result: boolean = systemManager.isOtaUpdateNonceEnable(wantTemp);
+  console.info(`Succeeded in querying OTA update Nonce enable: ${result}`);
+} catch (err) {
+  console.error(`Failed to query OTA update Nonce enable. Code is ${err.code}, message is ${err.message}`);
+}
 ```
 
 ## systemManager.addDisallowedNearLinkProtocols<sup>20+</sup>
@@ -533,7 +655,7 @@ Adds a list of NearLink protocols that are not allowed to be used for a specifie
 | -------- | ------------------------------------------------------- | ---- | ------------------------------------------------------------ |
 | admin    | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | Yes  | EnterpriseAdminExtensionAbility. **Want** must contain the ability name of the EnterpriseAdminExtensionAbility and the bundle name of the application.                                  |
 | protocols  | Array&lt;[NearLinkProtocol](#nearlinkprotocol20)&gt;               | Yes  | NearLink protocol list.|
-| accountId | number                                                 | Yes  | User ID, which must be greater than or equal to 0.<br>You can call APIs such as [getOsAccountLocalId](../apis-basic-services-kit/js-apis-osAccount.md#getosaccountlocalid9) to obtain the user ID.|
+| accountId | number                                                 | Yes  | User ID, which must be greater than or equal to 0.<br>**accountId** can be obtained via APIs such as [getOsAccountLocalId](../apis-basic-services-kit/js-apis-osAccount.md#getosaccountlocalid9-1).|
 
 
 **Error codes**
@@ -581,7 +703,7 @@ try {
 
 removeDisallowedNearLinkProtocols(admin: Want, protocols: Array&lt;NearLinkProtocol&gt;, accountId: number): void
 
-Removes the list of disallowed NearLink protocols for a specified user.
+Removes the list of disallowed NearLink protocols for a specified user. After successful removal, the specified user can use the removed NearLink protocols for communication again, restoring the corresponding protocol connection capabilities. Use cases: In enterprise device management scenarios, administrators can use this API to remove previously set NearLink protocol disabling policies, allowing users to resume communication between devices via NearLink protocols. This is suitable for scenarios where there is a need to restore NearLink communication capabilities for specific users, helping enterprise administrators flexibly adjust NearLink protocol access permissions of user devices to meet communication requirements in different business scenarios.
 
 
 **Required permissions**: ohos.permission.ENTERPRISE_MANAGE_SYSTEM
@@ -600,7 +722,7 @@ Removes the list of disallowed NearLink protocols for a specified user.
 | -------- | ------------------------------------------------------- | ---- | ------------------------------------------------------------ |
 | admin    | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | Yes  | EnterpriseAdminExtensionAbility. **Want** must contain the ability name of the EnterpriseAdminExtensionAbility and the bundle name of the application.                                  |
 | protocols  | Array&lt;[NearLinkProtocol](#nearlinkprotocol20)&gt;               | Yes  | NearLink protocol list.|
-| accountId | number                                                 | Yes  | User ID, which must be greater than or equal to 0.<br>You can call APIs such as [getOsAccountLocalId](../apis-basic-services-kit/js-apis-osAccount.md#getosaccountlocalid9) to obtain the user ID.|
+| accountId | number                                                 | Yes  | User ID, which must be greater than or equal to 0.<br>**accountId** can be obtained via APIs such as [getOsAccountLocalId](../apis-basic-services-kit/js-apis-osAccount.md#getosaccountlocalid9-1).|
 
 **Error codes**
 
@@ -644,7 +766,7 @@ try {
 
 getDisallowedNearLinkProtocols(admin: Want, accountId: number): Array&lt;NearLinkProtocol&gt;
 
-Obtains the list of disallowed NearLink protocols for a specified user.
+Obtains the list of disallowed NearLink protocols for a specified user. This API is applicable to scenarios where there is a need to query the current NearLink protocol access restrictions for a user, helping enterprise administrators verify whether the policy has been correctly applied or obtain the current configuration before making policy adjustments.
 
 **Required permissions**: ohos.permission.ENTERPRISE_MANAGE_SYSTEM
 
@@ -659,7 +781,7 @@ Obtains the list of disallowed NearLink protocols for a specified user.
 | Name | Type                                                   | Mandatory| Description                                                        |
 | ------- | ------------------------------------------------------- | ---- | ------------------------------------------------------------ |
 | admin   | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | Yes  | EnterpriseAdminExtensionAbility. **Want** must contain the ability name of the EnterpriseAdminExtensionAbility and the bundle name of the application.                                  |
-| accountId | number                                                 | Yes  | User ID, which must be greater than or equal to 0.<br>You can call APIs such as [getOsAccountLocalId](../apis-basic-services-kit/js-apis-osAccount.md#getosaccountlocalid9) to obtain the user ID.|
+| accountId | number                                                 | Yes  | User ID, which must be greater than or equal to 0.<br>**accountId** can be obtained via APIs such as [getOsAccountLocalId](../apis-basic-services-kit/js-apis-osAccount.md#getosaccountlocalid9-1).|
 
 **Return value**
 
@@ -705,7 +827,7 @@ try {
 
 setInstallLocalEnterpriseAppEnabled(admin: Want, isEnable: boolean): void
 
-Sets whether local installation of enterprise applications is supported. When local installation is enabled, users can install enterprise applications (signing certificate distribution type: **enterprise_normal**) by double-tapping their installation packages on enterprise PCs/2-in-1 devices with the local installation capability.
+Sets whether local installation of enterprise applications is supported. When local installation is enabled, users can install enterprise applications (signing certificate distribution type: **enterprise_normal**) by double-tapping their installation packages on enterprise PCs/2-in-1 devices with the local installation capability.<!--RP8--><!--RP8End-->
 
 **Required permissions**: ohos.permission.ENTERPRISE_MANAGE_SYSTEM
 
@@ -761,7 +883,7 @@ try {
 
 getInstallLocalEnterpriseAppEnabled(admin: Want | null): boolean
 
-Checks whether local installation of enterprise applications is supported.
+Checks whether local installation of enterprise applications is supported. This API is applicable to scenarios where there is a need to verify whether the local installation of enterprise applications is enabled on the device, helping enterprise administrators confirm the policy configuration status to ensure that enterprise applications can be properly installed.<!--RP8--><!--RP8End-->
 
 **Required permissions**: ohos.permission.ENTERPRISE_MANAGE_SYSTEM
 
@@ -818,7 +940,7 @@ try {
 
 setAutoUnlockAfterReboot(admin: Want, isAllowed: boolean): void
 
-Sets automatic unlocking upon device reboot. This setting takes effect only on devices without a screen lock password.
+Sets automatic unlocking upon device reboot. This setting takes effect only on devices without a screen lock password. This API is applicable to enterprise unattended devices or scenarios where services need to be quickly restored through a restart, avoiding device downtime caused by manual unlocking, thereby improving device operation and maintenance efficiency and service continuity.
 
 **Required permissions**: ohos.permission.ENTERPRISE_MANAGE_SYSTEM
 
@@ -870,9 +992,9 @@ try {
 
 ## systemManager.getAutoUnlockAfterReboot<sup>20+</sup>
 
-getAutoUnlockAfterReboot(admin: Want): boolean
+getAutoUnlockAfterReboot(admin: Want | null): boolean
 
-Checks whether the device is automatically unlocked upon reboot.
+Checks whether the device is automatically unlocked upon reboot. This API is applicable to scenarios where there is a need to verify whether the device reboot unlock policy is correctly configured, helping enterprise administrators confirm the status of the automatic device unlock function.
 
 **Required permissions**: ohos.permission.ENTERPRISE_MANAGE_SYSTEM
 
@@ -886,7 +1008,7 @@ Checks whether the device is automatically unlocked upon reboot.
 
 | Name| Type                                                   | Mandatory| Description                  |
 | ------ | ------------------------------------------------------- | ---- | ---------------------- |
-| admin  | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | Yes  | EnterpriseAdminExtensionAbility. **Want** must contain the ability name of the EnterpriseAdminExtensionAbility and the bundle name of the application.|
+| admin     | [Want](../apis-ability-kit/js-apis-app-ability-want.md) \| null | Yes  | EnterpriseAdminExtensionAbility. **Want** must contain the ability name of the EnterpriseAdminExtensionAbility and the bundle name of the application.<br>When multiple MDM applications exist on the device, passing a **Want** parameter queries the policies set by the corresponding enterprise device administrator application for versions earlier than API version 26.0.0. Since API version 26.0.0, passing null is additionally supported to query the policies that actually take effect.|
 
 **Return value**
 
@@ -943,7 +1065,7 @@ Adds a key event handling policy. When the system triggers a key event, if the e
 | Name| Type                                                   | Mandatory| Description                  |
 | ------ | ------------------------------------------------------- | ---- | ---------------------- |
 | admin  | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | Yes  | EnterpriseAdminExtensionAbility. **Want** must contain the ability name of the EnterpriseAdminExtensionAbility and the bundle name of the application.|
-| keyPolicies     | Array&lt;[KeyEventPolicy](#keyeventpolicy23)&gt; | Yes  | Key policy. Physical keys (power key, volume up, and volume down) and navigation keys (back, home, and recently opened) are supported. Physical keys can be combined into a combination key, but navigation keys cannot. For details about the combination key event response, see [Key Event Callback](js-apis-EnterpriseAdminExtensionAbility.md#onkeyevent23).|
+| keyPolicies     | Array&lt;[KeyEventPolicy](#keyeventpolicy23)&gt; | Yes  | Key policy. Physical keys (power key, volume up, and volume down) and navigation keys (back, home, and recently opened) are supported. Physical keys can be combined into a combination key, but navigation keys cannot. For details about the combination key event response, see the key event callback [onKeyEvent](js-apis-EnterpriseAdminExtensionAbility.md#onkeyevent23).|
 
 **Error codes**
 
@@ -993,7 +1115,7 @@ try {
 
 removeKeyEventPolicies(admin: Want, keyCodes: Array&lt;KeyCode&gt;): void
 
-Removes a key event handling policy.
+Removes a key event handling policy. After the deletion is successful, the system restores the default handling behavior for the specified key event. This API is applicable to scenarios where there is a need to restore the default key behavior, helping enterprise administrators flexibly adjust device key response policies to meet the needs of different business scenarios.
 
 **Required permissions**: ohos.permission.ENTERPRISE_MANAGE_SYSTEM
 
@@ -1048,9 +1170,9 @@ try {
 
 ## systemManager.getKeyEventPolicies<sup>23+</sup>
 
-getKeyEventPolicies(admin: Want): Array&lt;KeyEventPolicy&gt;
+getKeyEventPolicies(admin: Want | null): Array&lt;KeyEventPolicy&gt;
 
-Obtains the key event handling policy.
+Obtains the key event handling policy. This API is applicable to scenarios where you need to query the current key event handling policy configuration. It helps enterprise administrators verify whether the policy has been correctly applied or obtain the current configuration before making policy adjustments.
 
 **Required permissions**: ohos.permission.ENTERPRISE_MANAGE_SYSTEM
 
@@ -1064,7 +1186,7 @@ Obtains the key event handling policy.
 
 | Name| Type                                                   | Mandatory| Description                  |
 | ------ | ------------------------------------------------------- | ---- | ---------------------- |
-| admin  | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | Yes  | EnterpriseAdminExtensionAbility. **Want** must contain the ability name of the EnterpriseAdminExtensionAbility and the bundle name of the application.|
+| admin     | [Want](../apis-ability-kit/js-apis-app-ability-want.md) \| null | Yes  | EnterpriseAdminExtensionAbility. **Want** must contain the ability name of the EnterpriseAdminExtensionAbility and the bundle name of the application.<br>When multiple MDM applications exist on the device, passing a **Want** parameter queries the policies set by the corresponding enterprise device administrator application for versions earlier than API version 26.0.0. Since API version 26.0.0, passing null is additionally supported to query the policies that actually take effect.|
 
 **Return value**
 
@@ -1107,7 +1229,7 @@ try {
 
 startCollectLog(admin: Want): Promise&lt;void&gt;
 
-Starts to collect the [fault logs](../apis-performance-analysis-kit/js-apis-faultLogger.md#faulttype) that have been generated and stored on the device. The fault logs, app service logs, and system run logs that are not stored on the hard disk cannot be collected.
+Starts to collect the fault logs of the [FaultType](../apis-performance-analysis-kit/js-apis-faultLogger.md#faulttype) type that have been generated and stored on the device's hard disk. The fault logs, application service logs, and system runtime logs that are not stored on the hard disk cannot be collected.
 
 - After the API is called, the system starts a log collection task. The API returns a response immediately after the task is started. The task may fail due to system performance constraints.
 - This API can be called by multiple MDM apps. Logs collected by different MDM apps under different users are saved separately and do not affect each other. Only one MDM app can start a log collection task at a time. If this API is called before the task is complete, the error code 9201009 is returned, and other MDM apps may call the API only after the task finishes.
@@ -1153,6 +1275,7 @@ For details about the error codes, see [Enterprise Device Management Error Codes
 
 ```ts
 import { Want } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 import { systemManager } from '@kit.MDMKit';
 
 let wantTemp: Want = {
@@ -1229,7 +1352,7 @@ try {
 
 setActivationLockDisabled(admin: Want, isDisabled: boolean, credential?: string): Promise&lt;void&gt;
 
-Enables or disables the device activation lock. After the device activation lock is disabled, the Find Device function will no longer be available. This function applies only to specific devices.<!--RP5--><!--RP5End-->
+Enables or disables the device activation lock. After the device activation lock is disabled, the Find Device function will no longer be available. This function is only available on certain devices.<!--RP5--><!--RP5End-->
 
 **Required permissions**: ohos.permission.ENTERPRISE_MANAGE_SYSTEM
 
@@ -1238,6 +1361,8 @@ Enables or disables the device activation lock. After the device activation lock
 **Device behavior differences**: This API can be properly called on PCs/2-in-1 devices. If it is called on other device types, error code 801 is returned.
 
 **Model restriction**: This API can be used only in the stage model.
+
+**Conflict rule**: [Latest configuration precedence](../../mdm/mdm-kit-multi-mdm.md#rule-3-latest-configuration-precedence).
 
 **Parameters**
 
@@ -1272,6 +1397,7 @@ For details about the error codes, see [Enterprise Device Management Error Codes
 
 ```ts
 import { Want } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 import { systemManager } from '@kit.MDMKit';
 
 let wantTemp: Want = {
@@ -1293,7 +1419,7 @@ systemManager.setActivationLockDisabled(wantTemp, isDisabled, credential).then((
 
 isActivationLockDisabled(admin: Want): Promise&lt;boolean&gt;
 
-Checks whether the device activation lock is disabled.
+Checks whether the device activation lock is disabled. This API is applicable to scenarios where you need to verify the device activation lock status. It helps enterprise administrators confirm the device's security configuration, especially when understanding the activation lock state is necessary for device transfer or recycling.
 
 **Required permissions**: ohos.permission.ENTERPRISE_MANAGE_SYSTEM
 
@@ -1331,6 +1457,7 @@ For details about the error codes, see [Enterprise Device Management Error Codes
 
 ```ts
 import { Want } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 import { systemManager } from '@kit.MDMKit';
 
 let wantTemp: Want = {
@@ -1350,7 +1477,7 @@ systemManager.isActivationLockDisabled(wantTemp).then(result => {
 
 setInstallLocalEnterpriseAppEnabledForAccount(admin: Want, isEnable: boolean, accountId: number): void
 
-Sets whether local installation of enterprise applications is supported for a specified user. After the policy of supporting local enterprise application installation is delivered to a PC/2-in-1 enterprise device that has the local installation capability, the user can double-click an enterprise application installation package on the desktop or in the Files application to install it.
+Sets whether local installation of enterprise applications is supported for a specified user. After the policy of supporting local enterprise application installation is delivered to a PC/2-in-1 enterprise device that has the local installation capability, the user can double-click an enterprise application installation package on the desktop or in the Files application to install it.<!--RP8--><!--RP8End-->
 
 Only enterprise applications signed with the **enterprise_normal** or **enterprise_mdm** signature type are supported.
 
@@ -1378,7 +1505,7 @@ Only enterprise applications signed with the **enterprise_normal** or **enterpri
 | ----- | ----------------------------------- | ---- | ------- |
 | admin | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | Yes| EnterpriseAdminExtensionAbility. **Want** must contain the ability name of the EnterpriseAdminExtensionAbility and the bundle name of the application.|
 | isEnable | boolean | Yes| Whether local installation of enterprise applications is supported. The value **true** indicates that the local installation of enterprise applications is supported, and the value **false** indicates the opposite.|
-| accountId | number                                                 | Yes  | User ID, which must be greater than or equal to 0.<br>You can call APIs such as [getOsAccountLocalId](../apis-basic-services-kit/js-apis-osAccount.md#getosaccountlocalid9) to obtain the user ID.|
+| accountId | number                                                 | Yes  | User ID, which must be greater than or equal to 0.<br>**accountId** can be obtained via APIs such as [getOsAccountLocalId](../apis-basic-services-kit/js-apis-osAccount.md#getosaccountlocalid9-1).|
 
 **Error codes**
 
@@ -1419,7 +1546,7 @@ try {
 
 getInstallLocalEnterpriseAppEnabledForAccount(admin: Want | null, accountId: number): boolean
 
-Checks whether local installation of enterprise applications is supported for a specified user.
+Checks whether local installation of enterprise applications is supported for a specified user. This API is applicable to scenarios where there is a need to verify whether local installation of enterprise applications is enabled for a specific user, helping enterprise administrators confirm the policy configuration status and ensure that users can normally install enterprise applications.<!--RP8--><!--RP8End-->
 
 **Required permissions**: ohos.permission.ENTERPRISE_MANAGE_SYSTEM
 
@@ -1434,7 +1561,7 @@ Checks whether local installation of enterprise applications is supported for a 
 | Name| Type                                                   | Mandatory| Description                  |
 | ------ | ------------------------------------------------------- | ---- | ---------------------- |
 | admin  | [Want](../apis-ability-kit/js-apis-app-ability-want.md) \| null | Yes  | EnterpriseAdminExtensionAbility. **Want** must contain the ability name of the EnterpriseAdminExtensionAbility and the bundle name of the application.<br>If the device has multiple MDM applications, you can pass **admin** to query the corresponding policies. If **null** is passed, the policies that actually take effect on the device are returned.|
-| accountId | number                                                 | Yes  | User ID, which must be greater than or equal to 0.<br>You can call APIs such as [getOsAccountLocalId](../apis-basic-services-kit/js-apis-osAccount.md#getosaccountlocalid9) to obtain the user ID.|
+| accountId | number                                                 | Yes  | User ID, which must be greater than or equal to 0.<br>**accountId** can be obtained via APIs such as [getOsAccountLocalId](../apis-basic-services-kit/js-apis-osAccount.md#getosaccountlocalid9-1).|
 
 **Return value**
 
@@ -1484,8 +1611,8 @@ Represents information about the system version to update.
 | Name               | Type    | Read-Only | Optional| Description           |
 | ----------------- | ------ | --- | --- |------------- |
 | versionName       | string | No  | No|System version to update.  |
-| firstReceivedTime | number | No  | No|Time when the system update package is received for the first time.|
-| packageType       | string | No  | No|Type of the system update package to update. |
+| firstReceivedTime | number | No  | No|Time when the system update package is received for the first time, in seconds.|
+| packageType       | string | No  | No|Type of the system update package to update. The value can be **normal** or **patch**. |
 
 ## OtaUpdatePolicy
 
@@ -1638,7 +1765,7 @@ Enumerates key event handling policies. When a key event occurs, only the keys f
 
 ## KeyCode<sup>23+</sup>
 
-Key code. Key codes are used to map to the actual physical keys on a device in the following scenarios: [adding a key event policy](#systemmanageraddkeyeventpolicies23), [removing a key event policy](#systemmanagerremovekeyeventpolicies23), [querying a key event policy](#systemmanagergetkeyeventpolicies23), and [invoking the key event callback API](js-apis-EnterpriseAdminExtensionAbility.md#onkeyevent23).
+Key code. The [addKeyEventPolicies](#systemmanageraddkeyeventpolicies23), [removeKeyEventPolicies](#systemmanagerremovekeyeventpolicies23), [getKeyEventPolicies](#systemmanagergetkeyeventpolicies23), and [onKeyEvent](js-apis-EnterpriseAdminExtensionAbility.md#onkeyevent23) APIs map key codes to the corresponding physical keys on the device.
 
 **System capability**: SystemCapability.Customization.EnterpriseDeviceManager
 

@@ -66,7 +66,7 @@ import testNapi from 'libentry.so';
 
 [生命周期管理](napi-guidelines.md#生命周期管理)  
 
-关于典型错误使用方法的代码部分也可参考下面链接: 
+关于典型错误使用方法的代码部分也可参考下面链接：
 
 [典型错误场景](napi-faq-about-stability.md#napi_open_handle_scope与napi_close_handle_scope进行生命周期相关开发典型错误场景)
 
@@ -151,7 +151,7 @@ try {
 ```
 
 
-框架层在核心初始化函数Init中定义了ArkTS侧和native侧的接口映射表，在ArkTS侧通过映射表中的接口访问native侧的函数时，框架层会自动加上scope, 不需要额外增加napi_open_handle_scope、napi_close_handle_scope接口来管理ArkTS对象的生命周期。即：进入开发者自己写的native函数前自动open scope, native函数结束后自动close scope。native侧函数中创建的ArkTS对象的生命周期在native函数返回时结束，不会存在内存泄漏的问题。以NewObject函数举例如下（定义接口映射表中映射的函数不需要手动加napi_open_handle_scope、napi_close_handle_scope管理ArkTS对象的生命周期）：
+框架层在核心初始化函数Init中定义了ArkTS侧和native侧的接口映射表，在ArkTS侧通过映射表中的接口访问native侧的函数时，框架层会自动加上scope，不需要额外增加napi_open_handle_scope、napi_close_handle_scope接口来管理ArkTS对象的生命周期。即：进入开发者自己写的native函数前自动open scope，native函数结束后自动close scope。native侧函数中创建的ArkTS对象的生命周期在native函数返回时结束，不会存在内存泄漏的问题。以NewObject函数举例如下（定义接口映射表中映射的函数不需要手动加napi_open_handle_scope、napi_close_handle_scope管理ArkTS对象的生命周期）：
 ```cpp
 // 调用NewObject前会open scope
 napi_value NewObject(napi_env env, napi_callback_info info)
@@ -189,7 +189,7 @@ static napi_value Init(napi_env env, napi_value exports)
 
 通过接口napi_open_escapable_handle_scope创建出一个可逃逸的handle scope，可将范围内声明的值返回到父作用域。该作用域需要使用napi_close_escapable_handle_scope进行关闭。napi_escape_handle用于提升传入的ArkTS对象的生命周期到其父作用域。
 
-通过上述接口可以更灵活的使用管理传入的ArkTS对象，特别是在处理跨作用域的值传递时非常有用。
+通过上述接口可以更灵活地使用管理传入的ArkTS对象，特别是在处理跨作用域的值传递时非常有用。
 
 cpp部分代码
 

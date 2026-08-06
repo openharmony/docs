@@ -39,7 +39,7 @@ import { InsightIntentLink, InsightIntentPage, InsightIntentFunctionMethod, Insi
 
 ## @InsightIntentLink
 
-使用该装饰器装饰当前应用的uri链接，可以将该uri链接定义为意图，便于AI入口通过定义的意图快速跳转到当前应用。该装饰器支持的参数参见[LinkIntentDecoratorInfo](#linkintentdecoratorinfo)。
+使用该装饰器装饰当前应用的URI链接，可以将该URI链接定义为意图，便于AI入口通过定义的意图快速跳转到当前应用。该装饰器支持的参数参见[LinkIntentDecoratorInfo](#linkintentdecoratorinfo)。
 
 > **说明**
 >
@@ -72,7 +72,7 @@ import { InsightIntentLink, LinkParamCategory } from '@kit.AbilityKit';
     paramCategory: LinkParamCategory.LINK
   }],
   parameters: {
-    'schema': 'http://json-schema.org/draft-07/schema#',
+    '$schema': 'http://json-schema.org/draft-07/schema#',
     'type': 'object',
     'title': 'Song Schema',
     'description': 'A schema for describing songs and their artists',
@@ -150,15 +150,15 @@ export class ClassForLink {
 | displayName        | string          | 否       | 否   | 表示显示给用户的意图名称。                                       |
 | displayDescription | string         | 否        | 是   | 表示显示给用户的意图描述。                                       |
 | schema             | string         | 否        | 是   | 表示接入的标准意图的名称。开发者[接入标准意图](../../application-models/insight-intent-definition.md#接入标准意图)时，需要配置该字段，[创建自定义意图](../../application-models/insight-intent-definition.md#创建自定义意图)时，无需配置该字段。标准意图列表参见[附录：标准意图接入规范](../../application-models/insight-intent-access-specifications.md)。 |
-| icon               | ResourceStr | 否   | 是   | 表示意图图标，用于在AI入口显示。<br/>- 当取值为字符串类型时，表示图标读取网络资源。<br/>- 当取值为[Resource](../../reference/apis-localization-kit/js-apis-resource-manager.md)时，表示图标读取本地资源。 |
+| icon               | ResourceStr | 否   | 是   | 表示意图图标，用于在AI入口显示。<br>- 当取值为字符串类型时，表示图标读取网络资源。<br>- 当取值为[Resource](../../reference/apis-localization-kit/js-apis-resource-manager.md)时，表示图标读取本地资源。 |
 | llmDescription     | string      | 否           | 是   | 表示意图的功能描述，用于大型语言模型理解该意图。                  |
 | keywords           | string[]     | 否          | 是   | 表示意图的搜索关键字。                                       |
-| parameters         | Record<string, Object>| 否 | 是   | 表示意图参数的数据格式声明，用于意图调用时定义入参的数据格式。取值参见[各垂域意图Schema](https://developer.huawei.com/consumer/cn/doc/service/intents-schema-0000001901962713) |
-| result           | Record<string, Object>     | 否          | 是   | 表示意图调用返回结果的数据格式声明，用于定义意图调用返回结果的数据格式。                                       |
+| parameters         | Record\<string, Object\>| 否 | 是   | 表示意图参数的数据格式声明，用于意图调用时定义入参的数据格式。取值参见[各垂域意图Schema](https://developer.huawei.com/consumer/cn/doc/service/intents-schema-0000001901962713)。 |
+| result           | Record\<string, Object\>     | 否          | 是   | 表示意图调用返回结果的数据格式声明，用于定义意图调用返回结果的数据格式。                                       |
 
 ## LinkIntentDecoratorInfo
 
-LinkIntentDecoratorInfo继承自[IntentDecoratorInfo](#intentdecoratorinfo)，用于描述[@InsightIntentLink](#insightintentlink)装饰器支持的参数，例如应用间跳转需要的uri信息。
+LinkIntentDecoratorInfo继承自[IntentDecoratorInfo](#intentdecoratorinfo)，用于描述[@InsightIntentLink](#insightintentlink)装饰器支持的参数，例如应用间跳转需要的URI信息。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -169,11 +169,11 @@ LinkIntentDecoratorInfo继承自[IntentDecoratorInfo](#intentdecoratorinfo)，�
 | 名称        | 类型              | 只读 | 可选 | 说明                                                         |
 | ----------- | -----------------| ------ | ---- | ------------------------------------------------------------ |
 | uri                | string          | 否          | 否   | 表示意图的URI地址。                                 |
-| paramMappings      | [LinkIntentParamMapping](#linkintentparammapping)[] | 否 | 是   | 意图参数和uri信息的映射。    |
+| paramMappings      | [LinkIntentParamMapping](#linkintentparammapping)[] | 否 | 是   | 意图参数和URI信息的映射。    |
 
 ## LinkIntentParamMapping
 
-LinkIntentParamMapping是[@InsightIntentLink](#insightintentlink)装饰器的意图参数和uri信息的映射。
+LinkIntentParamMapping是[@InsightIntentLink](#insightintentlink)装饰器的意图参数和URI信息的映射。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -310,7 +310,7 @@ export class ClassForFuncDemo {
   icon: $r('app.media.app_icon'), // $r表示本地图标，需要在资源目录中定义
   llmDescription: 'Get weather of a location',
   parameters: {
-    'schema': 'http://json-schema.org/draft-07/schema#',
+    '$schema': 'http://json-schema.org/draft-07/schema#',
     'type': 'object',
     'title': 'Weather Schema',
     'description': 'A schema for getting weather of a location',
@@ -346,7 +346,7 @@ export class ClassForFuncDemo {
 
 > **说明**
 >
-> - 如果使用该装饰器接入标准意图，必须实现标准意图Json Schema中定义的所有必选参数且类型匹配。
+> - 如果使用该装饰器接入标准意图，必须实现标准意图JSON Schema中定义的所有必选参数且类型匹配。
 > - 如果创建自定义意图，必须实现parameters字段中定义的所有必选参数且类型匹配。
 > - 被装饰的类需要使用export default导出。类的属性仅支持基础类型或意图实体，返回值仅支持意图实体。
 
@@ -375,7 +375,7 @@ const LOG_TAG: string = 'testTag-EntryIntent';
   abilityName: 'EntryAbility',
   executeMode: [insightIntent.ExecuteMode.UI_ABILITY_FOREGROUND],
   parameters: {
-    'schema': 'http://json-schema.org/draft-07/schema#',
+    '$schema': 'http://json-schema.org/draft-07/schema#',
     'type': 'object',
     'title': 'Song Schema',
     'description': 'A schema for describing songs and their artists',
@@ -480,7 +480,7 @@ import { insightIntent, Want, InsightIntentForm } from '@kit.AbilityKit';
           },
           'city': {
             'type': 'object',
-            'description': 'The artist\' city of origin'
+            'description': 'The artist\'s city of origin'
           },
           'name': {
             'type': 'string',

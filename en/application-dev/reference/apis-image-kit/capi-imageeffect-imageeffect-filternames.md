@@ -1,10 +1,12 @@
 # ImageEffect_FilterNames
+
 <!--Kit: Image Kit-->
 <!--Subsystem: Multimedia-->
 <!--Owner: @aulight02-->
-<!--Designer: @liyang_bryan-->
+<!--Designer: @XiaoYao555-->
 <!--Tester: @xchaosioda-->
 <!--Adviser: @w_Machine_cc-->
+<!-- md-trans-meta sourceCommit=9329f19aa2995f079ff9cf109a20aad0033a91a3 translatedAt=2026-08-03T04:06:04.394Z pushedAt=2026-08-04T02:20:09.760Z -->
 
 ```c
 typedef struct ImageEffect_FilterNames {...} ImageEffect_FilterNames
@@ -23,13 +25,16 @@ The struct describes the filter name information.
 ## Summary
 
 ### Member Variables
+
 **The following table lists the declarations supporting C++ syntax.**
+
 | Name| Description|
 | -- | -- |
 | uint32_t size = 0 | Number of filter names.|
 | const char \*\*nameList = nullptr | List of filter names.|
 
 **The following table lists the declarations supporting C syntax.**
+
 | Name| Description|
 | -- | -- |
 | uint32_t size| Number of filter names.|

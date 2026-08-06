@@ -531,7 +531,7 @@ Image_ErrorCode OH_ImageReceiverNative_OffImageArrive(OH_ImageReceiverNative *re
 | 参数项 | 描述 |
 | -- | -- |
 | [OH_ImageReceiverNative](capi-image-nativemodule-oh-imagereceivernative.md) *receiver | 处理回调的OH_ImageReceiverNative对象。 |
-| [OH_ImageReceiver_ImageArriveCallback](#oh_imagereceiver_imagearrivecallback) callback | 要注册的OH_ImageReceiver_ImageArriveCallback回调。 |
+| [OH_ImageReceiver_ImageArriveCallback](#oh_imagereceiver_imagearrivecallback) callback | 要注销的OH_ImageReceiver_ImageArriveCallback回调。 |
 
 **返回：**
 

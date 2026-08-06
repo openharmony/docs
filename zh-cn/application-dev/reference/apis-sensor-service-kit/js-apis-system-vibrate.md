@@ -3,7 +3,7 @@
 <!--Subsystem: Sensors-->
 <!--Owner: @dilligencer-->
 <!--Designer: @andeszhang-->
-<!--Tester: @liuhaonan2-->
+<!--Tester: @zhaofangyuan-->
 <!--Adviser: @hu-zhiqiong-->
 
 @system.vibrator模块提供控制设备马达振动的能力，开发者可以通过该模块触发设备执行长振动或短振动效果，为用户提供触觉反馈。主要用于闹钟、开关机振动、来电振动等需要触觉提醒的交互场景，帮助应用在关键事件发生时通过振动吸引用户注意力。

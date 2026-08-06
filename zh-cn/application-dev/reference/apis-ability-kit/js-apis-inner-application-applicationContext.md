@@ -158,7 +158,7 @@ export default class EntryAbility extends UIAbility {
         }
       });
     } catch (paramError) {
-      console.error(`error code: ${(paramError as BusinessError).code}, error code: ${(paramError as BusinessError).message}`);
+      console.error(`error code: ${(paramError as BusinessError).code}, error msg: ${(paramError as BusinessError).message}`);
     }
   }
 }
@@ -637,7 +637,7 @@ export default class EntryAbility extends UIAbility {
     let applicationContext = this.context.getApplicationContext();
     try {
       // 2.通过applicationContext取消监听
-      applicationContext.offSystemConfigurationUpdated(CallBack);
+      applicationContext.offSystemConfigurationUpdated(callBack);
     } catch (paramError) {
       console.error(`error: ${(paramError as BusinessError).code}, ${(paramError as BusinessError).message}`);
     }
@@ -1518,8 +1518,6 @@ enableDelayedProcessExit(): Promise\<void>
 
 **起始版本**：26.0.0
 
-**原子化服务API**：从API版本26.0.0开始，该接口支持在原子化服务中使用。
-
 **模型约束**：此接口仅可在Stage模型下使用。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
@@ -1543,7 +1541,7 @@ enableDelayedProcessExit(): Promise\<void>
 **示例：**
 
 ```ts
-import { AbilityConstant, UIAbility, Want } from '@kit.AbilityKit'
+import { AbilityConstant, UIAbility, Want } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 export default class EntryAbility extends UIAbility {
@@ -1572,8 +1570,6 @@ disableDelayedProcessExit(): Promise\<void>
 
 **起始版本**：26.0.0
 
-**原子化服务API**：从API版本26.0.0开始，该接口支持在原子化服务中使用。
-
 **模型约束**：此接口仅可在Stage模型下使用。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
@@ -1597,7 +1593,7 @@ disableDelayedProcessExit(): Promise\<void>
 **示例：**
 
 ```ts
-import { AbilityConstant, UIAbility, Want } from '@kit.AbilityKit'
+import { AbilityConstant, UIAbility, Want } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 export default class EntryAbility extends UIAbility {
@@ -1623,8 +1619,6 @@ startSelfUIAbility(want: Want): Promise\<void>
 当前进程延迟退出期间，在当前进程启动一个自身UIAbility，启动成功后，当前进程不再退出。
 
 **起始版本**：26.0.0
-
-**原子化服务API**：从API版本26.0.0开始，该接口支持在原子化服务中使用。
 
 **模型约束**：此接口仅可在Stage模型下使用。
 

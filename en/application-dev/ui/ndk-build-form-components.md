@@ -1,10 +1,12 @@
 # Building Form Components
+
 <!--Kit: ArkUI-->
 <!--Subsystem: ArkUI-->
 <!--Owner: @liyi0309-->
 <!--Designer: @liyi0309-->
 <!--Tester: @lxl007-->
 <!--Adviser: @Brilliantry_Rui-->
+<!-- md-trans-meta sourceCommit=b8421fa94775fa4bceb1b522857b705478302935 translatedAt=2026-08-05T01:28:04.169Z pushedAt=2026-08-05T06:51:06.748Z -->
 
 ArkUI NDK provides multiple form components, including [Button](./arkts-common-components-button.md), [Slider](../reference/apis-arkui/arkui-ts/ts-basic-components-slider.md), [Toggle](./arkts-common-components-switch.md), [Checkbox](../reference/apis-arkui/arkui-ts/ts-basic-components-checkbox.md), [CheckboxGroup](../reference/apis-arkui/arkui-ts/ts-basic-components-checkboxgroup.md), and [Radio Button (Radio)](./arkts-common-components-radio-button.md). These components are basic elements for user interaction and can be used to build diverse form UIs.
 
@@ -21,7 +23,7 @@ The **Button** component is used to create a button that can be clicked. Multipl
 The [createNode](../reference/apis-arkui/capi-arkui-nativemodule-arkui-nativenodeapi-1.md#createnode) API creates the **Button** component. The node type is **ARKUI_NODE_BUTTON**.
 
  <!-- @[button_create](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkUISample/NativeFormExample/entry/src/main/cpp/demo/formTest.cpp) -->   
- 
+
  ``` C++
  std::shared_ptr<NativeModule::ArkUIBaseNode> CreateButtonExample()
  {
@@ -39,15 +41,14 @@ The [createNode](../reference/apis-arkui/capi-arkui-nativemodule-arkui-nativenod
      circleBtn->SetMargin(PARAM_20, false);
      column->AddChild(button);
      column->AddChild(circleBtn);
-     // Add the column to the content.
+     // Return Column, which is added to Content by the caller.
      return column;
  }
  ```
 
-
 ### Setting the Button Type
 
-Different button types can be implemented by setting the **NODE_BUTTON_TYPE** attribute, including normal, capsule, circle, and rounded rectangle buttons. For the enumerated values of button types, see [ArkUI_ButtonType](../reference/apis-arkui/capi-native-type-h.md#arkui_buttontype).
+The **Button** component supports implementing different button types by setting the **NODE_BUTTON_TYPE** attribute, including normal buttons, capsule buttons, circle buttons, and rounded rectangle buttons. For the enumeration corresponding to button types, please refer to [ArkUI_ButtonType](../reference/apis-arkui/capi-button-h.md#arkui_buttontype).
 
 The following example sets the button type to **ARKUI_BUTTON_TYPE_CIRCLE**.
 
@@ -111,9 +112,10 @@ std::shared_ptr<NativeModule::ArkUIBaseNode> CreateSliderExample()
 
 ### Setting the Slider Style
 
-Two slider styles are supported. See [ARKUI_SliderStyle](../reference/apis-arkui/capi-native-type-h.md#arkui_sliderstyle) for their enumerated values.
+Slider supports two styles, defined by [ARKUI_SliderStyle](../reference/apis-arkui/capi-slider-h.md#arkui_sliderstyle):
 
 - **ARKUI_SLIDER_STYLE_OUT_SET**: The slider is outside the slider bar (default value).
+
 - **ARKUI_SLIDER_STYLE_IN_SET**: The slider is inside the slider bar.
 
 The following sample code creates the **Slider** component of the **ARKUI_SLIDER_STYLE_IN_SET** style and sets the colors of the slider and slider bar.
@@ -253,7 +255,7 @@ std::shared_ptr<NativeModule::ArkUIBaseNode> CreateCheckboxExample()
     column->AddChild(checkbox2);
     column->AddChild(checkbox3);
 
-    // Add the column to the content.
+    // Return Column, to be added to Content by the caller.
     return column;
 }
 ```
@@ -383,6 +385,4 @@ The following table describes the attributes specific to the **Radio** component
 | NODE_RADIO_VALUE| Value of a radio button.|
 | NODE_RADIO_GROUP| Name of a radio button group. Radio buttons in the same group are mutually exclusive.|
 
-## Complete Examples
-
-- [NativeFormExample](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkUISample/NativeFormExample): contains complete examples of the **Button**, **Slider**, **Toggle**, **Checkbox**, and **Radio** components.
+<!--no_check-->

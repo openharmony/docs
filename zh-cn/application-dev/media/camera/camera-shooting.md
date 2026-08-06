@@ -252,7 +252,7 @@
 
 ### 如何正确设置画质优先策略
 
-为了正确的在单段式拍照中设置画质优先策略，高性能拍照功能提供了如下两个接口：
+为了正确地在单段式拍照中设置画质优先策略，高性能拍照功能提供了如下两个接口：
 
 - [isPhotoQualityPrioritizationSupported](../../reference/apis-camera-kit/arkts-apis-camera-PhotoOutput.md#isphotoqualityprioritizationsupported21)：查询当前设备是否支持指定的画质优先策略。返回true表示支持，返回false表示不支持。在进行设置画质优先策略之前，必须先查询将要设置的画质优先策略在当前设备上是否可用。 
 - [setPhotoQualityPrioritization](../../reference/apis-camera-kit/arkts-apis-camera-PhotoOutput.md#setphotoqualityprioritization21)：画质优先策略设置接口，通过该接口设置对应的画质优先策略，实现高性能拍照。

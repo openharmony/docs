@@ -3616,7 +3616,7 @@ try {
 | innerVersion    | string                              | 只读：否， 可选：否 | 版本号。      |
 | size            | int                              | 只读：否， 可选：否 | 升级包大小，单位为B，取值范围[0, +∞]。超出范围时抛出异常。 |
 | effectiveMode   | [EffectiveMode](#effectivemode)     | 只读：否， 可选：否 | 生效模式，取值原则：COLD为冷升级，需重启设备生效；LIVE为热升级，无需重启即可生效；LIVE_AND_COLD为融合升级，结合两者特性。|
-| otaMode | [OtaMode](#otamode)                 | 只读：否， 可选:是 | 升级模式。当需要指定特定的升级模式时传入此参数，适用于存储空间受限、快速升级或A/B分区设备等特殊场景。取值原则：REGULAR_OTA为正常升级，适用于大多数常规升级场景；STREAM_OTA为流式升级，适用于存储空间受限或需要快速升级的场景；AB_REGULAR_OTA为AB正常升级，适用于A/B分区设备；AB_STREAM_OTA为AB流式升级，适用于A/B分区设备。不传入时默认为REGULAR_OTA，使用正常升级模式。|
+| otaMode | [OtaMode](#otamode)                 | 只读：否， 可选：是 | 升级模式。当需要指定特定的升级模式时传入此参数，适用于存储空间受限、快速升级或A/B分区设备等特殊场景。取值原则：REGULAR_OTA为正常升级，适用于大多数常规升级场景；STREAM_OTA为流式升级，适用于存储空间受限或需要快速升级的场景；AB_REGULAR_OTA为AB正常升级，适用于A/B分区设备；AB_STREAM_OTA为AB流式升级，适用于A/B分区设备。不传入时默认为REGULAR_OTA，使用正常升级模式。|
 
 ## DescriptionOptions
 
@@ -3752,7 +3752,7 @@ try {
 | --------------- | ----------------------------------- | ------------------- | -------- |
 | downloadStrategy    | boolean                        | 只读：否， 可选：否 | 自动下载策略。<br>true表示可自动下载(适用于希望系统自动检测并下载新版本的场景，减少用户手动操作)。<br>false表示不可自动下载(适用于需要用户手动确认下载的场景，避免后台消耗流量或存储空间)。根据用户偏好和流量策略选择。|
 | autoUpgradeStrategy | boolean                        | 只读：否， 可选：否 | 自动升级策略。 <br>true表示可自动升级(适用于希望系统自动完成升级流程的场景，提升用户体验)。<br>false表示不可自动升级(适用于需要用户手动确认升级的场景，避免意外升级或确保用户知情)。根据用户体验需求和升级控制策略选择。 |
-| autoUpgradePeriods  | Array\<[UpgradePeriod](#upgradeperiod)> | 只读：否， 可选:是 | 自动升级时间段，当需要在特定时间段内自动升级时传入此参数(如夜间时段)，此参数为可选参数。不传入此参数时默认为空数组[]，表示不限制自动升级时间段，可在任意时间自动升级。 |
+| autoUpgradePeriods  | Array\<[UpgradePeriod](#upgradeperiod)> | 只读：否， 可选：是 | 自动升级时间段，当需要在特定时间段内自动升级时传入此参数(如夜间时段)，此参数为可选参数。不传入此参数时默认为空数组[]，表示不限制自动升级时间段，可在任意时间自动升级。 |
 
 ## UpgradePeriod
 
@@ -3824,7 +3824,7 @@ try {
 | 名称       | 类型                            | 属性 | 说明   |
 | ------------ | ----------------------------- | -------- | ------ |
 | errorCode    | int | 只读：否， 可选：否 | 错误码，用于标识具体的错误类型。通过errorCode可快速定位升级失败的原因（如权限错误201、参数错误401、IPC错误11500104等），从而采取针对性的处理措施。<br>使用场景：在升级失败事件(EVENT_UPGRADE_FAIL)回调中，通过errorCode判断失败原因，进行相应的错误处理或提示用户。建议结合errorMessage进行详细的错误分析和处理。 |
-| errorMessage | string | 只读：否， 可选：否 | 错误描述文本，用于提供错误的详细说明信息。errorMessage提供了错误的具体描述（如'Permission denied.、'Parameter verification failed'等），帮助开发者理解错误原因和进行调试。<br>使用场景：在错误处理时，可将errorMessage用于日志记录、错误提示展示或错误分析。建议结合errorCode一起使用，errorCode提供错误类型，errorMessage提供详细说明。|
+| errorMessage | string | 只读：否， 可选：否 | 错误描述文本，用于提供错误的详细说明信息。errorMessage提供了错误的具体描述（如'Permission denied.'、'Parameter verification failed'等），帮助开发者理解错误原因和进行调试。<br>使用场景：在错误处理时，可将errorMessage用于日志记录、错误提示展示或错误分析。建议结合errorCode一起使用，errorCode提供错误类型，errorMessage提供详细说明。|
 
 ## EventClassifyInfo
 
@@ -3837,7 +3837,7 @@ try {
 | 名称       | 类型                            | 属性 | 说明   |
 | ------------ | ----------------------------- | -------- | ------ |
 | eventClassify | [EventClassify](#eventclassify) | 只读：否， 可选：否 | 事件类型，用于指定要监听的事件分类。可取值：TASK（任务事件）。 |
-| extraInfo     | string                          | 只读：否， 可选:是 | 额外信息，用于传递扩展数据。默认值为空字符串，表示无额外信息。长度范围[0, 128]，单位：字符。有效字符包括字母、数字、下划线、连字符和空格，超出范围或包含无效字符时抛出异常。 |
+| extraInfo     | string                          | 只读：否， 可选：是 | 额外信息，用于传递扩展数据。默认值为空字符串，表示无额外信息。长度范围[0, 128]，单位：字符。有效字符包括字母、数字、下划线、连字符和空格，超出范围或包含无效字符时抛出异常。 |
 
 ## UpgradeFile
 
@@ -3883,7 +3883,7 @@ try {
 
 | 名称       | 类型                            | 属性 | 说明   |
 | ------------ | ----------------------------- | -------- | ------ |
-| duration | int                          | 只读： 否, 可选: 否 | 恢复出厂设置所需持续时间。单位为min。取值范围[0, +∞]。超出范围时抛出异常。|
+| duration | int                          | 只读： 否， 可选：否 | 恢复出厂设置所需持续时间。单位为min。取值范围[0, +∞]。超出范围时抛出异常。|
 
 ## FactoryResetScope
 

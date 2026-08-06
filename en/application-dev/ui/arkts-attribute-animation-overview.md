@@ -1,14 +1,14 @@
 # Property Animation Overview
+
 <!--Kit: ArkUI-->
 <!--Subsystem: ArkUI-->
-<!--Owner: @CCFFWW-->
-<!--Designer: @CCFFWW-->
+<!--Owner: @hehongyang3-->
+<!--Designer: @hehongyang3-->
 <!--Tester: @lxl007-->
 <!--Adviser: @Brilliantry_Rui-->
-
+<!-- md-trans-meta sourceCommit=fd87a3fabd6b3d582616cc6b10933b62b2152e9f translatedAt=2026-07-29T12:41:57.939Z pushedAt=2026-07-30T01:47:38.830Z -->
 
 A property API (property for short) defines a multitude of properties, such as size, layout, and location, for controlling behavior of the owning component. Changes to some properties (such as location) on the UI will cause UI re-render. You can animate the value change of a property from the start point to the end point. To ensure animation start and end points are accurate, property animations refresh all nodes in the dirty state queue. If the animation duration is excessively long, it is important to verify whether additional nodes require refreshing to maintain synchronization. Properties can be classified as animatable or non-animatable, depending on whether an animation can be applied to their value changes. Specifically, an animatable property meets the following requirements:
-
 
 1. Its value changes can cause UI re-render. For example, the [enabled](../reference/apis-arkui/arkui-ts/ts-universal-attributes-enable.md#enabled) attribute is used to control whether a component can respond to events such as clicks and touches. However, as its value change does not cause UI re-render, it does not qualify as an animatable property.
 
@@ -19,7 +19,7 @@ A property API (property for short) defines a multitude of properties, such as s
 - Animatable properties:
 
   - Built-in animatable properties
-  
+
     | Category    | Example                                          |
     | -------- | ---------------------------------------------- |
     | Layout| Position, size, padding, margin, alignment, and weight.|
@@ -35,12 +35,9 @@ A property API (property for short) defines a multitude of properties, such as s
 
 - Non-animatable properties: [zIndex](../reference/apis-arkui/arkui-ts/ts-universal-attributes-z-order.md#zindex), [focusable](../reference/apis-arkui/arkui-ts/ts-universal-attributes-focus.md#focusable), and so on.
 
-
 Generally, an animatable property accepts only continuous parameters, which allows for using interpolation to fill in gaps between data points, so as to create a visual illusion of continuity. That said, whether the parameter type of a property can be interpolated is not a key factor that determines whether an animation can be applied to the property. For example, with regard to the [direction](../reference/apis-arkui/arkui-ts/ts-universal-attributes-location.md#direction) property, which sets the horizontal layout of an element, as it is animatable, ArkUI allows you to apply an animation to the transition between its value changes, though its parameter type is enum.
 
-
 Animatable properties include both built-in and custom properties.
-
 
 - Built-in animatable properties: system-provided component properties for changing the UI, for example, position, zoom, and blur properties.
 

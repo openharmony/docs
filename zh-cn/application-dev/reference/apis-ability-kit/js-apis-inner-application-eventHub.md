@@ -124,7 +124,7 @@ export default class EntryAbility extends UIAbility {
 ```
 
 **示例2：**
-callback使用箭头函数时，调用方是EntryAbility对象。EntryAbility对象里存在value属性，因此结果是12。
+callback使用箭头函数时，this指向EntryAbility对象。EntryAbility对象里存在value属性，因此结果是12。
 
 ```ts
 import { UIAbility } from '@kit.AbilityKit';

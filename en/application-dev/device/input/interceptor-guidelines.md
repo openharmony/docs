@@ -5,7 +5,8 @@
 <!--Owner: @zhaoxueyuan-->
 <!--Designer: @hanruofei-->
 <!--Tester: @Lyuxin-->
-<!--Adviser: @Brilliantry_Rui-->
+<!--Adviser: @zhang_yixin13-->
+<!-- md-trans-meta sourceCommit=c557fc878b00a6eb2a3211f12739d2d4a9bfd804 translatedAt=2026-07-28T02:35:27.530Z pushedAt=2026-07-28T03:02:26.214Z -->
 
 ## Introduction
 
@@ -13,7 +14,7 @@ Since API version 12, the multimodal module provides applications with the abili
 
 ## Available APIs
 
-The following table lists the APIs for event interception. For details, see [Input](../../reference/apis-input-kit/capi-input.md).
+The following table lists the APIs for creating and deleting event interception. For details, see [input](../../reference/apis-input-kit/capi-input.md).
 
 | API | Description|
 | ------------------------------------------------------------ | -------------------------- |
@@ -48,7 +49,7 @@ Declare the required permission in the **module.json5** file. For details, see [
 
 - **Key event**
 
-<!-- @[key_event_interceptor](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/input/NDKInputEventInterceptor/entry/src/main/cpp/napi_init.cpp) -->
+<!-- @[key_event_interceptor](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/InputKit/NDKInputEventInterceptor/entry/src/main/cpp/napi_init.cpp) --> 
 
 ``` C++
 struct KeyEvent {
@@ -61,30 +62,29 @@ struct KeyEvent {
 void OnKeyEventCallback(const Input_KeyEvent* keyEvent)
 {
     KeyEvent event;
-    // The lifecycle of Input_KeyEvent is limited to the callback function. After the callback function is executed, Input_KeyEvent is automatically destroyed.
+    // The lifecycle of Input_KeyEvent is limited to the callback function. It is automatically destroyed after the callback function finishes executing.
     event.action = OH_Input_GetKeyEventAction(keyEvent);
     event.keyCode = OH_Input_GetKeyEventKeyCode(keyEvent);
     event.actionTime = OH_Input_GetKeyEventActionTime(keyEvent);
-	// ···
+    // ...
 }
 
 static napi_value AddKeyEventInterceptor(napi_env env, napi_callback_info info)
 {
     Input_Result ret = OH_Input_AddKeyEventInterceptor(OnKeyEventCallback, nullptr);
-	// ···
+    // ...
 }
 
 static napi_value RemoveKeyEventInterceptor(napi_env env, napi_callback_info info)
 {
     Input_Result ret = OH_Input_RemoveKeyEventInterceptor();
-	// ···
+    // ...
 }
 ```
 
-
 - **Input Events (Mouse, Touch, and Axis Events)**
 
-<!-- @[input_event_interceptor](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/input/NDKInputEventInterceptor/entry/src/main/cpp/napi_init.cpp) -->
+<!-- @[input_event_interceptor](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/InputKit/NDKInputEventInterceptor/entry/src/main/cpp/napi_init.cpp) -->
 
 ``` C++
 struct MouseEvent {
@@ -119,7 +119,7 @@ struct AxisEvent {
 void OnMouseEventCallback(const Input_MouseEvent* mouseEvent)
 {
     MouseEvent event;
-    // The lifecycle of Input_MouseEvent is limited to the callback function. Input_MouseEvent will be destroyed if it is called outside of the callback function.
+    // The lifecycle of Input_MouseEvent is limited to the callback function. It is destroyed when the callback ends.
     event.action = OH_Input_GetMouseEventAction(mouseEvent);
     event.displayX = OH_Input_GetMouseEventDisplayX(mouseEvent);
     event.displayY = OH_Input_GetMouseEventDisplayY(mouseEvent);
@@ -127,20 +127,20 @@ void OnMouseEventCallback(const Input_MouseEvent* mouseEvent)
     event.axisType = OH_Input_GetMouseEventAxisType(mouseEvent);
     event.axisValue = OH_Input_GetMouseEventAxisValue(mouseEvent);
     event.actionTime = OH_Input_GetMouseEventActionTime(mouseEvent);
-	// ···
+    // ...
 }
 
 // Define the touch event callback function.
 void OnTouchEventCallback(const Input_TouchEvent* touchEvent)
 {
     TouchEvent event;
-    // The lifecycle of Input_TouchEvent is limited to the callback function. Input_TouchEvent will be destroyed if it is called outside of the callback function.
+    // The lifecycle of Input_TouchEvent is limited to the callback function. It is destroyed when the callback ends.
     event.action = OH_Input_GetTouchEventAction(touchEvent);
     event.id = OH_Input_GetTouchEventFingerId(touchEvent);
     event.displayX = OH_Input_GetTouchEventDisplayX(touchEvent);
     event.displayY = OH_Input_GetTouchEventDisplayY(touchEvent);
     event.actionTime = OH_Input_GetTouchEventActionTime(touchEvent);
-	// ···
+    // ...
 }
 
 // Define the axis event callback function.
@@ -148,7 +148,7 @@ void OnAxisEventCallback(const Input_AxisEvent* axisEvent)
 {
     AxisEvent event;
     
-    // The lifecycle of Input_AxisEvent is limited to the callback function. Input_AxisEvent will be destroyed if it is called outside of the callback function.
+    // The lifecycle of Input_AxisEvent is limited to the callback function. It is destroyed when the callback ends.
     InputEvent_AxisAction action;
     Input_Result ret = OH_Input_GetAxisEventAction(axisEvent, &action);
     event.axisAction = action;
@@ -174,10 +174,10 @@ void OnAxisEventCallback(const Input_AxisEvent* axisEvent)
         ret = OH_Input_GetAxisEventAxisValue(axisEvent, AXIS_TYPE_SCROLL_HORIZONTAL, &value);
         event.axisValues.insert(std::make_pair(AXIS_TYPE_SCROLL_HORIZONTAL, value));
     }
-	// ···
+    // ...
 }
 
-// Structure of the input event callback function
+// Input event callback function struct.
 Input_InterceptorEventCallback g_eventCallback;
 
 static napi_value AddEventInterceptor(napi_env env, napi_callback_info info)
@@ -189,12 +189,16 @@ static napi_value AddEventInterceptor(napi_env env, napi_callback_info info)
     // Set the axis event callback function.
     g_eventCallback.axisCallback = OnAxisEventCallback;
     Input_Result ret = OH_Input_AddInputEventInterceptor(&g_eventCallback, nullptr);
-	// ···
+    // ...
 }
 
 static napi_value RemoveEventInterceptor(napi_env env, napi_callback_info info)
 {
     Input_Result ret = OH_Input_RemoveInputEventInterceptor();
-	// ···
+    // ...
 }
 ```
+
+## Samples
+
+- [NDKInputEventInterceptor (C/C++)](https://gitcode.com/openharmony/applications_app_samples/tree/master/code/DocsSample/InputKit/NDKInputEventInterceptor)

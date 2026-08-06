@@ -1,11 +1,12 @@
 # Prebuilt UTDs
+
 <!--Kit: ArkData-->
 <!--Subsystem: DistributedDataManager-->
 <!--Owner: @jcwen-->
 <!--Designer: @junathuawei1; @zph000-->
 <!--Tester: @lj_liujing; @yippo; @logic42-->
 <!--Adviser: @ge-yafang-->
-<!-- md-trans-meta sourceCommit=deff468b8adbfa4199da5cbe7b6cbc33f2bddb1e translatedAt=2026-06-24T07:39:26.947Z pushedAt=2026-06-25T10:36:58.628Z -->
+<!-- md-trans-meta sourceCommit=6174dbe83735166d6bba14dbb2029a3e65a74471 translatedAt=2026-07-27T08:19:10.579Z pushedAt=2026-07-27T10:11:35.091Z -->
 
 A Uniform Type Descriptor (UTD) is used to address data type ambiguity in a system. It provides a standardized way to describe the same data type in different representations, such as MIME types and file name extensions. For example, when describing a JPG/JPEG image, you can use **image/jpeg**, **.jpg**, **.jpeg**, or **image/picture**. For details, see [Generic UTDs](#generic-utds).
 
@@ -15,7 +16,7 @@ To facilitate use, OpenHarmony is prebuilt with common UTDs, which are classifie
 
 ## Generic UTDs
 
-Generic UTDs define universal data types that can be identified by the vast majority of applications, devices, and platforms in cross-application, cross-device, and cross-platform interactions. The IDs of these types of UTDs are in **general.xxx** format. The following table lists the generic UTDs prebuilt in the system.
+Generic UTDs represent universal data types that can be identified by the vast majority of apps, devices, and platforms in cross-app, cross-device, and cross-platform interactions, with UTD IDs in the `general.xxx` format. The following table lists the generic UTDs prebuilt in the system.
 
 | **UTD ID**                         | **BelongingTo**        | **File Name Extension**               | **MIME Type**                                                                        | **Description**                            |
 |-------------------------------------|-------------------------------|----------------------------------------|----------------------------------------------------------------------------------------|------------------------------------|
@@ -220,9 +221,10 @@ Generic UTDs define universal data types that can be identified by the vast majo
 | com.huawei.hmos.musiccreate.gofile                                     |                 general.archive                                                          | .gomusic                            |    -    |  **musiccreate** file format. <!--RP2-->This type is supported since OpenHarmony 6.1.<!--RP2End-->         |
 | com.apple.coreaudio-format                                     |                 general.audio                                                            | .caf                            |    audio/x-caf                   |  CAF audio data file. <!--RP2-->This type is supported since OpenHarmony 6.1.<!--RP2End-->         |
 
-
 ## System-specific UTDs
+
 The system-specific UTDs are closely related to a platform or an operating system and are used for cross-application interaction within the system or platform. The IDs of system-specific UTDs are in the ***os-name*.xxx** format. The following table lists the system-specific UTDs prebuilt in the system.
+
 | **UTD ID**                | **BelongingTo**   | **File Name Extension**              | **MIME Type**                                                    | **Description**                          |
 |----------------------------|--------------------------|---------------------------------------|--------------------------------------------------------------------|----------------------------------|
 | openharmony.form           | general.object           |                  -                    |-                                                                    | Form type defined by OpenHarmony.          |
@@ -247,7 +249,9 @@ The system-specific UTDs are closely related to a platform or an operating syste
 | openharmony.dlp            | general.composite-object | .dlp                                  |-                                                                    | Account-based encryption file defined by OpenHarmony.    |
 
 ## Application-specific UTDs
+
 Application-specific UTDs are defined and maintained by a specific application or organization, and the data interaction is identified by the specific application. The IDs of these types of UTDs are in the **com.*company-name*.xxx** or **org.*organization-name*.xxx** format. The following table lists the application-specific UTDs prebuilt in the system.
+
 | **UTD ID**                                                 | **BelongingTo**                                                   | **File Name Extension**        | **MIME Type**                                                           | **Description**                                   |
 |-------------------------------------------------------------|--------------------------------------------------------------------------|---------------------------------|---------------------------------------------------------------------------|-------------------------------------------|
 | com.microsoft.bmp                                           | general.image                                                            | .bmp, .bm               | image/bmp, image/x-ms-bmp                                                 | Microsoft Windows BMP format.                            |

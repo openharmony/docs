@@ -2,10 +2,11 @@
 
 <!--Kit: Function Flow Runtime Kit-->
 <!--Subsystem: Resourceschedule-->
-<!--Owner: @chuchihtung; @yanleo-->
-<!--Designer: @geoffrey_guo; @huangyouzhong-->
-<!--Tester: @lotsof; @sunxuhao-->
+<!--Owner: @chuchihtung-->
+<!--Designer: @zhanglu161-->
+<!--Tester: @lotsof-->
 <!--Adviser: @jinqiuheng-->
+<!-- md-trans-meta sourceCommit=a4bb221ea8dcccf781d5793faa6c8f62723e3e12 translatedAt=2026-08-03T08:19:14.069Z pushedAt=2026-08-03T10:49:28.927Z -->
 
 ## Overview
 
@@ -22,6 +23,7 @@ This document provides guidance for you to implement concurrent programming base
 FFRT provides a queue-level and task-level timeout maintenance and test mechanism to monitor the end-to-end time for scheduling queues and tasks that carry important responsibilities in user services.
 
 - When a task in the queue times out, the FFRT prints alarm logs and notifies the service through the callback.
+
 - When a task times out, the FFRT prints alarm logs and calls the process-level callback function.
 
 > **NOTE**
@@ -40,6 +42,7 @@ The APIs are as follows:
 **Mechanism**
 
 - When the task execution reaches one second, stack printing is triggered. The stack printing interval is then changed to one minute. After 10 prints, the interval is changed to 10 minutes. After another 10 prints, the interval is changed to and fixed at 30 minutes.
+
 - The `GetBacktraceStringByTid` API of DFX is called for stack printing. This API sends stack capture signals to the blocked thread to trigger interrupts and capture the call stack return.
 
 **Example**
@@ -74,8 +77,11 @@ N/A
 FFRT provides an external interface API `ffrt_dump` to dump the internal information about the running of the FFRT subsystem, including:
 
 1. FFRT statistics: number of submitted tasks, number of running tasks, number of coroutine switching times, and number of completed tasks;
+
 2. Worker thread information: number of Worker threads in each QoS, Worker ID, ID of the running task, task name, and task type.
+
 3. Common task information: common tasks that are not released in the current process, dump task name and ID, and call stack information of each task.
+
 4. Queue task information: queue tasks that are not released in the current process, dump task name and ID, and call stack information of each task.
 
 When the current process is frozen, the DFX module proactively calls the `ffrt_dump` API to dump the FFRT information to the freeze file and store the file in the `/data/log/faultlog/faultlogger/` directory. You can directly use the task call stack information in the file to locate the frame freezing of the corresponding task.
@@ -178,7 +184,8 @@ You can also add traces to your service code to locate the fault. Note that in t
 
 **Mechanism**
 
-- By default, debug logs are disabled for the FFRT, but can be enabled by using commands to obtain more maintenance and test information for fault locating in the development.
+- By default, debug logs are disabled for the FFRT, but can be enabled by using commands to obtain more maintenance and test information for fault locating in the development phase.
+
 - Enable the FFRT debug log function:
 
     ```shell
@@ -414,10 +421,15 @@ The following describes how to use the native APIs provided by FFRT to create pa
 ### Suggestion 1: Functional Programming
 
 - Use pure functions and encapsulate them to express each step of the process.
+
 - There is no global data access.
+
 - There is no internal state reserved.
+
 - Call the `ffrt_submit_base()` or `ffrt_submit_f()` API to submit a function in asynchronous mode.
+
 - Use `in_deps` and `out_deps` of `ffrt_submit_base()` to specify the data objects to be accessed by the function and the access mode.
+
 - Programmers use the `in_deps` and `out_deps` parameters to express task dependencies to ensure the correctness of program execution.
 
 > Using pure functions helps you maximize the parallelism and avoid data races and lock abuse.
@@ -430,21 +442,29 @@ The following describes how to use the native APIs provided by FFRT to create pa
 ### Suggestion 2: Using FFRT APIs
 
 - Do not use the APIs of the system thread library to create threads in FFRT tasks. Instead, use `submit` to submit tasks.
+
 - Use the lock, condition variable, sleep, and I/O APIs provided by FFRT to replace the APIs of the system thread library.
+
   - Using the APIs of the system thread library may block worker threads and result in extra performance overhead.
 
 ### Suggestion 3: Deadline Mechanism
 
 - Use FFRT APIs in processing flows that feature periodic/repeated execution.
-- Use FFRT APIs in processing flows with clear time constraints and is performance critical.
+
+- Use FFRT APIs in processing flows with clear time constraints and that are performance critical.
+
 - Use FFRT APIs in relatively large-granularity processing flows, such as the frame processing flow with the 16.6 ms time constraint.
 
 ### Suggestion 4: Migration from the Thread Model
 
-- Create a thread instead of creating an FFRT task.
+- Replace thread creation with FFRT task creation.
+
   - A thread is logically similar to a task without `in_deps`.
+
 - Identify the dependency between threads and express the dependencies in `in_deps` and `out_deps` of the task.
+
 - Decompose an intra-thread computing process into asynchronous tasks for invoking.
+
 - Use the task dependency and lock mechanism to avoid data races of concurrent tasks.
 
 ### Suggestion 5: C++ APIs Recommended
@@ -458,7 +478,9 @@ The following describes how to use the native APIs provided by FFRT to create pa
 Risks exist when thread local variables are used in FFRT tasks. The details are as follows:
 
 - Thread local variables include the variables defined by `thread_local` provided by C/C++ and the variables created by using `pthread_key_create`.
-- FFRT supports task scheduling. The thread to which a task is scheduled is random. Therefore, there are risks to use thread local variables, which is consistent with all other frameworks that support concurrent task scheduling.
+
+- FFRT supports task scheduling. The thread to which a task is scheduled is random. Therefore, there are risks in using thread local variables, which is consistent with all other frameworks that support concurrent task scheduling.
+
 - By default, an FFRT task runs in coroutine mode. During task execution, the coroutine may exit. When the task is resumed, the thread that executes the task may change.
 
 ### Thread Binding
@@ -470,6 +492,7 @@ Risks exist when thread local variables are used in FFRT tasks. The details are 
 Using the standard library's recursive mutex in FFRT tasks may lead to deadlocks. It is necessary to replace it with the recursive mutex provided by FFRT. The details are as follows:
 
 - When `lock()` is successfully executed, the recursive mutex records the execution stack of the caller as the lock owner. If the caller is the current execution stack, a success message is returned to support nested lock acquisition within the same execution stack. In the standard library, the execution stack is identified by the thread ID.
+
 - When using the standard library's recursive mutex in FFRT tasks, if a task (coroutine) exits between the outer and inner `lock()` calls and resumes execution on a different FFRT Worker thread than the one where `lock()` was initially called, the current thread will not be recognized as the owner. This causes the `lock()` to fail, suspends the FFRT Worker thread, and prevents the subsequent `unlock()` from executing, leading to a deadlock.
 
 ### Synchronization Primitives in FFRT
@@ -479,7 +502,9 @@ Using the standard library's recursive mutex in FFRT tasks may lead to deadlocks
 ### Support for Process `fork()`
 
 - Create a child process in a process that does not use FFRT. FFRT can be used in the child process.
+
 - Create a child process using `fork()` in a process that uses FFRT. FFRT cannot be used in the child process.
+
 - Create a child process using `fork()` and `exec()` in a process that uses FFRT. FFRT can be used in the child process.
 
 ### Dynamic FFRT Deployment
@@ -489,12 +514,15 @@ Using the standard library's recursive mutex in FFRT tasks may lead to deadlocks
 ### Limited Number of Input and Output Dependencies
 
 - For `ffrt_submit_base`, the total number of input dependencies and output dependencies of each task cannot exceed 8.
+
 - For `ffrt_submit_h_base`, the total number of input dependencies and output dependencies of each task cannot exceed 7.
+
 - When a parameter is used as both an input dependency and an output dependency, it is counted as one dependency. For example, if the input dependency is `{&x}` and the output dependency is also `{&x}`, then the number of dependencies is 1.
 
 ### Restrictions on Process or Thread Exit
 
 - When a process exits, the shared resources in the process, such as the thread pool in the FFRT, have been released. **submit()** should not be called.
+
 - When a thread exits, the thread local resources in the FFRT have been released. **submit()** should not be called for the thread that is exiting.
 
 ## Common Anti-Patterns
@@ -502,6 +530,7 @@ Using the standard library's recursive mutex in FFRT tasks may lead to deadlocks
 ### Responsibility for Nulling and Destroying FFRT Objects After Initialization in the C API
 
 - To ensure high performance, the C APIs of FFRT do not use a flag to indicate the object destruction status. You need to release resources properly. Repeatedly destroying an object will cause undefined behavior.
+
 - Noncompliant example 1: Repeated calling of destroy() may cause unpredictable data damage.
 
     ```cpp
@@ -519,7 +548,7 @@ Using the standard library's recursive mutex in FFRT tasks may lead to deadlocks
     }
     ```
 
-- Noncompliant example 2: No calling of destroy() may cause memory leak.
+- Noncompliant example 2: Not calling of destroy() may cause memory leak.
 
     ```cpp
     #include <stdio.h>
@@ -531,11 +560,11 @@ Using the standard library's recursive mutex in FFRT tasks may lead to deadlocks
             ffrt::create_function_wrapper(std::function<void()>([](){ printf("Test task running...\n"); })),
             NULL, NULL, NULL);
         // ...
-        // Memory leak
+        // Memory leak.
     }
     ```
 
-- Recommended example: Call **destroy()** only once. You can leave it empty if necessary.
+- Recommended example: Call **destroy()** only once. You can set it to null if necessary.
 
     ```cpp
     #include <stdio.h>
@@ -554,7 +583,8 @@ Using the standard library's recursive mutex in FFRT tasks may lead to deadlocks
 
 ### Incorrect Variable Lifecycle
 
-- When submitting an FFRT task, pay attention to the misuse of objects or resources during their lifecycle. These misuses may cause program breakdown, data damage, or difficult debugging.
+- When submitting an FFRT task, pay attention to the misuse of objects or resources during their lifecycle. These misuses may cause program breakdown, data damage, or debugging difficulties.
+
 - Noncompliant example 1: Ended variable lifecycle causes a UAF problem.
 
     ```cpp

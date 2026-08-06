@@ -10,7 +10,7 @@ State management V1 (V1 for short) provides a series of state variable decorator
 
 However, V1 has many restrictions on the observation of nested classes. For example, you need to use \@ObjectLink to break down nested classes so that deep data can be observed.
 
-Therefore, API version 12 provides you with a new set of status management V2 (V2 for short). You can declare custom components decorated by \@ComponentV2 (V2 custom components for short) and use them with a new set of decorators (V2 decorators for short). For example, \@Local and \@Param.
+Therefore, API version 12 provides you with a new set of state management V2 (V2 for short). You can declare custom components decorated by \@ComponentV2 (V2 custom components for short) and use them with a new set of decorators (V2 decorators for short). For example, \@Local and \@Param.
 
 The proposal of V2 not only solves the disadvantage of V1 in observing nested classes, but also enhances the functions of some decorators. For example, the \@Monitor of V2 can not only sense the changed data, but also obtain the data before the change.
 
@@ -25,7 +25,7 @@ This guide describes the scenario where V1 and V2 are used together to help deve
 
 ## **Overview**
 
-The rules for mixed use of V1 and V2 status management are as follows:
+The rules for mixed use of V1 and V2 state management are as follows:
 
 * The decorators of V2 cannot be used in the custom components of V1. Otherwise, an error is reported during compilation.
 

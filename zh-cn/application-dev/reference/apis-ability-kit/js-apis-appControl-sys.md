@@ -429,7 +429,7 @@ deleteDisposedStatus(appId: string, callback: AsyncCallback\<void>) : void
 | 参数名       | 类型     | 必填   | 说明                                    |
 | ----------- | ------ | ---- | --------------------------------------- |
 | appId  | string | 是    | 要删除拦截规则的应用的appId或appIdentifier。使用appId设置的拦截规则只能通过appId删除，使用appIdentifier设置的同理。<br/>**说明：**<br/> appId是应用的唯一标识，由应用Bundle名称和签名信息决定，获取方法参见[获取应用的appId](../../quick-start/common-problem-of-application.md#如何获取应用信息中的appid)。<br> [appIdentifier](js-apis-bundleManager-bundleInfo.md#signatureinfo)也是应用的唯一标识，详情信息可参考[什么是appIdentifier](../../quick-start/common-problem-of-application.md#什么是appidentifier)，获取方法参见[获取应用的appIdentifier](../../quick-start/common-problem-of-application.md#如何获取应用信息中的appidentifier)。  |
-| callback    | [AsyncCallback](../apis-basic-services-kit/js-apis-base.md#asynccallback)\<void> | 是    | 回调函数。当设置处置状态成功时，err返回null；否则回调函数返回具体错误对象。                   |
+| callback    | [AsyncCallback](../apis-basic-services-kit/js-apis-base.md#asynccallback)\<void> | 是    | 回调函数。当删除处置状态成功时，err返回null；否则回调函数返回具体错误对象。                   |
 
 **错误码：**
 

@@ -920,7 +920,7 @@ V1的\@Provide和\@Consume与V2的\@Provider和\@Consumer定位和作用类似�
 
 - 本地初始化支持：API version 20以前，\@Consume不允许本地初始化，必须依赖父组件；从API version 20开始，\@Consume支持本地初始化，当找不到对应的\@Provide时使用本地默认值，详见[@Consume装饰的变量支持设置默认值](./arkts-provide-and-consume.md#consume装饰的变量支持设置默认值)；V2中，\@Consumer支持本地初始化，当找不到对应的\@Provider时使用本地默认值。
 
-- 从父组件初始化：V1中，\@Provide可以直接从父组件初始化；V2中，\@Provider不支持外部初始化，需用\@Param和\@Once接受初始值并赋给\@Provider。
+- 从父组件初始化：V1中，\@Provide可以直接从父组件初始化；V2中，\@Provider不支持外部初始化，需用\@Param和\@Once接收初始值并赋给\@Provider。
 
 - 重载支持：V1中，\@Provide默认不支持重载，需设置 allowOverride；V2中，\@Provider默认支持重载，\@Consumer会向上查找最近的\@Provider。
 
@@ -1080,7 +1080,7 @@ struct Parent {
 
 **V1的\@Provide可以从父组件初始化，V2不支持**
 
-在V1中，\@Provide允许从父组件初始化，可以直接通过组件参数传递初始值。在V2中，\@Provider禁止从外部初始化。为实现相同功能，可以在子组件中使用\@Param \@Once接受初始值，然后将其赋值给\@Provider变量。
+在V1中，\@Provide允许从父组件初始化，可以直接通过组件参数传递初始值。在V2中，\@Provider禁止从外部初始化。为实现相同功能，可以在子组件中使用\@Param \@Once接收初始值，然后将其赋值给\@Provider变量。
 
 V1实现：
 
@@ -1118,7 +1118,7 @@ struct Child {
 }
 ```
 
-V2迁移策略：使用\@Param接受初始值，再赋值给\@Provider。
+V2迁移策略：使用\@Param接收初始值，再赋值给\@Provider。
 
 <!-- @[Parent22_start](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkUISample/StateMigrationProject/entry/src/main/ets/pages/componentstatemigration/ProvideParentNoInitV2.ets) -->
 
@@ -1558,7 +1558,7 @@ struct Index {
 
 V1实现：
 
-<!-- @[sync_state_manager_$$](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkUISample/ParadigmStateManagement/entry/src/main/ets/pages/syncStateManager/SyncUsageExample.ets) -->
+<!-- @[Migration_Sync_Dollar_Dollar](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkUISample/ParadigmStateManagement/entry/src/main/ets/pages/migrationDataObjectVariables/MigrationSyncDollarDollar.ets) -->
 
 ``` TypeScript
 @Entry

@@ -1,16 +1,18 @@
 # Supporting Aging-Friendly Design
+
 <!--Kit: ArkUI-->
 <!--Subsystem: ArkUI-->
 <!--Owner: @liyi0309-->
 <!--Designer: @liyi0309-->
 <!--Tester: @fredyuan912-->
 <!--Adviser: @Brilliantry_Rui-->
+<!-- md-trans-meta sourceCommit=39f66a31c4cd77f8015af575d95ace022de7992b translatedAt=2026-08-05T01:26:17.588Z pushedAt=2026-08-05T08:14:50.340Z -->
 
 <!--RP1-->
 
 ## Basic Concepts
 
-Aging-friendly design offers a method to enlarge selected areas or components through a long-press action with a mouse or finger. Specifically, when the system font is larger than 1x, this action on a component with aging-friendly features extracts data from the component within the selected area and presents it in a dialog box. This way, both the component and its internal data (child components) are enlarged, and the entire component is centered on the screen for better visibility.
+Aging adaptation provides a method to zoom in on a selected area or component through a long press using a mouse or finger. Specifically, when the system font size is greater than 1x, if the user long-presses a component that has the aging adaptation method configured, data is extracted from the selected area's component and displayed in a separate dialog box component. The purpose of this method is to enlarge the component and its internal data (child components) while displaying the entire component at the center of the screen, allowing the user to better observe the component.
 
 ## Constraints
 
@@ -42,14 +44,14 @@ Aging-friendly design offers a method to enlarge selected areas or components th
 
 | Activation Method            | Component                                                    |
 | -------------------- | ------------------------------------------------------------ |
-| Long press on the component        | [SideBarContainer](../reference/apis-arkui/arkui-ts/ts-container-sidebarcontainer.md), [Bottom Tab Bar (tabBar)](../reference/apis-arkui/arkui-ts/ts-container-tabcontent.md#tabbar9), [Navigation](../reference/apis-arkui/arkui-ts/ts-basic-components-navigation.md), [NavDestination](../reference/apis-arkui/arkui-ts/ts-basic-components-navdestination.md), [Tabs](../reference/apis-arkui/arkui-ts/ts-container-tabs.md)|
-| Default system font enlargement| [PickerDialog](arkts-fixes-style-dialog.md#picker-dialog-box-pickerdialog), [Button](../reference/apis-arkui/arkui-ts/ts-basic-components-button.md), [Menu](../reference/apis-arkui/arkui-ts/ts-basic-components-menu.md), [Stepper](../reference/apis-arkui/arkui-ts/ts-basic-components-stepper.md), [BindSheet](../reference/apis-arkui/arkui-ts/ts-universal-attributes-sheet-transition.md#bindsheet), [TextInput](../reference/apis-arkui/arkui-ts/ts-basic-components-textinput.md), [TextArea](../reference/apis-arkui/arkui-ts/ts-basic-components-textarea.md), [Search](../reference/apis-arkui/arkui-ts/ts-basic-components-search.md), [SelectionMenu](../reference/apis-arkui/arkui-ts/ohos-arkui-advanced-SelectionMenu.md), [Chip](../reference/apis-arkui/arkui-ts/ohos-arkui-advanced-Chip.md), [Dialog](../reference/apis-arkui/arkui-ts/ohos-arkui-advanced-Dialog.md), [Slider](../reference/apis-arkui/arkui-ts/ts-basic-components-slider.md), [Progress](../reference/apis-arkui/arkui-ts/ts-basic-components-progress.md), [Badge](../reference/apis-arkui/arkui-ts/ts-container-badge.md)|
+| Long press on a component | [SideBarContainer](../reference/apis-arkui/arkui-ts/ts-container-sidebarcontainer.md), bottom tab ([tabBar](../reference/apis-arkui/arkui-ts/ts-container-tabcontent.md#tabbar9)), [Navigation](../reference/apis-arkui/arkui-ts/ts-basic-components-navigation.md), [NavDestination](../reference/apis-arkui/arkui-ts/ts-basic-components-navdestination.md), [Tabs](../reference/apis-arkui/arkui-ts/ts-container-tabs.md) |
+| System font default zoom-in | [PickerDialog](arkts-fixes-style-dialog.md#picker-dialog-box-pickerdialog), [Button](../reference/apis-arkui/arkui-ts/ts-basic-components-button.md), [Menu](../reference/apis-arkui/arkui-ts/ts-basic-components-menu.md), [Stepper](../reference/apis-arkui/arkui-ts/ts-basic-components-stepper.md), [bindSheet](../reference/apis-arkui/arkui-ts/ts-universal-attributes-sheet-transition.md#bindsheet), [TextInput](../reference/apis-arkui/arkui-ts/ts-basic-components-textinput.md), [TextArea](../reference/apis-arkui/arkui-ts/ts-basic-components-textarea.md), [Search](../reference/apis-arkui/arkui-ts/ts-basic-components-search.md), [SelectionMenu](../reference/apis-arkui/arkui-ts/ohos-arkui-advanced-SelectionMenu.md), [Chip](../reference/apis-arkui/arkui-ts/ohos-arkui-advanced-Chip.md), [Dialog](../reference/apis-arkui/arkui-ts/ohos-arkui-advanced-Dialog.md), [Slider](../reference/apis-arkui/arkui-ts/ts-basic-components-slider.md), [Progress](../reference/apis-arkui/arkui-ts/ts-basic-components-progress.md), [Badge](../reference/apis-arkui/arkui-ts/ts-container-badge.md) |
 
 ## Example
 
 This example uses the **SideBarContainer** component to trigger an aging-friendly dialog box through a long press of the control button. Note that the dialog box does not appear if the system font size is at the 1x setting. Instead, it appears only when the system font size is set to greater than 1x.
 
-<!-- @[trigger_aging_friendly_by_long_press](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkUISample/SupportingAgingFriendly/entry/src/main/ets/pages/SideBarContainer.ets) -->
+<!-- @[trigger_aging_friendly_by_long_press](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkUISample/SupportingAgingFriendly/entry/src/main/ets/pages/SideBarContainer.ets) --> 
 
 ``` TypeScript
 import { hilog } from '@kit.PerformanceAnalysisKit';
@@ -64,12 +66,10 @@ const NUMBER3 = 3;
 @Entry
 @Component
 struct SideBarContainerExample {
-  @State currentFontSizeScale: number = NUMBER1;
   normalIcon: Resource = $r('app.media.icon'); // Replace  $r('app.media.icon') with the image resource file you use.
   selectedIcon: Resource = $r('app.media.icon'); // Replace  $r('app.media.icon') with the image resource file you use.
   @State arr: number[] = [NUMBER1, NUMBER2, NUMBER3];
   @State current: number = NUMBER1;
-  @State title: string = 'Index01';
 
   build() {
     SideBarContainer(SideBarContainerType.Embed) {
@@ -84,9 +84,8 @@ struct SideBarContainerExample {
           }
           .onClick(() => {
             this.current = item;
-            this.title = 'Index0' + item;
           })
-        }, (item: string) => item)
+        }, (item: number) => item.toString())
       }.width('100%')
       .justifyContent(FlexAlign.SpaceEvenly)
       // Replace $r('sys.color.mask_fifth') with the resource file you use.
@@ -120,7 +119,7 @@ Switching system font sizes and long-pressing components with aging-friendly cap
 
 The [TextPickerDialog](../reference/apis-arkui/arkui-ts/ts-methods-textpicker-dialog.md) component triggers an aging-friendly dialog box when the system font is set to greater than 1x, which does not occur at the default 1x setting.
 
-<!-- @[trigger_aging_friendly_by_set_font_size](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkUISample/SupportingAgingFriendly/entry/src/main/ets/pages/TextPickerDialog.ets) -->
+<!-- @[trigger_aging_friendly_by_set_font_size](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkUISample/SupportingAgingFriendly/entry/src/main/ets/pages/TextPickerDialog.ets) --> 
 
 ``` TypeScript
 import { hilog } from '@kit.PerformanceAnalysisKit';
@@ -167,7 +166,7 @@ struct TextPickerExample {
   linesNum(max: number): void {
     let items: string[] = this.triggered.split('\n').filter(item => item != '');
     if (items.length > max) {
-      this.showTriggered = items.slice(-this.maxLines).join('\n');
+      this.showTriggered = items.slice(-max).join('\n');
     } else {
       this.showTriggered = this.triggered;
     }
@@ -221,4 +220,5 @@ struct TextPickerExample {
 | System Font at 1x (Before Aging-Friendly Features Are Enabled)| System Font at 1.75x (After Aging-Friendly Features Are Enabled)|
 | ---------------------------------- | ------------------------------------ |
 | ![](figures/aging_03_replace.png)          | ![](figures/aging_04_replace.png)            |
+
 <!--RP1End-->

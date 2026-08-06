@@ -6,26 +6,32 @@
 <!--Tester: @mahailong123456-->
 <!--Adviser: @HelloShuo-->
 
-**FormEditExtensionContext**, inherited from [UIExtensionContext](../apis-ability-kit/js-apis-inner-application-uiExtensionContext.md), is the context of [FormEditExtensionAbility](./js-apis-app-form-formEditExtensionAbility.md).
+**FormEditExtensionContext**, which inherits from [UIExtensionContext](../apis-ability-kit/js-apis-inner-application-uiExtensionContext.md), is the context of [FormEditExtensionAbility](./js-apis-app-form-formEditExtensionAbility.md). It is used to manage the contextual environment for widget editing scenarios, supporting the launching of the widget provider's page and the associated application's UIAbility, and is suitable for scenarios where interaction with the widget provider is required during the widget editing process.
 
 > **NOTE**
 >
-> - The initial APIs of this module are supported since API version 18. Newly added APIs will be marked with a superscript to indicate their earliest API version.
+> The initial APIs of this module are supported since API version 18. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 >
-> - The APIs of this module can be used only in the stage model.
+> The APIs of this module can be used only in the stage model.
 
 ## Modules to Import
 ```ts
 import { FormEditExtensionAbility } from '@kit.FormKit';
 ```
+
 ## FormEditExtensionContext
-You can use **FormEditExtensionContext** to access specific **FormEditExtensionAbility** resources.
+
+**FormEditExtensionContext** provides the capability of accessing specific **FormEditExtensionAbility** resources.
 
 ### startSecondPage
 
-startSecondPage(want: Want): Promise<[AbilityResult](../apis-ability-kit/js-apis-inner-ability-abilityResult.md)>
+startSecondPage(want: Want): Promise&lt;[AbilityResult](../apis-ability-kit/js-apis-inner-ability-abilityResult.md)&gt;
 
 Starts the widget provider page to be edited. This API uses a promise to return the result.
+
+**Use cases**
+- When a user taps the edit button on the widget editing screen, the editing page of the widget provider needs to be opened.
+- When a user needs to modify the widget configuration or content, the widget provider app is started for editing.
 
 **Model restriction**: This API can be used only in the stage model.
 
@@ -33,15 +39,15 @@ Starts the widget provider page to be edited. This API uses a promise to return 
 
 **Parameters**
 
-  | Name| Type   | Mandatory| Description                                  |
-  | ------ | ------ | ---- | ------------------------------------- |
-  | want  |  [Want](../apis-ability-kit/js-apis-app-ability-want.md)  | Yes  | Information about the editing page that needs to be started by the home screen of a third-party application.|
+| Name| Type   | Mandatory| Description                                  |
+| ------ | ------ | ---- | ------------------------------------- |
+| want  |  [Want](../apis-ability-kit/js-apis-app-ability-want.md)  | Yes  | Information about the editing page to be started. It must contain the **bundleName** field, and **parameters** must contain **secPageAbilityName**.|
 
-**Return value**
+ **Return value**
 
-  | Type| Description   |
-  | ------ | ------ |
-  | Promise<[AbilityResult](../apis-ability-kit/js-apis-inner-ability-abilityResult.md)>  |  Promise used to return the ability result. |
+| Type| Description   |
+| ------ | ------ |
+| Promise&lt;[AbilityResult](../apis-ability-kit/js-apis-inner-ability-abilityResult.md)&gt;  |  Promise used to return the result code and data when the started page exits. |
 
 **Error codes**
 
@@ -84,11 +90,11 @@ export default class ExampleFormEditAbility extends FormEditExtensionAbility {
 }
 ```
 
-### startUIAbility<sup>23+<sup>
+### startUIAbility<sup>23+</sup>
 
 startUIAbility(want: Want): Promise&lt;void&gt;
 
-Starts UIAbility of the application to which a widget belongs. This API uses a promise to return the result.
+Starts UIAbility of the application to which a widget belongs. This API uses a promise to return the result. Note: This API must be called when the widget editing page is in the foreground. If the page is not in the foreground, error code 16501014 will be returned.
 
 **Model restriction**: This API can be used only in the stage model.
 
@@ -96,15 +102,15 @@ Starts UIAbility of the application to which a widget belongs. This API uses a p
 
 **Parameters**
 
-  | Name| Type   | Mandatory| Description                                  |
-  | ------ | ------ | ---- | ------------------------------------- |
-  | want  |  [Want](../apis-ability-kit/js-apis-app-ability-want.md#want)  | Yes  | Want information of the UIAbility of the application.|
+| Name| Type   | Mandatory| Description                                  |
+| ------ | ------ | ---- | ------------------------------------- |
+| want  |  [Want](../apis-ability-kit/js-apis-app-ability-want.md#want)  | Yes  | Want information of the UIAbility to be started. It must contain the **abilityName** field.|
 
 **Return value**
 
-  | Type| Description   |
-  | ------ | ------ |
-  | Promise&lt;void&gt;   |  Promise that returns no value. |
+| Type| Description   |
+| ------ | ------ |
+| Promise&lt;void&gt;   |  Promise that returns no value. |
 
 **Error codes**
 

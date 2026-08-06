@@ -3,9 +3,10 @@
 <!--Kit: Performance Analysis Kit-->
 <!--Subsystem: HiviewDFX-->
 <!--Owner: @liujiaxing2024-->
-<!--Designer: @junjie_shi-->
+<!--Designer: @jiangwenhao-->
 <!--Tester: @gcw_KuLfPSbe-->
-<!--Adviser: @foryourself-->
+<!--Adviser: @jinqiuheng-->
+<!-- md-trans-meta sourceCommit=9592faf19ea4c7cae04b17ae5443971c6b571565 translatedAt=2026-07-29T10:47:20.163Z pushedAt=2026-07-29T11:15:36.813Z -->
 
 ## What should I do if the subscribed events cannot be found?
 
@@ -19,12 +20,11 @@ The application exits after the crash or freeze event occurs.
 
 You can restart the application and view the event content.
 
-
 ## What should I do if the external_log file cannot be obtained?
 
 **Symptom**
 
-The following log is displayed in HiLog:
+The following log appears in HiLog:
 
 - eventInfo.params.external_log=[]
 
@@ -84,7 +84,6 @@ For example, the system event C is subscribed to by modules A and B in an applic
 
 Check whether the **external_log** file is deleted by other modules.
 
-
 ## What should I do if the external_log file cannot be deleted
 
 **Symptom**
@@ -95,12 +94,12 @@ The directory containing the **external_log** files reaches its space limit, but
 
 - If you have the permission to access the **/data/app/el2/100/log/*application bundle name*** directory on the device, you can manually delete the **external_log** files. The file directory is **/data/app/el2/100/log/*application bundle name*/hiappevent** (or **resourcelimit**, or **watchdog**).
 
-- If you do not have the permission to access the **/data/app/el2/100/log/*application bundle name*** directory on the device, you can delete the **external_log** files in the application code. The sample code is as follows: For details about the file deletion API, see [fs.unlink](../reference/apis-core-file-kit/js-apis-file-fs.md#fsunlink).
+If you do not have permission to access the **/data/app/el2/100/log/*application package name*** directory on the device, you can delete the **external_log** log files in the app code. A code example is provided below. For the file deletion API, see [fileIo.unlink](../reference/apis-core-file-kit/js-apis-file-fs.md#fileiounlink).
 
 **Code Example**
 
 ```ts
-import { fileIo as fs } from '@kit.CoreFileKit';
+import { fileIo } from '@kit.CoreFileKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 import { hiAppEvent, hilog } from '@kit.PerformanceAnalysisKit';
 
@@ -132,22 +131,22 @@ import { hiAppEvent, hilog } from '@kit.PerformanceAnalysisKit';
               let externalLog: string = eventInfo.params['external_log'][index];
               hilog.info(0x0000, 'testTag', `externalLog=${externalLog}`);
               // Verify the access permission.
-              let res = fs.accessSync(externalLog);
+              let res = fileIo.accessSync(externalLog);
               if (res) {
                 hilog.info(0x0000, 'testTag', `HiAppEvent file exists`);
               } else {
                 hilog.error(0x0000, 'testTag', `HiAppEvent file does not exist`);
               }
               // Verify the read and write permissions.
-              fs.open(externalLog, fs.OpenMode.READ_WRITE).then((file: fs.File) => {
+              fileIo.open(externalLog, fileIo.OpenMode.READ_WRITE).then((file: fileIo.File) => {
               hilog.info(0x0000, 'testTag', `HiAppEvent file=${externalLog} fd=${file.fd}`);
-              fs.closeSync(file);
+              fileIo.closeSync(file);
               }).catch((err: BusinessError) => {
                 hilog.info(0x0000, 'testTag',
                 `HiAppEvent open file=${externalLog} failed with error message=${err.message}, error code=${err.code}`);
               });
               // Delete the external_log file.
-              fs.unlink(externalLog).then(() => {
+              fileIo.unlink(externalLog).then(() => {
                 console.info("HiAppEvent remove file:" + externalLog + " succeed");
               }).catch((err: BusinessError) => {
                 console.error("HiAppEvent remove file:" + externalLog + " failed with error message: " + err.message +
@@ -170,11 +169,9 @@ HiAppEvent file=/data/storage/el2/log/hiappevent/APP_CRASH_1751081104816_35595.l
 HiAppEvent remove file:/data/storage/el2/log/hiappevent/APP_CRASH_1751081104816_35595.log succeed
 ```
 
-
 > **NOTE**
 >
 > The path of **external_log** is the application sandbox directory, not the actual physical path. The application has the permission to access its own sandbox directory. The **external_log** space is limited. After processing log files, delete them in a timely manner.
-
 
 ## Does a thread or process receive only its own event callbacks within the same application?
 

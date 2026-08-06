@@ -2,10 +2,11 @@
 
 <!--Kit: Performance Analysis Kit-->
 <!--Subsystem: HiviewDFX-->
-<!--Owner: @rr_cn-->
+<!--Owner: @Chenyufan466765692-->
 <!--Designer: @peterhuangyu-->
 <!--Tester: @gcw_KuLfPSbe-->
-<!--Adviser: @foryourself-->
+<!--Adviser: @jinqiuheng-->
+<!-- md-trans-meta sourceCommit=6bafd7bb37af23db4f6f83a5e90138b583afaab9 translatedAt=2026-07-29T04:08:27.902Z pushedAt=2026-07-29T06:45:28.126Z -->
 
 ## Overview
 
@@ -33,7 +34,7 @@ The application recovery APIs are provided by the appRecovery module, which can 
 | saveAppState(context?: UIAbilityContext): boolean | Saves the UIAbility state specified by **Context**.|
 | setRestartWant(want: Want): void | Sets the UIAbility to be restarted when **restartApp** is called and **RestartFlag** is not set to **NO_RESTART**. (**abilityName** of **want** can be set to the name of the UIAbility.) The UIAbility must be under the same bundle name.|
 
-No error will be thrown if the preceding APIs are used in the troubleshooting scenario. The following are some notes on API usage: For details about the parameters, see [@ohos.app.ability.appRecovery (Application Recovery)](https://gitcode.com/openharmony/docs/blob/master/en/application-dev/reference/apis-ability-kit/js-apis-app-ability-appRecovery.md).
+As the preceding APIs may be used during fault handling, they do not return exceptions. You need to be familiar with the usage scenarios. For details about the parameter definitions, see [@ohos.app.ability.appRecovery (Application Recovery)](../reference/apis-ability-kit/js-apis-app-ability-appRecovery.md).
 
 **enableAppRecovery**: This API should be called during application initialization. For example, you can call this API in **onCreate** of **AbilityStage**. After this API is called, the application will be recovered based on the first UIAbility that supports recovery.
 
@@ -43,9 +44,9 @@ No error will be thrown if the preceding APIs are used in the troubleshooting sc
 
 **restartApp**: After this API is called, the recovery framework kills the current process and restarts the UIAbility specified by **setRestartWant**, with **APP_RECOVERY** set as the startup cause.
 
-In API version 9 and scenarios where a UIAbility is not specified by **setRestartWant**, the last foreground UIAbility that supports recovery is started. If the no foreground UIAbility supports recovery, the application crashes.
+In API version 9 and scenarios where a UIAbility is not specified by **setRestartWant**, the last foreground UIAbility that supports recovery is started. If the current foreground UIAbility does not support recovery, the application crashes.
 
-If a saved state is available for the restarted UIAbility, the saved state is passed as the **wantParam** attribute in the **want** parameter of the UIAbility's **onCreate** callback. The interval between two restarts must be greater than 1 minute. If this API is called repeatedly within 1 minute, the application exits but does not restart. The behavior of automatic restart is the same as that of proactive restart.
+If the restarted UIAbility has saved state data, this data is passed in as the **wantParam** property in the **want** parameter of the UIAbility's **onCreate** lifecycle callback. The interval between two restarts must be greater than one minute. Calling this API repeatedly within one minute only exits the app without restarting it. The behavior of automatic restart is the same as that of manual restart.
 
 ### Application State Management
 
@@ -63,7 +64,7 @@ API version 10 or later supports saving of the application state when an applica
 
 ![20230315112235.png](figures/20230315112235.png)
 
-When the application is suspended, the callback is not executed in the JS thread. Therefore, you are advised not to use the imported dynamic Native library or access the **thread_local** object created by the main thread in the code of the **onSaveState** callback.
+When the application is frozen, the callback is not executed in the JS thread. Therefore, you are advised not to use the imported dynamic Native library or access the **thread_local** object created by the main thread in the code of the **onSaveState** callback.
 
 ### Framework Fault Management
 
@@ -71,7 +72,7 @@ Fault management is an important way for applications to deliver a better user e
 
 - Fault listening refers to the process of registering an [ErrorObserver](../reference/apis-ability-kit/js-apis-inner-application-errorObserver.md) via [errorManager](../reference/apis-ability-kit/js-apis-app-ability-errorManager.md), listening for faults, and notifying the listener of the faults.
 
-- Fault rectification refers to the process of restoring the application state and data through [appRecovery](../reference/apis-ability-kit/js-apis-app-ability-appRecovery.md).
+- Fault recovery refers to [appRecovery](../reference/apis-ability-kit/js-apis-app-ability-appRecovery.md), which restarts the app and restores it to the state before the fault occurred.
 
 - Fault query is the process of calling APIs of [faultLogger](../reference/apis-performance-analysis-kit/js-apis-faultLogger.md) to obtain the fault information.
 
@@ -93,9 +94,9 @@ Common fault types include JavaScript application crash, application freezing, a
 | -------- | -------- | -------- | -------- | -------- |
 | [JS_CRASH](../reference/apis-performance-analysis-kit/js-apis-faultLogger.md#faulttype) | Supported| Supported| Supported| Supported|
 | [APP_FREEZE](../reference/apis-performance-analysis-kit/js-apis-faultLogger.md#faulttype) | This fault is supported since API version 18.| Supported| Supported| Supported|
-| [CPP_CRASH](../reference/apis-performance-analysis-kit/js-apis-faultLogger.md#faulttype) | Not supported| Not supported| Not supported| Supported|
+| [CPP_CRASH](../reference/apis-performance-analysis-kit/js-apis-faultLogger.md#faulttype) | Not supported | Not supported | Supported at API 24 and later | Supported |
 
-**State Saving** in the table header means to save the application state when a fault occurs. To protect user data as much as possible when an AppFreeze occurs, you can adopt either the periodic or automatic way, and the latter will save user data when a UIAbility is switched to the background.
+Here, state saving refers to state saving upon a fault. For app freeze scenarios, you can periodically save the state or automatically save the state when the UIAbility switches to the background, so as to protect user data to the greatest extent possible.
 
 ## How to Develop
 
@@ -120,7 +121,7 @@ export default class MyAbilityStage extends AbilityStage {
 
 Generally, the UIAbility configuration list is named **module.json5**.
 
-```json
+```ts
 {
     "abilities": [
       {
@@ -274,7 +275,7 @@ export default class EntryAbility extends UIAbility {
 
 **Restart flag for the failed UIAbility**
 
-If the failed UIAbility is restarted again, the [ABILITY_RECOVERY_RESTART](../reference/apis-ability-kit/js-apis-app-ability-wantConstant.md#params) flag will be added as a **parameters** member for the **want** parameter in **onCreate** and its value is **true**.
+When the faulty UIAbility is restarted, the **parameters** member of the **want** parameter in the **onCreate** lifecycle callback contains the [ABILITY_RECOVERY_RESTART](../reference/apis-ability-kit/js-apis-app-ability-wantConstant.md#params) flag, with the value **true**.
 
 ```ts
 import { AbilityConstant, UIAbility, Want, wantConstant } from '@kit.AbilityKit';

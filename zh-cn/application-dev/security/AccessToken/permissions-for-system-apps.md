@@ -77,6 +77,8 @@
 
 **起始版本**：14
 
+**支持设备**：PC/2in1 | Wearable
+
 ## ohos.permission.ACCESS_BBOX_DIR
 
 允许系统应用读取bbox路径下的日志文件。
@@ -6232,6 +6234,20 @@
 
 **起始版本**：26.0.0
 
+## ohos.permission.ACCESS_FUNCTION
+
+允许系统应用访问可用的函数。
+
+**权限级别**：system_basic
+
+**授权方式**：系统授权（system_grant）
+
+**是否支持证书授权**：true
+
+**支持设备**：Phone | PC/2in1 | Tablet | TV | Wearable | Car
+
+**起始版本**：26.0.0
+
 ## ohos.permission.ACCESS_MAPDATA_DIR
 
 允许系统应用读写地图数据。
@@ -6606,6 +6622,20 @@
 
 **起始版本**：26.0.0
 
+## ohos.permission.UPDATE_FORM_CROSS_BUNDLE
+
+允许应用更新其他应用的卡片。
+
+**权限级别**：system_basic
+
+**授权方式**：系统授权（system_grant）
+
+**是否支持证书授权**：true
+
+**支持设备**：Phone | PC/2in1 | Tablet | TV | Car
+
+**起始版本**：26.0.0
+
 ## ohos.permission.FILE_MANAGER_SERVICE_DATA_ACCESS
 
 允许应用获取和管理文件管理文件。
@@ -6619,5 +6649,19 @@
 **是否支持证书授权**：true
 
 **支持设备**：Phone | PC/2in1 | Tablet
+
+**起始版本**：26.0.0
+
+## ohos.permission.MANAGE_CLONE_BUNDLE_PREFERENCES
+
+允许应用管理分身偏好设置。
+
+**权限级别**：system_basic
+
+**授权方式**：系统授权（system_grant）
+
+**是否支持证书授权**：true
+
+**支持设备**：Phone | PC/2in1 | Tablet | TV | Wearable | Car
 
 **起始版本**：26.0.0

@@ -1,4 +1,4 @@
-# 创建/终止Native子进程（C/C++）
+# Native子进程开发指导（C/C++）
 <!--Kit: Ability Kit-->
 <!--Subsystem: Ability-->
 <!--Owner: @SKY2001-->
@@ -6,7 +6,11 @@
 <!--Tester: @liangchengguang-->
 <!--Adviser: @HelloCrease-->
 
-本模块提供了两种创建[Native子进程](../application-models/ability-terminology.md#native子进程)的方式，以及一种终止子进程的方式。
+## 概述
+
+在Native层多进程编程场景中，开发者常面临父子进程通信复杂、参数传递困难等问题。[Native子进程](../application-models/ability-terminology.md#native子进程)机制允许应用通过C API创建子进程，支持IPC通信和参数传递，适用于需要高性能进程隔离和跨进程通信的场景。
+
+本模块提供了两种创建[Native子进程](../application-models/ability-terminology.md#native子进程)的方式，以及子进程获取启动参数、终止子进程的方式。
 - [创建支持IPC通信的Native子进程](#创建支持ipc通信的native子进程)：创建子进程，并在父子进程间建立IPC通道，适用于父子进程需要IPC通信的场景。对[IPCKit](../ipc/ipc-capi-development-guideline.md)存在依赖。
 - [创建支持参数传递的Native子进程](#创建支持参数传递的native子进程)：创建子进程，并传递字符串和fd句柄参数到子进程。适用于需要传递参数到子进程的场景。
 - [终止子进程](#终止子进程)：终止当前进程创建的[Native子进程](../application-models/ability-terminology.md#native子进程)或[ArkTS子进程](../application-models/ability-terminology.md#arkts子进程)。
@@ -36,23 +40,25 @@
 
 基于已创建完成的Native应用开发工程，在此基础上介绍如何使用`AbilityKit`提供的C API接口，创建Native子进程，并同时在父子进程间建立IPC通道。
 
-**动态库文件**
+1. 添加动态库文件和头文件引用。
 
-```txt
-libipc_capi.so
-libchild_process.so
-```
+    在CMakeLists.txt文件中添加动态库文件。
 
-**头文件**
+    ```txt
+    libipc_capi.so
+    libchild_process.so
+    ```
 
-<!-- @[child_process_head_file](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/Ability/NativeChildProcessIpc/entry/src/main/cpp/ChildProcessSample.cpp) -->
+    在源文件中引入头文件。
 
-``` C++
-#include <IPCKit/ipc_kit.h>
-#include <AbilityKit/native_child_process.h>
-```
+    <!-- @[child_process_head_file](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/Ability/NativeChildProcessIpc/entry/src/main/cpp/ChildProcessSample.cpp) -->
+    
+    ``` C++
+    #include <IPCKit/ipc_kit.h>
+    #include <AbilityKit/native_child_process.h>
+    ```
 
-1. 子进程-实现必要的导出方法。
+2. 在子进程中实现必要的导出方法。
 
     在子进程中，实现必要的两个函数**NativeChildProcess_OnConnect**及**NativeChildProcess_MainProc**并导出（假设代码所在的文件名为ChildProcessSample.cpp）。其中NativeChildProcess_OnConnect方法返回的OHIPCRemoteStub对象负责与主进程进行IPC通信，具体实现方法请参考[IPC通信开发指导（C/C++)](../ipc/ipc-capi-development-guideline.md)，本文不再赘述。
 
@@ -119,9 +125,9 @@ libchild_process.so
     ```
 
 
-2. 子进程-编译为动态链接库。
+3. 编译动态链接库。
 
-    修改CMakeList.txt文件，编译为动态链接库（假设需要编译出的库文件名称为libchildprocesssample.so），并添加IPC动态库依赖。
+    修改CMakeLists.txt文件，编译动态链接库（假设需要编译出的库文件名称为libchildprocesssample.so），并添加IPC动态库依赖。
 
     ```txt
     add_library(childprocesssample SHARED
@@ -141,7 +147,7 @@ libchild_process.so
     )
     ```
 
-3. 主进程-实现子进程启动结果回调函数。
+4. 在主进程中实现子进程启动结果回调函数。
 
     <!-- @[main_handle_child_start_callback](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/Ability/NativeChildProcessIpc/entry/src/main/cpp/MainProcessSample.cpp) -->
     
@@ -166,9 +172,9 @@ libchild_process.so
 
     回调函数传递的第二个参数OHIPCRemoteProxy对象，会与子进程实现的**NativeChildProcess_OnConnect**方法返回的OHIPCRemoteStub对象间建立IPC通道，具体使用方法参考[IPC通信开发指导（C/C++)](../ipc/ipc-capi-development-guideline.md)，本文不再赘述；OHIPCRemoteProxy对象使用完毕后，需要调用[OH_IPCRemoteProxy_Destroy](../reference/apis-ipc-kit/capi-ipc-cremote-object-h.md#oh_ipcremoteproxy_destroy)函数释放。
 
-4. 主进程-启动Native子进程。
+5. 在主进程中启动Native子进程。
 
-    调用API启动Native子进程，需要注意返回值为NCP_NO_ERROR仅代表成功调用native子进程启动逻辑，实际的启动结果通过第二个参数中指定的回调函数异步通知。需注意**仅允许在主进程中创建子进程**。
+    调用[OH_Ability_CreateNativeChildProcess](../reference/apis-ability-kit/capi-native-child-process-h.md#oh_ability_createnativechildprocess)接口启动Native子进程，需要注意返回值为NCP_NO_ERROR仅代表成功调用native子进程启动逻辑，实际的启动结果通过第二个参数中指定的回调函数异步通知。需注意**仅允许在主进程中创建子进程**。
 
     <!-- @[main_processIpc_launch_native_child](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/Ability/NativeChildProcessIpc/entry/src/main/cpp/MainProcessSample.cpp) -->
     
@@ -205,9 +211,9 @@ libchild_process.so
     ```
 
 
-5. 主进程-添加编译依赖项。
+6. 为主进程添加编译依赖项。
 
-    修改CMaklist.txt添加必要的依赖库，假设主进程所在的so名称为libmainprocesssample.so（主进程和子进程的实现也可以选择编译到同一个动态库文件）。
+    修改CMakeLists.txt添加必要的依赖库，假设主进程所在的so名称为libmainprocesssample.so（主进程和子进程的实现也可以选择编译到同一个动态库文件）。
 
     ```txt
     target_link_libraries(mainprocesssample PUBLIC
@@ -234,26 +240,27 @@ libchild_process.so
 
 ### 开发步骤
 
+1. 添加动态库文件和头文件引用。
 
-**动态库文件**
+    在CMakeLists.txt文件中添加动态库文件。
 
-```txt
-libchild_process.so
-```
+    ```txt
+    libchild_process.so
+    ```
 
-**头文件**
+    在源文件中引入头文件。
 
-<!-- @[create_native_child_param_header](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/Ability/NativeChildProcessParams/entry/src/main/cpp/ChildProcessFunc.cpp) -->
+    <!-- @[create_native_child_param_header](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/Ability/NativeChildProcessParams/entry/src/main/cpp/ChildProcessFunc.cpp) -->
+    
+    ``` C++
+    #include <AbilityKit/native_child_process.h>
+    ```
 
-``` C++
-#include <AbilityKit/native_child_process.h>
-```
-
-1. 子进程-实现必要的导出方法。
+2. 在子进程中实现必要的导出方法。
 
     在子进程中，实现参数为[NativeChildProcess_Args](../reference/apis-ability-kit/capi-nativechildprocess-args.md)的入口函数并导出（假设代码所在的文件名为ChildProcessSample.cpp）。子进程启动后会调用该入口函数，该函数返回后子进程随即退出。
 
-    <!-- @[child_process_necessary_export_impl](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/Ability/NativeChildProcessParams/entry/src/main/cpp/ChildProcessFunc.cpp) -->
+    <!-- @[child_process_necessary_export_impl](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/Ability/NativeChildProcessParams/entry/src/main/cpp/ChildProcessFunc.cpp) --> 
     
     ``` C++
     #include <AbilityKit/native_child_process.h>
@@ -265,7 +272,7 @@ libchild_process.so
      */
     void Main(NativeChildProcess_Args args)
     {
-        // 获取传入的entryPrams
+        // 获取传入的entryParams
         char *entryParams = args.entryParams;
         // 获取传入的fd列表
         NativeChildProcess_Fd *current = args.fdList.head;
@@ -280,9 +287,9 @@ libchild_process.so
     ```
 
 
-2. 子进程-编译为动态链接库。
+3. 编译动态链接库。
 
-    修改CMakeList.txt文件，编译为动态链接库（假设需要编译出的库文件名称为libchildprocesssample.so），并添加元能力动态库依赖。
+    修改CMakeLists.txt文件，编译为动态链接库（假设需要编译出的库文件名称为libchildprocesssample.so），并添加元能力动态库依赖。
 
     ```txt
     add_library(childprocesssample SHARED
@@ -302,9 +309,9 @@ libchild_process.so
     )
     ```
 
-3. 主进程-启动Native子进程。
+4. 在主进程中启动Native子进程。
 
-    调用API启动Native子进程，返回值为NCP_NO_ERROR代表成功启动native子进程。
+    调用[OH_Ability_StartNativeChildProcess](../reference/apis-ability-kit/capi-native-child-process-h.md#oh_ability_startnativechildprocess)接口启动Native子进程，返回值为NCP_NO_ERROR代表成功启动native子进程。
 
     <!-- @[main_process_launch_native_child](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/Ability/NativeChildProcessParams/entry/src/main/cpp/MainProcessFunc.cpp) -->  
     
@@ -358,9 +365,9 @@ libchild_process.so
     }
     ```
 
-4. 主进程-添加编译依赖项。
+5. 为主进程添加编译依赖项。
 
-    修改CMaklist.txt添加必要的依赖库，假设主进程所在的so名称为libmainprocesssample.so（主进程和子进程的实现也可以选择编译到同一个动态库文件）。
+    修改CMakeLists.txt添加必要的依赖库，假设主进程所在的so名称为libmainprocesssample.so（主进程和子进程的实现也可以选择编译到同一个动态库文件）。
 
     ```txt
     target_link_libraries(mainprocesssample PUBLIC
@@ -386,66 +393,67 @@ libchild_process.so
 
 ### 开发步骤
 
+1. 添加动态库文件和头文件引用。
 
-**动态库文件**
+    在CMakeLists.txt文件中添加动态库文件。
 
-```txt
-libchild_process.so
-```
+    ```txt
+    libchild_process.so
+    ```
 
-**头文件**
+    在源文件中引入头文件。
 
-<!-- @[child_get_start_params_header](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/Ability/NativeChildProcessParams/entry/src/main/cpp/ChildGetStartParams.cpp) -->
+    <!-- @[child_get_start_params_header](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/Ability/NativeChildProcessParams/entry/src/main/cpp/ChildGetStartParams.cpp) -->
+    
+    ``` C++
+    #include <AbilityKit/native_child_process.h>
+    ```
 
-``` C++
-#include <AbilityKit/native_child_process.h>
-```
+2. 在子进程中获取启动参数。
 
-**获取启动参数**
+    [OH_Ability_StartNativeChildProcess](../reference/apis-ability-kit/capi-native-child-process-h.md#oh_ability_startnativechildprocess)创建子进程后，子进程内的任意so和任意子线程可以通过调用[OH_Ability_GetCurrentChildProcessArgs](../reference/apis-ability-kit/capi-native-child-process-h.md#oh_ability_getcurrentchildprocessargs)()获取到子进程的启动参数[NativeChildProcess_Args](../reference/apis-ability-kit/capi-nativechildprocess-args.md)，便于操作相关的文件描述符。
 
-[OH_Ability_StartNativeChildProcess](../reference/apis-ability-kit/capi-native-child-process-h.md#oh_ability_startnativechildprocess)创建子进程后，子进程内的任意so和任意子线程可以通过调用[OH_Ability_GetCurrentChildProcessArgs](../reference/apis-ability-kit/capi-native-child-process-h.md#oh_ability_getcurrentchildprocessargs)()获取到子进程的启动参数[NativeChildProcess_Args](../reference/apis-ability-kit/capi-nativechildprocess-args.md)，便于操作相关的文件描述符。
-
-<!-- @[child_get_start_params_main](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/Ability/NativeChildProcessParams/entry/src/main/cpp/ChildGetStartParams.cpp) -->
-
-``` C++
-#include <AbilityKit/native_child_process.h>
-#include <thread>
-
-extern "C" {
-void ThreadFunc()
-{
-    // 获取子进程的启动参数
-    NativeChildProcess_Args *args = OH_Ability_GetCurrentChildProcessArgs();
-    // 获取启动参数失败时返回nullptr
-    if (args == nullptr) {
-        return;
+    <!-- @[child_get_start_params_main](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/Ability/NativeChildProcessParams/entry/src/main/cpp/ChildGetStartParams.cpp) --> 
+    
+    ``` C++
+    #include <AbilityKit/native_child_process.h>
+    #include <thread>
+    
+    extern "C" {
+    void ThreadFunc()
+    {
+        // 获取子进程的启动参数
+        NativeChildProcess_Args *args = OH_Ability_GetCurrentChildProcessArgs();
+        // 获取启动参数失败时返回nullptr
+        if (args == nullptr) {
+            return;
+        }
+        // 获取启动参数中的entryParams
+        char *entryParams = args->entryParams;
+        // 获取fd列表
+        NativeChildProcess_Fd *current = args->fdList.head;
+        while (current != nullptr) {
+            char *fdName = current->fdName;
+            int32_t fd = current->fd;
+            current = current->next;
+            // 实现业务逻辑
+        }
     }
-    // 获取启动参数中的entryPrams
-    char *entryParams = args->entryParams;
-    // 获取fd列表
-    NativeChildProcess_Fd *current = args->fdList.head;
-    while (current != nullptr) {
-        char *fdName = current->fdName;
-        int32_t fd = current->fd;
-        current = current->next;
+    
+    /**
+     * 子进程的入口函数，实现子进程的业务逻辑
+     * args是子进程的启动参数
+     */
+    void Main(NativeChildProcess_Args args)
+    {
         // 实现业务逻辑
+    
+        // 创建线程
+        std::thread tObj(ThreadFunc);
     }
-}
-
-/**
- * 子进程的入口函数，实现子进程的业务逻辑
- * args是子进程的启动参数
- */
-void Main(NativeChildProcess_Args args)
-{
-    // 实现业务逻辑
-
-    // 创建线程
-    std::thread tObj(ThreadFunc);
-}
-
-} // extern "C"
-```
+    
+    } // extern "C"
+    ```
 
 ## 终止子进程
 
@@ -461,29 +469,37 @@ void Main(NativeChildProcess_Args args)
 
 ### 开发步骤
 
-**头文件**
+1. 添加动态库文件和头文件引用。
 
-<!-- @[kill_child_process_header](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/Ability/KillChildProcess/entry/src/main/cpp/MainProcessFile.cpp) -->
+    在CMakeLists.txt文件中添加动态库文件。
 
-``` C++
-#include <AbilityKit/native_child_process.h>
-```
+    ```txt
+    libchild_process.so
+    ```
 
-**终止子进程**
+    在源文件中引入头文件。
 
-通过[native_child_process](../reference/apis-ability-kit/capi-native-child-process-h.md)和[childProcessManager](../reference/apis-ability-kit/js-apis-app-ability-childProcessManager.md)（非SELF_FORK模式）中的接口创建子进程后，主进程可以调用[OH_Ability_KillChildProcess](../reference/apis-ability-kit/capi-native-child-process-h.md#oh_ability_killchildprocess)(int32_t pid)根据传入的pid终止相应的子进程。
+    <!-- @[kill_child_process_header](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/Ability/KillChildProcess/entry/src/main/cpp/MainProcessFile.cpp) -->
+    
+    ``` C++
+    #include <AbilityKit/native_child_process.h>
+    ```
 
-<!-- @[kill_child_process_main](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/Ability/KillChildProcess/entry/src/main/cpp/MainProcessFile.cpp) -->
+2. 实现终止子进程。
 
-``` C++
-#include <AbilityKit/native_child_process.h>
-// ...
-void KillChildProcess(int32_t pid)
-{
-    Ability_NativeChildProcess_ErrCode ret = OH_Ability_KillChildProcess(pid);
-    if (ret != NCP_NO_ERROR) {
-        // 子进程未成功杀死的异常处理
-    }
+    通过[native_child_process](../reference/apis-ability-kit/capi-native-child-process-h.md)和[childProcessManager](../reference/apis-ability-kit/js-apis-app-ability-childProcessManager.md)（非SELF_FORK模式）中的接口创建子进程后，主进程可以调用[OH_Ability_KillChildProcess](../reference/apis-ability-kit/capi-native-child-process-h.md#oh_ability_killchildprocess)(int32_t pid)根据传入的pid终止相应的子进程。
+
+    <!-- @[kill_child_process_main](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/Ability/KillChildProcess/entry/src/main/cpp/MainProcessFile.cpp) -->
+    
+    ``` C++
+    #include <AbilityKit/native_child_process.h>
     // ...
-}
-```
+    void KillChildProcess(int32_t pid)
+    {
+        Ability_NativeChildProcess_ErrCode ret = OH_Ability_KillChildProcess(pid);
+        if (ret != NCP_NO_ERROR) {
+            // 子进程未成功杀死的异常处理
+        }
+        // ...
+    }
+    ```

@@ -2,8 +2,8 @@
 <!--Kit: ArkData-->
 <!--Subsystem: DistributedDataManager-->
 <!--Owner: @lvcong_oh-->
-<!--Designer: @hollokin; @yuchaozhng-->
-<!--Tester: @lj_liujing; @yippo; @logic42-->
+<!--Designer: @lvcong_oh-->
+<!--Tester: @logic42; @hanjiawei-->
 <!--Adviser: @ge-yafang-->
 
 
@@ -47,13 +47,6 @@
 
 - 在开发者对分布式数据对象进行“读取”或者“赋值”的时候，都会自动调用到set和get方法，映射到对应数据库的操作。
 
-**表1** 分布式数据对象和分布式数据库的对应关系
-
-| 分布式对象实例 | 对象实例 | 属性名称 | 属性值 | 
-| -------- | -------- | -------- | -------- |
-| 分布式内存数据库 | 一个数据库（sessionId标识） | 一条数据库记录的key | 一条数据库记录的value | 
-
-
 ### 跨设备同步和数据变更通知机制
 
 分布式数据对象，最重要的功能就是对象之间的数据同步。可信组网内的设备可以在本地创建分布式数据对象，并设置sessionId。不同设备上的分布式数据对象，通过设置相同的sessionId，建立对象之间的同步关系。
@@ -95,9 +88,9 @@ dataObject['parents']['mom'] = "amy"; // 不支持的修改
 
 ### 对象持久化缓存机制
 
-分布式对象主要运行在应用程序的进程空间。当调用分布式对象持久化接口时，通过分布式数据库对对象进行持久化和同步，进程退出后数据也不会丢失。分布式数据库会自动实现同步，可调用[on('change')](../reference/apis-arkdata/js-apis-data-distributedobject.md#onchange20)监听数据变更。
+分布式数据对象主要运行在应用程序的进程空间。当调用分布式数据对象持久化接口时，通过分布式数据库对对象进行持久化和同步，进程退出后数据也不会丢失。分布式数据库会自动实现同步，可调用[on('change')](../reference/apis-arkdata/js-apis-data-distributedobject.md#onchange20)监听数据变更。
 
-该场景是分布式对象的扩展场景，主要用于以下情况：
+该场景是分布式数据对象的扩展场景，主要用于以下情况：
 
 - 在设备上创建持久化对象后APP退出，重新打开APP，创建持久化对象，加入同一个Session，数据可以恢复到APP退出前的数据。
 
@@ -105,9 +98,9 @@ dataObject['parents']['mom'] = "amy"; // 不支持的修改
 
 ### 资产同步机制
 
-在分布式对象中，可以使用资产类型[Asset](../reference/apis-arkdata/js-apis-data-commonType.md#asset)来描述本地实体资产文件，分布式对象跨设备同步时，该文件会和数据一起同步到其他设备上。
+在分布式数据对象中，可以使用资产类型[Asset](../reference/apis-arkdata/js-apis-data-commonType.md#asset)来描述本地实体资产文件，分布式数据对象跨设备同步时，该文件会和数据一起同步到其他设备上。
 
-在API version 20之前版本，仅支持资产类型，不支持资产类型数组[Assets](../reference/apis-arkdata/js-apis-data-commonType.md#assets)。如需同步多个资产，可将每个资产作为分布式对象的一个根属性实现。
+在API version 20之前版本，仅支持资产类型，不支持资产类型数组[Assets](../reference/apis-arkdata/js-apis-data-commonType.md#assets)。如需同步多个资产，可将每个资产作为分布式数据对象的一个根属性实现。
 
 从API version 20开始，支持资产类型数组[Assets](../reference/apis-arkdata/js-apis-data-commonType.md#assets)的同步。
 
@@ -133,7 +126,7 @@ dataObject['parents']['mom'] = "amy"; // 不支持的修改
 
 ## 接口说明
 
-以下是分布式对象跨设备数据同步功能的相关接口，更多接口及使用方式请见[分布式数据对象](../reference/apis-arkdata/js-apis-data-distributedobject.md)。
+以下是分布式数据对象跨设备数据同步功能的相关接口，更多接口及使用方式请见[分布式数据对象](../reference/apis-arkdata/js-apis-data-distributedobject.md)。
 
 
 
@@ -152,10 +145,10 @@ dataObject['parents']['mom'] = "amy"; // 不支持的修改
 | bindAssetStore(assetKey: string, bindInfo: BindInfo, callback: AsyncCallback&lt;void&gt;): void | 绑定融合资产。 |
 | setAsset(assetKey: string, uri: string): void | 设置单个资产。 |
 | setAssets(assetKey: string, uris: Array&lt;string&gt;): void | 设置资产数组。 |
-| on(type: 'change', callback: DataObserver&lt;void&gt;): void | 监听分布式对象的数据变更。 |
-| off(type: 'change', callback?: DataObserver&lt;void&gt;): void |  删除分布式对象数据变更监听的回调实例。 |
-| on(type: 'status', callback: StatusObserver&lt;void&gt;): void | 监听分布式对象的状态变更。 |
-| off(type: 'status', callback?: StatusObserver&lt;void&gt;): void | 删除分布式对象状态变更监听的回调实例。 |
+| on(type: 'change', callback: DataObserver&lt;void&gt;): void | 监听分布式数据对象的数据变更。 |
+| off(type: 'change', callback?: DataObserver&lt;void&gt;): void |  删除分布式数据对象数据变更监听的回调实例。 |
+| on(type: 'status', callback: StatusObserver&lt;void&gt;): void | 监听分布式数据对象的状态变更。 |
+| off(type: 'status', callback?: StatusObserver&lt;void&gt;): void | 删除分布式数据对象状态变更监听的回调实例。 |
 
 
 ## 开发步骤

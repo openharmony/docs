@@ -112,3 +112,80 @@ struct TestCase {
 ```
 
 ![type-sync-0](./figures/type-sync-0.gif)
+
+## 常见问题
+
+### \@Type传入容器泛型而非元素类型
+
+\@Type装饰`Array<T>`、`Set<T>`、`Map<string, T>`等容器类型的属性时，应传入元素类型T对应的类，不应传入`Array<T>`等容器泛型。泛型参数在运行时会被擦除，`@Type(Array<T>)`等同于`@Type(Array)`，`@Type(Set<T>)`等同于`@Type(Set)`，框架无法从中获知元素类型为T。
+
+| 属性类型 | \@Type应传入 | 不应传入 |
+|---|---|---|
+| `Array<T>` | `T` | `Array<T>`、`Array` |
+| `Set<T>` | `T` | `Set<T>`、`Set` |
+| `Map<string, T>` | `T` | `Map<string, T>`、`Map` |
+
+当T为基本类型、Date、Array、Set、Map等非自定义类时，框架原生支持反序列化，\@Type参数不影响结果。当T为自定义类时，首次运行数据可正常保存，但应用重启从磁盘恢复数据时，反序列化创建空容器实例（如`new Array()`）而非`new T()`，T的构造函数不执行，T的属性未被初始化。反序列化结果取决于T的属性序列化后的值类型：值为基本类型或对象时被隐式转换为undefined，值为数组时打印Error日志，错误码为140107。具体如下：
+
+| T的属性类型 | 序列化后的值 | 反序列化结果 |
+|---|---|---|
+| number、string、boolean | 基本类型 | 隐式转换为undefined，无报错 |
+| Date | 字符串 | 隐式转换为undefined，无报错 |
+| Array、Set、Map | 数组 | 打印Error日志，错误码为140107 |
+| 自定义类 | 对象 | 隐式转换为undefined，无报错 |
+
+以下示例中，元素类型ItemModel包含基本类型属性和容器类型属性，使用`@Type(Array<ItemModel>)`后应用重启将触发上述问题：
+
+```TypeScript
+import { PersistenceV2, Type } from '@kit.ArkUI';
+
+@ObservedV2
+class ItemModel {
+  @Trace num: number = 1;
+  @Trace arr: Array<number> = [1, 2, 3];
+  @Trace set: Set<number> = new Set([1, 2, 3]);
+}
+
+@ObservedV2
+class Data {
+  @Type(Array<ItemModel>)
+  // 错误用法：运行时退化为@Type(Array)，传入容器类型而非元素类型
+  // 反序列化时创建new Array()而非new ItemModel()，ItemModel的构造函数不执行，num、arr、set属性均未初始化
+  // num序列化后为基本类型，反序列化时被隐式转换为undefined；arr、set序列化后为数组，反序列化时打印Error日志，错误码为140107
+  // Set<T>、Map<string, T>场景传入@Type(Set<T>)或@Type(Map<string, T>)同理
+  @Trace items: Array<ItemModel> = new Array();
+}
+
+@Entry
+@ComponentV2
+struct TestCase {
+  @Local data: Data = PersistenceV2.connect(Data, () => new Data())!;
+
+  build() {
+    Column() {
+      Button('push and save')
+        .onClick(() => {
+          this.data.items.push(new ItemModel());
+          // 手动持久化数据到磁盘
+          PersistenceV2.save(Data);
+        })
+    }
+  }
+}
+```
+
+上述示例中，首次点击按钮将ItemModel实例存入数组并保存到磁盘后，结束进程，第二次重新启动时，执行反序列化失败，打印如下Error日志：
+
+```text
+FIX THIS APPLICATION ERROR: For PersistenceV2 'Data' key has error, error code: 140107, message: The type of target 'undefined' mismatches the type of source 'object'
+```
+
+正确写法是将\@Type参数改为元素类型T对应的类，对`Array<T>`、`Set<T>`、`Map<string, T>`均适用：
+
+```TypeScript
+@ObservedV2
+class Data {
+  @Type(ItemModel) // 正确用法：传入元素类型ItemModel对应的类
+  @Trace items: Array<ItemModel> = new Array();
+}
+```

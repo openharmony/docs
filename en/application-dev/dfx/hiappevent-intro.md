@@ -3,13 +3,14 @@
 <!--Kit: Performance Analysis Kit-->
 <!--Subsystem: HiviewDFX-->
 <!--Owner: @liujiaxing2024-->
-<!--Designer: @junjie_shi-->
+<!--Designer: @jiangwenhao-->
 <!--Tester: @gcw_KuLfPSbe-->
-<!--Adviser: @foryourself-->
+<!--Adviser: @jinqiuheng-->
+<!-- md-trans-meta sourceCommit=d7b35acf5be235253ddab0c1331f3c840a031a33 translatedAt=2026-07-29T10:47:48.552Z pushedAt=2026-07-29T12:20:06.822Z -->
 
 ## Overview
 
-HiAppEvent is an event logging mechanism provided for recording faults, statistics, security events, and behavior events during application running. It helps you locate faults, analyze application running status, and collect statistics on access traffic, user activity, operation habits, and other key factors that affect user experience.
+HiAppEvent is an event subscription and event recording mechanism provided by the system for app developers. It supports recording fault, statistical, security, and behavior events during app running, helping you locate issues, analyze app running status, and collect statistics on visits, user activity, operation habits, and other key factors that affect user experience.
 
 ## Basic Concepts
 
@@ -22,8 +23,11 @@ HiAppEvent is an event logging mechanism provided for recording faults, statisti
 - Event type: specifies the type of an event. Four event types are supported:
 
   - Behavior event: used to record the daily operation behavior of a user, for example, button click and page redirection.
+
   - Fault event: used to locate and analyze application faults, for example, frame freezes and network interruption.
+
   - Statistical event: used to collect statistics on key application behaviors, for example, usage duration and number of visits.
+
   - Security event: used to record events related to application security, for example, user authorization.
 
 - Event parameter: specifies the parameters of an event. Each event can contain a group of parameters. You are advised to set this parameter to an event attribute or event context to depict the event details.
@@ -58,12 +62,13 @@ HiAppEvent associates application events based on the event domain and event nam
 
 - The name passed to the **addWatcher** API should be unique. If the same name is passed, the previous subscription will be overwritten.
 
-- Currently, HarmonyOS supports common applications, [application clones](../quick-start/app-clone.md), atomic services, and [input method applications](../inputmethod/inputmethod-application-guide.md). The subscription specifications of system events vary depending on the application type. Since API version 22, you can use the HiAppEvent system event subscription capability in the input method application. The following table lists the specifications.
+Currently, apps include various types such as standard apps, [app clones](../quick-start/app-clone.md), atomic services, and [input method apps](../inputmethod/inputmethod-application-guide.md). The subscription specifications for system events vary across different app types. Starting from API version 22, the HiAppEvent system event subscription capability supports input method apps. For details, see the following table:
 
 |System Event Name|Application Clone Subscription|Atomic Service Subscription|Input Method Application Subscription|
 |-----------|------------------|-----------------|-------------------|
 |Crash event|   Supported |   Supported  |   Supported  |
 |Application freeze event|   Supported |   Supported  |   Supported  |
+|Application freeze warning event|   Supported   |   Supported   |   Supported   |
 |Resource leak event|   Supported |   Supported  |   Supported  |
 |Address sanitizer event|   Supported |   Not supported  |   Supported  |
 |Main thread jank event|   Supported |   Supported  |   Supported  |
@@ -75,3 +80,14 @@ HiAppEvent associates application events based on the event domain and event nam
 |Battery usage statistics event|   Not supported |   Not supported  |   Supported  |
 |Audio jank event|   Not supported |   Not supported  |   Not supported  |
 |ArkWeb scrolling frame loss event|   Supported |   Supported  |   Supported  |
+
+## System Event Fault Log Directory Specifications
+
+HiAppEvent supports subscribing to system events. Some event information contains the **external_log** and **page_switch_log** fields, which include log path information. The current fault log directory specifications are as follows. Note that the directory specifications may be updated with version evolution.
+
+|Fault Log File Directory|Directory Contents|Directory Space Limit|
+|--------------|--------|-----------|
+|/data/storage/el2/log/hiappevent|Crash event logs, application freeze logs, address boundary violation event logs, task execution timeout event logs, and CPU high-load event logs.|Default: 5 MB.<br>**Note:** When minidump is enabled, the limit is adjusted to 35 MB. When minidump is disabled, the limit is restored to 5 MB.|
+|/data/storage/el2/log/watchdog|Main thread timeout event logs and frame drop event logs.|10 MB|
+|/data/storage/el2/log/resourcelimit|Resource leak event logs.|2048 MB|
+|/data/storage/el2/log/page_switch|Page switch logs.|18320 KB. Page switch logs are automatically aged by the system when the limit is reached.|

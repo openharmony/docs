@@ -7,7 +7,7 @@
 <!--Tester: @nobuggers-->
 <!--Adviser: @ge-yafang-->
 
-表示路径操作迭代器，可通过遍历迭代器读取path的操作指令。
+表示路径操作迭代器，可通过遍历迭代器逐段读取路径的操作指令。迭代器按顺序遍历路径中的操作指令，便于实现对路径的细粒度分析与自定义处理。
 
 > **说明：**
 >
@@ -37,7 +37,7 @@ constructor(path: Path)
 
 | 参数名   | 类型                                         | 必填 | 说明                            |
 | -------- | -------------------------------------------- | ---- | ------------------------------- |
-| path | [Path](arkts-apis-graphics-drawing-Path.md) | 是   | 迭代器绑定的路径对象。                 |
+| path | [Path](arkts-apis-graphics-drawing-Path.md) | 是   | 迭代器绑定的路径对象，绑定后迭代器将遍历该路径中的操作指令，可通过next、peek、hasNext等方法读取路径的操作类型和坐标数据。 |
 
 **示例：**
 
@@ -46,13 +46,14 @@ import { drawing } from '@kit.ArkGraphics2D';
 
 let path: drawing.Path = new drawing.Path();
 let iter: drawing.PathIterator = new drawing.PathIterator(path);
+console.info('PathIterator created successfully');
 ```
 
 ## next<sup>18+</sup>
 
-next(points: Array<common2D.Point>, offset?: number): PathIteratorVerb
+next(points: Array\<common2D.Point>, offset?: number): PathIteratorVerb
 
-返回当前路径的下一个操作，并将迭代器置于该操作。
+返回当前路径的下一个操作，并将迭代器推进至该操作，同时将路径坐标点数据按操作类型写入传入的points数组。若仅需预览下一个操作而不改变迭代器状态，请使用[peek](#peek18)。通常与[hasNext](#hasnext18)方法配合使用实现路径遍历。
 
 **系统能力：** SystemCapability.Graphics.Drawing
 
@@ -67,7 +68,7 @@ next(points: Array<common2D.Point>, offset?: number): PathIteratorVerb
 
 | 类型                  | 说明           |
 | --------------------- | -------------- |
-| [PathIteratorVerb](arkts-apis-graphics-drawing-e.md#pathiteratorverb18) | 迭代器包含的路径操作类型。 |
+| [PathIteratorVerb](arkts-apis-graphics-drawing-e.md#pathiteratorverb18) | 当前路径段的操作类型。 |
 
 **错误码：**
 
@@ -85,15 +86,15 @@ import { common2D, drawing } from '@kit.ArkGraphics2D';
 let path: drawing.Path = new drawing.Path();
 path.moveTo(10, 20);
 let iter: drawing.PathIterator = new drawing.PathIterator(path);
-let verbStr: Array<string> = ["MOVE", "LINE", "QUAD", "CONIC", "CUBIC", "CLOSE", "DONE"];
-let pointCount: Array<number> = [1,2,3,4,4,0,0];
+let verbStr: Array<string> = ['MOVE', 'LINE', 'QUAD', 'CONIC', 'CUBIC', 'CLOSE', 'DONE'];
+let pointCount: Array<number> = [1, 2, 3, 4, 4, 0, 0];
 let points: Array<common2D.Point> = [{x: 0, y: 0}, {x: 0, y: 0}, {x: 0, y: 0}, {x: 0, y: 0}];
 let offset = 0;
 let verb = iter.next(points, offset);
-let outputMessage: string = "pathIteratorNext: ";
-outputMessage += "verb =" + verbStr[verb] + "; has " + pointCount[verb] + " pairs: ";
+let outputMessage: string = 'pathIteratorNext: ';
+outputMessage += 'verb =' + verbStr[verb] + '; has ' + pointCount[verb] + ' pairs: ';
 for (let j = 0; j < pointCount[verb] + offset; j++) {
-  outputMessage += "[" + points[j].x + ", " + points[j].y + "]";
+  outputMessage += '[' + points[j].x + ', ' + points[j].y + ']';
 }
 console.info(outputMessage);
 ```
@@ -102,7 +103,7 @@ console.info(outputMessage);
 
 peek(): PathIteratorVerb
 
-返回当前路径的下一个操作，迭代器保持在原操作。
+返回当前路径的下一个操作，迭代器保持在原操作。与next不同，peek不会推进迭代器位置。
 
 **系统能力：** SystemCapability.Graphics.Drawing
 
@@ -110,7 +111,7 @@ peek(): PathIteratorVerb
 
 | 类型                  | 说明           |
 | --------------------- | -------------- |
-| [PathIteratorVerb](arkts-apis-graphics-drawing-e.md#pathiteratorverb18) | 迭代器包含的路径操作类型。 |
+| [PathIteratorVerb](arkts-apis-graphics-drawing-e.md#pathiteratorverb18) | 当前路径段的操作类型。 |
 
 **示例：**
 
@@ -126,7 +127,7 @@ let res = iter.peek();
 
 hasNext(): boolean
 
-判断路径操作迭代器中是否还有下一个操作。
+判断迭代器中是否还有下一个操作。通常与next()或peek()方法配合使用实现路径遍历。
 
 **系统能力：** SystemCapability.Graphics.Drawing
 
@@ -134,7 +135,7 @@ hasNext(): boolean
 
 | 类型    | 说明           |
 | ------- | -------------- |
-| boolean | 判断路径操作迭代器中是否还有下一个操作。true表示有，false表示没有。 |
+| boolean | 迭代器是否还有下一个操作可遍历。true表示还有后续路径操作可读取，false表示已遍历至路径末尾，无更多操作。 |
 
 **示例：**
 

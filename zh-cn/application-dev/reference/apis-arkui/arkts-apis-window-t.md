@@ -74,7 +74,7 @@ type WindowAnimationCurveParam = Array&lt;number&gt;
 
 ## RotationChangeCallback<sup>19+</sup>
 
-type RotationChangeCallback<T, U> = (info: T) => U
+type RotationChangeCallback&lt;T, U&gt; = (info: T) => U
 
 旋转事件通知通用回调函数。
 
@@ -88,13 +88,13 @@ type RotationChangeCallback<T, U> = (info: T) => U
 
 | 参数名 | 类型 | 必填 | 说明 |
 | ---- | ---- | ---- | -------------------------- |
-| info | T    | 是   | 回调函数调用时系统传入[RotationChangeInfo](arkts-apis-window-i.md#rotationchangeinfo19)类型的参数。 |
+| info | T    | 是   | 旋转事件信息，系统传入[RotationChangeInfo](arkts-apis-window-i.md#rotationchangeinfo19)类型的参数，用于通知开发者旋转变化时的窗口信息。 |
 
 **返回值：**
 
 | 类型 | 说明 |
 | -------------------------------- | ------------------------------------ |
-| U | 回调函数需要返回[RotationChangeResult](arkts-apis-window-i.md#rotationchangeresult19) \| void类型的返回值。 |
+| U | 回调函数需要返回[RotationChangeResult](arkts-apis-window-i.md#rotationchangeresult19) \| void类型的返回值，应用指定旋转后的窗口位置；当返回void时，系统不更改窗口位置。|
 
 ## WindowEventListener
 

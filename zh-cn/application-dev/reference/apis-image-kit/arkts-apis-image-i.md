@@ -39,8 +39,8 @@
 | ---- | ------------- | --- |-----|---------- |
 | size | [Size](#size) | 否 |  否  | 图像尺寸。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 <br>**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。 |
 | density<sup>9+</sup> | number | 否  | 否 | 像素密度。单位：ppi（像素/英寸）。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 <br>**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。 |
-| stride<sup>11+</sup> | number | 否  | 否  | 跨距（行跨距），内存中每行像素所占的空间。单位：字节（Byte）。跨距 >= 图像宽度 * 每像素字节数。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 <br>**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。 |
-| pixelFormat<sup>12+</sup> | [PixelMapFormat](arkts-apis-image-e.md#pixelmapformat7) | 否  |  否 | 像素格式。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 <br>**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。 |
+| stride<sup>11+</sup> | number | 否  | 否  | 跨距（行跨距），表示内存中每行像素所占的空间。单位：字节（Byte）。跨距 >= 图像宽度 * 每像素字节数。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 <br>**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。 |
+| pixelFormat<sup>12+</sup> | [PixelMapFormat](arkts-apis-image-e.md#pixelmapformat7) | 否  |  否 | 像素格式，表示像素数据的颜色通道排列和位深信息。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 <br>**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。 |
 | alphaType<sup>12+</sup> | [AlphaType](arkts-apis-image-e.md#alphatype9)  | 否  |  否  | 透明度类型。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 <br>**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。 |
 | mimeType<sup>12+</sup> | string  |  否  |   否  | 图片真实格式（MIME type）。<br>图片解码和图片编码支持格式的范围不同，请避免直接将解码得到的图片真实格式作为图片编码时[PackingOption](#packingoption)的format。<br>可以使用ImageSource[属性](arkts-apis-image-ImageSource.md#属性)中的supportedFormats和ImagePacker[属性](arkts-apis-image-ImagePacker.md#属性)中的supportedFormats查看解码和编码支持的格式范围。  |
 | isHdr<sup>12+</sup> | boolean  |  否  | 否  | true表示图像为高动态范围（HDR），false表示图像非高动态范围（SDR）。对于[ImageSource](arkts-apis-image-ImageSource.md)，代表源图片是否为HDR；对于[PixelMap](arkts-apis-image-PixelMap.md)，代表解码后的PixelMap是否为HDR。 |
@@ -130,7 +130,7 @@ PixelMap的初始化选项。
 | editable           | boolean                            | 否   | 是   | 图像像素是否可被编辑。true表示可被编辑，false表示不可被编辑，默认值为false。<br>当取值为false时，可提升图像的渲染和传输性能，但是图像不可被二次编辑。例如，writePixels操作将失败。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 <br>**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。  |
 | desiredSize        | [Size](#size)                      | 否   | 是   | 期望输出大小，必须为正整数，若与原尺寸比例不一致，则会进行拉伸/缩放到指定尺寸，默认为原始尺寸。<br>注意：若解码接口同时传入了desiredSize参数与desiredRegion参数，需进一步传入cropAndScaleStrategy参数指定缩放与裁剪的先后顺序，推荐设置CROP_FIRST。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 <br>**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。   |
 | desiredRegion      | [Region](#region8)                 | 否   | 是   | 解码图像中由Region指定的矩形区域，当原始图像很大而只需要解码图像的一部分时，可以设置该参数，有助于提升性能，默认为原始大小。<br>注意：若解码接口同时传入了desiredSize参数与desiredRegion参数，需进一步传入cropAndScaleStrategy参数指定缩放与裁剪的先后顺序，推荐设置CROP_FIRST。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 <br>**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。       |
-| desiredPixelFormat | [PixelMapFormat](arkts-apis-image-e.md#pixelmapformat7) | 否   | 是   | 解码的像素格式。默认值为RGBA_8888。仅支持设置：RGBA_8888、BGRA_8888和RGB_565。有透明通道图片格式不支持设置RGB_565，如PNG、GIF、ICO和WEBP。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 <br>**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。 |
+| desiredPixelFormat | [PixelMapFormat](arkts-apis-image-e.md#pixelmapformat7) | 否   | 是   | 解码的像素格式。默认值为RGBA_8888。具体支持的目标像素格式与输入图片格式、desiredDynamicRange及设备能力有关，详见[设置解码输出像素格式](../../media/image/image-decoding.md#设置解码输出像素格式)。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 <br>**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。 |
 | index              | number                             | 否   | 是   | 解码图片序号。默认值为0，表示第一张图片。当取值为N时，表示第N+1张图片。单帧图片场景中index取值只能为0，动图等多帧图片场景中index的取值范围为：[0, (帧数-1)]。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 <br>**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。   |
 | fitDensity<sup>9+</sup> | number                        | 否   | 是   | 图像像素密度。单位：ppi（像素/英寸）。默认值为0。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 <br>**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。   |
 | desiredColorSpace<sup>11+</sup> | [colorSpaceManager.ColorSpaceManager](../apis-arkgraphics2d/js-apis-colorSpaceManager.md#colorspacemanager) | 否   | 是   | 目标色彩空间。默认值为UNKNOWN。 |
@@ -225,7 +225,7 @@ PixelMap的初始化选项。
 | frameCount    | number         | 否   | 否   | GIF编码中指定的帧数。                                        |
 | delayTimeList | Array\<number> | 否   | 否   | GIF编码中设定每帧输出图像的延迟时间，取值需大于0。<br>- 单位：10毫秒（ms）。例如，取值为10时，实际单帧延迟是100毫秒。<br>- 如果长度小于frameCount，不足的部分将使用delayTimeList中的最后一个值进行填充。 |
 | disposalTypes | Array\<number> | 否   | 是   | GIF编码中设定每帧输出图像的帧过渡模式，如果长度小于frameCount，不足的部分将使用disposalTypes中的最后一个值进行填充，可取值如下：<br>- 0：不需要任何操作。<br>- 1：保持图形不变。<br>- 2：恢复背景色。<br>- 3：恢复到之前的状态。 |
-| loopCount     | number         | 否   | 是   | 表示在GIF编码中输出图片循环播放次数，取值范围为[0，65535]。<br>0表示无限循环；若无此字段，则表示不循环播放。 |
+| loopCount     | number         | 否   | 是   | 表示在GIF编码中输出图片循环播放次数，取值范围为[0, 65535]。<br>0表示无限循环；若无此字段，则表示不循环播放。 |
 
 ## ImagePropertyOptions<sup>11+</sup>
 
@@ -247,7 +247,7 @@ PixelMap的初始化选项。
 | 名称          | 类型                             | 只读 | 可选 | 说明         |
 | ------------- | -------------------------------- | ---- | ---- | ------------ |
 | componentType | [ComponentType](arkts-apis-image-e.md#componenttype9) | 是   | 否   | 组件类型。   |
-| rowStride     | number                           | 是   | 否   | 行距。单位：字节（Byte）。读取相机预览流数据时，需要按stride进行读取，使用详情请参考[相机预览花屏解决方案](https://developer.huawei.com/consumer/cn/doc/best-practices/bpta-deal-stride-solution)。       |
+| rowStride     | number                           | 是   | 否   | 行距。单位：字节（Byte）。读取相机预览流数据时，需要按stride进行读取，使用详情请参考[使用ImageReceiver完成图片接收](../../media/image/image-receiver.md)。       |
 | pixelStride   | number                           | 是   | 否   | 像素间距。单位：字节（Byte）。   |
 | byteBuffer    | ArrayBuffer                      | 是   | 否   | 组件缓冲区。 |
 
@@ -443,7 +443,7 @@ ImageReceiver的初始化选项。
 
 | 名称              | 类型              | 只读 | 可选 | 说明               |
 | ----------------- | ----------------- | ---- | ---- | ------------------ |
-| rowStride   | number[]  | 是   | 否   | 颜色分量的行跨距。单位：字节（Byte）。<br>对于编码后的图片如JPEG，该属性无意义。<br>读取相机预览流数据时，需要按rowStride进行读取，使用详情请参考[相机预览花屏解决方案](https://developer.huawei.com/consumer/cn/doc/best-practices/bpta-deal-stride-solution)。|
+| rowStride   | number[]  | 是   | 否   | 颜色分量的行跨距。单位：字节（Byte）。<br>对于编码后的图片如JPEG，该属性无意义。<br>读取相机预览流数据时，需要按rowStride进行读取，使用详情请参考[使用ImageReceiver完成图片接收](../../media/image/image-receiver.md)。|
 | pixelStride | number[]  | 是   | 否   | 颜色分量的像素间距。单位：字节（Byte）。<br>对于编码后的图片如JPEG，该属性无意义。     |
 | byteBuffer  | ArrayBuffer | 是   | 否   | 图像缓冲区。     |
 

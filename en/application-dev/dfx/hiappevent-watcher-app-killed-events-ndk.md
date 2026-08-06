@@ -5,7 +5,8 @@
 <!--Owner: @xuxinao-->
 <!--Designer: @peterhuangyu-->
 <!--Tester: @gcw_KuLfPSbe-->
-<!--Adviser: @foryourself-->
+<!--Adviser: @jinqiuheng-->
+<!-- md-trans-meta sourceCommit=d1cb6b637f499ebdeae6b7f739089a338de1a8f9 translatedAt=2026-07-29T10:49:06.392Z pushedAt=2026-07-29T12:35:56.444Z -->
 
 ## Event Specifications
 
@@ -98,11 +99,17 @@ For details about how to use the APIs (such as parameter usage restrictions and 
                           auto time = params["time"].asInt64();
                           auto reason = params["reason"].asString();
                           auto foreground = params["foreground"].asString();
+                          auto appRunningUniqueId = params["app_running_unique_id"].asString();
+                          auto bundleVersion = params["bundle_version"].asString();
                           OH_LOG_INFO(LogType::LOG_APP, "HiAppEvent eventInfo.params.time=%{public}lld", time);
                           OH_LOG_INFO(LogType::LOG_APP, "HiAppEvent eventInfo.params.reason=%{public}s",
                                       reason.c_str());
                           OH_LOG_INFO(LogType::LOG_APP, "HiAppEvent eventInfo.params.foreground=%{public}s",
                                       foreground.c_str());
+                          OH_LOG_INFO(LogType::LOG_APP, "HiAppEvent eventInfo.params.app_running_unique_id=%{public}s",
+                                      appRunningUniqueId.c_str());
+                          OH_LOG_INFO(LogType::LOG_APP, "HiAppEvent eventInfo.params.bundle_version=%{public}s",
+                                      bundleVersion.c_str());
                       }
                   }
               }
@@ -117,7 +124,7 @@ For details about how to use the APIs (such as parameter usage restrictions and 
           const char *names[] = {EVENT_APP_KILLED};
           // Add the events to watch, for example, system events.
           OH_HiAppEvent_SetAppEventFilter(systemEventWatcher, DOMAIN_OS, 0, names, 1);
-          // Set the implemented callback. After receiving the event, the watcher immediately triggers the OnReceive callback.
+          // Set the implemented callback function. When the watcher receives an event, the OnReceive callback is triggered immediately.
           OH_HiAppEvent_SetWatcherOnReceive(systemEventWatcher, OnReceive);
           // Add a watcher to listen for the specified event.
           OH_HiAppEvent_AddWatcher(systemEventWatcher);
@@ -161,14 +168,14 @@ For details about how to use the APIs (such as parameter usage restrictions and 
        return exports;
    }
    ```
-   
+
    In the **index.d.ts** file, define the ArkTS API.
 
    ```typescript
    export const registerWatcher: () => void;
    export const leak: () => void;
    ```
-   
+
 7. In the **entry/src/main/ets/entryability/EntryAbility.ets** file, add the following interface invocation to **onCreate()**.
 
    ```typescript
@@ -194,6 +201,8 @@ For details about how to use the APIs (such as parameter usage restrictions and 
       HiAppEvent eventInfo.params.time=1717597063727
       HiAppEvent eventInfo.params.reason="RssThresholdKiller"
       HiAppEvent eventInfo.params.foreground=true
+      HiAppEvent eventInfo.params.app_running_unique_id=207544
+      HiAppEvent eventInfo.params.bundle_version=1000000
     ```
 
     > **NOTE**

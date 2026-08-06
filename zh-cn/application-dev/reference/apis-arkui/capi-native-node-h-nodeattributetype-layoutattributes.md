@@ -2,7 +2,7 @@
 <!--Kit: ArkUI-->
 <!--Subsystem: ArkUI-->
 <!--Owner: @hehongyang3; @zju_ljz; @camlostshi-->
-<!--Designer: @hehongyang3; @lanshouren-->
+<!--Designer: @hehongyang3; @fenglinbailu-->
 <!--Tester: @liuli0427; @lxl007-->
 <!--Adviser: @Brilliantry_Rui-->
 
@@ -686,7 +686,7 @@ NODE_WIDTH_PERCENT = 71
 
 | 参数项 | 描述 |
 | -- | -- |
-| .value[0].f32 | 设置宽度数值，单位为百分比。取值范围：[0, +∞)。设置异常值时，按默认值显示。 |
+| .value[0].f32 | 设置宽度数值，单位为百分比。取值范围：(0, +∞)。无默认值，不设置时由组件布局决定尺寸，使用子组件自身内容需要的宽度。传入异常值时返回错误码。 |
 
 **返回：**
 
@@ -709,7 +709,7 @@ NODE_HEIGHT_PERCENT = 72
 
 | 参数项 | 描述 |
 | -- | -- |
-| .value[0].f32 | 设置高度数值，单位为百分比。取值范围：[0, +∞)。设置异常值时，按默认值显示。 |
+| .value[0].f32 | 设置高度数值，单位为百分比。取值范围：(0, +∞)。无默认值，不设置时由组件布局决定尺寸，使用子组件自身内容需要的高度。传入异常值时返回错误码。 |
 
 **返回：**
 

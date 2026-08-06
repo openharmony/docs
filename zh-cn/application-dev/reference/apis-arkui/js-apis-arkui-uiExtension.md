@@ -10,7 +10,7 @@
 
 > **说明**
 >
-> - 从API version 12开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
+> - 从API version 12开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 >
 
 ## 导入模块
@@ -415,22 +415,22 @@ export default class EntryAbility extends EmbeddedUIExtensionAbility {
     extensionWindow.createSubWindowWithOptions('subWindowForHost', subWindowOpts)
       .then((subWindow: window.Window) => {
         subWindow.setUIContent('pages/Index', (err, data) => {
-          if (err && err.code != 0) {
+          if (err && err.code) {
             return;
           }
           subWindow?.resize(300, 300, (err, data) => {
-            if (err && err.code != 0) {
+            if (err && err.code) {
               return;
             }
             subWindow?.moveWindowTo(100, 100, (err, data) => {
-              if (err && err.code != 0) {
+              if (err && err.code) {
                 return;
               }
               subWindow?.showWindow((err, data) => {
-                if (err && err.code == 0) {
-                  console.info(`The subwindow has been shown!`);
+                if (err && err.code) {
+                  console.error(`Failed to show the subwindow. Code: ${err.code}, message: ${err.message}`);
                 } else {
-                  console.error(`Failed to show the subwindow!`);
+                  console.info(`The subwindow has been shown!`);
                 }
               });
             });
@@ -498,22 +498,22 @@ export default class EntryAbility extends EmbeddedUIExtensionAbility {
     extensionWindow.createSubWindowWithOptions('subWindowForHost', subWindowConfig, true)
       .then((subWindow: window.Window) => {
         subWindow.setUIContent('pages/Index', (err, data) => {
-          if (err && err.code != 0) {
+          if (err && err.code) {
             return;
           }
           subWindow?.resize(300, 300, (err, data) => {
-            if (err && err.code != 0) {
+            if (err && err.code) {
               return;
             }
             subWindow?.moveWindowTo(100, 100, (err, data) => {
-              if (err && err.code != 0) {
+              if (err && err.code) {
                 return;
               }
               subWindow?.showWindow((err, data) => {
-                if (err && err.code == 0) {
-                  console.info(`The subwindow has been shown!`);
+                if (err && err.code) {
+                  console.error(`Failed to show the subwindow. Code: ${err.code}, message: ${err.message}`);
                 } else {
-                  console.error(`Failed to show the subwindow!`);
+                  console.info(`The subwindow has been shown!`);
                 }
               });
             });
@@ -682,8 +682,8 @@ import { Want } from '@kit.AbilityKit';
 struct Index {
   @State message: string = 'Message: ';
   private want: Want = {
-    bundleName: "com.example.embeddeddemo",
-    abilityName: "ExampleEmbeddedAbility",
+    bundleName: 'com.example.embeddeddemo',
+    abilityName: 'ExampleEmbeddedAbility',
   }
 
   build() {
@@ -800,22 +800,22 @@ struct Extension {
           .then((subWindow: window.Window) => {
             this.subWindow = subWindow;
             this.subWindow.loadContent('pages/Index', this.storage, (err, data) => {
-              if (err && err.code != 0) {
+              if (err && err.code) {
                 return;
               }
               this.subWindow?.resize(300, 300, (err, data) => {
-                if (err && err.code != 0) {
+                if (err && err.code) {
                   return;
                 }
                 this.subWindow?.moveWindowTo(100, 100, (err, data) => {
-                  if (err && err.code != 0) {
+                  if (err && err.code) {
                     return;
                   }
                   this.subWindow?.showWindow((err, data) => {
-                    if (err && err.code == 0) {
-                      console.info(`The subwindow has been shown!`);
+                    if (err && err.code) {
+                      console.error(`Failed to show the subwindow. Code: ${err.code}, message: ${err.message}`);
                     } else {
-                      console.error(`Failed to show the subwindow!`);
+                      console.info(`The subwindow has been shown!`);
                     }
                   });
                 });

@@ -48,7 +48,7 @@ import { bundleResourceManager } from '@kit.AbilityKit';
 
 getBundleResourceInfo(bundleName: string, resourceFlags?: number): [BundleResourceInfo](js-apis-bundleManager-BundleResourceInfo-sys.md)
 
-以同步方法根据给定的bundleName和resourceFlags获取当前应用的BundleResourceInfo。
+以同步方法根据给定的bundleName和resourceFlags获取应用的BundleResourceInfo。
 
 **系统接口：** 此接口为系统接口。
 
@@ -105,7 +105,7 @@ try {
 
 getLauncherAbilityResourceInfo(bundleName: string, resourceFlags?: number): Array<[LauncherAbilityResourceInfo](js-apis-LauncherAbilityResourceInfo-sys.md)>
 
-以同步方法根据给定的bundleName和resourceFlags获取当前应用的LauncherAbilityResourceInfo。
+以同步方法根据给定的bundleName和resourceFlags获取应用的LauncherAbilityResourceInfo。
 
 **系统接口：** 此接口为系统接口。
 
@@ -374,7 +374,7 @@ try {
 
 getBundleResourceInfo(bundleName: string, resourceFlags?: number, appIndex?: number): [BundleResourceInfo](js-apis-bundleManager-BundleResourceInfo-sys.md)
 
-以同步方法根据给定的bundleName、resourceFlags和appIndex获取当前应用或分身应用的BundleResourceInfo。
+以同步方法根据给定的bundleName、resourceFlags和appIndex获取应用或分身应用的BundleResourceInfo。
 
 **系统接口：** 此接口为系统接口。
 
@@ -434,7 +434,7 @@ try {
 
 getLauncherAbilityResourceInfo(bundleName: string, resourceFlags?: number, appIndex?: number): Array<[LauncherAbilityResourceInfo](js-apis-LauncherAbilityResourceInfo-sys.md)>
 
-以同步方法根据给定的bundleName、resourceFlags和appIndex获取当前应用或分身应用的LauncherAbilityResourceInfo。
+以同步方法根据给定的bundleName、resourceFlags和appIndex获取应用或分身应用的LauncherAbilityResourceInfo。
 
 **系统接口：** 此接口为系统接口。
 

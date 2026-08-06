@@ -32,6 +32,8 @@ import { formInfo } from '@kit.FormKit';
 | renderingMode<sup>18+</sup>|[RenderingMode](./js-apis-app-form-formInfo-sys.md#renderingmode18)|是|是|卡片渲染模式。|
 | resizable<sup>20+</sup> | boolean  | 是    | 是     | 表示是否可以拖拽卡片调整大小。调整值必须在该卡片或者同groupId卡片的supportDimensions配置列表中。<br/>-&nbsp;true：可以调整大小。<br/>-&nbsp;false：不可以调整大小。 |
 | groupId<sup>20+</sup> | string     | 是    | 是     | 表示一组卡片的共同id。多张卡片的groupId相同且resizable为true时，多张卡片的supportDimensions配置共享。例如，卡片A和B的groupId相同且resizable均为true，则卡片A可以调整为卡片A和B的supportDimensions配置中的任意尺寸。<br>推荐多张卡片功能相同且需要调整卡片尺寸时配置。 |
+| funInteractionParams<sup>20+</sup> | [FunInteractionParams](#funinteractionparams20)     | 是    | 是     | 趣味交互卡片配置参数。主要配置互动卡片激活态时长等参数。 |
+| sceneAnimationParams<sup>20+</sup> | [SceneAnimationParams](#sceneanimationparams20)     | 是    | 是     | 场景动效卡片配置参数。主要配置互动卡片触发方式和禁用手势等参数。 |
 | isTemplateForm<sup>23+</sup> | boolean  | 是    | 是     | 表示卡片是否是模板卡。<br/>-&nbsp;true：是模板卡。<br/>-&nbsp;false：不是模板卡。 |
 | isStandbySupported<sup>23+</sup> | boolean  | 是    | 是     | 卡片是否支持在灵动显示界面展示。<br/>-&nbsp;true：支持灵动显示。<br/>-&nbsp;false：不支持灵动显示。<br>**模型约束：** 此接口仅可在Stage模型下使用。|
 | isStandbyAdapted<sup>23+</sup> | boolean  | 是    | 是     | 卡片是否已适配灵动显示规则。<br/>-&nbsp;true：已适配灵动显示。<br/>-&nbsp;false：未适配灵动显示。<br>**模型约束：** 此接口仅可在Stage模型下使用。|
@@ -115,7 +117,7 @@ import { formInfo } from '@kit.FormKit';
 | 名称        | 类型   | 必填         |说明         |
 | ----------- | ---- | ------------ |------------ |
 | bundleName<sup>12+</sup>    | string    |否    | 选填，仅保留含bundleName与提供值相符的卡片信息，未填写时则不通过bundleName进行过滤。<br>**系统接口：** 此接口为系统接口。  |
-| supportedDimensions<sup>12+</sup> | Array&lt;number&gt; |否    | 选填，仅保留含supportedDimensions提供值相符的卡片信息，未填写时则不通过supportedDimensions进行过滤。<br>**系统接口：** 此接口为系统接口。<br>**说明：** 最大长度为9，数值取值范围[1, 9]的的整数的数组，数值5从API version 9开始支持，从API version 20开始废弃。<br>具体规格参考 [formInfo.FormDimension](js-apis-app-form-formInfo.md#formdimension)。  |
+| supportedDimensions<sup>12+</sup> | Array&lt;number&gt; |否    | 选填，仅保留含supportedDimensions提供值相符的卡片信息，未填写时则不通过supportedDimensions进行过滤。<br>**系统接口：** 此接口为系统接口。<br>**说明：** 最大长度为9，数值取值范围[1, 9]的整数的数组，数值5从API version 9开始支持，从API version 20开始废弃。<br>具体规格参考 [formInfo.FormDimension](js-apis-app-form-formInfo.md#formdimension)。  |
 | supportedShapes<sup>12+</sup>  | Array&lt;number&gt; |否    | 选填，仅保留含supportedShapes提供值相符的卡片信息，未填写时则不通过supportedShapes进行过滤。<br>**系统接口：** 此接口为系统接口。<br>**说明：** 只有1和2两个值。1代表方形，2代表圆形。   |
 
 ## FormLocation<sup>12+</sup>

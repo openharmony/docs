@@ -26,7 +26,7 @@ pick(context: Context, mediaTypes: Array\<PickerMediaType\>, pickerProfile: Pick
 
 > **说明：**
 >
-> 当应用在阔折叠设备上运行时，如果已在设备展开态下启动相机picker，将设备由展开态切换到折叠态，相机picker被自动推至后台。
+> 当应用在可折叠设备上运行时，如果已在设备展开态下启动相机picker，将设备由展开态切换到折叠态，相机picker被自动推至后台。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -93,7 +93,7 @@ async function demo(context: Context) {
 | 名称           | 类型                               | 只读 | 可选 | 说明         |
 | -------------- | --------------------------------- | ----- | ----- | ------------ |
 | cameraPosition       | [camera.CameraPosition](arkts-apis-camera-e.md#cameraposition) | 否   | 否   | 相机的位置。   |
-| saveUri        | string                            | 否   | 是   | 保存配置信息的uri，默认值请参考[文件uri](../apis-core-file-kit/js-apis-file-fileuri.md#constructor10)。当前saveUri参数为可选参数，若未配置该参数，则拍摄的照片和视频会默认存入媒体库中；若不想将照片和视频存入媒体库中，请自行配置应用沙箱内的文件资源路径，如自行传入资源路径时请确保该文件存在且具备写入权限，否则会保存失败。|
+| saveUri        | string                            | 否   | 是   | 保存配置信息的uri，默认值请参考[constructor](../apis-core-file-kit/js-apis-file-fileuri.md#constructor10)。当前saveUri参数为可选参数，若未配置该参数，则拍摄的照片和视频会默认存入媒体库中；若不想将照片和视频存入媒体库中，请自行配置应用沙箱内的文件资源路径，如自行传入资源路径时请确保该文件存在且具备写入权限，否则会保存失败。|
 | videoDuration  | number                            | 否   | 是   | 录制的最大时长（单位：秒）。默认为0，不设置最大录制时长。|
 
 

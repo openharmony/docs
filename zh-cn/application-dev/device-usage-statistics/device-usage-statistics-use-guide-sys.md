@@ -4,7 +4,7 @@
 <!--Owner: @xufu7-->
 <!--Designer: @zhouben25-->
 <!--Tester: @leetestnady-->
-<!--Adviser: @Brilliantry_Rui-->
+<!--Adviser: @HelloCrease-->
 
 ## 场景介绍
 
@@ -225,7 +225,7 @@ import { usageStatistics } from '@kit.BackgroundTasksKit';
     let isIdleState = usageStatistics.isIdleStateSync("com.ohos.camera");
     ```
 
-8. 查询FA使用记录。返回数量最大不超过maxNum设置的值，若不传入maxNum参数，则默认maxNum为1000, 需要配置ohos.permission.BUNDLE_ACTIVE_INFO权限。
+8. 查询FA使用记录。返回数量最大不超过maxNum设置的值，若不传入maxNum参数，则默认maxNum为1000，需要配置ohos.permission.BUNDLE_ACTIVE_INFO权限。
 
     ```ts
     import { BusinessError } from '@kit.BasicServicesKit';

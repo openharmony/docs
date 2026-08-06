@@ -6,37 +6,41 @@
 <!--Tester: @xchaosioda-->
 <!--Adviser: @w_Machine_cc-->
 
+A collection of enumeration types provided by Image Kit, covering image pixel formats, image formats, alpha types, image metadata, image property information (Exif and format-specific properties), auxiliary image types, scaling modes, cropping and scaling strategies, dynamic range, HDR metadata, memory allocation, interpolation algorithms, image orientation, focus modes, color modes, XMP tag types, and more. These enumerations are used to specify various configuration parameters in image encoding, decoding, processing, and display scenarios.
+
 > **NOTE**
 >
 > The initial APIs of this module are supported since API version 6. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 
 ## PixelMapFormat<sup>7+</sup>
 
-Enumerates the pixel formats of images.
+Enumerates image pixel formats.
 
 **System capability**: SystemCapability.Multimedia.Image.Core
 
 | Name                  |   Value  | Description             |
 | ---------------------- | ------ | ----------------- |
 | UNKNOWN                | 0      | Unknown format.<br>**Atomic service API**: This API can be used in atomic services since API version 11.<br>**Widget capability**: This API can be used in ArkTS widgets since API version 12.       |
-| ARGB_8888<sup>18+</sup> | 1 | The color information consists of four components: alpha, R (Red), G (Green), and B (Blue). Each component occupies 8 bits, and the total length is 32 bits. Currently, this format supports only PixelMap APIs.|
-| RGB_565                | 2      | The color information consists of three components: R (Red), G (Green), and B (Blue), which occupies five bits, six bits, and five bits, respectively. The total length is 16 bits.<br>**Atomic service API**: This API can be used in atomic services since API version 11.<br>**Widget capability**: This API can be used in ArkTS widgets since API version 12.    |
-| RGBA_8888              | 3      | The color information consists of four components: R (Red), G (Green), B (Blue), and alpha. Each component occupies 8 bits, and the total length is 32 bits. It corresponds to [CAMERA_FORMAT_RGBA_8888 in CameraFormat](../apis-camera-kit/arkts-apis-camera-e.md#cameraformat).<br>**Atomic service API**: This API can be used in atomic services since API version 11.<br>**Widget capability**: This API can be used in ArkTS widgets since API version 12.|
-| BGRA_8888<sup>9+</sup> | 4      | The color information consists of four components: B (Blue), G (Green), R (Red), and alpha. Each component occupies 8 bits, and the total length is 32 bits.<br>**Atomic service API**: This API can be used in atomic services since API version 11.<br>**Widget capability**: This API can be used in ArkTS widgets since API version 12.|
-| RGB_888<sup>9+</sup>   | 5      | The color information consists of three components: R (Red), G (Green), and B (Blue). Each component occupies 8 bits, and the total length is 24 bits.<br>**Atomic service API**: This API can be used in atomic services since API version 11.<br>**Widget capability**: This API can be used in ArkTS widgets since API version 12.  |
-| ALPHA_8<sup>9+</sup>   | 6      | The color information consists of only the alpha component, which occupies eight bits. Each row of pixels is composed of one or more pixels, and the data for each row is aligned to 4 bytes. If the byte count of a row is not a multiple of 4, blank bytes are padded at the end to ensure proper alignment.<br>**Atomic service API**: This API can be used in atomic services since API version 11.<br>**Widget capability**: This API can be used in ArkTS widgets since API version 12.  |
-| RGBA_F16<sup>9+</sup>  | 7      | The color information consists of four components: R (Red), G (Green), B (Blue), and alpha. Each component occupies 16 bits, and the total length is 64 bits.<br>**Atomic service API**: This API can be used in atomic services since API version 11.<br>**Widget capability**: This API can be used in ArkTS widgets since API version 12. |
-| NV21<sup>9+</sup>      | 8      | YVU pixel arrangement, where the V component precedes the U component. The color information consists of the luminance component Y and the interleaved chrominance components V and U. The Y component occupies 8 bits, and the UV components occupy 4 bits on average due to 4:2:0 sampling. The total length is 12 bits on average. It corresponds to [CAMERA_FORMAT_YUV_420_SP in CameraFormat](../apis-camera-kit/arkts-apis-camera-e.md#cameraformat).<br>**Atomic service API**: This API can be used in atomic services since API version 11.<br>**Widget capability**: This API can be used in ArkTS widgets since API version 12.     |
-| NV12<sup>9+</sup>      | 9      | YUV pixel arrangement, where the U component precedes the V component. The color information consists of the luminance component Y and the interleaved chrominance components U and V. The Y component occupies 8 bits, and the UV components occupy 4 bits on average due to 4:2:0 sampling. The total length is 12 bits on average.<br>**Atomic service API**: This API can be used in atomic services since API version 11.<br>**Widget capability**: This API can be used in ArkTS widgets since API version 12.     |
-| RGBA_1010102<sup>12+</sup> | 10 | The color information consists of four components: R (Red), G (Green), B (Blue), and alpha. R, G, and B each occupy 10 bits, and alpha occupies 2 bits. The total length is 32 bits.|
-| YCBCR_P010<sup>12+</sup> | 11 | The color information consists of the luminance component Y and the chrominance components Cb and Cr. Each component has effective 10 bits. In storage, the Y plane uses 16 bits per pixel (10 of which are effective). The UV plane is interleaved, with every four pixels taking up 32 bits of data (each chrominance component having 10 effective bits), resulting in an average of 15 effective bits overall. It corresponds to [CAMERA_FORMAT_YCBCR_P010 in CameraFormat](../apis-camera-kit/arkts-apis-camera-e.md#cameraformat). |
-| YCRCB_P010<sup>12+</sup> | 12 | The color information consists of the luminance component Y and the chrominance components Cr and Cb. Each component has effective 10 bits. In storage, the Y plane uses 16 bits per pixel (10 of which are effective). The UV plane is interleaved, with every four pixels taking up 32 bits of data (each chrominance component having 10 effective bits), resulting in an average of 15 effective bits overall. It corresponds to [CAMERA_FORMAT_YCRCB_P010 in CameraFormat](../apis-camera-kit/arkts-apis-camera-e.md#cameraformat). |
-| ALPHA_U8 | 15 | The color information consists of only the transparency (alpha), with 8 bits per pixel, stored in order from the most significant bit to the least significant bit. All pixels are tightly arranged without alignment.<br>**Since**: 26.0.0<br>**Atomic service API**: This API can be used in atomic services since API version 26.0.0.<br>**Widget capability**: This API can be used in ArkTS widgets since API version 26.0.0. |
+| ARGB_8888<sup>18+</sup> | 1 | Color information consists of four components: transparency (Alpha), Red (R), Green (G), and Blue (B). Each component occupies 8 bits, totaling 32 bits. The components are stored in order from the most significant bit to the least significant bit. Currently, this format supports only PixelMap APIs.|
+| RGB_565                | 2      | Color information consists of three components: Red (R), Green (G), and Blue (B). R occupies 5 bits, G occupies 6 bits, and B occupies 5 bits, totaling 16 bits. The components are stored in order from the most significant bit to the least significant bit.<br>**Atomic service API**: This API can be used in atomic services since API version 11.<br>**Widget capability**: This API can be used in ArkTS widgets since API version 12.    |
+| RGBA_8888              | 3      | Color information consists of four components: Red (R), Green (G), Blue (B), and transparency (Alpha). Each component occupies 8 bits, totaling 32 bits. The components are stored in order from the most significant bit to the least significant bit. It corresponds to [CAMERA_FORMAT_RGBA_8888 in CameraFormat](../apis-camera-kit/arkts-apis-camera-e.md#cameraformat).<br>**Atomic service API**: This API can be used in atomic services since API version 11.<br>**Widget capability**: This API can be used in ArkTS widgets since API version 12.|
+| BGRA_8888<sup>9+</sup> | 4      | Color information consists of four components: Blue (B), Green (G), Red (R), and transparency (Alpha). Each component occupies 8 bits, totaling 32 bits. The components are stored in order from the most significant bit to the least significant bit.<br>**Atomic service API**: This API can be used in atomic services since API version 11.<br>**Widget capability**: This API can be used in ArkTS widgets since API version 12.|
+| RGB_888<sup>9+</sup>   | 5      | Color information consists of three components: Red (R), Green (G), and Blue (B). Each component occupies 8 bits, totaling 24 bits. The components are stored in order from the most significant bit to the least significant bit.<br>**Atomic service API**: This API can be used in atomic services since API version 11.<br>**Widget capability**: This API can be used in ArkTS widgets since API version 12.  |
+| ALPHA_8<sup>9+</sup>   | 6      | Color information consists of only the transparency (Aalpha), with 8 bits per pixel, stored in order from the most significant bit to the least significant bit. Each row of pixels is composed of one or more pixels, and the data for each row is aligned to 4 bytes. If the byte count of a row is not a multiple of 4, blank bytes are padded at the end to ensure proper alignment.<br>**Atomic service API**: This API can be used in atomic services since API version 11.<br>**Widget capability**: This API can be used in ArkTS widgets since API version 12.  |
+| RGBA_F16<sup>9+</sup>  | 7      | Color information consists of four components: Red (R), Green (G), Blue (B), and transparency (Alpha). Each component occupies 16 bits, totaling 64 bits. The components are stored in order from the most significant bit to the least significant bit, in FP16 half-precision floating-point format.<br>**Atomic service API**: This API can be used in atomic services since API version 11.<br>**Widget capability**: This API can be used in ArkTS widgets since API version 12. |
+| NV21<sup>9+</sup>      | 8      | YVU pixel arrangement, where the V component precedes the U component. Color information consists of a luminance component Y and interleaved chrominance components V and U. The Y component occupies 8 bits, and the UV components occupy an average of 4 bits due to 4:2:0 subsampling, totaling an average of 12 bits. The components are stored in order from the most significant bit to the least significant bit. It corresponds to [CAMERA_FORMAT_YUV_420_SP in CameraFormat](../apis-camera-kit/arkts-apis-camera-e.md#cameraformat).<br>**Atomic service API**: This API can be used in atomic services since API version 11.<br>**Widget capability**: This API can be used in ArkTS widgets since API version 12.     |
+| NV12<sup>9+</sup>      | 9      | YUV pixel arrangement, where the U component precedes the V component. Color information consists of a luminance component Y and interleaved chrominance components U and V. The Y component occupies 8 bits, and the UV components occupy an average of 4 bits due to 4:2:0 subsampling, totaling an average of 12 bits. The components are stored in order from the most significant bit to the least significant bit.<br>**Atomic service API**: This API can be used in atomic services since API version 11.<br>**Widget capability**: This API can be used in ArkTS widgets since API version 12.     |
+| RGBA_1010102<sup>12+</sup> | 10 | Color information consists of four components: Red (R), Green (G), Blue (B), and transparency (Alpha). R, G, and B each occupy 10 bits, and Alpha occupies 2 bits, totaling 32 bits. The components are stored in order from the most significant bit to the least significant bit.|
+| YCBCR_P010<sup>12+</sup> | 11 | Color information consists of a luminance component Y and chrominance components Cb and Cr. Each component has an effective bit depth of 10 bits. In storage, the Y plane occupies 16 bits per pixel (with 10 effective bits), and the UV plane is interleaved, occupying 32 bits for every 4 pixels (with 10 effective bits per chrominance component), resulting in an average effective bit depth of 15 bits. The data is stored in order from the most significant bit to the least significant bit. It corresponds to [CAMERA_FORMAT_YCBCR_P010 in CameraFormat](../apis-camera-kit/arkts-apis-camera-e.md#cameraformat). |
+| YCRCB_P010<sup>12+</sup> | 12 | Color information consists of a luminance component Y and chrominance components Cb and Cr. Each component has an effective bit depth of 10 bits. In storage, the Y plane occupies 16 bits per pixel (with 10 effective bits), and the UV plane is interleaved, occupying 32 bits for every 4 pixels (with 10 effective bits per chrominance component), resulting in an average effective bit depth of 15 bits. The data is stored in order from the most significant bit to the least significant bit. It corresponds to [CAMERA_FORMAT_YCRCB_P010 in CameraFormat](../apis-camera-kit/arkts-apis-camera-e.md#cameraformat). |
+| Y8 | 14 | Single-channel grayscale format that contains only the Y plane (luminance). Each pixel occupies 8 bits, stored in order from the most significant bit to the least significant bit.<br>**Since**: 26.0.0<br>**Model restriction**: This API can be used only in the stage model. |
+| ALPHA_U8 | 15 | Color information consists of only the transparency (Aalpha), with 8 bits per pixel, stored in order from the most significant bit to the least significant bit. All pixels are tightly arranged without alignment.<br>**Since**: 26.0.0<br>**Model restriction**: This API can be used only in the stage model.<br>**Widget capability**: This API can be used in ArkTS widgets since API version 26.0.0. |
+| ALPHA_F16 | 16 | Color information consists of only the transparency (Aalpha), with each pixel occupying 16 bits. The data is stored in order from the most significant bit to the least significant bit in FP16 half-precision floating-point format.<br>**Since**: 26.0.0<br>**Model restriction**: This API can be used only in the stage model.<br>**Widget capability**: This API can be used in ArkTS widgets since API version 26.0.0. |
 | ASTC_4x4<sup>18+</sup> | 102 | The storage format is ASTC_4x4, and the memory usage is only 1/4 of that of RGBA_8888. This format is intended for direct display scenarios. It does not support pixel access or editing in post-processing, and does not support cascaded affine transformations. |
 
 ## AlphaType<sup>9+</sup>
 
-Enumerates the alpha types of images.
+Enumerates image transparency types.
 
 **Widget capability**: This API can be used in ArkTS widgets since API version 12.
 
@@ -46,14 +50,14 @@ Enumerates the alpha types of images.
 
 | Name    |   Value  | Description                   |
 | -------- | ------ | ----------------------- |
-| UNKNOWN  | 0      | Unknown alpha type.           |
-| OPAQUE   | 1      | There is no alpha or the image is opaque.|
-| PREMUL   | 2      | Premultiplied alpha.        |
-| UNPREMUL | 3      | RGB non-premultiplied alpha.      |
+| UNKNOWN  | 0      | Unknown type.           |
+| OPAQUE   | 1      | No alpha channel, or the image is opaque.|
+| PREMUL   | 2      | RGB channels are premultiplied with the alpha value.        |
+| UNPREMUL | 3      | RGB channels are not premultiplied with the alpha value.      |
 
 ## AuxiliaryPictureType<sup>13+</sup>
 
-Enumerates the auxiliary pictures types.
+Enumerates auxiliary picture types.
 
 Auxiliary pictures do not directly participate in image display, and not all images contain auxiliary pictures.
 
@@ -63,11 +67,12 @@ Before obtaining and using a specific auxiliary picture, call [getAuxiliaryPictu
 
 | Name         | Value  | Description        |
 | ------------- | ---- | ------------ |
-| GAINMAP       | 1    | Gain map.<br>It is used to generate HDR images more accurately.<br>HDR synthesis usually involves using the SDR main image, gain map, and [HDR metadata](./arkts-apis-image-PixelMap.md#getmetadata12) to calculate the luminance mapping.|
+| GAINMAP       | 1    | Gain map.<br>It is used to generate HDR images more accurately.<br>HDR synthesis usually involves using the SDR main image, gain map, and HDR metadata (see [getMetadata](./arkts-apis-image-PixelMap.md#getmetadata12)) to calculate the luminance mapping.|
 | DEPTH_MAP     | 2    | Depth map.<br>It is used to store the distance between each pixel and the camera, and provides the 3D structure of the scene.<br>It is useful for tasks like 3D reconstruction, background separation, and scene understanding.    |
 | UNREFOCUS_MAP | 3    | Unrefocus map.<br>It is used to store the pixel content that is not refocused during capture.<br>It is useful for post-processing effects such as portrait blurring, allowing users to select focus areas freely. |
 | LINEAR_MAP    | 4    | Linear map.<br>It records lighting, color, or other visual elements linearly, providing additional data for image processing.<br>It is useful for visual effect enhancement and color post-processing. |
 | FRAGMENT_MAP  | 5    | Fragment map.<br>It records areas of the original image obscured by watermarks. These areas might be cropped from the original image or filled with placeholder pixel data.<br>It is useful for watermark removal and original image restoration.|
+| LHDR_GAINMAP  | 10    | Special gain map (LHDR gain map).<br>**Since**: 26.0.0<br>**Model restriction**: This API can be used only in the stage model.|
 
 ## MetadataType<sup>13+</sup>
 
@@ -91,7 +96,7 @@ Enumerates image metadata types.
 
 ## ScaleMode<sup>9+</sup>
 
-Enumerates the scale modes of images.
+Enumerates image scaling modes.
 
 **Widget capability**: This API can be used in ArkTS widgets since API version 12.
 
@@ -101,12 +106,12 @@ Enumerates the scale modes of images.
 
 | Name           |   Value  | Description                                              |
 | --------------- | ------ | -------------------------------------------------- |
-| CENTER_CROP     | 1      | Scales the image so that it fills the requested bounds of the target and crops the extra.|
-| FIT_TARGET_SIZE | 0      | Reduces the image size to the dimensions of the target.                          |
+| CENTER_CROP     | 1      | Center cropping mode. The image is scaled proportionally to cover the entire target area (short side aligned), and then the excess area is cropped from the center.|
+| FIT_TARGET_SIZE | 0      | Fit target size mode. The image is scaled proportionally to fit entirely within the target area (long side aligned). Any remaining space is filled with black or transparency.|
 
 ## PropertyKey<sup>7+</sup>
 
-Enumerates the types of Exchangeable Image File Format (Exif) data of an image.
+Enumerates the Exchangeable image file format (Exif) image information.
 
 
 
@@ -159,7 +164,7 @@ Enumerates the types of Exchangeable Image File Format (Exif) data of an image.
 | GPS_LATITUDE                              | "GPSLatitude"               | Image latitude. The value must be in the format of degree,minute,second, for example, **39,54,7.542**.<br>**Read/Write capability**: readable and writable.<br>| **How to modify the parameter**: Use three non-negative rational number strings, separated by commas (,).<br>**Example of modification**: `imageSource.modifyImageProperty(key,'39,54,7.542');`<br>**Example of read result**: "39,54,7.542"|
 | GPS_LONGITUDE_REF                         | "GPSLongitudeRef"           | Longitude reference (Eastern or Western Hemisphere) of the image capture location.<br>69: "East"<br>87: "West"<br>**Read/Write capability**: readable and writable.<br>| **How to modify the parameter**: Use numbers or strings.<br>**Example of modification**: `imageSource.modifyImageProperty(key,'69');`<br>or `imageSource.modifyImageProperty(key,'East');`<br>**Example of read result**: "69" or "E"|
 | GPS_LONGITUDE                             | "GPSLongitude"              | Image longitude. The value must be in the format of degree,minute,second, for example, **116,19,42.16**.<br>**Read/Write capability**: readable and writable.<br>| **How to modify the parameter**: Use three non-negative rational number strings, separated by commas (,).<br>**Example of modification**: `imageSource.modifyImageProperty(key,'116,19,42.16');`<br>**Example of read result**: "116,19,42.16"|
-| GPS_ALTITUDE_REF<sup>12+</sup>           | "GPSAltitudeRef"            | Whether the latitude is north or south latitude.<br>0: "Sea level" (Above sea level)<br>1: "Sea level reference" (Below sea level)<br>**Read/Write capability**: readable and writable.<br>| **How to modify the parameter**: Use numbers or strings.<br>**Example of modification**: `imageSource.modifyImageProperty(key,'0');`<br>or `imageSource.modifyImageProperty(key,'Sea level');`<br>**Example of read result**: "Sea level"|
+| GPS_ALTITUDE_REF<sup>12+</sup>           | "GPSAltitudeRef"            | Reference altitude for GPS altitude.<br>0: "Sea level" (Above sea level)<br>1: "Sea level reference" (Below sea level)<br>**Read/Write capability**: readable and writable.<br>| **How to modify the parameter**: Use numbers or strings.<br>**Example of modification**: `imageSource.modifyImageProperty(key,'0');`<br>or `imageSource.modifyImageProperty(key,'Sea level');`<br>**Example of read result**: "Sea level"|
 | GPS_ALTITUDE<sup>12+</sup>               | "GPSAltitude"               | Altitude based on the reference in GPSAltitudeRef.<br>**Read/Write capability**: readable and writable.<br>| **How to modify the parameter**: Use a non-negative rational number as a string.<br>**Example of modification**: `imageSource.modifyImageProperty(key,'123.45');`<br>**Example of read result**: "123.45"|
 | GPS_TIME_STAMP<sup>10+</sup>              | "GPSTimeStamp"              | GPS timestamp.<br>**Read/Write capability**: readable and writable.<br>| **How to modify the parameter**: Use the format *HH:mm:ss.ddd*.<br>**Example of modification**: `imageSource.modifyImageProperty(key,'12:30:30.123');`<br>**Example of read result**: "12:30:30.123"|
 | GPS_SATELLITES<sup>12+</sup>             | "GPSSatellites"             | GPS satellites used for measurement.<br>**Read/Write capability**: readable and writable.<br>| **How to modify the parameter**: Use a string.<br>**Example of modification**: `imageSource.modifyImageProperty(key,'GPS Satellites');`<br>**Example of read result**: "GPSSatellites"|
@@ -169,7 +174,7 @@ Enumerates the types of Exchangeable Image File Format (Exif) data of an image.
 | GPS_SPEED_REF<sup>12+</sup>              | "GPSSpeedRef"               | Unit used to express the movement speed of the GPS receiver.<br>'K': "km/h"<br>'M': "mph"<br>'N': "knots"<br>**Read/Write capability**: readable and writable.| **How to modify the parameter**: Use letters or strings.<br>**Example of modification**: `imageSource.modifyImageProperty(key,'K');`<br>or `imageSource.modifyImageProperty(key,'km/h');`<br>**Example of read result**: "K"|
 | GPS_SPEED<sup>12+</sup>                  | "GPSSpeed"                  | Movement speed of the GPS receiver.<br>**Read/Write capability**: readable and writable.<br>| **How to modify the parameter**: Use a non-negative rational number as a string.<br>**Example of modification**: `imageSource.modifyImageProperty(key,'123');`<br>or `imageSource.modifyImageProperty(key,'123.45');`<br>**Example of read result**: "123.45"|
 | GPS_TRACK_REF<sup>12+</sup>              | "GPSTrackRef"               | Which type of "North" is used as the reference for the direction angle.<br> 'T': "True direction" (True north: direction to the geographic North Pole, suitable for mapping and navigation.)<br>'M': "Magnetic direction" (Magnetic north: Influenced by the Earth's magnetic field, the magnetic declination varies by region and over time.)<br>**Read/Write capability**: readable and writable.<br>| **How to modify the parameter**: Use letters or strings.<br>**Example of modification**: `imageSource.modifyImageProperty(key,'T');`<br>or `imageSource.modifyImageProperty(key,'True direction');`<br>**Example of read result**: "T"|
-| GPS_TRACK<sup>12+</sup>                  | "GPSTrack"                  | Movement direction of the GPS receiver. Direction of movement (heading) of the camera at the moment the photo was taken, measured in degrees.<br>**Read/Write capability**: readable and writable.<br>| **How to modify the parameter**: Use a non-negative rational number as a string.<br>**Example of modification**: `imageSource.modifyImageProperty(key,'180');`<br>**Example of read result**: "180"|
+| GPS_TRACK<sup>12+</sup>                  | "GPSTrack"                  | Movement direction of the GPS receiver. Moving direction (travel direction) of the camera during photo capture, in degrees.<br>**Read/Write capability**: readable and writable.<br>| **How to modify the parameter**: Use a non-negative rational number as a string.<br>**Example of modification**: `imageSource.modifyImageProperty(key,'180');`<br>**Example of read result**: "180"|
 | GPS_IMG_DIRECTION_REF<sup>12+</sup>      | "GPSImgDirectionRef"        | Reference of the direction of the image when it was captured.<br> 'T': "True direction" (True north: direction to the geographic North Pole, suitable for mapping and navigation.)<br>'M': "Magnetic direction" (Magnetic north: Influenced by the Earth's magnetic field, the magnetic declination varies by region and over time.)<br>**Read/Write capability**: readable and writable.<br>| **How to modify the parameter**: Use letters or strings.<br>**Example of modification**: `imageSource.modifyImageProperty(key,'T');`<br>or `imageSource.modifyImageProperty(key,'True direction');`<br>**Example of read result**: "T"|
 | GPS_IMG_DIRECTION<sup>12+</sup>          | "GPSImgDirection"           | Direction of the image when it was captured.<br>**Read/Write capability**: readable and writable.<br>| **How to modify the parameter**: Use a non-negative rational number as a string.<br>**Example of modification**: `imageSource.modifyImageProperty(key,'120');`<br>**Example of read result**: "120"|
 | GPS_MAP_DATUM<sup>12+</sup>              | "GPSMapDatum"               | Geodetic survey data used by the GPS receiver.<br>**Read/Write capability**: readable and writable.<br>| **How to modify the parameter**: Use a string.<br>**Example of modification**: `imageSource.modifyImageProperty(key,'GPS Map Datum');`<br>**Example of read result**: "GPS Map Datum"|
@@ -185,7 +190,7 @@ Enumerates the types of Exchangeable Image File Format (Exif) data of an image.
 | GPS_AREA_INFORMATION<sup>12+</sup>       | "GPSAreaInformation"   | String that records the name of the GPS area.<br>**Read/Write capability**: readable and writable.<br>| **How to modify the parameter**: Use a string.<br>**Example of modification**: `imageSource.modifyImageProperty(key,'GPS Area Information');`<br>**Example of read result**: "GPS Area Information"|
 | GPS_DATE_STAMP<sup>10+</sup>              | "GPSDateStamp"         | GPS date stamp.<br>**Read/Write capability**: readable and writable.<br>| **How to modify the parameter**: Use the format "YY:MM:DD".<br>**Example of modification**: `imageSource.modifyImageProperty(key,'2020:07:07');`<br>**Example of read result**: "2020:07:07"|
 | GPS_DIFFERENTIAL<sup>12+</sup>           | "GPSDifferential"      | Whether differential correction is applied to the GPS receiver. It is critical to accurate location accuracy.<br>  0: "Without correction" (No differential correction)<br> 1:"Correction applied" (Differential correction applied)<br>**Read/Write capability**: readable and writable.<br>| **How to modify the parameter**: Use numbers or strings.<br>**Example of modification**: `imageSource.modifyImageProperty(key,'0');`<br>or `imageSource.modifyImageProperty(key,'Without correction');`<br>**Example of read result**: "0"|
-| GPS_H_POSITIONING_ERROR<sup>12+</sup>    | "GPSHPositioningError" | Horizontal positioning error, in meters.<br>**Read/Write capability**: readable and writable.<br>| **How to modify the parameter**: Use a non-negative rational number as a string.<br>**Example of modification**: `imageSource.modifyImageProperty(key,'100');`<br>**Example of read result**: "100"|
+| GPS_H_POSITIONING_ERROR<sup>12+</sup>    | "GPSHPositioningError" | Horizontal positioning error. The unit is meters.<br>**Read/Write capability**: readable and writable.<br>| **How to modify the parameter**: Use a non-negative rational number as a string.<br>**Example of modification**: `imageSource.modifyImageProperty(key,'100');`<br>**Example of read result**: "100"|
 | ISO_SPEED_RATINGS<sup>9+</sup>            | "ISOSpeedRatings"           | ISO sensitivity or ISO speed, for example, 400.<br>**Read/Write capability**: readable and writable.<br>| **How to modify the parameter**: Use a non-negative integer string.<br>**Example of modification**: `imageSource.modifyImageProperty(key,'3200');`<br>**Example of read result**: "3200" |
 | PHOTOGRAPHIC_SENSITIVITY<sup>12+</sup>   | "PhotographicSensitivity" | ISO sensitivity (ISO speed) used when the image was captured. It is the recommended field in Exif 2.3 and later. The earlier field, ISOSpeedRatings (Tag 0x8827), has the same data type and meaning. However, if both fields are present, the **PhotographicSensitivity** value should be used.<br>**Read/Write capability**: readable and writable.<br>| **How to modify the parameter**: Use a non-negative integer string.<br>**Example of modification**: `imageSource.modifyImageProperty(key,'3200');`<br>**Example of read result**: "3200" |
 | OECF<sup>12+</sup>                       | "OECF"                      | Opto-Electric Conversion Function (OECF) specified in ISO 14524.<br>**Read/Write capability**: readable and writable.<br>| This field is in a special format. Although it can be read and written, it is not parsed in the current version.|
@@ -202,7 +207,7 @@ Enumerates the types of Exchangeable Image File Format (Exif) data of an image.
 | OFFSET_TIME_ORIGINAL<sup>12+</sup>       | "OffsetTimeOriginal"  | Time with an offset from UTC when the original image was created. It is critical for time-sensitive applications.<br>**Read/Write capability**: readable and writable.<br>| **How to modify the parameter**: Use a string.<br>**Example of modification**: `imageSource.modifyImageProperty(key,'Offset Time Original');`<br>**Example of read result**: "Offset Time Original"|
 | OFFSET_TIME_DIGITIZED<sup>12+</sup>      | "OffsetTimeDigitized" | Time with an offset from UTC when the image was digitized. It helps to accurately adjust the timestamp.<br>**Read/Write capability**: readable and writable.<br>| **How to modify the parameter**: Use a string.<br>**Example of modification**: `imageSource.modifyImageProperty(key,'Offset Time Digitized');`<br>**Example of read result**: "Offset Time Digitized"|
 | COMPONENTS_CONFIGURATION<sup>12+</sup>   | "ComponentsConfiguration"   | Specific information about compressed data.<br>**Read/Write capability**: readable and writable.<br>| **How to modify the parameter**: "Y Cb Cr -"<br>**Example of modification**: `imageSource.modifyImageProperty(key,'Y Cb Cr -');`<br>**Example of read result**: "Y Cb Cr -"|
-| COMPRESSED_BITS_PER_PIXEL<sup>12+</sup>  | "CompressedBitsPerPixel"    | Number of bits per pixel. It is specific to compressed data.<br>**Read/Write capability**: readable and writable.<br>| **How to modify the parameter**: Use a non-negative rational number as a string.<br>**Example of modification**: `imageSource.modifyImageProperty(key,'0.95');`<br>**Example of read result**: "0.95"|
+| COMPRESSED_BITS_PER_PIXEL<sup>12+</sup>  | "CompressedBitsPerPixel"    | Image compression mode. The unit is bits per pixel (bit/px).<br>**Read/Write capability**: readable and writable.<br>| **How to modify the parameter**: Use a non-negative rational number as a string.<br>**Example of modification**: `imageSource.modifyImageProperty(key,'0.95');`<br>**Example of read result**: "0.95"|
 | SHUTTER_SPEED<sup>12+</sup>              | "ShutterSpeedValue"         | Shutter speed, expressed in Additive System of Photographic Exposure (APEX) values.<br>**Read/Write capability**: readable and writable.<br>| **How to modify the parameter**: Use a non-negative rational number as a string.<br>**Example of modification**: `imageSource.modifyImageProperty(key,'1');`<br>**Example of read result**: "1.00 EV (1/2 sec.)"|
 | APERTURE_VALUE<sup>10+</sup>              | "ApertureValue"             | Lens aperture. An example in the correct format is 4/1.<br>**Read/Write capability**: readable and writable.<br>| **How to modify the parameter**: Use a non-negative rational number as a string.<br>**Example of modification**: `imageSource.modifyImageProperty(key,'5.6');`<br>**Example of read result**: "5.60 EV (f/7.0)"|
 | BRIGHTNESS_VALUE<sup>12+</sup>           | "BrightnessValue"           | Value of brightness, expressed in APEX values.<br>**Read/Write capability**: readable and writable.<br>| **How to modify the parameter**: Use a non-negative rational number as a string.<br>**Example of modification**: `imageSource.modifyImageProperty(key,'2');`<br>**Example of read result**: "2.00 EV (13.71 cd/m^2)"|
@@ -212,7 +217,7 @@ Enumerates the types of Exchangeable Image File Format (Exif) data of an image.
 | METERING_MODE<sup>10+</sup>               | "MeteringMode"              | Metering mode.<br>**Read/Write capability**: readable and writable.<br>| **How to modify the parameter**: Use numbers or strings.<br>**Example of modification**: `imageSource.modifyImageProperty(key,'1');`<br>or `imageSource.modifyImageProperty(key,'Average');`<br>**Example of read result**: "Average"|
 | LIGHT_SOURCE<sup>10+</sup>                | "LightSource"               | Light source. An example value is **Fluorescent**.<br>**Read/Write capability**: readable and writable.<br>| **How to modify the parameter**: Use numbers or strings.<br>**Example of modification**: `imageSource.modifyImageProperty(key,'1');`<br>or `imageSource.modifyImageProperty(key,'Daylight');`<br>**Example of read result**: "Daylight"|
 | FLASH<sup>10+</sup>                      | "Flash"                     | Flash status.<br>**Read/Write capability**: readable and writable.<br>| **How to modify the parameter**: Use numbers or strings.<br>**Example of modification**: `imageSource.modifyImageProperty(key,'0x00');`<br>or `imageSource.modifyImageProperty(key,'Flash did not fire');`<br>**Example of read result**: "Flash did not fire"|
-| FOCAL_LENGTH<sup>10+</sup>               | "FocalLength"               | Focal length of the lens. The unit is milliseconds.<br>**Read/Write capability**: readable and writable.<br>| **How to modify the parameter**: Use a non-negative rational number as a string.<br>**Example of modification**: `imageSource.modifyImageProperty(key,'50');`<br>or `imageSource.modifyImageProperty(key,'50/1');`<br>**Example of read result**: "50.0 mm"|
+| FOCAL_LENGTH<sup>10+</sup>               | "FocalLength"               | Focal length of the lens. The unit is millimeters.<br>**Read/Write capability**: readable and writable.<br>| **How to modify the parameter**: Use a non-negative rational number as a string.<br>**Example of modification**: `imageSource.modifyImageProperty(key,'50');`<br>or `imageSource.modifyImageProperty(key,'50/1');`<br>**Example of read result**: "50.0 mm"|
 | SUBJECT_AREA<sup>12+</sup>               | "SubjectArea"          | Location and area of the main subject in the entire scene.<br>**Read/Write capability**: readable and writable.<br>| **How to modify the parameter**: Use two non-negative rational numbers, separated by spaces or commas (,), as a string.<br>**Example of modification**: `imageSource.modifyImageProperty(key,'50 50');`<br>or `imageSource.modifyImageProperty(key,'50,50');`<br>**Example of read result**: "(x,y) = (50,50)"|
 | MAKER_NOTE<sup>12+</sup>                 | "MakerNote"                 | Marker used by Exif/DCF manufacturers to record any required information.<br>This field is read-only in API versions 12 to 19 and is readable and writable in API version 20 and later.<br>**Read/Write capability**: readable and writable.<br>| **How to modify the parameter**: Use a string.<br>**Example of modification**: `imageSource.modifyImageProperty(key,'Maker Note');`<br>**Example of read result**: "Maker Note"|
 | USER_COMMENT<sup>10+</sup>               | "UserComment"               | User comments.<br>**Read/Write capability**: readable and writable.<br>| **How to modify the parameter**: Use a string.<br>**Example of modification**: `imageSource.modifyImageProperty(key,'User Comment');`<br>**Example of read result**: "User Comment"|
@@ -220,7 +225,7 @@ Enumerates the types of Exchangeable Image File Format (Exif) data of an image.
 | SUBSEC_TIME_ORIGINAL<sup>12+</sup>       | "SubsecTimeOriginal"        | Tag used to record fractions of seconds for the **DateTimeOriginal** tag.<br>**Read/Write capability**: readable and writable.<br>| **How to modify the parameter**: Use a string.<br>**Example of modification**: `imageSource.modifyImageProperty(key,'629000');`<br>**Example of read result**: "629000"|
 | SUBSEC_TIME_DIGITIZED<sup>12+</sup>      | "SubsecTimeDigitized"       | Tag used to record fractions of seconds for the **DateTimeDigitized** tag.<br>**Read/Write capability**: readable and writable.<br>| **How to modify the parameter**: Use a string.<br>**Example of modification**: `imageSource.modifyImageProperty(key,'62900');`<br>**Example of read result**: "62900"|
 | FLASHPIX_VERSION<sup>12+</sup>           | "FlashpixVersion"           | FlashPix format version supported by an FPXR file. It is used to enhance device compatibility.<br>**Read/Write capability**: readable and writable.<br>| **How to modify the parameter**: Use the version number format "1.0".<br>**Example of modification**: `imageSource.modifyImageProperty(key,'1.0');`<br>**Example of read result**: "FlashPix Version 1.0"|
-| COLOR_SPACE<sup>12+</sup>                | "ColorSpace"                | Color space information, which is usually recorded as a color space specifier.<br>1: "sRGB" (Standard sRGB color space, which is the typical default value)<br>2: "Adobe RGB" (Not formally defined in Exif, but commonly used in practice)<br>0xffff: "Uncalibrated" (Uncalibrated and color space unknown)<br>**Read/Write capability**: readable and writable.<br>| **How to modify the parameter**: Use numbers or strings.<br>**Example of modification**: `imageSource.modifyImageProperty(key,'1');`<br>or `imageSource.modifyImageProperty(key,'sRGB');`<br>**Example of read result**: "sRGB"|
+| COLOR_SPACE<sup>12+</sup>                | "ColorSpace"                | Color space information, which is usually recorded as a color space specifier.<br>1: "sRGB" (sRGB standard color space, which is commonly used as the default value)<br>2: "Adobe RGB" (Not formally defined in Exif, but commonly used in practice)<br>0xffff: "Uncalibrated" (Uncalibrated and color space unknown)<br>**Read/Write capability**: readable and writable.<br>| **How to modify the parameter**: Use numbers or strings.<br>**Example of modification**: `imageSource.modifyImageProperty(key,'1');`<br>or `imageSource.modifyImageProperty(key,'sRGB');`<br>**Example of read result**: "sRGB"|
 | PIXEL_X_DIMENSION<sup>10+</sup>          | "PixelXDimension"           | Pixel X dimension. The unit is px.<br>**Read/Write capability**: readable and writable.<br>| **How to modify the parameter**: Use a non-negative integer string.<br>**Example of modification**: `imageSource.modifyImageProperty(key,'4096');`<br>**Example of read result**: "4096"|
 | PIXEL_Y_DIMENSION<sup>10+</sup>           | "PixelYDimension"           | Pixel Y dimension. The unit is px.<br>**Read/Write capability**: readable and writable.<br>| **How to modify the parameter**: Use a non-negative integer string.<br>**Example of modification**: `imageSource.modifyImageProperty(key,'3072');`<br>**Example of read result**: "3072"|
 | RELATED_SOUND_FILE<sup>12+</sup>         | "RelatedSoundFile"          | Name of an audio file related to the image data.<br>**Read/Write capability**: readable and writable.<br>| **How to modify the parameter**: Use a string.<br>**Example of modification**: `imageSource.modifyImageProperty(key,'Related Sound File');`<br>**Example of read result**: "Related Sound File|
@@ -239,7 +244,7 @@ Enumerates the types of Exchangeable Image File Format (Exif) data of an image.
 | EXPOSURE_MODE<sup>12+</sup>              | "ExposureMode"         | Exposure mode set when the image was captured.<br>0: "Auto exposure"<br>1: "Manual exposure"<br>2: "Auto bracket"<br>**Read/Write capability**: readable and writable.<br>| **How to modify the parameter**: Use numbers or strings.<br>**Example of modification**: `imageSource.modifyImageProperty(key,'0');`<br>or `imageSource.modifyImageProperty(key,'Auto exposure');`<br>**Example of read result**: "Auto exposure"|
 | WHITE_BALANCE<sup>10+</sup>              | "WhiteBalance"         | White balance.<br>0: "Auto white balance"<br>1: "Manual white balance"<br>**Read/Write capability**: readable and writable.<br>| **How to modify the parameter**: Use numbers or strings.<br>**Example of modification**: `imageSource.modifyImageProperty(key,'0');`<br>or `imageSource.modifyImageProperty(key,'Auto white balance');`<br>**Example of read result**: "Auto white balance"|
 | DIGITAL_ZOOM_RATIO<sup>12+</sup>         | "DigitalZoomRatio"     | Digital zoom ratio when the image was captured.<br>**Read/Write capability**: readable and writable.<br>| **How to modify the parameter**: Use a non-negative rational number as a string.<br>**Example of modification**: `imageSource.modifyImageProperty(key,'1/2');`<br>**Example of read result**: "0.5"|
-| FOCAL_LENGTH_IN_35_MM_FILM<sup>10+</sup> | "FocalLengthIn35mmFilm" | 35 mm equivalent focal length. The unit is milliseconds.<br>**Read/Write capability**: readable and writable.<br>| **How to modify the parameter**: Use a non-negative integer string.<br>**Example of modification**: `imageSource.modifyImageProperty(key,'50');`<br>**Example of read result**: "50"|
+| FOCAL_LENGTH_IN_35_MM_FILM<sup>10+</sup> | "FocalLengthIn35mmFilm" | 35 mm equivalent focal length. The unit is millimeters.<br>**Read/Write capability**: readable and writable.<br>| **How to modify the parameter**: Use a non-negative integer string.<br>**Example of modification**: `imageSource.modifyImageProperty(key,'50');`<br>**Example of read result**: "50"|
 | SCENE_CAPTURE_TYPE<sup>12+</sup>         | "SceneCaptureType"     | Type of the scene that was captured.<br>0: "Standard"<br>1: "Landscape"<br>2: "Portrait"<br>3: "Night scene"<br>**Read/Write capability**: readable and writable.<br>| **How to modify the parameter**: Use numbers or strings.<br>**Example of modification**: `imageSource.modifyImageProperty(key,'0');`<br>or `imageSource.modifyImageProperty(key,'Standard');`<br>**Example of read result**: "Standard"|
 | GAIN_CONTROL<sup>12+</sup>               | "GainControl"          | Degree of overall image gain adjustment.<br>0: "Normal" (No gain control)<br>1: "Low gain up"<br>2: "High gain up"<br>3: "Low gain down"<br>4: "High gain down"<br>**Read/Write capability**: readable and writable.<br>| **How to modify the parameter**: Use numbers or strings.<br>**Example of modification**: `imageSource.modifyImageProperty(key,'0');`<br>or `imageSource.modifyImageProperty(key,'Normal');`<br>**Example of read result**: "Normal"|
 | CONTRAST<sup>12+</sup>                   | "Contrast"             | Direction of contrast processing used by the camera.<br>0: "Normal" (Normal contrast)<br>1: "Soft" (Soft contrast)<br>2: "Hard" (Hard contrast)<br>**Read/Write capability**: readable and writable.<br>| **How to modify the parameter**: Use numbers or strings.<br>**Example of modification**: `imageSource.modifyImageProperty(key,'0');`<br>or `imageSource.modifyImageProperty(key,'Normal');`<br>**Example of read result**: "Normal"|
@@ -295,12 +300,12 @@ Enumerates the types of Exchangeable Image File Format (Exif) data of an image.
 | FRONT_CAMERA<sup>12+</sup> | "HwMnoteFrontCamera" | Whether the front camera is used to take a selfie.<br>**Read/Write capability**: read-only<br>| _ |
 | ROLL_ANGLE<sup>11+</sup> | "HwMnoteRollAngle" | Roll angle.<br>**Read/Write capability**: read-only<br>| _ |
 | PITCH_ANGLE<sup>11+</sup> | "HwMnotePitchAngle" | Pitch angle.<br>**Read/Write capability**: read-only<br>| _ |
-| PHYSICAL_APERTURE<sup>10+</sup> | "HwMnotePhysicalAperture" | Physical aperture. The unit is milliseconds.<br>**Read/Write capability**: read-only<br>| _ |
+| PHYSICAL_APERTURE<sup>10+</sup> | "HwMnotePhysicalAperture" | Physical aperture. The unit is millimeters.<br>**Read/Write capability**: read-only<br>| _ |
 | FOCUS_MODE<sup>11+</sup> | "HwMnoteFocusMode" | Focus mode.<br>**Read/Write capability**: read-only<br>| _ |
 
 ## FragmentMapPropertyKey<sup>13+</sup>
 
-Enumerates the fragment map information.
+Enumerates the image information of a watermark crop image.
 
 **System capability**: SystemCapability.Multimedia.Image.Core
 
@@ -313,7 +318,7 @@ Enumerates the fragment map information.
 
 ## GifPropertyKey<sup>20+</sup>
 
-Enumerates the GIF image information.
+Enumerates GIF image information.
 
 **System capability**: SystemCapability.Multimedia.Image.Core
 
@@ -329,7 +334,7 @@ Enumerates the GIF image information.
 
 ## HeifsPropertyKey<sup>23+</sup>
 
-Enumerates the HEIF image sequence information.
+Enumerates HEIF sequence image information.
 
 **Model restriction**: This API can be used only in the stage model.
 
@@ -337,14 +342,14 @@ Enumerates the HEIF image sequence information.
 
 | Name             | Value               | Description                  |
 | ----------------- | ----------------- | --------------------- |
-| HEIFS_DELAY_TIME    | 'HeifsDelayTime'    | Delay of each frame in an HEIF image sequence,<br>in milliseconds.|
+| HEIFS_DELAY_TIME    | 'HeifsDelayTime'    | Delay of each frame in an HEIF image sequence,<br>The unit is milliseconds.|
 | HEIFS_UNCLAMPED_DELAY_TIME | 'HeifsUnclampedDelayTime' | Frame delay of a HEIF image sequence without clamping.<br>The unit is milliseconds.<br>**Since**: 26.0.0|
 | HEIFS_CANVAS_HEIGHT | 'HeifsCanvasHeight' | Canvas height of a HEIF image sequence.<br>The unit is px.<br>**Since**: 26.0.0|
 | HEIFS_CANVAS_WIDTH | 'HeifsCanvasWidth' | Canvas width of a HEIF sequence image.<br>The unit is px.<br>**Since**: 26.0.0|
 
 ## WebPPropertyKey<sup>24+</sup>
 
-Enumerates the WebP image information.
+Enumerates WebP image information.
 
 **Model restriction**: This API can be used only in the stage model.
 
@@ -360,7 +365,7 @@ Enumerates the WebP image information.
 
 ## DngPropertyKey<sup>24+</sup>
 
-Enumerates the DNG image information.
+Enumerates DNG image information.
 
 > **NOTE**
 >
@@ -404,7 +409,7 @@ Enumerates the DNG image information.
 | LINEAR_RESPONSE_LIMIT | 'LinearResponseLimit' | Upper limit of the linear response. The value range is [0.0, 1.0].|
 | CAMERA_SERIAL_NUMBER | 'CameraSerialNumber' | Camera serial number.|
 | LENS_INFO | 'LensInfo' | Lens information.|
-| CHROMA_BLUR_RADIUS | 'ChromaBlurRadius' | Chrominance blur radius, in pixels.|
+| CHROMA_BLUR_RADIUS | 'ChromaBlurRadius' | Chrominance blur radius. The unit is px.|
 | ANTI_ALIAS_STRENGTH | 'AntiAliasStrength' | Anti-aliasing filter strength.|
 | SHADOW_SCALE | 'ShadowScale' | Shadow region scaling factor.|
 | DNG_PRIVATE_DATA | 'DNGPrivateData' | Vendor-specific data block.|
@@ -465,7 +470,7 @@ Enumerates the DNG image information.
 
 ## PngPropertyKey
 
-Enumerates the PNG image information.
+Enumerates PNG image information.
 
 > **NOTE**
 >
@@ -498,7 +503,7 @@ Enumerates the PNG image information.
 
 ## JfifPropertyKey
 
-Enumerates the JFIF image information.
+Enumerates JFIF image information.
 
 > **NOTE**
 >
@@ -520,7 +525,7 @@ Enumerates the JFIF image information.
 
 ## TiffPropertyKey
 
-Enumerates the TIFF image information.
+Enumerates TIFF image information.
 
 > **NOTE**
 >
@@ -557,7 +562,7 @@ Enumerates the TIFF image information.
 
 ## AvisPropertyKey
 
-Enumerates the AVIS image information.
+Enumerates AVIS image information.
 
 > **NOTE**
 >
@@ -575,7 +580,7 @@ Enumerates the AVIS image information.
 
 ## ImageFormat<sup>9+</sup>
 
-Enumerates the image formats.
+Enumerates image formats.
 
 **System capability**: SystemCapability.Multimedia.Image.Core
 
@@ -586,7 +591,7 @@ Enumerates the image formats.
 
 ## ComponentType<sup>9+</sup>
 
-Enumerates the color component types of images.
+Enumerates image component types.
 
 **System capability**: SystemCapability.Multimedia.Image.ImageReceiver
 
@@ -622,7 +627,7 @@ Enumerates the desired dynamic range of an image during encoding.
 
 ## CropAndScaleStrategy<sup>18+</sup>
 
-Enumerates the order of cropping and scaling.
+Enumerates the order policies between cropping and scaling.
 
 If the **cropAndScaleStrategy** parameter is not specified in [DecodingOptions](arkts-apis-image-i.md#decodingoptions7) and both **desiredRegion** and **desiredSize** are set, the final decoding result may vary slightly due to differences in decoding algorithms used for different image formats.
 
@@ -630,7 +635,7 @@ For example, if the original image size is 200x200, and you specify **desiredSiz
 
 For JPEG and WebP images (as well as some DNG images that decode a JPEG preview within the file and therefore are treated as JPEG format), the system first performs downsampling. For instance, it might downsample by 7/8 and then crop the region based on a 175x175 image size. As a result, the final cropped region will be slightly larger than the top-left 1/4 of the original image.
 
-For SVG images, which are vector-based and can be scaled without losing clarity, the system scales the image based on the ratio of **desiredSize** to the original image size and then crops the region. This results in a decoded region that may differ from the exact 1/4 region of the original image.
+For SVG images, since they are vector graphics, they can be scaled arbitrarily without loss of clarity. During decoding, the scaling ratio is determined based on the proportion between **desiredSize** and the original image size. Cropping is then performed on the scaled image. As a result, the actual decoded region returned may vary.
 
 To ensure consistent results when both **desiredRegion** and **desiredSize** are set, set the **cropAndScaleStrategy** parameter to **CROP_FIRST**.
 
@@ -643,33 +648,33 @@ To ensure consistent results when both **desiredRegion** and **desiredSize** are
 
 ## HdrMetadataKey<sup>12+</sup>
 
-Enumerates the keys of HDR metadata used by [pixelmap](arkts-apis-image-PixelMap.md).
+Enumerates the keys of HDR metadata used by [PixelMap](arkts-apis-image-PixelMap.md).
 
 **System capability**: SystemCapability.Multimedia.Image.Core
 
 | Name         | Value      | Description        |
 | ------------- | ----------| ------------ |
-| HDR_METADATA_TYPE    | 0    | Metadata type used by [pixelmap](arkts-apis-image-PixelMap.md). |
+| HDR_METADATA_TYPE    | 0    | Metadata type used by [PixelMap](arkts-apis-image-PixelMap.md). |
 | HDR_STATIC_METADATA  | 1    | Static metadata.  |
 | HDR_DYNAMIC_METADATA | 2    | Dynamic metadata.  |
-| HDR_GAINMAP_METADATA | 3    | Metadata used by gain maps.  |
+| HDR_GAINMAP_METADATA | 3    | Metadata used by the gain map.  |
 
 ## HdrMetadataType<sup>12+</sup>
 
-Enumerates the values available for **HDR_METADATA_TYPE** in [HdrMetadataKey](#hdrmetadatakey12).
+Enumerates the values corresponding to the **HDR_METADATA_TYPE** keyword in [HdrMetadataKey](#hdrmetadatakey12).
 
 **System capability**: SystemCapability.Multimedia.Image.Core
 
-| Name         | Value      | Description        |
-| ------------- | ----------| ------------ |
-| NONE     | 0    | No metadata. |
-| BASE     | 1    | Metadata used for base graphics.  |
-| GAINMAP  | 2    | Metadata used for gain maps.  |
-| ALTERNATE| 3    | Metadata used for synthesized HDR graphics.  |
+| Name         | Value | Description        |
+| ------------- | --- | ------------ |
+| NONE          | 0   | No metadata. |
+| BASE          | 1   | Metadata used for base graphics.  |
+| GAINMAP       | 2   | Metadata used for gain maps.  |
+| ALTERNATE     | 3   | Metadata used for synthesized HDR graphics.  |
 
 ## AntiAliasingLevel<sup>12+</sup>
 
-Enumerates the anti-aliasing levels.
+Enumerates the interpolation algorithm used during scaling. You can select the appropriate level based on scaling quality and performance requirements.
 
 **Atomic service API**: This API can be used in atomic services since API version 14.
 
@@ -677,26 +682,26 @@ Enumerates the anti-aliasing levels.
 
 | Name                  |   Value  | Description             |
 | ---------------------- | ------ | ----------------- |
-| NONE                | 0      | Nearest neighbor interpolation.  |
-| LOW                 | 1      | Bilinear interpolation.  |
-| MEDIUM              | 2      | Bilinear interpolation with mipmap enabled. You are advised to use this value when zooming out an image.  |
-| HIGH                | 3      | Cubic interpolation.  |
+| NONE                | 0      | Nearest neighbor interpolation.<br>This is the fastest option but produces noticeable mosaic/aliasing artifacts when upscaling. It is suitable for scenarios with high performance requirements and low quality demands.|
+| LOW                 | 1      | Bilinear interpolation.<br>It is suitable for general scaling scenarios.  |
+| MEDIUM              | 2      | Bilinear interpolation with mipmap enabled.<br>It is suitable for image downscaling, effectively reducing aliasing and texture flickering when scaling down significantly.  |
+| HIGH                | 3      | Bicubic convolution interpolation algorithm.<br>It is suitable for upscaling scenarios with high quality requirements.  |
 
 ## AllocatorType<sup>15+</sup>
 
-Enumerates the types of the memory used for image decoding.
+Enumerates memory types used for image decoding. You can choose the appropriate memory allocation type based on the scenario.
 
 **System capability**: SystemCapability.Multimedia.Image.Core
 
 | Name        | Value  | Description                              |
 | ------------ | ---- | ---------------------------------- |
-| AUTO         | 0    | The system determines whether DMA memory or shared memory is used.    |
-| DMA          | 1    | DMA memory is used.           |
-| SHARE_MEMORY | 2    | Shared memory is used.|
+| AUTO         | 0    | The system determines the memory allocation type.    |
+| DMA          | 1    | The Direct Memory Access (DMA) memory type is used. This option is suitable for scenarios with high requirements for decoding and rendering performance. Depending on the hardware, padding bytes may be added at the end of each pixel row for memory alignment.           |
+| SHARE_MEMORY | 2    | The shared memory is used.|
 
 ## Orientation<sup>23+</sup>
 
-Enumerates the image orientation types.
+Enumerates image orientation types.
 
 **Model restriction**: This API can be used only in the stage model.
 
@@ -715,7 +720,7 @@ Enumerates the image orientation types.
 
 ## FocusMode<sup>23+</sup>
 
-Enumerates the focus modes.
+Enumerates focus mode types.
 
 **Model restriction**: This API can be used only in the stage model.
 
@@ -730,7 +735,7 @@ Enumerates the focus modes.
 
 ## XmageColorMode<sup>23+</sup>
 
-Enumerates the XMAGE color modes.
+Enumerates XMAGE color mode type.
 
 **Model restriction**: This API can be used only in the stage model.
 
@@ -745,7 +750,7 @@ Enumerates the XMAGE color modes.
 
 ## XMPTagType
 
-Enumerates the XMP tag types.
+Enumerates XMP tag types.
 
 **Since**: 26.0.0
 
@@ -762,4 +767,3 @@ Enumerates the XMP tag types.
 | ALTERNATE_ARRAY | 4    | Alternative array. During serialization, the format of this type in XMP metadata is \<rdf:Alt>.         |
 | ALTERNATE_TEXT  | 5    | Multi-language text. During serialization, this type is an alternative array of **xml:lang** qualifiers in XMP format.|
 | STRUCTURE       | 6    | Struct. Unlike array elements, fields in the struct can belong to different namespaces.           |
-<!--no_check-->

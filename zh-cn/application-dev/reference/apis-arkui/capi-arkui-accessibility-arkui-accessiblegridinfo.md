@@ -28,6 +28,6 @@ typedef struct {...} ArkUI_AccessibleGridInfo
 | -- | -- |
 | int32_t rowCount | 网格的行数。取值范围为大于0的整数，传入非正整数时不生效。 |
 | int32_t columnCount | 网格的列数。取值范围为大于0的整数，传入非正整数时不生效。 |
-| int32_t selectionMode | 选择模式。值为0时表示仅选中网格的一行，非0值时表示选中网格的多行。 |
+| int32_t selectionMode | 选中模式。值为0时表示仅选中网格的一行，非0值时表示选中网格的多行。 |
 
 

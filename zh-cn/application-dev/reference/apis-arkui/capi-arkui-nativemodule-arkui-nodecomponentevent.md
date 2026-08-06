@@ -12,7 +12,7 @@ typedef struct {...} ArkUI_NodeComponentEvent
 
 ## 概述
 
-定义组件回调事件的参数类型。
+定义组件回调事件的参数类型，用于在组件回调触发时传递事件相关数据，便于应用获取回调事件参数。
 
 **起始版本：** 12
 
@@ -26,6 +26,6 @@ typedef struct {...} ArkUI_NodeComponentEvent
 
 | 名称                                                      | 描述 |
 |---------------------------------------------------------| -- |
-| [ArkUI_NumberValue](capi-arkui-nativemodule-arkui-numbervalue.md) data[[MAX_COMPONENT_EVENT_ARG_NUM](capi-native-node-h.md#宏定义)] | 数据数组对象。 |
+| [ArkUI_NumberValue](capi-arkui-nativemodule-arkui-numbervalue.md) data[[MAX_COMPONENT_EVENT_ARG_NUM](capi-native-node-h.md#宏定义)] | 用于存储组件回调事件的参数数据，数组元素按照回调事件定义的参数顺序排列；各事件类型的参数定义详见[native_node.h](capi-native-node-h.md)相关说明。 |
 
 

@@ -12,8 +12,6 @@
 >
 > - 本模块首批接口从API version 11开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 >
-> - 在<!--RP2-->OpenHarmony 6.0<!--RP2End-->之前，支持在Phone、Tablet设备使用画中画功能，其他设备不可用；从<!--RP2-->OpenHarmony 6.0<!--RP2End-->开始，支持在Phone、PC/2in1、Tablet设备使用画中画功能，其他设备不可用；从OpenHarmony 7.0.0开始，支持在Phone、PC/2in1、Tablet、Car设备使用画中画功能，其他设备不可用。
->
 > - 针对系统能力SystemCapability.Window.SessionManager，请先使用[canIUse()](../common/js-apis-syscap.md#caniuse)接口判断当前设备是否支持此syscap及对应接口。
 
 ## 导入模块
@@ -690,7 +688,7 @@ updateContentSize(width: number, height: number): void
 
 **系统能力：** SystemCapability.Window.SessionManager
 
-**设备行为差异：** 该接口在Phone、Tablet、PC/2in1设备中可正常调用；在Car设备中，<!--Del-->仅支持特定模板类型（具体可见[PiPTemplateType](js-apis-pipWindow-sys.md#piptemplatetype)）的画中画调用此接口更新尺寸，只能以固定大小尺寸更新，当宽高比>=1时更新为横屏小窗类型，当宽高比<1时更新为竖屏大窗类型，其他模板类型的画中画<!--DelEnd-->调用此接口不报错也不生效。
+**设备行为差异：** 该接口在Phone、Tablet、PC/2in1、TV设备中可正常调用；在Car设备中，<!--Del-->仅支持特定模板类型（具体可见[PiPTemplateType](js-apis-pipWindow-sys.md#piptemplatetype)）的画中画调用此接口更新尺寸，只能以固定大小尺寸更新，当宽高比>=1时更新为横屏小窗类型，当宽高比<1时更新为竖屏大窗类型，其他模板类型的画中画<!--DelEnd-->调用此接口不报错也不生效。
 
 **参数：**
 

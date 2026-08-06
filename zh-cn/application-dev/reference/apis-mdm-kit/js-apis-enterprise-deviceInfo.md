@@ -6,7 +6,13 @@
 <!--Tester: @lpw_work-->
 <!--Adviser: @zhang_yixin13-->
 
-本模块提供企业设备信息管理能力，包括获取设备序列号、设备名称等。
+本模块提供企业设备信息管理能力，支持获取设备序列号、设备名称、SIM卡信息等。企业管理员可通过此模块查询设备详细信息，实现设备资产的统一管理和追踪。
+
+**使用场景：**
+- 设备资产管理与追踪
+- 企业设备合规性检查
+- 设备信息采集与统计
+- 故障诊断与设备识别
 
 > **说明：**
 >
@@ -38,7 +44,7 @@ getDeviceInfo(admin: Want, label: string): string
 
 | 参数名 | 类型                                                    | 必填 | 说明                                                         |
 | ------ | ------------------------------------------------------- | ---- | ------------------------------------------------------------ |
-| admin  | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | 是   | 企业设备管理扩展组件。Want中必须包含企业设备管理扩展能力的abilityName和所在应用的bundleName。                                               |
+| admin  | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | 是   | 企业设备管理扩展组件，用于指定具有设备管理能力的目标应用。Want对象中必须包含abilityName（扩展能力名称）和bundleName（应用包名）两个必填字段。                                               |
 | label  | string                                                  | 是   | 支持获取的设备信息标签。<br/>- deviceName：设备名称。<br/>- deviceSerial：设备序列号。<br/>- simInfo：SIM卡信息。 <!--RP1--><!--RP1End-->|
 
 **返回值：**

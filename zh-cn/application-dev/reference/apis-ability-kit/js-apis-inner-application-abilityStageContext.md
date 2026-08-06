@@ -28,9 +28,9 @@ import { common } from '@kit.AbilityKit';
 
 | 名称 | 类型 | 只读 | 可选 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
-| currentHapModuleInfo | [HapModuleInfo](js-apis-bundleManager-hapModuleInfo.md) | 否 | 否 | AbilityStage对应的ModuleInfo对象，可用来获取当前模块的名称、路径等信息。 |
+| currentHapModuleInfo | [HapModuleInfo](js-apis-bundleManager-hapModuleInfo.md) | 否 | 否 | AbilityStage对应的HapModuleInfo对象，可用来获取当前模块的名称、路径等信息。 |
 | config | [Configuration](js-apis-app-ability-configuration.md) | 否 | 否 | 环境配置对象。 |
-| launchElement<sup>24+</sup> | [ElementName](js-apis-bundleManager-elementName.md) | 否 | 是 | 创建AbilityStage时的ElementName。<br>**原子化服务API**：从API version 24开始，该接口支持在原子化服务中使用。 |
+| launchElement<sup>24+</sup> | [ElementName](js-apis-bundleManager-elementName.md) | 否 | 是 | 创建AbilityStage时的元素名称信息。<br>**原子化服务API**：从API version 24开始，该接口支持在原子化服务中使用。 |
 
 **示例：**
 

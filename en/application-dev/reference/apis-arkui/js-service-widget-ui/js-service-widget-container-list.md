@@ -2,10 +2,11 @@
 
 <!--Kit: ArkUI-->
 <!--Subsystem: ArkUI-->
-<!--Owner: @yylong; @rongShao-Z; @wind_-->
-<!--Designer: @yylong-->
+<!--Owner: @rongShao-Z; @wind_-->
+<!--Designer: @yangcan18-->
 <!--Tester: @leiyuqian-->
 <!--Adviser: @Brilliantry_Rui-->
+<!-- md-trans-meta sourceCommit=dfb15c325281e5e789ea7ade45dfdd45876606ad translatedAt=2026-07-27T02:28:35.330Z pushedAt=2026-07-27T09:23:36.772Z -->
 
 The **\<list>** component provides a list container that presents a series of list items arranged in a column with the same width. It supports presentations of the same data in a multiple and coherent row style, for example, images or text.
 
@@ -15,13 +16,9 @@ The **\<list>** component provides a list container that presents a series of li
 >
 > Limit the number of items in a list to 30 to improve user experience.
 
-
-
-
 ## Child Components
 
 Only the [\<list-item>](js-service-widget-container-list-item.md) child component is supported.
-
 
 ## Attributes
 
@@ -30,15 +27,14 @@ In addition to the [universal attributes](js-service-widget-common-attributes.md
 | Name           | Type            | Default Value    | Mandatory  | Description                                      |
 | ------------- | -------------- | ------- | ---- | ---------------------------------------- |
 | cachedcount   | number         | 0       | No   | Minimum number of cached list items when a long list is loaded with delay.                |
-| scrollbar     | string         | off     | No   | Display mode of the side scrollbar. (Currently, only the vertical scrollbar is supported.)<br>- **off**: no display.<br>- **auto**: displayed on demand (The side scrollbar is displayed when touched and disappears 2s later.).<br>- **on**: always on display.|
+| scrollbar     | string         | off     | No    | Display mode of the scrollbar. (Currently, only the vertical scrollbar is supported.)<br/>-&nbsp;**off**: no display.<br/>-&nbsp;**auto**: displayed on demand (The scrollbar is displayed when touched and disappears 2s later.).<br/>-&nbsp;**on**: always on display. |
 | scrolleffect  | string         | spring  | No   | Scroll effect. Available values are as follows:<br>- **spring**: Similar to the physical dynamic effect of a spring. When the scrollbar reaches the edge, it can continue to scroll for a distance based on the initial speed or a touch event. It rebounds after being released.<br>- **fade**: Similar to the physical dynamic effect of fade. When the scrollbar reaches the edge, a wave shape fades. The fade changes according to the speed and scrolling distance.<br>- **no**: No effect when the scrollbar reaches the edge.|
 | divider       | boolean        | false   | No   | Whether list items are separated by dividers.<br>For details about divider styles, see **divider-color**, **divider-height**, **divider-length**, and **divider-origin** in the [Styles](#styles) table.<br>- **false**: List items are not separated by dividers.<br>- **true**: List items are separated by dividers.|
-| shapemode     | string         | default | No   | Shape of the side scrollbar.<br>- **default**: not specified (following the theme).<br>- **rect**: rectangle.<br>- **round**: circle.|
+| shapemode     | string         | default | No    | Shape of the scrollbar.<br/>-&nbsp;**default**: not specified (following the theme).<br/>-&nbsp;**rect**: rectangle.<br/>-&nbsp;**round**: circle. |
 | updateeffect  | boolean        | false   | No   | Whether a dynamic effect is displayed when an item in the list is deleted or added.<br>- **false**: No dynamic effect is displayed.<br>- **true**: A dynamic effect is displayed when an item is added or deleted.|
 | initialindex  | number         | 0       | No   | Item displayed at the start position of the viewport when the current list is loaded for the first time. The default value is **0**, indicating that the first item is displayed. If the number you set is greater than the index of the last item, the setting does not take effect. When the **initialoffset** attribute is set, this attribute does not take effect.|
 | initialoffset | &lt;length&gt; | 0       | No   | Start offset of the viewport when the current list is loaded for the first time. The offset must not exceed the scrolling range of the current list. If exceeded, the offset is truncated to the maximum value of the scrolling range.|
 | selected      | string         | -       | No   | Selected item in the current list. The value can be a **section** value of any list items.|
-
 
 ## Styles
 
@@ -52,21 +48,18 @@ In addition to the [universal styles](js-service-widget-common-styles.md), the f
 | divider-origin   | &lt;length&gt;                           | 0           | No   | Item divider offset relative to the start point of the main axis. This style is valid only when the **divider** attribute of **\<list>** is set to **true**.|
 | flex-direction   | string                                   | column      | No   | Main axis direction of the flex container. It specifies how items are placed in the flex container.<br>- **column**: Items are placed vertically from top to bottom.<br>- **row**: Items are placed horizontally from left to right.<br>For the **\<list>** component, the default value is **column**. For other components, the default value is **row**.|
 | columns          | number                                   | 1           | No   | Number of columns displayed in the cross axis direction of the list. The default value is **1**.<br>When multiple columns are set, the columns are evenly distributed on the cross axis of the **\<list>** component. The size of each column is the same.|
-| align-items      | string                                   | stretch     | No   | Alignment of items in each column on the cross axis. Available values are as follows:<br>- **stretch**: Items are stretched to the same height or width as the container in the cross axis direction.<br>- **flex-start**: Items are packed toward the start edge of the cross axis.<br>- **flex-end**: Items are packed toward the end edge of the cross axis.<br>- **center**: Items are packed toward the center of the cross axis.<br>This style takes effect only on items of each column. Columns are evenly distributed.|
+| align-items      | string                                   | stretch     | No    | Alignment of items in each column on the cross axis. Available values are as follows:<br/>-&nbsp;**stretch**: Items are stretched to the same height or width as the container along the cross axis.<br/>-&nbsp;**flex-start**: Items are packed toward the start edge of the cross axis.<br/>-&nbsp;**flex-end**: Items are packed toward the end edge of the cross axis.<br/>-&nbsp;**center**: Items are packed toward the center of the cross axis.<br/>&nbsp;This style takes effect only on items of each column. Columns are evenly distributed. |
 | item-extent      | &lt;length&gt;&nbsp;\|&nbsp;&lt;percentage&gt; | -           | No   | Size of an internal item. When a percentage is set, the value indicates the percentage of the length in the main axis direction relative to the list viewpoint.|
 | fade-color       | &lt;color&gt;                            | grey        | No   | Color of the physical dynamic effect. This attribute is valid only when **scrolleffect** is set to **fade**.          |
 | scrollbar-color  | &lt;color&gt;                            | -           | No   | Color of the scrollbar.                               |
 | scrollbar-width  | &lt;length&gt;                           | -           | No   | Width of the scrollbar.                               |
 | scrollbar-offset | &lt;length&gt;                           | 0           | No   | Offset between the scrollbar and the default position of the list. The value must be a positive number. The default position is on the right edge of the list. You can adjust the horizontal position of the scrollbar by setting this offset. If the scrollbar is drawn outside the list and the parent component of the list is capable of cropping, the scrollbar will be cropped.|
 
-
 ## Events
 
 The [universal events](js-service-widget-common-events.md) are supported.
 
-
 ## Example
-
 
 ```html
 <!-- index.html -->
@@ -79,7 +72,6 @@ The [universal events](js-service-widget-common-events.md) are supported.
   </list>
 </div>
 ```
-
 
 ```json
 {
@@ -94,7 +86,6 @@ The [universal events](js-service-widget-common-events.md) are supported.
   }
 }
 ```
-
 
 ```css
 /* index.css */
@@ -122,6 +113,7 @@ The [universal events](js-service-widget-common-events.md) are supported.
   text-align: center;
 }
 ```
+
 **4 x 4 widget**
 
-![en-us_list-example](figures/list-example.png)
+![list-example](figures/list-example.png)

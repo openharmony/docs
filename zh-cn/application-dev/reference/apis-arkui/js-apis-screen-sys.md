@@ -796,7 +796,7 @@ struct Index {
   xComponentController: XComponentController = new XComponentController();
 
   setVirtualScreenSurface = () => {
-    let screenId: number = 1;
+    let screenId: number = 1;// 屏幕ID需通过getAllScreens()获取或从createVirtualScreen()返回值获取
     let surfaceId = this.xComponentController.getXComponentSurfaceId();
     // 设置虚拟屏幕的surface
     screen.setVirtualScreenSurface(screenId, surfaceId, (err: BusinessError) => {
@@ -874,7 +874,7 @@ struct Index {
   xComponentController: XComponentController = new XComponentController();
 
   setVirtualScreenSurface = () => {
-    let screenId: number = 1;
+    let screenId: number = 1;// 屏幕ID需通过getAllScreens()获取或从createVirtualScreen()返回值获取
     let surfaceId = this.xComponentController.getXComponentSurfaceId();
     // 设置虚拟屏幕的surface
     screen.setVirtualScreenSurface(screenId, surfaceId).then(() => {
@@ -1220,15 +1220,15 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 // 屏幕ID需通过getAllScreens()获取
 let mainScreenOptions: screen.MultiScreenPositionOptions = {
-  id : 0,  // 主屏ID
-  startX : 0,
-  startY : 0
+  id: 0,  // 主屏ID
+  startX: 0,
+  startY: 0
 }; // 主屏的位置信息
 
 let secondaryScreenOptions: screen.MultiScreenPositionOptions = {
-  id : 12,  // 扩展屏ID
-  startX : 1000,
-  startY : 1000
+  id: 12,  // 扩展屏ID
+  startX: 1000,
+  startY: 1000
 }; // 扩展屏幕的位置信息
 
 // 设置主屏和扩展屏幕的位置信息
@@ -1287,7 +1287,7 @@ let height: number = 1080;
 screen.resizeVirtualScreen(screenId, width, height).then(() => {
   console.info(`Succeeded in resizing virtual screen: screenId=${screenId}, width=${width}, height=${height}`);
 }).catch((err: BusinessError) => {
-  console.error(`Failed to set screen area mirroring. Code: ${err.code}, message: ${err.message}`);
+  console.error(`Failed to resize virtual screen. Code: ${err.code}, message: ${err.message}`);
 });
 ```
 
@@ -1334,10 +1334,10 @@ let mainScreenId: number = 0; // 主屏ID
 let mirrorScreenIds: Array<number> = [1, 2, 3]; // 镜像屏ID集合
 // 主屏创建镜像的矩形区域
 let mainScreenRegion: screen.Rect = {
-  left : 0,
-  top : 0,
-  width : 1920,
-  height : 1080
+  left: 0,
+  top: 0,
+  width: 1920,
+  height: 1080
 };
 // 将屏幕的某一矩形区域设置为镜像模式
 screen.makeMirrorWithRegion(mainScreenId, mirrorScreenIds, mainScreenRegion).then((data: number) => {
@@ -1628,21 +1628,19 @@ screen.stopExpand(expandScreenIds).then(() => {
 
 **系统接口：** 此接口为系统接口。
 
-**系统能力：** SystemCapability.WindowManager.WindowManager.Core
-
-
 | 名称              | 类型                                       | 只读 | 可选 | 说明                                                          |
 | ----------------- | ---------------------------------------------- | ---- | ---- |-------------------------------------------------------------|
-| id                | number                                         | 是   | 否   | 屏幕的ID，该参数为整数。                           |
-| rsId<sup>21+</sup> |number | 是 | 否 | 屏幕端口的ID，该参数为整数。|
-| parent            | number                                         | 是   | 否   | 屏幕所属群组的ID，该参数为整数。             |
-| supportedModeInfo | Array&lt;[ScreenModeInfo](#screenmodeinfo)&gt; | 是   | 否   | 屏幕支持的模式集合。   |
-| activeModeIndex   | number                                         | 是   | 否   | 当前屏幕所处模式索引。模式索引的当前值和值的范围，会根据屏幕当前分辨率、刷新率和设备硬件差异产生变化。该参数为整数。 |
-| orientation       | [Orientation](#orientation)                     | 是   | 否   | 屏幕方向。       |
-| sourceMode<sup>10+</sup> | [ScreenSourceMode](#screensourcemode10)            | 是   | 否   | 屏幕来源模式。     |
-| serialNumber<sup>15+</sup> | string        | 是   | 是   | 扩展屏幕的序列号，默认返回为空字符串。 |
-| densityDpi | number        | 是   | 是   | 屏幕的物理像素密度，即每英寸的像素数。<br>**起始版本：** 26.0.0<br>**模型约束：** 此接口仅可在Stage模型下使用。 |
-| isInUse | boolean        | 是   | 是   | 标识屏幕的使用状态。true表示屏幕使用中；false表示屏幕未使用；默认值为true。<br>**起始版本：** 26.0.0<br>**模型约束：** 此接口仅可在Stage模型下使用。 |
+| id                | number                                         | 是   | 否   | 屏幕的ID，该参数为整数。  <br>**系统能力：** SystemCapability.WindowManager.WindowManager.Core                         |
+| rsId<sup>21+</sup> |number | 是 | 否 | 屏幕端口的ID，该参数为整数。<br>**系统能力：** SystemCapability.WindowManager.WindowManager.Core|
+| parent            | number                                         | 是   | 否   | 屏幕所属群组的ID，该参数为整数。 <br>**系统能力：** SystemCapability.WindowManager.WindowManager.Core             |
+| supportedModeInfo | Array&lt;[ScreenModeInfo](#screenmodeinfo)&gt; | 是   | 否   | 屏幕支持的模式集合。  <br>**系统能力：** SystemCapability.WindowManager.WindowManager.Core  |
+| activeModeIndex   | number                                         | 是   | 否   | 当前屏幕所处模式索引。模式索引的当前值和值的范围，会根据屏幕当前分辨率、刷新率和设备硬件差异产生变化。该参数为整数。 <br>**系统能力：** SystemCapability.WindowManager.WindowManager.Core |
+| orientation       | [Orientation](#orientation)                     | 是   | 否   | 屏幕方向。     <br>**系统能力：** SystemCapability.WindowManager.WindowManager.Core   |
+| sourceMode<sup>10+</sup> | [ScreenSourceMode](#screensourcemode10)            | 是   | 否   | 屏幕来源模式。  <br>**系统能力：** SystemCapability.WindowManager.WindowManager.Core    |
+| serialNumber<sup>15+</sup> | string        | 是   | 是   | 扩展屏幕的序列号，默认返回为空字符串。<br>**系统能力：** SystemCapability.WindowManager.WindowManager.Core  |
+| densityDpi | number        | 是   | 是   | 屏幕的物理像素密度，即每英寸的像素数。<br>**系统能力：** SystemCapability.WindowManager.WindowManager.Core <br>**起始版本：** 26.0.0<br>**模型约束：** 此接口仅可在Stage模型下使用。 |
+| isInUse | boolean        | 是   | 是   | 标识屏幕的使用状态。true表示屏幕使用中；false表示屏幕未使用；默认值为true。<br>**系统能力：** SystemCapability.WindowManager.WindowManager.Core <br>**起始版本：** 26.0.0<br>**模型约束：** 此接口仅可在Stage模型下使用。 |
+| screenType | [ScreenType](#screentype)         | 是   | 是   | 屏幕的类型，默认值为BUILT_IN。<br>**系统能力：** SystemCapability.Window.SessionManager <br>**起始版本：** 26.0.0<br>**模型约束：** 此接口仅可在Stage模型下使用。 |
 
 ### setOrientation
 
@@ -1817,9 +1815,7 @@ setOrientation(orientation: Orientation, orientationOptions?: OrientationOptions
 
 **设备行为差异：**
 
-- 针对Phone、Tablet设备：在[自由多窗模式](../../windowmanager/window-terminology.md#free-multi-window-mode自由多窗模式)下调用不生效不报错；在非[自由多窗模式](../../windowmanager/window-terminology.md#free-multi-window-mode自由多窗模式)下可正常调用，对于部分设备对屏幕有强约束（由产品配置决定），无需旋转的，调用此接口不生效。
-- 针对PC/2in1设备：折叠屏设备处于悬停态时，调用此接口不生效不报错。其他情况可正常调用生效。
-- 针对其他设备：接口行为未定义，不保证屏幕方向发生变化。
+仅支持有线连接的外接显示器作为[扩展屏](../../displaymanager/display-terminology.md#扩展屏)时设置屏幕方向。在其他屏幕上调用，或该外接显示器作为[镜像屏](../../displaymanager/display-terminology.md#镜像屏)时，返回1400001错误码。
 
 **参数：**
 
@@ -1841,6 +1837,7 @@ setOrientation(orientation: Orientation, orientationOptions?: OrientationOptions
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------------------- |
 | 202     | Permission verification failed. A non-system application calls a system API. |
+| 1400001 | Invalid display or screen. Possible cause: The screen is not a wired external display in extended mode. |
 | 1400003 | This display manager service works abnormally. |
 
 **示例：**
@@ -2152,6 +2149,23 @@ screen.createVirtualScreen(option).then((data: screen.Screen) => {
   console.error(`Failed to create the virtual screen. Code: ${err.code}, message: ${err.message}`);
 });
 ```
+## ScreenType
+
+屏幕类型的枚举。
+
+**起始版本：** 26.0.0
+
+**模型约束：** 此字段仅可在Stage模型下使用。
+
+**系统接口：** 此接口为系统接口。
+
+**系统能力：** SystemCapability.Window.SessionManager
+
+| 名称               | 值   | 说明                             |
+| ------------------ | ---- | -------------------------------- |
+| BUILT_IN           | 0    | 表示物理集成到设备中的内置屏幕。 |
+| EXTERNAL           | 1    | 表示通过有线接口连接的外部物理显示屏。         |
+| VIRTUAL            | 2    | 表示由软件创建的虚拟显示屏，通常用于投屏、屏幕录制或多屏协作。         |
 
 ## Orientation
 

@@ -979,7 +979,7 @@ observer.off('simStateChange');
 
 on\(type: 'iccAccountInfoChange', callback: Callback\<void\>\): void
 
-订阅卡帐户变化事件，使用callback方式作为异步方法。
+订阅卡账户变化事件，使用callback方式作为异步方法。
 
 **系统能力**：SystemCapability.Telephony.StateRegistry
 
@@ -987,7 +987,7 @@ on\(type: 'iccAccountInfoChange', callback: Callback\<void\>\): void
 
 | 参数名   | 类型                                                         | 必填 | 说明                                                         |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| type     | string                                                       | 是   | 卡帐户变化事件，参数固定为'iccAccountInfoChange'。                 |
+| type     | string                                                       | 是   | 卡账户变化事件，参数固定为'iccAccountInfoChange'。                 |
 | callback | Callback\<void\> | 是   | 回调函数。当卡账户改变成功，err为undefined，否则为错误对象。 |
 
 **错误码：**
@@ -1015,7 +1015,7 @@ observer.on('iccAccountInfoChange', () => {
 
 off\(type: 'iccAccountInfoChange', callback?: Callback\<void\>\): void
 
-移除订阅卡帐户变化事件，使用callback方式作为异步方法。
+移除订阅卡账户变化事件，使用callback方式作为异步方法。
 
 > **说明：**
 >
@@ -1027,7 +1027,7 @@ off\(type: 'iccAccountInfoChange', callback?: Callback\<void\>\): void
 
 | 参数名   | 类型                                                         | 必填 | 说明                                                         |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| type     | string                                                       | 是   | 卡帐户变化事件，参数固定为'iccAccountInfoChange'。                 |
+| type     | string                                                       | 是   | 卡账户变化事件，参数固定为'iccAccountInfoChange'。                 |
 | callback | Callback\<void\> | 否   | 回调函数。当卡账户改变成功，err为undefined，否则为错误对象。 |
 
 **错误码：**

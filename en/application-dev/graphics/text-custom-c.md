@@ -1,10 +1,12 @@
 # Drawing and Displaying Custom Text (C/C++)
+
 <!--Kit: ArkGraphics 2D-->
 <!--Subsystem: Graphics-->
 <!--Owner: @oh_wangxk; @KejiePeng-->
 <!--Designer: @liumingxiang-->
 <!--Tester: @yhl0101-->
 <!--Adviser: @ge-yafang-->
+<!-- md-trans-meta sourceCommit=983fa161ee12961fd07ba0428e932a03e0d706d9 translatedAt=2026-08-03T11:23:15.659Z pushedAt=2026-08-04T07:39:23.376Z -->
 
 In complex text layout scenarios, when the standard text components provided by the system cannot meet specific visual or interaction requirements, you can use the underlying text drawing capability provided by ArkGraphics 2D to directly control the canvas and text style to implement refined control over the text appearance and layout. This capability applies to scenarios that require highly customized text rendering effects, such as artistic fonts, complex rich text orchestration, or special dynamic text effects.
 
@@ -13,6 +15,7 @@ As a core component of the graphics system, the font engine is responsible for c
 ## Text Shaping
 
 ### When to Use
+
 Text shaping is a key capability provided by the font engine. It allows you to directly obtain the underlying glyph information (such as advance and direction measurement information) of the text without going through the default text layout process. This enables you to implement completely customized layout logic, drawing operations, and line break policies based on the raw data.
 
 This capability applies to the following scenarios:
@@ -39,12 +42,12 @@ The following table lists the common APIs used for text shaping. For details abo
 | OH_Drawing_TextBlob* OH_Drawing_TextBlobBuilderMake(OH_Drawing_TextBlobBuilder* textBlobBuilder) | Makes an **OH_Drawing_TextBlob** object from an **OH_Drawing_TextBlobBuilder**.| 
 | void OH_Drawing_CanvasDrawTextBlob(OH_Drawing_Canvas* canvas, const OH_Drawing_TextBlob* textBlob, float x, float y) | Draws a text blob.| 
 
-
-
 ### How to Develop
+
 Starting from API version 18, text shaping results can be obtained. API version 20 and later add support for obtaining text layout direction and text glyph advance. The key code is as follows.
 
 1. Add the following library to the **src/main/cpp/CMakeLists.txt** file of the project.
+
    ```c++
    libnative_drawing.so
    ```
@@ -65,7 +68,7 @@ Starting from API version 18, text shaping results can be obtained. API version 
 3. Create a paragraph style and use **ParagraphBuilder** to generate a paragraph instance.
 
    <!-- @[complex_text_c_independent_shaping_text_step1](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkGraphics2D/TextEngine/NDKComplexText1/entry/src/main/cpp/samples/draw_text_impl.cpp) -->
-   
+
    ``` C++
    // Create a TypographyStyle object, which is required for creating TypographyCreate.
    OH_Drawing_TypographyStyle *typoStyle = OH_Drawing_CreateTypographyStyle();
@@ -82,19 +85,19 @@ Starting from API version 18, text shaping results can be obtained. API version 
 4. Set the text style and add text content.
 
    <!-- @[complex_text_c_independent_shaping_text_step2](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkGraphics2D/TextEngine/NDKComplexText1/entry/src/main/cpp/samples/draw_text_impl.cpp) -->
-   
+
    ``` C++
    // Add text to handler.
    OH_Drawing_TypographyHandlerPushTextStyle(handler, txtStyle);
-   const char *text = "Hello World";
-   OH_Drawing_TypographyHandlerAddText(handler, text);
+   OH_Drawing_TypographyHandlerAddText(handler, "Hello World");
    ```
 
-5. Create a line object and obtain the shaping results of all texts in the line. 
+5. Create a line object and obtain the shaping results of all texts in the line.
+
 Use the **OH_Drawing_LineTypographyCreateLine()** method to create a single-line object, and use the **OH_Drawing_TextLineGetGlyphRuns()** method of the line object to obtain text runs with the same style.
 
    <!-- @[complex_text_c_independent_shaping_text_step3](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkGraphics2D/TextEngine/NDKComplexText1/entry/src/main/cpp/samples/draw_text_impl.cpp) -->
-   
+
    ``` C++
    // Create a Typography object based on the handler.
    OH_Drawing_LineTypography *lineTypography = OH_Drawing_CreateLineTypography(handler);
@@ -105,10 +108,12 @@ Use the **OH_Drawing_LineTypographyCreateLine()** method to create a single-line
    OH_Drawing_Array *runs = OH_Drawing_TextLineGetGlyphRuns(textLine);
    ```
 
-6. This step is the custom drawing phase in the text shaping process. Call the **OH_Drawing_GetRunGlyphs()** method to obtain the glyph sequence number of each character in the text, and then call the **OH_Drawing_GetRunFont()** method to obtain the font object to uniquely determine the specific graphic information of each glyph. 
-Starting from API version 20, the newly added **OH_Drawing_GetRunGlyphAdvances()** method can return an array containing the recommended advance and height for each glyph during drawing. Based on the accurate measurement data, you can calculate and define the drawing position of each glyph to implement complex text layout effects, such as custom character spacing, vertical offset, or special typesetting.
+6. This step is the custom drawing phase in the text shaping process. Call the **OH_Drawing_GetRunGlyphs()** method to obtain the glyph index of each character in the text, and then use the font object obtained from the **OH_Drawing_GetRunFont()** method to uniquely determine the specific graphical information of each glyph.
+
+Starting from API version 20, the newly added **OH_Drawing_GetRunGlyphAdvances()** method returns an array containing the recommended advance width and height for each glyph during drawing. With these precise measurement data, you can freely calculate and define the drawing position of each glyph, enabling complex text layout effects such as custom character spacing, vertical offset, or special typesetting.
+
    <!-- @[complex_text_c_independent_shaping_text_step4](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkGraphics2D/TextEngine/NDKComplexText1/entry/src/main/cpp/samples/draw_text_impl.cpp) -->
-   
+
    ``` C++
    size_t runsLength = OH_Drawing_GetDrawingArraySize(runs);
    for (int i = 0; i < runsLength; i++) {
@@ -138,8 +143,7 @@ Starting from API version 20, the newly added **OH_Drawing_GetRunGlyphAdvances()
            float pos = 0;
            OH_Drawing_PointGetX(advance, &pos);
            x += pos + 10; // Set horizontal spacing of 10 px between each glyph.
-           OH_Drawing_PointGetY(advance, &pos);
-           y += pos + 30; // Set vertical spacing of 30 px between each glyph.
+           y += 30; // Vertical spacing of 30px between glyphs.
        }
    
        // Draw a series of consecutive glyphs with the same properties.
@@ -152,12 +156,15 @@ Starting from API version 20, the newly added **OH_Drawing_GetRunGlyphAdvances()
        OH_Drawing_FontDestroy(font);
        OH_Drawing_DestroyRunGlyphAdvances(advances);
        OH_Drawing_DestroyRunGlyphs(glyphs);
+       OH_Drawing_TextBlobBuilderDestroy(builder);
+       OH_Drawing_RectDestroy(rect);
    }
    ```
 
 7. Release the memory.
+
    <!-- @[complex_text_c_independent_shaping_text_step5](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkGraphics2D/TextEngine/NDKComplexText1/entry/src/main/cpp/samples/draw_text_impl.cpp) -->
-   
+
    ``` C++
    // Release the memory.
    OH_Drawing_DestroyTypographyStyle(typoStyle);
@@ -169,6 +176,6 @@ Starting from API version 20, the newly added **OH_Drawing_GetRunGlyphAdvances()
    OH_Drawing_DestroyRuns(runs);
    ```
 
+Effect demonstration:
 
-Effect: 
 ![ndk_independent_shaping.png](figures/ndk_independent_shaping.png)

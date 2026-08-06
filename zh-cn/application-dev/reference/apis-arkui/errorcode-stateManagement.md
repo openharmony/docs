@@ -23,7 +23,7 @@ The target is not a custom component instance or V2 class instance.
 **可能原因**
 
 目标对象不满足以下情况：
-- [\@ObservedV2](../../ui/state-management/arkts-new-observedV2-and-trace.md)装饰的class（至少有一个[\@Trace](../../ui/state-management/arkts-new-observedV2-and-trace.md)装饰的变量）。
+- [\@ObservedV2](../../ui/state-management/arkts-new-observedV2-and-trace.md)装饰的类（至少有一个[\@Trace](../../ui/state-management/arkts-new-observedV2-and-trace.md)装饰的变量）。
 - [\@ComponentV2](../../ui/state-management/arkts-create-custom-components.md#componentv2)装饰的自定义组件的实例。
 
 **处理步骤**
@@ -42,7 +42,7 @@ addMonitor/clearMonitor的路径参数不合法。
 
 **可能原因**
 
-路径不是string或者不是数组类型。
+路径既不是string类型，也不是数组类型。
 
 **处理步骤**
 
@@ -78,7 +78,7 @@ applySync/flushUpdates/flushUIUpdates接口在[\@Computed](../../ui/state-manage
 
 **可能原因**
 
-applySync/flushUpdates/flushUIUpdates接口在@Computed装饰的getter方法内被调用。
+applySync/flushUpdates/flushUIUpdates接口在@Computed装饰的getter方法内被调用。@Computed装饰的getter方法用于派生值的计算，在其中调用这些接口会触发额外的状态刷新，破坏计算属性的求值逻辑，具体限制请参见[applySync/flushUpdates/flushUIUpdates接口限制条件](../../ui/state-management/arkts-new-applySync-flushUpdates-flushUIUpdates.md#限制条件)。
 
 **处理步骤**
 
@@ -96,7 +96,7 @@ flushUpdates/flushUIUpdates接口在[\@Monitor](../../ui/state-management/arkts-
 
 **可能原因**
 
-flushUpdates/flushUIUpdates接口在@Monitor回调方法内被调用。
+flushUpdates/flushUIUpdates接口在@Monitor回调方法内被调用。@Monitor的回调方法在状态变化时被触发，在其中调用这些接口会导致重复的状态刷新，可能引发循环更新，具体限制请参见[applySync/flushUpdates/flushUIUpdates接口限制条件](../../ui/state-management/arkts-new-applySync-flushUpdates-flushUIUpdates.md#限制条件)。
 
 **处理步骤**
 
@@ -154,7 +154,7 @@ connect和globalConnect使用了相同的key。
 
 **处理步骤**
 
-connect和globalConnect不建议混用，如果开发者需要混用，则要保证这两个接口不能使用相同的key，详情请参见[PersistenceV2使用限制](../../ui/state-management/arkts-new-persistencev2.md#使用限制)。
+不建议混用connect和globalConnect；如确需混用，请确保这两个接口不使用相同的key。详情请参见[PersistenceV2使用限制](../../ui/state-management/arkts-new-persistencev2.md#使用限制)。
 
 ## 140106 使用PersistenceV2存储数据到不支持的加密级别
 
@@ -192,9 +192,9 @@ The type of target mismatches the type of source.
 **处理步骤**
 
 - 确保type类型和defaultCreator返回类型一致。
-- 需要保证数据持久化前后类型不变。如果要改变类型，需要手动卸载应用，清空当前应用的持久化的数据，并再次安装。
+- 需要保证数据持久化前后类型不变。如果要改变类型，需要手动卸载应用，清空当前应用持久化的数据，并再次安装。
 
-## 140108 PersistenceV2缺少类型参数
+## 140108 PersistenceV2缺少@Type装饰器
 
 **错误信息**
 
@@ -262,7 +262,7 @@ Illegal usage of not @Track'ed property on UI!
 
 \@Consume寻找\@Provide失败，一般有以下两种原因：
 1. \@Consume所在组件的父组件没有定义相同key的\@Provide，且\@Consume没有设置默认值，导致\@Consume初始化失败。
-2. \@Consume向上查找定义\@Provide所在组件时，其父组件或祖先节点已被销毁，导致\@Consume查找失败。
+2. \@Consume向上查找定义\@Provide所在组件时，\@Consume所在组件的父组件或祖先节点已被销毁，导致\@Consume查找失败。
 
 **处理步骤**
 
@@ -277,7 +277,7 @@ Old toolchain detected. Please upgrade to the latest.
 
 **错误描述**
 
-从API version 18开始，支持[\@Reusable](../../ui/state-management/arkts-reusable.md)（父组件）中创建[\@ComponentV2](../../ui/state-management/arkts-create-custom-components.md#componentv2)（子组件），但需要开发者使用API version 18及以上SDK，否则会有运行时报错，从API version 23开始，将返回此错误码，详情见[\@ReusableV2使用限制](../../ui/state-management/arkts-new-reusableV2.md#使用限制)。
+从API version 18开始，支持[\@Reusable](../../ui/state-management/arkts-reusable.md)（父组件）中创建[\@ComponentV2](../../ui/state-management/arkts-create-custom-components.md#componentv2)（子组件），但需要开发者使用API version 18及以上SDK，否则会有运行时报错。从API version 23开始，将返回此错误码，详情见[\@ReusableV2使用限制](../../ui/state-management/arkts-new-reusableV2.md#使用限制)。
 
 **可能原因**
 
@@ -317,7 +317,7 @@ Illegal variable value error with decorated variable
 
 **可能原因**
 
-使用V1状态变量装饰器装饰的类型不合法。
+使用V1状态变量装饰器（如@State、@Prop、@Link等）装饰了不支持的类型。
 
 **处理步骤**
 

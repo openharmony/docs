@@ -2,9 +2,9 @@
 
 <!--Kit: ArkUI-->
 <!--Subsystem: ArkUI-->
-<!--Owner: @yylong-->
-<!--Designer: @yylong-->
-<!--Tester: @liuzhenshuo-->
+<!--Owner: @rongShao-Z; @wind_-->
+<!--Designer: @yangcan18-->
+<!--Tester: @leiyuqian-->
 <!--Adviser: @Brilliantry_Rui-->
 
 ## Overview
@@ -14,6 +14,8 @@ A list is a container that displays a collection of items. If the list items go 
 You can use lists to easily and efficiently display structured, scrollable information. Specifically, you can provide a single view of rows or columns by arranging the [ListItemGroup](../reference/apis-arkui/arkui-ts/ts-container-listitemgroup.md) or [ListItem](../reference/apis-arkui/arkui-ts/ts-container-listitem.md) child components linearly in a vertical or horizontal direction in the [List](../reference/apis-arkui/arkui-ts/ts-container-list.md) component, or use [ForEach](../ui/rendering-control/arkts-rendering-control-foreach.md) to iterate over a group of rows or columns, or mix any number of single views and **ForEach** structures to build a list. The **List** component supports the generation of child components in various [rendering](../ui/rendering-control/arkts-rendering-control-overview.md) modes, including [conditional rendering](../ui/rendering-control/arkts-rendering-control-ifelse.md), rendering of repeated content, and [lazy data loading](../ui/rendering-control/arkts-rendering-control-lazyforeach.md).
 
 On devices with circular screens, the [ArcList](../reference/apis-arkui/arkui-ts/ts-container-arclist.md) component is recommended. For details, see [Creating an Arc List (ArcList)](./arkts-layout-development-create-arclist.md).
+
+The examples in each of the following steps are code snippets. You can click the link at the bottom right of the sample code to obtain the complete sample codes.
 
 ## Layout and Constraints
 
@@ -40,13 +42,13 @@ When used in vertical layout, the list can contain one or more scrollable column
 
   **Figure 2** Vertical scrolling list (left: one column; right: multiple columns) 
 
-![list](figures/list.png)
+![list2](figures/list2.png)
 
 When used in horizontal layout, the list can contain one or more scrollable rows, as shown below.
 
   **Figure 3** Horizontal scrolling list (left: one column; right: multiple columns) 
 
-![layout3](figures/layout3.png)
+![list3](figures/list3.png)
 
 
 While **Grid** and **WaterFlow** can also create single-column and multi-column layouts, there are scenarios where the **List** is the more suitable choice. Specifically, if your layout design requires columns of equal width and items do not need to span rows or columns, opt for the **List**.
@@ -370,7 +372,7 @@ A divider separates UI items to make them easier to identify. In the following f
 
   **Figure 13** Using dividers between the setting items 
 
-![dividers13](figures/dividers13.png)
+![list13](figures/list13.png)
 
 To add dividers between list items, use the [divider](../reference/apis-arkui/arkui-ts/ts-container-list.md#divider) attribute together with the following style attributes:<br> **strokeWidth** and **color**: stroke width and color of the divider, respectively.
 
@@ -431,7 +433,7 @@ When the total height (width) of list items exceeds the screen height (width), t
 
   **Figure 14** Scrollbar of a list
 
-![list14](figures/list14.gif)
+![en-us_image_0000001511740544](figures/en-us_image_0000001511740544.gif)
 
 When using the **List** component, you can use the **scrollBar** attribute to control the display of the list scrollbar. The value type of **scrollBar** is [BarState](../reference/apis-arkui/arkui-ts/ts-appendix-enums.md#barstate). When the value is **BarState.Auto**, the scrollbar is displayed as required: It is displayed when the scrollbar area is touched and becomes thicker when being dragged; it automatically disappears after 2 seconds of inactivity.
 
@@ -775,9 +777,9 @@ Swipe menus are common in many applications. For example, a messaging applicatio
 
 ![list20](figures/list20.gif)
 
-Swiping left or right on a list item can be implemented through the [swipeAction](../reference/apis-arkui/arkui-ts/ts-container-listitem.md#swipeaction9) attribute. In initialization of the **swipeAction** attribute, the **SwipeActionOptions** parameter is mandatory, wherein the **start** parameter indicates the component that appears from the start edge when the list item is swiped right, and the **end** parameter indicates the component that appears from the end edge when the list item is swiped left.
+Swiping left or right on a list item can be implemented through the [swipeAction](../reference/apis-arkui/arkui-ts/ts-container-listitem.md#swipeaction9) attribute of **ListItem**. In initialization of the **swipeAction** attribute, the **SwipeActionOptions** parameter is mandatory, wherein the **start** parameter indicates the component that appears from the start edge when the list item is swiped right, and the **end** parameter indicates the component that appears from the end edge when the list item is swiped left.
 
-In the example of the message list, the **end** parameter is set to a custom delete button. In initialization of the **end** attribute, the index of the sliding list item is passed to the delete button. When the user touches the delete button, the data corresponding to the list item is deleted based on the index.
+In a message list, the **end** parameter specifies the custom component (that is, a delete button) that slides out from the trailing end when a **ListItem** is swiped left. In initialization of the **end** attribute, the index of the sliding list item is passed to the delete button. When the user touches the delete button, the data corresponding to the list item is deleted based on the index.
 
 1. Build the component that appears from the end edge when the list item is swiped left.
 
@@ -959,18 +961,42 @@ The process of implementing the addition feature is as follows:
    
      aboutToAppear(): void {
        const context = this.getUIContext().getHostContext() as common.UIAbilityContext;
-       const reading = context.resourceManager.getStringByNameSync('Reading')
-       this.availableThings.push(reading)
-       const exercise = context.resourceManager.getStringByNameSync('Exercise')
-       this.availableThings.push(exercise)
-       const travel = context.resourceManager.getStringByNameSync('Travel')
-       this.availableThings.push(travel)
-       const listening = context.resourceManager.getStringByNameSync('Listening_Music')
-       this.availableThings.push(listening)
-       const watching = context.resourceManager.getStringByNameSync('Watching_Films')
-       this.availableThings.push(watching)
-       const singing = context.resourceManager.getStringByNameSync('Singing')
-       this.availableThings.push(singing)
+       try {
+         const reading = context.resourceManager.getStringByNameSync('Reading')
+         this.availableThings.push(reading)
+       } catch (e) {
+         hilog.error(0x0000, 'testTag', 'Failed to get Reading: %{public}s', JSON.stringify(e) ?? '');
+       }
+       try {
+         const exercise = context.resourceManager.getStringByNameSync('Exercise')
+         this.availableThings.push(exercise)
+       } catch (e) {
+         hilog.error(0x0000, 'testTag', 'Failed to get Exercise: %{public}s', JSON.stringify(e) ?? '');
+       }
+       try {
+         const travel = context.resourceManager.getStringByNameSync('Travel')
+         this.availableThings.push(travel)
+       } catch (e) {
+         hilog.error(0x0000, 'testTag', 'Failed to get Travel: %{public}s', JSON.stringify(e) ?? '');
+       }
+       try {
+         const listening = context.resourceManager.getStringByNameSync('Listening_Music')
+         this.availableThings.push(listening)
+       } catch (e) {
+         hilog.error(0x0000, 'testTag', 'Failed to get Listening_Music: %{public}s', JSON.stringify(e) ?? '');
+       }
+       try {
+         const watching = context.resourceManager.getStringByNameSync('Watching_Films')
+         this.availableThings.push(watching)
+       } catch (e) {
+         hilog.error(0x0000, 'testTag', 'Failed to get Watching_Films: %{public}s', JSON.stringify(e) ?? '');
+       }
+       try {
+         const singing = context.resourceManager.getStringByNameSync('Singing')
+         this.availableThings.push(singing)
+       } catch (e) {
+         hilog.error(0x0000, 'testTag', 'Failed to get Singing: %{public}s', JSON.stringify(e) ?? '');
+       }
      }
    
      onEditModeChange() {
@@ -1264,7 +1290,7 @@ The process of implementing the collapsing and expanding effect of list items is
            },
            {
              index: 4,
-             // The value in the app.string.gender resource file is ''.
+             // The value in the app.string.gender resource file is 'Gender'.
              name: $r('app.string.gender'),
              label: 'xxxxxxxx',
              type: 'Text'
@@ -1414,33 +1440,34 @@ In certain scenarios, you may want a list to automatically scroll upward when ne
    <!-- @[construct_list_structure](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkUISample/ScrollableComponent/entry/src/main/ets/pages/list/ListChatRoom.ets) -->
    
    ``` TypeScript
-   @Builder
-   MessageItem(message: Message) {
-     Column() {
-       Text(`${message.sender}: ${message.content}`)
-         .fontSize(16)
-         .textAlign(TextAlign.Start)
-         .padding(10)
-         .backgroundColor(message.sender === 'system' ? '#F0F0F0' : '#E6F3FF')
-         .borderRadius(8)
-     }
-     .width('100%')
-     .alignItems(HorizontalAlign.Start)
-     .margin({ bottom: 8 })
-   }
-
    @State messages: Message[] = [];
    
    aboutToAppear(): void {
      const context = this.getUIContext().getHostContext() as common.UIAbilityContext;
-     // The value in the app.string.welcome_live_room resource file is 'Welcome to the live stream.'
-     const welcomeLiveRoom = context.resourceManager.getStringByNameSync('welcome_live_room');
-     // The value in the app.string.system resource file is 'System.'
-     const system = context.resourceManager.getStringByNameSync('system');
-     // The value in the app.string.hello_everyone resource file is 'Hello everyone!'
-     const helloEveryone = context.resourceManager.getStringByNameSync('hello_everyone');
-     // The value in the app.string.anchors resource file is 'Host.'
-     const anchors = context.resourceManager.getStringByNameSync('anchors');
+     let welcomeLiveRoom = '';
+     let system = '';
+     let helloEveryone = '';
+     let anchors = '';
+     try {
+       welcomeLiveRoom = context.resourceManager.getStringByNameSync('welcome_live_room');
+     } catch (e) {
+       hilog.error(0x0000, 'testTag', 'Failed to get welcome_live_room: %{public}s', JSON.stringify(e) ?? '');
+     }
+     try {
+       system = context.resourceManager.getStringByNameSync('system');
+     } catch (e) {
+       hilog.error(0x0000, 'testTag', 'Failed to get system: %{public}s', JSON.stringify(e) ?? '');
+     }
+     try {
+       helloEveryone = context.resourceManager.getStringByNameSync('hello_everyone');
+     } catch (e) {
+       hilog.error(0x0000, 'testTag', 'Failed to get hello_everyone: %{public}s', JSON.stringify(e) ?? '');
+     }
+     try {
+       anchors = context.resourceManager.getStringByNameSync('anchors');
+     } catch (e) {
+       hilog.error(0x0000, 'testTag', 'Failed to get anchors: %{public}s', JSON.stringify(e) ?? '');
+     }
      this.messages = [
        { id: 1, content: welcomeLiveRoom, sender: system },
        { id: 2, content: helloEveryone, sender: anchors }
@@ -1606,4 +1633,96 @@ Since API version 18, **List** supports configuring edge effects for individual 
 
 Note: By default, the **List** component can produce a bounce effect only when there is more than one screen of content. To produce a bounce effect when there is less than one screen of content, configure **.edgeEffect(EdgeEffect.Spring, { alwaysEnabled: true })**.
 
-<!--RP2--><!--RP2End-->
+## Multi‑Selection by Swiping
+
+Starting from API version 26.0.0, the [List](../reference/apis-arkui/arkui-ts/ts-container-list.md) component supports finger‑swipe multi‑select in edit mode. After entering edit mode, users can swipe across multiple [ListItem](../reference/apis-arkui/arkui-ts/ts-container-listitem.md) components to batch select or deselect list items. The application can set whether each **ListItem** is selectable and record the selected items via callbacks. This capability is suitable for scenarios such as file management, message lists, and to-do lists that require consecutive batch selection of list items.
+
+**Effect of selecting multiple list items by swiping**
+
+![listSwipeSelect](figures/listSwipeSelect.gif)
+
+### Setting the Edit Mode
+
+Call [enableEditMode](../reference/apis-arkui/arkui-ts/ts-container-list.md#enableeditmode) to set whether to enter the edit mode. When set to **true**, the **List** enters edit mode, allowing users to swipe a single finger over multiple **ListItem** components to batch select or deselect them; when set to **false**, the **List** exits edit mode. Listen for edit‑mode changes via [onEditModeChange](../reference/apis-arkui/arkui-ts/ts-container-list.md#oneditmodechange), and synchronise changes triggered by system back, swipe‑back, or two‑finger swipe gestures to the application state.
+
+Configure multi‑select behavior in edit mode via [editModeOptions](../reference/apis-arkui/arkui-ts/ts-container-list.md#editmodeoptions23). The **editModeOptions** object provides two swipe‑related parameters: **useDefaultMultiSelectStyle** controls whether the system check box is displayed on the right side of the **ListItem** (default: **true**); **enableTwoFingerMultiSelect** controls whether users can automatically enter edit mode and perform multi‑selection by swiping with two fingers (default: **true**). If you need a custom style, set **useDefaultMultiSelectStyle** to **false**. If you want to disable the two‑finger swipe‑to‑enter‑edit‑mode behaviour, set **enableTwoFingerMultiSelect** to **false**.
+<!-- @[Add_list_select](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkUISample/ScrollableComponent/entry/src/main/ets/pages/list/ListSwipeSelect.ets) -->
+
+``` TypeScript
+List({ space: 10 }) {
+  // ...
+}
+.enableEditMode(this.enableEditMode)
+.onEditModeChange((enabled: boolean) => {
+  this.setEditMode(enabled);
+})
+.editModeOptions({ useDefaultMultiSelectStyle: true, enableTwoFingerMultiSelect: true })
+```
+
+### Custom Multi‑Select Style
+
+If the default multi‑select style does not meet your visual requirements, you can disable the default style and draw your own checkboxes, icons, background colours, and other edit‑mode elements within the **ListItem** content.
+
+1. In the **editModeOptions** of the **List**, set **useDefaultMultiSelectStyle** to **false** to hide the default check box on the right side of the ListItem.
+
+2. Within the **ListItem** content, display custom selection controls (e.g., **Checkbox**, **SymbolGlyph**, or custom images) based on the current edit‑mode state.
+
+3. The custom selection controls and the **ListItem** itself should share the same selection data. The **ListItem** must still have **selectable**, **selected**, and **onSelect** configured, so that selection states are synchronised correctly during finger‑swipe multi‑selection.
+
+4. After disabling the default edit style, you need to use [onGestureRecognizerJudgeBegin](../reference/apis-arkui/arkui-ts/ts-gesture-blocking-enhancement.md#ongesturerecognizerjudgebegin) for gesture arbitration. This allows you to decide which area can be swiped for multi‑selection. Based on the edit‑mode state, gesture type, gesture tag, or touch area, return **GestureJudgeResult.REJECT or GestureJudgeResult.CONTINUE** to determine whether the current business gesture should continue participating in recognition.
+<!-- @[Add_list_GestureRecognizerJudgeBegin](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkUISample/ScrollableComponent/entry/src/main/ets/pages/list/ListSwipeSelect.ets) -->
+
+``` TypeScript
+.onGestureRecognizerJudgeBegin((event: BaseGestureEvent, current: GestureRecognizer,
+  recognizers: Array<GestureRecognizer>) => {
+  // ...
+  // Take the swipe multi-select gesture detection area on the left side of the list with a width of 48vp as an example.
+  if (current.getTag() !== 'SWIPESELECT' && this.enableEditMode && event.fingerList[0].localX < 48) {
+    return GestureJudgeResult.REJECT;
+  }
+  return GestureJudgeResult.CONTINUE;
+})
+```
+
+### Recording List Item Selection Results
+
+Configure [selectable](../reference/apis-arkui/arkui-ts/ts-container-listitem.md#selectable8), [selected](../reference/apis-arkui/arkui-ts/ts-container-listitem.md#selected10), and [onSelect](../reference/apis-arkui/arkui-ts/ts-container-listitem.md#onselect8) on **ListItem**. The **selectable** attribute is used to set whether a list item is selectable, and the **selected** attribute is used to set whether a list item is currently selected. During swipe multi‑selection, the component triggers the **onSelect** callback. Your application can record the latest selection state for each list item inside this callback.
+<!-- @[Add_list_item_select](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkUISample/ScrollableComponent/entry/src/main/ets/pages/list/ListSwipeSelect.ets) -->
+
+``` TypeScript
+ListItem() {
+  this.ItemContent(item, index)
+}
+.selectable(true)
+.selected(this.isSelected(item.id))
+.onSelect((selected: boolean) => {
+  this.updateSelected(item.id, selected);
+})
+```
+
+>**NOTE**
+>
+>- It is recommended to use a unique identifier that does not change with the item's position (e.g., a message ID) to record selection results. Avoid relying solely on the current index, as this may cause selected items to become misaligned after dynamic insertion or deletion of data.
+>- If your service logic requires preserving selection results after exiting edit mode, you can save them in the [onEditModeChange](../reference/apis-arkui/arkui-ts/ts-container-list.md#oneditmodechange) callback.
+>- When using [LazyForEach](../ui/rendering-control/arkts-rendering-control-lazyforeach.md), after the data source changes, you must notify the component to refresh via [DataChangeListener](../reference/apis-arkui/arkui-ts/ts-rendering-control-lazyforeach.md#datachangelistener) to ensure that list item states remain consistent with the data source during swipe multi‑selection.
+
+<!--RP2-->
+<!--Del-->##  
+
+ 
+
+-  
+
+-  
+
+-  
+
+-  
+
+-  
+
+- [PullToRefresh](https://gitcode.com/CPF-ApplicationTPC/ohos_pull_to_refresh)<!--DelEnd-->
+
+<!--RP2End-->
+
+<!--no_check-->

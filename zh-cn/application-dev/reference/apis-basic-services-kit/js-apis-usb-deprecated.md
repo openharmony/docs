@@ -523,7 +523,7 @@ USB设备信息。
 | devAddress       | number                               | 是   |设备地址。      |
 | serial           | string                               | 是   |序列号。       |
 | name             | string                               | 是   |设备名字。      |
-| manufacturerName | string                               | 是   |产商信息。      |
+| manufacturerName | string                               | 是   |厂商信息。      |
 | productName      | string                               | 是   |产品信息。      |
 | version          | string                               | 是   |版本。        |
 | vendorId         | number                               | 是   |厂商ID。      |

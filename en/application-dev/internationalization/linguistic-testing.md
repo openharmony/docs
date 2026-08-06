@@ -5,7 +5,8 @@
 <!--Owner: @yliupy-->
 <!--Designer: @sunyaozu-->
 <!--Tester: @lpw_work-->
-<!--Adviser: @Brilliantry_Rui-->
+<!--Adviser: @ningningW-->
+<!-- md-trans-meta sourceCommit=9d4329aa9b07ce81fc1a2c848fb4cea93e274a8e translatedAt=2026-08-04T12:26:51.496Z pushedAt=2026-08-04T13:22:46.180Z -->
 
 Linguistic testing comes after internationalization and localization. It is a process of inspecting whether the application UI and content comply with local usage habits before the application is officially released and launched.
 

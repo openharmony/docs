@@ -6,7 +6,7 @@
 <!--Designer: @csuxsh-->
 <!--Tester: @zhujieliang-->
 <!--Adviser: @ge-yafang-->
-<!-- md-trans-meta sourceCommit=deff468b8adbfa4199da5cbe7b6cbc33f2bddb1e translatedAt=2026-06-24T07:38:32.119Z pushedAt=2026-06-25T09:26:45.586Z -->
+<!-- md-trans-meta sourceCommit=6174dbe83735166d6bba14dbb2029a3e65a74471 translatedAt=2026-07-27T08:17:04.810Z pushedAt=2026-07-27T10:01:03.430Z -->
 
 SQLite is a lightweight, embedded, serverless relational database management system. Its core advantage is that the entire database is stored in a single file, without the need for an independent server process. It supports cross-platform operation and is widely used in mobile applications, embedded devices, and desktop software.
 
@@ -295,7 +295,7 @@ sqlite>SELECT * FROM COMPANY;
 
 ### Deleting Data
 
-At the **sqlite>** prompt, drun the **DELETE FROM *table name* WHERE name = 'Wang Wu';** SQL statement to delete the data.
+At the **sqlite>** prompt, run the **DELETE FROM *table name* WHERE name = 'Wang Wu';** SQL statement to delete the data.
 
 ```sql
 sqlite> DELETE FROM COMPANY WHERE name = 'Wang Wu';

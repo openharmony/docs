@@ -1,10 +1,12 @@
 # image_mdk.h
+
 <!--Kit: Image Kit-->
 <!--Subsystem: Multimedia-->
 <!--Owner: @aulight02-->
-<!--Designer: @liyang_bryan-->
+<!--Designer: @XiaoYao555-->
 <!--Tester: @xchaosioda-->
 <!--Adviser: @w_Machine_cc-->
+<!-- md-trans-meta sourceCommit=9329f19aa2995f079ff9cf109a20aad0033a91a3 translatedAt=2026-08-03T03:57:48.859Z pushedAt=2026-08-04T03:14:14.862Z -->
 
 ## Overview
 
@@ -41,7 +43,7 @@ The file declares the APIs used to access the image rectangle, size, format, and
 
 | Name| Description|
 | -- | -- |
-| [ImageNative* OH_Image_InitImageNative(napi_env env, napi_value source)](#oh_image_initimagenative) | Converts an Image object at the JavaScript native layer into an ImageNative object.|
+| [ImageNative* OH_Image_InitImageNative(napi_env env, napi_value source)](#oh_image_initimagenative) | Parses the native ImageNative object from the input JavaScript Native API image object.|
 | [int32_t OH_Image_ClipRect(const ImageNative* native, struct OhosImageRect* rect)](#oh_image_cliprect) | Obtains OhosImageRect of an ImageNative object.|
 | [int32_t OH_Image_Size(const ImageNative* native, struct OhosImageSize* size)](#oh_image_size) | Obtains OhosImageSize of an ImageNative object.|
 | [int32_t OH_Image_Format(const ImageNative* native, int32_t* format)](#oh_image_format) | Obtains the format of an ImageNative object.|
@@ -81,11 +83,10 @@ Enumerates the image color channel types.
 
 | Enum Item| Description|
 | -- | -- |
-| OHOS_IMAGE_COMPONENT_FORMAT_YUV_Y = 1 | Luminance component.|
-| OHOS_IMAGE_COMPONENT_FORMAT_YUV_U = 2 | Chrominance component - blue projection.|
-| OHOS_IMAGE_COMPONENT_FORMAT_YUV_V = 3 | Chrominance component - red projection.|
+| OHOS_IMAGE_COMPONENT_FORMAT_YUV_Y = 1 | Luminance information.|
+| OHOS_IMAGE_COMPONENT_FORMAT_YUV_U = 2 | Chrominance information.|
+| OHOS_IMAGE_COMPONENT_FORMAT_YUV_V = 3 | Chrominance difference information.|
 | OHOS_IMAGE_COMPONENT_FORMAT_JPEG = 4 | JPEG.|
-
 
 ## Function Description
 
@@ -97,17 +98,16 @@ ImageNative* OH_Image_InitImageNative(napi_env env, napi_value source)
 
 **Description**
 
-Parses an ImageNative object from an Image object at the JavaScript native layer.
+Parses the native ImageNative object from the input JavaScript Native API image object.
 
 **Since**: 10
-
 
 **Parameters**
 
 | Name| Description|
 | -- | -- |
 | napi_env env | Pointer to the JNI environment.|
-| napi_value source | Image object at the JavaScript native layer.|
+| napi_value source | JavaScript Native API image object.|
 
 **Returns**
 
@@ -127,10 +127,9 @@ int32_t OH_Image_ClipRect(const ImageNative* native, struct OhosImageRect* rect)
 
 **Description**
 
-Obtains OhosImageRect of an ImageNative object.
+Obtains OhosImageRect of a native ImageNative object.
 
 **Since**: 10
-
 
 **Parameters**
 
@@ -161,7 +160,6 @@ The type of data stored in the ImageNative object depends on whether the applica
 
 **Since**: 10
 
-
 **Parameters**
 
 | Name| Description|
@@ -187,7 +185,6 @@ Obtains the format of an ImageNative object.
 
 **Since**: 10
 
-
 **Parameters**
 
 | Name| Description|
@@ -212,7 +209,6 @@ int32_t OH_Image_GetComponent(const ImageNative* native, int32_t componentType, 
 Obtains OhosImageComponent of an ImageNative object.
 
 **Since**: 10
-
 
 **Parameters**
 
@@ -242,7 +238,6 @@ This function is not used to release an Image object at the JavaScript native AP
 
 **Since**: 10
 
-
 **Parameters**
 
 | Name| Description|
@@ -255,6 +250,6 @@ This function is not used to release an Image object at the JavaScript native AP
 | -- | -- |
 | int32_t | Result code defined in [IRNdkErrCode](capi-image-mdk-common-h.md#irndkerrcode):<br>**IMAGE_RESULT_SUCCESS**: The operation is successful.<br> **IMAGE_RESULT_JNI_ENV_ABNORMAL**: The JNI environment is abnormal.<br> **IMAGE_RESULT_INVALID_PARAMETER**: A parameter is invalid.<br> **IMAGE_RESULT_BAD_PARAMETER**: A parameter is incorrect.|
 
-**See also**
+**Reference**
 
 [OH_Image_InitImageNative](#oh_image_initimagenative)

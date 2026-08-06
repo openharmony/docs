@@ -153,7 +153,7 @@ MediaLibrary_ErrorCode OH_MediaAssetChangeRequest_SaveCameraPhoto(OH_MediaAssetC
 
 **描述**
 
-保存相机拍摄的照片资源。
+拍照场景下，使用该接口保存相机拍摄的照片资源。<br>非YUV拍摄模式下，照片资源保存的编码格式与[Camera_Format](../apis-camera-kit/capi-camera-h.md#camera_format)中的编码格式保持一致。<br>YUV拍摄模式下，该接口根据[MediaLibrary_ImageFileType](capi-media-asset-base-capi-h.md#medialibrary_imagefiletype)将YUV对象编码保存为指定格式。<br>当该接口与[OH_MediaAssetChangeRequest_AddResourceWithUri](#oh_mediaassetchangerequest_addresourcewithuri)或[OH_MediaAssetChangeRequest_AddResourceWithBuffer](#oh_mediaassetchangerequest_addresourcewithbuffer)组合使用时，照片资源保存的编码格式与[OH_MediaAssetChangeRequest_AddResourceWithUri](#oh_mediaassetchangerequest_addresourcewithuri)或[OH_MediaAssetChangeRequest_AddResourceWithBuffer](#oh_mediaassetchangerequest_addresourcewithbuffer)添加资源的编码格式保持一致。
 
 **起始版本：** 12
 

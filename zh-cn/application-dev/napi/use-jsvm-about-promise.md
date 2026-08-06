@@ -12,7 +12,7 @@
 
 ## 基本概念
 
-Promise是JavaScript中用来处理异步操作的对象，Promise有pending（待定）、fulfilled（已兑现）和rejected（已拒绝）三种状态，Promise的初始状态是pending，resolve函数可以使其状态从pending变为fulfilled（已兑现），reject函数可以使其状态从pending变为rejected(已拒绝)，一旦兑现或拒绝Promise的状态将不能更改。下面是一些基本概念：
+Promise是JavaScript中用来处理异步操作的对象，Promise有pending（待定）、fulfilled（已兑现）和rejected（已拒绝）三种状态，Promise的初始状态是pending，resolve函数可以使其状态从pending变为fulfilled（已兑现），reject函数可以使其状态从pending变为rejected（已拒绝），一旦兑现或拒绝Promise的状态将不能更改。下面是一些基本概念：
 
 - **同步**： 同步是指代码按照顺序一行一行地执行，每行代码的执行都会等待上一行代码执行完成后再继续执行。在同步执行中，如果某个操作需要花费较长时间，那么整个程序的执行就会被阻塞，直到该操作完成才能继续执行后续代码。
 - **异步**：异步是指任务可以同时执行，不需要等待上一个任务结束。在JavaScript中，常见的异步操作包括定时器、事件监听、网络请求等。异步任务不会阻塞后续任务的执行，而是通过回调函数或Promise对象来处理任务的结果。

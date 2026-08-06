@@ -250,6 +250,13 @@ function sum(num: number): number {
 <!-- @[exception_handling_batter](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/Start/LearningArkTS/PerformantPractices/entry/src/main/ets/pages/Index.ets) -->     
 
 ``` TypeScript
+function divBetter(a: number, b: number): number {
+  if (a <= 0 || b <= 0) {
+    return NaN;
+  }
+  return a / b;
+}
+
 function sumBetter(num: number): number {
   let sum = 0;
   for (let t = 1; t < 100; t++) {

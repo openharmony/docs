@@ -2,14 +2,15 @@
 
 <!--Kit: Performance Analysis Kit-->
 <!--Subsystem: HiviewDFX-->
-<!--Owner: @rr_cn-->
+<!--Owner: @Chenyufan466765692-->
 <!--Designer: @peterhuangyu-->
 <!--Tester: @gcw_KuLfPSbe-->
-<!--Adviser: @foryourself-->
+<!--Adviser: @jinqiuheng-->
+<!-- md-trans-meta sourceCommit=f319e3e62d6356bf78f31e2e8f7ba3927caddf1e translatedAt=2026-07-31T01:26:08.843Z pushedAt=2026-07-31T03:45:32.873Z -->
 
 ## Overview
 
-This topic describes how to subscribe to application freeze events by using the ArkTS APIs provided by HiAppEvent. For details about how to use the APIs (such as parameter restrictions and value ranges), see [@ohos.hiviewdfx.hiAppEvent (Application Event Logging)](../reference/apis-performance-analysis-kit/js-apis-hiviewdfx-hiappevent.md).
+This document describes how to use the ArkTS APIs provided by HiAppEvent to subscribe to app freeze events. For detailed usage instructions (parameter constraints, value ranges, etc.) of the APIs, see [@ohos.hiviewdfx.hiAppEvent](../reference/apis-performance-analysis-kit/js-apis-hiviewdfx-hiappevent.md).
 
 ## Available APIs
 
@@ -24,10 +25,10 @@ This topic describes how to subscribe to application freeze events by using the 
 
 The following walks you through on how to subscribe to the application freeze events.
 
-1. Create an ArkTS application project. In the **entry/src/main/ets/entryability/EntryAbility.ets** file of the project, import the dependent modules. The sample code is as follows:
+1. In DevEco Studio, create an ArkTS app project, edit the **entry > src > main > ets > entryability > EntryAbility.ets** file in the project, and import the dependent modules. The sample code is as follows:
 
    ```ts
-   import { BusinessError } from '@kit.BasicServicesKit';
+   import { BusinessError, deviceInfo } from '@kit.BasicServicesKit';
    import { hiAppEvent, hilog } from '@kit.PerformanceAnalysisKit';
    ```
 
@@ -44,6 +45,21 @@ The following walks you through on how to subscribe to the application freeze ev
     }).catch((err: BusinessError) => {
       hilog.error(0x0000, 'testTag', `HiAppEvent code: ${err.code}, message: ${err.message}`);
     });
+
+    if (deviceInfo.sdkApiVersion >= 24) {  // API version 24 and later supports setting page switch logs.
+      // Configure page switch logs.
+      let switchLogPolicy : hiAppEvent.EventPolicy = {
+        "appFreezePolicy": {
+          "pageSwitchLogEnable": true
+        }
+      };
+      // You can set app freeze log configuration parameters.
+      hiAppEvent.configEventPolicy(switchLogPolicy).then(() => {
+        hilog.info(0x0000, 'testTag', `HiAppEvent success to config event policy.`);
+      }).catch((err: BusinessError) => {
+        hilog.error(0x0000, 'testTag', `HiAppEvent code: ${err.code}, message: ${err.message}`);
+      });
+    }
    ```
 
 3. In the **entry/src/main/ets/entryability/EntryAbility.ets** file, add a watcher in **onCreate()** to subscribe to system events. The sample code is as follows:
@@ -74,6 +90,8 @@ The following walks you through on how to subscribe to the application freeze ev
             hilog.info(0x0000, 'testTag', `HiAppEvent eventInfo.params.time=${eventInfo.params['time']}`);
             // Obtain the foreground/background status of the application when it freezes.
             hilog.info(0x0000, 'testTag', `HiAppEvent eventInfo.params.foreground=${eventInfo.params['foreground']}`);
+            // Obtain the unique associated ID of the app when an app freeze event occurs.
+            hilog.info(0x0000, 'testTag', `HiAppEvent eventInfo.params.app_running_unique_id=${eventInfo.params['app_running_unique_id']}`);
             // Obtain the version information of the application when it freezes.
             hilog.info(0x0000, 'testTag', `HiAppEvent eventInfo.params.bundle_version=${eventInfo.params['bundle_version']}`);
             // Obtain the bundle name of the application when it freezes.
@@ -105,6 +123,10 @@ The following walks you through on how to subscribe to the application freeze ev
             hilog.info(0x0000, 'testTag', `HiAppEvent eventInfo.params.test_data=${eventInfo.params['test_data']}`);
             // Obtain the lifetime of the faulty process when the application freezes.
             hilog.info(0x0000, 'testTag', `HiAppEvent eventInfo.params.process_life_time=${eventInfo.params['process_life_time']}`);
+            // Obtain the callback log information of the app freeze event.
+            hilog.info(0x0000, 'testTag', `HiAppEvent eventInfo.params.external_callback_log=${eventInfo.params['external_callback_log']}`);
+            // Obtain the page transition log of the app freeze event.
+            hilog.info(0x0000, 'testTag', `HiAppEvent eventInfo.params.page_switch_log=${JSON.stringify(eventInfo.params['page_switch_log'])}`);
           }
         }
       }
@@ -137,6 +159,7 @@ The following walks you through on how to subscribe to the application freeze ev
    HiAppEvent eventInfo.eventType=1
    HiAppEvent eventInfo.params.time=1711440881768
    HiAppEvent eventInfo.params.foreground=true
+   HiAppEvent eventInfo.params.app_running_unique_id=215456512336951247
    HiAppEvent eventInfo.params.bundle_version=1.0.0
    HiAppEvent eventInfo.params.bundle_name=com.example.myapplication
    HiAppEvent eventInfo.params.process_name=com.example.myapplication
@@ -155,35 +178,38 @@ The following walks you through on how to subscribe to the application freeze ev
    HiAppEvent eventInfo.params.log_over_limit=false
    HiAppEvent eventInfo.params.test_data=100
    HiAppEvent eventInfo.params.process_life_time=18
+   HiAppEvent eventInfo.params.external_callback_log=THREAD_BLOCK_3S:log3s THREAD_BLOCK_6S:log6s
+   HiAppEvent eventInfo.params.page_switch_log=["/data/storage/el2/log/page_switch/snapshot/page_switch-com.example.myapplication-1-1-20260717101852288.log"]
    ```
 
 2. If the application fails to start or remains unstarted for a long time, you can delay the event notification by referring to [Using FaultLogExtensionAbility to Subscribe to Events](./fault-log-extension-app-events-arkts.md).
 
-## Migrating Application Freeze Events from the Faultlogger API
+## Migrating App Freeze Events from the FaultLogger API
 
-The [@ohos.faultLogger (FaultLogger)](../reference/apis-performance-analysis-kit/js-apis-faultLogger.md) API is deprecated and no longer maintained since API version 18. You are advised to use the [@ohos.hiviewdfx.hiAppEvent](../reference/apis-performance-analysis-kit/js-apis-hiviewdfx-hiappevent.md) API to subscribe to application freeze events. The following describes how to migrate the application freeze event subscription from the FaultLogger API to the HiAppEvent API.
+The [@ohos.faultLogger (FaultLogger)](../reference/apis-performance-analysis-kit/js-apis-faultLogger.md) API has been deprecated since API version 18 and is no longer maintained. Later versions recommend using [@ohos.hiviewdfx.hiAppEvent](../reference/apis-performance-analysis-kit/js-apis-hiviewdfx-hiappevent.md) to subscribe to app freeze events. This section guides you through migrating from the FaultLogger API to the HiAppEvent API for subscribing to app freeze events.
 
-**APP_FREEZE** defined in the [FaultType](../reference/apis-performance-analysis-kit/js-apis-faultLogger.md#faulttype) of FaultLogger is the application freeze fault type.
+**APP_FREEZE** defined in the [FaultType](../reference/apis-performance-analysis-kit/js-apis-faultLogger.md#faulttype) of FaultLogger is the app freeze fault type.
 
 Set the event name to **hiAppEvent.event.APP_FREEZE** and event domain to **hiAppEvent.domain.OS** in the **hiAppEvent.addWatcher** API of HiAppEvent to subscribe to the application freeze event.
 
 You can distinguish different application freeze events based on the **name** field of the **exception** field in [hiAppEvent.AppEventInfo.params](./hiappevent-watcher-freeze-events.md#params).
 
 The following table shows the mapping between [FaultLogInfo](../reference/apis-performance-analysis-kit/js-apis-faultLogger.md#faultloginfo) and [hiAppEvent.AppEventInfo.params](./hiappevent-watcher-freeze-events.md#params).
-| Faultlogger.FaultLogInfo | hiAppEvent.AppEventInfo.params | Description|
+
+| FaultLogger.FaultLogInfo | hiAppEvent.AppEventInfo.params | Description |
 | --- | --- | --- |
-| pid | pid | None.|
-| uid | uid | None.|
-| type | **name** field in the **exception** field| The event types are different. In FaultLogger, **type** is a fault type enumeration. In HiAppEvent, **crash_type** is a string.|
-| timestamp | time | None.|
-| module | bundle_name | None.|
-| fullLog | external_log | **fullLog** indicates the fault log content. **external_log** indicates the path (**/data/storage/el2/log/**) of the fault log file in the application sandbox. You can access the file in this path to obtain the fault log content.|
-| reason | **Reason** field in the **external_log** file| None.|
-| summary | Specific paragraph in the **external_log** file| The **summary** of **APP_FREEZE** corresponds to the content from the line where **appfreeze: process name** is located to the line where **DisplayPowerInfo:** is located in the **external_log** file.|
+| pid | pid | N/A |
+| uid | uid | N/A |
+| type | The name subfield in the exception field | The types differ: FaultLogger uses a fault type enum, while hiAppEvent uses a string. |
+| timestamp | time | N/A |
+| module | bundle_name | N/A |
+| fullLog | external_log | fullLog is the full fault log text. external_log is the specific path of the fault log file in the app sandbox (/data/storage/el2/log/). Access the file at this path to obtain the full fault log text. |
+| reason | The Reason field in the external_log file content | N/A |
+| summary | A specific section in the external_log file content | For APP_FREEZE, summary corresponds to the section from the line containing "appfreeze:<process name>" to the line containing "DisplayPowerInfo:" in the external_log file. |
 
-Both [FaultLogger.query (using callback)](../reference/apis-performance-analysis-kit/js-apis-faultLogger.md#faultloggerquery9) and [FaultLogger.query (using promise)](../reference/apis-performance-analysis-kit/js-apis-faultLogger.md#faultloggerquery9-1) can use [hiAppEvent.addWatcher](../reference/apis-performance-analysis-kit/js-apis-hiviewdfx-hiappevent.md#hiappeventaddwatcher) to implement the same functionality.
+Both [FaultLogger.query](../reference/apis-performance-analysis-kit/js-apis-faultLogger.md#faultloggerquery9) (using callback) and [FaultLogger.query](../reference/apis-performance-analysis-kit/js-apis-faultLogger.md#faultloggerquery9-1) (using promise) can be replaced with [hiAppEvent.addWatcher](../reference/apis-performance-analysis-kit/js-apis-hiviewdfx-hiappevent.md#hiappeventaddwatcher) to achieve the same functionality.
 
-For details about how to use HiAppEvent to subscribe to application freeze events (ArkTS), see [How to Develop](#how-to-develop) and [Verifying the Subscription](#verifying-the-subscription).
+For details about how to use HiAppEvent to subscribe to app freeze events (ArkTS), see [How to Develop](#how-to-develop) and [Verifying the Subscription](#verifying-the-subscription).
 
 <!--RP1-->
 <!--RP1End-->

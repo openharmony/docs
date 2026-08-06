@@ -309,7 +309,7 @@ stopSharing(type: SharingIfaceType, callback: AsyncCallback\<void>): void
 | 参数名   | 类型                                  | 必填 | 说明                                     |
 | -------- | ------------------------------------- | ---- | ---------------------------------------- |
 | type     | [SharingIfaceType](#sharingifacetype) | 是   | 共享类型，0：Wi-Fi 1：USB 2：BLUETOOTH。 |
-| callback | AsyncCallback\<void>                  | 是   | 回调函数,返回停止网络共享结果。          |
+| callback | AsyncCallback\<void>                  | 是   | 回调函数，返回停止网络共享结果。          |
 
 **错误码：**
 
@@ -817,7 +817,7 @@ getSharingState(type: SharingIfaceType): Promise\<SharingIfaceState\>
 
 | 类型                                              | 说明                                      |
 | ------------------------------------------------- | ----------------------------------------- |
-| Promise\<[SharingIfaceState](#sharingifacestate)> | 以 Promise 形式返回定类型网络共共享状态。 |
+| Promise\<[SharingIfaceState](#sharingifacestate)> | 以Promise形式返回指定类型网络共享状态。 |
 
 **示例：**
 

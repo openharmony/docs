@@ -167,7 +167,8 @@
 > - **前缀表达式**：`scheme://host:port/pathStartWith`
 > - **正则表达式**：`scheme://host:port/pathRegex`
 >
-> 系统应用预留uri的scheme统一以`ohos`开头，例如`ohosclock://`。三方应用组件配置的uri不能与系统应用重复，否则会导致无法通过该uri拉起三方应用组件。
+> 以`ohos`为前缀的scheme为系统预留，如`ohosclock://`。建议第三方应用组件在配置scheme时避免以`ohos`开头，否则可能导致无法通过该uri拉起目标组件。
+<!--RP1--><!--RP1End-->
 
 **图5** want参数中uri的匹配规则示例
 

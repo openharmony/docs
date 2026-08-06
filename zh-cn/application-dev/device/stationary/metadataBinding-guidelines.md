@@ -14,7 +14,7 @@ MetadataBinding（记忆链接）指由第三方应用提供[鸿蒙App Linking�
 
 ## 场景介绍
 
-第三方应用可使用记忆链接功能，将鸿蒙App Linking链接映射到调用接口的系统应用或服务。例如，用户在【电商应用】中浏览某个商品时，截图保存了该商品的图片，系统将记录图片与【电商应用】提供的鸿蒙App Linking链接的映射关系。当用户再次浏览该图片时，系统会提醒用户是否需要返回【电商应用】查看商品详情。
+第三方应用可使用记忆链接功能，将鸿蒙App Linking链接映射到调用接口的系统应用或服务。例如，用户在【电商应用】中浏览某个商品时，截图保存了该商品的图片，系统将记录图片与【电商应用】提供的鸿蒙App Linking链接的映射关系。当用户再次浏览该图片时，用户主动触发小艺识屏能力，系统会提醒用户是否需要返回【电商应用】查看商品详情，提醒样式由小艺配置。
 
 ## 演示示例
 
@@ -47,7 +47,7 @@ MetadataBinding（记忆链接）指由第三方应用提供[鸿蒙App Linking�
    import { Callback } from '@kit.BasicServicesKit';
    ```
 
-2. 定义记忆服务回调及包名, 函数接收回传编码的内容。   
+2. 定义记忆服务回调及包名，函数接收回传编码的内容。   
 
    <!-- @[metadata_binding_parameter](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/Stationary/MetadataBinding/entry/src/main/ets/pages/Index.ets) -->
    

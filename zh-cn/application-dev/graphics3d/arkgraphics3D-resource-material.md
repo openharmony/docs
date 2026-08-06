@@ -49,7 +49,7 @@ ArkGraphics 3D中的材质类型通过[MaterialType](../reference/apis-arkgraphi
 
   适用场景：普通实体模型一般开启剔除背面提升渲染效率；透明或双面材质（如树叶、布料）需要禁用剔除以显示完整模型。
 
-- blend：是否启用材质的透明效果模式。true表示开启透明，false表示关闭透明，默认值为false。
+- blend：材质的透明效果设置，默认值为undefined，即禁用材质的透明属性。
 
   适用场景：表现透明或半透明材质时开启，如玻璃、水面、烟雾、透明塑料等。
 
@@ -60,6 +60,10 @@ ArkGraphics 3D中的材质类型通过[MaterialType](../reference/apis-arkgraphi
 - renderSort：渲染排序设置，用于控制材质在渲染队列中的渲染顺序，确保透明或特殊效果材质正确叠加显示。
 
   适用场景：多重透明材质、叠加特效、UI元素等需要严格渲染顺序的场景。
+
+- polygonMode：模型的多边形绘制模式，默认值为FILL。
+
+  适用场景：以线框模式渲染3D物体的网格，可直观显示模型的建模结构。
 
 ### PBR材质属性
 符合glTF标准的基于物理渲染（PBR）的金属-粗糙度材质，通过设置[MetallicRoughnessMaterial](../reference/apis-arkgraphics3d/js-apis-inner-scene-resources.md#metallicroughnessmaterial20)实现，其中各项属性采用[MaterialProperty](../reference/apis-arkgraphics3d/js-apis-inner-scene-resources.md#materialproperty20)类型封装，支持绑定纹理和设置因子（factor）值。具体属性包括：
@@ -194,9 +198,9 @@ ArkGraphics 3D中的材质类型通过[MaterialType](../reference/apis-arkgraphi
    }
    ```
 
-6. 创建并绑定Shader资源。
+6. 创建Shader资源。
 
-   通过SceneResourceFactory.createShader()创建自定义着色器资源，并将其绑定到Shader材质上，实现自定义渲染逻辑。
+   通过SceneResourceFactory.createShader()创建自定义着色器资源，创建的shader资源可在后续步骤中绑定到Shader材质上，实现自定义渲染逻辑。
 
    <!-- @[create_shader_promise](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkGraphics3D/entry/src/main/ets/arkgraphic/resource.ets) -->
    
@@ -227,9 +231,9 @@ ArkGraphics 3D中的材质类型通过[MaterialType](../reference/apis-arkgraphi
    }
    ```
 
-7. 应用Shader材质到几何体节点。
+7. 将Shader材质绑定至几何体节点。
 
-   通过按钮点击事件调用不同的函数，可在运行时动态切换模型的材质，实现从默认材质到Shader材质的过渡效果。
+   将着色器资源绑定至Shader材质，再将Shader材质绑定至几何体节点，使用自定义渲染逻辑进行绘制。通过按钮点击事件可触发材质切换，实现运行时从默认材质到Shader材质的动态过渡。
 
    <!-- @[material_button_action](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkGraphics3D/entry/src/main/ets/arkgraphic/resource.ets) -->
    
@@ -417,9 +421,9 @@ ArkGraphics 3D中的材质类型通过[MaterialType](../reference/apis-arkgraphi
    }
    ```
 
-8. 切换粗糙度纹理。
+8. 切换清漆层粗糙度纹理。
 
-   类似于清漆层纹理切换，用户也可以在不同的粗糙度纹理之间切换。
+   类似于清漆层纹理切换，用户也可以在不同的清漆层粗糙度纹理之间切换。
 
    <!-- @[pbr_clearcoat_changeRoughnessTexture](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkGraphics3D/entry/src/main/ets/material/pbr_clearcoat.ets) -->
    

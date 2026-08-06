@@ -7,7 +7,7 @@
 <!--Tester: @liangchengguang-->
 <!--Adviser: @HelloCrease-->
 
-定义多实例应用在运行态的结构信息，通过appManager的[getRunningMultiAppInfo](js-apis-app-ability-appManager-sys.md#appmanagergetrunningmultiappinfo12)来获取。
+定义多实例应用在运行态的结构信息，包含实例标识、应用UID和进程ID。通过appManager的[getRunningMultiAppInfo](js-apis-app-ability-appManager-sys.md#appmanagergetrunningmultiappinfo12)获取，用于监控和管理多实例应用的运行状态。应用多实例相关开发指南请参见[创建应用多实例](../../quick-start/multiInstance.md)。
 
 > **说明：**
 > 
@@ -23,24 +23,23 @@
 | 名称                      | 类型   | 只读 | 可选  | 说明       |
 | ------------------------- | ------ | ---- | ---- | --------- |
 | instanceKey | string | 否 | 否  | 多实例应用的唯一实例标识。 |
-| uid | number | 否 | 否  | 表示应用程序的UID。 |
+| uid | number | 否 | 否  | 表示应用的UID。 |
 | pids | Array\<number> | 否 | 否  | 应用的进程ID集合。 |
 
 **示例：**
 
 ```ts
 import { appManager } from '@kit.AbilityKit';
-import { hilog } from '@kit.PerformanceAnalysisKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
-  let bundleName = "ohos.samples.etsclock";
+    let bundleName = "ohos.samples.etsclock";
   appManager.getRunningMultiAppInfo(bundleName).then((info: appManager.RunningMultiAppInfo) => {
-      hilog.info(0x0000, 'testTag', `getRunningMultiAppInfo success`);
+      console.info(`getRunningMultiAppInfo success`);
     }).catch((err: BusinessError) => {
-      hilog.error(0x0000, 'testTag', `getRunningMultiAppInfo error, code: ${err.code}, msg:${err.message}`);
+      console.error(`getRunningMultiAppInfo error, code: ${err.code}, msg:${err.message}`);
     })
 } catch (err) {
-  hilog.error(0x0000, 'testTag', `getRunningMultiAppInfo error, code: ${err.code}, msg:${err.message}`);
+  console.error(`getRunningMultiAppInfo error, code: ${err.code}, msg:${err.message}`);
 }
 ```

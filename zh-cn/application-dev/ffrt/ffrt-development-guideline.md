@@ -589,9 +589,9 @@ FFRT任务中使用标准库的递归互斥锁可能发生死锁，需要更换�
     }
     ```
 
-## Using FFRT in DevEco Studio
+## 在DevEco Studio中使用FFRT
 
-### Using FFRT C API
+### 使用FFRT C API
 
 NDK（Native Development Kit）是系统提供的Native API的集合，方便开发者使用C或C++语言实现应用的关键功能。
 
@@ -609,7 +609,7 @@ FFRT C API已集成在NDK中，在DevEco Studio中可以直接使用对应的接
 #include "ffrt/type_def.h"
 ```
 
-### Using FFRT C++ API
+### 使用FFRT C++ API
 
 FFRT的部署依赖FFRT动态库`libffrt.so`和一组头文件，其中动态库仅导出C接口，C++接口调用C接口，并基于头文件的方式将API中的C++元素编译到用户的动态库中，从而保证了ABI兼容性。
 

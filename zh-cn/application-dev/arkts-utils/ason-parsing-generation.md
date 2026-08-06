@@ -38,7 +38,7 @@ struct Index {
           middle: { anchor: '__container__', align: HorizontalAlign.Center }
         })
         .onClick(() => {
-          console.info(ArkTSUtils.ASON.parse('{}'));
+          console.info(`ASON parse object result is ${ArkTSUtils.ASON.parse('{}')}`)
           console.info(ArkTSUtils.ASON.stringify(new collections.Array(1, 2, 3)));
 
           let options2: ArkTSUtils.ASON.ParseOptions = {

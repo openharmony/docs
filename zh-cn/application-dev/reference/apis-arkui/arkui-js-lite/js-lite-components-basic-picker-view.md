@@ -95,7 +95,7 @@ type=time：
   <text class="title">
     Selected：{{time}}
   </text>
-  <picker-view class="time-picker" type="time" ref="pickerViewObj" selected="{{defaultTime}}" @change="handleChange"></picker-view>
+  <picker-view class="time-picker" type="time" columns="2" ref="pickerViewObj" selected="{{defaultTime}}" @change="handleChange"></picker-view>
 </div>
 ```
 
@@ -125,20 +125,14 @@ type=time：
 
 ```js
 /* xxx.js */
-import app from '@system.app';
-
 export default {
   data: {
     defaultTime: "",
     time: "",
   },
-  handleSwipe(event) {
-    if (event.direction === "right") {
-      app.terminate();
-    }
-  },
   onInit() {
     this.defaultTime = this.now();
+    this.time = this.defaultTime;
   },
   handleChange(data) {
     this.time = this.concat(data.hour, data.minute);

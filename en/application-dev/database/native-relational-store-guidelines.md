@@ -1,23 +1,22 @@
 # Persisting RDB Store Data (C/C++)
+
 <!--Kit: ArkData-->
 <!--Subsystem: DistributedDataManager-->
 <!--Owner: @baijidong-->
 <!--Designer: @htt1997-->
 <!--Tester: @logic42-->
 <!--Adviser: @ge-yafang-->
-<!-- md-trans-meta sourceCommit=dcae6f10c07044342acb5b2dc0416e100c5bcaa2 translatedAt=2026-06-17T06:41:12.824Z pushedAt=2026-06-22T12:47:13.098Z -->
+<!-- md-trans-meta sourceCommit=59a5ceab809aba9e57e611623996927625931d53 translatedAt=2026-07-27T08:16:28.575Z pushedAt=2026-07-27T09:48:51.280Z -->
 
 ## When to Use
 
 The **RelationalStore** module provides a complete mechanism for local database management. You can use the APIs to add, delete, modify, and query data, and execute SQL statements in complex scenarios.
-
 
 ## Basic Concepts
 
 - **Predicates**: a representation of the property or feature of a data entity, or the relationship between data entities, used to define operation conditions.
 
 - **ResultSet**: a set of query results, which allows access to the required data in flexible modes.
-
 
 ## Constraints
 
@@ -77,7 +76,7 @@ For details about the APIs, see [RDB](../reference/apis-arkdata/capi-rdb.md).
 | int OH_Data_Asset_GetStatus(Data_Asset *asset, Data_AssetStatus *status) | Obtains the status of a data asset.|
 | Data_Asset *OH_Data_Asset_CreateOne() | Creates a data asset instance. When this data asset is no longer needed, call **OH_Data_Asset_DestroyOne** to destroy it.|
 | int OH_Data_Asset_DestroyOne(Data_Asset *asset) | Destroys a data asset instance to reclaim memory.|
-| Data_Asset **OH_Data_Asset_CreateMultiple(uint32_t count) | Creates an instance for multiple data assets. When the instance is no longer required, call **OH_Data_Asset_DestroyMultiple** to destroy it.|
+| Data_Asset **OH_Data_Asset_CreateMultiple(uint32_t count) | Creates the specified number of **Data_Asset** instances. When the instance is no longer required, call **OH_Data_Asset_DestroyMultiple** to destroy it. |
 | int OH_Data_Asset_DestroyMultiple(Data_Asset **assets, uint32_t count) | Destroys multiple data assets to reclaim memory.|
 | int OH_Rdb_CreateTransaction(OH_Rdb_Store *store, const OH_RDB_TransOptions *options, OH_Rdb_Transaction **trans) | Creates an **OH_Rdb_Transaction** instance to start a transaction.|
 | int OH_RdbTransOption_SetType(OH_RDB_TransOptions *options, OH_RDB_TransType type) | Sets the transaction object type.|
@@ -86,7 +85,7 @@ For details about the APIs, see [RDB](../reference/apis-arkdata/capi-rdb.md).
 | int OH_RdbTrans_UpdateWithConflictResolution(OH_Rdb_Transaction *trans, const OH_VBucket *row, const OH_Predicates *predicates, Rdb_ConflictResolution resolution, int64_t *changes) | Updates data with conflict resolutions in the database based on specified conditions.|
 | int OH_RdbTrans_Delete(OH_Rdb_Transaction *trans, const OH_Predicates *predicates, int64_t *changes) | Deletes data from an RDB store.|
 | int OH_Value_Destroy(OH_Data_Value *value) | Destroys an **OH_Data_Value** object.|
-| int OH_Values_Destroy(OH_Data_Values *values) | Destroys an **OH_Values_Destroy** object.|
+| int OH_Values_Destroy(OH_Data_Values *values) | Destroys an **OH_Data_Values** object. |
 | int OH_RdbTrans_Execute(OH_Rdb_Transaction *trans, const char *sql, const OH_Data_Values *args, OH_Data_Value **result) | Executes an SQL statement that contains specified parameters.|
 | int OH_RdbTrans_Commit(OH_Rdb_Transaction *trans) | Commits a transaction.|
 | int OH_RdbTrans_Rollback(OH_Rdb_Transaction *trans) | Rolls back a transaction.|
@@ -108,6 +107,7 @@ libnative_rdb_ndk.z.so, libhilog_ndk.z.so
 ```
 
 **Including Header Files**
+
 <!--@[rdb_include](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkData/RelationalStore/RdbStore/entry/src/main/cpp/napi_init.cpp)--> 
 
 ``` C++
@@ -123,6 +123,7 @@ libnative_rdb_ndk.z.so, libhilog_ndk.z.so
 ```
 
 1. Obtain an **OH_Rdb_Store** instance and create a database file. <br>The **dataBaseDir** variable specifies the application sandbox path. In the stage model, you are advised to use the database directory. For details, see the **databaseDir** attribute of [Context](../reference/apis-ability-kit/js-apis-inner-application-context.md). The FA model does not provide any API for obtaining the database sandbox path. Use the application directory instead. For details, see **getFilesDir** of [Context](../reference/apis-ability-kit/js-apis-inner-app-context.md). <br>**area** indicates the security level of the directory for database files. For details, see [contextConstant](../reference/apis-ability-kit/js-apis-app-ability-contextConstant.md). During development, you need to implement the conversion from **AreaMode** to **Rdb_SecurityArea**. <br>Example:
+
     <!--@[rdb_OH_Rdb_CreateOrOpen](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkData/RelationalStore/RdbStore/entry/src/main/cpp/napi_init.cpp)-->
 
     ``` C++
@@ -162,6 +163,7 @@ libnative_rdb_ndk.z.so, libhilog_ndk.z.so
     ```
 
     To set a custom database path, call the **OH_Rdb_SetCustomDir** API in the preceding code. Similarly, to open the database in read-only mode, call the **OH_Rdb_SetReadOnly** API. <br>Example:
+
     <!--@[rdb_OH_Rdb_SetCustomDir_and_SetReadOnly](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkData/RelationalStore/RdbStore/entry/src/main/cpp/napi_init.cpp)-->
 
     ``` C++
@@ -182,6 +184,7 @@ libnative_rdb_ndk.z.so, libhilog_ndk.z.so
     // Create a table.
     OH_Rdb_Execute(store_, createTableSql);
     ```
+
     <!--@[rdb_OH_Rdb_Insert_and_InsertWithConflictResolution](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkData/RelationalStore/RdbStore/entry/src/main/cpp/napi_init.cpp)-->
 
     ``` C++
@@ -269,6 +272,7 @@ libnative_rdb_ndk.z.so, libhilog_ndk.z.so
     predicates->destroy(predicates);
     predicates2->destroy(predicates2);
     ```
+
     <!--@[rdb_OH_Rdb_Delete](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkData/RelationalStore/RdbStore/entry/src/main/cpp/napi_init.cpp)-->    
 
     ``` C++
@@ -328,7 +332,7 @@ libnative_rdb_ndk.z.so, libhilog_ndk.z.so
 
    Configure predicates to match data in LIKE or NOT LIKE mode. <br>Example:
 
-    <!--@[rdb_OH_Rdb_Query_by_like_and_notLike](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkData/RelationalStore/RdbStore/entry/src/main/cpp/napi_init.cpp)-->
+    <!--@[rdb_OH_Rdb_Query_by_like_and_notLike](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkData/RelationalStore/RdbStore/entry/src/main/cpp/napi_init.cpp)--> 
 
     ``` C++
     OH_Predicates *likePredicates = OH_Rdb_CreatePredicates("EMPLOYEE");
@@ -341,7 +345,7 @@ libnative_rdb_ndk.z.so, libhilog_ndk.z.so
     likePredicates->like(likePredicates, "NAME", likePattern);
     
     char *colName[] = { "NAME", "AGE" };
-    auto *likeQueryCursor = OH_Rdb_Query(store_, likePredicates, colName, 2); // the length of columnNamesis 2
+    auto *likeQueryCursor = OH_Rdb_Query(store_, likePredicates, colName, 2); // the length of columnNames is 2
     if (likeQueryCursor == NULL) {
         likePredicates->destroy(likePredicates);
         likePattern->destroy(likePattern);
@@ -367,7 +371,7 @@ libnative_rdb_ndk.z.so, libhilog_ndk.z.so
     }
     // Configure predicates to match data in NOT LIKE mode.
     OH_Predicates_NotLike(notLikePredicates, "NAME", "zh%");
-    auto *notLikeQueryCursor = OH_Rdb_Query(store_, notLikePredicates, colName, 2); // the length ofcolumnNames is 2
+    auto *notLikeQueryCursor = OH_Rdb_Query(store_, notLikePredicates, colName, 2); // the length of columnNames is 2
     if (notLikeQueryCursor == NULL) {
         notLikePredicates->destroy(notLikePredicates);
         return;
@@ -385,7 +389,9 @@ libnative_rdb_ndk.z.so, libhilog_ndk.z.so
     notLikePredicates->destroy(notLikePredicates);
     notLikeQueryCursor->destroy(notLikeQueryCursor);
     ```
-   Configure predicates to match data in GLOB or NOT GLOB mode. <br>Example:
+
+   Configure predicates to match data in **GLOB** or **NOT GLOB** mode. <br>Example:
+
     <!--@[rdb_OH_Rdb_Query_by_glob_and_notGlob](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkData/RelationalStore/RdbStore/entry/src/main/cpp/napi_init.cpp)-->
 
     ``` C++
@@ -398,7 +404,7 @@ libnative_rdb_ndk.z.so, libhilog_ndk.z.so
     OH_Predicates_Glob(globPredicates, "NAME", "zh*");
     
     char *colName[] = { "NAME", "AGE" };
-    auto *globQueryCursor = OH_Rdb_Query(store_, globPredicates, colName, 2); // the length of columnNamesis 2
+    auto *globQueryCursor = OH_Rdb_Query(store_, globPredicates, colName, 2); // the length of columnNames is 2
     if (globQueryCursor == NULL) {
         OH_LOG_ERROR(LOG_APP, "Query failed.");
         globPredicates->destroy(globPredicates);
@@ -423,7 +429,7 @@ libnative_rdb_ndk.z.so, libhilog_ndk.z.so
     }
     // Configure predicates to match in NOT GLOB mode.
     OH_Predicates_NotGlob(notGlobPredicates, "NAME", "zh*");
-    auto *notGlobQueryCursor = OH_Rdb_Query(store_, notGlobPredicates, colName, 2); // the length ofcolumnNames is 2
+    auto *notGlobQueryCursor = OH_Rdb_Query(store_, notGlobPredicates, colName, 2); // the length of columnNames is 2
     if (notGlobQueryCursor == NULL) {
         OH_LOG_ERROR(LOG_APP, "Query failed.");
         notGlobPredicates->destroy(notGlobPredicates);
@@ -441,7 +447,9 @@ libnative_rdb_ndk.z.so, libhilog_ndk.z.so
     notGlobQueryCursor->destroy(notGlobQueryCursor);
     notGlobPredicates->destroy(notGlobPredicates);
     ```
+
    You can set locale used for sorting. For example, **zh_CN** indicates Chinese, and **tr_TR** indicates Turkish. Call **OH_Rdb_SetLocale** to configure the rule.
+
     <!--@[rdb_OH_Rdb_SetLocale](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkData/RelationalStore/RdbStore/entry/src/main/cpp/napi_init.cpp)-->
 
     ``` C++
@@ -462,6 +470,7 @@ libnative_rdb_ndk.z.so, libhilog_ndk.z.so
     int32_t count = sizeof(plugins) / sizeof(plugins[0]);
     auto setResult = OH_Rdb_SetPlugins(config, plugins, count);
     ```
+
 5. Insert, delete, or update data using a transaction object.
 
    Call **OH_RdbTransOption_SetType** to configure the type of the transaction to be created. The supported transaction types are **DEFERRED** (default), **IMMEDIATE**, and **EXCLUSIVE**.
@@ -479,7 +488,8 @@ libnative_rdb_ndk.z.so, libhilog_ndk.z.so
     int res = OH_Rdb_CreateTransaction(store_, options, &trans);
     OH_RdbTrans_DestroyOptions(options);
     ```
-    <!--@[rdb_trans_insert](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkData/RelationalStore/RdbStore/entry/src/main/cpp/napi_init.cpp)-->
+
+    <!--@[rdb_trans_insert](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkData/RelationalStore/RdbStore/entry/src/main/cpp/napi_init.cpp)--> 
 
     ``` C++
     char transCreateTableSql[] =
@@ -495,9 +505,9 @@ libnative_rdb_ndk.z.so, libhilog_ndk.z.so
     // Create an OH_Data_Values instance.
     OH_Data_Values *values = OH_Values_Create();
     ret = OH_Values_PutInt(values, 1); // The value of id is 1
-    ret = OH_Values_PutInt(values, 2); // The value of datat2 is 2
-    ret = OH_Values_PutReal(values, 1.1); // The value of datat3 is 1.1
-    ret = OH_Values_PutText(values, "1"); // The value of datat3 is 1
+    ret = OH_Values_PutInt(values, 2); // The value of data2 is 2
+    ret = OH_Values_PutReal(values, 1.1); // The value of data3 is 1.1
+    ret = OH_Values_PutText(values, "1"); // The value of data3 is 1
     unsigned char val[] = {1, 2};
     ret = OH_Values_PutBlob(values, val, sizeof(val) / sizeof(val[0]));
     
@@ -525,10 +535,10 @@ libnative_rdb_ndk.z.so, libhilog_ndk.z.so
     OH_Values_Destroy(values);
     
     OH_VBucket *transValueBucket = OH_Rdb_CreateValuesBucket();
-    transValueBucket->putInt64(transValueBucket, "data1", 1); // The value of datat1 is 1
-    transValueBucket->putInt64(transValueBucket, "data2", 2); // The value of datat2 is 2
-    transValueBucket->putReal(transValueBucket, "data3", 1.1); // The value of datat3 is 1.1
-    transValueBucket->putText(transValueBucket, "data4", "1"); // The value of datat4 is 1
+    transValueBucket->putInt64(transValueBucket, "data1", 1); // The value of data1 is 1
+    transValueBucket->putInt64(transValueBucket, "data2", 2); // The value of data2 is 2
+    transValueBucket->putReal(transValueBucket, "data3", 1.1); // The value of data3 is 1.1
+    transValueBucket->putText(transValueBucket, "data4", "1"); // The value of data4 is 1
     transValueBucket->putBlob(transValueBucket, "data5", val, sizeof(val) / sizeof(val[0]));
     int64_t insertRowId = -1;
     // Insert the OH_VBucket data through the transaction object.
@@ -537,8 +547,8 @@ libnative_rdb_ndk.z.so, libhilog_ndk.z.so
     
     OH_VBucket *transValueBucket2 = OH_Rdb_CreateValuesBucket();
     transValueBucket2->putInt64(transValueBucket2, "id", 1); // The value of id is 1
-    transValueBucket2->putInt64(transValueBucket2, "data2", 2); // The value of datat2 is 2
-    transValueBucket2->putReal(transValueBucket2, "data3", 1.2); // The value of datat3 is 1.2
+    transValueBucket2->putInt64(transValueBucket2, "data2", 2); // The value of data2 is 2
+    transValueBucket2->putReal(transValueBucket2, "data3", 1.2); // The value of data3 is 1.2
     
     int64_t transInsertRow = -1;
     // Configure conflict resolutions when data is inserted.
@@ -547,6 +557,7 @@ libnative_rdb_ndk.z.so, libhilog_ndk.z.so
     
     transValueBucket2->destroy(transValueBucket2);
     ```
+
     <!--@[rdb_trans_update](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkData/RelationalStore/RdbStore/entry/src/main/cpp/napi_init.cpp)-->
 
     ``` C++
@@ -574,6 +585,7 @@ libnative_rdb_ndk.z.so, libhilog_ndk.z.so
     transValueBucket3->destroy(transValueBucket3);
     transUpdatePredicates->destroy(transUpdatePredicates);
     ```
+
     <!--@[rdb_trans_query](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkData/RelationalStore/RdbStore/entry/src/main/cpp/napi_init.cpp)-->
 
     ``` C++
@@ -596,6 +608,7 @@ libnative_rdb_ndk.z.so, libhilog_ndk.z.so
     predicates->destroy(predicates);
     cursor->destroy(cursor);
     ```
+
     <!--@[rdb_trans_delete](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkData/RelationalStore/RdbStore/entry/src/main/cpp/napi_init.cpp)-->
 
     ``` C++
@@ -618,6 +631,7 @@ libnative_rdb_ndk.z.so, libhilog_ndk.z.so
     predicates2->destroy(predicates2);
     valueObject->destroy(valueObject);
     ```
+
     <!--@[rdb_OH_RdbTrans_Commit](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkData/RelationalStore/RdbStore/entry/src/main/cpp/napi_init.cpp)-->
 
     ``` C++
@@ -626,6 +640,7 @@ libnative_rdb_ndk.z.so, libhilog_ndk.z.so
     // Destroy the transaction.
     OH_RdbTrans_Destroy(trans);
     ```
+
     <!--@[rdb_OH_RdbTrans_Rollback](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkData/RelationalStore/RdbStore/entry/src/main/cpp/napi_init.cpp)-->
 
     ``` C++
@@ -652,7 +667,7 @@ libnative_rdb_ndk.z.so, libhilog_ndk.z.so
 
     When the attached database is no longer used, call **OH_Rdb_Detach** to detach it.
 
-    <!--@[rdb_OH_Rdb_Attach_and_Detach](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkData/RelationalStore/RdbStore/entry/src/main/cpp/napi_init.cpp)-->
+    <!--@[rdb_OH_Rdb_Attach_and_Detach](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkData/RelationalStore/RdbStore/entry/src/main/cpp/napi_init.cpp)--> 
 
     ``` C++
     char attachStoreTableCreateSql[] = "CREATE TABLE IF NOT EXISTS EMPLOYEE (ID INTEGER PRIMARY KEY AUTOINCREMENT, "
@@ -695,7 +710,7 @@ libnative_rdb_ndk.z.so, libhilog_ndk.z.so
     OH_VBucket *valueBucket = OH_Rdb_CreateValuesBucket();
     valueBucket->putText(valueBucket, "NAME", "Lisa");
     valueBucket->putInt64(valueBucket, "AGE", 18); // The value of AGE is 18
-    valueBucket->putReal(valueBucket, "SALARY", 100.5); // The value of AGE is 100.5
+    valueBucket->putReal(valueBucket, "SALARY", 100.5); // The value of SALARY is 100.5
     uint8_t arr[] = {1, 2, 3, 4, 5};
     int len = sizeof(arr) / sizeof(arr[0]);
     valueBucket->putBlob(valueBucket, "CODES", arr, len);
@@ -703,7 +718,7 @@ libnative_rdb_ndk.z.so, libhilog_ndk.z.so
     OH_LOG_INFO(LOG_APP, "Insert data result: %{public}d", rowId);
     valueBucket->destroy(valueBucket);
     OH_Rdb_CloseStore(attachStore);
-
+    // ...
     // Attach databases.
     size_t attachedNumber = 0;
     // The maximum waiting time allowed for attaching databases is 10
@@ -748,6 +763,7 @@ libnative_rdb_ndk.z.so, libhilog_ndk.z.so
     ```
 
 7. Insert data assets into a table.
+
     <!--@[rdb_asset_insert](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkData/RelationalStore/RdbStore/entry/src/main/cpp/napi_init.cpp)-->
 
     ``` C++
@@ -853,6 +869,7 @@ libnative_rdb_ndk.z.so, libhilog_ndk.z.so
     ```
 
 9. Obtain the last modification time of data. <br>Call **OH_Rdb_FindModifyTime** to obtain the last modification time of data in the specified column of a table. This API returns an **OH_Cursor** object with two columns of data. The first column is the input primary key or row ID, and the second column is the last modification time. <br>Example:
+
     <!--@[rdb_OH_Rdb_FindModifyTime](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkData/RelationalStore/RdbStore/entry/src/main/cpp/napi_init.cpp)-->
 
     ``` C++

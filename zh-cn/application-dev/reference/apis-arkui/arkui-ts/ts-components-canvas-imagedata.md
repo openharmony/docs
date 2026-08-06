@@ -14,9 +14,7 @@ ImageData对象用于存储Canvas渲染的像素数据，支持对像素进行�
 >
 > 创建ImageData时，宽高不超过16384px，面积不超过16000px*16000px。超过该面积限制时无法正常绘制；当创建面积超过536870911平方像素时，返回值的width和height均为0px，data为undefined。
 
-## 接口
-
-### constructor
+## constructor
 
 constructor(width: number, height: number, data?: Uint8ClampedArray)
 
@@ -36,7 +34,7 @@ constructor(width: number, height: number, data?: Uint8ClampedArray)
 | height | number |是| 矩形区域高度，单位为vp。宽高不超过16384px，最大面积不超过16000px*16000px，超过最大面积则无法正常绘制。当创建面积超过536870911平方像素时，返回对象的width和height为0，data为undefined。<br>异常值NaN、Infinity、负数和0按0处理。|
 | data | [Uint8ClampedArray](../../apis-arkts/arkts-apis-arkts-collections-Uint8ClampedArray.md) |否| 一维数组，保存了RGBA格式的像素数据，每个像素占4字节，依次为R、G、B、A，数据值范围为0到255。数组长度必须为width × height × 4。当需要自定义ImageData的像素数据时传入此参数，如需要对图像进行像素级的处理或修改。传入异常值undefined时，data为undefined。<br>默认值：值全为0的一维数组 |
 
-### constructor<sup>12+</sup>
+## constructor<sup>12+</sup>
 
 constructor(width: number, height: number, data?: Uint8ClampedArray, unit?: LengthMetricsUnit)
 

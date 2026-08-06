@@ -1,10 +1,12 @@
 # Location Kit Error Codes
+
 <!--Kit: Location Kit-->
 <!--Subsystem: Location-->
 <!--Owner: @liu-binjun-->
 <!--Designer: @liu-binjun-->
 <!--Tester: @mhy123456789-->
 <!--Adviser: @RayShih-->
+<!-- md-trans-meta sourceCommit=7fbd01821d37ae3a6a262f102830b415945a5304 translatedAt=2026-07-31T06:39:04.622Z pushedAt=2026-07-31T07:55:08.849Z -->
 
 > **NOTE**
 >
@@ -52,7 +54,7 @@ Display a prompt asking for enabling the location service.
 
 ## 3301200 Failed to Obtain the Positioning Result
 
-### 1. The positioning fails due to network unavailability.
+### Cause 1: Positioning Failure Due to Unavailable Network
 
 **Error Message**
 
@@ -70,7 +72,7 @@ The device cannot access the network.
 
 Check the device for Internet or Wi-Fi connectivity and an installed SIM card.<br>
 
-### 2. The positioning result does not meet the precision requirement. As a result, the positioning times out.
+### Cause 2: Positioning Timeout Due to Location Result Not Meeting Accuracy Requirements
 
 **Error Message**
 
@@ -92,7 +94,7 @@ Increase the value of **maxAccuracy** for [LocationRequest](./js-apis-geoLocatio
 
 - If [scenario](./js-apis-geoLocationManager.md#locationrequestscenario) is set to **DAILY_LIFE_SERVICE** or **NO_POWER**, or [priority](./js-apis-geoLocationManager.md#locationrequestpriority) is set to **LOW_POWER** or **FIRST_FIX**, you are advised to set **maxAccuracy** to a value greater than **100**.<br>
 
-### 3. Unable to obtain the cached location.
+### Cause 3: Failure to Obtain Cached Location
 
 **Error Message**
 
@@ -110,7 +112,25 @@ If the system has not cached the location information, the application attempts 
 
 If the system has not cached the location information, call [getCurrentLocation](./js-apis-geoLocationManager.md#geolocationmanagergetcurrentlocation) to obtain the real-time location information.<br>
 
-### 4. Location failed due to other reasons.
+### Cause 4: Failure to Obtain Post-Processing Track
+
+ **Error Message**
+
+ Failed to obtain the post processing track because sports type is not supported.
+
+ **Description**
+
+ The current input sports type is not supported. As a result, the post-processing track cannot be obtained.
+
+ **Possible Cause**
+
+ The input parameter is set incorrectly. Use a supported sports type.
+
+ **Procedure**
+
+ Refer to the input parameter description in [getPostProcessingTrack](./js-apis-geoLocationManager.md#geolocationmanagergetpostprocessingtrack) and use a supported sports type.</br>
+
+### Cause 5: Positioning Failure Due to Other Causes
 
 **Error Message**
 
@@ -131,7 +151,6 @@ This error code is reported if the location service fails, leading to a failure 
 - Move to an open area and initiate positioning again.
 
 - Enable automatic setting on the **Time & Date** page.
-
 
 ## 3301300 Query Failed During Reverse Geocoding
 

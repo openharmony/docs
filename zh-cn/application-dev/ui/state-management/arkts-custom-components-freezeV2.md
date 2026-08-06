@@ -131,7 +131,7 @@ Trace如下：
 
 ![freezeWithTab](./figures/freezewithTabs.png)
 
-<!-- @[freeze_template2_start](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkUISample/FreezeV2/entry/src/main/ets/pages/freeze/template2/TabContentTest.ets) -->  
+<!-- @[freeze_template2_start](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkUISample/FreezeV2/entry/src/main/ets/pages/freeze/template2/TabContentTest.ets) -->
 
 ``` TypeScript
 import { hilog } from '@kit.PerformanceAnalysisKit';
@@ -173,7 +173,7 @@ struct FreezeChild {
 
   @Monitor('message')
   onMessageUpdated(mon: IMonitor) {
-    hilog.info(DOMAIN, 'testTag', `FreezeChild message callback func ${this.message}, index: ${this.index}`);
+    hilog.info(DOMAIN, 'FreezeChild', `FreezeChild message callback func ${this.message}, index: ${this.index}`);
   }
 
   build() {
@@ -202,7 +202,7 @@ struct FreezeChild {
 
 需要注意：本文档里说的“激活（active）/非激活（inactive）”是指组件冻结的激活/非激活状态，和[NavDestination](../../reference/apis-arkui/arkui-ts/ts-basic-components-navdestination.md)组件中的[onActive](../../reference/apis-arkui/arkui-ts/ts-basic-components-navdestination.md#onactive17)和[onInactive](../../reference/apis-arkui/arkui-ts/ts-basic-components-navdestination.md#oninactive17)不同。
 
-<!-- @[freeze_template3_start](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkUISample/FreezeV2/entry/src/main/ets/pages/freeze/template3/MyNavigationTestStack.ets) --> 
+<!-- @[freeze_template3_start](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkUISample/FreezeV2/entry/src/main/ets/pages/freeze/template3/MyNavigationTestStack.ets) -->
 
 ``` TypeScript
 import { hilog } from '@kit.PerformanceAnalysisKit';
@@ -220,7 +220,7 @@ struct MyNavigationTestStack {
 
   @Monitor('message')
   info() {
-    hilog.info(DOMAIN, 'testTag', `freeze-test MyNavigation message callback ${this.message}`);
+    hilog.info(DOMAIN, 'FreezeChild', `freeze-test MyNavigation message callback ${this.message}`);
   }
 
   @Builder
@@ -350,8 +350,8 @@ struct NavigationContentMsgStack {
 
   @Monitor('message')
   info() {
-    hilog.info(DOMAIN, 'testTag', `freeze-test NavigationContent message callback ${this.message}`);
-    hilog.info(DOMAIN, 'testTag', `freeze-test ---- called by content ${this.index}`);
+    hilog.info(DOMAIN, 'FreezeChild', `freeze-test NavigationContent message callback ${this.message}`);
+    hilog.info(DOMAIN, 'FreezeChild', `freeze-test ---- called by content ${this.index}`);
   }
 
   build() {
@@ -838,7 +838,7 @@ struct PageTwoStack2 {
 
 API version 21及之前版本，如下面示例所示，FreezeBuildNode中使用了自定义节点[BuilderNode](../../reference/apis-arkui/js-apis-arkui-builderNode.md)。BuilderNode可以通过命令式动态挂载组件，而组件冻结又是强依赖父子关系来通知是否开启组件冻结。如果父组件使用组件冻结，且组件树的中间层级上又启用了BuilderNode，则BuilderNode的子组件将无法被冻结。从API version 22开始，可以[设置BuilderNode继承冻结能力](../arkts-user-defined-arktsNode-builderNode.md#设置buildernode继承冻结能力)。
 
-<!-- @[freeze_template7_start](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkUISample/FreezeV2/entry/src/main/ets/pages/freeze/template7/BuilderNode.ets) -->
+<!-- @[freeze_template7_start](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkUISample/FreezeV2/entry/src/main/ets/pages/freeze/template7/BuilderNode.ets) --> 
 
 ``` TypeScript
 import { BuilderNode, FrameNode, NodeController, UIContext } from '@kit.ArkUI';
@@ -879,7 +879,7 @@ struct BuildNodeChild {
   // 使用@Monitor装饰器监听storage.message的变化
   @Monitor('storage.message')
   onMessageChange(monitor: IMonitor) {
-    hilog.info(DOMAIN, 'onMessageChange',
+    hilog.info(DOMAIN, 'FreezeChild',
       `FreezeBuildNode BuildNodeChild message callback func ${this.storage.message}, index:${this.index}`);
   }
 
@@ -958,7 +958,7 @@ struct FreezeBuildNode {
   // 使用@Monitor装饰器监听storage.message的变化
   @Monitor('storage.message')
   onMessageChange(monitor: IMonitor) {
-    hilog.info(DOMAIN, 'onMessageChange',
+    hilog.info(DOMAIN, 'FreezeChild',
       `FreezeBuildNode message callback func ${this.storage.message}, index: ${this.index}`);
   }
 

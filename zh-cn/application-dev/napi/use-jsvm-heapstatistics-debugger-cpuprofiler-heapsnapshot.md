@@ -188,7 +188,7 @@ JSVM API heap usedGlobalHandlesSize: 32
 
 ### OH_JSVM_OpenInspector
 
-在指定的主机和端口上激活inspector，用于调试JS码。
+在指定的主机和端口上激活inspector，用于调试JS代码。
 
 ### OH_JSVM_CloseInspector
 

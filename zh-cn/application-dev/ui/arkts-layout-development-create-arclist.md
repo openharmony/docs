@@ -391,7 +391,7 @@ ArcList({ header: this.arcListHeader }) {
 
 如图8所示，当列表从联系人A滚动到联系人B时，外侧索引条也需要同步从选中A状态变成选中B状态，此场景可以通过监听[ArcList](../reference/apis-arkui/arkui-ts/ts-container-arclist.md)组件的[onScrollIndex](../reference/apis-arkui/arkui-ts/ts-container-arclist.md#onscrollindex)事件来实现；当点击索引项C时，列表也需要跳转到联系人C，此场景可以通过监听[ArcAlphabetIndexer](../reference/apis-arkui/arkui-ts/ts-container-arc-alphabet-indexer.md)的[onSelect](../reference/apis-arkui/arkui-ts/ts-container-arc-alphabet-indexer.md#onselect)事件来实现。
 
-在列表滚动时，根据列表此时所在的索引值位置firstIndex，重新计算字母索引条对应字母的位置selectedIndex。由于[ArcAlphabetIndexer](../reference/apis-arkui/arkui-ts/ts-container-arc-alphabet-indexer.md)组件通过[selected](../reference/apis-arkui/arkui-ts/ts-container-arc-alphabet-indexer.md#selected)属性设置了选中项索引值，当selectedIndex变化时会触发[ArcAlphabetIndexer](../reference/apis-arkui/arkui-ts/ts-container-arc-alphabet-indexer.md)组件重新渲染，从而显示为选中对应字母的状态。
+在列表滚动时，根据列表此时所在的索引值位置centerIndex，重新计算字母索引条对应字母的位置indexerIndex。由于[ArcAlphabetIndexer](../reference/apis-arkui/arkui-ts/ts-container-arc-alphabet-indexer.md)组件通过[selected](../reference/apis-arkui/arkui-ts/ts-container-arc-alphabet-indexer.md#selected)属性设置了选中项索引值，当indexerIndex变化时会触发[ArcAlphabetIndexer](../reference/apis-arkui/arkui-ts/ts-container-arc-alphabet-indexer.md)组件重新渲染，从而显示为选中对应字母的状态。
 
 在选中索引项时，根据此时选中项的索引值index，重新计算列表联系人对应的位置，然后通过列表绑定的滚动控制器arcListScroller的[scrollToIndex](../reference/apis-arkui/arkui-ts/ts-container-scroll.md#scrolltoindex)方法控制列表跳转到对应的联系人位置。弧形列表[ArcList](../reference/apis-arkui/arkui-ts/ts-container-arclist.md)可通过[scroller](../reference/apis-arkui/arkui-ts/ts-container-arclist.md#arklistoptions)参数绑定[Scroller](../reference/apis-arkui/arkui-ts/ts-container-scroll.md#scroller)（滚动控制器）。
 
@@ -404,7 +404,7 @@ import { common } from '@kit.AbilityKit';
 
 // ...
 const alphabets: string[] = [
-  '#', 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'J', 'K', 'L', 'M', 'N',
+  '#', 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N',
   'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'
 ];
 
@@ -429,7 +429,9 @@ export struct ArcListArcIndexerBar {
             // ...
             .onScrollIndex((firstIndex: number, lastIndex: number, centerIndex: number) => {
               // 根据列表滚动到的索引值，重新计算对应索引条的位置this.indexerIndex
-              this.indexerIndex = centerIndex + 1;
+              let contact = this.contacts[centerIndex] as Contact;
+              let firstChar = contact.firstChar;
+              this.indexerIndex = alphabets.indexOf(firstChar);
             })
             // ...
             // 弧形索引条组件
@@ -437,8 +439,19 @@ export struct ArcListArcIndexerBar {
               .selected(this.indexerIndex!!)
               .onSelect((index: number) => {
                 // 选中索引项后，列表跳转到相应位置
-                this.indexerIndex = index
-                this.arcListScroller.scrollToIndex(this.indexerIndex - 1)
+                this.indexerIndex = index;
+                const selectedLetter = alphabets[index];
+                let targetIndex = -1;
+                for (let i = 0; i < this.contacts.length; i++) {
+                  const contact = this.contacts[i] as Contact;
+                  if (contact.firstChar === selectedLetter) {
+                    targetIndex = i;
+                    break;
+                  }
+                }
+                if (targetIndex >= 0) {
+                  this.arcListScroller.scrollToIndex(targetIndex);
+                }
               })
               // ...
           }

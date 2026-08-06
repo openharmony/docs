@@ -1,12 +1,18 @@
 # @ohos.enterprise.common (Common Module)
 <!--Kit: MDM Kit-->
 <!--Subsystem: Customization-->
-<!--Owner: @huanleima-->
+<!--Owner: @huanleima; @weizai16-->
 <!--Designer: @hp_guo-->
 <!--Tester: @lpw_work-->
 <!--Adviser: @zhang_yixin13-->
 
 The module provides pure type definitions for common capabilities within MDM Kit, including enum types and data structs. It exports type declarations only and does not include any implementation logic or executable code.
+
+**Use cases:**
+In enterprise device administrator application development, the types defined in this module are used in scenarios such as configuring device management and control policies, managing application instances, handling application installation results, and listening for policy changes. These types provide unified parameter and return value standards for the APIs of various sub-modules within MDM Kit.
+
+**Benefits:**
+Standardized type definitions simplify the development process of enterprise device administrator applications, improve code maintainability and type safety, and reduce type-related runtime errors.
 
 > **NOTE**
 >
@@ -56,7 +62,7 @@ This object is used as a callback parameter in [EnterpriseAdminExtensionAbility.
 
 | Name         | Type                            | Read-Only| Optional| Description                                                       |
 | ------------- | --------------------------------| ---- | -----| ------------------------------------------------------ |
-| result        | [Result](#result)       | No  | No| Application installation result.           |
+| result        | [Result](#result)       | No  | No| Application installation result. **SUCCESS** indicates that the application is successfully installed and can be properly used. **FAIL** indicates that the application fails to be installed and is unavailable.           |
 | message        | string       | No  | No| Application installation result message.          |
 
 ## Result
@@ -82,7 +88,7 @@ type EnterpriseAdminExtensionContext = _EnterpriseAdminExtensionContext.default
 
 | Type| Description|
 | --- | --- |
-| [_EnterpriseAdminExtensionContext.default](js-apis-application-EnterpriseAdminExtensionContext.md) | Context of the **EnterpriseAdminExtensionAbility** component.|
+| _EnterpriseAdminExtensionContext.default | Context [EnterpriseAdminExtensionContext](js-apis-application-EnterpriseAdminExtensionContext.md) of the EnterpriseAdminExtensionAbility component.|
 
 ## StartupScene<sup>24+</sup>
 
@@ -97,3 +103,22 @@ Startup wizard completion scenario. When the initial switch to a sub-user (only 
 | USER_SETUP | 0  | A sub-user is switched to for the first time and the startup wizard for the sub-user is complete (only on PCs). The callback will not be triggered when the sub-user is switched again.|
 | OTA | 1  | The OTA upgrade is complete.|
 | DEVICE_PROVISION | 2  | The initial startup wizard is complete.|
+
+## PolicyChangedEvent
+
+Defines the policy change event.
+
+This API is used as a callback input parameter of [onAdminPolicyChanged](./js-apis-EnterpriseAdminExtensionAbility.md#onadminpolicychanged).
+
+**Since:** 26.0.0
+
+**Model restriction:** This API can be used only in the stage model.
+
+**System capability**: SystemCapability.Customization.EnterpriseDeviceManager
+
+| Name         | Type                            | Read-Only| Optional| Description                                                       |
+| ------------- | --------------------------------| ---- | -----| ------------------------------------------------------ |
+| bundleName          | string       | No  | No| App bundle name.          |
+| functionName        | string       | No  | No| API name. For example, if the [setPasswordPolicy](./js-apis-enterprise-securityManager.md#securitymanagersetpasswordpolicy) API is called, the value of this parameter is **setPasswordPolicy**.           |
+| parameters        | string       | No  | No| Input parameter value (excluding the **admin** parameter) when an API is called. The value is a JSON string. For example, if the [setPasswordPolicy](./js-apis-enterprise-securityManager.md#securitymanagersetpasswordpolicy) API is called, the return value of this parameter is **{"policy":{"complexityRegex":"^(?=.\*[a-zA-Z])(?=.\*\\\\d).{8},$","validityPeriod":1808309786000,"additionalDescription":"It must contain at least eight characters, including digits and letters.** **"}}**.           |
+| time        | number       | No  | No| Timestamp when an API is called, in milliseconds.          |

@@ -1,8 +1,16 @@
-# Geofencing (ArkTS)
+# Geofencing Development Based on Device Location
+
+<!--Kit: Location Kit-->
+<!--Subsystem: Location-->
+<!--Owner: @xxthadsl-->
+<!--Designer: @liu-binjun-->
+<!--Tester: @gcw_MslijYkf-->
+<!--Adviser: @RayShih-->
+<!-- md-trans-meta sourceCommit=4f1f82da82ec1da992bee864d1f41f66de3c9d98 translatedAt=2026-07-28T02:35:44.445Z pushedAt=2026-07-28T03:17:24.699Z -->
 
 ## Scenario
 
-A geofence is a group of virtual bounds defining an area on the map. When a user device enters or leaves a geofence, or stays in a geofence, your app on the user device can automatically receive notifications and alarms.
+A geofence is a group of virtual bounds defining an area on the map. When a user device enters or leaves a geofence, your app on the user device can automatically receive notifications and alarms.
 
 Currently, only circular fences are supported. In addition, the geofencing function of the GNSS chip is required. Events of entering or leaving the fence can be accurately identified only in open outdoor areas.
 
@@ -10,7 +18,7 @@ A typical application of geofencing is to create a geofence around an enterprise
 
 ## Available APIs
 
-The following table lists the APIs used in geofencing. For details, see [Location Kit](../../reference/apis-location-kit/js-apis-geoLocationManager.md).
+The following table lists the APIs used in geofencing. For details, see [@ohos.geoLocationManager (Geolocation Manager)](../../reference/apis-location-kit/js-apis-geoLocationManager.md).
 
 | API| Description| 
 | -------- | -------- |
@@ -47,7 +55,7 @@ The following table lists the APIs used in geofencing. For details, see [Locatio
    ];
    ```
 
-4. Create a notification object for **GEOFENCE_TRANSITION_EVENT_ENTER** and **GEOFENCE_TRANSITION_EVENT_EXIT**.
+5. Create a notification object for **GEOFENCE_TRANSITION_EVENT_ENTER** and **GEOFENCE_TRANSITION_EVENT_EXIT**.
 
    ```ts
    // GEOFENCE_TRANSITION_EVENT_ENTER event
@@ -76,7 +84,7 @@ The following table lists the APIs used in geofencing. For details, see [Locatio
    };
    ```
 
-5. Add a geofence.
+6. Add a geofence.
 
    ```ts
    // Save the created notification objects to Array in the same sequence as in transitionStatusList.
@@ -115,7 +123,7 @@ The following table lists the APIs used in geofencing. For details, see [Locatio
    }
    ```
 
-6. Delete a geofence.
+7. Delete a geofence.
 
    ```ts
    // fenceId is obtained after geoLocationManager.addGnssGeofence is successfully executed.

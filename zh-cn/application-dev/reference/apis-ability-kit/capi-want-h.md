@@ -39,7 +39,7 @@ Want是对象间信息传递的载体，可以用于应用组件间的信息传�
 | [AbilityBase_ErrorCode OH_AbilityBase_SetWantElement(AbilityBase_Want* want, AbilityBase_Element element)](#oh_abilitybase_setwantelement) | 设置Want中由bundleName、moduleName与abilityName组成的Element结构体。 |
 | [AbilityBase_ErrorCode OH_AbilityBase_GetWantElement(AbilityBase_Want* want, AbilityBase_Element* element)](#oh_abilitybase_getwantelement) | 获取Want中由bundleName、moduleName与abilityName组成的Element结构体。 |
 | [AbilityBase_ErrorCode OH_AbilityBase_SetWantCharParam(AbilityBase_Want* want, const char* key, const char* value)](#oh_abilitybase_setwantcharparam) | 设置Want Param参数。 |
-| [AbilityBase_ErrorCode OH_AbilityBase_GetWantCharParam(AbilityBase_Want* want, const char* key,char* value, size_t valueSize)](#oh_abilitybase_getwantcharparam) | 获取Want Param参数。 |
+| [AbilityBase_ErrorCode OH_AbilityBase_GetWantCharParam(AbilityBase_Want* want, const char* key, char* value, size_t valueSize)](#oh_abilitybase_getwantcharparam) | 获取Want Param参数。 |
 | [AbilityBase_ErrorCode OH_AbilityBase_AddWantFd(AbilityBase_Want* want, const char* key, int32_t fd)](#oh_abilitybase_addwantfd) | 添加Want文件描述符。 |
 | [AbilityBase_ErrorCode OH_AbilityBase_GetWantFd(AbilityBase_Want* want, const char* key, int32_t* fd)](#oh_abilitybase_getwantfd) | 获取Want文件描述符。 |
 | [AbilityBase_ErrorCode OH_AbilityBase_SetWantUri(AbilityBase_Want* want, const char* uri)](#oh_abilitybase_setwanturi) | 设置Want中URI字符串。 |
@@ -183,7 +183,7 @@ AbilityBase_ErrorCode OH_AbilityBase_SetWantCharParam(AbilityBase_Want* want, co
 ### OH_AbilityBase_GetWantCharParam()
 
 ```c
-AbilityBase_ErrorCode OH_AbilityBase_GetWantCharParam(AbilityBase_Want* want, const char* key,char* value, size_t valueSize)
+AbilityBase_ErrorCode OH_AbilityBase_GetWantCharParam(AbilityBase_Want* want, const char* key, char* value, size_t valueSize)
 ```
 
 **描述**

@@ -148,7 +148,7 @@ import { window } from '@kit.ArkUI';
 
 **系统接口：** 此接口为系统接口。
 
-**系统能力**：SystemCapability.WindowManager.WindowManager.Core
+**系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
 | 名称   | 类型 | 只读 | 可选 | 说明                                         |
 | ------ | -------- | ---- | ---- | --------------------------------------------|
@@ -163,7 +163,7 @@ import { window } from '@kit.ArkUI';
 
 **系统接口：** 此接口为系统接口。
 
-**系统能力**：SystemCapability.WindowManager.WindowManager.Core
+**系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
 | 名称   | 类型 | 只读 | 可选 | 说明                                          |
 | ------ | -------- | ---- |---- |---------------------------------------------|
@@ -179,7 +179,7 @@ import { window } from '@kit.ArkUI';
 
 **系统接口：** 此接口为系统接口。
 
-**系统能力**：SystemCapability.WindowManager.WindowManager.Core
+**系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
 | 名称 | 类型 | 只读 | 可选 | 说明                         |
 | ---- | -------- | ---- | ---- | ---------------------------- |
@@ -765,7 +765,7 @@ try {
 ## window.setGestureNavigationEnabled<sup>10+</sup>
 setGestureNavigationEnabled(enable: boolean, callback: AsyncCallback&lt;void&gt;): void
 
-设置手势导航启用状态。使用callback异步回调。系统出于安全的考虑，不会干预手势的禁用和恢复。应用调用本接口禁用手势后异常退出的情况下，如果想要恢复手势，需自行实现自动拉起机制并再次调用本接口恢复手势。
+设置当前应用手势导航的启用状态。使用callback异步回调。系统出于安全的考虑，不会干预手势的禁用和恢复。应用调用本接口禁用手势后异常退出的情况下，如果想要恢复手势，需自行实现自动拉起机制并再次调用本接口恢复手势。
 
 **系统接口：** 此接口为系统接口。
 
@@ -811,7 +811,7 @@ try {
 ## window.setGestureNavigationEnabled<sup>10+</sup>
 setGestureNavigationEnabled(enable: boolean): Promise&lt;void&gt;
 
-设置手势导航启用状态。使用Promise异步回调。系统出于安全的考虑，不会干预手势的禁用和恢复。应用调用本接口禁用手势后异常退出的情况下，如果想要恢复手势，需自行实现自动拉起机制并再次调用本接口恢复手势。
+设置当前应用手势导航的启用状态。使用Promise异步回调。系统出于安全的考虑，不会干预手势的禁用和恢复。应用调用本接口禁用手势后异常退出的情况下，如果想要恢复手势，需自行实现自动拉起机制并再次调用本接口恢复手势。
 
 **系统接口：** 此接口为系统接口。
 
@@ -821,7 +821,7 @@ setGestureNavigationEnabled(enable: boolean): Promise&lt;void&gt;
 
 | 参数名 | 类型     | 必填  | 说明                 |
 | ------ | ------- | ---- | -------------------- |
-| enable | boolean | 是   | 设置手势导航启用状态。true表示启用手势导航；false表示禁用手势导航。 |
+| enable | boolean | 是   | 设置当前应用手势导航的启用状态。true表示启用手势导航；false表示禁用手势导航。禁用手势导航后，仅禁止从屏幕顶部下拉的手势，其他手势导航不受影响。 |
 
 **返回值：**
 
@@ -1005,7 +1005,7 @@ setWaterMarkImage(pixelMap: image.PixelMap, enable: boolean, priority: number): 
 
 | 类型                | 说明                      |
 | ------------------- | ------------------------- |
-| Promise&lt;void&gt; | Promise对象，无返回结果。 |
+| Promise&lt;void&gt; | 无返回结果的Promise对象。 |
 
 **错误码：**
 
@@ -1203,11 +1203,15 @@ try {
 ## window.setSpecificSystemWindowZIndex<sup>23+</sup>
 setSpecificSystemWindowZIndex(windowType: WindowType, zIndex: number): Promise&lt;void&gt;
 
-设置系统窗口的窗口层级。使用Promise异步回调。
+调整指定类型系统窗口的显示层级（Z轴顺序）。层级数值越大，窗口越靠前；反之越靠后。使用Promise异步回调。
 
-将所有该类型系统窗口zIndex调整为所设置的值，调整前后，该类型窗口之间相对层级保持不变，焦点窗口不发生变化。当应用关闭之后该类型窗口层级恢复默认值。
+- 仅影响同类型窗口间的整体层级区间，该类型内部各窗口的相对顺序及当前焦点窗口保持不变。
 
-推荐不同类型窗口设置不同的zIndex，如果已经存在相同zIndex的窗口，设置前后，窗口之间的相对层级保持不变。
+- 若设置的zIndex与现有窗口冲突（已被其他类型占用），则冲突窗口间的相对层级亦维持不变，系统会依据内部规则自动协调。
+
+- 应用退出后，该类型窗口的层级将自动恢复为系统默认值。
+
+- 建议为不同类型窗口分配不同的zIndex值，以避免冲突，获得更清晰可控的层级效果。
 
 **系统接口：** 此接口为系统接口。
 
@@ -1220,7 +1224,7 @@ setSpecificSystemWindowZIndex(windowType: WindowType, zIndex: number): Promise&l
 | 参数名          | 类型   | 必填  | 说明                    |
 | -------------- | ------ | ----- | ----------------------- |
 | windowType | [WindowType](#windowtype7) | 是    | 窗口类型。仅支持TYPE_WALLET_SWIPE_CARD、TYPE_VOICE_INTERACTION、TYPE_SCREENSHOT、TYPE_SCREEN_CONTROL、TYPE_FLOAT_NAVIGATION和TYPE_MUTISCREEN_COLLABORATION。 |
-| zIndex | number | 是    | 系统窗口的层级。该参数仅支持整数输入，浮点数输入将向下取整。0和负数会使窗口在桌面以下。|
+| zIndex | number | 是    | 系统窗口的层级。该参数仅支持整数输入，取值范围为(-∞, +∞)，浮点数输入将向下取整。0和负数会使窗口在桌面以下。|
 
 **返回值：**
 
@@ -1237,7 +1241,7 @@ setSpecificSystemWindowZIndex(windowType: WindowType, zIndex: number): Promise&l
 | 202     | Permission verification failed, non-system application uses system API. |
 | 801     | Capability not supported. Failed to call the API due to limited device capabilities. |
 | 1300003 | This window manager service works abnormally. |
-| 1300004 | Unauthorized operation. Possible cause: Invalid window type. Possible cause: Invalid window type. |
+| 1300004 | Unauthorized operation. Possible cause: Invalid window type. |
 
 **示例：**
 
@@ -2250,7 +2254,7 @@ bindDialogTarget(requestInfo: dialogRequest.RequestInfo, deathCallback: Callback
 
 | 参数名       | 类型                      | 必填 | 说明                  |
 | ----------- | ------------------------- | ---- | -------------------- |
-| requestInfo | [dialogRequest.RequestInfo](../apis-ability-kit/js-apis-app-ability-dialogRequest.md#requestinfo) | 是   | 目标窗口RequestInfo值。 |
+| requestInfo | [dialogRequest.RequestInfo](../apis-ability-kit/js-apis-app-ability-dialogRequest.md#requestinfo) | 是   | 目标窗口请求信息。 |
 | deathCallback | Callback&lt;void&gt;    | 是   | 目标窗口销毁监听。 |
 | callback    | AsyncCallback&lt;void&gt; | 是   | 回调函数。 |
 
@@ -3084,7 +3088,7 @@ raiseAboveTarget(windowId: number, callback: AsyncCallback&lt;void&gt;): void
 
 | 参数名   | 类型                      | 必填 | 说明       |
 | -------- | ------------------------- | ---- | ---------- |
-| windowId | number                    | 是   | 目标子窗口的id，通过[getWindowProperties](arkts-apis-window-Window.md#getwindowproperties9)接口获取到[properties](arkts-apis-window-i.md#windowproperties)后，再通过properties.id获取。 |
+| windowId | number                    | 是   | 目标子窗口的id，通过[getWindowProperties](arkts-apis-window-Window.md#getwindowproperties9)接口获取[properties](arkts-apis-window-i.md#windowproperties)后，再通过properties.id获取。 |
 | callback | AsyncCallback&lt;void&gt; | 是   | 回调函数。 |
 
 **错误码：**
@@ -3161,7 +3165,7 @@ raiseAboveTarget(windowId: number): Promise&lt;void&gt;
 
 | 参数名   | 类型                      | 必填 | 说明       |
 | -------- | ------------------------- | ---- | ---------- |
-| windowId | number                    | 是   | 目标子窗口的id，通过[getWindowProperties](arkts-apis-window-Window.md#getwindowproperties9)接口获取到[properties](arkts-apis-window-i.md#windowproperties)后，再通过properties.id获取。 |
+| windowId | number                    | 是   | 目标子窗口的id，通过[getWindowProperties](arkts-apis-window-Window.md#getwindowproperties9)接口获取[properties](arkts-apis-window-i.md#windowproperties)后，再通过properties.id获取。 |
 
 **返回值：**
 
@@ -3209,9 +3213,9 @@ export default class EntryAbility extends UIAbility {
           let targetWindow: window.Window = windowClass;
           let properties = targetWindow.getWindowProperties();
           let targetId = properties.id;
-          windowClass.raiseAboveTarget(targetId).then(()=> {
+          windowClass.raiseAboveTarget(targetId).then(() => {
             console.info('Succeeded in raising the subWindow to target subWindow top.');
-          }).catch((err: BusinessError)=>{
+          }).catch((err: BusinessError) => {
             console.error(`Failed to raise the subWindow to target subWindow top. Cause code: ${err.code}, message: ${err.message}`);
           });
         });
@@ -3227,7 +3231,7 @@ export default class EntryAbility extends UIAbility {
 
 raiseMainWindowAboveTarget(windowId: number): Promise&lt;void&gt;
 
-将主窗口的层级调整至同应用下的另一个主窗口之上，子窗口的层级会跟随所属主窗口变动。使用Promise异步回调。
+将主窗口的层级抬升至同应用下的另一个主窗口之上，子窗口的层级会跟随所属主窗口变动。使用Promise异步回调。
 
 仅支持系统应用主窗口调用。
 
@@ -3247,7 +3251,7 @@ raiseMainWindowAboveTarget(windowId: number): Promise&lt;void&gt;
 
 | 参数名   | 类型                      | 必填 | 说明       |
 | -------- | ------------------------- | ---- | ---------- |
-| windowId | number                    | 是   | 目标主窗口的id，该参数为整数，通过[getWindowProperties](arkts-apis-window-Window.md#getwindowproperties9)接口获取到[properties](arkts-apis-window-i.md#windowproperties)后，再通过properties.id获取。 |
+| windowId | number                    | 是   | 目标主窗口的id，该参数为整数，通过[getWindowProperties](arkts-apis-window-Window.md#getwindowproperties9)接口获取到[properties](arkts-apis-window-i.md#windowproperties)后，再通过properties.id获取。当窗口ID小于等于0、窗口ID为null或undefined时，会抛出1300016错误码；当窗口ID大于0但对应窗口不存在时，会抛出1300002错误码。 |
 
 **返回值：**
 
@@ -3679,9 +3683,9 @@ export default class EntryAbility extends UIAbility {
       try {
         // 调用hideNonSystemFloatingWindows接口，获取promise对象
         let promise = mainWindow.hideNonSystemFloatingWindows(shouldHide);
-        promise.then(()=> {
+        promise.then(() => {
           console.info('Succeeded in hiding the non-system floating windows.');
-        }).catch((err: BusinessError)=>{
+        }).catch((err: BusinessError) => {
           console.error(`Failed to hide the non-system floating windows. Cause code: ${err.code}, message: ${err.message}`);
         });
       } catch (exception) {
@@ -3934,9 +3938,9 @@ export default class EntryAbility extends UIAbility {
 
 setSingleFrameComposerEnabled(enable: boolean): Promise&lt;void&gt;
 
-禁止/使能单帧合成渲染节点的功能。使用Promise异步回调。
+启用/禁用单帧合成渲染节点的功能。使用Promise异步回调。
 
-单帧合成渲染节点的功能主要用于跟手性要求较高的场景，使能该功能之后可以降低渲染节点的上屏延时。通过setSingleFrameComposerEnabled接口，如果enable设置为true，则使能单帧合成渲染节点的功能，否则禁止单帧合成渲染节点的功能。
+单帧合成渲染节点的功能主要用于跟手性要求较高的场景，使能该功能之后可以降低渲染节点的上屏延时。通过setSingleFrameComposerEnabled接口，如果enable设置为true，则启用单帧合成渲染节点的功能，否则禁用单帧合成渲染节点的功能。
 
 **系统接口：** 此接口为系统接口。
 
@@ -3946,7 +3950,7 @@ setSingleFrameComposerEnabled(enable: boolean): Promise&lt;void&gt;
 
 | 参数名   | 类型                      | 必填 | 说明       |
 | -------- | ------------------------- | ---- | ---------- |
-| enable   | boolean                   | 是   | 设置单帧合成渲染节点的功能是否使能，true表示使能，false表示禁止。 |
+| enable   | boolean                   | 是   | 设置是否启用单帧合成渲染节点的功能，true表示启用，false表示禁用。 |
 
 **返回值：**
 
@@ -3973,9 +3977,9 @@ import { BusinessError } from '@kit.BasicServicesKit';
 let enable = true;
 try {
   let promise = windowClass.setSingleFrameComposerEnabled(enable);
-  promise.then(()=> {
+  promise.then(() => {
       console.info('Succeeded in enabling the single-frame-composer function.');
-  }).catch((err: BusinessError)=>{
+  }).catch((err: BusinessError) => {
       console.error(`Failed to enable the single-frame-composer function. code:${err.code}, message:${err.message}.`);
   });
 } catch (exception) {
@@ -4166,7 +4170,7 @@ try {
 
 requestFocus(isFocused: boolean): Promise&lt;void&gt;
 
-支持当前窗口主动请求获焦/失焦，使用Promise异步回调。调用成功即返回，该接口返回值不代表最终获焦/失焦生效结果。可使用[on('windowEvent')](arkts-apis-window-Window.md#onwindowevent10)监听窗口获焦/失焦状态。
+请求当前窗口获焦或失焦，使用Promise异步回调。返回值不代表最终结果。可使用[on('windowEvent')](arkts-apis-window-Window.md#onwindowevent10)监听获焦/失焦状态。
 
 获焦请求发送后，窗口获焦结果受到窗口可获焦属性及窗口可见状态的限制。获焦成功的窗口需满足以下约束：1.窗口支持获焦；2.窗口可见（窗口已显示，未销毁且未退至后台）。
 
@@ -4584,7 +4588,7 @@ export default class EntryAbility extends UIAbility {
 
 setShowOnLockScreen(showOnLockScreen: boolean): void
 
-设置应用显示在锁屏之上。
+设置应用是否显示在锁屏之上。
 
 **系统接口：** 此接口为系统接口。
 
@@ -4639,7 +4643,7 @@ setImageForRecent(imgResourceId: number, value: ImageFit): Promise&lt;void&gt;
 
 **模型约束：** 此接口仅可在Stage模型下使用。
 
-**系统能力**：SystemCapability.Window.SessionManager
+**系统能力：** SystemCapability.Window.SessionManager
 
 **参数：**
 
@@ -4702,7 +4706,7 @@ export default class EntryAbility extends UIAbility {
 
 **系统接口：** 此接口为系统接口。
 
-**系统能力**：SystemCapability.WindowManager.WindowManager.Core
+**系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
 | 名称                  | 类型          | 只读 | 可选 | 说明             |
 | --------------------- | ----------------- | ---- | ---- | ---------------- |
@@ -4716,7 +4720,7 @@ completeTransition(isCompleted: boolean): void
 
 **系统接口：** 此接口为系统接口。
 
-**系统能力**：SystemCapability.WindowManager.WindowManager.Core
+**系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
 **参数：**
 

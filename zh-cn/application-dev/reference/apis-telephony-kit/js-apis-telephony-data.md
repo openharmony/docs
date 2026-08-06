@@ -803,8 +803,8 @@ APN信息。
 |------------|----------|---------|------------|-------------|
 | apnName   | string     | 否      | 否         | APN名称。    |
 | apn       | string     | 否      | 否         | APN。        |
-| mcc       | string     | 否      | 否         | Sim卡的mcc。 |
-| mnc       | string     | 否      | 否         | Sim卡的mnc。 |
+| mcc       | string     | 否      | 否         | SIM卡的mcc。 |
+| mnc       | string     | 否      | 否         | SIM卡的mnc。 |
 | user      | string     | 否      | 是         | 用户名。     |
 | type      | string     | 否      | 是         | APN类型。    |
 | proxy     | string     | 否      | 是         | 代理地址。   |

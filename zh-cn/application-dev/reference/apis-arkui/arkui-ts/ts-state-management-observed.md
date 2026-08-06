@@ -7,7 +7,7 @@
 <!--Tester: @TerryTsao-->
 <!--Adviser: @zhang_yixin13-->
 
-\@Observed是类装饰器，用于状态管理V1中，观察嵌套类对象的属性变化。
+\@Observed是类装饰器，用于[状态管理V1](../../../ui/state-management/arkts-state-management-overview.md#状态管理v1)中，观察嵌套类对象的属性变化。
 
 开发指南参考：[\@Observed装饰器和\@ObjectLink装饰器：嵌套类对象属性变化](../../../ui/state-management/arkts-observed-and-objectlink.md)。
 

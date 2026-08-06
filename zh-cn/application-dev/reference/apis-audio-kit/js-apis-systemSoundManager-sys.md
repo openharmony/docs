@@ -45,9 +45,11 @@ import { systemSoundManager } from '@kit.AudioKit';
 | 名称                            | 值  | 说明                                                                     |
 | ------------------------------- |----|------------------------------------------------------------------------|
 | RINGTONE_TYPE_DEFAULT<sup>(deprecated)</sup>           | 0  | 默认铃声类型。<br/> 从 API version 11 开始废弃。建议使用该枚举中的RINGTONE_TYPE_SIM_CARD_0替代。 |
-| RINGTONE_TYPE_SIM_CARD_0<sup>11+</sup> | 0  | sim卡1的铃声。                                                              |
+| RINGTONE_TYPE_SIM_CARD_0<sup>11+</sup> | 0  | SIM卡1的铃声。                                                              |
 | RINGTONE_TYPE_MULTISIM<sup>(deprecated)</sup>          | 1  | 多SIM卡铃声类型。<br/> 从 API version 11 开始废弃。建议使用该枚举中的RINGTONE_TYPE_SIM_CARD_1替代。 |
-| RINGTONE_TYPE_SIM_CARD_1<sup>11+</sup> | 1  | sim卡2的铃声。                                                              |
+| RINGTONE_TYPE_SIM_CARD_1<sup>11+</sup> | 1  | SIM卡2的铃声。                                                              |
+| RINGTONE_TYPE_ESIM_CARD_0 | 2  | ESIM卡1的铃声。<br>**起始版本：** 26.0.0<br>**模型约束：** 此接口仅可在Stage模型下使用。 |
+| RINGTONE_TYPE_ESIM_CARD_1 | 3  | ESIM卡2的铃声。<br>**起始版本：** 26.0.0<br>**模型约束：** 此接口仅可在Stage模型下使用。 |
 
 ## SystemToneType<sup>11+</sup>
 
@@ -59,8 +61,10 @@ import { systemSoundManager } from '@kit.AudioKit';
 
 | 名称                            | 值   | 说明         |
 | ------------------------------- |-----|------------|
-| SYSTEM_TONE_TYPE_SIM_CARD_0     | 0   | sim卡1的短信提示音。 |
-| SYSTEM_TONE_TYPE_SIM_CARD_1     | 1   | sim卡2的短信提示音。 |
+| SYSTEM_TONE_TYPE_SIM_CARD_0     | 0   | SIM卡1的短信提示音。 |
+| SYSTEM_TONE_TYPE_SIM_CARD_1     | 1   | SIM卡2的短信提示音。 |
+| SYSTEM_TONE_TYPE_ESIM_CARD_0     | 2   | ESIM卡1的短信提示音。<br>**起始版本：** 26.0.0<br>**模型约束：** 此接口仅可在Stage模型下使用。 |
+| SYSTEM_TONE_TYPE_ESIM_CARD_1     | 3   | ESIM卡2的短信提示音。<br>**起始版本：** 26.0.0<br>**模型约束：** 此接口仅可在Stage模型下使用。 |
 | SYSTEM_TONE_TYPE_NOTIFICATION   | 32  | 通知提示音。     |
 
 ## MediaType<sup>20+</sup>
@@ -490,10 +494,14 @@ let toneAttrs: systemSoundManager.ToneAttrs = systemSoundManager.createCustomize
 
 | 名称                     | 值 | 说明         |
 | ------------------------|----|--------|
-| CALL_SIM_CARD_0         | 0  | sim卡1的来电铃声的振动。 |
-| CALL_SIM_CARD_1         | 1  | sim卡2的来电铃声的振动。 |
-| TEXT_MESSAGE_SIM_CARD_0 | 20 | sim卡1的短信提示音的振动。 |
-| TEXT_MESSAGE_SIM_CARD_1 | 21 | sim卡2的短信提示音的振动。 |
+| CALL_SIM_CARD_0         | 0  | SIM卡1的来电铃声的振动。 |
+| CALL_SIM_CARD_1         | 1  | SIM卡2的来电铃声的振动。 |
+| CALL_ESIM_CARD_0         | 2  | ESIM卡1的来电铃声的振动。 <br>**起始版本：** 26.0.0<br>**模型约束：** 此接口仅可在Stage模型下使用。 |
+| CALL_ESIM_CARD_1         | 3  | ESIM卡2的来电铃声的振动。 <br>**起始版本：** 26.0.0<br>**模型约束：** 此接口仅可在Stage模型下使用。 |
+| TEXT_MESSAGE_SIM_CARD_0 | 20 | SIM卡1的短信提示音的振动。 |
+| TEXT_MESSAGE_SIM_CARD_1 | 21 | SIM卡2的短信提示音的振动。 |
+| TEXT_MESSAGE_ESIM_CARD_0 | 22 | ESIM卡1的短信提示音的振动。<br>**起始版本：** 26.0.0<br>**模型约束：** 此接口仅可在Stage模型下使用。 |
+| TEXT_MESSAGE_ESIM_CARD_1 | 23 | ESIM卡2的短信提示音的振动。<br>**起始版本：** 26.0.0<br>**模型约束：** 此接口仅可在Stage模型下使用。 |
 | NOTIFICATION            | 40 | 通知提示音的振动。 |
 
 ## ToneHapticsMode<sup>14+</sup>
@@ -690,7 +698,7 @@ getGentleFileName(): string | null
 
 | 类型    | 说明  |
 |--------|-----|
-| string \| null | 柔和振动文件名，振动文件为Json格式。如果不存在柔和振动，则振动文件名为空。 |
+| string \| null | 柔和振动文件名，振动文件为JSON格式。如果不存在柔和振动，则振动文件名为空。 |
 
 **错误码：**
 
@@ -2407,7 +2415,7 @@ import { common } from '@kit.AbilityKit';
 
 // 请在组件内获取context，确保this.getUIContext().getHostContext()返回结果为UIAbilityContext。
 let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
-let hapticsUri = '/data/storage/el2/base/haptics/synchronized/alarms/test.json'; // 需更改为目标统铃音的振动的uri。
+let hapticsUri = '/data/storage/el2/base/haptics/synchronized/alarms/test.json'; // 需更改为目标系统铃音的振动的uri。
 
 let systemSoundManagerInstance: systemSoundManager.SystemSoundManager = systemSoundManager.getSystemSoundManager();
 systemSoundManagerInstance.openToneHaptics(context, hapticsUri).then((value: number) => {

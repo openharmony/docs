@@ -1,15 +1,21 @@
 # Detecting Component Visibility
+
 <!--Kit: ArkUI-->
 <!--Subsystem: ArkUI-->
 <!--Owner: @yihao-lin-->
 <!--Designer: @piggyguy-->
 <!--Tester: @songyanhong-->
 <!--Adviser: @Brilliantry_Rui-->
+<!-- md-trans-meta sourceCommit=c8954d33bacbdec6df88d8586db7cc9b9d8a799e translatedAt=2026-08-04T06:34:51.836Z pushedAt=2026-08-04T07:43:27.483Z -->
 
 ## Overview
+
 Component visibility refers to the display state of a component on the screen. By detecting visibility, applications can implement the following typical scenarios:
+
 - Component exposure tracking and analysis (for example, calculating how long an advertisement component is displayed on the screen)
+
 - On-demand resource loading and releasing (for example, releasing images, videos, and other resources used by a component when it becomes invisible)
+
 - Detecting complex view switching (for example, in nested multi-level views, handling related logic based on the component display state)
 
 For the above scenarios, the following strategies are recommended:
@@ -244,11 +250,11 @@ struct ExposureTrackingPage {
 Use [onVisibleAreaChange](../reference/apis-arkui/arkui-ts/ts-universal-component-visible-area-change-event.md#onvisibleareachange) to listen for fine-grained changes in the visible ratio of a component. When the visible ratio approaches the preset threshold, a callback is triggered to load or release resources based on these changes.
 
 > **NOTE**
-> 
-> This feature is supported since API version 9.
-> - The visible area is limited by the boundaries of the parent component; the part beyond the parent will not be counted in the visible ratio calculation.
-> - Because of floating-point comparisons, the system will trigger callbacks when the result approaches the set threshold.
-> - To ensure timely visibility change notifications, the system detects ratio changes per frame. To reduce system load, minimize the use of this API.
+>
+> This capability is supported since API version 9.
+> - The visible area is bounded by the parent component boundaries. The portion beyond the parent component is not counted in the visible ratio calculation.
+> - Due to floating-point comparison, the system triggers the callback when the calculated result is close to the configured threshold.
+> - To ensure timely visibility change notifications, the system performs visible ratio change detection on every frame. To reduce system load, use this API as sparingly as possible.
 
 ```typescript
 import { image } from '@kit.ImageKit';
@@ -360,7 +366,7 @@ struct Index {
 
     try {
       this.getUIContext().getHostContext()!.resourceManager.getMediaContent($r('app.media.startIcon').id,
-        (error, value: ArrayBuffer) => {
+        (error, value: Uint8Array) => {
           let opts: image.InitializationOptions = {
             editable: true,
             pixelFormat: 3,
@@ -386,7 +392,9 @@ struct Index {
 Use the [on('nodeRenderState')](../reference/apis-arkui/arkts-apis-uicontext-uiobserver.md#onnoderenderstate20) API provided by **UIObserver** to listen for the rendering state of a specified component. This API requires a component ID to specify the component to observe, so it is not suitable for scenarios where components are frequently created and destroyed. It is suitable for detecting visibility changes caused by page transitions, such as page navigation or when the component's page is pushed onto the stack, for example, when the currently displayed page of a **Swiper** or **Tabs** component is no longer active.
 
 There are two rendering states:
+
 - **ABOUT_TO_RENDER_IN**: The component has been mounted to the render tree and will be rendered in the next frame.
+
 - **ABOUT_TO_RENDER_OUT**: The component has been removed from the render tree and will not be rendered in the next frame.
 
 > **NOTE**
@@ -399,7 +407,6 @@ The following example nests an observed **Column** component within a hierarchy 
 
 > **NOTE**
 > Given the characteristics of the **on('nodeRenderState')** API, it is not recommended for list item scenarios where nodes are recycled and removed from the tree when scrolled out of screen.
-
 
 ```typescript
 // Index.ets
@@ -568,9 +575,13 @@ Define the **routerMap** field under **module** in the **module.json5** file to 
 The component has entered the screen but the callback is not triggered, or the visible ratio does not match visual perception.
 
 **Solution**
+
 - Check whether the parent component has the **clip** attribute set; clipping may cause deviations in visible area calculation.
+
 - Consider the impact of component opacity: Even with opacity of 0, the area is still counted in the visible ratio.
+
 - Use **nodeRenderState** listening for cross-validation.
+
 - Set [measureFromViewport](./../../application-dev/reference/apis-arkui/arkui-ts/ts-universal-component-visible-area-change-event.md#onvisibleareachange22) to **true** for validation.
 
 ### Performance Degradation Due to High-frequency Callbacks
@@ -580,16 +591,21 @@ The component has entered the screen but the callback is not triggered, or the v
 The UI stutters during scrolling, and logs show that visibility callbacks are being executed frequently.
 
 **Solution**
+
 - Switch to **onVisibleAreaApproximateChange** and set **expectedUpdateInterval** to a larger value.
+
 - Reduce the number of components that have visibility callbacks registered.
 
 ### RenderState Listener Limit Exceeded
+
 **Symptom**
 
 **nodeRenderState** listening fails, and logs indicate that the maximum number of listeners has been exceeded.
 
 **Solution**
-- Replace the **nodeRenderState** listener with the more efficient **onVisibleAreaApproximateChange** API.
-- Apply the listener to a parent container that stays on screen longer.
+
+- Replace the **nodeRenderState** listener with the **onVisibleAreaApproximateChange** API.
+
+- Replace it with listening on a parent container component that has a larger visible area.
+
 - Remove listeners that are no longer needed by using the **off** API.
-<!--no_check-->

@@ -239,10 +239,6 @@ build()函数用于定义自定义组件的声明式UI描述，自定义组件�
 
 \@Reusable装饰V1自定义组件，使得该自定义组件具有被复用的能力。详细请参考：[\@Reusable装饰器：组件复用](./arkts-reusable.md#使用场景)。
 
-  > **说明：**
-  >
-  > 从API version 10开始，该装饰器支持在ArkTS卡片中使用。
-
   <!-- @[Reusable_MyComponent](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkUISample/createCustomComponents/entry/src/main/ets/component/Reusable.ets) --> 
   
   ``` TypeScript
@@ -256,10 +252,6 @@ build()函数用于定义自定义组件的声明式UI描述，自定义组件�
 ### \@ReusableV2
 
 \@ReusableV2装饰V2自定义组件，使得该自定义组件具有被复用的能力。详细请参考：[\@ReusableV2装饰器：V2组件复用](./arkts-new-reusableV2.md#使用场景)。
-
-  > **说明：**
-  >
-  > 从API version 18开始，该装饰器支持在原子化服务中使用。
 
   ``` TypeScript
   @ReusableV2
@@ -961,3 +953,7 @@ struct ExtraIndex {
 ### \@Component与\@ComponentV2混用
 
 在将\@Component装饰的自定义组件与\@ComponentV2装饰的自定义组件混合使用时，<!--RP1-->可参考[状态管理V1和V2混用场景](./arkts-v1-v2-mixusage-before-api-version.md)<!--RP1End-->。
+
+### \@Reusable或\@ReusableV2混用
+
+当将\@Reusable或\@ReusableV2装饰的复用组件与其他自定义组件混合使用时，可参考[使用限制](./arkts-new-reusableV2.md#使用限制)。

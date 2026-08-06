@@ -5,23 +5,20 @@
 <!--Owner: @leiguangyu-->
 <!--Designer: @Maplestroy91-->
 <!--Tester: @gcw_KuLfPSbe-->
-<!--Adviser: @foryourself-->
+<!--Adviser: @jinqiuheng-->
+<!-- md-trans-meta sourceCommit=44da34c75e0877dd26e067a23f1dc0303066fdbb translatedAt=2026-07-31T01:32:14.076Z pushedAt=2026-07-31T07:39:23.302Z -->
 
 hiperf is a command line tool that integrates multiple performance analysis capabilities, enabling you to identify system bottlenecks, locate software hotspots, optimize code efficiency, and collect and analyze runtime performance data.
 
-
 You can use hiperf through [Deveco Studio](https://developer.huawei.com/consumer/en/doc/harmonyos-guides/ide-software-install) or [SmartPerf](https://gitcode.com/openharmony/developtools_smartperf_host/releases) to collect the function call stack, obtain the execution time of each function on the call stack, and view the call chain information in a swimlane diagram for performance analysis. For details, see [Basic Time Analysis: Time](https://developer.huawei.com/consumer/en/doc/harmonyos-guides/ide-insight-session-time) and [hiperf Usage](https://gitcode.com/openharmony/developtools_smartperf_host/blob/master/smartperf_host/ide/src/doc/md/quickstart_hiperf.md). To specify the event, sampling period, collection duration, and number of CPU cores, you can use HiPerf. The **perf.data** file can be opened using SmartPerf and displayed in a flame graph.
 
-
 This topic describes how to use hiperf to perform performance analysis.
-
 
 ## Environment Setup
 
 - The environment for OpenHarmony Device Connector (hdc) has been set up. For details, see [Environment Setup](hdc.md#environment-setup).
 
 - The devices are properly connected and **hdc shell** is executed.
-
 
 ## Command Syntax
 
@@ -30,7 +27,6 @@ Run the **hiperf --help** command to list all hiperf commands, including **dump*
 ```shell
 $ hiperf --help
 ```
-
 
 | Command| Description| 
 | -------- | -------- |
@@ -49,9 +45,7 @@ $ hiperf --help
 | [report](#report)| Converts performance data into visualized data.| 
 | [stat](#stat)| Collects statistics on performance data.| 
 
-
 **Example**
-
 
 ```shell
 $ hiperf --help
@@ -80,15 +74,11 @@ command:
 See 'hiperf help [command]' for more information on a specific command.
 ```
 
-
 ## Common Commands
-
 
 ### Recording Performance Data Sampling
 
-
 1. Sample the process **1234** for 10 seconds. Set the stack unwinding mode to **fp**, sampling frequency to **1000** times per second, event types to **hw-cpu-cycles** and **hw-instructions**, and save the sampling file to **/data/local/tmp/perf.data**.
-
 
     ```shell
     $ hiperf record -p 1234 -s fp -f 1000 -d 10 -e hw-cpu-cycles,hw-instructions -o /data/local/tmp/perf.data
@@ -102,12 +92,9 @@ See 'hiperf help [command]' for more information on a specific command.
     [ Sample lost: 0, Non sample lost: 0 ]
     ```
 
-
     The collected data is saved as a **perf.data** file in binary format, which contains the sampling data, process information, symbol table, and function calls required for performance analysis. You can use the flame graph script to convert the sampling data into a flame graph to identify system performance bottlenecks, locate software hotspots, and optimize code efficiency.
 
-
 2. Sample the application **com.example.insight_test_stage**. Set the sampling duration to **10s**, stack unwinding mode to **dwarf** (debug information table), sampling period to **1000**, event types to **hw-cpu-cycles** and **hw-instructions**, and use the default save path.
-
 
     ```shell
     $ hiperf record --app com.example.insight_test_stage -d 10 -s dwarf --period 1000 -e hw-cpu-cycles,hw-instructions
@@ -121,15 +108,11 @@ See 'hiperf help [command]' for more information on a specific command.
     [ Sample lost: 0, Non sample lost: 0 ]
     ```
 
-
     The collected data is saved to the default path **/data/local/tmp/perf.data**.
-
 
 ### Collecting Performance Statistics
 
-
-1. Count the **1745** and **1910** processes for 10 seconds.
-
+1. Count the processes with process IDs 1745 and 1910 for a counting duration of 10 seconds.
 
     ```shell
     $ hiperf stat -d 10 -p 1745,1910
@@ -146,9 +129,7 @@ See 'hiperf help [command]' for more information on a specific command.
                     5,622,169  sw-task-clock                  | 0.000562 cpus used               | (100%)
     ```
 
-
 2. Count processes **1745** and **1910** for **10** seconds, with event types set to **hw-cpu-cycles**, **hw-instructions**, and **sw-task-clock**, and a print interval of **3000** ms.
-
 
     ```shell
     $ hiperf stat -d 10 -p 1745,1910 -e hw-cpu-cycles,hw-instructions,sw-task-clock -i 3000
@@ -172,9 +153,7 @@ See 'hiperf help [command]' for more information on a specific command.
     Timeout exit (total 10000 ms)
     ```
 
-
-3. Count the process **1910** for **3** seconds, with the event types to **hw-cpu-cycles** and **hw-instructions**, and print detailed information.
-
+3. Count the process with process ID 1910 for a counting duration of 3 seconds, with the event types hw-cpu-cycles and hw-instructions, and print detailed information.
 
     ```shell
     $ hiperf stat -d 3 -p 1910 -e hw-cpu-cycles,hw-instructions --verbose
@@ -195,7 +174,6 @@ See 'hiperf help [command]' for more information on a specific command.
                       669,850  hw-cpu-cycles                  |                                  | (100%)
                       94,903  hw-instructions                | 7.058259 cycles per instruction  | (100%)
     ```
-
 
 ## list
 
@@ -220,7 +198,6 @@ Usage: hiperf list [event type name]
 
 Query the supported hardware event types.
 
-
 ```shell
 $ hiperf list hw
 event not support hw-ref-cpu-cycles
@@ -237,65 +214,70 @@ Supported events for hardware:
         hw-stalled-cycles-backend
 ```
 
-
 ## record
 
 Collects the performance data of a specified process or application, including the CPU cycle, number of instructions, and function calls, and saves the sampling data to a specified file. (For the default path, run the **hiperf record -h/--help** command to view the description of the **-o** parameter.)
 
 > **NOTE**
 >
-> The process collected by the command must be that of a [debug-type application](hiperf.md#what-should-i-do-if-hiperf-fails-to-collect-applications-without-the-debug-certificate-signature).
+> The process to be collected must be an [app signed with a debug certificate](hiperf.md#what-should-i-do-if-hiperf-fails-to-collect-applications-without-the-debug-certificate-signature).  
+> Since API version 24, on PC devices, you can use the terminal command-line app to collect apps with the profileable attribute enabled in [configuration file tags](../quick-start/app-configuration-file.md#tags-in-the-configuration-file).
+> Since API version 26.0.0, you can collect apps with the profileable attribute enabled in [configuration file tags](../quick-start/app-configuration-file.md#tags-in-the-configuration-file).
 
 **Parameters of the record command**
 
 <!--RP1-->
-| Parameter| Description| 
+
+| Parameter | Description |
 | -------- | -------- |
-| -h/--help | Displays the help information.| 
-| -c | Sets the ID of the CPU to collect its data.| 
-| --cpu-limit | Sets the maximum CPU usage during collection. The value ranges from 1 to 100. The default value is 25.| 
-| -d | Sets the collection duration, in seconds. This parameter cannot be used together with **--control**.| 
-| -f | Sets the collection frequency. The default value is 4000 times per second. This parameter cannot be used together with **--period**.| 
-| --period | Sets the event collection period, that is, the number of events for each collection. This parameter cannot be used together with **-f**.| 
-| -e | Sets the event to collect. Multiple event types are supported; separate them with commas. You can run the **list** command to obtain the supported event types.| 
-| -g | Specifies the event groups to collect, which are separated by commas (,).| 
-| --no-inherit | Collects no subprocess data.| 
-| -p | Specifies the process ID to collect. Multiple process IDs are supported; separate them with commas (,). This parameter cannot be used together with **-a**.| 
-| -t | Specifies the thread ID to collect. Multiple thread IDs are supported; separate them with commas (,). This parameter cannot be used together with **-a**.| 
-| --exclude-tid | Specifies the thread ID not to collect. Multiple thread IDs are supported; separate them with commas (,). This parameter cannot be used together with **-a**.| 
-| --exclude-thread | Specifies the thread name not to collect. Multiple thread names are supported; separate them with commas (,). This parameter cannot be used together with **-a**.| 
-| --offcpu | Traces the time when a thread is out of CPU scheduling.| 
-| -j | Samples branch stacks. The following filters are supported: **any**, **any_call**, **any_ret**, **ind_call**, **ind_jmp**, **cond** and **call**.| 
-| -s/--callstack | Sets the stack unwinding mode, which can be **fp** (stack pointer) or **dwarf** (debug information table). The default mode is **fp**.| 
-| --kernel-callchain | Collects kernel-mode stacks. This parameter must be used together with the **-s** parameter.| 
-| --callchain-useronly | Collects only user stacks.| 
-| --delay-unwind | Delays call stack unwinding until after recording when the stack mode is set to **dwarf**.| 
-| --disable-unwind | Disables call stack unwinding after recording when the stack mode is set to **dwarf**.| 
-| --disable-callstack-expand | Merges the call stacks using the cached thread stack when the stack mode is set to **dwarf**.| 
-| --enable-debuginfo-symbolic | Parses the symbols in the **.gnu_debugdata** section of elf when **-s fp/dwarf** is set. By default, the symbols are not parsed.| 
-| --clockid | Sets the collection clock type, which can be **monotonic** or **monotonic_raw**. Some events support the **boottime**, **realtime**, and **clock_tai clock** types.| 
-| --symbol-dir | Sets the symbol table file path, which is used for symbolization during collection.| 
-| -m | Sets the number of mmap pages. Value range: 2 to 1024. The default value is **1024**.| 
-| --app | Sets the application names to collect. Use commas (,) to separate them. The application must already be running. If it has not started, the command waits up to 20s and then exits automatically. This parameter cannot be used together with **-a**.| 
-| --chkms | Sets the query interval, in milliseconds. The value ranges from 1 to 200. The default value is **10**.| 
-| --data-limit | Sets the limit of the output data size. When this limit is reached, the collection stops. By default, there is no limit.| 
-| -o | Sets the output file path. You can customize the file name.| 
-| -z | Outputs the data in a .gz file.| 
-| --restart | Collects performance metrics about application startup. If the process is not started within 30 seconds, the collection stops.| 
-| --verbose | Outputs a more detailed report.| 
-| --control [command] | Controls the collection operation. The following commands are supported: **prepare**/**start**/**pause**/**resume**/**output**/**stop**. This parameter cannot be used together with **-d**.| 
-| --dedup_stack | Deletes duplicate stacks from the record.| 
-| --cmdline-size | Sets the value of the **/sys/kernel/tracing/saved_cmdlines_size** node, in bytes. The value ranges from 512 to 4096.| 
-| --report | Collects the backtrace report.| 
-| --backtrack | Collects data in a previous period. This parameter must be used together with **--control prepare**.| 
-| --backtrack-sec | Collects the duration of previous data, in seconds. The value ranges from 5 to 30. The default value is **10**. This parameter must be used together with **--backtrack**.| 
-| --dumpoptions | Displays the collection parameter details.| 
-| -a | Collects the device performance data.| 
-| --exclude-hiperf | Excludes the performance data of the hiperf process. This parameter must be used together with **-a**.| 
-| --exclude-process | Specifies the process name not to collect. This parameter must be used together with **-a**.|
-| --pipe_input | Establishes a command input pipe when the client process calls hiperf in device development. For details about how to use this capability, see [hiperf](https://gitcode.com/openharmony/docs/blob/master/en/device-dev/subsystems/subsys-toolchain-hiperf.md). This parameter is not required for application development.|
-| --pipe_output | Establishes an output pipe when the client process calls hiperf in device development. For details about how to use this capability, see [hiperf](https://gitcode.com/openharmony/docs/blob/master/en/device-dev/subsystems/subsys-toolchain-hiperf.md). This parameter is not required for application development.|
-| --append-smo-data | Appends the original .so file name to the packed .so file name.<br>Note: This parameter is supported since API version 23.|
+| -h/--help | Help command. |
+| -c | Sets the CPU ID for collection. Only data from the specified CPU is collected. |
+| --cpu-limit | Sets the maximum CPU usage percentage during collection. Value range: 1–100, default: 25. |
+| -d | Collection duration, in seconds. This parameter cannot be used together with --control. |
+| -f | Sampling frequency. The default value is 4000 times/s. This parameter cannot be used together with --period. |
+| --period | Sets the collection event period, that is, how many events trigger one sample. This parameter cannot be used together with -f. |
+| -e | Collection events. Multiple event types are supported, separated by commas. Use the list command to view the supported event types. |
+| -g | Collection event group, separated by commas. |
+| --no-inherit | Does not collect data from child processes. |
+| -p | Process IDs to collect. Multiple process IDs are supported, separated by commas. This parameter cannot be used together with -a. |
+| -t | Thread IDs to collect. Multiple thread IDs are supported, separated by commas. This parameter cannot be used together with -a. |
+| --exclude-tid | Thread IDs to exclude from collection. Multiple thread IDs are supported, separated by commas. This parameter cannot be used together with -a. |
+| --exclude-thread | Thread names to exclude from collection. Multiple thread names are supported, separated by commas. This parameter cannot be used together with -a. |
+| --offcpu | Traces when a thread is scheduled off the CPU. |
+| -j | Branch stack sampling. Supported filters: any, any_call, any_ret, ind_call, ind_jmp, cond, call. |
+| -s/--call-stack | Sets the backtrace mode. Available modes: fp (Frame Pointer) and dwarf (debug information table). |
+| --kernel-callchain | Collects kernel-mode call stacks. This parameter must be used together with -s. |
+| --callchain-useronly | Collects only user-mode call stacks. |
+| --delay-unwind | When the backtrace mode is set to dwarf, the call stack is unwound after recording if this option is set. |
+| --disable-unwind | When the backtrace mode is set to dwarf, the call stack is not unwound after recording if this option is set. |
+| --disable-callstack-expand | When the backtrace mode is set to dwarf, cached thread stacks are used to merge call stacks if this option is set. |
+| --enable-debuginfo-symbolic | When -s fp/dwarf is set, symbols in the .gnu_debugdata section of the ELF file are resolved. By default, they are not resolved. |
+| --clockid | Sets the clock type for collection. Supported types: monotonic and monotonic_raw. Some events also support boottime, realtime, and clock_tai. |
+| --symbol-dir | Path of the symbol table file, used for symbolization during collection. |
+| -m | Number of mmap pages. Value range: 2–1024, default: 1024. |
+| --app | Names of the applications to collect, separated by commas. The applications must be running. If an application is not started, the command waits for 20 seconds and automatically ends if the application is still not started within that period. This parameter cannot be used together with -a. |
+| --chkms | Sets the query interval, in milliseconds. Value range: 1–200, default: 10. |
+| --data-limit | Stops collection when the output data reaches the specified size. By default, there is no limit. |
+| -o | Sets the output file path and allows you to customize the file name. |
+| -z | Outputs data as a .gz compressed file. |
+| --restart | Collects performance metrics during app startup. If the process does not start within 30 seconds, the collection operation ends. |
+| --verbose | Outputs a more detailed report. |
+| --control [command] | Controls the start and stop of the collection operation. Supported commands: prepare, start, pause, resume, output, stop. This parameter cannot be used together with -d. |
+| --dedup_stack | Removes duplicate stacks from the record. |
+| --cmdline-size | Sets the value of the /sys/kernel/tracing/saved_cmdlines_size node, in bytes. Value range: 512–4096. |
+| --report | Generates a backtrace report after collection. |
+| --backtrack | Collects data from a period before the current time. This parameter must be used together with --control prepare. |
+| --backtrack-sec | Duration of the backtrack data collection, in seconds. Value range: 5–30, default: 10. This parameter must be used together with --backtrack. |
+| --dumpoptions | Displays detailed information about the collection parameters. |
+| -a | Collects performance data of the entire device. |
+| --exclude-hiperf | Does not collect performance data of the hiperf process itself. This optional parameter must be used together with -a. |
+| --exclude-process | Names of processes to exclude from collection. This parameter must be used together with -a. |
+| --pipe_input | In device development, this parameter is used to establish a command input channel when a client process calls hiperf. You can refer to the [hiperf_client API](../../device-dev/subsystems/subsys-toolchain-hiperf.md) to use this capability. In app development, this parameter is not needed. |
+| --pipe_output | In device development, this parameter is used to establish a response output channel when a client process calls hiperf. You can refer to the [hiperf_client API](../../device-dev/subsystems/subsys-toolchain-hiperf.md) to use this capability. In app development, this parameter is not needed. |
+| --append-smo-data | When this parameter is enabled, the name of the original .so file in the packaged .so is added.<br>**NOTE**<br>This parameter is supported since API version 23. |
+| --add-counter | Collects the performance counter values of the events specified by this parameter. Multiple events are separated by commas. This parameter must be used together with --no-inherit.<br>**Note:** This parameter is supported since API version 26.0.0. |
+| --raw-data | Enables the collection of raw binary event data, typically used to obtain detailed information about tracepoint events.<br>**Note:** This parameter is supported since API version 26.0.0. |
+
 <!--RP1End-->
 
 **Example**
@@ -310,18 +292,20 @@ Sample the process 267 for 10 seconds and use **dwarf** to unwind the stack.
 $ hiperf record -p 267 -d 10 -s dwarf
 ```
 
-
 ## stat
 
 Monitors the specified application and periodically prints the values of performance counters.
 
 > **NOTE**
 >
-> The process collected by the command must be that of a [debug-type application](hiperf.md#what-should-i-do-if-hiperf-fails-to-collect-applications-without-the-debug-certificate-signature).
+> The process to be collected must be an [app signed with a debug certificate](hiperf.md#what-should-i-do-if-hiperf-fails-to-collect-applications-without-the-debug-certificate-signature).  
+> Since API version 24, on PC devices, you can use the terminal command-line app to collect apps with the profileable attribute enabled in [configuration file tags](../quick-start/app-configuration-file.md#tags-in-the-configuration-file).
+> Since API version 26.0.0, you can collect apps with the profileable attribute enabled in [configuration file tags](../quick-start/app-configuration-file.md#tags-in-the-configuration-file).
 
 **Parameters of the stat command**
 
 <!--RP2-->
+
 | Parameter| Description| 
 | -------- | -------- |
 | -h/--help | Displays the help information.| 
@@ -344,6 +328,8 @@ Monitors the specified application and periodically prints the values of perform
 | -o | Sets the output file path. You can customize the file name.<br>For the default path, run the **hiperf stat -h/--help** command to view the description of the **-o** parameter.<br>This parameter must be used with **--control prepare**, and cannot be used with **--control**.<br>Note: This parameter is supported since API version 20.| 
 | -a | Collects the device performance data.|
 
+<!--RP2End-->
+
 **Example**
 
 ```shell
@@ -355,7 +341,6 @@ Run the **stat** command to monitor the performance data of the process **2349**
 ```shell
 $ hiperf stat -p 1745 -d 3 -c 0
 ```
-
 
 ## dump
 
@@ -388,10 +373,9 @@ Run the **dump** command to read the **/data/local/tmp/perf.data** file and expo
 $ hiperf dump -i /data/local/tmp/perf.data -o /data/local/tmp/perf.dump
 ```
 
-
 ## report
 
-Converts the sampling data (**perf.data**) to the specified format (such as JSON or ProtoBuf), groups samples belonging to the same process, thread, or function into individual sample entries, sorts these entries by event count, and displays them in a report.
+This command is mainly used to convert the sampling data (**perf.data**) to a user-specified format (such as JSON or ProtoBuf). It can group samples belonging to the same process, thread, or function into individual sample entries, sort the sample entries by their event counts, and display them in a report.
 
 **Parameters of the report command**
 
@@ -420,10 +404,10 @@ Usage: hiperf report [option] \<filename\>
 ```
 
 Extract key data that has a great impact on performance (≥ 1%) from the **perf.data** file and displays the data in a report.
+
 ```shell
 $ hiperf report -i /data/local/tmp/perf.data --limit-percent 1
 ```
-
 
 ## FAQs
 
@@ -433,17 +417,21 @@ $ hiperf report -i /data/local/tmp/perf.data --limit-percent 1
 
 Only applications with the debug certificate signature can be collected. The message "only support debug application" is displayed.
 
+Since API version 26.0.0, collection of release-certificate-signed apps with the profileable tag attribute enabled is supported. The error message is: only support debug or profileable application.
+
 **Possible Causes and Solution**
 
 **Causes**
 
-The application does not have the debug certificate signature.
+The app does not have a debug certificate signature and the profileable tag attribute is not enabled.
 
 **Solution**
 
-When the **hiperf record/stat -p [pid]** command is used, the process to be collected must be that of an application signed with the debug certificate.
+When you use the `hiperf record/stat -p [pid]` command, the process to be collected must be an app signed with a debug certificate or a release-certificate-signed app with the profileable tag attribute enabled.
 
-Run the **hdc shell "bm dump -n bundlename | grep appProvisionType"** command to check whether the application specified in the command is a debug-type application. The expected output is **"appProvisionType": "debug"**.
+To check whether the app specified in the command is a debuggable app, run the hdc shell "bm dump -n bundlename | grep appProvisionType" command to query whether it is an app signed with a debug certificate. For an app signed with a debug certificate, the expected output is "appProvisionType": "debug".
+
+Alternatively, run the hdc shell "bm dump -n bundlename | grep profileable" command to query whether it is a release-certificate-signed app with the profileable tag attribute enabled. For such an app, the expected output is "profileable": true.
 
 For example, run the following command to check the bundle name **com.example.myapplication**:
 
@@ -451,10 +439,24 @@ For example, run the following command to check the bundle name **com.example.my
 hdc shell "bm dump -n com.example.myapplication | grep appProvisionType"
 ```
 
-If the application is a debug-type application, the following information is displayed:
+If the app corresponding to the bundle name is a debuggable app signed with a debug certificate, the expected output is as follows:
 
 ```shell
 "appProvisionType": "debug",
 ```
 
+or
+
+```shell
+hdc shell "bm dump -n bundlename | grep profileable"
+```
+
+If the app corresponding to the bundle name is a debuggable app with the profileable tag attribute enabled, the expected output is as follows:
+
+```shell
+"profileable": true
+```
+
 To build a debug-type application, you need to use a debug certificate for signature. For details about how to request and use the debug certificate, see [Requesting a Debug Certificate](https://developer.huawei.com/consumer/en/doc/app/agc-help-add-debugcert-0000001914263178).
+
+For details about enabling the profileable tag attribute, see [Tags in the Configuration File](../quick-start/app-configuration-file.md#tags-in-the-configuration-file).

@@ -1,18 +1,20 @@
 # Accessing Backup and Restore
+
 <!--Kit: Core File Kit-->
 <!--Subsystem: FileManagement-->
 <!--Owner: @lvzhenjie-->
-<!--Designer: @wang_zhangjun; @chenxi0605-->
-<!--Tester: @liuhonggang123-->
+<!--Designer: @chenxi0605-->
+<!--Tester: @zsyztt; @yue-ye2; @fuwei-->
 <!--Adviser: @jinqiuheng-->
+<!-- md-trans-meta sourceCommit=be32bd8bba98ad269ffd4be3b9a7ac920bcf706b translatedAt=2026-08-01T07:23:26.691Z pushedAt=2026-08-01T08:10:45.627Z -->
 
 You can use **BackupExtensionAbility** to enable an application to access the backup and restore framework.
 
-**BackupExtensionAbility** is a class derived from [ExtensionAbility](../application-models/extensionability-overview.md) in the [stage model](../application-models/stage-model-development-overview.md). The application that has accessed the backup and restore framework can customize the backup and restore behavior, including whether to enable backup and restore and specifying the data to be backed up, in a profile. 
+**BackupExtensionAbility** is a derived class of [ExtensionAbility](../application-models/extensionability-overview.md), which is an extension component in the [stage model](../application-models/stage-model-development-overview.md). You can customize the behavior of the backup and restore framework by modifying the configuration file, including whether to allow backup and restore and which files to back up.
 
 ## Available APIs
 
-The following table lists the key APIs of the backup and restore extension capability. For details about how to use the APIs, see [BackupExtensionAbility](../reference/apis-core-file-kit/js-apis-application-backupExtensionAbility.md#backupextensionability) and [BackupExtensionContext](../reference/apis-core-file-kit/js-apis-file-backupextensioncontext.md).
+The following table lists the key APIs of the backup and restore extension capability. For API usage guidelines, see [@ohos.application.BackupExtensionAbility (Backup and Restore Extension Capability)](../reference/apis-core-file-kit/js-apis-application-backupExtensionAbility.md#backupextensionability) and [@ohos.file.BackupExtensionContext (Backup and Restore Extension Capability)](../reference/apis-core-file-kit/js-apis-file-backupextensioncontext.md).
 
 | Name                                                      | Description            |
 | ------------------------------------------------------------ | ---------------- |
@@ -25,19 +27,24 @@ The following table lists the key APIs of the backup and restore extension capab
 ## Constraints
 
 - The path of the file or directory to be backed up or restored cannot exceed 4095 bytes. Otherwise, undefined behavior may occur.
+
 - If a directory needs to be backed up, the application process must have the permission to read the directory and all its subdirectories (`r` in DAC). Otherwise, the backup fails.
+
 - If a file needs to be backed up, the application process must have the permission to retrieve all the ancestor directories of the file (`x` in DAC). Otherwise, the backup fails.
+
 - The path of the file or directory to be backed up or restored does not support relative paths (**../**) and soft links.
+
+- For constraints on `BackupExtensionAbility` API calls, see [Constraints](../reference/apis-core-file-kit/js-apis-application-backupExtensionAbility.md#constraints) in the API reference.
 
 ## How to Develop
 
 1. Add `extensionAbilities` to the application's `module.json5` file.
 
-   In `module.json5`, add the `extensionAbilities` field, set `type` to `backup`, and add a record with `name` set to `ohos.extension. backup` under ["metadata"](../reference/apis-ability-kit/js-apis-bundleManager-metadata.md).
+   Add the `"extensionAbilities"` field, set the registration type `"type"` to `"backup"`, and add an entry with `"name"` set to `"ohos.extension.backup"` in the ["metadata"](../reference/apis-ability-kit/js-apis-bundleManager-metadata.md).
 
    Example:
 
-   ```json
+   ```json5
    {
        "extensionAbilities": [
            {
@@ -52,9 +59,6 @@ The following table lists the key APIs of the backup and restore extension capab
                        "resource": "$profile:backup_config"
                    }
                ],
-               // In the BackupExtension.ets file, define BackupExtensionAbility in extensionAbilities and override onBackup or onBackupEx
-               // and onRestore or onRestoreEx methods. onBackupEx and onRestoreEx are recommended.
-               // Empty implementation can be used if there is no special requirement. In this case, the backup and restore service backs up or restores data based on the unified backup and restore rules.
                "srcEntry": "./ets/BackupExtension/BackupExtension.ets"
            }      
        ]
@@ -88,17 +92,17 @@ The following table lists the key APIs of the backup and restore extension capab
    The following example shows an empty implementation of the `BackupExtension.ets` file.
 
     ```ts
-    //onBackup && onRestore
+    // onBackup && onRestore
     import { BackupExtensionAbility, BundleVersion } from '@kit.CoreFileKit';
     import {hilog} from '@kit.PerformanceAnalysisKit';
     
     const TAG = `FileBackupExtensionAbility`;
     export default class BackupExtension extends  BackupExtensionAbility {
-      //onBackup
+      // onBackup
       async onBackup ()   {
         hilog.info(0x0000, TAG, `onBackup ok`);
       }
-      //onRestore
+      // onRestore
       async onRestore (bundleVersion : BundleVersion) {
         hilog.info(0x0000, TAG, `onRestore end`);
       }
@@ -106,7 +110,7 @@ The following table lists the key APIs of the backup and restore extension capab
     ```
 
    <!-- @[on_backup_restore](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/CoreFile/FileBackupExtension/entry/src/main/ets/common/BackupExtension.ets) -->    
-   
+
    ``` TypeScript
    import { BackupExtensionAbility } from '@kit.CoreFileKit';
    import { BundleVersion } from '@kit.CoreFileKit';
@@ -121,7 +125,7 @@ The following table lists the key APIs of the backup and restore extension capab
    // ...
    
    class BackupExt extends BackupExtensionAbility {
-     //onBackupEx
+     // onBackupEx
      async onBackupEx(backupInfo: string): Promise<string> {
        console.info('onBackupEx ok');
        let errorInfo: ErrorInfo = {
@@ -146,7 +150,6 @@ The following table lists the key APIs of the backup and restore extension capab
    }
    ```
 
-
 4. Starting from API version 20, to perform special operations after application data backup and restore, such as cleaning up temporary files created during these processes, you can customize `BackupExtensionAbility` inherited by the class in the `BackupExtension.ets` file and override the `onRelease` method for execution when the backup or restore is complete.
 
    `onRelease` has a timeout mechanism. If the `onRelease` operation is not completed within 5 seconds, the application process exits when the backup and restoration are complete.
@@ -154,7 +157,7 @@ The following table lists the key APIs of the backup and restore extension capab
    The following example shows how to implement `onRelease` when the temporary file directory needs to be removed.
 
    <!-- @[on_release](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/CoreFile/FileBackupExtension/entry/src/main/ets/common/BackupExtension.ets) -->    
-   
+
    ``` TypeScript
    import { BackupExtensionAbility } from '@kit.CoreFileKit';
    // ...
@@ -191,7 +194,6 @@ The following table lists the key APIs of the backup and restore extension capab
    }
    ```
 
-
 ### Description of the Metadata Profile
 
 | Field            | Type  | Mandatory| Description                                                        |
@@ -202,66 +204,54 @@ The following table lists the key APIs of the backup and restore extension capab
 | fullBackupOnly       | Boolean    | No  | Whether to use the default restore directory of the application. The default value is **false**. If the value is **true**, data will be cached in a temporary directory obtained by [backupDir](../reference/apis-core-file-kit/js-apis-file-backupextensioncontext.md#properties) in the data restore process. If it is **false** or not specified, the restored data is decompressed in **/**.|
 | restoreDeps          | String    | No  | **(Not recommended)** Dependencies for the application to restore. The default value is "". You need to configure the names of the dependent applications. Currently, only one dependency is supported. The configured dependency takes effect only in the context of one restore task. If no dependent application is detected, the dependency description will be ignored and the restore task continues. The application restore will fail if the dependent application is not restored or fails to be restored.|
 | extraInfo            | JSON string    | No  | Additional information to be passed.            |
-| compatibleDirMapping            | Object array    | No  | This field enables data backup from path A and restoration to path B. Each element in the array is an object containing two keys: **backupDir** (path to be backed up) and **restoreDir** (path to be restored to).<br> **Note**: This field is supported since API version 23.            |  
 
 **Field Description**
+
 1. When setting **fullBackupOnly**, observe the following:
 
-    - If **fullBackupOnly** is set to **false**, the restored data will be decompressed in the root directory **/**, and the file with the same name in the directory will be overwritten.
-    - If **fullBackupOnly** is set to **true**, the restored data will be decompressed in a temporary directory. You need to implement the data restoration logic in **OnRestore** or **OnRestoreEx**.
+   - When **fullBackupOnly** is set to **false**, the restored data will be decompressed with **/** as the root directory, and files with the same name in the same path will be overwritten.
 
-    You can determine the data restore mode to use based on service requirements.
+   - When **fullBackupOnly** is set to **true**, the restored data will be decompressed with a temporary directory as the root directory. You need to implement the data restoration logic in **onRestore** or **onRestoreEx** to complete the final restoration.
+
+   You can choose the appropriate data restore mode based on your service scenarios.
 
    **Example:**
-Assume that the application backup path is **data/storage/el2/base/files/A/**. During restoration:
-    - If **fullBackupOnly** is set to **false**, data will be directly decompressed to the **/data/storage/el2/base/files/A/** directory.
-    - If **fullBackupOnly** is set to **true**, data will be decompressed to the **/restore/data/storage/el2/base/files/A/** directory under the temporary path (**backupDir**).
 
-2. When setting **compatibleDirMapping**, observe the following: 
+   Assume that the app's data backup path is **data/storage/el2/base/files/A/**. During restoration:
 
-    The length of the array cannot exceed 1,000. 
+   - If **fullBackupOnly** is set to **false**, data will be directly decompressed to the **/data/storage/el2/base/files/A/** directory.
 
-    The **restoreDir** configuration in each element must be included in the **includes** configuration. Otherwise, the **compatibleDirMapping** configuration will not take effect. This field does not support wildcards. 
-    
-    Neither **backupDir** nor **restoreDir** in each element can contain the string \|\|\|\|.
+   - If **fullBackupOnly** is set to **true**, data will be decompressed to the **temporary path backupDir + /restore/data/storage/el2/base/files/A/** directory.
 
-    **Example of the field configuration:** 
+2. The list of paths supported by **includes** is as follows:
 
-    "compatibleDirMapping": [
-    {"backupDir": "/data/storage/el2/base/files/nulldir", "restoreDir": "/data/storage/el2/base/files/restore/nulldir"},
-    {"backupDir": "/data/storage/el2/base/files/zerofile", "restoreDir": "/data/storage/el2/base/files/restore/zerofile"}
-]    
+   ```json
+   {
+       "includes": [
+           "data/storage/el1/database/",
+           "data/storage/el1/base/files/",
+           "data/storage/el1/base/preferences/",
+           "data/storage/el1/base/haps/*/files/",
+           "data/storage/el1/base/haps/*/preferences/",
+           "data/storage/el2/database/",
+           "data/storage/el2/base/files/",
+           "data/storage/el2/base/preferences/",
+           "data/storage/el2/base/haps/*/files/",
+           "data/storage/el2/base/haps/*/preferences/",
+           "data/storage/el2/distributedfiles/",
+           "data/storage/el5/database/",
+           "data/storage/el5/base/files/",
+           "data/storage/el5/base/preferences/",
+           "data/storage/el5/base/haps/*/files/",
+           "data/storage/el5/base/haps/*/preferences/"
+       ]
+   }
+   ```
 
-    Simply adding this configuration item will not take effect. You need to return the list of paths to be enabled in JSON string format in the **onBackupEx** implementation. 
+## Samples
 
-    The path list must match the **restoreDir** values configured in the **compatibleDirMapping** field of **backup_config**. It can include all or a subset of these paths, or be left empty to indicate that path mapping is disabled.
+The following sample is available:
 
-    **Example of the return value of onBackupEx:** 
-    {"compatibleDirMapping" : ["/data/storage/el2/base/files/restore/nulldir", "/data/storage/el2/base/files/restore/zerofile"] } 
+- [FileBackupExtension (ArkTS) (Full SDK) (API10)](https://gitcode.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/FileManagement/FileBackupExtension)
 
-
-3. The following lists the paths supported by **includes**:
-
-    ```json
-    {
-        "includes": [
-            "data/storage/el1/database/",
-            "data/storage/el1/base/files/",
-            "data/storage/el1/base/preferences/",
-            "data/storage/el1/base/haps/*/files/",
-            "data/storage/el1/base/haps/*/preferences/",
-            "data/storage/el2/database/",
-            "data/storage/el2/base/files/",
-            "data/storage/el2/base/preferences/",
-            "data/storage/el2/base/haps/*/files/",
-            "data/storage/el2/base/haps/*/preferences/",
-            "data/storage/el2/distributedfiles/",
-            "data/storage/el5/database/",
-            "data/storage/el5/base/files/",
-            "data/storage/el5/base/preferences/",
-            "data/storage/el5/base/haps/*/files/",
-            "data/storage/el5/base/haps/*/preferences/"
-        ]
-    }
-    ```
-
+<!--no_check-->

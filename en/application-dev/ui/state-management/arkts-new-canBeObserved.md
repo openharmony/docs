@@ -1,10 +1,12 @@
 # canBeObserved API: Determining Whether an Object Can Be Observed
+
 <!--Kit: ArkUI-->
 <!--Subsystem: ArkUI-->
 <!--Owner: @jiyujia926-->
 <!--Designer: @zhangboren-->
 <!--Tester: @TerryTsao-->
 <!--Adviser: @zhang_yixin13-->
+<!-- md-trans-meta sourceCommit=3efb4ba336409dd0731ba011e1e227786db57fa2 translatedAt=2026-07-22T02:05:02.402Z pushedAt=2026-07-24T01:13:44.253Z -->
 
 To determine whether an object is observable and to obtain component information associated with the object, you can use [canBeObserved](../../reference/apis-arkui/js-apis-stateManagement.md#canbeobserved23).
 
@@ -16,7 +18,7 @@ Before using this API, you are advised to read [State Management Overview](./ark
 
 ## Overview
 
-During development and debugging, you may encounter issues where the UI page does not refresh after modifying an object's value (for details, see [State Management Development](./arkts-state-management-faq.md)). Troubleshooting such issues is particularly inconvenient in complex business scenarios. To address this, the **canBeObserved** API is provided to help you locate and analyze problems. Using this API, you cannot only determine whether an object is observable, but also obtain component information associated with the object.
+During development and debugging, you may encounter issues where the UI page does not refresh after modifying an object's value (for details, see [State Management Development](./arkts-state-management-faq.md)). Troubleshooting such issues is particularly inconvenient in complex business scenarios. To address this, the **canBeObserved** API is provided to help you locate and analyze problems. Using this API, you can not only determine whether an object is observable, but also obtain component information associated with the object.
 
 To use the **canBeObserved** API, you need to import the UIUtils.
 
@@ -59,8 +61,11 @@ Note that if the value of **reason** ends with **but not used in UI** or **but n
 ### Scenarios Where V1 Component Objects Can Be Observed
 
 In V1 components, the following objects can be observed:
+
 - Objects decorated with a state management V1 decorator in a component (including **Array**, **Set**, **Map**, and **Date** data objects)
+
 - Objects decorated with the [@Observed](./arkts-observed-and-objectlink.md) decorator
+
 - Objects wrapped using the [makeV1Observed](../../reference/apis-arkui/js-apis-stateManagement.md#makev1observed19) method
 
 The state management V1 decorators refer to [@State](./arkts-state.md), [@Prop](./arkts-prop.md), [@Link](./arkts-link.md), [@ObjectLink](./arkts-observed-and-objectlink.md), [@StorageLink](./arkts-appstorage.md#storagelink), [@StorageProp](./arkts-appstorage.md#storageprop), [@LocalStorageLink](./arkts-localstorage.md#localstoragelink), [@LocalStorageProp](./arkts-localstorage.md#localstorageprop), [@Provide](./arkts-provide-and-consume.md), and [@Consume](./arkts-provide-and-consume.md).
@@ -277,13 +282,17 @@ Returned result:
 ### Scenarios Where V2 Component Objects Can Be Observed
 
 In V2 components, the following objects can be observed:
+
 - Objects decorated with the [@ObservedV2](./arkts-new-observedV2-and-trace.md) decorator
+
 - **Array**, **Set**, **Map**, and **Date** data objects decorated with state management V2 decorators
+
 - Objects wrapped using the [makeObserved](../../reference/apis-arkui/js-apis-stateManagement.md#makeobserved) method
 
 State management V2 decorators refer to [@Local](./arkts-new-local.md), [@Param](./arkts-new-param.md), [@Provider](./arkts-new-provider-and-consumer.md) and [@Consumer](./arkts-new-provider-and-consumer.md).
 
 The specifications for collecting decorators of V2 components are different from those of V1 components. V2 components collect decorator information based on the object properties decorated with the @Trace decorator. The following TestClass is used as an example. The @Trace decorator displays information about associated components by property.
+
 ``` TypeScript
 // Define a class.
 @ObservedV2
@@ -293,6 +302,7 @@ class TestClass {
   @Trace c?: string;
 }
 ```
+
 ``` json5
 // Analyze the returned result.
 {
@@ -608,6 +618,7 @@ static increaseVolume(balloon: Balloon) {
   balloon.volume += 2;
 }
 ```
+
 <!-- @[case_a_b_call_right_reduceVolume](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkUISample/UIUtilsCanBeObserved/entry/src/main/ets/pages/CaseABCallRight.ets) -->
 
 ``` TypeScript
@@ -618,7 +629,7 @@ reduceVolume(balloon: Balloon) {
 }
 ```
 
-The return results of calling the **canBeObserved** API in both methods are the same (as shown below), indicating that the parameters received by both methods are observable objects and are used by UI components. The UI can refresh normally.
+The two methods call the **canBeObserved** API and return the same result (as shown below), indicating that the input parameters received by both methods are observable objects and are used by UI components, so the UI can be refreshed properly.
 
 ``` json5
 {

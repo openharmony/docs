@@ -585,7 +585,7 @@ JSVM API OH_JSVM_IsExceptionPending: SUCCESS
 
 用于获取调用JSVM接口最后一次发生的错误信息（接口返回值不为JSVM_OK），包括错误码、错误消息以及错误堆栈信息，即使存在挂起的JavaScript异常，也可以调用此API。
 
-注意: 通过OH_JSVM_ThrowError等接口主动触发的Error不会被该接口获取，除非调用接口时返回值不为JSVM_OK。
+注意：通过OH_JSVM_ThrowError等接口主动触发的Error不会被该接口获取，除非调用接口时返回值不为JSVM_OK。
 
 cpp部分代码：
 

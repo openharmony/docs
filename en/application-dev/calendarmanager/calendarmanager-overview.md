@@ -3,10 +3,10 @@
 <!--Kit: Calendar Kit-->
 <!--Subsystem: Applications-->
 <!--Owner: @qq_42718467-->
-<!--Designer: @windsky6-->
+<!--Designer: @qq_42718467-->
 <!--Tester: @z30055209-->
 <!--Adviser: @ge-yafang-->
-<!-- md-trans-meta sourceCommit=dcae6f10c07044342acb5b2dc0416e100c5bcaa2 translatedAt=2026-06-17T06:37:24.506Z pushedAt=2026-06-17T12:25:26.378Z -->
+<!-- md-trans-meta sourceCommit=8852d3851a09566b1fcf279f3997e3c4a14b517f translatedAt=2026-07-25T11:27:27.733Z pushedAt=2026-07-25T11:27:39.488Z -->
 
 Calendar Kit provides calendar and event management capabilities, which usually refer to APIs that can be used to access and operate calendar data. These APIs allow you to integrate time-related event services (such as travel, catering, sports, and entertainment) in other applications with the system calendar to implement functions such as event management, creation, and query.
 
@@ -64,12 +64,12 @@ Calendar Kit provides a set of APIs for obtaining calendar accounts, and writing
 
 The operations supported after the corresponding permissions are granted are listed in the following table.
 
-| Requested Permission | Supported Calendar Account Operation | Supported Event Operation |
-| ------------------------------ | -------------------------------------------- | ------------------------------------------------------------ |
-| ohos.permission.READ_CALENDAR | - Read the system default calendar account.<br>- Read calendar accounts created by the current application. | - Read events created by the current application under the system default calendar account.<br/>- Read events created by the current application under calendar accounts created by the current application. |
-| ohos.permission.WRITE_CALENDAR | - Add, delete, or modify calendar accounts created by the current application. | - Add, delete, or modify events created by the current application under the system default calendar account.<br>- Add, delete, or modify events created by the current application under calendar accounts created by the current application. |
-| ohos.permission.READ_WHOLE_CALENDAR | - Read all calendar accounts. | - Read events created by all applications. |
-| ohos.permission.WRITE_WHOLE_CALENDAR | - Add, delete, or modify all calendar accounts. | - Add, delete, or modify events created by all applications. |
+  | Requested Permission | Supported Calendar Account Operation | Supported Event Operation |
+  | ------------------------------ | -------------------------------------------- | ------------------------------------------------------------ |
+  | ohos.permission.READ_CALENDAR | - Read the system default calendar account.<br>- Read calendar accounts created by the current application. | - Read events created by the current application under the system default calendar account.<br/>- Read events created by the current application under calendar accounts created by the current application. |
+  | ohos.permission.WRITE_CALENDAR | - Add, delete, or modify calendar accounts created by the current application. | - Add, delete, or modify events created by the current application under the system default calendar account.<br>- Add, delete, or modify events created by the current application under calendar accounts created by the current application. |
+  | ohos.permission.READ_WHOLE_CALENDAR | - Read all calendar accounts. | - Read events created by all applications. |
+  | ohos.permission.WRITE_WHOLE_CALENDAR | - Add, delete, or modify all calendar accounts. | - Add, delete, or modify events created by all applications. |
 
 <!--RP1-->
 <!--RP1End-->

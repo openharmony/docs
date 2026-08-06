@@ -93,7 +93,7 @@ participate(config: HiRetrievalConfig): void
 
 | 错误码ID | 错误信息 |
 | -------- | ----------------------------------------------------------------------------------------------------------------------------------------------- |
-| 36000001 | Initialization error. Possibly caused by invoking this function before invoking init function                                                   |
+| 36000001 | Initialization error. Possibly caused by invoking this function before invoking init function.                                                  |
 
 **示例：**
 
@@ -135,7 +135,7 @@ quit(): void
 
 | 错误码ID | 错误信息 |
 | -------- | ----------------------------------------------------------------------------------------------- |
-| 36000001 | Initialization error. Possibly caused by invoking this function before invoking init function   |
+| 36000001 | Initialization error. Possibly caused by invoking this function before invoking init function.  |
 
 **示例：**
 
@@ -225,7 +225,7 @@ run(): void
 
 | 错误码ID | 错误信息 |
 | -------- | -------------------------------------------------------------------------------------------------- |
-| 36000001 | Initialization error. Possibly caused by invoking this function before invoking init function      |
+| 36000001 | Initialization error. Possibly caused by invoking this function before invoking init function.     |
 
 **示例：**
 

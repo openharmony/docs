@@ -34,7 +34,7 @@ import { distributedMissionManager } from '@kit.AbilityKit';
 
 | 名称       | 类型   | 只读   | 可选   | 说明      |
 | -------- | ------ | ---- | ---- | ------- |
-| srcDeviceId | string | 否    | 否    | 表示任务迁移源设备ID。 |
-| bundleName | string | 否    | 否    | 表示任务所属目标端应用包名。 |
-| srcBundleName<sup>12+</sup> | string | 否    | 是    | 表示任务所属源端应用包名，默认与bundleName相同。 |
-| continueType<sup>12+</sup> | string | 否    | 是    | 表示任务所属应用迁移类型。 |
+| srcDeviceId | string | 否    | 否    | 表示任务流转源设备ID。|
+| bundleName | string | 否    | 否    | 表示任务所属目标端应用包名。该参数作为srcBundleName的默认值使用，当srcBundleName未传入时，其值默认与bundleName相同。 |
+| srcBundleName<sup>12+</sup> | string | 否    | 是    | 表示任务所属源端应用包名。当源端和目标端应用包名不同时需要传入（如跨应用迁移、应用包名变更等场景），不传入时默认与bundleName相同。 |
+| continueType<sup>12+</sup> | string | 否    | 是    | 表示任务所属应用迁移类型。取值由应用在配置文件中自定义，用于标识不同的任务流转策略（如多设备协同时的任务流转、跨设备复制任务状态等场景）。如果不传，则使用系统默认值。 |

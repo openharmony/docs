@@ -112,7 +112,7 @@ unlock(callback: AsyncCallback&lt;boolean&gt;): void
 
 **错误码**：
 
-以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和见[锁屏服务错误码](errorcode-screenlock.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[锁屏服务错误码](errorcode-screenlock.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |

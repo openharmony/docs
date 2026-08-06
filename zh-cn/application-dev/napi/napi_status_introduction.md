@@ -146,7 +146,7 @@
 | napi_get_prototype | 获取给定ArkTS Object的prototype。 | napi_pending_exception | 调用该接口前或调用过程中出现未捕获的ArkTS异常 | 根据异常信息（hilog/crash栈）处理异常 |
 | napi_get_typedarray_info | 获取给定TypedArray的各种属性。 | napi_invalid_arg | 入参env为nullptr | 确保入参正确 |
 | napi_get_typedarray_info | 获取给定TypedArray的各种属性。 | napi_invalid_arg | 入参typedarray为nullptr | 确保入参正确 |
-| napi_get_typedarray_info | 获取给定TypedArray的各种属性。 | napi_invalid_arg | 入参typedarray既不是ArkTS TypedArray类型，也不是ShareTypedArray类型 | 确保入参正确 |
+| napi_get_typedarray_info | 获取给定TypedArray的各种属性。 | napi_invalid_arg | 入参typedarray既不是ArkTS TypedArray类型，也不是SharedTypedArray类型 | 确保入参正确 |
 | napi_get_dataview_info | 获取给定DataView的各种属性。 | napi_invalid_arg | 入参env为nullptr | 确保入参正确 |
 | napi_get_dataview_info | 获取给定DataView的各种属性。 | napi_invalid_arg | 入参dataview为nullptr | 确保入参正确 |
 | napi_get_dataview_info | 获取给定DataView的各种属性。 | napi_invalid_arg | 入参dataview不为ArkTS DataView类型 | 确保入参正确 |
@@ -528,9 +528,9 @@
 | napi_is_detached_arraybuffer | 判断给定的ArrayBuffer是否已被分离过。 | napi_invalid_arg | 入参arraybuffer为nullptr | 确保入参正确 |
 | napi_is_detached_arraybuffer | 判断给定的ArrayBuffer是否已被分离过。 | napi_invalid_arg | 入参result为nullptr | 确保入参正确 |
 | napi_is_detached_arraybuffer | 判断给定的ArrayBuffer是否已被分离过。 | napi_invalid_arg | 入参arraybuffer不为ArkTS ArrayBuffer类型 | 确保入参正确 |
-| napi_run_script | 将给定对象作为ArkTS代码运行。当前接口实际为空实现，可使用系统拓展接口napi_run_script_path接口，提升安全性。 | napi_invalid_arg | 入参env为nullptr | 确保入参正确 |
-| napi_run_script | 将给定对象作为ArkTS代码运行。当前接口实际为空实现，可使用系统拓展接口napi_run_script_path接口，提升安全性。 | napi_invalid_arg | 入参script为nullptr | 确保入参正确 |
-| napi_run_script | 将给定对象作为ArkTS代码运行。当前接口实际为空实现，可使用系统拓展接口napi_run_script_path接口，提升安全性。 | napi_invalid_arg | 入参result为nullptr | 确保入参正确 |
+| napi_run_script | 将给定对象作为ArkTS代码运行。当前接口实际为空实现，可使用系统扩展接口napi_run_script_path接口，提升安全性。 | napi_invalid_arg | 入参env为nullptr | 确保入参正确 |
+| napi_run_script | 将给定对象作为ArkTS代码运行。当前接口实际为空实现，可使用系统扩展接口napi_run_script_path接口，提升安全性。 | napi_invalid_arg | 入参script为nullptr | 确保入参正确 |
+| napi_run_script | 将给定对象作为ArkTS代码运行。当前接口实际为空实现，可使用系统扩展接口napi_run_script_path接口，提升安全性。 | napi_invalid_arg | 入参result为nullptr | 确保入参正确 |
 | napi_set_instance_data | 绑定与当前运行的环境相关联的数据项。 | napi_invalid_arg | 入参env为nullptr | 确保入参正确 |
 | napi_get_instance_data | 检索与当前运行的环境相关联的数据项。 | napi_invalid_arg | 入参env为nullptr | 确保入参正确 |
 | napi_get_instance_data | 检索与当前运行的环境相关联的数据项。 | napi_invalid_arg | 入参data为nullptr | 确保入参正确 |

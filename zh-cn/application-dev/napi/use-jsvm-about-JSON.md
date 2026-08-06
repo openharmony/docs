@@ -18,8 +18,8 @@
 
 | 接口                       | 功能说明                       |
 |----------------------------|--------------------------------|
-| OH_JSVM_JsonParse          | 解析JSON字符串，并将结果存储在JSON对象。 |
-| OH_JSVM_JsonStringify      | 将对象字符串化，并将结果存储在JSVM字符串对象。 |
+| OH_JSVM_JsonParse          | 解析JSON字符串，并将结果存储在JSON对象中。 |
+| OH_JSVM_JsonStringify      | 将对象字符串化，并将结果存储在JSVM字符串对象中。 |
 
 ## 使用示例
 

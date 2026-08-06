@@ -6,10 +6,11 @@
 <!--Designer: @chris2981-->
 <!--Tester: @xdlinc-->
 <!--Adviser: @w_Machine_cc-->
+<!-- md-trans-meta sourceCommit=29f3919446ee01733553b9b39493ee11224dad86 translatedAt=2026-07-31T02:14:18.113Z pushedAt=2026-07-31T06:23:14.008Z -->
 
 ## Overview
 
-The file declares the MediaKeySession APIs for DRM operations.  <br> The APIs can be used to generate media key requests, process responses to media key requests, listen for events, obtain content protection levels, check media key status, and remove media keys.
+This file declares the DRM MediaKeySession API and provides the following features:<br> generating media key requests, processing media key responses, listening for events, obtaining content protection levels, checking media key status, and deleting media keys.
 
 **File to include**: <multimedia/drm_framework/native_mediakeysession.h>
 
@@ -34,17 +35,17 @@ The file declares the MediaKeySession APIs for DRM operations.  <br> The APIs ca
 
 | Name| typedef Keyword| Description|
 | -- | -- | -- |
-| [typedef  Drm_ErrCode (\*MediaKeySession_EventCallback)(DRM_EventType eventType, uint8_t *info,int32_t infoLen, char *extra)](#mediakeysession_eventcallback) | MediaKeySession_EventCallback | Defines the callback function called when a MediaKeySession event is triggered, such as a key expiration event.|
-| [typedef  Drm_ErrCode (\*MediaKeySession_KeyChangeCallback)(DRM_KeysInfo *keysInfo, bool newKeysAvailable)](#mediakeysession_keychangecallback) | MediaKeySession_KeyChangeCallback | Defines the callback function called for key change events.|
-| [typedef Drm_ErrCode (\*OH_MediaKeySession_EventCallback)(MediaKeySession *mediaKeySession, DRM_EventType eventType,uint8_t *info, int32_t infoLen, char *extra)](#oh_mediakeysession_eventcallback) | OH_MediaKeySession_EventCallback | Defines the callback function called when an event occurs. The event originates from DRM events during media playback and is triggered through the MediaKeySession instance.|
-| [typedef Drm_ErrCode (\*OH_MediaKeySession_KeyChangeCallback)(MediaKeySession *mediaKeySession, DRM_KeysInfo *keysInfo, bool newKeysAvailable)](#oh_mediakeysession_keychangecallback) | OH_MediaKeySession_KeyChangeCallback | Defines the callback function called for key change events.|
+| [typedef Drm_ErrCode (\*MediaKeySession_EventCallback)(DRM_EventType eventType, uint8_t *info, int32_t infoLen, char *extra)](#mediakeysession_eventcallback) | MediaKeySession_EventCallback | Defines the callback invoked when a MediaKeySession event is triggered, such as a key expiration event. |
+| [typedef Drm_ErrCode (\*MediaKeySession_KeyChangeCallback)(DRM_KeysInfo *keysInfo, bool newKeysAvailable)](#mediakeysession_keychangecallback) | MediaKeySession_KeyChangeCallback | Defines the callback invoked when a key change occurs. |
+| [typedef Drm_ErrCode (\*OH_MediaKeySession_EventCallback)(MediaKeySession *mediaKeySession, DRM_EventType eventType, uint8_t *info, int32_t infoLen, char *extra)](#oh_mediakeysession_eventcallback) | OH_MediaKeySession_EventCallback | Defines the callback invoked when an event is triggered. The event information originates from DRM events during media playback and is triggered through the MediaKeySession instance. |
+| [typedef Drm_ErrCode (\*OH_MediaKeySession_KeyChangeCallback)(MediaKeySession *mediaKeySession, DRM_KeysInfo *keysInfo, bool newKeysAvailable)](#oh_mediakeysession_keychangecallback) | OH_MediaKeySession_KeyChangeCallback | Defines the callback invoked when a key change occurs. |
 | [Drm_ErrCode OH_MediaKeySession_GenerateMediaKeyRequest(MediaKeySession *mediaKeySession, DRM_MediaKeyRequestInfo *info, DRM_MediaKeyRequest *mediaKeyRequest)](#oh_mediakeysession_generatemediakeyrequest) | - | Generates a media key request.|
 | [Drm_ErrCode OH_MediaKeySession_ProcessMediaKeyResponse(MediaKeySession *mediaKeySession, uint8_t *response, int32_t responseLen, uint8_t *offlineMediaKeyId, int32_t *offlineMediaKeyIdLen)](#oh_mediakeysession_processmediakeyresponse) | - | Processes the response to a media key request.|
 | [Drm_ErrCode OH_MediaKeySession_CheckMediaKeyStatus(MediaKeySession *mediaKeySession, DRM_MediaKeyStatus *mediaKeyStatus)](#oh_mediakeysession_checkmediakeystatus) | - | Checks the status of a media key.|
-| [Drm_ErrCode OH_MediaKeySession_ClearMediaKeys(MediaKeySession *mediaKeySession)](#oh_mediakeysession_clearmediakeys) | - | Clears media keys.|
+| [Drm_ErrCode OH_MediaKeySession_ClearMediaKeys(MediaKeySession *mediaKeySession)](#oh_mediakeysession_clearmediakeys) | - | Clears media keys of the current session.|
 | [Drm_ErrCode OH_MediaKeySession_GenerateOfflineReleaseRequest(MediaKeySession *mediaKeySession, uint8_t *offlineMediaKeyId, int32_t offlineMediaKeyIdLen, uint8_t *releaseRequest,int32_t *releaseRequestLen)](#oh_mediakeysession_generateofflinereleaserequest) | - | Generates a request to release offline media keys.|
 | [Drm_ErrCode OH_MediaKeySession_ProcessOfflineReleaseResponse(MediaKeySession *mediaKeySession, uint8_t *offlineMediaKeyId, int32_t offlineMediaKeyIdLen, uint8_t *releaseResponse,int32_t releaseResponseLen)](#oh_mediakeysession_processofflinereleaseresponse) | - | Processes the response to a request for releasing offline media keys.|
-| [Drm_ErrCode OH_MediaKeySession_RestoreOfflineMediaKeys(MediaKeySession *mediaKeySession, uint8_t *offlineMediaKeyId, int32_t offlineMediaKeyIdLen)](#oh_mediakeysession_restoreofflinemediakeys) | - | Restores offline media keys.|
+| [Drm_ErrCode OH_MediaKeySession_RestoreOfflineMediaKeys(MediaKeySession *mediaKeySession, uint8_t *offlineMediaKeyId, int32_t offlineMediaKeyIdLen)](#oh_mediakeysession_restoreofflinemediakeys) | - | Restores offline media keys to the current session.|
 | [Drm_ErrCode OH_MediaKeySession_GetContentProtectionLevel(MediaKeySession *mediaKeySession, DRM_ContentProtectionLevel *contentProtectionLevel)](#oh_mediakeysession_getcontentprotectionlevel) | - | Obtains the content protection level of a media key session.|
 | [Drm_ErrCode OH_MediaKeySession_RequireSecureDecoderModule(MediaKeySession *mediaKeySession, const char *mimeType, bool *status)](#oh_mediakeysession_requiresecuredecodermodule) | - | Checks whether secure decoding is required.|
 | [Drm_ErrCode OH_MediaKeySession_SetMediaKeySessionCallback(MediaKeySession *mediaKeySession, MediaKeySession_Callback *callback)](#oh_mediakeysession_setmediakeysessioncallback) | - | Sets a media key session event callback. This callback does not return a MediaKeySession instance and applies to the scenario where a single MediaKeySession is used.|
@@ -56,7 +57,7 @@ The file declares the MediaKeySession APIs for DRM operations.  <br> The APIs ca
 ### MediaKeySession_EventCallback()
 
 ```c
-typedef  Drm_ErrCode (*MediaKeySession_EventCallback)(DRM_EventType eventType, uint8_t *info,int32_t infoLen, char *extra)
+typedef Drm_ErrCode (*MediaKeySession_EventCallback)(DRM_EventType eventType, uint8_t *info, int32_t infoLen, char *extra)
 ```
 
 **Description**
@@ -64,7 +65,6 @@ typedef  Drm_ErrCode (*MediaKeySession_EventCallback)(DRM_EventType eventType, u
 Defines the callback function called when a MediaKeySession event is triggered, such as a key expiration event.
 
 **Since**: 11
-
 
 **Parameters**
 
@@ -89,10 +89,9 @@ typedef  Drm_ErrCode (*MediaKeySession_KeyChangeCallback)(DRM_KeysInfo *keysInfo
 
 **Description**
 
-Defines the callback function called for key change events.
+Defines the callback invoked when the key changes.
 
 **Since**: 11
-
 
 **Parameters**
 
@@ -118,7 +117,6 @@ typedef Drm_ErrCode (*OH_MediaKeySession_EventCallback)(MediaKeySession *mediaKe
 Defines the callback function called when an event occurs. The event originates from DRM events during media playback and is triggered through the MediaKeySession instance.
 
 **Since**: 12
-
 
 **Parameters**
 
@@ -148,7 +146,6 @@ Defines the callback function called for key change events.
 
 **Since**: 12
 
-
 **Parameters**
 
 | Name| Description|
@@ -174,7 +171,6 @@ Drm_ErrCode OH_MediaKeySession_GenerateMediaKeyRequest(MediaKeySession *mediaKey
 Generates a media key request.
 
 **Since**: 11
-
 
 **Parameters**
 
@@ -202,16 +198,15 @@ Processes the response to a media key request.
 
 **Since**: 11
 
-
 **Parameters**
 
 | Name| Description|
 | -- | -- |
 | [MediaKeySession](capi-drm-mediakeysession.md) *mediaKeySession | Pointer to the MediaKeySession instance.|
 | uint8_t *response | Pointer to the response to a media key request.|
-| int32_t responseLen | Pointer to the length of the response.|
+| int32_t responseLen | Length of the response.|
 | uint8_t *offlineMediaKeyId | Pointer to the ID of an offline media key.|
-| int32_t *offlineMediaKeyIdLen | Length of the offline media key ID.|
+| int32_t *offlineMediaKeyIdLen | Pointer to the length of the offline media key ID.|
 
 **Returns**
 
@@ -230,7 +225,6 @@ Drm_ErrCode OH_MediaKeySession_CheckMediaKeyStatus(MediaKeySession *mediaKeySess
 Checks the status of a media key.
 
 **Since**: 11
-
 
 **Parameters**
 
@@ -253,10 +247,9 @@ Drm_ErrCode OH_MediaKeySession_ClearMediaKeys(MediaKeySession *mediaKeySession)
 
 **Description**
 
-Clears media keys.
+Clears media keys of the current session.
 
 **Since**: 11
-
 
 **Parameters**
 
@@ -281,7 +274,6 @@ Drm_ErrCode OH_MediaKeySession_GenerateOfflineReleaseRequest(MediaKeySession *me
 Generates a request to release offline media keys.
 
 **Since**: 11
-
 
 **Parameters**
 
@@ -311,7 +303,6 @@ Processes the response to a request for releasing offline media keys.
 
 **Since**: 11
 
-
 **Parameters**
 
 | Name| Description|
@@ -340,7 +331,6 @@ Restores offline media keys.
 
 **Since**: 11
 
-
 **Parameters**
 
 | Name| Description|
@@ -367,7 +357,6 @@ Obtains the content protection level of a media key session.
 
 **Since**: 11
 
-
 **Parameters**
 
 | Name| Description|
@@ -392,7 +381,6 @@ Drm_ErrCode OH_MediaKeySession_RequireSecureDecoderModule(MediaKeySession *media
 Checks whether secure decoding is required.
 
 **Since**: 11
-
 
 **Parameters**
 
@@ -420,7 +408,6 @@ Sets a media key session event callback. This callback does not return a MediaKe
 
 **Since**: 11
 
-
 **Parameters**
 
 | Name| Description|
@@ -446,7 +433,6 @@ Sets a media key session event callback. This callback returns a MediaKeySession
 
 **Since**: 12
 
-
 **Parameters**
 
 | Name| Description|
@@ -471,7 +457,6 @@ Drm_ErrCode OH_MediaKeySession_Destroy(MediaKeySession *mediaKeySession)
 Destroys a MediaKeySession instance.
 
 **Since**: 11
-
 
 **Parameters**
 

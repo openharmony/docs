@@ -3,7 +3,7 @@
 <!--Kit: ArkUI-->
 <!--Subsystem: ArkUI-->
 <!--Owner: @guozejun-->
-<!--Designer: @zcdqs-->
+<!--Designer: @guozejun-->
 <!--Tester: @leiyuqian-->
 <!--Adviser: @Brilliantry_Rui-->
 
@@ -135,8 +135,8 @@ By default, all child components of the grid component occupy one row and one co
 
 | Requirement Scenario| Recommended Solution| Description|
 |------|---------|------|
-| Fixed-row-and-column grid, with some items occupying multiple rows and columns| [OH_ArkUI_GridLayoutOptions_RegisterGetRectByIndexCallback](../reference/apis-arkui/capi-native-type-h.md#oh_arkui_gridlayoutoptions_registergetrectbyindexcallback) | Flexibly controls the position and size of each item.|
-| Scrollable grid, with a group title occupying the entire row| [OH_ArkUI_GridLayoutOptions_SetIrregularIndexes](../reference/apis-arkui/capi-native-type-h.md#oh_arkui_gridlayoutoptions_setirregularindexes) | Specifies the index that occupies the entire row.|
+| Fixed-row-and-column grid, with some items occupying multiple rows and columns| [OH_ArkUI_GridLayoutOptions_RegisterGetRectByIndexCallback](../reference/apis-arkui/capi-grid-h.md#oh_arkui_gridlayoutoptions_registergetrectbyindexcallback) | Flexibly controls the position and size of each item.|
+| Scrollable grid, with a group title occupying the entire row| [OH_ArkUI_GridLayoutOptions_SetIrregularIndexes](../reference/apis-arkui/capi-grid-h.md#oh_arkui_gridlayoutoptions_setirregularindexes) | Specifies the index that occupies the entire row.|
 
 ### Setting the Position and Size of Child Components in a Fixed Row and Column Scenario
 
@@ -144,7 +144,7 @@ As shown in the following figure, some child components are placed in the previo
 
 ![grid_irregular](figures/grid_irregular.png)
 
-You can use [OH_ArkUI_GridLayoutOptions_RegisterGetRectByIndexCallback](../reference/apis-arkui/capi-native-type-h.md#oh_arkui_gridlayoutoptions_registergetrectbyindexcallback) to set a callback for the **Grid** component to obtain the position of each child component. In the callback, you can specify the start row number, start column number, number of occupied rows, and number of occupied columns of each child component, that is, [ArkUI_GridItemRect](../reference/apis-arkui/capi-arkui-nativemodule-arkui-griditemrect.md). The layout in the preceding figure can be implemented using the following code:
+You can use [OH_ArkUI_GridLayoutOptions_RegisterGetRectByIndexCallback](../reference/apis-arkui/capi-grid-h.md#oh_arkui_gridlayoutoptions_registergetrectbyindexcallback) to set a callback for the **Grid** component to obtain the position of each child component. In the callback, you can specify the start row number, start column number, number of occupied rows, and number of occupied columns of each child component, that is, [ArkUI_GridItemRect](../reference/apis-arkui/capi-arkui-nativemodule-arkui-griditemrect.md). The layout in the preceding figure can be implemented using the following code:
 
 "0" occupies two rows and four columns starting from the upper left corner of the grid. Therefore, set **ArkUI_GridItemRect** to **{0, 0, 2, 4}**. The position and size settings for other child components follow the same logic.
 
@@ -196,7 +196,7 @@ grid->SetRowsGap(10.0f);
 grid->SetScrollBar(ARKUI_SCROLL_BAR_DISPLAY_MODE_OFF);
 ```
 
-To display data in groups, you can use [OH_ArkUI_GridLayoutOptions_SetIrregularIndexes](../reference/apis-arkui/capi-native-type-h.md#oh_arkui_gridlayoutoptions_setirregularindexes) to set the indexes corresponding to the group nodes. The child components corresponding to these indexes will occupy an entire row, while other child components will occupy 1 row and 1 column.
+To display data in groups, you can use [OH_ArkUI_GridLayoutOptions_SetIrregularIndexes](../reference/apis-arkui/capi-grid-h.md#oh_arkui_gridlayoutoptions_setirregularindexes) to set the indexes corresponding to the group nodes. The child components corresponding to these indexes will occupy an entire row, while other child components will occupy 1 row and 1 column.
 
 <!-- @[grid_group_indexes](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkUISample/NDKGridSample/entry/src/main/cpp/GridIrregularIndexesExample.cpp) -->
 
@@ -208,7 +208,7 @@ OH_ArkUI_GridLayoutOptions_SetIrregularIndexes(layoutOptions->GetLayoutOptions()
 grid->SetLayoutOptions(layoutOptions->GetLayoutOptions());
 ```
 
-The **Grid** component supports the use of [NodeAdapter](../reference/apis-arkui/capi-arkui-nativemodule-arkui-nodeadapter8h.md) to generate child components on demand to improve performance. For details, see [NodeAdapter Overview](ndk-loading-long-list.md#nodeadapter-overview) and [<!--RP1-->][Full Code for Grouped Data Display](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkUISample/NDKGridSample/entry/src/main/cpp/GridIrregularIndexesExample.cpp).<!--RP1End-->
+The **Grid** component supports the use of [NodeAdapter](../reference/apis-arkui/capi-arkui-nativemodule-arkui-nodeadapter8h.md) to generate child components on demand to improve performance. For details, see [NodeAdapter Overview](ndk-loading-long-list.md#nodeadapter-overview) and <!--RP1-->[Full Code for Grouped Data Display](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkUISample/NDKGridSample/entry/src/main/cpp/GridIrregularIndexesExample.cpp)<!--RP1End-->.
 
 ## Handling Scroll Events
 
@@ -226,7 +226,7 @@ The **Grid** component supports the following scroll events:
 | NODE_SCROLL_EVENT_ON_REACH_START | Triggered when the **Grid** component reaches the start position.| 12 |
 | NODE_SCROLL_EVENT_ON_REACH_END | Triggered when the **Grid** component reaches the end position.| 12 |
 | NODE_SCROLL_EVENT_ON_WILL_STOP_DRAGGING | Triggered when the user is about to release the drag on the **Grid** component.| 20 |
-| NODE_SCROLL_EVENT_ON_WILL_START_DRAGGING | Triggered when the drag on the **Grid** component ends.| 21 |
+| NODE_SCROLL_EVENT_ON_WILL_START_DRAGGING | Triggered when the drag on the **Grid** component starts.| 21 |
 | NODE_SCROLL_EVENT_ON_DID_STOP_DRAGGING | Triggered when the drag on the **Grid** component ends.| 21 |
 | NODE_SCROLL_EVENT_ON_WILL_START_FLING | Triggered when the sliding animation of the **Grid** component is about to start.| 21 |
 | NODE_SCROLL_EVENT_ON_DID_STOP_FLING | Triggered when the sliding animation of the **Grid** component ends.| 21 |
@@ -241,8 +241,10 @@ You can set **NODE_SCROLL_OFFSET** and **NODE_GRID_SCROLL_TO_INDEX** in [ArkUI_N
 
 Since API version 23, **NODE_GRID_SCROLL_TO_INDEX** is supported.
 
-##  
+## Complete Samples
 
 <!--RP2-->
- 
+[Using a Grid](https://gitcode.com/openharmony/applications_app_samples/tree/master/code/DocsSample/ArkUISample/NDKGridSample)
 <!--RP2End-->
+
+<!--no_check-->

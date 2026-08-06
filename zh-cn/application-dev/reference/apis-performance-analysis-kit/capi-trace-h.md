@@ -59,7 +59,7 @@ HiTraceMeter和HiTraceChain模块接口定义，通过这些接口实现性能�
 | [HiTraceId OH_HiTrace_CreateSpan(void)](#oh_hitrace_createspan) | - | 创建跟踪分支。<br> 创建一个[HiTraceId](capi-hitrace-hitraceid.md)，使用当前线程TLS中的chainId、spanId初始化其chainId、parentSpanId，并为其生成一个新的spanId。 |
 | [void OH_HiTrace_Tracepoint(HiTrace_Communication_Mode mode, HiTrace_Tracepoint_Type type, const HiTraceId *id, const char *fmt, ...)](#oh_hitrace_tracepoint) | - | HiTraceMeter跟踪信息埋点。<br> type为客户端发送[HITRACE_TP_CS](capi-trace-h.md#hitrace_tracepoint_type)和服务端接收[HITRACE_TP_SR](capi-trace-h.md#hitrace_tracepoint_type)时，进行同步HiTraceMeter开始打点；type为客户端接收[HITRACE_TP_CR](capi-trace-h.md#hitrace_tracepoint_type)和服务端发送[HITRACE_TP_SS](capi-trace-h.md#hitrace_tracepoint_type)时，进行同步HiTraceMeter结束打点；type为通用类型[HITRACE_TP_GENERAL](capi-trace-h.md#hitrace_tracepoint_type)时，不会进行HiTraceMeter打点。<br> type为客户端发送[HITRACE_TP_CS](capi-trace-h.md#hitrace_tracepoint_type)和客户端接收[HITRACE_TP_CR](capi-trace-h.md#hitrace_tracepoint_type)的信息埋点需配套使用；type为服务端接收[HITRACE_TP_SR](capi-trace-h.md#hitrace_tracepoint_type)和服务端发送[HITRACE_TP_SS](capi-trace-h.md#hitrace_tracepoint_type)的信息埋点需配套使用。否则，HiTraceMeter开始与结束打点无法正常匹配。<br> |
 | [void OH_HiTrace_InitId(HiTraceId *id)](#oh_hitrace_initid) | - | 初始化[HiTraceId](capi-hitrace-hitraceid.md)。 |
-| [void OH_HiTrace_IdFromBytes(HiTraceId *id, const uint8_t *pIdArray, int len)](#oh_hitrace_idfrombytes) | - | 根据字节数组创建[HiTraceId](capi-hitrace-hitraceid.md)。 |
+| [void OH_HiTrace_IdFromBytes(HiTraceId *id, const uint8_t *pIdArray, int len)](#oh_hitrace_idfrombytes) | - | 根据大端序字节数组创建[HiTraceId](capi-hitrace-hitraceid.md)。 |
 | [bool OH_HiTrace_IsIdValid(const HiTraceId *id)](#oh_hitrace_isidvalid) | - | 判断[HiTraceId](capi-hitrace-hitraceid.md)是否有效。 |
 | [bool OH_HiTrace_IsFlagEnabled(const HiTraceId *id, HiTrace_Flag flag)](#oh_hitrace_isflagenabled) | - | 判断[HiTraceId](capi-hitrace-hitraceid.md)是否启用了跟踪标志flag。 |
 | [void OH_HiTrace_EnableFlag(const HiTraceId *id, HiTrace_Flag flag)](#oh_hitrace_enableflag) | - | 启用[HiTraceId](capi-hitrace-hitraceid.md)中指定的跟踪标志。 |
@@ -71,7 +71,7 @@ HiTraceMeter和HiTraceChain模块接口定义，通过这些接口实现性能�
 | [void OH_HiTrace_SetSpanId(HiTraceId *id, uint64_t spanId)](#oh_hitrace_setspanid) | - | 设置分支ID到[HiTraceId](capi-hitrace-hitraceid.md)中。 |
 | [uint64_t OH_HiTrace_GetParentSpanId(const HiTraceId *id)](#oh_hitrace_getparentspanid) | - | 获取当前[HiTraceId](capi-hitrace-hitraceid.md)中的父分支ID。 |
 | [void OH_HiTrace_SetParentSpanId(HiTraceId *id, uint64_t parentSpanId)](#oh_hitrace_setparentspanid) | - | 设置[HiTraceId](capi-hitrace-hitraceid.md)结构的parentSpanId字段。 |
-| [int OH_HiTrace_IdToBytes(const HiTraceId* id, uint8_t* pIdArray, int len)](#oh_hitrace_idtobytes) | - | 将[HiTraceId](capi-hitrace-hitraceid.md)转换为字节数组，用于缓存或者通信传递。 |
+| [int OH_HiTrace_IdToBytes(const HiTraceId* id, uint8_t* pIdArray, int len)](#oh_hitrace_idtobytes) | - | 将[HiTraceId](capi-hitrace-hitraceid.md)序列化为大端序字节数组，支持本地缓存及跨设备传输。 |
 | [void OH_HiTrace_StartTrace(const char *name)](#oh_hitrace_starttrace) | - | 标记一个同步跟踪耗时任务的开始。<br> 同步跟踪打点接口[OH_HiTrace_StartTrace](capi-trace-h.md#oh_hitrace_starttrace)和[OH_HiTrace_FinishTrace](capi-trace-h.md#oh_hitrace_finishtrace)必须配对使用。<br> [OH_HiTrace_StartTrace](capi-trace-h.md#oh_hitrace_starttrace)和[OH_HiTrace_FinishTrace](capi-trace-h.md#oh_hitrace_finishtrace)函数对可以嵌套使用，跟踪解析时使用栈式数据结构进行匹配。<br> 从API version 19开始，建议使用[OH_HiTrace_StartTraceEx](capi-trace-h.md#oh_hitrace_starttraceex)接口，以便分级控制跟踪输出。<br> |
 | [void OH_HiTrace_FinishTrace(void)](#oh_hitrace_finishtrace) | - | 标记一个同步跟踪耗时任务的结束。<br> 必须和[OH_HiTrace_StartTrace](capi-trace-h.md#oh_hitrace_starttrace)配对使用。跟踪解析时，和其前执行流程中最近的[OH_HiTrace_StartTrace](capi-trace-h.md#oh_hitrace_starttrace)进行匹配。<br> 从API version 19开始，建议使用[OH_HiTrace_FinishTraceEx](capi-trace-h.md#oh_hitrace_finishtraceex)接口，以便分级控制跟踪输出。<br> |
 | [void OH_HiTrace_StartAsyncTrace(const char *name, int32_t taskId)](#oh_hitrace_startasynctrace) | - | 标记一个异步跟踪耗时任务的开始。<br> 用于在异步操作前调用进行开始打点，异步跟踪开始和结束数据由于不是顺序发生的，所以解析时需要通过一个唯一的taskId进行识别。<br> 必须和[OH_HiTrace_FinishAsyncTrace](capi-trace-h.md#oh_hitrace_finishasynctrace)配对使用，参数name和taskId相同的开始与结束打点相匹配，构成一个异步跟踪耗时任务。<br> 如果有多个相同name的任务需要跟踪或者对同一个任务跟踪多次，并且任务同时被执行，则每次调用的taskId需不相同。<br> 如果具有相同name的任务是串行执行的，则taskId可以相同。<br> 从API version 19开始，建议使用[OH_HiTrace_StartAsyncTraceEx](capi-trace-h.md#oh_hitrace_startasynctraceex)接口，以便分级控制跟踪输出与跟踪聚类。<br> |
@@ -375,7 +375,7 @@ void OH_HiTrace_IdFromBytes(HiTraceId *id, const uint8_t *pIdArray, int len)
 
 **描述**
 
-根据字节数组创建[HiTraceId](capi-hitrace-hitraceid.md)。
+根据大端序字节数组创建[HiTraceId](capi-hitrace-hitraceid.md)。<br> 和[OH_HiTrace_IdToBytes](#oh_hitrace_idtobytes)成对使用，解析序列化后的大端序字节数据，还原为HiTraceId。
 
 **起始版本：** 12
 
@@ -384,8 +384,8 @@ void OH_HiTrace_IdFromBytes(HiTraceId *id, const uint8_t *pIdArray, int len)
 | 参数项 | 描述 |
 | -- | -- |
 | [HiTraceId](capi-hitrace-hitraceid.md) *id | 需要创建的[HiTraceId](capi-hitrace-hitraceid.md)。 |
-| const uint8_t *pIdArray | 字节数组。 |
-| int len | 字节数组长度。 |
+| const uint8_t *pIdArray | 大端序字节数组指针。 |
+| int len | 大端序字节数组长度。 |
 
 ### OH_HiTrace_IsIdValid()
 
@@ -635,7 +635,7 @@ int OH_HiTrace_IdToBytes(const HiTraceId* id, uint8_t* pIdArray, int len)
 
 **描述**
 
-将[HiTraceId](capi-hitrace-hitraceid.md)转换为字节数组，用于缓存或者通信传递。
+将[HiTraceId](capi-hitrace-hitraceid.md)序列化为大端序字节数组，支持本地缓存及跨设备传输。<br> 接口内部统一输出大端序数据，在大小端架构不一致的设备间同步HiTraceId时，可屏蔽字节序的差异，保证跨端数据解析正确。<br> 本接口需与[OH_HiTrace_IdFromBytes](#oh_hitrace_idfrombytes)配套使用，用于将序列化后的大端序数据还原为HiTraceId。 
 
 **起始版本：** 12
 
@@ -644,14 +644,14 @@ int OH_HiTrace_IdToBytes(const HiTraceId* id, uint8_t* pIdArray, int len)
 | 参数项 | 描述 |
 | -- | -- |
 | [const HiTraceId](capi-hitrace-hitraceid.md)* id | 需要转换的[HiTraceId](capi-hitrace-hitraceid.md)。 |
-| uint8_t* pIdArray | 字节数组。 |
-| int len | 字节数组长度。 |
+| uint8_t* pIdArray | 用于存放序列化数据的字节数组指针，目标的数组长度至少应为16Byte。 |
+| int len | 存放序列化数据的字节数组的可用长度。 |
 
 **返回：**
 
 | 类型 | 说明 |
 | -- | -- |
-| int | 转换后的字节数组长度。 |
+| int | 转换后的字节数组长度，当传入参数无效时返回0。 |
 
 ### OH_HiTrace_StartTrace()
 

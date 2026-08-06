@@ -58,7 +58,7 @@ isIdleState(bundleName: string, callback: AsyncCallback&lt;boolean&gt;): void
 import { BusinessError } from '@kit.BasicServicesKit';
 import { usageStatistics } from '@kit.BackgroundTasksKit';
 
-usageStatistics.isIdleState("com.ohos.camera", (err: BusinessError, res: boolean) => {
+usageStatistics.isIdleState('com.ohos.camera', (err: BusinessError, res: boolean) => {
   if (err) {
     console.error('BUNDLE_ACTIVE isIdleState callback failed. code is: ' + err.code + ',message is: ' + err.message);
   } else {
@@ -111,13 +111,13 @@ isIdleState(bundleName: string): Promise&lt;boolean&gt;
 import { BusinessError } from '@kit.BasicServicesKit';
 import { usageStatistics } from '@kit.BackgroundTasksKit';
 
-usageStatistics.isIdleState("com.ohos.camera").then((res: boolean) => {
+usageStatistics.isIdleState('com.ohos.camera').then((res: boolean) => {
   console.info('BUNDLE_ACTIVE isIdleState promise succeeded, result: ' + JSON.stringify(res));
 }).catch((err: BusinessError) => {
   console.error('BUNDLE_ACTIVE isIdleState promise failed. code is: ' + err.code + ',message is: ' + err.message);
 });
 ```
-## usageStatistics.isIdleStateSync<sup>10+<sup>
+## usageStatistics.isIdleStateSync<sup>10+</sup>
 
 isIdleStateSync(bundleName: string): boolean
 
@@ -159,7 +159,7 @@ isIdleStateSync(bundleName: string): boolean
 ```ts
 import { usageStatistics } from '@kit.BackgroundTasksKit';
 
-let isIdleState: boolean = usageStatistics.isIdleStateSync("com.ohos.camera");
+let isIdleState: boolean = usageStatistics.isIdleStateSync('com.ohos.camera');
 ```
 
 ## usageStatistics.queryAppGroup
@@ -232,7 +232,7 @@ queryAppGroup(callback: AsyncCallback&lt;number&gt;): void
 | ---- | --------------------- |
 | 201  | Permission denied. |
 | 202  | Not System App. |
-| 401 | Parameter error. |
+| 401 | Parameter error. Possible cause: Parameter verification failed. |
 | 801 | Capability not supported.|
 | 10000001   | Memory operation failed.           |
 | 10000002   | Failed to write data into parcel. Possible reasons: 1. Invalid parameters; 2. Failed to apply for memory.         |
@@ -257,7 +257,7 @@ usageStatistics.queryAppGroup((err: BusinessError, res: number) => {
 });
 ```
 
-## usageStatistics.queryAppGroupSync<sup>10+<sup>
+## usageStatistics.queryAppGroupSync<sup>10+</sup>
 
 queryAppGroupSync(): number
 
@@ -345,7 +345,7 @@ queryAppGroup(bundleName : string): Promise&lt;number&gt;
 import { BusinessError } from '@kit.BasicServicesKit';
 import { usageStatistics } from '@kit.BackgroundTasksKit';
 
-let bundleName: string = "com.ohos.camera";
+let bundleName: string = 'com.ohos.camera';
 usageStatistics.queryAppGroup(bundleName).then((res: number) => {
   console.info('BUNDLE_ACTIVE queryAppGroup promise succeeded. result: ' + JSON.stringify(res));
 }).catch((err: BusinessError) => {
@@ -394,7 +394,7 @@ queryAppGroup(bundleName : string, callback: AsyncCallback&lt;number&gt;): void
 import { BusinessError } from '@kit.BasicServicesKit';
 import { usageStatistics } from '@kit.BackgroundTasksKit';
 
-let bundleName: string = "com.ohos.camera";
+let bundleName: string = 'com.ohos.camera';
 usageStatistics.queryAppGroup(bundleName, (err: BusinessError, res: number) => {
   if(err) {
     console.error('BUNDLE_ACTIVE queryAppGroup callback failed. code is: ' + err.code + ',message is: ' + err.message);
@@ -404,7 +404,7 @@ usageStatistics.queryAppGroup(bundleName, (err: BusinessError, res: number) => {
 });
 ```
 
-## usageStatistics.queryAppGroupSync<sup>10+<sup>
+## usageStatistics.queryAppGroupSync<sup>10+</sup>
 
 queryAppGroupSync(bundleName: string): number
 
@@ -449,7 +449,7 @@ queryAppGroupSync(bundleName: string): number
 ```ts
 import { usageStatistics } from '@kit.BackgroundTasksKit';
 
-let priorityGroup: number = usageStatistics.queryAppGroupSync("com.ohos.camera");
+let priorityGroup: number = usageStatistics.queryAppGroupSync('com.ohos.camera');
 ```
 
 ## usageStatistics.setAppGroup
@@ -498,7 +498,7 @@ setAppGroup(bundleName: string, newGroup: GroupType): Promise&lt;void&gt;
 import { BusinessError } from '@kit.BasicServicesKit';
 import { usageStatistics } from '@kit.BackgroundTasksKit';
 
-let bundleName: string = "com.example.deviceUsageStatistics";
+let bundleName: string = 'com.example.deviceUsageStatistics';
 let newGroup = usageStatistics.GroupType.DAILY_GROUP;
 
 usageStatistics.setAppGroup(bundleName, newGroup).then( () => {
@@ -512,7 +512,7 @@ usageStatistics.setAppGroup(bundleName, newGroup).then( () => {
 
 setAppGroup(bundleName: string, newGroup: GroupType, callback: AsyncCallback&lt;void&gt;): void
 
-将指定bundleName应用的分组设置为newGroup，仅支持当前应用为其他应用设置，使用CallBack异步回调。
+将指定bundleName应用的分组设置为newGroup，仅支持当前应用为其他应用设置，使用Callback异步回调。
 
 **需要权限**：ohos.permission.BUNDLE_ACTIVE_INFO
 
@@ -549,7 +549,7 @@ setAppGroup(bundleName: string, newGroup: GroupType, callback: AsyncCallback&lt;
 import { BusinessError } from '@kit.BasicServicesKit';
 import { usageStatistics } from '@kit.BackgroundTasksKit';
 
-let bundleName: string = "com.example.deviceUsageStatistics";
+let bundleName: string = 'com.example.deviceUsageStatistics';
 let newGroup = usageStatistics.GroupType.DAILY_GROUP;
 
 usageStatistics.setAppGroup(bundleName, newGroup, (err: BusinessError) => {
@@ -766,7 +766,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 import { usageStatistics } from '@kit.BackgroundTasksKit';
 
 // 查询时将com.ohos.camera替换为实际查询的包名
-usageStatistics.queryLastUseTime({"com.ohos.camera": [0]}).then((res:usageStatistics.AppStatsMap) => {
+usageStatistics.queryLastUseTime({'com.ohos.camera': [0]}).then((res:usageStatistics.AppStatsMap) => {
   console.info('queryLastUseTime promise success.');
   console.info('queryLastUseTime promise result ' + JSON.stringify(res));
 }).catch((err: BusinessError) => {
@@ -1175,7 +1175,7 @@ usageStatistics.queryCurrentBundleEvents(0, 20000000000000, 100).then((res: Arra
 
 queryCurrentBundleEvents(begin: number, end: number): Promise&lt;Array&lt;BundleEvents&gt;&gt;
 
-通过指定起始和结束时间段内，查询当前应用的事件集合，使用Promise异步回调。
+通过指定起始和结束时间，查询当前应用的事件集合，使用Promise异步回调。
 
 **系统能力**：SystemCapability.ResourceSchedule.UsageStatistics.App
 
@@ -1272,8 +1272,8 @@ import { BusinessError } from '@kit.BasicServicesKit';
 import { usageStatistics } from '@kit.BackgroundTasksKit';
 
 usageStatistics.queryDeviceEventStats(0, 20000000000000).then((res: Array<usageStatistics.DeviceEventStats>) => {
-  console.info('BUNDLE_ACTIVE queryDeviceEventStates promise success.');
-  console.info('BUNDLE_ACTIVE queryDeviceEventStates promise result ' + JSON.stringify(res));
+  console.info('BUNDLE_ACTIVE queryDeviceEventStats promise success.');
+  console.info('BUNDLE_ACTIVE queryDeviceEventStats promise result ' + JSON.stringify(res));
 }).catch((err: BusinessError) => {
   console.error('BUNDLE_ACTIVE queryDeviceEventStats promise failed. code is: ' + err.code + ',message is: ' + err.message);
 });
@@ -1439,7 +1439,7 @@ usageStatistics.queryNotificationEventStats(0, 20000000000000, (err: BusinessErr
 
 queryModuleUsageRecords(): Promise&lt;Array&lt;HapModuleInfo&gt;&gt;
 
-查询FA模型下各应用不用Hap包的使用记录（不超过1000条）。若Hap包中存在FA卡片，使用信息中也包含卡片信息。使用Promise异步回调。
+查询FA模型下各应用不同Hap包的使用记录（不超过1000条）。若Hap包中存在FA卡片，使用信息中也包含卡片信息。使用Promise异步回调。
 
 使用Promise形式返回不超过1000条FA使用记录，FA使用记录由近及远排序。
 
@@ -1451,7 +1451,7 @@ queryModuleUsageRecords(): Promise&lt;Array&lt;HapModuleInfo&gt;&gt;
 
 | 类型                                       | 说明                                 |
 | ---------------------------------------- | ---------------------------------- |
-| Promise&lt;Array&lt;[HapModuleInfo](#hapmoduleinfo)&gt;&gt; | Promise对象。返回FA模型下各应用不用Hap包的使用记录（不超过1000条）。 |
+| Promise&lt;Array&lt;[HapModuleInfo](#hapmoduleinfo)&gt;&gt; | Promise对象。返回FA模型下各应用不同Hap包的使用记录（不超过1000条）。 |
 
 **错误码**：
 
@@ -1492,7 +1492,7 @@ usageStatistics.queryModuleUsageRecords().then((res: Array<usageStatistics.HapMo
 
 queryModuleUsageRecords(callback: AsyncCallback&lt;Array&lt;HapModuleInfo&gt;&gt;): void
 
-查询FA模型下各应用不用Hap包的使用记录（不超过1000条）。若Hap包中存在FA卡片，使用信息中也包含卡片信息。使用CallBack异步回调。
+查询FA模型下各应用不同Hap包的使用记录（不超过1000条）。若Hap包中存在FA卡片，使用信息中也包含卡片信息。使用Callback异步回调。
 
 **需要权限**：ohos.permission.BUNDLE_ACTIVE_INFO
 
@@ -1502,11 +1502,11 @@ queryModuleUsageRecords(callback: AsyncCallback&lt;Array&lt;HapModuleInfo&gt;&gt
 
 | 参数名      | 类型                                       | 必填   | 说明                                  |
 | -------- | ---------------------------------------- | ---- | ----------------------------------- |
-| callback | AsyncCallback&lt;Array&lt;[HapModuleInfo](#hapmoduleinfo)&gt;&gt; | 是    | 回调函数，返回FA模型下各应用不用Hap包的使用记录（不超过1000条）。 |
+| callback | AsyncCallback&lt;Array&lt;[HapModuleInfo](#hapmoduleinfo)&gt;&gt; | 是    | 回调函数，返回FA模型下各应用不同Hap包的使用记录（不超过1000条）。 |
 
 **错误码**：
 
-以下错误码的详细介绍请参见[DeviceUsageStatistics错误码](errorcode-DeviceUsageStatistics.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[DeviceUsageStatistics错误码](errorcode-DeviceUsageStatistics.md)。
 
 | 错误码ID        | 错误信息                       |
 | ---------- | ----------------------------       |
@@ -1544,7 +1544,7 @@ usageStatistics.queryModuleUsageRecords((err: BusinessError, res: Array<usageSta
 
 queryModuleUsageRecords(maxNum: number): Promise&lt;Array&lt;HapModuleInfo&gt;&gt;
 
-根据设置的maxNum，查询FA模型下各应用不用Hap包的使用记录。若Hap包中存在FA卡片，使用信息中也包含卡片信息。使用Promise异步回调。
+根据设置的maxNum，查询FA模型下各应用不同Hap包的使用记录。若Hap包中存在FA卡片，使用信息中也包含卡片信息。使用Promise异步回调。
 
 **需要权限**：ohos.permission.BUNDLE_ACTIVE_INFO
 
@@ -1560,7 +1560,7 @@ queryModuleUsageRecords(maxNum: number): Promise&lt;Array&lt;HapModuleInfo&gt;&g
 
 | 类型                                       | 说明                                 |
 | ---------------------------------------- | ---------------------------------- |
-| Promise&lt;Array&lt;[HapModuleInfo](#hapmoduleinfo)&gt;&gt; | Promise对象，返回不超过maxNum条，FA模型下各应用不用Hap包的使用记录。 |
+| Promise&lt;Array&lt;[HapModuleInfo](#hapmoduleinfo)&gt;&gt; | Promise对象，返回不超过maxNum条，FA模型下各应用不同Hap包的使用记录。 |
 
 **错误码**：
 
@@ -1600,7 +1600,7 @@ usageStatistics.queryModuleUsageRecords(1000).then((res: Array<usageStatistics.H
 
 queryModuleUsageRecords(maxNum: number, callback: AsyncCallback&lt;Array&lt;HapModuleInfo&gt;&gt;): void
 
-根据设置的maxNum，查询FA模型下各应用不用Hap包的使用记录。若Hap包中存在FA卡片，使用信息中也包含卡片信息。使用Callback异步回调。
+根据设置的maxNum，查询FA模型下各应用不同Hap包的使用记录。若Hap包中存在FA卡片，使用信息中也包含卡片信息。使用Callback异步回调。
 
 **需要权限**：ohos.permission.BUNDLE_ACTIVE_INFO
 
@@ -1611,7 +1611,7 @@ queryModuleUsageRecords(maxNum: number, callback: AsyncCallback&lt;Array&lt;HapM
 | 参数名      | 类型                                       | 必填   | 说明                                  |
 | -------- | ---------------------------------------- | ---- | ----------------------------------- |
 | maxNum   | number                                   | 是    |  使用记录的条数，取值范围为[1，1000]。 |
-| callback | AsyncCallback&lt;Array&lt;[HapModuleInfo](#hapmoduleinfo)&gt;&gt; | 是    | 回调方法，返回不超过maxNum条，FA模型下各应用不用Hap包的使用记录。 |
+| callback | AsyncCallback&lt;Array&lt;[HapModuleInfo](#hapmoduleinfo)&gt;&gt; | 是    | 回调方法，返回不超过maxNum条，FA模型下各应用不同Hap包的使用记录。 |
 
 **错误码**：
 
@@ -1815,7 +1815,7 @@ usageStatistics.unregisterAppGroupCallBack().then( () => {
 
 unregisterAppGroupCallBack(callback: AsyncCallback&lt;void&gt;): void;
 
-应用解除分组变化监听。使用callback异步回调。
+应用解除分组变化监听。使用Callback异步回调。
 
 **需要权限**：ohos.permission.BUNDLE_ACTIVE_INFO
 
@@ -1955,7 +1955,7 @@ FA卡片的使用信息属性集合。
 
 ## AppStatsMap<sup>15+</sup>
 
-应用使用的具体信息(包含分身应用)。
+应用使用的具体信息（包含分身应用）。
 
 **系统能力**：SystemCapability.ResourceSchedule.UsageStatistics.App
 

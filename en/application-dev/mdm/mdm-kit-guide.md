@@ -1,14 +1,16 @@
 # MDM Kit Development
+
 <!--Kit: MDM Kit-->
 <!--Subsystem: Customization-->
-<!--Owner: @huanleima-->
-<!--Designer: @liuzuming-->
+<!--Owner: @huanleima; @weizai16-->
+<!--Designer: @hp_guo-->
 <!--Tester: @lpw_work-->
-<!--Adviser: @Brilliantry_Rui-->
+<!--Adviser: @zhang_yixin13-->
+<!-- md-trans-meta sourceCommit=bd7049485643ff797adc995404297f802ed40a3a translatedAt=2026-08-04T13:31:27.181Z pushedAt=2026-08-05T09:01:33.915Z -->
 
 ## Introduction
 
-MDM Kit provides capabilities for [MDM applications](./mdm-kit-term.md#mdm-application-device-administrator-application), including enterprise device management and event listening, application management, feature restriction management, security management, device settings, device control, device information acquisition, hardware peripheral management, system management, and network management. For details about the APIs, see <!--RP7-->[API Reference](../reference/apis-mdm-kit/Readme-EN.md)<!--RP7End-->.
+MDM Kit provides capabilities for [MDM apps](./mdm-kit-term.md#mdm-app), including enterprise device management and event listening, application management, feature restriction management, security management, device settings, device control, device information acquisition, hardware peripheral management, system management, and network management. For details about the APIs, see <!--RP7-->[API Reference](https://developer.huawei.com/consumer/en/doc/harmonyos-references/mdm-api)<!--RP7End-->.
 
 A device administrator application is an application with the [EnterpriseAdminExtensionAbility](./mdm-kit-admin.md).
 
@@ -25,7 +27,6 @@ To develop a device administrator application, perform the following steps:
 3. Develop and debug MDM functionalities.
 
 <!--RP1End-->
-
 
 <!--RP2--><!--RP2End-->
 
@@ -49,10 +50,9 @@ Before declaring the required permissions, ensure that the [basic principles for
 ],
 ```
 
-
 > **NOTE**
-> 
-> The required permissions vary with the API to call. For details, see [Enterprise Device Management](../reference/apis-mdm-kit/js-apis-enterprise-adminManager.md) and other related APIs.
+>
+> The required permissions vary with the API to call. For details, see [@ohos.enterprise.adminManager (Administrator Permission Management)](../reference/apis-mdm-kit/js-apis-enterprise-adminManager.md) and other related APIs.
 >
 > <!--RP4--><!--RP4End-->
 
@@ -61,16 +61,15 @@ Before declaring the required permissions, ensure that the [basic principles for
 1. Import modules. MDM Kit provides a wide variety of APIs for application management, communication management, security management, feature restriction management, system management, device settings and query, device control, and more. Import related modules based on service requirements. In this example, **adminManager** and **restrictions** are imported.
 
    <!-- @[import_mdm_kit](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/EnterpriseAdminExtensionAbility/EnterpriseAdminExtensionAbility/entry/src/main/ets/enterpriseadminability/EnterpriseAdminAbility.ets) -->
-   
+
    ``` TypeScript
    import { adminManager, restrictions } from '@kit.MDMKit';
    ```
 
-
 2. Call APIs to implement related functionalities. For example, disable Wi-Fi for devices.
 
    <!-- @[set_disallowed_policy_wifi](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/EnterpriseAdminExtensionAbility/EnterpriseAdminExtensionAbility/entry/src/main/ets/enterpriseadminability/EnterpriseAdminAbility.ets) -->
-   
+
    ``` TypeScript
    import { adminManager, restrictions } from '@kit.MDMKit';
    // ...
@@ -91,7 +90,6 @@ Before declaring the required permissions, ensure that the [basic principles for
        }
    ```
 
-
 ### Debugging
 
 The MDM APIs can be called only after the **EnterpriseAdminExtensionAbility** is enabled. During the debugging process, you can use the following hdc commands to enable and disable an **EnterpriseAdminExtensionAbility**:
@@ -108,6 +106,8 @@ hdc shell edm disable-admin -n Bundle_name
 ```
 
 > **NOTE**
+>
+> An MDM application must be installed under the primary user (with account ID 100) to be enabled properly.
 >
 > Only one super device administrator application can be enabled on a device.
 >

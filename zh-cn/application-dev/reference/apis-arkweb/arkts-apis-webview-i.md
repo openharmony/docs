@@ -16,7 +16,7 @@
 
 本页面汇总了ArkWeb Webview模块（`@kit.ArkWeb`）中的辅助接口与数据结构类型。这些类型主要作为Web组件各能力的方法入参、回调出参或状态枚举使用，配合[WebviewController](./arkts-apis-webview-WebviewController.md)、[WebCookieManager](./arkts-apis-webview-WebCookieManager.md)、[WebStorage](./arkts-apis-webview-WebStorage.md)等核心类共同完成Web网页的加载、渲染、交互、媒体接管及性能优化等控制能力。
 
-本模块提供Web控制能力，网页显示的能力请参考[组件描述](arkts-basic-components-web.md)；Web控制能力的完整说明及核心控制器类请参考[模块描述](./arkts-apis-webview.md)。
+本模块提供Web控制能力，网页显示的能力请参考[组件描述](./arkts-basic-components-web.md)；Web控制能力的完整说明及核心控制器类请参考[模块描述](./arkts-apis-webview.md)。
 
 ## WebStorageOrigin
 
@@ -79,7 +79,7 @@ Web组件预编译JavaScript生成字节码缓存的配置对象，用于控制�
 
 | 名称        | 类型   | 只读 | 可选 |说明                 |
 | ----------- | ------ | -----|------|------------------- |
-| responseHeaders   | Array<[WebHeader](#webheader)> | 否 | 否 | 请求此JavaScript文件时服务器返回的响应头，使用E-Tag或Last-Modified标识文件版本，判断是否需要更新。   |
+| responseHeaders   | Array<[WebHeader](#webheader)> | 否 | 否 | 请求此JavaScript文件时服务器返回的响应头，使用ETag或Last-Modified标识文件版本，判断是否需要更新。   |
 
 ## SnapshotInfo<sup>12+</sup>
 
@@ -89,8 +89,8 @@ Web组件预编译JavaScript生成字节码缓存的配置对象，用于控制�
 
 | 名称 | 类型 |  只读 |  可选 | 说明 |
 |------|------|------|------|------|
-| id | string | 否 | 是 | snapshot的id。|
-| size | [SizeOptions](../apis-arkui/arkui-ts/ts-types.md#sizeoptions)  | 否 | 是 | web绘制的尺寸，最多支持16000px * 16000px，长度单位支持px、vp、%，需保持不同参数传入长度单位一致，默认单位vp，超过规格时返回最大规格。（示例：width:'100px'，height:'200px'。或者 width:'20%'，height:'30%'。只写数字时单位为vp。）|
+| id | string | 否 | 是 | snapshot的id，用于标识本次全量绘制请求，便于在回调结果中匹配对应的全量绘制数据。不传入时不指定id，由系统自动处理。|
+| size | [SizeOptions](../apis-arkui/arkui-ts/ts-types.md#sizeoptions)  | 否 | 是 | Web绘制的尺寸，最多支持16000px * 16000px，长度单位支持px、vp、%，需保持不同参数传入长度单位一致，不一致时可能导致绘制尺寸不符合预期，默认单位vp，超过规格时返回最大规格。不传入以截图区域的实际尺寸绘制。（示例：width:'100px'，height:'200px'。或者 width:'20%'，height:'30%'。只写数字时单位为vp。）|
 
 ## SnapshotResult<sup>12+</sup>
 
@@ -101,8 +101,8 @@ Web组件预编译JavaScript生成字节码缓存的配置对象，用于控制�
 | 名称 | 类型 | 只读 | 可选 |  说明 |
 |------|------|-- |--|---------|
 | id | string | 否 | 是 | snapshot的id。|
-| status | boolean | 否 | 是 |  snapshot的状态，正常为true，失败为false，获取全量绘制结果失败，返回size的长宽都为0，map为空。|
-| size | [SizeOptions](../apis-arkui/arkui-ts/ts-types.md#sizeoptions)   | 否 | 是 | web绘制的真实尺寸，number类型，单位vp。|
+| status | boolean | 否 | 是 |  snapshot的状态，正常为true，失败为false，获取全量绘制结果失败，返回size的长宽都为0，imagePixelMap为空。|
+| size | [SizeOptions](../apis-arkui/arkui-ts/ts-types.md#sizeoptions)   | 否 | 是 | Web绘制的真实尺寸，SizeOptions对象包含width和height属性，均为number类型，单位vp。|
 | imagePixelMap | [image.PixelMap](../apis-image-kit/arkts-apis-image-PixelMap.md) | 否 | 是 | 全量绘制结果为image.PixelMap格式。|
 
 ## OfflineResourceMap<sup>12+</sup>
@@ -113,14 +113,14 @@ Web组件预编译JavaScript生成字节码缓存的配置对象，用于控制�
 
 | 名称        | 类型   | 只读 | 可选 |说明                 |
 | ----------- | ------ | -----|------|------------------- |
-| urlList | Array\<string\> | 否   | 否   | 本地离线资源对应的网络地址列表，列表的第一项将作为资源的源（Origin），如果仅提供一个网络地址，则使用该地址作为这个资源的源。url仅支持http或https协议，长度不超过2048。      |
+| urlList | Array\<string\> | 否   | 否   | 本地离线资源对应的网络地址列表，列表的第一项将作为资源的源（Origin），如果仅提供一个网络地址，则使用该地址作为这个资源的源。url仅支持HTTP或HTTPS协议，长度不超过2048。不符合上述限制时，该资源注入失败。      |
 | resource | Uint8Array | 否   | 否   | 本地离线资源的内容。      |
-| responseHeaders | Array<[WebHeader](#webheader)> | 否   | 否   | 资源对应的HTTP响应头。其中提供的Cache-Control或Expires响应头将被用于控制资源在内存缓存中的有效期。如果不提供，默认的有效期为86400秒，即1天。其中提供的Content-Type响应头将被用于定义资源的MIMEType，MODULE_JS必须提供有效的MIMEType，其他类型可不提供，无默认值，不符合标准的MIMEType会导致内存缓存失效。如果业务网页中的script标签使用了crossorigin属性，则必须在接口的responseHeaders参数中设置Cross-Origin响应头的值为anonymous或use-credentials。      |
+| responseHeaders | Array\<[WebHeader](#webheader)\> | 否   | 否   | 资源对应的HTTP响应头。其中提供的Cache-Control或Expires响应头将被用于控制资源在内存缓存中的有效期。如果不提供，默认的有效期为86400秒，即1天。其中提供的Content-Type响应头将被用于定义资源的MIMEType，MODULE_JS必须提供有效的MIMEType，其他类型可不提供，无默认值，不符合标准的MIMEType会导致内存缓存失效。如果业务网页中的script标签使用了crossorigin属性，则必须在接口的responseHeaders参数中设置Cross-Origin响应头的值为anonymous或use-credentials，否则可能导致内存缓存失效。      |
 | type | [OfflineResourceType](./arkts-apis-webview-e.md#offlineresourcetype12) | 否   | 否   | 资源的类型，目前仅支持JavaScript、图片和CSS类型的资源。      |
 
 ##  PdfConfiguration<sup>14+</sup>
 
-createPdf函数输入参数。
+[createPdf](./arkts-apis-webview-WebviewController.md#createpdf14)函数输入参数。
 
 > **说明：**
 >
@@ -130,8 +130,8 @@ createPdf函数输入参数。
 
 | 名称        | 类型   | 只读 | 可选 |说明                 |
 | ----------- | ------ | -----|------|------------------- |
-| width                 | number  | 否 | 否   | 页面宽度。<br>单位：英寸。<br />推荐值：A4纸页面宽度8.27英寸。   |
-| height                | number  | 否 | 否   | 页面高度。<br>单位：英寸。<br />推荐值：A4纸页面高度11.69英寸。  |
+| width                 | number  | 否 | 否   | 页面宽度。<br>取值范围：大于等于0。如果不在取值范围内，则设置为0。<br>单位：英寸。<br>推荐值：A4纸页面宽度8.27英寸。   |
+| height                | number  | 否 | 否   | 页面高度。<br>取值范围：大于等于0。如果不在取值范围内，则设置为0。<br>单位：英寸。<br>推荐值：A4纸页面高度11.69英寸。  |
 | scale                 | number  | 否 | 是   | 放大倍数。<br>取值范围：[0.0, 2.0]。如果不在取值范围内，小于0.0设置为0.0，大于2.0设置为2.0。<br>默认值：1.0。 |
 | marginTop             | number  | 否 | 否   | 上边距。<br>取值范围：[0.0, 页面高度的一半)。如果不在取值范围内，则设置为0.0。<br>单位：英寸。 |
 | marginBottom          | number  | 否 | 否   | 下边距。<br>取值范围：[0.0, 页面高度的一半)。如果不在取值范围内，则设置为0.0。<br>单位：英寸。 |
@@ -147,8 +147,8 @@ createPdf函数输入参数。
 
 | 名称 | 类型   | 只读 | 可选 | 说明                                                         |
 | ---- | ------ | ---- | ---- | ------------------------------------------------------------ |
-| x    | number | 否   | 否   | 网页在水平方向的滚动偏移量。取值为网页左边界x坐标与Web组件左边界x坐标的差值。<br/>当网页向右过滚动时，取值范围为负值。<br/>当网页没有过滚动或者网页向左过滚动时，取值为0或正值。<br/>单位：vp。 |
-| y    | number | 否   | 否   | 网页在垂直方向的滚动偏移量。取值为网页上边界y坐标与Web组件上边界y坐标的差值。<br/>当网页向下过滚动时，取值范围为负值。<br/>当网页没有过滚动或者网页向上过滚动时，取值为0或正值。<br/>单位：vp。 |
+| x    | number | 否   | 否   | 网页在水平方向的滚动偏移量。取值为网页左边界x坐标与Web组件左边界x坐标的差值。<br>当网页向右过滚动时，取值范围为负值。<br>当网页没有过滚动或者网页向左过滚动时，取值为0或正值。<br>单位：vp。 |
+| y    | number | 否   | 否   | 网页在垂直方向的滚动偏移量。取值为网页上边界y坐标与Web组件上边界y坐标的差值。<br>当网页向下过滚动时，取值范围为负值。<br>当网页没有过滚动或者网页向上过滚动时，取值为0或正值。<br>单位：vp。 |
 
 ## HitTestValue
 
@@ -174,19 +174,19 @@ WebViewController与Web组件的绑定状态。
 
 ## BlanklessInfo<sup>20+</sup>
 
-页面首屏加载预测信息，主要包括首屏相似度预测值，首屏加载耗时预测值，预测错误码，应用需根据此信息来决策是否启用无白屏加载插帧方案。
+页面首屏加载预测信息，主要包括首屏相似度预测值、首屏加载耗时预测值、预测错误码，应用需根据此信息来决策是否启用无白屏加载插帧方案。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
 | 名称        | 类型   | 只读 | 可选 |说明                 |
 | ----------- | ------ | -----|------|------------------- |
-| errCode | WebBlanklessErrorCode | 否   | 否   | 无白屏加载的异常错误码，见[WebBlanklessErrorCode](./arkts-apis-webview-e.md#webblanklesserrorcode20)定义。 |
-| similarity | number | 否   | 否   | 首屏相似度，根据历史加载首屏内容计算相似度，范围为[0, 1.0]，1.0表示完全一致，数值越接近1，相似度越高。该值存在滞后性，本地加载的相似度将在下次加载时才可反映。建议当相似度较低时，应用不启用无白屏加载插帧方案。 |
-| loadingTime | number | 否   | 否   | 根据历史加载首屏耗时预测本次加载耗时，单位ms，取值范围需大于0。 |
+| errCode | [WebBlanklessErrorCode](./arkts-apis-webview-e.md#webblanklesserrorcode20) | 否   | 否   | 无白屏加载的错误码，见[WebBlanklessErrorCode](./arkts-apis-webview-e.md#webblanklesserrorcode20)定义。 |
+| similarity | number | 否   | 否   | 首屏相似度，根据历史加载首屏内容计算相似度，范围为[0, 1.0]，1.0表示完全一致，数值越接近1，相似度越高。该值存在滞后性，本地加载的相似度将在下次加载时才可反映。建议当相似度低于具体阈值（如0.33）时，应用不启用无白屏加载插帧方案。 |
+| loadingTime | number | 否   | 否   | 根据历史加载首屏耗时预测本次加载耗时，单位ms，取值范围：大于0。 |
 
 ## BlanklessFrameInterpolationInfo<sup>23+</sup>
 
-白屏插帧状态信息，作为[BlanklessLoadingParam](./arkts-apis-webview-i.md#blanklessloadingparam23)中的回调入参使用。
+无白屏加载插帧状态信息，作为[BlanklessLoadingParam](#blanklessloadingparam23)中的回调入参使用。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -201,7 +201,7 @@ WebViewController与Web组件的绑定状态。
 
 ## BlanklessLoadingParam<sup>23+</sup>
 
-白屏插帧加载参数。
+无白屏加载插帧方案的加载参数。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -209,10 +209,10 @@ WebViewController与Web组件的绑定状态。
 
 | 名称        | 类型   | 只读 | 可选 |说明                 |
 | ----------- | ------ | -----|------|------------------- |
-| enable | boolean | 否   | 否   | 是否启用白屏插帧。<br>true：启用，false：不启用。 |
+| enable | boolean | 否   | 否   | 是否启用无白屏加载插帧方案。<br>true表示启用，false表示不启用。 |
 | duration | number | 否   | 是   | 插帧持续时间。<br>取值范围：[200, 2000] ∪ {0}，其中0表示不指定持续时间，由系统自动设置合适的持续时间。<br>单位：ms。 |
 | expirationTime | number | 否   | 是   | 历史帧失效时间，UTC时间。<br>用T表示当前UTC时间，同时已知30天为2592000000ms，取值范围：(T, T + 2592000000] ∪ {0}，其中0表示不指定失效时间，采用系统默认失效时间（7天）。<br>单位：ms。 |
-| callback | Callback<[BlanklessFrameInterpolationInfo](./arkts-apis-webview-i.md#blanklessframeinterpolationinfo23)> | 否   | 是   | 插帧成功、失败或移除后执行的回调。<br>只有在enable为true时生效。可选，不设置则不进行任何操作。 |
+| callback | Callback<[BlanklessFrameInterpolationInfo](#blanklessframeinterpolationinfo23)> | 否   | 是   | 插帧成功、失败或移除后执行的回调。<br>只有在enable为true时生效。可选，不设置则不进行任何操作。 |
 
 ## HistoryItem
 
@@ -235,7 +235,7 @@ WebViewController与Web组件的绑定状态。
 
 | 名称 | 类型 | 只读 | 可选 | 说明 |
 |------|------|------|------|------|
-| embedID | string | 否 | 否  | 网页中的 `<video>` 或 `<audio>` 的 ID 。|
+| embedID | string | 否 | 否  | 网页中的`<video>`或`<audio>`的 ID。|
 | mediaType | [MediaType](./arkts-apis-webview-e.md#mediatype12) | 否 | 否 | 媒体的类型。 |
 | mediaSrcList | [MediaSourceInfo](./arkts-apis-webview-MediaSourceInfo.md)[] | 否 | 否 | 媒体的源。可能有多个源，应用需要选择一个支持的源来播放。 |
 | surfaceInfo | [NativeMediaPlayerSurfaceInfo](./arkts-apis-webview-NativeMediaPlayerSurfaceInfo.md) | 否 | 否 | 用于同层渲染的 surface 信息。 |

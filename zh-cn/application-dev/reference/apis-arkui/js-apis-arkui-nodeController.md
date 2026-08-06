@@ -275,6 +275,7 @@ class MyNodeController extends NodeController {
   }
 
   aboutToDisappear() {
+    this.buttonNode?.dispose();
     console.info('aboutToDisappear');
   }
 
@@ -358,6 +359,10 @@ class MyNodeController extends NodeController {
 
   onUnbind(containerId: number): void {
     console.info(`myButton on unbind: ${containerId}`);
+  }
+
+  aboutToDisappear() {
+    this.buttonNode?.dispose();
   }
 }
 

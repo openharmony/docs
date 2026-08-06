@@ -1,10 +1,12 @@
 # Basic Syntax Overview
+
 <!--Kit: ArkUI-->
 <!--Subsystem: ArkUI-->
 <!--Owner: @jiyujia926-->
-<!--Designer: @s10021109-->
+<!--Designer: @zhangboren-->
 <!--Tester: @TerryTsao-->
 <!--Adviser: @zhang_yixin13-->
+<!-- md-trans-meta sourceCommit=59b65fcc65a22b7c940ca535023658111a023e22 translatedAt=2026-06-29T10:55:16.411Z pushedAt=2026-06-29T11:45:04.750Z -->
 
 With a basic understanding of the ArkTS language, let's examine its structural composition through a practical example.
 
@@ -24,7 +26,7 @@ In this example, the basic composition of ArkTS is as follows.
 >
 > Custom variables must not share names with universal attributes or events.
 
-- Decorator: design pattern used to decorate classes, structs, methods, and variables to assign special meanings to them. In the preceding figure, the [@Component](arkts-create-custom-components.md#component) decorator marks a custom component, the [@Entry](arkts-create-custom-components.md#entry) decorator indicates that the custom component is an entry component, and the [@State](arkts-state.md) decorator indicates the state variables in the component, whose changes trigger UI re-renders.
+- [UI decorators](./arkts-decorator-overview.md): used to decorate classes, structs, methods, and variables, giving them special meanings. In the example above, \@Entry, \@Component, and \@State are all decorators. [@Component](arkts-create-custom-components.md#component) indicates a custom component, [@Entry](arkts-create-custom-components.md#entry) indicates that the custom component serves as the entry component, and [@State](arkts-state.md) indicates a state variable within the component, where changes to the state variable trigger UI refresh.
 
 - [UI description](arkts-declarative-ui-description.md): declarative description of the UI structure, such as the code block of **build()**.
 

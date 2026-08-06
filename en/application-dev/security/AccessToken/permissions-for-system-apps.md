@@ -77,6 +77,8 @@ Allows a system service to set the keep-alive flag for other applications.
 
 **Valid since**: 14
 
+**Supported devices**: PCs/2-in-1 devices | wearables
+
 ## ohos.permission.ACCESS_BBOX_DIR
 
 Allows a system application to access the bbox directory.
@@ -6216,6 +6218,20 @@ Allows an agent application to stop a specific application using CLI commands.
 
 **Valid since**: 26.0.0
 
+## ohos.permission.ACCESS_FUNCTION
+
+Allows a system application to access available functions.
+
+**Permission level**: system_basic
+
+**Authorization mode**: system_grant
+
+**Certificate-based authorization**: true
+
+**Supported devices**: Phone | PC/2in1 | Tablet | TV | Wearable | Car
+
+**Valid since**: 26.0.0
+
 ## ohos.permission.ACCESS_MAPDATA_DIR
 
 Allows a system application to read and write map data.
@@ -6576,6 +6592,20 @@ With this permission, the application can manage smart file categorization, gene
 
 **Valid since**: 26.0.0
 
+## ohos.permission.UPDATE_FORM_CROSS_BUNDLE
+
+Allows an application to update widgets of other applications.
+
+**Permission level**: system_basic
+
+**Authorization mode**: system_grant
+
+**Certificate-based authorization**: true
+
+**Supported devices**: Phone | PC/2in1 | Tablet | TV | Car
+
+**Since**: 26.0.0
+
 ## ohos.permission.FILE_MANAGER_SERVICE_DATA_ACCESS
 
 Allows an application to obtain and operate files of the file management application.
@@ -6590,4 +6620,18 @@ With this permission, the application can add file event records, search for fil
 
 **Supported devices**: Phone | PC/2in1 | Tablet
 
+**Valid since**: 26.0.0
+
+## ohos.permission.MANAGE_CLONE_BUNDLE_PREFERENCES
+ 	 
+Allows an application to manage clone preferences.
+ 	 
+**Permission level**: system_basic
+ 	 
+**Authorization mode**: system_grant
+ 	 
+**Certificate-based authorization**: true
+ 	 
+**Supported devices**: phones | PCs/2-in-1 devices | tablets | TVs | wearables | cars
+ 	 
 **Valid since**: 26.0.0

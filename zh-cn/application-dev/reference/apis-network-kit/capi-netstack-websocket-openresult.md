@@ -13,7 +13,7 @@ struct WebSocket_OpenResult {...}
 
 ## 概述
 
-websocket客户端来自服务端连接成功的参数。
+WebSocket客户端来自服务端连接成功的参数。
 
 **起始版本：** 11
 
@@ -27,5 +27,5 @@ websocket客户端来自服务端连接成功的参数。
 
 | 名称 | 描述 |
 | -- | -- |
-| uint32_t code | websocket客户端连接成功码。 |
-| const char *reason | websocket客户端连接成功原因。 |
+| uint32_t code | WebSocket客户端连接成功码。 |
+| const char *reason | WebSocket客户端连接成功原因。 |

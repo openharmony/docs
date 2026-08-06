@@ -1,10 +1,12 @@
 # Handling Touchpad Input Events
+
 <!--Kit: ArkUI-->
 <!--Subsystem: ArkUI-->
-<!--Owner: @jiangtao92-->
+<!--Owner: @yihao-lin-->
 <!--Designer: @piggyguy-->
 <!--Tester: @songyanhong-->
 <!--Adviser: @Brilliantry_Rui-->
+<!-- md-trans-meta sourceCommit=e44b3294774383b79d007bce6cb5b1b1d6116e53 translatedAt=2026-08-01T00:29:21.806Z pushedAt=2026-08-03T02:14:19.572Z -->
 
 ![touchpad](figures/touchpad-ops.png)
 
@@ -22,12 +24,11 @@ Single-finger operations on a touchpad behave similarly to mouse input: A light 
 
 For implementation details, see [Processing Mouse Movement](arkts-interaction-development-guide-mouse.md#processing-mouse-movement).
 
-
 ## Two-Finger Swipe
 
 ![touchpad-scroll](figures/touchpad-two-fingers.png)
 
-Two-finger swipe gestures on a touchpad generate axis events, similar to scroll wheel input. However, the reported unit is displacement in pixels, not angular rotation. You can **sourceType** and **sourceTool** to distinguish the input source before processing axis values.
+Two-finger swipe gestures on a touchpad generate axis events, similar to scroll wheel input. However, the reported unit is displacement in pixels, not angular rotation. You can use **sourceType** and **sourceTool** to distinguish the input source before processing axis values.
 
 When a user performs a two-finger horizontal swipe gesture, the system reports the horizontal axis value (displacement in pixels) through [axisHorizontal](../reference/apis-arkui/arkui-ts/ts-gesture-customize-judge.md#properties): Swiping right results in a negative value, and swiping left results in a positive value. When a user performs a two-finger vertical swipe gesture, the system reports the vertical axis value (displacement in pixels) through [axisVertical](../reference/apis-arkui/arkui-ts/ts-gesture-customize-judge.md#properties): Swiping up results in a positive value, and swiping down results in a negative value.
 

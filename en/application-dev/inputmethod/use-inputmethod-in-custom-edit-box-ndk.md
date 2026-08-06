@@ -1,10 +1,12 @@
 # Using the Input Method in a Custom Edit Box (C/C++)
+
 <!--Kit: IME Kit-->
 <!--Subsystem: MiscServices-->
-<!--Owner: @illybyy-->
+<!--Owner: @codexu62-->
 <!--Designer: @andeszhang-->
 <!--Tester: @murphy84-->
 <!--Adviser: @zhang_yixin13-->
+<!-- md-trans-meta sourceCommit=b8aa633cba260f62cfd1846a2d514205881380a2 translatedAt=2026-08-04T08:30:00.664Z pushedAt=2026-08-04T08:59:50.934Z -->
 
 ## When to Use
 
@@ -28,7 +30,6 @@ libohinputmethod.so
 #include <inputmethod/inputmethod_controller_capi.h>
 ```
 
-
 ## Binding an Input Method
 
 When the text box is focused, you can call the [OH_InputMethodController_Attach](../reference/apis-ime-kit/capi-inputmethod-controller-capi-h.md#oh_inputmethodcontroller_attach) API to bind the input method. After the binding is successful, you can use the input method to enter text.
@@ -36,28 +37,26 @@ When the text box is focused, you can call the [OH_InputMethodController_Attach]
 1. Create an **InputMethod_TextEditorProxy** instance. The sample code is as follows:
 
    <!-- @[input_case_input_TextEditorProxy](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/InputMethod/KikaInputMethod/entry/src/main/cpp/napi_init.cpp) -->
-   
+
    ``` C++
    // Create an InputMethod_TextEditorProxy instance.
    textEditorProxy = OH_TextEditorProxy_Create();
    ```
 
-   
 2. Create an **InputMethod_AttachOptions** instance and set the options for binding the input method. The sample code is as follows:
 
    <!-- @[input_case_input_attachOptions](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/InputMethod/KikaInputMethod/entry/src/main/cpp/napi_init.cpp) -->
-   
+
    ``` C++
-   // Create an InputMethod_AttachOptions instance. showKeyboard specifies whether to display the keyboard after the binding is successful. The following uses displaying the target keyboard as an example.
+   // Create an InputMethod_AttachOptions instance. The showKeyboard option specifies whether to display the keyboard after the attachment succeeds. Set to true to automatically display the keyboard after a successful attachment, or false to not display it automatically.
    bool showKeyboard = true;
    attachOptions = OH_AttachOptions_Create(showKeyboard);
    ```
 
-
 3. Call **OH_InputMethodController_Attach** to bind the input method service. After the call is successful, you can obtain **InputMethod_InputMethodProxy** used to interact with the input method. The sample code is as follows:
 
    <!-- @[input_case_input_OH_InputMethodController_Attach](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/InputMethod/KikaInputMethod/entry/src/main/cpp/napi_init.cpp) -->
-   
+
    ``` C++
    // Send a binding request.
    auto ret = OH_InputMethodController_Attach(textEditorProxy, attachOptions, &inputMethodProxy);
@@ -68,7 +67,6 @@ When the text box is focused, you can call the [OH_InputMethodController_Attach]
        return;
    }
    ```
-
 
 ## Displaying or Hiding the Panel
 
@@ -95,25 +93,25 @@ if (OH_InputMethodProxy_NotifyConfigurationChange(inputMethodProxy, InputMethod_
 
    ```c
    // Implement the input method application event response function in InputMethod_TextEditorProxy.
-   void GetTextConfig(InputMethod_TextEditorProxy *textEditorProxy, InputMethod_TextConfig *config)
+   void GetTextConfigFunc(InputMethod_TextEditorProxy *textEditorProxy, InputMethod_TextConfig *config)
    {
        // Process the request sent by the input method for obtaining the input box configuration.
    }
-   void InsertText(InputMethod_TextEditorProxy *textEditorProxy, const char16_t *text, size_t length)
+   void InsertTextFunc(InputMethod_TextEditorProxy *textEditorProxy, const char16_t *text, size_t length)
    {
        // Process the text insertion request sent by the input method.
    }
-   void DeleteForward(InputMethod_TextEditorProxy *textEditorProxy, int32_t length)
+   void DeleteForwardFunc(InputMethod_TextEditorProxy *textEditorProxy, int32_t length)
    {
        // Process the text deletion request sent by the input method.
    }
    // ......
    ```
 
-2. Set the implemented response function to [InputMethod_TextEditorProxy](../reference/apis-ime-kit/capi-inputmethod-inputmethod-texteditorproxy.md), and then set the response function to the input method framework using [OH_InputMethodController_Attach](../reference/apis-ime-kit/capi-inputmethod-controller-capi-h.md#oh_inputmethodcontroller_attach) called when the input method is bound to complete listener registration. The sample code is as follows:
+2. Set the implemented response function to [InputMethod_TextEditorProxy](../reference/apis-ime-kit/capi-inputmethod-inputmethod-texteditorproxy.md), and then set it to the input method framework using [OH_InputMethodController_Attach](../reference/apis-ime-kit/capi-inputmethod-controller-capi-h.md#oh_inputmethodcontroller_attach) called when the input method is bound to complete listener registration. The sample code is as follows:
 
    <!-- @[input_case_input_ConstructTextEditorProxy](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/InputMethod/KikaInputMethod/entry/src/main/cpp/napi_init.cpp) -->
-   
+
    ``` C++
    OH_TextEditorProxy_SetGetTextConfigFunc(textEditorProxy, GetTextConfigFunc);
    OH_TextEditorProxy_SetInsertTextFunc(textEditorProxy, InsertTextFunc);
@@ -132,21 +130,18 @@ if (OH_InputMethodProxy_NotifyConfigurationChange(inputMethodProxy, InputMethod_
    OH_TextEditorProxy_SetFinishTextPreviewFunc(textEditorProxy, FinishTextPreviewFunc);
    ```
 
-
 ## Unbinding an Input Method
 
-When the edit box is out of focus, you need to stop using the input method and unbind the input method framework by calling [OH_InputMethodController_Detach](../reference/apis-ime-kit/capi-inputmethod-controller-capi-h.md#oh_inputmethodcontroller_detach).
-
+When the edit box is out of focus, you need to stop using the input method and unbind from the input method framework by calling [OH_InputMethodController_Detach](../reference/apis-ime-kit/capi-inputmethod-controller-capi-h.md#oh_inputmethodcontroller_detach).
 
    <!-- @[input_case_input_OH_InputMethodController_Detach](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/InputMethod/KikaInputMethod/entry/src/main/cpp/napi_init.cpp) -->
-   
+
    ``` C++
    // Send an unbinding request.
    OH_InputMethodController_Detach(inputMethodProxy);
    OH_TextEditorProxy_Destroy(textEditorProxy);
    OH_AttachOptions_Destroy(attachOptions);
    ```
-
 
 ## Sample Code
 
@@ -159,7 +154,7 @@ The entry is the **InputMethodNdkDemo** function.
 > Dependencies of **libohinputmethod.so** and **libhilog_ndk.z.so** should be added to the **CMakeList.txt** file.
 
    <!-- @[input_case_input_CPreview016](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/InputMethod/KikaInputMethod/entry/src/main/cpp/napi_init.cpp) -->
-   
+
    ``` C++
    #include "napi/native_api.h"
    #include <codecvt>
@@ -350,9 +345,8 @@ The entry is the **InputMethodNdkDemo** function.
    }
    ```
 
-
    <!-- @[input_case_input_CPreview208](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/InputMethod/KikaInputMethod/entry/src/main/cpp/napi_init.cpp) -->
-   
+
    ``` C++
    void InputMethodNdkDemo()
    {
@@ -366,7 +360,7 @@ The entry is the **InputMethodNdkDemo** function.
        // Set the implemented response processing function to InputMethod_TextEditorProxy.
        ConstructTextEditorProxy(textEditorProxy);
    
-       // Create an InputMethod_AttachOptions instance. showKeyboard specifies whether to display the keyboard after the binding is successful. The following uses displaying the target keyboard as an example.
+       // Create an InputMethod_AttachOptions instance. The showKeyboard option specifies whether to display the keyboard after a successful attach: true to automatically display the keyboard, false to not display it.
        bool showKeyboard = true;
        attachOptions = OH_AttachOptions_Create(showKeyboard);
        if (attachOptions == nullptr) {

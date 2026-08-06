@@ -6,6 +6,7 @@
 <!--Designer: @gongzheng92-->
 <!--Tester: @gongzheng92-->
 <!--Adviser: @w_Machine_cc-->
+<!-- md-trans-meta sourceCommit=8218ce4f0c841d9882101f31e06f9891ffe801ce translatedAt=2026-08-03T04:08:00.178Z pushedAt=2026-08-04T02:18:43.521Z -->
 
 The module provides the capabilities for enhancing the clarity and scaling of image content.
 
@@ -40,7 +41,6 @@ Initializes the environment. This API uses a promise to return the result.
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Video Processing Engine Error Codes](errorcode-videoprocessingengine.md).
-
 
 | ID | Error Message |
 | :------------ | :------------ |
@@ -138,6 +138,7 @@ Image processing class, which provides capabilities for enhancing the clarity an
 Constraints:
 
 - Only Standard Dynamic Range (SDR) images can be processed.
+
 - Images in RGBA, BGRA, NV12, and NV21 pixel formats can be processed. The output format is the same as the input format.
 
 ### enhanceDetail
@@ -155,15 +156,15 @@ Carries out detail enhancement processing. This API uses a promise to return the
 |  Name| Type | Mandatory | Description |
 | :------------ | :------------ | :------------ | :------------ |
 |  sourceImage | [image.PixelMap](arkts-apis-image-PixelMap.md)  | Yes | Input image, which must be allocated in DMA memory. For details, see [PixelMap Memory Types](../../media/image/image-allocator-type.md#memory-types).|
-|  width |  number | Yes |  Target width, in px.<br>Its value range is [512, 2000] when **level** is **HIGH** and [32, 3000] when **level** is other values. |
-|  height |  number | Yes |  Target height, in px.<br>Its value range is [512, 2000] when **level** is **HIGH** and [32, 3000] when **level** is other values. |
+|  width |  number |  Yes  |  Target width, in pixels. <br>When **level** is **HIGH**, the supported range is [512, 2000]; when **level** is **other**, the supported range is [32, 3000].  |
+|  height |  number |  Yes  |  Target height, in pixels. <br>When **level** is **HIGH**, the supported range is [512, 2000]; when **level** is **other**, the supported range is [32, 3000].  |
 |  level | [QualityLevel](#qualitylevel)| No |  Algorithm level (**HIGH**, **MEDIUM**, **LOW**, or **NONE**). The default value is **NONE**.|
 
 **Return value**
 
 |  Type| Description |
 | ------------ | ------------ |
-| Promise\<[image.PixelMap](arkts-apis-image-PixelMap.md)\>  |  Promise usd to return the PixelMap object.|
+| Promise\<[image.PixelMap](arkts-apis-image-PixelMap.md)\>  |  Promise used to return the PixelMap object.|
 
 **Error codes**
 
@@ -211,7 +212,7 @@ Carries out detail enhancement processing. This API uses a promise to return the
 
 |  Type| Description |
 | ------------ | ------------ |
-| Promise\<[image.PixelMap](arkts-apis-image-PixelMap.md)\>  |  Promise usd to return the PixelMap object.|
+| Promise\<[image.PixelMap](arkts-apis-image-PixelMap.md)\>  |  Promise used to return the PixelMap object asynchronously.|
 
 **Error codes**
 
@@ -252,8 +253,8 @@ Carries out detail enhancement processing. This API returns the result synchrono
 |  Name| Type | Mandatory | Description |
 | :------------ | :------------ | :------------ | :------------ |
 |  sourceImage | [image.PixelMap](arkts-apis-image-PixelMap.md)  | Yes | Input image, which must be allocated in DMA memory. For details, see [PixelMap Memory Types](../../media/image/image-allocator-type.md#memory-types). |
-|  width |  number | Yes |  Target width, in px.<br>Its value range is [512, 2000] when **level** is **HIGH** and [32, 3000] when **level** is other values. |
-|  height |  number | Yes|  Target height, in px.<br>Its value range is [512, 2000] when **level** is **HIGH** and [32, 3000] when **level** is other values. |
+|  width |  number | Yes  |  Target width, in pixels. <br>When **level** is **HIGH**, the supported range is [512, 2000]; when **level** is **other**, the supported range is [32, 3000].  |
+|  height |  number | Yes |  Target height, in pixels. <br>When **level** is **HIGH**, the supported range is [512, 2000]; when **level** is **other**, the supported range is [32, 3000].  |
 |  level | [QualityLevel](#qualitylevel)| No |  Algorithm level (**HIGH**, **MEDIUM**, **LOW**, or **NONE**). The default value is **NONE**.|
 
 **Return value**

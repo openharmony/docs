@@ -934,7 +934,7 @@ enableMuteSuggestionWhenMixWithOthers(enable: boolean): void
 
 如果启用此功能，当订阅音频会话状态更改事件后静音建议和取消静音建议提示将通过[AudioSessionStateChangedEvent](arkts-apis-audio-i.md#audiosessionstatechangedevent20)回调发送。收到静音建议表示其他应用程序开始播放音频，且播放的音频和本应用的音频不能混音。
 
-此功能仅支持已设置[AudioSessionScene](./arkts-apis-audio-e.md#audiosessionscene20)并激活模式模式为CONCURRENCY_MIX_WITH_OTHERS的音频会话使用。并且仅在激活音频会话期间生效一次，每次激活音频会话前都必须重新启用。
+此功能仅支持已设置[AudioSessionScene](./arkts-apis-audio-e.md#audiosessionscene20)并激活模式为CONCURRENCY_MIX_WITH_OTHERS的音频会话使用。并且仅在激活音频会话期间生效一次，每次激活音频会话前都必须重新启用。
 
 详细说明请参考[启用混音播放下静音建议通知](../../media/audio/audio-session-management.md#启用混音播放下静音建议通知)。
 

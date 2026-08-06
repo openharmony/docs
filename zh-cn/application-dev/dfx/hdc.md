@@ -61,7 +61,7 @@ hdc支持USB和无线两种连接调试方式。在设备的设置>系统>开发
       echo $SHELL
       ```
 
-      - 如果输出结果为bin/bash，执行以下命令打开.bashrc文件。
+      - 如果输出结果为/bin/bash，执行以下命令打开.bashrc文件。
 
          ```shell
          vi ~/.bashrc
@@ -1413,7 +1413,7 @@ hdc bugreport [FILE]
 
 | 返回信息 | 说明 |
 | -------- | -------- |
-| -------------------------------[base]-------------------------------<br/><br/>BuildId: xxx<br/>RleaseType: xxx<br/>OsVersion: default/default/default/default/xxx<br/>DeviceType: default<br/>Manufacture: default<br/>----- | 设备基本信息。 |
+| -------------------------------[base]-------------------------------<br/><br/>BuildId: xxx<br/>ReleaseType: xxx<br/>OsVersion: default/default/default/default/xxx<br/>DeviceType: default<br/>Manufacture: default<br/>----- | 设备基本信息。 |
 
 **使用方法**：
 
@@ -1422,7 +1422,7 @@ $ hdc bugreport
 -------------------------------[base]-------------------------------
 
 BuildId: xxx
-RleaseType: xxx
+ReleaseType: xxx
 OsVersion: default/default/default/default/xxx
 DeviceType: default
 Manufacture: default

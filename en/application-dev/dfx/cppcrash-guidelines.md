@@ -1,14 +1,16 @@
 # C++ Crash (Process Crash) Detection
+
 <!--Kit: Performance Analysis Kit-->
 <!--Subsystem: HiviewDFX-->
 <!--Owner: @chenshi51-->
 <!--Designer: @Maplestory91-->
 <!--Tester: @gcw_KuLfPSbe-->
-<!--Adviser: @foryourself-->
+<!--Adviser: @jinqiuheng-->
+<!-- md-trans-meta sourceCommit=9ef024c70eb3ae7edb61d2396b2b553cb7d287cd translatedAt=2026-07-31T01:27:34.897Z pushedAt=2026-07-31T09:27:42.320Z -->
 
 ## Overview
 
-After a process crashes, the system detects the crash, captures crash information, generates crash logs, and reports crash events, providing detailed maintenance and debugging logs for you to locate faults. This topic describes the CppCrash detection methods provided by the system in terms of basic concepts, implementation principles, restrictions, log obtaining, and log specifications.  
+After a process crashes, the system detects the crash, captures crash information, generates crash logs, and reports crash events, providing detailed maintenance and debugging logs for you to locate faults. This topic describes the CppCrash detection methods provided by the system in terms of basic concepts, implementation principles, restrictions, log obtaining, and log specifications.
 
 ## Basic Concepts
 
@@ -18,7 +20,7 @@ After a process crashes, the system detects the crash, captures crash informatio
 
 - **Signal handler**
 
-  Contains functions executed by a process after it receives a particular signal. It must be registered for the specific signals it is intended to handle.
+  A function that defines a series of processing operations executed by a process after receiving a signal. The signal handler must specify the signals it needs to handle.
 
 - **pc**
 
@@ -54,7 +56,7 @@ The system detects a process crash as follows:
 
 3. The **ProcessDump** process writes the crash log data to a temporary directory for storage.
 
-4. After collecting crash logs, the **ProcessDump** process reports the logs to the HiView process, supplements some information (such as the system memory status and application page switching history) that can be obtained only by HiView, stores the crash logs in the **/data/log/faultlog/faultlogger** directory, and generates a fault event.
+4. After collecting crash logs, the **ProcessDump** process reports the logs to the HiView process, supplements some information (such as the system memory status and app page switching history) that can be obtained only by HiView, stores the crash logs in the **/data/log/faultlog/faultlogger** directory, and generates a fault event.
 
 ### Crash Signals
 
@@ -67,8 +69,8 @@ Based on the POSIX signal mechanism, the system's process crash detection capabi
 | 6 | SIGABRT | Process abort| The process is aborted abnormally. Generally, this exception occurs when the process calls **abort()** in the Standard Function Library.|
 | 7 | SIGBUS | Illegal memory access| The process accesses an unaligned or nonexistent physical address.|
 | 8 | SIGFPE | Floating-point exception| An incorrect arithmetic operation is executed, for example, a 0 divisor, floating point overflow, or integer overflow.|
-| 11 | SIGSEGV | Invalid memory access| The process accesses an invalid memory region.|
-| 16 | SIGSTKFLT | Stack error| The processor performs an incorrect stack operation, such as a pop when the stack is empty or a push when the stack is full.|
+| 11 | SIGSEGV | Invalid memory access | The process accesses an invalid memory region. |
+| 16 | SIGSTKFLT | Stack error | The processor executes an incorrect stack operation, such as popping from an empty stack or pushing onto a full stack.<br>The SIGSTKFLT signal does not support minidump generation. |
 | 31 | SIGSYS | Incorrect system call| An incorrect or invalid parameter is used in a system call.|
 
 Crash signals are classified by error code (**code**) as follows:
@@ -153,7 +155,7 @@ In addition to the preceding classification by **signo**, signals can also be cl
 
 ## Restrictions
 
-- It is not recommended that the process register the signal handler; otherwise, if the process exit is delayed beyond 5s, the process freeze event may be reported.
+- Processes are not advised to register signal handlers by themselves. After a process crashes, its exit may be delayed. If handling takes more than 5 seconds, the system may report the process as not responding.
 
 - The **/data/log/faultlog/faultlogger** directory stores a maximum of 10 CppCrash logs for a process or application. If the upper limit is reached, the earliest CppCrash logs of the process or application will be deleted. It is recommended that you view the CppCrash logs in a timely manner during development and debugging to prevent crash information loss due to log deletion.
 
@@ -180,20 +182,21 @@ Enable **Developer options** and run the hdc file recv /data/log/faultlog/faultl
 ## Log Specifications
 
 The following table describes the fields in a fault log.
+
 |Field|Description|Initial API Version|Mandatory|Optional|
 |---|---|---|---|---|
 | Device info | Device information.| 8 | Yes| - |
 | Build info | Build information.| 8 | Yes| - |
-| DeviceDebuggable | Whether the system version of the device can be debugged, which is irrelevant to **Developer options**.| 23 | Yes| - |
-| Fingerprint | Fault feature, which is a hash value for faults of the same type.| 8 | Yes| - |
-| Enabled app log configs | List of enabled configuration parameters.| 20 | No| This field is displayed when only when it is configured by users. For details, see [Application Crash Log Configured by HiAppEvent](#application-crash-log-configured-by-hiappevent).|
+| DeviceDebuggable | Whether the system version of the device can be debugged. | 23 | Yes | - |
+| Fingerprint | Fault fingerprint. A hash value used to cluster similar issues. If different logs have the same hash value, they share the same fault cause. | 8 | Yes | - |
+| Enabled app log configs | List of enabled configuration parameters.| 20 | No| This field is displayed only when it is configured by users. For details, see [Application Crash Log Configured by HiAppEvent](#application-crash-log-configured-by-hiappevent).|
 | Module name | Module name.| 8 | Yes| - |
 | ReleaseType | Application version type.| 23 | No| This field is displayed only for application processes. The value **release** indicates that the application is a [release-type application](https://developer.huawei.com/consumer/en/doc/harmonyos-guides/ide-hvigor-compilation-options-customizing-guide#section192461528194916), and the value **debug** indicates that the application is a [debug-type application](https://developer.huawei.com/consumer/en/doc/harmonyos-guides/ide-hvigor-compilation-options-customizing-guide#section192461528194916).|
 | CpuAbi | ABI type.| 23 | No| This field is displayed only for application processes.|
-| Version | Application version (in dotted format).| 8 | No| This field is displayed only for application processes.|
-| VersionCode | Application version (in integer format).| 8 | No| This field is displayed only for application processes.|
+| Version | App version (in dotted format). | 8 | No | Provided only in the application process. |
+| VersionCode | App version (in integer format). | 8 | No | Provided only in the application process. |
 | IsSystemApp | Whether the application is a system application.| 23 | No| This field is displayed only for application processes.|
-| PreInstalled | Whether the application is pre-installed.| 8 | No| This field is displayed only for application processes.|
+| PreInstalled | Whether the app is preinstalled. | 8 | No | Provided only in the application process. |
 | Foreground | Foreground/Background status.| 8 | No| This field is displayed only for application processes.|
 | Page switch history | Page switching history.| 20 | No| If the maintenance and debugging service process is faulty or the switching history is not cached, this field is not displayed. For details, see [Implementation Principles](#implementation-principles).|
 | Timestamp | Fault occurrence timestamp.| 8 | Yes| - |
@@ -201,11 +204,13 @@ The following table describes the fields in a fault log.
 | Uid | User ID.| 8 | Yes| - |
 | HiTraceId | HiTraceChain ID.| 20 | No| This field is provided only when the HiTraceChain feature is enabled for the faulty thread. For details, see [Introduction to HiTraceChain](hitracechain-intro.md).|
 | Process name | Name of the faulty process.| 8 | Yes| - |
+| App running unique id | Unique ID associated with the app at runtime. | 26.0.0 | Yes | - |
 | Process life time | Lifetime of the faulty process.| 8 | Yes| - |
 | Process Memory(kB) | Memory usage of the faulty process.| 20 | Yes| - |
-| Device Memory(kB) | System memory status.| 20 | No| This field depends on the maintenance and debugging service process. If the maintenance and debugging service process stops or the device restarts when a fault occurs, this field does not exist. For details, see [Implementation Principles](#implementation-principles).|
+| Device Memory(kB) | System memory information. | 20 | No | This field depends on the maintenance and debugging service process. If the maintenance and debugging service process stops or the device restarts when a fault occurs, this field does not exist. For details, see [Implementation Principles](#implementation-principles). |
+| Log source | Identifies how logs are collected. The following methods are available: <br> **processdump:** Generated in user mode.<br> **pdump:** Generated by the kernel as a fallback when user-mode cppcrash log generation fails.<br> **liteprocessdump:** Generated in user mode when low-privilege processes (such as render or CPU) crash.<br> Log specifications vary by collection method. For details, see [Log Specification Differences Across Collection Methods](#log-specification-differences-across-collection-methods). | 26.0.0 | Yes | - |
 | Reason | Fault cause.| 8 | Yes| - |
-| LastFatalMessage | Last **Fatal** log recorded by the application.| 8 | No| This field is displayed when the process is aborted and the last **Fatal** log is printed in HiLog.|
+| LastFatalMessage | Fatal message. | 8 | No | This field is shared by the following scenarios:<br> Prompt information output when unreliable stack frame addresses are parsed.<br> The last FATAL-level Hilog log saved when the process exits due to an ABORT signal crash.<br> Internal system maintenance and debugging information.<br> String information set by the app through [OH_HiDebug_SetCrashObj](hidebug-guidelines.md#adding-debugging-information-to-crash-logs).<br> Starting from API version 26.0.0, if the app enables the [module loading chain debugging switch](../arkts-utils/arkts-module-debug.md), this field contains the module loading chain. |
 | Fault thread info | Fault thread information.| 8 | Yes| - |
 | SubmitterStacktrace | Submitter thread stack.| 12 | No| By default, the asynchronous thread stack tracing functionality is enabled only in the ARM 64-bit system.<br>For versions earlier than API version 22, the functionality of submitting asynchronous tasks by third-party and system applications through **libuv** and **ffrt** is enabled only in the debug version by default.<br>Since API version 22, the functionality of submitting asynchronous tasks by third-party applications through **libuv** is enabled by default in both debug and release versions. The functionality of submitting asynchronous tasks by third-party and system applications through **ffrt** is enabled by default only in the debug version.|
 | Registers | Fault register.| 8 | Yes| - |
@@ -216,6 +221,7 @@ The following table describes the fields in a fault log.
 | OpenFiles | File handle information held by the process when the fault occurs.| 12 | Yes| - |
 | HiLog | HiLog logs printed before the fault occurs. A maximum of 1000 lines can be printed.| 8 | Yes| - |
 | [truncated] | Fault log truncation flag.| 20 | No| This field is displayed when the fault log truncation size is configured and truncation occurs.|
+| MergeLog | Log merge identifier for third-party apps. | 24 | No | Third-party app log identifier configured for merging app logs. |
 
 > **NOTE**
 >
@@ -245,164 +251,151 @@ The log specifications vary slightly according to different fault scenarios. The
 
 The following describes the common crash log specifications and other log specifications in special scenarios. This example is the core content of a process crash log archived by DevEco Studio in FaultLog.
 
+<!--RP1-->
+
 ```text
 Generated by HiviewDFX@OpenHarmony
 ================================================================
-Device info:HarmonyOS 3.2   <- Device information.
-Build info:HarmonyOS 5.1.0.101 <- Version information.
+Device info:OpenHarmony 3.2   <- Device info
+Build info:OpenHarmony 6.1.0.22 <- Build info
 DeviceDebuggable:No <- Whether the system version of the device can be debugged.
-Fingerprint:a27608aa3ce72b14c242ff04332a122b7bb629b85771a051f25fb1af8c90b613 <- Fault identification.
-Module name:crasher_cpp <- Module name.
-ReleaseType:release <- Application version type.
-CpuAbi:arm64-v8a <- ABI type.
+Fingerprint:b2b57ac77e71434d32e015e2efd464f1ce4bbadfacf5309986d2acc12b744f53 <- Fingerprint for identifying the fault signature
+Module name:com.example.myapplication <- Module name
+ReleaseType:debug <- App release type
+CpuAbi:armeabi-v7a <- Binary interface type (ABI)
+Version:1.0.0 <- App version number (dotted format)
+VersionCode:1000000 <- App version number (integer format)
 IsSystemApp:No <- Whether the application is a system application.
-Timestamp:2017-08-06 21:52:51.000 <- Fault occurrence timestamp.
-Pid:10208 <- Process ID.
-Uid:0     <- User ID.
-HiTraceId:a92ab1c7eae68fa  <- HiTraceId (Optional. If the fault thread does not have HiTraceId, it is not printed.)
-Process name:./crasher_cpp <- Process name.
-Process life time:1s  <- Process life time.
-Process Memory(kB): 11902(Rss)     <- Memory used by the process.
-Device Memory(kB): Total 1935820, Free 516244, Available 1205608 <- Device memory status (optional).
-Reason:Signal:SIGSEGV(SI_TKILL)@0x000027e0 from:10208:0 <- Fault cause. For details, see the signal value description.
+PreInstalled:No <- Whether the app is pre-installed
+Foreground:Yes <- Foreground/background status
+Page switch history: <- Page switch history
+  10:09:06.006 :leaves foreground
+  10:08:37.066 :enters foreground
+Timestamp:2026-01-08 10:09:21.000 <- Fault occurrence timestamp
+Pid:6946 <- Process ID
+Uid:20010044 <- User ID
+HiTraceId:a92ab1c7eae68fa <- Unique HiTraceChain trace ID (optional; not printed if the fault thread has no HiTraceId)
+Process name:com.example.myapplication <- Fault process name
+App running unique id:124500628566978194 <- Unique ID associated with the app runtime
+Process life time:255s <- Fault process lifetime
+Process Memory(kB): 177672(Rss) <- Fault process memory usage
+Device Memory(kB): Total 2001936, Free 509212, Available 1115804 <- Device memory info (optional)
+Log source:processdump <- Identifies the log collection method. `processdump` indicates user-mode generation.
+Reason:Signal:SIGSEGV(SI_USER)@0x00001e99 from:7833:0 <- Fault cause; for details, see the signal value description
 Fault thread info:           <- Faulty thread information.
-Tid:10208, Name:crasher_cpp  <- ID and name of the faulty thread.
-#00 pc 000e8400 /system/lib/ld-musl-arm.so.1(raise+176)(a40044d0acb68107cfc4adb5049c0725) <- Call stack. The call sequence is #06->#05->...->#00, and the crash occurs in the functions of #00.
-#01 pc 00006e95 /data/crasher_cpp(DfxCrasher::RaiseSegmentFaultException()+92)(d6cead5be17c9bb7eee2a9b4df4b7626)
-#02 pc 00008909 /data/crasher_cpp(DfxCrasher::ParseAndDoCrash(char const*) const+612)(d6cead5be17c9bb7eee2a9b4df4b7626)
-#03 pc 00008bed /data/crasher_cpp(main+104)(d6cead5be17c9bb7eee2a9b4df4b7626)
-#04 pc 00073370 /system/lib/ld-musl-arm.so.1(libc_start_main_stage2+72)(a40044d0acb68107cfc4adb5049c0725)
-#05 pc 00005ad8 /data/crasher_cpp(_start_c+84)(d6cead5be17c9bb7eee2a9b4df4b7626)
-#06 pc 00005a7c /data/crasher_cpp(d6cead5be17c9bb7eee2a9b4df4b7626)
+Tid:6946, Name:e.myapplication  <- Fault thread ID and thread name
+#00 pc 000a8a94 /system/lib/ld-musl-arm.so.1(3753ef9108517347d1a03e903b3a5dbf) <- Call stack; the call sequence is #06->#05->...->#00, and the crash ultimately occurs in the function at #00
+#01 pc 000122a3 /system/lib/chipset-sdk-sp/libeventhandler.z.so(OHOS::AppExecFwk::EpollIoWaiter::WaitFor(std::__h::unique_lock<std::__h::mutex>&, long long, bool)+270)(0f294f85c5048f81662d7365e2b2fe45)
+#02 pc 000184e9 /system/lib/chipset-sdk-sp/libeventhandler.z.so(OHOS::AppExecFwk::EventQueue::WaitUntilLocked(std::__h::chrono::time_point<std::__h::chrono::steady_clock, std::__h::chrono::duration<long long, std::__h::ratio<1ll, 1000000000ll>>> const&, std::__h::unique_lock<std::__h::mutex>&, bool)+140)(0f294f85c5048f81662d7365e2b2fe45)
+#03 pc 0001aac7 /system/lib/chipset-sdk-sp/libeventhandler.z.so(OHOS::AppExecFwk::EventQueueBase::GetEvent()+174)(0f294f85c5048f81662d7365e2b2fe45)
+#04 pc 00022629 /system/lib/chipset-sdk-sp/libeventhandler.z.so(OHOS::AppExecFwk::(anonymous namespace)::EventRunnerImpl::Run()+588)(0f294f85c5048f81662d7365e2b2fe45)
+#05 pc 00025095 /system/lib/chipset-sdk-sp/libeventhandler.z.so(OHOS::AppExecFwk::EventRunner::Run()+304)(0f294f85c5048f81662d7365e2b2fe45)
+#06 pc 000a1885 /system/lib/platformsdk/libappkit_native.z.so(OHOS::AppExecFwk::MainThread::Start()+292)(48dda5ffd26759d107cd3de59b7785fd)
 Registers:  <- Fault registers.
-r0:00000000 r1:ffc09854 r2:00000000 r3:00000008
-r4:00000000 r5:fffff000 r6:0000000a r7:000000af
-r8:ffc09919 r9:ffc09930 r10:00000000
-fp:ffc098e8 ip:005b76e4 sp:ffc09850 lr:005ade99 pc:f7bb0400
-cpsr:20870010           <-  Value of status register (cpsr for the ARM32 architecture and pstate and esr for the AArch64 architecture).
+r0:fffffffc r1:ffdc65f8 r2:00000008 r3:7fffffff
+r4:00000000 r5:00000008 r6:00000000 r7:0000015a
+r8:d55ab241 r9:0000001b r10:ef676200
+fp:ffdc65c0 ip:0000001b sp:ffdc65b0 lr:f5b122a7 pc:f7a8ea94
+cpsr:288f0010           <-  Status register value (cpsr for arm32 architecture; pstate and esr for aarch64 architecture)
 Other thread info:      <- Other thread information.
-Tid:10209, Name:crasher_cpp <- Thread ID and thread name.
-#00 pc 00116974 /system/lib/ld-musl-arm.so.1(sleep+132)(a40044d0acb68107cfc4adb5049c0725) <- Call stack.
-#01 pc 0000a137 /data/crasher_cpp(void* std::__h::__thread_proxy[abi:v15004]<std::__h::tuple<std::__h::unique_ptr<std::__h::__thread_struct, std::__h::default_delete<std::__h::__thread_struct>>, DfxCrasher::MultiThreadCrash()::$_1>>(void*)+122)(d6cead5be17c9bb7eee2a9b4df4b7626)
-#02 pc 00109104 /system/lib/ld-musl-arm.so.1(start+248)(a40044d0acb68107cfc4adb5049c0725)
-#03 pc 00074134 /system/lib/ld-musl-arm.so.1(a40044d0acb68107cfc4adb5049c0725)
+Tid:7724, Name:OS_IPC_0_7724 <- Thread ID and thread name
+#00 pc 000c41f4 /system/lib/ld-musl-arm.so.1(3753ef9108517347d1a03e903b3a5dbf)
+#01 pc 0000d52f /system/lib/chipset-sdk-sp/libipc_common.z.so(OHOS::BinderConnector::WriteBinder(unsigned long, void*)+78)(9cb3631153d569a9552279529ba408d9)
+#02 pc 000404f1 /system/lib/chipset-sdk-sp/libipc_single.z.so(OHOS::BinderInvoker::TransactWithDriver(bool)+196)(3e3dad353c8aedf2616c7000733c675b)
+#03 pc 000407bf /system/lib/chipset-sdk-sp/libipc_single.z.so(OHOS::BinderInvoker::StartWorkLoop()+82)(3e3dad353c8aedf2616c7000733c675b)
 Memory near registers:  <-  Memory values near the address (which must be in valid memory) of the register at the fault site. The content in the brackets indicates the memory segment where the address in the register is located.
 r1([stack]):          <- Memory value near the address of the r1 register at the fault site.
-    ffc0984c f7bd8348
-    ffc09850 7467a186
-    ffc09854 00000000
-    ffc09858 00000000
+    ffdc65f0 ffdc66f8
+    ffdc65f4 00000000
+    ffdc65f8 00000000
+    ffdc65fc 00000000
     ...
-r8([stack]):
-    ffc09910 005b51b8
-    ffc09914 ffc09964
-    ffc09918 4749530e
-    ffc0991c 56474553
-    ffc09920 00000000
-    ...
-r9([stack]):
-    ffc09928 005b51a4
-    ffc0992c 00000000
-    ffc09930 005b51f0
-    ffc09934 f7756e08
+r10([anon:native_heap:brk]):
+    ef6761f8 00000008
+    ef6761fc 002aa600
+    ef676200 f5b2ee84
+    ef676204 00000001
+    ef676208 00000000
     ...
 fp([stack]):
-    ffc098e0 0000000a
-    ffc098e4 ffc09919
-    ffc098e8 005b51a4
-    ffc098ec 005ade99
-    ...
-r12(/data/crasher_cpp):
-    005b76dc f76ee7f4
-    005b76e0 f76ee7dc
-    005b76e4 f7bb0350
-    005b76e8 f75c83e5
+    ffdc65b8 ef676250
+    ffdc65bc ef676200
+    ffdc65c0 ef676210
+    ffdc65c4 f5b122a7
     ...
 sp([stack]):
-    ffc09848 ffc09870
-    ffc0984c f7bd8348
-    ffc09850 7467a186
-    ffc09854 00000000
+    ffdc65a8 ef676210
+    ffdc65ac f5b0e144
+    ffdc65b0 ffdc65f8
+    ffdc65b4 00000863
     ...
-lr(/data/crasher_cpp):
-    005ade90 200befc0
-    005ade94 ed8cf005
-    005ade98 49099801
-    005ade9c 68094479
+lr(/system/lib/chipset-sdk-sp/libeventhandler.z.so):
+    f5b1229c 22084648
+    f5b122a0 f01a4621
+    f5b122a4 f3bfee4e
+    f5b122a8 46808f5b
     ...
 pc(/system/lib/ld-musl-arm.so.1):
-    f7bb03f8 e3a03008
-    f7bb03fc ef000000
-    f7bb0400 e51b0014
-    f7bb0404 e59f1024
+    f7a8ea8c e3a05008
+    f7a8ea90 ef000000
+    f7a8ea94 e3700026
+    f7a8ea98 0a000002
     ...
 FaultStack: <- Stack of the crashed thread.
-    ffc09810 00000001
-    ffc09814 00000001
+    ffdc6530 ffdc65b0
+    ffdc6534 00000000
+    ffdc6538 ffdc65b0
+    ffdc653c fe9922e2
     ...
-sp0:ffc09850 7467a186 <- #00 stack.
-    ffc09854 00000000
+sp0:ffdc65b0 ffdc65f8 <- Top position of the #00 stack frame
+    ffdc65b4 00000863
     ...
-sp1:ffc098f0 f7756e08
-    ffc098f4 7467a186
+sp1:ffdc65c8 f79e3038
+    ffdc65cc 00000001
     ...
-sp2:ffc09908 00000000
-    ffc0990c 005b51f0
+sp2:ffdc6738 00000000
+    ffdc673c 00000000
     ...
-sp3:ffc099f0 ffc09a44
-    ffc099f4 7467a186
-    ...
-    ffc09a00 005afb85
-    ffc09a04 f7b3b374
-    ffc09a08 ffc09a44
-    ffc09a0c 00000000
-    ffc09a10 00000000
-    ffc09a14 f7aeec24
-    ffc09a18 ffc09a38
-    ffc09a1c 005acadc
-    ffc09a20 005b38d0
-    ffc09a24 00000000
-    ffc09a28 00000000
-    ffc09a2c ffc09a44
-    ffc09a30 00000002
-    ffc09a34 ffc09a40
-    ffc09a38 00000000
-    ffc09a3c 005aca80
-sp5:ffc09a40 00000002
-    ffc09a44 ffc09e25
+sp3:ffdc6770 00000000
+    ffdc6774 ffdc67e8
     ...
 
 Maps: <- Memory space of the process when the fault occurs.
-5a7000-5ac000 r--p 00000000 /data/crasher_cpp
-5ac000-5b5000 r-xp 00004000 /data/crasher_cpp
-5b5000-5b8000 r--p 0000c000 /data/crasher_cpp
-5b8000-5b9000 rw-p 0000e000 /data/crasher_cpp
-2290000-2291000 ---p 00000000 [heap]
-2291000-2293000 rw-p 00000000 [heap]
+9b5000-9be000 r--p 00000000 /system/bin/appspawn
+9be000-9cc000 r-xp 00008000 /system/bin/appspawn
+9cc000-9cd000 r--p 00015000 /system/bin/appspawn
+9cd000-9ce000 rw-p 00015000 /system/bin/appspawn
+276e000-276f000 ---p 00000000 [heap]
+276f000-283a000 rw-p 00000000 [heap]
 ...
-f7ac4000-f7ac5000 r-xp 00000000 [sigpage]
-f7ac5000-f7ac7000 r--p 00000000 [vvar]
-f7ac7000-f7ac8000 r-xp 00000000 [vdso]
-f7ac8000-f7b22000 r--p 00000000 /system/lib/ld-musl-arm.so.1
-f7b22000-f7bec000 r-xp 00059000 /system/lib/ld-musl-arm.so.1
-f7bec000-f7bee000 r--p 00122000 /system/lib/ld-musl-arm.so.1
-f7bee000-f7bf0000 rw-p 00123000 /system/lib/ld-musl-arm.so.1
-f7bf0000-f7c00000 rw-p 00000000 [anon:ld-musl-arm.so.1.bss]
-ffbe9000-ffc0a000 rw-p 00000000 [stack]
+f79e2000-f79e3000 r-xp 00000000 [sigpage]
+f79e3000-f79e5000 r--p 00000000 [vvar]
+f79e5000-f79e6000 r-xp 00000000 [vdso]
+f79e6000-f7a41000 r--p 00000000 /system/lib/ld-musl-arm.so.1
+f7a41000-f7b0b000 r-xp 0005a000 /system/lib/ld-musl-arm.so.1
+f7b0b000-f7b0d000 r--p 00123000 /system/lib/ld-musl-arm.so.1
+f7b0d000-f7b0f000 rw-p 00124000 /system/lib/ld-musl-arm.so.1
+f7b0f000-f7b1a000 rw-p 00000000 [anon:ld-musl-arm.so.1.bss]
+ffda7000-ffdc8000 rw-p 00000000 [stack]
 ffff0000-ffff1000 r-xp 00000000 [vectors]
 OpenFiles: <- Information about the file handles held by the process when the fault occurs.
-0->/dev/pts/0 native object of unknown type 0
-1->/dev/pts/0 native object of unknown type 0
-2->/dev/pts/0 native object of unknown type 0
-3->socket:[102975] native object of unknown type 0
-9->socket:[13080] native object of unknown type 0
-14->/dev/console native object of unknown type 0
+0->/dev/null native object of unknown type 0
+1->/dev/null native object of unknown type 0
+2->/dev/null native object of unknown type 0
+3->socket:[765] native object of unknown type 0
+7->socket:[860] native object of unknown type 0
+40->/dev/mali0 native object of unknown type 0
 
 HiLog: <- HiLog logs of the process before the fault occurs.
-08-06 21:52:51.212 10208 10208 E C03f00/MUSL-SIGCHAIN: signal_chain_handler call 2 rd sigchain action for signal: 11 sca_sigaction=f7b3e638 noreturn=0 FREEZE_signo_11 thread_list_lock_status:-1 tl_lock_count=0 tl_lock_waiters=0 tl_lock_tid_fail=-1 tl_lock_count_tid=-1 tl_lock_count_fail=-10000 tl_lock_count_tid_sub=-1 thread_list_lock_after_lock=-1 thread_list_lock_pre_unlock=-1 thread_list_lock_pthread_exit=-1 thread_list_lock_tid_overlimit=-1 tl_lock_unlock_count=0 __pthread_gettid_np_tl_lock=0 __pthread_exit_tl_lock=0 __pthread_create_tl_lock=0 __pthread_key_delete_tl_lock=0 __synccall_tl_lock=0 __membarrier_tl_lock=0 install_new_tls_tl_lock=0 set_syscall_hooks_tl_lock=0 set_syscall_hooks_linux_tl_lock=0 fork_tl_lock=0
-08-06 21:52:51.212 10208 10208 I C02d11/DfxSignalHandler: DFX_SigchainHandler :: signo(11), si_code(-6), pid(10208), tid(10208).
-08-06 21:52:51.212 10208 10208 I C02d11/DfxSignalHandler: DFX_SigchainHandler :: signo(11), pid(10208), processName(./crasher_cpp),         threadName(crasher_cpp).
+09-22 22:02:24.298   541   541 I C02d11/DfxSignalHandler: DFX_SigchainHandler :: signo(11), si_code(0), pid(541), tid(541).
+09-22 22:02:24.298   541   541 I C02d11/DfxSignalHandler: DFX_SigchainHandler :: signo(11), pid(541), processName(foundation), threadName(foundation).
+
+MergeLog: <- Merged log provided by the app
+Last Modified: 2026-03-18 10:10:10 <- Last modification timestamp of the merged log provided by the app
+app crash log. <- Log generated by the app for merging
 ```
+
+<!--RP1End-->
 
 **HiTraceId**
 
@@ -449,7 +442,7 @@ For details, see [Exception Code Call Stack Formats](jscrash-guidelines.md#excep
 
 ### Null Pointer Dereference
 
-Null pointer dereference often  occurs in the following scenarios:
+Null pointer dereference often occurs in the following scenarios:
 
 1. When a crash is in format of **SIGSEGV(SEGV_MAPERR)\@0x00000000** or the values of the registers such as **r0** and **r1** in the **Register** field are **0**, a null pointer may be passed in when the function is called.
 
@@ -457,38 +450,45 @@ Null pointer dereference often  occurs in the following scenarios:
 
 In this scenario, a message is printed in the log, indicating that the fault may be caused by a null pointer dereference. The following is an example process crash log archived by DevEco Studio in FaultLog:
 
+<!--RP2-->
+
 ```text
 Generated by HiviewDFX@OpenHarmony
 ================================================================
-Device info:HarmonyOS 3.2        <- Device information
-Build info:HarmonyOS 5.0.0.23    <- Build information
-Fingerprint:cdf52fd0cc328fc432459928f3ed8edfe8a72a92ee7316445143bed179138073 <- Fingerprint
+Device info:OpenHarmony 3.2       <- Device info
+Build info:OpenHarmony 6.1.0.22    <- Build info
+DeviceDebuggable:No <- Whether the device system version is debuggable
+Fingerprint:64ededf12a18ff56e730603cd61a5c9fe7240811fdf747994184e558ecaf3f4d <- Identifies the fault signature
 Module name:crasher_cpp            <- Module name
-Timestamp:2024-05-06 20:10:51.000  <- Timestamp when the fault occurs
-Pid:9623   <- Process ID
+Timestamp:2026-01-08 11:25:46.000  <- Timestamp when the fault occurred
+Pid:18763   <- Process ID
 Uid:0         <- User ID
-HiTraceId:a92ab1c7eae68fa  <- HiTraceId (Optional. If the fault thread does not have HiTraceId, it is not printed.)
-Process name:./crasher_cpp         <- Process name
-Process life time:1s               <- Process life time
-Process Memory(kB): 11902(Rss)     <- Memory used by the process.
-Device Memory(kB): Total 1935820, Free 516244, Available 1205608 <- Device memory status (optional).
+HiTraceId:a92ab123ba26e5d  <-Unique trace ID of HiTraceChain (optional; not printed if the fault thread has no HiTraceId)
+Process name:./crasher_cpp         <- Fault process name
+App running unique id:124500628566978194 <- Unique ID associated with the app runtime
+Process life time:1s               <- Fault process lifetime
+Process Memory(kB): 5357(Rss)     <- Fault process memory usage
+Device Memory(kB): Total 2001936, Free 583336, Available 1194164 <- Device memory information (optional)
+Log source:processdump <- Used to identify the log collection method. processdump indicates that the log is generated in user mode.
 Reason:Signal:SIGSEGV(SEGV_MAPERR)@0x00000004 probably caused by NULL pointer dereference  <- Fault cause and null pointer prompt
 Fault thread info:
 Tid:9623, Name:crasher_cpp         <- Thread ID, thread name
-#00 pc 00008d22 /system/bin/crasher_cpp(TestNullPointerDereferenceCrash0()+22)(adfc673300571d2da1e47d1d12f48b44)  <- Call stack
-#01 pc 000064d1 /system/bin/crasher_cpp(DfxCrasher::ParseAndDoCrash(char const*) const+160)(adfc673300571d2da1e47d1d12f48b44)
-#02 pc 00006569 /system/bin/crasher_cpp(main+92)(adfc673300571d2da1e47d1d12f48b44)
-#03 pc 00072b98 /system/lib/ld-musl-arm.so.1(libc_start_main_stage2+56)(d820b1827e57855d4f9ed03ba5dfea83)
-#04 pc 00004e28 /system/bin/crasher_cpp(_start_c+84)(adfc673300571d2da1e47d1d12f48b44)
-#05 pc 00004dcc /system/bin/crasher_cpp(adfc673300571d2da1e47d1d12f48b44)
+#00 pc 0000ce32 /data/crasher_cpp(TestNullPointerDereferenceCrash0()+22)(67ebf2a4243173fa96de3cc069348567)
+#01 pc 00009431 /data/crasher_cpp(DfxCrasher::ParseAndDoCrash(char const*) const+432)(67ebf2a4243173fa96de3cc069348567)
+#02 pc 0000976d /data/crasher_cpp(67ebf2a4243173fa96de3cc069348567)
+#03 pc 00076060 /system/lib/ld-musl-arm.so.1(3753ef9108517347d1a03e903b3a5dbf)
+#04 pc 000060f0 /data/crasher_cpp(_start_c+84)(67ebf2a4243173fa96de3cc069348567)
+#05 pc 00006094 /data/crasher_cpp(67ebf2a4243173fa96de3cc069348567)
 Registers:   <- Fault registers
-r0:ffffafd2 r1:00000004 r2:00000001 r3:00000000
-r4:ffd27e39 r5:0096e000 r6:00000a40 r7:0096fdfc
-r8:f7ba58d5 r9:f7baea86 r10:f7cadd38
-fp:ffd27308 ip:f7cb2078 sp:ffd272a0 lr:f7c7ab98 pc:0096ad22
-cpsr:20870010           <-  Value of status register (cpsr for the ARM32 architecture and pstate and esr for the AArch64 architecture).
+r0:ffff813b r1:00000004 r2:00000001 r3:00000000
+r4:ffa30394 r5:00000cd0 r6:f6dd2290 r7:009f5b4c
+r8:ffa30360 r9:009f41e4 r10:009f41ac
+fp:009f4198 ip:f787de48 sp:ffa30340 lr:f7848518 pc:009f1e32
+cpsr:208f0030          <-  Status register value (cpsr for ARM32 architecture; pstate and esr for AArch64 architecture)
 ...
 ```
+
+<!--RP2End-->
 
 ### Stack Overflow
 
@@ -516,74 +516,115 @@ static void *DoStackOverflow(void * inputArg) __attribute__((optnone))
 
 In this scenario, a message is recorded in the log, indicating that the fault may be caused by stack overflow. The following is an example process crash log archived by DevEco Studio in FaultLog:
 
+<!--RP3-->
+
 ```text
 Generated by HiviewDFX@OpenHarmony
 ================================================================
-Device info:HarmonyOS 3.2            <- Device information
-Build info:HarmonyOS 5.0.0.23        <- Build information
-Fingerprint:8bc3343f50024204e258b8dce86f41f8fcc50c4d25d56b24e71fe26c0a23e321  <- Fingerprint
+Device info:OpenHarmony 3.2       <- Device info.
+Build info:OpenHarmony 6.1.0.22    <- Build info.
+DeviceDebuggable:No <- Whether the system version of the device is debuggable.
+Fingerprint:5cfaa587e3b55eecebac32df5b7154fc2e231ad065e308ed01e625293182b0a0  <- Identifies the fault signature.
 Module name:crasher_cpp                <- Module name
-Timestamp:2024-05-06 20:18:24.000      <- Timestamp when the fault occurs
-Pid:9838                               <- Process ID
+Timestamp:2026-01-08 11:25:46.000      <- Timestamp when the fault occurred.
+Pid:15413                            <- Process ID.
 Uid:0                                  <- User ID
-HiTraceId:a92ab1c7eae68fa  <- HiTraceId (Optional. If the fault thread does not have HiTraceId, it is not printed.)
-Process name:./crasher_cpp             <- Process name
-Process life time:2s                   <- Process life time
-Process Memory(kB): 11902(Rss)     <- Memory used by the process.
-Device Memory(kB): Total 1935820, Free 516244, Available 1205608 <- Device memory status (optional).
-Reason:Signal:SIGSEGV(SEGV_ACCERR)@0xf76b7ffc current thread stack low address = 0xf76b8000, probably caused by stack-buffer-overflow <- Fault cause and stack overflow prompt
-Tid:10343, Name:crasher_cpp
-#00 pc 000072e6 /data/crasher_cpp(DoStackOverflow(void*)+30)(d6cead5be17c9bb7eee2a9b4df4b7626)
-#01 pc 00007305 /data/crasher_cpp(DoStackOverflow(void*)+60)(d6cead5be17c9bb7eee2a9b4df4b7626)
-#02 pc 00007305 /data/crasher_cpp(DoStackOverflow(void*)+60)(d6cead5be17c9bb7eee2a9b4df4b7626)
-#03 pc 00007305 /data/crasher_cpp(DoStackOverflow(void*)+60)(d6cead5be17c9bb7eee2a9b4df4b7626)
-#04 pc 00007305 /data/crasher_cpp(DoStackOverflow(void*)+60)(d6cead5be17c9bb7eee2a9b4df4b7626)
-#05 pc 00007305 /data/crasher_cpp(DoStackOverflow(void*)+60)(d6cead5be17c9bb7eee2a9b4df4b7626)
+HiTraceId:a92ab1c7eae68fa  <- Unique trace ID of HiTraceChain (optional; not printed if the fault thread has no HiTraceId).
+Process name:./crasher_cpp             <- Fault process name.
+App running unique id:124500628566978194 <- Unique ID associated with the app runtime.
+Process life time:1s                  <- Lifetime of the fault process.
+Process Memory(kB): 5279(Rss)     <- Memory usage of the fault process.
+Device Memory(kB): Total 2001936, Free 311000, Available 1181132 <- Device memory info (optional).
+Log source:processdump <- Identifies the log collection method. processdump indicates generation by user mode.
+Reason:Signal:SIGSEGV(SEGV_ACCERR)@0xf740efe0  current thread stack low address = 0xf740f000, probably caused by stack-buffer-overflow    <- Fault cause and stack overflow hint.
+Fault thread info:
+Tid:15414, Name:crasher_cpp
+#00 pc 00007c3e /data/crasher_cpp(DoStackOverflow(void*)+14)(8f6fb18b02e0a23b5f43cdf3cba52f0c)
+#01 pc 00007c6f /data/crasher_cpp(DoStackOverflow(void*)+62)(8f6fb18b02e0a23b5f43cdf3cba52f0c)
+#02 pc 00007c6f /data/crasher_cpp(DoStackOverflow(void*)+62)(8f6fb18b02e0a23b5f43cdf3cba52f0c)
+#03 pc 00007c6f /data/crasher_cpp(DoStackOverflow(void*)+62)(8f6fb18b02e0a23b5f43cdf3cba52f0c)
+#04 pc 00007c6f /data/crasher_cpp(DoStackOverflow(void*)+62)(8f6fb18b02e0a23b5f43cdf3cba52f0c)
+#05 pc 00007c6f /data/crasher_cpp(DoStackOverflow(void*)+62)(8f6fb18b02e0a23b5f43cdf3cba52f0c)
 ...
 ```
+
+<!--RP3End-->
 
 ### Stack Corruptions
 
 Stack corruptions occur when the stack memory that stores function call information is overwritten during service code running. As a result, the call stack cannot be traced. In this scenario, the system displays a message in the log, indicating that you need to parse the unreliable call stack in the thread stack memory from **\#xx**. The call stack is unreliable because it may not be a complete function call chain. From level **\#xx** downward, adjacent frames do not necessarily reflect a true call relationship. You must deduce the actual sequence from the service source. In the following example, the correct call relationship is **\#05** -> **\#04** -> **\#03** -> **\#01**. The following is an example process crash log archived by DevEco Studio in FaultLog:
 
+<!--RP4-->
+
 ```text
 Generated by HiviewDFX@OpenHarmony
 ================================================================
-Device info:HarmonyOS 3.2               <- Device information
-Build info:HarmonyOS 5.0.0.23           <- Build information
-Fingerprint:79b6d47b87495edf27135a83dda8b1b4f9b13d37bda2560d43f2cf65358cd528    <- Fingerprint
+Device info:OpenHarmony 3.2       <- Device info
+Build info:OpenHarmony 6.1.0.22    <- Build info
+DeviceDebuggable:No <- Whether the device system version is debuggable
+Fingerprint:c4d7fbc17066a8c167afb29a53e8e4ccbc3545af0178a21854f964e758e543ad    <- Identifies the fault signature
 Module name:crasher_cpp                   <- Module name
-Timestamp:2024-05-06 20:27:23.2035266415  <- Timestamp when the fault occurs
-Pid:10026                                 <- Process ID
+Timestamp:2026-01-08 11:25:46.000  <- Fault occurrence timestamp
+Pid:16051                                 <- Process ID
 Uid:0                                     <- User ID
-HiTraceId:a92ab1c7eae68fa  <- HiTraceId (Optional. If the fault thread does not have HiTraceId, it is not printed.)
-Process name:./crasher_cpp                <- Process name
-Process life time:1s                      <- Process life time
-Process Memory(kB): 11902(Rss)            <- Memory used by the process
-Device Memory(kB): Total 1935820, Free 516244, Available 1205608 <- Device memory status (optional).
+HiTraceId:a92ab13e65d617d  <- Unique trace ID of HiTraceChain (optional; not printed if the fault thread has no HiTraceId)
+Process name:./crasher_cpp                <- Fault process name
+App running unique id:124500628566978194 <- Unique ID associated with the app runtime
+Process life time:1s                      <- Fault process lifetime
+Process Memory(kB): 5271(Rss)            <- Fault process memory usage
+Device Memory(kB): Total 2001936, Free 311220, Available 1181516 <- Device memory info (optional)
+Log source:processdump <- Identifies the log collection method. processdump indicates generation by user mode.
 Reason:Signal:SIGSEGV(SEGV_MAPERR)@0000000000 probably caused by NULL pointer dereference  <- Fault cause
-LastFatalMessage:Failed to unwind stack, try to get unreliable call stack from #02 by reparsing thread stack <- #00 and #01 are generally considered reliable. You need to parse unreliable call stacks in the thread stack memory from #02.
+LastFatalMessage:Failed to unwind stack, try to get unreliable call stack from #02 by reparsing thread stack. <- #00 and #01 are generally considered reliable; starting from #02, an attempt is made to parse unreliable call stacks from the thread stack memory
 Fault thread info:
-Tid:10026, Name:crasher_cpp               <- Thread ID, thread name
+Tid:16051, Name:crasher_cpp               <- Fault thread ID and thread name
 #00 pc 00000000 Not mapped
-#01 pc 0002bcdb /system/lib/chipset-pub-sdk/libutils.z.so(memset_s+24)(15f72d32d228b22e72a13b438c75599d)
-#02 pc 000f14a8 /system/lib/ld-musl-arm.so.1(printf+72)(a40044d0acb68107cfc4adb5049c0725)
-#03 pc 00006d3b /data/crasher_cpp(RecursiveHelperFunction(int, int, int)+54)(d6cead5be17c9bb7eee2a9b4df4b7626)
-#04 pc 00006d5b /data/crasher_cpp(RecursiveHelperFunction(int, int, int)+86)(d6cead5be17c9bb7eee2a9b4df4b7626)
-#05 pc 00006d5b /data/crasher_cpp(RecursiveHelperFunction(int, int, int)+86)(d6cead5be17c9bb7eee2a9b4df4b7626)
+#01 pc 00004e8f /system/lib/chipset-sdk-sp/libsec_shared.z.so(memset_s+24)(9601785452ecc6429983cafa05397974)
+#02 pc 000f48ec /system/lib/ld-musl-arm.so.1(printf+72)(1bc45fae28785321b04fb5ea5cba92f9)
+#03 pc 00007353 /data/crasher_cpp(RecursiveHelperFunction(int, int, int)+54)(8f6fb18b02e0a23b5f43cdf3cba52f0c)
+#04 pc 00007373 /data/crasher_cpp(RecursiveHelperFunction(int, int, int)+86)(8f6fb18b02e0a23b5f43cdf3cba52f0c)
+#05 pc 00007373 /data/crasher_cpp(RecursiveHelperFunction(int, int, int)+86)(8f6fb18b02e0a23b5f43cdf3cba52f0c)
 ...
 Registers:
-r0:00000000 r1:c2085db0 r2:00000000 r3:ff8970c8
-r4:0000003f r5:00000000 r6:f755c0e0 r7:00000000
-r8:ff8975c9 r9:ff8975e0 r10:00000001
-fp:008de1a4 ip:f76b5c48 sp:ff896fd0 lr:f76abcdf pc:00000000
-cpsr:20870010
+r0:00000000 r1:efc658a8 r2:00000000 r3:ffaa58c8
+r4:0000003f r5:00000000 r6:f714aa70 r7:00000000
+r8:ffaa5dd0 r9:004171e4 r10:004171ac
+fp:00417198 ip:f73912dc sp:ffaa57d0 lr:f7384e93 pc:00000000
+cpsr:608f0010
 ...
 ```
 
+<!--RP4End-->
+
 ### Asynchronous Thread Stack Tracing Faults
 
-When an asynchronous thread crashes, the stack of the thread that submits the asynchronous task is also printed to locate the fault. The call stack of the crash thread and that of the submission thread are separated by **SubmitterStacktrace**. The following is an example process crash log archived by DevEco Studio in FaultLog:
+When an asynchronous thread crashes, the stack of the thread that submitted the asynchronous task is also printed, helping locate crash issues caused by the asynchronous task submitter. The call stack of the crashing thread and the call stack of its submitting thread are separated by the **SubmitterStacktrace** string.
+
+**Asynchronous Thread Stack Generation Principle**
+
+The following figure illustrates the principle.
+
+![Working mechanism](figures/submitter_stacktrace.png)
+
+1. The submitting thread collects its own call stack information and saves it to the asynchronous stack table in a specific memory area of the process.
+
+2. After the record is saved, the asynchronous stack table returns a unique identifier **stackId**.
+
+3. The submitting thread submits the asynchronous task and passes the identifier **stackId**.
+
+4. Before executing the task, the execution thread saves **stackId** to the thread-local storage area.
+
+5. The execution thread starts executing the asynchronous task.
+
+6. The execution thread crashes during the execution of the asynchronous task, generating a crash signal.
+
+7. The signal handler obtains the **stackId** saved in the thread-local storage area through the **GetStackId** function.
+
+8. The signal handler passes **stackId** to the backtrace process **processdump**.
+
+9. **processdump** reads the asynchronous stack table across processes, queries and obtains the call stack information of the submitting thread based on the **stackId** value, and fills it into the corresponding **SubmitterStacktrace** field of the fault log.
+
+The following is the core content of a process crash log archived by DevEco Studio in **FaultLog**.
 
 > **NOTE**
 >
@@ -593,93 +634,138 @@ When an asynchronous thread crashes, the stack of the thread that submits the as
 >
 > Since API version 22, the functionality of submitting asynchronous tasks by third-party applications through **libuv** is enabled by default in both debug and release versions. The functionality of submitting asynchronous tasks by third-party and system applications through **ffrt** is enabled by default only in the debug version.
 
+<!--RP5-->
+
 ```text
 Generated by HiviewDFX@OpenHarmony
 ================================================================
-Device info:HarmonyOS 3.2                 <- Device information
-Build info:HarmonyOS 5.0.0.23             <- Build information
+Device info:OpenHarmony 3.2       <- Device info
+Build info:OpenHarmony 6.1.0.22    <- Build info
+DeviceDebuggable:No <- Whether the device system version is debuggable
 Fingerprint:8bc3343f50024204e258b8dce86f41f8fcc50c4d25d56b24e71fe26c0a23e321  <- Fingerprint
-Module name:crasher_cpp                     <- Module name
-Timestamp:2024-05-06 20:28:24.000           <- Timestamp when the fault occurs
-Pid:9838                                    <- Process ID
-Uid:0                                       <- User ID
-HiTraceId:a92ab1c7eae68fa  <- HiTraceId (Optional. If the fault thread does not have HiTraceId, it is not printed.)
-Process name:./crasher_cpp                  <- Process name
-Process life time:2s                        <- Process life time
-Process Memory(kB): 11902(Rss)            <- Memory used by the process
-Device Memory(kB): Total 1935820, Free 516244, Available 1205608 <- Device memory status (optional).
-Reason:Signal:SIGSEGV(SI_TKILL)@0x000000000004750 from:18256:0   <- Fault Cause
+Module name:com.example.uv001      <- Module name
+ReleaseType:release <- App release type
+CpuAbi:armeabi-v7a <- Binary interface type
+Version:1.0.0 <- App version number (dotted format)
+VersionCode:1000000 <- App version number (integer format)
+IsSystemApp:No <- Whether the app is a system app
+PreInstalled:No <- Whether the app is pre-installed
+Foreground:Yes <- Foreground/background status
+Page switch history: <- Page switch history
+  10:09:06.006 :enters foreground
+Timestamp:2026-01-08 11:25:46.000  <- Fault occurrence timestamp
+Pid:28421                                   <- Process ID
+Uid:20020214                                <- User ID
+HiTraceId:a92ab1c7eae68fa  <- HiTraceChain unique trace ID (optional; not printed if the fault thread has no HiTraceId)
+Process name:com.example.uv001              <- Fault process name
+App running unique id:124500628566978194    <- App runtime unique associated ID
+Process life time:42s                        <- Fault process lifetime
+Process Memory(kB): 151736(Rss)            <- Fault process memory usage
+Device Memory(kB): Total 11712088, Free 2500232, Available 5275648 <- Device memory info (optional)
+Log source:processdump <- Identifies the log collection method. `processdump` indicates that the log is generated in user mode.
+Reason:Signal:SIGABRT(SI_TKILL)@0x01317bf600006f05  from:28421:20020214  <- Fault reason
 Fault thread info:
-Tid:18257, Name:crasher_cpp                 <- Thread ID, thread name
-#00 pc 000054e6 /system/bin/ld-musl-aarch64.so.l(raise+228)(adfc673300571d2da1e47d1d12f48b44) <- Call stack
-#01 pc 000054f9 /system/bin/crasher_cpp(CrashInSubThread(void*)+56)(adfc673300571d2da1e47d1d12f48b50)
-#02 pc 000054f9 /system/bin/ld-musl-aarch64.so.l(start+236)(adfc673300571d2da1e47d1d12f48b44)
+Tid:29192, Name:OS_FFRT_2_0                 <- Fault thread ID and thread name
+#00 pc 00000000001bfa74 /system/lib/ld-musl-aarch64.so.1(raise+216)(2f1b32d70ef466b15265fd08a0eca91e)  <- Call stack
+#01 pc 0000000000001ff8 /data/storage/el1/bundle/libs/arm64/libentry.so(7869adbb6ed8ae9fed544fa0eb2883f9a22d3bc5)
+#02 pc 0000000000013694 /system/lib64/platformsdk/libuv.so(uv__queue_work+60)(f78cf9546cece23d7b088a751ff98497)
+#03 pc 0000000000093224 /system/lib64/ndk/libffrt.so(ffrt::UVTask::Execute()+744)(4f907cee9caa17cf5d72826c09f13f10)
+#04 pc 000000000008e784 /system/lib64/ndk/libffrt.so(ffrt::ExecuteTask(ffrt::TaskBase*)+248)(4f907cee9caa17cf5d72826c09f13f10)
+#05 pc 000000000002ed3c /system/lib64/ndk/libffrt.so(ffrt::CPUWorker::RunTask(ffrt::TaskBase*,ffrt::CPUWorker*)+84)(4f907cee9caa17cf5d72826c09f13f10)
+#06 pc 00000000000c87b0 /system/lib64/ndk/libffrt.so(4f907cee9caa17cf5d72826c09f13f10)
+#07 pc 00000000001dfbf0 /system/lib/ld-musl-aarch64.so.1(start+240)(2f1b32d70ef466b15265fd08a0eca91e)
 ========SubmitterStacktrace========       <- The call stack used to print submitting thread
-#00 pc 000094dc /system/bin/crasher_cpp(DfxCrasher::AsyncStacktrace()+36)(adfc673300571d2da1e47d1d12f48b50)
-#01 pc 00009a58 /system/bin/crasher_cpp(DfxCrasher::ParseAndDoCrash(char const*) const+232)(adfc673300571d2da1e47d1d12f48b50)
-#02 pc 00009b40 /system/bin/crasher_cpp(main+140)(adfc673300571d2da1e47d1d12f48b50)
-#03 pc 0000a4e1c /system/bin/ld-musl-aarch64.so.l(libc_start_main_stage2+68)(adfc673300571d2da1e47d1d12f48b44)
+#00 pc 0000000000013590 /system/lib64/platformsdk/libuv.so(uv_queue_work+304)(f78cf9546cece23d7b088a751ff98497)
+#01 pc 0000000000001f74 /data/storage/el1/bundle/libs/arm64/libentry.so(7869adbb6ed8ae9fed544fa0eb2883f9a22d3bc5)
+#02 pc 000000000006a258 /system/lib64/platformsdk/libace_napi.z.so(panda::JSValueRefArkNativeFunctionCallBack<true>(panda::JsiRuntimeCallInfo*)+296)(23225c16f1721ec4629f9788305fc487)
+#03 pc 0000000000e7f46c /system/lib64/module/arkcompiler/stub.an(RTStub_PushCallArgsAndDispatchNative+44)
+#04 pc 00000000004854c0 /system/lib64/module/arkcompiler/stub.an(BCStub_HandleCallthis2Imm8V8V8V8StwCopy+440)
+#05 at func_main_0 (entry|entry|1.0.0|src/main/ets/pages/Index.ts:72:10)
+#06 pc 0000000000366444 /system/lib64/platformsdk/libark_jsruntime.so(panda::ecmascript::EcmaInterpreter::Execute(panda::ecmascript::EcmaRuntimeCallInfo*)+800)(6e93189f3a9e33adb9455beb7c675df6)
+#07 pc 0000000000803fcc /system/lib64/platformsdk/libark_jsruntime.so(6e93189f3a9e33adb9455beb7c675df6)
+#08 pc 0000000000804da4 /system/lib64/platformsdk/libark_jsruntime.so(panda::ecmascript::EcmaVM::InvokeEcmaEntrypoint(panda::ecmascript::JSPandaFile const*,std::__h::basic_string<char,std::__h::char_traits<char>,panda::ecmascript::CAddressAllocator<char>> const&,panda::ecmascript::ExecuteTypes const&)+776)(6e93189f3a9e33adb9455beb7c675df6)
+#09 pc 000000000049d0f4 /system/lib64/platformsdk/libark_jsruntime.so(6e93189f3a9e33adb9455beb7c675df6)
+#10 pc 000000000039735c /system/lib64/platformsdk/libark_jsruntime.so(panda::ecmascript::SourceTextModule::ModuleExecution(panda::ecmascript::JSThread*,panda::ecmascript::JSHandle<panda::ecmascript::SourceTextModule> const&,void const*,unsigned long, panda::ecmascript::ExecuteTypes const&)+1108)(6e93189f3a9e33adb9455beb7c675df6)
+#11 pc 00000000003db718 /system/lib64/platformsdk/libark_jsruntime.so(6e93189f3a9e33adb9455beb7c675df6)
+#12 pc 00000000003dacc0 /system/lib64/platformsdk/libark_jsruntime.so(panda::ecmascript::SourceTextModule::Evaluate(panda::ecmascript::JSThread*,panda::ecmascript::JSHandle<panda::ecmascript::SourceTextModule> const&,void const*,unsigned long,panda::ecmascript::ExecuteTypes const&)+736)(6e93189f3a9e33adb9455beb7c675df6)
+#13 pc 00000000005ac534 /system/lib64/platformsdk/libark_jsruntime.so(6e93189f3a9e33adb9455beb7c675df6)
+#14 pc 00000000005abbec /system/lib64/platformsdk/libark_jsruntime.so(6e93189f3a9e33adb9455beb7c675df6)
+#15 pc 0000000000644acc /system/lib64/platformsdk/libark_jsruntime.so(6e93189f3a9e33adb9455beb7c675df6)
 ...
 ```
 
+<!--RP5End-->
+
 ### Application Crash Log Configured by HiAppEvent
 
-The system provides a common crash log generation functionality. To meet personalized requirements of some applications on the crash log content, HiAppEvent provides the [setEventConfig](hiappevent-watcher-crash-events.md#customizing-crash-log-specifications) API to set crash log configuration parameters since API version 20. The following is the core content of a 32-bit system crash log archived by DevEco Studio in FaultLog:
+The system provides a general crash log generation feature, but some apps require custom log content. Therefore, starting from **API version 20**, you can configure custom log content through the [setEventConfig](hiappevent-watcher-crash-events.md#seteventconfig-api-description) API.
+
+The following is the core content of a system crash log archived by DevEco Studio in **FaultLog**:
+
+<!--RP6-->
 
 ```text
 ...
-Build info:OpenHarmony 6.0.0.33
+Build info:OpenHarmony 6.1.0.22
+...
 Enabled app log configs:    <- List of enabled configuration parameters. Only the configuration parameters that are not set to the default values are printed.
 Extend pc lr printing:true  <- Set extend_pc_lr_printing to true.
 Log cut off size:102400B    <- Truncate the crash log size to 100 KB. (This field is valid only for crash logs obtained through the HiAppEvent API.)
 Simplify maps printing:true <- Set simplify vma_printing to true.
-Timestamp:2025-05-17 19:17:07.000
+Timestamp:2026-01-08 11:25:46.000
 ...
 Registers:  <- Fault registers
-r0:00000000 r1:ff87d48c r2:00000000 r3:00000008
-r4:00000000 r5:fffff000 r6:00000000 r7:000000af
-r8:00c0b4f0 r9:00c0bdc0 r10:00c0bdc0
-fp:ff87d520 ip:00c0a6e4 sp:ff87d488 lr:f7ecc044 pc:f7f19940
-cpsr:00800010
+x0:fffffffffffffffc x1:0000007e5420ad60 x2:0000000000000008 x3:000000007fffffff
+x4:0000000000000000 x5:0000000000000008 x6:575f45524f464542 x7:474e49544941575f
+x8:0000000000000016 x9:0000000000000008 x10:0000007e5420ad60 x11:e18b0e5877a00005
+x12:000000003b9ac9ff x13:007070632e72656e x14:2f72656c646e6168 x15:8f94b1d6208ca9b4
+x16:0000005afeafe7d0 x17:0000005afb7f83a0 x18:000000000000000d x19:0000005b1b4d4d50
+x20:0000005b0c5fcf20 x21:0000005b1b4d4ce0 x22:7fffa71517841b1d x23:0000005b1b4d4ce0
+x24:0000007e5420af40 x25:0000000000000000 x26:0000000000000000 x27:00000055a511d354
+x28:0000005b1a937bc8 x29:0000007e5420ad20
+lr:0000005afeae1b78 sp:0000007e5420ad20 pc:0000005afb7f83f0
+pstate:0000000020001000 esr:0000000000000000
 Memory near registers:
 ...
-lr(/system/lib/ld-musl-arm.so.1): <- Memory value near the LR.
-    f7ecbfc8 e0824000 <- When extend_pc_lr_printing is set to true, the memory value is printed forward to this point.
+lr(/system/lib64/chipset-sdk-sp/libeventhandler.z.so): <- Memory values near the lr register address
+    0000005afeae1a80 2a1f03e0940067e8 <- When extend_pc_lr_printing is set to true, forward printing of memory values ends here
     ...
-    f7ecc03c e3a00006 <- When extend_pc_lr_printing is set to false, the memory value is printed forward to this point.
-    f7ecc040 eb013612
-    f7ecc044 e59f10b0 <- Memory value (e59f10b0) of the LR (f7ecc044)
+    0000005afeae1b68 910083e19a89b103 <- When extend_pc_lr_printing is set to false, forward printing of memory values ends here
+    0000005afeae1b70 9400680b52800102
+    0000005afeae1b78 885ffe682a0003f7 <- Memory value (885ffe682a0003f7) at the lr register address (0000005afeae1b78)
     ...
-    f7ecc0b8 e58d4004 <- When extend_pc_lr_printing is set to false, the memory value is printed backward to this point.
-    f7ecc0bc e1a0100d
-    f7ecc0c0 e3a00020
-    f7ecc0c4 e3a070af <- When extend_pc_lr_printing is set to true, the memory value is printed backward to this point.
-pc(/system/lib/ld-musl-arm.so.1): <- Memory value near the PC.
-    f7f198c4 e5900000 <- When extend_pc_lr_printing is set to true, the memory value is printed forward to this point.
+    0000005afeae1c60 52801002d10243a1 <- When extend_pc_lr_printing is set to false, backward printing of memory values ends here
+    0000005afeae1c68 ad3c83a0ad3b83a0
+    0000005afeae1c70 ad3e83a0ad3d83a0
+    0000005afeae1c78 94006799b9400000 <- When extend_pc_lr_printing is set to true, backward printing of memory values ends here
+pc(/system/lib/ld-musl-aarch64.so.1): <- Memory values near the pc register address
+    0000005afb7f82f8 f9000bf3a9be7bfd <- When extend_pc_lr_printing is set to true, forward printing of memory values ends here
     ...
-    f7f19938 e3a03008 <- When extend_pc_lr_printing is set to false, the memory value is printed forward to this point.
-    f7f1993c ef000000
-    f7f19940 e51b0014 <- Memory value (e51b0014) of the PC (f7f19940).
+    0000005afb7f83e0 aa1f03e4aa0403e3 <- When extend_pc_lr_printing is set to false, forward printing of memory values ends here
+    0000005afb7f83e8 d400000152800105
+    0000005afb7f83f0 eb00811fb25453e8 <- Memory value (eb00811fb25453e8) at the pc register address (0000005afb7f83f0)
     ...
-    f7f199b4 e2b52000 <- When extend_pc_lr_printing is set to false, the memory value is printed backward to this point.
-    f7f199b8 03530000
-    f7f199bc 0a000003
-    f7f199c0 ebfec957 <- When extend_pc_lr_printing is set to true, the memory value is printed backward to this point.
+    0000005afb7f84d8 aa0903e152800260 <- When extend_pc_lr_printing is set to false, backward printing of memory values ends here
+    0000005afb7f84e0 d63f0100f9439508
+    0000005afb7f84e8 a9be7bfd17ffffe6
+    0000005afb7f84f0 910003fdf9000bf3 <- When extend_pc_lr_printing is set to true, backward printing of memory values ends here
 ...
 Maps:       <- When simplify _vma_printing is set to true, the number of maps to be printed is reduced. Only the maps to which the addresses in the crash log belong are retained.
-ba0000-ba9000 r--p 00000000 /data/test/test_signalhandler
-ba9000-bd8000 r-xp 00008000 /data/test/test_signalhandler
-bd8000-bdb000 r--p 00036000 /data/test/test_signalhandler
-bdb000-bdc000 rw-p 00038000 /data/test/test_signalhandler
+55a511d000-55a5128000 r--p 00000000 /system/bin/appspawn
+55a5128000-55a513b000 r-xp 0000a000 /system/bin/appspawn
+55a513b000-55a513c000 r--p 0001c000 /system/bin/appspawn
+55a513c000-55a513e000 rw-p 0001c000 /system/bin/appspawn
 ... <- Maps to which the addresses in the crash logs belong, which are not displayed here.
 OpenFiles:
 ...
 [truncated] <- Log truncation flag, indicating that the log is truncated.
 ```
 
+<!--RP6End-->
+
 ### Faults with Page Switching History
 
-Since API version 20, the maintenance and debugging process records the application switching history for applications that involve page switching. After an application fault occurs, the generated fault file contains the page switching history.
+Since API version 20, the maintenance and debugging process records the app switching history for apps that involve page switching. After an app fault occurs, the generated fault file contains the page switching history.
 
 A maximum of 10 latest history records can be recorded in a fault log file.
 
@@ -699,6 +785,7 @@ Uid:0
 ```
 
 The format of a record is as follows:
+
 ```text
   14:08:30:327 /ets/pages/Index:JsError
        ^             ^            ^
@@ -707,13 +794,208 @@ The format of a record is as follows:
 
 > **NOTE**
 >
-> The child page's name is available only when it is navigated to through **Navigation**.
+> The child page's name is available only when it is navigated to through **Navigation**. The page name is defined in [System Routing Table](../ui/arkts-navigation-cross-package.md#system-routing-table).
 >
 > When the application switches between the foreground and background, the corresponding page URL is empty, but **enters foreground** and **leaves foreground** are displayed as special page names.
 >
 > **enters foreground**: The application runs in the foreground.
 >
 > **leaves foreground**: The application runs in the background.
+
+## CppCrash Clustering
+
+### Clustering Introduction
+
+Cpp Crash logs generated by an application in different versions or at different times in the same version may have the same root cause. However, most information in Cpp Crash logs changes with the version, time, and other factors, making it difficult to quickly identify duplicate issues.
+
+Cpp Crash fault information contains both system-side and application-side call stacks, which makes it harder for you to quickly locate application-side issues.
+
+To avoid repeated analysis of multiple fault logs and improve analysis efficiency, Cpp Crash fault information needs to be clustered.
+
+Clustering also helps you classify and collect statistics on issues with different causes.
+
+### Clustering Scope
+
+The fault thread information in a Cpp Crash log indicates the code call information when a service thread fails. The same fault thread call stack always indicates the same fault cause.
+
+Therefore, using fault thread information as the clustering scope is the most accurate approach. You can add other fault log information based on service-specific clustering requirements.
+
+In a Cpp Crash log, fault thread information starts from `Fault thread info:` and ends before `Registers:`, as shown below:
+
+```text
+...
+Fault thread info:
+Tid:10208, Name:crasher_cpp
+#00 pc 000e8400 /system/lib/ld-musl-arm.so.1(raise+176)(a40044d0acb68107cfc4adb5049c0725)
+#01 pc 00008cdc /data/storage/el1bundle/libs/arm64/libsample.so(8b74cdc906ea6b2eba95d891bc91c72a)
+#02 pc 0005ae00 /system/lib/platformsdk/libace_napi.z.so(panda::JSValueRef ArkNativeFunctionCallBack<true>(panda::JsiRuntimeCallInfo*)+272)(bc1c64aabbe5c7d4db2282a6137443e1)
+#03 pc 00de3efc /system/lib/module/arkcompiler/stub.an(RTStub_PushCallArgsAndDispatchNative+44)
+#04 pc 00448dd4 /system/lib/module/arkcompiler/stub.an(BCStub_HandleCallthis0Imm8V8StwCopy+372)
+#05 at triggerCrash (sample|sample|1.0.0|src/main/ets/pages/CppCrash.ts:49:25)
+#06 at onPageShow (sample|sample|1.0.0|src/main/ets/pages/Index.ts:381:36)
+#07 pc 001e5c8c /system/lib/platformsdk/libark_jsruntime.so(ce0b05d90b9fae02e7abf8e9f1e5a0f3)
+...
+Registers:
+...
+```
+
+### Extracting Clustering Information
+
+Fault thread information mainly consists of call stack information, in addition to the thread name and thread ID. You can use regular expressions to match and filter stack content.
+
+Since system and application versions may differ, call stacks may contain change-prone information such as line numbers, byte offsets, and Build IDs. Therefore, the information needs to be extracted and filtered.
+
+You are advised to perform the following operations on each stack frame.
+
+**Normalize native stack frames:**
+
+| Original Stack Frame Content | Normalized Stack Frame Content |
+| ------------- | ---------------- |
+| #02 pc 0005ae00 /system/lib/platformsdk/libace_napi.z.so(panda::JSValueRef ArkNativeFunctionCallBack\<true\>(panda::JsiRuntimeCallInfo*)+272)(bc1c64aabbe5c7d4db2282a6137443e1) | /system/lib/platformsdk/libace_napi.z.so(panda::JSValueRef ArkNativeFunctionCallBack\<true\>(panda::JsiRuntimeCallInfo*)+272) |
+
+Process the stack frame as follows:
+
+a. Remove the frame number.
+
+b. Remove the PC offset and Build ID.
+
+c. Retain the file path, for example, `/system/lib/platformsdk/libace_napi.z.so`.
+
+d. Retain the full function signature, for example, `panda::JSValueRef ArkNativeFunctionCallBack<true>(panda::JsiRuntimeCallInfo*)+272`, which is the content in parentheses, including the class name, function name, parameters, `const`, and parameter types.
+
+If a native stack frame contains only a binary file name and no function name, you can retain the PC offset and file path.
+
+| Original Stack Frame Content | Normalized Stack Frame Content |
+| ------------- | ---------------- |
+| #01 pc 00008cdc /data/storage/el1bundle/libs/arm64/libsample.so(8b74cdc906ea6b2eba95d891bc91c72a) | 00008cdc /data/storage/el1bundle/libs/arm64/libsample.so |
+
+**Normalize JS stack frames:**
+
+| Original Stack Frame Content | Normalized Stack Frame Content |
+| ------------- | ---------------- |
+| #06 at onPageShow (sample\|sample\|1.0.0\|src/main/ets/pages/Index.ts:381:36) | onPageShow (sample\|sample\|1.0.0\|src/main/ets/pages/Index.ts:381:36) |
+
+Process the stack frame as follows:
+
+a. Remove the line number.
+
+b. Retain the function name, for example, `onPageShow`.
+
+c. Retain the file path, line number, and column number, for example, `src/main/ets/pages/Index.ts:381:36`.
+
+d. Retain the module name, dependency module name, and version information, for example, `sample|sample|1.0.0|`.
+
+### Extracting Clustering Features
+
+After normalization, the stack may still contain many frames, which is not ideal for storage and query after clustering. You need to define a clustering feature extraction method based on service requirements to further simplify stack frame information into clustering features.
+
+The following method is recommended.
+
+**1. Filter basic libraries and exception stack frames.**
+
+Filter stack frames that contain any of the following fields:
+
+```text
+libc.so
+libc++.so
+ld-musl-aarch64.so
+libc_fdleak_debug.so
+unknown
+watchdog
+kthread
+rdr_system_error
+libart.so
+__switch_to
+dump_backtrace
+show_stack
+dump_stack
+panic
+libace_napi.z.so
+libarkjs_runtime.z.so
+```
+
+**2. Filter system stack frames and select service stack frames.**
+
+System library stack frames start with `/system/lib` or `/system/lib64`. Example:
+
+```text
+/system/lib/platformsdk/libace_napi.z.so(panda::JSValueRef ArkNativeFunctionCallBack\<true\>(panda::JsiRuntimeCallInfo*)+272)
+```
+
+Service stack frames start with `at` or contain `/data` or `/data/storage`.
+
+JS stack frames are service stack frames by default. Example:
+
+```text
+at onPageShow (sample|sample|1.0.0|src/main/ets/pages/Index.ts:381:36)
+```
+
+Native stack frame of an application:
+
+```text
+00008cdc /data/storage/el1bundle/libs/arm64/libsample.so
+```
+
+**3. Select key stack frames.**
+
+Extract a small number of stack frames in order as clustering features. For example, retain only the first, second, and last stack frames as feature information.
+
+You can define filtering conditions based on service requirements, as long as the feature information remains consistent for the same fault.
+
+### Generating Clustering Features
+
+The final clustering feature is a service call stack sequence that contains a small number of normalized stack frames.
+
+| Original Fault Thread Stack | Final Clustering Feature (Call Order from Top to Bottom) |
+| ----------- | ------------------- |
+| #00 pc 000e8400 /system/lib/ld-musl-arm.so.1<br>(raise+176)(a40044d0acb68107cfc4adb5049c0725)<br> #01 pc 00008cdc /data/storage/el1bundle/libs/arm64/libsample.so<br>(8b74cdc906ea6b2eba95d891bc91c72a)<br> #02 pc 0005ae00 /system/lib/platformsdk/libace_napi.z.so<br>(panda::JSValueRef ArkNativeFunctionCallBack\<true\>(panda::JsiRuntimeCallInfo*)+272)(bc1c64aabbe5c7d4db2282a6137443e1)<br> #03 pc 00de3efc /system/lib/module/arkcompiler/stub.an(RTStub_PushCallArgsAndDispatchNative+44)<br> #04 pc 00448dd4 /system/lib/module/arkcompiler/stub.an(BCStub_HandleCallthis0Imm8V8StwCopy+372)<br> #05 at triggerCrash (sample\|sample\|1.0.0\|src/main/ets/pages/CppCrash.ts:49:25)<br> #06 at onPageShow (sample\|sample\|1.0.0\|src/main/ets/pages/Index.ts:381:36)<br> #07 pc 001e5c8c /system/lib/platformsdk/libark_jsruntime.so(ce0b05d90b9fae02e7abf8e9f1e5a0f3) | 00008cdc /data/storage/el1bundle/libs/arm64/libsample.so<br> triggerCrash (sample\|sample\|1.0.0\|src/main/ets/pages/CppCrash.ts:49:25)<br> onPageShow (sample\|sample\|1.0.0\|src/main/ets/pages/Index.ts:381:36) |
+
+You can classify and collect statistics on Cpp Crash issues by comparing clustering features extracted from multiple fault logs.
+
+You can also use the `Fingerprint` field in the current fault log as a reference, calculate a hash value for the clustering feature content to generate a fault feature identifier, and then classify and collect statistics on Cpp Crash issues based on the identifier.
+
+## Log Specification Differences Across Collection Methods
+
+| Field | Description | processdump | pdump | liteprocessdump |
+|---|---|---|---|---|
+| Device info | Device information | Yes | Yes | Yes |
+| Build info | Build information | Yes | Yes | Yes |
+| DeviceDebuggable | Whether the system version of the device is debuggable | Yes | Yes | Yes |
+| Fingerprint | Fault fingerprint, a hash value for clustering similar issues. The same hash value indicates the same fault cause. | Yes | Yes | Yes |
+| Enabled app log configs | List of enabled configuration parameters | Yes | No | No |
+| Module name | Module name | Yes | Yes | Yes |
+| ReleaseType | Release type of the app | Yes | Yes | Yes |
+| CpuAbi | Binary interface type | Yes | Yes | Yes |
+| Version | App version number (dotted format) | Yes | Yes | Yes |
+| VersionCode | App version number (integer format) | Yes | Yes | Yes |
+| IsSystemApp | Whether the app is a system app | Yes | Yes | Yes |
+| PreInstalled | Whether the app is pre-installed | Yes | Yes | Yes |
+| Foreground | Foreground/background status | Yes | Yes | Yes |
+| Page switch history | Page switch history | Yes | Yes | Yes |
+| Timestamp | Timestamp when the fault occurred | Yes | Yes | Yes |
+| Pid | Process ID | Yes | Yes | Yes |
+| Uid | User ID | Yes | Yes | Yes |
+| HiTraceId | Unique trace ID of HiTraceChain | Yes | No | No |
+| Process name | Fault process name | Yes | Yes | Yes |
+| App running unique id | Unique ID associated with the app runtime | Yes | No | Yes |
+| Process life time | Lifetime of the fault process | Yes | Yes | Yes |
+| Process Memory(kB) | Memory usage of the fault process | Yes | Yes | Yes |
+| Device Memory(kB) | Overall device memory status | Yes | Yes | Yes |
+| Log source | Identifies the log collection method | Yes | Yes | Yes |
+| Reason | Fault cause | Yes | Yes | Yes |
+| LastFatalMessage | Fatal message | Yes | No | No |
+| Fault thread info | Fault thread information | Yes | Yes | Yes |
+| SubmitterStacktrace | Submitter thread stack | Yes | No | No |
+| Registers | Registers at the fault site | Yes | Yes | Yes |
+| ExtraCrashInfo | Additional memory information | Yes | No | No |
+| Other thread info | Other thread information | Yes | Yes | Yes |
+| Memory near registers | Memory values near registers at the fault site | Yes | Yes | Yes |
+| FaultStack | Fault thread stack memory information | Yes | Yes | Yes |
+| Maps | Memory space of the process at the time of fault | Yes | Yes | Yes |
+| OpenFiles | File handle information held by the process at the time of fault | Yes | No | Yes |
+| HiLog | Running logs printed before the fault, up to 1000 lines | Yes | Yes | Yes |
+| [truncated] | Fault log truncation flag | Yes | Yes | Yes |
+| MergeLog | Third-party app merged log identifier | Yes | No | No |
 
 ## FAQs
 
@@ -732,3 +1014,93 @@ In OpenHarmony, the call stack is obtained based on the backtrace table (which r
 **Enabling Compilation Options**
 
 For example, in CMake, add **set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -fno-omit-frame-pointer -funwind-tables")** to **CMakeList.txt**.
+
+### What should I do if the app exits due to a SIGPIPE exception?
+
+Starting from API version 24, when an application exits due to a SIGPIPE exception, you can enable call stack printing for SIGPIPE signals. After restarting the application, reproduce the issue to collect call stack information and output it to HILOG.
+
+> **NOTE**
+>
+> This feature can be enabled only for [apps of the debug version](performance-analysis-kit-terminology.md#applications-of-the-debug-version).
+
+The key log for SIGPIPE exception exit is as follows:
+
+```text
+App bundle name with pid xxxx exit with signal:13
+```
+
+- **SIGPIPE signal description**
+
+  | Signo | Signal | Description | Trigger Cause |
+  | -------- | -------- | -------- | -------- |
+  | 13 | SIGPIPE | Illegal operation on a pipe or socket | - Pipe or named pipe (FIFO): The write end writes to the pipe, but the read end has been closed.<br>- Socket: After the client disconnects, the server still attempts to write data to the closed connection. |
+
+- **Enable the SIGPIPE debug switch.**
+
+  Run the following command in the DevEco Studio terminal: `hdc shell param set hilog.signal.stack.on SIGPIPE`. Restart the application after the command is executed. The setting becomes invalid after the device restarts.
+
+- **Verify that the feature is enabled.**
+
+  Filter logs in HILOG by using the keyword `C02D11`. If the filtered logs contain information about the line where the exception occurs, the call stack feature has been enabled successfully.
+
+  The following example uses the `testSIGPIPE()` function to construct a SIGPIPE exception scenario:
+
+  ```c++
+  #include <unistd.h>
+  #include <signal.h>
+
+  int testSIGPIPE()
+  {
+      sigset_t set, oldset;
+      // Initialize the signal set and add the signal to be temporarily unblocked.
+      sigemptyset(&set);
+      sigaddset(&set, SIGPIPE);
+      // Save the current signal mask first.
+      if (sigprocmask(SIG_SETMASK, NULL, &oldset) != 0) {
+          return -1;
+      }
+      // Temporarily unblock the signal.
+      if (sigprocmask(SIG_UNBLOCK, &set, NULL) != 0) {
+          return -1;
+      }
+      // After creating the pipe, close the read end first, then continue writing to the write end to construct a SIGPIPE exception scenario.
+      int pipe[2]{-1};
+      if (pipe2(pipe, 0) != 0) {
+          return -1;
+      }
+      close(pipe[0]);
+      int src = 1;
+      write(pipe[1], reinterpret_cast<const void*>(&src), sizeof(int));
+      close(pipe[1]);
+    
+      // Finally, restore the original mask.
+      if (sigprocmask(SIG_SETMASK, &oldset, NULL) != 0) {
+          return -1;
+      }
+      return 0;
+  }
+  ```
+
+  Filter the logs. If the call stack shows that the exception occurs in `testSIGPIPE()`, the feature is enabled successfully.
+
+  ```text
+  ...
+  03-06 13:55:25.876   20440-20440   C02D11/process...fxFaultLogger  pid-20440             I     Timestamp:2026-03-06 13:55:25.382
+  03-06 13:55:25.876   20440-20440   C02D11/process...fxFaultLogger  pid-20440             I     Pid:19787
+  03-06 13:55:25.876   20440-20440   C02D11/process...fxFaultLogger  pid-20440             I     Uid:20020208
+  03-06 13:55:25.876   20440-20440   C02D11/process...fxFaultLogger  pid-20440             I     Process name:com.example.myapplication
+  03-06 13:55:25.876   20440-20440   C02D11/process...fxFaultLogger  pid-20440             I     Process life time:12s
+  03-06 13:55:25.876   20440-20440   C02D11/process...fxFaultLogger  pid-20440             I     Process Memory(kB): 172773(Rss)
+  03-06 13:55:25.876   20440-20440   C02D11/process...fxFaultLogger  pid-20440             I     Reason:Signal:SIGPIPE(SI_USER)from:19787:20020208
+  03-06 13:55:25.876   20440-20440   C02D11/process...fxFaultLogger  pid-20440             I     Fault thread info:
+  03-06 13:55:25.876   20440-20440   C02D11/process...fxFaultLogger  pid-20440             I     Tid:19787, Name:e.myapplication
+  03-06 13:55:25.876   20440-20440   C02D11/process...fxFaultLogger  pid-20440             I     #00 pc 00000000001e8150 /system/lib/ld-musl-aarch64.so.1(write+68)(90776dcdb3f38042fc78b97d93138bde)
+  03-06 13:55:25.876   20440-20440   C02D11/process...fxFaultLogger  pid-20440             I     #01 pc 0000000000001cf8 /data/storage/el1/bundle/libs/arm64/libentry.so(testSIGPIPE()+228)(d6af99a8111f4c2761800cb1432bea140f5176e4)
+  03-06 13:55:25.876   20440-20440   C02D11/process...fxFaultLogger  pid-20440             I     #02 pc 0000000000001e34 /data/storage/el1/bundle/libs/arm64/libentry.so(d6af99a8111f4c2761800cb1432bea140f5176e4)
+  ...
+  ```
+
+<!--RP10-->
+<!--RP10End-->
+
+<!--no_check-->

@@ -38,7 +38,7 @@ NDK（Native Development Kit）是OpenHarmony SDK提供的Native API、相应编
 
 - **Linux C语言编程知识**
 
-  内核、libc基础库基于POSIX等标准扩展而来，掌握基本的Linux C编程知识能够更好的帮助理解OpenHarmony NDK开发。
+  内核、libc基础库基于POSIX等标准扩展而来，掌握基本的Linux C编程知识能够更好地帮助理解OpenHarmony NDK开发。
 
 - **CMake使用知识**
 
@@ -46,7 +46,7 @@ NDK（Native Development Kit）是OpenHarmony SDK提供的Native API、相应编
 
 - **Node Addons开发知识**
 
-  ArkTS采用Node-API作为跨语言调用接口，熟悉基本的[Node Addons开发模式](https://nodejs.org/api/addons.html)，可以更好理解NDK中Node-API的使用。
+  ArkTS采用Node-API作为跨语言调用接口，熟悉基本的[Node Addons开发模式](https://nodejs.org/api/addons.html)，可以更好地理解NDK中Node-API的使用。
 
 - **Clang/LLVM编译器使用知识**
 

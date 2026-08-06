@@ -230,7 +230,7 @@ static napi_value Add([[maybe_unused]] napi_env _env, [[maybe_unused]] napi_call
 
 ```cpp
 static JSVM_Value IncorrectDemo1(JSVM_Env env, JSVM_CallbackInfo info) {
-    // argc 未正确的初始化，其值为不确定的随机值，导致 argv 的长度可能小于 argc 声明的数量，数据越界。
+    // argc 未正确初始化，其值为不确定的随机值，导致 argv 的长度可能小于 argc 声明的数量，数据越界。
     size_t argc;
     JSVM_Value argv[10] = {nullptr};
     OH_JSVM_GetCbInfo(env, info, &argc, argv, nullptr, nullptr);
@@ -269,7 +269,7 @@ static JSVM_Value GetArgvDemo1(napi_env env, JSVM_CallbackInfo info) {
 
 static JSVM_Value GetArgvDemo2(napi_env env, JSVM_CallbackInfo info) {
     size_t argc = 2;
-    JSVM_Value* argv[2] = {nullptr};
+    JSVM_Value argv[2] = {nullptr};
     // OH_JSVM_GetCbInfo 会向 argv 中写入 argc 个 JS 传入参数或 undefined
     OH_JSVM_GetCbInfo(env, info, &argc, argv, nullptr, nullptr);
     // 业务代码

@@ -170,7 +170,7 @@ startAbility(want: Want, options: StartOptions, callback: AsyncCallback&lt;void&
 | 16000019 | No matching ability is found. <br>适用版本：12+ |
 | 16000050 | Internal error. |
 | 16000053 | The ability is not on the top of the UI. |
-| 16000055 | Installation-free timed out. <br>适用版本：12+ |
+| 16000055 | Installation-free timed out. |
 | 16000067 | The StartOptions check failed. <br>适用版本：12+ |
 | 16000068 | The ability is already running. <br>适用版本：12+ |
 | 16300003 | The target application is not the current application. <br>适用版本：12+ |
@@ -3752,7 +3752,7 @@ startSelf(): Promise\<void>
 
 | 错误码ID | 错误信息 |
 | ------- | -------- |
-| 801 | Capability not supported, because starting self to foreground from background is not supported in current devive or current UIAbility is a non-native UIAbility. |
+| 801 | Capability not supported, because starting self to foreground from background is not supported in current device or current UIAbility is a non-native UIAbility. |
 | 16000011 | The context does not exist. |
 | 16000050 | Internal error. Connect to system service failed. |
 | 16000082 | The UIAbility is being started. The UIAbility has not completed onCreate or onWindowStageCreate. |

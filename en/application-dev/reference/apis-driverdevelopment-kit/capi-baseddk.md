@@ -1,11 +1,11 @@
-# BaseDdk
+# Ddk
 <!--Kit: Driver Development Kit-->
 <!--Subsystem: Driver-->
 <!--Owner: @zgene94-->
 <!--Designer: @w00373942-->
 <!--Tester: @dong-dongzhen-->
 <!--Adviser: @hu-zhiqiong-->
-<!-- md-trans-meta sourceCommit=a30d46aa87725f954a8669c5a6106a0f5fa2de6d translatedAt=2026-06-22T10:47:37.932Z pushedAt=2026-06-22T11:21:11.370Z -->
+<!-- md-trans-meta sourceCommit=80a690690bb3dbcda24d03e53bc7c3a287326f14 translatedAt=2026-07-28T07:00:59.223Z pushedAt=2026-07-28T08:40:44.021Z -->
 
 ## Overview
 

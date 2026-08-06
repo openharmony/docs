@@ -31,7 +31,7 @@ import { bundleManager } from '@kit.AbilityKit';
 | flags<sup>12+</sup>    | number    | 是   | 是   | 标识当前应用和当前用户之间的状态集合，每一位表示一个特定的布尔状态，取值参考[ApplicationInfoFlag](js-apis-bundleManager-sys.md#applicationinfoflag12)。<br/>**系统API：** 从API version 12开始，该接口支持在系统API中使用。 |
 
 
-## PreinstalledApplicationInfo<sup>12+</sup>
+## PreinstalledApplicationInfo
 
 **系统能力：** SystemCapability.BundleManager.BundleFramework.Core
 
@@ -39,8 +39,8 @@ import { bundleManager } from '@kit.AbilityKit';
 
 | 名称      | 类型           | 只读 | 可选 | 说明                        |
 | --------- | -------------- | ---- | ---- | --------------------------- |
-| bundleName | string         | 是   | 否   | 应用包的名称。                 |
-| moduleName | string         | 是   | 否   | 应用包的模块名，返回entry模块的moduleName。若不存在entry模块则返回feature模块的moduleName。            |
-| iconId | number         | 是   | 否   | 应用图标Id。            |
-| labelId | number         | 是   | 否   | 应用标签Id。            |
+| bundleName<sup>12+</sup> | string         | 是   | 否   | 应用包的名称。                |
+| moduleName<sup>12+</sup> | string         | 是   | 否   | 应用包的模块名，返回entry模块的moduleName。若不存在entry模块则返回feature模块的moduleName。            |
+| iconId<sup>12+</sup> | number         | 是   | 否   | 应用图标Id。           |
+| labelId<sup>12+</sup> | number         | 是   | 否   | 应用标签Id。            |
 | descriptionId<sup>24+</sup> | number         | 是   | 是   | 应用描述Id。<br>**模型约束：** 此接口仅可在Stage模型下使用。            |

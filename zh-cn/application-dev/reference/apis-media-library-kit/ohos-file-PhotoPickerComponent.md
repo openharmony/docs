@@ -259,7 +259,7 @@ private isOnClickedNotify: boolean = false;
         return true;
     };
     // 当一个宫格被点击时，代码会验证该宫格对应URI是否有效，如无效，则忽略。
-    // 然后，会检查 clickedUris 中否已存在该URI的记录。如没有，则创建一条记录并将 isSelected 属性设置为 true。
+    // 然后，会检查 clickedUris 中是否已存在该URI的记录。如没有，则创建一条记录并将 isSelected 属性设置为 true。
     // 如果记录存在，则将该记录的 isSelected 属性更新为 true。
     // 数据保存完成后点击“setClickResult”按钮，会调用addData(SET_ITEM_CLICK_RESULT)将对应宫格设置为选中状态。
     onClickedNotify: ItemClickedNotifyCallback = (itemInfo: ItemInfo, clickType: ClickType) => {

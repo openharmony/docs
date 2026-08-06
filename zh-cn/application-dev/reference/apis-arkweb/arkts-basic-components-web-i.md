@@ -29,15 +29,15 @@
 
 ## WebMediaOptions<sup>10+</sup>
 
-Web媒体策略的配置。
+用于配置Web组件的媒体策略，包括音频续播有效期、音频独占模式等。适用于需要优化音频播放体验和多实例音频管理的场景，提升媒体播放的稳定性和用户体验。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
 | 名称             | 类型      | 只读 | 可选  | 说明                                       |
 | -------------- | ------- | ---- | ---- | ---------------------------------------- |
-| resumeInterval | number  | 否 | 是 | 被其他应用暂停的Web音视频能够自动续播的有效期，单位：秒。取值范围：[-2147483648, 2147483647]。resumeInterval值为0时，不自动续播；大于0时，将在该时间内尝试续播；小于0时，将在无限时间内尝试续播。由于近似值原因，该有效期可能存在一秒内的误差。 <br>**说明：** <br>HLS视频被打断后，回到前台将自动续播，不受该时间控制。|
-| audioExclusive | boolean | 否 | 是 | 应用内多个Web实例的音频是否独占。<br>true表示应用内多个Web实例的音频独占，false表示应用内多个Web实例的音频不独占。<br>默认值：true。                       |
-| audioSessionType<sup>20+</sup> | [AudioSessionType](./arkts-basic-components-web-e.md#audiosessiontype20) | 否 | 是 | 应用中Web音频类型。默认值对应系统音频流类型[StreamUsage](../../reference/apis-audio-kit/arkts-apis-audio-e.md#streamusage)中的STREAM_USAGE_MUSIC。设置该参数会改变组件音频类型与系统音频类型映射关系，进而影响ArkWeb音频焦点策略。|
+| resumeInterval | number  | 否 | 是 | 被其他应用暂停的Web音视频能够自动续播的有效期，单位：秒。取值范围：[-2147483648, 2147483647]。值为0时，不自动续播；大于0时，将在该时间内尝试续播；小于0时，将在无限时间内尝试续播。由于近似值原因，该有效期可能存在一秒内的误差。 <br>**说明：** <br>HLS视频被打断后，回到前台将自动续播，不受该时间控制。<br/>默认值：0。|
+| audioExclusive | boolean | 否 | 是 | 应用内多个Web实例的音频是否独占。<br>true表示应用内多个Web实例的音频独占，false表示不独占。<br>默认值：true。                       |
+| audioSessionType<sup>20+</sup> | [AudioSessionType](./arkts-basic-components-web-e.md#audiosessiontype20) | 否 | 是 | 应用中Web音频类型。默认值对应系统音频流类型[StreamUsage](../../reference/apis-audio-kit/arkts-apis-audio-e.md#streamusage)中的STREAM_USAGE_MUSIC。用于改变组件音频类型与系统音频类型映射关系，影响ArkWeb音频焦点策略。|
 
 ## ScriptItem<sup>11+</sup>
 
@@ -66,7 +66,7 @@ Web媒体策略的配置。
 
 ## NestedScrollOptionsExt<sup>14+</sup>
 
-通过NestedScrollOptionsExt可以设置上下左右四个方向的嵌套滚动规则。
+用于设置Web组件嵌套滚动规则，支持上下左右四个方向的滚动选项。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -79,21 +79,22 @@ Web媒体策略的配置。
 
 ## NativeMediaPlayerConfig<sup>12+</sup>
 
-用于配置应用接管网页媒体播放功能接口[enableNativeMediaPlayer](./arkts-basic-components-web-attributes.md#enablenativemediaplayer12)的信息。
+用于配置应用接管网页媒体播放功能接口[enableNativeMediaPlayer](./arkts-basic-components-web-attributes.md#enablenativemediaplayer12)的功能，支持是否开启及是否覆盖网页内容。适用于需要自定义媒体播放行为的场景，提升媒体播放的集成度和用户体验。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
 | 名称 | 类型 | 只读 | 可选 | 说明 |
 |------|------|------|------|------|
-|  enable  | boolean | 否 | 否 | 是否开启应用接管网页媒体播放功能。<br/> true表示开启应用接管网页媒体播放功能，false表示关闭应用接管网页媒体播放功能。<br/> 默认值：false。 |
-|  shouldOverlay | boolean | 否 | 否 | 开启应用接管网页媒体播放功能后，应用接管网页视频的播放器画面是否覆盖网页内容。<br/> true表示改变视频图层的高度，使其覆盖网页内容。false表示不覆盖网页内容，跟原视频图层高度一样，嵌入在网页中。<br>默认值：false。 |
+|  enable  | boolean | 否 | 否 | 是否开启应用接管网页媒体播放功能。<br/> true表示开启应用接管网页媒体播放功能，false表示关闭该功能。<br/> 默认值：false。 |
+|  shouldOverlay | boolean | 否 | 否 | 开启应用接管网页媒体播放功能后，应用接管网页视频的播放器画面是否覆盖网页内容。<br/> true表示改变视频图层的层级，覆盖网页内容。false表示保持原层级，嵌入在网页中。<br>默认值：false。 |
 
 ## ExpandedMenuItemOptions<sup>(deprecated)</sup>
 
+自定义菜单扩展项。
+
 > **说明：**
 >
-> 从API version 12开始支持，从API version 20开始废弃，建议使用[editMenuOptions](./arkts-basic-components-web-attributes.md#editmenuoptions12)替代。
-自定义菜单扩展项。
+> 从API version 12开始支持，从API version 20开始废弃。建议使用[editMenuOptions](./arkts-basic-components-web-attributes.md#editmenuoptions12)替代。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -101,7 +102,7 @@ Web媒体策略的配置。
 | ---------- | -----------------------------------------------------| ------ | ------ | ---------------- |
 | content   | [ResourceStr](../apis-arkui/arkui-ts/ts-types.md#resourcestr)  | 否     | 否     | 显示内容。     |
 | startIcon | [ResourceStr](../apis-arkui/arkui-ts/ts-types.md#resourcestr)  | 否     | 是     | 显示图标。默认值为空，不显示图标。     |
-| action    | (selectedText: {plainText: string}) => void                    | 否     | 否     | 选中的文本信息。|
+| action    | (selectedText: {plainText: string}) => void                    | 否     | 否     | 回调函数，用于接收用户选择菜单扩展项后的操作。回调参数selectedText包含plainText字段，表示用户选中的文本内容。|
 
 ## AdsBlockedDetails<sup>12+</sup>
 
@@ -132,7 +133,7 @@ Web媒体策略的配置。
 
 ## PreviewMenuOptions<sup>20+</sup>
 
-预览菜单选项。
+用于配置预览菜单选项，支持设置菜单弹出时的振动效果。适用于需要增强菜单交互反馈的场景，提升用户体验。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -142,7 +143,7 @@ Web媒体策略的配置。
 
 ## EmbedOptions<sup>16+</sup>
 
-Web同层渲染的配置。
+Web同层渲染的配置。用于配置Web同层渲染选项，包括支持固定大小和CSS显示属性。适用于需要优化同层元素渲染效果的场景，提升渲染的兼容性和灵活性。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -271,7 +272,7 @@ Web同层渲染的配置。
 
 ## OnShowFileSelectorEvent<sup>12+</sup>
 
-定义文件选择器结果。
+定义文件选择器结果的回调信息，包括结果和参数详情。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -325,7 +326,7 @@ Web同层渲染的配置。
 
 ## OnPermissionRequestEvent<sup>12+</sup>
 
-定义通知收到获取权限请求。
+定义收到权限请求时触发的回调信息，包括请求详情。适用于需要处理权限授予的场景，提升权限管理的灵活性和安全性。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -335,7 +336,7 @@ Web同层渲染的配置。
 
 ## OnScreenCaptureRequestEvent<sup>12+</sup>
 
-定义通知收到屏幕捕获请求。
+定义收到屏幕捕获请求时触发的回调信息。适用于需要处理屏幕录制权限的场景，提升录屏流程的可控性和安全性。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -345,7 +346,7 @@ Web同层渲染的配置。
 
 ## OnContextMenuShowEvent<sup>12+</sup>
 
-定义调用时触发的回调，以允许自定义显示上下文菜单。
+定义调用时触发的回调信息，以允许自定义显示上下文菜单。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -368,7 +369,7 @@ Web同层渲染的配置。
 
 ## OnScrollEvent<sup>12+</sup>
 
-定义滚动条滑动到指定位置时触发。
+定义滚动条滑动到指定位置时触发的回调信息，包括水平和垂直偏移量。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -515,7 +516,7 @@ Web同层渲染的配置。
 
 ## OnAudioStateChangedEvent<sup>12+</sup>
 
-定义网页上的音频播放状态发生改变时的回调函数。
+定义网页音频播放状态改变时触发的回调信息，包括播放状态。适用于需要监控音频播放行为的场景，提升音频管理的可见性和用户体验。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -525,7 +526,7 @@ Web同层渲染的配置。
 
 ## OnFirstContentfulPaintEvent<sup>12+</sup>
 
-定义网页首次内容绘制回调函数。
+定义网页首次内容绘制的回调信息，包括加载时间和绘制时间。适用于需要监控页面渲染性能的场景，提升性能优化的准确性和用户体验。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -546,7 +547,7 @@ Web同层渲染的配置。
 
 ## OnOverScrollEvent<sup>12+</sup>
 
-定义网页过度滚动时触发的回调。
+定义网页过度滚动时触发的回调信息，包括水平和垂直偏移量。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -613,18 +614,18 @@ Web同层渲染的配置。
 
 ## OnGeolocationShowEvent<sup>12+</sup>
 
-定义通知用户收到地理位置信息获取请求。
+定义收到地理位置获取请求时触发的回调信息，包括源信息和地理对象。适用于需要处理地理位置权限的场景。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
 | 名称             | 类型      | 只读 | 可选    | 说明                                       |
 | -------------- | ---- | ---- | -------------|--------------------------- |
-| origin | string | 否 | 否 | 指定源的字符串索引。                       |
+| origin | string | 否 | 否 | 发起地理位置权限请求的网页源，用于标识特定网站的地理位置请求来源。 |
 | geolocation | [JsGeolocation](./arkts-basic-components-web-JsGeolocation.md) | 否 | 否 | 通知Web组件用户操作行为。                       |
 
 ## NativeEmbedVisibilityInfo<sup>12+</sup>
 
-提供同层标签的可见性信息。
+提供同层标签的可见性信息，包括可见状态和标签ID。适用于需要监控同层元素可见性的场景，提升渲染状态管理的准确性和用户体验。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -647,7 +648,7 @@ Web同层渲染的配置。
 
 ## FullScreenEnterEvent<sup>12+</sup>
 
-Web组件进入全屏回调事件的详情。
+提供Web组件进入全屏的回调信息，包括视频尺寸和退出句柄。适用于需要处理全屏视频的场景，提升视频播放的沉浸式体验和可控性。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -673,7 +674,7 @@ Web组件进入全屏回调事件的详情。
 
 ## NativeEmbedInfo<sup>11+</sup>
 
-提供同层标签的详细信息。
+提供同层标签的详细信息，包括ID、类型、尺寸和位置等。适用于需要获取同层元素属性的场景，提升同层渲染的定制性和用户体验。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -686,12 +687,12 @@ Web组件进入全屏回调事件的详情。
 | height            | number                              | 否    | 是 | 同层标签的高，单位为px。          |
 | url               | string                              | 否    | 是 | 同层标签的url信息。            |
 | tag<sup>12+</sup> | string              | 否    | 是 | 标签名，统一为大写字符。              |
-| params<sup>12+</sup>            | Map<string, string> | 否    | 是 | object标签包含的param标签键值对列表，该map本质为Object类型，请使用Object提供的方法操作该对象，即`embed.info?.param?.["name"]`。  |
+| params<sup>12+</sup>            | Map<string, string> | 否    | 是 | object标签包含的params标签键值对列表，请使用Object提供的方法操作该对象，即`embed.info?.params?.["name"]`。 |
 | position<sup>12+</sup>          | Position            | 否    | 是 | 同层标签相对于Web组件左上角为坐标原点的位置信息，此处区别于标准Position，单位为px。 |
 
 ## NativeEmbedParamItem<sup>21+</sup>
 
-提供同层渲染object标签内嵌param元素的详细信息。
+提供同层渲染object标签内嵌param元素的详细信息，包括状态和参数。适用于需要监控param元素变化的场景，提升同层元素管理的灵活性和准确性。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -739,7 +740,7 @@ Web组件进入全屏回调事件的详情。
 
 ## FirstMeaningfulPaint<sup>12+</sup>
 
-提供网页绘制页面主要内容的详细信息。
+提供网页绘制页面主要内容的详细信息，包括导航时间和绘制时间。适用于需要监控页面渲染性能的场景，提升性能优化的准确性和用户体验。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -750,7 +751,7 @@ Web组件进入全屏回调事件的详情。
 
 ## LargestContentfulPaint<sup>12+</sup>
 
-提供网页绘制页面最大内容的详细信息。
+提供网页绘制页面最大内容的详细信息，包括导航时间和各类绘制时间。适用于需要监控页面渲染性能的场景，提升性能优化的准确性和用户体验。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -765,20 +766,20 @@ Web组件进入全屏回调事件的详情。
 
 ## NativeEmbedDataInfo<sup>11+</sup>
 
-提供同层标签生命周期变化的详细信息。
+提供同层标签生命周期变化的详细信息，包括状态和标签信息。适用于需要监控同层元素生命周期的场景，提升渲染状态管理的准确性和用户体验。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
 | 名称             | 类型                                  | 只读 | 可选   | 说明                    |
 | -----------     | ------------------------------------ | ---- | ---- | --------------------- |
 | status     | [NativeEmbedStatus](./arkts-basic-components-web-e.md#nativeembedstatus11)             | 否    | 是    | 同层标签生命周期状态。 |
-| surfaceId  | string                              | 否 | 是    | NativeImage的psurfaceid。  |
+| surfaceId  | string                              | 否 | 是    | NativeImage的surfaceId。 |
 | embedId | string                              | 否 | 是    | 同层标签的唯一id。  |
-| info  | [NativeEmbedInfo](./arkts-basic-components-web-i.md#nativeembedinfo11)  | 否 | 是    | 同层标签的详细信息。       |
+| info  | [NativeEmbedInfo](#nativeembedinfo11)  | 否 | 是    | 同层标签的详细信息。       |
 
 ## NativeEmbedTouchInfo<sup>11+</sup>
 
-提供手指触摸到同层标签的详细信息。
+提供手指触摸同层标签的详细信息，包括标签ID和触摸事件。适用于需要处理同层元素触摸交互的场景，提升触摸体验的定制性和灵活性。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -790,7 +791,7 @@ Web组件进入全屏回调事件的详情。
 
 ## NativeEmbedMouseInfo<sup>20+</sup>
 
-提供鼠标/触摸板在同层标签上点击或长按的详细信息。
+提供鼠标/触摸板在同层标签上点击或长按的详细信息，包括标签ID和鼠标事件。适用于需要处理同层元素鼠标交互的场景，提升鼠标体验的定制性和灵活性。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -802,15 +803,15 @@ Web组件进入全屏回调事件的详情。
 
 ## NativeEmbedParamDataInfo<sup>21+</sup>
 
-提供同层渲染object标签内嵌param元素变化时同层标签的详细信息。
+提供同层渲染object标签内嵌param元素变化时同层标签的详细信息，包括标签ID和参数项。适用于需要监控param元素变化的场景，提升同层元素管理的灵活性和准确性。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
 | 名称             | 类型                                  | 只读 | 可选   | 说明                    |
 | -----------     | ------------------------------------ | ---- | ---- | --------------------- |
 | embedId | string                              | 否 | 否    | 同层标签的唯一id。  |
-| objectAttributeId      | string             | 否    | 是 | 同层标签的id信息。             |
-| paramItems  | Array\<[NativeEmbedParamItem](./arkts-basic-components-web-i.md#nativeembedparamitem21)\>   | 否 | 是    | 发生变化的param元素的详细信息，包括每一个param元素的状态变化类型、id、参数名称和参数值。       |
+| objectAttributeId      | string             | 否    | 是 | 同层标签的id信息。 |
+| paramItems  | Array\<[NativeEmbedParamItem](#nativeembedparamitem21)\>   | 否 | 是    | 发生变化的param元素的详细信息，包括每一个param元素的状态变化类型、id、参数名称和参数值。       |
 
 ## OnLoadStartedEvent<sup>20+</sup>
 
@@ -866,7 +867,7 @@ Web组件返回的请求/响应头对象。
 
 ## ScreenCaptureConfig<sup>10+</sup>
 
-Web屏幕捕获的配置。
+提供Web屏幕捕获的配置选项，包括捕获模式。适用于需要自定义网页录屏行为的场景，提升录屏功能的灵活性和用户体验。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -876,7 +877,7 @@ Web屏幕捕获的配置。
 
 ## BlankScreenDetectionEventInfo<sup>22+</sup>
 
-定义检测到白屏时的事件信息。
+提供检测到白屏时的事件信息，包括URL、原因和细节。适用于需要监控页面白屏问题的场景，提升白屏诊断的准确性和用户体验。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -884,56 +885,56 @@ Web屏幕捕获的配置。
 | -------------- | ---- | ---- | ---- | ---------------------------------------- |
 | url | string | 否 | 否 | 检测到白屏时，页面的url。    |
 | blankScreenReason | [DetectedBlankScreenReason](./arkts-basic-components-web-e.md#detectedblankscreenreason22) | 否 | 否 | 本次检测到白屏时，具体原因与检测的方法相关。    |
-| blankScreenDetails | [BlankScreenDetails](./arkts-basic-components-web-i.md#blankscreendetails22) | 否 | 是 | 本次检测白屏的结果的细节。<br>如当发现近似白屏的现象产生，这个细节就包含具体命中了多少点。否则没有该属性。 |
+| blankScreenDetails | [BlankScreenDetails](#blankscreendetails22) | 否 | 是 | 本次检测白屏的结果的细节。当使用检测有内容的节点检测策略，且检测到的有内容节点数量未超过阈值时，此参数包含当前命中了多少有内容节点等详细信息；未使用该策略或节点数量超过阈值时，此参数为空。 |
 
 ## BlankScreenDetails<sup>22+</sup>
 
-定义检测到白屏时的结果的细节。
+提供检测到白屏时的结果细节，包括有内容节点数量。适用于需要分析白屏原因的场景，提升白屏诊断的详细性和准确性。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
 | 名称             | 类型      | 只读 | 可选   | 说明                                       |
 | -------------- | ---- | ---- | ---- | ---------------------------------------- |
-| detectedContentfulNodesCount | number | 否 | 是 | 在使用到检测有内容的节点检测策略时，且开发者自己设置了检测到节点数量阈值时，可能包含该属性。否则没有该属性。<br>表示当前命中了多少有内容的节点。    |
+| detectedContentfulNodesCount | number | 否 | 是 | 在使用到检测有内容的节点检测策略时，且开发者自己设置了检测到节点数量阈值时，可能包含该属性。否则没有该属性。<br>表示当前命中了多少有内容的节点。 |
 
 ## BlankScreenDetectionConfig<sup>22+</sup>
 
-定义白屏检测的策略配置选项。
+提供白屏检测的策略配置选项，包括检测时机、方法和阈值。适用于需要自定义白屏检测行为的场景，提升白屏监控的灵活性和准确性。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
 | 名称             | 类型      | 只读 | 可选   | 说明                                       |
 | -------------- | ---- | ---- | ---- | ---------------------------------------- |
-| enable | boolean | 否 | 否 | 是否使能白屏策略功能。   |
-| detectionTiming | number[] | 否 | 是 | 用以设置需要在加载后多少秒的时机来检测是否白屏。<br>单位：秒。<br>注：<br>1.重复值会忽略。<br>2.需大于0，小于0的值会被忽略。<br/>默认值：[1.0,3.0,5.0]。 |
+| enable | boolean | 否 | 否 | 是否启用白屏策略功能。true表示启用，false表示不启用。   |
+| detectionTiming | number[] | 否 | 是 | 用以设置需要在加载后多少秒的时机来检测是否白屏。<br>单位：秒。<br>注：<br>1.重复值会忽略。<br>2.需大于0，小于0的值会被忽略。<br>默认值：[1.0,3.0,5.0]。 |
 | detectionMethods | [BlankScreenDetectionMethod](./arkts-basic-components-web-e.md#blankscreendetectionmethod22)[] | 否 | 是 | 使用检测策略的方法，是一个数组。<br>注：<br>1.重复值会忽略。  <br/>默认值：[BlankScreenDetectionMethod.DETECTION_CONTENTFUL_NODES_SEVENTEEN]。  |
-| contentfulNodesCountThreshold | number | 否 | 是 | 在使用到检测有内容的节点检测策略时，才会生效。<br/>可以设置0-${检测策略最大节点}，如果小于等于阈值则会触发近似白屏。<br/>默认值：0。|
+| contentfulNodesCountThreshold | number | 否 | 是 | 在使用到检测有内容的节点检测策略时，才会生效。<br/>可以设置0-${检测策略最大节点}，如果小于等于阈值则会触发近似白屏。<br/>默认值：0。<br>注：检测策略最大节点依赖于所选择的检测策略。|
 
 ## CameraCaptureStateChangeInfo<sup>23+</sup>
 
-定义摄像头触发回调时的改变前后的状态信息。
+提供摄像头触发回调时的状态变化信息，包括改变前的状态和新状态。适用于需要监控摄像头状态变化的场景，提升摄像头管理的可见性和用户体验。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
 | 名称             | 类型      | 只读 | 可选   | 说明                                       |
 | -------------- | ---- | ---- | ---- | ---------------------------------------- |
-| originalState | [CameraCaptureState](./arkts-basic-components-web-e.md#cameracapturestate23) | 否 | 否 | 原来的状态   |
+| originalState | [CameraCaptureState](./arkts-basic-components-web-e.md#cameracapturestate23) | 否 | 否 | 改变前的状态   |
 | newState | [CameraCaptureState](./arkts-basic-components-web-e.md#cameracapturestate23) | 否 | 否 | 改变后的状态   |
 
 ## MicrophoneCaptureStateChangeInfo<sup>23+</sup>
 
-定义麦克风触发回调时的改变前后的状态信息。
+提供麦克风触发回调时的状态变化信息，包括改变前的状态和改变后的状态。适用于需要监控麦克风状态变化的场景，提升麦克风管理的可见性和用户体验。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
 | 名称             | 类型      | 只读 | 可选   | 说明                                       |
 | -------------- | ---- | ---- | ---- | ---------------------------------------- |
-| originalState | [MicrophoneCaptureState](./arkts-basic-components-web-e.md#microphonecapturestate23) | 否 | 否 | 原来的状态。   |
+| originalState | [MicrophoneCaptureState](./arkts-basic-components-web-e.md#microphonecapturestate23) | 否 | 否 | 改变前的状态。   |
 | newState | [MicrophoneCaptureState](./arkts-basic-components-web-e.md#microphonecapturestate23) | 否 | 否 | 改变后的状态。   |
 
 ## AcceptableFileType<sup>23+</sup>
 
-定义文件选择器拉取文件时网页推荐的文件类型信息。
+提供文件选择器推荐的文件类型信息，包括MIME类型和类型数组。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -944,7 +945,7 @@ Web屏幕捕获的配置。
 
 ## FirstScreenPaint<sup>23+</sup>
 
-检测到首屏渲染时的事件信息。
+提供首屏渲染事件的信息，包括URL和绘制时间。适用于需要监控页面首屏渲染性能的场景，提升性能优化的准确性和用户体验。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -956,7 +957,7 @@ Web屏幕捕获的配置。
 
 ## AISessionEvent
 
-自定义AI会话配置对象，用于定义AI会话的生命周期回调。
+自定义AI会话配置对象，用于定义AI会话的生命周期回调，包括创建、执行和销毁。
 
 **起始版本：** 26.0.0
 

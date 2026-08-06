@@ -35,7 +35,7 @@ type PartnerDeviceAddress = partnerAgent.PartnerDeviceAddress
 
 | 类型                  | 说明                  |
 | ------------------- | ------------------- |
-| [partnerAgent.PartnerDeviceAddress](js-apis-fusionConnectivity-partnerAgent.md#partneragentpartnerdeviceaddress) | 信息互通设备的地址信息。 |
+| [partnerAgent.PartnerDeviceAddress](js-apis-fusionConnectivity-partnerAgent.md#partnerdeviceaddress) | 信息互通设备的地址信息。 |
 
 ## PartnerAgentExtensionAbilityDestroyReason
 
@@ -49,7 +49,7 @@ type PartnerAgentExtensionAbilityDestroyReason = partnerAgent.PartnerAgentExtens
 
 | 类型                  | 说明                  |
 | ------------------- | ------------------- |
-| [partnerAgent.PartnerAgentExtensionAbilityDestroyReason](js-apis-fusionConnectivity-partnerAgent.md#partneragentpartneragentextensionabilitydestroyreason) | PartnerAgentExtensionAbility被销毁的原因。 |
+| [partnerAgent.PartnerAgentExtensionAbilityDestroyReason](js-apis-fusionConnectivity-partnerAgent.md#partneragentextensionabilitydestroyreason) | PartnerAgentExtensionAbility被销毁的原因。 |
 
 ## PartnerAgentExtensionAbility 
 PartnerAgentExtensionAbility是外设互通扩展能力的基础类，提供设备发现与设备下线的通知功能，需要应用继承实现。本能力继承自[ExtensionAbility](../apis-ability-kit/js-apis-app-ability-extensionAbility.md)。
@@ -78,7 +78,7 @@ onDestroyWithReason(reason: PartnerAgentExtensionAbilityDestroyReason): void
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| reason | [PartnerAgentExtensionAbilityDestroyReason](js-apis-fusionConnectivity-partnerAgent.md#partneragentpartneragentextensionabilitydestroyreason) | 是 | 通知销毁该应用的原因。 |
+| reason | [PartnerAgentExtensionAbilityDestroyReason](js-apis-fusionConnectivity-partnerAgent.md#partneragentextensionabilitydestroyreason) | 是 | 通知销毁该应用的原因。 |
 
 **示例：**
 
@@ -104,7 +104,7 @@ onDeviceDiscovered(deviceAddress: PartnerDeviceAddress): void
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| deviceAddress | [PartnerDeviceAddress](js-apis-fusionConnectivity-partnerAgent.md#partneragentpartnerdeviceaddress) | 是 | 应用注册的设备地址信息。<br>应用需在PartnerDeviceAddress类型中设置bluetoothAddress选项。 |
+| deviceAddress | [PartnerDeviceAddress](js-apis-fusionConnectivity-partnerAgent.md#partnerdeviceaddress) | 是 | 应用注册的设备地址信息。<br>应用需在PartnerDeviceAddress类型中设置bluetoothAddress选项。 |
 
 **示例：**
 

@@ -5,7 +5,8 @@
 <!--Owner: @zhaoxueyuan-->
 <!--Designer: @hanruofei-->
 <!--Tester: @Lyuxin-->
-<!--Adviser: @Brilliantry_Rui-->
+<!--Adviser: @zhang_yixin13-->
+<!-- md-trans-meta sourceCommit=c557fc878b00a6eb2a3211f12739d2d4a9bfd804 translatedAt=2026-07-28T02:35:32.646Z pushedAt=2026-07-28T03:14:27.050Z -->
 
 ## When to Use
 
@@ -13,7 +14,7 @@ Since API version 12, the multimodal module provides applications with the abili
 
 ## Available APIs
 
-The following table lists the APIs for event listening. For details, see [Input](../../reference/apis-input-kit/capi-input.md).
+The following table lists the APIs for creating and deleting event listeners. For details, see [input](../../reference/apis-input-kit/capi-input.md).
 
 | API | Description|
 | ------------------------------------------------------------ | -------------------------- |
@@ -67,7 +68,7 @@ struct KeyEvent {
 void OnKeyEventCallback(const Input_KeyEvent* keyEvent)
 {
     KeyEvent event;
-    // The lifecycle of Input_KeyEvent is limited to the callback function. After the callback function is executed, Input_KeyEvent is automatically destroyed.
+    // The lifecycle of Input_KeyEvent is limited to the callback function. It is automatically destroyed after the callback function finishes executing.
     event.action = OH_Input_GetKeyEventAction(keyEvent);
     event.keyCode = OH_Input_GetKeyEventKeyCode(keyEvent);
     event.actionTime = OH_Input_GetKeyEventActionTime(keyEvent);
@@ -87,7 +88,6 @@ static napi_value RemoveKeyEventMonitor(napi_env env, napi_callback_info info)
 }
 ```
 
-
 - **Mouse event**
 
 <!-- @[mouse_event_monitor](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/InputKit/NDKInputEventMonitor/entry/src/main/cpp/napi_init.cpp) -->
@@ -103,11 +103,11 @@ struct MouseEvent {
     int64_t actionTime { -1 };
 };
 
-// Define the mouse event callback function.
+// Define the mouse event callback.
 void OnMouseEventCallback(const Input_MouseEvent* mouseEvent)
 {
     MouseEvent event;
-    // The lifecycle of Input_MouseEvent is limited to the callback function. After the callback function is executed, Input_MouseEvent is automatically destroyed.
+    // The lifecycle of Input_MouseEvent is limited to the callback. It is automatically destroyed after the callback execution completes.
     event.action = OH_Input_GetMouseEventAction(mouseEvent);
     event.displayX = OH_Input_GetMouseEventDisplayX(mouseEvent);
     event.displayY = OH_Input_GetMouseEventDisplayY(mouseEvent);
@@ -131,7 +131,6 @@ static napi_value RemoveMouseEventMonitor(napi_env env, napi_callback_info info)
 }
 ```
 
-
 - **Touch event**
 
 <!-- @[touch_event_monitor](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/InputKit/NDKInputEventMonitor/entry/src/main/cpp/napi_init.cpp) -->
@@ -148,7 +147,7 @@ struct TouchEvent {
 void OnTouchEventCallback(const Input_TouchEvent* touchEvent)
 {
     TouchEvent event;
-    // The lifecycle of Input_TouchEvent is limited to the callback function. After the callback function is executed, Input_TouchEvent is automatically destroyed.
+    // Input_TouchEvent is only valid within the callback function and is automatically destroyed after the callback completes.
     event.action = OH_Input_GetTouchEventAction(touchEvent);
     event.id = OH_Input_GetTouchEventFingerId(touchEvent);
     event.displayX = OH_Input_GetTouchEventDisplayX(touchEvent);
@@ -170,10 +169,9 @@ static napi_value RemoveTouchEventMonitor(napi_env env, napi_callback_info info)
 }
 ```
 
-
 - **Axis event**
 
-<!-- @[axis_event_monitor](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/InputKit/NDKInputEventMonitor/entry/src/main/cpp/napi_init.cpp) -->
+<!-- @[axis_event_monitor](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/InputKit/NDKInputEventMonitor/entry/src/main/cpp/napi_init.cpp) --> 
 
 ``` C++
 struct AxisEvent {
@@ -189,7 +187,7 @@ struct AxisEvent {
 void OnAllAxisEventCallback(const Input_AxisEvent* axisEvent)
 {
     AxisEvent event;
-    // The lifecycle of Input_AxisEvent is limited to the callback function. After the callback function is executed, Input_AxisEvent is automatically destroyed.
+    // The lifecycle of Input_AxisEvent is limited to the callback function. It is automatically destroyed after the callback function completes.
     InputEvent_AxisAction action = static_cast<InputEvent_AxisAction>(0);
     Input_Result ret = OH_Input_GetAxisEventAction(axisEvent, &action);
     event.axisAction = action;
@@ -218,11 +216,11 @@ void OnAllAxisEventCallback(const Input_AxisEvent* axisEvent)
     // ...
 }
 
-// Define the callback function for pinch-type axis events.
+// Define the pinch-type axis event callback function.
 void OnPinchAxisEventCallback(const Input_AxisEvent* axisEvent)
 {
     AxisEvent event;
-    // The lifecycle of Input_AxisEvent is limited to the callback function. After the callback function is executed, Input_AxisEvent is automatically destroyed.
+    // The lifecycle of Input_AxisEvent is limited to the callback function. It is automatically destroyed after the callback function completes.
     InputEvent_AxisAction action = static_cast<InputEvent_AxisAction>(0);
     Input_Result ret = OH_Input_GetAxisEventAction(axisEvent, &action);
     event.axisAction = action;
@@ -246,7 +244,7 @@ void OnPinchAxisEventCallback(const Input_AxisEvent* axisEvent)
 void OnScrollAxisEventCallback(const Input_AxisEvent* axisEvent)
 {
     AxisEvent event;
-    // The lifecycle of Input_AxisEvent is limited to the callback function. After the callback function is executed, Input_AxisEvent is automatically destroyed.
+    // The lifecycle of Input_AxisEvent is limited to the callback function. It is automatically destroyed after the callback function completes.
     InputEvent_AxisAction action = static_cast<InputEvent_AxisAction>(0);
     Input_Result ret = OH_Input_GetAxisEventAction(axisEvent, &action);
     event.axisAction = action;

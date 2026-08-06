@@ -1,15 +1,16 @@
 # Updating Widget Content by State
+
 <!--Kit: Form Kit-->
 <!--Subsystem: Ability-->
 <!--Owner: @Qian-Win-->
 <!--Designer: @cx983299475-->
 <!--Tester: @mahailong123456-->
 <!--Adviser: @HelloShuo-->
+<!-- md-trans-meta sourceCommit=6b0733adc9a538f18ea8143587feeecb737929d9 translatedAt=2026-08-03T02:29:46.762Z pushedAt=2026-08-03T07:33:55.880Z -->
 
-There are cases where multiple copies of the same widget are added to the home screen to accommodate different needs. In these cases, the widget content needs to be dynamically updated based on the state. This topic exemplifies how this is implemented. In the following example, two copies of the weather widget are added to the home screen: one for displaying the weather of London, and the other Beijing, both configured to be updated at 07:00 every morning. The widget provider detects the target city, and then displays the city-specific weather information on the widgets.
+Multiple copies of the same widget can be added to the home screen to serve different purposes. For example, you can add two copies of a weather widget, with one displaying the weather for Hangzhou and the other for Beijing. A scheduled refresh is configured to trigger at 10:30 AM every day. The widget must detect whether its current configuration is for Hangzhou or Beijing, and then refresh the corresponding city's weather information on the widget. The following example demonstrates how to dynamically select the content to refresh based on the widget status.
 
-
-- Widget configuration file: Configure the widget to be automatically updated every 30 minutes.
+- Widget configuration file: Configure the widget to be automatically refreshed every 30 minutes.
 
     ```json
     {
@@ -36,10 +37,10 @@ There are cases where multiple copies of the same widget are added to the home s
     }
     ```
 
-- Widget page: A widget has different states and needs to be updated by state. When the state changes, **postCardAction** is called to notify the EntryFormAbility.
+- Widget page: The widget supports different status selections, and different content needs to be refreshed under different statuses. Therefore, when the status changes, `postCardAction` is used to notify `UpdateByStatusFormAbility`.
 
     <!-- @[widget_update_by_status_card](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ApplicationModels/StageServiceWidgetCards/entry/src/main/ets/widgetupdatebystatus/pages/WidgetUpdateByStatusCard.ets) --> 
-    
+
     ``` TypeScript
     // entry/src/main/ets/widgetupdatebystatus/pages/WidgetUpdateByStatusCard.ets
     let storageUpdateByStatus = new LocalStorage();
@@ -153,10 +154,10 @@ There are cases where multiple copies of the same widget are added to the home s
     }
     ```
 
-- EntryFormAbility: The widget state data is stored in the local database. When the update event callback is triggered, the current widget state is obtained through **formId**, and then content is updated based on the state obtained.
+- `UpdateByStatusFormAbility`: Stores the widget status in a local database. When the refresh event callback is triggered, the current widget status is obtained through `formId`, and then different refresh content is selected based on the widget status.
 
     <!-- @[update_by_status_form_ability](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ApplicationModels/StageServiceWidgetCards/entry/src/main/ets/updatebystatusformability/UpdateByStatusFormAbility.ts) --> 
-    
+
     ``` TypeScript
     // entry/src/main/ets/updatebystatusformability/UpdateByStatusFormAbility.ts
     import { Want } from '@kit.AbilityKit';
@@ -253,7 +254,6 @@ There are cases where multiple copies of the same widget are added to the home s
       }
     }
     ```
-
 
 > **NOTE**
 >

@@ -82,7 +82,7 @@ int32_t OH_NativeImage_ReleaseNativeWindowBuffer(OH_NativeImage* image,OHNativeW
 
 ```c++
 OH_NativeImage *image_ = OH_NativeImage_Create(textureId, GL_TEXTURE_2D);
-OHNativeWindow *nativewindow_ = OH_NativeImage_AcquireNativeWindow();
+OHNativeWindow *nativewindow_ = OH_NativeImage_AcquireNativeWindow(image_);
 
 // 错误：OH_NativeImage_Destroy中会减少OHNativeWindow引用计数，无需再调用OH_NativeWindow_DestroyNativeWindow
 OH_NativeImage_Destroy(image_);
@@ -98,7 +98,7 @@ OH_NativeImage_Destroy中会减少OHNativeWindow引用计数，无需再调用OH
 
 ```c++
 OH_NativeImage *image_ = OH_NativeImage_Create(textureId, GL_TEXTURE_2D);
-OHNativeWindow *nativewindow_ = OH_NativeImage_AcquireNativeWindow();
+OHNativeWindow *nativewindow_ = OH_NativeImage_AcquireNativeWindow(image_);
 
 // 释放NativeImage时将image_和nativewindow_置空，防止后续使用野指针
 OH_NativeImage_Destroy(image_);
@@ -320,7 +320,7 @@ if (error) {
 }
 
 OH_NativeWindow_NativeWindowFlushBuffer(nativewindow_, buffer, fence, region);
-OH_NativeWindow_NativeObjectReference(buffer);
+OH_NativeWindow_NativeObjectUnreference(buffer);
 ```
 
 **典型错误代码2**

@@ -198,6 +198,7 @@ onExecuteInUIAbilityBackgroundMode(name: string, param: Record<string, Object>):
 使用Promise异步返回意图执行结果的示例如下：
   ```ts
   import { InsightIntentExecutor, insightIntent } from '@kit.AbilityKit';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
 
   async function executeInsightIntent(param: Record<string, Object>): Promise<insightIntent.ExecuteResult> {
     return new Promise((resolve, reject) => {

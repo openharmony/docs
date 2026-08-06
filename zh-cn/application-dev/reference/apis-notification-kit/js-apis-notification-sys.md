@@ -430,7 +430,7 @@ Notification.subscribe(subscriber).then(() => {
 
 unsubscribe(subscriber: NotificationSubscriber, callback: AsyncCallback\<void\>): void
 
-取消订阅（callbcak形式）。
+取消订阅（callback形式）。
 
 **系统能力**：SystemCapability.Notification.Notification
 

@@ -877,7 +877,7 @@ View层根据需要来组织，但View层需要区分一下三种组件：
 
   * ThingViewModel.ets
 
-  <!-- @[thing_view_model](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkUISample/ArktsMvvmSample/entry/src/main/ets/viewmodel/ThingViewModel.ets) --> 
+  <!-- @[thing_view_model](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkUISample/ArktsMvvmSample/entry/src/main/ets/viewmodel/ThingViewModel.ets) -->
   
   ``` TypeScript
   import ThingModel from '../model/ThingModel';
@@ -898,7 +898,8 @@ View层根据需要来组织，但View层需要区分一下三种组件：
     }
   
     addSuffixes(): void {
-      this.thingName += 'lala';
+      // 请将$r('app.string.la_la')替换为实际资源文件，在本示例中该资源文件的value值为"啦"
+      this.thingName += resource.resourceToString($r('app.string.la_la'));
     }
   }
   ```

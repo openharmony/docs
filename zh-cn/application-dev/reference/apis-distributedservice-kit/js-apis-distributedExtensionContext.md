@@ -6,7 +6,7 @@
 <!--Tester: @hanjiawei-->
 <!--Adviser: @hu-zhiqiong-->
 
-DistributedExtensionContext模块是DistributedExtensionAbility的上下文环境，继承自ExtensionContext。
+DistributedExtensionContext模块是DistributedExtensionAbility（分布式扩展能力）的上下文环境，继承自ExtensionContext（扩展上下文）。
 
 > **说明：**
 > 
@@ -16,7 +16,7 @@ DistributedExtensionContext模块是DistributedExtensionAbility的上下文环�
 
 ## 使用说明
 
-在使用DistributedExtensionContext的功能前，需要通过DistributedExtensionAbility子类实例获取。
+通过DistributedExtensionAbility子类实例获取DistributedExtensionContext。
 
 <!--code_no_check-->
 ```ts
@@ -33,32 +33,32 @@ export default class DistributedExtension extends DistributedExtensionAbility {
 
 connectServiceExtensionAbility(want: Want, options: ConnectOptions): number
 
-连接远端ServiceExtensionAbility。
+将当前DistributedExtensionAbility连接到远端（其他设备上的）ServiceExtensionAbility，建立连接后通过onConnect回调返回的[rpc.IRemoteObject](../apis-ipc-kit/js-apis-rpc.md#iremoteobject)代理与远端ServiceExtensionAbility进行跨设备IPC通信，以使用其对外提供的能力。适用于多设备限定协同场景，例如在当前设备上调用其他设备的后台服务能力。使用时，开发者首先通过Want中的deviceId指定目标设备、bundleName和abilityName指定目标ServiceExtensionAbility，并构造[ConnectOptions](../apis-ability-kit/js-apis-inner-ability-connectOptions.md)实现onConnect、onDisconnect、onFailed三个回调分别处理连接成功、连接断开和连接失败状态；随后调用connectServiceExtensionAbility发起连接并获取返回的连接ID，连接成功后在onConnect回调中拿到IRemoteObject代理对象，基于该代理与远端ServiceExtensionAbility进行IPC通信；使用完毕后需调用[disconnectServiceExtensionAbility](#distributedextensioncontextdisconnectserviceextensionability)断开连接并释放资源。
+
+**起始版本：** 26.0.0
 
 **模型约束**：此接口仅可在Stage模型下使用。
 
 **系统能力**：SystemCapability.DistributedSched.AppCollaboration
 
-**起始版本：** 26.0.0
-
 **参数：**
 
 | 参数名  | 类型                                                         | 必填 | 说明                                                         |
 | ------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| want    | [Want](../apis-ability-kit/js-apis-app-ability-want.md)      | 是   | Want类型参数，传入需要连接的远端ServiceExtensionAbility的信息，如ability名称、bundle名称、deviceId等。 |
-| options | [ConnectOptions](../apis-ability-kit/js-apis-inner-ability-connectOptions.md) | 是   | ConnectOptions类型的回调函数，返回服务连接成功、断开或连接失败后的信息。 |
+| want    | [Want](../apis-ability-kit/js-apis-app-ability-want.md)      | 是   | 传入需要连接的远端ServiceExtensionAbility（服务扩展能力）的Want信息。系统将基于这些信息建立到远端设备的连接。 |
+| options | [ConnectOptions](../apis-ability-kit/js-apis-inner-ability-connectOptions.md) | 是   | ConnectOptions类型的配置对象，包含服务连接状态回调。连接成功时触发onConnect，连接断开时触发onDisconnect，连接失败时触发onFailed。 |
 
 **返回值：**
 
 | 类型   | 说明                                                         |
 | ------ | ------------------------------------------------------------ |
-| number | 返回连接ID，后续通过该ID断开连接。该ID由connectServiceExtensionAbility返回时分配，为递增数字。 |
+| number | 返回连接ID，后续通过该ID断开连接。 |
 
 **错误码：**
 
 以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[元能力子系统错误码](../apis-ability-kit/errorcode-ability.md)。
 
-| 错误码ID | 错误信息                                                     |
+| 错误码ID | 错误信息 |
 | -------- | ------------------------------------------------------------ |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 16000001 | The specified ability does not exist. |
@@ -158,25 +158,25 @@ export default class DistributedExtAbility extends DistributedExtensionAbility {
 
 disconnectServiceExtensionAbility(connection: number): Promise\<void\>
 
-断开与远端ServiceExtensionAbility的连接。使用Promise异步回调。
+断开与远端ServiceExtensionAbility的连接，与[connectServiceExtensionAbility](#distributedextensioncontextconnectserviceextensionability)配对使用。调用connectServiceExtensionAbility后，必须在使用完毕后调用此方法释放连接资源，需要使用connectServiceExtensionAbility返回的连接ID调用此方法。断开连接之后开发者需要将连接成功时onConnect回调中返回的remote对象置空，以避免后续误用已失效的代理对象。使用Promise异步回调。
+
+**起始版本：** 26.0.0
 
 **模型约束**：此接口仅可在Stage模型下使用。
 
 **系统能力**：SystemCapability.DistributedSched.AppCollaboration
 
-**起始版本：** 26.0.0
-
 **参数：**
 
 | 参数名     | 类型   | 必填 | 说明                                                     |
 | ---------- | ------ | ---- | -------------------------------------------------------- |
-| connection | number | 是   | 连接ID，即connectServiceExtensionAbility返回的number值。 |
+| connection | number | 是   | 连接ID，必须使用connectServiceExtensionAbility返回的连接ID值。 |
 
 **返回值：**
 
 | 类型            | 说明                               |
 | --------------- | ---------------------------------- |
-| Promise\<void\> | Promise对象，无返回结果的Promise。 |
+| Promise\<void\> | Promise对象，无返回结果。 |
 
 **错误码：**
 
@@ -184,9 +184,9 @@ disconnectServiceExtensionAbility(connection: number): Promise\<void\>
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
-| 16000003 | The connection id does not exist. |
+| 16000003 | The connection id does not exist.                            |
 | 16000011 | The ability has been destroyed. The context is no longer valid, meaning the context does not exist. |
-| 16000050 | Internal error. |
+| 16000050 | Internal error.                                              |
 
 **示例：**
 

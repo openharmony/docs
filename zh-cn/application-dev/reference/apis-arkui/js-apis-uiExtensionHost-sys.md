@@ -12,7 +12,7 @@
 >
 > - 后续此接口不再新增功能，相关功能在接口[uiExtension](js-apis-arkui-uiExtension.md)中提供。
 >
-> - 从API version 11开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
+> - 从API version 11开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 >
 > - 本模块接口为系统接口。
 
@@ -268,7 +268,7 @@ hideNonSecureWindows(shouldHide: boolean): Promise&lt;void&gt;
 > **说明：**
 >
 > - 不安全窗口是指可能遮挡[EmbeddedComponent](arkui-ts/ts-container-embedded-component.md)（或[UIExtensionComponent](arkui-ts/ts-container-ui-extension-component-sys.md)）组件的窗口，如全局悬浮窗、宿主子窗口和宿主创建的Dialog窗口（不包括系统应用创建的上述类型窗口）。
-> - 当EmbeddedComponent（或UIExtensionComponent）组件被用来显示敏感操作提示内容时，可以选择隐藏不安全窗口，保护敏感操作提示内容不会被遮挡。当EmbeddedComponent（或UIExtensionComponent）组件不显示或销毁时，不安全窗口会重新显示。
+> - 当EmbeddedComponent（或UIExtensionComponent）组件用于显示敏感操作提示内容时，可以选择隐藏不安全窗口，保护其不会被遮挡。当EmbeddedComponent（或UIExtensionComponent）组件不显示或销毁时，不安全窗口会重新显示。
 > - 针对PC/2in1设备，当调用hideNonSecureWindows(true)时，不安全窗口中的全局悬浮窗不会被隐藏。
 
 **需要权限**：ohos.permission.ALLOW_SHOW_NON_SECURE_WINDOWS
@@ -312,19 +312,19 @@ export default class EntryAbility extends UIExtensionAbility {
   onSessionCreate(want: Want, session: UIExtensionContentSession) {
     const extensionHostWindow = session.getUIExtensionHostWindowProxy();
     // 隐藏非安全窗口
-    extensionHostWindow.hideNonSecureWindows(true).then(()=> {
+    extensionHostWindow.hideNonSecureWindows(true).then(() => {
       console.info(`Succeeded in hiding the non-secure windows.`);
-    }).catch((err: BusinessError)=> {
-      console.error(`Failed to hide the non-secure windows. Cause:${JSON.stringify(err)}`);
+    }).catch((err: BusinessError) => {
+      console.error(`Failed to hide the non-secure windows. Code: ${err.code}, message: ${err.message}`);
     })
   }
   onSessionDestroy(session: UIExtensionContentSession) {
     const extensionHostWindow = session.getUIExtensionHostWindowProxy();
     // 取消隐藏非安全窗口
-    extensionHostWindow.hideNonSecureWindows(false).then(()=> {
+    extensionHostWindow.hideNonSecureWindows(false).then(() => {
       console.info(`Succeeded in showing the non-secure windows.`);
-    }).catch((err: BusinessError)=> {
-      console.error(`Failed to show the non-secure windows. Cause:${JSON.stringify(err)}`);
+    }).catch((err: BusinessError) => {
+      console.error(`Failed to show the non-secure windows. Code: ${err.code}, message: ${err.message}`);
     })
   }
 }
@@ -387,29 +387,29 @@ export default class EntryAbility extends UIExtensionAbility {
     extensionHostWindow.createSubWindowWithOptions('subWindowForHost', subWindowOpts)
       .then((subWindow: window.Window) => {
         subWindow.setUIContent('pages/Index', (err, data) =>{
-          if (err && err.code != 0) {
+          if (err && err.code) {
             return;
           }
-          subWindow?.resize(300, 300, (err, data)=>{
-            if (err && err.code != 0) {
+          subWindow?.resize(300, 300, (err, data) =>{
+            if (err && err.code) {
               return;
             }
-            subWindow?.moveWindowTo(100, 100, (err, data)=>{
-              if (err && err.code != 0) {
+            subWindow?.moveWindowTo(100, 100, (err, data) =>{
+              if (err && err.code) {
                 return;
               }
               subWindow?.showWindow((err, data) => {
-                if (err && err.code == 0) {
-                  console.info(`The subwindow has been shown!`);
+                if (err && err.code) {
+                  console.error(`Failed to show the subwindow. Code: ${err.code}, message: ${err.message}`);
                 } else {
-                  console.error(`Failed to show the subwindow!`);
+                  console.info(`The subwindow has been shown!`);
                 }
               });
             });
           });
         });
       }).catch((error: BusinessError) => {
-        console.error(`Create subwindow failed: ${JSON.stringify(error)}`);
+        console.error(`Create subwindow failed. Code: ${error.code}, message: ${error.message}`);
       })
   }
 }
@@ -472,29 +472,29 @@ export default class EntryAbility extends UIExtensionAbility {
     extensionHostWindow.createSubWindowWithOptions('subWindowForHost', subWindowConfig, true)
       .then((subWindow: window.Window) => {
         subWindow.setUIContent('pages/Index', (err, data) =>{
-          if (err && err.code != 0) {
+          if (err && err.code) {
             return;
           }
-          subWindow?.resize(300, 300, (err, data)=>{
-            if (err && err.code != 0) {
+          subWindow?.resize(300, 300, (err, data) =>{
+            if (err && err.code) {
               return;
             }
-            subWindow?.moveWindowTo(100, 100, (err, data)=>{
-              if (err && err.code != 0) {
+            subWindow?.moveWindowTo(100, 100, (err, data) =>{
+              if (err && err.code) {
                 return;
               }
               subWindow?.showWindow((err, data) => {
-                if (err && err.code == 0) {
-                  console.info(`The subwindow has been shown!`);
+                if (err && err.code) {
+                  console.error(`Failed to show the subwindow. Code: ${err.code}, message: ${err.message}`);
                 } else {
-                  console.error(`Failed to show the subwindow!`);
+                  console.info(`The subwindow has been shown!`);
                 }
               });
             });
           });
         });
       }).catch((error: BusinessError) => {
-        console.error(`Create subwindow failed: ${JSON.stringify(error)}`);
+        console.error(`Create subwindow failed. Code: ${error.code}, message: ${error.message}`);
       })
   }
 }
@@ -549,7 +549,7 @@ export default class EntryAbility extends UIExtensionAbility {
     extensionHostWindow.setWaterMarkFlag(true).then(() => {
       console.info(`Succeeded in setting water mark flag of window.`);
     }).catch((err: BusinessError) => {
-      console.error(`Failed to setting water mark flag of window. Cause:${JSON.stringify(err)}`);
+      console.error(`Failed to set water mark flag of window. Code: ${err.code}, message: ${err.message}`);
     })
   }
   onSessionDestroy(session: UIExtensionContentSession) {
@@ -558,7 +558,7 @@ export default class EntryAbility extends UIExtensionAbility {
     extensionHostWindow.setWaterMarkFlag(false).then(() => {
       console.info(`Succeeded in deleting water mark flag of window.`);
     }).catch((err: BusinessError) => {
-      console.error(`Failed to deleting water mark flag of window. Cause:${JSON.stringify(err)}`);
+      console.error(`Failed to delete water mark flag of window. Code: ${err.code}, message: ${err.message}`);
     })
   }
 }
@@ -614,9 +614,9 @@ export default class EntryAbility extends UIExtensionAbility {
     const extensionHostWindow = session.getUIExtensionHostWindowProxy();
     // 开启截图隐私内容保护
     extensionHostWindow.hidePrivacyContentForHost(true).then(() => {
-      console.info(`Successfully enabled privacy protection for non-system screenshots.`);
+      console.info(`Succeeded in enabling privacy protection for non-system screenshots.`);
     }).catch((err: BusinessError) => {
-      console.error(`Failed enabled privacy protection for non-system screenshots. Cause:${JSON.stringify(err)}`);
+      console.error(`Failed to enable privacy protection for non-system screenshots.  Code: ${err.code}, message: ${err.message}`);
     })
   }
 }
@@ -651,10 +651,10 @@ export default class EntryAbility extends UIExtensionAbility {
   struct Index {
     @State message: string = 'Message: ';
     private want: Want = {
-      bundleName: "com.example.uiextensiondemo",
-      abilityName: "ExampleUIExtensionAbility",
+      bundleName: 'com.example.uiextensiondemo',
+      abilityName: 'ExampleUIExtensionAbility',
       parameters: {
-        "ability.want.params.uiExtensionType": "sys/commonUI"
+        'ability.want.params.uiExtensionType': 'sys/commonUI'
       }
     }
 
@@ -731,15 +731,15 @@ export default class EntryAbility extends UIExtensionAbility {
           console.info(`type = ${JSON.stringify(info.type)}, area = ${JSON.stringify(info.area)}`);
       });
       let promise = this.extensionHostWindow?.hideNonSecureWindows(true);
-      promise?.then(()=> {
+      promise?.then(() => {
         console.info(`Succeeded in hiding the non-secure windows.`);
-      }).catch((err: BusinessError)=> {
-        console.error(`Failed to hide the non-secure windows. Cause:${JSON.stringify(err)}`);
+      }).catch((err: BusinessError) => {
+        console.error(`Failed to hide the non-secure windows. Code: ${err.code}, message: ${err.message}`);
       })
       this.extensionHostWindow?.hidePrivacyContentForHost(true)?.then(() => {
-        console.info(`Successfully enabled privacy protection for non-system screenshots.`);
+        console.info(`Succeeded in enabling privacy protection for non-system screenshots.`);
       }).catch((err: BusinessError) => {
-        console.error(`Failed enabled privacy protection for non-system screenshots. Cause:${JSON.stringify(err)}`);
+        console.error(`Failed to enable privacy protection for non-system screenshots.  Code: ${err.code}, message: ${err.message}`);
       })
     }
 
@@ -747,10 +747,10 @@ export default class EntryAbility extends UIExtensionAbility {
       this.extensionHostWindow?.off('windowSizeChange');
       this.extensionHostWindow?.off('avoidAreaChange');
       let promise = this.extensionHostWindow?.hideNonSecureWindows(false);
-      promise?.then(()=> {
+      promise?.then(() => {
         console.info(`Succeeded in showing the non-secure windows.`);
-      }).catch((err: BusinessError)=> {
-        console.error(`Failed to show the non-secure windows. Cause:${JSON.stringify(err)}`);
+      }).catch((err: BusinessError) => {
+        console.error(`Failed to show the non-secure windows. Code: ${err.code}, message: ${err.message}`);
       })
     }
 
@@ -776,29 +776,29 @@ export default class EntryAbility extends UIExtensionAbility {
             .then((subWindow: window.Window) => {
               this.subWindow = subWindow;
               this.subWindow.loadContent('pages/Index', this.storage, (err, data) =>{
-                if (err && err.code != 0) {
+                if (err && err.code) {
                   return;
                 }
-                this.subWindow?.resize(300, 300, (err, data)=>{
-                  if (err && err.code != 0) {
+                this.subWindow?.resize(300, 300, (err, data) =>{
+                  if (err && err.code) {
                     return;
                   }
-                  this.subWindow?.moveWindowTo(100, 100, (err, data)=>{
-                    if (err && err.code != 0) {
+                  this.subWindow?.moveWindowTo(100, 100, (err, data) =>{
+                    if (err && err.code) {
                       return;
                     }
                     this.subWindow?.showWindow((err, data) => {
-                      if (err && err.code == 0) {
-                        console.info(`The subwindow has been shown!`);
+                      if (err && err.code) {
+                        console.error(`Failed to show the subwindow. Code: ${err.code}, message: ${err.message}`);
                       } else {
-                        console.error(`Failed to show the subwindow!`);
+                        console.info(`The subwindow has been shown!`);
                       }
                     });
                   });
                 });
               });
             }).catch((error: BusinessError) => {
-              console.error(`Create subwindow failed: ${JSON.stringify(error)}`);
+              console.error(`Create subwindow failed. Code: ${error.code}, message: ${error.message}`);
             })
         })
       }.width('100%').height('100%')
@@ -811,6 +811,6 @@ export default class EntryAbility extends UIExtensionAbility {
   {
     "name": "ExampleUIExtensionAbility",
     "srcEntry": "./ets/extensionAbility/ExampleUIExtensionAbility.ets",
-    "type": "sys/commonUI",
+    "type": "sys/commonUI"
   }
   ```

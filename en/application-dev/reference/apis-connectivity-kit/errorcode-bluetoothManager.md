@@ -6,12 +6,13 @@
 <!--Designer: @chengguohong; @tangjia15-->
 <!--Tester: @wangfeng517-->
 <!--Adviser: @zhang_yixin13-->
+<!-- md-trans-meta sourceCommit=59ee555b00022e6000d8d297f01d37cde4dac791 translatedAt=2026-08-03T02:10:34.751Z pushedAt=2026-08-03T03:03:50.953Z -->
 
 > **NOTE**
 >
 > This topic describes only module-specific error codes. For details about universal error codes, see [Universal Error Codes](../errorcode-universal.md).
 
-## 2900001
+## 2900001 Bluetooth Service Stopped
 
 **Error Message**
 
@@ -29,7 +30,7 @@ The Bluetooth service fails to start.
 
 Start the Bluetooth service.
 
-## 2900003
+## 2900003 Bluetooth Disabled
 
 **Error Message**
 
@@ -47,7 +48,7 @@ Bluetooth is disabled.
 
 Enable Bluetooth.
 
-## 2900004
+## 2900004 Profile Not Supported
 
 **Error Message**
 
@@ -65,7 +66,7 @@ The profile is not supported by the device.
 
 Check whether the device supports the profile. Use a profile supported by the device.
 
-## 2900005
+## 2900005 Bluetooth Device Not Connected
 
 **Error Message**
 
@@ -83,7 +84,7 @@ The device pairing fails.
 
 Turn on Bluetooth again to start the pairing process.
 
-## 2900006
+## 2900006 Maximum Number of Connections Reached
 
 **Error Message**
 
@@ -101,7 +102,7 @@ The number of connections reaches the limit.
 
 Check whether the number of paired devices exceeds the threshold.
 
-## 2900007
+## 2900007 Asynchronous API Call Timeout
 
 **Error Message**
 
@@ -119,7 +120,7 @@ The remote device does not respond.
 
 Try again after the timeout. If the local and remote devices are connected, disconnect them and try again.
 
-## 2900008
+## 2900008 Null Pointer
 
 **Error Message**
 
@@ -137,7 +138,7 @@ The device pairing fails.
 
 Turn on Bluetooth again to start the pairing process.
 
-## 2900009
+## 2900009 Insufficient Hardware Resources
 
 **Error Message**
 
@@ -157,7 +158,7 @@ If this application has never started a scan, you can turn Bluetooth off and the
 
 If this application has already started a scan on another channel, you can call the **stopScan** API to halt the scan. After the hardware resources are released, restart the current scan.
 
-## 2900010
+## 2900010 Resource Usage Reaches the Upper Limit
 
 **Error Message**
 
@@ -175,7 +176,7 @@ The application applies for too many resources.
 
 Call the corresponding API to release resources.
 
-## 2900011
+## 2900011 Frequent Operations
 
 **Error Message**
 
@@ -195,7 +196,7 @@ Other involved APIs are [writeCharacteristicValue](js-apis-bluetooth-ble.md#writ
 
 A new call of an asynchronous API is permitted only after the callback or promise of the previous API call is received.
 
-## 2900013
+## 2900013 Preparation Timeout
 
 **Error Message**
 
@@ -213,7 +214,7 @@ The user does not perform the required operation within a specified period of ti
 
 Perform the preprocessing operation again.
 
-## 2900014
+## 2900014 User Rejected the Operation
 
 **Error Message**
 
@@ -267,7 +268,7 @@ The queried address is not paired with the device.
 
 On the Bluetooth settings screen, check whether the device is paired.
 
-## 2900099
+## 2900099 Operation Failed
 
 **Error Message**
 
@@ -280,14 +281,16 @@ The operation failed. An internal system error occurred, such as an SA or IPC ex
 **Possible Causes**
 
 Common error code for Bluetooth API calling failures. The possible causes are as follows:
+
 1. The prerequisites for calling the API are not met.
+
 2. The specified virtual address does not exist.
 
 **Solution**
 
 1. Check the prerequisites for calling the API. For details, see [2900099 Bluetooth API Call Error](../../connectivity/bluetooth/bluetooth-faq-2900099-errorcode.md).
 
-## 2900100
+## 2900100 IPC Transmission Failure
 
 **Error Message**
 
@@ -305,7 +308,7 @@ The input data is incorrect.
 
 Check the input data.
 
-## 2901000
+## 2901000 Read Operation Forbidden
 
 **Error Message**
 
@@ -323,7 +326,7 @@ The caller does not have the read permission.
 
 Check whether the caller has the read permission.
 
-## 2901001
+## 2901001 Write Operation Forbidden
 
 **Error Message**
 
@@ -341,7 +344,7 @@ The caller does not have the write permission.
 
 Check whether the caller has the write permission.
 
-## 2901003
+## 2901003 GATT Disconnected
 
 **Error Message**
 
@@ -359,7 +362,7 @@ An API call is invoked when the GATT connection is not established, for example,
 
 Ensure that the GATT connection is established.
 
-## 2901004
+## 2901004 GATT Connection Congested
 
 **Error Message**
 
@@ -377,7 +380,7 @@ Characteristic or descriptor read and write operations are performed frequently,
 
 Reduce the frequency of read and write operations. If **GattWriteType** is set to **WRITE_NO_RESPONSE**, the recommended interval is greater than 50 ms.
 
-## 2901005
+## 2901005 GATT Not Encrypted
 
 **Error Message**
 
@@ -395,7 +398,7 @@ The GATT encryption permission is not available.
 
 Check whether the encryption permission is available for the GATT connection.
 
-## 2901006
+## 2901006 GATT Unauthenticated
 
 **Error Message**
 
@@ -413,7 +416,7 @@ The GATT connection is not authenticated.
 
 Check whether the device is paired with the peer device and whether the GATT connection is authenticated.
 
-## 2901007
+## 2901007 GATT Unauthorized
 
 **Error Message**
 
@@ -431,7 +434,7 @@ The GATT connection is not authorized.
 
 Check whether the GATT connection is authorized.
 
-## 2901008
+## 2901008 GATT Service Not Found
 
 **Error Message**
 
@@ -449,7 +452,7 @@ The GATT service has not been added.
 
 Call [addService](js-apis-bluetooth-ble.md#addservice) to add the service.
 
-## 2901054
+## 2901054 IO Transmission Failure
 
 **Error Message**
 
@@ -467,7 +470,7 @@ The I/O transmission is abnormal.
 
 Perform this operation again.
 
-## 2902050
+## 2902050 Failed to Enable Scanning
 
 **Error Message**
 
@@ -485,7 +488,7 @@ BLE scanning has been enabled.
 
 Check whether scanning is enabled.
 
-## 2902054
+## 2902054 Advertising Data Length Exceeds the Upper Limit
 
 **Error Message**
 
@@ -503,7 +506,7 @@ The maximum length of traditional advertising packets is 31 bytes. If the maximu
 
 Check whether the length of the advertising packet exceeds the upper limit.
 
-## 2902055
+## 2902055 Invalid Advertising ID
 
 **Error Message**
 

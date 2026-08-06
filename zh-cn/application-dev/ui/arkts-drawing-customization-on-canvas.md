@@ -451,12 +451,14 @@ struct CanvasContentUpdate {
 
 - 从API version 13开始，使用[setOnVisibleAreaApproximateChange](../reference/apis-arkui/arkui-ts/ts-uicommonevent.md#setonvisibleareaapproximatechange)接口监听Canvas组件可见性。
 
+<!-- @[canvasContentSetOnVisibleAreaApproximateChange_start](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkUISample/CustomCanvas/entry/src/main/ets/pages/canvas/CanvasContentSetOnVisibleAreaApproximateChange.ets) -->
+
   ```ts
   import { ColorMetrics } from '@kit.ArkUI';
 
   @Entry
   @Component
-  struct Page {
+  struct CanvasContentSetOnVisibleAreaApproximateChange {
     private canvasContext: CanvasRenderingContext2D = new CanvasRenderingContext2D()
     private timerId: number = -1;
 
@@ -486,22 +488,22 @@ struct CanvasContentUpdate {
             let frameNode = this.canvasContext.canvas;
             frameNode.commonEvent.setOnVisibleAreaApproximateChange({ ratios: [0.0] },
               (isVisible: boolean, currentRatio: number) => {
-              // canvas不可见
-              if (!isVisible && currentRatio <= 0) {
-                clearInterval(this.timerId)
-                this.timerId = -2
-              }
-              // canvas可见
-              if (isVisible) {
-                if (this.timerId == -2) {
-                  this.timerId = setInterval(() => {
-                    this.drawRandomCircle()
-                  }, 500)
+                // canvas不可见
+                if (!isVisible && currentRatio <= 0) {
+                  clearInterval(this.timerId)
+                  this.timerId = -2
                 }
-              }
-            })
+                // canvas可见
+                if (isVisible) {
+                  if (this.timerId == -2) {
+                    this.timerId = setInterval(() => {
+                      this.drawRandomCircle()
+                    }, 500)
+                  }
+                }
+              })
           })
-        Button("draw sth")
+        Button('draw sth')
           .onClick(() => {
             if (this.timerId < 0) {
               this.timerId = setInterval(() => {
@@ -515,16 +517,19 @@ struct CanvasContentUpdate {
     }
   }
   ```
+
   ![canvas_RenderingContext](figures/Canvas_RenderingContext.gif)
 
 - 从API version 17开始，使用[onVisibleAreaApproximateChange](../reference/apis-arkui/arkui-ts/ts-universal-component-visible-area-change-event.md#onvisibleareaapproximatechange17)接口监听Canvas组件可见性。
+
+<!-- @[canvasContentOnVisibleAreaApproximateChange_start](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkUISample/CustomCanvas/entry/src/main/ets/pages/canvas/CanvasContentOnVisibleAreaApproximateChange.ets) -->
 
   ```ts
   import { ColorMetrics } from '@kit.ArkUI';
 
   @Entry
   @Component
-  struct Page {
+  struct CanvasContentOnVisibleAreaApproximateChange {
     private canvasContext: CanvasRenderingContext2D = new CanvasRenderingContext2D()
     private timerId: number = -1;
 
@@ -551,22 +556,22 @@ struct CanvasContentUpdate {
           .width(300)
           .height(300)
           .onVisibleAreaApproximateChange({ ratios: [0.0] },
-              (isVisible: boolean, currentRatio: number) => {
-                // canvas不可见
-                if (!isVisible && currentRatio <= 0) {
-                  clearInterval(this.timerId)
-                  this.timerId = -2
+            (isVisible: boolean, currentRatio: number) => {
+              // canvas不可见
+              if (!isVisible && currentRatio <= 0) {
+                clearInterval(this.timerId)
+                this.timerId = -2
+              }
+              // canvas可见
+              if (isVisible) {
+                if (this.timerId == -2) {
+                  this.timerId = setInterval(() => {
+                    this.drawRandomCircle()
+                  }, 500)
                 }
-                // canvas可见
-                if (isVisible) {
-                  if (this.timerId == -2) {
-                    this.timerId = setInterval(() => {
-                      this.drawRandomCircle()
-                    }, 500)
-                  }
-                }
-              })
-        Button("draw sth")
+              }
+            })
+        Button('draw sth')
           .onClick(() => {
             if (this.timerId < 0) {
               this.timerId = setInterval(() => {
@@ -580,6 +585,7 @@ struct CanvasContentUpdate {
     }
   }
   ```
+
   ![canvas_onVisibleAreaApproximateChange](figures/Canvas_onVisibleAreaApproximateChange.gif)
 
 ## 场景示例

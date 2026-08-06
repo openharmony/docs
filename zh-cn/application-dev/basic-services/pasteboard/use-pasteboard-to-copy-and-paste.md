@@ -28,7 +28,7 @@
 - Entry对应同一份数据的不同格式； </br>
 - pasteDataProperty定义了剪贴板中数据内容的属性，包含时间戳、数据类型、可粘贴范围以及一些附加数据等。
 
-为了复制应用和粘贴应用对剪贴板数据内容理解一致，更好的实现不同应用间的复制粘贴体验，应用适配剪贴板时需按如下原则处理：
+为了复制应用和粘贴应用对剪贴板数据内容理解一致，更好地实现不同应用间的复制粘贴体验，应用适配剪贴板时需按如下原则处理：
 
 **应用复制时向剪贴板写入数据**
 
@@ -70,7 +70,7 @@ ArkTS数据类型对应剪贴板类型，详见[ohos.pasteboard](../../reference
 | [setData(data: PasteData): Promise&lt;void&gt;](../../reference/apis-basic-services-kit/js-apis-pasteboard.md#setdata9-1) | 将数据写入系统剪贴板，使用Promise异步回调。 |
 | [getData(callback: AsyncCallback&lt;PasteData&gt;): void](../../reference/apis-basic-services-kit/js-apis-pasteboard.md#getdata9) | 读取系统剪贴板内容，使用callback异步回调。 |
 | [getData(): Promise&lt;PasteData&gt;](../../reference/apis-basic-services-kit/js-apis-pasteboard.md#getdata9-1) | 读取系统剪贴板内容，使用Promise异步回调。 |
-| [getDataSync(): PasteData](../../reference/apis-basic-services-kit/js-apis-pasteboard.md#getdatasync11) | 读取系统剪贴板内容, 此接口为同步接口，不能与SetData同线程调用。 |
+| [getDataSync(): PasteData](../../reference/apis-basic-services-kit/js-apis-pasteboard.md#getdatasync11) | 读取系统剪贴板内容，此接口为同步接口，不能与SetData同线程调用。 |
 
 ### 示例代码
 

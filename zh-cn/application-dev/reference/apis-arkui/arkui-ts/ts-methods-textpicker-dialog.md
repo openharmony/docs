@@ -42,7 +42,7 @@ static show(options?: TextPickerDialogOptions)
 
 | 参数名  | 类型                                                        | 必填 | 说明                       |
 | ------- | ----------------------------------------------------------- | ---- | -------------------------- |
-| options | [TextPickerDialogOptions](#textpickerdialogoptions对象说明) | 否   | 配置文本选择器弹窗的参数，缺省时无法弹出弹窗。至少需要提供range参数才能正常弹出弹窗，其他参数均为可选配置。 |
+| options | [TextPickerDialogOptions](#textpickerdialogoptions对象说明) | 否   | 配置文本选择器弹窗的参数。至少需要提供range参数才能正常弹出弹窗，其他参数均为可选配置。 |
 
 ## TextPickerDialogOptions对象说明
 
@@ -55,7 +55,7 @@ static show(options?: TextPickerDialogOptions)
 <!--Table: 20%; 20%; 8%; 8%; 44%-->
 | 名称 | 类型 | 只读 | 可选 |  说明 |
 | -------- | -------- | -------- |  -------- |  -------- |
-| defaultPickerItemHeight | number \| string | 否 | 是 | 设置选择器中选项的高度。number类型取值范围：[0, +∞)，默认值：选中项56vp，非选中项36vp。设置该参数后，选中项与非选中项的高度均为所设置的值。string类型仅支持number类型取值的字符串形式，例如"56"。<br>**说明：**<br>当defaultPickerItemHeight的值为负数时，使用默认值。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| defaultPickerItemHeight | number \| string | 否 | 是 | 设置选择器中选项的高度。number类型取值范围：[0, +∞)，默认单位vp，默认值：选中项56vp，非选中项36vp。设置该参数后，选中项与非选中项的高度均为所设置的值。string类型仅支持number类型取值的字符串形式，例如"56"。<br>**说明：**<br>当defaultPickerItemHeight的值为负数时，使用默认值。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | disappearTextStyle<sup>10+</sup> | [PickerTextStyle](ts-picker-common.md#pickertextstyle对象说明) | 否 | 是 | 设置边缘项（以选中项为基准向上或向下的第二项）的文本颜色、字号、字体粗细等。<br>默认值：<br>{<br>color: '#ff182431',<br>font: {<br>size: '14fp', <br>weight: FontWeight.Regular<br>}<br>}<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。<br>**模型约束：** 此接口仅可在Stage模型下使用。 |
 | textStyle<sup>10+</sup> | [PickerTextStyle](ts-picker-common.md#pickertextstyle对象说明) | 否 | 是 | 设置待选项（以选中项为基准向上或向下的第一项）的文本颜色、字号、字体粗细等。<br>默认值：<br>{<br>color: '#ff182431',<br>font: {<br>size: '16fp', <br>weight: FontWeight.Regular<br>}<br>}<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。<br>**模型约束：** 此接口仅可在Stage模型下使用。 |
 | selectedTextStyle<sup>10+</sup> | [PickerTextStyle](ts-picker-common.md#pickertextstyle对象说明) | 否 | 是 | 设置选中项的文本颜色、字号、字体粗细等。<br>默认值：<br>{<br>color: '#ff007dff',<br>font: {<br>size: '20fp', <br>weight: FontWeight.Medium<br>}<br>}<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。<br>**模型约束：** 此接口仅可在Stage模型下使用。 |
@@ -68,7 +68,7 @@ static show(options?: TextPickerDialogOptions)
 | onAccept |  (value: [TextPickerResult](#textpickerresult对象说明)) => void | 否 | 是 | 点击弹窗中的“确定”按钮时触发该回调。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | onCancel | () => void | 否 | 是 | 点击弹窗中的“取消”按钮时触发该回调。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | onChange | (value: [TextPickerResult](#textpickerresult对象说明)) => void | 否 | 是 | 滑动弹窗中的选择器后，选项归位至选中项位置时，触发该回调，用于获取最终选择结果。<br>回调会在滑动动画结束后触发，如果需要快速获取索引值变化，建议使用onEnterSelectedArea接口。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
-| onScrollStop<sup>14+</sup> | [Callback](ts-types.md#callback12)\<[TextPickerResult](#textpickerresult对象说明)> | 否 | 是 | 滑动弹窗中的选择器的选择列停止时，触发该回调，用于监听物理滑动停止事件。两者触发时机略有不同，onChange侧重于选项选中状态，onScrollStop侧重于滑动动作结束。<br>**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。<br>**模型约束：** 此接口仅可在Stage模型下使用。 |
+| onScrollStop<sup>14+</sup> | [Callback](ts-types.md#callback12)\<[TextPickerResult](#textpickerresult对象说明)> | 否 | 是 | 选择器滑动停止时触发该回调，用于监听物理滑动停止事件。与onChange事件的差别在于，onChange侧重于选项选中状态，onScrollStop侧重于滑动动作结束。<br>**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。<br>**模型约束：** 此接口仅可在Stage模型下使用。 |
 | backgroundColor<sup>11+</sup> | [ResourceColor](ts-types.md#resourcecolor)  | 否 | 是 | 弹窗背板颜色。<br>默认值：Color.Transparent<br>**说明：** <br>1.当设置了backgroundColor为非透明色时，backgroundBlurStyle需要设置为BlurStyle.NONE，不要设置backgroundBlurStyle为非NONE值，否则显示的颜色将不符合预期效果。<br>2.从API版本26.0.0开始，设置systemMaterial后该属性不生效。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。<br>**模型约束：** 此接口仅可在Stage模型下使用。 |
 | backgroundBlurStyle<sup>11+</sup> | [BlurStyle](ts-universal-attributes-background.md#blurstyle9) | 否 | 是 | 弹窗背板模糊材质。<br>默认值：BlurStyle.COMPONENT_ULTRA_THICK<br>**说明：** <br>1.设置为BlurStyle.NONE即可关闭背景虚化。当设置了backgroundBlurStyle为非NONE值时，则不要设置backgroundColor，否则显示的颜色将不符合预期效果。<br>2.从API版本26.0.0开始，设置systemMaterial后该属性不生效。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。<br>**模型约束：** 此接口仅可在Stage模型下使用。 |
 | backgroundBlurStyleOptions<sup>19+</sup> | [BackgroundBlurStyleOptions](ts-universal-attributes-background.md#backgroundblurstyleoptions10对象说明) | 否 | 是 | 背景模糊效果参数，用于自定义弹窗背景模糊的显示样式，支持配置颜色模式、自适应颜色、缩放比例等属性，实现不同的背景模糊视觉效果。<br>**说明：**<br>未设置时沿用backgroundBlurStyle的默认效果（BlurStyle.COMPONENT_ULTRA_THICK）；设置后将覆盖backgroundBlurStyle的效果。<br>**原子化服务API：** 从API version 19开始，该接口支持在原子化服务中使用。<br>**模型约束：** 此接口仅可在Stage模型下使用。 |
@@ -108,7 +108,7 @@ static show(options?: TextPickerDialogOptions)
 | onAccept | [Callback](ts-types.md#callback12)\<[TextPickerResult](#textpickerresult对象说明)> | 否 | 是 | 点击弹窗中的“确定”按钮时触发该回调。<br>**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。 |
 | onCancel | [VoidCallback](ts-types.md#voidcallback12) | 否 | 是 | 点击弹窗中的“取消”按钮时触发该回调。<br>**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。 |
 | onChange | [Callback](ts-types.md#callback12)\<[TextPickerResult](#textpickerresult对象说明)> | 否 | 是 | 滑动弹窗中的选择器后，选项归位至选中项位置时，触发该回调，用于获取最终选择结果。<br>回调会在滑动动画结束后触发，如果需要快速获取索引值变化，建议使用onEnterSelectedArea接口。<br>**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。 |
-| onScrollStop | [Callback](ts-types.md#callback12)\<[TextPickerResult](#textpickerresult对象说明)>| 否 | 是 | 滑动弹窗中的选择器的选择列停止时，触发该回调，用于监听物理滑动停止事件。两者触发时机略有不同，onChange侧重于选项选中状态，onScrollStop侧重于滑动动作结束。<br>**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。 |
+| onScrollStop | [Callback](ts-types.md#callback12)\<[TextPickerResult](#textpickerresult对象说明)>| 否 | 是 | 选择器滑动停止时触发该回调，用于监听物理滑动停止事件。与onChange事件的差别在于，onChange侧重于选项选中状态，onScrollStop侧重于滑动动作结束。<br>**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。 |
 | backgroundColor | [ResourceColor](ts-types.md#resourcecolor)  | 否 | 是 | 弹窗背板颜色。<br>默认值：Color.Transparent<br>**说明：** <br>当设置了backgroundColor为非透明色时，backgroundBlurStyle需要设置为BlurStyle.NONE，否则显示的颜色将不符合预期效果。<br>**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。 |
 | backgroundBlurStyle | [BlurStyle](ts-universal-attributes-background.md#blurstyle9) | 否 | 是 | 弹窗背板模糊材质。<br>默认值：BlurStyle.COMPONENT_ULTRA_THICK<br>**说明：** <br>设置为BlurStyle.NONE即可关闭背景虚化。当设置了backgroundBlurStyle为非NONE值时，则不要设置backgroundColor，否则显示的颜色将不符合预期效果。<br>**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。 |
 | backgroundBlurStyleOptions | [BackgroundBlurStyleOptions](ts-universal-attributes-background.md#backgroundblurstyleoptions10对象说明) | 否 | 是 | 背景模糊效果参数，用于自定义弹窗背景模糊的显示样式，支持配置颜色模式、自适应颜色、缩放比例等属性，实现不同的背景模糊视觉效果。<br>**说明：**<br>未设置时沿用backgroundBlurStyle的默认效果（BlurStyle.COMPONENT_ULTRA_THICK）；设置后将覆盖backgroundBlurStyle的效果。<br>**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。 |
@@ -659,3 +659,38 @@ struct TextPickerDialogExample {
 ```
 
 ![TextPickerDialog](figures/TextPickerDialog_BackgroundEffect.png)
+
+
+### 示例11（设置系统材质）
+
+该示例通过配置[systemMaterial](#textpickerdialogoptionsext20对象说明)，实现系统材质效果。
+
+从API版本26.0.0开始，在TextPickerDialogOptionsExt中新增了systemMaterial属性。
+
+```ts
+import { uiMaterial } from '@kit.ArkUI';
+
+@Entry
+@Component
+struct TextPickerDialogExample {
+  private showText: string [] = ['Text1', 'Text2', 'Text3', 'Text4', 'Text5', 'Text6']
+
+  build() {
+    Stack({ alignContent: Alignment.Top }) {
+
+      Column() {
+        Button('TextPickerDialog')
+          .margin(20)
+          .onClick(() => {
+            this.getUIContext().showTextPickerDialog({
+              range: this.showText,
+              systemMaterial: new uiMaterial.ImmersiveMaterial({ style: uiMaterial.ImmersiveStyle.ULTRA_THICK })
+            })
+          })
+      }.width('100%')
+    }
+  }
+}
+```
+
+![text-picker-dialog-systemMaterial](figures/text-picker-dialog-systemMaterial.png)

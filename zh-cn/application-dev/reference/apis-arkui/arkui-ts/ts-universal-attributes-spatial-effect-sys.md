@@ -30,6 +30,8 @@ spatialEffect(params: SpatialEffectParams | undefined): T
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
+**原子化服务API：** 从API版本26.0.0开始，该接口支持在原子化服务中使用。
+
 **系统接口：** 此接口为系统接口。
 
 **参数：**
@@ -54,6 +56,8 @@ spatialEffect(params: SpatialEffectParams | undefined): T
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
+**原子化服务API：** 从API版本26.0.0开始，该接口支持在原子化服务中使用。
+
 **系统接口：** 此接口为系统接口。
 
 | 名称 | 类型 | 只读 | 可选 | 说明 |
@@ -71,6 +75,8 @@ spatialEffect(params: SpatialEffectParams | undefined): T
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
+**原子化服务API：** 从API版本26.0.0开始，该接口支持在原子化服务中使用。
+
 **系统接口：** 此接口为系统接口。
 
 | 名称 | 类型 | 只读 | 可选 | 说明 |
@@ -79,6 +85,7 @@ spatialEffect(params: SpatialEffectParams | undefined): T
 | rightTop | [DepthVector3](#depthvector3) | 否 | 否 | 右上角在三维空间中的位置。无单位，其值表示3D空间中的坐标。 |
 | leftBottom | [DepthVector3](#depthvector3) | 否 | 否 | 左下角在三维空间中的位置。无单位，其值表示3D空间中的坐标。 |
 | rightBottom | [DepthVector3](#depthvector3) | 否 | 否 | 右下角在三维空间中的位置。无单位，其值表示3D空间中的坐标。 |
+| positionMode | [SpatialPositionMode](#spatialpositionmode) | 否 | 是 | 角点位置的坐标模式。默认值：SpatialPositionMode.WORLD_XYZ。 |
 
 ## DepthVector3
 
@@ -90,6 +97,8 @@ spatialEffect(params: SpatialEffectParams | undefined): T
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
+**原子化服务API：** 从API版本26.0.0开始，该接口支持在原子化服务中使用。
+
 **系统接口：** 此接口为系统接口。
 
 | 名称 | 类型 | 只读 | 可选 | 说明 |
@@ -97,6 +106,25 @@ spatialEffect(params: SpatialEffectParams | undefined): T
 | x | number | 否 | 否 | X分量。无单位，其值表示3D空间中的坐标。 |
 | y | number | 否 | 否 | Y分量。无单位，其值表示3D空间中的坐标。 |
 | z | number | 否 | 否 | Z分量。无单位，其值表示3D空间中的坐标。 |
+
+## SpatialPositionMode
+
+空间位置模式，表示角点位置使用的坐标系。
+
+**起始版本：** 26.0.0
+
+**模型约束：** 此接口仅可在Stage模型下使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**原子化服务API：** 从API版本26.0.0开始，该接口支持在原子化服务中使用。
+
+**系统接口：** 此接口为系统接口。
+
+| 名称 | 值 | 说明 |
+| -------- | -------- | -------- |
+| WORLD_XYZ | 0 | 世界XYZ坐标模式。X、Y、Z分量均为世界坐标。 |
+| NDC_XY_WORLD_Z | 1 | NDC XY与世界Z坐标模式。X、Y分量使用NDC（归一化设备坐标），Z分量为世界坐标。 |
 
 ## DepthVector4
 
@@ -107,6 +135,8 @@ spatialEffect(params: SpatialEffectParams | undefined): T
 **模型约束：** 此接口仅可在Stage模型下使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**原子化服务API：** 从API版本26.0.0开始，该接口支持在原子化服务中使用。
 
 **系统接口：** 此接口为系统接口。
 
@@ -126,6 +156,8 @@ spatialEffect(params: SpatialEffectParams | undefined): T
 **模型约束：** 此接口仅可在Stage模型下使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**原子化服务API：** 从API版本26.0.0开始，该接口支持在原子化服务中使用。
 
 **系统接口：** 此接口为系统接口。
 

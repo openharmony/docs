@@ -39,8 +39,8 @@
 | void OH_HiTrace_SetSpanId(HiTraceId \*id, uint64_t spanId) | 设置分支ID到HiTraceId中。 | 
 | uint64_t OH_HiTrace_GetParentSpanId(const HiTraceId \*id) | 获取HiTraceId中的父分支ID。 | 
 | void OH_HiTrace_SetParentSpanId(HiTraceId \*id, uint64_t parentSpanId) | 设置父分支ID到HiTraceId中。 | 
-| int OH_HiTrace_IdToBytes(const HiTraceId\* id, uint8_t\* pIdArray, int len) | 将HiTraceId转换为字节数组，用于缓存或通信传递。 | 
-| void OH_HiTrace_IdFromBytes(HiTraceId \*id, const uint8_t \*pIdArray, int len) | 根据字节数组创建HiTraceId。 | 
+| int OH_HiTrace_IdToBytes(const HiTraceId\* id, uint8_t\* pIdArray, int len) | 将HiTraceId序列化为大端序字节数组，支持本地缓存及跨设备传输。 | 
+| void OH_HiTrace_IdFromBytes(HiTraceId \*id, const uint8_t \*pIdArray, int len) | 根据大端序字节数组创建HiTraceId。 | 
 
 
 ## 开发步骤
@@ -73,19 +73,19 @@ std::thread不支持自动传递HiTraceId，开发示例展示了该场景下分
 
    <!-- @[hitracechain_ndk_cmake_code](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/PerformanceAnalysisKit/HiTrace/HitraceChain_NDK/entry/src/main/cpp/CMakeLists.txt) -->
    
-   ``` Text
+   ``` cmake
    # the minimum version of CMake.
    cmake_minimum_required(VERSION 3.5.0)
    project(HiTraceChainTest03)
    
-   set(NATIVERENDER_ROOT_PATH &#36;{CMAKE_CURRENT_SOURCE_DIR})
+   set(NATIVERENDER_ROOT_PATH ${CMAKE_CURRENT_SOURCE_DIR})
    
    if(DEFINED PACKAGE_FIND_FILE)
-       include(&#36;{PACKAGE_FIND_FILE})
+       include(${PACKAGE_FIND_FILE})
    endif()
    
-   include_directories(&#36;{NATIVERENDER_ROOT_PATH}
-                       &#36;{NATIVERENDER_ROOT_PATH}/include)
+   include_directories(${NATIVERENDER_ROOT_PATH}
+                       ${NATIVERENDER_ROOT_PATH}/include)
    
    add_library(entry SHARED napi_init.cpp)
    target_link_libraries(entry PUBLIC libace_napi.z.so libhitrace_ndk.z.so libhilog_ndk.z.so)

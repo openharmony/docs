@@ -43,7 +43,7 @@ prepare(config: AudioRecorderConfig): void
 
 | 错误码ID | 错误信息              |
 | -------- | --------------------- |
-| 201      | permission denied     |
+| 201      | permission denied. <br>适用版本：12+     |
 
 **示例：**
 
@@ -201,7 +201,7 @@ on(type: 'prepare' | 'start' | 'pause' | 'resume' | 'stop' | 'release' | 'reset'
 
 | 参数名   | 类型     | 必填 | 说明                                                         |
 | -------- | -------- | ---- | ------------------------------------------------------------ |
-| type     | string   | 是   | 录制事件回调类型，支持的事件包括：'prepare'&nbsp;\|&nbsp;'start'&nbsp;\|  'pause' \| ’resume‘ \|&nbsp;'stop'&nbsp;\|&nbsp;'release'&nbsp;\|&nbsp;'reset'。<br/>-&nbsp;'prepare'&nbsp;：完成prepare调用，音频录制参数设置完成，触发该事件。<br/>-&nbsp;'start'&nbsp;：完成start调用，音频录制开始，触发该事件。<br/>-&nbsp;'pause': 完成pause调用，音频暂停录制，触发该事件。<br/>-&nbsp;'resume': 完成resume调用，音频恢复录制，触发该事件。<br/>-&nbsp;'stop'&nbsp;：完成stop调用，音频停止录制，触发该事件。<br/>-&nbsp;'release'&nbsp;：完成release调用，音频释放录制资源，触发该事件。<br/>-&nbsp;'reset'：完成reset调用，音频重置为初始状态，触发该事件。 |
+| type     | string   | 是   | 录制事件回调类型，支持的事件包括：'prepare'&nbsp;\|&nbsp;'start'&nbsp;\|  'pause' \| 'resume' \|&nbsp;'stop'&nbsp;\|&nbsp;'release'&nbsp;\|&nbsp;'reset'。<br/>-&nbsp;'prepare'&nbsp;：完成prepare调用，音频录制参数设置完成，触发该事件。<br/>-&nbsp;'start'&nbsp;：完成start调用，音频录制开始，触发该事件。<br/>-&nbsp;'pause': 完成pause调用，音频暂停录制，触发该事件。<br/>-&nbsp;'resume': 完成resume调用，音频恢复录制，触发该事件。<br/>-&nbsp;'stop'&nbsp;：完成stop调用，音频停止录制，触发该事件。<br/>-&nbsp;'release'&nbsp;：完成release调用，音频释放录制资源，触发该事件。<br/>-&nbsp;'reset'：完成reset调用，音频重置为初始状态，触发该事件。 |
 | callback | ()=>void | 是   | 录制事件回调方法。                                           |
 
 **示例：**
