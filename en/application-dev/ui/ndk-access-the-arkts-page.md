@@ -1,10 +1,12 @@
 # Integrating with ArkTS Pages
+
 <!--Kit: ArkUI-->
 <!--Subsystem: ArkUI-->
 <!--Owner: @wangyang2022-->
 <!--Designer: @wangyang2022-->
 <!--Tester: @sally__-->
 <!--Adviser: @Brilliantry_Rui-->
+<!-- md-trans-meta sourceCommit=d2d180bb8a8dbb27c5a12f721bbaa8fe745c322c translatedAt=2026-08-05T01:25:58.821Z pushedAt=2026-08-05T03:11:36.895Z -->
 
 ## Placeholder Components
 
@@ -12,8 +14,8 @@ When building a UI with NDK APIs, you need to create placeholder components in t
 
 - The NDK configuration file **entry/src/main/cpp/types/libentry/oh-package.json5** must include the following content:
 
-  <!-- @[Cpp_libentry](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkUISample/ButtonList/entry/src/main/cpp/types/libentry/oh-package.json5) --> 
-  
+  <!-- @[Cpp_libentry](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkUISample/ButtonList/entry/src/main/cpp/types/libentry/oh-package.json5) -->  
+
   ``` JSON5
   {
     "name": "libentry.so",
@@ -25,8 +27,8 @@ When building a UI with NDK APIs, you need to create placeholder components in t
 
 - The usage of placeholder components is the same as other built-in ArkTS components. For the sample code, see [Example](#example).
 
-  <!-- @[Main_Index](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkUISample/ButtonList/entry/src/main/ets/pages/Index.ets) -->
-  
+  <!-- @[Main_Index](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkUISample/ButtonList/entry/src/main/ets/pages/Index.ets) -->  
+
   ``` TypeScript
   import nativeNode from 'libentry.so';
   import { NodeContent } from '@kit.ArkUI';
@@ -67,24 +69,25 @@ When building a UI with NDK APIs, you need to create placeholder components in t
   ```
 
 - The placeholder component can be transformed into a mounting object on the native side through related APIs.
+
   ``` c
   ArkUI_NodeContentHandle contentHandle;
   OH_ArkUI_GetNodeContentFromNapiValue(env, args[0], &contentHandle);
   ```
 
 - The mounting object provides APIs for mounting and unmounting components.
+
   ``` c
   OH_ArkUI_NodeContent_AddNode(handle_, myNativeNode);
   OH_ArkUI_NodeContent_RemoveNode(handle_, myNativeNode);
   ```
 
-
 ## NDK Component Module
 
-The UI component capabilities provided by the NDK, including component creation, tree operations, attribute setting, and event registration, are exposed using the function pointer structs (such as [ArkUI_NativeNodeAPI_1](../reference/apis-arkui/capi-arkui-nativemodule-arkui-nativenodeapi-1.md)), which can be obtained through the [module query API](../reference/apis-arkui/capi-native-interface-h.md#oh_arkui_getmoduleinterface).
+The UI component capabilities provided by the NDK, such as component creation, tree operations, attribute setting, and event registration, are exposed through function pointer structures (such as [ArkUI_NativeNodeAPI_1](../reference/apis-arkui/capi-arkui-nativemodule-arkui-nativenodeapi-1.md)). This function pointer structure can be obtained through [OH_ArkUI_GetModuleInterface](../reference/apis-arkui/capi-native-interface-h.md#oh_arkui_getmoduleinterface).
 
 > **NOTE**
-> - The [module query API](../reference/apis-arkui/capi-native-interface-h.md#oh_arkui_getmoduleinterface) handles NDK initialization. It is recommended that you call this API for global initialization before constructing UIs with the NDK.
+> - [OH_ArkUI_GetModuleInterface](../reference/apis-arkui/capi-native-interface-h.md#oh_arkui_getmoduleinterface) handles NDK initialization. It is recommended that you call this API for global initialization before using the NDK for UI construction.
 
 ``` c
 ArkUI_NativeNodeAPI_1* arkUINativeNodeApi = nullptr;
@@ -93,8 +96,8 @@ OH_ArkUI_GetModuleInterface(ARKUI_NATIVE_NODE, ArkUI_NativeNodeAPI_1, arkUINativ
 
 After obtaining a function pointer struct, use the functions within the struct to perform UI component operations.
 
-
 - Create and destroy components.
+
   ``` c
   auto listNode = arkUINativeNodeApi->createNode(ARKUI_NODE_LIST);
   arkUINativeNodeApi->disposeNode(listNode);
@@ -103,6 +106,7 @@ After obtaining a function pointer struct, use the functions within the struct t
   To query the component types supported by the NDK API, use the [ArkUI_NodeType](../reference/apis-arkui/capi-native-node-h.md#arkui_nodetype) API.
 
 - Perform component tree operations.
+
   ``` c
   auto parent = arkUINativeNodeApi->createNode(ARKUI_NODE_STACK);
   auto child = arkUINativeNodeApi->createNode(ARKUI_NODE_STACK);
@@ -111,6 +115,7 @@ After obtaining a function pointer struct, use the functions within the struct t
   ```
 
 - Set attributes.
+
   ``` c
   auto stack = arkUINativeNodeApi->createNode(ARKUI_NODE_STACK);
   ArkUI_NumberValue value[] = {{.f32 = 100}};
@@ -118,12 +123,13 @@ After obtaining a function pointer struct, use the functions within the struct t
   arkUINativeNodeApi->setAttribute(stack, NODE_WIDTH, &item);
   ArkUI_NumberValue value_color[] = {{.u32 = 0xff112233}};
   ArkUI_AttributeItem item_color = {value_color, 1};
-  arkUINativeNodeApi->setAttribute(stack, NODE_BACKGROUND_COLOR, &item);
+  arkUINativeNodeApi->setAttribute(stack, NODE_BACKGROUND_COLOR, &item_color);
   ```
 
   To query the attribute types supported by the NDK API, use the [ArkUI_NodeAttributeType](../reference/apis-arkui/capi-native-node-h.md#arkui_nodeattributetype) API.
 
 - Register events.
+
   ``` c
   auto stack = arkUINativeNodeApi->createNode(ARKUI_NODE_STACK);
   arkUINativeNodeApi->addNodeEventReceiver(stack, [](ArkUI_NodeEvent* event){
@@ -132,8 +138,7 @@ After obtaining a function pointer struct, use the functions within the struct t
   arkUINativeNodeApi->registerNodeEvent(stack, NODE_ON_CLICK, 0, nullptr);
   ```
 
-  To query the event types supported by the NDK API, use the [ArkUI_NodeEventType](../reference/apis-arkui/capi-native-node-h.md#arkui_nodeeventtype) API.
-
+  To query the event types supported by the NDK API, check enumerated values of [ArkUI_NodeEventType](../reference/apis-arkui/capi-native-node-h.md#arkui_nodeeventtype).
 
 ## Example
 
@@ -171,8 +176,8 @@ Sample code directory structure:
 
 1. Declare a placeholder component for native page mounting on the ArkTS page, and notify the native side to create a text list when the page is created.
 
-    <!-- @[Main_Index](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkUISample/ButtonList/entry/src/main/ets/pages/Index.ets) -->
-    
+    <!-- @[Main_Index](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkUISample/ButtonList/entry/src/main/ets/pages/Index.ets) -->  
+
     ``` TypeScript
     import nativeNode from 'libentry.so';
     import { NodeContent } from '@kit.ArkUI';
@@ -216,8 +221,8 @@ Sample code directory structure:
 
    API declaration:
 
-    <!-- @[Cpp_indexes](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkUISample/ButtonList/entry/src/main/cpp/types/libentry/Index.d.ts) -->
-    
+    <!-- @[Cpp_indexes](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkUISample/ButtonList/entry/src/main/cpp/types/libentry/Index.d.ts) -->  
+
     ``` TypeScript
     // entry/src/main/cpp/types/libentry/Index.d.ts
     export const createNativeRoot: (content: Object) => void;
@@ -226,8 +231,8 @@ Sample code directory structure:
 
    Native implementation:
 
-    <!-- @[napi_init](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkUISample/ButtonList/entry/src/main/cpp/napi_init.cpp) -->
-    
+    <!-- @[napi_init](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkUISample/ButtonList/entry/src/main/cpp/napi_init.cpp) -->  
+
     ``` C++
     // entry/src/main/cpp/napi_init.cpp
     #include "napi/native_api.h"
@@ -239,11 +244,11 @@ Sample code directory structure:
         // Bind the native creation and destruction of components.
         napi_property_descriptor desc[] = {
             {"createNativeRoot", nullptr,
-            NativeModule::CreateNativeRoot, nullptr, nullptr,
-            nullptr, napi_default, nullptr},
+             NativeModule::CreateNativeRoot, nullptr, nullptr,
+             nullptr, napi_default, nullptr},
             {"destroyNativeRoot", nullptr,
-            NativeModule::DestroyNativeRoot, nullptr, nullptr,
-            nullptr, napi_default, nullptr}};
+             NativeModule::DestroyNativeRoot, nullptr, nullptr,
+             nullptr, napi_default, nullptr}};
         napi_define_properties(env, exports, sizeof(desc) / sizeof(desc[0]), desc);
         return exports;
     }
@@ -264,8 +269,8 @@ Sample code directory structure:
 
 3. Create the native page in the **NativeEntry.h** file.
 
-    <!-- @[Cpp_Native](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkUISample/ButtonList/entry/src/main/cpp/NativeEntry.h) -->
-    
+    <!-- @[Cpp_Native](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkUISample/ButtonList/entry/src/main/cpp/NativeEntry.h) -->  
+
     ``` C
     // NativeEntry.h
     
@@ -321,15 +326,15 @@ Sample code directory structure:
 
    Corresponding implementation file:
 
-    <!-- @[Cpp_NativeEntry](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkUISample/ButtonList/entry/src/main/cpp/NativeEntry.cpp) -->
-    
+    <!-- @[Cpp_NativeEntry](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkUISample/ButtonList/entry/src/main/cpp/NativeEntry.cpp) -->  
+
     ``` C++
     // NativeEntry.cpp
     
     #include <arkui/native_node_napi.h>
     #include <js_native_api.h>
     #include "NativeEntry.h"
-    #include "NormalNodeExample.h"
+    #include "NormalTextListExample.h"
     
     namespace NativeModule {
     
@@ -345,11 +350,11 @@ Sample code directory structure:
         OH_ArkUI_GetNodeContentFromNapiValue(env, args[0], &contentHandle);
         NativeEntry::GetInstance()->SetContentHandle(contentHandle);
     
-        // Create a component node.
-        auto node = CreateExample();
+        // Create a text list.
+        auto list = CreateTextListExample();
     
         // Keep the native side object in the management class to maintain its lifecycle.
-        NativeEntry::GetInstance()->SetRootNode(node);
+        NativeEntry::GetInstance()->SetRootNode(list);
         return nullptr;
     }
     
@@ -361,10 +366,9 @@ Sample code directory structure:
     }
     } // namespace NativeModule
     ```
-   
-   
+
    To use the C APIs provided by the NDK, add references to the required libraries (such as **libace_ndk.z.so**) in **CMakeLists.txt**. The example uses **libentry.so** as the default dynamic library name. When adding new .cpp files, ensure that they are included in **CMakeLists.txt**. Files not listed in **CMakeLists.txt** will not be compiled.
-   
+
    ``` c
    add_library(entry SHARED napi_init.cpp NativeEntry.cpp)
    target_link_libraries(entry PUBLIC libace_napi.z.so libace_ndk.z.so)
@@ -373,9 +377,9 @@ Sample code directory structure:
 4. Since the NDK provides C APIs, to simplify programming and project management in an object-oriented manner, it is recommended that you use C++ for secondary encapsulation. The following example shows the encapsulation classes required for the list and text components on the example page.
 
    (1) Obtain the entry module of ArkUI in the NDK API [ArkUI_NativeNodeAPI_1](../reference/apis-arkui/capi-arkui-nativemodule-arkui-nativenodeapi-1.md), which provides a series of function pointers for component creation, tree construction, attribute setting, and event registration.
-   
-    <!-- @[Cpp_NativeModule](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkUISample/ButtonList/entry/src/main/cpp/NativeModule.h) -->
-    
+
+    <!-- @[Cpp_NativeModule](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkUISample/ButtonList/entry/src/main/cpp/NativeModule.h) -->  
+
     ``` C
     // NativeModule.h
     // Provide encapsulated APIs for obtaining ArkUI modules on the native side.
@@ -414,9 +418,9 @@ Sample code directory structure:
     ```
 
    (2) Provide base class objects for list and text components to encapsulate common attributes and events.
-   
-    <!-- @[Cpp_ArkUIBaseNode](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkUISample/ButtonList/entry/src/main/cpp/ArkUIBaseNode.h) -->
-    
+
+    <!-- @[Cpp_ArkUIBaseNode](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkUISample/ButtonList/entry/src/main/cpp/ArkUIBaseNode.h) -->  
+
     ``` C
     // ArkUIBaseNode.h
     // Provide a base class for component tree operations.
@@ -491,8 +495,9 @@ Sample code directory structure:
     
     #endif // MYAPPLICATION_ARKUIBASENODE_H
     ```
-    <!-- @[Cpp_ArkUINode](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkUISample/ButtonList/entry/src/main/cpp/ArkUINode.h) -->
-    
+
+    <!-- @[Cpp_ArkUINode](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkUISample/ButtonList/entry/src/main/cpp/ArkUINode.h) -->  
+
     ``` C
     // ArkUINode.h
     // Provide encapsulation of common attributes and events.
@@ -542,51 +547,9 @@ Sample code directory structure:
             ArkUI_AttributeItem item = {value, 1};
             nativeModule_->setAttribute(handle_, NODE_BACKGROUND_COLOR, &item);
         }
-        void SetMargin(float top, float right, float bottom, float left)
-        {
-            ArkUI_NumberValue value[] = {{top}, {right}, {bottom}, {left}};
-            ArkUI_AttributeItem item = {value, 4};
-            nativeModule_->setAttribute(handle_, NODE_MARGIN, &item);
-        }
-        void SetPadding(float top, float right, float bottom, float left)
-        {
-            ArkUI_NumberValue value[] = {{top}, {right}, {bottom}, {left}};
-            ArkUI_AttributeItem item = {value, 4};
-            nativeModule_->setAttribute(handle_, NODE_PADDING, &item);
-        }
-        void SetBorderWidth(float width)
-        {
-            ArkUI_NumberValue value[] = {{.f32 = width}};
-            ArkUI_AttributeItem item = {value, 1};
-            nativeModule_->setAttribute(handle_, NODE_BORDER_WIDTH, &item);
-        }
-        void SetBorderColor(uint32_t color)
-        {
-            ArkUI_NumberValue value[] = {{.u32 = color}};
-            ArkUI_AttributeItem item = {value, 1};
-            nativeModule_->setAttribute(handle_, NODE_BORDER_COLOR, &item);
-        }
-        void SetBorderRadius(float radius)
-        {
-            ArkUI_NumberValue value[] = {{.f32 = radius}};
-            ArkUI_AttributeItem item = {value, 1};
-            nativeModule_->setAttribute(handle_, NODE_BORDER_RADIUS, &item);
-        }
-        void SetOpacity(float opacity)
-        {
-            ArkUI_NumberValue value[] = {{.f32 = opacity}};
-            ArkUI_AttributeItem item = {value, 1};
-            nativeModule_->setAttribute(handle_, NODE_OPACITY, &item);
-        }
-        void SetScale(float x, float y)
-        {
-            ArkUI_NumberValue value[] = {{x}, {y}};
-            ArkUI_AttributeItem item = {value, 2};
-            nativeModule_->setAttribute(handle_, NODE_SCALE, &item);
-        }
     
     protected:
-        // Implement class docking for component tree operations.
+        // Component tree operation implementation class.
         void OnAddChild(const std::shared_ptr<ArkUIBaseNode> &child) override
         {
             nativeModule_->addChild(handle_, child->GetHandle());
@@ -606,9 +569,9 @@ Sample code directory structure:
     ```
 
    (3) Implement the list component.
-   
-    <!-- @[Cpp_ArkUIListNode](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkUISample/ButtonList/entry/src/main/cpp/ArkUIListNode.h) -->
-    
+
+    <!-- @[Cpp_ArkUIListNode](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkUISample/ButtonList/entry/src/main/cpp/ArkUIListNode.h) -->  
+
     ``` C
     // ArkUIListNode.h
     // Provide encapsulation for the list component. 
@@ -640,14 +603,14 @@ Sample code directory structure:
     ```
 
    (4) Implement the list item component.
-   
-    <!-- @[Cpp_ArkUIListItemNode](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkUISample/ButtonList/entry/src/main/cpp/ArkUIListItemNode.h) -->
-    
+
+    <!-- @[Cpp_ArkUIListItemNode](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkUISample/ButtonList/entry/src/main/cpp/ArkUIListItemNode.h) -->  
+
     ``` C
     // ArkUIListItemNode.h
     // Provide an encapsulation class for list items
-    #ifndef MYAPPLICATION_ARKUISTACKNODE_H
-    #define MYAPPLICATION_ARKUISTACKNODE_H
+    #ifndef MYAPPLICATION_ARKUILISTITEMNODE_H
+    #define MYAPPLICATION_ARKUILISTITEMNODE_H
     
     #include "ArkUINode.h"
     
@@ -659,13 +622,13 @@ Sample code directory structure:
     };
     } // namespace NativeModule
     
-    #endif // MYAPPLICATION_ARKUISTACKNODE_H
+    #endif // MYAPPLICATION_ARKUILISTITEMNODE_H
     ```
 
    (5) Implement the text component.
-   
-    <!-- @[Cpp_ArkUITextNode](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkUISample/ButtonList/entry/src/main/cpp/ArkUITextNode.h) -->
-    
+
+    <!-- @[Cpp_ArkUITextNode](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkUISample/ButtonList/entry/src/main/cpp/ArkUITextNode.h) -->  
+
     ``` C
     // ArkUITextNode.h
     // Implement an encapsulation class for the text component.
@@ -710,11 +673,11 @@ Sample code directory structure:
     
     #endif // MYAPPLICATION_ARKUITEXTNODE_H
     ```
-   
-5. Complete the **CreateTextListExample** function from step 3 to create and mount the display of the native text list.
 
-    <!-- @[Cpp_NormalTextListExample](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkUISample/ButtonList/entry/src/main/cpp/NormalTextListExample.h) -->
-    
+5. Complete the **CreateTextListExample** function from step 3 to implement the creation, mounting, and display of the native text list.
+
+    <!-- @[Cpp_NormalTextListExample](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkUISample/ButtonList/entry/src/main/cpp/NormalTextListExample.h) -->  
+
     ``` C
     // NormalTextListExample.h
     
@@ -747,7 +710,6 @@ Sample code directory structure:
             textNode->SetTextContent(std::to_string(i));
             textNode->SetFontSize(fontSizes);
             textNode->SetFontColor(0xFF000000);
-            textNode->SetPercentWidth(1);
             textNode->SetPercentWidth(screenWidth);
             textNode->SetHeight(defaultHeight);
             textNode->SetBackgroundColor(0xFFfffacd);

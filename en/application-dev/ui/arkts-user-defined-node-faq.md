@@ -1,10 +1,12 @@
 # FAQs About Custom Nodes
+
 <!--Kit: ArkUI-->
 <!--Subsystem: ArkUI-->
-<!--Owner: @xiang-shouxing-->
-<!--Designer: @xiang-shouxing-->
+<!--Owner: @wangyang2022-->
+<!--Designer: @wangyang2022-->
 <!--Tester: @sally__-->
 <!--Adviser: @Brilliantry_Rui-->
+<!-- md-trans-meta sourceCommit=82cbd61bf5a97c687ddb974e4186cc744a8f06f2 translatedAt=2026-08-05T01:25:17.629Z pushedAt=2026-08-05T02:11:35.596Z -->
 
 This topic addresses common issues related to custom nodes.
 
@@ -17,15 +19,21 @@ Starting from API version 12, the [aboutToDisappear](../reference/apis-arkui/ark
 **Possible Causes**
 
 - The custom component has a parent node that remains undestroyed.
-- The custom component is created via [BuilderNode](./arkts-user-defined-arktsNode-builderNode.md). By default, BuilderNode holds a strong reference to the backend node, so the frontend object is neither reclaimed nor removed from the backend component's reference list.
+
+- The custom component is created via [BuilderNode](./arkts-user-defined-arktsNode-builderNode.md). By default, BuilderNode holds a strong reference to the backend node, so the frontend object has neither been reclaimed nor released its reference to the backend custom component.
+
 - Calling [OH_ArkUI_GetNodeHandleFromNapiValue](../reference/apis-arkui/capi-native-node-napi-h.md#oh_arkui_getnodehandlefromnapivalue) to obtain the root node of a **BuilderNode** or **ComponentContent** object increases the backend node's reference count by 1.
-- In [NodeContent](../reference/apis-arkui/js-apis-arkui-NodeContent.md), using [addFrameNode](../reference/apis-arkui/js-apis-arkui-NodeContent.md#addframenode12) to add a FrameNode creates a reference relationship. If the **NodeContent** object is not reclaimed and [removeFrameNode](../reference/apis-arkui/js-apis-arkui-NodeContent.md#removeframenode12) is not called, the reference persists.
+
+- In [NodeContent](../reference/apis-arkui/js-apis-arkui-NodeContent.md), [addFrameNode](../reference/apis-arkui/js-apis-arkui-NodeContent.md#addframenode12) is used to add a reference relationship for the created FrameNode. However, the **NodeContent** object is not reclaimed and [removeFrameNode](../reference/apis-arkui/js-apis-arkui-NodeContent.md#removeframenode12) is not called to remove the reference relationship.
 
 **Solution**
 
 - Remove the custom component to be released from its parent node to eliminate the parent node's impact on the component's lifecycle.
+
 - For custom components created using [BuilderNode](./arkts-user-defined-arktsNode-builderNode.md), call [dispose](../reference/apis-arkui/js-apis-arkui-builderNode.md#dispose12) to immediately release the frontend BuilderNode's strong reference to the backend node.
+
 - For root nodes obtained via **OH_ArkUI_GetNodeHandleFromNapiValue** (from **BuilderNode** or **ComponentContent**), call [disposeNode](../reference/apis-arkui/capi-arkui-nativemodule-arkui-nativenodeapi-1.md#disposenode) to decrease the reference count increased by **OH_ArkUI_GetNodeHandleFromNapiValue**.
+
 - If **dispose** is not called, the frontend BuilderNode object will be reclaimed during [garbage collection (GC)](../arkts-utils/gc-introduction.md), and the reference to the backend root node will be released. For debugging, use the [hidumper](../dfx/hidumper.md) command to trigger GC or [query heap memory](../dfx/hidumper.md#querying-vm-heap-memory) to analyze reference relationships.
 
 **Example**
@@ -33,16 +41,23 @@ Starting from API version 12, the [aboutToDisappear](../reference/apis-arkui/ark
 In the following example, the root node indicates the root node of BuilderNode, and **aboutToDisappear** refers to the callback in the custom component (**BuilderNodePage**) built with BuilderNode.
 
 - After displaying and navigating back from the pageOneTmp page, trigger GC via command. The **aboutToDisappear** callback will be logged after device operation. Reference management:
+
   - NodeContent to the root node: Recycle the **NodeContent** object or call the **removeFrameNode()** API.
+
   - Global object to BuilderNode: Clear [ArrayList](../reference/apis-arkts/js-apis-arraylist.md) references using the [clear](../reference/apis-arkts/js-apis-arraylist.md#clear) method.
+
   - BuilderNode object to the root node: Ensure that no other references to the BuilderNode object exist. Triggering object recycling will release the root node reference.
 
 - After you navigate to and then return from the **pageTwoTmp** page, the **aboutToDisappear** callback is triggered and logged. Reference management:
+
   - NodeContent to the root node: Explicitly call the **removeFrameNode** API of **NodeContent**.
+
   - BuilderNode object to the root node: Directly call the **dispose** API of **BuilderNode**.
 
 - After you navigate to and then return from the **pageThreeTmp** page, the **aboutToDisappear** callback is triggered and logged. Reference management:
+
   - Parent FrameNode to the root node: Call the **removeChild** API of **FrameNode** to detach from the parent node.
+
   - BuilderNode object to the root node: Directly call the **dispose** API of **BuilderNode**.
 
 ```ts
@@ -239,7 +254,7 @@ export struct pageThreeTmp {
     if (this.builderNode!.getFrameNode()) {
       this.content.addFrameNode(this.rootNode);
       // Mount the root node of BuilderNode to the node corresponding to the FrameNode object.
-      // To destroy the root node of BuilderNode, remove it from the node corresponding to the FrameNode object or wait for FrameNode destruction.
+      // To trigger destruction of the root node of BuilderNode, you must actively remove it from the node corresponding to the FrameNode object, or wait for the node corresponding to the FrameNode object to be destructed.
       // Otherwise, the root node of BuilderNode cannot be destroyed.
       this.rootNode.appendChild(this.builderNode.getFrameNode());
     }
@@ -281,11 +296,13 @@ When [BuilderNode](./arkts-user-defined-arktsNode-builderNode.md) is used to cre
 **Possible Causes**
 
 - When custom nodes are created with [BuilderNode](./arkts-user-defined-arktsNode-builderNode.md), the frontend BuilderNode object holds a strong reference to the backend node by default. Meanwhile, the backend node may, through certain paths (such as event callbacks or global caches), retain a reference back to the frontend BuilderNode object. This creates a circular reference between frontend and backend, causing the frontend object to be uncollectable and the backend node to remain unreleased due to the strong reference from the frontend, resulting in a memory leak.
-- The BuilderNode retains the parameter objects passed to its [build](../reference/apis-arkui/js-apis-arkui-builderNode.md#build) function. If those parameter objects also hold a reference to the BuilderNode object itself, a circular reference among frontend objects is formed.
+
+- BuilderNode holds a strong reference to the parameter object passed to the [build](../reference/apis-arkui/js-apis-arkui-builderNode.md#build) function. If the parameter object passed to BuilderNode also references the BuilderNode object, a circular reference of frontend objects occurs. Starting from API version 24, this circular reference is automatically released.
 
 **Solution**
 
-- Step 1: If the parameters passed to the BuilderNode hold a reference to the BuilderNode object, call the [update](../reference/apis-arkui/js-apis-arkui-builderNode.md#update) API to update the parameters and remove that reference when the BuilderNode is no longer needed.
+- Step 1: If the parameter passed to BuilderNode holds a reference to the BuilderNode object, when a BuilderNode node is no longer needed, use the [update](../reference/apis-arkui/js-apis-arkui-builderNode.md#update) API to update the parameter and remove the parameter object's reference to BuilderNode. Starting from API version 24, this step can be omitted.
+
 - Step 2: When a BuilderNode is no longer required, remove it from the component tree and call the [dispose](../reference/apis-arkui/js-apis-arkui-builderNode.md#dispose12) API. This immediately releases the strong reference from the frontend BuilderNode object to the backend node, breaking the circular reference between frontend and backend.
 
 **Example**

@@ -5,7 +5,7 @@
 <!--Designer: @tsj_20201-->
 <!--Tester: @fredyuan912-->
 <!--Adviser: @Brilliantry_Rui-->
-- [Introduction to ArkUI](arkui-overview.md)
+- [About This Kit](arkui-overview.md)
 - UI Development (ArkTS-based Declarative Development Paradigm)<!--arkts-ui-development-->
   - [UI Development (ArkTS-based Declarative Development Paradigm) Overview](arkts-ui-development-overview.md)
   - Basic Syntax of UI Paradigms<!--arkts-ui-paradigm-basic-syntax-->
@@ -250,7 +250,7 @@
       - [Custom Node Overview](arkts-user-defined-node.md)
       - [Custom Placeholder Nodes](arkts-user-defined-place-holder.md)
       - [Custom Component Node (FrameNode)](arkts-user-defined-arktsNode-frameNode.md)
-      - [Custom RenderNode (RenderNode)](arkts-user-defined-arktsNode-renderNode.md)
+      - [Custom Render Node (RenderNode)](arkts-user-defined-arktsNode-renderNode.md)
       - [Custom Declarative Node (BuilderNode)](arkts-user-defined-arktsNode-builderNode.md)
       - [Setting Custom Node Cross-Language Attributes](arkts-user-defined-arktsNode-crossLanguage.md)<!--RP3--><!--RP3End-->
     - Custom Drawing<!--arkts-draw-->
@@ -302,7 +302,7 @@
     - [Image Display (Image)](ndk-image-component.md)
     - [Using the Swiper Component](ndk-swiper.md)
   - [Building Form Components](ndk-build-form-components.md)
-  - [Building Dialog Boxes](ndk-build-pop-up-window.md)
+  - [Building a Dialog Box](ndk-build-pop-up-window.md)
   - Using Animation<!--arkts-use-animation-ndk-->
     - [Using Animations](ndk-use-animation.md)
     - [Animation Development](ndk-use-animation-scene.md)
@@ -315,8 +315,8 @@
     - [Binding Drag Events](ndk-drag-event.md)
   - Using Customization Capabilities<!--arkts-build-custom-ndk-->
     - [Building Custom Components](ndk-build-custom-components.md)
-    - [Implementing Custom Drawing](arkts-user-defined-draw.md)
-  - [Integrating Accessibility Through XComponent](ndk-accessibility-xcomponent.md)
+    - [Custom Drawing](arkts-user-defined-draw.md)
+  - [Integrating Accessibility Through Custom Drawing](ndk-accessibility-xcomponent.md)
   - [Launching EmbeddedUIExtensionAbility with EmbeddedComponent](ndk-embedded-component.md)
   - [Querying and Operating Custom Nodes](ndk-node-query-operate.md)
   - [Ensuring Multi-Instance Functionality in the NDK](ndk-scope-task.md)

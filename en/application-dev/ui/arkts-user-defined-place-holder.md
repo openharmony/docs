@@ -1,10 +1,12 @@
 # Custom Placeholder Nodes
+
 <!--Kit: ArkUI-->
 <!--Subsystem: ArkUI-->
 <!--Owner: @wangyang2022-->
 <!--Designer: @wangyang2022-->
 <!--Tester: @sally__-->
 <!--Adviser: @Brilliantry_Rui-->
+<!-- md-trans-meta sourceCommit=82cbd61bf5a97c687ddb974e4186cc744a8f06f2 translatedAt=2026-08-05T01:25:14.212Z pushedAt=2026-08-05T02:27:52.924Z -->
 
 ArkUI provides two types of custom placeholder nodes: the built-in component [NodeContainer](../../application-dev/reference/apis-arkui/arkui-ts/ts-basic-components-nodecontainer.md) and [ContentSlot](../../application-dev/reference/apis-arkui/arkui-ts/ts-components-contentSlot.md). They are used to display custom nodes and custom node trees.
 
@@ -12,7 +14,7 @@ Unlike [NodeContainer](../../application-dev/reference/apis-arkui/arkui-ts/ts-ba
 
 [NodeContainer](../reference/apis-arkui/arkui-ts/ts-basic-components-nodecontainer.md), a built-in component serving as a placeholder, comes with universal attributes, and its node layout follows the default top-left aligned [Stack](../reference/apis-arkui/arkui-ts/ts-container-stack.md) component.
 
-[NodeController](../reference/apis-arkui/js-apis-arkui-nodeController.md) provides a set of lifecycle callbacks, including a [makeNode](../reference/apis-arkui/js-apis-arkui-nodeController.md#makenode) callback that returns the root node of a [FrameNode](../reference/apis-arkui/js-apis-arkui-frameNode.md) tree. This [FrameNode](../reference/apis-arkui/js-apis-arkui-frameNode.md) tree is then mounted under the corresponding [NodeContainer](../reference/apis-arkui/arkui-ts/ts-basic-components-nodecontainer.md). In addition, NodeController provides the following callback methods: [aboutToAppear](../reference/apis-arkui/arkui-ts/ts-custom-component-lifecycle.md#abouttoappear), [aboutToDisappear](../reference/apis-arkui/arkui-ts/ts-custom-component-lifecycle.md#abouttodisappear), [aboutToResize](../reference/apis-arkui/js-apis-arkui-nodeController.md#abouttoresize), [onTouchEvent](../reference/apis-arkui/js-apis-arkui-nodeController.md#ontouchevent), and [rebuild](../reference/apis-arkui/js-apis-arkui-nodeController.md#rebuild), which are used to listen for the status of the associated [NodeContainer](../reference/apis-arkui/arkui-ts/ts-basic-components-nodecontainer.md).
+[NodeController](../reference/apis-arkui/js-apis-arkui-nodeController.md) provides a series of lifecycle callbacks, and returns the root node of a [FrameNode](../reference/apis-arkui/js-apis-arkui-frameNode.md) node tree through the [makeNode](../reference/apis-arkui/js-apis-arkui-nodeController.md#makenode) callback. The [FrameNode](../reference/apis-arkui/js-apis-arkui-frameNode.md) node tree is then mounted to the corresponding [NodeContainer](../reference/apis-arkui/arkui-ts/ts-basic-components-nodecontainer.md). It also provides four callback methods — [aboutToAppear](../reference/apis-arkui/arkui-ts/ts-custom-component-lifecycle.md#abouttoappear), [aboutToDisappear](../reference/apis-arkui/arkui-ts/ts-custom-component-lifecycle.md#abouttodisappear), [aboutToResize](../reference/apis-arkui/js-apis-arkui-nodeController.md#abouttoresize), and [onTouchEvent](../reference/apis-arkui/js-apis-arkui-nodeController.md#ontouchevent) — for listening to the state of the corresponding [NodeContainer](../reference/apis-arkui/arkui-ts/ts-basic-components-nodecontainer.md), as well as the [rebuild](../reference/apis-arkui/js-apis-arkui-nodeController.md#rebuild) method for actively triggering the [NodeContainer](../reference/apis-arkui/arkui-ts/ts-basic-components-nodecontainer.md) to re-invoke [makeNode](../reference/apis-arkui/js-apis-arkui-nodeController.md#makenode) to update child nodes.
 
 For details about the callbacks, see [NodeController](../reference/apis-arkui/js-apis-arkui-nodeController.md).
 
@@ -26,7 +28,7 @@ For details about the callbacks, see [NodeController](../reference/apis-arkui/js
 
 ## Basic Concepts
 
-- Custom node: node created using the APIs provided by ArkUI. Custom nodes include custom component nodes ([FrameNode](../reference/apis-arkui/js-apis-arkui-frameNode.md)), custom rendering nodes ([RenderNode](../reference/apis-arkui/js-apis-arkui-renderNode.md)), custom declarative nodes ([BuilderNode](../reference/apis-arkui/js-apis-arkui-builderNode.md)), and [ComponentContent](../reference/apis-arkui/js-apis-arkui-ComponentContent.md).
+- Custom node: a node created imperatively using APIs provided by ArkUI. This includes custom component nodes ([FrameNode](../reference/apis-arkui/js-apis-arkui-frameNode.md)), custom rendering nodes ([RenderNode](../reference/apis-arkui/js-apis-arkui-renderNode.md)), custom declarative nodes ([BuilderNode](../reference/apis-arkui/js-apis-arkui-builderNode.md)), [ComponentContent](../reference/apis-arkui/js-apis-arkui-ComponentContent.md), and others.
 
 - Custom node tree: tree structure where the root node is a custom node.
 
@@ -237,7 +239,6 @@ class MyNodeController extends NodeController {
 @Entry
 @Component
 struct Index {
-  @State message: string = 'Hello World';
   controller = new NodeContentCtrl(this.getUIContext());
   myNodeController = new MyNodeController();
 
