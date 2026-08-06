@@ -240,7 +240,7 @@ getServiceDump(serviceid: number, fd: number, args: Array\<string>): void
 
 | 错误码ID | 错误信息 |
 | ------- | ----------------------------------------------------------------- |
-| 401 | The parameter check failed,Possible causes:1.the parameter type error. 2.the args parameter is not string array.  |
+| 401 | The parameter check failed,Possible causes:1.The parameter type error. 2.The args parameter is not string array.  |
 | 11400101 | ServiceId invalid. The system ability does not exist.                                           |
 
 **示例**：
