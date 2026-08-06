@@ -574,7 +574,7 @@ void OH_NativeArkWeb_SetActiveWebEngineVersion(ArkWebEngineVersion webEngineVers
 
 **描述：**
 
-设置ArkWeb内核版本。若系统不支持指定版本，则设置无效，使用系统默认内核（可参考[约束与限制](../../web/web-component-overview.md#约束与限制)）。
+设置ArkWeb内核版本。若系统不支持指定版本，则设置无效，使用系统默认内核（可参考[约束与限制](../../web/web-component-overview.md#约束与限制)）。需要根据应用兼容性需求选择特定内核版本时使用，例如应用依赖某些旧版本内核的特性，或需要在新版本系统上保持兼容性，可以指定使用特定的遗留内核版本。
 
 该接口为全局静态方法，须在调用initializeWebEngine前执行，若已加载任何Web组件，则该设置无效。
 
@@ -625,7 +625,7 @@ bool OH_NativeArkWeb_IsActiveWebEngineEvergreen()
 
 | 类型 | 说明 |
 | -- | -- |
-| bool | 表示当前应用所使用内核是否为常青内核。true表示当前应用所使用内核是常青内核，false表示当前应用所使用内核不是常青内核。 |
+| bool | 返回当前应用所使用内核是否为常青内核。true表示是常青内核，false表示不是常青内核。 |
 
 ### OH_NativeArkWeb_LazyInitializeWebEngineInCookieManager()
 
