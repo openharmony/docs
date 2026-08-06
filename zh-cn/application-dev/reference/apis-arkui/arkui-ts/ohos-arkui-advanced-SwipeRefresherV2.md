@@ -32,7 +32,7 @@ import { SwipeRefresherV2 } from '@kit.ArkUI';
 
 ## SwipeRefresherV2
 
-SwipeRefresherV2({content?: string, isLoading: boolean})
+SwipeRefresherV2({content?: ResourceStr, isLoading: boolean})
 
 实现下拉刷新功能。当用户下拉页面时，会触发内容加载操作，即从数据源获取新内容并动态展示在界面中。
 
@@ -50,7 +50,7 @@ SwipeRefresherV2({content?: string, isLoading: boolean})
 
 | 名称 | 类型 | 必填 | 装饰器类型 | 说明      |
 | -------- | -------- | -------- | -------- |----------|
-| content | string | 否 | \@Param | 内容加载时显示的文本。<br/>默认值：空字符串。<br/>**说明**：如果文本大于列宽时，文本被截断。 |
+| content | [ResourceStr](ts-types.md#resourcestr) | 否 | \@Param | 内容加载时显示的文本。<br/>默认值：空字符串。<br/>**说明**：如果文本大于列宽时，文本被截断。 |
 | isLoading | boolean | 是 | \@Require<br/>\@Param | 当前内容是否正在加载。<br> true：内容正在加载。<br> false：内容未在加载。 |
 
 ## 事件
