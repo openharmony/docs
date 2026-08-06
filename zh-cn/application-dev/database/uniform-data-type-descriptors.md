@@ -241,11 +241,11 @@ utd.json5文件需要在类型为entry的HAP中配置。
         // 5.将查询到的标准数据类型“general.mp3”与表示音频数据的已知标准数据类型“general.audio”做比较查询，确认是否存在归属关系。
         if (typeObj1 != null) {
           let ret = typeObj1.belongsTo('general.audio');
-          hilog.info(0xFF00, '[Sample_Udmf]', `belongsTo, ret: + ${ret}`);
+          hilog.info(0xFF00, '[Sample_Udmf]', `belongsTo, ret: ${ret}`);
           let mediaTypeObj = uniformTypeDescriptor.getTypeDescriptor('general.media');
           // 确认是否存在归属关系
           ret = mediaTypeObj.isHigherLevelType('general.audio');
-          hilog.info(0xFF00, '[Sample_Udmf]', `isHigherLevelType, ret: + ${ret}`);
+          hilog.info(0xFF00, '[Sample_Udmf]', `isHigherLevelType, ret: ${ret}`);
         }
       } catch (err) {
         hilog.error(0xFF00, '[Sample_Udmf]', `err message: ${err.message}, err code: ${err.code}`);

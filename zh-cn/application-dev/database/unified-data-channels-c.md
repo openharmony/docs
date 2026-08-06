@@ -107,7 +107,7 @@ libudmf.so, libhilog_ndk.z.so
 ``` C++
 int32_t SetHyperlinkData(OH_UdsHyperlink* hyperlink, OH_UdmfRecord* record, OH_UdmfData* data)
 {
-    // 2.设置hyperlink中的URL和描述信息。
+    // 2. 设置hyperlink中的URL和描述信息。
     int ret = OH_UdsHyperlink_SetUrl(hyperlink, "www.demo.com");
     if (ret != Udmf_ErrCode::UDMF_E_OK) {
         OH_LOG_ERROR(LOG_APP, "Hyperlink set url error!");
@@ -132,10 +132,9 @@ int32_t SetHyperlinkData(OH_UdsHyperlink* hyperlink, OH_UdmfRecord* record, OH_U
     }
     return UDMF_E_OK;
 }
-
 int32_t CreateDataTest()
 {
-    // 1.创建hyperlink的UDS数据结构、OH_UdmfRecord对象及OH_UdmfData对象。
+    // 1. 创建hyperlink的UDS数据结构、OH_UdmfRecord对象及OH_UdmfData对象。
     OH_UdsHyperlink* hyperlink = OH_UdsHyperlink_Create();
     OH_UdmfRecord* record = OH_UdmfRecord_Create();
     OH_UdmfData* data = OH_UdmfData_Create();
@@ -147,7 +146,7 @@ int32_t CreateDataTest()
         OH_UdmfData_Destroy(data);
         return ret;
     }
-    // 构建数据操作选项。
+    // 5. 构建数据操作选项。
     OH_UdmfOptions* options = OH_UdmfOptions_Create();
     ret = OH_UdmfOptions_SetIntention(options, Udmf_Intention::UDMF_INTENTION_DATA_HUB);
     if (ret != Udmf_ErrCode::UDMF_E_OK) {
@@ -201,6 +200,7 @@ int32_t ProcessHyperlinks(OH_UdmfRecord* record, unsigned int recordTypeIdCount,
             int32_t ret = OH_UdmfRecord_GetHyperlink(record, hyperlink);
             if (ret != Udmf_ErrCode::UDMF_E_OK) {
                 OH_LOG_ERROR(LOG_APP, "Fail get hyperlink from record!");
+                OH_UdsHyperlink_Destroy(hyperlink);
                 return ret;
             }
             // 读取OH_UdsHyperlink中的各项信息。
@@ -276,6 +276,7 @@ int32_t GetDataTest()
     ret = HandleUdmfHyperlinkData(readData, dataSize, dataArray);
     if (ret != Udmf_ErrCode::UDMF_E_OK) {
         OH_LOG_ERROR(LOG_APP, "Get Data error!");
+        OH_Udmf_DestroyDataArray(dataArray, dataSize);
         return ret;
     }
     // 5.销毁指针。
@@ -477,6 +478,7 @@ int32_t DeleteDataTest()
     OH_UdmfData** dataArray = &readData;
     ret = ProcessHyperlinkDataFromArray(readData, dataSize, dataArray);
     if (ret != UDMF_E_OK) {
+        OH_Udmf_DestroyDataArray(dataArray, dataSize);
         OH_LOG_ERROR(LOG_APP, "Process hyperlink data error!");
         return ret;
     }
