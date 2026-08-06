@@ -236,7 +236,7 @@ export class MyWebNativeMessagingExtension extends WebNativeMessagingExtensionAb
           console.info('Extension terminated successfully');
         }).catch((err: BusinessError) => {
           console.error(`Failed to terminate extension. Code: ${err.code},
-          Message: ${err).message}`);
+          Message: ${err.message}`);
         });       
     } catch (err) {
         console.error(`Failed to terminate extension. Code: ${(err as BusinessError).code},
