@@ -261,7 +261,7 @@ NativeDisplayManager_ErrorCode OH_NativeDisplayManager_GetDefaultDisplayDensityD
 
 | 参数项 | 描述 |
 | -- | -- |
-| int32_t *densityDpi | 屏幕的物理像素密度，表示每英寸上的像素点数。该参数为整数，单位为px，实际能取到的值取决于不同设备设置里提供的可选值。此处作为出参返回。 |
+| int32_t *densityDpi | 屏幕的物理像素密度，表示每英寸上的像素点数。该参数为整数，实际能取到的值取决于不同设备设置里提供的可选值。此处作为出参返回。 |
 
 **返回：**
 
@@ -386,7 +386,7 @@ NativeDisplayManager_ErrorCode OH_NativeDisplayManager_CreateDefaultDisplayCutou
 
 | 参数项 | 描述 |
 | -- | -- |
-| [NativeDisplayManager_CutoutInfo](capi-nativedisplaymanager-cutoutinfo.md) **cutoutInfo | 挖孔屏、刘海屏、瀑布屏等不可用屏幕区域信息，具体可见[NativeDisplayManager_CutoutInfo](capi-nativedisplaymanager-cutoutinfo.md)，此处作为出参返回。 |
+| [NativeDisplayManager_CutoutInfo](capi-nativedisplaymanager-cutoutinfo.md) **cutoutInfo | 挖孔屏、刘海屏、瀑布屏等不可用屏幕区域信息，具体可见[NativeDisplayManager_CutoutInfo](capi-nativedisplaymanager-cutoutinfo.md)，此处作为出参返回。使用完毕后需要调用[OH_NativeDisplayManager_DestroyDefaultDisplayCutoutInfo](#oh_nativedisplaymanager_destroydefaultdisplaycutoutinfo)释放资源。 |
 
 **返回：**
 
@@ -449,7 +449,7 @@ NativeDisplayManager_ErrorCode OH_NativeDisplayManager_GetFoldDisplayMode(Native
 
 **起始版本：** 12
 
-**设备行为差异：** 该接口在PC/2in1设备、非折叠设备中返回0，在其他设备中可正常调用。
+**设备行为差异：** 该接口在PC/2in1设备、非折叠设备中返回NativeDisplayManager_FoldDisplayMode.DISPLAY_MANAGER_FOLD_DISPLAY_MODE_UNKNOWN，在其他设备中可正常调用。
 
 
 **参数：**
@@ -621,7 +621,7 @@ NativeDisplayManager_ErrorCode OH_NativeDisplayManager_CreateAllDisplays(NativeD
 
 | 参数项 | 描述 |
 | -- | -- |
-| [NativeDisplayManager_DisplaysInfo](capi-nativedisplaymanager-displaysinfo.md) **allDisplays | 当前所有的屏幕信息，具体可见[NativeDisplayManager_DisplaysInfo](capi-nativedisplaymanager-displaysinfo.md)，此处作为出参返回。 |
+| [NativeDisplayManager_DisplaysInfo](capi-nativedisplaymanager-displaysinfo.md) **allDisplays | 当前所有的屏幕信息，具体可见[NativeDisplayManager_DisplaysInfo](capi-nativedisplaymanager-displaysinfo.md)，此处作为出参返回。使用完毕后需要调用[OH_NativeDisplayManager_DestroyAllDisplays](#oh_nativedisplaymanager_destroyalldisplays)释放资源。 |
 
 **返回：**
 
@@ -651,7 +651,7 @@ void OH_NativeDisplayManager_DestroyAllDisplays(NativeDisplayManager_DisplaysInf
 ### OH_NativeDisplayManager_CreateDisplayById()
 
 ```c
-NativeDisplayManager_ErrorCode OH_NativeDisplayManager_CreateDisplayById(uint32_t displayId,NativeDisplayManager_DisplayInfo **displayInfo)
+NativeDisplayManager_ErrorCode OH_NativeDisplayManager_CreateDisplayById(uint32_t displayId, NativeDisplayManager_DisplayInfo **displayInfo)
 ```
 
 **描述**
@@ -666,7 +666,7 @@ NativeDisplayManager_ErrorCode OH_NativeDisplayManager_CreateDisplayById(uint32_
 | 参数项 | 描述 |
 | -- | -- |
 | uint32_t displayId | 指定屏幕的ID号，该值为非负整数。 |
-| [NativeDisplayManager_DisplayInfo](capi-nativedisplaymanager-displayinfo.md) **displayInfo | 指定的屏幕信息对象，具体可见[NativeDisplayManager_DisplayInfo](capi-nativedisplaymanager-displayinfo.md)，此处作为出参返回。 |
+| [NativeDisplayManager_DisplayInfo](capi-nativedisplaymanager-displayinfo.md) **displayInfo | 指定的屏幕信息对象，具体可见[NativeDisplayManager_DisplayInfo](capi-nativedisplaymanager-displayinfo.md)，此处作为出参返回。使用完毕后需要调用[OH_NativeDisplayManager_DestroyDisplay](#oh_nativedisplaymanager_destroydisplay)释放资源。 |
 
 **返回：**
 
@@ -808,6 +808,8 @@ NativeDisplayManager_ErrorCode OH_NativeDisplayManager_CreateAvailableArea(uint6
 
 获取屏幕的可用区域。
 
+可用区域是扣除系统UI（如状态栏、Dock栏）后，可供应用程序自由使用的区域。
+
 **起始版本：** 20
 
 **设备行为差异：** 
@@ -822,7 +824,7 @@ NativeDisplayManager_ErrorCode OH_NativeDisplayManager_CreateAvailableArea(uint6
 | 参数项 | 描述 |
 | -- | -- |
 | uint64_t displayId | 查询屏幕的ID号，非负整数。 |
-| [NativeDisplayManager_Rect](capi-nativedisplaymanager-rect.md) **availableArea | 屏幕可用区域，具体可见[NativeDisplayManager_Rect](capi-nativedisplaymanager-rect.md)，此处作为出参返回。 |
+| [NativeDisplayManager_Rect](capi-nativedisplaymanager-rect.md) **availableArea | 屏幕可用区域，具体可见[NativeDisplayManager_Rect](capi-nativedisplaymanager-rect.md)，此处作为出参返回。使用完毕后需要调用[OH_NativeDisplayManager_DestroyAvailableArea](#oh_nativedisplaymanager_destroyavailablearea)释放资源。 |
 
 **返回：**
 
