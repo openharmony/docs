@@ -762,7 +762,8 @@ setOrientation(orientation: number): void
 
 > **说明：**
 > 
-> 不支持编辑exif的图片(如：bmp、gif、ico、svg、dng)，不支持设置旋转角度。
+> - BMP、GIF、ICO、SVG格式图片本身不支持存储 EXIF 元数据，故无法借助 EXIF 元数据修改旋转角度。
+> - DNG 格式图片不支持编辑 EXIF元数据，故无法借助 EXIF 元数据修改旋转角度。
 
 **系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
 
