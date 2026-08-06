@@ -9,7 +9,7 @@
 >
 > 以下仅介绍本模块特有错误码，通用错误码请参考[通用错误码说明文档](../errorcode-universal.md)。
 
-## 14700103 操作权限被拒绝
+## 14700103 操作因权限被拒绝
 
 **错误信息**
 
@@ -25,4 +25,4 @@ The operation on the system permission is denied.
 
 **处理步骤**
 
-添加相应的权限。
+在配置文件中添加相应的权限，例如：{"name": "ohos.permission.sec.ACCESS_UDID"}。不同字段可能需要不同权限，请参考[@ohos.deviceInfo (设备信息)](js-apis-device-info.md)。
