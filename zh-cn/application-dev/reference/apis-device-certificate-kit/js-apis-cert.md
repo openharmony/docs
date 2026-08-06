@@ -1393,7 +1393,7 @@ checkValidityWithDate(date: string) : void
 
 | 参数名   | 类型            | 必填 | 说明        |
 | -------- | -------------- | ---- | ---------- |
-| date     | string         | 是   | 日期，采用 ASN.1 UTCTime 或 GeneralizedTime 格式。 |
+| date     | string         | 是   | 日期，采用ASN.1 UTCTime或GeneralizedTime格式。 |
 
 **错误码：**
 
@@ -1923,7 +1923,7 @@ getNotBeforeTime() : string
 
 | 类型   | 说明                                                         |
 | ------ | ------------------------------------------------------------ |
-| string | 表示X.509证书生效时间，日期采用 ASN.1 UTCTime 或 GeneralizedTime 格式。 |
+| string | 表示X.509证书生效时间，日期采用ASN.1 UTCTime或GeneralizedTime格式。 |
 
 **错误码：**
 
@@ -1996,7 +1996,7 @@ getNotAfterTime() : string
 
 | 类型   | 说明                                                         |
 | ------ | ------------------------------------------------------------ |
-| string | 表示X.509证书过期时间，日期采用 ASN.1 UTCTime 或 GeneralizedTime 格式。 |
+| string | 表示X.509证书过期时间，日期采用ASN.1 UTCTime或GeneralizedTime格式。 |
 
 **错误码：**
 
@@ -5049,7 +5049,7 @@ getLastUpdate() : string
 
 | 类型   | 说明                                 |
 | ------ | ------------------------------------ |
-| string | 表示X.509证书吊销列表最后一次更新日期，日期采用 ASN.1 UTCTime 或 GeneralizedTime 格式。 |
+| string | 表示X.509证书吊销列表最后一次更新日期，日期采用ASN.1 UTCTime或GeneralizedTime格式。 |
 
 **错误码：**
 
@@ -5123,7 +5123,7 @@ getNextUpdate() : string
 
 | 类型   | 说明                                 |
 | ------ | ------------------------------------ |
-| string | 表示X.509证书吊销列表下一次更新的日期，日期采用 ASN.1 UTCTime 或 GeneralizedTime 格式。 |
+| string | 表示X.509证书吊销列表下一次更新的日期，日期采用ASN.1 UTCTime或GeneralizedTime格式。 |
 
 **错误码：**
 
@@ -6728,7 +6728,7 @@ getLastUpdate() : string
 
 | 类型   | 说明                                 |
 | ------ | ------------------------------------ |
-| string | 表示X.509证书吊销列表最后一次更新日期，日期采用 ASN.1 UTCTime 或 GeneralizedTime 格式。 |
+| string | 表示X.509证书吊销列表最后一次更新日期，日期采用ASN.1 UTCTime或GeneralizedTime格式。 |
 
 **错误码：**
 
@@ -6800,7 +6800,7 @@ getNextUpdate() : string
 
 | 类型   | 说明                                 |
 | ------ | ------------------------------------ |
-| string | 表示X.509证书吊销列表下一次更新的日期，日期采用 ASN.1 UTCTime 或 GeneralizedTime 格式。 |
+| string | 表示X.509证书吊销列表下一次更新的日期，日期采用ASN.1 UTCTime或GeneralizedTime格式。 |
 
 **错误码：**
 
@@ -8951,7 +8951,7 @@ getRevocationDate() : string
 
 | 类型   | 说明                |
 | ------ | ------------------ |
-| string | 表示证书被吊销的日期，日期采用 ASN.1 UTCTime 或 GeneralizedTime 格式。 |
+| string | 表示证书被吊销的日期，日期采用ASN.1 UTCTime或GeneralizedTime格式。 |
 
 **错误码：**
 

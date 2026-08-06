@@ -3477,7 +3477,7 @@ function testGeneratePriKey() {
 
 generatePriKeySync(): PriKey
 
-同步获取该非对称密钥生成器生成的私钥。
+使用该非对称密钥生成器生成私钥。该接口以同步方式返回结果。
 
 当使用[PRIVATE_KEY_SPEC](#asykeyspectype10)类型的密钥参数来创建密钥生成器时，可以得到指定的私钥；当使用[KEY_PAIR_SPEC](#asykeyspectype10)类型的密钥参数来创建密钥生成器时，可以从生成的密钥对中获取指定的私钥。
 
