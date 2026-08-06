@@ -29,13 +29,13 @@ queryDeviceInfo(deviceId?: number): Array&lt;Readonly&lt;DeviceInfo&gt;&gt;
 
 **需要权限**：ohos.permission.ACCESS_EXTENSIONAL_DEVICE_DRIVER
 
-**系统能力：**  SystemCapability.Driver.ExternalDevice
+**系统能力：** SystemCapability.Driver.ExternalDevice
 
 **参数：**
 
 | 参数名      | 类型     | 必填  | 说明                     |
 |----------|--------|-----|------------------------|
-| deviceId | number | 否   | 设备ID，通过[queryDevices](js-apis-driver-deviceManager.md#devicemanagerquerydevices)获得。如果不传入设备ID，则默认获取所有的设备信息；如果没有外接设备，且没有传入设备ID则会返回空数组。 |
+| deviceId | number | 否   | 设备ID，通过[queryDevices](js-apis-driver-deviceManager.md#devicemanagerquerydevices)获得。如果不传入设备ID，则默认获取所有设备信息。如果没有设备接入，返回空列表。 |
 
 **返回值：**
 
@@ -62,9 +62,9 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   // 12345678为示例deviceId，应用开发时可通过queryDevices查询到相应设备的deviceId作为入参
-  let deviceInfos : Array<deviceManager.DeviceInfo> = deviceManager.queryDeviceInfo(12345678);
+  let deviceInfos: Array<deviceManager.DeviceInfo> = deviceManager.queryDeviceInfo(12345678);
   for (let item of deviceInfos) {
-    console.info(`Device id is ${item.deviceId}`)
+    console.info(`Device id is ${item.deviceId}`);
   }
 } catch (error) {
   let err: BusinessError = error as BusinessError;
@@ -81,13 +81,13 @@ queryDriverInfo(driverUid?: string): Array&lt;Readonly&lt;DriverInfo&gt;&gt;
 
 **需要权限**：ohos.permission.ACCESS_EXTENSIONAL_DEVICE_DRIVER
 
-**系统能力：**  SystemCapability.Driver.ExternalDevice
+**系统能力：** SystemCapability.Driver.ExternalDevice
 
 **参数：**
 
 | 参数名       | 类型     | 必填  | 说明                         |
 |-----------|--------|-----|----------------------------|
-| driverUid | string | 否   | 驱动UID，通过queryDeviceInfo获得。 |
+| driverUid | string | 否   | 驱动UID，通过[queryDeviceInfo](#devicemanagerquerydeviceinfo)返回的设备信息获得。如果不传入驱动UID，则默认获取所有的驱动信息；如果传入了UID但不存在对应的驱动，则会返回空列表。 |
 
 **返回值：**
 
@@ -114,9 +114,9 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   // driver-12345为示例driverUid，应用开发时可通过queryDeviceInfo查询到相应设备匹配到的驱动的driverUid作为入参
-  let driverInfos : Array<deviceManager.DriverInfo> = deviceManager.queryDriverInfo("driver-12345");
+  let driverInfos: Array<deviceManager.DriverInfo> = deviceManager.queryDriverInfo('driver-12345');
   for (let item of driverInfos) {
-    console.info(`driver name is ${item.driverName}`)
+    console.info(`driver name is ${item.driverName}`);
   }
 } catch (error) {
   let err: BusinessError = error as BusinessError;
@@ -178,11 +178,11 @@ USB设备接口描述符。
 | 名称            | 类型                                                 | 只读  | 可选  | 说明             |
 |---------------|----------------------------------------------------|-----|-----|----------------|
 | busType       | [BusType](js-apis-driver-deviceManager.md#bustype) | 否   | 否   | 总线类型。          |
-| driverUid     | string                                             | 否   | 否   | 驱动Uid。         |
+| driverUid     | string                                             | 否   | 否   | 驱动UID。         |
 | driverName    | string                                             | 否   | 否   | 驱动名称。          |
 | driverVersion | string                                             | 否   | 否   | 驱动版本。          |
-| driverSize    | string                                             | 否   | 否   | 驱动大小(单位为Byte)。 |
-| description   | string                                             | 否   | 否   | 驱动描述。          |
+| driverSize    | string                                             | 否   | 否   | 驱动文件的大小，单位：字节，用于标识驱动文件占用的存储空间大小。 |
+| description   | string                                             | 否   | 否   | 驱动的描述信息，用于提供驱动的功能说明、使用场景、注意事项等详细信息。          |
 
 ## USBDriverInfo
 

@@ -24,12 +24,12 @@ ExternalDeviceManager service exception or busType parameter error.
 
 1. 产品形态不正确，仅支持PC/2in1。
 2. 服务内部遇到通信输入输出异常。
-3. 若接口存在busType参数，请检查参数是否错误。
+3. 若接口存在busType参数，该参数取值不在合法枚举范围内。
 
 **处理步骤**
 
 1. 请更换目标产品形态。
-2. 请尝试重启设备，<!--RP1-->或通过[在线提交issue](https://gitcode.com/openharmony/drivers_external_device_manager/issues/create/choose)来反馈问题。<!--RP1End-->
+2. 请尝试重启设备，<!--RP1-->如果问题仍然存在，可通过[在线提交issue](https://gitcode.com/openharmony/drivers_external_device_manager/issues/create/choose)来反馈问题。<!--RP1End-->
 3. 通过[deviceManager.BusType](js-apis-driver-deviceManager.md#bustype)查询支持的枚举值。
 
 ## 26300001 扩展外设驱动服务异常
@@ -50,7 +50,7 @@ ExternalDeviceManager service exception.
 **处理步骤**
 
 1. 请更换目标产品形态。
-2. 请尝试重启设备，<!--RP1-->或通过[在线提交issue](https://gitcode.com/openharmony/drivers_external_device_manager/issues/create/choose)来反馈问题。<!--RP1End-->
+2. 请尝试重启设备，<!--RP1-->如果问题仍然存在，可通过[在线提交issue](https://gitcode.com/openharmony/drivers_external_device_manager/issues/create/choose)来反馈问题。<!--RP1End-->
 
 ## 26300002 驱动服务端不允许驱动客户端绑定
 
@@ -64,11 +64,11 @@ The driver service does not allow any client to bind.
 
 **可能原因**
 
-非标外设驱动源码工程目录下的 `entry/src/main/module.json5` 文件下，类型`type`为"driver"的`extensionAbilities`结构中，`metadata`属性下，`name`为"ohos.permission.ACCESS_DDK_ALLOWED"的`value`值配置错误。
+非标外设驱动源码工程目录下的 `entry/src/main/module.json5` 文件中，类型`type`为"driver"的`extensionAbilities`结构中，`metadata`属性下，`name`为"ohos.permission.ACCESS_DDK_ALLOWED"的`value`值配置错误。
 
 **处理步骤**
 
-打开非标外设源码工程，找到`entry/src/main/module.json5`文件，将类型`type`为"driver"的`extensionAbilities`结构中`metadata`属性下，`name`为"ohos.permission.ACCESS_DDK_ALLOWED"的`value`值修改为"true"。
+打开非标外设驱动源码工程，找到`entry/src/main/module.json5`文件，将类型`type`为"driver"的`extensionAbilities`结构中`metadata`属性下，`name`为"ohos.permission.ACCESS_DDK_ALLOWED"的`value`值修改为"true"。
 
 ## 26300003 驱动客户端未绑定任何驱动服务端
 
