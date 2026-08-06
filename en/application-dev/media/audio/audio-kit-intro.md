@@ -1,33 +1,43 @@
 # About This Kit
+
 <!--Kit: Audio Kit-->
 <!--Subsystem: Multimedia-->
-<!--Owner: @songshenke-->
-<!--Designer: @caixuejiang; @hao-liangfei; @zhanganxiang-->
+<!--Owner: @boxwall-->
+<!--Designer: @magekkkk-->
 <!--Tester: @Filger-->
 <!--Adviser: @w_Machine_cc-->
+<!-- md-trans-meta sourceCommit=29aa363c8c07cd0d943043ae209ad0a85fcdc3c5 translatedAt=2026-08-06T01:42:45.045Z pushedAt=2026-08-06T10:37:31.709Z -->
 
 Audio Kit provides scenario-specific audio playback and recording APIs to help you quickly build HD audio collection and immersive playback capabilities.
 
 ## Highlights
 
 - Low-latency playback
-  
+
    Unified low-latency and non-low-latency audio playback APIs are provided to achieve the lowest audio output latency on various hardware devices. For example, low-latency APIs can be used to implement fast and smooth audio playback in scenarios such as gaming, prompt/alarm tones, and Karaoke.
+
 <!--Del-->
+
 - Low-power playback
 
-   In long-duration audio playback scenarios such as music playing and audiobook listening, a differentiated audio buffer processing mechanism is used for the screen-off scene. This helps audio playback consume less power by reducing the CPU wake-up frequency.
+   In long-duration audio playback scenarios such as music playing and audiobook listening, a differentiated audio buffer processing mechanism is used for both screen-on and screen-off scenes. This helps audio playback consume less power by reducing the CPU wake-up frequency.
+
 <!--DelEnd-->
+
 - Audio effect mode
 
    Applications can enable or disable the system audio effects as required to deliver the optimal audio effect output.
 
    The system provides scenario-specific audio effects, for example, audio effects for music playing, audiobook listening, and movie watching. If your application requires custom audio effects, you can disable the system audio effects.
+
 <!--Del-->
+
 - Spatial audio
 
    Spatial audio APIs are provided. Applications can play audio sources in different formats (stereo, multi-channel, and Audio Vivid), and users can get a sense of space and direction while wearing TWS earbuds for listening.
+
 <!--DelEnd-->
+
 - Audio-haptic
 
    Provides AudioHaptic APIs to implement low-delay synchronous control of audio and haptic streams. When the audio-haptic effect is enabled, users can get rhythmic auditory and haptic feedback while typing or having incoming calls.
@@ -76,9 +86,9 @@ Before developing an audio feature, especially before implementing audio data pr
 
 ## Introduction to Audio Streams
 
- 
+Before developing audio applications, you need to understand what an audio stream is. It is a key concept in the OpenHarmony audio system and will be mentioned multiple times in subsequent chapters.
 
-An audio stream is an independent audio data processing unit that has a specific audio format and audio usage scenario information. The audio stream can be used in playback and recording scenarios, and supports independent volume adjustment and audio device routing.
+The audio stream can be used in playback and recording scenarios, and supports independent volume adjustment and audio device routing.
 
 The basic audio stream information is defined by [AudioStreamInfo](../../reference/apis-audio-kit/arkts-apis-audio-i.md#audiostreaminfo8), which includes the sampling, audio channel, bit width, and encoding information. It describes the basic attributes of audio data and is mandatory for creating an audio playback or recording stream. To enable the audio module to correctly process audio data, the configured basic information must match the transmitted audio data.
 
@@ -92,13 +102,15 @@ In addition to the basic information (which describes only audio data), an audio
 
   **StreamUsage** specifies the usage type of an audio stream, for example, used for media, voice communication, voice assistant, notification, and ringtone.
 
+   For details on setting the playback stream type, see [Choosing the Right Playback Stream Type](using-right-streamusage-for-playback.md).
+
 - Recording scenario
 
   Information about the audio stream recording scenario is defined by [SourceType](../../reference/apis-audio-kit/arkts-apis-audio-e.md#sourcetype8).
 
   **SourceType** specifies the recording source type of an audio stream, including the mic source, voice recognition source, and voice communication source.
 
-For details, see [Selecting an Appropriate Audio Stream Type](using-right-streamusage-and-sourcetype.md).
+   For details on setting the recording stream type, see [Choosing the Right Recording Stream Type](using-right-sourcetype-for-recording.md).
 
 ## Supported Audio Formats
 
@@ -123,3 +135,5 @@ Be familiar with the following about the audio format:
 The following samples are provided to help you better understand how to develop Audio Kit:
 
 - [Audio Management (ArkTS, API version 10)](https://gitcode.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/Media/Audio)
+
+<!--RP1--><!--RP1End-->

@@ -1,26 +1,28 @@
 # Audio Playback Development
+
 <!--Kit: Audio Kit-->
 <!--Subsystem: Multimedia-->
-<!--Owner: @songshenke-->
-<!--Designer: @caixuejiang; @hao-liangfei; @zhanganxiang-->
+<!--Owner: @boxwall-->
+<!--Designer: @magekkkk-->
 <!--Tester: @Filger-->
 <!--Adviser: @w_Machine_cc-->
+<!-- md-trans-meta sourceCommit=1ff9e9cd1ebb6561090ad32be99073f8301559bf translatedAt=2026-08-06T01:44:33.235Z pushedAt=2026-08-06T07:13:02.850Z -->
 
 ## Selecting an Audio Playback Development Mode
 
 The system provides a variety of APIs for you to develop audio playback applications. You can select them based on the audio data formats, audio sources, audio usage scenarios, and even the programming language you use. Selecting a suitable class helps you reduce development workload and your application deliver a better effect.
 
-- [AudioRenderer](using-audiorenderer-for-playback.md): provides ArkTS and JS APIs to implement audio output. It supports only the PCM format and requires applications to continuously write audio data. The applications can perform data preprocessing, for example, setting the sampling rate and bit width of audio files, before audio input. This class can be used to develop more professional and diverse playback applications. To use this class, you must have basic audio processing knowledge.
+- [AudioRenderer](using-audiorenderer-for-playback.md): an ArkTS/JS API for audio output. It supports only PCM format and requires the app to continuously write audio data to operate. The app can add data preprocessing before input, such as configuring the sampling rate and bit width of the audio stream. Developers are expected to have basic knowledge of audio processing. It is suitable for developing more professional and diverse media playback apps.
 
 - [AudioHaptic](using-audiohaptic-for-playback.md): provides ArkTS and JS APIs for audio playback with audio-haptic effect. It applies to scenarios where haptic feedback needs to be initiated synchronously during audio playback, for example, when there are incoming calls or messages or users are typing.
 
-- [Using OHAudio for Audio Playback](using-ohaudio-for-playback.md): provides a set of native APIs for audio output. These APIs are normalized in design and support both common and low-latency audio channels. They support the PCM format only. They are suitable for playback applications that implement audio output at the native layer.<!--Del-->
+- [OHAudio](using-ohaudio-for-playback.md): a Native API for audio output. This API is designed with a normalized architecture and supports both standard audio paths and low-latency paths. It supports only PCM format and is suitable for scenarios where audio output is implemented at the native layer.<!--Del-->
 
 - [TonePlayer](using-toneplayer-for-playback-sys.md): provides ArkTS and JS APIs to implement the playback of dialing tones and ringback tones. It can be used to play the content selected from a fixed type range, without requiring the input of media assets or audio data. This class is applicable to specific scenarios where dialing tones and ringback tones are played. It is available only to system applications.<!--DelEnd-->
 
 In addition to the preceding classes, you can also use **AVPlayer** and **SoundPool** in Media Kit to implement audio playback.
 
-- [AVPlayer](../media/using-avplayer-for-playback.md): provides ArkTS and JS APIs to implement audio playback. It also supports parsing streaming media and local assets, decapsulating media assets, decoding audio, and outputting audio. It can play audio files in MP3 and M4A formats, but not in PCM format.
+- [AVPlayer](../media/using-avplayer-for-playback.md): an ArkTS/JS API for audio playback. It integrates streaming media and local resource parsing, media resource demuxing, audio decoding, and audio output. It can be used to directly play audio files in formats such as MP3 and M4A, but does not support direct playback of PCM files.
 
 - [SoundPool](../media/using-soundpool-for-playback.md): provides ArkTS and JS APIs to implement short sound playback in low latency mode. It can be used to play short sound effects, such as camera shutter sound effect, key press sound effect, and game shooting sound effect.
 
@@ -32,6 +34,6 @@ If you want the application to continue playing in the background (including the
 
 - In addition to the aforementioned playback types, when an application needs to run other user-perceptible tasks in the background for a long time, it must request continuous tasks of the [AUDIO_PLAYBACK](./../../reference/apis-backgroundtasks-kit/js-apis-resourceschedule-backgroundTaskManager.md#backgroundmode) type.
 
-If an application does not meet the above access standards, playback in the background will be muted and frozen by the system, preventing normal background playback. Playback will only resume and unmute when the application is brought back to the foreground.
+If an application does not meet the above access standards, playback in the background will be muted and frozen by the system, preventing normal background playback. Playback will only be resumed and unmuted when the application is brought back to the foreground.
 
-For details, see [Background Playback](../avsession/avsession-background-scene.md).
+For details, see [Background Playback](./../avsession/avsession-background-scene.md).

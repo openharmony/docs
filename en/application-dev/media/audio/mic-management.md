@@ -1,10 +1,12 @@
-# Managing Microphone Mute Status
+# Managing Microphone Mute State
+
 <!--Kit: Audio Kit-->
 <!--Subsystem: Multimedia-->
-<!--Owner: @songshenke-->
-<!--Designer: @caixuejiang; @hao-liangfei; @zhanganxiang-->
+<!--Owner: @zyy0412-->
+<!--Designer: @weixin_41398971-->
 <!--Tester: @Filger-->
 <!--Adviser: @w_Machine_cc-->
+<!-- md-trans-meta sourceCommit=3fe644941755c7ef785f22b59c73ecb8389cc6db translatedAt=2026-08-06T01:51:14.377Z pushedAt=2026-08-06T08:43:50.871Z -->
 
 The microphone is used to record audio data. To deliver an optimal recording effect, you are advised to query the microphone state before starting recording and listen for state changes during recording.
 
@@ -14,14 +16,14 @@ Volume adjustment is not supported during recording.
 
 ## How to Develop
 
-The examples in each of the following steps are code snippets. You can click the link at the bottom right of the sample code to obtain the [complete sample codes](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/Media/Audio/AudioCaptureSampleJS).
+The examples below are code snippets. You can obtain the [complete sample](https://gitcode.com/openharmony/applications_app_samples/tree/master/code/DocsSample/Media/Audio/AudioCaptureSampleJS) via the link at the bottom right of the sample code.
 
 The **AudioVolumeGroupManager** class provides APIs for managing the microphone state. For details, see [AudioVolumeGroupManager](../../reference/apis-audio-kit/arkts-apis-audio-AudioVolumeGroupManager.md).
 
 1. Create an audioVolumeGroupManager object.
 
    <!-- @[create_AudioVolumeGroupManager](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/Media/Audio/AudioCaptureSampleJS/entry/src/main/ets/pages/MacManager.ets) --> 
-   
+
    ``` TypeScript
    import { audio } from '@kit.AudioKit';
    
@@ -37,7 +39,7 @@ The **AudioVolumeGroupManager** class provides APIs for managing the microphone 
 
 2. Call [on('micStateChange')](../../reference/apis-audio-kit/arkts-apis-audio-AudioVolumeGroupManager.md#onmicstatechange9) to listen for microphone state changes. When the microphone mute state changes, the application will be notified of the change.
 
-   Currently, when multiple AudioManager instances are used in a single process, only the subscription of the last instance takes effect, and the subscription of other instances is overwritten (even if the last instance does not initiate a subscription). Therefore, you are advised to use a single AudioManager instance.
+   Currently, when multiple [AudioManager](../../reference/apis-audio-kit/arkts-apis-audio-AudioManager.md) instances are used in a single process, only the subscription of the last instance takes effect for this API, and subscriptions of other instances are overwritten (even if the last instance has no subscription). Therefore, you are advised to use a single AudioManager instance for development.
 
    <!-- @[mac_on](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/Media/Audio/AudioCaptureSampleJS/entry/src/main/ets/pages/MacManager.ets) --> 
 
@@ -65,7 +67,8 @@ The **AudioVolumeGroupManager** class provides APIs for managing the microphone 
    ```
 
    <!--Del-->
-4. (Optional; for system applications only) Call [setMicMute](../../reference/apis-audio-kit/js-apis-audio-sys.md#setmicmute11) to mute or unmute the microphone. To mute the microphone, pass in **true**. To unmute the microphone, pass in **false**.
+
+4. (For system applications only) Call [setMicMute](../../reference/apis-audio-kit/js-apis-audio-sys.md#setmicmute11) to mute or unmute the microphone. To mute the microphone, pass in **true**. To unmute the microphone, pass in **false**.
 
    ``` TypeScript
    // Mute the microphone, with true passed.
@@ -140,4 +143,5 @@ async function test(){
   await isMicrophoneMute();
 }
 ```
+
    <!--DelEnd--> 

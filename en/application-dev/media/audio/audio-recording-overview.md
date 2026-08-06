@@ -1,30 +1,37 @@
 # Audio Recording Development
+
 <!--Kit: Audio Kit-->
 <!--Subsystem: Multimedia-->
-<!--Owner: @songshenke-->
-<!--Designer: @caixuejiang; @hao-liangfei; @zhanganxiang-->
+<!--Owner: @zyy0412-->
+<!--Designer: @weixin_41398971-->
 <!--Tester: @Filger-->
 <!--Adviser: @w_Machine_cc-->
+<!-- md-trans-meta sourceCommit=5e49c810f3e316a7d4bdced3e89792b3dec2f9f5 translatedAt=2026-08-06T01:45:09.513Z pushedAt=2026-08-06T07:27:34.848Z -->
 
 ## Selecting an Audio Recording Development Mode
 
 The system provides a variety of APIs for you to develop audio recording applications. You can select them based on the recording output formats, audio usage scenarios, and even the programming language you use. Selecting a suitable class helps you reduce development workload and your application deliver a better effect.
 
-- [AudioCapturer](using-audiocapturer-for-recording.md): provides ArkTS and JS API to implement audio input. It supports only the PCM format and requires applications to continuously read audio data. The application can perform data processing after audio output. This class can be used to develop more professional and diverse recording applications. To use this class, you must have basic audio processing knowledge.
+- [AudioCapturer](using-audiocapturer-for-recording.md): an ArkTS/JS API for audio input. It only supports PCM format and requires the app to continuously read audio data to work. You can add data processing after audio capture, which requires basic knowledge of audio processing. It is suitable for developing more professional and diverse media recording apps.
 
 - [Using OHAudio for Audio Recording](using-ohaudio-for-recording.md): provides a set of native APIs for audio input. These APIs are normalized in design and support both common and low-latency audio channels. They support the PCM format only. They are suitable for playback applications that implement audio input at the native layer.
 
 In addition to the preceding classes, you can also use **AVRecorder** in Media Kit to implement audio recording.
 
-- [AVRecorder](../media/using-avrecorder-for-recording.md): provides ArkTS and JS APIs to implement audio recording. It also supports audio input, audio encoding, and media encapsulation. You can directly call device hardware, such as microphone, for recording and generate M4A audio files.
+- [AVRecorder](../media/using-avrecorder-for-recording.md): an ArkTS/JS API for audio recording. It integrates audio capture, audio encoding, and media encapsulation. You can directly call device hardware such as the microphone to record audio and generate m4a audio files.
 
 ## Precautions for Developing Audio Recording Applications
 
 - The application must request the **ohos.permission.MICROPHONE** permission from the user before invoking the microphone to record audio. For details, see [Requesting User Authorization](../../security/AccessToken/request-user-authorization.md).
-  
-  For details about how to use and manage microphones, see [Managing Microphone Mute Status](mic-management.md).
+
+  For details on how to manage the microphone mute state, refer to [Managing Microphone Mute State](mic-management.md).
 
 - If continuous recording or background recording is required, the application must request a continuous task to prevent it from being suspended. For details, see [Continuous Task (ArkTS)](../../task-management/continuous-task.md).
+
 - The application must start recording when it runs in the foreground. It can switch to the background after the recording is started. Recording cannot be started in the background.
-- To record audio, the application must use an appropriate recording stream type. For details, see [Selecting the Appropriate Audio Stream Types](using-right-streamusage-and-sourcetype.md).
+
+- When recording audio, the app must use an appropriate recording stream type. For details, refer to [Choosing the Right Recording Stream Type](using-right-sourcetype-for-recording.md).
+
+- To check whether the microphone is occupied, refer to [Determining Whether the Microphone Is Occupied](audio-recording-stream-management.md#determining-whether-the-microphone-is-occupied).
+
 - If the application is required to record the screen, refer to [Using AVScreenCaptureRecorder to Record Screens and Write Them to Files (ArkTS)](../media/using-avscreencapture-ArkTs.md) and [Using AVScreenCapture to Capture Screens and Write Them to Files (C/C++)](../media/using-avscreencapture-for-file.md).
