@@ -1,16 +1,22 @@
 # Audio Call Overview
+
 <!--Kit: Audio Kit-->
 <!--Subsystem: Multimedia-->
-<!--Owner: @songshenke-->
-<!--Designer: @caixuejiang; @hao-liangfei; @zhanganxiang-->
+<!--Owner: @zyy0412-->
+<!--Designer: @magekkkk-->
 <!--Tester: @Filger-->
 <!--Adviser: @w_Machine_cc-->
+<!-- md-trans-meta sourceCommit=da1d0d010fa40411f768d0582071256c8a017697 translatedAt=2026-08-06T01:40:29.120Z pushedAt=2026-08-06T02:22:48.397Z -->
 
 Typically, audio calls are classified into VoIP calls and cellular calls.
 
-- Voice over Internet Protocol (VoIP) is a technology that enables you to make voice calls using a broadband Internet connection. During a VoIP call, call information is packed into data packets and transmitted over the network. Therefore, the VoIP call has high requirements on the network quality, and the call quality is closely related to the network connection speed.
-  
-- Cellular call refers to the traditional telephony service provided by carriers. Currently, APIs for developing cellular calling are available only for system applications.
+- Voice over Internet Protocol (VoIP) call:
+
+A VoIP call is a voice communication technology based on the Internet Protocol (IP). VoIP calls package audio data into packets and transmit them over the network. As a result, VoIP calls have high network requirements, and call quality is closely related to network connection speed.
+
+- Cellular call (for system applications only):
+
+  Traditional telephony service provided by carriers. Currently, APIs for developing cellular calling are available only for system applications.
 
 When developing the audio call service, you must use a proper audio processing strategy based on the [audio scene](#audio-scene) and [ringer mode](#ringer-mode).
 
@@ -18,7 +24,7 @@ When developing the audio call service, you must use a proper audio processing s
 
 When an application uses the audio call service, the system switches to the call-related audio scene (specified by [AudioScene](../../reference/apis-audio-kit/arkts-apis-audio-e.md#audioscene8)). The system has preset multiple audio scenes, including ringing, cellular call, and voice chat, and uses a scene-specific strategy to process audio.
 
-For example, in the call audio scene, the system prioritizes voice clarity. To deliver a crystal clear voice during calls, the system uses the 3A algorithm to preprocess audio data, suppress echoes, eliminates background noise, and adjusts the volume range. The 3A algorithm refers to three audio processing algorithms: Acoustic Echo Cancellation (AEC), Active Noise Control (ANC), and Automatic Gain Control (AGC).
+For example, in a call scenario, greater emphasis is placed on voice clarity. The system uses 3A algorithms to preprocess audio data, suppressing call echo, eliminating background noise, and adjusting the volume range to achieve clear voice output. The 3A algorithms refer to three audio processing algorithms: Acoustic Echo Cancellation (AEC), Active Noise Suppression (ANS), and Automatic Gain Control (AGC).
 
 Currently, the following audio scenes are preset:
 
@@ -34,7 +40,7 @@ The application can call **getAudioScene** in the [AudioManager](../../reference
 
 ## Ringer Mode
 
-When an audio call is coming, the application notifies the user by playing a ringtone or vibrating, depending on the setting of [AudioRingMode](../../reference/apis-audio-kit/arkts-apis-audio-e.md#audioringmode).
+When a user enters an audio call, the app can use ringtone or vibration to alert the user. The system manages the ringtone volume and adjusts the device vibration mode conveniently through the ring mode ([AudioRingMode](../../reference/apis-audio-kit/arkts-apis-audio-e.md#audioringmode)).
 
 The system has preset the following ringer modes:
 

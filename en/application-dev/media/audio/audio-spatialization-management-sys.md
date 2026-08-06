@@ -1,20 +1,24 @@
 # Spatial Audio Management (for System Applications Only)
+
 <!--Kit: Audio Kit-->
 <!--Subsystem: Multimedia-->
-<!--Owner: @songshenke-->
-<!--Designer: @caixuejiang; @hao-liangfei; @zhanganxiang-->
+<!--Owner: @tom_guo-->
+<!--Designer: @trytocalm-->
 <!--Tester: @Filger-->
 <!--Adviser: @w_Machine_cc-->
+<!-- md-trans-meta sourceCommit=bf5d49a4393b61c9a2c280c54a54215020618b5d translatedAt=2026-08-06T01:48:13.095Z pushedAt=2026-08-06T08:15:17.849Z -->
 
 Spatial audio management includes querying, setting, and listening for spatial audio status and capabilities.
 
-Spatial audio management is available only for system applications. It enables a system application to obtain, set, and listen for spatial audio status (enabled/disabled status of spatial audio rendering and head tracking), obtain spatial audio capabilities (support for spatial audio rendering and head tracking), update the state information of spatial devices, and obtain and set the spatial audio rendering scene type.
+Spatial audio management is available only for system apps. It mainly includes querying, setting, and listening for spatial audio-related status (enabling/disabling of spatial audio rendering, adaptive spatial audio rendering, and head tracking), querying spatial audio-related capabilities (spatial audio rendering capability and head tracking capability), updating spatial device states, and querying and setting the spatial audio rendering scene type.
+
+Adaptive spatial audio rendering is a capability where the system automatically determines whether to perform spatial audio rendering based on the audio content. When enabled, spatial audio rendering takes effect only for multi-channel content, and does not take effect for mono or dual-channel (stereo) content. When disabled, it does not affect spatial audio rendering.
 
 A system application that plays audio can query whether the system or a device supports spatial audio rendering or head tracking, whether spatial audio rendering or head tracking is enabled, and the spatial audio rendering scene type in use.
 
-A system application with spatial audio setting capabilities (for example, a setting screen where users can change the spatial audio status) can enable or disable spatial audio rendering or head tracking, set the spatial audio rendering scene type, and update the state information of a spatial device, in addition to the query operation.
+For system apps with spatial audio control capabilities (such as spatial audio UX), in addition to querying the above status and capabilities, you can also set the spatial audio rendering switch, adaptive spatial audio rendering switch, head tracking switch, and spatial audio rendering scene type, as well as update the spatial device state to indicate whether a specific spatial device supports spatial audio rendering and head tracking.
 
-To use this feature, the application must request the ohos.permission.MANAGE_SYSTEM_AUDIO_EFFECTS permission. For details, see [Requesting Permissions for system_basic Applications](../../security/AccessToken/determine-application-mode.md#requesting-permissions-for-system_basic-applications).
+Before using this feature, the app must request the `ohos.permission.MANAGE_SYSTEM_AUDIO_EFFECTS` permission. For details, see [Requesting Permissions for system_basic Applications](../../security/AccessToken/determine-application-mode.md#requesting-permissions-for-system_basic-applications).
 
 ## Obtaining an AudioSpatializationManager Instance
 
@@ -56,7 +60,7 @@ Call [isSpatializationSupportedForDevice](../../reference/apis-audio-kit/js-apis
     deviceType : audio.DeviceType.BLUETOOTH_A2DP,
     id : 1,
     name : "",
-    address : "123",
+    address : "00:11:22:33:FF:EE",
     sampleRates : [44100],
     channelCounts : [2],
     channelMasks : [0],
@@ -103,7 +107,7 @@ Call [isHeadTrackingSupportedForDevice](../../reference/apis-audio-kit/js-apis-a
     deviceType : audio.DeviceType.BLUETOOTH_A2DP,
     id : 1,
     name : "",
-    address : "123",
+    address : "00:11:22:33:FF:EE",
     sampleRates : [44100],
     channelCounts : [2],
     channelMasks : [0],
@@ -130,7 +134,7 @@ Call [setSpatializationEnabled](../../reference/apis-audio-kit/js-apis-audio-sys
 
 **enabled**: specifies the status of spatial audio rendering of the specified device. The value **true** means to enable spatial audio rendering, and **false** means to disable it.
 
-To use this feature, the application must request the ohos.permission.MANAGE_SYSTEM_AUDIO_EFFECTS permission. For details, see [Requesting Permissions for system_basic Applications](../../security/AccessToken/determine-application-mode.md#requesting-permissions-for-system_basic-applications).
+Before using this feature, the app must request the `ohos.permission.MANAGE_SYSTEM_AUDIO_EFFECTS` permission. For details, see [Requesting Permissions for system_basic Applications](../../security/AccessToken/determine-application-mode.md#requesting-permissions-for-system_basic-applications).
 
 Before enabling spatial audio rendering, ensure that both the system and the specified device support spatial audio rendering.
 
@@ -143,7 +147,7 @@ Before enabling spatial audio rendering, ensure that both the system and the spe
     deviceType : audio.DeviceType.BLUETOOTH_A2DP,
     id : 1,
     name : "",
-    address : "123",
+    address : "00:11:22:33:FF:EE",
     sampleRates : [44100],
     channelCounts : [2],
     channelMasks : [0],
@@ -155,7 +159,7 @@ Before enabling spatial audio rendering, ensure that both the system and the spe
   let enabled: boolean = true;
 
   audioSpatializationManager.setSpatializationEnabled(deviceDescriptor, enabled).then(() => {
-    console.info(`setSpatializationEnabled success`);
+    console.info('Succeeded in setting spatialization enabled');
   }).catch((err: BusinessError) => {
     console.error(`Result ERROR: ${err}`);
   });
@@ -163,7 +167,7 @@ Before enabling spatial audio rendering, ensure that both the system and the spe
 
 ## Checking the Status of Spatial Audio Rendering of a Device
 
-Call [isSpatializationEnabled](../../reference/apis-audio-kit/js-apis-audio-sys.md#isspatializationenabled12) to check whether spatial audio rendering is enabled for a device (specified by **AudioDeviceDescriptor**). You are advised to use other audio APIs to obtain [AudioDeviceDescriptor](../../reference/apis-audio-kit/arkts-apis-audio-i.md#audiodevicedescriptor) of a connected device or the current audio device. If **true** is returned, spatial audio rendering is enabled. If **false** is returned, it is disabled. This API returns the value passed in [setSpatializationEnabled](../../reference/apis-audio-kit/js-apis-audio-sys.md#setspatializationenabled12). The default value is **false**. Note that spatial audio rendering takes effect only when the system and the specified device support spatial audio rendering.
+You can call [isSpatializationEnabled](../../reference/apis-audio-kit/js-apis-audio-sys.md#isspatializationenabled12) to query the spatial audio rendering effect switch status of a specified device. This API uses **AudioDeviceDescriptor** as an input parameter to specify the device. It is recommended to obtain the [AudioDeviceDescriptor](../../reference/apis-audio-kit/arkts-apis-audio-i.md#audiodevicedescriptor) of the current connected device or audio output device through other APIs in the audio framework. The API returns **true** if spatial audio rendering is enabled, and **false** if it is disabled. The return value reflects the spatial audio rendering switch status of the specified device that was successfully set through the [setSpatializationEnabled](../../reference/apis-audio-kit/js-apis-audio-sys.md#setspatializationenabled12) API, and defaults to disabled. This status only indicates the switch state; whether it actually takes effect depends on whether the system and the specified device support spatial audio rendering.
 
   ```ts
   import { audio } from '@kit.AudioKit';
@@ -174,7 +178,7 @@ Call [isSpatializationEnabled](../../reference/apis-audio-kit/js-apis-audio-sys.
     deviceType : audio.DeviceType.BLUETOOTH_A2DP,
     id : 1,
     name : "",
-    address : "123",
+    address : "00:11:22:33:FF:EE",
     sampleRates : [44100],
     channelCounts : [2],
     channelMasks : [0],
@@ -217,15 +221,15 @@ Call [off('spatializationEnabledChangeForAnyDevice')](../../reference/apis-audio
 
 ## Enabling or Disabling Head Tracking for a Device
 
-Call [setHeadTrackingEnabled](../../reference/apis-audio-kit/js-apis-audio-sys.md#setheadtrackingenabled12) to enable or disable head tracking for a device. This API contains two parameters:
+You can call [setHeadTrackingEnabled](../../reference/apis-audio-kit/js-apis-audio-sys.md#setheadtrackingenabled12) to enable or disable head tracking for a specified device. This API requires two parameters: **AudioDeviceDescriptor** and **enabled**.
 
 **AudioDeviceDescriptor**: specifies an audio device. You are advised to use other audio APIs to obtain [AudioDeviceDescriptor](../../reference/apis-audio-kit/arkts-apis-audio-i.md#audiodevicedescriptor) of a connected device or the current audio device.
 
 **enabled**: specifies the status of head tracking of the specified device. The value **true** means to enable head tracking, and **false** means to disable it.
 
-To use this feature, the application must request the ohos.permission.MANAGE_SYSTEM_AUDIO_EFFECTS permission. For details, see [Requesting Permissions for system_basic Applications](../../security/AccessToken/determine-application-mode.md#requesting-permissions-for-system_basic-applications).
+Before using this feature, the app must request the `ohos.permission.MANAGE_SYSTEM_AUDIO_EFFECTS` permission. For details, see [Requesting Permissions for system_basic Apps](../../security/AccessToken/determine-application-mode.md#requesting-permissions-for-system_basic-apps).
 
-Before enabling head tracking, ensure that both the system and the specified device support head tracking and when spatial audio rendering is enabled.
+Before enabling head tracking, ensure that both the system and the specified device support head tracking and spatial audio rendering is enabled.
 
   ```ts
   import { audio } from '@kit.AudioKit';
@@ -236,7 +240,7 @@ Before enabling head tracking, ensure that both the system and the specified dev
     deviceType : audio.DeviceType.BLUETOOTH_A2DP,
     id : 1,
     name : "",
-    address : "123",
+    address : "00:11:22:33:FF:EE",
     sampleRates : [44100],
     channelCounts : [2],
     channelMasks : [0],
@@ -248,7 +252,7 @@ Before enabling head tracking, ensure that both the system and the specified dev
   let enable: boolean = true;
 
   audioSpatializationManager.setHeadTrackingEnabled(deviceDescriptor, enable).then(() => {
-    console.info(`setHeadTrackingEnabled success`);
+    console.info('Succeeded in setting head tracking enabled');
   }).catch((err: BusinessError) => {
     console.error(`Result ERROR: ${err}`);
   });
@@ -256,7 +260,7 @@ Before enabling head tracking, ensure that both the system and the specified dev
 
 ## Checking the Status of Head Tracking of a Device
 
-Call [isHeadTrackingEnabled](../../reference/apis-audio-kit/js-apis-audio-sys.md#isheadtrackingenabled12) to check whether head tracking is enabled for a device (specified by **AudioDeviceDescriptor**). You are advised to use other audio APIs to obtain [AudioDeviceDescriptor](../../reference/apis-audio-kit/arkts-apis-audio-i.md#audiodevicedescriptor) of a connected device or the current audio device. If **true** is returned, head tracking is enabled. If **false** is returned, it is disabled. This API returns the value passed in [setHeadTrackingEnabled](../../reference/apis-audio-kit/js-apis-audio-sys.md#setheadtrackingenabled12). The default value is **false**. Note that head tracking takes effect only when the system and the specified device support head tracking and spatial audio rendering is enabled.
+You can call [isHeadTrackingEnabled](../../reference/apis-audio-kit/js-apis-audio-sys.md#isheadtrackingenabled12) to query the head tracking effect switch status of a specified device. This API uses **AudioDeviceDescriptor** as an input parameter to specify the device. It is recommended to obtain the [AudioDeviceDescriptor](../../reference/apis-audio-kit/arkts-apis-audio-i.md#audiodevicedescriptor) of the current connected device or audio output device through other APIs in the audio framework. The API returns **true** if head tracking is enabled, and **false** if it is disabled. The return value reflects the head tracking switch status of the specified device that was successfully set through the [setHeadTrackingEnabled](../../reference/apis-audio-kit/js-apis-audio-sys.md#setheadtrackingenabled12) API, and defaults to disabled. This status only indicates the switch state; whether it actually takes effect depends on whether the system and the specified device support head tracking, and whether the spatial audio rendering switch of the specified device is turned on.
 
   ```ts
   import { audio } from '@kit.AudioKit';
@@ -267,7 +271,7 @@ Call [isHeadTrackingEnabled](../../reference/apis-audio-kit/js-apis-audio-sys.md
     deviceType : audio.DeviceType.BLUETOOTH_A2DP,
     id : 1,
     name : "",
-    address : "123",
+    address : "00:11:22:33:FF:EE",
     sampleRates : [44100],
     channelCounts : [2],
     channelMasks : [0],
@@ -295,7 +299,7 @@ Call [on('headTrackingEnabledChangeForAnyDevice')](../../reference/apis-audio-ki
 
   audioSpatializationManager.on('headTrackingEnabledChangeForAnyDevice', (audioSpatialEnabledStateForDevice: audio.AudioSpatialEnabledStateForDevice) => {
     console.info(`deviceDescriptor: ${audioSpatialEnabledStateForDevice.deviceDescriptor}`);
-    console.info(`isSpatializationEnabled: ${audioSpatialEnabledStateForDevice.enabled}`);
+    console.info(`isHeadTrackingEnabled: ${audioSpatialEnabledStateForDevice.enabled}`);
   });
   ```
 
@@ -312,16 +316,16 @@ Call [off('headTrackingEnabledChangeForAnyDevice')](../../reference/apis-audio-k
 
 Call [updateSpatialDeviceState](../../reference/apis-audio-kit/js-apis-audio-sys.md#updatespatialdevicestate11) to update the state information of a spatial device. The state information includes the device address, support for spatial audio rendering and head tracking, and device form.
 
-To use this feature, the application must request the ohos.permission.MANAGE_SYSTEM_AUDIO_EFFECTS permission. For details, see [Requesting Permissions for system_basic Applications](../../security/AccessToken/determine-application-mode.md#requesting-permissions-for-system_basic-applications).
+Before using this feature, the app must request the `ohos.permission.MANAGE_SYSTEM_AUDIO_EFFECTS` permission. For details, see [Requesting Permissions for system_basic Applications](../../security/AccessToken/determine-application-mode.md#requesting-permissions-for-system_basic-applications).
 
-For details about the state information, see [AudioSpatialDeviceState](../../reference/apis-audio-kit/js-apis-audio-sys.md#audiospatialdevicestate11).
+For details about the spatial device state, see [AudioSpatialDeviceState](../../reference/apis-audio-kit/js-apis-audio-sys.md#audiospatialdevicestate11).
 
   ```ts
   import { audio } from '@kit.AudioKit';
   import { BusinessError } from '@kit.BasicServicesKit';
 
   let spatialDeviceState: audio.AudioSpatialDeviceState = {
-    address: "123",
+    address: "00:11:22:33:FF:EE",
     isSpatializationSupported: true,
     isHeadTrackingSupported: true,
     spatialDeviceType: audio.AudioSpatialDeviceType.SPATIAL_DEVICE_TYPE_IN_EAR_HEADPHONE
@@ -340,7 +344,7 @@ For details about the state information, see [AudioSpatialDeviceState](../../ref
 
 Call [setSpatializationSceneType](../../reference/apis-audio-kit/js-apis-audio-sys.md#setspatializationscenetype12) to set the spatial audio rendering scene type, which can be **DEFAULT** (default value), **MUSIC**, **MOVIE**, or **AUDIOBOOK**. The spatial audio rendering scene type takes effect only when spatial audio rendering is enabled.
 
-To use this feature, the application must request the ohos.permission.MANAGE_SYSTEM_AUDIO_EFFECTS permission. For details, see [Requesting Permissions for system_basic Applications](../../security/AccessToken/determine-application-mode.md#requesting-permissions-for-system_basic-applications).
+Before using this feature, the app must request the `ohos.permission.MANAGE_SYSTEM_AUDIO_EFFECTS` permission. For details, see [Requesting Permissions for system_basic Applications](../../security/AccessToken/determine-application-mode.md#requesting-permissions-for-system_basic-applications).
 
 For details about the spatial audio rendering scene type, see [AudioSpatializationSceneType](../../reference/apis-audio-kit/js-apis-audio-sys.md#audiospatializationscenetype12).
 
@@ -374,4 +378,152 @@ For details about the spatial audio rendering scene type, see [AudioSpatializati
     let error = err as BusinessError;
     console.error(`ERROR: ${error}`);
   }
+  ```
+
+## Querying the Adaptive Spatial Audio Rendering Effect Switch Status of a Specified Device
+
+Starting from API version 24, you can call [isAdaptiveSpatialRenderingEnabled](../../reference/apis-audio-kit/js-apis-audio-sys.md#isadaptivespatialrenderingenabled24) to query the adaptive spatial audio rendering effect switch status of a specified device.
+
+The input parameter uses **AudioDeviceDescriptor** to specify the device. It is recommended to obtain the [AudioDeviceDescriptor](../../reference/apis-audio-kit/arkts-apis-audio-i.md#audiodevicedescriptor) of the current audio output device through the [getActiveOutputDeviceDescriptors](../../reference/apis-audio-kit/js-apis-audio-sys.md#getactiveoutputdevicedescriptors) API of the audio framework.
+
+The return value indicates the adaptive spatial audio rendering switch status of the specified device: **true** means adaptive spatial audio rendering is enabled, and **false** means it is disabled (defaults to disabled). This status can be set through the [setAdaptiveSpatialRenderingEnabled](../../reference/apis-audio-kit/js-apis-audio-sys.md#setadaptivespatialrenderingenabled24) API.
+
+  ```ts
+  import { audio } from '@kit.AudioKit';
+  import { BusinessError } from '@kit.BasicServicesKit';
+
+  // Device descriptor used to specify the device to query. In actual use, obtain real device information through audio framework APIs, and use real values for fields such as address.
+  let deviceDescriptor: audio.AudioDeviceDescriptor = {
+    deviceRole : audio.DeviceRole.OUTPUT_DEVICE,
+    deviceType : audio.DeviceType.BLUETOOTH_A2DP,
+    id : 1,
+    name : "",
+    address : "00:11:22:33:FF:EE",
+    sampleRates : [44100],
+    channelCounts : [2],
+    channelMasks : [0],
+    networkId : audio.LOCAL_NETWORK_ID,
+    interruptGroupId : 1,
+    volumeGroupId : 1,
+    displayName : ""
+  };
+
+  try {
+    // Query the switch state of the adaptive spatial audio rendering effect for the specified device.
+    let isAdaptiveSpatialRenderingEnabled: boolean = audioSpatializationManager.isAdaptiveSpatialRenderingEnabled(deviceDescriptor);
+    console.info(`AudioSpatializationManager isAdaptiveSpatialRenderingEnabled: ${isAdaptiveSpatialRenderingEnabled}`);
+  } catch (err) {
+    let error = err as BusinessError;
+    console.error(`ERROR: ${error}`);
+  }
+  ```
+
+## Enabling or Disabling the Adaptive Spatial Audio Rendering Effect for a Specified Device
+
+Starting from API version 24, you can call [setAdaptiveSpatialRenderingEnabled](../../reference/apis-audio-kit/js-apis-audio-sys.md#setadaptivespatialrenderingenabled24) to enable or disable the adaptive spatial audio rendering effect for a specified device.
+
+Before using this feature, the app must request the `ohos.permission.MANAGE_SYSTEM_AUDIO_EFFECTS` permission. For details, see [Requesting Permissions for system_basic Applications](../../security/AccessToken/determine-application-mode.md#requesting-permissions-for-system_basic-applications).
+
+Before enabling adaptive spatial audio rendering, ensure that both the system and the specified device have the spatial audio rendering capability.
+
+  ```ts
+  import { audio } from '@kit.AudioKit';
+  import { BusinessError } from '@kit.BasicServicesKit';
+
+  // Device descriptor used to specify the device to set.
+  let deviceDescriptor: audio.AudioDeviceDescriptor = {
+    deviceRole : audio.DeviceRole.OUTPUT_DEVICE,
+    deviceType : audio.DeviceType.BLUETOOTH_A2DP,
+    id : 1,
+    name : "",
+    address : "00:11:22:33:FF:EE",
+    sampleRates : [44100],
+    channelCounts : [2],
+    channelMasks : [0],
+    networkId : audio.LOCAL_NETWORK_ID,
+    interruptGroupId : 1,
+    volumeGroupId : 1,
+    displayName : ""
+  };
+  // Adaptive spatial audio rendering switch state. The value **true** indicates enabled, and **false** indicates disabled.
+  let enabled: boolean = true;
+
+  // Enable the adaptive spatial audio rendering effect for the specified device.
+  audioSpatializationManager.setAdaptiveSpatialRenderingEnabled(deviceDescriptor, enabled).then(() => {
+    console.info('Succeeded in setting adaptive spatial rendering enabled');
+  }).catch((err: BusinessError) => {
+    console.error(`Result ERROR: ${err}`);
+  });
+  ```
+
+## Subscribing to Adaptive Spatial Audio Rendering Effect Switch Status Change Events
+
+Starting from API version 24, you can call [onAdaptiveSpatialRenderingEnabledChangeForAnyDevice](../../reference/apis-audio-kit/js-apis-audio-sys.md#onadaptivespatialrenderingenabledchangeforanydevice24) to subscribe to adaptive spatial audio rendering effect switch status change events.
+
+The callback includes the [AudioSpatialEnabledStateForDevice](../../reference/apis-audio-kit/js-apis-audio-sys.md#audiospatialenabledstatefordevice12) parameter, where **deviceDescriptor** is the description of the changed device, and **enabled** being **true** means adaptive spatial audio rendering is enabled, while **false** means it is disabled.
+
+The callback is triggered when the adaptive spatial audio rendering switch status of any device is successfully changed through the [setAdaptiveSpatialRenderingEnabled](../../reference/apis-audio-kit/js-apis-audio-sys.md#setadaptivespatialrenderingenabled24) API.
+
+  ```ts
+  import { audio } from '@kit.AudioKit';
+
+  // Subscribe to the switch state change event of the adaptive spatial audio rendering effect.
+  audioSpatializationManager.onAdaptiveSpatialRenderingEnabledChangeForAnyDevice((audioSpatialEnabledStateForDevice: audio.AudioSpatialEnabledStateForDevice) => {
+    console.info(`deviceDescriptor: ${audioSpatialEnabledStateForDevice.deviceDescriptor}`);
+    console.info(`isAdaptiveSpatialRenderingEnabled: ${audioSpatialEnabledStateForDevice.enabled}`);
+  });
+  ```
+
+## Unsubscribing from Adaptive Spatial Audio Rendering Effect Switch Status Change Events
+
+Starting from API version 24, you can call [offAdaptiveSpatialRenderingEnabledChangeForAnyDevice](../../reference/apis-audio-kit/js-apis-audio-sys.md#offadaptivespatialrenderingenabledchangeforanydevice24) to unsubscribe from adaptive spatial audio rendering effect switch status change events.
+
+  ```ts
+  import { audio } from '@kit.AudioKit';
+  // Unsubscribe from the switch state change event of the adaptive spatial audio rendering effect.
+  audioSpatializationManager.offAdaptiveSpatialRenderingEnabledChangeForAnyDevice();
+  ```
+
+## Obtaining the Current Spatial Audio Source Type
+
+Starting from API version 24, you can call [getCurrentSpatialAudioSourceType](../../reference/apis-audio-kit/js-apis-audio-sys.md#getcurrentspatialaudiosourcetype24) to obtain the current spatial audio source type. This API returns the type of the currently playing audio stream, including stereo, Audio Vivid, or multi-channel.
+
+For details about the spatial audio source type, see [SpatialAudioSourceType](../../reference/apis-audio-kit/js-apis-audio-sys.md#spatialaudiosourcetype24).
+
+  ```ts
+  import { audio } from '@kit.AudioKit';
+  import { BusinessError } from '@kit.BasicServicesKit';
+
+  try {
+    // Obtain the current spatial audio source type. Returns the type of the currently playing audio stream.
+    let spatialAudioSourceType: audio.SpatialAudioSourceType = audioSpatializationManager.getCurrentSpatialAudioSourceType();
+    console.info(`AudioSpatializationManager spatialAudioSourceType: ${spatialAudioSourceType}`);
+  } catch (err) {
+    let error = err as BusinessError;
+    console.error(`ERROR: ${error}`);
+  }
+  ```
+
+## Subscribing to Spatial Audio Source Type Change Events
+
+Starting from API version 24, you can call [onSpatialAudioSourceTypeChange](../../reference/apis-audio-kit/js-apis-audio-sys.md#onspatialaudiosourcetypechange24) to subscribe to spatial audio source type change events. The callback includes the **SpatialAudioSourceType** parameter, which indicates the changed spatial audio source type. When a different type of audio stream starts playing, the spatial audio source type is automatically updated and the callback is triggered.
+
+  ```ts
+  import { audio } from '@kit.AudioKit';
+
+  // Subscribe to the spatial audio source type change event.
+  audioSpatializationManager.onSpatialAudioSourceTypeChange((spatialAudioSourceType: audio.SpatialAudioSourceType) => {
+    console.info(`spatialAudioSourceType: ${spatialAudioSourceType}`);
+  });
+  ```
+
+## Unsubscribing from Spatial Audio Source Type Change Events
+
+Starting from API version 24, you can call [offSpatialAudioSourceTypeChange](../../reference/apis-audio-kit/js-apis-audio-sys.md#offspatialaudiosourcetypechange24) to unsubscribe from spatial audio source type change events.
+
+  ```ts
+  import { audio } from '@kit.AudioKit';
+
+  // Unsubscribe from the spatial audio source type change event.
+  audioSpatializationManager.offSpatialAudioSourceTypeChange();
   ```
