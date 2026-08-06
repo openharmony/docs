@@ -2786,7 +2786,7 @@ queryContactsByPhoneNumber(phoneNumber: string, attrs: ContactAttributes, callba
 | 参数名      | 类型                                                  | 必填 | 说明                                                         |
 | ----------- | ----------------------------------------------------- | ---- | ------------------------------------------------------------ |
 | phoneNumber | string                                                | 是   | 联系人的电话号码，仅支持全匹配，不支持通配符匹配。                    |
-| attrs       | [ContactAttributes](#contactattributes)               | 是   | 联系人的属性列表，如果为空，则查询id、key、phoneNumbers属性。                                           |
+| attrs       | [ContactAttributes](#contactattributes)               | 是   | 联系人的属性列表，如果为空，则查询联系人的id、key、phoneNumbers属性。                                           |
 | callback    | AsyncCallback&lt;Array&lt;[Contact](#contact)&gt;&gt; | 是   | 回调函数。当查询联系人成功，err为undefined，data为查询到的联系人对象数组；否则为错误对象。 |
 
 **示例：**
