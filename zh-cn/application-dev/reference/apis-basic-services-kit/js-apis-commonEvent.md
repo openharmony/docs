@@ -1,4 +1,4 @@
-# @ohos.commonEvent (公共事件模块)(已废弃)
+# @ohos.commonEvent (公共事件模块)
 <!--Kit: Basic Services Kit-->
 <!--Subsystem: Notification-->
 <!--Owner: @HuYueRong-->
