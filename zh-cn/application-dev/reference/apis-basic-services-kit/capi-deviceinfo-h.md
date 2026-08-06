@@ -378,7 +378,7 @@ const char *OH_GetVersionId(void)
 
 | 类型 | 说明 |
 | -- | -- |
-| const char* | 字符串类型的版本ID。默认值为：default。 |
+| const char* | 字符串类型的版本ID。 |
 
 ### OH_GetBuildType()
 
