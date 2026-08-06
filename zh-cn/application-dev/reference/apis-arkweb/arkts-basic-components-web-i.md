@@ -21,7 +21,7 @@
 | 名称        | 类型                          | 只读     | 可选   | 说明                                     |
 | ---------- | ------------------------------|---- | ---- | ---------------------------------------- |
 | src        | string \| [Resource](../apis-arkui/arkui-ts/ts-types.md#resource)   | 否    | 否    | 网页资源地址。如果访问本地资源文件，请使用resource协议或$rawfile资源引用。如果加载应用包外沙箱路径的本地资源文件（文件支持html和txt类型），请使用file://沙箱文件路径。<br>src不能通过状态变量（例如：@State）动态更改地址，如需更改，请通过[loadUrl()](./arkts-apis-webview-WebviewController.md#loadurl)重新加载。 |
-| controller | [WebController](./arkts-basic-components-web-WebController.md) \| [WebviewController](./arkts-apis-webview-WebviewController.md)  | 否    | 否   | 控制器，通过controller可以控制Web组件各种行为,包括页面导航、生命周期状态、JavaScript交互等。从API version 9开始，WebController不再维护，建议使用[WebviewController](./arkts-basic-components-web-t.md#webviewcontroller9)替代。 |
+| controller | [WebController](./arkts-basic-components-web-WebController.md) \| [WebviewController](./arkts-apis-webview-WebviewController.md)  | 否    | 否   | 控制器，通过controller可以控制Web组件各种行为，包括页面导航、生命周期状态、JavaScript交互等。从API version 9开始，WebController不再维护，建议使用[WebviewController](./arkts-basic-components-web-t.md#webviewcontroller9)替代。 |
 | renderMode<sup>12+</sup> | [RenderMode](./arkts-basic-components-web-e.md#rendermode12)| 否    | 是   | 表示当前Web组件的渲染方式，`RenderMode.ASYNC_RENDER`表示Web组件异步渲染，`RenderMode.SYNC_RENDER`表示Web组件同步渲染，默认值`RenderMode.ASYNC_RENDER`，该模式不支持动态调整。 |
 | incognitoMode<sup>11+</sup> | boolean | 否    | 是 | 表示当前创建的Webview是否是隐私模式。true表示创建隐私模式，false表示创建正常模式。<br> 默认值：false。<br>传入undefined或null时为false。<!--RP--><!--RPEnd--> |
 | sharedRenderProcessToken<sup>12+</sup> | string | 否    | 是 | 表示当前Web组件指定共享渲染进程的token，多渲染进程模式下，相同token的Web组件会优先尝试复用绑定的渲染进程。绑定发生在渲染进程的初始化阶段。当渲染进程没有关联的Web组件时，其绑定关系将被移除。<br> 默认值： ""。  |
