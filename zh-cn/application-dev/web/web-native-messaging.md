@@ -40,9 +40,7 @@
 - WebNativeMessagingExtensionAbility仅支持拉起本应用的[UIAbility](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md)，不支持拉起其他应用UIAbility或者其他类型ExtensionAbility。
 
 - WebNativeMessagingExtensionAbility仅用于浏览器扩展与应用通信场景，不支持如后台服务等其他场景使用。
-
-- 应用包名仅允许使用英文字母、数字、下划线（_）、点号（.），不可包含大写字母。
-
+、
 ## 运作机制
 
 ### 整体流程
