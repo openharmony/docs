@@ -1,4 +1,4 @@
-# @ohos.web.webNativeMessagingExtensionManager (Web Native Messaging Extension Manager)
+# @ohos.web.WebNativeMessagingExtensionManager (Web Native Messaging Extension Manager)
 <!--Kit: ArkWeb-->
 <!--Subsystem: Web-->
 <!--Owner: @csliutt-private-->
