@@ -71,7 +71,7 @@ import { cryptoFramework } from '@kit.CryptoArchitectureKit';
 
 ## DataArray
 
-buffer数组的列表。
+数据数组的列表。
 
  **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -138,7 +138,7 @@ OpenSSL中规定了扩展类型，例如challengePassword、keyUsage等。
 
 > **说明：**
 >
-> - subject是X.509定义的Name类型的对象。
+> - subject是X500DistinguishedName对象。
 >
 > - mdName是摘要算法名，当前支持SHA1、SHA256、SHA384、SHA512。
 >
@@ -164,7 +164,7 @@ OpenSSL中规定了扩展类型，例如challengePassword、keyUsage等。
 
 ## ExtensionOidType<sup>10+</sup>
 
- 表示获取扩展域中对象标识符类型的枚举。
+ 证书扩展OID类型的枚举。
 
  **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -172,13 +172,13 @@ OpenSSL中规定了扩展类型，例如challengePassword、keyUsage等。
 
 | 名称                          | 值   | 说明                                          |
 | ----------------------------- | ---- | --------------------------------------------- |
-| EXTENSION_OID_TYPE_ALL        | 0    | 表示获取扩展域中所有的对象标识符。            |
-| EXTENSION_OID_TYPE_CRITICAL   | 1    | 表示获取扩展域中critical为true的对象标识符。  |
-| EXTENSION_OID_TYPE_UNCRITICAL | 2    | 表示获取扩展域中critical为false的对象标识符。 |
+| EXTENSION_OID_TYPE_ALL        | 0    | 所有OID。            |
+| EXTENSION_OID_TYPE_CRITICAL   | 1    | critical为true的OID。  |
+| EXTENSION_OID_TYPE_UNCRITICAL | 2    | critical为false的OID。 |
 
 ## ExtensionEntryType<sup>10+</sup>
 
- 表示获取扩展域中对象类型的枚举。
+ 证书扩展项类型的枚举。
 
  **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -186,9 +186,9 @@ OpenSSL中规定了扩展类型，例如challengePassword、keyUsage等。
 
 | 名称                                | 值   | 说明                         |
 | ----------------------------------- | ---- | ---------------------------- |
-| EXTENSION_ENTRY_TYPE_ENTRY          | 0    | 表示获取整个对象。           |
-| EXTENSION_ENTRY_TYPE_ENTRY_CRITICAL | 1    | 表示获取对象的critical属性。 |
-| EXTENSION_ENTRY_TYPE_ENTRY_VALUE    | 2    | 表示获取对象的数据。         |
+| EXTENSION_ENTRY_TYPE_ENTRY          | 0    | 整个扩展项。           |
+| EXTENSION_ENTRY_TYPE_ENTRY_CRITICAL | 1    | 扩展项的critical属性。 |
+| EXTENSION_ENTRY_TYPE_ENTRY_VALUE    | 2    | 扩展项的值（扩展特定数据）。         |
 
 ## EncodingType<sup>12+</sup>
 
@@ -204,7 +204,7 @@ OpenSSL中规定了扩展类型，例如challengePassword、keyUsage等。
 
 ## EncodingBlob
 
-定义编码格式的二进制数据数组。
+表示一个编码后的二进制数据块。
 
 ### 属性
 
@@ -256,7 +256,7 @@ X.509中定义的GeneralName类型的枚举，这些类型可出现在“使用�
 
 ## GeneralName<sup>12+</sup>
 
-用于表示GeneralName。
+表示X.509 GeneralName，定义在RFC 5280中，可出现在Subject Alternative Name等扩展中。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -312,7 +312,7 @@ X.509中定义的GeneralName类型的枚举，这些类型可出现在“使用�
 
 ## CertChainBuildParameters<sup>12+</sup>
 
-用于指定证书链创建参数。
+证书链创建参数。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -326,7 +326,7 @@ X.509中定义的GeneralName类型的枚举，这些类型可出现在“使用�
 
 ## CertChainBuildResult<sup>12+</sup>
 
-用于指定证书链创建结果。
+表示证书链创建结果。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -458,7 +458,7 @@ X.509中定义的GeneralName类型的枚举，这些类型可出现在“使用�
 | crls | Array\<[X509CRL](#x509crl11)> | 否   | 是   | CRL列表。最大数量：100。 |
 | allowDownloadCrl | boolean | 否   | 是   | 是否允许下载CRL，默认值为false。true：尝试使用证书的CDP扩展下载CRL；false：不尝试下载CRL。 |
 | ocspResponses | Array\<Uint8Array> | 否   | 是   | OCSP响应数据。预置的OCSP响应数据。最大数量：100。 |
-| allowOcspCheckOnline | boolean | 否   | 是   | 是否允许在线OCSP检查，默认值为false。true：执行在线OCSP检查，即尝试从证书AIA扩展获取OCSP URL并发送请求获取响应；false：不执行在线OCSP检查。 |
+| allowOcspCheckOnline | boolean | 否   | 是   | 是否允许在线OCSP检查，默认值为false。<br>true：执行在线OCSP检查，即尝试从证书AIA扩展获取OCSP URL并发送请求获取响应；<br>false：不执行在线OCSP检查。 |
 | ocspDigest | [OcspDigest](#ocspdigest) | 否   | 是   | OCSP请求使用的摘要算法，默认值为SHA256。|
 
 ## CertValidationParams
@@ -477,9 +477,9 @@ X.509中定义的GeneralName类型的枚举，这些类型可出现在“使用�
 | ------------ | ------------------------------------------------- | ---- | ---- |--------------------------------------|
 | untrustedCerts | Array\<[X509Cert](#x509cert)> | 否   | 是   | 非信任证书列表。仅用于构建证书链的中间证书，不作为信任锚点。最大数量：100。 |
 | trustedCerts | Array\<[X509Cert](#x509cert)> | 否   | 是   | 信任证书列表。指定信任的根证书或中间CA证书，作为验证的信任锚点。最大数量：100。<br>验证时，证书链须追溯至信任证书，必须设置此参数或将trustSystemCa设为true。 |
-| trustSystemCa | boolean | 否   | 是   | 是否信任系统CA。默认值为false。true：使用系统预置的CA证书库作为信任锚；false：不使用系统预置的CA证书库作为信任锚。<br>适用于验证公共网站证书，无需手动配置根证书。 |
-| partialChain | boolean | 否   | 是   | 是否允许部分链验证。默认值为false。true：允许使用信任证书中的任意证书作为信任锚，而非必须追溯到根证书；false：构建证书链时必须追溯到根证书。 |
-| allowDownloadIntermediateCa | boolean | 否   | 是   | 是否允许从网络下载中间CA证书。默认值为false。true：当构建证书链缺失中间证书时，尝试使用证书AIA扩展中颁发者地址下载颁发者证书，解决证书链不完整的问题；false：不允许从网络下载中间的CA证书。 |
+| trustSystemCa | boolean | 否   | 是   | 是否信任系统CA。默认值为false。<br>true：使用系统预置的CA证书库作为信任锚；<br>false：不使用系统预置的CA证书库作为信任锚。<br>适用于验证公共网站证书，无需手动配置根证书。 |
+| partialChain | boolean | 否   | 是   | 是否允许部分链验证。默认值为false。<br>true：允许使用信任证书中的任意证书作为信任锚，而非必须追溯到根证书；<br>false：构建证书链时必须追溯到根证书。 |
+| allowDownloadIntermediateCa | boolean | 否   | 是   | 是否允许从网络下载中间CA证书。默认值为false。<br>true：当构建证书链缺失中间证书时，尝试使用证书AIA扩展中颁发者地址下载颁发者证书，解决证书链不完整的问题；<br>false：不允许从网络下载中间的CA证书。<br>下载地址从证书的AIA扩展中获取，仅支持HTTP。若要使用网络进行下载，需要申请ohos.permission.INTERNET权限。关于权限配置的详细信息，请参见声明权限[Declaring Permissions](../../security/AccessToken/declare-permissions.md)。 |
 | date | string | 否   | 是   | 校验日期。格式为YYMMDDHHMMSSZ或YYYYMMDDHHMMSSZ，默认使用当前系统时间。<br>支持自定义验证时间，适用于离线验证历史签名等场景。 |
 | validateDate | boolean | 否   | 是   | 是否校验日期。默认值为true。true：验证证书和CRL有效期；false：不验证证书和CRL有效期。 |
 | ignoreErrs | Array\<[CertResult](#certresult)> | 否   | 是   | 允许忽略特定的验证错误。最大数量：8。<br>可忽略的错误包括：ERR_CERT_NOT_YET_VALID、ERR_CERT_HAS_EXPIRED、ERR_UNKNOWN_CRITICAL_EXTENSION、ERR_CRL_NOT_FOUND、ERR_CRL_NOT_YET_VALID、ERR_CRL_HAS_EXPIRED、ERR_OCSP_RESPONSE_NOT_FOUND、ERR_NETWORK_TIMEOUT。 |
@@ -692,8 +692,8 @@ P12（PKCS #12）数据，包含私钥、证书和其他证书。
 
 | 名称               | 值 | 说明                |
 |--------------------|----|---------------------|
-| PKCS1_PADDING      | 0  | PKCS1填充方式。     |
-| PKCS1_PSS_PADDING  | 1  | PKCS1 PSS填充方式。 |
+| PKCS1_PADDING      | 0  | PKCS #1 v1.5填充方式。     |
+| PKCS1_PSS_PADDING  | 1  | PKCS #1 PSS填充方式。 |
 
 ## CmsKeyAgreeRecipientDigestAlgorithm<sup>22+</sup>
 
@@ -761,7 +761,7 @@ CMS封装数据的内容加密算法的枚举。
 | 名称         | 类型                                                  |  只读  |  可选  |说明                                   |
 | ------------ | ------------------------------------------------- | ---- | ---- |-------------------------------------- |
 | mdName                | string             | 否  | 否  |消息摘要算法的名称，例如 "SHA384", 当前支持"SHA1"、"SHA256"、"SHA384"、"SHA512"。 <br> **原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。                |
-| rsaSignaturePadding<sup>22+</sup>                | [CmsRsaSignaturePadding](#cmsrsasignaturepadding22)             | 否  | 是  |RSA 签名填充方式。默认值为：PKCS1_PADDING。<br>当设置为 PKCS1_PSS_PADDING 时，mdName 必须为 "SHA256"、"SHA384" 或 "SHA512"。<br> **说明**：仅当签名者私钥类型为RSA时有效。  <br> **原子化服务API：** 从API version 22开始，该接口支持在原子化服务中使用。             |
+| rsaSignaturePadding<sup>22+</sup>                | [CmsRsaSignaturePadding](#cmsrsasignaturepadding22)             | 否  | 是  |RSA签名填充方式。默认值为：PKCS1_PADDING。<br>当设置为 PKCS1_PSS_PADDING 时，mdName 必须为 "SHA256"、"SHA384" 或 "SHA512"。<br> **说明**：仅当签名者私钥类型为RSA时有效。  <br> **原子化服务API：** 从API version 22开始，该接口支持在原子化服务中使用。             |
 | addCert               | boolean            | 否   | 是  |是否添加证书。默认为true。true为需要，false为不需要。 <br> **原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。                            |
 | addAttr               | boolean            | 否   | 是 |是否添加签名属性。默认为true。true为需要，false为不需要。<br> **原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。           |
 | addSmimeCapAttr       | boolean            | 否   | 是  |是否将SMIME能力添加到Cms对象。默认为true。true为需要，false为不需要。<br> **原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。            |
@@ -875,10 +875,10 @@ createX509Cert(inStream : EncodingBlob, callback : AsyncCallback\<X509Cert>) : v
 
 | 错误码ID | 错误信息      |
 | -------- | ------------- |
-| 401 | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.|
-| 801 | this operation is not supported. |
-| 19020001 | memory malloc failed. |
-| 19030001 | crypto operation error.      |
+| 401 | Invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.|
+| 801 | This operation is not supported. |
+| 19020001 | Memory malloc failed. |
+| 19030001 | Crypto operation error.      |
 
 **示例：**
 
@@ -948,10 +948,10 @@ createX509Cert(inStream : EncodingBlob) : Promise\<X509Cert>
 
 | 错误码ID | 错误信息      |
 | -------- | ------------- |
-| 401 | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.|
-| 801 | this operation is not supported. |
-| 19020001 | memory malloc failed. |
-| 19030001 | crypto operation error.      |
+| 401 | Invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.|
+| 801 | This operation is not supported. |
+| 19020001 | Memory malloc failed. |
+| 19030001 | Crypto operation error.      |
 
 **示例：**
 
@@ -994,7 +994,7 @@ cert.createX509Cert(encodingBlob).then(x509Cert => {
 
 ## X509Cert
 
-X.509证书类。
+提供用于X.509证书操作的API。
 
 ### verify
 
@@ -1019,8 +1019,8 @@ verify(key : cryptoFramework.PubKey, callback : AsyncCallback\<void>) : void
 
 | 错误码ID | 错误信息           |
 | -------- | ------------------ |
-| 401 | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.|
-| 19030001 | crypto operation error.      |
+| 401 | Invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.|
+| 19030001 | Crypto operation error.      |
 
 **示例：**
 
@@ -1108,8 +1108,8 @@ verify(key : cryptoFramework.PubKey) : Promise\<void>
 
 | 错误码ID | 错误信息           |
 | -------- | ------------------ |
-| 401 | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.|
-| 19030001 | crypto operation error.      |
+| 401 | Invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.|
+| 19030001 | Crypto operation error.      |
 
 **示例：**
 
@@ -1184,10 +1184,10 @@ getEncoded(callback : AsyncCallback\<EncodingBlob>) : void
 
 | 错误码ID | 错误信息                                          |
 | -------- | ------------------------------------------------- |
-| 401 | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types.|
-| 19020001 | memory malloc failed.                                     |
-| 19020002 | runtime error. Possible causes: <br>1. Memory copy failed;<br>2. A null pointer occurs inside the system;<br>3. Failed to obtain the native object or convert parameters.                                   |
-| 19030001 | crypto operation error.|
+| 401 | Invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types.|
+| 19020001 | Memory malloc failed.                                     |
+| 19020002 | Runtime error. Possible causes: <br>1. Memory copy failed;<br>2. A null pointer occurs inside the system;<br>3. Failed to obtain the native object or convert parameters.                                   |
+| 19030001 | Crypto operation error.|
 
 **示例：**
 
@@ -1258,10 +1258,10 @@ getEncoded() : Promise\<EncodingBlob>
 
 | 错误码ID | 错误信息                                          |
 | -------- | ------------------------------------------------- |
-| 401 | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.|
-| 19020001 | memory malloc failed.                                     |
-| 19020002 | runtime error. Possible causes: <br>1. Memory copy failed;<br>2. A null pointer occurs inside the system;<br>3. Failed to obtain the native object or convert parameters.                                   |
-| 19030001 | crypto operation error.|
+| 401 | Invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.|
+| 19020001 | Memory malloc failed.                                     |
+| 19020002 | Runtime error. Possible causes: <br>1. Memory copy failed;<br>2. A null pointer occurs inside the system;<br>3. Failed to obtain the native object or convert parameters.                                   |
+| 19030001 | Crypto operation error.|
 
 **示例：**
 
@@ -1329,8 +1329,8 @@ getPublicKey() : cryptoFramework.PubKey
 
 | 错误码ID | 错误信息                                          |
 | -------- | ------------------------------------------------- |
-| 19020001 | memory malloc failed.                                     |
-| 19030001 | crypto operation error.|
+| 19020001 | Memory malloc failed.                                     |
+| 19030001 | Crypto operation error.|
 
 **示例：**
 
@@ -1393,7 +1393,7 @@ checkValidityWithDate(date: string) : void
 
 | 参数名   | 类型            | 必填 | 说明        |
 | -------- | -------------- | ---- | ---------- |
-| date     | string         | 是   | 日期，为ASN.1时间格式。 |
+| date     | string         | 是   | 日期，为UTC时间或通用时间字符串格式。 |
 
 **错误码：**
 
@@ -1401,11 +1401,11 @@ checkValidityWithDate(date: string) : void
 
 | 错误码ID | 错误信息                                          |
 | -------- | ------------------------------------------------- |
-| 401 | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.|
-| 19020001 | memory malloc failed.                                     |
-| 19030001 | crypto operation error.|
-| 19030003 | the certificate has not taken effect.                                     |
-| 19030004 | the certificate has expired.|
+| 401 | Invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.|
+| 19020001 | Memory malloc failed.                                     |
+| 19030001 | Crypto operation error.|
+| 19030003 | The certificate has not taken effect.                                     |
+| 19030004 | The certificate has expired.|
 
 **示例：**
 
@@ -1594,7 +1594,7 @@ getCertSerialNumber() : bigint
 
 | 错误码ID | 错误信息                                          |
 | -------- | ------------------------------------------------- |
-| 19020002 | runtime error. Possible causes: <br>1. Memory copy failed;<br>2. A null pointer occurs inside the system;<br>3. Failed to obtain the native object or convert parameters.                                   |
+| 19020002 | Runtime error. Possible causes: <br>1. Memory copy failed;<br>2. A null pointer occurs inside the system;<br>3. Failed to obtain the native object or convert parameters.                                   |
 
 **示例：**
 
@@ -1651,7 +1651,9 @@ getIssuerName() : DataBlob
 
 > **说明：**
 >
-> 获取到的X.509证书颁发者名称数据带字符串结束符。
+> 获取的X.509证书颁发者名称末尾包含一个NUL终止符（值为0），请根据业务需求决定是否去除该终止符。
+>
+> 获取的证书颁发者名称为ASCII编码，转换为字符串后，是以斜杠（/）开始，以斜杠（/）分隔相对可分辨名称的可分辨名称字符串。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -1669,9 +1671,9 @@ getIssuerName() : DataBlob
 
 | 错误码ID | 错误信息                                          |
 | -------- | ------------------------------------------------- |
-| 19020001 | memory malloc failed.                                     |
-| 19020002 | runtime error. Possible causes: <br>1. Memory copy failed;<br>2. A null pointer occurs inside the system;<br>3. Failed to obtain the native object or convert parameters.                                   |
-| 19030001 | crypto operation error.|
+| 19020001 | Memory malloc failed.                                     |
+| 19020002 | Runtime error. Possible causes: <br>1. Memory copy failed;<br>2. A null pointer occurs inside the system;<br>3. Failed to obtain the native object or convert parameters.                                   |
+| 19030001 | Crypto operation error.|
 
 **示例：**
 
@@ -1748,10 +1750,10 @@ getIssuerName(encodingType: EncodingType): string
 
 | 错误码ID | 错误信息                                          |
 | -------- | ------------------------------------------------- |
-| 19020001 | memory malloc failed.                                     |
-| 19020002 | runtime error. Possible causes: <br>1. Memory copy failed;<br>2. A null pointer occurs inside the system;<br>3. Failed to obtain the native object or convert parameters.                                   |
-| 19020003 | parameter check failed. Possible causes: <br>1. The value of encodingType is not in the EncodingType enumeration range.|
-| 19030001 | crypto operation error.|
+| 19020001 | Memory malloc failed.                                     |
+| 19020002 | Runtime error. Possible causes: <br>1. Memory copy failed;<br>2. A null pointer occurs inside the system;<br>3. Failed to obtain the native object or convert parameters.                                   |
+| 19020003 | Parameter check failed. Possible causes: <br>1. The value of encodingType is not in the EncodingType enumeration range.|
+| 19030001 | Crypto operation error.|
 
 **示例：**
 
@@ -1821,7 +1823,11 @@ getSubjectName(encodingType?: EncodingType) : DataBlob
 
 > **说明：**
 >
-> 获取到的X.509证书主体名称数据带字符串结束符。
+> 若不设置encodingType参数，获取的证书主体名称末尾包含一个NUL终止符（值为0），请根据业务需求决定是否去除该终止符。
+> 
+> 若不设置encodingType参数，获取的证书主体名称为ASCII编码，转换为字符串后，是以斜杠（/）开始，以斜杠（/）分隔相对可分辨名称的可分辨名称字符串。
+> 
+> 建议设置encodingType参数为EncodingType.ENCODING_UTF8，获取的证书主体名称是以逗号（,）分隔相对可分辨名称的可分辨名称字符串。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -1837,7 +1843,7 @@ getSubjectName(encodingType?: EncodingType) : DataBlob
 
 | 类型                  | 说明                 |
 | --------------------- | -------------------- |
-| [DataBlob](#datablob) | 表示X.509证书主体名称，转化成字符串后使用逗号分隔相对可分辨名称。 |
+| [DataBlob](#datablob) | 表示X.509证书主体名称。 |
 
 **错误码：**
 
@@ -1845,10 +1851,10 @@ getSubjectName(encodingType?: EncodingType) : DataBlob
 
 | 错误码ID | 错误信息                                          |
 | -------- | ------------------------------------------------- |
-| 401 | invalid parameters.  Possible causes: <br>1. Incorrect parameter types;<br>2. Parameter verification failed. <br>适用版本：12+          |
-| 19020001 | memory malloc failed.                                     |
-| 19020002 | runtime error. Possible causes: <br>1. Memory copy failed;<br>2. A null pointer occurs inside the system;<br>3. Failed to obtain the native object or convert parameters.                                   |
-| 19030001 | crypto operation error.|
+| 401 | Invalid parameters.  Possible causes: <br>1. Incorrect parameter types;<br>2. Parameter verification failed. <br>适用版本：12+          |
+| 19020001 | Memory malloc failed.                                     |
+| 19020002 | Runtime error. Possible causes: <br>1. Memory copy failed;<br>2. A null pointer occurs inside the system;<br>3. Failed to obtain the native object or convert parameters.                                   |
+| 19030001 | Crypto operation error.|
 
 **示例：**
 
@@ -1917,7 +1923,7 @@ getNotBeforeTime() : string
 
 | 类型   | 说明                                                         |
 | ------ | ------------------------------------------------------------ |
-| string | 表示X.509证书有效期起始时间，日期为ASN.1时间格式。 |
+| string | 表示X.509证书生效时间，采用UTC时间或通用时间字符串格式。 |
 
 **错误码：**
 
@@ -1925,9 +1931,9 @@ getNotBeforeTime() : string
 
 | 错误码ID | 错误信息                                          |
 | -------- | ------------------------------------------------- |
-| 19020001 | memory malloc failed.                                     |
-| 19020002 | runtime error. Possible causes: <br>1. Memory copy failed;<br>2. A null pointer occurs inside the system;<br>3. Failed to obtain the native object or convert parameters.                                   |
-| 19030001 | crypto operation error.|
+| 19020001 | Memory malloc failed.                                     |
+| 19020002 | Runtime error. Possible causes: <br>1. Memory copy failed;<br>2. A null pointer occurs inside the system;<br>3. Failed to obtain the native object or convert parameters.                                   |
+| 19030001 | Crypto operation error.|
 
 **示例：**
 
@@ -1990,7 +1996,7 @@ getNotAfterTime() : string
 
 | 类型   | 说明                                                         |
 | ------ | ------------------------------------------------------------ |
-| string | 表示X.509证书有效期截止时间，日期为ASN.1时间格式。 |
+| string | 表示X.509证书过期时间，采用UTC时间或通用时间字符串格式。 |
 
 **错误码：**
 
@@ -1998,9 +2004,9 @@ getNotAfterTime() : string
 
 | 错误码ID | 错误信息                                          |
 | -------- | ------------------------------------------------- |
-| 19020001 | memory malloc failed.                                     |
-| 19020002 | runtime error. Possible causes: <br>1. Memory copy failed;<br>2. A null pointer occurs inside the system;<br>3. Failed to obtain the native object or convert parameters.                                   |
-| 19030001 | crypto operation error.|
+| 19020001 | Memory malloc failed.                                     |
+| 19020002 | Runtime error. Possible causes: <br>1. Memory copy failed;<br>2. A null pointer occurs inside the system;<br>3. Failed to obtain the native object or convert parameters.                                   |
+| 19030001 | Crypto operation error.|
 
 **示例：**
 
@@ -2071,9 +2077,9 @@ getSignature() : DataBlob
 
 | 错误码ID | 错误信息                                          |
 | -------- | ------------------------------------------------- |
-| 19020001 | memory malloc failed.                                     |
-| 19020002 | runtime error. Possible causes: <br>1. Memory copy failed;<br>2. A null pointer occurs inside the system;<br>3. Failed to obtain the native object or convert parameters.                                   |
-| 19030001 | crypto operation error.|
+| 19020001 | Memory malloc failed.                                     |
+| 19020002 | Runtime error. Possible causes: <br>1. Memory copy failed;<br>2. A null pointer occurs inside the system;<br>3. Failed to obtain the native object or convert parameters.                                   |
+| 19030001 | Crypto operation error.|
 
 **示例：**
 
@@ -2144,9 +2150,9 @@ getSignatureAlgName() : string
 
 | 错误码ID | 错误信息                                          |
 | -------- | ------------------------------------------------- |
-| 19020001 | memory malloc failed.                                     |
-| 19020002 | runtime error. Possible causes: <br>1. Memory copy failed;<br>2. A null pointer occurs inside the system;<br>3. Failed to obtain the native object or convert parameters.                                   |
-| 19030001 | crypto operation error.|
+| 19020001 | Memory malloc failed.                                     |
+| 19020002 | Runtime error. Possible causes: <br>1. Memory copy failed;<br>2. A null pointer occurs inside the system;<br>3. Failed to obtain the native object or convert parameters.                                   |
+| 19030001 | Crypto operation error.|
 
 **示例：**
 
@@ -2217,9 +2223,9 @@ getSignatureAlgOid() : string
 
 | 错误码ID | 错误信息                                          |
 | -------- | ------------------------------------------------- |
-| 19020001 | memory malloc failed.                                     |
-| 19020002 | runtime error. Possible causes: <br>1. Memory copy failed;<br>2. A null pointer occurs inside the system;<br>3. Failed to obtain the native object or convert parameters.                                   |
-| 19030001 | crypto operation error.|
+| 19020001 | Memory malloc failed.                                     |
+| 19020002 | Runtime error. Possible causes: <br>1. Memory copy failed;<br>2. A null pointer occurs inside the system;<br>3. Failed to obtain the native object or convert parameters.                                   |
+| 19030001 | Crypto operation error.|
 
 **示例：**
 
@@ -2290,10 +2296,10 @@ getSignatureAlgParams() : DataBlob
 
 | 错误码ID | 错误信息                                          |
 | -------- | ------------------------------------------------- |
-| 801 | this operation is not supported. |
-| 19020001 | memory malloc failed.                                     |
-| 19020002 | runtime error. Possible causes: <br>1. Memory copy failed;<br>2. A null pointer occurs inside the system;<br>3. Failed to obtain the native object or convert parameters.                                   |
-| 19030001 | crypto operation error.|
+| 801 | This operation is not supported. |
+| 19020001 | Memory malloc failed.                                     |
+| 19020002 | Runtime error. Possible causes: <br>1. Memory copy failed;<br>2. A null pointer occurs inside the system;<br>3. Failed to obtain the native object or convert parameters.                                   |
+| 19030001 | Crypto operation error.|
 
 **示例：**
 
@@ -2379,8 +2385,8 @@ getKeyUsage() : DataBlob
 
 | 错误码ID | 错误信息                                          |
 | -------- | ------------------------------------------------- |
-| 19020001 | memory malloc failed.                                    |
-| 19030001 | crypto operation error.|
+| 19020001 | Memory malloc failed.                                    |
+| 19030001 | Crypto operation error.|
 
 **示例：**
 
@@ -2461,9 +2467,9 @@ getExtKeyUsage() : DataArray
 
 | 错误码ID | 错误信息                                          |
 | -------- | ------------------------------------------------- |
-| 19020001 | memory malloc failed.                                     |
-| 19020002 | runtime error. Possible causes: <br>1. Memory copy failed;<br>2. A null pointer occurs inside the system;<br>3. Failed to obtain the native object or convert parameters.                                   |
-| 19030001 | crypto operation error.|
+| 19020001 | Memory malloc failed.                                     |
+| 19020002 | Runtime error. Possible causes: <br>1. Memory copy failed;<br>2. A null pointer occurs inside the system;<br>3. Failed to obtain the native object or convert parameters.                                   |
+| 19030001 | Crypto operation error.|
 
 **示例：**
 
@@ -2606,9 +2612,9 @@ getSubjectAltNames() : DataArray
 
 | 错误码ID | 错误信息                                          |
 | -------- | ------------------------------------------------- |
-| 19020001 | memory malloc failed.                                     |
-| 19020002 | runtime error. Possible causes: <br>1. Memory copy failed;<br>2. A null pointer occurs inside the system;<br>3. Failed to obtain the native object or convert parameters.                                   |
-| 19030001 | crypto operation error.|
+| 19020001 | Memory malloc failed.                                     |
+| 19020002 | Runtime error. Possible causes: <br>1. Memory copy failed;<br>2. A null pointer occurs inside the system;<br>3. Failed to obtain the native object or convert parameters.                                   |
+| 19030001 | Crypto operation error.|
 
 **示例：**
 
@@ -2694,9 +2700,9 @@ getIssuerAltNames() : DataArray
 
 | 错误码ID | 错误信息                                          |
 | -------- | ------------------------------------------------- |
-| 19020001 | memory malloc failed.                                     |
-| 19020002 | runtime error. Possible causes: <br>1. Memory copy failed;<br>2. A null pointer occurs inside the system;<br>3. Failed to obtain the native object or convert parameters.                                   |
-| 19030001 | crypto operation error.|
+| 19020001 | Memory malloc failed.                                     |
+| 19020002 | Runtime error. Possible causes: <br>1. Memory copy failed;<br>2. A null pointer occurs inside the system;<br>3. Failed to obtain the native object or convert parameters.                                   |
+| 19030001 | Crypto operation error.|
 
 **示例：**
 
@@ -2782,10 +2788,10 @@ getItem(itemType: CertItemType) : DataBlob
 
 | 错误码ID | 错误信息                |
 | -------- | ----------------------- |
-| 401 | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.|
-| 19020001 | memory malloc failed.           |
-| 19020002 | runtime error. Possible causes: <br>1. Memory copy failed;<br>2. A null pointer occurs inside the system;<br>3. Failed to obtain the native object or convert parameters.         |
-| 19030001 | crypto operation error. |
+| 401 | Invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.|
+| 19020001 | Memory malloc failed.           |
+| 19020002 | Runtime error. Possible causes: <br>1. Memory copy failed;<br>2. A null pointer occurs inside the system;<br>3. Failed to obtain the native object or convert parameters.         |
+| 19030001 | Crypto operation error. |
 
 **示例：**
 
@@ -2862,9 +2868,9 @@ match(param: X509CertMatchParameters): boolean
 
 | 错误码ID | 错误信息      |
 | -------- | ------------- |
-| 401 | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.|
-| 19020001 | memory malloc failed. |
-| 19030001 | crypto operation error. |
+| 401 | Invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.|
+| 19020001 | Memory malloc failed. |
+| 19030001 | Crypto operation error. |
 
 **示例：**
 
@@ -2960,9 +2966,9 @@ getCRLDistributionPoint(): DataArray
 
 | 错误码ID | 错误信息      |
 | -------- | ------------- |
-| 19020001 | memory malloc failed. |
-| 19020002 | runtime error. Possible causes: <br>1. Memory copy failed;<br>2. A null pointer occurs inside the system;<br>3. Failed to obtain the native object or convert parameters.|
-| 19030001 | crypto operation error. |
+| 19020001 | Memory malloc failed. |
+| 19020002 | Runtime error. Possible causes: <br>1. Memory copy failed;<br>2. A null pointer occurs inside the system;<br>3. Failed to obtain the native object or convert parameters.|
+| 19030001 | Crypto operation error. |
 
 **示例：**
 
@@ -3035,9 +3041,9 @@ getIssuerX500DistinguishedName(): X500DistinguishedName
 
 | 错误码ID | 错误信息      |
 | -------- | ------------- |
-| 19020001 | memory malloc failed. |
-| 19020002 | runtime error. Possible causes: <br>1. Memory copy failed;<br>2. A null pointer occurs inside the system;<br>3. Failed to obtain the native object or convert parameters.|
-| 19030001 | crypto operation error. |
+| 19020001 | Memory malloc failed. |
+| 19020002 | Runtime error. Possible causes: <br>1. Memory copy failed;<br>2. A null pointer occurs inside the system;<br>3. Failed to obtain the native object or convert parameters.|
+| 19030001 | Crypto operation error. |
 
 **示例：**
 
@@ -3120,9 +3126,9 @@ getSubjectX500DistinguishedName(): X500DistinguishedName
 
 | 错误码ID | 错误信息      |
 | -------- | ------------- |
-| 19020001 | memory malloc failed. |
-| 19020002 | runtime error. Possible causes: <br>1. Memory copy failed;<br>2. A null pointer occurs inside the system;<br>3. Failed to obtain the native object or convert parameters.|
-| 19030001 | crypto operation error. |
+| 19020001 | Memory malloc failed. |
+| 19020002 | Runtime error. Possible causes: <br>1. Memory copy failed;<br>2. A null pointer occurs inside the system;<br>3. Failed to obtain the native object or convert parameters.|
+| 19030001 | Crypto operation error. |
 
 **示例：**
 
@@ -3205,9 +3211,9 @@ toString(): string
 
 | 错误码ID | 错误信息      |
 | -------- | ------------- |
-| 19020001 | memory malloc failed. |
-| 19020002 | runtime error. Possible causes: <br>1. Memory copy failed;<br>2. A null pointer occurs inside the system;<br>3. Failed to obtain the native object or convert parameters.|
-| 19030001 | crypto operation error. |
+| 19020001 | Memory malloc failed. |
+| 19020002 | Runtime error. Possible causes: <br>1. Memory copy failed;<br>2. A null pointer occurs inside the system;<br>3. Failed to obtain the native object or convert parameters.|
+| 19030001 | Crypto operation error. |
 
 **示例：**
 
@@ -3296,10 +3302,10 @@ toString(encodingType: EncodingType): string
 
 | 错误码ID | 错误信息      |
 | -------- | ------------- |
-| 19020001 | memory malloc failed. |
-| 19020002 | runtime error. Possible causes: <br>1. Memory copy failed;<br>2. A null pointer occurs inside the system;<br>3. Failed to obtain the native object or convert parameters.|
-| 19020003 | parameter check failed. Possible causes: <br>1. The value of encodingType is not in the EncodingType enumeration range.|
-| 19030001 | crypto operation error. |
+| 19020001 | Memory malloc failed. |
+| 19020002 | Runtime error. Possible causes: <br>1. Memory copy failed;<br>2. A null pointer occurs inside the system;<br>3. Failed to obtain the native object or convert parameters.|
+| 19020003 | Parameter check failed. Possible causes: <br>1. The value of encodingType is not in the EncodingType enumeration range.|
+| 19030001 | Crypto operation error. |
 
 **示例：**
 
@@ -3380,9 +3386,9 @@ hashCode(): Uint8Array
 
 | 错误码ID | 错误信息      |
 | -------- | ------------- |
-| 19020001 | memory malloc failed. |
-| 19020002 | runtime error. Possible causes: <br>1. Memory copy failed;<br>2. A null pointer occurs inside the system;<br>3. Failed to obtain the native object or convert parameters.|
-| 19030001 | crypto operation error. |
+| 19020001 | Memory malloc failed. |
+| 19020002 | Runtime error. Possible causes: <br>1. Memory copy failed;<br>2. A null pointer occurs inside the system;<br>3. Failed to obtain the native object or convert parameters.|
+| 19030001 | Crypto operation error. |
 
 **示例：**
 
@@ -3447,7 +3453,7 @@ async function certHashCode() {
 
 getExtensionsObject(): CertExtension
 
-获取对应实体的扩展域DER格式数据。
+获取证书扩展对象。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -3457,7 +3463,7 @@ getExtensionsObject(): CertExtension
 
 | 类型                  | 说明                                      |
 | --------------------- | ----------------------------------------- |
-| [CertExtension](#certextension10) | 证书扩展域段类对象。|
+| [CertExtension](#certextension10) | 证书扩展对象。|
 
 **错误码：**
 
@@ -3465,9 +3471,9 @@ getExtensionsObject(): CertExtension
 
 | 错误码ID | 错误信息      |
 | -------- | ------------- |
-| 19020001 | memory malloc failed. |
-| 19020002 | runtime error. Possible causes: <br>1. Memory copy failed;<br>2. A null pointer occurs inside the system;<br>3. Failed to obtain the native object or convert parameters.|
-| 19030001 | crypto operation error. |
+| 19020001 | Memory malloc failed. |
+| 19020002 | Runtime error. Possible causes: <br>1. Memory copy failed;<br>2. A null pointer occurs inside the system;<br>3. Failed to obtain the native object or convert parameters.|
+| 19030001 | Crypto operation error. |
 
 **示例：**
 
@@ -3532,7 +3538,7 @@ async function certGetExtensionsObject() {
 
 createCertExtension(inStream : EncodingBlob, callback : AsyncCallback\<CertExtension>) : void
 
-表示创建证书扩展域段的对象。使用callback异步回调。
+创建一个证书扩展对象。使用callback异步回调。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -3543,7 +3549,7 @@ createCertExtension(inStream : EncodingBlob, callback : AsyncCallback\<CertExten
 | 参数名   | 类型                                              | 必填 | 说明                       |
 | -------- | ------------------------------------------------- | ---- | -------------------------- |
 | inStream | [EncodingBlob](#encodingblob)                     | 是   | 表示序列化的证书扩展数据。 |
-| callback | AsyncCallback\<[CertExtension](#certextension10)> | 是   | 回调函数，表示扩展域段对象。 |
+| callback | AsyncCallback\<[CertExtension](#certextension10)> | 是   | 回调函数，表示证书扩展对象。 |
 
 **错误码：**
 
@@ -3551,10 +3557,10 @@ createCertExtension(inStream : EncodingBlob, callback : AsyncCallback\<CertExten
 
 | 错误码ID | 错误信息      |
 | -------- | ------------- |
-| 401 | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.|
-| 801 | this operation is not supported. |
-| 19020001 | memory malloc failed. |
-| 19030001 | crypto operation error.      |
+| 401 | Invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.|
+| 801 | This operation is not supported. |
+| 19020001 | Memory malloc failed. |
+| 19030001 | Crypto operation error.      |
 
 **示例：**
 
@@ -3593,7 +3599,7 @@ cert.createCertExtension(encodingBlob, (error, certExt) => {
 
 createCertExtension(inStream : EncodingBlob) : Promise\<CertExtension>
 
-表示创建证书扩展域段的对象。使用Promise异步回调。
+创建一个证书扩展对象。使用Promise异步回调。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -3609,7 +3615,7 @@ createCertExtension(inStream : EncodingBlob) : Promise\<CertExtension>
 
 | 类型                                        | 说明                 |
 | ------------------------------------------- | -------------------- |
-| Promise\<[CertExtension](#certextension10)> | 表示证书扩展域段对象。 |
+| Promise\<[CertExtension](#certextension10)> | Promise对象，返回创建的CertExtension实例。 |
 
 **错误码：**
 
@@ -3617,10 +3623,10 @@ createCertExtension(inStream : EncodingBlob) : Promise\<CertExtension>
 
 | 错误码ID | 错误信息      |
 | -------- | ------------- |
-| 401 | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.|
-| 801 | this operation is not supported. |
-| 19020001 | memory malloc failed. |
-| 19030001 | crypto operation error.      |
+| 401 | Invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.|
+| 801 | This operation is not supported. |
+| 19020001 | Memory malloc failed. |
+| 19030001 | Crypto operation error.      |
 
 **示例：**
 
@@ -3656,13 +3662,13 @@ cert.createCertExtension(encodingBlob).then(certExt => {
 
 ## CertExtension<sup>10+</sup>
 
-证书扩展域段类。
+提供操作X.509证书扩展的API。
 
 ### getEncoded<sup>10+</sup>
 
 getEncoded() : EncodingBlob
 
-表示获取证书扩展域段序列化数据。
+获取证书扩展的序列化数据。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -3672,7 +3678,7 @@ getEncoded() : EncodingBlob
 
 | 类型                          | 说明                         |
 | ----------------------------- | ---------------------------- |
-| [EncodingBlob](#encodingblob) | 表示证书扩展域段序列化数据。 |
+| [EncodingBlob](#encodingblob) | 获取的证书扩展序列化数据。 |
 
 **错误码：**
 
@@ -3680,9 +3686,9 @@ getEncoded() : EncodingBlob
 
 | 错误码ID | 错误信息                |
 | -------- | ----------------------- |
-| 19020001 | memory malloc failed.           |
-| 19020002 | runtime error. Possible causes: <br>1. Memory copy failed;<br>2. A null pointer occurs inside the system;<br>3. Failed to obtain the native object or convert parameters.         |
-| 19030001 | crypto operation error. |
+| 19020001 | Memory malloc failed.           |
+| 19020002 | Runtime error. Possible causes: <br>1. Memory copy failed;<br>2. A null pointer occurs inside the system;<br>3. Failed to obtain the native object or convert parameters.         |
+| 19030001 | Crypto operation error. |
 
 **示例：**
 
@@ -3728,7 +3734,7 @@ cert.createCertExtension(encodingBlob, (error, certExt) => {
 
 getOidList(valueType : ExtensionOidType) : DataArray
 
-表示获取证书扩展域段对象标识符列表。
+获取证书扩展的OID列表。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -3738,13 +3744,13 @@ getOidList(valueType : ExtensionOidType) : DataArray
 
 | 参数名    | 类型                                  | 必填 | 说明                           |
 | --------- | ------------------------------------- | ---- | ------------------------------ |
-| valueType | [ExtensionOidType](#extensionoidtype10) | 是   | 表示证书扩展域段对象标识符类型。 |
+| valueType | [ExtensionOidType](#extensionoidtype10) | 是   | 指定要获取的OID类型。 |
 
 **返回值**：
 
 | 类型                    | 说明                             |
 | ----------------------- | -------------------------------- |
-| [DataArray](#dataarray) | 表示证书扩展域段对象标识符列表。 |
+| [DataArray](#dataarray) | 获取的证书扩展OID列表。 |
 
 **错误码：**
 
@@ -3752,10 +3758,10 @@ getOidList(valueType : ExtensionOidType) : DataArray
 
 | 错误码ID | 错误信息                |
 | -------- | ----------------------- |
-| 401 | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.|
-| 19020001 | memory malloc failed.           |
-| 19020002 | runtime error. Possible causes: <br>1. Memory copy failed;<br>2. A null pointer occurs inside the system;<br>3. Failed to obtain the native object or convert parameters.         |
-| 19030001 | crypto operation error. |
+| 401 | Invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.|
+| 19020001 | Memory malloc failed.           |
+| 19020002 | Runtime error. Possible causes: <br>1. Memory copy failed;<br>2. A null pointer occurs inside the system;<br>3. Failed to obtain the native object or convert parameters.         |
+| 19030001 | Crypto operation error. |
 
 **示例：**
 
@@ -3801,7 +3807,7 @@ cert.createCertExtension(encodingBlob, (error, certExt) => {
 
 getEntry(valueType: ExtensionEntryType, oid : DataBlob) : DataBlob
 
-表示获取证书扩展域段对象信息。
+根据OID获取证书扩展项的值。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -3811,14 +3817,14 @@ getEntry(valueType: ExtensionEntryType, oid : DataBlob) : DataBlob
 
 | 参数名    | 类型                                      | 必填 | 说明                             |
 | --------- | ----------------------------------------- | ---- | -------------------------------- |
-| valueType | [ExtensionEntryType](#extensionentrytype10) | 是   | 表示证书扩展域段获取的类型。       |
-| oid       | [DataBlob](#datablob)                     | 是   | 表示证书扩展域段获取的对象标识符。 |
+| valueType | [ExtensionEntryType](#extensionentrytype10) | 是   | 指定要获取的扩展信息类型。       |
+| oid       | [DataBlob](#datablob)                     | 是   | 指定要获取的扩展项OID。 |
 
 **返回值**：
 
 | 类型                  | 说明                         |
 | --------------------- | ---------------------------- |
-| [DataBlob](#datablob) | 表示证书扩展域段对象的数据。 |
+| [DataBlob](#datablob) | 获取的证书扩展项数据。 |
 
 **错误码：**
 
@@ -3826,10 +3832,10 @@ getEntry(valueType: ExtensionEntryType, oid : DataBlob) : DataBlob
 
 | 错误码ID | 错误信息                |
 | -------- | ----------------------- |
-| 401 | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.|
-| 19020001 | memory malloc failed.           |
-| 19020002 | runtime error. Possible causes: <br>1. Memory copy failed;<br>2. A null pointer occurs inside the system;<br>3. Failed to obtain the native object or convert parameters.         |
-| 19030001 | crypto operation error. |
+| 401 | Invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.|
+| 19020001 | Memory malloc failed.           |
+| 19020002 | Runtime error. Possible causes: <br>1. Memory copy failed;<br>2. A null pointer occurs inside the system;<br>3. Failed to obtain the native object or convert parameters.         |
+| 19030001 | Crypto operation error. |
 
 **示例：**
 
@@ -3880,7 +3886,7 @@ cert.createCertExtension(encodingBlob, (error, certExt) => {
 
 checkCA() : number
 
-表示校验证书是否为CA证书。
+检查证书是否为CA证书。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -3890,7 +3896,7 @@ checkCA() : number
 
 | 类型   | 说明                                                         |
 | ------ | ------------------------------------------------------------ |
-| number | 当证书扩展域段中密钥用途扩展包含keyCertSign位，并且基本约束中cA字段为true时，表示证书为CA证书。如果不是CA，则返回-1；否则返回基本约束中的路径长度。如果证书是CA证书，但是基本约束中未给定路径长度，则返回-2，表示无路径长度限制。 |
+| number | 当证书扩展中密钥用途扩展包含keyCertSign位，并且基本约束中cA字段为true时，表示证书为CA证书。如果不是CA，则返回-1；否则返回基本约束中的路径长度。如果证书是CA证书，但是基本约束中未给定路径长度，则返回-2，表示无路径长度限制。 |
 
 **错误码：**
 
@@ -3898,9 +3904,9 @@ checkCA() : number
 
 | 错误码ID | 错误信息                |
 | -------- | ----------------------- |
-| 19020001 | memory malloc failed.           |
-| 19020002 | runtime error. Possible causes: <br>1. Memory copy failed;<br>2. A null pointer occurs inside the system;<br>3. Failed to obtain the native object or convert parameters.         |
-| 19030001 | crypto operation error. |
+| 19020001 | Memory malloc failed.           |
+| 19020002 | Runtime error. Possible causes: <br>1. Memory copy failed;<br>2. A null pointer occurs inside the system;<br>3. Failed to obtain the native object or convert parameters.         |
+| 19030001 | Crypto operation error. |
 
 **示例：**
 
@@ -3963,9 +3969,9 @@ hasUnsupportedCriticalExtension(): boolean
 
 | 错误码ID | 错误信息                |
 | -------- | ----------------------- |
-| 19020001 | memory malloc failed.           |
-| 19020002 | runtime error. Possible causes: <br>1. Memory copy failed;<br>2. A null pointer occurs inside the system;<br>3. Failed to obtain the native object or convert parameters.         |
-| 19030001 | crypto operation error. |
+| 19020001 | Memory malloc failed.           |
+| 19020002 | Runtime error. Possible causes: <br>1. Memory copy failed;<br>2. A null pointer occurs inside the system;<br>3. Failed to obtain the native object or convert parameters.         |
+| 19030001 | Crypto operation error. |
 
 **示例：**
 
@@ -4002,7 +4008,7 @@ cert.createCertExtension(encodingBlob).then((extensionObj) => {
 
 createX509Crl(inStream : EncodingBlob, callback : AsyncCallback\<X509Crl>) : void
 
-表示创建X.509证书吊销列表的对象。使用callback异步回调。
+表示创建X.509证书吊销列表对象。使用callback异步回调。
 
 > **说明：**
 >
@@ -4023,9 +4029,9 @@ createX509Crl(inStream : EncodingBlob, callback : AsyncCallback\<X509Crl>) : voi
 
 | 错误码ID | 错误信息      |
 | -------- | ------------- |
-| 401 | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.|
-| 801 | this operation is not supported. |
-| 19020001 | memory malloc failed. |
+| 401 | Invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.|
+| 801 | This operation is not supported. |
+| 19020001 | Memory malloc failed. |
 
 **示例：**
 
@@ -4070,7 +4076,7 @@ cert.createX509Crl(encodingBlob, (error, x509Crl) => {
 
 createX509Crl(inStream : EncodingBlob) : Promise\<X509Crl>
 
-表示创建X.509证书吊销列表的对象。使用Promise异步回调。
+表示创建X.509证书吊销列表对象。使用Promise异步回调。
 
 > **说明：**
 >
@@ -4096,9 +4102,9 @@ createX509Crl(inStream : EncodingBlob) : Promise\<X509Crl>
 
 | 错误码ID | 错误信息      |
 | -------- | ------------- |
-| 401 | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.|
-| 801 | this operation is not supported. |
-| 19020001 | memory malloc failed. |
+| 401 | Invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.|
+| 801 | This operation is not supported. |
+| 19020001 | Memory malloc failed. |
 
 **示例：**
 
@@ -4142,7 +4148,7 @@ cert.createX509Crl(encodingBlob).then(x509Crl => {
 
 createX509CRL(inStream : EncodingBlob, callback : AsyncCallback\<X509CRL>) : void
 
-表示创建X.509证书吊销列表的对象。使用callback异步回调。
+表示创建X.509证书吊销列表对象。使用callback异步回调。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -4161,9 +4167,9 @@ createX509CRL(inStream : EncodingBlob, callback : AsyncCallback\<X509CRL>) : voi
 
 | 错误码ID | 错误信息      |
 | -------- | ------------- |
-| 401 | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.|
-| 801 | this operation is not supported. |
-| 19020001 | memory malloc failed. |
+| 401 | Invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.|
+| 801 | This operation is not supported. |
+| 19020001 | Memory malloc failed. |
 
 **示例：**
 
@@ -4208,7 +4214,7 @@ cert.createX509CRL(encodingBlob, (error, X509CRL) => {
 
 createX509CRL(inStream : EncodingBlob) : Promise\<X509CRL>
 
-表示创建X.509证书吊销列表的对象。使用Promise异步回调。
+表示创建X.509证书吊销列表对象。使用Promise异步回调。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -4232,9 +4238,9 @@ createX509CRL(inStream : EncodingBlob) : Promise\<X509CRL>
 
 | 错误码ID | 错误信息      |
 | -------- | ------------- |
-| 401 | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.|
-| 801 | this operation is not supported. |
-| 19020001 | memory malloc failed. |
+| 401 | Invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.|
+| 801 | This operation is not supported. |
+| 19020001 | Memory malloc failed. |
 
 **示例：**
 
@@ -4276,7 +4282,7 @@ cert.createX509CRL(encodingBlob).then(X509CRL => {
 
 ## X509Crl<sup>(deprecated)</sup>
 
-X.509 CRL操作。
+提供用于X.509证书吊销列表操作的API
 
 > **说明：**
 >
@@ -4312,7 +4318,7 @@ isRevoked(cert : X509Cert) : boolean
 
 | 错误码ID | 错误信息      |
 | -------- | ------------- |
-| 401 | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.|
+| 401 | Invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.|
 
 **示例：**
 
@@ -4465,10 +4471,10 @@ getEncoded(callback : AsyncCallback\<EncodingBlob>) : void
 
 | 错误码ID | 错误信息                |
 | -------- | ----------------------- |
-| 401 | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types.|
-| 19020001 | memory malloc failed.           |
-| 19020002 | runtime error. Possible causes: <br>1. Memory copy failed;<br>2. A null pointer occurs inside the system;<br>3. Failed to obtain the native object or convert parameters.         |
-| 19030001 | crypto operation error. |
+| 401 | Invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types.|
+| 19020001 | Memory malloc failed.           |
+| 19020002 | Runtime error. Possible causes: <br>1. Memory copy failed;<br>2. A null pointer occurs inside the system;<br>3. Failed to obtain the native object or convert parameters.         |
+| 19030001 | Crypto operation error. |
 
 **示例：**
 
@@ -4540,10 +4546,10 @@ getEncoded() : Promise\<EncodingBlob>
 
 | 错误码ID | 错误信息                |
 | -------- | ----------------------- |
-| 401 | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types.|
-| 19020001 | memory malloc failed.           |
-| 19020002 | runtime error. Possible causes: <br>1. Memory copy failed;<br>2. A null pointer occurs inside the system;<br>3. Failed to obtain the native object or convert parameters.         |
-| 19030001 | crypto operation error. |
+| 401 | Invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types.|
+| 19020001 | Memory malloc failed.           |
+| 19020002 | Runtime error. Possible causes: <br>1. Memory copy failed;<br>2. A null pointer occurs inside the system;<br>3. Failed to obtain the native object or convert parameters.         |
+| 19030001 | Crypto operation error. |
 
 **示例：**
 
@@ -4613,8 +4619,8 @@ verify(key : cryptoFramework.PubKey, callback : AsyncCallback\<void>) : void
 
 | 错误码ID | 错误信息                |
 | -------- | ----------------------- |
-| 401 | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.|
-| 19030001 | crypto operation error. |
+| 401 | Invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.|
+| 19030001 | Crypto operation error. |
 
 **示例：**
 
@@ -4771,8 +4777,8 @@ verify(key : cryptoFramework.PubKey) : Promise\<void>
 
 | 错误码ID | 错误信息                |
 | -------- | ----------------------- |
-| 401 | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.|
-| 19030001 | crypto operation error. |
+| 401 | Invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.|
+| 19030001 | Crypto operation error. |
 
 **示例：**
 
@@ -4977,9 +4983,9 @@ getIssuerName() : DataBlob
 
 | 错误码ID | 错误信息                |
 | -------- | ----------------------- |
-| 19020001 | memory malloc failed.           |
-| 19020002 | runtime error. Possible causes: <br>1. Memory copy failed;<br>2. A null pointer occurs inside the system;<br>3. Failed to obtain the native object or convert parameters.         |
-| 19030001 | crypto operation error. |
+| 19020001 | Memory malloc failed.           |
+| 19020002 | Runtime error. Possible causes: <br>1. Memory copy failed;<br>2. A null pointer occurs inside the system;<br>3. Failed to obtain the native object or convert parameters.         |
+| 19030001 | Crypto operation error. |
 
 **示例：**
 
@@ -5031,7 +5037,7 @@ cert.createX509Crl(encodingBlob, (error, x509Crl) => {
 
 getLastUpdate() : string
 
-表示获取X.509证书吊销列表最后一次更新日期，日期为ASN.1时间格式。
+表示获取X.509证书吊销列表最后一次更新日期，日期为UTC时间或通用时间字符串格式。
 
 > **说明：**
 >
@@ -5043,7 +5049,7 @@ getLastUpdate() : string
 
 | 类型   | 说明                                 |
 | ------ | ------------------------------------ |
-| string | 表示X.509证书吊销列表最后一次更新日期，日期为ASN.1时间格式。 |
+| string | 表示X.509证书吊销列表最后一次更新日期，日期为UTC时间或通用时间字符串格式。 |
 
 **错误码：**
 
@@ -5051,9 +5057,9 @@ getLastUpdate() : string
 
 | 错误码ID | 错误信息                |
 | -------- | ----------------------- |
-| 19020001 | memory malloc failed.           |
-| 19020002 | runtime error. Possible causes: <br>1. Memory copy failed;<br>2. A null pointer occurs inside the system;<br>3. Failed to obtain the native object or convert parameters.         |
-| 19030001 | crypto operation error. |
+| 19020001 | Memory malloc failed.           |
+| 19020002 | Runtime error. Possible causes: <br>1. Memory copy failed;<br>2. A null pointer occurs inside the system;<br>3. Failed to obtain the native object or convert parameters.         |
+| 19030001 | Crypto operation error. |
 
 **示例：**
 
@@ -5105,7 +5111,7 @@ cert.createX509Crl(encodingBlob, (error, x509Crl) => {
 
 getNextUpdate() : string
 
-表示获取证书吊销列表下一次更新的日期，日期为ASN.1时间格式。
+表示获取证书吊销列表下一次更新的日期，日期为UTC时间或通用时间字符串格式。
 
 > **说明：**
 >
@@ -5117,7 +5123,7 @@ getNextUpdate() : string
 
 | 类型   | 说明                                 |
 | ------ | ------------------------------------ |
-| string | 表示X.509证书吊销列表下一次更新的日期，日期为ASN.1时间格式。 |
+| string | 表示X.509证书吊销列表下一次更新的日期，日期为UTC时间或通用时间字符串格式。 |
 
 **错误码：**
 
@@ -5125,9 +5131,9 @@ getNextUpdate() : string
 
 | 错误码ID | 错误信息                |
 | -------- | ----------------------- |
-| 19020001 | memory malloc failed.           |
-| 19020002 | runtime error. Possible causes: <br>1. Memory copy failed;<br>2. A null pointer occurs inside the system;<br>3. Failed to obtain the native object or convert parameters.         |
-| 19030001 | crypto operation error. |
+| 19020001 | Memory malloc failed.           |
+| 19020002 | Runtime error. Possible causes: <br>1. Memory copy failed;<br>2. A null pointer occurs inside the system;<br>3. Failed to obtain the native object or convert parameters.         |
+| 19030001 | Crypto operation error. |
 
 **示例：**
 
@@ -5205,9 +5211,9 @@ getRevokedCert(serialNumber : number) : X509CrlEntry
 
 | 错误码ID | 错误信息                |
 | -------- | ----------------------- |
-| 401 | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.|
-| 19020001 | memory malloc failed.           |
-| 19030001 | crypto operation error. |
+| 401 | Invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.|
+| 19020001 | Memory malloc failed.           |
+| 19030001 | Crypto operation error. |
 
 **示例：**
 
@@ -5286,9 +5292,9 @@ getRevokedCertWithCert(cert : X509Cert) : X509CrlEntry
 
 | 错误码ID | 错误信息                |
 | -------- | ----------------------- |
-| 401 | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.|
-| 19020001 | memory malloc failed.           |
-| 19030001 | crypto operation error. |
+| 401 | Invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.|
+| 19020001 | Memory malloc failed.           |
+| 19030001 | Crypto operation error. |
 
 **示例：**
 
@@ -5397,9 +5403,9 @@ getRevokedCerts(callback : AsyncCallback<Array\<X509CrlEntry>>) : void
 
 | 错误码ID | 错误信息                |
 | -------- | ----------------------- |
-| 401 | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types.|
-| 19020001 | memory malloc failed.           |
-| 19030001 | crypto operation error. |
+| 401 | Invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types.|
+| 19020001 | Memory malloc failed.           |
+| 19030001 | Crypto operation error. |
 
 **示例：**
 
@@ -5471,9 +5477,9 @@ getRevokedCerts() : Promise<Array\<X509CrlEntry>>
 
 | 错误码ID | 错误信息                |
 | -------- | ----------------------- |
-| 401 | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types.|
-| 19020001 | memory malloc failed.           |
-| 19030001 | crypto operation error. |
+| 401 | Invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types.|
+| 19020001 | Memory malloc failed.           |
+| 19030001 | Crypto operation error. |
 
 **示例：**
 
@@ -5542,9 +5548,9 @@ getTbsInfo() : DataBlob
 
 | 错误码ID | 错误信息                |
 | -------- | ----------------------- |
-| 19020001 | memory malloc failed.           |
-| 19020002 | runtime error. Possible causes: <br>1. Memory copy failed;<br>2. A null pointer occurs inside the system;<br>3. Failed to obtain the native object or convert parameters.         |
-| 19030001 | crypto operation error. |
+| 19020001 | Memory malloc failed.           |
+| 19020002 | Runtime error. Possible causes: <br>1. Memory copy failed;<br>2. A null pointer occurs inside the system;<br>3. Failed to obtain the native object or convert parameters.         |
+| 19030001 | Crypto operation error. |
 
 **示例：**
 
@@ -5616,9 +5622,9 @@ getSignature() : DataBlob
 
 | 错误码ID | 错误信息                |
 | -------- | ----------------------- |
-| 19020001 | memory malloc failed.           |
-| 19020002 | runtime error. Possible causes: <br>1. Memory copy failed;<br>2. A null pointer occurs inside the system;<br>3. Failed to obtain the native object or convert parameters.         |
-| 19030001 | crypto operation error. |
+| 19020001 | Memory malloc failed.           |
+| 19020002 | Runtime error. Possible causes: <br>1. Memory copy failed;<br>2. A null pointer occurs inside the system;<br>3. Failed to obtain the native object or convert parameters.         |
+| 19030001 | Crypto operation error. |
 
 **示例：**
 
@@ -5690,9 +5696,9 @@ getSignatureAlgName() : string
 
 | 错误码ID | 错误信息                |
 | -------- | ----------------------- |
-| 19020001 | memory malloc failed.           |
-| 19020002 | runtime error. Possible causes: <br>1. Memory copy failed;<br>2. A null pointer occurs inside the system;<br>3. Failed to obtain the native object or convert parameters.         |
-| 19030001 | crypto operation error. |
+| 19020001 | Memory malloc failed.           |
+| 19020002 | Runtime error. Possible causes: <br>1. Memory copy failed;<br>2. A null pointer occurs inside the system;<br>3. Failed to obtain the native object or convert parameters.         |
+| 19030001 | Crypto operation error. |
 
 **示例：**
 
@@ -5764,9 +5770,9 @@ getSignatureAlgOid() : string
 
 | 错误码ID | 错误信息                |
 | -------- | ----------------------- |
-| 19020001 | memory malloc failed.           |
-| 19020002 | runtime error. Possible causes: <br>1. Memory copy failed;<br>2. A null pointer occurs inside the system;<br>3. Failed to obtain the native object or convert parameters.         |
-| 19030001 | crypto operation error. |
+| 19020001 | Memory malloc failed.           |
+| 19020002 | Runtime error. Possible causes: <br>1. Memory copy failed;<br>2. A null pointer occurs inside the system;<br>3. Failed to obtain the native object or convert parameters.         |
+| 19030001 | Crypto operation error. |
 
 **示例：**
 
@@ -5838,10 +5844,10 @@ getSignatureAlgParams() : DataBlob
 
 | 错误码ID | 错误信息                |
 | -------- | ----------------------- |
-| 801 | this operation is not supported. |
-| 19020001 | memory malloc failed.           |
-| 19020002 | runtime error. Possible causes: <br>1. Memory copy failed;<br>2. A null pointer occurs inside the system;<br>3. Failed to obtain the native object or convert parameters.         |
-| 19030001 | crypto operation error. |
+| 801 | This operation is not supported. |
+| 19020001 | Memory malloc failed.           |
+| 19020002 | Runtime error. Possible causes: <br>1. Memory copy failed;<br>2. A null pointer occurs inside the system;<br>3. Failed to obtain the native object or convert parameters.         |
+| 19030001 | Crypto operation error. |
 
 **示例：**
 
@@ -5890,7 +5896,7 @@ cert.createX509Crl(encodingBlob, (error, x509Crl) => {
 ```
 ## X509CRL<sup>11+</sup>
 
-X.509 CRL操作。
+提供用于X.509证书吊销列表操作的API。
 
 ### isRevoked<sup>11+</sup>
 
@@ -5920,7 +5926,7 @@ isRevoked(cert : X509Cert) : boolean
 
 | 错误码ID | 错误信息                |
 | -------- | ----------------------- |
-| 401 | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.|
+| 401 | Invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.|
 
 **示例：**
 
@@ -6069,10 +6075,10 @@ getEncoded(callback : AsyncCallback\<EncodingBlob>) : void
 
 | 错误码ID | 错误信息                |
 | -------- | ----------------------- |
-| 401 | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types.|
-| 19020001 | memory malloc failed.           |
-| 19020002 | runtime error. Possible causes: <br>1. Memory copy failed;<br>2. A null pointer occurs inside the system;<br>3. Failed to obtain the native object or convert parameters.         |
-| 19030001 | crypto operation error. |
+| 401 | Invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types.|
+| 19020001 | Memory malloc failed.           |
+| 19020002 | Runtime error. Possible causes: <br>1. Memory copy failed;<br>2. A null pointer occurs inside the system;<br>3. Failed to obtain the native object or convert parameters.         |
+| 19030001 | Crypto operation error. |
 
 **示例：**
 
@@ -6142,10 +6148,10 @@ getEncoded() : Promise\<EncodingBlob>
 
 | 错误码ID | 错误信息                |
 | -------- | ----------------------- |
-| 401 | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types.|
-| 19020001 | memory malloc failed.           |
-| 19020002 | runtime error. Possible causes: <br>1. Memory copy failed;<br>2. A null pointer occurs inside the system;<br>3. Failed to obtain the native object or convert parameters.         |
-| 19030001 | crypto operation error. |
+| 401 | Invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types.|
+| 19020001 | Memory malloc failed.           |
+| 19020002 | Runtime error. Possible causes: <br>1. Memory copy failed;<br>2. A null pointer occurs inside the system;<br>3. Failed to obtain the native object or convert parameters.         |
+| 19030001 | Crypto operation error. |
 
 **示例：**
 
@@ -6213,8 +6219,8 @@ verify(key : cryptoFramework.PubKey, callback : AsyncCallback\<void>) : void
 
 | 错误码ID | 错误信息                |
 | -------- | ----------------------- |
-| 401 | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.|
-| 19030001 | crypto operation error. |
+| 401 | Invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.|
+| 19030001 | Crypto operation error. |
 
 **示例：**
 
@@ -6369,8 +6375,8 @@ verify(key : cryptoFramework.PubKey) : Promise\<void>
 
 | 错误码ID | 错误信息                |
 | -------- | ----------------------- |
-| 401 | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.|
-| 19030001 | crypto operation error. |
+| 401 | Invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.|
+| 19030001 | Crypto operation error. |
 
 **示例：**
 
@@ -6575,9 +6581,9 @@ getIssuerName() : DataBlob
 
 | 错误码ID | 错误信息                |
 | -------- | ----------------------- |
-| 19020001 | memory malloc failed.           |
-| 19020002 | runtime error. Possible causes: <br>1. Memory copy failed;<br>2. A null pointer occurs inside the system;<br>3. Failed to obtain the native object or convert parameters.         |
-| 19030001 | crypto operation error. |
+| 19020001 | Memory malloc failed.           |
+| 19020002 | Runtime error. Possible causes: <br>1. Memory copy failed;<br>2. A null pointer occurs inside the system;<br>3. Failed to obtain the native object or convert parameters.         |
+| 19030001 | Crypto operation error. |
 
 **示例：**
 
@@ -6653,10 +6659,10 @@ getIssuerName(encodingType: EncodingType): string
 
 | 错误码ID | 错误信息                                          |
 | -------- | ------------------------------------------------- |
-| 19020001 | memory malloc failed.                                     |
-| 19020002 | runtime error. Possible causes: <br>1. Memory copy failed;<br>2. A null pointer occurs inside the system;<br>3. Failed to obtain the native object or convert parameters.                                   |
-| 19020003 | parameter check failed. Possible causes: <br>1. The value of encodingType is not in the EncodingType enumeration range.|
-| 19030001 | crypto operation error. |
+| 19020001 | Memory malloc failed.                                     |
+| 19020002 | Runtime error. Possible causes: <br>1. Memory copy failed;<br>2. A null pointer occurs inside the system;<br>3. Failed to obtain the native object or convert parameters.                                   |
+| 19020003 | Parameter check failed. Possible causes: <br>1. The value of encodingType is not in the EncodingType enumeration range.|
+| 19030001 | Crypto operation error. |
 
 **示例：**
 
@@ -6712,7 +6718,7 @@ cert.createX509CRL(encodingBlob, (error, x509CRL) => {
 
 getLastUpdate() : string
 
-表示获取X.509证书吊销列表最后一次更新日期，日期为ASN.1时间格式。
+表示获取X.509证书吊销列表最后一次更新日期，日期为UTC时间或通用时间字符串格式。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -6722,7 +6728,7 @@ getLastUpdate() : string
 
 | 类型   | 说明                                 |
 | ------ | ------------------------------------ |
-| string | 表示X.509证书吊销列表最后一次更新日期，日期为ASN.1时间格式。 |
+| string | 表示X.509证书吊销列表最后一次更新日期，日期为UTC时间或通用时间字符串格式。 |
 
 **错误码：**
 
@@ -6730,9 +6736,9 @@ getLastUpdate() : string
 
 | 错误码ID | 错误信息                |
 | -------- | ----------------------- |
-| 19020001 | memory malloc failed.           |
-| 19020002 | runtime error. Possible causes: <br>1. Memory copy failed;<br>2. A null pointer occurs inside the system;<br>3. Failed to obtain the native object or convert parameters.         |
-| 19030001 | crypto operation error. |
+| 19020001 | Memory malloc failed.           |
+| 19020002 | Runtime error. Possible causes: <br>1. Memory copy failed;<br>2. A null pointer occurs inside the system;<br>3. Failed to obtain the native object or convert parameters.         |
+| 19030001 | Crypto operation error. |
 
 **示例：**
 
@@ -6784,7 +6790,7 @@ cert.createX509CRL(encodingBlob, (error, x509CRL) => {
 
 getNextUpdate() : string
 
-表示获取证书吊销列表下一次更新的日期，日期为ASN.1时间格式。
+表示获取证书吊销列表下一次更新的日期，日期为UTC时间或通用时间字符串格式。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -6794,7 +6800,7 @@ getNextUpdate() : string
 
 | 类型   | 说明                                 |
 | ------ | ------------------------------------ |
-| string | 表示X.509证书吊销列表下一次更新的日期，日期为ASN.1时间格式。 |
+| string | 表示X.509证书吊销列表下一次更新的日期，日期为UTC时间或通用时间字符串格式。 |
 
 **错误码：**
 
@@ -6802,9 +6808,9 @@ getNextUpdate() : string
 
 | 错误码ID | 错误信息                |
 | -------- | ----------------------- |
-| 19020001 | memory malloc failed.           |
-| 19020002 | runtime error. Possible causes: <br>1. Memory copy failed;<br>2. A null pointer occurs inside the system;<br>3. Failed to obtain the native object or convert parameters.         |
-| 19030001 | crypto operation error. |
+| 19020001 | Memory malloc failed.           |
+| 19020002 | Runtime error. Possible causes: <br>1. Memory copy failed;<br>2. A null pointer occurs inside the system;<br>3. Failed to obtain the native object or convert parameters.         |
+| 19030001 | Crypto operation error. |
 
 **示例：**
 
@@ -6880,9 +6886,9 @@ getRevokedCert(serialNumber : bigint) : X509CRLEntry
 
 | 错误码ID | 错误信息                |
 | -------- | ----------------------- |
-| 401 | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.|
-| 19020001 | memory malloc failed.           |
-| 19030001 | crypto operation error. |
+| 401 | Invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.|
+| 19020001 | Memory malloc failed.           |
+| 19030001 | Crypto operation error. |
 
 **示例：**
 
@@ -6959,9 +6965,9 @@ getRevokedCertWithCert(cert : X509Cert) : X509CRLEntry
 
 | 错误码ID | 错误信息                |
 | -------- | ----------------------- |
-| 401 | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.|
-| 19020001 | memory malloc failed.           |
-| 19030001 | crypto operation error. |
+| 401 | Invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.|
+| 19020001 | Memory malloc failed.           |
+| 19030001 | Crypto operation error. |
 
 **示例：**
 
@@ -7068,9 +7074,9 @@ getRevokedCerts(callback : AsyncCallback<Array\<X509CRLEntry>>) : void
 
 | 错误码ID | 错误信息                |
 | -------- | ----------------------- |
-| 401 | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types.|
-| 19020001 | memory malloc failed.           |
-| 19030001 | crypto operation error. |
+| 401 | Invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types.|
+| 19020001 | Memory malloc failed.           |
+| 19030001 | Crypto operation error. |
 
 **示例：**
 
@@ -7140,9 +7146,9 @@ getRevokedCerts() : Promise<Array\<X509CRLEntry>>
 
 | 错误码ID | 错误信息                |
 | -------- | ----------------------- |
-| 401 | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types.|
-| 19020001 | memory malloc failed.           |
-| 19030001 | crypto operation error. |
+| 401 | Invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types.|
+| 19020001 | Memory malloc failed.           |
+| 19030001 | Crypto operation error. |
 
 **示例：**
 
@@ -7209,9 +7215,9 @@ getSignature() : DataBlob
 
 | 错误码ID | 错误信息                |
 | -------- | ----------------------- |
-| 19020001 | memory malloc failed.           |
-| 19020002 | runtime error. Possible causes: <br>1. Memory copy failed;<br>2. A null pointer occurs inside the system;<br>3. Failed to obtain the native object or convert parameters.         |
-| 19030001 | crypto operation error. |
+| 19020001 | Memory malloc failed.           |
+| 19020002 | Runtime error. Possible causes: <br>1. Memory copy failed;<br>2. A null pointer occurs inside the system;<br>3. Failed to obtain the native object or convert parameters.         |
+| 19030001 | Crypto operation error. |
 
 **示例：**
 
@@ -7281,9 +7287,9 @@ getSignatureAlgName() : string
 
 | 错误码ID | 错误信息                |
 | -------- | ----------------------- |
-| 19020001 | memory malloc failed.           |
-| 19020002 | runtime error. Possible causes: <br>1. Memory copy failed;<br>2. A null pointer occurs inside the system;<br>3. Failed to obtain the native object or convert parameters.         |
-| 19030001 | crypto operation error. |
+| 19020001 | Memory malloc failed.           |
+| 19020002 | Runtime error. Possible causes: <br>1. Memory copy failed;<br>2. A null pointer occurs inside the system;<br>3. Failed to obtain the native object or convert parameters.         |
+| 19030001 | Crypto operation error. |
 
 **示例：**
 
@@ -7353,9 +7359,9 @@ getSignatureAlgOid() : string
 
 | 错误码ID | 错误信息                |
 | -------- | ----------------------- |
-| 19020001 | memory malloc failed.           |
-| 19020002 | runtime error. Possible causes: <br>1. Memory copy failed;<br>2. A null pointer occurs inside the system;<br>3. Failed to obtain the native object or convert parameters.         |
-| 19030001 | crypto operation error. |
+| 19020001 | Memory malloc failed.           |
+| 19020002 | Runtime error. Possible causes: <br>1. Memory copy failed;<br>2. A null pointer occurs inside the system;<br>3. Failed to obtain the native object or convert parameters.         |
+| 19030001 | Crypto operation error. |
 
 **示例：**
 
@@ -7425,10 +7431,10 @@ getSignatureAlgParams() : DataBlob
 
 | 错误码ID | 错误信息                |
 | -------- | ----------------------- |
-| 801 | this operation is not supported. |
-| 19020001 | memory malloc failed.           |
-| 19020002 | runtime error. Possible causes: <br>1. Memory copy failed;<br>2. A null pointer occurs inside the system;<br>3. Failed to obtain the native object or convert parameters.         |
-| 19030001 | crypto operation error. |
+| 801 | This operation is not supported. |
+| 19020001 | Memory malloc failed.           |
+| 19020002 | Runtime error. Possible causes: <br>1. Memory copy failed;<br>2. A null pointer occurs inside the system;<br>3. Failed to obtain the native object or convert parameters.         |
+| 19030001 | Crypto operation error. |
 
 **示例：**
 
@@ -7498,9 +7504,9 @@ getTBSInfo() : DataBlob
 
 | 错误码ID | 错误信息                |
 | -------- | ----------------------- |
-| 19020001 | memory malloc failed.           |
-| 19020002 | runtime error. Possible causes: <br>1. Memory copy failed;<br>2. A null pointer occurs inside the system;<br>3. Failed to obtain the native object or convert parameters.         |
-| 19030001 | crypto operation error. |
+| 19020001 | Memory malloc failed.           |
+| 19020002 | Runtime error. Possible causes: <br>1. Memory copy failed;<br>2. A null pointer occurs inside the system;<br>3. Failed to obtain the native object or convert parameters.         |
+| 19030001 | Crypto operation error. |
 
 **示例：**
 
@@ -7570,9 +7576,9 @@ getExtensions(): DataBlob
 
 | 错误码ID | 错误信息                |
 | -------- | ----------------------- |
-| 19020001 | memory malloc failed.           |
-| 19020002 | runtime error. Possible causes: <br>1. Memory copy failed;<br>2. A null pointer occurs inside the system;<br>3. Failed to obtain the native object or convert parameters.         |
-| 19030001 | crypto operation error. |
+| 19020001 | Memory malloc failed.           |
+| 19020002 | Runtime error. Possible causes: <br>1. Memory copy failed;<br>2. A null pointer occurs inside the system;<br>3. Failed to obtain the native object or convert parameters.         |
+| 19030001 | Crypto operation error. |
 
 **示例：**
 
@@ -7651,9 +7657,9 @@ match(param: X509CRLMatchParameters): boolean
 
 | 错误码ID | 错误信息       |
 | -------- | -------------- |
-| 401 | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.|
-| 19020001 | memory malloc failed.  |
-| 19030001 | crypto operation error. |
+| 401 | Invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.|
+| 19020001 | Memory malloc failed.  |
+| 19030001 | Crypto operation error. |
 
 **示例：**
 
@@ -7766,9 +7772,9 @@ getIssuerX500DistinguishedName(): X500DistinguishedName
 
 | 错误码ID | 错误信息       |
 | -------- | -------------- |
-| 19020001 | memory malloc failed.  |
-| 19020002 | runtime error. Possible causes: <br>1. Memory copy failed;<br>2. A null pointer occurs inside the system;<br>3. Failed to obtain the native object or convert parameters.|
-| 19030001 | crypto operation error. |
+| 19020001 | Memory malloc failed.  |
+| 19020002 | Runtime error. Possible causes: <br>1. Memory copy failed;<br>2. A null pointer occurs inside the system;<br>3. Failed to obtain the native object or convert parameters.|
+| 19030001 | Crypto operation error. |
 
 **示例：**
 
@@ -7836,9 +7842,9 @@ toString(): string
 
 | 错误码ID | 错误信息       |
 | -------- | -------------- |
-| 19020001 | memory malloc failed.  |
-| 19020002 | runtime error. Possible causes: <br>1. Memory copy failed;<br>2. A null pointer occurs inside the system;<br>3. Failed to obtain the native object or convert parameters.|
-| 19030001 | crypto operation error. |
+| 19020001 | Memory malloc failed.  |
+| 19020002 | Runtime error. Possible causes: <br>1. Memory copy failed;<br>2. A null pointer occurs inside the system;<br>3. Failed to obtain the native object or convert parameters.|
+| 19030001 | Crypto operation error. |
 
 **示例：**
 
@@ -7912,10 +7918,10 @@ toString(encodingType: EncodingType): string
 
 | 错误码ID | 错误信息                                          |
 | -------- | ------------------------------------------------- |
-| 19020001 | memory malloc failed.                                     |
-| 19020002 | runtime error. Possible causes: <br>1. Memory copy failed;<br>2. A null pointer occurs inside the system;<br>3. Failed to obtain the native object or convert parameters.                                   |
-| 19020003 | parameter check failed. Possible causes: <br>1. The value of encodingType is not in the EncodingType enumeration range.|
-| 19030001 | crypto operation error. |
+| 19020001 | Memory malloc failed.                                     |
+| 19020002 | Runtime error. Possible causes: <br>1. Memory copy failed;<br>2. A null pointer occurs inside the system;<br>3. Failed to obtain the native object or convert parameters.                                   |
+| 19020003 | Parameter check failed. Possible causes: <br>1. The value of encodingType is not in the EncodingType enumeration range.|
+| 19030001 | Crypto operation error. |
 
 **示例：**
 
@@ -7986,9 +7992,9 @@ hashCode(): Uint8Array
 
 | 错误码ID | 错误信息       |
 | -------- | -------------- |
-| 19020001 | memory malloc failed.  |
-| 19020002 | runtime error. Possible causes: <br>1. Memory copy failed;<br>2. A null pointer occurs inside the system;<br>3. Failed to obtain the native object or convert parameters.|
-| 19030001 | crypto operation error. |
+| 19020001 | Memory malloc failed.  |
+| 19020002 | Runtime error. Possible causes: <br>1. Memory copy failed;<br>2. A null pointer occurs inside the system;<br>3. Failed to obtain the native object or convert parameters.|
+| 19030001 | Crypto operation error. |
 
 **示例：**
 
@@ -8056,9 +8062,9 @@ getExtensionsObject(): CertExtension
 
 | 错误码ID | 错误信息       |
 | -------- | -------------- |
-| 19020001 | memory malloc failed.  |
-| 19020002 | runtime error. Possible causes: <br>1. Memory copy failed;<br>2. A null pointer occurs inside the system;<br>3. Failed to obtain the native object or convert parameters.|
-| 19030001 | crypto operation error. |
+| 19020001 | Memory malloc failed.  |
+| 19020002 | Runtime error. Possible causes: <br>1. Memory copy failed;<br>2. A null pointer occurs inside the system;<br>3. Failed to obtain the native object or convert parameters.|
+| 19030001 | Crypto operation error. |
 
 **示例：**
 
@@ -8137,11 +8143,11 @@ createCertChainValidator(algorithm :string) : CertChainValidator
 
 | 错误码ID | 错误信息                |
 | -------- | ----------------------- |
-| 401 | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.|
-| 801 | this operation is not supported. |
-| 19020001 | memory malloc failed.           |
-| 19020002 | runtime error. Possible causes: <br>1. Memory copy failed;<br>2. A null pointer occurs inside the system;<br>3. Failed to obtain the native object or convert parameters.         |
-| 19030001 | crypto operation error. |
+| 401 | Invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.|
+| 801 | This operation is not supported. |
+| 19020001 | Memory malloc failed.           |
+| 19020002 | Runtime error. Possible causes: <br>1. Memory copy failed;<br>2. A null pointer occurs inside the system;<br>3. Failed to obtain the native object or convert parameters.         |
+| 19030001 | Crypto operation error. |
 
 **示例：**
 
@@ -8196,16 +8202,16 @@ validate(certChain : CertChainData, callback : AsyncCallback\<void>) : void
 
 | 错误码ID | 错误信息                                          |
 | -------- | ------------------------------------------------- |
-| 401 | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.|
-| 19020001 | memory malloc failed.                                     |
-| 19020002 | runtime error. Possible causes: <br>1. Memory copy failed;<br>2. A null pointer occurs inside the system;<br>3. Failed to obtain the native object or convert parameters.                                   |
-| 19030001 | crypto operation error.                           |
-| 19030002 | the certificate signature verification failed.    |
-| 19030003 | the certificate has not taken effect.             |
-| 19030004 | the certificate has expired.                      |
-| 19030005 | failed to obtain the certificate issuer.          |
-| 19030006 | the key cannot be used for signing a certificate. |
-| 19030007 | the key cannot be used for a digital signature.     |
+| 401 | Invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.|
+| 19020001 | Memory malloc failed.                                     |
+| 19020002 | Runtime error. Possible causes: <br>1. Memory copy failed;<br>2. A null pointer occurs inside the system;<br>3. Failed to obtain the native object or convert parameters.                                   |
+| 19030001 | Crypto operation error.                           |
+| 19030002 | The certificate signature verification failed.    |
+| 19030003 | The certificate has not taken effect.             |
+| 19030004 | The certificate has expired.                      |
+| 19030005 | Failed to obtain the certificate issuer.          |
+| 19030006 | The key cannot be used for signing a certificate. |
+| 19030007 | The key cannot be used for a digital signature.     |
 
 **示例：**
 
@@ -8330,16 +8336,16 @@ validate(certChain : CertChainData) : Promise\<void>
 
 | 错误码ID | 错误信息                                          |
 | -------- | ------------------------------------------------- |
-| 401 | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.|
-| 19020001 | memory malloc failed.                                     |
-| 19020002 | runtime error. Possible causes: <br>1. Memory copy failed;<br>2. A null pointer occurs inside the system;<br>3. Failed to obtain the native object or convert parameters.                                   |
-| 19030001 | crypto operation error.                           |
-| 19030002 | the certificate signature verification failed.    |
-| 19030003 | the certificate has not taken effect.             |
-| 19030004 | the certificate has expired.                      |
-| 19030005 | failed to obtain the certificate issuer.          |
-| 19030006 | the key cannot be used for signing a certificate. |
-| 19030007 | the key cannot be used for a digital signature.     |
+| 401 | Invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.|
+| 19020001 | Memory malloc failed.                                     |
+| 19020002 | Runtime error. Possible causes: <br>1. Memory copy failed;<br>2. A null pointer occurs inside the system;<br>3. Failed to obtain the native object or convert parameters.                                   |
+| 19030001 | Crypto operation error.                           |
+| 19030002 | The certificate signature verification failed.    |
+| 19030003 | The certificate has not taken effect.             |
+| 19030004 | The certificate has expired.                      |
+| 19030005 | Failed to obtain the certificate issuer.          |
+| 19030006 | The key cannot be used for signing a certificate. |
+| 19030007 | The key cannot be used for a digital signature.     |
 
 **示例：**
 
@@ -8472,32 +8478,32 @@ validateCert(cert: X509Cert, params: CertValidationParams): Promise&lt;CertValid
 
 | 错误码ID | 错误信息                                          |
 | -------- | ------------------------------------------------- |
-| 19020001 | memory malloc failed.                                     |
-| 19020002 | runtime error. Possible causes: <br>1. Memory copy failed;<br>2. A null pointer occurs inside the system;<br>3. Failed to obtain the native object or convert parameters.                                   |
-| 19020003 | parameter check failed.                           |
-| 19030001 | crypto operation error.                           |
-| 19030002 | the certificate signature verification failed.    |
-| 19030003 | the certificate has not taken effect.             |
-| 19030004 | the certificate has expired.                      |
-| 19030005 | failed to obtain the certificate issuer.          |
-| 19030006 | the key cannot be used for signing a certificate. |
-| 19030007 | the key cannot be used for a digital signature.     |
-| 19030009 | untrusted certificate.    |
-| 19030010 | the certificate has been revoked.             |
-| 19030011 | unsupported critical extension.          |
-| 19030012 | hostname mismatch in the certificate. |
-| 19030013 | email address mismatch in the certificate.     |
-| 19030014 | key usage mismatch in the certificate. |
-| 19030015 | failed to obtain the certificate revocation list.          |
-| 19030016 | the certificate revocation list has not taken effect.             |
-| 19030017 | the certificate revocation list has expired.                      |
-| 19030018 | failed to verify the signature of the certificate revocation list.          |
-| 19030019 | failed to find the issuer of the certificate revocation list. |
-| 19030020 | failed to obtain the OCSP response.     |
-| 19030021 | invalid OCSP response.             |
-| 19030022 | failed to verify the OCSP signature.                      |
-| 19030023 | unknown OCSP certificate status.          |
-| 19030024 | network connection timed out. |
+| 19020001 | Memory malloc failed.                                     |
+| 19020002 | Runtime error. Possible causes: <br>1. Memory copy failed;<br>2. A null pointer occurs inside the system;<br>3. Failed to obtain the native object or convert parameters.                                   |
+| 19020003 | Parameter check failed.                           |
+| 19030001 | Crypto operation error.                           |
+| 19030002 | The certificate signature verification failed.    |
+| 19030003 | The certificate has not taken effect.             |
+| 19030004 | The certificate has expired.                      |
+| 19030005 | Failed to obtain the certificate issuer.          |
+| 19030006 | The key cannot be used for signing a certificate. |
+| 19030007 | The key cannot be used for a digital signature.     |
+| 19030009 | Untrusted certificate.    |
+| 19030010 | The certificate has been revoked.             |
+| 19030011 | Unsupported critical extension.          |
+| 19030012 | Hostname mismatch in the certificate. |
+| 19030013 | Email address mismatch in the certificate.     |
+| 19030014 | Key usage mismatch in the certificate. |
+| 19030015 | Failed to obtain the certificate revocation list.          |
+| 19030016 | The certificate revocation list has not taken effect.             |
+| 19030017 | The certificate revocation list has expired.                      |
+| 19030018 | Failed to verify the signature of the certificate revocation list.          |
+| 19030019 | Failed to find the issuer of the certificate revocation list. |
+| 19030020 | Failed to obtain the OCSP response.     |
+| 19030021 | Invalid OCSP response.             |
+| 19030022 | Failed to verify the OCSP signature.                      |
+| 19030023 | Unknown OCSP certificate status.          |
+| 19030024 | Network connection timed out. |
 
 **示例：**
 
@@ -8647,10 +8653,10 @@ getEncoded(callback : AsyncCallback\<EncodingBlob>) : void
 
 | 错误码ID | 错误信息                |
 | -------- | ----------------------- |
-| 401 | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types.|
-| 19020001 | memory malloc failed.           |
-| 19020002 | runtime error. Possible causes: <br>1. Memory copy failed;<br>2. A null pointer occurs inside the system;<br>3. Failed to obtain the native object or convert parameters.         |
-| 19030001 | crypto operation error. |
+| 401 | Invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types.|
+| 19020001 | Memory malloc failed.           |
+| 19020002 | Runtime error. Possible causes: <br>1. Memory copy failed;<br>2. A null pointer occurs inside the system;<br>3. Failed to obtain the native object or convert parameters.         |
+| 19030001 | Crypto operation error. |
 
 **示例：**
 
@@ -8730,10 +8736,10 @@ getEncoded() : Promise\<EncodingBlob>
 
 | 错误码ID | 错误信息                |
 | -------- | ----------------------- |
-| 401 | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types.|
-| 19020001 | memory malloc failed.           |
-| 19020002 | runtime error. Possible causes: <br>1. Memory copy failed;<br>2. A null pointer occurs inside the system;<br>3. Failed to obtain the native object or convert parameters.         |
-| 19030001 | crypto operation error. |
+| 401 | Invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types.|
+| 19020001 | Memory malloc failed.           |
+| 19020002 | Runtime error. Possible causes: <br>1. Memory copy failed;<br>2. A null pointer occurs inside the system;<br>3. Failed to obtain the native object or convert parameters.         |
+| 19030001 | Crypto operation error. |
 
 **示例：**
 
@@ -8877,9 +8883,9 @@ getCertIssuer() : DataBlob
 
 | 错误码ID | 错误信息       |
 | -------- | -------------- |
-| 801 | this operation is not supported. |
-| 19020001 | memory malloc failed.  |
-| 19020002 | runtime error. Possible causes: <br>1. Memory copy failed;<br>2. A null pointer occurs inside the system;<br>3. Failed to obtain the native object or convert parameters.|
+| 801 | This operation is not supported. |
+| 19020001 | Memory malloc failed.  |
+| 19020002 | Runtime error. Possible causes: <br>1. Memory copy failed;<br>2. A null pointer occurs inside the system;<br>3. Failed to obtain the native object or convert parameters.|
 
 **示例：**
 
@@ -8945,7 +8951,7 @@ getRevocationDate() : string
 
 | 类型   | 说明                |
 | ------ | ------------------ |
-| string | 表示证书被吊销的日期，日期为ASN.1时间格式。 |
+| string | 表示证书被吊销的日期，日期为UTC时间或通用时间字符串格式。 |
 
 **错误码：**
 
@@ -8953,9 +8959,9 @@ getRevocationDate() : string
 
 | 错误码ID | 错误信息                |
 | -------- | ----------------------- |
-| 19020001 | memory malloc failed.           |
-| 19020002 | runtime error. Possible causes: <br>1. Memory copy failed;<br>2. A null pointer occurs inside the system;<br>3. Failed to obtain the native object or convert parameters.         |
-| 19030001 | crypto operation error. |
+| 19020001 | Memory malloc failed.           |
+| 19020002 | Runtime error. Possible causes: <br>1. Memory copy failed;<br>2. A null pointer occurs inside the system;<br>3. Failed to obtain the native object or convert parameters.         |
+| 19030001 | Crypto operation error. |
 
 **示例：**
 
@@ -9031,10 +9037,10 @@ getEncoded(callback : AsyncCallback\<EncodingBlob>) : void
 
 | 错误码ID | 错误信息                |
 | -------- | ----------------------- |
-| 401 | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types.|
-| 19020001 | memory malloc failed.           |
-| 19020002 | runtime error. Possible causes: <br>1. Memory copy failed;<br>2. A null pointer occurs inside the system;<br>3. Failed to obtain the native object or convert parameters.         |
-| 19030001 | crypto operation error. |
+| 401 | Invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types.|
+| 19020001 | Memory malloc failed.           |
+| 19020002 | Runtime error. Possible causes: <br>1. Memory copy failed;<br>2. A null pointer occurs inside the system;<br>3. Failed to obtain the native object or convert parameters.         |
+| 19030001 | Crypto operation error. |
 
 **示例：**
 
@@ -9112,10 +9118,10 @@ getEncoded() : Promise\<EncodingBlob>
 
 | 错误码ID | 错误信息                |
 | -------- | ----------------------- |
-| 401 | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types.|
-| 19020001 | memory malloc failed.           |
-| 19020002 | runtime error. Possible causes: <br>1. Memory copy failed;<br>2. A null pointer occurs inside the system;<br>3. Failed to obtain the native object or convert parameters.         |
-| 19030001 | crypto operation error. |
+| 401 | Invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types.|
+| 19020001 | Memory malloc failed.           |
+| 19020002 | Runtime error. Possible causes: <br>1. Memory copy failed;<br>2. A null pointer occurs inside the system;<br>3. Failed to obtain the native object or convert parameters.         |
+| 19030001 | Crypto operation error. |
 
 **示例：**
 
@@ -9191,9 +9197,9 @@ getSerialNumber() : bigint
 
 | 错误码ID | 错误信息                |
 | -------- | ----------------------- |
-| 19020001 | memory malloc failed.           |
-| 19020002 | runtime error. Possible causes: <br>1. Memory copy failed;<br>2. A null pointer occurs inside the system;<br>3. Failed to obtain the native object or convert parameters.         |
-| 19030001 | crypto operation error. |
+| 19020001 | Memory malloc failed.           |
+| 19020002 | Runtime error. Possible causes: <br>1. Memory copy failed;<br>2. A null pointer occurs inside the system;<br>3. Failed to obtain the native object or convert parameters.         |
+| 19030001 | Crypto operation error. |
 
 **示例：**
 
@@ -9269,10 +9275,10 @@ getCertIssuer() : DataBlob
 
 | 错误码ID | 错误信息                |
 | -------- | ----------------------- |
-| 801 | this operation is not supported. |
-| 19020001 | memory malloc failed.           |
-| 19020002 | runtime error. Possible causes: <br>1. Memory copy failed;<br>2. A null pointer occurs inside the system;<br>3. Failed to obtain the native object or convert parameters.         |
-| 19030001 | crypto operation error. |
+| 801 | This operation is not supported. |
+| 19020001 | Memory malloc failed.           |
+| 19020002 | Runtime error. Possible causes: <br>1. Memory copy failed;<br>2. A null pointer occurs inside the system;<br>3. Failed to obtain the native object or convert parameters.         |
+| 19030001 | Crypto operation error. |
 
 **示例：**
 
@@ -9350,11 +9356,11 @@ getCertIssuer(encodingType: EncodingType): string
 
 | 错误码ID | 错误信息                                          |
 | -------- | ------------------------------------------------- |
-| 801 | this operation is not supported. |
-| 19020001 | memory malloc failed.                                     |
-| 19020002 | runtime error. Possible causes: <br>1. Memory copy failed;<br>2. A null pointer occurs inside the system;<br>3. Failed to obtain the native object or convert parameters.                                   |
-| 19020003 | parameter check failed. Possible causes: <br>1. The value of encodingType is not in the EncodingType enumeration range.|
-| 19030001 | crypto operation error. |
+| 801 | This operation is not supported. |
+| 19020001 | Memory malloc failed.                                     |
+| 19020002 | Runtime error. Possible causes: <br>1. Memory copy failed;<br>2. A null pointer occurs inside the system;<br>3. Failed to obtain the native object or convert parameters.                                   |
+| 19020003 | Parameter check failed. Possible causes: <br>1. The value of encodingType is not in the EncodingType enumeration range.|
+| 19030001 | Crypto operation error. |
 
 **示例：**
 
@@ -9428,9 +9434,9 @@ getRevocationDate() : string
 
 | 错误码ID | 错误信息                |
 | -------- | ----------------------- |
-| 19020001 | memory malloc failed.           |
-| 19020002 | runtime error. Possible causes: <br>1. Memory copy failed;<br>2. A null pointer occurs inside the system;<br>3. Failed to obtain the native object or convert parameters.         |
-| 19030001 | crypto operation error. |
+| 19020001 | Memory malloc failed.           |
+| 19020002 | Runtime error. Possible causes: <br>1. Memory copy failed;<br>2. A null pointer occurs inside the system;<br>3. Failed to obtain the native object or convert parameters.         |
+| 19030001 | Crypto operation error. |
 
 **示例：**
 
@@ -9502,9 +9508,9 @@ getExtensions(): DataBlob
 
 | 错误码ID | 错误信息                |
 | -------- | ----------------------- |
-| 19020001 | memory malloc failed.           |
-| 19020002 | runtime error. Possible causes: <br>1. Memory copy failed;<br>2. A null pointer occurs inside the system;<br>3. Failed to obtain the native object or convert parameters.         |
-| 19030001 | crypto operation error. |
+| 19020001 | Memory malloc failed.           |
+| 19020002 | Runtime error. Possible causes: <br>1. Memory copy failed;<br>2. A null pointer occurs inside the system;<br>3. Failed to obtain the native object or convert parameters.         |
+| 19030001 | Crypto operation error. |
 
 **示例：**
 
@@ -9579,9 +9585,9 @@ hasExtensions(): boolean
 
 | 错误码ID | 错误信息                |
 | -------- | ----------------------- |
-| 19020001 | memory malloc failed.           |
-| 19020002 | runtime error. Possible causes: <br>1. Memory copy failed;<br>2. A null pointer occurs inside the system;<br>3. Failed to obtain the native object or convert parameters.         |
-| 19030001 | crypto operation error. |
+| 19020001 | Memory malloc failed.           |
+| 19020002 | Runtime error. Possible causes: <br>1. Memory copy failed;<br>2. A null pointer occurs inside the system;<br>3. Failed to obtain the native object or convert parameters.         |
+| 19030001 | Crypto operation error. |
 
 **示例：**
 
@@ -9653,9 +9659,9 @@ getCertIssuerX500DistinguishedName(): X500DistinguishedName
 
 | 错误码ID | 错误信息                |
 | -------- | ----------------------- |
-| 19020001 | memory malloc failed.           |
-| 19020002 | runtime error. Possible causes: <br>1. Memory copy failed;<br>2. A null pointer occurs inside the system;<br>3. Failed to obtain the native object or convert parameters.         |
-| 19030001 | crypto operation error. |
+| 19020001 | Memory malloc failed.           |
+| 19020002 | Runtime error. Possible causes: <br>1. Memory copy failed;<br>2. A null pointer occurs inside the system;<br>3. Failed to obtain the native object or convert parameters.         |
+| 19030001 | Crypto operation error. |
 
 **示例：**
 
@@ -9722,9 +9728,9 @@ toString(): string
 
 | 错误码ID | 错误信息                |
 | -------- | ----------------------- |
-| 19020001 | memory malloc failed.           |
-| 19020002 | runtime error. Possible causes: <br>1. Memory copy failed;<br>2. A null pointer occurs inside the system;<br>3. Failed to obtain the native object or convert parameters.         |
-| 19030001 | crypto operation error. |
+| 19020001 | Memory malloc failed.           |
+| 19020002 | Runtime error. Possible causes: <br>1. Memory copy failed;<br>2. A null pointer occurs inside the system;<br>3. Failed to obtain the native object or convert parameters.         |
+| 19030001 | Crypto operation error. |
 
 **示例：**
 
@@ -9791,9 +9797,9 @@ hashCode(): Uint8Array
 
 | 错误码ID | 错误信息                |
 | -------- | ----------------------- |
-| 19020001 | memory malloc failed.           |
-| 19020002 | runtime error. Possible causes: <br>1. Memory copy failed;<br>2. A null pointer occurs inside the system;<br>3. Failed to obtain the native object or convert parameters.         |
-| 19030001 | crypto operation error. |
+| 19020001 | Memory malloc failed.           |
+| 19020002 | Runtime error. Possible causes: <br>1. Memory copy failed;<br>2. A null pointer occurs inside the system;<br>3. Failed to obtain the native object or convert parameters.         |
+| 19030001 | Crypto operation error. |
 
 **示例：**
 
@@ -9860,9 +9866,9 @@ getExtensionsObject(): CertExtension
 
 | 错误码ID | 错误信息                |
 | -------- | ----------------------- |
-| 19020001 | memory malloc failed.           |
-| 19020002 | runtime error. Possible causes: <br>1. Memory copy failed;<br>2. A null pointer occurs inside the system;<br>3. Failed to obtain the native object or convert parameters.         |
-| 19030001 | crypto operation error. |
+| 19020001 | Memory malloc failed.           |
+| 19020002 | Runtime error. Possible causes: <br>1. Memory copy failed;<br>2. A null pointer occurs inside the system;<br>3. Failed to obtain the native object or convert parameters.         |
+| 19030001 | Crypto operation error. |
 
 **示例：**
 
@@ -9995,7 +10001,7 @@ createCertCRLCollection(certs: Array\<X509Cert>, crls?: Array\<X509CRL>): CertCR
 
 | 类型               | 说明                 |
 | ------------------ | -------------------- |
-| [CertCRLCollection](#certcrlcollection11) | 表示证书和证书吊销列表集合对象。 |
+| [CertCRLCollection](#certcrlcollection11) | 证书和证书吊销列表集合。 |
 
 **错误码：**
 
@@ -10003,8 +10009,8 @@ createCertCRLCollection(certs: Array\<X509Cert>, crls?: Array\<X509CRL>): CertCR
 
 | 错误码ID | 错误信息                |
 | -------- | ----------------------- |
-| 401 | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.|
-| 19020001 | memory malloc failed.           |
+| 401 | Invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.|
+| 19020001 | Memory malloc failed.           |
 
 **示例：**
 
@@ -10089,7 +10095,7 @@ async function createCollection() {
 
 ## CertCRLCollection<sup>11+</sup>
 
-证书和证书吊销列表集合对象。
+证书和证书吊销列表集合。
 
 ### selectCerts<sup>11+</sup>
 
@@ -10119,9 +10125,9 @@ selectCerts(param: X509CertMatchParameters): Promise\<Array\<X509Cert>>
 
 | 错误码ID | 错误信息                |
 | -------- | ----------------------- |
-| 401 | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.|
-| 19020001 | memory malloc failed.           |
-| 19030001 | crypto operation error. |
+| 401 | Invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.|
+| 19020001 | Memory malloc failed.           |
+| 19030001 | Crypto operation error. |
 
 **示例：**
 
@@ -10209,9 +10215,9 @@ selectCerts(param: X509CertMatchParameters, callback: AsyncCallback\<Array\<X509
 
 | 错误码ID | 错误信息                |
 | -------- | ----------------------- |
-| 401 | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.|
-| 19020001 | memory malloc failed.           |
-| 19030001 | crypto operation error. |
+| 401 | Invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.|
+| 19020001 | Memory malloc failed.           |
+| 19030001 | Crypto operation error. |
 
 **示例：**
 
@@ -10304,9 +10310,9 @@ selectCRLs(param: X509CRLMatchParameters): Promise\<Array\<X509CRL>>
 
 | 错误码ID | 错误信息                |
 | -------- | ----------------------- |
-| 401 | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.|
-| 19020001 | memory malloc failed.           |
-| 19030001 | crypto operation error. |
+| 401 | Invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.|
+| 19020001 | Memory malloc failed.           |
+| 19030001 | Crypto operation error. |
 
 **示例：**
 
@@ -10430,9 +10436,9 @@ selectCRLs(param: X509CRLMatchParameters, callback: AsyncCallback\<Array\<X509CR
 
 | 错误码ID | 错误信息                |
 | -------- | ----------------------- |
-| 401 | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.|
-| 19020001 | memory malloc failed.           |
-| 19030001 | crypto operation error. |
+| 401 | Invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.|
+| 19020001 | Memory malloc failed.           |
+| 19030001 | Crypto operation error. |
 
 **示例：**
 
@@ -10561,9 +10567,9 @@ createX509CertChain(inStream: EncodingBlob): Promise\<X509CertChain>
 
 | 错误码ID | 错误信息      |
 | -------- | ------------- |
-| 401 | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.|
-| 19020001 | memory malloc failed. |
-| 19030001 | crypto operation error. |
+| 401 | Invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.|
+| 19020001 | Memory malloc failed. |
+| 19030001 | Crypto operation error. |
 
 **示例：**
 
@@ -10678,9 +10684,9 @@ createX509CertChain(inStream: EncodingBlob, callback: AsyncCallback\<X509CertCha
 
 | 错误码ID | 错误信息      |
 | -------- | ------------- |
-| 401 | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.|
-| 19020001 | memory malloc failed. |
-| 19030001 | crypto operation error. |
+| 401 | Invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.|
+| 19020001 | Memory malloc failed. |
+| 19030001 | Crypto operation error. |
 
 **示例：**
 
@@ -10795,9 +10801,9 @@ createX509CertChain(certs: Array\<X509Cert>): X509CertChain
 
 | 错误码ID | 错误信息      |
 | -------- | ------------- |
-| 401 | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.|
-| 19020001 | memory malloc failed. |
-| 19030001 | crypto operation error. |
+| 401 | Invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.|
+| 19020001 | Memory malloc failed. |
+| 19030001 | Crypto operation error. |
 
 **示例：**
 
@@ -10885,16 +10891,16 @@ buildX509CertChain(param: [CertChainBuildParameters](#certchainbuildparameters12
 
 | 错误码ID | 错误信息                                          |
 | -------- | ------------------------------------------------- |
-| 401 | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.|
-| 19020001 | memory malloc failed.                                     |
-| 19020002 | runtime error. Possible causes: <br>1. Memory copy failed;<br>2. A null pointer occurs inside the system;<br>3. Failed to obtain the native object or convert parameters.                                   |
-| 19030001 | crypto operation error.                           |
-| 19030002 | the certificate signature verification failed.    |
-| 19030003 | the certificate has not taken effect.             |
-| 19030004 | the certificate has expired.                      |
-| 19030005 | failed to obtain the certificate issuer.          |
-| 19030006 | the key cannot be used for signing a certificate. |
-| 19030007 | the key cannot be used for a digital signature.     |
+| 401 | Invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.|
+| 19020001 | Memory malloc failed.                                     |
+| 19020002 | Runtime error. Possible causes: <br>1. Memory copy failed;<br>2. A null pointer occurs inside the system;<br>3. Failed to obtain the native object or convert parameters.                                   |
+| 19030001 | Crypto operation error.                           |
+| 19030002 | The certificate signature verification failed.    |
+| 19030003 | The certificate has not taken effect.             |
+| 19030004 | The certificate has expired.                      |
+| 19030005 | Failed to obtain the certificate issuer.          |
+| 19030006 | The key cannot be used for signing a certificate. |
+| 19030007 | The key cannot be used for a digital signature.     |
 
 **示例：**
 
@@ -11026,11 +11032,11 @@ parsePkcs12(data: Uint8Array, config: Pkcs12ParsingConfig): Pkcs12Data
 
 | 错误码ID | 错误信息                                          |
 | -------- | ------------------------------------------------- |
-| 401 | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.|
-| 19020001 | memory malloc failed.                                     |
-| 19020002 | runtime error. Possible causes: <br>1. Memory copy failed;<br>2. A null pointer occurs inside the system;<br>3. Failed to obtain the native object or convert parameters.                                   |
-| 19030001 | crypto operation error.                           |
-| 19030008 | maybe wrong password.            |
+| 401 | Invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.|
+| 19020001 | Memory malloc failed.                                     |
+| 19020002 | Runtime error. Possible causes: <br>1. Memory copy failed;<br>2. A null pointer occurs inside the system;<br>3. Failed to obtain the native object or convert parameters.                                   |
+| 19030001 | Crypto operation error.                           |
+| 19030008 | Maybe wrong password.            |
 
 **示例：**
 
@@ -11238,11 +11244,11 @@ parsePkcs12(data: Uint8Array, password: string): Promise\<Pkcs12Data>
 
 | 错误码ID | 错误信息                                          |
 | -------- | ------------------------------------------------- |
-| 19020001 | memory malloc failed.                                     |
-| 19020002 | runtime error. Possible causes: <br>1. Memory copy failed;<br>2. A null pointer occurs inside the system;<br>3. Failed to obtain the native object or convert parameters.                                   |
-| 19020003 | parameter check failed. Possible causes: <br>1. The length of the data is zero or too large;<br>2. The length of the password is too large.                                    |
-| 19030001 | crypto operation error.                           |
-| 19030008 | maybe wrong password.            |
+| 19020001 | Memory malloc failed.                                     |
+| 19020002 | Runtime error. Possible causes: <br>1. Memory copy failed;<br>2. A null pointer occurs inside the system;<br>3. Failed to obtain the native object or convert parameters.                                   |
+| 19020003 | Parameter check failed. Possible causes: <br>1. The length of the data is zero or too large;<br>2. The length of the password is too large.                                    |
+| 19030001 | Crypto operation error.                           |
+| 19030008 | Maybe wrong password.            |
 
 **示例：**
 
@@ -11454,10 +11460,10 @@ createPkcs12(data: Pkcs12Data, config: Pkcs12CreationConfig): Promise\<Uint8Arra
 
 | 错误码ID | 错误信息                                          |
 | -------- | ------------------------------------------------- |
-| 19020001 | memory malloc failed.                                     |
-| 19020002 | runtime error. Possible causes: <br>1. Memory copy failed;<br>2. A null pointer occurs inside the system;<br>3. Failed to obtain the native object or convert parameters.                                   |
-| 19020003 | parameter check failed. Possible causes: <br>1. The password is too short or too long;<br>2. The private key does not match the certificate;<br>3. Invalid encryption algorithm parameters.|
-| 19030001 | crypto operation error.                           |
+| 19020001 | Memory malloc failed.                                     |
+| 19020002 | Runtime error. Possible causes: <br>1. Memory copy failed;<br>2. A null pointer occurs inside the system;<br>3. Failed to obtain the native object or convert parameters.                                   |
+| 19020003 | Parameter check failed. Possible causes: <br>1. The password is too short or too long;<br>2. The private key does not match the certificate;<br>3. Invalid encryption algorithm parameters.|
+| 19030001 | Crypto operation error.                           |
 
 **示例：**
 
@@ -11632,10 +11638,10 @@ createPkcs12Sync(data: Pkcs12Data, config: Pkcs12CreationConfig): Uint8Array
 
 | 错误码ID | 错误信息                                          |
 | -------- | ------------------------------------------------- |
-| 19020001 | memory malloc failed.                                     |
-| 19020002 | runtime error. Possible causes: <br>1. Memory copy failed;<br>2. A null pointer occurs inside the system;<br>3. Failed to obtain the native object or convert parameters.                                   |
-| 19020003 | parameter check failed. Possible causes: <br>1. The password is too short or too long;<br>2. The private key does not match the certificate;<br>3. Invalid encryption algorithm parameters.|
-| 19030001 | crypto operation error.                           |
+| 19020001 | Memory malloc failed.                                     |
+| 19020002 | Runtime error. Possible causes: <br>1. Memory copy failed;<br>2. A null pointer occurs inside the system;<br>3. Failed to obtain the native object or convert parameters.                                   |
+| 19020003 | Parameter check failed. Possible causes: <br>1. The password is too short or too long;<br>2. The private key does not match the certificate;<br>3. Invalid encryption algorithm parameters.|
+| 19030001 | Crypto operation error.                           |
 
 **示例：**
 
@@ -11810,16 +11816,16 @@ createTrustAnchorsWithKeyStore(keystore: Uint8Array, pwd: string): Promise<Array
 
 | 错误码ID | 错误信息                                          |
 | -------- | ------------------------------------------------- |
-| 401 | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.|
-| 19020001 | memory malloc failed.                                     |
-| 19020002 | runtime error. Possible causes: <br>1. Memory copy failed;<br>2. A null pointer occurs inside the system;<br>3. Failed to obtain the native object or convert parameters.                                   |
-| 19030001 | crypto operation error.                           |
-| 19030002 | the certificate signature verification failed.    |
-| 19030003 | the certificate has not taken effect.             |
-| 19030004 | the certificate has expired.                      |
-| 19030005 | failed to obtain the certificate issuer.          |
-| 19030006 | the key cannot be used for signing a certificate. |
-| 19030007 | the key cannot be used for a digital signature.     |
+| 401 | Invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.|
+| 19020001 | Memory malloc failed.                                     |
+| 19020002 | Runtime error. Possible causes: <br>1. Memory copy failed;<br>2. A null pointer occurs inside the system;<br>3. Failed to obtain the native object or convert parameters.                                   |
+| 19030001 | Crypto operation error.                           |
+| 19030002 | The certificate signature verification failed.    |
+| 19030003 | The certificate has not taken effect.             |
+| 19030004 | The certificate has expired.                      |
+| 19030005 | Failed to obtain the certificate issuer.          |
+| 19030006 | The key cannot be used for signing a certificate. |
+| 19030007 | The key cannot be used for a digital signature.     |
 
 **示例：**
 
@@ -11966,9 +11972,9 @@ getCertList(): Array\<X509Cert>
 
 | 错误码ID | 错误信息                |
 | -------- | ----------------------- |
-| 401 | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.|
-| 19020001 | memory malloc failed.           |
-| 19030001 | crypto operation error. |
+| 401 | Invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.|
+| 19020001 | Memory malloc failed.           |
+| 19030001 | Crypto operation error. |
 
 **示例：**
 
@@ -12090,16 +12096,16 @@ validate(param: CertChainValidationParameters): Promise\<CertChainValidationResu
 
 | 错误码ID | 错误信息                |
 | -------- | ----------------------- |
-| 401 | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.|
-| 19020001 | memory malloc failed.           |
-| 19020002 | runtime error. Possible causes: <br>1. Memory copy failed;<br>2. A null pointer occurs inside the system;<br>3. Failed to obtain the native object or convert parameters.|
-| 19030001 | crypto operation error.           |
-| 19030002 | the certificate signature verification failed. |
-| 19030003 | the certificate has not taken effect.           |
-| 19030004 | the certificate has expired. |
-| 19030005 | failed to obtain the certificate issuer.           |
-| 19030006 | the key cannot be used for signing a certificate. |
-| 19030007 | the key cannot be used for a digital signature.      |
+| 401 | Invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.|
+| 19020001 | Memory malloc failed.           |
+| 19020002 | Runtime error. Possible causes: <br>1. Memory copy failed;<br>2. A null pointer occurs inside the system;<br>3. Failed to obtain the native object or convert parameters.|
+| 19030001 | Crypto operation error.           |
+| 19030002 | The certificate signature verification failed. |
+| 19030003 | The certificate has not taken effect.           |
+| 19030004 | The certificate has expired. |
+| 19030005 | Failed to obtain the certificate issuer.           |
+| 19030006 | The key cannot be used for signing a certificate. |
+| 19030007 | The key cannot be used for a digital signature.      |
 
 **示例：**
 
@@ -12240,16 +12246,16 @@ validate(param: CertChainValidationParameters, callback: AsyncCallback\<CertChai
 
 | 错误码ID | 错误信息                |
 | -------- | ----------------------- |
-| 401 | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.|
-| 19020001 | memory malloc failed.           |
-| 19020002 | runtime error. Possible causes: <br>1. Memory copy failed;<br>2. A null pointer occurs inside the system;<br>3. Failed to obtain the native object or convert parameters.|
-| 19030001 | crypto operation error.           |
-| 19030002 | the certificate signature verification failed. |
-| 19030003 | the certificate has not taken effect.           |
-| 19030004 | the certificate has expired. |
-| 19030005 | failed to obtain the certificate issuer.           |
-| 19030006 | the key cannot be used for signing a certificate. |
-| 19030007 | the key cannot be used for a digital signature.      |
+| 401 | Invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.|
+| 19020001 | Memory malloc failed.           |
+| 19020002 | Runtime error. Possible causes: <br>1. Memory copy failed;<br>2. A null pointer occurs inside the system;<br>3. Failed to obtain the native object or convert parameters.|
+| 19030001 | Crypto operation error.           |
+| 19030002 | The certificate signature verification failed. |
+| 19030003 | The certificate has not taken effect.           |
+| 19030004 | The certificate has expired. |
+| 19030005 | Failed to obtain the certificate issuer.           |
+| 19030006 | The key cannot be used for signing a certificate. |
+| 19030007 | The key cannot be used for a digital signature.      |
 
 **示例：**
 
@@ -12381,9 +12387,9 @@ toString(): string
 
 | 错误码ID | 错误信息                |
 | -------- | ----------------------- |
-| 19020001 | memory malloc failed. |
-| 19020002 | runtime error. Possible causes: <br>1. Memory copy failed;<br>2. A null pointer occurs inside the system;<br>3. Failed to obtain the native object or convert parameters.|
-| 19030001 | crypto operation error. |
+| 19020001 | Memory malloc failed. |
+| 19020002 | Runtime error. Possible causes: <br>1. Memory copy failed;<br>2. A null pointer occurs inside the system;<br>3. Failed to obtain the native object or convert parameters.|
+| 19030001 | Crypto operation error. |
 
 **示例：**
 
@@ -12508,9 +12514,9 @@ hashCode(): Uint8Array
 
 | 错误码ID | 错误信息                |
 | -------- | ----------------------- |
-| 19020001 | memory malloc failed. |
-| 19020002 | runtime error. Possible causes: <br>1. Memory copy failed;<br>2. A null pointer occurs inside the system;<br>3. Failed to obtain the native object or convert parameters.|
-| 19030001 | crypto operation error. |
+| 19020001 | Memory malloc failed. |
+| 19020002 | Runtime error. Possible causes: <br>1. Memory copy failed;<br>2. A null pointer occurs inside the system;<br>3. Failed to obtain the native object or convert parameters.|
+| 19030001 | Crypto operation error. |
 
 **示例：**
 
@@ -12643,11 +12649,11 @@ generateCsr(keyInfo: PrivateKeyInfo, config: CsrGenerationConfig): string | Uint
 
 | 错误码ID | 错误信息      |
 | -------- | ------------- |
-| 401 | invalid parameters.  Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.|
-| 19020001 | memory malloc failed. |
-| 19020002 | runtime error. Possible causes: <br>1. Memory copy failed;<br>2. A null pointer occurs inside the system;<br>3. Failed to obtain the native object or convert parameters.|
-| 19030001 | crypto operation error. |
-| 19030008 | maybe wrong password. |
+| 401 | Invalid parameters.  Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.|
+| 19020001 | Memory malloc failed. |
+| 19020002 | Runtime error. Possible causes: <br>1. Memory copy failed;<br>2. A null pointer occurs inside the system;<br>3. Failed to obtain the native object or convert parameters.|
+| 19030001 | Crypto operation error. |
+| 19030008 | Maybe wrong password. |
 
 **示例：**
 
@@ -12728,7 +12734,7 @@ createX500DistinguishedName(nameStr: string): Promise\<X500DistinguishedName>
 
 | 参数名   | 类型                          | 必填 | 说明                 |
 | -------- | ----------------------------- | ---- | -------------------- |
-| nameStr | string | 是 |使用斜杠'/'分隔可分辨名称字符串格式，每个可分辨名称为“属性=值”形式，常用属性包括CN（通用名）、O（组织名）、OU（组织单位）、C（国家/地区）、ST（省/州）、L（市/区）。例如：/CN=example.com/O=Example/C=CN。|
+| nameStr | string | 是 |使用斜杠"/"分隔可分辨名称字符串格式，每个可分辨名称为“属性=值”形式，常用属性包括CN（通用名）、O（组织名）、OU（组织单位）、C（国家/地区）、ST（省/州）、L（市/区）。例如：/CN=example.com/O=Example/C=CN。|
 
 **返回值：**
 
@@ -12742,16 +12748,16 @@ createX500DistinguishedName(nameStr: string): Promise\<X500DistinguishedName>
 
 | 错误码ID | 错误信息      |
 | -------- | ------------- |
-| 401 | invalid parameters.  Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.|
-| 19020001 | memory malloc failed. |
-| 19020002 | runtime error. Possible causes: <br>1. Memory copy failed;<br>2. A null pointer occurs inside the system;<br>3. Failed to obtain the native object or convert parameters.|
-| 19030001 | crypto operation error. |
-| 19030002 | the certificate signature verification failed. |
-| 19030003 | the certificate has not taken effect. |
-| 19030004 | the certificate has expired. |
-| 19030005 | failed to obtain the certificate issuer. |
-| 19030006 | the key cannot be used for signing a certificate. |
-| 19030007 | the key cannot be used for a digital signature. |
+| 401 | Invalid parameters.  Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.|
+| 19020001 | Memory malloc failed. |
+| 19020002 | Runtime error. Possible causes: <br>1. Memory copy failed;<br>2. A null pointer occurs inside the system;<br>3. Failed to obtain the native object or convert parameters.|
+| 19030001 | Crypto operation error. |
+| 19030002 | The certificate signature verification failed. |
+| 19030003 | The certificate has not taken effect. |
+| 19030004 | The certificate has expired. |
+| 19030005 | Failed to obtain the certificate issuer. |
+| 19030006 | The key cannot be used for signing a certificate. |
+| 19030007 | The key cannot be used for a digital signature. |
 
 **示例：**
 
@@ -12813,16 +12819,16 @@ createX500DistinguishedName(nameDer: Uint8Array): Promise\<X500DistinguishedName
 
 | 错误码ID | 错误信息      |
 | -------- | ------------- |
-| 401 | invalid parameters.  Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.|
-| 19020001 | memory malloc failed. |
-| 19020002 | runtime error. Possible causes: <br>1. Memory copy failed;<br>2. A null pointer occurs inside the system;<br>3. Failed to obtain the native object or convert parameters.|
-| 19030001 | crypto operation error. |
-| 19030002 | the certificate signature verification failed. |
-| 19030003 | the certificate has not taken effect. |
-| 19030004 | the certificate has expired. |
-| 19030005 | failed to obtain the certificate issuer. |
-| 19030006 | the key cannot be used for signing a certificate. |
-| 19030007 | the key cannot be used for a digital signature. |
+| 401 | Invalid parameters.  Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.|
+| 19020001 | Memory malloc failed. |
+| 19020002 | Runtime error. Possible causes: <br>1. Memory copy failed;<br>2. A null pointer occurs inside the system;<br>3. Failed to obtain the native object or convert parameters.|
+| 19030001 | Crypto operation error. |
+| 19030002 | The certificate signature verification failed. |
+| 19030003 | The certificate has not taken effect. |
+| 19030004 | The certificate has expired. |
+| 19030005 | Failed to obtain the certificate issuer. |
+| 19030006 | The key cannot be used for signing a certificate. |
+| 19030007 | The key cannot be used for a digital signature. |
 
 **示例：**
 
@@ -12851,7 +12857,7 @@ async function createX500DistinguishedName() {
 ```
 ## X500DistinguishedName<sup>12+</sup>
 
-X.509定义的Name类型的对象。
+提供X.500可分辨名称操作的API。
 
 ### getName<sup>12+</sup>
 
@@ -12875,9 +12881,9 @@ getName(): string
 
 | 错误码ID | 错误信息      |
 | -------- | ------------- |
-| 19020001 | memory malloc failed. |
-| 19020002 | runtime error. Possible causes: <br>1. Memory copy failed;<br>2. A null pointer occurs inside the system;<br>3. Failed to obtain the native object or convert parameters.|
-| 19030001 | crypto operation error. |
+| 19020001 | Memory malloc failed. |
+| 19020002 | Runtime error. Possible causes: <br>1. Memory copy failed;<br>2. A null pointer occurs inside the system;<br>3. Failed to obtain the native object or convert parameters.|
+| 19030001 | Crypto operation error. |
 
 **示例：**
 
@@ -12934,10 +12940,10 @@ getName(type: string): Array\<string>
 
 | 错误码ID | 错误信息      |
 | -------- | ------------- |
-| 401 | invalid parameters.  Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.|
-| 19020001 | memory malloc failed. |
-| 19020002 | runtime error. Possible causes: <br>1. Memory copy failed;<br>2. A null pointer occurs inside the system;<br>3. Failed to obtain the native object or convert parameters.|
-| 19030001 | crypto operation error. |
+| 401 | Invalid parameters.  Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.|
+| 19020001 | Memory malloc failed. |
+| 19020002 | Runtime error. Possible causes: <br>1. Memory copy failed;<br>2. A null pointer occurs inside the system;<br>3. Failed to obtain the native object or convert parameters.|
+| 19030001 | Crypto operation error. |
 
 **示例：**
 
@@ -12991,10 +12997,10 @@ getName(encodingType: EncodingType): string
 
 | 错误码ID | 错误信息      |
 | -------- | ------------- |
-| 19020001 | memory malloc failed. |
-| 19020002 | runtime error. Possible causes: <br>1. Memory copy failed;<br>2. A null pointer occurs inside the system;<br>3. Failed to obtain the native object or convert parameters.|
-| 19020003 | parameter check failed. Possible causes: <br>1. The value of encodingType is not in the EncodingType enumeration range.|
-| 19030001 | crypto operation error. |
+| 19020001 | Memory malloc failed. |
+| 19020002 | Runtime error. Possible causes: <br>1. Memory copy failed;<br>2. A null pointer occurs inside the system;<br>3. Failed to obtain the native object or convert parameters.|
+| 19020003 | Parameter check failed. Possible causes: <br>1. The value of encodingType is not in the EncodingType enumeration range.|
+| 19030001 | Crypto operation error. |
 
 **示例：**
 
@@ -13053,10 +13059,10 @@ getName(type: string, encodingType: EncodingType): Array\<string>
 
 | 错误码ID | 错误信息      |
 | -------- | ------------- |
-| 19020001 | memory malloc failed. |
-| 19020002 | runtime error. Possible causes: <br>1. Memory copy failed;<br>2. A null pointer occurs inside the system;<br>3. Failed to obtain the native object or convert parameters.|
-| 19020003 | parameter check failed. Possible causes: <br>1. The value of encodingType is invalid. |
-| 19030001 | crypto operation error. |
+| 19020001 | Memory malloc failed. |
+| 19020002 | Runtime error. Possible causes: <br>1. Memory copy failed;<br>2. A null pointer occurs inside the system;<br>3. Failed to obtain the native object or convert parameters.|
+| 19020003 | Parameter check failed. Possible causes: <br>1. The value of encodingType is invalid. |
+| 19030001 | Crypto operation error. |
 
 **示例：**
 
@@ -13104,9 +13110,9 @@ getEncoded(): EncodingBlob
 
 | 错误码ID | 错误信息      |
 | -------- | ------------- |
-| 19020001 | memory malloc failed. |
-| 19020002 | runtime error. Possible causes: <br>1. Memory copy failed;<br>2. A null pointer occurs inside the system;<br>3. Failed to obtain the native object or convert parameters.|
-| 19030001 | crypto operation error. |
+| 19020001 | Memory malloc failed. |
+| 19020002 | Runtime error. Possible causes: <br>1. Memory copy failed;<br>2. A null pointer occurs inside the system;<br>3. Failed to obtain the native object or convert parameters.|
+| 19030001 | Crypto operation error. |
 
 **示例：**
 
@@ -13160,10 +13166,10 @@ createCmsGenerator(contentType: CmsContentType): CmsGenerator
 
 | 错误码ID | 错误信息      |
 | -------- | ------------- |
-| 401 | invalid parameters.  Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.|
-| 19020001 | memory malloc failed. |
-| 19020002 | runtime error. Possible causes: <br>1. Memory copy failed;<br>2. A null pointer occurs inside the system;<br>3. Failed to obtain the native object or convert parameters.|
-| 19030001 | crypto operation error. |
+| 401 | Invalid parameters.  Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.|
+| 19020001 | Memory malloc failed. |
+| 19020002 | Runtime error. Possible causes: <br>1. Memory copy failed;<br>2. A null pointer occurs inside the system;<br>3. Failed to obtain the native object or convert parameters.|
+| 19030001 | Crypto operation error. |
 
 **示例：**
 
@@ -13221,7 +13227,7 @@ function testcreateCmsGenerator() {
 
 ## CmsGenerator<sup>18+</sup>
 
-CmsGenerator对象用于生成CMS（Cryptographic Message Syntax）格式的消息。
+提供生成CMS（Cryptographic Message Syntax）消息的API。
 
 > **说明：**
 >
@@ -13256,11 +13262,11 @@ addSigner(cert: X509Cert, keyInfo: PrivateKeyInfo, config: CmsSignerConfig): voi
 
 | 错误码ID | 错误信息      |
 | -------- | ------------- |
-| 401      | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed. |
-| 19020001 | memory malloc failed. |
-| 19020002 | runtime error. Possible causes: <br>1. Memory copy failed;<br>2. A null pointer occurs inside the system;<br>3. Failed to obtain the native object or convert parameters.|
-| 19030001 | crypto operation error. |
-| 19030008 | maybe wrong password. |
+| 401      | Invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed. |
+| 19020001 | Memory malloc failed. |
+| 19020002 | Runtime error. Possible causes: <br>1. Memory copy failed;<br>2. A null pointer occurs inside the system;<br>3. Failed to obtain the native object or convert parameters.|
+| 19030001 | Crypto operation error. |
+| 19030008 | Maybe wrong password. |
 
 **示例：**
 
@@ -13372,10 +13378,10 @@ addCert(cert: X509Cert): void
 
 | 错误码ID | 错误信息      |
 | -------- | ------------- |
-| 401      | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed. |
-| 19020001 | memory malloc failed. |
-| 19020002 | runtime error. Possible causes: <br>1. Memory copy failed;<br>2. A null pointer occurs inside the system;<br>3. Failed to obtain the native object or convert parameters.|
-| 19030001 | crypto operation error. |
+| 401      | Invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed. |
+| 19020001 | Memory malloc failed. |
+| 19020002 | Runtime error. Possible causes: <br>1. Memory copy failed;<br>2. A null pointer occurs inside the system;<br>3. Failed to obtain the native object or convert parameters.|
+| 19030001 | Crypto operation error. |
 
 **示例：**
 
@@ -13458,10 +13464,10 @@ setRecipientEncryptionAlgorithm(algorithm: CmsRecipientEncryptionAlgorithm): voi
 
 | 错误码ID | 错误信息      |
 | -------- | ------------- |
-| 19020001 | memory malloc failed. |
-| 19020002 | runtime error. Possible causes: <br>1. Memory copy failed;<br>2. A null pointer occurs inside the system;<br>3. Failed to obtain the native object or convert parameters.|
-| 19020003 | parameter check failed. Possible causes:<br>1. The type of algorithm is invalid or not supported. |
-| 19030001 | crypto operation error. |
+| 19020001 | Memory malloc failed. |
+| 19020002 | Runtime error. Possible causes: <br>1. Memory copy failed;<br>2. A null pointer occurs inside the system;<br>3. Failed to obtain the native object or convert parameters.|
+| 19020003 | Parameter check failed. Possible causes:<br>1. The type of algorithm is invalid or not supported. |
+| 19030001 | Crypto operation error. |
 
 **示例：**
 
@@ -13512,10 +13518,10 @@ addRecipientInfo(recipientInfo: CmsRecipientInfo): Promise\<void>
 
 | 错误码ID | 错误信息      |
 | -------- | ------------- |
-| 19020001 | memory malloc failed. |
-| 19020002 | runtime error. Possible causes: <br>1. Memory copy failed;<br>2. A null pointer occurs inside the system;<br>3. Failed to obtain the native object or convert parameters.|
-| 19020003 | parameter check failed. Possible causes: <br>1. The type of recipient certificate is invalid or not supported;<br>2. The digestAlgorithm of CmsKeyAgreeRecipientInfo is invalid or not supported;<br>3. The recipientInfo does not have any recipient info. |
-| 19030001 | crypto operation error. |
+| 19020001 | Memory malloc failed. |
+| 19020002 | Runtime error. Possible causes: <br>1. Memory copy failed;<br>2. A null pointer occurs inside the system;<br>3. Failed to obtain the native object or convert parameters.|
+| 19020003 | Parameter check failed. Possible causes: <br>1. The type of recipient certificate is invalid or not supported;<br>2. The digestAlgorithm of CmsKeyAgreeRecipientInfo is invalid or not supported;<br>3. The recipientInfo does not have any recipient info. |
+| 19030001 | Crypto operation error. |
 
 **示例：**
 
@@ -13629,10 +13635,10 @@ doFinal(data: Uint8Array, options?: CmsGeneratorOptions): Promise<Uint8Array | s
 
 | 错误码ID | 错误信息      |
 | -------- | ------------- |
-| 401      | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed. |
-| 19020001 | memory malloc failed. |
-| 19020002 | runtime error. Possible causes: <br>1. Memory copy failed;<br>2. A null pointer occurs inside the system;<br>3. Failed to obtain the native object or convert parameters.|
-| 19030001 | crypto operation error. |
+| 401      | Invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed. |
+| 19020001 | Memory malloc failed. |
+| 19020002 | Runtime error. Possible causes: <br>1. Memory copy failed;<br>2. A null pointer occurs inside the system;<br>3. Failed to obtain the native object or convert parameters.|
+| 19030001 | Crypto operation error. |
 
 **示例：**
 
@@ -13762,10 +13768,10 @@ doFinalSync(data: Uint8Array, options?: CmsGeneratorOptions): Uint8Array | strin
 
 | 错误码ID | 错误信息      |
 | -------- | ------------- |
-| 401      | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed. |
-| 19020001 | memory malloc failed. |
-| 19020002 | runtime error. Possible causes: <br>1. Memory copy failed;<br>2. A null pointer occurs inside the system;<br>3. Failed to obtain the native object or convert parameters.|
-| 19030001 | crypto operation error. |
+| 401      | Invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed. |
+| 19020001 | Memory malloc failed. |
+| 19020002 | Runtime error. Possible causes: <br>1. Memory copy failed;<br>2. A null pointer occurs inside the system;<br>3. Failed to obtain the native object or convert parameters.|
+| 19030001 | Crypto operation error. |
 
 **示例：**
 
@@ -13887,9 +13893,9 @@ getEncryptedContentData(): Promise\<Uint8Array>
 
 | 错误码ID | 错误信息      |
 | -------- | ------------- |
-| 19020001 | memory malloc failed. |
-| 19020002 | runtime error. Possible causes: <br>1. Memory copy failed;<br>2. A null pointer occurs inside the system;<br>3. Failed to obtain the native object or convert parameters.|
-| 19030001 | crypto operation error. |
+| 19020001 | Memory malloc failed. |
+| 19020002 | Runtime error. Possible causes: <br>1. Memory copy failed;<br>2. A null pointer occurs inside the system;<br>3. Failed to obtain the native object or convert parameters.|
+| 19030001 | Crypto operation error. |
 
 **示例：**
 
@@ -14010,9 +14016,9 @@ createCmsParser(): CmsParser
 
 | 错误码ID | 错误信息      |
 | -------- | ------------- |
-| 19020001 | memory malloc failed. |
-| 19020002 | runtime error. Possible causes: <br>1. Memory copy failed;<br>2. A null pointer occurs inside the system;<br>3. Failed to obtain the native object or convert parameters.|
-| 19030001 | crypto operation error. |
+| 19020001 | Memory malloc failed. |
+| 19020002 | Runtime error. Possible causes: <br>1. Memory copy failed;<br>2. A null pointer occurs inside the system;<br>3. Failed to obtain the native object or convert parameters.|
+| 19030001 | Crypto operation error. |
 
 **示例：**
 ```ts
@@ -14127,7 +14133,7 @@ async function testCmsVerifyTest() {
 
 ## CmsParser<sup>22+</sup>
 
-CmsParser对象用于对CMS签名或封装数据进行验签或解封装。
+提供解析、验签和解封装CMS消息的API。
 
 > **说明：**
 >
@@ -14138,7 +14144,7 @@ CmsParser对象用于对CMS签名或封装数据进行验签或解封装。
 
 setRawData(data: Uint8Array | string, cmsFormat: CmsFormat): Promise\<void>
 
-用于把CMS格式的数据转成CMS对象。使用Promise异步回调。
+设置CMS消息数据。使用Promise异步回调。
   
 > **说明：**
 >
@@ -14167,10 +14173,10 @@ setRawData(data: Uint8Array | string, cmsFormat: CmsFormat): Promise\<void>
 
 | 错误码ID | 错误信息      |
 | -------- | ------------- |
-| 19020001 | memory malloc failed. |
-| 19020002 | runtime error. Possible causes: <br>1. Memory copy failed;<br>2. A null pointer occurs inside the system;<br>3. Failed to obtain the native object or convert parameters.|
-| 19020003 | parameter check failed. Possible causes: <br>1. The length of the data is zero or too large;<br>2. The type of the cmsFormat is invalid or not supported. |
-| 19030001 | crypto operation error. |
+| 19020001 | Memory malloc failed. |
+| 19020002 | Runtime error. Possible causes: <br>1. Memory copy failed;<br>2. A null pointer occurs inside the system;<br>3. Failed to obtain the native object or convert parameters.|
+| 19020003 | Parameter check failed. Possible causes: <br>1. The length of the data is zero or too large;<br>2. The type of the cmsFormat is invalid or not supported. |
+| 19030001 | Crypto operation error. |
 
 **示例：**
 
@@ -14308,9 +14314,9 @@ getContentType(): CmsContentType
 
 | 错误码ID | 错误信息      |
 | -------- | ------------- |
-| 19020001 | memory malloc failed. |
-| 19020002 | runtime error. Possible causes: <br>1. Memory copy failed;<br>2. A null pointer occurs inside the system;<br>3. Failed to obtain the native object or convert parameters.|
-| 19030001 | crypto operation error. |
+| 19020001 | Memory malloc failed. |
+| 19020002 | Runtime error. Possible causes: <br>1. Memory copy failed;<br>2. A null pointer occurs inside the system;<br>3. Failed to obtain the native object or convert parameters.|
+| 19030001 | Crypto operation error. |
 
 **示例：**
 
@@ -14456,13 +14462,13 @@ verifySignedData(config: CmsVerificationConfig): Promise\<void>
 
 | 错误码ID | 错误信息      |
 | -------- | ------------- |
-| 19020001 | memory malloc failed. |
-| 19020002 | runtime error. Possible causes: <br>1. Memory copy failed;<br>2. A null pointer occurs inside the system;<br>3. Failed to obtain the native object or convert parameters.|
-| 19020003 | parameter check failed. Possible causes: <br>1. The trustCerts of config is empty;<br>2. The length of the contentData of config is zero or too large;<br>3. The contentDataFormat of config is invalid or not supported. |
-| 19030001 | crypto operation error. |
-| 19030003 | the certificate has not taken effect. |
-| 19030004 | the certificate has expired. |
-| 19030005 | failed to obtain the certificate issuer. |
+| 19020001 | Memory malloc failed. |
+| 19020002 | Runtime error. Possible causes: <br>1. Memory copy failed;<br>2. A null pointer occurs inside the system;<br>3. Failed to obtain the native object or convert parameters.|
+| 19020003 | Parameter check failed. Possible causes: <br>1. The trustCerts of config is empty;<br>2. The length of the contentData of config is zero or too large;<br>3. The contentDataFormat of config is invalid or not supported. |
+| 19030001 | Crypto operation error. |
+| 19030003 | The certificate has not taken effect. |
+| 19030004 | The certificate has expired. |
+| 19030005 | Failed to obtain the certificate issuer. |
 
 **示例：**
 
@@ -14599,9 +14605,9 @@ getContentData(): Promise\<Uint8Array>
 
 | 错误码ID | 错误信息      |
 | -------- | ------------- |
-| 19020001 | memory malloc failed. |
-| 19020002 | runtime error. Possible causes: <br>1. Memory copy failed;<br>2. A null pointer occurs inside the system;<br>3. Failed to obtain the native object or convert parameters.|
-| 19030001 | crypto operation error. |
+| 19020001 | Memory malloc failed. |
+| 19020002 | Runtime error. Possible causes: <br>1. Memory copy failed;<br>2. A null pointer occurs inside the system;<br>3. Failed to obtain the native object or convert parameters.|
+| 19030001 | Crypto operation error. |
 
 **示例：**
 
@@ -14746,10 +14752,10 @@ getCerts(type: CmsCertType): Promise<Array\<[X509Cert](#x509cert)>>
 
 | 错误码ID | 错误信息      |
 | -------- | ------------- |
-| 19020001 | memory malloc failed. |
-| 19020002 | runtime error. Possible causes: <br>1. Memory copy failed;<br>2. A null pointer occurs inside the system;<br>3. Failed to obtain the native object or convert parameters.|
-| 19020003 | parameter check failed. Possible causes: <br>1. The value of type is invalid or not supported. |
-| 19030001 | crypto operation error. |
+| 19020001 | Memory malloc failed. |
+| 19020002 | Runtime error. Possible causes: <br>1. Memory copy failed;<br>2. A null pointer occurs inside the system;<br>3. Failed to obtain the native object or convert parameters.|
+| 19020003 | Parameter check failed. Possible causes: <br>1. The value of type is invalid or not supported. |
+| 19030001 | Crypto operation error. |
 
 **示例：**
 
@@ -14882,13 +14888,13 @@ decryptEnvelopedData(config: CmsEnvelopedDecryptionConfig): Promise\<Uint8Array>
 
 | 参数名       | 类型   | 必填 | 说明           |
 | ------------ | ------ | ---- | -------------- |
-| config |  [CmsEnvelopedDecryptionConfig](#cmsenvelopeddecryptionconfig22) | 是 | CMS解封装的配置。|
+| config |  [CmsEnvelopedDecryptionConfig](#cmsenvelopeddecryptionconfig22) | 是 | CMS解密的配置。|
 
 **返回值：**
 
 | 类型                              | 说明                 |
 | --------------------------------- | -------------------- |
-| Promise\<Uint8Array> |Promise对象，返回解封装结果。 |
+| Promise\<Uint8Array> |Promise对象，返回解密结果。 |
 
 **错误码：**
 
@@ -14896,10 +14902,10 @@ decryptEnvelopedData(config: CmsEnvelopedDecryptionConfig): Promise\<Uint8Array>
 
 | 错误码ID | 错误信息      |
 | -------- | ------------- |
-| 19020001 | memory malloc failed. |
-| 19020002 | runtime error. Possible causes: <br>1. Memory copy failed;<br>2. A null pointer occurs inside the system;<br>3. Failed to obtain the native object or convert parameters.|
-| 19020003 | parameter check failed. Possible causes: <br>1. The private key is invalid or not supported;<br>2. The recipient certificate is invalid or not supported. |
-| 19030001 | crypto operation error. |
+| 19020001 | Memory malloc failed. |
+| 19020002 | Runtime error. Possible causes: <br>1. Memory copy failed;<br>2. A null pointer occurs inside the system;<br>3. Failed to obtain the native object or convert parameters.|
+| 19020003 | Parameter check failed. Possible causes: <br>1. The private key is invalid or not supported;<br>2. The recipient certificate is invalid or not supported. |
+| 19030001 | Crypto operation error. |
 
 **示例：**
 
