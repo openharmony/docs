@@ -108,9 +108,10 @@ import { cryptoFramework } from '@kit.CryptoArchitectureKit';
 | DER | 1      | DER格式。 |
 
 ## CsrAttribute<sup>18+</sup>
- 表示生成CSR的编码格式配置参数中的扩展。
 
-OpenSSL中规定了扩展类型，例如challengePassword、keyUsage等。
+ 定义CSR属性表示。
+
+CSR属性字段，当前仅支持字符串类型的属性字段，属性值添加到CSR中编码为utf-8。常见的type为challengePassword。
 
 **原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
@@ -118,8 +119,8 @@ OpenSSL中规定了扩展类型，例如challengePassword、keyUsage等。
 
 | 名称    | 类型   | 只读 | 可选 | 说明                                                         |
 | ------- | ------ | ---- | ---- | ------------------------------------------------------------ |
-| type | string | 否   | 否   | OpenSSL指定的扩展类型。 |
-| value | string | 否   | 否  | 扩展值。 |
+| type | string | 否   | 否   | PKCS #9指定的扩展类型。 |
+| value | string | 否   | 否  | 属性值。 |
 
 ## CsrGenerationConfig<sup>18+</sup>
 
@@ -132,9 +133,9 @@ OpenSSL中规定了扩展类型，例如challengePassword、keyUsage等。
 | 名称    | 类型   | 只读 | 可选 | 说明                                                         |
 | ------- | ------ | ---- | ---- | ------------------------------------------------------------ |
 | subject | [X500DistinguishedName](#x500distinguishedname12) | 否   | 否   | 主体名称。 |
-| mdName | string | 否   | 否   | 摘要算法名。 |
+| mdName | string | 否   | 否   | 摘要算法名。当前支持"SHA1"、"SHA256"、"SHA384"、"SHA512"。 |
 | attributes | Array\<[CsrAttribute](#csrattribute18)> | 否   | 是   | 扩展。 |
-| outFormat | [EncodingBaseFormat](#encodingbaseformat18) | 否   | 是   | 输出类型。 |
+| outFormat | [EncodingBaseFormat](#encodingbaseformat18) | 否   | 是   | 输出类型。默认值为PEM格式。 |
 
 > **说明：**
 >
@@ -206,8 +207,6 @@ OpenSSL中规定了扩展类型，例如challengePassword、keyUsage等。
 
 表示一个编码后的二进制数据块。
 
-### 属性
-
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Security.Cert
@@ -221,8 +220,6 @@ OpenSSL中规定了扩展类型，例如challengePassword、keyUsage等。
 ## CertChainData
 
 证书链数据，在证书链校验时，作为入参传入。
-
-### 属性
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -533,7 +530,7 @@ X.509中定义的GeneralName类型的枚举，这些类型可出现在“使用�
 | ------------ | ------------------------------------------------- | ---- | ---- |-------------------------------------- |
 | date         | string                                            | 否   | 是  |用于检查证书有效性的日期。 <br> **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。            |
 | trustAnchors | Array\<[X509TrustAnchor](#x509trustanchor11)>     | 否   | 否   |表示信任锚列表。  <br> **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。                     |
-| trustSystemCa<sup>20+</sup>| boolean | 否   | 是  |表示是否使用系统预置CA证书校验证书链。true表示使用；false表示不使用。<br> **原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。 |
+| trustSystemCa<sup>20+</sup>| boolean | 否   | 是  |是否信任系统CA。默认值为false。true表示使用系统预置的CA证书库作为信任锚；false表示不使用系统预置的CA证书库作为信任锚。<br> **原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。 |
 | allowDownloadIntermediateCa<sup>23+</sup>| boolean | 否   | 是  |表示是否允许尝试从网络下载缺失的中间CA证书。<br>true表示允许；false表示不允许。默认值为false。<br>下载地址将从证书AIA扩展中获取，仅支持http，如需使用网络下载，需申请ohos.permission.INTERNET权限。配置方式请参见[声明权限](../../security/AccessToken/declare-permissions.md)。<br> **原子化服务API：** 从API version 23开始，该接口支持在原子化服务中使用。 |
 | certCRLs     | Array\<[CertCRLCollection](#certcrlcollection11)> | 否   | 是  |用于检查证书是否被吊销的CRL集合。 <br> **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
 | revocationCheckParam<sup>12+</sup>      | [RevocationCheckParameter](#revocationcheckparameter12) | 否   | 是  |表示需要校验证书吊销状态的参数对象。<br> **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
@@ -760,7 +757,7 @@ CMS封装数据的内容加密算法的枚举。
 
 | 名称         | 类型                                                  |  只读  |  可选  |说明                                   |
 | ------------ | ------------------------------------------------- | ---- | ---- |-------------------------------------- |
-| mdName                | string             | 否  | 否  |消息摘要算法的名称，例如 "SHA384", 当前支持"SHA1"、"SHA256"、"SHA384"、"SHA512"。 <br> **原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。                |
+| mdName                | string             | 否  | 否  |消息摘要算法的名称，例如 "SHA384"，当前支持"SHA1"、"SHA256"、"SHA384"、"SHA512"。 <br> **原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。                |
 | rsaSignaturePadding<sup>22+</sup>                | [CmsRsaSignaturePadding](#cmsrsasignaturepadding22)             | 否  | 是  |RSA签名填充方式。默认值为：PKCS1_PADDING。<br>当设置为 PKCS1_PSS_PADDING 时，mdName 必须为 "SHA256"、"SHA384" 或 "SHA512"。<br> **说明**：仅当签名者私钥类型为RSA时有效。  <br> **原子化服务API：** 从API version 22开始，该接口支持在原子化服务中使用。             |
 | addCert               | boolean            | 否   | 是  |是否添加证书。默认为true。true为需要，false为不需要。 <br> **原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。                            |
 | addAttr               | boolean            | 否   | 是 |是否添加签名属性。默认为true。true为需要，false为不需要。<br> **原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。           |
@@ -867,7 +864,7 @@ createX509Cert(inStream : EncodingBlob, callback : AsyncCallback\<X509Cert>) : v
 | 参数名   | 类型                                  | 必填 | 说明                       |
 | -------- | ------------------------------------- | ---- | -------------------------- |
 | inStream | [EncodingBlob](#encodingblob)         | 是   | X.509证书序列化数据。         |
-| callback | AsyncCallback\<[X509Cert](#x509cert)> | 是   | 回调函数，表示X.509证书对象。 |
+| callback | AsyncCallback\<[X509Cert](#x509cert)> | 是   | 回调函数。当创建X.509证书对象成功时，err为undefined，data为获取到的X509Cert实例；否则为错误对象。 |
 
 **错误码：**
 
@@ -911,7 +908,7 @@ let encodingBlob: cert.EncodingBlob = {
   encodingFormat: cert.EncodingFormat.FORMAT_PEM
 };
 
-cert.createX509Cert(encodingBlob, (error, x509Cert) => {
+cert.createX509Cert(encodingBlob, (error, _x509Cert) => {
   if (error) {
     console.error(`createX509Cert failed, errCode: ${error.code}, errMsg: ${error.message}`);
   } else {
@@ -940,7 +937,7 @@ createX509Cert(inStream : EncodingBlob) : Promise\<X509Cert>
 
 | 类型     | 说明             |
 | ------- | ---------------- |
-| Promise\<[X509Cert](#x509cert)> | 表示X.509证书对象。 |
+| Promise\<[X509Cert](#x509cert)> | Promise对象，返回创建的X509Cert实例。 |
 
 **错误码：**
 
@@ -985,7 +982,7 @@ let encodingBlob: cert.EncodingBlob = {
   encodingFormat: cert.EncodingFormat.FORMAT_PEM
 };
 
-cert.createX509Cert(encodingBlob).then(x509Cert => {
+cert.createX509Cert(encodingBlob).then(_x509Cert => {
   console.info('createX509Cert result: success.');
 }).catch((error: BusinessError) => {
   console.error(`createX509Cert failed, errCode: ${error.code}, errMsg: ${error.message}`);
@@ -1011,7 +1008,7 @@ verify(key : cryptoFramework.PubKey, callback : AsyncCallback\<void>) : void
 | 参数名   | 类型                  | 必填 | 说明                                                         |
 | -------- | --------------------- | ---- | ------------------------------------------------------------ |
 | key      | [cryptoFramework.PubKey](../apis-crypto-architecture-kit/js-apis-cryptoFramework.md#pubkey) | 是   | 用于验签的公钥对象。                                           |
-| callback | AsyncCallback\<void> | 是   | 回调函数，使用AsyncCallback的第一个error参数判断是否验签成功，error为null表示成功，不为null表示失败。 |
+| callback | AsyncCallback\<void> | 是   | 回调函数。当验签成功时，err为undefined，否则为错误对象。 |
 
 **错误码：**
 
@@ -1065,7 +1062,7 @@ cert.createX509Cert(encodingBlob, (error, x509Cert) => {
       let pubKey = x509Cert.getPublicKey();
 
       // 验证证书签名。
-      x509Cert.verify(pubKey, (err, data) => {
+      x509Cert.verify(pubKey, (err, _data) => {
         if (err) {
           console.error(`verify failed, errCode: ${err.code}, errMsg: ${err.message}`);
         } else {
@@ -1100,7 +1097,7 @@ verify(key : cryptoFramework.PubKey) : Promise\<void>
 
 | 类型           | 说明        |
 | -------------- | ----------- |
-| Promise\<void> | Promise对象。 |
+| Promise\<void> | Promise对象，无返回结果。 |
 
 **错误码：**
 
@@ -1149,7 +1146,7 @@ cert.createX509Cert(encodingBlob).then(x509Cert => {
   try {
     // 业务需通过上级X509Cert证书对象（或当前证书对象为自签名的证书）的getPublicKey获取PubKey。
     let pubKey = x509Cert.getPublicKey();
-    x509Cert.verify(pubKey).then(result => {
+    x509Cert.verify(pubKey).then(_result => {
       console.info('verify result: success.');
     }).catch((error: BusinessError) => {
       console.error(`verify failed, errCode: ${error.code}, errMsg: ${error.message}`);
@@ -1176,7 +1173,7 @@ getEncoded(callback : AsyncCallback\<EncodingBlob>) : void
 
 | 参数名   | 类型                                          | 必填 | 说明                             |
 | -------- | --------------------------------------------- | ---- | -------------------------------- |
-| callback | AsyncCallback\<[EncodingBlob](#encodingblob)> | 是   | 回调函数，表示X.509证书序列化数据。 |
+| callback | AsyncCallback\<[EncodingBlob](#encodingblob)> | 是   | 回调函数。当获取X.509证书序列化数据成功时，err为undefined，data为获取到的X.509证书序列化数据；否则为错误对象。 |
 
 **错误码：**
 
@@ -1225,7 +1222,7 @@ cert.createX509Cert(encodingBlob, (error, x509Cert) => {
     console.error(`createX509Cert failed, errCode: ${error.code}, errMsg: ${error.message}`);
   } else {
     console.info('createX509Cert result: success.');
-    x509Cert.getEncoded((error, data) => {
+    x509Cert.getEncoded((error, _data) => {
       if (error) {
         console.error(`getEncoded failed, errCode: ${error.code}, errMsg: ${error.message}`);
       } else {
@@ -1250,7 +1247,7 @@ getEncoded() : Promise\<EncodingBlob>
 
 | 类型                                    | 说明                   |
 | --------------------------------------- | ---------------------- |
-| Promise\<[EncodingBlob](#encodingblob)> | 表示X.509证书序列化数据。 |
+| Promise\<[EncodingBlob](#encodingblob)> | Promise对象，返回X.509证书序列化数据。 |
 
 **错误码：**
 
@@ -1297,7 +1294,7 @@ let encodingBlob: cert.EncodingBlob = {
 };
 cert.createX509Cert(encodingBlob).then(x509Cert => {
   console.info('createX509Cert result: success.');
-  x509Cert.getEncoded().then(result => {
+  x509Cert.getEncoded().then(_result => {
     console.info('getEncoded result: success.');
   }).catch((error: BusinessError) => {
     console.error(`getEncoded failed, errCode: ${error.code}, errMsg: ${error.message}`);
@@ -1370,7 +1367,7 @@ cert.createX509Cert(encodingBlob, (error, x509Cert) => {
   } else {
     console.info('createX509Cert result: success.');
     try {
-      let pubKey = x509Cert.getPublicKey();
+      x509Cert.getPublicKey();
     } catch (error) {
       let e: BusinessError = error as BusinessError;
       console.error(`getPublicKey failed, errCode: ${e.code}, errMsg: ${e.message}`);
@@ -1509,6 +1506,7 @@ cert.createX509Cert(encodingBlob, (error, x509Cert) => {
   } else {
     console.info('createX509Cert result: success.');
     let version = x509Cert.getVersion();
+    console.info('version = ' + version);
   }
 });
 ```
@@ -1568,6 +1566,7 @@ cert.createX509Cert(encodingBlob, (error, x509Cert) => {
   } else {
     console.info('createX509Cert result: success.');
     let serialNumber = x509Cert.getSerialNumber();
+    console.info('serialNumber = ' + serialNumber);
   }
 });
 ```
@@ -1635,6 +1634,7 @@ cert.createX509Cert(encodingBlob, (error, x509Cert) => {
     console.info('createX509Cert result: success.');
     try {
       let serialNumber = x509Cert.getCertSerialNumber();
+      console.info('serialNumber = ' + serialNumber);
     } catch (err) {
       let e: BusinessError = err as BusinessError;
       console.error(`getCertSerialNumber failed, errCode: ${e.code}, errMsg: ${e.message}`);
@@ -1714,6 +1714,7 @@ cert.createX509Cert(encodingBlob, (error, x509Cert) => {
     console.info('createX509Cert result: success.');
     try {
       let issuerName = x509Cert.getIssuerName();
+      console.info('issuerName = ' + issuerName.data);
     } catch (err) {
       let e: BusinessError = err as BusinessError;
       console.error(`getIssuerName failed, errCode: ${e.code}, errMsg: ${e.message}`);
@@ -1895,12 +1896,14 @@ cert.createX509Cert(encodingBlob, (error, x509Cert) => {
     console.info('createX509Cert result: success.');
     try {
       let subjectName = x509Cert.getSubjectName();
+      console.info('subjectName = ' + subjectName.data);
     } catch (err) {
       let e: BusinessError = err as BusinessError;
       console.error(`getSubjectName failed, errCode: ${e.code}, errMsg: ${e.message}`);
     }
     try {
       let subjectNameutf8 = x509Cert.getSubjectName(cert.EncodingType.ENCODING_UTF8);
+      console.info('subjectNameutf8 = ' + subjectNameutf8.data);
     } catch (err) {
       let e: BusinessError = err as BusinessError;
       console.error(`getSubjectNameUtf8 failed, errCode: ${e.code}, errMsg: ${e.message}`);
@@ -1974,6 +1977,7 @@ cert.createX509Cert(encodingBlob, (error, x509Cert) => {
     console.info('createX509Cert result: success.');
     try {
       let notBefore = x509Cert.getNotBeforeTime();
+      console.info('notBefore = ' + notBefore);
     } catch (err) {
       let e: BusinessError = err as BusinessError;
       console.error(`getNotBeforeTime failed, errCode: ${e.code}, errMsg: ${e.message}`);
@@ -2047,6 +2051,7 @@ cert.createX509Cert(encodingBlob, (error, x509Cert) => {
     console.info('createX509Cert result: success.');
     try {
       let notAfter = x509Cert.getNotAfterTime();
+      console.info('notAfter = ' + notAfter);
     } catch (err) {
       let e: BusinessError = err as BusinessError;
       console.error(`getNotAfterTime failed, errCode: ${e.code}, errMsg: ${e.message}`);
@@ -2120,6 +2125,7 @@ cert.createX509Cert(encodingBlob, (error, x509Cert) => {
     console.info('createX509Cert result: success.');
     try {
       let signature = x509Cert.getSignature();
+      console.info('signature = ' + signature.data);
     } catch (err) {
       let e: BusinessError = err as BusinessError;
       console.error(`getSignature failed, errCode: ${e.code}, errMsg: ${e.message}`);
@@ -2193,6 +2199,7 @@ cert.createX509Cert(encodingBlob, (error, x509Cert) => {
     console.info('createX509Cert result: success.');
     try {
       let sigAlgName = x509Cert.getSignatureAlgName();
+      console.info('sigAlgName = ' + sigAlgName);
     } catch (err) {
       let e: BusinessError = err as BusinessError;
       console.error(`getSignatureAlgName failed, errCode: ${e.code}, errMsg: ${e.message}`);
@@ -2266,6 +2273,7 @@ cert.createX509Cert(encodingBlob, (error, x509Cert) => {
     console.info('createX509Cert result: success.');
     try {
       let sigAlgOid = x509Cert.getSignatureAlgOid();
+      console.info('sigAlgOid = ' + sigAlgOid);
     } catch (err) {
       let e: BusinessError = err as BusinessError;
       console.error(`getSignatureAlgOid failed, errCode: ${e.code}, errMsg: ${e.message}`);
@@ -2355,6 +2363,7 @@ cert.createX509Cert(encodingBlob, (error, x509Cert) => {
     console.info('createX509Cert result: success.');
     try {
       let sigAlgParams = x509Cert.getSignatureAlgParams();
+      console.info('sigAlgParams = ' + sigAlgParams.data);
     } catch (err) {
       let e: BusinessError = err as BusinessError;
       console.error(`getSignatureAlgParams failed, errCode: ${e.code}, errMsg: ${e.message}`);
@@ -2437,6 +2446,7 @@ cert.createX509Cert(encodingBlob, (error, x509Cert) => {
     console.info('createX509Cert result: success.');
     try {
       let keyUsage = x509Cert.getKeyUsage();
+      console.info('keyUsage = ' + keyUsage.data);
     } catch (err) {
       let e: BusinessError = err as BusinessError;
       console.error(`getKeyUsage failed, errCode: ${e.code}, errMsg: ${e.message}`);
@@ -2521,6 +2531,7 @@ cert.createX509Cert(encodingBlob, (error, x509Cert) => {
     console.info('createX509Cert result: success.');
     try {
       let extKeyUsage = x509Cert.getExtKeyUsage();
+      console.info('extKeyUsage = ' + extKeyUsage.data);
     } catch (err) {
       let e: BusinessError = err as BusinessError;
       console.error(`getExtKeyUsage failed, errCode: ${e.code}, errMsg: ${e.message}`);
@@ -2582,6 +2593,7 @@ cert.createX509Cert(encodingBlob, (error, x509Cert) => {
   } else {
     console.info('createX509Cert result: success.');
     let basicConstraints = x509Cert.getBasicConstraints();
+    console.info('basicConstraints = ' + basicConstraints);
   }
 });
 ```
@@ -2666,6 +2678,7 @@ cert.createX509Cert(encodingBlob, (error, x509Cert) => {
     console.info('createX509Cert result: success.');
     try {
       let subjectAltNames = x509Cert.getSubjectAltNames();
+      console.info('subjectAltNames = ' + subjectAltNames.data);
     } catch (err) {
       let e: BusinessError = err as BusinessError;
       console.error(`getSubjectAltNames failed, errCode: ${e.code}, errMsg: ${e.message}`);
@@ -2752,6 +2765,7 @@ cert.createX509Cert(encodingBlob, (error, x509Cert) => {
     console.info('createX509Cert result: success.');
     try {
       let issuerAltNames = x509Cert.getIssuerAltNames();
+      console.info('issuerAltNames = ' + issuerAltNames.data);
     } catch (err) {
       let e: BusinessError = err as BusinessError;
       console.error(`getIssuerAltNames failed, errCode: ${e.code}, errMsg: ${e.message}`);
@@ -2832,7 +2846,9 @@ cert.createX509Cert(encodingBlob, (error, x509Cert) => {
     console.info('createX509Cert result: success.');
     try {
       let tbs = x509Cert.getItem(cert.CertItemType.CERT_ITEM_TYPE_TBS);
+      console.info('tbs = ' + tbs.data);
       let pubKey = x509Cert.getItem(cert.CertItemType.CERT_ITEM_TYPE_PUBLIC_KEY);
+      console.info('pubKey = ' + pubKey.data);
     } catch (err) {
       let e: BusinessError = err as BusinessError;
       console.error(`getItem failed, errCode: ${e.code}, errMsg: ${e.message}`);
@@ -2888,7 +2904,7 @@ function stringToUint8Array(str: string): Uint8Array {
 }
 
 async function createX509Cert(): Promise<cert.X509Cert> {
-  let certData =  '-----BEGIN CERTIFICATE-----\n' +
+  let certData = '-----BEGIN CERTIFICATE-----\n' +
   'MIIDTTCCAjWgAwIBAgIBAzANBgkqhkiG9w0BAQsFADASMRAwDgYDVQQDDAdSb290\n' +
   'IENBMB4XDTI0MDMxOTAyMDM1NFoXDTM0MDMxNzAyMDM1NFowETEPMA0GA1UEAwwG\n' +
   'ZGV2aWNlMIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAuoGk2J0aKWTP\n' +
@@ -2936,6 +2952,7 @@ async function matchX509Cert() {
       publicKeyAlgID: '1.2.840.113549.1.1.1'
     };
     const result = x509Cert.match(param);
+    console.info('result = ' + result);
     console.info('call x509Cert match result: success.');
   } catch (err) {
     let e: BusinessError = err as BusinessError;
@@ -3012,6 +3029,7 @@ async function certGetCRLDistributionPoint() {
     x509Cert = await cert.createX509Cert(encodingBlob);
     console.info('createX509Cert result: success.');
     let point = x509Cert.getCRLDistributionPoint();
+    console.info('point = ' + point.data);
   } catch (err) {
     let e: BusinessError = err as BusinessError;
     console.error(`createX509Cert failed, errCode: ${e.code}, errMsg: ${e.message}`);
@@ -3082,7 +3100,7 @@ let certData = '-----BEGIN CERTIFICATE-----\n' +
   'MnX1BeLxbAcAsTPYHjoeFJIrGkKlydLyt/8hDQzpLRW5uEUTjjqLh7vef0OaOP80\n' +
   'MmADt6ojRYvwdMDHF0ASJyupLQ+hiRLVadciK8Z5W34JGN2jwEw5X3nXyAgErIJZ\n' +
   'pqdTflnFLnSwy5M3QHB+xjYAcS9l1br2LA==\n' +
-  '-----END CERTIFICATE-----\n'
+  '-----END CERTIFICATE-----\n';
 
 // 证书二进制数据，需业务自行赋值。
 let encodingBlob: cert.EncodingBlob = {
@@ -3096,7 +3114,7 @@ async function certGetIssuerX500DistinguishedName() {
   try {
     x509Cert = await cert.createX509Cert(encodingBlob);
     console.info('createX509Cert result: success.');
-    let name = x509Cert.getIssuerX500DistinguishedName();
+    x509Cert.getIssuerX500DistinguishedName();
   } catch (err) {
     let e: BusinessError = err as BusinessError;
     console.error(`createX509Cert failed, errCode: ${e.code}, errMsg: ${e.message}`);
@@ -3167,7 +3185,7 @@ let certData = '-----BEGIN CERTIFICATE-----\n' +
   'MnX1BeLxbAcAsTPYHjoeFJIrGkKlydLyt/8hDQzpLRW5uEUTjjqLh7vef0OaOP80\n' +
   'MmADt6ojRYvwdMDHF0ASJyupLQ+hiRLVadciK8Z5W34JGN2jwEw5X3nXyAgErIJZ\n' +
   'pqdTflnFLnSwy5M3QHB+xjYAcS9l1br2LA==\n' +
-  '-----END CERTIFICATE-----\n'
+  '-----END CERTIFICATE-----\n';
 
 // 证书二进制数据，需业务自行赋值。
 let encodingBlob: cert.EncodingBlob = {
@@ -3181,7 +3199,7 @@ async function certGetSubjectX500DistinguishedName() {
   try {
     x509Cert = await cert.createX509Cert(encodingBlob);
     console.info('createX509Cert result: success.');
-    let name = x509Cert.getSubjectX500DistinguishedName();
+    x509Cert.getSubjectX500DistinguishedName();
   } catch (err) {
     let e: BusinessError = err as BusinessError;
     console.error(`createX509Cert failed, errCode: ${e.code}, errMsg: ${e.message}`);
@@ -3252,7 +3270,7 @@ let certData = '-----BEGIN CERTIFICATE-----\n' +
   'MnX1BeLxbAcAsTPYHjoeFJIrGkKlydLyt/8hDQzpLRW5uEUTjjqLh7vef0OaOP80\n' +
   'MmADt6ojRYvwdMDHF0ASJyupLQ+hiRLVadciK8Z5W34JGN2jwEw5X3nXyAgErIJZ\n' +
   'pqdTflnFLnSwy5M3QHB+xjYAcS9l1br2LA==\n' +
-  '-----END CERTIFICATE-----\n'
+  '-----END CERTIFICATE-----\n';
 
 // 证书二进制数据，需业务自行赋值。
 let encodingBlob: cert.EncodingBlob = {
@@ -3427,7 +3445,7 @@ let certData = '-----BEGIN CERTIFICATE-----\n' +
   'MnX1BeLxbAcAsTPYHjoeFJIrGkKlydLyt/8hDQzpLRW5uEUTjjqLh7vef0OaOP80\n' +
   'MmADt6ojRYvwdMDHF0ASJyupLQ+hiRLVadciK8Z5W34JGN2jwEw5X3nXyAgErIJZ\n' +
   'pqdTflnFLnSwy5M3QHB+xjYAcS9l1br2LA==\n' +
-  '-----END CERTIFICATE-----\n'
+  '-----END CERTIFICATE-----\n';
 
 // 证书二进制数据，需业务自行赋值。
 let encodingBlob: cert.EncodingBlob = {
@@ -3512,7 +3530,7 @@ let certData = '-----BEGIN CERTIFICATE-----\n' +
   'MnX1BeLxbAcAsTPYHjoeFJIrGkKlydLyt/8hDQzpLRW5uEUTjjqLh7vef0OaOP80\n' +
   'MmADt6ojRYvwdMDHF0ASJyupLQ+hiRLVadciK8Z5W34JGN2jwEw5X3nXyAgErIJZ\n' +
   'pqdTflnFLnSwy5M3QHB+xjYAcS9l1br2LA==\n' +
-  '-----END CERTIFICATE-----\n'
+  '-----END CERTIFICATE-----\n';
 
 // 证书二进制数据，需业务自行赋值。
 let encodingBlob: cert.EncodingBlob = {
@@ -3526,7 +3544,7 @@ async function certGetExtensionsObject() {
   try {
     x509Cert = await cert.createX509Cert(encodingBlob);
     console.info('createX509Cert result: success.');
-    let object = x509Cert.getExtensionsObject();
+    x509Cert.getExtensionsObject();
   } catch (err) {
     let e: BusinessError = err as BusinessError;
     console.error(`createX509Cert failed, errCode: ${e.code}, errMsg: ${e.message}`);
@@ -3549,7 +3567,7 @@ createCertExtension(inStream : EncodingBlob, callback : AsyncCallback\<CertExten
 | 参数名   | 类型                                              | 必填 | 说明                       |
 | -------- | ------------------------------------------------- | ---- | -------------------------- |
 | inStream | [EncodingBlob](#encodingblob)                     | 是   | 表示序列化的证书扩展数据。 |
-| callback | AsyncCallback\<[CertExtension](#certextension10)> | 是   | 回调函数，表示证书扩展对象。 |
+| callback | AsyncCallback\<[CertExtension](#certextension10)> | 是   | 回调函数。当创建证书扩展对象成功时，err为undefined，data为获取到的CertExtension实例；否则为错误对象。 |
 
 **错误码：**
 
@@ -3586,7 +3604,7 @@ let encodingBlob: cert.EncodingBlob = {
   encodingFormat: cert.EncodingFormat.FORMAT_DER
 };
 
-cert.createCertExtension(encodingBlob, (error, certExt) => {
+cert.createCertExtension(encodingBlob, (error, _certExt) => {
   if (error) {
     console.error(`createCertExtension failed, errCode: ${error.code}, errMsg: ${error.message}`);
   } else {
@@ -3653,7 +3671,7 @@ let encodingBlob: cert.EncodingBlob = {
   encodingFormat: cert.EncodingFormat.FORMAT_DER
 };
 
-cert.createCertExtension(encodingBlob).then(certExt => {
+cert.createCertExtension(encodingBlob).then(_certExt => {
   console.info('createCertExtension result: success.');
 }).catch((error: BusinessError) => {
   console.error(`createCertExtension failed, errCode: ${error.code}, errMsg: ${error.message}`);
@@ -3722,6 +3740,7 @@ cert.createCertExtension(encodingBlob, (error, certExt) => {
     console.info('createCertExtension result: success.');
     try {
       let extEncodedBlob = certExt.getEncoded();
+      console.info('extEncodedBlob = ' + extEncodedBlob.data);
     } catch (err) {
       let e: BusinessError = err as BusinessError;
       console.error(`ext getEncoded failed, errCode: ${e.code}, errMsg: ${e.message}`);
@@ -3795,6 +3814,7 @@ cert.createCertExtension(encodingBlob, (error, certExt) => {
     console.info('createCertExtension result: success.');
     try {
       let oidList = certExt.getOidList(cert.ExtensionOidType.EXTENSION_OID_TYPE_ALL);
+      console.info('oidList = ' + oidList.data);
     } catch (err) {
       let e: BusinessError = err as BusinessError;
       console.error(`ext getOidList failed, errCode: ${e.code}, errMsg: ${e.message}`);
@@ -3870,9 +3890,10 @@ cert.createCertExtension(encodingBlob, (error, certExt) => {
     let oid = new Uint8Array([0x32, 0x2e, 0x35, 0x2e, 0x32, 0x39, 0x2e, 0x31, 0x35]);
     let oidBlob: cert.DataBlob = {
       data: oid
-    }
+    };
     try {
       let entry = certExt.getEntry(cert.ExtensionEntryType.EXTENSION_ENTRY_TYPE_ENTRY, oidBlob);
+      console.info('entry = ' + entry.data);
     } catch (err) {
       let e: BusinessError = err as BusinessError;
       console.error(`ext getEntry failed, errCode: ${e.code}, errMsg: ${e.message}`);
@@ -3939,6 +3960,7 @@ cert.createCertExtension(encodingBlob, (error, certExt) => {
     console.info('createCertExtension result: success.');
     try {
       let res = certExt.checkCA();
+      console.info('res = ' + res);
     } catch (err) {
       let e: BusinessError = err as BusinessError;
       console.error(`ext checkCA failed, errCode: ${e.code}, errMsg: ${e.message}`);
@@ -3997,7 +4019,7 @@ let encodingBlob: cert.EncodingBlob = {
 
 cert.createCertExtension(encodingBlob).then((extensionObj) => {
   console.info('createCertExtension result: success.');
-  const result = extensionObj.hasUnsupportedCriticalExtension()
+  const result = extensionObj.hasUnsupportedCriticalExtension();
   console.info('has unsupported critical extension result =' + result);
 }).catch((err: BusinessError) => {
   console.error(`createCertExtension failed, errCode: ${err.code}, errMsg: ${err.message}`);
@@ -4021,7 +4043,7 @@ createX509Crl(inStream : EncodingBlob, callback : AsyncCallback\<X509Crl>) : voi
 | 参数名   | 类型                                | 必填 | 说明                           |
 | -------- | ----------------------------------- | ---- | ------------------------------ |
 | inStream | [EncodingBlob](#encodingblob)       | 是   | 表示证书吊销列表序列化数据。     |
-| callback | AsyncCallback\<[X509Crl](#x509crldeprecated)> | 是   | 回调函数，表示证书吊销列表对象。 |
+| callback | AsyncCallback\<[X509Crl](#x509crldeprecated)> | 是   | 回调函数。当创建X.509证书吊销列表对象成功时，err为undefined，data为获取到的X509Crl实例；否则为错误对象。 |
 
 **错误码：**
 
@@ -4063,7 +4085,7 @@ let encodingBlob: cert.EncodingBlob = {
   encodingFormat: cert.EncodingFormat.FORMAT_PEM
 };
 
-cert.createX509Crl(encodingBlob, (error, x509Crl) => {
+cert.createX509Crl(encodingBlob, (error, _x509Crl) => {
   if (error) {
     console.error(`createX509Crl failed, errCode: ${error.code}, errMsg: ${error.message}`);
   } else {
@@ -4094,7 +4116,7 @@ createX509Crl(inStream : EncodingBlob) : Promise\<X509Crl>
 
 | 类型                          | 说明                 |
 | ----------------------------- | -------------------- |
-| Promise\<[X509Crl](#x509crldeprecated)> | 表示证书吊销列表对象。 |
+| Promise\<[X509Crl](#x509crldeprecated)> | Promise对象，返回创建的X509Crl实例。 |
 
 **错误码：**
 
@@ -4137,7 +4159,7 @@ let encodingBlob: cert.EncodingBlob = {
   encodingFormat: cert.EncodingFormat.FORMAT_PEM
 };
 
-cert.createX509Crl(encodingBlob).then(x509Crl => {
+cert.createX509Crl(encodingBlob).then(_x509Crl => {
   console.info('createX509Crl result: success.');
 }).catch((error: BusinessError) => {
   console.error(`createX509Crl failed, errCode: ${error.code}, errMsg: ${error.message}`);
@@ -4159,7 +4181,7 @@ createX509CRL(inStream : EncodingBlob, callback : AsyncCallback\<X509CRL>) : voi
 | 参数名   | 类型                                  | 必填 | 说明                           |
 | -------- | ------------------------------------- | ---- | ------------------------------ |
 | inStream | [EncodingBlob](#encodingblob)         | 是   | 表示证书吊销列表序列化数据。当前支持的数据长度不超过8192字节。     |
-| callback | AsyncCallback\<[X509CRL](#x509crl11)> | 是   | 回调函数，表示证书吊销列表对象。 |
+| callback | AsyncCallback\<[X509CRL](#x509crl11)> | 是   | 回调函数。当创建X.509证书吊销列表对象成功时，err为undefined，data为获取到的X509CRL实例；否则为错误对象。 |
 
 **错误码：**
 
@@ -4201,7 +4223,7 @@ let encodingBlob: cert.EncodingBlob = {
   encodingFormat: cert.EncodingFormat.FORMAT_PEM
 };
 
-cert.createX509CRL(encodingBlob, (error, X509CRL) => {
+cert.createX509CRL(encodingBlob, (error, _X509CRL) => {
   if (error) {
     console.error(`createX509CRL failed, errCode: ${error.code}, errMsg: ${error.message}`);
   } else {
@@ -4230,7 +4252,7 @@ createX509CRL(inStream : EncodingBlob) : Promise\<X509CRL>
 
 | 类型                            | 说明                 |
 | ------------------------------- | -------------------- |
-| Promise\<[X509CRL](#x509crl11)> | 表示证书吊销列表对象。 |
+| Promise\<[X509CRL](#x509crl11)> | Promise对象，返回创建的X509CRL实例。 |
 
 **错误码：**
 
@@ -4273,7 +4295,7 @@ let encodingBlob: cert.EncodingBlob = {
   encodingFormat: cert.EncodingFormat.FORMAT_PEM
 };
 
-cert.createX509CRL(encodingBlob).then(X509CRL => {
+cert.createX509CRL(encodingBlob).then(_X509CRL => {
   console.info('createX509CRL result: success.');
 }).catch((error: BusinessError) => {
   console.error(`createX509CRL failed, errCode: ${error.code}, errMsg: ${error.message}`);
@@ -4304,7 +4326,7 @@ isRevoked(cert : X509Cert) : boolean
 
 | 参数名 | 类型     | 必填 | 说明                 |
 | ------ | -------- | ---- | -------------------- |
-| cert   | X509Cert | 是   | 表示被检查的证书对象。 |
+| cert   | [X509Cert](#x509cert) | 是   | 表示被检查的证书对象。 |
 
 **返回值**：
 
@@ -4379,6 +4401,7 @@ cert.createX509Crl(encodingBlob, (error, x509Crl) => {
       } else {
         try {
           let revokedFlag = x509Crl.isRevoked(x509Cert);
+          console.info('revokedFlag = ' + revokedFlag);
         } catch (error) {
           let e: BusinessError = error as BusinessError;
           console.error(`isRevoked failed, errCode: ${e.code}, errMsg: ${e.message}`);
@@ -4443,6 +4466,7 @@ cert.createX509Crl(encodingBlob, (error, x509Crl) => {
   } else {
     console.info('createX509Crl result: success.');
     let type = x509Crl.getType();
+    console.info('type = ' + type);
   }
 });
 ```
@@ -4463,7 +4487,7 @@ getEncoded(callback : AsyncCallback\<EncodingBlob>) : void
 
 | 参数名   | 类型                         | 必填 | 说明                                       |
 | -------- | ---------------------------- | ---- | ------------------------------------------ |
-| callback | AsyncCallback\<[EncodingBlob](#encodingblob)> | 是   | 回调函数，表示X.509证书吊销列表的序列化数据。 |
+| callback | AsyncCallback\<[EncodingBlob](#encodingblob)> | 是   | 回调函数。当获取X.509证书吊销列表序列化数据成功时，err为undefined，data为获取到的X.509证书吊销列表序列化数据；否则为错误对象。 |
 
 **错误码：**
 
@@ -4511,7 +4535,7 @@ cert.createX509Crl(encodingBlob, (error, x509Crl) => {
     console.error(`createX509Crl failed, errCode: ${error.code}, errMsg: ${error.message}`);
   } else {
     console.info('createX509Crl result: success.');
-    x509Crl.getEncoded((error, data) => {
+    x509Crl.getEncoded((error, _data) => {
       if (error) {
         console.error(`getEncoded failed, errCode: ${error.code}, errMsg: ${error.message}`);
       } else {
@@ -4538,7 +4562,7 @@ getEncoded() : Promise\<EncodingBlob>
 
 | 类型                   | 说明                             |
 | ---------------------- | -------------------------------- |
-| Promise\<[EncodingBlob](#encodingblob)> | 表示X.509证书吊销列表的序列化数据。 |
+| Promise\<[EncodingBlob](#encodingblob)> | Promise对象，返回X.509证书吊销列表的序列化数据。 |
 
 **错误码：**
 
@@ -4584,7 +4608,7 @@ let encodingBlob: cert.EncodingBlob = {
 
 cert.createX509Crl(encodingBlob).then(x509Crl => {
   console.info('createX509Crl result: success.');
-  x509Crl.getEncoded().then(result => {
+  x509Crl.getEncoded().then(_result => {
     console.info('getEncoded result: success.');
   }).catch((error: BusinessError) => {
     console.error(`getEncoded failed, errCode: ${error.code}, errMsg: ${error.message}`);
@@ -4611,7 +4635,7 @@ verify(key : cryptoFramework.PubKey, callback : AsyncCallback\<void>) : void
 | 参数名   | 类型                 | 必填 | 说明                                                         |
 | -------- | -------------------- | ---- | ------------------------------------------------------------ |
 | key      | [cryptoFramework.PubKey](../apis-crypto-architecture-kit/js-apis-cryptoFramework.md#pubkey) | 是   | 表示用于验签的公钥对象。                                       |
-| callback | AsyncCallback\<void> | 是   | 回调函数，使用AsyncCallback的第一个error参数判断是否验签成功，error为null表示成功，error不为null表示失败。 |
+| callback | AsyncCallback\<void> | 是   | 回调函数。当验签成功时，err为undefined，否则为错误对象。 |
 
 **错误码：**
 
@@ -4720,25 +4744,25 @@ cert.createX509Crl(encodingBlob, (error, x509Crl) => {
       let keyGenerator = cryptoFramework.createAsyKeyGenerator('RSA1024|PRIMES_3');
       console.info('createAsyKeyGenerator result: success.');
       let priEncodingBlob: cryptoFramework.DataBlob = {
-        data: priKeyData,
+        data: priKeyData
       };
       let pubEncodingBlob: cryptoFramework.DataBlob = {
-        data: pubKeyData,
+        data: pubKeyData
       };
       keyGenerator.convertKey(pubEncodingBlob, priEncodingBlob, (e, keyPair) => {
         if (e) {
           console.error(`convert key failed, errCode: ${e.code}, errMsg: ${e.message}`);
         } else {
           console.info('convert key result: success.');
-          x509Crl.verify(keyPair.pubKey, (err, data) => {
+          x509Crl.verify(keyPair.pubKey, (err, _data) => {
             if (err) {
               console.error(`verify failed, errCode: ${err.code}, errMsg: ${err.message}`);
-            } else  {
+            } else {
               console.info('verify result: success.');
             }
           });
         }
-      })
+      });
     } catch (error) {
       let e: BusinessError = error as BusinessError;
       console.error(`get pubKey failed, errCode: ${e.code}, errMsg: ${e.message}`);
@@ -4769,7 +4793,7 @@ verify(key : cryptoFramework.PubKey) : Promise\<void>
 
 | 类型 | 说明                                                         |
 | ---- | ------------------------------------------------------------ |
-| Promise\<void> | Promise对象。 |
+| Promise\<void> | Promise对象，无返回结果。 |
 
 **错误码：**
 
@@ -4784,7 +4808,7 @@ verify(key : cryptoFramework.PubKey) : Promise\<void>
 
 ```ts
 import { cert } from '@kit.DeviceCertificateKit';
-import { cryptoFramework } from '@kit.CryptoArchitectureKit'
+import { cryptoFramework } from '@kit.CryptoArchitectureKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 // string转Uint8Array。
@@ -4877,14 +4901,14 @@ cert.createX509Crl(encodingBlob).then(x509Crl => {
     let keyGenerator = cryptoFramework.createAsyKeyGenerator('RSA1024|PRIMES_3');
     console.info('createAsyKeyGenerator result: success.');
     let priEncodingBlob: cryptoFramework.DataBlob = {
-      data: priKeyData,
+      data: priKeyData
     };
     let pubEncodingBlob: cryptoFramework.DataBlob = {
-      data: pubKeyData,
+      data: pubKeyData
     };
     keyGenerator.convertKey(pubEncodingBlob, priEncodingBlob).then((keyPair) => {
       console.info('convert key result: success.');
-      x509Crl.verify(keyPair.pubKey).then(result => {
+      x509Crl.verify(keyPair.pubKey).then(_result => {
         console.info('verify result: success.');
       }).catch((error: BusinessError) => {
         console.error(`verify failed, errCode: ${error.code}, errMsg: ${error.message}`);
@@ -4955,6 +4979,7 @@ cert.createX509Crl(encodingBlob, (error, x509Crl) => {
   } else {
     console.info('createX509Crl result: success.');
     let version = x509Crl.getVersion();
+    console.info('version = ' + version);
   }
 });
 ```
@@ -5025,6 +5050,7 @@ cert.createX509Crl(encodingBlob, (error, x509Crl) => {
     console.info('createX509Crl result: success.');
     try {
       let issuerName = x509Crl.getIssuerName();
+      console.info('issuerName = ' + issuerName.data);
     } catch (err) {
       let e: BusinessError = err as BusinessError;
       console.error(`getIssuerName failed, errCode: ${e.code}, errMsg: ${e.message}`);
@@ -5099,6 +5125,7 @@ cert.createX509Crl(encodingBlob, (error, x509Crl) => {
     console.info('createX509Crl result: success.');
     try {
       let lastUpdate = x509Crl.getLastUpdate();
+      console.info('lastUpdate = ' + lastUpdate);
     } catch (err) {
       let e: BusinessError = err as BusinessError;
       console.error(`getLastUpdate failed, errCode: ${e.code}, errMsg: ${e.message}`);
@@ -5173,6 +5200,7 @@ cert.createX509Crl(encodingBlob, (error, x509Crl) => {
     console.info('createX509Crl result: success.');
     try {
       let nextUpdate = x509Crl.getNextUpdate();
+      console.info('nextUpdate = ' + nextUpdate);
     } catch (err) {
       let e: BusinessError = err as BusinessError;
       console.error(`getNextUpdate failed, errCode: ${e.code}, errMsg: ${e.message}`);
@@ -5253,7 +5281,7 @@ cert.createX509Crl(encodingBlob, (error, x509Crl) => {
     console.info('createX509Crl result: success.');
     let serialNumber = 1000;
     try {
-      let entry = x509Crl.getRevokedCert(serialNumber);
+      x509Crl.getRevokedCert(serialNumber);
     } catch (error) {
       let e: BusinessError = error as BusinessError;
       console.error(`getRevokedCert failed, errCode: ${e.code}, errMsg: ${e.message}`);
@@ -5366,7 +5394,7 @@ cert.createX509Crl(encodingBlob, (error, x509Crl) => {
     // 创建X.509证书对象。
     cert.createX509Cert(certEncodingBlob).then((x509Cert) => {
       try {
-        let entry = x509Crl.getRevokedCertWithCert(x509Cert);
+        x509Crl.getRevokedCertWithCert(x509Cert);
         console.info('getRevokedCertWithCert result: success.');
       } catch (error) {
         let e: BusinessError = error as BusinessError;
@@ -5374,7 +5402,7 @@ cert.createX509Crl(encodingBlob, (error, x509Crl) => {
       }
     }).catch((error: BusinessError) => {
       console.error(`createX509Cert failed, errCode: ${error.code}, errMsg: ${error.message}`);
-    })
+    });
   }
 });
 ```
@@ -5395,7 +5423,7 @@ getRevokedCerts(callback : AsyncCallback<Array\<X509CrlEntry>>) : void
 
 | 参数名   | 类型                                                 | 必填 | 说明                             |
 | -------- | ---------------------------------------------------- | ---- | -------------------------------- |
-| callback | AsyncCallback<Array\<[X509CrlEntry](#x509crlentrydeprecated)>> | 是   | 回调函数，表示获取到的证书吊销条目列表。 |
+| callback | AsyncCallback<Array\<[X509CrlEntry](#x509crlentrydeprecated)>> | 是   | 回调函数。当获取证书吊销条目列表成功时，err为undefined，data为获取到的证书吊销条目列表；否则为错误对象。 |
 
 **错误码：**
 
@@ -5442,7 +5470,7 @@ cert.createX509Crl(encodingBlob, (error, x509Crl) => {
     console.error(`createX509Crl failed, errCode: ${error.code}, errMsg: ${error.message}`);
   } else {
     console.info('createX509Crl result: success.');
-    x509Crl.getRevokedCerts((error, array) => {
+    x509Crl.getRevokedCerts((error, _array) => {
       if (error) {
         console.error(`getRevokedCerts failed, errCode: ${error.code}, errMsg: ${error.message}`);
       } else {
@@ -5469,7 +5497,7 @@ getRevokedCerts() : Promise<Array\<X509CrlEntry>>
 
 | 类型                                           | 说明                   |
 | ---------------------------------------------- | ---------------------- |
-| Promise<Array\<[X509CrlEntry](#x509crlentrydeprecated)>> | 表示证书吊销条目列表。 |
+| Promise<Array\<[X509CrlEntry](#x509crlentrydeprecated)>> | Promise对象，返回证书吊销条目列表。 |
 
 **错误码：**
 
@@ -5514,7 +5542,7 @@ let encodingBlob: cert.EncodingBlob = {
 
 cert.createX509Crl(encodingBlob).then(x509Crl => {
   console.info('createX509Crl result: success.');
-  x509Crl.getRevokedCerts().then(array => {
+  x509Crl.getRevokedCerts().then(_array => {
     console.info('getRevokedCerts result: success.');
   }).catch((error: BusinessError) => {
     console.error(`getRevokedCerts failed, errCode: ${error.code}, errMsg: ${error.message}`);
@@ -5590,6 +5618,7 @@ cert.createX509Crl(encodingBlob, (error, x509Crl) => {
     console.info('createX509Crl result: success.');
     try {
       let tbsInfo = x509Crl.getTbsInfo();
+      console.info('tbsInfo = ' + tbsInfo.data);
     } catch (error) {
       let e: BusinessError = error as BusinessError;
       console.error(`getTbsInfo failed, errCode: ${e.code}, errMsg: ${e.message}`);
@@ -5664,6 +5693,7 @@ cert.createX509Crl(encodingBlob, (error, x509Crl) => {
     console.info('createX509Crl result: success.');
     try {
       let signature = x509Crl.getSignature();
+      console.info('signature = ' + signature.data);
     } catch (err) {
       let e: BusinessError = err as BusinessError;
       console.error(`getSignature failed, errCode: ${e.code}, errMsg: ${e.message}`);
@@ -5738,6 +5768,7 @@ cert.createX509Crl(encodingBlob, (error, x509Crl) => {
     console.info('createX509Crl result: success.');
     try {
       let sigAlgName = x509Crl.getSignatureAlgName();
+      console.info('sigAlgName = ' + sigAlgName);
     } catch (err) {
       let e: BusinessError = err as BusinessError;
       console.error(`getSignatureAlgName failed, errCode: ${e.code}, errMsg: ${e.message}`);
@@ -5812,6 +5843,7 @@ cert.createX509Crl(encodingBlob, (error, x509Crl) => {
     console.info('createX509Crl result: success.');
     try {
       let sigAlgOid = x509Crl.getSignatureAlgOid();
+      console.info('sigAlgOid = ' + sigAlgOid);
     } catch (err) {
       let e: BusinessError = err as BusinessError;
       console.error(`getSignatureAlgOid failed, errCode: ${e.code}, errMsg: ${e.message}`);
@@ -5887,6 +5919,7 @@ cert.createX509Crl(encodingBlob, (error, x509Crl) => {
     console.info('createX509Crl result: success.');
     try {
       let sigAlgParams = x509Crl.getSignatureAlgParams();
+      console.info('sigAlgParams = ' + sigAlgParams.data);
     } catch (err) {
       let e: BusinessError = err as BusinessError;
       console.error(`getSignatureAlgParams failed, errCode: ${e.code}, errMsg: ${e.message}`);
@@ -5987,6 +6020,7 @@ cert.createX509CRL(encodingBlob, (error, x509CRL) => {
       } else {
         try {
           let revokedFlag = x509CRL.isRevoked(x509Cert);
+          console.info('revokedFlag = ' + revokedFlag);
         } catch (error) {
           let e: BusinessError = error as BusinessError;
           console.error(`isRevoked failed, errCode: ${e.code}, errMsg: ${e.message}`);
@@ -6049,6 +6083,7 @@ cert.createX509CRL(encodingBlob, (error, x509CRL) => {
   } else {
     console.info('createX509CRL result: success.');
     let type = x509CRL.getType();
+    console.info('type = ' + type);
   }
 });
 ```
@@ -6067,7 +6102,7 @@ getEncoded(callback : AsyncCallback\<EncodingBlob>) : void
 
 | 参数名   | 类型                                          | 必填 | 说明                                       |
 | -------- | --------------------------------------------- | ---- | ------------------------------------------ |
-| callback | AsyncCallback\<[EncodingBlob](#encodingblob)> | 是   | 回调函数，表示X.509证书吊销列表的序列化数据。 |
+| callback | AsyncCallback\<[EncodingBlob](#encodingblob)> | 是   | 回调函数。当获取X.509证书吊销列表序列化数据成功时，err为undefined，data为获取到的X.509证书吊销列表序列化数据；否则为错误对象。 |
 
 **错误码：**
 
@@ -6115,7 +6150,7 @@ cert.createX509CRL(encodingBlob, (error, x509CRL) => {
     console.error(`createX509CRL failed, errCode: ${error.code}, errMsg: ${error.message}`);
   } else {
     console.info('createX509CRL result: success.');
-    x509CRL.getEncoded((error, data) => {
+    x509CRL.getEncoded((error, _data) => {
       if (error) {
         console.error(`getEncoded failed, errCode: ${error.code}, errMsg: ${error.message}`);
       } else {
@@ -6140,7 +6175,7 @@ getEncoded() : Promise\<EncodingBlob>
 
 | 类型                                    | 说明                             |
 | --------------------------------------- | -------------------------------- |
-| Promise\<[EncodingBlob](#encodingblob)> | 表示X.509证书吊销列表的序列化数据。 |
+| Promise\<[EncodingBlob](#encodingblob)> | Promise对象，返回X.509证书吊销列表的序列化数据。 |
 
 **错误码：**
 
@@ -6186,7 +6221,7 @@ let encodingBlob: cert.EncodingBlob = {
 
 cert.createX509CRL(encodingBlob).then(x509CRL => {
   console.info('createX509CRL result: success.');
-  x509CRL.getEncoded().then(result => {
+  x509CRL.getEncoded().then(_result => {
     console.info('getEncoded result: success.');
   }).catch((error: BusinessError) => {
     console.error(`getEncoded failed, errCode: ${error.code}, errMsg: ${error.message}`);
@@ -6211,7 +6246,7 @@ verify(key : cryptoFramework.PubKey, callback : AsyncCallback\<void>) : void
 | 参数名   | 类型                                                        | 必填 | 说明                                                         |
 | -------- | ----------------------------------------------------------- | ---- | ------------------------------------------------------------ |
 | key      | [cryptoFramework.PubKey](../apis-crypto-architecture-kit/js-apis-cryptoFramework.md#pubkey) | 是   | 表示用于验签的公钥对象。                                       |
-| callback | AsyncCallback\<void>                                        | 是   | 回调函数，使用AsyncCallback的第一个error参数判断是否验签成功，error为null表示成功，error不为null表示失败。 |
+| callback | AsyncCallback\<void>                                        | 是   | 回调函数。当验签成功时，err为undefined，否则为错误对象。 |
 
 **错误码：**
 
@@ -6320,17 +6355,17 @@ cert.createX509CRL(encodingBlob, (error, x509CRL) => {
       let keyGenerator = cryptoFramework.createAsyKeyGenerator('RSA1024|PRIMES_3');
       console.info('createAsyKeyGenerator result: success.');
       let priEncodingBlob: cryptoFramework.DataBlob = {
-        data: priKeyData,
+        data: priKeyData
       };
       let pubEncodingBlob: cryptoFramework.DataBlob = {
-        data: pubKeyData,
+        data: pubKeyData
       };
       keyGenerator.convertKey(pubEncodingBlob, priEncodingBlob, (e, keyPair) => {
         if (e) {
           console.error(`convert key failed, errCode: ${e.code}, errMsg: ${e.message}`);
         } else {
           console.info('convert key result: success.');
-          x509CRL.verify(keyPair.pubKey, (err, data) => {
+          x509CRL.verify(keyPair.pubKey, (err, _data) => {
             if (err) {
               console.error(`verify failed, errCode: ${err.code}, errMsg: ${err.message}`);
             } else {
@@ -6338,7 +6373,7 @@ cert.createX509CRL(encodingBlob, (error, x509CRL) => {
             }
           });
         }
-      })
+      });
     } catch (error) {
       let e: BusinessError = error as BusinessError;
       console.error(`get pubKey failed, errCode: ${e.code}, errMsg: ${e.message}`);
@@ -6367,7 +6402,7 @@ verify(key : cryptoFramework.PubKey) : Promise\<void>
 
 | 类型           | 说明        |
 | -------------- | ----------- |
-| Promise\<void> | Promise对象。 |
+| Promise\<void> | Promise对象，无返回结果。 |
 
 **错误码：**
 
@@ -6382,7 +6417,7 @@ verify(key : cryptoFramework.PubKey) : Promise\<void>
 
 ```ts
 import { cert } from '@kit.DeviceCertificateKit';
-import { cryptoFramework } from '@kit.CryptoArchitectureKit'
+import { cryptoFramework } from '@kit.CryptoArchitectureKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 // string转Uint8Array。
@@ -6475,14 +6510,14 @@ cert.createX509CRL(encodingBlob).then(x509CRL => {
     let keyGenerator = cryptoFramework.createAsyKeyGenerator('RSA1024|PRIMES_3');
     console.info('createAsyKeyGenerator result: success.');
     let priEncodingBlob: cryptoFramework.DataBlob = {
-      data: priKeyData,
+      data: priKeyData
     };
     let pubEncodingBlob: cryptoFramework.DataBlob = {
-      data: pubKeyData,
+      data: pubKeyData
     };
     keyGenerator.convertKey(pubEncodingBlob, priEncodingBlob).then((keyPair) => {
       console.info('convert key result: success.');
-      x509CRL.verify(keyPair.pubKey).then(result => {
+      x509CRL.verify(keyPair.pubKey).then(_result => {
         console.info('verify result: success.');
       }).catch((error: BusinessError) => {
         console.error(`verify failed, errCode: ${error.code}, errMsg: ${error.message}`);
@@ -6551,6 +6586,7 @@ cert.createX509CRL(encodingBlob, (error, x509CRL) => {
   } else {
     console.info('createX509CRL result: success.');
     let version = x509CRL.getVersion();
+    console.info('version = ' + version);
   }
 });
 ```
@@ -6623,6 +6659,7 @@ cert.createX509CRL(encodingBlob, (error, x509CRL) => {
     console.info('createX509CRL result: success.');
     try {
       let issuerName = x509CRL.getIssuerName();
+      console.info('issuerName = ' + issuerName.data);
     } catch (err) {
       let e: BusinessError = err as BusinessError;
       console.error(`getIssuerName failed, errCode: ${e.code}, errMsg: ${e.message}`);
@@ -6777,7 +6814,8 @@ cert.createX509CRL(encodingBlob, (error, x509CRL) => {
   } else {
     console.info('createX509CRL result: success.');
     try {
-      let lastUpdate  = x509CRL.getLastUpdate();
+      let lastUpdate = x509CRL.getLastUpdate();
+      console.info('lastUpdate = ' + lastUpdate);
     } catch (err) {
       let e: BusinessError = err as BusinessError;
       console.error(`getLastUpdate failed, errCode: ${e.code}, errMsg: ${e.message}`);
@@ -6850,6 +6888,7 @@ cert.createX509CRL(encodingBlob, (error, x509CRL) => {
     console.info('createX509CRL result: success.');
     try {
       let nextUpdate = x509CRL.getNextUpdate();
+      console.info('nextUpdate = ' + nextUpdate);
     } catch (err) {
       let e: BusinessError = err as BusinessError;
       console.error(`getNextUpdate failed, errCode: ${e.code}, errMsg: ${e.message}`);
@@ -6928,7 +6967,7 @@ cert.createX509CRL(encodingBlob, (error, x509CRL) => {
     console.info('createX509CRL result: success.');
     let serialNumber = BigInt(1000);
     try {
-      let entry = x509CRL.getRevokedCert(serialNumber);
+      x509CRL.getRevokedCert(serialNumber);
     } catch (error) {
       let e: BusinessError = error as BusinessError;
       console.error(`getRevokedCert failed, errCode: ${e.code}, errMsg: ${e.message}`);
@@ -7039,7 +7078,7 @@ cert.createX509CRL(encodingBlob, (error, x509CRL) => {
     // 创建X.509证书对象。
     cert.createX509Cert(certEncodingBlob).then((x509Cert) => {
       try {
-        let entry = x509CRL.getRevokedCertWithCert(x509Cert);
+        x509CRL.getRevokedCertWithCert(x509Cert);
         console.info('getRevokedCertWithCert result: success.');
       } catch (error) {
         let e: BusinessError = error as BusinessError;
@@ -7047,7 +7086,7 @@ cert.createX509CRL(encodingBlob, (error, x509CRL) => {
       }
     }).catch((error: BusinessError) => {
       console.error(`createX509Cert failed, errCode: ${error.code}, errMsg: ${error.message}`);
-    })
+    });
   }
 });
 ```
@@ -7066,7 +7105,7 @@ getRevokedCerts(callback : AsyncCallback<Array\<X509CRLEntry>>) : void
 
 | 参数名   | 类型                                                   | 必填 | 说明                             |
 | -------- | ------------------------------------------------------ | ---- | -------------------------------- |
-| callback | AsyncCallback<Array\<[X509CRLEntry](#x509crlentry11)>> | 是   | 回调函数，表示获取到的证书吊销条目列表。 |
+| callback | AsyncCallback<Array\<[X509CRLEntry](#x509crlentry11)>> | 是   | 回调函数。当获取证书吊销条目列表成功时，err为undefined，data为获取到的证书吊销条目列表；否则为错误对象。 |
 
 **错误码：**
 
@@ -7113,7 +7152,7 @@ cert.createX509CRL(encodingBlob, (error, x509CRL) => {
     console.error(`createX509CRL failed, errCode: ${error.code}, errMsg: ${error.message}`);
   } else {
     console.info('createX509CRL result: success.');
-    x509CRL.getRevokedCerts((error, array) => {
+    x509CRL.getRevokedCerts((error, _array) => {
       if (error) {
         console.error(`getRevokedCerts failed, errCode: ${error.code}, errMsg: ${error.message}`);
       } else {
@@ -7138,7 +7177,7 @@ getRevokedCerts() : Promise<Array\<X509CRLEntry>>
 
 | 类型                                             | 说明                   |
 | ------------------------------------------------ | ---------------------- |
-| Promise<Array\<[X509CRLEntry](#x509crlentry11)>> | 表示证书吊销条目列表。 |
+| Promise<Array\<[X509CRLEntry](#x509crlentry11)>> | Promise对象，返回证书吊销条目列表。 |
 
 **错误码：**
 
@@ -7183,7 +7222,7 @@ let encodingBlob: cert.EncodingBlob = {
 
 cert.createX509CRL(encodingBlob).then(x509CRL => {
   console.info('createX509CRL result: success.');
-  x509CRL.getRevokedCerts().then(array => {
+  x509CRL.getRevokedCerts().then(_array => {
     console.info('getRevokedCerts result: success.');
   }).catch((error: BusinessError) => {
     console.error(`getRevokedCerts failed, errCode: ${error.code}, errMsg: ${error.message}`);
@@ -7257,6 +7296,7 @@ cert.createX509CRL(encodingBlob, (error, x509CRL) => {
     console.info('createX509CRL result: success.');
     try {
       let signature = x509CRL.getSignature();
+      console.info('signature = ' + signature.data);
     } catch (err) {
       let e: BusinessError = err as BusinessError;
       console.error(`getSignature failed, errCode: ${e.code}, errMsg: ${e.message}`);
@@ -7329,6 +7369,7 @@ cert.createX509CRL(encodingBlob, (error, x509CRL) => {
     console.info('createX509CRL result: success.');
     try {
       let sigAlgName = x509CRL.getSignatureAlgName();
+      console.info('sigAlgName = ' + sigAlgName);
     } catch (err) {
       let e: BusinessError = err as BusinessError;
       console.error(`getSignatureAlgName failed, errCode: ${e.code}, errMsg: ${e.message}`);
@@ -7401,6 +7442,7 @@ cert.createX509CRL(encodingBlob, (error, x509CRL) => {
     console.info('createX509CRL result: success.');
     try {
       let sigAlgOid = x509CRL.getSignatureAlgOid();
+      console.info('sigAlgOid = ' + sigAlgOid);
     } catch (err) {
       let e: BusinessError = err as BusinessError;
       console.error(`getSignatureAlgOid failed, errCode: ${e.code}, errMsg: ${e.message}`);
@@ -7474,6 +7516,7 @@ cert.createX509CRL(encodingBlob, (error, x509CRL) => {
     console.info('createX509CRL result: success.');
     try {
       let sigAlgParams = x509CRL.getSignatureAlgParams();
+      console.info('sigAlgParams = ' + sigAlgParams.data);
     } catch (err) {
       let e: BusinessError = err as BusinessError;
       console.error(`getSignatureAlgParams failed, errCode: ${e.code}, errMsg: ${e.message}`);
@@ -7546,6 +7589,7 @@ cert.createX509CRL(encodingBlob, (error, x509CRL) => {
     console.info('createX509CRL result: success.');
     try {
       let tbsInfo = x509CRL.getTBSInfo();
+      console.info('tbsInfo = ' + tbsInfo.data);
     } catch (error) {
       let e: BusinessError = error as BusinessError;
       console.error(`getTBSInfo failed, errCode: ${e.code}, errMsg: ${e.message}`);
@@ -7621,6 +7665,7 @@ cert.createX509CRL(encodingBlob, (error, x509CRL) => {
     console.info('createX509CRL result: success.');
     try {
       let extensions = x509CRL.getExtensions();
+      console.info('extensions = ' + extensions.data);
     } catch (error) {
       let e: BusinessError = error as BusinessError;
       console.error(`getExtensions failed, errCode: ${e.code}, errMsg: ${e.message}`);
@@ -7712,7 +7757,7 @@ const certData = '-----BEGIN CERTIFICATE-----\r\n' +
   '-----END CERTIFICATE-----\r\n';
 const certEncodingBlob: cert.EncodingBlob = {
   data: stringToUint8Array(certData),
-  encodingFormat: cert.EncodingFormat.FORMAT_PEM,
+  encodingFormat: cert.EncodingFormat.FORMAT_PEM
 };
 
 async function crlMatch() {
@@ -7739,8 +7784,9 @@ async function crlMatch() {
             0x06, 0x03, 0x55, 0x04, 0x0B, 0x13, 0x02, 0x74, 0x73, 0x31, 0x0B, 0x30, 0x09, 0x06, 0x03, 0x55, 0x04, 0x03,
             0x13, 0x02, 0x74, 0x73])],
           x509Cert: x509Cert
-        }
+        };
         const result = x509CRL.match(param);
+        console.info('result = ' + result);
       } catch (error) {
         let e: BusinessError = error as BusinessError;
         console.error(`x509CRL match failed, errCode: ${e.code}, errMsg: ${e.message}`);
@@ -7812,7 +7858,7 @@ async function crlGetIssuerX500DistinguishedName() {
   try {
     x509Crl = await cert.createX509CRL(crlEncodingBlob);
     console.info('createX509CRL result: success.');
-    let name = x509Crl.getIssuerX500DistinguishedName();
+    x509Crl.getIssuerX500DistinguishedName();
   } catch (err) {
     let e: BusinessError = err as BusinessError;
     console.error(`createX509CRL failed, errCode: ${e.code}, errMsg: ${e.message}`);
@@ -8107,7 +8153,7 @@ async function crlGetExtensionsObject() {
   try {
     x509Crl = await cert.createX509CRL(crlEncodingBlob);
     console.info('createX509CRL result: success.');
-    let object = x509Crl.getExtensionsObject();
+    x509Crl.getExtensionsObject();
   } catch (err) {
     let e: BusinessError = err as BusinessError;
     console.error(`createX509CRL failed, errCode: ${e.code}, errMsg: ${e.message}`);
@@ -8156,7 +8202,7 @@ import { cert } from '@kit.DeviceCertificateKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
-  let validator = cert.createCertChainValidator('PKIX');
+  cert.createCertChainValidator('PKIX');
 } catch (error) {
   let e: BusinessError = error as BusinessError;
   console.error(`createCertChainValidator failed, errCode: ${e.code}, errMsg: ${e.message}`);
@@ -8194,7 +8240,7 @@ validate(certChain : CertChainData, callback : AsyncCallback\<void>) : void
 | 参数名    | 类型                            | 必填 | 说明                                                         |
 | --------- | ------------------------------- | ---- | ------------------------------------------------------------ |
 | certChain | [CertChainData](#certchaindata) | 是   | 表示X.509证书链序列化数据。                                    |
-| callback  | AsyncCallback\<void>            | 是   | 回调函数，使用AsyncCallback的第一个error参数判断是否校验成功，error为null表示成功，error不为null表示失败。 |
+| callback  | AsyncCallback\<void>            | 是   | 回调函数。当校验成功时，err为undefined，否则为错误对象。 |
 
 **错误码：**
 
@@ -8273,15 +8319,15 @@ let caPem = '-----BEGIN CERTIFICATE-----\n' +
 let certPemData = stringToUint8Array(certPem);
 let caPemData = stringToUint8Array(caPem);
 
-let certPemDataLenData = new Uint8Array(new Uint16Array([certPemData.length]).buffer)
-let caPemDataLenData = new Uint8Array(new Uint16Array([caPemData.length]).buffer)
+let certPemDataLenData = new Uint8Array(new Uint16Array([certPemData.length]).buffer);
+let caPemDataLenData = new Uint8Array(new Uint16Array([caPemData.length]).buffer);
 
 let certChainBuff =
-  new Uint8Array(certPemDataLenData.length + certPemData.length + caPemDataLenData.length + caPemData.length)
-certChainBuff.set(certPemDataLenData)
-certChainBuff.set(certPemData, certPemDataLenData.length)
-certChainBuff.set(caPemDataLenData, certPemDataLenData.length + certPemData.length)
-certChainBuff.set(caPemData, certPemDataLenData.length + certPemData.length + caPemDataLenData.length)
+  new Uint8Array(certPemDataLenData.length + certPemData.length + caPemDataLenData.length + caPemData.length);
+certChainBuff.set(certPemDataLenData);
+certChainBuff.set(certPemData, certPemDataLenData.length);
+certChainBuff.set(caPemDataLenData, certPemDataLenData.length + certPemData.length);
+certChainBuff.set(caPemData, certPemDataLenData.length + certPemData.length + caPemDataLenData.length);
 
 let certChainData: cert.CertChainData = {
   data: certChainBuff,
@@ -8293,7 +8339,7 @@ let certChainData: cert.CertChainData = {
 
 try {
   let validator = cert.createCertChainValidator('PKIX');
-  validator.validate(certChainData, (error, data) => {
+  validator.validate(certChainData, (error, _data) => {
     if (error) {
       console.error(`validate failed, errCode: ${error.code}, errMsg: ${error.message}`);
     } else {
@@ -8328,7 +8374,7 @@ validate(certChain : CertChainData) : Promise\<void>
 
 | 类型           | 说明        |
 | -------------- | ----------- |
-| Promise\<void> | Promise对象。 |
+| Promise\<void> | Promise对象，无返回结果。 |
 
 **错误码：**
 
@@ -8407,15 +8453,15 @@ let caPem = '-----BEGIN CERTIFICATE-----\n' +
 let certPemData = stringToUint8Array(certPem);
 let caPemData = stringToUint8Array(caPem);
 
-let certPemDataLenData = new Uint8Array(new Uint16Array([certPemData.length]).buffer)
-let caPemDataLenData = new Uint8Array(new Uint16Array([caPemData.length]).buffer)
+let certPemDataLenData = new Uint8Array(new Uint16Array([certPemData.length]).buffer);
+let caPemDataLenData = new Uint8Array(new Uint16Array([caPemData.length]).buffer);
 
 let certChainBuff =
-  new Uint8Array(certPemDataLenData.length + certPemData.length + caPemDataLenData.length + caPemData.length)
-certChainBuff.set(certPemDataLenData)
-certChainBuff.set(certPemData, certPemDataLenData.length)
-certChainBuff.set(caPemDataLenData, certPemDataLenData.length + certPemData.length)
-certChainBuff.set(caPemData, certPemDataLenData.length + certPemData.length + caPemDataLenData.length)
+  new Uint8Array(certPemDataLenData.length + certPemData.length + caPemDataLenData.length + caPemData.length);
+certChainBuff.set(certPemDataLenData);
+certChainBuff.set(certPemData, certPemDataLenData.length);
+certChainBuff.set(caPemDataLenData, certPemDataLenData.length + certPemData.length);
+certChainBuff.set(caPemData, certPemDataLenData.length + certPemData.length + caPemDataLenData.length);
 
 let certChainData: cert.CertChainData = {
   data: certChainBuff,
@@ -8427,7 +8473,7 @@ let certChainData: cert.CertChainData = {
 
 try {
   let validator = cert.createCertChainValidator('PKIX');
-  validator.validate(certChainData).then(result => {
+  validator.validate(certChainData).then(_result => {
     console.info('validate result: success.');
   }).catch((error: BusinessError) => {
     console.error(`validate failed, errCode: ${error.code}, errMsg: ${error.message}`);
@@ -8645,7 +8691,7 @@ getEncoded(callback : AsyncCallback\<EncodingBlob>) : void
 
 | 参数名   | 类型                                          | 必填 | 说明                                 |
 | -------- | --------------------------------------------- | ---- | ------------------------------------ |
-| callback | AsyncCallback\<[EncodingBlob](#encodingblob)> | 是   | 回调函数，表示被吊销证书的序列化数据。 |
+| callback | AsyncCallback\<[EncodingBlob](#encodingblob)> | 是   | 回调函数。当获取证书吊销条目序列化数据成功时，err为undefined，data为获取到的证书吊销条目序列化数据；否则为错误对象。 |
 
 **错误码：**
 
@@ -8680,7 +8726,7 @@ let crlData = '-----BEGIN X509 CRL-----\n' +
   'J1LaNwiL+gDxI9rMQmlhsUGJmPIPdRs9uYyI+f854lsWYisD2PUEpn3DbEvzwYeQ\n' +
   '5SqQoPDoM+YfZZa23hoTLsu52toXobP74sf/9K501p/+8hm4ROMLBoRT86GQKY6g\n' +
   'eavsH0Q3\n' +
-  '-----END X509 CRL-----\n'
+  '-----END X509 CRL-----\n';
 
 let encodingBlob: cert.EncodingBlob = {
   data: stringToUint8Array(crlData),
@@ -8697,7 +8743,7 @@ cert.createX509Crl(encodingBlob, (err, x509Crl) => {
     try {
       let serialNumber = 1000;
       let crlEntry = x509Crl.getRevokedCert(serialNumber);
-      crlEntry.getEncoded((error, data) => {
+      crlEntry.getEncoded((error, _data) => {
         if (error) {
           console.error(`getEncoded failed, errCode: ${error.code}, errMsg: ${error.message}`);
         } else {
@@ -8709,7 +8755,7 @@ cert.createX509Crl(encodingBlob, (err, x509Crl) => {
       console.error(`getRevokedCert failed, errCode: ${e.code}, errMsg: ${e.message}`);
     }
   }
-})
+});
 ```
 
 ### getEncoded<sup>(deprecated)</sup>
@@ -8728,7 +8774,7 @@ getEncoded() : Promise\<EncodingBlob>
 
 | 类型                                    | 说明                       |
 | --------------------------------------- | -------------------------- |
-| Promise\<[EncodingBlob](#encodingblob)> | 表示被吊销证书的序列化数据。 |
+| Promise\<[EncodingBlob](#encodingblob)> | Promise对象，返回被吊销证书的序列化数据。 |
 
 **错误码：**
 
@@ -8763,7 +8809,7 @@ let crlData = '-----BEGIN X509 CRL-----\n' +
   'J1LaNwiL+gDxI9rMQmlhsUGJmPIPdRs9uYyI+f854lsWYisD2PUEpn3DbEvzwYeQ\n' +
   '5SqQoPDoM+YfZZa23hoTLsu52toXobP74sf/9K501p/+8hm4ROMLBoRT86GQKY6g\n' +
   'eavsH0Q3\n' +
-  '-----END X509 CRL-----\n'
+  '-----END X509 CRL-----\n';
 
 let encodingBlob: cert.EncodingBlob = {
   data: stringToUint8Array(crlData),
@@ -8780,7 +8826,7 @@ cert.createX509Crl(encodingBlob, (err, x509Crl) => {
     try {
       let serialNumber = 1000;
       let crlEntry = x509Crl.getRevokedCert(serialNumber);
-      crlEntry.getEncoded().then(result => {
+      crlEntry.getEncoded().then(_result => {
         console.info('getEncoded result: success.');
       }).catch((error: BusinessError) => {
         console.error(`getEncoded failed, errCode: ${error.code}, errMsg: ${error.message}`);
@@ -8790,7 +8836,7 @@ cert.createX509Crl(encodingBlob, (err, x509Crl) => {
       console.error(`getRevokedCert failed, errCode: ${e.code}, errMsg: ${e.message}`);
     }
   }
-})
+});
 ```
 
 ### getSerialNumber<sup>(deprecated)</sup>
@@ -8833,7 +8879,7 @@ let crlData = '-----BEGIN X509 CRL-----\n' +
   'J1LaNwiL+gDxI9rMQmlhsUGJmPIPdRs9uYyI+f854lsWYisD2PUEpn3DbEvzwYeQ\n' +
   '5SqQoPDoM+YfZZa23hoTLsu52toXobP74sf/9K501p/+8hm4ROMLBoRT86GQKY6g\n' +
   'eavsH0Q3\n' +
-  '-----END X509 CRL-----\n'
+  '-----END X509 CRL-----\n';
 
 let encodingBlob: cert.EncodingBlob = {
   data: stringToUint8Array(crlData),
@@ -8851,12 +8897,13 @@ cert.createX509Crl(encodingBlob, (err, x509Crl) => {
       let serialNumber = 1000;
       let crlEntry = x509Crl.getRevokedCert(serialNumber);
       serialNumber = crlEntry.getSerialNumber();
+      console.info('serialNumber = ' + serialNumber);
     } catch (error) {
       let e: BusinessError = error as BusinessError;
       console.error(`getRevokedCert or getSerialNumber failed, errCode: ${e.code}, errMsg: ${e.message}`);
     }
   }
-})
+});
 ```
 
 ### getCertIssuer<sup>(deprecated)</sup>
@@ -8909,7 +8956,7 @@ let crlData = '-----BEGIN X509 CRL-----\n' +
   'J1LaNwiL+gDxI9rMQmlhsUGJmPIPdRs9uYyI+f854lsWYisD2PUEpn3DbEvzwYeQ\n' +
   '5SqQoPDoM+YfZZa23hoTLsu52toXobP74sf/9K501p/+8hm4ROMLBoRT86GQKY6g\n' +
   'eavsH0Q3\n' +
-  '-----END X509 CRL-----\n'
+  '-----END X509 CRL-----\n';
 
 let encodingBlob: cert.EncodingBlob = {
   data: stringToUint8Array(crlData),
@@ -8927,12 +8974,13 @@ cert.createX509Crl(encodingBlob, (err, x509Crl) => {
       let serialNumber = 1000;
       let crlEntry = x509Crl.getRevokedCert(serialNumber);
       let issuer = crlEntry.getCertIssuer();
+      console.info('issuer = ' + issuer.data);
     } catch (error) {
       let e: BusinessError = error as BusinessError;
       console.error(`getRevokedCert or getCertIssuer failed, errCode: ${e.code}, errMsg: ${e.message}`);
     }
   }
-})
+});
 ```
 
 ### getRevocationDate<sup>(deprecated)</sup>
@@ -8985,7 +9033,7 @@ let crlData = '-----BEGIN X509 CRL-----\n' +
   'J1LaNwiL+gDxI9rMQmlhsUGJmPIPdRs9uYyI+f854lsWYisD2PUEpn3DbEvzwYeQ\n' +
   '5SqQoPDoM+YfZZa23hoTLsu52toXobP74sf/9K501p/+8hm4ROMLBoRT86GQKY6g\n' +
   'eavsH0Q3\n' +
-  '-----END X509 CRL-----\n'
+  '-----END X509 CRL-----\n';
 
 let encodingBlob: cert.EncodingBlob = {
   data: stringToUint8Array(crlData),
@@ -9003,12 +9051,13 @@ cert.createX509Crl(encodingBlob, (err, x509Crl) => {
       let serialNumber = 1000;
       let crlEntry = x509Crl.getRevokedCert(serialNumber);
       let date = crlEntry.getRevocationDate();
+      console.info('date = ' + date);
     } catch (error) {
       let e: BusinessError = error as BusinessError;
       console.error(`getRevokedCert or getRevocationDate failed, errCode: ${e.code}, errMsg: ${e.message}`);
     }
   }
-})
+});
 ```
 
 ## X509CRLEntry<sup>11+</sup>
@@ -9029,7 +9078,7 @@ getEncoded(callback : AsyncCallback\<EncodingBlob>) : void
 
 | 参数名   | 类型                                          | 必填 | 说明                                 |
 | -------- | --------------------------------------------- | ---- | ------------------------------------ |
-| callback | AsyncCallback\<[EncodingBlob](#encodingblob)> | 是   | 回调函数，表示证书吊销条目的序列化数据。 |
+| callback | AsyncCallback\<[EncodingBlob](#encodingblob)> | 是   | 回调函数。当获取证书吊销条目序列化数据成功时，err为undefined，data为获取到的证书吊销条目序列化数据；否则为错误对象。 |
 
 **错误码：**
 
@@ -9064,7 +9113,7 @@ let crlData = '-----BEGIN X509 CRL-----\n' +
   'J1LaNwiL+gDxI9rMQmlhsUGJmPIPdRs9uYyI+f854lsWYisD2PUEpn3DbEvzwYeQ\n' +
   '5SqQoPDoM+YfZZa23hoTLsu52toXobP74sf/9K501p/+8hm4ROMLBoRT86GQKY6g\n' +
   'eavsH0Q3\n' +
-  '-----END X509 CRL-----\n'
+  '-----END X509 CRL-----\n';
 
 let encodingBlob: cert.EncodingBlob = {
   data: stringToUint8Array(crlData),
@@ -9081,7 +9130,7 @@ cert.createX509CRL(encodingBlob, (err, x509CRL) => {
     try {
       let serialNumber = BigInt(1000);
       let crlEntry = x509CRL.getRevokedCert(serialNumber);
-      crlEntry.getEncoded((error, data) => {
+      crlEntry.getEncoded((error, _data) => {
         if (error) {
           console.error(`getEncoded failed, errCode: ${error.code}, errMsg: ${error.message}`);
         } else {
@@ -9093,7 +9142,7 @@ cert.createX509CRL(encodingBlob, (err, x509CRL) => {
       console.error(`getRevokedCert failed, errCode: ${e.code}, errMsg: ${e.message}`);
     }
   }
-})
+});
 ```
 
 ### getEncoded<sup>11+</sup>
@@ -9110,7 +9159,7 @@ getEncoded() : Promise\<EncodingBlob>
 
 | 类型                                    | 说明                       |
 | --------------------------------------- | -------------------------- |
-| Promise\<[EncodingBlob](#encodingblob)> | 表示证书吊销条目的序列化数据。 |
+| Promise\<[EncodingBlob](#encodingblob)> | Promise对象，返回证书吊销条目的序列化数据。 |
 
 **错误码：**
 
@@ -9145,7 +9194,7 @@ let crlData = '-----BEGIN X509 CRL-----\n' +
   'J1LaNwiL+gDxI9rMQmlhsUGJmPIPdRs9uYyI+f854lsWYisD2PUEpn3DbEvzwYeQ\n' +
   '5SqQoPDoM+YfZZa23hoTLsu52toXobP74sf/9K501p/+8hm4ROMLBoRT86GQKY6g\n' +
   'eavsH0Q3\n' +
-  '-----END X509 CRL-----\n'
+  '-----END X509 CRL-----\n';
 
 let encodingBlob: cert.EncodingBlob = {
   data: stringToUint8Array(crlData),
@@ -9162,7 +9211,7 @@ cert.createX509CRL(encodingBlob, (err, x509CRL) => {
     try {
       let serialNumber = BigInt(1000);
       let crlEntry = x509CRL.getRevokedCert(serialNumber);
-      crlEntry.getEncoded().then(result => {
+      crlEntry.getEncoded().then(_result => {
         console.info('getEncoded result: success.');
       }).catch((error: BusinessError) => {
         console.error(`getEncoded failed, errCode: ${error.code}, errMsg: ${error.message}`);
@@ -9172,7 +9221,7 @@ cert.createX509CRL(encodingBlob, (err, x509CRL) => {
       console.error(`getRevokedCert failed, errCode: ${e.code}, errMsg: ${e.message}`);
     }
   }
-})
+});
 ```
 
 ### getSerialNumber<sup>11+</sup>
@@ -9223,7 +9272,7 @@ let crlData = '-----BEGIN X509 CRL-----\n' +
   'J1LaNwiL+gDxI9rMQmlhsUGJmPIPdRs9uYyI+f854lsWYisD2PUEpn3DbEvzwYeQ\n' +
   '5SqQoPDoM+YfZZa23hoTLsu52toXobP74sf/9K501p/+8hm4ROMLBoRT86GQKY6g\n' +
   'eavsH0Q3\n' +
-  '-----END X509 CRL-----\n'
+  '-----END X509 CRL-----\n';
 
 let encodingBlob: cert.EncodingBlob = {
   data: stringToUint8Array(crlData),
@@ -9241,12 +9290,13 @@ cert.createX509CRL(encodingBlob, (err, x509CRL) => {
       let serialNumber = BigInt(1000);
       let crlEntry = x509CRL.getRevokedCert(serialNumber);
       serialNumber = crlEntry.getSerialNumber();
+      console.info('serialNumber = ' + serialNumber);
     } catch (error) {
       let e: BusinessError = error as BusinessError;
       console.error(`getRevokedCert or getSerialNumber failed, errCode: ${e.code}, errMsg: ${e.message}`);
     }
   }
-})
+});
 ```
 
 ### getCertIssuer<sup>11+</sup>
@@ -9302,7 +9352,7 @@ let crlData = '-----BEGIN X509 CRL-----\n' +
   'J1LaNwiL+gDxI9rMQmlhsUGJmPIPdRs9uYyI+f854lsWYisD2PUEpn3DbEvzwYeQ\n' +
   '5SqQoPDoM+YfZZa23hoTLsu52toXobP74sf/9K501p/+8hm4ROMLBoRT86GQKY6g\n' +
   'eavsH0Q3\n' +
-  '-----END X509 CRL-----\n'
+  '-----END X509 CRL-----\n';
 
 let encodingBlob: cert.EncodingBlob = {
   data: stringToUint8Array(crlData),
@@ -9320,12 +9370,13 @@ cert.createX509CRL(encodingBlob, (err, x509CRL) => {
       let serialNumber = BigInt(1000);
       let crlEntry = x509CRL.getRevokedCert(serialNumber);
       let issuer = crlEntry.getCertIssuer();
+      console.info('issuer = ' + issuer.data);
     } catch (error) {
       let e: BusinessError = error as BusinessError;
       console.error(`getRevokedCert or getCertIssuer failed, errCode: ${e.code}, errMsg: ${e.message}`);
     }
   }
-})
+});
 ```
 
 ### getCertIssuer<sup>20+</sup>
@@ -9409,7 +9460,7 @@ cert.createX509CRL(encodingBlob, (err, x509CRL) => {
       console.error(`getRevokedCert or getCertIssuer failed, errCode: ${e.code}, errMsg: ${e.message}`);
     }
   }
-})
+});
 ```
 
 ### getRevocationDate<sup>11+</sup>
@@ -9460,7 +9511,7 @@ let crlData = '-----BEGIN X509 CRL-----\n' +
   'J1LaNwiL+gDxI9rMQmlhsUGJmPIPdRs9uYyI+f854lsWYisD2PUEpn3DbEvzwYeQ\n' +
   '5SqQoPDoM+YfZZa23hoTLsu52toXobP74sf/9K501p/+8hm4ROMLBoRT86GQKY6g\n' +
   'eavsH0Q3\n' +
-  '-----END X509 CRL-----\n'
+  '-----END X509 CRL-----\n';
 
 let encodingBlob: cert.EncodingBlob = {
   data: stringToUint8Array(crlData),
@@ -9478,12 +9529,13 @@ cert.createX509CRL(encodingBlob, (err, x509CRL) => {
       let serialNumber = BigInt(1000);
       let crlEntry = x509CRL.getRevokedCert(serialNumber);
       let date = crlEntry.getRevocationDate();
+      console.info('date = ' + date);
     } catch (error) {
       let e: BusinessError = error as BusinessError;
       console.error(`getRevokedCert or getRevocationDate failed, errCode: ${e.code}, errMsg: ${e.message}`);
     }
   }
-})
+});
 ```
 
 ### getExtensions<sup>11+</sup>
@@ -9555,12 +9607,13 @@ cert.createX509CRL(encodingBlob, (err, x509CRL) => {
       let serialNumber = BigInt(4);
       let crlEntry = x509CRL.getRevokedCert(serialNumber);
       let extensions = crlEntry.getExtensions();
+      console.info('extensions = ' + extensions.data);
     } catch (error) {
       let e: BusinessError = error as BusinessError;
       console.error(`getRevokedCert or getExtensions failed, errCode: ${e.code}, errMsg: ${e.message}`);
     }
   }
-})
+});
 ```
 
 ### hasExtensions<sup>11+</sup>
@@ -9611,7 +9664,7 @@ let crlData = '-----BEGIN X509 CRL-----\n' +
   'J1LaNwiL+gDxI9rMQmlhsUGJmPIPdRs9uYyI+f854lsWYisD2PUEpn3DbEvzwYeQ\n' +
   '5SqQoPDoM+YfZZa23hoTLsu52toXobP74sf/9K501p/+8hm4ROMLBoRT86GQKY6g\n' +
   'eavsH0Q3\n' +
-  '-----END X509 CRL-----\n'
+  '-----END X509 CRL-----\n';
 
 let encodingBlob: cert.EncodingBlob = {
   data: stringToUint8Array(crlData),
@@ -9629,12 +9682,13 @@ cert.createX509CRL(encodingBlob, (err, x509CRL) => {
       let serialNumber = BigInt(1000);
       let crlEntry = x509CRL.getRevokedCert(serialNumber);
       let hasExtensions = crlEntry.hasExtensions();
+      console.info('hasExtensions = ' + hasExtensions);
     } catch (error) {
       let e: BusinessError = error as BusinessError;
       console.error(`getRevokedCert or hasExtensions failed, errCode: ${e.code}, errMsg: ${e.message}`);
     }
   }
-})
+});
 ```
 
 ### getCertIssuerX500DistinguishedName<sup>12+</sup>
@@ -9685,7 +9739,7 @@ let crlData = '-----BEGIN X509 CRL-----\n' +
   'J1LaNwiL+gDxI9rMQmlhsUGJmPIPdRs9uYyI+f854lsWYisD2PUEpn3DbEvzwYeQ\n' +
   '5SqQoPDoM+YfZZa23hoTLsu52toXobP74sf/9K501p/+8hm4ROMLBoRT86GQKY6g\n' +
   'eavsH0Q3\n' +
-  '-----END X509 CRL-----\n'
+  '-----END X509 CRL-----\n';
 
 let encodingBlob: cert.EncodingBlob = {
   data: stringToUint8Array(crlData),
@@ -9698,7 +9752,7 @@ async function certGetCertIssuerX500DistinguishedName() {
   try {
     x509Crl = await cert.createX509CRL(encodingBlob);
     console.info('createX509CRL result: success.');
-    let name = x509Crl.getRevokedCert(BigInt(1000)).getCertIssuerX500DistinguishedName();
+    x509Crl.getRevokedCert(BigInt(1000)).getCertIssuerX500DistinguishedName();
   } catch (error) {
     let e: BusinessError = error as BusinessError;
     console.error(`createX509CRL failed, errCode: ${e.code}, errMsg: ${e.message}`);
@@ -9754,7 +9808,7 @@ let crlData = '-----BEGIN X509 CRL-----\n' +
   'J1LaNwiL+gDxI9rMQmlhsUGJmPIPdRs9uYyI+f854lsWYisD2PUEpn3DbEvzwYeQ\n' +
   '5SqQoPDoM+YfZZa23hoTLsu52toXobP74sf/9K501p/+8hm4ROMLBoRT86GQKY6g\n' +
   'eavsH0Q3\n' +
-  '-----END X509 CRL-----\n'
+  '-----END X509 CRL-----\n';
 
 let encodingBlob: cert.EncodingBlob = {
   data: stringToUint8Array(crlData),
@@ -9823,7 +9877,7 @@ let crlData = '-----BEGIN X509 CRL-----\n' +
   'J1LaNwiL+gDxI9rMQmlhsUGJmPIPdRs9uYyI+f854lsWYisD2PUEpn3DbEvzwYeQ\n' +
   '5SqQoPDoM+YfZZa23hoTLsu52toXobP74sf/9K501p/+8hm4ROMLBoRT86GQKY6g\n' +
   'eavsH0Q3\n' +
-  '-----END X509 CRL-----\n'
+  '-----END X509 CRL-----\n';
 
 let encodingBlob: cert.EncodingBlob = {
   data: stringToUint8Array(crlData),
@@ -9972,7 +10026,7 @@ async function certGetExtensionsObject() {
   try {
     x509Crl = await cert.createX509CRL(encodingBlob);
     console.info('createX509CRL result: success.');
-    let object = x509Crl.getRevokedCert(BigInt('14091103387070223745671018446433705560')).getExtensionsObject();
+    x509Crl.getRevokedCert(BigInt('14091103387070223745671018446433705560')).getExtensionsObject();
   } catch (error) {
     let e: BusinessError = error as BusinessError;
     console.error(`createX509CRL failed, errCode: ${e.code}, errMsg: ${e.message}`);
@@ -10084,7 +10138,7 @@ async function createCollection() {
   const x509Cert = await createX509Cert();
   const x509CRL = await createX509CRL();
   try {
-    const collection: cert.CertCRLCollection = cert.createCertCRLCollection([x509Cert], [x509CRL]);
+    cert.createCertCRLCollection([x509Cert], [x509CRL]);
     console.info('createCertCRLCollection result: success.');
   } catch (err) {
     let e: BusinessError = err as BusinessError;
@@ -10117,7 +10171,7 @@ selectCerts(param: X509CertMatchParameters): Promise\<Array\<X509Cert>>
 
 | 类型                                    | 说明                                    |
 | --------------------------------------- | --------------------------------------- |
-| Promise\<Array\<[X509Cert](#x509cert)>> | Promise对象。表示匹配到的证书对象数组。 |
+| Promise\<Array\<[X509Cert](#x509cert)>> | Promise对象，返回匹配到的证书对象数组。 |
 
 **错误码：**
 
@@ -10179,11 +10233,13 @@ async function selectCerts() {
     const param: cert.X509CertMatchParameters = {
       x509Cert,
       validDate: '20231121074700Z',
-      issuer: new Uint8Array([0x30, 0x1a, 0x31, 0x18, 0x30, 0x16, 0x06, 0x03, 0x55, 0x04, 0x03, 0x0C, 0x0F, 0x45, 0x78, 0x61, 0x6D, 0x70, 0x6C, 0x65, 0x20, 0x52, 0x6F, 0x6F, 0x74, 0x20, 0x43, 0x41]),
-      subject: new Uint8Array([0x30, 0x1a, 0x31, 0x18, 0x30, 0x16, 0x06, 0x03, 0x55, 0x04, 0x03, 0x0C, 0x0F, 0x45, 0x78, 0x61, 0x6D, 0x70, 0x6C, 0x65, 0x20, 0x52, 0x6F, 0x6F, 0x74, 0x20, 0x43, 0x41]),
+      issuer: new Uint8Array([0x30, 0x1a, 0x31, 0x18, 0x30, 0x16, 0x06, 0x03, 0x55, 0x04, 0x03, 0x0C, 0x0F, 0x45, 0x78,
+        0x61, 0x6D, 0x70, 0x6C, 0x65, 0x20, 0x52, 0x6F, 0x6F, 0x74, 0x20, 0x43, 0x41]),
+      subject: new Uint8Array([0x30, 0x1a, 0x31, 0x18, 0x30, 0x16, 0x06, 0x03, 0x55, 0x04, 0x03, 0x0C, 0x0F, 0x45, 0x78,
+        0x61, 0x6D, 0x70, 0x6C, 0x65, 0x20, 0x52, 0x6F, 0x6F, 0x74, 0x20, 0x43, 0x41]),
       publicKeyAlgID: '1.2.840.10045.2.1'
     };
-    const certs = await collection.selectCerts(param);
+    await collection.selectCerts(param);
     console.info('call selectCerts result: success.');
   } catch (err) {
     let e: BusinessError = err as BusinessError;
@@ -10207,7 +10263,7 @@ selectCerts(param: X509CertMatchParameters, callback: AsyncCallback\<Array\<X509
 | 参数名    | 类型                            | 必填 | 说明            |
 | --------- | ------------------------------- | ---- | ----------------- |
 | param | [X509CertMatchParameters](#x509certmatchparameters11) | 是   | 表示证书需匹配的参数。   |
-| callback  | AsyncCallback\<Array\<[X509Cert](#x509cert)>>    | 是   | 回调函数，表示匹配到的证书对象数组。 |
+| callback  | AsyncCallback\<Array\<[X509Cert](#x509cert)>>    | 是   | 回调函数。当查找证书对象成功时，err为undefined，data为获取到的匹配的证书对象数组；否则为错误对象。 |
 
 **错误码：**
 
@@ -10268,11 +10324,13 @@ async function selectCerts() {
   const param: cert.X509CertMatchParameters = {
     x509Cert,
     validDate: '20231121074700Z',
-    issuer: new Uint8Array([0x30, 0x1a, 0x31, 0x18, 0x30, 0x16, 0x06, 0x03, 0x55, 0x04, 0x03, 0x0C, 0x0F, 0x45, 0x78, 0x61, 0x6D, 0x70, 0x6C, 0x65, 0x20, 0x52, 0x6F, 0x6F, 0x74, 0x20, 0x43, 0x41]),
-    subject: new Uint8Array([0x30, 0x1a, 0x31, 0x18, 0x30, 0x16, 0x06, 0x03, 0x55, 0x04, 0x03, 0x0C, 0x0F, 0x45, 0x78, 0x61, 0x6D, 0x70, 0x6C, 0x65, 0x20, 0x52, 0x6F, 0x6F, 0x74, 0x20, 0x43, 0x41]),
+    issuer: new Uint8Array([0x30, 0x1a, 0x31, 0x18, 0x30, 0x16, 0x06, 0x03, 0x55, 0x04, 0x03, 0x0C, 0x0F, 0x45, 0x78,
+      0x61, 0x6D, 0x70, 0x6C, 0x65, 0x20, 0x52, 0x6F, 0x6F, 0x74, 0x20, 0x43, 0x41]),
+    subject: new Uint8Array([0x30, 0x1a, 0x31, 0x18, 0x30, 0x16, 0x06, 0x03, 0x55, 0x04, 0x03, 0x0C, 0x0F, 0x45, 0x78,
+      0x61, 0x6D, 0x70, 0x6C, 0x65, 0x20, 0x52, 0x6F, 0x6F, 0x74, 0x20, 0x43, 0x41]),
     publicKeyAlgID: '1.2.840.10045.2.1'
   };
-  collection.selectCerts(param, (err, certs) => {
+  collection.selectCerts(param, (err, _certs) => {
     if (err) {
       console.error(`selectCerts failed, errCode: ${err.code}, errMsg: ${err.message}`);
     } else {
@@ -10302,7 +10360,7 @@ selectCRLs(param: X509CRLMatchParameters): Promise\<Array\<X509CRL>>
 
 | 类型           | 说明        |
 | -------------- | ----------- |
-| Promise\<Array\<[X509CRL](#x509crl11)>> | Promise对象，表示匹配到的证书吊销列表对象数组。 |
+| Promise\<Array\<[X509CRL](#x509crl11)>> | Promise对象，返回匹配到的证书吊销列表对象数组。 |
 
 **错误码：**
 
@@ -10376,7 +10434,7 @@ async function createX509Cert(): Promise<cert.X509Cert> {
     '-----END CERTIFICATE-----\r\n';
   const certEncodingBlob: cert.EncodingBlob = {
     data: stringToUint8Array(certData),
-    encodingFormat: cert.EncodingFormat.FORMAT_PEM,
+    encodingFormat: cert.EncodingFormat.FORMAT_PEM
   };
 
   let x509Cert: cert.X509Cert = {} as cert.X509Cert;
@@ -10402,9 +10460,9 @@ async function selectCRLs() {
       0x30, 0x09, 0x06, 0x03, 0x55, 0x04, 0x0A, 0x13, 0x02, 0x74, 0x73, 0x31, 0x0B, 0x30, 0x09, 0x06, 0x03, 0x55, 0x04,
       0x0B, 0x13, 0x02, 0x74, 0x73, 0x31, 0x0B, 0x30, 0x09, 0x06, 0x03, 0x55, 0x04, 0x03, 0x13, 0x02, 0x74, 0x73])],
     x509Cert: x509Cert
-  }
+  };
   try {
-    const crls = await collection.selectCRLs(param);
+    await collection.selectCRLs(param);
     console.info('selectCRLs result: success.');
   } catch (err) {
     let e: BusinessError = err as BusinessError;
@@ -10428,7 +10486,7 @@ selectCRLs(param: X509CRLMatchParameters, callback: AsyncCallback\<Array\<X509CR
 | 参数名    | 类型                            | 必填 | 说明            |
 | --------- | ------------------------------- | ---- | ----------------- |
 | param | [X509CRLMatchParameters](#x509crlmatchparameters11) | 是   | 表示证书吊销列表需匹配的参数对象。 |
-| callback  | AsyncCallback\<Array\<[X509CRL](#x509crl11)>>    | 是   | 回调函数，表示匹配到的证书吊销列表对象数组。 |
+| callback  | AsyncCallback\<Array\<[X509CRL](#x509crl11)>>    | 是   | 回调函数。当查找证书吊销列表成功时，err为undefined，data为获取到的匹配的证书吊销列表对象数组；否则为错误对象。 |
 
 **错误码：**
 
@@ -10502,7 +10560,7 @@ async function createX509Cert(): Promise<cert.X509Cert> {
     '-----END CERTIFICATE-----\r\n';
   const certEncodingBlob: cert.EncodingBlob = {
     data: stringToUint8Array(certData),
-    encodingFormat: cert.EncodingFormat.FORMAT_PEM,
+    encodingFormat: cert.EncodingFormat.FORMAT_PEM
   };
 
   let x509Cert: cert.X509Cert = {} as cert.X509Cert;
@@ -10528,8 +10586,8 @@ async function selectCRLs() {
       0x30, 0x09, 0x06, 0x03, 0x55, 0x04, 0x0A, 0x13, 0x02, 0x74, 0x73, 0x31, 0x0B, 0x30, 0x09, 0x06, 0x03, 0x55, 0x04,
       0x0B, 0x13, 0x02, 0x74, 0x73, 0x31, 0x0B, 0x30, 0x09, 0x06, 0x03, 0x55, 0x04, 0x03, 0x13, 0x02, 0x74, 0x73])],
     x509Cert: x509Cert
-  }
-  collection.selectCRLs(param, (err, crls) => {
+  };
+  collection.selectCRLs(param, (err, _crls) => {
     if (err) {
       console.error(`selectCRLs failed, errCode: ${err.code}, errMsg: ${err.message}`);
     } else {
@@ -10559,7 +10617,7 @@ createX509CertChain(inStream: EncodingBlob): Promise\<X509CertChain>
 
 | 类型                            | 说明             |
 | ------------------------------- | ---------------- |
-| Promise\<[X509CertChain](#x509certchain11)> | 表示X.509证书链对象。 |
+| Promise\<[X509CertChain](#x509certchain11)> | Promise对象，返回创建的X509CertChain实例。 |
 
 **错误码：**
 
@@ -10676,7 +10734,7 @@ createX509CertChain(inStream: EncodingBlob, callback: AsyncCallback\<X509CertCha
 | 参数名   | 类型                                  | 必填 | 说明                       |
 | -------- | ------------------------------------- | ---- | -------------------------- |
 | inStream | [EncodingBlob](#encodingblob)         | 是   | X.509证书序列化数据。        |
-| callback | AsyncCallback\<[X509CertChain](#x509certchain11)> | 是   | 回调函数，表示X.509证书链对象。 |
+| callback | AsyncCallback\<[X509CertChain](#x509certchain11)> | 是   | 回调函数。当创建X.509证书链对象成功时，err为undefined，data为获取到的X509CertChain实例；否则为错误对象。 |
 
 **错误码：**
 
@@ -10764,7 +10822,7 @@ let encodingBlob: cert.EncodingBlob = {
   encodingFormat: cert.EncodingFormat.FORMAT_PEM
 };
 
-cert.createX509CertChain(encodingBlob, (err, certChain) => {
+cert.createX509CertChain(encodingBlob, (err, _certChain) => {
   if (err) {
     console.error(`createX509CertChain failed, errCode: ${err.code}, errMsg: ${err.message}`);
   } else {
@@ -10865,7 +10923,7 @@ createX509CertChain();
 
 ## cert.buildX509CertChain<sup>12+</sup>
 
-buildX509CertChain(param: [CertChainBuildParameters](#certchainbuildparameters12)): Promise\<CertChainBuildResult>
+buildX509CertChain(param: CertChainBuildParameters): Promise\<CertChainBuildResult>
 
 表示使用CertChainBuildParameters对象方式创建X.509证书链对象。使用Promise异步回调。
 
@@ -10883,7 +10941,7 @@ buildX509CertChain(param: [CertChainBuildParameters](#certchainbuildparameters12
 
 | 类型                              | 说明                 |
 | --------------------------------- | -------------------- |
-| Promise\<[CertChainBuildResult](#certchainbuildresult12)> | 表示X.509证书链对象。 |
+| Promise\<[CertChainBuildResult](#certchainbuildresult12)> | Promise对象，返回创建的CertChainBuildResult实例。 |
 
 **错误码：**
 
@@ -10988,12 +11046,12 @@ async function buildX509CertChain() {
       validationParameters: {
         date: '20240812080000Z',
         certCRLs: [certCrlCollection],
-        trustAnchors: [{ CACert: caCert }, { CACert: caCert }],
+        trustAnchors: [{ CACert: caCert }, { CACert: caCert }]
       }
-    }
+    };
     let certChainBuildResult = await cert.buildX509CertChain(param);
-    console.info("cert issuer name: " + certChainBuildResult.validationResult.entityCert.getIssuerName().data)
-    console.info("ca subject name: " + certChainBuildResult.validationResult.trustAnchor.CACert?.getSubjectName().data)
+    console.info("cert issuer name: " + certChainBuildResult.validationResult.entityCert.getIssuerName().data);
+    console.info("ca subject name: " + certChainBuildResult.validationResult.trustAnchor.CACert?.getSubjectName().data);
   } catch (error) {
     let e: BusinessError = error as BusinessError;
     console.error(`createX509CertChain failed, errCode: ${e.code}, errMsg: ${e.message}`);
@@ -11202,12 +11260,12 @@ function doTestParsePkcs12() {
       needsCert: false,
       needsPrivateKey: true,
       privateKeyFormat: cert.EncodingBaseFormat.DER,
-      needsOtherCerts: false,
+      needsOtherCerts: false
     };
     let p12: cert.Pkcs12Data = cert.parsePkcs12(p12_cert, conf);
     console.info('parsePKCS12 result: success.');
     if (p12.privateKey) {
-      console.info('privateKey:' + p12.privateKey.toString())
+      console.info('privateKey:' + p12.privateKey.toString());
     }
   } catch (error) {
     console.error(`parsePKCS12 failed: errCode: ${error.code}, errMsg: ${error.message}`);
@@ -11236,7 +11294,7 @@ parsePkcs12(data: Uint8Array, password: string): Promise\<Pkcs12Data>
 
 | 类型                              | 说明                 |
 | --------------------------------- | -------------------- |
-| Promise\<[Pkcs12Data](#pkcs12data18)> | Promise对象，返回解析后的PKCS #12数据。返回的Pkcs12Data中的私钥采用PEM编码。 |
+| Promise\<[Pkcs12Data](#pkcs12data18)> | Promise对象，返回解析后的P12数据。返回的Pkcs12Data中的私钥采用PEM编码。 |
 
 **错误码：**
 
@@ -11452,7 +11510,7 @@ createPkcs12(data: Pkcs12Data, config: Pkcs12CreationConfig): Promise\<Uint8Arra
 
 | 类型                              | 说明                 |
 | --------------------------------- | -------------------- |
-| Promise\<Uint8Array> | Promise对象。返回创建的PKCS #12，DER格式。 |
+| Promise\<Uint8Array> | Promise对象，返回创建的P12，DER格式。 |
 
 **错误码：**
 
@@ -11577,19 +11635,19 @@ async function doTestCreatePkcs12() {
     privateKey: priKey,
     cert: x509Cert,
     otherCerts: [caCert]
-  }
+  };
 
   let keyParam: cert.PbesParams = {
     saltLen: 16,
     iterations: 2048,
     encryptionAlgorithm: cert.PbesEncryptionAlgorithm.AES_192_CBC
-  }
+  };
 
   let certParam: cert.PbesParams = {
     saltLen: 16,
     iterations: 2048,
     encryptionAlgorithm: cert.PbesEncryptionAlgorithm.AES_256_CBC
-  }
+  };
 
   let config: cert.Pkcs12CreationConfig = {
     password: '123456',
@@ -11599,7 +11657,7 @@ async function doTestCreatePkcs12() {
     macSaltLen: 16,
     macIterations: 2048,
     macDigestAlgorithm: cert.Pkcs12MacDigestAlgorithm.SHA384
-  }
+  };
   try {
     let p12 = await cert.createPkcs12(data, config);
     console.info('createPkcs12 result: success, p12 = ' + p12);
@@ -11755,19 +11813,19 @@ async function doTestCreatePkcs12Sync() {
     privateKey: priKey,
     cert: x509Cert,
     otherCerts: [caCert]
-  }
+  };
 
   let keyParam: cert.PbesParams = {
     saltLen: 16,
     iterations: 2048,
     encryptionAlgorithm: cert.PbesEncryptionAlgorithm.AES_192_CBC
-  }
+  };
 
   let certParam: cert.PbesParams = {
     saltLen: 16,
     iterations: 2048,
     encryptionAlgorithm: cert.PbesEncryptionAlgorithm.AES_256_CBC
-  }
+  };
 
   let config: cert.Pkcs12CreationConfig = {
     password: '123456',
@@ -11777,7 +11835,7 @@ async function doTestCreatePkcs12Sync() {
     macSaltLen: 16,
     macIterations: 2048,
     macDigestAlgorithm: cert.Pkcs12MacDigestAlgorithm.SHA384
-  }
+  };
   try {
     let p12 = cert.createPkcs12Sync(data, config);
     console.info('createPkcs12Sync result: success, p12 = ' + p12);
@@ -11789,7 +11847,7 @@ async function doTestCreatePkcs12Sync() {
 
 ## cert.createTrustAnchorsWithKeyStore<sup>12+</sup>
 
-createTrustAnchorsWithKeyStore(keystore: Uint8Array, pwd: string): Promise<Array\<[X509TrustAnchor](#x509trustanchor11)>>
+createTrustAnchorsWithKeyStore(keystore: Uint8Array, pwd: string): Promise<Array\<X509TrustAnchor>>
 
 表示从PKCS #12中读取ca证书来构造[TrustAnchor](#x509trustanchor11)对象数组。使用Promise异步回调。
 
@@ -11808,7 +11866,7 @@ createTrustAnchorsWithKeyStore(keystore: Uint8Array, pwd: string): Promise<Array
 
 | 类型                              | 说明                 |
 | --------------------------------- | -------------------- |
-| Promise\<Array\<[X509TrustAnchor](#x509trustanchor11)>> | 表示X509TrustAnchor对象数组。 |
+| Promise\<Array\<[X509TrustAnchor](#x509trustanchor11)>> | Promise对象，返回X509TrustAnchor对象数组。 |
 
 **错误码：**
 
@@ -11939,7 +11997,7 @@ try {
     console.info('createTrustAnchorsWithKeyStore result: success, number of the result = ' + data.length);
   }).catch((err: BusinessError) => {
     console.error(`createTrustAnchorsWithKeyStore failed: errCode: ${err.code}, errMsg: ${err.message}`);
-  })
+  });
 } catch (error) {
   console.error(`createTrustAnchorsWithKeyStore failed: errCode: ${error.code}, errMsg: ${error.message}`);
 }
@@ -12059,7 +12117,7 @@ cert.createX509CertChain(encodingBlob, (err, certChain) => {
   } else {
     console.info('createX509CertChain result: success.');
     try {
-      let certList = certChain.getCertList();
+      certChain.getCertList();
     } catch (err) {
       let e: BusinessError = err as BusinessError;
       console.error(`X509CertChain getCertList failed, errCode: ${e.code}, errMsg: ${e.message}`);
@@ -12208,11 +12266,11 @@ async function validate() {
         0x64, 0x31, 0x0f, 0x30, 0x0d, 0x06, 0x03, 0x55, 0x04, 0x07, 0x13, 0x06, 0x4c, 0x6f, 0x6e, 0x64, 0x6f, 0x6e,
         0x31, 0x0c, 0x30, 0x0a, 0x06, 0x03, 0x55, 0x04, 0x0a, 0x13, 0x03, 0x74, 0x73, 0x31, 0x31, 0x0c, 0x30, 0x0a,
         0x06, 0x03, 0x55, 0x04, 0x0b, 0x13, 0x03, 0x74, 0x73, 0x31, 0x31, 0x0c, 0x30, 0x0a, 0x06, 0x03, 0x55, 0x04,
-        0x03, 0x13, 0x03, 0x74, 0x73, 0x31]),
+        0x03, 0x13, 0x03, 0x74, 0x73, 0x31])
     }]
-  }
+  };
   try {
-    const validationRes = await certChain.validate(param);
+    await certChain.validate(param);
     console.info('X509CertChain validate result: success.');
   } catch (error) {
     let e: BusinessError = error as BusinessError;
@@ -12238,7 +12296,7 @@ validate(param: CertChainValidationParameters, callback: AsyncCallback\<CertChai
 | 参数名    | 类型                            | 必填 | 说明      |
 | --------- | ------------------------------- | ---- | ------------ |
 | param | [CertChainValidationParameters](#certchainvalidationparameters11) | 是   | 表示校验X.509证书链的参数。 |
-| callback  | AsyncCallback\<[CertChainValidationResult](#certchainvalidationresult11)> | 是   | 回调函数，返回证书链校验结果。 |
+| callback  | AsyncCallback\<[CertChainValidationResult](#certchainvalidationresult11)> | 是   | 回调函数。当校验证书链成功时，err为undefined，data为获取到的证书链校验结果；否则为错误对象。 |
 
 **错误码：**
 
@@ -12345,7 +12403,7 @@ let param: cert.CertChainValidationParameters = {
       0x0f, 0x30, 0x0d, 0x06, 0x03, 0x55, 0x04, 0x07, 0x13, 0x06, 0x4c, 0x6f, 0x6e, 0x64, 0x6f, 0x6e, 0x31, 0x0c, 0x30,
       0x0a, 0x06, 0x03, 0x55, 0x04, 0x0a, 0x13, 0x03, 0x74, 0x73, 0x31, 0x31, 0x0c, 0x30, 0x0a, 0x06, 0x03, 0x55, 0x04,
       0x0b, 0x13, 0x03, 0x74, 0x73, 0x31, 0x31, 0x0c, 0x30, 0x0a, 0x06, 0x03, 0x55, 0x04, 0x03, 0x13, 0x03, 0x74, 0x73,
-      0x31]),
+      0x31])
   }]
 };
 
@@ -12354,7 +12412,7 @@ cert.createX509CertChain(encodingBlob, (err, certChain) => {
     console.error(`createX509CertChain failed, errCode: ${err.code}, errMsg: ${err.message}`);
   } else {
     console.info('createX509CertChain result: success.');
-    certChain.validate(param, (error, validationRes) => {
+    certChain.validate(param, (error, _validationRes) => {
       if (error) {
         console.error(`X509CertChain validate failed, errCode: ${error.code}, errMsg: ${error.message}`);
       } else {
@@ -12684,7 +12742,7 @@ async function createCsrTest() {
   let priKeyInfo: cert.PrivateKeyInfo = {
     key: prikeyEnstr,
     password: '123abc'
-  }
+  };
   let keyUsage: cert.CsrAttribute = {
     type: 'keyUsage',
     value: 'digitalSignature, keyEncipherment'
@@ -12705,10 +12763,10 @@ async function createCsrTest() {
       mdName: 'SHA256',
       outFormat: cert.EncodingBaseFormat.PEM,
       attributes: attribute
-    }
+    };
     try {
-      let csrStr = cert.generateCsr(priKeyInfo, conf)
-      console.info('generateCsr result: success, return str is ' + csrStr.toString())
+      let csrStr = cert.generateCsr(priKeyInfo, conf);
+      console.info('generateCsr result: success, return str is ' + csrStr.toString());
     } catch (error) {
       let e: BusinessError = error as BusinessError;
       console.error(`generateCsr failed, errCode: ${e.code}, errMsg: ${e.message}`);
@@ -12740,7 +12798,7 @@ createX500DistinguishedName(nameStr: string): Promise\<X500DistinguishedName>
 
 | 类型                            | 说明             |
 | ------------------------------- | ---------------- |
-| Promise\<[X500DistinguishedName](#x500distinguishedname12)> | 表示X.509的可分辨对象。|
+| Promise\<[X500DistinguishedName](#x500distinguishedname12)> | Promise对象，返回X.500可分辨名称对象。|
 
 **错误码：**
 
@@ -12778,12 +12836,12 @@ let nameStr = '/CN=John Doe/OU=IT Department/O=ACME Inc./L=San Francisco/ST=Cali
 async function createX500DistinguishedName() {
   try {
     cert.createX500DistinguishedName(nameStr)
-      .then((data) => {
+      .then((_data) => {
         console.info('createX500DistinguishedName result: success.');
       })
       .catch((err: BusinessError) => {
         console.error(`createX500DistinguishedName failed, errCode: ${err.code}, errMsg: ${err.message}`);
-      })
+      });
   } catch (error) {
     let e: BusinessError = error as BusinessError;
     console.error(`createX500DistinguishedName failed, errCode: ${e.code}, errMsg: ${e.message}`);
@@ -12811,7 +12869,7 @@ createX500DistinguishedName(nameDer: Uint8Array): Promise\<X500DistinguishedName
 
 | 类型                            | 说明             |
 | ------------------------------- | ---------------- |
-| Promise\<[X500DistinguishedName](#x500distinguishedname12)> | 表示X.509的可分辨对象。|
+| Promise\<[X500DistinguishedName](#x500distinguishedname12)> | Promise对象，返回X.500可分辨名称对象。|
 
 **错误码：**
 
@@ -12843,12 +12901,12 @@ let nameDer =
 async function createX500DistinguishedName() {
   try {
     cert.createX500DistinguishedName(nameDer)
-      .then((data) => {
+      .then((_data) => {
         console.info('createX500DistinguishedName result: success.');
       })
       .catch((err: BusinessError) => {
         console.error(`createX500DistinguishedName failed, errCode: ${err.code}, errMsg: ${err.message}`);
-      })
+      });
   } catch (error) {
     let e: BusinessError = error as BusinessError;
     console.error(`createX500DistinguishedName failed, errCode: ${e.code}, errMsg: ${e.message}`);
@@ -12904,7 +12962,7 @@ async function getName() {
       })
       .catch((err: BusinessError) => {
         console.error(`createX500DistinguishedName failed, errCode: ${err.code}, errMsg: ${err.message}`);
-      })
+      });
   } catch (error) {
     let e: BusinessError = error as BusinessError;
     console.error(`createX500DistinguishedName failed, errCode: ${e.code}, errMsg: ${e.message}`);
@@ -12961,7 +13019,7 @@ async function getName() {
       })
       .catch((err: BusinessError) => {
         console.error(`createX500DistinguishedName failed, errCode: ${err.code}, errMsg: ${err.message}`);
-      })
+      });
   } catch (error) {
     let e: BusinessError = error as BusinessError;
     console.error(`createX500DistinguishedName failed, errCode: ${e.code}, errMsg: ${e.message}`);
@@ -13018,7 +13076,7 @@ async function getName() {
       })
       .catch((err: BusinessError) => {
         console.error(`createX500DistinguishedName failed, errCode: ${err.code}, errMsg: ${err.message}`);
-      })
+      });
   } catch (error) {
     let e: BusinessError = error as BusinessError;
     console.error(`createX500DistinguishedName failed, errCode: ${e.code}, errMsg: ${e.message}`);
@@ -13080,7 +13138,7 @@ async function getName() {
       })
       .catch((err: BusinessError) => {
         console.error(`createX500DistinguishedName failed, errCode: ${err.code}, errMsg: ${err.message}`);
-      })
+      });
   } catch (error) {
     let e: BusinessError = error as BusinessError;
     console.error(`createX500DistinguishedName failed, errCode: ${e.code}, errMsg: ${e.message}`);
@@ -13127,10 +13185,11 @@ async function getEncoded() {
       .then((data) => {
         console.info('createX500DistinguishedName result: success.');
         let encodingBlobData = data.getEncoded();
+        console.info('encodingBlobData = ' + encodingBlobData.data);
       })
       .catch((err: BusinessError) => {
         console.error(`createX500DistinguishedName failed, errCode: ${err.code}, errMsg: ${err.message}`);
-      })
+      });
   } catch (error) {
     let e: BusinessError = error as BusinessError;
     console.error(`createX500DistinguishedName failed, errCode: ${e.code}, errMsg: ${e.message}`);
@@ -13214,7 +13273,7 @@ function testcreateCmsGenerator() {
     } else {
         try {
           let cmsContentType = cert.CmsContentType.SIGNED_DATA;
-          let cmsGenerator = cert.createCmsGenerator(cmsContentType);
+          cert.createCmsGenerator(cmsContentType);
           console.info('testcreateCmsGenerator createCmsGenerator result: success.');
         } catch (err) {
           let e: BusinessError = err as BusinessError;
@@ -13290,7 +13349,7 @@ let certData = '-----BEGIN CERTIFICATE-----\n' +
   'a26pkDJhNeB/E3eBIbeydSY0A/dIGb6vbGo6BSq2KvnWAA==\n' +
   '-----END CERTIFICATE-----\n';
 
-let rsaStr1024: string  =
+let rsaStr1024: string =
   '-----BEGIN RSA PRIVATE KEY-----\n' +
     'Proc-Type: 4,ENCRYPTED\n' +
     'DEK-Info: DES-EDE3-CBC,DB0AC6E3BEE16420\n\n' +
@@ -13342,7 +13401,7 @@ function testAddSigner() {
             addCert:false,
             addAttr:false,
             addSmimeCapAttr:false
-          }
+          };
           cmsGenerator.addSigner(x509Cert, privateKeyInfo, config);
           console.info('testAddSigner addSigner result: success.');
         } catch (err) {
@@ -13589,14 +13648,14 @@ async function testAddRecipientInfo() {
 
     let eccCert : cert.CmsKeyAgreeRecipientInfo = {
       cert : eccx509Certcert,
-      digestAlgorithm : cert.CmsKeyAgreeRecipientDigestAlgorithm.SHA256,
+      digestAlgorithm : cert.CmsKeyAgreeRecipientDigestAlgorithm.SHA256
     };
     let rsaCert : cert.CmsKeyTransRecipientInfo = {
-      cert : rsax509Certcert,
+      cert : rsax509Certcert
     };
     let recipientInfo: cert.CmsRecipientInfo = {
       keyTransInfo : rsaCert,
-      keyAgreeInfo : eccCert,
+      keyAgreeInfo : eccCert
     };
     await cmsGenerator.addRecipientInfo(recipientInfo);
     console.info(`addRecipientInfo result: success.`);
@@ -13662,7 +13721,7 @@ let certData = '-----BEGIN CERTIFICATE-----\n' +
   'a26pkDJhNeB/E3eBIbeydSY0A/dIGb6vbGo6BSq2KvnWAA==\n' +
   '-----END CERTIFICATE-----\n';
 
-let rsaStr1024: string  =
+let rsaStr1024: string =
   '-----BEGIN RSA PRIVATE KEY-----\n' +
     'Proc-Type: 4,ENCRYPTED\n' +
     'DEK-Info: DES-EDE3-CBC,DB0AC6E3BEE16420\n\n' +
@@ -13714,12 +13773,12 @@ async function testDoFinalByPromise() {
           addCert:false,
           addAttr:true,
           addSmimeCapAttr:true
-        }
+        };
         cmsGenerator.addSigner(x509Cert, privateKeyInfo, config);
         console.info('testDoFinalByPromise addSigner result: success.');
         cmsGenerator.addCert(x509Cert);
         console.info('testDoFinalByPromise addCert result: success.');
-        let content = new Uint8Array([1,2,3,4]);
+        let content = new Uint8Array([1, 2, 3, 4]);
         let optionsFinal: cert.CmsGeneratorOptions = {
           contentDataFormat : cert.CmsContentDataFormat.BINARY,
           outFormat : cert.CmsFormat.PEM,
@@ -13795,7 +13854,7 @@ let certData = '-----BEGIN CERTIFICATE-----\n' +
   'a26pkDJhNeB/E3eBIbeydSY0A/dIGb6vbGo6BSq2KvnWAA==\n' +
   '-----END CERTIFICATE-----\n';
 
-let rsaStr1024: string  =
+let rsaStr1024: string =
   '-----BEGIN RSA PRIVATE KEY-----\n' +
     'Proc-Type: 4,ENCRYPTED\n' +
     'DEK-Info: DES-EDE3-CBC,DB0AC6E3BEE16420\n\n' +
@@ -13847,19 +13906,19 @@ function testDoFinalSync() {
             addCert:false,
             addAttr:false,
             addSmimeCapAttr:false
-          }
+          };
           cmsGenerator.addSigner(x509Cert, privateKeyInfo, config);
           console.info('testDoFinalSync addSigner result: success.');
           cmsGenerator.addCert(x509Cert);
           console.info('testDoFinalSync addCert result: success.');
-          let content = new Uint8Array([1,2,3,4]);
+          let content = new Uint8Array([1, 2, 3, 4]);
           let optionsFinal: cert.CmsGeneratorOptions = {
             contentDataFormat : cert.CmsContentDataFormat.BINARY,
             outFormat : cert.CmsFormat.DER,
             isDetached : false
           };
           let output = cmsGenerator.doFinalSync(content, optionsFinal);
-          console.info('testDoFinalSync doFinalSync result: success, output = %s.',output);
+          console.info('testDoFinalSync doFinalSync result: success, output = %s.', output);
         } catch (err) {
           let e: BusinessError = err as BusinessError;
           console.error(`testDoFinalSync failed, errCode: ${e.code}, errMsg: ${e.message}`);
@@ -13885,7 +13944,7 @@ getEncryptedContentData(): Promise\<Uint8Array>
 
 | 类型                              | 说明                 |
 | --------------------------------- | -------------------- |
-| Promise\<Uint8Array> |Promise对象, 返回加密的数据内容。 |
+| Promise\<Uint8Array> |Promise对象，返回加密的数据内容。 |
 
 **错误码：**
 
@@ -13967,18 +14026,18 @@ async function testGetEncryptedContentData() {
     console.info(`setRecipientEncryptionAlgorithm result: success.`);
     let eccCert : cert.CmsKeyAgreeRecipientInfo = {
       cert : eccx509Certcert,
-      digestAlgorithm : cert.CmsKeyAgreeRecipientDigestAlgorithm.SHA256,
+      digestAlgorithm : cert.CmsKeyAgreeRecipientDigestAlgorithm.SHA256
     };
     let rsaCert : cert.CmsKeyTransRecipientInfo = {
-      cert : rsax509Certcert,
+      cert : rsax509Certcert
     };
     let recipientInfo: cert.CmsRecipientInfo = {
       keyTransInfo : rsaCert,
-      keyAgreeInfo : eccCert,
+      keyAgreeInfo : eccCert
     };
     await cmsGenerator.addRecipientInfo(recipientInfo);
     console.info(`addRecipientInfo result: success.`);
-    let content = new Uint8Array([1,2,3,4]);
+    let content = new Uint8Array([1, 2, 3, 4]);
     let optionsFinal: cert.CmsGeneratorOptions = {
       contentDataFormat : cert.CmsContentDataFormat.BINARY,
       outFormat : cert.CmsFormat.PEM,
@@ -14087,7 +14146,7 @@ function stringToUint8Array(str: string): Uint8Array {
   let arr: Array<number> = [];
   for (let i = 0, j = str.length; i < j; i++) {
     arr.push(str.charCodeAt(i));
-  };
+  }
   return new Uint8Array(arr);
 }
 
@@ -14108,7 +14167,7 @@ async function testCmsVerifyTest() {
     let x509CertRoot: cert.X509Cert = await createX509Cert(ECC_256_PUB_ROOT_CERT);
     let cms: cert.CmsGenerator = cert.createCmsGenerator(cert.CmsContentType.SIGNED_DATA);
     let signerConfig: cert.CmsSignerConfig = {
-      mdName: 'SHA256',
+      mdName: 'SHA256'
     };
     let keyInfo: cert.PrivateKeyInfo = {
       key: ECC_256_PRI_ENTRY_KEY
@@ -14119,7 +14178,7 @@ async function testCmsVerifyTest() {
     cms.addSigner(x509CertEntry, keyInfo, signerConfig);
     let signData = cms.doFinalSync(plainText, option);
     let config: cert.CmsVerificationConfig = {
-      trustCerts: [x509CertRoot, x509CertInter],
+      trustCerts: [x509CertRoot, x509CertInter]
     };
     let verify: cert.CmsParser = cert.createCmsParser();
     await verify.setRawData(signData, cert.CmsFormat.PEM);
@@ -14269,7 +14328,7 @@ async function testCmsVerifyTest() {
     let x509CertRoot: cert.X509Cert = await createX509Cert(ECC_256_PUB_ROOT_CERT);
     let cms: cert.CmsGenerator = cert.createCmsGenerator(cert.CmsContentType.SIGNED_DATA);
     let signerConfig: cert.CmsSignerConfig = {
-      mdName: 'SHA256',
+      mdName: 'SHA256'
     };
     let keyInfo: cert.PrivateKeyInfo = {
       key: ECC_256_PRI_ENTRY_KEY
@@ -14280,7 +14339,7 @@ async function testCmsVerifyTest() {
     cms.addSigner(x509CertEntry, keyInfo, signerConfig);
     let signData = cms.doFinalSync(plainText, option);
     let config: cert.CmsVerificationConfig = {
-      trustCerts: [x509CertRoot, x509CertInter],
+      trustCerts: [x509CertRoot, x509CertInter]
     };
     let verify: cert.CmsParser = cert.createCmsParser();
     await verify.setRawData(signData, cert.CmsFormat.PEM);
@@ -14386,7 +14445,7 @@ function stringToUint8Array(str: string): Uint8Array {
   let arr: Array<number> = [];
   for (let i = 0, j = str.length; i < j; i++) {
     arr.push(str.charCodeAt(i));
-  };
+  }
   return new Uint8Array(arr);
 }
 
@@ -14409,7 +14468,7 @@ async function testCmsVerifyTest() {
     let x509CertRoot: cert.X509Cert = await createX509Cert(ECC_256_PUB_ROOT_CERT);
     let cms: cert.CmsGenerator = cert.createCmsGenerator(cert.CmsContentType.SIGNED_DATA);
     let signerConfig: cert.CmsSignerConfig = {
-      mdName: 'SHA256',
+      mdName: 'SHA256'
     };
     let keyInfo: cert.PrivateKeyInfo = {
       key: ECC_256_PRI_ENTRY_KEY
@@ -14420,7 +14479,7 @@ async function testCmsVerifyTest() {
     cms.addSigner(x509CertEntry, keyInfo, signerConfig);
     let signData = cms.doFinalSync(plainText, option);
     let config: cert.CmsVerificationConfig = {
-      trustCerts: [x509CertRoot, x509CertInter],
+      trustCerts: [x509CertRoot, x509CertInter]
     };
     let verify: cert.CmsParser = cert.createCmsParser();
     await verify.setRawData(signData, cert.CmsFormat.PEM);
@@ -14538,7 +14597,7 @@ function stringToUint8Array(str: string): Uint8Array {
   let arr: Array<number> = [];
   for (let i = 0, j = str.length; i < j; i++) {
     arr.push(str.charCodeAt(i));
-  };
+  }
   return new Uint8Array(arr);
 }
 
@@ -14560,7 +14619,7 @@ async function testCmsVerifyTest() {
     let x509CertRoot: cert.X509Cert = await createX509Cert(ECC_256_PUB_ROOT_CERT);
     let cms: cert.CmsGenerator = cert.createCmsGenerator(cert.CmsContentType.SIGNED_DATA);
     let signerConfig: cert.CmsSignerConfig = {
-      mdName: 'SHA256',
+      mdName: 'SHA256'
     };
     let keyInfo: cert.PrivateKeyInfo = {
       key: ECC_256_PRI_ENTRY_KEY
@@ -14571,7 +14630,7 @@ async function testCmsVerifyTest() {
     cms.addSigner(x509CertEntry, keyInfo, signerConfig);
     let signData = cms.doFinalSync(plainText, option);
     let config: cert.CmsVerificationConfig = {
-      trustCerts: [x509CertRoot, x509CertInter],
+      trustCerts: [x509CertRoot, x509CertInter]
     };
     let verify: cert.CmsParser = cert.createCmsParser();
     await verify.setRawData(signData, cert.CmsFormat.PEM);
@@ -14597,7 +14656,7 @@ getContentData(): Promise\<Uint8Array>
 
 | 类型                              | 说明                 |
 | --------------------------------- | -------------------- |
-| Promise\<Uint8Array> |Promise对象，返回CMS原始数据。 |
+| Promise\<Uint8Array> |Promise对象，返回CMS内容数据。 |
 
 **错误码：**
 
@@ -14699,7 +14758,7 @@ async function testCmsVerifyTest() {
     let x509CertRoot: cert.X509Cert = await createX509Cert(ECC_256_PUB_ROOT_CERT);
     let cms: cert.CmsGenerator = cert.createCmsGenerator(cert.CmsContentType.SIGNED_DATA);
     let signerConfig: cert.CmsSignerConfig = {
-      mdName: 'SHA256',
+      mdName: 'SHA256'
     };
     let keyInfo: cert.PrivateKeyInfo = {
       key: ECC_256_PRI_ENTRY_KEY
@@ -14710,7 +14769,7 @@ async function testCmsVerifyTest() {
     cms.addSigner(x509CertEntry, keyInfo, signerConfig);
     let signData = cms.doFinalSync(plainText, option);
     let config: cert.CmsVerificationConfig = {
-      trustCerts: [x509CertRoot, x509CertInter],
+      trustCerts: [x509CertRoot, x509CertInter]
     };
     let verify: cert.CmsParser = cert.createCmsParser();
     await verify.setRawData(signData, cert.CmsFormat.PEM);
@@ -14726,7 +14785,7 @@ async function testCmsVerifyTest() {
 
 ### getCerts<sup>22+</sup>
 
-getCerts(type: CmsCertType): Promise<Array\<[X509Cert](#x509cert)>>
+getCerts(type: CmsCertType): Promise<Array\<X509Cert>>
 
 传入枚举值，用于从签名数据类型的CMS消息中获取证书。当前支持获取签名者证书或全部证书。使用Promise异步回调。
 
@@ -14848,7 +14907,7 @@ async function testCmsVerifyTest() {
     let x509CertRoot: cert.X509Cert = await createX509Cert(ECC_256_PUB_ROOT_CERT);
     let cms: cert.CmsGenerator = cert.createCmsGenerator(cert.CmsContentType.SIGNED_DATA);
     let signerConfig: cert.CmsSignerConfig = {
-      mdName: 'SHA256',
+      mdName: 'SHA256'
     };
     let keyInfo: cert.PrivateKeyInfo = {
       key: ECC_256_PRI_ENTRY_KEY
@@ -14859,7 +14918,7 @@ async function testCmsVerifyTest() {
     cms.addSigner(x509CertEntry, keyInfo, signerConfig);
     let signData = cms.doFinalSync(plainText, option);
     let config: cert.CmsVerificationConfig = {
-      trustCerts: [x509CertRoot, x509CertInter],
+      trustCerts: [x509CertRoot, x509CertInter]
     };
     let verify: cert.CmsParser = cert.createCmsParser();
     await verify.setRawData(signData, cert.CmsFormat.PEM);
@@ -14978,7 +15037,7 @@ async function testCmsDecryptTest() {
     let config: cert.CmsEnvelopedDecryptionConfig = {
       keyInfo: {
         key: ECC_256_PRIVATE
-      },
+      }
     };
     let cmsDecrypt: cert.CmsParser = cert.createCmsParser();
     await cmsDecrypt.setRawData(envelopeData, cert.CmsFormat.PEM);
