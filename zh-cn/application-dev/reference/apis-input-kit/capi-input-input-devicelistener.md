@@ -29,53 +29,5 @@ typedef struct Input_DeviceListener {
 
 | 名称 | 描述 |
 | -- | -- |
-| [Input_DeviceAddedCallback](#input_deviceaddedcallback) deviceAddedCallback | 定义一个回调函数，用于接收设备热插事件。 |
-| [Input_DeviceRemovedCallback](#input_deviceremovedcallback) deviceRemovedCallback | 定义一个回调函数，用于接收设备热拔事件。 |
-
-
-### 成员函数
-
-| 名称 | typedef关键字 | 描述 |
-| -- | -- | -- |
-| [typedef void (\*Input_DeviceAddedCallback)(int32_t deviceId)](#input_deviceaddedcallback) | Input_DeviceAddedCallback() | 回调函数，用于接收输入设备的热插事件。 |
-| [typedef void (\*Input_DeviceRemovedCallback)(int32_t deviceId)](#input_deviceremovedcallback) | Input_DeviceRemovedCallback() | 回调函数，用于接收输入设备的热拔事件。 |
-
-## 成员函数说明
-
-### Input_DeviceAddedCallback()
-
-```c
-typedef void (*Input_DeviceAddedCallback)(int32_t deviceId)
-```
-
-**描述**
-
-回调函数，用于接收输入设备的热插事件。
-
-**起始版本：** 13
-
-**参数：**
-
-| 参数项 | 描述 |
-| -- | -- |
-| int32_t deviceId | 输入设备的唯一标识，同一个物理设备反复插拔或重启，设备ID可能会发生变化。 |
-
-### Input_DeviceRemovedCallback()
-
-```c
-typedef void (*Input_DeviceRemovedCallback)(int32_t deviceId)
-```
-
-**描述**
-
-回调函数，用于接收输入设备的热拔事件。
-
-**起始版本：** 13
-
-**参数：**
-
-| 参数项 | 描述 |
-| -- | -- |
-| int32_t deviceId | 输入设备的唯一标识，同一个物理设备反复插拔或重启，设备ID可能会发生变化。 |
-
-
+| [Input_DeviceAddedCallback](capi-oh-input-manager-h.md#input_deviceaddedcallback) deviceAddedCallback | 定义一个回调函数，用于接收设备热插事件。 |
+| [Input_DeviceRemovedCallback](capi-oh-input-manager-h.md#input_deviceremovedcallback) deviceRemovedCallback | 定义一个回调函数，用于接收设备热拔事件。 |
