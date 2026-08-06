@@ -118,7 +118,7 @@ setPowerSaveMode(pid: number, powerSaveMode: PowerSaveMode): Promise&lt;void&gt;
 
 | 参数名      | 类型      | 必填      | 说明      |
 |-------------|-----------|-----------|-----------|
-| pid         | number    | 是        | 进程号。<br>取值范围：大于0的整数。  |
+| pid         | number    | 是        | 进程号。<br>取值为正整数。  |
 | powerSaveMode | [PowerSaveMode](#powersavemode20) | 是 | 能效模式。 |
 
 **返回值**：
@@ -173,7 +173,7 @@ isPowerSaveMode(pid: number): Promise&lt;boolean&gt;
 
 | 参数名      | 类型      | 必填      | 说明      |
 |-------------|-----------|-----------|-----------|
-| pid         | number    | 是        | 进程号。<br>取值范围：大于0的整数。  |
+| pid         | number    | 是        | 进程号。<br>取值为正整数。  |
 
 **返回值**：
 
@@ -225,7 +225,7 @@ getPowerSaveMode(pid: number): Promise&lt;PowerSaveMode&gt;
 
 | 参数名      | 类型      | 必填      | 说明      |
 |-------------|-----------|-----------|-----------|
-| pid         | number    | 是        | 进程号。<br>取值范围：大于0的整数。  |
+| pid         | number    | 是        | 进程号。<br>取值为正整数。  |
 
 **返回值：**
 
