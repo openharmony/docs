@@ -491,7 +491,7 @@ Text样式，支持属性设置、属性重置和属性获取。<br>
 
 | 类型 | 说明 |
 | -- | -- |
-| .string | 字体列表，使用多个字体，使用','进行分割。 |
+| .string | 字体列表，使用多个字体，使用','进行分隔。 |
 | .value[0].f32 | 文本尺寸，单位为fp。取值范围：[0, +∞)。 |
 | .value[1].i32 | 文本的字体粗细，具体枚举值请参考[ArkUI_FontWeight](capi-text-h.md#arkui_fontweight)。默认值为ARKUI_FONT_WEIGHT_NORMAL。 |
 | .value[2].i32 | 字体样式，具体枚举值请参考[ArkUI_FontStyle](capi-text-h.md#arkui_fontstyle)。默认值为ARKUI_FONT_STYLE_NORMAL。 |
@@ -646,7 +646,7 @@ NODE_FONT_FEATURE = 1024
 NODE_TEXT_ENABLE_DATA_DETECTOR = 1025
 ```
 
-设置是否使能文本实体识别，识别的实体类型可通过NODE_TEXT_ENABLE_DATA_DETECTOR_CONFIG属性配置。适用于识别文本中的特定实体类型（如电话号码、邮箱地址、网址链接等），实现点击跳转、智能交互等功能。<br>
+设置是否启用文本实体识别，识别的实体类型可通过NODE_TEXT_ENABLE_DATA_DETECTOR_CONFIG属性配置。适用于识别文本中的特定实体类型（如电话号码、邮箱地址、网址链接等），实现点击跳转、智能交互等功能。<br>
 作为属性设置方法参数、属性获取方法返回值[ArkUI_AttributeItem](capi-arkui-nativemodule-arkui-attributeitem.md)格式如下。<br>
 
 **起始版本：** 12
@@ -656,13 +656,13 @@ NODE_TEXT_ENABLE_DATA_DETECTOR = 1025
 
 | 参数项 | 描述 |
 | -- | -- |
-| .value[0].i32 | 使能文本识别，1表示文本可实体识别，0表示不可识别。默认值：0。 |
+| .value[0].i32 | 是否启用文本实体识别，1表示文本可实体识别，0表示不可识别。默认值：0。 |
 
 **返回：**
 
 | 类型 | 说明 |
 | -- | -- |
-| .value[0].i32 | 使能文本识别。1表示文本可实体识别，0表示不可识别。 |
+| .value[0].i32 | 是否启用文本实体识别。1表示文本可实体识别，0表示不可识别。 |
 
 ## NODE_TEXT_ENABLE_DATA_DETECTOR_CONFIG
 
@@ -1481,7 +1481,7 @@ NODE_SPAN_FONT = 2003
 
 | 参数项 | 描述 |
 | -- | -- |
-| .string? | 字体列表，多个字体使用`,`进行分割。可选。 |
+| .string? | 字体列表，多个字体使用`,`进行分隔。可选。 |
 | .value[0].f32 | 文本尺寸，单位为fp。取值范围：[0, +∞)。 |
 | .value[1]?.i32 | 文本的字体粗细。可选。取值为`[100, 900]`，默认为`400`。取值越大，字体越粗。 |
 | .value[2]?.i32 | 字体样式。可选。参数类型为[ArkUI_FontStyle](capi-text-h.md#arkui_fontstyle)。默认值为`ARKUI_FONT_STYLE_NORMAL`。 |
@@ -1491,7 +1491,7 @@ NODE_SPAN_FONT = 2003
 
 | 类型 | 说明 |
 | -- | -- |
-| .string | 字体列表，多个字体使用`,`进行分割。 |
+| .string | 字体列表，多个字体使用`,`进行分隔。 |
 | .value[0].f32 | 文本尺寸，单位为fp。取值范围：[0, +∞)。 |
 | .value[1].i32 | 文本的字体粗细，无单位。取值越大，字体越粗。 |
 | .value[2].i32 | 字体样式。参数类型为[ArkUI_FontStyle](capi-text-h.md#arkui_fontstyle)。 |

@@ -3207,7 +3207,7 @@ struct html_convert_demo {
         this.spanString = await StyledString.fromHtml(this.html);
         this.controller.setStyledString(this.spanString);
       }).margin(5)
-    }.width("100%").padding(20)
+    }.width('100%').padding(20)
   }
 }
 ```

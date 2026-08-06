@@ -41,7 +41,7 @@
 | 名称 | 描述 |
 | -- | -- |
 | [ArkUI_ProgressLinearStyleOption* OH_ArkUI_ProgressLinearStyleOption_Create(void)](#oh_arkui_progresslinearstyleoption_create) | 创建线性进度条样式信息。使用完毕后必须调用[OH_ArkUI_ProgressLinearStyleOption_Destroy](#oh_arkui_progresslinearstyleoption_destroy)释放资源，避免内存泄漏。 |
-| [void OH_ArkUI_ProgressLinearStyleOption_Destroy(ArkUI_ProgressLinearStyleOption* option)](#oh_arkui_progresslinearstyleoption_destroy) | 销毁线性进度条样式信息。必须与[OH_ArkUI_ProgressLinearStyleOption_Create](#oh_arkui_progresslinearstyleoption_create)配对使用，参数option应通过Create()获取，调用Destroy()后不应再使用该对象。 |
+| [void OH_ArkUI_ProgressLinearStyleOption_Destroy(ArkUI_ProgressLinearStyleOption* option)](#oh_arkui_progresslinearstyleoption_destroy) | 销毁线性进度条样式信息。必须与[OH_ArkUI_ProgressLinearStyleOption_Create](#oh_arkui_progresslinearstyleoption_create)配对使用，参数option应通过OH_ArkUI_ProgressLinearStyleOption_Create()获取，调用OH_ArkUI_ProgressLinearStyleOption_Destroy()后不应再使用该对象。 |
 | [void OH_ArkUI_ProgressLinearStyleOption_SetSmoothEffectEnabled(ArkUI_ProgressLinearStyleOption* option, bool enabled)](#oh_arkui_progresslinearstyleoption_setsmootheffectenabled) | 设置进度平滑动效的开关。 |
 | [void OH_ArkUI_ProgressLinearStyleOption_SetScanEffectEnabled(ArkUI_ProgressLinearStyleOption* option, bool enabled)](#oh_arkui_progresslinearstyleoption_setscaneffectenabled) | 设置扫光效果的开关。适用于需要增强进度条视觉反馈效果的加载场景，如数据加载、文件上传等。扫光效果指进度条上有光线扫描移动的动态视觉效果。 |
 | [void OH_ArkUI_ProgressLinearStyleOption_SetStrokeWidth(ArkUI_ProgressLinearStyleOption* option, float strokeWidth)](#oh_arkui_progresslinearstyleoption_setstrokewidth) | 设置进度条宽度。 |
@@ -102,7 +102,7 @@ void OH_ArkUI_ProgressLinearStyleOption_Destroy(ArkUI_ProgressLinearStyleOption*
 
 **描述**
 
-销毁线性进度条样式信息。必须与[OH_ArkUI_ProgressLinearStyleOption_Create](#oh_arkui_progresslinearstyleoption_create)配对使用，参数option应通过Create()获取，调用Destroy()后不应再使用该对象。
+销毁线性进度条样式信息。必须与[OH_ArkUI_ProgressLinearStyleOption_Create](#oh_arkui_progresslinearstyleoption_create)配对使用，参数option应通过OH_ArkUI_ProgressLinearStyleOption_Create()获取，调用OH_ArkUI_ProgressLinearStyleOption_Destroy()后不应再使用该对象。
 
 **起始版本：** 15
 

@@ -322,7 +322,7 @@ struct SpanExample {
   build() {
     Row() {
       Column({ space: 10 }) {
-        //创建ColorFilter对象的方式为图片设置颜色滤镜
+        // 创建ColorFilter对象的方式为图片设置颜色滤镜。
         Text() {
           // $r('app.media.sky')需要替换为实际的图像资源文件。
           ImageSpan($r('app.media.sky'))
@@ -331,7 +331,7 @@ struct SpanExample {
             .colorFilter(this.drawingColorFilterFirst)
         }
 
-        //通过drawing.ColorFilter的方式为图片设置颜色滤镜
+        // 通过drawing.ColorFilter的方式为图片设置颜色滤镜。
         Text() {
           // $r('app.media.sky')需要替换为实际的图像资源文件。
           ImageSpan($r('app.media.sky'))
