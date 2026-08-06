@@ -485,7 +485,7 @@ updateContact(contact: Contact, callback: AsyncCallback&lt;void&gt;): void
 >
 > 从API version 7 开始支持，从API version 10 开始废弃，建议使用[updateContact](#contactupdatecontact10)替代。
 
-**需要权限**：ohos.permission.WRITE_CONTACTS
+**需要权限**：ohos.permission.WRITE_CONTACTS和ohos.permission.READ_CONTACTS
 
 **系统能力**：SystemCapability.Applications.ContactsData
 
@@ -595,7 +595,7 @@ updateContact(contact: Contact, attrs: ContactAttributes, callback: AsyncCallbac
 >
 > 从API version 7 开始支持，从API version 10 开始废弃，建议使用[updateContact](#contactupdatecontact10-1)替代。
 
-**需要权限**：ohos.permission.WRITE_CONTACTS
+**需要权限**：ohos.permission.WRITE_CONTACTS和ohos.permission.READ_CONTACTS
 
 **系统能力**：SystemCapability.Applications.ContactsData
 
@@ -710,7 +710,7 @@ updateContact(contact: Contact, attrs?: ContactAttributes): Promise&lt;void&gt;
 >
 > 从API version 7 开始支持，从API version 10 开始废弃，建议使用[updateContact](#contactupdatecontact10-2)替代。
 
-**需要权限**：ohos.permission.WRITE_CONTACTS
+**需要权限**：ohos.permission.WRITE_CONTACTS和ohos.permission.READ_CONTACTS
 
 **系统能力**：SystemCapability.Applications.ContactsData
 
@@ -2883,7 +2883,7 @@ queryContactsByPhoneNumber(phoneNumber: string, holder: Holder, attrs: ContactAt
 | ----------- | ----------------------------------------------------- | ---- | ------------------------------------------------------------ |
 | phoneNumber | string                                                | 是   | 联系人的电话号码，仅支持全匹配，不支持通配符匹配。                    |
 | holder      | [Holder](#holder)                                     | 是   | 创建联系人的应用信息类，如果该参数为空，则默认使用系统联系人应用查询。                                        |
-| attrs       | [ContactAttributes](#contactattributes)               | 是   | 联系人的属性列表，如果该参数为空，则查询联系人的id、key、phoneNumbers属性。                                           |
+| attrs       | [ContactAttributes](#contactattributes)               | 是   | 联系人的属性列表，如果为空，则查询联系人的id、key、phoneNumbers属性。                                           |
 | callback    | AsyncCallback&lt;Array&lt;[Contact](#contact)&gt;&gt; | 是   | 回调函数。当查询联系人成功，err为undefined，data为查询到的联系人对象数组；否则为错误对象。 |
 
 **示例：**
@@ -2924,7 +2924,7 @@ queryContactsByPhoneNumber(context: Context,  phoneNumber: string, holder?: Hold
 | context     | Context                                 | 是   | 应用上下文Context，Stage模型的应用Context定义见[Context](../apis-ability-kit/js-apis-inner-application-context.md)。 |
 | phoneNumber | string                                  | 是   | 联系人的电话号码，仅支持全匹配，不支持通配符匹配。                      |
 | holder      | [Holder](#holder)                       | 否   | 创建联系人的应用信息类，不传该参数，则默认使用系统联系人应用查询。       |
-| attrs       | [ContactAttributes](#contactattributes) | 否   | 联系人的属性列表，不传默认查询联系人的id、key、phoneNumbers属性。               |
+| attrs       | [ContactAttributes](#contactattributes) | 否   | 联系人的属性列表，如果为空，则查询联系人的id、key、phoneNumbers属性。               |
 
 **返回值：**
 
@@ -2985,7 +2985,7 @@ queryContactsByPhoneNumber(phoneNumber: string, holder?: Holder, attrs?: Contact
 | ----------- | --------------------------------------- | ---- | ---------------------- |
 | phoneNumber | string                                  | 是   | 联系人的电话号码，仅支持全匹配，不支持通配符匹配。     |
 | holder      | [Holder](#holder)                       | 否   | 创建联系人的应用信息类，不传该参数，则默认使用系统联系人应用查询。 |
-| attrs       | [ContactAttributes](#contactattributes) | 否   | 联系人的属性列表，不传默认查询联系人的id、key、phoneNumbers属性。     |
+| attrs       | [ContactAttributes](#contactattributes) | 否   | 联系人的属性列表，如果为空，则查询联系人的id、key、phoneNumbers属性。     |
 
 **返回值：**
 
@@ -3399,7 +3399,7 @@ queryContactsByEmail(context: Context,  email: string, holder?: Holder, attrs?: 
 | context | Context                                 | 是   | 应用上下文Context，Stage模型的应用Context定义见[Context](../apis-ability-kit/js-apis-inner-application-context.md)。 |
 | email   | string                                  | 是   | 联系人的邮箱地址。                                           |
 | holder  | [Holder](#holder)                       | 否   | 创建联系人的应用信息类，不传该参数，则默认使用系统联系人应用查询。                                       |
-| attrs   | [ContactAttributes](#contactattributes) | 否   | 联系人的属性列表，不传默认查询联系人的id、key、Emails属性。                                           |
+| attrs   | [ContactAttributes](#contactattributes) | 否   | 联系人的属性列表，如果为空，则查询联系人的id、key、Emails属性。                                           |
 
 **返回值：**
 
@@ -3459,7 +3459,7 @@ queryContactsByEmail(email: string, holder?: Holder, attrs?: ContactAttributes):
 | ------ | --------------------------------------- | ---- | ---------------------- |
 | email  | string                                  | 是   | 联系人的邮箱地址。     |
 | holder | [Holder](#holder)                       | 否   | 创建联系人的应用信息类，不传该参数，则默认使用系统联系人应用查询。 |
-| attrs  | [ContactAttributes](#contactattributes) | 否   | 联系人的属性列表，不传默认查询联系人的id、key、Emails属性。     |
+| attrs  | [ContactAttributes](#contactattributes) | 否   | 联系人的属性列表，如果为空，则查询联系人的id、key、Emails属性。     |
 
 **返回值：**
 
