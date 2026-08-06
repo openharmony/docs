@@ -6,7 +6,7 @@
 <!--Designer: @no86-->
 <!--Tester: @dong-dongzhen-->
 <!--Adviser: @fang-jinxu-->
-<!-- md-trans-meta sourceCommit=7bd9d64d06b09f010cde4ca5a86285027d09b51a translatedAt=2026-08-04T10:28:47.232Z pushedAt=2026-08-05T12:15:50.142Z -->
+<!-- md-trans-meta sourceCommit=7bd9d64d06b09f010cde4ca5a86285027d09b51a translatedAt=2026-08-04T10:28:47.232Z pushedAt=2026-08-06T03:23:06.329Z -->
 
 > **NOTE**
 >
@@ -38,7 +38,7 @@ When a word selection app calls the word selection service API, this error code 
 
 3. If the issue persists after restart, contact technical personnel for support.
 
-4. Avoid creating panels of the same type repeatedly.One word selection app is allowed to create **MENU_PANEL** and **MAIN_PANEL** only once.
+4. Avoid creating panels of the same type repeatedly. One word selection app is allowed to create **MENU_PANEL** and **MAIN_PANEL** only once.
 
 ## 33600002 Word Selection Panel Has Been Destroyed
 
