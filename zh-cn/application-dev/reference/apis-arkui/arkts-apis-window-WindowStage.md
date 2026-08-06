@@ -2015,7 +2015,7 @@ export default class EntryAbility extends UIAbility {
         }
       })
 
-      let imgResourceId = $r("app.media.startIcon").id
+      let imgResourceId = $r("app.media.startIcon").id;
       try {
         let imgResourcePromise = windowStage.setImageForRecent(imgResourceId, ImageFit.Fill);
         imgResourcePromise.then(() => {
@@ -2024,7 +2024,7 @@ export default class EntryAbility extends UIAbility {
           console.error(`Failed to set image for recent. Cause code: ${err.code}, message: ${err.message}`);
         });
       } catch (exception) {
-        console.error(`Failed to set image for recent.`);
+        console.error(`Failed to set image for recent. Cause code: ${exception.code}, message: ${exception.message}`);
       }
     });
   }
@@ -2082,7 +2082,7 @@ export default class EntryAbility extends UIAbility {
         console.error(`Failed to remove image for recent. Cause code: ${err.code}, message: ${err.message}`);
       });
     } catch (exception) {
-      console.error(`Failed to remove image for recent.`);
+      console.error(`Failed to remove image for recent. Cause code: ${exception.code}, message: ${exception.message}`);
     }
   }
 };

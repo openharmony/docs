@@ -4686,7 +4686,7 @@ export default class EntryAbility extends UIAbility {
         console.error(`Failed to set image for recent. Cause code: ${err.code}, message: ${err.message}`);
       });
     } catch (exception) {
-      console.error(`Failed to set image for recent. Cause code: ${exception.code}, message: ${exception.message}`);
+      console.error(`Failed to set image for recent.`);
     }
   }
 };
