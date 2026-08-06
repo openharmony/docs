@@ -422,21 +422,9 @@ GSMA 标准定义的、负责为 eUICC 准备并下发配置文件的运营商�
 
 基于 XML 的标记语言，用于描述多媒体演示中各组成部分的时间编排与布局，在彩信中作为附件控制内容播放顺序与版式。
 
-### System application；系统应用
-
-HarmonyOS 中预置并具备系统级权限的应用类型，本 Kit 中部分接口所需权限仅系统应用可申请，普通应用无法获取。
-
 ### System Identification (SID)；系统识别码
 
 CDMA 网络中标识运营商系统的编号，与 NID 共同确定 CDMA 终端的归属网络和漫游状态。
-
-### System interface；系统接口
-
-仅系统应用可调用的 API，受系统权限管控，普通应用调用会返回 202 错误码，本 Kit 中以 -sys 后缀文件单独提供，是公开接口的超集。
-
-### SystemCapability；系统能力
-
-HarmonyOS 中标识设备所支持特性/能力的机制，以“SystemCapability.子系统.能力”形式声明，接口通过该标签标注所属能力，用于跨设备能力校验与运行时降级。
 
 ## T
 
@@ -444,9 +432,6 @@ HarmonyOS 中标识设备所支持特性/能力的机制，以“SystemCapabilit
 
 智能卡（含 SIM/eUICC）数据交换中标准的编码格式，每条数据由标签、长度、值三段组成可嵌套，便于卡侧按 BER-TLV 规则解析。
 
-### Telephony Kit；电话服务套件
-
-HarmonyOS 提供电话能力的开发套件，封装通话、蜂窝数据、网络搜索、SIM/eSIM 卡、短信、observer 等模块，是访问 Telephony 子系统功能的统一入口。
 
 ### Terminal Response；终端响应
 
@@ -473,10 +458,6 @@ SMS TPDU 中指示回复消息是否经由原发送方所用 SMSC 路由的协�
 LTE/NR 中标识跟踪区的编号，跟踪区是 PS 域移动性管理单位，替代 CS 域的 LAC，终端跨跟踪区移动时触发跟踪区更新。
 
 ## U
-
-### UIAbility
-
-Stage 模型中带 UI 界面的应用组件类型，是应用与用户交互的入口；本 Kit 中涉及界面跳转的接口（如 makeCall）需在 UIAbility 实例中调用，区别于无界面的 ExtensionAbility。
 
 ### Universal Character Set 2 (UCS-2)；通用双字节字符集
 
