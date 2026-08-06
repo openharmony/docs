@@ -38,11 +38,15 @@
   <!--DelEnd-->
 - 音频录制<!--audio-recording-->
   - [音频录制开发概述](audio-recording-overview.md)
-  - [选择合适的录制流类型](using-right-sourcetype-for-recording.md)
-  - [推荐使用OHAudio开发音频录制功能(C/C++)](using-ohaudio-for-recording.md)
-  - [使用AudioCapturer开发音频录制功能(ArkTS)](using-audiocapturer-for-recording.md)
-  - [低时延音频录制(C/C++)](audio-fast-recording.md)
-  - [实现后台录音](background-recording.md)
+  - 开发麦克风录制(外录)功能<!--external-audio-recording-->
+    - [选择合适的录制流类型](using-right-sourcetype-for-recording.md)
+    - [推荐使用OHAudio开发音频录制功能(C/C++)](using-ohaudio-for-recording.md)
+    - [使用AudioCapturer开发音频录制功能(ArkTS)](using-audiocapturer-for-recording.md)
+    - [低时延音频录制(C/C++)](audio-fast-recording.md)
+    - [实现后台录音](background-recording.md)
+  - 开发录制系统音频(内录)功能<!--system-audio-recording-->
+    - [录制系统音频概述与接口选择](audio-recording-system-audio-overview.md)
+    - [实现录制系统音频](implement-system-audio-recording.md)
   - [管理麦克风静音状态](mic-management.md)
   - [查询和监听其他应用录制状态](audio-recording-stream-management.md)
   - [录音并发策略说明](audio-recording-concurrency.md)
