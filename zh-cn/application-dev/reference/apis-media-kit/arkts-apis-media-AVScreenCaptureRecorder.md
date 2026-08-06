@@ -662,7 +662,6 @@ setContentAutoRotation(enable: boolean): Promise\<void>
 
 | 错误码ID | 错误信息                               |
 | -------- | -------------------------------------- |
-| 801  | Capability not supported. Return by promise.  |
 | 5400102  | Operation not allowed. Return by promise.    |
 | 5400105  | Service died. Return by promise. |
 
