@@ -36,7 +36,7 @@ addPortAuthorization(tokenId: string, deviceId: string): Promise&lt;void&gt;
 | 参数名     | 类型     | 必填 | 说明                                                         |
 | --------- | -------- | ---- | ------------------------------------------------------------ |
 | tokenId   | string   | 是   | 被授权应用的Token ID，用于标识被授予串口访问权限的应用。设置后，指定该应用可获得对相应串口设备的访问权限。可通过[bundleManager.getBundleInfoForSelf](../apis-ability-kit/js-apis-bundleManager.md#bundlemanagergetbundleinfoforself)获取。|
-| deviceId  | string   | 是   | 串口设备ID，用于指定需要授权访问的串口设备。可通过获取串口设备列表接口获得。板载串口取值为portName；USB虚拟串口取值为VID+PID+SN的组合或设备路径（如/dev/ttyUSB0）。设置后，应用将获得对指定串口设备的访问权限。 |
+| deviceId  | string   | 是   | 串口设备ID，用于指定需要授权访问的串口设备。可通过接口[getSerialPortList](./js-apis-busmanager-serial.md#serialgetserialportlist)获取串口设备列表。板载串口取值为portName；USB虚拟串口取值为VID+PID+SN的组合或设备路径（如/dev/ttyUSB0）。设置后，应用将获得对指定串口设备的访问权限。 |
 
 **返回值：**
 
