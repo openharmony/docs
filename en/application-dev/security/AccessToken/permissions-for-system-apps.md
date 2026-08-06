@@ -6622,6 +6622,48 @@ With this permission, the application can add file event records, search for fil
 
 **Valid since**: 26.0.0
 
+## ohos.permission.MUTE_VOIP_CAPTURE
+
+Allows an application to mute the VoIP capture streams of other applications.
+
+**Permission level**: system_core
+
+**Authorization mode**: system_grant
+
+**Certificate-based authorization**: true
+
+**Supported devices**: phones | tablets | TVs | PCs/2-in-1 devices | cars | wearables
+
+**Valid since**: 26.0.0
+
+## ohos.permission.MUTE_VOIP_PLAYBACK
+
+Allows an application to mute the VoIP playback streams of other applications.
+
+**Permission level**: system_core
+
+**Authorization mode**: system_grant
+
+**Certificate-based authorization**: true
+
+**Supported devices**: phones | tablets | TVs | PCs/2-in-1 devices | cars | wearables
+
+**Valid since**: 26.0.0
+
+## ohos.permission.VOIP_CAPTURE_CONCURRENCY
+
+Allows an application to enable the VoIP recording stream while another application is recording VoIP calls.
+
+**Permission level**: system_core
+
+**Authorization mode**: system_grant
+
+**Certificate-based authorization**: true
+
+**Supported devices**: phones | tablets | TVs | PCs/2-in-1 devices | cars | wearables
+
+**Valid since**: 26.0.0
+
 ## ohos.permission.MANAGE_CLONE_BUNDLE_PREFERENCES
  	 
 Allows an application to manage clone preferences.
