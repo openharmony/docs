@@ -27,7 +27,7 @@ import { DriverExtensionAbility } from '@kit.DriverDevelopmentKit';
 
 ### 属性
 
-DriverExtensionAbility类，包含驱动生命周期回调的定义。
+DriverExtensionAbility类，包含驱动扩展的上下文环境定义。
 
 **模型约束**：此接口仅在Stage模型下使用。
 
@@ -61,7 +61,7 @@ Extension生命周期回调，在创建时回调，执行初始化业务逻辑�
   import { Want } from '@kit.AbilityKit';
 
   class DriverExt extends DriverExtensionAbility {
-    onInit(want : Want) {
+    onInit(want: Want) {
       console.info(`onInit, want: ${want.abilityName}`);
     }
   }
@@ -116,17 +116,17 @@ Extension生命周期回调，会在[onCreate](../apis-ability-kit/js-apis-app-a
   import { rpc } from '@kit.IPCKit';
   import { Want } from '@kit.AbilityKit';
 
-  class StubTest extends rpc.RemoteObject{
-      constructor(des : string) {
+  class StubTest extends rpc.RemoteObject {
+      constructor(des: string) {
           super(des);
       }
-      onRemoteMessageRequest(code : number, data : rpc.MessageSequence, reply : rpc.MessageSequence, option : rpc.MessageOption) {
+      onRemoteMessageRequest(code: number, data: rpc.MessageSequence, reply: rpc.MessageSequence, option: rpc.MessageOption) {
         // 必须重写此接口
         return true;
       }
   }
   class DriverExt extends DriverExtensionAbility {
-    onConnect(want : Want) {
+    onConnect(want: Want) {
       console.info(`onConnect , want: ${want.abilityName}`);
       return new StubTest('test');
     }
@@ -140,21 +140,21 @@ Extension生命周期回调，会在[onCreate](../apis-ability-kit/js-apis-app-a
   import { rpc } from '@kit.IPCKit';
   import { Want } from '@kit.AbilityKit';
   
-  class StubTest extends rpc.RemoteObject{
-      constructor(des : string) {
+  class StubTest extends rpc.RemoteObject {
+      constructor(des: string) {
           super(des);
       }
-      onRemoteMessageRequest(code : number, data : rpc.MessageSequence, reply : rpc.MessageSequence, option : rpc.MessageOption) {
+      onRemoteMessageRequest(code: number, data: rpc.MessageSequence, reply: rpc.MessageSequence, option: rpc.MessageOption) {
         // 必须重写此接口
         return true;
       }
   }
   async function getDescriptor() {
       // 调用异步函数...
-      return "asyncTest";
+      return 'asyncTest';
   }
   class DriverExt extends DriverExtensionAbility {
-    async onConnect(want : Want) {
+    async onConnect(want: Want) {
       console.info(`onConnect , want: ${want.abilityName}`);
       let descriptor = await getDescriptor();
       return new StubTest(descriptor);
@@ -191,7 +191,7 @@ Extension的生命周期回调，客户端执行断开连接服务时回调。
   import { Want } from '@kit.AbilityKit';
 
   class DriverExt extends DriverExtensionAbility {
-    onDisconnect(want : Want) {
+    onDisconnect(want: Want) {
       console.info(`onDisconnect, want: ${want.abilityName}`);
     }
   }
@@ -204,7 +204,7 @@ Extension的生命周期回调，客户端执行断开连接服务时回调。
   import { Want } from '@kit.AbilityKit';
 
   class DriverExt extends DriverExtensionAbility {
-    async onDisconnect(want : Want) {
+    async onDisconnect(want: Want) {
       console.info(`onDisconnect, want: ${want.abilityName}`);
       // 调用异步函数...
     }
@@ -225,19 +225,19 @@ onDump(params: Array\<string>): Array\<string>
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| params | Array\<string> | 是 | 表示命令形式的参数。|
+| params | Array\<string> | 是 | 转储命令的参数列表。 |
 
 **返回值：**
 
 | 类型 | 说明 |
 | -------- | -------- |
-| Array\<string> | 一个string类型的数组，用于转存客户端信息。 |
+| Array\<string> | 一个string类型的数组，包含转储的客户端信息。 |
 
 **示例：**
     
   ```ts
   class DriverExt extends DriverExtensionAbility {
-      onDump(params : Array<string>) {
+      onDump(params: Array<string>) {
           console.info(`dump, params: ${JSON.stringify(params)}`);
           return ['params'];
       }
@@ -288,8 +288,8 @@ DriverExtensionAbility不支持以下模块的引用。
 | ArkData（方舟数据管理）| [@ohos.data.distributedData (分布式数据管理)](../apis-arkdata/js-apis-distributed-data.md)  |
 | ArkData（方舟数据管理）  | [@ohos.data.distributedDataObject (分布式数据对象)](../apis-arkdata/js-apis-data-distributedobject.md)  |
 | ArkData（方舟数据管理）  | [@ohos.data.distributedKVStore (分布式键值数据库)](../apis-arkdata/js-apis-distributedKVStore.md)  |
-| ArkData（方舟数据管理）  | [@ohos.data.rdb (关系型数据库)](../apis-arkdata/js-apis-data-rdb.md)  |
-|<!--DelRow-->ArkData（方舟数据管理）  | [@ohos.data.relationalStore (关系型数据库)(系统接口)](../apis-arkdata/js-apis-data-relationalStore-sys.md)  |
+| ArkData（方舟数据管理）  | [@ohos.data.rdb（关系型数据库）](../apis-arkdata/js-apis-data-rdb.md)  |
+|<!--DelRow-->ArkData（方舟数据管理）  | [@ohos.data.relationalStore（关系型数据库）（系统接口）](../apis-arkdata/js-apis-data-relationalStore-sys.md)  |
 |<!--DelRow-->ArkUI（方舟UI框架）| [@ohos.screen (屏幕)(系统接口)](../apis-arkui/js-apis-screen-sys.md)  |
 | ArkUI（方舟UI框架）  | [@ohos.screenshot (屏幕截图)](../apis-arkui/js-apis-screenshot.md)  |
 |<!--DelRow-->ArkUI（方舟UI框架）  | [@ohos.window (窗口)(系统接口)](../apis-arkui/js-apis-window-sys.md)  |
