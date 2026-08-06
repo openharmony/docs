@@ -1550,11 +1550,7 @@ OH_NN_ReturnCode OH_NNDevice_GetAllDevicesID(const size_t **allDevicesID, uint32
 
 **描述**
 
-获取对接到Neural Network Runtime的硬件ID。
-
-每个硬件存在唯一且固定的ID，该接口通过uint32_t数组返回当前设备上已经对接的硬件数量。
-
-硬件ID通过size_t数组返回，数组的每个元素是单个硬件的ID值。数组内存由内部进行管理，在下次调用该接口前，数据指针将一直有效。
+获取对接到Neural Network Runtime的硬件ID。每个硬件存在唯一且固定的ID。
 
 **起始版本：** 9
 
@@ -1563,8 +1559,10 @@ OH_NN_ReturnCode OH_NNDevice_GetAllDevicesID(const size_t **allDevicesID, uint32
 
 | 参数项 | 描述 |
 | -- | -- |
-| const size_t **allDevicesID | 指向size_t数组的指针。要求传入的*allDevicesID为空指针，否则将返回错误码[OH_NN_INVALID_PARAMETER](capi-neural-network-runtime-type-h.md#oh_nn_returncode)。 |
-| uint32_t *deviceCount | uint32_t类型的指针，用于返回*allDevicesID的长度。 |
+| const size_t **allDevicesID | 指向size_t数组的指针。<br>
+返回硬件ID数组，数组的每个元素是单个硬件的ID值。数组内存由内部进行管理，在下次调用该接口前，数据指针将一直有效。<br>
+要求传入的*allDevicesID为空指针，否则将返回错误码[OH_NN_INVALID_PARAMETER](capi-neural-network-runtime-type-h.md#oh_nn_returncode)。 |
+| uint32_t *deviceCount | uint32_t类型的指针，用于返回*allDevicesID的长度,即当前设备上已经对接的硬件数量。 |
 
 **返回：**
 
