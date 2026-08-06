@@ -307,9 +307,9 @@ const workerFA3: worker.ThreadWorker = new worker.ThreadWorker('ThreadFile/worke
                 }
       
                 // 注册onexit回调，当Worker销毁时被调用，在宿主线程执行
-                workerInstance.onexit = (e: number) => {
+                workerInstance.onexit = (code: number) => {
                   // Worker正常退出时，code为0；异常退出时，code为1
-                  console.info(`workerInstance onexit code is: ${e}`);
+                  console.info(`workerInstance onexit code is: ${code}`);
                 }
       
                 // 发送消息给Worker线程
