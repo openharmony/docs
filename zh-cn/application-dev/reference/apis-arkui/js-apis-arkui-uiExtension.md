@@ -27,7 +27,7 @@ UIExtension宿主窗代理。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用
+**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。
 
 **模型约束：** 此接口仅可在Stage模型下使用。
 
@@ -235,7 +235,7 @@ off(type: 'windowSizeChange', callback?: Callback<window.Size>): void
 
 | 参数名   | 类型                  | 必填 | 说明                   |
 | -------- | --------------------- | ---- | ---------------------- |
-| type     | string                | 是   | 注销的事件类型，固定值：'windowSizeChange'，即组件（EmbeddedComponent或UIExtensionComponent）尺寸变化事件。 |
+| type     | string                | 是   | 注销的事件类型，固定为'windowSizeChange'，即组件（EmbeddedComponent或UIExtensionComponent）尺寸变化事件。 |
 | callback | [Callback](../apis-basic-services-kit/js-apis-base.md#callback)<[window.Size](arkts-apis-window-i.md#size7)> | 否   | 回调函数。返回当前的组件（EmbeddedComponent或UIExtensionComponent）尺寸。如果传入该参数，则关闭该监听。如果未传入参数，则关闭组件（EmbeddedComponent或UIExtensionComponent）尺寸变化的监听。 |
 
 **错误码**：
@@ -280,9 +280,9 @@ on(type: 'rectChange', reasons: number, callback: Callback&lt;RectChangeOptions&
 
 | 参数名   | 类型                           | 必填 | 说明                                                     |
 | -------- | ------------------------------ | ---- | -------------------------------------------------------- |
-| type     | string                         | 是   | 监听事件，固定为'rectChange'，即组件（EmbeddedComponent或UIExtensionComponent）矩形变化事件。 |
+| type     | string                         | 是   | 监听的事件类型，固定为'rectChange'，即组件（EmbeddedComponent或UIExtensionComponent）矩形变化事件。 |
 | reasons  | number                         | 是   | 触发组件（EmbeddedComponent或UIExtensionComponent）位置及尺寸变化的原因，具体取值可参考[RectChangeReason](#rectchangereason14)枚举值。|
-| callback | [Callback](../apis-basic-services-kit/js-apis-base.md#callback)<[RectChangeOptions](#rectchangeoptions14)> | 是 | 回调函数。返回当前组件（EmbeddedComponent或UIExtensionComponent）矩形变化值及变化原因。 |
+| callback | [Callback](../apis-basic-services-kit/js-apis-base.md#callback)<[RectChangeOptions](#rectchangeoptions14)> | 是 | 回调函数：入参用于接收当前组件（EmbeddedComponent或UIExtensionComponent）矩形变化值及变化原因。 |
 
 **错误码：**
 
@@ -330,7 +330,7 @@ off(type: 'rectChange', callback?: Callback&lt;RectChangeOptions&gt;): void
 
 | 参数名   | 类型                           | 必填 | 说明                                                         |
 | -------- | ------------------------------ | ---- | ------------------------------------------------------------ |
-| type     | string                         | 是   | 监听事件，固定为'rectChange'，即组件（EmbeddedComponent或UIExtensionComponent）矩形变化事件。 |
+| type     | string                         | 是   | 注销的事件类型，固定为'rectChange'，即组件（EmbeddedComponent或UIExtensionComponent）矩形变化事件。 |
 | callback | [Callback](../apis-basic-services-kit/js-apis-base.md#callback)<[RectChangeOptions](#rectchangeoptions14)> | 否   | 回调函数。返回当前组件（EmbeddedComponent或UIExtensionComponent）矩形变化值及变化原因。如果传入参数，则关闭该监听。如果未传入参数，则关闭所有组件（EmbeddedComponent或UIExtensionComponent）矩形变化的监听。 |
 
 **错误码：**
@@ -581,8 +581,8 @@ export default class EntryAbility extends EmbeddedUIExtensionAbility {
         }).catch((err: BusinessError) => {
           console.error(`Failed to occupy events. Cause code: ${err.code}, message: ${err.message}`);
         });
-      } catch (e) {
-        console.error(`Occupy events got exception code: ${e.code}, message: ${e.message}`);
+      } catch (err) {
+        console.error(`Occupy events got exception code: ${err.code}, message: ${err.message}`);
       }
     }, 500);
   }
@@ -626,7 +626,7 @@ export default class EntryAbility extends EmbeddedUIExtensionAbility {
 
 ## WindowProxyProperties<sup>14+</sup>
 
-用于表示组件的相关信息。
+用于表示组件（EmbeddedComponent或UIExtensionComponent）的位置和尺寸信息。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -684,7 +684,7 @@ struct Index {
   private want: Want = {
     bundleName: 'com.example.embeddeddemo',
     abilityName: 'ExampleEmbeddedAbility',
-  }
+  };
 
   build() {
     Row() {
@@ -782,16 +782,16 @@ struct Extension {
       Text(this.message)
         .fontSize(20)
         .fontWeight(FontWeight.Bold)
-      Button("获取组件大小").width('90%').margin({ top: 5, bottom: 5 }).fontSize(16).onClick(() => {
+      Button('获取组件大小').width('90%').margin({ top: 5, bottom: 5 }).fontSize(16).onClick(() => {
         let rect = this.extensionWindow?.properties.uiExtensionHostWindowProxyRect;
-        console.info(`EmbeddedComponent的位置和尺寸信息: ${JSON.stringify(rect)}`);
+        console.info(`EmbeddedComponent position and size info: ${JSON.stringify(rect)}`);
       })
-      Button("获取系统避让区信息").width('90%').margin({ top: 5, bottom: 5 }).fontSize(16).onClick(() => {
+      Button('获取系统避让区信息').width('90%').margin({ top: 5, bottom: 5 }).fontSize(16).onClick(() => {
         let avoidArea: window.AvoidArea | undefined =
           this.extensionWindow?.getWindowAvoidArea(window.AvoidAreaType.TYPE_SYSTEM);
-        console.info(`系统避让区: ${JSON.stringify(avoidArea)}`);
+        console.info(`System avoid area: ${JSON.stringify(avoidArea)}`);
       })
-      Button("创建子窗口").width('90%').margin({ top: 5, bottom: 5 }).fontSize(16).onClick(() => {
+      Button('创建子窗口').width('90%').margin({ top: 5, bottom: 5 }).fontSize(16).onClick(() => {
         let subWindowOpts: window.SubWindowOptions = {
           'title': 'This is a subwindow',
           decorEnabled: true
@@ -799,7 +799,7 @@ struct Extension {
         this.extensionWindow?.createSubWindowWithOptions('subWindowForHost', subWindowOpts)
           .then((subWindow: window.Window) => {
             this.subWindow = subWindow;
-            this.subWindow.loadContent('pages/Index', this.storage, (err, data) => {
+            this.subWindow?.loadContent('pages/Index', this.storage, (err, data) => {
               if (err && err.code) {
                 return;
               }
