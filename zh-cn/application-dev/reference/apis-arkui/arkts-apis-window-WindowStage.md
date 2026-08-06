@@ -1993,9 +1993,9 @@ export default class EntryAbility extends UIAbility {
       let pixelMap: image.PixelMap;
       let bufferArr = new Uint8Array(color);
       for (let i = 0; i < bufferArr.length; i += 4) {
-        bufferArr[i] = 255;	 
-        bufferArr[i + 1] = 0;	 
-        bufferArr[i + 2] = 122;	 
+        bufferArr[i] = 255;
+        bufferArr[i + 1] = 0;
+        bufferArr[i + 2] = 122;
         bufferArr[i + 3] = 255;
       }
       image.createPixelMap(color, {
