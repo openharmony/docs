@@ -3358,7 +3358,7 @@ queryContactsByEmail(email: string, holder: Holder, attrs: ContactAttributes, ca
 | -------- | ----------------------------------------------------- | ---- | ------------------------------------------------------------ |
 | email    | string                                                | 是   | 联系人的邮箱地址。                                           |
 | holder   | [Holder](#holder)                                     | 是   | 创建联系人的应用信息类，如果传入参数为空则默认使用系统联系人应用查询。                                       |
-| attrs    | [ContactAttributes](#contactattributes)               | 是   | 联系人的属性列表，如果为空，则查询联系人的id、key、Emails属性）。                                           |
+| attrs    | [ContactAttributes](#contactattributes)               | 是   | 联系人的属性列表，如果为空，则查询联系人的id、key、Emails属性。                                           |
 | callback | AsyncCallback&lt;Array&lt;[Contact](#contact)&gt;&gt; | 是   | 回调函数。当查询联系人成功，err为undefined，data为查询到的联系人对象数组；否则为错误对象。 |
 
 **示例：**
