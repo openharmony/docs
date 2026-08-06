@@ -5,7 +5,8 @@
 <!--Owner: @yliupy-->
 <!--Designer: @sunyaozu-->
 <!--Tester: @lpw_work-->
-<!--Adviser: @Brilliantry_Rui-->
+<!--Adviser: @ningningW-->
+<!-- md-trans-meta sourceCommit=956fea084c5f89c2b8306f0b49ee44f16e3ae05f translatedAt=2026-08-04T12:27:18.563Z pushedAt=2026-08-04T13:23:47.199Z -->
 
 ## Use Cases
 
@@ -15,7 +16,6 @@ Pseudo-localization testing simulates the translation process of an application 
 
 **Abnormal text or symbol display**: This is usually due to a lack of fonts or typesetting capabilities of the system. This issue typically stems from an assumption during development that users would not input special characters or text in specific languages. For example, if a user enters Uyghur text on a Chinese UI, the text may not be properly displayed.
 
-
 ## Test Process
 
 1. Switch to the target locale for pseudo-localization testing, for example, **en-XA**.
@@ -23,20 +23,22 @@ Pseudo-localization testing simulates the translation process of an application 
    >  **NOTE**
    >
    >  The **setSystemLanguage** API is a system API and needs to be called by the system applications. Once the target locale is successfully set, non-system applications can then perform pseudo-localization testing.
-   <!--RP1-->
+
+   <!--Del-->
+
    ```ts
    import { i18n } from '@kit.LocalizationKit';
 
    i18n.System.setSystemLanguage('en-XA');
    ```
-   <!--RP1End-->
+
+   <!--DelEnd-->
 
 2. Traverse the applications to be tested.
 
+## Test Item
 
-## **Test Item**
-
-![image_0000001737423156](figures/image_0000001737423156.png)
+![internationalization-phone-settings](figures/internationalization-phone-settings.png)
 
 1. Check the UI for text truncation or distortion, or abnormal layout. Text truncation can be observed by checking whether the text ends with **]** (a right square bracket). If the text does not end with **]**, it is not completely displayed.
 
@@ -44,4 +46,4 @@ Pseudo-localization testing simulates the translation process of an application 
 
 3. Check for string concatenation problems. String concatenation can be observed by checking whether strings in the pseudo-translation format appear in the same control in a consecutive manner, for example, **[string 1][string 2]**.
 
-4. Check for multilingual text display problems. If the text is not properly displayed, for example, squares or blanks are present or the text is incomplete or partially truncated, the display is abnormal.
+4. Check for multilingual text display issues. If the pseudo-translated text fails to display properly, for example, appearing as boxes, blanks, or incomplete text, it indicates an anomaly in multilingual display.
