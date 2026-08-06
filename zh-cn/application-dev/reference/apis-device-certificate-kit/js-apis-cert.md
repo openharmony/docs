@@ -283,8 +283,8 @@ X.509中定义的GeneralName类型的枚举，这些类型可出现在“使用�
 | subject | Uint8Array | 否  | 是 |指定证书主体名称，DER编码格式。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
 | publicKey | [DataBlob](#datablob) | 否  | 是 |指定证书公钥，DER编码格式。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
 | publicKeyAlgID | string | 否  | 是 |指定证书公钥的算法。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
-| subjectAlternativeNames<sup>12+</sup> | Array\<[GeneralName](#generalname12)> | 否  | 是 |指定证书主体名称。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
-| matchAllSubjectAltNames<sup>12+</sup> | boolean | 否  | 是 |指定是否需要匹配证书主体名称。true为需要，false为不需要。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| subjectAlternativeNames<sup>12+</sup> | Array\<[GeneralName](#generalname12)> | 否  | 是 |指定证书主体备用名称。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| matchAllSubjectAltNames<sup>12+</sup> | boolean | 否  | 是 |指定是否需要匹配证书主体备用名称。true为需要，false为不需要。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
 | authorityKeyIdentifier<sup>12+</sup> | Uint8Array | 否  | 是 |指定证书颁发机构密钥。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
 | minPathLenConstraint<sup>12+</sup> | number | 否  | 是 |指定证书CA路径长度。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
 | extendedKeyUsage<sup>12+</sup> | Array\<string> | 否  | 是 |指定证书扩展用途。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
@@ -417,7 +417,7 @@ X.509中定义的GeneralName类型的枚举，这些类型可出现在“使用�
 | --------------------------------------| -------- | -----------------------------|
 | CERT_REVOCATION_PREFER_OCSP | 0 | 优先OCSP检查。仅当CERT_REVOCATION_CRL_CHECK与CERT_REVOCATION_OCSP_CHECK同时设置时，该标志生效。<br>设置后先执行OCSP检查，未找到响应或超时时回退CRL；<br>不设置则先执行CRL检查，未找到CRL或超时时回退OCSP。 |
 | CERT_REVOCATION_CRL_CHECK | 1 | 启用CRL检查。使用证书吊销列表检查证书状态。<br>首先使用[X509CertRevokedParams](#x509certrevokedparams)的crls参数，未匹配到CRL且[X509CertRevokedParams](#x509certrevokedparams)的allowDownloadCrl参数设置为true则尝试使用证书的CDP扩展下载CRL。 |
-| CERT_REVOCATION_OCSP_CHECK | 2 | 启用OCSP检查。使用在线证书状态协议检查证书状态。<br>首先使用[X509CertRevokedParams](#x509certrevokedparams)的ocspResponses参数，未匹配到响应且[X509CertRevokedParams](#x509certrevokedparams)的allowOcspCheckOnline参数设置为true则尝试从证书AIA扩展获取OCSP URL并发送请求获取响应。<br>始终使系统当前时间校验ocsp响应的有效期，并允许前后5分钟的时间容差。<br>允许ocsp响应缺少nonce和nextUpdate。 |
+| CERT_REVOCATION_OCSP_CHECK | 2 | 启用OCSP检查。使用在线证书状态协议检查证书状态。<br>首先使用[X509CertRevokedParams](#x509certrevokedparams)的ocspResponses参数，未匹配到响应且[X509CertRevokedParams](#x509certrevokedparams)的allowOcspCheckOnline参数设置为true则尝试从证书AIA扩展获取OCSP URL并发送请求获取响应。<br>始终使用系统当前时间校验ocsp响应的有效期，并允许前后5分钟的时间容差。<br>始终使用系统当前时间校验ocsp签名者证书链的有效期。<br>允许ocsp响应缺少nonce和nextUpdate。 |
 | CERT_REVOCATION_CHECK_ALL_CERT | 3 | 检查所有证书的吊销状态。<br>设置后对证书链中所有证书执行吊销检查（跳过自签名证书）；<br>不设置则仅检查终端证书（证书链第一个证书）。 |
 
 ## OcspDigest
@@ -1393,7 +1393,7 @@ checkValidityWithDate(date: string) : void
 
 | 参数名   | 类型            | 必填 | 说明        |
 | -------- | -------------- | ---- | ---------- |
-| date     | string         | 是   | 日期，为UTC时间或通用时间字符串格式。 |
+| date     | string         | 是   | 日期，采用ASN.1 UTCTime或GeneralizedTime格式。 |
 
 **错误码：**
 
@@ -1923,7 +1923,7 @@ getNotBeforeTime() : string
 
 | 类型   | 说明                                                         |
 | ------ | ------------------------------------------------------------ |
-| string | 表示X.509证书生效时间，采用UTC时间或通用时间字符串格式。 |
+| string | 表示X.509证书生效时间，日期采用ASN.1 UTCTime或GeneralizedTime格式。 |
 
 **错误码：**
 
@@ -1996,7 +1996,7 @@ getNotAfterTime() : string
 
 | 类型   | 说明                                                         |
 | ------ | ------------------------------------------------------------ |
-| string | 表示X.509证书过期时间，采用UTC时间或通用时间字符串格式。 |
+| string | 表示X.509证书过期时间，日期采用ASN.1 UTCTime或GeneralizedTime格式。 |
 
 **错误码：**
 
@@ -5037,7 +5037,7 @@ cert.createX509Crl(encodingBlob, (error, x509Crl) => {
 
 getLastUpdate() : string
 
-表示获取X.509证书吊销列表最后一次更新日期，日期为UTC时间或通用时间字符串格式。
+表示获取X.509证书吊销列表最后一次更新日期。
 
 > **说明：**
 >
@@ -5049,7 +5049,7 @@ getLastUpdate() : string
 
 | 类型   | 说明                                 |
 | ------ | ------------------------------------ |
-| string | 表示X.509证书吊销列表最后一次更新日期，日期为UTC时间或通用时间字符串格式。 |
+| string | 表示X.509证书吊销列表最后一次更新日期，日期采用ASN.1 UTCTime或GeneralizedTime格式。 |
 
 **错误码：**
 
@@ -5111,7 +5111,7 @@ cert.createX509Crl(encodingBlob, (error, x509Crl) => {
 
 getNextUpdate() : string
 
-表示获取证书吊销列表下一次更新的日期，日期为UTC时间或通用时间字符串格式。
+表示获取证书吊销列表下一次更新的日期。
 
 > **说明：**
 >
@@ -5123,7 +5123,7 @@ getNextUpdate() : string
 
 | 类型   | 说明                                 |
 | ------ | ------------------------------------ |
-| string | 表示X.509证书吊销列表下一次更新的日期，日期为UTC时间或通用时间字符串格式。 |
+| string | 表示X.509证书吊销列表下一次更新的日期，日期采用ASN.1 UTCTime或GeneralizedTime格式。 |
 
 **错误码：**
 
@@ -6718,7 +6718,7 @@ cert.createX509CRL(encodingBlob, (error, x509CRL) => {
 
 getLastUpdate() : string
 
-表示获取X.509证书吊销列表最后一次更新日期，日期为UTC时间或通用时间字符串格式。
+表示获取X.509证书吊销列表最后一次更新日期。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -6728,7 +6728,7 @@ getLastUpdate() : string
 
 | 类型   | 说明                                 |
 | ------ | ------------------------------------ |
-| string | 表示X.509证书吊销列表最后一次更新日期，日期为UTC时间或通用时间字符串格式。 |
+| string | 表示X.509证书吊销列表最后一次更新日期，日期采用ASN.1 UTCTime或GeneralizedTime格式。 |
 
 **错误码：**
 
@@ -6790,7 +6790,7 @@ cert.createX509CRL(encodingBlob, (error, x509CRL) => {
 
 getNextUpdate() : string
 
-表示获取证书吊销列表下一次更新的日期，日期为UTC时间或通用时间字符串格式。
+表示获取证书吊销列表下一次更新的日期。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -6800,7 +6800,7 @@ getNextUpdate() : string
 
 | 类型   | 说明                                 |
 | ------ | ------------------------------------ |
-| string | 表示X.509证书吊销列表下一次更新的日期，日期为UTC时间或通用时间字符串格式。 |
+| string | 表示X.509证书吊销列表下一次更新的日期，日期采用ASN.1 UTCTime或GeneralizedTime格式。 |
 
 **错误码：**
 
@@ -8951,7 +8951,7 @@ getRevocationDate() : string
 
 | 类型   | 说明                |
 | ------ | ------------------ |
-| string | 表示证书被吊销的日期，日期为UTC时间或通用时间字符串格式。 |
+| string | 表示证书被吊销的日期，日期采用ASN.1 UTCTime或GeneralizedTime格式。 |
 
 **错误码：**
 
