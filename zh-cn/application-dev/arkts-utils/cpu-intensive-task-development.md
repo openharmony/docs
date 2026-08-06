@@ -186,7 +186,7 @@ struct Index {
     ``` TypeScript
     // Worker线程销毁后，执行onexit回调方法
     workerInstance.onexit = (): void => {
-      console.info('worker thread terminate');
+      console.info('main thread terminate');
     }
     ```
 
