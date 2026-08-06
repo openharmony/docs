@@ -3288,7 +3288,7 @@ blurOnKeyboardHideMode(mode: BlurOnKeyboardHideMode)
 
 enableFollowSystemFontWeight(follow: boolean)
 
-设置Web组件是否开启字重跟随系统设置变化。当属性没有显式调用时，Web组件默认开启字重跟随系统设置变化。
+设置Web组件是否开启字重跟随系统设置变化。当属性没有显式调用时，Web组件默认字重不跟随系统设置变化。
 
 > **说明：**
 >
@@ -3300,7 +3300,7 @@ enableFollowSystemFontWeight(follow: boolean)
 
 | 参数名       | 类型                             | 必填 | 说明                                |
 | ------------ | ------------------------------- | ---- | ----------------------------------- |
-| follow | boolean | 是    | 设置Web组件是否开启字重跟随系统设置变化。<br>true表示字重跟随系统设置中的字体粗细变化，系统设置改变时字重跟随变化。false表示字重不再跟随系统设置中的字体粗细变化，系统设置改变时维持当前字重不变。<br>传入undefined或null时为true。 |
+| follow | boolean | 是    | 设置Web组件是否开启字重跟随系统设置变化。<br>true表示字重跟随系统设置中的字体粗细变化，系统设置改变时字重跟随变化。false表示字重不再跟随系统设置中的字体粗细变化，系统设置改变时维持当前字重不变。<br>传入undefined或null时为false。 |
 
 **示例：**
 
