@@ -10,12 +10,12 @@
 
 ## 效果节点类型
 
-| 效果类型 | 节点类型 | 起始API版本 | 用途 | 特殊说明 |
+| 效果类型 | 节点类型 | 起始API版本 | 用途 | 说明 |
 |---------|---------|--------|------|------|
 | [均衡器](#均衡器) | EFFECT_NODE_TYPE_EQUALIZER | API版本22 | 频段调节，改变音频频率特性 | 无 |
 | [降噪](#降噪) | EFFECT_NODE_TYPE_NOISE_REDUCTION | API版本22 | 降低背景噪声，提升语音清晰度 | 无 |
 | [声场](#声场) | EFFECT_NODE_TYPE_SOUND_FIELD | API版本22 | 调整声音空间感和声场范围 | 无 |
-| [音源分离](#音源分离) | EFFECT_MULTII_OUTPUT_NODE_TYPE_AUDIO_SEPARATION | API版本22 | 分离人声与伴奏（多路输出） | 调用[OH_AudioSuiteEngine_IsNodeTypeSupported()](../../reference/apis-audio-kit/capi-native-audio-suite-engine-h.md#oh_audiosuiteengine_isnodetypesupported)检查节点类型是否受支持 |
+| [音源分离](#音源分离) | EFFECT_MULTII_OUTPUT_NODE_TYPE_AUDIO_SEPARATION | API版本22 | 分离人声与伴奏（多路输出） | 该功能依赖NPU，创建节点前需调用[OH_AudioSuiteEngine_IsNodeTypeSupported()](../../reference/apis-audio-kit/capi-native-audio-suite-engine-h.md#oh_audiosuiteengine_isnodetypesupported)检查是否支持该节点类型 |
 | [声音美化](#声音美化) | EFFECT_NODE_TYPE_VOICE_BEAUTIFIER | API版本22 | 提升音质和听感 | 无 |
 | [环境效果](#环境效果) | EFFECT_NODE_TYPE_ENVIRONMENT_EFFECT | API版本22 | 模拟不同环境的声学效果 | 无 |
 | [混音](#混音) | EFFECT_NODE_TYPE_AUDIO_MIXER | API版本22 | 多路音频混合为一路 | 无 |
@@ -233,7 +233,7 @@ OH_AudioSuiteEngine_SetEnvironmentType(*node, static_cast<OH_EnvironmentType>(pa
 
 ## 空间渲染
 
-空间渲染效果节点[EFFECT_NODE_TYPE_SPACE_RENDER](../../reference/apis-audio-kit/capi-native-audio-suite-base-h.md#oh_audionode_type)用于实现3D空间音频的定位与渲染，采用左手坐标系（拇指指向x轴正方向、食指指向y轴正方向、其余手指指向z轴正方向）。
+空间渲染效果节点[EFFECT_NODE_TYPE_SPACE_RENDER](../../reference/apis-audio-kit/capi-native-audio-suite-base-h.md#oh_audionode_type)用于实现3D空间音频的定位与渲染，采用左手坐标系（拇指指向x轴正方向、食指指向y轴正方向、其余手指指向z轴正方向），详细说明请参考[空间渲染(C/C++)](audio-suite-space-render.md)。
 
 ### 渲染模式
 
@@ -435,7 +435,7 @@ OH_AudioSuiteEngine_SetTempoAndPitch(*node, params.tempoSpeed, params.tempoPitch
 
 ---
 
-## HOA转双耳空间音频
+## HOA空间音频
 
 HOA（High-Order Ambisonics）转双耳空间音频节点[EFFECT_NODE_TYPE_HOA_SPACE_RENDER](../../reference/apis-audio-kit/capi-native-audio-suite-base-h.md#oh_audionode_type)用于将HOA格式的空间音频转换为双耳（Binaural）立体声输出，实现耳机场景下的沉浸式3D听感。
 
@@ -458,6 +458,6 @@ HOA（High-Order Ambisonics）转双耳空间音频节点[EFFECT_NODE_TYPE_HOA_S
 
 ### 连接说明
 
-- 该节点的前置节点**必须连接音频格式为HOA的输入节点**。
+- 该节点的前置节点必须连接音频格式为HOA的输入节点。
 - 若未正确连接，在调用[OH_AudioSuiteEngine_StartPipeline](../../reference/apis-audio-kit/capi-native-audio-suite-engine-h.md#oh_audiosuiteengine_startpipeline)接口时将会报错。
 - 该节点无需额外配置参数，创建并正确连接后即生效。

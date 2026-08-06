@@ -51,12 +51,12 @@
 ### 效果节点
 
 各效果节点的详细说明请参考[音频效果(C/C++)](audio-suite-effects.md)。
-| 效果类型 | 节点类型 | 起始API版本 | 用途 | 特殊说明 |
+| 效果类型 | 节点类型 | 起始API版本 | 用途 | 说明 |
 |---------|---------|--------|------|------|
 | [均衡器](audio-suite-effects.md#均衡器) | EFFECT_NODE_TYPE_EQUALIZER | API版本22 | 频段调节，改变音频频率特性 | 无 |
 | [降噪](audio-suite-effects.md#降噪) | EFFECT_NODE_TYPE_NOISE_REDUCTION | API版本22 | 降低背景噪声，提升语音清晰度 | 无 |
 | [声场](audio-suite-effects.md#声场) | EFFECT_NODE_TYPE_SOUND_FIELD | API版本22 | 调整声音空间感和声场范围 | 无 |
-| [音源分离](audio-suite-effects.md#音源分离) | EFFECT_MULTII_OUTPUT_NODE_TYPE_AUDIO_SEPARATION | API版本22 | 分离人声与伴奏（多路输出） | 调用[OH_AudioSuiteEngine_IsNodeTypeSupported()](../../reference/apis-audio-kit/capi-native-audio-suite-engine-h.md#oh_audiosuiteengine_isnodetypesupported)检查节点类型是否受支持 |
+| [音源分离](audio-suite-effects.md#音源分离) | EFFECT_MULTII_OUTPUT_NODE_TYPE_AUDIO_SEPARATION | API版本22 | 分离人声与伴奏（多路输出） | 该功能依赖NPU，创建节点前需调用[OH_AudioSuiteEngine_IsNodeTypeSupported()](../../reference/apis-audio-kit/capi-native-audio-suite-engine-h.md#oh_audiosuiteengine_isnodetypesupported)检查是否支持该节点类型 |
 | [声音美化](audio-suite-effects.md#声音美化) | EFFECT_NODE_TYPE_VOICE_BEAUTIFIER | API版本22 | 提升音质和听感 | 无 |
 | [环境效果](audio-suite-effects.md#环境效果) | EFFECT_NODE_TYPE_ENVIRONMENT_EFFECT | API版本22 | 模拟不同环境的声学效果 | 无 |
 | [混音](audio-suite-effects.md#混音) | EFFECT_NODE_TYPE_AUDIO_MIXER | API版本22 | 多路音频混合为一路 | 无 |

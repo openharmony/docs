@@ -231,7 +231,7 @@ target_link_libraries(sample PUBLIC libohaudiosuite.so)
 ### 音源分离场景
 
 使用音源分离节点分离输入的PCM音频数据为人声和背景声，然后通过输出节点分别输出这两路数据。
-创建音源分离节点前需要调用[OH_AudioSuiteEngine_IsNodeTypeSupported()](../../reference/apis-audio-kit/capi-native-audio-suite-engine-h.md#oh_audiosuiteengine_isnodetypesupported)检查节点类型是否受支持，避免创建节点失败。
+创建音源分离节点前需要调用[OH_AudioSuiteEngine_IsNodeTypeSupported()](../../reference/apis-audio-kit/capi-native-audio-suite-engine-h.md#oh_audiosuiteengine_isnodetypesupported)检查是否支持该节点类型，避免创建节点失败。
 
 **图2**：音源分离编辑示意图
 
