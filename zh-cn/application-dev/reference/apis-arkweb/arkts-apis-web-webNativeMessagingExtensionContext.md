@@ -95,8 +95,8 @@ export class MyWebNativeMessagingExtension extends WebNativeMessagingExtensionAb
       context.startAbility(abilityWant).then(() => {
         console.info('Ability started successfully');
       }).catch((err: BusinessError) => {
-        console.error(`Failed to start ability. Code: ${(err as BusinessError).code},
-          Message: ${(err as BusinessError).message}`);
+        console.error(`Failed to start ability. Code: ${err.code},
+          Message: ${err.message}`);
       });
     } catch (err) {
       console.error(`Failed to start ability. Code: ${(err as BusinessError).code},
@@ -235,8 +235,8 @@ export class MyWebNativeMessagingExtension extends WebNativeMessagingExtensionAb
         context.terminateSelf().then(() => {
           console.info('Extension terminated successfully');
         }).catch((err: BusinessError) => {
-          console.error(`Failed to terminate extension. Code: ${(err as BusinessError).code},
-          Message: ${(err as BusinessError).message}`);
+          console.error(`Failed to terminate extension. Code: ${err.code},
+          Message: ${err).message}`);
         });       
     } catch (err) {
         console.error(`Failed to terminate extension. Code: ${(err as BusinessError).code},
@@ -292,8 +292,8 @@ export class MyWebNativeMessagingExtension extends WebNativeMessagingExtensionAb
         context.stopNativeConnection(CONNECTION_ID).then(() => {
           console.info('Native connection stopped successfully');
         }).catch((err: BusinessError) => {
-          console.error(`Failed to stop native connection. Code: ${(err as BusinessError).code},
-          Message: ${(err as BusinessError).message}`);
+          console.error(`Failed to stop native connection. Code: ${err.code},
+          Message: ${err.message}`);
         })
     } catch (err) {
         console.error(`Failed to stop native connection. Code: ${(err as BusinessError).code},
