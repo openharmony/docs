@@ -80,39 +80,25 @@ This section describes how to use HiSmartPerf to analyze audio playback scenario
 
 1. Enter the CPU trace mode.
 
-   ![CPU trace](figures/his_trace.png)
-
    Open the HiSmartPerf tool and navigate to the **CPU Trace** page for game performance analysis. Although titled for game performance analysis, the tool is not limited to game scenarios.
 
 2. Configure capture.
-
-   ![Configuration Item](figures/his_con.png)
 
    The main configuration items include the data file name, buffer capacity, maximum file size, data items, and capture duration. To capture system audio-related data items, select **zaudio**. The capture duration can be adjusted according to the test scenario. Note that the test duration and the number of selected data items will affect the file size and often need to be adjusted simultaneously.
 
 3. Start capture.
 
-   ![Collection process](figures/his_collection.png)
-
    After the capture is complete, a message is displayed, indicating that the file is sent back. If the file is large, wait patiently.
 
 4. View the trace information.
-
-   ![Trace result](figures/trace_res_all.png)
 
    View the CPU performance analysis results during the capture period.
 
 5. Locate the audio data processing thread.
 
-   ![Audio data](figures/trace_res_audio.png)
-
    For audio playback services, you can search for the location where the test application inputs playback data to the system using **OnWriteData**, and further analyze the performance of the data production source.
 
-   ![Resource Allocation](figures/trace_res_explain.png)
-
     Runnable indicates that a thread is waiting for scheduling. If data fails to be written in time due to an excessively long Runnable state — including the app's own data production thread — consider joining the audio workflow group to raise the thread priority and ensure CPU resource allocation.
-
-    ![CPU Usage](figures/trace_cpu_usage.png)
 
     In CPU Usage, you can view the CPU usage of each task.
 

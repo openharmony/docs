@@ -103,3 +103,5 @@ You can use the query APIs provided by AudioStreamManager to check whether the d
 >
 > - Audio channel support depends on the hardware capabilities and system configuration of the device, and varies by device.
 > - The result returned by the query API only indicates whether the system supports the corresponding audio channel under the specified parameters. The actual channel used must be determined based on the current running status and resource configuration of the system.
+
+<!--no_check-->

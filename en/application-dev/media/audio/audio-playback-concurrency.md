@@ -6,7 +6,7 @@
 <!--Designer: @hao-liangfei-->
 <!--Tester: @Filger-->
 <!--Adviser: @w_Machine_cc-->
-<!-- md-trans-meta sourceCommit=249567c57853ff4ccedf632ba69d388b5f14b19c translatedAt=2026-08-06T01:46:34.828Z pushedAt=2026-08-06T07:10:07.439Z -->
+<!-- md-trans-meta sourceCommit=249567c57853ff4ccedf632ba69d388b5f14b19c translatedAt=2026-08-06T01:46:34.828Z pushedAt=2026-08-06T11:28:17.808Z -->
 
 ## Audio Focus Overview
 
@@ -256,7 +256,7 @@ The shared focus mode (**SHARE_MODE**) is recommended. The app can manage the pl
 
 Methods for setting the focus mode:
 
-- If you [use AVPlayer for audio playback (ArkTS)](../media/using-avplayer-for-playback.md), set it by modifying the [audioInterruptMode](../../reference/apis-media-kit/arkts-apis-media-AVPlayer.md#attributes) attribute of AVPlayer.
+- If you [use AVPlayer for audio playback (ArkTS)](../media/using-avplayer-for-playback.md), set it by modifying the [audioInterruptMode](../../reference/apis-media-kit/arkts-apis-media-AVPlayer.md#properties) attribute of AVPlayer.
 
 - If you [use AVPlayer for audio playback (C/C++)](../media/using-ndk-avplayer-for-playback.md), call the [OH_AVPlayer_SetAudioInterruptMode](../../reference/apis-media-kit/capi-avplayer-h.md#oh_avplayer_setaudiointerruptmode) function to set it.
 

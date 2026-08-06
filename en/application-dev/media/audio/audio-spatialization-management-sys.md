@@ -6,7 +6,7 @@
 <!--Designer: @trytocalm-->
 <!--Tester: @Filger-->
 <!--Adviser: @w_Machine_cc-->
-<!-- md-trans-meta sourceCommit=bf5d49a4393b61c9a2c280c54a54215020618b5d translatedAt=2026-08-06T01:48:13.095Z pushedAt=2026-08-06T08:15:17.849Z -->
+<!-- md-trans-meta sourceCommit=bf5d49a4393b61c9a2c280c54a54215020618b5d translatedAt=2026-08-06T01:48:13.095Z pushedAt=2026-08-06T11:32:35.089Z -->
 
 Spatial audio management includes querying, setting, and listening for spatial audio status and capabilities.
 
@@ -227,7 +227,7 @@ You can call [setHeadTrackingEnabled](../../reference/apis-audio-kit/js-apis-aud
 
 **enabled**: specifies the status of head tracking of the specified device. The value **true** means to enable head tracking, and **false** means to disable it.
 
-Before using this feature, the app must request the `ohos.permission.MANAGE_SYSTEM_AUDIO_EFFECTS` permission. For details, see [Requesting Permissions for system_basic Apps](../../security/AccessToken/determine-application-mode.md#requesting-permissions-for-system_basic-apps).
+Before using this feature, the app must request the `ohos.permission.MANAGE_SYSTEM_AUDIO_EFFECTS` permission. For details, see [Requesting Permissions for system_basic Apps](../../security/AccessToken/determine-application-mode.md#requesting-permissions-for-system_basic-applications).
 
 Before enabling head tracking, ensure that both the system and the specified device support head tracking and spatial audio rendering is enabled.
 
@@ -527,3 +527,5 @@ Starting from API version 24, you can call [offSpatialAudioSourceTypeChange](../
   // Unsubscribe from the spatial audio source type change event.
   audioSpatializationManager.offSpatialAudioSourceTypeChange();
   ```
+
+<!--no_check-->

@@ -322,3 +322,5 @@ Starting from API version 12, using [OH_AudioCapturer_Callbacks](../../reference
 
 <!--RP1-->
 <!--RP1End-->
+
+<!--no_check-->

@@ -344,3 +344,5 @@ OH_AudioSession_Strategy strategy = {CONCURRENCY_PAUSE_OTHERS};
 // Set the audio concurrency mode and activate the audio session.
 OH_AudioSessionManager_ActivateAudioSession(audioSessionManager, &strategy);
 ```
+
+<!--no_check-->

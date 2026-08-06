@@ -6,7 +6,7 @@
 <!--Designer: @magekkkk-->
 <!--Tester: @Filger-->
 <!--Adviser: @w_Machine_cc-->
-<!-- md-trans-meta sourceCommit=964b45ac10277db84084ee55c26853df2a813218 translatedAt=2026-08-06T01:52:49.354Z pushedAt=2026-08-06T10:42:40.081Z -->
+<!-- md-trans-meta sourceCommit=964b45ac10277db84084ee55c26853df2a813218 translatedAt=2026-08-06T01:52:49.354Z pushedAt=2026-08-06T11:39:09.412Z -->
 
 - [About This Kit](audio-kit-intro.md)
 
@@ -22,7 +22,7 @@
 
 - Audio Playback<!--audio-playback-->
 
-  - [Audio Playback Overview](audio-playback-overview.md)
+  - [Audio Playback Development](audio-playback-overview.md)
 
   - [Choosing the Right Playback Stream Type](using-right-streamusage-for-playback.md)
 
@@ -69,7 +69,7 @@
 
 - Audio Recording<!--audio-recording-->
 
-  - [Audio Recording Overview](audio-recording-overview.md)
+  - [Audio Recording Development](audio-recording-overview.md)
 
   - [Choosing the Right Recording Stream Type](using-right-sourcetype-for-recording.md)
 
@@ -77,11 +77,11 @@
 
   - [Using AudioCapturer for Audio Recording (ArkTS)](using-audiocapturer-for-recording.md)
 
-  - [Low-latency Audio Recording (C/C++)](audio-fast-recording.md)
+  - [Low-Latency Audio Recording (C/C++)](audio-fast-recording.md)
 
   - [Implementing Background Recording](background-recording.md)
 
-  - [Managing Microphone Mute Status](mic-management.md)
+  - [Managing Microphone Mute State](mic-management.md)
 
   - [Querying and Listening for the Recording Status of Other Applications](audio-recording-stream-management.md)
 

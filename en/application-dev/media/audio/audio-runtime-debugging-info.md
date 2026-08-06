@@ -629,3 +629,5 @@ Pipeline [ID: 1]                         // Unique identifier of the pipeline.
 - When the `pipeline` parameter is NULL, information about all pipelines under the engine is output.
 
 - The specific parameters for node attribute configuration vary by node type. For details, see the description of each node in [OHAudioSuite](../../reference/apis-audio-kit/capi-ohaudiosuite.md).
+
+<!--no_check-->

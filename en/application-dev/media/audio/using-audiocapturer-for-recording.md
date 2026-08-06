@@ -524,3 +524,5 @@ try {
 Echo cancellation effectively eliminates echo interference during recording on supported devices, thereby improving audio capture quality. You can enable this feature by specifying particular microphone audio [source types](../../reference/apis-audio-kit/arkts-apis-audio-e.md#sourcetype8) (**SOURCE_TYPE_VOICE_COMMUNICATION** or **SOURCE_TYPE_LIVE**). Once enabled, the system automatically processes the captured audio signal to cancel echoes.
 
 Before enabling this feature, you are advised to call [isAcousticEchoCancelerSupported](../../reference//apis-audio-kit/arkts-apis-audio-AudioStreamManager.md#isacousticechocancelersupported20) to check whether the device supports echo cancellation for the audio input [source type](../../reference/apis-audio-kit/arkts-apis-audio-e.md#sourcetype8). (This API is available since API version 20.) If supported, you can activate the echo cancellation processing by setting the corresponding microphone audio source when creating the audio capturer.
+
+<!--no_check-->

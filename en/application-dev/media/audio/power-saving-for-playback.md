@@ -6,7 +6,7 @@
 <!--Designer: @magekkkk-->
 <!--Tester: @Filger-->
 <!--Adviser: @w_Machine_cc-->
-<!-- md-trans-meta sourceCommit=233316920aae5dc32b6b09f705ac05617f921672 translatedAt=2026-08-06T01:51:05.280Z pushedAt=2026-08-06T08:50:13.865Z -->
+<!-- md-trans-meta sourceCommit=233316920aae5dc32b6b09f705ac05617f921672 translatedAt=2026-08-06T01:51:05.280Z pushedAt=2026-08-06T11:35:00.212Z -->
 
 Starting from API version 11, low-power audio playback is available.
 
@@ -39,9 +39,9 @@ During the data cycle, when data is quickly requested to fill the buffer, playba
 2. Low-power renderer buffer: up to 1000 ms in screen-on scenarios; up to 10000 ms in screen-off scenarios. The main processor is woken up when the buffer data is consumed, triggering the app to deliver data. The data delivery cycle matches the buffer size.
 
     > - It is normal for the app not to request data within the data cycle. There is no need to stop the stream. The system automatically determines when data has not been received for an extended period and stops the stream. When the app sends data again, the system resumes the stream state.
-    > - In screen-off scenarios, the main processor enters sleep mode after the data buffer is full, and the app enters a suspended state. If you need background playback or screen-off playback, see [Background Playback Development Guidelines](audio-playback-overview.md#background-playback-development-guidelines).
+    > - In screen-off scenarios, the main processor enters sleep mode after the data buffer is full, and the app enters a suspended state. If you need background playback or screen-off playback, see [Development Precautions for Background Playback](audio-playback-overview.md#development-precautions-for-background-playback).
     > - For the low-power renderer, you are advised to fill the buffer completely at once to reduce the number of wake-ups. If the app cannot provide data quickly enough, it will fall back to the standard renderer. If the standard renderer cannot ensure data timeliness, you need to optimize data processing in the app.
-    > - When the app data is less than one callback length, do not fill empty data to avoid playback stuttering (except when reaching EOS). You are advised to wait until sufficient data is available or return an error code. For details, see [AudioRenderer Audio Data Callback](using-audiorenderer-for-playback.md#development-steps-and-notes) and [OHAudio Audio Data Callback](using-ohaudio-for-playback.md#development-steps).
+    > - When the app data is less than one callback length, do not fill empty data to avoid playback stuttering (except when reaching EOS). You are advised to wait until sufficient data is available or return an error code. For details, see [AudioRenderer audio data callback](using-audiorenderer-for-playback.md#how-to-develop) and [OHAudio audio data callback](using-ohaudio-for-playback.md#how-to-develop).
 
 3. Low-power renderers and low-latency renderers do not support concurrency, following the first-come, first-served principle, meaning the first one to start takes effect, and the later one is downgraded to a regular renderer. Specific examples are as follows:
 
