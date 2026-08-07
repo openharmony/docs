@@ -787,7 +787,7 @@ getImageInfoSync(): image.ImageInfo
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
-|  501    | Resource Unavailable |
+|  501    | Resource Unavailable. |
 
 **示例：**
 
