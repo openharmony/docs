@@ -520,7 +520,7 @@ promise.then((data: number) => {
 | content          | string \| Array&lt;number&gt;                                |  否  |  否  | 如果内容是字符串，则这是一条文本短信。如果内容是字节数组，则这是一条数据短信。 |
 | serviceCenter    | string                                                       |  否  |  是  | 短信中心地址，格式为带国家代码的手机号。默认使用SIM卡中的短信中心地址。     |
 | destinationPort  | number                                                       |  否  |  是  | 如果发送数据短信，destinationPort 是必需的。否则是可选的，不传入时不设置数据端口。  |
-| sendCallback     | AsyncCallback&lt;[ISendShortMessageCallback](#isendshortmessagecallback)&gt; |  否  |  是  | 短信发送结果回调，返回短信发送的结果，参考[ISendShortMessageCallback](#isendshortmessagecallback)。发送数据短信时，此项必填；发送文本短信时，此项可选，不填写则不会收到短信发送结果的回到通知。|
+| sendCallback     | AsyncCallback&lt;[ISendShortMessageCallback](#isendshortmessagecallback)&gt; |  否  |  是  | 短信发送结果回调，返回短信发送的结果，参考[ISendShortMessageCallback](#isendshortmessagecallback)。发送数据短信时，此项必填；发送文本短信时，此项可选，不填写则不会收到短信发送结果的回调通知。|
 | deliveryCallback | AsyncCallback&lt;[IDeliveryShortMessageCallback](#ideliveryshortmessagecallback)&gt; |  否  |  是  | 短信送达结果回调，返回短信递送报告，参考[IDeliveryShortMessageCallback](#ideliveryshortmessagecallback)。发送数据短信时，此项必填；发送文本短信时，此项可选，不填写则不会收到短信送到报告的回调通知。|
 
 
