@@ -1,19 +1,18 @@
 # menu Development
+
 <!--Kit: ArkUI-->
 <!--Subsystem: ArkUI-->
-<!--Owner: @Armstrong15-->
+<!--Owner: @H-xinwei-->
 <!--Designer: @zhanghaibo0-->
 <!--Tester: @lxl007-->
 <!--Adviser: @Brilliantry_Rui-->
-
+<!-- md-trans-meta sourceCommit=8e22c68cdd7ecb0668db21c4312cda839c2cdaa0 translatedAt=2026-08-05T10:13:57.327Z pushedAt=2026-08-06T06:30:18.436Z -->
 
 The &lt;menu&gt; component serves as a temporary pop-up window to display operations that users can perform. For details, see [menu](../reference/apis-arkui/arkui-js/js-components-basic-menu.md).
-
 
 ## Creating a &lt;menu&gt; Component
 
 Create a **&lt;menu&gt;** component in the .hml file under **pages/index** and add the **target**, **type**, and **title** attributes.
-
 
 ```html
 <!-- xxx.hml-->
@@ -26,7 +25,6 @@ Create a **&lt;menu&gt;** component in the .hml file under **pages/index** and a
   </menu>
 </div>
 ```
-
 
 ```css
 /* xxx.css */
@@ -44,18 +42,16 @@ Create a **&lt;menu&gt;** component in the .hml file under **pages/index** and a
 }
 ```
 
-![menu-Component](figures/menu-Component.gif)
+![menu-Component](figures/menu-Component.png)
 
 > **NOTE**
 > - The **&lt;menu&gt;** component supports only the [option](../reference/apis-arkui/arkui-js/js-components-basic-option.md) child component.
 > 
 > - The **&lt;menu&gt;** component does not support the **focusable** and **disabled** attributes.
 
-
 ## Setting Styles
 
 Set the style for the **&lt;menu&gt;** component, such as the font color, size, and character spacing.
-
 
 ```html
 <!-- xxx.hml-->
@@ -68,7 +64,6 @@ Set the style for the **&lt;menu&gt;** component, such as the font color, size, 
   </menu>
 </div>
 ```
-
 
 ```css
 /* xxx.css */
@@ -101,13 +96,11 @@ option{
 }
 ```
 
-![Setting-Styles-1](figures/Setting-Styles-1.gif)
-
+![Setting-Styles-1](figures/Setting-Styles-1.png)
 
 ## Binding Events
 
 Bind the **oncancel** event to the **&lt;menu&gt;** component. (The event is triggered when an operation is canceled.)
-
 
 ```html
 <!-- xxx.hml-->
@@ -120,7 +113,6 @@ Bind the **oncancel** event to the **&lt;menu&gt;** component. (The event is tri
   </menu>
 </div>
 ```
-
 
 ```css
 /* xxx.css */
@@ -153,13 +145,11 @@ option{
 }
 ```
 
-
 ```js
 // xxx.js
-import promptAction from '@ohos.promptAction';
 export default {
   cancel() {
-    promptAction.showToast({
+    this.getUIContext().getPromptAction().showToast({
       message: "cancel"
     })
   },

@@ -1,17 +1,19 @@
 # form Development
+
 <!--Kit: ArkUI-->
 <!--Subsystem: ArkUI-->
 <!--Owner: @liyi0309-->
 <!--Designer: @liyi0309-->
 <!--Tester: @lxl007-->
 <!--Adviser: @Brilliantry_Rui-->
+<!-- md-trans-meta sourceCommit=8e22c68cdd7ecb0668db21c4312cda839c2cdaa0 translatedAt=2026-08-05T10:13:09.245Z pushedAt=2026-08-06T06:24:33.638Z -->
 
 The **\<form>** component allows the content in [\<input>](../reference/apis-arkui/arkui-js/js-components-basic-input.md) components to be submitted and reset. For details, see [form](../reference/apis-arkui/arkui-js/js-components-container-form.md).
-
 
 ## Creating a \<form> Component
 
 Create a **\<form>** component in the .hml file under **pages/index**.
+
 ```html
 <!-- xxx.hml -->
 <div class="container">
@@ -35,10 +37,10 @@ Create a **\<form>** component in the .hml file under **pages/index**.
 
 ![form-Component](figures/form-Component.png)
 
-
 ## Zooming In or Out on a Form
 
 To implement the zoom effect after a form is clicked, add the **click-effect** attribute to the **\<form>** component. For values of **click-effect**, see [Universal Attributes](../reference/apis-arkui/arkui-js/js-components-common-attributes.md).
+
 ```html
 <!-- xxx.hml -->
 <div class="container">
@@ -48,12 +50,9 @@ To implement the zoom effect after a form is clicked, add the **click-effect** a
 </div>
 ```
 
-
 ## Setting the Form Style
 
-
-Add the **background-color** and **border** attributes.
-
+Set the form border by adding the `border` attribute to the `form`.
 
 ```css
 /* xxx.css */
@@ -73,9 +72,7 @@ Add the **background-color** and **border** attributes.
 }
 ```
 
-
 ![Form-Style](figures/Form-Style.gif)
-
 
 ## Adding Response Events
 
@@ -137,9 +134,7 @@ export default{
 }
 ```
 
-
 ![Response-Events](figures/Response-Events.gif)
-
 
 ## Example Scenario
 
