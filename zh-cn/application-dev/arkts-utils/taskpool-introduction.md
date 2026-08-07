@@ -157,7 +157,7 @@ struct Index {
         Text(this.message)
           .fontSize(50)
           .fontWeight(FontWeight.Bold)
-          .onClick(() => {
+          .onClick(async () => {
             try {
               const task: taskpool.Task = new taskpool.Task(add, 1, 2);
               console.info(`taskpool res is: ${await taskpool.execute(task)}`); // 输出结果：taskpool res is: 3
