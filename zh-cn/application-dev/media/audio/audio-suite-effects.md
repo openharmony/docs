@@ -23,7 +23,7 @@
 | [传统变声](#传统变声) | EFFECT_NODE_TYPE_PURE_VOICE_CHANGE | API版本23 | 基于性别与音调的传统变声。 | - |
 | [通用变声](#通用变声) | EFFECT_NODE_TYPE_GENERAL_VOICE_CHANGE | API版本23 | 多种风格化变声效果。 | - |
 | [变速变调](#变速变调) | EFFECT_NODE_TYPE_TEMPO_PITCH | API版本23 | 改变音频速度与音调。 | - |
-| [HOA空间音频](#hoa空间音频) | EFFECT_NODE_TYPE_HOA_SPACE_RENDER | API版本26.0.0 | HOA高阶 Ambisonics 转双耳渲染。 | - |
+| [HOA空间音频](#hoa空间音频) | EFFECT_NODE_TYPE_HOA_SPACE_RENDER | API版本26.0.0 | HOA高阶Ambisonics转双耳渲染。 | - |
 
 ## 均衡器
 
@@ -78,7 +78,7 @@ OH_AudioSuiteEngine_SetEqualizerFrequencyBandGains(*node, gains);
 
 ## 降噪
 
-降噪效果节点[EFFECT_NODE_TYPE_NOISE_REDUCTION](../../reference/apis-audio-kit/capi-native-audio-suite-base-h.md#oh_audionode_type)用于降低音频中的背景噪声，提升语音的清晰度与可懂度，适合通话、录音、直播等场景。
+降噪效果节点[EFFECT_NODE_TYPE_NOISE_REDUCTION](../../reference/apis-audio-kit/capi-native-audio-suite-base-h.md#oh_audionode_type)用于降低音频中的背景噪声，提升语音的清晰度与可懂度。
 
 ### 配置说明
 
@@ -127,7 +127,7 @@ OH_AudioSuiteEngine_SetSoundFieldType(*node, static_cast<OH_SoundFieldType>(para
 
 音源分离效果节点[EFFECT_MULTII_OUTPUT_NODE_TYPE_AUDIO_SEPARATION](../../reference/apis-audio-kit/capi-native-audio-suite-base-h.md#oh_audionode_type)可将混合音频分离为人声与伴奏两路，属于多输出效果节点，每个管线中数量不超过1个。
 
-### 连接与取数说明
+### 配置说明
 
 - 音源分离效果节点只能连接输出节点，不能连接其他效果节点。
 - 由于是多输出节点，需通过[OH_AudioSuiteEngine_MultiRenderFrame](../../reference/apis-audio-kit/capi-native-audio-suite-engine-h.md#oh_audiosuiteengine_multirenderframe)获取处理后的数据。`audioDataArray`大小要和输出数量一一对应，人声1路、伴奏1路。
@@ -229,7 +229,7 @@ OH_AudioSuiteEngine_SetEnvironmentType(*node, static_cast<OH_EnvironmentType>(pa
 | y | float | [-5.0, 5.0] | 米（m） | 空间中的Y坐标。 |
 | z | float | [-5.0, 5.0] | 米（m） | 空间中的Z坐标。 |
 | surroundTime | int32_t | [2, 40] | 秒（s） | 单周环绕时间。 |
-| surroundDirection | [OH_AudioSuite_SurroundDirection](../../reference/apis-audio-kit/capi-native-audio-suite-base-h.md#oh_audiosuite_surrounddirection) | [0, 1] | - | 环绕方向：0=逆时针(SPACE_RENDER_CCW)，1=顺时针(SPACE_RENDER_CW)。 |
+| surroundDirection | [OH_AudioSuite_SurroundDirection](../../reference/apis-audio-kit/capi-native-audio-suite-base-h.md#oh_audiosuite_surrounddirection) | [0, 1] | - | 环绕方向：0=逆时针（SPACE_RENDER_CCW），1=顺时针（SPACE_RENDER_CW）。 |
 
 **扩展模式**
 
@@ -289,14 +289,14 @@ switch (params.spaceRenderMode) {
 
 传统变声效果节点[EFFECT_NODE_TYPE_PURE_VOICE_CHANGE](../../reference/apis-audio-kit/capi-native-audio-suite-base-h.md#oh_audionode_type)通过指定性别、变声类型与音调实现传统变声效果。
 
-### 配置参数
+### 配置说明
 
 传统变声效果节点通过结构体[OH_AudioSuite_PureVoiceChangeOption](../../reference/apis-audio-kit/capi-ohaudiosuite-oh-audiosuite-purevoicechangeoption.md)配置，包含以下成员：
 
 | 成员 | 类型 | 说明 |
 |------|------|------|
 | optionGender | [OH_AudioSuite_PureVoiceChangeGenderOption](../../reference/apis-audio-kit/capi-native-audio-suite-base-h.md#oh_audiosuite_purevoicechangegenderoption) | 变声性别：1=女声（PURE_VOICE_CHANGE_FEMALE），2=男声（PURE_VOICE_CHANGE_MALE）。 |
-| optionType | [OH_AudioSuite_PureVoiceChangeType](../../reference/apis-audio-kit/capi-native-audio-suite-base-h.md#oh_audiosuite_purevoicechangetype) | 参考[变声类型](#变声类型)。 |
+| optionType | [OH_AudioSuite_PureVoiceChangeType](../../reference/apis-audio-kit/capi-native-audio-suite-base-h.md#oh_audiosuite_purevoicechangetype) | 参考下方变声类型。 |
 | pitch | float | 音调。使用系统推荐音调设为宏[OH_PURE_VOICE_DEFAULT_PITCH](../../reference/apis-audio-kit/capi-native-audio-suite-base-h.md#宏定义)（0.0f）以获得最佳效果；自定义取值范围为[0.3f, 3.0f]。 |
 
 **变声类型**
@@ -367,7 +367,7 @@ OH_AudioSuiteEngine_SetGeneralVoiceChangeType(
 
 变速变调效果节点[EFFECT_NODE_TYPE_TEMPO_PITCH](../../reference/apis-audio-kit/capi-native-audio-suite-base-h.md#oh_audionode_type)用于独立或同时改变音频的播放速度与音调。
 
-### 配置参数
+### 配置说明
 
 通过[OH_AudioSuiteEngine_SetTempoAndPitch](../../reference/apis-audio-kit/capi-native-audio-suite-engine-h.md#oh_audiosuiteengine_settempoandpitch)设置，参数说明如下：
 
@@ -391,7 +391,7 @@ OH_AudioSuiteEngine_SetTempoAndPitch(*node, params.tempoSpeed, params.tempoPitch
 
 ## HOA空间音频
 
-HOA（High-Order Ambisonics）转双耳空间音频节点[EFFECT_NODE_TYPE_HOA_SPACE_RENDER](../../reference/apis-audio-kit/capi-native-audio-suite-base-h.md#oh_audionode_type)用于将HOA格式的空间音频转换为双耳（Binaural）立体声输出，实现耳机场景下的沉浸式3D听感。
+HOA（High-Order Ambisonics）转双耳空间音频节点[EFFECT_NODE_TYPE_HOA_SPACE_RENDER](../../reference/apis-audio-kit/capi-native-audio-suite-base-h.md#oh_audionode_type)用于将HOA格式的空间音频转换为双耳（Binaural）立体声输出。
 
 ### 输入音频格式
 
@@ -400,18 +400,18 @@ HOA（High-Order Ambisonics）转双耳空间音频节点[EFFECT_NODE_TYPE_HOA_S
 - 采样率：[OH_Audio_SampleRate](../../reference/apis-audio-kit/capi-native-audio-suite-base-h.md#oh_audio_samplerate).SAMPLE_RATE_16000 或 SAMPLE_RATE_48000。
 - 采样格式：[OH_Audio_SampleFormat](../../reference/apis-audio-kit/capi-native-audio-suite-base-h.md#oh_audio_sampleformat)。
 - 声道布局：支持1阶至3阶HOA，取值如下：
-  - [OH_AudioChannelLayout](../apis-avcodec-kit/capi-native-audio-channel-layout-h.md#oh_audiochannellayout).CH_LAYOUT_AMB_ORDER1_ACN_N3D。
-  - [OH_AudioChannelLayout](../apis-avcodec-kit/capi-native-audio-channel-layout-h.md#oh_audiochannellayout).CH_LAYOUT_AMB_ORDER1_ACN_SN3D。
-  - [OH_AudioChannelLayout](../apis-avcodec-kit/capi-native-audio-channel-layout-h.md#oh_audiochannellayout).CH_LAYOUT_AMB_ORDER1_FUMA。
-  - [OH_AudioChannelLayout](../apis-avcodec-kit/capi-native-audio-channel-layout-h.md#oh_audiochannellayout).CH_LAYOUT_AMB_ORDER2_ACN_N3D。
-  - [OH_AudioChannelLayout](../apis-avcodec-kit/capi-native-audio-channel-layout-h.md#oh_audiochannellayout).CH_LAYOUT_AMB_ORDER2_ACN_SN3D。
-  - [OH_AudioChannelLayout](../apis-avcodec-kit/capi-native-audio-channel-layout-h.md#oh_audiochannellayout).CH_LAYOUT_AMB_ORDER2_FUMA。
-  - [OH_AudioChannelLayout](../apis-avcodec-kit/capi-native-audio-channel-layout-h.md#oh_audiochannellayout).CH_LAYOUT_AMB_ORDER3_ACN_N3D。
-  - [OH_AudioChannelLayout](../apis-avcodec-kit/capi-native-audio-channel-layout-h.md#oh_audiochannellayout).CH_LAYOUT_AMB_ORDER3_ACN_SN3D。
-  - [OH_AudioChannelLayout](../apis-avcodec-kit/capi-native-audio-channel-layout-h.md#oh_audiochannellayout).CH_LAYOUT_AMB_ORDER3_FUMA。
+  - [OH_AudioChannelLayout](../../reference/apis-avcodec-kit/capi-native-audio-channel-layout-h.md#oh_audiochannellayout).CH_LAYOUT_AMB_ORDER1_ACN_N3D。
+  - [OH_AudioChannelLayout](../../reference/apis-avcodec-kit/capi-native-audio-channel-layout-h.md#oh_audiochannellayout).CH_LAYOUT_AMB_ORDER1_ACN_SN3D。
+  - [OH_AudioChannelLayout](../../reference/apis-avcodec-kit/capi-native-audio-channel-layout-h.md#oh_audiochannellayout).CH_LAYOUT_AMB_ORDER1_FUMA。
+  - [OH_AudioChannelLayout](../../reference/apis-avcodec-kit/capi-native-audio-channel-layout-h.md#oh_audiochannellayout).CH_LAYOUT_AMB_ORDER2_ACN_N3D。
+  - [OH_AudioChannelLayout](../../reference/apis-avcodec-kit/capi-native-audio-channel-layout-h.md#oh_audiochannellayout).CH_LAYOUT_AMB_ORDER2_ACN_SN3D。
+  - [OH_AudioChannelLayout](../../reference/apis-avcodec-kit/capi-native-audio-channel-layout-h.md#oh_audiochannellayout).CH_LAYOUT_AMB_ORDER2_FUMA。
+  - [OH_AudioChannelLayout](../../reference/apis-avcodec-kit/capi-native-audio-channel-layout-h.md#oh_audiochannellayout).CH_LAYOUT_AMB_ORDER3_ACN_N3D。
+  - [OH_AudioChannelLayout](../../reference/apis-avcodec-kit/capi-native-audio-channel-layout-h.md#oh_audiochannellayout).CH_LAYOUT_AMB_ORDER3_ACN_SN3D。
+  - [OH_AudioChannelLayout](../../reference/apis-avcodec-kit/capi-native-audio-channel-layout-h.md#oh_audiochannellayout).CH_LAYOUT_AMB_ORDER3_FUMA。
 
-### 连接说明
+### 配置说明
 
 - 该节点的前置节点必须连接音频格式为HOA的输入节点。
-- 若未正确连接，在调用[OH_AudioSuiteEngine_StartPipeline](../../reference/apis-audio-kit/capi-native-audio-suite-engine-h.md#oh_audiosuiteengine_startpipeline)接口时将会报错。
-- 该节点无需额外配置参数，创建并正确连接后即生效。
+- 如果节点未正确连接，在调用[OH_AudioSuiteEngine_StartPipeline](../../reference/apis-audio-kit/capi-native-audio-suite-engine-h.md#oh_audiosuiteengine_startpipeline)接口时将会报错。
+- 该节点无需额外配置参数，创建并正确连接后即会生效。
