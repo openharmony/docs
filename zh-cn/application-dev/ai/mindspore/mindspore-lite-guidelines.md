@@ -261,7 +261,7 @@ int GenerateInputDataWithRandom(OH_AI_TensorHandleArray inputs) {
 
 7. 释放模型。
 
-   不再使用MindSpore Lite推理框架时，需要释放已经创建的模型。
+   不再使用MindSpore Lite推理框架时，需要释放对应的资源。model使用了context资源，释放时需先释放model，后释放context。
 
    ```c
    // 释放模型和上下文
