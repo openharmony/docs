@@ -121,7 +121,7 @@ const workerInstance4: worker.ThreadWorker = new worker.ThreadWorker('../../work
 >
 >* Worker线程文件的路径后缀（.ets/.ts）可以省略。
 >
->* 跨工程HSP/HAR的场景下，需在创建Worker的模块包对应的oh-package.json5文件中，配置所需HSP/HAR包的依赖项，详见[引用共享包](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides/ide-har-import)。
+>* 跨HSP/HAR包的场景下，需在创建Worker的模块包对应的oh-package.json5文件中，配置所需HSP/HAR包的依赖项，详见[引用共享包](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides/ide-har-import)。
 >
 >* 当feature模块需加载其他模块的Worker线程文件时，应先完成对feature模块的调用。
 >
@@ -175,7 +175,7 @@ const workerInstance4: worker.ThreadWorker = new worker.ThreadWorker('../../work
    }
    ```
 
-4. 在entry模块中加载HAR包中的Worker线程文件。注：该用例中用的worker.ets文件首字母为小写，实际创建的Worker文件默认为大写。
+4. 在entry模块中加载HAR包中的Worker线程文件。注意：使用DevEco Studio支持一键生成Worker的文件默认是Worker.ets，而当前示例中创建的Worker文件为worker.ets。
 
    <!-- @[load_har_worker](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/ArkTsConcurrent/MultithreadedConcurrency/WorkerIntroduction/entry/src/main/ets/managers/crosshar.ets) -->
    
@@ -445,9 +445,8 @@ workerPort.onmessage = (e: MessageEvents) => {
 
 ### 不推荐使用示例
 
-不建议在父Worker销毁后，子Worker继续向父Worker发送消息。因为父Worker已被销毁，消息无法被正确处理。
+反例1：不建议在父Worker销毁后，子Worker继续向父Worker发送消息。因为父Worker已被销毁，消息无法被正确处理。
 
-反例1
 
 <!-- @[not_recommended_example](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/ArkTsConcurrent/MultithreadedConcurrency/WorkerIntroduction/entry/src/main/ets/managers/notrecommendedone.ets) -->
 
@@ -476,7 +475,6 @@ parentWorker.onAllErrors = (err: ErrorEvent) => {
 parentWorker.postMessage('宿主线程发送消息给父Worker');
 ```
 
-反例2
 
 <!-- @[not_recommended_example](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/ArkTsConcurrent/MultithreadedConcurrency/WorkerIntroduction/testworkers/src/main/ets/workers/ParentWorker.ets) -->
 
@@ -539,7 +537,7 @@ workerPort.onmessage = (e: MessageEvents) => {
 }
 ```
 
-不建议在父Worker发起销毁操作的执行阶段创建子Worker。在创建子Worker线程之前，需确保父Worker线程始终处于存活状态，建议在确定父Worker未发起销毁操作的情况下创建子Worker。
+反例2：不建议在父Worker发起销毁操作的执行阶段创建子Worker。在创建子Worker线程之前，需确保父Worker线程始终处于存活状态，建议在确定父Worker未发起销毁操作的情况下创建子Worker。
 <!-- @[not_recommended_example](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/ArkTsConcurrent/MultithreadedConcurrency/WorkerIntroduction/entry/src/main/ets/managers/notrecommendedtwo.ets) -->
 
 ``` TypeScript
