@@ -129,12 +129,11 @@ static fetchCookieSync(url: string, incognito?: boolean, includePartitionedCooki
 
 **错误码：**
 
-以下错误码的详细介绍请参见[Webview错误码](errorcode-webview.md)、[通用错误码](../errorcode-universal.md)。
+以下错误码的详细介绍请参见[Webview错误码](errorcode-webview.md)。
 
 | 错误码ID | 错误信息                                               |
 | -------- | ------------------------------------------------------ |
 | 17100002 | URL error. No valid cookie found for the specified URL. |
-| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 
 **示例：**
 
@@ -380,11 +379,10 @@ static fetchCookie(url: string, incognito: boolean, includePartitionedCookies: b
 
 **错误码：**
 
-以下错误码的详细介绍请参见[Webview错误码](errorcode-webview.md)、[通用错误码](../errorcode-universal.md)。
+以下错误码的详细介绍请参见[Webview错误码](errorcode-webview.md)。
 
 | 错误码ID | 错误信息                                               |
 | -------- | ------------------------------------------------------ |
-| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 17100002 | URL error. No valid cookie found for the specified URL. |
 
 **示例：**
