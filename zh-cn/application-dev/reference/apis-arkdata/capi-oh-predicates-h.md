@@ -82,7 +82,7 @@ int OH_Predicates_NotLike(OH_Predicates *predicates, const char *field, const ch
 
 | 参数项                                             | 描述                                                       |
 | -------------------------------------------------- | ---------------------------------------------------------- |
-| [OH_Predicates](capi-rdb-oh-predicates.md) *predicates | 表示指向[OH_Predicates](capi-rdb-oh-predicates.md)实例的指针。 |
+| [OH_Predicates](capi-rdb-oh-predicates.md) *predicates | 表示指向OH_Predicates实例的指针。 |
 | const char *field                                  | 表示数据库表中的列名，不能为空。                                     |
 | const char *pattern                                | 表示要比较的指定值，不能为空。                                     |
 
@@ -109,7 +109,7 @@ int OH_Predicates_Glob(OH_Predicates *predicates, const char *field, const char 
 
 | 参数项                                             | 描述                                                       |
 | -------------------------------------------------- | ---------------------------------------------------------- |
-| [OH_Predicates](capi-rdb-oh-predicates.md) *predicates | 表示指向[OH_Predicates](capi-rdb-oh-predicates.md)实例的指针。 |
+| [OH_Predicates](capi-rdb-oh-predicates.md) *predicates | 表示指向OH_Predicates实例的指针。 |
 | const char *field                                  | 表示数据库表中的列名，不能为空。                                     |
 | const char *pattern                                | 表示与谓词匹配的值，不能为空。                                       |
 
@@ -136,7 +136,7 @@ int OH_Predicates_NotGlob(OH_Predicates *predicates, const char *field, const ch
 
 | 参数项                                             | 描述                                                       |
 | -------------------------------------------------- | ---------------------------------------------------------- |
-| [OH_Predicates](capi-rdb-oh-predicates.md) *predicates | 表示指向[OH_Predicates](capi-rdb-oh-predicates.md)实例的指针。 |
+| [OH_Predicates](capi-rdb-oh-predicates.md) *predicates | 表示指向OH_Predicates实例的指针。 |
 | const char *field                                  | 表示数据库表中的列名，不能为空。                                     |
 | const char *pattern                                | 表示要比较的指定值，不能为空。                                     |
 
@@ -163,9 +163,9 @@ int OH_Predicates_Having(OH_Predicates *predicates, const char *conditions, cons
 
 | 参数项                                                 | 描述                                                         |
 | ------------------------------------------------------ | ------------------------------------------------------------ |
-| [OH_Predicates](capi-rdb-oh-predicates.md) *predicates     | 表示指向[OH_Predicates](capi-rdb-oh-predicates.md)实例的指针。   |
+| [OH_Predicates](capi-rdb-oh-predicates.md) *predicates     | 表示指向OH_Predicates实例的指针。   |
 | const char *conditions                                 | 表示having子句中的过滤条件，不能为空且不能为空字符串。                                 |
-| const [OH_Data_Values](capi-rdb-oh-data-values.md) *values | 表示指向[OH_Data_Values](capi-rdb-oh-data-values.md)实例的指针。 |
+| const [OH_Data_Values](capi-rdb-oh-data-values.md) *values | 表示指向OH_Data_Values实例的指针。 |
 
 **返回：**
 

@@ -28,8 +28,9 @@ let predicates = new dataRdb.RdbPredicates("EMPLOYEE");
 predicates.equalTo("AGE", 18);
 let promise = rdbStore.query(predicates, ["ID", "NAME", "AGE", "SALARY", "CODES"]);
 promise.then((resultSet) => {
-  console.info(TAG + "resultSet columnNames:" + resultSet.columnNames);
-  console.info(TAG + "resultSet columnCount:" + resultSet.columnCount);
+  console.info("resultSet columnNames:" + resultSet.columnNames);
+  console.info("resultSet columnCount:" + resultSet.columnCount);
+  resultSet.close();
 });
 ```
 
@@ -249,6 +250,7 @@ goToNextRow(): boolean
 let predicatesgoNext = new dataRdb.RdbPredicates("EMPLOYEE");
 let promisequerygoNext = rdbStore.query(predicatesgoNext, ["ID", "NAME", "AGE", "SALARY", "CODES"]);
 promisequerygoNext.then((resultSet) => {
+  resultSet.goToNextRow();
   resultSet.close();
 }).catch((err) => {
   console.error('query failed');
@@ -275,6 +277,7 @@ goToPreviousRow(): boolean
 let predicatesgoPrev = new dataRdb.RdbPredicates("EMPLOYEE");
 let promisequerygoPrev = rdbStore.query(predicatesgoPrev, ["ID", "NAME", "AGE", "SALARY", "CODES"]);
 promisequerygoPrev.then((resultSet) => {
+  resultSet.goToPreviousRow();
   resultSet.close();
 }).catch((err) => {
   console.error('query failed');

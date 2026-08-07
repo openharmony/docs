@@ -5055,7 +5055,7 @@ sync(mode: SyncMode, predicates: RdbPredicates, callback: AsyncCallback&lt;Array
 
 | 参数名     | 类型                                               | 必填 | 说明                                                         |
 | ---------- | -------------------------------------------------- | ---- | ------------------------------------------------------------ |
-| mode       | [SyncMode](arkts-apis-data-relationalStore-e.md#syncmode)                             | 是   | 指同步模式。该值可以是relationalStore.SyncMode.SYNC_MODE_PUSH、relationalStore.SyncMode.SYNC_MODE_PULL。                               |
+| mode       | [SyncMode](arkts-apis-data-relationalStore-e.md#syncmode)                             | 是   | 指定同步模式。该值可以是relationalStore.SyncMode.SYNC_MODE_PUSH、relationalStore.SyncMode.SYNC_MODE_PULL。                               |
 | predicates | [RdbPredicates](arkts-apis-data-relationalStore-RdbPredicates.md)               | 是   | 约束同步数据和设备。                                         |
 | callback   | AsyncCallback&lt;Array&lt;[string, number]&gt;&gt; | 是   | 回调函数，用于向调用者发送同步结果。string：设备ID；number：每个设备同步状态，0表示成功，1表示失败。 |
 
@@ -5121,7 +5121,7 @@ if (store != undefined) {
 
 | 参数名     | 类型                                 | 必填 | 说明                           |
 | ---------- | ------------------------------------ | ---- | ------------------------------ |
-| mode       | [SyncMode](arkts-apis-data-relationalStore-e.md#syncmode)               | 是   | 指同步模式。该值可以是relationalStore.SyncMode.SYNC_MODE_PUSH、relationalStore.SyncMode.SYNC_MODE_PULL。 |
+| mode       | [SyncMode](arkts-apis-data-relationalStore-e.md#syncmode)               | 是   | 指定同步模式。该值可以是relationalStore.SyncMode.SYNC_MODE_PUSH、relationalStore.SyncMode.SYNC_MODE_PULL。 |
 | predicates | [RdbPredicates](arkts-apis-data-relationalStore-RdbPredicates.md) | 是   | 约束同步数据和设备。           |
 
 **返回值**：
@@ -5570,7 +5570,7 @@ on(event: 'dataChange', type: SubscribeType, observer: Callback&lt;Array&lt;stri
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | event    | string                                                       | 是   | 取值为'dataChange'，表示数据更改。                           |
 | type     | [SubscribeType](arkts-apis-data-relationalStore-e.md#subscribetype)                              | 是   | 订阅类型。                                                   |
-| observer | Callback&lt;Array&lt;string&gt;&gt;                          | 是   | 指分布式数据库中数据更改事件的观察者。Array&lt;string&gt;为数据库中的数据发生改变的对端设备ID。 |
+| observer | Callback&lt;Array&lt;string&gt;&gt;                          | 是   | 指定分布式数据库中数据更改事件的观察者。Array&lt;string&gt;为数据库中的数据发生改变的对端设备ID。 |
 
 **错误码：**
 
@@ -5762,7 +5762,7 @@ on(event: 'autoSyncProgress', progress: Callback&lt;ProgressDetails&gt;): void
 | 参数名       | 类型                              | 必填 | 说明                                |
 | ------------ |---------------------------------| ---- |-----------------------------------|
 | event        | string                          | 是   | 取值为'autoSyncProgress'，表示自动同步进度通知。 |
-| progress     | Callback&lt;[ProgressDetails](arkts-apis-data-relationalStore-i.md#progressdetails10)&gt; | 是   | 用于返回[ProgressDetails](arkts-apis-data-relationalStore-i.md#progressdetails10)结果的回调函数。                             |
+| progress     | Callback&lt;[ProgressDetails](arkts-apis-data-relationalStore-i.md#progressdetails10)&gt; | 是   | 用于返回ProgressDetails结果的回调函数。                             |
 
 **错误码：**
 
@@ -6012,7 +6012,7 @@ off(event:'dataChange', type: SubscribeType, observer: Callback&lt;Array&lt;stri
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | event    | string                                                       | 是   | 取值为'dataChange'，表示数据更改。                           |
 | type     | [SubscribeType](arkts-apis-data-relationalStore-e.md#subscribetype) | 是   | 订阅类型。                                                   |
-| observer | Callback&lt;Array&lt;string&gt;&gt;                          | 是   | 指已注册的数据更改观察者。Array&lt;string&gt;为数据库中的数据发生改变的对端设备ID。 |
+| observer | Callback&lt;Array&lt;string&gt;&gt;                          | 是   | 指定已注册的数据更改观察者。Array&lt;string&gt;为数据库中的数据发生改变的对端设备ID。 |
 
 **错误码：**
 
@@ -6191,7 +6191,7 @@ off(event: 'autoSyncProgress', progress?: Callback&lt;ProgressDetails&gt;): void
 | 参数名       | 类型                              | 必填 | 说明                                                               |
 | ------------ |---------------------------------| ---- |------------------------------------------------------------------|
 | event        | string                          | 是   | 取值为'autoSyncProgress'，表示自动同步进度通知。                                |
-| progress     | Callback&lt;[ProgressDetails](arkts-apis-data-relationalStore-i.md#progressdetails10)&gt; | 否   | 指已注册的自动同步进度观察者。该参数存在，则取消订阅指定回调，该参数为null或undefined或不存在，则取消订阅所有回调。 |
+| progress     | Callback&lt;[ProgressDetails](arkts-apis-data-relationalStore-i.md#progressdetails10)&gt; | 否   | 指定已注册的自动同步进度观察者。该参数存在，则取消订阅指定回调，该参数为null或undefined或不存在，则取消订阅所有回调。 |
 
 **错误码：**
 

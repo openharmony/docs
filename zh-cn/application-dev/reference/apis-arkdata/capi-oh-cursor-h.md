@@ -54,7 +54,7 @@ int OH_Cursor_GetFloatVectorCount(OH_Cursor *cursor, int32_t columnIndex, size_t
 
 | 参数项                                 | 描述                                                         |
 | -------------------------------------- | ------------------------------------------------------------ |
-| [OH_Cursor](capi-rdb-oh-cursor.md) *cursor | 表示指向[OH_Cursor](capi-rdb-oh-cursor.md)实例的指针。           |
+| [OH_Cursor](capi-rdb-oh-cursor.md) *cursor | 表示指向OH_Cursor实例的指针。           |
 | int32_t columnIndex                    | 表示结果集中指定列的索引，索引值从0开始。                    |
 | size_t *length                         | 该参数是输出参数，结果集中指定列的浮点数数组大小会写入该变量。 |
 
@@ -81,7 +81,7 @@ int OH_Cursor_GetFloatVector(OH_Cursor *cursor, int32_t columnIndex, float *val,
 
 | 参数项                                 | 描述                                                         |
 | -------------------------------------- | ------------------------------------------------------------ |
-| [OH_Cursor](capi-rdb-oh-cursor.md) *cursor | 表示指向[OH_Cursor](capi-rdb-oh-cursor.md)实例的指针。           |
+| [OH_Cursor](capi-rdb-oh-cursor.md) *cursor | 表示指向OH_Cursor实例的指针。           |
 | int32_t columnIndex                    | 表示结果集中指定列的索引，索引值从0开始。                    |
 | float *val                             | 该参数是输出参数，结果集中指定列的值会以浮点数数组形式写入该变量，调用者需要申请数组内存。 |
 | size_t inLen                           | 表示申请的浮点数数组大小。                                   |

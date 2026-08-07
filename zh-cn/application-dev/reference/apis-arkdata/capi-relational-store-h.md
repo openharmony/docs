@@ -130,7 +130,7 @@
 | [int OH_Rdb_RekeyEx(OH_Rdb_Store *store, OH_Rdb_CryptoParam *param)](#oh_rdb_rekeyex) | - | 更改加密数据库密钥。<br>不支持对非WAL模式的数据库进行密钥更新。<br>手动更新时需要独占访问数据库，此时若存在任何未释放的结果集、事务或其他进程打开的数据库均会导致更新失败。<br>支持加密数据库的参数更新，以及加密数据库与非加密数据库之间的相互转换。<br>数据库越大，执行更新所需的时间越长。<br>加密参数变更需谨慎，调用OH_Rdb_CreateOrOpen时需要传入正确的加密参数，否则可能打开数据库失败。 |
 | [typedef void (\*Rdb_CorruptedHandler)(void *context, OH_Rdb_ConfigV2 *config, OH_Rdb_Store *store)](#rdb_corruptedhandler) | Rdb_CorruptedHandler | 数据库异常处理的回调函数。 |
 | [int OH_Rdb_RegisterCorruptedHandler(const OH_Rdb_ConfigV2 *config, void *context, const Rdb_CorruptedHandler handler)](#oh_rdb_registercorruptedhandler) | - | 注册数据库异常处理。当数据库发生异常时，将调用异常处理的回调函数。<br>异常处理逻辑为用户自定义，回调时触发的业务需要用户自行保障。<br>每个路径只允许注册一次。 |
-| [int OH_Rdb_UnregisterCorruptedHandler(const OH_Rdb_ConfigV2 *config, void *context, const Rdb_CorruptedHandler handler)](#oh_rdb_unregistercorruptedhandler) | - | 取消注册的数据库异常处理的回调函数。<br>handler和context必须要和订阅时保持一致，否则取消失败。 |
+| [int OH_Rdb_UnregisterCorruptedHandler(const OH_Rdb_ConfigV2 *config, void *context, const Rdb_CorruptedHandler handler)](#oh_rdb_unregistercorruptedhandler) | - | 取消注册的数据库异常处理的回调函数。<br>handler和context必须要和注册时保持一致，否则取消失败。 |
 | [OH_Cursor *OH_Rdb_QueryWithoutRowCount(OH_Rdb_Store *store, OH_Predicates *predicates, const char * const columns[], int length)](#oh_rdb_querywithoutrowcount) | - | 根据指定条件查询数据库中的数据，不计算行数。 |
 | [OH_Cursor *OH_Rdb_QuerySqlWithoutRowCount(OH_Rdb_Store *store, const char *sql, const OH_Data_Values *args)](#oh_rdb_querysqlwithoutrowcount) | - | 执行有返回值的SQL语句，不计算行数，支持向量数据库。 |
 | [int OH_Rdb_BatchInsertWithReturning(OH_Rdb_Store *store, const char *table, const OH_Data_VBuckets *rows, Rdb_ConflictResolution resolution, OH_RDB_ReturningContext *context)](#oh_rdb_batchinsertwithreturning) | - | 将批量数据插入目标表，并将变更信息输出到上下文中。 |
@@ -350,7 +350,7 @@ int OH_Rdb_SetSemanticIndex(OH_Rdb_ConfigV2 *config, bool enableSemanticIndex)
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_Rdb_ConfigV2](capi-rdb-oh-rdb-configv2.md) *config | 指向[OH_Rdb_ConfigV2](capi-rdb-oh-rdb-configv2.md)实例的指针。 |
+| [OH_Rdb_ConfigV2](capi-rdb-oh-rdb-configv2.md) *config | 指向OH_Rdb_ConfigV2实例的指针。 |
 | bool enableSemanticIndex | 开启或关闭基于语义索引的知识加工能力标志。<br>true表示开启。false表示关闭。 |
 
 **返回：**
@@ -375,7 +375,7 @@ OH_Rdb_ConfigV2 *OH_Rdb_CreateConfig()
 
 | 类型 | 说明 |
 | -- | -- |
-| [OH_Rdb_ConfigV2](capi-rdb-oh-rdb-configv2.md) * | 返回一个指向[OH_Rdb_ConfigV2](capi-rdb-oh-rdb-configv2.md)实例的指针。<br>使用完成后，必须通过[OH_Rdb_DestroyConfig](#oh_rdb_destroyconfig)接口释放内存。 |
+| [OH_Rdb_ConfigV2](capi-rdb-oh-rdb-configv2.md) * | 返回一个指向OH_Rdb_ConfigV2实例的指针。<br>使用完成后，必须通过[OH_Rdb_DestroyConfig](#oh_rdb_destroyconfig)接口释放内存。 |
 
 **参考：**
 
@@ -398,7 +398,7 @@ int OH_Rdb_DestroyConfig(OH_Rdb_ConfigV2 *config)
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_Rdb_ConfigV2](capi-rdb-oh-rdb-configv2.md) *config | 指向[OH_Rdb_ConfigV2](capi-rdb-oh-rdb-configv2.md)对象的指针，即与此RDB存储相关的数据库配置。 |
+| [OH_Rdb_ConfigV2](capi-rdb-oh-rdb-configv2.md) *config | 指向OH_Rdb_ConfigV2对象的指针，即与此RDB存储相关的数据库配置。 |
 
 **返回：**
 
@@ -423,7 +423,7 @@ int OH_Rdb_SetDatabaseDir(OH_Rdb_ConfigV2 *config, const char *databaseDir)
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_Rdb_ConfigV2](capi-rdb-oh-rdb-configv2.md) *config | 指向[OH_Rdb_ConfigV2](capi-rdb-oh-rdb-configv2.md)对象的指针，即与此RDB存储相关的数据库配置。 |
+| [OH_Rdb_ConfigV2](capi-rdb-oh-rdb-configv2.md) *config | 指向OH_Rdb_ConfigV2对象的指针，即与此RDB存储相关的数据库配置。 |
 | const char *databaseDir  |  表示数据库文件路径，不能为空，包含数据库名称在内的全路径长度不超过1024个字符。 |
 
 **返回：**
@@ -449,7 +449,7 @@ int OH_Rdb_SetStoreName(OH_Rdb_ConfigV2 *config, const char *storeName)
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_Rdb_ConfigV2](capi-rdb-oh-rdb-configv2.md) *config | 指向[OH_Rdb_ConfigV2](capi-rdb-oh-rdb-configv2.md)对象的指针，即与此RDB存储相关的数据库配置。 |
+| [OH_Rdb_ConfigV2](capi-rdb-oh-rdb-configv2.md) *config | 指向OH_Rdb_ConfigV2对象的指针，即与此RDB存储相关的数据库配置。 |
 | const char *storeName | 表示数据库名称，不能为空且不能包含路径分隔符/。 |
 
 **返回：**
@@ -475,7 +475,7 @@ int OH_Rdb_SetBundleName(OH_Rdb_ConfigV2 *config, const char *bundleName)
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_Rdb_ConfigV2](capi-rdb-oh-rdb-configv2.md) *config | 指向[OH_Rdb_ConfigV2](capi-rdb-oh-rdb-configv2.md)对象的指针，即与此RDB存储相关的数据库配置。 |
+| [OH_Rdb_ConfigV2](capi-rdb-oh-rdb-configv2.md) *config | 指向OH_Rdb_ConfigV2对象的指针，即与此RDB存储相关的数据库配置。 |
 | const char *bundleName | 表示数据库应用包名，不能为空。 |
 
 **返回：**
@@ -501,7 +501,7 @@ int OH_Rdb_SetModuleName(OH_Rdb_ConfigV2 *config, const char *moduleName)
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_Rdb_ConfigV2](capi-rdb-oh-rdb-configv2.md) *config | 指向[OH_Rdb_ConfigV2](capi-rdb-oh-rdb-configv2.md)对象的指针，即与此RDB存储相关的数据库配置。 |
+| [OH_Rdb_ConfigV2](capi-rdb-oh-rdb-configv2.md) *config | 指向OH_Rdb_ConfigV2对象的指针，即与此RDB存储相关的数据库配置。 |
 | const char *moduleName | 表示数据库应用模块名，不能为空。 |
 
 **返回：**
@@ -527,7 +527,7 @@ int OH_Rdb_SetEncrypted(OH_Rdb_ConfigV2 *config, bool isEncrypted)
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_Rdb_ConfigV2](capi-rdb-oh-rdb-configv2.md) *config | 指向[OH_Rdb_ConfigV2](capi-rdb-oh-rdb-configv2.md)对象的指针，即与此RDB存储相关的数据库配置。 |
+| [OH_Rdb_ConfigV2](capi-rdb-oh-rdb-configv2.md) *config | 指向OH_Rdb_ConfigV2对象的指针，即与此RDB存储相关的数据库配置。 |
 | bool isEncrypted | 表示数据库是否加密。true表示加密，false表示不加密。数据库创建完成后，此参数不允许直接修改。如需变更数据库加密状态，请调用[OH_Rdb_RekeyEx](capi-relational-store-h.md#oh_rdb_rekeyex)接口进行更新操作。 |
 
 **返回：**
@@ -555,7 +555,7 @@ int OH_Rdb_SetSecurityLevel(OH_Rdb_ConfigV2 *config, int securityLevel)
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_Rdb_ConfigV2](capi-rdb-oh-rdb-configv2.md) *config | 指向[OH_Rdb_ConfigV2](capi-rdb-oh-rdb-configv2.md)对象的指针，即与此RDB存储相关的数据库配置。 |
+| [OH_Rdb_ConfigV2](capi-rdb-oh-rdb-configv2.md) *config | 指向OH_Rdb_ConfigV2对象的指针，即与此RDB存储相关的数据库配置。 |
 | int securityLevel | 表示数据库安全级别[OH_Rdb_SecurityLevel](capi-relational-store-h.md#oh_rdb_securitylevel)。 |
 
 **返回：**
@@ -583,7 +583,7 @@ int OH_Rdb_SetArea(OH_Rdb_ConfigV2 *config, int area)
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_Rdb_ConfigV2](capi-rdb-oh-rdb-configv2.md) *config | 指向[OH_Rdb_ConfigV2](capi-rdb-oh-rdb-configv2.md)对象的指针，即与此RDB存储相关的数据库配置。 |
+| [OH_Rdb_ConfigV2](capi-rdb-oh-rdb-configv2.md) *config | 指向OH_Rdb_ConfigV2对象的指针，即与此RDB存储相关的数据库配置。 |
 | int area | 表示数据库安全区域等级[Rdb_SecurityArea](capi-relational-store-h.md#rdb_securityarea)。 |
 
 **返回：**
@@ -609,8 +609,8 @@ int OH_Rdb_SetDbType(OH_Rdb_ConfigV2 *config, int dbType)
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_Rdb_ConfigV2](capi-rdb-oh-rdb-configv2.md) *config | 指向[OH_Rdb_ConfigV2](capi-rdb-oh-rdb-configv2.md)对象的指针，即与此RDB存储相关的数据库配置。 |
-| int dbType | 表示数据库的数据库类型[Rdb_DBType](capi-relational-store-h.md#rdb_dbtype)。 |
+| [OH_Rdb_ConfigV2](capi-rdb-oh-rdb-configv2.md) *config | 指向OH_Rdb_ConfigV2对象的指针，即与此RDB存储相关的数据库配置。 |
+| int dbType | 表示数据库的内核类型[Rdb_DBType](capi-relational-store-h.md#rdb_dbtype)。 |
 
 **返回：**
 
@@ -635,7 +635,7 @@ int OH_Rdb_SetCustomDir(OH_Rdb_ConfigV2 *config, const char *customDir)
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_Rdb_ConfigV2](capi-rdb-oh-rdb-configv2.md) *config | 表示此关系型数据库相关的数据库配置[OH_Rdb_ConfigV2](capi-rdb-oh-rdb-configv2.md)的指针。 |
+| [OH_Rdb_ConfigV2](capi-rdb-oh-rdb-configv2.md) *config | 表示此关系型数据库相关的数据库配置OH_Rdb_ConfigV2的指针。 |
 | const char *customDir | 表示数据库的自定义目录，目录长度不能超过128字节。 |
 
 **返回：**
@@ -661,7 +661,7 @@ int OH_Rdb_SetReadOnly(OH_Rdb_ConfigV2 *config, bool readOnly)
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_Rdb_ConfigV2](capi-rdb-oh-rdb-configv2.md) *config | 表示此关系型数据库相关的数据库配置[OH_Rdb_ConfigV2](capi-rdb-oh-rdb-configv2.md)的指针。 |
+| [OH_Rdb_ConfigV2](capi-rdb-oh-rdb-configv2.md) *config | 表示此关系型数据库相关的数据库配置OH_Rdb_ConfigV2的指针。 |
 | bool readOnly | 表示关系型数据库存储是否为只读模式，true表示设置为只读模式，false表示设置为读写模式。 |
 
 **返回：**
@@ -687,7 +687,7 @@ int OH_Rdb_SetPlugins(OH_Rdb_ConfigV2 *config, const char **plugins, int32_t len
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_Rdb_ConfigV2](capi-rdb-oh-rdb-configv2.md) *config | 表示此关系型数据库相关的数据库配置[OH_Rdb_ConfigV2](capi-rdb-oh-rdb-configv2.md)的指针。 |
+| [OH_Rdb_ConfigV2](capi-rdb-oh-rdb-configv2.md) *config | 表示此关系型数据库相关的数据库配置OH_Rdb_ConfigV2的指针。 |
 | const char **plugins | 表示动态库的名称数组。 |
 | int32_t length | 表示插件数组的大小，最大值为16。 |
 
@@ -714,7 +714,7 @@ int OH_Rdb_SetCryptoParam(OH_Rdb_ConfigV2 *config, const OH_Rdb_CryptoParam *cry
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_Rdb_ConfigV2](capi-rdb-oh-rdb-configv2.md) *config | 表示此关系型数据库相关的数据库配置[OH_Rdb_ConfigV2](capi-rdb-oh-rdb-configv2.md)的指针。 |
+| [OH_Rdb_ConfigV2](capi-rdb-oh-rdb-configv2.md) *config | 表示此关系型数据库相关的数据库配置OH_Rdb_ConfigV2的指针。 |
 | const [OH_Rdb_CryptoParam](capi-rdb-oh-rdb-cryptoparam.md) *cryptoParam | 表示自定义加密参数。 |
 
 **返回：**
@@ -792,8 +792,8 @@ int OH_Rdb_SetPersistent(OH_Rdb_ConfigV2 *config, bool isPersistent)
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_Rdb_ConfigV2](capi-rdb-oh-rdb-configv2.md) *config | 指向[OH_Rdb_ConfigV2](capi-rdb-oh-rdb-configv2.md)实例的指针。<br>指示与此RDB存储相关的数据库的配置。 |
-| bool isPersistent | 指示数据库是否需要持久性。 |
+| [OH_Rdb_ConfigV2](capi-rdb-oh-rdb-configv2.md) *config | 指向OH_Rdb_ConfigV2实例的指针。<br>指示与此RDB存储相关的数据库的配置。 |
+| bool isPersistent | 指示数据库是否需要持久化。true表示需要持久化，false表示不需要持久化，即内存数据库。 |
 
 **返回：**
 
@@ -842,7 +842,7 @@ OH_VObject *OH_Rdb_CreateValueObject()
 
 | 类型 | 说明 |
 | -- | -- |
-| [OH_VObject](capi-rdb-oh-vobject.md) * | 创建成功则返回一个指向[OH_VObject](capi-rdb-oh-vobject.md)结构体实例的指针，否则返回NULL。 |
+| [OH_VObject](capi-rdb-oh-vobject.md) * | 创建成功则返回一个指向OH_VObject结构体实例的指针，否则返回NULL。 |
 
 **参考：**
 
@@ -864,7 +864,7 @@ OH_VBucket *OH_Rdb_CreateValuesBucket()
 
 | 类型 | 说明 |
 | -- | -- |
-| [OH_VBucket](capi-rdb-oh-vbucket.md) * | 创建成功则返回一个指向[OH_VBucket](capi-rdb-oh-vbucket.md)结构体实例的指针，否则返回NULL。 |
+| [OH_VBucket](capi-rdb-oh-vbucket.md) * | 创建成功则返回一个指向OH_VBucket结构体实例的指针，否则返回NULL。 |
 
 **参考：**
 
@@ -893,7 +893,7 @@ OH_Predicates *OH_Rdb_CreatePredicates(const char *table)
 
 | 类型 | 说明 |
 | -- | -- |
-| [OH_Predicates](capi-rdb-oh-predicates.md) * | 创建成功则返回一个指向[OH_Predicates](capi-rdb-oh-predicates.md)结构体实例的指针，否则返回NULL。 |
+| [OH_Predicates](capi-rdb-oh-predicates.md) * | 创建成功则返回一个指向OH_Predicates结构体实例的指针，否则返回NULL。 |
 
 **参考：**
 
@@ -916,14 +916,14 @@ OH_Rdb_Store *OH_Rdb_GetOrOpen(const OH_Rdb_Config *config, int *errCode)
 
 | 参数项 | 描述 |
 | -- | -- |
-| const [OH_Rdb_Config](capi-rdb-oh-rdb-config.md) *config | 指向[OH_Rdb_Config](capi-rdb-oh-rdb-config.md)实例的指针，与此RDB存储相关的数据库配置。 |
+| const [OH_Rdb_Config](capi-rdb-oh-rdb-config.md) *config | 指向OH_Rdb_Config实例的指针，与此RDB存储相关的数据库配置。 |
 | int *errCode | 表示函数执行状态，作为出参使用。 |
 
 **返回：**
 
 | 类型 | 说明 |
 | -- | -- |
-| [OH_Rdb_Store](capi-rdb-oh-rdb-store.md) * | 创建成功则返回一个指向[OH_Rdb_Store](capi-rdb-oh-rdb-store.md)结构体实例的指针，否则返回NULL。<br>RDB_OK表示成功。<br>RDB_E_INVALID_ARGS表示无效参数。 |
+| [OH_Rdb_Store](capi-rdb-oh-rdb-store.md) * | 创建成功则返回一个指向OH_Rdb_Store结构体实例的指针，否则返回NULL。<br>RDB_OK表示成功。<br>RDB_E_INVALID_ARGS表示无效参数。 |
 
 ### OH_Rdb_CreateOrOpen()
 
@@ -942,14 +942,14 @@ OH_Rdb_Store *OH_Rdb_CreateOrOpen(const OH_Rdb_ConfigV2 *config, int *errCode)
 
 | 参数项 | 描述 |
 | -- | -- |
-| const [OH_Rdb_ConfigV2](capi-rdb-oh-rdb-configv2.md) *config | 指向[OH_Rdb_ConfigV2](capi-rdb-oh-rdb-configv2.md)对象的指针，即与此RDB存储相关的数据库配置。 |
+| const [OH_Rdb_ConfigV2](capi-rdb-oh-rdb-configv2.md) *config | 指向OH_Rdb_ConfigV2对象的指针，即与此RDB存储相关的数据库配置。 |
 | int *errCode | 表示函数执行状态，作为出参使用。 |
 
 **返回：**
 
 | 类型 | 说明 |
 | -- | -- |
-| [OH_Rdb_Store](capi-rdb-oh-rdb-store.md) * | 创建成功则返回一个指向[OH_Rdb_Store](capi-rdb-oh-rdb-store.md)结构体实例的指针，否则返回NULL。<br>RDB_OK表示成功。<br>RDB_E_INVALID_ARGS表示无效参数。 |
+| [OH_Rdb_Store](capi-rdb-oh-rdb-store.md) * | 创建成功则返回一个指向OH_Rdb_Store结构体实例的指针，否则返回NULL。<br>RDB_OK表示成功。<br>RDB_E_INVALID_ARGS表示无效参数。 |
 
 ### OH_Rdb_CloseStore()
 
@@ -968,7 +968,7 @@ int OH_Rdb_CloseStore(OH_Rdb_Store *store)
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_Rdb_Store](capi-rdb-oh-rdb-store.md) *store | 指向[OH_Rdb_Store](capi-rdb-oh-rdb-store.md)实例的指针。 |
+| [OH_Rdb_Store](capi-rdb-oh-rdb-store.md) *store | 指向OH_Rdb_Store实例的指针。 |
 
 **返回：**
 
@@ -1043,9 +1043,9 @@ int OH_Rdb_Insert(OH_Rdb_Store *store, const char *table, OH_VBucket *valuesBuck
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_Rdb_Store](capi-rdb-oh-rdb-store.md) *store | 指向[OH_Rdb_Store](capi-rdb-oh-rdb-store.md)实例的指针。 |
+| [OH_Rdb_Store](capi-rdb-oh-rdb-store.md) *store | 指向OH_Rdb_Store实例的指针。 |
 | const char *table | 表示指定的目标表名。 |
-| [OH_VBucket](capi-rdb-oh-vbucket.md) *valuesBucket | 表示要插入到表中的数据行[OH_VBucket](capi-rdb-oh-vbucket.md)。 |
+| [OH_VBucket](capi-rdb-oh-vbucket.md) *valuesBucket | 表示要插入到表中的数据行OH_VBucket。 |
 
 **返回：**
 
@@ -1070,7 +1070,7 @@ int OH_Rdb_InsertWithConflictResolution(OH_Rdb_Store *store, const char *table, 
 
 | 参数项                                                                                | 描述 |
 |------------------------------------------------------------------------------------| -- |
-| [OH_Rdb_Store](capi-rdb-oh-rdb-store.md) *store                                        | 指向[OH_Rdb_Store](capi-rdb-oh-rdb-store.md)实例的指针。 |
+| [OH_Rdb_Store](capi-rdb-oh-rdb-store.md) *store                                        | 指向OH_Rdb_Store实例的指针。 |
 | const char *table                                                                  | 表示目标表的名称。 |
 | [OH_VBucket](capi-rdb-oh-vbucket.md) *row                                              | 表示要插入到表中的数据。 |
 | [Rdb_ConflictResolution](capi-oh-rdb-types-h.md#rdb_conflictresolution) resolution | 表示发生冲突时的解决策略。 |
@@ -1105,8 +1105,8 @@ int OH_Rdb_BatchInsert(OH_Rdb_Store *store, const char *table, const OH_Data_VBu
 
 | 参数项                                                                                | 描述 |
 |------------------------------------------------------------------------------------| -- |
-| [OH_Rdb_Store](capi-rdb-oh-rdb-store.md) *store                                        | 指向[OH_Rdb_Store](capi-rdb-oh-rdb-store.md)实例的指针。 |
-| const char *table                                                                 |  要设置的分布式数据库表表名。 |
+| [OH_Rdb_Store](capi-rdb-oh-rdb-store.md) *store                                        | 指向OH_Rdb_Store实例的指针。 |
+| const char *table                                                                 |  表示要插入数据的目标表名。 |
 | const [OH_Data_VBuckets](capi-rdb-oh-data-vbuckets.md) *rows                           | 表示要插入到表中的一组数据。 |
 | [Rdb_ConflictResolution](capi-oh-rdb-types-h.md#rdb_conflictresolution) resolution | 表示发生冲突时的解决策略。 |
 | int64_t *changes                                                                   | 输出参数，表示插入成功的次数。 |
@@ -1134,9 +1134,9 @@ int OH_Rdb_Update(OH_Rdb_Store *store, OH_VBucket *valuesBucket, OH_Predicates *
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_Rdb_Store](capi-rdb-oh-rdb-store.md) *store | 指向[OH_Rdb_Store](capi-rdb-oh-rdb-store.md)实例的指针。 |
-| [OH_VBucket](capi-rdb-oh-vbucket.md) *valuesBucket | 表示要更新到表中的数据行[OH_VBucket](capi-rdb-oh-vbucket.md)。 |
-| [OH_Predicates](capi-rdb-oh-predicates.md) *predicates | 指向[OH_Predicates](capi-rdb-oh-predicates.md)实例的指针，指定更新条件。 |
+| [OH_Rdb_Store](capi-rdb-oh-rdb-store.md) *store | 指向OH_Rdb_Store实例的指针。 |
+| [OH_VBucket](capi-rdb-oh-vbucket.md) *valuesBucket | 表示要更新到表中的数据行OH_VBucket。 |
+| [OH_Predicates](capi-rdb-oh-predicates.md) *predicates | 指向OH_Predicates实例的指针，指定更新条件。 |
 
 **返回：**
 
@@ -1161,9 +1161,9 @@ int OH_Rdb_UpdateWithConflictResolution(OH_Rdb_Store *store, OH_VBucket *row, OH
 
 | 参数项                                                                                | 描述 |
 |------------------------------------------------------------------------------------| -- |
-| [OH_Rdb_Store](capi-rdb-oh-rdb-store.md) *store                                        | 指向[OH_Rdb_Store](capi-rdb-oh-rdb-store.md)实例的指针。 |
+| [OH_Rdb_Store](capi-rdb-oh-rdb-store.md) *store                                        | 指向OH_Rdb_Store实例的指针。 |
 | [OH_VBucket](capi-rdb-oh-vbucket.md) *row                                              | 表示要更新到表中的数据行。 |
-| [OH_Predicates](capi-rdb-oh-predicates.md) *predicates                                 | 指向[OH_Predicates](capi-rdb-oh-predicates.md)实例的指针，指定更新条件。 |
+| [OH_Predicates](capi-rdb-oh-predicates.md) *predicates                                 | 指向OH_Predicates实例的指针，指定更新条件。 |
 | [Rdb_ConflictResolution](capi-oh-rdb-types-h.md#rdb_conflictresolution) resolution | 表示发生冲突时的解决策略。 |
 | int64_t *changes                                                                   | 输出参数，表示成功更新的行数。 |
 
@@ -1190,8 +1190,8 @@ int OH_Rdb_Delete(OH_Rdb_Store *store, OH_Predicates *predicates)
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_Rdb_Store](capi-rdb-oh-rdb-store.md) *store | 指向[OH_Rdb_Store](capi-rdb-oh-rdb-store.md)实例的指针。 |
-| [OH_Predicates](capi-rdb-oh-predicates.md) *predicates | 指向[OH_Predicates](capi-rdb-oh-predicates.md)实例的指针，指定删除条件。 |
+| [OH_Rdb_Store](capi-rdb-oh-rdb-store.md) *store | 指向OH_Rdb_Store实例的指针。 |
+| [OH_Predicates](capi-rdb-oh-predicates.md) *predicates | 指向OH_Predicates实例的指针，指定删除条件。 |
 
 **返回：**
 
@@ -1216,8 +1216,8 @@ OH_Cursor *OH_Rdb_Query(OH_Rdb_Store *store, OH_Predicates *predicates, const ch
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_Rdb_Store](capi-rdb-oh-rdb-store.md) *store | 指向[OH_Rdb_Store](capi-rdb-oh-rdb-store.md)实例的指针。 |
-| [OH_Predicates](capi-rdb-oh-predicates.md) *predicates | 指向[OH_Predicates](capi-rdb-oh-predicates.md)实例的指针，指定查询条件。 |
+| [OH_Rdb_Store](capi-rdb-oh-rdb-store.md) *store | 指向OH_Rdb_Store实例的指针。 |
+| [OH_Predicates](capi-rdb-oh-predicates.md) *predicates | 指向OH_Predicates实例的指针，指定查询条件。 |
 | const char *const *columnNames | 表示要查询的列。如果值为空，则查询应用于所有列。 |
 | int length | 该参数为输入参数，表示开发者传入的columnNames数组的长度。若length大于columnNames数组的实际长度，则会访问越界。 |
 
@@ -1225,7 +1225,7 @@ OH_Cursor *OH_Rdb_Query(OH_Rdb_Store *store, OH_Predicates *predicates, const ch
 
 | 类型                               | 说明 |
 |----------------------------------| -- |
-| [OH_Cursor](capi-rdb-oh-cursor.md) * | 如果查询成功则返回一个指向[OH_Cursor](capi-rdb-oh-cursor.md)结构体实例的指针，否则返回NULL。 |
+| [OH_Cursor](capi-rdb-oh-cursor.md) * | 如果查询成功则返回一个指向OH_Cursor结构体实例的指针，否则返回NULL。 |
 
 ### OH_Rdb_Execute()
 
@@ -1244,7 +1244,7 @@ int OH_Rdb_Execute(OH_Rdb_Store *store, const char *sql)
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_Rdb_Store](capi-rdb-oh-rdb-store.md) *store | 指向[OH_Rdb_Store](capi-rdb-oh-rdb-store.md)实例的指针。 |
+| [OH_Rdb_Store](capi-rdb-oh-rdb-store.md) *store | 指向OH_Rdb_Store实例的指针。 |
 | const char *sql | 指定要执行的SQL语句。 |
 
 **返回：**
@@ -1276,10 +1276,10 @@ int OH_Rdb_ExecuteV2(OH_Rdb_Store *store, const char *sql, const OH_Data_Values 
 
 | 参数项                                                  | 描述                                                                                                                                      |
 |------------------------------------------------------|-----------------------------------------------------------------------------------------------------------------------------------------|
-| [OH_Rdb_Store](capi-rdb-oh-rdb-store.md) *store          | 指向[OH_Rdb_Store](capi-rdb-oh-rdb-store.md)实例的指针。                                                                                          |
+| [OH_Rdb_Store](capi-rdb-oh-rdb-store.md) *store          | 指向OH_Rdb_Store实例的指针。                                                                                          |
 | const char *sql                                      | 指定要执行的SQL语句。                                                                                                                            |
-| const [OH_Data_Values](capi-rdb-oh-data-values.md) *args | 可选参数，指向[OH_Data_Values](capi-rdb-oh-data-values.md)实例的指针。                                                                                                   |
-| [OH_Data_Value](capi-rdb-oh-data-value.md) **result                           | 执行成功时指向[OH_Data_Value](capi-rdb-oh-data-value.md)实例的指针，作为出参使用。使用完成后，必须通过[OH_Value_Destroy](capi-oh-data-value-h.md#oh_value_destroy)接口释放内存。 |
+| const [OH_Data_Values](capi-rdb-oh-data-values.md) *args | 可选参数，指向OH_Data_Values实例的指针。                                                                                                   |
+| [OH_Data_Value](capi-rdb-oh-data-value.md) **result                           | 执行成功时指向OH_Data_Value实例的指针，作为出参使用。使用完成后，必须通过[OH_Value_Destroy](capi-oh-data-value-h.md#oh_value_destroy)接口释放内存。 |
 
 **返回：**
 
@@ -1310,7 +1310,7 @@ int OH_Rdb_ExecuteByTrxId(OH_Rdb_Store *store, int64_t trxId, const char *sql)
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_Rdb_Store](capi-rdb-oh-rdb-store.md) *store | 表示一个指向[OH_Rdb_Store](capi-rdb-oh-rdb-store.md) 实例的指针。 |
+| [OH_Rdb_Store](capi-rdb-oh-rdb-store.md) *store | 表示一个指向OH_Rdb_Store 实例的指针。 |
 | int64_t trxId | 调用[OH_Rdb_BeginTransWithTrxId](capi-relational-store-h.md#oh_rdb_begintranswithtrxid)获得的事务ID，当设置为0时，表示不启用事务。 |
 | const char *sql | 指定要执行的SQL语句。 |
 
@@ -1341,14 +1341,14 @@ OH_Cursor *OH_Rdb_ExecuteQuery(OH_Rdb_Store *store, const char *sql)
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_Rdb_Store](capi-rdb-oh-rdb-store.md) *store | 指向[OH_Rdb_Store](capi-rdb-oh-rdb-store.md)实例的指针。 |
+| [OH_Rdb_Store](capi-rdb-oh-rdb-store.md) *store | 指向OH_Rdb_Store实例的指针。 |
 | const char *sql | 指定要执行的SQL语句。 |
 
 **返回：**
 
 | 类型 | 说明 |
 | -- | -- |
-| [OH_Cursor](capi-rdb-oh-cursor.md) * | 如果查询成功则返回一个指向[OH_Cursor](capi-rdb-oh-cursor.md)结构体实例的指针，否则返回NULL。 |
+| [OH_Cursor](capi-rdb-oh-cursor.md) * | 如果查询成功则返回一个指向OH_Cursor结构体实例的指针，否则返回NULL。 |
 
 **参考：**
 
@@ -1371,7 +1371,7 @@ OH_Cursor *OH_Rdb_ExecuteQueryV2(OH_Rdb_Store *store, const char *sql, const OH_
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_Rdb_Store](capi-rdb-oh-rdb-store.md) *store | 指向[OH_Rdb_Store](capi-rdb-oh-rdb-store.md)实例的指针。 |
+| [OH_Rdb_Store](capi-rdb-oh-rdb-store.md) *store | 指向OH_Rdb_Store实例的指针。 |
 | const char *sql | 指定要执行的SQL语句。 |
 | const OH_Data_Values *args | 可选参数，指向[OH_Data_Values](capi-rdb-oh-data-values.md)实例的指针。 |
 
@@ -1379,7 +1379,7 @@ OH_Cursor *OH_Rdb_ExecuteQueryV2(OH_Rdb_Store *store, const char *sql, const OH_
 
 | 类型                             | 说明                                                         |
 | -------------------------------- | ------------------------------------------------------------ |
-| [OH_Cursor](capi-rdb-oh-cursor.md) * | 如果查询成功则返回一个指向[OH_Cursor](capi-rdb-oh-cursor.md)结构体实例的指针，使用完成后及时释放[OH_Cursor](capi-rdb-oh-cursor.md)。<br>如果SQL语句无效或内存分配失败，则返回NULL。 |
+| [OH_Cursor](capi-rdb-oh-cursor.md) * | 如果查询成功则返回一个指向OH_Cursor结构体实例的指针，使用完成后及时释放OH_Cursor。<br>如果SQL语句无效或内存分配失败，则返回NULL。 |
 
 **参考：**
 
@@ -1402,7 +1402,7 @@ int OH_Rdb_BeginTransaction(OH_Rdb_Store *store)
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_Rdb_Store](capi-rdb-oh-rdb-store.md) *store | 指向[OH_Rdb_Store](capi-rdb-oh-rdb-store.md)实例的指针。 |
+| [OH_Rdb_Store](capi-rdb-oh-rdb-store.md) *store | 指向OH_Rdb_Store实例的指针。 |
 
 **返回：**
 
@@ -1427,7 +1427,7 @@ int OH_Rdb_RollBack(OH_Rdb_Store *store)
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_Rdb_Store](capi-rdb-oh-rdb-store.md) *store | 指向[OH_Rdb_Store](capi-rdb-oh-rdb-store.md)实例的指针。 |
+| [OH_Rdb_Store](capi-rdb-oh-rdb-store.md) *store | 指向OH_Rdb_Store实例的指针。 |
 
 **返回：**
 
@@ -1452,7 +1452,7 @@ int OH_Rdb_Commit(OH_Rdb_Store *store)
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_Rdb_Store](capi-rdb-oh-rdb-store.md) *store | 指向[OH_Rdb_Store](capi-rdb-oh-rdb-store.md)实例的指针。 |
+| [OH_Rdb_Store](capi-rdb-oh-rdb-store.md) *store | 指向OH_Rdb_Store实例的指针。 |
 
 **返回：**
 
@@ -1477,7 +1477,7 @@ int OH_Rdb_BeginTransWithTrxId(OH_Rdb_Store *store, int64_t *trxId)
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_Rdb_Store](capi-rdb-oh-rdb-store.md) *store | 表示一个指向[OH_Rdb_Store](capi-rdb-oh-rdb-store.md)实例的指针。 |
+| [OH_Rdb_Store](capi-rdb-oh-rdb-store.md) *store | 表示一个指向OH_Rdb_Store实例的指针。 |
 | int64_t *trxId | 事务ID，作为出参使用。 |
 
 **返回：**
@@ -1503,7 +1503,7 @@ int OH_Rdb_RollBackByTrxId(OH_Rdb_Store *store, int64_t trxId)
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_Rdb_Store](capi-rdb-oh-rdb-store.md) *store | 表示一个指向[OH_Rdb_Store](capi-rdb-oh-rdb-store.md)实例的指针。 |
+| [OH_Rdb_Store](capi-rdb-oh-rdb-store.md) *store | 表示一个指向OH_Rdb_Store实例的指针。 |
 | int64_t trxId | 表示需要回滚的事务的ID。 |
 
 **返回：**
@@ -1529,7 +1529,7 @@ int OH_Rdb_CommitByTrxId(OH_Rdb_Store *store, int64_t trxId)
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_Rdb_Store](capi-rdb-oh-rdb-store.md) *store | 表示一个指向[OH_Rdb_Store](capi-rdb-oh-rdb-store.md)实例的指针。 |
+| [OH_Rdb_Store](capi-rdb-oh-rdb-store.md) *store | 表示一个指向OH_Rdb_Store实例的指针。 |
 | int64_t trxId | 表示需要提交的事务的ID。 |
 
 **返回：**
@@ -1559,7 +1559,7 @@ int OH_Rdb_Backup(OH_Rdb_Store *store, const char *databasePath)
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_Rdb_Store](capi-rdb-oh-rdb-store.md) *store | 指向[OH_Rdb_Store](capi-rdb-oh-rdb-store.md)实例的指针。 |
+| [OH_Rdb_Store](capi-rdb-oh-rdb-store.md) *store | 指向OH_Rdb_Store实例的指针。 |
 | const char *databasePath | 指定数据库的备份文件路径。 |
 
 **返回：**
@@ -1589,7 +1589,7 @@ int OH_Rdb_Restore(OH_Rdb_Store *store, const char *databasePath)
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_Rdb_Store](capi-rdb-oh-rdb-store.md) *store | 指向[OH_Rdb_Store](capi-rdb-oh-rdb-store.md)实例的指针。 |
+| [OH_Rdb_Store](capi-rdb-oh-rdb-store.md) *store | 指向OH_Rdb_Store实例的指针。 |
 | const char *databasePath | 指定数据库的备份文件路径。 |
 
 **返回：**
@@ -1615,7 +1615,7 @@ int OH_Rdb_GetVersion(OH_Rdb_Store *store, int *version)
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_Rdb_Store](capi-rdb-oh-rdb-store.md) *store | 指向[OH_Rdb_Store](capi-rdb-oh-rdb-store.md)实例的指针。 |
+| [OH_Rdb_Store](capi-rdb-oh-rdb-store.md) *store | 指向OH_Rdb_Store实例的指针。 |
 | int *version | 表示版本号，作为出参使用。 |
 
 **返回：**
@@ -1641,7 +1641,7 @@ int OH_Rdb_SetVersion(OH_Rdb_Store *store, int version)
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_Rdb_Store](capi-rdb-oh-rdb-store.md) *store | 指向[OH_Rdb_Store](capi-rdb-oh-rdb-store.md)实例的指针。 |
+| [OH_Rdb_Store](capi-rdb-oh-rdb-store.md) *store | 指向OH_Rdb_Store实例的指针。 |
 | int version | 表示版本号。 |
 
 **返回：**
@@ -1671,11 +1671,11 @@ int OH_Rdb_SetDistributedTables(OH_Rdb_Store *store, const char *tables[], uint3
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_Rdb_Store](capi-rdb-oh-rdb-store.md) *store | 指向[OH_Rdb_Store](capi-rdb-oh-rdb-store.md)实例的指针。 |
-| const char *tables[] |  要设置的分布式数据库表表名。 |
+| [OH_Rdb_Store](capi-rdb-oh-rdb-store.md) *store | 指向OH_Rdb_Store实例的指针。 |
+| const char *tables[] |  表示要插入数据的目标表名。 |
 | uint32_t count | 要设置的分布式数据库表的数量。 |
 | [Rdb_DistributedType](#rdb_distributedtype) type | 表的分布式类型[Rdb_DistributedType](capi-relational-store-h.md#rdb_distributedtype)。 |
-| const [Rdb_DistributedConfig](capi-rdb-rdb-distributedconfig.md) *config | 表的分布式配置信息[Rdb_DistributedConfig](capi-rdb-rdb-distributedconfig.md)。 |
+| const [Rdb_DistributedConfig](capi-rdb-rdb-distributedconfig.md) *config | 表的分布式配置信息Rdb_DistributedConfig。 |
 
 **返回：**
 
@@ -1704,7 +1704,7 @@ OH_Cursor *OH_Rdb_FindModifyTime(OH_Rdb_Store *store, const char *tableName, con
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_Rdb_Store](capi-rdb-oh-rdb-store.md) *store | 指向[OH_Rdb_Store](capi-rdb-oh-rdb-store.md)实例的指针。 |
+| [OH_Rdb_Store](capi-rdb-oh-rdb-store.md) *store | 指向OH_Rdb_Store实例的指针。 |
 | const char *tableName | 要查找的分布式数据库表表名。 |
 | const char *columnName | 指定要查询的数据库表的列名。 |
 | [OH_VObject](capi-rdb-oh-vobject.md) *values | 指定要查询的行的主键。如果数据库表无主键，参数columnName需传入"rowid"，此时values为要查询的数据库表的行号。 |
@@ -1713,7 +1713,7 @@ OH_Cursor *OH_Rdb_FindModifyTime(OH_Rdb_Store *store, const char *tableName, con
 
 | 类型 | 说明 |
 | -- | -- |
-| [OH_Cursor](capi-rdb-oh-cursor.md) * | 如果操作成功则返回一个指向[OH_Cursor](capi-rdb-oh-cursor.md)结构体实例的指针，否则返回NULL。  |
+| [OH_Cursor](capi-rdb-oh-cursor.md) * | 如果操作成功则返回一个指向OH_Cursor结构体实例的指针，否则返回NULL。  |
 
 ### Rdb_BriefObserver()
 
@@ -1754,7 +1754,7 @@ typedef void (*Rdb_DetailsObserver)(void *context, const Rdb_ChangeInfo **change
 | 参数项 | 描述 |
 | -- | -- |
 | void *context | 表示数据观察者的上下文。 |
-|  const [Rdb_ChangeInfo](capi-rdb-rdb-changeinfo.md) **changeInfo | 表示已更改表的信息[Rdb_ChangeInfo](capi-rdb-rdb-changeinfo.md)。 |
+|  const [Rdb_ChangeInfo](capi-rdb-rdb-changeinfo.md) **changeInfo | 表示已更改表的信息Rdb_ChangeInfo。 |
 |  uint32_t count | 表示更改的表的数量。 |
 
 ### OH_Rdb_Subscribe()
@@ -1774,9 +1774,9 @@ int OH_Rdb_Subscribe(OH_Rdb_Store *store, Rdb_SubscribeType type, const Rdb_Data
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_Rdb_Store](capi-rdb-oh-rdb-store.md) *store | 指向[OH_Rdb_Store](capi-rdb-oh-rdb-store.md)实例的指针。 |
+| [OH_Rdb_Store](capi-rdb-oh-rdb-store.md) *store | 指向OH_Rdb_Store实例的指针。 |
 | [Rdb_SubscribeType](#rdb_subscribetype) type | 表示在[Rdb_SubscribeType](capi-relational-store-h.md#rdb_subscribetype)中定义的订阅类型。如果其值为RDB_SUBSCRIBE_TYPE_LOCAL_DETAILS，则在本地数据库中的数据更改时调用回调。 |
-| const [Rdb_DataObserver](capi-rdb-rdb-dataobserver.md) *observer | 数据库中更改事件的观察者[Rdb_DataObserver](capi-rdb-rdb-dataobserver.md)。 |
+| const [Rdb_DataObserver](capi-rdb-rdb-dataobserver.md) *observer | 数据库中更改事件的观察者Rdb_DataObserver。 |
 
 **返回：**
 
@@ -1801,9 +1801,9 @@ int OH_Rdb_Unsubscribe(OH_Rdb_Store *store, Rdb_SubscribeType type, const Rdb_Da
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_Rdb_Store](capi-rdb-oh-rdb-store.md) *store | 指向[OH_Rdb_Store](capi-rdb-oh-rdb-store.md)实例的指针。 |
+| [OH_Rdb_Store](capi-rdb-oh-rdb-store.md) *store | 指向OH_Rdb_Store实例的指针。 |
 | [Rdb_SubscribeType](#rdb_subscribetype) type | 表示在[Rdb_SubscribeType](capi-relational-store-h.md#rdb_subscribetype)中定义的订阅类型。 |
-| const [Rdb_DataObserver](capi-rdb-rdb-dataobserver.md) *observer | 数据库中更改事件的观察者[Rdb_DataObserver](capi-rdb-rdb-dataobserver.md)。如果这是nullptr，表示删除该类型的所有观察者。 |
+| const [Rdb_DataObserver](capi-rdb-rdb-dataobserver.md) *observer | 数据库中更改事件的观察者Rdb_DataObserver。如果这是nullptr，表示删除该类型的所有观察者。 |
 
 **返回：**
 
@@ -1828,14 +1828,14 @@ Rdb_TableDetails *OH_Rdb_GetTableDetails(Rdb_ProgressDetails *progress, int32_t 
 
 | 参数项 | 描述                                                         |
 | -- |------------------------------------------------------------|
-| [Rdb_ProgressDetails](capi-rdb-rdb-progressdetails.md) *progress | 指向[Rdb_ProgressDetails](capi-rdb-rdb-progressdetails.md)实例的指针。                           |
+| [Rdb_ProgressDetails](capi-rdb-rdb-progressdetails.md) *progress | 指向Rdb_ProgressDetails实例的指针。                           |
 | int32_t version | 表示当前[Rdb_ProgressDetails](capi-rdb-rdb-progressdetails.md)的版本。 |
 
 **返回：**
 
 | 类型 | 说明 |
 | -- | -- |
-| [Rdb_TableDetails](capi-rdb-rdb-tabledetails.md) | 如果操作成功，会返回一个[Rdb_TableDetails](capi-rdb-rdb-tabledetails.md)结构体的指针，否则返回NULL。 |
+| [Rdb_TableDetails](capi-rdb-rdb-tabledetails.md) | 如果操作成功，会返回一个Rdb_TableDetails结构体的指针，否则返回NULL。 |
 
 **参考：**
 
@@ -1897,11 +1897,11 @@ int OH_Rdb_CloudSync(OH_Rdb_Store *store, Rdb_SyncMode mode, const char *tables[
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_Rdb_Store](capi-rdb-oh-rdb-store.md) *store | 指向[OH_Rdb_Store](capi-rdb-oh-rdb-store.md)实例的指针。 |
+| [OH_Rdb_Store](capi-rdb-oh-rdb-store.md) *store | 指向OH_Rdb_Store实例的指针。 |
 | [Rdb_SyncMode](#rdb_syncmode) mode | 表示同步过程的类型[Rdb_SyncMode](capi-relational-store-h.md#rdb_syncmode)。 |
 | const char *tables[] |  表示需要同步的表名。 |
 | uint32_t count | 同步的表的数量，如果传入的值为0，同步数据库的所有表。 |
-| const [Rdb_ProgressObserver](capi-rdb-rdb-progressobserver.md) *observer | 端云同步进度的观察者[Rdb_ProgressObserver](capi-rdb-rdb-progressobserver.md)。 |
+| const [Rdb_ProgressObserver](capi-rdb-rdb-progressobserver.md) *observer | 端云同步进度的观察者Rdb_ProgressObserver。 |
 
 **返回：**
 
@@ -1926,8 +1926,8 @@ int OH_Rdb_SubscribeAutoSyncProgress(OH_Rdb_Store *store, const Rdb_ProgressObse
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_Rdb_Store](capi-rdb-oh-rdb-store.md) *store | 指向目标[OH_Rdb_Store](capi-rdb-oh-rdb-store.md)实例的指针。 |
-| const [Rdb_ProgressObserver](capi-rdb-rdb-progressobserver.md) *observer | 用于自动同步进度的观察者[Rdb_ProgressObserver](capi-rdb-rdb-progressobserver.md)。表示调用返回自动同步进度的回调。 |
+| [OH_Rdb_Store](capi-rdb-oh-rdb-store.md) *store | 指向目标OH_Rdb_Store实例的指针。 |
+| const [Rdb_ProgressObserver](capi-rdb-rdb-progressobserver.md) *observer | 用于自动同步进度的观察者Rdb_ProgressObserver。表示调用返回自动同步进度的回调。 |
 
 **返回：**
 
@@ -1952,8 +1952,8 @@ int OH_Rdb_UnsubscribeAutoSyncProgress(OH_Rdb_Store *store, const Rdb_ProgressOb
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_Rdb_Store](capi-rdb-oh-rdb-store.md) *store | 指向目标[OH_Rdb_Store](capi-rdb-oh-rdb-store.md)实例的指针。 |
-| const [Rdb_ProgressObserver](capi-rdb-rdb-progressobserver.md) *observer | 表示自动同步进度的观察者[Rdb_ProgressObserver](capi-rdb-rdb-progressobserver.md)。如果是空指针，则自动同步进程的所有回调都将被取消注册。 |
+| [OH_Rdb_Store](capi-rdb-oh-rdb-store.md) *store | 指向目标OH_Rdb_Store实例的指针。 |
+| const [Rdb_ProgressObserver](capi-rdb-rdb-progressobserver.md) *observer | 表示自动同步进度的观察者Rdb_ProgressObserver。如果是空指针，则自动同步进程的所有回调都将被取消注册。 |
 
 **返回：**
 
@@ -1978,8 +1978,8 @@ int OH_Rdb_LockRow(OH_Rdb_Store *store, OH_Predicates *predicates)
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_Rdb_Store](capi-rdb-oh-rdb-store.md) *store | 指向[OH_Rdb_Store](capi-rdb-oh-rdb-store.md)实例的指针。 |
-| [OH_Predicates](capi-rdb-oh-predicates.md) *predicates | 指向[OH_Predicates](capi-rdb-oh-predicates.md)实例的指针，指定锁定条件。 |
+| [OH_Rdb_Store](capi-rdb-oh-rdb-store.md) *store | 指向OH_Rdb_Store实例的指针。 |
+| [OH_Predicates](capi-rdb-oh-predicates.md) *predicates | 指向OH_Predicates实例的指针，指定锁定条件。 |
 
 **返回：**
 
@@ -2004,8 +2004,8 @@ int OH_Rdb_UnlockRow(OH_Rdb_Store *store, OH_Predicates *predicates)
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_Rdb_Store](capi-rdb-oh-rdb-store.md) *store | 指向[OH_Rdb_Store](capi-rdb-oh-rdb-store.md)实例的指针。 |
-| [OH_Predicates](capi-rdb-oh-predicates.md) *predicates | 指向[OH_Predicates](capi-rdb-oh-predicates.md)实例的指针，指定解锁条件。 |
+| [OH_Rdb_Store](capi-rdb-oh-rdb-store.md) *store | 指向OH_Rdb_Store实例的指针。 |
+| [OH_Predicates](capi-rdb-oh-predicates.md) *predicates | 指向OH_Predicates实例的指针，指定解锁条件。 |
 
 **返回：**
 
@@ -2030,8 +2030,8 @@ OH_Cursor *OH_Rdb_QueryLockedRow(OH_Rdb_Store *store, OH_Predicates *predicates,
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_Rdb_Store](capi-rdb-oh-rdb-store.md) *store | 指向[OH_Rdb_Store](capi-rdb-oh-rdb-store.md)实例的指针。 |
-| [OH_Predicates](capi-rdb-oh-predicates.md) *predicates | 指向[OH_Predicates](capi-rdb-oh-predicates.md)实例的指针，指定查询条件。 |
+| [OH_Rdb_Store](capi-rdb-oh-rdb-store.md) *store | 指向OH_Rdb_Store实例的指针。 |
+| [OH_Predicates](capi-rdb-oh-predicates.md) *predicates | 指向OH_Predicates实例的指针，指定查询条件。 |
 | const char *const *columnNames | 表示要查询的列。如果值为空，则查询应用于所有列。 |
 | int length | 该参数为输入参数，表示开发者传入的columnNames数组的长度。若length大于columnNames数组的实际长度，则会访问越界。 |
 
@@ -2039,7 +2039,7 @@ OH_Cursor *OH_Rdb_QueryLockedRow(OH_Rdb_Store *store, OH_Predicates *predicates,
 
 | 类型 | 说明 |
 | -- | -- |
-| [OH_Cursor](capi-rdb-oh-cursor.md) | 如果查询成功则返回一个指向[OH_Cursor](capi-rdb-oh-cursor.md)结构体实例的指针，否则返回NULL。 |
+| [OH_Cursor](capi-rdb-oh-cursor.md) | 如果查询成功则返回一个指向OH_Cursor结构体实例的指针，否则返回NULL。 |
 
 ### OH_Rdb_CreateTransaction()
 
@@ -2058,9 +2058,9 @@ int OH_Rdb_CreateTransaction(OH_Rdb_Store *store, const OH_RDB_TransOptions *opt
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_Rdb_Store](capi-rdb-oh-rdb-store.md) *store | 指向[OH_Rdb_Store](capi-rdb-oh-rdb-store.md)实例的指针。 |
-| const [OH_RDB_TransOptions](capi-rdb-oh-rdb-transoptions.md) *options | 指向[OH_RDB_TransOptions](capi-rdb-oh-rdb-transoptions.md)实例的指针。 |
-| [OH_Rdb_Transaction](capi-rdb-oh-rdb-transaction.md) **trans | 输出参数，表示执行成功时指向[OH_Rdb_Transaction](capi-rdb-oh-rdb-transaction.md)实例的指针。否则返回nullptr。<br>使用完成后，必须通过[OH_RdbTrans_Destroy](capi-oh-rdb-transaction-h.md#oh_rdbtrans_destroy)接口释放内存。 |
+| [OH_Rdb_Store](capi-rdb-oh-rdb-store.md) *store | 指向OH_Rdb_Store实例的指针。 |
+| const [OH_RDB_TransOptions](capi-rdb-oh-rdb-transoptions.md) *options | 指向OH_RDB_TransOptions实例的指针。 |
+| [OH_Rdb_Transaction](capi-rdb-oh-rdb-transaction.md) **trans | 输出参数，表示执行成功时指向OH_Rdb_Transaction实例的指针。否则返回nullptr。<br>使用完成后，必须通过[OH_RdbTrans_Destroy](capi-oh-rdb-transaction-h.md#oh_rdbtrans_destroy)接口释放内存。 |
 
 **返回：**
 
@@ -2085,8 +2085,8 @@ int OH_Rdb_Attach(OH_Rdb_Store *store, const OH_Rdb_ConfigV2 *config, const char
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_Rdb_Store](capi-rdb-oh-rdb-store.md) *store | 指向[OH_Rdb_Store](capi-rdb-oh-rdb-store.md)实例的指针。 |
-| const [OH_Rdb_ConfigV2](capi-rdb-oh-rdb-configv2.md) *config | 指向与此RDB存储相关的数据库配置[OH_Rdb_ConfigV2](capi-rdb-oh-rdb-configv2.md)的指针。 |
+| [OH_Rdb_Store](capi-rdb-oh-rdb-store.md) *store | 指向OH_Rdb_Store实例的指针。 |
+| const [OH_Rdb_ConfigV2](capi-rdb-oh-rdb-configv2.md) *config | 指向与此RDB存储相关的数据库配置OH_Rdb_ConfigV2的指针。 |
 | const char *attachName | 表示数据库的别名。 |
 | int64_t waitTime | 表示附加数据库的最大允许时间，范围为1到300，单位为秒。 |
 | size_t *attachedNumber | 表示已附加的数据库数量，作为输出参数。 |
@@ -2114,7 +2114,7 @@ int OH_Rdb_Detach(OH_Rdb_Store *store, const char *attachName, int64_t waitTime,
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_Rdb_Store](capi-rdb-oh-rdb-store.md) *store | 指向[OH_Rdb_Store](capi-rdb-oh-rdb-store.md)实例的指针。 |
+| [OH_Rdb_Store](capi-rdb-oh-rdb-store.md) *store | 指向OH_Rdb_Store实例的指针。 |
 | const char *attachName | 表示数据库的别名。 |
 | int64_t waitTime | 表示分离数据库的最大允许时间，范围为1到300，单位为秒。 |
 | size_t *attachedNumber | 表示已附加的数据库数量，作为输出参数。 |
@@ -2142,7 +2142,7 @@ int OH_Rdb_SetLocale(OH_Rdb_Store *store, const char *locale)
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_Rdb_Store](capi-rdb-oh-rdb-store.md) *store | 指向[OH_Rdb_Store](capi-rdb-oh-rdb-store.md)实例的指针。 |
+| [OH_Rdb_Store](capi-rdb-oh-rdb-store.md) *store | 指向OH_Rdb_Store实例的指针。 |
 | const char *locale | 与语言相关的区域设置，例如 zh。该值符合 ISO 639 标准。 |
 
 **返回：**
@@ -2177,8 +2177,8 @@ int OH_Rdb_RekeyEx(OH_Rdb_Store *store, OH_Rdb_CryptoParam *param)
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_Rdb_Store](capi-rdb-oh-rdb-store.md) *store | 指向[OH_Rdb_Store](capi-rdb-oh-rdb-store.md)实例的指针。 |
-| [OH_Rdb_CryptoParam](capi-rdb-oh-rdb-cryptoparam.md) *param | 指向[OH_Rdb_CryptoParam](capi-rdb-oh-rdb-cryptoparam.md)实例的指针。 |
+| [OH_Rdb_Store](capi-rdb-oh-rdb-store.md) *store | 指向OH_Rdb_Store实例的指针。 |
+| [OH_Rdb_CryptoParam](capi-rdb-oh-rdb-cryptoparam.md) *param | 指向OH_Rdb_CryptoParam实例的指针。 |
 
 **返回：**
 
@@ -2246,7 +2246,7 @@ int OH_Rdb_UnregisterCorruptedHandler(const OH_Rdb_ConfigV2 *config, void *conte
 
 取消注册的数据库异常处理的回调函数。
 
-handler和context必须要和订阅时保持一致，否则取消失败。
+handler和context必须要和注册时保持一致，否则取消失败。
 
 **起始版本：** 22
 
@@ -2280,8 +2280,8 @@ OH_Cursor *OH_Rdb_QueryWithoutRowCount(OH_Rdb_Store *store, OH_Predicates *predi
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_Rdb_Store](capi-rdb-oh-rdb-store.md) *store | 指向[OH_Rdb_Store](capi-rdb-oh-rdb-store.md)实例的指针。 |
-| [OH_Predicates](capi-rdb-oh-predicates.md) *predicates | 指向[OH_Predicates](capi-rdb-oh-predicates.md)实例的指针，指定查询条件。 |
+| [OH_Rdb_Store](capi-rdb-oh-rdb-store.md) *store | 指向OH_Rdb_Store实例的指针。 |
+| [OH_Predicates](capi-rdb-oh-predicates.md) *predicates | 指向OH_Predicates实例的指针，指定查询条件。 |
 | const char * const columns[] | 要查询的列。如果值为空，则查询所有列。 |
 | int length | 该参数为输入参数，表示开发者传入的columns数组的长度。若length大于columns数组的实际长度，则会访问越界。 |
 
@@ -2289,7 +2289,7 @@ OH_Cursor *OH_Rdb_QueryWithoutRowCount(OH_Rdb_Store *store, OH_Predicates *predi
 
 | 类型 | 说明 |
 | -- | -- |
-| [OH_Cursor *](capi-rdb-oh-cursor.md) | 如果查询成功则返回一个指向[OH_Cursor](capi-rdb-oh-cursor.md)结构体实例的指针。如果获取store失败或结果集为空，则返回nullptr。 |
+| [OH_Cursor](capi-rdb-oh-cursor.md) * | 如果查询成功则返回一个指向[OH_Cursor](capi-rdb-oh-cursor.md)结构体实例的指针。如果获取store失败或结果集为空，则返回nullptr。 |
 
 
 ### OH_Rdb_QuerySqlWithoutRowCount()
@@ -2308,7 +2308,7 @@ OH_Cursor *OH_Rdb_QuerySqlWithoutRowCount(OH_Rdb_Store *store, const char *sql, 
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_Rdb_Store](capi-rdb-oh-rdb-store.md) *store | 指向[OH_Rdb_Store](capi-rdb-oh-rdb-store.md)实例的指针。 |
+| [OH_Rdb_Store](capi-rdb-oh-rdb-store.md) *store | 指向OH_Rdb_Store实例的指针。 |
 | const char *sql | 要执行的SQL语句。 |
 | [const OH_Data_Values](capi-rdb-oh-data-values.md) *args | 指向[OH_Data_Values](capi-rdb-oh-data-values.md)实例的指针。SQL语句完整时，args可填写为nullptr。 |
 
@@ -2342,11 +2342,11 @@ int OH_Rdb_BatchInsertWithReturning(OH_Rdb_Store *store, const char *table, cons
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_Rdb_Store](capi-rdb-oh-rdb-store.md) *store | 指向[OH_Rdb_Store](capi-rdb-oh-rdb-store.md)实例的指针。 |
+| [OH_Rdb_Store](capi-rdb-oh-rdb-store.md) *store | 指向OH_Rdb_Store实例的指针。 |
 | const char *table | 要插入的目标表名。 |
 | [const OH_Data_VBuckets](capi-rdb-oh-data-vbuckets.md) *rows | 要插入到表中的行数据。 |
 | [Rdb_ConflictResolution](capi-oh-rdb-types-h.md#rdb_conflictresolution) resolution | 发生冲突时的解决策略Rdb_ConflictResolution，不建议使用RDB_CONFLICT_FAIL，因为失败时会抛异常，<br>无法正常获取实际的变更数据。 |
-| [OH_RDB_ReturningContext](capi-rdb-oh-rdb-returningcontext.md) *context | 指向[OH_RDB_ReturningContext](capi-rdb-oh-rdb-returningcontext.md)实例的指针。 |
+| [OH_RDB_ReturningContext](capi-rdb-oh-rdb-returningcontext.md) *context | 指向OH_RDB_ReturningContext实例的指针。 |
 
 **返回：**
 
@@ -2371,11 +2371,11 @@ int OH_Rdb_UpdateWithReturning(OH_Rdb_Store *store, OH_VBucket *row, OH_Predicat
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_Rdb_Store](capi-rdb-oh-rdb-store.md) *store | 指向[OH_Rdb_Store](capi-rdb-oh-rdb-store.md)实例的指针。 |
+| [OH_Rdb_Store](capi-rdb-oh-rdb-store.md) *store | 指向OH_Rdb_Store实例的指针。 |
 | [OH_VBucket](capi-rdb-oh-vbucket.md) *row | 要更新到表中的行数据。 |
-| [OH_Predicates](capi-rdb-oh-predicates.md) *predicates | 指向[OH_Predicates](capi-rdb-oh-predicates.md)实例的指针。 |
+| [OH_Predicates](capi-rdb-oh-predicates.md) *predicates | 指向OH_Predicates实例的指针。 |
 | [Rdb_ConflictResolution](capi-oh-rdb-types-h.md#rdb_conflictresolution) resolution | 发生冲突时的解决策略Rdb_ConflictResolution，不建议使用RDB_CONFLICT_FAIL，因为失败时会抛异常，<br>无法正常获取实际的变更数据。 |
-| [OH_RDB_ReturningContext](capi-rdb-oh-rdb-returningcontext.md) *context | 指向[OH_RDB_ReturningContext](capi-rdb-oh-rdb-returningcontext.md)实例的指针。 |
+| [OH_RDB_ReturningContext](capi-rdb-oh-rdb-returningcontext.md) *context | 指向OH_RDB_ReturningContext实例的指针。 |
 
 **返回：**
 
@@ -2399,9 +2399,9 @@ int OH_Rdb_DeleteWithReturning(OH_Rdb_Store *store, OH_Predicates *predicates, O
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_Rdb_Store](capi-rdb-oh-rdb-store.md) *store | 指向[OH_Rdb_Store](capi-rdb-oh-rdb-store.md)实例的指针。 |
-| [OH_Predicates](capi-rdb-oh-predicates.md) *predicates | 指向[OH_Predicates](capi-rdb-oh-predicates.md)实例的指针。 |
-| [OH_RDB_ReturningContext](capi-rdb-oh-rdb-returningcontext.md) *context | 指向[OH_RDB_ReturningContext](capi-rdb-oh-rdb-returningcontext.md)实例的指针。 |
+| [OH_Rdb_Store](capi-rdb-oh-rdb-store.md) *store | 指向OH_Rdb_Store实例的指针。 |
+| [OH_Predicates](capi-rdb-oh-predicates.md) *predicates | 指向OH_Predicates实例的指针。 |
+| [OH_RDB_ReturningContext](capi-rdb-oh-rdb-returningcontext.md) *context | 指向OH_RDB_ReturningContext实例的指针。 |
 
 **返回：**
 

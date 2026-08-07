@@ -766,7 +766,7 @@ export default class EntryAbility extends UIAbility {
         name: 'RdbTest.db', // 数据库文件名
         securityLevel: relationalStore.SecurityLevel.S3,
       };
-      // 表结构：EMPLOYEE (NAME, AGE, SALARY, CODES)
+      // 表结构：EMPLOYEE (ID, NAME, AGE, SALARY, CODES)
       const SQL_CREATE_TABLE =
         'CREATE TABLE IF NOT EXISTS EMPLOYEE (ID INTEGER PRIMARY KEY AUTOINCREMENT, NAME TEXT NOT NULL, AGE INTEGER, SALARY REAL, CODES BLOB)'; // 建表Sql语句
       store = await relationalStore.getRdbStore(context, STORE_CONFIG);
@@ -798,7 +798,7 @@ export default class EntryAbility extends UIAbility {
 
 in(field: string, value: Array&lt;ValueType&gt;): DataAbilityPredicates
 
-配置谓词以匹配数据类型为ValueType数组且值在给定范围内的指定字段。
+配置谓词以匹配数据类型为ValueType且值在给定数组范围内的指定字段。
 
 **系统能力：** SystemCapability.DistributedDataManager.DataShare.Core
 
@@ -826,7 +826,7 @@ in(field: string, value: Array&lt;ValueType&gt;): DataAbilityPredicates
 
 notIn(field: string, value: Array&lt;ValueType&gt;): DataAbilityPredicates
 
-配置谓词以匹配数据类型为ValueType数组且值不在给定范围内的指定字段。
+配置谓词以匹配数据类型为ValueType且值不在给定数组范围内的指定字段。
 
 **系统能力：** SystemCapability.DistributedDataManager.DataShare.Core
 

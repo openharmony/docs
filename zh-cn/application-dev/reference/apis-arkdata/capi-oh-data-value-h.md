@@ -26,7 +26,7 @@
 
 | 名称                                   | typedef关键字 | 描述                                                 |
 | -------------------------------------- | ------------- | ---------------------------------------------------- |
-| [OH_Data_Value](capi-rdb-oh-data-value.md) | OH_Data_Value | 定义[OH_Data_Value](capi-rdb-oh-data-value.md)结构类型。 |
+| [OH_Data_Value](capi-rdb-oh-data-value.md) | OH_Data_Value | 定义OH_Data_Value结构类型。 |
 
 ### 枚举
 
@@ -48,7 +48,7 @@
 | [int OH_Value_PutAsset(OH_Data_Value *value, const Data_Asset *val)](#oh_value_putasset) | 添加ASSET类型数据。                                          |
 | [int OH_Value_PutAssets(OH_Data_Value *value, const Data_Asset * const * val, size_t length)](#oh_value_putassets) | 添加ASSETS类型数据。                                         |
 | [int OH_Value_PutFloatVector(OH_Data_Value *value, const float *val, size_t length)](#oh_value_putfloatvector) | 添加float数组类型数据。                                      |
-| [int OH_Value_PutUnlimitedInt(OH_Data_Value *value, int sign, const uint64_t *trueForm, size_t length)](#oh_value_putunlimitedint) | 添加任意长度的整型数组数据。                                 |
+| [int OH_Value_PutUnlimitedInt(OH_Data_Value *value, int sign, const uint64_t *trueForm, size_t length)](#oh_value_putunlimitedint) | 添加任意长度的整型数据。                                 |
 | [int OH_Value_GetType(OH_Data_Value *value, OH_ColumnType *type)](#oh_value_gettype) | 获取数据类型。                                               |
 | [int OH_Value_IsNull(OH_Data_Value *value, bool *val)](#oh_value_isnull) | 检查数据是否为空。                                           |
 | [int OH_Value_GetInt(OH_Data_Value *value, int64_t *val)](#oh_value_getint) | 获取整型数据。                                               |
@@ -108,7 +108,7 @@ OH_Data_Value *OH_Value_Create(void)
 
 | 类型                                   | 说明                                                         |
 | -------------------------------------- | ------------------------------------------------------------ |
-| [OH_Data_Value](capi-rdb-oh-data-value.md) | 执行成功时返回指向[OH_Data_Value](capi-rdb-oh-data-value.md)实例的指针。否则返回nullptr。<br>使用完成后，必须通过[OH_Value_Destroy](#oh_value_destroy)接口释放内存。 |
+| [OH_Data_Value](capi-rdb-oh-data-value.md) | 执行成功时返回指向OH_Data_Value实例的指针。否则返回nullptr。<br>使用完成后，必须通过[OH_Value_Destroy](#oh_value_destroy)接口释放内存。 |
 
 ### OH_Value_Destroy()
 
@@ -127,7 +127,7 @@ int OH_Value_Destroy(OH_Data_Value *value)
 
 | 参数项                                        | 描述                                                       |
 | --------------------------------------------- | ---------------------------------------------------------- |
-| [OH_Data_Value](capi-rdb-oh-data-value.md) *value | 表示指向[OH_Data_Value](capi-rdb-oh-data-value.md)实例的指针。 |
+| [OH_Data_Value](capi-rdb-oh-data-value.md) *value | 表示指向OH_Data_Value实例的指针。 |
 
 **返回：**
 
@@ -152,7 +152,7 @@ int OH_Value_PutNull(OH_Data_Value *value)
 
 | 参数项                                        | 描述                                                       |
 | --------------------------------------------- | ---------------------------------------------------------- |
-| [OH_Data_Value](capi-rdb-oh-data-value.md) *value | 表示指向[OH_Data_Value](capi-rdb-oh-data-value.md)实例的指针。 |
+| [OH_Data_Value](capi-rdb-oh-data-value.md) *value | 表示指向OH_Data_Value实例的指针。 |
 
 **返回：**
 
@@ -177,7 +177,7 @@ int OH_Value_PutInt(OH_Data_Value *value, int64_t val)
 
 | 参数项                                        | 描述                                                       |
 | --------------------------------------------- | ---------------------------------------------------------- |
-| [OH_Data_Value](capi-rdb-oh-data-value.md) *value | 表示指向[OH_Data_Value](capi-rdb-oh-data-value.md)实例的指针。 |
+| [OH_Data_Value](capi-rdb-oh-data-value.md) *value | 表示指向OH_Data_Value实例的指针。 |
 | int64_t val                                   | 表示整型数据。                                             |
 
 **返回：**
@@ -203,7 +203,7 @@ int OH_Value_PutReal(OH_Data_Value *value, double val)
 
 | 参数项                                        | 描述                                                       |
 | --------------------------------------------- | ---------------------------------------------------------- |
-| [OH_Data_Value](capi-rdb-oh-data-value.md) *value | 表示指向[OH_Data_Value](capi-rdb-oh-data-value.md)实例的指针。 |
+| [OH_Data_Value](capi-rdb-oh-data-value.md) *value | 表示指向OH_Data_Value实例的指针。 |
 | double val                                    | 表示REAL类型数据。                                         |
 
 **返回：**
@@ -229,7 +229,7 @@ int OH_Value_PutText(OH_Data_Value *value, const char *val)
 
 | 参数项                                        | 描述                                                       |
 | --------------------------------------------- | ---------------------------------------------------------- |
-| [OH_Data_Value](capi-rdb-oh-data-value.md) *value | 表示指向[OH_Data_Value](capi-rdb-oh-data-value.md)实例的指针。 |
+| [OH_Data_Value](capi-rdb-oh-data-value.md) *value | 表示指向OH_Data_Value实例的指针。 |
 | const char *val                               | 表示字符串类型数据。                                       |
 
 **返回：**
@@ -255,7 +255,7 @@ int OH_Value_PutBlob(OH_Data_Value *value, const unsigned char *val, size_t leng
 
 | 参数项                                        | 描述                                                       |
 | --------------------------------------------- | ---------------------------------------------------------- |
-| [OH_Data_Value](capi-rdb-oh-data-value.md) *value | 表示指向[OH_Data_Value](capi-rdb-oh-data-value.md)实例的指针。 |
+| [OH_Data_Value](capi-rdb-oh-data-value.md) *value | 表示指向OH_Data_Value实例的指针。 |
 | const unsigned char *val                      | 表示BLOB类型数据。                                         |
 | size_t length                                 | 该参数是输入参数，表示开发者传入的BLOB类型数据的大小。     |
 
@@ -282,8 +282,8 @@ int OH_Value_PutAsset(OH_Data_Value *value, const Data_Asset *val)
 
 | 参数项                                        | 描述                                                       |
 | --------------------------------------------- | ---------------------------------------------------------- |
-| [OH_Data_Value](capi-rdb-oh-data-value.md) *value | 表示指向[OH_Data_Value](capi-rdb-oh-data-value.md)实例的指针。 |
-| const [Data_Asset](capi-rdb-data-asset.md) *val   | 表示指向[Data_Asset](capi-rdb-data-asset.md)对象的指针。       |
+| [OH_Data_Value](capi-rdb-oh-data-value.md) *value | 表示指向OH_Data_Value实例的指针。 |
+| const [Data_Asset](capi-rdb-data-asset.md) *val   | 表示指向Data_Asset对象的指针。       |
 
 **返回：**
 
@@ -308,8 +308,8 @@ int OH_Value_PutAssets(OH_Data_Value *value, const Data_Asset * const * val, siz
 
 | 参数项                                               | 描述                                                         |
 | ---------------------------------------------------- | ------------------------------------------------------------ |
-| [OH_Data_Value](capi-rdb-oh-data-value.md) *value        | 表示指向[OH_Data_Value](capi-rdb-oh-data-value.md)实例的指针。   |
-| const [Data_Asset](capi-rdb-data-asset.md) * const * val | 表示指向[Data_Asset](capi-rdb-data-asset.md)对象的指针。         |
+| [OH_Data_Value](capi-rdb-oh-data-value.md) *value        | 表示指向OH_Data_Value实例的指针。   |
+| const [Data_Asset](capi-rdb-data-asset.md) * const * val | 表示指向Data_Asset对象的指针。         |
 | size_t length                                        | 该参数是输入参数，表示开发者传入的[Data_Asset](capi-rdb-data-asset.md)对象数组元素的个数。 |
 
 **返回：**
@@ -335,7 +335,7 @@ int OH_Value_PutFloatVector(OH_Data_Value *value, const float *val, size_t lengt
 
 | 参数项                                        | 描述                                                       |
 | --------------------------------------------- | ---------------------------------------------------------- |
-| [OH_Data_Value](capi-rdb-oh-data-value.md) *value | 表示指向[OH_Data_Value](capi-rdb-oh-data-value.md)实例的指针。 |
+| [OH_Data_Value](capi-rdb-oh-data-value.md) *value | 表示指向OH_Data_Value实例的指针。 |
 | const float *val                              | 表示指向float数组对象的指针。                              |
 | size_t length                                 | 该参数是输入参数，表示开发者传入的float数组的大小。    |
 
@@ -353,7 +353,7 @@ int OH_Value_PutUnlimitedInt(OH_Data_Value *value, int sign, const uint64_t *tru
 
 **描述**
 
-添加任意长度的整型数组数据。
+添加任意长度的整型数据。
 
 **起始版本：** 18
 
@@ -362,7 +362,7 @@ int OH_Value_PutUnlimitedInt(OH_Data_Value *value, int sign, const uint64_t *tru
 
 | 参数项                                        | 描述                                                       |
 | --------------------------------------------- | ---------------------------------------------------------- |
-| [OH_Data_Value](capi-rdb-oh-data-value.md) *value | 表示指向[OH_Data_Value](capi-rdb-oh-data-value.md)实例的指针。 |
+| [OH_Data_Value](capi-rdb-oh-data-value.md) *value | 表示指向OH_Data_Value实例的指针。 |
 | int sign                                      | 表示正负数，0表示正整数，1表示负整数。                     |
 | const uint64_t *trueForm                      | 表示指向整型数组的指针。                                   |
 | size_t length                                 | 该参数是输入参数，表示开发者传入的整型数组的大小。     |
@@ -390,7 +390,7 @@ int OH_Value_GetType(OH_Data_Value *value, OH_ColumnType *type)
 
 | 参数项                                        | 描述                                                       |
 | --------------------------------------------- | ---------------------------------------------------------- |
-| [OH_Data_Value](capi-rdb-oh-data-value.md) *value | 表示指向[OH_Data_Value](capi-rdb-oh-data-value.md)实例的指针。 |
+| [OH_Data_Value](capi-rdb-oh-data-value.md) *value | 表示指向OH_Data_Value实例的指针。 |
 | [OH_ColumnType](#oh_columntype) *type         | 一个输出参数，表示数据类型。                               |
 
 **返回：**
@@ -416,7 +416,7 @@ int OH_Value_IsNull(OH_Data_Value *value, bool *val)
 
 | 参数项                                        | 描述                                                       |
 | --------------------------------------------- | ---------------------------------------------------------- |
-| [OH_Data_Value](capi-rdb-oh-data-value.md) *value | 表示指向[OH_Data_Value](capi-rdb-oh-data-value.md)实例的指针。 |
+| [OH_Data_Value](capi-rdb-oh-data-value.md) *value | 表示指向OH_Data_Value实例的指针。 |
 | bool *val                                     | 一个输出参数，true表示空，false表示不为空。                |
 
 **返回：**
@@ -442,7 +442,7 @@ int OH_Value_GetInt(OH_Data_Value *value, int64_t *val)
 
 | 参数项                                        | 描述                                                       |
 | --------------------------------------------- | ---------------------------------------------------------- |
-| [OH_Data_Value](capi-rdb-oh-data-value.md) *value | 表示指向[OH_Data_Value](capi-rdb-oh-data-value.md)实例的指针。 |
+| [OH_Data_Value](capi-rdb-oh-data-value.md) *value | 表示指向OH_Data_Value实例的指针。 |
 | int64_t *val                                  | 一个输出参数，表示指向整型数据的指针。                     |
 
 **返回：**
@@ -468,7 +468,7 @@ int OH_Value_GetReal(OH_Data_Value *value, double *val)
 
 | 参数项                                        | 描述                                                       |
 | --------------------------------------------- | ---------------------------------------------------------- |
-| [OH_Data_Value](capi-rdb-oh-data-value.md) *value | 表示指向[OH_Data_Value](capi-rdb-oh-data-value.md)实例的指针。 |
+| [OH_Data_Value](capi-rdb-oh-data-value.md) *value | 表示指向OH_Data_Value实例的指针。 |
 | double *val                                   | 一个输出参数，表示指向REAL类型数据的指针。                 |
 
 **返回：**
@@ -494,7 +494,7 @@ int OH_Value_GetText(OH_Data_Value *value, const char **val)
 
 | 参数项                                        | 描述                                                         |
 | --------------------------------------------- | ------------------------------------------------------------ |
-| [OH_Data_Value](capi-rdb-oh-data-value.md) *value | 表示指向[OH_Data_Value](capi-rdb-oh-data-value.md)实例的指针。   |
+| [OH_Data_Value](capi-rdb-oh-data-value.md) *value | 表示指向OH_Data_Value实例的指针。   |
 | const char **val                              | 一个输出参数，表示指向字符串类型数据的指针。<br>无需申请内存和释放内存。<br>val的生命周期遵循value中index的值。 |
 
 **返回：**
@@ -520,7 +520,7 @@ int OH_Value_GetBlob(OH_Data_Value *value, const uint8_t **val, size_t *length)
 
 | 参数项                                        | 描述                                                         |
 | --------------------------------------------- | ------------------------------------------------------------ |
-| [OH_Data_Value](capi-rdb-oh-data-value.md) *value | 表示指向[OH_Data_Value](capi-rdb-oh-data-value.md)实例的指针。   |
+| [OH_Data_Value](capi-rdb-oh-data-value.md) *value | 表示指向OH_Data_Value实例的指针。   |
 | const uint8_t **val                           | 一个输出参数，表示指向BLOB类型数据的指针。<br>无需申请内存和释放内存。<br>val的生命周期遵循value中index的值。 |
 | size_t *length                                | 该参数是输出参数，表示BLOB类型数组的大小。                   |
 
@@ -547,8 +547,8 @@ int OH_Value_GetAsset(OH_Data_Value *value, Data_Asset *val)
 
 | 参数项                                        | 描述                                                         |
 | --------------------------------------------- | ------------------------------------------------------------ |
-| [OH_Data_Value](capi-rdb-oh-data-value.md) *value | 表示指向[OH_Data_Value](capi-rdb-oh-data-value.md)实例的指针。   |
-| [Data_Asset](capi-rdb-data-asset.md) *val         | 表示指向[Data_Asset](capi-rdb-data-asset.md)对象的指针。<br>需要申请数据内存。<br>此函数仅填充数据。否则执行失败。 |
+| [OH_Data_Value](capi-rdb-oh-data-value.md) *value | 表示指向OH_Data_Value实例的指针。   |
+| [Data_Asset](capi-rdb-data-asset.md) *val         | 表示指向Data_Asset对象的指针。<br>需要申请数据内存。<br>此函数仅填充数据。否则执行失败。 |
 
 **返回：**
 
@@ -573,7 +573,7 @@ int OH_Value_GetAssetsCount(OH_Data_Value *value, size_t *length)
 
 | 参数项                                        | 描述                                                       |
 | --------------------------------------------- | ---------------------------------------------------------- |
-| [OH_Data_Value](capi-rdb-oh-data-value.md) *value | 表示指向[OH_Data_Value](capi-rdb-oh-data-value.md)实例的指针。 |
+| [OH_Data_Value](capi-rdb-oh-data-value.md) *value | 表示指向OH_Data_Value实例的指针。 |
 | size_t *length                                | 该参数是输出参数，表示ASSETS类型数据的大小。               |
 
 **返回：**
@@ -599,9 +599,9 @@ int OH_Value_GetAssets(OH_Data_Value *value, Data_Asset **val, size_t inLen, siz
 
 | 参数项                                        | 描述                                                         |
 | --------------------------------------------- | ------------------------------------------------------------ |
-| [OH_Data_Value](capi-rdb-oh-data-value.md) *value | 表示指向[OH_Data_Value](capi-rdb-oh-data-value.md)实例的指针。   |
-| [Data_Asset](capi-rdb-data-asset.md) **val        | 表示指向[Data_Asset](capi-rdb-data-asset.md)对象的指针。<br>需要申请数据内存。<br>此函数仅填充数据。否则执行失败。 |
-| size_t inLen                                  | 表示val的大小。可以通过[OH_Values_GetAssetsCount](capi-oh-data-values-h.md#oh_values_getassetscount)获取。 |
+| [OH_Data_Value](capi-rdb-oh-data-value.md) *value | 表示指向OH_Data_Value实例的指针。   |
+| [Data_Asset](capi-rdb-data-asset.md) **val        | 表示指向Data_Asset对象的指针。<br>需要申请数据内存。<br>此函数仅填充数据。否则执行失败。 |
+| size_t inLen                                  | 表示val的大小。可以通过[OH_Value_GetAssetsCount](#oh_value_getassetscount)获取。 |
 | size_t *outLen                                | 一个输出参数，表示实际获取的数据大小。                       |
 
 **返回：**
@@ -627,14 +627,14 @@ int OH_Value_GetFloatVectorCount(OH_Data_Value *value, size_t *length)
 
 | 参数项                                        | 描述                                                       |
 | --------------------------------------------- | ---------------------------------------------------------- |
-| [OH_Data_Value](capi-rdb-oh-data-value.md) *value | 表示指向[OH_Data_Value](capi-rdb-oh-data-value.md)实例的指针。 |
+| [OH_Data_Value](capi-rdb-oh-data-value.md) *value | 表示指向OH_Data_Value实例的指针。 |
 | size_t *length                                | 该参数是输出参数，表示float数组类型数据的大小。            |
 
 **返回：**
 
 | 类型 | 说明                                                         |
 | ---- | ------------------------------------------------------------ |
-| int  | 返回错误码。<br>返回RDB_OK表示成功。<br>返回RDB_E_INVALID_ARGS表示参数无效。<br>返回RDB_E_DATA_TYPE_NULL表示存储数据为空。<br>返回RDB_E_TYPE_MISMATCH表示数据类型不匹配。 |
+| int  | 返回错误码。<br>返回RDB_OK表示成功。<br>返回RDB_E_INVALID_ARGS表示无效参数。<br>返回RDB_E_DATA_TYPE_NULL表示存储数据为空。<br>返回RDB_E_TYPE_MISMATCH表示数据类型不匹配。 |
 
 ### OH_Value_GetFloatVector()
 
@@ -653,9 +653,9 @@ int OH_Value_GetFloatVector(OH_Data_Value *value, float *val, size_t inLen, size
 
 | 参数项                                        | 描述                                                         |
 | --------------------------------------------- | ------------------------------------------------------------ |
-| [OH_Data_Value](capi-rdb-oh-data-value.md) *value | 表示指向[OH_Data_Value](capi-rdb-oh-data-value.md)实例的指针。   |
+| [OH_Data_Value](capi-rdb-oh-data-value.md) *value | 表示指向OH_Data_Value实例的指针。   |
 | float *val                                    | 表示指向float数组的指针。<br>需要申请数据内存。<br>此函数仅填充数据。否则执行失败。 |
-| size_t inLen                                  | 表示val的大小。可以通过[OH_Values_GetFloatVectorCount](capi-oh-data-values-h.md#oh_values_getfloatvectorcount)获取。 |
+| size_t inLen                                  | 表示val的大小。可以通过[OH_Value_GetFloatVectorCount](#oh_value_getfloatvectorcount)获取。 |
 | size_t *outLen                                | 一个输出参数，表示实际获取的数据大小。                       |
 
 **返回：**
@@ -681,7 +681,7 @@ int OH_Value_GetUnlimitedIntBand(OH_Data_Value *value, size_t *length)
 
 | 参数项                                        | 描述                                                       |
 | --------------------------------------------- | ---------------------------------------------------------- |
-| [OH_Data_Value](capi-rdb-oh-data-value.md) *value | 表示指向[OH_Data_Value](capi-rdb-oh-data-value.md)实例的指针。 |
+| [OH_Data_Value](capi-rdb-oh-data-value.md) *value | 表示指向OH_Data_Value实例的指针。 |
 | size_t *length                                | 该参数是输出参数，表示整型数组的大小。                     |
 
 **返回：**
@@ -707,10 +707,10 @@ int OH_Value_GetUnlimitedInt(OH_Data_Value *value, int *sign, uint64_t *trueForm
 
 | 参数项                                        | 描述                                                         |
 | --------------------------------------------- | ------------------------------------------------------------ |
-| [OH_Data_Value](capi-rdb-oh-data-value.md) *value | 表示指向[OH_Data_Value](capi-rdb-oh-data-value.md)实例的指针。   |
+| [OH_Data_Value](capi-rdb-oh-data-value.md) *value | 表示指向OH_Data_Value实例的指针。   |
 | int *sign                                     | 一个输出参数，表示正负数，0表示正整数，1表示负整数。         |
 | uint64_t *trueForm                            | 表示指向整型数组的指针。<br>需要申请数据内存。<br>此函数仅填充数据。否则执行失败。 |
-| size_t inLen                                  | 表示trueForm的大小。可以通过[OH_Values_GetUnlimitedIntBand](capi-oh-data-values-h.md#oh_values_getunlimitedintband)获取。 |
+| size_t inLen                                  | 表示trueForm的大小。可以通过[OH_Value_GetUnlimitedIntBand](#oh_value_getunlimitedintband)获取。 |
 | size_t *outLen                                | 一个输出参数，表示实际获取的数据大小。                       |
 
 **返回：**

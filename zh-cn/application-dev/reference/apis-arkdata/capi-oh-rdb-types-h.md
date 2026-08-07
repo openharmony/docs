@@ -86,7 +86,7 @@ OH_RDB_ReturningContext *OH_RDB_CreateReturningContext(void)
 
 | 类型 | 说明 |
 | -- | -- |
-| [OH_RDB_ReturningContext](capi-rdb-oh-rdb-returningcontext.md) *  | 执行成功时返回指向[OH_RDB_ReturningContext](capi-rdb-oh-rdb-returningcontext.md)实例的指针。<br>否则返回nullptr。使用完成后必须通过[OH_RDB_DestroyReturningContext](#oh_rdb_destroyreturningcontext)接口释放内存。 |
+| [OH_RDB_ReturningContext](capi-rdb-oh-rdb-returningcontext.md) *  | 执行成功时返回指向OH_RDB_ReturningContext实例的指针。<br>否则返回nullptr。使用完成后必须通过[OH_RDB_DestroyReturningContext](#oh_rdb_destroyreturningcontext)接口释放内存。 |
 
 ### OH_RDB_DestroyReturningContext()
 
@@ -104,7 +104,7 @@ void OH_RDB_DestroyReturningContext(OH_RDB_ReturningContext *context)
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_RDB_ReturningContext](capi-rdb-oh-rdb-returningcontext.md) *context | 指向[OH_RDB_ReturningContext](capi-rdb-oh-rdb-returningcontext.md)实例的指针。 |
+| [OH_RDB_ReturningContext](capi-rdb-oh-rdb-returningcontext.md) *context | 指向OH_RDB_ReturningContext实例的指针。 |
 
 ### OH_RDB_SetReturningFields()
 
@@ -122,9 +122,9 @@ int OH_RDB_SetReturningFields(OH_RDB_ReturningContext *context, const char *cons
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_RDB_ReturningContext](capi-rdb-oh-rdb-returningcontext.md) *context | 指向[OH_RDB_ReturningContext](capi-rdb-oh-rdb-returningcontext.md)实例的指针。 |
-| const char *const fields[] | 要返回的列名。 |
-| int32_t len | 字段长度。 |
+| [OH_RDB_ReturningContext](capi-rdb-oh-rdb-returningcontext.md) *context | 指向OH_RDB_ReturningContext实例的指针。 |
+| const char *const fields[] | 要返回的字段名。 |
+| int32_t len | 字段数量。 |
 
 **返回：**
 
@@ -148,8 +148,8 @@ int OH_RDB_SetMaxReturningCount(OH_RDB_ReturningContext *context, int32_t count)
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_RDB_ReturningContext](capi-rdb-oh-rdb-returningcontext.md) *context | 指向[OH_RDB_ReturningContext](capi-rdb-oh-rdb-returningcontext.md)实例的指针。 |
-| int32_t count | 表示返回结果集的最大条目数。 |
+| [OH_RDB_ReturningContext](capi-rdb-oh-rdb-returningcontext.md) *context | 指向OH_RDB_ReturningContext实例的指针。 |
+| int32_t count | 表示返回结果集的最大行数量。 |
 
 **返回：**
 
@@ -173,7 +173,7 @@ OH_Cursor *OH_RDB_GetReturningValues(OH_RDB_ReturningContext *context)
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_RDB_ReturningContext](capi-rdb-oh-rdb-returningcontext.md) *context | 指向[OH_RDB_ReturningContext](capi-rdb-oh-rdb-returningcontext.md)实例的指针。 |
+| [OH_RDB_ReturningContext](capi-rdb-oh-rdb-returningcontext.md) *context | 指向OH_RDB_ReturningContext实例的指针。 |
 
 **返回：**
 
@@ -197,7 +197,7 @@ int64_t OH_RDB_GetChangedCount(OH_RDB_ReturningContext *context)
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_RDB_ReturningContext](capi-rdb-oh-rdb-returningcontext.md) *context | 指向[OH_RDB_ReturningContext](capi-rdb-oh-rdb-returningcontext.md)实例的指针。 |
+| [OH_RDB_ReturningContext](capi-rdb-oh-rdb-returningcontext.md) *context | 指向OH_RDB_ReturningContext实例的指针。 |
 
 **返回：**
 
