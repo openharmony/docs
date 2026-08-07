@@ -840,7 +840,7 @@ struct CursorMoving {
     this.canvasContext.stroke();
   }
 
-  // 判断点击位置是否在棱形中
+  // 判断点击位置是否在菱形中
   isTouchCursorArea(touch: TouchObject) {
     let tempLength = Math.sqrt((touch.x - this.cursorCenterPosition.x) * (touch.x - this.cursorCenterPosition.x) +
       (touch.y - this.cursorCenterPosition.y) * (touch.y - this.cursorCenterPosition.y));
