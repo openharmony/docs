@@ -210,7 +210,7 @@ onMeasure(self: FrameNode, constraint: LayoutConstraint, helper?: LazyLayoutHelp
 
 2. 处理空子元素或非懒加载布局。
 
-    首先获取子组件总数，使用[ChildrenCountMode](../reference/apis-arkui/js-apis-arkui-frameNode.md#childrencountmode).ALL_NOT_EXPAND避免全量加载导致懒加载失效。如果子组件数量为0，清空测量状态并设置容器高度为0。如果helper参数为undefined，表示不支持懒加载（如在List多列模式下），需要全量测量所有子组件。
+    首先获取子组件总数，使用[ChildrenCountMode](../reference/apis-arkui/js-apis-arkui-frameNode.md#childrencountmode).ALL_NOT_EXPAND避免全量加载导致懒加载失效。如果子组件数量为0，清空测量状态并设置容器高度为垂直内边距（topPadding + bottomPadding）。如果helper参数为undefined，表示不支持懒加载（如在List多列模式下），需要全量测量所有子组件。
 
 3. 处理布局参数变化保持滚动稳定。
 
