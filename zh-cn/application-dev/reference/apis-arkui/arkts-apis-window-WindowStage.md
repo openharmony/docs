@@ -1315,7 +1315,7 @@ on(eventType: 'windowStageClose', callback: Callback&lt;void&gt;): void
 
 | 参数名   | 类型                                                         | 必填 | 说明                                                         |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| eventType  | string                                                       | 是   | 监听事件，固定为'windowStageClose'，即开启主窗口标题栏按钮区的关闭按钮监听。|
+| eventType  | string                                                       | 是   | 监听事件，固定为'windowStageClose'，即主窗口标题栏关闭按钮的点击事件。|
 | callback | Callback&lt;void&gt; | 是   | 回调函数。当点击主窗口右上角关闭按钮事件发生时的回调。回调函数内部逻辑需要有boolean类型的返回值，该返回值决定当前主窗口是否继续关闭，true表示不关闭，false表示关闭。|
 
 **错误码：**
