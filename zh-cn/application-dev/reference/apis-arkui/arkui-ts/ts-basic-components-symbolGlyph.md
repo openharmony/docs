@@ -685,14 +685,14 @@ struct Index {
         }
 
         Column() {
-          Text("Normal")
+          Text('Normal')
           SymbolGlyph($r('sys.symbol.ohos_trash'))
             .fontWeight(FontWeight.Normal)
             .fontSize(96)
         }
 
         Column() {
-          Text("Bold")
+          Text('Bold')
           SymbolGlyph($r('sys.symbol.ohos_trash'))
             .fontWeight(FontWeight.Bold)
             .fontSize(96)
@@ -701,7 +701,7 @@ struct Index {
 
       Row() {
         Column() {
-          Text("单色")
+          Text('单色')
           SymbolGlyph($r('sys.symbol.ohos_folder_badge_plus'))
             .fontSize(96)
             .renderingStrategy(SymbolRenderingStrategy.SINGLE)
@@ -709,7 +709,7 @@ struct Index {
         }
 
         Column() {
-          Text("多色")
+          Text('多色')
           SymbolGlyph($r('sys.symbol.ohos_folder_badge_plus'))
             .fontSize(96)
             .renderingStrategy(SymbolRenderingStrategy.MULTIPLE_COLOR)
@@ -717,7 +717,7 @@ struct Index {
         }
 
         Column() {
-          Text("分层")
+          Text('分层')
           SymbolGlyph($r('sys.symbol.ohos_folder_badge_plus'))
             .fontSize(96)
             .renderingStrategy(SymbolRenderingStrategy.MULTIPLE_OPACITY)
@@ -727,21 +727,21 @@ struct Index {
 
       Row() {
         Column() {
-          Text("无动效")
+          Text('无动效')
           SymbolGlyph($r('sys.symbol.ohos_wifi'))
             .fontSize(96)
             .effectStrategy(SymbolEffectStrategy.NONE)
         }
 
         Column() {
-          Text("整体缩放动效")
+          Text('整体缩放动效')
           SymbolGlyph($r('sys.symbol.ohos_wifi'))
             .fontSize(96)
             .effectStrategy(SymbolEffectStrategy.SCALE)
         }
 
         Column() {
-          Text("层级动效")
+          Text('层级动效')
           SymbolGlyph($r('sys.symbol.ohos_wifi'))
             .fontSize(96)
             .effectStrategy(SymbolEffectStrategy.HIERARCHICAL)
@@ -783,7 +783,7 @@ struct Index {
     Column() {
       Row() {
         Column() {
-          Text("可变颜色动效")
+          Text('可变颜色动效')
           SymbolGlyph($r('sys.symbol.ohos_wifi'))
             .fontSize(96)
             .symbolEffect(new HierarchicalSymbolEffect(EffectFillStyle.ITERATIVE), this.isActive)
@@ -794,7 +794,7 @@ struct Index {
         }
         .margin({ right: 20 })
         Column() {
-          Text("替换动效")
+          Text('替换动效')
           SymbolGlyph(this.replaceFlag ? $r('sys.symbol.checkmark_circle') : $r('sys.symbol.repeat_1'))
             .fontSize(96)
             .symbolEffect(new ReplaceSymbolEffect(EffectScope.WHOLE), this.triggerValueReplace)
@@ -809,7 +809,7 @@ struct Index {
 
       Row() {
         Column() {
-          Text("禁用动效")
+          Text('禁用动效')
           SymbolGlyph(this.replaceFlag1 ? $r('sys.symbol.eye_slash') : $r('sys.symbol.eye'))
             .fontSize(96)
             .renderingStrategy(this.renderMode)
@@ -822,7 +822,7 @@ struct Index {
         }
         .margin({ right: 20 })
         Column() {
-          Text("快速替换动效")
+          Text('快速替换动效')
           SymbolGlyph(this.replaceFlag2 ? $r('sys.symbol.checkmark_circle') : $r('sys.symbol.repeat_1'))
             .fontSize(96)
             .symbolEffect(new ReplaceSymbolEffect(EffectScope.WHOLE, ReplaceEffectType.CROSS_FADE), this.triggerValueReplace2)
@@ -834,7 +834,7 @@ struct Index {
         }
         .margin({ right: 20 })
         Column() {
-          Text("阴影能力")
+          Text('阴影能力')
           SymbolGlyph($r('sys.symbol.ohos_wifi'))
             .fontSize(96)
             .symbolEffect(new HierarchicalSymbolEffect(EffectFillStyle.ITERATIVE), this.isActive)

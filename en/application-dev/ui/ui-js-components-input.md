@@ -1,7 +1,7 @@
 # input Development
 <!--Kit: ArkUI-->
 <!--Subsystem: ArkUI-->
-<!--Owner: @kangshihui-->
+<!--Owner: @jiaxiaguang-->
 <!--Designer: @xiangyuan6-->
 <!--Tester: @jiaoaozihao-->
 <!--Adviser: @Brilliantry_Rui-->
@@ -110,12 +110,12 @@ export default {
 
 > **NOTE**
 >
-> The settings take effect only when the input type is set to **checkbox** or **radio**. The default value is **false**.
+> The settings of **checked** take effect only when the input type is set to **checkbox** or **radio**. The default value of **checked** is **false**.
 
 
 ## Binding Events
 
-Add the translate event to the **&lt;input&gt;** component.
+Adds the **translate** event to the **&lt;input&gt;** component.
 ```html
 <!-- xxx.hml -->
 <div class="content">
@@ -162,7 +162,7 @@ export default {
 }
 ```
 
-
+![JsInputTranslate](figures/JsInputTranslateEx.gif)
 
 
 ## Setting the Input Error Message

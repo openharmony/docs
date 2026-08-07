@@ -177,7 +177,7 @@ async function produce(): Promise<number> {
 class Consumer {
   public consume(value: number) {
     // 添加消费相关逻辑
-    console.info('consuming value: ${value}');
+    console.info(`consuming value: ${value}`);
   }
 }
 
@@ -232,7 +232,7 @@ struct ActorModel {
         .width('20%')
         .height('20%')
 
-        // 点击按钮调用Cale模块的main函数，执行计算器相关功能
+        // 点击按钮调用Cale模块的main函数，演示内存共享模型与Actor模型的区别
         Button() {
           Text('cale start')
         }.onClick(() => {

@@ -52,8 +52,8 @@ struct CSharedArrayBuffer {
             this.message = 'success';
             console.info(`this res is: ${res}`);
           }).catch((e: BusinessError) => {
-              this.message = 'fail';
-              console.error(`taskpool: execute task: code: ${e.code}, message: ${e.message}`);
+            this.message = 'fail';
+            console.error(`taskpool: execute task: code: ${e.code}, message: ${e.message}`);
           });
           setTimeout(() => {
             Atomics.notify(int32, 0, 1);

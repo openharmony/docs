@@ -24,7 +24,7 @@
 - 精细化排版管理：如实现艺术排版、动态文字布局等系统标准文本组件难以达到的效果。
 
 ### 接口说明
-文本塑形中常用接口如下表所示，详细接口说明参考[@ohos.graphics.text (文本模块)](../reference/apis-arkgraphics2d/js-apis-graphics-text.md)和[TextBlob](../reference/apis-arkgraphics2d/arkts-apis-graphics-drawing-TextBlob.md)。
+文本塑形中常用接口如下表所示，详细接口说明参考[@ohos.graphics.text (文本模块)](../reference/apis-arkgraphics2d/js-apis-graphics-text.md)、[TextBlob](../reference/apis-arkgraphics2d/arkts-apis-graphics-drawing-TextBlob.md)和[drawTextBlob](../reference/apis-arkgraphics2d/arkts-apis-graphics-drawing-Canvas.md#drawtextblob)。
 
 | 接口名 | 描述 | 
 | -------- | -------- |

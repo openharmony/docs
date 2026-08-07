@@ -1,4 +1,4 @@
-# Drawing and Displaying Text in Text Components
+# Using Styled Strings
 <!--Kit: ArkUI-->
 <!--Subsystem: ArkUI-->
 <!--Owner: @hddgzw-->

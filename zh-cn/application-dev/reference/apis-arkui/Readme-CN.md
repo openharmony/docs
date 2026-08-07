@@ -70,6 +70,9 @@
     - [@ohos.arkui.uiMaterial (系统材质)](arkts-apis-uimaterial.md)
     - [@ohos.arkui.StateManagement (状态管理)](js-apis-stateManagement.md)
     - [@ohos.curves (插值计算)](js-apis-curve.md)
+    <!--Del-->
+    - [@ohos.curves (插值计算)(系统接口)](js-apis-curve-sys.md)
+    <!--DelEnd-->
     - [@ohos.font (注册自定义字体)](js-apis-font.md)
     - [@ohos.matrix4 (矩阵变换)](js-apis-matrix4.md)
     - [@ohos.measure (文本计算)](js-apis-measure.md)

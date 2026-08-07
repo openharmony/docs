@@ -1,10 +1,12 @@
 # Handling Output Device Changes Gracefully
+
 <!--Kit: Audio Kit-->
 <!--Subsystem: Multimedia-->
 <!--Owner: @songshenke-->
-<!--Designer: @caixuejiang; @hao-liangfei; @zhanganxiang-->
+<!--Designer: @zhanganxiang1-->
 <!--Tester: @Filger-->
 <!--Adviser: @w_Machine_cc-->
+<!-- md-trans-meta sourceCommit=b065b5b02aeefe715acab92287399dde4481a96c translatedAt=2026-08-06T01:43:39.322Z pushedAt=2026-08-06T03:52:19.047Z -->
 
 You can listen for audio output device changes and implement appropriate responses. For example, if the output device disconnects during music playback, the application should pause playback immediately to avoid disrupting the user.
 
@@ -18,7 +20,7 @@ The audio device change information returned by [on('outputDeviceChangeWithInfo'
 
 > **NOTE**
 > 
-> The system sends [AudioStreamDeviceChangeReason](../../reference/apis-audio-kit/arkts-apis-audio-e.md#audiostreamdevicechangereason11) to the application in any of the following cases:
+> The system sends [AudioStreamDeviceChangeReason](../../reference/apis-audio-kit/arkts-apis-audio-e.md#audiostreamdevicechangereason11) to the application in any of the following cases.
 
 - **REASON_NEW_DEVICE_AVAILABLE**: A new device is available.
 
@@ -37,8 +39,11 @@ The audio device change information returned by [on('outputDeviceChangeWithInfo'
   The handling suggestions for typical service scenarios are as follows:
 
   - Gaming scenario: Do not pause audio playback.
+
   - Audiobook scenario: Pause audio playback.
+
   - Music scenario: Pause audio playback.
+
   - Video scenario: Pause audio playback.
 
 - **REASON_OVERRODE**: The user forcibly selects a device.
@@ -51,15 +56,17 @@ The audio device change information returned by [on('outputDeviceChangeWithInfo'
 
 ## Example
 
-The examples in each of the following steps are code snippets. You can click the link at the bottom right of the sample code to obtain the [complete sample codes](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/Media/Audio/AudioRoutingManagerSampleJS).
+The following examples are code snippets. For the [complete sample](https://gitcode.com/openharmony/applications_app_samples/tree/master/code/DocsSample/Media/Audio/AudioRoutingAndVolumeSample), click the link at the bottom right of each example.
 
 ### AudioRenderer Sample
 
-  <!-- @[all_outputDeviceChange](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/Media/Audio/AudioRoutingManagerSampleJS/entry/src/main/ets/pages/OutputDeviceChangePause.ets) -->
+  <!-- @[onOutputDeviceChangeWithInfo](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/Media/Audio/AudioRoutingAndVolumeSample/entry/src/main/ets/pages/AudioOutputDeviceChange.ets) --> 
 
   ``` TypeScript	
   import { audio } from '@kit.AudioKit';	
   import { BusinessError } from '@kit.BasicServicesKit';	
+  // ...
+  
   let audioRenderer: audio.AudioRenderer | undefined = undefined;	
   let audioStreamInfo: audio.AudioStreamInfo = {	
     samplingRate: audio.AudioSamplingRate.SAMPLE_RATE_48000, // Sampling rate.
@@ -68,7 +75,7 @@ The examples in each of the following steps are code snippets. You can click the
     encodingType: audio.AudioEncodingType.ENCODING_TYPE_RAW // Encoding format.
   };	
   let audioRendererInfo: audio.AudioRendererInfo = {	
-    usage: audio.StreamUsage.STREAM_USAGE_MUSIC, // Audio stream usage type: music. Set this parameter based on the service scenario.
+    usage: audio.StreamUsage.STREAM_USAGE_VOICE_COMMUNICATION, // Audio stream usage type: voice communication. Configure based on the service scenario. See StreamUsage.
     rendererFlags: 0 // AudioRenderer flag.
   };	
   let audioRendererOptions: audio.AudioRendererOptions = {	
@@ -78,23 +85,27 @@ The examples in each of the following steps are code snippets. You can click the
   // ...
 
     // Create an AudioRenderer instance.
-    audio.createAudioRenderer(audioRendererOptions).then((data) => {	
-      audioRenderer = data;	
-      console.info('AudioFrameworkRenderLog: AudioRenderer Created : Success : Stream Type: SUCCESS');	
-      // ...
-    }).catch((err: BusinessError) => {
-      console.error(`AudioFrameworkRenderLog: AudioRenderer Created : ERROR : ${err}`);
-      // ...
+    audio.createAudioRenderer(audioRendererOptions, (err, renderer) => {
+      if (!err) {
+        console.info('Succeeded in creating audio renderer.');
+        // ...
+        audioRenderer = renderer;
+        // ...
+      } else {
+        console.info(`Failed to create audio renderer. Code: ${err.code}, message: ${err.message}`);
+        // ...
+      }
     });
+    // ...
   
-    if (audioRenderer) {	
-      // Subscribe to audio output device changes, carrying the change reason.
-      (audioRenderer as audio.AudioRenderer).on('outputDeviceChangeWithInfo', async (deviceChangeInfo: audio	
-      .AudioStreamDeviceChangeInfo) => {	
+    try {
+      audioRenderer?.on('outputDeviceChangeWithInfo', (deviceChangeInfo: audio.AudioStreamDeviceChangeInfo) => {
+        console.info(`Succeeded in using on function. AudioStreamDeviceChangeInfo: ${JSON.stringify(deviceChangeInfo)}`);
+        // ...
         switch (deviceChangeInfo.changeReason) {	
           case audio.AudioStreamDeviceChangeReason.REASON_OLD_DEVICE_UNAVAILABLE:	
-            // Handle the event where the old device is unavailable. If the application is in the playing state, the playback should be paused and the UX interface should be updated.
-            // await audioRenderer.pause();	
+            // Respond to the device unavailable event. If the app is in the playback state, pause playback and update the UX.
+            audioRenderer?.pause();
             break;	
           case audio.AudioStreamDeviceChangeReason.REASON_NEW_DEVICE_AVAILABLE:	
             // The application responds to the device availability event based on the service status.
@@ -107,14 +118,21 @@ The examples in each of the following steps are code snippets. You can click the
             break;	
         }
       });
+    } catch (err) {
+      let error = err as BusinessError;
+      console.error(`Failed to use on function. Code: ${error.code}, message: ${error.message}`);
+      // ...
     }	
   ```
 
 ### AudioSessionManager Sample
 
-  ```ts
+  <!-- @[onCurrentOutputDeviceChanged](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/Media/Audio/AudioRoutingAndVolumeSample/entry/src/main/ets/pages/AudioOutputDeviceChange.ets) --> 
+
+  ``` TypeScript
   import { audio } from '@kit.AudioKit';
   import { BusinessError } from '@kit.BasicServicesKit';
+  // ...
   
   let audioRenderer: audio.AudioRenderer | undefined = undefined;
   let audioStreamInfo: audio.AudioStreamInfo = {
@@ -124,7 +142,7 @@ The examples in each of the following steps are code snippets. You can click the
     encodingType: audio.AudioEncodingType.ENCODING_TYPE_RAW // Encoding format.
   };
   let audioRendererInfo: audio.AudioRendererInfo = {
-    usage: audio.StreamUsage.STREAM_USAGE_MUSIC, // Audio stream usage type: music. Set this parameter based on the service scenario.
+    usage: audio.StreamUsage.STREAM_USAGE_VOICE_COMMUNICATION, // Audio stream usage type: voice communication. Configure based on the service scenario. For details, see StreamUsage.
     rendererFlags: 0 // AudioRenderer flag.
   };
   let audioRendererOptions: audio.AudioRendererOptions = {
@@ -132,24 +150,47 @@ The examples in each of the following steps are code snippets. You can click the
     rendererInfo: audioRendererInfo
   };
   
-  // Create an AudioRenderer instance.
-  audio.createAudioRenderer(audioRendererOptions).then((data) => {
-    audioRenderer = data;
-    console.info('AudioFrameworkRenderLog: AudioRenderer Created : Success : Stream Type: SUCCESS');
-  }).catch((err: BusinessError) => {
-    console.error(`AudioFrameworkRenderLog: AudioRenderer Created : ERROR : ${err}`);
-  });
+  let audioSessionManager = audio.getAudioManager().getSessionManager();
+  // ...
   
-  if (audioRenderer) {
+    // Create an AudioRenderer instance.
+    audio.createAudioRenderer(audioRendererOptions, (err, renderer) => {
+      if (!err) {
+        console.info('Succeeded in creating audio renderer.');
+        // ...
+        audioRenderer = renderer;
+        // ...
+      } else {
+        console.info(`Failed to create audio renderer. Code: ${err.code}, message: ${err.message}`);
+        // ...
+      }
+    });
+    // ...
+  
+    // Set the audio session policy.
+    let strategy: audio.AudioSessionStrategy = {
+      concurrencyMode: audio.AudioConcurrencyMode.CONCURRENCY_MIX_WITH_OTHERS
+    };
+  
+    // Activate the AudioSession.
+    audioSessionManager.activateAudioSession(strategy).then(() => {
+      console.info('Succeeded in activating audio session.');
+      // ...
+    }).catch((err: BusinessError) => {
+      console.error(`Failed to activate audio session. Code: ${err.code}, message: ${err.message}`);
+      // ...
+    });
+    // ...
+  
     try {
-      let sessionManager = audio.getAudioManager().getSessionManager();
-      sessionManager.activateAudioSession({ concurrencyMode: audio.AudioConcurrencyMode.CONCURRENCY_MIX_WITH_OTHERS });
       // Subscribe to audio output device changes, carrying the change reason.
-      sessionManager.on('currentOutputDeviceChanged', async (deviceChangeInfo: audio.CurrentOutputDeviceChangedEvent) => {
+      audioSessionManager.on('currentOutputDeviceChanged', async (deviceChangeInfo: audio.CurrentOutputDeviceChangedEvent) => {
+        console.info(`Succeeded in using on function. AudioStreamDeviceChangeInfo: ${JSON.stringify(deviceChangeInfo)}`);
+        // ...
         switch (deviceChangeInfo.changeReason) {
           case audio.AudioStreamDeviceChangeReason.REASON_OLD_DEVICE_UNAVAILABLE:
             // Respond to the device unavailability event. If the application is playing content, pause the playback and update the UX.
-            // await audioRenderer.pause();
+            audioRenderer?.pause();
             console.info('REASON_OLD_DEVICE_UNAVAILABLE, pause audio is recommended');
             break;
           case audio.AudioStreamDeviceChangeReason.REASON_NEW_DEVICE_AVAILABLE:
@@ -164,7 +205,8 @@ The examples in each of the following steps are code snippets. You can click the
         }
       });
     } catch (err) {
-      console.error(`on sessionManager#currentOutputDeviceChanged fail: ${err}`);
+      let error = err as BusinessError;
+      console.error(`Failed to use on function. Code: ${error.code}, message: ${error.message}`);
+      // ...
     }
-  }
   ```

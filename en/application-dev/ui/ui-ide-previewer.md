@@ -6,6 +6,7 @@
 <!--Designer: @zhangboren-->
 <!--Tester: @TerryTsao-->
 <!--Adviser: @zhang_yixin13-->
+<!-- md-trans-meta sourceCommit=19e3343652f995c9b4cdc1ec406ca573af69e6f3 translatedAt=2026-08-05T10:10:54.365Z pushedAt=2026-08-06T06:10:34.306Z -->
 
 DevEco Studio provides the UI preview function, which allows you to view the UI effect and adjust the page layout at any time. You can preview both pages and components. The icon ![ide_previewer_002](figures/ide_previewer_002.png) on the left in Figure 1 indicates page preview, while the icon ![ide_previewer_003](figures/ide_previewer_003.png) on the right indicates component preview.
 
@@ -25,7 +26,7 @@ Both ArkTS applications and atomic services support page preview. Page preview i
 
 - Hot reload: After starting page preview, you can add, delete, or modify UI components. Press **Ctrl+S** to save changes, and the Previewer will refresh without requiring a restart.
 
-- Routing: You can switch between pages to preview different page effects.
+- Routing capability: Supports page switching through the routing capability to view the preview effect of other pages.
 
 In addition to basic page preview, the following enhanced features are available:
 
@@ -61,7 +62,7 @@ When this feature is enabled, the code editor, UI preview, and component tree be
 
 3. Selecting a component in the component tree highlights the corresponding code block and Previewer component.
 
-4. Modifications made in the Previewer's attribute panel are automatically synchronized to the code editor and reflected in real time. Similarly, code changes are immediately visible in the Previewer.
+4. In the Previewer, you can modify editable properties or styles via the component's property panel. Changes made in the preview are automatically synced to the code editor and immediately refresh the previewer. Similarly, source code modifications in the editor also trigger an instant preview update, along with updated component tree information and property details.
 
 Figure 3 shows the demonstration.
 
@@ -71,8 +72,10 @@ Figure 3 shows the demonstration.
 
 ## Component Preview
 
-Both ArkTS applications and atomic services support component preview. Add the [@Preview](../reference/apis-arkui/arkui-ts/ts-universal-component-previewer.md#preview-decorator) decorator before a custom component to enable preview. A single source file can contain up to 10 @Preview decorators. Startup modes:
+ArkTS apps/atomic services support the component preview feature. Component preview is implemented by adding the [@Preview decorator](../reference/apis-arkui/arkui-ts/ts-universal-component-previewer.md#preview-decorator) before a custom component. In a single source file, you can use up to 10 `@Preview` decorators to decorate custom components. Launch method:
+
 - For components decorated with both \@Entry and \@Preview, clicking the Previewer button starts page preview. After loading, click ![ide_previewer_003](figures/ide_previewer_003.png) to switch to component preview.
+
 - For components decorated with only \@Preview, clicking the Previewer button directly starts component preview.
 
 During component preview, the default attributes of the @Preview decorator are used. For details, see [PreviewParams](../reference/apis-arkui/arkui-ts/ts-universal-component-previewer.md#previewparams9). You can configure @Preview parameters to specify device attributes, including device type and screen shape.
@@ -123,7 +126,7 @@ Figure 4 shows the demonstration.
 
 ## Dynamic Resolution Adjustment
 
-Applications and atomic services can run on various devices with different screen resolutions, shapes, and sizes. The Previewer supports dynamic resolution changes, allowing you to check UI layouts and interactions across different devices.  \To use this feature: After starting page preview, click ![ide_preview_007](figures/ide_previewer_007.png) in the upper right corner and drag the selection box to adjust the screen size dynamically.
+Applications and atomic services can run on various devices with different screen resolutions, shapes, and sizes. The Previewer supports dynamic resolution changes, allowing you to check UI layouts and interactions across different devices. To use this feature: After starting page preview, click ![ide_preview_007](figures/ide_previewer_007.png) in the upper right corner and drag the selection box to adjust the screen size dynamically.
 
 Figure 5 shows the demonstration.
 

@@ -1,13 +1,14 @@
 # Attribute Style Animation
+
 <!--Kit: ArkUI-->
 <!--Subsystem: ArkUI-->
-<!--Owner: @CCFFWW-->
-<!--Designer: @CCFFWW-->
+<!--Owner: @hehongyang3-->
+<!--Designer: @hehongyang3-->
 <!--Tester: @lxl007-->
 <!--Adviser: @Brilliantry_Rui-->
+<!-- md-trans-meta sourceCommit=5c418d4bf2581cd8ca625b8865e73773ebc27789 translatedAt=2026-08-05T10:10:28.386Z pushedAt=2026-08-06T03:47:23.600Z -->
 
 Keyframes are used to animate the scaling of a component by dynamically adjusting the width and height of its parent container. To scale both the child and parent components simultaneously, set the **scale** attribute on the child component. Then, set the **opacity** attribute to control the visibility of both the child and parent components.
-
 
 ```html
 <!-- xxx.hml -->
@@ -20,7 +21,6 @@ Keyframes are used to animate the scaling of a component by dynamically adjustin
   </div>
 </div>
 ```
-
 
 ```css
 /* xxx.css */
@@ -55,7 +55,7 @@ text {
   font-size: 35px;
   animation: 2s change2 infinite linear-out-slow-in;
 }
-/* Color change */
+/* Color and opacity change. */
 @keyframes change{
   from {
     background-color: #f76160;
@@ -88,11 +88,9 @@ text {
 }
 ```
 
-
-![attributeStyleAnimation2](figures/attributeStyleAnimation2.gif)
-
+![animation3](figures/animation3.gif)
 
 > **NOTE**
 > - The values of **animation** attributes are not sequenced. However, the values of **duration** and **delay** are parsed based on the sequence in which they are displayed.
 >
-> - The **animation-duration** attribute must be set. Otherwise, the duration is 0, which means there is no animation effect. When **animation-fill-mode** is set to **forwards**, the component directly displays the style of the last frame.
+> - The **animation-duration** attribute must be set. Otherwise, the duration is **0**, which means there is no animation effect. When **animation-fill-mode** is set to **forwards**, the component directly displays the style of the last frame.

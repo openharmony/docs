@@ -235,7 +235,7 @@ createSubWindow(name: string, callback: AsyncCallback&lt;Window&gt;): void
 | 错误码ID | 错误信息 |
 | ------- | ------------------------------ |
 | 401     | Parameter error. Possible cause: Incorrect parameter types. |
-| 1300002 | This window state is abnormal. Possible cause: The subWindow has been created and can not be created again.|
+| 1300002 | This window state is abnormal. Possible cause: The subWindow has been created and cannot be created again.|
 | 1300005 | This window stage is abnormal.<br>适用版本：9|
 
 **示例：**
@@ -308,7 +308,7 @@ createSubWindow(name: string): Promise&lt;Window&gt;
 | 错误码ID | 错误信息 |
 | ------- | ------------------------------ |
 | 401     | Parameter error. Possible cause: Incorrect parameter types. |
-| 1300002 | This window state is abnormal. Possible cause: The subWindow has been created and can not be created again.|
+| 1300002 | This window state is abnormal. Possible cause: The subWindow has been created and cannot be created again.|
 | 1300005 | This window stage is abnormal.<br>适用版本：9|
 
 **示例：**
@@ -377,7 +377,7 @@ createSubWindowWithOptions(name: string, options: SubWindowOptions): Promise&lt;
 | ------- | ------------------------------ |
 | 401     | Parameter error. Possible cause: Incorrect parameter types. |
 | 801     | Capability not supported. Failed to call the API due to limited device capabilities. |
-| 1300002 | This window state is abnormal. Possible cause: 1. The window is not created or destroyed; 2. The subWindow has been created and can not be created again. |
+| 1300002 | This window state is abnormal. Possible cause: 1. The window is not created or destroyed; 2. The subWindow has been created and cannot be created again. |
 | 1300005 | This window stage is abnormal. |
 
 **示例：**
@@ -1465,10 +1465,10 @@ export default class EntryAbility extends UIAbility {
           console.error(`Failed to load the content. Cause code: ${err.code}, message: ${err.message}`);
           return;
         }
-        console.info('onWindowStageCreate');
+        console.info('Succeeded in loading the content.');
       try {
         windowStage.setDefaultDensityEnabled(true);
-        console.info('Succeeded in loading the content.');
+        console.info('Succeeded in setting default density enabled.');
       } catch (exception) {
         console.error(`Failed to set default density enabled. Cause code: ${exception.code}, message: ${exception.message}`);
       }
@@ -1507,7 +1507,7 @@ setCustomDensity(density: number): void
 | ------- | ------------------------------ |
 | 401     | Parameter error. Possible cause: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 801     | Capability not supported. Failed to call the API due to limited device capabilities. |
-| 1300002 | This window state is abnormal. |
+| 1300002 | This window state is abnormal. Possible cause: The window is not created or destroyed. |
 | 1300005 | This window stage is abnormal. |
 
 **示例：**
@@ -1993,9 +1993,9 @@ export default class EntryAbility extends UIAbility {
       let bufferArr = new Uint8Array(color);
       for (let i = 0; i < bufferArr.length; i += 4) {
         bufferArr[i] = 255;
-        bufferArr[i+1] = 0;
-        bufferArr[i+2] = 122;
-        bufferArr[i+3] = 255;
+        bufferArr[i + 1] = 0;
+        bufferArr[i + 2] = 122;
+        bufferArr[i + 3] = 255;
       }
       image.createPixelMap(color, {
         editable: true, pixelFormat: image.PixelMapFormat.RGBA_8888, size: { height: 512, width: 512 }
@@ -2010,20 +2010,20 @@ export default class EntryAbility extends UIAbility {
             console.error(`Failed to set image for recent. Cause code: ${err.code}, message: ${err.message}`);
           });
         } catch (exception) {
-          console.error(`Failed to set image for recent.`);
+          console.error(`Failed to set image for recent. Cause code: ${exception.code}, message: ${exception.message}`);
         }
       })
 
-      let imgResourceId = $r("app.media.startIcon").id
+      let imgResourceId = $r("app.media.startIcon").id;
       try {
-        let promise2 = windowStage.setImageForRecent(imgResourceId, ImageFit.Fill);
-        promise2.then(() => {
+        let imgResourcePromise = windowStage.setImageForRecent(imgResourceId, ImageFit.Fill);
+        imgResourcePromise.then(() => {
           console.info(`Succeeded in setting image for recent`);
         }).catch((err: BusinessError) => {
           console.error(`Failed to set image for recent. Cause code: ${err.code}, message: ${err.message}`);
         });
       } catch (exception) {
-        console.error(`Failed to set image for recent.`);
+        console.error(`Failed to set image for recent. Cause code: ${exception.code}, message: ${exception.message}`);
       }
     });
   }
@@ -2081,7 +2081,7 @@ export default class EntryAbility extends UIAbility {
         console.error(`Failed to remove image for recent. Cause code: ${err.code}, message: ${err.message}`);
       });
     } catch (exception) {
-      console.error(`Failed to remove image for recent.`);
+      console.error(`Failed to remove image for recent. Cause code: ${exception.code}, message: ${exception.message}`);
     }
   }
 };

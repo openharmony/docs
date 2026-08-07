@@ -12,7 +12,7 @@ typedef struct ScsiPeripheral_ReadCapacityRequest {...} ScsiPeripheral_ReadCapac
 
 ## 概述
 
-SCSI命令（read capacity）的请求结构体。
+SCSI命令（READ CAPACITY）的请求结构体，用于发送读取存储容量的命令，可帮助获取设备的逻辑块大小和总块数。
 
 **起始版本：** 18
 
@@ -26,9 +26,9 @@ SCSI命令（read capacity）的请求结构体。
 
 | 名称 | 描述 |
 | -- | -- |
-| uint32_t lbAddress | 逻辑单元地址。 |
-| uint8_t control | Control字段，用于指定一些控制信息。 |
-| uint8_t byte8 | CDB的第八个字节。 |
-| uint32_t timeout | 超时时间（单位: 毫秒）。 |
+| uint32_t lbAddress | 逻辑块地址，用于指定读取容量的起始逻辑块位置。取值为0时获取设备整体容量信息。 |
+| uint8_t control | Control字段，用于指定SCSI命令的控制信息。 |
+| uint8_t byte8 | CDB（Command Descriptor Block，命令描述符块）的第八个字节。 |
+| uint32_t timeout | 超时时间（单位：毫秒）。 |
 
 

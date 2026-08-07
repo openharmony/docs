@@ -87,9 +87,11 @@ try {
 
 ## browser.getPoliciesSync
 
-getPoliciesSync(admin: Want | null, appId: string): string
+getPoliciesSync(admin: Want, appId: string): string
 
 通过appid获取指定浏览器设置的策略，适用于查询当前浏览器策略配置的场景，例如在企业设备管理应用中展示策略详情、验证策略是否生效等。<!--RP1--><!--RP1End-->
+
+本接口通过传入Want查询对应企业设备管理应用设置的策略，如需查询实际生效的策略，请使用[browser.getPoliciesSync](#browsergetpoliciessync-1)接口。
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
 
@@ -99,7 +101,7 @@ getPoliciesSync(admin: Want | null, appId: string): string
 
 | 参数名 | 类型                                                    | 必填 | 说明                     |
 | ------ | ------------------------------------------------------- | ---- | ------------------------ |
-| admin     | [Want](../apis-ability-kit/js-apis-app-ability-want.md) \| null | 是   | 企业设备管理扩展组件。Want中必须包含企业设备管理扩展能力的abilityName和所在应用的bundleName。<br>当设备存在多个MDM应用时，API版本26.0.0之前，传入Want时查询对应企业设备管理应用设置的策略。从API版本26.0.0开始，新增支持传入null时查询实际生效的策略。|
+| admin     | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | 是   | 企业设备管理扩展组件。Want中必须包含企业设备管理扩展能力的abilityName和所在应用的bundleName。|
 | appId  | string                                                  | 是   | 应用ID，用于指定浏览器。详情信息可参考[什么是appId](../../quick-start/common-problem-of-application.md#什么是appid)。 |
 
 **返回值：**
@@ -140,6 +142,57 @@ try {
 }
 ```
 
+
+## browser.getPoliciesSync
+
+getPoliciesSync(admin: Want | null, appId: string): string
+
+通过appid获取指定浏览器设置的策略，适用于查询当前浏览器策略配置的场景，例如在企业设备管理应用中展示策略详情、验证策略是否生效等。<!--RP1--><!--RP1End-->
+
+**起始版本：** 26.0.0
+
+**系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
+
+**模型约束：** 此接口仅可在Stage模型下使用。
+
+**参数：**
+
+| 参数名 | 类型                                                    | 必填 | 说明                     |
+| ------ | ------------------------------------------------------- | ---- | ------------------------ |
+| admin     | [Want](../apis-ability-kit/js-apis-app-ability-want.md) \| null | 是   | 企业设备管理扩展组件。Want中必须包含企业设备管理扩展能力的abilityName和所在应用的bundleName。<br>当设备存在多个MDM应用时，传入Want时查询对应企业设备管理应用设置的策略，传入null时查询实际生效的策略。|
+| appId  | string                                                  | 是   | 应用ID，用于指定浏览器。详情信息可参考[什么是appId](../../quick-start/common-problem-of-application.md#什么是appid)。 |
+
+**返回值：**
+
+| 类型   | 说明         |
+| ------ | ------------ |
+| string | 浏览器策略。 |
+
+**错误码**：
+
+以下错误码的详细介绍请参见[企业设备管理错误码](errorcode-enterpriseDeviceManager.md)和[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| 9200001  | The application is not an administrator application of the device. |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+
+**示例：**
+
+```ts
+import { browser } from '@kit.MDMKit';
+
+// 此处参数appId的赋值应替换为开发者自己指定的浏览器的应用ID
+let appId: string = 'com.example.******_******/******5t5CoBM=';
+
+try {
+  // 参数需根据实际情况进行替换
+  let result: string = browser.getPoliciesSync(null, appId);
+  console.info(`Succeeded in getting browser policies, result : ${JSON.stringify(result)}`);
+} catch(err) {
+  console.error(`Failed to get browser policies. Code is ${err.code}, message is ${err.message}`);
+}
+```
 ## browser.setManagedBrowserPolicy<sup>15+</sup>
 
 setManagedBrowserPolicy(admin: Want, bundleName: string, policyName: string, policyValue: string): void
