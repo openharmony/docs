@@ -319,7 +319,7 @@ queryAppUsagePriorityGroup(callback: AsyncCallback&lt;number&gt;): void
 
 | 参数名      | 类型                    | 必填   | 说明                         |
 | -------- | --------------------- | ---- | -------------------------- |
-| callback | AsyncCallback&lt;number&gt; | 是    | CallBack回调方法。返回查询的应用分组。 |
+| callback | AsyncCallback&lt;number&gt; | 是    | Callback回调方法。返回查询的应用分组。 |
 
 **示例**：
 
