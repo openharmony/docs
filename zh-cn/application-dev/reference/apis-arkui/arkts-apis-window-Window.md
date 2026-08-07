@@ -6570,7 +6570,7 @@ setWindowKeepScreenOn(isKeepScreenOn: boolean, callback: AsyncCallback&lt;void&g
 | 参数名 | 类型 | 必填 | 说明 |
 | -------------- | ------------------------- | -- | ---------------------------------------------------- |
 | isKeepScreenOn | boolean                   | 是 | 设置屏幕是否为常亮状态。true表示常亮；false表示不常亮。  |
-| callback | AsyncCallback&lt;void&gt; | 是 | 回调函数。当设置屏幕常亮状态成功，err为undefined，否则为错误对象。 |
+| callback | AsyncCallback&lt;void&gt; | 是 | 回调函数。当设置屏幕常亮/不常亮成功，err为undefined，否则为错误对象。 |
 
 **错误码：**
 
