@@ -6251,7 +6251,7 @@ ArkUI_ErrorCode OH_ArkUI_LinearGradientOptions_SetDirection(OH_ArkUI_LinearGradi
 
 >**说明：**
 >
->当调用[OH_ArkUI_LinearGradientOptions_SetAngle](#oh_arkui_lineargradientoptions_setangleangle)设置angle时，direction设置不生效。
+>当调用[OH_ArkUI_LinearGradientOptions_SetAngle](#oh_arkui_lineargradientoptions_setangle)设置angle时，direction设置不生效。
 
 **起始版本：** 26.0.0
 
