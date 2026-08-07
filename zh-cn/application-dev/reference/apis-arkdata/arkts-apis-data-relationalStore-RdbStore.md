@@ -5762,7 +5762,7 @@ on(event: 'autoSyncProgress', progress: Callback&lt;ProgressDetails&gt;): void
 | 参数名       | 类型                              | 必填 | 说明                                |
 | ------------ |---------------------------------| ---- |-----------------------------------|
 | event        | string                          | 是   | 取值为'autoSyncProgress'，表示自动同步进度通知。 |
-| progress     | Callback&lt;[ProgressDetails](arkts-apis-data-relationalStore-i.md#progressdetails10)&gt; | 是   | 用于返回ProgressDetails结果的回调函数。                             |
+| progress     | Callback&lt;[ProgressDetails](arkts-apis-data-relationalStore-i.md#progressdetails10)&gt; | 是   | 用于返回[ProgressDetails](arkts-apis-data-relationalStore-i.md#progressdetails10)结果的回调函数。                             |
 
 **错误码：**
 

@@ -101,7 +101,7 @@ int OH_Data_Asset_SetName(Data_Asset *asset, const char *name)
 
 | 参数项 | 描述 |
 | -- | -- |
-| [Data_Asset](capi-rdb-data-asset.md) *asset | 表示指向Data_Asset实例的指针。 |
+| [Data_Asset](capi-rdb-data-asset.md) *asset | 表示指向[Data_Asset](capi-rdb-data-asset.md)实例的指针。 |
 | const char *name | 表示要设置的名称。 |
 
 **返回：**
@@ -127,7 +127,7 @@ int OH_Data_Asset_SetUri(Data_Asset *asset, const char *uri)
 
 | 参数项 | 描述 |
 | -- | -- |
-| [Data_Asset](capi-rdb-data-asset.md) *asset | 表示指向Data_Asset实例的指针。 |
+| [Data_Asset](capi-rdb-data-asset.md) *asset | 表示指向[Data_Asset](capi-rdb-data-asset.md)实例的指针。 |
 | const char *uri |  表示要设置的URI。 |
 
 **返回：**
@@ -153,7 +153,7 @@ int OH_Data_Asset_SetPath(Data_Asset *asset, const char *path)
 
 | 参数项 | 描述 |
 | -- | -- |
-| [Data_Asset](capi-rdb-data-asset.md) *asset | 表示指向Data_Asset实例的指针。 |
+| [Data_Asset](capi-rdb-data-asset.md) *asset | 表示指向[Data_Asset](capi-rdb-data-asset.md)实例的指针。 |
 | const char *path | 表示要设置的相对路径。 |
 
 **返回：**
@@ -179,7 +179,7 @@ int OH_Data_Asset_SetCreateTime(Data_Asset *asset, int64_t createTime)
 
 | 参数项 | 描述 |
 | -- | -- |
-| [Data_Asset](capi-rdb-data-asset.md) *asset | 表示指向Data_Asset实例的指针。 |
+| [Data_Asset](capi-rdb-data-asset.md) *asset | 表示指向[Data_Asset](capi-rdb-data-asset.md)实例的指针。 |
 | int64_t createTime | 表示要设置的创建时间。无特定单位。开发者可自行指定。 |
 
 **返回：**
@@ -205,7 +205,7 @@ int OH_Data_Asset_SetModifyTime(Data_Asset *asset, int64_t modifyTime)
 
 | 参数项 | 描述 |
 | -- | -- |
-| [Data_Asset](capi-rdb-data-asset.md) *asset | 表示指向Data_Asset实例的指针。 |
+| [Data_Asset](capi-rdb-data-asset.md) *asset | 表示指向[Data_Asset](capi-rdb-data-asset.md)实例的指针。 |
 | int64_t modifyTime | 表示要设置的最后修改的时间。无特定单位。开发者可自行指定。 |
 
 **返回：**
@@ -231,7 +231,7 @@ int OH_Data_Asset_SetSize(Data_Asset *asset, size_t size)
 
 | 参数项 | 描述 |
 | -- | -- |
-| [Data_Asset](capi-rdb-data-asset.md) *asset | 表示指向Data_Asset实例的指针。 |
+| [Data_Asset](capi-rdb-data-asset.md) *asset | 表示指向[Data_Asset](capi-rdb-data-asset.md)实例的指针。 |
 | size_t size | 表示要设置的占用空间的大小（单位为字节（Byte），取值为非负整数）。 |
 
 **返回：**
@@ -257,7 +257,7 @@ int OH_Data_Asset_SetStatus(Data_Asset *asset, Data_AssetStatus status)
 
 | 参数项 | 描述 |
 | -- | -- |
-| [Data_Asset](capi-rdb-data-asset.md) *asset | 表示指向Data_Asset实例的指针。 |
+| [Data_Asset](capi-rdb-data-asset.md) *asset | 表示指向[Data_Asset](capi-rdb-data-asset.md)实例的指针。 |
 | [Data_AssetStatus](#data_assetstatus) status | 表示需要设置的状态码。详细信息可以查看[Data_AssetStatus](#data_assetstatus)。 |
 
 **返回：**
@@ -283,7 +283,7 @@ int OH_Data_Asset_GetName(Data_Asset *asset, char *name, size_t *length)
 
 | 参数项 | 描述 |
 | -- | -- |
-| [Data_Asset](capi-rdb-data-asset.md) *asset | 表示指向Data_Asset实例的指针。 |
+| [Data_Asset](capi-rdb-data-asset.md) *asset | 表示指向[Data_Asset](capi-rdb-data-asset.md)实例的指针。 |
 | char *name | 该参数是输出参数，资产类型数据的名称会以字符串形式写入该变量。 |
 | size_t *length | 表示name的长度。 |
 
@@ -310,7 +310,7 @@ int OH_Data_Asset_GetUri(Data_Asset *asset, char *uri, size_t *length)
 
 | 参数项 | 描述 |
 | -- | -- |
-| [Data_Asset](capi-rdb-data-asset.md) *asset | 表示指向Data_Asset实例的指针。 |
+| [Data_Asset](capi-rdb-data-asset.md) *asset | 表示指向[Data_Asset](capi-rdb-data-asset.md)实例的指针。 |
 | char *uri | 参数是输出参数，资产类型数据的绝对路径会以字符串形式写入该变量。 |
 | size_t *length | 表示uri的长度。 |
 
@@ -337,7 +337,7 @@ int OH_Data_Asset_GetPath(Data_Asset *asset, char *path, size_t *length)
 
 | 参数项 | 描述 |
 | -- | -- |
-| [Data_Asset](capi-rdb-data-asset.md) *asset | 表示指向Data_Asset实例的指针。 |
+| [Data_Asset](capi-rdb-data-asset.md) *asset | 表示指向[Data_Asset](capi-rdb-data-asset.md)实例的指针。 |
 | char *path | 参数是输出参数，资产类型数据的相对路径会以字符串形式写入该变量。 |
 | size_t *length | 表示path的长度。 |
 
@@ -364,7 +364,7 @@ int OH_Data_Asset_GetCreateTime(Data_Asset *asset, int64_t *createTime)
 
 | 参数项 | 描述 |
 | -- | -- |
-| [Data_Asset](capi-rdb-data-asset.md) *asset | 表示指向Data_Asset实例的指针。 |
+| [Data_Asset](capi-rdb-data-asset.md) *asset | 表示指向[Data_Asset](capi-rdb-data-asset.md)实例的指针。 |
 | int64_t *createTime | 参数是输出参数，资产类型数据的创建时间会以int64_t形式写入该变量。无特定单位。开发者可自行指定。 |
 
 **返回：**
@@ -394,7 +394,7 @@ int OH_Data_Asset_GetModifyTime(Data_Asset *asset, int64_t *modifyTime)
 
 | 参数项 | 描述 |
 | -- | -- |
-| [Data_Asset](capi-rdb-data-asset.md) *asset | 表示指向Data_Asset实例的指针。 |
+| [Data_Asset](capi-rdb-data-asset.md) *asset | 表示指向[Data_Asset](capi-rdb-data-asset.md)实例的指针。 |
 | int64_t *modifyTime | 参数是输出参数，资产类型数据的最后修改时间会以int64_t形式写入该变量。无特定单位。开发者可自行指定。 |
 
 **返回：**
@@ -420,7 +420,7 @@ int OH_Data_Asset_GetSize(Data_Asset *asset, size_t *size)
 
 | 参数项 | 描述 |
 | -- | -- |
-| [Data_Asset](capi-rdb-data-asset.md) *asset | 表示指向Data_Asset实例的指针。 |
+| [Data_Asset](capi-rdb-data-asset.md) *asset | 表示指向[Data_Asset](capi-rdb-data-asset.md)实例的指针。 |
 | size_t *size | 参数是输出参数，资产类型数据的占用空间大小会以size_t形式写入该变量。 |
 
 **返回：**
@@ -446,7 +446,7 @@ int OH_Data_Asset_GetStatus(Data_Asset *asset, Data_AssetStatus *status)
 
 | 参数项 | 描述 |
 | -- | -- |
-| [Data_Asset](capi-rdb-data-asset.md) *asset | 表示指向Data_Asset实例的指针。 |
+| [Data_Asset](capi-rdb-data-asset.md) *asset | 表示指向[Data_Asset](capi-rdb-data-asset.md)实例的指针。 |
 | [Data_AssetStatus](#data_assetstatus) *status | 参数是输出参数，资产类型数据的状态码会以[Data_AssetStatus](#data_assetstatus)形式写入该变量。 |
 
 **返回：**
@@ -471,7 +471,7 @@ Data_Asset *OH_Data_Asset_CreateOne(void)
 
 | 类型 | 说明 |
 | -- | -- |
-| [Data_Asset](capi-rdb-data-asset.md) * | 创建成功则返回一个指向Data_Asset结构体实例的指针，否则返回NULL。<br>使用完成后，必须通过[OH_Data_Asset_DestroyOne](#oh_data_asset_destroyone)接口释放内存。 |
+| [Data_Asset](capi-rdb-data-asset.md) * | 创建成功则返回一个指向[Data_Asset](capi-rdb-data-asset.md)结构体实例的指针，否则返回NULL。<br>使用完成后，必须通过[OH_Data_Asset_DestroyOne](#oh_data_asset_destroyone)接口释放内存。 |
 
 ### OH_Data_Asset_DestroyOne()
 
@@ -489,7 +489,7 @@ int OH_Data_Asset_DestroyOne(Data_Asset *asset)
 
 | 参数项 | 描述 |
 | -- | -- |
-| [Data_Asset](capi-rdb-data-asset.md) *asset | 表示指向Data_Asset实例的指针。 |
+| [Data_Asset](capi-rdb-data-asset.md) *asset | 表示指向[Data_Asset](capi-rdb-data-asset.md)实例的指针。 |
 
 **返回：**
 
@@ -520,7 +520,7 @@ Data_Asset **OH_Data_Asset_CreateMultiple(uint32_t count)
 
 | 类型 | 说明 |
 | -- | -- |
-| [Data_Asset](capi-rdb-data-asset.md) ** | 创建成功则返回一个指向Data_Asset结构体指针数组的指针，否则返回NULL。<br>使用完成后，必须通过[OH_Data_Asset_DestroyMultiple](#oh_data_asset_destroymultiple)接口释放内存。 |
+| [Data_Asset](capi-rdb-data-asset.md) ** | 创建成功则返回一个指向[Data_Asset](capi-rdb-data-asset.md)结构体指针数组的指针，否则返回NULL。<br>使用完成后，必须通过[OH_Data_Asset_DestroyMultiple](#oh_data_asset_destroymultiple)接口释放内存。 |
 
 ### OH_Data_Asset_DestroyMultiple()
 
@@ -539,7 +539,7 @@ int OH_Data_Asset_DestroyMultiple(Data_Asset **assets, uint32_t count)
 
 | 参数项 | 描述 |
 | -- | -- |
-| [Data_Asset](capi-rdb-data-asset.md) **assets | 表示指向Data_Asset结构体指针数组的指针。 |
+| [Data_Asset](capi-rdb-data-asset.md) **assets | 表示指向[Data_Asset](capi-rdb-data-asset.md)结构体指针数组的指针。 |
 | uint32_t count | 代表需要销毁的[Data_Asset](capi-rdb-data-asset.md)类型对象的数量。 |
 
 **返回：**
