@@ -284,7 +284,7 @@ minimizeAll(id: number, callback: AsyncCallback&lt;void&gt;): void
 | 参数名   | 类型                      | 必填 | 说明           |
 | -------- | ------------------------- | ---- | -------------- |
 | id       | number                    | 是   | 显示设备[Display](js-apis-display.md#display)的ID号，该参数仅支持整数输入。 |
-| callback | AsyncCallback&lt;void&gt; | 是   | 回调函数，返回最小化指定屏幕主窗口操作的结果。     |
+| callback | AsyncCallback&lt;void&gt; | 是   | 回调函数。当最小化指定屏幕中所有主窗口操作成功，err为undefined，否则为错误对象。 |
 
 **错误码：**
 
@@ -448,7 +448,7 @@ toggleShownStateForAllAppWindows(callback: AsyncCallback&lt;void&gt;): void
 
 | 参数名   | 类型                      | 必填 | 说明           |
 | -------- | ------------------------- | ---- | -------------- |
-| callback | AsyncCallback&lt;void&gt; | 是   | 回调函数，返回隐藏或恢复应用窗口操作的结果。     |
+| callback | AsyncCallback&lt;void&gt; | 是   | 回调函数。当隐藏或恢复应用窗口操作成功，err为undefined，否则为错误对象。   |
 
 **错误码：**
 
