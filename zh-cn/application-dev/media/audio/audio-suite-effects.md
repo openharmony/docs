@@ -297,7 +297,7 @@ switch (params.spaceRenderMode) {
 |------|------|------|
 | optionGender | [OH_AudioSuite_PureVoiceChangeGenderOption](../../reference/apis-audio-kit/capi-native-audio-suite-base-h.md#oh_audiosuite_purevoicechangegenderoption) | 变声性别：1=女声（PURE_VOICE_CHANGE_FEMALE），2=男声（PURE_VOICE_CHANGE_MALE）。 |
 | optionType | [OH_AudioSuite_PureVoiceChangeType](../../reference/apis-audio-kit/capi-native-audio-suite-base-h.md#oh_audiosuite_purevoicechangetype) | 参考下方变声类型。 |
-| pitch | float | 音调。使用系统推荐音调设为宏[OH_PURE_VOICE_DEFAULT_PITCH](../../reference/apis-audio-kit/capi-native-audio-suite-base-h.md#宏定义)（0.0f）以获得最佳效果；自定义取值范围为[0.3f, 3.0f]。 |
+| pitch | float | 音调。使用系统推荐音调设为[宏定义](../../reference/apis-audio-kit/capi-native-audio-suite-base-h.md#宏定义)中的OH_PURE_VOICE_DEFAULT_PITCH（0.0f）以获得最佳效果，自定义取值范围为[0.3f, 3.0f]。 |
 
 **变声类型**
 
@@ -399,9 +399,16 @@ HOA（High-Order Ambisonics）转双耳空间音频节点[EFFECT_NODE_TYPE_HOA_S
 
 - 采样率：[OH_Audio_SampleRate](../../reference/apis-audio-kit/capi-native-audio-suite-base-h.md#oh_audio_samplerate).SAMPLE_RATE_16000 或 SAMPLE_RATE_48000。
 - 采样格式：[OH_Audio_SampleFormat](../../reference/apis-audio-kit/capi-native-audio-suite-base-h.md#oh_audio_sampleformat)。
-- 音频声道布局[OH_AudioChannelLayout](../../reference/apis-avcodec-kit/capi-native-audio-channel-layout-h.md#oh_audiochannellayout)支持1阶至3阶HOA，具体取值如下：
-
-  CH_LAYOUT_AMB_ORDER1_ACN_N3D、CH_LAYOUT_AMB_ORDER1_ACN_SN3D、CH_LAYOUT_AMB_ORDER1_FUMA、CH_LAYOUT_AMB_ORDER2_ACN_N3D、CH_LAYOUT_AMB_ORDER2_ACN_SN3D、CH_LAYOUT_AMB_ORDER2_FUMA、CH_LAYOUT_AMB_ORDER3_ACN_N3D、CH_LAYOUT_AMB_ORDER3_ACN_SN3D、CH_LAYOUT_AMB_ORDER3_FUMA。
+- 声道布局：支持1阶至3阶HOA，取值如下：
+  - [OH_AudioChannelLayout](../../reference/apis-avcodec-kit/capi-native-audio-channel-layout-h.md#oh_audiochannellayout).CH_LAYOUT_AMB_ORDER1_ACN_N3D。
+  - [OH_AudioChannelLayout](../../reference/apis-avcodec-kit/capi-native-audio-channel-layout-h.md#oh_audiochannellayout).CH_LAYOUT_AMB_ORDER1_ACN_SN3D。
+  - [OH_AudioChannelLayout](../../reference/apis-avcodec-kit/capi-native-audio-channel-layout-h.md#oh_audiochannellayout).CH_LAYOUT_AMB_ORDER1_FUMA。
+  - [OH_AudioChannelLayout](../../reference/apis-avcodec-kit/capi-native-audio-channel-layout-h.md#oh_audiochannellayout).CH_LAYOUT_AMB_ORDER2_ACN_N3D。
+  - [OH_AudioChannelLayout](../../reference/apis-avcodec-kit/capi-native-audio-channel-layout-h.md#oh_audiochannellayout).CH_LAYOUT_AMB_ORDER2_ACN_SN3D。
+  - [OH_AudioChannelLayout](../../reference/apis-avcodec-kit/capi-native-audio-channel-layout-h.md#oh_audiochannellayout).CH_LAYOUT_AMB_ORDER2_FUMA。
+  - [OH_AudioChannelLayout](../../reference/apis-avcodec-kit/capi-native-audio-channel-layout-h.md#oh_audiochannellayout).CH_LAYOUT_AMB_ORDER3_ACN_N3D。
+  - [OH_AudioChannelLayout](../../reference/apis-avcodec-kit/capi-native-audio-channel-layout-h.md#oh_audiochannellayout).CH_LAYOUT_AMB_ORDER3_ACN_SN3D。
+  - [OH_AudioChannelLayout](../../reference/apis-avcodec-kit/capi-native-audio-channel-layout-h.md#oh_audiochannellayout).CH_LAYOUT_AMB_ORDER3_FUMA。
 
 ### 配置说明
 
