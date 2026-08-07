@@ -51,7 +51,7 @@
   - [@ohos.web.netErrorList (ArkWeb网络协议栈错误列表)](arkts-apis-netErrorList.md)
   - [@ohos.web.WebNativeMessagingExtensionAbility (Web Native Messaging Extension Ability)](arkts-apis-web-webNativeMessagingExtensionAbility.md)
   - [@ohos.web.WebNativeMessagingExtensionContext (Web Native Messaging Extension Context)](arkts-apis-web-webNativeMessagingExtensionContext.md)
-  - [@ohos.web.WebNativeMessagingExtensionManager (Web Native Messaging Extension Manager)](arkts-apis-web-webNativeMessagingExtensionManager.md)
+  - [@ohos.web.webNativeMessagingExtensionManager (Web Native Messaging Extension Manager)](arkts-apis-web-webNativeMessagingExtensionManager.md)
 - ArkTS 组件<!--arkweb-comp-->
   - Web<!--ts-basic-components-web-->
     - [组件描述](arkts-basic-components-web.md)
