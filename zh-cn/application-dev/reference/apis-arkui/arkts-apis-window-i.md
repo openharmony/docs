@@ -94,7 +94,7 @@
 
 | 名称   | 类型 | 只读 | 可选 | 说明               |
 | ------ | -------- | ---- | ---- | ------------------ |
-| left   | number   | 否   | 否   | 矩形区域的左边界，单位为px，该参数为整数。 |
+| left   | number   | 否   | 否   | 矩形区域的左边界，单位为px，该参数应为整数。 |
 | top    | number   | 否   | 否   | 矩形区域的上边界，单位为px，该参数应为整数。 |
 | width  | number   | 否   | 否   | 矩形区域的宽度，单位为px，该参数应为整数。 |
 | height | number   | 否   | 否   | 矩形区域的高度，单位为px，该参数应为整数。 |
@@ -109,10 +109,10 @@
 
 | 名称   | 类型 | 只读 | 可选 | 说明               |
 | ------ | -------- | ---- | ---- | ------------------ |
-| left   | number   | 否   | 否   | 矩形区域的左边界值，单位为vp。 |
-| top    | number   | 否   | 否   | 矩形区域的上边界值，单位为vp。 |
-| width  | number   | 否   | 否   | 矩形区域的宽度，单位为vp。 |
-| height | number   | 否   | 否   | 矩形区域的高度，单位为vp。 |
+| left   | number   | 否   | 否   | 矩形区域的左边界值，单位为vp，该参数为浮点数。 |
+| top    | number   | 否   | 否   | 矩形区域的上边界值，单位为vp，该参数为浮点数。 |
+| width  | number   | 否   | 否   | 矩形区域的宽度，单位为vp，该参数为浮点数。 |
+| height | number   | 否   | 否   | 矩形区域的高度，单位为vp，该参数为浮点数。 |
 
 ## AvoidArea<sup>7+</sup>
 
@@ -308,10 +308,10 @@
 
 | 名称      | 类型   | 只读 | 可选 | 说明                                                          |
 | :-------- | :----- | :--- | :--- | :----------------------------------------------------------- |
-| maxWidth  | number | 否   | 是   | 窗口的最大宽度。 <br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
-| maxHeight | number | 否   | 是   | 窗口的最大高度。 <br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
-| minWidth  | number | 否   | 是   | 窗口的最小宽度。 <br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
-| minHeight | number | 否   | 是   | 窗口的最小高度。 <br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| maxWidth  | number | 否   | 是   | 窗口的最大宽度。 <br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| maxHeight | number | 否   | 是   | 窗口的最大高度。 <br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| minWidth  | number | 否   | 是   | 窗口的最小宽度。 <br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| minHeight | number | 否   | 是   | 窗口的最小高度。 <br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
 | pixelUnit<sup>22+</sup> | [PixelUnit](arkts-apis-window-e.md#pixelunit22) | 否 | 是 | 窗口尺寸限制的单位，默认为px。可显式设置为px或vp。 |
 
 ## TitleButtonRect<sup>11+</sup>
@@ -451,7 +451,7 @@
 | ------ | ------ | ---- | ---- |------------------------------------------ |
 | maximizePresentation | [MaximizePresentation](arkts-apis-window-e.md#maximizepresentation12)  |  否  |  是  | 最大化时的布局方式，默认值为[MaximizePresentation](arkts-apis-window-e.md#maximizepresentation12).ENTER_IMMERSIVE。|
 | acrossDisplayPresentation | [AcrossDisplayPresentation](arkts-apis-window-e.md#acrossdisplaypresentation)  |  否  |  是  | 折叠屏跨屏策略，默认值为[AcrossDisplayPresentation](arkts-apis-window-e.md#acrossdisplaypresentation).FOLLOW_ACROSS_DISPLAY_SETTING。仅主窗口可设置，非主窗口调用时返回错误码1300004。**设备行为差异：** 仅在具备折叠功能的2in1设备可正常调用；在其他设备上调用不生效。|
-| snapshotAnimationConfig | [WindowSnapshotAnimationConfig](#windowsnapshotanimationconfig)  |  否  |  是  | 截图动画配置。在窗口最大化和窗口恢复[自由窗口](../../windowmanager/window-terminology.md#freeform-window自由窗口)过程中，系统会通过截图动画遮盖应用布局变化的跳变，可通过此属性指定截图淡出动画延迟和淡出动画执行时长。仅主窗口可设置，主窗口不指定时使用系统默认动画；子窗默认无截图动画，即截图动画参数duration和delay均为0，传入其他动画参数返回1300004错误码。当duration为0时，表示取消截图动画。|
+| snapshotAnimationConfig | [WindowSnapshotAnimationConfig](#windowsnapshotanimationconfig)  |  否  |  是  | 截图动画配置。在窗口最大化和窗口恢复[自由窗口](../../windowmanager/window-terminology.md#freeform-window自由窗口)过程中，系统会通过截图动画遮盖应用布局变化的跳变，可通过此属性指定截图淡出动画延迟和淡出动画执行时长。仅主窗口可设置，主窗口不指定时使用系统默认动画；子窗口默认无截图动画，即截图动画参数duration和delay均为0，传入其他动画参数返回1300004错误码。当duration为0时，表示取消截图动画。|
 
 ## WindowInfo<sup>18+</sup>
 
