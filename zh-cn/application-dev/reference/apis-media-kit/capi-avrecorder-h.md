@@ -531,11 +531,7 @@ OH_AVErrCode OH_AVRecorder_SetMetadata(OH_AVRecorder *recorder, const OH_AVForma
 | 参数项 | 描述 |
 | -- | -- |
 | [OH_AVRecorder](capi-avrecorder-oh-avrecorder.md) *recorder | 指向OH_AVRecorder实例的指针。 |
-<<<<<<< Updated upstream
-| const [OH_AVFormat](../apis-avcodec-kit/capi-core-oh-avformat.md) *metadata | 设置的元数据信息。格式为字符串键值对，其中，键需要以"com.openharmony."开头，且值的长度不能超过256个字节。 |
-=======
 | const [OH_AVFormat](../apis-avcodec-kit/capi-core-oh-avformat.md) *metadata | 设置的元数据信息，会嵌入到录制的媒体文件中。不可为nullptr，否则返回AV_ERR_INVALID_VAL。格式为字符串键值对，其中，键需要以"com.openharmony."开头，否则该键值对将被忽略；值的长度不能超过256个字节，否则返回AV_ERR_INVALID_VAL。 |
->>>>>>> Stashed changes
 
 **返回：**
 
