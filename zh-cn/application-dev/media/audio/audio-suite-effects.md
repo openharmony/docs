@@ -31,7 +31,7 @@
 
 ### 均衡器频段
 
-均衡器效果节点支持10个频段的增益调节，每个频段可以独立设置增益值。增益值范围为[-10, 10] 分贝（dB）。开发者可以使用预设效果或自定义各频段增益。
+均衡器效果节点支持10个频段的增益调节，每个频段可以独立设置增益值。增益值范围为[-10, 10]，单位为分贝（dB）。开发者可以使用预设效果或自定义各频段增益。
 
 10个频段对应的频率如下表所示：
 
@@ -251,7 +251,7 @@ OH_AudioSuiteNodeBuilder_SetNodeType(builder, OH_AudioNode_Type::EFFECT_NODE_TYP
 OH_AudioSuiteEngine_CreateNode(pipeline, builder, node);
 // 按场景设置空间渲染参数。
 switch (params.spaceRenderMode) {
-    /* 固定摆位模式 */
+    // 固定摆位模式。
     case SPACE_RENDER_MODE_POSITION: {
         OH_AudioSuite_SpaceRenderPositionParams position;
         position.x = params.spacePositionX;
@@ -260,7 +260,7 @@ switch (params.spaceRenderMode) {
         OH_AudioSuiteEngine_SetSpaceRenderPositionParams(*node, position);
         break;
     }
-    /* 旋转模式 */
+    // 旋转模式。
     case SPACE_RENDER_MODE_ROTATION: {
         OH_AudioSuite_SpaceRenderRotationParams rotation;
         rotation.x = params.spaceRotationX;
@@ -272,7 +272,7 @@ switch (params.spaceRenderMode) {
         OH_AudioSuiteEngine_SetSpaceRenderRotationParams(*node, rotation);
         break;
     }
-    /* 扩展模式 */
+    // 扩展模式。
     case SPACE_RENDER_MODE_EXTENSION: {
         OH_AudioSuite_SpaceRenderExtensionParams extension;
         extension.extRadius = params.spaceExtensionRadius;
