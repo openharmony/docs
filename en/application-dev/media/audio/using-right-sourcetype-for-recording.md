@@ -62,3 +62,5 @@ You can call [isFastRecordingSupported](../../reference/apis-audio-kit/arkts-api
 >
 > - The availability of audio channels depends on the device's hardware capabilities and system configuration, and varies across devices.
 > - The result returned by the query API only indicates whether the system supports the corresponding audio channel under the specified parameters. The actual channel used also depends on the system's current running status and resource configuration.
+
+<!--no_check-->

@@ -149,7 +149,7 @@ hdc -t connect-key shell echo "Hello world"
 | [fport rm](#deleting-a-port-forwarding-task)| Deletes a port forwarding task.|
 | [start](#starting-a-service)| Starts the hdc server process.|
 | [kill](#terminating-a-service)| Terminates the hdc server process.|
-| [reconnect](#reconnecting-to-a-usb-device)| Resets the session of the connected USB device and triggers USB re-enumeration.<br>**NOTE**: This command is supported since API version 26.0.0.|
+| [reconnect](#reconnecting-usb-devices)| Resets the session of the connected USB device and triggers USB re-enumeration.<br>**NOTE**: This command is supported since API version 26.0.0.|
 | [hilog](#printing-device-logs)| Obtains device log information.|
 | [jpid](#displaying-pids-of-started-applications)| Displays the PIDs of started applications on the device.|
 | [track-jpid](#displaying-pids-and-names-of-started-applications-in-real-time)| Displays the PIDs and names of started applications on the device in real time.|
@@ -604,7 +604,7 @@ hdc shell [-b bundlename] [command]
 >
 > If the **[-b bundlename]** parameter is specified, the installed application corresponding to the bundle name must be signed using the debug certificate and started on the device. For details about how to request and use the debug certificate, see [Requesting a Debug Certificate](https://developer.huawei.com/consumer/en/doc/app/agc-help-add-debugcert-0000001914263178).
 >
-> If both the system version and hdc version of the device are earlier than 3.2.0e, the default working directory of the interactive shell session entered by the command parameter is still the root directory of the system. You are advised to upgrade the system version of the device and check the version compatibility by referring to the [hdc version mapping table](#hdc version mapping table). You can run the hdc shell hdcd -v command to query the system version number of the device.
+> If both the system version and hdc version of the device are earlier than 3.2.0e, the default working directory of the interactive shell session entered by the command parameter is still the root directory of the system. You are advised to upgrade the system version of the device and check the version compatibility by referring to the [hdc version mapping table](#hdc-version-mappings). You can run the hdc shell hdcd -v command to query the system version number of the device.
 
 **Return value**
 

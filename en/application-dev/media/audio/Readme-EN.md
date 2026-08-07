@@ -6,7 +6,7 @@
 <!--Designer: @magekkkk-->
 <!--Tester: @Filger-->
 <!--Adviser: @w_Machine_cc-->
-<!-- md-trans-meta sourceCommit=fd8ed1a59024b16bfd80938b476bae38fb83db08 translatedAt=2026-08-06T13:40:56.247Z pushedAt=2026-08-07T02:13:07.577Z -->
+<!-- md-trans-meta sourceCommit=fd8ed1a59024b16bfd80938b476bae38fb83db08 translatedAt=2026-08-06T13:40:56.247Z pushedAt=2026-08-07T10:49:55.451Z -->
 
 - [About This Kit](audio-kit-intro.md)
 
@@ -147,7 +147,7 @@
 
   - [Troubleshooting Silent Playback Issues](audio-playback-no-sound-troubleshooting.md)
 
-  - [Troubleshooting Playback Stuttering and Noise Issues](audio-playback-performance-troubleshooting.md)
+  - [Troubleshooting Audio Playback Stuttering and Noise Issues](audio-playback-performance-troubleshooting.md)
 
   - [Troubleshooting Silent Recording Issues](audio-recording-no-audio-troubleshooting.md)
 

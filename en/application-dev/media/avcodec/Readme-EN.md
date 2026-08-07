@@ -6,7 +6,7 @@
 <!--Designer: @dpy2650--->
 <!--Tester: @cyakee; @baotianhao-->
 <!--Adviser: @w_Machine_cc-->
-<!-- md-trans-meta sourceCommit=a33e33bc9d77acacea3ab60a23c994b62787103b translatedAt=2026-08-06T13:44:26.667Z pushedAt=2026-08-07T10:12:24.905Z -->
+<!-- md-trans-meta sourceCommit=a33e33bc9d77acacea3ab60a23c994b62787103b translatedAt=2026-08-06T13:44:26.667Z pushedAt=2026-08-07T10:49:25.398Z -->
 
 - [About This Kit](avcodec-kit-intro.md)
 
@@ -28,7 +28,7 @@
 
   - [Synchronous Video Encoding](synchronous-video-encoding.md)
 
-  - [Temporally Scalable Video Encoding](video-encoding-temporal-scalability.md)
+  - [Temporally Scalable Video Coding](video-encoding-temporal-scalability.md)
 
   - [B-Frame Video Encoding](video-encoding-b-frame.md)
 

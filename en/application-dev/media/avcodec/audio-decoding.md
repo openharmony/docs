@@ -6,7 +6,7 @@
 <!--Designer: @dpy2650--->
 <!--Tester: @baotianhao-->
 <!--Adviser: @w_Machine_cc-->
-<!-- md-trans-meta sourceCommit=14d7d94ba4d5fb1bb765105b84453f4f7210b670 translatedAt=2026-08-06T13:42:40.831Z pushedAt=2026-08-07T02:21:44.853Z -->
+<!-- md-trans-meta sourceCommit=14d7d94ba4d5fb1bb765105b84453f4f7210b670 translatedAt=2026-08-06T13:42:40.831Z pushedAt=2026-08-07T10:50:31.851Z -->
 
 You can call the Native APIs of this module to perform audio decoding, that is, to decode media data into a PCM stream.
 
@@ -424,7 +424,7 @@ The following describes the parameter ranges for each audio decoding type:
 
    Call this API after filling in the complete input data.
 
-At the end, set the flags to <code>AVCODEC_BUFFER_FLAGS_EOS</code>.
+At the end, set the flags to `AVCODEC_BUFFER_FLAGS_EOS`.
 
    ```c++
    uint32_t index = signal_->inQueue_.front();
