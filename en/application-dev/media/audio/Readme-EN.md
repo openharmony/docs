@@ -6,7 +6,7 @@
 <!--Designer: @magekkkk-->
 <!--Tester: @Filger-->
 <!--Adviser: @w_Machine_cc-->
-<!-- md-trans-meta sourceCommit=964b45ac10277db84084ee55c26853df2a813218 translatedAt=2026-08-06T01:52:49.354Z pushedAt=2026-08-06T11:39:09.412Z -->
+<!-- md-trans-meta sourceCommit=fd8ed1a59024b16bfd80938b476bae38fb83db08 translatedAt=2026-08-06T13:40:56.247Z pushedAt=2026-08-07T02:13:07.577Z -->
 
 - [About This Kit](audio-kit-intro.md)
 
@@ -145,6 +145,10 @@
 
   - [Using Audio Snapshots for Troubleshooting](audio-runtime-debugging-info.md)
 
-  - [Troubleshooting No Audio During Recording](audio-recording-no-audio-troubleshooting.md)
+  - [Troubleshooting Silent Playback Issues](audio-playback-no-sound-troubleshooting.md)
+
+  - [Troubleshooting Playback Stuttering and Noise Issues](audio-playback-performance-troubleshooting.md)
+
+  - [Troubleshooting Silent Recording Issues](audio-recording-no-audio-troubleshooting.md)
 
 - [Glossary](audio-glossary.md)

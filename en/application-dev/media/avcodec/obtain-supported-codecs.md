@@ -6,6 +6,7 @@
 <!--Designer: @dpy2650-->
 <!--Tester: @cyakee-->
 <!--Adviser: @w_Machine_cc-->
+<!-- md-trans-meta sourceCommit=9768ff1ae14bfefbda92349bc1fa2540f53676ed translatedAt=2026-08-06T13:44:37.112Z pushedAt=2026-08-07T07:22:42.777Z -->
 
 Due to differences in sources, codec protocols, and device capabilities, the available codecs and their capabilities vary across different devices.
 
@@ -22,6 +23,7 @@ To ensure that codec behavior meets expectations, use the audio and video codec 
    target_link_libraries(sample PUBLIC libnative_media_vdec.so)
    target_link_libraries(sample PUBLIC libnative_media_acodec.so)
    ```
+
    > **NOTE**
    >
    > The word **sample** in the preceding code snippet is only an example. Use the actual project directory name.
@@ -38,24 +40,31 @@ To ensure that codec behavior meets expectations, use the audio and video codec 
 
 3. Obtain an audio/video codec capability instance.
 
-   You can use either of the following methods to obtain the instance:
-   
-   Method 1: Call **OH_AVCodec_GetCapability** to obtain the codec capability instance recommended by the system. The recommendation policy is the same as that of the **OH_XXX_CreateByMime** series APIs.
+You can obtain an audio/video codec capability instance in the following ways. After the instance is obtained, you can proceed with subsequent operations. The instance has no explicit release API; the system automatically releases and reclaims resources when it is no longer in use.
+
+Method 1: Call [OH_AVCodec_GetCapability](../../reference/apis-avcodec-kit/capi-native-avcapability-h.md#oh_avcodec_getcapability) to obtain the audio/video codec capability instance recommended by the system.
 
    ```c++
    // Obtain the AAC decoder capability instance recommended by the system.
    OH_AVCapability *capability = OH_AVCodec_GetCapability(OH_AVCODEC_MIMETYPE_AUDIO_AAC, false);
    ```
-   
-   Method 2: Call **OH_AVCodec_GetCapabilityByCategory** to obtain the codec capability instance for the specified software or hardware.
+
+Method 2: Call [OH_AVCodec_GetCapabilityByCategory](../../reference/apis-avcodec-kit/capi-native-avcapability-h.md#oh_avcodec_getcapabilitybycategory) to obtain the codec capability instance for the specified hardware or software.
 
    ```c++
    // Obtain the AVC encoder capability instance for the specified hardware.
    OH_AVCapability *capability = OH_AVCodec_GetCapabilityByCategory(OH_AVCODEC_MIMETYPE_VIDEO_AVC, true, HARDWARE);
    ```
-   After obtaining the codec capability instance, you can move on to the next steps. There is no need to manually release the instance. The system automatically reclaims the instance when it is no longer needed.
-   
-4. Call the query APIs as required. For details, see [AudioCodec](../../reference/apis-avcodec-kit/capi-native-avcapability-h.md).
+
+Method 3: Starting from API version 24, you can call [OH_AVCodec_GetCapabilityList](../../reference/apis-avcodec-kit/capi-native-avcapability-h.md#oh_avcodec_getcapabilitylist) to obtain the full list of capability instances for a specified codec type (for example, video decoder).
+
+   ```c++
+   // Obtain the capability instance list of all video decoders in the system.
+   uint32_t count = 0;
+   OH_AVCapability **capabilityList = OH_AVCodec_GetCapabilityList(OH_AVCODEC_TYPE_VIDEO_DECODER, &count);
+   ```
+
+4. Call the corresponding query APIs as required. For detailed API descriptions, see [native_avcapability.h](../../reference/apis-avcodec-kit/capi-native-avcapability-h.md).
 
 ## Scenario-based Development
 
@@ -67,7 +76,7 @@ If there are multiple codecs of the same MIME type, use the **OH_XXX_CreateByMim
 
 | API    | Description                        |
 | -------- | -------------------------------- |
-| OH_AVCapability_GetName     | Obtains the name of a codec corresponding to a capability instance.|
+| OH_AVCapability_GetName     | Obtains the corresponding codec name. |
 
 The following is an example of creating an H.264 software decoder when both the H.264 software decoder and H.264 hardware decoder exist:
 
@@ -169,15 +178,18 @@ if (createdVDecNum < NEEDED_VDEC_NUM) {
 
 ### Controlling the Encoding Quality
 
- Four bit rate modes are available: Constant Bit Rate (CBR), Dynamic Bit Rate (VBR), Constant Quality (CQ), and Stable Quality (SQR).
-- For CBR and VBR, the encoding quality is determined by the bit rate parameters.
+The following rate control modes are available: constant bit rate (CBR), dynamic bit rate (VBR), constant quality (CQ), stable quality (SQR), and high quality constant bit rate (CBRHQ).
+
+- In CBR, VBR, and CBRHQ modes, the encoding quality is determined by the bit rate parameters. The CBRHQ mode is available starting from API version 26.0.0 and supports only H.265 (HEVC) encoding. If CBRHQ is configured but not supported by the platform, the CBR mode is automatically used as a fallback.
+
 - For CQ, the encoding quality is determined by the quality parameters.
+
 - For SQR, the encoding quality is determined by the SQR factor and the maximum bit rate. Currently, only H.265 (HEVC) encoding is supported.
 
 | API    | Description                        |
 | -------- | ---------------------------- |
 | OH_AVCapability_IsEncoderBitrateModeSupported  | Checks whether an encoder supports the specified bit rate mode.|
-| OH_AVCapability_GetEncoderBitrateRange     | Obtains the bit rate range supported by an encoder. It applies to CBR, VBR, and SQR modes.|
+| OH_AVCapability_GetEncoderBitrateRange     | Obtains the bitrate range supported by the current encoder, applicable to CBR, VBR, SQR, and CBRHQ rate control modes. |
 | OH_AVCapability_GetEncoderQualityRange  | Obtains the quality range supported by an encoder. It applies to CQ mode. |
 
 The code snippet below shows the configuration in CBR or VBR mode.
@@ -339,9 +351,54 @@ if (ret != AV_ERR_OK) {
 OH_AVFormat_Destroy(dynamicFormat);
 ```
 
+The following is an example of the CBRHQ rate control mode:
+
+```c++
+OH_BitrateMode bitrateMode = BITRATE_MODE_CBR_HIGH_QUALITY;
+int32_t bitrate = 3000000;
+OH_AVCapability *capability = OH_AVCodec_GetCapability(OH_AVCODEC_MIMETYPE_VIDEO_HEVC, true);
+if (capability == nullptr) {
+   // Exception handling.
+}
+// 1. Check whether the rate control mode to be configured is supported.
+bool isSupported = OH_AVCapability_IsEncoderBitrateModeSupported(capability, bitrateMode);
+if (!isSupported) {
+   // Exception handling.
+}
+// 2. Obtain the bitrate range and determine whether the maximum bitrate parameter to be configured falls within the range.
+OH_AVRange bitrateRange = {-1, -1};
+// The value range of the maximum bitrate parameter is the same as that of the bitrate parameter, so reuse OH_AVCapability_GetEncoderBitrateRange to obtain the value range.
+int32_t ret = OH_AVCapability_GetEncoderBitrateRange(capability, &bitrateRange);
+if (ret != AV_ERR_OK || bitrateRange.maxVal <= 0) {
+   // Exception handling.
+}
+
+if (bitrate > bitrateRange.maxVal || bitrate < bitrateRange.minVal) {
+   // 3. (Optional) Adjust the maximum bitrate parameter to be configured.
+}
+
+// 4. Configure encoding parameters.
+OH_AVCodec *videoEnc = OH_VideoEncoder_CreateByMime(OH_AVCODEC_MIMETYPE_VIDEO_HEVC);
+if (videoEnc == nullptr) {
+   // Exception handling.
+}
+OH_AVFormat *format = OH_AVFormat_CreateVideoFormat(OH_AVCODEC_MIMETYPE_VIDEO_HEVC, 1920, 1080);
+if (format == nullptr) {
+   // Exception handling.
+}
+if (!OH_AVFormat_SetIntValue(format, OH_MD_KEY_VIDEO_ENCODE_BITRATE_MODE, bitrateMode) ||
+   !OH_AVFormat_SetLongValue(format, OH_MD_KEY_BITRATE, static_cast<int64_t>(bitrate))) {
+   // Exception handling.
+}
+if (OH_VideoEncoder_Configure(videoEnc, format) != AV_ERR_OK) {
+   // Exception handling.
+}
+OH_AVFormat_Destroy(format);
+```
+
 ### Checking the Complexity Range Supported
 
-The complexity range determines the number of tools used by the encoder. However, not all encoders support this feature.
+The complexity level determines the number of tools used by the encoder, but not all encoders support this feature. If the variable `complexityRange` returns `{0, 0}`, the current encoder does not support complexity level configuration.
 
 | API    | Description                        |
 | -------- | ---------------------------- |
@@ -434,7 +491,7 @@ OH_AVFormat_Destroy(format);
 
 ### Checking the Codec Profile and Level Supported
 
-The codec standard contains multiple encoding tools, which are applicable to different encoding scenarios. Codec standards include multiple encoding tools, which are applicable to different encoding scenarios. For specific scenarios, the codec standard uses the codec profile to specify the enabled status of these encoding tools. For example, for H.264, there are baseline, main, and high profiles. For details, see [OH_AVCProfile](../../reference/apis-avcodec-kit/capi-native-avcodec-base-h.md#oh_avcprofile).
+A codec standard includes multiple encoding tools for different encoding scenarios. For a specific application scenario, the codec standard uses profiles to determine which encoding tools are enabled or disabled (for example, H.264 has the Baseline, High, and Main profiles). For details, see [OH_AVCProfile](../../reference/apis-avcodec-kit/capi-native-avcodec-base-h.md#oh_avcprofile).
 
 Codec levels define the processing capability and storage space required by the codec. For example, for H.264, there are 20 levels ranging from 1 to 6.2. For details, see [OH_AVCLevel](../../reference/apis-avcodec-kit/capi-native-avcodec-base-h.md#oh_avclevel).
 
@@ -530,7 +587,7 @@ The formula for calculating the maximum video width based on the video height is
 
 ![](figures/formula-maxmbsperframe.png)
 
-**MaxMBsPerFrameLevelLimits** refers to the maximum number of macroblocks per frame of the codec limited by the protocol, and **MaxMBsPerFrameSubmit** refers to the maximum number of macroblocks per frame reported by the codec. The actual capability is the minimum of the two.
+*MaxMBsPerFrameLevelLimits* indicates the maximum number of macroblocks per frame defined by the protocol for the codec, and *MaxMBsPerFrameSubmit* indicates the maximum number of macroblocks per frame reported by the codec. The actual effective maximum number of macroblocks per frame (*MaxMBsPerFrame*) is the smaller of these two values. Based on this, combined with the given video height (*height*) and the width and height of a single macroblock (*MBWidth* and *MBHeight*, typically 16), you can calculate the maximum video width (*maxWidth*) supported at that height.
 
 | API    | Description                        |
 | -------- | ---------------------------- |
@@ -711,6 +768,7 @@ The video pixel format determines the pixel layout of an image that is encoded a
 | API    | Description                        |
 | -------- | ---------------------------- |
 | OH_AVCapability_GetVideoSupportedPixelFormats             | Obtains the video pixel formats supported by a video codec.|
+| OH_AVCapability_GetVideoSupportedNativeBufferFormats      | Obtains the `OH_NativeBuffer` formats supported by the video codec. |
 
 ```c++
 constexpr OH_AVPixelFormat DEFAULT_PIXELFORMAT = AV_PIXEL_FORMAT_NV12;
@@ -722,6 +780,9 @@ if (capability == nullptr) {
 const int32_t *pixFormats = nullptr;
 uint32_t pixFormatNum = 0;
 int32_t ret = OH_AVCapability_GetVideoSupportedPixelFormats(capability, &pixFormats, &pixFormatNum);
+// Obtain the OH_NativeBuffer formats supported by the current video codec. The usage is the same as the OH_AVCapability_GetVideoSupportedPixelFormats API.
+// const OH_NativeBuffer_Format *nativeBufferFormats = nullptr;
+// int32_t ret = OH_AVCapability_GetVideoSupportedNativeBufferFormats(capability, &nativeBufferFormats, &pixFormatNum);
 if (ret != AV_ERR_OK || pixFormats == nullptr || pixFormatNum == 0) {
    // Handle exceptions.
 }
@@ -776,5 +837,47 @@ if (isSupported) {
 OH_AVCodec *videoEnc = OH_VideoEncoder_CreateByMime(OH_AVCODEC_MIMETYPE_VIDEO_AVC);
 if (OH_VideoEncoder_Configure(videoEnc, format) != AV_ERR_OK) {
    // Handle exceptions.
+}
+```
+
+### Filtering Secure Decoders for a Specific MIME Type (DRM Playback Scenario)
+
+Starting from API version 24, when processing DRM-protected media resources, you can use a "secure decoder" that supports a secure link.
+
+You can obtain the decoder list and use `OH_AVCapability_IsSecure` to query the decoder type by MIME type, thereby accurately filtering out the secure decoders that meet the requirements.
+
+| API    | Description                        |
+| -------- | ---------------------------- |
+| OH_AVCodec_GetCapabilityList              | Obtains the list of all codec capability instances of a specified type (for example, video decoder). |
+| OH_AVCapability_GetMimeType               | Obtains the MIME type string corresponding to the capability instance. |
+| OH_AVCapability_CheckMimeType             | Checks whether the MIME type of the capability instance matches the target type. |
+| OH_AVCapability_IsSecure                  | Checks whether the capability instance describes a secure decoder that supports processing DRM resources. |
+
+You can use the following code to query and initialize an H.264 secure decoder:
+
+```c++
+// 1. Define the desired MIME type.
+const char *targetMime = OH_AVCODEC_MIMETYPE_VIDEO_AVC;
+uint32_t count = 0;
+
+// 2. Obtain the capability list of all video decoders.
+OH_AVCapability **capabilityList = OH_AVCodec_GetCapabilityList(OH_AVCODEC_TYPE_VIDEO_DECODER, &count);
+
+if (capabilityList != nullptr && count > 0) {
+    for (uint32_t i = 0; i < count; i++) {
+        OH_AVCapability *cap = capabilityList[i];
+        
+        // 3. Check whether it matches the target MIME type and is a secure decoder.
+        if (OH_AVCapability_CheckMimeType(cap, targetMime) && OH_AVCapability_IsSecure(cap)) {
+            // 4. Find a decoder that meets the criteria, and obtain its name for creating an instance.
+            const char *codecName = OH_AVCapability_GetName(cap);
+            OH_AVCodec *secureVideoDec = OH_VideoDecoder_CreateByName(codecName);
+            
+            if (secureVideoDec != nullptr) {
+                // 5. The secure decoder is created successfully. Exit the loop to proceed with subsequent operations.
+                break;
+            }
+        }
+    }
 }
 ```

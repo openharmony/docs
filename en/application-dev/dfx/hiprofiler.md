@@ -1226,7 +1226,7 @@ $ hiprofiler_cmd \
    restrace_tag: "RES_ARK_GLOBAL_HANDLE"
    startup_mode: true
    memtrace_enable: true
-   malloc_disable: false
+   malloc_disable:false
    discard_destroyed_traces: true
   }
  }

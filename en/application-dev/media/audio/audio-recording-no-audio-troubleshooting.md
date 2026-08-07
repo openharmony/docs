@@ -1,4 +1,4 @@
-# Troubleshooting No Audio During Recording
+# Troubleshooting Silent Recording Issues
 
 <!--Kit: Audio Kit-->
 <!--Subsystem: Multimedia-->
@@ -6,7 +6,7 @@
 <!--Designer: @weixin_41398971-->
 <!--Tester: @Filger-->
 <!--Adviser: @w_Machine_cc-->
-<!-- md-trans-meta sourceCommit=65bb9604a921f234d3e9f4b6d8fc347f11f12a39 translatedAt=2026-08-06T01:45:58.720Z pushedAt=2026-08-06T07:23:16.609Z -->
+<!-- md-trans-meta sourceCommit=65bb9604a921f234d3e9f4b6d8fc347f11f12a39 translatedAt=2026-08-06T01:45:58.720Z pushedAt=2026-08-07T02:06:00.164Z -->
 
 When implementing audio recording, you may encounter issues such as recording startup failure, no recording data callback, or silent recording files. This document describes common symptoms of the no-audio-during-recording issue, relevant background knowledge, and troubleshooting methods, along with reference code examples and a troubleshooting process.
 
