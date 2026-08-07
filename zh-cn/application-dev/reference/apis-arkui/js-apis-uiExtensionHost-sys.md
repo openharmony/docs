@@ -572,7 +572,7 @@ hidePrivacyContentForHost(shouldHide: boolean): Promise&lt;void&gt;
 > **说明：**
 >
 > 开启截图隐私内容保护后，使用窗口截图[window.snapshot](arkts-apis-window-Window.md#snapshot9)或者组件截图[UIContext.getComponentSnapshot](arkts-apis-uicontext-uicontext.md#getcomponentsnapshot12)
-> 将无法截取到当前组件的内容（不包括该组件下创建的子窗）。
+将无法截取到当前组件的内容（不包括该组件下创建的子窗）。
 
 **系统能力**：SystemCapability.ArkUI.ArkUI.Full
 
