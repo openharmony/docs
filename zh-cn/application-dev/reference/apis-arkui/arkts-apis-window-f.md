@@ -488,8 +488,8 @@ shiftAppWindowPointerEvent(sourceWindowId: number, targetWindowId: number): Prom
 
 | 参数名          | 类型   | 必填  | 说明                    |
 | -------------- | ------ | ----- | ----------------------- |
-| sourceWindowId | number | 是    | 源窗口id。该参数应为大于0的整数。推荐使用[getWindowProperties()](arkts-apis-window-Window.md#getwindowproperties9)方法获取窗口id属性。            |
-| targetWindowId | number | 是    | 目标窗口id。该参数应为大于0的整数。推荐使用[getWindowProperties()](arkts-apis-window-Window.md#getwindowproperties9)方法获取窗口id属性。             |
+| sourceWindowId | number | 是    | 源窗口ID。该参数应为大于0的整数。推荐使用[getWindowProperties()](arkts-apis-window-Window.md#getwindowproperties9)方法获取窗口id属性。            |
+| targetWindowId | number | 是    | 目标窗口ID。该参数应为大于0的整数。推荐使用[getWindowProperties()](arkts-apis-window-Window.md#getwindowproperties9)方法获取窗口id属性。             |
 
 **返回值：**
 
@@ -1288,7 +1288,7 @@ create(id: string, type: WindowType, callback: AsyncCallback&lt;Window&gt;): voi
 
 子窗口创建后默认是[沉浸式布局](../../windowmanager/immersive-window-feature.md#沉浸式布局)。
 
-> 说明：
+> **说明：**
 >
 > 从API version 7开始支持，从API version 9开始废弃，参数id传入null或undefined时，可能会导致callback无法得到执行，建议使用[createWindow()](#windowcreatewindow9)替代。
 
@@ -1330,7 +1330,7 @@ create(id: string, type: WindowType): Promise&lt;Window&gt;
 
 子窗口创建后默认是[沉浸式布局](../../windowmanager/immersive-window-feature.md#沉浸式布局)。
 
-> 说明：
+> **说明：**
 >
 > 从API version 7开始支持，从API version 9开始废弃，建议使用[createWindow()](#windowcreatewindow9-1)替代。
 
@@ -1373,7 +1373,7 @@ create(ctx: BaseContext, id: string, type: WindowType, callback: AsyncCallback&l
 
 创建系统窗口，使用callback异步回调。
 
-> 说明：
+> **说明：**
 >
 > 从API version 8开始支持，从API version 9开始废弃，建议使用[createWindow()](#windowcreatewindow9)替代。
 
@@ -1413,7 +1413,7 @@ create(ctx: BaseContext, id: string, type: WindowType): Promise&lt;Window&gt;
 
 创建系统窗口，使用Promise异步回调。
 
-> 说明：
+> **说明：**
 >
 > 从API version 8开始支持，从API version 9开始废弃，建议使用[createWindow()](#windowcreatewindow9-1)替代。
 
@@ -1455,7 +1455,7 @@ find(id: string, callback: AsyncCallback&lt;Window&gt;): void
 
 根据窗口名称查找对应的窗口，使用callback异步回调。
 
-> 说明：
+> **说明：**
 >
 > 从API version 7开始支持，从API version 9开始废弃，建议使用[findWindow()](#windowfindwindow9)替代。
 
@@ -1491,7 +1491,7 @@ find(id: string): Promise&lt;Window&gt;
 
 根据窗口名称查找对应的窗口，使用Promise异步回调。
 
-> 说明：
+> **说明：**
 >
 > 从API version 7开始支持，从API version 9开始废弃，建议使用[findWindow()](#windowfindwindow9)替代。
 

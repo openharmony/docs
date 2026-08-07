@@ -18,8 +18,6 @@
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
-**系统能力：**SystemCapability.WindowManager.WindowManager.Core
-
 | 名称 | 类型 | 只读 | 可选 | 说明                                                                          |
 | ---------- | -------------------------- | -- | -- |-----------------------------------------------------------------------------|
 | name       | string                     | 否 | 否 | 窗口名称。<br>**系统能力：** SystemCapability.WindowManager.WindowManager.Core                                               |
@@ -625,8 +623,8 @@ Callback<T, V = void> {
 
 | 名称   | 类型 | 只读  | 可选 | 说明                    |
 | ------ | ---- | ----- | ---- | ----------------------- |
-| displayId | number  | 否 | 否 | 主窗口所在的屏幕ID，该参数应为整数。 |
-| windowId  | number  | 否 | 否 | 主窗口ID，该参数应为整数。 |
+| displayId | number  | 否 | 否 | 主窗口所在的屏幕ID，该参数应为正整数。 |
+| windowId  | number  | 否 | 否 | 主窗口ID，该参数应为正整数。 |
 | showing   | boolean | 否 | 否 | 主窗口的前后台状态。true表示主窗口在前台，false表示主窗口不在前台。|
 | label     | string  | 否 | 否 | 主窗口的任务名称。 |
 
