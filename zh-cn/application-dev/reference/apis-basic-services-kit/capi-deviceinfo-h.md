@@ -288,7 +288,7 @@ const char *OH_GetIncrementalVersion(void)
 
 | 类型 | 说明 |
 | -- | -- |
-| const char* | 字符串类型的差异版本。常见的取值包括："26.0.0.31"，"26.0.0.32"等。 |
+| const char* | 字符串类型的差异版本。常见的取值包括："6.1.1.120"等。 |
 
 ### OH_GetOsReleaseType()
 
@@ -342,7 +342,7 @@ int OH_GetSdkApiVersion(void)
 
 | 类型 | 说明 |
 | -- | -- |
-| int | 系统软件API版本，取值范围为整数。常见的取值包括：26，6等。 |
+| int | 系统软件API版本，取值范围为整数。常见的取值包括：6等。 |
 
 ### OH_GetFirstApiVersion()
 
