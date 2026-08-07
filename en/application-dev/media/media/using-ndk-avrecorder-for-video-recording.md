@@ -4,7 +4,7 @@
 <!--Owner: @gcw_dyOv3Sds-->
 <!--Designer: @chris2981-->
 <!--Tester: @xdlinc-->
-<!--Adviser: @w_Machine_cc-->
+<!--Adviser: @zzs911-->
 
 You can use the AVRecorder to develop the audio and video recording service. The AVRecorder supports audio capture, audio encoding, video encoding, audio encapsulation, and video encapsulation. It is applicable to simple video recording scenarios and can be used to generate local media files directly.
 
@@ -14,9 +14,9 @@ During application development, you can use the **state** property of the AVReco
 
 **Figure 1** Recording state transition
 
-![Recording state change](figures/recording-status-change-ndk.png)
+![Recording state change](figures/video-recording-status-change.png)
 
-For details about the states, see [AVRecorderState](../../reference/apis-media-kit/arkts-apis-media-t.md#avrecorderstate9).
+For details about the states, see [OH_AVRecorder_State](../../reference/apis-media-kit/capi-avrecorder-base-h.md#oh_avrecorder_state).
 
 
 ## Requesting Permissions
