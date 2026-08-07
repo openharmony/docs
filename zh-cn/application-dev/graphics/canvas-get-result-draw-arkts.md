@@ -221,7 +221,7 @@ Canvas是图形绘制的核心，本章中提到的所有绘制操作（包括�
      private rootNode: FrameNode | null = null;
      private myRenderNode = new MyRenderNodeIndirectDisplay();
    
-     // 4. 在MyNodeController的aboutToAppear中创建PixeMap
+     // 4. 在MyNodeController的aboutToAppear中创建PixelMap
      aboutToAppear(): void {
        let task = new taskpool.Task(createPixelMapAsync);
        taskpool.execute(task).then((pixel:Object)=>{
