@@ -1026,6 +1026,7 @@ UDP与TCP流程大体类似，下面以TCP为例：
        // 可以指定传入on中的callback取消一个订阅，也可以不指定callback清空所有订阅。
        client.off('message', callback);
        client.off('message');
+     });
    ```
 
 5. 取消订阅TLSSocketServer的相关事件。
