@@ -6,11 +6,11 @@
 <!--Designer: @dpy2650--->
 <!--Tester: @cyakee-->
 <!--Adviser: @w_Machine_cc-->
+<!-- md-trans-meta sourceCommit=29548c4a54d9db8aceda74f3d7e3ee119937ffb5 translatedAt=2026-08-06T13:43:53.122Z pushedAt=2026-08-07T07:25:34.326Z -->
 
 ## When to Use
 
 To ensure that a video decoder can be created and run properly in surface mode, you can create an empty surface before the **XComponent** is created or the OpenGL post-processing (NativeImage) is initialized.
-
 
 ## How to Develop
 
@@ -42,12 +42,12 @@ target_link_libraries(sample PUBLIC libnative_media_vdec.so)
 ```
 
 1. Create an OH_NativeImage instance.
-   
+
     ```c++
     // Create a NativeImage instance as the surface consumer.
     OH_NativeImage* image = OH_ConsumerSurface_Create();
     ```
-   
+
 2. Obtain the NativeWindow instance that functions as the producer.
 
     ```c++
@@ -72,6 +72,7 @@ target_link_libraries(sample PUBLIC libnative_media_vdec.so)
     Register the **OH_OnFrameAvailableListener**, which contains the following parameters:
 
     - **context**: user-defined context information.
+
     - **onFrameAvailable**: callback function triggered when a frame is available.
 
     ```c++
@@ -114,6 +115,7 @@ target_link_libraries(sample PUBLIC libnative_media_vdec.so)
     Before the actual surface consumer is created, you can use the temporarily created consumer to connect to the decoder.
 
     In the code snippet below, the following variables are used:
+
     - **videoDec**: pointer to the video decoder instance. For details, see step 2 in [Video Decoding in Surface Mode](video-decoding.md#surface-mode).
 
     ```c++
@@ -128,13 +130,14 @@ target_link_libraries(sample PUBLIC libnative_media_vdec.so)
 
     For details, see step 8 in [Video Decoding in Surface Mode](video-decoding.md#surface-mode).
 
-
 8. Set the surface.
 
     After the actual surface consumer is created, call **OH_VideoDecoder_SetSurface** to redirect the decoded output to the new surface.
 
     You can obtain NativeWindow in either of the following ways:
+
     - If the image is directly displayed after being decoded, obtain NativeWindow from the **XComponent**. For details about the operation, see [XComponent](../../reference/apis-arkui/arkui-ts/ts-basic-components-xcomponent.md).
+
     - If OpenGL post-processing is performed after decoding, obtain NativeWindow from NativeImage. For details about the operation, see [NativeImage](../../graphics/native-image-guidelines.md).
 
     ```c++
@@ -145,10 +148,17 @@ target_link_libraries(sample PUBLIC libnative_media_vdec.so)
     }
     ```
 
-9. Destroy the OH_NativeImage instance.
-   
-   After calling **OH_VideoDecoder_Destroy**, call **OH_NativeImage_Destroy** to destroy the OH_NativeImage instance.
+9. Unregister the callback of NativeImage and destroy the **OH_NativeImage** instance.
+
+   After calling **OH_VideoDecoder_Destroy**, call **OH_NativeImage_UnsetOnFrameAvailableListener** to unregister the frame available callback, and then call **OH_NativeImage_Destroy** to destroy the **OH_NativeImage** instance.
+
    ```c++
+   // Unregister the frame available callback.
+   ret = OH_NativeImage_UnsetOnFrameAvailableListener(image);
+   if (ret != AV_ERR_OK) {
+      // Exception handling.
+   }
+
    // Destroy the OH_NativeImage instance.
    OH_NativeImage_Destroy(&image);
    ```

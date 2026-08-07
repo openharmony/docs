@@ -6,7 +6,7 @@
 <!--Designer: @weixin_41398971-->
 <!--Tester: @Filger-->
 <!--Adviser: @w_Machine_cc-->
-<!-- md-trans-meta sourceCommit=29aa363c8c07cd0d943043ae209ad0a85fcdc3c5 translatedAt=2026-08-06T01:55:50.810Z pushedAt=2026-08-06T10:17:28.801Z -->
+<!-- md-trans-meta sourceCommit=b1fa1b915ee15db082bf8f1cefb71ce8e32f9517 translatedAt=2026-08-06T13:41:14.784Z pushedAt=2026-08-07T02:12:47.054Z -->
 
 The recording stream type is defined by [SourceType](../../reference/apis-audio-kit/arkts-apis-audio-e.md#sourcetype8), which identifies the usage scenario of the recording stream to the system. The system uses it for the [audio focus strategy](audio-playback-concurrency.md#audio-focus-strategy) and [audio channel configuration](audio-performance.md#understanding-the-system-audio-channel). Certain types also correspond to specific audio recording processing scenarios.
 
@@ -19,7 +19,7 @@ When selecting a `SourceType`, first determine the actual purpose of the recorde
 | SOURCE_TYPE_MIC | General recording, such as a sound recorder. | The system configures the default input channel and recording processing based on the general recording scenario. If a more specific service type exists, prefer the corresponding type. |
 | SOURCE_TYPE_VOICE_RECOGNITION<sup>9+</sup> | Speech recognition. | Corresponds to the speech recognition processing scenario. The system can match the speech recognition input channel based on the device configuration. |
 | SOURCE_TYPE_PLAYBACK_CAPTURE | Recording raw audio data that other apps send to the system for playback. | Deprecated since API version 12. Audio Kit no longer provides the internal recording API. For internal recording scenarios, use [AVScreenCapture](../../reference/apis-media-kit/capi-avscreencapture.md). |
-| SOURCE_TYPE_VOICE_COMMUNICATION | VoIP voice or video calls. | Enhances human voice recording and suppresses non-human sounds such as ambient noise. According to the [SourceType](../../reference/apis-audio-kit/arkts-apis-audio-e.md#sourcetype8) definition, starting recording alone does not enable the 3A algorithm. You must also use an AudioRenderer of the `STREAM_USAGE_VOICE_COMMUNICATION` or `STREAM_USAGE_VIDEO_COMMUNICATION` type for playback to trigger the 3A algorithm. |
+| SOURCE_TYPE_VOICE_COMMUNICATION | VoIP voice or video calls. | Enhances human voice recording and suppresses non-human sounds such as ambient noise. According to the [SourceType](../../reference/apis-audio-kit/arkts-apis-audio-e.md#sourcetype8) definition, starting recording alone enables the 3A algorithm. |
 | SOURCE_TYPE_VOICE_MESSAGE<sup>12+</sup> | Recording voice short messages. | Identifies the voice message recording scenario. According to the system's default [audio focus strategy](audio-playback-concurrency.md#audio-focus-strategy), starting recording pauses the currently playing music and notifies the music app to resume playback after recording ends. |
 | SOURCE_TYPE_CAMCORDER<sup>13+</sup> | Camera recording. | Indicates the recording purpose to the system. The system can match the recording input channel based on the device configuration. |
 | SOURCE_TYPE_UNPROCESSED<sup>14+</sup> | Obtaining raw audio captured by the microphone. | According to the [SourceType](../../reference/apis-audio-kit/arkts-apis-audio-e.md#sourcetype8) definition, the system does not apply algorithm processing to the captured data. |

@@ -6,6 +6,7 @@
 <!--Designer: @dpy2650--->
 <!--Tester: @cyakee-->
 <!--Adviser: @w_Machine_cc-->
+<!-- md-trans-meta sourceCommit=ebc0a80be1b2f8220c2fa84507c9565501616813 translatedAt=2026-08-06T13:50:42.349Z pushedAt=2026-08-07T10:02:32.153Z -->
 
 ## Basic Concepts
 
@@ -26,6 +27,7 @@ The figure below shows the new bitstream structure when the frames at L3 are dro
 ![Temporal scalability 4 layers L3 dropped](figures/temporal-scalability-4layers-L3-dropped.png)
 
 ### Structure of a Temporally Scalable Bitstream
+
 A bitstream is organized by one or more Group of Pictures (GOPs). A GOP is a collection of consecutive pictures that can be independently decoded. It measures the distance between two I-frames (also named key frames).
 
 A GOP can be further divided into one or more Temporal Group of Pictures (TGOPs), and each TGOP is composed by a base layer (BL) and one or more associated enhancement layers (ELs). For example, frame 0 to frame 7 in the foregoing four-layer temporally scalable bitstream form a TGOP.
@@ -45,6 +47,7 @@ The temporally scalable bitstream structure is implemented by specifying referen
 Although a specific cross-frame reference structure can be implemented when there is more than one STR, the span supported by temporal scalability is limited due to an excessively short validity period. This problem does not exist when coming to the LTR, which also covers the cross-frame scenario of the STR. Therefore, the LTR is preferably used to implement the structure of a temporally scalable bitstream.
 
 ## When to Use
+
 You are advised to use temporal scalability in the following scenarios:
 
 - Real-time encoding and transmission scenarios with no cache or low cache on the playback side, for example, video conferencing, live streaming, and collaborative office.
@@ -79,7 +82,7 @@ If your application does not involve dynamic adjustment of the temporal referenc
 
 ### Available APIs
 
-Global temporal scalability is suitable for encoding frames into a stable and simple temporal structure. Its initial configuration takes effect globally and cannot be dynamically modified. The configuration parameters are as follows:
+The global temporal scalability feature is suitable for low-latency real-time video communication scenarios. During encoder operation, you can switch between the scalable coding mode and the normal coding mode. After temporal layering is configured and takes effect on the encoder, the layering-related parameters cannot be dynamically modified. The development configuration parameters are as follows.
 
 | Parameter| Description                        |
 | -------- | ---------------------------- |
@@ -150,7 +153,70 @@ You can learn the basic encoding process in [Video Encoding](video-encoding.md).
     }
     ```
 
-3. (Optional) During output rotation, obtain the temporal layer information corresponding to the bitstream.
+3. (Optional) During operation, you can dynamically enable or disable the temporal scalability capability.
+
+    The sample code for dynamically enabling the temporal scalability capability is as follows:
+
+    ```c++
+    std::unique_lock<std::shared_mutex> lock(codecMutex);
+    // Reset the encoder videoEnc.
+    OH_AVErrCode resetRet = OH_VideoEncoder_Reset(videoEnc);
+    if (resetRet != AV_ERR_OK) {
+        // Handle the exception.
+    }
+    inQueue.Flush();
+    outQueue.Flush();
+    // Reconfigure the encoder parameters.
+    auto format = std::shared_ptr<OH_AVFormat>(OH_AVFormat_Create(), OH_AVFormat_Destroy);
+    if (format == nullptr) {
+        // Handle the exception.
+    }
+    // Configure the Temporal Scalable Coding feature parameters.
+    OH_AVFormat_SetIntValue(format.get(), OH_MD_KEY_VIDEO_ENCODER_ENABLE_TEMPORAL_SCALABILITY, 1);
+    constexpr int32_t TGOP_SIZE = 3;
+    OH_AVFormat_SetIntValue(format.get(), OH_MD_KEY_VIDEO_ENCODER_TEMPORAL_GOP_SIZE, TGOP_SIZE);
+    OH_AVFormat_SetIntValue(format.get(), OH_MD_KEY_VIDEO_ENCODER_TEMPORAL_GOP_REFERENCE_MODE, ADJACENT_REFERENCE);
+    OH_AVErrCode configRet = OH_VideoEncoder_Configure(videoEnc, format.get());
+    if (configRet != AV_ERR_OK) {
+        // Handle the exception.
+    }
+    // The encoder is ready again.
+    OH_AVErrCode prepareRet = OH_VideoEncoder_Prepare(videoEnc);
+    if (prepareRet != AV_ERR_OK) {
+        // Handle the exception.
+    }
+    ```
+
+    The sample code for dynamically disabling the temporal scalability capability is as follows:
+
+    ```c++
+    std::unique_lock<std::shared_mutex> lock(codecMutex);
+    // Reset the encoder videoEnc.
+    OH_AVErrCode resetRet = OH_VideoEncoder_Reset(videoEnc);
+    if (resetRet != AV_ERR_OK) {
+        // Handle the exception.
+    }
+    inQueue.Flush();
+    outQueue.Flush();
+    // Reconfigure the encoder parameters.
+    auto format = std::shared_ptr<OH_AVFormat>(OH_AVFormat_Create(), OH_AVFormat_Destroy);
+    if (format == nullptr) {
+        // Handle the exception.
+    }
+    // Configure the Temporal Scalable Coding feature parameters.
+    OH_AVFormat_SetIntValue(format.get(), OH_MD_KEY_VIDEO_ENCODER_ENABLE_TEMPORAL_SCALABILITY, 0);
+    OH_AVErrCode configRet = OH_VideoEncoder_Configure(videoEnc, format.get());
+    if (configRet != AV_ERR_OK) {
+        // Handle the exception.
+    }
+    // The encoder is ready again.
+    OH_AVErrCode prepareRet = OH_VideoEncoder_Prepare(videoEnc);
+    if (prepareRet != AV_ERR_OK) {
+        // Handle the exception.
+    }
+    ```
+
+4. (Optional) During output rotation, you can obtain the temporal layer information corresponding to the bitstream.
 
     You can obtain the temporal layer information based on the configured TGOP parameters and the number of encoded frames.
 
@@ -184,7 +250,32 @@ You can learn the basic encoding process in [Video Encoding](video-encoding.md).
     }
     ```
 
-4. (Optional) During output rotation, use the temporal layer information obtained for adaptive transmission or decoding.
+    Starting from API version 26.0.0, you can obtain temporal layer information through the OH_MD_KEY_VIDEO_ENCODER_TEMPORAL_LAYER_ID field, eliminating the need to calculate the temporal layer based on TGOP parameters and frame output information. A temporal layer number of 0 indicates the base layer, and 1 or above indicates an enhancement layer.
+
+    The sample code is as follows:
+
+    ``` C++
+    static int32_t GetTemporalLayerID(OH_AVBuffer *buffer)
+    {
+        int32_t layerID = -1;
+        OH_AVFormat *format = OH_AVBuffer_GetParameter(buffer);
+        OH_AVFormat_GetIntValue(format, OH_MD_KEY_VIDEO_ENCODER_TEMPORAL_LAYER_ID, &layerID);
+        return layerID;
+    }
+    
+    void SampleCallback::OnNewOutputBuffer(OH_AVCodec *codec, uint32_t index, OH_AVBuffer *buffer, void *userData)
+    {
+        if (userData == nullptr) {
+            return;
+        }
+        // ...
+    
+        // Obtain the temporal layer information from AVBuffer.
+        int32_t layerID = GetTemporalLayerID(buffer);
+    }
+    ```
+
+5. (Optional) During output, use the temporal layer information obtained in step 4 to implement adaptive transmission or adaptive decoding based on the actual bandwidth or service scenario.
 
     Based on the temporally scalable bitstream and layer information, select a required layer for transmission, or carry the information to the peer for adaptive decoding.
 
@@ -201,7 +292,9 @@ The LTR feature provides a configuration of the frame-level reference relationsh
 | OH_MD_KEY_VIDEO_ENCODER_PER_FRAME_USE_LTR   | POC number of the LTR frame referenced by the current frame. |
 
 - **OH_MD_KEY_VIDEO_ENCODER_LTR_FRAME_COUNT**: This parameter is set in the configuration phase. The value of this parameter must not be greater than the maximum number of supported LTR frames. For details, see step 3 below.
+
 - **OH_MD_KEY_VIDEO_ENCODER_PER_FRAME_MARK_LTR **: The BL layer and the EL layer to skip are marked as an LTR frame.
+
 - **OH_MD_KEY_VIDEO_ENCODER_PER_FRAME_USE_LTR**: POC number of the frame marked as the LTR frame.
 
 For example, to implement the four-layer temporally hierarchical structure described in [Introduction to Temporally Scalable Video Coding](#introduction-to-temporally-scalable-video-coding), perform the following steps:
