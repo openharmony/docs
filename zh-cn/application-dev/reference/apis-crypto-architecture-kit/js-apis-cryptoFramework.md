@@ -218,36 +218,36 @@ import { cryptoFramework } from '@kit.CryptoArchitectureKit';
 
 | 名称         | 值   | 说明             |
 | ------------ | ---- | ---------------- |
-| DSA_P_BN | 101 | DSA算法的素模数p。 <br>**系统能力：** API版本12+：SystemCapability.Security.CryptoFramework.Key.AsymKey API版本10-11：SystemCapability.Security.CryptoFramework|
-| DSA_Q_BN | 102 | DSA算法中密钥参数q（p-1的素因子）。<br>**系统能力：** API版本12+：SystemCapability.Security.CryptoFramework.Key.AsymKey API版本10-11：SystemCapability.Security.CryptoFramework |
-| DSA_G_BN | 103 | DSA算法的参数g。<br>**系统能力：** API版本12+：SystemCapability.Security.CryptoFramework.Key.AsymKey API版本10-11：SystemCapability.Security.CryptoFramework |
-| DSA_SK_BN | 104 | DSA算法的私钥sk。<br>**系统能力：** API版本12+：SystemCapability.Security.CryptoFramework.Key.AsymKey API版本10-11：SystemCapability.Security.CryptoFramework |
-| DSA_PK_BN | 105 | DSA算法的公钥pk。<br>**系统能力：** API版本12+：SystemCapability.Security.CryptoFramework.Key.AsymKey API版本10-11：SystemCapability.Security.CryptoFramework |
-| ECC_FP_P_BN | 201 | ECC算法中表示椭圆曲线Fp域的素数p。<br>**系统能力：** API版本12+：SystemCapability.Security.CryptoFramework.Key.AsymKey API版本10-11：SystemCapability.Security.CryptoFramework |
-| ECC_A_BN | 202 | ECC算法中椭圆曲线的第一个系数a。<br>**系统能力：** API版本12+：SystemCapability.Security.CryptoFramework.Key.AsymKey API版本10-11：SystemCapability.Security.CryptoFramework |
-| ECC_B_BN | 203 | ECC算法中椭圆曲线的第二个系数b。<br>**系统能力：** API版本12+：SystemCapability.Security.CryptoFramework.Key.AsymKey API版本10-11：SystemCapability.Security.CryptoFramework |
-| ECC_G_X_BN | 204 | ECC算法中基点g的x坐标。 <br>**系统能力：** API版本12+：SystemCapability.Security.CryptoFramework.Key.AsymKey API版本10-11：SystemCapability.Security.CryptoFramework|
-| ECC_G_Y_BN | 205 | ECC算法中基点g的y坐标。<br>**系统能力：** API版本12+：SystemCapability.Security.CryptoFramework.Key.AsymKey API版本10-11：SystemCapability.Security.CryptoFramework |
-| ECC_N_BN | 206 | ECC算法中基点g的阶n。<br>**系统能力：** API版本12+：SystemCapability.Security.CryptoFramework.Key.AsymKey API版本10-11：SystemCapability.Security.CryptoFramework |
-| ECC_H_NUM | 207 | ECC算法中的余因子h。<br>**系统能力：** API版本12+：SystemCapability.Security.CryptoFramework.Key.AsymKey API版本10-11：SystemCapability.Security.CryptoFramework |
-| ECC_SK_BN | 208 | ECC算法中的私钥sk。<br>**系统能力：** API版本12+：SystemCapability.Security.CryptoFramework.Key.AsymKey API版本10-11：SystemCapability.Security.CryptoFramework |
-| ECC_PK_X_BN | 209 | ECC算法中，公钥pk（椭圆曲线上的一个点）的x坐标。<br>**系统能力：** API版本12+：SystemCapability.Security.CryptoFramework.Key.AsymKey API版本10-11：SystemCapability.Security.CryptoFramework |
-| ECC_PK_Y_BN | 210 | ECC算法中，公钥pk（椭圆曲线上的一个点）的y坐标。<br>**系统能力：** API版本12+：SystemCapability.Security.CryptoFramework.Key.AsymKey API版本10-11：SystemCapability.Security.CryptoFramework |
-| ECC_FIELD_TYPE_STR | 211 | ECC算法中，椭圆曲线的域类型（当前只支持Fp域）。<br>**系统能力：** API版本12+：SystemCapability.Security.CryptoFramework.Key.AsymKey API版本10-11：SystemCapability.Security.CryptoFramework |
-| ECC_FIELD_SIZE_NUM | 212 | ECC算法中域的大小，单位为bits（注：对于Fp域，域的大小为素数p的bits长度）。<br>**系统能力：** API版本12+：SystemCapability.Security.CryptoFramework.Key.AsymKey API版本10-11：SystemCapability.Security.CryptoFramework |
-| ECC_CURVE_NAME_STR | 213 | ECC算法中的SECG(Standards for Efficient Cryptography Group)曲线名称。<br>**系统能力：** API版本12+：SystemCapability.Security.CryptoFramework.Key.AsymKey API版本10-11：SystemCapability.Security.CryptoFramework |
-| RSA_N_BN | 301 | RSA算法中的模数n。<br>**系统能力：** API版本12+：SystemCapability.Security.CryptoFramework.Key.AsymKey API版本10-11：SystemCapability.Security.CryptoFramework |
-| RSA_SK_BN | 302 | RSA算法中的私钥sk（即私钥指数d）。<br>**系统能力：** API版本12+：SystemCapability.Security.CryptoFramework.Key.AsymKey API版本10-11：SystemCapability.Security.CryptoFramework |
-| RSA_PK_BN | 303 | RSA算法中的公钥pk（即公钥指数e）。<br>**系统能力：** API版本12+：SystemCapability.Security.CryptoFramework.Key.AsymKey API版本10-11：SystemCapability.Security.CryptoFramework |
-| DH_P_BN<sup>11+</sup> | 401 | DH算法中的素数p。<br>**系统能力：** API版本12+：SystemCapability.Security.CryptoFramework.Key.AsymKey API版本11-11：SystemCapability.Security.CryptoFramework |
-| DH_G_BN<sup>11+</sup> | 402 | DH算法中的参数g。 <br>**系统能力：** API版本12+：SystemCapability.Security.CryptoFramework.Key.AsymKey API版本11-11：SystemCapability.Security.CryptoFramework|
-| DH_L_NUM<sup>11+</sup> | 403 | DH算法中私钥长度，单位为bits。 <br>**系统能力：** API版本12+：SystemCapability.Security.CryptoFramework.Key.AsymKey API版本11-11：SystemCapability.Security.CryptoFramework|
-| DH_SK_BN<sup>11+</sup> | 404 | DH算法中的私钥sk。<br>**系统能力：** API版本12+：SystemCapability.Security.CryptoFramework.Key.AsymKey API版本11-11：SystemCapability.Security.CryptoFramework |
-| DH_PK_BN<sup>11+</sup> | 405 | DH算法中的公钥pk。<br>**系统能力：** API版本12+：SystemCapability.Security.CryptoFramework.Key.AsymKey API版本11-11：SystemCapability.Security.CryptoFramework |
-| ED25519_SK_BN<sup>11+</sup> | 501 | Ed25519算法中的私钥sk。<br>**系统能力：** API版本12+：SystemCapability.Security.CryptoFramework.Key.AsymKey API版本11-11：SystemCapability.Security.CryptoFramework |
-| ED25519_PK_BN<sup>11+</sup> | 502 | Ed25519算法中的公钥pk。<br>**系统能力：** API版本12+：SystemCapability.Security.CryptoFramework.Key.AsymKey API版本11-11：SystemCapability.Security.CryptoFramework |
-| X25519_SK_BN<sup>11+</sup> | 601 | X25519算法中的私钥sk。<br>**系统能力：** API版本12+：SystemCapability.Security.CryptoFramework.Key.AsymKey API版本11-11：SystemCapability.Security.CryptoFramework |
-| X25519_PK_BN<sup>11+</sup> | 602 | X25519算法中的公钥pk。<br>**系统能力：** API版本12+：SystemCapability.Security.CryptoFramework.Key.AsymKey API版本11-11：SystemCapability.Security.CryptoFramework |
+| DSA_P_BN | 101 | DSA算法的素模数p。 <br>**系统能力：** <br>API版本12+：SystemCapability.Security.CryptoFramework.Key.AsymKey <br>API版本10-11：SystemCapability.Security.CryptoFramework|
+| DSA_Q_BN | 102 | DSA算法中密钥参数q（p-1的素因子）。<br>**系统能力：** <br>API版本12+：SystemCapability.Security.CryptoFramework.Key.AsymKey <br>API版本10-11：SystemCapability.Security.CryptoFramework |
+| DSA_G_BN | 103 | DSA算法的参数g。<br>**系统能力：** <br>API版本12+：SystemCapability.Security.CryptoFramework.Key.AsymKey <br>API版本10-11：SystemCapability.Security.CryptoFramework |
+| DSA_SK_BN | 104 | DSA算法的私钥sk。<br>**系统能力：** <br>API版本12+：SystemCapability.Security.CryptoFramework.Key.AsymKey <br>API版本10-11：SystemCapability.Security.CryptoFramework |
+| DSA_PK_BN | 105 | DSA算法的公钥pk。<br>**系统能力：** <br>API版本12+：SystemCapability.Security.CryptoFramework.Key.AsymKey <br>API版本10-11：SystemCapability.Security.CryptoFramework |
+| ECC_FP_P_BN | 201 | ECC算法中表示椭圆曲线Fp域的素数p。<br>**系统能力：** <br>API版本12+：SystemCapability.Security.CryptoFramework.Key.AsymKey <br>API版本10-11：SystemCapability.Security.CryptoFramework |
+| ECC_A_BN | 202 | ECC算法中椭圆曲线的第一个系数a。<br>**系统能力：** <br>API版本12+：SystemCapability.Security.CryptoFramework.Key.AsymKey <br>API版本10-11：SystemCapability.Security.CryptoFramework |
+| ECC_B_BN | 203 | ECC算法中椭圆曲线的第二个系数b。<br>**系统能力：** <br>API版本12+：SystemCapability.Security.CryptoFramework.Key.AsymKey <br>API版本10-11：SystemCapability.Security.CryptoFramework |
+| ECC_G_X_BN | 204 | ECC算法中基点g的x坐标。 <br>**系统能力：** <br>API版本12+：SystemCapability.Security.CryptoFramework.Key.AsymKey <br>API版本10-11：SystemCapability.Security.CryptoFramework|
+| ECC_G_Y_BN | 205 | ECC算法中基点g的y坐标。<br>**系统能力：** <br>API版本12+：SystemCapability.Security.CryptoFramework.Key.AsymKey <br>API版本10-11：SystemCapability.Security.CryptoFramework |
+| ECC_N_BN | 206 | ECC算法中基点g的阶n。<br>**系统能力：** <br>API版本12+：SystemCapability.Security.CryptoFramework.Key.AsymKey <br>API版本10-11：SystemCapability.Security.CryptoFramework |
+| ECC_H_NUM | 207 | ECC算法中的余因子h。<br>**系统能力：** <br>API版本12+：SystemCapability.Security.CryptoFramework.Key.AsymKey <br>API版本10-11：SystemCapability.Security.CryptoFramework |
+| ECC_SK_BN | 208 | ECC算法中的私钥sk。<br>**系统能力：** <br>API版本12+：SystemCapability.Security.CryptoFramework.Key.AsymKey <br>API版本10-11：SystemCapability.Security.CryptoFramework |
+| ECC_PK_X_BN | 209 | ECC算法中，公钥pk（椭圆曲线上的一个点）的x坐标。<br>**系统能力：** <br>API版本12+：SystemCapability.Security.CryptoFramework.Key.AsymKey <br>API版本10-11：SystemCapability.Security.CryptoFramework |
+| ECC_PK_Y_BN | 210 | ECC算法中，公钥pk（椭圆曲线上的一个点）的y坐标。<br>**系统能力：** <br>API版本12+：SystemCapability.Security.CryptoFramework.Key.AsymKey <br>API版本10-11：SystemCapability.Security.CryptoFramework |
+| ECC_FIELD_TYPE_STR | 211 | ECC算法中，椭圆曲线的域类型（当前只支持Fp域）。<br>**系统能力：** <br>API版本12+：SystemCapability.Security.CryptoFramework.Key.AsymKey <br>API版本10-11：SystemCapability.Security.CryptoFramework |
+| ECC_FIELD_SIZE_NUM | 212 | ECC算法中域的大小，单位为bits（注：对于Fp域，域的大小为素数p的bits长度）。<br>**系统能力：** <br>API版本12+：SystemCapability.Security.CryptoFramework.Key.AsymKey <br>API版本10-11：SystemCapability.Security.CryptoFramework |
+| ECC_CURVE_NAME_STR | 213 | ECC算法中的SECG(Standards for Efficient Cryptography Group)曲线名称。<br>**系统能力：** <br>API版本12+：SystemCapability.Security.CryptoFramework.Key.AsymKey <br>API版本10-11：SystemCapability.Security.CryptoFramework |
+| RSA_N_BN | 301 | RSA算法中的模数n。<br>**系统能力：** <br>API版本12+：SystemCapability.Security.CryptoFramework.Key.AsymKey <br>API版本10-11：SystemCapability.Security.CryptoFramework |
+| RSA_SK_BN | 302 | RSA算法中的私钥sk（即私钥指数d）。<br>**系统能力：** <br>API版本12+：SystemCapability.Security.CryptoFramework.Key.AsymKey <br>API版本10-11：SystemCapability.Security.CryptoFramework |
+| RSA_PK_BN | 303 | RSA算法中的公钥pk（即公钥指数e）。<br>**系统能力：** <br>API版本12+：SystemCapability.Security.CryptoFramework.Key.AsymKey <br>API版本10-11：SystemCapability.Security.CryptoFramework |
+| DH_P_BN<sup>11+</sup> | 401 | DH算法中的素数p。<br>**系统能力：** <br>API版本12+：SystemCapability.Security.CryptoFramework.Key.AsymKey <br>API版本11：SystemCapability.Security.CryptoFramework |
+| DH_G_BN<sup>11+</sup> | 402 | DH算法中的参数g。 <br>**系统能力：** <br>API版本12+：SystemCapability.Security.CryptoFramework.Key.AsymKey <br>API版本11：SystemCapability.Security.CryptoFramework|
+| DH_L_NUM<sup>11+</sup> | 403 | DH算法中私钥长度，单位为bits。 <br>**系统能力：** <br>API版本12+：SystemCapability.Security.CryptoFramework.Key.AsymKey <br>API版本11：SystemCapability.Security.CryptoFramework|
+| DH_SK_BN<sup>11+</sup> | 404 | DH算法中的私钥sk。<br>**系统能力：** <br>API版本12+：SystemCapability.Security.CryptoFramework.Key.AsymKey <br>API版本11：SystemCapability.Security.CryptoFramework |
+| DH_PK_BN<sup>11+</sup> | 405 | DH算法中的公钥pk。<br>**系统能力：** <br>API版本12+：SystemCapability.Security.CryptoFramework.Key.AsymKey <br>API版本11：SystemCapability.Security.CryptoFramework |
+| ED25519_SK_BN<sup>11+</sup> | 501 | Ed25519算法中的私钥sk。<br>**系统能力：** <br>API版本12+：SystemCapability.Security.CryptoFramework.Key.AsymKey <br>API版本11：SystemCapability.Security.CryptoFramework |
+| ED25519_PK_BN<sup>11+</sup> | 502 | Ed25519算法中的公钥pk。<br>**系统能力：** <br>API版本12+：SystemCapability.Security.CryptoFramework.Key.AsymKey <br>API版本11：SystemCapability.Security.CryptoFramework |
+| X25519_SK_BN<sup>11+</sup> | 601 | X25519算法中的私钥sk。<br>**系统能力：** <br>API版本12+：SystemCapability.Security.CryptoFramework.Key.AsymKey <br>API版本11：SystemCapability.Security.CryptoFramework |
+| X25519_PK_BN<sup>11+</sup> | 602 | X25519算法中的公钥pk。<br>**系统能力：** <br>API版本12+：SystemCapability.Security.CryptoFramework.Key.AsymKey <br>API版本11：SystemCapability.Security.CryptoFramework |
 
 ## AsyKeyDataItem
 
@@ -302,11 +302,11 @@ import { cryptoFramework } from '@kit.CryptoArchitectureKit';
 
 | 名称         | 值   | 说明             |
 | ------------ | ---- | ---------------- |
-| OAEP_MD_NAME_STR | 100 | 表示RSA算法中，使用PKCS1_OAEP模式时，消息摘要功能的算法名。<br>**系统能力：** API版本12+：SystemCapability.Security.CryptoFramework.Cipher API版本10-11：SystemCapability.Security.CryptoFramework |
-| OAEP_MGF_NAME_STR | 101 | 表示RSA算法中，使用PKCS1_OAEP模式时，掩码生成算法（目前仅支持MGF1）。<br>**系统能力：** API版本12+：SystemCapability.Security.CryptoFramework.Cipher API版本10-11：SystemCapability.Security.CryptoFramework|
-| OAEP_MGF1_MD_STR | 102 | 表示RSA算法中，使用PKCS1_OAEP模式时，MGF1掩码生成功能的消息摘要算法。<br>**系统能力：** API版本12+：SystemCapability.Security.CryptoFramework.Cipher API版本10-11：SystemCapability.Security.CryptoFramework |
-| OAEP_MGF1_PSRC_UINT8ARR | 103 | 表示RSA算法中，使用PKCS1_OAEP模式时，pSource的字节流。<br>**系统能力：** API版本12+：SystemCapability.Security.CryptoFramework.Cipher API版本10-11：SystemCapability.Security.CryptoFramework |
-| SM2_MD_NAME_STR<sup>11+</sup> | 104 | 表示SM2算法中，使用的摘要算法名。<br>**系统能力：** API版本12+：SystemCapability.Security.CryptoFramework.Cipher API版本11-11：SystemCapability.Security.CryptoFramework  |
+| OAEP_MD_NAME_STR | 100 | 表示RSA算法中，使用PKCS1_OAEP模式时，消息摘要功能的算法名。<br>**系统能力：** <br>API版本12+：SystemCapability.Security.CryptoFramework.Cipher <br>API版本10-11：SystemCapability.Security.CryptoFramework |
+| OAEP_MGF_NAME_STR | 101 | 表示RSA算法中，使用PKCS1_OAEP模式时，掩码生成算法（目前仅支持MGF1）。<br>**系统能力：** <br>API版本12+：SystemCapability.Security.CryptoFramework.Cipher <br>API版本10-11：SystemCapability.Security.CryptoFramework|
+| OAEP_MGF1_MD_STR | 102 | 表示RSA算法中，使用PKCS1_OAEP模式时，MGF1掩码生成功能的消息摘要算法。<br>**系统能力：** <br>API版本12+：SystemCapability.Security.CryptoFramework.Cipher <br>API版本10-11：SystemCapability.Security.CryptoFramework |
+| OAEP_MGF1_PSRC_UINT8ARR | 103 | 表示RSA算法中，使用PKCS1_OAEP模式时，pSource的字节流。<br>**系统能力：** <br>API版本12+：SystemCapability.Security.CryptoFramework.Cipher <br>API版本10-11：SystemCapability.Security.CryptoFramework |
+| SM2_MD_NAME_STR<sup>11+</sup> | 104 | 表示SM2算法中，使用的摘要算法名。<br>**系统能力：** <br>API版本12+：SystemCapability.Security.CryptoFramework.Cipher <br>API版本11：SystemCapability.Security.CryptoFramework  |
 
 ## SignSpecItem<sup>10+</sup>
 
@@ -316,15 +316,15 @@ import { cryptoFramework } from '@kit.CryptoArchitectureKit';
 
 | 名称         | 值   | 说明             |
 | ------------ | ---- | ---------------- |
-| PSS_MD_NAME_STR | 100 | 表示RSA算法中，使用PSS模式时，消息摘要功能的算法名。<br>**系统能力：** API版本12+：SystemCapability.Security.CryptoFramework.Signature API版本10-11：SystemCapability.Security.CryptoFramework <br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
-| PSS_MGF_NAME_STR | 101 | 表示RSA算法中，使用PSS模式时，掩码生成算法（目前仅支持MGF1）。<br>**系统能力：** API版本12+：SystemCapability.Security.CryptoFramework.Signature API版本10-11：SystemCapability.Security.CryptoFramework <br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
-| PSS_MGF1_MD_STR | 102 | 表示RSA算法中，使用PSS模式时，MGF1掩码生成功能的消息摘要算法。<br>**系统能力：** API版本12+：SystemCapability.Security.CryptoFramework.Signature API版本10-11：SystemCapability.Security.CryptoFramework <br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
-| PSS_SALT_LEN_NUM | 103 | 表示RSA算法中，使用PSS模式时，盐值的长度，长度以字节为单位。<br>**系统能力：** API版本12+：SystemCapability.Security.CryptoFramework.Signature API版本10-11：SystemCapability.Security.CryptoFramework <br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
-| PSS_TRAILER_FIELD_NUM | 104 | 表示RSA算法中，使用PSS模式时，用于编码操作的整数。<br>**系统能力：** API版本12+：SystemCapability.Security.CryptoFramework.Signature API版本10-11：SystemCapability.Security.CryptoFramework <br>**系统能力：** API版本12+：SystemCapability.Security.CryptoFramework.Signature API版本11-11：SystemCapability.Security.CryptoFramework <br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
-| SM2_USER_ID_UINT8ARR<sup>11+</sup> | 105 | 表示SM2算法中，用户身份标识字段。<br>**系统能力：** API版本12+：SystemCapability.Security.CryptoFramework.Signature API版本10-11：SystemCapability.Security.CryptoFramework <br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
-| ML_DSA_DETERMINISTIC_BOOL | 106 | 表示ML-DSA签名和验证过程中是否使用确定性签名。不设置时默认值为false。<br>**系统能力：** SystemCapability.Security.CryptoFramework.Signature <br> **起始版本：** 26.0.0<br> **模型约束：** 此接口仅可在Stage模型下使用。<br> **原子化服务API：** 从API版本26.0.0开始，该接口支持在原子化服务中使用。 |
-| ML_DSA_MU_BOOL | 107 | 表示ML-DSA签名和验证过程中的mu参数值。不设置时默认值为false，设置为true时，待签名数据需是64字节的哈希。<br>**系统能力：** SystemCapability.Security.CryptoFramework.Signature <br> **起始版本：** 26.0.0<br> **模型约束：** 此接口仅可在Stage模型下使用。<br> **原子化服务API：** 从API版本26.0.0开始，该接口支持在原子化服务中使用。 |
-| ML_DSA_CONTEXT_UINT8ARR | 108 | 表示ML-DSA签名和验证过程中的上下文数据。最大长度为255字节，用于标识签名验签场景，该参数在设置ML_DSA_MU_BOOL为true时无效，不设置时默认值为空字符串。<br>**系统能力：** SystemCapability.Security.CryptoFramework.Signature <br> **起始版本：** 26.0.0<br> **模型约束：** 此接口仅可在Stage模型下使用。<br> **原子化服务API：** 从API版本26.0.0开始，该接口支持在原子化服务中使用。 |
+| PSS_MD_NAME_STR | 100 | 表示RSA算法中，使用PSS模式时，消息摘要功能的算法名。<br>**系统能力：** <br>API版本12+：SystemCapability.Security.CryptoFramework.Signature <br>API版本10-11：SystemCapability.Security.CryptoFramework <br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| PSS_MGF_NAME_STR | 101 | 表示RSA算法中，使用PSS模式时，掩码生成算法（目前仅支持MGF1）。<br>**系统能力：** <br>API版本12+：SystemCapability.Security.CryptoFramework.Signature <br>API版本10-11：SystemCapability.Security.CryptoFramework <br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| PSS_MGF1_MD_STR | 102 | 表示RSA算法中，使用PSS模式时，MGF1掩码生成功能的消息摘要算法。<br>**系统能力：** <br>API版本12+：SystemCapability.Security.CryptoFramework.Signature <br>API版本10-11：SystemCapability.Security.CryptoFramework <br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| PSS_SALT_LEN_NUM | 103 | 表示RSA算法中，使用PSS模式时，盐值的长度，长度以字节为单位。<br>**系统能力：** <br>API版本12+：SystemCapability.Security.CryptoFramework.Signature <br>API版本10-11：SystemCapability.Security.CryptoFramework <br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| PSS_TRAILER_FIELD_NUM | 104 | 表示RSA算法中，使用PSS模式时，用于编码操作的整数。<br>**系统能力：** <br>API版本12+：SystemCapability.Security.CryptoFramework.Signature <br>API版本10-11：SystemCapability.Security.CryptoFramework <br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| SM2_USER_ID_UINT8ARR<sup>11+</sup> | 105 | 表示SM2算法中，用户身份标识字段。<br>**系统能力：** <br>API版本12+：SystemCapability.Security.CryptoFramework.Signature <br>API版本11：SystemCapability.Security.CryptoFramework <br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| ML_DSA_DETERMINISTIC_BOOL | 106 | 表示ML-DSA签名和验证过程中是否使用确定性签名。不设置时默认值为false。<br>**系统能力：** <br>SystemCapability.Security.CryptoFramework.Signature <br> **起始版本：** 26.0.0<br> **模型约束：** 此接口仅可在Stage模型下使用。<br> **原子化服务API：** 从API版本26.0.0开始，该接口支持在原子化服务中使用。 |
+| ML_DSA_MU_BOOL | 107 | 表示ML-DSA签名和验证过程中的mu参数值。不设置时默认值为false，设置为true时，待签名数据需是64字节的哈希。<br>**系统能力：** <br>SystemCapability.Security.CryptoFramework.Signature <br> **起始版本：** 26.0.0<br> **模型约束：** 此接口仅可在Stage模型下使用。<br> **原子化服务API：** 从API版本26.0.0开始，该接口支持在原子化服务中使用。 |
+| ML_DSA_CONTEXT_UINT8ARR | 108 | 表示ML-DSA签名和验证过程中的上下文数据。最大长度为255字节，用于标识签名验签场景，该参数在设置ML_DSA_MU_BOOL为true时无效，不设置时默认值为空字符串。<br>**系统能力：** <br>SystemCapability.Security.CryptoFramework.Signature <br> **起始版本：** 26.0.0<br> **模型约束：** 此接口仅可在Stage模型下使用。<br> **原子化服务API：** 从API版本26.0.0开始，该接口支持在原子化服务中使用。 |
 
 ## AsyKeySpec<sup>10+</sup>
 
