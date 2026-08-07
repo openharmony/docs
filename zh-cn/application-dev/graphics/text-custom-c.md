@@ -25,7 +25,7 @@
 
 ### 接口说明
 
-文本塑形中常用接口如下表所示，详细接口说明参考[drawing_text_typography.h](../reference/apis-arkgraphics2d/capi-drawing-text-typography-h.md)和[drawing_text_blob.h](../reference/apis-arkgraphics2d/capi-drawing-text-blob-h.md)。
+文本塑形中常用接口如下表所示，详细接口说明参考[drawing_text_lineTypography.h](../reference/apis-arkgraphics2d/capi-drawing-text-linetypography-h.md)、[drawing_text_line.h](../reference/apis-arkgraphics2d/capi-drawing-text-line-h.md)、[drawing_text_run.h](../reference/apis-arkgraphics2d/capi-drawing-text-run-h.md)、[drawing_text_blob.h](../reference/apis-arkgraphics2d/capi-drawing-text-blob-h.md)和[drawing_canvas.h](../reference/apis-arkgraphics2d/capi-drawing-canvas-h.md)。
 
 | 接口名 | 描述 | 
 | -------- | -------- |

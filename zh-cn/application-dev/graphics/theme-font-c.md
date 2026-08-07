@@ -31,7 +31,7 @@
 | 接口名 | 描述 |
 | -------- | -------- |
 | OH_Drawing_FontCollection\* OH_Drawing_GetFontCollectionGlobalInstance(void) | 获取全局的字体集对象OH_Drawing_FontCollection。 |
-| [onConfigurationUpdate()](../reference/apis-ability-kit/js-apis-app-ability-ability.md#abilityonconfigurationupdate) | 系统配置更新时调用。<br/>主题应用当前仅提供ArkTS接口发布变更事件，需要应用自行处理进行跨语言调用。 |
+| [onConfigurationUpdate(newConfig: Configuration): void](../reference/apis-ability-kit/js-apis-app-ability-ability.md#abilityonconfigurationupdate) | 系统配置更新时调用。<br/>主题应用当前仅提供ArkTS接口发布变更事件，需要应用自行处理进行跨语言调用。 |
 
 
 ## 开发步骤
@@ -79,9 +79,6 @@
    
    ``` C++
    OH_Drawing_TextStyle *myTextStyle = OH_Drawing_CreateTextStyle();
-   // const char* myFontFamilies[] = {"otherFontFamilyName"};
-   // 注意不要使用此接口来指定字体
-   // OH_Drawing_SetTextStyleFontFamilies(textStyle, 1, myFontFamilies);
    ```
 
 
