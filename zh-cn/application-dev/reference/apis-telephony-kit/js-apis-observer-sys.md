@@ -1,4 +1,4 @@
-# @ohos.telephony.observer (observer)(系统接口)
+# @ohos.telephony.observer (电话服务状态监听)(系统接口)
 <!--Kit: Telephony Kit-->
 <!--Subsystem: Telephony-->
 <!--Owner: @shao-yikai-->

@@ -262,7 +262,7 @@ makeCall\(phoneNumber: string, options?: MakeCallOptions\): Promise\<void\>
 import { call } from '@kit.TelephonyKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-// 设置是否因此拨号界面
+// 设置是否隐藏拨号界面
 let makeOptions: call.MakeCallOptions = {
   isHideDialScreen: true
 };

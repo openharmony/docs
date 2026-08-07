@@ -1,4 +1,4 @@
-# @ohos.telephony.observer (Observer) (System API)
+# @ohos.telephony.observer (Telephony Status Observer) (System API)
 <!--Kit: Telephony Kit-->
 <!--Subsystem: Telephony-->
 <!--Owner: @shao-yikai-->
