@@ -4,7 +4,7 @@
 <!--Owner: @chenkun613227-->
 <!--Designer: @yxc2-->
 <!--Tester: @xdlinc-->
-<!--Adviser: @chennotfound-->
+<!--Adviser: @zzs911-->
 
 ```c
 typedef struct OH_AudioCaptureInfo {...} OH_AudioCaptureInfo
