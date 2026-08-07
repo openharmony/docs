@@ -69,9 +69,7 @@ Sensor_Result OH_Sensor_Subscribe(const Sensor_SubscriptionId *id, const Sensor_
 
 权限说明：订阅加速度传感器，需要申请ohos.permission.ACCELEROMETER权限；订阅陀螺仪传感器，需要申请ohos.permission.GYROSCOPE权限；订阅计步器相关传感器时，需要申请ohos.permission.ACTIVITY_MOTION权限；订阅与健康相关的传感器时，例如心率传感器，需要申请ohos.permission.READ_HEALTH_DATA权限，否则订阅失败。订阅其余传感器不需要申请权限。
 
-**需要权限：** 根据订阅的传感器类型申请相应权限：订阅加速度传感器需ohos.permission.ACCELEROMETER；订阅陀螺仪传感器需ohos.permission.GYROSCOPE；订阅计步器相关传感器需ohos.permission.ACTIVITY_MOTION；订阅健康相关传感器需ohos.permission.READ_HEALTH_DATA；订阅其余传感器不需要申请权限。
-
-说明：订阅传感器会占用系统资源，建议在不需要传感器数据时及时调用[OH_Sensor_Unsubscribe](#oh_sensor_unsubscribe)取消订阅以释放资源。
+**需要权限：** ohos.permission.ACCELEROMETER or ohos.permission.GYROSCOPE or	ohos.permission.ACTIVITY_MOTION or ohos.permission.READ_HEALTH_DATA
 
 **起始版本：** 11
 
@@ -99,11 +97,9 @@ Sensor_Result OH_Sensor_Unsubscribe(const Sensor_SubscriptionId *id, const Senso
 
 取消订阅传感器数据。该操作会停止传感器数据上报。
 
-说明：取消订阅前必须已成功订阅对应的传感器，且取消订阅的参数必须与订阅时的参数一致。
-
 取消订阅加速度传感器，需要申请ohos.permission.ACCELEROMETER权限；取消订阅陀螺仪传感器，需要申请ohos.permission.GYROSCOPE权限；取消订阅计步器相关传感器时，需要申请ohos.permission.ACTIVITY_MOTION权限；取消订阅与健康相关的传感器时，例如心率传感器，需要申请ohos.permission.READ_HEALTH_DATA权限，否则取消订阅失败。取消订阅其余传感器不需要申请权限。
 
-**需要权限：** 根据取消订阅的传感器类型申请相应权限：取消订阅加速度传感器需ohos.permission.ACCELEROMETER；取消订阅陀螺仪传感器需ohos.permission.GYROSCOPE；取消订阅计步器相关传感器需ohos.permission.ACTIVITY_MOTION；取消订阅健康相关传感器需ohos.permission.READ_HEALTH_DATA；取消订阅其余传感器不需要申请权限。
+**需要权限：** ohos.permission.ACCELEROMETER or ohos.permission.GYROSCOPE or ohos.permission.ACTIVITY_MOTION or ohos.permission.READ_HEALTH_DATA
 
 **起始版本：** 11
 
