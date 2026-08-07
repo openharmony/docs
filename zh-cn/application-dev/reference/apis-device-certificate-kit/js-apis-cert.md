@@ -109,7 +109,7 @@ import { cryptoFramework } from '@kit.CryptoArchitectureKit';
 
 ## CsrAttribute<sup>18+</sup>
 
- 定义CSR属性表示。
+定义CSR属性。
 
 CSR属性字段，当前仅支持字符串类型的属性字段，属性值添加到CSR中编码为utf-8。常见的type为challengePassword。
 
@@ -12798,7 +12798,7 @@ createX500DistinguishedName(nameStr: string): Promise\<X500DistinguishedName>
 
 | 类型                            | 说明             |
 | ------------------------------- | ---------------- |
-| Promise\<[X500DistinguishedName](#x500distinguishedname12)> | Promise对象，返回X.500可分辨名称对象。|
+| Promise\<[X500DistinguishedName](#x500distinguishedname12)> | Promise对象，返回X500DistinguishedName实例。|
 
 **错误码：**
 
@@ -12869,7 +12869,7 @@ createX500DistinguishedName(nameDer: Uint8Array): Promise\<X500DistinguishedName
 
 | 类型                            | 说明             |
 | ------------------------------- | ---------------- |
-| Promise\<[X500DistinguishedName](#x500distinguishedname12)> | Promise对象，返回X.500可分辨名称对象。|
+| Promise\<[X500DistinguishedName](#x500distinguishedname12)> | Promise对象，返回X500DistinguishedName实例。|
 
 **错误码：**
 
