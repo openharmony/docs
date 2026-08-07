@@ -129,7 +129,7 @@ OH_AudioSuiteEngine_SetSoundFieldType(*node, static_cast<OH_SoundFieldType>(para
 
 ### 连接与取数说明
 
-- 音源分离效果节点**只能连接输出节点**，不能连接其他效果节点。
+- 音源分离效果节点只能连接输出节点，不能连接其他效果节点。
 - 由于是多输出节点，需通过[OH_AudioSuiteEngine_MultiRenderFrame](../../reference/apis-audio-kit/capi-native-audio-suite-engine-h.md#oh_audiosuiteengine_multirenderframe)获取处理后的数据。`audioDataArray`大小要和输出数量一一对应，人声1路、伴奏1路。
 
 ### 音源分离效果节点设置方法
@@ -299,7 +299,7 @@ switch (params.spaceRenderMode) {
 | optionType | [OH_AudioSuite_PureVoiceChangeType](../../reference/apis-audio-kit/capi-native-audio-suite-base-h.md#oh_audiosuite_purevoicechangetype) | 参考[变声类型](#变声类型)。 |
 | pitch | float | 音调。使用系统推荐音调设为宏[OH_PURE_VOICE_DEFAULT_PITCH](../../reference/apis-audio-kit/capi-native-audio-suite-base-h.md#宏定义)（0.0f）以获得最佳效果；自定义取值范围为[0.3f, 3.0f]。 |
 
-#### 变声类型
+**变声类型**
 
 | 枚举值 | 名称 | 描述 |
 |--------|------|------|
@@ -373,8 +373,8 @@ OH_AudioSuiteEngine_SetGeneralVoiceChangeType(
 
 | 参数 | 类型 | 取值范围 | 说明 |
 |------|------|---------|------|
-| speed | float | [0.5, 10.0] | 变速参数，1.0为原始速度；小于1.0减速，大于1.0加速。 |
-| pitch | float | [0.1, 5.0] | 变调参数，1.0为原始音调；小于1.0降调，大于1.0升调。 |
+| speed | float | [0.5, 10.0] | 变速参数。1.0为原始速度，小于1.0减速，大于1.0加速。 |
+| pitch | float | [0.1, 5.0] | 变调参数。1.0为原始音调，小于1.0降调，大于1.0升调。 |
 
 ### 变速变调效果节点设置方法
 
