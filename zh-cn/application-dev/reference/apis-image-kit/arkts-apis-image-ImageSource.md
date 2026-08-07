@@ -395,7 +395,7 @@ modifyImageProperty(key: PropertyKey, value: string): Promise\<void>
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
-| 401  | Parameter error.Possible causes:1.Mandatory parameters are left unspecified; 2.Incorrect parameter types;    |
+| 401  | Parameter error.Possible causes:1.Mandatory parameters are left unspecified;2.Incorrect parameter types;    |
 | 62980123| The image does not support EXIF decoding.             |
 | 62980133| The EXIF data is out of range.             |
 | 62980135| The EXIF value is invalid.             |
