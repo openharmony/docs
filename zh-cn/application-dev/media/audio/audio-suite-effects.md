@@ -35,7 +35,7 @@
 
 10个频段对应的频率如下表所示：
 
-| 频段序号 | 频率<br>单位为赫兹（Hz） | 增益范围<br>单位为dB（分贝） | 音频特性 |
+| 频段序号 | 频率<br>单位为赫兹（Hz） | 增益范围<br>单位为分贝（dB） | 音频特性 |
 |---------|------|---------|---------|
 | 0 | 31 | [-10, 10] | 超低频，影响重低音效果。 |
 | 1 | 62 | [-10, 10] | 低频，影响低音鼓、贝斯等。 |
@@ -215,9 +215,9 @@ OH_AudioSuiteEngine_SetEnvironmentType(*node, static_cast<OH_EnvironmentType>(pa
 
 | 成员 | 类型 | 取值范围 | 单位 | 说明 |
 |------|------|---------|------|------|
-| x | float | [-5.0, 5.0] | 米 | 空间中的X坐标。 |
-| y | float | [-5.0, 5.0] | 米 | 空间中的Y坐标。 |
-| z | float | [-5.0, 5.0] | 米 | 空间中的Z坐标。 |
+| x | float | [-5.0, 5.0] | 米（m） | 空间中的X坐标。 |
+| y | float | [-5.0, 5.0] | 米（m） | 空间中的Y坐标。 |
+| z | float | [-5.0, 5.0] | 米（m） | 空间中的Z坐标。 |
 
 **旋转模式**
 
@@ -225,10 +225,10 @@ OH_AudioSuiteEngine_SetEnvironmentType(*node, static_cast<OH_EnvironmentType>(pa
 
 | 成员 | 类型 | 取值范围 | 单位 | 说明 |
 |------|------|---------|------|------|
-| x | float | [-5.0, 5.0] | 米 | 空间中的X坐标。 |
-| y | float | [-5.0, 5.0] | 米 | 空间中的Y坐标。 |
-| z | float | [-5.0, 5.0] | 米 | 空间中的Z坐标。 |
-| surroundTime | int32_t | [2, 40] | 秒 | 单周环绕时间。 |
+| x | float | [-5.0, 5.0] | 米（m） | 空间中的X坐标。 |
+| y | float | [-5.0, 5.0] | 米（m） | 空间中的Y坐标。 |
+| z | float | [-5.0, 5.0] | 米（m） | 空间中的Z坐标。 |
+| surroundTime | int32_t | [2, 40] | 秒（s） | 单周环绕时间。 |
 | surroundDirection | [OH_AudioSuite_SurroundDirection](../../reference/apis-audio-kit/capi-native-audio-suite-base-h.md#oh_audiosuite_surrounddirection) | [0, 1] | - | 环绕方向：0=逆时针(SPACE_RENDER_CCW)，1=顺时针(SPACE_RENDER_CW)。 |
 
 **扩展模式**
@@ -237,8 +237,8 @@ OH_AudioSuiteEngine_SetEnvironmentType(*node, static_cast<OH_EnvironmentType>(pa
 
 | 成员 | 类型 | 取值范围 | 单位 | 说明 |
 |------|------|---------|------|------|
-| extRadius | float | [1.0, 5.0] | 米 | 扩展半径。 |
-| extAngle | int32_t | (0, 360) | 度 | 扩展角度。 |
+| extRadius | float | [1.0, 5.0] | 米（m） | 扩展半径。 |
+| extAngle | int32_t | (0, 360) | 度（°） | 扩展角度。 |
 
 ### 空间渲染效果节点设置方法
 
