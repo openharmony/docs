@@ -49,8 +49,8 @@ createWindow(config: Configuration, callback: AsyncCallback&lt;Window&gt;): void
 | ------- | -------------------------------- |
 | 201     | Permission verification failed. The application does not have the permission required to call the API. |
 | 401     | Parameter error. Possible cause: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
-| 801     | Capability not supported. createWindow can not work correctly due to limited device capabilities.<br/>适用版本：12+ |
-| 1300001 | Repeated operation. Possible cause: The window has been created and can not be created again. |
+| 801     | Capability not supported. createWindow cannot work correctly due to limited device capabilities.<br/>适用版本：12+ |
+| 1300001 | Repeated operation. Possible cause: The window has been created and cannot be created again. |
 | 1300002 | This window state is abnormal. Possible cause: Invalid parent window type, parent window cannot be a subWindow.<br/>适用版本：12+ |
 | 1300004 | Unauthorized operation. Possible cause: The window type in the configuration is invalid.<br/>适用版本：12+ |
 | 1300006 | This window context is abnormal. |
@@ -126,8 +126,8 @@ createWindow(config: Configuration): Promise&lt;Window&gt;
 | ------- | -------------------------------- |
 | 201     | Permission verification failed. The application does not have the permission required to call the API. |
 | 401     | Parameter error. Possible cause: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
-| 801     | Capability not supported. createWindow can not work correctly due to limited device capabilities.<br/>适用版本：12+ |
-| 1300001 | Repeated operation. Possible cause: The window has been created and can not be created again. |
+| 801     | Capability not supported. createWindow cannot work correctly due to limited device capabilities.<br/>适用版本：12+ |
+| 1300001 | Repeated operation. Possible cause: The window has been created and cannot be created again. |
 | 1300002 | This window state is abnormal. Possible cause: Invalid parent window type, parent window cannot be a subWindow.<br/>适用版本：12+ |
 | 1300004 | Unauthorized operation. Possible cause: The window type in the configuration is invalid.<br/>适用版本：12+ |
 | 1300006 | This window context is abnormal. |
@@ -576,7 +576,7 @@ shiftAppWindowTouchEvent(sourceWindowId: number, targetWindowId: number, fingerI
 
 | 错误码ID | 错误信息                                      |
 | ------- | --------------------------------------------- |
-| 801     | Capability not supported. Function shiftAppWindowTouchEvent can not work correctly due to limited device capabilities. |
+| 801     | Capability not supported. Function shiftAppWindowTouchEvent cannot work correctly due to limited device capabilities. |
 | 1300002 | This window state is abnormal. Possible cause: 1. SourceWindow cannot find: not created or not belong to current process; 2. TargetWindow cannot find: not created or not belong to current process; 3. Internal task error. |
 | 1300003 | This window manager service works abnormally. |
 | 1300004 | Unauthorized operation. Possible cause: 1. Invalid window type. Only main windows and subwindows are supported; 2. The two windows are not from the same process. |
