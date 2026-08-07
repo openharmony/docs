@@ -198,7 +198,7 @@ const char *OH_GetHardwareModel(void)
 
 | 类型 | 说明 |
 | -- | -- |
-| const char* | 字符串类型的硬件版本号。常见的取值包括："HL1CYBM"等。 |
+| const char* | 字符串类型的硬件版本号。 |
 
 ### OH_GetBootloaderVersion()
 
@@ -216,7 +216,7 @@ const char *OH_GetBootloaderVersion(void)
 
 | 类型 | 说明 |
 | -- | -- |
-| const char* | 字符串类型的Bootloader版本号。常见的取值包括："bootloader"等。 |
+| const char* | 字符串类型的Bootloader版本号。 |
 
 ### OH_GetAbiList()
 
@@ -234,7 +234,7 @@ const char *OH_GetAbiList(void)
 
 | 类型 | 说明 |
 | -- | -- |
-| const char* | 字符串类型的应用二进制接口（Abi）。返回支持的ABI列表，多个取值以英文逗号分隔。常见的取值包括："arm64-v8a"，"armeabi-v7a"等。 |
+| const char* | 字符串类型的应用二进制接口（Abi）。返回支持的ABI列表，多个取值以英文逗号分隔。 |
 
 ### OH_GetSecurityPatchTag()
 
@@ -288,7 +288,7 @@ const char *OH_GetIncrementalVersion(void)
 
 | 类型 | 说明 |
 | -- | -- |
-| const char* | 字符串类型的差异版本。常见的取值包括："6.1.1.120"等。 |
+| const char* | 字符串类型的差异版本。 |
 
 ### OH_GetOsReleaseType()
 
@@ -342,7 +342,7 @@ int OH_GetSdkApiVersion(void)
 
 | 类型 | 说明 |
 | -- | -- |
-| int | 系统软件API版本，取值范围为整数。常见的取值包括：6等。 |
+| int | 系统软件API版本，取值范围为整数。 |
 
 ### OH_GetFirstApiVersion()
 
