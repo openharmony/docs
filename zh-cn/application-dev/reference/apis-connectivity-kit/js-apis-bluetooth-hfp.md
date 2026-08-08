@@ -3,11 +3,11 @@
 <!--Kit: Connectivity Kit-->
 <!--Subsystem: Communication-->
 <!--Owner: @enjoy_sunshine-->
-<!--Designer: @chengguohong; @tangjia15-->
+<!--Designer: @tangjia15-->
 <!--Tester: @wangfeng517-->
 <!--Adviser: @zhang_yixin13-->
 
-本模块提供基于免提协议（Hands-Free Profile， [HFP](../../connectivity/terminology.md#hfp)）的蓝牙通话音频能力，支持获取连接状态等方法。
+本模块提供基于免提协议（Hands-Free Profile， [HFP](../../connectivity/bluetooth/terminology.md#hfp)）的蓝牙通话音频能力，支持获取连接状态等方法。
 
 > **说明：**
 >
@@ -35,7 +35,7 @@ type BaseProfile = baseProfile.BaseProfile
 
 createHfpAgProfile(): HandsFreeAudioGatewayProfile
 
-创建蓝牙通话音频中的[HFP AG](../../connectivity/terminology.md#hfp-ag)实例。通过该实例可使用本端作为HFP AG设备的接口，如：获取和其他设备间的蓝牙通话音频连接状态。
+创建蓝牙通话音频中的[HFP AG](../../connectivity/bluetooth/terminology.md#hfp-ag)实例。通过该实例可使用本端作为HFP AG设备的接口，如：获取和其他设备间的蓝牙通话音频连接状态。
 
 **系统能力**：SystemCapability.Communication.Bluetooth.Core
 
@@ -72,7 +72,7 @@ try {
 
 createHfpHfProfile(): HandsFreeHfProfile
 
-创建蓝牙通话音频中的[HF](../../connectivity/terminology.md#hf)实例。通过该实例可使用本端作为HF设备的接口，如：获取和其他设备间的蓝牙通话音频连接状态。
+创建蓝牙通话音频中的[HF](../../connectivity/bluetooth/terminology.md#hf)实例。通过该实例可使用本端作为HF设备的接口，如：获取和其他设备间的蓝牙通话音频连接状态。
 
 **起始版本**： 26.0.0
 
@@ -108,20 +108,20 @@ try {
 
 ## HandsFreeAudioGatewayProfile
 
-该实例表示蓝牙通话音频中的[HFP AG](../../connectivity/terminology.md#hfp-ag)角色‌。
+该实例表示蓝牙通话音频中的[HFP AG](../../connectivity/bluetooth/terminology.md#hfp-ag)角色‌。
 - 该类继承于[BaseProfile](#baseprofile)，因此可以使用其父类中的方法。
 - 使用该类的接口前，需通过[createHfpAgProfile](#hfpcreatehfpagprofile)接口构造该类的实例。
-- 和该实例角色相对应的是[HF](../../connectivity/terminology.md#hf)角色。
+- 和该实例角色相对应的是[HF](../../connectivity/bluetooth/terminology.md#hf)角色。
 
 **系统能力**：SystemCapability.Communication.Bluetooth.Core
 
 
 ## HandsFreeHfProfile
 
-该实例表示蓝牙通话音频中的[HF](../../connectivity/terminology.md#hf)角色‌。
+该实例表示蓝牙通话音频中的[HF](../../connectivity/bluetooth/terminology.md#hf)角色‌。
 - 该类继承于[BaseProfile](#baseprofile)，因此可以使用其父类中的方法。
 - 使用该类的接口前，需通过[createHfpHfProfile](#hfpcreatehfphfprofile)接口构造该类的实例。
-- 和该实例角色相对应的是[HFP AG](../../connectivity/terminology.md#hfp-ag)角色。
+- 和该实例角色相对应的是[HFP AG](../../connectivity/bluetooth/terminology.md#hfp-ag)角色。
 
 **起始版本**： 26.0.0
 

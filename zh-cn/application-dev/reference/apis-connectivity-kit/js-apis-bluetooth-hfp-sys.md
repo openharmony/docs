@@ -3,7 +3,7 @@
 <!--Kit: Connectivity Kit-->
 <!--Subsystem: Communication-->
 <!--Owner: @enjoy_sunshine-->
-<!--Designer: @chengguohong; @tangjia15-->
+<!--Designer: @tangjia15-->
 <!--Tester: @wangfeng517-->
 <!--Adviser: @zhang_yixin13-->
 
@@ -24,10 +24,10 @@ import { hfp } from '@kit.ConnectivityKit';
 
 ## HandsFreeAudioGatewayProfile
 
-该实例表示蓝牙通话音频中的[HFP AG](../../connectivity/terminology.md#hfp-ag)角色‌。
+该实例表示蓝牙通话音频中的[HFP AG](../../connectivity/bluetooth/terminology.md#hfp-ag)角色‌。
 - 该类继承于[BaseProfile](js-apis-bluetooth-hfp.md#baseprofile)，因此可以使用其父类中的方法。
 - 使用该类的接口前，需通过[createHfpAgProfile](js-apis-bluetooth-hfp.md#hfpcreatehfpagprofile)接口构造该类的实例。
-- 和该实例角色相对应的是[HF](../../connectivity/terminology.md#hf)角色。
+- 和该实例角色相对应的是[HF](../../connectivity/bluetooth/terminology.md#hf)角色。
 
 **系统能力**：SystemCapability.Communication.Bluetooth.Core
 
@@ -126,10 +126,10 @@ try {
 
 ## HandsFreeHfProfile
 
-该实例表示蓝牙通话音频中的[HF](../../connectivity/terminology.md#hf)角色‌。
+该实例表示蓝牙通话音频中的[HF](../../connectivity/bluetooth/terminology.md#hf)角色‌。
 - 该类继承于[BaseProfile](js-apis-bluetooth-hfp.md#baseprofile)，因此可以使用其父类中的方法。
 - 使用该类的接口前，需通过[createHfpHfProfile](js-apis-bluetooth-hfp.md#hfpcreatehfphfprofile)接口构造该类的实例。
-- 和该实例角色相对应的是[HFP AG](../../connectivity/terminology.md#hfp-ag)角色。
+- 和该实例角色相对应的是[HFP AG](../../connectivity/bluetooth/terminology.md#hfp-ag)角色。
 
 **起始版本**： 26.0.0
 

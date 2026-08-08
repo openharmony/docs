@@ -19,6 +19,7 @@
     - [连接和传输数据](bluetooth/gatt-development-guide.md)
   - 蓝牙常见问题<!--bluetooth-faq-->
     - [蓝牙接口调用报错2900099](bluetooth/bluetooth-faq-2900099-errorcode.md)<!--RP1--><!--RP1End-->
+  - [蓝牙术语](bluetooth/terminology.md)
 - NFC<!--nfc-->
   - [NFC服务开发概述](nfc/nfc-overview.md)
   - [NFC标签读写开发指南](nfc/nfc-tag-access-guide.md)
@@ -32,4 +33,4 @@
 - 融合短距<!--fusion-connectivity-->
   - [融合短距服务开发概述](fusion-connectivity/fusion-connectivity-overview.md)
   - [外设与OpenHarmony设备互通的开发指南](fusion-connectivity/partneragent-life-application-guide.md)
-- [Connectivity Kit术语](terminology.md)
+  - [融合短距术语](fusion-connectivity/terminology.md)

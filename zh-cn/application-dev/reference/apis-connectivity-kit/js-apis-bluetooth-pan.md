@@ -3,11 +3,11 @@
 <!--Kit: Connectivity Kit-->
 <!--Subsystem: Communication-->
 <!--Owner: @enjoy_sunshine-->
-<!--Designer: @chengguohong; @tangjia15-->
+<!--Designer: @tangjia15-->
 <!--Tester: @wangfeng517-->
 <!--Adviser: @zhang_yixin13-->
 
-本模块提供基于蓝牙个人局域网协议（Personal Area Networking，[PAN](../../connectivity/terminology.md#pan)）的蓝牙共享网络能力，支持获取连接状态等方法。
+本模块提供基于蓝牙个人局域网协议（Personal Area Networking，[PAN](../../connectivity/bluetooth/terminology.md#pan)）的蓝牙共享网络能力，支持获取连接状态等方法。
 
 > **说明：**
 >
@@ -37,7 +37,7 @@ type BaseProfile = baseProfile.BaseProfile
 
 createPanProfile(): PanProfile
 
-创建蓝牙[PAN](../../connectivity/terminology.md#pan)实例。通过该实例可使用本端作为[NAP](../../connectivity/terminology.md#nap)设备和[PANU](../../connectivity/terminology.md#panu)设备的接口，如：获取和其他设备间的蓝牙个人局域网服务连接状态。
+创建蓝牙[PAN](../../connectivity/bluetooth/terminology.md#pan)实例。通过该实例可使用本端作为[NAP](../../connectivity/bluetooth/terminology.md#nap)设备和[PANU](../../connectivity/bluetooth/terminology.md#panu)设备的接口，如：获取和其他设备间的蓝牙个人局域网服务连接状态。
 
 **系统能力**：SystemCapability.Communication.Bluetooth.Core
 

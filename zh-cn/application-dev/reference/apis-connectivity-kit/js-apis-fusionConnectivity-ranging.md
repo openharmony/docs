@@ -9,7 +9,7 @@
 
 本模块基于星闪技术，为应用提供设备测距功能，主要功能特性包括：
 
-- 支持近场链路星闪[HADM](../../connectivity/terminology.md#hadm)测距类型，实现高精度距离测量。
+- 支持近场链路星闪[HADM](../../connectivity/fusion-connectivity/terminology.md#hadm)测距类型，实现高精度距离测量。
 - 支持主动测距模式，获取目标设备的距离、角度和信号强度信息。
 - 支持被动测距模式，设备可作为测距信标被其他设备发现和测量。
 - 支持测距状态变化订阅，实时监听设备测距开始、停止等状态通知。
@@ -61,7 +61,7 @@ getRangingCapability(): Promise&lt;RangingCapabilitySupported&gt;
 查询本端设备支持的测距能力，使用Promise异步回调。
 
 - 建议先使用[isRangingSupported](#rangingisrangingsupported)判断本端是否支持测距特性。仅在特性支持的情况下才能使用融合测距的功能。
-- 获取成功后，使用Promise异步返回测距类型是否支持。仅当[nearlinkHadm](#rangingcapabilitysupported)值为true，才可以使用[startRanging](#rangingstartranging)发起星闪[HADM](../../connectivity/terminology.md#hadm)测距，或使用[startPassiveRanging](#rangingstartpassiveranging)启动被动测距。
+- 获取成功后，使用Promise异步返回测距类型是否支持。仅当[nearlinkHadm](#rangingcapabilitysupported)值为true，才可以使用[startRanging](#rangingstartranging)发起星闪[HADM](../../connectivity/fusion-connectivity/terminology.md#hadm)测距，或使用[startPassiveRanging](#rangingstartpassiveranging)启动被动测距。
 
 **起始版本**：26.0.0
 
@@ -114,7 +114,7 @@ startRanging(params: RangingParams, callback: Callback&lt;RangingResult&gt;): vo
 - 若本端设备已与目标设备建立了星闪连接，调用此接口会直接向目标设备发起测距。
 - 若本端设备与目标设备未建立星闪连接，该接口将执行以下流程：
   1. 融合测距服务内部先尝试与目标设备建立连接，连接成功后进行配对和加密操作；配对时需要用户主动在设备上操作授权；如果用户拒绝授权或者超时未授权，本次测距将会停止，停止的状态会通过[onRangingStateChange](#rangingonrangingstatechange)接口注册的callback通知，停止后需要在应用侧主动调用[stopRanging](#rangingstopranging)停止测距接口释放测距资源。
-  2. 连接完成后，测距服务会先查询目标设备是否支持对应的测距服务[UUID](../../connectivity/terminology.md#uuid)，确认服务支持后自动发起测距；如果在连接后，对端设备不支持测距服务[UUID](../../connectivity/terminology.md#uuid)，融合测距服务内部会主动断开与对端设备已建立的连接，并通过回调通知测距停止。
+  2. 连接完成后，测距服务会先查询目标设备是否支持对应的测距服务[UUID](../../connectivity/bluetooth/terminology.md#uuid)，确认服务支持后自动发起测距；如果在连接后，对端设备不支持测距服务[UUID](../../connectivity/bluetooth/terminology.md#uuid)，融合测距服务内部会主动断开与对端设备已建立的连接，并通过回调通知测距停止。
 
 开始测距后，可通过[onRangingStateChange](#rangingonrangingstatechange)实时监听测距状态变化，测距结果通过本接口中的入参callback返回。
 
@@ -125,7 +125,7 @@ startRanging(params: RangingParams, callback: Callback&lt;RangingResult&gt;): vo
 > **说明：**
 >
 > - 使用测距接口前，需先通过[getRangingCapability](#ranginggetrangingcapability)确认设备支持对应的测距类型。
-> - 使用星闪[HADM](../../connectivity/terminology.md#hadm)测距时，本端设备在发起主动测距后，无法使用被动测距模式。如需使用被动测距，需先调用[stopRanging](#rangingstopranging)停止主动测距。
+> - 使用星闪[HADM](../../connectivity/fusion-connectivity/terminology.md#hadm)测距时，本端设备在发起主动测距后，无法使用被动测距模式。如需使用被动测距，需先调用[stopRanging](#rangingstopranging)停止主动测距。
 > - 对同一设备连续重复调用[startRanging](#rangingstartranging)会提示设备已初始化测距并返回错误码34900051。
 > - 如果启动测距时，对应类型的测距服务已下线，那么调用本接口时会抛出服务未使能错误码34900053。
 > - 接口入参需要按照要求填写，如果不符合要求接口会返回对应的错误码，详细要求见参数的定义。
@@ -261,7 +261,7 @@ startPassiveRanging(capabilityType: RangingTypes): Promise&lt;number&gt;
 > **说明：**
 >
 > - 使用测距接口前，需先通过[getRangingCapability](#ranginggetrangingcapability)确认设备支持对应的测距类型。
-> - 使用星闪[HADM](../../connectivity/terminology.md#hadm)测距时，本端设备在发起被动测距后，无法使用主动测距模式。如需使用主动测距，需先调用[stopPassiveRanging](#rangingstoppassiveranging)停止被动测距。
+> - 使用星闪[HADM](../../connectivity/fusion-connectivity/terminology.md#hadm)测距时，本端设备在发起被动测距后，无法使用主动测距模式。如需使用主动测距，需先调用[stopPassiveRanging](#rangingstoppassiveranging)停止被动测距。
 > - 同一测距能力类型仅支持单次调用[startPassiveRanging](#rangingstartpassiveranging)，成功后返回的handle对应独立的广播会话。
 > - 同一测距能力如果想再次调用[startPassiveRanging](#rangingstartpassiveranging)，需要先调用[stopPassiveRanging](#rangingstoppassiveranging)结束本次的被动测距，如果直接再次调用，接口将返回错误码34900099。
 > - 如果启动测距时，对应类型的测距服务已下线，那么调用本接口时会抛出服务未使能错误码34900053。
@@ -554,7 +554,7 @@ if (isRegistered) {
 | deviceId | string                           | 否   | 否   | 测距设备地址。    |
 | distance | [RangingMeasurement](#rangingmeasurement) | 否   | 否   | 测距输出的距离测量结果，value单位：cm。  |
 | angle   | [RangingMeasurement](#rangingmeasurement) | 否   | 否   | 测距输出的方位角，value单位：度，取值范围：[0, 360)。   |
-| rssi    | number                           | 否   | 否   | 接收信号强度指示[RSSI](../../connectivity/terminology.md#rssi)，单位：dBm。    |
+| rssi    | number                           | 否   | 否   | 接收信号强度指示[RSSI](../../connectivity/bluetooth/terminology.md#rssi)，单位：dBm。    |
 
 ## RangingCapabilitySupported
 
@@ -568,7 +568,7 @@ if (isRegistered) {
 
 | 名称         | 类型     | 只读 | 可选 | 说明                      |
 | ---------- | ------ | ---- | ---- | ----------------------- |
-| nearlinkHadm | boolean | 否   | 否   | 星闪[HADM](../../connectivity/terminology.md#hadm)测距类型是否支持。值为true时可使用[startRanging](#rangingstartranging)或[startPassiveRanging](#rangingstartpassiveranging)发起测距。 |
+| nearlinkHadm | boolean | 否   | 否   | 星闪[HADM](../../connectivity/fusion-connectivity/terminology.md#hadm)测距类型是否支持。值为true时可使用[startRanging](#rangingstartranging)或[startPassiveRanging](#rangingstartpassiveranging)发起测距。 |
 
 ## RangingMeasurement
 
@@ -597,7 +597,7 @@ if (isRegistered) {
 
 | 名称           | 值   | 说明                                        |
 | ------------ | ---- | ----------------------------------------- |
-| NEARLINK_HADM | 1    | 星闪[HADM](../../connectivity/terminology.md#hadm)测距类型。  |
+| NEARLINK_HADM | 1    | 星闪[HADM](../../connectivity/fusion-connectivity/terminology.md#hadm)测距类型。  |
 
 ## RangingState
 
