@@ -78,9 +78,9 @@ startChildProcess(srcEntry: string, startMode: StartMode): Promise&lt;number&gt;
 | 错误码ID | 错误信息 |
 | ------- | -------- |
 | 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed. |
-| 16000050 | Internal error. Possible causes: 1. System internal exception; 2. Resource allocation failed. |
+| 16000050 | Internal error. |
 | 16000061  | Operation not supported. |
-| 16000062  | The number of child processes exceeds the upper limit. Please reduce the number of child processes and try again. |
+| 16000062  | The number of child processes exceeds the upper limit. |
 
 **示例：**
 
@@ -148,9 +148,9 @@ startChildProcess(srcEntry: string, startMode: StartMode, callback: AsyncCallbac
 | 错误码ID | 错误信息 |
 | ------- | -------- |
 | 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed. |
-| 16000050 | Internal error. Possible causes: 1. System internal exception; 2. Resource allocation failed. |
+| 16000050 | Internal error. |
 | 16000061  | Operation not supported. |
-| 16000062  | The number of child processes exceeds the upper limit. Please reduce the number of child processes and try again. |
+| 16000062  | The number of child processes exceeds the upper limit. |
 
 **示例：**
 
@@ -226,9 +226,9 @@ startArkChildProcess(srcEntry: string, args: ChildProcessArgs, options?: ChildPr
 | ------- | -------- |
 | 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed. |
 | 801 | Capability not supported. |
-| 16000050 | Internal error. Possible causes: 1. System internal exception; 2. Resource allocation failed. |
+| 16000050 | Internal error. |
 | 16000061  | Operation not supported. |
-| 16000062  | The number of child processes exceeds the upper limit. Please reduce the number of child processes and try again. |
+| 16000062  | The number of child processes exceeds the upper limit. <br>适用版本：13+ |
 
 **示例：**
 
@@ -344,9 +344,9 @@ startNativeChildProcess(entryPoint: string, args: ChildProcessArgs, options?: Ch
 | ------- | -------- |
 | 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed. |
 | 801 | Capability not supported. Failed to call the API due to limited device capabilities. |
-| 16000050 | Internal error. Possible causes: 1. System internal exception; 2. Resource allocation failed. |
+| 16000050 | Internal error. |
 | 16000061  | Operation not supported. |
-| 16000062  | The number of child processes exceeds the upper limit. Please reduce the number of child processes and try again. |
+| 16000062  | The number of child processes exceeds the upper limit. |
 
 **示例：**
 
