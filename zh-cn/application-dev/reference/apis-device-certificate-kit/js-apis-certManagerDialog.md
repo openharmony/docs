@@ -204,7 +204,7 @@ openInstallCertificateDialog(context: common.Context, certType: CertificateType,
 **系统能力：** SystemCapability.Security.CertificateManagerDialog
 
 **设备行为差异：**
-1. 入参certType为CA_CERT时，该接口在PC/2in1设备中可以正常调用，在其他设备中会返回29700004错误码。从版本26.0.0开始，可以通过[supportsCACertDialog](#certificatemanagerdialogsupportscacertdialog)来判断本设备是否支持打开CA证书安装对话框。
+1. 入参certType为CA_CERT时，该接口在PC/2in1设备中可以正常调用，在其他设备中会返回29700004错误码。从API版本26.0.0开始，可以通过[supportsCACertDialog](#certificatemanagerdialogsupportscacertdialog)来判断本设备是否支持打开CA证书安装对话框。
 2. 入参certType为CREDENTIAL_USER或CREDENTIAL_SYSTEM时，在PC/2in1、phone和tablet设备中可以正常调用。
 
 **模型约束：** 此接口仅可在Stage模型下使用。
@@ -254,7 +254,7 @@ let certificateType: certificateManagerDialog.CertificateType = certificateManag
 let certificateScope: certificateManagerDialog.CertificateScope = certificateManagerDialog.CertificateScope.CURRENT_USER;
 /* 安装的CA证书数据需要业务赋值，本例数据非CA证书数据 */
 let caCert: Uint8Array = new Uint8Array([
-  0x30, 0x82, 0x0b, 0xc1, 0x02, 0x01,
+  0x30, 0x82, 0x0b, 0xc1, 0x02, 0x01
 ]);
 try {
   certificateManagerDialog.openInstallCertificateDialog(context, certificateType, certificateScope, caCert).then((uri: string) => {
@@ -278,7 +278,7 @@ openUninstallCertificateDialog(context: common.Context, certType: CertificateTyp
 
 **系统能力：** SystemCapability.Security.CertificateManagerDialog
 
-**设备行为差异：** 该接口在PC/2in1设备可正常调用，在其他设备中返回29700004错误码。从版本26.0.0开始，可以通过[supportsCACertDialog](#certificatemanagerdialogsupportscacertdialog)来判断是否支持打开CA证书卸载对话框。
+**设备行为差异：** 该接口在PC/2in1设备可正常调用，在其他设备中返回29700004错误码。从API版本26.0.0开始，可以通过[supportsCACertDialog](#certificatemanagerdialogsupportscacertdialog)来判断是否支持打开CA证书卸载对话框。
 
 **模型约束：** 此接口仅可在Stage模型下使用。
 
@@ -345,7 +345,7 @@ openCertificateDetailDialog(context: common.Context, cert: Uint8Array, property:
 
 **系统能力：** SystemCapability.Security.CertificateManagerDialog
 
-**设备行为差异：** 该接口在PC/2in1设备可正常调用，在其他设备中返回29700004错误码。从版本26.0.0开始，可以通过[supportsCACertDialog](#certificatemanagerdialogsupportscacertdialog)来判断是否支持打开CA证书详情对话框。
+**设备行为差异：** 该接口在PC/2in1设备可正常调用，在其他设备中返回29700004错误码。从API版本26.0.0开始，可以通过[supportsCACertDialog](#certificatemanagerdialogsupportscacertdialog)来判断是否支持打开CA证书详情对话框。
 
 **模型约束：** 此接口仅可在Stage模型下使用。
 
@@ -386,7 +386,7 @@ import { UIContext } from '@kit.ArkUI';
 let context: common.Context = new UIContext().getHostContext() as common.Context;
 /* 安装的CA证书数据需要业务赋值，本例数据非CA证书数据 */
 let caCert: Uint8Array = new Uint8Array([
-  0x30, 0x82, 0x0b, 0xc1, 0x02, 0x01,
+  0x30, 0x82, 0x0b, 0xc1, 0x02, 0x01
 ]);
 let property: certificateManagerDialog.CertificateDialogProperty = {
   showInstallButton: false /* 不显示安装按钮 */
