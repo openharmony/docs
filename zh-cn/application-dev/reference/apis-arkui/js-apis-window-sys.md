@@ -4548,7 +4548,7 @@ disableWindowDecor(): void
 
 禁止窗口装饰。
 
-禁止后，主窗口进入全屏沉浸状态时，鼠标Hover到上方标题栏热区会显示悬浮标题栏。禁用悬浮标题栏需使用[setTitleAndDockHoverShown()](arkts-apis-window-Window.md#settitleanddockhovershown14)接口。
+禁止后，主窗口进入全屏沉浸状态时，鼠标悬停到上方标题栏热区会显示悬浮标题栏。禁用悬浮标题栏需使用[setTitleAndDockHoverShown()](arkts-apis-window-Window.md#settitleanddockhovershown14)接口。
 
 **模型约束：** 此接口仅可在Stage模型下使用。
 
