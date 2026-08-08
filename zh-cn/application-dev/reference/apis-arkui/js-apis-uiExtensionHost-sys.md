@@ -34,7 +34,7 @@ import { uiExtensionHost } from '@kit.ArkUI';
 
 | 名称 | 类型 | 只读 | 可选 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
-| properties          | [UIExtensionHostWindowProxyProperties](#uiextensionhostwindowproxyproperties) |  否  |  否  | UIExtensionComponent组件以及宿主窗口的信息。<br/>**约束：** 由于架构约束，不建议在[onSessionCreate](../apis-ability-kit/js-apis-app-ability-uiExtensionAbility.md#onsessioncreate)阶段同步获取该值，建议在收到[on('windowSizeChange')](../apis-arkui/js-apis-uiExtensionHost-sys.md#onwindowsizechange)回调之后获取。 |
+| properties          | [UIExtensionHostWindowProxyProperties](#uiextensionhostwindowproxyproperties) |  否  |  否  | UIExtensionComponent组件以及宿主应用窗口的信息。<br>**约束：** 由于架构约束，不建议在[onSessionCreate](../apis-ability-kit/js-apis-app-ability-uiExtensionAbility.md#onsessioncreate)阶段同步获取该值，建议在收到[on('windowSizeChange')](#onwindowsizechange)回调之后获取。 |
 
 ### getWindowAvoidArea
 
@@ -109,8 +109,8 @@ on(type: 'avoidAreaChange', callback: Callback<{ type: window.AvoidAreaType, are
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
-| 401      | Parameter error. Possible causes: <br/> 1. Mandatory parameters are left unspecified.<br/> 2. Incorrect parameters types.<br/> 3. Parameter verification failed. |
-| 1300002  | Abnormal state. Possible causes: <br/> 1. The listening type is not supported. <br/> 2. The listener has been registered. <br/> 3. The UIExtension window proxy is abnormal. |
+| 401      | Parameter error. Possible causes: <br> 1. Mandatory parameters are left unspecified.<br> 2. Incorrect parameters types.<br> 3. Parameter verification failed. |
+| 1300002  | Abnormal state. Possible causes: <br> 1. The listening type is not supported. <br> 2. The listener has been registered. <br> 3. The UIExtension window proxy is abnormal. |
 
 **示例：**
 
@@ -154,8 +154,8 @@ off(type: 'avoidAreaChange', callback?: Callback<{ type: window.AvoidAreaType, a
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
-| 401      | Parameter error. Possible causes: <br/> 1. Mandatory parameters are left unspecified.<br/> 2. Incorrect parameters types.<br/> 3. Parameter verification failed. |
-| 1300002  | Abnormal state. Possible causes: <br/> 1. The listening type is not supported. <br/> 2. The listening type is not registered. <br/> 3. The listener has not been registered. <br/> 4. The UIExtension window proxy is abnormal. |
+| 401      | Parameter error. Possible causes: <br> 1. Mandatory parameters are left unspecified.<br> 2. Incorrect parameters types.<br> 3. Parameter verification failed. |
+| 1300002  | Abnormal state. Possible causes: <br> 1. The listening type is not supported. <br> 2. The listening type is not registered. <br> 3. The listener has not been registered. <br> 4. The UIExtension window proxy is abnormal. |
 
 **示例：**
 
@@ -197,8 +197,8 @@ on(type: 'windowSizeChange', callback: Callback<window.Size>): void
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
-| 401      | Parameter error. Possible causes: <br/> 1. Mandatory parameters are left unspecified.<br/> 2. Incorrect parameters types.<br/> 3. Parameter verification failed. |
-| 1300002  | Abnormal state. Possible causes: <br/> 1. The listening type is not supported. <br/> 2. The listener has been registered. <br/> 3. The UIExtension window proxy is abnormal. |
+| 401      | Parameter error. Possible causes: <br> 1. Mandatory parameters are left unspecified.<br> 2. Incorrect parameters types.<br> 3. Parameter verification failed. |
+| 1300002  | Abnormal state. Possible causes: <br> 1. The listening type is not supported. <br> 2. The listener has been registered. <br> 3. The UIExtension window proxy is abnormal. |
 
 **示例：**
 
@@ -242,8 +242,8 @@ off(type: 'windowSizeChange', callback?: Callback<window.Size>): void
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
-| 401      | Parameter error. Possible causes: <br/> 1. Mandatory parameters are left unspecified.<br/> 2. Incorrect parameters types.<br/> 3. Parameter verification failed. |
-| 1300002  | Abnormal state. Possible causes: <br/> 1. The listening type is not supported. <br/> 2. The listening type is not registered. <br/> 3. The listener has not been registered. <br/> 4. The UIExtension window proxy is abnormal. |
+| 401      | Parameter error. Possible causes: <br> 1. Mandatory parameters are left unspecified.<br> 2. Incorrect parameters types.<br> 3. Parameter verification failed. |
+| 1300002  | Abnormal state. Possible causes: <br> 1. The listening type is not supported. <br> 2. The listening type is not registered. <br> 3. The listener has not been registered. <br> 4. The UIExtension window proxy is abnormal. |
 
 **示例：**
 
@@ -267,7 +267,7 @@ hideNonSecureWindows(shouldHide: boolean): Promise&lt;void&gt;
 设置是否隐藏不安全窗口，使用Promise异步回调。
 > **说明：**
 >
-> - 不安全窗口是指可能遮挡[EmbeddedComponent](arkui-ts/ts-container-embedded-component.md)（或[UIExtensionComponent](arkui-ts/ts-container-ui-extension-component-sys.md)）组件的窗口，如全局悬浮窗、宿主子窗口和宿主创建的Dialog窗口（不包括系统应用创建的上述类型窗口）。
+> - 不安全窗口是指可能遮挡[EmbeddedComponent](arkui-ts/ts-container-embedded-component.md)或[UIExtensionComponent](arkui-ts/ts-container-ui-extension-component-sys.md)组件的窗口，如全局悬浮窗、宿主子窗口和宿主创建的Dialog窗口（不包括系统应用创建的上述类型窗口）。
 > - 当EmbeddedComponent（或UIExtensionComponent）组件用于显示敏感操作提示内容时，可以选择隐藏不安全窗口，保护其不会被遮挡。当EmbeddedComponent（或UIExtensionComponent）组件不显示或销毁时，不安全窗口会重新显示。
 > - 针对PC/2in1设备，当调用hideNonSecureWindows(true)时，不安全窗口中的全局悬浮窗不会被隐藏。
 
@@ -311,7 +311,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 export default class EntryAbility extends UIExtensionAbility {
   onSessionCreate(want: Want, session: UIExtensionContentSession) {
     const extensionHostWindow = session.getUIExtensionHostWindowProxy();
-    // 隐藏非安全窗口
+    // 隐藏不安全窗口
     extensionHostWindow.hideNonSecureWindows(true).then(() => {
       console.info(`Succeeded in hiding the non-secure windows.`);
     }).catch((err: BusinessError) => {
@@ -320,7 +320,7 @@ export default class EntryAbility extends UIExtensionAbility {
   }
   onSessionDestroy(session: UIExtensionContentSession) {
     const extensionHostWindow = session.getUIExtensionHostWindowProxy();
-    // 取消隐藏非安全窗口
+    // 取消隐藏不安全窗口
     extensionHostWindow.hideNonSecureWindows(false).then(() => {
       console.info(`Succeeded in showing the non-secure windows.`);
     }).catch((err: BusinessError) => {
@@ -363,7 +363,7 @@ createSubWindowWithOptions(name: string, subWindowOptions: window.SubWindowOptio
 
 | 错误码ID | 错误信息 |
 | ------- | ------------------------------ |
-| 401 | Parameter error. Possible causes: <br/> 1. Mandatory parameters are left unspecified.<br/> 2. Incorrect parameters types.<br/> 3. Parameter verification failed. |
+| 401 | Parameter error. Possible causes: <br> 1. Mandatory parameters are left unspecified.<br> 2. Incorrect parameters types.<br> 3. Parameter verification failed. |
 | 801 | Capability not supported. Failed to call the API due to limited device capabilities. |
 | 1300002 | This window state is abnormal. Possible causes: 1. The window is not created or destroyed. 2. Internal task error. 3. The subWindow has been created and cannot be created again. 4. It is not allowed to create non-secure window when secure extension exists. |
 | 1300035 | Creating a subwindow is not allowed in the current context. Possible cause: 1. An AgentUIExtensionAbility cannot create a subwindow. |
@@ -386,15 +386,15 @@ export default class EntryAbility extends UIExtensionAbility {
     // 创建子窗口
     extensionHostWindow.createSubWindowWithOptions('subWindowForHost', subWindowOpts)
       .then((subWindow: window.Window) => {
-        subWindow.setUIContent('pages/Index', (err, data) =>{
+        subWindow.setUIContent('pages/Index', (err, data) => {
           if (err && err.code) {
             return;
           }
-          subWindow?.resize(300, 300, (err, data) =>{
+          subWindow?.resize(300, 300, (err, data) => {
             if (err && err.code) {
               return;
             }
-            subWindow?.moveWindowTo(100, 100, (err, data) =>{
+            subWindow?.moveWindowTo(100, 100, (err, data) => {
               if (err && err.code) {
                 return;
               }
@@ -471,15 +471,15 @@ export default class EntryAbility extends UIExtensionAbility {
     // 创建子窗口
     extensionHostWindow.createSubWindowWithOptions('subWindowForHost', subWindowConfig, true)
       .then((subWindow: window.Window) => {
-        subWindow.setUIContent('pages/Index', (err, data) =>{
+        subWindow.setUIContent('pages/Index', (err, data) => {
           if (err && err.code) {
             return;
           }
-          subWindow?.resize(300, 300, (err, data) =>{
+          subWindow?.resize(300, 300, (err, data) => {
             if (err && err.code) {
               return;
             }
-            subWindow?.moveWindowTo(100, 100, (err, data) =>{
+            subWindow?.moveWindowTo(100, 100, (err, data) => {
               if (err && err.code) {
                 return;
               }
@@ -584,7 +584,7 @@ hidePrivacyContentForHost(shouldHide: boolean): Promise&lt;void&gt;
 
 | 参数名 | 类型     | 必填 | 说明                                            |
 | ------ | ------- | --- | ------------------------------------------------ |
-| shouldHide | boolean | 是   | 是否开启截图隐私保护。true表示开启，false表示不开启。 |
+| shouldHide | boolean | 是   | 是否开启截图隐私内容保护。true表示开启，false表示不开启。 |
 
 **返回值：**
 
@@ -638,7 +638,7 @@ export default class EntryAbility extends UIExtensionAbility {
 
 ## 完整示例
 
-本示例展示文档中所有API在UIExtensionAbility中的基础使用方式，示例应用需采用系统签名，且`bundleName`为"com.example.uiextensiondemo", 被拉起的`UIExtensionAbility`为"ExampleUIExtensionAbility"。
+本示例展示文档中主要API在UIExtensionAbility中的基础使用方式，示例应用需采用系统签名，且`bundleName`为"com.example.uiextensiondemo", 被拉起的`UIExtensionAbility`为"ExampleUIExtensionAbility"。
 
 - 示例应用中的EntryAbility(UIAbility)加载首页文件：`pages/Index.ets`，其中内容如下：
 
@@ -759,15 +759,15 @@ export default class EntryAbility extends UIExtensionAbility {
         Text(this.message)
           .fontSize(20)
           .fontWeight(FontWeight.Bold)
-        Button("获取组件大小").width('90%').margin({top: 5, bottom: 5}).fontSize(16).onClick(() => {
+        Button('获取组件大小').width('90%').margin({top: 5, bottom: 5}).fontSize(16).onClick(() => {
           let rect = this.extensionHostWindow?.properties.uiExtensionHostWindowProxyRect;
-          console.info(`UIExtensionComponent的宽高和位置信息: ${JSON.stringify(rect)}`);
+          console.info(`EmbeddedComponent position and size info: ${JSON.stringify(rect)}`);
         })
-        Button("获取系统避让区信息").width('90%').margin({top: 5, bottom: 5}).fontSize(16).onClick(() => {
+        Button('获取系统避让区信息').width('90%').margin({top: 5, bottom: 5}).fontSize(16).onClick(() => {
           let avoidArea: window.AvoidArea | undefined = this.extensionHostWindow?.getWindowAvoidArea(window.AvoidAreaType.TYPE_SYSTEM);
-          console.info(`系统避让区: ${JSON.stringify(avoidArea)}`);
+          console.info(`System avoid area: ${JSON.stringify(avoidArea)}`);
         })
-        Button("创建子窗口").width('90%').margin({top: 5, bottom: 5}).fontSize(16).onClick(() => {
+        Button('创建子窗口').width('90%').margin({top: 5, bottom: 5}).fontSize(16).onClick(() => {
           let subWindowOpts: window.SubWindowOptions = {
             'title': 'This is a subwindow',
             decorEnabled: true
@@ -775,15 +775,15 @@ export default class EntryAbility extends UIExtensionAbility {
           this.extensionHostWindow?.createSubWindowWithOptions('subWindowForHost', subWindowOpts)
             .then((subWindow: window.Window) => {
               this.subWindow = subWindow;
-              this.subWindow.loadContent('pages/Index', this.storage, (err, data) =>{
+              this.subWindow.loadContent('pages/Index', this.storage, (err, data) => {
                 if (err && err.code) {
                   return;
                 }
-                this.subWindow?.resize(300, 300, (err, data) =>{
+                this.subWindow?.resize(300, 300, (err, data) => {
                   if (err && err.code) {
                     return;
                   }
-                  this.subWindow?.moveWindowTo(100, 100, (err, data) =>{
+                  this.subWindow?.moveWindowTo(100, 100, (err, data) => {
                     if (err && err.code) {
                       return;
                     }
