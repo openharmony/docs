@@ -1344,7 +1344,8 @@ export default class EntryAbility extends UIAbility {
     try {
       windowStage.on('windowStageClose', () => {
         console.info('Succeeded in enabling the listener for window stage close event.');
-        return false;
+        // Return true, indicating that the current main window will not be closed.
+        return true;
       });
     } catch (exception) {
       console.error(`Failed to enable the listener for window stage close event. Cause code: ${exception.code}, message: ${exception.message}`);
@@ -1402,7 +1403,8 @@ export default class EntryAbility extends UIAbility {
     console.info('onWindowStageCreate');
     const callback = () => {
       // ...
-      return false;
+      // Return true, indicating that the current main window will not be closed.
+      return true;
     }
     try {
       windowStage.on('windowStageClose', callback);
@@ -1711,7 +1713,7 @@ export default class EntryAbility extends UIAbility {
 
 setWindowRectAutoSave(enabled: boolean): Promise&lt;void&gt;
 
-设置是否启用最后关闭的主窗尺寸的记忆功能，使用Promise异步回调。
+设置是否启用最后关闭的主窗口尺寸的记忆功能，使用Promise异步回调。
 
 启用记忆功能后，在同一个UIAbility下，记忆最后关闭的主窗口的尺寸；此主窗口再次启动时，以记忆的尺寸按照规则进行打开。
 
@@ -1792,7 +1794,7 @@ export default class EntryAbility extends UIAbility {
 
 setWindowRectAutoSave(enabled: boolean, isSaveBySpecifiedFlag: boolean): Promise&lt;void&gt;
 
-设置是否启用主窗的尺寸记忆功能，使用Promise异步回调。
+设置是否启用主窗口的尺寸记忆功能，使用Promise异步回调。
 
 在同一个UIAbility下，可记忆最后关闭的主窗口尺寸，也可针对每个主窗口尺寸单独进行记忆。只有在UIAbility启动模式为specified，且isSaveBySpecifiedFlag设置为true时，才能针对每个主窗口尺寸进行单独记忆。
 
