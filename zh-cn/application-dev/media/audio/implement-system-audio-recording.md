@@ -48,6 +48,7 @@ C/C++开发建议搭配[OH_AudioStreamBuilderStruct](../../reference/apis-audio-
 
 1. 导入模块。
 
+   <!-- @[PlaybackCaptureImport](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/Media/Audio/AudioCaptureSampleJS/entry/src/main/ets/pages/PlaybackCapture.ets) -->
    ``` TypeScript
    import { audio } from '@kit.AudioKit';
    import { BusinessError } from '@kit.BasicServicesKit';
@@ -68,7 +69,7 @@ C/C++开发建议搭配[OH_AudioStreamBuilderStruct](../../reference/apis-audio-
 
    > **说明：**
    >
-   > - 内录启动时还会进行用户授权检查，部分设备会展示系统授权或隐私提示弹窗，授权结果通过`requestPlaybackCaptureStart()`回调返回。
+   > 内录启动时还会进行用户授权检查，部分设备会展示系统授权或隐私提示弹窗，授权结果通过`requestPlaybackCaptureStart()`回调返回。
 
    <!-- @[SetPlaybackCaptureMode](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/Media/Audio/AudioCaptureSampleJS/entry/src/main/ets/pages/PlaybackCapture.ets) -->
    ``` TypeScript
@@ -99,17 +100,23 @@ C/C++开发建议搭配[OH_AudioStreamBuilderStruct](../../reference/apis-audio-
 
    回调返回PCM数据，应用可根据业务写入文件、送入编码器或交给自定义音频处理模块。以下示例统计接收到的PCM数据字节数。
 
+   <!-- @[PlaybackCaptureGlobalState](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/Media/Audio/AudioCaptureSampleJS/entry/src/main/ets/pages/PlaybackCapture.ets) -->
    ``` TypeScript
-   let readBytes: number = 0;
+   let audioCapturer: audio.AudioCapturer | undefined = undefined;
    let isPlaybackCaptureStarted: boolean = false;
+   let readBytes: number = 0;
    let playbackCaptureRequestId: number = 0;
    let playbackCaptureStartState: audio.PlaybackCaptureStartState | undefined = undefined;
+   ```
 
-   let readDataCallback: Callback<ArrayBuffer> = (buffer: ArrayBuffer): void => {
-     readBytes += buffer.byteLength;
-   };
+   <!-- @[PlaybackCaptureReadDataCallback](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/Media/Audio/AudioCaptureSampleJS/entry/src/main/ets/pages/PlaybackCapture.ets) -->
+   ``` TypeScript
+     private readDataCallback: Callback<ArrayBuffer> = (buffer: ArrayBuffer): void => {
+       readBytes += buffer.byteLength;
+       this.bytes = readBytes;
+     };
 
-   audioCapturer.on('readData', readDataCallback);
+   audioCapturer.on('readData', this.readDataCallback);
    ```
 
    > **注意：**
@@ -126,6 +133,7 @@ C/C++开发建议搭配[OH_AudioStreamBuilderStruct](../../reference/apis-audio-
    >
    > 内录采集器不能通过`start()`接口启动。调用`requestPlaybackCaptureStart()`后，只有收到`STATE_SUCCESS`时，应用才应认为内录已启动成功。
 
+   <!-- @[RequestPlaybackCaptureStart](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/Media/Audio/AudioCaptureSampleJS/entry/src/main/ets/pages/PlaybackCapture.ets) -->
    ``` TypeScript
    if (audioCapturer === undefined) {
      return;
@@ -138,13 +146,14 @@ C/C++开发建议搭配[OH_AudioStreamBuilderStruct](../../reference/apis-audio-
        return;
      }
      playbackCaptureStartState = state;
-
+     const stateText: string = playbackCaptureStateToText(state);
      if (state === audio.PlaybackCaptureStartState.STATE_SUCCESS) {
        isPlaybackCaptureStarted = true;
-       console.info('Succeeded in starting playback capture.');
+       this.message = `当前状态：${stateText}`;
        return;
      }
-     releasePlaybackCapture().catch((error: BusinessError): void => {
+     this.message = `当前状态：${stateText}`;
+     this.releasePlaybackCapture().catch((error: BusinessError): void => {
        console.error(`Release playback capture failed, code is ${error.code}, message is ${error.message}`);
      });
    });
@@ -156,15 +165,16 @@ C/C++开发建议搭配[OH_AudioStreamBuilderStruct](../../reference/apis-audio-
 
    应用结束内录后，需要停止AudioCapturer并释放资源。释放前应取消`readData`监听，避免对象释放后仍处理回调。
 
+   <!-- @[ReleasePlaybackCapture](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/Media/Audio/AudioCaptureSampleJS/entry/src/main/ets/pages/PlaybackCapture.ets) -->
    ``` TypeScript
-   async function releasePlaybackCapture(): Promise<void> {
+   private async releasePlaybackCapture(): Promise<void> {
      if (audioCapturer === undefined) {
        return;
      }
      const capturer: audio.AudioCapturer = audioCapturer;
      audioCapturer = undefined;
      playbackCaptureRequestId++;
-     capturer.off('readData', readDataCallback);
+     capturer.off('readData', this.readDataCallback);
      try {
        if (isPlaybackCaptureStarted) {
          await capturer.stop();
@@ -184,19 +194,22 @@ C/C++开发建议搭配[OH_AudioStreamBuilderStruct](../../reference/apis-audio-
 
    内录启动接口为异步接口，需要在启动函数返回后继续保存`OH_AudioCapturer`实例，确保在启动结果回调中处理失败场景，并在业务结束时停止和释放实例。互斥锁（Mutual Exclusion Lock）用于保护全局采集器指针，避免启动结果回调、重复启动和主动停止同时访问该指针。
 
+   <!-- @[header_file](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/Media/Audio/AudioCapturerSampleC/entry/src/main/cpp/AudioCapture.cpp) -->
    ``` C++
-   #include <atomic>
-   #include <cstdint>
-   #include <mutex>
    #include <ohaudio/native_audiocapturer.h>
-   #include <ohaudio/native_audiostream_base.h>
    #include <ohaudio/native_audiostreambuilder.h>
+   ```
 
+   <!-- @[PlaybackCaptureConstants](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/Media/Audio/AudioCapturerSampleC/entry/src/main/cpp/AudioCapture.cpp) -->
+   ``` C++
    constexpr int32_t PLAYBACK_CAPTURE_SAMPLE_RATE = 48000;
    constexpr int32_t PLAYBACK_CAPTURE_CHANNEL_COUNT = 2;
    constexpr uint32_t PLAYBACK_CAPTURE_MODE = AUDIOSTREAM_PLAYBACKCAPTURE_MODE_MEDIA |
        AUDIOSTREAM_PLAYBACKCAPTURE_MODE_EXCLUDING_SELF;
+   ```
 
+   <!-- @[PlaybackCaptureGlobalState](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/Media/Audio/AudioCapturerSampleC/entry/src/main/cpp/AudioCapture.cpp) -->
+   ``` C++
    std::mutex g_playbackCaptureMutex;
    OH_AudioCapturer* g_playbackCaptureCapturer = nullptr;
    std::atomic<int32_t> g_playbackCaptureStartState{-1};
@@ -207,6 +220,7 @@ C/C++开发建议搭配[OH_AudioStreamBuilderStruct](../../reference/apis-audio-
 
    音频数据回调返回内录PCM数据，不建议在回调中执行耗时任务。内录启动失败或用户未授权时，及时释放已创建的采集器。
 
+   <!-- @[PlaybackCaptureReadDataCallback](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/Media/Audio/AudioCapturerSampleC/entry/src/main/cpp/AudioCapture.cpp) -->
    ``` C++
    void MyOnPlaybackCaptureReadData(
        OH_AudioCapturer* capturer,
@@ -219,12 +233,19 @@ C/C++开发建议搭配[OH_AudioStreamBuilderStruct](../../reference/apis-audio-
        }
        g_playbackCaptureReadBytes.fetch_add(static_cast<uint64_t>(audioDataSize));
    }
+   ```
 
-   void MyOnPlaybackCaptureStart(OH_AudioCapturer* capturer, void* userData,
+   <!-- @[PlaybackCaptureStartCallback](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/Media/Audio/AudioCapturerSampleC/entry/src/main/cpp/AudioCapture.cpp) -->
+   ``` C++
+   void MyOnPlaybackCaptureStart(
+       OH_AudioCapturer* capturer,
+       void* userData,
        OH_AudioStream_PlaybackCaptureStartState state)
    {
        int32_t stateValue = static_cast<int32_t>(state);
        g_playbackCaptureStartState.store(stateValue);
+       OH_LOG_Print(LOG_APP, LOG_INFO, AUDIO_CAPTURE_LOG_DOMAIN, AUDIO_CAPTURE_LOG_TAG,
+           "Playback capture start callback state=%{public}d", stateValue);
 
        if (state == AUDIOSTREAM_PLAYBACKCAPTURE_START_STATE_SUCCESS) {
            return;
@@ -363,8 +384,9 @@ C/C++开发建议搭配[OH_AudioStreamBuilderStruct](../../reference/apis-audio-
 
    业务结束后，通过[OH_AudioCapturer_Stop()](../../reference/apis-audio-kit/capi-native-audiocapturer-h.md#oh_audiocapturer_stop)停止采集，并通过[OH_AudioCapturer_Release()](../../reference/apis-audio-kit/capi-native-audiocapturer-h.md#oh_audiocapturer_release)释放资源。
 
+   <!-- @[StopPlaybackCapture](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/Media/Audio/AudioCapturerSampleC/entry/src/main/cpp/AudioCapture.cpp) -->
    ``` C++
-   void StopPlaybackCapture()
+   napi_value StopPlaybackCapture(napi_env env, napi_callback_info info)
    {
        OH_AudioCapturer* capturerToRelease = nullptr;
        {
@@ -372,14 +394,23 @@ C/C++开发建议搭配[OH_AudioStreamBuilderStruct](../../reference/apis-audio-
            capturerToRelease = g_playbackCaptureCapturer;
            g_playbackCaptureCapturer = nullptr;
        }
+
+       std::stringstream ss;
        if (capturerToRelease == nullptr) {
-           return;
+           ss << "当前没有正在运行或等待授权的音频内录流\n";
+           ss << "最后状态: " << PlaybackCaptureStateToText(g_playbackCaptureStartState.load());
+           return CreateStringResult(env, ss.str());
        }
 
-       OH_AudioCapturer_Stop(capturerToRelease);
-       OH_AudioCapturer_Release(capturerToRelease);
+       OH_AudioStream_Result stopResult = OH_AudioCapturer_Stop(capturerToRelease);
+       OH_AudioStream_Result releaseResult = OH_AudioCapturer_Release(capturerToRelease);
+       ss << "停止音频内录完成\n";
+       ss << "OH_AudioCapturer_Stop 返回值: " << stopResult << "\n";
+       ss << "OH_AudioCapturer_Release 返回值: " << releaseResult << "\n";
+       ss << "本次读取字节数: " << g_playbackCaptureReadBytes.load();
        g_playbackCaptureStartState.store(-1);
        g_playbackCaptureReadBytes.store(0);
+       return CreateStringResult(env, ss.str());
    }
    ```
 

@@ -41,5 +41,5 @@
 
 | 接口类型 | 开放版本 | 适用场景 | 开发指导 |
 | -------- | ------------ | -------- | -------- |
-| AudioCapturer或OH_AudioCapturer | API版本26.0.0 | 仅需要录制系统音频，或需要将PCM数据接入自定义编码、算法和传输链路，例如直播推流、在线会议、听歌识曲和音频分析。 | [实现录制系统音频](implement-system-audio-recording.md) |
+| AudioCapturer或native_audiocapturer.h | API版本26.0.0 | 仅需要录制系统音频，或需要将PCM数据接入自定义编码、算法和传输链路，例如直播推流、在线会议、听歌识曲和音频分析。 | [实现录制系统音频](implement-system-audio-recording.md) |
 | AVScreenCapture录屏基础流程 | API版本10 | 需要同时录制屏幕视频和系统音频，例如屏幕录制、制作教学视频和游戏录像。 | [AVScreenCapture录屏基础流程](../media/avscreencapture-c-basic-process.md) |
