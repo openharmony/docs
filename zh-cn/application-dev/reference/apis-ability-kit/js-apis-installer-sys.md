@@ -437,7 +437,7 @@ uninstall(bundleName: string, installParam: InstallParam, callback: AsyncCallbac
 | 参数名      | 类型                                                 | 必填 | 说明                                           |
 | ---------- | ---------------------------------------------------- | ---- | ---------------------------------------------- |
 | bundleName | string                                               | 是   | 待卸载应用的包名。                                           |
-| installParam      | [InstallParam](#installparam)                        | 是   | 指定安装所需的其他参数。                       |
+| installParam      | [InstallParam](#installparam)                        | 是   | 指定卸载所需的其他参数。                       |
 | callback | AsyncCallback&lt;void&gt; | 是 | [AsyncCallback](../apis-basic-services-kit/js-apis-base.md#asynccallback)，卸载应用成功，err为undefined，否则为错误对象。 |
 
 **错误码：**
@@ -566,7 +566,7 @@ uninstall(bundleName: string, installParam?: InstallParam) : Promise\<void\>
 | 参数名       | 类型                          | 必填 | 说明                                                         |
 | ------------ | ----------------------------- | ---- | ------------------------------------------------------------ |
 | bundleName | string                          | 是   | 待卸载应用的包名。                                           |
-| installParam | [InstallParam](#installparam) | 否   | 指定安装所需的其他参数，默认值：参照[InstallParam](#installparam)的默认值。                                     |
+| installParam | [InstallParam](#installparam) | 否   | 指定卸载所需的其他参数，默认值：参照[InstallParam](#installparam)的默认值。                                     |
 
 **返回值：**
 
@@ -639,7 +639,7 @@ recover(bundleName: string, installParam: InstallParam, callback: AsyncCallback&
 | 参数名      | 类型                                                 | 必填 | 说明                                           |
 | ---------- | ---------------------------------------------------- | ---- | ---------------------------------------------- |
 | bundleName | string                                               | 是   | 待恢复应用的包名。                                           |
-| installParam      | [InstallParam](#installparam)                        | 是   | 指定安装所需的其他参数。                       |
+| installParam      | [InstallParam](#installparam)                        | 是   | 指定恢复所需的其他参数。                       |
 | callback | AsyncCallback&lt;void&gt; | 是 | [AsyncCallback](../apis-basic-services-kit/js-apis-base.md#asynccallback)，回滚应用成功，err为undefined，否则为错误对象。 |
 
 **错误码：**
@@ -762,8 +762,8 @@ recover(bundleName: string, installParam?: InstallParam) : Promise\<void\>
 
 | 参数名       | 类型                          | 必填 | 说明                                                         |
 | ------------ | ----------------------------- | ---- | ------------------------------------------------------------ |
-| bundleName | string                          | 是   | 待卸载应用的包名。                                           |
-| installParam | [InstallParam](#installparam) | 否   | 指定安装所需的其他参数，默认值：参照[InstallParam](#installparam)的默认值。                                     |
+| bundleName | string                          | 是   | 待恢复应用的包名。                                           |
+| installParam | [InstallParam](#installparam) | 否   | 指定恢复所需的其他参数，默认值：参照[InstallParam](#installparam)的默认值。                                     |
 
 **返回值：**
 
@@ -955,7 +955,7 @@ addExtResource(bundleName: string, filePaths: Array\<string>): Promise\<void>;
 
 | 参数名         | 类型                                | 必填 | 说明                         |
 | -------------- | ----------------------------------- | ---- | ---------------------------- |
-| bundleName | string | 是   | 要添加扩展资源的应用名称。 |
+| bundleName | string | 是   | 要添加扩展资源的应用包名。 |
 | filePaths | Array\<string> | 是   | 要添加扩展资源的资源路径。 |
 
 **返回值：**
@@ -1016,7 +1016,7 @@ removeExtResource(bundleName: string, moduleNames: Array\<string>): Promise\<voi
 
 | 参数名         | 类型                                | 必填 | 说明                         |
 | -------------- | ----------------------------------- | ---- | ---------------------------- |
-| bundleName | string | 是   | 要删除扩展资源的应用名称。 |
+| bundleName | string | 是   | 要删除扩展资源的应用包名。 |
 | moduleNames | Array\<string> | 是   | 要删除扩展资源的moduleNames。 |
 
 **返回值：**
@@ -1078,8 +1078,8 @@ updateBundleForSelf(hapFilePaths: Array\<string\>, installParam: InstallParam, c
 | 参数名           | 类型                                                 | 必填 | 说明                                                         |
 | --------------- | ---------------------------------------------------- | ---- | ------------------------------------------------------------ |
 | hapFilePaths | Array&lt;string&gt;                                  | 是   | 存储应用程序包的路径。路径应该是当前应用程序中存放HAP的数据目录。当传入的路径是一个目录时， 该目录下只能放同一个应用的HAP，且这些HAP的签名需要保持一致。 |
-| installParam           | [InstallParam](#installparam)                        | 是   | 指定安装所需的其他参数。                                     |
-| callback | AsyncCallback&lt;void&gt; | 是 | [AsyncCallback](../apis-basic-services-kit/js-apis-base.md#asynccallback)，安装应用成功，err为undefined，否则为错误对象。 |
+| installParam           | [InstallParam](#installparam)                        | 是   | 指定更新所需的其他参数。                                     |
+| callback | AsyncCallback&lt;void&gt; | 是 | [AsyncCallback](../apis-basic-services-kit/js-apis-base.md#asynccallback)，更新应用成功，err为undefined，否则为错误对象。 |
 
 **错误码：**
 
@@ -1157,7 +1157,7 @@ updateBundleForSelf(hapFilePaths: Array\<string\>, callback: AsyncCallback\<void
 | 参数名           | 类型                                                 | 必填 | 说明                                                         |
 | --------------- | ---------------------------------------------------- | ---- | ------------------------------------------------------------ |
 | hapFilePaths | Array&lt;string&gt;                                  | 是   | 存储应用程序包的路径。路径应该是当前应用程序中存放HAP的数据目录。当传入的路径是一个目录时， 该目录下只能放同一个应用的HAP，且这些HAP的签名需要保持一致。 |
-| callback | AsyncCallback&lt;void&gt; | 是 | [AsyncCallback](../apis-basic-services-kit/js-apis-base.md#asynccallback)，安装应用成功，err为undefined，否则为错误对象。 |
+| callback | AsyncCallback&lt;void&gt; | 是 | [AsyncCallback](../apis-basic-services-kit/js-apis-base.md#asynccallback)，更新应用成功，err为undefined，否则为错误对象。 |
 
 **错误码：**
 
@@ -1229,7 +1229,7 @@ updateBundleForSelf(hapFilePaths: Array\<string\>, installParam?: InstallParam):
 | 参数名           | 类型                                                 | 必填 | 说明                                                         |
 | --------------- | ---------------------------------------------------- | ---- | ------------------------------------------------------------ |
 | hapFilePaths | Array&lt;string&gt;                                  | 是   | 存储应用程序包的路径。路径应该是当前应用程序中存放HAP的数据目录。当传入的路径是一个目录时， 该目录下只能放同一个应用的HAP，且这些HAP的签名需要保持一致。 |
-| installParam | [InstallParam](#installparam) | 否   | 指定安装所需的其他参数，默认值：参照[InstallParam](#installparam)的默认值。                                     |
+| installParam | [InstallParam](#installparam) | 否   | 指定更新所需的其他参数，默认值：参照[InstallParam](#installparam)的默认值。                                     |
 
 **返回值：**
 
@@ -1382,7 +1382,7 @@ createAppClone(bundleName: string, createAppCloneParam?: CreateAppCloneParam): P
 | 参数名        | 类型                          | 必填 | 说明                                                          |
 | ------------ | ----------------------------- | ---- | ------------------------------------------------------------ |
 | bundleName   | string                        | 是   | 待创建应用分身的包名。                                         |
-| createAppCloneParam  | [createAppCloneParam](#createappcloneparam12)   | 否   | 指定创建应用分身所需的其他参数，默认值：参照[createAppCloneParam](#createappcloneparam12)的默认值。   |
+| createAppCloneParam  | [CreateAppCloneParam](#createappcloneparam12)   | 否   | 指定创建应用分身所需的其他参数，默认值：参照[CreateAppCloneParam](#createappcloneparam12)的默认值。   |
 
 **返回值：**
 

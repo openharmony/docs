@@ -332,7 +332,7 @@ SystemCapability.BundleManager.BundleFramework
 | ----------- | ------------- | ---- |---------------------------------------------------------------------|
 | bundleName  | string        | 是    | 要查询的应用Bundle名称。                                                 |
 | bundleFlags | number        | 是    | 用于指定返回的应用信息对象中包含信息的标记。取值范围：参考[BundleFlag](#bundleflagdeprecated)说明中包信息相关flag。 |
-| options     | [BundleOptions](#bundleoptionsdeprecated) | 否    | 包含userid的查询选项。                                                      |
+| options     | [BundleOptions](#bundleoptionsdeprecated) | 否    | 包含userId的查询选项。                                                      |
 
 **返回值：**
 
@@ -431,7 +431,7 @@ SystemCapability.BundleManager.BundleFramework
 | ----------- | ---------------------------------------------------------- | ---- | ------------------------------------------------------------ |
 | bundleName  | string                                                     | 是   | 要查询的应用Bundle名称。                                     |
 | bundleFlags | number                                                     | 是   | 用于指定返回的应用信息对象中包含信息的标记。取值范围：参考[BundleFlag](#bundleflagdeprecated)说明中包信息相关flag。 |
-| options     | [BundleOptions](#bundleoptionsdeprecated)                            | 是   | 包含userid。                                                 |
+| options     | [BundleOptions](#bundleoptionsdeprecated)                            | 是   | 包含userId。                                                 |
 | callback    | AsyncCallback\<[BundleInfo](js-apis-bundle-BundleInfo.md)> | 是   | 程序启动作为入参的回调函数，返回包信息。                     |
 
 **示例：**
@@ -764,7 +764,7 @@ bundle.getAbilityInfo(bundleName, abilityName, (err, data) => {
 })
 ```
 
-## bundle.getAbilityLabel<sup>8+</sup> <sup>deprecated<sup>
+## bundle.getAbilityLabel<sup>deprecated<sup>
 
 getAbilityLabel(bundleName: string, abilityName: string): Promise\<string>
 
@@ -814,7 +814,7 @@ bundle.getAbilityLabel(bundleName, abilityName)
   })
 ```
 
-## bundle.getAbilityLabel<sup>8+</sup> <sup>deprecated<sup>
+## bundle.getAbilityLabel<sup>deprecated<sup>
 
 getAbilityLabel(bundleName: string, abilityName: string, callback : AsyncCallback\<string>): void
 
@@ -859,7 +859,7 @@ bundle.getAbilityLabel(bundleName, abilityName, (err, data) => {
 })
 ```
 
-## bundle.isAbilityEnabled<sup>8+</sup> <sup>deprecated<sup>
+## bundle.isAbilityEnabled<sup>deprecated<sup>
 
 isAbilityEnabled(info: AbilityInfo): Promise\<boolean>
 
@@ -903,7 +903,7 @@ bundle.getAbilityInfo(bundleName, abilityName).then((abilityInfo) => {
 })
 ```
 
-## bundle.isAbilityEnabled<sup>8+</sup> <sup>deprecated<sup>
+## bundle.isAbilityEnabled<sup>deprecated<sup>
 
 isAbilityEnabled(info : AbilityInfo, callback : AsyncCallback\<boolean>): void
 
@@ -943,7 +943,7 @@ bundle.getAbilityInfo(bundleName, abilityName).then((abilityInfo) => {
 })
 ```
 
-## bundle.isApplicationEnabled<sup>8+</sup> <sup>deprecated<sup>
+## bundle.isApplicationEnabled<sup>deprecated<sup>
 
 isApplicationEnabled(bundleName: string): Promise\<boolean>
 
@@ -985,7 +985,7 @@ bundle.isApplicationEnabled(bundleName)
   })
 ```
 
-## bundle.isApplicationEnabled<sup>8+</sup> <sup>deprecated<sup>
+## bundle.isApplicationEnabled<sup>deprecated<sup>
 
 isApplicationEnabled(bundleName: string, callback : AsyncCallback\<boolean>): void
 
@@ -1047,7 +1047,7 @@ SystemCapability.BundleManager.BundleFramework
 | 参数名         | 类型     | 必填   | 说明                                    |
 | ----------- | ------ | ---- | ------------------------------------- |
 | want        | [Want](js-apis-application-want.md)   | 是    | 包含要查询的应用Bundle名称的意图。                  |
-| bundleFlags | number | 是    | 用于指定返回abilityInfo信息。取值范围：参考[BundleFlag](#bundleflagdeprecated)说明中Ability信息相关flag。 |
+| bundleFlags | number | 是    | 用于指定返回AbilityInfo信息。取值范围：参考[BundleFlag](#bundleflagdeprecated)说明中Ability信息相关flag。 |
 | userId      | number | 否    | 用户ID。默认值：调用方所在用户，取值范围：大于等于0。           |
 
 **返回值：**
@@ -1105,7 +1105,7 @@ SystemCapability.BundleManager.BundleFramework
 | 参数名      | 类型                                                         | 必填 | 说明                                                         |
 | ----------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | want        | [Want](js-apis-application-want.md)                          | 是   | 指示包含要查询的应用Bundle名称的意图。                       |
-| bundleFlags | number                                                       | 是   | 用于指定返回abilityInfo信息。取值范围：参考[BundleFlag](#bundleflagdeprecated)说明中Ability信息相关flag。 |
+| bundleFlags | number                                                       | 是   | 用于指定返回AbilityInfo信息。取值范围：参考[BundleFlag](#bundleflagdeprecated)说明中Ability信息相关flag。 |
 | userId      | number                                                       | 是   | 用户ID。取值范围：大于等于0。                                |
 | callback    | AsyncCallback<Array\<[AbilityInfo](js-apis-bundle-AbilityInfo.md)>> | 是   | 程序启动作为入参的回调函数，返回Ability信息。                |
 
@@ -1156,7 +1156,7 @@ SystemCapability.BundleManager.BundleFramework
 | 参数名      | 类型                                                         | 必填 | 说明                                                         |
 | ----------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | want        | [Want](js-apis-application-want.md)                          | 是   | 指示包含要查询的应用Bundle名称的意图。                       |
-| bundleFlags | number                                                       | 是   | 用于指定返回abilityInfo信息。取值范围：参考[BundleFlag](#bundleflagdeprecated)说明中Ability信息相关flag。 |
+| bundleFlags | number                                                       | 是   | 用于指定返回AbilityInfo信息。取值范围：参考[BundleFlag](#bundleflagdeprecated)说明中Ability信息相关flag。 |
 | callback    | AsyncCallback<Array\<[AbilityInfo](js-apis-bundle-AbilityInfo.md)>> | 是   | 程序启动作为入参的回调函数，返回Ability信息。                |
 
 **示例：**
@@ -1269,7 +1269,7 @@ bundle.getLaunchWantForBundle(bundleName, (err, data) => {
 ```
 
 
-## bundle.getNameForUid<sup>8+</sup> <sup>deprecated<sup>
+## bundle.getNameForUid<sup>deprecated<sup>
 
 getNameForUid(uid: number): Promise\<string>
 
@@ -1310,7 +1310,7 @@ bundle.getNameForUid(uid)
   })
 ```
 
-## bundle.getNameForUid<sup>8+</sup> <sup>deprecated<sup>
+## bundle.getNameForUid<sup>deprecated<sup>
 
 getNameForUid(uid: number, callback: AsyncCallback\<string>) : void
 
@@ -1348,7 +1348,7 @@ bundle.getNameForUid(uid, (err, data) => {
 ```
 
 
-## bundle.getAbilityIcon<sup>8+</sup> <sup>deprecated<sup>
+## bundle.getAbilityIcon<sup>deprecated<sup>
 
 getAbilityIcon(bundleName: string, abilityName: string): Promise\<image.PixelMap>
 
@@ -1397,7 +1397,7 @@ bundle.getAbilityIcon(bundleName, abilityName)
   })
 ```
 
-## bundle.getAbilityIcon<sup>8+</sup> <sup>deprecated<sup>
+## bundle.getAbilityIcon <sup>deprecated<sup>
 
 getAbilityIcon(bundleName: string, abilityName: string, callback: AsyncCallback\<image.PixelMap>): void
 
