@@ -97,7 +97,7 @@ class MutableBuilder\<Args extends Object[]\> extends WrappedBuilder\<Args\> { }
 
 ## BuilderCallback
 
-type BuilderCallback<Args extends Object[] = any[]> = (...args: Args) => void
+type BuilderCallback\<Args extends Object[] = any[]\> = (...args: Args) => void
 
 `BuilderCallback`是全局`@Builder`函数的类型别名，作为`mutableBuilder`函数的入参类型，用于指定待封装的全局`@Builder`函数。
 
