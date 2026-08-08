@@ -525,13 +525,13 @@ console.info("toString " + urlObj.toString()); // toString http://testhost/direc
 
 ### constructor<sup>(deprecated)</sup>
 
-> **说明：**
->
-> 从API version 7开始支持，从API version 9开始废弃，建议使用[parseURL<sup>9+</sup>](#parseurl9)替代。
-
 constructor(url: string, base?: string | URL)
 
 URL的构造函数。与[parseURL](#parseurl9)方法功能相同，但parseURL为静态工厂方法，推荐使用parseURL来创建URL对象。
+
+> **说明：**
+>
+> 从API version 7开始支持，从API version 9开始废弃，建议使用[parseURL<sup>9+</sup>](#parseurl9)替代。
 
 **系统能力：** SystemCapability.Utils.Lang
 
