@@ -1,29 +1,26 @@
 # rawheap-translator工具
 <!--Kit: ArkTS-->
 <!--Subsystem: ArkCompiler-->
-<!--Owner: @wanghuan2025-->
-<!--Designer: @wanghuan2025-->
+<!--Owner: @wanghuan2022-->
+<!--Designer: @wanghuan2022-->
 <!--Tester: @kirl75; @zsw_zhushiwei-->
 <!--Adviser: @k1ngqaquuu-->
 
 ## 使用场景
 
-为方便开发者定位问题，应用在ArkTS内存OOM（Out of Memory）时会自动进行HeapDump。此操作会将虚拟机当前堆上的所有对象信息保存在后缀为.rawheap的二进制文件中。开发者可使用rawheap_translator工具解析.rawheap文件，生成.heapsnapshot文件。该文件可通过DevEco Studio的[Heap Snapshot离线导入](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides/ide-snapshot-basic-operations#section6760173514388)或Chrome浏览器的开发者工具中的内存工具导入并查看。
+为方便开发者定位问题，应用在ArkTS内存OOM（Out of Memory）时会自动进行HeapDump。此操作会将虚拟机当前堆上的所有对象信息保存在后缀为.rawheap的二进制文件中。此外，使用接口[hidebug.dumpJsRawHeapData](https://developer.huawei.com/consumer/cn/doc/harmonyos-references/js-apis-hidebug#hidebugdumpjsrawheapdata18)能获取当前线程的rawheap文件，或使用命令行[hidumper --mem-jsheap pid [-T tid] --raw](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides/hidumper#查询虚拟机堆内存)能主动获取指定进程或指定JS线程的rawheap文件。开发者可使用rawheap_translator工具解析.rawheap文件，生成.heapsnapshot文件。该文件可通过DevEco Studio的[Heap Snapshot离线导入](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides/ide-snapshot-basic-operations#section6760173514388)或Chrome浏览器的开发者工具中的内存工具导入并查看。
 
 ## 使用指导
 
 ### 工具获取
 
-此工具支持OHOS、Windows、Linux和MacOS平台，获取方法如下：
+此工具支持Windows、Linux和MacOS平台，获取方法如下：
 
-- 设备内获取：/bin/rawheap_translator，仅适用于OHOS设备。
 - SDK中获取：sdk/default/openharmony/toolchains/rawheap_translator，适用于各平台。
 
 ### 环境配置
 
-对于OHOS平台，由于其已在系统路径下内置了rawheap_translator工具，因此可以在终端中直接使用此工具。
-
-对于非OHOS平台，建议将从SDK中获取的rawheap_translator工具放置在稳定的路径下，并将该路径配置为系统环境变量。这样可以在终端中直接使用工具，无需每次指定路径。
+建议将从SDK中获取的rawheap_translator工具放置在稳定的路径下，并将该路径配置为系统环境变量。这样可以在终端中直接使用工具，无需每次指定路径。
 
 在不同系统中，环境变量的配置方法存在差异。以下提供一些配置示例，供开发者参考。
 
@@ -73,19 +70,13 @@ rawheap_translator [rawheap_file] [heapsnapshot_file]
 | 选项 | 必选 | 描述 |
 | -------- | --- | ----------------- |
 | [rawheap_file] | 是 | 需要解析的应用OOM时生成的.rawheap文件路径。 |
-| [heapsnapshot_file] | 否 | 解析生成的heapsnapshot文件路径，路径必须具有读写权限。<br>参数缺省时，默认为当前执行命令的路径。<br>参数给定时，文件的后缀名必须是heapsnapshot。|
+| [heapsnapshot_file] | 否 | 解析生成的heapsnapshot文件路径，路径必须具有读写权限。<br>参数缺省时，默认为当前执行命令的路径，生成文件名为hprof_yyyy-MM-dd-HH-mm-ss.heapsnapshot，其中yyyy-MM-dd-HH-mm-ss为当前解析文件的时间。<br>参数给定时，文件的后缀名必须是heapsnapshot。|
 
 ## 解析命令示例
 
 ### 解析示例
 
 
-OHOS设备中解析示例
-
-OHOS设备内工具路径：/bin/rawheap_translator，推荐指定生成heapsnapshot文件路径为/data/local/tmp，其他路径可能面临没有写权限问题。
-```bash
-> /bin/rawheap_translator /data/log/reliability/resource_leak/memory_leak/memleak-js-com.example.myapplication-7979-7979-20241215191332.rawheap /data/local/tmp/myapplication-7979-7979.heapsnapshot
-```
 Windows系统中解析示例
 
 打开cmd并进入rawheap文件路径，调用解析工具命令，指定在当前路径下生成heapsnapshot文件。
@@ -96,13 +87,13 @@ Linux系统中解析示例
 
 进入rawheap文件路径，调用解析工具命令，指定在当前路径下生成heapsnapshot文件。
 ```bash
-> ./rawheap_translator memory_leak/memleak-js-com.example.myapplication-7979-7979-20241215191332.rawheap myapplication-7979-7979.heapsnapshot
+> rawheap_translator memleak-js-com.example.myapplication-7979-7979-20241215191332.rawheap myapplication-7979-7979.heapsnapshot
 ```
 MacOS系统中解析示例
 
 打开终端并进入rawheap文件路径，调用解析工具命令，指定在当前路径下生成heapsnapshot文件。
 ```bash
-> rawheap_translator memory_leak/memleak-js-com.example.myapplication-7979-7979-20241215191332.rawheap myapplication-7979-7979.heapsnapshot
+> rawheap_translator memleak-js-com.example.myapplication-7979-7979-20241215191332.rawheap myapplication-7979-7979.heapsnapshot
 ```
 参考输出
 ```bash
