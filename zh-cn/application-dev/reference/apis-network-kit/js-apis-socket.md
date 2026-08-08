@@ -5518,7 +5518,7 @@ import { common } from '@kit.AbilityKit';
 let server: socket.LocalSocketServer = socket.constructLocalSocketServerInstance();
 let context: common.UIAbilityContext = this.getUIContext().getHostContext() as common.UIAbilityContext;
 let sandboxPath: string = context.filesDir + '/testSocket';
-let listenAddr: socket.NetAddress = {
+let listenAddr: socket.LocalAddress = {
   address: sandboxPath
 }
 server.listen(listenAddr).then(() => {
@@ -5579,7 +5579,7 @@ import { common } from '@kit.AbilityKit';
 let server: socket.LocalSocketServer = socket.constructLocalSocketServerInstance();
 let context: common.UIAbilityContext = this.getUIContext().getHostContext() as common.UIAbilityContext;
 let sandboxPath: string = context.filesDir + '/testSocket';
-let listenAddr: socket.LocalAddress = {
+let listenAddr: socket.NetAddress = {
   address: sandboxPath
 }
 server.listen(listenAddr).then(() => {
