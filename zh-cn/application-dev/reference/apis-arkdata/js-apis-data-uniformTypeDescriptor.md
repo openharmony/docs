@@ -86,7 +86,7 @@ import { uniformTypeDescriptor } from '@kit.ArkData';
 | EFX_FAX<sup>12+</sup>                         | 'com.js.efx-fax'                    | 电子传真文件类型，归属类型为FAX。       |
 | XBITMAP_IMAGE<sup>12+</sup>                         | 'general.xbitmap-image'                    | X Window系统（X11）中使用的位图图像格式，归属类型为IMAGE。       |
 | GIF<sup>12+</sup>                         | 'general.gif'                    | GIF图像类型，归属类型为IMAGE。       |
-| TGA_IMAGE<sup>12+</sup>                         | 'com.truevision.tga-image'                    | 标签图形（Truevision Graphics Adapter）图像格式，归属类型为IMAGE。       |
+| TGA_IMAGE<sup>12+</sup>                         | 'com.truevision.tga-image'                    | Truevision Graphics Adapter图像文件格式，归属类型为IMAGE。       |
 | SGI_IMAGE<sup>12+</sup>                         | 'com.sgi.sgi-image'                    | 硅图（Silicon Graphics）图像类型，归属类型为IMAGE。       |
 | OPENEXR_IMAGE<sup>12+</sup>                         | 'com.ilm.openexr-image'                    | 开放标准的高动态范围图像格式类型，归属类型为IMAGE。       |
 | FLASHPIX_IMAGE<sup>12+</sup>                         | 'com.kodak.flashpix.image'                    | FlashPix 图像文件类型，归属类型为IMAGE。       |

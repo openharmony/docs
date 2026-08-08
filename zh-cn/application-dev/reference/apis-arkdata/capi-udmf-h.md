@@ -477,7 +477,7 @@ typedef OH_UdmfData* (*OH_Udmf_DataLoadHandler)(OH_UdmfDataLoadInfo* acceptableI
 
 | 类型 | 说明 |
 | -- | -- |
-| [OH_UdmfData](capi-udmf-oh-udmfdata.md)* (*OH_Udmf_DataLoadHandler) | 返回待加载的数据。 |
+| [OH_UdmfData](capi-udmf-oh-udmfdata.md)* | 返回待加载的数据。 |
 
 ### OH_UdmfOptions_GetVisibility()
 
@@ -782,7 +782,7 @@ typedef void* (*OH_UdmfRecordProvider_GetData)(void* context, const char* type)
 
 | 类型 | 说明 |
 | -- | -- |
-| void* | 需要返回一个标准化数据。 |
+| void* | 返回从上下文中获取的指定类型的数据指针。 |
 
 ### OH_UdmfRecordProvider_SetData()
 
@@ -2037,7 +2037,7 @@ int OH_Udmf_SetUnifiedDataByOptions(OH_UdmfOptions* options, OH_UdmfData *unifie
 
 **描述**
 
-向统一数据管理框架数据库中写入统一数据对象[OH_UdmfData](capi-udmf-oh-udmfdata.md)数据。
+从统一数据管理框架数据库中写入统一数据对象[OH_UdmfData](capi-udmf-oh-udmfdata.md)数据。
 
 **起始版本：** 20
 
@@ -2047,8 +2047,8 @@ int OH_Udmf_SetUnifiedDataByOptions(OH_UdmfOptions* options, OH_UdmfData *unifie
 | 参数项 | 描述 |
 | -- | -- |
 | [OH_UdmfOptions](capi-udmf-oh-udmfoptions.md)* options | 指向数据操作选项[OH_UdmfOptions](capi-udmf-oh-udmfoptions.md)实例的指针。 |
-| [OH_UdmfData](capi-udmf-oh-udmfdata.md) *unifiedData | 指向统一数据对象[OH_UdmfData](capi-udmf-oh-udmfdata.md)实例的指针。 |
-| char *key | 成功将数据设置到数据库后对应数据的唯一标识符，内存大小不小于[UDMF_KEY_BUFFER_LEN](#宏定义)。 |
+| [OH_UdmfData](capi-udmf-oh-udmfdata.md)* unifiedData | 指向统一数据对象[OH_UdmfData](capi-udmf-oh-udmfdata.md)实例的指针。 |
+| char* key | 成功将数据设置到数据库后对应数据的唯一标识符，内存大小不小于[UDMF_KEY_BUFFER_LEN](#宏定义)。 |
 | unsigned int keyLen | 唯一标识符参数的空间大小。 |
 
 **返回：**

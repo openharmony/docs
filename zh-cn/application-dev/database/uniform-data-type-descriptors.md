@@ -303,7 +303,7 @@ utd.json5文件需要在类型为entry的HAP中配置。
     ```
 
 2. 针对“text/plain”MIMEType，使用getUniformDataTypesByMIMEType()方法获取对应UTD数据类型。
-3. 针对UTD数据类型，使用getTypeDescriptor()方法查询对应的MIMEType列表。
+3. 根据UTD数据类型，使用getTypeDescriptor()方法查询对应的文件后缀列表。
 
     <!-- @[get_filename_extension_by_mimeType](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkData/Udmf/UniformDataTypeDescriptors/entry/src/main/ets/pages/Index.ets) -->
     

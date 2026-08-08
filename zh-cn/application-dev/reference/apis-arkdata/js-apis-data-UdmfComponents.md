@@ -57,7 +57,7 @@ ContentFormCard({contentFormData: uniformDataStruct.ContentForm, formType: FormT
 |-------------|---|-------------------|
 | TYPE_BIG | 0 | 表示 4 x 4 的尺寸。默认卡片宽度为200vp，默认高度为200vp。 |
 | TYPE_MID | 1 | 表示 4 x 2 的尺寸。默认卡片宽度为200vp，默认高度为100vp。 |
-| TYPE_SMALL | 2 | 表示 2 x 1 的尺寸。默认卡片宽度为137vp， 默认高度为83vp。 |
+| TYPE_SMALL | 2 | 表示 2 x 1 的尺寸。默认卡片宽度为137vp，默认高度为83vp。 |
 
 ## 示例
 
