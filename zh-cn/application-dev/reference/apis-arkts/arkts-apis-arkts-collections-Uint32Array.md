@@ -1448,7 +1448,6 @@ for (const value of iterator) {
 | 错误码ID | 错误信息                                    |
 | -------- | ------------------------------------------- |
 | 10200011 | The Symbol.iterator method cannot be bound. |
-| 10200201 | Concurrent modification error.              |
 
 **示例：**
 
