@@ -28,10 +28,10 @@ import { screenshot } from '@kit.ArkUI';
 
 | 名称 | 类型   | 只读 | 可选 | 说明                                                         |
 | ------ | ------ | ---- | ----  | ------------------------------------------------------------ |
-| left   | number | 否   | 否    | 表示截取图像区域的左边界，单位为px，该参数应为整数。 |
-| top    | number | 否   | 否    | 表示截取图像区域的上边界，单位为px，该参数应为整数。 |
-| width  | number | 否   | 否    | 表示截取图像区域的宽度，单位为px，该参数应为整数。 |
-| height | number | 否   | 否    | 表示截取图像区域的高度，单位为px，该参数应为整数。 |
+| left   | number | 否   | 否    | 表示截取图像区域的左边界，单位为px，该参数应为非负整数。 |
+| top    | number | 否   | 否    | 表示截取图像区域的上边界，单位为px，该参数应为非负整数。 |
+| width  | number | 否   | 否    | 表示截取图像区域的宽度，单位为px，该参数应为正整数。 |
+| height | number | 否   | 否    | 表示截取图像区域的高度，单位为px，该参数应为正整数。 |
 
 ## CaptureOption<sup>14+</sup>
 
@@ -41,8 +41,8 @@ import { screenshot } from '@kit.ArkUI';
 
 | 名称 | 类型   | 只读 | 可选 | 说明                                                         |
 | ------ | ------ | ---- | ---- | ------------------------------------------------------------ |
-| displayId | number |  否   | 是 | 表示截取图像的显示设备[Display](js-apis-display.md#display)的ID号，默认为0，该参数应为大于或等于0的整数，非整数会报参数错误。<br>**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。 |
-| blackWindowIds<sup>21+</sup> | Array\<number>        | 否  | 是 | 表示截取图像时不显示的窗口ID列表，默认为空。窗口ID应为大于0的整数，目前仅[闪控球窗口](js-apis-floatingBall.md)生效，窗口ID为非闪控球窗口、非整数、小于等于0、或者不存在的窗口ID时报参数错误，错误码为401。推荐使用[getFloatingBallWindowInfo()](js-apis-floatingBall.md#getfloatingballwindowinfo)方法获取闪控球窗口ID属性。<br>**原子化服务API：** 从API version 21开始，该接口支持在原子化服务中使用。 |
+| displayId | number |  否   | 是 | 表示截取图像的显示设备[Display](js-apis-display.md#display)的ID号，默认为0，该参数应为大于或等于0的整数，非整数会报参数错误，错误码为[401](../errorcode-universal.md#401-参数检查失败)。<br>**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。 |
+| blackWindowIds<sup>21+</sup> | Array\<number>        | 否  | 是 | 表示截取图像时不显示的窗口ID列表，默认为空。窗口ID应为大于0的整数，目前仅[闪控球窗口](js-apis-floatingBall.md)生效，窗口ID为非闪控球窗口、非整数、小于等于0、或者不存在的窗口ID时报参数错误，错误码为[401](../errorcode-universal.md#401-参数检查失败)。推荐使用[getFloatingBallWindowInfo()](js-apis-floatingBall.md#getfloatingballwindowinfo)方法获取闪控球窗口ID属性。<br>**原子化服务API：** 从API version 21开始，该接口支持在原子化服务中使用。 |
 
 ## PickInfo
 
@@ -161,7 +161,7 @@ import { image } from '@kit.ImageKit';
 
 // 配置截图参数，指定截取displayId为0的屏幕
 let captureOption: screenshot.CaptureOption = {
-  "displayId": 0
+  displayId: 0
 };
 try {
   // 调用capture接口获取全屏截图

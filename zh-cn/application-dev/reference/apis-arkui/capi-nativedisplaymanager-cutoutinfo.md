@@ -27,7 +27,7 @@ typedef struct {...} NativeDisplayManager_CutoutInfo
 | 名称 | 描述 |
 | -- | -- |
 | int32_t boundingRectsLength | 挖孔屏、刘海屏等不可用屏幕区域的数量。 |
-| [NativeDisplayManager_Rect](capi-nativedisplaymanager-rect.md)* boundingRects | 挖孔屏、刘海屏等不可用区域的边界矩形。 |
+| [NativeDisplayManager_Rect](capi-nativedisplaymanager-rect.md)* boundingRects | 挖孔屏、刘海屏等不可用屏幕区域的边界矩形。 |
 | [NativeDisplayManager_WaterfallDisplayAreaRects](capi-nativedisplaymanager-waterfalldisplayarearects.md) waterfallDisplayAreaRects | 瀑布屏曲面部分显示区域。 |
 
 
