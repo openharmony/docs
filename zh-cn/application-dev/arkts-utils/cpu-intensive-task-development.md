@@ -90,7 +90,7 @@ struct Index {
 
 ## 使用Worker进行长时间数据分析
 
-本文通过某地区提供的房价数据训练一个简易的房价预测模型，该模型支持通过输入房屋面积和房间数量去预测该区域的房价，模型需要长时间运行，房价预测需要使用前面的模型运行结果，因此需要使用Worker。
+本文通过某手机应用历史版本所占储存空间大小的数据训练一个简易的预测模型，该模型支持通过输入手机应用版本号去预测该应用占储存空间的大小，模型需要长时间运行，预测需要使用前面的模型运行结果，因此需要使用Worker。
 
 1. DevEco Studio提供了Worker创建的模板，创建一个Worker线程，例如命名为“MyWorker”。
 
@@ -132,7 +132,7 @@ struct Index {
 
     例如，在Worker线程中定义预测模型及其训练过程，并与宿主线程进行信息交互。
 
-    <!-- @[interact_main_thread](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/ArkTsConcurrent/ApplicationMultithreadingDevelopment/ApplicationMultithreading/entry/src/main/ets/workers/MyWorker1.ts) -->
+    <!-- @[interact_main_thread](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/ArkTsConcurrent/ApplicationMultithreadingDevelopment/ApplicationMultithreading/entry/src/main/ets/workers/MyWorker1.ets) -->
     
     ``` TypeScript
     import { worker, ThreadWorkerGlobalScope, MessageEvents, ErrorEvent } from '@kit.ArkTS';
