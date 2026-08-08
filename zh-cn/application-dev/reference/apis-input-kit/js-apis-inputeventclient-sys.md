@@ -489,4 +489,4 @@ struct Index {
 
 | 名称        | 类型   | 只读   | 可选   | 说明      |
 | --------- | ------ | ---- | ---- | ------- |
-| keyEvent       | [KeyEvent](#keyevent) | 否    |  否 | 按键注入描述信息。   |
+| KeyEvent       | [KeyEvent](#keyevent) | 否    |  否 | 按键注入描述信息。   |

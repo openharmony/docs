@@ -16,7 +16,7 @@
 ## 导入模块
 
 ```js
-import { Action,ToolType,SourceType,Touch,TouchEvent } from '@kit.InputKit';
+import { KeyAction,ToolType,SourceType,Touch,TouchEvent } from '@kit.InputKit';
 ```
 
 ## Action

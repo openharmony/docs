@@ -16,7 +16,7 @@
 ## 导入模块
 
 ```js
-import { Action, Button, Axis, AxisValue, MouseEvent } from '@kit.InputKit';
+import { MouseAction, Button, Axis, AxisValue, MouseToolType, MouseEvent } from '@kit.InputKit';
 ```
 
 ## Action
