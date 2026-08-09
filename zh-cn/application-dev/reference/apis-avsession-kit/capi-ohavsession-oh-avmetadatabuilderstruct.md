@@ -7,12 +7,12 @@
 <!--Adviser: @w_Machine_cc-->
 
 ```c
-typedef struct OH_AVMetadataBuilderStruct OH_AVMetadataBuilder
+typedef struct OH_AVMetadataBuilderStruct OH_AVMetadataBuilder;
 ```
 
 ## 概述
 
-会话元数据构造器。用于构造会话元数据。
+会话元数据构建器。用于构建会话元数据。
 
 **起始版本：** 13
 

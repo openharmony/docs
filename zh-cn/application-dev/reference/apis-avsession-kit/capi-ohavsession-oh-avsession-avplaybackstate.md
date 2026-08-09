@@ -7,7 +7,7 @@
 <!--Adviser: @w_Machine_cc-->
 
 ```c
-typedef struct OH_AVSession_AVPlaybackState OH_AVSession_AVPlaybackState
+typedef struct OH_AVSession_AVPlaybackState OH_AVSession_AVPlaybackState;
 ```
 
 ## 概述

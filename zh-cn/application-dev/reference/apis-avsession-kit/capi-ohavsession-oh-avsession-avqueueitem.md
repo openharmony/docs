@@ -7,7 +7,7 @@
 <!--Adviser: @w_Machine_cc-->
 
 ```c
-typedef struct {...} OH_AVSession_AVQueueItem
+typedef struct OH_AVSession_AVQueueItem {...} OH_AVSession_AVQueueItem;
 ```
 
 ## 概述

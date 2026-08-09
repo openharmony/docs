@@ -420,7 +420,7 @@ AVMetadata_Result OH_AVMetadataBuilder_SetSkipIntervals(OH_AVMetadataBuilder* bu
 | 参数项 | 描述 |
 | -- | -- |
 | [OH_AVMetadataBuilder](capi-ohavsession-oh-avmetadatabuilderstruct.md)* builder | 指向元数据构造器的实例。 |
-| [AVMetadata_SkipIntervals](capi-native-avsession-base-h.md#avmetadata_skipintervals) intervals | 跳转的时间间隔。 |
+| [AVMetadata_SkipIntervals](capi-native-avsession-base-h.md#avmetadata_skipintervals) intervals | 跳转的时间间隔，取值详见[AVMetadata_SkipIntervals](capi-native-avsession-base-h.md#avmetadata_skipintervals)。 |
 
 **返回：**
 
@@ -445,7 +445,7 @@ AVMetadata_Result OH_AVMetadataBuilder_SetDisplayTags(OH_AVMetadataBuilder* buil
 | 参数项 | 描述 |
 | -- | -- |
 | [OH_AVMetadataBuilder](capi-ohavsession-oh-avmetadatabuilderstruct.md)* builder | 指向元数据构造器的实例。 |
-| int32_t tags | 用于在播控中心显示的媒体资源金标类型。 |
+| int32_t tags | 用于在播控中心显示的媒体资源金标类型，取值参考[AVMetadata_DisplayTag](capi-native-avsession-base-h.md#avmetadata_displaytag)相关定义。 |
 
 **返回：**
 
@@ -495,7 +495,7 @@ AVMetadata_Result OH_AVMetadataBuilder_GenerateAVMetadata(OH_AVMetadataBuilder* 
 | 参数项 | 描述 |
 | -- | -- |
 | [OH_AVMetadataBuilder](capi-ohavsession-oh-avmetadatabuilderstruct.md)* builder | 指向元数据构造器的实例。 |
-| [OH_AVMetadata](capi-ohavsession-oh-avmetadatastruct.md)** avMetadata | 指向元数据的指针对象。 |
+| [OH_AVMetadata](capi-ohavsession-oh-avmetadatastruct.md)** avMetadata | 指向OH_AVMetadata的指针对象，用于接收生成的元数据对象。 |
 
 **返回：**
 
