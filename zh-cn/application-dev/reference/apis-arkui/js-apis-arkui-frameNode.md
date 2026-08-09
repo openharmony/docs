@@ -7786,7 +7786,7 @@ class MyNodeController extends NodeController {
     node.appendChild(col);
     // 创建marquee
     let marquee = typeNode.createNode(uiContext, 'Marquee');
-    marquee.initialize({ start: true, src: 'Marquee, if need display, src shall be long' });
+    marquee.initialize({ start: true, src: 'Marquee, if need display, src shall be long' })
       .width(100);
     col.appendChild(marquee);
     return node;
