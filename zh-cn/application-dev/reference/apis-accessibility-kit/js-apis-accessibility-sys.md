@@ -105,6 +105,7 @@ import { accessibility } from '@kit.AccessibilityKit';
 | TYPE_NOTIFICATION_UPDATE |70| 表示通知内容或状态发生更新。<br>**起始版本：** 26.0.0<br>**模型约束：** 此接口仅可在Stage模型下使用。 |
 | TYPE_FOCUS_INVISIBLE |71| 表示焦点变为不可见状态。<br>**起始版本：** 26.0.0<br>**模型约束：** 此接口仅可在Stage模型下使用。 |
 | TYPE_ONE_FINGER_DOUBLE_TAP |72| 表示单指双击的手势。<br>**起始版本：** 26.0.0<br>**模型约束：** 此接口仅可在Stage模型下使用。 |
+| TYPE_TOUCH_GUIDE_GESTURE |73| 表示触摸浏览手势事件。<br>**起始版本：** 26.0.0<br>**模型约束：** 此接口仅可在Stage模型下使用。 |
 
 ## AccessibilityAction
 
