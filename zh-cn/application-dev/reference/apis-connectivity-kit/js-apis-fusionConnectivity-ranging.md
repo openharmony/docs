@@ -9,7 +9,7 @@
 
 本模块基于星闪技术，为应用提供设备测距功能，主要功能特性包括：
 
-- 支持近场链路星闪[HADM](../../connectivity/fusion-connectivity/terminology.md#hadm)测距类型，实现高精度距离测量。
+- 支持近场链路星闪[HADM](../../connectivity/fusion-connectivity/fusion-connectivity-terminology.md#hadm)测距类型，实现高精度距离测量。
 - 支持主动测距模式，获取目标设备的距离、角度和信号强度信息。
 - 支持被动测距模式，设备可作为测距信标被其他设备发现和测量。
 - 支持测距状态变化订阅，实时监听设备测距开始、停止等状态通知。
@@ -61,7 +61,7 @@ getRangingCapability(): Promise&lt;RangingCapabilitySupported&gt;
 查询本端设备支持的测距能力，使用Promise异步回调。
 
 - 建议先使用[isRangingSupported](#rangingisrangingsupported)判断本端是否支持测距特性。仅在特性支持的情况下才能使用融合测距的功能。
-- 获取成功后，使用Promise异步返回测距类型是否支持。仅当[nearlinkHadm](#rangingcapabilitysupported)值为true，才可以使用[startRanging](#rangingstartranging)发起星闪[HADM](../../connectivity/fusion-connectivity/terminology.md#hadm)测距，或使用[startPassiveRanging](#rangingstartpassiveranging)启动被动测距。
+- 获取成功后，使用Promise异步返回测距类型是否支持。仅当[nearlinkHadm](#rangingcapabilitysupported)值为true，才可以使用[startRanging](#rangingstartranging)发起星闪[HADM](../../connectivity/fusion-connectivity/fusion-connectivity-terminology.md#hadm)测距，或使用[startPassiveRanging](#rangingstartpassiveranging)启动被动测距。
 
 **起始版本**：26.0.0
 
@@ -125,7 +125,7 @@ startRanging(params: RangingParams, callback: Callback&lt;RangingResult&gt;): vo
 > **说明：**
 >
 > - 使用测距接口前，需先通过[getRangingCapability](#ranginggetrangingcapability)确认设备支持对应的测距类型。
-> - 使用星闪[HADM](../../connectivity/fusion-connectivity/terminology.md#hadm)测距时，本端设备在发起主动测距后，无法使用被动测距模式。如需使用被动测距，需先调用[stopRanging](#rangingstopranging)停止主动测距。
+> - 使用星闪[HADM](../../connectivity/fusion-connectivity/fusion-connectivity-terminology.md#hadm)测距时，本端设备在发起主动测距后，无法使用被动测距模式。如需使用被动测距，需先调用[stopRanging](#rangingstopranging)停止主动测距。
 > - 对同一设备连续重复调用[startRanging](#rangingstartranging)会提示设备已初始化测距并返回错误码34900051。
 > - 如果启动测距时，对应类型的测距服务已下线，那么调用本接口时会抛出服务未使能错误码34900053。
 > - 接口入参需要按照要求填写，如果不符合要求接口会返回对应的错误码，详细要求见参数的定义。
@@ -261,7 +261,7 @@ startPassiveRanging(capabilityType: RangingTypes): Promise&lt;number&gt;
 > **说明：**
 >
 > - 使用测距接口前，需先通过[getRangingCapability](#ranginggetrangingcapability)确认设备支持对应的测距类型。
-> - 使用星闪[HADM](../../connectivity/fusion-connectivity/terminology.md#hadm)测距时，本端设备在发起被动测距后，无法使用主动测距模式。如需使用主动测距，需先调用[stopPassiveRanging](#rangingstoppassiveranging)停止被动测距。
+> - 使用星闪[HADM](../../connectivity/fusion-connectivity/fusion-connectivity-terminology.md#hadm)测距时，本端设备在发起被动测距后，无法使用主动测距模式。如需使用主动测距，需先调用[stopPassiveRanging](#rangingstoppassiveranging)停止被动测距。
 > - 同一测距能力类型仅支持单次调用[startPassiveRanging](#rangingstartpassiveranging)，成功后返回的handle对应独立的广播会话。
 > - 同一测距能力如果想再次调用[startPassiveRanging](#rangingstartpassiveranging)，需要先调用[stopPassiveRanging](#rangingstoppassiveranging)结束本次的被动测距，如果直接再次调用，接口将返回错误码34900099。
 > - 如果启动测距时，对应类型的测距服务已下线，那么调用本接口时会抛出服务未使能错误码34900053。
@@ -568,7 +568,7 @@ if (isRegistered) {
 
 | 名称         | 类型     | 只读 | 可选 | 说明                      |
 | ---------- | ------ | ---- | ---- | ----------------------- |
-| nearlinkHadm | boolean | 否   | 否   | 星闪[HADM](../../connectivity/fusion-connectivity/terminology.md#hadm)测距类型是否支持。值为true时可使用[startRanging](#rangingstartranging)或[startPassiveRanging](#rangingstartpassiveranging)发起测距。 |
+| nearlinkHadm | boolean | 否   | 否   | 星闪[HADM](../../connectivity/fusion-connectivity/fusion-connectivity-terminology.md#hadm)测距类型是否支持。值为true时可使用[startRanging](#rangingstartranging)或[startPassiveRanging](#rangingstartpassiveranging)发起测距。 |
 
 ## RangingMeasurement
 
@@ -597,7 +597,7 @@ if (isRegistered) {
 
 | 名称           | 值   | 说明                                        |
 | ------------ | ---- | ----------------------------------------- |
-| NEARLINK_HADM | 1    | 星闪[HADM](../../connectivity/fusion-connectivity/terminology.md#hadm)测距类型。  |
+| NEARLINK_HADM | 1    | 星闪[HADM](../../connectivity/fusion-connectivity/fusion-connectivity-terminology.md#hadm)测距类型。  |
 
 ## RangingState
 
