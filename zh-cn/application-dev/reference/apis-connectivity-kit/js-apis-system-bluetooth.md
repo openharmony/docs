@@ -9,7 +9,7 @@
 
 > **说明：**
 >
-> - 从API Version 7 开始，该接口不再维护，推荐使用[`@ohos.bluetooth.ble`](js-apis-bluetooth-ble.md)等相关profile接口。
+> - 从API Version 7 开始，该接口不再维护，推荐使用[@ohos.bluetooth.ble](js-apis-bluetooth-ble.md)等相关profile接口。
 >
 > - 本模块首批接口从API version 6开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 
@@ -17,7 +17,7 @@
 ## 导入模块
 
 
-```
+```js
 import bluetooth from '@system.bluetooth';
 ```
 
@@ -39,7 +39,7 @@ import bluetooth from '@system.bluetooth';
 
 **示例：**
 
-  ```
+  ```js
   bluetooth.startBLEScan({
     interval:0,
     success() {
@@ -72,7 +72,7 @@ import bluetooth from '@system.bluetooth';
 
 **示例：**
 
-  ```
+  ```js
   bluetooth.stopBLEScan({
     success() {
       console.log('call bluetooth.stopBLEScan success.');
@@ -119,7 +119,7 @@ import bluetooth from '@system.bluetooth';
 
 **示例：**
 
-  ```
+  ```js
   bluetooth.subscribeBLEFound({
     success(data) {
       console.log('call bluetooth.subscribeBLEFound success, data: ${data}.');
@@ -139,7 +139,7 @@ import bluetooth from '@system.bluetooth';
 
 **示例：**
 
-  ```
+  ```js
   bluetooth.unsubscribeBLEFound();
   ```
 
