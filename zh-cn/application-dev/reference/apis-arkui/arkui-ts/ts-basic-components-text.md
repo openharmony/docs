@@ -10,7 +10,9 @@ Text组件用于显示文本内容，支持设置字体样式、文本对齐、�
 
 >  **说明：**
 >
->  该组件从API version 7开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
+> - 该组件从API version 7开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
+>
+> - 如需设置触摸文本组件外部时是否清除文本选中和手柄，可使用[setTextSelectionClearPolicy](../arkts-apis-uicontext-uicontext.md#settextselectionclearpolicy)接口。
 >
 >  <!--RP3--><!--RP3End-->
 
@@ -2537,16 +2539,6 @@ struct TextExample7 {
             types: this.types, onDetectResultUpdate: (result: string) => {
             }
           })
-          .textAlign(TextAlign.Center)
-          .borderWidth(1)
-          .padding(10)
-          .width('100%')
-        Text(
-          '电话号码：' + this.phoneNumber + '\n' +
-            '时间：' + this.datetime
-        )
-          .fontSize(16)
-          .copyOption(CopyOptions.LocalDevice)
           .textAlign(TextAlign.Center)
           .borderWidth(1)
           .padding(10)
