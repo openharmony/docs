@@ -248,8 +248,8 @@ export default class EntryAbility extends UIAbility {
 | 名称                  | 值   | 说明               |
 | --------------------- | ---- | ------------------ |
 | SUBSCRIBE_TYPE_REMOTE | 0    | 订阅远程数据更改。<br>**系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core |
-| SUBSCRIBE_TYPE_CLOUD<sup>10+</sup> | 1  | 订阅云端数据更改。<br>**系统能力：** SystemCapability.DistributedDataManager.CloudSync.Client |
-| SUBSCRIBE_TYPE_CLOUD_DETAILS<sup>10+</sup> | 2  | 订阅云端数据更改详情。<br>**系统能力：** SystemCapability.DistributedDataManager.CloudSync.Client |
+| SUBSCRIBE_TYPE_CLOUD<sup>10+</sup> | 1  | 订阅云端数据更改。<br>**权限：**<br>- API版本12+：N/A<br>- API版本10-11：ohos.permission.DISTRIBUTED_DATASYNC<br>**系统能力：** SystemCapability.DistributedDataManager.CloudSync.Client |
+| SUBSCRIBE_TYPE_CLOUD_DETAILS<sup>10+</sup> | 2  | 订阅云端数据更改详情。<br>**权限：**<br>- API版本12+：N/A<br>- API版本10-11：ohos.permission.DISTRIBUTED_DATASYNC<br>**系统能力：** SystemCapability.DistributedDataManager.CloudSync.Client |
 | SUBSCRIBE_TYPE_LOCAL_DETAILS<sup>12+</sup> | 3  | 订阅本地数据更改详情。<br>**系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core |
 
 ## RebuildType<sup>12+</sup>
@@ -272,8 +272,8 @@ export default class EntryAbility extends UIAbility {
 
 | 名称                         | 值   | 说明                         |
 | -------------------------- | --- | -------------------------- |
-| DATA_CHANGE  | 0   | 表示是数据发生变更。   |
-| ASSET_CHANGE | 1   | 表示是资产附件发生了变更。 |
+| DATA_CHANGE  | 0   | 表示是数据发生变更。<br>**权限：**<br>- API版本12+：N/A<br>- API版本10-11：ohos.permission.DISTRIBUTED_DATASYNC   |
+| ASSET_CHANGE | 1   | 表示是资产附件发生了变更。<br>**权限：**<br>- API版本12+：N/A<br>- API版本10-11：ohos.permission.DISTRIBUTED_DATASYNC |
 
 ## DistributedType<sup>10+</sup>
 
@@ -282,7 +282,7 @@ export default class EntryAbility extends UIAbility {
 | 名称                | 值   | 说明                                                                                                 |
 | ------------------ | --- | -------------------------------------------------------------------------------------------------- |
 | DISTRIBUTED_DEVICE | 0  | 表示在不同设备之间分布式的数据库表。<br>**系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core               |
-| DISTRIBUTED_CLOUD  | 1   | 表示在设备和云端之间分布式的数据库表。<br>**系统能力：** SystemCapability.DistributedDataManager.CloudSync.Client |
+| DISTRIBUTED_CLOUD  | 1   | 表示在设备和云端之间分布式的数据库表。<br>**权限：**<br>- API版本12+：N/A<br>- API版本10-11：ohos.permission.DISTRIBUTED_DATASYNC<br>**系统能力：** SystemCapability.DistributedDataManager.CloudSync.Client |
 
 ## ConflictResolution<sup>10+</sup>
 
