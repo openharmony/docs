@@ -43,10 +43,10 @@
 
 | 名称 | 描述 |
 | -- | -- |
-| OH_CM_MAX_LEN_CERTIFICATE_CHAIN   24588 | 证书链最大长度，单位：字节。 |
-| OH_CM_MAX_LEN_URI              256 | URI最大长度，单位：字节。 |
-| OH_CM_MAX_LEN_CERT_ALIAS       129 | 证书别名的最大长度，单位：字节。 |
-| OH_CM_MAX_LEN_TYPE_NAME       1025 | 证书类型最大长度，单位：字节。 |
+| OH_CM_MAX_LEN_CERTIFICATE_CHAIN   24588 | 证书链最大长度，单位：Byte。 |
+| OH_CM_MAX_LEN_URI              256 | URI最大长度，单位：Byte。 |
+| OH_CM_MAX_LEN_CERT_ALIAS       129 | 证书别名的最大长度，单位：Byte。 |
+| OH_CM_MAX_LEN_TYPE_NAME       1025 | 证书类型最大长度，单位：Byte。 |
 
 ## 枚举类型说明
 

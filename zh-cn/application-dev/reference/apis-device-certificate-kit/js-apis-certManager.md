@@ -878,7 +878,7 @@ const req: certificateManager.CMSignatureSpec = {
   purpose: certificateManager.CmKeyPurpose.CM_KEY_PURPOSE_SIGN,
   padding: certificateManager.CmKeyPadding.CM_PADDING_PSS,
   digest: certificateManager.CmKeyDigest.CM_DIGEST_SHA256
-}
+};
 try {
   certificateManager.init(uri, req, (err, cmHandle) => {
     if (err != null) {
@@ -937,7 +937,7 @@ const req: certificateManager.CMSignatureSpec = {
   purpose: certificateManager.CmKeyPurpose.CM_KEY_PURPOSE_VERIFY,
   padding: certificateManager.CmKeyPadding.CM_PADDING_PSS,
   digest: certificateManager.CmKeyDigest.CM_DIGEST_MD5
-}
+};
 try {
   certificateManager.init(uri, req).then((handle) => {
     console.info('Succeeded in initiating.');
@@ -1697,7 +1697,7 @@ try {
   /* 获取系统CA的存储位置 */
   let property1: certificateManager.CertStoreProperty = {
     certType: certificateManager.CertType.CA_CERT_SYSTEM
-  }
+  };
   let systemCAPath = certificateManager.getCertificateStorePath(property1);
   console.info(`Success to get system ca path: ${systemCAPath}`);
 
@@ -1705,7 +1705,7 @@ try {
   let property2: certificateManager.CertStoreProperty = {
     certType: certificateManager.CertType.CA_CERT_USER,
     certScope: certificateManager.CertScope.CURRENT_USER
-  }
+  };
   let userCACurrentPath = certificateManager.getCertificateStorePath(property2);
   console.info(`Success to get current user's user ca path: ${userCACurrentPath}`);
 
@@ -1713,7 +1713,7 @@ try {
   let property3: certificateManager.CertStoreProperty = {
     certType: certificateManager.CertType.CA_CERT_USER,
     certScope: certificateManager.CertScope.GLOBAL_USER
-  }
+  };
   let globalCACurrentPath = certificateManager.getCertificateStorePath(property3);
   console.info(`Success to get global user's user ca path: ${globalCACurrentPath}`);
 
@@ -1721,7 +1721,7 @@ try {
   let property4: certificateManager.CertStoreProperty = {
     certType: certificateManager.CertType.CA_CERT_SYSTEM,
     certAlg: certificateManager.CertAlgorithm.SM
-  }
+  };
   let smSystemCAPath = certificateManager.getCertificateStorePath(property4);
   console.info(`Success to get SM system ca path: ${smSystemCAPath}`);
 } catch (error) {
@@ -1776,7 +1776,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 let keyUri: string = 'test'; /* USB凭据的唯一标识符，此处省略 */
 let ukeyInfo: certificateManager.UkeyInfo = { /* USB凭据的属性信息，此处省略 */
   certPurpose: certificateManager.CertificatePurpose.PURPOSE_DEFAULT
-}
+};
 try {
   certificateManager.getUkeyCertificate(keyUri, ukeyInfo).then((cmResult) => {
     let list = cmResult.credentialDetailList;
@@ -1840,7 +1840,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 let ukeyProvider: string = 'testProvider'; /* USB凭据提供商，此处省略 */
 let ukeyInfo: certificateManager.UkeyInfo = { /* USB凭据的属性信息，此处省略 */
   certPurpose: certificateManager.CertificatePurpose.PURPOSE_DEFAULT
-}
+};
 try {
   certificateManager.getUkeyCertificateList(ukeyProvider, ukeyInfo).then((cmResult) => {
     let list: Array<certificateManager.Credential> = cmResult.credentialDetailList ?? [];

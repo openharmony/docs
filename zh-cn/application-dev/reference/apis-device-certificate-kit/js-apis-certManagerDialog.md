@@ -451,7 +451,7 @@ let context: common.Context = new UIContext().getHostContext() as common.Context
 try {
   /* 打开证书管理对话框的证书凭据授权页面。 */
   certificateManagerDialog.openAuthorizeDialog(context).then((uri: string) => {
-    console.info(`Succeeded in authorizing certificate, uri: ${uri}`)
+    console.info(`Succeeded in authorizing certificate, uri: ${uri}`);
   }).catch((error: Error) => {
     let err = error as BusinessError;
     console.error(`Failed to authorize certificate. Code: ${err.code}, message: ${err.message}`);
@@ -522,7 +522,7 @@ let authorizeRequest: certificateManagerDialog.AuthorizeRequest = { certTypes: c
 try {
   certificateManagerDialog.openAuthorizeDialog(context, authorizeRequest).then((certReference: certificateManagerDialog.CertReference) => {
     let reference = certReference;
-    console.info(`Succeeded in opening authorize dialog.`)
+    console.info(`Succeeded in opening authorize dialog.`);
   }).catch((error: Error) => {
     let err = error as BusinessError;
     console.error(`Failed to open authorize dialog. Code: ${err.code}, message: ${err.message}`);
@@ -584,11 +584,11 @@ import { UIContext } from '@kit.ArkUI';
 /* context为应用的上下文信息，调用方自行获取，此处仅为示例 */
 let context: common.Context = new UIContext().getHostContext() as common.Context;
 /* keyUri为证书凭据的唯一标识符，调用方自行获取，此处仅为示例 */
-let keyUri: string = "test"
-let ukeyAuthRequest: certificateManagerDialog.UkeyAuthRequest = { keyUri: keyUri }
+let keyUri: string = "test";
+let ukeyAuthRequest: certificateManagerDialog.UkeyAuthRequest = { keyUri: keyUri };
 try {
   certificateManagerDialog.openUkeyAuthDialog(context, ukeyAuthRequest).then(() => {
-    console.info(`Succeeded in opening ukey authorization dialog`)
+    console.info(`Succeeded in opening ukey authorization dialog`);
   }).catch((error: Error) => {
     let err = error as BusinessError;
     console.error(`Failed to open ukey authorization dialog. Code: ${err.code}, message: ${err.message}`);
@@ -633,7 +633,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 try {
   /* 判断设备是否支持打开CA证书管理对话框。 */
   let isSupport: boolean = certificateManagerDialog.supportsCACertDialog();
-  console.info(`Succeeded in checking whether the device supports CA dialog.`)
+  console.info(`Succeeded in checking whether the device supports CA dialog.`);
 } catch (err) {
   let error = err as BusinessError;
   console.error(`Failed to check whether the device supports CA dialog. Code: ${error.code}, message: ${error.message}`);
