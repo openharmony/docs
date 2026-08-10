@@ -1,8 +1,8 @@
 # ArkUI简介
 <!--Kit: ArkUI-->
 <!--Subsystem: ArkUI-->
-<!--Owner: @yihao-lin-->
-<!--Designer: @piggyguy-->
+<!--Owner: @tsj_20201-->
+<!--Designer: @tsj_20201-->
 <!--Tester: @songyanhong-->
 <!--Adviser: @Brilliantry_Rui-->
 
@@ -63,3 +63,6 @@ ArkUI（方舟UI框架）为应用的UI开发提供了完整的基础设施，�
 - **NDK开发**：ArkUI开发框架提供了一系列NDK接口，能够在应用中使用C和C++代码构建UI界面，包括UI组件创建、UI树操作、属性设置和事件监听等。详细使用方式可参考[NDK接口概述](ndk-build-ui-overview.md)。
 
   **适用场景**：需要精细化创建和挂载UI组件、对性能有高要求的场景、业务已存在C或C++库可使用NDK能力进行对接。
+
+<!--RP1-->
+<!--RP1End-->
