@@ -805,7 +805,7 @@ openssl dgst -sha256 -binary www.example.com.pubkey.der | openssl base64
     ]
   },
   "trust-global-user-ca": false,
-  "trust-current-user-ca": false,
+  "trust-current-user-ca": false
 }
 ```
 
@@ -830,10 +830,10 @@ openssl dgst -sha256 -binary www.example.com.pubkey.der | openssl base64
 
 系统默认信任系统预置的CA证书和用户安装的CA证书，可配置不信任用户安装的CA证书提升安全性。配置不信任用户安装的CA证书可以在src/main/resources/base/profile/network_config.json进行配置，更多网络连接安全相关的配置可以参考[网络连接安全配置](https://developer.huawei.com/consumer/cn/doc/best-practices/bpta-network-ca-security#section5454123841911)。
 
-``` json5
+```json5
 {
   "network-security-config": {
-    ... ...
+    // 其他网络安全配置
   },
   "trust-global-user-ca": false, // 配置是否信任企业MDM系统或设备管理员用户手动安装的CA证书，默认为true
   "trust-current-user-ca" : false // 配置是否信任当前用户安装的CA证书，默认为true
