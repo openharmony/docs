@@ -21,11 +21,11 @@
 
 | 接口名 | 描述 | 
 | -------- | -------- |
-| OH_Drawing_FontConfigInfo\* OH_Drawing_GetSystemFontConfigInfo(OH_Drawing_FontConfigInfoErrorCode\*) | 获取系统字体配置信息，返回系统字体配置信息结构体OH_Drawing_FontConfigInfo。 | 
-| void OH_Drawing_DestroySystemFontConfigInfo(OH_Drawing_FontConfigInfo\*) | 释放系统字体配置信息占用的内存。 | 
+| OH_Drawing_FontConfigInfo\* OH_Drawing_GetSystemFontConfigInfo(OH_Drawing_FontConfigInfoErrorCode\* errorCode) | 获取系统字体配置信息，返回系统字体配置信息结构体OH_Drawing_FontConfigInfo。 | 
+| void OH_Drawing_DestroySystemFontConfigInfo(OH_Drawing_FontConfigInfo\* drawFontCfgInfo) | 释放系统字体配置信息占用的内存。 | 
 | OH_Drawing_FontCollection\* OH_Drawing_CreateSharedFontCollection(void) | 创建可共享的字体集对象OH_Drawing_FontCollection。 | 
 | OH_Drawing_TextStyle\* OH_Drawing_CreateTextStyle(void) | 创建指向OH_Drawing_TextStyle对象的指针，用于设置文本样式。 | 
-| OH_Drawing_SetTextStyleFontFamilies (OH_Drawing_TextStyle \*, int, const char \*fontFamilies[]) | 设置指定文本样式的字体家族类型。 | 
+| OH_Drawing_SetTextStyleFontFamilies(OH_Drawing_TextStyle\* style, int fontFamiliesNumber, const char \*fontFamilies[]) | 设置指定文本样式的字体家族类型。 | 
 | void OH_Drawing_DisableFontCollectionSystemFont(OH_Drawing_FontCollection\* fontCollection) | 禁用系统字体。 | 
 
 | 结构体名 | 描述 | 

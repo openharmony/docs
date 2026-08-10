@@ -1,14 +1,16 @@
 # Attribute Updater (AttributeUpdater)
+
 <!--Kit: ArkUI-->
 <!--Subsystem: ArkUI-->
-<!--Owner: @xiang-shouxing-->
-<!--Designer: @xiang-shouxing-->
+<!--Owner: @wangyang2022-->
+<!--Designer: @wangyang2022-->
 <!--Tester: @sally__-->
 <!--Adviser: @Brilliantry_Rui-->
+<!-- md-trans-meta sourceCommit=82cbd61bf5a97c687ddb974e4186cc744a8f06f2 translatedAt=2026-08-05T01:24:50.321Z pushedAt=2026-08-05T01:59:53.956Z -->
 
 ## Overview
 
-When dealing with frequent updates to a large number of attributes, using state variables can lead to significant computational overhead in frontend state management. This is because it requires full updates of all attributes for individual components. Although the [AttributeModifier](../reference/apis-arkui/arkui-ts/ts-universal-attributes-attribute-modifier.md) mechanism allows for selective updates based on specific needs, the frontend still applies some default strategies for differentiation (diffing) and resetting attributes.
+In scenarios where a large number of attributes are frequently updated, using state variables may lead to excessive computation in frontend state management and require full attribute updates for individual components. Although the [AttributeModifier](../reference/apis-arkui/arkui-ts/ts-universal-attributes-attribute-modifier.md) mechanism enables on-demand attribute updates, the frontend still applies certain diff and reset strategies, which may cause performance issues.
 
 This is where **AttributeUpdater** comes into the picture. As a special type of **AttributeModifier**, **AttributeUpdater** not only inherits all the functionality of **AttributeModifier** but also extends its capabilities by allowing access to the attribute object. By using the attribute object, you can update specific attributes without relying on state variables. With **AttributeUpdater**, you can implement custom update strategies, further improving the performance of attribute updates.
 
@@ -31,15 +33,20 @@ export declare class AttributeUpdater<T, C = Initializer<T>> implements Attribut
 }
 ```
 
-**AttributeUpdater** enhances the **AttributeModifier** API by offering additional features. It provides **initializeModifier** for initializing a component's attributes, **attribute** for obtaining the attribute object (which enables direct updates to the component's attributes), and **updateConstructorParams** for directly updating the component's constructor parameters.
+`AttributeUpdater` implements the `AttributeModifier` API and additionally provides [initializeModifier](../reference/apis-arkui/js-apis-arkui-AttributeUpdater.md#initializemodifier), which can initialize the component's attributes. Through the [attribute](../reference/apis-arkui/js-apis-arkui-AttributeUpdater.md#attribute) attribute method, you can obtain the attribute object and directly update the attributes of the corresponding component. In addition, you can directly update the component's constructor parameters through [updateConstructorParams](../reference/apis-arkui/js-apis-arkui-AttributeUpdater.md#properties).
 
 ## How to Use
 
 - You can extend the **AttributeUpdater\<T>** class and set it up through the universal method **AttributeModifier** of the component. When the binding is first established, the **initializeModifier** API is triggered to initialize attributes. This is followed by a series of lifecycle events that are consistent with those of **AttributeModifier**.
+
 - After the component is initialized, you can obtain the attribute object through the **attribute** method of the **AttributeUpdater** instance. If the component is not initialized, the method will return **undefined**.
+
 - Modifying attributes through **attribute** will store the latest settings within the current object and immediately trigger an update of the component's attributes.
-- Designating an **AttributeUpdater** instance as a mutable state variable, or updating the attributes of the corresponding component through other state variables, will trigger **applyNormalAttribute**. If you do not override this logic, by default, all attributes obtained by the **attribute** object will be updated in batch.
-- If you override the **applyNormalAttribute** API without calling **super**, you will not be able to obtain the attribute object, and the **initializeModifier** method will not be executed.
+
+- If an `AttributeUpdater` instance is marked as a state variable for modification, or if the attributes of the corresponding component are updated through other state variables, the [applyNormalAttribute](../reference/apis-arkui/js-apis-arkui-AttributeUpdater.md#applynormalattribute) process is triggered. If the developer does not override this logic, all attributes recorded in the attribute object are updated in a batch by default.
+
+- If you override the [applyNormalAttribute](../reference/apis-arkui/js-apis-arkui-AttributeUpdater.md#applynormalattribute) logic without calling the super class's implementation of this method, the ability to obtain the `attribute` property object is lost, and the `initializeModifier` method is not called.
+
 - A single **AttributeUpdater** object can be associated with only one component. If it is associated with multiple components, attribute settings will be applied to only one of these components.
 
 ## Directly Modifying Attributes Through Modifier
@@ -81,12 +88,12 @@ struct updaterDemo {
   }
 }
 ```
-![AttributeUpdater](figures/AttributeUpdater.gif)
 
+![AttributeUpdater](figures/AttributeUpdater.gif)
 
 ## Updating Component Constructor Parameters Through Modifier
 
-You can directly update the constructor parameters of a component using the **updateConstructorParams** method of an **AttributeUpdater** instance.
+You can directly update the component's constructor parameters through the `updateConstructorParams` property of the `AttributeUpdater` instance.
 
 <!-- @[att_update](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkUISample/ArkTSUserAttributeUpdater/entry/src/main/ets/pages/AttUpdate.ets) -->
 
@@ -117,7 +124,7 @@ struct updaterDemo {
           .height(50)
           .backgroundColor('#2787D9')
           .onClick(() => {
-            // Call the updateConstructorParams method to directly update the component's constructor parameters.
+            // Call the updateConstructorParams property to directly update the component's construction parameters.
             this.modifier.updateConstructorParams('Update');
           })
       }
@@ -127,4 +134,5 @@ struct updaterDemo {
   }
 }
 ```
+
 ![AttributeUpdater](figures/AttributeUpdater2.gif)

@@ -1,10 +1,12 @@
 # @ohos.distributedHardware.mechanicManager (Mechanic Manager) (System API)
+
 <!--Kit: Mechanic Kit-->
 <!--Subsystem: Mechanic-->
-<!--Owner: @hobbycao-->
-<!--Designer: @saga2025-->
-<!--Tester: @zhaodengqi-->
+<!--Owner: @qxqxqxqxqx-->
+<!--Designer: @peter__1024-->
+<!--Tester: @Aullar-->
 <!--Adviser: @hu-zhiqiong-->
+<!-- md-trans-meta sourceCommit=37a12f1e50194a2d1b2c27164b02b846158b3a86 translatedAt=2026-08-05T01:25:18.116Z pushedAt=2026-08-05T01:42:02.898Z -->
 
 The **mechanicManager** module provides the mechanic device interaction capabilities, such as connection management, device control, and monitoring.
 
@@ -369,7 +371,7 @@ console.info('Stop succeeded');
 
 getCurrentAngles(mechId: number): EulerAngles
 
-Obtains the maximum rotation angle of a mechanic device relative to the initial position.
+Obtains the current rotation angle of a mechanic device relative to the initial position.
 
 > **NOTE**
 >
@@ -561,7 +563,8 @@ let axisStatus: mechanicManager.RotationAxesStatus = mechanicManager.getRotation
 console.info(`'Query the rotation axis status successfully, axis state:' ${axisStatus}`);
 ```
 
-## mechanicManager.searchTarget<sup>21+<sup>
+## mechanicManager.searchTarget<sup>21+</sup>
+
 searchTarget(target: TargetInfo, params: SearchParams): Promise\<SearchResult>
 
 Rotates the mechanical body 360 degrees to search for the target. This API uses a promise to return the result.
@@ -571,6 +574,7 @@ Rotates the mechanical body 360 degrees to search for the target. This API uses 
 **System API**: This is a system API.
 
 **Parameters**
+
 | Name    | Type                   | Mandatory| Description  |
 | ---------- | ---------------------- | ---- | ----- |
 | target | [TargetType](#targettype21) | Yes| Target face information.|
@@ -608,6 +612,7 @@ mechanicManager.searchTarget(targetInfo,
     console.info(`'result:' ${searchResult}`);
 });
 ```
+
 ## RotationAngles
 
 Defines the rotation angle relative to the current position.
@@ -740,7 +745,7 @@ Enumerates the rotation results.
 | TIMEOUT | 3 | Operation timeout.|
 | SYSTEM_ERROR | 100 | System error.|
 
-## TargetType<sup>21+<sup>
+## TargetType<sup>21+</sup>
 
 Enumerates the target face information.
 
@@ -748,12 +753,11 @@ Enumerates the target face information.
 
 **System API**: This is a system API.
 
-  | Name| Type| Value | Description|
+| Name| Type| Value | Description|
 | ----------- | ------|---- | --------------- |
 | HUMAN_FACE | int | 0 | Target face information.|
 
-
-  ## SearchDirection<sup>21+<sup>
+## SearchDirection<sup>21+</sup>
 
 Default search direction.
 
@@ -761,13 +765,13 @@ Default search direction.
 
 **System API**: This is a system API.
 
-  | Name| Type| Value | Description|
+| Name| Type| Value | Description|
 | ----------- | ------|---- | --------------- |
 | DEFAULT | int | 0 | Default direction. |
-  | LEFTWARD | int | 1 | Leftward, that is, clockwise.|
-  | RIGHTWARD | int | 2 | Rightward, that is, counterclockwise.|
-  
- ## TargetInfo<sup>21+<sup>
+| LEFTWARD | int | 1 | Leftward, that is, clockwise.|
+| RIGHTWARD | int | 2 | Rightward, that is, counterclockwise.|
+
+## TargetInfo<sup>21+</sup>
 
 Information about the search target.
 
@@ -778,10 +782,8 @@ Information about the search target.
 | Name  | Type| Read-Only| Optional| Description|
 | ----- | ---- | ---- | --- | --- |
 | targetType | [TargetType](#targettype21) | No| No| Information about the search target.|
-  
-  
- 
-## SearchParams<sup>21+<sup>
+
+## SearchParams<sup>21+</sup>
 
 Specifies the search direction.
 
@@ -793,7 +795,7 @@ Specifies the search direction.
 | ----- | ---- | ---- | --- | --- |
 | direction | [SearchDirection](#searchdirection21) | No| No| Search direction.|
 
-  ## SearchResult<sup>21+<sup>
+## SearchResult<sup>21+</sup>
 
 Displays the execution result of the search command.
 

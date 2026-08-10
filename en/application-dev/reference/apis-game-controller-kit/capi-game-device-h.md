@@ -1,10 +1,12 @@
 # game_device.h
+
 <!--Kit: Game Controller Kit-->
 <!--Subsystem: Game-->
 <!--Owner: @weixin_42784160-->
 <!--Designer: @wudejun2025-->
 <!--Tester: @fei_0805-->
 <!--Adviser: @luwy2025-->
+<!-- md-trans-meta sourceCommit=77c72b42e08d6a4d9b4548171e0024968c7d2a99 translatedAt=2026-07-30T08:24:46.710Z pushedAt=2026-07-30T08:32:38.255Z -->
 
 ## Overview
 
@@ -65,7 +67,7 @@ Obtains information about all online devices.
 
 | Type| Description|
 | -- | -- |
-| [GameController_ErrorCode](capi-game-controller-type-h.md#gamecontroller_errorcode) | <ul><li>If the operation is successful, [GAME_CONTROLLER_SUCCESS](capi-game-controller-type-h.md#gamecontroller_errorcode) is returned.</li><br>     <li>If **allDeviceInfos** is **null**, [GAME_CONTROLLER_PARAM_ERROR](capi-game-controller-type-h.md#gamecontroller_errorcode) is returned.</li><br>     <li>If querying all device information in multimodal input fails, [GAME_CONTROLLER_MULTIMODAL_INPUT_ERROR](capi-game-controller-type-h.md#gamecontroller_errorcode) is returned.</li></ul> |
+| [GameController_ErrorCode](capi-game-controller-type-h.md#gamecontroller_errorcode) | <ul><li>If the operation is successful, [GAME_CONTROLLER_SUCCESS](capi-game-controller-type-h.md#gamecontroller_errorcode) is returned.</li>     <li>If the **allDeviceInfos** parameter is null, [GAME_CONTROLLER_PARAM_ERROR](capi-game-controller-type-h.md#gamecontroller_errorcode) is returned.</li>     <li>If querying all device information in multimodal input fails, [GAME_CONTROLLER_MULTIMODAL_INPUT_ERROR](capi-game-controller-type-h.md#gamecontroller_errorcode) is returned.</li></ul> |
 
 ### OH_GameDevice_RegisterDeviceMonitor()
 
@@ -91,7 +93,7 @@ Registers a callback for device status change events.
 
 | Type| Description|
 | -- | -- |
-| [GameController_ErrorCode](capi-game-controller-type-h.md#gamecontroller_errorcode) | <ul><li>If the operation is successful, [GAME_CONTROLLER_SUCCESS](capi-game-controller-type-h.md#gamecontroller_errorcode) is returned.</li><br>     <li>If **deviceMonitorCallback** is **null**, [GAME_CONTROLLER_PARAM_ERROR](capi-game-controller-type-h.md#gamecontroller_errorcode) is returned.</li></ul> |
+| [GameController_ErrorCode](capi-game-controller-type-h.md#gamecontroller_errorcode) | <ul><li>If the operation is successful, [GAME_CONTROLLER_SUCCESS](capi-game-controller-type-h.md#gamecontroller_errorcode) is returned.</li>     <li>If the **deviceMonitorCallback** parameter is null, [GAME_CONTROLLER_PARAM_ERROR](capi-game-controller-type-h.md#gamecontroller_errorcode) is returned.</li></ul> |
 
 ### OH_GameDevice_UnregisterDeviceMonitor()
 
@@ -137,7 +139,7 @@ Destroys all device information instances.
 
 | Type| Description|
 | -- | -- |
-| [GameController_ErrorCode](capi-game-controller-type-h.md#gamecontroller_errorcode) | <ul><li>If the operation is successful, [GAME_CONTROLLER_SUCCESS](capi-game-controller-type-h.md#gamecontroller_errorcode) is returned.</li><br>     <li>If **allDeviceInfos** is **null**, [GAME_CONTROLLER_PARAM_ERROR](capi-game-controller-type-h.md#gamecontroller_errorcode) is returned.</li></ul> |
+| [GameController_ErrorCode](capi-game-controller-type-h.md#gamecontroller_errorcode) | <ul><li>If the operation is successful, [GAME_CONTROLLER_SUCCESS](capi-game-controller-type-h.md#gamecontroller_errorcode) is returned.</li>     <li>If the **allDeviceInfos** parameter is null, [GAME_CONTROLLER_PARAM_ERROR](capi-game-controller-type-h.md#gamecontroller_errorcode) is returned.</li></ul> |
 
 ### OH_GameDevice_AllDeviceInfos_GetCount()
 
@@ -164,7 +166,7 @@ Obtains the number of devices.
 
 | Type| Description|
 | -- | -- |
-| [GameController_ErrorCode](capi-game-controller-type-h.md#gamecontroller_errorcode) | <ul><li>If the operation is successful, [GAME_CONTROLLER_SUCCESS](capi-game-controller-type-h.md#gamecontroller_errorcode) is returned.</li><br>     <li>If **allDeviceInfos** is **null**, [GAME_CONTROLLER_PARAM_ERROR](capi-game-controller-type-h.md#gamecontroller_errorcode) is returned.</li></ul> |
+| [GameController_ErrorCode](capi-game-controller-type-h.md#gamecontroller_errorcode) | <ul><li>If the operation is successful, [GAME_CONTROLLER_SUCCESS](capi-game-controller-type-h.md#gamecontroller_errorcode) is returned.</li>     <li>If the **allDeviceInfos** parameter is null, [GAME_CONTROLLER_PARAM_ERROR](capi-game-controller-type-h.md#gamecontroller_errorcode) is returned.</li></ul> |
 
 ### OH_GameDevice_AllDeviceInfos_GetDeviceInfo()
 
@@ -192,4 +194,4 @@ Obtains the device information at the specified index.
 
 | Type| Description|
 | -- | -- |
-| [GameController_ErrorCode](capi-game-controller-type-h.md#gamecontroller_errorcode) | <ul><li>If the operation is successful, [GAME_CONTROLLER_SUCCESS](capi-game-controller-type-h.md#gamecontroller_errorcode) is returned.</li><br>     <li>If the value of **allDeviceInfos** is **null** or **index** is less than **0** or greater than or equal to the total number of devices, [GAME_CONTROLLER_PARAM_ERROR](capi-game-controller-type-h.md#gamecontroller_errorcode) is returned.</li></ul> |
+| [GameController_ErrorCode](capi-game-controller-type-h.md#gamecontroller_errorcode) | <ul><li>If the operation is successful, [GAME_CONTROLLER_SUCCESS](capi-game-controller-type-h.md#gamecontroller_errorcode) is returned.</li>     <li>If **allDeviceInfos** is null, or **index** is less than 0 or greater than or equal to the total number of devices, [GAME_CONTROLLER_PARAM_ERROR](capi-game-controller-type-h.md#gamecontroller_errorcode) is returned.</li></ul> |

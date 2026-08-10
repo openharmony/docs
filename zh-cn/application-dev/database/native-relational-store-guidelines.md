@@ -160,7 +160,7 @@ libnative_rdb_ndk.z.so, libhilog_ndk.z.so
     }
     ```
 
-    如果需要设置自定义数据库路径，可在上述代码// ...处调用OH_Rdb_SetCustomDir接口设置。如果需要设置为只读模式打开数据库，可在上述代码// ...处可调用OH_Rdb_SetReadOnly接口设置。示例代码如下所示：
+    如果需要设置自定义数据库路径，可在上述代码// ...处调用OH_Rdb_SetCustomDir接口设置。如果需要设置为只读模式打开数据库，可在上述代码// ...处调用OH_Rdb_SetReadOnly接口设置。示例代码如下所示：
     <!--@[rdb_OH_Rdb_SetCustomDir_and_SetReadOnly](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkData/RelationalStore/RdbStore/entry/src/main/cpp/napi_init.cpp)-->
 
     ``` C++
@@ -479,50 +479,50 @@ libnative_rdb_ndk.z.so, libhilog_ndk.z.so
     OH_RdbTrans_DestroyOptions(options);
     ```
     <!--@[rdb_trans_insert](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkData/RelationalStore/RdbStore/entry/src/main/cpp/napi_init.cpp)--> 
-
+    
     ``` C++
     char transCreateTableSql[] =
         "CREATE TABLE IF NOT EXISTS transaction_table (id INTEGER PRIMARY KEY AUTOINCREMENT, data1 INTEGER, "
         "data2 INTEGER, data3 FLOAT, data4 TEXT, data5 BLOB, data6 ASSET, data7 ASSETS, data8 UNLIMITED INT, "
         "data9 FLOATVECTOR);";
-    
+        
     auto *execResult = OH_Value_Create();
-    
+        
     // 通过事务对象执行创建数据库表SQL语句
     int ret = OH_RdbTrans_Execute(trans, transCreateTableSql, nullptr, &execResult);
-    
+        
     // 创建OH_Data_Values实例
     OH_Data_Values *values = OH_Values_Create();
     ret = OH_Values_PutInt(values, 1); // The value of id is 1
     ret = OH_Values_PutInt(values, 2); // The value of data2 is 2
     ret = OH_Values_PutReal(values, 1.1); // The value of data3 is 1.1
-    ret = OH_Values_PutText(values, "1"); // The value of data3 is 1
+    ret = OH_Values_PutText(values, "1"); // The value of data4 is 1
     unsigned char val[] = {1, 2};
     ret = OH_Values_PutBlob(values, val, sizeof(val) / sizeof(val[0]));
-    
+        
     Data_Asset *asset = OH_Data_Asset_CreateOne();
     ret = OH_Data_Asset_SetName(asset, "name");
     ret = OH_Values_PutAsset(values, asset);
     OH_Data_Asset_DestroyOne(asset);
-    
+        
     Data_Asset **assets = OH_Data_Asset_CreateMultiple(2); // The number of created Data_Assets is 2
     ret = OH_Data_Asset_SetName(assets[0], "name1");
     ret = OH_Data_Asset_SetName(assets[1], "name2");
     ret = OH_Values_PutAssets(values, assets, 2); // The number of Data_Assets is 2
     ret = OH_Data_Asset_DestroyMultiple(assets, 2); // The number of destroyed Data_Assets is 2
-    
+        
     uint64_t bigInt[] = {1, 2, 3, 4, 5};
     ret = OH_Values_PutUnlimitedInt(values, 0, bigInt, sizeof(bigInt) / sizeof(bigInt[0]));
-    
+        
     const char *insertSql = "INSERT INTO transaction_table "
                             "(data1, data2, data3, data4, data5, data6, data7, data8) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
     OH_Data_Value *outValue = nullptr;
-    
+        
     // 通过事务对象执行数据插入SQL语句
     ret = OH_RdbTrans_Execute(trans, insertSql, values, &outValue);
     OH_Value_Destroy(outValue);
     OH_Values_Destroy(values);
-    
+        
     OH_VBucket *transValueBucket = OH_Rdb_CreateValuesBucket();
     transValueBucket->putInt64(transValueBucket, "data1", 1); // The value of data1 is 1
     transValueBucket->putInt64(transValueBucket, "data2", 2); // The value of data2 is 2
@@ -533,17 +533,17 @@ libnative_rdb_ndk.z.so, libhilog_ndk.z.so
     // 通过事务对象执行OH_VBucket数据插入
     int insertRet = OH_RdbTrans_Insert(trans, "transaction_table", transValueBucket, &insertRowId);
     transValueBucket->destroy(transValueBucket);
-    
+        
     OH_VBucket *transValueBucket2 = OH_Rdb_CreateValuesBucket();
     transValueBucket2->putInt64(transValueBucket2, "id", 1); // The value of id is 1
     transValueBucket2->putInt64(transValueBucket2, "data2", 2); // The value of data2 is 2
     transValueBucket2->putReal(transValueBucket2, "data3", 1.2); // The value of data3 is 1.2
-    
+        
     int64_t transInsertRow = -1;
     // 支持插入数据时配置冲突策略
     int result = OH_RdbTrans_InsertWithConflictResolution(
         trans, "transaction_table", transValueBucket2, Rdb_ConflictResolution::RDB_CONFLICT_REPLACE, &transInsertRow);
-    
+        
     transValueBucket2->destroy(transValueBucket2);
     ```
     <!--@[rdb_trans_update](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkData/RelationalStore/RdbStore/entry/src/main/cpp/napi_init.cpp)-->

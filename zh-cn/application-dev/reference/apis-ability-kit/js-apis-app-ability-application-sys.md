@@ -1,4 +1,4 @@
-#  @ohos.app.ability.application (Application)(系统接口)
+# @ohos.app.ability.application (Application)(系统接口)
 
 <!--Kit: Ability Kit-->
 <!--Subsystem: Ability-->
@@ -75,7 +75,7 @@ export default class EntryAbility extends UIAbility {
         moduleContext = data;
         console.info('createModuleContext success!');
       }).catch((error : BusinessError)=>{
-        console.error(`createModuleContext failed, error.code: ${(error as BusinessError).code}, error.message: ${(error as BusinessError).message}`);
+        console.error(`createModuleContext failed, error.code: ${error.code}, error.message: ${error.message}`);
       })
     } catch (error) {
       console.error(`createModuleContext failed, error.code: ${(error as BusinessError).code}, error.message: ${(error as BusinessError).message}`);
@@ -138,7 +138,7 @@ export default class EntryAbility extends UIAbility {
         moduleContext = data;
         console.info('createBundleContext success!');
       }).catch((error : BusinessError)=>{
-        console.error(`createBundleContext failed, error.code: ${(error as BusinessError).code}, error.message: ${(error as BusinessError).message}`);
+        console.error(`createBundleContext failed, error.code: ${error.code}, error.message: ${error.message}`);
       })
     } catch (error) {
       console.error(`createBundleContext failed, error.code: ${(error as BusinessError).code}, error.message: ${(error as BusinessError).message}`);
@@ -199,14 +199,10 @@ export default class EntryAbility extends UIAbility {
           console.info('createPluginModuleContextForHostBundle success!');
         })
         .catch((error: BusinessError) => {
-          let code: number = (error as BusinessError).code;
-          let message: string = (error as BusinessError).message;
-          console.error(`createPluginModuleContextForHostBundle failed, error.code: ${code}, error.message: ${message}`);
+          console.error(`createPluginModuleContextForHostBundle failed, error.code: ${error.code}, error.message: ${error.message}`);
         });
-    } catch (error) {
-      let code: number = (error as BusinessError).code;
-      let message: string = (error as BusinessError).message;
-      console.error(`createPluginModuleContextForHostBundle failed, error.code: ${code}, error.message: ${message}`);
+    } catch (error: BusinessError) {
+      console.error(`createPluginModuleContextForHostBundle failed, error.code: ${error.code}, error.message: ${error.message}`);
     }
   }
 }

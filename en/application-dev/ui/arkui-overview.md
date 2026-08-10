@@ -1,20 +1,20 @@
 # About This Kit
+
 <!--Kit: ArkUI-->
 <!--Subsystem: ArkUI-->
 <!--Owner: @yihao-lin-->
 <!--Designer: @piggyguy-->
 <!--Tester: @songyanhong-->
 <!--Adviser: @Brilliantry_Rui-->
+<!-- md-trans-meta sourceCommit=08bd9d20998adb9611ceecab63ba1fe9b4f01711 translatedAt=2026-08-05T01:25:50.304Z pushedAt=2026-08-05T02:47:43.413Z -->
 
 ArkUI provides a comprehensive infrastructure for application UI development, including simple UI syntax, a diverse array of UI features (components, layouts, animations, and interaction events), and powerful preview tools.
-
 
 ## Basic Concepts
 
 - **UI**: user interface. You can design the application's UI into multiple functional pages using [NavDestination](../reference/apis-arkui/arkui-ts/ts-basic-components-navdestination.md). These pages are managed in a stack structure, and transitions between them, such as navigating to a new page or going back to the previous one, are handled by the navigation container [Navigation](../reference/apis-arkui/arkui-ts/ts-basic-components-navigation.md), enabling functional decoupling within the application.
 
 - **Component**: the smallest unit for UI building and display, for example, a list, grid, button, radio button, progress indicator, and text. You build a UI that meets your needs through flexible combinations of components.
-
 
 ## Two Development Paradigms
 
@@ -36,10 +36,9 @@ The declarative development paradigm is a better choice for building new applica
 
   ![arkui-framework](figures/arkui-framework.png)
 
-
 ## Development Paradigm Support by Application Type
 
-The supported development paradigm varies according to the [application model](../application-models/application-models.md) and page form. For details, see the following table.
+Depending on the selected [application model](../application-models/stage-model-development-overview.md) (stage model or FA model) and page form (normal pages of an app or service, or widgets), the supported UI development paradigms vary. For details, see the table below.
 
   **Table 1** Supported development paradigms
 
@@ -52,13 +51,13 @@ The supported development paradigm varies according to the [application model](.
 
 ## Layered API Architecture and Selection Guidelines
 
-- **Declarative development paradigm**: Built on ArkTS, this paradigm automatically renders UIs by declaring UI structure and state. You define "what the UI should be" rather than managing updates manually. This paradigm is suitable for complex applications and team collaboration scenarios.
+- **Declarative development paradigm**: Built on ArkTS, this paradigm automatically renders UIs by declaring UI structure and state. You define "what the UI should be" rather than managing updates manually. This paradigm is suitable for complex applications and team collaboration scenarios, offering advantages such as high development efficiency, good performance, and easy maintainability.
 
   **Recommended for**: new projects and applications requiring rapid development with sustained maintainability.
 
-- **Customization capabilities**: ArkUI supports multi-layer customization capabilities, including custom composition, custom extensions through [modifiers](arkts-user-defined-modifier.md)), custom node types ([FrameNode](../reference/apis-arkui/js-apis-arkui-frameNode.md), [RenderNode](../reference/apis-arkui/js-apis-arkui-renderNode.md), and [BuilderNode](../reference/apis-arkui/js-apis-arkui-builderNode.md)), and custom rendering. You can choose different levels of customization based on your service requirements.
+- **Customization capabilities**: ArkUI supports multi-layer customization capabilities, including custom composition, custom extensions through [modifiers](arkts-user-defined-modifier.md), custom node types ([FrameNode](../reference/apis-arkui/js-apis-arkui-frameNode.md), [RenderNode](../reference/apis-arkui/js-apis-arkui-renderNode.md), and [BuilderNode](../reference/apis-arkui/js-apis-arkui-builderNode.md)), and custom rendering. You can choose different levels of customization based on your service requirements.
 
-  Recommended for: specialized UI requirements, low-level rendering control, and deep system integration.
+  **Recommended for**: specialized UI requirements, low-level rendering control, and deep system integration.
 
 - **NDK development**: The ArkUI framework offers NDK APIs for building UIs with C/C++, including component creation, UI tree control, attribute configuration, and event handling. For details, see [NDK API Overview](ndk-build-ui-overview.md).
 

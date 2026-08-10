@@ -1,8 +1,8 @@
 # UI Development (ArkTS-based Declarative Development Paradigm) Overview
 <!--Kit: ArkUI-->
 <!--Subsystem: ArkUI-->
-<!--Owner: @piggyguy; @xiang-shouxing; @yangfan229-->
-<!--Designer: @piggyguy; @xiang-shouxing; @yangfan229-->
+<!--Owner: @piggyguy; @wangyang2022-->
+<!--Designer: @piggyguy; @wangyang2022-->
 <!--Tester: @fredyuan912-->
 <!--Adviser: @Brilliantry_Rui-->
 
@@ -99,16 +99,15 @@ The table below lists the main tasks involved in UI development with ArkUI.
 | Use lists and grids| Work with list and grid components.| - [List and Grid Overview](arkts-list-grid-development-overview.md)|
 | Use text| Integrate and manage text components such as text boxes, rich text, and styled strings.               | - [Text Display](arkts-common-components-text-display.md)<br>- [Text Input](arkts-common-components-text-input.md)<br>- [Rich Text](arkts-common-components-richeditor.md)<br>- [Symbol Glyph](arkts-common-components-symbol.md)<br>- [Styled String](arkts-styled-string.md)|
 | Display media| Show media content using media display components.| - [Image Display (Image)](arkts-graphics-display.md)<br>- [Video Playback (Video)](arkts-common-components-video-player.md)<br>- [Creating a Swiper (Swiper)](arkts-layout-development-create-looping.md)<br>- [Creating an Arc Carousel Component (ArcSwiper)](arkts-layout-development-arcswiper.md) |
-| Implement forms and selection| Add user input and selection mechanisms using form components.| - [Form and Selection Component Overview](arkts-forms-overview.md)|
+| Buttons and selections| Describe how to use several commonly used button and selection components.| -&nbsp;[Button and Selection Component Overview](arkts-forms-overview.md)|
 | Add components| Use the **XComponent** component for custom rendering and **Progress** indicators.| - [Custom Rendering (XComponent)](napi-xcomponent-guidelines.md)<br>- [Progress Indicator (Progress)](arkts-common-components-progress-indicator.md)|
 | Use popup windows| Learn when and how to use popup windows.| - [Dialog Box Overview](arkts-base-dialog-overview.md)<br>- [Menu Overview](arkts-menu-overview.md)<br>- [Popup Overview](arkts-popup-overview.md)<br>- [Modal Page Overview](arkts-modal-overview.md)<br>- [Toast](arkts-create-toast.md)<br>- [OverlayManager](arkts-create-overlaymanager.md)|
-| Use graphics       | Understand how to display images, draw custom geometry, and make custom graphics on the canvas.  | - [Drawing Geometric Shapes](arkts-geometric-shape-drawing.md)<br>- [Drawing Custom Graphics Using the Canvas](arkts-drawing-customization-on-canvas.md)|
-| Draw geometric shapes| Create geometric shapes using the **Shape** APIs.| - [Geometric Shape Drawing Overview](arkts-shape-overview.md) |
+| Graph Drawing       | Understand how to draw custom geometry and make custom graphics on the canvas.  | -&nbsp;[Geometric Shape Drawing Overview](arkts-shape-overview.md)<br>- [Drawing Custom Graphics Using the Canvas](arkts-drawing-customization-on-canvas.md)|
 | Implement interactions| Implement interactions using basic mechanisms, input device events, and gesture response.| - [Interaction Mechanism Overview](arkts-interaction-basic-principles.md)<br>- [Input Devices and Events](arkts-interaction-development-guide-raw-input-event.md)<br>- [Adding Gesture Response](arkts-interaction-development-guide-support-gesture.md)|
-| Use animations       | Apply animations to components and pages for various visual effects.                 | - [Property Animation](arkts-attribute-animation-overview.md)<br>- [Transition Animation](arkts-transition-overview.md)<br>- [Particle Animation](arkts-particle-animation.md)<br>- [Component Animation](arkts-component-animation.md)<br>- [Traditional Curve](arkts-traditional-curve.md)<br>- [Animation Smoothing](arkts-animation-smoothing.md)<br>- [Blur Effect](arkts-blur-effect.md)<br>- [Frame Animation](arkts-animator.md)|
+| Use animations       | Apply animations to components and pages for various visual effects.                 | - [Property Animation](arkts-attribute-animation-overview.md)<br>- [Transition Animation](arkts-transition-overview.md)<br>- [Particle Animation](arkts-particle-animation.md)<br>- [Component Animation](arkts-component-animation.md)<br>- [Traditional Curve](arkts-traditional-curve.md)<br>- [Animation Smoothing](arkts-animation-smoothing.md)<br>- [Dynamic Blur](arkts-blur-effect.md)<br>- [Frame Animation](arkts-animator.md)|
 | Use customization capabilities       | Learn the basic concepts of customization capabilities and how to apply them.      | - [Custom Composition](arkts-user-defined-composition.md)<br>- [Custom Node](arkts-user-defined-node.md)<br>- [Custom Extension](arkts-user-defined-modifier.md)|
 | Implement UI internationalization       | Implement an internationalized application UI, including resource configuration and support for right-to-left (RTL) layouts.      | - [Implementing UI Internationalization](arkts-internationalization.md)|
-| Implement accessibility and aging-friendly support     | Implement accessibility features and aging-friendly adaptations.  | - [Supporting Accessibility](arkts-universal-attributes-accessibility.md)<br>- [Supporting Aging-Friendly Design](arkui-support-for-aging-adaptation.md)|
+| Implement accessibility and aging-friendly support     | Implement accessibility features and aging-friendly adaptations.  | <!--RP1-->- [Supporting Accessibility](arkts-universal-attributes-accessibility.md)<br>-&nbsp;<!--RP1End-->[Supporting Aging-Friendly Design](arkui-support-for-aging-adaptation.md)|
 | Set the theme      | Explore application-level and page-level theme setting capabilities.      | - [Implementing Dark and Light Mode Adaptation](ui-dark-light-color-adaptation.md)<br>- [Configuring In-Application Theme Skinning](theme_skinning.md)|
 | Utilize UI contextual capabilities| Use **UIContext** APIs to access instance-bound objects and launch atomic services in full-screen mode.| - [Using the UI Context API for UI Operations](arkts-global-interface.md)<br>- [Atomic Service Full Screen Launch Component](arkts-FullScreenComponent.md) |
 
@@ -125,3 +124,13 @@ The table below lists the main tasks involved in UI development with ArkUI.
   (1) If a default value is specified for the parameter, it is used.
 
   (2) If no default value is specified for the parameter, the property or API associated with that parameter is ineffective.
+
+<!--Del-->## Samples
+
+For ArkTS-based declarative development paradigms, refer to the following examples:
+
+- [ArkTS Component Set (ArkTS) (Full SDK) (API10)](https://gitcode.com/openharmony/applications_app_samples/tree/master/code/UI/ArkTsComponentCollection/ComponentCollection)
+
+- [Pixel Conversion (ArkTS) (API9)](https://gitcode.com/openharmony/codelabs/tree/master/ETSUI/PixelConversion)
+
+- [Shopping (ArkTS) (API8)](https://gitcode.com/openharmony/codelabs/tree/master/ETSUI/ShoppingEts)<!--DelEnd-->

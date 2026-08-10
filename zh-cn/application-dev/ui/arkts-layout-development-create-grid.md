@@ -51,7 +51,7 @@ Grid组件根据行列数量与占比属性的设置，可以分为三种布局�
 
 通过设置行列数量与尺寸占比可以确定网格布局的整体排列方式。Grid组件提供了[rowsTemplate](../reference/apis-arkui/arkui-ts/ts-container-grid.md#rowstemplate)和[columnsTemplate](../reference/apis-arkui/arkui-ts/ts-container-grid.md#columnstemplate)属性用于设置网格布局行列数量与尺寸占比。
 
-rowsTemplate和columnsTemplate属性值是一个由多个空格和'数字+fr'间隔拼接的字符串，fr的个数即网格布局的行或列数，fr前面的数值大小，用于计算该行或列在网格布局宽度上的占比，最终决定该行或列宽度。
+rowsTemplate和columnsTemplate属性值是一个由多个空格和'数字+fr'间隔拼接的字符串，fr的个数即网格布局的行或列数，fr前面的数值大小，用于计算该行或列在网格布局对应方向上的尺寸占比，最终决定该行的高度或列的宽度。
 
   **图3** 行列数量占比示例  
 ![grid3](figures/grid3.png)
@@ -83,7 +83,7 @@ Grid() {
 
 ![grid4](figures/grid4.png)
 
-例如计算器的按键布局就是常见的不均匀网格布局场景。如下图，计算器中的按键“0”和“=”，按键“0”横跨第一、二两列，按键“=”横跨第五、六两行。使用Grid构建的网格布局，其行列标号从0开始，依次编号。
+例如计算器的按键布局就是常见的不均匀网格布局场景。如下图，计算器中的按键“0”和“=”，按键“0”横跨第一、二两列，按键“=”横跨第六、七两行。使用Grid构建的网格布局，其行列标号从0开始，依次编号。
 
   **图5** 计算器  
 
@@ -91,7 +91,7 @@ Grid() {
 
 在网格中，可以通过onGetRectByIndex返回的[rowStart,columnStart,rowSpan,columnSpan]来实现跨行跨列布局，其中rowStart和columnStart属性表示指定当前元素起始行号和起始列号，rowSpan和columnSpan属性表示指定当前元素的占用行数和占用列数。
 
-所以“0”按键横跨第一列和第二列，“=”按键横跨第五行和第六行，只要将“0”对应onGetRectByIndex的rowStart和columnStart设为6和0，rowSpan和columnSpan设为1和2，将“=”对应onGetRectByIndex的rowStart和columnStart设为5和3，rowSpan和columnSpan设为2和1即可。
+所以“0”按键横跨第一列和第二列，“=”按键横跨第六行和第七行，只要将“0”对应onGetRectByIndex的rowStart和columnStart设为6和0，rowSpan和columnSpan设为1和2，将“=”对应onGetRectByIndex的rowStart和columnStart设为5和3，rowSpan和columnSpan设为2和1即可。
 
 <!-- @[Set_numberrows_columns](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkUISample/ScrollableComponent/entry/src/main/ets/pages/grid/GridCalculator.ets) -->
 

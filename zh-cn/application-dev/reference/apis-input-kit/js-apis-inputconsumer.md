@@ -41,7 +41,7 @@ import { inputConsumer, KeyEvent } from '@kit.InputKit';
 
 **系统能力：** SystemCapability.MultimodalInput.Input.InputConsumer
 
-**设备行为差异**：API version 23之前，该接口在Phone和Tablet设备中可正常调用，在其他设备上返回801错误码。从API version 23开始，该接口在Phone、Tablet、PC/2in1和TV设备中可正常调用，在其他设备上返回801错误码。
+**设备行为差异**：API version 19之前，该接口在Phone、Tablet和PC/2in1设备中可正常调用，在其他设备上返回801错误码。从API version 19开始，该接口在Phone、Tablet、PC/2in1和TV设备中可正常调用，在其他设备上返回801错误码。
 
 <!--Table: 10%; 10%; 10%; 10%; 60%-->
 | 名称        | 类型   | 只读   | 可选   | 说明      |
@@ -266,7 +266,7 @@ on(type: 'keyPressed', options: KeyPressedConfig, callback: Callback&lt;KeyEvent
 
 **系统能力：** SystemCapability.MultimodalInput.Input.InputConsumer
 
-**设备行为差异**：API version 23之前，该接口在Phone和Tablet设备中可正常调用，在其他设备上返回801错误码。从API version 23开始，该接口在Phone、Tablet、PC/2in1和TV设备中可正常调用，在其他设备上返回801错误码。
+**设备行为差异**：API version 19之前，该接口在Phone、Tablet和PC/2in1设备中可正常调用，在其他设备上返回801错误码。从API version 19开始，该接口在Phone、Tablet、PC/2in1和TV设备中可正常调用，在其他设备上返回801错误码。
 
 **参数：**
 
@@ -325,7 +325,7 @@ off(type: 'keyPressed', callback?: Callback&lt;KeyEvent&gt;): void
 
 **系统能力：** SystemCapability.MultimodalInput.Input.InputConsumer
 
-**设备行为差异**：API version 23之前，该接口在Phone和Tablet设备中可正常调用，在其他设备上返回801错误码。从API version 23开始，该接口在Phone、Tablet、PC/2in1和TV设备中可正常调用，在其他设备上返回801错误码。
+**设备行为差异**：API version 19之前，该接口在Phone、Tablet和PC/2in1设备中可正常调用，在其他设备上返回801错误码。从API version 19开始，该接口在Phone、Tablet、PC/2in1和TV设备中可正常调用，在其他设备上返回801错误码。
 
 **参数：**
 

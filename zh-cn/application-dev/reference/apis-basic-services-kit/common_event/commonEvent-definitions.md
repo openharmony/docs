@@ -1,4 +1,4 @@
-# 系统公共事件定义 (已废弃)
+# 系统公共事件定义
 <!--Kit: Basic Services Kit-->
 <!--Subsystem: Notification-->
 <!--Owner: @HuYueRong-->

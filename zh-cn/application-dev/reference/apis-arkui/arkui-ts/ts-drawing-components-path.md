@@ -31,15 +31,13 @@ new Path(options?: PathOptions)
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
-**模型约束：** 从API version 18开始，使用PathOptions参数时，此接口仅可在Stage模型下使用。
-
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：**
 
 | 参数名                                             | 类型         | 必填 | 说明                   |
 | ------ | ---------------- | ---- | ------------------------------------------------------------ |
-| options  | [PathOptions](#pathoptions18对象说明) | 否   | Path组件绘制属性的配置对象。<br>省略时不设置绘制属性，组件按默认尺寸显示。默认尺寸根据路径内容自动计算宽度和高度。<br>异常值undefined和null按照无效值处理，本次设置不生效。 |
+| options  | [PathOptions](#pathoptions18对象说明) | 否   | Path组件绘制属性的配置对象。<br>省略时不设置绘制属性，组件按默认尺寸显示。默认尺寸根据路径内容自动计算宽度和高度。<br>异常值undefined和null按照无效值处理，本次设置不生效。<br>**说明：**从API version 18开始，使用PathOptions参数时需在Stage模型下使用。 |
 
 ### Path
 
@@ -51,15 +49,13 @@ Path(options?: PathOptions)
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
-**模型约束：** 从API version 18开始，使用PathOptions参数时，此接口仅可在Stage模型下使用。
-
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：**
 
 | 参数名                                             | 类型         | 必填 | 说明                   |
 | ------ | ---------------- | ---- | ------------------------------------------------------------ |
-| options  | [PathOptions](#pathoptions18对象说明) | 否   | Path组件绘制属性的配置对象。<br>省略时不设置绘制属性，组件按默认尺寸显示。默认尺寸根据路径内容自动计算宽度和高度。<br>异常值undefined和null按照无效值处理，本次设置不生效。 |
+| options  | [PathOptions](#pathoptions18对象说明) | 否   | Path组件绘制属性的配置对象。<br>省略时不设置绘制属性，组件按默认尺寸显示。默认尺寸根据路径内容自动计算宽度和高度。<br>异常值undefined和null按照无效值处理，本次设置不生效。<br>**说明：**从API version 18开始，使用PathOptions参数时需在Stage模型下使用。|
 
 ## PathOptions<sup>18+</sup>对象说明
 

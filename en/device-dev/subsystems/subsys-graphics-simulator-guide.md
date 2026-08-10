@@ -36,7 +36,6 @@ git clone https://gitcode.com/openharmony/graphic_surface_lite.git              
 git clone https://gitcode.com/openharmony/window_window_manager_lite.git           -b   master  foundation/window/window_window_manager_lite
 
 git clone https://gitcode.com/openharmony/third_party_zlib.git                     -b   master  third_party/zlib
-git clone https://gitcode.com/openharmony/third_party_qrcodegen.git                -b   master  third_party/qrcodegen
 git clone https://gitcode.com/openharmony/third_party_libpng.git                   -b   master  third_party/libpng
 git clone https://gitcode.com/openharmony/third_party_libjpeg.git                  -b   master  third_party/libjpeg
 git clone https://gitcode.com/openharmony/third_party_icu.git                      -b   master  third_party/icu

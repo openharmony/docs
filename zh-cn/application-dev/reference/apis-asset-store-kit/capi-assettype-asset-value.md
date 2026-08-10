@@ -13,7 +13,7 @@ typedef union {...} Asset_Value
 
 ## 概述
 
-关键资产属性内容。
+关键资产属性的值（内容）。
 
 **起始版本：** 11
 
@@ -27,8 +27,8 @@ typedef union {...} Asset_Value
 
 | 名称 | 描述 |
 | -- | -- |
-| bool boolean | 该字段用于传入bool类型的关键资产。 |
-| uint32_t u32 | 该字段用于传入uint32类型的关键资产。 |
-| [Asset_Blob](capi-assettype-asset-blob.md) blob | 该字段用于传入bytes类型的关键资产。 |
+| bool boolean | 该字段用于传入bool类型的属性值。 |
+| uint32_t u32 | 该字段用于传入uint32类型的属性值。 |
+| [Asset_Blob](capi-assettype-asset-blob.md) blob | 该字段用于传入bytes类型的属性值。 |
 
 

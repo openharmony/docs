@@ -1,17 +1,18 @@
 # Menu Control (Menu)
+
 <!--Kit: ArkUI-->
 <!--Subsystem: ArkUI-->
-<!--Owner: @Armstrong15-->
+<!--Owner: @H-xinwei-->
 <!--Designer: @zhanghaibo0-->
 <!--Tester: @lxl007-->
 <!--Adviser: @Brilliantry_Rui-->
+<!-- md-trans-meta sourceCommit=b8421fa94775fa4bceb1b522857b705478302935 translatedAt=2026-08-04T06:37:07.811Z pushedAt=2026-08-04T08:03:19.991Z -->
 
 You can use menu APIs to display a context menu, a vertical list of items displayed by long pressing, clicking, or right-clicking a component. For details, see [Menu Control](../reference/apis-arkui/arkui-ts/ts-universal-attributes-menu.md).
 
 A context menu displayed using [bindContextMenu](../reference/apis-arkui/arkui-ts/ts-universal-attributes-menu.md#bindcontextmenu12) and configured with a preview image has a mask applied; in this case, it is modal.
 
 A context menu displayed using [bindMenu](../reference/apis-arkui/arkui-ts/ts-universal-attributes-menu.md#bindmenu11), or **bindContextMenu** without a preview image configured, does not have a mask applied; in this case, it is non-modal.
-
 
 ## Creating a Menu in the Default Style
 
@@ -96,8 +97,7 @@ export struct BuilderCustomMenuExample {
           .selected(this.select)
           .onChange((selected) => {
             hilog.info(0xFF00, 'DialogProject', 'menuItem select' + selected);
-            let str: Tmp = new Tmp();
-            str.set($r('app.media.icon'));
+            this.iconStr2 = $r('app.media.icon');
           })
         // Replace $r('app.string.menu_selection') with the actual resource file. In this example, the value in the resource file is "Menu item."
         // Replace $r('app.media.view_list_filled') with the actual resource file.
@@ -142,10 +142,11 @@ Button('click for Menu')
 Use the [bindContextMenu](../reference/apis-arkui/arkui-ts/ts-universal-attributes-menu.md#bindcontextmenu8) API to customize the menu content and menu popup mode: right-click or long press. The menu items that are displayed using **bindContextMenu** are in an independent child window and can be displayed outside the application window.
 
 - Use @Builder to customize the menu content. The content configuration follows the same logic as the preceding section.
+
 - Check the menu popup mode and bind the component through the **bindContextMenu** attribute. In the example, the menu is displayed upon right-clicking.
 
   <!-- @[create_right_click_menu](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkUISample/DialogProject/entry/src/main/ets/pages/Menu/CreateMenu.ets) -->
-  
+
   ``` TypeScript
   Button('Right-click for Menu')
     .bindContextMenu(this.MyMenu, ResponseType.RightClick)
@@ -156,10 +157,11 @@ Use the [bindContextMenu](../reference/apis-arkui/arkui-ts/ts-universal-attribut
 Menu haptic feedback is supported since API version 18. By default, menus are displayed without haptic feedback. To enable haptic feedback when menus appear, configure the haptic feedback mode using the **hapticFeedbackMode** property in [ContextMenuOptions](../reference/apis-arkui/arkui-ts/ts-universal-attributes-menu.md#contextmenuoptions10).
 
 - The haptic feedback mode is only configurable for level-1 menus.
+
 - The settings take effect only when the application has the ohos.permission.VIBRATE permission and the user has enabled haptic feedback. To enable haptic feedback, you must [declare the required permission](../security/AccessToken/declare-permissions.md) under **requestPermissions** in the **module.json5** file of the project as follows:
 
   <!-- @[menu_permissions](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkUISample/DialogProject/entry/src/main/module.json5) -->
-  
+
   ``` JSON5
   "requestPermissions": [
     {
@@ -173,7 +175,7 @@ Menu haptic feedback is supported since API version 18. By default, menus are di
 ``` TypeScript
 Button('click for Menu')
   .id('click for Menu')
-  .bindMenu(this.MyMenu, { hapticFeedbackMode: HapticFeedbackMode.ENABLED})
+  .bindMenu(this.MyMenu, { hapticFeedbackMode: HapticFeedbackMode.ENABLED })
 ```
 
 ## Implementing Center Axis Avoidance
@@ -190,8 +192,8 @@ Since API version 18, menus support center axis avoidance. Since API version 20,
 @Entry
 @Component
 export struct SupportAvoidCentralAxisMenuExample {
-  @State message: string = 'Hello World';
-  // Configure the resource whose name is 'xxx' and value is a non-empty string in the resources\base\element\string.json file.
+  // Configure resources in the resources\base\element\string.json file with name set to 'Upper_half_screen', 'Middle_axle', 'Lower_half_screen', 'zone',
+  // 'hoverMode_start', and value set to a non-empty string.
   @State upScreen: string =
     this.getUIContext().getHostContext()?.resourceManager.getStringByNameSync('Upper_half_screen') as string;
   @State middleAxle: string =
@@ -219,8 +221,6 @@ export struct SupportAvoidCentralAxisMenuExample {
       MenuItem({ startIcon: this.iconStr, content: $r('app.string.menu_selection') })
     }
   }
-
-  @State isShow: boolean = false;
 
   build() {
     NavDestination() {
@@ -289,15 +289,6 @@ export struct EventTransSubWindowMenuExample {
       .height('100%')
     }
     // ...
-  }
-
-  @Builder
-  bindMenuBuilder() {
-    Menu() {
-      MenuItem({ content: 'bindMenu item' }) {
-
-      }
-    }
   }
 
   @Builder

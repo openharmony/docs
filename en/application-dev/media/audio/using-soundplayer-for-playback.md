@@ -1,12 +1,14 @@
 # Using SoundPlayer for System Sound Effect Playback
+
 <!--Kit: Audio Kit-->
 <!--Subsystem: Multimedia-->
-<!--Owner: @songshenke-->
-<!--Designer: @caixuejiang; @hao-liangfei; @zhanganxiang-->
+<!--Owner: @boxwall-->
+<!--Designer: @huyue57-->
 <!--Tester: @Filger-->
 <!--Adviser: @w_Machine_cc-->
+<!-- md-trans-meta sourceCommit=cfecea1c41187dad0c66b395f9088cd7a30d17e5 translatedAt=2026-08-06T01:56:02.310Z pushedAt=2026-08-06T10:29:06.609Z -->
 
-System sound effect playback is supported starting from API version 23.
+Starting from API version 23, system sound effect playback is supported.
 
 **SoundPlayer** provides system sound effect playback functionality, which is suitable for camera prompt sounds, such as playing prompt sounds when starting to take a photo, starting to record a video, or ending a video recording.
 
@@ -22,12 +24,12 @@ The following table describes the supported [sound effect types](../../reference
 
 ## How to Develop
 
-The examples in each of the following steps are code snippets. You can click the link at the bottom right of the sample code to obtain the [complete sample codes](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/Media/Audio/SystemSoundPlayer).
+The examples in the following steps are code snippets. You can click the link at the bottom right of each to get the [complete sample](https://gitcode.com/openharmony/applications_app_samples/tree/master/code/DocsSample/Media/Audio/SystemSoundPlayer).
 
 1. Before calling any of the **SystemSoundPlayer** APIs, you need to create an instance through [createSystemSoundPlayer](../../reference/apis-audio-kit/js-apis-systemSoundManager.md#systemsoundmanagercreatesystemsoundplayer).
 
    <!-- @[sound_player_create](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/Media/Audio/SystemSoundPlayer/entry/src/main/ets/pages/SoundPlayer.ets) -->
-   
+
    ``` TypeScript
    import { systemSoundManager } from '@kit.AudioKit';
    // ...
@@ -47,7 +49,7 @@ The examples in each of the following steps are code snippets. You can click the
 2. Call the [load](../../reference/apis-audio-kit/js-apis-inner-multimedia-systemSoundPlayer.md#load) API to load the sound effect resource of a specified type.
 
    <!-- @[sound_player_load](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/Media/Audio/SystemSoundPlayer/entry/src/main/ets/pages/SoundPlayer.ets) -->
-   
+
    ``` TypeScript
    import { systemSoundManager } from '@kit.AudioKit';
    // ...
@@ -66,7 +68,7 @@ The examples in each of the following steps are code snippets. You can click the
 3. Call the [play](../../reference/apis-audio-kit/js-apis-inner-multimedia-systemSoundPlayer.md#play) API to play the loaded sound effect resource.
 
    <!-- @[sound_player_play](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/Media/Audio/SystemSoundPlayer/entry/src/main/ets/pages/SoundPlayer.ets) -->
-   
+
    ``` TypeScript
    import { systemSoundManager } from '@kit.AudioKit';
    // ...
@@ -85,7 +87,7 @@ The examples in each of the following steps are code snippets. You can click the
 4. Call the [unload](../../reference/apis-audio-kit/js-apis-inner-multimedia-systemSoundPlayer.md#unload) API to unload the sound effect resource.
 
    <!-- @[sound_player_unload](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/Media/Audio/SystemSoundPlayer/entry/src/main/ets/pages/SoundPlayer.ets) -->
-   
+
    ``` TypeScript
    import { systemSoundManager } from '@kit.AudioKit';
    // ...
@@ -104,7 +106,7 @@ The examples in each of the following steps are code snippets. You can click the
 5. Call the [release](../../reference/apis-audio-kit/js-apis-inner-multimedia-systemSoundPlayer.md#release) API to release the system sound effect player.
 
    <!-- @[sound_player_release](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/Media/Audio/SystemSoundPlayer/entry/src/main/ets/pages/SoundPlayer.ets) -->
-   
+
    ``` TypeScript
    systemSoundPlayer?.release().then(() => {
      console.info('Succeeded in calling the release method.');

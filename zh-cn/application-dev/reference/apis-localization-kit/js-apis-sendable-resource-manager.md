@@ -7,9 +7,7 @@
 <!--Tester: @lpw_work-->
 <!--Adviser: @ningningW-->
 
-资源管理导入sendableResourceManager模块，通过调用[resourceToSendableResource](#sendableresourcemanagerresourcetosendableresource)和[sendableResourceToResource](#sendableresourcemanagersendableresourcetoresource)方法可以将[Resource](#resource)对象和[SendableResource](#sendableresource)对象进行互转。
-
-Resource对象通过转换为SendableResource对象后，可以被[Sendable类](../../arkts-utils/arkts-sendable.md)持有。Sendable类在跨线程传输后，取出持有的SendableResource对象转为Resource对象，作为参数获取资源。
+本模块提供[Resource](#resource)对象与[SendableResource](#sendableresource)对象之间的相互转换功能。SendableResource实现了[ISendable](../../arkts-utils/arkts-sendable.md#isendable)接口，支持跨线程传输。跨线程传输后，SendableResource对象可以再转换为Resource对象，作为参数传递给[资源管理](./js-apis-resource-manager.md)接口以获取资源。
 
 > **说明：**
 >
@@ -25,7 +23,7 @@ import { sendableResourceManager } from '@kit.LocalizationKit';
 
 resourceToSendableResource(resource: Resource): SendableResource
 
-将Resource对象转换为SendableResource对象。
+将Resource对象转换为可用于跨线程传输的SendableResource对象。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -49,7 +47,7 @@ resourceToSendableResource(resource: Resource): SendableResource
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
-| 401 | If the input parameter invalid. Possible causes: 1.Incorrect parameter types; 2.Parameter verification failed.                 |
+| 401 | Parameter error. Possible causes: 1.Incorrect parameter types; 2.Parameter verification failed.                 |
 
 **示例：**
 ```json5
@@ -80,7 +78,7 @@ try {
 
 sendableResourceToResource(resource: SendableResource): Resource
 
-将SendableResource对象转换为Resource对象。
+将跨线程传输的SendableResource对象转换为Resource对象。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -104,7 +102,7 @@ sendableResourceToResource(resource: SendableResource): Resource
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
-| 401 | If the input parameter invalid. Possible causes: 1.Incorrect parameter types; 2.Parameter verification failed.                 |
+| 401 | Parameter error. Possible causes: 1.Incorrect parameter types; 2.Parameter verification failed.                 |
 
 **示例：**
 ```json5
@@ -135,6 +133,8 @@ try {
 
 type Resource = _Resource
 
+表示资源相关信息，包括应用包名、应用模块名、资源ID、资源类型和其他资源参数。
+
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Global.ResourceManager
@@ -146,6 +146,8 @@ type Resource = _Resource
 ## SendableResource
 
 type SendableResource = _SendableResource
+
+表示跨线程传输的Sendable资源相关信息，包括应用包名、应用模块名、资源ID、资源类型和其他资源参数。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 

@@ -38,7 +38,7 @@
 
 | 名称 | typedef关键字 | 描述 |
 | -- | -- | -- |
-| [OH_ArkUI_HapticFeedbackMode](#oh_arkui_hapticfeedbackmode) | OH_ArkUI_HapticFeedbackMode | 震动效果类型枚举。 |
+| [OH_ArkUI_HapticFeedbackMode](#oh_arkui_hapticfeedbackmode) | OH_ArkUI_HapticFeedbackMode | 触感反馈模式枚举。 |
 | [OH_ArkUI_TextEditorSpanType](#oh_arkui_texteditorspantype) | OH_ArkUI_TextEditorSpanType | 自定义文本选择菜单span类型枚举。 |
 | [OH_ArkUI_TextEditorResponseType](#oh_arkui_texteditorresponsetype) | OH_ArkUI_TextEditorResponseType | 自定义文本选择菜单响应类型枚举。 |
 | [OH_ArkUI_TextMenuType](#oh_arkui_textmenutype) | OH_ArkUI_TextMenuType | 文本菜单类型枚举。 |
@@ -68,15 +68,15 @@ enum OH_ArkUI_HapticFeedbackMode
 
 **描述**
 
-震动效果类型枚举，用于控制文本编辑器在用户交互（如长按、拖拽等操作）时的触觉反馈行为。
+触感反馈模式枚举，用于控制文本编辑器在用户交互（如长按、拖拽等操作）时的触感反馈行为。
 
 **起始版本：** 24
 
 | 枚举项 | 描述 |
 | -- | -- |
-| OH_ARKUI_HAPTIC_FEEDBACK_MODE_DISABLED = 0 | 无震动效果。 |
-| OH_ARKUI_HAPTIC_FEEDBACK_MODE_ENABLED = 1 | 有震动效果。 |
-| OH_ARKUI_HAPTIC_FEEDBACK_MODE_AUTO = 2 | 跟随系统的震动效果。 |
+| OH_ARKUI_HAPTIC_FEEDBACK_MODE_DISABLED = 0 | 无振动效果。 |
+| OH_ARKUI_HAPTIC_FEEDBACK_MODE_ENABLED = 1 | 有振动效果。 |
+| OH_ARKUI_HAPTIC_FEEDBACK_MODE_AUTO = 2 | 跟随系统的振动效果。 |
 
 ### OH_ArkUI_TextEditorSpanType
 

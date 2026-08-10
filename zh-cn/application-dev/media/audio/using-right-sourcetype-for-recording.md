@@ -17,7 +17,7 @@
 | SOURCE_TYPE_MIC | 普通录音，如录音机。 | 系统按普通录音场景配置默认输入通路和录音处理。存在更明确的业务类型时，优先选择对应类型。 |
 | SOURCE_TYPE_VOICE_RECOGNITION<sup>9+</sup> | 语音识别。 | 对应语音识别处理场景，系统可根据设备配置匹配语音识别输入通路。 |
 | SOURCE_TYPE_PLAYBACK_CAPTURE | 录制其他应用送到系统中播放的原始音频数据。 | 从API版本12开始废弃，Audio Kit不再提供内录接口。内录场景请使用[AVScreenCapture](../../reference/apis-media-kit/capi-avscreencapture.md)。 |
-| SOURCE_TYPE_VOICE_COMMUNICATION | VoIP语音或视频通话。 | 增强人声录制并抑制环境音等非人声。根据[SourceType](../../reference/apis-audio-kit/arkts-apis-audio-e.md#sourcetype8)定义，单独启动录制不会开启3A算法，需要同时使用STREAM_USAGE_VOICE_COMMUNICATION或STREAM_USAGE_VIDEO_COMMUNICATION类型的AudioRenderer播放，才会触发3A算法。 |
+| SOURCE_TYPE_VOICE_COMMUNICATION | VoIP语音或视频通话。 | 增强人声录制并抑制环境音等非人声。根据[SourceType](../../reference/apis-audio-kit/arkts-apis-audio-e.md#sourcetype8)定义，单独启动录制会开启3A算法。 |
 | SOURCE_TYPE_VOICE_MESSAGE<sup>12+</sup> | 录制语音短消息。 | 标识语音消息录制场景。根据系统默认的[音频焦点策略](audio-playback-concurrency.md#音频焦点策略)，开始录制时会暂停正在播放的音乐，并在录制结束后通知音乐应用恢复播放。 |
 | SOURCE_TYPE_CAMCORDER<sup>13+</sup> | 相机录像。 | 向系统标识录像用途，系统可根据设备配置匹配录像输入通路。 |
 | SOURCE_TYPE_UNPROCESSED<sup>14+</sup> | 获取麦克风采集的原始音频。 | 根据[SourceType](../../reference/apis-audio-kit/arkts-apis-audio-e.md#sourcetype8)定义，系统不对采集数据进行算法处理。 |

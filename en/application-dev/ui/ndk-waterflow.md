@@ -3,17 +3,21 @@
 <!--Kit: ArkUI-->
 <!--Subsystem: ArkUI-->
 <!--Owner: @rongShao-Z; @guozejun-->
-<!--Designer: @zcdqs-->
+<!--Designer: @guozejun-->
 <!--Tester: @leiyuqian-->
 <!--Adviser: @Brilliantry_Rui-->
+<!-- md-trans-meta sourceCommit=ff57662bf139c28533f638cb6ca96282ab069c0d translatedAt=2026-08-05T10:09:11.032Z pushedAt=2026-08-06T06:14:23.357Z -->
 
 The ArkUI framework provides a waterfall flow container component through NDK APIs. This component arranges items of different sizes in a waterfall-like manner from top to bottom.
 
 ## Integrating with ArkTS Pages
+
 To use the NDK APIs for building UIs, follow the instructions in [Integrating with ArkTS Pages](../ui/ndk-access-the-arkts-page.md). This involves creating a placeholder component on the ArkTS page for mounting the native page and implementing the **NativeNode** module APIs on the ArkTS side.
 
 ## Implementing Lazy Loading
+
 ### NodeAdapter Overview
+
 The NDK provides the **NodeAdapter** object to replace the [LazyForEach](../reference/apis-arkui/arkui-ts/ts-rendering-control-lazyforeach.md) function on the ArkTS side for generating child components as needed. For details, see [NodeAdapter Overview](../ui/ndk-loading-long-list.md#nodeadapter-overview).
 
 ### Lazy Loading Adapter Implementation
@@ -60,6 +64,7 @@ public:
     {
         // Release created components.
         while (!cachedItems_.empty()) {
+            nodeApi_->disposeNode(cachedItems_.top());
             cachedItems_.pop();
         }
         // Release adapter resources.
@@ -204,9 +209,22 @@ private:
 #endif // MYAPPLICATION_FLOWITEMADAPTER_H
 ```
 
-## Creating a Section
-Use the **WaterflowSection** class to manage groups in [WaterFlow](../reference/apis-arkui/arkui-ts/ts-container-waterflow.md). **SectionOption** is used to describe the configuration information of a section. Create a [ArkUI_WaterFlowSectionOption](../reference/apis-arkui/capi-arkui-nativemodule-arkui-waterflowsectionoption.md) object in the constructor of the class and destroy it in the destructor.
+### Updating and Reusing FlowItem
 
+When reusing **FlowItem** through **NodeAdapter**, keep the node structure of **FlowItem** and its direct child components stable, and update the content or style of existing child components through [setAttribute](../reference/apis-arkui/capi-arkui-nativemodule-arkui-nativenodeapi-1.md#setattribute). In the example above, only the text content of the existing **Text** component is updated when **FlowItem** is reused.
+
+> **NOTE**
+>
+> For a **FlowItem** that is already displayed and has a fixed size, do not call [removeChild](../reference/apis-arkui/capi-arkui-nativemodule-arkui-nativenodeapi-1.md#removechild) to remove its direct child components and then call [addChild](../reference/apis-arkui/capi-arkui-nativemodule-arkui-nativenodeapi-1.md#addchild) to mount new direct child components during **WaterFlow** scrolling. This approach may cause the newly mounted child components to not participate in layout in time, resulting in display anomalies.
+>
+> To update complex content, use one of the following approaches:
+>
+> - Keep the direct container of FlowItem (such as [Stack](../reference/apis-arkui/arkui-ts/ts-container-stack.md) or [Column](../reference/apis-arkui/arkui-ts/ts-container-column.md)) unchanged, and update only the content inside the container.
+> - Create a new **FlowItem** with its complete subtree, and call [OH_ArkUI_NodeAdapter_ReloadItem](../reference/apis-arkui/capi-native-node-h.md#oh_arkui_nodeadapter_reloaditem) to notify **NodeAdapter** to update the corresponding data item.
+
+## Creating a Section
+
+Use the **WaterflowSection** class to manage groups in [WaterFlow](../reference/apis-arkui/arkui-ts/ts-container-waterflow.md). **SectionOption** is used to describe the configuration information of a section. Create a [ArkUI_WaterFlowSectionOption](../reference/apis-arkui/capi-arkui-nativemodule-arkui-waterflowsectionoption.md) object in the constructor of the class and destroy it in the destructor.
 
 <!-- @[waterflow_section](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkUISample/NDKWaterFlowSample/entry/src/main/cpp/WaterflowSection.h) -->
 
@@ -277,8 +295,8 @@ private:
 #endif // MYAPPLICATION_WATERFLOWSECTION_H
 ```
 
-
 ## Creating a WaterFlow Component
+
 Implement the **ArkUIWaterflowNode** class to manage **WaterFlow** components. This class supports configuration through **SetLazyAdapter** for assigning a **FlowItemAdapter** and **SetSection** for defining sections.
 
 <!-- @[waterflow_define](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkUISample/NDKWaterFlowSample/entry/src/main/cpp/waterflow.h) -->
@@ -351,8 +369,8 @@ private:
 #endif // MYAPPLICATION_WATERFLOW_H
 ```
 
-
 ## Implementing a WaterFlow Component
+
 Create an instance of the **ArkUIWaterflowNode** class, set its width and height, and bind the **NodeAdapter** and sections.
 
 <!-- @[create_waterflow_example](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkUISample/NDKWaterFlowSample/entry/src/main/cpp/CreateWaterflowExample.h) -->
@@ -395,6 +413,5 @@ inline std::shared_ptr<ArkUIWaterflowNode> CreateWaterflowExample(napi_env env)
 
 #endif // MYAPPLICATION_CREATEWATERFLOWEXAMPLE_H
 ```
-
 
 ![image](figures/UIWaterflow.gif)

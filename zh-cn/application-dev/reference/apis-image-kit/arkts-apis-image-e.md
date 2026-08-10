@@ -14,7 +14,7 @@ Image Kit提供的枚举类型集合，涵盖图片像素格式、图片格式�
 
 ## PixelMapFormat<sup>7+</sup>
 
-表示图片像素格式的枚举。
+表示图片像素格式的枚举，包含像素数据的颜色通道排列和位深信息。
 
 **系统能力：** SystemCapability.Multimedia.Image.Core
 

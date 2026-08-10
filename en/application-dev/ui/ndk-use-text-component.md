@@ -1,10 +1,12 @@
 # Using the Text Component
+
 <!--Kit: ArkUI-->
 <!--Subsystem: ArkUI-->
 <!--Owner: @hddgzw-->
 <!--Designer: @xiangyuan6-->
 <!--Tester: @jiaoaozihao-->
 <!--Adviser: @Brilliantry_Rui-->
+<!-- md-trans-meta sourceCommit=58aa1a9b8318e579a2b513b7ba023ee57b8ecdda translatedAt=2026-08-05T10:11:35.712Z pushedAt=2026-08-06T06:16:48.712Z -->
 
 The [ArkUI](arkui-overview.md) development framework provides the **Text** component in the [NDK](../napi/ndk-development-overview.md) APIs to display the text content. The **Text** component supports various style settings, including the font, color, alignment mode, and text effect. It also supports multiple child components, such as [Span](#adding-span), [ImageSpan](#adding-imagespan), and [StyledString](./ndk-styled-string.md), to implement complex text display effects.
 
@@ -12,7 +14,7 @@ The [ArkUI](arkui-overview.md) development framework provides the **Text** compo
 >
 > - This section demonstrates core API usage only. For the complete sample project, see <!--RP1-->[native_node_sample](https://gitcode.com/openharmony/applications_app_samples/tree/master/code/DocsSample/ArkUISample/native_node_sample/)<!--RP1End-->.
 >
-> - Before development of form components, you need to access the ArkTS pages. For details, see [Integrating with ArkTS Pages](./ndk-access-the-arkts-page.md).
+> - Before development, you need to integrate with the ArkTS pages. For details, see [Integrating with ArkTS Pages](./ndk-access-the-arkts-page.md).
 
 ## Creating the Text Component
 
@@ -36,15 +38,19 @@ Manager::nodeAPI_->setAttribute(text, NODE_HEIGHT, &textHeightItem);
 
 ### Setting the Text Content
 
-The [NODE_TEXT_CONTENT](../reference/apis-arkui/capi-native-node-h.md#arkui_nodeattributetype) API sets the basic text content of the **Text** component.
+- Set the basic text content of the **Text** component through the [NODE_TEXT_CONTENT](../reference/apis-arkui/capi-native-node-h-nodeattributetype-text.md#node_text_content) attribute.
 
-<!-- @[text_content](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkUISample/native_node_sample/entry/src/main/cpp/TextMaker.cpp) -->
+  <!-- @[text_content](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkUISample/native_node_sample/entry/src/main/cpp/TextMaker.cpp) -->
 
-``` C++
-const char *textContent = "this is text 2 this is text 2 this is text 2!!!! ";
-ArkUI_AttributeItem contentItem = {.string = textContent};
-Manager::nodeAPI_->setAttribute(text2, NODE_TEXT_CONTENT, &contentItem);
-```
+  ``` C++
+  const char *textContent = "this is text 2 this is text 2 this is text 2!!!! ";
+  ArkUI_AttributeItem contentItem = {.string = textContent};
+  Manager::nodeAPI_->setAttribute(text2, NODE_TEXT_CONTENT, &contentItem);
+  ```
+
+- Set the text content through the [NODE_TEXT_CONTENT_WITH_STYLED_STRING](../reference/apis-arkui/capi-native-node-h-nodeattributetype-text.md#node_text_content_with_styled_string) attribute.
+
+  **StyledString** provides more advanced text layout capabilities, allowing you to set different styles for different parts of the text, including font size, color, and placeholders. For details about how to use **StyledString**, see [Using Styled Strings](./ndk-styled-string.md).
 
 ## Setting the Text Style
 
@@ -52,16 +58,16 @@ The **Text** component supports various style settings, including the font, colo
 
 ### Setting Font Attributes
 
-Sets basic attributes such as the font size, weight, and style. For details, see the enumerated values in [ArkUI_NodeAttributeType](../reference/apis-arkui/capi-native-node-h.md#arkui_nodeattributetype).
+Set basic attributes such as font size, weight, and style through the following attributes.
 
 **Table 1** Font attributes
 
 | Attribute| Description|
 |------|------|
-| NODE_FONT_SIZE | Font size.|
-| NODE_FONT_WEIGHT | Font weight.|
-| NODE_FONT_STYLE | Font style.|
-| NODE_FONT_FAMILY | Font list.|
+| [NODE_FONT_SIZE](../reference/apis-arkui/capi-native-node-h-nodeattributetype-text.md#node_font_size) | Sets the font size. |
+| [NODE_FONT_WEIGHT](../reference/apis-arkui/capi-native-node-h-nodeattributetype-text.md#node_font_weight) | Sets the font weight. |
+| [NODE_FONT_STYLE](../reference/apis-arkui/capi-native-node-h-nodeattributetype-text.md#node_font_style) | Sets the font style. |
+| [NODE_FONT_FAMILY](../reference/apis-arkui/capi-native-node-h-nodeattributetype-text.md#node_font_family) | Sets the font families. |
 
 <!-- @[text_font_properties](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkUISample/native_node_sample/entry/src/main/cpp/TextMaker.cpp) --> 
 
@@ -87,26 +93,30 @@ Manager::nodeAPI_->setAttribute(text2, NODE_FONT_WEIGHT, &textWeightItem);
 
 ### Setting Text Alignment
 
-Sets the horizontal and vertical alignment modes of the text. For details, see the enumerated values in [ArkUI_NodeAttributeType](../reference/apis-arkui/capi-native-node-h.md#arkui_nodeattributetype).
+Set the horizontal and vertical alignment of the text through the following attributes.
 
 **Table 2** Text alignment attributes
 
 | Attribute| Description|
 |------|------|
-| NODE_TEXT_ALIGN | Horizontal alignment of the text.|
-| NODE_TEXT_VERTICAL_ALIGN | Vertical alignment of the text.|
+| [NODE_TEXT_ALIGN](../reference/apis-arkui/capi-native-node-h-nodeattributetype-text.md#node_text_align) | Sets the horizontal text alignment. |
+| [NODE_TEXT_VERTICAL_ALIGN](../reference/apis-arkui/capi-native-node-h-nodeattributetype-text.md#node_text_vertical_align) | Sets the vertical text alignment. |
+
 - Set horizontal alignment of the text.
+
   <!-- @[text_align](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkUISample/native_node_sample/entry/src/main/cpp/TextMaker.cpp) -->
-  
+
   ``` C++
   // Set horizontal alignment to center alignment (ARKUI_TEXT_ALIGNMENT_CENTER).
   ArkUI_NumberValue intVal_0 = {.i32 = ARKUI_TEXT_ALIGNMENT_CENTER};
   ArkUI_AttributeItem textAlignItem = {&intVal_0, VALUE_1};
   Manager::nodeAPI_->setAttribute(text14, NODE_TEXT_ALIGN, &textAlignItem);
   ```
+
 - Set vertical alignment of the text.
+
   <!-- @[text_verticalAlign](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkUISample/native_node_sample/entry/src/main/cpp/TextMaker.cpp) -->
-  
+
   ``` C++
   // Set vertical alignment to baseline-based alignment (ARKUI_TEXT_VERTICAL_ALIGNMENT_BASELINE).
   ArkUI_NumberValue vAlignVal = {.i32 = ARKUI_TEXT_VERTICAL_ALIGNMENT_BASELINE};
@@ -116,17 +126,19 @@ Sets the horizontal and vertical alignment modes of the text. For details, see t
 
 ### Setting the Text Decoration and Effect
 
-Sets the text decoration and shadow effect. For details, see the enumerated values in [ArkUI_NodeAttributeType](../reference/apis-arkui/capi-native-node-h.md#arkui_nodeattributetype).
+Set effects such as text decoration lines and shadows through the following attributes.
 
 **Table 3** Text decoration and effect attributes
 
 | Attribute| Description|
 |------|------|
-| NODE_TEXT_DECORATION | Text decoration.|
-| NODE_TEXT_TEXT_SHADOW | Text shadow.|
+| [NODE_TEXT_DECORATION](../reference/apis-arkui/capi-native-node-h-nodeattributetype-text.md#node_text_decoration) | Sets the text decoration line. |
+| [NODE_TEXT_TEXT_SHADOW](../reference/apis-arkui/capi-native-node-h-nodeattributetype-text.md#node_text_text_shadow) | Sets the text shadow effect. |
+
 - Set the text decoration.
+
   <!-- @[text_decoration](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkUISample/native_node_sample/entry/src/main/cpp/TextMaker.cpp) -->
-  
+
   ``` C++
   // Set the text decoration type to underline (ARKUI_TEXT_DECORATION_TYPE_UNDERLINE) and the text decoration style to single solid line (ARKUI_TEXT_DECORATION_STYLE_SOLID).
   ArkUI_NumberValue textDecoration[] = {
@@ -134,9 +146,11 @@ Sets the text decoration and shadow effect. For details, see the enumerated valu
   ArkUI_AttributeItem textDecorationItem = {.value = textDecoration, .size = VALUE_3};
   Manager::nodeAPI_->setAttribute(text3, NODE_TEXT_DECORATION, &textDecorationItem);
   ```
-- Text shadow.
+
+- Set the text shadow.
+
   <!-- @[text_shadow](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkUISample/native_node_sample/entry/src/main/cpp/TextMaker.cpp) -->
-  
+
   ``` C++
   // Set the text shadow attribute.
   ArkUI_NumberValue textShadow[] = {
@@ -151,7 +165,7 @@ The Text component supports various text layout settings, including line wrappin
 
 ### Setting Text Line Wrapping
 
-The [NODE_TEXT_WORD_BREAK](../reference/apis-arkui/capi-native-node-h.md#arkui_nodeattributetype) API sets the line break rule of the text.
+Set the line break rule of the text through the [NODE_TEXT_WORD_BREAK](../reference/apis-arkui/capi-native-node-h-nodeattributetype-text.md#node_text_word_break) attribute.
 
 <!-- @[text_word_break](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkUISample/native_node_sample/entry/src/main/cpp/TextMaker.cpp) --> 
 
@@ -164,29 +178,33 @@ Manager::nodeAPI_->setAttribute(text3, NODE_TEXT_WORD_BREAK, &wordBreakItem);
 
 ### Setting Line Height Attributes
 
-Sets the line height and line height multiplier of the text. For details, see the enumerated values in [ArkUI_NodeAttributeType](../reference/apis-arkui/capi-native-node-h.md#arkui_nodeattributetype).
+Set attributes such as line height and line height multiplier through the following attributes.
 
 Since API version 22, the **Text** component supports setting the line height using a multiplier.
 
-**Table 5** Line height attributes
+**Table 4** Line height attributes
 
 | Attribute| Description|
 |------|------|
-| NODE_TEXT_LINE_HEIGHT | Line height.|
-| NODE_TEXT_LINE_HEIGHT_MULTIPLE | Line height multiplier. This attribute is supported since API version 22.|
-| NODE_TEXT_HALF_LEADING | Vertically centered text.|
+| [NODE_TEXT_LINE_HEIGHT](../reference/apis-arkui/capi-native-node-h-nodeattributetype-text.md#node_text_line_height) | Sets the line height. |
+| [NODE_TEXT_LINE_HEIGHT_MULTIPLE](../reference/apis-arkui/capi-native-node-h-nodeattributetype-text.md#node_text_line_height_multiple) | Sets the line height multiple. Supported since API version 22. |
+| [NODE_TEXT_HALF_LEADING](../reference/apis-arkui/capi-native-node-h-nodeattributetype-text.md#node_text_half_leading) | Sets the text to be vertically centered. |
+
 - Set the line height.
+
   <!-- @[text_line_height](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkUISample/native_node_sample/entry/src/main/cpp/TextMaker.cpp) -->
-  
+
   ``` C++
   // Set the text line height.
   ArkUI_NumberValue lineHeight = {.f32 = VALUE_50};
   ArkUI_AttributeItem lineHeightItem = {&lineHeight, VALUE_1};
   Manager::nodeAPI_->setAttribute(text4, NODE_TEXT_LINE_HEIGHT, &lineHeightItem);
   ```
+
 - Line height multiplier.
+
   <!-- @[text_line_height_multiple](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkUISample/native_node_sample/entry/src/main/cpp/TextMaker.cpp) -->
-  
+
   ``` C++
   // Set the line height multiplier.
   ArkUI_NumberValue value[] = {{.f32 = 2.0}};
@@ -196,15 +214,15 @@ Since API version 22, the **Text** component supports setting the line height us
 
 ### Setting Text Ellipsis
 
-Sets the ellipsis style upon text overflow. For details, see the enumerated values in [ArkUI_NodeAttributeType](../reference/apis-arkui/capi-native-node-h.md#arkui_nodeattributetype).
+Set the ellipsis mode for text overflow through the following attributes.
 
-**Table 6** Text ellipsis attributes
+**Table 5** Text ellipsis attributes
 
 | Attribute| Description|
 |------|------|
-| NODE_TEXT_MAX_LINES | Maximum number of lines.|
-| NODE_TEXT_OVERFLOW | Text overflow mode.|
-| NODE_TEXT_ELLIPSIS_MODE | Ellipsis style.|
+| [NODE_TEXT_MAX_LINES](../reference/apis-arkui/capi-native-node-h-nodeattributetype-text.md#node_text_max_lines) | Sets the maximum number of lines. |
+| [NODE_TEXT_OVERFLOW](../reference/apis-arkui/capi-native-node-h-nodeattributetype-text.md#node_text_overflow) | Sets the text overflow mode. |
+| [NODE_TEXT_ELLIPSIS_MODE](../reference/apis-arkui/capi-native-node-h-nodeattributetype-text.md#node_text_ellipsis_mode) | Sets the ellipsis mode. |
 
 <!-- @[text_ellipsis_mode](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkUISample/native_node_sample/entry/src/main/cpp/TextMaker.cpp) -->
 
@@ -227,13 +245,13 @@ Manager::nodeAPI_->setAttribute(text20, NODE_TEXT_ELLIPSIS_MODE, &ellipsisModeIt
 
 ### Setting Trailing Space Optimization at the End of Each Line
 
-Sets whether to optimize trailing spaces at the end of each line. Since API version 20, the **Text** component supports setting trailing space optimization at the end of each line. For details, see the enumerated values in [ArkUI_NodeAttributeType](../reference/apis-arkui/capi-native-node-h.md#arkui_nodeattributetype).
+Set whether to optimize trailing spaces at the end of each line through the following attributes. Since API version 20, the **Text** component supports setting whether to optimize trailing spaces at the end of each line.
 
-**Table 8** Trailing space handling at the end of each line
+**Table 6** Trailing space handling attributes for each line
 
 | Attribute| Description|
 |------|------|
-| NODE_TEXT_OPTIMIZE_TRAILING_SPACE | Whether to optimize trailing spaces at the end of each line. This attribute is supported since API version 20.|
+| [NODE_TEXT_OPTIMIZE_TRAILING_SPACE](../reference/apis-arkui/capi-native-node-h-nodeattributetype-text.md#node_text_optimize_trailing_space) | Whether to optimize trailing spaces at the end of each line. Supported since API version 20. |
 
 <!-- @[text_optimize_trailing_space](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkUISample/native_node_sample/entry/src/main/cpp/TextMaker.cpp) -->
 
@@ -245,26 +263,30 @@ Manager::nodeAPI_->setAttribute(text14, NODE_TEXT_OPTIMIZE_TRAILING_SPACE, &opti
 
 ### Setting the First Line Indent and Punctuation Compression
 
-Sets the first line indent and leading punctuation compression. Since API version 23, the **Text** component supports setting first line indent and leading punctuation compression. For details, see the enumerated values in [ArkUI_NodeAttributeType](../reference/apis-arkui/capi-native-node-h.md#arkui_nodeattributetype).
+Set the first line indent and line start punctuation compression through the following attributes. Since API version 23, the **Text** component supports setting line start punctuation compression.
 
 **Table 7** First line indent and punctuation compression attributes
 
 | Attribute| Description|
 |------|------|
-| NODE_TEXT_INDENT | First line indent.|
-| NODE_TEXT_COMPRESS_LEADING_PUNCTUATION | Leading punctuation compression. This attribute is supported since API version 23.|
-- First line indent.
+| [NODE_TEXT_INDENT](../reference/apis-arkui/capi-native-node-h-nodeattributetype-text.md#node_text_indent) | Sets the first-line indent. |
+| [NODE_TEXT_COMPRESS_LEADING_PUNCTUATION](../reference/apis-arkui/capi-native-node-h-nodeattributetype-text.md#node_text_compress_leading_punctuation) | Sets the line-start punctuation compression. Supported since API version 23. |
+
+- Set the first line indent.
+
   <!-- @[text_indent](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkUISample/native_node_sample/entry/src/main/cpp/TextMaker.cpp) -->
-  
+
   ``` C++
   // Set the first line indent.
   ArkUI_NumberValue indentVal = {.f32 = VALUE_30};
   ArkUI_AttributeItem indentItem = {&indentVal, VALUE_1};
   Manager::nodeAPI_->setAttribute(text3, NODE_TEXT_INDENT, &indentItem);
   ```
-- Leading punctuation compression.
+
+- Set the leading punctuation compression.
+
   <!-- @[text_compress_leading_punctuation](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkUISample/native_node_sample/entry/src/main/cpp/TextMaker.cpp) -->
-  
+
   ``` C++
   // Set leading punctuation compression.
   ArkUI_NumberValue value0[] = {{.i32 = true}};
@@ -272,9 +294,27 @@ Sets the first line indent and leading punctuation compression. Since API versio
   Manager::nodeAPI_->setAttribute(text11, NODE_TEXT_COMPRESS_LEADING_PUNCTUATION, &item0);
   ```
 
+### Setting the Trailing Indent
+
+Set the trailing indent of the text through the following attributes. Since API version 26.0.0, the **Text** component supports setting the trailing indent of the text.
+
+**Table 8** Trailing indent attributes
+
+| Name | Description |
+|------|------|
+| [NODE_TEXT_TAIL_INDENTS](../reference/apis-arkui/capi-native-node-h-nodeattributetype-text.md#node_text_tail_indents) | Sets the trailing indent of the text. |
+
+<!-- @[text_tail_indents](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkUISample/native_node_sample/entry/src/main/cpp/TextMaker.cpp) -->
+
+  ``` C++
+  ArkUI_NumberValue multiValues[] = { { .f32 = 0.0f }, { .f32 = 50.0f }, { .f32 = 100.0f } };
+  ArkUI_AttributeItem tailIndentItem2 = { .value = multiValues, .size = 3 };
+  Manager::nodeAPI_->setAttribute(text2, NODE_TEXT_TAIL_INDENTS, &tailIndentItem2);
+  ```
+
 ## Adding Child Components
 
-The **Text** component supports multiple child components to implement complex effects such as the text and image layout.
+The **Text** component supports multiple child components to implement complex effects such as the mixed text and image layout.
 
 ### Adding Span
 
@@ -303,7 +343,7 @@ if (span != nullptr) {
     // Set the text baseline offset attribute.
     ArkUI_NumberValue baselineOffsetVal = {.f32 = VALUE_10};
     ArkUI_AttributeItem baselineOffsetItem = {&baselineOffsetVal, VALUE_1};
-    Manager::nodeAPI_->setAttribute(text, NODE_SPAN_BASELINE_OFFSET, &baselineOffsetItem);
+    Manager::nodeAPI_->setAttribute(span, NODE_SPAN_BASELINE_OFFSET, &baselineOffsetItem);
     // Set the font weight.
     ArkUI_NumberValue fontWeight = {.i32 = ARKUI_FONT_WEIGHT_W500};
     ArkUI_AttributeItem fontWeightItem = {&fontWeight, VALUE_1};
@@ -354,24 +394,20 @@ void setText6(ArkUI_NodeHandle &text6)
 }
 ```
 
-### Using StyledString
-
-**StyledString** provides advanced text layout functions and allows you to set different styles for different parts of the text, including the font size, color, and placeholder. For details about **StyledString**, see [Drawing and Displaying Text in Text Components](./ndk-styled-string.md).
-
 ## Setting Advanced Text Effects
 
 The **Text** component supports various advanced text effects, such as gradient and marquee.
 
 ### Setting the Gradient Effect
 
-Sets the gradient color effect. Since API version 20, the **Text** component supports setting the color gradient effect. For details, see the enumerated values in [ArkUI_NodeAttributeType](../reference/apis-arkui/capi-native-node-h.md#arkui_nodeattributetype).
+Set the gradient color effect through the following attributes. Since API version 20, the **Text** component supports setting the gradient color effect.
 
 **Table 9** Gradient effect attributes
 
 | Attribute| Description|
 |------|------|
-| NODE_TEXT_LINEAR_GRADIENT | Linear gradient. This attribute is supported since API version 20.|
-| NODE_TEXT_RADIAL_GRADIENT | Radial gradient. This attribute is supported since API version 20.|
+| [NODE_TEXT_LINEAR_GRADIENT](../reference/apis-arkui/capi-native-node-h-nodeattributetype-text.md#node_text_linear_gradient) | Sets linear gradient. Supported since API version 20. |
+| [NODE_TEXT_RADIAL_GRADIENT](../reference/apis-arkui/capi-native-node-h-nodeattributetype-text.md#node_text_radial_gradient) | Sets radial gradient. Supported since API version 20. |
 
 <!-- @[text_linear_gradient](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkUISample/native_node_sample/entry/src/main/cpp/TextMaker.cpp) -->
 
@@ -388,13 +424,12 @@ ArkUI_NumberValue linearGradient[] = {
 ArkUI_AttributeItem linearGradientItem = {
     linearGradient, sizeof(linearGradient) / sizeof(ArkUI_NumberValue)};
 linearGradientItem.object = reinterpret_cast<void *>(colorStopPtr);
-linearGradientItem.size = sizeof(linearGradientItem) / sizeof(ArkUI_NumberValue);
 Manager::nodeAPI_->setAttribute(text5, NODE_TEXT_LINEAR_GRADIENT, &linearGradientItem);
 ```
 
 ### Setting the Marquee Effect
 
-Since API version 23, the **Text** component supports setting the marquee effect through **NODE_TEXT_MARQUEE_OPTIONS**. For details, see the enumerated values in [ArkUI_NodeAttributeType](../reference/apis-arkui/capi-native-node-h.md#arkui_nodeattributetype).
+Since API version 23, the **Text** component supports setting the marquee effect through the [NODE_TEXT_MARQUEE_OPTIONS](../reference/apis-arkui/capi-native-node-h-nodeattributetype-text.md#node_text_marquee_options) attribute.
 
 <!-- @[text_marquee_options](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkUISample/native_node_sample/entry/src/main/cpp/TextMaker.cpp) -->
 
@@ -413,11 +448,12 @@ ArkUI_AttributeItem marqueeOptions_item = {
     .object = marqueeOptions
 };
 Manager::nodeAPI_->setAttribute(text18, NODE_TEXT_MARQUEE_OPTIONS, &marqueeOptions_item);
+OH_ArkUI_TextMarqueeOptions_Dispose(marqueeOptions);
 ```
 
 ### Setting the Text Direction
 
-Since API version 23, the Text component supports setting the text direction through **NODE_TEXT_DIRECTION**. For details, see the enumerated values in [ArkUI_NodeAttributeType](../reference/apis-arkui/capi-native-node-h.md#arkui_nodeattributetype).
+Since API version 23, the **Text** component supports setting the text direction through the [NODE_TEXT_DIRECTION](../reference/apis-arkui/capi-native-node-h-nodeattributetype-text.md#node_text_direction) attribute.
 
 <!-- @[text_direction](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkUISample/native_node_sample/entry/src/main/cpp/TextMaker.cpp) -->
 

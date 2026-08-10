@@ -218,7 +218,7 @@ NODE_TEXT_INPUT_PLACEHOLDER_COLOR = 7007
 NODE_TEXT_INPUT_PLACEHOLDER_FONT = 7008
 ```
 
-无输入时默认提示文本的字体配置（包括大小、字重、样式、字体列表）属性，支持属性设置，属性重置和属性获取接口。<br>
+无输入时默认提示文本的字体配置（包括大小、字重、样式、字体族）属性，支持属性设置，属性重置和属性获取接口。<br>
 作为属性设置方法参数、属性获取方法返回值[ArkUI_AttributeItem](capi-arkui-nativemodule-arkui-attributeitem.md)格式如下。<br>
 
 **起始版本：** 12
@@ -231,7 +231,7 @@ NODE_TEXT_INPUT_PLACEHOLDER_FONT = 7008
 | .value[0]?.f32 | 可选字体大小数值，默认值16.0，单位为fp。取值范围：[0, +∞)。传入负数时不生效。 |
 | .value[1]?.i32 | 可选字体样式，具体枚举值请参考[ArkUI_FontStyle](capi-text-h.md#arkui_fontstyle)。默认值为ARKUI_FONT_STYLE_NORMAL，表示标准字体样式。 |
 | .value[2]?.i32 | 可选字体粗细样式，具体枚举值请参考[ArkUI_FontWeight](capi-text-h.md#arkui_fontweight)。默认值ARKUI_FONT_WEIGHT_NORMAL，表示正常字体粗细。 |
-| ?.string | 字体族内容，多个字体族之间使用逗号分隔，形如“字重；字体族1，字体族2”。不传入时使用系统默认字体族。 |
+| ?.string | 字体族内容，多个字体族之间使用英文逗号(,)分隔，形如“字体族1,字体族2”。不传入时使用系统默认字体族。 |
 
 **返回：**
 
@@ -240,7 +240,7 @@ NODE_TEXT_INPUT_PLACEHOLDER_FONT = 7008
 | .value[0].f32 | 字体大小数值，单位为fp。 |
 | .value[1].i32 | 字体样式[ArkUI_FontStyle](capi-text-h.md#arkui_fontstyle)。 |
 | .value[2].i32 | 字体粗细样式[ArkUI_FontWeight](capi-text-h.md#arkui_fontweight)。 |
-| .string | 字体族内容，多个字体族之间使用逗号分隔。 |
+| .string | 字体族内容，多个字体族之间使用英文逗号(,)分隔。 |
 
 ## NODE_TEXT_INPUT_ENABLE_KEYBOARD_ON_FOCUS
 
@@ -932,7 +932,7 @@ NODE_TEXT_INPUT_ENABLE_FILL_ANIMATION = 7036
 NODE_TEXT_INPUT_LINE_HEIGHT = 7037
 ```
 
-设置输入框文本的高度，支持属性设置，属性重置和属性获取接口。<br>
+设置输入框文本行高，支持属性设置，属性重置和属性获取接口。<br>
 作为属性设置方法参数、属性获取方法返回值[ArkUI_AttributeItem](capi-arkui-nativemodule-arkui-attributeitem.md)格式如下。<br>
 
 **起始版本：** 20
@@ -942,13 +942,13 @@ NODE_TEXT_INPUT_LINE_HEIGHT = 7037
 
 | 参数项 | 描述 |
 | -- | -- |
-| .value[0].i32 | 文本的高度，单位fp。默认值是自适应字体大小。不传入该参数时，文本的高度设置为5fp。 |
+| .value[0].i32 | 文本行高，单位fp。默认值是自适应字体大小。 |
 
 **返回：**
 
 | 类型 | 说明 |
 | -- | -- |
-| .value[0].i32 | 文本的高度，单位fp。 |
+| .value[0].i32 | 文本行高，单位fp。 |
 
 ## NODE_TEXT_INPUT_ENABLE_SELECTED_DATA_DETECTOR
 
@@ -1452,7 +1452,7 @@ NODE_TEXT_AREA_PLACEHOLDER_FONT = 8004
 | .value[0]?.f32 | 可选字体大小数值，默认值16.0，单位为fp。取值范围[0, +∞)。 |
 | .value[1]?.i32 | 可选字体样式[ArkUI_FontStyle](capi-text-h.md#arkui_fontstyle)。具体样式值请参考ArkUI_FontStyle枚举。默认值为ARKUI_FONT_STYLE_NORMAL，表示标准字体样式。 |
 | .value[2]?.i32 | 可选字体粗细样式[ArkUI_FontWeight](capi-text-h.md#arkui_fontweight)。具体字重值请参考ArkUI_FontWeight枚举。默认值为ARKUI_FONT_WEIGHT_NORMAL，表示正常字体粗细。 |
-| ?.string | 字体族内容，多个字体族之间使用逗号分隔，形如“字重；字体族1，字体族2”。不传入时使用系统默认字体族。 |
+| ?.string | 字体族内容，多个字体族之间使用英文逗号(,)分隔，形如“字体族1,字体族2”。不传入时使用系统默认字体族。 |
 
 **返回：**
 
@@ -1461,7 +1461,7 @@ NODE_TEXT_AREA_PLACEHOLDER_FONT = 8004
 | .value[0].f32 | 字体大小数值，单位为fp。 |
 | .value[1].i32 | 字体样式[ArkUI_FontStyle](capi-text-h.md#arkui_fontstyle)。 |
 | .value[2].i32 | 字体粗细样式[ArkUI_FontWeight](capi-text-h.md#arkui_fontweight)。 |
-| .string | 字体族内容，多个字体族之间使用逗号分隔。 |
+| .string | 字体族内容，多个字体族之间使用英文逗号(,)分隔。 |
 
 ## NODE_TEXT_AREA_CARET_COLOR
 
@@ -2097,7 +2097,7 @@ NODE_TEXT_AREA_MAX_LINES_WITH_SCROLL = 8030
 NODE_TEXT_AREA_LINE_HEIGHT = 8031
 ```
 
-设置输入框文本的高度，支持属性设置，属性重置和属性获取接口。<br>
+设置输入框文本行高，支持属性设置，属性重置和属性获取接口。<br>
 作为属性设置方法参数、属性获取方法返回值[ArkUI_AttributeItem](capi-arkui-nativemodule-arkui-attributeitem.md)格式如下。<br>
 
 **起始版本：** 20
@@ -2107,13 +2107,13 @@ NODE_TEXT_AREA_LINE_HEIGHT = 8031
 
 | 参数项 | 描述 |
 | -- | -- |
-| .value[0].i32 | 文本的高度。默认值是自适应字体大小，单位fp。不传入该参数时，文本的高度设置为5fp。 |
+| .value[0].i32 | 文本行高。默认值是自适应字体大小，单位fp。 |
 
 **返回：**
 
 | 类型 | 说明 |
 | -- | -- |
-| .value[0].i32 | 文本的高度，单位fp。 |
+| .value[0].i32 | 文本行高，单位fp。 |
 
 ## NODE_TEXT_AREA_BAR_STATE
 

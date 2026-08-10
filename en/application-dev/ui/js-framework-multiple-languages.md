@@ -1,16 +1,16 @@
 # Multi-Language Capability
+
 <!--Kit: ArkUI-->
 <!--Subsystem: ArkUI-->
 <!--Owner: @sunfei2021-->
 <!--Designer: @sunfei2021-->
 <!--Tester: @sally__-->
 <!--Adviser: @Brilliantry_Rui-->
+<!-- md-trans-meta sourceCommit=c38364739d3f11462c948c825ea29c29829330a1 translatedAt=2026-08-05T01:26:01.303Z pushedAt=2026-08-05T02:52:40.398Z -->
 
 Applications designed based on the JS UI framework apply to different countries and regions. With the multi-language capability, you do not need to develop application versions in different languages, and your users can switch between various locales. This also facilitates project maintenance.
 
-
 You only need to perform operations in [Defining Resource Files](#defining-resource-files) and [Referencing Resources](#referencing-resources) to use the multi-language capability of this framework. For details about how to obtain the current system language, see [Obtaining the Language](#obtaining-the-language).
-
 
 ## Defining Resource Files
 
@@ -35,6 +35,7 @@ If there is no resource file of the locale that matches the system language, con
 The format of the resource file content is as follows:
 
 **en-US.json**
+
 ```json
 {
     "strings": {
@@ -50,12 +51,9 @@ The format of the resource file content is as follows:
 }
 ```
 
-
 Different languages have different matching rules for singular and plural forms. In the resource file, **zero**, **one**, **two**, **few**, **many**, and **other** are used to define the string content in different singular and plural forms. For example, there is only the **other** scenario in Chinese since the language does not have singular and plural forms. **one** and **other** scenarios are applicable to English. All six scenarios are needed for Arabic.
 
-
 The following example takes **en-US.json** and **ar-AE.json** as examples:
-
 
 **en-US.json**
 
@@ -69,7 +67,6 @@ The following example takes **en-US.json** and **ar-AE.json** as examples:
     }
 }
 ```
-
 
 **ar-AE.json**
 
@@ -87,7 +84,6 @@ The following example takes **en-US.json** and **ar-AE.json** as examples:
     }
 }
 ```
-
 
 ## Referencing Resources
 
@@ -111,6 +107,7 @@ Multi-language syntax used on application development pages (including simple fo
   | params | Array \| Object | No  | Content used to replace placeholders during runtime. There are two types of placeholders available:<br>- Named placeholder, for example, **{name}**. The actual content must be of the object type, for example, `$t('strings.object', {name:'Hello world'})`.<br> - Digit placeholder, for example, **{0}**. The actual content must be of the array type, for example, **$t('strings.array', ['Hello world'])**.|
 
 - Example code for simple formatting
+
   ```html
   <!-- xxx.hml -->
   <div>
@@ -169,6 +166,7 @@ Multi-language syntax used on application development pages (including simple fo
   | count | number | Yes  | Number.|
 
 - Example code for singular-plural formatting
+
   ```html
   <!--xxx.hml-->
   <div>
@@ -187,7 +185,6 @@ Multi-language syntax used on application development pages (including simple fo
   </div>
   ```
 
-
 ## Obtaining the Language
 
-For details about how to obtain the language, see [@ohos.app.ability.Configuration (Configuration)](../reference/apis-ability-kit/js-apis-app-ability-configuration.md).
+For the language obtaining feature, see [@ohos.app.ability.Configuration (Environment Variables)](../reference/apis-ability-kit/js-apis-app-ability-configuration.md).

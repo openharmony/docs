@@ -148,7 +148,7 @@
       });
     ```
     ```ts
-    // 5.获取低分辨任务快照
+    // 5.获取低分辨率任务快照
     missionManager.getLowResolutionMissionSnapShot('', this.missionId,
       (error: BusinessError, snapshot: missionManager.MissionSnapshot) => {
         if (error === null) {

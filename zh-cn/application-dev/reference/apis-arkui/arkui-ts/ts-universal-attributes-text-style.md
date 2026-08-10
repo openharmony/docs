@@ -126,7 +126,7 @@ setStyledPlaceholder(styledString: StyledString): void
 
 > **说明：**
 >
-> - 当controller未绑定组件或绑定controller的组件被释放时，该接口不生效。
+> 当controller未绑定组件或绑定controller的组件被释放时，该接口不生效。
 
 **原子化服务API：** 从API version 22开始，该接口支持在原子化服务中使用。
 
@@ -191,7 +191,7 @@ clearPreviewText(): void
 
 > **说明：**
 >
-> - 当controller未绑定组件或绑定controller的组件被释放时，该接口不生效。
+> 当controller未绑定组件或绑定controller的组件被释放时，该接口不生效。
 
 **原子化服务API：** 从API version 17开始，该接口支持在原子化服务中使用。
 
@@ -209,7 +209,7 @@ deleteBackward(): void
 
 > **说明：**
 >
-> - 当controller未绑定组件或绑定controller的组件被释放时，该接口不生效。
+> 当controller未绑定组件或绑定controller的组件被释放时，该接口不生效。
 
 **原子化服务API：** 从API version 23开始，该接口支持在原子化服务中使用。
 

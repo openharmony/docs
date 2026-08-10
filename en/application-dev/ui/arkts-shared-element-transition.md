@@ -1,10 +1,12 @@
 # Shared Element Transition
+
 <!--Kit: ArkUI-->
 <!--Subsystem: ArkUI-->
-<!--Owner: @CCFFWW-->
-<!--Designer: @CCFFWW-->
+<!--Owner: @hehongyang3-->
+<!--Designer: @hehongyang3-->
 <!--Tester: @lxl007-->
-<!--Adviser: @ge-yafang-->
+<!--Adviser: @ge-yafang; @Brilliantry_Rui-->
+<!-- md-trans-meta sourceCommit=7fab30e14d973fa66ccdb0a1cd82a35dfc757e46 translatedAt=2026-08-04T06:39:55.113Z pushedAt=2026-08-04T08:28:14.532Z -->
 
 Shared element transition is a type of transition achieved by animating the size and position between styles of the same or similar elements during page switching.
 
@@ -12,7 +14,7 @@ Let's look at an example. After an image is clicked, it disappears, and a new im
 
 | Frame-by-Frame Transition Effect| Shared Element Transition|
 | ------ | ---- |
-| ![Frame-transition-effect](figures/Frame-transition-effect.gif)|![one-shot-style](figures/one-shot-style.gif)|
+| ![Frame transition effect](figures/Frame-transition-effect.gif)|![one-shot style](figures/one-shot-style.gif) |
 
 There are multiple methods for implementing the shared element transition. During real-world development, choose the method that best meets the requirements of your project.
 
@@ -21,14 +23,14 @@ Below is a comparison of the various methods available.
 | Implementation Method| Description| Use Case|
 | ------ | ---- | ---- |
 | Implement direct transformation without new containers| No route transitions occur, and you need to implement both expanded and collapsed states within a single component. The component hierarchy remains unchanged after the expansion.| Ideal for simple transitions with minimal overhead, such as opening a page that does not involve loading extensive data or components.|
-| Migrate components across new containers| Employ **NodeController** to migrate components between containers. Initially, adjust the translation and scale attributes of the components based on the position and size of the previous and next layouts to ensure that they align with the initial layout, avoiding visual discontinuity. Then, add animations to reset the translation and scale attributes, thereby creating a smooth, uninterrupted transition from the initial to the final layout.| Suitable for scenarios where creating new objects is resource-intensive, such as when a video live-streaming component is clicked to switch to full screen.|
-| Use geometryTransition| Drawing on system capabilities, bind the same ID for components before and after the transition and encapsulating the transition logic within an **animateTo** block. This allows the system to automatically apply a continuous transition effect.| The system synchronizes the dimensions and positions of the bound components and transitions their opacity for a smooth effect. You need to ensure that width and height animations on bound nodes do not cause abrupt changes. Suitable for scenarios where the overhead of creating new nodes is low.|
+| New Container with Cross-Container Component Migration | By using [NodeController](../reference/apis-arkui/js-apis-arkui-nodeController.md), a component is migrated from one container to another. At the start of migration, translation and scaling are applied to the component based on the position and size information of both the source and target layouts, ensuring that the component aligns with the source layout at the beginning of migration and avoiding visual jumps. An animation is then added to reset the translation and scaling attributes, achieving a one-shot animation transition effect from the source layout to the target layout. | Suitable for scenarios where creating new objects incurs high overhead, such as a video live streaming component transitioning to full screen upon tap. |
+| Using geometryTransition for Shared Element Transition | By leveraging system capabilities, the two components before and after the transition call the [geometryTransition](../reference/apis-arkui/arkui-ts/ts-transition-animation-geometrytransition.md) API to bind the same ID, and the transition logic is placed within an [animateTo](../reference/apis-arkui/arkui-ts/ts-explicit-animation.md) animation closure, so that the system automatically applies a one-shot animation transition effect to both components. | The system adjusts the width, height, and position of the two bound components to the same values and switches their opacity to achieve the one-shot animation transition effect. Therefore, to achieve a smooth animation effect, it is necessary to ensure that no visual jumps occur when adding width and height animations to nodes bound with geometryTransition. This method is suitable for scenarios where the overhead of creating new nodes is low. |
 
 ## Implement Direct Transformation Without New Containers
 
 This method does not create new containers. Instead, it triggers [transition](../reference/apis-arkui/arkui-ts/ts-transition-animation-component.md) by adding or removing components on an existing container and pairs it with the [property animation](./arkts-attribute-animation-apis.md) of components.
 
-This example implements a shared element transition for the scenario where, as a component is expanded, sibling components in the same container disappear or appear. Specifically, property animations are applied to width and height changes of a component before and after the expansion; enter/exit animations are applied to the sibling components as they disappear or disappear. The basic procedure is as follows:
+This example implements a shared element transition for the scenario where, as a component is expanded, sibling components in the same container disappear or appear. Specifically, property animations are applied to width and height changes of a component before and after the expansion; enter/exit animations are applied to the sibling components as they disappear or appear. The basic procedure is as follows:
 
 1. Build the component to be expanded, and build two pages for it through state variables: one for the normal state and one for the expanded state.
 
@@ -948,6 +950,7 @@ export class CustomTransition {
 ```
 
 <!-- -->
+
 ```ts
 // Configure {"routerMap": "$profile:route_map"} in the project configuration file module.json5.
 // route_map.json
@@ -1405,7 +1408,7 @@ To implement a shared element transition to a sheet when an image is clicked:
 ```
 
 ```ts
-// index.ets
+// Index.ets
 import { MyNodeController, createMyNode, getMyNode } from '../NodeContainer/CustomComponent';
 import { ComponentAttrUtils, RectInfoInPx } from '../utils/ComponentAttrUtils';
 import { WindowUtils } from '../utils/WindowUtils';
@@ -1473,8 +1476,8 @@ struct Index {
           this.clipHeight = this.targetInfo.clipHeight;
           // Adjust for height differences caused by sheet height and scaling.
           this.translateY = this.targetInfo.translateY +
-            (this.getUIContext().px2vp(WindowUtils.windowHeight_px) - this.bindSheetHeight
-              - this.getUIContext().px2vp(WindowUtils.navigationIndicatorHeight_px) - this.getUIContext().px2vp(WindowUtils.topAvoidAreaHeight_px));
+            (this.getUIContext().px2vp(WindowUtils.windowHeightPx) - this.bindSheetHeight
+              - this.getUIContext().px2vp(WindowUtils.navigationIndicatorHeightPx) - this.getUIContext().px2vp(WindowUtils.topAvoidAreaHeightPx));
           // Adjust for corner radius differences caused by scaling.
           this.radius = this.sheetRadius / this.scaleValue
         })
@@ -1496,8 +1499,8 @@ struct Index {
     let itemInfo: RectInfoInPx =
       ComponentAttrUtils.getRectInfoById(WindowUtils.window.getUIContext(), id);
     // Calculate the ratio of the image's width and height to the window's width and height.
-    let widthScaleRatio = itemInfo.width / WindowUtils.windowWidth_px;
-    let heightScaleRatio = itemInfo.height / WindowUtils.windowHeight_px;
+    let widthScaleRatio = itemInfo.width / WindowUtils.windowWidthPx;
+    let heightScaleRatio = itemInfo.height / WindowUtils.windowHeightPx;
     let isUseWidthScale = widthScaleRatio > heightScaleRatio;
     let itemScale: number = isUseWidthScale ? widthScaleRatio : heightScaleRatio;
     let itemTranslateX: number = 0;
@@ -1506,15 +1509,15 @@ struct Index {
     let itemTranslateY: number = 0;
 
     if (isUseWidthScale) {
-      itemTranslateX = this.getUIContext().px2vp(itemInfo.left - (WindowUtils.windowWidth_px - itemInfo.width) / 2);
+      itemTranslateX = this.getUIContext().px2vp(itemInfo.left - (WindowUtils.windowWidthPx - itemInfo.width) / 2);
       itemClipWidth = '100%';
       itemClipHeight = this.getUIContext().px2vp((itemInfo.height) / itemScale);
       itemTranslateY = this.getUIContext().px2vp(itemInfo.top - ((this.getUIContext().vp2px(itemClipHeight) - this.getUIContext().vp2px(itemClipHeight) * itemScale) / 2));
     } else {
-      itemTranslateY = this.getUIContext().px2vp(itemInfo.top - (WindowUtils.windowHeight_px - itemInfo.height) / 2);
+      itemTranslateY = this.getUIContext().px2vp(itemInfo.top - (WindowUtils.windowHeightPx - itemInfo.height) / 2);
       itemClipHeight = '100%';
       itemClipWidth = this.getUIContext().px2vp((itemInfo.width) / itemScale);
-      itemTranslateX = this.getUIContext().px2vp(itemInfo.left - (WindowUtils.windowWidth_px / 2 - itemInfo.width / 2));
+      itemTranslateX = this.getUIContext().px2vp(itemInfo.left - (WindowUtils.windowWidthPx / 2 - itemInfo.width / 2));
     }
 
     return {
@@ -2192,4 +2195,4 @@ After a profile picture on the home page is clicked, the corresponding profile p
 
 ![one-shot-style-avatar](figures/one-shot-style-avatar.gif)
 
-<!--RP1--><!--RP1End-->
+<!--RP2--><!--RP2End-->

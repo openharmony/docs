@@ -11,6 +11,8 @@ Starting from API version 20, audio decoding in synchronous mode is supported.
 
 You can call native APIs to perform audio decoding in synchronous mode, which decodes media data into PCM streams.
 
+For details about the implementation, see the [sample project](https://gitcode.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/Media/AVCodec).
+
 For details about the supported decoding capabilities, see [AVCodec Supported Formats](avcodec-support-formats.md#audio-decoding).
 
 **When to Use**
@@ -117,7 +119,7 @@ target_link_libraries(sample PUBLIC libnative_media_acodec.so)
     MediaKeySession *session = nullptr;
     DRM_ContentProtectionLevel contentProtectionLevel = CONTENT_PROTECTION_LEVEL_SW_CRYPTO;
     ret = OH_MediaKeySystem_CreateMediaKeySession(system, &contentProtectionLevel, &session);
-    if (ret != DRM_OK) {
+    if (ret != DRM_ERR_OK) {
         // If the creation fails, refer to the DRM interface document and check logs.
         printf("create media key session failed.");
         return;
@@ -146,15 +148,16 @@ target_link_libraries(sample PUBLIC libnative_media_acodec.so)
    ![Audio decoder format range description](figures/decoder_format.png)
    <!--RP2End-->
 
-   Starting from API version 20, you can query the [sample rate range](../../reference/apis-avcodec-kit/capi-native-avcapability-h.md#oh_avcapability_getaudiosupportedsamplerateranges). The following audio decoding types support decoding of any sample rate within their range:
+   Starting from API version 20, you can query the supported sample rate ranges through [OH_AVCapability_GetAudioSupportedSampleRateRanges](../../reference/apis-avcodec-kit/capi-native-avcapability-h.md#oh_avcapability_getaudiosupportedsamplerateranges). The following audio decoding types support decoding of any sample rate within their range:
 
    | Audio Decoding Type|    Sample Rate (Hz)  |
    | ----------- | --------------- |
-   | FLAC       | 8000 – 384000  |
-   | Vorbis      | 8000 – 192000  |
-   | APE         | 1 – 2147483647 |
+   | FLAC       | 8000-384000  |
+   | Vorbis      | 8000-192000  |
+   | APE         | 1-2147483647 |
 
    ```c++
+   // The values configured below are examples. Set the values dynamically based on actual decoding capabilities.
    // (Mandatory) Configure the audio sample rate.
    constexpr uint32_t DEFAULT_SAMPLERATE = 44100;
    // (Mandatory) Configure the audio channel count.

@@ -26,8 +26,6 @@ new Ellipse(options?: EllipseOptions)
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
-**模型约束：** 从API version 18开始，使用EllipseOptions参数时需在Stage模型下使用。
-
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
@@ -36,7 +34,7 @@ new Ellipse(options?: EllipseOptions)
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| options | [EllipseOptions](#ellipseoptions18对象说明) | 否 | 椭圆绘制配置选项，包含宽度和高度设置。不传入时使用默认尺寸（宽度和高度均为0）。<br>异常值undefined和null按照无效值处理，本次设置不生效。|
+| options | [EllipseOptions](#ellipseoptions18对象说明) | 否 | 椭圆绘制配置选项，包含宽度和高度设置。不传入时使用默认尺寸（宽度和高度均为0）。<br>异常值undefined和null按照无效值处理，本次设置不生效。<br>**说明：**从API version 18开始，使用EllipseOptions参数时需在Stage模型下使用。|
 
 ### Ellipse
 
@@ -46,8 +44,6 @@ Ellipse(options?: EllipseOptions)
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
-**模型约束：** 从API version 18开始，使用EllipseOptions参数时需在Stage模型下使用。
-
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
@@ -56,7 +52,7 @@ Ellipse(options?: EllipseOptions)
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| options | [EllipseOptions](#ellipseoptions18对象说明) | 否 | 椭圆绘制配置选项，包含宽度和高度设置。不传入时使用默认尺寸（宽度和高度均为0）。<br>异常值undefined和null按照无效值处理，本次设置不生效。|
+| options | [EllipseOptions](#ellipseoptions18对象说明) | 否 | 椭圆绘制配置选项，包含宽度和高度设置。不传入时使用默认尺寸（宽度和高度均为0）。<br>异常值undefined和null按照无效值处理，本次设置不生效。<br>**说明：**从API version 18开始，使用EllipseOptions参数时需在Stage模型下使用。|
 
 ## EllipseOptions<sup>18+</sup>对象说明
 

@@ -1,13 +1,14 @@
 # Text Drawing
+
 <!--Kit: ArkUI-->
 <!--Subsystem: ArkUI-->
 <!--Owner: @liyujie43-->
 <!--Designer: @weixin_52725220-->
 <!--Tester: @xiong0104-->
 <!--Adviser: @Brilliantry_Rui-->
+<!-- md-trans-meta sourceCommit=2fe06c91e0a27d15dbfdba21fc4a3873ff6d81b0 translatedAt=2026-08-05T10:14:45.919Z pushedAt=2026-08-06T07:20:18.589Z -->
 
 The **svg** component can also be used to draw text.
-
 
 ## Text
 
@@ -35,11 +36,9 @@ Set the following attributes to define text styles: **x** (X coordinate), **y** 
 
 ![Text](figures/Text.png)
 
-
 ## Drawing Text Along the Path
 
-Set **textpath** to draw text along the path.
-
+The `textpath` text is drawn along the path specified by the `path` attribute.
 
 ```html
 <!-- xxx.hml -->

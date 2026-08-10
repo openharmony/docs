@@ -22,7 +22,7 @@ import { Available, SuppressWarnings, SuppressWarningsType } from '@kit.BasicSer
 
 @interface Available { minApiVersion: string = '' }
 
-提供API注解能力，用于标记API支持的最低可用版本。此注解可以标注在类、接口、变量、类型、模块、枚举上。在源码定义处添加注解后，编译工具会在使用处检查潜在的兼容性问题。当minApiVersion大于build-profile.json5中指定的compatibleSDKVersion字段，会生成兼容性警告。
+提供API注解能力，用于标记API支持的最低可用版本。此注解可以标注在类、接口、函数、变量、类型、模块、枚举上。在源码定义处添加注解后，编译工具会在使用处检查潜在的兼容性问题。当minApiVersion大于build-profile.json5中指定的compatibleSdkVersion字段，会生成兼容性警告。
 
 **卡片能力：** 从API version 22开始，该接口支持在ArkTS卡片中使用。
 
@@ -100,13 +100,12 @@ import { Available, SuppressWarnings, SuppressWarningsType } from '@kit.BasicSer
 >
 > 用于容器节点时，会屏蔽节点下子节点产生的告警。
 >
-> 重复规则屏蔽时，仅生效代码位置上距离最近且符合规则的屏蔽类型
+> 重复规则屏蔽时，仅生效代码位置上距离最近且符合规则的屏蔽类型。当多个不同类型的抑制实例同时存在时，各类型独立生效。
 
   ```typescript
-  import { SuppressWarnings, SuppressWarningsType } from '@kit.BasicServicesKit';
+  import { SuppressWarnings, SuppressWarningsType, systemDateTime } from '@kit.BasicServicesKit';
   import { photoAccessHelper } from '@kit.MediaLibraryKit';
   import { common } from '@kit.AbilityKit';
-  import { systemDateTime } from '@kit.BasicServicesKit';
   // 兼容性告警消除部分
   systemDateTime.getAutoTimeStatus();  // 该接口起始版本为21，直接调用会生成兼容性告警。
   // The 'getAutoTimeStatus' API is supported since SDK version 21. However, the current compatible SDK version is 20.
@@ -211,6 +210,6 @@ import { Available, SuppressWarnings, SuppressWarningsType } from '@kit.BasicSer
 
 | 名称                   | 值   | 说明                           |
 | ---------------------- | ---- | ------------------------------ |
-| COMPATIBILITY     | compatibility    | 支持消除兼容性告警。 |
-| SYSCAP     | syscap    | 支持消除多设备告警。 |
-| PERMISSION     | permission    | 支持消除权限告警。<br/>**起始版本：** 26.0.0 |
+| COMPATIBILITY     | compatibility    | 支持消除兼容性告警。当调用API的起始版本高于工程设置的兼容SDK版本时产生的告警。建议在已做版本判断或兼容性处理时使用，避免盲目抑制告警导致低版本设备运行异常。 |
+| SYSCAP     | syscap    | 支持消除多设备告警。当调用API的系统能力在目标设备上不支持时产生的告警。 |
+| PERMISSION     | permission    | 支持消除权限告警。当调用需要权限的API但未在配置文件中声明相应权限时产生的告警。<br>**起始版本：** 26.0.0 |

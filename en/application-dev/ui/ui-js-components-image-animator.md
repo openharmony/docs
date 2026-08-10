@@ -339,3 +339,10 @@ export default {
 ```
 
 ![Example-Scenario-8](figures/Example-Scenario-8.gif)
+
+
+## Samples
+
+The following sample is provided to help you better understand how to develop **image-animator**:
+
+- [Using the image and image-animator Components (JS, API version 9)](https://gitcode.com/openharmony/codelabs/tree/master/JSUI/ClickableJs)

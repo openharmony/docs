@@ -1,13 +1,14 @@
 # chart Development
+
 <!--Kit: ArkUI-->
 <!--Subsystem: ArkUI-->
 <!--Owner: @Zhang-Dong-hui-->
 <!--Designer: @xiangyuan6-->
 <!--Tester: @jiaoaozihao-->
 <!--Adviser: @Brilliantry_Rui-->
+<!-- md-trans-meta sourceCommit=9a5da59cdf4f4c3dc0f87035f85ddf06f80ecfc4 translatedAt=2026-08-05T10:11:24.477Z pushedAt=2026-08-06T06:23:29.321Z -->
 
 The **&lt;chart&gt;** component displays line charts, bar charts, and gauge charts. For details, see [chart](../reference/apis-arkui/arkui-js/js-components-basic-chart.md).
-
 
 ## Creating a &lt;chart&gt; Component
 
@@ -66,14 +67,11 @@ export default {
 }
 ```
 
-
 ![chart-Component](figures/chart-Component.png)
-
 
 ## Setting the Chart Type
 
 Define the chart type using the **type** attribute, for example, setting a chart to a bar chart.
-
 
 ```html
 <!-- xxx.hml -->
@@ -112,7 +110,6 @@ Define the chart type using the **type** attribute, for example, setting a chart
 </div>
 ```
 
-
 ```css
 /* xxx.css */
 .container {
@@ -147,7 +144,6 @@ Define the chart type using the **type** attribute, for example, setting a chart
   margin-left: 30px;
 }
 ```
-
 
 ```js
 // xxx.js
@@ -220,11 +216,9 @@ export default {
 >
 > The **&lt;chart&gt;** component does not display the value of each point.
 
-
 ## Setting the Chart Attributes
 
 In the **options** attribute of the **&lt;chart&gt;** component, you can set the x-axis, y-axis, and data series parameters. In the **datasets** attribute, you can set the line color, fill color, gradient fill color, and drawing point set.
-
 
 ```html
 <!-- xxx.hml -->
@@ -232,7 +226,6 @@ In the **options** attribute of the **&lt;chart&gt;** component, you can set the
   <chart class="chart-data" type="line" options="{{lineOps}}" datasets="{{lineData}}"></chart>
 </div>
 ```
-
 
 ```css
 /* xxx.css */
@@ -250,7 +243,6 @@ In the **options** attribute of the **&lt;chart&gt;** component, you can set the
 }
 ```
 
-
 ```js
 // xxx.js
 export default {
@@ -259,32 +251,32 @@ export default {
     lineData: [
       {
         strokeColor: '#0081ff',
-        fillColor: '#cce5ff', // Fill color
+        fillColor: '#cce5ff',  // Fill color
         data: [463, 250, 251, 254, 431, 354, 225, 396, 295, 328, 491, 205, 313, 275, 475, 553, 491, 380, 357, 416],
         gradient: true,
       }
     ],
     lineOps: {
-     // X-axis parameters
+     // X-axis settings
       xAxis: {
         min: 0,
         max: 20,
         display: false,
       },
-     // Y-axis parameters
+     // Y-axis settings
       yAxis: {
         min: 0,
         max: 1000,
         display: false,
       },
-     // Data series parameters
+     // Data series settings
       series: {
-        // Line style
+        // Line style settings
         lineStyle: {
           width: "5px",
           smooth: true,
         },
-        // Style and size of the white point at the start of the line
+        // Style and size of the white dot at the front of the line
         headPoint: {
           shape: "circle",
           size: 20,
@@ -293,7 +285,7 @@ export default {
           strokeColor: '#007aff',
           display: true,
         },
-        // Whether to start drawing again when the screen is looped.
+        // Whether to restart drawing from the beginning when the screen is full.
         loop: {
           margin: 2,
           gradient: true
@@ -311,11 +303,9 @@ export default {
 >
 > - Only line charts support **series**.
 
-
 ## Example Scenario
 
 Select the data display status using **&lt;switch&gt;**. When **&lt;switch&gt;** is set to **true**, the timer is used to dynamically display data.
-
 
 ```html
 <!-- xxx.hml -->
@@ -365,7 +355,6 @@ Select the data display status using **&lt;switch&gt;**. When **&lt;switch&gt;**
 </div>
 ```
 
-
 ```css
 /* xxx.css */
 .container{
@@ -403,7 +392,6 @@ Select the data display status using **&lt;switch&gt;**. When **&lt;switch&gt;**
 }
 ```
 
-
 ```js
 // xxx.js
 export default {
@@ -425,7 +413,7 @@ export default {
       },
       series: {
         lineStyle: {
-        width: '1px',
+          width: '1px',
       },
         headPoint: {
           shape: 'circle',
@@ -442,7 +430,7 @@ export default {
     barData: [
       {
         fillColor: '#97CF0A2C',
-        data: [20, 20,40, 56]
+        data: [20, 20, 40, 56]
       },
       {
         fillColor: '#6D0A7ACF',
@@ -517,12 +505,12 @@ export default {
   changes(e) {
     console.info("Tab index: " + e.index);
   },
+  onDestroy() {
+    if (this.interval) {
+      clearInterval(this.interval);
+    }
+  },
 }
-
-
-
-
-
 ```
 
 ![Example-Scenario-4](figures/Example-Scenario-4.gif)

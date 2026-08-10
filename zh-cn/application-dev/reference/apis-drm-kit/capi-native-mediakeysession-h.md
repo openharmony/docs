@@ -153,7 +153,7 @@ typedef Drm_ErrCode (*OH_MediaKeySession_KeyChangeCallback)(MediaKeySession *med
 
 | 参数项 | 描述 |
 | -- | -- |
-| [MediaKeySession](capi-drm-mediakeysession.md) *mediaKeySession | 媒体密钥会话实例。 |
+| [MediaKeySession](capi-drm-mediakeysession.md) *mediaKeySession | 输入参数，媒体密钥会话实例。 |
 | [DRM_KeysInfo](capi-drm-drm-keysinfo.md) *keysInfo | 密钥信息。 |
 | bool newKeysAvailable | 新密钥是否可用，true表示可用，false表示不可用。 |
 
@@ -162,7 +162,6 @@ typedef Drm_ErrCode (*OH_MediaKeySession_KeyChangeCallback)(MediaKeySession *med
 | 类型 | 说明 |
 | -- | -- |
 | [Drm_ErrCode](capi-native-drm-err-h.md#drm_errcode) | DRM_ERR_OK：执行成功。<br>DRM_ERR_INVALID_VAL：参数检查失败。 |
-
 ### OH_MediaKeySession_GenerateMediaKeyRequest()
 
 ```c
@@ -180,7 +179,7 @@ Drm_ErrCode OH_MediaKeySession_GenerateMediaKeyRequest(MediaKeySession *mediaKey
 
 | 参数项 | 描述 |
 | -- | -- |
-| [MediaKeySession](capi-drm-mediakeysession.md) *mediaKeySession | MediaKeySession实例。 |
+| [MediaKeySession](capi-drm-mediakeysession.md) *mediaKeySession | 输入参数，MediaKeySession实例。 |
 | [DRM_MediaKeyRequestInfo](capi-drm-drm-mediakeyrequestinfo.md) *info | 媒体密钥请求信息。 |
 | [DRM_MediaKeyRequest](capi-drm-drm-mediakeyrequest.md) *mediaKeyRequest | 媒体密钥请求。 |
 
@@ -284,6 +283,7 @@ Drm_ErrCode OH_MediaKeySession_GenerateOfflineReleaseRequest(MediaKeySession *me
 
 
 **参数：**
+
 
 | 参数项 | 描述 |
 | -- | -- |
@@ -425,7 +425,7 @@ Drm_ErrCode OH_MediaKeySession_SetMediaKeySessionCallback(MediaKeySession *media
 
 | 参数项 | 描述 |
 | -- | -- |
-| [MediaKeySession](capi-drm-mediakeysession.md) *mediaKeySession | 输入参数，MediaKeySession实例。 |
+| [MediaKeySession](capi-drm-mediakeysession.md) *mediaKeySession | MediaKeySession实例。 |
 | [MediaKeySession_Callback](capi-drm-mediakeysession-callback.md) *callback | 输入参数，MediaKeySession的回调结构体。 |
 
 **返回：**
@@ -451,7 +451,7 @@ Drm_ErrCode OH_MediaKeySession_SetCallback(MediaKeySession *mediaKeySession,OH_M
 
 | 参数项 | 描述 |
 | -- | -- |
-| [MediaKeySession](capi-drm-mediakeysession.md) *mediaKeySession | 输入参数，MediaKeySession实例。 |
+| [MediaKeySession](capi-drm-mediakeysession.md) *mediaKeySession | MediaKeySession实例。 |
 | [OH_MediaKeySession_Callback](capi-drm-oh-mediakeysession-callback.md) *callback | 输入参数，MediaKeySession的回调结构体。 |
 
 **返回：**

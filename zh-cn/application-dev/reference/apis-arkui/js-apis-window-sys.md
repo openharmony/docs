@@ -67,7 +67,7 @@ import { window } from '@kit.ArkUI';
 
 | 名称 | 类型 | 只读 | 可选 | 说明                       |
 | ---------- | --------- | ---- | ---- |-------------- |
-| zIndex<sup>20+</sup>       | number | 否 | 是 | 当前系统窗口的层级，仅在[WindowType](#windowtype7)为TYPE_DYNAMIC时生效。<br>**系统能力：** SystemCapability.Window.SessionManager|
+| zIndex<sup>20+</sup>       | number | 否 | 是 | 当前系统窗口的层级，仅在[WindowType](#windowtype7)为TYPE_DYNAMIC时生效。若不传此参数，使用系统默认层级。<br>**系统能力：** SystemCapability.Window.SessionManager|
 | defaultDensityEnabled<sup>20+</sup> | boolean| 否 | 是 |是否使用系统默认Density，使用系统默认Density之后，窗口不会跟随系统显示大小变化重新布局。<br>当创建的系统窗口设置此参数为true时，表示当前窗口使用系统默认Density，且不会受到[setDefaultDensityEnabled()](arkts-apis-window-WindowStage.md#setdefaultdensityenabled12)和[setCustomDensity()](arkts-apis-window-WindowStage.md#setcustomdensity15)设置的主窗口以及[setDefaultDensityEnabled()](#setdefaultdensityenabled20)设置的本窗口的相关影响。<br>当创建的系统窗口设置此参数为false时，表示当前窗口不使用系统默认Density，且会受到[setDefaultDensityEnabled()](arkts-apis-window-WindowStage.md#setdefaultdensityenabled12)和[setCustomDensity()](arkts-apis-window-WindowStage.md#setcustomdensity15)设置的主窗口以及[setDefaultDensityEnabled()](#setdefaultdensityenabled20)设置的本窗口的相关影响。<br>默认为false。<br>**系统能力：** SystemCapability.Window.SessionManager|
 
 ## WindowMode<sup>7+</sup>
@@ -284,7 +284,7 @@ minimizeAll(id: number, callback: AsyncCallback&lt;void&gt;): void
 | 参数名   | 类型                      | 必填 | 说明           |
 | -------- | ------------------------- | ---- | -------------- |
 | id       | number                    | 是   | 显示设备[Display](js-apis-display.md#display)的ID号，该参数仅支持整数输入。 |
-| callback | AsyncCallback&lt;void&gt; | 是   | 回调信息。     |
+| callback | AsyncCallback&lt;void&gt; | 是   | 回调函数。当最小化指定屏幕中所有主窗口操作成功，err为undefined，否则为错误对象。 |
 
 **错误码：**
 
@@ -448,7 +448,7 @@ toggleShownStateForAllAppWindows(callback: AsyncCallback&lt;void&gt;): void
 
 | 参数名   | 类型                      | 必填 | 说明           |
 | -------- | ------------------------- | ---- | -------------- |
-| callback | AsyncCallback&lt;void&gt; | 是   | 回调函数。     |
+| callback | AsyncCallback&lt;void&gt; | 是   | 回调函数。当隐藏或恢复应用窗口操作成功，err为undefined，否则为错误对象。   |
 
 **错误码：**
 
@@ -776,7 +776,7 @@ setGestureNavigationEnabled(enable: boolean, callback: AsyncCallback&lt;void&gt;
 | 参数名   | 类型                      | 必填 | 说明           |
 | -------- | ------------------------- | ---- | -------------- |
 | enable   | boolean                  | 是   | 设置当前应用手势导航的启用状态。true表示启用手势导航；false表示禁用手势导航。禁用手势导航后，仅禁止从屏幕顶部下拉的手势，其他手势导航不受影响。 |
-| callback | AsyncCallback&lt;void&gt; | 是   | 回调信息。 |
+| callback | AsyncCallback&lt;void&gt; | 是   | 回调函数。当手势导航启用状态设置成功，err为undefined，否则为错误对象。 |
 
 **错误码：**
 
@@ -872,7 +872,7 @@ setWaterMarkImage(pixelMap: image.PixelMap, enable: boolean, callback: AsyncCall
 | -------- | ------------------------- | ---- | -------------- |
 | pixelMap | [image.PixelMap](../apis-image-kit/arkts-apis-image-PixelMap.md) | 是 | 水印图片。可通过[createPixelMap](../apis-image-kit/arkts-apis-image-f.md#imagecreatepixelmap8)接口获取。|
 | enable   | boolean                  | 是   | 设置是否显示水印图片。true表示显示水印图片；false表示不显示水印图片。设置显示后需主动设置为false才能关闭。|
-| callback | AsyncCallback&lt;void&gt; | 是   | 回调信息。 |
+| callback | AsyncCallback&lt;void&gt; | 是   | 回调函数。当水印显示状态设置成功，err为undefined，否则为错误对象。 |
 
 **错误码：**
 
@@ -1301,8 +1301,8 @@ createSubWindowAndBindParent(name: string, parentId: number, ctx: BaseContext, p
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
 | 202     | Permission verification failed. A non-system application calls a system API. |
-| 801     | Capability not supported. This can not work correctly due to limited device capabilities. |
-| 1300001 | Repeated operation. Possible cause: The window has been created and can not be created again. |
+| 801     | Capability not supported. This cannot work correctly due to limited device capabilities. |
+| 1300001 | Repeated operation. Possible cause: The window has been created and cannot be created again. |
 | 1300002 | This window state is abnormal. Possible cause: 1. Internal task error. 2. The number of windows has reached the limit. |
 | 1300003 | This window manager service works abnormally. |
 | 1300009 | The parent window is invalid. Possible cause: 1. The parent window does not exist or has been destroyed. 2. Invalid window type. Only main windows are supported.|
@@ -1322,6 +1322,7 @@ export default class EntryAbility extends UIAbility {
       // ...
     }
     try {
+      // parentId推荐通过getWindowProperties方法获取，此处仅示意
       let promise = window.createSubWindowAndBindParent('test', 100, this.context, parentWindowEventListener);
       promise.then((data) => {
         console.info('Succeeded in creating the window. Data:' + JSON.stringify(data));
@@ -1341,7 +1342,7 @@ moveMainWindowToTargetDisplay(displayId: number, windowId: number): Promise&lt;v
 
 将指定的主窗口迁移到指定的屏幕上。使用Promise异步回调。
 
-- 对于[主屏](../../displaymanager/display-terminology.md#主屏)/[扩展屏](../../displaymanager/display-terminology.md#扩展屏)与[虚拟屏](../../displaymanager/display-terminology.md#虚拟屏)之间以及虚拟屏与虚拟屏之间的窗口迁移，仅主窗及其子窗会一起被迁移到对应屏幕上且被抬升，如果存在子窗，最上层可获焦子窗会获取焦点，否则主窗口获焦。
+- 对于[主屏](../../displaymanager/display-terminology.md#主屏)/[扩展屏](../../displaymanager/display-terminology.md#扩展屏)与[虚拟屏](../../displaymanager/display-terminology.md#虚拟屏)之间以及虚拟屏与虚拟屏之间的窗口迁移，仅主窗口、子窗口和模态窗口会一起被迁移到对应屏幕上且被抬升，如果存在子窗口，最上层可获焦子窗口会获取焦点，否则主窗口获焦。
 - 对于主屏与扩展屏之间的窗口迁移，只会将主窗口迁移到对应屏幕并抬升层级。
 
 <!--RP3--><!--RP3End-->
@@ -1395,6 +1396,7 @@ export default class EntryAbility extends UIAbility {
     windowStage.loadContent('pages/Index', (err: BusinessError) => {
       if (err.code) {
         console.error(`Failed to load content for main window. Cause code: ${err.code}, message: ${err.message}`);
+        return;
       }
       let displayClass: display.Display | null = null;
       displayClass = display.getDefaultDisplaySync();
@@ -2119,7 +2121,7 @@ export default class ServiceExtAbility extends ServiceExtensionAbility {
   onRequest(want: Want, startId: number) {
     console.info('onRequest');
     let config: window.Configuration = {
-      name: "test",
+      name: 'test',
       windowType: window.WindowType.TYPE_DIALOG,
       ctx: this.context
     };
@@ -2207,7 +2209,7 @@ export default class ServiceExtAbility extends ServiceExtensionAbility {
   onRequest(want: Want, startId: number) {
     console.info('onRequest');
     let config: window.Configuration = {
-      name: "test",
+      name: 'test',
       windowType: window.WindowType.TYPE_DIALOG,
       ctx: this.context
     };
@@ -2279,7 +2281,7 @@ export default class ServiceExtAbility extends ServiceExtensionAbility {
   onRequest(want: Want, startId: number) {
     console.info('onRequest');
     let config: window.Configuration = {
-      name: "test", windowType: window.WindowType.TYPE_DIALOG, ctx: this.context
+      name: 'test', windowType: window.WindowType.TYPE_DIALOG, ctx: this.context
     };
     try {
       window.createWindow(config, (err: BusinessError, data) => {
@@ -2355,7 +2357,7 @@ export default class ServiceExtAbility extends ServiceExtensionAbility {
   onRequest(want: Want, startId: number) {
     console.info('onRequest');
     let config: window.Configuration = {
-      name: "test", windowType: window.WindowType.TYPE_DIALOG, ctx: this.context
+      name: 'test', windowType: window.WindowType.TYPE_DIALOG, ctx: this.context
     };
     try {
       window.createWindow(config, (err: BusinessError, data) => {
@@ -2438,7 +2440,7 @@ setSnapshotSkip(isSkip: boolean): void
 
 | 参数名        | 类型    | 必填 | 说明                 |
 | ------------- | ------- | ---- | -------------------- |
-| isSkip | boolean | 是   | 截屏、录屏或投屏是否忽略当前窗口，默认为false。<br>true表示忽略当前窗口，false表示不忽略当前窗口。</br> |
+| isSkip | boolean | 是   | 截屏、录屏或投屏是否忽略当前窗口，默认为false。<br>true表示忽略当前窗口，false表示不忽略当前窗口。 |
 
 **错误码：**
 
@@ -3024,6 +3026,8 @@ setHandwritingFlag(enable: boolean): Promise&lt;void&gt;
 
 为当前窗口添加或移除手写标志，添加该标志后窗口只响应手写笔事件，不响应触屏事件。使用Promise异步回调。
 
+使用场景：用于手写笔记应用、绘图应用、电子白板应用等需要专门响应手写笔输入的场景。
+
 **系统接口：** 此接口为系统接口。
 
 **系统能力：** SystemCapability.Window.SessionManager
@@ -3571,7 +3575,7 @@ hideNonSystemFloatingWindows(shouldHide: boolean, callback: AsyncCallback&lt;voi
 
 ```ts
 // EntryAbility.ets
-import { UIAbility, Want } from '@kit.AbilityKit';
+import { UIAbility } from '@kit.AbilityKit';
 
 export default class EntryAbility extends UIAbility {
   onWindowStageCreate(windowStage: window.WindowStage) {
@@ -3655,7 +3659,7 @@ hideNonSystemFloatingWindows(shouldHide: boolean): Promise&lt;void&gt;
 
 ```ts
 // EntryAbility.ets
-import { UIAbility, Want } from '@kit.AbilityKit';
+import { UIAbility } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 export default class EntryAbility extends UIAbility {
@@ -3772,9 +3776,9 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   let promise = windowClass.isMainWindowFullScreenAcrossDisplays();
-  promise.then((data: boolean)=> {
+  promise.then((data: boolean) => {
       console.info(`Succeeded in using isMainWindowFullScreenAcrossDisplays function. Data: ${data}`);
-  }).catch((err: BusinessError)=>{
+  }).catch((err: BusinessError) => {
       console.error(`Failed to use isMainWindowFullScreenAcrossDisplays function. code:${err.code}, message:${err.message}.`);
   });
 } catch (exception) {
@@ -3991,11 +3995,11 @@ try {
 
 setTitleButtonVisible(isMaximizeVisible: boolean, isMinimizeVisible: boolean, isSplitVisible: boolean): void
 
-设置标题栏上的最大化、最小化、分屏按钮是否可见。
+设置标题栏最大化、最小化、分屏按钮的可见性。
 
 仅支持主窗和[独立子窗](../../windowmanager/window-type-overview.md#辅助窗口)调用此接口，其他窗口调用时将返回1300004错误码。
 
-仅对在当前场景下可见的标题栏按钮（最大化、最小化、分屏）生效。
+仅对在当前场景下可见的按钮生效。
 
 **系统接口：** 此接口为系统接口。
 
@@ -4536,7 +4540,7 @@ struct Index {
 
 | 名称      | 类型  | 只读 | 可选 | 说明         |
 | ---------- | ---- | ---- | ---- | ----------- |
-| isTopmost<sup>12+</sup>  | boolean | 否 | 是 | 子窗口是否启用置顶属性。true表示子窗口置顶，false表示子窗口不置顶。不设置，则默认为false。需要配合isModal使用，当isModal设置为true时设置子窗isTopmost才生效；当isModal设置为false时设置子窗isTopmost为true返回401错误码。 <br>**系统接口：** 此接口为系统接口。<br>**系统能力：** SystemCapability.Window.SessionManager |
+| isTopmost<sup>12+</sup>  | boolean | 否 | 是 | 子窗口是否启用置顶属性。true表示子窗口置顶，false表示子窗口不置顶。不设置，则默认为false。需要配合isModal使用，当isModal设置为true时设置子窗口isTopmost才生效；当isModal设置为false时设置子窗口isTopmost为true返回401错误码。 <br>**系统接口：** 此接口为系统接口。<br>**系统能力：** SystemCapability.Window.SessionManager |
 
 ## WindowStage<sup>9+</sup>
 
@@ -4550,7 +4554,7 @@ disableWindowDecor(): void
 
 禁止窗口装饰。
 
-禁止窗口装饰后，当主窗口进入全屏沉浸状态时，此时鼠标Hover到上方窗口标题栏热区上会显示悬浮标题栏。若想禁用悬浮标题栏显示，请使用[setTitleAndDockHoverShown()](arkts-apis-window-Window.md#settitleanddockhovershown14)接口。
+禁止后，主窗口进入全屏沉浸状态时，鼠标悬停到上方标题栏热区会显示悬浮标题栏。禁用悬浮标题栏需使用[setTitleAndDockHoverShown()](arkts-apis-window-Window.md#settitleanddockhovershown14)接口。
 
 **模型约束：** 此接口仅可在Stage模型下使用。
 
@@ -4681,7 +4685,7 @@ export default class EntryAbility extends UIAbility {
   // ...
 
   onWindowStageCreate(windowStage: window.WindowStage) {
-    let imgResourceId = $r("app.media.startIcon").id
+    let imgResourceId = $r("app.media.startIcon").id;
     try {
       let promise = windowStage.setImageForRecent(imgResourceId, ImageFit.Fill);
       promise.then(() => {
@@ -5021,5 +5025,5 @@ try {
 
 | 名称     | 类型      | 只读 | 可选 | 说明               |
 | -------- | -------- | ---- | ---- | ------------------ |
-| needFocused | boolean  | 否   | 是   | 表示窗口是否必须处于获焦状态才能开始拖拽移动。默认值为true。<br/>- true：窗口处于获焦状态才能开始拖拽移动。<br/>- false：窗口无需处于获焦状态即可开始拖拽移动。|
-| avoidRect | [Rect](arkts-apis-window-i.md#rect7) | 否 | 是 | 表示窗口拖拽移动时的避让区域，以窗口左上角为原点，并随窗口移动而同步移动。系统会根据窗口区域与避让区域共同组成的最小外接矩形区域对窗口位置进行约束。若该最小外接矩形区域无法完全容纳于对应屏幕的可用区域内，则认为避让区域无效，不执行避让修正。否则，系统按以下规则调整窗口位置：<br/>- 单屏拖拽场景下，确保避让区域完全位于当前屏幕的可用区域内；<br/>- 跨屏拖拽场景下，在跨屏前确保避让区域完全位于当前屏幕的可用区域内，且窗口仅显示在当前屏幕上；跨屏后，确保避让区域完全位于目标屏幕的可用区域内，且窗口仅显示在目标屏幕上；整个拖拽过程中，窗口只会显示在一个屏幕上，不会部分显示到其他屏幕。|
+| needFocused | boolean  | 否   | 是   | 表示窗口是否必须处于获焦状态才能开始拖拽移动。默认值为true。<br>- true：窗口处于获焦状态才能开始拖拽移动。<br>- false：窗口无需处于获焦状态即可开始拖拽移动。|
+| avoidRect | [Rect](arkts-apis-window-i.md#rect7) | 否 | 是 | 表示窗口拖拽移动时的避让区域，以窗口左上角为原点，并随窗口移动而同步移动。系统会根据窗口区域与避让区域共同组成的最小外接矩形区域对窗口位置进行约束。若该最小外接矩形区域无法完全容纳于对应屏幕的可用区域内，则认为避让区域无效，不执行避让修正。否则，系统按以下规则调整窗口位置：<br>- 单屏拖拽场景下，确保避让区域完全位于当前屏幕的可用区域内；<br>- 跨屏拖拽场景下，在跨屏前确保避让区域完全位于当前屏幕的可用区域内，且窗口仅显示在当前屏幕上；跨屏后，确保避让区域完全位于目标屏幕的可用区域内，且窗口仅显示在目标屏幕上；整个拖拽过程中，窗口只会显示在一个屏幕上，不会部分显示到其他屏幕。|

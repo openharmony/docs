@@ -26,8 +26,8 @@ typedef struct {...} WindowManager_Rect
 
 | 名称 | 描述 |
 | -- | -- |
-| int32_t posX | 窗口的x轴，单位为px，该参数为整数。 |
-| int32_t posY | 窗口的y轴，单位为px，该参数为整数。 |
+| int32_t posX | 窗口的x轴坐标，单位为px，该参数为整数。 |
+| int32_t posY | 窗口的y轴坐标，单位为px，该参数为整数。 |
 | uint32_t width | 窗口的宽度，单位为px，该参数为整数。 |
 | uint32_t height | 窗口的高度，单位为px，该参数为整数。 |
 

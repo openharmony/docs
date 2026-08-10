@@ -1,10 +1,12 @@
 # Audio Latency Management
+
 <!--Kit: Audio Kit-->
 <!--Subsystem: Multimedia-->
-<!--Owner: @songshenke-->
-<!--Designer: @caixuejiang; @hao-liangfei; @zhanganxiang-->
+<!--Owner: @boxwall-->
+<!--Designer: @magekkkk-->
 <!--Tester: @Filger-->
 <!--Adviser: @w_Machine_cc-->
+<!-- md-trans-meta sourceCommit=1ff9e9cd1ebb6561090ad32be99073f8301559bf translatedAt=2026-08-06T01:42:46.236Z pushedAt=2026-08-06T03:50:00.147Z -->
 
 Audio latency is the time it takes from the moment a user clicks or triggers an action until the sound is emitted from the device.
 
@@ -16,7 +18,7 @@ You can specify which mode the audio stream should use by calling [OH_AudioStrea
 
 The low-latency mode optimizes the data read/write architecture to achieve lower latency for audio playback and recording.
 
-The examples in each of the following steps are code snippets. You can click the link at the bottom right of the sample code to obtain the [complete sample codes](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/Media/Audio/AudioRendererSampleC).
+The examples in the steps below are code snippets. For the complete sample, see [AudioRendererSampleC](https://gitcode.com/openharmony/applications_app_samples/tree/master/code/DocsSample/Media/Audio/AudioRendererSampleC).
 
 To use the low-latency mode, you need to use OHAudio for audio development. For details, please refer to [(Recommended) Using OHAudio for Audio Playback (C/C++)](using-ohaudio-for-playback.md) and [(Recommended) Using OHAudio for Audio Recording (C/C++)](using-ohaudio-for-recording.md). The following is an example of setting the low-latency mode:
 
@@ -27,21 +29,22 @@ OH_AudioStream_LatencyMode latencyMode = AUDIOSTREAM_LATENCY_MODE_FAST;
 OH_AudioStreamBuilder_SetLatencyMode(builder, latencyMode);
 ```
 
-Applications can query the current latency mode using [GetLatencyMode](../../reference/apis-audio-kit/capi-native-audiorenderer-h.md#oh_audiorenderer_getlatencymode). An example is as follows:
+An app can query the current latency mode through [OH_AudioRenderer_GetLatencyMode](../../reference/apis-audio-kit/capi-native-audiorenderer-h.md#oh_audiorenderer_getlatencymode). Development example:
 
-<!-- @[Render_CheckLatencyMode](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/Media/Audio/AudioRendererSampleC/entry/src/main/cpp/renderer.cpp) -->
+<!-- @[Render_CheckLatencyMode](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/Media/Audio/AudioRendererSampleC/entry/src/main/cpp/renderer.cpp) -->  
 
 ``` C++
-OH_AudioStream_Result OH_AudioRenderer_GetLatencyMode
-  (OH_AudioRenderer *renderer, OH_AudioStream_LatencyMode *latencyMode);
+OH_AudioRenderer_GetLatencyMode(audioRenderer, &latencyMode);
 ```
 
-In low-latency mode, applications need to provide data every 5 ms. Failure to provide data in a timely manner may result in issues such as noise.
+In low-latency mode, the app must provide data every 5 ms. If data is not written in time, issues such as audio noise may occur.
 
 However, even if the low-latency mode is set, the system uses the normal mode under the following conditions:
 
 - The current device does not support the low-latency mode.
+
 - The sampling rate is not set to 48 kHz.
+
 - All low-latency resources are already in use.
 
 For applications like gaming, which have stringent latency requirements, the low-latency mode is recommended.

@@ -1,19 +1,18 @@
 # switch Development
+
 <!--Kit: ArkUI-->
 <!--Subsystem: ArkUI-->
 <!--Owner: @houguobiao-->
 <!--Designer: @liyi0309-->
 <!--Tester: @lxl007-->
 <!--Adviser: @Brilliantry_Rui-->
-
+<!-- md-trans-meta sourceCommit=8e22c68cdd7ecb0668db21c4312cda839c2cdaa0 translatedAt=2026-08-05T10:14:55.798Z pushedAt=2026-08-06T07:20:42.128Z -->
 
 The **&lt;switch&gt;** component is used to switch between the on and off states. For details, see [switch](../reference/apis-arkui/arkui-js/js-components-basic-switch.md).
-
 
 ## Creating a &lt;switch&gt; Component
 
 Create a **&lt;switch&gt;** component in the .hml file under **pages/index**.
-
 
 ```html
 <!-- xxx.hml -->
@@ -21,7 +20,6 @@ Create a **&lt;switch&gt;** component in the .hml file under **pages/index**.
     <switch checked="true"></switch>
 </div>
 ```
-
 
 ```css
 /* xxx.css */
@@ -33,10 +31,9 @@ Create a **&lt;switch&gt;** component in the .hml file under **pages/index**.
 
 ![switch-Component](figures/switch-Component.png)
 
-
 ## Adding Attributes and Methods
 
-  Use the **textoff** and **showtext** attributes to set the status when text is selected and unselected. Set the **checked** attribute to **true** (indicating that the component is on). Add the **change** event that is triggered when the component status changes. After the event is triggered, the **switchChange** function is executed to obtain the current component status (on or off).
+ The `switch` component uses the `texton`, `textoff`, and `showtext` attributes to set the text for the selected and unselected states. Set the `checked` attribute to `true` (the component is in the on state). Add a `change` event, which is triggered when the component state changes. After the event is triggered, the `switchChange` function is executed to obtain the current state of the component (off/on).
 
 ```html
 <!-- xxx.hml -->
@@ -44,7 +41,6 @@ Create a **&lt;switch&gt;** component in the .hml file under **pages/index**.
   <switch showtext="true" texton="open" textoff="close" checked="true" @change="switchChange"></switch>
 </div>
 ```
-
 
 ```css
 /* xxx.css */
@@ -64,18 +60,16 @@ switch {
 }
 ```
 
-
 ```js
 // xxx.js
-import promptAction from '@ohos.promptAction';
 export default {
   switchChange(e){
     if(e.checked){
-      promptAction.showToast({
+      this.getUIContext().getPromptAction().showToast({
         message: "open"
       });
     }else{
-      promptAction.showToast({
+      this.getUIContext().getPromptAction().showToast({
         message: "close"
       });
     }
@@ -83,14 +77,11 @@ export default {
 }
 ```
 
-
 ![Attributes-and-Methods](figures/Attributes-and-Methods.gif)
-
 
 > **NOTE**
 >
 > The text set by **texton** and **textoff** takes effect only when **showtext** is set to **true**.
-
 
 ## Example Scenario
 
@@ -111,11 +102,10 @@ Turn on the switch and the default delivery address is used. When the switch is 
   <div class="myAddress" style="display: {{addressDisplay}};">
     <text style="font-size: 30px;margin-bottom: 50px;">Choose an address:</text>
     <text class="addressText" style="background-color: {{item == address?'#0fabe7':''}};color: {{item == address?'white':'black'}};" 
-    for="item in addressList"@click="changeAddress({{$idx}}})">{{item}}</text>
+    for="item in addressList"@click="changeAddress({{$idx}})">{{item}}</text>
   </div>
 </div>
 ```
-
 
 ```css
 /* xxx.css */
@@ -170,7 +160,6 @@ switch{
   border: 1px solid #0fabe7;
 }
 ```
-
 
 ```js
 // xxx.js

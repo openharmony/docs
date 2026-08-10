@@ -9,7 +9,7 @@
 
 > **说明：**
 >
-> 本模块首批接口从API version 11开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
+> 本模块首批接口从API版本11开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 
 ## 导入模块
 
@@ -23,7 +23,7 @@ generateMediaKeyRequest(mimeType: string, initData: Uint8Array, mediaKeyType: nu
 
 生成媒体密钥请求。使用Promise异步回调。
 
-**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API版本12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.Drm.Core
 
@@ -72,7 +72,7 @@ processMediaKeyResponse(response: Uint8Array): Promise<Uint8Array\>
 
 处理媒体密钥响应。使用Promise异步回调。
 
-**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API版本12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.Drm.Core
 
@@ -118,7 +118,7 @@ mediaKeySession.processMediaKeyResponse(mediaKeyResponse).then((mediaKeyId: Uint
 
 检查当前媒体密钥状态。
 
-**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API版本12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.Drm.Core
 
@@ -153,7 +153,7 @@ clearMediaKeys(): void
 
 清除当前媒体密钥。
 
-**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API版本12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.Drm.Core
 
@@ -187,7 +187,7 @@ generateOfflineReleaseRequest(mediaKeyId: Uint8Array): Promise<Uint8Array\>
 
 生成离线媒体密钥释放请求。使用Promise异步回调。
 
-**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API版本12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.Drm.Core
 
@@ -235,7 +235,7 @@ processOfflineReleaseResponse(mediaKeyId: Uint8Array, response: Uint8Array): Pro
 
 如果设备上的DRM解决方案不支持离线媒体密钥释放，将抛出错误码24700101。
 
-**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API版本12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.Drm.Core
 
@@ -287,7 +287,7 @@ restoreOfflineMediaKeys(mediaKeyId: Uint8Array): Promise<void\>
 
 恢复离线媒体密钥。使用Promise异步回调。
 
-**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API版本12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.Drm.Core
 
@@ -333,7 +333,7 @@ getContentProtectionLevel(): ContentProtectionLevel
 
 获取当前会话的内容保护级别。
 
-**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API版本12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.Drm.Core
 
@@ -369,7 +369,7 @@ requireSecureDecoderModule(mimeType: string): boolean
 
 是否需要安全解码。
 
-**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API版本12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.Drm.Core
 
@@ -411,7 +411,7 @@ on(type: 'keyRequired', callback: (eventInfo: EventInfo) => void): void
 
 监听密钥请求事件。使用callback异步回调。
 
-**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API版本12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.Drm.Core
 
@@ -451,7 +451,7 @@ off(type: 'keyRequired', callback?: (eventInfo: EventInfo) => void): void
 
 该接口用于注销已在on('keyRequired')中注册的监听，当播放DRM节目需要获取媒体密钥时触发的事件。
 
-**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API版本12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.Drm.Core
 
@@ -487,7 +487,7 @@ on(type: 'keyExpired', callback: (eventInfo: EventInfo) => void): void
 
 监听密钥过期事件。使用callback异步回调。
 
-**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API版本12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.Drm.Core
 
@@ -525,7 +525,7 @@ off(type: 'keyExpired', callback?: (eventInfo: EventInfo) => void): void
 
 注销密钥过期事件监听。使用callback异步回调。
 
-**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API版本12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.Drm.Core
 
@@ -561,7 +561,7 @@ on(type: 'vendorDefined', callback: (eventInfo: EventInfo) => void): void
 
 监听DRM解决方案自定义事件。使用callback异步回调。
 
-**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API版本12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.Drm.Core
 
@@ -599,7 +599,7 @@ off(type: 'vendorDefined', callback?: (eventInfo: EventInfo) => void): void
 
 注销DRM解决方案自定义事件监听。使用callback异步回调。
 
-**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API版本12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.Drm.Core
 
@@ -635,7 +635,7 @@ on(type: 'expirationUpdate', callback: (eventInfo: EventInfo) => void): void
 
 监听密钥过期更新事件。使用callback异步回调。
 
-**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API版本12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.Drm.Core
 
@@ -673,7 +673,7 @@ off(type: 'expirationUpdate', callback?: (eventInfo: EventInfo) => void): void
 
 注销过期更新事件监听。使用callback异步回调。
 
-**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API版本12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.Drm.Core
 
@@ -709,7 +709,7 @@ on(type: 'keysChange', callback: (keyInfo: KeysInfo[], newKeyAvailable: boolean)
 
 监听密钥变化事件。使用callback异步回调。
 
-**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API版本12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.Drm.Core
 
@@ -749,7 +749,7 @@ off(type: 'keysChange', callback?: (keyInfo: KeysInfo[], newKeyAvailable: boolea
 
 注销密钥变化事件监听。使用callback异步回调。
 
-**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API版本12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.Drm.Core
 
@@ -785,7 +785,7 @@ destroy(): void
 
 销毁MediaKeySession实例。
 
-**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API版本12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.Drm.Core
 

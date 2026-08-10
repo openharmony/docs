@@ -17,7 +17,7 @@
 
 ## 概述
 
-`!!`双向绑定语法，是一个语法糖方便开发者实现数据双向绑定，用于初始化子组件的[\@Param](arkts-new-param.md)装饰的属性和[\@Event](arkts-new-event.md)装饰的事件。其中\@Event方法名需要声明为“$”+ \@Param属性名，详见[使用场景](#使用场景)。
+`!!`双向绑定语法，是一个语法糖，方便开发者实现数据双向绑定，用于初始化子组件的[\@Param](arkts-new-param.md)装饰的属性和[\@Event](arkts-new-event.md)装饰的事件。其中\@Event方法名需要声明为“$”+ \@Param属性名，详见[使用场景](#使用场景)。
 
 - 如果使用了`!!`双向绑定语法，表明父组件的变化会同步给子组件，子组件的变化也会同步给父组件。
 - 父组件未使用`!!`时，变化是单向的。
@@ -27,7 +27,7 @@
 ### 自定义组件间双向绑定
 1. 在Index中构造Star子组件，双向绑定父子组件中的value属性，并初始化子组件的`@Param value`和`@Event $value`。
 
-   @Param与@Event装饰器配合使用的双向绑定语法糖。
+   \@Param与\@Event装饰器配合使用的双向绑定语法糖。
 
    <!-- @[ArkUI_Star_binding1](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkUISample/ArkUI_Binding/entry/src/main/ets/pages/Binding_Star_Param_Event.ets) -->  
    
@@ -62,7 +62,7 @@
           // 使用@Param与@Event语法实现自定义组件双向绑定。
           Star({ value: this.value, $value: (val: number) => { this.value = val; } })
           // ...
-        // ···
+        // ...
         }
       }
     }
@@ -191,7 +191,7 @@ struct BindMenuInterface {
 
 **使用规则**
 
-- 当前!!双向绑定支持基础类型变量，当该变量使用[\@State](arkts-state.md)等状态管理V1装饰器装饰，或者[\@Local](arkts-new-local.md)等状态管理V2装饰器装饰时，变量值的变化会触发UI刷新。
+- 当前`!!`双向绑定支持基础类型变量，当该变量使用[\@State](arkts-state.md)等状态管理V1装饰器装饰，或者[\@Local](arkts-new-local.md)等状态管理V2装饰器装饰时，变量值的变化会触发UI刷新。
 
   | 属性                                                         | 支持的参数 | 起始API版本 |
   | ------------------------------------------------------------ | --------------- | ----------- |
@@ -201,8 +201,8 @@ struct BindMenuInterface {
   | [TextInput](../../reference/apis-arkui/arkui-ts/ts-basic-components-textinput.md#textinputoptions对象说明) | text | 18   |
   | [TextArea](../../reference/apis-arkui/arkui-ts/ts-basic-components-textarea.md#textareaoptions对象说明) | text | 18   |
   | [Search](../../reference/apis-arkui/arkui-ts/ts-basic-components-search.md#searchoptions18对象说明) | value | 18   |
-  | [BindSheet](../../reference/apis-arkui/arkui-ts/ts-universal-attributes-sheet-transition.md#bindsheet) | isShow | 18   |
-  | [BindContentCover](../../reference/apis-arkui/arkui-ts/ts-universal-attributes-modal-transition.md#bindcontentcover) | isShow | 18   |
+  | [bindSheet](../../reference/apis-arkui/arkui-ts/ts-universal-attributes-sheet-transition.md#bindsheet) | isShow | 18   |
+  | [bindContentCover](../../reference/apis-arkui/arkui-ts/ts-universal-attributes-modal-transition.md#bindcontentcover) | isShow | 18   |
   | [SideBarContainer](../../reference/apis-arkui/arkui-ts/ts-container-sidebarcontainer.md) | [sideBarWidth](../../reference/apis-arkui/arkui-ts/ts-container-sidebarcontainer.md#sidebarwidth) | 18   |
   | [Navigation](../../reference/apis-arkui/arkui-ts/ts-basic-components-navigation.md) | [navBarWidth](../../reference/apis-arkui/arkui-ts/ts-basic-components-navigation.md#navbarwidth9) | 18   |
   | [Toggle](../../reference/apis-arkui/arkui-ts/ts-basic-components-toggle.md#toggleoptions18对象说明) | isOn | 18   |

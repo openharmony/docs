@@ -2,10 +2,10 @@
 
 <!--Kit: ArkWeb-->
 <!--Subsystem: Web-->
-<!--Owner: @yp99ustc; @aohui; @weixin_41848015-->
-<!--Designer: @ctqctq99; @yaomingliu; @libing23232323-->
+<!--Owner: @zourongchun-->
+<!--Designer: @kurli1-->
 <!--Tester: @ghiker-->
-<!--Adviser: @HelloCrease-->
+<!--Adviser: @HelloShuo-->
 
 ## H5页面如何与ArkTS交互(API 10)
 
@@ -113,7 +113,7 @@ Web组件的onUrlLoadIntercept的不同返回结果对应不同的操作：
 
 **参考链接**
 
-[onUrlloadIntercept](../reference/apis-arkweb/arkts-basic-components-web-events.md#onurlloadinterceptdeprecated)
+[onUrlLoadIntercept](../reference/apis-arkweb/arkts-basic-components-web-events.md#onurlloadinterceptdeprecated)
 
 
 ## 为什么Web组件的onKeyEvent键盘事件不生效(API 9)
@@ -146,7 +146,7 @@ onInterceptRequest拦截页面Web的src的链接后返回自定义HTML，但是�
 ```ts
 Web({ src: 'www.example.com', controller: this.controller })
   .onInterceptRequest((event) => {
-    console.log('url:' + event.request.getRequestUrl())
+    console.info('url:' + event.request.getRequestUrl())
     this.responseweb = new WebResourceResponse();
     var head1:Header = {
       headerKey:"Connection",
@@ -186,7 +186,7 @@ Web({ src: 'www.example.com', controller: this.controller })
 
 **解决措施**
 
-在ArkTs中使用JavaScriptProxy方法将ArkTs里的对象注册到H5的window对象中，然后在h5中使用window对象调用该方法。比如下面例子，在ArkTs中将testObj这个对象以别名testObjName注册到h5的window对象上，在上面的h5中就可以使用window.testObjName去访问这个对象。
+在ArkTS中使用JavaScriptProxy方法将ArkTS里的对象注册到H5的window对象中，然后在h5中使用window对象调用该方法。比如下面例子，在ArkTS中将testObj这个对象以别名testObjName注册到h5的window对象上，在上面的h5中就可以使用window.testObjName去访问这个对象。
 
 示例参考：[前端页面调用应用侧函数](../web/web-in-page-app-function-invoking.md#如何建立应用侧与h5侧的交互通道)
 
@@ -296,9 +296,9 @@ setWebDebuggingAccess()接口开启Web组件前端页面调试能力，利用Dev
 
 **解决措施**
 
-1. Native->H5使用runJavaScript接口注入JS进行通信，H5->Native使用registerJavaScriptProy接口。先将Native方法注册至H5侧，H5再通过调用前端方法实现与Native侧的通信。
-2. runJavaScript、registerJavaScriptProy接口同时在NDK侧C API暴露。
-3. 使用onInterceptrequest接口拦截H5侧请求，同时将Native侧数据作为Response返回至H5，实现Native与H5的通信。
+1. Native->H5使用runJavaScript接口注入JS进行通信，H5->Native使用registerJavaScriptProxy接口。先将Native方法注册至H5侧，H5再通过调用前端方法实现与Native侧的通信。
+2. runJavaScript、registerJavaScriptProxy接口同时在NDK侧C API暴露。
+3. 使用onInterceptRequest接口拦截H5侧请求，同时将Native侧数据作为Response返回至H5，实现Native与H5的通信。
 
 **参考链接**
 
@@ -323,11 +323,11 @@ setWebDebuggingAccess()接口开启Web组件前端页面调试能力，利用Dev
    * 提供编译样例指导
 
 
-## Webview如何设置mixcontent策略，用以解决http与https混合加载的问题？
+## WebView如何设置mixed content策略，用以解决http与https混合加载的问题？
 
 **解决措施**
 
-Webview提供mixedMode(mixedMode: MixedMode)接口，设置是否允许加载超文本传输协议（HTTP）和超文本传输安全协议（HTTPS）混合内容，默认不允许加载HTTP和HTTPS混合内容。
+WebView提供mixedMode(mixedMode: MixedMode)接口，设置是否允许加载超文本传输协议（HTTP）和超文本传输安全协议（HTTPS）混合内容，默认不允许加载HTTP和HTTPS混合内容。
 
 **参考链接**
 
@@ -345,7 +345,7 @@ Webview提供mixedMode(mixedMode: MixedMode)接口，设置是否允许加载超
 [prepareforpageload](../reference/apis-arkweb/arkts-apis-webview-WebviewController.md#prepareforpageload10)
 
 
-## 如何预创建Web组件？如何回收web组件复用？
+## 如何预创建Web组件？如何回收Web组件复用？
 
 **解决措施**
 

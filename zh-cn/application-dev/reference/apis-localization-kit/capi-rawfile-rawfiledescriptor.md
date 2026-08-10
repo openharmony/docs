@@ -13,7 +13,7 @@ typedef struct {...} RawFileDescriptor
 
 ## 概述
 
-提供rawfile文件描述符信息。RawFileDescriptor是[OH_ResourceManager_GetRawFileDescriptor](capi-raw-file-h.md#oh_resourcemanager_getrawfiledescriptor)的输出参数，涵盖了rawfile文件的文件描述符以及在HAP包中的起始位置和长度。
+提供rawfile文件描述符信息，包含rawfile的文件描述符、在HAP包中的起始位置和文件长度。<br>通过[OH_ResourceManager_GetRawFileDescriptorData](capi-raw-file-h.md#oh_resourcemanager_getrawfiledescriptordata)获取，使用完后须调用[OH_ResourceManager_ReleaseRawFileDescriptorData](capi-raw-file-h.md#oh_resourcemanager_releaserawfiledescriptordata)释放文件描述符资源。
 
 **起始版本：** 8
 
@@ -27,8 +27,8 @@ typedef struct {...} RawFileDescriptor
 
 | 名称 | 描述 |
 | -- | -- |
-| int fd | rawfile文件描述符，单位为int。 |
-| long start | rawfile在HAP包中的起始位置，单位为long。 |
-| long length | rawfile在HAP包中的长度，单位为long。 |
+| int fd | rawfile文件描述符。 |
+| long start | rawfile文件在HAP包中的起始位置，单位为Byte。 |
+| long length | rawfile文件的长度，单位为Byte。 |
 
 

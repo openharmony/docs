@@ -1,10 +1,12 @@
 # App Model
+
 <!--Kit: MDM Kit-->
 <!--Subsystem: Customization-->
-<!--Owner: @huanleima-->
-<!--Designer: @liuzuming-->
+<!--Owner: @huanleima; @weizai16-->
+<!--Designer: @hp_guo-->
 <!--Tester: @lpw_work-->
 <!--Adviser: @zhang_yixin13-->
+<!-- md-trans-meta sourceCommit=188ff5fef3d90fc0078e4760b9813c31639f710c translatedAt=2026-08-04T13:31:34.261Z pushedAt=2026-08-05T08:56:54.117Z -->
 
 ## Overview
 
@@ -12,7 +14,7 @@ An app model is the abstraction of capabilities required by an app. It provides 
 
 ## About EnterpriseAdminExtensionAbility
 
-[EnterpriseAdminExtensionAbility](./mdm-kit-term.md#enterpriseadminextensionability) is a mandatory component for [MDM apps](./mdm-kit-term.md#mdm-application-device-administrator-application). You need to define an [EnterpriseAdminExtensionAbility](../reference/apis-mdm-kit/js-apis-EnterpriseAdminExtensionAbility.md)-type [ExtensionAbility](../reference/apis-ability-kit/js-apis-app-ability-extensionAbility.md) component to activate an MDM app. Once activated, this component runs as an independent background process.
+The [EnterpriseAdminExtensionAbility](./mdm-kit-term.md#enterpriseadminextensionability) component is a mandatory component of an [MDM app](./mdm-kit-term.md#mdm-app). When developing an MDM app, you need to define an [ExtensionAbility](../reference/apis-ability-kit/js-apis-app-ability-extensionAbility.md) component of the [EnterpriseAdminExtensionAbility](../reference/apis-mdm-kit/js-apis-EnterpriseAdminExtensionAbility.md) type to activate the MDM app. Once activated, this component exists as an independent background process.
 
 ### Process Model
 
@@ -24,7 +26,7 @@ The [process model](../application-models/process-model-stage.md#process-model) 
 
 ### EnterpriseAdmin Process Lifecycle
 
-Once activated, the **EnterpriseAdminExtensionAbility** component runs as an independent process with support for system state change callbacks. The **EnterpriseAdmin** process resides in a separate process from the app's main process, with its startup and shutdown governed by the [EDM](./mdm-kit-term.md#edm) service. It remains operational even when the app is running in the background.
+After activation, the Admin component runs in an independent process and supports system state change callbacks. It resides in a process separate from the app's main process, and its startup and shutdown are managed by the [EDM](./mdm-kit-term.md#enterprise-device-manager-edm) service. The Admin process can continue running even when the app is in the background.
 
 **Figure 2** MDM app in foreground and activated state
 
@@ -43,11 +45,17 @@ Once activated, the **EnterpriseAdminExtensionAbility** component runs as an ind
 ![admin_life_time](./figures/admin_life_time.png)
 
 - **onAdminEnabled**: called when the **EnterpriseAdminExtensionAbility** component of the MDM app is activated.
+
 - **onAdminDisabled**: called when the **EnterpriseAdminExtensionAbility** component of the MDM app is deactivated.
+
 - **onAppStart**: called when an app is started. The callback contains the app bundle name and can be received only after the **MANAGED_EVENT_APP_START** event is registered using the [adminManager.subscribeManagedEventSync](../reference/apis-mdm-kit/js-apis-enterprise-adminManager.md#adminmanagersubscribemanagedeventsync) API.
+
 - **onAppStop**: called when an app is stopped. The callback contains the app bundle name and can be received only after the **MANAGED_EVENT_APP_STOP** event is registered using the [adminManager.subscribeManagedEventSync](../reference/apis-mdm-kit/js-apis-enterprise-adminManager.md#adminmanagersubscribemanagedeventsync) API.
+
 - **onBundleAdded**: called when an app is installed. The callback contains the app bundle name and account ID, and can be received only after the **MANAGED_EVENT_BUNDLE_ADDED** event is registered using the [adminManager.subscribeManagedEventSync](../reference/apis-mdm-kit/js-apis-enterprise-adminManager.md#adminmanagersubscribemanagedeventsync) API.
+
 - **onBundleRemoved**: called when an app is uninstalled. The callback contains the app bundle name and account ID, and can be received only after the **MANAGED_EVENT_BUNDLE_REMOVED** event is registered using the [adminManager.subscribeManagedEventSync](../reference/apis-mdm-kit/js-apis-enterprise-adminManager.md#adminmanagersubscribemanagedeventsync) API.
+
 - For more event callbacks, see [ManagedEvent](../reference/apis-mdm-kit/js-apis-enterprise-adminManager.md#managedevent).
 
 ### EnterpriseAdminExtensionAbility Capability Differences After Activation
@@ -55,16 +63,16 @@ Once activated, the **EnterpriseAdminExtensionAbility** component runs as an ind
 The capabilities of the **EnterpriseAdminExtensionAbility** component vary depending on the activation API used, which can be <!--Del-->[adminManager.enableAdmin](../reference/apis-mdm-kit/js-apis-enterprise-adminManager-sys.md#adminmanagerenableadmin), <!--DelEnd-->[adminManager.enableDeviceAdmin](../reference/apis-mdm-kit/js-apis-enterprise-adminManager.md#adminmanagerenabledeviceadmin23), and [adminManager.startAdminProvision](../reference/apis-mdm-kit/js-apis-enterprise-adminManager.md#adminmanagerstartadminprovision15). For details, see the following table.
 
 | Feature                  | SDA                | DA                | BDA      |
-| ------------------------| --------------------| -------------------|------------ | 
+| ------------------------| --------------------| -------------------|------------ |
 |Uninstallation prevention| Users are not allowed to uninstall the app.| By default, users can uninstall the app.| Uninstallation is prohibited.|
-| Permission to call MDM management APIs| All public management APIs are supported.| All public management APIs are supported.| Only the [restrictions.setDisallowedPolicy](../reference/apis-mdm-kit/js-apis-enterprise-restrictions.md#restrictionssetdisallowedpolicy) and [restrictions.getDisallowedPolicy](../reference/apis-mdm-kit/js-apis-enterprise-restrictions.md#restrictionsgetdisallowedpolicy) APIs are supported.|
+| MDM Management API Call Permission| Supports all public management APIs | Supports all public management APIs | Supports APIs that can be called after applying for the **ohos.permission.PERSONAL_MANAGE_RESTRICTIONS** permission|
 | Number of supported roles| Up to 1| Up to 10| No limit|
 
 > **NOTE**
 >
-> 1. BDA and other [administrators](./mdm-kit-term.md#administrator) cannot coexist.
+> 1. A BDA cannot coexist with other Admin roles.
 >
-> 2. The total number of SDAs and DAs cannot exceed 10.
+> 2. A maximum of 10 SDAs and DAs can coexist in total. An SDA can manage other DA apps (activate/deactivate), whereas a DA can only manage the device and cannot manage other DA apps. When an MDM app is activated as an SDA, it has the capability to manage other DAs. It can activate other DA apps by calling the [adminManager.enableDeviceAdmin](../reference/apis-mdm-kit/js-apis-enterprise-adminManager.md#adminmanagerenabledeviceadmin23) API, or deactivate other DA apps by calling the [adminManager.disableDeviceAdmin](../reference/apis-mdm-kit/js-apis-enterprise-adminManager.md#adminmanagerdisabledeviceadmin23) API.
 
 ## Authorization Principles of Management APIs
 

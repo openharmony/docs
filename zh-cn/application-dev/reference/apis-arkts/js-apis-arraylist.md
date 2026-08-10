@@ -428,7 +428,7 @@ replaceAllElements(callbackFn: (value: T, index?: number, arrlist?: ArrayList&lt
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | callbackFn | function | 是 | 用于操作元素并返回替换值的回调函数。 |
-| thisArg | Object | 否 | callbackFn被调用时用作this值。当回调函数需要引用外部对象作为this上下文时传入此参数，不传入时默认值为当前实例对象。 |
+| thisArg | Object | 否 | callbackFn被调用时用作this值。当回调函数需要引用外部对象作为this上下文时传入此参数，不传入时默认值为undefined。 |
 
 callbackFn的参数说明：
 

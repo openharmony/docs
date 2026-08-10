@@ -8,7 +8,7 @@
 
 ## 功能介绍
 
-MDM Kit为[MDM应用](./mdm-kit-term.md#mdm应用)提供设备管理能力，包括企业设备管理与事件监听、应用管理、禁用管理、安全管理、设备设置、设备控制、设备信息获取、硬件外设管理、系统管理、网络通信管理等，具体API接口说明详见<!--RP7-->[API参考](../reference/apis-mdm-kit/Readme-CN.md)<!--RP7End-->。
+MDM Kit为[MDM应用](./mdm-kit-term.md#mdm应用)提供设备管理能力，包括企业设备管理与事件监听、应用管理、禁用管理、安全管理、设备设置、设备控制、设备信息获取、硬件外设管理、系统管理、网络通信管理等，具体API接口说明详见<!--RP7-->[@ohos.enterprise.accountManager（账号管理）](../reference/apis-mdm-kit/js-apis-enterprise-accountManager.md)<!--RP7End-->。
 
 设备管理应用：具备[企业设备管理扩展能力](./mdm-kit-admin.md)的应用。
 
@@ -82,7 +82,7 @@ MDM Kit为[MDM应用](./mdm-kit-term.md#mdm应用)提供设备管理能力，包
      };
      // ...
        try {
-         restrictions.setDisallowedPolicy(this.wantTemp, 'wifi', isDisallow);
+         restrictions.setDisallowedPolicy(this.wantTemp, restrictions.FeatureForDevice.WIFI, isDisallow);
          console.info(isDisallow ? 'disable wifi success.' : 'enable wifi success.');
          // ...
        } catch (err) {

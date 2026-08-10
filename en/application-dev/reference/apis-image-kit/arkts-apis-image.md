@@ -1,10 +1,12 @@
 # Module Description
+
 <!--Kit: Image Kit-->
 <!--Subsystem: Multimedia-->
 <!--Owner: @aulight02-->
-<!--Designer: @liyang_bryan-->
+<!--Designer: @XiaoYao555-->
 <!--Tester: @xchaosioda-->
 <!--Adviser: @w_Machine_cc-->
+<!-- md-trans-meta sourceCommit=786be29b65996bd8b478b081e6eb4fadc7989c4d translatedAt=2026-08-03T03:57:18.376Z pushedAt=2026-08-04T03:45:03.187Z -->
 
 The module provides capabilities for image decoding, encoding, editing, metadata processing, and image receiving.
 
@@ -30,6 +32,16 @@ This module contains the following classes:
 
 - [WebPMetadata](arkts-apis-image-WebPMetadata.md): stores WebP image metadata in key-value format. For details about keys in WebP image metadata, see [WebPPropertyKey](arkts-apis-image-e.md#webppropertykey24).
 
+- [GifMetadata](arkts-apis-image-GifMetadata.md): stores GIF image metadata in key-value format. For details about keys in GIF image metadata, see [GifPropertyKey](arkts-apis-image-e.md#gifpropertykey20).
+
+- [JfifMetadata](arkts-apis-image-JfifMetadata.md): stores JFIF image metadata in key-value format. For details about keys in JFIF image metadata, see [JfifPropertyKey](arkts-apis-image-e.md#jfifpropertykey).
+
+- [TiffMetadata](arkts-apis-image-TiffMetadata.md): stores TIFF image metadata in key-value format. For details about keys in TIFF image metadata, see [TiffPropertyKey](arkts-apis-image-e.md#tiffpropertykey).
+
+- [PngMetadata](arkts-apis-image-PngMetadata.md): stores PNG image metadata in key-value format. For details about keys in PNG image metadata, see [PngPropertyKey](arkts-apis-image-e.md#pngpropertykey).
+
+- [AvisMetadata](arkts-apis-image-AvisMetadata.md): stores AVIS image metadata in key-value format. For details about keys in AVIS image metadata, see [AvisPropertyKey](arkts-apis-image-e.md#avispropertykey).
+
 - [ImageReceiver](arkts-apis-image-ImageReceiver.md): acts as an image consumer to receive and read images from a surface.
 
 - [ImageCreator](arkts-apis-image-ImageCreator.md): acts as an image producer to write images into a surface.
@@ -45,4 +57,3 @@ This module contains the following classes:
 ```ts
 import { image } from '@kit.ImageKit';
 ```
-<!--no_check-->

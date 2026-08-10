@@ -28,6 +28,6 @@ typedef struct Rdb_ProgressDetails {...} Rdb_ProgressDetails
 | ------------------- | --------------------------------------- |
 | int version         | 表示Rdb_ProgressDetails结构体的版本。 |
 | int schedule        | 表示端云同步过程。                      |
-| int code            | 表示端云同步过程的状态。                |
+| int code            | 表示端云同步过程的状态码。                |
 | int32_t tableLength | 表示端云同步的表的数量。                |
 

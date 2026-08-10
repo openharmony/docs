@@ -82,7 +82,7 @@ Tabs() {
     Text($r('app.string.mine_content'))
       .fontSize(30)
   }
-  // The value in the app.string.mine_content resource file is "Me."
+  // The value in the app.string.mine resource file is "Me."
   .tabBar($r('app.string.mine'))
 }
 ```
@@ -632,7 +632,7 @@ export struct AgeFriendlyTabs {
 
 ## Controlling the Number of Cached Pages
 
-Since API version 19, you can use the [cachedMaxCount](https://../reference/apis-arkui/arkui-ts/ts-container-tabs.md#cachedmaxcount19) API to set the maximum number of cached child components and specify the cache mode. By default, all **TabContent** components are preloaded when the **Tabs** component is created, and the loaded pages remain in memory, which may cause performance and memory issues. To control the number of cached pages, set the [cachedMaxCount](https://../reference/apis-arkui/arkui-ts/ts-container-tabs.md#cachedmaxcount19) attribute. Once this attribute is configured, pages are no longer preloaded but instead use lazy loading (pages load only when switched to). When users switch between pages, the [TabsCacheMode](../reference/apis-arkui/arkui-ts/ts-container-tabs.md#tabscachemode19) attribute determines whether to retain or release pages based on the specified mode.
+Since API version 19, you can use the [cachedMaxCount](../reference/apis-arkui/arkui-ts/ts-container-tabs.md#cachedmaxcount19) API to set the maximum number of cached child components and specify the cache mode. By default, all **TabContent** components are preloaded when the **Tabs** component is created, and the loaded pages remain in memory, which may cause performance and memory issues. To control the number of cached pages, set the [cachedMaxCount](../reference/apis-arkui/arkui-ts/ts-container-tabs.md#cachedmaxcount19) attribute. Once this attribute is configured, pages are no longer preloaded but instead use lazy loading (pages load only when switched to). When users switch between pages, the [TabsCacheMode](../reference/apis-arkui/arkui-ts/ts-container-tabs.md#tabscachemode19) attribute determines whether to retain or release pages based on the specified mode.
 
 >  **NOTE**
 >
@@ -679,7 +679,7 @@ export struct NumberOfCachesTabBar {
           .width(360)
           .height(296)
           .backgroundColor('#F1F3F5')
-          .cachedMaxCount(1, TabsCacheMode.CACHE_BOTH_SIDE)
+          .cachedMaxCount(2, TabsCacheMode.CACHE_BOTH_SIDE)
           // ...
   }
 }
@@ -730,4 +730,9 @@ Based on the preceding example code, the caching behavior in different scenarios
 
    ![cachedMaxCount4](figures/cachedMaxCount4.png)
 
+<!--Del-->## Samples
+
+For more details about the implementation of **Tabs**, see the following example:
+
+- [Common Components and Layouts](https://gitcode.com/openharmony/codelabs/tree/master/ETSUI/ArkTSComponents)<!--DelEnd-->
 <!--RP1--><!--RP1End-->

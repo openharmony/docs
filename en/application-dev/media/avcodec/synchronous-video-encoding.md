@@ -26,10 +26,6 @@ Asynchronous mode is generally recommended for most use cases. Synchronous mode 
 
 Read [VideoEncoder](../../reference/apis-avcodec-kit/capi-native-avcodec-videoencoder-h.md) for the API reference.
 
-- The dotted line indicates an optional operation.
-
-- The solid line indicates a mandatory operation.
-
 ![Call relationship of synchronous video encoding](figures/synchronous-video-encode.png)
 
 ### Linking the Dynamic Libraries in the CMake Script
@@ -65,7 +61,7 @@ The sample code provided in this section adheres to the C++17 standard and is fo
    #include <shared_mutex>
    ```
    
-2. These global variables are for reference only. They can be encapsulated into an object based on service requirements.
+2. Define global variables. The following values are examples. Obtain the corresponding value ranges through capability query APIs and configure the parameters accordingly.
 
    ```c++
    // Video frame width.
@@ -173,7 +169,7 @@ The following walks you through how to implement the entire video encoding proce
 5. Call **OH_VideoEncoder_Start()** to start the encoder.
 
    ```c++
-   // Configure the paths of the input and output files.
+   // Configure the output file path. You can use an accessible directory such as an application sandbox path.
    std::string_view outputFilePath = "/*yourpath*.h264";
    std::unique_ptr<std::ofstream> outputFile = std::make_unique<std::ofstream>();
    if (outputFile != nullptr) {
@@ -427,7 +423,7 @@ The following walks you through how to implement the entire video encoding proce
     Configure the input and output files.
 
     ```c++
-    // Configure the paths of the input and output files.
+    // Configure the path of the file to be encoded. You can use an accessible directory such as an application sandbox path.
     std::string_view inputFilePath = "/*yourpath*.yuv";
     std::string_view outputFilePath = "/*yourpath*.h264";
     std::unique_ptr<std::ifstream> inputFile = std::make_unique<std::ifstream>();

@@ -1,14 +1,14 @@
 # Path2D
+
 <!--Kit: ArkUI-->
 <!--Subsystem: ArkUI-->
-<!--Owner: @sd-wu-->
-<!--Designer: @sunbees-->
+<!--Owner: @camlostshi-->
+<!--Designer: @fenglinbailu-->
 <!--Tester: @liuli0427-->
 <!--Adviser: @Brilliantry_Rui-->
+<!-- md-trans-meta sourceCommit=276d60289816e1dd5baf9329b4a307375826cd4b translatedAt=2026-08-05T10:13:36.360Z pushedAt=2026-08-06T06:31:29.917Z -->
 
-
-A **Path2D** object defines a geometric path using its methods and can be rendered onto a canvas via the [stroke](../reference/apis-arkui/arkui-ts/ts-canvasrenderingcontext2d.md#stroke-1) method of the **Canvas**. For details, see [Path2D](../reference/apis-arkui/arkui-js/js-components-canvas-path2d.md).
-
+A **path** object allows you to describe a path through its APIs and render it using the Canvas [stroke](../reference/apis-arkui/arkui-ts/ts-components-canvas-common-method.md#stroke-1) API. For details, see [Path2D](../reference/apis-arkui/arkui-js/js-components-canvas-path2d.md).
 
 ## Drawing Line Segments
 
@@ -81,14 +81,11 @@ export default {
 }
 ```
 
-
 ![Line-Segments](figures/Line-Segments.png)
-
 
 ## Drawing Graphs
 
-Use **createPath2D** to create a path object and draw only **path1** so that only **path1** is displayed on the canvas. Click the **\<text>** component to trigger the **addPath** method. The **path2** object is passed to **path1** as a parameter. After the **stroke** operation is performed on the **path1** object, **path1** and **path2** are displayed on the canvas. Click **Change** to change the value of **setTransform** to** setTransform(2, 0.1, 0.1, 2, 0,0)**. The graph is enlarged and tilted to the left.
-
+First, use `createPath2D` to create path objects. Only the `path1` path is stroked, so only the `path1` graphic appears on the canvas. When you tap the text component, the `addPath` method is triggered, which passes the `path1` path object as a parameter into `path2`. After the `path2` object is stroked, both the `path1` and `path2` graphics appear on the canvas. When you tap the **change** text, the `setTransform` attribute value is changed to `setTransform(2, 0.1, 0.1, 2, 0, 0)`, causing the graphic to enlarge and tilt to the left.
 
 ```html
 <!-- xxx.hml -->
@@ -100,7 +97,6 @@ Use **createPath2D** to create a path object and draw only **path1** so that onl
     </div>
 </div>
 ```
-
 
 ```css
 /* xxx.css */
@@ -139,7 +135,6 @@ text {
     margin-bottom: 30px;
 }
 ```
-
 
 ```js
 // xxx.js
@@ -206,3 +201,5 @@ export default {
 ```
 
 ![Drawing-Graphs](figures/Drawing-Graphs.gif)
+
+<!--no_check-->

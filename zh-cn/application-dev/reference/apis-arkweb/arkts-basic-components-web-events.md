@@ -1194,7 +1194,7 @@ onResourceLoad(callback: Callback\<OnResourceLoadEvent\>)
 
 onScaleChange(callback: Callback\<OnScaleChangeEvent\>)
 
-当页面显示比例发生变化时，触发该回调。
+当页面显示比例发生变化时，触发该回调。用于监听用户缩放行为，提供更好的页面缩放体验。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -2666,14 +2666,14 @@ onWindowNew(callback: Callback\<OnWindowNewEvent\>)
               this.dialogController.close();
             }
             let popController: webview.WebviewController = new webview.WebviewController();
+            // 将新窗口对应WebviewController返回给Web内核。
+            // 若不调用event.handler.setWebController接口，会造成渲染进程阻塞。
+            // 如果没有创建新窗口，调用event.handler.setWebController接口时设置成null，通知Web没有创建新窗口。
+            event.handler.setWebController(popController);
             this.dialogController = new CustomDialogController({
               builder: NewWebViewComp({ webviewController1: popController })
             })
             this.dialogController.open();
-            // 将新窗口对应WebviewController返回给Web内核。
-            // 若不调用event.handler.setWebController接口，会造成render进程阻塞。
-            // 如果没有创建新窗口，调用event.handler.setWebController接口时设置成null，通知Web没有创建新窗口。
-            event.handler.setWebController(popController);
           })
       }
     }
@@ -2773,14 +2773,14 @@ onWindowNewExt(callback: Callback\<OnWindowNewExtEvent\>)
             this.dialogController.close();
           }
           let popController: webview.WebviewController = new webview.WebviewController();
+          // 将新窗口对应WebviewController返回给Web内核。
+          // 若不调用event.handler.setWebController接口，会造成渲染进程阻塞。
+          // 如果没有创建新窗口，在调用event.handler.setWebController接口时应设置成null，以通知Web没有创建新窗口。
+          event.handler.setWebController(popController);
           this.dialogController = new CustomDialogController({
             builder: NewWebViewComp({ webviewController1: popController })
           })
           this.dialogController.open();
-          // 将新窗口对应WebviewController返回给Web内核。
-          // 若不调用event.handler.setWebController接口，会造成render进程阻塞。
-          // 如果没有创建新窗口，在调用event.handler.setWebController接口时应设置成null，以通知Web没有创建新窗口。
-          event.handler.setWebController(popController);
         })
       }
     }
@@ -2874,14 +2874,14 @@ onActivateContent(callback: Callback\<void>)
               this.dialogController.close()
             }
             let popController: webview.WebviewController = new webview.WebviewController();
+            // 将新窗口对应WebviewController返回给Web内核。
+            // 若不调用event.handler.setWebController接口，会造成渲染进程阻塞。
+            event.handler.setWebController(popController);
             this.dialogController = new CustomDialogController({
               builder: NewWebViewComp({ webviewController1: popController }),
               isModal: false
             })
             this.dialogController.open();
-            // 将新窗口对应WebviewController返回给Web内核。
-            // 若不调用event.handler.setWebController接口，会造成render进程阻塞。
-            event.handler.setWebController(popController);
           })
       }
     }
@@ -4255,7 +4255,7 @@ onViewportFitChanged(callback: OnViewportFitChangedCallback)
 
 onInterceptKeyboardAttach(callback: WebKeyboardCallback)
 
-网页中可编辑元素（如input标签）拉起软键盘之前会回调该接口，应用可以使用该接口拦截系统软键盘的弹出，配置应用定制的软键盘（应用根据该接口可以决定使用系统默认软键盘/定制enter键的系统软键盘/全部由应用自定义的软键盘）。
+当网页中的可编辑元素（如input标签）需要弹出软键盘时触发此回调。应用可以在回调中拦截系统软键盘的弹出，配置应用定制的软键盘（应用根据该接口可以决定使用系统默认软键盘/定制enter键的系统软键盘/全部由应用自定义的软键盘）。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -4867,13 +4867,14 @@ onNativeEmbedObjectParamChange(callback: OnNativeEmbedObjectParamChangeCallback)
 
 onOverrideErrorPage(callback: OnOverrideErrorPageCallback)
 
-网页加载遇到错误时触发，只有主资源出错才会回调该接口，可以使用该接口自定义错误展示页。
+网页加载遇到错误时触发该回调，可用于设置自定义错误页替换ArkWeb提供的默认错误页。默认仅mainframe加载出错时触发；启用subframe错误页功能后，subframe加载出错时也会触发。
 
 > **说明：**
 >
-> 该功能需通过调用[setErrorPageEnabled](./arkts-apis-webview-WebviewController.md#seterrorpageenabled20)接口启用默认错误页后，才会生效。
->
-> 通过[errorPageEvent.error.getErrorCode()](./arkts-basic-components-web-WebResourceError.md#geterrorcode)获取的错误码大于0代表http协议错误，小于0代表网络错误。
+> - 该功能需通过调用[setErrorPageEnabled](./arkts-apis-webview-WebviewController.md#seterrorpageenabled20)<sup>20+</sup>启用mainframe错误页功能后才会生效。如需同时启用subframe错误页功能，请调用[setErrorPageEnabled](./arkts-apis-webview-WebviewController.md#seterrorpageenabled)接口并将includeSubframe设置为true。
+> - 通过[errorPageEvent.request.isMainFrame()](./arkts-basic-components-web-WebResourceRequest.md#ismainframe)判断请求来源是mainframe还是subframe，以便在回调中分别设置对应的自定义错误页。
+> - 通过[errorPageEvent.error.getErrorCode()](./arkts-basic-components-web-WebResourceError.md#geterrorcode)获取的错误码大于0代表http协议错误，小于0代表网络错误。
+
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -4885,32 +4886,38 @@ onOverrideErrorPage(callback: OnOverrideErrorPageCallback)
 
 **示例：**
 
-  ```ts
-  // xxx.ets
-  import { webview } from '@kit.ArkWeb';
-  @Entry
-  @Component
-  struct WebComponent {
-    controller: webview.WebviewController = new webview.WebviewController();
-    build() {
-      Column() {
-        Web({ src: "www.error-test.com", controller: this.controller })
-         .onControllerAttached(() => {
-              this.controller.setErrorPageEnabled(true);
-              if (!this.controller.getErrorPageEnabled()) {
-                  this.controller.setErrorPageEnabled(true);
-              }
-          })
-          .onOverrideErrorPage(event => {
-                let htmlStr = "<html><h1>error occur : ";
-                htmlStr += event.error.getErrorCode();
-                htmlStr += "</h1></html>";
-                return htmlStr;
-          })
-      }
+```ts
+// xxx.ets
+import { webview } from '@kit.ArkWeb';
+
+@Entry
+@Component
+struct WebComponent {
+  controller: webview.WebviewController = new webview.WebviewController();
+
+  build() {
+    Column() {
+      Web({ src: $rawfile("iframe_error.html"), controller: this.controller })
+        .onControllerAttached(() => {
+          // 启用mainframe错误页功能，并同时启用subframe错误页功能
+          this.controller.setErrorPageEnabled(true, true);
+        })
+        .onOverrideErrorPage((event) => {
+          let errorCode: number = event.error.getErrorCode();
+          if (event.request.isMainFrame()) {
+            // mainframe加载失败，返回mainframe自定义错误页
+            return "<html><body><h1>主页面加载失败</h1><p>错误码：" + errorCode + "</p></body></html>";
+          }
+          // subframe加载失败，返回subframe自定义错误页
+          return "<html><body><h1>子页面加载失败</h1><p>错误码：" + errorCode + "</p></body></html>";
+        })
     }
   }
-  ```
+}
+```
+
+> **示例说明：** 示例中使用的`iframe_error.html`文件与[setErrorPageEnabled](./arkts-apis-webview-WebviewController.md#seterrorpageenabled)示例中相同，需放置在应用资源的`resources/rawfile/`目录下。
+
 
 ## onSslErrorReceive<sup>(deprecated)</sup>
 
@@ -5538,7 +5545,7 @@ onInputmethodAttached(callback: OnInputmethodAttachedCallback)
 
 | 参数名        | 类型    | 必填   | 说明          |
 | ---------- | ------- | ---- | ------------- |
-| callback | [OnInputmethodAttachedCallback](./arkts-basic-components-web-t.md#oninputmethodattachedcallback) | 是    | 回调函数，设置Web组件检测到输入法绑定成功时的回调。 |
+| callback | [OnInputmethodAttachedCallback](./arkts-basic-components-web-t.md#oninputmethodattachedcallback) | 是    | 设置Web组件检测到输入法绑定成功时的回调函数。 |
 
 **示例：**
 

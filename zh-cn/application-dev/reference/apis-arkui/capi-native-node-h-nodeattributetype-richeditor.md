@@ -366,7 +366,7 @@ TextEditor组件内容最大行数，支持属性设置、属性重置和属性�
 
 | 参数项 | 描述 |
 | -- | -- |
-| .value[0].i32 | 文本编辑器最大行数限制，取值范围[0, +∞)。取值为0时按无穷大处理；设置为0、负数或未设置该属性时不限制行数。建议在需要固定显示高度的场景下设置该参数。 |
+| .value[0].i32 | 文本编辑器最大行数限制，取值范围：(0, +∞)。设置为0、负数或未设置该属性时，取默认值UINT32_MAX，不限制行数。建议在需要固定显示高度的场景下设置该参数。 |
 
 **返回：**
 
@@ -664,7 +664,7 @@ TextEditor组件单行模式开关，支持属性设置、属性重置和属性�
 NODE_TEXT_EDITOR_ORPHAN_CHAR_OPTIMIZATION = 22028
 ```
 
-TextEditor组件孤字优化开关，支持属性设置、属性重置和属性获取。启用后会调整换行点以尽可能避免孤字。仅在[ArkUI_WordBreak](capi-text-common-h.md#arkui_wordbreak)属性为非ARKUI_WORD_BREAK_BREAK_ALL时生效。
+TextEditor组件孤字优化开关，支持属性设置、属性重置和属性获取。启用后会调整换行点以尽可能避免孤字。仅在[ArkUI_WordBreak](capi-text-common-h.md#arkui_wordbreak)属性为非ARKUI_WORD_BREAK_BREAK_ALL时生效。<br>
 作为属性设置方法参数、属性获取方法返回值[ArkUI_AttributeItem](capi-arkui-nativemodule-arkui-attributeitem.md)格式如下。<br>
 
 **起始版本：** 26.0.0

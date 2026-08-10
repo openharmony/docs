@@ -212,7 +212,7 @@ grid->SetLayoutOptions(layoutOptions->GetLayoutOptions());
 
 ## 处理滚动事件
 
-### 监听滚动事件监听
+### 监听滚动事件
 
 参考[添加事件监听](ndk-add-component-events.md)中列表组件[ArkUI_NodeEventType](../reference/apis-arkui/capi-native-node-h.md#arkui_nodeeventtype)中的`NODE_LIST_ON_SCROLL_INDEX`事件监听示例代码，可以实现网格滚动事件监听。
 
@@ -220,13 +220,13 @@ grid->SetLayoutOptions(layoutOptions->GetLayoutOptions());
 
 | 事件枚举 | 事件说明 | API起始版本 |
 |---------|------|---------|
-| NODE_SCROLL_EVENT_ON_SCROLL_FRAME_BEGIN  | 网格组件开始时回调当前帧将要滑动的偏移量、当前滑动状态。 | 12 |
+| NODE_SCROLL_EVENT_ON_SCROLL_FRAME_BEGIN  | 网格组件每帧滑动开始时回调当前帧将要滑动的偏移量、当前滑动状态。 | 12 |
 | NODE_SCROLL_EVENT_ON_SCROLL_START | 网格组件滑动开始回调。 | 22 |
 | NODE_SCROLL_EVENT_ON_SCROLL_STOP | 网格组件滑动停止回调。 | 22 |
 | NODE_SCROLL_EVENT_ON_REACH_START | 网格组件到达起始位置回调。 | 12 |
 | NODE_SCROLL_EVENT_ON_REACH_END | 网格组件到达末尾位置回调。 | 12 |
 | NODE_SCROLL_EVENT_ON_WILL_STOP_DRAGGING | 网格组件拖划即将离手回调。 | 20 |
-| NODE_SCROLL_EVENT_ON_WILL_START_DRAGGING | 网格组件拖划开始回调。 | 21 |
+| NODE_SCROLL_EVENT_ON_WILL_START_DRAGGING | 网格组件拖划即将开始回调。 | 21 |
 | NODE_SCROLL_EVENT_ON_DID_STOP_DRAGGING | 网格组件拖划结束回调。 | 21 |
 | NODE_SCROLL_EVENT_ON_WILL_START_FLING | 网格组件滑动动画即将开始回调。 | 21 |
 | NODE_SCROLL_EVENT_ON_DID_STOP_FLING | 网格组件滑动动画结束回调。 | 21 |

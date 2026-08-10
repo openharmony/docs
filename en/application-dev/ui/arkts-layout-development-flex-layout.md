@@ -158,7 +158,7 @@ In the flex layout, child elements can be laid on a single line or on multiple l
   <!-- @[FlexWrapWrapReverse_start](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkUISample/MultipleLayoutProject/entry/src/main/ets/pages/flexlayout/FlexWrapWrapReverse.ets) -->
   
   ``` TypeScript
-  Flex({ wrap: FlexWrap.WrapReverse}) {
+  Flex({ wrap: FlexWrap.WrapReverse }) {
     Text('1').width('50%').height(50).backgroundColor('#F5DEB3')
     Text('2').width('50%').height(50).backgroundColor('#D2B48C')
     Text('3').width('50%').height(50).backgroundColor('#F5DEB3')
@@ -173,7 +173,7 @@ In the flex layout, child elements can be laid on a single line or on multiple l
 
 ## Alignment on the Main Axis
 
-Use the **justifyContent** parameter to set alignment of child elements on the main axis.
+You can use the [justifyContent](../reference/apis-arkui/arkui-ts/ts-container-flex.md#flexoptions) parameter to set the alignment mode of child elements along the main axis.
 
 ![flex-spindle-alignment](figures/flex-spindle-alignment.png)
 
@@ -385,7 +385,7 @@ Use the **alignItems** parameter in [FlexOptions](../reference/apis-arkui/arkui-
   .backgroundColor('#AFEEEE')
   ```
 
-  ![alignItems](figures/alignItems.png)
+  ![flexItemAlignStretch](figures/flexItemAlignStretch.png)
 
 - **ItemAlign.Baseline**: The items are aligned at the baseline of the cross axis.
 
@@ -482,7 +482,7 @@ Use the [alignContent](../reference/apis-arkui/arkui-ts/ts-container-flex.md#fle
   .backgroundColor('#AFEEEE')
   ```
 
-  ![contentAlignment](figures/contentAlignment.png)
+  ![flexAlignCenterFlexAlignCenter](figures/flexAlignCenterFlexAlignCenter.png)
 
 - **FlexAlign.End**: The child elements are aligned toward the end edge of the cross axis in the container.
 
@@ -522,7 +522,7 @@ Use the [alignContent](../reference/apis-arkui/arkui-ts/ts-container-flex.md#fle
   .backgroundColor('#AFEEEE')
   ```
 
-  ![contentAlignment2](figures/contentAlignment2.png)
+  ![flexAlignCenterFlexAlignSpaceBetween](figures/flexAlignCenterFlexAlignSpaceBetween.png)
 
 - **FlexAlign.SpaceAround**: The child elements are evenly distributed within the container along the cross axis. The space between the first child element and cross-start, and that between the last child element and cross-end are both half of the space between two adjacent child elements.
 
@@ -544,7 +544,7 @@ Use the [alignContent](../reference/apis-arkui/arkui-ts/ts-container-flex.md#fle
 
   ![flexAlignCenterFlexAlignSpaceAround](figures/flexAlignCenterFlexAlignSpaceAround.png)
 
-- **FlexAlign.SpaceEvenly**: The child elements are evenly distributed within the container along the cross axis. The space between the first child element and cross-start, the space between the last child element and cross-end, and the space between two adjacent child elements are the same.
+- **FlexAlign.SpaceEvenly**: spacing between rows of the child element. The spacing between the first and last rows of the child element is the same as that between the two ends of the cross axis.
 
 
   <!-- @[FlexAlignCenterFlexAlignSpaceBetween_start](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkUISample/MultipleLayoutProject/entry/src/main/ets/pages/flexlayout/FlexAlignCenterFlexAlignSpaceEvenly.ets) -->
@@ -599,7 +599,7 @@ When the size of the flex container is not large enough, the following attribute
   }.width('90%').height(120).padding(10).backgroundColor('#AFEEEE')
   ```
 
-  ![flexBasis2](figures/flexBasis2.png)
+  ![flexBasis](figures/flexbasis.png)
 
 - [flexGrow](../reference/apis-arkui//arkui-ts/ts-universal-attributes-flex-layout.md#flexgrow): percentage of the flex container's remaining space that is allocated to the child element.
 
@@ -625,7 +625,7 @@ When the size of the flex container is not large enough, the following attribute
   }.width(360).height(120).padding(10).backgroundColor('#AFEEEE')
   ```
   
-  ![flexGrow2](figures/flexGrow2.png)
+  ![flexGrow](figures/flexgrow.png)
   
   In the preceding figure, the flex container has a width of 360 vp. The three child elements each have an initial width of 100 vp, with combined left and right margins totaling 20 vp, resulting in a total initial width of 320 vp. The remaining 40 vp of space in the flex container is distributed among the child elements according to their **flexGrow** values. The third child element, which has no **flexGrow** value set, does not participate in the distribution of the remaining space.
   
@@ -645,6 +645,7 @@ When the size of the flex container is not large enough, the following attribute
       .backgroundColor('#F5DEB3')
   
     Text('no flexShrink')
+      .flexShrink(0)
       .width(200)
       .height(100)
       .backgroundColor('#D2B48C')
@@ -657,7 +658,7 @@ When the size of the flex container is not large enough, the following attribute
   }.width(400).height(120).padding(10).backgroundColor('#AFEEEE')
   ```
 
-  ![flexShrink2](figures/flexShrink2.png)
+  ![flexShrink](figures/flexshrink.png)
 
   In this example, the parent container has a width of 400 vp. The three child elements each have an initial width of 200 vp, with left and right padding totaling 20 vp. The available layout space within the parent container is 380 vp, creating an overflow of 220 vp beyond the available space.
   
@@ -697,4 +698,10 @@ struct FlexExample {
 }
 ```
 
-![flex2](figures/flex2.png)
+![flexExample](figures/flexExample.png)
+
+<!--Del-->## Samples
+
+The following sample is provided to help you better understand how to develop Flex:
+
+- [Flexible Layout (ArkTS) (API9)](https://gitcode.com/openharmony/codelabs/tree/master/ETSUI/FlexLayout)<!--DelEnd-->

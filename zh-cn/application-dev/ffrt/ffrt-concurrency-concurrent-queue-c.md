@@ -141,19 +141,19 @@ int ConcurrentQueueCExec()
 
 ## 接口说明
 
-上述样例中涉及到主要的FFRT的接口包括：
+上述样例中涉及到主要的FFRT的接口如下，详情请参考[Function Flow Runtime C API](ffrt-api-guideline-c.md)里的方法：
 
 | 名称                                                                             | 描述                                                                  |
 | -------------------------------------------------------------------------------- | --------------------------------------------------------------------- |
-| [ffrt_queue_create](ffrt-api-guideline-c.md#ffrt_queue_t)                        | 创建队列。                                                            |
-| [ffrt_queue_destroy](ffrt-api-guideline-c.md#ffrt_queue_t)                       | 销毁队列。                                                            |
-| [ffrt_task_attr_set_queue_priority](ffrt-api-guideline-c.md#ffrt_task_attr_t)    | 设置队列任务优先级。                                                  |
-| [ffrt_queue_attr_set_max_concurrency](ffrt-api-guideline-c.md#ffrt_queue_attr_t) | 设置并发队列的并发度。                                                |
-| [ffrt_queue_submit_h_f](ffrt-api-guideline-c.md#ffrt_queue_t)                    | 向队列提交一个任务。<br/>**说明**：从API version 20开始，支持该接口。 |
+| ffrt_queue_create                        | 创建队列。                                                            |
+| ffrt_queue_destroy                       | 销毁队列。                                                            |
+| ffrt_task_attr_set_queue_priority        | 设置队列任务优先级。                                                   |
+| ffrt_queue_attr_set_max_concurrency      | 设置并发队列的并发度。                                                 |
+| ffrt_queue_submit_h_f                    | 向队列提交一个任务。<br/>**说明**：从API version 20开始，支持该接口。    |
 
 > **说明：**
 >
-> - 如何使用FFRT C++ API详见：[FFRT C++接口三方库使用指导](ffrt-development-guideline.md#using-ffrt-c-api-1)。
+> - 如何使用FFRT C++ API详见：[FFRT C++接口三方库使用指导](ffrt-development-guideline.md#使用ffrt-c-api-1)。
 > - 使用FFRT C接口或C++接口时，都可以通过FFRT C++接口三方库简化头文件包含，即使用`#include "ffrt/ffrt.h"`头文件包含语句。
 
 ## 约束限制

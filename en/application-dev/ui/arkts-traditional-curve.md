@@ -1,20 +1,18 @@
 # Traditional Curve
+
 <!--Kit: ArkUI-->
 <!--Subsystem: ArkUI-->
 <!--Owner: @CCFFWW-->
 <!--Designer: @CCFFWW-->
 <!--Tester: @lxl007-->
 <!--Adviser: @Brilliantry_Rui-->
+<!-- md-trans-meta sourceCommit=a9629f73ba09e0a02f481334ff066f3a10f1dd06 translatedAt=2026-08-04T06:38:53.724Z pushedAt=2026-08-04T08:32:12.060Z -->
 
-Traditional curves are mathematically described curves. A typical representative is the cubic Bezier curve. You define the curve shape with a set of control points, to bring out the expected animation effect, such as ease in and ease out. As aforementioned, a traditional curve is not based on the real-world behavior. This means that it does not change its shape to respond to user behavior, and lacks the natural and engaging feel given by a physics-based curve. When creating animations, prioritize physics-based curves and use traditional curves only in rare cases.
-
+Traditional curves are based on mathematical formulas, creating animation curves whose shapes meet your expectations. Represented by the cubic Bezier curve [curves.cubicBezierCurve](../reference/apis-arkui/js-apis-curve.md#curvescubicbeziercurve9), you can change the curve shape by adjusting control points, thereby producing animation effects such as ease-in and ease-out. For the same traditional curve, since it has no physical meaning, its shape does not change in response to user actions, lacking the natural and vivid feel of physical animations. It is recommended that you prioritize physical curves for creating animations and use traditional curves as a supplement in the few necessary scenarios.
 
 ArkUI provides APIs for traditional curves such as Bezier and step curves. For details, see [Interpolation Calculation](../reference/apis-arkui/js-apis-curve.md).
 
-
 The following is an example of a traditional curve.
-
-
 
 <!-- @[traditional_curve](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkUISample/Animation/entry/src/main/ets/pages/traditionalCurve/template1/CurveDemo.ets) -->
 
@@ -113,6 +111,5 @@ struct CurveDemo {
   }
 }
 ```
-
 
 ![en-us_image_0000001641260233](figures/Traditional-Curve.gif)

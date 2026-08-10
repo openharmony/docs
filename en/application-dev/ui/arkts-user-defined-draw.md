@@ -1,10 +1,12 @@
 # Custom Drawing
+
 <!--Kit: ArkUI-->
 <!--Subsystem: ArkUI-->
 <!--Owner: @wangyang2022-->
 <!--Designer: @wangyang2022-->
 <!--Tester: @sally__-->
 <!--Adviser: @Brilliantry_Rui-->
+<!-- md-trans-meta sourceCommit=1f32bcbdd4ae62e5f571fb73a9473dd94b7e4c93 translatedAt=2026-08-05T01:24:14.212Z pushedAt=2026-08-05T08:13:11.650Z -->
 
 ## Overview
 
@@ -20,7 +22,7 @@ Custom drawing has five drawing layers in ascending order: content background la
 
 ![](figures/drawModifier.png)
 
-You can register event types to implement custom drawing at different layers. The following table lists the enumerated values corresponding to these layers. For details about the event types supported by NDK APIs, see the enumerated values of [ArkUI_NodeCustomEventType](../reference/apis-arkui/capi-native-node-h.md#arkui_nodecustomeventtype).
+You can implement custom drawing at different layers by registering the corresponding event types. The enums for different layers are as follows. For the range of event types supported by the NDK APIs, see [ArkUI_NodeCustomEventType](../reference/apis-arkui/capi-native-node-node-attributes-custom-attributes-h.md#arkui_nodecustomeventtype).
 
 | Event Type| Description|
 | --- | --- |
@@ -30,23 +32,22 @@ You can register event types to implement custom drawing at different layers. Th
 | ARKUI_NODE_CUSTOM_EVENT_ON_FOREGROUND_DRAW | Custom foreground layer drawing.|
 | ARKUI_NODE_CUSTOM_EVENT_ON_OVERLAY_DRAW | Custom overlay layer drawing.|
 
-
 ### Example of Custom Drawing at the Content Layer
 
 In this example, the content layer drawing event **ARKUI_NODE_CUSTOM_EVENT_ON_DRAW** is registered to draw a diagonal line from the upper left area to the lower right area at the node content layer. The following figure shows the effect.
 
-The following scenarios are based on the project configuration described in [Integrating with ArkTS Pages](ndk-access-the-arkts-page.md).  
+The following scenario is based on the [Accessing ArkTS Pages](ndk-access-the-arkts-page.md) chapter. Create the prerequisite project first. For the complete content drawing example, see <!--RP1-->[NativeDrawPageSample](https://gitcode.com/openharmony/applications_app_samples/tree/master/code/DocsSample/ArkUISample/NativeType/NativeDrawPageSample)<!--RP1End-->.
 
 ![Custom drawing](figures/custom_drawing.jpg)
 
-1. Create a custom node by passing the enumerated value **ARKUI_NODE_CUSTOM** of [ArkUI_NodeType](../reference/apis-arkui/capi-native-node-h.md#arkui_nodecustomeventtype) through the [createNode](../reference/apis-arkui/capi-arkui-nativemodule-arkui-nativenodeapi-1.md#createnode) API of [ArkUI_NativeNodeAPI_1](../reference/apis-arkui/capi-arkui-nativemodule-arkui-nativenodeapi-1.md).
+1. Call the [createNode](../reference/apis-arkui/capi-arkui-nativemodule-arkui-nativenodeapi-1.md#createnode) API of [ArkUI_NativeNodeAPI_1](../reference/apis-arkui/capi-arkui-nativemodule-arkui-nativenodeapi-1.md), passing the **ARKUI_NODE_CUSTOM** enum value from [ArkUI_NodeType](../reference/apis-arkui/capi-native-node-h.md#arkui_nodetype) to create a custom node.
 
    <!-- @[create_customNode_start](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkUISample/NativeType/NativeDrawPageSample/entry/src/main/cpp/Drawing.h) -->
-   
+
    ``` C
    auto customNode = nodeAPI->createNode(ARKUI_NODE_CUSTOM);
    ```
-    
+
 2. When an event is registered, the custom node, event type, event ID, and **UserData** are passed as parameters.
 
    <!-- @[userdata_start](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkUISample/NativeType/NativeDrawPageSample/entry/src/main/cpp/Drawing.h) -->
@@ -79,9 +80,9 @@ The following scenarios are based on the project configuration described in [Int
    auto userData = reinterpret_cast<A *>(OH_ArkUI_NodeCustomEvent_GetUserData(event));
    ```
     
- [OH_ArkUI_NodeCustomEvent_GetDrawContextInDraw](../reference/apis-arkui/capi-native-node-h.md#oh_arkui_nodecustomevent_getdrawcontextindraw) obtains the drawing context through the custom component event and transfers the drawing context to [OH_ArkUI_DrawContext_GetCanvas](../reference/apis-arkui/capi-native-type-h.md#oh_arkui_drawcontext_getcanvas) to obtain the canvas pointer. The pointer is then converted to an [OH_Drawing_Canvas](../reference/apis-arkgraphics2d/capi-drawing-oh-drawing-canvas.md) pointer for drawing.
+4. [OH_ArkUI_NodeCustomEvent_GetDrawContextInDraw](../reference/apis-arkui/capi-native-node-h.md#oh_arkui_nodecustomevent_getdrawcontextindraw) obtains the drawing context through the custom component event and transfers the drawing context to [OH_ArkUI_DrawContext_GetCanvas](../reference/apis-arkui/capi-native-type-h.md#oh_arkui_drawcontext_getcanvas) to obtain the canvas pointer. The pointer is then converted to an [OH_Drawing_Canvas](../reference/apis-arkgraphics2d/capi-drawing-oh-drawing-canvas.md) pointer for drawing.
 
-   <!-- @[drawCanvas_Start](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkUISample/NativeType/NativeDrawPageSample/entry/src/main/cpp/Drawing.h) -->
+   <!-- @[drawCanvas_Start](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkUISample/NativeType/NativeDrawPageSample/entry/src/main/cpp/Drawing.h) -->  
    
    ``` C
    // Obtain the drawing context for the custom event.
@@ -106,7 +107,7 @@ The following scenarios are based on the project configuration described in [Int
 
 ### Multi-layer Drawing Example
 
-The following example creates a custom drawing component to implement the following functions: rendering custom rectangles, customizing the content foreground and background layers, and using the [custom layout container](ndk-build-custom-components.md#custom-layout-container) for layout management.  
+The following example creates a custom drawing component that implements custom rectangle drawing, custom drawing on the content foreground layer and content background layer, and supports layout arrangement using a [Layout Container](ndk-build-custom-components.md#custom-layout-container). For the complete example, see <!--RP2-->[NativeNodeUtilsSample](https://gitcode.com/openharmony/applications_app_samples/tree/master/code/DocsSample/ArkUISample/NativeType/NativeNodeUtilsSample)<!--RP2End-->.
 
 ![customDrawLayer](figures/capiDrawLayer.jpg)
 
@@ -266,7 +267,7 @@ In the figure, the dark blue rectangle represents the **drawFront** layer, the l
 
 3. Use the custom drawing component and custom container to create a sample UI.
 
-    <!-- @[arkUICustomNodeCpp_start](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkUISample/NativeType/NativeNodeUtilsSample/entry/src/main/cpp/NativeEntry.cpp) -->
+    <!-- @[arkUICustomNodeCpp_start](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkUISample/NativeType/NativeNodeUtilsSample/entry/src/main/cpp/NativeEntry.cpp) --> 
     
     ``` C++
     #include <arkui/native_node_napi.h>
@@ -311,6 +312,80 @@ In the figure, the dark blue rectangle represents the **drawFront** layer, the l
         g_env = env;
         return nullptr;
     }
+    napi_value CreateNativeMessageRoot(napi_env env, napi_callback_info info)
+    {
+        constexpr int32_t messageMaskWidth = 400;
+        constexpr int32_t messageMaskHeight = 200;
+    
+        size_t argc = 1;
+        napi_value args[1] = {nullptr};
+    
+        napi_get_cb_info(env, info, &argc, args, nullptr, nullptr);
+    
+        // Avoid duplicate mounting caused by duplicate creation.
+        NativeEntry::GetInstance()->DisposeRootNode();
+    
+        // Obtain NodeContent.
+        ArkUI_NodeContentHandle contentHandle;
+        OH_ArkUI_GetNodeContentFromNapiValue(env, args[0], &contentHandle);
+        NativeEntry::GetInstance()->SetContentHandle(contentHandle);
+    
+        auto nodeAPI = NativeModuleInstance::GetInstance()->GetNativeNodeAPI();
+        auto rootColumn = std::make_shared<ArkUIColumnNode>();
+        auto rootColumnHandle = rootColumn->GetHandle();
+        
+        // Set the root container style.
+        ArkUI_NumberValue paddingValue[] = {{.f32 = 20.0f}};
+        ArkUI_AttributeItem paddingItem = {paddingValue, 1};
+        nodeAPI->setAttribute(rootColumnHandle, NODE_PADDING, &paddingItem);
+    
+        ArkUI_NumberValue bgColorValue[] = {{.u32 = 0xFFFFFFFF}};
+        ArkUI_AttributeItem bgColorItem = {bgColorValue, 1};
+        nodeAPI->setAttribute(rootColumnHandle, NODE_BACKGROUND_COLOR, &bgColorItem);
+        
+        // Create the message bubble component.
+        auto maskNode = std::make_shared<ArkUIMessageMaskNode>();
+        maskNode->SetWidth(messageMaskWidth);
+        maskNode->SetHeight(messageMaskHeight);
+        maskNode->SetMessage("You have a new message");
+        maskNode->SetMaskVisible(false);  // Do not display the mask layer initially.
+        
+        // Create a button for toggling the mask effect.
+        auto buttonNode = std::make_shared<ArkUINode>(nodeAPI->createNode(ARKUI_NODE_BUTTON));
+        auto buttonHandle = buttonNode->GetHandle();
+        
+        // Set the button text.
+        ArkUI_AttributeItem labelItem;
+        const char* buttonLabel = "Toggle Mask Effect";
+        labelItem.string = buttonLabel;
+        nodeAPI->setAttribute(buttonHandle, NODE_BUTTON_LABEL, &labelItem);
+        
+        // Set the button style.
+        ArkUI_NumberValue marginValue[] = {{.f32 = 20.0f}};
+        ArkUI_AttributeItem marginItem = {marginValue, 1};
+        nodeAPI->setAttribute(buttonHandle, NODE_MARGIN, &marginItem);
+        
+        ArkUI_NumberValue btnBgColorValue[] = {{.u32 = 0xFF2787D9}};
+        ArkUI_AttributeItem btnBgColorItem = {btnBgColorValue, 1};
+        nodeAPI->setAttribute(buttonHandle, NODE_BACKGROUND_COLOR, &btnBgColorItem);
+    
+        // Set the button click event.
+        auto onClick = [](ArkUI_NodeEvent *event) {
+            auto maskNode = (ArkUIMessageMaskNode *)OH_ArkUI_NodeEvent_GetUserData(event);
+            static bool highlighted = false;
+            highlighted = !highlighted;
+            maskNode->SetMaskVisible(highlighted);
+        };
+        buttonNode->RegisterOnClick(onClick, maskNode.get());
+        
+        // Add the component to the root container.
+        rootColumn->AddChild(buttonNode);
+        rootColumn->AddChild(maskNode);
+    
+        // Keep the native-side object in the management class to maintain its lifecycle.
+        NativeEntry::GetInstance()->SetRootNode(rootColumn);
+        return nullptr;
+    }
     
     napi_value DestroyNativeRoot(napi_env env, napi_callback_info info)
     {
@@ -323,9 +398,9 @@ In the figure, the dark blue rectangle represents the **drawFront** layer, the l
 
 ## Implementing the Message Overlay Through Foreground Drawing
 
-The following example creates a message prompt component. It draws message bubbles and text at the content layer and overlays star decorations at the foreground layer to highlight messages. This is commonly used in scenarios such as message notifications and guide marks.  
+The following example creates a message prompt component. It draws message bubbles and text at the content layer and overlays star decorations at the foreground layer to highlight messages. This is commonly used in scenarios such as message notifications and guide markers. For the complete example, see <!--RP2-->[NativeNodeUtilsSample](https://gitcode.com/openharmony/applications_app_samples/tree/master/code/DocsSample/ArkUISample/NativeType/NativeNodeUtilsSample)<!--RP2End-->.
 
-Effect without message overlay, overlay, and star decoration on the foreground layer:
+Effect without the message overlay and star decoration on the foreground layer:
 
 ![messageMask](figures/messageMask2.jpg)
 
@@ -337,7 +412,7 @@ Effect with message overlay and star decoration on the foreground layer:
 
 2. Create the wrapper objects of the message overlay component.
 
-   <!-- @[messageMaskNode_start](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkUISample/NativeType/NativeNodeUtilsSample/entry/src/main/cpp/ArkUIMessageMaskNode.h) -->
+   <!-- @[messageMaskNode_start](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkUISample/NativeType/NativeNodeUtilsSample/entry/src/main/cpp/ArkUIMessageMaskNode.h) --> 
    
    ``` C
    #ifndef MYAPPLICATION_ARKUIMESSAGEMASKNODE_H
@@ -429,7 +504,7 @@ Effect with message overlay and star decoration on the foreground layer:
            }
        }
    
-       // Custom content background layer: Draw the background of the chat screen.
+       // Custom content layer background: draw the chat interface background.
        void OnDrawBehind(ArkUI_NodeCustomEvent* event)
        {
            auto drawContext = OH_ArkUI_NodeCustomEvent_GetDrawContextInDraw(event);
@@ -575,7 +650,7 @@ Effect with message overlay and star decoration on the foreground layer:
    
            // Create a text style.
            auto* textStyle = OH_Drawing_CreateTextStyle();
-           OH_Drawing_SetTextStyleColor(textStyle, 0xFF000000); // Pure black.
+           OH_Drawing_SetTextStyleColor(textStyle, 0xFF000000); // Pure black
            OH_Drawing_SetTextStyleFontSize(textStyle, messageTextFontSize);
            OH_Drawing_SetTextStyleFontWeight(textStyle, FONT_WEIGHT_400);
            auto textBrush = OH_Drawing_BrushCreate();
@@ -592,7 +667,7 @@ Effect with message overlay and star decoration on the foreground layer:
            OH_Drawing_TypographyLayout(typography, maxWidth);
            OH_Drawing_TypographyPaint(typography, canvas, x, y);
    
-           // Release resources.
+           // 释放资源
            OH_Drawing_DestroyTextStyle(textStyle);
            OH_Drawing_DestroyTypography(typography);
            OH_Drawing_DestroyTypographyHandler(typographyHandler);
@@ -601,7 +676,7 @@ Effect with message overlay and star decoration on the foreground layer:
            OH_Drawing_BrushDestroy(textBrush);
        }
    
-       std::string message_ = "";
+       std::string message_ = "This is a message notification.";
        bool maskVisible_ = false;
    };
    } // namespace NativeModule
@@ -711,4 +786,5 @@ Effect with message overlay and star decoration on the foreground layer:
     }
     } // namespace NativeModule
     ```
-    
+
+    <!--no_check-->
