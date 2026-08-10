@@ -6,7 +6,7 @@
 <!--Designer: @leo_ysl-->
 <!--Tester: @xchaosioda-->
 <!--Adviser: @w_Machine_cc-->
-<!-- md-trans-meta sourceCommit=425e79ed59a841b19860caacc0b050f68405d43e translatedAt=2026-08-10T09:23:00.294Z pushedAt=2026-08-10T13:43:06.842Z -->
+<!-- md-trans-meta sourceCommit=425e79ed59a841b19860caacc0b050f68405d43e translatedAt=2026-08-10T09:23:00.294Z pushedAt=2026-08-10T14:20:40.538Z -->
 
 ## Overview
 
@@ -402,7 +402,7 @@ For detailed API descriptions, see [OH_Camera](../../reference/apis-camera-kit/c
        // Obtain the flash mode of the current device.
        ret = OH_CaptureSession_GetFlashMode(captureSession_, &flashMode);
        if (ret == CAMERA_OK) {
-           OH_LOG_INFO(LOG_APP, "OH_CaptureSession_GetFlashMode success. flashMode：%{public}d ", flashMode);
+           OH_LOG_INFO(LOG_APP, "OH_CaptureSession_GetFlashMode success. flashMode: %{public}d ", flashMode);
        } else {
            OH_LOG_ERROR(LOG_APP, "OH_CaptureSession_GetFlashMode failed. %d ", ret);
        }

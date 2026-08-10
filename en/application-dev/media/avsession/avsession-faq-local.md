@@ -6,7 +6,7 @@
 <!--Designer: @ccfriend-->
 <!--Tester: @chenmingxi1_huawei-->
 <!--Adviser: @w_Machine_cc-->
-<!-- md-trans-meta sourceCommit=cd52fabbe6a7dffbf6bd4bde88d3fc0bbc62f827 translatedAt=2026-08-10T03:47:36.096Z pushedAt=2026-08-10T07:10:07.926Z -->
+<!-- md-trans-meta sourceCommit=cd52fabbe6a7dffbf6bd4bde88d3fc0bbc62f827 translatedAt=2026-08-10T03:47:36.096Z pushedAt=2026-08-10T14:18:12.803Z -->
 
 This document summarizes typical issues encountered by audio and video apps during local media session integration with [AVSession Kit](avsession-overview.md), along with their diagnosis and resolution methods. You can use [AVSession management error codes](../../reference/apis-avsession-kit/errorcode-avsession.md) and HiLog logs to further diagnose issues.
 
@@ -87,7 +87,7 @@ After the app is switched to the background, audio and video playback is forcibl
 
 **Solution**
 
-1. Refer to [Accessing AVSession](avsession-background-scene.md#integrating-avsession) in Background Playback to complete AVSession integration.
+1. Refer to [Accessing AVSession](avsession-background-scene.md#accessing-avsession) in Background Playback to complete AVSession integration.
 
 2. Apply for an `AUDIO_PLAYBACK` type [continuous task (ArkTS)](../../task-management/continuous-task.md).
 

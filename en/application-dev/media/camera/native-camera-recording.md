@@ -6,9 +6,9 @@
 <!--Designer: @leo_ysl-->
 <!--Tester: @xchaosioda-->
 <!--Adviser: @w_Machine_cc-->
-<!-- md-trans-meta sourceCommit=a6fe22b8c0b778d60770969b7ec064c000a8b479 translatedAt=2026-08-10T09:20:41.257Z pushedAt=2026-08-10T13:30:44.138Z -->
+<!-- md-trans-meta sourceCommit=a6fe22b8c0b778d60770969b7ec064c000a8b479 translatedAt=2026-08-10T09:20:41.257Z pushedAt=2026-08-10T14:17:32.777Z -->
 
-Recording is cyclic frame capture and one of the most important features of a camera app. For recording smoothness, refer to step 7 in the [development procedure of Photo Capture (C/C++)](native-camera-shooting.md#development-procedure) to set the resolution, flash, focal length, photo quality, rotation angle, and other parameters.
+Recording is cyclic frame capture and one of the most important features of a camera app. For recording smoothness, refer to step 7 in the development procedure of [Photo Capture (C/C++)](native-camera-shooting.md#how-to-develop) to set the resolution, flash, focal length, photo quality, rotation angle, and other parameters.
 
 ## How to Develop
 

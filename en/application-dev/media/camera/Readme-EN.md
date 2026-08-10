@@ -6,7 +6,7 @@
 <!--Designer: @leo_ysl-->
 <!--Tester: @xchaosioda-->
 <!--Adviser: @w_Machine_cc-->
-<!-- md-trans-meta sourceCommit=2bba9ab01794224a7129c09e8cfdf2d8c563593f translatedAt=2026-08-10T09:22:53.561Z pushedAt=2026-08-10T13:53:30.250Z -->
+<!-- md-trans-meta sourceCommit=2bba9ab01794224a7129c09e8cfdf2d8c563593f translatedAt=2026-08-10T09:22:53.561Z pushedAt=2026-08-10T14:22:17.928Z -->
 
 - [About This Kit](camera-overview.md)
 
@@ -106,7 +106,7 @@
 
   - [Camera Metadata (C/C++)](native-camera-metadata.md)
 
-  - [Using the Flashlight (C/C++)](native-camera-torch-use.md)
+  - [Using the Flashlight (C++)](native-camera-torch-use.md)
 
   - [Pressure Management (C/C++)](native-camera-system-pressure.md)
 
