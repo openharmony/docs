@@ -69,7 +69,7 @@ Sensor_Result OH_Sensor_Subscribe(const Sensor_SubscriptionId *id, const Sensor_
 
 权限说明：订阅加速度传感器，需要申请ohos.permission.ACCELEROMETER权限；订阅陀螺仪传感器，需要申请ohos.permission.GYROSCOPE权限；订阅计步器相关传感器时，需要申请ohos.permission.ACTIVITY_MOTION权限；订阅与健康相关的传感器时，例如心率传感器，需要申请ohos.permission.READ_HEALTH_DATA权限，否则订阅失败。订阅其余传感器不需要申请权限。
 
-**需要权限：** ohos.permission.ACCELEROMETER or ohos.permission.GYROSCOPE or	ohos.permission.ACTIVITY_MOTION or ohos.permission.READ_HEALTH_DATA
+**需要权限：** ohos.permission.ACCELEROMETER or ohos.permission.GYROSCOPE or ohos.permission.ACTIVITY_MOTION or ohos.permission.READ_HEALTH_DATA
 
 **起始版本：** 11
 
