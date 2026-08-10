@@ -1,10 +1,10 @@
 # 使用DevTools进行网页内存分析
 <!--Kit: NDK Development-->
 <!--Subsystem: arkcompiler-->
-<!--Owner: @yuanjiahao-->
-<!--Designer: @xiexuhui-->
+<!--Owner: @yuanxiaogou-->
+<!--Designer: @knightaoko-->
 <!--Tester: @test_lzz-->
-<!--Adviser: @fang-jinxu-->
+<!--Adviser: @k1ngqaquuu-->
 ## 开启DevTools
 DevTools为Chrome浏览器自带工具，[下载](https://www.google.com.hk/intl/en_uk/chrome/)并启动Chrome浏览器后，在需要进行内存分析的页面按下F12或者Shift+Ctrl+I启动DevTools开发者工具。
 
@@ -18,8 +18,8 @@ DevTools为Chrome浏览器自带工具，[下载](https://www.google.com.hk/intl
 ## 堆快照分析
 ### 摘要(Summary)
 摘要展示当前内存快照的概览。其中：
-- 构造函数(Constructor):表示对象的构造器
-- 距离(Distance):与GCroot的引用链距离。当出现同一类对象距离不同的情况，要注意代码逻辑可能出现问题。
+- 构造函数(Constructor)：表示对象的构造器。
+- 距离(Distance)：与GCroot的引用链距离。当出现同一类对象距离不同的情况，要注意代码逻辑可能出现问题。
 - 对象计数(Object Count)：跟在构造器后方的灰色数字，表示当前构造器所构造的对象总数。
 - 浅层大小(Shallow Size)：对象自身占用的内存大小。
 - 保留大小(Retained Size)：当一个对象被释放后，系统虚拟机可以释放的总内存。
