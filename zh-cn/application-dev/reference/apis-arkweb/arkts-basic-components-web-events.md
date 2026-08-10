@@ -2671,7 +2671,7 @@ onWindowNew(callback: Callback\<OnWindowNewEvent\>)
             })
             this.dialogController.open();
             // 将新窗口对应WebviewController返回给Web内核。
-            // 若不调用event.handler.setWebController接口，会造成渲染进程阻塞。
+            // 若不调用event.handler.setWebController接口，会造成render进程阻塞。
             // 如果没有创建新窗口，调用event.handler.setWebController接口时设置成null，通知Web没有创建新窗口。
             event.handler.setWebController(popController);
           })
@@ -2778,7 +2778,7 @@ onWindowNewExt(callback: Callback\<OnWindowNewExtEvent\>)
           })
           this.dialogController.open();
           // 将新窗口对应WebviewController返回给Web内核。
-          // 若不调用event.handler.setWebController接口，会造成渲染进程阻塞。
+          // 若不调用event.handler.setWebController接口，会造成render进程阻塞。
           // 如果没有创建新窗口，在调用event.handler.setWebController接口时应设置成null，以通知Web没有创建新窗口。
           event.handler.setWebController(popController);
         })
@@ -2880,7 +2880,7 @@ Web页面触发window.open(url, name)时，会根据name查找是否存在已绑
             })
             this.dialogController.open();
             // 将新窗口对应WebviewController返回给Web内核。
-            // 若不调用event.handler.setWebController接口，会造成渲染进程阻塞。
+            // 若不调用event.handler.setWebController接口，会造成render进程阻塞。
             event.handler.setWebController(popController);
           })
       }
