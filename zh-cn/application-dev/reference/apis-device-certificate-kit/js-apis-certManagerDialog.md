@@ -188,7 +188,7 @@ try {
   }).catch((error: Error) => {
     let err = error as BusinessError;
     console.error(`Failed to open certificate manager dialog. Code: ${err.code}, message: ${err.message}`);
-  })
+  });
 } catch (error) {
   console.error(`Failed to open certificate manager dialog. Code: ${error.code}, message: ${error.message}`);
 }
@@ -262,7 +262,7 @@ try {
   }).catch((error: Error) => {
     let err = error as BusinessError;
     console.error(`Failed to open install certificate dialog. Code: ${err.code}, message: ${err.message}`);
-  })
+  });
 } catch (error) {
   console.error(`Failed to open install certificate dialog. Code: ${error.code}, message: ${error.message}`);
 }
@@ -329,7 +329,7 @@ try {
   }).catch((error: Error) => {
     let err = error as BusinessError;
     console.error(`Failed to open uninstall certificate dialog. Code: ${err.code}, message: ${err.message}`);
-  })
+  });
 } catch (error) {
   console.error(`Failed to open uninstall certificate dialog. Code: ${error.code}, message: ${error.message}`);
 }
@@ -397,7 +397,7 @@ try {
   }).catch((error: Error) => {
     let err = error as BusinessError;
     console.error(`Failed to open certificate detail dialog. Code: ${err.code}, message: ${err.message}`);
-  })
+  });
 } catch (error) {
   console.error(`Failed to open certificate detail dialog. Code: ${error.code}, message: ${error.message}`);
 }

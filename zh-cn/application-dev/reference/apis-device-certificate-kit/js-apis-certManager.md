@@ -401,7 +401,7 @@ try {
   }).catch((error: Error) => {
     let err = error as BusinessError;
     console.error(`Failed to install private certificate. Code: ${err.code}, message: ${err.message}`);
-  })
+  });
 } catch (error) {
   console.error(`Failed to install private certificate. Code: ${error.code}, message: ${error.message}`);
 }
@@ -464,7 +464,7 @@ try {
   }).catch((error: Error) => {
     let err = error as BusinessError;
     console.error(`Failed to install private certificate. Code: ${err.code}, message: ${err.message}`);
-  })
+  });
 } catch (error) {
   console.error(`Failed to install private certificate. Code: ${error.code}, message: ${error.message}`);
 }
@@ -571,7 +571,7 @@ try {
   }).catch((error: Error) => {
     let err = error as BusinessError;
     console.error(`Failed to get private certificate. Code: ${err.code}, message: ${err.message}`);
-  })
+  });
 } catch (error) {
   console.error(`Failed to get private certificate. Code: ${error.code}, message: ${error.message}`);
 }
@@ -668,7 +668,7 @@ try {
   }).catch((error: Error) => {
     let err = error as BusinessError;
     console.error(`Failed to uninstall private certificate. Code: ${err.code}, message: ${err.message}`);
-  })
+  });
 } catch (error) {
   console.error(`Failed to uninstall private certificate. Code: ${error.code}, message: ${error.message}`);
 }
@@ -735,7 +735,7 @@ try {
   }).catch((error: Error) => {
     let err = error as BusinessError;
     console.error(`Failed to install user trusted certificate. Code: ${err.code}, message: ${err.message}`);
-  })
+  });
 } catch (error) {
   console.error(`Failed to install user trusted certificate. Code: ${error.code}, message: ${error.message}`);
 }
@@ -886,7 +886,7 @@ try {
     } else {
       console.info('Succeeded in initiating.');
     }
-  })
+  });
 } catch (error) {
   console.error(`Failed to init. Code: ${error.code}, message: ${error.message}`);
 }
@@ -944,7 +944,7 @@ try {
   }).catch((error: Error) => {
     let err = error as BusinessError;
     console.error(`Failed to init. Code: ${err.code}, message: ${err.message}`);
-  })
+  });
 } catch (error) {
   console.error(`Failed to init. Code: ${error.code}, message: ${error.message}`);
 }
@@ -1053,7 +1053,7 @@ try {
   }).catch((error: Error) => {
     let err = error as BusinessError;
     console.error(`Failed to update. Code: ${err.code}, message: ${err.message}`);
-  })
+  });
 } catch (error) {
   console.error(`Failed to update. Code: ${error.code}, message: ${error.message}`);
 }
@@ -1218,7 +1218,7 @@ try {
   }).catch((error: Error) => {
     let err = error as BusinessError;
     console.error(`Failed to finish signature. Code: ${err.code}, message: ${err.message}`);
-  })
+  });
 
   /* 签名的结果 */
   let signRes: Uint8Array = new Uint8Array([
@@ -1230,7 +1230,7 @@ try {
   }).catch((error: Error) => {
     let err = error as BusinessError;
     console.error(`Failed to finish verification. Code: ${err.code}, message: ${err.message}`);
-  })
+  });
 } catch(error) {
   console.error(`Failed to finish. Code: ${error.code}, message: ${error.message}`);
 }
@@ -1331,7 +1331,7 @@ try {
   }).catch((error: Error) => {
     let err = error as BusinessError;
     console.error(`Failed to abort. Code: ${err.code}, message: ${err.message}`);
-  })
+  });
 } catch (error) {
   console.error(`Failed to abort. Code: ${error.code}, message: ${error.message}`);
 }
@@ -1388,7 +1388,7 @@ try {
   }).catch((error: Error) => {
     let err = error as BusinessError;
     console.error(`Failed to get Public certificate. Code: ${err.code}, message: ${err.message}`);
-  })
+  });
 } catch (error) {
   console.error(`Failed to get Public certificate. Code: ${error.code}, message: ${error.message}`);
 }
@@ -1442,7 +1442,7 @@ try {
   }).catch((error: Error) => {
     let err = error as BusinessError;
     console.error(`Failed to check if the application is authorized. Code: ${err.code}, message: ${err.message}`);
-  })
+  });
 } catch (error) {
   console.error(`Failed to check if the application is authorized. Code: ${error.code}, message: ${error.message}`);
 }
@@ -1491,7 +1491,7 @@ try {
   }).catch((error: Error) => {
     let err = error as BusinessError;
     console.error(`Failed to get all user trusted certificates. Code: ${err.code}, message: ${err.message}`);
-  })
+  });
 } catch (error) {
   console.error(`Failed to get all user trusted certificates. Code: ${error.code}, message: ${error.message}`);
 }
@@ -1550,7 +1550,7 @@ try {
   }).catch((error: Error) => {
     let err = error as BusinessError;
     console.error(`Failed to get current user trusted certificates. Code: ${err.code}, message: ${err.message}`);
-  })
+  });
 } catch (error) {
   console.error(`Failed to get current user trusted certificates. Code: ${error.code}, message: ${error.message}`);
 }
@@ -1606,7 +1606,7 @@ try {
   }).catch((error: Error) => {
     let err = error as BusinessError;
     console.error(`Failed to get user trusted certificate. Code: ${err.code}, message: ${err.message}`);
-  })
+  });
 } catch (error) {
   console.error(`Failed to get user trusted certificate. Code: ${error.code}, message: ${error.message}`);
 }
@@ -1654,7 +1654,7 @@ try {
   }).catch((error: Error) => {
     let err = error as BusinessError;
     console.error(`Failed to get all private certificates installed by the application. Code: ${err.code}, message: ${err.message}`);
-  })
+  });
 } catch (error) {
   console.error(`Failed to get all private certificates installed by the application. Code: ${error.code}, message: ${error.message}`);
 }
@@ -1784,7 +1784,7 @@ try {
   }).catch((error: Error) => {
     let err = error as BusinessError;
     console.error(`Failed to get detail of USB Key certificate. Code: ${err.code}, message: ${err.message}`);
-  })
+  });
 } catch (error) {
   console.error(`Failed to get detail of USB Key certificate. Code: ${error.code}, message: ${error.message}`);
 }
@@ -1848,7 +1848,7 @@ try {
   }).catch((error: Error) => {
     let err = error as BusinessError;
     console.error(`Failed to get USB Key certificate list. Code: ${err.code}, message: ${err.message}`);
-  })
+  });
 } catch (error) {
   console.error(`Failed to get USB Key certificate list. Code: ${error.code}, message: ${error.message}`);
 }
