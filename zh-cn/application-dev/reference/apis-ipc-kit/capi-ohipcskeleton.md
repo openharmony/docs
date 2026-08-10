@@ -8,7 +8,7 @@
 
 ## 概述
 
-OHIPCSkeleton模块提供IPC（进程间通信）框架的核心功能C接口。
+ipc_cskeleton.h提供IPC框架TokenId、凭据、PID/UID、线程池配置等功能C接口，主要用于进程间通信的上下文管理和线程管理。
 
 **系统能力：** SystemCapability.Communication.IPC.Core
 
