@@ -11,6 +11,8 @@
 
 声明网络流量过滤与重定向功能的C接口。该头文件提供创建和销毁报文控制器、注册报文回调、添加和清除过滤规则，以及创建和销毁流量重定向器、添加和清除重定向规则的接口。<br> 适用于需要在系统层面对网络数据包进行拦截、过滤和重定向的应用场景。
 
+**引用文件：** <network/netmanager_ext/net_trafficfilter.h>
+
 **库：** libnet_trafficfilter.so
 
 **系统能力：** SystemCapability.Communication.NetManager.NetFirewall
