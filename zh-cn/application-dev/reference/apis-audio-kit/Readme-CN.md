@@ -92,8 +92,18 @@
     - [OH_AudioStreamBuilderStruct](capi-ohaudio-oh-audiostreambuilderstruct.md)
     - [OH_AudioRendererStruct](capi-ohaudio-oh-audiorendererstruct.md)
     - [OH_AudioCapturerStruct](capi-ohaudio-oh-audiocapturerstruct.md)
+    <!--Del-->
+    - [OH_AudioConverter_Format](capi-ohaudiosuite-oh-audioconverter-format.md)
+    - [OH_AudioConverterStruct](capi-ohaudiosuite-oh-audioconverterstruct.md)
+    <!--DelEnd-->
     - [OH_AudioFormat](capi-ohaudiosuite-oh-audioformat.md)
+    <!--Del-->
+    - [OH_AudioSuite_SystemNodeFormat](capi-ohaudiosuite-oh-audiosuite-systemnodeformat.md)
+    <!--DelEnd-->
     - [OH_AudioDataArray](capi-ohaudiosuite-oh-audiodataarray.md)
+    <!--Del-->
+    - [OH_AudioSuite_MetaFrame](capi-ohaudiosuite-oh-audiosuite-metaframe.md)
+    <!--DelEnd-->
     - [OH_EqualizerFrequencyBandGains](capi-ohaudiosuite-oh-equalizerfrequencybandgains.md)
     - [OH_AudioSuiteEngineStruct](capi-ohaudiosuite-oh-audiosuiteenginestruct.md)
     - [OH_AudioSuitePipelineStruct](capi-ohaudiosuite-oh-audiosuitepipelinestruct.md)
