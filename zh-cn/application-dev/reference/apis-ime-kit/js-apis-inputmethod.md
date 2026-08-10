@@ -295,6 +295,10 @@ switchInputMethod(target: InputMethodProperty, callback: AsyncCallback&lt;boolea
 >  - 在API version 9-10版本，仅支持系统应用调用且需要权限ohos.permission.CONNECT_IME_ABILITY。
 >  - 在API version 11版本起，仅支持当前输入法应用调用。
 
+**需要权限：**
+- API版本9-10：ohos.permission.CONNECT_IME_ABILITY
+- API版本11+：N/A
+
 **系统能力：** SystemCapability.MiscServices.InputMethodFramework
 
 **参数：**
@@ -353,6 +357,10 @@ switchInputMethod(target: InputMethodProperty): Promise&lt;boolean&gt;
 >
 >  - 在API version 9-10版本，仅支持系统应用调用且需要权限ohos.permission.CONNECT_IME_ABILITY。
 >  - 在API version 11版本起，仅支持当前输入法应用调用。
+
+**需要权限：**
+- API版本9-10：ohos.permission.CONNECT_IME_ABILITY
+- API版本11+：N/A
 
 **系统能力：** SystemCapability.MiscServices.InputMethodFramework
 
@@ -438,6 +446,10 @@ switchCurrentInputMethodSubtype(target: InputMethodSubtype, callback: AsyncCallb
 >  - 在API version 10版本，支持系统应用和当前输入法应用调用；需要权限ohos.permission.CONNECT_IME_ABILITY。
 >  - 在API version 11版本起，仅支持当前输入法调用。
 
+**需要权限：**
+- API版本9-10：ohos.permission.CONNECT_IME_ABILITY
+- API版本11+：N/A
+
 **系统能力：** SystemCapability.MiscServices.InputMethodFramework
 
 **参数：**
@@ -503,6 +515,10 @@ switchCurrentInputMethodSubtype(target: InputMethodSubtype): Promise&lt;boolean&
 >  - 在API version 9版本，仅支持系统应用调用且需要权限ohos.permission.CONNECT_IME_ABILITY。
 >  - 在API version 10版本，支持系统应用和当前输入法应用调用；需要权限ohos.permission.CONNECT_IME_ABILITY。
 >  - 在API version 11版本起，仅支持当前输入法调用。
+
+**需要权限：**
+- API版本9-10：ohos.permission.CONNECT_IME_ABILITY
+- API版本11+：N/A
 
 **系统能力：** SystemCapability.MiscServices.InputMethodFramework
 
@@ -594,6 +610,10 @@ switchCurrentInputMethodAndSubtype(inputMethodProperty: InputMethodProperty, inp
 >  - 在API version 9-10版本，仅支持系统应用调用且需要权限ohos.permission.CONNECT_IME_ABILITY。
 >  - 在API version 11版本起，仅支持当前输入法调用。
 
+**需要权限：**
+- API版本9-10：ohos.permission.CONNECT_IME_ABILITY
+- API版本11+：N/A
+
 **系统能力：** SystemCapability.MiscServices.InputMethodFramework
 
 **参数：**
@@ -650,6 +670,10 @@ switchCurrentInputMethodAndSubtype(inputMethodProperty: InputMethodProperty, inp
 >
 >  - 在API version 9-10版本，仅支持系统应用调用且需要权限ohos.permission.CONNECT_IME_ABILITY。
 >  - 在API version 11版本起，仅支持当前输入法调用。
+
+**需要权限：**
+- API版本9-10：ohos.permission.CONNECT_IME_ABILITY
+- API版本11+：N/A
 
 **系统能力：** SystemCapability.MiscServices.InputMethodFramework
 
