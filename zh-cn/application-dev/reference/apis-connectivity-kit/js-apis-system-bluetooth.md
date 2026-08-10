@@ -43,13 +43,13 @@ import bluetooth from '@system.bluetooth';
   bluetooth.startBLEScan({
     interval:0,
     success() {
-      console.log('call bluetooth.startBLEScan success.');
+      console.info('call bluetooth.startBLEScan success.');
     },
     fail(code, data) {
-      console.log('call bluetooth.startBLEScan failed, code:' + code + ', data:' + data);
+      console.info('call bluetooth.startBLEScan failed, code:' + code + ', data:' + data);
     },
     complete() {
-      console.log('call bluetooth.startBLEScan complete.');
+      console.info('call bluetooth.startBLEScan complete.');
     }
   });
   ```
@@ -75,13 +75,13 @@ import bluetooth from '@system.bluetooth';
   ```js
   bluetooth.stopBLEScan({
     success() {
-      console.log('call bluetooth.stopBLEScan success.');
+      console.info('call bluetooth.stopBLEScan success.');
     },
     fail(data, code) {
-      console.log('call bluetooth.stopBLEScan fail, code:' + code + ', data:' + data);
+      console.info('call bluetooth.stopBLEScan fail, code:' + code + ', data:' + data);
     },
     complete() {
-      console.log('call bluetooth.stopBLEScan complete.');
+      console.info('call bluetooth.stopBLEScan complete.');
     }
   });
   ```
@@ -122,10 +122,10 @@ import bluetooth from '@system.bluetooth';
   ```js
   bluetooth.subscribeBLEFound({
     success(data) {
-      console.log('call bluetooth.subscribeBLEFound success, data: ${data}.');
+      console.info('call bluetooth.subscribeBLEFound success, data: ${data}.');
     },
     fail(data, code) {
-      console.log('call bluetooth.startBLEScan failed, code:' + code + ', data:' + data);
+      console.info('call bluetooth.startBLEScan failed, code:' + code + ', data:' + data);
     }
   });
   ```
