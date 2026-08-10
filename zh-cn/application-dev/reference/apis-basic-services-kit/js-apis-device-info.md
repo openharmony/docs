@@ -62,7 +62,7 @@ import { deviceInfo } from '@kit.BasicServicesKit';
 | buildHost | string | 是 | 构建主机。<br>示例：default |
 | buildTime | string | 是 | 构建时间。<br>示例：default |
 | buildRootHash | string | 是 | 构建版本Hash。<br>示例：default |
-| udid<sup>7+</sup> | string | 是 | 设备UDID，该接口在执行期间会拉起临时进程，当系统负载较高时，可能引发阻塞风险。为确保应用主线程的响应性能，建议避免在主线程中调用。设备信息因设备而异且固定不变，可在首次获取后缓存在本地，避免每次使用时重复获取，以提升性能。<br>**说明**：数据长度为65字节。可作为设备唯一识别码。<br>**需要权限**：ohos.permission.sec.ACCESS_UDID(该权限只允许系统应用及企业类应用申请)<br>示例：9D6AABD147XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXE5536412  |
+| udid<sup>7+</sup> | string | 是 | 设备UDID，该接口在执行期间会拉起临时进程，当系统负载较高时，可能引发阻塞风险。为确保应用主线程的响应性能，建议避免在主线程中调用。设备信息因设备而异且固定不变，可在首次获取后缓存在本地，避免每次使用时重复获取，以提升性能。<br>**说明**：数据长度为65字节(包含结束符)。可作为设备唯一识别码。<br>**需要权限**：ohos.permission.sec.ACCESS_UDID(该权限只允许系统应用及企业类应用申请)<br>示例：9D6AABD147XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXE5536412  |
 | distributionOSName<sup>10+</sup> | string | 是 | 发行版系统名称<!--Del-->，由发行方定义<!--DelEnd-->。<br>示例：OpenHarmony |
 | distributionOSVersion<sup>10+</sup> | string | 是 | 发行版系统版本号<!--Del-->，由发行方定义<!--DelEnd-->。<!--RP11--><!--RP11End--><br>示例：5.0.0  |
 | distributionOSApiVersion<sup>10+</sup> | number| 是 | 发行版系统API版本<!--Del-->，由发行方定义<!--DelEnd-->。<!--RP15--><!--RP15End--><br>示例：50001 |
