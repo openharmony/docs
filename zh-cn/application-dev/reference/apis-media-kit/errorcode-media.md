@@ -49,6 +49,34 @@ Operation not allowed.
 1. 先确认当前状态是否支持此操作，再把实例切换到正确状态进行正确操作。
 2. 释放所有已经创建的实例。
 
+以下为SoundPool业务返回错误码`5400102`时的常见问题案例。
+
+
+### 触发场景1：调用load加载音频失败-传入无效的资源
+
+调用[load](js-apis-inner-multimedia-soundPool.md#load)返回错误码`5400102`时，根据系统日志按照以下场景进行排查。
+
+**判断依据**
+
+应用进程日志出现如下报错信息：
+
+```text
+Failed to load sound, the resource path is invalid, please check input parameters
+```
+
+以上报错信息，从API版本23开始支持。
+
+**可能原因**
+
+资源不存在或提供的路径有误。
+
+**处理步骤**
+
+确认所需音频资源存在，且路径拼写正确无误。
+
+以下为AVPlayer业务返回错误码`5400102`时的常见问题案例。
+
+
 ### 触发场景1：更换资源播放失败
 
 **可能原因**
