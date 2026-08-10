@@ -24,4 +24,4 @@
 | ----------- | -------------------------------------------- | ---- | ---- | ----------------------- |
 | elementName | [ElementName](js-apis-bundleManager-elementName.md) | 是   | 否   | 指明远程ability的ElementName信息。       |
 | label       | string                                       | 是   | 否   | 指明远程ability的标签信息。   |
-| icon        | string                                       | 是   | 否   | 指明的远程ability的图标信息。 |
+| icon        | string                                       | 是   | 否   | 指明远程ability的图标信息。 |

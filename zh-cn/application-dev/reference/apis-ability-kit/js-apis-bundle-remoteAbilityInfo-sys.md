@@ -30,4 +30,4 @@ remoteAbility信息。
 | ----------- | -------------------------------------------- | ---- | ---- | ----------------------- |
 | elementName | [ElementName](js-apis-bundle-ElementName.md) | 是   | 否   | ability元素资源信息。       |
 | label       | string                                       | 是   | 否   | 指明ability的名称。   |
-| icon        | string                                       | 是   | 否   | 指明的ability的图标信息。 |
+| icon        | string                                       | 是   | 否   | 指明ability的图标信息。 |

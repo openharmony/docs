@@ -1063,7 +1063,7 @@ queryExtensionAbilityInfo(want: Want, extensionAbilityType: ExtensionAbilityType
 | --------------------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | want                  | [Want](js-apis-app-ability-want.md)                                                        | 是   | 表示包含要查询的应用Bundle名称的Want。                       |
 | extensionAbilityType  | [ExtensionAbilityType](js-apis-bundleManager.md#extensionabilitytype)                | 是   | 标识extensionAbility的类型。                                 |
-| extensionAbilityFlags | number                             | 是   | 表示用于指定将返回的ExtensionInfo对象中包含的信息的标志，具体取值及不同含义参考[ExtensionAbilityFlag](#extensionabilityflag)。    |
+| extensionAbilityFlags | number                             | 是   | 表示用于指定将返回的ExtensionAbilityInfo对象中包含的信息的标志，具体取值及不同含义参考[ExtensionAbilityFlag](#extensionabilityflag)。    |
 | userId                | number                                                       | 是   | 表示用户ID，可以通过[getOsAccountLocalId](../apis-basic-services-kit/js-apis-osAccount.md#getosaccountlocalid9)获取。                                                 |
 | callback              | AsyncCallback<Array\<[ExtensionAbilityInfo](js-apis-bundleManager-extensionAbilityInfo.md)>> | 是   | [AsyncCallback](../apis-basic-services-kit/js-apis-base.md#asynccallback)，当获取成功时，err为undefined，data为获取到Array\<ExtensionAbilityInfo>；否则为错误对象。 |
 
@@ -1131,7 +1131,7 @@ queryExtensionAbilityInfo(want: Want, extensionAbilityType: ExtensionAbilityType
 | --------------------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | want                  | [Want](js-apis-app-ability-want.md)                                                        | 是   | 表示包含要查询的应用Bundle名称的Want。                       |
 | extensionAbilityType  | [ExtensionAbilityType](js-apis-bundleManager.md#extensionabilitytype)                | 是   | 标识extensionAbility的类型。                                 |
-| extensionAbilityFlags | number                             | 是   | 表示用于指定将返回的ExtensionInfo对象中包含的信息的标志，具体取值及不同含义参考[ExtensionAbilityFlag](#extensionabilityflag)。    |
+| extensionAbilityFlags | number                             | 是   | 表示用于指定将返回的ExtensionAbilityInfo对象中包含的信息的标志，具体取值及不同含义参考[ExtensionAbilityFlag](#extensionabilityflag)。    |
 | callback              | AsyncCallback<Array\<[ExtensionAbilityInfo](js-apis-bundleManager-extensionAbilityInfo.md)>> | 是   | [AsyncCallback](../apis-basic-services-kit/js-apis-base.md#asynccallback)，当获取成功时，err为undefined，data为获取到Array\<ExtensionAbilityInfo>；否则为错误对象。 |
 
 **错误码：**
@@ -1196,7 +1196,7 @@ queryExtensionAbilityInfo(want: Want, extensionAbilityType: ExtensionAbilityType
 | --------------------- | --------------------------------------------- | ---- | --------------------------------------------------------- |
 | want                  | [Want](js-apis-app-ability-want.md)                                         | 是   | 表示包含要查询的应用Bundle名称的Want。                    |
 | extensionAbilityType  | [ExtensionAbilityType](js-apis-bundleManager.md#extensionabilitytype) | 是   | 标识extensionAbility的类型。                              |
-| extensionAbilityFlags | number              | 是   | 表示用于指定将返回的ExtensionInfo对象中包含的信息的标志，具体取值及不同含义参考[ExtensionAbilityFlag](#extensionabilityflag)。 |
+| extensionAbilityFlags | number              | 是   | 表示用于指定将返回的ExtensionAbilityInfo对象中包含的信息的标志，具体取值及不同含义参考[ExtensionAbilityFlag](#extensionabilityflag)。 |
 | userId                | number                                        | 否   | 表示用户ID，可以通过[getOsAccountLocalId](../apis-basic-services-kit/js-apis-osAccount.md#getosaccountlocalid9)获取，默认值：调用方所在用户，取值范围：大于等于0。                                              |
 
 **返回值：**
@@ -1292,7 +1292,7 @@ queryExtensionAbilityInfoSync(want: Want, extensionAbilityType: ExtensionAbility
 | --------------------- | --------------------------------------------- | ---- | --------------------------------------------------------- |
 | want                  | [Want](js-apis-app-ability-want.md)                                         | 是   | 表示包含要查询的应用Bundle名称的Want。                    |
 | extensionAbilityType  | [ExtensionAbilityType](js-apis-bundleManager.md#extensionabilitytype) | 是   | 标识extensionAbility的类型。                              |
-| extensionAbilityFlags | number              | 是   | 表示用于指定将返回的ExtensionInfo对象中包含的信息的标志，具体取值及不同含义参考[ExtensionAbilityFlag](#extensionabilityflag)。 |
+| extensionAbilityFlags | number              | 是   | 表示用于指定将返回的ExtensionAbilityInfo对象中包含的信息的标志，具体取值及不同含义参考[ExtensionAbilityFlag](#extensionabilityflag)。 |
 | userId                | number                                        | 否   | 表示用户ID，可以通过[getOsAccountLocalId](../apis-basic-services-kit/js-apis-osAccount.md#getosaccountlocalid9)获取，默认值：调用方所在用户，取值范围：大于等于0。                                              |
 
 **返回值：**
@@ -2965,7 +2965,7 @@ getPermissionDef(permissionName: string, callback: AsyncCallback\<PermissionDef>
 | 参数名           | 类型                                                         | 必填 | 说明                                                         |
 | -------------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | permissionName | string                                                       | 是   | 表示权限名称。                                               |
-| callback       | AsyncCallback\<[PermissionDef](js-apis-bundleManager-permissionDef-sys.md)> | 是   | [AsyncCallback](../apis-basic-services-kit/js-apis-base.md#asynccallback)，当获取成功时，err为undefined，data为获取到的Array\<PermissionDef>；否则为错误对象。 |
+| callback       | AsyncCallback\<[PermissionDef](js-apis-bundleManager-permissionDef-sys.md)> | 是   | [AsyncCallback](../apis-basic-services-kit/js-apis-base.md#asynccallback)，当获取成功时，err为undefined，data为获取到的PermissionDef；否则为错误对象。 |
 
 **错误码：**
 
@@ -3128,7 +3128,7 @@ getAbilityLabel(bundleName: string, moduleName: string, abilityName: string, cal
 | bundleName  | string                 | 是   | 表示应用程序的bundleName。                                     |
 | moduleName  | string                 | 是   | 表示Module名称。                                     |
 | abilityName | string                 | 是   | 表示UIAbility组件的名称。                                    |
-| callback    | AsyncCallback\<string> | 是   | [AsyncCallback](../apis-basic-services-kit/js-apis-base.md#asynccallback)，当获取成功时，err为undefined，data为获指定组件的Label值；否则为错误对象。 |
+| callback    | AsyncCallback\<string> | 是   | [AsyncCallback](../apis-basic-services-kit/js-apis-base.md#asynccallback)，当获取成功时，err为undefined，data为获取指定组件的Label值；否则为错误对象。 |
 
 **错误码：**
 
@@ -3556,7 +3556,7 @@ getAllSharedBundleInfo(callback: AsyncCallback\<Array\<SharedBundleInfo\>\>): vo
 
 | 参数名   | 类型                                                         | 必填 | 说明                                                         |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| callback | AsyncCallback\<Array\<[SharedBundleInfo](js-apis-bundleManager-sharedBundleInfo-sys.md)\>\> | 是   | [AsyncCallback](../apis-basic-services-kit/js-apis-base.md#asynccallback)，当获取成功时，err为undefined，data为获所有的共享包信息。 |
+| callback | AsyncCallback\<Array\<[SharedBundleInfo](js-apis-bundleManager-sharedBundleInfo-sys.md)\>\> | 是   | [AsyncCallback](../apis-basic-services-kit/js-apis-base.md#asynccallback)，当获取成功时，err为undefined，data为获取所有的共享包信息。 |
 
 **错误码：**
 
@@ -4151,7 +4151,7 @@ queryExtensionAbilityInfoSync(want: Want, extensionAbilityType: string, extensio
 | --------------------- | ------------------------------- | ---- | --------------------------------------------------------- |
 | want                  | [Want](js-apis-app-ability-want.md)      | 是   | 表示包含要查询的应用Bundle名称的Want。                    |
 | extensionAbilityType  | string                          | 是   | 表示自定义extensionAbility的类型。                        |
-| extensionAbilityFlags | number| 是   | 表示返回的ExtensionInfo对象中需要包含的信息标志，具体取值及不同含义参考[ExtensionAbilityFlag](#extensionabilityflag)。 |
+| extensionAbilityFlags | number| 是   | 表示返回的ExtensionAbilityInfo对象中需要包含的信息标志，具体取值及不同含义参考[ExtensionAbilityFlag](#extensionabilityflag)。 |
 | userId                | number                          | 否   | 表示用户ID，可以通过[getOsAccountLocalId](../apis-basic-services-kit/js-apis-osAccount.md#getosaccountlocalid9)获取，默认值：调用方所在用户，取值范围：大于等于0。 |
 
 **返回值：**
@@ -4545,7 +4545,7 @@ queryExtensionAbilityInfoSync(extensionAbilityType: string, extensionAbilityFlag
 | 参数名                | 类型                            | 必填 | 说明                                                      |
 | --------------------- | ------------------------------- | ---- | --------------------------------------------------------- |
 | extensionAbilityType  | string                          | 是   | 表示自定义extensionAbility的类型。                        |
-| extensionAbilityFlags | number| 是   | 表示返回的ExtensionInfo对象中需要包含的信息标志，具体取值及不同含义参考[ExtensionAbilityFlag](#extensionabilityflag)。 |
+| extensionAbilityFlags | number| 是   | 表示返回的ExtensionAbilityInfo对象中需要包含的信息标志，具体取值及不同含义参考[ExtensionAbilityFlag](#extensionabilityflag)。 |
 | userId                | number                          | 否   | 表示用户ID，可以通过[getOsAccountLocalId](../apis-basic-services-kit/js-apis-osAccount.md#getosaccountlocalid9)获取，默认值：调用方所在用户ID。取值范围：大于等于0。 |
 
 **返回值：**
