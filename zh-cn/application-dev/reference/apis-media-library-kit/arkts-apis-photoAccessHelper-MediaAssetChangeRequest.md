@@ -758,7 +758,12 @@ async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper, asse
 
 setOrientation(orientation: number): void
 
-修改图片的旋转角度。
+设置图片的显示旋转角度。本接口通过修改exif元数据实现对图片旋转角度的调整。
+
+> **说明：**
+> 
+> - bmp、gif、ico、svg图片本身不包含exif元数据信息，因此无法通过本接口调整旋转角度。
+> - dng图片的exif元数据不支持编辑，因此无法通过本接口调整旋转角度。
 
 **系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
 

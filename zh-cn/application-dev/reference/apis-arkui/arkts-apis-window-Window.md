@@ -5150,7 +5150,7 @@ on(type: 'windowTitleButtonRectChange', callback: Callback&lt;TitleButtonRect&gt
 | -------- | ------------------------------ |
 | 401      | Parameter error. Possible cause: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 801      | Capability not supported. Failed to call the API due to limited device capabilities. |
-| 1300002  | This window state is abnormal. |
+| 1300002  | This window state is abnormal. Possible cause: The window is not created or destroyed. |
 
 **示例：**
 
@@ -5191,7 +5191,7 @@ off(type: 'windowTitleButtonRectChange', callback?: Callback&lt;TitleButtonRect&
 | -------- | ------------------------------ |
 | 401      | Parameter error. Possible cause: 1. Incorrect parameter types; 2. Parameter verification failed. |
 | 801      | Capability not supported. Failed to call the API due to limited device capabilities. |
-| 1300002  | This window state is abnormal. |
+| 1300002  | This window state is abnormal. Possible cause: The window is not created or destroyed. |
 
 **示例：**
 
@@ -5413,8 +5413,8 @@ on(type:  'subWindowClose', callback: Callback&lt;void&gt;): void
 | ------- | -------------------------------------------- |
 | 401     | Parameter error. Possible cause: 1. Incorrect parameter types; 2. Parameter verification failed. |
 | 801     | Capability not supported. Failed to call the API due to limited device capabilities. |
-| 1300002 | This window state is abnormal. |
-| 1300004 | Unauthorized operation. |
+| 1300002 | This window state is abnormal. Possible cause: The window is not created or destroyed. |
+| 1300004 | Unauthorized operation. Possible cause: Invalid window type. Only subwindows are supported. |
 
 **示例：**
 
@@ -5455,8 +5455,8 @@ off(type: 'subWindowClose', callback?: Callback&lt;void&gt;): void
 | ------- | -------------------------------------------- |
 | 401     | Parameter error. Possible cause: 1. Incorrect parameter types; 2. Parameter verification failed. |
 | 801     | Capability not supported. Failed to call the API due to limited device capabilities. |
-| 1300002 | This window state is abnormal. |
-| 1300004 | Unauthorized operation. |
+| 1300002 | This window state is abnormal. Possible cause: The window is not created or destroyed. |
+| 1300004 | Unauthorized operation. Possible cause: Invalid window type. Only subwindows are supported. |
 
 **示例：**
 
@@ -8605,6 +8605,8 @@ setWindowDecorVisible(isVisible: boolean): void
 
 **系统能力：** SystemCapability.Window.SessionManager
 
+**设备行为差异：** 该接口在支持并处于[自由窗口](../../windowmanager/window-terminology.md#freeform-window自由窗口)状态的设备上可正常调用；在支持但不处于[自由窗口](../../windowmanager/window-terminology.md#freeform-window自由窗口)状态的设备调用不报错不生效，切换到[自由窗口](../../windowmanager/window-terminology.md#freeform-window自由窗口)状态后生效。在不支持[自由窗口](../../windowmanager/window-terminology.md#freeform-window自由窗口)状态的设备上调用不报错不生效。
+
 **参数：**
 
 | 参数名    | 类型    | 必填 | 说明                                          |
@@ -8751,7 +8753,7 @@ try {
 
 setWindowTitleMoveEnabled(enabled: boolean): void
 
-禁止/使能主窗或子窗标题栏默认移动窗口和双击最大化的功能，当禁用标题栏默认移动窗口和双击最大化的功能时，可使用[startMoving()](#startmoving14)在应用热区中发起拖拽移动，使用[maximize()](#maximize12)实现最大化功能。如果使用Stage模型，该接口需要在[loadContent()](#loadcontent9)或[setUIContent()](#setuicontent9)调用生效后使用。
+禁止/使能主窗或子窗标题栏默认移动窗口和双击最大化的功能，当禁用该功能时，可使用[startMoving()](#startmoving14)在应用热区中发起拖拽移动，使用[maximize()](#maximize12)实现最大化功能。如果使用Stage模型，该接口需要在[loadContent()](#loadcontent9)或[setUIContent()](#setuicontent9)调用生效后使用。
 
 **原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。
 
@@ -8774,7 +8776,7 @@ setWindowTitleMoveEnabled(enabled: boolean): void
 | 401      | Parameter error. Possible cause: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 801      | Capability not supported. Failed to call the API due to limited device capabilities. |
 | 1300002  | This window state is abnormal. Possible cause: The window is not created or destroyed. |
-| 1300004  | Unauthorized operation.        |
+| 1300004  | Unauthorized operation. Possible cause: Invalid window type. Only main windows and subwindows are supported. |
 
 **示例：**
 
@@ -9095,7 +9097,7 @@ getDecorButtonStyle(): DecorButtonStyle
 | 801      | Capability not supported. Failed to call the API due to limited device capabilities. |
 | 1300002  | This window state is abnormal. Possible cause: The window is not created or destroyed. |
 | 1300003  | This window manager service works abnormally. |
-| 1300004  | Unauthorized operation. |
+| 1300004  | Unauthorized operation. Possible cause: Invalid window type. Only main windows and subwindows are supported. |
 
 **示例：**
 
@@ -9154,7 +9156,7 @@ windowClass.setUIContent('pages/WindowPage').then(() => {
 
 getTitleButtonRect(): TitleButtonRect
 
-获取主窗口或启用标题栏的子窗口的标题栏上的最小化、最大化、关闭按钮矩形区域。
+对存在标题栏和三键区的窗口形态生效，获取主窗口或启用标题栏的子窗口的标题栏上的最小化、最大化、关闭按钮矩形区域。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -9233,7 +9235,7 @@ getWindowStatus(): WindowStatusType
 | 错误码ID | 错误信息 |
 | ------- | ------------------------------ |
 | 801     | Capability not supported. Failed to call the API due to limited device capabilities. |
-| 1300002  | This window state is abnormal. |
+| 1300002  | This window state is abnormal. Possible cause: The window is not created or destroyed. |
 
 **示例：**
 
@@ -9560,7 +9562,7 @@ setWindowTitleButtonVisible(isMaximizeButtonVisible: boolean, isMinimizeButtonVi
 | 401      | Parameter error. Possible cause: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 801      | Capability not supported. Failed to call the API due to limited device capabilities. |
 | 1300002  | This window state is abnormal. Possible cause: The window is not created or destroyed. |
-| 1300004  | Unauthorized operation. |
+| 1300004  | Unauthorized operation. Possible cause: Invalid window type. Only main windows and subwindows with subwindowoptions.zlevelaboveparentloosened set to true are supported. |
 
 **示例：**
 
@@ -9588,7 +9590,7 @@ export default class EntryAbility extends UIAbility {
           mainWindow.setWindowTitleButtonVisible(false, false, false);
         }
       ).catch((err: BusinessError) => {
-          if(err.code){
+          if (err.code) {
             console.error(`Failed to obtain the main window. Cause code: ${err.code}, message: ${err.message}`);
           }
       });
@@ -10882,7 +10884,7 @@ isWindowHighlighted(): boolean
 | 错误码ID | 错误信息                                                                                                     |
 | -------- | ------------------------------------------------------------------------------------------------------------ |
 | 801      | Capability not supported. Failed to call the API due to limited device capabilities.                         |
-| 1300002  | This window state is abnormal  Possible cause: The window is not created or destroyed. |
+| 1300002  | This window state is abnormal. Possible cause: The window is not created or destroyed. |
 
 **示例：**
 
@@ -11436,7 +11438,7 @@ isInFreeWindowMode(): boolean
 
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------------------- |
-| 1300002  | This window state is abnormal.                       |
+| 1300002  | This window state is abnormal. Possible cause: The window is not created or destroyed. |
 | 1300003  | This window manager service works abnormally.        |
 
 **示例：**
@@ -11469,7 +11471,7 @@ on(type: 'freeWindowModeChange', callback: Callback&lt;boolean&gt;): void
 
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------------------- |
-| 1300002  | This window state is abnormal.                       |
+| 1300002  | This window state is abnormal. Possible cause: The window is not created or destroyed. |
 | 1300003  | This window manager service works abnormally.        |
 
 **示例：**
@@ -11507,7 +11509,7 @@ off(type: 'freeWindowModeChange', callback?: Callback&lt;boolean&gt;): void
 
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------------------- |
-| 1300002  | This window state is abnormal.                       |
+| 1300002  | This window state is abnormal. Possible cause: The window is not created or destroyed. |
 | 1300003  | This window manager service works abnormally.        |
 
 **示例：**

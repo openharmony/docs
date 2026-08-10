@@ -160,7 +160,7 @@ libnative_rdb_ndk.z.so, libhilog_ndk.z.so
     }
     ```
 
-    如果需要设置自定义数据库路径，可在上述代码// ...处调用OH_Rdb_SetCustomDir接口设置。如果需要设置为只读模式打开数据库，可在上述代码// ...处可调用OH_Rdb_SetReadOnly接口设置。示例代码如下所示：
+    如果需要设置自定义数据库路径，可在上述代码// ...处调用OH_Rdb_SetCustomDir接口设置。如果需要设置为只读模式打开数据库，可在上述代码// ...处调用OH_Rdb_SetReadOnly接口设置。示例代码如下所示：
     <!--@[rdb_OH_Rdb_SetCustomDir_and_SetReadOnly](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkData/RelationalStore/RdbStore/entry/src/main/cpp/napi_init.cpp)-->
 
     ``` C++

@@ -101,9 +101,9 @@ The relationship between a permission group and its permissions is not fixed. Fo
 
   Permission APLs and application APLs are in one-to-one correspondence. In principle, an application with a lower APL cannot apply for higher-level permissions by default. However, you can use the Access Control List (ACL) to enable an application to have permissions beyond its APL.
 
-  The **Enable via ACL** field is defined for all system permissions. When this field is set to **TRUE**, applications can request permissions across levels in ACL mode. For details about the definition of a permission, see [Restricted Permissions](restricted-permissions.md)<!--Del-->, [system_grant Permissions Available for System Applications via ACL](permissions-for-system-apps.md), and [user_grant Permissions for System Applications](permissions-for-system-apps-user.md)<!--DelEnd-->.
+  The **Certificate-based authorization** field is defined for all system permissions. When this field is set to **TRUE**, applications can request permissions across levels in ACL mode. For details about the definition of a permission, see [Restricted Permissions](restricted-permissions.md)<!--Del-->, [system_grant Permissions Available for System Applications via ACL](permissions-for-system-apps.md), and [user_grant Permissions for System Applications](permissions-for-system-apps-user.md)<!--DelEnd-->.
 
-  For example, to implement a special feature, application A with the normal APL requires permission P, whose APL is system_basic. If **Enable via ACL** is **TRUE** for permission P, application A can request permission P via the ACL.
+  For example, to implement a special feature, application A with the normal APL requires permission P, whose APL is system_basic. If **Certificate-based authorization** is **TRUE** for permission P, application A can request permission P via the ACL.
 
 - Permission type with data
 
