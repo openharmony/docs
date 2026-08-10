@@ -4,7 +4,7 @@
 <!--Owner: @chenkun613227-->
 <!--Designer: @yxc2-->
 <!--Tester: @xdlinc-->
-<!--Adviser: @w_Machine_cc-->
+<!--Adviser: @zzs911-->
 
 屏幕录制管理类，用于进行屏幕录制，支持录屏初始化、开始/暂停/恢复/停止录制、添加水印、隐私窗口豁免、麦克风开关控制、Picker模式选择和内容自动旋转等功能。适用于需要在应用内完成屏幕录制流程控制的场景，可帮助开发者灵活管理录屏生命周期、保护用户隐私并自定义录制输出。在调用AVScreenCaptureRecorder的方法前，需要先通过[createAVScreenCaptureRecorder()](arkts-apis-media-f.md#mediacreateavscreencapturerecorder12)创建一个AVScreenCaptureRecorder实例。
 
@@ -34,7 +34,7 @@ init(config: AVScreenCaptureRecordConfig): Promise\<void>
 
 | 参数名 | 类型                                                         | 必填 | 说明                     |
 | ------ | ------------------------------------------------------------ | ---- | ------------------------ |
-| config | [AVScreenCaptureRecordConfig](arkts-apis-media-i.md#avscreencapturerecordconfig12) | 是   | 配置屏幕录制的相关参数。关键配置项包括：fd（文件描述符）、frameWidth（视频宽度）、frameHeight（视频高度）等。详细配置说明请参考[AVScreenCaptureRecordConfig](arkts-apis-media-i.md#avscreencapturerecordconfig12)。文件（通常是MP4）需要先由开发者创建，并赋予写权限，再将文件fd传给此参数。 |
+| config | [AVScreenCaptureRecordConfig](arkts-apis-media-i.md#avscreencapturerecordconfig12) | 是   | 配置录屏的相关参数。关键配置项包括：fd（文件描述符）、frameWidth（视频宽度）、frameHeight（视频高度）等。详细配置说明请参考[AVScreenCaptureRecordConfig](arkts-apis-media-i.md#avscreencapturerecordconfig12)。文件（通常是MP4）需要先由开发者创建，并赋予写权限，再将文件fd传给此参数。 |
 
 **返回值：**
 
@@ -48,7 +48,7 @@ init(config: AVScreenCaptureRecordConfig): Promise\<void>
 
 | 错误码ID | 错误信息                                       |
 | -------- | ---------------------------------------------- |
-| 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. 3.Parameter verification failed. Return by promise. |
+| 401      | Parameter error. |
 | 5400103  | IO error. Return by promise.                   |
 | 5400105  | Service died. Return by promise.               |
 
@@ -56,7 +56,6 @@ init(config: AVScreenCaptureRecordConfig): Promise\<void>
 
 ``` TypeScript
 import { BusinessError } from '@kit.BasicServicesKit';
-import { image } from '@kit.ImageKit';
 import { media } from '@kit.MediaKit';
 import { fileIo } from '@kit.CoreFileKit';
 
@@ -184,7 +183,7 @@ pauseRecording(): Promise\<void>
 
 暂停录屏。使用Promise异步回调。在录制过程中需要临时中断录制时调用此接口，例如用户临时离开或需要切换应用时。
 
-在使用前需要先调用[startRecording](arkts-apis-media-AVScreenCaptureRecorder.md#startrecording12)接口且录屏需处于录制状态。
+在使用前需要先调用[startRecording](#startrecording12)接口且录屏需处于录制状态。
 
 **起始版本：** 26.0.0
 
@@ -417,7 +416,6 @@ setMicEnabled(enable: boolean): Promise\<void>
 > **说明：**
 >
 > - 在需要录制或静音麦克风音频时调用此接口，例如用户需要临时关闭麦克风或重新开启麦克风录制。
-> - 需在[startRecording](arkts-apis-media-AVScreenCaptureRecorder.md#startrecording12)接口调用前调用此接口。
 
 **系统能力：** SystemCapability.Multimedia.Media.AVScreenCapture
 
@@ -472,11 +470,6 @@ setPickerMode(pickerMode: PickerMode): Promise\<void>
 设置Picker显示模式，在下一次显示Picker时生效。使用Promise异步回调。
 
 可根据录制需求选择不同模式。
-
-- SCREEN_ONLY适用于只需要录制整个屏幕的场景。
-- WINDOW_ONLY适用于只需要录制特定应用窗口的场景。
-- SCREEN_AND_WINDOW适用于需要让用户自由选择录制屏幕或窗口的场景。
-
 
 **系统能力：** SystemCapability.Multimedia.Media.AVScreenCapture
 
@@ -669,7 +662,6 @@ setContentAutoRotation(enable: boolean): Promise\<void>
 
 | 错误码ID | 错误信息                               |
 | -------- | -------------------------------------- |
-| 801  | Capability not supported. Return by promise.  |
 | 5400102  | Operation not allowed. Return by promise.    |
 | 5400105  | Service died. Return by promise. |
 
@@ -762,7 +754,6 @@ on(type: 'stateChange', callback: Callback\<AVScreenCaptureStateCode>): void
 **示例：**
 
 ``` TypeScript
-import { BusinessError } from '@kit.BasicServicesKit';
 import { media } from '@kit.MediaKit';
 
 async function testOnStateChange() {
@@ -844,7 +835,6 @@ async function testOnError() {
 **示例：**
 
 ``` TypeScript
-import { BusinessError } from '@kit.BasicServicesKit';
 import { media } from '@kit.MediaKit';
 
 async function testOffStateChange() {
@@ -878,7 +868,6 @@ off(type: 'error', callback?: ErrorCallback): void
 **示例：**
 
 ``` TypeScript
-import { BusinessError } from '@kit.BasicServicesKit';
 import { media } from '@kit.MediaKit';
 
 async function testOffError() {
