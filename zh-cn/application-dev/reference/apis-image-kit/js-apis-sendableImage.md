@@ -977,7 +977,11 @@ function getDensity(pixelMap: sendableImage.PixelMap) {
 
 opacity(rate: number): Promise\<void>
 
-设置PixelMap的不透明度，指定的不透明度值将被应用于所有像素，不受原图不透明度的影响。YUV格式的图像不支持设置不透明度。使用Promise异步回调。
+设置PixelMap的不透明度，指定的不透明度值将被应用于所有像素，不受原图不透明度的影响。使用Promise异步回调。
+
+> **说明：**
+>
+> YUV格式的图像不支持设置不透明度。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -1014,7 +1018,11 @@ function opacity(pixelMap: sendableImage.PixelMap) {
 
 opacitySync(rate: number): void
 
-设置PixelMap的不透明度，指定的不透明度值将被应用于所有像素，不受原图不透明度的影响。YUV格式的图像不支持设置不透明度。同步返回结果。
+设置PixelMap的不透明度，指定的不透明度值将被应用于所有像素，不受原图不透明度的影响。同步返回结果。
+
+> **说明：**
+>
+> YUV格式的图像不支持设置不透明度。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -1056,10 +1064,11 @@ function opacitySync(pixelMap: sendableImage.PixelMap) {
 
 createAlphaPixelmap(): Promise\<PixelMap>
 
-根据Alpha通道的信息，生成一个仅包含Alpha通道信息的ALPHA_8格式的PixelMap，生成的新PixelMap不可编辑，可用于阴影效果。YUV格式不支持此接口。使用Promise异步回调。
+根据Alpha通道的信息，生成一个仅包含Alpha通道信息的ALPHA_8格式的PixelMap，生成的新PixelMap不可编辑，可用于阴影效果。使用Promise异步回调。
 
 > **说明：**
 >
+> - YUV格式不支持此接口。
 > - 若原PixelMap的格式是ALPHA_F16，则新生成的PixelMap将维持ALPHA_F16格式。
 > - 由于图片占用内存较大，所以当PixelMap对象使用完成后，应主动调用[release](#release)方法及时释放内存。释放时应确保该对象的所有异步方法均执行完成，且后续不再使用该对象。
 
@@ -1091,10 +1100,11 @@ function createAlphaPixelmap(pixelMap: sendableImage.PixelMap) {
 
 createAlphaPixelmapSync(): PixelMap
 
-根据Alpha通道的信息，生成一个仅包含Alpha通道信息的ALPHA_8格式的PixelMap，生成的新PixelMap不可编辑，可用于阴影效果。YUV格式不支持此接口。同步返回结果。
+根据Alpha通道的信息，生成一个仅包含Alpha通道信息的ALPHA_8格式的PixelMap，生成的新PixelMap不可编辑，可用于阴影效果。同步返回结果。
 
 > **说明：**
 >
+> - YUV格式不支持此接口。
 > - 若原PixelMap的格式是ALPHA_F16，则新生成的PixelMap将维持ALPHA_F16格式。
 > - 由于图片占用内存较大，所以当PixelMap对象使用完成后，应主动调用[release](#release)方法及时释放内存。释放时应确保该对象的所有异步方法均执行完成，且后续不再使用该对象。
 
@@ -1315,10 +1325,11 @@ function translateSync(pixelMap: sendableImage.PixelMap) {
 
 rotate(angle: number): Promise\<void>
 
-根据输入的角度对图片进行旋转，YUV格式仅支持90°倍数的旋转角。使用Promise异步回调。
+根据输入的角度对图片进行旋转。使用Promise异步回调。
 
 > **说明：**
 >
+> - YUV格式仅支持90°倍数的旋转角。
 > - 图像旋转的角度取值范围：[0, 360]。超出取值范围时，根据圆周360°自动矫正。例如，-100°与260°效果相同。
 > - 如果图片旋转的角度不是90的整数倍，旋转后图片的尺寸会发生改变。
 
@@ -1357,10 +1368,11 @@ function rotate(pixelMap: sendableImage.PixelMap) {
 
 rotateSync(angle: number): void
 
-根据输入的角度对图片进行旋转，YUV格式仅支持90°倍数的旋转角。同步返回结果。
+根据输入的角度对图片进行旋转。同步返回结果。
 
 > **说明：**
 >
+> - YUV格式仅支持90°倍数的旋转角。
 > - 图像旋转的角度取值范围：[0, 360]。超出取值范围时，根据圆周360°自动矫正。例如，-100°与260°效果相同。
 > - 如果图片旋转的角度不是90的整数倍，旋转后图片的尺寸会发生改变。
 

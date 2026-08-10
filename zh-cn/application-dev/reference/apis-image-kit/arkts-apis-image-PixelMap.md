@@ -1544,7 +1544,11 @@ function getDensity(pixelMap: image.PixelMap) {
 
 setOpacity(value: number): Promise\<void\>
 
-设置PixelMap的不透明度，指定的不透明度值将被应用于所有像素，不受原图不透明度的影响。YUV格式的图像不支持设置不透明度。使用Promise异步回调。
+设置PixelMap的不透明度，指定的不透明度值将被应用于所有像素，不受原图不透明度的影响。使用Promise异步回调。
+
+> **说明：**
+>
+> YUV格式的图像不支持设置不透明度。
 
 **起始版本：** 26.0.0
 
@@ -1602,7 +1606,11 @@ function setOpacity(pixelMap: image.PixelMap) {
 
 setOpacitySync(value: number): void
 
-设置PixelMap的不透明度，指定的不透明度值将被应用于所有像素，不受原图不透明度的影响。YUV格式的图像不支持设置不透明度。同步返回结果。
+设置PixelMap的不透明度，指定的不透明度值将被应用于所有像素，不受原图不透明度的影响。同步返回结果。
+
+> **说明：**
+>
+> YUV格式的图像不支持设置不透明度。
 
 **起始版本：** 26.0.0
 
@@ -1654,11 +1662,12 @@ function setOpacitySync(pixelMap: image.PixelMap) {
 
 opacity(rate: number, callback: AsyncCallback\<void>): void
 
-设置PixelMap的不透明度，指定的不透明度值将被应用于所有像素，不受原图不透明度的影响。YUV格式的图像不支持设置不透明度。使用callback异步回调。
+设置PixelMap的不透明度，指定的不透明度值将被应用于所有像素，不受原图不透明度的影响。使用callback异步回调。
 
 > **说明：**
 >
-> 从API版本26.0.0开始，建议使用[setOpacity](#setopacity)代替，以获得更完善的异常处理能力。
+> - YUV格式的图像不支持设置不透明度。
+> - 从API版本26.0.0开始，建议使用[setOpacity](#setopacity)代替，以获得更完善的异常处理能力。
 
 **卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
 
@@ -1694,11 +1703,12 @@ function opacity(pixelMap: image.PixelMap) {
 
 opacity(rate: number): Promise\<void>
 
-设置PixelMap的不透明度，指定的不透明度值将被应用于所有像素，不受原图不透明度的影响。YUV格式的图像不支持设置不透明度。使用Promise异步回调。
+设置PixelMap的不透明度，指定的不透明度值将被应用于所有像素，不受原图不透明度的影响。使用Promise异步回调。
 
 > **说明：**
 >
-> 从API版本26.0.0开始，建议使用[setOpacity](#setopacity)代替，以获得更完善的异常处理能力。
+> - YUV格式的图像不支持设置不透明度。
+> - 从API版本26.0.0开始，建议使用[setOpacity](#setopacity)代替，以获得更完善的异常处理能力。
 
 **卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
 
@@ -1737,11 +1747,12 @@ function opacity(pixelMap: image.PixelMap) {
 
 opacitySync(rate: number): void
 
-设置PixelMap的不透明度，指定的不透明度值将被应用于所有像素，不受原图不透明度的影响。YUV格式的图像不支持设置不透明度。同步返回结果。
+设置PixelMap的不透明度，指定的不透明度值将被应用于所有像素，不受原图不透明度的影响。同步返回结果。
 
 > **说明：**
 >
-> 从API版本26.0.0开始，建议使用[setOpacitySync](#setopacitysync)代替，以获得更完善的异常处理能力。
+> - YUV格式的图像不支持设置不透明度。
+> - 从API版本26.0.0开始，建议使用[setOpacitySync](#setopacitysync)代替，以获得更完善的异常处理能力。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -1783,11 +1794,12 @@ function opacitySync(pixelMap: image.PixelMap) {
 
 extractAlphaPixelMap(): Promise\<PixelMap\>
 
-提取当前PixelMap的Alpha通道数据，并生成一个仅包含Alpha通道信息的ALPHA_U8格式的PixelMap。生成的新PixelMap不可编辑，可用于阴影效果。YUV格式不支持此接口。使用Promise异步回调。
+提取当前PixelMap的Alpha通道数据，并生成一个仅包含Alpha通道信息的ALPHA_U8格式的PixelMap。生成的新PixelMap不可编辑，可用于阴影效果。使用Promise异步回调。
 
 > **说明：**
 >
-> 若原PixelMap的格式是ALPHA_F16，则新生成的PixelMap将维持ALPHA_F16格式。
+> - YUV格式不支持此接口。
+> - 若原PixelMap的格式是ALPHA_F16，则新生成的PixelMap将维持ALPHA_F16格式。
 
 **起始版本：** 26.0.0
 
@@ -1837,11 +1849,12 @@ function extractAlphaPixelMap(pixelMap: image.PixelMap) {
 
 extractAlphaPixelMapSync(): PixelMap
 
-提取当前PixelMap的Alpha通道数据，并生成一个仅包含Alpha通道信息的ALPHA_U8格式的PixelMap。生成的新PixelMap不可编辑，可用于阴影效果。YUV格式不支持此接口。同步返回结果。
+提取当前PixelMap的Alpha通道数据，并生成一个仅包含Alpha通道信息的ALPHA_U8格式的PixelMap。生成的新PixelMap不可编辑，可用于阴影效果。同步返回结果。
 
 > **说明：**
 >
-> 若原PixelMap的格式是ALPHA_F16，则新生成的PixelMap将维持ALPHA_F16格式。
+> - YUV格式不支持此接口。
+> - 若原PixelMap的格式是ALPHA_F16，则新生成的PixelMap将维持ALPHA_F16格式。
 
 **起始版本：** 26.0.0
 
@@ -1891,10 +1904,11 @@ function extractAlphaPixelMapSync(pixelMap: image.PixelMap) {
 
 createAlphaPixelmap(): Promise\<PixelMap>
 
-根据Alpha通道的信息，生成一个仅包含Alpha通道信息的ALPHA_8格式的PixelMap，生成的新PixelMap不可编辑，可用于阴影效果。YUV格式不支持此接口。使用Promise异步回调。
+根据Alpha通道的信息，生成一个仅包含Alpha通道信息的ALPHA_8格式的PixelMap，生成的新PixelMap不可编辑，可用于阴影效果。使用Promise异步回调。
 
 > **说明：**
 >
+> - YUV格式不支持此接口。
 > - 若原PixelMap的格式是ALPHA_F16，则新生成的PixelMap将维持ALPHA_F16格式。
 > - 从API版本26.0.0开始，建议使用[extractAlphaPixelMap](#extractalphapixelmap)代替，以获得更完善的异常处理能力。
 
@@ -1928,10 +1942,11 @@ function createAlphaPixelmap(pixelMap: image.PixelMap) {
 
 createAlphaPixelmap(callback: AsyncCallback\<PixelMap>): void
 
-根据Alpha通道的信息，来生成一个仅包含Alpha通道信息的ALPHA_8格式的PixelMap，生成的新PixelMap不可编辑，可用于阴影效果。YUV格式不支持此接口。使用callback异步回调。
+根据Alpha通道的信息，来生成一个仅包含Alpha通道信息的ALPHA_8格式的PixelMap，生成的新PixelMap不可编辑，可用于阴影效果。使用callback异步回调。
 
 > **说明：**
 >
+> - YUV格式不支持此接口。
 > - 若原PixelMap的格式是ALPHA_F16，则新生成的PixelMap将维持ALPHA_F16格式。
 > - 从API版本26.0.0开始，建议使用[extractAlphaPixelMap](#extractalphapixelmap)代替，以获得更完善的异常处理能力。
 
@@ -1967,10 +1982,11 @@ function createAlphaPixelmap(pixelMap: image.PixelMap) {
 
 createAlphaPixelmapSync(): PixelMap
 
-根据Alpha通道的信息，生成一个仅包含Alpha通道信息的ALPHA_8格式的PixelMap，生成的新PixelMap不可编辑，可用于阴影效果。YUV格式不支持此接口。同步返回结果。
+根据Alpha通道的信息，生成一个仅包含Alpha通道信息的ALPHA_8格式的PixelMap，生成的新PixelMap不可编辑，可用于阴影效果。同步返回结果。
 
 > **说明：**
 >
+> - YUV格式不支持此接口。
 > - 若原PixelMap的格式是ALPHA_F16，则新生成的PixelMap将维持ALPHA_F16格式。
 > - 从API版本26.0.0开始，建议使用[extractAlphaPixelMapSync](#extractalphapixelmapsync)代替，以获得更完善的异常处理能力。
 
@@ -2970,10 +2986,11 @@ function translateSync(pixelMap: image.PixelMap) {
 
 applyRotate(angle: number): Promise\<void\>
 
-根据指定的角度对PixelMap进行旋转。YUV格式仅支持90°倍数的旋转角。使用Promise异步回调。
+根据指定的角度对PixelMap进行旋转。使用Promise异步回调。
 
 > **说明：**
 >
+> - YUV格式仅支持90°倍数的旋转角。
 > - 图像旋转角度的取值范围为[0, 360]。超出取值范围时，将根据圆周360°自动矫正。例如，-100°与260°效果相同。
 > - 当旋转角度不是90°的倍数时，图像的尺寸会扩大为旋转后的外接矩形尺寸，以容纳旋转后的图像内容。例如：正方形图像旋转45°后，输出图像的尺寸（边长）变为原图像的√2倍。
 
@@ -3033,10 +3050,11 @@ function applyRotate(pixelMap: image.PixelMap) {
 
 applyRotateSync(angle: number): void
 
-根据指定的角度对PixelMap进行旋转。YUV格式仅支持90°倍数的旋转角。同步返回结果。
+根据指定的角度对PixelMap进行旋转。同步返回结果。
 
 > **说明：**
 >
+> - YUV格式仅支持90°倍数的旋转角。
 > - 图像旋转角度的取值范围为[0, 360]。超出取值范围时，将根据圆周360°自动矫正。例如，-100°与260°效果相同。
 > - 当旋转角度不是90°的倍数时，图像的尺寸会扩大为旋转后的外接矩形尺寸，以容纳旋转后的图像内容。例如：正方形图像旋转45°后，输出图像的尺寸（边长）变为原图像的√2倍。
 
@@ -3090,10 +3108,11 @@ function applyRotateSync(pixelMap: image.PixelMap) {
 
 rotate(angle: number, callback: AsyncCallback\<void>): void
 
-根据输入的角度对图片进行旋转，YUV格式仅支持90°倍数的旋转角。使用callback异步回调。
+根据输入的角度对图片进行旋转。使用callback异步回调。
 
 > **说明：**
 >
+> - YUV格式仅支持90°倍数的旋转角。
 > - 图像旋转的角度取值范围：[0, 360]。超出取值范围时，根据圆周360°自动矫正。例如，-100°与260°效果相同。
 > - 如果图片旋转的角度不是90的整数倍，旋转后图片的尺寸会发生改变。
 > - 从API版本26.0.0开始，建议使用[applyRotate](#applyrotate)代替，以获得更完善的异常处理能力。
@@ -3132,10 +3151,11 @@ function rotate(pixelMap: image.PixelMap) {
 
 rotate(angle: number): Promise\<void>
 
-根据输入的角度对图片进行旋转，YUV格式仅支持90°倍数的旋转角。使用Promise异步回调。
+根据输入的角度对图片进行旋转。使用Promise异步回调。
 
 > **说明：**
 >
+> - YUV格式仅支持90°倍数的旋转角。
 > - 图像旋转的角度取值范围：[0, 360]。超出取值范围时，根据圆周360°自动矫正。例如，-100°与260°效果相同。
 > - 如果图片旋转的角度不是90的整数倍，旋转后图片的尺寸会发生改变。
 > - 从API版本26.0.0开始，建议使用[applyRotate](#applyrotate)代替，以获得更完善的异常处理能力。
@@ -3177,10 +3197,11 @@ function rotate(pixelMap: image.PixelMap) {
 
 rotateSync(angle: number): void
 
-根据输入的角度对图片进行旋转，YUV格式仅支持90°倍数的旋转角。同步返回结果。
+根据输入的角度对图片进行旋转。同步返回结果。
 
 > **说明：**
 >
+> - YUV格式仅支持90°倍数的旋转角。
 > - 图像旋转的角度取值范围：[0, 360]。超出取值范围时，根据圆周360°自动矫正。例如，-100°与260°效果相同。
 > - 如果图片旋转的角度不是90的整数倍，旋转后图片的尺寸会发生改变。
 > - 从API版本26.0.0开始，建议使用[applyRotateSync](#applyrotatesync)代替，以获得更完善的异常处理能力。
@@ -4457,7 +4478,7 @@ setMemoryNameSync(name: string): void
 
 设置PixelMap的内存标识符，便于在内存调试或问题定位时识别该内存。
 
-> **注意：**
+> **说明：**
 >
 > 仅支持DMA和SHARE_MEMORY内存类型的PixelMap设置内存标识符，且SHARE_MEMORY内存的标识符设置仅在鸿蒙内核中支持。
 
@@ -4467,7 +4488,7 @@ setMemoryNameSync(name: string): void
 
 | 参数名        | 类型                             | 必填 | 说明             |
 | ------------- | -------------------------------- | ---- | ---------------- |
-| name | string | 是   | 需要设置的内存标识符。DMA内存标识符的字符串长度取值范围为[1, 255]字节，SHARE_MEMORY内存标识符的字符串长度长度取值范围为[1, 244]字节。 |
+| name | string | 是   | 需要设置的内存标识符。DMA内存标识符的字符串长度取值范围为[1, 255]字节，SHARE_MEMORY内存标识符的字符串长度取值范围为[1, 244]字节。 |
 
 **错误码：**
 
