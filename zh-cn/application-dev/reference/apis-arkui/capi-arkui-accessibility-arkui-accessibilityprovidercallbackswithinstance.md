@@ -7,7 +7,7 @@
 <!--Adviser: @Brilliantry_Rui-->
 
 ```c
-typedef struct {...} ArkUI_AccessibilityProviderCallbacksWithInstance
+typedef struct ArkUI_AccessibilityProviderCallbacksWithInstance {...} ArkUI_AccessibilityProviderCallbacksWithInstance
 ```
 
 ## 概述

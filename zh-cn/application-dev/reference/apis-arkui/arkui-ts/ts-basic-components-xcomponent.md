@@ -902,7 +902,7 @@ struct XComponentExample {
           .margin(2)
       }.justifyContent(FlexAlign.Center)
     }
-    .width("100%")
+    .width('100%')
   }
 }
 ```
@@ -1047,8 +1047,8 @@ struct Index {
   build() {
     Column() {
       XComponent({ type: XComponentType.SURFACE, controller: this.xcController })
-        .width("100%")
-        .height("100%")
+        .width('100%')
+        .height('100%')
         .onLoad(() => {
           // 请在此处设置Surface大小，过大可能会导致绘制时间长
           this.xcController.setXComponentSurfaceRect({surfaceWidth: this.screenWidth, surfaceHeight: this.screenHeight, offsetX: 0, offsetY: 0});
