@@ -68,7 +68,7 @@ FA和Stage模型中，应用可以创建进程并指定UIAbility运行在某个�
 
 **解决措施**
 
-- Stage模型中，多个应用组件共享同一个ArkTS引擎实例，因此在Stage模型中，应用组件之间可以方便的共享对象和状态，同时减少复杂应用运行对内存的占用。
+- Stage模型中，多个应用组件共享同一个ArkTS引擎实例，因此在Stage模型中，应用组件之间可以方便地共享对象和状态，同时减少复杂应用运行对内存的占用。
 
 - FA模型中，每个应用组件独享一个ArkTS引擎实例。Stage模型作为主推的应用模型，开发者通过它能够更加便利地开发出分布式场景下的复杂应用。
 
@@ -204,7 +204,7 @@ try {
 
 **解决措施**
 
-新建卡片时会生成一个FormAblity.ts文件，其中包含卡片对应的生命周期。
+新建卡片时会生成一个FormAbility.ts文件，其中包含卡片对应的生命周期。
 
 参考链接
 
@@ -421,7 +421,7 @@ struct AbilityContextTest {
 
 **问题现象**
 
-调用featureAbility.startAbility()接口启动ServiceAbility，在ServiceAbility中启动后台长时任务报错，错误信息：{"code":201,"message":"BussinessError 201: Permission denied."}
+调用featureAbility.startAbility()接口启动ServiceAbility，在ServiceAbility中启动后台长时任务报错，错误信息：{"code":201,"message":"BusinessError 201: Permission denied."}
 
 **解决措施**
 
