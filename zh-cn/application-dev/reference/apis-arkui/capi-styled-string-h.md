@@ -1830,9 +1830,13 @@ ArkUI_ErrorCode OH_ArkUI_SpanStyle_SetParagraphStyle(OH_ArkUI_SpanStyle* spanSty
 
 设置属性字符串样式对象的段落样式。
 
->**说明：**
+> **说明：**
 >
->此操作会替换[OH_ArkUI_SpanStyle](capi-arkui-nativemodule-oh-arkui-spanstyle.md)对象中已设置的其他类型样式。一个SpanStyle对象只能持有一种类型的样式，设置新类型样式后，之前已设置的其他类型样式（如已设置的TextStyle、GestureStyle等）将被清除。
+> - 此操作会替换[OH_ArkUI_SpanStyle](capi-arkui-nativemodule-oh-arkui-spanstyle.md)对象中已设置的其他类型样式。一个SpanStyle对象只能持有一种类型的样式，设置新类型样式后，之前已设置的其他类型样式（如已设置的TextStyle、GestureStyle等）将被清除。
+>
+> - 每个段落的段落样式按首个占位设置的段落样式生效，未设置时，段落按被绑定组件的段落样式生效。
+>
+> - 在API版本26.0.0之前，如果属性字符串段落内首个占位为OH_ArkUI_CustomSpan或OH_ArkUI_ImageAttachment时，设置在该段落上的段落样式不生效。从API版本26.0.0开始，设置段落样式生效。
 
 **起始版本：** 24
 
