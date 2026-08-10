@@ -6,11 +6,11 @@
 <!--Tester: @chen-gong1-->
 <!--Adviser: @w_Machine_cc-->
 
-音频模板提供数据交互功能，支持媒体应用接入播控中心，由播控中心统一展示页面并响应操作指令。
+音频模板提供数据交互功能，支持媒体应用接入音频模板控制方，由控制方统一展示页面并响应操作指令。
 
 该模块提供如下功能：
 
-[AVMusicTemplate](arkts-apis-avMusicTemplate-AVMusicTemplate.md)：音频模板，可用于与播控中心进行数据交互。
+[AVMusicTemplate](arkts-apis-avMusicTemplate-AVMusicTemplate.md)：音频模板，可用于与音频模板控制方进行数据交互。
 
 > **说明：**
 >
