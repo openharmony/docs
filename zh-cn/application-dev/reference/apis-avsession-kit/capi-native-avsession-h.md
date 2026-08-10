@@ -34,9 +34,9 @@
 | 名称 | typedef关键字 | 描述 |
 | -- | -- | -- |
 | [typedef AVSessionCallback_Result (\*OH_AVSessionCallback_OnCommand)(OH_AVSession* session, AVSession_ControlCommand command, void* userData)](#oh_avsessioncallback_oncommand) | OH_AVSessionCallback_OnCommand | 通用的执行播控命令的回调。 |
-| [typedef AVSessionCallback_Result (\*OH_AVSessionCallback_OnFastForward)(OH_AVSession* session, uint32_t seekTime, void* userData)](#oh_avsessioncallback_onfastforward) | OH_AVSessionCallback_OnFastForward | 快进的回调。 |
-| [typedef AVSessionCallback_Result (\*OH_AVSessionCallback_OnRewind)(OH_AVSession* session, uint32_t seekTime, void* userData)](#oh_avsessioncallback_onrewind) | OH_AVSessionCallback_OnRewind | 快退的回调。 |
-| [typedef AVSessionCallback_Result (\*OH_AVSessionCallback_OnSeek)(OH_AVSession* session, uint64_t seekTime, void* userData)](#oh_avsessioncallback_onseek) | OH_AVSessionCallback_OnSeek | 进度调节的回调。 |
+| [typedef AVSessionCallback_Result (\*OH_AVSessionCallback_OnFastForward)(OH_AVSession* session, uint32_t seekTime, void* userData)](#oh_avsessioncallback_onfastforward) | OH_AVSessionCallback_OnFastForward | 快进的回调。参数seekTime单位为毫秒(ms)。 |
+| [typedef AVSessionCallback_Result (\*OH_AVSessionCallback_OnRewind)(OH_AVSession* session, uint32_t seekTime, void* userData)](#oh_avsessioncallback_onrewind) | OH_AVSessionCallback_OnRewind | 快退的回调。参数seekTime单位为毫秒(ms)。 |
+| [typedef AVSessionCallback_Result (\*OH_AVSessionCallback_OnSeek)(OH_AVSession* session, uint64_t seekTime, void* userData)](#oh_avsessioncallback_onseek) | OH_AVSessionCallback_OnSeek | 进度调节的回调。参数seekTime单位为毫秒(ms)。 |
 | [typedef AVSessionCallback_Result (\*OH_AVSessionCallback_OnSetLoopMode)(OH_AVSession* session, AVSession_LoopMode curLoopMode, void* userData)](#oh_avsessioncallback_onsetloopmode) | OH_AVSessionCallback_OnSetLoopMode | 设置循环模式的回调。 |
 | [typedef AVSessionCallback_Result (\*OH_AVSessionCallback_OnToggleFavorite)(OH_AVSession* session, const char* assetId, void* userData)](#oh_avsessioncallback_ontogglefavorite) | OH_AVSessionCallback_OnToggleFavorite | 收藏的回调。 |
 | [typedef AVSessionCallback_Result (\*OH_AVSessionCallback_OutputDeviceChange)(OH_AVSession* session, AVSession_ConnectionState state, AVSession_OutputDeviceInfo* outputDeviceInfo)](#oh_avsessioncallback_outputdevicechange) | OH_AVSessionCallback_OutputDeviceChange | 设备变化的回调。 |
@@ -732,7 +732,7 @@ AVSession_ErrCode OH_AVSession_RegisterToggleFavoriteCallback(OH_AVSession* avse
 | 参数项 | 描述 |
 | -- | -- |
 | [OH_AVSession](capi-ohavsession-oh-avsession.md)* avsession | 媒体会话对象。 |
-| [OH_AVSessionCallback_OnToggleFavorite](capi-native-avsession-h.md#oh_avsessioncallback_ontogglefavorite) callback | 收藏命令的回调。 |
+| [OH_AVSessionCallback_OnToggleFavorite](#oh_avsessioncallback_ontogglefavorite) callback | 收藏命令的回调。 |
 | void* userData | 指向通过回调函数传递的应用数据指针。 |
 
 **返回：**
@@ -758,7 +758,7 @@ AVSession_ErrCode OH_AVSession_UnregisterToggleFavoriteCallback(OH_AVSession* av
 | 参数项 | 描述 |
 | -- | -- |
 | [OH_AVSession](capi-ohavsession-oh-avsession.md)* avsession | 媒体会话对象。 |
-| [OH_AVSessionCallback_OnToggleFavorite](capi-native-avsession-h.md#oh_avsessioncallback_ontogglefavorite) callback | 收藏命令的回调。 |
+| [OH_AVSessionCallback_OnToggleFavorite](#oh_avsessioncallback_ontogglefavorite) callback | 收藏命令的回调。 |
 
 **返回：**
 

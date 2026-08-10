@@ -10,7 +10,7 @@
 
 提供媒体会话模块C接口定义。
 
-开发者可使用OHAVSession，作为媒体会话提供方接入AVSession服务。开发指南及样例可参考[媒体会话提供方](../../media/avsession/using-ohavsession-developer.md)。
+开发者可使用OHAVSession作为媒体会话提供方接入AVSession服务。开发指南及样例可参考[媒体会话提供方](../../media/avsession/using-ohavsession-developer.md)。
 
 **系统能力：** SystemCapability.Multimedia.AVSession.Core
 
