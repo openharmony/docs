@@ -981,7 +981,7 @@ getEffectInfoSync(effectId: string, param?: VibratorInfoParam): EffectInfo
 
 通过设备ID和马达ID获取预置振动效果信息，用于判断该预置振动效果是否受指定设备的指定马达支持。
 
-用于多设备多马达场景下确认指定设备的指定马达是否支持某个预置振动效果，不传param时默认查询本地设备。适用于触发振动前确认效果可用性，避免在不支持的设备或马达上触发振动效果不佳。返回EffectInfo对象，isEffectSupported字段指示是否支持该预置振动效果：返回true时可直接用于startVibration (#vibratorstartvibration9)，返回false时使用该effectId触发振动可能效果不佳。
+用于多设备多马达场景下确认指定设备的指定马达是否支持某个预置振动效果，不传param时默认查询本地设备。适用于触发振动前确认效果可用性，避免在不支持的设备或马达上触发振动效果不佳。返回EffectInfo对象，isEffectSupported字段指示是否支持该预置振动效果：返回true时可直接用于startVibration (#vibratorstartvibration9)，返回false时使用该effectId触发振动可能效果不佳。如果需要跨设备查询预置振动效果是否支持，请使用getEffectInfoSync；如果仅查询本地设备，请使用isSupportEffect。
 
 **系统能力**：SystemCapability.Sensors.MiscDevice
 
@@ -1339,7 +1339,7 @@ addContinuousEvent(time: number, duration: number, options?: ContinuousParam): V
 
 addTransientEvent(time: number, options?: TransientParam): VibratorPatternBuilder;
 
-添加短振事件的方法, 添加后使用[build](#build18)方法生成[VibratorPattern](#vibratorpattern18)对象。适用于点击、按键等短促振动反馈场景，返回VibratorPatternBuilder对象，支持链式调用继续添加振动事件。
+添加短振事件的方法，添加后使用[build](#build18)方法生成[VibratorPattern](#vibratorpattern18)对象。适用于点击、按键等短促振动反馈场景，返回VibratorPatternBuilder对象，支持链式调用继续添加振动事件。
 
 **系统能力**：SystemCapability.Sensors.MiscDevice
 
@@ -1586,7 +1586,7 @@ type VibrateEffect = VibrateTime | VibratePreset | VibrateFromFile | VibrateFrom
 | 名称      | 类型                            | 只读 | 可选 | 说明                                                         |
 | --------- | ------------------------------- | ---- | ---- | ------------------------------------------------------------ |
 | eventType | VibratorEventType               | 否   | 否   | 振动事件类型。CONTINUOUS（0）表示长振，TRANSIENT（1）表示短振。                                               |
-| time      | number                          | 否   | 否   | 振动起始时间。单位：ms。取值范围：[0,1800000]区间内所有整数。用于指定振动事件在序列中的起始时间点。    |
+| time      | number                          | 否   | 否   | 振动起始时间。单位：ms。取值范围：[0,1800000]区间内所有整数。用于指定振动事件在序列中的起始时间点，多个事件间time值不能重叠。    |
 | duration  | number                          | 否   | 是   | 可选参数，表示振动持续时间。单位：ms。取值范围：(0,5000]区间所有整数。默认值：短振默认48，长振默认1000。使用场景：适用于长振和短振交互反馈场景。不填写时使用对应类型的默认持续时间。 |
 | intensity | number                          | 否   | 是   | 可选参数，表示振动强度。取值范围：[0,100]区间所有整数。默认值：100。不填写时默认使用最大强度。 |
 | frequency | number                          | 否   | 是   | 可选参数，表示振动频率。取值范围：[0,100]区间内所有整数。默认值：50。不填写时默认使用中等频率。 |
@@ -1614,7 +1614,7 @@ type VibrateEffect = VibrateTime | VibratePreset | VibrateFromFile | VibrateFrom
 | --------- | -------------------- | ---- | ---- | ------------------------------------------------------------ |
 | intensity | number               | 否   | 是   | 可选参数，表示振动强度。取值范围：[0,100]内所有整数。默认值：100。不填写时默认使用最大强度。 |
 | frequency | number               | 否   | 是   | 可选参数，表示振动频率。取值范围：[0,100]内所有整数。默认值：50。不填写时默认使用中等频率。 |
-| points    | [VibratorCurvePoint](#vibratorcurvepoint18)[] | 否   | 是   | 可选参数，表示振动调节曲线数组。数组中元素个数最少设置4个，最大设置16个。                             |
+| points    | [VibratorCurvePoint](#vibratorcurvepoint18)[] | 否   | 是   | 可选参数，表示振动调节曲线数组。使用场景：适用于需要精细控制振动强度和频率变化趋势的交互反馈场景。数组中元素个数最少设置4个，最大设置16个。                             |
 | index     | number               | 否   | 是   | 可选参数，表示通道编号。取值范围：[0,2]区间内所有整数。默认值：0。使用场景：不同通道对应不同的马达器件，适用于多马达设备的精细控制场景。不填写时默认使用通道0。                    |
 
 ## TransientParam<sup>18+</sup>
