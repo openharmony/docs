@@ -199,3 +199,45 @@ import { accessibility } from '@kit.AccessibilityKit';
 | HOVER_FOCUS                |  1 | 表示当前聚焦的场景为点击聚焦。         |
 | SWIPE_FOCUS                |  2 | 表示当前聚焦的场景为滑动聚焦。         |
 | SCROLL_FOCUS               |  3 | 表示当前聚焦的场景为滚动聚焦。         |
+
+## OperateVirtualNodeResult
+
+表示无障碍操作虚拟节点返回结果类型的枚举。
+
+**起始版本：** 26.0.0
+
+**模型约束：** 此接口仅可在Stage模型下使用。
+
+**系统接口：** 此接口为系统接口。
+
+**系统能力：** SystemCapability.BarrierFree.Accessibility.Core
+
+| 名称                        | 值   | 说明                     |
+| -------------------------- | ---- | ------------------------ |
+| SUCCESS                            |  0 | 表示执行成功。            |
+| ACCESSIBILITY_ELEMENT_NOT_EXIST    |  1 | 表示执行操作的节点不存在。 |
+| CANNOT_MODIFY_ROOT_NODE            |  2 | 表示当前根节点不允许修改。 |
+| ACCESSIBILITY_PROPERTY_IS_EMPTY    |  3 | 表示无障碍节点属性为空。   |
+| ALLOCATE_ID_FAILED                 |  4 | 表示分配虚拟节点ID失败。   |
+| VIRTUAL_NODE_PARAMETER_IS_EMPTY    |  5 | 表示新增虚拟节点数组为空。 |
+| INTERNAL_ERROR                     |  6 | 表示系统异常。            |
+| VIRTUAL_NODE_NOT_SUPPORTED         |  7 | 表示不支持虚拟节点操作。   |
+
+
+## AccessibilitySourceType 
+
+表示无障碍节点来源类型的枚举。
+
+**起始版本：** 26.0.0
+
+**模型约束：** 此接口仅可在Stage模型下使用。
+
+**系统接口：** 此接口为系统接口。
+
+**系统能力：** SystemCapability.BarrierFree.Accessibility.Core
+
+| 名称                        | 值   | 说明                     |
+| -------------------------- | ---- | ------------------------ |
+| DEFAULT                                   |  1 | 表示默认节点类型。             |
+| ADDED_FROM_ACCESSIBILITY_VIRTUAL_NODE     |  2 | 表示当前节点是新增的虚拟节点。  |
+| UPDATED_FROM_ACCESSIBILITY_VIRTUAL_NODE   |  3 | 表示当前节点是修改过属性的节点。|
