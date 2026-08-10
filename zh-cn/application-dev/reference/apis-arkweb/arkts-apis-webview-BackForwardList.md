@@ -29,13 +29,13 @@ import { webview } from '@kit.ArkWeb';
 | 名称         | 类型   | 只读 | 可选 | 说明                                                         |
 | ------------ | ------ | ---- | ---- | ------------------------------------------------------------ |
 | currentIndex | number | 否   | 否   | 当前在页面历史列表中的索引。                                 |
-| size         | number | 否   | 否   | 历史列表中索引的数量，最多保存50条，超过时起始记录会被覆盖。 |
+| size         | number | 否   | 否   | 历史列表中历史记录的数量，最多保存50条，超过时起始记录会被覆盖。 |
 
 ## getItemAtIndex
 
 getItemAtIndex(index: number): HistoryItem
 
-获取历史列表中指定索引的历史记录项信息。
+获取历史列表中指定索引的历史记录项信息。需先通过[getBackForwardEntries](./arkts-apis-webview-WebviewController.md#getbackforwardentries)方法获取BackForwardList实例。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 

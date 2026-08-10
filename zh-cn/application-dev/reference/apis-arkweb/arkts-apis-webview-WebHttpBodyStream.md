@@ -173,7 +173,7 @@ getSize(): number
 
 | 类型   | 说明                      |
 | ------ | ------------------------- |
-| number | 获取WebHttpBodyStream中的数据大小。单位：字节。 |
+| number | 获取WebHttpBodyStream数据大小。单位：字节。 |
 
 **示例：**
 

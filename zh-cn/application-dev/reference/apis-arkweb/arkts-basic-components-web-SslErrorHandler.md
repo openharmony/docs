@@ -28,7 +28,7 @@ SslErrorHandler的构造函数。
 
 handleCancel(): void
 
-通知Web组件取消此请求。
+通知Web组件取消此请求，并停止当前SSL证书验证流程。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -36,7 +36,7 @@ handleCancel(): void
 
 handleConfirm(): void
 
-通知Web组件继续使用SSL证书。
+忽略SSL证书验证错误，继续加载页面。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
