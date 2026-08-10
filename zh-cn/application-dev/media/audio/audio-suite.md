@@ -32,7 +32,7 @@
 |----------|----------|
 | 输入节点 | 支持输入各种格式的PCM音频数据。 |
 | 效果节点 | 提供音频效果处理功能。<br>当前支持的效果节点及详细说明请参考[音频效果(C/C++)](audio-suite-effects.md)。 |
-| 输出节点 | 支持设置输出音频的PCM格式。  |
+| 输出节点 | 支持设置输出音频的PCM格式。 |
 
   节点完整类型详见[OH_AudioNode_Type](../../reference/apis-audio-kit/capi-native-audio-suite-base-h.md#oh_audionode_type)。
 
