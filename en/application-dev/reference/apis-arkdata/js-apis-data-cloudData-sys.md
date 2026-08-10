@@ -981,7 +981,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 import { relationalStore } from '@kit.ArkData';
 
 try{
-  cloudData.Config.cloudSync("bundleName", "storeId", relationalStore.SyncMode.SYNC_MODE_TIME_FIRST, (progress)=>{
+  cloudData.Config.cloudSync("bundleName", "storeId", relationalStore.SyncMode.SYNC_MODE_TIME_FIRST, (progress) => {
     console.info('Succeeded in getting progress details.');
   }).then(() => {
       console.info('Succeeded in syncing cloud data.');
@@ -1326,6 +1326,10 @@ let sharingResource: string;
 let predicates = new relationalStore.RdbPredicates('test_table');
 predicates.equalTo('data', 'data_test');
 cloudData.sharing.allocResourceAndShare('storeName', predicates, participants, ['uuid', 'data']).then((resultSet) => {
+  if (resultSet === undefined || resultSet === null) {
+    console.error(`resultSet is null`);
+    return;
+  }
   if (!resultSet.goToFirstRow()) {
     console.error(`row error`);
     return;
@@ -1390,9 +1394,13 @@ participants.push({
 let sharingResource: string;
 let predicates = new relationalStore.RdbPredicates('test_table');
 predicates.equalTo('data', 'data_test');
-cloudData.sharing.allocResourceAndShare('storeName', predicates, participants, ['uuid', 'data'], (err: BusinessError, resultSet) => {
+cloudData.sharing.allocResourceAndShare('storeName', predicates, participants, ['uuid', 'data'], (err: BusinessError, resultSet: relationalStore.ResultSet) => {
   if (err) {
     console.error(`alloc resource and share failed, code is ${err.code},message is ${err.message}`);
+    return;
+  }
+  if (resultSet === undefined || resultSet === null) {
+    console.error(`resultSet is null`);
     return;
   }
   if (!resultSet.goToFirstRow()) {
@@ -1456,9 +1464,13 @@ participants.push({
 let sharingResource: string;
 let predicates = new relationalStore.RdbPredicates('test_table');
 predicates.equalTo('data', 'data_test');
-cloudData.sharing.allocResourceAndShare('storeName', predicates, participants, (err: BusinessError, resultSet) => {
+cloudData.sharing.allocResourceAndShare('storeName', predicates, participants, (err: BusinessError, resultSet: relationalStore.ResultSet) => {
   if (err) {
     console.error(`alloc resource and share failed, code is ${err.code},message is ${err.message}`);
+    return;
+  }
+  if (resultSet === undefined || resultSet === null) {
+    console.error(`resultSet is null`);
     return;
   }
   if (!resultSet.goToFirstRow()) {
