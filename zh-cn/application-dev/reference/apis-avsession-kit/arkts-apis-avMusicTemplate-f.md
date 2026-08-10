@@ -56,7 +56,7 @@ import { avMusicTemplate } from '@kit.AVSessionKit';
 
 export class TemplateManager {
   private template: avMusicTemplate.AVMusicTemplate | undefined = undefined;
-  private static sInstance: TemplateManager;
+  private static instance: TemplateManager;
 
   private constructor() {
   }
@@ -64,13 +64,13 @@ export class TemplateManager {
   /**
    * 获取模板管理器实例。
    *
-   * @returns 模板控制器实例。
+   * @returns 模板管理器实例。
    */
   public static getInstance(): TemplateManager {
-    if (!TemplateManager.sInstance) {
-      TemplateManager.sInstance = new TemplateManager();
+    if (!TemplateManager.instance) {
+      TemplateManager.instance = new TemplateManager();
     }
-    return TemplateManager.sInstance;
+    return TemplateManager.instance;
   };
 
   /**
@@ -79,7 +79,7 @@ export class TemplateManager {
   public createTemplate() {
     if (this.template) {
       console.warn('createTemplate: template already exists');
-      return
+      return;
     }
     try {
       this.template = avMusicTemplate.createAVMusicTemplate(avMusicTemplate.AVMusicTemplateType.DEFAULT);

@@ -6,7 +6,7 @@
 <!--Tester: @chen-gong1-->
 <!--Adviser: @w_Machine_cc-->
 
-音频模板控制相关接口，可用于向接入音频模板的媒体应用查询数据，进行统一风格的页面展示，并下发页面操作指令。
+音频模板控制相关接口，可用于向接入播控中心的媒体应用查询数据，进行统一风格的页面展示，并下发页面操作指令。
 
 该模块提供如下功能：
 
@@ -42,7 +42,7 @@ createAVMusicTemplateController(sessionId: string): AVMusicTemplateController
 
 | 参数名    | 类型   | 必填 | 说明                          |
 | --------- | ------ | ---- | ----------------------------- |
-| sessionId | string | 是   | AVSession对象唯一的会话标识。 |
+| sessionId | string | 是   | AVSession 对象唯一的会话标识。 |
 
 **返回值：**
 
@@ -100,7 +100,7 @@ export class ControllerManager {
     };
 
   /**
-   * 通过getAllAVMusicTemplateDescriptors创建模板。
+   * 通过getAllAVMusicTemplateDescriptors获取模板描述并创建控制器。
    */
   public createAvMusicTemplateController(bundleName: string) {
     if (this.isStringEmpty(bundleName)) {
@@ -159,7 +159,7 @@ export class ControllerManager {
 
   private createController(sessionId: string, bundleName: string) {
     if (this.currentBundleName === null || this.currentBundleName === undefined) {
-      console.warn(TAG, 'createController: sessionId is invalid');
+      console.warn(TAG, 'createController: currentBundleName is invalid');
       return;
     }
     if (sessionId === null || sessionId === undefined) {
@@ -180,7 +180,7 @@ export class ControllerManager {
     }
     try {
       this.controller = avMusicTemplate.createAVMusicTemplateController(sessionId);
-      console.info('Succeeded in creating controller.');
+      console.info(TAG, 'Succeeded in creating controller.');
     } catch (e) {
       console.error(TAG, `createController: errCode: ${e?.code}`);
     }
@@ -235,7 +235,7 @@ export class ControllerManager {
   }
 
   /**
-   * 反注册模板监听。
+   * 注销模板监听。
    */
   public unregisterAVMusicTemplateListener() {
     try {
@@ -266,7 +266,7 @@ getAllAVMusicTemplateDescriptors(userId?: number): AVMusicTemplateDescriptor[]
 
 | 参数名 | 类型 | 必填 | 说明     |
 | ------ | ---- | ---- | -------- |
-| userId | number  | 否   | 用户ID。以用户传递为准，可为空。 |
+| userId | number  | 否   | 用户ID。可选参数，不传入时为空。 |
 
 **返回值：**
 
@@ -400,7 +400,7 @@ offAVMusicTemplateCreate(callback?: Callback&lt;AVMusicTemplateDescriptor&gt;): 
 
 | 参数名   | 类型                                                         | 必填 | 说明                                                         |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| callback | Callback<[AVMusicTemplateDescriptor](#avmusictemplatedescriptor)> | 否   | 回调函数，返回音频模板描述。不填该参数则注销该类型对应的所有回调。 |
+| callback | Callback<[AVMusicTemplateDescriptor](#avmusictemplatedescriptor)> | 否   | 回调函数，参数为音频模板描述。不填该参数则注销该类型对应的所有回调。 |
 
 **错误码：**
 
@@ -451,7 +451,7 @@ onAVMusicTemplateDestroy(callback: Callback&lt;AVMusicTemplateDescriptor&gt;): v
 
 | 参数名   | 类型                                                         | 必填 | 说明                         |
 | -------- | ------------------------------------------------------------ | ---- | ---------------------------- |
-| callback | Callback<[AVMusicTemplateDescriptor](#avmusictemplatedescriptor)> | 是   | 回调函数，参数为音频模板描述。 |
+| callback | Callback<[AVMusicTemplateDescriptor](#avmusictemplatedescriptor)> | 是   | 回调函数，参数为音频模板描述。用于监听音频模板销毁事件。 |
 
 **错误码：**
 
@@ -507,7 +507,7 @@ offAVMusicTemplateDestroy(callback?: Callback&lt;AVMusicTemplateDescriptor&gt;):
 
 | 参数名   | 类型                                                         | 必填 | 说明                                                         |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| callback | Callback<[AVMusicTemplateDescriptor](#avmusictemplatedescriptor)> | 否   | 回调函数，返回音频模板描述。不填该参数则注销该类型对应的所有回调。 |
+| callback | Callback<[AVMusicTemplateDescriptor](#avmusictemplatedescriptor)> | 否   | 回调函数，参数为音频模板描述。不填该参数则注销该类型对应的所有回调。 |
 
 **错误码：**
 

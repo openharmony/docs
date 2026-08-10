@@ -21,7 +21,7 @@
 
 | 名称    | 值         | 说明                                                         |
 | ------- | ---------- | ------------------------------------------------------------ |
-| DEFAULT | 'smartCar' | 音频模板类型的默认值。<br>用于标识当前音频模板应用的业务类型，开发者创建模板时可根据自身业务修改此值。 |
+| DEFAULT | 'smartCar' | 音频模板类型的默认值。<br>用于标识当前音频模板应用的业务类型。 |
 
 ## EntityType
 
@@ -69,7 +69,7 @@
 
 | 名称          | 值   | 说明        |
 | ------------- | ---- |-----------|
-| NONE          | 0    | 默认值，默认正序。 |
+| NONE          | 0    | 不指定排序方式，使用默认正序。 |
 | ORDER         | 1    | 正序。       |
 | REVERSE_ORDER | 2    | 倒序。       |
 
@@ -140,10 +140,12 @@
 
 **系统能力：** SystemCapability.Multimedia.AVSession.AVMusicTemplate
 
-| 名称       | 值          | 说明       |
-| ---------- | ----------- | ---------- |
-| PLAY_MUSIC | 'playMusic' | 播放音乐。 |
-| PLAY_VIDEO | 'playVideo' | 播放视频。 |
+| 名称            | 值              | 说明                    |
+| --------------- | --------------- | ---------------------- |
+| PLAY_MUSIC      | 'playMusic'     | 播放音乐。              |
+| PLAY_VIDEO      | 'playVideo'     | 播放视频。              |
+| PLAY_MUSIC_LIST | 'playMusicList' | 播放音乐列表（指定歌单）。<br>**起始版本：** 26.1.0 |
+| PLAY_VIDEO_LIST | 'playVideoList' | 播放视频列表（指定视频）。<br>**起始版本：** 26.1.0 |
 
 ## DownloadStatus
 
