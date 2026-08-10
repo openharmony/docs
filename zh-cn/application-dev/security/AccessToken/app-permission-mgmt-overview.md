@@ -103,9 +103,9 @@ manual_settings指的是手动设置授权类型，在该类型的权限许可�
 
   如上所述，权限APL等级和应用APL等级一一对应。原则上，低APL等级的应用默认无法申请更高等级的权限。访问控制列表ACL（Access Control List）提供了低等级应用访问高等级权限的特殊渠道。
 
-  系统权限均定义了“ACL使能”字段。当该字段为TRUE时，应用可以使用ACL方式跨级别申请权限。具体权限定义，可参考[受限开放权限](restricted-permissions.md)<!--Del-->、[系统应用可用权限（系统授权）](permissions-for-system-apps.md)和[系统应用可用权限（用户授权）](permissions-for-system-apps-user.md)<!--DelEnd-->。
+  系统权限均定义了“是否支持证书授权”字段。当该字段为TRUE时，应用可以使用ACL方式跨级别申请权限。具体权限定义，可参考[受限开放权限](restricted-permissions.md)<!--Del-->、[系统应用可用权限（系统授权）](permissions-for-system-apps.md)和[系统应用可用权限（用户授权）](permissions-for-system-apps-user.md)<!--DelEnd-->。
 
-  场景举例：如开发者正在开发APL等级为normal的A应用，由于功能场景需要，A应用需要跨级申请等级为system_basic的P权限。当P权限的ACL使能为TRUE时，A应用可以通过ACL方式跨级申请权限P。
+  场景举例：如开发者正在开发APL等级为normal的A应用，由于功能场景需要，A应用需要跨级申请等级为system_basic的P权限。当P权限的是否支持证书授权为TRUE时，A应用可以通过ACL方式跨级申请权限P。
 
 - **携带数据的权限类型**
 
