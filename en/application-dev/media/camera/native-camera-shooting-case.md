@@ -1,14 +1,16 @@
 # Photo Capture Practices (C/C++)
+
 <!--Kit: Camera Kit-->
 <!--Subsystem: Multimedia-->
 <!--Owner: @qano-->
 <!--Designer: @leo_ysl-->
 <!--Tester: @xchaosioda-->
 <!--Adviser: @w_Machine_cc-->
+<!-- md-trans-meta sourceCommit=99899ebe5624ae690ba80c936c1ba3c6dd396548 translatedAt=2026-08-10T09:22:12.045Z pushedAt=2026-08-10T13:35:44.945Z -->
 
 Before developing a camera application, you must [request required permissions](camera-preparation.md).
 
-This topic provides sample code that covers the complete photo capture process and the API calling sequence. For details about a single process (such as device input, session management, and photo capture), see the corresponding C/C++ development guide links provided in [Requesting Camera Development Permissions](native-camera-device-management.md).
+This topic provides sample code that covers the complete photo capture process and the API calling sequence. For details about a single process (such as device input, session management, and photo capture), see [ Camera Device Management (C/C++)](native-camera-device-management.md).
 
 ## Development Process
 
@@ -19,6 +21,7 @@ After obtaining the output stream capabilities supported by the camera, create a
 ## Complete Sample Code
 
 1. Link the dynamic library in the CMake script.
+
     ```txt
     target_link_libraries(entry PUBLIC
         libace_napi.z.so
@@ -29,7 +32,9 @@ After obtaining the output stream capabilities supported by the camera, create a
         libohfileuri.so
     )
     ```
+
 2. Create the header file **ndk_camera.h**.
+
    ```c++
    #include "ohcamera/camera.h"
    #include "ohcamera/camera_input.h"
@@ -48,6 +53,7 @@ After obtaining the output stream capabilities supported by the camera, create a
    ```
 
 3. Import the NDK APIs on the C++ side, and perform photo capture based on the surface ID passed in.
+
     ```c++
     #include "hilog/log.h"
 
@@ -203,7 +209,7 @@ After obtaining the output stream capabilities supported by the camera, create a
         // Create a CameraManager object.
         Camera_ErrorCode ret = OH_Camera_GetCameraManager(&cameraManager);
         if (cameraManager == nullptr || ret != CAMERA_OK) {
-            OH_LOG_ERROR(LOG_APP, "OH_Camera_GetCameraMananger failed.");
+            OH_LOG_ERROR(LOG_APP, "OH_Camera_GetCameraManager failed.");
             return;
         }
         // Listen for camera status changes.
@@ -283,10 +289,10 @@ After obtaining the output stream capabilities supported by the camera, create a
         // Create a photo output stream.
         ret = OH_CameraManager_CreatePhotoOutputWithoutSurface(cameraManager, photoProfile, &photoOutput);
 
-        // Listen for the one-time photo capture callback.
+        // Listen for one-shot photo capture callbacks.
         ret = OH_PhotoOutput_RegisterPhotoAvailableCallback(photoOutput, OnPhotoAvailable);
 
-        // Create a session.
+        // Create the session.
         ret = OH_CameraManager_CreateCaptureSession(cameraManager, &captureSession);
         if (captureSession == nullptr || ret != CAMERA_OK) {
             OH_LOG_ERROR(LOG_APP, "OH_CameraManager_CreateCaptureSession failed.");
