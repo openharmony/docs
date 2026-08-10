@@ -30,7 +30,7 @@ import { promptAction } from '@kit.ArkUI';
 
 | 名称     | 值   | 说明                   |
 | -------- | ---- | ---------------------- |
-| SYSTEM_TOP_MOST | 2    | Toast 显示在TYPE_SYSTEM_TOAST类型窗口中。 <br/>**起始版本：** 12 <br/>**模型约束：** 此接口仅可在Stage模型下使用。|
+| SYSTEM_TOP_MOST<sup>12+</sup> | 2    | Toast 显示在TYPE_SYSTEM_TOAST类型窗口中。<br/>**模型约束：** 此接口仅可在Stage模型下使用。|
 
 ## BaseDialogOptions<sup>11+</sup>
 
