@@ -651,7 +651,7 @@ struct PasteboardTest {
 
 ## PasteDataRecord<sup>7+</sup>
 
-对于剪贴板中内容记录的抽象定义，称之为条目。剪贴板内容部分由一个或者多个条目构成，例如一条文本内容、一份HTML、一个URI或者一个Want。不支持在创建PasteDataRecord之后，修改PasteDataRecord的默认数据类型的值，应在创建PasteDataRecord时指定正确的默认数据类型的值。如需刷新PasteDataRecord的属性值，请使用[addentry](#addentry14)。
+对于剪贴板中内容记录的抽象定义，称之为条目。剪贴板内容部分由一个或者多个条目构成，例如一条文本内容、一份HTML、一个URI或者一个Want。不支持在创建PasteDataRecord之后，修改PasteDataRecord的默认数据类型的值，应在创建PasteDataRecord时指定正确的默认数据类型的值。如需刷新PasteDataRecord的属性值，请使用[addEntry](#addentry14)。
 
 ### 属性
 
