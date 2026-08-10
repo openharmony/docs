@@ -6,7 +6,7 @@
 <!--Tester: @fredyuan0912-->
 <!--Adviser: @Brilliantry_Rui-->
 
-通过[自定义绘制](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides/arkts-user-defined-draw)接入的第三方框架平台，NDK提供了对接无障碍服务的接口函数，使三方框架组件能够支持ArkUI中的基本无障碍功能，包括焦点获取、获取无障碍节点和操作响应。
+通过[自定义绘制](./arkts-user-defined-draw.md)接入的第三方框架平台，NDK提供了对接无障碍服务的接口函数，使三方框架组件能够支持ArkUI中的基本无障碍功能，包括焦点获取、获取无障碍节点和操作响应。
 
 从API version 13开始，支持基于XComponent的自绘制方式接入。
 
@@ -400,7 +400,7 @@
        if (!object) {
            return 0;
        }
-       // 获取无障碍节点element。
+        // 获取无障碍节点的播报文本。
        auto announcedText = object->GetAnnouncedForAccessibility();
        auto element = OH_ArkUI_CreateAccessibilityElementInfo();
        OH_ArkUI_AccessibilityElementInfoSetElementId(element, elementId);

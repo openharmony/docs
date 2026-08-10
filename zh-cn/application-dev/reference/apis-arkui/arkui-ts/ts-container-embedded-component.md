@@ -178,7 +178,7 @@ onDrawReady(callback: Callback\<void>)
 | 名称                               | 类型                                                         | 只读 | 可选 | 说明                                                         |
 | ---------------------------------- | ------------------------------------------------------------ | ---- | ---- | ------------------------------------------------------------ |
 | placeholder                        | [ComponentContent](../js-apis-arkui-ComponentContent.md)     | 否   | 是   | 设置占位符，在EmbeddedComponent与EmbeddedUIExtensionAbility建立连接前显示。<br>默认值：null，表示不显示占位符。 |
-| areaChangePlaceholder              | Record\<string, [ComponentContent](../js-apis-arkui-ComponentContent.md)> | 否   | 是   | 设置尺寸变化占位符，在EmbeddedComponent尺寸发生变化并且内部渲染未完成时显示。key为尺寸变化场景类型（如“FOLD_TO_EXPAND”表示折叠展开场景），value为对应场景的占位符组件。当前支持的键值包括：FOLD_TO_EXPAND。传入不支持的键值时，该占位符不生效。默认值：null，表示不设置尺寸变化占位符。 |
+| areaChangePlaceholder              | Record\<string, [ComponentContent](../js-apis-arkui-ComponentContent.md)> | 否   | 是   | 设置尺寸变化占位符，在EmbeddedComponent尺寸发生变化并且EmbeddedUIExtensionAbility的内容渲染未完成时显示。key为尺寸变化场景类型（如“FOLD_TO_EXPAND”表示折叠展开场景），value为对应场景的占位符组件。当前支持的键值包括：FOLD_TO_EXPAND。传入不支持的键值时，该占位符不生效。默认值：null，表示不设置尺寸变化占位符。 |
 | dpiFollowStrategy                  | [EmbeddedDpiFollowStrategy](#embeddeddpifollowstrategy)    | 否   | 是   | 设置DPI，使其能够跟随宿主或EmbeddedUIExtensionAbility。<br> 默认值：FOLLOW_UI_EXTENSION_ABILITY_DPI，表示跟随EmbeddedUIExtensionAbility。 |
 | windowModeFollowStrategy | [EmbeddedWindowModeFollowStrategy](#embeddedwindowmodefollowstrategy) | 否   | 是   | 设置窗口模式，使其能够跟随宿主或EmbeddedUIExtensionAbility。<br> 默认值：FOLLOW_UI_EXTENSION_ABILITY_WINDOW_MODE，表示窗口模式跟随EmbeddedUIExtensionAbility。<br>**起始版本：** 26.0.0 |
 
