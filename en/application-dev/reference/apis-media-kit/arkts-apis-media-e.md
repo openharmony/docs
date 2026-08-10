@@ -332,7 +332,7 @@ Enumerates the modes for creating media files.
 | Name                         | Value  | Description                           |
 | ----------------------------- | ---- | ------------------------------- |
 | APP_CREATE  | 0    | The application creates a media file in the sandbox.|
-| AUTO_CREATE_CAMERA_SCENE  | 1    | The system creates a media file. Currently, this mode takes effect only in camera recording scenarios. The URL set by the application is ignored.|
+| AUTO_CREATE_CAMERA_SCENE  | 1    | The system creates a media file. The URL set by the application is ignored.|
 
 ## HdrType<sup>12+</sup>
 

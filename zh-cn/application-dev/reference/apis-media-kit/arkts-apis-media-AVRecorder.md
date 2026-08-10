@@ -123,7 +123,7 @@ prepare(config: AVRecorderConfig): Promise\<void>
 
 | 参数名 | 类型                                   | 必填 | 说明                       |
 | ------ | -------------------------------------- | ---- | -------------------------- |
-| config | [AVRecorderConfig](arkts-apis-media-i.md#avrecorderconfig9) | 是   | 配置音视频录制的相关参数。纯音频录制时需设置audioSourceType，纯视频或音视频录制时需设置videoSourceType。 |
+| config | [AVRecorderConfig](arkts-apis-media-i.md#avrecorderconfig9) | 是   | 配置音视频录制的相关参数。音频录制时需设置audioSourceType，视频录制时需设置videoSourceType。 |
 
 **返回值：**
 

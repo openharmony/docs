@@ -53,7 +53,7 @@
 | -- | -- | -- |
 | [typedef void (*OH_AVRecorder_OnStateChange)(OH_AVRecorder *recorder, OH_AVRecorder_State state, OH_AVRecorder_StateChangeReason reason, void *userData)](#oh_avrecorder_onstatechange) | OH_AVRecorder_OnStateChange | 当录制状态发生变化时调用。 |
 | [typedef void (*OH_AVRecorder_OnError)(OH_AVRecorder *recorder, int32_t errorCode, const char *errorMsg, void *userData)](#oh_avrecorder_onerror) | OH_AVRecorder_OnError | 当录制过程中发生错误时调用。 |
-| [typedef void (*OH_AVRecorder_OnUri)(OH_AVRecorder *recorder, OH_MediaAsset *asset, void *userData)](#oh_avrecorder_onuri) | OH_AVRecorder_OnUri | 当录制文件的生成模式为[OH_AVRecorder_FileGenerationMode](#oh_avrecorder_filegenerationmode).AVRECORDER_AUTO_CREATE_CAMERA_SCENE时调用，用于通知应用获取录制生成的媒体资源。仅在应用使用相机进行录制时生效。 |
+| [typedef void (*OH_AVRecorder_OnUri)(OH_AVRecorder *recorder, OH_MediaAsset *asset, void *userData)](#oh_avrecorder_onuri) | OH_AVRecorder_OnUri | 当录制文件的生成模式为[OH_AVRecorder_FileGenerationMode](#oh_avrecorder_filegenerationmode).AVRECORDER_AUTO_CREATE_CAMERA_SCENE时调用，用于通知应用获取录制生成的媒体资源。 |
 
 ## 枚举类型说明
 
@@ -207,7 +207,7 @@ enum OH_AVRecorder_FileGenerationMode
 | 枚举项 | 描述 |
 | -- | -- |
 | AVRECORDER_APP_CREATE = 0 | 由应用自行在沙箱中创建媒体文件，此模式下不会触发[OH_AVRecorder_OnUri](#oh_avrecorder_onuri)回调。 |
-| AVRECORDER_AUTO_CREATE_CAMERA_SCENE = 1 | 由系统创建媒体文件，此模式下会触发[OH_AVRecorder_OnUri](#oh_avrecorder_onuri)回调，应用可通过回调获取录制生成的媒体资源对象。仅在应用使用相机进行录制时生效。 |
+| AVRECORDER_AUTO_CREATE_CAMERA_SCENE = 1 | 由系统创建媒体文件，此模式下会触发[OH_AVRecorder_OnUri](#oh_avrecorder_onuri)回调，应用可通过回调获取录制生成的媒体资源对象。 |
 
 
 ## 函数说明
@@ -268,7 +268,7 @@ typedef void (*OH_AVRecorder_OnUri)(OH_AVRecorder *recorder, OH_MediaAsset *asse
 
 **描述**
 
-当录制文件的生成模式为[OH_AVRecorder_FileGenerationMode](#oh_avrecorder_filegenerationmode).AVRECORDER_AUTO_CREATE_CAMERA_SCENE时调用，用于通知应用获取录制生成的媒体资源。仅在应用使用相机进行录制时生效。
+当录制文件的生成模式为[OH_AVRecorder_FileGenerationMode](#oh_avrecorder_filegenerationmode).AVRECORDER_AUTO_CREATE_CAMERA_SCENE时调用，用于通知应用获取录制生成的媒体资源。
 
 **系统能力：** SystemCapability.Multimedia.Media.AVRecorder
 
