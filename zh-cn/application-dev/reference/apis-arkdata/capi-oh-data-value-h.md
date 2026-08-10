@@ -48,7 +48,7 @@
 | [int OH_Value_PutAsset(OH_Data_Value *value, const Data_Asset *val)](#oh_value_putasset) | 添加ASSET类型数据。                                          |
 | [int OH_Value_PutAssets(OH_Data_Value *value, const Data_Asset * const * val, size_t length)](#oh_value_putassets) | 添加ASSETS类型数据。                                         |
 | [int OH_Value_PutFloatVector(OH_Data_Value *value, const float *val, size_t length)](#oh_value_putfloatvector) | 添加float数组类型数据。                                      |
-| [int OH_Value_PutUnlimitedInt(OH_Data_Value *value, int sign, const uint64_t *trueForm, size_t length)](#oh_value_putunlimitedint) | 添加任意长度的整型数组数据。                                 |
+| [int OH_Value_PutUnlimitedInt(OH_Data_Value *value, int sign, const uint64_t *trueForm, size_t length)](#oh_value_putunlimitedint) | 添加任意长度的整型数据。                                 |
 | [int OH_Value_GetType(OH_Data_Value *value, OH_ColumnType *type)](#oh_value_gettype) | 获取数据类型。                                               |
 | [int OH_Value_IsNull(OH_Data_Value *value, bool *val)](#oh_value_isnull) | 检查数据是否为空。                                           |
 | [int OH_Value_GetInt(OH_Data_Value *value, int64_t *val)](#oh_value_getint) | 获取整型数据。                                               |
@@ -353,7 +353,7 @@ int OH_Value_PutUnlimitedInt(OH_Data_Value *value, int sign, const uint64_t *tru
 
 **描述**
 
-添加任意长度的整型数组数据。
+添加任意长度的整型数据。
 
 **起始版本：** 18
 
@@ -601,7 +601,7 @@ int OH_Value_GetAssets(OH_Data_Value *value, Data_Asset **val, size_t inLen, siz
 | --------------------------------------------- | ------------------------------------------------------------ |
 | [OH_Data_Value](capi-rdb-oh-data-value.md) *value | 表示指向[OH_Data_Value](capi-rdb-oh-data-value.md)实例的指针。   |
 | [Data_Asset](capi-rdb-data-asset.md) **val        | 表示指向[Data_Asset](capi-rdb-data-asset.md)对象的指针。<br>需要申请数据内存。<br>此函数仅填充数据。否则执行失败。 |
-| size_t inLen                                  | 表示val的大小。可以通过[OH_Values_GetAssetsCount](capi-oh-data-values-h.md#oh_values_getassetscount)获取。 |
+| size_t inLen                                  | 表示val的大小。可以通过[OH_Value_GetAssetsCount](#oh_value_getassetscount)获取。 |
 | size_t *outLen                                | 一个输出参数，表示实际获取的数据大小。                       |
 
 **返回：**
@@ -634,7 +634,7 @@ int OH_Value_GetFloatVectorCount(OH_Data_Value *value, size_t *length)
 
 | 类型 | 说明                                                         |
 | ---- | ------------------------------------------------------------ |
-| int  | 返回错误码。<br>返回RDB_OK表示成功。<br>返回RDB_E_INVALID_ARGS表示参数无效。<br>返回RDB_E_DATA_TYPE_NULL表示存储数据为空。<br>返回RDB_E_TYPE_MISMATCH表示数据类型不匹配。 |
+| int  | 返回错误码。<br>返回RDB_OK表示成功。<br>返回RDB_E_INVALID_ARGS表示无效参数。<br>返回RDB_E_DATA_TYPE_NULL表示存储数据为空。<br>返回RDB_E_TYPE_MISMATCH表示数据类型不匹配。 |
 
 ### OH_Value_GetFloatVector()
 
@@ -655,7 +655,7 @@ int OH_Value_GetFloatVector(OH_Data_Value *value, float *val, size_t inLen, size
 | --------------------------------------------- | ------------------------------------------------------------ |
 | [OH_Data_Value](capi-rdb-oh-data-value.md) *value | 表示指向[OH_Data_Value](capi-rdb-oh-data-value.md)实例的指针。   |
 | float *val                                    | 表示指向float数组的指针。<br>需要申请数据内存。<br>此函数仅填充数据。否则执行失败。 |
-| size_t inLen                                  | 表示val的大小。可以通过[OH_Values_GetFloatVectorCount](capi-oh-data-values-h.md#oh_values_getfloatvectorcount)获取。 |
+| size_t inLen                                  | 表示val的大小。可以通过[OH_Value_GetFloatVectorCount](#oh_value_getfloatvectorcount)获取。 |
 | size_t *outLen                                | 一个输出参数，表示实际获取的数据大小。                       |
 
 **返回：**
@@ -710,7 +710,7 @@ int OH_Value_GetUnlimitedInt(OH_Data_Value *value, int *sign, uint64_t *trueForm
 | [OH_Data_Value](capi-rdb-oh-data-value.md) *value | 表示指向[OH_Data_Value](capi-rdb-oh-data-value.md)实例的指针。   |
 | int *sign                                     | 一个输出参数，表示正负数，0表示正整数，1表示负整数。         |
 | uint64_t *trueForm                            | 表示指向整型数组的指针。<br>需要申请数据内存。<br>此函数仅填充数据。否则执行失败。 |
-| size_t inLen                                  | 表示trueForm的大小。可以通过[OH_Values_GetUnlimitedIntBand](capi-oh-data-values-h.md#oh_values_getunlimitedintband)获取。 |
+| size_t inLen                                  | 表示trueForm的大小。可以通过[OH_Value_GetUnlimitedIntBand](#oh_value_getunlimitedintband)获取。 |
 | size_t *outLen                                | 一个输出参数，表示实际获取的数据大小。                       |
 
 **返回：**

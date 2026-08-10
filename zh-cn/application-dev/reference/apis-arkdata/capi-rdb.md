@@ -8,7 +8,7 @@
 
 ## 概述
 
-分布式数据管理（Distributed Data Manager，data）支持单设备的各种结构化数据的持久化，以及端云间的同步、共享功能。<br>分布式数据管理定义了一系列数据类型，可以对数据进行增删改查。
+关系型数据库（RDB）支持单设备的各种结构化数据的持久化，以及端云间的同步、共享功能。<br>关系型数据库定义了一系列数据类型，可以对数据进行增删改查。
 
 **起始版本：** 11
 
@@ -23,9 +23,9 @@
 | [oh_data_values_buckets.h](capi-oh-data-values-buckets-h.md) | 提供与存储数据值相关的结构定义、函数和枚举。                 |
 | [oh_predicates.h](capi-oh-predicates-h.md)                   | 表示关系型数据库（RDB）的谓词。                              |
 | [oh_rdb_crypto_param.h](capi-oh-rdb-crypto-param-h.md)       | 提供与关系型数据库加密参数相关的函数和枚举。                 |
-| [oh_rdb_transaction.h](capi-oh-rdb-transaction-h.md)         | 提供与数据库事务相关的函数和枚举。                           |
+| [oh_rdb_transaction.h](capi-oh-rdb-transaction-h.md)         | 提供与关系型数据库事务相关的函数和枚举。                           |
 | [oh_rdb_types.h](capi-oh-rdb-types-h.md)                     | 提供与数据值相关的类型定义。                                 |
 | [oh_value_object.h](capi-oh-value-object-h.md)               | 提供类型转换方法。                                           |
 | [oh_values_bucket.h](capi-oh-values-bucket-h.md)             | 用于存储键值对的类型。                                       |
-| [relational_store.h](capi-relational-store-h.md)             | 提供管理关系数据库（RDB）方法的接口，未标注支持向量数据库的接口仅支持关系型数据库。 |
+| [relational_store.h](capi-relational-store-h.md)             | 提供管理关系型数据库（RDB）方法的接口，未标注支持向量数据库的接口仅支持关系型数据库。 |
 | [relational_store_error_code.h](capi-relational-store-error-code-h.md) | 声明关系型数据库（RDB）的错误码信息。                        |

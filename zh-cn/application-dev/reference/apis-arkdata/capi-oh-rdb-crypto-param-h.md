@@ -169,7 +169,7 @@ int OH_Crypto_SetEncryptionKey(OH_Rdb_CryptoParam *param, const uint8_t *key, in
 | 参数项                                                  | 描述                                                         |
 | ------------------------------------------------------- | ------------------------------------------------------------ |
 | [OH_Rdb_CryptoParam](capi-rdb-oh-rdb-cryptoparam.md) *param | 表示指向[OH_Rdb_CryptoParam](capi-rdb-oh-rdb-cryptoparam.md)实例的指针。 |
-| const uint8_t *key                                      | 表示指向数组数据的指针。                                     |
+| const uint8_t *key                                      | 表示指向密钥数据的指针。                                     |
 | int32_t length                                          | 表示密钥数组的大小。                                         |
 
 **返回：**
@@ -300,7 +300,7 @@ int OH_Crypto_SetCryptoPageSize(OH_Rdb_CryptoParam *param, int64_t size)
 | 参数项                                                  | 描述                                                         |
 | ------------------------------------------------------- | ------------------------------------------------------------ |
 | [OH_Rdb_CryptoParam](capi-rdb-oh-rdb-cryptoparam.md) *param | 表示指向[OH_Rdb_CryptoParam](capi-rdb-oh-rdb-cryptoparam.md)实例的指针。 |
-| int64_t size                                            | 表示页大小，单位为字节，取值应为2的幂值，最小值为1024，最大值65536。 |
+| int64_t size                                            | 表示页大小，单位为字节，取值应为2的幂值，最小值为1024，最大值为65536。 |
 
 **返回：**
 

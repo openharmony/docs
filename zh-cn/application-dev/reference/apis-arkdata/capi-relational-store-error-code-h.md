@@ -50,7 +50,7 @@ enum OH_Rdb_ErrCode
 | RDB_E_NOT_SUPPORTED = 801                                    | RDB不具备该能力。                                           |
 | RDB_E_ERROR = E_BASE                                         | 常见异常的错误代码。                                        |
 | RDB_E_INVALID_ARGS = (E_BASE + 1)                            | 参数非法。                                                  |
-| RDB_E_CANNOT_UPDATE_READONLY = (E_BASE + 2)                  | 更新只读数据库。                                            |
+| RDB_E_CANNOT_UPDATE_READONLY = (E_BASE + 2)                  | 无法更新只读数据库。                                        |
 | RDB_E_REMOVE_FILE = (E_BASE + 3)                             | 删除文件失败。                                              |
 | RDB_E_EMPTY_TABLE_NAME = (E_BASE + 5)                        | 表名为空。                                                  |
 | RDB_E_EMPTY_VALUES_BUCKET = (E_BASE + 6)                     | 键值对内容为空。                                            |
@@ -71,7 +71,7 @@ enum OH_Rdb_ErrCode
 | RDB_E_INVALID_CONFLICT_FLAG = (E_BASE + 21)                  | 冲突解决类型非法。                                          |
 | RDB_E_HAVING_CLAUSE_NOT_IN_GROUP_BY = (E_BASE + 22)          | HAVING关键字只能用于GROUP BY之后。                           |
 | RDB_E_NOT_SUPPORTED_BY_STEP_RESULT_SET = (E_BASE + 23)       | 不支持step形式数据库结果集。                                |
-| RDB_E_STEP_RESULT_SET_CROSS_THREADS = (E_BASE + 24)          | 结果集查询出错。                                            |
+| RDB_E_STEP_RESULT_SET_CROSS_THREADS = (E_BASE + 24)          | 跨线程使用结果集查询出错。                                  |
 | RDB_E_STEP_RESULT_QUERY_NOT_EXECUTED = (E_BASE + 25)         | 结果集查询语句未被执行。                                    |
 | RDB_E_STEP_RESULT_IS_AFTER_LAST = (E_BASE + 26)              | 结果集的游标已经处于最后一行。                              |
 | RDB_E_STEP_RESULT_QUERY_EXCEEDED = (E_BASE + 27)             | 结果集查询次数已经超过上限。                                |
@@ -97,7 +97,7 @@ enum OH_Rdb_ErrCode
 | RDB_E_WAL_SIZE_OVER_LIMIT = (E_BASE + 47)                    | WAL日志文件大小超过默认值。                                 |
 | RDB_E_CON_OVER_LIMIT = (E_BASE + 48)                         | 数据库连接数已用完。                                        |
 | RDB_E_ALREADY_CLOSED = (E_BASE + 50)                         | 数据库已关闭。<br>**起始版本：** 18                         |
-| RDB_E_DATABASE_BUSY = (E_BASE + 51)                          | 数据库无响应。<br>**起始版本：** 18                         |
+| RDB_E_DATABASE_BUSY = (E_BASE + 51)                          | 数据库繁忙。<br>**起始版本：** 18                         |
 | RDB_E_SQLITE_CORRUPT = (E_BASE + 52)                         | 数据库损坏。<br>**起始版本：** 18                           |
 | RDB_E_SQLITE_PERM = (E_BASE + 53)                            | SQLite错误码：访问权限被拒绝。<br>**起始版本：** 18         |
 | RDB_E_SQLITE_BUSY = (E_BASE + 54)                            | SQLite错误码：数据库文件被锁定。<br>**起始版本：** 18       |

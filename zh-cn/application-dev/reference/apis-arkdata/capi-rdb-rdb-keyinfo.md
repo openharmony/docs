@@ -27,6 +27,6 @@ typedef struct {...} Rdb_KeyInfo
 | 名称                                     | 描述                                                         |
 | ---------------------------------------- | ------------------------------------------------------------ |
 | int count                                | 表示发生变化的主键或者行号的数量。                           |
-| int type                                 | 表示主键或行号的数据类型[OH_ColumnType](capi-oh-data-value-h.md#oh_columntype)。 |
+| int type                                 | 表示主键或行号的类型[OH_ColumnType](capi-oh-data-value-h.md#oh_columntype)。 |
 | [Rdb_KeyData](capi-rdb-rdb-keydata.md)* data | 存放发生变化的具体数据。                                           |
 
