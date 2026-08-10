@@ -33,4 +33,4 @@
 - 融合短距<!--fusion-connectivity-->
   - [融合短距服务开发概述](fusion-connectivity/fusion-connectivity-overview.md)
   - [外设与OpenHarmony设备互通的开发指南](fusion-connectivity/partneragent-life-application-guide.md)
-  - [融合短距术语](fusion-connectivity/terminology.md)
+  - [融合短距术语](fusion-connectivity/fusion-connectivity-terminology.md)
