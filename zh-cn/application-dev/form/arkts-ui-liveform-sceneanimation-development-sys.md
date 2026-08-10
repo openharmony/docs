@@ -54,7 +54,7 @@
 
 ### 约束与限制
 
-除了[动效请求约束](arkts-ui-liveform-sceneanimation.md#动效请求约束)外，互动卡片切换至长时激活态后，还存在如下限制：
+除了[动效请求约束](arkts-ui-liveform-sceneanimation-development.md#动效请求约束)外，互动卡片切换至长时激活态后，还存在如下限制：
 1. 系统限制长时间保持激活态卡片不超过5个，超过5个时将淘汰最早切换为激活态的卡片。
 2. 互动卡片申请动效成功后，满足以下任一条件时会打断当前卡片动效并切换至非激活态：
    - 调用[cancelOverflow](../reference/apis-form-kit/js-apis-app-form-formProvider.md#formprovidercanceloverflow20)接口取消动效。
