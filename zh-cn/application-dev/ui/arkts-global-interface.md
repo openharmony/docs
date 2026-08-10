@@ -63,7 +63,7 @@ UI上下文不明确是指调用ArkUI全局接口时，调用点无法明确识�
 |         @ohos.arkui.inspector         |            getUIInspector             |        组件布局回调        |
 |         @ohos.arkui.observer          |             getUIObserver             |          无感监听          |
 |              @ohos.font               |                getFont                |         自定义字体         |
-|             @ohos.measure             |            getMeasureUtil             |          文本计算          |
+|             @ohos.measure             |            getMeasureUtils             |          文本计算          |
 |           @ohos.mediaquery            |             getMediaQuery             |          媒体查询          |
 |          @ohos.promptAction           |            getPromptAction            |            弹窗            |
 |             @ohos.router              |               getRouter               |          页面路由          |
@@ -75,8 +75,8 @@ UI上下文不明确是指调用ArkUI全局接口时，调用点无法明确识�
 |           TextPickerDialog            |         showTextPickerDialog          |     文本滑动选择器弹窗     |
 |              ContextMenu              |       getContextMenuController        |          菜单控制          |
 | vp2px/px2vp/fp2px/px2fp/lpx2px/px2lpx | vp2px/px2vp/fp2px/px2fp/lpx2px/px2lpx |        像素单位转换        |
-|             focusControl              |            getFocusControl            |          焦点控制          |
-|             cursorControl             |           getCursorControl            |          光标控制          |
+|             focusControl              |            getFocusController            |          焦点控制          |
+|             cursorControl             |           getCursorController            |          光标控制          |
 |              getContext               |            getHostContext             | 获取当前的Ability的Context |
 |        LocalStorage.getShared         |         getSharedLocalStorage         |  获取Ability传递的Storage  |
 |               animateTo               |               animateTo               |          显式动画          |
