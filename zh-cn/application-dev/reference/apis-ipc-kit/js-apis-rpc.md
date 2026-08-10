@@ -3833,7 +3833,7 @@ readRawDataBuffer(size: number): ArrayBuffer
 从MessageSequence读取原始数据。
 
 - 需与写入时的数据大小匹配。
-- 该接口是一次性接口,不允许在一次parcel通信中多次调用。
+- 该接口是一次性接口，不允许在一次parcel通信中多次调用。
 - 大数据量传输时注意系统资源占用。
 - 必须与[writeRawDataBuffer](#writerawdatabuffer11)配对使用。
 

@@ -1261,8 +1261,8 @@ int OH_IPCParcel_WriteFileDescriptor(OHIPCParcel *parcel, int32_t fd)
 - 将文件描述符的副本写入到OHIPCParcel对象中。
 - 写入位置自动后移。
 - 文件描述符信息被序列化存储，可在IPC通信中传递。
-- 调用顺序：先调用[OH_IPCParcel_WriteFileDescriptor](#oh_ipcparcel_writefiledescriptor)写入文件描述符，接收端再调用
-[OH_IPCParcel_ReadFileDescriptor](#oh_ipcparcel_readfiledescriptor)读取。
+- 调用顺序：先调用[OH_IPCParcel_WriteFileDescriptor](#oh_ipcparcel_writefiledescriptor)写入文件描述符。
+- 接收端再调用[OH_IPCParcel_ReadFileDescriptor](#oh_ipcparcel_readfiledescriptor)读取。
 - 未正确配对：如果未按顺序调用或未配对使用，会导致接收端无法获取正确的文件描述符，影响跨进程文件共享和访问。
 - 文件描述符有效性：fd必须为有效的非负整数文件描述符。
 - 资源管理：写入后原文件描述符仍由调用者管理，需自行关闭。
