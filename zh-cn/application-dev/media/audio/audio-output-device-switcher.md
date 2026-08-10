@@ -6,12 +6,13 @@
 <!--Tester: @Filger-->
 <!--Adviser: @w_Machine_cc-->
 
-当应用进行音频输出时，系统将依据音频流类型自动匹配对应的输出设备。如果系统输出设备不满足应用需求，应用可通过`AVCastPicker`或`setDefaultOutputDevice`实现音频输出设备路由切换。
+当应用进行音频输出时，系统将依据音频流类型自动匹配对应的输出设备。如果系统输出设备不满足应用需求，应用可通过`AVCastPicker`或`setDefaultOutputDevice`实现音频输出设备路由切换。在连接音频外设（如蓝牙耳机、有线耳机）的情况下，应用还可通过`setMediaOutputDevice`强制将媒体输出切换到扬声器。
 
 ## 使用场景
 
 1. 若应用需要为用户提供可视化、可交互的音频输出设备切换入口时，可以使用`AVCastPicker`组件，开发者只需在布局中放置该组件，系统会自动检测当前可用的音频输出设备列表，用户点击后即可完成路由切换。
 2. 应用在不同场景下对默认输出设备存在不同要求。例如，语音消息流通常默认从扬声器播放，以便用户直接收听；但在某些私密场景下，应用可能希望将语音消息设置为默认从听筒播放，以保护用户隐私。此时，开发者可使用`setDefaultOutputDevice`接口，灵活更改语音消息的默认输出设备，满足特定业务需求。
+3. 连接蓝牙耳机或有线耳机等外设时，系统优先从外设播放。但某些场景下，应用希望即使外设已连接，仍将媒体音频强制切换到扬声器播放（如实时翻译对话给对方）。从API版本26.0.0开始，开发者可使用`setMediaOutputDevice`接口，在连接外设的情况下强制将媒体输出设备切换为扬声器；需要恢复系统默认路由时，可将设备设置为DEFAULT交还系统决策。
 
 ## 实现媒体流输出设备路由切换
 
@@ -29,17 +30,17 @@
 
 | 名称 | 值 | 说明 |
 | -------- | -------- | -------- |
-| STREAM_USAGE_VOICE_MESSAGE | 5 | 语音消息 |
-| STREAM_USAGE_VOICE_COMMUNICATION | 2 | VoIP 语音通话 |
-| STREAM_USAGE_VIDEO_COMMUNICATION | 17 | VoIP 视频通话 |
+| STREAM_USAGE_VOICE_MESSAGE | 5 | 语音消息。 |
+| STREAM_USAGE_VOICE_COMMUNICATION | 2 | VoIP语音通话。 |
+| STREAM_USAGE_VIDEO_COMMUNICATION | 17 | VoIP视频通话。 |
 
 支持的设备类型:
 
 | 名称 | 值 | 说明 |
 | -------- | -------- | -------- |
-| EARPIECE | 1 | 听筒 |
-| SPEAKER | 2 | 扬声器 |
-| DEFAULT | 1000 | 跟随系统 |
+| EARPIECE | 1 | 听筒。 |
+| SPEAKER | 2 | 扬声器。 |
+| DEFAULT | 1000 | 跟随系统。 |
 
 调用此接口后，系统会记录指定的默认输出设备。当无外接设备连接时，音频流将路由至指定默认输出设备播放；当外设接入时，系统优先从外设播放，外设断开后自动切换至设置的默认输出设备。
 
@@ -141,6 +142,58 @@
        // ...
      }).catch((err: BusinessError) => {
        console.error(`Failed to set default output device. Code: ${err.code}, message: ${err.message}`);
+       // ...
+     });
+   ```
+
+## 连接外设时强制切换媒体输出设备
+
+当系统连接蓝牙耳机或有线耳机等外设时，系统优先从外设播放。从API版本26.0.0开始，应用可使用`AudioSessionManager`的[setMediaOutputDevice](../../reference/apis-audio-kit/arkts-apis-audio-AudioSessionManager.md#setmediaoutputdevice)接口，强制将媒体输出设备切换为扬声器，使音频在连接外设的情况下仍从扬声器播放。
+
+   > **说明：**
+   >
+   > - 本接口仅对媒体流生效，作用于应用内所有媒体流，通话流不受影响。应用需处于前台且有正在运行的媒体流，否则设置不生效且应用退出后自动清除。
+   > - 本接口与[实现媒体流输出设备路由切换](#实现媒体流输出设备路由切换)设置的输出设备会互相覆盖，但不会覆盖[设置默认输出设备](#设置默认输出设备)设置的输出设备，也不清除系统强选设备。如果存在更高优先级的并发播放流或用户手动选择输出设备，可通过监听[CurrentOutputDeviceChangedEvent](../../reference/apis-audio-kit/arkts-apis-audio-i.md#currentoutputdevicechangedevent20)事件获取当前输出设备。
+   > - 无内置扬声器的设备（如智慧屏）上调用本接口强切到扬声器不会生效，但接口调用仍会返回成功，不会抛出错误或触发错误回调。
+
+### 开发步骤
+
+应用可使用`AudioSessionManager`的[setMediaOutputDevice](../../reference/apis-audio-kit/arkts-apis-audio-AudioSessionManager.md#setmediaoutputdevice)接口强制将媒体输出设备切换为扬声器。调用`setMediaOutputDevice`后，如需取消强制切换、恢复系统默认路由规则，可将参数设为`audio.DeviceType.DEFAULT`。
+
+支持的设备类型：
+
+| 名称 | 值 | 说明 |
+| -------- | -------- | -------- |
+| SPEAKER | 2 | 扬声器，强制将媒体输出切换到扬声器。 |
+| DEFAULT | 1000 | 系统默认设备，清除强制切换，恢复系统默认路由规则。 |
+
+   <!-- @[audioSessionManager_setMediaOutputDevice](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/Media/Audio/AudioRoutingAndVolumeSample/entry/src/main/ets/pages/AudioOutputDeviceSwitcher.ets) -->
+   
+   ``` TypeScript
+   import { audio } from '@kit.AudioKit';
+   import { BusinessError } from '@kit.BasicServicesKit';
+   // ...
+   
+   let audioManager = audio.getAudioManager();
+   let audioSessionManager = audioManager.getSessionManager();
+   // ...
+   
+     // 连接蓝牙耳机后，强制将媒体输出设备切换为扬声器。
+     audioSessionManager.setMediaOutputDevice(audio.DeviceType.SPEAKER).then(() => {
+       console.info('Succeeded in setting media output device to speaker.');
+       // ...
+     }).catch((err: BusinessError) => {
+       console.error(`Failed to set media output device. Code: ${err.code}, message: ${err.message}`);
+       // ...
+     });
+     // ...
+   
+     // 取消强制切换，将媒体输出设备选择权交还给系统默认路由规则。
+     audioSessionManager.setMediaOutputDevice(audio.DeviceType.DEFAULT).then(() => {
+       console.info('Succeeded in setting media output device to default.');
+       // ...
+     }).catch((err: BusinessError) => {
+       console.error(`Failed to set media output device. Code: ${err.code}, message: ${err.message}`);
        // ...
      });
    ```
