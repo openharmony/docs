@@ -255,8 +255,8 @@ readPixelsToBufferSync(dst: ArrayBuffer): void
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
-|  401    | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. 3.Parameter verification failed |
-|  501    | Resource Unavailable |
+|  401    | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. 3.Parameter verification failed. |
+|  501    | Resource Unavailable. |
 
 **示例：**
 
@@ -631,8 +631,8 @@ readPixelsSync(area: PositionArea): void
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
-|  401    | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. 3.Parameter verification failed |
-|  501    | Resource Unavailable |
+|  401    | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. 3.Parameter verification failed. |
+|  501    | Resource Unavailable. |
 
 **示例：**
 
@@ -1056,8 +1056,8 @@ writePixelsSync(area: PositionArea): void
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
-|  401    | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. 3.Parameter verification failed |
-|  501    | Resource Unavailable |
+|  401    | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. 3.Parameter verification failed. |
+|  501    | Resource Unavailable. |
 
 **示例：**
 
@@ -1330,8 +1330,8 @@ writeBufferToPixelsSync(src: ArrayBuffer): void
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
-|  401    | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. 3.Parameter verification failed |
-|  501    | Resource Unavailable |
+|  401    | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. 3.Parameter verification failed. |
+|  501    | Resource Unavailable. |
 
 **示例：**
 
@@ -1444,7 +1444,7 @@ getImageInfoSync(): ImageInfo
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
-|  501    | Resource Unavailable |
+|  501    | Resource Unavailable. |
 
 **示例：**
 
@@ -1560,7 +1560,7 @@ setOpacity(value: number): Promise\<void\>
 
 | 参数名   | 类型                 | 必填 | 说明                                                 |
 | -------- | -------------------- | ---- | ---------------------------------------------------------------------------------------------------- |
-| value    | number               | 是   | 不透明度值。取值范围是(0.0, 1.0]，1.0表示完全不透明，数值越接近0.0则透明度越高。                           |
+| value    | number               | 是   | 不透明度的值。取值范围是(0.0, 1.0]，1.0表示完全不透明，数值越接近0.0则透明度越高。                           |
 
 **返回值：**
 
@@ -1618,7 +1618,7 @@ setOpacitySync(value: number): void
 
 | 参数名   | 类型                 | 必填 | 说明                                                 |
 | -------- | -------------------- | ---- | ---------------------------------------------------------------------------------------------------- |
-| value    | number               | 是   | 不透明度值。取值范围是(0.0, 1.0]，1.0表示完全不透明，数值越接近0.0则透明度越高。                           |
+| value    | number               | 是   | 不透明度的值。取值范围是(0.0, 1.0]，1.0表示完全不透明，数值越接近0.0则透明度越高。                           |
 
 **错误码：**
 
@@ -1759,8 +1759,8 @@ opacitySync(rate: number): void
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
-|  401    | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. 3.Parameter verification failed |
-|  501    | Resource Unavailable |
+|  401    | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. 3.Parameter verification failed. |
+|  501    | Resource Unavailable. |
 
 **示例：**
 
@@ -1990,8 +1990,8 @@ createAlphaPixelmapSync(): PixelMap
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
-|  401    | Parameter error. Possible causes: 1.Parameter verification failed |
-|  501    | Resource Unavailable |
+|  401    | Parameter error. Possible causes: 1.Parameter verification failed. |
+|  501    | Resource Unavailable. |
 
 **示例：**
 
@@ -2259,8 +2259,8 @@ scaleSync(x: number, y: number): void
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
-|  401    | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. 3.Parameter verification failed |
-|  501    | Resource Unavailable |
+|  401    | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. 3.Parameter verification failed. |
+|  501    | Resource Unavailable. |
 
 **示例：**
 
@@ -2318,8 +2318,8 @@ scale(x: number, y: number, level: AntiAliasingLevel): Promise\<void>
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
-|  401    | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. 3.Parameter verification failed |
-|  501    | Resource Unavailable |
+|  401    | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. 3.Parameter verification failed. |
+|  501    | Resource Unavailable. |
 
 **示例：**
 
@@ -2367,8 +2367,8 @@ scaleSync(x: number, y: number, level: AntiAliasingLevel): void
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
-|  401    | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. 3.Parameter verification failed |
-|  501    | Resource Unavailable |
+|  401    | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. 3.Parameter verification failed. |
+|  501    | Resource Unavailable. |
 
 **示例：**
 
@@ -2420,8 +2420,8 @@ createScaledPixelMap(x: number, y: number, level?: AntiAliasingLevel): Promise\<
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
-|  401    | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. 3.Parameter verification failed |
-|  501    | Resource Unavailable |
+|  401    | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. 3.Parameter verification failed. |
+|  501    | Resource Unavailable. |
 
 **示例：**
 
@@ -2471,8 +2471,8 @@ createScaledPixelMapSync(x: number, y: number, level?: AntiAliasingLevel): Pixel
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
-|  401    | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. 3.Parameter verification failed |
-|  501    | Resource Unavailable |
+|  401    | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. 3.Parameter verification failed. |
+|  501    | Resource Unavailable. |
 
 **示例：**
 
@@ -2945,8 +2945,8 @@ translateSync(x: number, y: number): void
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
-|  401    | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. 3.Parameter verification failed |
-|  501    | Resource Unavailable |
+|  401    | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. 3.Parameter verification failed. |
+|  501    | Resource Unavailable. |
 
 **示例：**
 
@@ -3201,8 +3201,8 @@ rotateSync(angle: number): void
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
-|  401    | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. 3.Parameter verification failed |
-|  501    | Resource Unavailable |
+|  401    | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. 3.Parameter verification failed. |
+|  501    | Resource Unavailable. |
 
 **示例：**
 
@@ -3449,8 +3449,8 @@ flipSync(horizontal: boolean, vertical: boolean): void
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
-|  401    | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. 3.Parameter verification failed |
-|  501    | Resource Unavailable |
+|  401    | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. 3.Parameter verification failed. |
+|  501    | Resource Unavailable. |
 
 **示例：**
 
@@ -3602,7 +3602,7 @@ function applyCropSync(pixelMap: image.PixelMap) {
 
 crop(region: Region, callback: AsyncCallback\<void>): void
 
-根据输入的尺寸对图片进行裁剪。使用callback异步回调。
+根据输入的区域信息对图片进行裁剪。使用callback异步回调。
 
 > **说明：**
 >
@@ -3642,7 +3642,7 @@ function crop(pixelMap: image.PixelMap) {
 
 crop(region: Region): Promise\<void>
 
-根据输入的尺寸对图片进行裁剪。使用Promise异步回调。
+根据输入的区域信息对图片进行裁剪。使用Promise异步回调。
 
 > **说明：**
 >
@@ -3685,7 +3685,7 @@ function crop(pixelMap: image.PixelMap) {
 
 cropSync(region: Region): void
 
-根据输入的尺寸裁剪图片。同步返回结果。
+根据输入的区域信息对图片进行裁剪。同步返回结果。
 
 > **说明：**
 >
@@ -3707,8 +3707,8 @@ cropSync(region: Region): void
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
-|  401    | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. 3.Parameter verification failed |
-|  501    | Resource Unavailable |
+|  401    | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. 3.Parameter verification failed. |
+|  501    | Resource Unavailable. |
 
 **示例：**
 
@@ -3830,7 +3830,7 @@ applyColorSpace(targetColorSpace: colorSpaceManager.ColorSpaceManager, callback:
 
 | 错误码ID | 错误信息 |
 | ------- | ------------------------------------------|
-| 401     | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. 3.Parameter verification failed |
+| 401     | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. 3.Parameter verification failed. |
 | 62980104| Failed to initialize the internal object. |
 | 62980108| Failed to convert the color space.       |
 | 62980115| Invalid image parameter.            |
@@ -3880,7 +3880,7 @@ applyColorSpace(targetColorSpace: colorSpaceManager.ColorSpaceManager): Promise\
 
 | 错误码ID | 错误信息 |
 | ------- | ------------------------------------------|
-| 401     | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. 3.Parameter verification failed |
+| 401     | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. 3.Parameter verification failed. |
 | 62980104| Failed to initialize the internal object. |
 | 62980108| Failed to convert the color space.       |
 | 62980115| Invalid image parameter.            |
@@ -4094,7 +4094,7 @@ setTransferDetached(detached: boolean): void
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
-|  501    | Resource Unavailable |
+|  501    | Resource Unavailable. |
 
 **示例：**
 
@@ -4210,10 +4210,7 @@ async function marshal() {
     size: { height: 4, width: 6 },
     alphaType: image.AlphaType.UNPREMUL
   };
-  let pixelMap: image.PixelMap | undefined = undefined;
-  await image.createPixelMap(color, opts).then((srcPixelMap: image.PixelMap) => {
-    pixelMap = srcPixelMap;
-  })
+  let pixelMap: image.PixelMap | undefined = await image.createPixelMap(color, opts);
   if (pixelMap != undefined) {
     // 序列化。
     let parcelable: MySequence = new MySequence(pixelMap);
@@ -4302,10 +4299,7 @@ async function unmarshal() {
     size: { height: 4, width: 6 },
     alphaType: image.AlphaType.UNPREMUL
   };
-  let pixelMap: image.PixelMap | undefined = undefined;
-  await image.createPixelMap(color, opts).then((srcPixelMap: image.PixelMap) => {
-    pixelMap = srcPixelMap;
-  })
+  let pixelMap: image.PixelMap | undefined = await image.createPixelMap(color, opts);
   if (pixelMap != undefined) {
     // 序列化。
     let parcelable: MySequence = new MySequence(pixelMap);
@@ -4438,8 +4432,8 @@ YUV和RGB类型互转。使用Promise异步回调。
 | 62980111 | The image source data is incomplete. |
 | 62980115 | Invalid input parameter.              |
 | 62980178 | Failed to create the pixelmap. |
-| 62980274 | The conversion failed |
-| 62980276 | The type to be converted is an unsupported target pixel format|
+| 62980274 | The conversion failed. |
+| 62980276 | The type to be converted is an unsupported target pixel format.|
 
 **示例：**
 
