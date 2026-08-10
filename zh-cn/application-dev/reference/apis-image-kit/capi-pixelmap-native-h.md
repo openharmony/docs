@@ -2004,7 +2004,7 @@ Image_ErrorCode OH_PixelmapNative_SetMemoryName(OH_PixelmapNative *pixelmap, cha
 
 **描述**
 
-设置Pixelmap内存名称，便于在内存调试或问题定位时识别该内存。
+设置Pixelmap的内存标识符，便于在内存调试或问题定位时识别该内存。<br>仅支持DMA和SHARE_MEMORY内存类型的PixelMap设置内存标识符，且SHARE_MEMORY内存的标识符设置仅在鸿蒙内核中支持。
 
 **起始版本：** 13
 
@@ -2013,8 +2013,8 @@ Image_ErrorCode OH_PixelmapNative_SetMemoryName(OH_PixelmapNative *pixelmap, cha
 | 参数项 | 描述 |
 | -- | -- |
 | [OH_PixelmapNative](capi-image-nativemodule-oh-pixelmapnative.md) *pixelmap | 被操作的OH_PixelmapNative指针。 |
-| char *name | 需要被设置的Pixelmap内存名称。DMA内存名字取值范围为[1, 255]，SHARE_MEMORY内存名字取值范围为[1, 244]。单位：字节（Byte）。 |
-| size_t *size | 需要被设置的Pixelmap内存名称的字节大小。DMA内存名字取值范围为[1, 255]，SHARE_MEMORY内存名字取值范围为[1, 244]。单位：字节（Byte）。 |
+| char *name | 需要设置的内存标识符。DMA内存标识符的字符串长度取值范围为[1, 255]字节，SHARE_MEMORY内存标识符的字符串长度长度取值范围为[1, 244]字节。 |
+| size_t *size | 需要设置的内存标识符的字符串长度。单位：字节（Byte）。 |
 
 **返回：**
 
