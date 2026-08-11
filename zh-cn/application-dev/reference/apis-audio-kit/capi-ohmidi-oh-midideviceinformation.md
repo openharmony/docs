@@ -12,7 +12,7 @@ typedef struct {...} OH_MIDIDeviceInformation
 
 ## 概述
 
-设备信息结构体。存储设备ID等相关信息。
+设备信息结构体，用于存储MIDI设备的详细信息，包括设备唯一标识符、设备类型（如USB、BLE）、支持的MIDI协议、设备名称、厂商ID、产品ID及物理地址等。适用于在MIDI设备枚举、识别和连接管理等场景中，获取并传递设备的完整属性信息。
 
 **起始版本：** 24
 
@@ -32,6 +32,6 @@ typedef struct {...} OH_MIDIDeviceInformation
 | char deviceName[256] | 设备名称。<br>**起始版本：** 24 |
 | uint64_t vendorId | 厂商ID。<br>**起始版本：** 24 |
 | uint64_t productId | 产品ID。<br>**起始版本：** 24 |
-| char deviceAddress[64] | 设备物理地址（BLE设备）。<br>**起始版本：** 24 |
+| char deviceAddress[64] | 设备物理地址（仅BLE设备类型时有效）。<br>**起始版本：** 24 |
 
 
