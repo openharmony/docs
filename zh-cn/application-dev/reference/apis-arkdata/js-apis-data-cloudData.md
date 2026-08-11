@@ -133,7 +133,7 @@ onAutoSyncTrigger(observer: Callback&lt;AutoSyncTriggerInfo&gt;): void
 
 | 参数名 | 类型 | 必填 | 说明 |
 |--------|------|------|------|
-| observer | Callback&lt;[AutoSyncTriggerInfo](#autosynctriggerinfo)&gt; | 是 | 回调函数。 |
+| observer | Callback&lt;[AutoSyncTriggerInfo](#autosynctriggerinfo)&gt; | 是 | 回调函数。当满足自动同步触发条件时调用，返回[AutoSyncTriggerInfo](#autosynctriggerinfo)自动同步触发信息。 |
 
 **错误码：**
 
