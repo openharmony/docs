@@ -537,7 +537,7 @@ fetchAlbumCover(callback: AsyncCallback\<image.PixelMap>): void
 
 | 错误码ID | 错误信息                                   |
 | -------- | ------------------------------------------ |
-| 5400102  | Operation not allowed. Return by callback. |
+| 5400102  | Operation not allowed. Returned by callback. |
 | 5400106  | Unsupported format. Returned by callback.  |
 
 **示例：**
