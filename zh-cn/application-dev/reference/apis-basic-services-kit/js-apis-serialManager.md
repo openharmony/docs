@@ -518,7 +518,7 @@ read(portId: number, buffer: Uint8Array, timeout?: number): Promise&lt;number&gt
 |---------|------------|----|------------------|
 | portId | number | 是  | 端口号，来自[getPortList](#serialmanagergetportlist)返回的[SerialPort](#serialport)对象，必须使用getPortList返回的有效端口号，传入无效值时抛出错误码31400003异常。      |
 | buffer  | Uint8Array | 是  | 读取数据的缓冲区，用于存储从串口设备读取的二进制数据。缓冲区大小应根据预期读取的数据量确定。读取成功后，返回值表示实际读取的数据长度。 |
-| timeout | number     | 否  | 超时时间（单位：毫秒）。API在目标端口缓冲区无数据时，等待指定时间后返回。默认值0表示不等待直接返回。传入负数时抛出参数错误异常。取值范围[0, +∞)，具体值需根据设备响应速度和数据量合理设置。 |
+| timeout | number     | 否  | 超时时间（单位：毫秒）。API在写入数据时等待缓冲区可写，在指定时间后返回。默认值0表示不等待直接返回。传入负数时抛出参数错误异常。取值范围[0, +∞)，具体值需根据设备响应速度和数据量合理设置。 |
 
 **返回值：**
 
@@ -631,7 +631,7 @@ readSync(portId: number, buffer: Uint8Array, timeout?: number): number
 |---------|------------|----|------------------|
 | portId  | number | 是  | 端口号，来自[getPortList](#serialmanagergetportlist)返回的[SerialPort](#serialport)对象，必须使用getPortList返回的有效端口号，传入无效值时抛出错误码31400003异常。 |
 | buffer  | Uint8Array | 是  | 读取数据的缓冲区，用于存储从串口设备读取的二进制数据。缓冲区大小应根据预期读取的数据量确定。读取成功后，返回值表示实际读取的数据长度。 |
-| timeout | number     | 否  | 超时时间（单位：毫秒）。API在目标端口缓冲区无数据时，等待指定时间后返回。默认值0表示不等待直接返回。传入负数时抛出参数错误异常。取值范围[0, +∞)，具体值需根据设备响应速度和数据量合理设置。 |
+| timeout | number     | 否  | 超时时间（单位：毫秒）。API在写入数据时等待缓冲区可写，在指定时间后返回。默认值0表示不等待直接返回。传入负数时抛出参数错误异常。取值范围[0, +∞)，具体值需根据设备响应速度和数据量合理设置。 |
 
 **返回值：**
 
@@ -802,15 +802,15 @@ async function writeExample() {
 
   // 异步写入
   try {
-      let writeBuffer: Uint8Array = new Uint8Array(buffer.from('Hello World', 'utf-8').buffer);
-      let size: number = await serialManager.write(portId, writeBuffer, 2000);
-      if (size > 0) {
-        console.info('write usbSerial success, writeBuffer: ' + writeBuffer.toString());
-      }
-    } catch (error) {
-      const err: BusinessError = error as BusinessError;
-      console.error(`Failed to write usbSerial. Code: ${err.code}, message: ${err.message}`);
+    let writeBuffer: Uint8Array = new Uint8Array(buffer.from('Hello World', 'utf-8').buffer);
+    let size: number = await serialManager.write(portId, writeBuffer, 2000);
+    if (size > 0) {
+      console.info('write usbSerial success, writeBuffer: ' + writeBuffer.toString());
     }
+  } catch (error) {
+    const err: BusinessError = error as BusinessError;
+    console.error(`Failed to write usbSerial. Code: ${err.code}, message: ${err.message}`);
+  }
 
   // 关闭串口
   try {
