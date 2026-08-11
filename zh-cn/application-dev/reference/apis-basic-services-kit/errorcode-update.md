@@ -46,7 +46,7 @@
 - `verifyUpgradePackage`
 - `applyNewVersion`
 
-详细信息可参考[开发指南接口文档](../apis-basic-services-kit/js-apis-update-sys.md)。
+详细信息可参考[@ohos.update (升级)(系统接口)](../apis-basic-services-kit/js-apis-update-sys.md)。
 
 ## 调用流程
 
