@@ -6,25 +6,55 @@
 <!--Tester: @mamba-ting-->
 <!--Adviser: @fang-jinxu-->
 
-> **说明：**
+> **说明**
 >
-> 以下仅介绍本模块特有错误码，通用错误码请参考[通用错误码说明文档](../errorcode-universal.md)。
+> 本模块定义了升级服务（Update Service）可能返回的错误码及其处理建议，
+> 主要涵盖调用升级服务接口时出现的 IPC 通信错误等，帮助开发者快速定位和解决系统升级失败、固件更新异常、应用版本管理错误等升级问题。
+>
+> 适用场景：系统升级、固件更新、应用版本管理等，帮助开发者集成升级能力、监控升级状态、处理升级错误，提升系统的可维护性和用户体验。
+>
+> 本文仅介绍升级模块相关的错误码，通用错误码请参考[通用错误码说明文档](../errorcode-universal.md)。
 
-## 11500104 IPC通信异常
+## 错误码列表
 
-**错误信息**
+| 错误码 ID | 错误信息 | 说明 | 可能原因 | 处理建议 |
+| --- | --- | --- | --- | --- |
+| 11500104 | IPC error | 在系统升级、固件更新等场景下调用升级服务接口时出现的 IPC 通信错误。 | 1. 升级服务启动失败或异常退出。<br>2. 服务进程异常崩溃且重新拉起失败。 | 1. 执行 `hidumper -s 3006` 确认升级服务是否在运行。<br>2. 若未启动，重启设备或通过 **设置 > 系统和更新 > 软件更新** 拉起服务。<br>3. 检查 hilog 日志，搜索 `SA:3006` 关键字，分析服务运行状态。<br>4. 若服务正常运行，搜索 `C02E00` 关键字，分析 IPC 通信错误的具体原因。<br>5. 根据分析结果，释放系统资源、检查权限配置、重启相关服务或升级服务进程。 |
 
-IPC error.
+## 说明
 
-**错误描述**
+以下接口在被调用时，可能返回此错误码。这些接口需要升级服务正常运行才能正常工作，如果升级服务未启动或异常退出，可能返回错误码11500104（IPC error）：
 
-调用过程中出现异常。
+- `checkNewVersion`
+- `getNewVersionInfo`
+- `getNewVersionDescription`
+- `getCurrentVersionInfo`
+- `getCurrentVersionDescription`
+- `getTaskInfo`
+- `download`
+- `pauseDownload`
+- `resumeDownload`
+- `upgrade`
+- `clearError`
+- `getUpgradePolicy`
+- `setUpgradePolicy`
+- `terminateUpgrade`
+- `factoryReset`
+- `forceFactoryReset`
+- `deepFactoryReset`
+- `getDeepFactoryResetInfo`
+- `verifyUpgradePackage`
+- `applyNewVersion`
 
-**可能原因**
+详细信息可参考[js-apis-update-sys.md](../apis-basic-services-kit/js-apis-update-sys.md)。
 
-IPC 调用过程中出现异常，接口调用失败。
+## 调用流程
 
-**处理步骤**
-
-1. 检查升级 SA 是否启动，若未启动请启动升级 SA。
-2. 检查 IPC 数据转换是否正常，若异常请检查转换流程。
+```mermaid
+graph LR
+    A[客户端应用] -->|调用接口| B[升级服务进程]
+    B -->|处理请求| C[执行升级操作]
+    C -->|返回结果| A
+    B -->|异常| D[IPC error]
+    D --> E[返回错误码 11500104]
+```
