@@ -53,7 +53,7 @@ show(options?: ShowNotificationOptions): void
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| options | ShowNotificationOptions | 否 | 通知标题。 |
+| options | [ShowNotificationOptions](#shownotificationoptions) | 否 | 通知标题。 |
 
 **示例：**
 ```ts
