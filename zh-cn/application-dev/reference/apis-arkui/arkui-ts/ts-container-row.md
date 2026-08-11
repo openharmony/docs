@@ -148,7 +148,7 @@ justifyContent(value: FlexAlign)
 
 ### reverse<sup>12+</sup>
 
-`reverse(isReversed: Optional<boolean>)`
+reverse(isReversed: Optional<boolean\>)
 
 设置子组件在水平方向上的排列顺序是否反转。设置为true时，子组件按照从右到左的顺序排列；设置为false时，子组件按照从左到右的顺序排列。适用于需要动态调整子组件显示顺序的场景，如国际化布局适配。
 
