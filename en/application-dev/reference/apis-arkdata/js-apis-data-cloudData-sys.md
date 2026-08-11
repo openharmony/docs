@@ -1,4 +1,4 @@
-# @ohos.data.cloudData (Cloud Service) (System API)
+# @ohos.data.cloudData (Device-Cloud Service) (System API)
 <!--Kit: ArkData-->
 <!--Subsystem: DistributedDataManager-->
 <!--Owner: @lvcong_oh-->
