@@ -2531,7 +2531,7 @@ int32_t OH_ArkUI_RegisterLayoutCallbackOnNodeHandle(ArkUI_NodeHandle node,void* 
 | -- | -- |
 | [ArkUI_NodeHandle](capi-arkui-nativemodule-arkui-node8h.md) node | 指定需要注册回调函数的目标节点。 |
 | void* userData | 执行回调函数时传给回调函数的用户自定义参数。 |
-| onLayoutCompleted | 布局完成时的回调函数。 |
+| void (*onLayoutCompleted)(void* userData) | 布局完成时的回调函数。 |
 
 **返回：**
 
@@ -2559,7 +2559,7 @@ int32_t OH_ArkUI_RegisterDrawCallbackOnNodeHandle(ArkUI_NodeHandle node,void* us
 | -- | -- |
 | [ArkUI_NodeHandle](capi-arkui-nativemodule-arkui-node8h.md) node | 指定需要注册回调函数的目标节点。 |
 | void* userData | 执行回调函数时传给回调函数的用户自定义参数。 |
-| onDrawCompleted | 绘制完成时的回调函数。 |
+| void (*onDrawCompleted)(void* userData) | 绘制完成时的回调函数。 |
 
 **返回：**
 
