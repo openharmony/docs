@@ -8,7 +8,7 @@
 场景动效类型互动卡片基础开发指导，可以参考文档[场景动效类型互动卡片开发指导](arkts-ui-liveform-sceneanimation-development.md)。针对系统应用，场景动效类型互动卡片提供了**手势禁用配置**和**卡片长时间保持激活态**两个扩展能力。
 
 ## 手势禁用配置
-针对[场景动效类型互动卡片](arkts-ui-liveform-sceneanimation-overview.md)，若用户在桌面的长按、拖拽等操作会打断当前动效，卡片重新变成非激活态。系统应用可通过form_config.json中[disabledDesktopBehaviors](arkts-ui-widget-configuration.md#sceneanimationparams标签)字段进行配置取消该限制，确保用户在激活态卡片交互热区内操作时，不打断当前卡片动效。不配置时，默认不拦截桌面的任何有效手势操作。手势操作被拦截后，对应的手势事件由LiveFormExtensionAbility响应。
+针对[场景动效类型互动卡片开发指导](arkts-ui-liveform-sceneanimation-development.md)，若用户在桌面的长按、拖拽等操作会打断当前动效，卡片重新变成非激活态。系统应用可通过form_config.json中[disabledDesktopBehaviors](arkts-ui-widget-configuration.md#sceneanimationparams标签)字段进行配置取消该限制，确保用户在激活态卡片交互热区内操作时，不打断当前卡片动效。不配置时，默认不拦截桌面的任何有效手势操作。手势操作被拦截后，对应的手势事件由LiveFormExtensionAbility响应。
 
 ```ts
 // entry/src/main/resources/base/profile/form_config.json
@@ -54,7 +54,7 @@
 
 ### 约束与限制
 
-除了[动效请求约束](arkts-ui-liveform-sceneanimation-overview.md#动效请求约束)外，互动卡片切换至长时激活态后，还存在如下限制：
+除了[动效请求约束](arkts-ui-liveform-sceneanimation-development.md#动效请求约束)外，互动卡片切换至长时激活态后，还存在如下限制：
 1. 系统限制长时间保持激活态卡片不超过5个，超过5个时将淘汰最早切换为激活态的卡片。
 2. 互动卡片申请动效成功后，满足以下任一条件时会打断当前卡片动效并切换至非激活态：
    - 调用[cancelOverflow](../reference/apis-form-kit/js-apis-app-form-formProvider.md#formprovidercanceloverflow20)接口取消动效。
