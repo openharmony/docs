@@ -1020,3 +1020,5 @@ struct ChipGroupMaterialExample {
 }
 
 ```
+
+![](figures/chip-group-material-selected.png)
