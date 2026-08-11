@@ -697,12 +697,12 @@ hdc shell uitest uiRecord read
      "LENGTH": "0", // 总体步长
      "MAX_VEL": "40000", // 最大速度
      "VELO": "0.000000", // 离手速度
-     "W1_BOUNDS": "{"bottom":361,"left":37,"right":118,"top":280}", // 起点控件边界
+     "W1_BOUNDS": "{\"bottom\":361,\"left\":37,\"right\":118,\"top\":280}", // 起点控件边界
      "W1_HIER": "ROOT,3,0,0,0,0,0,0,0,0,5,0,0,0,0,0,0,0", // 起点控件页面层级
      "W1_ID": "", // 起点控件id
      "W1_Text": "", // 起点控件text
      "W1_Type": "Image", // 起点控件类型
-     "W2_BOUNDS": "{"bottom":361,"left":37,"right":118,"top":280}", // 终点控件边界
+     "W2_BOUNDS": "{\"bottom\":361,\"left\":37,\"right\":118,\"top\":280}", // 终点控件边界
      "W2_HIER": "ROOT,3,0,0,0,0,0,0,0,0,5,0,0,0,0,0,0,0", // 终点控件页面层级
      "W2_ID": "", // 终点控件id
      "W2_Text": "", // 终点控件text
