@@ -42,7 +42,7 @@ target_link_libraries(sample PUBLIC libohaudio.so libohaudiosuite.so)
 
    ![OHAudioSuite realtime play](figures/audiosuite-audio-separation-time.png)
 
-开发者可以通过以下步骤来实现一个简单的均衡器效果节点实时预览功能。
+开发者可以通过以下步骤来实现一个简单的均衡器效果节点实时预览功能。此处以均衡器效果为例演示实时预览流程，其他效果节点的详细说明请参考[音频效果(C/C++)](audio-suite-effects.md)。
 
 1. 在初始化时，创建[OHAudioSuite](../../reference/apis-audio-kit/capi-ohaudiosuite.md)管线（包括输入节点、均衡器节点、输出节点）。
   
