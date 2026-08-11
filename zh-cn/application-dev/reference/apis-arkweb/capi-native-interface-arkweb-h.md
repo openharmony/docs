@@ -8,7 +8,7 @@
 
 ## 概述
 
-native_interface_arkweb.h是ArkWeb Native API的核心入口头文件，定义了应用与ArkWeb引擎交互所需的枚举、结构体和NDK函数接口，涵盖JavaScript执行与代理注入、Cookie管理、无白屏加载控制、内核版本选择等功能。
+native_interface_arkweb.h是ArkWeb Native API的核心入口头文件，定义了应用与ArkWeb引擎交互所需的枚举、结构体和NDK函数接口，涵盖JavaScript执行与代理注入、Cookie管理、无白屏加载控制、内核版本选择等功能。该模块适用于需要通过Native方式与Web组件进行深度交互的场景，解决了ArkWeb组件的复杂能力（如JavaScript双向通信、Cookie持久化、内核版本切换）在ArkTS层无法直接调用的技术难题，为开发者提供了完整的底层控制能力，能够实现高性能、可定制的Web组件功能。
 
 **引用文件：** <web/native_interface_arkweb.h>
 
@@ -189,7 +189,7 @@ void OH_NativeArkWeb_RunJavaScript(const char* webTag, const char* jsCode, Nativ
 
 **描述：**
 
-在当前显示页面的环境下，加载并异步执行一段JavaScript代码。
+在当前显示页面的环境下，加载并异步执行一段JavaScript代码。此函数应在主线程中调用。**使用场景**：需要在Native层动态修改页面内容、获取页面运行时信息、与页面JavaScript交互时使用，例如获取表单数据、执行自定义脚本等。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -212,7 +212,7 @@ void OH_NativeArkWeb_RegisterJavaScriptProxy(const char* webTag, const char* obj
 
 **描述：**
 
-注册对象及函数名称列表。
+注册对象及函数名称列表，用于向Web页面注入Native对象，实现应用侧与前端页面的双向通信。用于Web页面调用Native功能、Native代码控制Web页面行为、混合应用中的跨层交互等场景。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -238,7 +238,7 @@ void OH_NativeArkWeb_UnregisterJavaScriptProxy(const char* webTag, const char* o
 
 **描述：**
 
-删除已注册的对象及其下的回调函数。
+删除已注册的对象及其下的回调函数，用于清理不再需要的JavaScript注入对象。典型使用场景：页面销毁时清理注入对象、功能模块卸载时移除对应的Native接口、防止内存泄漏等场景。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -260,7 +260,7 @@ void OH_NativeArkWeb_SetJavaScriptProxyValidCallback(const char* webTag, NativeA
 
 **描述：**
 
-设置对象可注册时的回调函数。
+设置对象可注册时的回调函数。需要在JavaScript代理对象成功注册后执行特定逻辑时使用，例如注册成功后通知页面或记录日志。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -309,7 +309,7 @@ void OH_NativeArkWeb_SetDestroyCallback(const char* webTag, NativeArkWeb_OnDestr
 
 **描述：**
 
-设置Web组件销毁时的回调函数。
+设置Web组件销毁时的回调函数。典型使用场景：需要在Web组件销毁时释放资源、清理状态或执行收尾操作时使用，例如释放JavaScript代理对象、取消网络请求、关闭文件句柄等。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -358,7 +358,7 @@ ArkWeb_ErrorCode OH_NativeArkWeb_LoadData(const char* webTag, const char* data, 
 
 **描述：**
 
-加载数据或URL，此函数应在主线程中调用。
+加载数据或URL，此函数应在主线程中调用。典型使用场景：从网络或本地文件加载页面内容、动态生成HTML内容并显示、实现离线页面展示、自定义页面渲染等。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -373,24 +373,24 @@ ArkWeb_ErrorCode OH_NativeArkWeb_LoadData(const char* webTag, const char* data, 
 | const char* data | "Base64"或"URL"编码的字符串，不能为空。 |
 | const char* mimeType | 媒体类型，例如"text/html"，不能为空。 |
 | const char* encoding | 编码类型，例如"UTF-8"，不能为空。 |
-| const char* baseUrl | 指定的URL路径("http"/"https"/"data"协议),由Web组件分配给window.origin。 |
+| const char* baseUrl | 指定的URL路径("http"/"https"/"data"协议)，由Web组件分配给window.origin。 |
 | const char* historyUrl | 历史URL，当它不为空时，可以通过历史记录来管理，实现前进和后退功能。 |
 
 **返回：**
 
 | 类型                                                               | 说明                                                                                                                                                                                                                                                                                                                         |
 |------------------------------------------------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| [ArkWeb_ErrorCode](capi-arkweb-error-code-h.md#arkweb_errorcode) | LoadData 错误码。<br>         [ARKWEB_SUCCESS](capi-arkweb-error-code-h.md#arkweb_errorcode) 加载数据成功。<br>         [ARKWEB_INVALID_PARAM](capi-arkweb-error-code-h.md#arkweb_errorcode) 必填参数未指定或参数类型不正确或参数校验失败。<br>         [ARKWEB_INIT_ERROR](capi-arkweb-error-code-h.md#arkweb_errorcode) 初始化失败，根据传入的"webTag"找不到有效的Web组件。<br>         [ARKWEB_LIBRARY_OPEN_FAILURE](capi-arkweb-error-code-h.md#arkweb_errorcode) 打开动态链接库失败。<br>         [ARKWEB_LIBRARY_SYMBOL_NOT_FOUND](capi-arkweb-error-code-h.md#arkweb_errorcode) 动态链接库中未找到所需的符号。 |
+| [ArkWeb_ErrorCode](capi-arkweb-error-code-h.md#arkweb_errorcode) | OH_NativeArkWeb_LoadData 错误码。<br>         [ARKWEB_SUCCESS](capi-arkweb-error-code-h.md#arkweb_errorcode) 加载数据成功。<br>         [ARKWEB_INVALID_PARAM](capi-arkweb-error-code-h.md#arkweb_errorcode) 必填参数未指定或参数类型不正确或参数校验失败。<br>         [ARKWEB_INIT_ERROR](capi-arkweb-error-code-h.md#arkweb_errorcode) 初始化失败，根据传入的"webTag"找不到有效的Web组件。<br>         [ARKWEB_LIBRARY_OPEN_FAILURE](capi-arkweb-error-code-h.md#arkweb_errorcode) 打开动态链接库失败。请检查库文件路径是否正确、库文件是否损坏、是否有足够的访问权限。<br>         [ARKWEB_LIBRARY_SYMBOL_NOT_FOUND](capi-arkweb-error-code-h.md#arkweb_errorcode) 动态链接库中未找到所需的符号。 |
 
 ### OH_NativeArkWeb_RegisterAsyncThreadJavaScriptProxy()
 
 ```c
-void OH_NativeArkWeb_RegisterAsyncThreadJavaScriptProxy(const char* webTag,const ArkWeb_ProxyObjectWithResult* proxyObject, const char* permission)
+void OH_NativeArkWeb_RegisterAsyncThreadJavaScriptProxy(const char* webTag, const ArkWeb_ProxyObjectWithResult* proxyObject, const char* permission)
 ```
 
 **描述：**
 
-注册一个包含回调方法的 JavaScript 对象，这些方法可带有返回值。该对象将被注入到当前页面的所有frame中，包括所有的 iframe，并且可以通过在 ArkWeb_ProxyObjectWithResult 中指定的名称进行访问。该对象只会在下一次加载或重新加载页面后在 JavaScript 中生效。这些方法将在 ArkWeb 的工作线程中执行。
+注册一个包含回调方法的 JavaScript 对象，这些方法可带有返回值。该对象将被注入到当前页面的所有frame中，包括所有的 iframe，并且可以通过在 ArkWeb_ProxyObjectWithResult 中指定的名称进行访问。该对象只会在下一次加载或重新加载页面后在 JavaScript 中生效。这些方法将在 ArkWeb 的工作线程中执行。典型使用场景：可在工作线程中处理JavaScript调用并返回结果时使用。例如执行耗时计算、异步任务处理、复杂业务逻辑处理等场景，避免阻塞主线程。
 
 **起始版本：** 20
 
@@ -411,7 +411,7 @@ ArkWeb_ErrorCode OH_ArkWebCookieManager_SaveCookieSync()
 
 **描述：**
 
-将当前可通过CookieManager API访问的所有cookies持久化到磁盘。如果要在非UI线程中使用此接口，则需要先使用[OH_ArkWeb_GetNativeAPI](capi-arkweb-interface-h.md#oh_arkweb_getnativeapi)初始化CookieManager接口。
+将当前可通过CookieManager API访问的所有cookie持久化到磁盘。如果要在非UI线程中使用此接口，则需要先使用[OH_ArkWeb_GetNativeAPI](capi-arkweb-interface-h.md#oh_arkweb_getnativeapi)初始化CookieManager接口。典型使用场景：可在应用退出或特定时机保存cookie状态时使用。例如保存用户登录状态、应用配置信息、会话数据等，确保应用重启后能够恢复之前的状态。
 
 **起始版本：** 20
 
@@ -419,7 +419,7 @@ ArkWeb_ErrorCode OH_ArkWebCookieManager_SaveCookieSync()
 
 | 类型 | 说明 |
 | -- | -- |
-| [ArkWeb_ErrorCode](capi-arkweb-error-code-h.md#arkweb_errorcode) | SaveCookieSync错误码。<br> [ARKWEB_SUCCESS](capi-arkweb-error-code-h.md#arkweb_errorcode) 保存cookies成功。<br> [ARKWEB_COOKIE_SAVE_FAILED](capi-arkweb-error-code-h.md#arkweb_errorcode) 保存cookies失败。<br> [ARKWEB_COOKIE_MANAGER_INITIALIZE_FAILED](capi-arkweb-error-code-h.md#arkweb_errorcode) CookieManager初始化失败。<br> [ARKWEB_COOKIE_MANAGER_NOT_INITIALIZED](capi-arkweb-error-code-h.md#arkweb_errorcode) 在非UI线程中，不允许在不初始化CookieManager接口的情况下调用该接口。请先使用[OH_ArkWeb_GetNativeAPI](capi-arkweb-interface-h.md#oh_arkweb_getnativeapi)初始化CookieManager接口。 |
+| [ArkWeb_ErrorCode](capi-arkweb-error-code-h.md#arkweb_errorcode) | OH_ArkWebCookieManager_SaveCookieSync 错误码。请检查磁盘空间是否充足、是否有写入权限、cookie数据格式是否正确。<br> [ARKWEB_SUCCESS](capi-arkweb-error-code-h.md#arkweb_errorcode) 保存cookie成功。<br> [ARKWEB_COOKIE_SAVE_FAILED](capi-arkweb-error-code-h.md#arkweb_errorcode) 保存cookie失败。<br> [ARKWEB_COOKIE_MANAGER_INITIALIZE_FAILED](capi-arkweb-error-code-h.md#arkweb_errorcode) CookieManager初始化失败。<br> [ARKWEB_COOKIE_MANAGER_NOT_INITIALIZED](capi-arkweb-error-code-h.md#arkweb_errorcode) 在非UI线程中，不允许在不初始化CookieManager接口的情况下调用该接口。请先使用[OH_ArkWeb_GetNativeAPI](capi-arkweb-interface-h.md#oh_arkweb_getnativeapi)初始化CookieManager接口。 |
 
 ### OH_ArkWebCookieManager_SaveCookieAsync()
 
@@ -429,7 +429,7 @@ void OH_ArkWebCookieManager_SaveCookieAsync(OH_ArkWeb_OnCookieSaveCallback callb
 
 **描述：**
 
-将当前可通过CookieManager API访问的所有cookies持久化到磁盘。在不初始化CookieManager接口的情况下，此接口将在UI线程上自动执行。
+将当前可通过CookieManager API访问的所有cookie持久化到磁盘。如果要在非UI线程中使用此接口，则需要先使用[OH_ArkWeb_GetNativeAPI](capi-arkweb-interface-h.md#oh_arkweb_getnativeapi)初始化CookieManager接口；在不初始化CookieManager接口的情况下，此接口将在UI线程上自动执行。典型使用场景：需要异步保存cookie状态时使用，例如在页面加载完成、用户操作完成后异步保存cookie，避免阻塞主线程。
 
 **起始版本：** 20
 
@@ -437,7 +437,7 @@ void OH_ArkWebCookieManager_SaveCookieAsync(OH_ArkWeb_OnCookieSaveCallback callb
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_ArkWeb_OnCookieSaveCallback](#oh_arkweb_oncookiesavecallback) callback | 保存cookies完成后执行该回调。 |
+| [OH_ArkWeb_OnCookieSaveCallback](#oh_arkweb_oncookiesavecallback) callback | 保存cookie成功或失败后执行该回调。传入callback时使用回调方式异步接收操作结果，适用于需要异步通知保存结果的场景；不传入时根据具体实现可能有不同的行为。 |
 ### OH_NativeArkWeb_GetBlanklessInfoWithKey()
 
 ```c
@@ -546,7 +546,7 @@ uint32_t OH_NativeArkWeb_SetBlanklessLoadingCacheCapacity(uint32_t capacity)
 
 **描述：**
 
-设置无白屏加载方案的持久化缓存容量，返回实际生效值。默认缓存容量为30MB，最大值为100MB。当实际缓存超过容量时，将采用淘汰不常用的过渡帧的方式清理。
+设置无白屏加载方案的持久化缓存容量，返回实际生效值。默认缓存容量为30MB，最大值为100MB。当实际缓存超过容量时，将采用淘汰不常用的过渡帧的方式清理。典型使用场景：根据应用内存占用情况调整缓存大小、优化存储空间使用、平衡无白屏效果与系统资源消耗等。
 
 **使用场景：**
 
@@ -635,12 +635,12 @@ void OH_NativeArkWeb_LazyInitializeWebEngineInCookieManager(bool lazy)
 
 **描述：**
 
-设置是否延后初始化ArkWeb内核，不调用该方法时，默认不延后初始化ArkWeb内核。
+设置是否延后初始化ArkWeb内核，不调用该方法时，默认不延后初始化ArkWeb内核。典型使用场景：应用启动时暂不需要使用Web功能，希望延迟内核初始化以节省启动资源；应用只需要使用CookieManager而暂时不需要Web组件渲染等。该接口为全局静态方法，须在使用ArkWeb组件和初始化ArkWeb内核前调用，否则该设置无效。
 
 > **说明：**
 >
 > - 该接口为全局静态方法，须在使用ArkWeb组件和初始化ArkWeb内核前调用，否则该设置无效。
-> - 该接口仅适用于调用后会初始化CookieManager的接口，比如[ArkWeb_CookieManagerAPI](capi-web-arkweb-cookiemanagerapi.md)的接口。调用本接口后，再调用适用的接口，会在初始化CookieManager时跳过初始化ArkWeb内核，后续需自行初始化ArkWeb内核。
+> - 该接口仅适用于调用后会初始化CookieManager的接口，比如[ArkWeb_CookieManagerAPI](capi-web-arkweb-cookiemanagerapi.md)模块中的接口。调用本接口后，再调用适用的接口，会在初始化CookieManager时跳过初始化ArkWeb内核，后续需自行初始化ArkWeb内核。
 
 **起始版本：** 22
 

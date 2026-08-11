@@ -195,7 +195,7 @@ accessForward(): boolean
 
 accessStep(step: number): boolean
 
-当前页面是否可前进或者后退给定的step步。
+检查当前页面是否可前进或者后退给定的step步。
 
 > **说明：**
 >
@@ -213,7 +213,7 @@ accessStep(step: number): boolean
 
 | 类型      | 说明        |
 | ------- | --------- |
-| boolean | 页面是否前进或后退 |
+| boolean | 页面是否可以前进或后退给定的step步。true表示可以，false为不可以。 |
 
 **示例：**
 
@@ -242,7 +242,7 @@ accessStep(step: number): boolean
 
 backward()
 
-按照历史栈，后退一个页面。一般结合accessBackward一起使用。
+按照历史栈，后退一个页面。建议在调用backward前先调用[accessBackward<sup>9+</sup>](./arkts-apis-webview-WebviewController.md#accessbackward)检查当前页面是否可后退。
 
 > **说明：**
 >
@@ -275,7 +275,7 @@ backward()
 
 forward()
 
-按照历史栈，前进一个页面。一般结合accessForward一起使用。
+按照历史栈，前进一个页面。建议在调用forward前先调用[accessForward<sup>9+</sup>](./arkts-apis-webview-WebviewController.md#accessforward)检查当前页面是否可前进。
 
 > **说明：**
 >
@@ -404,10 +404,10 @@ baseUrl为空时，通过“data”协议加载指定的一段字符串。
 
 | 参数名        | 类型   | 必填   | 说明                                     |
 | ---------- | ------ | ---- | ---------------------------------------- |
-| data       | string | 是   | 按照“Base64”或者“URL”编码后的一段字符串。              |
+| data       | string | 是   | 加载的字符串数据。处理方式与baseUrl协议相关：baseUrl为空或“data”协议时，按“Base64”或“URL”编码进行解码加载；为“http/https”协议时，作为未编码的普通HTML字符串直接加载。              |
 | mimeType   | string | 是   | 媒体类型（MIME）。                              |
-| encoding   | string | 是   | 编码类型，具体为“Base64”或者“URL”编码。                |
-| baseUrl    | string | 否   | 指定的一个URL路径（“http”/“https”/“data”协议），并由Web组件赋值给`window.origin`。默认值为空字符串。 |
+| encoding   | string | 是   | 编码类型，支持“Base64”、“URL”或字符集编码（如“UTF-8”）。当data参数为未编码的HTML字符串时，应使用字符集编码；当data参数为已编码的字符串时，应使用“Base64”或“URL”。                |
+| baseUrl    | string | 否   | 指定的一个URL路径（“http”/“https”/“data”协议），并由Web组件赋值给`window.origin`。为空时通过“data”协议加载字符串。默认值为空字符串。 |
 | historyUrl | string | 否   | 历史记录URL。默认值为空字符串。非空时，可被历史记录管理，实现前进后退功能。当baseUrl为空时，此属性无效。 |
 
 **示例：**
@@ -456,7 +456,7 @@ loadUrl(options: { url: string | Resource, headers?: Array\<Header\> })
 | 参数名     | 类型                       | 必填  | 说明           |
 | -------- | -------------------------- | ---- | -------------- |
 | url      | string \| Resource                     | 是  | 需要加载的 URL。     |
-| headers  | Array\<[Header](./arkts-basic-components-web-i.md#header)\> | 否    | URL的附加HTTP请求头。<br>默认值：[]。 |
+| headers  | Array\<[Header](./arkts-basic-components-web-i.md#header)\> | 否    | URL的附加HTTP请求头，用于自定义请求行为（如设置身份验证信息、指定内容类型、添加用户代理等）。当需要在请求中携带额外信息时传入。不传入时使用默认值（空数组），不携带额外HTTP请求头。 |
 
 **示例：**
 
@@ -634,7 +634,7 @@ registerJavaScriptProxy(options: { object: object, name: string, methodList: Arr
 
 | 参数名        | 类型            | 必填  | 说明                                     |
 | ---------- | --------------- | ---- | ---------------------------------------- |
-| object     | object          | 是    | 参与注册的应用侧JavaScript对象。可以声明方法，也可以声明属性，但是不支持h5直接调用。其中方法的参数和返回类型只能为string，number，boolean |
+| object     | object          | 是    | 参与注册的应用侧JavaScript对象。可以声明方法，也可以声明属性，但是不支持h5直接调用。其中方法的参数和返回类型只能为string、number、boolean。 |
 | name       | string          | 是    | 注册对象的名称，与window中调用的对象名一致。注册后window对象可以通过此名字访问应用侧JavaScript对象。 |
 | methodList | Array\<string\> | 是    | 参与注册的应用侧JavaScript对象的方法。                 |
 
@@ -678,7 +678,7 @@ registerJavaScriptProxy(options: { object: object, name: string, methodList: Arr
   }
   ```
 
-  加载的html文件。
+  加载的HTML文件。
   ```html
   <!-- index.html -->
   <!DOCTYPE html>
@@ -716,7 +716,7 @@ runJavaScript(options: { script: string, callback?: (result: string) => void })
 | 参数名      | 类型                     | 必填 | 说明                                     |
 | -------- | ------------------------ | ---- | ---------------------------------------- |
 | script   | string                   | 是   | JavaScript脚本。                            |
-| callback | (result: string) => void | 否   | 回调执行JavaScript脚本结果。JavaScript脚本若执行失败或无返回值时，返回null。不传入时不进行回调。 |
+| callback | (result: string) => void | 否   | 回调执行JavaScript脚本结果。JavaScript脚本若执行失败或无返回值时，返回null。当callback参数不传入时不进行回调。 |
 
 **示例：**
 
@@ -735,7 +735,7 @@ runJavaScript(options: { script: string, callback?: (result: string) => void })
         .onPageEnd((event) => {
           this.controller.runJavaScript({
             script: 'test()',
-            callback: (result: string)=> {
+            callback: (result: string) => {
               this.webResult = result
               console.info(`The test() return value is: ${result}`)
             }})
@@ -747,7 +747,7 @@ runJavaScript(options: { script: string, callback?: (result: string) => void })
     }
   }
   ```
-  加载的html文件。
+  加载的HTML文件。
   ```html
   <!-- index.html -->
   <!DOCTYPE html>
