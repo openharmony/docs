@@ -130,7 +130,7 @@
         }
         this.connectPromise = new Promise((resolve) => {
           let option: socket.SppOptions = {
-            uuid: '00009999-0000-1000-8000-00805F9B34FB',
+            uuid: '00009999-0000-1000-8000-00805F9B34FB', // UUID of the server to connect to, ensure server support,
             secure: false,
             type: socket.SppType.SPP_RFCOMM
           };
@@ -297,4 +297,3 @@
       }
     }
     ```
-注意：请勿频繁建立连接，可能会影响功能。
