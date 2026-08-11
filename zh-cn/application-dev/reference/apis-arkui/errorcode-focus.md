@@ -18,7 +18,7 @@ the component cannot be focused.
 
 **错误描述**
 
-当前节点无法获得焦点。
+当前节点无法获得焦点。该错误码为string类型。
 
 **可能原因**
 
@@ -36,7 +36,7 @@ This component has an unfocusable ancestor.
 
 **错误描述**
 
-当前节点对应的祖先节点中存在无法获焦节点。
+当前节点对应的祖先节点中存在无法获焦节点。该错误码为string类型。
 
 **可能原因**
 
@@ -54,7 +54,7 @@ the component is not on tree or does not exist.
 
 **错误描述**
 
-传入的id指向不存在或未挂树的节点。
+传入的id指向不存在或未挂树的节点。该错误码为string类型。
 
 **可能原因**
 
