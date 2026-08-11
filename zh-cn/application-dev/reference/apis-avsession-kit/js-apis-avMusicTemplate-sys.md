@@ -42,7 +42,7 @@ createAVMusicTemplateController(sessionId: string): AVMusicTemplateController
 
 | 参数名    | 类型   | 必填 | 说明                          |
 | --------- | ------ | ---- | ----------------------------- |
-| sessionId | string | 是   | AVSession 对象唯一的会话标识。 |
+| sessionId | string | 是   | AVSession对象唯一的会话标识。 |
 
 **返回值：**
 
