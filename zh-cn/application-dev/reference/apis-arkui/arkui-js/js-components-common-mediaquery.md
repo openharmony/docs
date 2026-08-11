@@ -25,7 +25,7 @@
 
 使用@media来引入查询语句，具体规则如下：
 
-```ts
+```css
 @media [media-type] [and|not|only] [(media-feature)] {
   CSS-Code;
 }
@@ -44,13 +44,13 @@
 
 通过@import方式引入媒体查询，具体使用方法如下：
 
-```ts
+```css
 @import url [media-type] [and|not|only] [(media-feature)];
 ```
 
 例如：
 
-```ts
+```css
 @import '../common/style.css' screen and (min-width: 600) and (max-width: 1200);
 ```
 
@@ -109,6 +109,7 @@
 | min-device-height      | 设备的最小高度。                                 |
 | max-device-height      | 设备的最大高度。                                 |
 | device-width           | 设备的宽度。                                   |
+| device-type            | 设备的类型。<br/>支持的取值包括：default、phone、tablet、tv、car、wearable、2in1。 |
 | min-device-width       | 设备的最小宽度。                                 |
 | max-device-width       | 设备的最大宽度。                                 |
 | round-screen           | 屏幕类型，圆形屏幕为true，&nbsp;非圆形屏幕为&nbsp;false。  |
