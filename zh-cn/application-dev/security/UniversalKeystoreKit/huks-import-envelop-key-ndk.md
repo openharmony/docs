@@ -1,4 +1,4 @@
-# 数字信封密钥(C/C++)
+# 数字信封导入密钥(C/C++)
 
 <!--Kit: Universal Keystore Kit-->
 <!--Subsystem: Security-->

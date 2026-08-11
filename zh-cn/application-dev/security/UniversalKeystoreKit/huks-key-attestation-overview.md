@@ -20,7 +20,7 @@ HUKS为密钥提供合法性证明能力，主要应用于非对称密钥的公�
 
 从API 23开始支持[群组密钥](huks-group-key-overview.md)特性。
 
-密钥证明扩展域段为Asn.1 DER标准编码格式，数据结构定义如下：
+密钥证明扩展域段为ASN.1 DER标准编码格式，数据结构定义如下：
 ```asn1
 KeyAttestation ::= SEQUENCE {
   version            AttestationVersion DEFAULT v1,
