@@ -12,7 +12,7 @@ The **adminManager** module provides administrator permission management capabil
 >
 > The initial APIs of this module are supported since API version 9. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 >
-> The APIs of this module are available only to [MDM applications](../../mdm/mdm-kit-term.md#mdm-application-device-administrator-application).
+> The APIs of this module are available only to [MDM applications](../../mdm/mdm-kit-term.md#mdm-app).
 > 
 > This topic describes only system APIs provided by the module. For details about its public APIs, see [@ohos.enterprise.adminManager](js-apis-enterprise-adminManager.md).
 
