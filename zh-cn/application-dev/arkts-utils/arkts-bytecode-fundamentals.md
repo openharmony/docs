@@ -34,7 +34,7 @@
 
 **约束**
 
-* 本文中所有采用代码形式描述的内容均遵循[ArkTS语言规范](../quick-start/introduction-to-arkts.md)。
+* 本文中所有采用代码形式描述的内容均遵循[ArkTS语法](../quick-start/arkts-language-guide-basics.md)。
 * 本文仅适用于版本号为12.0.6.0的方舟字节码（版本号为方舟编译器内部保留字段，开发者无需关注）。
 
 ### 字节码构成
