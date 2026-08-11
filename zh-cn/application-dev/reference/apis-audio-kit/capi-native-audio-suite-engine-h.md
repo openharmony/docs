@@ -1398,6 +1398,7 @@ OH_AudioSuite_Result OH_AudioSuite_PrintInfo(OH_AudioSuiteEngine* audioSuiteEngi
 | -- | -- |
 | [OH_AudioSuite_Result](capi-native-audio-suite-base-h.md#oh_audiosuite_result) | AUDIOSUITE_SUCCESS：函数执行成功。<br>         AUDIOSUITE_ERROR_INVALID_PARAM：参数为nullptr或无效值。<br>         AUDIOSUITE_ERROR_SYSTEM：系统存在其他异常。 |
 <!--Del-->
+
 ### OH_AudioSuiteEngineSystem_SetNodeParam()
 
 ```c

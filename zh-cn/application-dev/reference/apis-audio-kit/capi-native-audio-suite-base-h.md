@@ -145,7 +145,7 @@ enum OH_AudioSuite_PipelineWorkMode
 | 枚举项 | 描述 |
 | -- | -- |
 | AUDIOSUITE_PIPELINE_EDIT_MODE = 1 | 编辑模式，管线处于该工作模式下可创建多种效果节点进行音频处理。 |
-| AUDIOSUITE_PIPELINE_REALTIME_MODE = 2 | 实时预览模式，即在音频处理过程中实时预览已处理的音频。<br> 在API version 23之前，实时预览模式下，管线仅支持均衡器效果处理；在API version 23及以后，实时预览模式下，支持所有效果节点。 |
+| AUDIOSUITE_PIPELINE_REALTIME_MODE = 2 | 实时预览模式，即在音频处理过程中实时预览已处理的音频。<br> 在API version 23之前，实时预览模式下管线仅支持均衡器效果节点；<br> 在API version 23及以后，实时预览模式下管线支持所有效果节点。 |
 
 ### OH_AudioSuite_PipelineState
 

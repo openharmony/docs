@@ -92,10 +92,6 @@
     - [OH_AudioStreamBuilderStruct](capi-ohaudio-oh-audiostreambuilderstruct.md)
     - [OH_AudioRendererStruct](capi-ohaudio-oh-audiorendererstruct.md)
     - [OH_AudioCapturerStruct](capi-ohaudio-oh-audiocapturerstruct.md)
-    <!--Del-->
-    - [OH_AudioConverter_Format](capi-ohaudiosuite-oh-audioconverter-format.md)
-    - [OH_AudioConverterStruct](capi-ohaudiosuite-oh-audioconverterstruct.md)
-    <!--DelEnd-->
     - [OH_AudioFormat](capi-ohaudiosuite-oh-audioformat.md)
     <!--Del-->
     - [OH_AudioSuite_SystemNodeFormat](capi-ohaudiosuite-oh-audiosuite-systemnodeformat.md)
