@@ -10,8 +10,12 @@
 >
 > - 模块维护策略：
 >   - 对于Lite Wearable设备类型，该模块长期维护，正常使用。
->   - 对于支持该模块的其他设备类型，该模块从API Version 10开始不再维护，推荐使用新接口[`@ohos.file.fs`](js-apis-file-fs.md)。
+>   - 对于支持该模块的其他设备类型，该模块从API Version 10开始不再维护，推荐使用新接口[@ohos.file.fs](js-apis-file-fs.md)。
 > - 本模块首批接口从API version 3开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
+
+以下ArkTS示例URI说明：
+  1. URI只能是internal://app/xxx格式。
+  2. `internal://app/`为固定前缀，表示应用根目录，`xxx`为开发者自行创建的目录或文件名。
 
 ## 导入模块
 
@@ -1380,7 +1384,7 @@ export default {
 | uri | string | 否 | 否 | 本地文件URI。由于轻量级穿戴设备底层文件系统的限制，该值必须满足以下要求：<br/>1. URI 中不得包含以下特殊字符：\\"*+,:;<=>?[]\\|\x7F等。<br/>2. 最大允许字符长度为128个字符。 |
 | encoding | string | 否 | 是 | 编码格式，缺省为UTF-8。 |
 | position | number | 否 | 是 | 读取的起始位置，单位为Byte，默认为文件的起始位置。 |
-| length | number | 否 | 是 | 读取的长度，单位为Byte，默认值为4096。 |
+| length | number | 否 | 是 | 读取的长度，取值范围为[1, 4096]，单位为Byte。参数为空时，默认值为4096。 |
 | success | (data: FileReadTextResponse) => void | 否 | 是 | 接口调用成功的回调函数。data为[FileReadTextResponse](#filereadtextresponse)。 |
 | fail | (data: string, code: number) => void | 否 | 是 | 接口调用失败的回调函数。<br/>data为错误信息。<br/>code为可能返回的错误码：<br/>202：出现参数错误。<br/>300：出现I/O错误。<br/>301：文件或目录不存在。<br/>302：要读取的文件内容超过4KB。 |
 | complete | () => void | 否 | 是 | 接口调用结束的回调函数。 |

@@ -125,7 +125,7 @@ XComponent(value: {id: string, type: string, libraryname?: string, controller?: 
 | 名称 | 类型 | 只读 | 可选 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
 | type | [XComponentType](ts-appendix-enums.md#xcomponenttype10)         | 否 | 否   | 用于指定XComponent组件类型。 |
-| imageAIOptions | [ImageAIOptions](ts-image-common.md#imageaioptions12) | 否 | 是 | 给组件设置一个AI分析选项，通过此项可配置分析类型或绑定一个分析控制器。未设置时不配置AI分析选项，仅类型为SURFACE或TEXTURE时有效。 |
+| imageAIOptions | [ImageAIOptions](ts-image-common.md#imageaioptions12) | 否 | 是 | 给组件设置一个AI分析选项，通过此项可配置分析类型或绑定一个分析控制器，仅类型为SURFACE或TEXTURE时有效。未设置时不配置AI分析选项，可通过enableAnalyzer属性单独启用AI分析。 |
 
 ## 属性
 除支持通用属性外，还支持以下属性：
@@ -270,7 +270,7 @@ HDR内容的高动态范围渲染类型。
 
 onLoad(callback: OnNativeLoadCallback)
 
-插件加载完成时回调事件。
+Native加载完成时回调事件。
 
 > **说明：**
 >
@@ -284,13 +284,13 @@ onLoad(callback: OnNativeLoadCallback)
 
 | 参数名   | 类型   | 必填   | 说明                                       |
 | ----- | ------ | ---- | ---------------------------------------- |
-| callback | [OnNativeLoadCallback](#onnativeloadcallback18) | 是    | 插件加载完成时回调事件，用于获取XComponent实例对象的context。 |
+| callback | [OnNativeLoadCallback](#onnativeloadcallback18) | 是    | Native加载完成时回调事件，用于获取XComponent实例对象的context。 |
 
 ### onDestroy
 
 onDestroy(event: VoidCallback)
 
-插件卸载完成时回调事件。与[onSurfaceDestroyed](#onsurfacedestroyed12)的区别：onDestroy适用于设置libraryname参数的场景，回调无参数；onSurfaceDestroyed适用于未设置libraryname参数的场景，回调参数为surfaceId。
+Native卸载完成时回调事件。与[onSurfaceDestroyed](#onsurfacedestroyed12)的区别：onDestroy适用于设置libraryname参数的场景，回调无参数；onSurfaceDestroyed适用于未设置libraryname参数的场景，回调参数为surfaceId。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -300,7 +300,7 @@ onDestroy(event: VoidCallback)
 
 | 参数名   | 类型   | 必填   | 说明                                       |
 | ----- | ------ | ---- | ---------------------------------------- |
-| event | [VoidCallback](ts-types.md#voidcallback12) | 是    | 插件卸载完成时回调事件。 |
+| event | [VoidCallback](ts-types.md#voidcallback12) | 是    | Native卸载完成时回调事件。 |
 
 ## OnNativeLoadCallback<sup>18+</sup>
 
@@ -540,7 +540,7 @@ onSurfaceDestroyed(surfaceId: string): void
 
 startImageAnalyzer(config: ImageAnalyzerConfig): Promise\<void>
 
-配置AI分析并启动AI分析功能，使用前需先启用图像AI分析能力[enableAnalyzer](#enableanalyzer12)，仅type为SURFACE或TEXTURE时有效。使用Promise异步回调。<br>该方法调用时，将截取调用时刻的画面帧进行分析，使用时需注意启动分析的时机，避免出现画面和分析内容不一致的情况。<br>若该方法尚未执行完毕，此时重复调用，则会触发错误回调。
+配置AI分析并启动AI分析功能，使用前需先启用图像AI分析能力[enableAnalyzer](#enableanalyzer12)，仅XComponent类型为SURFACE或TEXTURE时有效。使用Promise异步回调。<br>该方法调用时，将截取调用时刻的画面帧进行分析，使用时需注意启动分析的时机，避免出现画面和分析内容不一致的情况。<br>若该方法尚未执行完毕，此时重复调用，则会触发错误回调。
 
 > **说明：**
 > 
@@ -579,7 +579,7 @@ startImageAnalyzer(config: ImageAnalyzerConfig): Promise\<void>
 
 stopImageAnalyzer(): void
 
-停止AI分析功能，AI分析展示的内容将被销毁。仅type为SURFACE或TEXTURE时有效。
+停止AI分析功能，仅XComponent类型为SURFACE或TEXTURE时有效，须先调用[enableAnalyzer](#enableanalyzer12)和[startImageAnalyzer](#startimageanalyzer12)启用AI分析能力。调用后AI分析展示的内容将被销毁。
 
 > **说明：**
 > 
@@ -653,7 +653,7 @@ lockCanvas(): DrawingCanvas | null
 **返回值：**
 | 类型                                 | 说明                                  |
 | ------------------------------------ | ------------------------------------- |
-| [DrawingCanvas](ts-drawingrenderingcontext.md#drawingcanvas对象说明) \| null | 可用于向XComponent区域绘制的画布对象或者空对象null。 |
+| [DrawingCanvas](ts-drawingrenderingcontext.md#drawingcanvas对象说明) \| null | 可用于向XComponent区域绘制的画布对象；当无法获取画布对象时（如Surface未创建完成或画布已被占用未释放）返回null。 |
 
 > **说明：**
 >
@@ -850,8 +850,9 @@ struct XComponentExample {
           let surfaceId = this.xComponentController.getXComponentSurfaceId();
           nativeRender.ChangeColor(BigInt(surfaceId));
           let hasChangeColor: boolean = false;
-          if (nativeRender.GetXComponentStatus(BigInt(surfaceId))) {
-            hasChangeColor = nativeRender.GetXComponentStatus(BigInt(surfaceId)).hasChangeColor;
+          let status = nativeRender.GetXComponentStatus(BigInt(surfaceId));
+          if (status) {
+            hasChangeColor = status.hasChangeColor;
           }
           if (hasChangeColor) {
             this.currentStatus = "change color";
@@ -890,8 +891,9 @@ struct XComponentExample {
             console.info(`surface rect is ${this.xComponentController.getXComponentSurfaceRect()}`);
             nativeRender.DrawPattern(BigInt(surfaceId));
             let hasDraw: boolean = false;
-            if (nativeRender.GetXComponentStatus(BigInt(surfaceId))) {
-              hasDraw = nativeRender.GetXComponentStatus(BigInt(surfaceId)).hasDraw;
+            let status = nativeRender.GetXComponentStatus(BigInt(surfaceId));
+            if (status) {
+              hasDraw = status.hasDraw;
             }
             if (hasDraw) {
               this.currentStatus = "draw star";
@@ -900,7 +902,7 @@ struct XComponentExample {
           .margin(2)
       }.justifyContent(FlexAlign.Center)
     }
-    .width("100%")
+    .width('100%')
   }
 }
 ```
@@ -1045,8 +1047,8 @@ struct Index {
   build() {
     Column() {
       XComponent({ type: XComponentType.SURFACE, controller: this.xcController })
-        .width("100%")
-        .height("100%")
+        .width('100%')
+        .height('100%')
         .onLoad(() => {
           // 请在此处设置Surface大小，过大可能会导致绘制时间长
           this.xcController.setXComponentSurfaceRect({surfaceWidth: this.screenWidth, surfaceHeight: this.screenHeight, offsetX: 0, offsetY: 0});
@@ -1121,8 +1123,9 @@ struct Index {
         let surfaceId = this.xComponentController.getXComponentSurfaceId();
         nativeRender.ChangeColor(BigInt(surfaceId));
         let hasChangeColor: boolean = false;
-        if (nativeRender.GetXComponentStatus(BigInt(surfaceId))) {
-          hasChangeColor = nativeRender.GetXComponentStatus(BigInt(surfaceId)).hasChangeColor;
+        let status = nativeRender.GetXComponentStatus(BigInt(surfaceId));
+        if (status) {
+          hasChangeColor = status.hasChangeColor;
         }
         if (hasChangeColor) {
           this.currentStatus = "change color";
@@ -1144,8 +1147,9 @@ struct Index {
             let surfaceId = this.xComponentController.getXComponentSurfaceId();
             nativeRender.DrawPattern(BigInt(surfaceId));
             let hasDraw: boolean = false;
-            if (nativeRender.GetXComponentStatus(BigInt(surfaceId))) {
-              hasDraw = nativeRender.GetXComponentStatus(BigInt(surfaceId)).hasDraw;
+            let status = nativeRender.GetXComponentStatus(BigInt(surfaceId));
+            if (status) {
+              hasDraw = status.hasDraw;
             }
             if (hasDraw) {
               this.currentStatus = "draw star";

@@ -46,7 +46,6 @@
   - 模块<!--audio-module-->
     - [OHAudio](capi-ohaudio.md)
     - [OHAudioSuite](capi-ohaudiosuite.md)
-    - [AudioConverter](capi-audioconverter.md)
     - [OHMIDI](capi-ohmidi.md)
   - 头文件<!--audio-headerfile-->
     - [native_audiocapturer.h](capi-native-audiocapturer-h.md)
@@ -65,6 +64,9 @@
     - [native_audiostream_base.h](capi-native-audiostream-base-h.md)
     - [native_audiostreambuilder.h](capi-native-audiostreambuilder-h.md)
     - [native_audio_suite_base.h](capi-native-audio-suite-base-h.md)
+    <!--Del-->
+    - [native_audio_suite_download_manager.h](capi-native-audio-suite-download-manager-h.md)
+    <!--DelEnd-->
     - [native_audio_suite_engine.h](capi-native-audio-suite-engine-h.md)
     - [native_audio_session_base.h](capi-native-audio-session-base-h.md)
     - [native_midi_base.h](capi-native-midi-base-h.md)
@@ -97,6 +99,11 @@
     - [OH_AudioSuitePipelineStruct](capi-ohaudiosuite-oh-audiosuitepipelinestruct.md)
     - [OH_AudioNodeStruct](capi-ohaudiosuite-oh-audionodestruct.md)
     - [OH_AudioNodeBuilderStruct](capi-ohaudiosuite-oh-audionodebuilderstruct.md)
+    <!--Del-->
+    - [OH_AudioSuite_DownloadStatusInfo](capi-ohaudiosuite-oh-audiosuite-downloadstatusinfo.md)
+    - [OH_AudioSuite_DownloadStatusInfoArray](capi-ohaudiosuite-oh-audiosuite-downloadstatusinfoarray.md)
+    - [OH_AudioSuite_DownloadManagerStruct](capi-ohaudiosuite-oh-audiosuite-downloadmanagerstruct.md)
+    <!--DelEnd-->
     - [OH_AudioSuite_SpaceRenderPositionParams](capi-ohaudiosuite-oh-audiosuite-spacerenderpositionparams.md)
     - [OH_AudioSuite_PureVoiceChangeOption](capi-ohaudiosuite-oh-audiosuite-purevoicechangeoption.md)
     - [OH_AudioSuite_SpaceRenderExtensionParams](capi-ohaudiosuite-oh-audiosuite-spacerenderextensionparams.md)

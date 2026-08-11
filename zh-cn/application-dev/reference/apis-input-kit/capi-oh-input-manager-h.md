@@ -445,16 +445,16 @@ enum Input_Result
 | INPUT_DEVICE_NOT_SUPPORTED = 801 | 表示不支持该功能。 |
 | INPUT_SERVICE_EXCEPTION = 3800001 | 服务异常。 |
 | INPUT_REPEAT_INTERCEPTOR = 4200001 | 应用创建拦截后，再次执行创建拦截的操作。 |
-| INPUT_OCCUPIED_BY_SYSTEM = 4200002 | 已经被系统应用占用。<br>**起始版本：** 14。 |
-| INPUT_OCCUPIED_BY_OTHER = 4200003 | 已经被其他应用占用。<br>**起始版本：** 14。 |
-| INPUT_KEYBOARD_DEVICE_NOT_EXIST = 3900002 | 未连接键盘设备。<br>**起始版本：** 15。 |
-| INPUT_INJECTION_AUTHORIZING = 3900005 | 正在授权中。<br>**起始版本：** 20。 |
-| INPUT_INJECTION_OPERATION_FREQUENT = 3900006 | 重复请求。<br>**起始版本：** 20。 |
-| INPUT_INJECTION_AUTHORIZED = 3900007 | 当前应用已经授权。<br>**起始版本：** 20。 |
-| INPUT_INJECTION_AUTHORIZED_OTHERS = 3900008 | 其它应用已经授权。<br>**起始版本：** 20。 |
-| INPUT_APP_NOT_FOCUSED = 3900009 | 当前应用不是焦点应用。<br>**起始版本：** 20。 |
-| INPUT_DEVICE_NO_POINTER = 3900010 | 无鼠标类输入外设。<br>**起始版本：** 20。 |
-| INPUT_INVALID_WINDOWID = 26500001 |  无效的窗口ID。<br>**起始版本：** 22。 |
+| INPUT_OCCUPIED_BY_SYSTEM = 4200002 | 已经被系统应用占用。<br>**起始版本：** 14 |
+| INPUT_OCCUPIED_BY_OTHER = 4200003 | 已经被其他应用占用。<br>**起始版本：** 14 |
+| INPUT_KEYBOARD_DEVICE_NOT_EXIST = 3900002 | 未连接键盘设备。<br>**起始版本：** 15 |
+| INPUT_INJECTION_AUTHORIZING = 3900005 | 正在授权中。<br>**起始版本：** 20 |
+| INPUT_INJECTION_OPERATION_FREQUENT = 3900006 | 重复请求。<br>**起始版本：** 20 |
+| INPUT_INJECTION_AUTHORIZED = 3900007 | 当前应用已经授权。<br>**起始版本：** 20 |
+| INPUT_INJECTION_AUTHORIZED_OTHERS = 3900008 | 其它应用已经授权。<br>**起始版本：** 20 |
+| INPUT_APP_NOT_FOCUSED = 3900009 | 当前应用不是焦点应用。<br>**起始版本：** 20 |
+| INPUT_DEVICE_NO_POINTER = 3900010 | 无鼠标类输入外设。<br>**起始版本：** 20 |
+| INPUT_INVALID_WINDOWID = 26500001 |  无效的窗口ID。<br>**起始版本：** 22 |
 
 ### Input_TouchEventToolType
 
@@ -3104,7 +3104,7 @@ Input_Hotkey *OH_Input_CreateHotkey(void)
 
 | 类型 | 说明 |
 | -- | -- |
-| [Input_Hotkey](capi-input-input-hotkey.md) | 如果操作成功，则返回一个[Input_Hotkey](capi-input-input-hotkey.md)指针对象。否则，返回一个空指针，可能的原因是内存分配失败。 |
+| [Input_Hotkey](capi-input-input-hotkey.md)* | 如果操作成功，则返回一个[Input_Hotkey](capi-input-input-hotkey.md)指针对象。否则，返回一个空指针，可能的原因是内存分配失败。 |
 
 ### OH_Input_DestroyHotkey()
 
@@ -3256,7 +3256,7 @@ Input_Hotkey **OH_Input_CreateAllSystemHotkeys(int32_t count)
 
 | 类型 | 说明 |
 | -- | -- |
-| [Input_Hotkey](capi-input-input-hotkey.md) | OH_Input_CreateAllSystemHotkeys 函数返回值。<br>         [INPUT_SUCCESS](#input_result) 创建实例数组的双指针成功。 |
+| [Input_Hotkey](capi-input-input-hotkey.md)** | 如果操作成功，返回创建的[Input_Hotkey](capi-input-input-hotkey.md)实例数组的指针；否则返回空指针，可能的原因是内存分配失败。 |
 
 ### OH_Input_DestroyAllSystemHotkeys()
 
@@ -4348,7 +4348,7 @@ Input_Result OH_Input_GetKeyEventId(const struct Input_KeyEvent* keyEvent, int32
 
 | 参数项 | 描述 |
 | -- | -- |
-| [Input_KeyEvent](capi-input-input-keyevent.md)* keyEvent | 按键事件对象，通过[OH_Input_CreateKeyEvent](#oh_input_createkeyevent)接口可以创建按键事件对象。<br>使用完需使用[OH_Input_DestroyKeyEvent](#oh_input_destroykeyevent)接口销毁按键事件对象。 |
+| const struct [Input_KeyEvent](capi-input-input-keyevent.md)* keyEvent | 按键事件对象，通过[OH_Input_CreateKeyEvent](#oh_input_createkeyevent)接口可以创建按键事件对象。<br>使用完需使用[OH_Input_DestroyKeyEvent](#oh_input_destroykeyevent)接口销毁按键事件对象。 |
 | int32_t* eventId | 按键事件的ID。 |
 
 **返回：**
@@ -4808,7 +4808,7 @@ Input_Result OH_Input_CursorInfo_GetStyle(Input_CursorInfo* cursorInfo, Input_Po
 | 参数项 | 描述 |
 | -- | -- |
 | [Input_CursorInfo](capi-input-input-cursorinfo.md)* cursorInfo | 指定鼠标光标信息对象。可以通过[OH_Input_GetMouseEventCursorInfo](#oh_input_getmouseeventcursorinfo)查询指定鼠标事件的鼠标光标信息、或通过[OH_Input_GetCursorInfo](#oh_input_getcursorinfo)接口查询当前的鼠标光标信息。|
-| [Input_PointerStyle](./capi-oh-pointer-style-h.md#input_pointerstyle) | 鼠标光标信息的光标样式枚举，具体请参考[Input_PointerStyle](./capi-oh-pointer-style-h.md#input_pointerstyle)。|
+| [Input_PointerStyle](./capi-oh-pointer-style-h.md#input_pointerstyle)* style | 鼠标光标信息的光标样式枚举，具体请参考[Input_PointerStyle](./capi-oh-pointer-style-h.md#input_pointerstyle)。|
 
 **返回：**
 
@@ -4882,7 +4882,7 @@ Input_Result OH_Input_GetMouseEventCursorInfo(const struct Input_MouseEvent* mou
 
 | 参数项 | 描述 |
 | -- | -- |
-| const [Input_MouseEvent](capi-input-input-mouseevent.md)* mouseEvent | 鼠标事件对象。可以通过[OH_Input_AddMouseEventMonitor](#oh_input_addmouseeventmonitor)或者[OH_Input_AddInputEventInterceptor](#oh_input_addinputeventinterceptor)接口的回调函数中获取鼠标事件对象。 |
+| const struct [Input_MouseEvent](capi-input-input-mouseevent.md)* mouseEvent | 鼠标事件对象。可以通过[OH_Input_AddMouseEventMonitor](#oh_input_addmouseeventmonitor)或者[OH_Input_AddInputEventInterceptor](#oh_input_addinputeventinterceptor)接口的回调函数中获取鼠标事件对象。 |
 | [Input_CursorInfo](capi-input-input-cursorinfo.md)* cursorInfo | 鼠标光标信息对象，可以通过[OH_Input_CursorInfo_Create](#oh_input_cursorinfo_create)接口创建鼠标光标信息对象。|
 
 **返回：**

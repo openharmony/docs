@@ -76,7 +76,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 export default class EntryAbility extends UIExtensionAbility {
   onSessionCreate(want: Want, session: UIExtensionContentSession) {
     const extensionHostWindow = session.getUIExtensionHostWindowProxy();
-    // 隐藏非安全窗口
+    // 隐藏不安全窗口
     extensionHostWindow.hideNonSecureWindows(true).then(() => {
       console.info(`Succeeded in hiding the non-secure windows.`);
     }).catch((err: BusinessError) => {
@@ -86,7 +86,7 @@ export default class EntryAbility extends UIExtensionAbility {
   
   onSessionDestroy(session: UIExtensionContentSession) {
     const extensionHostWindow = session.getUIExtensionHostWindowProxy();
-    // 取消隐藏非安全窗口
+    // 取消隐藏不安全窗口
     extensionHostWindow.hideNonSecureWindows(false).then(() => {
       console.info(`Succeeded in showing the non-secure windows.`);
     }).catch((err: BusinessError) => {
@@ -103,7 +103,7 @@ setWaterMarkFlag(enable: boolean): Promise&lt;void&gt;
 为当前窗口添加或删除安全水印标志，使用Promise异步回调。
 > **说明：**
 >
-> 添加安全水印标志后，窗口在前台时会将当前全屏幕覆盖水印。全屏、悬浮窗、分屏等场景下只要有添加了安全水印标志的窗口在前台，就会显示全屏水印。
+> 添加安全水印标志后，窗口在前台时会在当前全屏幕覆盖显示水印。全屏、悬浮窗、分屏等场景下只要有添加了安全水印标志的窗口在前台，就会显示全屏水印。
 
 **系统能力**：SystemCapability.ArkUI.ArkUI.Full
 
@@ -115,7 +115,7 @@ setWaterMarkFlag(enable: boolean): Promise&lt;void&gt;
 
 | 参数名 | 类型     | 必填 | 说明                                            |
 | ------ | ------- | --- | ------------------------------------------------ |
-| enable | boolean | 是   | 是否对窗口添加标志位。true表示添加，false表示删除。 |
+| enable | boolean | 是   | 是否对窗口添加或删除标志位。true表示添加，false表示删除。 |
 
 **返回值：** 
 

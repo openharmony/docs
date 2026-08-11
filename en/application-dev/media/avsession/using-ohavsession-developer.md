@@ -10,7 +10,7 @@ The OHAVSession module provides C APIs to implement an AVSession provider. An au
 
 ## Prerequisites
 
-To use [OHAVSession](../../reference/apis-avsession-kit/capi-native-avsession-h.md) to implement media sessions, add the corresponding header files.
+To use [native_avsession.h](../../reference/apis-avsession-kit/capi-native-avsession-h.md) to implement media sessions, add the corresponding header files.
 
 ### Linking the Dynamic Libraries in the CMake Script
 
@@ -20,7 +20,9 @@ target_link_libraries(entry PUBLIC libohavsession.so)
 
 ### Including Header Files
 
-```cpp
+<!-- @[avSession_include](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/Media/AVSession/LocalAVSession/AVSessionProviderNative/entry/src/main/cpp/napi_init.cpp) -->
+
+``` C++
 #include <multimedia/av_session/native_avmetadata.h>
 #include <multimedia/av_session/native_avsession.h>
 #include <multimedia/av_session/native_avsession_errors.h>
@@ -31,17 +33,19 @@ target_link_libraries(entry PUBLIC libohavsession.so)
 To access a local session with the NDK, perform the following steps:
 1. Create a session and activate the media. Specifically, pass the session type (specified by **AVSession_Type**), custom tag, bundle name, and ability name.
 
-   ```c++
+   <!-- @[create](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/Media/AVSession/LocalAVSession/AVSessionProviderNative/entry/src/main/cpp/napi_init.cpp) -->
+
+   ``` C++
    OH_AVSession* avsession;
-   OH_AVSession_Create(SESSION_TYPE_AUDIO, "testsession", "com.example.application",   "MainAbility", &avsession);
+   OH_AVSession_Create(SESSION_TYPE_AUDIO, "testsession", "com.example.application", "MainAbility", &avsession);
    OH_AVSession_Activate(avsession);
    ```
- 
+
    **AVSession_Type** can be set to any of the following types:
- 
+
    - SESSION_TYPE_AUDIO
    - SESSION_TYPE_VIDEO
-   - SESSION_TYPE_VOICE_CALL 
+   - SESSION_TYPE_VOICE_CALL
    - SESSION_TYPE_VIDEO_CALL
 
 
@@ -51,11 +55,13 @@ To access a local session with the NDK, perform the following steps:
 
    The code snippet below shows how to call **OH_AVMetadataBuilder** to construct metadata:
 
-   ```c++
+   <!-- @[construct_metadata](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/Media/AVSession/LocalAVSession/AVSessionProviderNative/entry/src/main/cpp/napi_init.cpp) -->
+
+   ``` C++
    // Create an OH_AVMetadataBuilder.
    OH_AVMetadataBuilder* builder;
    OH_AVMetadataBuilder_Create(&builder);
-   
+
    OH_AVMetadata* ohMetadata;
    OH_AVMetadataBuilder_SetTitle(builder, "Anonymous title");
    OH_AVMetadataBuilder_SetArtist(builder, "Anonymous artist");
@@ -63,17 +69,17 @@ To access a local session with the NDK, perform the following steps:
    OH_AVMetadataBuilder_SetAlbum(builder, "Anonymous album");
    OH_AVMetadataBuilder_SetWriter(builder, "Anonymous writer");
    OH_AVMetadataBuilder_SetComposer(builder, "Anonymous composer");
-   OH_AVMetadataBuilder_SetDuration(builder, 3600);
+   OH_AVMetadataBuilder_SetDuration(builder, DURATION_TIME); // DURATION_TIME = 3600
    // MediaImageUri can only be set to a network address.
-   OH_AVMetadataBuilder_SetMediaImageUri(builder, "https://xxx.xxx.xx");
+   OH_AVMetadataBuilder_SetMediaImageUri(builder, "https://example.com/images/cover.jpg");
    OH_AVMetadataBuilder_SetSubtitle(builder, "Anonymous subtitle");
    OH_AVMetadataBuilder_SetDescription(builder, "For somebody");
    // Lyric can only be set to the lyric content. (The application must combine the lyric content into a string.)
    OH_AVMetadataBuilder_SetLyric(builder, "balabala");
    OH_AVMetadataBuilder_SetAssetId(builder, "000");
-   OH_AVMetadataBuilder_SetSkipIntervals(builder, SECONDS_30);
+   OH_AVMetadataBuilder_SetSkipIntervals(builder, SECONDS_15);
    OH_AVMetadataBuilder_SetDisplayTags(builder,  AVSESSION_DISPLAYTAG_AUDIO_VIVID);
-   
+
    /**
     * Generate an AVMetadata object.
     */
@@ -84,10 +90,12 @@ To access a local session with the NDK, perform the following steps:
     */
    OH_AVSession_SetAVMetadata(avsession, ohMetadata);
    ```
-   
+
    When the AVMetadata is no longer needed, call **OH_AVMetadataBuilder_Destroy** to destroy it and do not use it anymore.
-   
-   ```c++
+
+   <!-- @[destroy_metadata](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/Media/AVSession/LocalAVSession/AVSessionProviderNative/entry/src/main/cpp/napi_init.cpp) -->
+
+   ``` C++
    OH_AVMetadata_Destroy(ohMetadata);
    OH_AVMetadataBuilder_Destroy(builder);
    ```
@@ -95,19 +103,23 @@ To access a local session with the NDK, perform the following steps:
 3. Update the media playback status information.
 
    The information includes the playback state, playback position, playback speed, and favorite status. You can use the APIs to set the information.
-   
-   ```c++
+
+   <!-- @[state_change](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/Media/AVSession/LocalAVSession/AVSessionProviderNative/entry/src/main/cpp/napi_init.cpp) -->
+
+   ``` C++
    AVSession_ErrCode ret = AV_SESSION_ERR_SUCCESS;
-   
+
    // Set the playback state, which is in the range [0,11].
    AVSession_PlaybackState state = PLAYBACK_STATE_PREPARING;
    ret = OH_AVSession_SetPlaybackState(avsession, state);
-   
+   // ...
+
    // Set the playback position.
-   AVSession_PlaybackPosition* playbackPosition = new  AVSession_PlaybackPosition;
-   playbackPosition->elapsedTime = 1000;
-   playbackPosition->updateTime = 16111150;
+   AVSession_PlaybackPosition* playbackPosition = new AVSession_PlaybackPosition;
+   playbackPosition->elapsedTime = ELAPSED_TIME; // ELAPSED_TIME = 1000
+   playbackPosition->updateTime = UPDATE_TIME; // UPDATE_TIME = 16111150
    ret = OH_AVSession_SetPlaybackPosition(avsession, playbackPosition);
+   delete playbackPosition;
    ```
 
 4. Listen for playback control commands delivered by the controller, for example, Media Controller.
@@ -115,9 +127,8 @@ To access a local session with the NDK, perform the following steps:
    > **NOTE**
    >
    > After the provider registers a listener for fixed playback control commands, the commands will be reflected in **getValidCommands()** of the controller. In other words, the controller determines that the command is valid and triggers the corresponding event as required. To ensure that the playback control commands delivered by the controller can be executed normally, the provider should not use a null implementation for listening.
-   >
    > To avoid any exception, call the API to unregister the listener when the service ends.
- 
+
    Currently, the following playback control commands are supported:
    - Play
    - Pause
@@ -128,8 +139,10 @@ To access a local session with the NDK, perform the following steps:
    - Fast forward
    - Seek
    - Favorite
-   
-   ```c++
+
+   <!-- @[control_command](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/Media/AVSession/LocalAVSession/AVSessionProviderNative/entry/src/main/cpp/napi_init.cpp) -->
+
+   ``` C++
    // Register the callbacks for the commands of play, pause, stop, play previous, and play next.
    // CONTROL_CMD_PLAY = 0; play.
    // CONTROL_CMD_PAUSE = 1; pause.
@@ -138,22 +151,22 @@ To access a local session with the NDK, perform the following steps:
    // CONTROL_CMD_PLAY_PREVIOUS = 4; play previous.
    AVSession_ControlCommand command = CONTROL_CMD_PLAY;
    OH_AVSessionCallback_OnCommand commandCallback = [](OH_AVSession* session, AVSession_ControlCommand command,
-       void* userData) -> AVSessionCallback_Result
-   {
+       void* userData) -> AVSessionCallback_Result {
        return AVSESSION_CALLBACK_RESULT_SUCCESS;
    };
+   int userData = 0;
    OH_AVSession_RegisterCommandCallback(avsession, command, commandCallback, (void *)(&userData));
-   
+
    // Register the callback for the fast-forward operation.
    OH_AVSessionCallback_OnFastForward fastForwardCallback = [](OH_AVSession* session, uint32_t seekTime,
-       void* userData) -> AVSessionCallback_Result
-   {
+       void* userData) -> AVSessionCallback_Result {
        return AVSESSION_CALLBACK_RESULT_SUCCESS;
    };
    OH_AVSession_RegisterForwardCallback(avsession, fastForwardCallback, (void *)(&userData));
    ```
+
    The related callbacks are as follows:
-  
+
    | API                                                        | Description        |
    | ------------------------------------------------------------ | ------------ |
    |OH_AVSession_RegisterCommandCallback(OH_AVSession* avsession, AVSession_ControlCommand   command, OH_AVSessionCallback_OnCommand callback, void* userData) | Registers a callback for a common playback control command, which can be play, pause, stop, play previous, or play next.    |
@@ -162,8 +175,15 @@ To access a local session with the NDK, perform the following steps:
    |OH_AVSession_RegisterSeekCallback(OH_AVSession* avsession, OH_AVSessionCallback_OnSeek   callback, void* userData) | Registers a callback for the seek operation. |
    |OH_AVSession_RegisterToggleFavoriteCallback(OH_AVSession* avsession,   OH_AVSessionCallback_OnToggleFavorite callback, void* userData) | Registers a callback for the favorite operation. |
 5. When the audio and video application exits and does not need to continue playback, cancel the listener and destroy the AVSession object. The example code is as follows:
- 
-   ```c++
+
+   <!-- @[destroy](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/Media/AVSession/LocalAVSession/AVSessionProviderNative/entry/src/main/cpp/napi_init.cpp) -->
+
+   ``` C++
    OH_AVSession_Destroy(avsession);
    ```
 
+## Samples
+
+The following sample is provided to help you better understand how to develop an AVSession provider with the NDK:
+
+- [AVSession - Provider (C/C++, API version 13)](https://gitcode.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/Media/AVSession/MediaProvider)

@@ -193,7 +193,7 @@ OH_Drawing_Brush* brush = OH_Drawing_BrushCreate();
 OH_Drawing_BrushSetColor(brush, OH_Drawing_ColorSetArgb(RGBA_MAX, RGBA_MAX, RGBA_MIN, RGBA_MIN));
 // 设置画布中的画刷
 OH_Drawing_CanvasAttachBrush(canvas, brush);
-// 创建缩放的矩阵对象，4个参数分别是旋转中心坐标和水平垂直方向的缩放因子
+// 创建缩放的矩阵对象，4个参数分别是水平垂直方向的缩放因子和缩放中心坐标
 OH_Drawing_Matrix* matrix = OH_Drawing_MatrixCreateScale(2, 2, value200_, value300_);
 // 对Canvas进行矩阵变换
 OH_Drawing_CanvasConcatMatrix(canvas, matrix);

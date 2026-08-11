@@ -1,10 +1,12 @@
 # @ohos.geoLocationManager (Geolocation Manager) (System API)
+
 <!--Kit: Location Kit-->
 <!--Subsystem: Location-->
 <!--Owner: @liu-binjun-->
 <!--Designer: @liu-binjun-->
 <!--Tester: @mhy123456789-->
 <!--Adviser: @RayShih-->
+<!-- md-trans-meta sourceCommit=646870d3a52672f94ffd28629c213441e5d7a18a translatedAt=2026-07-31T06:39:06.963Z pushedAt=2026-07-31T07:55:10.636Z -->
 
 The **geoLocationManager** module provides location services such as Global Navigation Satellite System (GNSS)-based positioning, network positioning, geofencing, as well as geocoding and reverse geocoding.
 
@@ -19,13 +21,14 @@ The **geoLocationManager** module provides location services such as Global Navi
 Before using basic location capabilities, check whether your application has been granted the permission to access the device location information. If not, your application needs to obtain the permission from the user as described below.
 
 The system provides the following location permissions:
+
 - ohos.permission.LOCATION
 
 - ohos.permission.APPROXIMATELY_LOCATION
 
 - ohos.permission.LOCATION_IN_BACKGROUND
 
-If your application needs to access the device location information, it must first apply for required permissions. Specifically speaking:
+If your application needs to access the device location information, it must first apply for required permissions and obtain user authorization.
 
 API versions earlier than 9: Apply for **ohos.permission.LOCATION**.
 
@@ -44,7 +47,6 @@ A user can grant the **ohos.permission.LOCATION_IN_BACKGROUND** permission for a
 
 You can declare the required permission in your application's configuration file. For details, see [Requesting User Authorization](../../security/AccessToken/request-user-authorization.md).
 
-
 ## Modules to Import
 
 ```ts
@@ -61,6 +63,17 @@ Geocoding address information.
 | -------- | -------- | -------- | -------- | -------- |
 | isFromMock | Boolean | No| Yes| **true**: The geographic address is obtained from the mock reverse geocoding function.<br>**false**: The geographic address is not obtained from the mock reverse geocoding function.<br>**System API**: This is a system API.|
 
+## GeofenceTransitionEvent<sup>12+</sup>
+
+Geofence transition event.
+
+**System capability**: SystemCapability.Location.Location.Geofence
+
+| Name | Value | Description |
+| -------- | -------- | -------- |
+| GEOFENCE_TRANSITION_EVENT_APPROACHING_GEOFENCE    | 8 | The event indicating that the device is approaching the geofence area.<br/>**System API**: This API is a system API. |
+| GEOFENCE_TRANSITION_EVENT_LEAVING_GEOFENCE    | 16 | The event indicating that the device has left the geofence area.<br/>**System API**: This API is a system API. |
+| GEOFENCE_TRANSITION_EVENT_NEAR_WANDER    | 32 | The event indicating that the device is approaching the geofence area and has been lingering for more than 15 minutes.<br/>**System API**: This API is a system API. |
 
 ## Location
 
@@ -68,14 +81,9 @@ Location information.
 
 **System capability**: SystemCapability.Location.Location.Core
 
-| Name| Type| Read Only| Optional| Description|
-| -------- | -------- | -------- | -------- | -------- |
-| isFromMock | Boolean | No| Yes| **true**: The location information is obtained from the mock location switch.<br>**false**: The location information is not obtained from the mock location switch.<br>**System API**: This is a system API.|
-
-
 ## ReverseGeocodingMockInfo
 
-Defines the configuration of the mock reverse geocoding function.
+Defines the configuration of the mock reverse geocoding function, including location information and place name information.
 
 **System capability**: SystemCapability.Location.Location.Core
 
@@ -86,10 +94,9 @@ Defines the configuration of the mock reverse geocoding function.
 | location |  [ReverseGeoCodeRequest](js-apis-geoLocationManager.md#reversegeocoderequest) | No| No| Latitude and longitude information.<br>**System API**: This is a system API.|
 | geoAddress |  [GeoAddress](#geoaddress) | No| No|Geographical name.<br>**System API**: This is a system API.|
 
-
 ## LocationMockConfig
 
-Defines the configuration of the mock location switch.
+Defines the configuration of the mock location function.
 
 **System capability**: SystemCapability.Location.Location.Core
 
@@ -118,20 +125,6 @@ Defines the configuration for obtaining the required data of the location servic
 | arfcn<sup>23+</sup> |  Array&lt;number&gt; | No| Yes| Absolute Radio Frequency Channel Number (ARFCN).<br>**System API**: This is a system API.<br>**Model restriction**: This API can be used only in the stage model.|
 | plmnId<sup>23+</sup> |  Array&lt;number&gt; | No| Yes| Public Land Mobile Network Identifier (PLMN ID) of a SIM card.<br>**System API**: This is a system API.<br>**Model restriction**: This API can be used only in the stage model.|
 
-
-## ContinuousLocationRequest<sup>12+</sup>
-
-Defines a continuous location request.
-
-**Atomic service API**: This API can be used in atomic services since API version 12.
-
-**System capability**: SystemCapability.Location.Location.Core
-
-| Name| Type| Read Only| Optional| Description|
-| -------- | -------- | -------- | -------- | -------- |
-| sportsType<sup>18+</sup> | [SportsType](#sportstype18) | No| Yes| Sports type.<br>**Atomic service API**: This API can be used in atomic services since API version 18.<br>**System API**: This is a system API.|
-
-
 ## LocatingRequiredData<sup>10+</sup>
 
 Defines the required data of the location service, including the Wi-Fi or Bluetooth scanning result. After obtaining the data, an application can use the data for services such as network positioning.
@@ -147,7 +140,6 @@ Defines the required data of the location service, including the Wi-Fi or Blueto
 | slotId<sup>23+</sup> |  number | No| Yes| Slot ID of a SIM card.<br>**0**: slot 1.<br>**1**: slot 2.<br>**System API**: This is a system API.<br>**Model restriction**: This API can be used only in the stage model.|
 | campedCellInfo<sup>23+</sup> |  Array&lt;CellInfo&gt; | No| Yes| Camped cell information.<br> **System API**: This is a system API.<br>**Model restriction**: This API can be used only in the stage model.|
 | neighboringCellInfo<sup>23+</sup> |  Array&lt;CellInfo&gt; | No| Yes| Neighboring cell information.<br> **System API**: This is a system API.<br>**Model restriction**: This API can be used only in the stage model.|
-
 
 ## WifiScanInfo<sup>10+</sup>
 
@@ -165,7 +157,6 @@ Defines the Wi-Fi scanning information, including the SSID, BSSID, and RSSI of t
 | frequency | number | No| No| Frequency of a Wi-Fi hotspot, in Hz.<br>**System API**: This is a system API.|
 | timestamp | number | No| No| Timestamp, in microseconds.<br> **System API**: This is a system API.|
 
-
 ## BluetoothScanInfo<sup>10+</sup>
 
 Defines the Bluetooth scanning information.
@@ -180,7 +171,6 @@ Defines the Bluetooth scanning information.
 | macAddress | string | No| No| MAC address of a Bluetooth device.<br> **System API**: This is a system API.|
 | rssi | number | No| No| Signal strength of a Bluetooth device, in dBm.<br> **System API**: This is a system API.|
 | timestamp | number | No| No| Timestamp, in microseconds.<br> **System API**: This is a system API.|
-
 
 ## CellInfo<sup>23+</sup>
 
@@ -204,7 +194,6 @@ Defines cellular cell information.
 | arfcn | number | No| No| Absolute Radio Frequency Channel Number (ARFCN).<br> **System API**: This is a system API.|
 | pci | number | No| No| Physical cell ID.<br>**System API**: This is a system API.|
 | additionsMap | Map&lt;string, string&gt; | No| No| Additional information.<br>**System API**: This is a system API.|
-
 
 ## LocationPrivacyType
 
@@ -234,7 +223,6 @@ Defines the type of the required data of the location service.
 | BLUETOOTH | 2 | Bluetooth scanning information.<br> **System API**: This is a system API.|
 | CELLULAR<sup>23+</sup> | 3 | Cellular cell information.<br> **System API**: This is a system API.|
 
-
 ## LocationIconStatus<sup>12+</sup>
 
 Defines the location icon status.
@@ -248,22 +236,6 @@ Defines the location icon status.
 | LOCATING_NOT_STARTED  | 0 | No location services are available and the location icon does not need to be displayed.<br> **System API**: This is a system API.|
 | LOCATING_STARTED | 1 | Common location is in progress, and the common location icon needs to be displayed.<br> **System API**: This is a system API.|
 | HD_LOCATING_STARTED | 2 | High-precision location is in progress, and the high-precision location icon needs to be displayed.<br> **System API**: This is a system API.|
-
-
-## SportsType<sup>18+</sup>
-
-Enumerates sports types.
-
-**Atomic service API**: This API can be used in atomic services since API version 18.
-
-**System capability**: SystemCapability.Location.Location.Core
-
-| Name| Value| Description|
-| -------- | -------- | -------- |
-| RUNNING   | 1 |  Running.|
-| WALKING    | 2 | Walking.|
-| CYCLING     | 3 | Cycling.|
-
 
 ## geoLocationManager.on('locatingRequiredDataChange')<sup>10+</sup>
 
@@ -312,7 +284,6 @@ For details about the error codes, see [Location Kit Error Codes](errorcode-geoL
     console.error("errCode:" + err.code + ", message:" + err.message);
   }
   ```
-
 
 ## geoLocationManager.off('locatingRequiredDataChange')<sup>10+</sup>
 
@@ -407,7 +378,6 @@ For details about the error codes, see [Location Kit Error Codes](errorcode-geoL
   }
   ```
 
-
 ## geoLocationManager.enableLocation
 
 enableLocation(): Promise&lt;void&gt;
@@ -494,7 +464,7 @@ For details about the error codes, see [Location Kit Error Codes](errorcode-geoL
 
 enableLocationMock(): void
 
-Enables the mock location switch.
+Enables the mock location function.
 
 **System capability**: SystemCapability.Location.Location.Core
 
@@ -525,7 +495,6 @@ For details about the error codes, see [Location Kit Error Codes](errorcode-geoL
     console.error("errCode:" + err.code + ", message:" + err.message);
   }
   ```
-
 
 ## geoLocationManager.disableLocationMock
 
@@ -562,7 +531,6 @@ For details about the error codes, see [Location Kit Error Codes](errorcode-geoL
     console.error("errCode:" + err.code + ", message:" + err.message);
   }
   ```
-
 
 ## geoLocationManager.setMockedLocations
 
@@ -673,7 +641,6 @@ For details about the error codes, see [Location Kit Error Codes](errorcode-geoL
   }
   ```
 
-
 ## geoLocationManager.enableReverseGeocodingMock
 
 enableReverseGeocodingMock(): void
@@ -708,7 +675,6 @@ For details about the error codes, see [Location Kit Error Codes](errorcode-geoL
     console.error("errCode:" + err.code + ", message:" + err.message);
   }
   ```
-
 
 ## geoLocationManager.disableReverseGeocodingMock
 
@@ -745,7 +711,6 @@ For details about the error codes, see [Location Kit Error Codes](errorcode-geoL
   }
   ```
 
-
 ## geoLocationManager.setReverseGeocodingMockInfo
 
 setReverseGeocodingMockInfo(mockInfos: Array&lt;ReverseGeocodingMockInfo&gt;): void
@@ -764,7 +729,7 @@ This API can be invoked only after [geoLocationManager.enableReverseGeocodingMoc
 
   | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
-  | mockInfos | Array&lt;[ReverseGeocodingMockInfo](#reversegeocodingmockinfo)&gt; | Yes| Array of information of the mock reverse geocoding function, including a location and a geographical name.|
+  | mockInfos | Array&lt;[ReverseGeocodingMockInfo](#reversegeocodingmockinfo)&gt; | Yes| Array of configuration parameters for the mock reverse geocoding function, including a location and a geographical name.|
 
 **Error codes**
 
@@ -863,12 +828,11 @@ For details about the error codes, see [Location Kit Error Codes](errorcode-geoL
   }
   ```
 
-
 ## geoLocationManager.isLocationPrivacyConfirmed
 
 isLocationPrivacyConfirmed(type: LocationPrivacyType): boolean
 
-Checks whether a user agrees with the privacy statement of the location service. This API can only be called by system applications.
+Checks whether a user agrees with the privacy statement of the location service and agrees to start the location service. This API can only be called by system applications.
 
 **System API**: This is a system API.
 
@@ -909,12 +873,11 @@ For details about the error codes, see [Location Kit Error Codes](errorcode-geoL
   }
   ```
 
-
 ## geoLocationManager.setLocationPrivacyConfirmStatus
 
 setLocationPrivacyConfirmStatus(type: LocationPrivacyType, isConfirmed: boolean): void
 
-Sets the user confirmation status for the privacy statement of the location service. This API can only be called by system applications.
+Sets the user confirmation status for the privacy statement of the location service and records whether the user agrees to start the location service. This API can only be called by system applications.
 
 **System API**: This is a system API.
 
@@ -953,12 +916,11 @@ For details about the error codes, see [Location Kit Error Codes](errorcode-geoL
   }
   ```
 
-
 ## geoLocationManager.getLocatingRequiredData<sup>10+</sup>
 
 getLocatingRequiredData(config: LocatingRequiredDataConfig): Promise&lt;Array&lt;LocatingRequiredData&gt;&gt;
 
-Obtains the required data of the location service. This API uses a promise to return the result.
+Obtains the required data of the location service, including the Wi-Fi and Bluetooth scanning information. This API uses a promise to return the result.
 
 **Required permissions**: ohos.permission.LOCATION and ohos.permission.APPROXIMATELY_LOCATION
 
@@ -1009,7 +971,6 @@ For details about the error codes, see [Location Kit Error Codes](errorcode-geoL
   }
   ```
 
-
 ## geoLocationManager.on('locationIconStatusChange')<sup>12+</sup>
 
 on(type: 'locationIconStatusChange', callback: Callback&lt;LocationIconStatus&gt;): void
@@ -1053,7 +1014,6 @@ For details about the error codes, see [Location Kit Error Codes](errorcode-geoL
   }
   ```
 
-
 ## geoLocationManager.off('locationIconStatusChange')<sup>12+</sup>
 
 off(type: 'locationIconStatusChange', callback?: Callback&lt;LocationIconStatus&gt;): void
@@ -1068,7 +1028,7 @@ Unsubscribes from status changes of the location icon.
 
   | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
-  | type | string | Yes| Event type. Event type. The value **locationIconStatusChange** indicates status changes of the location icon.|
+  | type | string | Yes| Event type. The value **locationIconStatusChange** indicates status changes of the location icon.|
   | callback | Callback&lt;[LocationIconStatus](#locationiconstatus12)&gt;  | No| Callback to unregister. The callback must be the same as that passed by the **on** API. If this parameter is not specified, all callbacks of the specified event type are unregistered.|
 
 **Error codes**
@@ -1097,7 +1057,6 @@ For details about the error codes, see [Location Kit Error Codes](errorcode-geoL
     console.error("errCode:" + err.code + ", message:" + err.message);
   }
   ```
-
 
 ## geoLocationManager.getLocationIconStatus<sup>12+</sup>
 
@@ -1136,7 +1095,6 @@ For details about the error codes, see [Location Kit Error Codes](errorcode-geoL
     console.error("errCode:" + err.code + ", message:" + err.message);
   }
   ```
-
 
 ## geoLocationManager.enableLocationByUserId<sup>18+</sup>
 
@@ -1193,7 +1151,6 @@ For details about the error codes, see [Location Kit Error Codes](errorcode-geoL
   }
   ```
 
-
 ## geoLocationManager.disableLocationByUserId<sup>18+</sup>
 
 disableLocationByUserId(userId: number): void
@@ -1236,7 +1193,6 @@ For details about the error codes, see [Location Kit Error Codes](errorcode-geoL
     console.error("errCode:" + err.code + ", message:" + err.message);
   }
   ```
-
 
 ## geoLocationManager.isLocationEnabledByUserId<sup>18+</sup>
 
@@ -1283,7 +1239,6 @@ For details about the error codes, see [Location Kit Error Codes](errorcode-geoL
     console.error("errCode:" + err.code + ", message:" + err.message);
   }
   ```
-
 
 ## geoLocationManager.setLocationSwitchIgnored<sup>18+</sup>
 

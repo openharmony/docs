@@ -1,128 +1,263 @@
-# Using the Call Device Switching Component
+# Switching Call Devices Using Components
+
 <!--Kit: AVSession Kit-->
 <!--Subsystem: Multimedia-->
-<!--Owner: @ccfriend; @liao_qian-->
+<!--Owner: @ccfriend; @devil_red-->
 <!--Designer: @ccfriend-->
 <!--Tester: @chenmingxi1_huawei-->
 <!--Adviser: @w_Machine_cc-->
+<!-- md-trans-meta sourceCommit=c9dcc12ca328989783da9ca7a900edb5d9480648 translatedAt=2026-08-10T03:50:53.667Z pushedAt=2026-08-10T08:55:26.815Z -->
 
 ## Switching Call Output Devices
 
-The system no longer provides APIs for switching audio output devices. If you need to switch audio output devices within your application, implement the **AVCastPicker** component. For details about the component, see [@ohos.multimedia.avCastPicker](../../reference/apis-avsession-kit/ohos-multimedia-avcastpicker.md) and [@ohos.multimedia.avCastPickerParam](../../reference/apis-avsession-kit/js-apis-avCastPickerParam.md).
-
-This topic describes how to integrate the **AVCastPicker** component to implement the switching of call output devices.
+This topic describes how to integrate the **AVCastPicker** component to implement call device switching. For details about related parameters, see [@ohos.multimedia.avCastPicker (AVCastPicker)](../../reference/apis-avsession-kit/ohos-multimedia-avcastpicker.md) and [@ohos.multimedia.avCastPickerParam (AVCastPicker Parameters)](../../reference/apis-avsession-kit/js-apis-avCastPickerParam.md). If you want to implement audio output device routing switching, see [Switching Audio Output Devices](../audio/audio-output-device-switcher.md).
 
 Currently, the system provides the default style and custom style for the **AVCastPicker** component.
+
 - If the application chooses to display the default style, when the device switches, the system displays the default component style based on the currently selected device.
+
 - If the application opts for a custom style, it needs to refresh its defined style in response to device changes.
 
 ### Implementing the Default Style
 
-1. Create an AVSession of the voice_call type. The AVSession constructor provides **AVSessionType** to specify the session type, and **voice_call** indicates the call type. If no AVSession is created, an empty list is displayed.
+1. Create an AVSession of the **voice_call** type. The AVSession constructor provides **AVSessionType** to specify the session type, and **voice_call** indicates the call type. If no AVSession is created, an empty list is displayed.
 
-   ```ts
-    import { avSession } from '@kit.AVSessionKit';
-    @Entry
-    @Component
-    struct Index {
-      @State message: string = 'hello world';
+   <!-- @[create_voiceCall](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/Media/AVSession/SwitchCallDevices/entry/src/main/ets/pages/Index.ets) -->    
+
+   ``` TypeScript
+   import { AVCastPicker, AVCastPickerState, AVInputCastPicker, avSession } from '@kit.AVSessionKit';
+   
+   @Entry
+   @Component
+   struct Index {
+     @State message: string = 'Simulated call';
+     @State session: avSession.AVSession | undefined = undefined;
+     @State context: common.UIAbilityContext = this.getUIContext().getHostContext() as common.UIAbilityContext;
+     // ...
     
-      build() { 
-        Column() {
-            Text(this.message)
-              .onClick(async ()=> {
-                try {
-                  let context = this.getUIContext().getHostContext() as Context;
-                // Create an AVSession of the voice_call type.
-                let session: avSession.AVSession = await avSession.createAVSession(context, 'voiptest', 'voice_call');
-                } catch (err) {
-                  console.error(`AVSession create :  Error: Code: ${err.code}, message: ${err.message}`);
-                }
-              })
-          }
-        .width('100%')
-        .height('100%')
-      }
-    }
+     async init() {
+       try {
+         let context = this.getUIContext().getHostContext() as Context;
+         // Create a voice_call type AVSession when the call starts.
+         this.session = await avSession.createAVSession(context, 'SESSION_NAME', 'voice_call');
+       } catch (err) {
+         console.error(`AVSession create :  Error: Code: ${err.code}, message: ${err.message}`);
+       }
+       // ...
+     }
+     // ...
+   }
    ```
 
 2. Create the **AVCastPicker** component on the call page that provides device switching.
 
-   ```ts
+   <!-- @[create_castPicker](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/Media/AVSession/SwitchCallDevices/entry/src/main/ets/pages/SwitchOutputDevice.ets) -->     
+
+   ``` TypeScript
    import { AVCastPicker } from '@kit.AVSessionKit';
 
-   // Create the component and set its size.
-   build() {
-     Row() {
-       Column() {
-         AVCastPicker()
-           .size({ height:45, width:45 })
+   @Entry
+   @Component
+   struct OutputCastPicker {
+     @State normalColor:Color = Color.White;
+     @State activeColor:Color = Color.Blue;
+     @State pickerImage: ResourceStr = $r('app.media.sound'); // Custom resource.
+     // ...
+     // Create the component and set its size.
+     build() {
+       Row() {
+         Column() {
+           AVCastPicker({
+             normalColor: this.normalColor,
+             activeColor: this.activeColor,
+           })
+             .size({ width: '50%', height: '20%' })
+             .id('AVCastPicker')
+           // ...
+         }
+         .width('100%')
+         .alignItems(HorizontalAlign.Center)
+       }
+       .alignItems(VerticalAlign.Center)
+       .width('100%')
+       .height('100%')
+     }
+   }
+   ```
+
+   Alternatively, create the **AVCastPickerHelper** component.
+
+   <!-- @[create_castPickerHelper](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/Media/AVSession/SwitchCallDevices/entry/src/main/ets/utils/AVCastPickerHelper.ets) -->   
+
+   ``` TypeScript
+   import { common } from '@kit.AbilityKit';
+   import { BusinessError } from '@kit.BasicServicesKit';
+   import { avSession } from '@kit.AVSessionKit';
+   
+   class MyPage {
+     private avCastPicker: avSession.AVCastPickerHelper;
+   
+     constructor(context: common.UIAbilityContext) {
+       this.avCastPicker = new avSession.AVCastPickerHelper(context);
+     }
+   
+     async selectCastDevice() {
+       const avCastPickerOptions: avSession.AVCastPickerOptions = {
+         sessionType: 'video',
+       };
+   
+       this.avCastPicker.select(avCastPickerOptions).then(() => {
+         console.info('select successfully');
+       }).catch((err: BusinessError) => {
+         console.error('AVCastPicker.select failed with err: ${err.code}, ${err.message}');
+       });
+     }
+   }
+   ```
+
+3. Create an AudioRenderer of the **VOICE_COMMUNICATION** type and start playing. For details about call audio playback, see [Developing Audio Call](../audio/audio-call-development.md).
+
+   <!-- @[start_render](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/Media/AVSession/SwitchCallDevices/entry/src/main/ets/utils/AudioRenderer.ets) -->         
+
+   ``` TypeScript
+   import { audio } from '@kit.AudioKit';
+   import { BusinessError } from '@kit.BasicServicesKit';
+   import { common } from '@kit.AbilityKit';
+   import { resourceManager } from '@kit.LocalizationKit';
+   import { fileIo } from '@kit.CoreFileKit';
+
+   class Options {
+     public offset: number = 0;
+     public length: number = 0;
+   }
+   export default class AudioRenderer {
+     private audioRenderer: audio.AudioRenderer | undefined = undefined;
+     private audioStreamInfo: audio.AudioStreamInfo = {
+       // Configure based on the actual scenario. The current parameters are for reference only.
+       samplingRate: audio.AudioSamplingRate.SAMPLE_RATE_48000, // Sampling rate.
+       channels: audio.AudioChannel.CHANNEL_2, // Channels.
+       sampleFormat: audio.AudioSampleFormat.SAMPLE_FORMAT_S16LE, // Sample format.
+       encodingType: audio.AudioEncodingType.ENCODING_TYPE_RAW // Encoding format.
+     }
+     public appContext?: common.UIAbilityContext | undefined = undefined;
+     private audioSource = 'test1.wav';
+     private fileDescriptor?: resourceManager.RawFileDescriptor | undefined = undefined;
+     // ...
+     async getStageFileDescriptor(fileName: string): Promise<resourceManager.RawFileDescriptor | undefined> {
+       let fileDescriptor: resourceManager.RawFileDescriptor | undefined = undefined;
+       if (this.appContext) {
+         let mgr = this.appContext.resourceManager;
+         this.fileDescriptor = mgr.getRawFdSync(fileName);
+         await mgr.getRawFd(fileName).then(value => {
+           fileDescriptor = value;
+           console.info('case getRawFileDescriptor success fileName: ' + fileName);
+         }).catch((error: BusinessError) => {
+           console.error('case getRawFileDescriptor err: ' + error);
+         });
+       }
+       return fileDescriptor;
+     }
+   
+     async startRenderer(): Promise<void> {
+       if (this.audioRenderer !== undefined) {
+         return;
+       }
+       await this.getStageFileDescriptor(this.audioSource).then((res) => {
+         this.fileDescriptor = res;
+       });
+       if (!this.fileDescriptor) {
+         return;
+       }
+       let file: resourceManager.RawFileDescriptor = this.fileDescriptor;
+       try {
+         this.audioRenderer = await audio.createAudioRenderer(this.audioRendererOption);
+       } catch (error) {
+         console.error(`audioRenderer create : Error: ${JSON.stringify(error)}`);
+         return;
+       }
+       let bufferSize: number = this.fileDescriptor.offset;
+       let writeDataCallback = (buffer: ArrayBuffer) => {
+         let options: Options = {
+           offset: bufferSize,
+           length: buffer.byteLength
+         }
+         fileIo.readSync(file.fd, buffer, options);
+         bufferSize += buffer.byteLength;
+       };
+       this.audioRenderer.on('writeData', writeDataCallback);
+       await this.audioRenderer.start();
+     }
+
+     async stopRenderer(): Promise<void> {
+       if (this.audioRenderer) {
+         await this.audioRenderer.release();
+         this.audioRenderer = undefined;
+       }
+       if (this.fileDescriptor) {
+         this.closeResource(this.audioSource);
+         this.fileDescriptor = undefined;
+       }
+     }
+
+     async closeResource(fileName: string): Promise<void> {
+       if (this.appContext) {
+         let mgr = this.appContext.resourceManager;
+         await mgr.closeRawFd(fileName).then(() => {
+           console.info('case closeRawFd success fileName: ' + fileName);
+         }).catch((error: BusinessError) => {
+           console.error('case closeRawFd err: ' + error);
+         });
        }
      }
    }
    ```
 
-3. Create an AudioRenderer of the VOICE_COMMUNICATION type and start playing. For details about the implementation, see [Developing Audio Call](../audio/audio-call-development.md).
-
-   ```ts
-   import { audio } from '@kit.AudioKit';
-   import { BusinessError } from '@kit.BasicServicesKit';
-
-   export default class AudioRenderer {
-    private audioRenderer: audio.AudioRenderer | undefined = undefined;
-    private audioStreamInfo: audio.AudioStreamInfo = {
-      // Set the parameters based on project requirements. The following parameters are for reference only.
-      samplingRate: audio.AudioSamplingRate.SAMPLE_RATE_48000, // Sampling rate.
-      channels: audio.AudioChannel.CHANNEL_2, // Channel.
-      sampleFormat: audio.AudioSampleFormat.SAMPLE_FORMAT_S16LE, // Sampling format.
-      encodingType: audio.AudioEncodingType.ENCODING_TYPE_RAW // Encoding format.
-    }
-    private audioRendererInfo: audio.AudioRendererInfo = {
-      // Set the parameters related to the call scenario.
-      usage: audio.StreamUsage.STREAM_USAGE_VIDEO_COMMUNICATION, // Audio stream usage type: VoIP video call, speaker by default.
-      rendererFlags: 0 // AudioRenderer flag. The default value is 0.
-    }
-    private audioRendererOptions: audio.AudioRendererOptions = {
-      streamInfo: this.audioStreamInfo,
-      rendererInfo: this.audioRendererInfo
-    }
-
-    start() {
-      // Create an AudioRenderer instance, and set the events to listen for.
-      try {
-        this.audioRenderer = await audio.createAudioRenderer(this.audioRendererOptions);
-      } catch (err) {
-        console.error(`audioRender create :  Error: Code: ${err.code}, message: ${err.message}`);
-      }
-
-      this.audioRenderer?.start((err: BusinessError) => {
-        if (err) {
-          console.error(`audioRenderer start failed -Code : ${err.code}, Message ${err.message}`);
-        } else {
-          console.info('audioRender start success');
-        }
-      });
-    }
-   }
-   ```
-
 4. (Optional) Subscribe to audio output device change events if you want to know the device change status.
 
-   ```ts
+   <!-- @[device_monitor](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/Media/AVSession/SwitchCallDevices/entry/src/main/ets/utils/AudioRenderer.ets) -->       
+
+   ``` TypeScript
    import { audio } from '@kit.AudioKit';
+   // ...
+   export default class AudioRenderer {
+     // ...
+     private audioManager: audio.AudioManager | undefined = undefined;
+     private audioRoutingManager: audio.AudioRoutingManager | undefined = undefined;
+     private audioRendererInfo: audio.AudioRendererInfo = {
+       // Use parameters appropriate for the call scenario.
+       usage: audio.StreamUsage.STREAM_USAGE_VIDEO_COMMUNICATION, // Audio stream usage type: VOIP video call. The default is speaker.
+       rendererFlags: 0 // Audio renderer flag. The default value 0 is sufficient.
+     }
+     private  audioRendererOption: audio.AudioRendererOptions = {
+       streamInfo: this.audioStreamInfo,
+       rendererInfo: this.audioRendererInfo
+     };
 
-   let audioManager = audio.getAudioManager(); // Create an AudioManager instance.
-   let audioRoutingManager = audioManager.getRoutingManager(); // Call an API of AudioManager to create an AudioRoutingManager instance.
-
-   // (Optional) Listen for audio output device changes.
-   audioRoutingManager.on('preferOutputDeviceChangeForRendererInfo', this.audioRendererInfo, (desc: audio.AudioDeviceDescriptors) => {
-     console.info(`device change To : ${desc[0].deviceType}`); // Device type.
-   });
+     async observerDevices() {
+       this.audioManager = audio.getAudioManager(); // Obtain the audioManager first.
+       if (!this.audioManager) {
+         console.error('get audioManager failed');
+         return;
+       }
+       // Then call the AudioManager method to create an AudioRoutingManager instance.
+       this.audioRoutingManager = this.audioManager.getRoutingManager();
+       if(!this.audioRoutingManager) {
+         return;
+       }
+       // Optionally listen for the current output device switching callback.
+       this.audioRoutingManager.on('preferOutputDeviceChangeForRendererInfo', this.audioRendererInfo, (desc: audio.AudioDeviceDescriptors) => {
+         console.info(`device change to: ${desc[0].deviceType}`); // Device type.
+       });
+     }
+     // ...
+   }
    ```
 
 5. Destroy the AVSession when the call ends.
 
-   ```ts
+   <!-- @[destroy_session](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/Media/AVSession/SwitchCallDevices/entry/src/main/ets/pages/Index.ets) -->     
+
+   ``` TypeScript
    // Destroy the AVSession created in step 1 when the call ends.
    this.session?.destroy((err) => {
      if (err) {
@@ -141,127 +276,150 @@ The procedure for implementing a custom style is similar to that for implementin
 
 The differences are as follows:
 
-1. When creating a custom **AVCastPicker** component, you must add a custom parameter. (This step corresponds to step 2 in the default style implementation.)
+1. Create a custom **AVCastPicker**. You need to add custom parameters (corresponding to step 2 of the default style implementation).
 
-   ```ts
+   <!-- @[self_castPicker](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/Media/AVSession/SwitchCallDevices/entry/src/main/ets/pages/SelfAVCastPicker.ets) -->    
+
+   ``` TypeScript
    import { AVCastPicker } from '@kit.AVSessionKit';
+   // ...
 
-   @State pickerImage:ResourceStr = $r('app.media.earpiece'); // Custom resources.
-
-   build() {
-     Row() {
-       Column() {
-         AVCastPicker(
-           {
-             customPicker: (): void => this.ImageBuilder() // Add a custom parameter.
-           }
-         ).size({ height: 45, width:45 })
+   @Entry
+   @Component
+   struct SelfCastPicker {
+     @State pickerImage: ResourceStr = $r('app.media.earpiece'); // Custom resource.
+     // ...
+     build() {
+       Row() {
+         Column() {
+           AVCastPicker(
+             {
+               customPicker: (): void => this.ImageBuilder() // Add a custom parameter.
+             }
+           ).size({ height: 45, width: 45 })
+         }
        }
      }
-   }
 
-   // Custom content.
-   @Builder
-   ImageBuilder() {
-     Image(this.pickerImage)
-       .size({ width: '100%', height: '100%' })
-       .backgroundColor('#00000000')
-       .fillColor(Color.Black)
+     // Custom content.
+     @Builder
+     ImageBuilder() {
+       Image(this.pickerImage)
+         .size({ width: '100%', height: '100%' })
+         .backgroundColor('#00000000')
+         .fillColor(Color.Black)
+     }
    }
    ```
 
-2. If the application needs to change the custom style based on audio output device changes, the application must listen for device change events and refresh the custom style in real time. (This step corresponds to step 4 in the default style implementation.)
+2. If the app needs to change the custom style based on output device changes, you must listen for device switching and refresh the custom style in real time (corresponding to step 4 of the default style implementation).
 
-   ```ts
+   <!-- @[device_monitor](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/Media/AVSession/SwitchCallDevices/entry/src/main/ets/pages/SelfAVCastPicker.ets) -->    
+
+   ``` TypeScript
    import { audio } from '@kit.AudioKit';
 
-   async observerDevices() {
-     let audioManager = audio.getAudioManager();
-     let audioRoutingManager = audioManager.getRoutingManager();
+   @Entry
+   @Component
+   struct SelfCastPicker {
+     // ...
+     async selfObserverDevices() {
+       let audioManager = audio.getAudioManager();
+       let audioRoutingManager = audioManager.getRoutingManager();
 
-     // When the AVCastPicker component is started for the first time, obtain the current device and refresh the content displayed.
-     this.changePickerShow(audioRoutingManager.getPreferredOutputDeviceForRendererInfoSync(this.audioRendererInfo));
-
-     // Listen for the switching of the audio output device and display different styles based on the device type.
-     audioRoutingManager.on('preferOutputDeviceChangeForRendererInfo', this.audioRendererInfo, (desc: audio.AudioDeviceDescriptors) => {
+       // Obtain the current device and refresh the display when AVCastPicker is first launched.
        this.changePickerShow(audioRoutingManager.getPreferredOutputDeviceForRendererInfoSync(this.audioRendererInfo));
-     });
-   }
 
-   // Refresh the custom resource pickerImage after the device is changed.
-   private changePickerShow(desc: audio.AudioDeviceDescriptors) {
-     if(!desc || !desc.length || !desc[0]) {
-      return;
+       // Listen for current audio output device switching to display different styles based on device type.
+       audioRoutingManager.on('preferOutputDeviceChangeForRendererInfo', this.audioRendererInfo, (desc: audio.AudioDeviceDescriptors) => {
+         this.changePickerShow(audioRoutingManager.getPreferredOutputDeviceForRendererInfoSync(this.audioRendererInfo));
+       });
      }
-     if (desc[0].deviceType === 2) {
-       this.pickerImage = $r('app.media.sound');
-     } else if (desc[0].deviceType === 7) {
-       this.pickerImage = $r('app.media.bluetooth');
-     } else {
-       this.pickerImage = $r('app.media.earpiece');
+   
+     // Refresh the custom resource pickerImage after the device is updated.
+     private changePickerShow(desc: audio.AudioDeviceDescriptors) {
+       if(!desc || !desc.length || !desc[0]) {
+         return;
+       }
+       if (desc[0].deviceType === 2) {
+         this.pickerImage = $r('app.media.sound');
+       } else if (desc[0].deviceType === 7) {
+         this.pickerImage = $r('app.media.bluetooth');
+       } else {
+         this.pickerImage = $r('app.media.earpiece');
+       }
      }
+     // ...
    }
    ```
 
-## Switching Call Input Devices (for PCs and 2-in-1 Devices Only)
+## Switching Call Input Devices
 
-The system no longer provides APIs for switching audio input devices. If you need to switch audio input devices within your application, implement the **AVInputCastPicker** component. For details about the component, see [@ohos.multimedia.avInputCastPicker](../../reference/apis-avsession-kit/ohos-multimedia-avinputcastpicker.md) and [@ohos.multimedia.avCastPickerParam](../../reference/apis-avsession-kit/js-apis-avCastPickerParam.md).
+The system no longer provides APIs for audio input device switching. To switch audio input devices within an app, you can integrate the **AVInputCastPicker** component. For details about related parameters, see [@ohos.multimedia.avInputCastPicker](../../reference/apis-avsession-kit/ohos-multimedia-avinputcastpicker.md) and [@ohos.multimedia.avCastPickerParam](../../reference/apis-avsession-kit/js-apis-avCastPickerParam.md).
 
 This topic describes how to integrate the **AVInputCastPicker** component to implement the switching of call input devices.
 
 Currently, the system provides the default style and custom style for the **AVCastPicker** component.
+
 - If the application chooses to display the default style, when the device switches, the system displays the default component style based on the currently selected device.
+
 - If the application opts for a custom style, it needs to refresh its defined style in response to device changes.
 
-### Implementing the Default Style
+### Default Style Implementation
 
 1. Create the **AVInputCastPicker** component on the call page that provides device switching.
 
-   ```ts
+   <!-- @[default_InputCastPicker](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/Media/AVSession/SwitchCallDevices/entry/src/main/ets/pages/DefaultAVInputCastPicker.ets) -->   
+
+   ``` TypeScript
    import { AVCastPickerState, AVInputCastPicker } from '@kit.AVSessionKit';
 
-   // (Optional) Callback for the device list state change.
-   private onStateChange(state: AVCastPickerState) {
-     if (state === AVCastPickerState.STATE_APPEARING) {
-       console.info('The picker starts showing.');
-     } else if (state === AVCastPickerState.STATE_DISAPPEARING) {
-       console.info('The picker finishes presenting.');
-     }
-   }
-
-   // Create the component and set its size.
-   build() {
-     Row() {
-       Column() {
-         AVInputCastPicker(
-         {
-           onStateChange: this.onStateChange
-         }
-         ).size({ height:45, width:45 })
+   // ...
+     // Callback for device list display state changes (optional).
+     private onStateChange(state: AVCastPickerState) {
+       if (state === AVCastPickerState.STATE_APPEARING) {
+         console.info('The picker starts showing.');
+       } else if (state === AVCastPickerState.STATE_DISAPPEARING) {
+         console.info('The picker finishes presenting.');
        }
      }
-   }
+
+     // Create the component and set its size.
+     build() {
+       Row() {
+         Column() {
+           AVInputCastPicker(
+             {
+               onStateChange: this.onStateChange
+             }
+           ).size({ height: 45, width: 45 })
+         }
+       }
+     }
    ```
 
 2. Implement the call feature. For details, see [Developing Audio Call](../audio/audio-call-development.md).
 
-### Implementing a Custom Style
+### Custom Style Implementation
 
 You can customize a style by setting the **customPicker** parameter of the [AVInputCastPicker](../../reference/apis-avsession-kit/ohos-multimedia-avinputcastpicker.md#avinputcastpicker).
 
 1. When creating a custom **AVInputCastPicker** component, you must add a custom parameter.
 
-   ```ts
+   <!-- @[self_inputCastPicker](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/Media/AVSession/SwitchCallDevices/entry/src/main/ets/pages/SwitchInputDevice.ets) -->   
+
+   ``` TypeScript
    import { AVCastPickerState, AVInputCastPicker } from '@kit.AVSessionKit';
 
    @Entry
    @Component
-   struct CastPicker {
-     @State pickerImage: ResourceStr = $r('app.media.startIcon'); // Custom resources.
+   struct InputCastPicker {
+     @State pickerImage: ResourceStr = $r('app.media.sound'); // Custom resource.
+     // ...
 
      // (Optional) Callback for the device list state change.
      private onStateChange(state: AVCastPickerState) {
-        if (state === AVCastPickerState.STATE_APPEARING) {
+       if (state === AVCastPickerState.STATE_APPEARING) {
          console.info('The picker starts showing.');
        } else if (state === AVCastPickerState.STATE_DISAPPEARING) {
          console.info('The picker finishes presenting.');
@@ -273,17 +431,26 @@ You can customize a style by setting the **customPicker** parameter of the [AVIn
          Column() {
            AVInputCastPicker(
              {
-               customPicker: this.ImageBuilder.bind(this), // Add a custom parameter.
+               customPicker: (): void => this.ImageBuilder(), // New custom parameter.
                onStateChange: this.onStateChange
              }
-           ).size({ height: 45, width: 45 })
+           )
+             .size({ width: '50%', height: '20%' })
+             .id('AVInputCastPicker')
+           // ...
          }
+         .width('100%')
+         .alignItems(HorizontalAlign.Center)
        }
+       .alignItems(VerticalAlign.Center)
+       .width('100%')
+       .height('100%')
      }
 
      // Custom content.
      @Builder
      ImageBuilder() {
+       Text($r('app.string.switch_InputDevice'))
        Image(this.pickerImage)
          .size({ width: '100%', height: '100%' })
          .backgroundColor('#00000000')

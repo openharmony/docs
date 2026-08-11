@@ -6,7 +6,7 @@
 <!--Tester: @lxl007-->
 <!--Adviser: @Brilliantry_Rui-->
 
-设置组件的模糊、阴影、球面效果以及设置图片的图像效果。
+设置组件的模糊、阴影、球面效果以及设置图像效果。
 
 >  **说明：**
 >
@@ -16,7 +16,7 @@
 
 blur(value: number, options?: BlurOptions): T
 
-为组件添加内容模糊效果。
+为组件添加内容模糊效果。当组件设置了BlendApplyType.OFFSCREEN的blendMode时，该接口可能无法截取到正确画面。
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
@@ -28,14 +28,14 @@ blur(value: number, options?: BlurOptions): T
 
 | 参数名                | 类型                                                         | 必填 | 说明                                                         |
 | --------------------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| value                 | number                                                       | 是   | 当前组件添加内容模糊效果，入参为模糊半径，模糊半径越大越模糊，value值小于等于0时不模糊。 |
-| options<sup>11+</sup> | [BlurOptions](ts-universal-attributes-foreground-blur-style.md#bluroptions11) | 否   | 灰阶模糊参数。对图像中的黑白色进行色阶调整，使其趋于灰色更为柔和美观，对图像中的彩色调整没有效果。<br/>默认值：grayscale: [0,0] |
+| value                 | number                                                       | 是   | 模糊半径，模糊半径越大越模糊，值小于等于0时不模糊。<br>单位：px |
+| options<sup>11+</sup> | [BlurOptions](ts-universal-attributes-foreground-blur-style.md#bluroptions11) | 否   | 灰阶模糊参数。对图像中的黑白色进行色阶调整，使黑白灰度过渡更加平滑柔和，对图像中的彩色调整没有效果。<br>默认值：grayscale: [0,0] |
 
 **返回值：**
 
 | 类型   | 说明                     |
 | ------ | ------------------------ |
-| T | 返回当前组件。 |
+| T | 返回当前组件，用于链式调用。 |
 
 ## blur<sup>18+</sup>
 
@@ -55,14 +55,14 @@ blur(blurRadius: Optional\<number>, options?: BlurOptions): T
 
 | 参数名                | 类型                                                         | 必填 | 说明                                                         |
 | --------------------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| blurRadius            | [Optional](ts-universal-attributes-custom-property.md#optionalt)\<number>                                            | 是   | 当前组件添加内容模糊效果，入参为模糊半径，模糊半径越大越模糊，blurRadius值小于等于0时不模糊。<br/>当blurRadius的值为undefined时，维持之前取值。从未设置该属性时，默认值为0，表示不模糊。|
-| options | [BlurOptions](ts-universal-attributes-foreground-blur-style.md#bluroptions11) | 否   | 灰阶模糊参数。对图像中的黑白色进行色阶调整，使其趋于灰色更为柔和美观，对图像中的彩色调整没有效果。<br/>默认值：grayscale: [0,0] |
+| blurRadius            | [Optional](ts-universal-attributes-custom-property.md#optionalt)\<number>                                            | 是   | 模糊半径，模糊半径越大越模糊，值小于等于0时不模糊。<br>单位：px<br>当blurRadius的值为undefined时，维持之前取值。从未设置该属性时，默认值为0，表示不模糊。|
+| options | [BlurOptions](ts-universal-attributes-foreground-blur-style.md#bluroptions11) | 否   | 灰阶模糊参数。对图像中的黑白色进行色阶调整，使其趋于灰色更为柔和美观，对图像中的彩色调整没有效果。<br>默认值：grayscale: [0,0] |
 
 **返回值：**
 
 | 类型   | 说明                     |
 | ------ | ------------------------ |
-| T | 返回当前组件。 |
+| T | 返回当前组件，用于链式调用。 |
 
 ## blur<sup>19+</sup>
 
@@ -82,15 +82,15 @@ blur(blurRadius: Optional\<number>, options?: BlurOptions, sysOptions?: SystemAd
 
 | 参数名                | 类型                                                         | 必填 | 说明                                                         |
 | --------------------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| blurRadius            | [Optional](ts-universal-attributes-custom-property.md#optionalt)\<number>                                            | 是   | 当前组件添加内容模糊效果，入参为模糊半径，模糊半径越大越模糊，blurRadius值小于等于0时不模糊。<br/>当blurRadius的值为undefined时，维持之前取值。从未设置该属性时，默认值为0，表示不模糊。 |
-| options | [BlurOptions](ts-universal-attributes-foreground-blur-style.md#bluroptions11) | 否   | 灰阶模糊参数。对图像中的黑白色进行色阶调整，使其趋于灰色更为柔和美观，对图像中的彩色调整没有效果。<br/>默认值：grayscale: [0,0]  |
-| sysOptions   |  [SystemAdaptiveOptions](ts-universal-attributes-background.md#systemadaptiveoptions19)    |   否   |  系统自适应调节参数。<br/>默认值：{ disableSystemAdaptation: false }    |
+| blurRadius            | [Optional](ts-universal-attributes-custom-property.md#optionalt)\<number>                                            | 是   | 模糊半径，模糊半径越大越模糊，值小于等于0时不模糊。<br>单位：px<br>当blurRadius的值为undefined时，维持之前取值。从未设置该属性时，默认值为0，表示不模糊。 |
+| options | [BlurOptions](ts-universal-attributes-foreground-blur-style.md#bluroptions11) | 否   | 灰阶模糊参数。对图像中的黑白色进行色阶调整，使其趋于灰色更为柔和美观，对图像中的彩色调整没有效果。<br>默认值：grayscale: [0,0]  |
+| sysOptions   |  [SystemAdaptiveOptions](ts-universal-attributes-background.md#systemadaptiveoptions19)    |   否   |  系统自适应调节参数。<br>默认值：{ disableSystemAdaptation: false }    |
 
 **返回值：**
 
 | 类型   | 说明                     |
 | ------ | ------------------------ |
-| T | 返回当前组件。 |
+| T | 返回当前组件，用于链式调用。 |
 
 ## shadow
 
@@ -98,7 +98,7 @@ shadow(value: ShadowOptions \| ShadowStyle): T
 
 为组件添加阴影效果。
 
-**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用，ArkTS卡片上不支持参数为 [ShadowStyle](ts-universal-attributes-image-effect.md#shadowstyle10枚举说明)类型。
+**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用，ArkTS卡片上不支持参数为 [ShadowStyle](#shadowstyle10枚举说明)类型。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -108,13 +108,13 @@ shadow(value: ShadowOptions \| ShadowStyle): T
 
 | 参数名 | 类型                                                         | 必填 | 说明                                                         |
 | ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| value  | [ShadowOptions](#shadowoptions对象说明)&nbsp;\|&nbsp;[ShadowStyle](#shadowstyle10枚举说明)<sup>10+</sup> | 是   | 为当前组件添加阴影效果。<br/>入参类型为ShadowOptions时，可以指定模糊半径、阴影的颜色、X轴和Y轴的偏移量。<br/>入参类型为ShadowStyle时，可指定不同阴影样式。 |
+| value  | [ShadowOptions](#shadowoptions对象说明)&nbsp;\|&nbsp;[ShadowStyle](#shadowstyle10枚举说明)<sup>10+</sup> | 是   | 为当前组件添加阴影效果。<br>入参类型为ShadowOptions时，可以指定模糊半径、阴影的颜色、X轴和Y轴的偏移量。<br>入参类型为ShadowStyle时，可指定不同阴影样式。 |
 
 **返回值：**
 
 | 类型   | 说明                     |
 | ------ | ------------------------ |
-| T | 返回当前组件。 |
+| T | 返回当前组件，用于链式调用。 |
 
 ## shadow<sup>18+</sup>
 
@@ -122,7 +122,7 @@ shadow(options: Optional\<ShadowOptions \| ShadowStyle>): T
 
 为组件添加阴影效果。与[shadow](#shadow)相比，options参数新增了对undefined类型的支持。
 
-**卡片能力：** 从API version 18开始，该接口支持在ArkTS卡片中使用，ArkTS卡片上不支持参数为[ShadowStyle](ts-universal-attributes-image-effect.md#shadowstyle10枚举说明)类型。
+**卡片能力：** 从API version 18开始，该接口支持在ArkTS卡片中使用，ArkTS卡片上不支持参数为[ShadowStyle](#shadowstyle10枚举说明)类型。
 
 **原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
@@ -134,19 +134,19 @@ shadow(options: Optional\<ShadowOptions \| ShadowStyle>): T
 
 | 参数名  | 类型                                                         | 必填                                                         | 说明 |
 | ------- | ------------------------------------------------------------ | ------------------------------------------------------------ | ---- |
-| options | [Optional](ts-universal-attributes-custom-property.md#optionalt)\<[ShadowOptions](#shadowoptions对象说明)&nbsp;\|&nbsp;[ShadowStyle](#shadowstyle10枚举说明)> | 是 |   为当前组件添加阴影效果。<br/>入参类型为ShadowOptions时，可以指定模糊半径、阴影的颜色、X轴和Y轴的偏移量。<br/>入参类型为ShadowStyle时，可指定不同阴影样式。<br/>当options的值为undefined时，恢复为无样式的阴影效果。   |
+| options | [Optional](ts-universal-attributes-custom-property.md#optionalt)\<[ShadowOptions](#shadowoptions对象说明)&nbsp;\|&nbsp;[ShadowStyle](#shadowstyle10枚举说明)> | 是 |   为当前组件添加阴影效果。<br>入参类型为ShadowOptions时，可以指定模糊半径、阴影的颜色、X轴和Y轴的偏移量。<br>入参类型为ShadowStyle时，可指定不同阴影样式。<br>当options的值为undefined时，恢复为无阴影效果。   |
 
 **返回值：**
 
 | 类型   | 说明                     |
 | ------ | ------------------------ |
-| T | 返回当前组件。 |
+| T | 返回当前组件，用于链式调用。 |
 
 ## grayscale
 
 grayscale(value: number): T
 
-为组件添加灰度效果。上层渲染灰度会覆盖下层子组件渲染。不通过该接口设置时，默认无变化。
+为组件添加灰度效果。上层渲染灰度会覆盖下层子组件渲染。未设置时，默认无变化。
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
@@ -158,19 +158,19 @@ grayscale(value: number): T
 
 | 参数名 | 类型   | 必填 | 说明                                                         |
 | ------ | ------ | ---- | ------------------------------------------------------------ |
-| value  | number | 是   | 为当前组件添加灰度效果。值定义为灰度转换的比例，入参1.0则完全转为灰度图像，入参0.0则图像无变化，入参在0.0和1.0之间时，效果呈线性变化。<br/>取值范围：[0.0, 1.0]<br/>**说明：**<br/>设置小于0.0的值时，按值为0.0处理，设置大于1.0的值时，按值为1.0处理。 |
+| value  | number | 是   | 为当前组件添加灰度效果。值定义为灰度转换的比例，入参1.0则完全转为灰度图像，入参0.0则图像无变化，入参在0.0和1.0之间时，效果呈线性变化。<br>取值范围：[0.0, 1.0]<br>**说明：**<br>设置小于0.0的值时，按值为0.0处理，设置大于1.0的值时，按值为1.0处理。 |
 
 **返回值：**
 
 | 类型   | 说明                     |
 | ------ | ------------------------ |
-| T | 返回当前组件。 |
+| T | 返回当前组件，用于链式调用。 |
 
 ## grayscale<sup>18+</sup>
 
 grayscale(grayscale: Optional\<number>): T
 
-为组件添加灰度效果。上层渲染灰度会覆盖下层子组件渲染。不通过该接口设置时，默认无变化。与[grayscale](#grayscale)相比，grayscale参数新增了对undefined类型的支持。
+为组件添加灰度效果。上层渲染灰度会覆盖下层子组件渲染。未设置时，默认无变化。与[grayscale](#grayscale)相比，grayscale参数新增了对undefined类型的支持。
 
 **卡片能力：** 从API version 18开始，该接口支持在ArkTS卡片中使用。
 
@@ -184,19 +184,19 @@ grayscale(grayscale: Optional\<number>): T
 
 | 参数名    | 类型              | 必填 | 说明                                                         |
 | --------- | ----------------- | ---- | ------------------------------------------------------------ |
-| grayscale | [Optional](ts-universal-attributes-custom-property.md#optionalt)\<number> | 是   | 为当前组件添加灰度效果。值定义为灰度转换的比例，入参1.0则完全转为灰度图像，入参0.0则图像无变化，入参在0.0和1.0之间时，效果呈线性变化。<br/>取值范围：[0.0, 1.0]<br/>**说明：**<br/>设置小于0.0的值时，按值为0.0处理，设置大于1.0的值时，按值为1.0处理。<br/>当grayscale的值为undefined时，取默认值0.0。恢复为无灰度效果。 |
+| grayscale | [Optional](ts-universal-attributes-custom-property.md#optionalt)\<number> | 是   | 为当前组件添加灰度效果。值定义为灰度转换的比例，入参1.0则完全转为灰度图像，入参0.0则图像无变化，入参在0.0和1.0之间时，效果呈线性变化。<br>取值范围：[0.0, 1.0]<br>**说明：**<br>设置小于0.0的值时，按值为0.0处理，设置大于1.0的值时，按值为1.0处理。<br>当grayscale的值为undefined时，取默认值0.0。恢复为无灰度效果。 |
 
 **返回值：**
 
 | 类型   | 说明                     |
 | ------ | ------------------------ |
-| T | 返回当前组件。 |
+| T | 返回当前组件，用于链式调用。 |
 
 ## brightness
 
 brightness(value: number): T
 
-为组件添加高光效果。不通过该接口设置时，默认无变化。
+为组件添加高光效果。未设置时，默认无变化。与lightUpEffect方法相比，brightness以乘数方式调节亮度（值大于1可超过原始亮度），适合需要增强或减弱亮度的场景；lightUpEffect以程度方式调节亮度（值范围[0,1]，不能超过原始亮度），适合需要控制图像亮起程度的场景。当组件设置了BlendApplyType.OFFSCREEN的blendMode时，该接口可能无法截取到正确画面。
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
@@ -208,19 +208,19 @@ brightness(value: number): T
 
 | 参数名 | 类型   | 必填 | 说明                                                         |
 | ------ | ------ | ---- | ------------------------------------------------------------ |
-| value  | number | 是   | 为当前组件添加高光效果，入参为高光比例，值为1时没有效果，小于1时亮度变暗，小于或等于0为全黑，大于1时亮度增加，数值越大亮度越大，亮度大于或等于2时会变为全白。<br/>取值范围：[0, +∞)<br/>推荐取值范围：[0, 2]<br/>**说明：**<br/>设置小于0的值时，按值为0处理。|
+| value  | number | 是   | 为当前组件添加高光效果，入参为高光比例，值为1时没有效果，小于1时亮度变暗，小于或等于0为全黑，大于1时亮度增加，数值越大亮度越大，亮度大于或等于2时会变为全白。<br>取值范围：[0, +∞)<br>推荐取值范围：[0, 2]<br>**说明：**<br>设置小于0的值时，按值为0处理。|
 
 **返回值：**
 
 | 类型   | 说明                     |
 | ------ | ------------------------ |
-| T | 返回当前组件。 |
+| T | 返回当前组件，用于链式调用。 |
 
 ## brightness<sup>18+</sup>
 
 brightness(brightness: Optional\<number>): T
 
-为组件添加高光效果。不通过该接口设置时，默认无变化。与[brightness](#brightness)相比，brightness参数新增了对undefined类型的支持。
+为组件添加高光效果。未设置时，默认无变化。与[brightness](#brightness)相比，brightness参数新增了对undefined类型的支持。
 
 **卡片能力：** 从API version 18开始，该接口支持在ArkTS卡片中使用。
 
@@ -234,19 +234,19 @@ brightness(brightness: Optional\<number>): T
 
 | 参数名     | 类型              | 必填 | 说明                                                         |
 | ---------- | ----------------- | ---- | ------------------------------------------------------------ |
-| brightness | [Optional](ts-universal-attributes-custom-property.md#optionalt)\<number> | 是   | 为当前组件添加高光效果，入参为高光比例，值为1时没有效果，小于1时亮度变暗，小于或等于0为全黑，大于1时亮度增加，数值越大亮度越大，亮度大于或等于2时会变为全白。<br/>取值范围：[0, +∞)<br/>推荐取值范围：[0, 2]<br/>**说明：**<br/>设置小于0的值时，按值为0处理。<br/>当brightness的值为undefined时，恢复为亮度为1的高光效果。 |
+| brightness | [Optional](ts-universal-attributes-custom-property.md#optionalt)\<number> | 是   | 为当前组件添加高光效果，入参为高光比例，值为1时没有效果，小于1时亮度变暗，小于或等于0为全黑，大于1时亮度增加，数值越大亮度越大，亮度大于或等于2时会变为全白。<br>取值范围：[0, +∞)<br>推荐取值范围：[0, 2]<br>**说明：**<br>设置小于0的值时，按值为0处理。<br>当brightness的值为undefined时，恢复为亮度为1的高光效果。 |
 
 **返回值：**
 
 | 类型   | 说明                     |
 | ------ | ------------------------ |
-| T | 返回当前组件。 |
+| T | 返回当前组件，用于链式调用。 |
 
 ## saturate
 
 saturate(value: number): T
 
-为组件添加饱和度效果。不通过该接口设置时，默认无变化。
+为组件添加饱和度效果。未设置时，默认无变化。
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
@@ -258,19 +258,19 @@ saturate(value: number): T
 
 | 参数名 | 类型   | 必填 | 说明                                                         |
 | ------ | ------ | ---- | ------------------------------------------------------------ |
-| value  | number | 是   | 为当前组件添加饱和度效果，饱和度为颜色中的含色成分和消色成分(灰)的比例，入参为1时，显示原图像，大于1时含色成分越大，饱和度越大，小于1时消色成分越大，饱和度越小。<br/>推荐取值范围：[0, 50)<br/>**说明：**<br/>设置小于0的值时，按值为0处理。 |
+| value  | number | 是   | 为当前组件添加饱和度效果，饱和度为颜色中的含色成分和消色成分（灰）的比例，入参为1时，显示原图像，大于1时含色成分越大，饱和度越大，小于1时消色成分越大，饱和度越小。<br>取值范围：[0, +∞)<br>推荐取值范围：[0, 50)<br>**说明：**<br>设置小于0的值时，按值为0处理。 |
 
 **返回值：**
 
 | 类型   | 说明                     |
 | ------ | ------------------------ |
-| T | 返回当前组件。 |
+| T | 返回当前组件，用于链式调用。 |
 
 ## saturate<sup>18+</sup>
 
 saturate(saturate: Optional\<number>): T
 
-为组件添加饱和度效果。不通过该接口设置时，默认无变化。与[saturate](#saturate)相比，saturate参数新增了对undefined类型的支持。
+为组件添加饱和度效果。未设置时，默认无变化。与[saturate](#saturate)相比，saturate参数新增了对undefined类型的支持。
 
 **卡片能力：** 从API version 18开始，该接口支持在ArkTS卡片中使用。
 
@@ -284,19 +284,19 @@ saturate(saturate: Optional\<number>): T
 
 | 参数名   | 类型              | 必填 | 说明                                                         |
 | -------- | ----------------- | ---- | ------------------------------------------------------------ |
-| saturate | [Optional](ts-universal-attributes-custom-property.md#optionalt)\<number> | 是   | 为当前组件添加饱和度效果，饱和度为颜色中的含色成分和消色成分(灰)的比例，入参为1时，显示原图像，大于1时含色成分越大，饱和度越大，小于1时消色成分越大，饱和度越小。<br/>推荐取值范围：[0, 50)<br/>**说明：**<br/>设置小于0的值时，按值为0处理。<br/>当saturate的值为undefined时。恢复为饱和度为1的效果。 |
+| saturate | [Optional](ts-universal-attributes-custom-property.md#optionalt)\<number> | 是   | 为当前组件添加饱和度效果，饱和度为颜色中的含色成分和消色成分（灰）的比例，入参为1时，显示原图像，大于1时含色成分越大，饱和度越大，小于1时消色成分越大，饱和度越小。<br>取值范围：[0, +∞)<br>推荐取值范围：[0, 50)<br>**说明：**<br>设置小于0的值时，按值为0处理。<br>当saturate的值为undefined时，恢复为饱和度为1的效果。 |
 
 **返回值：**
 
 | 类型   | 说明                     |
 | ------ | ------------------------ |
-| T | 返回当前组件。 |
+| T | 返回当前组件，用于链式调用。 |
 
 ## contrast
 
 contrast(value: number): T
 
-为组件添加对比度效果。不通过该接口设置时，默认无变化。
+为组件添加对比度效果。未设置时，默认无变化。
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
@@ -308,19 +308,19 @@ contrast(value: number): T
 
 | 参数名 | 类型   | 必填 | 说明                                                         |
 | ------ | ------ | ---- | ------------------------------------------------------------ |
-| value  | number | 是   | 为当前组件添加对比度效果，入参为对比度的值。值为1时，显示原图，大于1时，值越大对比度越高，图像越清晰醒目，小于1时，值越小对比度越低，当对比度为0时，图像变为全灰。<br/>推荐取值范围：[0, 10)<br/>**说明：**<br/>设置小于0的值时，按值为0处理。 |
+| value  | number | 是   | 为当前组件添加对比度效果，入参为对比度的值。值为1时，显示原图，大于1时，值越大对比度越高，图像越清晰醒目，小于1时，值越小对比度越低，当对比度为0时，图像变为全灰。<br>取值范围：[0, +∞)<br>推荐取值范围：[0, 10)<br>**说明：**<br>设置小于0的值时，按值为0处理。 |
 
 **返回值：**
 
 | 类型   | 说明                     |
 | ------ | ------------------------ |
-| T | 返回当前组件。 |
+| T | 返回当前组件，用于链式调用。 |
 
 ## contrast<sup>18+</sup>
 
 contrast(contrast: Optional\<number>): T
 
-为组件添加对比度效果。不通过该接口设置时，默认无变化。与[contrast](#contrast)相比，contrast参数新增了对undefined类型的支持。
+为组件添加对比度效果。未设置时，默认无变化。与[contrast](#contrast)相比，contrast参数新增了对undefined类型的支持。
 
 **卡片能力：** 从API version 18开始，该接口支持在ArkTS卡片中使用。
 
@@ -334,13 +334,13 @@ contrast(contrast: Optional\<number>): T
 
 | 参数名   | 类型              | 必填 | 说明                                                         |
 | -------- | ----------------- | ---- | ------------------------------------------------------------ |
-| contrast | [Optional](ts-universal-attributes-custom-property.md#optionalt)\<number> | 是   | 为当前组件添加对比度效果，入参为对比度的值。值为1时，显示原图，大于1时，值越大对比度越高，图像越清晰醒目，小于1时，值越小对比度越低，当对比度为0时，图像变为全灰。<br/>推荐取值范围：[0, 10)<br/>**说明：**<br/>设置小于0的值时，按值为0处理。<br/>当contrast的值为undefined时，恢复为对比度为1的效果。 |
+| contrast | [Optional](ts-universal-attributes-custom-property.md#optionalt)\<number> | 是   | 为当前组件添加对比度效果，入参为对比度的值。值为1时，显示原图，大于1时，值越大对比度越高，图像越清晰醒目，小于1时，值越小对比度越低，当对比度为0时，图像变为全灰。<br>取值范围：[0, +∞)<br>推荐取值范围：[0, 10)<br>**说明：**<br>设置小于0的值时，按值为0处理。<br>当contrast的值为undefined时，恢复为对比度为1的效果。 |
 
 **返回值：**
 
 | 类型   | 说明                     |
 | ------ | ------------------------ |
-| T | 返回当前组件。 |
+| T | 返回当前组件，用于链式调用。 |
 
 ## invert
 
@@ -358,13 +358,13 @@ invert(value: number \| InvertOptions): T
 
 | 参数名 | 类型                                                         | 必填 | 说明                                                         |
 | ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| value  | number&nbsp;\|&nbsp;[InvertOptions](#invertoptions11对象说明)<sup>11+</sup> | 是   | 反转输入的图像。<br/>入参对象为number时，入参为图像反转的比例，值为1时完全反转，值为0则图像无变化。<br/>取值范围：[0, 1]。<br/>设置小于0的值时，按值为0处理。设置大于1的值时，按值为1处理。<br/>入参对象为 InvertOptions时，对比背景颜色灰度值和阈值区间，背景颜色灰度值小于阈值区间时反色取high值，当背景颜色灰度值大于阈值区间时反色取low值，背景颜色灰度值在阈值区间内取值由high线性渐变到low。<br/>**说明：**<br/>number和InvertOptions两种形式的入参对应不同的反转效果。两种类型的入参切换时，不会清除之前已设置的反转效果，两种反转效果会同时存在，建议始终使用同一种形式的入参。 |
+| value  | number&nbsp;\|&nbsp;[InvertOptions](#invertoptions11对象说明)<sup>11+</sup> | 是   | 反转输入的图像。<br>入参对象为number时，入参为图像反转的比例，值为1时完全反转，值为0则图像无变化。<br>取值范围：[0, 1]。<br>设置小于0的值时，按值为0处理。设置大于1的值时，按值为1处理。<br>入参对象为 InvertOptions时，对比背景颜色灰度值和阈值区间，背景颜色灰度值小于阈值区间时反色取high值，当背景颜色灰度值大于阈值区间时反色取low值，背景颜色灰度值在阈值区间内取值由high线性渐变到low。<br>**说明：**<br>number和InvertOptions两种形式的入参对应不同的反转效果。两种类型的入参切换时，不会清除之前已设置的反转效果，两种反转效果会同时存在，建议始终使用同一种形式的入参。 |
 
 **返回值：**
 
 | 类型   | 说明                     |
 | ------ | ------------------------ |
-| T | 返回当前组件。 |
+| T | 返回当前组件，用于链式调用。 |
 
 ## invert<sup>18+</sup>
 
@@ -384,13 +384,13 @@ invert(options: Optional\<number \| InvertOptions>): T
 
 | 参数名  | 类型                                                         | 必填 | 说明                                                         |
 | ------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| options | [Optional](ts-universal-attributes-custom-property.md#optionalt)\<number&nbsp;\|&nbsp;[InvertOptions](#invertoptions11对象说明)<sup>11+</sup>> | 是   | 反转输入的图像。<br/>入参对象为number时，入参为图像反转的比例，值为1时完全反转，值为0则图像无变化。<br/>取值范围：[0, 1]。<br/>设置小于0的值时，按值为0处理。设置大于1的值时，按值为1处理。<br/>入参对象为 InvertOptions时，对比背景颜色灰度值和阈值区间，背景颜色灰度值小于阈值区间时反色取high值，当背景颜色灰度值大于阈值区间时反色取low值，背景颜色灰度值在阈值区间内取值由high线性渐变到low。<br/>当options的值为undefined时，恢复为图像无变化的效果。<br/>**说明：**<br/>number和InvertOptions两种形式的入参对应不同的反转效果。两种类型的入参切换时，不会清除之前已设置的反转效果，两种反转效果会同时存在，建议始终使用同一种形式的入参。|
+| options | [Optional](ts-universal-attributes-custom-property.md#optionalt)\<number&nbsp;\|&nbsp;[InvertOptions](#invertoptions11对象说明)<sup>11+</sup>> | 是   | 反转输入的图像。<br>入参对象为number时，入参为图像反转的比例，值为1时完全反转，值为0则图像无变化。<br>取值范围：[0, 1]。<br>设置小于0的值时，按值为0处理。设置大于1的值时，按值为1处理。<br>入参对象为 InvertOptions时，对比背景颜色灰度值和阈值区间，背景颜色灰度值小于阈值区间时反色取high值，当背景颜色灰度值大于阈值区间时反色取low值，背景颜色灰度值在阈值区间内取值由high线性渐变到low。<br>当options的值为undefined时，恢复为图像无变化的效果。<br>**说明：**<br>number和InvertOptions两种形式的入参对应不同的反转效果。两种类型的入参切换时，不会清除之前已设置的反转效果，两种反转效果会同时存在，建议始终使用同一种形式的入参。|
 
 **返回值：**
 
 | 类型   | 说明                     |
 | ------ | ------------------------ |
-| T | 返回当前组件。 |
+| T | 返回当前组件，用于链式调用。 |
 
 ## sepia
 
@@ -408,13 +408,13 @@ sepia(value: number): T
 
 | 参数名 | 类型   | 必填 | 说明                                                         |
 | ------ | ------ | ---- | ------------------------------------------------------------ |
-| value  | number | 是   | 将图像转换为深褐色，降低色彩度，产生温暖复古的图像风格。入参为褐色滤镜强度，值为1则完全是深褐色的，值小于等于0则图像无变化，值大于1会进一步放大色彩偏移比例，图像整体会变得更亮且色彩更加偏黄/偏红，但不属于标准sepia效果。<br/>取值范围：[0, +∞)，推荐取值范围：(0, 1]。 |
+| value  | number | 是   | 将图像转换为深褐色，降低色彩度，产生温暖复古的图像风格。入参为褐色滤镜强度，值为1则完全是深褐色的，值小于等于0则图像无变化，值大于1会进一步放大色彩偏移比例，图像整体会变得更亮且色彩更加偏黄/偏红，但不属于标准sepia效果。<br>取值范围：[0, +∞)，推荐取值范围：(0, 1]。 |
 
 **返回值：**
 
 | 类型   | 说明                     |
 | ------ | ------------------------ |
-| T | 返回当前组件。 |
+| T | 返回当前组件，用于链式调用。 |
 
 ## sepia<sup>18+</sup>
 
@@ -434,19 +434,19 @@ sepia(sepia: Optional\<number>): T
 
 | 参数名 | 类型              | 必填 | 说明                                                         |
 | ------ | ----------------- | ---- | ------------------------------------------------------------ |
-| sepia  | [Optional](ts-universal-attributes-custom-property.md#optionalt)\<number> | 是   | 将图像转换为深褐色，降低色彩度，产生温暖复古的图像风格。入参为褐色滤镜强度，值为1则完全是深褐色的，值小于等于0则图像无变化，值大于1会进一步放大色彩偏移比例，图像整体会变得更亮且色彩更加偏黄/偏红，但不属于标准sepia效果。<br/>当sepia的值为undefined时，恢复为图像无变化的效果。<br/> 取值范围：[0, +∞)，推荐取值范围：(0, 1]。 |
+| sepia  | [Optional](ts-universal-attributes-custom-property.md#optionalt)\<number> | 是   | 将图像转换为深褐色，降低色彩度，产生温暖复古的图像风格。入参为褐色滤镜强度，值为1则完全是深褐色的，值小于等于0则图像无变化，值大于1会进一步放大色彩偏移比例，图像整体会变得更亮且色彩更加偏黄/偏红，但不属于标准sepia效果。<br>取值范围：[0, +∞)，推荐取值范围：(0, 1]。<br>当sepia的值为undefined时，恢复为图像无变化的效果。 |
 
 **返回值：**
 
 | 类型   | 说明                     |
 | ------ | ------------------------ |
-| T | 返回当前组件。 |
+| T | 返回当前组件，用于链式调用。 |
 
 ## hueRotate
 
 hueRotate(value: number \| string): T
 
-色相旋转效果。不通过该接口设置时，默认无变化。
+色相旋转效果。未设置时，默认无变化。
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
@@ -458,19 +458,19 @@ hueRotate(value: number \| string): T
 
 | 参数名 | 类型                       | 必填 | 说明                                                         |
 | ------ | -------------------------- | ---- | ------------------------------------------------------------ |
-| value  | number&nbsp;\|&nbsp;string | 是   | 色相旋转效果，输入参数为旋转角度。<br/>单位：度（°）<br/>取值范围：(-∞, +∞)<br/>**说明：**<br/>色调旋转360度会显示原始颜色。先将色调旋转180 度，然后再旋转-180度会显示原始颜色。数据类型为number时，值为90和'90deg'效果一致。 |
+| value  | number&nbsp;\|&nbsp;string | 是   | 色相旋转效果，输入参数为旋转角度。<br>单位：度（°）<br>取值范围：(-∞, +∞)<br>**说明：**<br>色相旋转360度会显示原始颜色。先将色相旋转180度，然后再旋转-180度会显示原始颜色。数据类型为number时，值为90和'90deg'效果一致。 |
 
 **返回值：**
 
 | 类型   | 说明                     |
 | ------ | ------------------------ |
-| T | 返回当前组件。 |
+| T | 返回当前组件，用于链式调用。 |
 
 ## hueRotate<sup>18+</sup>
 
 hueRotate(rotation: Optional\<number \| string>): T
 
-色相旋转效果。不通过该接口设置时，默认无变化。与[hueRotate](#huerotate)相比，rotation参数新增了对undefined类型的支持。
+色相旋转效果。未设置时，默认无变化。与[hueRotate](#huerotate)相比，rotation参数新增了对undefined类型的支持。
 
 **卡片能力：** 从API version 18开始，该接口支持在ArkTS卡片中使用。
 
@@ -484,13 +484,13 @@ hueRotate(rotation: Optional\<number \| string>): T
 
 | 参数名   | 类型                                  | 必填                                                         | 说明 |
 | -------- | ------------------------------------- | ------------------------------------------------------------ | ---- |
-| rotation | [Optional](ts-universal-attributes-custom-property.md#optionalt)\<number&nbsp;\|&nbsp;string> | 是   |色相旋转效果，输入参数为旋转角度。<br/>取值范围：(-∞, +∞)<br/>string需为数值字符串类型。<br/>**说明：**<br/>色相旋转360度会显示原始颜色。先将色相旋转180 度，然后再旋转-180度会显示原始颜色。数据类型为number时，值为90和'90deg'效果一致。<br/>当rotation的值为undefined时，恢复为无色相旋转的效果。 |
+| rotation | [Optional](ts-universal-attributes-custom-property.md#optionalt)\<number&nbsp;\|&nbsp;string> | 是   |色相旋转效果，输入参数为旋转角度。单位为度（°）<br>取值范围：(-∞, +∞)<br>string需为数值字符串类型。<br>**说明：**<br>色相旋转360度会显示原始颜色。先将色相旋转180度，然后再旋转-180度会显示原始颜色。数据类型为number时，值为90和'90deg'效果一致。<br>当rotation的值为undefined时，恢复为无色相旋转的效果。 |
 
 **返回值：**
 
 | 类型   | 说明                     |
 | ------ | ------------------------ |
-| T | 返回当前组件。 |
+| T | 返回当前组件，用于链式调用。 |
 
 ## colorBlend
 
@@ -508,13 +508,13 @@ colorBlend(value: Color \| string \| Resource): T
 
 | 参数名 | 类型                                                         | 必填 | 说明                                           |
 | ------ | ------------------------------------------------------------ | ---- | ---------------------------------------------- |
-| value  | [Color](ts-appendix-enums.md#color)&nbsp;\|&nbsp;string&nbsp;\|&nbsp;[Resource](ts-types.md#resource) | 是   | 为当前组件添加颜色叠加效果，入参为叠加的颜色字符串。取值可为string类型，如'0x000000'，'rgba(0,0,0,1)'。 |
+| value  | [Color](ts-appendix-enums.md#color)&nbsp;\|&nbsp;string&nbsp;\|&nbsp;[Resource](ts-types.md#resource) | 是   | 为当前组件添加颜色叠加效果，入参为叠加的颜色。取值可为Color类型、string类型或Resource类型，如使用Color.Green，或string类型如'0x000000'、'rgba(0,0,0,1)'。 |
 
 **返回值：**
 
 | 类型   | 说明                     |
 | ------ | ------------------------ |
-| T | 返回当前组件。 |
+| T | 返回当前组件，用于链式调用。 |
 
 ## colorBlend<sup>18+</sup>
 
@@ -534,19 +534,19 @@ colorBlend(color: Optional\<Color \| string \| Resource>): T
 
 | 参数名 | 类型                                                         | 必填 | 说明                                                         |
 | ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| color  | [Optional](ts-universal-attributes-custom-property.md#optionalt)\<[Color](ts-appendix-enums.md#color)&nbsp;\|&nbsp;string&nbsp;\|&nbsp;[Resource](ts-types.md#resource)> | 是   | 为当前组件添加颜色叠加效果，入参为叠加的颜色。取值可为string类型，如'0x000000'，'rgba(0,0,0,1)'。<br/>当color的值为undefined时，恢复为无颜色叠加的效果。 |
+| color  | [Optional](ts-universal-attributes-custom-property.md#optionalt)\<[Color](ts-appendix-enums.md#color)&nbsp;\|&nbsp;string&nbsp;\|&nbsp;[Resource](ts-types.md#resource)> | 是   | 为当前组件添加颜色叠加效果，入参为叠加的颜色。取值可为Color枚举值、string类型（如'0x000000'、'rgba(0,0,0,1)'）或Resource资源引用。<br>当color的值为undefined时，恢复为无颜色叠加的效果。 |
 
 **返回值：**
 
 | 类型   | 说明                     |
 | ------ | ------------------------ |
-| T | 返回当前组件。 |
+| T | 返回当前组件，用于链式调用。 |
 
 ## linearGradientBlur<sup>12+</sup> 
 
 linearGradientBlur(value: number, options: LinearGradientBlurOptions): T
 
-为组件添加内容线性渐变模糊效果。
+为组件添加内容线性渐变模糊效果。当组件设置了BlendApplyType.OFFSCREEN的blendMode时，该接口可能无法截取到正确画面。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -558,14 +558,14 @@ linearGradientBlur(value: number, options: LinearGradientBlurOptions): T
 
 | 参数名  | 类型                                                         | 必填 | 说明                                                         |
 | ------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| value   | number                                                       | 是   | 为模糊半径，模糊半径越大越模糊，为0时不模糊。<br/>取值范围：[0, 1000] |
-| options | [LinearGradientBlurOptions](#lineargradientbluroptions12) | 是   | 设置线性渐变模糊效果。  <br/>线性渐变参数，包含模糊程度和模糊位置数组fractionStops，及渐变模糊方向direction。|
+| value   | number                                                       | 是   | 模糊半径，模糊半径越大越模糊，为0时不模糊。<br>单位：px<br>取值范围：[0, 1000] |
+| options | [LinearGradientBlurOptions](#lineargradientbluroptions12) | 是   | 设置线性渐变模糊效果。  <br>线性渐变参数，包含模糊程度和模糊位置数组fractionStops，及渐变模糊方向direction。|
 
 **返回值：**
 
 | 类型   | 说明                     |
 | ------ | ------------------------ |
-| T | 返回当前组件。 |
+| T | 返回当前组件，用于链式调用。 |
 
 ## linearGradientBlur<sup>18+</sup> 
 
@@ -583,20 +583,20 @@ linearGradientBlur(blurRadius: Optional\<number>, options: Optional\<LinearGradi
 
 | 参数名  | 类型                                                         | 必填 | 说明                                                         |
 | ------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| blurRadius   | [Optional](ts-universal-attributes-custom-property.md#optionalt)\<number>   | 是   | 模糊半径，模糊半径越大越模糊，为0时不模糊。<br/>取值范围：[0, 1000]<br/>当blurRadius的值为undefined时，恢复为渐变模糊为0的效果。 |
-| options | [Optional](ts-universal-attributes-custom-property.md#optionalt)\<[LinearGradientBlurOptions](#lineargradientbluroptions12)> | 是   | 设置线性渐变模糊效果。<br/>线性渐变参数，包含模糊程度和模糊位置数组fractionStops，及渐变模糊方向direction。|
+| blurRadius   | [Optional](ts-universal-attributes-custom-property.md#optionalt)\<number>   | 是   | 模糊半径，模糊半径越大越模糊，为0时不模糊。<br>单位：px<br>取值范围：[0, 1000]<br>当blurRadius的值为undefined时，恢复为渐变模糊为0的效果。 |
+| options | [Optional](ts-universal-attributes-custom-property.md#optionalt)\<[LinearGradientBlurOptions](#lineargradientbluroptions12)> | 是   | 设置线性渐变模糊效果。<br>线性渐变参数，包含模糊程度和模糊位置数组fractionStops，及渐变模糊方向direction。<br>当options的值为undefined时，恢复为无线性渐变模糊的效果。|
 
 **返回值：**
 
 | 类型   | 说明                     |
 | ------ | ------------------------ |
-| T | 返回当前组件。 |
+| T | 返回当前组件，用于链式调用。 |
 
 ## renderGroup<sup>10+</sup>
 
 renderGroup(value: boolean): T
 
-设置是否组成节点组。节点组表示当前组件和子组件组成的子树先在离屏画布中渲染，再与父组件融合绘制。设置为节点组后，系统会缓存绘制结果，提升性能。但如果节点组内的组件频繁更新，缓存失效，可能导致性能下降。此外，设置为节点组后，当前组件的不透明度不为1时，绘制效果可能有差异。
+设置是否组成节点组。节点组表示当前组件和子组件组成的子树先在离屏画布中渲染，再与父组件融合绘制。设置为节点组后，系统会缓存绘制结果，提升性能。与[freeze](#freeze12)方法相比，renderGroup允许组件属性继续更新（但频繁更新会导致缓存失效），适合需要动态更新且希望缓存优化的场景；freeze完全停止内部属性更新，适合静态内容的稳定缓存优化。但如果节点组内的组件频繁更新，缓存失效，可能导致性能下降。此外，设置为节点组后，当前组件的不透明度不为1时，绘制效果可能有差异。
 
 不设置该属性时，默认不组成节点组。
 
@@ -612,19 +612,23 @@ renderGroup(value: boolean): T
 
 | 参数名 | 类型    | 必填 | 说明                                                         |
 | ------ | ------- | ---- | ------------------------------------------------------------ |
-| value  | boolean | 是   | 设置当前组件和子组件是否组成节点组。<br/> false表示不组成节点组，不进行离屏渲染直接绘制。<br/> true表示当前组件和子组件组成节点组，进行离屏渲染后再与父组件融合绘制。 |
+| value  | boolean | 是   | 设置当前组件和子组件是否组成节点组。<br> false表示不组成节点组，不进行离屏渲染直接绘制。<br> true表示当前组件和子组件组成节点组，进行离屏渲染后再与父组件融合绘制。 |
 
 **返回值：**
 
 | 类型   | 说明                     |
 | ------ | ------------------------ |
-| T | 返回当前组件。 |
+| T | 返回当前组件，用于链式调用。 |
 
 ## renderGroup<sup>18+</sup>
 
 renderGroup(isGroup: Optional\<boolean>): T
 
 设置是否组成节点组。节点组表示当前组件和子组件组成的子树先在离屏画布中渲染，再与父组件融合绘制。设置为节点组后，系统会缓存绘制结果，提升性能。但如果节点组内的组件频繁更新，缓存失效，可能导致性能下降。此外，设置为节点组后，当前组件的不透明度不为1时，绘制效果可能有差异。
+
+> **说明：**
+>
+> 与[freeze](#freeze12)不同，renderGroup在缓存绘制结果后仍允许内部属性更新（更新时缓存失效），适用于组件需要动态更新的场景；freeze则完全停止内部属性更新，适用于组件内容稳定不需要更新的场景。
 
 与[renderGroup<sup>10+</sup>](#rendergroup10)相比，isGroup参数新增了对undefined类型的支持。
 
@@ -642,13 +646,13 @@ renderGroup(isGroup: Optional\<boolean>): T
 
 | 参数名  | 类型               | 必填 | 说明                                                         |
 | ------- | ------------------ | ---- | ------------------------------------------------------------ |
-| isGroup | [Optional](ts-universal-attributes-custom-property.md#optionalt)\<boolean> | 是   | 设置当前组件和子组件是否组成节点组。<br/> false表示不组成节点组，不进行离屏渲染直接绘制。<br/> true表示当前组件和子组件组成节点组，进行离屏渲染后再与父组件融合绘制。<br/>当isGroup的值为undefined时，按照不组成节点组处理。 |
+| isGroup | [Optional](ts-universal-attributes-custom-property.md#optionalt)\<boolean> | 是   | 设置当前组件和子组件是否组成节点组。<br> false表示不组成节点组，不进行离屏渲染直接绘制。<br> true表示当前组件和子组件组成节点组，进行离屏渲染后再与父组件融合绘制。<br>当isGroup的值为undefined时，按照不组成节点组处理。 |
 
 **返回值：**
 
 | 类型   | 说明                     |
 | ------ | ------------------------ |
-| T | 返回当前组件。 |
+| T | 返回当前组件，用于链式调用。 |
 
 ## blendMode<sup>11+</sup>
 
@@ -668,14 +672,14 @@ blendMode(value: BlendMode, type?: BlendApplyType): T
 
 | 参数名 | 类型                                | 必填 | 说明                                                         |
 | ------ | ----------------------------------- | ---- | ------------------------------------------------------------ |
-| value  | [BlendMode](#blendmode11枚举说明)   | 是   | 混合模式。<br/>默认值：BlendMode.NONE<br/>**说明：**<br/>混合模式设置为BlendMode.NONE时，blend效果实际为默认的BlendMode.SRC_OVER，且BlendApplyType不生效。 |
-| type   | [BlendApplyType](#blendapplytype11枚举说明) | 否   | blendMode实现方式是否离屏。<br/>默认值：BlendApplyType.FAST<br/>**说明：**<br/>1. 设置BlendApplyType.FAST时，不离屏。<br/>2. 设置BlendApplyType.OFFSCREEN时，会创建当前组件大小的离屏画布，再将当前组件（含子组件）的内容绘制到离屏画布上，再用指定的混合模式与下方画布已有内容进行混合。使用该实现方式时，将导致[linearGradientBlur<sup>12+</sup>](#lineargradientblur12)、[backgroundEffect](ts-universal-attributes-background.md#backgroundeffect11)、[brightness](#brightness)、[blur](#blur)等需要截屏的接口无法截取到正确的画面。 |
+| value  | [BlendMode](#blendmode11枚举说明)   | 是   | 混合模式。<br>默认值：BlendMode.NONE<br>**说明：**<br>混合模式设置为BlendMode.NONE时，blend效果实际为默认的BlendMode.SRC_OVER，且BlendApplyType不生效。 |
+| type   | [BlendApplyType](#blendapplytype11枚举说明) | 否   | blendMode实现方式是否离屏。<br>默认值：BlendApplyType.FAST<br>**说明：**<br>1. 设置BlendApplyType.FAST时，不离屏。<br>2. 设置BlendApplyType.OFFSCREEN时，会创建当前组件大小的离屏画布，再将当前组件（含子组件）的内容绘制到离屏画布上，再用指定的混合模式与下方画布已有内容进行混合。使用该实现方式时，将导致[linearGradientBlur<sup>12+</sup>](#lineargradientblur12)、[backgroundEffect](ts-universal-attributes-background.md#backgroundeffect11)、[brightness](#brightness)、[blur](#blur)等需要截屏的接口无法截取到正确的画面。<br>3. 混合模式设置为BlendMode.NONE时，BlendApplyType不生效。 |
 
 **返回值：**
 
 | 类型   | 说明                     |
 | ------ | ------------------------ |
-| T | 返回当前组件。 |
+| T | 返回当前组件，用于链式调用。 |
 
 ## blendMode<sup>18+</sup> 
 
@@ -695,14 +699,14 @@ blendMode(mode: Optional\<BlendMode>, type?: BlendApplyType): T
 
 | 参数名 | 类型                            | 必填 | 说明                                                         |
 | ------ | ------------------------------- | ---- | ------------------------------------------------------------ |
-| mode | [Optional](ts-universal-attributes-custom-property.md#optionalt)\<[BlendMode](#blendmode11枚举说明)> | 是   | 混合模式。<br/>默认值：BlendMode.NONE<br/>当mode的值为undefined时，恢复为内容不进行混合的效果。<br/>**说明：**<br/>混合模式设置为BlendMode.NONE时，blend效果实际为默认的BlendMode.SRC_OVER，且BlendApplyType不生效。 |
-| type   | [BlendApplyType](#blendapplytype11枚举说明)  |    否    | blendMode实现方式是否离屏。<br/>默认值：BlendApplyType.FAST<br/>**说明：**<br/>1. 设置BlendApplyType.FAST时，不离屏。<br/>2. 设置BlendApplyType.OFFSCREEN时，会创建当前组件大小的离屏画布，再将当前组件（含子组件）的内容绘制到离屏画布上，再用指定的混合模式与下方画布已有内容进行混合。使用该实现方式时，将导致[linearGradientBlur<sup>12+</sup>](#lineargradientblur12)、[backgroundEffect](ts-universal-attributes-background.md#backgroundeffect11)、[brightness](#brightness)、[blur](#blur)等需要截屏的接口无法截取到正确的画面。|
+| mode | [Optional](ts-universal-attributes-custom-property.md#optionalt)\<[BlendMode](#blendmode11枚举说明)> | 是   | 混合模式。<br>默认值：BlendMode.NONE<br>当mode的值为undefined时，恢复为内容不进行混合的效果。<br>**说明：**<br>混合模式设置为BlendMode.NONE时，blend效果实际为默认的BlendMode.SRC_OVER，且BlendApplyType不生效。 |
+| type   | [BlendApplyType](#blendapplytype11枚举说明)  |    否    | blendMode实现方式是否离屏。<br>默认值：BlendApplyType.FAST<br>**说明：**<br>1. 设置BlendApplyType.FAST时，不离屏。<br>2. 设置BlendApplyType.OFFSCREEN时，会创建当前组件大小的离屏画布，再将当前组件（含子组件）的内容绘制到离屏画布上，再用指定的混合模式与下方画布已有内容进行混合。使用该实现方式时，将导致[linearGradientBlur<sup>12+</sup>](#lineargradientblur12)、[backgroundEffect](ts-universal-attributes-background.md#backgroundeffect11)、[brightness](#brightness)、[blur](#blur)等需要截屏的接口无法截取到正确的画面。<br>3. 混合模式设置为BlendMode.NONE时，BlendApplyType不生效。|
 
 **返回值：**
 
 | 类型   | 说明                     |
 | ------ | ------------------------ |
-| T | 返回当前组件。 |
+| T | 返回当前组件，用于链式调用。 |
 
 ## BlendApplyType<sup>11+</sup>枚举说明
 
@@ -725,7 +729,7 @@ blendMode(mode: Optional\<BlendMode>, type?: BlendApplyType): T
 
 useShadowBatching(value: boolean): T
 
-控件内部子节点的阴影进行同层绘制，同层元素阴影重叠。
+控件内部子节点的阴影是否进行同层绘制，控制同层元素阴影重叠效果。需配合[shadow](#shadow)方法使用，当子节点已通过shadow()设置阴影时，useShadowBatching可控制这些阴影是否进行同层绘制。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -739,19 +743,19 @@ useShadowBatching(value: boolean): T
 
 | 参数名 | 类型    | 必填 | 说明                                                         |
 | ------ | ------- | ---- | ------------------------------------------------------------ |
-| value  | boolean | 是   | 控件内部子节点的阴影是否进行同层绘制。<br/>默认值：false<br/> true：控件内部子节点的阴影进行同层绘制，子节点的阴影不会产生重叠覆盖效果。<br/> false：控件内部子节点的阴影不进行同层绘制，子节点的阴影重叠区域有覆盖效果。<br/>**说明：**<br/>1. 默认不开启，如果子节点的阴影半径较大，阴影有重叠区域，后绘制的子节点阴影会覆盖在之前绘制的子节点阴影之上。 当开启时，子节点的阴影将同时绘制，不会产生覆盖效果。<br/>2. 不推荐useShadowBatching嵌套使用，如果嵌套使用，只会对当前的子节点生效，无法递推。 |
+| value  | boolean | 是   | 控件内部子节点的阴影是否进行同层绘制。<br>默认值：false<br> true：控件内部子节点的阴影进行同层绘制，子节点的阴影不会产生重叠覆盖效果。<br> false：控件内部子节点的阴影不进行同层绘制，子节点的阴影重叠区域有覆盖效果。<br>**说明：**<br>1. 默认不开启，如果子节点的阴影半径较大，阴影有重叠区域，后绘制的子节点阴影会覆盖在之前绘制的子节点阴影之上。 当开启时，子节点的阴影将同时绘制，不会产生覆盖效果。<br>2. 不推荐useShadowBatching嵌套使用，如果嵌套使用，只会对当前的子节点生效，无法递推。 |
 
 **返回值：**
 
 | 类型   | 说明                     |
 | ------ | ------------------------ |
-| T | 返回当前组件。 |
+| T | 返回当前组件，用于链式调用。 |
 
 ## useShadowBatching<sup>18+</sup> 
 
 useShadowBatching(use: Optional\<boolean>): T
 
-控件内部子节点的阴影进行同层绘制，同层元素阴影重叠。与[useShadowBatching<sup>11+</sup>](#useshadowbatching11)相比，use参数新增了对undefined类型的支持。
+控件内部子节点的阴影是否进行同层绘制，同层绘制时子节点阴影不会产生重叠覆盖效果。需配合[shadow](#shadow)方法使用，当子节点设置了shadow效果时，useShadowBatching可控制子节点阴影进行同层绘制，实现同层阴影不重叠效果。调用顺序：先在子节点上设置shadow属性，再在父容器上设置useShadowBatching(true)。与[useShadowBatching<sup>11+</sup>](#useshadowbatching11)相比，use参数新增了对undefined类型的支持。
 
 **原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
@@ -765,19 +769,19 @@ useShadowBatching(use: Optional\<boolean>): T
 
 | 参数名 | 类型               | 必填 | 说明                                                         |
 | ------ | ------------------ | ---- | ------------------------------------------------------------ |
-| use    | [Optional](ts-universal-attributes-custom-property.md#optionalt)\<boolean> | 是   | 控件内部子节点的阴影是否进行同层绘制。<br/>默认值：false<br/> true：控件内部子节点的阴影进行同层绘制，子节点的阴影不会产生重叠覆盖效果。<br/> false：控件内部子节点的阴影不进行同层绘制，子节点的阴影重叠区域有覆盖效果。<br/>**说明：**<br/>1. 默认不开启，如果子节点的阴影半径较大，阴影有重叠区域，后绘制的子节点阴影会覆盖在之前绘制的子节点阴影之上。 当开启时，子节点的阴影将同时绘制，不会产生覆盖效果。<br/>2. 不推荐useShadowBatching嵌套使用，如果嵌套使用，只会对当前的子节点生效，无法递推。<br/>当use的值为undefined时，恢复为不使用元素阴影重叠的效果。 |
+| use    | [Optional](ts-universal-attributes-custom-property.md#optionalt)\<boolean> | 是   | 控件内部子节点的阴影是否进行同层绘制。<br>默认值：false<br> true：控件内部子节点的阴影进行同层绘制，子节点的阴影不会产生重叠覆盖效果。<br> false：控件内部子节点的阴影不进行同层绘制，子节点的阴影重叠区域有覆盖效果。<br>**说明：**<br>1. 默认不开启，如果子节点的阴影半径较大，阴影有重叠区域，后绘制的子节点阴影会覆盖在之前绘制的子节点阴影之上。 当开启时，子节点的阴影将同时绘制，不会产生覆盖效果。<br>2. 不推荐useShadowBatching嵌套使用，如果嵌套使用，只会对当前的子节点生效，无法递推。<br>当use的值为undefined时，恢复为不使用元素阴影重叠的效果。 |
 
 **返回值：**
 
 | 类型   | 说明                     |
 | ------ | ------------------------ |
-| T | 返回当前组件。 |
+| T | 返回当前组件，用于链式调用。 |
 
 ## sphericalEffect<sup>12+</sup>
 
 sphericalEffect(value: number): T
 
-设置组件的图像球面化程度。
+设置组件的图像球面化程度。球面化效果将组件内容映射到球面曲面上，使图像呈现出类似球体的立体视觉效果，值越大球面弧度越高、立体感越强。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -789,19 +793,19 @@ sphericalEffect(value: number): T
 
 | 参数名 | 类型   | 必填 | 说明                                                         |
 | ------ | ------ | ---- | ------------------------------------------------------------ |
-| value  | number | 是   | 设置组件的图像球面化程度。<br/>取值范围：[0,1]。<br/>**说明：**<br/>1. 如果value等于0则图像保持原样，如果value等于1则图像为完全球面化效果。在0和1之间，数值越大，则球面化程度越高。<br/>`value < 0 `或者` value > 1`为异常情况，`value < 0`按0处理，`value > 1`按1处理。<br/>2. 组件阴影和外描边不支持球面效果。<br>3. 设置value大于0时，组件冻屏并且把组件内容绘制到透明离屏buffer上，如果要更新组件属性则需要把value设置为0。 |
+| value  | number | 是   | 设置组件的图像球面化程度。球面化效果将组件内容映射到球面曲面上，使图像呈现出类似球体的立体视觉效果，值越大球面弧度越高、立体感越强。<br>取值范围：[0,1]。<br>**说明：**<br>1. 如果value等于0则图像保持原样，如果value等于1则图像为完全球面化效果。在0和1之间，数值越大，则球面化程度越高。<br>`value < 0`或者`value > 1`为异常情况，`value < 0`按0处理，`value > 1`按1处理。<br>2. 组件阴影和外描边不支持球面效果。<br>3. 设置value大于0时，组件冻屏并且把组件内容绘制到透明离屏buffer上，如果要更新组件属性则需要把value设置为0。 |
 
 **返回值：**
 
 | 类型   | 说明                     |
 | ------ | ------------------------ |
-| T | 返回当前组件。 |
+| T | 返回当前组件，用于链式调用。 |
 
 ## sphericalEffect<sup>18+</sup>
 
 sphericalEffect(effect: Optional\<number>): T
 
-设置组件的图像球面化程度。与[sphericalEffect<sup>12+</sup>](#sphericaleffect12)相比，effect参数新增了对undefined类型的支持。
+设置组件的图像球面化程度。球面化效果将组件内容映射到球面曲面上，使图像呈现出类似球体的立体视觉效果，值越大球面弧度越高、立体感越强。与[sphericalEffect<sup>12+</sup>](#sphericaleffect12)相比，effect参数新增了对undefined类型的支持。
 
 **原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
@@ -813,13 +817,13 @@ sphericalEffect(effect: Optional\<number>): T
 
 | 参数名 | 类型              | 必填 | 说明                                                         |
 | ------ | ----------------- | ---- | ------------------------------------------------------------ |
-| effect | [Optional](ts-universal-attributes-custom-property.md#optionalt)\<number> | 是   | 设置组件的图像球面化程度。<br/>取值范围：[0,1]。<br/>**说明：**<br/>1. 如果effect等于0则图像保持原样，如果effect等于1则图像为完全球面化效果。在0和1之间，数值越大，则球面化程度越高。<br/>`effect < 0 `或者` effect > 1`为异常情况，`effect < 0`按0处理，`effect > 1`按1处理。<br/>2. 组件阴影和外描边不支持球面效果。<br/>3. 设置effect大于0时，组件冻屏并且把组件内容绘制到透明离屏buffer上，如果要更新组件属性则需要把effect设置为0。<br/>当effect的值为undefined时，恢复为图像球面化程度为0的效果。 |
+| effect | [Optional](ts-universal-attributes-custom-property.md#optionalt)\<number> | 是   | 设置组件的图像球面化程度。球面化效果将组件内容映射到球面曲面上，使图像呈现出类似球体的立体视觉效果，值越大球面弧度越高、立体感越强。<br>取值范围：[0,1]。<br>**说明：**<br>1. 如果effect等于0则图像保持原样，如果effect等于1则图像为完全球面化效果。在0和1之间，数值越大，则球面化程度越高。<br>`effect < 0`或者`effect > 1`为异常情况，`effect < 0`按0处理，`effect > 1`按1处理。<br>2. 组件阴影和外描边不支持球面效果。<br>3. 设置effect大于0时，组件冻屏并且把组件内容绘制到透明离屏buffer上，如果要更新组件属性则需要把effect设置为0。<br>当effect的值为undefined时，恢复为图像球面化程度为0的效果。 |
 
 **返回值：**
 
 | 类型   | 说明                     |
 | ------ | ------------------------ |
-| T | 返回当前组件。 |
+| T | 返回当前组件，用于链式调用。 |
 
 ## lightUpEffect<sup>12+</sup> 
 
@@ -837,13 +841,13 @@ lightUpEffect(value: number): T
 
 | 参数名 | 类型   | 必填 | 说明                                                         |
 | ------ | ------ | ---- | ------------------------------------------------------------ |
-| value  | number | 是   | 设置组件图像亮起程度。<br/>取值范围：[0,1]。<br/>如果value等于0则图像为全黑，如果value等于1则图像为全亮效果。0到1之间数值越大，表示图像亮度越高。`value < 0` 或者 `value > 1`为异常情况，`value < 0`按0处理，`value > 1`按1处理。 |
+| value  | number | 是   | 设置组件图像亮起程度。<br>取值范围：[0,1]。<br>如果value等于0则图像为全黑，如果value等于1则图像为全亮效果。0到1之间数值越大，表示图像亮度越高。`value < 0` 或者 `value > 1`为异常情况，`value < 0`按0处理，`value > 1`按1处理。 |
 
 **返回值：**
 
 | 类型   | 说明                     |
 | ------ | ------------------------ |
-| T | 返回当前组件。 |
+| T | 返回当前组件，用于链式调用。 |
 
 ## lightUpEffect<sup>18+</sup> 
 
@@ -861,13 +865,13 @@ lightUpEffect(degree: Optional\<number>): T
 
 | 参数名 | 类型              | 必填 | 说明                                                         |
 | ------ | ----------------- | ---- | ------------------------------------------------------------ |
-| degree | [Optional](ts-universal-attributes-custom-property.md#optionalt)\<number> | 是   | 设置组件图像亮起程度。<br/>取值范围：[0,1]。<br/>如果degree等于0则图像为全黑，如果degree等于1则图像为全亮效果。0到1之间数值越大，表示图像亮度越高。`degree < 0` 或者 `degree > 1`为异常情况，`degree < 0`按0处理，`degree > 1`按1处理。<br/>当degree的值为undefined时，恢复为亮起为1的效果。 |
+| degree | [Optional](ts-universal-attributes-custom-property.md#optionalt)\<number> | 是   | 设置组件图像亮起程度。<br>取值范围：[0,1]。<br>如果degree等于0则图像为全黑，如果degree等于1则图像为全亮效果。0到1之间数值越大，表示图像亮度越高。`degree < 0` 或者 `degree > 1`为异常情况，`degree < 0`按0处理，`degree > 1`按1处理。<br>当degree的值为undefined时，恢复为亮起为1的效果。 |
 
 **返回值：**
 
 | 类型   | 说明                     |
 | ------ | ------------------------ |
-| T | 返回当前组件。 |
+| T | 返回当前组件，用于链式调用。 |
 
 ## pixelStretchEffect<sup>12+</sup> 
 
@@ -885,13 +889,13 @@ pixelStretchEffect(options: PixelStretchEffectOptions): T
 
 | 参数名  | 类型                                                      | 必填 | 说明                                                         |
 | ------- | --------------------------------------------------------- | ---- | ------------------------------------------------------------ |
-| options | [PixelStretchEffectOptions](#pixelstretcheffectoptions10) | 是   | 设置组件的图像边缘像素扩展距离。<br/>参数`options`包括上下左右四个方向的边缘像素扩展距离。<br/>**说明：**<br/>1. 如果距离为正值，表示向外扩展，放大原来图像大小。上下左右四个方向分别用边缘像素填充，填充的距离即为设置的边缘扩展的距离。<br/>2. 如果距离为负值，表示内缩，但是最终图像大小不变。<br/>内缩方式：<br/>图像根据`options`的设置缩小，缩小大小为四个方向边缘扩展距离的绝对值。<br/>图像用边缘像素扩展到原来大小。<br/>3. 对`options`的输入约束：<br/>上下左右四个方向的扩展统一为非正值或者非负值。即四个边同时向外扩或者内缩，方向一致。<br/>所有方向的输入均为百分比或者具体值，不支持百分比和具体值混用。<br/>所有异常情况下，显示为{0, 0, 0, 0}效果，即跟原图保持一致。 |
+| options | [PixelStretchEffectOptions](#pixelstretcheffectoptions10) | 是   | 设置组件的图像边缘像素扩展距离。<br>参数`options`包括上下左右四个方向的边缘像素扩展距离。<br>**说明：**<br>1. 如果距离为正值，表示向外扩展，放大原来图像大小。上下左右四个方向分别用边缘像素填充，填充的距离即为设置的边缘扩展的距离。<br>2. 如果距离为负值，表示内缩，但是最终图像大小不变。<br>内缩方式：<br>图像根据`options`的设置缩小，缩小大小为四个方向边缘扩展距离的绝对值。<br>图像用边缘像素扩展到原来大小。<br>3. 对`options`的输入约束：<br>上下左右四个方向的扩展统一为非正值或者非负值。即四个边同时向外扩或者内缩，方向一致。<br>所有方向的输入均为百分比或者具体值，不支持百分比和具体值混用。<br>所有异常情况下，显示为{0, 0, 0, 0}效果，即跟原图保持一致。 |
 
 **返回值：**
 
 | 类型   | 说明                     |
 | ------ | ------------------------ |
-| T | 返回当前组件。 |
+| T | 返回当前组件，用于链式调用。 |
 
 ## pixelStretchEffect<sup>18+</sup> 
 
@@ -910,13 +914,13 @@ pixelStretchEffect(options: Optional\<PixelStretchEffectOptions>): T
 <!--Table: 10%; auto; 10%; auto-->
 | 参数名  | 类型                                                         | 必填 | 说明                                                         |
 | ------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| options | [Optional](ts-universal-attributes-custom-property.md#optionalt)\<[PixelStretchEffectOptions](#pixelstretcheffectoptions10)> | 是   | 设置组件的图像边缘像素扩展距离。<br/>参数`options`包括上下左右四个方向的边缘像素扩展距离。<br/>**说明：**<br/>1. 如果距离为正值，表示向外扩展，放大原来图像大小。上下左右四个方向分别用边缘像素填充，填充的距离即为设置的边缘扩展的距离。<br/>2. 如果距离为负值，表示内缩，但是最终图像大小不变。<br/>内缩方式：<br/>图像根据`options`的设置缩小，缩小大小为四个方向边缘扩展距离的绝对值。<br/>图像用边缘像素扩展到原来大小。<br/>3. 对`options`的输入约束：<br/>上下左右四个方向的扩展统一为非正值或者非负值。即四个边同时向外扩或者内缩，方向一致。<br/>所有方向的输入均为百分比或者具体值，不支持百分比和具体值混用。<br/>所有异常情况下，显示为{0, 0, 0, 0}效果，即跟原图保持一致。<br/>当options的值为undefined时，恢复为无像素扩展效果。 |
+| options | [Optional](ts-universal-attributes-custom-property.md#optionalt)\<[PixelStretchEffectOptions](#pixelstretcheffectoptions10)> | 是   | 设置组件的图像边缘像素扩展距离。<br>参数`options`包括上下左右四个方向的边缘像素扩展距离。<br>**说明：**<br>1. 如果距离为正值，表示向外扩展，放大原来图像大小。上下左右四个方向分别用边缘像素填充，填充的距离即为设置的边缘扩展的距离。<br>2. 如果距离为负值，表示内缩，但是最终图像大小不变。<br>内缩方式：<br>图像根据`options`的设置缩小，缩小大小为四个方向边缘扩展距离的绝对值。<br>图像用边缘像素扩展到原来大小。<br>3. 对`options`的输入约束：<br>上下左右四个方向的扩展统一为非正值或者非负值。即四个边同时向外扩或者内缩，方向一致。<br>所有方向的输入均为百分比或者具体值，不支持百分比和具体值混用。<br>所有异常情况下，显示为{0, 0, 0, 0}效果，即跟原图保持一致。<br>当options的值为undefined时，恢复为无像素扩展效果。 |
 
 **返回值：**
 
 | 类型   | 说明                     |
 | ------ | ------------------------ |
-| T | 返回当前组件。 |
+| T | 返回当前组件，用于链式调用。 |
 
 ## PixelStretchEffectOptions<sup>10+</sup>
 
@@ -930,16 +934,16 @@ pixelStretchEffect(options: Optional\<PixelStretchEffectOptions>): T
 
 | 名称     | 类型                | 只读   | 可选   | 说明             |
 | ------ | ----------------- | ---- | ---- | -------------- |
-| left   | [Length](ts-types.md#length) | 否    | 是    | 组件图像左边沿像素扩展距离。<br/>默认值：0vp |
-| right  | [Length](ts-types.md#length) | 否    | 是    | 组件图像右边沿像素扩展距离。<br/>默认值：0vp |
-| top    | [Length](ts-types.md#length) | 否    | 是    | 组件图像上边沿像素扩展距离。<br/>默认值：0vp |
-| bottom | [Length](ts-types.md#length) | 否    | 是    | 组件图像下边沿像素扩展距离。<br/>默认值：0vp |
+| left   | [Length](ts-types.md#length) | 否    | 是    | 组件图像左边沿像素扩展距离。需与right、top、bottom方向保持一致：四个方向的扩展统一为非正值或者非负值，不支持百分比和具体值混用。<br>默认值：0vp |
+| right  | [Length](ts-types.md#length) | 否    | 是    | 组件图像右边沿像素扩展距离。需与left、top、bottom方向保持一致：四个方向的扩展统一为非正值或者非负值，不支持百分比和具体值混用。<br>默认值：0vp |
+| top    | [Length](ts-types.md#length) | 否    | 是    | 组件图像上边沿像素扩展距离。需与left、right、bottom方向保持一致：四个方向的扩展统一为非正值或者非负值，不支持百分比和具体值混用。<br>默认值：0vp |
+| bottom | [Length](ts-types.md#length) | 否    | 是    | 组件图像下边沿像素扩展距离。需与left、right、top方向保持一致：四个方向的扩展统一为非正值或者非负值，不支持百分比和具体值混用。<br>默认值：0vp |
 
 ## systemBarEffect<sup>12+</sup>
 
 systemBarEffect(): T
 
-根据背景进行智能反色并且带有模糊效果。
+根据背景颜色自动判断反色区域和反色程度，并叠加模糊效果。智能反色基于背景内容的颜色与亮度特征自动确定反色策略，使组件在不同背景下保持内容可视性；模糊效果对背景内容进行模糊处理，增强系统栏与背景的视觉融合效果。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -951,7 +955,7 @@ systemBarEffect(): T
 
 | 类型   | 说明                     |
 | ------ | ------------------------ |
-| T | 返回当前组件。 |
+| T | 返回当前组件，用于链式调用。 |
 
 ## ShadowType<sup>10+</sup>枚举说明
 
@@ -965,8 +969,8 @@ systemBarEffect(): T
 
 | 名称       | 值 | 说明                                   |
 | -------- | ------ | ---------------------------------- |
-| COLOR    | 0 | 颜色。                                    |
-| BLUR     | 1 | 模糊。                                    |
+| COLOR    | 0 | 颜色阴影，基于指定颜色值绘制阴影效果。                                    |
+| BLUR     | 1 | 模糊阴影，基于组件内容模糊绘制阴影效果。                                    |
 
 
 ## ShadowOptions对象说明
@@ -977,12 +981,12 @@ systemBarEffect(): T
 
 | 名称      | 类型                                       | 只读 | 可选   | 说明                                       |
 | ------- | ---------------------------------------- | ---- | ---- | ---------------------------------------- |
-| radius  | number \| [Resource](ts-types.md#resource) | 否 | 否    | 阴影模糊半径。<br/>取值范围：[0, +∞)，API版本26.0.0开始取值范围变更为(-∞, +∞)<br/>单位：px<br/>**说明：**  <br/>API版本26.0.0之前，设置小于0的值时，按值为0处理，此时不绘制阴影；从API版本26.0.0开始，设置的值即为最终取值，值为0时仍绘制阴影，设置负数值时不绘制阴影。<br/>如需使用vp单位的数值可用[vp2px](../arkts-apis-uicontext-uicontext.md#vp2px12)进行转换。<br/>如果radius为Resource类型，则传入的值需为number类型。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。<br/>**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。 |
-| type<sup>10+</sup> | [ShadowType](#shadowtype10枚举说明)  |      否 | 是    | 阴影类型。<br/>默认值：COLOR <br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。<br/>**模型约束：** 此接口仅可在Stage模型下使用。       |
-| color   | [Color](ts-appendix-enums.md#color) \| string \| [Resource](ts-types.md#resource) \| [ColoringStrategy](ts-appendix-enums.md#coloringstrategy10)<sup>11+</sup>  | 否  | 是  | 阴影的颜色。<br/>默认为黑色。 <br/>**说明：** <br/>从API version 11开始，该接口支持使用ColoringStrategy实现智能取色，智能取色功能不支持在ArkTS卡片、[textShadow](ts-basic-components-text.md#textshadow10)中使用。<br/>当前仅支持平均取色和主色取色，智能取色区域为shadow绘制区域。<br/>支持使用'average'字符串触发智能平均取色模式，支持使用'primary'字符串触发智能主色模式。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。<br/>**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。|
-| offsetX | number \| [Resource](ts-types.md#resource) | 否  | 是  | 阴影的X轴偏移量。<br/>默认值：0<br/>单位：px<br/>**说明：** <br/>如需使用vp单位的数值可用[vp2px](../arkts-apis-uicontext-uicontext.md#vp2px12)进行转换。<br/>如果offsetX为Resource类型，则传入的值需为number类型。<br/> **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。<br/>**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。 |
-| offsetY | number \| [Resource](ts-types.md#resource) | 否 | 是   | 阴影的Y轴偏移量。<br/>默认值：0<br/>单位：px<br/>**说明：** <br/>如需使用vp单位的数值可用[vp2px](../arkts-apis-uicontext-uicontext.md#vp2px12)进行转换。<br/>如果offsetY为Resource类型，则传入的值需为number类型。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。<br/>**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。|
-| fill<sup>11+</sup>     | boolean                                    | 否  | 是  | 阴影是否内部填充。true表示阴影在内部填充，false表示阴影在外部填充。<br/>默认值：false。<br/>**说明：**<br/>[textShadow](ts-basic-components-text.md#textshadow10)中该字段不生效。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。<br/>**模型约束：** 此接口仅可在Stage模型下使用。|
+| radius  | number \| [Resource](ts-types.md#resource) | 否 | 否    | 阴影模糊半径。<br>取值范围：[0, +∞)，API版本26.0.0开始取值范围变更为(-∞, +∞)<br>单位：px<br>**说明：**  <br>API版本26.0.0之前，设置小于0的值时，按值为0处理，此时不绘制阴影；从API版本26.0.0开始，设置的值即为最终取值，值为0时仍绘制阴影，设置负数值时不绘制阴影。<br>如需使用vp单位的数值可用[vp2px](../arkts-apis-uicontext-uicontext.md#vp2px12)进行转换。<br>如果radius为Resource类型，则传入的值需为number类型。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。<br>**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。 |
+| type<sup>10+</sup> | [ShadowType](#shadowtype10枚举说明)  |      否 | 是    | 阴影类型。<br>默认值：COLOR <br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。<br>**模型约束：** 此接口仅可在Stage模型下使用。       |
+| color   | [Color](ts-appendix-enums.md#color) \| string \| [Resource](ts-types.md#resource) \| [ColoringStrategy](ts-appendix-enums.md#coloringstrategy10)<sup>11+</sup>  | 否  | 是  | 阴影的颜色。<br>默认为黑色。 <br>**说明：** <br>从API version 11开始，该接口支持使用ColoringStrategy实现智能取色，智能取色功能不支持在ArkTS卡片、[textShadow](ts-basic-components-text.md#textshadow10)中使用。<br>当前仅支持平均取色和主色取色，智能取色区域为shadow绘制区域。<br>支持使用'average'字符串触发智能平均取色模式，支持使用'primary'字符串触发智能主色模式。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。<br>**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。|
+| offsetX | number \| [Resource](ts-types.md#resource) | 否  | 是  | 阴影的X轴偏移量。<br>默认值：0<br>单位：px<br>**说明：** <br>如需使用vp单位的数值可用[vp2px](../arkts-apis-uicontext-uicontext.md#vp2px12)进行转换。<br>如果offsetX为Resource类型，则传入的值需为number类型。<br> **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。<br>**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。 |
+| offsetY | number \| [Resource](ts-types.md#resource) | 否 | 是   | 阴影的Y轴偏移量。<br>默认值：0<br>单位：px<br>**说明：** <br>如需使用vp单位的数值可用[vp2px](../arkts-apis-uicontext-uicontext.md#vp2px12)进行转换。<br>如果offsetY为Resource类型，则传入的值需为number类型。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。<br>**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。|
+| fill<sup>11+</sup>     | boolean                                    | 否  | 是  | 阴影是否内部填充。true表示阴影在内部填充，false表示阴影在外部填充。<br>默认值：false。<br>**说明：**<br>[textShadow](ts-basic-components-text.md#textshadow10)中该字段不生效。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。<br>**模型约束：** 此接口仅可在Stage模型下使用。|
 
 ## ShadowStyle<sup>10+</sup>枚举说明
 
@@ -1062,8 +1066,8 @@ systemBarEffect(): T
 
 | 名称          | 类型                                                        | 只读 | 可选  | 说明                                                         |
 | ------------- | ----------------------------------------------------------- | ----- | ----- |------------------------------------------------------------ |
-| fractionStops | [FractionStop](#fractionstop12)[]                          | 否 | 否    | 数组中保存的每一个二元数组（取值0-1，小于0则为0，大于1则为1）表示[模糊程度, 模糊位置]；模糊位置需严格递增，开发者传入的数据不符合规范会记录日志，渐变模糊数组中二元数组个数必须大于等于2，否则渐变模糊不生效。 |
-| direction     | [GradientDirection](ts-appendix-enums.md#gradientdirection) | 否 | 否    | 渐变模糊方向。<br/>默认值：<br/>GradientDirection.Bottom |
+| fractionStops | [FractionStop](#fractionstop12)[]                          | 否 | 否    | 数组中保存的每一个二元数组（取值0-1，小于0则为0，大于1则为1）表示[模糊分数, 模糊位置]；模糊位置需严格递增，开发者传入的数据不符合规范会记录日志，渐变模糊数组中二元数组个数必须大于等于2，否则渐变模糊不生效。 |
+| direction     | [GradientDirection](ts-appendix-enums.md#gradientdirection) | 否 | 否    | 渐变模糊方向。<br>默认值：<br>GradientDirection.Bottom |
 
 ## FractionStop<sup>12+</sup>
 
@@ -1079,11 +1083,11 @@ type FractionStop = [ number, number ]
 
 | 类型      | 说明                                                       |
 | ------------- | ---------------------------------------------------------- |
-| [ number, number ]        |   第一个number表示分数，值1表示不透明，0表示完全透明。<br/>取值范围：[0, 1]  <br/>第二个number表示停止位置，值1表示区域结束位置，0表示区域开始位置。<br/> 取值范围：[0, 1]     |
+| [ number, number ]        |   第一个number表示分数，值1表示不透明，0表示完全透明。<br>取值范围：[0, 1]  <br>第二个number表示停止位置，值1表示区域结束位置，0表示区域开始位置。<br> 取值范围：[0, 1]     |
 
 ## InvertOptions<sup>11+</sup>对象说明
 
-前景智能取反色。
+前景智能取反色。基于灰度阈值区间决定反色取值，参见[invert](#invert)中的详细机制说明。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -1093,10 +1097,10 @@ type FractionStop = [ number, number ]
 
 | 名称            |  类型  | 只读  | 可选  | 说明                                       |
 | -------------- | ------ | ----- | ----- | ------------------------------------------ |
-| low            | number | 否    | 否    | 背景颜色灰度值大于阈值区间时的取值。 <br/>取值范围：[0, 1]                 |
-| high           | number | 否    | 否    | 背景颜色灰度值小于阈值区间时的取值。  <br/>取值范围：[0, 1]            |
-| threshold      | number | 否    | 否    | 灰度阈值。与thresholdRange配合使用，灰度阈值上下偏移thresholdRange构成阈值区间。    <br/>取值范围：[0, 1]                            |
-| thresholdRange | number | 否    | 否    | 阈值范围。<br/>取值范围：[0, 1]<br/>**说明：**<br/>灰度阈值上下偏移thresholdRange构成阈值区间，背景颜色灰度值在区间内取值由high线性渐变到low。|
+| low            | number | 否    | 否    | 背景颜色灰度值大于阈值区间时的取值。<br>取值范围：[0, 1]。设置小于0的值时，按值为0处理。设置大于1的值时，按值为1处理。                 |
+| high           | number | 否    | 否    | 背景颜色灰度值小于阈值区间时的取值。<br>取值范围：[0, 1]。设置小于0的值时，按值为0处理。设置大于1的值时，按值为1处理。            |
+| threshold      | number | 否    | 否    | 灰度阈值。与thresholdRange配合使用，灰度阈值上下偏移thresholdRange构成阈值区间。    <br>取值范围：[0, 1]                            |
+| thresholdRange | number | 否    | 否    | 阈值范围。<br>取值范围：[0, 1]。设置小于0的值时，按值为0处理；设置大于1的值时，按值为1处理。<br>**说明：**<br>灰度阈值上下偏移thresholdRange构成阈值区间，背景颜色灰度值在区间内取值由high线性渐变到low。|
 
 ## BackgroundImageOptions<sup>18+</sup>
 
@@ -1116,14 +1120,14 @@ type FractionStop = [ number, number ]
 
 | 名称            |  类型                                           | 只读  | 可选  | 说明                                                     |
 | -------------- | ------------------------------------------------| ----- | ----- | --------------------------------------------------------|
-| syncLoad       | boolean                                         | 否    | 是    | 是否同步加载图片，默认是异步加载。同步加载时阻塞UI线程，不会显示占位图。<br/>默认值：false <br/>false：异步加载图片。<br/>true：同步加载图片。      |
+| syncLoad       | boolean                                         | 否    | 是    | 是否同步加载图片，默认是异步加载。同步加载时阻塞UI线程，不会显示占位图。<br>默认值：false <br>false：异步加载图片。<br>true：同步加载图片。      |
 | repeat         | [ImageRepeat](ts-appendix-enums.md#imagerepeat) | 否    | 是    | 设置背景图片的重复样式。默认值为ImageRepeat.NoRepeat。                     |
 
 ## freeze<sup>12+</sup>
 
 freeze(value: boolean): T
 
-设置当前控件和子控件是否整体离屏渲染绘制后重复绘制缓存，不再进行内部属性更新。
+设置当前控件和子控件是否整体离屏渲染绘制后重复绘制缓存，不再进行内部属性更新。当freeze设置为true时，组件属性更新将被冻结；若需恢复属性更新，需先将freeze设置为false。
 
 >**说明：**
 >
@@ -1139,19 +1143,19 @@ freeze(value: boolean): T
 
 | 参数名 | 类型    | 必填 | 说明                                                         |
 | ------ | ------- | ---- | ------------------------------------------------------------ |
-| value  | boolean | 是   | 设置当前控件和子控件是否整体离屏渲染绘制后重复绘制缓存，不再进行内部属性更新。当前控件的不透明度不为1时绘制效果可能有差异。<br/>默认值：false <br/> true时离屏渲染绘制后重复绘制缓存，false时离屏渲染绘制后不重复绘制缓存。|
+| value  | boolean | 是   | 设置当前控件和子控件是否整体离屏渲染绘制后重复绘制缓存，不再进行内部属性更新。当前控件的不透明度不为1时绘制效果可能有差异。<br>默认值：false <br> true时离屏渲染绘制后重复绘制缓存，false时离屏渲染绘制后不重复绘制缓存。|
 
 **返回值：**
 
 | 类型   | 说明                     |
 | ------ | ------------------------ |
-| T | 返回当前组件。 |
+| T | 返回当前组件，用于链式调用。 |
 
 ## freeze<sup>18+</sup>
 
 freeze(freeze: Optional\<boolean>): T
 
-设置当前控件和子控件是否整体离屏渲染绘制后重复绘制缓存，不再进行内部属性更新。与[freeze](#freeze12)相比，freeze参数新增了对undefined类型的支持。
+设置当前控件和子控件是否整体离屏渲染绘制后重复绘制缓存，不再进行内部属性更新。当freeze设置为true时，组件属性更新将被冻结；若需恢复属性更新，需先将freeze设置为false。与[freeze](#freeze12)相比，freeze参数新增了对undefined类型的支持。
 
 >**说明：**
 >
@@ -1167,24 +1171,25 @@ freeze(freeze: Optional\<boolean>): T
 
 | 参数名 | 类型               | 必填 | 说明                                                         |
 | ------ | ------------------ | ---- | ------------------------------------------------------------ |
-| freeze | [Optional](ts-universal-attributes-custom-property.md#optionalt)\<boolean> | 是   | 设置当前控件和子控件是否整体离屏渲染绘制后重复绘制缓存，不再进行内部属性更新。当前控件的不透明度不为1时绘制效果可能有差异。<br/>默认值：false<br/> true时离屏渲染绘制后重复绘制缓存，false时离屏渲染绘制后不重复绘制缓存。<br/>当freeze的值为undefined时，维持之前取值。 |
+| freeze | [Optional](ts-universal-attributes-custom-property.md#optionalt)\<boolean> | 是   | 设置当前控件和子控件是否整体离屏渲染绘制后重复绘制缓存，不再进行内部属性更新。当前控件的不透明度不为1时绘制效果可能有差异。<br>默认值：false<br> true时离屏渲染绘制后重复绘制缓存，false时离屏渲染绘制后不重复绘制缓存。<br>当freeze的值为undefined时，维持之前取值。 |
 
 **返回值：**
 
 | 类型   | 说明                     |
 | ------ | ------------------------ |
-| T | 返回当前组件。 |
+| T | 返回当前组件，用于链式调用。 |
 
 ## systemMaterial
 
 systemMaterial(material: SystemUiMaterial \| undefined): T
 
-设置组件的系统材质。不同系统材质对应不同的属性影响效果，该接口可以影响背景色[backgroundColor](ts-universal-attributes-background.md#backgroundcolor)、边框颜色[borderColor](ts-universal-attributes-border.md#bordercolor)、边框宽度[borderWidth](ts-universal-attributes-border.md#borderwidth)、阴影[shadow](ts-universal-attributes-image-effect.md#shadow)、材质层滤镜[materialFilter](ts-universal-attributes-filter-effect.md#materialfilter23)效果，影响的属性与设备算力档位相关，参考[ImmersiveMaterial](../arkts-apis-uimaterial.md#immersivematerial)。使用示例请参考[示例1（设置沉浸式系统材质）](../arkts-apis-uimaterial.md#示例1设置沉浸式系统材质)。
+设置组件的系统材质。不同系统材质对应不同的属性影响效果，该接口可以影响背景色[backgroundColor](ts-universal-attributes-background.md#backgroundcolor)、边框颜色[borderColor](ts-universal-attributes-border.md#bordercolor)、边框宽度[borderWidth](ts-universal-attributes-border.md#borderwidth)、阴影[shadow](ts-universal-attributes-image-effect.md#shadow)、材质层滤镜[materialFilter](ts-universal-attributes-filter-effect.md#materialfilter23)效果，影响的属性与设备材质等级相关，参考[ImmersiveMaterial](../arkts-apis-uimaterial.md#immersivematerial)。[ImmersiveMaterial](../arkts-apis-uimaterial.md#immersivematerial)只有在支持沉浸式材质的设备上设置才有效果，在不支持沉浸式材质的设备上可设置但无效果，可通过[isImmersiveMaterialSupported](../arkts-apis-uimaterial.md#uimaterialisimmersivematerialsupported)判断设备是否支持沉浸式材质。使用示例请参考[示例1（设置沉浸式系统材质）](../arkts-apis-uimaterial.md#示例1设置沉浸式系统材质)。
 
 > **说明：**
 > 
+> - [ImmersiveMaterial](../arkts-apis-uimaterial.md#immersivematerial)只有在支持沉浸式材质的设备上设置才有效果，在不支持沉浸式材质的设备上可设置但无效果，可通过[isImmersiveMaterialSupported](../arkts-apis-uimaterial.md#uimaterialisimmersivematerialsupported)判断设备是否支持沉浸式材质。在不支持沉浸式材质的设备上，设置ImmersiveMaterial后，组件的样式仍由已设置的通用属性决定，ImmersiveMaterial不会覆盖任何通用属性。
 > - 在同时设置了材质影响的通用属性发生冲突时，除阴影外，总体原则为后设置的生效，对于阴影属性取决于[ImmersiveMaterial](../arkts-apis-uimaterial.md#immersivematerial)的applyShadow参数。
->   - 先设置[backgroundColor](ts-universal-attributes-background.md#backgroundcolor)属性后设置[systemMaterial](#systemmaterial)属性：backgroundColor属性被覆盖。在高算力和中算力设备上，背景色属性被清空为透明色；在低算力设备上，材质自带的背景色效果覆盖了先设置的backgroundColor属性。
+>   - 先设置[backgroundColor](ts-universal-attributes-background.md#backgroundcolor)属性后设置[systemMaterial](#systemmaterial)属性：backgroundColor属性被覆盖。在支持沉浸式材质的高算力和中算力设备上，背景色属性被清空为透明色；在支持沉浸式材质的低算力设备上，材质自带的背景色效果覆盖了先设置的backgroundColor属性。
 >   - 先设置[systemMaterial](#systemmaterial)属性后设置[backgroundColor](ts-universal-attributes-background.md#backgroundcolor)属性：systemMaterial属性影响的背景色效果被覆盖，背景色属性生效为后设置的backgroundColor属性的颜色。
 > - 对于所有设备算力档位均需要材质颜色的场景，可以通过[ImmersiveMaterial](../arkts-apis-uimaterial.md#immersivematerial)的materialColor参数承载，不再设置[backgroundColor](ts-universal-attributes-background.md#backgroundcolor)属性。
 
@@ -1208,7 +1213,7 @@ systemMaterial(material: SystemUiMaterial \| undefined): T
 
 | 类型 | 说明 |
 | -------- | -------- |
-| T | 返回当前组件。 |
+| T | 返回当前组件，用于链式调用。 |
 
 ## SystemUiMaterial
 
@@ -1250,18 +1255,18 @@ doubleSided(value: Optional\<boolean>): T
 
 | 参数名 | 类型                        | 必填 | 说明                                                         |
 | ------ | -------------------------- | ---- | ------------------------------------------------------------ |
-| value  | [Optional](ts-universal-attributes-custom-property.md#optionalt)\<boolean>         | 是   | 是否绘制组件的双面。<br/>设置为true表示组件的正面和背面都是可见的。<br/>设置为false表示组件的正面是可见的，旋转时组件的背面是不可见的。<br/>设置为undefined时效果和设置为true时保持一致，默认开启双面绘制。  |
+| value  | [Optional](ts-universal-attributes-custom-property.md#optionalt)\<boolean>         | 是   | 是否绘制组件的双面。<br>设置为true表示组件的正面和背面都是可见的。<br>设置为false表示组件的正面是可见的，旋转时组件的背面是不可见的。<br>设置为undefined时效果和设置为true时保持一致，默认开启双面绘制。  |
 
 **返回值：**
 
 | 类型 | 说明 |
 | -------- | -------- |
-| T | 返回当前组件。 |
+| T | 返回当前组件，用于链式调用。 |
 
 ## 示例
 
 ### 示例1（设置图片不同属性效果）
-设置图片的效果，包括阴影，灰度，高光，饱和度，对比度，图像反转，叠色，色相旋转等。
+设置图片的效果，包括阴影、灰度、高光、饱和度、对比度、图像反转、叠色、色相旋转等。
 ```ts
 // xxx.ets
 @Entry
@@ -1361,16 +1366,16 @@ struct ImageEffectsExample {
 // xxx.ets
 @Entry
 @Component
-struct ImageExample1 {
+struct LinearGradientBlurExample {
   // $r('app.media.testlinearGradientBlurOrigin')需要替换为开发者所需的资源文件。
-  private_resource1: Resource = $r('app.media.testlinearGradientBlurOrigin')
-  @State image_src: Resource = this.private_resource1
+  privateResource1: Resource = $r('app.media.testlinearGradientBlurOrigin')
+  @State imageSrc: Resource = this.privateResource1
 
   build() {
     Column() {
       Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Start }) {
         Row({ space: 5 }) {
-          Image(this.image_src)
+          Image(this.imageSrc)
             .blur(0) // 设置图片模糊效果为不模糊
             .linearGradientBlur(60,
               { fractionStops: [[0, 0], [0, 0.33], [1, 0.66], [1, 1]], direction: GradientDirection.Bottom })
@@ -1390,7 +1395,7 @@ struct ImageExample1 {
 ```ts
 // xxx.ets
 @Component
-struct Component1 {
+struct RenderGroupChildComponent {
   @Prop renderGroupValue: boolean;
 
   build() {
@@ -1422,9 +1427,9 @@ struct Component1 {
 struct RenderGroupExample {
   build() {
     Column() {
-      Component1({ renderGroupValue: true })
+      RenderGroupChildComponent({ renderGroupValue: true })
         .margin(20)
-      Component1({ renderGroupValue: false })
+      RenderGroupChildComponent({ renderGroupValue: false })
         .margin(20)
     }
     .width("100%")

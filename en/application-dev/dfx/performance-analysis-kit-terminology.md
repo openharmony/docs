@@ -5,7 +5,8 @@
 <!--Owner: @mzyan-->
 <!--Designer: @liyueric-->
 <!--Tester: @gcw_KuLfPSbe-->
-<!--Adviser: @foryourself-->
+<!--Adviser: @jinqiuheng-->
+<!-- md-trans-meta sourceCommit=6fbea4e9a2d9a7dbd0952cf27b912f34ab97177e translatedAt=2026-07-31T01:35:38.941Z pushedAt=2026-07-31T08:32:42.652Z -->
 
 ## General
 
@@ -78,7 +79,6 @@ Undefined Behavior Sanitizer (UBSan) detects undefined behavior in code, enablin
 
 Call stack records the sequence of function calls for the thread, from its start up to the current point (such as the crash or freeze). For details, see [Call stack frame](cppcrash-guidelines.md#common-faults) and [JS hybrid stack frame](cppcrash-guidelines.md#common-faults).
 
-
 ## Performance
 
 ### Frame Loss
@@ -148,3 +148,7 @@ File-backed pages are data pages mapped from specific files, such as program tex
 ### NMD
 
 Native Malloc Detail (NMD) indicates the jemalloc snapshot details of a process.
+
+### minidump
+
+A mini dump file generated when a process crashes, containing information such as registers, threads, and stack memory at the time of the crash. The system supports backtracking up to 400 threads.

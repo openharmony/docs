@@ -2,7 +2,7 @@
 <!--Kit: Image Kit-->
 <!--Subsystem: Multimedia-->
 <!--Owner: @aulight02-->
-<!--Designer: @liyang_bryan-->
+<!--Designer: @XiaoYao555-->
 <!--Tester: @xchaosioda-->
 <!--Adviser: @w_Machine_cc-->
 
@@ -20,7 +20,7 @@ Exchangeable Image File Format (Exif) metadata.
 import { image } from '@kit.ImageKit';
 ```
 
-## Attribute
+## Properties
 
 **Model restriction**: This API can be used only in the stage model.
 
@@ -104,7 +104,7 @@ For details about the property values, see [PropertyKey](arkts-apis-image-e.md#p
 | oecf                                | ArrayBuffer                                        | No  | Yes  | Opto-Electric Conversion Function (OECF) specified in ISO 14524.|
 | sensitivityType                     | number                                             | No  | Yes  | Sensitivity type.                                                |
 | standardOutputSensitivity           | number                                             | No  | Yes  | Standard output sensitivity.                                            |
-| recommendedExposureIndex            | number                                             | No  | Yes  | GPS measurement mode.                                               |
+| recommendedExposureIndex            | number                                             | No  | Yes  | Recommended exposure index.                                               |
 | isoSpeedLatitudeyyy                 | number                                             | No  | Yes  | Maximum dynamic range recordable by the camera sensor in a single exposure. The unit is EV.|
 | isoSpeedLatitudezzz                 | number                                             | No  | Yes  | Highlight retention capacity of the camera sensor in overexposure. The unit is EV.|
 | exifVersion                         | string                                             | No  | Yes  | Version of the supported Exif standard.                                      |
@@ -124,7 +124,7 @@ For details about the property values, see [PropertyKey](arkts-apis-image-e.md#p
 | meteringMode                        | number                                             | No  | Yes  | Metering mode.                                                  |
 | lightSource                         | number                                             | No  | Yes  | Light source.                                                      |
 | flash                               | number                                             | No  | Yes  | Flash.                                                      |
-| focalLength                         | number                                             | No  | Yes  | Focal length of the lens, in milliseconds.                                                      |
+| focalLength                         | number                                             | No  | Yes  | Focal length of the lens, in millimeters.                                                      |
 | subjectArea                         | number[]                                           | No  | Yes  | Location and area of the main object in the entire scene.                  |
 | makerNote                           | ArrayBuffer                                        | No  | Yes  | Information required by the Exif/Design rule for Camera File system (DCF) writer manufacturer.                    |
 | userComment                         | string                                             | No  | Yes  | User comments.                                                  |
@@ -151,7 +151,7 @@ For details about the property values, see [PropertyKey](arkts-apis-image-e.md#p
 | exposureMode                        | number                                             | No  | Yes  | Exposure mode.                                  |
 | whiteBalance                        | number                                             | No  | Yes  | White balance.                                                    |
 | digitalZoomRatio                    | number                                             | No  | Yes  | Digital zoom ratio used when the image is captured.                                        |
-| focalLengthIn35mmFilm               | number                                             | No  | Yes  | 35 mm equivalent focal length, in milliseconds.                                            |
+| focalLengthIn35mmFilm               | number                                             | No  | Yes  | 35 mm equivalent focal length, in millimeters.                                            |
 | sceneCaptureType                    | number                                             | No  | Yes  | Type of the scene that is captured.                                            |
 | gainControl                         | number                                             | No  | Yes  | Degree of overall image gain adjustment.                                      |
 | contrast                            | number                                             | No  | Yes  | Contrast optimization policy applied by the camera. For example, standard processing and contrast reduction.    |
@@ -181,19 +181,19 @@ Creates an empty [ExifMetadata](arkts-apis-image-ExifMetadata.md) instance.
 
 **System capability**: SystemCapability.Multimedia.Image.Core
 
-**Returns**:
+**Return value**
 
 | Type                                            | Description                      |
 | ------------------------------------------------ | -------------------------- |
 | [ExifMetadata](arkts-apis-image-ExifMetadata.md) | Empty **ExifMetadata** instance.|
 
-**Example**:
+**Example**
 
 ```ts
 async function exifMetadataCreateInstance(context: Context) {
   let exifMetadata = image.ExifMetadata.createInstance();
   if (exifMetadata != undefined) {
-    console.info("createInstance success");
+    console.info("Succeeded in creating an ExifMetadata instance.");
   }
 }
 ```
@@ -210,19 +210,19 @@ For details about the properties, see [PropertyKey](arkts-apis-image-e.md#proper
 
 **System capability**: SystemCapability.Multimedia.Image.Core
 
-**Parameters**:
+**Parameters**
 
 | Name| Type          | Mandatory| Description                  |
 | ------ | -------------- | ---- | ---------------------- |
 | key    | Array\<string> | Yes  | Names of the properties to query.|
 
-**Returns**:
+**Return value**
 
 | Type                                    | Description                                         |
 | ---------------------------------------- | --------------------------------------------- |
 | Promise\<Record\<string, string \| null>> | Promise used to return the obtained image metadata property values.|
 
-**Error codes**:
+**Error codes**
 
 For details about the error codes, see [Image Error Codes](errorcode-image.md).
 
@@ -230,7 +230,7 @@ For details about the error codes, see [Image Error Codes](errorcode-image.md).
 | -------- | ------------------------------------------------------------ |
 | 7600202  | Unsupported metadata. Possible causes: unsupported metadata type. |
 
-**Example**:
+**Example**
 
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
@@ -249,9 +249,9 @@ async function exifMetadataGetProperties(context: Context) {
   let metaData = await imageSource.readImageMetadata(["ImageWidth", "ImageLength"]);
   if (metaData != undefined && metaData.exifMetadata != undefined) {
     await metaData.exifMetadata.getProperties(["ImageWidth", "ImageLength"]).then((data) => {
-      console.info('Get properties ',JSON.stringify(data));
+      console.info(`Succeeded in getting properties. Data: ${JSON.stringify(data)}.`);
     }).catch((error: BusinessError) => {
-      console.error(`Get properties failed error.code is ${error.code}, error.message is ${error.message}`);
+      console.error(`Failed to get properties. Code: ${error.code}, message: ${error.message}.`);
     });
   } else {
     console.error('Metadata is null.');
@@ -271,19 +271,19 @@ For details about the properties, see [PropertyKey](arkts-apis-image-e.md#proper
 
 **System capability**: SystemCapability.Multimedia.Image.Core
 
-**Parameters**:
+**Parameters**
 
 | Name | Type                          | Mandatory| Description                    |
 | ------- | ------------------------------ | ---- | ------------------------ |
 | records | Record\<string, string \| null> | Yes  | Set of key-value pairs representing properties and corresponding values of the **ExifMetadata** object.|
 
-**Returns**:
+**Return value**
 
 | Type          | Description                     |
 | -------------- | ------------------------- |
 | Promise\<void> | Promise that returns no value.|
 
-**Error codes**:
+**Error codes**
 
 For details about the error codes, see [Image Error Codes](errorcode-image.md).
 
@@ -291,7 +291,7 @@ For details about the error codes, see [Image Error Codes](errorcode-image.md).
 | -------- | ------------------------------------------------------------ |
 | 7600202  | Unsupported metadata. Possible causes: unsupported metadata type. |
 
-**Example**:
+**Example**
 
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
@@ -314,7 +314,7 @@ async function exifMetadataSetProperties(context: Context) {
       "ImageLength": "300"
     };
     await metaData.exifMetadata.setProperties(setkey).then(async () => {
-      console.info('Set properties success.');
+      console.info('Succeeded in setting properties.');
     }).catch((error: BusinessError) => {
       console.error(`Failed to set metadata Properties. code is ${error.code}, message is ${error.message}`);
     })
@@ -334,13 +334,13 @@ Obtains all properties and their values from the image metadata. This API return
 
 **System capability**: SystemCapability.Multimedia.Image.Core
 
-**Returns**:
+**Return value**
 
 | Type                                    | Description                                       |
 | ---------------------------------------- | ------------------------------------------- |
 | Promise\<Record\<string, string \| null>> | Promise used to return the values of all properties.|
 
-**Example**:
+**Example**
 
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
@@ -360,10 +360,9 @@ async function exifMetadataGetAllProperties(context: Context) {
   if (metaData != undefined && metaData.exifMetadata != undefined) {
     await metaData.exifMetadata.getAllProperties().then((data) => {
       const count = Object.keys(data).length;
-      console.info('Metadata have ', count, ' properties');
-      console.info(`Get metadata all properties: ${data}`);
+      console.info(`Succeeded in getting all properties. Count: ${count}, data: ${JSON.stringify(data)}.`);
     }).catch((error: BusinessError) => {
-      console.error(`Get metadata all properties failed error.code is ${error.code}, error.message is ${error.message}`);
+      console.error(`Failed to get all properties. Code: ${error.code}, message: ${error.message}.`);
     });
   } else {
     console.error('Metadata is null.');
@@ -381,13 +380,13 @@ Clones the Exif metadata. This API returns the result asynchronously through a p
 
 **System capability**: SystemCapability.Multimedia.Image.Core
 
-**Returns**:
+**Return value**
 
 | Type                                                      | Description                                 |
 | ---------------------------------------------------------- | ------------------------------------- |
 | Promise\<[ExifMetadata](arkts-apis-image-ExifMetadata.md)> | Promise used to return the Exif metadata instance if the operation is successful.|
 
-**Example**:
+**Example**
 
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
@@ -407,9 +406,9 @@ async function exifMetadataClone(context: Context) {
   if (metaData != undefined && metaData.exifMetadata != undefined) {
     let new_metadata = await metaData.exifMetadata.clone();
     new_metadata.getProperties(["ImageWidth"]).then((data1) => {
-      console.info(`Clone new_metadata and get Properties: ${data1}`);
+      console.info(`Succeeded in cloning metadata and getting properties. Data: ${JSON.stringify(data1)}.`);
     }).catch((err: BusinessError) => {
-      console.error(`Clone new_metadata failed, error : ${err}`);
+      console.error(`Failed to clone metadata and get properties. Code: ${err.code}, message: ${err.message}.`);
     });
   } else {
     console.error('Metadata is null.');
@@ -427,13 +426,13 @@ Obtains the metadata in binary format. This API returns the result asynchronousl
 
 **System capability**: SystemCapability.Multimedia.Image.Core
 
-**Returns**:
+**Return value**
 
 | Type                 | Description                                 |
 | --------------------- | ------------------------------------- |
 | Promise\<ArrayBuffer> | Promise used to return the binary data of the metadata.|
 
-**Example**:
+**Example**
 
 ```ts
 import { fileIo } from '@kit.CoreFileKit';
@@ -452,7 +451,7 @@ async function exifMetadataGetBlob(context: Context) {
   if (metaData != undefined && metaData.exifMetadata != undefined) {
     let blob = await metaData.exifMetadata.getBlob();
     if (blob != undefined) {
-      console.info("get blob success");
+      console.info("Succeeded in getting blob.");
     }
   }
 }
@@ -468,19 +467,19 @@ Replaces the current metadata with binary data. This API returns the result asyn
 
 **System capability**: SystemCapability.Multimedia.Image.Core
 
-**Parameters**:
+**Parameters**
 
 | Name| Type       | Mandatory| Description                |
 | ------ | ----------- | ---- | -------------------- |
 | blob   | ArrayBuffer | Yes  | Binary data used to replace the metadata.|
 
-**Returns**:
+**Return value**
 
 | Type          | Description         |
 | -------------- | ------------- |
 | Promise\<void> | Promise that returns no value.|
 
-**Error codes**:
+**Error codes**
 
 For details about the error codes, see [Image Error Codes](errorcode-image.md).
 
@@ -488,7 +487,7 @@ For details about the error codes, see [Image Error Codes](errorcode-image.md).
 | -------- | ------------------------------------------------------------ |
 | 7600206  | Invalid parameter. Possible causes: The blob is empty or has a length of 0. |
 
-**Example**:
+**Example**
 
 ```ts
 import { fileIo } from '@kit.CoreFileKit';
@@ -507,7 +506,7 @@ async function exifMetadataSetBlob(context: Context) {
   if (metaData != undefined && metaData.exifMetadata != undefined) {
     let blob = await metaData.exifMetadata.getBlob();
     if (blob != undefined) {
-      console.info("get blob success");
+      console.info("Succeeded in getting blob.");
       metaData.exifMetadata.setBlob(blob);
     }
     let new_blob = metaData.exifMetadata.getBlob();
@@ -517,4 +516,3 @@ async function exifMetadataSetBlob(context: Context) {
   }
 }
 ```
-<!--no_check-->

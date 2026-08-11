@@ -9,7 +9,7 @@
 
 > **说明：**
 >
-> 本节列出 es2abc 编译器模块的专有错误码说明。通用错误码请参考[通用错误码说明文档](../errorcode-universal.md)。
+> 本节列出 es2abc（ECMAScript to Ark Bytecode）编译器模块的专有错误码说明。通用错误码请参考[通用错误码说明文档](../errorcode-universal.md)。
 
 ## 10705000 语法错误
 
@@ -23,7 +23,7 @@ SyntaxError: Concurrent function should only use import variable or local variab
 
 **错误描述**
 
-出现语法错误，编译器无法解析源文件中的某个语法结构，通常伴随具体的文件名与位置信息（行号与列号）。
+出现语法错误，编译器无法解析源文件中的某个语法结构，错误信息中伴随具体的文件名与位置信息（行号与列号）。
 
 **可能原因**
 
@@ -47,18 +47,18 @@ SyntaxError: Concurrent function should only use import variable or local variab
 示例
 ```txt
 ERROR: 10706001 Found unsupported change in file, failed to generate patch abc!
-[Patch] Found lexical variable added or removed in .a, not supported!
+[Patch] Found lexical variable added or removed in ${functionName}, not supported!
 [Patch] Found unsupported change in file, will not generate patch!
 Error:  [base_mod.js:0:0]
 ```
 
 **错误描述**
 
-编译器检测到源文件存在不符合增量编译（patch 模式）支持范围的变更，因而终止补丁生成。此类变更通常涉及作用域、变量声明、导入结构等对语义有显著影响的代码修改。
+patch模式（补丁模式）是一种增量编译模式，当源文件发生修改时，仅对修改部分进行编译，生成补丁字节码，配合原字节码完成功能更新。编译器检测到源文件存在不符合patch模式支持范围的变更，因而终止补丁生成。此类变更通常涉及作用域、变量声明、导入结构等对语义有显著影响的代码修改。
 
 **可能原因**
 
-1. 在补丁构建流程中，修改了模块的词法变量，例如新增或删除了声明；
+1. 在补丁构建流程中，修改了模块的词法变量（被内层函数引用的外层作用域变量），例如新增或删除了声明；
 2. 删除了关键函数或重新声明了已有变量；
 3. 对导入/导出结构（import/export）或模块边界进行了破坏性修改；
 4. 文件的改动超出了es2abc增量编译（patch 模式）的支持范围。

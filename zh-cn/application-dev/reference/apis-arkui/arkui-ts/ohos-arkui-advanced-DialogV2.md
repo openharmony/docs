@@ -295,7 +295,7 @@ AdvancedDialogV2Button的构造函数。
 上图下文弹出框，包含imageRes、content等内容。
 
 ```ts
-import { TipsDialogV2, AdvancedDialogV2Button, UIContext, ButtonRole  } from '@kit.ArkUI';
+import { TipsDialogV2, AdvancedDialogV2Button, UIContext } from '@kit.ArkUI';
 
 @Entry
 @ComponentV2
@@ -501,7 +501,7 @@ struct Index {
 纯文本弹出框，包含primaryTitle、secondaryTitle、content等内容。
 
 ```ts
-import { AlertDialogV2, AdvancedDialogV2Button, UIContext, ButtonRole  } from '@kit.ArkUI';
+import { AlertDialogV2, AdvancedDialogV2Button, UIContext } from '@kit.ArkUI';
 
 @Entry
 @ComponentV2
@@ -665,7 +665,7 @@ struct Index {
 支持自定义内容弹出框，包含contentBuilder、buttons等内容。
 
 ```ts
-import { CustomContentDialogV2, AdvancedDialogV2Button, UIContext, ButtonStyleMode, ButtonRole  } from '@kit.ArkUI';
+import { CustomContentDialogV2, AdvancedDialogV2Button, UIContext } from '@kit.ArkUI';
 
 @Entry
 @ComponentV2

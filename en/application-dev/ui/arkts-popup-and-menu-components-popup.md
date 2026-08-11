@@ -1,10 +1,13 @@
 # Popup
+
 <!--Kit: ArkUI-->
 <!--Subsystem: ArkUI-->
 <!--Owner: @liyi0309-->
 <!--Designer: @liyi0309-->
 <!--Tester: @lxl007-->
 <!--Adviser: @Brilliantry_Rui-->
+<!-- md-trans-meta sourceCommit=b8421fa94775fa4bceb1b522857b705478302935 translatedAt=2026-08-04T06:37:10.863Z pushedAt=2026-08-04T08:15:51.229Z -->
+
 You can bind the **Popup** attribute to a component to create a popup, specifying its content and interaction logic, and display state. It is mainly used for screen recording and message notification.
 
 Popups can be defined with [PopupOptions](../reference/apis-arkui/arkui-ts/ts-universal-attributes-popup.md#popupoptions) or [CustomPopupOptions](../reference/apis-arkui/arkui-ts/ts-universal-attributes-popup.md#custompopupoptions8). In **PopupOptions**, you can set **primaryButton** and **secondaryButton** to include buttons in the popup. In **CustomPopupOptions**, you can create a custom popup using [builder](../../application-dev/ui/state-management/arkts-builder.md). For **PopupOptions**, the maximum font scale factor is 2.
@@ -270,7 +273,7 @@ To place the popup in a specific position, set the **placement** parameter. The 
 
 ## Defining the Popup Style
 
-You can define the popup style using both builder-based customization and through specific API configurations.
+In addition to customizing the bubble via a **builder**, you can also set its style and display effects through the API.
 
 Background color: While popups initially come with a transparent background, they have a blur effect, which is **COMPONENT_ULTRA_THICK** on phones.
 
@@ -368,7 +371,6 @@ export struct AvoidSoftKeyboardPopupExample {
 ```
 
 ![image](figures/avoidKeyboard.gif)
-
 
 ## Setting Polymorphic Effects in the Popup
 
@@ -509,12 +511,10 @@ export struct SupportedAvoidAxisPopupExample {
   @State hoverModeStart: string =
     this.getUIContext().getHostContext()?.resourceManager.getStringByNameSync('hoverMode_start') as string;
 
-  @State message: string = 'Hello World';
   @State index: number = 0;
   @State arrayStr: Array<string> = [this.upScreen, this.middleAxle, this.lowerScreen];
   @State enableHoverMode: boolean | undefined = true;
   @State showInSubwindow: boolean = false;
-  @State placement: Placement | undefined = undefined;
   @State isShow: boolean = false;
 
   build() {

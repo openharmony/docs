@@ -94,7 +94,7 @@
 
 | 名称   | 类型 | 只读 | 可选 | 说明               |
 | ------ | -------- | ---- | ---- | ------------------ |
-| left   | number   | 否   | 否   | 矩形区域的左边界，单位为px，该参数为整数。 |
+| left   | number   | 否   | 否   | 矩形区域的左边界，单位为px，该参数应为整数。 |
 | top    | number   | 否   | 否   | 矩形区域的上边界，单位为px，该参数应为整数。 |
 | width  | number   | 否   | 否   | 矩形区域的宽度，单位为px，该参数应为整数。 |
 | height | number   | 否   | 否   | 矩形区域的高度，单位为px，该参数应为整数。 |
@@ -109,10 +109,10 @@
 
 | 名称   | 类型 | 只读 | 可选 | 说明               |
 | ------ | -------- | ---- | ---- | ------------------ |
-| left   | number   | 否   | 否   | 矩形区域的左边界值，单位为vp。 |
-| top    | number   | 否   | 否   | 矩形区域的上边界值，单位为vp。 |
-| width  | number   | 否   | 否   | 矩形区域的宽度，单位为vp。 |
-| height | number   | 否   | 否   | 矩形区域的高度，单位为vp。 |
+| left   | number   | 否   | 否   | 矩形区域的左边界值，单位为vp，该参数为浮点数。 |
+| top    | number   | 否   | 否   | 矩形区域的上边界值，单位为vp，该参数为浮点数。 |
+| width  | number   | 否   | 否   | 矩形区域的宽度，单位为vp，该参数为浮点数。 |
+| height | number   | 否   | 否   | 矩形区域的高度，单位为vp，该参数为浮点数。 |
 
 ## AvoidArea<sup>7+</sup>
 
@@ -249,24 +249,24 @@
 
 | 名称                                  | 类型                  | 只读 | 可选 | 说明                                                                                                     |
 | ------------------------------------- | ------------------------- | ---- | ---- |--------------------------------------------------------------------------------------------------------|
-| windowRect<sup>7+</sup>               | [Rect](arkts-apis-window-i.md#rect7)             | 否   | 否   | 窗口尺寸，其中左边界上边界是相对于窗口所在屏幕左上顶点计算，可在页面生命周期[onPageShow](./arkui-ts/ts-custom-component-lifecycle.md#onpageshow)或应用生命周期[onForeground](../apis-ability-kit/js-apis-app-ability-uiAbility.md#onforeground)阶段获取。<br> **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 <br/>**系统能力：** SystemCapability.WindowManager.WindowManager.Core|
-| drawableRect<sup>11+</sup>            | [Rect](arkts-apis-window-i.md#rect7)             | 否   | 否   | 窗口内的可绘制区域尺寸，其中左边界上边界是相对于窗口左上顶点计算。在Stage模型下，需要在调用[loadContent()](arkts-apis-window-Window.md#loadcontent9)或[setUIContent()](arkts-apis-window-Window.md#setuicontent9)加载页面内容后获取该属性。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。<br/>**系统能力：** SystemCapability.WindowManager.WindowManager.Core|
-| type<sup>(deprecated)</sup>                     | [WindowType](arkts-apis-window-e.md#windowtype7) | 否   | 否   | 窗口类型。<br/>当前存在主窗使用[getWindowProperties()](arkts-apis-window-Window.md#getwindowproperties9)接口返回type不准确的问题，从API版本26.0.0开始废弃，可使用[windowType](#windowproperties)字段代替。<br/>**起始版本：** 7 <br/>**废弃版本：** 26.0.0 <br/>**替代接口：** [windowType](#windowproperties) <br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。<br/>**系统能力：** SystemCapability.WindowManager.WindowManager.Core|
-| windowType | [WindowType](arkts-apis-window-e.md#windowtype7) | 否   | 是   | 窗口类型，默认值是[TYPE_MAIN](arkts-apis-window-e.md#windowtype7)。<br/>**起始版本：** 26.0.0 <br/>**原子化服务API：** 从API版本26.0.0开始，该接口支持在原子化服务中使用。<br/>**模型约束：** 此接口仅可在Stage模型下使用。<br/>**系统能力：** SystemCapability.WindowManager.WindowManager.Core|
-| isFullScreen                          | boolean                   | 否   | 否   |在满足isLayoutFullScreen为true的条件下如果隐藏了状态栏，返回值为true，其他情况下均返回false。<br> **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。<br/>**系统能力：** SystemCapability.WindowManager.WindowManager.Core|
-| isLayoutFullScreen<sup>7+</sup>       | boolean                   | 否   | 否   | 对于子窗，如果设置了[沉浸式布局](../../windowmanager/immersive-window-feature.md#沉浸式布局)，返回值为true。<br/>对于主窗，如果设置了[沉浸式布局](../../windowmanager/immersive-window-feature.md#沉浸式布局)且处于全屏模式，返回值为true。<br/>其他情况下均返回false<br/> **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。<br/>**系统能力：** SystemCapability.WindowManager.WindowManager.Core|
-| focusable<sup>7+</sup>                | boolean                   | 否   | 否   | 窗口是否可获焦。true表示可获焦；false表示不可获焦。 <br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 <br/>**系统能力：** SystemCapability.WindowManager.WindowManager.Core|
-| touchable<sup>7+</sup>                | boolean                   | 否   | 否   | 窗口是否可触摸。true表示可触摸；false表示不可触摸。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 <br/>**系统能力：** SystemCapability.WindowManager.WindowManager.Core|
-| brightness                            | number                    | 否   | 否   | 窗口亮度。通过[setWindowBrightness()](arkts-apis-window-Window.md#setwindowbrightness9)设置窗口的亮度值。该参数为浮点数，可设置的亮度范围为[0.0, 1.0]或-1.0，其取值1.0时表示最大亮度，取值-1.0时，表示亮度跟随系统。如果窗口没有设置亮度值，表示亮度跟随系统，此时获取到的亮度值为-1.0。<br> **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。<br/>**系统能力：** SystemCapability.WindowManager.WindowManager.Core|
-| dimBehindValue<sup>(deprecated)</sup> | number                    | 否   | 否   | 下层窗口的暗度值。该参数为浮点数，取值范围为[0.0, 1.0]，其取1.0表示最暗。<br>**说明：** 从API version 7开始支持，从API version 9开始废弃，当前无可替代接口。<br/>**系统能力：** SystemCapability.WindowManager.WindowManager.Core|
-| isKeepScreenOn                        | boolean                   | 否   | 否   | 屏幕是否常亮。true表示常亮；false表示不常亮。<br> **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 <br/>**系统能力：** SystemCapability.WindowManager.WindowManager.Core|
-| isPrivacyMode<sup>7+</sup>            | boolean                   | 否   | 否   | 窗口是否为隐私模式。true表示窗口为隐私模式；false表示窗口为非隐私模式。可通过[setWindowPrivacyMode()](arkts-apis-window-Window.md#setwindowprivacymode9)设置窗口的隐私模式。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。<br/>**系统能力：** SystemCapability.WindowManager.WindowManager.Core|
-| isRoundCorner<sup>(deprecated)</sup>  | boolean                   | 否   | 否   | 窗口是否为圆角。true表示窗口为圆角；false表示窗口为非圆角。<br>**说明：** 从API version 7开始支持，从API version 9开始废弃，当前无可替代接口。<br/>**系统能力：** SystemCapability.WindowManager.WindowManager.Core|
-| isTransparent<sup>7+</sup>            | boolean                   | 否   | 否   | 窗口背景是否透明。true表示透明；false表示不透明。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。<br/>**系统能力：** SystemCapability.WindowManager.WindowManager.Core|
-| id<sup>9+</sup>                       | number                    | 否   | 否   | 窗口ID，该参数为整数。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。<br/>**系统能力：** SystemCapability.WindowManager.WindowManager.Core|
-| displayId<sup>12+</sup>               | number                    | 否   | 是   | 窗口所在屏幕ID，默认返回主屏幕ID，该参数为整数。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。<br/>**系统能力：** SystemCapability.WindowManager.WindowManager.Core|
-| name<sup>18+</sup>               | string                    | 否   | 是   | 窗口名称，默认为空字符串。<br/>**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。<br/>**系统能力：** SystemCapability.WindowManager.WindowManager.Core|
-| globalDisplayRect<sup>20+</sup> | [Rect](arkts-apis-window-i.md#rect7)   | 否   | 是   | 全局坐标系下的窗口尺寸。扩展屏场景下以主屏左上角为坐标原点，虚拟屏场景下以虚拟屏左上角为坐标原点。默认值：[0, 0, 0, 0]。<br/>**系统能力：**  SystemCapability.Window.SessionManager |
+| windowRect<sup>7+</sup>               | [Rect](arkts-apis-window-i.md#rect7)             | 否   | 否   | 窗口尺寸，其中左边界上边界是相对于窗口所在屏幕左上顶点计算，可在页面生命周期[onPageShow](./arkui-ts/ts-custom-component-lifecycle.md#onpageshow)或应用生命周期[onForeground](../apis-ability-kit/js-apis-app-ability-uiAbility.md#onforeground)阶段获取。<br> **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 <br>**系统能力：** SystemCapability.WindowManager.WindowManager.Core|
+| drawableRect<sup>11+</sup>            | [Rect](arkts-apis-window-i.md#rect7)             | 否   | 否   | 窗口内的可绘制区域尺寸，其中左边界上边界是相对于窗口左上顶点计算。在Stage模型下，需要在调用[loadContent()](arkts-apis-window-Window.md#loadcontent9)或[setUIContent()](arkts-apis-window-Window.md#setuicontent9)加载页面内容后获取该属性。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。<br>**系统能力：** SystemCapability.WindowManager.WindowManager.Core|
+| type<sup>(deprecated)</sup>                     | [WindowType](arkts-apis-window-e.md#windowtype7) | 否   | 否   | 窗口类型。<br>当前存在主窗使用[getWindowProperties()](arkts-apis-window-Window.md#getwindowproperties9)接口返回type不准确的问题，从API版本26.0.0开始废弃，可使用[windowType](#windowproperties)字段代替。<br>**起始版本：** 7 <br>**废弃版本：** 26.0.0 <br>**替代接口：** [windowType](#windowproperties) <br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。<br>**系统能力：** SystemCapability.WindowManager.WindowManager.Core|
+| windowType | [WindowType](arkts-apis-window-e.md#windowtype7) | 否   | 是   | 窗口类型，默认值是[TYPE_MAIN](arkts-apis-window-e.md#windowtype7)。<br>**起始版本：** 26.0.0 <br>**原子化服务API：** 从API版本26.0.0开始，该接口支持在原子化服务中使用。<br>**模型约束：** 此接口仅可在Stage模型下使用。<br>**系统能力：** SystemCapability.WindowManager.WindowManager.Core|
+| isFullScreen                          | boolean                   | 否   | 否   |在满足isLayoutFullScreen为true的条件下如果隐藏了状态栏，返回值为true，其他情况下均返回false。<br> **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。<br>**系统能力：** SystemCapability.WindowManager.WindowManager.Core|
+| isLayoutFullScreen<sup>7+</sup>       | boolean                   | 否   | 否   | 对于子窗，如果设置了[沉浸式布局](../../windowmanager/immersive-window-feature.md#沉浸式布局)，返回值为true。<br>对于主窗，如果设置了[沉浸式布局](../../windowmanager/immersive-window-feature.md#沉浸式布局)且处于全屏模式，返回值为true。<br>其他情况下均返回false<br> **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。<br>**系统能力：** SystemCapability.WindowManager.WindowManager.Core|
+| focusable<sup>7+</sup>                | boolean                   | 否   | 否   | 窗口是否可获焦。true表示可获焦；false表示不可获焦。 <br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 <br>**系统能力：** SystemCapability.WindowManager.WindowManager.Core|
+| touchable<sup>7+</sup>                | boolean                   | 否   | 否   | 窗口是否可触摸。true表示可触摸；false表示不可触摸。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 <br>**系统能力：** SystemCapability.WindowManager.WindowManager.Core|
+| brightness                            | number                    | 否   | 否   | 窗口亮度。通过[setWindowBrightness()](arkts-apis-window-Window.md#setwindowbrightness9)设置窗口的亮度值。该参数为浮点数，可设置的亮度范围为[0.0, 1.0]或-1.0，其取值1.0时表示最大亮度，取值-1.0时，表示亮度跟随系统。如果窗口没有设置亮度值，表示亮度跟随系统，此时获取到的亮度值为-1.0。<br> **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。<br>**系统能力：** SystemCapability.WindowManager.WindowManager.Core|
+| dimBehindValue<sup>(deprecated)</sup> | number                    | 否   | 否   | 下层窗口的暗度值。该参数为浮点数，取值范围为[0.0, 1.0]，其取1.0表示最暗。<br>**说明：** 从API version 7开始支持，从API version 9开始废弃，当前无可替代接口。<br>**系统能力：** SystemCapability.WindowManager.WindowManager.Core|
+| isKeepScreenOn                        | boolean                   | 否   | 否   | 屏幕是否常亮。true表示常亮；false表示不常亮。<br> **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 <br>**系统能力：** SystemCapability.WindowManager.WindowManager.Core|
+| isPrivacyMode<sup>7+</sup>            | boolean                   | 否   | 否   | 窗口是否为隐私模式。true表示窗口为隐私模式；false表示窗口为非隐私模式。可通过[setWindowPrivacyMode()](arkts-apis-window-Window.md#setwindowprivacymode9)设置窗口的隐私模式。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。<br>**系统能力：** SystemCapability.WindowManager.WindowManager.Core|
+| isRoundCorner<sup>(deprecated)</sup>  | boolean                   | 否   | 否   | 窗口是否为圆角。true表示窗口为圆角；false表示窗口为非圆角。<br>**说明：** 从API version 7开始支持，从API version 9开始废弃，当前无可替代接口。<br>**系统能力：** SystemCapability.WindowManager.WindowManager.Core|
+| isTransparent<sup>7+</sup>            | boolean                   | 否   | 否   | 窗口背景是否透明。true表示透明；false表示不透明。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。<br>**系统能力：** SystemCapability.WindowManager.WindowManager.Core|
+| id<sup>9+</sup>                       | number                    | 否   | 否   | 窗口ID，该参数为整数。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。<br>**系统能力：** SystemCapability.WindowManager.WindowManager.Core|
+| displayId<sup>12+</sup>               | number                    | 否   | 是   | 窗口所在屏幕ID，默认返回主屏幕ID，该参数为整数。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。<br>**系统能力：** SystemCapability.WindowManager.WindowManager.Core|
+| name<sup>18+</sup>               | string                    | 否   | 是   | 窗口名称，默认为空字符串。<br>**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。<br>**系统能力：** SystemCapability.WindowManager.WindowManager.Core|
+| globalDisplayRect<sup>20+</sup> | [Rect](arkts-apis-window-i.md#rect7)   | 否   | 是   | 全局坐标系下的窗口尺寸。扩展屏场景下以主屏左上角为坐标原点，虚拟屏场景下以虚拟屏左上角为坐标原点。默认值：[0, 0, 0, 0]。<br>**系统能力：**  SystemCapability.Window.SessionManager |
 
 ## DecorButtonStyle<sup>14+</sup>
 
@@ -276,12 +276,12 @@
 
 | 名称       | 类型      | 只读 | 可选 | 说明               |
 | ---------- | ------------- | ---- | ---- | ------------------ |
-| colorMode   | [ConfigurationConstant.ColorMode](../apis-ability-kit/js-apis-app-ability-configurationConstant.md#colormode) | 否   | 是   | 颜色模式。深色模式下按钮颜色适配为浅色，浅色模式下按钮颜色适配为深色。未设置则默认跟随系统颜色模式。<br/>**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。 |
-| buttonBackgroundSize   | number        | 否   | 是   | 按钮高亮显示时的大小，单位为vp，取值范围为[20, 40]，默认值为28。<br/>**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。 |
-| spacingBetweenButtons  | number        | 否   | 是   | 按钮间距，单位为vp，取值范围为[8, 24]，默认值为12。<br/>**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。 |
-| closeButtonRightMargin | number        | 否   | 是   | 关闭按钮右侧距窗口边距，单位为vp，取值范围为[6, 22]，默认值为20。<br/>**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。 |
-| buttonIconSize<sup>20+</sup> | number        | 否   | 是   | 按钮icon的大小，单位为vp，取值范围为[16, 24]，默认值为20。<br/>**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。 |
-| buttonBackgroundCornerRadius<sup>20+</sup> | number        | 否   | 是   | 按钮背板圆角半径，单位为vp，取值范围为[4, 8]，默认值为4。<br/>**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。 |
+| colorMode   | [ConfigurationConstant.ColorMode](../apis-ability-kit/js-apis-app-ability-configurationConstant.md#colormode) | 否   | 是   | 颜色模式。深色模式下按钮颜色适配为浅色，浅色模式下按钮颜色适配为深色。未设置则默认跟随系统颜色模式。<br>**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。 |
+| buttonBackgroundSize   | number        | 否   | 是   | 按钮高亮显示时的大小，单位为vp，取值范围为[20, 40]，默认值为28。<br>**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。 |
+| spacingBetweenButtons  | number        | 否   | 是   | 按钮间距，单位为vp，取值范围为[8, 24]，默认值为12。<br>**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。 |
+| closeButtonRightMargin | number        | 否   | 是   | 关闭按钮右侧距窗口边距，单位为vp，取值范围为[6, 22]，默认值为20。<br>**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。 |
+| buttonIconSize<sup>20+</sup> | number        | 否   | 是   | 按钮icon的大小，单位为vp，取值范围为[16, 24]，默认值为20。<br>**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。 |
+| buttonBackgroundCornerRadius<sup>20+</sup> | number        | 否   | 是   | 按钮背板圆角半径，单位为vp，取值范围为[4, 8]，默认值为4。<br>**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。 |
 
 ## WindowLimits<sup>11+</sup>
 
@@ -308,10 +308,10 @@
 
 | 名称      | 类型   | 只读 | 可选 | 说明                                                          |
 | :-------- | :----- | :--- | :--- | :----------------------------------------------------------- |
-| maxWidth  | number | 否   | 是   | 窗口的最大宽度。 <br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
-| maxHeight | number | 否   | 是   | 窗口的最大高度。 <br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
-| minWidth  | number | 否   | 是   | 窗口的最小宽度。 <br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
-| minHeight | number | 否   | 是   | 窗口的最小高度。 <br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| maxWidth  | number | 否   | 是   | 窗口的最大宽度。 <br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| maxHeight | number | 否   | 是   | 窗口的最大高度。 <br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| minWidth  | number | 否   | 是   | 窗口的最小宽度。 <br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| minHeight | number | 否   | 是   | 窗口的最小高度。 <br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
 | pixelUnit<sup>22+</sup> | [PixelUnit](arkts-apis-window-e.md#pixelunit22) | 否 | 是 | 窗口尺寸限制的单位，默认为px。可显式设置为px或vp。 |
 
 ## TitleButtonRect<sup>11+</sup>
@@ -380,8 +380,8 @@
 
 | 名称   | 类型   | 只读 | 可选 | 说明                                       |
 | ------ | ------ | ---- | ---- |------------------------------------------ |
-| windowRect | [Rect](arkts-apis-window-i.md#rect7)  | 否 | 否 | 窗口尺寸，窗口在屏幕上的实际位置和大小。<br/> **原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。|
-| windowAlpha | number  | 否 | 是 | 窗口透明度。有效值范围为[0.0, 1.0]，0.0表示完全透明，1.0表示完全不透明。默认值是-1.0，表示未查询到窗口透明度或者查询失败。<br/>说明：本透明度非窗口背景色透明度（可通过[setWindowBackgroundColor](arkts-apis-window-Window.md#setwindowbackgroundcolor9)接口设置）。<br/>**起始版本：** 26.0.0 <br/>**原子化服务API：** 从API版本26.0.0开始，该接口支持在原子化服务中使用。 <br/>**模型约束：** 此接口仅可在Stage模型下使用。|
+| windowRect | [Rect](arkts-apis-window-i.md#rect7)  | 否 | 否 | 窗口尺寸，窗口在屏幕上的实际位置和大小。<br> **原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。|
+| windowAlpha | number  | 否 | 是 | 窗口透明度。有效值范围为[0.0, 1.0]，0.0表示完全透明，1.0表示完全不透明。默认值是-1.0，表示未查询到窗口透明度或者查询失败。<br>说明：本透明度非窗口背景色透明度（可通过[setWindowBackgroundColor](arkts-apis-window-Window.md#setwindowbackgroundcolor9)接口设置）。<br>**起始版本：** 26.0.0 <br>**原子化服务API：** 从API版本26.0.0开始，该接口支持在原子化服务中使用。 <br>**模型约束：** 此接口仅可在Stage模型下使用。|
 
 ## KeyboardInfo<sup>18+</sup>
 
@@ -451,7 +451,7 @@
 | ------ | ------ | ---- | ---- |------------------------------------------ |
 | maximizePresentation | [MaximizePresentation](arkts-apis-window-e.md#maximizepresentation12)  |  否  |  是  | 最大化时的布局方式，默认值为[MaximizePresentation](arkts-apis-window-e.md#maximizepresentation12).ENTER_IMMERSIVE。|
 | acrossDisplayPresentation | [AcrossDisplayPresentation](arkts-apis-window-e.md#acrossdisplaypresentation)  |  否  |  是  | 折叠屏跨屏策略，默认值为[AcrossDisplayPresentation](arkts-apis-window-e.md#acrossdisplaypresentation).FOLLOW_ACROSS_DISPLAY_SETTING。仅主窗口可设置，非主窗口调用时返回错误码1300004。**设备行为差异：** 仅在具备折叠功能的2in1设备可正常调用；在其他设备上调用不生效。|
-| snapshotAnimationConfig | [WindowSnapshotAnimationConfig](#windowsnapshotanimationconfig)  |  否  |  是  | 截图动画配置。在窗口最大化和窗口恢复[自由窗口](../../windowmanager/window-terminology.md#freeform-window自由窗口)过程中，系统会通过截图动画遮盖应用布局变化的跳变，可通过此属性指定截图淡出动画延迟和淡出动画执行时长。仅主窗口可设置，主窗口不指定时使用系统默认动画；子窗默认无截图动画，即截图动画参数duration和delay均为0，传入其他动画参数返回1300004错误码。当duration为0时，表示取消截图动画。|
+| snapshotAnimationConfig | [WindowSnapshotAnimationConfig](#windowsnapshotanimationconfig)  |  否  |  是  | 截图动画配置。在窗口最大化和窗口恢复[自由窗口](../../windowmanager/window-terminology.md#freeform-window自由窗口)过程中，系统会通过截图动画遮盖应用布局变化的跳变，可通过此属性指定截图淡出动画延迟和淡出动画执行时长。仅主窗口可设置，主窗口不指定时使用系统默认动画；子窗口默认无截图动画，即截图动画参数duration和delay均为0，传入其他动画参数返回1300004错误码。当duration为0时，表示取消截图动画。|
 
 ## WindowInfo<sup>18+</sup>
 
@@ -497,7 +497,7 @@
 **系统能力：** SystemCapability.Window.SessionManager
 | 名称             | 类型                                                                     | 只读 | 可选 | 说明                                                         |
 | ---------------- | ----------------------------------------------------------------------- | ---- | ---- | ------------------------------------------------------------ |
-| type             | [AnimationType](arkts-apis-window-e.md#animationtype20)                 | 否   | 否   | 窗口动画类型。|
+| type             | [AnimationType](arkts-apis-window-e.md#animationtype20)                 | 否   | 否   | 窗口动画类型，用于指定窗口启动时使用的动画效果，如淡入淡出等。|
 
 ## WindowCreateParams<sup>20+</sup>
 
@@ -511,9 +511,11 @@
 
 ## Callback<sup>15+</sup>
 
-### (data: T)<sup>15+</sup>
+Callback<T, V = void> {
 
-(data: T): V
+(data: T): V;
+
+}
 
 通用回调函数。
 
@@ -545,9 +547,9 @@
 
 | 名称   | 类型 | 只读  | 可选 | 说明                    |
 | ------ | ---- | ----- | ---- | ----------------------- |
-| type | [RotationChangeType](arkts-apis-window-e.md#rotationchangetype19) | 否 | 否 | 窗口旋转事件类型。 |
+| type | [RotationChangeType](arkts-apis-window-e.md#rotationchangetype19) | 否 | 否 | 窗口旋转事件类型，如窗口即将旋转、窗口旋转结束等。 |
 | orientation | number | 否 | 否 | 窗口显示方向。<br>- 0表示竖屏。<br>- 1表示反向横屏。<br>- 2表示反向竖屏。<br>- 3表示横屏。<br>开发者在使用时，需要注意该方向与display对象的属性orientation含义不一致。 |
-| displayId | number | 否 | 否 | 窗口所在屏幕Id。 |
+| displayId | number | 否 | 否 | 窗口所在屏幕ID，该参数为整数。 |
 | displayRect | [Rect](arkts-apis-window-i.md#rect7) | 否 | 否 | 窗口所在屏幕旋转后的矩形区域大小。 |
 
 ## RotationChangeResult<sup>19+</sup>
@@ -562,7 +564,7 @@
 
 | 名称   | 类型 | 只读  | 可选 | 说明                    |
 | ------ | ---- | ----- | ---- | ----------------------- |
-| rectType | [RectType](arkts-apis-window-e.md#recttype19) | 否 | 否 | 窗口矩形区域坐标系类型。 |
+| rectType | [RectType](arkts-apis-window-e.md#recttype19) | 否 | 否 | 窗口矩形区域坐标系类型，用于指定窗口矩形区域使用的坐标系，如屏幕坐标系、父窗口坐标系等。 |
 | windowRect | [Rect](arkts-apis-window-i.md#rect7) | 否 | 否 | 相对于屏幕或父窗坐标系的窗口矩形区域信息。|
 
 ## OrientationResult
@@ -579,7 +581,7 @@
 
 | 名称   | 类型 | 只读  | 可选 | 说明                    |
 | ------ | ---- | ----- | ---- | ----------------------- |
-| executionResult | [OrientationExecutionResult](arkts-apis-window-e.md#orientationexecutionresult) | 否 | 否 | 窗口显示方向的执行结果枚举。|
+| executionResult | [OrientationExecutionResult](arkts-apis-window-e.md#orientationexecutionresult) | 否 | 否 | 窗口显示方向的执行结果枚举，表示设置窗口显示方向的操作结果，例如生效、不生效、挂起等。 |
 
 ## SubWindowOptions<sup>11+</sup>
 
@@ -597,7 +599,7 @@
 | zLevel<sup>18+</sup>    | number | 否 | 是 | 子窗口层级级别，仅当子窗口未启用模态属性，即未设置isModal时生效。该参数是整数，取值范围为[-10000, 10000]，浮点数输入将向下取整。不设置，则默认为0。<br>**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。|
 | maximizeSupported<sup>19+</sup>    | boolean | 否 | 是 | 子窗口是否支持最大化特性。true表示子窗口支持最大化，false表示子窗口不支持最大化。不设置，则默认为false。<br>**原子化服务API：** 从API version 19开始，该接口支持在原子化服务中使用。<br> **设备行为差异：** 该参数在支持并处于[自由窗口](../../windowmanager/window-terminology.md#freeform-window自由窗口)状态的设备上可正常调用；在不支持[自由窗口](../../windowmanager/window-terminology.md#freeform-window自由窗口)状态的设备上，作为入参使用时，对应接口不生效不报错；在支持但不处于[自由窗口](../../windowmanager/window-terminology.md#freeform-window自由窗口)状态的设备上，作为入参使用时，对应接口不生效不报错，切换到[自由窗口](../../windowmanager/window-terminology.md#freeform-window自由窗口)状态后生效。|
 | outlineEnabled<sup>20+</sup>    | boolean | 否 | 是 | 子窗口是否显示描边。true表示子窗口显示描边，false表示子窗口不显示描边。不设置，则默认为false。<br>**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。<br> **设备行为差异：** 该参数在PC/2in1设备、其他设备的电脑模式中可正常调用，在其他设备和其他模式中作为入参使用时，对应接口不生效不报错。|
-| zLevelAboveParentLoosened | boolean | 否 | 是 | 子窗是否是[独立子窗](../../windowmanager/window-type-overview.md#辅助窗口)。true表示子窗是独立子窗，false表示子窗不是独立子窗。不设置，则默认为false。<br>**起始版本：** 26.0.0 <br>**原子化服务API：** 从API version 26.0.0开始，该接口支持在原子化服务中使用。<br>**模型约束：** 此接口仅可在Stage模型下使用。|
+| zLevelAboveParentLoosened | boolean | 否 | 是 | 子窗口是否是[独立子窗](../../windowmanager/window-type-overview.md#辅助窗口)。true表示子窗口是独立子窗，false表示子窗口不是独立子窗。不设置，则默认为false。<br>**起始版本：** 26.0.0 <br>**原子化服务API：** 从API version 26.0.0开始，该接口支持在原子化服务中使用。<br>**模型约束：** 此接口仅可在Stage模型下使用。|
 
 ## KeyFramePolicy<sup>20+</sup>
 
@@ -621,8 +623,8 @@
 
 | 名称   | 类型 | 只读  | 可选 | 说明                    |
 | ------ | ---- | ----- | ---- | ----------------------- |
-| displayId | number  | 否 | 否 | 主窗口所在的屏幕ID。 |
-| windowId  | number  | 否 | 否 | 主窗口ID。 |
+| displayId | number  | 否 | 否 | 主窗口所在的屏幕ID，该参数应为正整数。 |
+| windowId  | number  | 否 | 否 | 主窗口ID，该参数应为正整数。 |
 | showing   | boolean | 否 | 否 | 主窗口的前后台状态。true表示主窗口在前台，false表示主窗口不在前台。|
 | label     | string  | 否 | 否 | 主窗口的任务名称。 |
 

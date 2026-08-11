@@ -58,15 +58,53 @@
 
    当录音需要退至后台持续运行时，应用需要申请`AUDIO_RECORDING`类型长时任务，使系统识别该后台任务与录音业务匹配。
 
-   ```ts
-   import { backgroundTaskManager } from '@kit.BackgroundTasksKit';
-
-   // 申请录音类型长时任务，wantAgentObj用于指定点击长时任务通知后跳转的界面。
-   await backgroundTaskManager.startBackgroundRunning(
-     this.context,
-     backgroundTaskManager.BackgroundMode.AUDIO_RECORDING,
-     wantAgentObj
-   );
+   <!-- @[background_task](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/Media/Audio/AudioVoIPCallSampleC/entry/src/main/ets/pages/AudioPlayer.ets) -->
+   
+   ``` TypeScript
+   import { BusinessError } from '@kit.BasicServicesKit';
+   import { backgroundTaskManager } from '@kit.BackgroundTasksKit'
+   import { wantAgent, WantAgent } from '@kit.AbilityKit'
+   // ...
+   
+     // 开启长时任务。
+     startContinuousTask(context: Context) {
+       let wantAgentInfo: wantAgent.WantAgentInfo = {
+         // 点击通知后，将要执行的动作列表。
+         // 添加需要被拉起应用的bundleName和abilityName。
+         wants: [
+           {
+             bundleName: 'com.example.backgroundmusic',
+             abilityName: 'MainAbility'
+           }
+         ],
+         // 指定点击通知栏消息后的动作是拉起ability。
+         actionType: wantAgent.OperationType.START_ABILITY,
+         // 使用者自定义的一个私有值。
+         requestCode: 0,
+         // 点击通知后，动作执行属性。
+         actionFlags: [wantAgent.WantAgentFlags.UPDATE_PRESENT_FLAG],
+       };
+   
+       try {
+         // 通过wantAgent模块下getWantAgent方法获取WantAgent对象。
+         wantAgent.getWantAgent(wantAgentInfo).then((wantAgentObj: WantAgent) => {
+           try {
+             let list: string[] = ['audioPlayback'];
+             backgroundTaskManager.startBackgroundRunning(context, list, wantAgentObj)
+               .then(() => {
+                 console.info('Operate startBackgroundRunning succeeded');
+               })
+               .catch((error: BusinessError) => {
+                 console.error(`Failed to operate startBackgroundRunning. code is ${error.code} message is ${error.message}`);
+               });
+           } catch (error) {
+             console.error(`Failed to operate startBackgroundRunning. code is ${(error as BusinessError).code} message is ${(error as BusinessError).message}`);
+           };
+         });
+       } catch (error) {
+         console.error(`Failed to operate getWantAgent. code is ${(error as BusinessError).code} message is ${(error as BusinessError).message}`);
+       }
+     }
    ```
 
    长时任务启动失败时，应用需避免继续以后台录音方式运行，应停止录音或引导用户回到前台处理。长时任务的完整申请和取消流程请参考[长时任务(ArkTS)](../../task-management/continuous-task.md)。
@@ -75,9 +113,15 @@
 
    用户停止录音、录音异常中断或业务结束时，应用需要调用AudioCapturer的[release](../../reference/apis-audio-kit/arkts-apis-audio-AudioCapturer.md#release8)接口停止录音、释放音频采集资源，并同步取消录音类型长时任务。
 
-   ```ts
-   import { backgroundTaskManager } from '@kit.BackgroundTasksKit';
-
+   <!-- @[background_task_cancel](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/Media/Audio/AudioVoIPCallSampleC/entry/src/main/ets/pages/AudioPlayer.ets) -->
+   
+   ``` TypeScript
    // 取消长时任务。
-   backgroundTaskManager.stopBackgroundRunning(context)
+   stopContinuousTask(context: Context) {
+     backgroundTaskManager.stopBackgroundRunning(context).then(() => {
+       console.info(`Succeeded in operating stopBackgroundRunning.`);
+     }).catch((err: BusinessError) => {
+       console.error(`Failed to operate stopBackgroundRunning. Code is ${err.code}, message is ${err.message}`);
+     });
+   }
    ```

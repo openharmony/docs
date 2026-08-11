@@ -21,15 +21,15 @@ OpenHarmony为开发者提供了用于创建VPN的API解决方案。当前提供
 
 ## VPN应用的显示体验
 
-开发者可以借助系统提供的[@ohos.net.vpnExtension (VPN增强管理)](../reference/apis-network-kit/js-apis-net-vpnExtension.md)接口构建支持不同协议的VPN服务。OpenHarmony系统提供了界面 (UI) 使用户可以了解当前VPN应用服务的启动和连接：
+借助系统提供的[vpnExtension](../reference/apis-network-kit/js-apis-net-vpnExtension.md)接口开发者可以构建支持不同协议的VPN服务。OpenHarmony系统提供了界面 (UI) 使用户可以了解当前VPN应用服务的启动和连接：
 
 - 在VPN应用首次启动连接之前，系统会显示VPN连接授权对话框。该对话框会提示用户是否信任该VPN应用并接受VPN连接请求。
-- 当VPN启动连接成功时，状态栏显示一个VPN (钥匙) 图标以提醒用户VPN处于连接状态。
+- 当VPN启动连接成功时，状态栏显示一个VPN（钥匙）图标以提醒用户VPN处于连接状态。
 
 为了使用户可以方便的查看和配置，您的VPN应用还需要提供以下界面：
 
 - 用于手动启动和停止连接的控件。
-- 当VPN启动连接时，在通知栏显示VPN应用的连接状态或提供网络统计信息 (如连接时长、流量等) 。点击该通知能够将您的VPN应用调入前台。
+- 当VPN启动连接时，在通知栏显示VPN应用的连接状态或提供网络统计信息（如连接时长、流量等）。点击该通知能够将您的VPN应用调入前台。
 
 
 ## 开发步骤
@@ -281,10 +281,10 @@ export class VpnTest extends VpnExtensionAbility {
 | 名称       | 类型                                       | 只读 |可选| 说明          |
 | ------------------- | ------------------------------------------------------------ | ---- | ---|------------------------------------------------------------ |
 | addresses           | Array\<[LinkAddress](../reference/apis-network-kit/js-apis-net-connection.md#linkaddress)\> | 否   |否| VPN虚拟网卡的IP地址。                                          |
-| routes              | Array\<[RouteInfo](../reference/apis-network-kit/js-apis-net-connection.md#routeinfo)\> | 否   | 是|VPN虚拟网卡的路由信息（API version 23前最多可配置1024条路由；从API version 23开始最多可配置10000条路由）。              |
+| routes              | Array\<[RouteInfo](../reference/apis-network-kit/js-apis-net-connection.md#routeinfo)\> | 否   | 是|VPN虚拟网卡的路由信息（目前最多可配置1024条路由）。              |
 | dnsAddresses        | Array\<string\>                                              | 否   |是 |DNS服务器地址信息。配置DNS服务器地址后，VPN启动状态下，被代理的应用上网时，使用配置的DNS服务器进行DNS查询。 |
 | searchDomains       | Array\<string\>                                              | 否   |是 |DNS的搜索域列表。                                            |
-| mtu                 | number                                                       | 否   |是| 最大传输单元MTU值(单位：字节)。                               |
+| mtu                 | number                                                       | 否   |是| 最大传输单元MTU值（单位：字节）。                               |
 | isIPv4Accepted      | boolean                                                      | 否   |是 |是否支持IPV4，默认值为true。true：支持IPV4；false：不支持IPV4。                                 |
 | isIPv6Accepted      | boolean                                                      | 否   |是 |是否支持IPV6，默认值为false。true：支持IPV6；false：不支持IPV6。                                |
 | isInternal          | boolean                                                      | 否   |是| 是否支持内置VPN，默认值为false。true：支持内置VPN；false：不支持内置VPN。                             |
@@ -336,9 +336,9 @@ let vpnConfig: vpnExtension.VpnConfig = {
   mtu: 1400,
   // 配置VPN使用的DNS服务器。
   dnsAddresses: ['223.x.x.5', '223.x.x.6'],
-  // 受信任的应用信息列表。
+  // 受信任的应用信息列表。配置此项时，被阻止的应用信息列表应配置为空。
   trustedApplications: ['com.test.browser'],
-  // 被阻止的应用信息列表。
+  // 被阻止的应用信息列表。配置此项时，受信任的应用信息列表应配置为空。
   blockedApplications: ['com.test.games'],
 }
 ```

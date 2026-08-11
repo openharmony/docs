@@ -10,7 +10,7 @@
 动态import支持条件延迟加载，支持部分反射功能，可以提升页面的加载速度；动态import支持加载HSP模块/HAR模块/ohpm包/Native库等，并且HAR模块之间可通过变量动态import来访问彼此导出的内容，可避免编译期强依赖，实现模块解耦。
 
 ## 技术适用场景介绍
-应用开发的有些场景中，如果希望根据条件导入模块或者按需导入模块，可以使用动态import代替[静态import](../quick-start/introduction-to-arkts.md#导入)。下面是可能会需要动态import的场景：
+应用开发的有些场景中，如果希望根据条件导入模块或者按需导入模块，可以使用动态import代替[静态import](../quick-start/arkts-language-guide-module-system.md#静态导入)。下面是可能会需要动态import的场景：
 
 * 当静态import的模块明显降低了代码的加载速度且很少被使用，或者并不需要马上使用它。
 * 当静态import的模块明显占用了大量的系统内存且很少被使用。
@@ -325,7 +325,7 @@ import('../Calc').then((ns: ESObject) => {
 <!-- @[hap_const_dynamic_import_native](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/ArkTSRuntime/ArkTSModule/DynamicImport/entry/src/main/cpp/types/libentry/index.d.ts) -->
 
 ``` TypeScript
-// libnativeapi.so's index.d.ts
+// libentry.so's index.d.ts
 export const add: (a: number, b: number) => number;
 ```
 
@@ -334,7 +334,7 @@ export const add: (a: number, b: number) => number;
 ``` TypeScript
 // HAP's src/main/ets/pages/Index.ets
 import('libentry.so').then((ns: ESObject) => {
-  console.info('DynamicImport libnativeapi.so: ' + ns.default.add(2, 3));
+  console.info('DynamicImport libentry.so: ' + ns.default.add(2, 3));
 });
 ```
 
@@ -369,7 +369,7 @@ import('@ohos.matrix4').then((ns: ESObject) => {
 // ...
 import('@ohos.hilog').then((ns: ESObject) => {
   ns.default.info(0x0000, 'testTag', '%{public}s', 'DynamicImport @ohos.hilog.');
-  hilog.info(0x000, 'testTag', '%{public}s', ns.default.LogLevel.DEBUG);
+  hilog.info(0x000, 'testTag', '%{public}d', ns.default.LogLevel.DEBUG);
 });
 ```
 
@@ -657,7 +657,7 @@ import(calcFilePath).then((ns: ESObject) => {
 <!-- @[hap_const_dynamic_import_native](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/ArkTSRuntime/ArkTSModule/DynamicImport/entry/src/main/cpp/types/libentry/index.d.ts) -->
 
 ``` TypeScript
-// libnativeapi.so's index.d.ts
+// libentry.so's index.d.ts
 export const add: (a: number, b: number) => number;
 ```
 
@@ -667,7 +667,7 @@ export const add: (a: number, b: number) => number;
 // HAP's src/main/ets/pages/Index.ets
 let soName = 'libentry.so';
 import(soName).then((ns: ESObject) => {
-  console.info('DynamicImport libnativeapi.so: ' + ns.default.add(2, 3));
+  console.info('DynamicImport libentry.so: ' + ns.default.add(2, 3));
 });
 ```
 
@@ -868,7 +868,7 @@ export { ClassHar3 } from './src/main/ets/utils/Calc';
 
 若未对HAR之间的**dependencies**和**runtimeOnly**配置进行依赖解耦，ohpm无法解决循环依赖，依赖安装失败。
 
-``` JSON5
+```text
 // HAP's oh-package.json5
 "dependencies": {
   "har1": "file:../har1"

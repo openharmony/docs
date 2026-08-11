@@ -51,7 +51,7 @@ createBundleContext(bundleName: string): Context
 
 | 类型 | 说明 |
 | -------- | -------- |
-| Context | 安装包的上下文。 |
+| Context | 应用包的上下文。 |
 
 **错误码**：
 

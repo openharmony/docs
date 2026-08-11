@@ -18,7 +18,7 @@
 
 **起始版本：** 26.0.0
 
-**相关模块：** [AudioConverter](capi-audioconverter.md)
+**相关模块：** [OHAudioSuite](capi-ohaudiosuite.md)
 
 ## 汇总
 

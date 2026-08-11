@@ -1,10 +1,13 @@
 # Enhanced Connection Development
+
 <!--Kit: Distributed Service Kit-->
 <!--Subsystem: DistributedSched-->
 <!--Owner: @wangJE-->
-<!--Designer: @lee_jet520-->
+<!--Designer: @yangjun044-->
 <!--Tester: @Ytt-test-->
-<!--Adviser: @w_Machine_cc-->
+<!--Adviser: @hu-zhiqiong-->
+<!-- md-trans-meta sourceCommit=ffaa00567d8dfe5b099ee7c9a01fdb5771f45a7f translatedAt=2026-08-01T02:52:03.945Z pushedAt=2026-08-01T07:04:23.340Z -->
+
 ## Overview
 
 With the advancement of technology, a myriad of new applications emerge, and the interconnection of devices has become the norm. Consequently, reliance on network connectivity has become inevitable. However, in certain scenarios such as aviation and ocean navigation, network access is constrained, making Bluetooth one of the few viable connection methods. Nevertheless, classic Bluetooth connections suffer from drawbacks like limited connection capacity, low connection success rates, and unstable connectivity, all of which undermine user experience.
@@ -15,15 +18,15 @@ The **linkEnhance** module offers the enhanced connection functionality to enabl
 
 During device interconnection, the local device identifies the peer's Bluetooth address and establishes a physical link. In cross-device scenarios, a unique multi-channel merging algorithm is applied to reduce the number of physical links while ensuring device interaction. This effectively increases the number of available connections between devices, reduces interference, and enhances communication stability.
 
-The implementation process is as follows: 1. Enable the enhanced connection functionality on both the local and peer devices. 2. Make the local and the peer devices simultaneously initiate a connection request. 3. Identify and combine redundant physical links to reduce Bluetooth link resource consumption, increasing the number of available connections.
+The interaction between the two devices is implemented as follows. After the [linkEnhance](../reference/apis-distributedservice-kit/js-apis-link-enhance.md) capability is enabled, if both devices initiate connections simultaneously, the system automatically detects and merges redundant underlying physical links. This reduces the number of actual physical links, lowers Bluetooth link resource consumption, and increases the number of available connections.
 
 ![linkEnhance-process](figures/linkEnhance-process.png)
 
-### For details, see Notes and Constraints.
+### Constraints
 
 - Bluetooth must be enabled for device interconnection.
 
-- The BLE MAC address of the peer device has been obtained through the Bluetooth advertising or scan API. For details about the APIs, see [BLE Development](../connectivity/bluetooth/ble-development-guide.md)
+- Obtain the peer device's BLE MAC address through Bluetooth advertising or scanning APIs. For details, see [BLE Scanning and Advertising](../connectivity/bluetooth/ble-development-guide.md).
 
 - Cross-device collaboration is supported only for applications with the same bundle name on different devices.
 
@@ -42,9 +45,12 @@ Bluetooth is enabled on the client and server devices.
 
 ### Environment Setup
 
-1. Install DevEco Studio 4.1 or later on the PC.
-2. Update the public-SDK to API version 20 or later<!--Del-->. For details, see OpenHarmony SDK upgrade assistant<!--DelEnd-->.
+1. Install [DevEco Studio](https://developer.huawei.com/consumer/en/download/deveco-studio) 4.1 or later on the PC.
+
+2. Update the public-SDK to API version 20 or later.
+
 3. Connect device A and device B to the PC using USB cables.
+
 4. Enable Bluetooth on device A and device B.
 
 ## Available APIs
@@ -60,27 +66,32 @@ The following table describes the commonly used APIs. For details, see [@ohos.di
 | sendData(data:ArrayBuffer)                 | Sends data to the peer device.                                                                                    |
 | on(type: 'connectResult')                  | Subscribes to connection events.                                                                             |
 | on(type: 'disconnected')                   | Subscribes to disconnection events.                                                                                 |
-| on(type: 'dataReceived')                   | Subscribes to data receiving events.                                                                                   |
+| on(type: 'dataReceived')                   | Subscribes to data receiving events.                                                                                    |
 | createConnection(deviceId: string,name:string)| Creates a **Connection** object.                                                                             |
-| start()                                    | Starts the server.                                                                                        |   
+| start()                                    | Starts the server.                                                                                        |
 | stop()                                     | Stops the server.                                                                                          |
 | close()                                    | Destroys a **Server** object and cancels all subscribed event callbacks. The **Server** object cannot be used after this API is called.                   |
-| on(type: 'connectionAccepted')                | Subscribes to **acceptConnected** events.                                                                          |
+| on(type: 'connectionAccepted')                | Subscribes to **connectionAccepted** events.                                                                          |
 | on(type: 'serverStopped')                  | Subscribes to **serverStopped** events.                                                                          |
 | createServer(name: string)                 | Creates a **Server** object.                                                                                     |
 
 ## Enhanced Connection Development
 
-- After Bluetooth is enabled on the server, create a **Server** object and call **start()** to start the server so that it is in the connectable state. Then, listen for status change events through the registered event listener.
-- After Bluetooth is enabled on the client, create a **Connection** object and call **connect()** to initiate a connection. Then, listen for status change events through the registered event listener.
-- After the connection is successful, call **sendData** to send data.
+- After Bluetooth is enabled on the server, create a **Server** object and call [start()](../reference/apis-distributedservice-kit/js-apis-link-enhance.md#start) to start the server so that it is in the connectable state. Then, listen for status change events through the registered event listener.
+
+- After Bluetooth is enabled on the client, create a **Connection** object and call [connect()](../reference/apis-distributedservice-kit/js-apis-link-enhance.md#connect) to initiate a connection. Then, listen for status change events through the registered event listener.
+
+- After the connection is successful, call [sendData](../reference/apis-distributedservice-kit/js-apis-link-enhance.md#senddata) to send data.
 
 ### Server Development
+
 1. Import the required module.
+
     ```ts
     import {linkEnhance} from '@kit.DistributedServiceKit';
     import { BusinessError } from '@kit.BasicServicesKit';
     ```
+
 2. Declare the **ohos.permission.DISTRIBUTED_DATASYNC** permission in the **module.json5** file.
 
    ```ts
@@ -101,7 +112,9 @@ The following table describes the commonly used APIs. For details, see [@ohos.di
      }
    }
    ```
+
 3. Create a **Server** object, start the server, and register an event listener.
+
     ```ts
     const TAG = 'TEST';
     // Register the server.
@@ -126,7 +139,9 @@ The following table describes the commonly used APIs. For details, see [@ohos.di
       }
     }
     ```
+
 4. Save the **Connection** object when the connection is established.
+
     ```ts
     serverAcceptOnCallback = (connection: linkEnhance.Connection): void => {
       console.info(TAG + 'serverOnCallback');
@@ -151,9 +166,11 @@ The following table describes the commonly used APIs. For details, see [@ohos.di
       }
     }
     ```
+
 5. Disconnect from the peer end and destroy the **Connection** object.
+
     ```ts
-    // Disconnect from the peer end.
+    // Disconnect.
     linkEnhanceDisconnect(connection: linkEnhance.Connection) {
       console.info(TAG + 'disconnect deviceId = ' + connection.getPeerDeviceId());
       try {
@@ -165,7 +182,9 @@ The following table describes the commonly used APIs. For details, see [@ohos.di
       }
     }
     ```
+
 6. Stop the server and destroy the **Server** object.
+
     ```ts
     // Stop the server.
     linkEnhanceStop(server: linkEnhance.Server) {
@@ -173,13 +192,13 @@ The following table describes the commonly used APIs. For details, see [@ohos.di
       try {
         server.stop();
       } catch (err) {
-        console.info(TAG + 'stop server errCode: ' + (err as BusinessError).code + ', errMessage: ' +
+        console.error(TAG + 'stop server errCode: ' + (err as BusinessError).code + ', errMessage: ' +
         (err as BusinessError).message);
       }
     }
     // Stop the server and cancel all subscribed event callbacks.
     linkEnhanceClose(server: linkEnhance.Server) {
-      console.info(TAG + 'close server' );
+      console.info(TAG + 'close server');
       try {
         server.close();
       } catch (err) {
@@ -192,11 +211,14 @@ The following table describes the commonly used APIs. For details, see [@ohos.di
 ### Client Development
 
 1. Import the required module.
+
     ```ts
     import { linkEnhance } from '@kit.DistributedServiceKit';
     import { BusinessError } from '@kit.BasicServicesKit';
     ```
+
 2. Declare the **ohos.permission.DISTRIBUTED_DATASYNC** permission in the **module.json5** file.
+
    ```ts
    {
      "module" : {
@@ -215,7 +237,9 @@ The following table describes the commonly used APIs. For details, see [@ohos.di
      }
    }
    ```
+
 3. Create a **Connection** object, subscribe to connection events, and connect to the server.
+
     ```ts
     const TAG = "testDemo";
     // Connect to the server.
@@ -248,7 +272,9 @@ The following table describes the commonly used APIs. For details, see [@ohos.di
       }
     }
     ```
+
 4. Disconnect from the server and destroy the **Connection** object.
+
     ```ts
     disconnect(connection: linkEnhance.Connection) {
       console.info(TAG + 'disconnect deviceId = ' + connection.getPeerDeviceId());

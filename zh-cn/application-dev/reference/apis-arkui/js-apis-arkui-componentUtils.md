@@ -33,7 +33,7 @@ getRectangleById(id: string): ComponentInfo
 >
 > - 从API version 10开始，可以通过使用[UIContext](arkts-apis-uicontext-uicontext.md)中的[getComponentUtils](arkts-apis-uicontext-uicontext.md#getcomponentutils)方法获取当前UI上下文关联的[ComponentUtils](arkts-apis-uicontext-componentutils.md)对象。在目标组件布局完成后，通过该接口能够获取组件坐标和尺寸信息。建议在[布局回调](./js-apis-arkui-inspector.md)中使用该接口。如果组件动态创建但未挂载组件树，则无法通过该接口获取组件的坐标和尺寸信息。因为组件在未挂载组件树的情况下，一般未经过UI框架的测量与布局，此时请确保组件已挂载到组件树后再尝试获取组件信息。
 >
-> - 该接口返回的组件位置为布局位置，某些属性计算不支持，如[translate](./arkui-ts/ts-universal-attributes-transformation.md#translate)、[offset](./arkui-ts/ts-universal-attributes-location.md#offset)、[markAnchor](./arkui-ts/ts-universal-attributes-location.md#markanchor)、[scale](./arkui-ts/ts-universal-attributes-transformation.md#scale)、[transform](./arkui-ts/ts-universal-attributes-transformation.md#transform)等，可以使用替代接口[getPositionToWindowWithTransform](./js-apis-arkui-frameNode.md#getpositiontowindowwithtransform12)。
+> - 该接口返回的组件位置为布局位置，某些属性计算不支持，如位置设置类[offset](./arkui-ts/ts-universal-attributes-location.md#offset)、[markAnchor](./arkui-ts/ts-universal-attributes-location.md#markanchor)、[Edges](./arkui-ts/ts-types.md#edges12)和[LocalizedEdges](./arkui-ts/ts-types.md#localizededges12)类型的[position](./arkui-ts/ts-universal-attributes-location.md#position)，以及图形变换类[rotate](./arkui-ts/ts-universal-attributes-transformation.md#rotate)、[translate](./arkui-ts/ts-universal-attributes-transformation.md#translate)、[scale](./arkui-ts/ts-universal-attributes-transformation.md#scale)、[transform](./arkui-ts/ts-universal-attributes-transformation.md#transform)。可使用替代接口[getPositionToWindowWithTransform](./js-apis-arkui-frameNode.md#getpositiontowindowwithtransform12)，获取组件相对于窗口且带有绘制属性的位置偏移。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 

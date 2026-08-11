@@ -17,10 +17,10 @@ Progress通过调用接口来创建，接口调用方式如下：
 Progress(options: {value: number, total?: number, type?: ProgressType})
 ```
 
-其中，value用于设置初始进度值，total用于设置进度总长度，type用于设置Progress样式。
+其中，value用于设置当前进度值，total用于设置进度总长度，type用于设置Progress样式。
 
 ```ts
-Progress({ value: 24, total: 100, type: ProgressType.Linear }) // 创建一个进度总长为100，初始进度值为24的线性进度条
+Progress({ value: 24, total: 100, type: ProgressType.Linear }) // 创建一个进度总长为100，当前进度值为24的线性进度条
 ```
 
 ![create](figures/create.png)
@@ -52,7 +52,7 @@ Progress有5种可选类型，通过[ProgressType](../reference/apis-arkui/arkui
   <!-- @[progress_style_2](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkUISample/InfoComponent/ProgressProject/entry/src/main/ets/pages/Index.ets) -->
   
   ``` TypeScript
-  // 从左往右，1号环形进度条，默认前景色为蓝色渐变，默认strokeWidth进度条宽度为2.0vp
+  // 从左往右，1号环形进度条，默认前景色为蓝色渐变，默认strokeWidth进度条宽度为4.0vp
   Progress({ value: 40, total: 150, type: ProgressType.Ring }).width(100).height(100)
   // 从左往右，2号环形进度条
   Progress({ value: 40, total: 150, type: ProgressType.Ring }).width(100).height(100)

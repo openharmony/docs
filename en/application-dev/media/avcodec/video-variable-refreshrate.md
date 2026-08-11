@@ -6,6 +6,7 @@
 <!--Designer: @dpy2650--->
 <!--Tester: @cyakee-->
 <!--Adviser: @w_Machine_cc-->
+<!-- md-trans-meta sourceCommit=558f738c8004d4c115e43adbb5bfdedd430879ce translatedAt=2026-08-06T13:51:11.870Z pushedAt=2026-08-07T10:09:11.129Z -->
 
 Starting from API version 15, the video variable refresh rate feature is supported.
 
@@ -20,8 +21,11 @@ The video variable refresh rate feature is ideal for video sources with high fra
 ## Constraints
 
 1. This feature is available only for the scenario where the video is directly sent for display after hardware decoding.
+
 2. The overall screen refresh rate will change. It is recommended that you use this feature in full-screen playback scenarios without bullet comments or animations, as the feature may affect their smoothness.
+
 3. This feature depends on the decoding frame rate configuration. The **OH_MD_KEY_FRAME_RATE** property must be correctly set before use.
+
 4. This feature is platform-dependent. If the platform does not support this feature, the API calls do not report an error, but the feature does not take effect. Normal decoding and playback still function.
 
 ## How to Develop
@@ -29,9 +33,9 @@ The video variable refresh rate feature is ideal for video sources with high fra
 This section describes only the steps that are different from the basic decoding process. You can learn the basic decoding process in [Video Decoding](video-decoding.md).
 
 1. Enable the video variable frame rate feature during decoder configuration.
-   
+
    In the code snippet below, the following variables are used:
-   
+
    **videoDec**: pointer to the video decoder instance. For details, see [Creating a Decoder Instance in Surface Mode](video-decoding.md#surface-mode).
 
     ```cpp
@@ -53,7 +57,7 @@ This section describes only the steps that are different from the basic decoding
 2. (Optional) Dynamically enable or disable the variable frame rate feature during video playback.
 
     If bullet comments are enabled during playback, you can disable the variable frame rate feature to avoid wasting resources, since the refresh rate adjustments are not applied.
-    
+
     The following code snippet is used to dynamically disable the feature:
 
     ```cpp

@@ -3,7 +3,7 @@
 <!--Subsystem: Sensors-->
 <!--Owner: @dilligencer-->
 <!--Designer: @andeszhang-->
-<!--Tester: @liuhaonan2-->
+<!--Tester: @zhaofangyuan-->
 <!--Adviser: @hu-zhiqiong-->
 
 @system.sensor模块是面向轻量穿戴（Lite Wearable）设备的传感器数据订阅模块，提供对加速度传感器、罗盘传感器、距离传感器、环境光传感器、计步传感器、气压计传感器、心率传感器、设备佩戴状态传感器、设备方向传感器及陀螺仪传感器的数据订阅与取消订阅能力。
@@ -38,7 +38,7 @@ on(type: SensorId.COLOR, callback: Callback&lt;ColorResponse&gt;, options?: Opti
 
 **系统能力**：SystemCapability.Sensors.Sensor
 
-**系统API**：此接口为系统接口
+**系统接口**：此接口为系统接口
 
 **参数**：
 
@@ -90,7 +90,7 @@ on(type: SensorId.SAR, callback: Callback&lt;SarResponse&gt;, options?: Options)
 
 **系统能力**：SystemCapability.Sensors.Sensor
 
-**系统API**：此接口为系统接口
+**系统接口**：此接口为系统接口
 
 **参数**：
 
@@ -141,14 +141,14 @@ off(type: SensorId.COLOR, callback?: Callback&lt;ColorResponse&gt;): void
 
 **系统能力**：SystemCapability.Sensors.Sensor
 
-**系统API**：此接口为系统接口
+**系统接口**：此接口为系统接口
 
 **参数**：
 
 | 参数名   | 类型                                                     | 必填 | 说明                                                         |
 | -------- |--------------------------------------------------------| ---- | ------------------------------------------------------------ |
 | type     | [SensorId](#sensorid9).COLOR                           | 是   | 传感器类型，该值固定为SensorId.COLOR。                       |
-| callback | Callback&lt;[ColorResponse](#colorresponse10)&gt;      | 否   | 需要取消订阅的回调函数，若无此参数，则取消订阅当前类型的所有回调函数。 |
+| callback | Callback&lt;[ColorResponse](#colorresponse10)&gt;      | 否   | 回调函数，需要取消订阅的回调函数，若无此参数，则取消订阅当前类型的所有回调函数。 |
 
 **错误码**：
 
@@ -198,15 +198,15 @@ off(type: SensorId.COLOR, sensorInfoParam?: SensorInfoParam, callback?: Callback
 
 **系统能力**：SystemCapability.Sensors.Sensor
 
-**系统API**：此接口为系统接口
+**系统接口**：此接口为系统接口
 
 **参数**：
 
 | 参数名   | 类型                                                     | 必填 | 说明                                                         |
 | -------- |--------------------------------------------------------| ---- | ------------------------------------------------------------ |
 | type     | [SensorId](#sensorid9).COLOR                           | 是   | 传感器类型，该值固定为SensorId.COLOR。                       |
-| sensorInfoParam | [SensorInfoParam](#sensorinfoparam19) |  否 | 传感器传入设置参数，可指定deviceId和sensorIndex。默认值：deviceId为-1（本地设备），sensorIndex为0（默认传感器）。不传入时默认取消本地设备上的回调。 |
-| callback | Callback&lt;[ColorResponse](#colorresponse10)&gt;      | 否   | 需要取消订阅的回调函数，若无此参数，则取消订阅指定设备上当前类型的所有回调函数。 |
+| sensorInfoParam | [SensorInfoParam](js-apis-sensor.md#sensorinfoparam19) |  否 | 传感器传入设置参数，可指定deviceId和sensorIndex。默认值：deviceId为-1（本地设备），sensorIndex为0（默认传感器）。不传入时默认取消本地设备上的回调。 |
+| callback | Callback&lt;[ColorResponse](#colorresponse10)&gt;      | 否   | 回调函数，需要取消订阅的回调函数，若无此参数，则取消订阅指定设备上当前类型的所有回调函数。 |
 
 **错误码**：
 
@@ -287,14 +287,14 @@ off(type: SensorId.SAR, callback?: Callback&lt;SarResponse&gt;): void
 
 **系统能力**：SystemCapability.Sensors.Sensor
 
-**系统API**：此接口为系统接口
+**系统接口**：此接口为系统接口
 
 **参数**：
 
 | 参数名   | 类型                                          | 必填 | 说明                                                         |
 | -------- | --------------------------------------------- | ---- | ------------------------------------------------------------ |
 | type     | [SensorId](#sensorid9).SAR                    | 是   | 传感器类型，该值固定为SensorId.SAR。                         |
-| callback | Callback&lt;[SarResponse](#sarresponse10)&gt; | 否   | 需要取消订阅的回调函数，若无此参数，则取消订阅当前类型的所有回调函数。 |
+| callback | Callback&lt;[SarResponse](#sarresponse10)&gt; | 否   | 回调函数，需要取消订阅的回调函数，若无此参数，则取消订阅当前类型的所有回调函数。 |
 
 **错误码**：
 
@@ -344,15 +344,15 @@ off(type: SensorId.SAR, sensorInfoParam?: SensorInfoParam, callback?: Callback&l
 
 **系统能力**：SystemCapability.Sensors.Sensor
 
-**系统API**：此接口为系统接口
+**系统接口**：此接口为系统接口
 
 **参数**：
 
 | 参数名   | 类型                                          | 必填 | 说明                                                         |
 | -------- | --------------------------------------------- | ---- | ------------------------------------------------------------ |
 | type     | [SensorId](#sensorid9).SAR                    | 是   | 传感器类型，该值固定为SensorId.SAR。                         |
-| sensorInfoParam | [SensorInfoParam](#sensorinfoparam19) |  否 | 传感器传入设置参数，可指定deviceId和sensorIndex。默认值：deviceId为-1（本地设备），sensorIndex为0（默认传感器）。不传入时默认取消本地设备上的回调。 |
-| callback | Callback&lt;[SarResponse](#sarresponse10)&gt; | 否   | 需要取消订阅的回调函数，若无此参数，则取消订阅指定设备上当前类型的所有回调函数。 |
+| sensorInfoParam | [SensorInfoParam](js-apis-sensor.md#sensorinfoparam19) |  否 | 传感器传入设置参数，可指定deviceId和sensorIndex。默认值：deviceId为-1（本地设备），sensorIndex为0（默认传感器）。不传入时默认取消本地设备上的回调。 |
+| callback | Callback&lt;[SarResponse](#sarresponse10)&gt; | 否   | 回调函数，需要取消订阅的回调函数，若无此参数，则取消订阅指定设备上当前类型的所有回调函数。 |
 
 **错误码**：
 
@@ -427,7 +427,7 @@ function sensorUnsubscribe(): Ret {
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Sensors.Sensor
 
-**系统API**：此接口为系统接口
+**系统接口**：此接口为系统接口
 
 | 名称                | 值   | 说明                                            |
 | ------------------- | ---- | ----------------------------------------------- |
@@ -440,13 +440,13 @@ function sensorUnsubscribe(): Ret {
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Sensors.Sensor
 
-**系统API**：此接口为系统接口
+**系统接口**：此接口为系统接口
 
 
 | 名称             | 类型   | 只读 | 可选 | 说明                          |
 | ---------------- | ------ | ---- | ---- | ----------------------------- |
-| lightIntensity   | number | 否   | 否   | 表示光的强度。单位：勒克斯（lux）。取值范围：取值为实际上报物理量，由硬件传感器决定。典型室内环境光强度约为300-500 lux，户外阳光可达10000 lux以上。 |
-| colorTemperature | number | 否   | 否   | 表示色温。单位：开尔文（K）。取值范围：取值为实际上报物理量，由硬件传感器决定。典型值：暖白光约2700-3000K，正白光约4000-5000K，冷白光约6500K以上。     |
+| lightIntensity   | number | 否   | 否   | 表示光的强度。单位：lux（勒克斯）。取值范围：取值为实际上报物理量，由硬件传感器决定。典型室内环境光强度约为300-500 lux，户外阳光可达10000 lux以上。 |
+| colorTemperature | number | 否   | 否   | 表示色温。单位：K（开尔文）。取值范围：取值为实际上报物理量，由硬件传感器决定。典型值：暖白光约2700-3000K，正白光约4000-5000K，冷白光约6500K以上。     |
 
 ## SarResponse<sup>10+</sup>
 
@@ -454,22 +454,9 @@ function sensorUnsubscribe(): Ret {
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Sensors.Sensor
 
-**系统API**：此接口为系统接口
+**系统接口**：此接口为系统接口
 
 
 | 名称            | 类型   | 只读 | 可选 | 说明                            |
 | --------------- | ------ | ---- | ---- | ------------------------------- |
 | absorptionRatio | number | 否   | 否   | 表示具体的吸收率。单位：W/kg。取值范围：取值为实际上报物理量，由硬件传感器决定。 |
-
-## SensorInfoParam<sup>19+</sup>
-
-传感器传入设置参数，用于指定目标传感器的设备ID和传感器索引，适用于多设备场景下的精确订阅/取消订阅操作。
-
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Sensors.Sensor
-
-**原子化服务API**：从API version 19开始，该接口支持在原子化服务中使用。
-
-| 名称         | 类型     | 只读 | 可选 | 说明                      |
-| ----------- | -------- | ---- | ---- | -------------------------- |
-| deviceId    | number   | 否   | 是   | 设备ID。默认值：-1，表示本地设备。其他设备ID需通过[getSensorListSync](js-apis-sensor.md#sensorgetsensorlistsync12)查询或监听设备上下线接口[sensorStatusChange](js-apis-sensor.md#sensoronsensorstatuschange19)获取。不传入时默认为本地设备（-1）。   |
-| sensorIndex   | number | 否   | 是   | 传感器索引。默认值：0，表示设备上的默认传感器。同一设备上可能存在多个同类型传感器，通过sensorIndex区分。其他传感器索引需通过[getSensorListSync](js-apis-sensor.md#sensorgetsensorlistsync12)查询或监听设备上下线接口[sensorStatusChange](js-apis-sensor.md#sensoronsensorstatuschange19)获取。不传入时默认为0。 |

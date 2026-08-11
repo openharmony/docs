@@ -27,7 +27,7 @@
 | OH_JSVM_Wrap           | 在JavaScript对象中封装原生实例。稍后可以使用OH_JSVM_Unwrap()解包原生实例。|
 | OH_JSVM_Unwrap         | 解包先前封装在JavaScript对象中的原生实例。|
 | OH_JSVM_RemoveWrap     | 解包先前封装在JavaScript对象中的原生实例，并释放封装。|
-|OH_JSVM_DefineClassWithOptions | 定义一个具有给定类名、构造函数、属性和回调处理程序、父类的JavaScript类，并根据传入的DefineClassOptions来决定是否需要为所定义的Class设置属性代理、预留internal-field槽位、为class作为函数进行调用时设置函数回调。|
+|OH_JSVM_DefineClassWithOptions | 定义一个具有给定类名、构造函数、属性和回调处理程序、父类的JavaScript类，并根据传入的DefineClassOptions决定是否需要为所定义的Class设置属性代理、预留internal-field槽位、为class作为函数进行调用时设置函数回调。|
 
 ## 使用示例
 
@@ -71,7 +71,7 @@ static JSVM_Value NewInstance(JSVM_Env env, JSVM_CallbackInfo info)
     JSVM_CALL(OH_JSVM_NewInstance(env, args[0], 1, &args[1], &result));
     std::string str = ToString(env, result);
     OH_LOG_INFO(LOG_APP, "NewInstance:%{public}s", str.c_str());
-    return nullptr;
+    return result;
 }
 
 // 通过给定的构造函数，构建一个实例。

@@ -129,7 +129,7 @@ getAllScreens(callback: AsyncCallback&lt;Array&lt;Screen&gt;&gt;, isNeedUnused?:
 | 参数名   | 类型                                                | 必填 | 说明                                   |
 | -------- | --------------------------------------------------- | ---- | -------------------------------------- |
 | callback | AsyncCallback&lt;Array&lt;[Screen](#screen)&gt;&gt; | 是   | 回调函数。返回当前获取的屏幕对象集合。 |
-| isNeedUnused | boolean | 否   | 是否需要提供未使用的屏幕对象。true表示返回值会提供未使用的屏幕对象，false表示不提供未使用的屏幕对象。<br>默认值为：false。 |
+| isNeedUnused | boolean | 否   | 是否需要提供未使用的屏幕对象。true表示提供，false表示不提供。<br>默认值为：false。 |
 
 **错误码：**
 
@@ -301,9 +301,9 @@ makeMirror(mainScreen:number, mirrorScreen:Array&lt;number&gt;, callback: AsyncC
 
 | 参数名       | 类型                        | 必填 | 说明                 |
 | ------------ | --------------------------- | ---- |--------------------|
-| mainScreen   | number                      | 是   | 主屏幕ID，该参数仅支持整数输入。  |
-| mirrorScreen | Array&lt;number&gt;         | 是   | 镜像屏幕ID集合，其中ID应为整数。 |
-| callback     | AsyncCallback&lt;number&gt; | 是   | 回调函数。返回镜像屏幕的群组ID，其中ID为整数。  |
+| mainScreen   | number                      | 是   | 主屏幕ID，该参数仅支持非负整数输入。  |
+| mirrorScreen | Array&lt;number&gt;         | 是   | 镜像屏幕ID集合，其中ID应为正整数。 |
+| callback     | AsyncCallback&lt;number&gt; | 是   | 回调函数。返回镜像屏幕的群组ID，其中ID为正整数。  |
 
 **错误码：**
 
@@ -348,14 +348,14 @@ makeMirror(mainScreen:number, mirrorScreen:Array&lt;number&gt;): Promise&lt;numb
 
 | 参数名       | 类型                | 必填 | 说明                 |
 | ------------ | ------------------- | ---- |--------------------|
-| mainScreen   | number              | 是   | 主屏幕ID，该参数仅支持整数输入。  |
-| mirrorScreen | Array&lt;number&gt; | 是   | 镜像屏幕ID集合。其中ID应为整数。 |
+| mainScreen   | number              | 是   | 主屏幕ID，该参数仅支持非负整数输入。  |
+| mirrorScreen | Array&lt;number&gt; | 是   | 镜像屏幕ID集合。其中ID应为正整数。 |
 
 **返回值：**
 
 | 类型                  | 说明                              |
 | --------------------- |---------------------------------|
-| Promise&lt;number&gt; | Promise对象。返回镜像屏幕的群组ID，其中ID为整数。 |
+| Promise&lt;number&gt; | Promise对象。返回镜像屏幕的群组ID，其中ID为正整数。 |
 
 **错误码：**
 
@@ -448,7 +448,7 @@ stopMirror(mirrorScreen:Array&lt;number&gt;): Promise&lt;void&gt;
 
 | 类型 | 说明 |
 | --------------------- | ----------------------- |
-| Promise&lt;void&gt; | 无返回结果的Promise对象。 |
+| Promise&lt;void&gt; | Promise对象，无返回结果。 |
 
 **错误码：**
 
@@ -673,7 +673,7 @@ destroyVirtualScreen(screenId:number, callback: AsyncCallback&lt;void&gt;): void
 
 | 参数名   | 类型                      | 必填 | 说明                                                         |
 | -------- | ------------------------- | ---- | ------------------------------------------------------------ |
-| screenId | number                    | 是   | 屏幕的ID，该参数仅支持整数输入。                                                   |
+| screenId | number                    | 是   | 虚拟屏幕的ID，该参数仅支持整数输入。                                                   |
 | callback | AsyncCallback&lt;void&gt; | 是   | 回调函数。当销毁虚拟屏幕成功，err为undefined，否则为错误对象。 |
 
 **错误码：**
@@ -719,13 +719,13 @@ destroyVirtualScreen(screenId:number): Promise&lt;void&gt;
 
 | 参数名   | 类型   | 必填 | 说明       |
 | -------- | ------ | ---- | ---------- |
-| screenId | number | 是   | 屏幕的ID，该参数仅支持整数输入。 |
+| screenId | number | 是   | 虚拟屏幕的ID，该参数仅支持整数输入。 |
 
 **返回值：**
 
 | 类型                | 说明                      |
 | ------------------- | ------------------------- |
-| Promise&lt;void&gt; | 无返回结果的Promise对象。 |
+| Promise&lt;void&gt; | Promise对象，无返回结果。 |
 
 **错误码：**
 
@@ -769,7 +769,7 @@ setVirtualScreenSurface(screenId:number, surfaceId: string, callback: AsyncCallb
 
 | 参数名    | 类型                      | 必填 | 说明                                                         |
 | --------- | ------------------------- | ---- | ------------------------------------------------------------ |
-| screenId  | number                    | 是   | 屏幕的ID，该参数仅支持整数输入。                                                   |
+| screenId  | number                    | 是   | 虚拟屏幕的ID，该参数仅支持整数输入。                                                   |
 | surfaceId | string                    | 是   | 代表虚拟屏幕的surface标识符，surfaceId值可自行定义，由用户指定某一实际存在的surface对应的surfaceId。 |
 | callback  | AsyncCallback&lt;void&gt; | 是   | 回调函数。当设置虚拟屏幕surface成功，err为undefined，否则为错误对象。 |
 
@@ -796,15 +796,15 @@ struct Index {
   xComponentController: XComponentController = new XComponentController();
 
   setVirtualScreenSurface = () => {
-    let screenId: number = 1;
+    let screenId: number = 1; // 屏幕ID需通过getAllScreens()获取或从createVirtualScreen()返回值获取
     let surfaceId = this.xComponentController.getXComponentSurfaceId();
     // 设置虚拟屏幕的surface
     screen.setVirtualScreenSurface(screenId, surfaceId, (err: BusinessError) => {
-    const errCode: number = err.code;
-    if (errCode) {
-      console.error(`Failed to set the surface for the virtual screen. Code: ${err.code}, message: ${err.message}`);
-      return;
-    }
+      const errCode: number = err.code;
+      if (errCode) {
+        console.error(`Failed to set the surface for the virtual screen. Code: ${err.code}, message: ${err.message}`);
+        return;
+      }
       console.info('Succeeded in setting the surface for the virtual screen.');
     });
   }
@@ -842,14 +842,14 @@ setVirtualScreenSurface(screenId:number, surfaceId: string): Promise&lt;void&gt;
 
 | 参数名    | 类型   | 必填 | 说明          |
 | --------- | ------ | ---- | ------------- |
-| screenId  | number | 是   | 屏幕的ID，该参数仅支持整数输入。    |
+| screenId  | number | 是   | 虚拟屏幕的ID，该参数仅支持整数输入。    |
 | surfaceId | string | 是   | 代表虚拟屏幕的surface标识符，surfaceId值可自行定义，由用户指定某一实际存在的surface对应的surfaceId。 |
 
 **返回值：**
 
 | 类型                | 说明                      |
 | ------------------- | ------------------------- |
-| Promise&lt;void&gt; | 无返回结果的Promise对象。 |
+| Promise&lt;void&gt; | Promise对象，无返回结果。 |
 
 **错误码：**
 
@@ -874,7 +874,7 @@ struct Index {
   xComponentController: XComponentController = new XComponentController();
 
   setVirtualScreenSurface = () => {
-    let screenId: number = 1;
+    let screenId: number = 1; // 屏幕ID需通过getAllScreens()获取或从createVirtualScreen()返回值获取
     let surfaceId = this.xComponentController.getXComponentSurfaceId();
     // 设置虚拟屏幕的surface
     screen.setVirtualScreenSurface(screenId, surfaceId).then(() => {
@@ -922,7 +922,7 @@ setScreenPrivacyMaskImage(screenId:number, image?: image.PixelMap): Promise&lt;v
 
 | 类型                | 说明                      |
 | ------------------- | ------------------------- |
-| Promise&lt;void&gt; | 无返回结果的Promise对象。 |
+| Promise&lt;void&gt; | Promise对象，无返回结果。 |
 
 **错误码：**
 
@@ -1058,7 +1058,7 @@ setScreenRotationLocked(isLocked: boolean): Promise&lt;void&gt;
 
 | 类型                | 说明                      |
 | ------------------- | ------------------------- |
-| Promise&lt;void&gt; | 无返回结果的Promise对象。 |
+| Promise&lt;void&gt; | Promise对象，无返回结果。 |
 
 **错误码：**
 
@@ -1132,7 +1132,7 @@ screen.setScreenRotationLocked(isLocked, (err: BusinessError) => {
 
 setMultiScreenMode(primaryScreenId: number, secondaryScreenId: number, secondaryScreenMode: MultiScreenMode): Promise&lt;void&gt;
 
-设置扩展屏幕的显示模式（镜像/扩展），使用Promise异步回调。primaryScreenId和secondaryScreenId均为0时，仅在扩展屏显示。
+设置扩展屏幕的显示模式（镜像/扩展），使用Promise异步回调。primaryScreenId和secondaryScreenId均为0时，仅在扩展屏幕显示。
 
 **系统接口：** 此接口为系统接口。
 
@@ -1142,7 +1142,7 @@ setMultiScreenMode(primaryScreenId: number, secondaryScreenId: number, secondary
 
 | 参数名       | 类型                 | 必填 | 说明                |
 | ------------ | ------------------- | ---- |--------------------|
-| primaryScreenId   | number           | 是  | 主屏的ID，该参数应为非负整数。如果输入的数字包含小数部分，向下取整。|
+| primaryScreenId   | number           | 是  | 主屏幕的ID，该参数应为非负整数。如果输入的数字包含小数部分，向下取整。|
 | secondaryScreenId | number           | 是  | 扩展屏幕的ID，该参数应为非负整数。如果输入的数字包含小数部分，向下取整。|
 | secondaryScreenMode | [MultiScreenMode](#multiscreenmode13)  | 是  | 扩展屏幕的显示模式。|
 
@@ -1150,7 +1150,7 @@ setMultiScreenMode(primaryScreenId: number, secondaryScreenId: number, secondary
 
 | 类型               | 说明                     |
 | ------------------- | ------------------------- |
-| Promise&lt;void&gt; | 无返回结果的Promise对象。 |
+| Promise&lt;void&gt; | Promise对象，无返回结果。 |
 
 **错误码：**
 
@@ -1173,7 +1173,7 @@ let secondaryScreenId: number = 12; // 扩展屏ID
 let screenMode: screen.MultiScreenMode = screen.MultiScreenMode.SCREEN_MIRROR;
 // 设置扩展屏幕的显示模式为镜像模式
 screen.setMultiScreenMode(primaryScreenId, secondaryScreenId, screenMode).then(() => {
-  console.info('Succeeded in setting multi screen mode. Data: ');
+  console.info('Succeeded in setting multi screen mode.');
 }).catch((err: BusinessError) => {
   console.error(`Failed to set multi screen mode. Code: ${err.code}, message: ${err.message}`);
 });
@@ -1183,7 +1183,7 @@ screen.setMultiScreenMode(primaryScreenId, secondaryScreenId, screenMode).then((
 
 setMultiScreenRelativePosition(mainScreenOptions: MultiScreenPositionOptions, secondaryScreenOptions: MultiScreenPositionOptions): Promise&lt;void&gt;
 
-仅在扩展模式下，设置主屏和扩展屏幕的位置信息，使用Promise异步回调。通过设置startX和startY坐标，可确定各屏幕在虚拟显示空间中的相对位置，实现屏幕排列布局。例如，设置扩展屏幕的startX为主屏幕宽度值，可实现扩展屏幕位于主屏幕右侧的布局。
+仅在扩展模式下，设置主屏幕和扩展屏幕的位置信息，使用Promise异步回调。通过设置startX和startY坐标，可确定各屏幕在虚拟显示空间中的相对位置，实现屏幕排列布局。例如，设置扩展屏幕的startX为主屏幕宽度值，可实现扩展屏幕位于主屏幕右侧的布局。
 
 **系统接口：** 此接口为系统接口。
 
@@ -1193,14 +1193,14 @@ setMultiScreenRelativePosition(mainScreenOptions: MultiScreenPositionOptions, se
 
 | 参数名       | 类型                 | 必填 | 说明               |
 | ------------ | ------------------- | ---- |--------------------|
-| mainScreenOptions      | [MultiScreenPositionOptions](#multiscreenpositionoptions13)  | 是  | 主屏的位置信息。|
+| mainScreenOptions      | [MultiScreenPositionOptions](#multiscreenpositionoptions13)  | 是  | 主屏幕的位置信息。|
 | secondaryScreenOptions | [MultiScreenPositionOptions](#multiscreenpositionoptions13)  | 是  | 扩展屏幕的位置信息。|
 
 **返回值：**
 
 | 类型                | 说明                       |
 | ------------------- | ------------------------- |
-| Promise&lt;void&gt; | 无返回结果的Promise对象。   |
+| Promise&lt;void&gt; | Promise对象，无返回结果。   |
 
 **错误码：**
 
@@ -1220,15 +1220,15 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 // 屏幕ID需通过getAllScreens()获取
 let mainScreenOptions: screen.MultiScreenPositionOptions = {
-  id : 0,  // 主屏ID
-  startX : 0,
-  startY : 0
+  id: 0,  // 主屏ID
+  startX: 0,
+  startY: 0
 }; // 主屏的位置信息
 
 let secondaryScreenOptions: screen.MultiScreenPositionOptions = {
-  id : 12,  // 扩展屏ID
-  startX : 1000,
-  startY : 1000
+  id: 12,  // 扩展屏ID
+  startX: 1000,
+  startY: 1000
 }; // 扩展屏幕的位置信息
 
 // 设置主屏和扩展屏幕的位置信息
@@ -1242,7 +1242,7 @@ screen.setMultiScreenRelativePosition(mainScreenOptions, secondaryScreenOptions)
 
 resizeVirtualScreen(screenId: number, width: number, height: number): Promise&lt;void&gt;
 
-修改指定虚拟屏的尺寸，使用Promise异步回调。
+修改指定虚拟屏幕的尺寸，使用Promise异步回调。
 
 **系统接口：** 此接口为系统接口。
 
@@ -1269,7 +1269,7 @@ resizeVirtualScreen(screenId: number, width: number, height: number): Promise&lt
 | 错误码ID | 错误信息 |
 | ------- | ----------------------- |
 | 202     | Permission verification failed. A non-system application calls a system API. |
-| 801     | Capability not supported. Function can not work because the current device does not support this ability. |
+| 801     | Capability not supported. Failed to call the API due to limited device capabilities. |
 | 1400001 | Invalid display or screen. |
 | 1400003 | This display manager service works abnormally. |
 | 1400004 | Parameter error. Possible cause: 1. Invalid parameter range. |
@@ -1287,7 +1287,7 @@ let height: number = 1080;
 screen.resizeVirtualScreen(screenId, width, height).then(() => {
   console.info(`Succeeded in resizing virtual screen: screenId=${screenId}, width=${width}, height=${height}`);
 }).catch((err: BusinessError) => {
-  console.error(`Failed to set screen area mirroring. Code: ${err.code}, message: ${err.message}`);
+  console.error(`Failed to resize virtual screen. Code: ${err.code}, message: ${err.message}`);
 });
 ```
 
@@ -1305,7 +1305,7 @@ makeMirrorWithRegion(mainScreen:number, mirrorScreen:Array&lt;number&gt;, mainSc
 
 | 参数名       | 类型                | 必填 | 说明                 |
 | ------------ | ------------------- | ---- |--------------------|
-| mainScreen   | number              | 是   | 主屏幕ID，该参数仅支持正整数输入。  |
+| mainScreen   | number              | 是   | 主屏幕ID，该参数仅支持非负整数输入。  |
 | mirrorScreen | Array&lt;number&gt; | 是   | 镜像屏幕ID集合。其中ID应为正整数。  |
 | mainScreenRegion | [Rect](#rect19) | 是   | 主屏创建镜像的矩形区域。         |
 
@@ -1334,10 +1334,10 @@ let mainScreenId: number = 0; // 主屏ID
 let mirrorScreenIds: Array<number> = [1, 2, 3]; // 镜像屏ID集合
 // 主屏创建镜像的矩形区域
 let mainScreenRegion: screen.Rect = {
-  left : 0,
-  top : 0,
-  width : 1920,
-  height : 1080
+  left: 0,
+  top: 0,
+  width: 1920,
+  height: 1080
 };
 // 将屏幕的某一矩形区域设置为镜像模式
 screen.makeMirrorWithRegion(mainScreenId, mirrorScreenIds, mainScreenRegion).then((data: number) => {
@@ -1389,6 +1389,7 @@ class ExpandOption {
   startX: number = 0;
   startY: number = 0;
 }
+// 屏幕ID需通过getAllScreens()获取
 let mainScreenOption: ExpandOption = { screenId: 0, startX: 0, startY: 0 };
 let otherScreenOption: ExpandOption = { screenId: 1, startX: 1080, startY: 0 };
 let expandOptionArray : ExpandOption[] = [ mainScreenOption, otherScreenOption ];
@@ -1497,6 +1498,7 @@ stopExpand(expandScreen:Array&lt;number&gt;, callback: AsyncCallback&lt;void&gt;
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 
+// 屏幕ID需通过getAllScreens()获取
 let expandScreenIds: Array<number> = [1, 2, 3]; // 扩展屏幕ID集合
 // 停止屏幕的扩展模式
 screen.stopExpand(expandScreenIds, (err: BusinessError) => {
@@ -1533,7 +1535,7 @@ stopExpand(expandScreen:Array&lt;number&gt;): Promise&lt;void&gt;
 
 | 类型 | 说明 |
 | --------------------- | ----------------------- |
-| Promise&lt;void&gt; | 无返回结果的Promise对象。 |
+| Promise&lt;void&gt; | Promise对象，无返回结果。 |
 
 **错误码：**
 
@@ -1570,8 +1572,8 @@ screen.stopExpand(expandScreenIds).then(() => {
 | 名称     | 类型 | 只读 | 可选 | 说明                |
 | -------- | -------- | ---- | ---- | ------------------- |
 | screenId | number   | 否   | 否   | 屏幕的ID，该参数应为整数。          |
-| startX   | number   | 否   | 否   | 屏幕的起始X轴坐标，该参数应为整数。 |
-| startY   | number   | 否   | 否   | 屏幕的起始Y轴坐标，该参数应为整数。 |
+| startX   | number   | 否   | 否   | 屏幕的起始X轴坐标，单位为px，该参数应为整数。 |
+| startY   | number   | 否   | 否   | 屏幕的起始Y轴坐标，单位为px，该参数应为整数。 |
 
 ## MultiScreenMode<sup>13+</sup>
 
@@ -1597,8 +1599,8 @@ screen.stopExpand(expandScreenIds).then(() => {
 | 名称    | 类型     | 只读 | 可选  | 说明                |
 | -------- | -------- | ---- | ---- | ------------------- |
 | id       | number   | 否   | 否   | 屏幕的ID，该参数应为非负整数，否则会作为非法参数报错。|
-| startX   | number   | 否   | 否   | 屏幕的起始X轴坐标。以两块屏幕外接矩形的左上顶点为原点，向右为正方向。该参数应为非负整数，否则会作为非法参数报错。 |
-| startY   | number   | 否   | 否   | 屏幕的起始Y轴坐标。以两块屏幕外接矩形的左上顶点为原点，向下为正方向。该参数应为非负整数，否则会作为非法参数报错。 |
+| startX   | number   | 否   | 否   | 屏幕的起始X轴坐标。以两块屏幕外接矩形的左上顶点为原点，向右为正方向。单位为px，该参数应为非负整数，否则会作为非法参数报错。 |
+| startY   | number   | 否   | 否   | 屏幕的起始Y轴坐标。以两块屏幕外接矩形的左上顶点为原点，向下为正方向。单位为px，该参数应为非负整数，否则会作为非法参数报错。 |
 
 ## VirtualScreenOption
 
@@ -1628,21 +1630,19 @@ screen.stopExpand(expandScreenIds).then(() => {
 
 **系统接口：** 此接口为系统接口。
 
-**系统能力：** SystemCapability.WindowManager.WindowManager.Core
-
-
 | 名称              | 类型                                       | 只读 | 可选 | 说明                                                          |
 | ----------------- | ---------------------------------------------- | ---- | ---- |-------------------------------------------------------------|
-| id                | number                                         | 是   | 否   | 屏幕的ID，该参数为整数。                           |
-| rsId<sup>21+</sup> |number | 是 | 否 | 屏幕端口的ID，该参数为整数。|
-| parent            | number                                         | 是   | 否   | 屏幕所属群组的ID，该参数为整数。             |
-| supportedModeInfo | Array&lt;[ScreenModeInfo](#screenmodeinfo)&gt; | 是   | 否   | 屏幕支持的模式集合。   |
-| activeModeIndex   | number                                         | 是   | 否   | 当前屏幕所处模式索引。模式索引的当前值和值的范围，会根据屏幕当前分辨率、刷新率和设备硬件差异产生变化。该参数为整数。 |
-| orientation       | [Orientation](#orientation)                     | 是   | 否   | 屏幕方向。       |
-| sourceMode<sup>10+</sup> | [ScreenSourceMode](#screensourcemode10)            | 是   | 否   | 屏幕来源模式。     |
-| serialNumber<sup>15+</sup> | string        | 是   | 是   | 扩展屏幕的序列号，默认返回为空字符串。 |
-| densityDpi | number        | 是   | 是   | 屏幕的物理像素密度，即每英寸的像素数。<br>**起始版本：** 26.0.0<br>**模型约束：** 此接口仅可在Stage模型下使用。 |
-| isInUse | boolean        | 是   | 是   | 标识屏幕的使用状态。true表示屏幕使用中；false表示屏幕未使用；默认值为true。<br>**起始版本：** 26.0.0<br>**模型约束：** 此接口仅可在Stage模型下使用。 |
+| id                | number                                         | 是   | 否   | 屏幕的ID，该参数为整数。  <br>**系统能力：** SystemCapability.WindowManager.WindowManager.Core                         |
+| rsId<sup>21+</sup> |number | 是 | 否 | 屏幕端口的ID，该参数为整数。<br>**系统能力：** SystemCapability.WindowManager.WindowManager.Core|
+| parent            | number                                         | 是   | 否   | 屏幕所属群组的ID，该参数为整数。 <br>**系统能力：** SystemCapability.WindowManager.WindowManager.Core             |
+| supportedModeInfo | Array&lt;[ScreenModeInfo](#screenmodeinfo)&gt; | 是   | 否   | 屏幕支持的模式集合。  <br>**系统能力：** SystemCapability.WindowManager.WindowManager.Core  |
+| activeModeIndex   | number                                         | 是   | 否   | 当前屏幕所处模式索引。模式索引的当前值和值的范围，会根据屏幕当前分辨率、刷新率和设备硬件差异产生变化。该参数为整数。 <br>**系统能力：** SystemCapability.WindowManager.WindowManager.Core |
+| orientation       | [Orientation](#orientation)                     | 是   | 否   | 屏幕方向。     <br>**系统能力：** SystemCapability.WindowManager.WindowManager.Core   |
+| sourceMode<sup>10+</sup> | [ScreenSourceMode](#screensourcemode10)            | 是   | 否   | 屏幕来源模式。  <br>**系统能力：** SystemCapability.WindowManager.WindowManager.Core    |
+| serialNumber<sup>15+</sup> | string        | 是   | 是   | 扩展屏幕的序列号，默认返回为空字符串。<br>**系统能力：** SystemCapability.WindowManager.WindowManager.Core  |
+| densityDpi | number        | 是   | 是   | 屏幕的物理像素密度，即每英寸的像素数。<br>**系统能力：** SystemCapability.WindowManager.WindowManager.Core <br>**起始版本：** 26.0.0<br>**模型约束：** 此接口仅可在Stage模型下使用。 |
+| isInUse | boolean        | 是   | 是   | 标识屏幕的使用状态。true表示屏幕使用中；false表示屏幕未使用；默认值为true。<br>**系统能力：** SystemCapability.WindowManager.WindowManager.Core <br>**起始版本：** 26.0.0<br>**模型约束：** 此接口仅可在Stage模型下使用。 |
+| screenType | [ScreenType](#screentype)         | 是   | 是   | 屏幕的类型，默认值为BUILT_IN。<br>**系统能力：** SystemCapability.Window.SessionManager <br>**起始版本：** 26.0.0<br>**模型约束：** 此接口仅可在Stage模型下使用。 |
 
 ### setOrientation
 
@@ -1744,7 +1744,7 @@ setOrientation(orientation: Orientation): Promise&lt;void&gt;
 
 | 类型                | 说明                      |
 | ------------------- | ------------------------- |
-| Promise&lt;void&gt; | 无返回结果的Promise对象。 |
+| Promise&lt;void&gt; | Promise对象，无返回结果。 |
 
 **错误码：**
 
@@ -1817,9 +1817,7 @@ setOrientation(orientation: Orientation, orientationOptions?: OrientationOptions
 
 **设备行为差异：**
 
-- 针对Phone、Tablet设备：在[自由多窗模式](../../windowmanager/window-terminology.md#free-multi-window-mode自由多窗模式)下调用不生效不报错；在非[自由多窗模式](../../windowmanager/window-terminology.md#free-multi-window-mode自由多窗模式)下可正常调用，对于部分设备对屏幕有强约束（由产品配置决定），无需旋转的，调用此接口不生效。
-- 针对PC/2in1设备：折叠屏设备处于悬停态时，调用此接口不生效不报错。其他情况可正常调用生效。
-- 针对其他设备：接口行为未定义，不保证屏幕方向发生变化。
+仅支持有线连接的外接显示器作为[扩展屏](../../displaymanager/display-terminology.md#扩展屏)时设置屏幕方向。在其他屏幕上调用，或该外接显示器作为[镜像屏](../../displaymanager/display-terminology.md#镜像屏)时，返回1400001错误码。
 
 **参数：**
 
@@ -1832,7 +1830,7 @@ setOrientation(orientation: Orientation, orientationOptions?: OrientationOptions
 
 | 类型                | 说明                      |
 | ------------------- | ------------------------- |
-| Promise\<void> | 无返回结果的Promise对象。 |
+| Promise\<void> | Promise对象，无返回结果。 |
 
 **错误码：**
 
@@ -1841,6 +1839,7 @@ setOrientation(orientation: Orientation, orientationOptions?: OrientationOptions
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------------------- |
 | 202     | Permission verification failed. A non-system application calls a system API. |
+| 1400001 | Invalid display or screen. Possible cause: The screen is not a wired external display in extended mode. |
 | 1400003 | This display manager service works abnormally. |
 
 **示例：**
@@ -1961,7 +1960,7 @@ setScreenActiveMode(modeIndex: number): Promise&lt;void&gt;
 
 | 类型                | 说明                      |
 | ------------------- | ------------------------- |
-| Promise&lt;void&gt; | 无返回结果的Promise对象。 |
+| Promise&lt;void&gt; | Promise对象，无返回结果。 |
 
 **错误码：**
 
@@ -2102,7 +2101,7 @@ setDensityDpi(densityDpi: number): Promise&lt;void&gt;
 
 | 类型                | 说明                      |
 | ------------------- | ------------------------- |
-| Promise&lt;void&gt; | 无返回结果的Promise对象。 |
+| Promise&lt;void&gt; | Promise对象，无返回结果。 |
 
 **错误码：**
 
@@ -2152,6 +2151,23 @@ screen.createVirtualScreen(option).then((data: screen.Screen) => {
   console.error(`Failed to create the virtual screen. Code: ${err.code}, message: ${err.message}`);
 });
 ```
+## ScreenType
+
+屏幕类型的枚举。
+
+**起始版本：** 26.0.0
+
+**模型约束：** 此字段仅可在Stage模型下使用。
+
+**系统接口：** 此接口为系统接口。
+
+**系统能力：** SystemCapability.Window.SessionManager
+
+| 名称               | 值   | 说明                             |
+| ------------------ | ---- | -------------------------------- |
+| BUILT_IN           | 0    | 表示物理集成到设备中的内置屏幕。 |
+| EXTERNAL           | 1    | 表示通过有线接口连接的外部物理显示屏。         |
+| VIRTUAL            | 2    | 表示由软件创建的虚拟显示屏，通常用于投屏、屏幕录制或多屏协作。         |
 
 ## Orientation
 

@@ -3,7 +3,7 @@
 <!--Subsystem: Sensors-->
 <!--Owner: @dilligencer-->
 <!--Designer: @andeszhang-->
-<!--Tester: @liuhaonan2-->
+<!--Tester: @zhaofangyuan-->
 <!--Adviser: @hu-zhiqiong-->
 
 @system.sensor模块是面向轻量穿戴（Lite Wearable）设备的传感器数据订阅模块，提供对加速度、罗盘、距离、环境光、计步、气压计、心率、佩戴状态、设备方向及陀螺仪传感器的数据订阅与取消订阅能力。
@@ -395,7 +395,7 @@ export default {
 
 ### Sensor.unsubscribeAccelerometer
 
-unsubscribeAccelerometer(): void
+static unsubscribeAccelerometer(): void
 
 取消订阅加速度传感器数据。调用后，加速度传感器的回调函数将不再触发。
 
@@ -595,7 +595,7 @@ Sensor.unsubscribeProximity();
 
  static subscribeLight(options: SubscribeLightOptions): void
 
-订阅环境光传感器数据变化。通过回调函数获取环境光线强度数据，数据格式为LightResponse对象，包含intensity字段（单位：lux）。
+订阅环境光传感器数据变化。通过回调函数获取环境光线强度数据，数据格式为LightResponse对象，包含intensity字段，单位：lux（勒克斯）。
 
 当开发者需要获取环境光强度以实现屏幕亮度自动调节、环境光检测等功能时，使用此接口。
 
@@ -768,7 +768,7 @@ Sensor.unsubscribeStepCounter();
 
 static subscribeBarometer(options: SubscribeBarometerOptions): void
 
-订阅气压计传感器数据变化。通过回调函数获取气压值数据，数据格式为BarometerResponse对象，包含pressure字段（单位：帕斯卡）。
+订阅气压计传感器数据变化。通过回调函数获取气压值数据，数据格式为BarometerResponse对象，包含pressure字段，单位：Pa（帕斯卡）。
 
 当开发者需要获取气压信息以实现海拔估算、天气监测、室内导航等功能时，使用此接口。
 
@@ -852,7 +852,7 @@ Sensor.unsubscribeBarometer();
 
  static subscribeHeartRate(options: SubscribeHeartRateOptions): void
 
-订阅心率传感器数据变化。通过回调函数获取心率值数据，数据格式为HeartRateResponse对象，包含heartRate字段（单位：次/分钟），默认回调频率为5秒/次。
+订阅心率传感器数据变化。通过回调函数获取心率值数据，数据格式为HeartRateResponse对象，包含heartRate字段，单位：bpm（beats per minute，每分钟心跳次数），默认回调频率为5秒/次。
 
 当开发者需要获取用户心率数据以实现健康监测、运动强度评估等功能时，使用此接口。
 
@@ -955,7 +955,7 @@ Sensor.unsubscribeHeartRate();
 
 | 参数名  | 类型                                                        | 必填 | 说明                   |
 | ------- | ----------------------------------------------------------- | ---- | ---------------------- |
-| options | [SubscribeOnBodyStateOptions](#subscribeonbodystateoptions) | 是   | 当穿着状态改变时调用。 |
+| options | [SubscribeOnBodyStateOptions](#subscribeonbodystateoptions) | 是   | 当佩戴状态改变时调用。 |
 
 **ArkTS示例**：
 
@@ -1037,7 +1037,7 @@ Sensor.unsubscribeOnBodyState();
 
 | 参数名  | 类型                                            | 必填 | 说明                       |
 | ------- | ----------------------------------------------- | ---- | -------------------------- |
-| options | [GetOnBodyStateOptions](#getonbodystateoptions) | 是   | 获取传感器所在设备穿戴状态时调用。 |
+| options | [GetOnBodyStateOptions](#getonbodystateoptions) | 是   | 获取传感器所在设备佩戴状态时调用。 |
 
 **ArkTS示例**：
 
@@ -1075,7 +1075,7 @@ sensor.getOnBodyState(getOnBodyStateOptions);
 
  static subscribeDeviceOrientation(options: SubscribeDeviceOrientationOptions): void
 
-订阅设备方向传感器数据变化。通过回调函数获取设备方向数据，数据格式为DeviceOrientationResponse对象，包含alpha、beta、gamma三个旋转角度字段（单位：度）。
+订阅设备方向传感器数据变化。通过回调函数获取设备方向数据，数据格式为DeviceOrientationResponse对象，包含alpha、beta、gamma三个旋转角度字段，单位：°（度）。
 
 当开发者需要获取设备方向信息以实现屏幕旋转、游戏方向控制、AR/VR场景等功能时，使用此接口。
 
@@ -1167,7 +1167,7 @@ Sensor.unsubscribeDeviceOrientation();
 
  static subscribeGyroscope(options: SubscribeGyroscopeOptions): void
 
-订阅陀螺仪传感器数据变化。通过回调函数获取设备在x、y、z三轴方向的旋转角速度数据，数据格式为GyroscopeResponse对象，包含x、y、z三个number类型字段（单位：rad/s）。
+订阅陀螺仪传感器数据变化。通过回调函数获取设备在x、y、z三轴方向的旋转角速度数据，数据格式为GyroscopeResponse对象，包含x、y、z三个number类型字段，单位：rad/s（弧度/秒）。
 
 当开发者需要获取设备旋转角速度以实现手势识别、游戏操控、姿态追踪等功能时，使用此接口。
 
@@ -1301,7 +1301,7 @@ Sensor.unsubscribeGyroscope();
 
 | 名称      | 类型   | 只读 | 可选 | 说明                 |
 | --------- | ------ | ---- | ---- | -------------------- |
-| direction | number | 否   | 否   | 设备面对的方向度数。单位：度（°）。取值范围：[0, 360)，0表示朝北。取值为实际上报物理量。 |
+| direction | number | 否   | 否   | 设备面对的方向度数。单位：°（度）。取值范围：[0, 360)，0表示朝北。取值为实际上报物理量。 |
 
 ## SubscribeProximityOptions
 
@@ -1351,7 +1351,7 @@ Sensor.unsubscribeGyroscope();
 
 | 名称      | 类型   | 只读 | 可选 | 说明                  |
 | --------- | ------ | ---- | ---- | --------------------- |
-| intensity | number | 否   | 否   | 环境光线强度。单位：lux。取值范围：取值为实际上报物理量，由硬件传感器决定。 |
+| intensity | number | 否   | 否   | 环境光线强度。单位：lux（勒克斯）。取值范围：取值为实际上报物理量，由硬件传感器决定。 |
 
 ## SubscribeStepCounterOptions
 
@@ -1397,7 +1397,7 @@ Sensor.unsubscribeGyroscope();
 
 | 名称     | 类型   | 只读 | 可选 | 说明                   |
 | -------- | ------ | ---- | ---- | ---------------------- |
-| pressure | number | 否   | 否   | 气压值。单位：帕斯卡（Pa）。取值范围：取值为实际上报物理量，由硬件传感器决定。标准大气压约为101325 Pa。 |
+| pressure | number | 否   | 否   | 气压值。单位：Pa（帕斯卡）。取值范围：取值为实际上报物理量，由硬件传感器决定。标准大气压约为101325 Pa。 |
 
 ## SubscribeHeartRateOptions
 
@@ -1422,17 +1422,17 @@ Sensor.unsubscribeGyroscope();
 
 | 名称      | 类型   | 只读 | 可选 | 说明     |
 | --------- | ------ | ---- | ---- | -------- |
-| heartRate | number | 否   | 否   | 心率值。单位：次/分钟（bpm）。取值范围：取值为实际上报物理量，由硬件传感器决定。正常成人静息心率约为60-100 bpm。 |
+| heartRate | number | 否   | 否   | 心率值。单位：bpm（beats per minute，每分钟心跳次数）。取值范围：取值为实际上报物理量，由硬件传感器决定。正常成人静息心率约为60-100 bpm。 |
 
 ## SubscribeOnBodyStateOptions
 
-用于设置设备佩戴状态订阅的参数，包括回调函数。佩戴状态分为已穿戴和未穿戴两种。
+用于设置设备佩戴状态订阅的参数，包括回调函数。佩戴状态分为已佩戴和未佩戴两种。
 
 **系统能力**：SystemCapability.Sensors.Sensor.Lite
 
 | 名称    | 类型                                        | 只读 | 可选 | 说明                       |
 | ------- | ------------------------------------------- | ---- | ---- | -------------------------- |
-| success | [OnBodyStateResponse](#onbodystateresponse) | 否   | 否   | 传感器所在设备穿戴状态改变后的回调函数，回调参数为OnBodyStateResponse对象。 |
+| success | [OnBodyStateResponse](#onbodystateresponse) | 否   | 否   | 传感器所在设备佩戴状态改变后的回调函数，回调参数为OnBodyStateResponse对象。 |
 | fail    | Function                                    | 否   | 是   | 接口调用失败的回调函数。回调参数为(data: string, code: number)，其中data为错误信息，code为错误码。不填写时，接口调用失败无回调通知。   |
 
 ## OnBodyStateResponse 
@@ -1447,7 +1447,7 @@ Sensor.unsubscribeGyroscope();
 
 ## GetOnBodyStateOptions
 
-获取传感器所在设备穿戴状态时的参数，包括回调函数。此接口为一次性获取，不会持续监听状态变化。
+获取传感器所在设备佩戴状态时的参数，包括回调函数。此接口为一次性获取，不会持续监听状态变化。
 
 **系统能力**：SystemCapability.Sensors.Sensor.Lite
 
@@ -1481,9 +1481,9 @@ Sensor.unsubscribeGyroscope();
 
 | 名称  | 类型   | 只读 | 可选 | 说明                                                         |
 | ----- | ------ | ---- | ---- | ------------------------------------------------------------ |
-| alpha | number | 否   | 否   | 当设备坐标X/Y和地球X/Y重合时，绕着Z轴转动的夹角。单位：度（°）。取值范围：[0, 360)。 |
-| beta  | number | 否   | 否   | 当设备坐标Y/Z和地球Y/Z重合时，绕着X轴转动的夹角。单位：度（°）。取值范围：[-180, 180)。 |
-| gamma | number | 否   | 否   | 当设备X/Z和地球X/Z重合时，绕着Y轴转动的夹角。单位：度（°）。取值范围：[-90, 90)。 |
+| alpha | number | 否   | 否   | 当设备坐标X/Y和地球X/Y重合时，绕着Z轴转动的夹角。单位：°（度）。取值范围：[0, 360)。 |
+| beta  | number | 否   | 否   | 当设备坐标Y/Z和地球Y/Z重合时，绕着X轴转动的夹角。单位：°（度）。取值范围：[-180, 180)。 |
+| gamma | number | 否   | 否   | 当设备X/Z和地球X/Z重合时，绕着Y轴转动的夹角。单位：°（度）。取值范围：[-90, 90)。 |
 
 ## SubscribeGyroscopeOptions<sup>6+</sup> 
 
@@ -1509,6 +1509,6 @@ Sensor.unsubscribeGyroscope();
 
 | 名称 | 类型   | 只读 | 可选 | 说明              |
 | ---- | ------ | ---- | ---- | ----------------- |
-| x    | number | 否   | 否   | x轴的旋转角速度。单位：rad/s。取值范围：取值为实际上报物理量，由硬件传感器决定。 |
-| y    | number | 否   | 否   | y轴的旋转角速度。单位：rad/s。取值范围：取值为实际上报物理量，由硬件传感器决定。 |
-| z    | number | 否   | 否   | z轴的旋转角速度。单位：rad/s。取值范围：取值为实际上报物理量，由硬件传感器决定。 |
+| x    | number | 否   | 否   | x轴的旋转角速度。单位：rad/s（弧度/秒）。取值范围：取值为实际上报物理量，由硬件传感器决定。 |
+| y    | number | 否   | 否   | y轴的旋转角速度。单位：rad/s（弧度/秒）。取值范围：取值为实际上报物理量，由硬件传感器决定。 |
+| z    | number | 否   | 否   | z轴的旋转角速度。单位：rad/s（弧度/秒）。取值范围：取值为实际上报物理量，由硬件传感器决定。 |

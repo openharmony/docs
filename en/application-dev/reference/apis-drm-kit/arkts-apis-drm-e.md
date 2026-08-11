@@ -1,5 +1,13 @@
 # Enums
 
+<!--Kit: Drm Kit-->
+<!--Subsystem: Multimedia-->
+<!--Owner: @qin_wei_jie-->
+<!--Designer: @chris2981-->
+<!--Tester: @xdlinc-->
+<!--Adviser: @w_Machine_cc-->
+<!-- md-trans-meta sourceCommit=29f3919446ee01733553b9b39493ee11224dad86 translatedAt=2026-07-31T02:11:32.451Z pushedAt=2026-07-31T03:50:50.524Z -->
+
 > **NOTE**
 >
 > The initial APIs of this module are supported since API version 11. Newly added APIs will be marked with a superscript to indicate their earliest API version.
@@ -14,10 +22,10 @@ Enumerates the DRM error codes.
 
 | Name                      | Value  | Description           |
 | ------------------------- | ---- | ------------    |
-| ERROR_UNKNOWN       | 24700101    | Unknown error.  |
-| MAX_SYSTEM_NUM_REACHED   | 24700103    | Maximum number of MediaKeySystem instances (64) reached.   |
-| MAX_SESSION_NUM_REACHED    | 24700104    | Maximum number of MediaKeySession instances (64) reached.    |
-| SERVICE_FATAL_ERROR  | 24700201    | DRM service fatal error.    |
+| ERROR_UNKNOWN       | 24700101    | Unknown error. It is returned when an unclassifiable exception occurs.   |
+| MAX_SYSTEM_NUM_REACHED   | 24700103    | Maximum number (64) of **MediaKeySystem** instances reached.   |
+| MAX_SESSION_NUM_REACHED    | 24700104    | Maximum number (64) of **MediaKeySession** instances reached.    |
+| SERVICE_FATAL_ERROR  | 24700201    | DRM service exception.    |
 
 ## PreDefinedConfigName
 
@@ -47,8 +55,8 @@ Enumerates the types of media keys.
 
 | Name                      | Value  | Description           |
 | ------------------------- | ---- | ------------    |
-| MEDIA_KEY_TYPE_OFFLINE        | 0    | Offline media key.  |
-| MEDIA_KEY_TYPE_ONLINE   | 1    | Online media key.    |
+| MEDIA_KEY_TYPE_OFFLINE | 0 | Offline media key, used in offline playback scenarios. |
+| MEDIA_KEY_TYPE_ONLINE | 1 | Online media key, used in online playback scenarios. |
 
 ## OfflineMediaKeyStatus
 

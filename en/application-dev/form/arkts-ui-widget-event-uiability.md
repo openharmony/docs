@@ -1,10 +1,12 @@
 # Updating Widget Content Through the router or call Event
+
 <!--Kit: Form Kit-->
 <!--Subsystem: Ability-->
 <!--Owner: @Qian-Win-->
 <!--Designer: @cx983299475-->
 <!--Tester: @mahailong123456-->
 <!--Adviser: @HelloShuo-->
+<!-- md-trans-meta sourceCommit=a08d450b4f575e3d4749ddeef9dd32275ec0a19e translatedAt=2026-08-03T02:25:13.353Z pushedAt=2026-08-03T06:44:09.154Z -->
 
 With the router event, a touch on the widget can start the associated application's UIAbility in the foreground and trigger a widget update. With the call event, a touch on the widget can start the associated application's UIAbility in the background and trigger a widget update. On the widget page, the [postCardAction](../reference/apis-arkui/js-apis-postCardAction.md#postcardaction-1) API can be used to trigger a router or call event to start a UIAbility, which then updates the widget content. The following is an example of this widget update mode.
 
@@ -15,9 +17,9 @@ With the router event, a touch on the widget can start the associated applicatio
 ## Updating Widget Content Through the router Event
 
 - In the widget page code, register the **onClick** event callback of the button and call the **postCardAction** API in the callback to trigger the router event to start the UIAbility in the foreground.
-  
+
     <!-- @[widget_update_router_card](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ApplicationModels/StageServiceWidgetCards/entry/src/main/ets/widgetupdaterouter/pages/WidgetUpdateRouterCard.ets) --> 
-    
+
     ``` TypeScript
     // entry/src/main/ets/widgetupdaterouter/pages/WidgetUpdateRouterCard.ets
     let storageUpdateRouter = new LocalStorage();
@@ -74,11 +76,11 @@ With the router event, a touch on the widget can start the associated applicatio
       }
     }
     ```
-  
+
 - In the **onCreate** or **onNewWant** lifecycle callback of the UIAbility, use the input parameter **want** to obtain the ID (**formID**) and other information of the widget, and then call the [updateForm](../reference/apis-form-kit/js-apis-app-form-formProvider.md#formproviderupdateform) API to update the widget.
-  
+
     <!-- @[widget_event_router_entry_ability](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ApplicationModels/StageServiceWidgetCards/entry/src/main/ets/widgetevententryability/WidgetEventRouterEntryAbility.ts) -->
-    
+
     ``` TypeScript
     // entry/src/main/ets/widgetevententryability/WidgetEventRouterEntryAbility.ts
     import { AbilityConstant, UIAbility, Want } from '@kit.AbilityKit';
@@ -138,9 +140,9 @@ With the router event, a touch on the widget can start the associated applicatio
 ## Updating Widget Content Through the call Event
 
 - In the widget page code, register the **onClick** event callback of the button and call the **postCardAction** API in the callback to trigger the call event to start the UIAbility in the background.
-  
+
     <!-- @[widget_update_call_card](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ApplicationModels/StageServiceWidgetCards/entry/src/main/ets/widgetupdatecall/pages/WidgetUpdateCallCard.ets) --> 
-    
+
     ``` TypeScript
     // entry/src/main/ets/widgetupdatecall/pages/WidgetUpdateCallCard.ets
     let storageUpdateCall = new LocalStorage();
@@ -198,11 +200,11 @@ With the router event, a touch on the widget can start the associated applicatio
       }
     }
     ```
-  
+
 - Listen for the method required by the call event in the **onCreate** callback of the UIAbility, and then call the [updateForm](../reference/apis-form-kit/js-apis-app-form-formProvider.md#formproviderupdateform) API in the corresponding method to update the widget.
-  
+
     <!-- @[widget_callee_entry_ability](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ApplicationModels/StageServiceWidgetCards/entry/src/main/ets/widgetcalleeentryability/WidgetCalleeEntryAbility.ts) --> 
-    
+
     ``` TypeScript
     // entry/src/main/ets/widgetcalleeentryability/WidgetCalleeEntryAbility.ts
     import { AbilityConstant, UIAbility, Want } from '@kit.AbilityKit';
@@ -286,8 +288,9 @@ With the router event, a touch on the widget can start the associated applicatio
     ```
 
   To start the UIAbility in the background, you must configure the `ohos.permission.KEEP_BACKGROUND_RUNNING` permission in the `module.json5` file.
+
     <!-- @[module_json5_request_permissions](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ApplicationModels/StageServiceWidgetCards/entry/src/main/module.json5) -->
-    
+
     ``` JSON5
     //src/main/module.json5
     "requestPermissions": [

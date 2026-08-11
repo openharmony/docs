@@ -102,7 +102,7 @@ import { PerfMetric, PerfTest, PerfTestStrategy, PerfMeasureResult } from '@kit.
 
 ## PerfTest
 
-PerfTest类为白盒性能测试框架的总入口，提供测试任务创建、测试代码段执行和数据采集、测量结果获取等能力。
+PerfTest类为白盒性能测试框架的总入口，提供测试任务创建、测试代码段执行和数据采集、测量结果获取等能力。通过[PerfTest.create](#create)创建实例。
 
 ### create
 
@@ -145,13 +145,13 @@ import { PerfMetric, PerfTest, PerfTestStrategy } from '@kit.TestKit';
 async function demo() {
   let metrics: Array<PerfMetric> = [PerfMetric.DURATION];
   let num = 0;
-  let actionCode = async (finish: Callback<boolean>) => { // 定义测试代码段，入参类型'Callback<boolean>'，命名为finish
+  let actionCode = async (finish: Callback<boolean>) => { // 定义测试代码段，入参类型'Callback<boolean>'，命名为finish。
     for (let index = 0; index < 10000; index++) {
       num++;
     }
-    finish(true); // 调用finish回调函数，通知代码段执行结束，且执行符合预期
+    finish(true); // 调用finish回调函数，通知代码段执行结束，且执行符合预期。
   };
-  let resetCode = async (finish: Callback<boolean>) => { // 定义测试结束环境重置代码段
+  let resetCode = async (finish: Callback<boolean>) => { // 定义测试结束环境重置代码段。
     num = 0;
     finish(true);
   };
@@ -162,7 +162,7 @@ async function demo() {
     timeout: 30000,
     iterations: 10
   };
-  let perfTest: PerfTest = PerfTest.create(perfTestStrategy); // 构造一个PerfTest对象，创建测试任务
+  let perfTest: PerfTest = PerfTest.create(perfTestStrategy); // 构造一个PerfTest对象，创建测试任务。
 }
 ```
 
@@ -205,14 +205,14 @@ async function demo() {
     for (let index = 0; index < 10000; index++) {
       num++;
     }
-    finish(true); // 调用finish回调函数，通知代码段执行结束，且执行符合预期
+    finish(true); // 调用finish回调函数，通知代码段执行结束，且执行符合预期。
   };
   let perfTestStrategy: PerfTestStrategy = {
     metrics: metrics,
     actionCode: actionCode
   };
-  let perfTest: PerfTest = PerfTest.create(perfTestStrategy); // 构造一个PerfTest对象，创建测试任务
-  await perfTest.run(); // 运行性能测试
+  let perfTest: PerfTest = PerfTest.create(perfTestStrategy); // 构造一个PerfTest对象，创建测试任务。
+  await perfTest.run(); // 运行性能测试。
 }
 ```
 
@@ -261,15 +261,15 @@ async function demo() {
     for (let index = 0; index < 10000; index++) {
       num++;
     }
-    finish(true); // 调用finish回调函数，通知代码段执行结束，且执行符合预期
+    finish(true); // 调用finish回调函数，通知代码段执行结束，且执行符合预期。
   };
   let perfTestStrategy: PerfTestStrategy = {
     metrics: metrics,
     actionCode: actionCode
   };
-  let perfTest: PerfTest = PerfTest.create(perfTestStrategy); // 构造一个PerfTest对象，创建测试任务
+  let perfTest: PerfTest = PerfTest.create(perfTestStrategy); // 构造一个PerfTest对象，创建测试任务。
   await perfTest.run();
-  let res = perfTest.getMeasureResult(PerfMetric.DURATION); // 获取指定性能指标的测量数据
+  let res = perfTest.getMeasureResult(PerfMetric.DURATION); // 获取指定性能指标的测量数据。
 }
 ```
 
@@ -304,14 +304,14 @@ async function demo() {
     for (let index = 0; index < 10000; index++) {
       num++;
     }
-    finish(true); // 调用finish回调函数，通知代码段执行结束，且执行符合预期
+    finish(true); // 调用finish回调函数，通知代码段执行结束，且执行符合预期。
   };
   let perfTestStrategy: PerfTestStrategy = {
     metrics: metrics,
     actionCode: actionCode
   };
-  let perfTest: PerfTest = PerfTest.create(perfTestStrategy); // 构造一个PerfTest对象，创建测试任务
+  let perfTest: PerfTest = PerfTest.create(perfTestStrategy); // 构造一个PerfTest对象，创建测试任务。
   await perfTest.run();
-  perfTest.destroy(); // 销毁PerfTest对象
+  perfTest.destroy(); // 销毁PerfTest对象。
 }
 ```

@@ -11,6 +11,8 @@
 
 声明网络流量过滤与重定向功能所需的通用类型和错误码。该头文件定义了流量过滤与重定向功能中使用的IP地址、端口、接口等匹配条件结构体，报文过滤规则、重定向规则等配置结构体，以及操作返回的错误码。<br> 适用于调用[OH_TrafficFilter_CreateRedirector](capi-net-trafficfilter-h.md#oh_trafficfilter_createredirector)等接口时构造参数和解析返回值。
 
+**引用文件：** <network/netmanager_ext/net_trafficfilter_type.h>
+
 **库：** libnet_trafficfilter.so
 
 **系统能力：** SystemCapability.Communication.NetManager.NetFirewall
@@ -66,7 +68,11 @@
 | OH_TRAFFICFILTER_MIN_GROUP_ID        1 | 最小Group ID值。<br>**起始版本：** 26.0.0 |
 | OH_TRAFFICFILTER_MAX_GROUP_ID        65535 | 最大Group ID值。<br>**起始版本：** 26.0.0 |
 | OH_TRAFFICFILTER_IFNAMSIZ            32 | 网络接口名称最大长度。<br>**起始版本：** 26.0.0 |
-| OH_TRAFFICFILTER_PROTO_ANY           0 <br>OH_TRAFFICFILTER_PROTO_TCP           6 <br>OH_TRAFFICFILTER_PROTO_UDP           17 <br>OH_TRAFFICFILTER_PROTO_ICMP          1 <br>OH_TRAFFICFILTER_PROTO_ICMPV6        58 | 协议类型常量。<br>**起始版本：** 26.0.0 |
+| OH_TRAFFICFILTER_PROTO_ANY           0 | 协议类型常量：任意协议。<br>**起始版本：** 26.0.0 |
+| OH_TRAFFICFILTER_PROTO_TCP           6 | 协议类型常量：TCP协议。<br>**起始版本：** 26.0.0 |
+| OH_TRAFFICFILTER_PROTO_UDP           17 | 协议类型常量：UDP协议。<br>**起始版本：** 26.0.0 |
+| OH_TRAFFICFILTER_PROTO_ICMP          1 | 协议类型常量：ICMP协议。<br>**起始版本：** 26.0.0 |
+| OH_TRAFFICFILTER_PROTO_ICMPV6        58 | 协议类型常量：ICMPV6协议。<br>**起始版本：** 26.0.0 |
 
 ## 枚举类型说明
 
@@ -108,10 +114,10 @@ IP匹配类型。
 | 枚举项 | 描述 |
 | -- | -- |
 | OH_TRAFFICFILTER_IP_MATCH_ANY = 0 | 任意IP。<br>**起始版本：** 26.0.0 |
-| OH_TRAFFICFILTER_IP_MATCH_SINGLE | 单个IP。<br>**起始版本：** 26.0.0 |
-| OH_TRAFFICFILTER_IP_MATCH_CIDR | CIDR格式（如192.168.1.0/24，表示匹配该子网内的所有IP）。<br>**起始版本：** 26.0.0 |
-| OH_TRAFFICFILTER_IP_MATCH_RANGE | IP范围。<br>**起始版本：** 26.0.0 |
-| OH_TRAFFICFILTER_IP_MATCH_MULTI | 多个IP。<br>**起始版本：** 26.0.0 |
+| OH_TRAFFICFILTER_IP_MATCH_SINGLE = 1 | 单个IP。<br>**起始版本：** 26.0.0 |
+| OH_TRAFFICFILTER_IP_MATCH_CIDR = 2 | CIDR格式（如192.168.1.0/24，表示匹配该子网内的所有IP）。<br>**起始版本：** 26.0.0 |
+| OH_TRAFFICFILTER_IP_MATCH_RANGE = 3 | IP范围。<br>**起始版本：** 26.0.0 |
+| OH_TRAFFICFILTER_IP_MATCH_MULTI = 4 | 多个IP。<br>**起始版本：** 26.0.0 |
 
 ### OH_TrafficFilter_IPFamily
 
@@ -146,9 +152,9 @@ enum OH_TrafficFilter_PortMatchType
 | 枚举项 | 描述 |
 | -- | -- |
 | OH_TRAFFICFILTER_PORT_MATCH_ANY = 0 | 任意端口。<br>**起始版本：** 26.0.0 |
-| OH_TRAFFICFILTER_PORT_MATCH_SINGLE | 单个端口。<br>**起始版本：** 26.0.0 |
-| OH_TRAFFICFILTER_PORT_MATCH_RANGE | 端口范围。<br>**起始版本：** 26.0.0 |
-| OH_TRAFFICFILTER_PORT_MATCH_MULTI | 多个端口。<br>**起始版本：** 26.0.0 |
+| OH_TRAFFICFILTER_PORT_MATCH_SINGLE = 1 | 单个端口。<br>**起始版本：** 26.0.0 |
+| OH_TRAFFICFILTER_PORT_MATCH_RANGE = 2 | 端口范围。<br>**起始版本：** 26.0.0 |
+| OH_TRAFFICFILTER_PORT_MATCH_MULTI = 3 | 多个端口。<br>**起始版本：** 26.0.0 |
 
 ### OH_TrafficFilter_HookPoint
 
@@ -165,9 +171,9 @@ enum OH_TrafficFilter_HookPoint
 | 枚举项 | 描述 |
 | -- | -- |
 | OH_TRAFFICFILTER_HOOK_INPUT = 0 | INPUT链，处理进入本机的报文。<br>**起始版本：** 26.0.0 |
-| OH_TRAFFICFILTER_HOOK_OUTPUT | OUTPUT链，处理本机发出的报文。<br>**起始版本：** 26.0.0 |
-| OH_TRAFFICFILTER_HOOK_FORWARD | FORWARD链，处理本机转发的报文。<br>**起始版本：** 26.0.0 |
-| OH_TRAFFICFILTER_HOOK_PREROUTING | PREROUTING链，处理刚到达网卡、尚未路由的报文。<br>**起始版本：** 26.0.0 |
-| OH_TRAFFICFILTER_HOOK_POSTROUTING | POSTROUTING链，处理即将从网卡发出的报文。<br>**起始版本：** 26.0.0 |
+| OH_TRAFFICFILTER_HOOK_OUTPUT = 1 | OUTPUT链，处理本机发出的报文。<br>**起始版本：** 26.0.0 |
+| OH_TRAFFICFILTER_HOOK_FORWARD = 2 | FORWARD链，处理本机转发的报文。<br>**起始版本：** 26.0.0 |
+| OH_TRAFFICFILTER_HOOK_PREROUTING = 3 | PREROUTING链，处理刚到达网卡、尚未路由的报文。<br>**起始版本：** 26.0.0 |
+| OH_TRAFFICFILTER_HOOK_POSTROUTING = 4 | POSTROUTING链，处理即将从网卡发出的报文。<br>**起始版本：** 26.0.0 |
 
 

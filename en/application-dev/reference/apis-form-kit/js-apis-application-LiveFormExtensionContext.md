@@ -1,11 +1,14 @@
 # LiveFormExtensionContext
+
 <!--Kit: Form Kit-->
 <!--Subsystem: Ability-->
 <!--Owner: @Qian-Win-->
 <!--Designer: @cx983299475-->
 <!--Tester: @mahailong123456-->
 <!--Adviser: @HelloShuo-->
-**LiveFormExtensionContext**, inherited from [ExtensionContext](../apis-ability-kit/js-apis-inner-application-extensionContext.md), is the context of [LiveFormExtensionAbility](./js-apis-app-form-LiveFormExtensionAbility.md).
+<!-- md-trans-meta sourceCommit=62f2cf3101049cbc3c2c61a2e11dc625dab4e15c translatedAt=2026-07-31T08:25:38.109Z pushedAt=2026-07-31T09:28:46.669Z -->
+
+LiveFormExtensionContext is the context of [LiveFormExtensionAbility](./js-apis-app-form-LiveFormExtensionAbility.md), and inherits from [ExtensionContext](../apis-ability-kit/js-apis-inner-application-extensionContext.md). It provides the capability to access specific LiveFormExtensionAbility resources and supports starting an app page from an interactive widget. This is applicable to scenarios where an interactive widget needs to respond to user taps and navigate to an app page, addressing the limitation that an interactive widget cannot proactively start an app page.
 
 > **NOTE**
 >
@@ -14,29 +17,34 @@
 > The APIs of this module can be used only in the stage model.
 
 ## Modules to Import
+
 ```ts
 import { common } from '@kit.AbilityKit';
 ```
 
->  **NOTE**
+> **NOTE**
 >
-> - In versions earlier than API version 22, you need to import LiveFormExtensionContext with `import LiveFormExtensionContext from 'application/LiveFormExtensionContext'; `. This import mode is marked in red in DevEco Studio, but does not affect compilation and running. You can use LiveFormExtensionContext directly.
+> - Before API version 22, import is performed through `import LiveFormExtensionContext from 'application/LiveFormExtensionContext';`. This import method is highlighted in red in DevEco Studio, but does not affect compilation and running. You can directly use LiveFormExtensionContext.
 >
-> - In API version 22 and later versions, you can import LiveFormExtensionContext with `import { common } from '@kit.AbilityKit';` and use it in the form of **common.LiveFormExtensionContext**.
+> - Since API version 22, import is supported through `import { common } from '@kit.AbilityKit';`, and LiveFormExtensionContext can be used through `common.LiveFormExtensionContext`.
 
 ## LiveFormExtensionContext
 
-LiveFormExtensionContext, inherited from [ExtensionContext](../apis-ability-kit/js-apis-inner-application-extensionContext.md), allows you to access resources specific to LiveFormExtensionAbility.
+LiveFormExtensionContext provides the capability to access resources specific to LiveFormExtensionAbility.
 
 ### startAbilityByLiveForm
 
 startAbilityByLiveForm(want: Want): Promise&lt;void&gt;
 
-Starts the widget provider (application) page. This API uses a promise to return the result.
+Starts the interactive widget provider (application) page. This API uses a promise to return the result.
 
 This API can only be used to start the page of the interactive widget provider (application). If this API is used to start the page of another application, error code 16501011 will be reported.
 
 This API can only be called within the click event callback and must be called directly. Delayed calls are not supported. Otherwise, the error code 16501011 will be reported.
+
+**Use cases:**
+
+- Navigate to the app home page or details page by tapping in the active state of an interactive widget.
 
 **Model restriction**: This API can be used only in the stage model.
 
@@ -46,18 +54,19 @@ This API can only be called within the click event callback and must be called d
 
 **Parameters**
 
-  | Name| Type   | Mandatory| Description                                  |
-  | ------ | ------ | ---- | ------------------------------------- |
-  | want  |  [Want](../apis-ability-kit/js-apis-app-ability-want.md)  | Yes  | Information about the application page to be started. [Only explicit Want is supported](../../../application-dev/application-models/ability-startup-with-explicit-want.md).  |
+| Name| Type   | Mandatory| Description                                  |
+| ------ | ------ | ---- | ------------------------------------- |
+| want  |  [Want](../apis-ability-kit/js-apis-app-ability-want.md)  | Yes   | Information about the app page to be started. Value rule: Only explicit **Want** is supported, and the **bundleName** and **abilityName** fields must be included. For details, see [Starting an App Component with Explicit Want](../../../application-dev/application-models/ability-startup-with-explicit-want.md). |
 
 **Return value** 
+
   | Type| Description   |
   | ------ | ------ |
   | Promise&lt;void&gt;  |  Promise that returns no value. | 
 
 **Error codes**
 
-For details about the error codes, see [Form Error Codes](errorcode-form.md) and [Universal Error Codes](../errorcode-universal.md).
+For details about the error codes, see [Widget Error Codes](errorcode-form.md) and [Universal Error Codes](../errorcode-universal.md).
 
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
@@ -71,7 +80,7 @@ For details about the error codes, see [Form Error Codes](errorcode-form.md) and
 
 ```ts
 // MyLiveFormExtensionAbility.ets
-import { formInfo, LiveFormInfo, LiveFormExtensionAbility } from '@kit.FormKit';
+import { LiveFormInfo, LiveFormExtensionAbility } from '@kit.FormKit';
 import { UIExtensionContentSession } from '@kit.AbilityKit';
 
 export default class MyLiveFormExtensionAbility extends LiveFormExtensionAbility {
@@ -83,6 +92,7 @@ export default class MyLiveFormExtensionAbility extends LiveFormExtensionAbility
   }
 };
 ```
+
 ```ts
 // pages/MyLiveFormPage.ets
 import { common } from '@kit.AbilityKit';
@@ -113,8 +123,8 @@ struct MyLiveFormPage {
         .catch((err: BusinessError) => {
           console.error(`startAbilityByLiveForm failed, code is ${err?.code}, message is ${err?.message}`);
         });
-    } catch (e) {
-      console.error(`startAbilityByLiveForm failed, code is ${e?.code}, message is ${e?.message}`);
+    } catch (err) {
+      console.error(`startAbilityByLiveForm failed, code is ${err?.code}, message is ${err?.message}`);
     }
   }
 
@@ -136,7 +146,7 @@ struct MyLiveFormPage {
         return;
       }
       this.startAbilityByLiveForm();
-    })
+    });
   }
 }
 ```

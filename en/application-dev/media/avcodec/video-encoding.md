@@ -7,79 +7,59 @@
 <!--Tester: @cyakee-->
 <!--Adviser: @w_Machine_cc-->
 
-You can call native APIs to perform video encoding, which compresses video data into a video stream.
+Video encoding is an important process in multimedia processing. It compresses uncompressed video data into video bitstreams to reduce the size of raw video data for storage or transmission. Video encoding supports synchronous mode and asynchronous mode. The main difference between the two modes lies in whether buffers are obtained synchronously or asynchronously. You can choose the API calling mode that best suits your service requirements.
+
+This document mainly describes asynchronous video encoding. For synchronous video encoding, see [Synchronous Video Encoding](synchronous-video-encoding.md). Based on how data is input before encoding, the encoder supports surface mode and buffer mode for different use cases.
+
+- Surface mode
+
+  The encoder obtains input data through [NativeWindow](../../reference/apis-arkgraphics2d/capi-nativewindow-nativewindow.md). This mode can be connected to other modules, such as the camera module. It applies to encoding scenarios that directly connect to data sources such as cameras and screen recording.
+
+- Buffer mode
+
+  The encoder obtains input data through preallocated shared memory. You need to copy raw video data to the preallocated shared memory. This mode applies to scenarios where raw video data in files or memory needs to be encoded.
+
+| Difference| Surface Mode| Buffer Mode|
+| ----------- | ------------------ | ---------------------------------------- |
+| Configuration| Before calling **OH_VideoEncoder_Prepare**, you must call **OH_VideoEncoder_GetSurface** to obtain OHNativeWindow for transferring video data.| - |
+| Data input| Input frames are obtained through OHNativeWindow. Data is usually written directly by a producer module, such as the camera.| Shared memory buffer information is obtained through the **OnNeedInputBuffer** callback, and data is sent by calling **OH_VideoEncoder_PushInputBuffer**.|
+| End of input| You must call **OH_VideoEncoder_NotifyEndOfStream** to notify the encoder that input is complete.| When encoding the last frame, set the **flags** field of the input buffer to **AVCODEC_BUFFER_FLAGS_EOS** to notify the encoder that input is complete.|
+
+For details about the video encoding formats supported by AVCodec, see [Video Encoding](avcodec-support-formats.md#video-encoding).
 
 For details about the implementation, see [Samples](https://gitcode.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/Media/AVCodec).
 
-For details about the supported encoding capabilities, see [AVCodec Supported Formats](avcodec-support-formats.md#video-encoding).
-
-<!--RP1--><!--RP1End-->
-
-The following table lists the video encoding capabilities supported:
-
-<!--RP4-->
-|          Capability                      |                              How to Use                                           |
-| --------------------------------------- | ---------------------------------------------------------------------------------- |
-| Layered encoding<br> Setting the LTR frame and reference frame                     | For details, see [Temporally Scalable Video Coding](video-encoding-temporal-scalability.md).       |
-| Repeat encoding of historical frames                   | For details, see [OH_MD_KEY_VIDEO_ENCODER_REPEAT_PREVIOUS_FRAME_AFTER](../../reference/apis-avcodec-kit/capi-native-avcodec-base-h.md#variables) and<br> [OH_MD_KEY_VIDEO_ENCODER_REPEAT_PREVIOUS_MAX_COUNT](../../reference/apis-avcodec-kit/capi-native-avcodec-base-h.md#variables).   |
-<!--RP4End-->
-
-## Constraints
-
-1. The buffer mode does not support 10-bit image data.
-2. Due to limited hardware encoder resources, you must call **OH_VideoEncoder_Destroy** to destroy every encoder instance when it is no longer needed.
-3. If **flush()**, **reset()**, **stop()**, or **destroy()** is executed in a non-callback thread, the execution result is returned after all callbacks are executed.
-4. Once **Flush**, **Reset**, or **Stop** is called, the system reclaims the OH_AVBuffer. Therefore, do not continue to operate the OH_AVBuffer obtained through the previous callback function.
-5. The buffer mode and surface mode use the same APIs. Therefore, the surface mode is described as an example.
-6. In buffer mode, after obtaining the pointer to an OH_AVBuffer instance through the callback function **OH_AVCodecOnNeedInputBuffer**, call **OH_VideoEncoder_PushInputBuffer** to notify the system that the buffer has been fully utilized. In this way, the system will proceed with encoding the data contained in the buffer. If the OH_NativeBuffer instance is obtained through **OH_AVBuffer_GetNativeBuffer** and its lifecycle extends beyond that of the OH_AVBuffer pointer instance, you mut perform data duplication. In this case, you should manage the lifecycle of the newly generated OH_NativeBuffer object to ensure that the object can be correctly used and released.
-<!--RP14--><!--RP14End-->
-
-## Surface Input and Buffer Input
-
-1. Surface input and buffer input differ in data sources.
-
-2. They are applicable to different scenarios.
-    - Surface input indicates that the OHNativeWindow is used to transfer passed-in data. It supports connection with other modules, such as the camera module.
-    - Buffer input refers to a pre-allocated memory area. You need to copy original data to this memory area. It is more applicable to scenarios such as reading video data from files.
-
-3. The two also differ slightly in the API calling modes:
-    - In buffer mode, call **OH_VideoEncoder_PushInputBuffer** to input data. In surface mode, before the encoder is ready, call **OH_VideoEncoder_GetSurface** to obtain the OHNativeWindow for video data transmission.
-    - In buffer mode, you can use **attr** in **OH_AVBuffer** to pass in the End of Stream (EOS) flag, and the encoder stops when it reads the last frame. In surface mode, call **OH_VideoEncoder_NotifyEndOfStream** to notify the encoder of EOS.
-
-4. Data transfer performance in surface mode is better than that in buffer mode.
-
-For details about the development procedure, see [Surface Mode](#surface-mode) and [Buffer Mode](#buffer-mode).
-
 ## State Machine Interaction
 
-The following figure shows the interaction between states.
+1. Initialized state.
+   - When an encoder instance is initially created, the encoder enters the Initialized state.
+   - When **OH_VideoEncoder_Reset** is called in any state, the encoder can return to the Initialized state.
+2. Configured state.
+   - In the Initialized state, call **OH_VideoEncoder_Configure** to configure the encoder. After the configuration is successful, the encoder enters the Configured state.
+3. Prepared state.
+   - In the Configured state, call **OH_VideoEncoder_Prepare** to enter the Prepared state.
+   - In the Executing state, call **OH_VideoEncoder_Stop** to return to the Prepared state.
+4. Executing state.
+   - In the Prepared state, call **OH_VideoEncoder_Start** to enter the Executing state.
+   - The Executing state has three substates: Running, Flushed, and End-of-Stream.
+     - Running: Call **OH_VideoEncoder_Start** to enter the Running substate.
+     - Flushed: Call **OH_VideoEncoder_Flush** to enter the Flushed substate.
+     - End-of-Stream: When the encoder receives an input buffer whose **flags** field is **AVCODEC_BUFFER_FLAGS_EOS** in [OH_AVCodecBufferFlags](../../reference/apis-avcodec-kit/capi-native-avbuffer-info-h.md#oh_avcodecbufferflags), or when **OH_VideoEncoder_NotifyEndOfStream** is called, the encoder enters the End-of-Stream substate. In this state, the encoder does not accept new inputs, but continues to generate outputs until the tail frame is output.
+5. Error state.
+   - In rare cases, the encoder enters the Error state when an exception occurs. An API returns an error code or an exception is reported through the **OH_AVCodecOnError** callback.
+   - In the Error state, call **OH_VideoEncoder_Reset** to return to the Initialized state, or call **OH_VideoEncoder_Destroy** to enter the final Released state.
+6. Released state.
+   - After using the encoder, you must call **OH_VideoEncoder_Destroy** to destroy the encoder instance and switch the encoder to the Released state.
+
+**Figure 1** State machine interaction
 
 ![Invoking relationship of state](figures/state-invocation.png)
 
-1. An encoder enters the Initialized state in either of the following ways:
-   - When an encoder instance is initially created, the encoder enters the Initialized state.
-   - When **OH_VideoEncoder_Reset** is called in any state, the encoder returns to the Initialized state.
-
-2. When the encoder is in the Initialized state, you can call **OH_VideoEncoder_Configure** to configure the encoder. After the configuration, the encoder enters the Configured state.
-3. When the encoder is in the Configured state, you can call **OH_VideoEncoder_Prepare()** to switch it to the Prepared state.
-4. When the encoder is in the Prepared state, you can call **OH_VideoEncoder_Start** to switch it to the Executing state.
-   - When the encoder is in the Executing state, you can call **OH_VideoEncoder_Stop** to switch it back to the Prepared state.
-
-5. In rare cases, the encoder may encounter an error and enter the Error state. If this is the case, an invalid value can be returned or an exception can be thrown through a queue operation.
-   - When the encoder is in the Error state, you can either call **OH_VideoEncoder_Reset** to switch it to the Initialized state or call **OH_VideoEncoder_Destroy** to switch it to the Released state.
-
-6. The Executing state has three substates: Flushed, Running, and End-of-Stream.
-   - After **OH_VideoEncoder_Start** is called, the encoder enters the Running substate immediately.
-   - When the encoder is in the Executing state, you can call **OH_VideoEncoder_Flush** to switch it to the Flushed substate.
-   - After all data to be processed is transferred to the encoder, the [AVCODEC_BUFFER_FLAGS_EOS](../../reference/apis-avcodec-kit/capi-native-avbuffer-info-h.md#oh_avcodecbufferflags) flag is added to the last input buffer in the input buffers queue. Once this flag is detected, the encoder transits to the End-of-Stream substate. In this state, the encoder does not accept new inputs, but continues to generate outputs until it reaches the tail frame.
-
-7. When the encoder is no longer needed, you must call **OH_VideoEncoder_Destroy** to destroy the encoder instance, which then transitions to the Released state.
-
 ## How to Develop
 
-Read the [API reference](../../reference/apis-avcodec-kit/capi-native-avcodec-videoencoder-h.md).
+Read [native_avcodec_videoencoder.h](../../reference/apis-avcodec-kit/capi-native-avcodec-videoencoder-h.md) for the API reference.
 
-The figure below shows the call relationship of video encoding.
+**Figure 2** Video encoding call relationship
 
 - The dotted line indicates an optional operation.
 
@@ -338,7 +318,7 @@ The following walks you through how to implement the entire video encoding proce
 
 5. Call **OH_VideoEncoder_Configure()** to configure the encoder.
 
-    For details about the configurable options, see [Video Dedicated Key-Value Paris](../../reference/apis-avcodec-kit/capi-codecbase.md#media-data-key-value-pairs).
+    For details about the configurable options, see [Video Dedicated Key-Value Pairs](../../reference/apis-avcodec-kit/capi-codecbase.md#media-data-key-value-pairs).
 
     For details about the parameter verification rules, see [OH_VideoEncoder_Configure()](../../reference/apis-avcodec-kit/capi-native-avcodec-videoencoder-h.md#oh_videoencoder_configure).
 
@@ -395,7 +375,8 @@ The following walks you through how to implement the entire video encoding proce
         OH_AVFormat_SetLongValue(format.get(), OH_MD_KEY_MAX_BITRATE, maxBitRate);
         OH_AVFormat_SetIntValue(format.get(), OH_MD_KEY_SQR_FACTOR, sqrFactor);
     } else if (rateMode == static_cast<int32_t>(OH_BitrateMode::BITRATE_MODE_CBR) ||
-               rateMode == static_cast<int32_t>(OH_BitrateMode::BITRATE_MODE_VBR)){
+               rateMode == static_cast<int32_t>(OH_BitrateMode::BITRATE_MODE_VBR) ||
+               rateMode == static_cast<int32_t>(OH_BitrateMode::BITRATE_MODE_CBR_HIGH_QUALITY)){
         OH_AVFormat_SetLongValue(format.get(), OH_MD_KEY_BITRATE, bitRate);
     }
     OH_AVFormat_SetIntValue(format.get(), OH_MD_KEY_VIDEO_ENCODE_BITRATE_MODE, rateMode);
@@ -949,8 +930,8 @@ The following walks you through how to implement the entire video encoding proce
     uint8_t* src = new uint8_t[srcRect.hStride * srcRect.wStride * 3 / 2]; // Pointer to the source memory area.
     uint8_t* dstTemp = dst;
     uint8_t* srcTemp = src;
-    rect.height = ((rect.height + 1) / 2)  * 2 // This ensures the height is always even.
-    rect.width = ((rect.width + 1) / 2)  * 2 // This ensures the width is always even.
+    rect.height = ((rect.height + 1) / 2)  * 2; // This ensures the height is always even.
+    rect.width = ((rect.width + 1) / 2)  * 2; // This ensures the width is always even.
 
     // Y: Copy the source data in the Y region to the target data in another region.
     for (int32_t i = 0; i < rect.height; ++i) {
@@ -1048,4 +1029,22 @@ The following walks you through how to implement the entire video encoding proce
     }
     ```
 
-The subsequent processes (including refreshing, resetting, stopping, and destroying the encoder) are the same as those in surface mode. For details, see steps 14–17 in [Surface Mode](#surface-mode).
+The subsequent processes (including refreshing, resetting, stopping, and destroying the encoder) are the same as those in surface mode. For details, see steps 14-17 in [Surface Mode](#surface-mode).
+
+## Notes
+
+1. Buffer mode does not support 10-bit image data.
+2. Due to limited hardware encoder resources, you must call **OH_VideoEncoder_Destroy** to destroy every encoder instance and release resources when the encoder is no longer needed.
+3. The Flush, Reset, Stop, and Destroy APIs must be called in a non-callback thread. When these APIs are executed, they block and wait until all triggered callbacks are complete, and then return the execution result.
+4. Once Flush, Reset, or Stop is called, the system reclaims OH_AVBuffer. Do not continue to operate the OH_AVBuffer obtained through the previous callback function.
+5. In buffer mode, after obtaining the pointer to an OH_AVBuffer instance through the input callback function **OH_AVCodecOnNeedInputBuffer**, you must call **OH_VideoEncoder_PushInputBuffer** to notify the system that the instance has been used. This ensures that the system can encode the data in the instance. If you obtain the OH_NativeBuffer pointer instance by calling **OH_AVBuffer_GetNativeBuffer** and the lifecycle of this instance exceeds that of the current OH_AVBuffer pointer instance, you need to manually copy the data and manage the lifecycle of the newly generated OH_NativeBuffer instance to ensure that it is correctly used and released.
+<!--RP14--><!--RP14End-->
+
+## Video Encoding Capabilities
+
+<!--RP4-->
+| Capability| Description|
+| --------------------------------------- | ---------------------------------------------------------------------------------- |
+| Layered encoding, LTR frame setting, and reference frame setting| For details, see [Temporally Scalable Video Coding](video-encoding-temporal-scalability.md).|
+| Repeat encoding of historical frames| For details, see **OH_MD_KEY_VIDEO_ENCODER_REPEAT_PREVIOUS_FRAME_AFTER** and **OH_MD_KEY_VIDEO_ENCODER_REPEAT_PREVIOUS_MAX_COUNT** in [Variables](../../reference/apis-avcodec-kit/capi-native-avcodec-base-h.md#variables) of native_avcodec_base.h.|
+<!--RP4End-->

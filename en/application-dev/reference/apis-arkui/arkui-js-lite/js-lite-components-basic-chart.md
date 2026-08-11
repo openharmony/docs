@@ -1,10 +1,12 @@
 # chart
+
 <!--Kit: ArkUI-->
 <!--Subsystem: ArkUI-->
 <!--Owner: @Zhang-Dong-hui-->
 <!--Designer: @xiangyuan6-->
 <!--Tester: @jiaoaozihao-->
 <!--Adviser: @Brilliantry_Rui-->
+<!-- md-trans-meta sourceCommit=dfb15c325281e5e789ea7ade45dfdd45876606ad translatedAt=2026-07-27T02:26:01.845Z pushedAt=2026-07-27T09:23:36.713Z -->
 
 The **\<chart>** component displays line charts and bar charts.
 
@@ -12,11 +14,9 @@ The **\<chart>** component displays line charts and bar charts.
 >
 > This component is supported since API version 4. Updates will be marked with a superscript to indicate their earliest API version.
 
-
 ## Child Components
 
 Not supported.
-
 
 ## Attributes
 
@@ -52,8 +52,8 @@ Not supported.
 
 | Name      | Type           | Default Value     | Mandatory  | Description                                      |
 | -------- | ------------- | -------- | ---- | ---------------------------------------- |
-| min      | number        | 0        | No   | Minimum value of the axis.<br>Negative numbers are not supported. Only line charts support this attribute.                |
-| max      | number        | 100      | No   | Maximum value of the axis.<br>Negative numbers are not supported. Only line charts support this attribute.                |
+| min      | number        | 0        | No    | Minimum value of the axis.<br/>Negative numbers are not supported.                 |
+| max      | number        | 100      | No    | Maximum value of the axis.<br/>Negative numbers are not supported.                 |
 | axisTick | number        | 10       | No   | Number of scales displayed on the axis.<br>**NOTE**<br>The value ranges from 1 to 20. The display effect depends on the calculation result of Number of pixels occupied by the image width/(**max**-**min**).<br>Lite wearables support integer calculation, and an error may occur in the case of inexhaustible division. Specifically, a segment of space may be left at the end of the x-axis.<br>In the bar chart, the number of bars in each group of data is the same as the number of scales, and the bars are displayed at the scales.|
 | display  | boolean       | false    | No   | Whether to display the axis.<br>The default value **false**, indicating that the axis is not displayed.                                  |
 | color    | &lt;color&gt; | \#c0c0c0 | No   | Axis color.                                    |
@@ -92,15 +92,11 @@ Not supported.
 | ------ | -------------- | ---- | ---- | ---------------------------------------- |
 | margin | &lt;length&gt; | 1    | No   | Number of erased points (horizontal distance between the latest drawn point and the earliest point). You are not advised to use **margin** together with **topPoint**, **bottomPoint**, or **headPoint** for mini-, small- and standard-system devices. If you do so, there is a possibility that the point is in the erase area and invisible.|
 
-
-
-
 ## Methods
 
 | Method    | Parameter                                      | Description                                      |
 | ------ | ---------------------------------------- | ---------------------------------------- |
 | append | {<br>serial:&nbsp;number,&nbsp;// Set the data subscript of the line chart to be updated.<br>data:&nbsp;Array&lt;number&gt;,&nbsp;// Set the new data.<br>} | Data is dynamically added to an existing data sequence. The target sequence is specified based on **serial**, which is the subscript of the datasets array and starts from 0. **datasets[index].data** is not updated. Only line charts support this attribute. The value is incremented by 1 based on the horizontal coordinate and is related to the **xAxis min/max** setting.|
-
 
 ## Events
 
@@ -108,8 +104,7 @@ Not supported.
 | ------------------ | --------------------------------- | ----------- |
 | click              | -                                 | Triggered when the component is clicked. |
 | longpress          | -                                 | Triggered when the component is long pressed. |
-| swipe<sup>5+</sup> | [SwipeEvent](js-lite-common-events.md) | Triggered when a user quickly swipes on the component.|
-
+| swipe<sup>5+</sup> | [SwipeEvent](js-lite-common-events.md#swipeevent) | Triggered when a user quickly swipes on the component. |
 
 ## Styles
 
@@ -140,7 +135,6 @@ Not supported.
    </div>
    ```
 
-
    ```css
    /* xxx.css */
    .container {
@@ -160,7 +154,6 @@ Not supported.
      border-radius: 0px;
    }
    ```
-
 
    ```js
    // xxx.js
@@ -225,7 +218,6 @@ Not supported.
    </div>
    ```
 
-
    ```css
    /* xxx.css */
    .container {
@@ -241,7 +233,6 @@ Not supported.
      height: 300px;
    }
    ```
-
 
    ```js
    // xxx.js

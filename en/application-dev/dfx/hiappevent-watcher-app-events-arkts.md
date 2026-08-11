@@ -3,15 +3,16 @@
 <!--Kit: Performance Analysis Kit-->
 <!--Subsystem: HiviewDFX-->
 <!--Owner: @liujiaxing2024-->
-<!--Designer: @junjie_shi-->
+<!--Designer: @jiangwenhao-->
 <!--Tester: @gcw_KuLfPSbe-->
-<!--Adviser: @foryourself-->
+<!--Adviser: @jinqiuheng-->
+<!-- md-trans-meta sourceCommit=db60b56aa8d5ef5441fd72debdc9207b3af7e982 translatedAt=2026-07-29T10:48:19.517Z pushedAt=2026-07-29T12:31:36.950Z -->
 
 HiAppEvent provides APIs for subscribing to application events.
 
 ## Available APIs
 
-For details about how to use the APIs (such as parameter usage restrictions and value ranges), see [@ohos.hiviewdfx.hiAppEvent (Application Event Logging)](../reference/apis-performance-analysis-kit/js-apis-hiviewdfx-hiappevent.md).
+API usage instructions, including parameter usage restrictions and specific value ranges. For details, see [@ohos.hiviewdfx.hiAppEvent](../reference/apis-performance-analysis-kit/js-apis-hiviewdfx-hiappevent.md).
 
 **Subscription APIs**
 
@@ -49,16 +50,16 @@ The following describes how to subscribe to a crash event (system event) and a b
 
    <!-- @[AppEvent_Crash_Click_ArkTS_Header](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/PerformanceAnalysisKit/HiAppEvent/EventSub/entry/src/main/ets/entryability/EntryAbility.ets) -->
 
-``` TypeScript
-import { hiAppEvent, hilog } from '@kit.PerformanceAnalysisKit';
-```
+   ``` TypeScript
+   import { hiAppEvent, hilog } from '@kit.PerformanceAnalysisKit';
+   ```
 
 2. In the **entry/src/main/ets/entryability/EntryAbility.ets** file, add the subscription to the crash event and button click event in the **onCreate** function.
 
    Subscribe to the crash event using **OnReceive**. After receiving the event, the watcher immediately triggers the **OnReceive** callback. In the **EntryAbility.ets** file, define the methods related to the watcher of the **OnReceive** type.
 
    <!-- @[AppEvent_Crash_ArkTS_Add_Watcher](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/PerformanceAnalysisKit/HiAppEvent/EventSub/entry/src/main/ets/entryability/EntryAbility.ets) -->    
-   
+
    ``` TypeScript
    hiAppEvent.addWatcher({
      // Set the watcher name. The system identifies different watchers based on their names.
@@ -89,10 +90,10 @@ import { hiAppEvent, hilog } from '@kit.PerformanceAnalysisKit';
    });
    ```
 
-   Subscribe to the button click event using **OnTrigger**. The **OnTrigger()** callback can be triggered only when the conditions specified by **OnTrigger()** are met. In the **napi_init.cpp** file, define the methods related to **OnTrigger()**.
+   Subscribe to the button click event using **OnTrigger**. The **OnTrigger()** callback can be triggered only when the conditions specified by **OnTrigger()** are met. In the **EntryAbility.ets** file, define the methods related to **OnTrigger()**.
 
    <!-- @[AppEvent_Click_ArkTS_Add_Watcher](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/PerformanceAnalysisKit/HiAppEvent/EventSub/entry/src/main/ets/entryability/EntryAbility.ets) -->    
-   
+
    ``` TypeScript
    hiAppEvent.addWatcher({
      // Set the watcher name. The system identifies different watchers based on their names.
@@ -129,18 +130,18 @@ import { hiAppEvent, hilog } from '@kit.PerformanceAnalysisKit';
 3. In the **entry/src/main/ets/pages/Index.ets** file, import the dependent modules.
 
    <!-- @[EventSub_Header](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/PerformanceAnalysisKit/HiAppEvent/EventSub/entry/src/main/ets/pages/Index.ets) -->    
-   
+
    ``` TypeScript
    import { BusinessError } from '@kit.BasicServicesKit';
    import { hiAppEvent, hilog } from '@kit.PerformanceAnalysisKit';
    ```
 
-4. In the **entry/src/main/ets/pages/Index.ets** file of the project, add the **WatchAppCrash ArkTS&C++** button to trigger a crash event, and add the **writeEventArkTS** button in **onClick()** to log the event. The sample code is as follows:
+4. In the **entry/src/main/ets/pages/Index.ets** file of the project, add the **WatchAppCrash ArkTS&C++** button to trigger a crash event, and add the **writeEvent ArkTS** button in **onClick()** to log the event. The sample code is as follows:
 
    Trigger a crash event.
 
    <!-- @[AppEvent_Crash_Button](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/PerformanceAnalysisKit/HiAppEvent/EventSub/entry/src/main/ets/pages/Index.ets) -->    
-   
+
    ``` TypeScript
    Button('WatchAppCrash ArkTS&C++')
      .type(ButtonType.Capsule)
@@ -159,7 +160,7 @@ import { hiAppEvent, hilog } from '@kit.PerformanceAnalysisKit';
    Log events in the button click function.
 
    <!-- @[AppEvent_Click_ArkTS_Button](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/PerformanceAnalysisKit/HiAppEvent/EventSub/entry/src/main/ets/pages/Index.ets) -->    
-   
+
    ``` TypeScript
    Button('writeEvent ArkTS')
      .type(ButtonType.Capsule)
@@ -171,7 +172,7 @@ import { hiAppEvent, hilog } from '@kit.PerformanceAnalysisKit';
      .height('5%')
      .onClick(() => {
        // In onClick(), use hiAppEvent.write() to log an event when the button is clicked.
-       let eventParams: Record<string, number> = {'clickTime': 100};
+       let eventParams: Record<string, number> = { 'clickTime': 100 };
        let eventInfo: hiAppEvent.AppEventInfo = {
          // Define the event domain.
          domain: 'button',
@@ -185,7 +186,8 @@ import { hiAppEvent, hilog } from '@kit.PerformanceAnalysisKit';
        hiAppEvent.write(eventInfo).then(() => {
          hilog.info(0x0000, 'testTag', `AppEvents writeEvent ArkTS success`);
        }).catch((err: BusinessError) => {
-         hilog.error(0x0000, 'testTag', `AppEvents HiAppEvent err.code: ${err.code}, err.message: ${err.message}`);
+         hilog.error(0x0000, 'testTag',
+           `AppEvents HiAppEvent err.code: ${err.code}, err.message: ${err.message}`);
        });
      })
    ```

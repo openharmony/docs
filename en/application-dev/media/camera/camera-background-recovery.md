@@ -1,16 +1,21 @@
 # Practices for Camera Recovery from the Background (ArkTS)
+
 <!--Kit: Camera Kit-->
 <!--Subsystem: Multimedia-->
 <!--Owner: @qano-->
 <!--Designer: @leo_ysl-->
 <!--Tester: @xchaosioda-->
 <!--Adviser: @w_Machine_cc-->
+<!-- md-trans-meta sourceCommit=425e79ed59a841b19860caacc0b050f68405d43e translatedAt=2026-08-10T09:11:37.093Z pushedAt=2026-08-10T09:31:05.227Z -->
 
 This sample demonstrates the complete process for transitioning a camera application from the background to the foreground, providing you with a clear understanding of the entire sequence of API calls.
 
 The state changes during the camera application's transition between foreground and background are as follows:
+
 - When the camera application transitions to the background, it is forcibly disconnected due to security policies, and the camera status callback returns the camera available state, indicating that the camera device is now idle.
+
 - When the camera application returns to the foreground, the camera status callback returns the camera unavailable state, indicating that the camera device is now busy.
+
 - Upon transitioning from the background to the foreground, the camera application must restart the preview stream, photo stream, and camera session management accordingly.
 
 Before referring to the sample code, you are advised to read [Camera Device Management](camera-device-management.md), [Device Input Management](camera-device-input.md), [Camera Session Management](camera-session-management.md), and other related topics in [Camera Development (ArkTS)](camera-device-management.md).
@@ -118,7 +123,7 @@ During the transition of the camera application from the background to the foreg
         return;
       }
 
-      // Create a preview output stream. For details about the surfaceId parameter, see the XComponent. The preview stream uses the surface provided by the XComponent.
+      // Create a preview output stream. The surfaceId parameter is provided by the XComponent component described above. The preview stream uses the surface provided by the XComponent component.
       let previewOutput: camera.PreviewOutput | undefined = undefined;
       try {
         previewOutput = cameraManager.createPreviewOutput(previewProfilesArray[0], surfaceId);

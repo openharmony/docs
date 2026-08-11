@@ -203,7 +203,7 @@ int32_t OH_NetConn_GetNetCapabilities(NetConn_NetHandle *netHandle, NetConn_NetC
 
 | 类型 | 说明 |
 | -- | -- |
-| int32_t | 0 - 成功。 201 - 缺少权限。<br>         401 - 参数错误. 2100002 - 无法连接到服务。<br>         2100003 - 内部错误。 |
+| int32_t | 0 - 成功。201 - 缺少权限。<br>         401 - 参数错误。2100002 - 无法连接到服务。<br>         2100003 - 内部错误。 |
 
 ### OH_NetConn_GetDefaultHttpProxy()
 
@@ -230,7 +230,7 @@ int32_t OH_NetConn_GetDefaultHttpProxy(NetConn_HttpProxy *httpProxy)
 
 | 类型 | 说明 |
 | -- | -- |
-| int32_t | 0 - 成功。 201 - 缺少权限。<br>         401 - 参数错误. 2100002 - 无法连接到服务。<br>         2100003 - 内部错误。 |
+| int32_t | 0 - 成功。201 - 缺少权限。<br>         401 - 参数错误。2100002 - 无法连接到服务。<br>         2100003 - 内部错误。 |
 
 ### OH_NetConn_GetAddrInfo()
 
@@ -556,7 +556,7 @@ int32_t OH_NetConn_RegisterAppHttpProxyCallback(OH_NetConn_AppHttpProxyChange ap
 | 参数项 | 描述 |
 | -- | -- |
 | [OH_NetConn_AppHttpProxyChange](capi-net-connection-type-h.md#oh_netconn_apphttpproxychange) appHttpProxyChange | 需要注册的监听回调。 |
-| uint32_t *callbackId | 回调注册后生成的id, 关联已注册的回调。 |
+| uint32_t *callbackId | 回调注册后生成的id，关联已注册的回调。 |
 
 **返回：**
 

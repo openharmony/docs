@@ -8,7 +8,7 @@
 <!-- md-trans-meta sourceCommit=deff468b8adbfa4199da5cbe7b6cbc33f2bddb1e translatedAt=2026-06-24T07:40:07.954Z pushedAt=2026-06-25T06:57:12.651Z -->
 
 - [About This Kit](driverdevelopment-overview.md)
-- [Environment Preparation](environmental-preparation.md)
+- [Setting Up the Environment](environmental-preparation.md)
 - Basic Peripheral Driver Development<!--development-of-basic-drivers-->
   - [UI-free Driver Development](driverextensionability.md)
   - [UI-based Driver Development](externaldevice-guidelines.md)

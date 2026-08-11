@@ -1169,8 +1169,8 @@ invalidate(): void
 | 名称  | 类型                              | 只读 | 可选 | 说明   |
 | ------- | --------------------------------- | ---- | ---- |--------------------------------- |
 | fontSize | number |  否  | 否 | 设置文本字体大小。<br>单位：[fp](ts-pixel-units.md#基本像素单位)<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
-| maxWidth | number |  否  | 是 | 自定义span所在父组件的内容区的最大宽度约束。<br>默认值：使用自身宽度。<br>单位：[px](ts-pixel-units.md#基本像素单位)<br>**起始版本：** 26.0.0<br>**原子化服务API：** 从API版本26.0.0开始，该接口支持在原子化服务中使用。<br>**模型约束：** 此接口仅可在Stage模型下使用。 |
-| layoutPolicy | [LayoutPolicy](./ts-universal-attributes-size.md#layoutpolicy15) |  否  | 是 | 自定义span所在父组件的宽度布局策略。<br>**说明：** <br>当值为null或undefined时，表示父组件没有设置宽度布局策略。<br>**起始版本：** 26.0.0<br>**原子化服务API：** 从API版本26.0.0开始，该接口支持在原子化服务中使用。<br>**模型约束：** 此接口仅可在Stage模型下使用。 |
+| maxWidth | number |  否  | 是 | 自定义绘制Span所在父组件的内容区的最大宽度约束。<br>默认值：使用自身宽度。<br>单位：[px](ts-pixel-units.md#基本像素单位)<br>**起始版本：** 26.0.0<br>**原子化服务API：** 从API版本26.0.0开始，该接口支持在原子化服务中使用。<br>**模型约束：** 此接口仅可在Stage模型下使用。 |
+| layoutPolicy | [LayoutPolicy](./ts-universal-attributes-size.md#layoutpolicy15) |  否  | 是 | 自定义绘制Span所在父组件的宽度布局策略。<br>**说明：** <br>当值为null或undefined时，表示父组件没有设置宽度布局策略。<br>**起始版本：** 26.0.0<br>**原子化服务API：** 从API版本26.0.0开始，该接口支持在原子化服务中使用。<br>**模型约束：** 此接口仅可在Stage模型下使用。 |
 
 ## CustomSpanMetrics对象说明
 
@@ -3207,7 +3207,7 @@ struct html_convert_demo {
         this.spanString = await StyledString.fromHtml(this.html);
         this.controller.setStyledString(this.spanString);
       }).margin(5)
-    }.width("100%").padding(20)
+    }.width('100%').padding(20)
   }
 }
 ```

@@ -36,7 +36,7 @@ ArkUI提供了丰富的无障碍能力，使开发者能够创建可访问的应
 
   1. 可被无障碍辅助服务识别，即支持通过[accessibilityLevel](../reference/apis-arkui/arkui-ts/ts-universal-attributes-accessibility.md#accessibilitylevel)设置某个组件是否可被无障碍辅助服务所识别。
   2. 提供组件功能及操作信息（通过[accessibilityText](../reference/apis-arkui/arkui-ts/ts-universal-attributes-accessibility.md#accessibilitytext)、[accessibilityDescription](../reference/apis-arkui/arkui-ts/ts-universal-attributes-accessibility.md#accessibilitydescription)属性实现）。
-  3. 支持传递组件实际状态与行为（通过[accessibilityChecked](../reference/apis-arkui/arkui-ts/ts-universal-attributes-accessibility.md#accessibilitychecked13)、[accessibilityRole](../reference/apis-arkui/arkui-ts/ts-universal-attributes-accessibility.md#accessibilityrole18)属性实现）。
+  3. 支持传递组件实际状态与角色（通过[accessibilityChecked](../reference/apis-arkui/arkui-ts/ts-universal-attributes-accessibility.md#accessibilitychecked13)、[accessibilityRole](../reference/apis-arkui/arkui-ts/ts-universal-attributes-accessibility.md#accessibilityrole18)属性实现）。
 
 <!--RP1--><!--RP1End-->
 

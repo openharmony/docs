@@ -493,14 +493,12 @@ console.info(params.toString()); // Output 'fod=1&bard=2&fod=3'
 >
 > 在解析URL字符串时，如果入参中的port内容是当前protocol的默认端口，那么port将被解析为空字符串。默认端口为：
 >
-> | 协议 | 默认端口 |
-> | -------- | -------- |
-> | http: | 80 |
-> | https: | 443 |
-> | ftp: | 21 |
-> | gopher: | 70 |
-> | ws: | 80 |
-> | wss: | 443 |
+> - http:  80
+> - https:  443
+> - ftp:  21
+> - gopher:  70
+> - ws:  80
+> - wss:  443
 
 **示例：**
 
@@ -527,13 +525,13 @@ console.info("toString " + urlObj.toString()); // toString http://testhost/direc
 
 ### constructor<sup>(deprecated)</sup>
 
-> **说明：**
->
-> 从API version 7开始支持，从API version 9开始废弃，建议使用[parseURL<sup>9+</sup>](#parseurl9)替代。
-
 constructor(url: string, base?: string | URL)
 
 URL的构造函数。与[parseURL](#parseurl9)方法功能相同，但parseURL为静态工厂方法，推荐使用parseURL来创建URL对象。
+
+> **说明：**
+>
+> 从API version 7开始支持，从API version 9开始废弃，建议使用[parseURL<sup>9+</sup>](#parseurl9)替代。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -550,7 +548,7 @@ URL的构造函数。与[parseURL](#parseurl9)方法功能相同，但parseURL�
 let baseUrl = 'https://username:password@host:8080';
 let rootPathUrl = new url.URL("/", baseUrl); // Output 'https://username:password@host:8080/';
 let absoluteUrl = new url.URL(baseUrl); // Output 'https://username:password@host:8080/';
-new url.URL('path/path1', b); // Output 'https://username:password@host:8080/path/path1';
+new url.URL('path/path1', absoluteUrl); // Output 'https://username:password@host:8080/path/path1';
 let relativePathUrl = new url.URL('/path/path1', absoluteUrl);  // Output 'https://username:password@host:8080/path/path1'; 
 new url.URL('/path/path1', relativePathUrl); // Output 'https://username:password@host:8080/path/path1';
 new url.URL('/path/path1', rootPathUrl); // Output 'https://username:password@host:8080/path/path1';

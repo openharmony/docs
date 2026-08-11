@@ -6,7 +6,7 @@
 <!--Designer: @widecode-->
 <!--Tester: @logic42-->
 <!--Adviser: @ge-yafang-->
-<!-- md-trans-meta sourceCommit=dcae6f10c07044342acb5b2dc0416e100c5bcaa2 translatedAt=2026-06-17T06:41:18.811Z pushedAt=2026-06-22T08:31:01.279Z -->
+<!-- md-trans-meta sourceCommit=ff292cc0ec52b7ba83c260663f48a659c1ef8f7d translatedAt=2026-07-27T08:16:47.227Z pushedAt=2026-07-27T09:06:36.488Z -->
 
 ## When to Use
 
@@ -23,7 +23,7 @@ Since API version 18, data in vector stores can be persisted.
 
 - The default log mode is Write Ahead Log ([WAL](data-terminology.md#write-ahead-log-wal)), and the default flush mode is [FULL](data-terminology.md#full).
 
-- A vector store supports a maximum of four read connections and one write connection at a time by default. A thread can perform the read operation when acquiring an idle read connection. If there is no idle read connection, a new read connection will be created.
+- By default, there are four read connections and one write connection. A thread can perform the read operation when acquiring an idle read connection. If there is no idle read connection, a new read connection will be created.
 
 - To ensure data accuracy, the database supports only one write operation at a time. Concurrent write operations are performed in serial mode.
 
@@ -42,7 +42,7 @@ Types of database table fields are as follows.
 | Type| Description| Supported|
 | -------- | -------- | -------- |
 | NULL | Null.| Yes|
-| INTEGER | Integer.| Yes|
+| INTEGER | Integer. | Yes |
 | DOUBLE | Floating point.| Yes|
 | TEXT | String.| Yes|
 | BLOB | Binary.| Yes|
@@ -132,7 +132,7 @@ The following are APIs for the vector database persistence feature. For details 
 
 | API| Description|
 | -------- | -------- |
-| getRdbStore(context: Context, config: StoreConfig): Promise&lt;RdbStore&gt; | Obtains an **RdbStore** instance for data operations.|
+| getRdbStore(context: Context, config: StoreConfig): Promise&lt;RdbStore&gt; | Obtains an **RdbStore** instance by configuring the **StoreConfig** parameter based on your requirements, and performs data operations by calling the **RdbStore** APIs.|
 | execute(sql: string, txId: number, args?: Array&lt;ValueType&gt;): Promise&lt;ValueType&gt; | Executes SQL statements that contain specified parameters. The number of operators (such as =, >, and <) in the SQL statements cannot exceed 1000.|
 | querySql(sql: string, bindArgs?: Array&lt;ValueType&gt;):Promise&lt;ResultSet&gt; | Queries data in the RDB store using the specified SQL statement. The number of operators (such as =, >, and <) in the SQL statements cannot exceed 1000.|
 | beginTrans(): Promise&lt;number&gt; | Starts the transaction before executing the SQL statements.|
@@ -253,7 +253,7 @@ The following are APIs for the vector database persistence feature. For details 
 
    The sample code is as follows:
 
-   <!--@[vector_TS_query](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkData/VectorStore/entry/src/main/ets/pages/crud/vectorStoreCTUD.ets)-->
+   <!--@[vector_TS_query](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkData/VectorStore/entry/src/main/ets/pages/crud/vectorStoreCTUD.ets)--> 
 
    ``` TypeScript
    // Perform single-table queries.
@@ -281,7 +281,7 @@ The following are APIs for the vector database persistence feature. For details 
      // Create the second table.
      let CREATE_SQL = 'CREATE TABLE IF NOT EXISTS test1(id text PRIMARY KEY, location text, people text, age int, repr floatvector(2));';
      await store!.execute(CREATE_SQL);
-     let resultSet = await store!.querySql('select *, (1000 * (location='local') + 500 * (people like 'Mike') + 100 * (age > 18)) as score from test1 where repr <-> '[6.2, 7.3]' < 0.8 order by score limit 5;');
+     let resultSet = await store!.querySql("select *, (1000 * (location='local') + 500 * (people like 'Mike') + 100 * (age > 18)) as score from test1 where repr <-> '[6.2, 7.3]' < 0.8 order by score limit 5;");
      resultSet!.close();
    } catch (err) {
      console.error(`query failed, code is ${err.code}, message is ${err.message}`);

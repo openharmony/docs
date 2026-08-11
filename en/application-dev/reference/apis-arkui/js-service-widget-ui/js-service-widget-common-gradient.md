@@ -1,10 +1,12 @@
 # Gradient Styles
+
 <!--Kit: ArkUI-->
 <!--Subsystem: ArkUI-->
 <!--Owner: @hehongyang3-->
 <!--Designer: @hehongyang3-->
 <!--Tester: @lxl007-->
 <!--Adviser: @Brilliantry_Rui-->
+<!-- md-trans-meta sourceCommit=dfb15c325281e5e789ea7ade45dfdd45876606ad translatedAt=2026-07-27T02:28:06.918Z pushedAt=2026-07-27T09:23:36.764Z -->
 
 Gradient styles are commonly supported and can be set in the **style** attribute or a **.css** file. Gradients enable smooth transition between two or more specified colors.
 
@@ -14,11 +16,9 @@ Gradient styles are commonly supported and can be set in the **style** attribute
 
 This framework supports two gradient styles: linear gradient and repeating linear gradient.
 
-
 ## Linear Gradient/Repeating Linear Gradient
 
 To use the gradient style, you must specify the transition direction and transition color.
-
 
 ### Transition Direction
 
@@ -28,12 +28,10 @@ To use the gradient style, you must specify the transition direction and transit
 
 - **angle**: gradient by angle.
 
-
 ```css
 background: linear-gradient(direction/angle, color, color, ...);
 background: repeating-linear-gradient(direction/angle, color, color, ...);
 ```
-
 
 ### Transition Color
 
@@ -83,7 +81,7 @@ The color can be specified in any of the following formats: \#ff0000, \#ffff0000
 4. Repeating gradient
 
    ```css
-   /* Repeating gradient from left to right, the area of which is 30 px (60 – 30) and the opacity is 0.5 */
+   /* Repeating gradient from left to right, the area of which is 30 vp (60 – 30) and the opacity is 0.5 */
    background: repeating-linear-gradient(to right, rgba(255, 255, 0, 1) 30vp,rgba(0, 0, 255, .5) 60vp);
    ```
 

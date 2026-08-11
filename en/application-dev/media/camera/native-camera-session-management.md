@@ -1,10 +1,12 @@
 # Camera Session Management (C/C++)
+
 <!--Kit: Camera Kit-->
 <!--Subsystem: Multimedia-->
 <!--Owner: @qano-->
 <!--Designer: @leo_ysl-->
 <!--Tester: @xchaosioda-->
 <!--Adviser: @w_Machine_cc-->
+<!-- md-trans-meta sourceCommit=03da8d98875c99278437bdd28f12d4fdb3efd8f7 translatedAt=2026-08-10T09:21:02.885Z pushedAt=2026-08-10T13:32:51.597Z -->
 
 Before using the camera application for preview, photo capture, video recording, and metadata management, you must create a camera session.
 
@@ -14,7 +16,7 @@ You can implement the following functions in the session:
 
   Configuring an input stream is to add a device input, which means that the user selects a camera for photo capture. Configuring an output stream is to select a data output mode. For example, to implement photo capture, you must configure both the preview stream and photo stream as the output stream. The data of the preview stream is displayed on the **XComponent**, and that of the photo stream is saved to the Gallery application through the ImageReceiver API.
 
-- Perform more operations on the camera device. For example, add the flash and adjust the focal length. For details about the supported configurations and APIs, see [Camera API Reference](../../reference/apis-camera-kit/capi-oh-camera.md).
+- Add configurations such as flash and focus adjustment. For details about the supported configurations and API descriptions, refer to [OH_Camera](../../reference/apis-camera-kit/capi-oh-camera.md).
 
 - Control session switching. The application can switch the camera mode by removing and adding output streams. For example, to switch from photo capture to video recording, the application must remove the photo output stream and add the video output stream.
 

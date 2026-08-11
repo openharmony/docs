@@ -118,7 +118,11 @@ show(x: number, y: number): void
 
 unbind(): void
 
-解除放大镜与当前组件的绑定。使用前需先通过UIContext中的getMagnifier()方法获取Magnifier实例。
+解除放大镜与当前组件的绑定。
+
+> **说明：**
+>
+> 使用前需先通过UIContext中的getMagnifier()方法获取Magnifier实例。
 
 **原子化服务API：** 从API version 22开始，该接口支持在原子化服务中使用。
 

@@ -303,7 +303,7 @@ ModularObjectExtensionAbility支持灵活的进程、线程模型以及其他属
 
 ## 实现ModularObjectExtensionAbility客户端
 
-介绍客户端应用如何连接ModularObjectExtensionAbility，以及通过[OHIPCRemoteProxy](../reference/apis-ipc-kit/capi-ohipcparcel-ohipcremoteproxy.md)对象调用服务端提供的接口方法。
+介绍客户端应用如何连接ModularObjectExtensionAbility，并与服务端通信。客户端可通过Proxy对象进行静态调用，也可通过ModularObjectDispatcher进行动态调用。
 
 ### 连接ModularObjectExtensionAbility
 <!-- @[modular_object_extension_connect](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/Ability/ModularObjectExtensionClient/entry/src/main/cpp/napi_init.cpp) -->
@@ -458,6 +458,12 @@ static napi_value TestConnect(napi_env env, napi_callback_info info)
         return nullptr;
     }
     ```
+
+### 通过ModularObjectDispatcher与服务端通信
+
+除了上述基于Proxy的静态调用方式外，客户端还可以通过ModularObjectDispatcher实现动态调用。静态调用方式需要在编译期依赖服务端的接口定义，而动态调用方式允许客户端在运行时查询服务端的类型库元数据，并通过方法名发起调用，无需编译期绑定。
+
+动态调用适用于运行时才能确定接口的场景，如通用脚本引擎、自动化测试框架和跨版本网关服务。完整开发流程请参考[使用ModularObjectDispatcher实现动态接口调用 (C/C++)](./modular-object-dispatcher-development.md)。
 
 ### 断连ModularObjectExtensionAbility
 

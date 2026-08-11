@@ -317,7 +317,7 @@ import { util } from '@kit.ArkTS';
 
 let arrayBuffer = new ArrayBuffer(2048);
 let thatSer = new xml.XmlSerializer(arrayBuffer);
-thatSer.setCDATA('root SYSTEM')
+thatSer.setCDATA('root SYSTEM');
 let uint8 = new Uint8Array(arrayBuffer);
 let result = util.TextDecoder.create().decodeToString(uint8);
 console.info(result); // <![CDATA[root SYSTEM]]>

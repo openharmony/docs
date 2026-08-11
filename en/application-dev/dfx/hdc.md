@@ -3,11 +3,11 @@
 <!--Kit: Performance Analysis Kit-->
 <!--Subsystem: HiviewDFX-->
 <!--Owner: @kunsilva-->
-<!--Designer: @weimingjin-->
+<!--Designer: @MontSaintMichel-->
 <!--Tester: @gcw_KuLfPSbe-->
-<!--Adviser: @foryourself-->
+<!--Adviser: @jinqiuheng-->
 
-HarmonyOS Device Connector (hdc) is a command line tool used to interact with and debug devices, transmit data, view logs, and install applications. It can run on Windows, Linux, and MacOS to provide efficient and convenient device debugging capabilities.
+OpenHarmony Device Connector (hdc) is a command line tool used to interact with devices for debugging, data transfer, log viewing, and application installation. It can run on Windows, Linux, and MacOS to provide efficient and convenient device debugging capabilities.
 
 hdc consists of three parts:
 
@@ -31,7 +31,7 @@ The following figure shows the relationship.
 
 You can obtain hdc in any of the following ways:
 
-1. SDK, which is embedded in [DevEco Studio](https://developer.huawei.com/consumer/en/deveco-studio/). No additional configuration is required. hdc is installed in **DevEco Studio/sdk/default/openharmony/toolchains** by default. On macOS, the SDK is installed in **DevEco Studio/Contents**.
+1. Obtain the hdc tool through OpenHarmony SDK. OpenHarmony SDK is embedded in [DevEco Studio](https://developer.huawei.com/consumer/en/deveco-studio/). No additional configuration is required. hdc is installed in **DevEco Studio/sdk/default/openharmony/toolchains** by default. On macOS, the SDK is installed in **DevEco Studio/Contents**.
 
 2. SDK directory of [Command Line Tools](https://developer.huawei.com/consumer/en/download/). hdc is installed in Command Line **Tools/sdk/default/openharmony/toolchains** by default.
 
@@ -41,58 +41,65 @@ hdc supports both USB and wireless connections. You can enable or disable debugg
 
 **Perform debugging in the installation directory**
 
-- You can run the hdc command in the **toolchains** subdirectory of the SDK to debug devices.
+1. You can run hdc commands in the **toolchains** subdirectory of the OpenHarmony SDK to debug devices.
 
-- hdc can run independently. You can save the hdc executable file and **libusb_shared** dependency file in the **toolchains** subdirectory to a custom directory and run the hdc command in the custom directory to implement independent debugging.
+2. hdc can run independently. You can save the hdc executable file and **libusb_shared** dependency file in the **toolchains** subdirectory to a custom directory and run the hdc command in the custom directory to implement independent debugging.
 
 **Add hdc to the system environment variables**
 
-- On Windows:
-  1. Press the **Windows** key, enter **Settings** in the search box, and click to enter the **Settings** screen.
-  2. Search for **Advanced system settings**. In **Environment Variables** > **System Variables** > **Path**, click **Edit** to add the directory of **hdc.exe** to **Path**. After the environment variables are configured, restart the computer and run the hdc command in the CLI.
+1. On Windows:
 
-- On Linux/macOS:
-  1. Start the terminal tool and run the following command:
+   - Press the **Windows** key, enter **Settings** in the search box, and click to enter the **Settings** screen.
+
+   - Search for **Advanced system settings**. Choose **Environment Variables** > **System Variables** > **Path**, and click **Edit** to add the directory of **hdc.exe** to **Path**. After the environment variables are configured, restart the computer and run the hdc command in the CLI.
+
+2. On Linux/macOS:
+
+   - Start the terminal tool and run the following command:
 
       ```shell
       echo $SHELL
       ```
 
-      1. If the command output is **bin/bash**, open the **.bashrc** file.
+      - If the command output is **bin/bash**, open the **.bashrc** file.
 
-          ```shell
-          vi ~/.bashrc
-          ```
+         ```shell
+         vi ~/.bashrc
+         ```
 
-      2. If the command output is **/bin/zsh**, open the **.zshrc** file.
+      - If the command output is **/bin/zsh**, open the **.zshrc** file.
 
-          ```shell
-          vi ~/.zshrc
-          ```
+         ```shell
+         vi ~/.zshrc
+         ```
 
-  2. Switch to the English input method and press **i** to enter the Insert mode.
-  3. Add the **PATH** information to the end of the file.
+   - Switch to the English input method and press **i** to enter the Insert mode.
+
+   - Add the **PATH** information to the end of the file.
 
       ```shell
       export PATH={DevEco Studio}/sdk/default/openharmony/toolchains:$PATH
       ```
 
       Replace **{DevEco Studio}** with the absolute path of the DevEco Studio installation directory, for example, **/home/DevEco-Studio**.
-  4. After the editing is complete, press **Esc** to exit the Insert mode, input **:wq**, and press **Enter** to save the file.
-  5. Run the following command for the environment variable to take effect.
-      1. If the **.bashrc** file is opened in **1**, run the following command:
 
-          ```shell
-          source ~/.bashrc
-          ```
+   - After the editing is complete, press **Esc** to exit the Insert mode, input **:wq**, and press **Enter** to save the file.
 
-      2. If the **.zshrc** file is opened in **1**, run the following command:
+   - Run the following command for the environment variable to take effect.
 
-          ```shell
-          source ~/.zshrc
-          ```
+      - If the **.bashrc** file is opened in **1**, run the following command:
 
-  6. After the environment variables are configured, restart the system.
+         ```shell
+         source ~/.bashrc
+         ```
+
+      - If the **.zshrc** file is opened in **1**, run the following command:
+
+         ```shell
+         source ~/.zshrc
+         ```
+
+   - After the environment variables are configured, restart the system.
 
 ### (Optional) Configuring Server
 
@@ -100,7 +107,7 @@ You can configure system environment variables to modify the listening port of t
 
 > **NOTE**
 >
-> After the environment variables are configured, restart the CLI or other software that uses HarmonyOS SDK for the new environment variable to take effect.
+> After the environment variables are configured, restart the CLI or other software that uses OpenHarmony SDK for the new environment variable to take effect.
 
 ## hdc Commands
 
@@ -131,7 +138,7 @@ hdc -t connect-key shell echo "Hello world"
 | [tmode port](#enabling-the-network-connection-channel)| Enables the network connection channel of the device.|
 | [tmode port close](#disabling-the-network-connection-channel)| Disables the network connection channel of the device.|
 | [tconn](#connecting-to-a-device-over-tcp)| Specifies the device to connect based on **IP:port**.|
-| [shell](#running-interactive-commands)| Runs a command on the device, for example, **hdc shell ls**. If no command parameter is specified, you can run commands on the device terminal.|
+| [shell](#running-interactive-commands)| Runs a command on the device, for example, **hdc shell ls**. If no command parameter is specified, you can run commands on the device terminal. For details about common debugging tools, see [Common debugging tools for shell commands](#common-debugging-tools-for-shell-commands).|
 | [install](#installing-an-application)| Installs an application.|
 | [uninstall](#uninstalling-an-application)| Uninstalls a specified application.|
 | [file send](#sending-a-file-to-a-remote-device)| Sends a local file to a remote device.|
@@ -142,15 +149,17 @@ hdc -t connect-key shell echo "Hello world"
 | [fport rm](#deleting-a-port-forwarding-task)| Deletes a port forwarding task.|
 | [start](#starting-a-service)| Starts the hdc server process.|
 | [kill](#terminating-a-service)| Terminates the hdc server process.|
+| [reconnect](#reconnecting-usb-devices)| Resets the session of the connected USB device and triggers USB re-enumeration.<br>**NOTE**: This command is supported since API version 26.0.0.|
 | [hilog](#printing-device-logs)| Obtains device log information.|
 | [jpid](#displaying-pids-of-started-applications)| Displays the PIDs of started applications on the device.|
 | [track-jpid](#displaying-pids-and-names-of-started-applications-in-real-time)| Displays the PIDs and names of started applications on the device in real time.|
 | [target boot](#restarting-the-target-device)| Restarts the target device.|
-| <!--DelRow--> [target mount](#mounting-the-system-partition-in-readwrite-mode)| Mounts the system partition in read/write mode. (This command is unavailable for non-root devices.)|
-| <!--DelRow--> [smode](#granting-root-permission-to-the-hdc-server)| Grants the root permission to the hdc server on the device. You can use the **-r** option to revoke the granted permission. (This command is unavailable for non-root devices.)|
 | [keygen](#security-commands)| Generates a new key pair.|
 | [version](#querying-the-hdc-version)| Displays the hdc version information. You can also run the **hdc -v** command to display the version information.|
 | [checkserver](#querying-the-client-and-server-versions)| Obtains the version information about the client process and server process.|
+| [bugreport](#exporting-system-information)| Exports system information.|
+| [spawn-sub](#starting-a-subserver)| Starts a subserver.<br>**NOTE**: This command is supported since API version 26.0.0.|
+| [killall-sub](#terminating-a-subserver)| Terminates a subserver.<br>**NOTE**: This command is supported since API version 26.0.0.|
 
 ## Basic Commands
 
@@ -167,6 +176,34 @@ hdc list targets
 ```shell
 hdc shell echo "Hello world"
 ```
+
+### Common Debugging Tools for Shell Commands
+
+hdc can be used with other debugging tools. The following table lists the tools.
+
+| Command| Description|
+| -------- | -------- |
+| [aa](../tools/aa-tool.md) | Application debugging tool|
+| [anm](../tools/anm-tool.md) | Notification manager|
+| [atm](../tools/atm-tool.md) | Access token manager|
+| [bm](../tools/bm-tool.md) | Bundle manager|
+| [cem](../tools/cem-tool.md) | Common event manager|
+| [devicedebug](../tools/devicedebug-tool.md) | Tool for sending debug signals to applications|
+| [edm](../tools/edm-tool.md) | Enterprise device manager|
+| [hidumper](./hidumper.md) | System information export tool|
+| [hilog](./hilog.md) | Log manager|
+| [hiperf](./hiperf.md) | Performance analysis tool|
+| [hitrace](./hitrace.md) | System tracing and collection tool|
+| [mediatool](../tools/mediatool.md) | Media resource library tool|
+| [param](../tools/param-tool.md) | Operating system parameter manager|
+| [power-shell](../tools/power-shell.md) | Device power status conversion tool|
+| [rawheap-translator](../tools/rawheap-translator.md) | .rawheap file parsing tool|
+| [uinput](./uinput.md) | Input simulation tool|
+| <!--DelRow-->[sqlite](../database/sqlite-database-debug-tool.md) | SQLite debugging tool|
+| <!--DelRow-->[wukong](../application-test/wukong-guidelines.md) | Wukong stability tool|
+| <!--DelRow-->[UItest](../application-test/uitest-guidelines.md) | UI test framework|
+| <!--DelRow-->[SmartPerf Device daemon](../application-test/smartperf-guidelines.md#smartperf-device-daemon)| SmartPerf Device-daemon tool commands|
+<!--RP1--><!--RP1End-->
 
 ### Obtaining the Help Information
 
@@ -186,7 +223,7 @@ hdc help
 
 | Value| Description|
 | -------- | -------- |
-| OpenHarmony device connector(HDC) ...<br>---------------------------------global commands:----------------------------------<br>-h/help [verbose]&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- Print hdc help, 'verbose' for more other cmds<br>... (Detailed information is omitted here.)| Help information for hdc commands.|
+| OpenHarmony device connector(hdc) ...<br>---------------------------------global commands:----------------------------------<br>-h/help [verbose]&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- Print hdc help, 'verbose' for more other cmds<br>... (Detailed information is omitted here.)| Help information for hdc commands.|
 
 > **NOTE**
 >
@@ -296,7 +333,7 @@ hdc -t [connect-key] wait # Wait for the specified device to connect. Replace co
 **Usage**
 
 ```shell
-# If the device is properly connected, no information is displayed.
+# If the device is connected properly, the command executes with no printed output.
 $ hdc wait # Connect to a single device.
 $ hdc -t connect-key1 wait # Use -t to specify the device to be connected when there are multiple devices.
 ```
@@ -418,7 +455,7 @@ $ hdc -s 127.0.0.1:8710 list targets
    ```shell
    $ hdc kill          # Terminate the local hdc service.
    $ hdc -s IP:8710 -m # Enable the hdc service for network forwarding.
-                       # IP indicates the IP address of the server. To query the IP address, you can run the **ipconfig** command on Windows and run the **ifconfig** command on Unix.
+                       # IP indicates the IP address of the server. To query the IP address, you can run the ipconfig command on Windows and run the ifconfig command on Unix.
                        # 8710 is the default port number. You can also set it to another port number, for example, 18710.
                        # After startup, the server prints logs.
    ```
@@ -429,7 +466,7 @@ $ hdc -s 127.0.0.1:8710 list targets
 
    ```shell
    $ hdc -s IP:8710 [command] # IP indicates the IP address of the server, and 8710 indicates the port number set in step 1.
-                              # If the port number changes, change the port number accordingly.
+                              # If the port number changes, change the port number in this command accordingly.
                               # command can be any available hdc command, for example, list targets.
    ```
 
@@ -560,12 +597,14 @@ hdc shell [-b bundlename] [command]
 
 | Parameter| Description|
 | -------- | -------- |
-| -b bundlename | This parameter is added in 3.1.0e. The bundle name of a debug application. The command is executed in non-interactive mode in the data directory of the debug application.<br>For details, [Accessing the App Sandbox in CLI Mode](https://developer.huawei.com/consumer/en/doc/harmonyos-guides/ide-device-file-explorer#section48216711204)<br>Currently, this parameter can be used only in non-interactive mode, and the **command** parameter must be specified to enter an interactive shell session.<br>Otherwise, commands are executed in the system root directory by default.|
+| -b bundlename | This parameter is added in 3.1.0e. Bundle name of the debug-type application.<br>- If the command parameter is specified, the command is executed in non-interactive mode in the data directory of the app that can be debugged. For details, [Accessing the App Sandbox in CLI Mode](https://developer.huawei.com/consumer/en/doc/harmonyos-guides/ide-device-file-explorer#section48216711204)<br>In version 3.2.0e and later, the following features are added to the parameter:<br>- If the command parameter is not specified, the interactive shell session of the data directory of the app that can be debugged is supported. The default working directory is the root directory of the data directory of the app that can be debugged.<br>- If the [-b bundlename] parameter is not specified, the default execution path is the root directory of the system.|
 | command | A single command to execute on the device. The command varies depending on the system type or version. You can run the **hdc shell ls /system/bin** command to obtain the supported command list. Currently, most commands are provided by [toybox](../tools/toybox.md). You can run the **hdc shell toybox --help** command to obtain the help information.<br>If this parameter is not specified, hdc starts an interactive shell session, in which you can enter commands such as **ls**, **cd**, and **pwd** at the command prompt.|
 
 > **NOTE**
 >
 > If the **[-b bundlename]** parameter is specified, the installed application corresponding to the bundle name must be signed using the debug certificate and started on the device. For details about how to request and use the debug certificate, see [Requesting a Debug Certificate](https://developer.huawei.com/consumer/en/doc/app/agc-help-add-debugcert-0000001914263178).
+>
+> If both the system version and hdc version of the device are earlier than 3.2.0e, the default working directory of the interactive shell session entered by the command parameter is still the root directory of the system. You are advised to upgrade the system version of the device and check the version compatibility by referring to the [hdc version mapping table](#hdc-version-mappings). You can run the hdc shell hdcd -v command to query the system version number of the device.
 
 **Return value**
 
@@ -586,7 +625,7 @@ $
 $ hdc shell "ps -ef | grep hdcd"
 shell         39491      1 1 14:40:58 ?     00:00:00 hdcd
 
-# Obtain the help information.
+# Query all available commands.
 $ hdc shell help -a
 ---toybox---------------------------------------------------------------------
 
@@ -600,27 +639,12 @@ name of a command to run, followed by any arguments to that command.
 
 # Specify the bundle name of an application to run the command in non-interactive mode in its data directory. The **touch**, **rm**, **ls**, **stat**, **cat** and **mkdir** commands are supported.
 $ hdc shell -b com.example.myapplication ls data/storage/el2/base/
+
+# Enters the interactive shell session of the app data directory of a specified package name.
+$ hdc shell -b com.example.myapplication
+$ pwd
+... (The actual output on the device prevails.)
 ```
-
-**Common Debugging Tools**
-
-| Command| Description|
-| -------- | -------- |
-| [aa](../tools/aa-tool.md) | Application debugging tool|
-| [bm](../tools/bm-tool.md) | Bundle manager|
-| [cem](../tools/cem-tool.md) | Common event manager|
-| [anm](../tools/anm-tool.md) | Notification manager|
-| [edm](../tools/edm-tool.md) | Enterprise device manager|
-| [param](../tools/param-tool.md) | Operating system parameter manager|
-| [power-shell](../tools/power-shell.md) | Device power status conversion tool|
-| [atm](../tools/atm-tool.md) | Access token manager|
-| [hilog](./hilog.md) | Log manager|
-| [hidumper](./hidumper.md) | System information export tool|
-| [hitrace](./hitrace.md) | System logging and collection tool|
-| [hiperf](./hiperf.md) | Performance analysis tool|
-| [mediatool](../tools/mediatool.md) | Media resource library tool|
-| [devicedebug](../tools/devicedebug-tool.md) | Debugging application signal sending tool|
-| [rawheap-translator](../tools/rawheap-translator.md) | .rawheap file parsing tool|
 
 ## Managing Applications
 
@@ -634,20 +658,21 @@ $ hdc shell -b com.example.myapplication ls data/storage/el2/base/
 The [install command](../tools/bm-tool.md#install) of the bm module is integrated into the device, which simplifies the application installation process. You can run the command on the PC to install applications. Run the following commands:
 
 ```shell
-hdc install [-cwd path|-r|-s|-w waitingTime|-u userId|-p|-h] src
+hdc install [-cwd path|-r|-s|-w waitingTime|-u userId|-p|-g|-h] src
 ```
 
 **Parameters**
 
 | Name| Description|
 | -------- | -------- |
-| src | Used to specify the path of the application installation package. You can install [HAP](../quick-start/hap-package.md) and inter-application [HSP](../quick-start/in-app-hsp.md). Since API version 22, [APP](../quick-start/application-package-glossary.md#app) can be installed.|
+| src | Used to specify the path of the application installation package. You can install [HAP](../quick-start/hap-package.md) and inter-application [HSP](../quick-start/in-app-hsp.md). From API version 22, [app packages](../quick-start/application-package-glossary.md#app) are supported.|
 | -cwd | Modifies the working directory.<br>This parameter is used to switch the **src** directory to the specified path during application installation. For example, when the new application is **test.hap** and the directory is **C:\\**, the actual installation file path is **C:\\test.hap**. If **-cwd "D:\\"** is executed, the actual installation file path is **D:\\test.hap**.|
 | -r | Used to overwrite an existing HAP or HSP file. This parameter is optional. This parameter is not specified by default, indicating that the existing file will be overwritten.|
-| -s | Used to specify the path where the inter-application HSP is to be installed. This parameter is mandatory for installing the application HSP and optional in other scenarios. Each directory can contain only one HSP file.|
-| -w | Used to wait for a specified time before installing a HAP. The minimum waiting time is 180s, and the maximum waiting time is 600s. The default waiting time is 180s. This parameter is optional.|
+| -s | Used to specify the path of the HSP for applications to be installed. This parameter is mandatory when installing an application HSP, and optional in all other scenarios. Each directory can contain only one HSP file.|
+| -w | Used to specify the wait time for the bm tool when installing the HAP. This parameter is optional. The minimum wait time is 180 seconds, the maximum is 600 seconds, and the default value is 180 seconds.|
 | -u | Used to specify the [user](../tools/bm-tool.md#userid). By default, the application is installed for the current active user. This parameter is optional.|
 | -p | Used to specify the path of the HAP or HSP file to be installed. This parameter is optional. If multiple HAPs or HSPs are required, you can specify the folder path of the HAPs or HSPs. Since API version 22, you can specify the path of the APP file to be installed or the folder path of only one APP.|
+| -g | This parameter is optional. It is used to support [user_grant](../security/AccessToken/app-permission-mgmt-overview.md#user_grant-user-authorization) and [manual_settings](../security/AccessToken/app-permission-mgmt-overview.md#manual_settings-manual-authorization) permission authorization during debug package installation.<br>This parameter takes effect only for [applications of the debug version](performance-analysis-kit-terminology.md#applications-of-the-debug-version). When a debug application is updated to a release application, user authorization and manual authorization are canceled.<br>**NOTE**: This parameter is supported since API version 24.|
 | -h | Used to display the help information about the [install command](../tools/bm-tool.md#install) of the bm module. This parameter is optional.|
 
 **Return value**
@@ -661,7 +686,7 @@ hdc install [-cwd path|-r|-s|-w waitingTime|-u userId|-p|-h] src
 
 > **NOTE**
 >
-> When the **install** command and bm module parameters are executed, the **-w** and **-u** parameters (which require values) must be enclosed in quotes along with their values, such as **"-w 180"** and **"-u 100"**, to prevent parameter parsing errors that could cause command execution to fail.
+> When the **install** command is executed to use the command parameters of the bm module, if the -w and -u parameters require combined use with their values, you must enclose the parameter variables and their values in quotation marks (for example, **"-w 180"** and **"-u 100"**). This prevents command execution failures caused by abnormal parameter parsing.
 
 ```shell
 # Install the example.hap file.
@@ -684,19 +709,24 @@ $ hdc install -s D:\example.hsp
 [Info]App install path:D:\example.hsp msg:install bundle successfully.
 AppMod finish
 
-# Install the example.hap file (-w is supported by the install command of the bm module, which specifies the waiting time of the bm tool).
-$ hdc "-w 180" install D:\example.hap
+# Install the example.hap file (-w is supported by the install command of the bm module, which specifies the wait time of the bm tool).
+$ hdc install "-w 180" D:\example.hap
 [Info]App install path:D:\example.hap msg:install bundle successfully.
 AppMod finish
 
 # Install the example.hap file (-u is supported by the install command of the bm module, which specifies the user ID).
-$ hdc "-u 100" install D:\example.hap
+$ hdc install "-u 100" D:\example.hap
 [Info]App install path:D:\example.hap msg:install bundle successfully.
 AppMod finish
 
 # Install the application in D:\hap_dir (-p is supported by the install command of the bm module, which specifies the installation path).
-$ hdc -p install D:\hap_dir
+$ hdc install -p D:\hap_dir
 [Info]App install path:D:\hap_dir msg:install bundle successfully.
+AppMod finish
+
+# The following is an example of installing the example.hap package. (When the signature certificate type of the install command is debug version application, the user is automatically granted with the permission and can manually set the permission.)
+$ hdc install -g D:\example.hap
+[Info]App install path:D:\example.hap msg:install bundle successfully.
 AppMod finish
 ```
 
@@ -780,7 +810,10 @@ hdc file send [-a|-sync|-z|-m|-cwd path|-b bundlename] SOURCE DEST
 
 **Return value**
 
-A success message is returned if the file is sent successfully. Error information is displayed if the file fails to be sent.
+| Value| Description|
+| -------- | -------- |
+| FileTransfer finish, Size:1, File count = 1, time:10ms rate:0.00kB/s | A success message is displayed if the file is sent successfully.|
+| Reason for the file sending failure| Error information is displayed if the file fails to be sent.|
 
 **Usage**
 
@@ -791,10 +824,10 @@ FileTransfer finish, Size:xxx, File...
 $ hdc file send -b com.example.myapplication test /test/ # Import the test file to the com.example.myapplication sandbox.
 FileTransfer finish, Size:xxx, File...
 
-$ hdc file send D:\dest\Camera/mnt/data/100/media_fuse/Photo/ # Import all files in D:\dest\Camera to /mnt/data/100/media_fuse/Photo/Camera/.
+$ hdc file send D:\dest\Camera/mnt/data/100/media_fuse/Photo/ # Media library operation. Import all files in D:\dest\Camera to /mnt/data/100/media_fuse/Photo/Camera/.
 FileTransfer finish, Size:xxx, File...
 
-$ hdc file send D:\dest\New directory/mnt/data/100/media_fuse/Photo/Camera/ # Directories cannot be created in the media library.
+$ hdc file send D:\dest\New directory/mnt/data/100/media_fuse/Photo/Camera/ # Media library operation. Directories cannot be created in the media library.
 [Fail][E005005] Error create directory: ..., path:/mnt/data/100/media_fuse/Photo/Camera//New directory
 ```
 
@@ -822,7 +855,10 @@ hdc file recv [-a|-sync|-z|-m|-cwd path|-b bundlename] DEST SOURCE
 
 **Return value**
 
-A success message is displayed if the file is received successfully. Error information is displayed if the file fails to be received.
+| Value| Description|
+| -------- | -------- |
+| FileTransfer finish, Size:1, File count = 1, time:10ms rate:0.00kB/s | A success message is displayed if the file is received successfully.|
+| Reason for the file receiving failure| Error information is displayed if the file fails to be received.|
 
 **Usage**
 
@@ -859,7 +895,7 @@ FileTransfer finish, Size:xxx, File...
 >
 > Port forwarding type supported by the computer: TCP.
 >
-> Port forwarding type supported by the device: TCP, dev, localabstract, localreserved, localfilesystem, jdwp, ark.
+> Port forwarding types supported by the device: TCP, dev, localabstract, localreserved, localfilesystem, jdwp, ark.
 
 ### Querying the Port Forwarding Task List
 
@@ -931,6 +967,7 @@ hdc rport remotenode localnode
 | [Fail]Incorrect forward command. | Failed to set up the port forwarding due to parameter errors.|
 | [Fail]TCP Port listen failed at XXXX. | Failed to set up the port forwarding because the local port is in use.|
 | [Fail]Forward parament failed. | The port forwarding format is incorrect, or the forwarding port protocol or port range is incorrect.|
+| [Fail]Not support forward-type. | The current platform does not support the forwarding port protocol used in the parameter.|
 
 **Usage**
 
@@ -977,6 +1014,7 @@ Remove forward ruler success, ruler:tcp:1234 tcp:1080
 | -------- | -------- |
 | start [-r] | Starts the hdc process. You can use the **-r** option to restart the process.|
 | kill [-r] | Terminates the hdc process. You can use the **-r** option to restart the process.|
+| reconnect connect-key | Resets the session of the target device that has been connected through USB and is managed by the local service process, and triggers USB re-enumeration.<br>connect-key is the USB identifier of the device, which can be queried by running the hdc list targets command.|
 | -p | Executes a client command without querying the server process.|
 | -m | Starts a server process in the foreground.<br>Foreground startup mode (with the **-m** parameter): Service logs are printed to the client window in real time.<br>Background startup mode (without the **-m** parameter): The client does not print service logs. The log content is written to a local disk file. For details about the file storage path, see [Server Process Logs](#server-logs).|
 | -e |  Specifies the local listening IP address in TCP port forwarding. The default value is **127.0.0.1**. This parameter must be used together with **-m**.|
@@ -1030,6 +1068,41 @@ $ hdc kill # Terminate the server.
 Kill server finish
 ```
 
+### Reconnecting USB Devices
+
+Reset the session and trigger USB re-enumeration for a connected USB device that is managed by the local hdc service process.
+
+Run the following commands:
+
+```shell
+hdc reconnect connect-key
+```
+
+**Parameters**
+
+| Parameter| Description|
+| -------- | -------- |
+| connect-key | USB connection identifier of the target device. You can run the hdc list targets command to query the identifier.|
+
+**Return value**
+
+| Value| Description|
+| -------- | -------- |
+| Reconnecting connect-key ... | The specified device is being reconnected.|
+| Usage: reconnect \<target-key\> | The connect-key is not specified.|
+| Target device connect-key not available | The target does not exist or is not connected.|
+| Reconnect only supports USB devices | The current target is not a USB connection and cannot be reconnected.|
+
+**Usage**
+
+```shell
+$ hdc list targets
+connect-key
+
+$ hdc reconnect connect-key
+Reconnecting connect-key ...
+```
+
 ### Quick Command Execution
 
 Executes a client command without querying the server process. If the service is not started, running this command does not restart the service. Before using the parameter, ensure that the service has been started. Run the following commands:
@@ -1063,7 +1136,7 @@ connect-key2
 
 > **NOTE**
 >
-> When a command is executed without the **-p** parameter specified, the client first checks whether a server is running locally. If the system does not detect a running server process, the client automatically starts a server process and sets up a connection to transfer commands. If the system detects a running server process, the client directly connects to the server process and transfers commands.
+> When a command is executed without the **-p** parameter specified, the client first checks whether a server process is running locally. If the system does not detect a running server process, the client automatically starts a server process and sets up a connection to transfer commands. If the system detects a running server process, the client directly connects to the server process and transfers commands.
 
 ### Starting a Server in the Foreground
 
@@ -1083,10 +1156,10 @@ hdc -m
 **Usage**
 
 ```shell
-$ hdc -s 127.0.0.1:8710 -m # Specify the network listening parameters of the current server and start the server.
+$ hdc -s 127.0.0.1:8710 -m # Specify the network listening parameters of the current server process and start the server process.
 [I][1970-01-01 00:00:00.000][4f28][xxxx.xxx:123] Program running. Ver: 3.1.0e Pid:12345
 ...
-$ hdc -e 0.0.0.0 -m # Specify the local listening IP address 0.0.0.0 for port forwarding and start the server.
+$ hdc -e 0.0.0.0 -m # Set the local listening IP address to 0.0.0.0 for port forwarding and start the server process.
 [I][1970-01-01 00:00:00.000][4f28][xxxx.xxx:123] Program running. Ver: 3.2.0b Pid:12345
 ...
 ```
@@ -1106,11 +1179,9 @@ $ hdc -e 0.0.0.0 -m # Specify the local listening IP address 0.0.0.0 for port fo
 | -------- | -------- |
 | hilog [-h] | Displays the log information of the device. You can run the **hdc hilog -h** command to obtain the supported parameters.|
 | jpid | Displays the PIDs of started applications on the device.|
-| track-jpid [-a\|-p] | Displays the PIDs and bundle names of started applications on the device in real time. Only applications with the **debug** tag can be debugged. If no parameter is specified, the PIDs of started applications are displayed. If the **-a** parameter is specified, the process tags of debug-type and release-type applications are displayed. If the **-p** parameter is specified, the process tags of debug-type and release-type applications are not displayed.|
+| track-jpid [-a\|-p] | Displays the PIDs and bundle names of started applications on the device in real time. Only applications with the **debug** tag can be debugged. If no parameter is specified, only the PIDs and bundle names of started debug-type applications are displayed. If the**-a** parameter is used, the process tags of debug- and release-type applications are displayed. If the**-p** parameter is used, the process tags of debug- and release-type applications are not displayed.|
 | target boot [-bootloader\|-recovery] | Restarts the target device. You can use the **-bootloader** option to enter the fastboot mode and the **-recovery** option to enter the recovery mode.|
-| target boot [MODE] | Restarts the target device. You can add a parameter to use the corresponding mode. **MODE** is a parameter supported by reboot in the **/bin/begetctl** command. You can run the `hdc shell "/bin/begetctl -h | grep reboot"` command to check the restart mode.|  |
-| <!--DelRow--> target mount | Mounts the system partition in read/write mode. (This command is supported after the device has required the root permission.)|
-| <!--DelRow--> smode [-r] | Grants the root permission to the hdc background server process on the device. You can use the **-r** parameter to cancel the permission. (This command is supported after the device has required the root permission.)|
+| target boot [MODE] | Restarts the target device. After the device is restarted with the specified parameter, it enters the corresponding mode. MODE is a parameter supported by the reboot command in the /bin/begetctl command. You can run the hdc shell "/bin/begetctl -h \| grep reboot" command to view the supported parameters.|
 
 ### Printing Device Logs
 
@@ -1179,7 +1250,7 @@ hdc track-jpid [-a|-p]
 
 | Parameter| Description|
 | -------- | -------- |
-| Not specified| Displays the PIDs of the started applications.|
+| Not specified| Displays the PIDs and bundle names of started debug-type applications only.|
 | -a | Displays the PIDs, bundle names, and process names of the debug-type and release-type applications, as well as the **debug** and **release** tags.|
 | -p | Displays the PIDs, bundle names, and process names of the **debug** and **release** applications, but does not display the **debug** and **release** tags.|
 
@@ -1188,7 +1259,7 @@ hdc track-jpid [-a|-p]
 | Value| Description|
 | -------- | -------- |
 | PID and bundle/process name list| If no parameter is specified, only the PIDs of the started applications are displayed. If the **-p** parameter is specified, the bundle names of the applications are displayed. If the **-a** parameter is specified, both **debug** and **release** tags are displayed.|
-| [Empty] | No JDWP-enabled application process is found.|
+| [Empty] | No application process is opened.|
 
 **Usage**
 
@@ -1227,62 +1298,12 @@ hdc target boot -bootloader  # Restart the device to enter the fastboot mode.
 hdc target boot -recovery    # Restart the device to enter the recovery mode.
 hdc target boot shutdown     # Shut down the device.
 ```
-<!--Del-->
-### Mounting the System Partition in Read/Write Mode
-
-Run the following commands:
-
-   ```shell
-   hdc target mount
-   ```
-
-   **Return value**
-   | Return Value| Description|
-   | -------- | -------- |
-   | Mount finish | Mounting succeeded.|
-   | [Fail]Mount failed | Mounting failed.|
-
-   **Usage**
-
-   ```shell
-   hdc target mount
-   ```
-
-   > **NOTE**
-   >
-   > This command is supported only after the device has required the root permission. Exercise caution when running this command.
-
-### Granting Root Permission to the hdc Server
-
-Run the following commands:
-
-   ```shell
-   hdc smode [-r]
-   ```
-
-   **Return value**
-   | Return Value| Description|
-   | -------- | -------- |
-   | No return value| Permission granted.|
-   | [Fail]Error information| Failed to grant the permission.|
-
-   **Usage**
-
-   ```shell
-   hdc smode
-   hdc smode -r  // Revoke the root permission.
-   ```
-
-   > **NOTE**
-   >
-   > This command is supported only after the device has required the **root** permission.
-<!--DelEnd-->
 
 ## Security Commands
 
 | Command| Description|
 | -------- | -------- |
-| keygen FILE | Generates a new key pair and saves the private key and public key to **FILE** and **FILE.pub**, respectively. **FILE** indicates the custom file name.|
+| keygen FILE | Generates a new key pair and saves the private key and public key to **FILE** and **FILE.pub**, respectively. **FILE** indicates the custom file name. You can specify the directory. The default directory is the current working directory.|
 
 Run the following commands:
 
@@ -1299,7 +1320,7 @@ hdc keygen FILE
 **Usage**
 
 ```shell
-# Generate the **key** and **key.pub** files in the current directory.
+# Generate the key and key.pub files in the current directory.
 $ hdc keygen key 
 ```
 
@@ -1374,9 +1395,45 @@ $ hdc checkserver
 Client version: Ver: 3.1.0e, Server version: Ver: 3.1.0e
 ```
 
+## Exporting System Information
+
+Run the following commands:
+
+```shell
+hdc bugreport [FILE]
+```
+
+**Parameters**
+
+| Parameter| Description|
+| -------- | -------- |
+| FILE | Specifies the name of the system information file. This parameter is optional. You can specify the storage directory. The default directory is the current working directory.|
+
+**Return value**
+
+| Value| Description|
+| -------- | -------- |
+| -------------------------------[base]-------------------------------<br><br>BuildId: xxx<br>ReleaseType: xxx<br>OsVersion: default/default/default/default/xxx<br>DeviceType: default<br>Manufacture: default<br>----- | Defines a struct for basic device information.|
+
+**Usage**
+
+```shell
+$ hdc bugreport
+-------------------------------[base]-------------------------------
+
+BuildId: xxx
+ReleaseType: xxx
+OsVersion: default/default/default/default/xxx
+DeviceType: default
+Manufacture: default
+-----
+```
+
 ## hdc Debugging Logs
 
+
 ### Server Logs
+
 
 **Specify the log level at runtime**
 
@@ -1463,10 +1520,81 @@ The log file types are as follows.
 Use HiLog to obtain the corresponding logs.
 
 ```shell
-hdc shell hilog -w start                              # Enable HiLog log flushing. (An error will be reported if HiLog is enabled again.)
-hdc shell hilog -w stop                               # Disable HiLog log flushing. (An error will be reported if HiLog is disabled again.)
+hdc shell hilog -w start                              # Enable HiLog log flushing. Executing this command again when the HiLog tool is already enabled will result in an error.
+hdc shell hilog -w stop                               # Disable HiLog log flushing. Executing this command again when the HiLog tool is already disabled will result in an error.
 hdc shell ls /data/log/hilog                          # View the flushed HiLog logs.
 hdc file recv /data/log/hilog {local_path}            # Obtain the flushed HiLog logs (including kernel logs). {local_path} varies according to the system. Replace it with the actual path.
+```
+
+## Subserver Management
+
+| Command| Description|
+| -------- | -------- |
+| spawn-sub | Starts a subserver.|
+| killall-sub | Stops a subserver.|
+
+> **NOTE**
+>
+> This function is supported since API version 26.0.0.
+
+### Starting a Subserver
+
+Disconnects the specified USB device from the server on the computer, starts a new subserver process, and connects the USB device to the subserver process. Run the following commands:
+
+```shell
+hdc spawn-sub -i connect-key -o [IP:]port
+```
+
+After a subserver process is created, you can use the -s parameter to access the subserver process. For details, see [Remote Connection](#remote-connection).
+
+**Parameters**
+
+| Parameter| Description|
+| -------- | -------- |
+| connect-key | ID of the USB device connected to the subserver.|
+| IP | IP address to listen for. Both IPv4 and IPv6 addresses are supported. This parameter is optional. If no IP address is specified, the default IP address **127.0.0.1** is listened for.|
+| port | Port to listen for. The value ranges from 1 to 65535.|
+
+**Return value**
+
+| Value| Description|
+| -------- | -------- |
+| Subserver connected successfully | The subserver process has been connected to the USB device.|
+| Port binding failed | The subserver process exits due to a port listening failure.|
+| USB connection timeout | The subserver process exits due to a timeout in connecting to the USB device.|
+| Device not found | The main server process cannot find the device.|
+| Invalid parameters | The input parameter of the command is incorrect.|
+| USB device disconnected | The USB connection of the subserver process has been disconnected.|
+| Only main server can spawn subserver | A new subserver process cannot be created through a subserver process.|
+| Subprocess launch failed | Failed to start the child process.|
+| Subserver process exited | The subserver process has exited.|
+
+**Usage**
+
+```shell
+$ hdc spawn-sub -i connect-key -o [IP:]port
+Subserver connected successfully
+```
+
+### Terminating a Subserver
+
+To terminate all started subserver processes, run the following command:
+
+```shell
+hdc killall-sub
+```
+
+**Return value**
+
+| Value| Description|
+| -------- | -------- |
+| Kill subservers finish | All subserver processes have been terminated.|
+
+**Usage**
+
+```shell
+$ hdc killall-sub
+Kill subservers finish
 ```
 
 ## Options
@@ -1523,7 +1651,7 @@ The recording log files are stored in the following paths:
 
 Used to set the encryption functionality of the TCP connection channel between the server and the daemon. By default, the encryption functionality is disabled.
 
-If **OHOS_HDC_ENCRYPT_CHANNEL** is set to **1**, the channel encryption functionality is enabled; otherwise, it is disabled.
+When this parameter is set to **1**, the channel encryption functionality is enabled. When it is not set or set to any other number, this functionality is disabled.
 
 This parameter is supported since API version 20.
 
@@ -1531,15 +1659,29 @@ This parameter is supported since API version 20.
 >
 > When the server is running, it listens for port 8710 of the PC by default. You can customize the listening port by setting the system environment variable **OHOS_HDC_SERVER_PORT**.
 
+### OHOS_HDC_SUBSERVER_LOG_FILE
+
+Default: The log flushing function is disabled for the computer-side subserver process.
+
+Sets the maximum number of log files that can be flushed to disks for the computer-side subserver process. The value is an integer ranging from 1 to 20. If the value is greater than 20, the value is automatically truncated to 20. If the value is 0 or a negative number, log flushing is not allowed.
+
+The logs of the subserver process are flushed to the .hdc_subserver directory in the TEMP directory. The location of the TEMP directory varies depending on the platform. For details, see the table in "Obtaining Server Process Logs" under "Server Process Logs".
+
+This parameter is supported starting from API version 26.0.0.
+
+> **NOTE**
+>
+> The number of actual log files may be one more than the configured number due to the time sequence relationship between log file creation and aging.
+
 ### Configuring Environment Variables
 
 The following example describes how to set environment variables by setting **OHOS_HDC_LOG_LEVEL** to 5. For details, see [Environment Setup](#environment-setup).
 
 | OS| Configuration Method|
 | -------- | -------- |
-| Windows | In **Settings**, search for **View advanced system settings**. In **Environment Variables** > **System Variables** > **Path**, click **Edit** to add the environment variable **OHOS_HDC_LOG_LEVEL** whose value is **5**. After the configuration is complete, click **OK**. Restart the CLI or other software that uses HarmonyOS SDK for the new environment variable to take effect.|
+| Windows | In **Settings**, search for **View advanced system settings**. In **Environment Variables** > **System Variables** > **Path**, click **Edit** to add the environment variable **OHOS_HDC_LOG_LEVEL** whose value is **5**. After the configuration is complete, click **OK**. Restart the CLI or other software that uses OpenHarmony SDK for the new environment variable to take effect.|
 | Linux | Add **export OHOS_HDC_LOG_LEVEL=5** to the end of the **~/.bash_profile** file, save the file, and run the **source ~/.bash_profile** command for the current environment variable to take effect.|
-| macOS| Add **export OHOS_HDC_LOG_LEVEL=5** to the end of the **~/.zshrc** file, save the file, and run the **source ~/.zshrc** command for the current environment variable to take effect. Restart the CLI or other software that uses HarmonyOS SDK for the new environment variable to take effect.|
+| macOS| Add **export OHOS_HDC_LOG_LEVEL=5** to the end of the **~/.zshrc** file, save the file, and run the **source ~/.zshrc** command for the current environment variable to take effect. Restart the CLI or other software that uses OpenHarmony SDK for the new environment variable to take effect.|
 
 ## hdc Version Mappings
 
@@ -1548,7 +1690,7 @@ The following example describes how to set environment variables by setting **OH
 | 3.1.0a | 12 | The **wait** command supports the **-t** parameter. For details, see [Waiting for Device Connection](#waiting-for-device-connection).|
 | 3.1.0e | 15 or later| - The **file send** command supports the **-b** parameter. For details, see [Transferring Files](#transferring-files).<br>- The **file recv** command supports the **-b** parameter. For details, see [Transferring Files](#transferring-files).<br>- The **shell** command supports the **-b** parameter. For details, see [Running Interactive Commands](#running-interactive-commands).|
 | 3.2.0b | 20 | - The port forwarding task can listen for the IP address of the remote host. For details, see [Creating a Local Port Forwarding](#creating-a-local-port-forwarding).|
-
+| 3.2.0e | 26.0.0 or later| - The **shell** command supports the **-b** parameter. If the **command** parameter is not specified, the interactive shell session is entered by default. For details, see [Running Interactive Commands](#running-interactive-commands).|
 > **NOTE**
 >
 > If the current hdc version is too early, the compatibility of some functionalities may be affected. You can download the latest version based on the API version description.
@@ -1703,7 +1845,7 @@ After a non-root user connects the device to the PC through USB on Linux or macO
 
 By default, a non-root user does not have the permission to operate USB devices. To enable the permission, perform the following steps:
 
-1. On masOS, stop the hdc service and run the **sudo** command to restart it.
+1. On macOS, stop the hdc service and run the **sudo** command to restart it.
 
    ```shell
    sudo hdc kill
@@ -1714,15 +1856,16 @@ By default, a non-root user does not have the permission to operate USB devices.
 
    - To temporarily grant the full operation permission on a USB device, run the following command:
 
-   ```shell
-   sudo chmod -R 777 /dev/bus/usb/
-   ```
+      ```shell
+      sudo chmod -R 777 /dev/bus/usb/
+      ```
 
    - To permanently change the operation permission on a USB device, do as follows:
 
       - Run the **lsusb** command to obtain the vendorID and productID of the USB device.
 
       - Create an **udev** rule.
+
          Edit the **udev** loading rule and replace the default **idVendor** and **idProduct** values of the device with the values obtained in the previous step.
 
          **MODE="0666"** indicates the permissions of **GROUP** (the user group) for the USB device. Ensure that the login user is in the user group.
@@ -1751,6 +1894,7 @@ The hdc commands cannot be executed on the CLI.
 **Possible Causes and Solution**
 
 1. The operating environment is abnormal.
+
    Linux: 64-bit Ubuntu 18.04 or later is recommended. If a libc++.so reference error occurs, run the **ldd** or **readelf** command to check the library reference.
 
    macOS: macOS 11 or later is recommended.
@@ -1783,9 +1927,9 @@ When the **hdc list targets** command is executed to query the connected devices
 
 **Possible Causes and Solution**
 
-- If the device is not authorized upon the first connection, unlock the device after connecting to it. The "Trust this device?" dialog box is displayed. Click **Always trust** or **Trust** to complete the authorization.
+1. Unauthorized first connection: After the device is connected and unlocked, the trust confirmation prompt appears. Select **Always trust** or **Trust** to complete authorization.
 
-- If the authorization dialog box times out or you click **Don't trust**, restart debugging by going to **Settings** > **System** > **Developer options** > **USB debugging**/**Wireless debugging**, or run **hdc kill -r** to restart the server. Then the screen will display the "Trust this device?" dialog box again. Click **Always trust** or **Trust** to complete the authorization.
+2. Authorization prompt closed or authorization denied: The authorization prompt on the device will close after timeout, or you may have selected **Distrust** to reject authorization. To enable the authorization again, go to Settings > System > Developer options > USB debugging/Wireless debugging on the device, disable the debugging function, and then enable it again. Alternatively, run the hdc kill -r command to restart the service process. (If the spawn-sub command has been executed, run the hdc killall-sub command.) Then the trust confirmation prompt appears again. Select **Always trust** or **Trust** to complete authorization.
 
 ### What should I do if "CryptAcquireContext second failed" is displayed when a hdc command is executed?
 
@@ -1830,11 +1974,11 @@ If this problem persists after these steps or after you connect the device to an
 
 If the hdc command output is not as expected, the possible causes are as follows:
 
-- Scenario 1: When the hdc command is executed, the message "Connect server failed" is displayed.
+1. Scenario 1: When the hdc command is executed, the message "Connect server failed" is displayed.
 
-- Scenario 2: When the hdc command is executed, the message "connect failed status:-4078" is displayed.
+2. Scenario 2: When the hdc command is executed, the message "connect failed status:-4078" is displayed.
 
-- Scenario 3: No output is displayed after the hdc command is executed.
+3. Scenario 3: No output is displayed after the hdc command is executed.
 
 **Possible Causes and Solution**
 
@@ -1843,6 +1987,7 @@ To solve the port exception problem, perform the following steps:
 1. Check the software processes that come with hdc, including software with built-in hdc, such as DevEco Studio and DevEco Testing. If such software exists, close it and then run the hdc commands.
 
 2. Check hdc port status. For example, if **OHOS_HDC_SERVER_PORT** is set to **8710**, run the following command to check the port status.
+
    Unix:
 
    ```shell
@@ -1911,19 +2056,19 @@ Otherwise try 'hdc kill' if that seems wrong.
 
 **Symptom**
 
-The device is not authorized. Check whether the device has been authorized on the authorization dialog box. If the device has been authorized, run the **hdc kill** command and then run the debugging command again.
+The device is not authorized. Check whether the device has been authorized on the trust confirmation prompt. If the device has been authorized, run the **hdc kill** command and then run the debugging command again.
 
 **Possible Causes**
 
-- Scenario 1: When the device is connected for the first time, the debugging computer is not authorized on the device.
+1. Scenario 1: When the device is connected for the first time, the debugging computer is not authorized on the device.
 
-- Scenario 2: If the authorization dialog box is displayed and you click **Trust** instead of **Always trust**, you need to authorize the device again after reconnecting to the device.
+2. Scenario 2: If the authorization dialog box is displayed and you click **Trust** instead of **Always trust**, you need to authorize the device again after reconnecting to the device.
 
 **Solution**
 
-- Scenario 1: In the authorization dialog box displayed on the device, click **Trust**.  
+1. Scenario 1: In the authorization dialog box displayed on the device, click **Trust**.
 
-- Scenario 2: Go to **Settings** > **System** > **Developer options**, reenable **Debugging**, and reconnect the device to authorize it. Alternatively, run the **hdc kill -r** command to restart hdc to trigger the authorization dialog box again, and click **Always trust**.
+2. Scenario 2: Go to Settings > System > Developer options on the device, disable and then enable the debugging function, and reconnect the device for authorization. Alternatively, run the hdc kill -r command (or run the hdc killall-sub command if the spawn-sub command has been executed), restart the HDC, and then trigger the authorization dialog box again. In the dialog box, tap Always trust.
 
 ### E000003 Unauthorized User on the Device
 
@@ -1939,7 +2084,7 @@ then check for a confirmation dialog on your device.
 
 **Symptom**
 
-The device is not authorized. If the device rejects the debugging authorization, run the **hdc kill** command and run the debugging command again. Then check the authorization dialog box on the device.
+The device is not authorized. If the device rejects the debugging authorization, run the **hdc kill** command and run the debugging command again. Then check the trust confirmation prompt on the device.
 
 **Possible Causes**
 
@@ -1949,7 +2094,7 @@ The device is not authorized. If the device rejects the debugging authorization,
 
 **Solution**
 
-Go to **Settings** > **System** > **Developer options**, reenable **Debugging**, and reconnect the device to authorize it. Alternatively, run the **hdc kill -r** command to restart hdc to trigger the authorization dialog box again, and click **Always trust**.
+Go to Settings > System > Developer options, disable and then enable the debugging function, and reconnect the device for authorization. Alternatively, run the hdc kill -r command (if the spawn-sub command has been executed, run the hdc killall-sub command) to restart the HDC, trigger the authorization dialog box again, and click Always trust.
 
 ### E000004 Unstable Communication Connection
 
@@ -1970,6 +2115,43 @@ The network or USB connection is not established or unstable.
 **Solution**
 
 After the device is connected, wait for about 10 seconds. After the connection is established, debug the device.
+
+### E000006 The Device Forbids Debugging from the Current Computer
+
+**Error Message**
+
+The current computer has not obtained the permission to debug the control device.
+
+**Symptom**
+
+The current computer does not obtain the permission to debug the device, and the device rejects the debugging authorization.
+
+**Possible Causes**
+
+The device cannot be debugged by an unauthorized computer.
+
+**Solution**
+
+Use a computer that has obtained the debugging authorization.
+
+### E000010 Device-side Authentication Failed
+
+**Error Message**
+
+Auth failed, cannt login the device.
+
+**Symptom**
+
+The public key verification on the device fails, and the current computer is rejected to debug the device.
+
+**Possible Causes**
+
+1. The public key file is missing on the device.
+2. The public key file on the device does not match that on the computer.
+
+**Solution**
+
+Obtain the public key file for debugging authentication on the device again.
 
 ### E001000 tmode Does Not Support USB Debugging
 
@@ -2019,17 +2201,17 @@ The USB communication is abnormal. Check the USB communication link.
 
 **Possible Causes**
 
-- The USB cable is loose or disconnected.
+1. The USB cable is loose or disconnected.
 
-- After the **hdc shell reboot** command is executed, the device restarts and is disconnected. In this case, no action is required.
+2. After the **hdc shell reboot** command is executed, the device restarts and is disconnected. In this case, no action is required.
 
-- After the **hdc tmode port XXX** command is executed, the USB debugging mode is switched to the wireless debugging mode, and the device is disconnected. In this case, no action is required.
+3. After the **hdc tmode port XXX** command is executed, the USB debugging mode is switched to the wireless debugging mode, and the device is disconnected. In this case, no action is required.
 
 **Solution**
 
-- Ensure that the USB cable is securely connected to the device and computer. If the connection is normal but the issue persists, change the USB cable or USB port.
+1. Ensure that the USB cable is securely connected to the device and computer. If the connection is normal but the issue persists, change the USB cable or USB port.
 
-- Update the hdc to the latest version by referring to [hdc Version Mappings](#hdc-version-mappings).
+2. Update the hdc to the latest version by referring to [hdc Version Mappings](#hdc-version-mappings).
 
 ### E001104 Invalid IP Address in the tconn Command
 
@@ -2133,15 +2315,15 @@ The communication between the server and the daemon on the device is abnormal.
 
 **Possible Causes**
 
-- The USB is disconnected.
+1. The USB is disconnected.
 
-- The network is unstable over TCP.
+2. The network is unstable over TCP.
 
 **Solution**
 
-Check and ensure that the device is properly connected.
+1. Check and ensure that the device is properly connected.
 
-Check the network status. After the network becomes stable, try again.
+2. Check the network status. After the network becomes stable, try again.
 
 ### E003001 Invalid Bundle Name
 
@@ -2163,24 +2345,26 @@ The **bundlename** specified in the **hdc shell [-b bundlename] [command]** comm
 
 **Solution**
 
-- Scenario 1: Ensure that the application specified in the command has been installed on the device.
+1. Scenario 1: Ensure that the application specified in the command has been installed on the device.
 
-  Run the **hdc shell "bm dump -a | grep bundlename"** command to check whether the application corresponding to the bundle name has been installed on the device. The expected result is **bundlename**.
+   Run the **hdc shell "bm dump -a | grep bundlename"** command to check whether the application corresponding to the bundle name has been installed on the device. The expected result is **bundlename**.
 
-  For example, if the bundle name is **com.example.myapplication**, run the following command:
+   For example, if the bundle name is **com.example.myapplication**, run the following command:
 
-  ```shell
-  hdc shell "bm dump -a | grep com.example.myapplication"
-  ```
+   ```shell
+   hdc shell "bm dump -a | grep com.example.myapplication"
+   ```
 
-  If the bundle has been installed on the device, the following information is returned:
+   If the bundle has been installed on the device, the following information is returned:
 
-  ```shell
-  com.example.myapplication
-  ```
+   ```shell
+   com.example.myapplication
+   ```
 
-- Scenario 2: Check whether the application specified by the command is a debug-type application.
-  1. Run the **hdc shell "bm dump -n bundlename | grep appProvisionType"** command. The expected result is **"appProvisionType": "debug"**.
+2. Scenario 2: Check whether the application specified by the command is a debug-type application.
+
+   - Run the **hdc shell "bm dump -n bundlename | grep appProvisionType"** command. The expected result is **"appProvisionType": "debug"**.
+
       For example, run the following command to check the bundle name **com.example.myapplication**:
 
       ```shell
@@ -2193,10 +2377,12 @@ The **bundlename** specified in the **hdc shell [-b bundlename] [command]** comm
       "appProvisionType": "debug",
       ```
 
-  2. To build a debug-type application, you need to sign the application using a debug certificate. For details, see [Requesting a Debug Certificate](https://developer.huawei.com/consumer/en/doc/app/agc-help-add-debugcert-0000001914263178).
+   - To build a debug-type application, you need to sign the application using a debug certificate. For details, see [Requesting a Debug Certificate](https://developer.huawei.com/consumer/en/doc/app/agc-help-add-debugcert-0000001914263178).
 
-- Scenario 3: Ensure that the bundle specified by the command has been started.
-  1. After the application starts, the system mounts the corresponding resource directory. You can run the **hdc shell "mount |grep bundle name"** command to query the resource directory mounting status after the application starts.
+3. Scenario 3: Ensure that the bundle specified by the command has been started.
+
+   - After the application starts, the system mounts the corresponding resource directory. You can run the **hdc shell "mount |grep bundlename"** command to query the resource directory mounting status after the application starts.
+
       For example, to check the bundle name **com.example.myapplication**, run the following command:
 
       ```shell
@@ -2206,7 +2392,9 @@ The **bundlename** specified in the **hdc shell [-b bundlename] [command]** comm
       If the corresponding resource directory has been mounted, mounting information is expected to be returned. (The returned information varies according to the actual mounting status and is not displayed here.)
 
       If the corresponding resource directory is not mounted, no information is returned.
-  2. If the corresponding resource directory is not mounted, you can click the application or run the **aa** command to start the application.
+
+   - If the corresponding resource directory is not mounted, you can click the application or run the **aa** command to start the application.
+
       For example, to start the application whose name is **com.example.myapplication** and module name is **EntryAbility**, run the following command:
 
       ```shell
@@ -2241,7 +2429,7 @@ Unsupport shell option: XXX.
 
 **Symptom**
 
-The **hdc shell [-b bundlename] [command]** command specifies unsupported command parameters, such as **-f** and **-B**.
+The **hdc shell [-b bundlename] [command]** command contains unsupported parameters, for example, **-f** and **-B**.
 
 **Possible Causes**
 
@@ -2295,9 +2483,9 @@ The parameter is missing, correct your input by referring below: Usage...
 
 **Symptom**
 
-- Mandatory parameters are missing in the **hdc file send [-b bundlename][SOURCE][DEST]** command.
+1. Mandatory parameters are missing in the **hdc file send [-b bundlename][SOURCE][DEST]** command.
 
-- Mandatory parameters are missing in the **hdc file recv [-b bundlename][DEST][SOURCE]** command.
+2. Mandatory parameters are missing in the **hdc file recv [-b bundlename][DEST][SOURCE]** command.
 
 **Possible Causes**
 
@@ -2319,15 +2507,15 @@ The **hdc file send/recv** command contains the **-b** option, but the hdc in SD
 
 **Possible Causes**
 
-- Scenario 1: When the **hdc file send [-b bundlename] [SOURCE] [DEST]** command is executed, the device system does not support the **-b** option.
+1. Scenario 1: When the **hdc file send [-b bundlename] [SOURCE] [DEST]** command is executed, the device system does not support the **-b** option.
 
-- Scenario 2: When the **hdc file recv [-b bundlename] [DEST] [SOURCE]** command is executed, the hdc in SDK does not support the **-b** option.
+2. Scenario 2: When the **hdc file recv [-b bundlename] [DEST] [SOURCE]** command is executed, the hdc in SDK does not support the **-b** option.
 
 **Solution**
 
-- Scenario 1: Upgrade the system to the latest version. For details, see [hdc Version Mappings](#hdc-version-mappings).
+1. Scenario 1: Upgrade the system to the latest version. For details, see [hdc Version Mappings](#hdc-version-mappings).
 
-- Scenario 2: Upgrade the SDK to the latest version. For details, see [hdc Version Mappings](#hdc-version-mappings).
+2. Scenario 2: Upgrade the SDK to the latest version. For details, see [hdc Version Mappings](#hdc-version-mappings).
 
 ### E005005 Failed to Create a Directory
 
@@ -2359,15 +2547,15 @@ Remote path: xxx is invalid, no such file/directory or it's out of the applicati
 
 **Symptom**
 
-- The path specified by **DEST** in the **hdc file send [-b bundlename][SOURCE][DEST]** command does not exist or exceeds the application data directory.
+1. The path specified by **DEST** in the **hdc file send [-b bundlename][SOURCE][DEST]** command does not exist or exceeds the application data directory.
 
-- The path specified by **DEST** in the **hdc file recv [-b bundlename][SOURCE][DEST]** command does not exist or exceeds the application data directory.
+2. The path specified by **DEST** in the **hdc file recv [-b bundlename][SOURCE][DEST]** command does not exist or exceeds the application data directory.
 
 **Possible Causes**
 
-- Scenario 1: The remote path does not exist.
+1. Scenario 1: The remote path does not exist.
 
-- Scenario 2: The **DEST** parameter contains the **..** redirection symbol. After the redirection, the directory exceeds the application data root directory.
+2. Scenario 2: The **DEST** parameter contains the **..** redirection symbol. After resolving the path traversal, the actual directory falls outside the application's data root directory.
 
 **Solution**
 

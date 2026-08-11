@@ -1,10 +1,12 @@
 # Interaction Mechanism Overview
+
 <!--Kit: ArkUI-->
 <!--Subsystem: ArkUI-->
 <!--Owner: @yihao-lin-->
 <!--Designer: @piggyguy-->
 <!--Tester: @songyanhong-->
 <!--Adviser: @Brilliantry_Rui-->
+<!-- md-trans-meta sourceCommit=c8954d33bacbdec6df88d8586db7cc9b9d8a799e translatedAt=2026-08-01T00:29:17.838Z pushedAt=2026-08-01T06:13:03.643Z -->
 
 For pointer-based interactions including [touch events](../reference/apis-arkui/arkui-ts/ts-universal-events-touch.md), [mouse events](../reference/apis-arkui/arkui-ts/ts-universal-mouse-key.md), and [axis events](../reference/apis-arkui/arkui-ts/ts-universal-events-axis.md), the interaction framework determines event and gesture targets through coordinate-based hit testing. This process assembles a response chain by identifying components within the interaction area. The system then dispatches events to appropriate UI components by correlating touch coordinates, event types, and layout information. Multiple events can combine to trigger gestures or features, for example, long press, click, and drag.
 
@@ -21,20 +23,20 @@ The event interaction pipeline describes the end-to-end process where ArkUI rece
    The event response chain forms the core of the event interaction pipeline. After receiving an event, the pipeline performs hit testing to construct an event response chain, which drives decision-making for event dispatch and gesture recognition.
 
    (1) Hit Testing
-   
-    After receiving an initial touch event, the pipeline performs spatial hit testing using event coordinates and component boundaries and constructs an event response chain. You can configure attributes to affect the formation of the event response chain.
+
+    After receiving an initial touch event, the pipeline performs spatial hit testing using event coordinates and component positions and constructs an event response chain. You can configure attributes to affect the formation of the event response chain.
 
    (2) Dispatch to the Touch Event Response Chain
-   
+
     Through the constructed touch response chain, the system delivers the touch event to target components.
 
    (3) Dispatch to the Gesture Response Chain and Gesture Recognition
-   
+
     Components with registered gestures form a gesture response chain. The system combines events to detect gestures, resolves gesture conflicts through competition logic, and triggers the callback of the winning gesture.
 
    (4) Event Interception
-   
-    You can intercept events at two levels:<br>Pre-chain: Configure hit test properties to affect the formation of the event response chain.<br> Post-chain:
+
+    Before the event response chain is established, you can configure hit test attributes to influence the formation of the event response chain. Once the event response chain is established, you can use the provided APIs to intercept events, thereby altering the event dispatch flow.
 
     During event dispatch to the touch event response chain, you can block touch event propagation using touch interceptors.
 
@@ -42,23 +44,23 @@ The event interaction pipeline describes the end-to-end process where ArkUI rece
 
 3. Callback Execution
 
-   During response chain formation, registered callbacks are collected. Then, after response chain formation and event dispatch, callbacks are executed for qualifying events and gestures.
+   During response chain formation, registered callbacks are synchronously collected. Then, after response chain formation and event dispatch, callbacks are executed for qualifying events and gestures.
 
-## Event Response Chain Mechanism
+## Event Response Chain
 
-The event response chain refers to an ordered chain of components that can respond to a given interaction, collected through hit testing. When a user touches the screen, the system starts from the touch point and follows a right‑subtree‑first post-order traversal sequence (that is, starting from the innermost component and collecting information from bottom to top, right to left). This process forms a complete response chain.
+The event response chain is an ordered chain composed of all components that are collected through hit testing and can respond to the current interaction. When the user touches the screen, the system starts from the touch point position and follows a post-order traversal order prioritizing the right subtree (that is, starting from the innermost component and collecting outward layer by layer, bottom-up and right-to-left) to form the complete response chain.<!--RP1--><!--RP1End-->
 
 The following figure illustrates the hierarchical structure of the component tree and the process of collecting the event response chain. In the figure, the parent and child nodes correspond to the parent and child components, respectively. The left and right subtrees correspond to sibling components. The components corresponding to the right subtree are displayed above those corresponding to the left subtree.
 
 ![EventResponseChain](figures/EventResponseChain.png)
 
-You can use the [hitTestBehavior](../reference/apis-arkui/arkui-ts/ts-universal-attributes-hit-test-behavior.md#hittestbehavior) attribute to set the hit test mode of a component. In this example, the touch test mode of all components is set to [HitTestMode](../reference/apis-arkui/arkui-ts/ts-appendix-enums.md#hittestmode9).Default. If the user taps component 5, the response chain collection process is as follows:
+You can use the [hitTestBehavior](../reference/apis-arkui/arkui-ts/ts-universal-attributes-hit-test-behavior.md#hittestbehavior) attribute to set the hit test mode of a component. In this example, the hit test mode of all components is set to [HitTestMode](../reference/apis-arkui/arkui-ts/ts-appendix-enums.md#hittestmode9).Default. If the user taps component 5, the response chain collection process is as follows:
 
 1. The system detects that the hit point falls on component 5, and component 5 is collected.
 
 2. The event bubbles up to parent component 3, and component 3 is collected.
 
-3. Since component 3's hit test mode is HitTestMode.Default, the sibling component will be blocked after the event is collected. Therefore, component 2 will not be collected.
+3. Since component 3's hit test mode is **HitTestMode.Default**, the sibling component will be blocked after the event is collected. Therefore, component 2 will not be collected.
 
 4. The event continues to bubble up to root component 1, and component 1 is collected.
 
@@ -78,7 +80,7 @@ The basic process of hit testing is as follows: When the user triggers a press e
 
 Assume that the user presses at point T (Touch Down). Components A, B, and D are identified as hit, and the chain formed by these components is called the response chain for this interaction. Base events are propagated along this chain: They are first delivered to the leaf node, and then passed to parent nodes, bubbling upward. This process is known as event bubbling.
 
-Below shows the hit testing process.
+The following figure shows the hit testing process.
 
 ![TouchTest](figures/TouchTest.png)
 
@@ -95,7 +97,6 @@ Applications can intervene in hit test results through the following methods to 
 | Response region setting  | Sets the touch response list for the component.| [responseRegionList](../reference/apis-arkui/arkui-ts/ts-universal-attributes-touch-target.md#responseregionlist22)   | Sets the list of touch response regions for the component. You can specify the input tool type (such as mouse or touch) applicable to each region. When this API is called, the **responseRegion** and **mouseResponseRegion** APIs do not take effect. This function is supported since API version 22.<br>                                                                                                                                                                    |
 | Hit test control  | Intervenes in the collection results of the component itself and other components.        | [hitTestBehavior](../reference/apis-arkui/arkui-ts/ts-universal-attributes-hit-test-behavior.md#hittestbehavior)  | **hitTestBehavior** works similarly to **onTouchIntercept**, but it is statically configured.                                                                                                                                                                                                                                                                              |
 | Custom event interception| Intervenes in the collection results of the component itself and other components.        | [onTouchIntercept](../reference/apis-arkui/arkui-ts/ts-universal-attributes-on-touch-intercept.md#ontouchintercept) | This callback is triggered when the user triggers a press event and the system begins collecting all components that need to participate in event processing at the current position. Applications can return a **HitTestMode** value through this callback to influence the system's behavior in collecting child or sibling nodes. This enables dynamic control over interaction responses, such as allowing certain components to participate in interactions only under specific service conditions.<br>**onTouchIntercept** works similarly to **hitTestBehavior**, but it is a dynamic callback.|
-
 
 1. Response Region Setting
 
@@ -120,8 +121,9 @@ Applications can intervene in hit test results through the following methods to 
    > Percentage values are calculated relative to the component's own width and height.
 
    The following is an example of binding multiple response regions:
+
    <!-- @[focus_onclick](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkUISample/InterAction/entry/src/main/ets/pages/FocusOnclickExample/FocusOnclickExample.ets) -->
-   
+
    ``` TypeScript
    @Entry
    @Component
@@ -169,7 +171,7 @@ Applications can intervene in hit test results through the following methods to 
 
    You can configure hit test control to block the hit test of the component itself or other components.
 
-   - **HitTestMode.Default**: This mode is used by default when the **hitTestBehavior** attribute is not specified. In this mode, if the component itself is hit, it will block the hit testing of sibling components, but will not block the hit testing of child components.
+   - **HitTestMode.Default**: When the **hitTestBehavior** attribute is not configured, if the component itself is hit, it blocks sibling components but does not block child components.
 
      ![hitTestModeDefault](figures/hitTestModeDefault.png)
 
@@ -211,7 +213,7 @@ If a component has a higher [z-order](../reference/apis-arkui/arkui-ts/ts-univer
 
 Basic events propagate through the response chain following a bubbling mechanism, where the innermost component processes the event first, and then the event propagates up to parent components layer by layer. Any component can terminate the further transmission of the event, that is, stop the bubbling. However, it should be noted that stopping the bubbling does not affect gesture recognition in parent components.
 
-**stopPropagation** can terminate event bubbling. As shown in the figure below, when a touch event reaches component C and **stopPropagation()** is called, components B and root will no longer receive this event. However, gesture objects attached to component B can still process the touch event.
+**stopPropagation** can terminate event bubbling. As shown in the figure below, when a touch event reaches component C and **stopPropagation()** is called, components B and root will no longer receive this event. However, gesture objects attached to component B can still receive and process the touch event.
 
 ![stopPropagation](figures/raw_event_stop_propagation.png)
 
@@ -221,6 +223,6 @@ Basic events propagate through the response chain following a bubbling mechanism
 
 ## Cancel Event
 
-When handling basic events, you will encounter various types of cancel events, such as [TouchType](../reference/apis-arkui/arkui-ts/ts-appendix-enums.md#touchtype).Cancel and [MouseAction](../reference/apis-arkui/arkui-ts/ts-appendix-enums.md#mouseaction8).CANCEL. These cancel events are generated by the system in specific scenarios. For example, during a drag operation, when the user drags a draggable object (configured with **onDragStart**) with a finger or mouse device, the application typically receives touch or mouse events first. Once the displacement threshold is reached, the [onDragStart](../reference/apis-arkui/arkui-ts/ts-universal-events-drag-drop.md#ondragstart) callback is triggered. Once the drag action starts, the system dispatches a cancel event to inform the application that the normal basic events have ended.
+When handling basic events, you will encounter various types of cancel events, such as [TouchType](../reference/apis-arkui/arkui-ts/ts-appendix-enums.md#touchtype)**.Cancel** and [MouseAction](../reference/apis-arkui/arkui-ts/ts-appendix-enums.md#mouseaction8)**.CANCEL**. These cancel events are generated by the system in specific scenarios. For example, during a drag operation, when the user drags a draggable object (configured with **onDragStart**) with a finger or mouse device, the application typically receives touch or mouse events first. Once the displacement threshold is reached, the [onDragStart](../reference/apis-arkui/arkui-ts/ts-universal-events-drag-drop.md#ondragstart) callback is triggered. Once the drag action starts, the system dispatches a cancel event to inform the application that the normal basic events have ended.
 
-The meaning of Cancel is the same as that of Up, both indicating the end of event processing. If you are handling scenarios involving **Up** and **Release** events, you should also handle cancel events simultaneously.
+The meaning of **Cancel** is the same as that of Up, both indicating the end of event processing. If you are handling scenarios involving **Up** and **Release** events, you should also handle cancel events simultaneously.

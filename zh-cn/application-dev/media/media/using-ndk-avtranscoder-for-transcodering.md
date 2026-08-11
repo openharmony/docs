@@ -32,7 +32,7 @@ target_link_libraries(entry PUBLIC libavtranscoder.so libace_napi.z.so)
 #include <hilog/log.h>
 ```
 
-并需要在CMake脚本中链接如下动态库:
+并需要在CMake脚本中链接如下动态库：
 
 ```c
 target_link_libraries(sample PUBLIC libhilog_ndk.z.so)

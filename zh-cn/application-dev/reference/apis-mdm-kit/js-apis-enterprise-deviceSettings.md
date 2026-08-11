@@ -6,7 +6,7 @@
 <!--Tester: @lpw_work-->
 <!--Adviser: @zhang_yixin13-->
 
-本模块提供企业设备设置能力，包括设置、获取设备息屏时间等。
+本模块提供企业设备设置能力，支持设置和获取设备息屏时间、系统时间、电源策略、护眼模式、默认输入法、壁纸、隐藏设置项等。
 
 > **说明：**
 >
@@ -203,7 +203,7 @@ deviceSettings.setHomeWallpaper(wantTemp, fd).then(() => {
 
 setUnlockWallpaper(admin: Want, fd: number): Promise&lt;void&gt;
 
-设置锁屏壁纸，使用Promise异步回调。
+设置锁屏壁纸，使用Promise异步回调。企业设备管理应用可通过此接口统一设置企业设备的锁屏壁纸，用于企业形象展示或安全管控等场景。
 
 **需要权限：** ohos.permission.ENTERPRISE_SET_WALLPAPER
 
@@ -338,7 +338,7 @@ getValueForAccount(admin: Want, item: SettingsItem, accountId: number): string
 | 参数名 | 类型                                                    | 必填 | 说明                                                         |
 | ------ | ------------------------------------------------------- | ---- | ------------------------------------------------------------ |
 | admin  | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | 是   | 企业设备管理扩展组件。Want中必须包含企业设备管理扩展能力的abilityName和所在应用的bundleName。 |
-| item   | [SettingsItem](#settingsitem24)                         | 是   | 设备设置策略类型。|
+| item   | [SettingsItem](#settingsitem24)                         | 是   | 设备设置策略类型。支持的策略类型包括：DEVICE_NAME（设备名称）、FLOATING_NAVIGATION（三键导航）。|
 | accountId | number                                                 | 是   | 用户ID，取值范围：大于等于0。<br/>accountId可以通过[getOsAccountLocalId](../apis-basic-services-kit/js-apis-osAccount.md#getosaccountlocalid9-1)等接口来获取。  |
 
 **返回值：**

@@ -12,7 +12,7 @@ typedef struct {...} OH_NativeXComponent_TouchPoint
 
 ## 概述
 
-触摸事件中触摸点的信息。该结构体用于在XComponent触摸事件回调中携带单个触摸点的详细数据。其包含手指的唯一标识符、相对于应用窗口和组件的坐标、触摸类型、接触面积、压力大小、时间戳以及按下状态等信息。适用于需要精确获取和处理多点触控信息的场景。
+触摸事件中触摸点的信息。该结构体由系统在触摸事件回调中填充，开发者可通过回调获取各触摸点的状态数据（包括相对于应用窗口和组件的坐标、触摸类型、接触面积、压力大小、时间戳以及按下状态等信息）。适用于需要精确获取和处理多点触控信息的场景。
 
 **起始版本：** 8
 
@@ -27,10 +27,10 @@ typedef struct {...} OH_NativeXComponent_TouchPoint
 | 名称 | 描述 |
 | -- | -- |
 | int32_t id | 手指的唯一标识符。 |
-| float screenX | 触摸点相对于XComponent所在应用窗口左上角的x坐标。 |
-| float screenY | 触摸点相对于XComponent所在应用窗口左上角的y坐标。 |
-| float x | 触摸点相对于XComponent组件左边缘的x坐标。 |
-| float y | 触摸点相对于XComponent组件上边缘的y坐标。 |
+| float screenX | 触摸点相对于XComponent所在应用窗口左上角的x坐标，单位：px。 |
+| float screenY | 触摸点相对于XComponent所在应用窗口左上角的y坐标，单位：px。 |
+| float x | 触摸点相对于XComponent组件左边缘的x坐标，单位：px。 |
+| float y | 触摸点相对于XComponent组件上边缘的y坐标，单位：px。 |
 | [OH_NativeXComponent_TouchEventType](capi-native-interface-xcomponent-h.md#oh_nativexcomponent_toucheventtype) type | 触摸事件的类型，用于区分按压、抬起、移动等不同触摸动作，具体取值见OH_NativeXComponent_TouchEventType。 |
 | double size | 指垫和屏幕之间的接触面积。取值范围为[0.0, 1.0]，值越大表示接触面积越大（归一化值）。 |
 | float force | 当前触摸事件的压力，取值范围为[0, 1]，其中0表示无压力，1表示设备可识别的最大压力（具体取值范围依设备能力而定）。 |

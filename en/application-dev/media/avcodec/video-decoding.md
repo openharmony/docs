@@ -7,78 +7,61 @@
 <!--Tester: @cyakee-->
 <!--Adviser: @w_Machine_cc-->
 
-You can call native APIs to perform video decoding, which decodes media data into a YUV file or renders it.
+Video decoding is a core process in multimedia processing. It decodes compressed video bitstreams into raw pixel data. Video decoding supports synchronous mode and asynchronous mode. The main difference between the two modes lies in whether buffers are obtained synchronously or asynchronously. You can choose the API calling mode that best suits your service requirements.
+
+This document mainly describes asynchronous video decoding. For synchronous video decoding, see [Synchronous Video Decoding](synchronous-video-decoding.md). Based on how decoded data is processed, video decoding supports surface mode and buffer mode for different use cases.
+
+- Surface mode
+
+  Decoded image frames are output through [NativeWindow](../../reference/apis-arkgraphics2d/capi-nativewindow-nativewindow.md). This mode can be connected to other modules, such as the display module [Custom Rendering (XComponent)](../../ui/napi-xcomponent-guidelines.md). It applies to decoding scenarios that require rendering images to the screen, such as video playback and real-time preview.
+
+- Buffer mode
+
+  Decoded raw YUV data is output through shared memory. You can directly access and process each image frame. This mode applies to decoding scenarios that require obtaining and processing raw data, such as video editing and saving raw YUV data.
+
+| Difference| Surface Mode| Buffer Mode|
+|---------- |------------------------------- | -------------------------------- |
+| Configuration| Before calling **OH_VideoDecoder_Prepare**, you must call **OH_VideoDecoder_SetSurface** to set OHNativeWindow.| - |
+| Output processing| Without rendering: Call **OH_VideoDecoder_FreeOutputBuffer** to discard the decoded frame.<br>With rendering: Call **OH_VideoDecoder_RenderOutputBuffer** to display and release the decoded frame, or call **OH_VideoDecoder_RenderOutputBufferAtTime** to display and release the decoded frame at a specified time. To implement audio-video synchronization or control the display speed, you are advised to call **OH_VideoDecoder_RenderOutputBufferAtTime** first.| After processing the output data, you must call **OH_VideoDecoder_FreeOutputBuffer** to release the data.|
+| Callback data| In surface mode, only the data information of the output callback buffer can be obtained.| In buffer mode, the shared memory address and data information of the output callback buffer can be obtained.|
+
+For details about the video decoding formats supported by AVCodec, see [Video Decoding](avcodec-support-formats.md#video-decoding).
 
 For details about the implementation, see [Samples](https://gitcode.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/Media/AVCodec).
 
-For details about the supported decoding capabilities, see [AVCodec Supported Formats](avcodec-support-formats.md#video-decoding).
-
-<!--RP1--><!--RP1End-->
-
-Through the VideoDecoder module, your application can implement the following key capabilities.
-
-|          Capability                      |             How to Configure                                                                    |
-| --------------------------------------- | ---------------------------------------------------------------------------------- |
-| Variable resolution        | The decoder supports the change of the input stream resolution. After the resolution is changed, the callback function **OnStreamChanged()** set by **OH_VideoDecoder_RegisterCallback** is triggered. For details, see step 3 in surface mode or step 3 in buffer mode. |
-| Dynamic surface switching | Call **OH_VideoDecoder_SetSurface** to configure this capability. It is supported only in surface mode. For details, see step 6 in surface mode.   |
-| Low-latency decoding | Call **OH_VideoDecoder_Configure** to configure this capability. For details, see step 5 in surface mode or step 5 in buffer mode.     |
-
-## Constraints
-
-1. After **flush()**, **reset()**, or **stop()** is called, the PPS/SPS must be transferred again in the **start()** call. For details about the example, see step 13 in [Surface Mode](#surface-mode).
-2. If **flush()**, **reset()**, **stop()**, or **destroy()** is executed in a non-callback thread, the execution result is returned after all callbacks are executed.
-3. Due to limited hardware decoder resources, you must call **OH_VideoDecoder_Destroy** to destroy every decoder instance when it is no longer needed.
-4. The input streams for video decoding support only the AnnexB format, and the supported AnnexB format supports multiple slices. However, the slices of the same frame must be sent to the decoder at a time.
-5. When **flush()**, **reset()**, or **stop()** is called, do not continue to operate the OH_AVBuffer obtained through the previous callback function.
-6. The DRM decryption capability supports both non-secure and secure video channels in [surface mode](#surface-mode), but only non-secure video channels in buffer mode(#buffer-mode).
-7. The buffer mode and surface mode use the same APIs. Therefore, the surface mode is described as an example.
-8. In buffer mode, after obtaining the pointer to an OH_AVBuffer instance through the callback function **OH_AVCodecOnNewOutputBuffer**, call **OH_VideoDecoder_FreeOutputBuffer** to notify the system that the buffer has been fully utilized. In this way, the system can write the subsequently decoded data to the corresponding location. If the OH_NativeBuffer instance is obtained through **OH_AVBuffer_GetNativeBuffer** and its lifecycle extends beyond that of the OH_AVBuffer pointer instance, you mut perform data duplication. In this case, you should manage the lifecycle of the newly generated OH_NativeBuffer object to ensure that the object can be correctly used and released.
-<!--RP6--><!--RP6End-->
-
-## Surface Output and Buffer Output
-
-1. Surface output and buffer output differ in data output modes.
-2. They are applicable to different scenarios.
-   - Surface output indicates that the OHNativeWindow is used to transfer output data. It supports connection with other modules, such as the **XComponent**.
-   - Buffer output indicates that decoded data is output in shared memory mode.
-
-3. The two also differ slightly in the API calling modes:
-   - In surface mode, you can choose to call **OH_VideoDecoder_FreeOutputBuffer** to free the output buffer (without rendering the data). In buffer mode, you must call **OH_VideoDecoder_FreeOutputBuffer** to free the output buffer.
-   - In surface mode, you must call [OH_VideoDecoder_SetSurface](../../reference/apis-avcodec-kit/capi-native-avcodec-videodecoder-h.md#oh_videodecoder_setsurface) to set an OHNativeWindow before the decoder is ready. After the decoder starts, you can call [OH_VideoDecoder_RenderOutputBuffer](../../reference/apis-avcodec-kit/capi-native-avcodec-videodecoder-h.md#oh_videodecoder_renderoutputbuffer) to display and then release the decoded frame, or call [OH_VideoDecoder_RenderOutputBufferAtTime](../../reference/apis-avcodec-kit/capi-native-avcodec-videodecoder-h.md#oh_videodecoder_renderoutputbufferattime) to display the decoded frame at a specified time and then release it. To implement audio-video synchronization or control the display speed, you are advised to call **OH_VideoDecoder_RenderOutputBufferAtTime**.
-   - In buffer mode, an application can obtain the shared memory address and data from the output buffer. In surface mode, an application can obtain the data from the output buffer.
-
-For details about the development procedure, see [Surface Mode](#surface-mode) and [Buffer Mode](#buffer-mode).
-
 ## State Machine Interaction
 
-The following figure shows the interaction between states.
+1. Initialized state.
+   - When a decoder instance is initially created, the decoder enters the Initialized state.
+   - When **OH_VideoDecoder_Reset** is called in any state, the decoder can return to the Initialized state.
+2. Configured state.
+   - In the Initialized state, call **OH_VideoDecoder_Configure** to configure the decoder. After the configuration is successful, the decoder enters the Configured state.
+3. Prepared state.
+   - In the Configured state, call **OH_VideoDecoder_Prepare** to enter the Prepared state.
+   - In the Executing state, call **OH_VideoDecoder_Stop** to return to the Prepared state.
+4. Executing state.
+   - In the Prepared state, call **OH_VideoDecoder_Start** to enter the Executing state.
+   - The Executing state contains three substates:
+     - Running: Call **OH_VideoDecoder_Start** to enter the Running substate.
+     - Flushed: Call **OH_VideoDecoder_Flush** to enter the Flushed substate.
+     - End-of-Stream: When the decoder receives an input buffer whose flag is **AVCODEC_BUFFER_FLAGS_EOS** in [OH_AVCodecBufferFlags](../../reference/apis-avcodec-kit/capi-native-avbuffer-info-h.md#oh_avcodecbufferflags), it enters the End-of-Stream substate. In this state, the decoder does not accept new inputs, but continues to generate outputs until the tail frame is output.
+5. Error state.
+   - In rare cases, the decoder enters the Error state when an exception occurs. An API returns an error code or an exception is reported through the **OH_AVCodecOnError** callback.
+   - In the Error state, call **OH_VideoDecoder_Reset** to return to the Initialized state, or call **OH_VideoDecoder_Destroy** to enter the final Released state.
+6. Released state.
+   - After using the decoder, you must call **OH_VideoDecoder_Destroy** to destroy the decoder instance and switch the decoder to the Released state.
+
+**Figure 1** State machine interaction
 
 ![Invoking relationship of state](figures/state-invocation.png)
 
-1. A decoder enters the Initialized state in either of the following ways:
-   - When a decoder instance is initially created, the decoder enters the Initialized state.
-   - When **OH_VideoDecoder_Reset** is called in any state, the decoder returns to the Initialized state.
-
-2. When the decoder is in the Initialized state, you can call **OH_VideoDecoder_Configure** to configure the decoder. After the configuration, the decoder enters the Configured state.
-3. When the decoder is in the Configured state, you can call **OH_VideoDecoder_Prepare** to switch it to the Prepared state.
-4. When the decoder is in the Prepared state, you can call **OH_VideoDecoder_Start** to switch it to the Executing state.
-   - When the decoder is in the Executing state, you can call **OH_VideoDecoder_Stop** to switch it back to the Prepared state.
-
-5. In rare cases, the decoder may encounter an error and enter the Error state. If this is the case, an invalid value can be returned or an exception can be thrown through a queue operation.
-   - When the decoder is in the Error state, you can either call **OH_VideoDecoder_Reset** to switch it to the Initialized state or call **OH_VideoDecoder_Destroy** to switch it to the Released state.
-
-6. The Executing state has three substates: Flushed, Running, and End-of-Stream.
-   - After **OH_VideoDecoder_Start** is called, the decoder enters the Running substate immediately.
-   - When the decoder is in the Executing state, you can call **OH_VideoDecoder_Flush** to switch it to the Flushed substate.
-   - After all data to be processed is transferred to the decoder, the [AVCODEC_BUFFER_FLAGS_EOS](../../reference/apis-avcodec-kit/capi-native-avbuffer-info-h.md#oh_avcodecbufferflags) flag is added to the last input buffer in the input buffers queue. Once this flag is detected, the decoder transits to the End-of-Stream substate. In this state, the decoder does not accept new inputs, but continues to generate outputs until it reaches the tail frame.
-
-7. When the decoder is no longer needed, you must call **OH_VideoDecoder_Destroy** to destroy the decoder instance, which then transitions to the Released state.
-
 ## How to Develop
 
-Read the [API reference](../../reference/apis-avcodec-kit/capi-native-avcodec-videodecoder-h.md).
+Read [native_avcodec_videodecoder.h](../../reference/apis-avcodec-kit/capi-native-avcodec-videodecoder-h.md) for the API reference.
 
-The figure below shows the call relationship of video decoding.
+Refer to the following sample code to complete the basic video decoding process, including creating a decoder, setting decoding parameters, and starting, refreshing, resetting, stopping, and destroying resources.
+
+**Figure 2** Video decoding call relationship
 
 - The dotted line indicates an optional operation.
 
@@ -341,7 +324,7 @@ The following walks you through how to implement the entire video decoding proce
     MediaKeySession *session = nullptr;
     DRM_ContentProtectionLevel contentProtectionLevel = CONTENT_PROTECTION_LEVEL_SW_CRYPTO;
     ret = OH_MediaKeySystem_CreateMediaKeySession(system, &contentProtectionLevel, &session);
-    if (ret != DRM_OK) {
+    if (ret != DRM_ERR_OK) {
         // If the creation fails, refer to the DRM interface document and check logs.
         printf("create media key session failed.");
         return;
@@ -362,7 +345,7 @@ The following walks you through how to implement the entire video decoding proce
 
 5. Call **OH_VideoDecoder_Configure()** to configure the decoder.
 
-    For details about the configurable options, see [Video Dedicated Key-Value Paris](../../reference/apis-avcodec-kit/capi-codecbase.md#media-data-key-value-pairs).
+    For details about the configurable options, see [Video Dedicated Key-Value Pairs](../../reference/apis-avcodec-kit/capi-codecbase.md#media-data-key-value-pairs).
 
     For details about the parameter verification rules, see [OH_VideoDecoder_Configure()](../../reference/apis-avcodec-kit/capi-native-avcodec-videodecoder-h.md#oh_videodecoder_configure).
 
@@ -464,7 +447,7 @@ The following walks you through how to implement the entire video decoding proce
 
 9. (Optional) Call **OH_VideoDecoder_SetParameter()** to set the surface parameters of the decoder.
 
-    For details about the configurable options, see [Video Dedicated Key-Value Paris](../../reference/apis-avcodec-kit/capi-codecbase.md#media-data-key-value-pairs).
+   For details about the configurable options, see [Video Dedicated Key-Value Pairs](../../reference/apis-avcodec-kit/capi-codecbase.md#media-data-key-value-pairs).
 
     ```c++
     auto format = std::shared_ptr<OH_AVFormat>(OH_AVFormat_Create(), OH_AVFormat_Destroy);
@@ -947,7 +930,7 @@ The following walks you through how to implement the entire video decoding proce
     MediaKeySession *session = nullptr;
     DRM_ContentProtectionLevel contentProtectionLevel = CONTENT_PROTECTION_LEVEL_SW_CRYPTO;
     ret = OH_MediaKeySystem_CreateMediaKeySession(system, &contentProtectionLevel, &session);
-    if (ret != DRM_OK) {
+    if (ret != DRM_ERR_OK) {
         // If the creation fails, refer to the DRM interface document and check logs.
         printf("create media key session failed.");
         return;
@@ -1009,7 +992,7 @@ The following walks you through how to implement the entire video decoding proce
 
 8. (Optional) Call **OH_VideoDecoder_SetParameter()** to set the decoder parameters.
 
-    For details about the configurable options, see [Video Dedicated Key-Value Paris](../../reference/apis-avcodec-kit/capi-codecbase.md#media-data-key-value-pairs).
+   For details about the configurable options, see [Video Dedicated Key-Value Pairs](../../reference/apis-avcodec-kit/capi-codecbase.md#media-data-key-value-pairs).
 
     ```c++
     auto format = std::shared_ptr<OH_AVFormat>(OH_AVFormat_Create(), OH_AVFormat_Destroy);
@@ -1201,8 +1184,8 @@ The following walks you through how to implement the entire video decoding proce
     uint8_t* src = new uint8_t[srcRect.hStride * srcRect.wStride * 3 / 2]; // Pointer to the source memory area.
     uint8_t* dstTemp = dst;
     uint8_t* srcTemp = src;
-    rect.height = ((rect.height + 1) / 2)  * 2 // This ensures the height is always even.
-    rect.width = ((rect.width + 1) / 2)  * 2 // This ensures the width is always even.
+    rect.height = ((rect.height + 1) / 2)  * 2; // This ensures the height is always even.
+    rect.width = ((rect.width + 1) / 2)  * 2; // This ensures the width is always even.
     
     // Y: Copy the source data in the Y region to the target data in another region.
     for (int32_t i = 0; i < rect.height; ++i) {
@@ -1236,7 +1219,25 @@ The following walks you through how to implement the entire video decoding proce
 
     For details, see step 3 in [Buffer Mode](#buffer-mode).
 
-The subsequent processes (including refreshing, resetting, stopping, and destroying the decoder) are the same as those in surface mode. For details, see steps 13–16 in [Surface Mode](#surface-mode).
+The subsequent processes (including refreshing, resetting, stopping, and destroying the decoder) are basically the same as those in surface mode. For details, see steps 13-16 in [Surface Mode](#surface-mode).
 
-<!--RP5-->
-<!--RP5End-->
+## Notes
+
+1. After the decoder performs Flush, Reset, or Stop, you must resend the SPS/PPS bitstream parameter sets when calling **OH_VideoDecoder_Start** to restart decoding. For details, see "Step 13. Call OH_VideoDecoder_Flush() to flush the decoder" in [Surface Mode](#surface-mode).
+2. The Flush, Reset, Stop, and Destroy APIs must be called in a non-callback thread. When these APIs are executed, they block and wait until all triggered callbacks are complete, and then return the execution result.
+3. Due to limited hardware decoder resources, you must call **OH_VideoDecoder_Destroy** to destroy every decoder instance and release resources when the decoder is no longer needed.
+4. Video decoding input bitstreams support only the AnnexB format, and multiple slices of the same frame must be sent to the decoder at a time.
+5. Once Flush, Reset, or Stop is called, the system reclaims OH_AVBuffer. Do not continue to operate the OH_AVBuffer obtained through the previous callback function.
+6. In surface mode, DRM decryption supports both non-secure and secure video channels. In buffer mode, DRM decryption supports only non-secure video channels.
+7. In buffer mode, after obtaining OH_AVBuffer through the output callback function **OH_AVCodecOnNewOutputBuffer**, you must call **OH_VideoDecoder_FreeOutputBuffer** to release it, ensuring that the system can write subsequently decoded data to the corresponding location. If you obtain the OH_NativeBuffer pointer instance by calling **OH_AVBuffer_GetNativeBuffer** and the lifecycle of this instance exceeds that of the current OH_AVBuffer pointer instance, you need to manually copy the data and manage the lifecycle of the newly generated OH_NativeBuffer instance to ensure that it is correctly used and released.
+<!--RP6--><!--RP6End-->
+
+<!--RP5--><!--RP5End-->
+
+## Video Decoding Capabilities
+
+| Capability| Description|
+| --------------------------------------- | ----------------------------------------------------------------------- |
+| Dynamic resolution switching| Only hardware decoders support input bitstream resolution changes. When the resolution changes, the **OnStreamChanged()** callback function set by **OH_VideoDecoder_RegisterCallback** is triggered.<br>For details, see step 3 in surface mode or step 3 in buffer mode.|
+| Dynamic surface switching| Call **OH_VideoDecoder_SetSurface** to dynamically switch OHNativeWindow. This capability is supported only in surface mode.<br>For details, see step 6 in surface mode.|
+| Low-latency decoding| Call **OH_VideoDecoder_Configure** to configure low-latency key values.<br>For details, see step 5 in surface mode or step 5 in buffer mode.|

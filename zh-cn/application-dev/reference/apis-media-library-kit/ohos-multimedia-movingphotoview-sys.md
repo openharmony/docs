@@ -54,7 +54,7 @@
 | ---------------------- | ------ | ----------------- |
 | HIGH                | 0      | 允许图像内容使用不受限制的扩展范围，显示HDR效果，建议使用的解码格式YCBCR_P010。|
 | CONSTRAINT         | 1      | 允许图像内容使用一些扩展范围。|
-| STANDARD            | 2      | 允许图像内容动态单位限制在标准范围内，显示SDR效果，需要使用的解码格式UNKNOWN或者RGBA_8888。|
+| STANDARD            | 2      | 允许图像内容动态范围限制在标准范围内，显示SDR效果，需要使用的解码格式UNKNOWN或者RGBA_8888。|
 
 ## MovingPhotoViewAttribute
 
@@ -73,7 +73,7 @@ setPlaybackStrategy(strategy: media.PlaybackStrategy): MovingPhotoViewAttribute
 **系统能力：** SystemCapability.FileManagement.PhotoAccessHelper.Core
 
 **参数：**
- 	 
+  
 | 参数名 | 类型                                                                          | 必填 | 说明                             |
 | ------ | ----------------------------------------------------------------------------- | ---- | -------------------------------- |
 | strategy  | [media.PlaybackStrategy](../../../application-dev/reference/apis-media-kit/arkts-apis-media-i.md#playbackstrategy12) | 是   | 设置动态照片边播边处理策略。 |
@@ -278,7 +278,7 @@ enableAutoPlay(enabled: boolean)
 | 202 | Non-system applications are not allowed to use system APIs. |
 
 ### notifyMovingPhotoTransition<sup>23+</sup>
- 	 
+  
 notifyMovingPhotoTransition(): void
 
 通知组件执行封面图的过渡动效。

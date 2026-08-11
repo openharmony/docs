@@ -18,5 +18,6 @@
 - 分布式账号（仅对系统应用开放）<!--distributed-account-->
   - [管理分布式账号（仅对系统应用开放）](manage-distributed-account-sys.md)
 <!--DelEnd-->
+- [系统账号介绍](os-account-introduction.md)
 - 应用账号<!--application-account-->
   - [管理应用账号](manage-application-account.md)

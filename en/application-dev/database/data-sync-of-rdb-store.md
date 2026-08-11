@@ -6,7 +6,7 @@
 <!--Designer: @htt1997-->
 <!--Tester: @logic42-->
 <!--Adviser: @ge-yafang-->
-<!-- md-trans-meta sourceCommit=deff468b8adbfa4199da5cbe7b6cbc33f2bddb1e translatedAt=2026-06-24T07:38:05.435Z pushedAt=2026-06-25T08:30:29.747Z -->
+<!-- md-trans-meta sourceCommit=b370e209c091d2372f3f4630d52668e908547bd5 translatedAt=2026-07-27T08:17:13.977Z pushedAt=2026-07-27T09:32:48.774Z -->
 
 ## When to Use
 
@@ -40,7 +40,7 @@ When data is added, deleted, or modified, a notification is sent to the subscrib
 
 - Local data change notification: subscription of the application data changes on the local device. When the data in the local RDB store is added, deleted, or modified in the database, a notification is received.
 
-- Distributed data change notification: subscription of the application data changes of other devices in the network. When the data in the local RDB store changes after being synced with data from another device in the same network, a notification is received.
+- Distributed data change notification: subscription of the application data changes of other devices in the network. When data is added, deleted, or modified on another device, a notification is received on the local device.
 
 ### Data Sync Storage Mechanism
 
@@ -122,10 +122,9 @@ The following are APIs for cross-device data sync of RDB stores in device collab
 
 3. Create an RDB store and a data table, and set the data table that requires cross-device data sync as a distributed table. By default, the multi-device collaborative table mode is used for data storage and management.
 
-   <!--@[setDefaultDistributedTables](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkData/RelationalStore/DataSyncAndPersistence/entry/src/main/ets/pages/datasync/RdbDataSync.ets)--> 
+   <!--@[setDefaultDistributedTables](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkData/RelationalStore/DataSyncAndPersistence/entry/src/main/ets/pages/datasync/RdbDataSync.ets)-->  
 
    ``` TypeScript
-   const context = new UIContext().getHostContext() as common.UIAbilityContext;
    let store: relationalStore.RdbStore | undefined = undefined;
    // ...
      const STORE_CONFIG: relationalStore.StoreConfig = {
@@ -133,6 +132,7 @@ The following are APIs for cross-device data sync of RDB stores in device collab
        securityLevel: relationalStore.SecurityLevel.S3 // Database security level
      };
      // Open the database and set distributed tables
+     const context = new UIContext().getHostContext() as common.UIAbilityContext;
      relationalStore.getRdbStore(context, STORE_CONFIG).then(async (rdbStore: relationalStore.RdbStore) => {
        store = rdbStore;
        await store.executeSql('CREATE TABLE IF NOT EXISTS EMPLOYEE (ID INTEGER PRIMARY KEY AUTOINCREMENT, NAME TEXT NOT NULL, AGE INTEGER, SALARY REAL, CODES BLOB)');
@@ -326,10 +326,9 @@ The following are APIs for cross-device data sync of RDB stores in device collab
 
 Data sync using the single-version table mode follows basic development steps similar to those of the [multi-device collaborative table mode](#using-multi-device-collaborative-table-mode-for-data-sync). However, when creating a data table (that is, step 3 in *Using Multi-device Collaborative Table Mode for Data Sync*), you need to set the data table to be synced across devices to the **SINGLE_VERSION** type. An example is provided as follows.
 
-   <!--@[setSingleDistributedTables](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkData/RelationalStore/DataSyncAndPersistence/entry/src/main/ets/pages/datasync/RdbDataSync.ets)--> 
+   <!--@[setSingleDistributedTables](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkData/RelationalStore/DataSyncAndPersistence/entry/src/main/ets/pages/datasync/RdbDataSync.ets)-->  
 
    ``` TypeScript
-   const context = new UIContext().getHostContext() as common.UIAbilityContext;
    let store: relationalStore.RdbStore | undefined = undefined;
    // ...
      const STORE_CONFIG: relationalStore.StoreConfig = {
@@ -343,6 +342,7 @@ Data sync using the single-version table mode follows basic development steps si
        enableCloud: false,
        tableType: relationalStore.DistributedTableType.SINGLE_VERSION
      }
+     const context = new UIContext().getHostContext() as common.UIAbilityContext;
      relationalStore.getRdbStore(context, STORE_CONFIG).then(async (rdbStore: relationalStore.RdbStore) => {
        store = rdbStore;
        await store.executeSql('CREATE TABLE IF NOT EXISTS EMPLOYEE (ID INTEGER PRIMARY KEY AUTOINCREMENT, NAME TEXT NOT NULL UNIQUE, AGE INTEGER, SALARY REAL, CODES BLOB)');
@@ -1267,3 +1267,13 @@ Incorrect example: Two conflict resolution columns, "NAME" and "AGE", are specif
       ```
 
       <!--RP20End-->
+
+## Samples
+
+For RDB store development, the following samples are available:
+
+- [DistributedAuthentication (ArkTS) (Full SDK) (API10)](https://gitcode.com/openharmony/applications_app_samples/tree/master/code/DocsSample/DistributedAppDev/DistributedAuthentication)
+
+- [DistributedRdb (ArkTS) (Full SDK) (API10)](https://gitcode.com/openharmony/applications_app_samples/tree/master/code/SuperFeature/DistributedAppDev/DistributedRdb)
+
+- [DistributedAccount (ArkTS) (Full SDK) (API10)](https://gitcode.com/openharmony/applications_app_samples/tree/master/code/SystemFeature/DistributedAppDev/DistributedAccount)

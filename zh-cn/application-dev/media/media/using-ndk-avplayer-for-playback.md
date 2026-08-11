@@ -45,7 +45,7 @@ target_link_libraries(sample PUBLIC libnative_media_core.so)
 #include <hilog/log.h>
 ```
 
-并需要在CMake脚本中链接如下动态库:
+并需要在CMake脚本中链接如下动态库：
 ```C++
 target_link_libraries(sample PUBLIC libhilog_ndk.z.so)
 ```

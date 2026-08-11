@@ -59,7 +59,7 @@ ConsoleMessage的日志来源。
 | 名称        | 值 | 说明                                 |
 | ---------- | -- | ---------------------------------- |
 | All        | 0 | 宽松模式：允许加载HTTP和HTTPS混合内容。所有不安全的内容都可以被加载。 |
-| Compatible | 1 | 兼容模式：混合内容兼容性模式，部分不安全的内容可能被加载。           |
+| Compatible | 1 | 兼容模式：允许部分HTTP内容在HTTPS页面中加载。 |
 | None       | 2 | 严格模式：不允许加载HTTP和HTTPS混合内容。               |
 
 ## HitTestType<sup>(deprecated)</sup>
@@ -70,7 +70,7 @@ ConsoleMessage的日志来源。
 
 > **说明：**
 >
-> 从API version9开始支持，从API version 21开始废弃。建议使用[WebHitTestType](./arkts-apis-webview-e.md#webhittesttype)替代。
+> 从API version 9开始支持，从API version 21开始废弃。建议使用[WebHitTestType](./arkts-apis-webview-e.md#webhittesttype)替代。
 
 | 名称            | 值 | 说明                       |
 | ------------- | -- | ------------------------ |
@@ -105,8 +105,8 @@ ConsoleMessage的日志来源。
 
 | 名称     | 值 | 说明          |
 | ------ | -- | ----------- |
-| NEVER  | 0 | Web过滚动模式关闭。 |
-| ALWAYS | 1 | Web过滚动模式开启。 |
+| NEVER  | 0 | Web过滚动模式关闭。适用于不需要额外滚动效果的页面，如内容高度与容器高度匹配的场景。 |
+| ALWAYS | 1 | Web过滚动模式开启。适用于需要增强滚动反馈的场景，如列表页面或需要明确滚动边界指示的场景。 |
 
 ## BlurOnKeyboardHideMode<sup>14+</sup>
 
@@ -118,12 +118,12 @@ ConsoleMessage的日志来源。
 
 | 名称     | 值 | 说明          |
 | ------ | -- | ----------- |
-| SILENT  | 0 | 软键盘收起时Web组件失焦功能关闭，当用户手动收起软键盘时焦点仍在文本框。 |
-| BLUR | 1 | 软键盘收起时Web组件失焦功能开启，当用户手动收起软键盘时，焦点会从文本框转移到Web的body上，文本框失焦。 |
+| SILENT  | 0 | 软键盘收起时Web组件失焦功能关闭，当用户手动收起软键盘时焦点仍在文本框。适用于需要保持输入焦点的场景。 |
+| BLUR | 1 | 软键盘收起时Web组件失焦功能开启，当用户手动收起软键盘时，焦点会从文本框转移到Web的body上，文本框失焦。适用于需要标准输入框行为的场景。 |
 
 ## WebDarkMode<sup>9+</sup>
 
-Web深色模式的配置。
+Web深色模式的配置，用于控制网页内容的深色主题显示，帮助开发者根据用户偏好和系统主题提升视觉体验和可读性。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -131,7 +131,7 @@ Web深色模式的配置。
 | ---- | -- | ------------ |
 | Off  | 0 | Web深色模式关闭。   |
 | On   | 1 | Web深色模式开启。   |
-| Auto | 2 | Web深色模式跟随系统。 |
+| Auto | 2 | Web深色模式跟随系统。适用于Web组件主题需要与系统保持一致的场景，推荐使用此模式以提供一致的用户体验。 |
 
 ## WebCaptureMode<sup>10+</sup>
 
@@ -187,7 +187,7 @@ onSslErrorEventReceive接口返回的SSL错误的具体原因。
 
 ## FileSelectorMode<sup>9+</sup>
 
-文件选择器的模式。
+文件选择器的模式，用于控制文件选择器的打开方式和行为，帮助开发者实现文件上传等文件操作场景。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -200,14 +200,14 @@ onSslErrorEventReceive接口返回的SSL错误的具体原因。
 
 ## WebLayoutMode<sup>11+</sup>
 
-Web布局模式的配置。
+Web布局模式的配置，用于控制Web内容的页面布局方式，帮助开发者根据屏幕尺寸和显示需求优化网页的适配性和用户体验。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
 | 名称          | 值 | 说明                 |
 | ----------- | -- | ------------------ |
-| NONE        | 0 | Web布局跟随系统。         |
-| FIT_CONTENT | 1 | Web基于页面大小的自适应网页布局。 |
+| NONE        | 0 | Web布局跟随系统。适用于传统网页布局场景，保持与系统默认行为一致。         |
+| FIT_CONTENT | 1 | Web基于页面大小的自适应网页布局。适用于需要根据屏幕尺寸自动调整布局的场景，推荐用于移动端网页优化。 |
 
 ## RenderProcessNotRespondingReason<sup>12+</sup>
 
@@ -222,7 +222,7 @@ Web布局模式的配置。
 
 ## ProtectedResourceType<sup>9+</sup>
 
-受保护的资源类型。
+ProtectedResourceType枚举定义了Web组件需要访问的受保护资源类型，用于控制MIDI、相机、麦克风、传感器等敏感资源的访问权限，帮助开发者在保护用户隐私的同时提供丰富的Web功能。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -277,7 +277,7 @@ Web布局模式的配置。
 
 | 名称        | 值 | 说明                          |
 | --------- | -- | --------------------------- |
-| None      | 0 | 非输入框。                       |
+| None      | 0 | 非输入框，指不可编辑的网页元素，如按钮、div、span等普通HTML元素。                       |
 | PlainText | 1 | 纯文本类型，包括text、search、email等。 |
 | Password  | 2 | 密码类型。                       |
 | Number    | 3 | 数字类型。                       |
@@ -359,9 +359,9 @@ Web布局模式的配置。
 
 | 名称                           | 值 | 说明           |
 | ----------------------------- | -- | ------------ |
-| AUTO                  | 0 | 默认值，整个网页可见。   |
-| CONTAINS      | 1 | 初始布局视口和视觉视口为适应设备显示屏的最大矩形内。   |
-| COVER      | 2| 初始布局视口和视觉视口为设备物理屏幕的外接矩形内。   |
+| AUTO                  | 0 | 默认值，整个网页可见。适用于希望网页完全在可视区域内显示的场景，推荐用于大多数常规网页。   |
+| CONTAINS      | 1 | 初始布局视口和视觉视口为适应设备显示屏的最大矩形内。适用于需要确保内容完全在安全区域内的场景，如避免刘海屏遮挡重要内容。   |
+| COVER      | 2| 初始布局视口和视觉视口为设备物理屏幕的外接矩形内。适用于需要网页内容延伸到屏幕边缘的场景，如全屏背景效果或沉浸式体验。   |
 
 ## WebKeyboardAvoidMode<sup>12+</sup>
 
@@ -405,7 +405,7 @@ Web布局模式的配置。
 
 ## AudioSessionType<sup>20+</sup>
 
-应用中Web音频类型。
+应用中Web音频类型，用于控制Web音频的音频流类型和行为，帮助开发者根据应用场景优化音频体验，如支持网页游戏声音与系统音乐同时播放。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -450,21 +450,21 @@ Web布局模式的配置。
 
 ## PdfLoadResult<sup>20+</sup>
 
-定义PDF页面的加载结果。
+定义PDF页面的加载结果，用于标识PDF文件加载过程中的各种状态和错误类型，帮助开发者在PDF显示失败时进行错误诊断和用户提示。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
 | 名称             | 值    | 说明                                       |
 | -------------- | ---- | ---------------------------------------- |
 | LOAD_SUCCESS | 0 | PDF页面加载成功。    |
-| PARSE_ERROR_FILE | 1 | PDF文件加载失败的错误码。 |
-| PARSE_ERROR_FORMAT | 2 | PDF文件格式不支持的错误码。 |
-| PARSE_ERROR_PASSWORD | 3 | PDF文件密码不正确的错误码。 |
-| PARSE_ERROR_HANDLER | 4 | PDF文件处理失败的错误码。 |
+| PARSE_ERROR_FILE | 1 | PDF文件加载失败。 |
+| PARSE_ERROR_FORMAT | 2 | PDF文件格式不支持。 |
+| PARSE_ERROR_PASSWORD | 3 | PDF文件密码不正确。 |
+| PARSE_ERROR_HANDLER | 4 | PDF文件处理失败。 |
 
 ## DetectedBlankScreenReason<sup>22+</sup>
 
-白屏的具体原因。
+白屏的具体原因，用于标识页面白屏现象的底层原因，帮助开发者快速定位问题来源，提升页面加载问题的排查效率和用户体验。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -475,7 +475,7 @@ Web布局模式的配置。
 
 ## BlankScreenDetectionMethod<sup>22+</sup>
 
-白屏检测使用的检测策略的方法。
+白屏检测使用的检测策略的方法，用于定义页面内容检测的具体算法和点位，帮助开发者在检测准确性和性能开销之间取得平衡，及时发现页面渲染异常。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -485,7 +485,7 @@ Web布局模式的配置。
 
 ## CredentialType<sup>22+</sup>
 
-凭证类型。
+凭证类型，用于定义身份认证中使用的凭证种类。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -497,7 +497,7 @@ Web布局模式的配置。
 
 ## PinVerifyResult<sup>22+</sup>
 
-PIN码认证结果。
+PIN码认证结果，用于标识PIN码验证的执行状态。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -508,7 +508,7 @@ PIN码认证结果。
 
 ## CameraCaptureState<sup>23+</sup>
 
-定义摄像头使用状态的值。
+定义摄像头使用状态的值，用于标识摄像头的当前工作状态，帮助开发者实时监控摄像头资源使用情况，优化资源管理和用户隐私保护。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -520,7 +520,7 @@ PIN码认证结果。
 
 ## MicrophoneCaptureState<sup>23+</sup>
 
-定义麦克风使用状态的值。
+定义麦克风使用状态的值，用于标识麦克风的当前工作状态，帮助开发者实时监控麦克风资源使用情况，优化资源管理和用户隐私保护。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -611,7 +611,7 @@ AI会话操作的结果状态。
 
 ## WebKeyboardAppearanceMode
 
-WebView中输入法沉浸模式。
+WebView中输入法沉浸模式，用于控制软键盘的显示风格，帮助开发者根据应用主题和用户偏好提供一致性的视觉体验，支持默认外观、系统跟随、浅色和深色沉浸式风格。
 
 **起始版本：** 26.0.0
 

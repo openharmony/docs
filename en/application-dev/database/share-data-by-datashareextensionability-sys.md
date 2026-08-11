@@ -1,18 +1,18 @@
 # Sharing Data Using DataShareExtensionAbility (ArkTS) (for System Applications Only)
+
 <!--Kit: ArkData-->
 <!--Subsystem: DistributedDataManager-->
 <!--Owner: @woodenarow-->
 <!--Designer: @woodenarow; @xuelei3-->
 <!--Tester: @chenwan188; @logic42-->
 <!--Adviser: @ge-yafang-->
-
+<!-- md-trans-meta sourceCommit=881a74b96c3e76923a911f57fd29f2c40dfda958 translatedAt=2026-07-27T08:17:03.704Z pushedAt=2026-07-27T09:58:18.234Z -->
 
 ## When to Use
 
 If complex services are involved in cross-application data access, you can use **DataShareExtensionAbility** to start the application of the data provider to implement data access.
 
 You need to implement flexible service logics via callbacks of the service provider to achieve data sharing in complex service scenarios across applications.
-
 
 ## Working Principles
 
@@ -36,11 +36,10 @@ There are two roles in **DataShare**:
 ## Constraints
 
 - The upper limit of shared data result sets depends on the data provider (for example, a maximum of 32 shared data result sets are actually allowed for concurrent use). It is recommended that the data provider specify the upper limit to control resource usage. Query requests that exceed the limit set by the data provider must be processed with retry logic.
-- After the query is complete, the shared data result set returned should be released promptly after use. For details, see [DataShareResultSet](../reference/apis-arkdata/js-apis-data-DataShareResultSet-sys.md#close).
 
+- After using the shared data result set returned by a query, call the [close](../reference/apis-arkdata/js-apis-data-DataShareResultSet-sys.md#close) API promptly to release its resources.
 
 ## How to Implement
-
 
 ### Data Provider Application Development (Only for System Applications)
 
@@ -48,15 +47,15 @@ The [DataShareExtensionAbility](../reference/apis-arkdata/js-apis-application-da
 
 | API                                    | Description                  |
 | ---------------------------------------- | -------------------- |
-| onCreate(want: Want, callback: AsyncCallback&lt;void&gt;): void | Called by the server to initialize service logic when the DataShare client connects to the DataShareExtensionAbility server.        |
-| insert(uri: string, value: ValuesBucket, callback: AsyncCallback&lt;number&gt;): void | Inserts data. This API is called when the client requests to insert data.        |
-| update(uri: string, predicates: dataSharePredicates.DataSharePredicates, value: ValuesBucket, callback: AsyncCallback&lt;number&gt;): void | Updates data. This API is called when the client requests to update data.        |
-| batchUpdate(operations: Record&lt;string, Array&lt;UpdateOperation&gt;&gt;): Promise&lt;Record&lt;string, Array&lt;number&gt;&gt;&gt; | Batch updates data. This API is called when the client requests to batch update data.   |
-| delete(uri: string, predicates: dataSharePredicates.DataSharePredicates, callback: AsyncCallback&lt;number&gt;): void | Deletes data. This API is called when the client requests to delete data.   |
-| query(uri: string, predicates: dataSharePredicates.DataSharePredicates, columns: Array&lt;string&gt;, callback: AsyncCallback&lt;DataShareResultSet&gt;): void | Queries data. This API is called when the client requests to query data.          |
-| batchInsert(uri: string, values: Array&lt;ValuesBucket&gt;, callback: AsyncCallback&lt;number&gt;): void | Batch inserts data. This API is called when the client requests to batch insert data.   |
-| normalizeUri(uri: string, callback: AsyncCallback&lt;string&gt;): void | Normalizes a URI. This API is called when the URI provided by the client is converted to the URI used by the server.   |
-| denormalizeUri(uri: string, callback: AsyncCallback&lt;string&gt;): void | Denormalizes a URI. This API is called when the URI used by the server is converted to the URI provided by the client.   |
+| onCreate(want: Want, callback: AsyncCallback&lt;void&gt;): void | Called by the server to initialize service logic when the DataShare client connects to the DataShareExtensionAbility server. This method can be overridden as required.        |
+| insert(uri: string, value: ValuesBucket, callback: AsyncCallback&lt;number&gt;): void | Inserts data. This API is called when the client requests to insert data. This method can be overridden as required.        |
+| update(uri: string, predicates: dataSharePredicates.DataSharePredicates, value: ValuesBucket, callback: AsyncCallback&lt;number&gt;): void | Updates data. This API is called when the client requests to update data. This method can be overridden as required.        |
+| batchUpdate(operations: Record&lt;string, Array&lt;UpdateOperation&gt;&gt;): Promise&lt;Record&lt;string, Array&lt;number&gt;&gt;&gt; | Batch updates data. This API is called when the client requests to batch update data. This method can be overridden as required.   |
+| delete(uri: string, predicates: dataSharePredicates.DataSharePredicates, callback: AsyncCallback&lt;number&gt;): void | Deletes data. This API is called when the client requests to delete data. This method can be overridden as required.   |
+| query(uri: string, predicates: dataSharePredicates.DataSharePredicates, columns: Array&lt;string&gt;, callback: AsyncCallback&lt;DataShareResultSet&gt;): void | Queries data. This API is called when the client requests to query data. This method can be overridden as required.          |
+| batchInsert(uri: string, values: Array&lt;ValuesBucket&gt;, callback: AsyncCallback&lt;number&gt;): void | Batch inserts data. This API is called when the client requests to batch insert data. This method can be overridden as required.   |
+| normalizeUri(uri: string, callback: AsyncCallback&lt;string&gt;): void | Normalizes a URI. This API is called when the URI provided by the client is converted to the URI used by the server. This method can be overridden as required.   |
+| denormalizeUri(uri: string, callback: AsyncCallback&lt;string&gt;): void | Denormalizes a URI. This API is called when the URI used by the server is converted to the URI provided by the client. This method can be overridden as required.   |
 
 Before implementing a **DataShare** service, you need to create a **DataShareExtensionAbility** object in the DevEco Studio project as follows:
 
@@ -65,7 +64,7 @@ Before implementing a **DataShare** service, you need to create a **DataShareExt
 2. Right-click the **DataShareExtAbility** directory, and choose **New > ArkTS File** to create a file named **DataShareExtAbility.ets**.
 
 3. In the **DataShareExtAbility.ets** file, import the **DataShareExtensionAbility** module. You can override the service implementation as required. For example, if the data provider provides only the insert, delete, and query services, you can override only these APIs and import the dependency modules. If permission verification is required, override the callbacks using [getCallingPid](../reference/apis-ipc-kit/js-apis-rpc.md#getcallingpid), [getCallingUid](../reference/apis-ipc-kit/js-apis-rpc.md#getcallinguid), and [getCallingTokenId](../reference/apis-ipc-kit/js-apis-rpc.md#getcallingtokenid8) provided by the IPC module to obtain the data consumer information for permission verification.
-   
+
    ```ts
    import { DataShareExtensionAbility, dataShare, dataSharePredicates, relationalStore, DataShareResultSet, ValuesBucket } from '@kit.ArkData';
    import { Want } from '@kit.AbilityKit';
@@ -73,7 +72,7 @@ Before implementing a **DataShare** service, you need to create a **DataShareExt
    ```
 
 4. Implement the data provider services. For example, implement data storage of the data provider by creating and using a database, reading and writing files, or accessing the network.
-   
+
    ```ts
    const DB_NAME = 'DB00.db';
    const TBL_NAME = 'TBL00';
@@ -129,7 +128,7 @@ Before implementing a **DataShare** service, you need to create a **DataShareExt
        }
      }
      // Override the batchUpdate API.
-     batchUpdate(operations:Record<string, Array<dataShare.UpdateOperation>>, callback:Function) {
+     batchUpdate(operations: Record<string, Array<dataShare.UpdateOperation>>, callback: Function) {
        let recordOps : Record<string, Array<dataShare.UpdateOperation>> = operations;
        let results : Record<string, Array<number>> = {};
        let a = Object.entries(recordOps);
@@ -191,7 +190,7 @@ Before implementing a **DataShare** service, you need to create a **DataShareExt
 5. Define **DataShareExtensionAbility** in **module.json5**.
 
      **Table 1** Fields in module.json5
-   
+
    | Name| Description| Mandatory|
    | -------- | -------- | -------- |
    | name | Ability name, corresponding to the **ExtensionAbility** class name derived from **Ability**.| Yes|
@@ -202,9 +201,9 @@ Before implementing a **DataShare** service, you need to create a **DataShareExt
    | writePermission | Permission required for modifying data. If this parameter is not set, write permission verification is not performed by default.<br>Note: The permission constraints for **DataShareExtensionAbility** are different from that for silent access. It is important to understand the difference and prevent confusion. For details, see [Silent Access via DatamgrService](share-data-by-silent-access-sys.md).| No|
    | metadata   | Silent access configuration, which includes the following:<br> **name**: identifies the configuration, which has a fixed value of **ohos.extension.dataShare**.<br> **resource**: has a fixed value of **$profile:data_share_config**, which indicates that the profile name is **data_share_config.json**.| **metadata** is mandatory when the ability launch type is **singleton**. For details about the ability launch type, see **launchType** in the [Internal Structure of the abilities Attribute](../quick-start/module-structure.md#internal-structure-of-the-abilities-attribute).|
 
-   **module.json5 example**
-   
-   ```json
+**module.json5 example**
+
+   ```json5
    // The following uses settingsdata as an example.
    "extensionAbilities": [
      {
@@ -227,12 +226,12 @@ Before implementing a **DataShare** service, you need to create a **DataShareExt
 
    | Name           | Description                                                    | Mandatory|
    | ------------------- | ------------------------------------------------------------ | ---- |
-   | tableConfig         | Configuration label, which includes **uri** and **crossUserMode**.<br>- **uri**: specifies the range for which the configuration takes effect. The URI supports the following formats in descending order by priority:<br> 1. *****: indicates all databases and tables.<br> 2. **datashare:///{*bundleName*}/{*moduleName*}/{*storeName*}**: specifies a database.<br> 3. **datashare:///{*bundleName*}/{*moduleName*}/{*storeName*}/{*tableName*}**: specifies a table.<br>- **crossUserMode**: Whether to share data between multiple users.<br>The value **1** means to share data between multiple users, and the value **2** means the opposite.| Yes  |
+   | tableConfig         | Configuration label, which includes **uri** and **crossUserMode**.<br>- **uri**: specifies the range for which the configuration takes effect. The URI supports the following formats in descending order by priority:<br> 1. *: indicates all databases and tables.<br> 2. **datashare:///{*bundleName*}/{*moduleName*}/{*storeName*}**: specifies a database.<br> 3. **datashare:///{*bundleName*}/{*moduleName*}/{*storeName*}/{*tableName*}**: specifies a table.<br>- **crossUserMode**: Whether to share data between multiple users.<br>The value **1** means to share data between multiple users, and the value **2** means the opposite.| Yes  |
    | isSilentProxyEnable | Whether to enable silent access for this ExtensionAbility.<br>**false**: Silent access is disabled.<br>**true**: Silent access is enabled.<br>The default value is **true**.<br>If an application has multiple ExtensionAbilities and this field is set to **false** for one of them, silent access is disabled for the application.<br>If the data provider has called **enableSilentProxy** or **disableSilentProxy**, silent access is enabled or disabled based on the API settings. Otherwise, the setting here takes effect.| No  |
    | launchInfos         | Information including **storeId** and **tableNames**.<br>If the data in a table involved in the configuration changes, an extensionAbility will be started based on the URI in **extensionAbilities**. You need to set this parameter only when the service needs to start an extensionAbility to process data that is not actively changed by the service.<br>- **storeId**: database name, excluding the file name extension. For example, if the database name is **test.db**, set this parameter to **test**.<br>- **tableNames**: names of the database tables. Any change in a table will start **extension**.| No  |
-   
+
    **data_share_config.json Example**
-   
+
    ```json
    {
        "tableConfig":[
@@ -259,11 +258,10 @@ Before implementing a **DataShare** service, you need to create a **DataShareExt
    }
    ```
 
-
 ### Data Consumer Application Development
 
 1. Import dependencies.
-   
+
    ```ts
    import { UIAbility } from '@kit.AbilityKit';
    import { dataShare, dataSharePredicates, DataShareResultSet, ValuesBucket } from '@kit.ArkData';
@@ -271,15 +269,15 @@ Before implementing a **DataShare** service, you need to create a **DataShareExt
    import { BusinessError } from '@kit.BasicServicesKit';
    ```
 
-2. Define the URI string for communicating with the data provider.<br> The URI is the identifier of the context data provider in set in the configuration file. It can be added with suffix parameters to set the access target. The suffix parameters must start with a question mark (?).<br> - Currently, only the **user** parameter is supported.<br> - The value of **user** must be an integer. It indicates the user ID of the data provider. If It is not specified, the user ID of the data consumer is used. For details about the definition of **user** and how to obtain it, see [user](../reference/apis-basic-services-kit/js-apis-osAccount.md#getactivatedosaccountlocalids9).<br> - Currently, the data consumer in cross-user access must have the **ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS** permission. Currently, cross-user access supports the add, delete, modify, and query operations, and does not support subscription notification.
-   
+2. Define the URI used to communicate with the data provider.<br/> The URI is the identifier configured by the data provider in its configuration file. You can append query parameters to the URI to specify the target resource. Query parameters must be appended to the end of the URI, beginning with a question mark (?).<br/> - Currently, only the **user** parameter is supported.<br/> - The **user** parameter must be an integer that specifies the user ID of the data provider. If this parameter is omitted, the user ID of the data consumer is used by default. For information about the **user** parameter and how to obtain the user ID, see [getActivatedOsAccountLocalIds](../reference/apis-basic-services-kit/js-apis-osAccount.md#getactivatedosaccountlocalids9).<br/> - Cross-user access requires the data consumer to hold the **ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS** permission. Currently, cross-user access is supported only for CRUD operations. Notification subscriptions do not support cross-user access.
+
    ```ts
    // Different from the URI defined in the module.json5 file, the URI passed in the parameter has an extra slash (/) because there is a DeviceID parameter between the second and the third slash (/).
    let dseUri = 'datashare:///com.ohos.settingsdata.DataAbility';
    ```
 
 3. Use **createDataShareHelper()** to pass the URI to create a **DataShareHelper** object.
-   
+
    ```ts
    let dsHelper: dataShare.DataShareHelper | undefined = undefined;
    let abilityContext: Context;
@@ -295,7 +293,7 @@ Before implementing a **DataShare** service, you need to create a **DataShareExt
    ```
 
 4. After obtaining the **DataShareHelper** object, use the APIs provided by the object (such as **insert()**, **delete()**, **update()**, or **query()**) to access the provider data.
-   
+
    ```ts
    // Construct a piece of data.
    let key1 = 'name';
@@ -365,4 +363,8 @@ Before implementing a **DataShare** service, you need to create a **DataShareExt
    }
    ```
 
+## Samples
 
+For data sharing development, the following sample is available:
+
+- [CrossAppDataShare (ArkTS) (Full SDK) (API9)](https://gitcode.com/openharmony/applications_app_samples/tree/master/code/SystemFeature/DataManagement/CrossAppDataShare)

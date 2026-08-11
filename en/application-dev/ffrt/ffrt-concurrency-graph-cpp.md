@@ -2,10 +2,11 @@
 
 <!--Kit: Function Flow Runtime Kit-->
 <!--Subsystem: Resourceschedule-->
-<!--Owner: @chuchihtung; @yanleo-->
-<!--Designer: @geoffrey_guo; @huangyouzhong-->
-<!--Tester: @lotsof; @sunxuhao-->
+<!--Owner: @chuchihtung-->
+<!--Designer: @zhanglu161-->
+<!--Tester: @lotsof-->
 <!--Adviser: @jinqiuheng-->
+<!-- md-trans-meta sourceCommit=a4bb221ea8dcccf781d5793faa6c8f62723e3e12 translatedAt=2026-08-03T08:17:34.445Z pushedAt=2026-08-03T09:23:29.857Z -->
 
 ## Overview
 
@@ -14,6 +15,7 @@ The FFRT task graph supports task dependency and data dependency. Each node in t
 You can use either of the following ways to build a task graph:
 
 - Use the task dependency to build a task graph. The task `handle` is used to indicate a task object.
+
 - Use the data dependency to build a task graph. The data object is abstracted as a data signature, and each data signature uniquely indicates a data object.
 
 ### Task dependency
@@ -24,9 +26,11 @@ You can use either of the following ways to build a task graph:
 
 Task dependency applies to scenarios where tasks have specific sequence or logical process requirements. For example:
 
-- Tasks with sequence. For example, a data preprocessing task is executed before a model training task.
+- Tasks executed in sequence. For example, a data preprocessing task is executed before a model training task.
+
 - Logic process control. For example, in a typical commodity transaction process, orders are placed, followed by production and then logistics transportation.
-- Multi-level chain: For example, during video processing, you can perform tasks such as transcoding, generating thumbnails, adding watermarks, and releasing the final video.
+
+- Multi-level chain. For example, during video processing, you can perform tasks such as transcoding, generating thumbnails, adding watermarks, and releasing the final video.
 
 ### Data Dependency
 
@@ -72,7 +76,9 @@ For ease of description, circles are used to represent tasks and squares are use
 The following conclusions can be drawn:
 
 - task1 and task2/task3 form a producer-consumer dependency. This means that task2/task3 can read data A only after task1 writes data A.
-- task2/task3 and task4 form a consumer-producer dependency. This means that task4 can write data A only after task2/task3 reads data A.
+
+- task2/task3 and task4 form a consumer-producer dependency. This means that task4 can write data A only after task2 and task3 read data A.
+
 - task 4 and task 5 form a producer-producer dependency. This means that task 5 can write data A only after task 4 writes data A.
 
 ## Example: Streaming Video Processing
@@ -81,20 +87,32 @@ A user uploads a video to the platform. The processing steps include: parsing, t
 
 ![image](figures/ffrt_figure1.png)
 
-The FFRT provides task graph that can describe the task dependency and parallelize the preceding video processing process. The code is as follows:
+The graph-based concurrency paradigm provided by FFRT can describe task dependencies and parallelize the preceding video processing flow. The code is as follows:
 
-```cpp
+<!-- @[parallel_dep_cpp_header](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/FunctionFlowRuntime/TaskGraph/entry/src/main/cpp/parallel_cpp.h) -->
+
+``` C
 #include <iostream>
-#include "ffrt/ffrt.h" // From the OpenHarmony third-party library "@ppd/ffrt"
+#include "hilog/log.h"
+#include "ffrt/ffrt.h" // From the OpenHarmony third-party library "@ppd/ffrt".
 
-int main()
+#undef LOG_TAG
+#define LOG_TAG "ParallelCppTag"
+```
+
+<!-- @[parallel_dep_cpp](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/FunctionFlowRuntime/TaskGraph/entry/src/main/cpp/parallel_cpp.cpp) -->
+
+``` C++
+const int FIB_NUM = 5;
+
+int DependenceCppExec()
 {
     // Submit a task.
-    auto handle_A = ffrt::submit_h([] () { std::cout << "Parse" << std::endl; });
-    auto handle_B = ffrt::submit_h([] () { std::cout << "Transcode" << std::endl; }, {handle_A});
-    auto handle_C = ffrt::submit_h([] () { std::cout << "Generate a thumbnail" << std::endl; }, {handle_A});
-    auto handle_D = ffrt::submit_h([] () { std::cout << "Add watermark" << std::endl; }, {handle_B, handle_C});
-    ffrt::submit([] () { std::cout << "Release" << std::endl; }, {handle_D});
+    auto handle_A = ffrt::submit_h([] () { OH_LOG_INFO(LOG_APP, "Video parsing"); });
+    auto handle_B = ffrt::submit_h([] () { OH_LOG_INFO(LOG_APP, "Video transcoding"); }, {handle_A});
+    auto handle_C = ffrt::submit_h([] () { OH_LOG_INFO(LOG_APP, "Video thumbnail generation"); }, {handle_A});
+    auto handle_D = ffrt::submit_h([] () { OH_LOG_INFO(LOG_APP, "Video watermarking"); }, {handle_B, handle_C});
+    ffrt::submit([] () { OH_LOG_INFO(LOG_APP, "Video publishing"); }, {handle_D});
 
     // Wait until all tasks are complete.
     ffrt::wait();
@@ -114,21 +132,33 @@ Video release
 
 ## Example: Fibonacci Sequence
 
-Each number in the Fibonacci sequence is the sum of the first two numbers. The process of calculating the Fibonacci number can well express the task dependency through the data object. The code for calculating the Fibonacci number using the FFRT framework is as follows:
+Each number in the Fibonacci sequence is the sum of the two preceding numbers. The process of calculating the Fibonacci number can well express the task dependency through the data object. The code for calculating the Fibonacci number using the FFRT framework is as follows:
 
-```cpp
+<!-- @[parallel_dep_cpp_header](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/FunctionFlowRuntime/TaskGraph/entry/src/main/cpp/parallel_cpp.h) -->
+
+``` C
 #include <iostream>
-#include "ffrt/ffrt.h" // From the OpenHarmony third-party library "@ppd/ffrt"
+#include "hilog/log.h"
+#include "ffrt/ffrt.h" // From the OpenHarmony third-party library "@ppd/ffrt".
 
+#undef LOG_TAG
+#define LOG_TAG "ParallelCppTag"
+```
+
+<!-- @[parallel_fib_cpp](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/FunctionFlowRuntime/TaskGraph/entry/src/main/cpp/parallel_cpp.cpp) -->
+
+``` C++
 void Fib(int x, int& y)
 {
     if (x <= 1) {
         y = x;
     } else {
-        int y1, y2;
+        int y1;
+        int y2;
 
         // Submit the task and build data dependencies.
         ffrt::submit([&]() { Fib(x - 1, y1); }, {&x}, {&y1});
+        // Recursion required for Fibonacci sequence - 2
         ffrt::submit([&]() { Fib(x - 2, y2); }, {&x}, {&y2});
 
         // Wait until the task is complete.
@@ -137,11 +167,13 @@ void Fib(int x, int& y)
     }
 }
 
-int main()
+int FibCppExec()
 {
     int y;
-    Fib(5, y);
+    Fib(FIB_NUM, y);
     std::cout << "Fibonacci(5) is " << y << std::endl;
+    OH_LOG_INFO(LOG_APP, "Fibonacci(5) is %{public}d", y);
+    return y;
 }
 ```
 
@@ -153,7 +185,7 @@ Fibonacci(5) is 5
 
 In the example, `fibonacci(x-1)` and `fibonacci(x-2)` are submitted to FFRT as two tasks. After the two tasks are complete, the results are accumulated. Although a single task is split into two subtasks, the subtasks can be further split. Therefore, the concurrency of the entire computational graph is very high.
 
-Each task forms a call tree in the FFRT.
+The tasks form a call tree within FFRT.
 
 ![image](figures/ffrt_figure2.png)
 
@@ -170,10 +202,12 @@ The main FFRT APIs involved in the preceding example are as follows:
 > **NOTE**
 >
 > - For details about how to use FFRT C++ APIs, see [Using FFRT C++ APIs](ffrt-development-guideline.md#using-ffrt-c-api-1).
-> - When using FFRT C or C++ APIs, you can use the FFRT C++ API third-party library to simplify header file inclusion, that is, use the `#include "ffrt/ffrt.h"` header file to include statements.
+> - When using FFRT C or C++ APIs, you can use the FFRT C++ API third-party library to simplify header file inclusion, that is, use the `#include "ffrt/ffrt.h"` statement.
 
 ## Constraints
 
 - For `submit`, the total number of input dependencies and output dependencies of each task cannot exceed 8.
+
 - For `submit_h`, the total number of input dependencies and output dependencies of each task cannot exceed 7.
+
 - When a parameter is used as both an input dependency and an output dependency, it is counted as one dependency. For example, if the input dependency is `{&x}` and the output dependency is also `{&x}`, then the number of dependencies is 1.

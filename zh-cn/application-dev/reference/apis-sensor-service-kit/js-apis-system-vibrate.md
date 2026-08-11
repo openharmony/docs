@@ -3,12 +3,12 @@
 <!--Subsystem: Sensors-->
 <!--Owner: @dilligencer-->
 <!--Designer: @andeszhang-->
-<!--Tester: @liuhaonan2-->
+<!--Tester: @zhaofangyuan-->
 <!--Adviser: @hu-zhiqiong-->
 
 @system.vibrator模块提供控制设备马达振动的能力，开发者可以通过该模块触发设备执行长振动或短振动效果，为用户提供触觉反馈。主要用于闹钟、开关机振动、来电振动等需要触觉提醒的交互场景，帮助应用在关键事件发生时通过振动吸引用户注意力。
 
-适用于Lite Wearable轻量穿戴设备。对于其他设备类型，自API version 8起该模块不再维护，
+适用于Lite Wearable轻量穿戴设备。对于其他设备类型，自API version 8起该模块不再维护。
 
 与[@ohos.vibrator (振动)](js-apis-vibrator.md)模块相比，本模块功能较为简单，不支持振动效果查询、振动器列表查询、自定义振动文件等高级功能。对于Lite Wearable设备，本模块持续维护；对于其他设备类型，从API version 8起不再维护，推荐使用[@ohos.vibrator (振动)](js-apis-vibrator.md)模块的[vibrator.startVibration()](js-apis-vibrator.md#vibratorstartvibration9)接口，该替代接口支持更丰富的振动效果（包括指定时长振动[VibrateTime](js-apis-vibrator.md#vibratetime9)、预置效果振动[VibratePreset](js-apis-vibrator.md#vibratepreset9)、自定义文件振动[VibrateFromFile](js-apis-vibrator.md#vibratefromfile10)等），适用于更多设备类型。
 
@@ -32,7 +32,7 @@ import { Vibrator } from '@kit.SensorServiceKit';
 
 ### Vibrator.vibrate
 
-static vibrate(options?: [VibrateOptions](#vibrateoptions)): void
+static vibrate(options?: VibrateOptions): void
 
 触发设备振动，根据指定的振动模式执行短振动或长振动效果。该接口通过callback方式返回调用结果。
 
@@ -50,7 +50,7 @@ static vibrate(options?: [VibrateOptions](#vibrateoptions)): void
 
 | 参数名  | 类型                              | 必填 | 说明       |
 | ------- | --------------------------------- | ---- | ---------- |
-| options | [VibrateOptions](#vibrateoptions) | 否   | 振动配置参数，用于指定振动模式及回调函数。不传时使用默认配置（mode默认为'long'），此时仅触发success和complete回调（无fail回调场景下）。 |
+| options | [VibrateOptions](#vibrateoptions) | 否   | 振动配置参数，用于指定振动模式及回调函数。不传时使用默认配置（mode默认为'long'），此时仅触发success和complete回调（说明调用后不会触发fail回调）。 |
 
 **ArkTS示例**：
 
@@ -81,7 +81,7 @@ import vibrator from '@system.vibrator';
 
 export default {
   data: {
-    TAG: "WearLiteSample:",
+    TAG: 'WearLiteSample:',
     result: ''
   },
   vibrate() {
@@ -166,3 +166,4 @@ export default {
 | success  | Function | 否   | 否   | 振动触发成功时的回调函数。使用场景：开发者需要监听振动触发成功事件时，通过此回调获取成功通知。使用后效果：振动成功触发后，系统将调用此回调函数，无返回参数。 |
 | fail     | Function | 否   | 是   | 振动触发失败时的回调函数。使用场景：开发者需要处理振动触发失败的情况（如权限未授予、设备不支持振动等）时，通过此回调获取错误信息。不填写此参数时，振动触发失败将不会有回调通知。使用后效果：振动触发失败时，系统将调用此回调函数，传入错误信息data和错误码code。回调函数签名：(data: string, code: number) => void，其中data为错误信息字符串描述，code为错误码数字，标识具体的错误类型。 |
 | complete | Function | 否   | 是   | 振动接口调用结束时的回调函数。使用场景：开发者需要在振动接口调用完成后（无论成功或失败）执行清理或状态更新操作时，使用此回调。不填写此参数时，接口调用结束将不会有回调通知。使用后效果：无论振动触发成功或失败，系统都会调用此回调函数，无返回参数。 |
+

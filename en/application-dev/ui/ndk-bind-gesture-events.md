@@ -119,15 +119,15 @@ The following introduces how to create different types of gestures:
   Triggers a callback when the user pinches the component. You can specify the number of fingers (at least 2) and the pinch distance (in px).
 
   <!-- @[create_pinch_gesture](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkUISample/NdkAddInteractionEvent/entry/src/main/cpp/Function.h) -->
-    
-    ``` C
-    // Obtain the set of native gesture APIs.
-    auto gestureApi = reinterpret_cast<ArkUI_NativeGestureAPI_1 *>(
-        OH_ArkUI_QueryModuleInterfaceByName(ARKUI_NATIVE_GESTURE, "ArkUI_NativeGestureAPI_1"));
-    // Create a pinch gesture.
-    // NUMBER_10 = 10
-    auto pinchGesture = gestureApi->createPinchGesture(1, NUMBER_10);
-    ```
+  
+  ``` C
+  // Obtain the set of native gesture APIs.
+  auto gestureApi = reinterpret_cast<ArkUI_NativeGestureAPI_1 *>(
+      OH_ArkUI_QueryModuleInterfaceByName(ARKUI_NATIVE_GESTURE, "ArkUI_NativeGestureAPI_1"));
+  // Create a pinch gesture.
+  // NUMBER_2 = 2, NUMBER_10 = 10
+  auto pinchGesture = gestureApi->createPinchGesture(NUMBER_2, NUMBER_10);
+  ```
 
 
 - Rotation gesture
@@ -135,15 +135,15 @@ The following introduces how to create different types of gestures:
   Triggers a callback when the user rotates the component. You can specify the number of fingers (at least 2) and angle.
 
   <!-- @[create_rotation_gesture](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkUISample/NdkAddInteractionEvent/entry/src/main/cpp/Function.h) -->
-    
-    ``` C
-    // Obtain the set of native gesture APIs.
-    auto gestureApi = reinterpret_cast<ArkUI_NativeGestureAPI_1 *>(
-        OH_ArkUI_QueryModuleInterfaceByName(ARKUI_NATIVE_GESTURE, "ArkUI_NativeGestureAPI_1"));
-    // Create a rotation gesture.
-    // NUMBER_10 = 10
-    auto rotationGesture = gestureApi->createRotationGesture(1, NUMBER_10);
-    ```
+  
+  ``` C
+  // Obtain the set of native gesture APIs.
+  auto gestureApi = reinterpret_cast<ArkUI_NativeGestureAPI_1 *>(
+      OH_ArkUI_QueryModuleInterfaceByName(ARKUI_NATIVE_GESTURE, "ArkUI_NativeGestureAPI_1"));
+  // Create a rotation gesture.
+  // NUMBER_2 = 2, NUMBER_10 = 10
+  auto rotationGesture = gestureApi->createRotationGesture(NUMBER_2, NUMBER_10);
+  ```
 
 
 - Swipe gesture
@@ -174,11 +174,12 @@ The recognition mode of the gesture group (that is, the relationship between ges
 
 For combined gestures with sequential recognition, the value of **ArkUI_GroupGestureMode** is **SEQUENTIAL_GROUP**. In this gesture recognition mode, gestures are recognized in the order they were registered until they are all recognized successfully. If any of the registered gestures fails to be recognized, subsequent gestures will also fail. Only the last gesture in a sequential group can respond to the [GESTURE_EVENT_ACTION_END](../reference/apis-arkui/capi-native-gesture-h.md#arkui_gestureeventactiontype) event.
 
-The following demonstrates how to create a combined gesture that recognizes a long press followed by a swipe in sequence:
+The following demonstrates how to create a combined gesture that recognizes long press and swipe gestures in sequence:
 
 <!-- @[long_press_and_swipe_gesture](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkUISample/NdkAddInteractionEvent/entry/src/main/cpp/LongPressAndSwipeGesture.h) -->
 
 ``` C
+// LongPressAndSwipeGesture.h
 #include <arkui/native_animate.h>
 #include <arkui/native_gesture.h>
 #include <arkui/native_interface.h>
@@ -188,7 +189,7 @@ The following demonstrates how to create a combined gesture that recognizes a lo
 #include <hilog/log.h>
 #include "Common.h"
 #include "Function.h"
-// ···
+// ...
 ArkUI_NodeHandle LongPressAndSwipeGesture()
 {
     auto column = nodeAPI->createNode(ARKUI_NODE_COLUMN);
@@ -217,14 +218,14 @@ ArkUI_NodeHandle LongPressAndSwipeGesture()
     auto groupGesture = gestureApi->createGroupGesture(ArkUI_GroupGestureMode::SEQUENTIAL_GROUP);
 
     // Create a long press gesture.
-    auto longPressGesture = gestureApi->createLongPressGesture(GINGERS_NUM, true, DURATION_NUM);
+    auto longPressGesture = gestureApi->createLongPressGesture(FINGERS_NUM, true, DURATION_NUM);
     if (gestureApi->getGestureType) {
         ArkUI_GestureRecognizerType type = gestureApi->getGestureType(longPressGesture);
         OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "[Sample_NdkAddInteractionEvent]",
                      "NdkAddInteractionEvent_GestureSampleLog longPressGesture,"
                      "ArkUI_GestureRecognizerType%{public}d", type);
     }
-    // Set a callback for the long press gesture.
+    // Bind a callback to the long press gesture.
     auto onActionCallBackPanLongPress = [](ArkUI_GestureEvent *event, void *extraParam) {
         ArkUI_GestureEventActionType actionType = OH_ArkUI_GestureEvent_GetActionType(event);
 
@@ -322,7 +323,7 @@ ArkUI_NodeHandle LongPressAndSwipeGesture()
 
 **Sample**
 
-For details, see [Sample](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkUISample/NdkAddInteractionEvent).
+For details about the complete example, see<!--RP1-->[Sample Project](https://gitcode.com/openharmony/applications_app_samples/tree/master/code/DocsSample/ArkUISample/NdkAddInteractionEvent)<!--RP1End-->.
 
 ### Parallel Recognition
 
@@ -333,6 +334,7 @@ The following demonstrates how to create a combined gesture that recognizes long
 <!-- @[long_press_and_flick_gesture](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkUISample/NdkAddInteractionEvent/entry/src/main/cpp/LongPressAndFlickGesture.h) -->
 
 ``` C
+// LongPressAndFlickGesture.h
 #include <arkui/native_animate.h>
 #include <arkui/native_gesture.h>
 #include <arkui/native_interface.h>
@@ -342,7 +344,7 @@ The following demonstrates how to create a combined gesture that recognizes long
 #include <hilog/log.h>
 #include "Common.h"
 #include "Function.h"
-// ···
+// ...
 
 ArkUI_NodeHandle LongPressAndFlickGesture()
 {
@@ -374,13 +376,13 @@ ArkUI_NodeHandle LongPressAndFlickGesture()
     auto groupGesture = gestureApi->createGroupGesture(ArkUI_GroupGestureMode::PARALLEL_GROUP);
 
     // Create a long press gesture.
-    auto longPressGesture = gestureApi->createLongPressGesture(GINGERS_NUM, true, DURATION_NUM_500);
+    auto longPressGesture = gestureApi->createLongPressGesture(FINGERS_NUM, true, DURATION_NUM_500);
     if (gestureApi->getGestureType) {
         ArkUI_GestureRecognizerType type = gestureApi->getGestureType(longPressGesture);
         OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "[Sample_NdkAddInteractionEvent]",
                      "NdkAddInteractionEvent_GestureSampleLog,ArkUI_GestureRecognizerType%{public}d", type);
     }
-    // Set a callback for the long press gesture.
+    // Bind a callback to the long press gesture.
     auto onActionCallBackPanLongPress = [](ArkUI_GestureEvent *event, void *extraParam) {
         ArkUI_GestureEventActionType actionType = OH_ArkUI_GestureEvent_GetActionType(event);
 
@@ -419,7 +421,7 @@ ArkUI_NodeHandle LongPressAndFlickGesture()
                      "NdkAddInteractionEvent_GestureSampleLog, addChildGesture longPressGesture");
     }
     // Create a swipe gesture.
-    auto swipeGesture = gestureApi->createSwipeGesture(GINGERS_NUM, GESTURE_DIRECTION_ALL, DURATION_NUM_100);
+    auto swipeGesture = gestureApi->createSwipeGesture(FINGERS_NUM, GESTURE_DIRECTION_ALL, DURATION_NUM_100);
     if (gestureApi->getGestureType) {
         ArkUI_GestureRecognizerType type = gestureApi->getGestureType(swipeGesture);
         OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "[Sample_NdkAddInteractionEvent]",
@@ -479,7 +481,7 @@ ArkUI_NodeHandle LongPressAndFlickGesture()
 
 **Sample**
 
-For details, see [Sample](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkUISample/NdkAddInteractionEvent).
+For details about the complete example, see<!--RP2-->[Sample Project](https://gitcode.com/openharmony/applications_app_samples/tree/master/code/DocsSample/ArkUISample/NdkAddInteractionEvent)<!--RP2End-->.
 
 ### Exclusive Recognition
 
@@ -490,6 +492,7 @@ The following example illustrates the exclusive recognition of pan and pinch ges
 <!-- @[swipe_and_pinch_exclusive_gesture](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkUISample/NdkAddInteractionEvent/entry/src/main/cpp/SwipeAndPinchExclusiveGesture.h) -->
 
 ``` C
+// SwipeAndPinchExclusiveGesture.h
 #include <arkui/native_animate.h>
 #include <arkui/native_gesture.h>
 #include <arkui/native_interface.h>
@@ -499,7 +502,7 @@ The following example illustrates the exclusive recognition of pan and pinch ges
 #include <hilog/log.h>
 #include "Common.h"
 #include "Function.h"
-// ···
+// ...
 
 ArkUI_NodeHandle SwipeAndPinchExclusiveGesture()
 {
@@ -533,7 +536,7 @@ ArkUI_NodeHandle SwipeAndPinchExclusiveGesture()
     auto groupGesture = gestureApi->createGroupGesture(ArkUI_GroupGestureMode::EXCLUSIVE_GROUP);
 
     // Create a pan gesture.
-    auto panGesture = gestureApi->createPanGesture(GINGERS_NUM, GESTURE_DIRECTION_VERTICAL, DURATION_NUM);
+    auto panGesture = gestureApi->createPanGesture(FINGERS_NUM, GESTURE_DIRECTION_VERTICAL, DURATION_NUM);
     if (gestureApi->getGestureType) {
         ArkUI_GestureRecognizerType type = gestureApi->getGestureType(panGesture);
         OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "[Sample_NdkAddInteractionEvent]",
@@ -579,7 +582,8 @@ ArkUI_NodeHandle SwipeAndPinchExclusiveGesture()
                      "NdkAddInteractionEvent_GestureSampleLog, addChildGesture panGesture");
     }
     // Create a pinch gesture.
-    auto pinchGesture = gestureApi->createPinchGesture(0, 0);
+    // NUMBER_2 = 2, NUMBER_10 = 10
+    auto pinchGesture = gestureApi->createPinchGesture(NUMBER_2, NUMBER_10);
     if (gestureApi->getGestureType) {
         ArkUI_GestureRecognizerType type = gestureApi->getGestureType(pinchGesture);
         OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "[Sample_NdkAddInteractionEvent]",
@@ -636,11 +640,11 @@ ArkUI_NodeHandle SwipeAndPinchExclusiveGesture()
 
 **Sample**
 
-For details, see [Sample](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkUISample/NdkAddInteractionEvent).
+For details about the complete example, see<!--RP3-->[Sample Project](https://gitcode.com/openharmony/applications_app_samples/tree/master/code/DocsSample/ArkUISample/NdkAddInteractionEvent)<!--RP3End-->.
 
 ### Custom Gesture Judgment
 
-Custom gesture judgment allows you to dynamically decide whether a gesture recognizer should be considered successful by the system when a user's action matches a gesture recognizer and the gesture recognizer is about to be triggered successfully. This is achieved by binding a callback to the target component using the **setGestureInterrupterToNode** API. The callback returns **CONTINUE** or **REJECT** to determine whether to allow the gesture recognizer to succeed or to give the opportunity to other gesture recognizers.
+Custom gesture judgment allows you to dynamically decide whether a gesture recognizer should be considered successful by the system when a user's action matches a gesture recognizer and the gesture recognizer is about to be triggered successfully. This is achieved by binding a callback to the target component using the **setGestureInterrupterToNode** API. When a gesture on that component is about to be successfully recognized, the callback returns **CONTINUE** or **REJECT** to whether to allow other gesture recognizers to take over the success opportunity.
 
 To implement custom gesture judgment, adjust the example of binding gesture events as follows:
 
@@ -732,7 +736,7 @@ After binding gesture events to nodes as previously described, you can use [OH_A
                    "NdkAddInteractionEvent_eventInfoOfCommonEvent eventInfo = %{public}s", eventInfo.c_str());
   };
   // Create a single-finger tap gesture.
-  auto TapGesture = gestureApi->createTapGesture(COUNT_NUM_1, GINGERS_NUM_1);
+  auto TapGesture = gestureApi->createTapGesture(COUNT_NUM_1, FINGERS_NUM_1);
   // Bind the event callback to TapGesture. After the gesture is triggered, the callback function processes the gesture event.
   gestureApi->setGestureEventTarget(TapGesture,
                                     GESTURE_EVENT_ACTION_ACCEPT | GESTURE_EVENT_ACTION_UPDATE |
@@ -742,3 +746,87 @@ After binding gesture events to nodes as previously described, you can use [OH_A
   gestureApi->addGestureToNode(column, TapGesture, ArkUI_GesturePriority::PARALLEL,
                                ArkUI_GestureMask::NORMAL_GESTURE_MASK);
   ```
+
+## Customizing the Collection Result of Events and Gestures
+
+Since API version 26.0.0, when a gesture or touch event is initiated, the system collects the recognition results of the bound gesture and touch recognizers. You can intervene in the collected response recognizers and touch recognizers within the `NODE_ON_GESTURE_COLLECT_INTERCEPT` callback, and dynamically control the collection behavior of recognizers by setting collection interception policies, for example, discarding recognition results from specific nodes.
+
+The following example demonstrates how to implement custom interception of event and gesture collection results.
+
+1. Register the `NODE_ON_GESTURE_COLLECT_INTERCEPT` node event and bind the callback handler. In the callback, use [OH_ArkUI_GestureCollectInterceptInfo_GetResponseRecognizers](../reference/apis-arkui/capi-native-gesture-h.md#oh_arkui_gesturecollectinterceptinfo_getresponserecognizers) to obtain the gesture recognizers, and [OH_ArkUI_GestureCollectInterceptInfo_GetTouchRecognizers](../reference/apis-arkui/capi-native-gesture-h.md#oh_arkui_gesturecollectinterceptinfo_gettouchrecognizers) to obtain the touch recognizers, then combine them with the handler to complete the interception.
+
+    <!-- @[gesture_intercepting](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkUISample/NdkEventGestureIntercept/entry/src/main/cpp/function.h) -->
+    
+    ``` C
+    nodeAPI->registerNodeEvent(row2, NODE_ON_GESTURE_COLLECT_INTERCEPT, 1, &row2);
+    nodeAPI->addNodeEventReceiver(row2, [](ArkUI_NodeEvent *event) {
+        if (OH_ArkUI_NodeEvent_GetEventType(event) == NODE_ON_GESTURE_COLLECT_INTERCEPT) {
+            ArkUI_GestureCollectInterceptInfo *info = nullptr;
+            ArkUI_GestureRecognizerHandleArray array;
+            ArkUI_TouchRecognizerHandleArray arrayTouch;
+            int32_t size;
+            info = OH_ArkUI_NodeEvent_GetGestureCollectInterceptInfo(event);
+            OH_ArkUI_GestureCollectInterceptInfo_GetTouchRecognizers(info, &arrayTouch, &size);
+            OH_ArkUI_GestureCollectInterceptInfo_GetResponseRecognizers(info, &array, &size);
+            int32_t uniqueId = 0;
+            if (!GestureRecognizerModule(array, uniqueId, size, info)) {
+                return;
+            }
+            TouchRecognizerModule(arrayTouch, size);
+            OH_ArkUI_GestureCollectInterceptInfo_SetGestureCollectIntervention(
+                info, OH_ArkUI_GestureCollectIntervention::OH_ARKUI_GESTURE_COLLECT_INTERVENTION_CONTINUE);
+        } else if (OH_ArkUI_NodeEvent_GetEventType(event) == NODE_TOUCH_EVENT) {
+            OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "[Sample_NdkEventGestureIntercept]",
+                         "NdkEventGestureIntercept_SampleLog, row2 NODE_TOUCH_EVENT NodeEvent");
+        }
+    });
+    ```
+
+2. Create a gesture collection intervention handler. In the handler, you can call the following APIs to intervene the response recognizer and touch recognizer:
+   - Use the [OH_ArkUI_GetGestureBindNodeUniqueId](../reference/apis-arkui/capi-native-gesture-h.md#oh_arkui_getgesturebindnodeuniqueid) API to obtain the ID of the bound node.
+   - Use the [OH_ArkUI_GestureRecognizer_IsHostBelongsTo](../reference/apis-arkui/capi-native-gesture-h.md#oh_arkui_gesturerecognizer_ishostbelongsto) API to check whether the gesture recognizer is a descendant of the specified node.
+   - Use the [OH_ArkUI_TouchRecognizer_IsHostBelongsTo](../reference/apis-arkui/capi-native-gesture-h.md#oh_arkui_touchrecognizer_ishostbelongsto) API to check whether the gesture recognizer is a descendant of the specified node.
+   - Use the [OH_ArkUI_GestureCollectInterceptInfo_SetGestureCollectIntervention](../reference/apis-arkui/capi-native-gesture-h.md#oh_arkui_gesturecollectinterceptinfo_setgesturecollectintervention) API to set the collection intervention policy.
+
+    <!-- @[create_interception_function](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkUISample/NdkEventGestureIntercept/entry/src/main/cpp/function.h) -->
+    
+    ``` C
+    // Process the gesture recognizer.
+    bool GestureRecognizerModule(ArkUI_GestureRecognizerHandleArray &array, int32_t &uniqueId, int32_t size,
+                                 ArkUI_GestureCollectInterceptInfo *info)
+    {
+        for (auto i = 0; i < size; i++) {
+            OH_ArkUI_GetGestureBindNodeUniqueId(array[i], &uniqueId);
+            if (OH_ArkUI_GestureRecognizer_IsHostBelongsTo(array[i], uniqueId)) {
+                OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "[Sample_NdkEventGestureIntercept]",
+                             "NdkEventGestureIntercept_SampleLog, gestureRecognizer isHostBelongsTo");
+            }
+            // Check whether the event is from the button on the right based on uniqueId.
+            if (uniqueId == g_buttonId) {
+                OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "[Sample_NdkEventGestureIntercept]",
+                             "NdkEventGestureIntercept_SampleLog, gestureRecognizer is from Button2");
+                OH_ArkUI_GestureCollectInterceptInfo_SetGestureCollectIntervention(
+                    info, OH_ArkUI_GestureCollectIntervention::OH_ARKUI_GESTURE_COLLECT_INTERVENTION_DISCARD_SELF);
+                return false;
+            }
+        }
+        return true;
+    }
+    // Process the touch recognizer.
+    void TouchRecognizerModule(ArkUI_TouchRecognizerHandleArray &arrayTouch, int32_t size)
+    {
+        for (auto i = 0; i < size; i++) {
+            if (OH_ArkUI_TouchRecognizer_IsHostBelongsTo(arrayTouch[i], NODE_ID)) {
+                OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "[Sample_NdkEventGestureIntercept]",
+                             "NdkEventGestureIntercept_SampleLog, touchRecognizer isHostBelongsTo");
+            } else {
+                OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "[Sample_NdkEventGestureIntercept]",
+                             "NdkEventGestureIntercept_SampleLog, touchRecognizer not isHostBelongsTo");
+            }
+        }
+    }
+    ```
+
+**Samples**
+
+For details about the complete example, see <!--RP4-->[Sample Project](https://gitcode.com/openharmony/applications_app_samples/tree/master/code/DocsSample/ArkUISample/NdkEventGestureIntercept)<!--RP4End-->.

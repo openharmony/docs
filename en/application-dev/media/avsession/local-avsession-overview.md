@@ -1,10 +1,12 @@
 # Local AVSession Overview
+
 <!--Kit: AVSession Kit-->
 <!--Subsystem: Multimedia-->
-<!--Owner: @ccfriend; @liao_qian-->
+<!--Owner: @ccfriend; @devil_red-->
 <!--Designer: @ccfriend-->
 <!--Tester: @chenmingxi1_huawei-->
 <!--Adviser: @w_Machine_cc-->
+<!-- md-trans-meta sourceCommit=9d0f59dbcae46303a4fbbc3dcb2ffb4bcae1691a translatedAt=2026-08-10T03:46:48.148Z pushedAt=2026-08-10T07:46:33.100Z -->
 
 ## Interaction Process
 
@@ -22,7 +24,7 @@ In the local AVSession, the provider exchanges information with the controller t
 
 1. The provider creates an AVSession object through AVSessionManager.
 
-2. Through the AVSession object, the provider sets session metadata (such as the asset ID, title, and duration) and playback attributes (such as the playback state, speed, and position).
+2. The provider sets session metadata (such as media ID, title, and media duration) and session playback attributes (such as playback state, playback speed, and playback position) through the AVSession object.
 
 3. The controller creates an AVSessionController object through AVSessionManager.
 
@@ -30,29 +32,32 @@ In the local AVSession, the provider exchanges information with the controller t
 
 5. Through the AVSessionController object, the controller sends control commands to the AVSession object.
 
-6. Through the AVSession object, the provider listens for the control commands, for example, play, playNext, fastForward, and setSpeed, from the controller.
+6. Through the AVSession object, the provider can listen for control commands from the media session controller, for example, "play" (play), "playNext" (play next), "fastForward" (fast-forward), and "setSpeed" (set playback speed).
 
 ## AVSessionManager
 
 AVSessionManager provides the capability of managing sessions. It can create an AVSession object, create an AVSessionController object, send control commands, and listen for session state changes.
 
-Unlike the AVSession and AVSessionController objects, AVSessionManager is not a specific object, but the root namespace of AVSessions. You can import AVSessionManager as follows:
+In fact, unlike AVSession and AVSessionController objects, AVSessionManager is not a concrete object but the module namespace of the media session. In actual programming, you can import it as follows:
 
-```ts
+<!-- @[avSession_manager_import](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/Media/AVSession/LocalAVSession/LocalAVSessionOverview/entry/src/main/ets/pages/Index.ets) -->
+
+``` TypeScript
 import { avSession as AVSessionManager } from '@kit.AVSessionKit';
 ```
 
-All the APIs in the root namespace can be used as APIs of AVSessionManager.
+All methods in the module namespace can be used as methods of AVSessionManager.
 
 The code snippet below shows how the provider creates an AVSession object by using AVSessionManager:
 
 > **NOTE**
 >
-> The sample code below demonstrates only the API call for creating an AVSession object. When actually using it, the application must ensure that the AVSession object remains throughout the application's background playback activities. This prevents the system from reclaiming or releasing it, which could lead to playback being controlled by the system.
- 
-```ts
-import { avSession as AVSessionManager } from '@kit.AVSessionKit';
+> The sample code below demonstrates only the API call for creating an AVSession object. When actually using it, the app must ensure that the AVSession object instance persists throughout background playback to prevent it from being reclaimed or released by the system, which would cause the system to restrict background audio playback.
 
+<!-- @[avSession_manager](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/Media/AVSession/LocalAVSession/LocalAVSessionOverview/entry/src/main/ets/pages/Index.ets) -->
+
+``` TypeScript
+import { avSession as AVSessionManager } from '@kit.AVSessionKit';
 @Entry
 @Component
 struct Index {
@@ -73,7 +78,9 @@ struct Index {
   }
 }
 ```
+
 <!--Del-->
+
 The code snippet below shows how the controller creates an AVSessionController object by using AVSessionManager:
 
 ```ts
@@ -89,6 +96,7 @@ async function createController() {
   }
 }
 ```
+
 <!--DelEnd-->
 
-For more information about AVSessionManager APIs, see [API Reference](../../reference/apis-avsession-kit/arkts-apis-avsession.md).
+For more methods of AVSessionManager, see the API documentation: [Module Description](../../reference/apis-avsession-kit/arkts-apis-avsession.md).

@@ -117,7 +117,6 @@ static napi_value CreateTypeError(napi_env env, napi_callback_info info)
     napi_create_string_utf8(env, "napi_create_error errorCode", NAPI_AUTO_LENGTH, &errorCode);
     napi_value errorMessage = nullptr;
     napi_create_string_utf8(env, "napi_create_error errorMessage", NAPI_AUTO_LENGTH, &errorMessage);
-    // 调用napi_create_type_error创建一个typeError错误对象
     napi_value error = nullptr;
     napi_create_type_error(env, errorCode, errorMessage, &error);
     return error;
@@ -165,7 +164,6 @@ static napi_value CreateRangeError(napi_env env, napi_callback_info info)
     napi_create_string_utf8(env, "napi_create_error errorCode", NAPI_AUTO_LENGTH, &errorCode);
     napi_value errorMessage = nullptr;
     napi_create_string_utf8(env, "napi_create_error errorMessage", NAPI_AUTO_LENGTH, &errorMessage);
-    // 调用napi_create_range_error创建一个typeError错误对象
     napi_value error = nullptr;
     napi_create_range_error(env, errorCode, errorMessage, &error);
     return error;
@@ -627,9 +625,10 @@ ArkTS侧示例代码
 ``` TypeScript
 // napi_get_and_clear_last_exception
 // 这里获取到最后一个未处理的异常
+let exception = testNapi.getAndClearLastException();
 hilog.info(0x0000, 'testTag',
   'Test Node-API napi_get_and_clear_last_exception, error.message: %{public}s',
-  testNapi.getAndClearLastException());
+  exception ? exception.message : '');
 ```
 
 ### napi_is_exception_pending

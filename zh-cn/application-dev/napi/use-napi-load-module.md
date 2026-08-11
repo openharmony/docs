@@ -119,6 +119,8 @@ napi_status napi_load_module(napi_env env, const char* path, napi_value* result)
           ]
         }
       },
+    // ...
+    },
     ```
 
 2. 使用napi_load_module加载Test文件，调用函数test以及获取变量value：
@@ -430,7 +432,7 @@ napi_status napi_load_module(napi_env env, const char* path, napi_value* result)
 
 1. 在当前模块下的oh-package.json5文件中配置dependencies项：
 
-    ```json
+    ``` JSON5
     {
       "dependencies": {
         "@ohos/axios": "2.2.4",

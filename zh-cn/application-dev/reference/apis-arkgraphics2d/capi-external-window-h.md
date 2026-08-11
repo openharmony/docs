@@ -42,7 +42,7 @@
 | 名称 | typedef关键字 | 描述 |
 | -- | -- | -- |
 | [NativeWindowOperation](#nativewindowoperation) | NativeWindowOperation | OH_NativeWindow_NativeWindowHandleOpt函数中的操作码。 |
-| [OHScalingMode](#ohscalingmode) | OHScalingMode | 缩放模式Scaling Mode。 |
+| [OHScalingMode](#ohscalingmode) | OHScalingMode | 缩放模式。 |
 | [OHScalingModeV2](#ohscalingmodev2) | OHScalingModeV2 | 渲染缩放模式枚举。 |
 | [OHHDRMetadataKey](#ohhdrmetadatakey) | OHHDRMetadataKey | 枚举HDR元数据关键字。 |
 | [OHSurfaceSource](#ohsurfacesource) | OHSurfaceSource | 本地窗口内容来源类型枚举。 |
@@ -86,6 +86,8 @@
 | [int32_t OH_NativeWindow_PreAllocBuffers(OHNativeWindow *window, uint32_t allocBufferCnt)](#oh_nativewindow_preallocbuffers) | 通过OHNativeWindow对象提前申请多块OHNativeWindowBuffer，用以内容生产。<br>在调用本接口前，需要通过[OH_NativeWindow_NativeWindowHandleOpt](capi-external-window-h.md#oh_nativewindow_nativewindowhandleopt)对OHNativeWindow设置宽高。<br>本接口为非线程安全类型接口。 |
 | [int32_t OH_NativeWindow_LockBuffer(OHNativeWindow* window, Region region, OHNativeWindowBuffer** buffer)](#oh_nativewindow_lockbuffer) | 通过OHNativeWindow对象申请一块OHNativeWindowBuffer，用以内容生产，并对该OHNativeWindowBuffer加锁。<br>本接口需要和[OH_NativeWindow_UnlockAndFlushBuffer](capi-external-window-h.md#oh_nativewindow_unlockandflushbuffer)接口配合使用。<br>本接口对OHNativeWindowBuffer加锁后，需要调[OH_NativeWindow_UnlockAndFlushBuffer](capi-external-window-h.md#oh_nativewindow_unlockandflushbuffer)接口解锁后才能重新对OHNativeWindowBuffer加锁。<br>若用本接口重复对OHNativeWindowBuffer加锁，会返回操作非法错误码。<br>本接口支持通过CPU上的内存读写直接渲染图像。<br>本接口为非线程安全类型接口。 |
 | [int32_t OH_NativeWindow_UnlockAndFlushBuffer(OHNativeWindow* window)](#oh_nativewindow_unlockandflushbuffer) | 通过OHNativeWindow将生产好内容的OHNativeWindowBuffer放回到Buffer队列中，用以内容消费，并对OHNativeWindowBuffer解锁。<br>本接口需要和[OH_NativeWindow_LockBuffer](capi-external-window-h.md#oh_nativewindow_lockbuffer)接口配合使用。<br>若用本接口重复对OHNativeWindowBuffer解锁，会返回操作非法错误码。<br>本接口为非线程安全类型接口。 |
+| [int32_t OH_NativeWindow_Set3DMetadataValue(OHNativeWindow *window, OH_NativeBuffer_3D_MetadataKey metadataKey, int32_t size, uint8_t *metadata)](#oh_nativewindow_set3dmetadatavalue) | 为OHNativeWindow设置3D元数据属性值。<br>本接口为非线程安全类型接口。 |
+| [int32_t OH_NativeWindow_Get3DMetadataValue(OHNativeWindow *window, OH_NativeBuffer_3D_MetadataKey metadataKey, int32_t *size, uint8_t **metadata)](#oh_nativewindow_get3dmetadatavalue) | 获取OHNativeWindow的3D元数据属性值。<br>本接口为非线程安全类型接口。 |
 
 ## 枚举类型说明
 
@@ -122,7 +124,7 @@ OH_NativeWindow_NativeWindowHandleOpt函数中的操作码。
 | SET_TRANSFORM | 设置本地窗口缓冲区变换，函数中的可变参数是[输入] int32_t transform，取值具体可见[OH_NativeBuffer_TransformType](capi-buffer-common-h.md#oh_nativebuffer_transformtype)枚举值。 |
 | GET_TRANSFORM | 获取本地窗口缓冲区变换，函数中的可变参数是[输出] int32_t *transform，取值具体可见[OH_NativeBuffer_TransformType](capi-buffer-common-h.md#oh_nativebuffer_transformtype)枚举值。 |
 | SET_UI_TIMESTAMP | 设置本地窗口缓冲区UI时间戳，函数中的可变参数是[输入] uint64_t uiTimestamp。 |
-| GET_BUFFERQUEUE_SIZE | 获取内存队列大小，函数中的可变参数是[输出] int32_t \*size。<br/>**起始版本：** 12 |
+| GET_BUFFERQUEUE_SIZE | 获取缓冲区队列大小，函数中的可变参数是[输出] int32_t \*size。<br/>**起始版本：** 12 |
 | SET_SOURCE_TYPE | 设置本地窗口内容来源，函数中的可变参数是[输入] int32_t sourceType，取值具体可见[OHSurfaceSource](#ohsurfacesource)枚举值。<br/>**起始版本：** 12 |
 | GET_SOURCE_TYPE | 获取本地窗口内容来源，函数中的可变参数是[输出] int32_t *sourceType，取值具体可见[OHSurfaceSource](#ohsurfacesource)枚举值。<br/>**起始版本：** 12 |
 | SET_APP_FRAMEWORK_TYPE | 设置本地窗口应用框架名称，函数中的可变参数是[输入] char* frameworkType，最大支持64字节。<br/>**起始版本：** 12 |
@@ -139,7 +141,7 @@ enum OHScalingMode
 
 **描述**
 
-缩放模式Scaling Mode。
+缩放模式。
 
 **系统能力：** SystemCapability.Graphic.Graphic2D.NativeWindow
 
@@ -539,7 +541,7 @@ BufferHandle *OH_NativeWindow_GetBufferHandleFromNative(OHNativeWindowBuffer *bu
 
 | 类型 | 说明 |
 | -- | -- |
-| [BufferHandle](capi-nativewindow-bufferhandle.md) | BufferHandle 返回一个指针，指向[BufferHandle](capi-nativewindow-bufferhandle.md)的结构体实例。 |
+| [BufferHandle](capi-nativewindow-bufferhandle.md)* | 返回一个指针，指向[BufferHandle](capi-nativewindow-bufferhandle.md)的结构体实例。 |
 
 ### OH_NativeWindow_NativeObjectReference()
 
@@ -1247,3 +1249,65 @@ int32_t OH_NativeWindow_UnlockAndFlushBuffer(OHNativeWindow* window)
 | 类型 | 说明 |
 | -- | -- |
 | int32_t | 执行成功时返回NATIVE_ERROR_OK。<br>window是空指针时返回NATIVE_ERROR_INVALID_ARGUMENTS。<br>window的surface成员是空指针时返回NATIVE_ERROR_UNKNOWN。<br>其他返回值可参考[OHNativeErrorCode](capi-graphic-error-code-h.md#ohnativeerrorcode)。 |
+
+### OH_NativeWindow_Set3DMetadataValue()
+
+```c
+int32_t OH_NativeWindow_Set3DMetadataValue(OHNativeWindow *window, OH_NativeBuffer_3D_MetadataKey metadataKey, int32_t size, uint8_t *metadata)
+```
+
+**描述**
+
+为OHNativeWindow设置3D元数据属性值。
+
+本接口为非线程安全类型接口。
+
+**系统能力：** SystemCapability.Graphic.Graphic2D.NativeWindow
+
+**起始版本：** 26.0.0
+
+**参数：**
+
+| 参数项 | 描述 |
+| -- | -- |
+| [OHNativeWindow](capi-nativewindow-nativewindow.md) *window | 一个指向[OHNativeWindow](capi-nativewindow-nativewindow.md)的结构体实例的指针。 |
+| [OH_NativeBuffer_3D_MetadataKey](capi-buffer-common-h.md#oh_nativebuffer_3d_metadatakey) metadataKey | OHNativeWindow的3D元数据类型。 |
+| int32_t size | uint8_t向量的大小。 |
+| uint8_t *metadata | 指向uint8_t向量的指针。 |
+
+**返回：**
+
+| 类型 | 说明 |
+| -- | -- |
+| int32_t | 执行成功时返回NATIVE_ERROR_OK。<br>window或metadata为空指针时返回NATIVE_ERROR_INVALID_ARGUMENTS。<br>设置3D元数据失败时返回NATIVE_ERROR_UNKNOWN。<br>传入不支持的metadataKey时返回NATIVE_ERROR_UNSUPPORTED。<br>其他返回值可参考[OHNativeErrorCode](capi-graphic-error-code-h.md#ohnativeerrorcode)。 |
+
+### OH_NativeWindow_Get3DMetadataValue()
+
+```c
+int32_t OH_NativeWindow_Get3DMetadataValue(OHNativeWindow *window, OH_NativeBuffer_3D_MetadataKey metadataKey, int32_t *size, uint8_t **metadata)
+```
+
+**描述**
+
+获取OHNativeWindow的3D元数据属性值。
+
+本接口为非线程安全类型接口。
+
+**系统能力：** SystemCapability.Graphic.Graphic2D.NativeWindow
+
+**起始版本：** 26.0.0
+
+**参数：**
+
+| 参数项 | 描述 |
+| -- | -- |
+| [OHNativeWindow](capi-nativewindow-nativewindow.md) *window | 一个指向[OHNativeWindow](capi-nativewindow-nativewindow.md)的结构体实例的指针。 |
+| [OH_NativeBuffer_3D_MetadataKey](capi-buffer-common-h.md#oh_nativebuffer_3d_metadatakey) metadataKey | OHNativeWindow的3D元数据类型。 |
+| int32_t *size | uint8_t向量的大小。 |
+| uint8_t **metadata | 指向uint8_t向量的二级指针，作为出参使用。 |
+
+**返回：**
+
+| 类型 | 说明 |
+| -- | -- |
+| int32_t | 执行成功时返回NATIVE_ERROR_OK。<br>window、metadata或size为空指针时返回NATIVE_ERROR_INVALID_ARGUMENTS。<br>拷贝或分配内存失败，或者获取3D元数据失败时返回NATIVE_ERROR_UNKNOWN。<br>传入不支持的metadataKey时返回NATIVE_ERROR_UNSUPPORTED。<br>其他返回值可参考[OHNativeErrorCode](capi-graphic-error-code-h.md#ohnativeerrorcode)。 |

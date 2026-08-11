@@ -49,7 +49,7 @@ ConsoleMessage的构造函数。
 
 getLineNumber(): number
 
-获取ConsoleMessage的行号。
+获取控制台输出在网页源文件中的行号。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -57,13 +57,13 @@ getLineNumber(): number
 
 | 类型     | 说明                   |
 | ------ | -------------------- |
-| number | 返回ConsoleMessage的行号。 |
+| number | 返回控制台输出在网页源文件中的行号。 |
 
 ## getMessage
 
 getMessage(): string
 
-获取ConsoleMessage的日志信息。
+获取控制台输出的日志信息。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -71,7 +71,7 @@ getMessage(): string
 
 | 类型     | 说明                     |
 | ------ | ---------------------- |
-| string | 返回ConsoleMessage的日志信息。 |
+| string | 返回控制台输出的日志信息。 |
 
 ## getMessageLevel
 

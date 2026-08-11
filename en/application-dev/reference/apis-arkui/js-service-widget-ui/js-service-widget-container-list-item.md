@@ -2,10 +2,11 @@
 
 <!--Kit: ArkUI-->
 <!--Subsystem: ArkUI-->
-<!--Owner: @yylong; @rongShao-Z; @wind_-->
-<!--Designer: @yylong-->
+<!--Owner: @rongShao-Z; @wind_-->
+<!--Designer: @yangcan18-->
 <!--Tester: @leiyuqian-->
 <!--Adviser: @Brilliantry_Rui-->
+<!-- md-trans-meta sourceCommit=dfb15c325281e5e789ea7ade45dfdd45876606ad translatedAt=2026-07-27T02:28:25.593Z pushedAt=2026-07-27T09:23:36.766Z -->
 
 **\<list-item>** is a child component of the **[\<list>](js-service-widget-container-list.md)** component and is used to display items in a list.
 
@@ -42,7 +43,7 @@ In addition to the [universal styles](js-service-widget-common-styles.md), the f
 | Name| Type| Default Value| Mandatory| Description|
 | -------- | -------- | -------- | -------- | -------- |
 | column-span | &lt;number&gt; | 1 | No| Number of columns occupied by the current list-item in the list. By default, the list-item occupies one column. This attribute is valid only when the list contains multiple columns.|
-| click-color | &lt;color&gt; | - | No| Backplane color of a list-item when touched.|
+| click-color | &lt;color&gt; | - | No | Backplane color of a list-item when touched. |
 
 
 ## Events

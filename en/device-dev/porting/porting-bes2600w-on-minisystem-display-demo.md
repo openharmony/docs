@@ -1313,7 +1313,7 @@ ace_engine_lite + jerryscript + i18n_lite + resmgr_lite + utils/native/lite/... 
       |
 arkui_lite + graphic_graphic_utils_lite      (Graphic framework)
       |
-giflib + libjpeg + libpng + qrcodegen + freetype... (Third-party graphics library)
+giflib + libjpeg + libpng + freetype... (Third-party graphics library)
 ```
 
 For details about the graphic application demo, see the `//vendor/bestechnic/display_demo/tests/app.cpp` file, as shown below:

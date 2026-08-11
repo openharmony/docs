@@ -6,6 +6,8 @@
 <!--Designer: @qq_43802146-->
 <!--Tester: @furryfurry123-->
 <!--Adviser: @zhang_yixin13-->
+<!-- md-trans-meta sourceCommit=8087b66eac59cdc7926e12a99168375d64ab4675 translatedAt=2026-08-03T02:10:11.472Z pushedAt=2026-08-03T03:03:48.288Z -->
+
 ## Overview
 
 Defines APIs for obtaining Wi-Fi switch state.
@@ -28,7 +30,7 @@ Defines APIs for obtaining Wi-Fi switch state.
 | -------- | -------- |
 | WIFI_MAX_SSID_LEN 33 | Length of the **ssid** array of the [OH_WifiLinkedInfo](capi-oh-wifi-h.md#oh_wifilinkedinfo) member variables. The value is 32 plus the terminator (\0).<br>**Since**: 24|
 | WIFI_MAC_LEN 18 | Lengths of the **macAddress** and **bssid** arrays of the [OH_WifiLinkedInfo](capi-oh-wifi-h.md#oh_wifilinkedinfo) member variables. The value is 17 plus the terminator (\0).<br>**Since**: 24|
-      
+
 ### Enums
 
 | Name| typedef Keyword| Description|
@@ -76,7 +78,6 @@ Enumerates the error codes returned by Wi-Fi APIs.
 | WIFI_NOT_SUPPORTED = 801 | Function not supported due to limited device capabilities.|
 | WIFI_OPERATION_FAILED = 2501000 | Operation failed.<br> Possible cause: The internal execution of the service fails.|
 | WIFI_STA_DISABLED = 2501001 | STA service not started.<br> Possible cause: Wi-Fi is disabled.<br>**Since**: 21|
-
 
 ### OH_WifiConnState
 
@@ -193,7 +194,7 @@ Enumerates the Wi-Fi 7 connection types.
 ### OH_WifiLinkedInfo
 
 ```c
-Struct OH_WifiLinkedInfo
+struct OH_WifiLinkedInfo
 ```
 
 **Description**

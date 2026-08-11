@@ -3,7 +3,7 @@
 <!--Subsystem: Sensors-->
 <!--Owner: @dilligencer-->
 <!--Designer: @andeszhang-->
-<!--Tester: @liuhaonan2-->
+<!--Tester: @zhaofangyuan-->
 <!--Adviser: @hu-zhiqiong-->
 
 ## 概述
@@ -50,12 +50,12 @@
 | [int32_t OH_SensorInfo_GetVendorName(Sensor_Info* sensor, char *vendorName, uint32_t *length)](#oh_sensorinfo_getvendorname) | - | 获取传感器的厂商名称。获取成功后，vendorName参数中会填充传感器厂商名称的字符串，length参数中会返回字符串的长度（包含结束符）。 |
 | [int32_t OH_SensorInfo_GetType(Sensor_Info* sensor, Sensor_Type *sensorType)](#oh_sensorinfo_gettype) | - | 获取[Sensor_Type](capi-oh-sensor-type-h.md#sensor_type)。获取成功后，sensorType参数中会填充传感器的类型值。 |
 | [int32_t OH_SensorInfo_GetResolution(Sensor_Info* sensor, float *resolution)](#oh_sensorinfo_getresolution) | - | 获取传感器分辨率。获取成功后，resolution参数中会填充传感器的分辨率值。 |
-| [int32_t OH_SensorInfo_GetMinSamplingInterval(Sensor_Info* sensor, int64_t *minSamplingInterval)](#oh_sensorinfo_getminsamplinginterval) | - | 获取传感器的最小数据上报间隔。获取成功后，minSamplingInterval参数中会填充传感器的最小数据上报间隔值，单位为纳秒。 |
-| [int32_t OH_SensorInfo_GetMaxSamplingInterval(Sensor_Info* sensor, int64_t *maxSamplingInterval)](#oh_sensorinfo_getmaxsamplinginterval) | - | 获取传感器的最大数据上报间隔。获取成功后，maxSamplingInterval参数中会填充传感器的最大数据上报间隔值，单位为纳秒。 |
+| [int32_t OH_SensorInfo_GetMinSamplingInterval(Sensor_Info* sensor, int64_t *minSamplingInterval)](#oh_sensorinfo_getminsamplinginterval) | - | 获取传感器的最小数据上报间隔。获取成功后，minSamplingInterval参数中会填充传感器的最小数据上报间隔值，单位：ns（纳秒）。 |
+| [int32_t OH_SensorInfo_GetMaxSamplingInterval(Sensor_Info* sensor, int64_t *maxSamplingInterval)](#oh_sensorinfo_getmaxsamplinginterval) | - | 获取传感器的最大数据上报间隔。获取成功后，maxSamplingInterval参数中会填充传感器的最大数据上报间隔值，单位：ns（纳秒）。 |
 | [int32_t OH_SensorEvent_GetType(Sensor_Event* sensorEvent, Sensor_Type *sensorType)](#oh_sensorevent_gettype) | - | 获取传感器类型。 |
 | [int32_t OH_SensorEvent_GetTimestamp(Sensor_Event* sensorEvent, int64_t *timestamp)](#oh_sensorevent_gettimestamp) | - | 获取传感器数据的时间戳。 |
 | [int32_t OH_SensorEvent_GetAccuracy(Sensor_Event* sensorEvent, Sensor_Accuracy *accuracy)](#oh_sensorevent_getaccuracy) | - | 获取传感器数据的精度。 |
-| [int32_t OH_SensorEvent_GetData(Sensor_Event* sensorEvent, float **data, uint32_t *length)](#oh_sensorevent_getdata) | - | 数据的长度和内容依赖于监听的传感器类型，传感器上报的数据格式如下所示：SENSOR_TYPE_ACCELEROMETER:  data[0]、data[1]、data[2]分别表示设备x、y、z轴的加速度分量，单位m/s²。SENSOR_TYPE_GYROSCOPE: data[0]、data[1]、data[2]分别表示设备x、y、z轴的旋转角速度，单位弧度/s。SENSOR_TYPE_AMBIENT_LIGHT: data[0]表示环境光强度，单位勒克斯；从API版本12开始，data[1]表示色温，单位为开尔文；data[2]表示红外亮度，单位cd/m²。SENSOR_TYPE_MAGNETIC_FIELD: data[0]、data[1]、data[2]分别表示设备x、y、z轴的地磁分量，单位微特斯拉。SENSOR_TYPE_BAROMETER：data[0]表示气压值，单位hPa。SENSOR_TYPE_HALL: data[0]表示皮套吸合状态，0表示打开，大于0表示吸附。SENSOR_TYPE_PROXIMITY：data[0]表示接近状态，0表示接近，大于0表示远离。SENSOR_TYPE_ORIENTATION:data[0]、data[1]、data[2]分别表示设备绕z、x、y轴的角度，单位度。SENSOR_TYPE_GRAVITY：data[0]、data[1]、data[2]分别表示设备x、y、z轴的重力加速度分量，单位m/s²。SENSOR_TYPE_ROTATION_VECTOR:data[0]、data[1]、data[2]分别表示设备x、y、z轴的旋转角度，单位度；data[3]表示旋转向量元素。SENSOR_TYPE_PEDOMETER_DETECTION:data[0]表示步数检测状态，1表示检测到了步数变化。SENSOR_TYPE_PEDOMETER:data[0]表示步数。SENSOR_TYPE_HEART_RATE：data[0]表示心率数值。SENSOR_TYPE_LINEAR_ACCELERATION：从API版本13开始支持。data[0]、data[1]、data[2]分别表示设备x、y、z轴的线性加速度，单位为m/s²。SENSOR_TYPE_GAME_ROTATION_VECTOR：从API版本13开始支持。data[0]、data[1]、data[2]分别表示设备x、y、z轴的旋转角度，单位为度；data[3]表示旋转向量。 |
+| [int32_t OH_SensorEvent_GetData(Sensor_Event* sensorEvent, float **data, uint32_t *length)](#oh_sensorevent_getdata) | - | 数据的长度和内容依赖于监听的传感器类型，传感器上报的数据格式如下所示：SENSOR_TYPE_ACCELEROMETER:  data[0]、data[1]、data[2]分别表示设备x、y、z轴的加速度分量，单位：m/s²。SENSOR_TYPE_GYROSCOPE: data[0]、data[1]、data[2]分别表示设备x、y、z轴的旋转角速度，单位：rad/s（弧度/秒）。SENSOR_TYPE_AMBIENT_LIGHT: data[0]表示环境光强度，单位：lux（勒克斯）；从API version 12开始，data[1]表示色温，单位：K（开尔文）；data[2]表示红外亮度，单位：cd/m²（坎德拉每平方米）。SENSOR_TYPE_MAGNETIC_FIELD: data[0]、data[1]、data[2]分别表示设备x、y、z轴的地磁分量，单位：μT（微特斯拉）。SENSOR_TYPE_BAROMETER：data[0]表示气压值，单位：hPa（百帕）。SENSOR_TYPE_HALL: data[0]表示皮套吸合状态，0表示打开，大于0表示吸附。SENSOR_TYPE_PROXIMITY：data[0]表示接近状态，0表示接近，大于0表示远离。SENSOR_TYPE_ORIENTATION:data[0]、data[1]、data[2]分别表示设备绕z、x、y轴的角度，单位：°（度）。SENSOR_TYPE_GRAVITY：data[0]、data[1]、data[2]分别表示设备x、y、z轴的重力加速度分量，单位：m/s²。SENSOR_TYPE_ROTATION_VECTOR:data[0]、data[1]、data[2]分别表示设备x、y、z轴的旋转角度，单位：°（度）；data[3]表示旋转向量元素。SENSOR_TYPE_PEDOMETER_DETECTION:data[0]表示步数检测状态，1表示检测到了步数变化。SENSOR_TYPE_PEDOMETER:data[0]表示步数。SENSOR_TYPE_HEART_RATE：data[0]表示心率数值。SENSOR_TYPE_LINEAR_ACCELERATION：从API version 13开始支持。data[0]、data[1]、data[2]分别表示设备x、y、z轴的线性加速度，单位：m/s²。SENSOR_TYPE_GAME_ROTATION_VECTOR：从API version 13开始支持。data[0]、data[1]、data[2]分别表示设备x、y、z轴的旋转角度，单位：°（度）；data[3]表示旋转向量。 |
 | [Sensor_SubscriptionId *OH_Sensor_CreateSubscriptionId(void)](#oh_sensor_createsubscriptionid) | - | 创建一个[Sensor_SubscriptionId](capi-sensor-sensor-subscriptionid.md)实例。 |
 | [int32_t OH_Sensor_DestroySubscriptionId(Sensor_SubscriptionId *id)](#oh_sensor_destroysubscriptionid) | - | 销毁[Sensor_SubscriptionId](capi-sensor-sensor-subscriptionid.md)实例并回收内存。 |
 | [int32_t OH_SensorSubscriptionId_GetType(Sensor_SubscriptionId* id, Sensor_Type *sensorType)](#oh_sensorsubscriptionid_gettype) | - | 获取传感器类型。 |
@@ -153,7 +153,7 @@ Sensor_Info **OH_Sensor_CreateInfos(uint32_t count)
 
 用给定的数字创建一个实例数组，请参考[Sensor_Info](capi-sensor-sensor-info.md)。创建成功后，返回指向count个Sensor_Info实例的指针数组。
 
-调用此方法创建的实例数组，在使用完毕后必须调用OH_Sensor_DestroyInfos()销毁并回收内存，否则会导致资源泄漏。
+调用此函数创建的实例数组，在使用完毕后必须调用OH_Sensor_DestroyInfos()销毁并回收内存，否则会导致资源泄漏。
 
 **起始版本：** 11
 
@@ -212,7 +212,7 @@ int32_t OH_SensorInfo_GetName(Sensor_Info* sensor, char *sensorName, uint32_t *l
 | -- | -- |
 | [Sensor_Info](capi-sensor-sensor-info.md)* sensor | 指向传感器信息的指针。 |
 | char *sensorName | 指向传感器名称的指针。 |
-| uint32_t *length | 指向长度的指针，以字节为单位。调用前应设置为缓冲区大小，调用后返回实际名称长度。 |
+| uint32_t *length | 指向长度的指针，单位：B（字节）。调用前应设置为缓冲区大小，调用后返回实际名称长度。 |
 
 **返回：**
 
@@ -238,7 +238,7 @@ int32_t OH_SensorInfo_GetVendorName(Sensor_Info* sensor, char *vendorName, uint3
 | -- | -- |
 | [Sensor_Info](capi-sensor-sensor-info.md)* sensor | 指向传感器信息的指针。 |
 | char *vendorName | 指向厂商名称的指针。 |
-| uint32_t *length | 指向长度的指针，以字节为单位。调用前应设置为缓冲区大小，调用后返回实际厂商名称长度。 |
+| uint32_t *length | 指向长度的指针，单位：B（字节）。调用前应设置为缓冲区大小，调用后返回实际厂商名称长度。 |
 
 **返回：**
 
@@ -304,7 +304,7 @@ int32_t OH_SensorInfo_GetMinSamplingInterval(Sensor_Info* sensor, int64_t *minSa
 
 **描述**
 
-获取传感器的最小数据上报间隔。获取成功后，minSamplingInterval参数中会填充传感器的最小数据上报间隔值，单位为纳秒。
+获取传感器的最小数据上报间隔。获取成功后，minSamplingInterval参数中会填充传感器的最小数据上报间隔值，单位：ns（纳秒）。
 
 **起始版本：** 11
 
@@ -313,7 +313,7 @@ int32_t OH_SensorInfo_GetMinSamplingInterval(Sensor_Info* sensor, int64_t *minSa
 | 参数项 | 描述 |
 | -- | -- |
 | [Sensor_Info](capi-sensor-sensor-info.md)* sensor | 指向传感器信息的指针。 |
-| int64_t *minSamplingInterval | 指向最小数据报告间隔的指针，以纳秒为单位。该值表示传感器支持的最快数据上报间隔，小于该值的设置可能导致数据丢失或性能下降。 |
+| int64_t *minSamplingInterval | 指向最小数据报告间隔的指针，单位：ns（纳秒）。该值表示传感器支持的最快数据上报间隔，小于该值的设置可能导致数据丢失或性能下降。 |
 
 **返回：**
 
@@ -329,7 +329,7 @@ int32_t OH_SensorInfo_GetMaxSamplingInterval(Sensor_Info* sensor, int64_t *maxSa
 
 **描述**
 
-获取传感器的最大数据上报间隔。获取成功后，maxSamplingInterval参数中会填充传感器的最大数据上报间隔值，单位为纳秒。
+获取传感器的最大数据上报间隔。获取成功后，maxSamplingInterval参数中会填充传感器的最大数据上报间隔值，单位：ns（纳秒）。
 
 **起始版本：** 11
 
@@ -338,7 +338,7 @@ int32_t OH_SensorInfo_GetMaxSamplingInterval(Sensor_Info* sensor, int64_t *maxSa
 | 参数项 | 描述 |
 | -- | -- |
 | [Sensor_Info](capi-sensor-sensor-info.md)* sensor | 指向传感器信息的指针。 |
-| int64_t *maxSamplingInterval | 指向最大数据报告间隔的指针，以纳秒为单位。该值表示传感器支持的最慢数据上报间隔，大于该值的设置可能导致数据更新不及时。 |
+| int64_t *maxSamplingInterval | 指向最大数据报告间隔的指针，单位：ns（纳秒）。该值表示传感器支持的最慢数据上报间隔，大于该值的设置可能导致数据更新不及时。 |
 
 **返回：**
 
@@ -388,7 +388,7 @@ int32_t OH_SensorEvent_GetTimestamp(Sensor_Event* sensorEvent, int64_t *timestam
 | 参数项 | 描述 |
 | -- | -- |
 | [Sensor_Event](capi-sensor-sensor-event.md)* sensorEvent | 指向传感器数据信息的指针。 |
-| int64_t *timestamp | 指向时间戳的指针，单位为纳秒，表示传感器数据采集的时间。 |
+| int64_t *timestamp | 指向时间戳的指针，单位：ns（纳秒），表示传感器数据采集的时间，表示系统启动运行至今的纳秒数。 |
 
 **返回：**
 
@@ -413,7 +413,7 @@ int32_t OH_SensorEvent_GetAccuracy(Sensor_Event* sensorEvent, Sensor_Accuracy *a
 | 参数项 | 描述 |
 | -- | -- |
 | [Sensor_Event](capi-sensor-sensor-event.md)* sensorEvent | 指向传感器数据信息的指针。 |
-| [Sensor_Accuracy](capi-oh-sensor-type-h.md#sensor_accuracy) *accuracy | 指向精度的指针。 |
+| [Sensor_Accuracy](capi-oh-sensor-type-h.md#sensor_accuracy) *accuracy | 指向传感器数据精度级别的指针。 |
 
 **返回：**
 
@@ -434,20 +434,20 @@ int32_t OH_SensorEvent_GetData(Sensor_Event* sensorEvent, float **data, uint32_t
 | 传感器类型 | 数据元素及描述 |
 | --- | --- |
 | SENSOR_TYPE_ACCELEROMETER | data[0]、data[1]、data[2]分别表示设备x、y、z轴的加速度分量，单位：m/s² |
-| SENSOR_TYPE_GYROSCOPE | data[0]、data[1]、data[2]分别表示设备x、y、z轴的旋转角速度，单位：弧度/s |
-| SENSOR_TYPE_AMBIENT_LIGHT | data[0]表示环境光强度，单位勒克斯；从API版本12开始，data[1]表示色温，单位为开尔文；data[2]表示红外亮度，单位：cd/m² |
-| SENSOR_TYPE_MAGNETIC_FIELD | data[0]、data[1]、data[2]分别表示设备x、y、z轴的地磁分量，单位：微特斯拉 |
-| SENSOR_TYPE_BAROMETER | data[0]表示气压值，单位：hPa |
+| SENSOR_TYPE_GYROSCOPE | data[0]、data[1]、data[2]分别表示设备x、y、z轴的旋转角速度，单位：rad/s（弧度/秒） |
+| SENSOR_TYPE_AMBIENT_LIGHT | data[0]表示环境光强度，单位：lux（勒克斯）；从API version 12开始，data[1]表示色温，单位：K（开尔文）；data[2]表示红外亮度，单位：cd/m²（坎德拉每平方米） |
+| SENSOR_TYPE_MAGNETIC_FIELD | data[0]、data[1]、data[2]分别表示设备x、y、z轴的地磁分量，单位：μT（微特斯拉） |
+| SENSOR_TYPE_BAROMETER | data[0]表示气压值，单位：hPa（百帕） |
 | SENSOR_TYPE_HALL | data[0]表示皮套吸合状态，0表示打开，大于0表示吸附 |
 | SENSOR_TYPE_PROXIMITY | data[0]表示接近状态，0表示接近，大于0表示远离 |
-| SENSOR_TYPE_ORIENTATION | data[0]、data[1]、data[2]分别表示设备绕z、x、y轴的角度，单位：度 |
+| SENSOR_TYPE_ORIENTATION | data[0]、data[1]、data[2]分别表示设备绕z、x、y轴的角度，单位：°（度） |
 | SENSOR_TYPE_GRAVITY | data[0]、data[1]、data[2]分别表示设备x、y、z轴的重力加速度分量，单位：m/s² |
-| SENSOR_TYPE_ROTATION_VECTOR | data[0]、data[1]、data[2]分别表示设备x、y、z轴的旋转角度，单位：度；data[3]表示旋转向量元素 |
+| SENSOR_TYPE_ROTATION_VECTOR | data[0]、data[1]、data[2]分别表示设备x、y、z轴的旋转角度，单位：°（度）；data[3]表示旋转向量元素 |
 | SENSOR_TYPE_PEDOMETER_DETECTION | data[0]表示步数检测状态，1表示检测到了步数变化 |
 | SENSOR_TYPE_PEDOMETER | data[0]表示步数 |
 | SENSOR_TYPE_HEART_RATE | data[0]表示心率数值 |
-| SENSOR_TYPE_LINEAR_ACCELERATION | 从API版本13开始支持。data[0]、data[1]、data[2]分别表示设备x、y、z轴的线性加速度，单位：m/s² |
-| SENSOR_TYPE_GAME_ROTATION_VECTOR | 从API版本13开始支持。data[0]、data[1]、data[2]分别表示设备x、y、z轴的旋转角度，单位：度；data[3]表示旋转向量 |
+| SENSOR_TYPE_LINEAR_ACCELERATION | 从API version 13开始支持。data[0]、data[1]、data[2]分别表示设备x、y、z轴的线性加速度，单位：m/s² |
+| SENSOR_TYPE_GAME_ROTATION_VECTOR | 从API version 13开始支持。data[0]、data[1]、data[2]分别表示设备x、y、z轴的旋转角度，单位：°（度）；data[3]表示旋转向量 |
 
 **起始版本：** 11
 
@@ -455,7 +455,7 @@ int32_t OH_SensorEvent_GetData(Sensor_Event* sensorEvent, float **data, uint32_t
 
 | 参数项 | 描述 |
 | -- | -- |
-| [Sensor_Event](capi-sensor-sensor-event.md)* sensorEvent | 传感器数据信息。 |
+| [Sensor_Event](capi-sensor-sensor-event.md)* sensorEvent | 指向传感器数据信息的指针。 |
 | float **data | 出参，传感器数据数组指针。数据格式依赖传感器类型，具体格式参考函数描述。 |
 | uint32_t *length | 出参，数据数组的长度，表示data数组中有效数据的个数。 |
 
@@ -475,7 +475,7 @@ Sensor_SubscriptionId *OH_Sensor_CreateSubscriptionId(void)
 
 创建一个[Sensor_SubscriptionId](capi-sensor-sensor-subscriptionid.md)实例。
 
-调用此方法创建的实例，在使用完毕后必须调用OH_Sensor_DestroySubscriptionId()销毁并回收内存，否则会导致资源泄漏。
+调用此函数创建的实例，在使用完毕后必须调用OH_Sensor_DestroySubscriptionId()销毁并回收内存，否则会导致资源泄漏。
 
 **起始版本：** 11
 
@@ -569,7 +569,7 @@ Sensor_SubscriptionAttribute *OH_Sensor_CreateSubscriptionAttribute(void)
 
 创建[Sensor_SubscriptionAttribute](capi-sensor-sensor-subscriptionattribute.md)实例。
 
-调用此方法创建的实例，在使用完毕后必须调用OH_Sensor_DestroySubscriptionAttribute()销毁并回收内存，否则会导致资源泄漏。
+调用此函数创建的实例，在使用完毕后必须调用OH_Sensor_DestroySubscriptionAttribute()销毁并回收内存，否则会导致资源泄漏。
 
 **起始版本：** 11
 
@@ -620,7 +620,7 @@ int32_t OH_SensorSubscriptionAttribute_SetSamplingInterval(Sensor_SubscriptionAt
 | 参数项 | 描述 |
 | -- | -- |
 | [Sensor_SubscriptionAttribute](capi-sensor-sensor-subscriptionattribute.md)* attribute | 指向传感器订阅属性的指针。 |
-| const int64_t samplingInterval | 要设置的数据报告间隔，以纳秒为单位。该值决定了传感器数据上报的频率，值越小上报频率越高，过小可能导致系统性能压力，需根据传感器类型选择合适范围。 |
+| const int64_t samplingInterval | 要设置的数据报告间隔，单位：ns（纳秒）。该值决定了传感器数据上报的频率，值越小上报频率越高，过小可能导致系统性能压力，需根据传感器类型选择合适范围。 |
 
 **返回：**
 
@@ -645,7 +645,7 @@ int32_t OH_SensorSubscriptionAttribute_GetSamplingInterval(Sensor_SubscriptionAt
 | 参数项 | 描述 |
 | -- | -- |
 | [Sensor_SubscriptionAttribute](capi-sensor-sensor-subscriptionattribute.md)* attribute | 指向传感器订阅属性的指针。 |
-| int64_t *samplingInterval | 指向数据报告间隔的指针，以纳秒为单位。该值为当前设置的传感器数据上报间隔，可用于判断数据上报的频率，一般范围需参考传感器具体要求。 |
+| int64_t *samplingInterval | 指向数据报告间隔的指针，单位：ns（纳秒）。该值为当前设置的传感器数据上报间隔，可用于判断数据上报的频率，一般范围需参考传感器具体要求。 |
 
 **返回：**
 
@@ -681,7 +681,7 @@ Sensor_Subscriber *OH_Sensor_CreateSubscriber(void)
 
 创建一个[Sensor_Subscriber](capi-sensor-sensor-subscriber.md)实例。
 
-调用此方法创建的实例，在使用完毕后必须调用OH_Sensor_DestroySubscriber()销毁并回收内存，否则会导致资源泄漏。
+调用此函数创建的实例，在使用完毕后必须调用OH_Sensor_DestroySubscriber()销毁并回收内存，否则会导致资源泄漏。
 
 **起始版本：** 11
 
@@ -732,7 +732,7 @@ int32_t OH_SensorSubscriber_SetCallback(Sensor_Subscriber* subscriber, const Sen
 | 参数项 | 描述 |
 | -- | -- |
 | [Sensor_Subscriber](capi-sensor-sensor-subscriber.md)* subscriber | 指向传感器订阅者信息的指针。 |
-| [Sensor_EventCallback](capi-oh-sensor-type-h.md#sensor_eventcallback) callback | 要设置的回调函数，用于接收传感器数据上报。回调函数签名为void (*Sensor_EventCallback)(Sensor_Event *event)，其中event参数包含传感器数据的详细信息，如数据类型、时间戳、精度和传感器数据值。 |
+| const [Sensor_EventCallback](capi-oh-sensor-type-h.md#sensor_eventcallback) callback | 要设置的回调函数，用于接收传感器数据上报。回调函数签名为void (*Sensor_EventCallback)(Sensor_Event *event)，其中event参数包含传感器数据的详细信息，如数据类型、时间戳、精度和传感器数据值。 |
 
 **返回：**
 

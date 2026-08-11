@@ -1,10 +1,12 @@
 # picker-view
+
 <!--Kit: ArkUI-->
 <!--Subsystem: ArkUI-->
 <!--Owner: @luoying_ace_admin-->
 <!--Designer: @weixin_52725220-->
 <!--Tester: @xiong0104-->
 <!--Adviser: @Brilliantry_Rui-->
+<!-- md-trans-meta sourceCommit=dfb15c325281e5e789ea7ade45dfdd45876606ad translatedAt=2026-07-27T02:26:28.744Z pushedAt=2026-07-27T09:23:36.724Z -->
 
 The **\<picker-view>** component provides the view that shows an embedded scrollable selector on the screen.
 
@@ -12,11 +14,9 @@ The **\<picker-view>** component provides the view that shows an embedded scroll
 >
 > This component is supported since API version 4. Updates will be marked with a superscript to indicate their earliest API version.
 
-
 ## Child Components
 
 Not supported.
-
 
 ## Attributes
 
@@ -41,7 +41,6 @@ Time selector (**type** is **time**)
 | -------- | -------- | -------- | -------- | -------- |
 | selected | string | 00:00 | No| Default value of the time selector, in the format of HH:mm.<br>|
 
-
 ## Events
 
 Text selector (**type** is **text**)
@@ -56,7 +55,6 @@ Time selector (**type** is **time**)
 | -------- | -------- | -------- |
 | change | {&nbsp;hour:&nbsp;hour,&nbsp;minute:&nbsp;minute} | Triggered when a value is specified for the time selector.<br>|
 
-
 ## Styles
 
 | Name| Type| Default Value| Mandatory| Description|
@@ -66,12 +64,12 @@ Time selector (**type** is **time**)
 | selected-color | &lt;color&gt; | \#ffffff<br>| No| Font color of the selected item.|
 | selected-font-size | &lt;length&gt; | 38px<br>| No| Font size of the selected item. The value is of the length type, in pixels.|
 | selected-font-family | string | HYQiHei-65S | No| Font type of the selected item.|
-| font-family | string | <br>HYQiHei-65S | No| Font type of an item.|
+| font-family | string | <br/>HYQiHe-65S | No | Font type of a candidate item. |
 | width | &lt;length&gt;&nbsp;\|&nbsp;&lt;percentage&gt;<sup>5+</sup> | - | No| Component width.<br>If this attribute is not set, the default value **0** is used.|
 | height | &lt;length&gt;&nbsp;\|&nbsp;&lt;percentage&gt;<sup>5+</sup> | - | No| Component height.<br>If this attribute is not set, the default value **0** is used.|
 | padding | &lt;length&gt; | 0 | No| Shorthand attribute to set the padding for all sides.<br>The attribute can have one to four values:<br>- If you set only one value, it specifies the padding for all the four sides.<br>- If you set two values, the first value specifies the top and bottom padding, and the second value specifies the left and right padding.<br>- If you set three values, the first value specifies the top padding, the second value specifies the left and right padding, and the third value specifies the bottom padding.<br>- If you set four values, they respectively specify the padding for top, right, bottom, and left sides (in clockwise order).|
 | padding-[left\|top\|right\|bottom] | &lt;length&gt; | 0 | No| Left, top, right, and bottom padding.|
-| margin | &lt;length&gt;&nbsp;\|&nbsp;&lt;percentage&gt;<sup>5+</sup> | 0 | No| Shorthand attribute to set the margin for all sides. The attribute can have one to four values:<br>- If you set only one value, it specifies the margin for all the four sides.<br>- If you set two values, the first value specifies the top and bottom margins, and the second value specifies the left and right margins.<br>- If you set three values, the first value specifies the top margin, the second value specifies the left and right margins, and the third value specifies the bottom margin.<br>- If you set four values, they respectively specify the margin for top, right, bottom, and left sides (in clockwise order).|
+| margin | &lt;length&gt;&nbsp;\|&nbsp;&lt;percentage&gt;<sup>5+</sup> | 0 | No | Shorthand attribute to set the margin for all sides. The attribute can have one to four values:<br/>-&nbsp;If you set only one value, it specifies the margin for all the four sides.<br/>-&nbsp;If you set two values, the first value specifies the top and bottom margins, and the second value specifies the left and right margins.<br/>-&nbsp;If you set three values, the first value specifies the top margin, the second value specifies the left and right margins, and the third value specifies the bottom margin.<br/>-&nbsp;If you set four values, they respectively specify the margin for top, right, bottom, and left sides (in clockwise order). |
 | margin-[left\|top\|right\|bottom] | &lt;length&gt;&nbsp;\|&nbsp;&lt;percentage&gt;<sup>5+</sup> | 0 | No| Left, top, right, and bottom margins.|
 | border-width | &lt;length&gt; | 0 | No| Shorthand attribute to set the border width for all sides.|
 | border-color | &lt;color&gt; | black | No| Shorthand attribute to set the color for all borders.|
@@ -88,17 +86,15 @@ Time selector (**type** is **time**)
 
 ## Example
 
-
 ```html
 <!-- xxx.hml -->
-<div class="container" @swipe="handleSwipe">
+  <div class="container">
   <text class="title">
     Selected: {{time}}
   </text>
-  <picker-view class="time-picker" type="time" ref="pickerViewObj" selected="{{defaultTime}}" @change="handleChange"></picker-view>
+  <picker-view class="time-picker" type="time" columns="2" ref="pickerViewObj" selected="{{defaultTime}}" @change="handleChange"></picker-view>
 </div>
 ```
-
 
 ```css
 /* xxx.css */
@@ -122,7 +118,6 @@ Time selector (**type** is **time**)
 }
 ```
 
-
 ```js
 /* xxx.js */
 export default {
@@ -132,6 +127,7 @@ export default {
   },
   onInit() {
     this.defaultTime = this.now();
+    this.time = this.defaultTime;
   },
   handleChange(data) {
     this.time = this.concat(data.hour, data.minute);
@@ -149,10 +145,10 @@ export default {
     return `${this.fill(hours)}:${this.fill(minutes)}`;
   },
   onShow() {
-        this.$refs.pickerViewObj.rotation({focus: true})
+    this.$refs.pickerViewObj.rotation({focus: true})
   },
   onHide() {
-      this.$refs.pickerViewObj.rotation({focus: false})
+    this.$refs.pickerViewObj.rotation({focus: false})
   }
 }
 ```

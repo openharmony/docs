@@ -64,7 +64,7 @@ static show(options?: TimePickerDialogOptions)
 | acceptButtonStyle<sup>12+</sup> | [PickerDialogButtonStyle](ts-picker-common.md#pickerdialogbuttonstyle12对象说明) | 否 | 是 | 设置确认按钮显示样式、重要程度、角色、背景色、圆角、文本颜色、字号、字体粗细、字体样式、字体列表、按钮是否默认响应Enter键。<br>默认值：请参考[PickerDialogButtonStyle](ts-picker-common.md#pickerdialogbuttonstyle12对象说明)。<br>**说明：**<br>1.acceptButtonStyle与cancelButtonStyle中最多只能有一个primary字段配置为true，如果同时设置为true，则primary字段不生效，保持默认值false。<br>2.按钮高度默认40vp，borderRadius单位为vp。在关怀模式-大字体场景下高度不变，即使按钮样式设置为圆角矩形[ROUNDED_RECTANGLE](ts-basic-components-button.md#buttontype枚举说明)，呈现效果依然是胶囊型按钮[Capsule](ts-basic-components-button.md#buttontype枚举说明)。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。<br>**模型约束：** 此接口仅可在Stage模型下使用。 |
 | cancelButtonStyle<sup>12+</sup> | [PickerDialogButtonStyle](ts-picker-common.md#pickerdialogbuttonstyle12对象说明) | 否 | 是 | 设置取消按钮显示样式、重要程度、角色、背景色、圆角、文本颜色、字号、字体粗细、字体样式、字体列表、按钮是否默认响应Enter键。<br>默认值：请参考[PickerDialogButtonStyle](ts-picker-common.md#pickerdialogbuttonstyle12对象说明)。<br>**说明：**<br>1.acceptButtonStyle与cancelButtonStyle中最多只能有一个primary字段配置为true，如果同时设置为true，则primary字段不生效，保持默认值false。<br>2.按钮高度默认40vp，borderRadius单位为vp。在关怀模式-大字体场景下高度不变，即使按钮样式设置为圆角矩形[ROUNDED_RECTANGLE](ts-basic-components-button.md#buttontype枚举说明)，呈现效果依然是胶囊型按钮[Capsule](ts-basic-components-button.md#buttontype枚举说明)。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。<br>**模型约束：** 此接口仅可在Stage模型下使用。 |
 | alignment<sup>10+</sup>  | [DialogAlignment](ts-methods-alert-dialog-box.md#dialogalignment枚举说明) | 否  | 是  | 设置弹窗在垂直方向上的对齐方式。<br>默认值：DialogAlignment.Default<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。<br>**模型约束：** 此接口仅可在Stage模型下使用。 |
-| offset<sup>10+</sup>     | [Offset](ts-types.md#offset) | 否    | 是    | 设置弹窗相对alignment所在位置的偏移量。<br>默认值：{&nbsp;dx:&nbsp;0&nbsp;,&nbsp;dy:&nbsp;0&nbsp;}<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。<br>**模型约束：** 此接口仅可在Stage模型下使用。 |
+| offset<sup>10+</sup>     | [Offset](ts-types.md#offset) | 否    | 是    | 设置弹窗相对alignment所在位置的偏移量。<br>默认值：{&nbsp;dx:&nbsp;0&nbsp;,&nbsp;dy:&nbsp;0&nbsp;}<br>单位：vp<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。<br>**模型约束：** 此接口仅可在Stage模型下使用。 |
 | maskRect<sup>10+</sup>| [Rectangle](ts-methods-alert-dialog-box.md#rectangle8类型说明) | 否    | 是    | 弹窗遮蔽层区域，在遮蔽层区域内的事件不透传，在遮蔽层区域外的事件透传。<br>默认值：{ x: 0, y: 0, width: '100%', height: '100%' }<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。<br>**模型约束：** 此接口仅可在Stage模型下使用。 |
 | onAccept | (value: [TimePickerResult](ts-basic-components-timepicker.md#timepickerresult对象说明)) => void | 否 | 是 | 点击弹窗中的“确定”按钮时触发该回调。回调参数为当前选中的时间值，类型为TimePickerResult。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | onCancel | () => void | 否 | 是 | 点击弹窗中的“取消”按钮时触发该回调，该回调无参数。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
@@ -82,7 +82,7 @@ static show(options?: TimePickerDialogOptions)
 | enableHoverMode<sup>14+</sup>     | boolean | 否  | 是  | 是否响应悬停态。悬停态指折叠屏等设备处于悬停折叠状态时的交互模式，而非鼠标悬停。<br>- true：响应悬停态。<br>- false：不响应悬停态。<br>默认值：false<br>**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。<br>**模型约束：** 此接口仅可在Stage模型下使用。|
 | hoverModeArea<sup>14+</sup> | [HoverModeAreaType](ts-universal-attributes-sheet-transition.md#hovermodeareatype14) | 否 | 是 | 悬停态下弹窗默认展示区域。仅在enableHoverMode为true时生效。<br>默认值：HoverModeAreaType.BOTTOM_SCREEN <br>**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。<br>**模型约束：** 此接口仅可在Stage模型下使用。|
 | onEnterSelectedArea<sup>18+</sup>   |  Callback\<[TimePickerResult](ts-basic-components-timepicker.md#timepickerresult对象说明)> | 否  | 是  |  滑动过程中，当前滑动列滑动距离超过选中项高度的一半，选项进入分割线区域内，触发该回调。与onChange事件的差别在于，该事件在滑动过程中实时触发，适合需要实时监听滑动场景；onChange在选项归位至选中项位置后触发，适合需要确认最终选中值的场景。<br>**说明：**<br>当enableCascade设置为true时，由于上午/下午列与小时列存在联动关系，不建议使用该回调。该回调标识的是滑动过程中选项进入分割线区域内的节点，而联动变化的选项并不涉及滑动，因此，回调的返回值中，仅当前滑动列的值会正常变化，其余未滑动列的值保持不变。<br>**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。<br>**模型约束：** 此接口仅可在Stage模型下使用。 |
-| enableCascade<sup>18+</sup>              | boolean | 否  | 是  | 设置上午和下午的标识是否根据小时数自动切换，仅在useMilitaryTime设置为false时生效。<br>- true：自动切换。<br>- false：不自动切换。<br>默认值：false<br>当enableCascade设置为true时，需要loop参数同时为true才能生效。loop用于控制选择器是否循环滚动。<br>**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。<br>**模型约束：** 此接口仅可在Stage模型下使用。|
+| enableCascade<sup>18+</sup>              | boolean | 否  | 是  | 设置上午和下午的标识是否根据小时数自动切换，仅在useMilitaryTime设置为false时生效。<br>- true：自动切换。<br>- false：不自动切换。<br>默认值：false<br>**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。<br>**模型约束：** 此接口仅可在Stage模型下使用。|
 | enableHapticFeedback<sup>18+</sup> | boolean | 否  | 是  | 设置是否开启触控反馈。<br>- true：开启触控反馈。<br>- false：不开启触控反馈。<br>默认值：true<br>**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。<br>**模型约束：** 此接口仅可在Stage模型下使用。<br>**说明：**<br>1. 设置为true后，其生效情况取决于系统的硬件是否支持。<br>2. 开启触控反馈时，需要在工程的src/main/module.json5文件的"module"内配置requestPermissions字段开启振动权限，配置如下：<br>"requestPermissions": [{"name": "ohos.permission.VIBRATE"}] |
 | systemMaterial  | [SystemUiMaterial](ts-universal-attributes-image-effect.md#systemuimaterial) | 否 | 是 | 设置弹窗的系统材质。<br>**说明：**<br>- 默认值：[ImmersiveOptions](../arkts-apis-uimaterial.md#immersiveoptions)的style为ImmersiveStyle.ULTRA_THICK的[ImmersiveMaterial](../arkts-apis-uimaterial.md#immersivematerial)对象。设置undefined时与默认值保持一致。<br>- 不同的材质具有不同的效果，该接口影响背景色[backgroundColor](ts-universal-attributes-background.md#backgroundcolor)、背景模糊[backgroundBlurStyle](ts-universal-attributes-background.md#backgroundblurstyle9)、背景效果[backgroundEffect](ts-universal-attributes-background.md#backgroundeffect11)、边框颜色[borderColor](ts-universal-attributes-border.md#bordercolor)、边框宽度[borderWidth](ts-universal-attributes-border.md#borderwidth)、阴影[shadow](ts-universal-attributes-image-effect.md#shadow)，当设置系统材质时，上述接口不生效。<br>**起始版本：** 26.0.0<br>**模型约束：** 此接口仅可在Stage模型下使用。<br>**原子化服务API：** 从API版本26.0.0开始，该接口支持在原子化服务中使用。|
 
@@ -559,3 +559,34 @@ struct TimePickerDialogExample {
 ```
 
 ![TimePickerDialog](figures/TimePickerDialog_BackgroundEffect.png)
+
+
+### 示例12（设置系统材质）
+
+该示例通过配置[systemMaterial](#timepickerdialogoptions对象说明)，实现系统材质效果。
+
+从API版本26.0.0开始，在TimePickerDialogOptions中新增了systemMaterial属性。
+
+```ts
+import { uiMaterial } from '@kit.ArkUI';
+
+@Entry
+@Component
+struct DatePickerDialogExample {
+  build() {
+    Stack({ alignContent: Alignment.Top }) {
+      Column() {
+        Button('TimePickerDialog')
+          .margin(20)
+          .onClick(() => {
+            this.getUIContext().showTimePickerDialog({
+              systemMaterial: new uiMaterial.ImmersiveMaterial({ style: uiMaterial.ImmersiveStyle.ULTRA_THICK })
+            });
+          })
+      }.width('100%')
+    }
+  }
+}
+```
+
+![time-picker-dialog-systemMaterial](figures/time-picker-dialog-systemMaterial.png)

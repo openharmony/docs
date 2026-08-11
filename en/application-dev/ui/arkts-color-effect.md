@@ -1,11 +1,12 @@
 # Color Effect
+
 <!--Kit: ArkUI-->
 <!--Subsystem: ArkUI-->
 <!--Owner: @CCFFWW-->
 <!--Designer: @CCFFWW-->
 <!--Tester: @lxl007-->
 <!--Adviser: @Brilliantry_Rui-->
-
+<!-- md-trans-meta sourceCommit=da3a5a40e76f5686f03b0be3e550b8f8145d6e87 translatedAt=2026-07-29T12:43:07.473Z pushedAt=2026-07-30T02:08:44.443Z -->
 
 ## Color
 
@@ -17,12 +18,10 @@ You can use the color gradient APIs to apply a background color gradient effect 
 | [sweepGradient](../reference/apis-arkui/arkui-ts/ts-universal-attributes-gradient-color.md#sweepgradient) | Applies a sweep gradient effect to the component.|
 | [radialGradient](../reference/apis-arkui/arkui-ts/ts-universal-attributes-gradient-color.md#radialgradient) | Applies a radial gradient effect to the component.|
 
-
 ## Applying Linear Gradient Effect
 
-
   <!-- @[Linear_Gradient_Effect](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkUISample/GradientEffect/entry/src/main/ets/homePage/LinearGradientEffect.ets) -->
-  
+
   ``` TypeScript
   @Entry
   @Component
@@ -112,12 +111,10 @@ You can use the color gradient APIs to apply a background color gradient effect 
 
 ![color-linear-gradient](figures/color-linear-gradient.png)
 
-
 ## Applying Sweep Gradient Effect
 
+  <!-- @[Direction_Gradient_Effect](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkUISample/GradientEffect/entry/src/main/ets/homePage/DirectionGradientEffect.ets) -->  
 
-  <!-- @[Direction_Gradient_Effect](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkUISample/GradientEffect/entry/src/main/ets/homePage/DirectionGradientEffect.ets) -->
-  
   ``` TypeScript
   @Entry
   @Component
@@ -208,7 +205,7 @@ You can use the color gradient APIs to apply a background color gradient effect 
             center: [50, 50],
             start: 0,
             end: 360,
-            repeating: false, // The color gradient effect is generated only within the coverage of the color stop angles.
+            repeating: false, // Generate the color gradient effect only within the angular coverage of the color stops, without repeating in other ranges.
             colors: [
               [0xf56c6c, 0],
               [0xffffff, 0.125],
@@ -226,14 +223,13 @@ You can use the color gradient APIs to apply a background color gradient effect 
     }
   }
   ```
-![color-sweep-gradient](figures/color-sweep-gradient.png)
 
+![color-sweep-gradient](figures/color-sweep-gradient.png)
 
 ## Applying Radial Gradient Effect
 
-
   <!-- @[Radial_Gradient_Effect](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkUISample/GradientEffect/entry/src/main/ets/homePage/RadialGradientEffect.ets) -->
-  
+
   ``` TypeScript
   @Entry
   @Component
@@ -336,4 +332,5 @@ You can use the color gradient APIs to apply a background color gradient effect 
     }
   }
   ```
+
 ![color-radial-gradient](figures/color-radial-gradient.png)

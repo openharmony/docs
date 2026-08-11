@@ -6,7 +6,7 @@
 <!--Tester: @lxl007-->
 <!--Adviser: @Brilliantry_Rui-->
 
-通过bindContentCover属性为组件绑定全屏模态页面，在组件插入和移除时可通过设置转场参数ModalTransition显示过渡动效。
+通过bindContentCover属性为组件绑定全屏模态页面，在模态页面显示和隐藏时可通过设置转场参数（ModalTransition或TransitionEffect）显示过渡动效。
 
 >  **说明：**
 >
@@ -22,7 +22,7 @@
 
 bindContentCover(isShow: boolean, builder: CustomBuilder, type?: ModalTransition): T
 
-给组件绑定全屏模态页面，点击后显示模态页面。模态页面内容自定义，显示方式可设置无动画过渡，上下切换过渡以及透明渐变过渡。
+给组件绑定全屏模态页面，通过isShow参数控制模态页面的显示与隐藏。模态页面内容自定义，显示方式可设置无动画转场、上下切换转场以及透明度渐变转场。
 
 > **说明：**
 >
@@ -36,21 +36,25 @@ bindContentCover(isShow: boolean, builder: CustomBuilder, type?: ModalTransition
 
 | 参数名  | 类型                                        | 必填 | 说明                                                         |
 | ------- | ------------------------------------------- | ---- | ------------------------------------------------------------ |
-| isShow  | boolean                        | 是   | 是否显示全屏模态页面。<br/>-true：显示全屏模态页面。<br/>-false：隐藏全屏模态页面。<br/>从API version 10开始，该参数支持[$$](../../../ui/state-management/arkts-two-way-sync.md)双向绑定变量。<br />从API version 18开始，该参数支持[!!](../../../ui/state-management/arkts-new-binding.md#系统组件参数双向绑定)双向绑定变量。|
-| builder | [CustomBuilder](ts-types.md#custombuilder8) | 是   | 配置全屏模态页面内容。                           |
-| type | [ModalTransition](ts-universal-attributes-sheet-transition.md#modaltransition) | 否   | 全屏模态页面的系统转场方式。<br/> 默认值：ModalTransition.DEFAULT。<br/>**说明：**<br /> 与transition同时设置时，此属性不生效。                                 |
+| isShow  | boolean                        | 是   | 是否显示全屏模态页面。<br>-true：显示全屏模态页面。<br>-false：隐藏全屏模态页面。<br>从API version 10开始，该参数支持[$$](../../../ui/state-management/arkts-two-way-sync.md)双向绑定变量。<br>从API version 18开始，该参数支持[!!](../../../ui/state-management/arkts-new-binding.md#系统组件参数双向绑定)双向绑定变量。|
+| builder | [CustomBuilder](ts-types.md#custombuilder8) | 是   | 配置全屏模态页面内容。builder中的根节点需唯一。<!--RP1--><!--RP1End-->                           |
+| type | [ModalTransition](ts-universal-attributes-sheet-transition.md#modaltransition) | 否   | 全屏模态页面的系统转场方式。<br>取值原则：DEFAULT-上下切换过渡，NONE-无动画过渡，ALPHA-透明渐变过渡。<br> 默认值：ModalTransition.DEFAULT，即上下切换过渡。<br>**说明：**<br> 与transition同时设置时，此属性不生效，仅transition生效。                                 |
 
 **返回值：**
 
 | 类型   | 说明                     |
 | ------ | ------------------------ |
-| T | 返回当前组件。 |
+| T | 返回当前组件，用于链式调用。 |
 
 ## bindContentCover
 
 bindContentCover(isShow: boolean, builder: CustomBuilder, options?: ContentCoverOptions): T
 
-给组件绑定全屏模态页面，点击后显示模态页面。模态页面内容自定义，可自定义设置转场方式。
+给组件绑定全屏模态页面，通过isShow参数控制模态页面的显示与隐藏。模态页面内容与转场方式均可自定义设置。
+
+> **说明：**
+>
+> 该接口不支持在[attributeModifier](ts-universal-attributes-attribute-modifier.md#attributemodifier)中调用。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -60,15 +64,15 @@ bindContentCover(isShow: boolean, builder: CustomBuilder, options?: ContentCover
 
 | 参数名  | 类型                                        | 必填 | 说明                                                         |
 | ------- | ------------------------------------------- | ---- | ------------------------------------------------------------ |
-| isShow  | boolean                        | 是   | 是否显示全屏模态页面。<br/>-true：显示全屏模态页面。<br/>-false：隐藏全屏模态页面。<br/>从API version 10开始，该参数支持[$$](../../../ui/state-management/arkts-two-way-sync.md)双向绑定变量。<br />从API version 18开始，该参数支持[!!](../../../ui/state-management/arkts-new-binding.md#系统组件参数双向绑定)双向绑定变量。|
+| isShow  | boolean                        | 是   | 是否显示全屏模态页面。<br>-true：显示全屏模态页面。<br>-false：隐藏全屏模态页面。<br>从API version 10开始，该参数支持[$$](../../../ui/state-management/arkts-two-way-sync.md)双向绑定变量。<br>从API version 18开始，该参数支持[!!](../../../ui/state-management/arkts-new-binding.md#系统组件参数双向绑定)双向绑定变量。|
 | builder | [CustomBuilder](ts-types.md#custombuilder8) | 是   | 配置全屏模态页面内容。                                       |
-| options | [ContentCoverOptions](#contentcoveroptions) | 否   | 配置全屏模态页面的可选属性。                                 |
+| options | [ContentCoverOptions](#contentcoveroptions) | 否 | 配置全屏模态页面的可选属性。不传入此参数时，各可选属性使用各自默认值。 |
 
 **返回值：**
 
 | 类型   | 说明                     |
 | ------ | ------------------------ |
-| T | 返回当前组件。 |
+| T | 返回当前组件，用于链式调用。 |
 
 ## ContentCoverOptions
 继承自[BindOptions](ts-universal-attributes-sheet-transition.md#bindoptions)。
@@ -79,10 +83,10 @@ bindContentCover(isShow: boolean, builder: CustomBuilder, options?: ContentCover
 
 | 名称              | 类型                                       | 只读 |  可选   | 说明            |
 | --------------- | ---------------------------------------- | ---- | ---- | ------------- |
-| modalTransition | [ModalTransition](ts-universal-attributes-sheet-transition.md#modaltransition) | 否 | 是    | 全屏模态页面的系统转场方式。<br/> 默认值：ModalTransition.DEFAULT。<br/>**说明：**<br /> 与transition同时设置时，此属性不生效。<br />**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。  |
-| onWillDismiss<sup>12+</sup> | Callback&lt;[DismissContentCoverAction](#dismisscontentcoveraction12类型说明)&gt; | 否 | 是   | 全屏模态页面交互式关闭回调函数。<br/>**说明：**<br />当用户执行back事件关闭交互操作时，如果注册该回调函数，则不会立刻关闭。在回调函数中可以通过reason得到拦截关闭页面的操作类型，从而根据原因选择是否关闭全屏模态页面。在onWillDismiss回调中，不能再做onWillDismiss拦截。 <br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
-| transition<sup>12+</sup> | [TransitionEffect](ts-transition-animation-component.md#transitioneffect10对象说明) | 否 | 是   | 全屏模态页面的自定义转场方式。  <br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
-| enableSafeArea<sup>20+</sup> | boolean  | 否 | 是  | 全屏模态是否适配安全区域，true表示全屏模态适配安全区域，将内容限制在安全区内，避让导航条和状态栏，false表示不做处理，和之前的样式保持一致。默认值为false。  <br />**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。 |
+| modalTransition | [ModalTransition](ts-universal-attributes-sheet-transition.md#modaltransition) | 否 | 是    | 全屏模态页面的系统转场方式。<br>取值原则：DEFAULT-上下切换过渡，NONE-无动画过渡，ALPHA-透明渐变过渡。<br> 默认值：ModalTransition.DEFAULT。<br>**说明：**<br> 与transition同时设置时，此属性不生效，仅transition生效。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。  |
+| onWillDismiss<sup>12+</sup> | [Callback](./ts-types.md#callback12)&lt;[DismissContentCoverAction](#dismisscontentcoveraction12类型说明)&gt; | 否 | 是   | 全屏模态页面交互式关闭回调函数。<br>**说明：**<br>当用户通过返回键等操作触发关闭全屏模态页面时，如果注册该回调函数，则不会立刻关闭。在回调函数中可以通过reason得到拦截关闭页面的操作类型，从而根据原因选择是否关闭全屏模态页面。如需关闭，须在回调中调用DismissContentCoverAction.dismiss()方法；如不调用dismiss()，全屏模态页面将保持打开状态不会关闭。在onWillDismiss回调中，不能再做onWillDismiss拦截。 <br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
+| transition<sup>12+</sup> | [TransitionEffect](ts-transition-animation-component.md#transitioneffect10对象说明) | 否 | 是   | 全屏模态页面的自定义转场方式。<br>**说明：**<br>未设置时默认不使用自定义转场，使用modalTransition的系统转场方式，与modalTransition同时设置时，仅transition生效，modalTransition属性不生效。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
+| enableSafeArea<sup>20+</sup> | boolean  | 否 | 是  | 全屏模态是否适配安全区域，true表示全屏模态适配安全区域，将内容限制在安全区域内，避让导航条和状态栏，false表示不适配安全区域，全屏模态页面内容不受安全区域限制，不避让导航条和状态栏，不做处理，和之前的样式保持一致。默认值为false。  <br>**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。 |
 
 ## DismissContentCoverAction<sup>12+</sup>类型说明
 
@@ -92,7 +96,7 @@ bindContentCover(isShow: boolean, builder: CustomBuilder, options?: ContentCover
 
 | 名称              | 类型                                       | 只读 | 可选   | 说明            |
 | --------------- | -------------------- | -------------------- | ---- | ------------- |
-| dismiss | [Callback](./ts-types.md#callback12)\<void> | 否 | 否    | 全屏模态页面关闭回调函数。开发者需要退出页面时调用。 |
+| dismiss | [Callback](./ts-types.md#callback12)\<void> | 否 | 否    | 全屏模态页面关闭回调函数。须在onWillDismiss回调中调用此方法以关闭全屏模态页面；未调用时，全屏模态页面将保持打开状态不关闭。 |
 | reason | [DismissReason](ts-universal-attributes-popup.md#dismissreason12枚举说明) | 否 | 否    | 返回本次拦截全屏模态页面退出的事件原因。  |
 
 ## 示例
@@ -208,15 +212,15 @@ import { curves } from '@kit.ArkUI';
 struct ModalTransitionExample {
   @State @Watch("isShow1Change") isShow: boolean = false;
   @State @Watch("isShow2Change") isShow2: boolean = false;
-  @State isScale1: number = 1;
-  @State isScale2: number = 1;
+  @State scale1: number = 1;
+  @State scale2: number = 1;
 
   isShow1Change() {
-    this.isShow ? this.isScale1 = 0.95 : this.isScale1 = 1;
+    this.isShow ? this.scale1 = 0.95 : this.scale1 = 1;
   }
 
   isShow2Change() {
-    this.isShow2 ? this.isScale2 = 0.95 : this.isScale2 = 1;
+    this.isShow2 ? this.scale2 = 0.95 : this.scale2 = 1;
   }
 
   @Builder
@@ -268,7 +272,7 @@ struct ModalTransitionExample {
     .width('100%')
     .height('100%')
     .justifyContent(FlexAlign.Center)
-    .scale({ x: this.isScale2, y: this.isScale2 })
+    .scale({ x: this.scale2, y: this.scale2 })
     .animation({ curve: curves.springMotion() })
   }
 
@@ -301,7 +305,7 @@ struct ModalTransitionExample {
     .backgroundColor("#ff49c8ab")
     .width('100%')
     .height('100%')
-    .scale({ x: this.isScale1, y: this.isScale1 })
+    .scale({ x: this.scale1, y: this.scale1 })
     .animation({ curve: curves.springMotion() })
   }
 }
@@ -508,7 +512,7 @@ struct ModalTransitionExample {
 
 ### 示例5（设置不同效果的自定义转场）
 
-该示例主要演示全屏模态旋转，平移等自定义转场。
+该示例主要演示全屏模态旋转、平移等自定义转场。
 
 ```ts
 // xxx.ets
@@ -549,6 +553,7 @@ struct ModalTransitionExample {
             modalTransition: ModalTransition.DEFAULT,
             backgroundColor: Color.Gray,
             transition: TransitionEffect.SLIDE.animation({ duration: 5000, curve: Curve.LinearOutSlowIn }),
+            // 处理关闭原因后调用dismiss()关闭模态
             onWillDismiss: ((dismissContentCoverAction: DismissContentCoverAction) => {
               if (dismissContentCoverAction.reason === DismissReason.PRESS_BACK) {
                 console.info("BindContentCover dismiss reason is back pressed");
@@ -558,6 +563,7 @@ struct ModalTransitionExample {
             onAppear: () => {
               console.info("BindContentCover onAppear.");
             },
+            // 模态消失时同步状态变量
             onDisappear: () => {
               this.isShow2 = false;
               console.info("BindContentCover onDisappear.");
@@ -632,7 +638,7 @@ struct ModalTransitionExample {
 @Component
 struct SafeAreaController {
   @State isShow: boolean = false;
-  @State SafeArea: boolean | undefined = true;
+  @State isSafeArea: boolean | undefined = true;
   @State heightMode: string = '100%';
 
   @Builder
@@ -671,9 +677,9 @@ struct SafeAreaController {
         .margin(10)
         .bindContentCover(this.isShow, this.myBuilder(), {
           modalTransition: ModalTransition.ALPHA,
-          backgroundColor: 0x87CEEB,
+          backgroundColor: 0xFF87CEEB,
           // 动态设置安全区域模式
-          enableSafeArea: this.SafeArea
+          enableSafeArea: this.isSafeArea
         })
     }
     .justifyContent(FlexAlign.Center)

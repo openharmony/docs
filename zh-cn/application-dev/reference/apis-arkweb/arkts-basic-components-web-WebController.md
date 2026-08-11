@@ -352,7 +352,7 @@ getHitTest(): HitTestType
 
 > **说明：**
 >
-> 从API version 8开始支持，从API version 9开始废弃，建议使用[getHitTest<sup>(deprecated)</sup>](./arkts-apis-webview-WebviewController.md#gethittestdeprecated)代替。
+> 从API version 8开始支持，从API version 9开始废弃。建议使用[getHitTest<sup>(deprecated)</sup>](./arkts-apis-webview-WebviewController.md#gethittestdeprecated)替代。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -553,7 +553,7 @@ zoom(factor: number): void
 
 > **说明：**
 >
-> 从API version 8开始支持，从API version 9开始废弃，建议使用[zoom<sup>9+</sup>](./arkts-apis-webview-WebviewController.md#zoom)代替。
+> 从API version 8开始支持，从API version 9开始废弃。建议使用[zoom<sup>9+</sup>](./arkts-apis-webview-WebviewController.md#zoom)替代。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -561,7 +561,7 @@ zoom(factor: number): void
 
 | 参数名    | 类型   | 必填   | 说明                           |
 | ------ | ------ | ---- | ------------------------------ |
-| factor | number | 是    | 基于当前网页所需调整的相对缩放比例，当入参为1时为默认加载网页的缩放比例，小于1为缩小，大于1为放大。取值范围(0, 100]。 |
+| factor | number | 是    | 缩放系数。1表示恢复默认加载网页的缩放比例；小于1为缩小，大于1为放大。取值范围(0, 100]。 |
 
 **示例：**
 

@@ -94,7 +94,7 @@ Cannot start an invisible component.
 
 **处理步骤**
 
-1. [Stage模型](../../application-models/ability-terminology.md#stage模型)下，拉起应用时抛出16000004异常，表示被拉应用调用失败，需要检查被拉应用module.json5的Ability字段的[exported](../../quick-start/module-configuration-file.md#abilities标签)配置是否为true。该配置字段为true，表示可以被其他应用调用；该配置字段为false，表示不可以被其他应用调用。
+1. [Stage模型](../../application-models/ability-terminology.md#stage模型)下，拉起应用时抛出16000004异常，表示无法启动不可见组件，需要检查被拉应用module.json5的Ability字段的[exported](../../quick-start/module-configuration-file.md#abilities标签)配置是否为true。该配置字段为true，表示可以被其他应用调用；该配置字段为false，表示不可以被其他应用调用。
 2. 若应用需要拉起exported为false的ability，请申请ohos.permission.START_INVISIBLE_ABILITY权限（该权限仅系统应用可申请）。
 
 ## 16000005 指定的进程权限校验失败
@@ -2790,6 +2790,61 @@ System Error. 1. Failed to connect to the system service; 2. The system service 
 
 1. 退出应用后重新尝试。
 2. 重启设备后重新尝试。
+
+## 35600060 Function不存在
+
+**错误信息**
+
+The function does not exist.
+
+**错误描述**
+
+函数不存在。
+
+**可能原因**
+
+需要执行的Function没有在系统中注册。
+
+**处理步骤**
+
+1. 检查需要执行的Function信息是否拼写错误。
+2. 检查需要执行的Function是否已注册。
+
+## 35600061 Function执行失败
+
+**错误信息**
+
+The function execution failed.
+
+**错误描述**
+
+函数执行失败。
+
+**可能原因**
+
+系统故障、abc加载或者执行异常。
+
+**处理步骤**
+
+检查函数执行条件是否具备，稍后重试。
+
+## 35600062 Function执行超时
+
+**错误信息**
+
+The function execution timed out.
+
+**错误描述**
+
+函数执行超时。
+
+**可能原因**
+
+实现逻辑复杂、外部服务响应慢、数据量过大或系统资源紧张导致执行时间过长。
+
+**处理步骤**
+
+检查函数执行过程和执行环境，稍后重试。
 <!--DelEnd-->
 
 ## 16000161 当前进程延迟退出未处于等待状态，无法调用此API

@@ -160,7 +160,7 @@ setFormFactors(formFactors: Array\<UserAgentFormFactor>): void
 
 getFormFactors(): Array\<UserAgentFormFactor>
 
-获取设备形态信息，如手机、平板等。不调用对应的[setFormFactors](#setformfactors)进行设置时，形态信息默认值：手机："Mobile"，手表："Watch"，车机："Automotive"，PC："Desktop"，平板："Tablet"。
+获取设备形态信息，如手机、平板等。不调用对应的[setFormFactors](#setformfactors)进行设置时，形态信息默认值：手机："Mobile"、手表："Watch"、车机："Automotive"、PC："Desktop"、平板："Tablet"。
 
 **系统能力：**  SystemCapability.Web.Webview.Core
 
@@ -280,7 +280,7 @@ setModel(model: string): void
 
 getModel(): string
 
-获取设备型号。不调用对应的[setModel](#setmodel)设置时，型号默认值：手机根据const.product.model取设备型号，手表、大屏、车机、PC、平板：""。
+获取设备型号。不调用对应的[setModel](#setmodel)设置时，型号默认值：手机根据const.product.model取设备型号；手表、大屏、车机、PC、平板：""。
 
 **系统能力：**  SystemCapability.Web.Webview.Core
 

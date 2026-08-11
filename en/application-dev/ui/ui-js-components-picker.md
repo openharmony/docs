@@ -1,13 +1,14 @@
 # picker Development
+
 <!--Kit: ArkUI-->
 <!--Subsystem: ArkUI-->
 <!--Owner: @luoying_ace_admin-->
 <!--Designer: @weixin_52725220-->
 <!--Tester: @xiong0104-->
 <!--Adviser: @Brilliantry_Rui-->
+<!-- md-trans-meta sourceCommit=2d89ab40148c8e22839f807ddcedcfe23c064435 translatedAt=2026-08-05T10:14:53.992Z pushedAt=2026-08-06T06:32:07.580Z -->
 
 The **\<picker>** component supports common, date, time, date and time, and multi-column text selectors. For details, see [picker](../reference/apis-arkui/arkui-js/js-components-basic-picker.md).
-
 
 ## Creating a \<picker> Component
 
@@ -33,7 +34,6 @@ Create a **\<picker>** component in the .hml file under **pages/index**.
 ```
 
 ![picker-Component](figures/picker-Component.gif)
-
 
 ## Setting the Picker Type
 
@@ -73,12 +73,11 @@ export default {
 }
 ```
 
-
+![picker](figures/picker.gif)
 
 > **NOTE**
 >
 > When setting the value range of a common selector, you must use the data binding mode.
-
 
 ## Setting the Time Display Format
 
@@ -115,7 +114,6 @@ Set the **hours** attribute to specify the time format used by the time picker. 
 > - When **hours** is set to **12**, the time is displayed in 12-hour format and distinguished by a.m. and p.m.
 >
 > - When **hours** is set to **24**, the time is displayed in 24-hour format.
-
 
 ## Adding Response Events
 
@@ -169,12 +167,9 @@ export default {
 
 ![Response-Events-1](figures/Response-Events-1.gif)
 
-
 ## Example Scenario
 
-
 Implement a health check-in application by using the **\<picker>** component.
-
 
 ```html
 <!-- xxx.hml -->
@@ -205,7 +200,6 @@ Implement a health check-in application by using the **\<picker>** component.
   </div>
 </div>
 ```
-
 
 ```css
 /* xxx.css */
@@ -249,7 +243,6 @@ Implement a health check-in application by using the **\<picker>** component.
 }
 ```
 
-
 ```js
 // xxx.js
 import promptAction from '@ohos.promptAction'
@@ -275,7 +268,7 @@ export default {
   },
   setPos(e) {
     this.pos = e.newValue
-    if (e.newValue === 'Non-research center') {
+    if (e.newValue === 'Company') {
       this.showbuild = false
     } else {
       this.showbuild = true
@@ -299,5 +292,4 @@ export default {
 }
 ```
 
-
-
+![picker-1](figures/picker-1.gif)

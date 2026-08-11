@@ -92,4 +92,4 @@ perceiveAndAdjustAuthentication() {
 
 ## 示例代码
 
-  - [感知和调整认证过程](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/UserAuthentication)
+  - [感知和调整认证过程](https://gitcode.com/openharmony/applications_app_samples/tree/master/code/DocsSample/UserAuthentication)

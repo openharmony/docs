@@ -16,9 +16,7 @@
 >
 >  Path2D对象的方法无法对[CanvasRenderingContext2D](./ts-canvasrenderingcontext2d.md)和[OffscreenCanvasRenderingContext2D](./ts-offscreencanvasrenderingcontext2d.md)对象中设置的路径生效。
 
-## 接口
-
-### constructor
+## constructor
 
 constructor()
 
@@ -30,7 +28,7 @@ constructor()
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-### constructor<sup>12+</sup>
+## constructor<sup>12+</sup>
 
 constructor(unit: LengthMetricsUnit)
 
@@ -50,7 +48,7 @@ constructor(unit: LengthMetricsUnit)
 | ----- | -------- | ---- | ---------- |
 | unit  | [LengthMetricsUnit](../js-apis-arkui-graphics.md#lengthmetricsunit12) | 是 | 用来配置Path2D对象的单位模式，配置后无法动态更改，配置方法同[CanvasRenderingContext2D](./ts-canvasrenderingcontext2d.md)。<br>异常值NaN和Infinity按默认值处理。<br>默认值：DEFAULT|
 
-### constructor
+## constructor
 
 constructor(path: Path2D)
 
@@ -68,7 +66,7 @@ constructor(path: Path2D)
 | ----- | -------- | ---- | ---------- |
 | path | Path2D | 是 | 需要复制的路径对象，新创建的Path2D对象将包含与原路径相同的路径数据。异常值null和undefined时创建空路径对象。 |
 
-### constructor<sup>12+</sup>
+## constructor<sup>12+</sup>
 
 constructor(path: Path2D, unit: LengthMetricsUnit)
 
@@ -89,7 +87,7 @@ constructor(path: Path2D, unit: LengthMetricsUnit)
 | path | Path2D | 是 | 需要复制的Path2D路径对象，用于基于现有路径创建新的Path2D对象。传入的路径对象不会被修改，新创建的对象将包含该路径的完整副本。 |
 | unit | [LengthMetricsUnit](../js-apis-arkui-graphics.md#lengthmetricsunit12) | 是 | 用来配置Path2D对象的单位模式，配置后无法动态更改，配置方法同[CanvasRenderingContext2D](./ts-canvasrenderingcontext2d.md)。<br>异常值NaN和Infinity按默认值处理。<br>默认值：DEFAULT|
 
-### constructor
+## constructor
 
 constructor(d: string)
 
@@ -107,7 +105,7 @@ constructor(d: string)
 | ----- | -------- | ---- | ---------- |
 | d | string | 是 | 符合SVG路径描述规范的路径字符串，格式参考[SVG路径描述规范](./ts-drawing-components-path.md#svg路径描述规范)，异常值按无效值处理。 |
 
-### constructor<sup>12+</sup>
+## constructor<sup>12+</sup>
 
 constructor(description: string, unit: LengthMetricsUnit)
 

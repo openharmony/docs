@@ -6,7 +6,7 @@
 <!--Tester: @mahailong123456-->
 <!--Adviser: @HelloShuo-->
 
-## ArkTS卡片开发是否支持V2装饰器？如何从V1到V2迁移？
+## ArkTS卡片使用V2装饰器进行状态管理
 
 ArkTS卡片开发支持V2装饰器语法(如[\@ObservedV2](../ui/state-management/arkts-new-observedV2-and-trace.md)、[\@ComponentV2](../ui/state-management/arkts-create-custom-components.md#componentv2))，建议开发者使用V2装饰器替代V1语法进行状态管理，以获得更优的组件渲染性能和状态同步能力。
 
@@ -14,10 +14,10 @@ ArkTS卡片开发支持V2装饰器语法(如[\@ObservedV2](../ui/state-managemen
 
 <!--RP1--><!--RP1End-->
 
-## ArkTS卡片如何适配深浅色模式？
+## ArkTS卡片适配深色模式
 当前系统存在深浅色两种显示模式，为了给用户更好的使用体验，保障卡片与页面视觉体验一致性，ArkTS卡片支持适配深浅色模式，具体请参考[应用深浅色适配](../ui/ui-dark-light-color-adaptation.md)。
 
-## 导入particleAbility、audio、camera、media、backgroundTaskManager模块导致应用崩溃问题。
+## 导入particleAbility、audio、camera、media、backgroundTaskManager模块导致应用崩溃问题
 
 ### 问题现象
 导入particleAbility、audio、camera、media、backgroundTaskManager后应用崩溃，FaultLog指向相关调用行。<br>

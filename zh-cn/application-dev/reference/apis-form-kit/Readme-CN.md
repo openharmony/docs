@@ -9,16 +9,16 @@
 - ArkTS API<!--form-arkts-->
   - [@ohos.app.form.formBindingData (卡片数据绑定类)](js-apis-app-form-formBindingData.md)
   - [@ohos.app.form.FormExtensionAbility (FormExtensionAbility)](js-apis-app-form-formExtensionAbility.md)
-  - [@ohos.app.form.formInfo (FormInfo)](js-apis-app-form-formInfo.md)
-  - [@ohos.app.form.formProvider (FormProvider)](js-apis-app-form-formProvider.md)
+  - [@ohos.app.form.formInfo (formInfo)](js-apis-app-form-formInfo.md)
+  - [@ohos.app.form.formProvider (formProvider)](js-apis-app-form-formProvider.md)
   - [@ohos.app.form.FormEditExtensionAbility (FormEditExtensionAbility)](js-apis-app-form-formEditExtensionAbility.md)
   - [@ohos.app.form.LiveFormExtensionAbility (LiveFormExtensionAbility)](js-apis-app-form-LiveFormExtensionAbility.md)
   <!--Del-->
   - [@ohos.app.form.formAgent (FormAgent)(系统接口)](js-apis-app-form-formAgent-sys.md)
   - [@ohos.app.form.FormExtensionAbility (FormExtensionAbility)(系统接口)](js-apis-app-form-formExtensionAbility-sys.md)
-  - [@ohos.app.form.formInfo (FormInfo)(系统接口)](js-apis-app-form-formInfo-sys.md)
+  - [@ohos.app.form.formInfo (formInfo)(系统接口)](js-apis-app-form-formInfo-sys.md)
   - [@ohos.app.form.formHost (formHost)(系统接口)](js-apis-app-form-formHost-sys.md)
-  - [@ohos.app.form.formProvider (FormProvider)(系统接口)](js-apis-app-form-formProvider-sys.md)
+  - [@ohos.app.form.formProvider (formProvider)(系统接口)](js-apis-app-form-formProvider-sys.md)
   - [@ohos.app.form.formObserver (formObserver)(系统接口)](js-apis-app-form-formObserver-sys.md)
   <!--DelEnd-->
   - application<!--form-arkts-application-->
@@ -31,13 +31,13 @@
    <!--DelEnd-->
 - 已停止维护的接口<!--form-arkts-dep-->
   - [@ohos.application.formBindingData (卡片数据绑定类)](js-apis-application-formBindingData.md)
-  - [@ohos.application.formError (FormError)](js-apis-application-formError.md)
-  - [@ohos.application.formInfo (FormInfo)](js-apis-application-formInfo.md)
-  - [@ohos.application.formProvider (FormProvider)](js-apis-application-formProvider.md)
+  - [@ohos.application.formError (formError)](js-apis-application-formError.md)
+  - [@ohos.application.formInfo (formInfo)](js-apis-application-formInfo.md)
+  - [@ohos.application.formProvider (formProvider)](js-apis-application-formProvider.md)
   <!--Del-->
-  - [@ohos.application.formError (FormError)(系统接口)](js-apis-application-formError-sys.md)
-  - [@ohos.application.formHost (FormHost)(系统接口)](js-apis-application-formHost-sys.md)
-  - [@ohos.application.formInfo (FormInfo)(系统接口)](js-apis-application-formInfo-sys.md)
+  - [@ohos.application.formError (formError)(系统接口)](js-apis-application-formError-sys.md)
+  - [@ohos.application.formHost (formHost)(系统接口)](js-apis-application-formHost-sys.md)
+  - [@ohos.application.formInfo (formInfo)(系统接口)](js-apis-application-formInfo-sys.md)
   <!--DelEnd-->
 - 错误码<!--form-arkts-errcode-->
   - [卡片错误码](errorcode-form.md)

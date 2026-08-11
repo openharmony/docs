@@ -72,7 +72,7 @@
 - [使用WebNativeMessagingExtensionAbility组件实现浏览器扩展和应用通信场景](web-native-messaging.md)
 - Web调试维测<!--web-debugging-->
   - [使用DevTools工具调试前端页面](web-debugging-with-devtools.md)
-  - [使用crashpad收集Web组件崩溃信息](web-crashpad.md)
+  - [使用Crashpad收集Web组件崩溃信息](web-crashpad.md)
   - [定位与解决Web白屏问题](web-white-screen.md)<!--RP1--><!--RP1End-->
   - [定位网页加载问题](web-page-loading.md)
 - [ArkWeb术语](arkweb-glossary.md)

@@ -16,7 +16,7 @@
 
 本页面汇总了ArkWeb Webview模块（`@kit.ArkWeb`）中的辅助接口与数据结构类型。这些类型主要作为Web组件各能力的方法入参、回调出参或状态枚举使用，配合[WebviewController](./arkts-apis-webview-WebviewController.md)、[WebCookieManager](./arkts-apis-webview-WebCookieManager.md)、[WebStorage](./arkts-apis-webview-WebStorage.md)等核心类共同完成Web网页的加载、渲染、交互、媒体接管及性能优化等控制能力。
 
-本模块提供Web控制能力，网页显示的能力请参考[组件描述](arkts-basic-components-web.md)；Web控制能力的完整说明及核心控制器类请参考[模块描述](./arkts-apis-webview.md)。
+本模块提供Web控制能力，网页显示的能力请参考[组件描述](./arkts-basic-components-web.md)；Web控制能力的完整说明及核心控制器类请参考[模块描述](./arkts-apis-webview.md)。
 
 ## WebStorageOrigin
 
@@ -49,15 +49,15 @@ Web组件返回的请求/响应头对象。
 
 | 名称           | 类型       | 只读 | 可选 | 说明                         |
 | -------------- | --------- | ---- | ---- | ---------------------------- |
-| schemeName     | string    | 否   | 否   | 自定义协议名称。最大长度为32，其字符仅支持小写字母、数字、'.'、'+'、'-'，同时需要以字母开头。        |
+| schemeName     | string    | 否   | 否   | 自定义协议名称。最大长度为32，其字符仅支持小写字母、数字、'.'、'+'、'-'，同时需要以字母开头。不符合上述限制时，该自定义协议配置不生效。        |
 | isSupportCORS  | boolean   | 否   | 否   | 是否支持跨域请求。<br>true表示支持跨域请求，false表示不支持跨域请求。<br>默认值：true。    |
 | isSupportFetch | boolean   | 否   | 否   | 是否支持fetch请求。<br>true表示支持fetch请求，false表示不支持fetch请求。<br>默认值：true。           |
-| isStandard<sup>12+</sup> | boolean   | 否   | 是   | 设置了该选项的scheme是否将作为标准scheme进行处理。标准scheme需要符合RFC 1738第3.1节中定义的URL规范化和解析规则。<br>true表示设置了该选项的scheme将作为标准scheme进行处理，false表示设置了该选项的scheme不作为标准scheme进行处理。<br>默认值：true。           |
+| isStandard<sup>12+</sup> | boolean   | 否   | 是   | 设置了该选项的scheme是否将作为标准scheme进行处理。标准scheme需要符合RFC 1738第3.1节中定义的URL解析规则以及RFC 3986第6.2节中定义的URL规范化规则。<br>true表示设置了该选项的scheme将作为标准scheme进行处理，false表示设置了该选项的scheme不作为标准scheme进行处理。<br>默认值：true。           |
 | isLocal<sup>12+</sup> | boolean   | 否   | 是   | 设置了该选项的scheme是否将使用与“file”协议相同的安全规则来处理。<br>true表示设置了该选项的scheme将使用与“file”协议相同的安全规则来处理，false表示设置了该选项的scheme不使用与“file”协议相同的安全规则来处理。<br>默认值：true。           |
-| isDisplayIsolated<sup>12+</sup> | boolean   | 否   | 是   | 设置了该选项的scheme的内容是否只能从相同scheme的其他内容中显示或访问。<br>true表示设置了该选项的scheme的内容只能从相同scheme的其他内容中显示或访问，false表示设置了该选项的scheme的内容不是只能从相同scheme的其他内容中显示或访问。<br>默认值：true。           |
+| isDisplayIsolated<sup>12+</sup> | boolean   | 否   | 是   | 设置了该选项的scheme的内容是否只能从相同scheme的其他内容中显示或访问。<br>true表示设置了该选项的scheme的内容只能从相同scheme的其他内容中显示或访问，false表示设置了该选项的scheme的内容允许从其他scheme的内容中显示或访问。<br>默认值：true。           |
 | isSecure<sup>12+</sup> | boolean   | 否   | 是   | 设置了该选项的scheme是否将使用与应用于“https”的安全规则相同的安全规则来处理。true表示设置了该选项的scheme将使用与应用于“https”的安全规则相同的安全规则来处理，false表示设置了该选项的scheme不使用与应用于“https”的安全规则相同的安全规则来处理。<br>默认值：true。           |
-| isCspBypassing<sup>12+</sup> | boolean   | 否   | 是   | 设置了该选项的scheme可以绕过内容安全策略（CSP）检查。<br>true表示设置了该选项的scheme可以绕过内容安全策略（CSP）检查，false表示设置了该选项的scheme不可以绕过内容安全策略（CSP）检查。<br>默认值：true。<br>在大多数情况下，当设置isStandard为true时，不应设置此值。         |
-| isCodeCacheSupported<sup>12+</sup> | boolean   | 否   | 是   | 设置了该选项的scheme的js资源是否支持生成code cache。<br>true表示设置了该选项的scheme的js资源支持生成code cache，false表示设置了该选项的scheme的js资源不支持生成code cache。<br>默认值：false。         |
+| isCspBypassing<sup>12+</sup> | boolean   | 否   | 是   | 设置了该选项的scheme可以绕过内容安全策略（CSP）检查。<br>true表示设置了该选项的scheme可以绕过内容安全策略（CSP）检查，false表示设置了该选项的scheme不可以绕过内容安全策略（CSP）检查。<br>默认值：true。<br>当设置isStandard为true时，不应设置此值。若此时仍设置isCspBypassing为true，CSP检查绕过的行为可能不符合预期。         |
+| isCodeCacheSupported<sup>12+</sup> | boolean   | 否   | 是   | 设置了该选项的scheme的JavaScript资源是否支持生成code cache。<br>true表示设置了该选项的scheme的JavaScript资源支持生成code cache，false表示设置了该选项的scheme的JavaScript资源不支持生成code cache。<br>默认值：false。         |
 
 ## RequestInfo<sup>12+</sup>
 
@@ -89,8 +89,8 @@ Web组件预编译JavaScript生成字节码缓存的配置对象，用于控制�
 
 | 名称 | 类型 |  只读 |  可选 | 说明 |
 |------|------|------|------|------|
-| id | string | 否 | 是 | snapshot的id。|
-| size | [SizeOptions](../apis-arkui/arkui-ts/ts-types.md#sizeoptions)  | 否 | 是 | web绘制的尺寸，最多支持16000px * 16000px，长度单位支持px、vp、%，需保持不同参数传入长度单位一致，默认单位vp，超过规格时返回最大规格。（示例：width:'100px'，height:'200px'。或者 width:'20%'，height:'30%'。只写数字时单位为vp。）|
+| id | string | 否 | 是 | snapshot的id，用于标识本次全量绘制请求，便于在回调结果中匹配对应的全量绘制数据。不传入时不指定id，由系统自动处理。|
+| size | [SizeOptions](../apis-arkui/arkui-ts/ts-types.md#sizeoptions)  | 否 | 是 | Web绘制的尺寸，最多支持16000px * 16000px，长度单位支持px、vp、%，需保持不同参数传入长度单位一致，不一致时可能导致绘制尺寸不符合预期，默认单位vp，超过规格时返回最大规格。不传入以截图区域的实际尺寸绘制。（示例：width:'100px'，height:'200px'。或者 width:'20%'，height:'30%'。只写数字时单位为vp。）|
 
 ## SnapshotResult<sup>12+</sup>
 
@@ -101,8 +101,8 @@ Web组件预编译JavaScript生成字节码缓存的配置对象，用于控制�
 | 名称 | 类型 | 只读 | 可选 |  说明 |
 |------|------|-- |--|---------|
 | id | string | 否 | 是 | snapshot的id。|
-| status | boolean | 否 | 是 |  snapshot的状态，正常为true，失败为false，获取全量绘制结果失败，返回size的长宽都为0，map为空。|
-| size | [SizeOptions](../apis-arkui/arkui-ts/ts-types.md#sizeoptions)   | 否 | 是 | web绘制的真实尺寸，number类型，单位vp。|
+| status | boolean | 否 | 是 |  snapshot的状态，正常为true，失败为false，获取全量绘制结果失败，返回size的长宽都为0，imagePixelMap为空。|
+| size | [SizeOptions](../apis-arkui/arkui-ts/ts-types.md#sizeoptions)   | 否 | 是 | Web绘制的真实尺寸，SizeOptions对象包含width和height属性，均为number类型，单位vp。|
 | imagePixelMap | [image.PixelMap](../apis-image-kit/arkts-apis-image-PixelMap.md) | 否 | 是 | 全量绘制结果为image.PixelMap格式。|
 
 ## OfflineResourceMap<sup>12+</sup>
@@ -147,8 +147,8 @@ Web组件预编译JavaScript生成字节码缓存的配置对象，用于控制�
 
 | 名称 | 类型   | 只读 | 可选 | 说明                                                         |
 | ---- | ------ | ---- | ---- | ------------------------------------------------------------ |
-| x    | number | 否   | 否   | 网页在水平方向的滚动偏移量。取值为网页左边界x坐标与Web组件左边界x坐标的差值。<br/>当网页向右过滚动时，取值范围为负值。<br/>当网页没有过滚动或者网页向左过滚动时，取值为0或正值。<br/>单位：vp。 |
-| y    | number | 否   | 否   | 网页在垂直方向的滚动偏移量。取值为网页上边界y坐标与Web组件上边界y坐标的差值。<br/>当网页向下过滚动时，取值范围为负值。<br/>当网页没有过滚动或者网页向上过滚动时，取值为0或正值。<br/>单位：vp。 |
+| x    | number | 否   | 否   | 网页在水平方向的滚动偏移量。取值为网页左边界x坐标与Web组件左边界x坐标的差值。<br>当网页向右过滚动时，取值范围为负值。<br>当网页没有过滚动或者网页向左过滚动时，取值为0或正值。<br>单位：vp。 |
+| y    | number | 否   | 否   | 网页在垂直方向的滚动偏移量。取值为网页上边界y坐标与Web组件上边界y坐标的差值。<br>当网页向下过滚动时，取值范围为负值。<br>当网页没有过滚动或者网页向上过滚动时，取值为0或正值。<br>单位：vp。 |
 
 ## HitTestValue
 
@@ -235,7 +235,7 @@ WebViewController与Web组件的绑定状态。
 
 | 名称 | 类型 | 只读 | 可选 | 说明 |
 |------|------|------|------|------|
-| embedID | string | 否 | 否  | 网页中的 `<video>` 或 `<audio>` 的 ID 。|
+| embedID | string | 否 | 否  | 网页中的`<video>`或`<audio>`的 ID。|
 | mediaType | [MediaType](./arkts-apis-webview-e.md#mediatype12) | 否 | 否 | 媒体的类型。 |
 | mediaSrcList | [MediaSourceInfo](./arkts-apis-webview-MediaSourceInfo.md)[] | 否 | 否 | 媒体的源。可能有多个源，应用需要选择一个支持的源来播放。 |
 | surfaceInfo | [NativeMediaPlayerSurfaceInfo](./arkts-apis-webview-NativeMediaPlayerSurfaceInfo.md) | 否 | 否 | 用于同层渲染的 surface 信息。 |
@@ -269,11 +269,11 @@ cookie的相关字段。
 | 名称 | 类型 | 只读 | 可选 | 说明 |
 | ---- | --- | ---- | ---- | ---- |
 | samesitePolicy | [WebHttpCookieSameSitePolicy](./arkts-apis-webview-e.md#webhttpcookiesamesitepolicy23) | 否 | 否 | cookie的同站策略。 |
-| expiresDate | string | 否 | 否 | cookie的过期时间。时间格式详见[Date](https://developer.mozilla.org/zh-CN/docs/Web/HTTP/Reference/Headers/Date)。 |
+| expiresDate | string | 否 | 否 | cookie的过期时间。时间格式详见[Date](https://developer.mozilla.org/zh-CN/docs/Web/HTTP/Reference/Headers/Date)。传入不符合该格式的时间字符串时，该cookie设置不生效。 |
 | name | string | 否 | 否 | cookie的名称。 |
 | isSessionCookie | boolean | 否 | 否 | 标记该cookie是否是session cookie。<br>true表示是session cookie，false表示不是session cookie。 |
 | value | string | 否 | 否 | cookie的值。 |
 | path | string | 否 | 否 | cookie的路径。 |
-| isHttpOnly | boolean | 否 | 否 | 标记该cookie是否只能通过http请求访问。<br>true表示仅能通过http访问，不能通过JavaScript访问，false表示可以通过JavaScript访问。 |
-| isSecure | boolean | 否 | 否 | 标记该cookie是否只能通过https发送。<br>true表示仅能通过https发送，不能通过http发送，false表示可以通过http发送。 |
+| isHttpOnly | boolean | 否 | 否 | 标记该cookie是否只能通过HTTP请求访问。<br>true表示仅能通过HTTP访问，不能通过JavaScript访问，false表示可以通过JavaScript访问。 |
+| isSecure | boolean | 否 | 否 | 标记该cookie是否只能通过HTTPS发送。<br>true表示仅能通过HTTPS发送，不能通过HTTP发送，false表示可以通过HTTP发送。 |
 | domain | string | 否 | 否 | 指定哪些域名可以访问该cookie。 |

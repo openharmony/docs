@@ -1,10 +1,12 @@
 # Binding a Full-Modal Page (bindContentCover)
+
 <!--Kit: ArkUI-->
 <!--Subsystem: ArkUI-->
-<!--Owner: @CCFFWW-->
-<!--Designer: @CCFFWW-->
+<!--Owner: @hehongyang3-->
+<!--Designer: @hehongyang3-->
 <!--Tester: @lxl007-->
 <!--Adviser: @Brilliantry_Rui-->
+<!-- md-trans-meta sourceCommit=fd87a3fabd6b3d582616cc6b10933b62b2152e9f translatedAt=2026-07-30T11:30:14.860Z pushedAt=2026-07-30T11:42:43.416Z -->
 
 A full-modal page, implemented using [bindContentCover](../reference/apis-arkui/arkui-ts/ts-universal-attributes-modal-transition.md#bindcontentcover), is a full-screen modal interaction page that completely covers the underlying parent view. It is ideal for scenarios such as viewing large images or full-screen documents.
 
@@ -12,7 +14,7 @@ A full-modal page, implemented using [bindContentCover](../reference/apis-arkui/
 
 A full-modal page functions as a popup component and is, by default, at the topmost layer in the application.
 
-When [Navigation](../reference/apis-arkui/arkui-ts/ts-basic-components-navigation.md) is used, any new page pushed will not be able to exceed the full-modal in terms of layering; it will remain beneath the modal page. In such cases, consider integrating the content of the modal page into the transition page. For example, you can use **NavDestination** to replace the modal page being launched, ensuring that the new page is positioned below the full-modal.
+When [Navigation](../reference/apis-arkui/arkui-ts/ts-basic-components-navigation.md) is used, any new page pushed will not be able to exceed the full-modal in terms of layering; it will remain beneath the modal page. In such cases, consider integrating the content of the modal page into the transition page. For example, you can use **NavDestination** to replace the modal page being launched, ensuring that the new page is at a lower layer than the full-modal.
 
 ## Lifecycle
 
@@ -27,7 +29,7 @@ The full-modal page provides lifecycle callbacks to notify the application of th
 
 ## Using bindContentCover to Build Full-Screen Modal Content over Semi-Modal
 
-There is a popup-style layer interaction between full-modal and semi-modal pages. A modal page launched later can cover the previous modal page. If you want to implement a full-screen transition to cover the semi-modal and ensure that the semi-modal page remains visible after the full-screen page is swiped out, use **bindSheet** in combination with **bindContentCover**.
+There is a popup-style layered interaction between full-modal and semi-modal pages. A modal page launched later can cover the previous modal page. If you want to implement a full-screen transition to cover the semi-modal and ensure that the semi-modal page remains visible after the full-screen page is swiped out, use **bindSheet** in combination with **bindContentCover**.
 
 For details about how to use **bindContentCover** to create a full-screen modal transition effect, see [Modal Transition](arkts-modal-transition.md#creating-modal-transition-with-bindcontentcover)
 

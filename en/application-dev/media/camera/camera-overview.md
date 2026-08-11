@@ -1,42 +1,49 @@
 # About This Kit
+
 <!--Kit: Camera Kit-->
 <!--Subsystem: Multimedia-->
 <!--Owner: @qano-->
 <!--Designer: @leo_ysl-->
 <!--Tester: @xchaosioda-->
 <!--Adviser: @w_Machine_cc-->
+<!-- md-trans-meta sourceCommit=612b882ee4bd16025d43bbddfd67628eab795c95 translatedAt=2026-08-10T14:05:13.844Z pushedAt=2026-08-10T14:09:03.030Z -->
 
-With the APIs provided by Camera Kit, you can develop a camera application. The application accesses and operates the camera device to implement basic operations, such as preview, photo capture, and video recording. It can also perform more operations, for example, controlling the flash and exposure time, and focusing or adjusting the focus.
+By calling the APIs provided by Camera Kit (camera service), you can develop a camera app. The app accesses and operates camera hardware to implement basic operations such as preview, photo capture, and video recording. Through API combinations, you can also perform additional operations such as controlling the flash and exposure time, focusing, or adjusting focus.
 
 ## When to Use
 
-When you want to develop a camera application or develop a camera module in an application, you can refer to the development model described below to understand the working process of the camera before the development.
+When you need to develop a camera app (or a camera module within an app), you can refer to the following development model to understand the camera workflow and then proceed with camera app development.
 
-If you only need to start the system camera to take a photo or record a video, you can directly use the CameraPicker module, without applying for the camera permission. For details, see [Camera Picker](../../reference/apis-camera-kit/js-apis-cameraPicker.md).
+If you only need to launch the system camera to take a photo or record a video, you can directly use `CameraPicker`, which does not require camera permissions and directly invokes the system camera to complete the capture. For details, see [CameraPicker](../../reference/apis-camera-kit/js-apis-cameraPicker.md).
 
 ## Development Model
 
-The camera application invokes the camera device to collect and process image and video data, and output images and videos. It can be used when there are multiple lenses (such as wide-angle lens, long-focus lens, and ToF lens) in various service scenarios (such as different requirements on the resolution, format, and effect).
+A camera app invokes camera devices to capture and process image and video data, precisely controls the corresponding hardware, and flexibly outputs image and video content. This meets the requirements of multi-lens hardware adaptation (such as wide-angle, telephoto, and TOF) and multi-scenario service adaptation (such as different resolutions, formats, and effects).
 
-The figure below illustrates the working process of the camera module. The working process can be summarized into three parts: input device management, session management, and output management.
+The workflow of camera app development is shown in Figure 1, which can be summarized into three parts: camera device, camera session management, and camera output management.
 
-- During input device management, the camera application invokes the camera device to collect data and uses the data as an input stream.
+- The camera app invokes a camera device to capture data, which serves as the camera input stream.
 
-- During session management, you can configure an input stream to determine the camera to be used. You can also set parameters, such as the flash, exposure time, focus, and focus adjustment, to implement different shooting effects in various service scenarios. The application can switch between sessions to meet service requirements in different scenarios.
+- Camera session management allows you to configure the input stream, that is, to select an appropriate camera lens (such as front or rear) for shooting. In addition, you can configure parameters such as flash, exposure time, focus, and zoom to achieve different shooting effects, thereby adapting to different service scenarios. An app can switch between sessions to meet the shooting requirements of different scenarios.
 
-- During output management, you can configure an output stream, which can be a preview stream, photo stream, or video stream.
+- Camera output management configures the output streams of the camera, that is, outputting image content as a preview stream, photo stream, or video stream.
 
-**Figure 1** Camera working process 
+**Figure 1** Camera workflow
 ![Camera Workflow](figures/camera-workflow.png)
 
-For better application development, you are also advised understanding the camera development model.
+To help you better develop camera apps, it is recommended that you first understand the camera development workflow and then the camera development model (as shown in Figure 2).
+
+A camera app controls the camera to implement basic operations such as image display (preview), photo saving (capture), and video recording. During these operations, the Camera Service controls the camera device to capture and output data. The captured image data is processed by the Image Signal Processor (ISP) and then passed directly to specific functional modules through buffer queues via the underlying Hardware Device Interfaces (HDI) of the camera. The buffer queues, which you do not need to manage during app development, are used to deliver the data processed at the lower layer to the upper layer for image display in a timely manner.
+
+Take video recording as an example: The camera service controls the camera device to capture video data and generate a video stream. After the captured data is processed by the underlying camera HDI, the video stream is passed to the media recording service through a Surface. Finally, the media recording service processes the video data and saves it as a video file, completing the video recording.
 
 **Figure 2** Camera development model
 ![Camera Development Model](figures/camera-development-model.png)
 
-The camera application controls the camera device to implement basic operations such as image display (preview), photo saving (photo capture), and video recording. During the implementation, the camera service controls the camera device to collect and output data, and transmits the data to a specific module for processing through a BufferQueue, using the camera's foundational hardware device interfaces (HDI). You can ignore the BufferQueue during application development. It is used to send the data processed by the bottom layer to the upper layer for image display.
+## Samples
 
-For example, in a video recording scenario, the recording service creates a video surface and provides it to the camera service for data transmission. The camera service controls the camera device to collect video data and generate a video stream. After processing the collected data at the HDI layer, the camera service transmits the video stream to the recording service through the surface. The recording service processes the video stream and saves it as a video file. Now video recording is complete.
+The following sample is available for camera development:
 
+- [Camera and Media Library (ArkTS) (Full SDK) (API10)](https://gitcode.com/openharmony/applications_app_samples/tree/master/code/SystemFeature/Media/Camera)
 
-
+<!--RP1--><!--RP1End-->

@@ -2,10 +2,11 @@
 
 <!--Kit: ArkUI-->
 <!--Subsystem: ArkUI-->
-<!--Owner: @yylong; @rongShao-Z; @wind_-->
-<!--Designer: @yylong-->
-<!--Tester: @huchuyun-->
+<!--Owner: @rongShao-Z; @wind_-->
+<!--Designer: @yangcan18-->
+<!--Tester: @leiyuqian-->
 <!--Adviser: @Brilliantry_Rui-->
+<!-- md-trans-meta sourceCommit=dfb15c325281e5e789ea7ade45dfdd45876606ad translatedAt=2026-07-27T02:27:02.585Z pushedAt=2026-07-27T09:23:36.733Z -->
 
 **\<list-item>** is a child component of the [\<list>](js-lite-components-container-list.md) component and is used to display items in a list.
 
@@ -13,11 +14,9 @@
 >
 > This component is supported since API version 4. Updates will be marked with a superscript to indicate their earliest API version.
 
-
 ## Child Components
 
 Supported.
-
 
 ## Attributes
 
@@ -28,15 +27,13 @@ Supported.
 | class | string | - | No| Style class of the component, which is used to refer to a style table.|
 | ref | string | - | No| Reference information of child elements, which is registered with the parent component on **$refs**.|
 
-
 ## Events
 
 | Name| Parameter| Description|
 | -------- | -------- | -------- |
 | click | - | Triggered when the component is clicked.|
 | longpress | - | Triggered when the component is long pressed.|
-| swipe<sup>5+</sup> | [SwipeEvent](js-lite-common-events.md) | Triggered when a user quickly swipes on the component.|
-
+| swipe<sup>5+</sup> | [SwipeEvent](js-lite-common-events.md#swipeevent) | Triggered when a user quickly swipes on the component. |
 
 ## Styles
 
@@ -52,8 +49,6 @@ Supported.
 | background-color | &lt;color&gt; | - | No| Background color.|
 | opacity<sup>5+</sup> | number | 1 | No| Opacity of an element. The value ranges from **0** to **1**. The value **1** means opaque, and **0** means completely transparent.|
 | display | string | flex | No| Whether to display a box containing the element and the layout for its child elements. Available values are as follows:<br>- **flex**: flexible layout<br>- **none**: not rendered|
-
-
 
 ## Example
 

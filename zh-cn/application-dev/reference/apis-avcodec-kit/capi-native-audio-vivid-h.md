@@ -150,7 +150,7 @@ OH_AVErrCode OH_AudioVividMetaBuilder_UpdateObjectGain(OH_AudioVividMetaBuilder 
 | -- | -- |
 | [OH_AudioVividMetaBuilder](capi-core-oh-audiovividmetabuilderstruct.md) *builder | 指向OH_AudioVividMetaBuilder的指针。 |
 | int32_t objectIndex | 要更新的音频对象索引，从0开始，小于在[OH_AudioVividMetaBuilder_Create](#oh_audiovividmetabuilder_create)创建builder时入参format设置的[OH_MD_KEY_AUDIO_OBJECT_NUMBER](./capi-codecbase.md#音频专有的键值对)对应的值。 |
-| float gain | 对象渲染时应用的线性增益值，范围为[0.0, 6.0]，线性增益0.0为静音，1.0为不变。此参数可选，如未设置则不应用增益。 |
+| float gain | 对象渲染时应用的线性增益值，范围为[0.0, 6.0]，线性增益0.0为静音，1.0为不变。 |
 
 **返回：**
 

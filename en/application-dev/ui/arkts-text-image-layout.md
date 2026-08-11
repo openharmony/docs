@@ -1,10 +1,12 @@
 # Text and Image Layout
+
 <!--Kit: ArkUI-->
 <!--Subsystem: ArkUI-->
 <!--Owner: @xiangyuan6-->
 <!--Designer: @xiangyuan6-->
 <!--Tester: @jiaoaozihao-->
 <!--Adviser: @Brilliantry_Rui-->
+<!-- md-trans-meta sourceCommit=9a5da59cdf4f4c3dc0f87035f85ddf06f80ecfc4 translatedAt=2026-08-04T06:40:16.214Z pushedAt=2026-08-04T08:31:49.329Z -->
 
 Text and image layout combines images with text, allowing text to flow around images. This layout approach presents information intuitively, enhances visual impact, and creates diverse page display effects.
 
@@ -36,7 +38,6 @@ Text() {
 }.textVerticalAlign(TextVerticalAlign.CENTER)
 ```
 
-
 ![span_imagespan_composition](figures/span_imagespan_composition.png)
 
 ## Using Styled Strings for Text and Image Layout
@@ -59,21 +60,9 @@ const BUNDLE = 'Textcomponent_';
 @Entry
 @Component
 struct styled_string_demo {
-  @State message: string = 'Hello World';
   imagePixelMap: image.PixelMap | undefined = undefined;
-  @State imagePixelMap3: image.PixelMap | undefined = undefined;
   mutableStr: MutableStyledString = new MutableStyledString('123');
   controller: TextController = new TextController();
-  mutableStr2: MutableStyledString = new MutableStyledString('This is set decoration line style to the mutableStr2', [{
-    start: 0,
-    length: 15,
-    styledKey: StyledStringKey.DECORATION,
-    styledValue: new DecorationStyle({
-      type: TextDecorationType.Overline,
-      color: Color.Orange,
-      style: TextDecorationStyle.DOUBLE
-    })
-  }]);
 
   async aboutToAppear() {
     hilog.info(DOMAIN, TAG, BUNDLE + 'aboutToAppear initial imagePixelMap');
@@ -82,13 +71,18 @@ struct styled_string_demo {
   }
 
   private async getPixmapFromMedia(resource: Resource) {
-    let unit8Array = await this.getUIContext().getHostContext()?.resourceManager?.getMediaContent(resource.id);
-    let imageSource = image.createImageSource(unit8Array?.buffer?.slice(0, unit8Array?.buffer?.byteLength));
-    let createPixelMap: image.PixelMap = await imageSource.createPixelMap({
-      desiredPixelFormat: image.PixelMapFormat.RGBA_8888
-    });
-    await imageSource.release();
-    return createPixelMap;
+    try {
+      let unit8Array = await this.getUIContext().getHostContext()?.resourceManager?.getMediaContent(resource.id);
+      let imageSource = image.createImageSource(unit8Array?.buffer?.slice(0, unit8Array?.buffer?.byteLength));
+      let createPixelMap: image.PixelMap = await imageSource.createPixelMap({
+        desiredPixelFormat: image.PixelMapFormat.RGBA_8888
+      });
+      await imageSource.release();
+      return createPixelMap;
+    } catch (error) {
+      hilog.error(DOMAIN, TAG, `Get pixmap failed. error code: ${error.code}, error message: ${error.message}`);
+    }
+    return undefined;
   }
 
   leadingMarginValue: ParagraphStyle = new ParagraphStyle({
@@ -97,11 +91,11 @@ struct styled_string_demo {
     overflow: TextOverflow.Ellipsis,
     textVerticalAlign: TextVerticalAlign.BASELINE
   });
-  // Line height style object
+  // Line height style object.
   lineHeightStyle1: LineHeightStyle = new LineHeightStyle(new LengthMetrics(24));
-  // Bold style
+  // Bold style.
   boldTextStyle: TextStyle = new TextStyle({ fontWeight: FontWeight.Bold });
-  // Create a paragraph style object paragraphStyledString1.
+  // Create the object paragraphStyledString1 with paragraph styles.
   paragraphStyledString1: MutableStyledString =
     // Replace $r('app.string.print_photo') with the actual resource file. In this example, the value in the resource file is "\nHigh-quality photo printing, HD printing in 3/4/5/6-inch sizes with free shipping and lamination, quality guaranteed,".
     new MutableStyledString(resourceGetString.resourceToString($r('app.string.print_photo')), [

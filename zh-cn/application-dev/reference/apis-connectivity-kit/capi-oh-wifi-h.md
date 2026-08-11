@@ -193,7 +193,7 @@ WIFI7连接类型。
 ### OH_WifiLinkedInfo
 
 ```c
-Struct OH_WifiLinkedInfo
+struct OH_WifiLinkedInfo
 ```
 
 **描述**

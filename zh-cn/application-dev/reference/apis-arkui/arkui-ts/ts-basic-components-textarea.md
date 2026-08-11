@@ -12,7 +12,9 @@
 
 >  **说明：**
 >
->  该组件从API version 7开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
+> - 该组件从API version 7开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
+>
+> - 如需设置触摸文本组件外部时是否清除文本选中和手柄，可使用[setTextSelectionClearPolicy](../arkts-apis-uicontext-uicontext.md#settextselectionclearpolicy)接口。
 
 
 ## 子组件
@@ -64,6 +66,7 @@ TextArea初始化参数。
 placeholderColor(value: ResourceColor)
 
 设置placeholder文本颜色。未通过该接口设置时，默认placeholder文本颜色跟随主题，深色模式下显示为#ffffff（白色），浅色模式下显示为#000000（黑色）。
+
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
@@ -152,7 +155,7 @@ horizontalScrolling(enabled: Optional\<boolean>)
 
 > **说明：**
 >
-> 以下场景不支持水平滚动：设置[内联模式](../../../ui/arkts-common-components-text-input.md#内联模式)<!--Del-->；启用[voiceButton](./ts-basic-components-textarea-sys.md#voicebutton23)<!--DelEnd-->。
+> 以下<!--Del-->任一<!--DelEnd-->场景不支持水平滚动：[TextContentStyle](ts-appendix-enums.md#textcontentstyle10)为INLINE，即文本框多态样式为内联模式<!--Del-->；启用[voiceButton](./ts-basic-components-textarea-sys.md#voicebutton23)<!--DelEnd-->。
 
 **原子化服务API：** 从API version 24开始，该接口支持在原子化服务中使用。
 
@@ -255,6 +258,10 @@ fontFamily(value: ResourceStr)
 
 设置字体列表。
 
+> **说明：**
+>
+> 可以使用[loadFontSync](../../apis-arkgraphics2d/js-apis-graphics-text.md#loadfontsync)注册自定义字体。
+
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
@@ -264,10 +271,6 @@ fontFamily(value: ResourceStr)
 | 参数名 | 类型                                   | 必填 | 说明                                                         |
 | ------ | -------------------------------------- | ---- | ------------------------------------------------------------ |
 | value  | [ResourceStr](ts-types.md#resourcestr) | 是   | 字体列表。默认字体'HarmonyOS Sans'。<br>使用多个字体时，请用逗号','分隔，字体的优先级按顺序生效。例如：'Arial,HarmonyOS Sans'。|
-
-> **说明：**
->
-> 可以使用[loadFontSync](../../apis-arkgraphics2d/js-apis-graphics-text.md#loadfontsync)注册自定义字体。
 
 ### inputFilter<sup>8+</sup>
 
@@ -296,7 +299,7 @@ copyOption(value: CopyOptions)
 
 设置输入的文本是否可复制。设置CopyOptions.None时，只支持粘贴和全选。未通过该接口设置时，默认输入的文本可复制（CopyOptions.LocalDevice，支持设备内复制）。
 
-设置CopyOptions.None时，不支持拖拽操作。[enableSelectedDataDetector](#enableselecteddatadetector22)功能需要CopyOptions为LocalDevice或CROSS_DEVICE时才生效。
+设置CopyOptions.None时，不支持拖拽操作。[enableSelectedDataDetector](#enableselecteddatadetector22)功能需要CopyOptions为CopyOptions.LocalDevice或CopyOptions.CROSS_DEVICE时才生效。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -429,7 +432,21 @@ barState(value: BarState)
 
 maxLines(value: number)
 
-配置textOverflow一起使用时，maxLines为可显示行数，超出截断；未配置textOverflow时，内联模式获焦状态下内容超出maxLines时，文本可滚动显示，内联模式非获焦状态下不生效maxLines，非内联模式按行截断。未通过该接口设置时，默认内联输入风格编辑态时文本可显示的最大行数为3，非内联模式下默认值为UINT32_MAX。
+设置文本可显示的最大行数，可选设置超出最大行数的行为为滚动或截断。未通过该接口设置时，默认内联输入风格编辑态时文本可显示的最大行数为3，非内联模式下默认值为UINT32_MAX。
+
+> **说明：**
+>
+> 配置textOverflow时：
+>
+> - maxLines为文本可显示的最大行数，超出部分直接截断。
+>
+> 未配置textOverflow时：
+>
+> - 内联模式（获焦状态）：内容超出maxLines时，文本支持滚动显示；
+>
+> - 内联模式（非获焦状态）：maxLines不生效；
+>
+> - 非内联模式：文本按maxLines指定的行数截断。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -447,7 +464,21 @@ maxLines(value: number)
 
 maxLines(lines: number, options: MaxLinesOptions)
 
-配置[textOverflow](#textoverflow12)一起使用时，maxLines为可显示行数，超出可配置为截断或滚动。未配置textOverflow时，内联模式获焦状态下内容超出maxLines时，文本可滚动显示。内联模式非获焦状态下，maxLines不生效。非内联模式下，按行截断。未通过该接口设置时，默认内联输入风格编辑态时文本可显示的最大行数为3，非内联模式下默认值为+∞，不限制最大行数；文本超长时的显示效果默认为MaxLinesMode.CLIP。
+设置文本可显示的最大行数，可选设置超出最大行数的行为为滚动或截断。未通过该接口设置时，默认内联输入风格编辑态时文本可显示的最大行数为3，非内联模式下默认值为UINT32_MAX。
+
+> **说明：**
+>
+> 配置textOverflow时：
+>
+> - maxLines为文本可显示的最大行数，超出部分直接截断。
+>
+> 未配置textOverflow时：
+>
+> - 内联模式（获焦状态）：内容超出maxLines时，文本支持滚动显示；
+>
+> - 内联模式（非获焦状态）：maxLines不生效；
+>
+> - 非内联模式：文本按maxLines指定的行数截断。
 
 **原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
 
@@ -629,7 +660,7 @@ contentType(contentType: ContentType)
 
 lineHeight(value: number | string | Resource)
 
-设置文本的文本行高，设置值不大于0时，不限制文本行高，自适应字体大小。
+设置文本的行高，设置值不大于0时，不限制文本行高，自适应字体大小。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -641,7 +672,7 @@ lineHeight(value: number | string | Resource)
 
 | 参数名 | 类型                                                         | 必填 | 说明             |
 | ------ | ------------------------------------------------------------ | ---- | ---------------- |
-| value  | number&nbsp;\|&nbsp;string&nbsp;\|&nbsp;[Resource](ts-types.md#resource) | 是   | 文本的文本行高。需要显式指定[像素单位](ts-pixel-units.md)，如'10px'，也可设置百分比字符串，如'100%'。<br>**说明**：不指定像素单位时，默认单位fp，如'10'，等同于10。 |
+| value  | number&nbsp;\|&nbsp;string&nbsp;\|&nbsp;[Resource](ts-types.md#resource) | 是   | 文本的行高。需要显式指定[像素单位](ts-pixel-units.md)，如'10px'，也可设置百分比字符串，如'100%'。<br>**说明**：不指定像素单位时，默认单位fp，如'10'，等同于10。 |
 
 >  **说明：**
 >
@@ -1039,7 +1070,7 @@ enableHapticFeedback(isEnabled: boolean)
 
 autoCapitalizationMode(mode: AutoCapitalizationMode)
 
-设置文本的自动大小写模式，只提供接口能力，具体实现以输入法应用为主。
+设置自动大小写模式的文本模式，只提供接口能力，具体实现以输入法应用为主。未通过该接口设置时，默认不产生大小写转换效果，具体实现以输入法应用为主。
 
 **原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
 
@@ -1051,7 +1082,7 @@ autoCapitalizationMode(mode: AutoCapitalizationMode)
 
 | 参数名   | 类型                                      | 必填 | 说明                       |
 | -------- | ----------------------------------------- | ---- | -------------------------- |
-| mode | [AutoCapitalizationMode](ts-text-common.md#autocapitalizationmode20枚举说明) | 是   | 自动大小写模式，具体实现以输入法应用为主。 |
+| mode | [AutoCapitalizationMode](ts-text-common.md#autocapitalizationmode20枚举说明) | 是   | 自动大小写模式，用于设置输入法的大小写转换规则，具体实现以输入法应用为主。 |
 
 ### keyboardAppearance<sup>15+</sup>
 
@@ -1411,6 +1442,13 @@ onChange(callback:&nbsp;EditableTextOnChangeCallback)
 
 在本回调中，若执行了光标操作，需要开发者在预上屏场景下依据[EditableTextOnChangeCallback](ts-text-common.md#editabletextonchangecallback12)的previewText参数调整光标逻辑，以适应预上屏场景。
 
+> **说明：**
+>
+> onWillChange和onChange形成will/did时序模式：
+> - onWillChange在文本变更前触发，可通过返回false拦截变更；返回true则允许变更，随后触发onChange。
+> - onChange在变更完成后触发，无法拦截。
+> - 两者可以同时使用，onWillChange用于拦截控制，onChange用于获取变更结果。
+
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
@@ -1444,6 +1482,13 @@ onEditChange(callback:&nbsp;(isEditing:&nbsp;boolean)&nbsp;=&gt;&nbsp;void)
 onCopy(callback:&nbsp;(value:&nbsp;string)&nbsp;=&gt;&nbsp;void)
 
 进行复制操作时，触发该回调。
+
+> **说明：**
+>
+> onWillCopy和onCopy形成will/did时序模式：
+> - onWillCopy在复制操作前触发，可通过返回false拦截复制操作；返回true则允许复制，随后触发onCopy。
+> - onCopy在复制操作完成后触发，无法拦截。
+> - 两者可以同时使用，onWillCopy用于拦截控制，onCopy用于获取复制结果。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -1487,6 +1532,13 @@ onWillCopy(callback: Callback\<string, boolean>)
 onCut(callback:&nbsp;(value:&nbsp;string)&nbsp;=&gt;&nbsp;void)
 
 进行剪切操作时，触发该回调。
+
+> **说明：**
+>
+> onWillCut和onCut形成will/did时序模式：
+> - onWillCut在剪切操作前触发，可通过返回false拦截剪切操作；返回true则允许剪切，随后触发onCut。
+> - onCut在剪切操作完成后触发，无法拦截。
+> - 两者可以同时使用，onWillCut用于拦截控制，onCut用于获取剪切结果。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -1649,10 +1701,10 @@ onDidInsert(callback: Callback\<InsertValue>)
 
 > **说明：**
 >
-> onWillDelete和onDidDelete形成will/did时序模式：
-> - onWillDelete在删除操作前触发，可通过返回false拦截删除操作；返回true则允许删除，随后触发onDidDelete。
-> - onDidDelete在删除完成后触发，无法拦截。
-> - 两者可以同时使用，onWillDelete用于拦截控制，onDidDelete用于获取删除结果。
+> onWillInsert和onDidInsert形成will/did时序模式：
+> - onWillInsert在插入操作前触发，可通过返回false拦截插入操作；返回true则允许插入，随后触发onDidInsert。
+> - onDidInsert在插入完成后触发，无法拦截。
+> - 两者可以同时使用，onWillInsert用于拦截控制，onDidInsert用于获取插入结果。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -1676,10 +1728,11 @@ onWillDelete(callback: Callback\<DeleteValue, boolean>)
 
 > **说明：**
 >
-> onWillDelete和onDidDelete形成will/did时序模式：
-> - onWillDelete在删除操作前触发，可通过返回false拦截删除操作；返回true则允许删除，随后触发onDidDelete
-> - onDidDelete在删除完成后触发，无法拦截
-> - 两者可以同时使用，onWillDelete用于拦截控制，onDidDelete用于获取删除结果
+> - 点击清除按钮不触发onWillDelete回调。
+> - onWillDelete和onDidDelete形成will/did时序模式：
+>   - onWillDelete在删除操作前触发，可通过返回false拦截删除操作；返回true则允许删除，随后触发onDidDelete。
+>   - onDidDelete在删除完成后触发，无法拦截。
+>   - 两者可以同时使用，onWillDelete用于拦截控制，onDidDelete用于获取删除结果。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -1699,7 +1752,13 @@ onDidDelete(callback: Callback\<DeleteValue>)
 
 在删除完成时，触发该回调。
 
-点击清除按钮不触发onDidDelete回调。
+> **说明：**
+>
+> - 点击清除按钮不触发onDidDelete回调。
+> - onWillDelete和onDidDelete形成will/did时序模式：
+>   - onWillDelete在删除操作前触发，可通过返回false拦截删除操作；返回true则允许删除，随后触发onDidDelete。
+>   - onDidDelete在删除完成后触发，无法拦截。
+>   - 两者可以同时使用，onWillDelete用于拦截控制，onDidDelete用于获取删除结果。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -1720,11 +1779,11 @@ onWillChange(callback: Callback\<EditableTextChangeValue, boolean>)
 在文本内容将要发生变化时，触发该回调。
 
 > **说明：**
->
-> onWillChange与onChange均监听文本变更，区别在于：
-> - onWillChange在文本变更前触发，返回false可拦截此次变更；onChange在变更后触发，仅用于通知，无法拦截
-> - 需要拦截控制时使用onWillChange，仅需获取变更结果时使用onChange
-
+> - onWillChange的回调时序晚于onWillInsert、onWillDelete，早于onDidInsert、onDidDelete。
+> - onWillChange和onChange形成will/did时序模式：
+>   - onWillChange在文本变更前触发，可通过返回false拦截变更；返回true则允许变更，随后触发onChange。
+>   - onChange在变更完成后触发，无法拦截。
+>   - 两者可以同时使用，onWillChange用于拦截控制，onChange用于获取变更结果。
 onWillChange的回调时序晚于onWillInsert、onWillDelete，早于onDidInsert、onDidDelete。
 
 **原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。
@@ -1858,7 +1917,7 @@ stopEditing(): void
 | EMAIL    | 5 | 邮箱地址输入模式。<br>支持数字，字母，下划线、小数点、!、#、$、%、&、'、*、+、-、/、=、?、^、`、\{、\|、\}、~，以及@字符（只能存在一个@字符）。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
 | NUMBER_DECIMAL<sup>12+</sup>  | 12 | 带小数点的数字输入模式。<br>支持数字，小数点（只能存在一个小数点）。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
 | URL<sup>12+</sup>  | 13 | 带URL的输入模式，无特殊限制。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
-| ONE_TIME_CODE<sup>20+</sup>  | 14 | 验证码输入模式，无特殊限制。<br>**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。 |
+| ONE_TIME_CODE<sup>20+</sup>  | 14 | 验证码输入模式，无特殊限制。该模式下组件获焦后会默认拉起系统输入法。<br>**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。 |
 
 ## TextAreaSubmitCallback<sup>14+</sup>
 
@@ -2115,7 +2174,7 @@ struct TextAreaExample {
         .fontSize(16)
         .border({ width: 1 })
         .wordBreak(WordBreak.BREAK_ALL)
-      Text("属性WordBreakType为BREAK_WORD的样式：").fontSize(16).fontColor(0xFF0000)
+      Text('属性WordBreakType为BREAK_WORD的样式：').fontSize(16).fontColor(0xFF0000)
       TextArea({
         text: 'This is set wordBreak to WordBreak text Taumatawhakatangihangakoauauotamateaturipukakapikimaungahoronukupokaiwhenuakitanatahu.'
       })
@@ -2217,7 +2276,7 @@ struct TextAreaExample {
 @Component
 struct TextAreaExample {
   controller: TextAreaController = new TextAreaController();
-  @State inputValue: string = "";
+  @State inputValue: string = '';
   @State height1: string | number = '80%';
   @State supportAvoidance: boolean = true;
 
@@ -2235,7 +2294,7 @@ struct TextAreaExample {
       Grid() {
         ForEach([1, 2, 3, 4, 5, 6, 7, 8, 9, '*', 0, '#'], (item: number | string) => {
           GridItem() {
-            Button(item + "")
+            Button(item + '')
               .width(110).onClick(() => {
               this.inputValue += item;
             })
@@ -2248,7 +2307,7 @@ struct TextAreaExample {
   build() {
     Column() {
       Row() {
-        Button("20%")
+        Button('20%')
           .fontSize(24)
           .onClick(() => {
             this.height1 = '20%';
@@ -3116,7 +3175,7 @@ struct Index {
           .barState(BarState.On)
           .scrollBarColor(ColorMetrics.resourceColor(Color.Orange))
         TextArea({
-          text: "Hello World TextArea\nHello World TextArea\nHello World TextArea\nHello World TextArea",
+          text: 'Hello World TextArea\nHello World TextArea\nHello World TextArea\nHello World TextArea',
           placeholder: 'Type to text area...',
           controller: this.controller
         })

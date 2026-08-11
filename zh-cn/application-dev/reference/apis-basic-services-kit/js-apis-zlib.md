@@ -532,11 +532,11 @@ let options: zlib.Options = {
 };
 
 try {
-  zlib.compressFiles([inFile, pathDir], outFile, options).then((data: void) => {
-    console.info('compressFiles success. data: ' + JSON.stringify(data));
+  zlib.compressFiles([inFile, pathDir], outFile, options).then(() => {
+    console.info('compressFiles success.');
   }).catch((errData: BusinessError) => {
     console.error(`errData is errCode:${errData.code}  message:${errData.message}`);
-  })
+  });
 } catch (errData) {
   let code = (errData as BusinessError).code;
   let message = (errData as BusinessError).message;
@@ -1151,7 +1151,7 @@ compress2(dest: ArrayBuffer, source: ArrayBuffer, level: CompressLevel, sourceLe
 | --------- | ------------- | ---- | --------------------------------------------- |
 | dest      | ArrayBuffer   | 是   | 目标缓冲区。                                  |
 | source    | ArrayBuffer   | 是   | 源数据缓冲区。                                |
-| level     | CompressLevel | 是   | 参考[CompressLevel枚举定义](#compresslevel)。 |
+| level     | [CompressLevel](#compresslevel) | 是   | 参考[CompressLevel枚举定义](#compresslevel)。 |
 | sourceLen | number        | 否   | 源数据长度。默认值为0。                                  |
 
 **返回值：**
@@ -2470,9 +2470,9 @@ inflateBack(strm: ZStream, backIn: InflateBackInputCallback, inDesc: object, bac
 | 参数名  | 类型                      | 必填 | 说明                                                         |
 | ------- | ------------------------- | ---- | ------------------------------------------------------------ |
 | strm    | [ZStream](#zstream12)                   | 是   | zlib压缩解压的数据流管理对象。                              |
-| backIn  | InflateBackInputCallback  | 是   | 一种函数，用于从末尾解压缩数据，以从输入源读取原始压缩数据。 |
+| backIn  | [InflateBackInputCallback](#inflatebackinputcallback12)  | 是   | 一种函数，用于从末尾解压缩数据，以从输入源读取原始压缩数据。 |
 | inDesc  | object                    | 是   | 通用对象。                                                   |
-| backOut | InflateBackOutputCallback | 是   | 将解压缩的数据写入目标输出。                                 |
+| backOut | [InflateBackOutputCallback](#inflatebackoutputcallback12) | 是   | 将解压缩的数据写入目标输出。                                 |
 | outDesc | object                    | 是   | 通用对象。                                                   |
 
 **返回值：**
@@ -2775,7 +2775,7 @@ deflateInit(strm: ZStream, level: CompressLevel): Promise&lt;ReturnStatus&gt;
 | 参数名 | 类型          | 必填 | 说明                                          |
 | ------ | ------------- | ---- | --------------------------------------------- |
 | strm   | [ZStream](#zstream12)       | 是   | zlib压缩解压的数据流管理对象。               |
-| level  | CompressLevel | 是   | 参考[CompressLevel枚举定义](#compresslevel)。 |
+| level  | [CompressLevel](#compresslevel) | 是   | 参考[CompressLevel枚举定义](#compresslevel)。 |
 
 **返回值：**
 
@@ -2835,11 +2835,11 @@ deflateInit2(strm: ZStream, level: CompressLevel, method: CompressMethod, window
 | 参数名     | 类型             | 必填 | 说明                                                |
 | ---------- | ---------------- | ---- | --------------------------------------------------- |
 | strm       | [ZStream](#zstream12)          | 是   | zlib压缩解压的数据流管理对象。                     |
-| level      | CompressLevel    | 是   | 参考[CompressLevel枚举定义](#compresslevel)。       |
+| level      | [CompressLevel](#compresslevel)    | 是   | 参考[CompressLevel枚举定义](#compresslevel)。       |
 | method     | [CompressMethod](#compressmethod12)   | 是   | 压缩算法的枚举类型，指定使用DEFLATED压缩方法。   |
 | windowBits | number           | 是   | 控制内存窗口的大小，并指定数据的格式（zlib、gzip、raw deflate）。取值如下：<br />zlib格式：[1, 15]。<br />gzip格式：大于15。<br />raw deflate格式：[-15, -1]。                       |
-| memLevel   | MemLevel         | 是   | 参考[MemLevel枚举定义](#memlevel)。                 |
-| strategy   | CompressStrategy | 是   | 参考[CompressStrategy枚举定义](#compressstrategy)。 |
+| memLevel   | [MemLevel](#memlevel)         | 是   | 参考[MemLevel枚举定义](#memlevel)。                 |
+| strategy   | [CompressStrategy](#compressstrategy) | 是   | 参考[CompressStrategy枚举定义](#compressstrategy)。 |
 
 **返回值：**
 
@@ -3624,8 +3624,8 @@ deflateParams(strm: ZStream, level: CompressLevel, strategy: CompressStrategy): 
 | 参数名   | 类型             | 必填 | 说明                                                |
 | -------- | ---------------- | ---- | --------------------------------------------------- |
 | strm     | [ZStream](#zstream12)          | 是   | zlib压缩解压的数据流管理对象。                     |
-| level    | CompressLevel    | 是   | 参考[CompressLevel枚举定义](#compresslevel)。       |
-| strategy | CompressStrategy | 是   | 参考[CompressStrategy枚举定义](#compressstrategy)。 |
+| level    | [CompressLevel](#compresslevel)    | 是   | 参考[CompressLevel枚举定义](#compresslevel)。       |
+| strategy | [CompressStrategy](#compressstrategy) | 是   | 参考[CompressStrategy枚举定义](#compressstrategy)。 |
 
 **返回值：**
 
@@ -3754,6 +3754,7 @@ Options用于指定在压缩或解压Zip文件时的选项。
 | strategy | [CompressStrategy](#compressstrategy) | 否   | 是  | 压缩时指定的压缩策略。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。        |
 | parallel<sup>18+</sup> | [ParallelStrategy](#parallelstrategy18) | 否   | 是  | 压缩或解压时指定的串行或并行策略。<br>**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。        |
 | pathSeparatorStrategy<sup>21+</sup> | [PathSeparatorStrategy](#pathseparatorstrategy21) | 否   | 是  | 解压时指定的压缩包内文件路径中分隔符的处理策略。<br>**原子化服务API：** 从API version 21开始，该接口支持在原子化服务中使用。        |
+| keepTopLevelFolder | boolean | 否   | 是  | 压缩文件夹时，是否在压缩包中保留顶层文件夹。true表示保留顶层文件夹；false表示不保留顶层文件夹。默认值为false。<br/>**起始版本：** 26.0.0 <br/>**原子化服务API：** 从API版本26.0.0开始，该接口支持在原子化服务中使用。<br>**模型约束：** 此接口仅可在Stage模型下使用。        |
 
 ## CompressLevel
 
@@ -3943,7 +3944,7 @@ PathSeparatorStrategy作为[Options](#options)的一个属性，用于指定解�
 
 | 名称     | 类型        | 只读 | 可选 | 说明                                 |
 | -------- | ----------- | ---- | ---- | ------------------------------------ |
-| isText   | boolean     | 否   | 是   | 如果压缩数据被认为是文本，则为True。 |
+| isText   | boolean     | 否   | 是   | 压缩数据是否为文本。true表示压缩数据为文本，false表示压缩数据为二进制数据。 |
 | os       | number      | 否   | 是   | 操作系统。                           |
 | time     | number      | 否   | 是   | 修改时间。                           |
 | xflags   | number      | 否   | 是   | 额外标志。                           |
@@ -3951,8 +3952,8 @@ PathSeparatorStrategy作为[Options](#options)的一个属性，用于指定解�
 | extraLen | number      | 否   | 是   | 额外字段的长度。                     |
 | name     | ArrayBuffer | 否   | 是   | 文件名。                             |
 | comment  | ArrayBuffer | 否   | 是   | 注释。                               |
-| hcrc     | boolean     | 否   | 是   | 如果存在crc标头，则为True。          |
-| done     | boolean     | 否   | 是   | 读取gzip标头后为True。               |
+| hcrc     | boolean     | 否   | 是   | gzip标头中是否存在CRC校验值。true表示存在，false表示不存在。 |
+| done     | boolean     | 否   | 是   | 是否已完成gzip标头读取。true表示已完成，false表示未完成。    |
 
 ## zlib.createGZip<sup>12+</sup>
 
@@ -4083,7 +4084,7 @@ struct Index {
 
 gzbuffer(size: number):Promise&lt;number&gt;
 
-为当前库函数设置内部缓冲区尺寸。
+为当前库函数设置内部缓冲区尺寸。使用Promise异步回调。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -5193,8 +5194,8 @@ gzsetparams(level: CompressLevel, strategy: CompressStrategy): Promise&lt;Return
 
 | 参数名   | 类型             | 必填 | 说明                                                         |
 | -------- | ---------------- | ---- | ------------------------------------------------------------ |
-| level    | CompressLevel    | 是   | 压缩级别，参考[CompressLevel枚举定义](#compresslevel)。      |
-| strategy | CompressStrategy | 是   | 压缩策略，参考[CompressStrategy枚举定义](#compressstrategy)。 |
+| level    | [CompressLevel](#compresslevel)    | 是   | 压缩级别，参考[CompressLevel枚举定义](#compresslevel)。      |
+| strategy | [CompressStrategy](#compressstrategy) | 是   | 压缩策略，参考[CompressStrategy枚举定义](#compressstrategy)。 |
 
 **返回值：**
 

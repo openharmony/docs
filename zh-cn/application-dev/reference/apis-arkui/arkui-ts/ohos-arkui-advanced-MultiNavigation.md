@@ -87,7 +87,7 @@ pushPath(info: NavPathInfo, animated?: boolean, policy?: SplitPolicy): void
 | :------: | :----------------------------------------------------------: | :--: | ----------------------------------------- |
 |   info   | [NavPathInfo](./ts-basic-components-navigation.md#navpathinfo10) |  是  | NavDestination页面的信息。                |
 | animated |                           boolean                            |  否  | 是否支持转场动画。<br/>默认值：true<br/>true：支持转场动画。<br/>false：不支持转场动画。          |
-|  policy  |               [SplitPolicy](#splitpolicy枚举说明)                |  否  | 当前入栈页面的策略。<br/>默认值：DETAIL_PAGE |
+|  policy  |               [SplitPolicy](#splitpolicy)                |  否  | 当前入栈页面的策略。<br/>默认值：DETAIL_PAGE |
 
 ### pushPath
 
@@ -105,7 +105,7 @@ pushPath(info: NavPathInfo, options?: NavigationOptions, policy?: SplitPolicy): 
 | :-----: | :----------------------------------------------------------: | :--: | ------------------------------------------ |
 |  info   | [NavPathInfo](./ts-basic-components-navigation.md#navpathinfo10) |  是  | NavDestination页面的信息。                 |
 | options | [NavigationOptions](./ts-basic-components-navigation.md#navigationoptions12) |  否  | 页面栈操作选项。仅支持其中的animated字段，使用其他字段将被忽略。省略时使用默认动画配置。 |
-| policy  |               [SplitPolicy](#splitpolicy枚举说明)                |  否  | 当前入栈页面的策略。<br/>默认值：DETAIL_PAGE    |
+| policy  |               [SplitPolicy](#splitpolicy)                |  否  | 当前入栈页面的策略。<br/>默认值：DETAIL_PAGE    |
 
 ### pushPathByName
 
@@ -124,7 +124,7 @@ pushPathByName(name: string, param: Object, animated?: boolean, policy?: SplitPo
 |         name          |    string    |   是    | NavDestination页面名称。需要与NavDestinationBuildFunction中注册的页面名称一致。   |
 |         param         |   Object    |   是    | NavDestination页面详细参数，用于向目标页面传递自定义数据。具体字段规格请参考NavDestination相关文档。 |
 |       animated        |   boolean    |   否    | 是否支持转场动画。<br/>默认值：true<br/>true：支持转场动画。<br/>false：不支持转场动画。 |
-|        policy         | [SplitPolicy](#splitpolicy枚举说明)  |   否    | 当前入栈页面的策略。<br/>默认值：DETAIL_PAGE       |
+|        policy         | [SplitPolicy](#splitpolicy)  |   否    | 当前入栈页面的策略。<br/>默认值：DETAIL_PAGE       |
 
 ### pushPathByName
 
@@ -144,7 +144,7 @@ pushPathByName(name: string, param: Object, onPop?: base.Callback\<PopInfo>, ani
 |   param   |                            Object                             |   是    | NavDestination页面详细参数，用于向目标页面传递自定义数据。具体字段规格请参考NavDestination相关文档。 |
 |   onPop   | base.[Callback](../../apis-basic-services-kit/js-apis-base.md#callback)\<[PopInfo](ts-basic-components-navigation.md#popinfo11)>  |   否    | Callback回调，用于页面出栈时触发该回调处理返回结果。省略时不触发回调处理。可通过pop方法、popToName方法、popToIndex方法的result参数传递数据给此回调。 |
 | animated  |                            boolean                            |   否    | 是否支持转场动画。<br/>默认值：true<br/>true：支持转场动画。<br/>false：不支持转场动画。 |
-|  policy   |                          [SplitPolicy](#splitpolicy枚举说明)                          |   否    | 当前入栈页面的策略。<br/>默认值：DETAIL_PAGE       |
+|  policy   |                          [SplitPolicy](#splitpolicy)                          |   否    | 当前入栈页面的策略。<br/>默认值：DETAIL_PAGE       |
 
 ### replacePath
 
@@ -669,7 +669,7 @@ setPlaceholderPage(info: NavPathInfo): void
 |:-------------:|:--------:|:-----:|----------|
 | info  | [NavPathInfo](./ts-basic-components-navigation.md#navpathinfo10)  |   是   | 占位页页面信息，用于设置占位页。占位页在大屏设备上会与主页形成左右分栏效果。 |
 
-## SplitPolicy枚举说明
+## SplitPolicy
 
 表示MultiNavigation中页面的类型。
 

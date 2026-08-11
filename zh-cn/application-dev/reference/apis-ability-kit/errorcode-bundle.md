@@ -97,12 +97,12 @@ The specified user ID is not found.
 
 **可能原因**
 
-1. 输入的用户名有误。
+1. 输入的用户编号有误。
 2. 系统中没有该用户。
 
 **处理步骤**
 
-1. 检查用户名拼写是否正确。
+1. 检查用户编号拼写是否正确。
 2. 确认系统中存在该用户。
 <!--Del-->
 ## 17700005 指定的appId为空字符串
@@ -683,7 +683,7 @@ The specified shared bundle does not exist.
 
 **可能原因**
 
-1. 当前指定卸载的版本不存在与被卸载的shared library中。
+1. 当前指定卸载的版本不存在于被卸载的shared library中。
 2. 当前指定卸载的shared library在设备中不存在。
 
 **处理步骤**
@@ -813,11 +813,11 @@ Failed to uninstall the HAP because the uninstall is forbidden by enterprise dev
 
 **可能原因**
 
-企业设备管理不允许安装该应用。
+企业设备管理不允许卸载该应用。
 
 **处理步骤**
 
-请在设备中检查应用是否被企业设备管理禁止卸载安装。
+请在设备中检查应用是否被企业设备管理禁止卸载。
 
 ## 17700047 要更新的应用版本没有大于当前版本
 **错误信息**
@@ -1621,6 +1621,47 @@ The specified skillName is not found.
 1. 排查skillName，确认拼写无误。
 2. 使用[bm工具](../../tools/bm-tool.md)安装对应Skill所在的应用。
 
+<!--Del-->
+## 17700094 指定的应用未创建分身
+
+**错误信息**
+
+The specified bundle did not create a clone.
+
+**错误描述**
+
+设置应用分身偏好时，指定的应用未创建分身。
+
+**可能原因**
+
+指定的应用未创建任何分身。
+
+**处理步骤**
+
+1. 使用[bundleManager.getAppCloneBundleInfo](js-apis-bundleManager-sys.md#bundlemanagergetappclonebundleinfo12)确认应用是否已创建分身。
+2. 创建应用分身后重试。
+
+## 17700095 指定的应用未找到分身偏好
+
+**错误信息**
+
+The specified bundle not found app clone preference.
+
+**错误描述**
+
+查询应用分身偏好时，指定的应用未设置分身偏好。
+
+**可能原因**
+
+1. 应用从未设置过分身偏好。
+2. 应用分身偏好已被清除。
+
+**处理步骤**
+
+1. 确认应用是否需要分身偏好。
+2. 使用[bundleManager.setAppClonePreference](js-apis-bundleManager-sys.md#bundlemanagersetappclonepreference)设置分身偏好后重试。
+<!--DelEnd-->
+
 ## 17700101 包管理服务异常
 **错误信息**
 
@@ -1909,7 +1950,7 @@ Invalid fileTypes.
 ## 18100001 ShortcutInfo列表中bundleName和appIndex不一一对应
 **错误信息**
 
-A combination of bundleName and appIndex in the shutcutInfo list is different from the others.
+A combination of bundleName and appIndex in the shortcutInfo list is different from the others.
 
 **错误描述**
 
@@ -1921,6 +1962,8 @@ shortcutInfo列表中，存在bundleName和appIndex的组合与其他不一致�
 
 例如在调用[shortcutManager.addDynamicShortcutInfos](../apis-ability-kit/js-apis-shortcutManager-sys.md#shortcutmanageradddynamicshortcutinfos23)接口时传入了如下列表:
 ```ts
+import { shortcutManager } from '@kit.AbilityKit';
+
 const bundleName = "com.example.dynamic";
 const bundleName1 = "com.example.dynamic1";
 let moduleName = 'entry';
@@ -1929,10 +1972,12 @@ const arrShortcutInfo: Array<shortcutManager.ShortcutInfo> = [
   { id: "2", bundleName: bundleName, moduleName: moduleName, appIndex: 0, sourceType: 2 },
     // 校验失败，因为bundleName和appIndex与其他shortcutInfo不一样
   { id: "3", bundleName: bundleName1, moduleName: moduleName, appIndex: 0, sourceType: 2 }
-]
+];
 ```
 或者：
 ```ts
+import { shortcutManager } from '@kit.AbilityKit';
+
 const bundleName = "com.example.dynamic";
 let moduleName = 'entry';
 const arrShortcutInfo: Array<shortcutManager.ShortcutInfo> = [
@@ -1940,7 +1985,7 @@ const arrShortcutInfo: Array<shortcutManager.ShortcutInfo> = [
   { id: "2", bundleName: bundleName, moduleName: moduleName, appIndex: 0, sourceType: 2 },
   // 校验失败，因为bundleName和appIndex与其他shortcutInfo不一样
   { id: "3", bundleName: bundleName, moduleName: moduleName, appIndex: 1, sourceType: 2 }
-]
+];
 ```
 
 **处理步骤**

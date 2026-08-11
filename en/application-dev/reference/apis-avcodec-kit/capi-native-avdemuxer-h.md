@@ -108,7 +108,7 @@ Creates an OH_AVDemuxer instance based on a source instance.<br> For details abo
 
 | Type| Description|
 | -- | -- |
-| [OH_AVDemuxer](capi-avdemuxer-oh-avdemuxer.md) * | Pointer to an OH_AVDemuxer instance.<br> If the operation fails, NULL is returned.<br> The possible causes of an operation failure are as follows:<br> 1. The value of **source** is invalid (either nullptr or a pointer to a non-OH_AVSource instance).<br> 2. The value of **source** does not point to an OH_AVSource instance.|
+| [OH_AVDemuxer](capi-avdemuxer-oh-avdemuxer.md) * | Pointer to an OH_AVDemuxer instance.<br> If the operation fails, NULL is returned.<br> The possible causes of an operation failure are as follows:<br> 1. `source` is a null pointer.<br> 2. `source` is not an OH_AVSource instance.|
 
 ### OH_AVDemuxer_Destroy()
 
@@ -235,7 +235,7 @@ OH_AVErrCode OH_AVDemuxer_ReadSampleBuffer(OH_AVDemuxer *demuxer, uint32_t track
 
 **Description**
 
-Reads the sample and related information from the specified track.<br>You can use [OH_AVDemuxer_SelectTrackByID](#oh_avdemuxer_selecttrackbyid) to select a track before reading the sample. After this API is called, the demuxer automatically proceeds to the next frame.
+Reads the sample and related information from the specified track.<br> You can use [OH_AVDemuxer_SelectTrackByID](#oh_avdemuxer_selecttrackbyid) to select a track before reading the sample. After this API is called, the demuxer automatically proceeds to the next frame.
 
 **System capability**: SystemCapability.Multimedia.Media.Spliter
 
@@ -248,13 +248,13 @@ Reads the sample and related information from the specified track.<br>You can us
 | -- | -- |
 | [OH_AVDemuxer](capi-avdemuxer-oh-avdemuxer.md) *demuxer | Pointer to an OH_AVDemuxer instance.|
 | uint32_t trackIndex | Index of the track from which the compressed frame is to be read.|
-| OH_AVBuffer *sample | Pointer to the OH_AVBuffer instance for storing the compressed frame data and related information.|
+| [OH_AVBuffer](capi-core-oh-avbuffer.md) *sample | Pointer to the OH_AVBuffer instance for storing the compressed frame data and related information.|
 
 **Returns**
 
 | Type| Description|
 | -- | -- |
-| [OH_AVErrCode](capi-native-averrors-h.md#oh_averrcode) | **AV_ERR_OK**: The operation is successful.<br>         **AV_ERR_INVALID_VAL**:<br>                           1. The value of **demuxer** is nullptr or does not point to a demuxer instance.<br>                           2. The value of **sample** is nullptr.<br>                           3. The track index is out of range.<br>                           4. The value of **sample** is null.<br>         **AV_ERR_OPERATE_NOT_PERMIT**:<br>                           1. The track with the specified index is not selected.<br>                           2. The demuxer is not correctly initialized.<br>         **AV_ERR_NO_MEMORY**: The sample capacity is insufficient to store all frame data.<br>         **AV_ERR_UNKNOWN**: Failed to read or parse the frame from the file.|
+| [OH_AVErrCode](capi-native-averrors-h.md#oh_averrcode) | **AV_ERR_OK**: The operation is successful.<br>         **AV_ERR_INVALID_VAL**:<br>                           1. The value of **demuxer** is nullptr or does not point to a demuxer instance.<br>                           2. The value of **sample** is nullptr.<br>                           3. The track index is out of range.<br>         **AV_ERR_OPERATE_NOT_PERMIT**:<br>                           1. The track with the specified index is not selected.<br>                           2. The demuxer is not correctly initialized.<br>         **AV_ERR_NO_MEMORY**: The sample capacity is insufficient to store all frame data.<br>         **AV_ERR_UNKNOWN**: Failed to read or parse the frame from the file.|
 
 ### OH_AVDemuxer_SeekToTime()
 
@@ -264,7 +264,7 @@ OH_AVErrCode OH_AVDemuxer_SeekToTime(OH_AVDemuxer *demuxer, int64_t millisecond,
 
 **Description**
 
-Seeks to the specified time for all the selected tracks based on a seek mode.
+Seeks to the specified time for all the selected tracks based on a seek mode. Before calling this function, call **OH_AVDemuxer_SelectTrackByID** to select a track.
 
 **System capability**: SystemCapability.Multimedia.Media.Spliter
 

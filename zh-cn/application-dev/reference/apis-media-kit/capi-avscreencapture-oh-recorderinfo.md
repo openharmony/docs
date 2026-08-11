@@ -30,6 +30,6 @@ OH_RecorderInfo用于存储屏幕录制文件的输出信息，包括录制文�
 | -- | -- |
 | char* url | 录制文件的URL，用于指定录屏文件的输出位置。仅支持本地文件路径URL格式。需与urlLen配合使用。 |
 | uint32_t urlLen | 录制文件的URL的长度值，表示url参数所指字符串的字节长度（不包括终止空字符）。需与url参数配合使用，不匹配时可能导致录制异常。 |
-| [OH_ContainerFormatType](capi-native-avscreen-capture-base-h.md#oh_containerformattype) fileFormat | 录制文件的容器封装格式类型，用于指定录屏输出的文件封装格式。可选值：CONTAINER_FORMAT_MP4（MP4格式，适用于音视频同时录制的通用场景）、CONTAINER_FORMAT_MKV（MKV格式，适用于需要封装多种编码格式的场景）。可选值为[OH_ContainerFormatType](capi-native-avscreen-capture-base-h.md#oh_containerformattype)中定义的格式类型。 |
+| [OH_ContainerFormatType](capi-native-avscreen-capture-base-h.md#oh_containerformattype) fileFormat | 录制文件的容器封装格式类型，用于指定录屏输出的文件封装格式。可选值：CFT_MPEG_4A（M4A格式，适用于仅需要录制音频的场景）、CFT_MPEG_4（MP4格式，适用于需要同时录制音视频的场景）。可选值为[OH_ContainerFormatType](capi-native-avscreen-capture-base-h.md#oh_containerformattype)中定义的格式类型。 |
 
 

@@ -72,6 +72,7 @@ enum WindowManager_ErrorCode
 | WINDOW_MANAGER_ERRORCODE_INVALID_PARAM = 401 | 非法参数。<br/>**起始版本：** 15 |
 | WINDOW_MANAGER_ERRORCODE_DEVICE_NOT_SUPPORTED = 801 | 设备不支持。<br/>**起始版本：** 15 |
 | INVAILD_WINDOW_ID = 1000 | 非法窗口ID。 |
+| INVALID_WINDOW_ID = INVAILD_WINDOW_ID | 非法窗口ID。<br>**起始版本：** 26.0.0 |
 | SERVICE_ERROR = 2000 | 服务异常。 |
 | WINDOW_MANAGER_ERRORCODE_STATE_ABNORMAL = 1300002 | 窗口状态异常。<br/>**起始版本：** 15 |
 | WINDOW_MANAGER_ERRORCODE_SYSTEM_ABNORMAL = 1300003 | 窗口管理器服务异常。<br/>**起始版本：** 15 |

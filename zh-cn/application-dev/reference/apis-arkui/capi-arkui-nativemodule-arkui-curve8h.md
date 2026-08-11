@@ -1,4 +1,4 @@
-# ArkUI_Curve*
+# ArkUI_Curve\*
 <!--Kit: ArkUI-->
 <!--Subsystem: ArkUI-->
 <!--Owner: @hehongyang3-->

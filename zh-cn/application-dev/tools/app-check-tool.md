@@ -67,7 +67,7 @@ java -jar app_check_tool.jar --input ./test.app --out-path ./test --stat-duplica
 | param     | String | 扫描程序传入参数。          |
 | startTime | String | 任务开始时间。              |
 | stopTime  | String | 任务结束时间。              |
-| result    | Struct | 重复文件统计结果字段信息，具体内容参考表3。       |
+| result    | Vector\<Struct> | 重复文件统计结果字段信息，具体内容参考表3。       |
 
 **表3 重复文件统计结果字段信息**
 
@@ -119,7 +119,7 @@ java -jar app_check_tool.jar --input ./test.app --out-path ./test --stat-file-si
 | param     | String | 扫描程序传入参数。                  |
 | startTime | String | 任务开始时间。                      |
 | stopTime  | String | 任务结束时间。                      |
-| result    | Struct | 超出指定大小的文件统计结果字段信息，具体内容参考表6。              |
+| result    | Vector\<Struct> | 超出指定大小的文件统计结果字段信息，具体内容参考表6。              |
 
 **表6 超出指定大小的文件统计结果字段信息**
 
@@ -193,7 +193,7 @@ java -jar app_check_tool.jar --input ./test.app --out-path ./test --stat-suffix 
 | startTime | String          | 任务开始时间。                                                                         |
 | stopTime  | String          | 任务结束时间。                                                                         |
 | pathList  | Vector\<String> | 多个HAP、HSP包的路径。                                                                  |
-| result    | Struct          | 各类型文件大小占比统计结果字段信息，具体内容参考表9。                                    |
+| result    | Vector\<Struct>          | 各类型文件大小占比统计结果字段信息，具体内容参考表9。                                    |
 
 **表9 各类型文件大小占比统计结果字段信息**
 
@@ -201,7 +201,7 @@ java -jar app_check_tool.jar --input ./test.app --out-path ./test --stat-suffix 
 | --------- | ------ | ------------------------------------------ |
 | suffix    | String | 同类型文件后缀名。                         |
 | totalSize | int    | 扫描的同类型文件的总大小，单位为Byte。 |
-| files     | Struct  | 同类型文件的对应路径和大小字段信息，具体内容参考表10。                     |
+| files     | Vector\<Struct>  | 同类型文件的对应路径和大小字段信息，具体内容参考表10。                     |
 
 **表10 同类型文件的对应路径和大小字段信息**
 | 字段     | 类型   | 描述                                                                |

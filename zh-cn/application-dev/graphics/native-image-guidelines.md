@@ -17,16 +17,16 @@ NativeImage常见的开发场景如下：
 
 | 接口名                                                       | 描述                                                         |
 | ------------------------------------------------------------ | ------------------------------------------------------------ |
-| OH_NativeImage_Create (uint32_t textureId, uint32_t textureTarget) | 创建一个OH_NativeImage实例，该实例与OpenGL ES的纹理ID和纹理目标相关联。本接口需要与OH_NativeImage_Destroy接口配合使用，否则会存在内存泄露。 |
+| OH_NativeImage_Create (uint32_t textureId, uint32_t textureTarget) | 创建一个OH_NativeImage实例，该实例与OpenGL ES的纹理ID和纹理目标相关联。本接口需要与OH_NativeImage_Destroy接口配合使用，否则会存在内存泄漏。 |
 | OH_NativeImage_AcquireNativeWindow (OH_NativeImage \*image)  | 获取与OH_NativeImage相关联的OHNativeWindow指针，该OHNativeWindow在调用OH_NativeImage_Destroy时会将其释放，不需要调用OH_NativeWindow_DestroyNativeWindow释放，否则会出现访问已释放内存错误，可能会导致崩溃。 |
 | OH_NativeImage_AttachContext (OH_NativeImage \*image, uint32_t textureId) | 将OH_NativeImage实例附加到当前OpenGL ES上下文，且该OpenGL ES纹理会绑定到 GL_TEXTURE_EXTERNAL_OES，并通过OH_NativeImage进行更新。 |
 | OH_NativeImage_DetachContext (OH_NativeImage \*image)        | 将OH_NativeImage实例从当前OpenGL ES上下文分离。              |
 | OH_NativeImage_UpdateSurfaceImage (OH_NativeImage \*image)   | 通过OH_NativeImage获取最新帧更新相关联的OpenGL ES纹理。      |
 | OH_NativeImage_GetTimestamp (OH_NativeImage \*image)         | 获取最近调用OH_NativeImage_UpdateSurfaceImage的纹理图像的相关时间戳。 |
-| OH_NativeImage_GetTransformMatrixV2 (OH_NativeImage \*image, float matrix[16]) | 获取最近调用OH_NativeImage_UpdateSurfaceImage的纹理图像的变化矩阵。 |
+| OH_NativeImage_GetTransformMatrixV2 (OH_NativeImage \*image, float matrix[16]) | 获取最近调用OH_NativeImage_UpdateSurfaceImage的纹理图像的变换矩阵。 |
 | OH_NativeImage_Destroy (OH_NativeImage \*\*image)            | 销毁通过OH_NativeImage_Create创建的OH_NativeImage实例，销毁后该OH_NativeImage指针会被赋值为空。 |
 
-详细的接口说明请参考[native_image](../reference/apis-arkgraphics2d/capi-oh-nativeimage.md)。
+详细的接口说明请参考[OH_NativeImage](../reference/apis-arkgraphics2d/capi-oh-nativeimage.md)。
 
 ## 开发步骤
 
@@ -358,21 +358,21 @@ libnative_buffer.so
    <!-- @[update_surfaceimage](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkGraphics2D/NdkNativeImage/entry/src/main/cpp/render/render_engine.cpp) -->
    
    ``` C++
-    int32_t ret = OH_NativeImage_UpdateSurfaceImage(nativeImage_);
-    if (ret != 0) {
-        OH_LOG_Print(LOG_APP, LOG_ERROR, LOG_PRINT_DOMAIN, "RenderEngine",
-                    "OH_NativeImage_UpdateSurfaceImage failed, ret: %{public}d, texId: %{public}u",
-                    ret, nativeImageTexId_);
-        return;
-    }
-
-    UpdateTextureMatrix();
-    if (imageRender_) {
-        imageRender_->Render();
-    } else {
-        OH_LOG_Print(LOG_APP, LOG_ERROR, LOG_PRINT_DOMAIN, "RenderEngine", "ImageRender is null");
-    }
-    // ...
+       int32_t ret = OH_NativeImage_UpdateSurfaceImage(nativeImage_);
+       if (ret != 0) {
+           OH_LOG_Print(LOG_APP, LOG_ERROR, LOG_PRINT_DOMAIN, "RenderEngine",
+                        "OH_NativeImage_UpdateSurfaceImage failed, ret: %{public}d, texId: %{public}u",
+                        ret, nativeImageTexId_);
+           return;
+       }
+   
+       UpdateTextureMatrix();
+       if (imageRender_) {
+           imageRender_->Render();
+       } else {
+           OH_LOG_Print(LOG_APP, LOG_ERROR, LOG_PRINT_DOMAIN, "RenderEngine", "ImageRender is null");
+       }
+       // ...
    
    void RenderEngine::UpdateTextureMatrix()
    {
@@ -380,7 +380,7 @@ libnative_buffer.so
        int32_t ret = OH_NativeImage_GetTransformMatrixV2(nativeImage_, matrix);
        if (ret != 0) {
            OH_LOG_Print(LOG_APP, LOG_ERROR, LOG_PRINT_DOMAIN, "RenderEngine",
-                        "OH_NativeImage_GetTransformMatrix failed, ret: %{public}d", ret);
+                        "OH_NativeImage_GetTransformMatrixV2 failed, ret: %{public}d", ret);
            return;
        }
        imageRender_->SetTransformMatrix(matrix);

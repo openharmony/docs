@@ -1,12 +1,14 @@
 # @ohos.application.formProvider (formProvider)
+
 <!--Kit: Form Kit-->
 <!--Subsystem: Ability-->
 <!--Owner: @Qian-Win-->
 <!--Designer: @cx983299475-->
 <!--Tester: @mahailong123456-->
 <!--Adviser: @HelloShuo-->
+<!-- md-trans-meta sourceCommit=6b0733adc9a538f18ea8143587feeecb737929d9 translatedAt=2026-07-31T08:25:35.406Z pushedAt=2026-07-31T09:22:09.636Z -->
 
-The **FormProvider** module provides APIs related to the widget provider. You can use the APIs to update a widget, set the next refresh time for a widget, obtain widget information, and request a widget release.
+The FormProvider module provides APIs for widget providers. When developing widgets, you can use the APIs provided by this module to update widgets, set widget update time, obtain widget information, and request widget publishing.
 
 > **NOTE**
 >
@@ -23,7 +25,7 @@ import { formProvider } from '@kit.FormKit';
 
 setFormNextRefreshTime(formId: string, minute: number, callback: AsyncCallback&lt;void&gt;): void
 
-Sets the next refresh time for a widget. This API uses an asynchronous callback to return the result.
+Sets the next update time for a specified widget. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.Ability.Form
 
@@ -32,7 +34,7 @@ Sets the next refresh time for a widget. This API uses an asynchronous callback 
   | Name| Type   | Mandatory| Description                                  |
   | ------ | ------ | ---- | ------------------------------------- |
   | formId | string | Yes  | Widget ID.                              |
-  | minute | number | Yes  | Time for the next refresh. The value must be greater than or equal to 5, in minutes.    |
+  | minute | number | Yes | Interval before the next update, in minutes. The value must be greater than or equal to 5. |
   | callback | AsyncCallback&lt;void&gt; | Yes| Callback used to return the result.|
 
 **Example**
@@ -53,7 +55,7 @@ Sets the next refresh time for a widget. This API uses an asynchronous callback 
 
 setFormNextRefreshTime(formId: string, minute: number): Promise&lt;void&gt;
 
-Sets the next refresh time for a widget. This API uses a promise to return the result.
+Sets the next update time for a specified widget. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.Ability.Form
 
@@ -62,7 +64,7 @@ Sets the next refresh time for a widget. This API uses a promise to return the r
   | Name| Type   | Mandatory| Description                                  |
   | ------ | ------ | ---- | ------------------------------------- |
   | formId | string | Yes  | Widget ID.                              |
-  | minute | number | Yes  | Time for the next refresh. The value must be greater than or equal to 5, in minutes.    |
+  | minute | number | Yes   | Interval before the next update, in minutes. The value must be greater than or equal to 5.     |
 
 **Return value**
 

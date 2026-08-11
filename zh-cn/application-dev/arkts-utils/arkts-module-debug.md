@@ -81,13 +81,13 @@ ModuleImportStack:
 开发者若需快速定位引发问题的模块导入链路，可在问题模块的顶层抛出一个JsError。例如，在B模块的顶层抛出异常后，开发者在打开工具并复现场景时，即可查看模块加载链路。
 ```js
 // entry/src/main/ets/pages/Index.ets
-import  {A} from './A'
+import { A } from './A'
 
 A()
 ```
 ```js
 // entry/src/main/ets/pages/A.ets
-import {b} from "./B"
+import { b } from "./B"
 
 export function A(){
   return b + 2;
@@ -107,14 +107,14 @@ ModuleImportStack:
 #2 &entry/src/main/ets/pages/Index&
 ```
 ### 追踪so模块的ets导入来源
-开发者若想快速定位引发问题的so模块加载链路，可在引发问题的so的napi_init中抛出CppCrash。例如，在napi_init.cpp中对空指针进行操作以触发CppCrash，开发者打开工具后复现场景，即可看到libentry.so模块是从哪个ets文件导入。
+开发者若想快速定位引发问题的so模块加载链路，可在引发问题的so的napi_init中抛出CppCrash。例如，在napi_init.cpp中解引用空指针以触发CppCrash，开发者打开工具后复现场景，即可看到libentry.so模块是从哪个ets文件导入。
 ```js
 // entry/src/main/ets/pages/Index.ets
-import {a} from './A'
+import { a } from './A'
 import { hilog } from '@kit.PerformanceAnalysisKit';
 
 const DOMAIN = 0x0000;
-hilog.info(DOMAIN, 'testTag', 'ModuleImportStack test', a);
+hilog.info(DOMAIN, 'testTag', 'ModuleImportStack test a = %{public}d', a);
 ```
 ```js
 // entry/src/main/ets/pages/A.ets

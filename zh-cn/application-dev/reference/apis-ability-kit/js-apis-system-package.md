@@ -24,13 +24,13 @@ import Package from '@system.package';
 
 ## package.hasInstalled<sup>(deprecated)</sup>
 
-> **说明：**
->
-> 从API version 3开始支持，从API version 9开始废弃，建议使用[getBundleInfo](js-apis-bundleManager.md#bundlemanagergetbundleinfo14)替代。
-
 hasInstalled(options: CheckPackageHasInstalledOptions): void
 
 查询指定应用是否存在，或者应用是否安装。
+
+> **说明：**
+>
+> 从API version 3开始支持，从API version 9开始废弃，建议使用[getBundleInfo](js-apis-bundleManager.md#bundlemanagergetbundleinfo14)替代。
 
 **系统能力：** SystemCapability.BundleManager.BundleFramework
 

@@ -3,10 +3,10 @@
 <!--Kit: Calendar Kit-->
 <!--Subsystem: Applications-->
 <!--Owner: @qq_42718467-->
-<!--Designer: @windsky6-->
+<!--Designer: @qq_42718467-->
 <!--Tester: @z30055209-->
 <!--Adviser: @ge-yafang-->
-<!-- md-trans-meta sourceCommit=dcae6f10c07044342acb5b2dc0416e100c5bcaa2 translatedAt=2026-06-17T06:37:30.433Z pushedAt=2026-06-17T12:49:00.015Z -->
+<!-- md-trans-meta sourceCommit=8852d3851a09566b1fcf279f3997e3c4a14b517f translatedAt=2026-07-25T11:27:30.872Z pushedAt=2026-07-25T11:32:24.912Z -->
 
 An event refers to a specific event or activity arrangement. Event management is to arrange events or activities to effectively use related resources, improve productivity and efficiency, and enable users to better manage time and tasks.
 
@@ -42,7 +42,7 @@ The table below lists the main APIs used for event management. For details about
     import { hilog } from '@kit.PerformanceAnalysisKit';
     ```
 
-2. Apply for the required permission. When using Calendar Kit, declare the **ohos.permission.READ_CALENDAR** and **ohos.permission.WRITE_CALENDAR** permissions in the **module.json5** file .for reading and writing calendar events. For details, see [Declaring Permissions](../security/AccessToken/declare-permissions.md).
+2. Apply for the required permission. When using Calendar Kit, declare the **ohos.permission.READ_CALENDAR** and **ohos.permission.WRITE_CALENDAR** permissions in the **module.json5** file for reading and writing calendar events. For details, see [Declaring Permissions](../security/AccessToken/declare-permissions.md).
 
 3. Obtain the **calendarMgr** object based on the context to manage calendars. You are advised to perform management in the **EntryAbility.ets** file.
 
@@ -154,7 +154,7 @@ The table below lists the main APIs used for event management. For details about
 
    After an event is created, an event ID is returned as the unique identifier. You can update or delete the event based on the event ID.
 
-   Currently, you can create an event in either of the following methods:
+   Currently, you can create an event using either of the following methods:
 
    Method 1: Use **addEvent()** to create a single event or **addEvents()** to create events in batches. The following describes how to create a single event.
 
@@ -254,6 +254,7 @@ The table below lists the main APIs used for event management. For details about
 7. Query all events belonging to the current calendar. Due to data privacy and security concerns, applications with restricted permissions cannot obtain event information created by other applications. Query results vary with query conditions and fields.
 
    If no query condition or field is set, all events of the specified calendar can be queried.
+
    <!-- @[calendarEvent_getEvents](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/Calendar/CalendarEvent/entry/src/main/ets/pages/Index.ets) -->
 
    ``` TypeScript
@@ -265,6 +266,7 @@ The table below lists the main APIs used for event management. For details about
    ```
 
    You can also query events by the event ID, start time and end time of the event, or event title.
+
    <!-- @[calendarEvent_getEvent](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/Calendar/CalendarEvent/entry/src/main/ets/pages/Index.ets) -->
 
    ``` TypeScript

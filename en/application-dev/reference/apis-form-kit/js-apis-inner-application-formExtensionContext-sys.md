@@ -1,10 +1,12 @@
 # FormExtensionContext (System API)
+
 <!--Kit: Form Kit-->
 <!--Subsystem: Ability-->
 <!--Owner: @Qian-Win-->
 <!--Designer: @cx983299475-->
 <!--Tester: @mahailong123456-->
 <!--Adviser: @HelloShuo-->
+<!-- md-trans-meta sourceCommit=6b0733adc9a538f18ea8143587feeecb737929d9 translatedAt=2026-07-31T08:25:57.089Z pushedAt=2026-08-01T00:12:11.473Z -->
 
 The **FormExtensionContext** module, inherited from [ExtensionContext](../apis-ability-kit/js-apis-inner-application-extensionContext.md), provides the context environment for the [FormExtensionAbility](js-apis-app-form-formExtensionAbility.md).
 
@@ -13,7 +15,7 @@ You can use the APIs of this module to start a FormExtensionAbility.
 > **NOTE**
 >
 > - The initial APIs of this module are supported since API version 9. Newly added APIs will be marked with a superscript to indicate their earliest API version.
-> - The APIs of this module can be used only in the stage model.
+> - The APIs of this module can be used only in the Stage model.
 > - The APIs provided by this module are system APIs.
 
 ## Modules to Import
@@ -32,11 +34,11 @@ Starts an ability. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.Ability.Form
 
-**Model restriction**: This API can be used only in the stage model.
+**Model restriction**: This API can be used only in the Stage model.
 
 **Error codes**
 
-For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Form Error Codes](errorcode-form.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Widget Error Codes](errorcode-form.md).
 
 | ID| Error Message|
 | -------- | -------- |
@@ -44,13 +46,14 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed. |
 | 16500050 | An IPC connection error happened. |
 | 16500100 | Failed to obtain the configuration information. |
+| 16500101 | The application is not a system application. <br/>Applicable version: 9-11|
 | 16501000 | An internal functional error occurred. |
 
 **Parameters**
 
 | Name|                Type              | Mandatory|              Description              |
 | ------| --------------------------------- | ---- | -------------------------------------- |
-| want| [Want](../apis-ability-kit/js-apis-app-ability-want.md) | Yes | Information about the ability to start, such as the bundle name, ability name, and custom parameters.|
+| want | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | Yes | Contains bundleName, abilityName, and user-defined parameters for starting an ability. |
 | callback| AsyncCallback&lt;void&gt;       | Yes | Callback used to return the result. If the ability is started, **err** is undefined; otherwise, **err** is an error object.|
 
 **Example**
@@ -93,13 +96,13 @@ Starts an ability. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.Ability.Form
 
-**Model restriction**: This API can be used only in the stage model.
+**Model restriction**: This API can be used only in the Stage model.
 
 **Parameters**
 
 | Name|                Type              | Mandatory|              Description              |
 | ------| --------------------------------- | ---- | -------------------------------------- |
-| want| [Want](../apis-ability-kit/js-apis-app-ability-want.md) | Yes | Information about the ability to start, such as the bundle name, ability name, and custom parameters.|
+| want| [Want](../apis-ability-kit/js-apis-app-ability-want.md) | Yes | Want object that contains **bundleName**, **abilityName**, and user-defined parameters for starting an ability. |
 
 **Return value**
 
@@ -109,7 +112,7 @@ Starts an ability. This API uses a promise to return the result.
 
 **Error codes**
 
-For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Form Error Codes](errorcode-form.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Widget Error Codes](errorcode-form.md).
 
 | ID| Error Message|
 | -------- | -------- |
@@ -117,6 +120,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed. |
 | 16500050 | An IPC connection error happened. |
 | 16500100 | Failed to obtain the configuration information. |
+| 16500101 | The application is not a system application. <br/>Applicable version: 9-11|
 | 16501000 | An internal functional error occurred. |
 
 **Example**
@@ -157,7 +161,7 @@ Connects this ability to a ServiceExtensionAbility.
 
 **System API**: This is a system API.
 
-**Model restriction**: This API can be used only in the stage model.
+**Model restriction**: This API can be used only in the Stage model.
 
 **Parameters**
 
@@ -247,7 +251,7 @@ Disconnects this ability from a **ServiceExtensionAbility** and after the succes
 
 **System API**: This is a system API.
 
-**Model restriction**: This API can be used only in the stage model.
+**Model restriction**: This API can be used only in the Stage model.
 
 **Parameters**
 
@@ -305,19 +309,19 @@ export default class MyFormExtensionAbility extends FormExtensionAbility {
 
 disconnectServiceExtensionAbility(connection: number): Promise&lt;void&gt;
 
-Disconnects this ability from a ServiceExtensionAbility and after the successful disconnection, sets the remote object returned upon the connection to void. This API uses a promise to return the result. 
+Disconnects this ability from a ServiceExtensionAbility and after the successful disconnection, sets the remote object returned upon the connection to null. This API uses a promise to return the result. 
 
 **System capability**: SystemCapability.Ability.Form
 
 **System API**: This is a system API.
 
-**Model restriction**: This API can be used only in the stage model.
+**Model restriction**: This API can be used only in the Stage model.
 
 **Parameters**
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| connection | number | Yes| Number returned after [connectServiceExtensionAbility](#formextensioncontextconnectserviceextensionability10) is called.|
+| connection | number | Yes| Number returned by [connectServiceExtensionAbility](#formextensioncontextconnectserviceextensionability10).|
 
 **Return value**
 

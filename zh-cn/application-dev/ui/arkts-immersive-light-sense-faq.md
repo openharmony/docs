@@ -204,3 +204,98 @@ Column() {
 - 移除与材质冲突的属性设置（如backgroundColor、backgroundBlurStyle、shadow），让材质效果默认开启。
 - 在ENABLE模式下，沉浸式系统材质样式的优先级高于组件本身设置的背景色、模糊、阴影和边框样式，且更多组件会默认开启材质。
 - 如需在保留现有属性的同时使用材质，通过[systemMaterial](../reference/apis-arkui/arkui-ts/ts-universal-attributes-image-effect.md#systemmaterial)属性主动设置。
+
+
+## 材质渲染区域与组件可视区域不一致
+
+**问题现象**
+
+给组件设置沉浸式系统材质后，材质渲染区域与组件可视区域不一致。
+
+- Checkbox可视区域为40\*40的圆形，材质渲染区域为40\*40的矩形。
+
+  ![materialDrawingInstructions](figures/material-drawing-instruction-1.jpg)
+
+- Text组件可视区域为文本内容，材质渲染区域为100\*40的矩形。
+
+  ![materialDrawingInstructions](figures/material-drawing-instruction-2.jpg)
+
+**可能原因**
+
+材质渲染区域由组件布局区域决定，而组件可视区域为实际呈现内容，可能不等于布局区域，导致两者不一致。
+
+**解决措施**
+
+通过[width](../reference/apis-arkui/arkui-ts/ts-universal-attributes-size.md#width)、[height](../reference/apis-arkui/arkui-ts/ts-universal-attributes-size.md#height)、[borderRadius](../reference/apis-arkui/arkui-ts/ts-universal-attributes-border.md#borderradius)接口控制组件可视区域与材质渲染区域一致。
+
+> **说明：**
+>
+> Text组件无法给文本内容设置沉浸式系统材质。
+
+**代码示例**
+
+```ts
+// 材质渲染区域与组件可视区域不一致示例
+Row() {
+  Text('Checkbox组件：')
+    .fontColor(Color.Black)
+  Checkbox()
+    .width(40)
+    .height(40)
+    .borderWidth(1)
+    .borderColor(Color.Blue)
+    .systemMaterial(new uiMaterial.ImmersiveMaterial({
+      style: uiMaterial.ImmersiveStyle.ULTRA_THIN,
+      interactive: true
+    }))
+}
+Row() {
+  Text('Text组件：')
+    .fontColor(Color.Black)
+  Text("hello")
+    .width(100)
+    .height(40)
+    .systemMaterial(new uiMaterial.ImmersiveMaterial({
+      style: uiMaterial.ImmersiveStyle.ULTRA_THIN,
+      interactive: true
+    }))
+}
+```
+
+## 材质效果的显示层级问题
+
+**问题现象**
+
+同时给组件设置沉浸式系统材质和背景色，材质效果被遮盖。例如TextArea组件设置背景色后，会遮盖材质效果。
+
+![materialDrawingInstructions](figures/material-drawing-instruction-3.jpg)
+
+**可能原因**
+
+自绘制组件的背景色作用于内容层，材质效果作用于背板层，而内容层位于背板层之上，因此材质效果被内容层遮盖。
+
+**解决措施**
+
+不建议同时使用沉浸式系统材质和背景色[backgroundColor](../reference/apis-arkui/arkui-ts/ts-universal-attributes-background.md#backgroundcolor)接口。
+
+> **说明：**
+>
+> 沉浸式系统材质无法绘制在内容层。
+
+**代码示例**
+
+```ts
+// 材质效果的显示层级问题示例
+Row() {
+  Text('TextArea组件：')
+    .fontColor(Color.Black)
+  TextArea()
+    .width(100)
+    .height(40)
+    .backgroundColor('#cc999999') // 不建议同时使用沉浸式系统材质和背景色接口
+    .systemMaterial(new uiMaterial.ImmersiveMaterial({
+      style: uiMaterial.ImmersiveStyle.ULTRA_THIN,
+      interactive: true
+    }))
+}
+```

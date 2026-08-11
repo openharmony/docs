@@ -5,7 +5,8 @@
 <!--Owner: @yliupy-->
 <!--Designer: @sunyaozu-->
 <!--Tester: @lpw_work-->
-<!--Adviser: @Brilliantry_Rui-->
+<!--Adviser: @ningningW-->
+<!-- md-trans-meta sourceCommit=9d4329aa9b07ce81fc1a2c848fb4cea93e274a8e translatedAt=2026-08-04T12:26:19.952Z pushedAt=2026-08-04T13:12:06.078Z -->
 
 ## How It Works
 
@@ -19,16 +20,27 @@ Since API version 21, you can also use the **param get persist.global.language**
 
 For details about how to use related APIs, see [System](../reference/apis-localization-kit/js-apis-i18n.md#system9).
 
-1. Obtain the system language, region, and locale.
-   ```ts
+1. Import the required module.
+
+   <!-- @[import_module](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/International/Internationalization/entry/src/main/ets/i18napplication/LanguagePreferenceSetting.ets) -->
+
+   ``` TypeScript
    import { i18n } from '@kit.LocalizationKit';
    import { BusinessError, commonEventManager } from '@kit.BasicServicesKit';
+   ```
 
+2. Usage scenarios.
+
+- Obtain the system language, system region, and system locale.
+
+   <!-- @[get_system_language_and_region](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/International/Internationalization/entry/src/main/ets/i18napplication/LanguagePreferenceSetting.ets) -->
+
+   ``` TypeScript
    // Obtain the system language.
-   let systemLanguage: string = i18n.System.getSystemLanguage();  // systemLanguage indicates the current system language.
+   let systemLanguage = i18n.System.getSystemLanguage();  // systemLanguage is the current system language.
 
    // Obtain the system region.
-   let systemRegion: string = i18n.System.getSystemRegion();  // systemRegion indicates the current system region.
+   let systemRegion = i18n.System.getSystemRegion();  // systemRegion is the current system region.
 
    // Obtain the system locale.
    let systemLocale: Intl.Locale = i18n.System.getSystemLocaleInstance(); // systemLocale indicates the current system locale.
@@ -41,14 +53,14 @@ For details about how to use related APIs, see [System](../reference/apis-locali
    // Create a subscriber.
    commonEventManager.createSubscriber(subscribeInfo)
      .then((commonEventSubscriber: commonEventManager.CommonEventSubscriber) => {
-       console.info("CreateSubscriber");
+       console.info('CreateSubscriber');
        subscriber = commonEventSubscriber;
        commonEventManager.subscribe(subscriber, (err, data) => {
          if (err) {
            console.error(`Failed to subscribe common event. error code: ${err.code}, message: ${err.message}.`);
            return;
          }
-         console.info("The subscribed event has occurred."); // The system language, region, or locale has changed.
+         console.info('The subscribed event has occurred.'); // Executed when the system language, system region, or system locale changes.
        })
      })
      .catch((err: BusinessError) => {
@@ -57,11 +69,10 @@ For details about how to use related APIs, see [System](../reference/apis-locali
    ```
 
 <!--Del-->
-2. Set the system language and region.
-   ```ts
-   import { i18n } from '@kit.LocalizationKit';
-   import { BusinessError } from '@kit.BasicServicesKit';
 
+- Set the system language and system region.
+
+   ``` TypeScript
    // Set the current system language to zh-Hans.
    try {
      i18n.System.setSystemLanguage('zh-Hans');
@@ -78,4 +89,5 @@ For details about how to use related APIs, see [System](../reference/apis-locali
      console.error(`call System.setSystemRegion failed, error code: ${err.code}, message: ${err.message}.`);
    }
    ```
+
 <!--DelEnd-->

@@ -1,10 +1,12 @@
 # Photo Capture Practices (ArkTS)
+
 <!--Kit: Camera Kit-->
 <!--Subsystem: Multimedia-->
 <!--Owner: @qano-->
 <!--Designer: @leo_ysl-->
 <!--Tester: @xchaosioda-->
 <!--Adviser: @w_Machine_cc-->
+<!-- md-trans-meta sourceCommit=425e79ed59a841b19860caacc0b050f68405d43e translatedAt=2026-08-10T09:17:26.680Z pushedAt=2026-08-10T12:36:52.722Z -->
 
 Before developing a camera application, you must [request required permissions](camera-preparation.md).
 
@@ -25,6 +27,7 @@ For details about how to obtain the context, see [Obtaining the Context of UIAbi
 To view the saved images and videos in Gallery, you must save them to the media library. For details, see [Saving Media Assets](../medialibrary/photoAccessHelper-savebutton.md).
 
 Specifically, when [photoOutput.on('photoAvailable')](../../reference/apis-camera-kit/arkts-apis-camera-PhotoOutput.md#onphotoavailable11) is called and a buffer is obtained, the buffer must be stored in the security component to the media library.
+
 ```ts
 import { camera } from '@kit.CameraKit';
 import { image } from '@kit.ImageKit';
@@ -42,9 +45,9 @@ const resources: ShootingResources = {};
 function setPhotoOutputCb(photoOutput: camera.PhotoOutput): void {
   if (!photoOutput) {
     console.error('photoOutput is null');
-    return;
+    return;surfaceId 
   }
-  // After the callback is set, call capture() of photoOutput to transfer the photo buffer back to the callback.
+  // After the callback is set, calling the capture method of photoOutput returns the photo buffer to the callback.
   photoOutput?.on('photoAvailable', (err: BusinessError, photo: camera.Photo): void => {
     console.info('getPhoto start');
     console.error(`err: ${err}`);
@@ -158,7 +161,7 @@ async function cameraShootingCase(context: Context, surfaceId: string): Promise<
       return;
     }
 
-    // Create a preview output stream. For details about the surfaceId parameter, see the XComponent. The preview stream uses the surface provided by the XComponent.
+    // Create a preview output stream. The surfaceId parameter is provided by the XComponent component described above. The preview stream uses the surface provided by the XComponent component.
     resources.previewOutput = cameraManager.createPreviewOutput(previewProfilesArray[0], surfaceId);
     if (!resources.previewOutput) {
       console.error('previewOutput is null');
@@ -182,7 +185,7 @@ async function cameraShootingCase(context: Context, surfaceId: string): Promise<
       return;
     }
 
-    // Call the preceding callback to save the image.
+    // Call the callback function above to save the image.
     setPhotoOutputCb(resources.photoOutput);
 
     // Create a session.

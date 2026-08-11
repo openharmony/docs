@@ -15,7 +15,7 @@
 
 **错误信息**
 
-Font does not exist.
+The font does not exist.
 
 **错误描述**
 
@@ -33,7 +33,7 @@ Font does not exist.
 
 **错误信息**
 
-Font is not supported.
+The font is not supported.
 
 **错误描述**
 
@@ -52,7 +52,7 @@ Font is not supported.
 
 **错误信息**
 
-Font file copy failed.
+Failed to copy the font file.
 
 **错误描述**
 
@@ -70,7 +70,7 @@ Font file copy failed.
 
 **错误信息**
 
-Font file installed.
+The font file is installed.
 
 **错误描述**
 
@@ -88,7 +88,7 @@ Font file installed.
 
 **错误信息**
 
-Exceeded maximum number of installed files.
+Exceeded the maximum number of installed files.
 
 **错误描述**
 
@@ -106,7 +106,7 @@ Exceeded maximum number of installed files.
 
 **错误信息**
 
-Other error.
+The system ability works abnormally.
 
 **错误描述**
 
@@ -124,7 +124,7 @@ Other error.
 
 **错误信息**
 
-Font file does not exist.
+The font file does not exist.
 
 **错误描述**
 
@@ -142,7 +142,7 @@ Font file does not exist.
 
 **错误信息**
 
-Font file delete error.
+Failed to delete the font file.
 
 **错误描述**
 
@@ -160,7 +160,7 @@ Font file delete error.
 
 **错误信息**
 
-Other error.
+The system ability works abnormally.
 
 **错误描述**
 
@@ -178,7 +178,7 @@ Other error.
 
 **错误信息**
 
-System error.
+Call failed due to system error.
 
 **错误描述**
 
@@ -186,7 +186,7 @@ System error.
 
 **可能原因**
 
-在拉起数据迁移任务时，系统出现异常。
+在启动数据迁移任务时，系统出现异常。
  
 **处理步骤**
 
@@ -196,11 +196,11 @@ System error.
 
 **错误信息**
 
-DataMigrationing.
+Data migration is in progress.
 
 **错误描述**
 
-数据迁移任务正在执行中，不可重复拉起。
+数据迁移任务正在执行中，不可重复启动。
 
 **可能原因**
 
@@ -208,4 +208,4 @@ DataMigrationing.
  
 **处理步骤**
 
-不可重复拉起迁移任务，请等待当前任务执行完毕。
+不可重复启动迁移任务，请等待当前任务执行完毕。

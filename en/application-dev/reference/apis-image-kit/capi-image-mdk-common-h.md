@@ -2,7 +2,7 @@
 <!--Kit: Image Kit-->
 <!--Subsystem: Multimedia-->
 <!--Owner: @aulight02-->
-<!--Designer: @liyang_bryan-->
+<!--Designer: @XiaoYao555-->
 <!--Tester: @xchaosioda-->
 <!--Adviser: @w_Machine_cc-->
 
@@ -143,8 +143,8 @@ Enumerates the used API return values.
 | IMAGE_RESULT_CREATE_SURFACE_FAILED = IMAGE_RESULT_BASE + 156 | Failed to create the surface.|
 | IMAGE_RESULT_SURFACE_GET_PARAMETER_FAILED = IMAGE_RESULT_BASE + 157 | Failed to obtain parameters from the surface.|
 | IMAGE_RESULT_GET_SURFACE_FAILED = IMAGE_RESULT_BASE + 158 | Failed to obtain the surface.| 
-| IMAGE_RESULT_SURFACE_ACQUIRE_BUFFER_FAILED = IMAGE_RESULT_BASE + 159 | Failed to allocate the memory.|
-| IMAGE_RESULT_SURFACE_REQUEST_BUFFER_FAILED = IMAGE_RESULT_BASE + 160 | Failed to allocate the memory.|
+| IMAGE_RESULT_SURFACE_ACQUIRE_BUFFER_FAILED = IMAGE_RESULT_BASE + 159 | Failed to allocate memory for the consumer.|
+| IMAGE_RESULT_SURFACE_REQUEST_BUFFER_FAILED = IMAGE_RESULT_BASE + 160 | Failed to allocate memory for the producer.|
 | IMAGE_RESULT_REGISTER_LISTENER_FAILED = IMAGE_RESULT_BASE + 161 | Failed to register the listener.|
 | IMAGE_RESULT_REGISTER_BUFFER_FAILED = IMAGE_RESULT_BASE + 162 | Failed to register the buffer.|
 | IMAGE_RESULT_FREAD_FAILED = IMAGE_RESULT_BASE + 163 | Failed to read the file.|

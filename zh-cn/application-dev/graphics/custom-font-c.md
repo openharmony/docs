@@ -25,10 +25,10 @@
 | 接口名 | 描述 | 
 | -------- | -------- |
 | OH_Drawing_CreateSharedFontCollection(void) | 创建可共享的字体集对象OH_Drawing_FontCollection。 | 
-| OH_Drawing_RegisterFont(OH_Drawing_FontCollection\* , const char\* fontFamily, const char\* familySrc ) | 用于在字体管理器中注册自定义字体，支持的字体文件格式包含：ttf、otf。 | 
+| OH_Drawing_RegisterFont(OH_Drawing_FontCollection\* fontCollection, const char\* fontFamily, const char\* familySrc) | 用于在字体管理器中注册自定义字体，支持的字体文件格式包含：ttf、otf。 | 
 | OH_Drawing_CreateTextStyle(void) | 创建指向OH_Drawing_TextStyle对象的指针，用于设置文本样式。 | 
-| OH_Drawing_SetTextStyleFontFamilies(OH_Drawing_TextStyle \*, int, const char \*fontFamilies[]) | 设置字体类型。 | 
-| OH_Drawing_UnregisterFont(OH_Drawing_FontCollection\* , const char\* fontFamily) | 通过字体家族名称取消注册自定义字体。 | 
+| OH_Drawing_SetTextStyleFontFamilies(OH_Drawing_TextStyle\* style, int, const char \*fontFamilies[]) | 设置指定文本样式的字体家族类型。 | 
+| OH_Drawing_UnregisterFont(OH_Drawing_FontCollection\* fontCollection, const char\* fontFamily) | 通过字体家族名称取消注册自定义字体。 | 
 
 ## 开发步骤
 1. 在工程的`src/main/cpp/CMakeLists.txt`文件中添加以下lib。

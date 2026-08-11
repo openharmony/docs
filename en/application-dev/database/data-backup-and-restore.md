@@ -1,10 +1,12 @@
 # Database Backup and Restore (ArkTS)
+
 <!--Kit: ArkData-->
 <!--Subsystem: DistributedDataManager-->
 <!--Owner: @baijidong-->
 <!--Designer: @widecode; @htt1997; @dboy190-->
 <!--Tester: @yippo; @logic42-->
 <!--Adviser: @ge-yafang-->
+<!-- md-trans-meta sourceCommit=b370e209c091d2372f3f4630d52668e908547bd5 translatedAt=2026-07-27T08:15:22.136Z pushedAt=2026-07-27T08:32:14.454Z -->
 
 ## When to Use
 
@@ -45,8 +47,9 @@ You can use **backup()** to back up a KV store, use **restore()** to restore a K
    export class KvInterface {
    }
    ```
+
    <!-- @[kv_store1](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkData/KvStore/KvStoreSamples/entry/src/main/ets/pages/KvStoreInterface.ets) -->
-   
+
    ``` TypeScript
    public CreateKvManager = (() => {
      Logger.info('CreateKvManager start');
@@ -67,8 +70,9 @@ You can use **backup()** to back up a KV store, use **restore()** to restore a K
      }
    })
    ```
+
    <!-- @[kv_store3](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkData/KvStore/KvStoreSamples/entry/src/main/ets/pages/KvStoreInterface.ets) -->
-   
+
    ``` TypeScript
    public GetKvStore = (() => {
      Logger.info('GetKvStore start');
@@ -128,7 +132,7 @@ You can use **backup()** to back up a KV store, use **restore()** to restore a K
 2. Call **put()** to insert data to the KV store.
 
    <!-- @[kv_store4](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkData/KvStore/KvStoreSamples/entry/src/main/ets/pages/KvStoreInterface.ets) -->
-   
+
    ``` TypeScript
    public Put = (() => {
      Logger.info('Put start');
@@ -157,7 +161,7 @@ You can use **backup()** to back up a KV store, use **restore()** to restore a K
 3. Call **backup()** to back up the KV store.
 
    <!-- @[kv_store7](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkData/KvStore/KvStoreSamples/entry/src/main/ets/pages/KvStoreInterface.ets) -->
-   
+
    ``` TypeScript
    public Backup = (() => {
      Logger.info('Backup start');
@@ -184,7 +188,7 @@ You can use **backup()** to back up a KV store, use **restore()** to restore a K
 4. Call **delete()** to delete data to simulate unexpected deletion or data tampering.
 
    <!-- @[kv_store6](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkData/KvStore/KvStoreSamples/entry/src/main/ets/pages/KvStoreInterface.ets) -->
-   
+
    ``` TypeScript
    public Delete = (() => {
      Logger.info('DeleteData start');
@@ -211,7 +215,7 @@ You can use **backup()** to back up a KV store, use **restore()** to restore a K
 5. Call **restore()** to restore the KV store.
 
    <!-- @[kv_store8](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkData/KvStore/KvStoreSamples/entry/src/main/ets/pages/KvStoreInterface.ets) -->
-   
+
    ``` TypeScript
    public Restore = (() => {
      Logger.info('Restore start');
@@ -238,7 +242,7 @@ You can use **backup()** to back up a KV store, use **restore()** to restore a K
 6. Call **deleteBackup()** to delete the backup file to release storage space.
 
    <!-- @[kv_store9](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkData/KvStore/KvStoreSamples/entry/src/main/ets/pages/KvStoreInterface.ets) -->
-   
+
    ``` TypeScript
    public DeleteBackup = (() => {
      Logger.info('DeleteBackup start');
@@ -265,7 +269,7 @@ You can use **backup()** to back up a KV store, use **restore()** to restore a K
 
 ## Backing Up an RDB Store
 
-A database backup can be used to quickly restore an RDB store in abnormal state.
+During database operations or storage processes, unexpected database exceptions may occur for various reasons. You can use the backup capability of the RDB store as needed to reliably and efficiently restore data and ensure normal use of service data in the event of a database exception.
 
 Two backup modes are available: manual backup and automatic backup. Automatic backup is available only for system applications.
 
@@ -283,8 +287,6 @@ import { hilog } from '@kit.PerformanceAnalysisKit'
 import { UIContext } from '@kit.ArkUI';
 import { common } from '@kit.AbilityKit';
 ```
-
-
 
 <!-- @[backupManually](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkData/RelationalStore/NativeDataEncryption/entry/src/main/ets/pages/backuprestore/BackupAndRestore.ets) -->
 
@@ -390,9 +392,6 @@ try {
 }
 ```
 
-
-
-
 ## Restoring RDB Store Data
 
 If an RDB store is abnormal, you can restore it by using the database backup.
@@ -408,7 +407,7 @@ The following example contains only the code snippet for the restore process. Th
 1. An error code is thrown to indicate a database exception.
 
     <!-- @[databaseExceptionErrorCodeThrown](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkData/RelationalStore/NativeDataEncryption/entry/src/main/ets/pages/backuprestore/BackupAndRestore.ets) -->
-    
+
     ``` TypeScript
     let predicates = new relationalStore.RdbPredicates('EMPLOYEE');
     if (store != undefined) {
@@ -439,12 +438,10 @@ The following example contains only the code snippet for the restore process. Th
     }
     ```
 
-
-
 2. Close all opened result sets.
 
     <!-- @[closeAllOpenResultSets](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkData/RelationalStore/NativeDataEncryption/entry/src/main/ets/pages/backuprestore/BackupAndRestore.ets) -->
-    
+
     ``` TypeScript
     let resultSets: relationalStore.ResultSet[] = []
     // Call resultSet.close() to close all opened result sets.
@@ -459,13 +456,10 @@ The following example contains only the code snippet for the restore process. Th
     }
     ```
 
-
-
-
 3. Call **restore()** to restore data.
 
-    <!-- @[invokeTheRestoreInterfaceToRestoreData](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkData/RelationalStore/NativeDataEncryption/entry/src/main/ets/pages/backuprestore/BackupAndRestore.ets) -->
-    
+    <!-- @[invokeTheRestoreInterfaceToRestoreData](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkData/RelationalStore/NativeDataEncryption/entry/src/main/ets/pages/backuprestore/BackupAndRestore.ets) -->  
+
     ``` TypeScript
     let store: relationalStore.RdbStore | undefined = undefined;
     /* context indicates the application's context information, which is obtained by the caller. The following is for demonstration purposes only. */
@@ -483,7 +477,7 @@ The following example contains only the code snippet for the restore process. Th
       let backupFilePath = context.databaseDir + '/rdb/Backup.db';
       const backupExist: boolean = await fileIo.access(backupFilePath);
       if (!backupExist) {
-        hilog.info(DOMAIN, 'BackupAndRestore', 'Backup is not exist.');
+        hilog.info(DOMAIN, 'BackupAndRestore', 'Backup does not exist.');
         // Open the rebuilt RDB store and create tables.
         // Generate data.
         return;

@@ -1,12 +1,12 @@
 # Using an EL5 Database (ArkTS)
+
 <!--Kit: ArkData-->
 <!--Subsystem: DistributedDataManager-->
 <!--Owner: @baijidong-->
-<!--Designer: @widecode; @htt1997; @dboy190-->
+<!--Designer: @htt1997; @ding_dong_dong-->
 <!--Tester: @yippo; @logic42-->
 <!--Adviser: @ge-yafang-->
-<!-- md-trans-meta sourceCommit=deff468b8adbfa4199da5cbe7b6cbc33f2bddb1e translatedAt=2026-06-24T07:37:54.543Z pushedAt=2026-06-25T08:31:06.841Z -->
-
+<!-- md-trans-meta sourceCommit=1f3f0101f8abac0dc433be1f46fe46e4a51e68e7 translatedAt=2026-07-27T08:16:01.100Z pushedAt=2026-07-27T09:43:31.873Z -->
 
 ## When to Use
 
@@ -43,25 +43,28 @@ To access the database in the **el5/** directory, the application must have the 
 
 ## Using an EL5 KV Store
 
-The following describes how to use the [Mover](#mover), [Store](#store), [SecretKeyObserver](#secretkeyobserver), and [ECStoreManager](#ecstoremanager) classes to implement the use of a KV store in the **el5/** directory. In the following example, [EntryAbility](#entryability) and [index key event](#index-key-event) are used to present how to use these classes.
+This section describes how to use an EL5 encrypted KV store, provides the specific implementations of the [Mover](#mover), [Store](#store), [SecretKeyObserver](#secretkeyobserver), and [ECStoreManager](#ecstoremanager) classes, and demonstrates how to use these classes in [EntryAbility](#entryability) and [index key event](#index-key-event).
 
 ### Mover
 
 Use **Mover** to move data from an EL2 database to an EL5 database after the screen is unlocked.
 
-<!-- @[Mover](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkData/KvStore/ECStoreSamples/entry/src/main/ets/entryability/Mover.ts) -->
+<!-- @[Mover](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkData/KvStore/ECStoreSamples/entry/src/main/ets/entryability/Mover.ts) --> 
 
 ``` TypeScript
 import { distributedKVStore } from '@kit.ArkData';
-// Logger implements the print feature after Hilog is encapsulated.
 import Logger from '../common/Logger';
 
 export class Mover {
   async move(eStore: distributedKVStore.SingleKVStore, cStore: distributedKVStore.SingleKVStore): Promise<void> {
     if (eStore != null && cStore != null) {
-      let entries: distributedKVStore.Entry[] = await cStore.getEntries('key_test_string');
-      await eStore.putBatch(entries);
-      Logger.info(`ECDB_Encry move success`);
+      try {
+        let entries: distributedKVStore.Entry[] = await cStore.getEntries('key_test_string');
+        await eStore.putBatch(entries);
+        Logger.info(`ECDB_Encry move success`);
+      } catch (e) {
+        Logger.info(`ECDB_Encry move failed,code is ${e.code},message is ${e.message}`);
+      }
     }
   }
 }
@@ -71,12 +74,11 @@ export class Mover {
 
 Use the APIs provided by the **Store** class to obtain a database instance, add, delete, and update data, and obtain the data count in the database.
 
-<!-- @[Store](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkData/KvStore/ECStoreSamples/entry/src/main/ets/entryability/Store.ts) -->
+<!-- @[Store](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkData/KvStore/ECStoreSamples/entry/src/main/ets/entryability/Store.ts) --> 
 
 ``` TypeScript
 import { distributedKVStore } from '@kit.ArkData';
 import { BusinessError } from '@kit.BasicServicesKit';
-// Logger implements the print feature after Hilog is encapsulated.
 import Logger from '../common/Logger';
 
 let kvManager: distributedKVStore.KVManager;
@@ -242,7 +244,7 @@ export let lockObserve = new SecretKeyObserver();
 
 Use the APIs provided by the **ECStoreManager** class to manage the EL2 and EL5 databases. You can configure database information and migration function information, provide database handles for applications based on the key status, close EL5 databases, and destroy EL2 databases after data migration.
 
-<!-- @[ECStoreManager](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkData/KvStore/ECStoreSamples/entry/src/main/ets/entryability/ECStoreManager.ts) -->
+<!-- @[ECStoreManager](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkData/KvStore/ECStoreSamples/entry/src/main/ets/entryability/ECStoreManager.ts) --> 
 
 ``` TypeScript
 import { distributedKVStore } from '@kit.ArkData';
@@ -250,7 +252,6 @@ import { Mover } from './Mover';
 import { BusinessError } from '@kit.BasicServicesKit';
 import { StoreInfo, Store } from './Store';
 import { SecretStatus } from './SecretKeyObserver';
-// Logger implements the print feature after Hilog is encapsulated.
 import Logger from '../common/Logger';
 
 let store = new Store();
@@ -340,7 +341,7 @@ export class ECStoreManager {
 
 Register a listener for the **COMMON_EVENT_SCREEN_LOCK_FILE_ACCESS_STATE_CHANGED** event when the simulated application starts, and configure the database information and key status information.
 
-<!-- @[EntryAbility](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkData/KvStore/ECStoreSamples/entry/src/main/ets/entryability/EntryAbility.ets) -->
+<!-- @[EntryAbility](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkData/KvStore/ECStoreSamples/entry/src/main/ets/entryability/EntryAbility.ets) --> 
 
 ``` TypeScript
 import { AbilityConstant, application, contextConstant, UIAbility, Want } from '@kit.AbilityKit';
@@ -353,7 +354,6 @@ import { Mover } from './Mover';
 import { SecretKeyObserver } from './SecretKeyObserver';
 import { commonEventManager } from '@kit.BasicServicesKit';
 import { BusinessError } from '@kit.BasicServicesKit';
-// Logger implements the print feature after Hilog is encapsulated.
 import Logger from '../common/Logger';
 
 export let storeManager = new ECStoreManager();
@@ -389,57 +389,59 @@ let eInfo: StoreInfo | null = null;
 export default class EntryAbility extends UIAbility {
   async onCreate(want: Want, launchParam: AbilityConstant.LaunchParam): Promise<void> {
     hilog.info(0x0000, 'testTag', '%{public}s', 'Ability onCreate');
-    let cContext = this.context;
-    cInfo = {
-      'kvManagerConfig': {
-        context: cContext,
-        bundleName: 'com.example.ecstoresamples'
-      },
-      'storeId': 'cstore',
-      'option': {
-        createIfMissing: true,
-        encrypt: false,
-        backup: false,
-        autoSync: false,
-        // If kvStoreType is left empty, a device KV store is created by default.
-        kvStoreType: distributedKVStore.KVStoreType.SINGLE_VERSION,
-        // The value distributedKVStore.KVStoreType.DEVICE_COLLABORATION indicates a device KV store.
-        securityLevel: distributedKVStore.SecurityLevel.S3
-      }
-    }
-    let eContext = await application.createModuleContext(this.context,'entry');
-    eContext.area = contextConstant.AreaMode.EL5;
-    eInfo = {
-      'kvManagerConfig': {
-        context: eContext,
-        bundleName: 'com.example.ecstoresamples'
-      },
-      'storeId': 'estore',
-      'option': {
-        createIfMissing: true,
-        encrypt: false,
-        backup: false,
-        autoSync: false,
-        // If kvStoreType is left empty, a device KV store is created by default.
-        kvStoreType: distributedKVStore.KVStoreType.SINGLE_VERSION,
-        // The value distributedKVStore.KVStoreType.DEVICE_COLLABORATION indicates a device KV store.
-        securityLevel: distributedKVStore.SecurityLevel.S3
-      }
-    }
-    Logger.info(`ECDB_Encry store area : estore:${eContext.area},cstore${cContext.area}`);
-    // Listen for the COMMON_EVENT_SCREEN_LOCK_FILE_ACCESS_STATE_CHANGED event. code == 1 indicates the screen is unlocked, and code==0 indicates the screen is locked.
     try {
+      let cContext = this.context;
+      cInfo = {
+        'kvManagerConfig': {
+          context: cContext,
+          bundleName: 'com.example.ecstoresamples'
+        },
+        'storeId': 'cstore',
+        'option': {
+          createIfMissing: true,
+          encrypt: false,
+          backup: false,
+          autoSync: false,
+          // When kvStoreType is not specified, a multi-device collaborative database is created by default.
+          kvStoreType: distributedKVStore.KVStoreType.SINGLE_VERSION,
+          // Multi-device collaborative database: kvStoreType: distributedKVStore.KVStoreType.DEVICE_COLLABORATION
+          securityLevel: distributedKVStore.SecurityLevel.S3
+        }
+      }
+      let eContext = await application.createModuleContext(this.context,'entry');
+      eContext.area = contextConstant.AreaMode.EL5;
+      eInfo = {
+        'kvManagerConfig': {
+          context: eContext,
+          bundleName: 'com.example.ecstoresamples'
+        },
+        'storeId': 'estore',
+        'option': {
+          createIfMissing: true,
+          encrypt: false,
+          backup: false,
+          autoSync: false,
+          // When kvStoreType is not specified, a multi-device collaborative database is created by default.
+          kvStoreType: distributedKVStore.KVStoreType.SINGLE_VERSION,
+          // Multi-device collaborative database: kvStoreType: distributedKVStore.KVStoreType.DEVICE_COLLABORATION
+          securityLevel: distributedKVStore.SecurityLevel.S3
+        }
+      }
+      Logger.info(`ECDB_Encry store area : estore:${eContext.area},cstore${cContext.area}`);
+      // Listen for the COMMON_EVENT_SCREEN_LOCK_FILE_ACCESS_STATE_CHANGED event. code == 1 indicates the unlocked state, and code == 0 indicates the locked state.
+
       commonEventManager.createSubscriber({
         events: [ 'COMMON_EVENT_SCREEN_LOCK_FILE_ACCESS_STATE_CHANGED' ]
       }, createCB);
       Logger.info(`ECDB_Encry success subscribe`);
+
+      storeManager.config(cInfo, eInfo);
+      storeManager.configDataMover(mover);
+      e_secretKeyObserver.initialize(storeManager);
     } catch (error) {
       const err: BusinessError = error as BusinessError;
       Logger.error(`createSubscriber failed, code is ${err.code}, message is ${err.message}`);
     }
-    storeManager.config(cInfo, eInfo);
-    storeManager.configDataMover(mover);
-    e_secretKeyObserver.initialize(storeManager);
   }
 
   onDestroy(): void {
@@ -554,7 +556,7 @@ struct Index {
 
 ## Using an EL5 RDB Store
 
-The following describes how to use the [Mover](#mover-1), [Store](#store-1), [SecretKeyObserver](#secretkeyobserver-1), and [ECStoreManager](#ecstoremanager-1) classes to implement the use of an RDB store in the **el5/** directory. In the following example, [EntryAbility](#entryability-1) and [index key event](#index-key-event-1) are used to present how to use these classes.
+This section describes how to use an EL5 encrypted RDB store, provides the specific implementations of the [Mover](#mover-1), [Store](#store-1), [SecretKeyObserver](#secretkeyobserver-1), and [ECStoreManager](#ecstoremanager-1) classes, and demonstrates how to use these classes in [EntryAbility](#entryability-1) and [index key event](#index-key-event-1).
 
 ### Mover
 
@@ -685,7 +687,6 @@ export class Store {
 }
 ```
 
-
 ### SecretKeyObserver
 
 Use the APIs provided by the **SecretKeyObserver** class to obtain the key status. After the key is destroyed, the EL5 database will be closed.
@@ -732,7 +733,6 @@ export class SecretKeyObserver {
 
 export let lockObserve = new SecretKeyObserver();
 ```
-
 
 ### ECStoreManager
 

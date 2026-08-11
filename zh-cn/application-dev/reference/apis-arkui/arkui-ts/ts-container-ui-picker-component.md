@@ -372,17 +372,21 @@ struct UIPickerComponentEventsExample {
   private dataArray: string[] = ['待办', '进行中', '已完成'];
   @State onChangeDesc: string = '';
   @State onScrollStopDesc: string = '';
+  @State index: number = 0;
 
   build() {
     Column() {
       Row() {
-        UIPickerComponent() {
+        UIPickerComponent({
+          selectedIndex: this.index
+        }) {
           ForEach(this.dataArray, (item: string) => {
             Text(item)
           })
         }
         // 配置onChange事件回调
         .onChange((selectedIndex: number) => {
+          this.index = selectedIndex;
           this.onChangeDesc = 'on change: ' + selectedIndex;
         })
         // 配置onScrollStop事件回调
@@ -1517,7 +1521,9 @@ struct UIPickerComponentItemHeightExample {
       Text('当前itemHeight：' + (this.pickerItemHeight ? this.pickerItemHeight.value + 'vp' : '默认值(40vp)'))
         .fontSize(16)
 
-      UIPickerComponent() {
+      UIPickerComponent({
+        selectedIndex: this.selectedIndex
+      }) {
         ForEach(this.dataArray, (item: string) => {
           Text(item)
         })
@@ -1564,6 +1570,7 @@ struct UIPickerComponentItemHeightExample {
 struct UIPickerComponentDisplayedCountExample {
   private dataArray: string[] = [];
   @State visibleCount: number = 7;
+  @State selectedIndex: number = 0;
 
   aboutToAppear(): void {
     for (let i = 1; i <= 12; i++) {
@@ -1576,11 +1583,16 @@ struct UIPickerComponentDisplayedCountExample {
       Text('displayedItemCount: ' + this.visibleCount)
         .fontSize(16)
 
-      UIPickerComponent() {
+      UIPickerComponent({
+        selectedIndex: this.selectedIndex
+      }) {
         ForEach(this.dataArray, (item: string) => {
           Text(item)
         })
       }
+      .onChange((selectedIndex: number) => {
+        this.selectedIndex = selectedIndex
+      })
       .width('70%')
       .displayedItemCount(this.visibleCount)
 

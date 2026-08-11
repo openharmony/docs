@@ -6,7 +6,7 @@
 <!--Tester: @fredyuan0912-->
 <!--Adviser: @Brilliantry_Rui-->
 
-在开启无障碍模式后，Touch事件会转换为无障碍悬浮事件。该模块提供onAccessibilityHover和onAccessibilityHoverTransparent接口，用于在无障碍模式下监听和处理单指触摸产生的悬浮事件，适用于需要为视障用户提供触摸交互无障碍支持的组件开发场景，帮助开发者捕获无法被无障碍聚焦的组件的Touch事件，提升应用的无障碍访问能力。
+本模块提供无障碍悬浮事件能力。在开启无障碍模式后，Touch事件会转换为无障碍悬浮事件，开发者可通过监听该事件响应无障碍模式下的单指触摸交互，适用于需要为障碍用户提升应用可访问性的场景。该模块提供onAccessibilityHover和onAccessibilityHoverTransparent接口，用于在无障碍模式下监听和处理单指触摸产生的悬浮事件。适用于需要为视障用户提供触摸交互无障碍支持的组件开发场景。开发者可借助该模块捕获无法被无障碍聚焦的组件的Touch事件，提升应用的无障碍访问能力。
 
 >  **说明：**
 >
@@ -120,7 +120,7 @@ type AccessibilityTransparentCallback = (event: TouchEvent) => void
 
 | 参数名              | 类型                                | 必填 | 说明                                                         |
 | ------------------- | ----------------------------------- | ---- | ------------------------------------------------------------ |
-| event | [TouchEvent](ts-universal-events-touch.md#touchevent对象说明)| 是   | 原始Touch事件对象，用于获取无法被无障碍悬浮识别为可聚焦组件的触摸事件的详细信息，包括触摸点坐标、触摸类型等属性。 <br>**说明：** TouchEvent对象的触摸事件的类型[TouchType](ts-appendix-enums.md#touchtype)为四种无障碍悬浮事件类型中的一种，四种无障碍悬浮事件类型为HOVER_ENTER、HOVER_MOVE、HOVER_EXIT和HOVER_CANCEL。 |
+| event | [TouchEvent](ts-universal-events-touch.md#touchevent对象说明)| 是   | 原始Touch事件对象，用于获取无法被无障碍悬浮识别为可聚焦组件的触摸事件的详细信息，包括触摸点坐标、触摸类型等属性。 <br>**说明：** TouchEvent对象的触摸事件类型[TouchType](ts-appendix-enums.md#touchtype)为四种无障碍悬浮事件类型中的一种，分别为HOVER_ENTER、HOVER_MOVE、HOVER_EXIT和HOVER_CANCEL。 |
 
 ## 示例
 

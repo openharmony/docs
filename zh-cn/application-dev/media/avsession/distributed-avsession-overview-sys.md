@@ -1,4 +1,4 @@
-# 分布式媒体会话概述(仅对系统应用开放)
+# 分布式媒体会话概述（仅对系统应用开放）
 <!--Kit: AVSession Kit-->
 <!--Subsystem: Multimedia-->
 <!--Owner: @ccfriend; @devil_red-->
@@ -53,7 +53,7 @@ OpenHarmony提供的媒体会话允许用户把本地播放的媒体投播到远
 
 媒体会话服务在实现分布式媒体会话进行跨设备投播时，内部的实现逻辑可以描述为：
 
-- 调用[分布式音频播放(仅对系统应用开放)](../audio/distributed-audio-playback-sys.md)能力的相关接口，将音频流投播到远端设备。
+- 调用[分布式音频播放（仅对系统应用开放）](../audio/distributed-audio-playback-sys.md)能力的相关接口，将音频流投播到远端设备。
 
 - 通过分布式能力将媒体会话元数据投播到了远端设备，供远端设备获取并显示。
 

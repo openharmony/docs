@@ -6,21 +6,23 @@
 <!--Tester: @lxl007-->
 <!--Adviser: @Brilliantry_Rui-->
 
-@AnimatableExtend装饰器用于自定义可动画的属性方法，该装饰器内定义的函数在动画过程中会被逐帧调用，直到动画结束。该装饰器的常见用途有：
+@AnimatableExtend装饰器用于自定义可动画的属性方法，该装饰器内定义的函数需要配合[animation](ts-animatorproperty.md#animation)属性使用，且必须在animation属性前调用，改变该属性值时才能使animation属性的动画效果生效。在动画过程中该函数会被逐帧调用，直到动画结束。该装饰器的常见用途有：
 
-1. 使不可动画属性变为可动画属性，自定义数据运算规则使得属性能进行插值运算得到中间结果，再由动画驱动属性从起点值逐渐过渡到终点值。
+1. 使不可动画属性变为可动画属性，自定义数据运算规则使得属性能进行插值运算（即在动画起始值与终止值之间，按一定规则计算每一帧的中间值），再由动画驱动属性从起点值逐渐过渡到终点值。
 
 2. 使属性逐帧变化，实现逐帧布局的效果。
 
-- 可动画属性：如果一个属性方法在animation属性前调用，改变这个属性的值可以使animation属性的动画效果生效，属性有动画过渡效果，这个属性称为可动画属性。比如height、width、backgroundColor、translate属性，和Text组件的fontSize属性等。
+- 可动画属性：属性方法在animation属性前调用时，改变该属性的值可使animation属性的动画效果生效，产生动画过渡效果。例如height、width、backgroundColor、translate属性，以及Text组件的fontSize属性等。
 
-- 不可动画属性：如果一个属性方法在animation属性前调用，改变这个属性的值不能使animation属性的动画效果生效，属性突变无动画效果，这个属性称为不可动画属性。比如Polyline组件的points属性等。
+- 不可动画属性：属性方法在animation属性前调用时，改变该属性的值不能使animation属性的动画效果生效，属性突变无动画过渡效果。例如Polyline组件的points属性等。
 
 >  **说明：**
 >
 > - 该装饰器从API version 10开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 >
 > - 本模块接口仅可在Stage模型下使用。
+>
+> - 使用@AnimatableExtend装饰的属性方法时，该方法需在同一组件的animation属性之前调用，动画过渡效果才能生效。
 
 ## 语法
 
@@ -33,6 +35,7 @@
 - \@AnimatableExtend仅支持定义在全局，不支持在组件内部定义。
 - \@AnimatableExtend定义的函数参数类型必须为number类型或者实现 AnimatableArithmetic\<T\>接口的自定义类型。
 - \@AnimatableExtend定义的函数体内只能调用\@AnimatableExtend括号内组件的属性方法。
+- \@AnimatableExtend定义的函数必须在animation属性之前调用，才能使动画效果生效。若在animation属性之后调用或未配合animation属性使用，属性值变化时不会有动画过渡效果，而是直接突变到目标值。
 
 ## AnimatableArithmetic\<T\>
 
@@ -46,7 +49,7 @@
 
 plus(rhs: AnimatableArithmetic\<T\>): AnimatableArithmetic\<T\>
 
-定义该数据类型的加法运算规则。
+定义该数据类型的加法运算规则。需与AnimatableArithmetic\<T\>接口的其他方法一同实现，才能使自定义数据类型参与动画的插值运算。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -56,19 +59,19 @@ plus(rhs: AnimatableArithmetic\<T\>): AnimatableArithmetic\<T\>
 
 | 参数名   | 类型                                | 必填 | 说明                                    |
 | ----- | --------------------------------- | ---- | ------------------------------------- |
-| rhs | [AnimatableArithmetic\<T\>](#animatablearithmetict) | 是    | 与自身进行加法运算的另一个数据对象。                           |
+| rhs | [AnimatableArithmetic\<T\>](#animatablearithmetict) | 是    | 与自身进行加法运算的另一个数据对象，应与当前对象为相同的具体类型实例。                           |
 
 **返回值：**
 
 | 类型                                       | 说明      |
 | ---------------------------------------- | ------- |
-| [AnimatableArithmetic\<T\>](#animatablearithmetict) | 加法运算的结果。  |
+| [AnimatableArithmetic\<T\>](#animatablearithmetict) | 加法运算的结果，用于动画插值过程中计算两个数据之间的中间值。  |
 
 ### subtract
 
 subtract(rhs: AnimatableArithmetic\<T\>): AnimatableArithmetic\<T\>
 
-定义该数据类型的减法运算规则。
+定义该数据类型的减法运算规则，在动画插值运算中用于计算起始值与目标值之间的差值，差值将作为乘法运算的输入。需与AnimatableArithmetic\<T\>接口的其他方法一同实现，才能使自定义数据类型参与动画的插值运算。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -78,19 +81,19 @@ subtract(rhs: AnimatableArithmetic\<T\>): AnimatableArithmetic\<T\>
 
 | 参数名   | 类型                                | 必填 | 说明                                    |
 | ----- | --------------------------------- | ---- | ------------------------------------- |
-| rhs | [AnimatableArithmetic\<T\>](#animatablearithmetict) | 是    | 与自身进行减法运算的另一个数据对象。                           |
+| rhs | [AnimatableArithmetic\<T\>](#animatablearithmetict) | 是    | 与自身进行减法运算的另一个数据对象，应与当前对象为相同的具体类型实例。                           |
 
 **返回值：**
 
 | 类型                                       | 说明      |
 | ---------------------------------------- | ------- |
-| [AnimatableArithmetic\<T\>](#animatablearithmetict) | 减法运算的结果。  |
+| [AnimatableArithmetic\<T\>](#animatablearithmetict) | 减法运算的结果，用于动画插值过程中计算数据差值以得到中间帧数据。  |
 
 ### multiply
 
 multiply(scale: number): AnimatableArithmetic\<T\>
 
-定义该数据类型的乘法运算规则。
+定义该数据类型的乘法运算规则，在动画插值运算中用于按动画进度比例（0到1之间）对差值进行缩放，缩放后的差值将通过plus运算加到起始值上。需与AnimatableArithmetic\<T\>接口的其他方法一同实现，才能使自定义数据类型参与动画的插值运算。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -100,19 +103,19 @@ multiply(scale: number): AnimatableArithmetic\<T\>
 
 | 参数名   | 类型                                | 必填 | 说明                                    |
 | ----- | --------------------------------- | ---- | ------------------------------------- |
-| scale | number | 是    | 乘法运算的系数。                           |
+| scale | number | 是    | 乘法运算的系数，取值范围为[0, +∞)，动画插值时典型取值范围为[0, 1]。                           |
 
 **返回值：**
 
 | 类型                                       | 说明      |
 | ---------------------------------------- | ------- |
-| [AnimatableArithmetic\<T\>](#animatablearithmetict) | 乘法运算的结果。  |
+| [AnimatableArithmetic\<T\>](#animatablearithmetict) | 乘法运算的结果，用于动画插值过程中按系数缩放数据以计算中间帧数据。  |
 
 ### equals
 
 equals(rhs: AnimatableArithmetic\<T\>): boolean
 
-定义该数据类型的相等判断规则。
+定义该数据类型的相等判断规则，在动画过程中用于识别数据是否发生改变，若当前值与目标值相等则不再触发动画过渡。需与AnimatableArithmetic\<T\>接口的其他方法一同实现，才能使自定义数据类型参与动画的插值运算。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -154,7 +157,7 @@ struct AnimatablePropertyExample {
         .animation({ duration: 2000, curve: Curve.Ease })
       Button("Play")
         .onClick(() => {
-          this.textWidth = this.textWidth == 80 ? 160 : 80;
+          this.textWidth = this.textWidth === 80 ? 160 : 80;
         })
     }.width("100%")
     .padding(10)
@@ -199,7 +202,7 @@ class Point {
 class PointVector extends Array<Point> implements AnimatableArithmetic<PointVector> {
   constructor(value: Array<Point>) {
     super();
-    value.forEach(p => this.push(p));
+    value.forEach(point => this.push(point));
   }
 
   plus(rhs: PointVector): PointVector {
@@ -229,7 +232,7 @@ class PointVector extends Array<Point> implements AnimatableArithmetic<PointVect
   }
 
   equals(rhs: PointVector): boolean {
-    if (this.length != rhs.length) {
+    if (this.length !== rhs.length) {
       return false;
     }
     for (let i = 0; i < this.length; i++) {
@@ -242,13 +245,14 @@ class PointVector extends Array<Point> implements AnimatableArithmetic<PointVect
 
   get(): Array<Object[]> {
     let result: Array<Object[]> = [];
-    this.forEach(p => result.push([p.x, p.y]));
+    this.forEach(point => result.push([point.x, point.y]));
     return result;
   }
 }
 
 @AnimatableExtend(Polyline)
 function animatablePoints(points: PointVector) {
+  // 将PointVector转换为Polyline的points属性所需的数组格式
   .points(points.get())
 }
 

@@ -60,7 +60,7 @@ import { insightIntent } from '@kit.AbilityKit';
 
 ## IntentResult\<T><sup>20+</sup>
 
-意图执行的返回结果，支持[泛型类型](../../quick-start/introduction-to-arkts.md#泛型类和接口)。
+意图执行的返回结果，支持[泛型类型](../../quick-start/arkts-language-guide-generics.md#泛型类)。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 

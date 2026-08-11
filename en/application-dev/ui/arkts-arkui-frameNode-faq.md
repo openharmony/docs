@@ -1,10 +1,12 @@
 # FAQs About Imperative Nodes
+
 <!--Kit: ArkUI-->
 <!--Subsystem: ArkUI-->
 <!--Owner: @wangjunman1-->
 <!--Designer: @sunbees-->
 <!--Tester: @liuli0427-->
 <!--Adviser: @Brilliantry_Rui-->
+<!-- md-trans-meta sourceCommit=82cbd61bf5a97c687ddb974e4186cc744a8f06f2 translatedAt=2026-07-29T12:42:24.980Z pushedAt=2026-07-30T01:35:40.404Z -->
 
 This topic addresses common issues related to imperative nodes.
 
@@ -15,7 +17,9 @@ This topic addresses common issues related to imperative nodes.
 A [JS crash](../dfx/jscrash-guidelines.md) occurs after [FrameNode](../reference/apis-arkui/js-apis-arkui-frameNode.md) is used in an improper way.
 
 <!--RP1-->
+
 ![](figures/jscrash_happened.png)
+
 <!--RP1End-->
 
 **Solution**
@@ -24,10 +28,10 @@ Go to the error log as prompted, view the error cause, and rectify the fault. Fo
 
 **Sample Code**
 
-This example shows how to throw a [dispose](../reference/apis-arkui/js-apis-arkui-frameNode.md#dispose12) exception in FrameNode. After the sample code is executed, a JS crash error is reported. Go to the error scenario as prompted. The error cause is that [getMeasuredSize](../reference/apis-arkui/js-apis-arkui-frameNode.md#getmeasuredsize12) cannot be called after **dispose** is called. In this example, deleting the code related to **dispose** will allow the application to run normally.
+This example shows how to throw a [dispose](../reference/apis-arkui/js-apis-arkui-frameNode.md#dispose12) exception in FrameNode. After the sample code is executed, a JS crash error is reported. Go to the error scenario as prompted as shown in the figure below. The error cause is that [getMeasuredSize](../reference/apis-arkui/js-apis-arkui-frameNode.md#getmeasuredsize12) cannot be called after **dispose** is called. In this example, deleting the code related to **dispose** will allow the application to run normally.
 
 ```ts
-import { NodeController, FrameNode, typeNode } from '@kit.ArkUI';
+import { NodeController, FrameNode } from '@kit.ArkUI';
 
 // Implement a custom UI controller by extending NodeController.
 class MyNodeController extends NodeController {
@@ -52,16 +56,19 @@ struct FrameNodeTypeTest {
   }
 }
 ```
+
 ![attributeModifier_error](figures/frameNode_error.png)
 
-## cppcrash Occurs After ArkUI_NodeHandle Created on the Native Side Calls disposeNode
+## cppcrash Occurs After Calling disposeNode on ArkUI_NodeHandle Created on the Native Side 
 
 **Problem**
 
 Before calling [disposeNode](./../reference/apis-arkui/capi-arkui-nativemodule-arkui-nativenodeapi-1.md#disposenode) on [ArkUI_NodeHandle](./../reference/apis-arkui/capi-arkui-nativemodule-arkui-node8h.md), the node-related resource objects (such as callbacks and captured references) are not cleared. As a result, there is a high probability that the program crashes after the node is detached from the tree. The crash cause is Use After Free.
 
 <!--RP2-->
+
 ![](figures/cppcrash_happened.png)
+
 <!--RP2End-->
 
 The following figure shows the typical fault log of this type of problem. The **Reason:Signal** field in the log is **SIGSEGV(SEGV_MAPERR)**, indicating that the crash address is not fixed and a wild pointer or null pointer dereference may occur. In this case, each stack frame in the crash stack is basically a system stack, such as the system functions **DetachFromMainTree** and **~FrameNode**. These system functions are mostly related to the **disposeNode** API and node destruction when the node is removed from the tree.

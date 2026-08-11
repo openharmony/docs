@@ -153,6 +153,7 @@ createGattClientDevice(deviceId: string, setting: GattSetting): GattClientDevice
 创建[GattClientDevice](#gattclientdevice)实例，表示GATT连接中的client端，可通过[GattSetting](#gattsetting)设置GATT连接参数。
 - 通过该实例可以操作client端行为，如调用[connect](#connect)向对端设备发起连接，调用[getServices](#getservices)获取对端设备支持的所有服务能力。
 - 创建该实例所需要的设备地址表示server端设备。可以通过[ble.startBLEScan](#blestartblescan)或[BleScanner](#blescanner15)的[startScan](#startscan15)接口获取server端设备地址，且需保证server端设备的BLE广播是可连接的。
+- 通过[GattSetting](#gattsetting)设置连接的传输类型transport时，若不清楚设备的传输类型[BluetoothTransport](js-apis-bluetooth-connection.md#bluetoothtransport)，默认为[TRANSPORT_LE](js-apis-bluetooth-connection.md#bluetoothtransport)，但不能设置为[TRANSPORT_UNKNOWN](js-apis-bluetooth-connection.md#bluetoothtransport)（未知的设备传输方式），否则无法成功创建[GattClientDevice](#gattclientdevice)实例。
 
 **起始版本**：26.0.0
 
@@ -2642,7 +2643,7 @@ server端订阅GATT profile协议的连接状态变化事件。使用Callback异
 
 | 参数名      | 类型                                       | 必填   | 说明                                       |
 | -------- | ---------------------------------------- | ---- | ---------------------------------------- |
-| type     | string                                   | 是    | 事件回调类型，支持的事件为'connectionStateChange'，表示GATT profile连接状态发生变化的事件。<br>当client和server端之间的连接状态发生变化时，触发该事件。<br>例如：收到连接请求或者断连请求时，可能引起连接状态生变化。 |
+| type     | string                                   | 是    | 事件回调类型，支持的事件为'connectionStateChange'，表示GATT profile连接状态发生变化的事件。<br>当client和server端之间的连接状态发生变化时，触发该事件。<br>例如：收到连接请求或者断连请求时，可能引起连接状态发生变化。 |
 | callback | Callback&lt;[BLEConnectionChangeState](#bleconnectionchangestate)&gt; | 是    | 指定订阅的回调函数，会携带连接状态。                          |
 
 **错误码**：
@@ -4632,7 +4633,7 @@ client端订阅GATT profile协议的连接状态变化事件。使用Callback异
 
 | 参数名      | 类型                                       | 必填   | 说明                                       |
 | -------- | ---------------------------------------- | ---- | ---------------------------------------- |
-| type     | string                                   | 是    | 事件回调类型，支持的事件为'BLEConnectionStateChange'，表示连接状态变化事件。<br>client和server端之间的连接状态发生变化时，触发该事件。<br>当client端调用[connect](#connect)或[disconnect](#disconnect)时，可能引起连接状态生变化。 |
+| type     | string                                   | 是    | 事件回调类型，支持的事件为'BLEConnectionStateChange'，表示连接状态变化事件。<br>client和server端之间的连接状态发生变化时，触发该事件。<br>当client端调用[connect](#connect)或[disconnect](#disconnect)时，可能引起连接状态发生变化。 |
 | callback | Callback&lt;[BLEConnectionChangeState](#bleconnectionchangestate)&gt; | 是    | 指定订阅的回调函数，会携带连接状态信息。                           |
 
 **错误码**：

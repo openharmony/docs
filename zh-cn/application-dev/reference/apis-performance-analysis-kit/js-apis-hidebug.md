@@ -240,7 +240,7 @@ getServiceDump(serviceid: number, fd: number, args: Array\<string>): void
 
 | 错误码ID | 错误信息 |
 | ------- | ----------------------------------------------------------------- |
-| 401 | the parameter check failed,Possible causes:1.the parameter type error 2.the args parameter is not string array.  |
+| 401 | The parameter check failed,Possible causes:1.The parameter type error. 2.The args parameter is not string array.  |
 | 11400101 | ServiceId invalid. The system ability does not exist.                                           |
 
 **示例**：
@@ -289,7 +289,7 @@ startJsCpuProfiling(filename: string): void
 
 | 错误码ID | 错误信息 |
 | ------- | ----------------------------------------------------------------- |
-| 401 | the parameter check failed,Parameter type error.                        |
+| 401 | The parameter check failed,Parameter type error.                        |
 
 **示例**：
 
@@ -353,7 +353,7 @@ dumpJsHeapData(filename: string): void
 
 | 错误码ID | 错误信息 |
 | ------- | ----------------------------------------------------------------- |
-| 401 | the parameter check failed, Parameter type error.                      |
+| 401 | The parameter check failed, Parameter type error.                      |
 
 **示例**：
 
@@ -583,7 +583,7 @@ trace单位流量实测方法：limitSize设置为最大值500M，调用startApp
 
 | 参数名   | 类型     | 必填 | 说明                                 |
 | -------- | ------   | ---- |------------------------------------|
-| tags     | number[] | 是   | trace范围，详情请见[tags](#hidebugtags12)。   |
+| tags     | number[] | 是   | trace范围，详情请见[tags](#tags12)。   |
 | flag     | TraceFlag| 是   | 详情请见[TraceFlag](#traceflag12)。        |
 | limitSize| number   | 是   | 开启trace文件大小限制，单位为Byte，取值范围（0, 500MB]。超出范围时返回错误码401。 |
 
@@ -599,7 +599,7 @@ trace单位流量实测方法：limitSize设置为最大值500M，调用startApp
 
 | 错误码ID | 错误信息 |
 | ------- | ----------------------------------------------------------------- |
-| 401 | Invalid argument, Possible causes:1.The limit parameter is too small 2.The parameter is not within the enumeration type 3.The parameter type error or parameter order error. |
+| 401 | Invalid argument, Possible causes:1.The limit parameter is too small. 2.The parameter is not within the enumeration type. 3.The parameter type error or parameter order error. |
 | 11400102 | Capture trace already enabled.                                         |
 | 11400103 | No write permission on the file.                                |
 | 11400104 | Abnormal trace status.                                 |
@@ -818,7 +818,7 @@ setAppResourceLimit(type: string, value: number, enableDebugLog: boolean): void
 
 | 错误码ID | 错误信息 |
 | ------- | ----------------------------------------------------------------- |
-| 401 | Invalid argument, Possible causes:1.The limit parameter is too small 2.The parameter is not in the specified type 3.The parameter type error or parameter order error.  |
+| 401 | Invalid argument, Possible causes:1.The limit parameter is too small. 2.The parameter is not in the specified type. 3.The parameter type error or parameter order error.  |
 | 11400104 | Set limit failed due to remote exception. |
 
 **示例**：
@@ -1003,7 +1003,7 @@ getVMRuntimeStat(item: string): number
 
 | 错误码ID | 错误信息                                                                                                       |
 | ------- |------------------------------------------------------------------------------------------------------------|
-| 401 | Possible causes:1. Invalid parameter, a string parameter required. 2. Invalid parameter, unknown property. |
+| 401 | Possible causes: 1. Invalid parameter, a string parameter required. 2. Invalid parameter, unknown property. |
 
 **示例**：
 
@@ -1058,7 +1058,7 @@ VM内存信息。
 | threadId           | number  | 否  | 否  | 线程号。      |
 | cpuUsage           | number  | 否  | 否  | 线程CPU使用率。 |
 
-## hidebug.tags<sup>12+</sup>
+## tags<sup>12+</sup>
 
 ### 常量
 

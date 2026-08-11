@@ -27,11 +27,11 @@
   - [播放音量管理](volume-management.md)
   - [空间音频能力查询和状态订阅](public-audio-spatialization-management.md)
   <!--Del-->
-  - [空间音频管理(仅对系统应用开放)](audio-spatialization-management-sys.md)
+  - [空间音频管理（仅对系统应用开放）](audio-spatialization-management-sys.md)
   <!--DelEnd-->
   - [音频播放流管理](audio-playback-stream-management.md)
   <!--Del-->
-  - [分布式音频播放(仅对系统应用开放)](distributed-audio-playback-sys.md)
+  - [分布式音频播放（仅对系统应用开放）](distributed-audio-playback-sys.md)
   <!--DelEnd-->
   <!--Del-->
   - [移动全景声管理（仅对系统应用开放）](audio-collaborative-management-sys.md)
@@ -66,14 +66,17 @@
   - [实时预览(C/C++)](audio-suite-real-time-rendering.md)
   - [音频格式转换(C/C++)](audio-suite-format-converter.md)
   - [空间渲染(C/C++)](audio-suite-space-render.md)
+  - [音频效果(C/C++)](audio-suite-effects.md)
 - MIDI设备通信<!--midi-->
   - [OH_MIDI概述(C/C++)](midi-overview.md)
   - [使用OH_MIDI进行MIDI开发(C/C++)](using-ohmidi.md)
 - OpenSL ES开发指导(不再推荐)<!--not-recommended-->
-  - [从OpenSL ES切换OHAudio(C/C++)](replace-opensles-by-ohaudio.md)
+  - [从OpenSL ES切换到OHAudio(C/C++)](replace-opensles-by-ohaudio.md)
   - [使用OpenSL ES开发音频播放功能(C/C++)](using-opensl-es-for-playback.md)
   - [使用OpenSL ES开发音频录制功能(C/C++)](using-opensl-es-for-recording.md)
 - Audio Kit常见问题<!--audio-issues-->
   - [使用音频快照获取问题定位信息](audio-runtime-debugging-info.md)
+  - [播放无声定位指导](audio-playback-no-sound-troubleshooting.md)
+  - [播放卡顿、杂音定位指导](audio-playback-performance-troubleshooting.md)
   - [录音无声定位指导](audio-recording-no-audio-troubleshooting.md)
 - [Audio Kit术语](audio-glossary.md)

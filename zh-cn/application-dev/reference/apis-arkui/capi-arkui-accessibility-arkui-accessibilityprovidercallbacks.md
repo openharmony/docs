@@ -7,7 +7,7 @@
 <!--Adviser: @Brilliantry_Rui-->
 
 ```c
-typedef struct {...} ArkUI_AccessibilityProviderCallbacks
+typedef struct ArkUI_AccessibilityProviderCallbacks {...} ArkUI_AccessibilityProviderCallbacks
 ```
 
 ## 概述
@@ -30,9 +30,9 @@ typedef struct {...} ArkUI_AccessibilityProviderCallbacks
 | [int32_t (\*findAccessibilityNodeInfosByText)(int64_t elementId, const char* text, int32_t requestId, ArkUI_AccessibilityElementInfoList* elementList)](#findaccessibilitynodeinfosbytext) | 基于指定的节点，查询满足指定文本内容的节点信息。由接入方平台实现的回调函数，注册给系统侧调用。 |
 | [int32_t (\*findFocusedAccessibilityNode)(int64_t elementId, ArkUI_AccessibilityFocusType focusType, int32_t requestId, ArkUI_AccessibilityElementInfo* elementInfo)](#findfocusedaccessibilitynode) | 从指定节点出发，根据焦点类型查找当前已获得焦点的节点，并将该节点元素信息返回。由接入方平台实现的回调函数，注册给系统侧调用。 |
 | [int32_t (\*findNextFocusAccessibilityNode)(int64_t elementId, ArkUI_AccessibilityFocusMoveDirection direction, int32_t requestId, ArkUI_AccessibilityElementInfo* elementInfo)](#findnextfocusaccessibilitynode) | 根据参考节点和查找方向，查询下一个可以聚焦的节点。由接入方平台实现的回调函数，注册给系统侧调用。 |
-| [int32_t (\*executeAccessibilityAction)(int64_t elementId, ArkUI_Accessibility_ActionType action, ArkUI_AccessibilityActionArguments *actionArguments, int32_t requestId)](#executeaccessibilityaction) | 在指定节点上执行Action操作。由接入方平台实现的回调函数，注册给系统侧调用。 |
-| [int32_t (\*clearFocusedFocusAccessibilityNode)()](#clearfocusedfocusaccessibilitynode) | 清除当前焦点节点的焦点状态。由接入方平台实现的回调函数，注册给系统侧调用。例如，当无障碍服务需要重置焦点高亮或用户切换到其他交互区域时触发。 |
-| [int32_t (\*getAccessibilityNodeCursorPosition)(int64_t elementId, int32_t requestId, int32_t* index)](#getaccessibilitynodecursorposition) | 查询指定节点的当前光标位置。由接入方平台实现的回调函数，注册给系统侧调用。例如，当读屏软件需要播报光标位置或语音输入法定位文本插入点时触发。 |
+| [int32_t (\*executeAccessibilityAction)(int64_t elementId, ArkUI_Accessibility_ActionType action, ArkUI_AccessibilityActionArguments *actionArguments, int32_t requestId)](#executeaccessibilityaction) | 在指定的无障碍节点上执行无障碍Action操作。由接入方平台实现的回调函数，注册给系统侧调用。 |
+| [int32_t (\*clearFocusedFocusAccessibilityNode)()](#clearfocusedfocusaccessibilitynode) | 清除当前焦点节点的焦点状态。例如，当无障碍服务需要重置焦点高亮或用户切换到其他交互区域时触发。由接入方平台实现的回调函数，注册给系统侧调用。 |
+| [int32_t (\*getAccessibilityNodeCursorPosition)(int64_t elementId, int32_t requestId, int32_t* index)](#getaccessibilitynodecursorposition) | 查询指定节点的当前光标位置。例如，当读屏软件需要播报光标位置或语音输入法定位文本插入点时触发。由接入方平台实现的回调函数，注册给系统侧调用。 |
 
 ## 成员函数说明
 
@@ -53,9 +53,9 @@ int32_t (*findAccessibilityNodeInfosById)(int64_t elementId, ArkUI_Accessibility
 
 | 参数项                                                                            | 描述 |
 |--------------------------------------------------------------------------------| -- |
-| int64_t elementId                                                              | 无障碍元素的唯一编号。 |
+| int64_t elementId                                                              | 无障碍元素的唯一编号，取值应为系统已分配的有效元素ID。 |
 | [ArkUI_AccessibilitySearchMode](capi-native-interface-accessibility-h.md#arkui_accessibilitysearchmode) mode | 表示无障碍搜索模式。具体取值及含义参见[ArkUI_AccessibilitySearchMode](capi-native-interface-accessibility-h.md#arkui_accessibilitysearchmode)。 |
-| int32_t requestId                                                              | 表示请求ID。 |
+| int32_t requestId                                                              | 表示请求ID，由系统侧生成，用于标识一次无障碍请求。 |
 | [ArkUI_AccessibilityElementInfoList](capi-arkui-accessibility-arkui-accessibilityelementinfolist.md)* elementList                            | 表示无障碍元素信息列表。 |
 
 **返回：**
@@ -110,7 +110,7 @@ int32_t (*findFocusedAccessibilityNode)(int64_t elementId, ArkUI_AccessibilityFo
 | int64_t elementId                                                                                               | 无障碍元素的唯一编号。 |
 | [ArkUI_AccessibilityFocusType](capi-native-interface-accessibility-h.md#arkui_accessibilityfocustype) focusType | 表示焦点的类型。具体取值及含义参见[ArkUI_AccessibilityFocusType](capi-native-interface-accessibility-h.md#arkui_accessibilityfocustype)。 |
 | int32_t requestId                                                                                               | 表示请求ID。 |
-| [ArkUI_AccessibilityElementInfo](capi-arkui-accessibility-arkui-accessibilityelementinfo.md)* elementInfo                                                                 | 表示无障碍元素信息。 |
+| [ArkUI_AccessibilityElementInfo](capi-arkui-accessibility-arkui-accessibilityelementinfo.md)* elementInfo                                                                 | 表示查询到的无障碍元素信息。 |
 
 **返回：**
 

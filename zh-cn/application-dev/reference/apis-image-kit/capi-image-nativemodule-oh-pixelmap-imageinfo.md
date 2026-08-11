@@ -22,8 +22,8 @@ OH_Pixelmap_ImageInfo结构体内容和操作方式如下：
 | -------- | -------- | -------- | -------- | -------- |
 | uint32_t | width | 图片宽，单位：像素（px）。 | [OH_PixelmapImageInfo_GetWidth](capi-pixelmap-native-h.md#oh_pixelmapimageinfo_getwidth) | 获取图片宽。 |
 | uint32_t | height | 图片高，单位：像素（px）。 | [OH_PixelmapImageInfo_GetHeight](capi-pixelmap-native-h.md#oh_pixelmapimageinfo_getheight) | 获取图片高。 |
-| uint32_t | rowStride | 行跨距，单位：字节（Byte）。表示每行像素数据在内存中占用的字节数。受内存对齐影响，该值可能大于图片宽度对应的实际像素数据字节数。 | [OH_PixelmapImageInfo_GetRowStride](capi-pixelmap-native-h.md#oh_pixelmapimageinfo_getrowstride) | 获取行跨距。 |
-| int32_t | pixelFormat | 像素格式，取值参考[PIXEL_FORMAT](capi-pixelmap-native-h.md#pixel_format)。 | [OH_PixelmapImageInfo_GetPixelFormat](capi-pixelmap-native-h.md#oh_pixelmapimageinfo_getpixelformat) | 获取像素格式。 |
+| uint32_t | rowStride | 行跨距，表示内存中每行像素所占的空间。单位：字节（Byte）。受内存对齐影响，该值可能大于图片宽度对应的实际像素数据字节数。 | [OH_PixelmapImageInfo_GetRowStride](capi-pixelmap-native-h.md#oh_pixelmapimageinfo_getrowstride) | 获取行跨距。 |
+| int32_t | pixelFormat | 像素格式，表示像素数据的颜色通道排列和位深信息，取值参考[PIXEL_FORMAT](capi-pixelmap-native-h.md#pixel_format)。 | [OH_PixelmapImageInfo_GetPixelFormat](capi-pixelmap-native-h.md#oh_pixelmapimageinfo_getpixelformat) | 获取像素格式。 |
 | int32_t | alphaType | 透明度类型，取值参考[PIXELMAP_ALPHA_TYPE](capi-pixelmap-native-h.md#pixelmap_alpha_type)。 | [OH_PixelmapImageInfo_GetAlphaType](capi-pixelmap-native-h.md#oh_pixelmapimageinfo_getalphatype) | 获取透明度类型。 |
 | bool | isHdr | 是否为高动态范围（HDR）的信息。true表示是HDR，false表示非HDR。 | [OH_PixelmapImageInfo_GetDynamicRange](capi-pixelmap-native-h.md#oh_pixelmapimageinfo_getdynamicrange) | 获取Pixelmap是否为高动态范围的信息。返回true表示是HDR，返回false表示非HDR。 |
 

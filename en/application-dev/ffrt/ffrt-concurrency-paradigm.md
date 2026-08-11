@@ -2,10 +2,11 @@
 
 <!--Kit: Function Flow Runtime Kit-->
 <!--Subsystem: Resourceschedule-->
-<!--Owner: @chuchihtung; @yanleo-->
-<!--Designer: @geoffrey_guo; @huangyouzhong-->
-<!--Tester: @lotsof; @sunxuhao-->
+<!--Owner: @chuchihtung-->
+<!--Designer: @zhanglu161-->
+<!--Tester: @lotsof-->
 <!--Adviser: @jinqiuheng-->
+<!-- md-trans-meta sourceCommit=a4bb221ea8dcccf781d5793faa6c8f62723e3e12 translatedAt=2026-08-03T08:17:25.111Z pushedAt=2026-08-03T09:32:03.642Z -->
 
 To cope with fixed task execution sequence, flexible priority-based scheduling, and complex task dependencies in actual services, Function Flow Runtime (FFRT) supports three paradigms: serial queue, concurrent queue, and task graph.
 
@@ -14,9 +15,13 @@ To cope with fixed task execution sequence, flexible priority-based scheduling, 
 The serial queue is often used for:
 
 1. **Sequential execution**: The serial queue ensures that tasks are executed one by one in sequence, avoiding data inconsistency and errors caused by out-of-order execution.
+
 2. **Data security**: The serial queue prevents multiple threads from competing for shared resources concurrently, ensuring data consistency and security.
+
 3. **Task scheduling**: The serial queue can schedule the execution sequence of complex tasks. For example, it ensures that a task begins after the previous one completes when tasks with multiple dependencies are performed.
-4. **Simplified development**: The serial queue is more simple and clear compared with manual mutex management and synchronization. You only need to add tasks to the queue for automatic system scheduling and execution, simplifying development and debugging.
+
+4. **Simplified development**: The serial queue is simpler and clearer compared with manual mutex management and synchronization. You only need to add tasks to the queue for automatic system scheduling and execution, simplifying development and debugging.
+
 5. **Resource management**: The serial queue can limit the number of concurrent tasks and avoid resource competition and overload, optimizing system resource usage.
 
 ![image](figures/ffrt_figure4.png)
@@ -28,8 +33,11 @@ For details about the development sample, see [Serial Queue (C)](ffrt-concurrenc
 The concurrent queue is often used for:
 
 1. **Concurrency improvement**: The concurrent queue allows concurrent execution of multiple tasks, fully utilizing the computing capability of the multi-core processor and significantly improving the concurrency and overall performance of the system.
+
 2. **Efficient resource utilization**: The concurrent queue can allocate tasks to available CPU cores to optimize resource usage and reduce task waiting time and resource competition.
+
 3. **Flexible task scheduling**: The concurrent queue can schedule tasks based on priorities and QoS to ensure that key tasks can be executed in a timely manner and improve the system response speed.
+
 4. **Resource impact prevention**: The concurrent queue can set the maximum concurrency to avoid system resource impact caused by excessive concurrent tasks, ensuring system stability and performance.
 
 ![image](figures/ffrt_figure5.png)
@@ -41,8 +49,11 @@ For details about the development sample, see [Concurrent Queue (C)](ffrt-concur
 The task graph is often used for:
 
 1. **Complex task dependency**: In actual applications, tasks have complex dependencies among each other. The task graph represents task dependencies by using directed graphs to clearly manage and schedule tasks.
+
 2. **Dynamic task scheduling**: The task graph can dynamically adjust task scheduling and dependencies and execution sequence according to the running conditions.
+
 3. **Concurrent task execution**: The task graph allows multiple independent tasks to be executed concurrently, making full use of system computing resources and improving concurrency and execution efficiency.
+
 4. **Structured concurrency**: The clear task lifecycles and dependencies in the task graph ensure that the creation and completion of concurrent tasks are explicit in the code structure, reducing the complexity and errors of concurrent programming.
 
 ![image](figures/ffrt_figure6.png)
@@ -62,10 +73,15 @@ Since API version 20, FFRT supports the Job_Partner feature. The job partner is 
     ![image](figures/ffrt_figure9.png)
 
     The parameters in the figure are as follows:
+
     - `job_num`: number of submitted tasks.
+
     - `partner_num`: number of workers.
+
     - `threshold`: threshold for starting the worker.
+
     - `ratio`: ratio of the number of tasks to the number of workers.
+
     - `max`: maximum number of workers.
 
 For details about the development example of the collaborative concurrency paradigm, see [Job Partner (C++)](ffrt-concurrency-job-partner-cpp.md).

@@ -2129,7 +2129,7 @@ getSupportedBeautyRange(type: BeautyType): Array\<number\>
 | AUTO           | [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10]     |美颜类型为自动时支持的美颜强度，0表明关闭美颜，其余正值表明自动的美颜强度。    |
 | SKIN_SMOOTH    | [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10]     | 美颜类型为光滑时支持的美颜强度，0表明关闭光滑，其余正值表明光滑的美颜强度。    |
 | FACE_SLENDER   | [0, 1, 2, 3, 4, 5]      | 美颜类型为瘦脸时支持的美颜强度，0表明关闭瘦脸，其余正值表明瘦脸的美颜强度。   |
-| SKIN_TONE      | [-1, 16242611]      | 美颜类型为美肤时支持的美颜强度，-1表明关闭美肤，其余非负值为使用RGB表示的美肤美颜强度，<br> 16242611转化为16进制为0xF7D7B3，F7为R通道值，D7为G通道值，B3位B通道值。    |
+| SKIN_TONE      | [-1, 16242611]      | 美颜类型为美肤时支持的美颜强度，-1表明关闭美肤，其余非负值为使用RGB表示的美肤美颜强度，<br> 16242611转化为16进制为0xF7D7B3，F7为R通道值，D7为G通道值，B3为B通道值。    |
 
 **系统接口：** 此接口为系统接口。
 
@@ -3047,7 +3047,7 @@ getSupportedBeautyRange(type: BeautyType): Array\<number\>
 | AUTO           | [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10]     |美颜类型为自动时支持的美颜强度，0表明关闭美颜，其余正值表明自动的美颜强度。    |
 | SKIN_SMOOTH    | [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10]     | 美颜类型为光滑时支持的美颜强度，0表明关闭光滑，其余正值表明光滑的美颜强度。    |
 | FACE_SLENDER   | [0, 1, 2, 3, 4, 5]      | 美颜类型为瘦脸时支持的美颜强度，0表明关闭瘦脸，其余正值表明瘦脸的美颜强度。   |
-| SKIN_TONE      | [-1, 16242611]      | 美颜类型为美肤时支持的美颜强度，-1表明关闭美肤，其余非负值为使用RGB表示的美肤美颜强度，<br> 16242611转化为16进制为0xF7D7B3，F7为R通道值，D7为G通道值，B3位B通道值。    |
+| SKIN_TONE      | [-1, 16242611]      | 美颜类型为美肤时支持的美颜强度，-1表明关闭美肤，其余非负值为使用RGB表示的美肤美颜强度，<br> 16242611转化为16进制为0xF7D7B3，F7为R通道值，D7为G通道值，B3为B通道值。    |
 
 > **说明：**
 >从 API version 10开始支持，从API version 11开始废弃。建议使用[Beauty.getSupportedBeautyRange](#getsupportedbeautyrange11)替代。
@@ -8451,131 +8451,3 @@ function getColorReservation(session: camera.VideoSessionForSys): camera.ColorRe
   return colorReservation;
 }
 ```
-
-### NotificationName
-
-枚举，通知的事件名。
-
-**起始版本：** 26.0.0
-
-**模型约束：** 此接口仅可在Stage模型下使用。
-
-**原子化服务API：** 从API版本26.0.0开始，该接口支持在原子化服务中使用。
-
-**系统能力：** SystemCapability.Multimedia.Camera.Core
-
-| 名称                       | 值   | 说明            |
-| ------------------------- | ---- | ------------    |
-| DEFOCUS_FROM_PROXIMITY       | 0    | 对焦物体和镜头距离过近的事件。     |
-
-### ProximityStateForFocus
-
-对焦物体与镜头之间距离状态的枚举。
-
-**起始版本：** 26.0.0
-
-**模型约束：** 此接口仅可在Stage模型下使用。
-
-**原子化服务API：** 从API版本26.0.0开始，该接口支持在原子化服务中使用。
-
-**系统能力：** SystemCapability.Multimedia.Camera.Core
-
-| 名称                       | 值   | 说明            |
-| ------------------------- | ---- | ------------    |
-| IN_RANGE_RAISE_NONE       | 0    | 对焦物体和镜头距离合理。     |
-| OUT_OF_RANGE_RAISE_REQUIRED  | 1    | 对焦物体和镜头距离过近。  |
-
-### onNotificationReceive
-
-onNotificationReceive(callback: Callback\<NotificationInfo\>): void;
-
-注册接收通知信息的回调，通过注册回调函数获取结果。使用callback异步回调。
-
-**起始版本：** 26.0.0
-
-**模型约束：** 此接口仅可在Stage模型下使用。
-
-**原子化服务API：** 从API版本26.0.0开始，该接口支持在原子化服务中使用。
-
-**系统能力：** SystemCapability.Multimedia.Camera.Core
-
-**参数：**
-
-| 参数名     | 类型                   | 必填 | 说明               |
-| -------- | -------------------- | ---- | -------------------- |
-| callback | Callback\<[NotificationInfo](#notificationinfo)\> | 是 | 回调函数，返回当前通知信息。 |
-
-**示例：**
-
-```ts
-function RegisterNotificationReceive(session: camera.PhotoSession): void {
-    session.onNotificationReceive((info: camera.NotificationInfo) => {
-        // 监听信息回调，name为信息事件类型，value为信息事件状态。
-        console.info(`notification name: ${info.name}, value: ${info.value}.`);
-    })
-}
-```
-
-### offNotificationReceive
-
-offNotificationReceive(callback?: Callback\<NotificationInfo\>): void;
-
-注销接收通知信息的回调。
-
-**起始版本：** 26.0.0
-
-**模型约束：** 此接口仅可在Stage模型下使用。
-
-**原子化服务API：** 从API版本26.0.0开始，该接口支持在原子化服务中使用。
-
-**系统能力：** SystemCapability.Multimedia.Camera.Core
-
-**参数：**
-
-| 参数名     | 类型                   | 必填 | 说明               |
-| -------- | -------------------- | ---- | -------------------- |
-| callback | Callback\<[NotificationInfo](#notificationinfo)\> | 否 | 回调函数，返回当前通知信息。如果指定参数则取消对应callback，callback对象如果为空或为匿名函数，则取消所有callback。 |
-
-**示例：**
-
-```ts
-function UnregisterNotificationReceive(session: camera.PhotoSession): void {
-    session.offNotificationReceive();
-}
-```
-### DefocusFromProximityNotificationInfo
-
-对焦物体和镜头距离过近导致失焦事件的通知对象。
-
-> **说明：**
->
-> 该通知仅在微距模式下且缩放倍率大于等于 4 倍时触发。
-> 可以通过[enableMacro](../apis-camera-kit/arkts-apis-camera-Macro.md#enablemacro19)设置微距能力，并使用[setZoomRatio](../apis-camera-kit/arkts-apis-camera-Zoom.md#setzoomratio11)设置缩放倍率。
-
-**起始版本：** 26.0.0
-
-**模型约束：** 此接口仅可在Stage模型下使用。
-
-**原子化服务API：** 从API版本26.0.0开始，该接口支持在原子化服务中使用。
-
-**系统能力：** SystemCapability.Multimedia.Camera.Core
-
-| 名称      | 类型                                                           | 只读 | 可选 | 说明            |
-| -------- | -------------------------------------------------------------- |----- |---| --------------|
-| value     | [ProximityStateForFocus](#proximitystateforfocus)  |  是  | 否 | 通知事件状态。     |
-
-### NotificationInfo
-
-包含通知事件名称的对象。
-
-**起始版本：** 26.0.0
-
-**模型约束：** 此接口仅可在Stage模型下使用。
-
-**原子化服务API：** 从API版本26.0.0开始，该接口支持在原子化服务中使用。
-
-**系统能力：** SystemCapability.Multimedia.Camera.Core
-
-| 名称      | 类型                                                           | 只读 | 可选 | 说明            |
-| -------- | -------------------------------------------------------------- |----- |---| --------------|
-| name      | [NotificationName](#notificationname)   |  是  | 否 | 通知事件名称。      |

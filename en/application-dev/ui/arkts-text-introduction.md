@@ -1,10 +1,12 @@
 # Introduction to Text
+
 <!--Kit: ArkUI-->
 <!--Subsystem: ArkUI-->
 <!--Owner: @xiangyuan6-->
 <!--Designer: @xiangyuan6-->
 <!--Tester: @jiaoaozihao-->
 <!--Adviser: @Brilliantry_Rui-->
+<!-- md-trans-meta sourceCommit=3891f3918e4fe99bc30886a91c02de3b3a7eeb64 translatedAt=2026-08-04T06:39:04.562Z pushedAt=2026-08-04T08:32:00.131Z -->
 
 Text plays a vital role in the UI, encompassing both the information entered by users and the textual content or symbols displayed to them. The text elements collaborate to bridge the interaction between users and the system, enhancing ease of operation and providing clear information presentation.
 
@@ -32,7 +34,7 @@ For character-level or paragraph-level text styling, such as adjusting font size
 
 ## Text and Image Layout
 
-You can use **Span** and **ImageSpan** to implement basic image and text layouts. For more diverse and complex text-image layouts, use styled strings. For details, see [Text and Image Layout](arkts-text-image-layout.md).
+For scenarios where images and text need to be laid out together, you can use [Span](../reference/apis-arkui/arkui-ts/ts-basic-components-span.md) and [ImageSpan](../reference/apis-arkui/arkui-ts/ts-basic-components-imagespan.md). If you need mixed layout effects with diverse styles, you can use styled strings. Refer to the [Text and Image Layout](arkts-text-image-layout.md) chapter.
 
 ## Soft Keyboard Management
 

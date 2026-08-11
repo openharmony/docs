@@ -1,8 +1,8 @@
 # 媒体查询
 <!--Kit: ArkUI-->
 <!--Subsystem: ArkUI-->
-<!--Owner: @lanshouren-->
-<!--Designer: @lanshouren-->
+<!--Owner: @fenglinbailu-->
+<!--Designer: @fenglinbailu-->
 <!--Tester: @liuli0427-->
 <!--Adviser: @Brilliantry_Rui-->
 
@@ -114,6 +114,7 @@
 | min-device-height | 设备的最小高度。 |
 | max-device-height | 设备的最大高度。 |
 | device-width | 设备的宽度。 |
+| device-type | 设备的类型。<br/>支持的取值包括：default、phone、tablet、tv、car、wearable、2in1。 |
 | min-device-width | 设备的最小宽度。 |
 | max-device-width | 设备的最大宽度。 |
 | round-screen | 屏幕类型，圆形屏幕为true，&nbsp;非圆形屏幕为&nbsp;false。 |

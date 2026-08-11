@@ -205,7 +205,7 @@ async function fn(input: string) {
 }
 let cb = util.callbackWrapper(fn);
 cb('hello world', (err : Object, ret : string) => {
-  if (err) throw new Error;
+  if (err) throw new Error();
   console.info(ret);
 });
 // 输出结果：hello world
@@ -1322,7 +1322,7 @@ TextDecoder的构造函数。
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | encoding | string | 否 | 编码格式，默认值是'utf-8'。 |
-| options | { fatal?: boolean; ignoreBOM?: boolean } | 否 | 解码相关选项参数，存在两个属性fatal和ignoreBOM。此参数不填时，对应各属性取其默认值。 |
+| options | { fatal?: boolean; ignoreBOM?: boolean } | 否 | 解码相关选项参数，存在两个属性fatal和ignoreBOM。此参数不填时，对应各属性取其默认值false。 |
 
   **表1** options
 

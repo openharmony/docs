@@ -621,7 +621,7 @@ let eventPkg: hiAppEvent.AppEventPackage | null = holder4.takeNext();
 
 write(info: AppEventInfo, callback: AsyncCallback&lt;void&gt;): void
 
-应用事件打点方法，将AppEventInfo类型的事件进行存储，使用callback方式作为异步回调。通过此接口写入的事件对象是开发者自定义的对象，为了避免与系统事件产生冲突混淆，不建议写入系统事件（[Event](#hiappeventevent)中定义的系统事件名称常量）。此接口写入的事件可通过订阅事件观察者（[addWatcher](#hiappeventaddwatcher)）进行订阅。
+应用事件打点方法，将AppEventInfo类型的事件进行存储，使用callback方式作为异步回调。通过此接口写入的事件对象是开发者自定义的对象，为了避免与系统事件产生冲突混淆，不建议写入系统事件（[Event](#event)中定义的系统事件名称常量）。此接口写入的事件可通过订阅事件观察者（[addWatcher](#hiappeventaddwatcher)）进行订阅。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -631,7 +631,7 @@ write(info: AppEventInfo, callback: AsyncCallback&lt;void&gt;): void
 
 | 参数名   | 类型                           | 必填 | 说明           |
 | -------- | ------------------------------ | ---- | -------------- |
-| info     | [AppEventInfo](#appeventinfo) | 是   | 应用事件对象。其内部定义的事件名称建议避免与[Event](#hiappeventevent)中定义的系统事件名称常量产生冲突。 |
+| info     | [AppEventInfo](#appeventinfo) | 是   | 应用事件对象。其内部定义的事件名称建议避免与[Event](#event)中定义的系统事件名称常量产生冲突。 |
 | callback | AsyncCallback&lt;void&gt;      | 是   | 打点回调函数。 |
 
 **错误码：**
@@ -686,7 +686,7 @@ hiAppEvent.write({
 
 write(info: AppEventInfo): Promise&lt;void&gt;
 
-应用事件打点方法，将AppEventInfo类型的事件进行存储，使用Promise方式作为异步回调。通过此接口写入的事件对象是开发者自定义的对象，为了避免与系统事件产生冲突混淆，不建议写入系统事件（[Event](#hiappeventevent)中定义的系统事件名称常量）。此接口写入的事件可通过订阅事件观察者（[addWatcher](#hiappeventaddwatcher)）进行处理。
+应用事件打点方法，将AppEventInfo类型的事件进行存储，使用Promise方式作为异步回调。通过此接口写入的事件对象是开发者自定义的对象，为了避免与系统事件产生冲突混淆，不建议写入系统事件（[Event](#event)中定义的系统事件名称常量）。此接口写入的事件可通过订阅事件观察者（[addWatcher](#hiappeventaddwatcher)）进行处理。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -696,7 +696,7 @@ write(info: AppEventInfo): Promise&lt;void&gt;
 
 | 参数名 | 类型                           | 必填 | 说明           |
 | ------ | ------------------------------ | ---- | -------------- |
-| info   | [AppEventInfo](#appeventinfo) | 是   | 应用事件对象。其中的事件名称建议避免与[Event](#hiappeventevent)中定义的系统事件名称常量冲突混淆。 |
+| info   | [AppEventInfo](#appeventinfo) | 是   | 应用事件对象。其中的事件名称建议避免与[Event](#event)中定义的系统事件名称常量冲突混淆。 |
 
 **返回值：**
 
@@ -1125,7 +1125,7 @@ hiAppEvent.configure(config2);
 | 名称       | 类型    | 只读 | 可选 | 说明                                                         |
 | ---------- | ------- | ---- | ---- | ------------------------------------------------------------ |
 | disable    | boolean | 否 | 是   | 打点功能开关，默认值为false。true：关闭打点功能，false：开启打点功能。 |
-| maxStorage | string  | 否 | 是   | 打点数据存放目录的配额大小，默认值为“10MB”。建议配额大小不超过10M，配额过大可能会影响接口效率。<br>在目录大小超出配额后，下次打点会触发对目录的清理操作：按从旧到新的顺序逐个删除打点数据文件，直到目录大小不超出配额时结束。<br>配额值字符串规格如下：<br>- 配额值字符串只由数字字符和大小单位字符（单位字符支持[b\|k\|kb\|m\|mb\|g\|gb\|t\|tb]，不区分大小写）构成。<br>- 配额值字符串必须以数字开头，后面可以选择不传单位字符（默认使用byte作为单位），或者以单位字符结尾。 |
+| maxStorage | string  | 否 | 是   | 打点数据存放目录的配额大小，默认值为“10MB”。建议配额大小不超过10MB，配额过大可能会影响接口效率。<br>在目录大小超出配额后，下次打点会触发对目录的清理操作：按从旧到新的顺序逐个删除打点数据文件，直到目录大小不超出配额时结束。<br>配额值字符串规格如下：<br>- 配额值字符串只由数字字符和大小单位字符（单位字符支持[b\|k\|kb\|m\|mb\|g\|gb\|t\|tb]，不区分大小写）构成。<br>- 配额值字符串必须以数字开头，后面可以选择不传单位字符（默认使用byte作为单位），或者以单位字符结尾。 |
 
 
 ## EventPolicy<sup>22+</sup>
@@ -1305,7 +1305,7 @@ type ParamType = number | string | boolean | Array&lt;string&gt;
 | BEHAVIOR  | 4    | 行为类型事件。 |
 
 
-## hiAppEvent.domain<sup>11+</sup>
+## domain<sup>11+</sup>
 
 ### 常量
 
@@ -1320,7 +1320,7 @@ type ParamType = number | string | boolean | Array&lt;string&gt;
 | OS   | string | 是 | 系统领域。 |
 
 
-## hiAppEvent.event
+## event
 
 ### 常量
 
@@ -1348,7 +1348,7 @@ type ParamType = number | string | boolean | Array&lt;string&gt;
 | SCROLL_ARKWEB_FLING_JANK<sup>23+</sup> | string | 是 | ArkWeb抛滑丢帧事件。系统事件名称常量。<br>**原子化服务API：** 从API version 23开始，该参数支持在原子化服务中使用。 |
 | appFreezeWarning | string | 是 | 应用冻屏告警事件。系统事件名称常量。<br>**起始版本：** 26.0.0<br>**模型约束：** 此接口仅可在Stage模型下使用。<br/>**原子化服务API：** 从API版本26.0.0开始，该接口支持在原子化服务中使用。 |
 
-## hiAppEvent.param
+## param
 
 ### 常量
 

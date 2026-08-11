@@ -1,21 +1,20 @@
 # Migration for Component Reuse
+
 <!--Kit: ArkUI--> 
 <!--Subsystem: ArkUI--> 
 <!--Owner: @jiyujia926--> 
-<!--Designer: @s10021109--> 
+<!--Designer: @zhangboren--> 
 <!--Tester: @zhangwenhan12--> 
 <!--Adviser: @zhang_yixin13-->
+<!-- md-trans-meta sourceCommit=c6d2a51ae0d4d741fa9801df0b2e84e58290f6c1 translatedAt=2026-07-24T01:22:35.256Z pushedAt=2026-07-24T03:23:13.934Z -->
 
 This document describes how to migrate components from V1 to V2, involving the following decorators.
-
 
 | V1 Decorator| V2 Decorator|
 | -------- | -------- |
 | [@Reusable](./arkts-reusable.md) | [@ReusableV2](./arkts-new-reusableV2.md) |
 
-
 ## \@Reusable->\@ReusableV2 Migration Rule
-
 
 ### V1 -> V2 Component Migration
 
@@ -27,12 +26,11 @@ This document describes how to migrate components from V1 to V2, involving the f
 
 - For details about the migration of state variables in a component, see [Migration for Component State Variables](./arkts-v1-v2-migration-inner-component.md)
 
-
 ### aboutToRecycle and aboutToReuse Migration
 
 **Migration Rules**
 
-- The [aboutToRecycle](../../reference/apis-arkui/arkui-ts/ts-custom-component-lifecycle.md#abouttorecycle10) lifecycle does not need to be changed and can be retained.
+- The [aboutToRecycle](../../reference/apis-arkui/arkui-ts/ts-custom-component-lifecycle.md#abouttorecycle10) lifecycle does not require any changes, and the original implementation can be retained.
 
 - The [aboutToReuse](../../reference/apis-arkui/arkui-ts/ts-custom-component-lifecycle.md#abouttoreuse18) lifecycle has been optimized in component reuse V2. Parameters have been removed, and all state variables are automatically reset before reuse (for details, refer to [Resetting State Variables in Components Before Reuse](./arkts-new-reusableV2.md#resetting-state-variables-in-components-before-reuse)), eliminating the need for developers to manually assign them back to their initial values in **aboutToReuse**.
 
@@ -68,11 +66,11 @@ struct ReusableV2Component {
   @Require @Param @Once param: string;
   aboutToRecycle(): void {
     // aboutToRecycle does not need to be changed.
-    console.info('ReusableComponent aboutToRecycle called');
+    console.info('ReusableV2Component aboutToRecycle called');
   }
   aboutToReuse(): void { // aboutToReuse does not have any parameter.
     // When aboutToReuse is executed, @Local has been reset back to 'Hello World', and @Param/@Once have been reset back to the externally passed values.
-    console.info('ReusableComponent aboutToReuse called');
+    console.info('ReusableV2Component aboutToReuse called');
     this.val = 'Hello ArkUI'; // The value can be changed to another one during reuse.
     this.param = 'Hello ArkUI'; // @Param/@Once can be modified locally.
   }
@@ -84,7 +82,6 @@ struct ReusableV2Component {
   }
 }
 ```
-
 
 ### reuseId -> reuse
 
@@ -99,23 +96,19 @@ ReusableComponent().reuseId('groupA')
 ReusableV2Component().reuse({reuseId: () => 'groupA'})
 ```
 
-
 ### Component Freezing
 
 **Migration Rules**
 
 In component reuse V1, components in the reuse pool are frozen only when the **freezeWhenInactive** switch is turned on. For details, see [Custom Component Freezing Function](./arkts-custom-components-freeze.md). In component reuse V2, the freezing function is automatically enabled. For details, see [Component Freezing in the Reuse Phase](./arkts-new-reusableV2.md#component-freezing-in-the-reuse-phase).
 
-
 ### LazyForEach -> Repeat
 
 **Migration Rules**
 
-In component reuse V1, **LazyForEach** is often used with component reuse to implement high-performance lazy loading. In component reuse V2, you are advised to use [Repeat](../rendering-control/arkts-new-rendering-control-repeat.md) instead of [LazyForEach](../rendering-control/arkts-rendering-control-lazyforeach.md). **Repeat** can reuse components. Compared with **LazyForEach**, **Repeat** has simpler APIs and better performance. For details about how to migrate **LazyForEach** to **Repeat**, see Migrating from LazyForEach to Repeat.
-
+In component reuse V1, **LazyForEach** is often used with component reuse to implement high-performance lazy loading. In component reuse V2, you are advised to use [Repeat](../rendering-control/arkts-new-rendering-control-repeat.md) instead of [LazyForEach](../rendering-control/arkts-rendering-control-lazyforeach.md). **Repeat** can reuse components. Compared with **LazyForEach**, **Repeat** has simpler APIs and better performance. For details about how to migrate **LazyForEach** to **Repeat**, see [Migrating from LazyForEach to Repeat](./arkts-v1-v2-migration-rendering-control-repeat.md#from-lazyforeach-to-repeat).
 
 ## @Reusable -> @ReusableV2 Migration Example
-
 
 ### if Statement
 
@@ -136,17 +129,17 @@ class Message {
 @Entry
 @ComponentV2
 struct Index {
-  @Local switch: boolean = true;
+  @Local isSwitch: boolean = true;
 
   build() {
     Column() {
       Button('Hello')
-        .fontSize(30)
+        .fontSize(24)
         .fontWeight(FontWeight.Bold)
         .onClick(() => {
-          this.switch = !this.switch;
+          this.isSwitch = !this.isSwitch;
         })
-      if (this.switch) {
+      if (this.isSwitch) {
         // If there is only one reusable component, you do not need to set the reuse property.
         Child({ message: new Message('Child') })
           .reuse({ reuseId: () => 'Child' })
@@ -171,13 +164,16 @@ struct Child {
     Column() {
       Text(this.message.value)
         .fontSize(30)
+        .margin(20)
     }
     .borderWidth(1)
+    .margin({ top: 10 })
     .height(100)
   }
 }
 ```
 
+![](figures/v1_v2_reusable_if.gif)
 
 ### List Scrolling with Repeat
 
@@ -216,7 +212,7 @@ struct ReuseV2Demo {
 @ReusableV2
 @ComponentV2
 export struct CardViewV2 {
-  // Only the item variable decorated with@State will be updated.
+  // Use @Param @Once to receive externally passed-in variables and observe changes.
   @Param @Once item: string = '';
 
   aboutToReuse(): void {
@@ -234,6 +230,7 @@ export struct CardViewV2 {
 }
 ```
 
+![](figures/v1_v2_reusable_repeat.gif)
 
 ### List Scrolling with if Statements
 
@@ -325,12 +322,13 @@ export struct OneMoment {
 }
 ```
 
+![](figures/v1_v2_reusable_if_two.gif)
 
 ### List Scrolling with Repeat Full Loading
 
 In state management V2, you are advised to use the [full loading mode](../rendering-control/arkts-new-rendering-control-repeat.md#lazy-loading-capability) instead of [ForEach](../rendering-control/arkts-rendering-control-foreach.md) to implement cyclic rendering.
 
-For details about the \@Reusable usage example, see [List Scrolling with ForEach](./arkts-reusable.md#list-scrolling-with-foreach).
+For details about the \@Reusable usage example, see [List Scrolling with ForEach](./arkts-reusable.md#).
 
 The sample code snippet of list scrolling with **Repeat** full loading for \@ReusableV2 is as follows:
 
@@ -339,7 +337,6 @@ The sample code snippet of list scrolling with **Repeat** full loading for \@Reu
 @Entry
 @ComponentV2
 struct Index {
-  @Local isShow: boolean = true;
   @Local dataSource: ListItemObject[] = [];
 
   build() {
@@ -384,7 +381,7 @@ struct ListItemView {
   @Require @Param obj: ListItemObject;
 
   aboutToAppear(): void {
-    // Click update. When you swipe up and down for the first time, the ForEach full expansion attribute is used, and reusing is not supported.
+    // Tap update, enter for the first time, and scroll up and down. Reuse is not possible due to the Full Load attribute of Repeat.
     console.info('=====aboutToAppear=====ListItemView==Created==');
   }
 
@@ -429,6 +426,7 @@ class ListItemObject {
 }
 ```
 
+![](figures/v1_v2_reusable_repeat_two.gif)
 
 ### Grid
 
@@ -476,9 +474,6 @@ struct MyComponent {
 struct ReusableV2ChildComponent {
   @Param item: number = 0;
 
-  aboutToAppear() {
-  }
-
   build() {
     Column() {
       // Replace the content of the displayed image. The following uses app.media.startIcon as an example.
@@ -496,6 +491,7 @@ struct ReusableV2ChildComponent {
 }
 ```
 
+![](figures/v1_v2_reusable_grid.png)
 
 ### WaterFlow
 
@@ -577,13 +573,14 @@ struct Index {
                 }
               })
             })
-        }
+        }.margin({ left: 160, top: 10 })
       }
     }
   }
 }
 ```
 
+![](figures/v1_v2_reusable_waterflow.gif)
 
 ### Swiper
 
@@ -681,6 +678,7 @@ struct QuestionSwiperItem {
 }
 ```
 
+![](figures/v1_v2_reusable_swiper.gif)
 
 ### List Scrolling with ListItemGroup
 
@@ -698,15 +696,15 @@ struct ListItemGroupAndReusable {
   itemHead(text: string) {
     Text(text)
       .fontSize(20)
-      .backgroundColor(0xAABBCC)
+      .backgroundColor(0xff519db4)
       .width('100%')
       .padding(10)
   }
 
   aboutToAppear() {
-    for (let i = 0; i < 10000; i++) {
+    for (let i = 0; i < 10000; i++) { // Loop 10000 times.
       let data = new DataSrc();
-      for (let j = 0; j < 12; j++) {
+      for (let j = 0; j < 12; j++) { // Loop 12 times.
         data.dataScr1.push(`Test item data: ${i} - ${j}`);
       }
       this.dataSource.push(data);
@@ -752,10 +750,11 @@ class DataSrc {
 }
 ```
 
+![](figures/v1_v2_reusable_listitemgroup.gif)
 
 ### Multiple Item Types
 
-For details about the \@Reusable usage example, see [Multiple Item Types](./arkts-reusable.md#multiple-item-types).
+For details about the \@Reusable usage example, see [Multiple Item Types](./arkts-reusable.md#scenarios-Involving-multiple-item-types).
 
 The sample code for using multiple item types of \@ReusableV2 is as follows:
 
@@ -825,6 +824,8 @@ struct ReusableV2Component {
   }
 }
 ```
+
+![](figures/v1_v2_reusable_limit.png)
 
 **Composite**
 
@@ -979,3 +980,7 @@ struct ChildComponentD {
   }
 }
 ```
+
+![](figures/v1_v2_reusable_group.png)
+
+<!--no_check-->

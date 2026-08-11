@@ -111,7 +111,7 @@
 
 * `obfuscation.txt`  
 
-    不同于以上两种开发者可自行修改的配置文件，`obfuscation.txt`是在编译构建HAR或HSP时根据`consumer-rules.txt`和依赖模块的混淆规则文件自动生成的文件，它作为一种编译产物存在于发布的HAR或HSP包中。在其他应用依赖该发布包时，会合并其中的混淆规则应用于当前编译流程。`obfuscation.txt`内容的生成及合并逻辑请参考[混淆规则合并策略](source-obfuscation.md#混淆规则合并策略)。
+    不同于以上两种开发者可自行修改的配置文件，`obfuscation.txt`是在编译构建HAR或HSP时根据`consumer-rules.txt`和依赖模块的混淆规则文件自动生成的文件，它作为一种编译产物存在于发布的HAR或HSP包中。在其他应用依赖该发布包时，会合并其中的混淆规则应用于当前编译流程。`obfuscation.txt`内容的生成及合并逻辑请参考[混淆规则合并策略](./source-obfuscation.md#混淆规则合并策略)。
 
   > **说明**：
   >
@@ -145,7 +145,7 @@
        console.info(obj002.dynamicPropertyName);// 使用点语法静态访问属性，需使用-keep-property-name dynamicPropertyName来保留该属性名
        ```
     2. 若代码中使用点语法访问未在ArkTS/TS/JS代码中定义的字段，比如访问native实现的so库，字段固定的json文件与数据库等场景：
-        1. 若在代码中引用so库的api，如```import testNapi from 'library.so';testNapi.foo();```需要使用[-keep-property-name](./source-obfuscation-keep-options.md#-keep-property-name) foo 来保留属性名称。
+        1. 若在代码中引用so库的API，如`import testNapi from 'library.so';testNapi.foo();`需要使用[-keep-property-name](./source-obfuscation-keep-options.md#-keep-property-name) foo 来保留属性名称。
         2. 若在代码中使用json文件中的字段，需要使用`-keep-property-name`保留json文件中的字段名称。
         3. 若在代码中使用数据库相关的字段，需要使用`-keep-property-name`保留数据库中的字段名称。
     3. 若构建HAR模块并发布给其他模块使用的场景，要在HAR模块中的consumer-rules.txt文件中将不能被二次混淆的属性使用`-keep-property-name`保留。consumer-rules.txt文件在构建HAR时会生成obfuscation.txt文件。此HAR被其它模块依赖时，DevEco Studio会解析obfuscation.txt文件，读取文件中的白名单。
@@ -153,12 +153,12 @@
 3. 待上述选项应用适配成功后，开启`-enable-export-obfuscation`选项。此选项开启后，以下场景需要适配：
     1. 若构建HSP模块，它会提供接口及其属性给其它模块调用，因此需要将对外接口使用`-keep-global-name`来保留、将对外暴露的class/interface等语法中的属性使用`-keep-property-name`保留。
     2. 若构建HAR模块并发布给其他模块使用的场景，要在HAR模块中的obfuscation-rules.txt文件中将对外接口使用`-keep-global-name`来保留，将对外暴露的class/interface等语法中的属性使用`-keep-property-name`保留。
-    3. 若在代码中引用so库的api，如```import { napiA } from 'library.so'```；需要使用`-keep-global-name`napiA保留so接口名称。
+    3. 若在代码中引用so库的API，如`import { napiA } from 'library.so'`；需要使用`-keep-global-name napiA`保留so接口名称。
     4. 验证应用功能以及模块被依赖时的接口调用功能，排查遗漏的场景。若应用出现功能异常，依据混淆后的报错栈从对应的[中间产物](#查看混淆效果)中找到报错行的代码，排查需要配置的白名单并进行保留。
 4. 待上述选项应用适配成功后，开启`-enable-filename-obfuscation`选项。此选项开启后，以下场景需要适配：
-    1. 若代码中有动态import语句，如```const path = './filePath'; import(path)```，会出现文件引用失败的情况，需要使用`-keep-file-name` filePath来保留这个文件名。
+    1. 若代码中有动态import语句，如`const path = './filePath'; import(path)`，会出现文件引用失败的情况，需要使用`-keep-file-name filePath`来保留这个文件名。
     2. 若应用中有描述路由表信息的[routerMap配置](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides/module-configuration-file#routermap%E6%A0%87%E7%AD%BE)，其中的pageSourceFile字段标记页面在模块的路径，需要使用`-keep-file-name`来保留这个路径。
-    3. 若代码中有传入ohmUrl进行页面跳转，如`router.pushUrl({url: '@bundle:com.example.routerPage/Library/Index'})`，使用`-keep-file-name`来保留这个路径。
+    3. 若代码中有传入ohmUrl进行页面跳转，如`router.pushUrl({url: '@bundle:com.example.routerPage/Library/Index'})`，需要使用`-keep-file-name`来保留该路径中的文件名部分（如Library和Index）。
     4. 验证应用功能，排查遗漏的场景。若应用出现功能异常，且报错栈中的路径为混淆后的路径，可以在模块中的`build/default/[...]/release/obfuscation/nameCache.json`文件中查询到原始路径，进而找到源码文件。另外，[插件hstack](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides/ide-command-line-hstack)支持自动还原混淆后的报错堆栈。在定位到需要保留的路径后，使用`-keep-file-name`来保留此路径。
 
 ### 注意事项

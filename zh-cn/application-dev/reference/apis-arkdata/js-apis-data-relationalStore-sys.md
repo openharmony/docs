@@ -282,7 +282,7 @@ const valueBucket3: ValuesBucket = {
 let predicates = new dataSharePredicates.DataSharePredicates();
 predicates.equalTo("NAME", "Lisa");
 if (store != undefined) {
-  (store as relationalStore.RdbStore).update("EMPLOYEE", valueBucket1, predicates).then(async (rows: number) => {
+  (store as relationalStore.RdbStore).update("EMPLOYEE", valueBucket1, predicates).then((rows: number) => {
     console.info(`Updated row count: ${rows}`);
   }).catch((err: BusinessError) => {
     console.error(`Updated failed, code is ${err.code}, message is ${err.message}`);
@@ -783,7 +783,7 @@ if (store != undefined) {
 
 querySharingResource(predicates: RdbPredicates, columns?: Array&lt;string&gt;): Promise&lt;ResultSet&gt;
 
-根据谓词条件匹配的数据记录查找对应记录的共享资源标识，返回查找的结果集。如果指定了列字段，则返回结果集中同时包含对应列的字段值，使用Promise异步回调。
+根据谓词条件匹配的数据记录查找对应记录的共享资源，返回查找的结果集。如果指定了列字段，则返回结果集中同时包含对应列的字段值，使用Promise异步回调。
 
 **系统能力：** SystemCapability.DistributedDataManager.CloudSync.Client
 
@@ -1234,7 +1234,7 @@ updateDistributedInfo(info: DistributedInfo, predicates: RdbPredicates): Promise
 
 | 参数名       | 类型                                                               | 必填 | 说明                                       |
 | ------------ | ----------------------------------------------------------------- | ---- | ----------------------------------------- |
-| info  | [DistributedInfo](#distributedinfo24) |  是  | 指定要更新的分布式表的日志信息。|
+| info  | [DistributedInfo](#distributedinfo24) |  是  | 指定要更新的分布式信息。|
 | predicates | [RdbPredicates](arkts-apis-data-relationalStore-RdbPredicates.md) | 是   | RdbPredicates的实例对象指定的查询条件。        |
 
 **返回值：**
@@ -1347,7 +1347,7 @@ cleanDeviceDirtyData(table: string, cursor?: number): Promise&lt;void&gt;
 | 14800015  | The database does not respond. |
 | 14800021  | SQLite: Generic error. |
 | 14800024  | SQLite: The database file is locked. |
-| 14800043  | DB is not support this scenario. Possible causes: 1. DB type is not support; 2. Table type is not support; 3. This is a readonly db. |
+| 14800043  | The database does not support this scenario. Possible causes: 1. The database type is not supported;2. The table type is not supported; 3. This is a read-only database. |
 
 **示例：**
 
@@ -1355,12 +1355,11 @@ cleanDeviceDirtyData(table: string, cursor?: number): Promise&lt;void&gt;
 import { BusinessError } from '@kit.BasicServicesKit';
 
 if (store != undefined) {
-  try {
-    await store.cleanDeviceDirtyData('test_table', 100);
+  (store as relationalStore.RdbStore).cleanDeviceDirtyData('test_table', 100).then(() => {
     console.info('Succeeded in cleaning device dirty data.');
-  } catch (err) {
+  }).catch((err: BusinessError) => {
     console.error(`Failed to clean device dirty data: code is ${err.code}, message is ${err.message}.`);
-  };
+  });
 }
 ```
 

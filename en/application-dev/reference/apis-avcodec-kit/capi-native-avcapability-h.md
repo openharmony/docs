@@ -1,10 +1,12 @@
 # native_avcapability.h
+
 <!--Kit: AVCodec Kit-->
 <!--Subsystem: Multimedia-->
 <!--Owner: @yang-xiaoyu5-->
 <!--Designer: @dpy2650-->
 <!--Tester: @cyakee-->
 <!--Adviser: @w_Machine_cc-->
+<!-- md-trans-meta sourceCommit=e8c5c20c2e613f3213142be6ac06f0d49df96fa7 translatedAt=2026-08-01T07:20:25.165Z pushedAt=2026-08-01T08:00:26.632Z -->
 
 ## Overview
 
@@ -46,7 +48,7 @@ The file declares the native APIs used to query the codec capability.
 | [OH_AVCapability **OH_AVCodec_GetCapabilityList(OH_AVCodecType codecType, uint32_t *count)](#oh_avcodec_getcapabilitylist) | Obtains the list of capabilities for the specified codec type. This function retrieves all matching codec capabilities supported by the system based on the provided codec type.|
 | [bool OH_AVCapability_IsHardware(OH_AVCapability *capability)](#oh_avcapability_ishardware) | Checks whether a codec capability instance describes a hardware codec.|
 | [bool OH_AVCapability_IsSecure(OH_AVCapability *capability)](#oh_avcapability_issecure) | Checks whether the capability instance describes a DRM decoder.|
-| [const char *OH_AVCapability_GetName(OH_AVCapability *capability)](#oh_avcapability_getname) | Obtains the codec name.|
+| [const char *OH_AVCapability_GetName(OH_AVCapability *capability)](#oh_avcapability_getname) | Obtains the corresponding codec name. |
 | [const char *OH_AVCapability_GetMimeType(OH_AVCapability *capability)](#oh_avcapability_getmimetype) | Obtains the MIME type of the codec.|
 | [bool OH_AVCapability_CheckMimeType(OH_AVCapability *capability, const char *mimeType)](#oh_avcapability_checkmimetype) | Checks whether the MIME type of the codec matches the specified MIME type.|
 | [int32_t OH_AVCapability_GetMaxSupportedInstances(OH_AVCapability *capability)](#oh_avcapability_getmaxsupportedinstances) | Obtains the maximum number of codec instances supported by a codec.|
@@ -138,7 +140,6 @@ Enumerates the optional features that can be used in specific codec scenarios.
 | VIDEO_DECODER_OUTPUT_IN_DECODING_ORDER = 8 | Decoding-order frame output feature, which is available only in video decoding scenarios.<br>**Since**: 26.0.0|
 | VIDEO_ENCODER_PREPROC_DOWNSAMPLING = 9 | Downsampling feature before video encoding, which is available only for video encoders.<br>This capability can be enabled only when the encoder is created through the [OH_VideoEncoder_CreatePrimaryWithPreproc](capi-native-avcodec-videoencoder-h.md#oh_videoencoder_createprimarywithpreproc) or [OH_VideoEncoder_CreateSecondaryFromPrimary](capi-native-avcodec-videoencoder-h.md#oh_videoencoder_createsecondaryfromprimary) API.<br>**Since**: 26.0.0|
 | VIDEO_ENCODER_PREPROC_CROP = 10 | Cropping feature before video encoding, which is available only for video encoders.<br>This capability can be enabled only when the encoder is created through the [OH_VideoEncoder_CreatePrimaryWithPreproc](capi-native-avcodec-videoencoder-h.md#oh_videoencoder_createprimarywithpreproc) or [OH_VideoEncoder_CreateSecondaryFromPrimary](capi-native-avcodec-videoencoder-h.md#oh_videoencoder_createsecondaryfromprimary) API.<br>**Since**: 26.0.0|
-
 
 ## Function Description
 
@@ -284,7 +285,7 @@ const char *OH_AVCapability_GetName(OH_AVCapability *capability)
 
 **Description**
 
-Obtains the codec name.
+Obtains the corresponding codec name.
 
 **System capability**: SystemCapability.Multimedia.Media.CodecBase
 
@@ -864,7 +865,7 @@ Obtains the video pixel formats supported by a video codec.
 | Name| Description|
 | -- | -- |
 | [OH_AVCapability](capi-avcapability-oh-avcapability.md) *capability | Pointer to the video codec capability. If a pointer to the audio codec capability is provided, undefined behavior occurs.|
-| const int32_t **pixelFormats |  Double pointer to the video pixel format array.|
+| const int32_t **pixelFormats | Output Parameter. Pointer to an array of video pixel formats. For details, see [OH_AVPixelFormat](../../reference/apis-avcodec-kit/capi-native-avformat-h.md#oh_avpixelformat). |
 | uint32_t *pixelFormatNum |  Pointer to the number of elements in the array.|
 
 **Returns**
@@ -920,7 +921,7 @@ Obtains the profiles supported by a codec.
 | Name| Description|
 | -- | -- |
 | [OH_AVCapability](capi-avcapability-oh-avcapability.md) *capability | Pointer to the codec capability.|
-| const int32_t **profiles |  Double pointer to the profile array.|
+| const int32_t **profiles | Output Parameter. Pointer to the profile array. For example, for H.264 profiles, see [OH_AVCProfile](../../reference/apis-avcodec-kit/capi-native-avcodec-base-h.md#oh_avcprofile). |
 | uint32_t *profileNum |  Pointer to the number of profiles in the array.|
 
 **Returns**
@@ -949,7 +950,7 @@ Obtains the codec levels supported by a profile.
 | -- | -- |
 | [OH_AVCapability](capi-avcapability-oh-avcapability.md) *capability | Pointer to the codec capability.|
 | int32_t profile | Codec profile.|
-| const int32_t **levels |  Double pointer to the codec level array.|
+| const int32_t **levels | Output Parameter. Pointer to the level array. For example, for H.264 levels, see [OH_AVCLevel](../../reference/apis-avcodec-kit/capi-native-avcodec-base-h.md#oh_avclevel). |
 | uint32_t *levelNum |  Pointer to the number of elements in the array.|
 
 **Returns**

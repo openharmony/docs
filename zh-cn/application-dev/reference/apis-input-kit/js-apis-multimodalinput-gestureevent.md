@@ -16,7 +16,7 @@
 ## 导入模块
 
 ```js
-import { Rotate, Pinch, ThreeFingersSwipe, FourFingersSwipe, ActionType } from '@kit.InputKit';
+import { Rotate, Pinch, ThreeFingersSwipe, FourFingersSwipe, ThreeFingersTap, ActionType } from '@kit.InputKit';
 ```
 
 ## Pinch

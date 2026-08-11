@@ -26,10 +26,6 @@ Asynchronous mode is generally recommended for most use cases. Synchronous mode 
 
 Read [VideoDecoder](../../reference/apis-avcodec-kit/capi-native-avcodec-videodecoder-h.md) for the API reference.
 
-- The dotted line indicates an optional operation.
-
-- The solid line indicates a mandatory operation.
-
 ![Call relationship of synchronous video decoding](figures/synchronous-video-decode.png)
 
 ### Linking the Dynamic Libraries in the CMake Script
@@ -66,7 +62,7 @@ The sample code provided in this section adheres to the C++17 standard and is fo
    #include <string.h>
    ```
 
-2. These global variables are for reference only. They can be encapsulated into an object based on service requirements.
+2. Define global variables. The following values are examples. Obtain the corresponding value ranges through capability query APIs and configure the parameters accordingly.
 
    ```c++
    // Video frame width.
@@ -187,7 +183,7 @@ The following walks you through how to implement the entire video decoding proce
 
 
    Send the input queue for decoding. In the code snippet below, the following variables are used:
-   - **size**, **offset**, **pts**, and **frameData**: size, offset, timestamp, and frame data. For details about how to obtain such information, see step 9 in [Media Data Demultiplexing](./audio-video-demuxer.md#how-to-develop).
+   - **size**, **offset**, **pts**, and **frameData**: size, offset, timestamp, and frame data. For details about how to obtain such information, see "Step 9: Start demultiplexing and cyclically obtain samples" in [How to Develop](./audio-video-demuxer.md#how-to-develop) of media data demultiplexing.
    - **flags**: type of the buffer flag. For details, see [OH_AVCodecBufferFlags](../../reference/apis-avcodec-kit/capi-native-avbuffer-info-h.md#oh_avcodecbufferflags).
 
    ```c++
@@ -556,6 +552,7 @@ The following walks you through how to implement the entire video decoding proce
                 info.size = size;
                 info.offset = offset;
                 info.pts = pts;
+                // Ensure that inFile_ is opened correctly during creation.
                 if (inFile_->eof()) {
                     info.flags = AVCODEC_BUFFER_FLAGS_EOS;
                 } else {

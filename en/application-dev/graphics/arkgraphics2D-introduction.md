@@ -3,9 +3,10 @@
 <!--Kit: ArkGraphics 2D-->
 <!--Subsystem: Graphics-->
 <!--Owner: @oh_wangxk; @goumiao; @hangmengxin-->
-<!--Designer: @liumingxiang; @wangyanglan-->
+<!--Designer: @liumingxiang; @wanyanglan-->
 <!--Tester: @yhl0101; @nobuggers-->
 <!--Adviser: @ge-yafang-->
+<!-- md-trans-meta sourceCommit=4e8c8649f5f2efb4d6a6d42fbee5df7e42731663 translatedAt=2026-08-03T11:15:22.838Z pushedAt=2026-08-04T01:41:11.694Z -->
 
 ArkGraphics 2D provides APIs for drawing and displaying graphics. With this set of APIs, you'll find your application development easier and more efficient.
 
@@ -25,7 +26,7 @@ ArkGraphics 2D provides APIs for drawing and displaying graphics. With this set 
 
 ## Use Scenarios
 
-- Image effect processing: You can use the [effectKit module](../reference/apis-arkgraphics2d/js-apis-effectKit.md) to process image effects based on UI effect requirements.
+- Applying image effects: You can use [@ohos.effectKit (image effect)](../reference/apis-arkgraphics2d/js-apis-effectKit.md) to apply image effects based on different UI effect requirements, thereby improving the browsing experience.
 
 - Setting color spaces: You can use image files and set color space information based on design requirements to draw and display images with a wide color space effect.
 
@@ -38,8 +39,10 @@ ArkGraphics 2D provides APIs for drawing and displaying graphics. With this set 
 - Multiple frame rates in the same window: Different frame rates can be customized for different content in the same window, such as animations or self-drawing UIs. Different content runs independently.
 
 - Dynamic frame rate configuration: A third-party framework can dynamically request the frame rate for drawing based on UI scenarios, such as gaming and videos.
-  
+
 - Recording playback: Recording commands can be cached and drawing commands can be played back to improve UI drawing efficiency.
-  
+
 - Multiple rendering backends: A set of code can be used for multiple rendering backends. This reduces multi-device adaptation costs and meets differentiated application requirements.
-  
+
+<!--RP1-->
+<!--RP1End-->

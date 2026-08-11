@@ -23,7 +23,7 @@
 
 ## 检测原理
 
-检测原理详见[Resource Leak（资源泄漏检测）](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides/resource-leak-guidelines)。
+检测原理详见[Resource Leak（资源泄漏）检测](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides/resource-leak-guidelines)。
 
 ## 自定义规格设置
 
@@ -31,7 +31,7 @@
 
 | 接口名 | 描述 |
 | -------- | -------- |
-| setEventConfig(name: string, config: Record<string, ParamType>): Promise&lt;void> | 设置资源泄漏日志规格参数，name应为资源泄漏事件名称常量hiappevent.event.RESOURCE_OVERLIMIT。**仅支持js内存泄漏类型。**<br>**说明**：从API version 20开始，支持该接口。 |
+| setEventConfig(name: string, config: Record<string, ParamType>): Promise&lt;void> | 设置资源泄漏日志规格参数，name应为资源泄漏事件名称常量hiappevent.event.RESOURCE_OVERLIMIT。**仅支持JS内存泄漏类型。**<br>**说明**：从API version 20开始，支持该接口。 |
 
 ### setEventConfig接口参数设置说明
 
@@ -53,7 +53,7 @@ let configParams: Record<string, hiAppEvent.ParamType> = {
     // "js_heap_logtype": "event_rawheap", // 同时获取堆快照
 };
 
-hiAppEvent.setEventConfig(hiappEvent.event.RESOURCE_OVERLIMIT, configParams);
+hiAppEvent.setEventConfig(hiAppEvent.event.RESOURCE_OVERLIMIT, configParams);
 ```
 
 > **注意：**
@@ -62,7 +62,7 @@ hiAppEvent.setEventConfig(hiappEvent.event.RESOURCE_OVERLIMIT, configParams);
 >
 > 在同一个应用生命周期内，可以多次调用setEventConfig，以最后一次成功调用的值为准。
 >
-> 开发者在调试以及自测试过程中，单日内触发OOM次数过多，可能会遇到无法收到hiappevent回传js内存泄漏事件的情况，可以通过将系统时间往后调一天进行规避。
+> 开发者在调试以及自测试过程中，单日内触发OOM次数过多，可能会遇到无法收到hiappevent回传JS内存泄漏事件的情况，可以通过将系统时间往后调一天进行规避。
 
 ### configEventPolicy接口说明
 
@@ -116,9 +116,9 @@ hiAppEvent.configEventPolicy(policy).then(() => {
 | pid | number | 应用的进程ID。 |
 | uid | number | 应用的用户ID。 |
 | resource_type | string | 资源类型，取值范围详见resource_type属性。 |
-| memory | object | （resource_type为pss_memory或js_heap专有）内存信息，详见memory属性。 |
-| fd | object | （resource_type为fd专有）文件描述符信息，详见fd属性。 |
-| thread | object | （resource_type为thread专有）线程信息，详见thread属性。 |
+| memory | object | （resource_type为pss_memory或js_heap专有）内存信息，详见[memory字段说明](#memory字段说明)。 |
+| fd | object | （resource_type为fd专有）文件描述符信息，详见[fd字段说明](#fd字段说明)。 |
+| thread | object | （resource_type为thread专有）线程信息，详见[thread字段说明](#thread字段说明)。 |
 | external_log | string[] | 故障日志文件路径。**为避免目录空间超限（限制参考log_over_limit），导致新生成的日志文件写入失败，请在日志文件处理完后及时删除。** |
 | log_over_limit | boolean | 生成的故障日志文件与已存在的日志文件总大小是否超过2GB上限。true表示超过上限，日志写入失败；false表示未超过上限。 |
 | page_switch_log | string | 页面切换日志路径，日志介绍详见[页面切换日志](pageswitch-log.md)。<br>**说明**：从API version 24开始支持。 |
@@ -131,7 +131,7 @@ hiAppEvent.configEventPolicy(policy).then(() => {
 | rss_memory | rss内存泄漏。<br>**说明**：从API版本26.0.0开始，支持该字段。 |
 | ion_memory | ion内存泄漏。<br>**说明**：从API version 20开始，支持该字段。 |
 | gpu_memory | gpu内存泄漏。<br>**说明**：从API version 20开始，支持该字段。 |
-| js_heap | js内存泄漏。 |
+| js_heap | JS内存泄漏。 |
 | fd | 句柄泄漏。 |
 | thread | 线程泄漏。 |
 
@@ -190,7 +190,7 @@ hiAppEvent.configEventPolicy(policy).then(() => {
 
 ## 自定义params参数
 
-当前资源泄漏事件上报**js内存泄漏**事件信息，可能无法满足开发者的个性化需求，因此提供事件setEventParam方法，自定义事件上报信息。
+当前资源泄漏事件上报**JS内存泄漏**事件信息，可能无法满足开发者的个性化需求，因此提供事件setEventParam方法，自定义事件上报信息。
 
 ### 接口说明
 

@@ -28,9 +28,9 @@ import { bundleMonitor } from '@kit.AbilityKit';
 
 | 名称       | 类型   | 只读 | 可选 | 说明                       |
 | ---------- | ------ | ---- | ---- | -------------------------- |
-| bundleName | string | 是   | 否   | 应用状态发生变化的应用Bundle名称。 |
-| userId     | number | 是   | 否   | 应用状态发生变化的用户ID，可以通过[getOsAccountLocalId](../apis-basic-services-kit/js-apis-osAccount.md#getosaccountlocalid9)获取。   |
-| appIndex<sup>12+</sup>   | number | 是   | 否   |  应用状态发生变化的应用分身索引。  |
+| bundleName | string | 是   | 否   | 应用发生变更的应用Bundle名称。 |
+| userId     | number | 是   | 否   | 应用发生变更的用户ID，可以通过[getOsAccountLocalId](../apis-basic-services-kit/js-apis-osAccount.md#getosaccountlocalid9)获取。   |
+| appIndex<sup>12+</sup>   | number | 是   | 否   |  应用发生变更的应用分身索引。  |
 
 ## BundleChangedEvent
 
@@ -70,7 +70,7 @@ on(type: BundleChangedEvent, callback: Callback\<BundleChangedInfo>): void
 | 参数名                       | 类型     | 必填 | 说明               |
 | ---------------------------- | -------- | ---- | ------------------ |
 | type| [BundleChangedEvent](js-apis-bundleMonitor-sys.md#bundlechangedevent)| 是   | 注册监听的事件类型。 |
-| callback | callback\<BundleChangedInfo>| 是   | [AsyncCallback](../apis-basic-services-kit/js-apis-base.md#asynccallback)，当回调成功时，err为undefined，data为应用变更信息；否则为错误对象。 |
+| callback | Callback\<BundleChangedInfo>| 是   | [Callback](../apis-basic-services-kit/js-apis-base.md#callback)，当回调成功时，err为undefined，data为应用变更信息；否则为错误对象。 |
 
 **错误码：**
 
@@ -117,7 +117,7 @@ off(type: BundleChangedEvent, callback?: Callback\<BundleChangedInfo>): void
 | 参数名                       | 类型     | 必填 | 说明                                                       |
 | ---------------------------- | -------- | ---- | ---------------------------------------------------------- |
 | type| [BundleChangedEvent](js-apis-bundleMonitor-sys.md#bundlechangedevent)| 是   | 注销监听的事件类型。                                         |
-| callback | callback\<BundleChangedInfo>| 否   | [AsyncCallback](../apis-basic-services-kit/js-apis-base.md#asynccallback)，当回调成功时，err为undefined，data为应用变更信息；否则为错误对象。 |
+| callback | Callback\<BundleChangedInfo>| 否   | [Callback](../apis-basic-services-kit/js-apis-base.md#callback)，当回调成功时，err为undefined，data为应用变更信息；否则为错误对象。 |
 
 **错误码：**
 

@@ -10,9 +10,11 @@
 
 >  **说明：**
 >
->  该组件从API version 7开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
+> - 该组件从API version 7开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 >
->  该组件仅支持单文本样式，若需实现富文本样式，建议使用[RichEditor](ts-basic-components-richeditor.md)组件。
+> - 该组件仅支持单文本样式，若需实现富文本样式，建议使用[RichEditor](ts-basic-components-richeditor.md)组件。
+>
+> - 如需设置触摸文本组件外部时是否清除文本选中和手柄，可使用[setTextSelectionClearPolicy](../arkts-apis-uicontext-uicontext.md#settextselectionclearpolicy)接口。
 
 
 ## 子组件
@@ -106,6 +108,10 @@ placeholderFont(value?: Font)
 
 设置placeholder文本样式，包括字体大小、字体粗细、字体族、字体风格。
 
+> **说明：**
+>
+> 可以使用[loadFontSync](../../apis-arkgraphics2d/js-apis-graphics-text.md#loadfontsync)注册自定义字体。
+
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
@@ -115,10 +121,6 @@ placeholderFont(value?: Font)
 | 参数名 | 类型                     | 必填 | 说明                  |
 | ------ | ------------------------ | ---- | --------------------- |
 | value  | [Font](ts-types.md#font) | 否   | placeholder文本样式。<br>省略该参数时使用系统默认字体样式。<br>Wearable设备上字体大小默认值为18fp |
-
-> **说明：**
->
-> 可以使用[loadFontSync](../../apis-arkgraphics2d/js-apis-graphics-text.md#loadfontsync)注册自定义字体。
 
 ### enterKeyType
 
@@ -241,6 +243,10 @@ fontFamily(value: ResourceStr)
 
 设置字体列表。未通过该接口设置时，默认字体为'HarmonyOS Sans'。
 
+> **说明：**
+>
+> 推荐使用[loadFontSync](../../apis-arkgraphics2d/js-apis-graphics-text.md#loadfontsync)注册自定义字体。
+
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
@@ -250,10 +256,6 @@ fontFamily(value: ResourceStr)
 | 参数名 | 类型                                   | 必填 | 说明                                                         |
 | ------ | -------------------------------------- | ---- | ------------------------------------------------------------ |
 | value  | [ResourceStr](ts-types.md#resourcestr) | 是   | 字体列表。使用多个字体时，请用逗号','分隔，字体的优先级按顺序生效。例如：'Arial,HarmonyOS Sans'。<br>应用当前支持'HarmonyOS Sans'字体和自定义字体。<br>卡片当前仅支持'HarmonyOS Sans'字体。<br>Wearable设备支持'HarmonyOS Sans'字体和自定义字体。 |
-
-> **说明：**
->
-> 推荐使用[loadFontSync](../../apis-arkgraphics2d/js-apis-graphics-text.md#loadfontsync)注册自定义字体。
 
 ### inputFilter<sup>8+</sup>
 
@@ -1163,7 +1165,7 @@ enableHapticFeedback(isEnabled: boolean)
 
 autoCapitalizationMode(mode: AutoCapitalizationMode)
 
-设置自动大小写模式的文本模式，只提供接口能力，具体实现以输入法应用为主。
+设置自动大小写模式的文本模式，只提供接口能力，具体实现以输入法应用为主。未通过该接口设置时，默认不产生大小写转换效果，具体实现以输入法应用为主。
 
 **原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
 
@@ -1175,7 +1177,7 @@ autoCapitalizationMode(mode: AutoCapitalizationMode)
 
 | 参数名   | 类型                                      | 必填 | 说明                       |
 | -------- | ----------------------------------------- | ---- | -------------------------- |
-| mode | [AutoCapitalizationMode](ts-text-common.md#autocapitalizationmode20枚举说明) | 是   | 自动大小写模式。不设置时，默认不启用自动大小写功能。具体实现以输入法应用为主。 |
+| mode | [AutoCapitalizationMode](ts-text-common.md#autocapitalizationmode20枚举说明) | 是   | 自动大小写模式，用于设置输入法的大小写转换规则，具体实现以输入法应用为主。 |
 
 ### keyboardAppearance<sup>15+</sup>
 
@@ -1423,7 +1425,7 @@ orphanCharOptimization(enabled: Optional\<boolean>)
 
 strokeJoinStyle(strokeJoinStyle: StrokeJoinStyle | undefined)
 
-设置文本描边拐角样式。
+设置文本描边拐角样式，仅在使用strokeWidth设置文本描边时生效。
 
 **起始版本：** 26.0.0
 
@@ -1437,7 +1439,7 @@ strokeJoinStyle(strokeJoinStyle: StrokeJoinStyle | undefined)
 
 | 参数名           | 类型             | 必填 | 说明                                            |
 | ---------------- | ------- | ---- | ----------------------------------------------- |
-| strokeJoinStyle         | [StrokeJoinStyle](ts-text-common.md#strokejoinstyle) \| undefined | 是 | 文本描边拐角样式。<br>值为undefined时，按照StrokeJoinStyle.MITER_JOIN处理，请参考[StrokeJoinStyle](ts-text-common.md#strokejoinstyle)，文本拐角处表现为锐角。 |
+| strokeJoinStyle         | [StrokeJoinStyle](ts-text-common.md#strokejoinstyle) \| undefined | 是 | 设置文本描边拐角样式，仅在使用strokeWidth设置文本描边时生效。<br>值为undefined时，按照StrokeJoinStyle.MITER_JOIN处理，请参考[StrokeJoinStyle](ts-text-common.md#strokejoinstyle)，文本拐角处表现为锐角。 |
 
 ### shaderStyle
 
@@ -1558,7 +1560,7 @@ selectedDragPreviewStyle(value: SelectedDragPreviewStyle | undefined)
 | NEW_PASSWORD<sup>11+</sup>    | 11 | 新密码输入模式。<br>默认输入文字短暂显示后变成圆点。从API version 12开始，PC/2in1设备上输入文字直接显示为圆点。<br>TV设备上输入框末尾默认不显示小眼睛图标，其他设备输入框末尾默认显示小眼睛图标。<br>密码输入模式中，[decoration](#decoration12)、[showUnderline](#showunderline10)、[lineHeight](#lineheight12)、[fontFeature](#fontfeature12)不生效。在已启用密码保险箱的情况下，支持自动生成新密码。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。<br>**模型约束：** 此接口仅可在Stage模型下使用。 |
 | NUMBER_DECIMAL<sup>11+</sup>  | 12 | 带小数点的数字输入模式。<br>支持数字，小数点（只能存在一个小数点）。不支持负数（包括负数整数和负数小数）。若需支持负数输入，请使用[inputFilter](#inputfilter8)属性实现负数过滤。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。<br>**模型约束：** 此接口仅可在Stage模型下使用。 |
 | URL<sup>12+</sup>  | 13 | 带URL的输入模式，无特殊限制。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。<br>**模型约束：** 此接口仅可在Stage模型下使用。 |
-| ONE_TIME_CODE<sup>20+</sup>  | 14 | 验证码输入模式，无特殊限制。<br>**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。<br>**模型约束：** 此接口仅可在Stage模型下使用。 |
+| ONE_TIME_CODE<sup>20+</sup>  | 14 | 验证码输入模式，无特殊限制。该模式下组件获焦后会默认拉起系统输入法。<br>**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。<br>**模型约束：** 此接口仅可在Stage模型下使用。 |
 
 ## ContentType<sup>12+</sup>枚举说明
 
@@ -1603,7 +1605,7 @@ selectedDragPreviewStyle(value: SelectedDragPreviewStyle | undefined)
 | LICENSE_FILE_NUMBER<sup>18+</sup>        | 34   | 【驾驶证档案编号】暂不支持自动保存和自动填充。<br>**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。 |
 | LICENSE_PLATE<sup>18+</sup>              | 35   | 【车牌号】在已启用情景化自动填充的情况下，支持车牌号的自动保存和自动填充。<br>**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。 |
 | ENGINE_NUMBER<sup>18+</sup>              | 36   | 【行驶证发动机号】暂不支持自动保存和自动填充。<br>**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。 |
-| LICENSE_CHASSIS_NUMBER<sup>18+</sup>     | 37   | 【车牌识别号】暂不支持自动保存和自动填充。<br>**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。 |
+| LICENSE_CHASSIS_NUMBER<sup>18+</sup>     | 37   | 【车架号】暂不支持自动保存和自动填充。<br>**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。 |
 
 ## TextInputStyle<sup>9+</sup>枚举说明
 
@@ -1656,6 +1658,13 @@ onChange(callback:&nbsp;EditableTextOnChangeCallback)
 输入内容发生变化时，触发该回调。
 
 在本回调中，若执行了光标操作，需要开发者在预上屏场景下依据previewText参数调整光标逻辑，以适应预上屏场景。
+
+> **说明：**
+>
+> onWillChange和onChange形成will/did时序模式：
+> - onWillChange在文本变更前触发，可通过返回false拦截变更；返回true则允许变更，随后触发onChange。
+> - onChange在变更完成后触发，无法拦截。
+> - 两者可以同时使用，onWillChange用于拦截控制，onChange用于获取变更结果。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -1741,14 +1750,14 @@ onWillCopy(callback: Callback\<string, boolean>)
 
 在进行复制操作前，触发该回调。
 
-**起始版本：** 26.0.0
-
 > **说明：**
 >
 > onWillCopy和onCopy形成will/did时序模式：
 > - onWillCopy在复制操作前触发，可通过返回false拦截复制操作；返回true则允许复制，随后触发onCopy。
 > - onCopy在复制操作完成后触发，无法拦截。
 > - 两者可以同时使用，onWillCopy用于拦截控制，onCopy用于获取复制结果。
+
+**起始版本：** 26.0.0
 
 **模型约束：** 此接口仅可在Stage模型下使用。
 
@@ -1887,9 +1896,9 @@ onWillInsert(callback: Callback\<InsertValue, boolean>)
 > **说明：**
 >
 > onWillInsert和onDidInsert形成will/did时序模式：
-> - onWillInsert在输入操作前触发，可通过返回false拦截输入操作；返回true则允许输入，随后触发onDidInsert
-> - onDidInsert在输入完成后触发，无法拦截
-> - 两者可以同时使用，onWillInsert用于拦截控制，onDidInsert用于获取输入结果
+> - onWillInsert在输入操作前触发，可通过返回false拦截输入操作；返回true则允许输入，随后触发onDidInsert。
+> - onDidInsert在输入完成后触发，无法拦截。
+> - 两者可以同时使用，onWillInsert用于拦截控制，onDidInsert用于获取输入结果。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -1929,10 +1938,11 @@ onWillDelete(callback: Callback\<DeleteValue, boolean>)
 
 > **说明：**
 >
-> onWillDelete和onDidDelete形成will/did时序模式：
-> - onWillDelete在删除操作前触发，可通过返回false拦截删除操作；返回true则允许删除，随后触发onDidDelete
-> - onDidDelete在删除完成后触发，无法拦截
-> - 两者可以同时使用，onWillDelete用于拦截控制，onDidDelete用于获取删除结果
+> - 点击清除按钮不触发onWillDelete回调。
+> - onWillDelete和onDidDelete形成will/did时序模式：
+>   - onWillDelete在删除操作前触发，可通过返回false拦截删除操作；返回true则允许删除，随后触发onDidDelete。
+>   - onDidDelete在删除完成后触发，无法拦截。
+>   - 两者可以同时使用，onWillDelete用于拦截控制，onDidDelete用于获取删除结果。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -1952,6 +1962,14 @@ onDidDelete(callback: Callback\<DeleteValue>)
 
 在删除完成时，触发该回调。
 
+> **说明：**
+>
+> - 点击清除按钮不触发onDidDelete回调。
+> - onWillDelete和onDidDelete形成will/did时序模式：
+>   - onWillDelete在删除操作前触发，可通过返回false拦截删除操作；返回true则允许删除，随后触发onDidDelete。
+>   - onDidDelete在删除完成后触发，无法拦截。
+>   - 两者可以同时使用，onWillDelete用于拦截控制，onDidDelete用于获取删除结果。
+
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **模型约束：** 此接口仅可在Stage模型下使用。
@@ -1964,17 +1982,18 @@ onDidDelete(callback: Callback\<DeleteValue>)
 | ------ | ------------------------------------------------------------ | ---- | ------------------ |
 | callback  | Callback\<[DeleteValue](ts-text-common.md#deletevalue12对象说明)> | 是   | 在删除完成时调用的回调。<br>仅支持系统输入法输入的场景。 |
 
->  **说明：**
->
->  点击清除按钮不触发onDidDelete回调。
-
 ### onWillChange<sup>15+</sup>
 
 onWillChange(callback: Callback\<EditableTextChangeValue, boolean>)
 
 在文本内容将要发生变化时，触发该回调。
 
-onWillChange的回调时序晚于onWillInsert、onWillDelete，早于onDidInsert、onDidDelete。
+> **说明：**
+> - onWillChange的回调时序晚于onWillInsert、onWillDelete，早于onDidInsert、onDidDelete。
+> - onWillChange和onChange形成will/did时序模式：
+>   - onWillChange在文本变更前触发，可通过返回false拦截变更；返回true则允许变更，随后触发onChange。
+>   - onChange在变更完成后触发，无法拦截。
+>   - 两者可以同时使用，onWillChange用于拦截控制，onChange用于获取变更结果。
 
 **原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。
 
@@ -2557,7 +2576,7 @@ struct TextInputExample {
 struct TextInputExample {
   @State text: string = '';
   public readonly NUM_TEXT_MAXSIZE_LENGTH = 13;
-  @State telNumberNoSpace: string = "";
+  @State telNumberNoSpace: string = '';
   @State nextCaret: number = -1; // 用于记录下次光标设置的位置
   @State actualCh: number = -1; // 用于记录光标在第i个数字后插入或者第i个数字前删除
   @State lastCaretPosition: number = 0;
@@ -2650,7 +2669,7 @@ struct TextInputExample {
         TextInput({ text: `${this.text}`, controller: this.controller }).type(InputType.PhoneNumber).height('48vp')
           .onChange((value: string) => {
             this.telNumberNoSpace = this.removeSpace(value);
-            let nextText: string = "";
+            let nextText: string = '';
             // 根据电话号码长度决定格式化方式：长度超限则不格式化，否则按'XXX XXXX XXXX'格式插入空格
             if (this.telNumberNoSpace.length > this.NUM_TEXT_MAXSIZE_LENGTH - 2) {
               nextText = this.telNumberNoSpace;
@@ -2688,7 +2707,7 @@ struct TextInputExample {
       }
     }
     .width('100%')
-    .height("100%")
+    .height('100%')
   }
 }
 ```
@@ -2818,11 +2837,11 @@ struct TextInputExample {
       TextInput({ text: this.text1 })
         .fontSize(20)
         .margin({ top: 200 })
-        .fontFeature("\"ss01\" on")
+        .fontFeature('"ss01" on')
       TextInput({ text: this.text2 })
         .margin({ top: 10 })
         .fontSize(20)
-        .fontFeature("\"ss01\" off")
+        .fontFeature('"ss01" off')
     }
     .width('90%')
     .margin('5%')
@@ -3287,7 +3306,7 @@ struct TextInputExample {
           .enableKeyboardOnFocus(false)
           .selectAll(false)
 
-        Text("editStatus:" + this.editStatus).height(30)
+        Text('editStatus:' + this.editStatus).height(30)
 
         TextInput({ text: 'TextInput支持复制操作时回调' })
           .height(60)

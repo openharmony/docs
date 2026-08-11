@@ -334,7 +334,7 @@ obtainAllWorks(): Promise\<Array\<WorkInfo>>
 
 stopAndClearWorks(): void
 
-停止和取消当前应用所有的延迟任务。
+停止和取消当前应用所有的延迟任务。适用于应用退出或卸载时清理所有延迟任务的场景。
 
 **系统能力：** SystemCapability.ResourceSchedule.WorkScheduler
 

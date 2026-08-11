@@ -10,7 +10,9 @@ Text组件用于显示文本内容，支持设置字体样式、文本对齐、�
 
 >  **说明：**
 >
->  该组件从API version 7开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
+> - 该组件从API version 7开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
+>
+> - 如需设置触摸文本组件外部时是否清除文本选中和手柄，可使用[setTextSelectionClearPolicy](../arkts-apis-uicontext-uicontext.md#settextselectionclearpolicy)接口。
 >
 >  <!--RP3--><!--RP3End-->
 
@@ -2541,16 +2543,6 @@ struct TextExample7 {
           .borderWidth(1)
           .padding(10)
           .width('100%')
-        Text(
-          '电话号码：' + this.phoneNumber + '\n' +
-            '时间：' + this.datetime
-        )
-          .fontSize(16)
-          .copyOption(CopyOptions.LocalDevice)
-          .textAlign(TextAlign.Center)
-          .borderWidth(1)
-          .padding(10)
-          .width('100%')
       }
       .width('100%')
       // 使用parallelGesture中的TapGesture替代onClick属性，达到非冒泡事件类似冒泡
@@ -3112,19 +3104,19 @@ struct TextExample14 {
   build() {
     Column({ space: 10 }) {
       Text() {
-        Span("Hello")
+        Span('Hello')
           .fontSize(50)
         // $r('app.media.startIcon')需要替换为开发者所需的图像资源文件。
         ImageSpan($r('app.media.startIcon'))
           .width(30).height(30)
           .verticalAlign(ImageSpanAlignment.FOLLOW_PARAGRAPH)// 从API version 20开始，支持ImageSpanAlignment.FOLLOW_PARAGRAPH
-        Span("World")
+        Span('World')
       }
       .textVerticalAlign(TextVerticalAlign.CENTER)
       .borderWidth(1)
     }
     .alignItems(HorizontalAlign.Center)
-    .width("100%")
+    .width('100%')
   }
 }
 ```
@@ -3150,7 +3142,7 @@ struct TextNumberTransition {
         .borderWidth(1)
         .fontSize(40)
         .contentTransition(this.numberTransition)
-      Button("change number")
+      Button('change number')
         .onClick(() => {
           this.number++;
         })
@@ -3286,7 +3278,7 @@ struct Index {
           .fontSize(25)
           .borderWidth(1)
           .copyOption(CopyOptions.LocalDevice)
-        Button("setTextSelection")
+        Button('setTextSelection')
           .onClick(() => {
             this.controller.setTextSelection(1, 6, { menuPolicy: MenuPolicy.HIDE })
           })

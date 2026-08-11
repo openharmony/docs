@@ -1,14 +1,14 @@
 # Component Animation
+
 <!--Kit: ArkUI-->
 <!--Subsystem: ArkUI-->
 <!--Owner: @hehongyang3-->
 <!--Designer: @hehongyang3-->
 <!--Tester: @lxl007-->
 <!--Adviser: @Brilliantry_Rui-->
-
+<!-- md-trans-meta sourceCommit=5c418d4bf2581cd8ca625b8865e73773ebc27789 translatedAt=2026-07-29T12:49:52.109Z pushedAt=2026-07-30T11:21:27.186Z -->
 
 In addition to universal property animation and transition animation APIs, ArkUI provides default animation effects for certain components, for example, the swipe effect for the [List](../reference/apis-arkui/arkui-ts/ts-container-list.md) component and the click effect of the [Button](../reference/apis-arkui/arkui-ts/ts-basic-components-button.md) component. Based on these default animation effects, you can apply custom animations to the child components through the property animation and transition animation APIs.
-
 
 ## Using Default Component Animation
 
@@ -16,7 +16,7 @@ The default animation of a component exhibits the following features:
 
 - Indicate the current state of the component. For example, after the user clicks a **Button** component, the component turns gray, indicating that it is selected.
 
-- Make UI interactions more intuitive and pleasurable.
+- Enhance UI refinement and vividness.
 
 - Reduce development workload, as the APIs are readily available.
 
@@ -44,9 +44,7 @@ struct ComponentDemo {
 }
 ```
 
-
 ![animation-default](figures/animation-default.gif)
-
 
 ## Customizing Component Animation
 
@@ -54,11 +52,11 @@ Some components allow for animation customization for their child components thr
 
 - For a scroll or click gesture, you can implement various effects by changing affine properties of the child component.
 
-- If you want to customize the animation effect during the scrolling, you can monitor the scrolling distance in the [onDidScroll](../reference/apis-arkui/arkui-ts/ts-container-scrollable-common.md#ondidscroll12) callback and calculate the affine properties of each component. You can also define gestures, monitor positions through the gestures, and manually call **ScrollTo** to change the scrolled-to position.
+- If you want to customize the animation effect during the scrolling, you can monitor the scrolling distance in the [onDidScroll](../reference/apis-arkui/arkui-ts/ts-container-scrollable-common.md#ondidscroll12) callback and calculate the affine properties of each component. You can also define gestures, monitor positions through the gestures, and manually call **ScrollTo** to change the target scroll position.
 
-- You can fine-tune the scrolled-to position in the [onScrollStop](../reference/apis-arkui/arkui-ts/ts-basic-components-textpicker.md#onscrollstop14) callback or the callback for gesture completion.
+- In the scroll callback [onScrollStop](../reference/apis-arkui/arkui-ts/ts-container-scrollable-common.md#onscrollstop11) or the gesture end callback, fine-tune the final target scroll position.
 
-The following is an example of customizing the swipe animation for the **Scroll** component:
+The following is an example of customizing the scroll animation for the **Scroll** component:
 
 <!-- @[Component_Scroll](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkUISample/Animation/entry/src/main/ets/pages/component/template2/Index.ets) -->
 
@@ -364,7 +362,7 @@ export struct TaskSwitchMainPage {
 
 ![animation-custom](figures/animation-custom.gif)
 
-You can use the **animateTo** API to replace a specified item in a list with the first item, while other items in the list are rearranged sequentially. Below is the sample code and animation effect demonstrating a custom dynamic replacement animation for the **List** component.
+You can use the **animateTo** API to move a specified item to the top of the list, while other items in the list are rearranged sequentially. Below is the sample code and animation effect demonstrating a custom dynamic replacement animation for the **List** component.
 
 <!-- @[Component_List](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkUISample/Animation/entry/src/main/ets/pages/component/template3/Index.ets) -->
 
@@ -411,7 +409,7 @@ class DragSortCtrl<T> {
   }
 
   onMove(item: T, offset: number) {
-    this.offsetY = offset - this.dragRefOffset; // Calculate the per-frame input offset. When the item height threshold is reached, enter the if logic to update dragRefOffset.
+    this.offsetY = offset - this.dragRefOffset; // Calculate the incoming offset frame by frame. When the accumulated offset reaches the height of one item, enter the if block below and update the value of dragRefOffset.
     let index = this.arr.indexOf(item); // Search for the input item in the array.
     this.modify[index].offsetY = this.offsetY;
     if (this.offsetY < -this.ITEM_INTV / 2) { // Move the specified item to the top, one position at a time.
@@ -540,6 +538,6 @@ struct ListAutoSortExample {
 }
 ```
 
-
 ![listAnimateDemo](figures/listAnimateDemo.gif)
+
 <!--RP1--><!--RP1End-->

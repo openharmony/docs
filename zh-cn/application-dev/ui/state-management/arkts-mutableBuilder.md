@@ -53,7 +53,7 @@ struct Index {
 
 ## 接口说明
 
-mutableBuilder是一个模板函数，返回一个[MutableBuilder](../../reference/apis-arkui/arkui-ts/ts-universal-mutableBuilder.md#mutablebuilder-2)对象。相比[WrappedBuilder](../../reference/apis-arkui/arkui-ts/ts-universal-wrapBuilder.md#wrappedbuilder)，MutableBuilder可以实现动态切换全局@Builder。
+mutableBuilder是一个模板函数，返回一个[MutableBuilder](../../reference/apis-arkui/arkui-ts/ts-universal-mutableBuilder.md#mutablebuilder-1)对象。相比[WrappedBuilder](../../reference/apis-arkui/arkui-ts/ts-universal-wrapBuilder.md#wrappedbuilder)，MutableBuilder可以实现动态切换全局@Builder。
 ```ts
 declare function mutableBuilder<Args extends Object[]>(builder: BuilderCallback): MutableBuilder<Args>;
 ```
@@ -170,10 +170,11 @@ let builderArr: MutableBuilder<[string, number]>[] = [mutableBuilder(MyBuilder)]
 ## 动态更改全局@Builder实例
 使用\@Builder装饰器装饰的方法`textBuilder`作为mutableBuilder的参数，然后将mutableBuilder的返回值赋值给变量`switchingBuilder`，在Button的点击事件中，使用\@Builder装饰器装饰的方法`buttonBuilder`作为mutableBuilder的参数，将mutableBuilder的返回值再次赋值给变量`switchingBuilder`，可实现`textBuilder` 更新为`buttonBuilder`，以解决wrapBuilder不支持二次赋值的问题。
 
+<!-- @[mutable_builder_dynamic](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkUISample/mutableBuilder/entry/src/main/ets/pages/MutableBuilderDynamic.ets) --> 
 
-```ts
+``` TypeScript
 class TextContent {
-  text: string = '';
+  public text: string = '';
 }
 
 @Builder
@@ -218,7 +219,10 @@ struct MyApp {
 ## 使用mutableBuilder显示弹出菜单
 
 由于MutableBuilder继承自WrappedBuilder，故mutableBuilder对应的@Builder具有跟WrappedBuilder同等能力，如下示例，mutableBuilder对应的@Builder方法可作为bindMenu入参，支持点击弹出菜单。
-```ts
+
+<!-- @[mutable_builder_context_menu](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkUISample/mutableBuilder/entry/src/main/ets/pages/MutableBuilderContextMenu.ets) --> 
+
+``` TypeScript
 @Builder
 function overBuilder() {
   Row() {
@@ -260,7 +264,9 @@ struct Index {
 
  mutableBuilder对应的@Builder函数中可使用[MutableBinding](../../reference/apis-arkui/js-apis-stateManagement.md#mutablebindingt20)进行包裹来观察状态变量的变化，同时可通过[@Monitor](./arkts-new-monitor.md)或[addMonitor](./arkts-new-addMonitor-clearMonitor.md)监听mutableBuilder中@Builder的变化。
 
-```ts
+<!-- @[mutable_builder_binding](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkUISample/mutableBuilder/entry/src/main/ets/pages/MutableBuilderBinding.ets) --> 
+
+``` TypeScript
 import { UIUtils, MutableBinding } from '@kit.ArkUI';
 
 @Builder

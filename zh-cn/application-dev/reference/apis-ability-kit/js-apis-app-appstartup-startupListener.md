@@ -25,7 +25,7 @@ import { StartupListener } from '@kit.AbilityKit';
 
 onCompleted?(error: BusinessError\<void\>): void
 
-在所有启动任务完成时调用。
+在所有启动任务执行完成时调用。
 
 **系统能力**：SystemCapability.Ability.AppStartup
 
