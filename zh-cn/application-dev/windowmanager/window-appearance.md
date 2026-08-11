@@ -291,3 +291,56 @@ struct SliderDemo {
 示例代码如下：
 
 <!--@[backgroundColor_start](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkUISample/ArkUIWindowSamples/backgroundColor/entry/src/main/ets/pages/Index.ets) -->
+
+``` TypeScript
+import { ColorMetrics, window } from '@kit.ArkUI';
+import { hilog } from '@kit.PerformanceAnalysisKit';
+
+const DOMAIN = 0x0000;
+
+@Entry
+@Component
+struct Index {
+  @StorageLink('mainWindow') mainWindow: window.Window | undefined = undefined;
+
+  @State alpha: number = 0;
+  @State red: number = 0;
+  @State green: number = 0;
+  @State blue: number = 0;
+  @State statusText: string = 'Move the sliders to change the current window background color.';
+  @State applyModeText: string = 'Current mode: string (#AARRGGBB)';
+
+  // 将0~255的通道值转换成两位十六进制字符串，用于拼接 #AARRGGBB。
+  private toHex(value: number): string {
+    return Math.round(value).toString(16).padStart(2, '0').toUpperCase();
+  }
+
+  // 按ARGB顺序生成当前窗口背景色的十六进制字符串。
+  private getColorValue(): string {
+    return `#${this.toHex(this.alpha)}${this.toHex(this.red)}${this.toHex(this.green)}${this.toHex(this.blue)}`;
+  }
+  // ...
+  // 直接用ColorMetrics.rgba(...)设置窗口背景色。
+  private applyByColorMetrics(): void {
+    if (!this.mainWindow) {
+      this.statusText = 'Current window is unavailable.';
+      return;
+    }
+
+    try {
+      const alpha = Math.round(this.alpha) / 255;
+      const colorMetrics = ColorMetrics.rgba(Math.round(this.red), Math.round(this.green), 
+                            Math.round(this.blue), alpha);
+      this.mainWindow.setWindowBackgroundColor(colorMetrics);
+      this.applyModeText = 'Current mode: ColorMetrics.rgba(...)';
+      this.statusText = `setWindowBackgroundColor(ColorMetrics.rgba(${Math.round(this.red)}, ${Math.round(this.green)}, ${Math.round(this.blue)}, ${alpha.toFixed(2)})) success`;
+      hilog.info(DOMAIN, 'backgroundColor', this.statusText);
+    } catch (err) {
+      this.statusText = `setWindowBackgroundColor by ColorMetrics failed: ${JSON.stringify(err)}`;
+      hilog.error(DOMAIN, 'backgroundColor', this.statusText);
+    }
+  }
+
+  // ...
+}
+```
