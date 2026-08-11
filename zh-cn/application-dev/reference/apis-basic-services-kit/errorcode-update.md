@@ -46,7 +46,7 @@
 - `verifyUpgradePackage`
 - `applyNewVersion`
 
-详细信息可参考[js-apis-update-sys.md](../apis-basic-services-kit/js-apis-update-sys.md)。
+详细信息可参考[开发指南接口文档](../apis-basic-services-kit/js-apis-update-sys.md)。
 
 ## 调用流程
 
