@@ -307,7 +307,7 @@ VideoProcessing_ErrorCode OH_VideoProcessing_SetParameter(OH_VideoProcessing* vi
 | 参数项 | 描述 |
 | -- | -- |
 | [OH_VideoProcessing](capi-videoprocessing-oh-videoprocessing.md)* videoProcessor | 指向视频处理实例的指针。 |
-| const [OH_AVFormat](capi-videoprocessing-oh-avformat.md)* parameter | 指向视频处理参数实例的指针。 |
+| const [OH_AVFormat](capi-videoprocessing-oh-avformat.md)* parameter | 指向视频处理参数实例的指针，用于传入需设置的视频处理参数，例如视频宽度、高度、像素格式及编解码格式等。 |
 
 **返回：**
 
