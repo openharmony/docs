@@ -81,7 +81,7 @@ MIDI状态码枚举。定义MIDI操作的状态码，用于表示操作成功或
 | OH_MIDI_STATUS_TOO_MANY_OPEN_PORTS = 35500009 |  客户端已达到允许打开的最大端口数量（64个）。<br> 要打开新端口，必须先关闭现有端口。<br>**起始版本：** 24 |
 | OH_MIDI_STATUS_DEVICE_ALREADY_OPEN = 35500010 |  客户端已经打开此设备。同一设备在同一客户端中不允许重复打开。<br>**起始版本：** 24 |
 | OH_MIDI_STATUS_PORT_ALREADY_OPEN = 35500011 |  客户端已经打开此端口。同一端口在同一客户端中不允许重复打开。<br>**起始版本：** 24 |
-| OH_MIDI_STATUS_TOO_MANY_CLIENTS = 35500012 |  系统级（8个）或应用级（2个/UID）客户端数量已达上限。应用应等待或释放其他资源后重试。<br>**起始版本：** 24 |
+| OH_MIDI_STATUS_TOO_MANY_CLIENTS = 35500012 |  系统级（8个）或应用级（2个/UID）客户端数量已达上限。应用应等待其他客户端关闭，或关闭不再使用的客户端后重试。<br>**起始版本：** 24 |
 | OH_MIDI_STATUS_PERMISSION_DENIED = 35500013 |  权限被拒绝。当应用尝试在未获得所需权限（例如BLE设备的蓝牙权限）的情况下执行操作时返回。请在配置文件中声明所需权限并引导用户授权后重试。<br>**起始版本：** 24 |
 | OH_MIDI_STATUS_SERVICE_DIED = 35500014 |  MIDI系统服务已崩溃或断开连接。必须销毁并重新创建客户端。<br>**起始版本：** 24 |
 | OH_MIDI_STATUS_SYSTEM_ERROR = 35500100 |  系统内部错误。表示发生了未预期的系统级错误。建议稍后重试操作，如问题持续存在，请重启应用或检查系统状态。<br>**起始版本：** 24 |
@@ -230,7 +230,7 @@ typedef void (*OH_MIDIDevice_OnReceived)(void *userData, const OH_MIDIEvent *eve
 
 | 参数项 | 描述 |
 | -- | -- |
-| void \*userData | 调用[OH_MIDIClient_Create](./capi-native-midi-h.md#oh_midiclient_create)时传入的用户自定义数据指针。 |
+| void \*userData | 注册回调时（如[OH_MIDIDevice_OpenInputPort](./capi-native-midi-h.md#oh_mididevice_openinputport)）传入的用户自定义数据指针。 |
 | [const OH_MIDIEvent](capi-ohmidi-oh-midievent.md) \*events | 指向接收到的MIDI事件数组的指针。<br>**注意：** events数组及其中所有数据指针仅在此回调范围内有效。如需保留数据，请先进行复制。 |
 | size_t eventCount | 数组中的事件数。 |
 

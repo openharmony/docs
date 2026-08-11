@@ -458,7 +458,7 @@ OH_MIDIStatusCode OH_MIDIDevice_Send(OH_MIDIDevice *device, uint32_t portIndex, 
 | uint32_t portIndex | 目标端口索引，须为已通过[OH_MIDIDevice_OpenOutputPort](capi-native-midi-h.md#oh_mididevice_openoutputport)打开的输出端口索引。 |
 | [const OH_MIDIEvent](capi-ohmidi-oh-midievent.md) *events | 指向要发送的事件数组的指针，内存空间需要由开发者分配。 |
 | uint32_t eventCount | 数组中的事件数量。 |
-| uint32_t *eventsWritten | 输出参数，返回成功发送的事件数量。当返回OH_MIDI_STATUS_WOULD_BLOCK时，可用于从断点处继续发送剩余事件。 |
+| uint32_t *eventsWritten | 输出参数，用于接收成功发送的事件数量。当返回OH_MIDI_STATUS_WOULD_BLOCK时，可用于从断点处继续发送剩余事件。 |
 
 **返回：**
 
@@ -505,7 +505,7 @@ OH_MIDIStatusCode OH_MIDIDevice_FlushOutputPort(OH_MIDIDevice *device, uint32_t 
 
 **描述**
 
-清空输出缓冲区中的待发送消息。立即丢弃指定端口输出缓冲区中等待的所有MIDI事件，包括用于未来时间戳的事件。适用于停止播放、切换音色或设备异常时需要取消尚未发送的MIDI事件的场景。
+清空输出缓冲区中的待发送消息。立即丢弃指定端口输出缓冲区中等待的所有MIDI事件，包括携带未来时间戳（已入队但计划延迟发送）的事件。适用于停止播放、切换音色或设备异常时需要取消尚未发送的MIDI事件的场景。
 
 > **说明：** 
 > 
