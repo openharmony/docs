@@ -1,14 +1,16 @@
 # Performance Optimization Practices (for System Applications Only) (ArkTS)
+
 <!--Kit: Camera Kit-->
 <!--Subsystem: Multimedia-->
 <!--Owner: @qano-->
 <!--Designer: @leo_ysl-->
 <!--Tester: @xchaosioda-->
 <!--Adviser: @w_Machine_cc-->
+<!-- md-trans-meta sourceCommit=03da8d98875c99278437bdd28f12d4fdb3efd8f7 translatedAt=2026-08-10T09:14:13.946Z pushedAt=2026-08-10T11:49:18.451Z -->
 
 Before developing a camera application, you must [request required permissions](camera-preparation.md).
 
-The camera startup performance is affected by time-consuming operations such as power-on of underlying components and initialization of the process pipeline. To improve the camera startup speed and thumbnail display speed, OpenHarmony introduces some features. The capabilities of these features are related to underlying components. Check whether your underlying components support these capabilities before using the capabilities.
+Camera startup performance is affected by time-consuming operations such as underlying hardware power-on and pipeline initialization. This document provides further guidance for improving camera startup speed and the speed of returning thumbnails after photo capture. The related capabilities depend on the underlying hardware. Before using them, you must check whether the corresponding features are supported.
 
 These features are involved in the processes of starting the camera device, configuring streams, and taking photos. This topic describes the three scenarios.
 
@@ -26,7 +28,7 @@ After optimization: Stream configuration does not depend on the Surface object. 
 
 ### Available APIs
 
-Read [Camera](../../reference/apis-camera-kit/arkts-apis-camera.md) for the API reference.
+For detailed API reference, see [@ohos.multimedia.camera (Camera Management)](../../reference/apis-camera-kit/arkts-apis-camera.md).
 
 | API| Description|
 | ---- | ---- |
@@ -99,7 +101,7 @@ In this way, the photo capture process is optimized, which fulfills the processi
 
 ### Available APIs
 
-Read [Camera](../../reference/apis-camera-kit/arkts-apis-camera.md) for the API reference.
+For detailed API reference, see [@ohos.multimedia.camera (Camera Management)](../../reference/apis-camera-kit/arkts-apis-camera.md).
 
 | API| Description|
 | ---- | ---- |
@@ -119,6 +121,7 @@ The figure below shows the recommended API call process.
 ![](figures/quick-thumbnail-sequence-diagram.png)
 
 For details about how to obtain the context, see [Obtaining the Context of UIAbility](../../application-models/uiability-usage.md#obtaining-the-context-of-uiability).
+
 ```ts
 import { camera } from '@kit.CameraKit';
 import { BusinessError } from '@kit.BasicServicesKit';
@@ -192,13 +195,15 @@ function showOrSavePicture(pixelMap: image.PixelMap): void {
 
 Generally, the startup of the camera application is triggered when the user touches the camera icon on the home screen. The home screen senses the touch event and instructs the application manager to start the camera application. This takes a relatively long time. After the camera application is started, the camera startup process starts. A typical camera startup process includes starting the camera device, configuring a data stream, and starting the data stream, which is also time-consuming.
 
-​The prelaunch feature triggers the action of starting the camera device before the camera application is started. In other words, when the user touches the camera icon on the home screen, the system starts the camera device. At this time, the camera application is not started yet. The figure below shows the camera application process before and after the prelaunch feature is introduced.
+The camera startup approach moves the action of "opening the camera device" to before the camera app is started. That is, when the user taps the camera icon but the camera app has not yet started, the system triggers the action of opening the camera device. This shortens the camera startup process within the camera app and accelerates camera startup.
+
+The following compares the camera app flow before and after using prelaunch:
 
 ![prelaunch-scene](figures/prelaunch-scene.png)
 
 ### Available APIs
 
-Read [Camera](../../reference/apis-camera-kit/arkts-apis-camera.md) for the API reference.
+For detailed API reference, see [@ohos.multimedia.camera (Camera Management)](../../reference/apis-camera-kit/arkts-apis-camera.md).
 
 | API| Description|
 | ---- | ---- |

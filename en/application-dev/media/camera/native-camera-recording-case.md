@@ -1,14 +1,16 @@
 # Video Recording Practices (C/C++)
+
 <!--Kit: Camera Kit-->
 <!--Subsystem: Multimedia-->
 <!--Owner: @qano-->
 <!--Designer: @leo_ysl-->
 <!--Tester: @xchaosioda-->
 <!--Adviser: @w_Machine_cc-->
+<!-- md-trans-meta sourceCommit=425e79ed59a841b19860caacc0b050f68405d43e translatedAt=2026-08-10T09:22:28.093Z pushedAt=2026-08-10T13:27:07.091Z -->
 
 Before developing a camera application, you must [request required permissions](camera-preparation.md).
 
-This topic provides sample code that covers the complete video recording process and the API calling sequence. For details about a single process (such as device input, session management, and video recording), see the corresponding C/C++ development guide links provided in [Requesting Camera Development Permissions](camera-preparation.md).
+This example provides an introduction to the complete recording process and the sequence of API calls. For details about individual processes (such as [device input](native-camera-device-input.md), [session management](native-camera-session-management.md), and [recording](native-camera-recording.md)), refer to the corresponding sections.
 
 ## Development Process
 
@@ -19,6 +21,7 @@ After obtaining the output stream capabilities supported by the camera, create a
 ## Complete Sample Code
 
 1. Link the dynamic library in the CMake script.
+
     ```txt
     target_link_libraries(entry PUBLIC
         libace_napi.z.so
@@ -28,6 +31,7 @@ After obtaining the output stream capabilities supported by the camera, create a
     ```
 
 2. Create the header file **ndk_camera.h**.
+
    ```c++
    #include "ohcamera/camera.h"
    #include "ohcamera/camera_input.h"
@@ -45,6 +49,7 @@ After obtaining the output stream capabilities supported by the camera, create a
    ```
 
 3. Import the NDK APIs on the C++ side, and perform video recording based on the surface ID passed in.
+
     ```c++
     #include "hilog/log.h"
     #include <cmath>
@@ -275,7 +280,7 @@ After obtaining the output stream capabilities supported by the camera, create a
             return;
         }
 
-        // Create a preview output stream. For details about the surfaceId parameter, see the XComponent. The preview stream is the surface provided by the XComponent.
+        // Create a preview output stream. The surfaceId parameter is provided by the XComponent component described above. The preview stream uses the surface provided by the XComponent component.
         ret = OH_CameraManager_CreatePreviewOutput(cameraManager, previewProfile, previewSurfaceId, &previewOutput);
         if (previewProfile == nullptr || previewOutput == nullptr || ret != CAMERA_OK) {
             OH_LOG_ERROR(LOG_APP, "OH_CameraManager_CreatePreviewOutput failed.");
@@ -388,3 +393,6 @@ After obtaining the output stream capabilities supported by the camera, create a
         }
     }
     ```
+
+<!--RP1-->
+<!--RP1End-->

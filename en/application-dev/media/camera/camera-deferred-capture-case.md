@@ -1,10 +1,12 @@
 # Deferred Photo Delivery Practices (ArkTS)
+
 <!--Kit: Camera Kit-->
 <!--Subsystem: Multimedia-->
 <!--Owner: @qano-->
 <!--Designer: @leo_ysl-->
 <!--Tester: @xchaosioda-->
 <!--Adviser: @w_Machine_cc-->
+<!-- md-trans-meta sourceCommit=425e79ed59a841b19860caacc0b050f68405d43e translatedAt=2026-08-10T09:11:48.100Z pushedAt=2026-08-10T10:47:47.171Z -->
 
 Before developing a camera application, you must [request required permissions](camera-preparation.md).
 
@@ -166,7 +168,7 @@ async function deferredCaptureCase(context: Context, surfaceId: string): Promise
     console.error('createOutput photoProfilesArray == null || undefined');
   }
 
-  // Create a preview output stream. For details about the surfaceId parameter, see the XComponent. The preview stream uses the surface provided by the XComponent.
+  // Create a preview output stream. The surfaceId parameter is provided by the XComponent component described above. The preview stream uses the surface provided by the XComponent component.
   try {
     previewOutput = cameraManager.createPreviewOutput(previewProfilesArray[0], surfaceId);
   } catch (error) {

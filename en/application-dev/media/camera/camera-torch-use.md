@@ -1,22 +1,26 @@
 # Using the Flashlight (ArkTS)
+
 <!--Kit: Camera Kit-->
 <!--Subsystem: Multimedia-->
 <!--Owner: @qano-->
 <!--Designer: @leo_ysl-->
 <!--Tester: @xchaosioda-->
 <!--Adviser: @w_Machine_cc-->
+<!-- md-trans-meta sourceCommit=03da8d98875c99278437bdd28f12d4fdb3efd8f7 translatedAt=2026-08-10T09:16:43.538Z pushedAt=2026-08-10T12:54:20.995Z -->
 
 To use the flashlight mode, you manipulate your device to turn on the flashlight, which then stays on persistently.
 
 When you use the flashlight mode with a camera application, the following situations may occur:
 
 - When the rear camera is used and [FlashMode](../../reference/apis-camera-kit/arkts-apis-camera-e.md#flashmode) is set to off, the flashlight cannot be turned on.
+
 - When the front camera is used, the flashlight can be turned on and remains steady on.
+
 - When you switch from the front camera to the rear camera, the flashlight will be automatically turned off if it was turned on previously.
 
 ## How to Develop
 
-Read [Camera](../../reference/apis-camera-kit/arkts-apis-camera.md) for the API reference.
+For detailed API descriptions, refer to [@ohos.multimedia.camera (Camera Management)](../../reference/apis-camera-kit/arkts-apis-camera.md).
 
 1. Import the camera module, which provides camera-related properties and methods.
 
@@ -66,17 +70,15 @@ Read [Camera](../../reference/apis-camera-kit/arkts-apis-camera.md) for the API 
     function setTorchModeSupported(cameraManager: camera.CameraManager, torchMode: camera.TorchMode) : void {
       cameraManager.setTorchMode(torchMode);
       let isTorchMode = cameraManager.getTorchMode();
-      console.info(`Returned with the torch mode supportd mode: ${isTorchMode}`);
+      console.info(`Returned with the torch mode supported mode: ${isTorchMode}`);
     }
     ```
-
 
 ## Status Listening
 
 During camera application development, you can listen for the flashlight status, including on, off, unavailable, and available.
 
 Register the **'torchStatusChange'** event and return the listening result through a callback, which carries the **TorchStatusInfo** parameter. For details about the parameter, see [TorchStatusInfo](../../reference/apis-camera-kit/arkts-apis-camera-i.md#torchstatusinfo11).
-
 
 ```ts
 function onTorchStatusChange(cameraManager: camera.CameraManager): void {

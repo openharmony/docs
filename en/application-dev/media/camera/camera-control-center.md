@@ -1,12 +1,14 @@
 # Camera Controller (ArkTS)
+
 <!--Kit: Camera Kit-->
 <!--Subsystem: Multimedia-->
 <!--Owner: @qano-->
 <!--Designer: @leo_ysl-->
 <!--Tester: @xchaosioda-->
 <!--Adviser: @w_Machine_cc-->
+<!-- md-trans-meta sourceCommit=fbe1743d278791557b9f2a0141605bb3472d86ed translatedAt=2026-08-10T09:11:38.570Z pushedAt=2026-08-10T10:45:52.204Z -->
 
-Starting from API version 20, the camera framework introduces a camera controller to enhance live streaming with features like beautification and background blur.
+Starting from API version 20, the camera framework provides capabilities such as beautification and bokeh for apps in live streaming scenarios through the camera controller.
 
 The camera controller is designed for live streaming and video calls and currently works only with the front camera in video mode, supporting up to 1080p resolution at 30fps.
 
@@ -58,7 +60,6 @@ Read [Camera](../../reference/apis-camera-kit/arkts-apis-camera.md) for the API 
 6. You can tap the **Video effects** icon to go to the secondary screen, where you can adjust effects like **Beautification** and **Background blur**.
 
     ![camera-control-center](figures/camera-control-center.png)
-
 
 ## Status Listening
 

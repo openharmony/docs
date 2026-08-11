@@ -1,17 +1,21 @@
 # High-Performance Photo Capture (for System Applications Only) (ArkTS)
+
 <!--Kit: Camera Kit-->
 <!--Subsystem: Multimedia-->
 <!--Owner: @qano-->
 <!--Designer: @leo_ysl-->
 <!--Tester: @xchaosioda-->
 <!--Adviser: @w_Machine_cc-->
+<!-- md-trans-meta sourceCommit=03da8d98875c99278437bdd28f12d4fdb3efd8f7 translatedAt=2026-08-10T09:12:43.795Z pushedAt=2026-08-10T11:04:50.847Z -->
 
-As an important feature of the camera, high-performance photo capture enables deferred photo delivery and further reduces the response delay, delivering a better user experience. High-performance photo capture is implemented as follows: After an application delivers a phot capture request, the system quickly returns a thumbnail to the application, and the application stores the thumbnail and related information in the mediaLibrary. Then the subservice performs scheduling based on the system pressure and custom scenarios and sends the postprocessed original image to the mediaLibrary.
+As an important feature of the camera, high-performance photo capture enables deferred photo delivery and further reduces the response delay, delivering a better user experience. High-performance photo capture is implemented as follows: After an application delivers a photo capture request, the system quickly returns a thumbnail to the application, and the application stores the thumbnail and related information in the mediaLibrary. Then the subservice performs scheduling based on the system pressure and custom scenarios and sends the postprocessed original image to the mediaLibrary.
 
 To develop high-performance photo capture, perform the following steps:
 
 - Check whether the device supports deferred photo delivery of a certain type.
+
 - Enable deferred photo delivery (if supported).
+
 - Listen for thumbnails, obtain a thumbnail proxy class object, and save the thumbnail to the mediaLibrary.
 
 > **NOTE**
@@ -19,11 +23,9 @@ To develop high-performance photo capture, perform the following steps:
 > - Deferred photo delivery varies according to the device and type. Therefore, if the device or type is changed, you must enable the corresponding deferred photo delivery capability.
 > - Deferred photo delivery must be enabled during the stream configuration. After the stream configuration is complete, enabling deferred photo delivery does not take effect.
 
-
-
 ## How to Develop
 
-Read [Camera](../../reference/apis-camera-kit/arkts-apis-camera.md) for the API reference.
+For detailed API descriptions, refer to [@ohos.multimedia.camera (Camera)](../../reference/apis-camera-kit/arkts-apis-camera.md).
 
 1. Import dependencies. Specifically, import the camera, image, and mediaLibrary modules.
 
@@ -87,9 +89,9 @@ Read [Camera](../../reference/apis-camera-kit/arkts-apis-camera.md) for the API 
 
    ```ts
    function isDeferredImageDeliveryEnabled(photoOutput: camera.PhotoOutput): boolean {
-   	 let isEnabled: boolean = false;
+     let isEnabled: boolean = false;
      if (photoOutput !== null) {
-   	   isEnabled = photoOutput.isDeferredImageDeliveryEnabled(camera.DeferredDeliveryImageType.PHOTO);
+       isEnabled = photoOutput.isDeferredImageDeliveryEnabled(camera.DeferredDeliveryImageType.PHOTO);
      }
      console.info(`isDeferredImageDeliveryEnabled isEnabled: ${isEnabled}`);
      return isEnabled;

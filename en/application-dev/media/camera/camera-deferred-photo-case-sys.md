@@ -1,10 +1,12 @@
 # Practices for High-Performance Photo Capture (for System Applications Only) (ArkTS)
+
 <!--Kit: Camera Kit-->
 <!--Subsystem: Multimedia-->
 <!--Owner: @qano-->
 <!--Designer: @leo_ysl-->
 <!--Tester: @xchaosioda-->
 <!--Adviser: @w_Machine_cc-->
+<!-- md-trans-meta sourceCommit=425e79ed59a841b19860caacc0b050f68405d43e translatedAt=2026-08-10T09:13:31.487Z pushedAt=2026-08-10T10:55:50.538Z -->
 
 Before developing a camera application, you must [request required permissions](camera-preparation.md).
 
@@ -183,7 +185,7 @@ async function deferredPhotoCase(context: Context, surfaceId: string): Promise<v
     console.error("createOutput photoProfilesArray == null || undefined");
   }
 
-  // Create a preview output stream. For details about the surfaceId parameter, see the XComponent. The preview stream uses the surface provided by the XComponent.
+  // Create a preview output stream. The surfaceId parameter is provided by the XComponent component described above. The preview stream uses the surface provided by the XComponent component.
   let previewOutput: camera.PreviewOutput | undefined = undefined;
   try {
     previewOutput = cameraManager.createPreviewOutput(previewProfilesArray[0], surfaceId);
@@ -292,7 +294,7 @@ async function deferredPhotoCase(context: Context, surfaceId: string): Promise<v
   console.info('isDeferredImageDeliverySupported res:' + isSupportDeferred);
   if (isSupportDeferred) {
     // Enable deferred photo delivery.
-	photoOutput.deferImageDelivery(camera.DeferredDeliveryImageType.PHOTO);
+    photoOutput.deferImageDelivery(camera.DeferredDeliveryImageType.PHOTO);
     // Check whether deferred photo delivery is enabled.
     let isSupportEnabled: boolean = photoOutput.isDeferredImageDeliveryEnabled(camera.DeferredDeliveryImageType.PHOTO);
     console.info('isDeferredImageDeliveryEnabled res:' + isSupportEnabled);

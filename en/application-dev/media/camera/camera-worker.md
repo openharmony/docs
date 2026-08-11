@@ -1,24 +1,28 @@
 # Using the Camera in the Worker Thread (ArkTS)
+
 <!--Kit: Camera Kit-->
 <!--Subsystem: Multimedia-->
 <!--Owner: @qano-->
 <!--Designer: @leo_ysl-->
 <!--Tester: @xchaosioda-->
 <!--Adviser: @w_Machine_cc-->
+<!-- md-trans-meta sourceCommit=a0d61469bb44afa5cea84cd5263c0bce0cfd4fdf translatedAt=2026-08-10T09:17:33.059Z pushedAt=2026-08-10T12:58:49.035Z -->
 
-[Worker](../../arkts-utils/worker-introduction.md) is mainly used to offer applications a multithreaded environment. It enables applications to perform time-consuming operations in background threads. This greatly prevents computing-intensive or high-latency tasks from blocking the running of the main thread.
+The primary role of [Worker](../../arkts-utils/worker-introduction.md) is to provide a multi-threaded runtime environment for apps. It allows an app to separate certain execution from the main thread and run a script in a background thread for time-consuming operations, thereby greatly preventing compute-intensive or high-latency tasks from blocking the main thread.
 
 When using camera capabilities, you often need to create camera sessions and continuously receive and process preview, photo, and video streams to achieve the desired camera functionalities. If these resource-demanding operations are performed in the main thread (UI thread), UI rendering may be blocked. Therefore, you are advised to implement the camera functionalities in the Worker thread.
 
 ## How to Develop
+
 1. Import dependencies, including dependencies related to Worker and camera framework.
+
    ```ts
    import { BusinessError } from '@kit.BasicServicesKit';
    import { camera } from '@kit.CameraKit';
    import { ErrorEvent, MessageEvents, ThreadWorkerGlobalScope, worker } from '@kit.ArkTS';
    ```
 
-2. Create a camera service proxy class, in which all APIs provided by Camera Kit method are called.
+2. Create a camera service proxy class, in which all Camera Kit method calls are executed.
 
    ```ts
    class CameraService {
@@ -180,6 +184,10 @@ When using camera capabilities, you often need to create camera sessions and con
      private workerInstance: worker.ThreadWorker = new worker.ThreadWorker('entry/ets/workers/CameraWorker.ets');
      private uiContext: UIContext = this.getUIContext();
      private context: Context | undefined = this.uiContext.getHostContext();
+    private mXComponentOptions: XComponentOptions = {
+      type: XComponentType.SURFACE,
+      controller: this.mXComponentController
+    }
    
      onPageShow(): void {
        if ('' !== this.surfaceId) {
@@ -202,11 +210,7 @@ When using camera capabilities, you often need to create camera sessions and con
      build() {
        Column() {
          Column() {
-           XComponent({
-             id: 'componentId',
-             type: XComponentType.SURFACE,
-             controller: this.mXComponentController
-           })
+           XComponent(this.mXComponentOptions)
              .onLoad(async () => {
                console.info('onLoad is called');
                // Initialize the XComponent to obtain the surface ID of the preview stream.
