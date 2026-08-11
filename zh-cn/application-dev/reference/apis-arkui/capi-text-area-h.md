@@ -50,6 +50,6 @@ enum ArkUI_TextAreaType
 | ARKUI_TEXTAREA_TYPE_NUMBER = 2 | 纯数字输入模式。 |
 | ARKUI_TEXTAREA_TYPE_PHONE_NUMBER = 3 | 电话号码输入模式。<br>支持输入数字、空格、+ 、-、*、#、(、)，长度不限。 |
 | ARKUI_TEXTAREA_TYPE_EMAIL = 5 | 邮箱地址输入模式。<br>支持数字、字母、下划线、小数点、!、#、$、%、&、'、*、+、-、/、=、?、^、`、\{、\|、\}、~以及@字符（只能存在一个@字符）。邮箱地址格式需符合基本规范：@字符前为用户名部分，@字符后为域名部分。 |
-| ARKUI_TEXTAREA_TYPE_ONE_TIME_CODE = 14 | 验证码输入模式，无特殊限制。<br>**起始版本：** 20 |
+| ARKUI_TEXTAREA_TYPE_ONE_TIME_CODE = 14 | 验证码输入模式，无特殊限制。该模式下组件获焦后会默认拉起系统输入法。<br>**起始版本：** 20 |
 
 
