@@ -263,7 +263,7 @@ struct TestStorageProp {
         .fontSize(20)
         .margin(10)
         .onClick(() => {
-          hilog.info(DOMAIN, TAG, `Appstorage.get: ${AppStorage.get<number>('propA')}`);
+          hilog.info(DOMAIN, TAG, `AppStorage.get: ${AppStorage.get<number>('propA')}`);
           AppStorage.set<number>('propA', 100);
         })
 

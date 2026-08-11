@@ -68,7 +68,7 @@
   this.title = new Model('Hi');
   ```
 
-- 当装饰的类型是Object或者class复杂类型时，可以观察到自身的赋值和第一层的属性的变化，属性即object.keys(observedObject)返回的所有属性。复杂类型完整示例请参考[从父组件中的\@State类对象属性到\@Prop简单类型的同步](#从父组件中的state类对象属性到prop简单类型的同步)。
+- 当装饰的类型是Object或者class复杂类型时，可以观察到自身的赋值和第一层的属性的变化，属性即Object.keys(observedObject)返回的所有属性。复杂类型完整示例请参考[从父组件中的\@State类对象属性到\@Prop简单类型的同步](#从父组件中的state类对象属性到prop简单类型的同步)。
 
   <!-- @[prop_seventeen_start](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkUISample/Prop/entry/src/main/ets/pages/PageSeventeen.ets) -->
   
