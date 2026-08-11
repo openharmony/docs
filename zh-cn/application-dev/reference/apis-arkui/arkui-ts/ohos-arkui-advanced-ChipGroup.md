@@ -938,3 +938,85 @@ struct ChipGroupMaterialExample {
 ```
 
 ![](figures/chip_group_material.png)
+
+### 示例7（设置组件选中状态的系统材质样式）
+
+该示例通过配置selectedBackgroundSystemMaterial实现组件选中状态的系统材质样式，开启自动反色功能使文本颜色适配背景色。
+
+从API版本26.0.0开始，[ChipGroup](#chipgroup-1)新增selectedBackgroundSystemMaterial属性。
+
+```typescript
+import { ChipGroup, IconGroupSuffix, SymbolGlyphModifier, uiMaterial } from '@kit.ArkUI';
+
+@Entry
+@Component
+struct ChipGroupMaterialExample {
+  @State selectedIndexes: Array<number> = [0];
+
+  @LocalBuilder
+  suffixBuilder() {
+    IconGroupSuffix({
+      items: [new SymbolGlyphModifier($r('sys.symbol.magnifyingglass'))
+      // 将fontColor设置为特殊系统资源值，启用自动反色能力。
+        .fontColor([$r('sys.color.font_primary')])],
+      // 设置后缀图标的系统材质样式为ULTRA_THIN，并开启自动反色。
+      iconBackgroundSystemMaterial: new uiMaterial.ImmersiveMaterial({
+        style: uiMaterial.ImmersiveStyle.ULTRA_THIN,
+        colorInvert: true
+      })
+    })
+  }
+
+  build() {
+    Column({ space: 10 }) {
+      ChipGroup({
+        items: [
+          { label: { text: '选项1' } },
+          { label: { text: '选项2' } },
+          { label: { text: '选项3' } },
+          { label: { text: '选项4' } },
+          { label: { text: '选项5' } },
+          { label: { text: '选项6' } },
+        ],
+        selectedIndexes: this.selectedIndexes,
+        itemStyle: {
+          // 设置透明的背景颜色，否则会和系统材质冲突。
+          backgroundColor: Color.Transparent,
+          // 将fontColor设置为特殊系统资源值，启用自动反色能力。
+          fontColor: $r('sys.color.ohos_id_color_text_primary'),
+          selectedFontColor: $r('sys.color.ohos_id_color_text_primary_contrary')
+        },
+        // 设置ChipGroup的选中项系统材质样式为ULTRA_THIN，并开启自动反色。
+        selectedBackgroundSystemMaterial: new uiMaterial.ImmersiveMaterial({
+          style: uiMaterial.ImmersiveStyle.ULTRA_THIN,
+          materialColor: $r('sys.color.ohos_id_color_emphasize'),
+          colorInvert: true
+        }),
+        // 设置ChipGroup的系统材质样式为ULTRA_THIN，并开启自动反色。
+        backgroundSystemMaterial: new uiMaterial.ImmersiveMaterial({
+          style: uiMaterial.ImmersiveStyle.ULTRA_THIN,
+          colorInvert: true
+        }),
+        onChange: (activatedChipsIndex: Array<number>) => {
+          this.selectedIndexes = activatedChipsIndex;
+        },
+        suffix: () => {
+          this.suffixBuilder()
+        }
+      })
+    }
+    .linearGradient({
+      angle: 90, // 渐变角度，90度是从左到右。
+      colors: [
+        ['#FF9A9E', 0.0], // 起始颜色及位置（0.0表示起点）。
+        ['#FECFEF', 0.5], // 中间颜色及位置。
+        ['#3B324C', 1.0] // 结束颜色及位置（1.0表示终点）。
+      ]
+    })
+    .padding(12)
+    .width('100%')
+    .height('100%')
+  }
+}
+
+```
