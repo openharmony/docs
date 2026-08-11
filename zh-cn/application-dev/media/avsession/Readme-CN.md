@@ -30,4 +30,8 @@
   <!--Del-->
   - [音频模板概述（仅对系统应用开放）](using-avsession-AVMusicTemplateController-sys.md)
   <!--DelEnd-->
+
+- AVSession Kit常见问题<!--avsession-kit-faq-->
+  - [本地媒体会话常见问题](avsession-faq-local.md)<!--RP2--><!--RP2End-->
+
 - [AVSession Kit术语](avsession-glossary.md)

@@ -3752,7 +3752,7 @@ startSelf(): Promise\<void>
 
 | 错误码ID | 错误信息 |
 | ------- | -------- |
-| 801 | Capability not supported, because starting self to foreground from background is not supported in current devive or current UIAbility is a non-native UIAbility. |
+| 801 | Capability not supported, because starting self to foreground from background is not supported in current device or current UIAbility is a non-native UIAbility. |
 | 16000011 | The context does not exist. |
 | 16000050 | Internal error. Connect to system service failed. |
 | 16000082 | The UIAbility is being started. The UIAbility has not completed onCreate or onWindowStageCreate. |

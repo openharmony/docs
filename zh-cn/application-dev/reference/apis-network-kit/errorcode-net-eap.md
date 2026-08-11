@@ -118,7 +118,7 @@ Invalid net type.
 
 **处理步骤**
 
-传入支持的合法网络类型: WLAN: 1; ETH: 2。
+传入支持的合法网络类型：WLAN：1；ETH：2。
 
 
 ## 33200007 无效的eapCode值

@@ -44,7 +44,7 @@
 | [int32_t OH_NativeImage_DetachContext(OH_NativeImage* image)](#oh_nativeimage_detachcontext) | - | 将OH_NativeImage实例从当前OpenGL ES上下文分离。<br>本接口为非线程安全类型接口。 |
 | [int32_t OH_NativeImage_UpdateSurfaceImage(OH_NativeImage* image)](#oh_nativeimage_updatesurfaceimage) | - | 通过OH_NativeImage获取最新帧更新相关联的OpenGL ES纹理。<br>本接口需要在OpenGL ES环境上下文的线程中调用。<br>本接口需要在接收到[OH_OnFrameAvailableListener](capi-oh-nativeimage-oh-onframeavailablelistener.md)回调后调用。<br>本接口为非线程安全类型接口。 |
 | [int64_t OH_NativeImage_GetTimestamp(OH_NativeImage* image)](#oh_nativeimage_gettimestamp) | - | 获取最近调用OH_NativeImage_UpdateSurfaceImage的纹理图像的相关时间戳。<br>本接口为非线程安全类型接口。 |
-| [int32_t OH_NativeImage_GetTransformMatrix(OH_NativeImage* image, float matrix[16])](#oh_nativeimage_gettransformmatrix) | - | 获取最近调用OH_NativeImage_UpdateSurfaceImage的纹理图像的变化矩阵。 |
+| [int32_t OH_NativeImage_GetTransformMatrix(OH_NativeImage* image, float matrix[16])](#oh_nativeimage_gettransformmatrix) | - | 获取最近调用OH_NativeImage_UpdateSurfaceImage的纹理图像的变换矩阵。<br>本接口为非线程安全类型接口。 |
 | [int32_t OH_NativeImage_GetSurfaceId(OH_NativeImage* image, uint64_t* surfaceId)](#oh_nativeimage_getsurfaceid) | - | 获取OH_NativeImage的surface编号。<br>本接口为非线程安全类型接口。 |
 | [int32_t OH_NativeImage_SetOnFrameAvailableListener(OH_NativeImage* image, OH_OnFrameAvailableListener listener)](#oh_nativeimage_setonframeavailablelistener) | - | 设置帧可用回调。<br>不允许在回调函数中调用本模块的其他接口。<br>本接口为非线程安全类型接口。 |
 | [int32_t OH_NativeImage_UnsetOnFrameAvailableListener(OH_NativeImage* image)](#oh_nativeimage_unsetonframeavailablelistener) | - | 取消设置帧可用回调。<br>本接口为非线程安全类型接口。 |
@@ -260,7 +260,7 @@ int32_t OH_NativeImage_GetTransformMatrix(OH_NativeImage* image, float matrix[16
 
 **描述**
 
-获取最近调用OH_NativeImage_UpdateSurfaceImage的纹理图像的变化矩阵。
+获取最近调用OH_NativeImage_UpdateSurfaceImage的纹理图像的变换矩阵。<br>本接口为非线程安全类型接口。
 
 **系统能力：** SystemCapability.Graphic.Graphic2D.NativeImage
 
@@ -386,7 +386,7 @@ void OH_NativeImage_Destroy(OH_NativeImage** image)
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_NativeImage](capi-oh-nativeimage-oh-nativeimage.md)** image | 指向OH_NativeImage实例的指针。 |
+| [OH_NativeImage](capi-oh-nativeimage-oh-nativeimage.md)** image | 指向OH_NativeImage实例指针的指针。 |
 
 ### OH_NativeImage_GetTransformMatrixV2()
 
@@ -396,7 +396,7 @@ int32_t OH_NativeImage_GetTransformMatrixV2(OH_NativeImage* image, float matrix[
 
 **描述**
 
-根据生产端设置的旋转角度，获取最近调用OH_NativeImage_UpdateSurfaceImage的纹理图像的变化矩阵。<br>matrix在[OH_NativeImage_UpdateSurfaceImage](capi-native-image-h.md#oh_nativeimage_updatesurfaceimage)接口调用后，才会更新。<br>本接口为非线程安全类型接口。
+根据生产端设置的旋转角度，获取最近调用OH_NativeImage_UpdateSurfaceImage的纹理图像的变换矩阵。<br>matrix在[OH_NativeImage_UpdateSurfaceImage](capi-native-image-h.md#oh_nativeimage_updatesurfaceimage)接口调用后，才会更新。<br>本接口为非线程安全类型接口。
 
 **系统能力：** SystemCapability.Graphic.Graphic2D.NativeImage
 
@@ -408,7 +408,7 @@ int32_t OH_NativeImage_GetTransformMatrixV2(OH_NativeImage* image, float matrix[
 | 参数项 | 描述 |
 | -- | -- |
 | [OH_NativeImage](capi-oh-nativeimage-oh-nativeimage.md)* image | 指向OH_NativeImage实例的指针。 |
-| matrix |  用来存储要获取的4*4的变化矩阵。 |
+| float matrix[16] |  用来存储要获取的4*4的变换矩阵。 |
 
 **返回：**
 
@@ -447,7 +447,7 @@ int32_t OH_NativeImage_GetBufferMatrix(OH_NativeImage* image, float matrix[16])
 ### OH_NativeImage_AcquireNativeWindowBuffer()
 
 ```c
-int32_t OH_NativeImage_AcquireNativeWindowBuffer(OH_NativeImage* image,OHNativeWindowBuffer** nativeWindowBuffer, int* fenceFd)
+int32_t OH_NativeImage_AcquireNativeWindowBuffer(OH_NativeImage* image, OHNativeWindowBuffer** nativeWindowBuffer, int* fenceFd)
 ```
 
 **描述**
@@ -494,7 +494,7 @@ int32_t OH_NativeImage_ReleaseNativeWindowBuffer(OH_NativeImage* image,OHNativeW
 | -- | -- |
 | [OH_NativeImage](capi-oh-nativeimage-oh-nativeimage.md)* image | 指向OH_NativeImage实例的指针。 |
 | [OHNativeWindowBuffer](capi-nativewindow-nativewindowbuffer.md)* nativeWindowBuffer | 指向OHNativeWindowBuffer实例的指针。 |
-| int fenceFd | 指向文件描述符句柄, 用于并发同步控制。 |
+| int fenceFd | 文件描述符句柄，用于并发同步控制。 |
 
 **返回：**
 

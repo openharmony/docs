@@ -113,7 +113,7 @@ enum AudioChannelLayout : uint64_t
 
 **Description**
 
-Enumerates the layouts of audio channels. The output format of the decoder is described using the channel layout of the codec.
+Enumerates the audio channel layout types. The output format of the decoder is described using the channel layout type of the codec.
 
 **System capability**: SystemCapability.Multimedia.Media.CodecBase
 
@@ -150,7 +150,7 @@ Enumerates the layouts of audio channels. The output format of the decoder is de
 | CH_7POINT0_FRONT = (CH_5POINT0 \| AudioChannelSet::FRONT_LEFT_OF_CENTER \| AudioChannelSet::FRONT_RIGHT_OF_CENTER) | 7.0 front layout.|
 | CH_7POINT1 = (CH_5POINT1 \| AudioChannelSet::BACK_LEFT \| AudioChannelSet::BACK_RIGHT) | 7.1 layout.|
 | CH_7POINT1_WIDE = (CH_5POINT1 \| AudioChannelSet::FRONT_LEFT_OF_CENTER \| AudioChannelSet::FRONT_RIGHT_OF_CENTER) | 7.1 wide layout.|
-| CH_7POINT1_WIDE_BACK = | 7.1 rear wide layout.|
+| CH_7POINT1_WIDE_BACK = (CH_5POINT1_BACK \| AudioChannelSet::FRONT_LEFT_OF_CENTER \| AudioChannelSet::FRONT_RIGHT_OF_CENTER) | 7.1 rear wide layout.|
 | CH_3POINT1POINT2 = (CH_3POINT1 \| AudioChannelSet::TOP_FRONT_LEFT \| AudioChannelSet::TOP_FRONT_RIGHT) | 3.1.2 layout.|
 | CH_5POINT1POINT2 = (CH_5POINT1 \| AudioChannelSet::TOP_SIDE_LEFT \| AudioChannelSet::TOP_SIDE_RIGHT) | 5.1.2 layout.|
 | (CH_5POINT1 \| AudioChannelSet::TOP_FRONT_LEFT \| AudioChannelSet::TOP_FRONT_RIGHT \|AudioChannelSet::TOP_BACK_LEFT \| AudioChannelSet::TOP_BACK_RIGHT) | 5.1.4 layout.|

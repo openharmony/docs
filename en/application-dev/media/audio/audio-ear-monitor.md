@@ -1,10 +1,12 @@
-# Audio Monitoring
+# Implementing Custom Audio Monitoring
+
 <!--Kit: Audio Kit-->
 <!--Subsystem: Multimedia-->
-<!--Owner: @songshenke-->
-<!--Designer: @caixuejiang; @hao-liangfei; @zhanganxiang-->
+<!--Owner: @tom_guo-->
+<!--Designer: @trytocalm-->
 <!--Tester: @Filger-->
 <!--Adviser: @w_Machine_cc-->
+<!-- md-trans-meta sourceCommit=cc1631b0a685b25b8a7c643aeb7d2e2b37b2f675 translatedAt=2026-08-06T01:41:14.182Z pushedAt=2026-08-06T03:44:36.892Z -->
 
 Audio monitoring enables real-time transmission of audio to headphones, allowing users to hear themselves or other relevant sounds in real time.
 
@@ -18,13 +20,17 @@ This feature is commonly used in karaoke applications, where the recorded vocals
 
 - Currently, audio monitoring is only supported through wired headphones, where audio is both captured and played back.
 
+## When to Use
+
+By combining the system playback and recording capabilities, you can implement audio monitoring within an app. This is suitable for scenarios where the app needs to process recorded data on its own. For example, the app can apply custom audio effect algorithms to the recorded data before playback to achieve specific sound effects. Since the data must be processed by the app, the latency is higher than that of the system audio monitoring.
+
 ## How to Develop
 
-  The examples in each of the following steps are code snippets. You can click the link at the bottom right of the sample code to obtain the [complete sample codes](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/Media/Audio/AudioCapturerSampleC).
+The examples in the following steps are code snippets. You can access the [complete sample](https://gitcode.com/openharmony/applications_app_samples/tree/master/code/DocsSample/Media/Audio/AudioCapturerSampleC) via the link at the bottom right of each sample code.
 
 ### Creating an Audio Recording Builder
 
-Use the **OH_AudioStreamBuilder** function provided by OHAudio to create an audio recording builder, following the builder design pattern. Set [OH_AudioStream_Type](../../reference/apis-audio-kit/capi-native-audiostream-base-h.md#oh_audiostream_type) to **AUDIOSTREAM_TYPE_CAPTURER**.
+Use `OH_AudioStreamBuilder` provided by OHAudio, following the builder design pattern, to construct an audio recording stream. Specify the corresponding [OH_AudioStream_Type](../../reference/apis-audio-kit/capi-native-audiostream-base-h.md#oh_audiostream_type) and set it to `AUDIOSTREAM_TYPE_CAPTURER`.
 
 <!-- @[Create_Capture](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/Media/Audio/AudioCapturerSampleC/entry/src/main/cpp/AudioCapture.cpp) -->
 
@@ -35,7 +41,7 @@ OH_AudioStreamBuilder_Create(&builder, AUDIOSTREAM_TYPE_CAPTURER);
 
 ### Creating an Audio Playback Builder
 
-Use the **OH_AudioStreamBuilder** function provided by **OHAudio** to create an audio playback builder, following the builder design pattern. Set [OH_AudioStream_Type](../../reference/apis-audio-kit/capi-native-audiostream-base-h.md#oh_audiostream_type) to **AUDIOSTREAM_TYPE_RENDERER**.
+Use the `OH_AudioStreamBuilder` interface provided by OHAudio, following the builder design pattern, to construct an audio playback stream. Specify the corresponding [OH_AudioStream_Type](../../reference/apis-audio-kit/capi-native-audiostream-base-h.md#oh_audiostream_type) and set it to `AUDIOSTREAM_TYPE_RENDERER`.
 
 <!-- @[Create_Renderer](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/Media/Audio/AudioCapturerSampleC/entry/src/main/cpp/AudioCapture.cpp) -->
 
@@ -57,7 +63,7 @@ OH_AudioStream_LatencyMode latencyMode = AUDIOSTREAM_LATENCY_MODE_FAST;
 OH_AudioStreamBuilder_SetLatencyMode(builder, latencyMode);
 ```
 
-To implement real-time audio monitoring, create a shared buffer to store the captured data and promptly retrieve data from this buffer to write to the audio playback builder.
+To implement real-time audio monitoring, you need to create a shared buffer for storing recorded data and promptly retrieve data from this buffer to write to the playback builder.
 
 ### Defining the Shared Buffer and Recording/Playback Functions
 
@@ -80,14 +86,14 @@ int32_t MyOnWriteData(
     void* buffer,
     int32_t length)
 {
-    // Read data from the shared buffer and write the data with the specified length into the buffer.
+    // Read data from the shared buffer and write it to the buffer based on the specified length.
     return 0;
 }
 ```
 
 > **NOTE**
 >
-> Avoid setting the shared buffer too large, as it can increase audio feedback latency and degrade user experience. You should select a proper buffer size that balances latency and jitter tolerance to maintain optimal performance.
+> Do not set the shared buffer too large, as it can increase audio monitor latency and degrade user experience. Select an appropriate buffer size based on latency and anti-jitter requirements to ensure a good user experience.
 
 ### Setting Audio Stream Parameters
 
@@ -174,7 +180,7 @@ int32_t MyOnError_Legacy(
 
 ### Setting Playback Callback Functions
 
-<!-- @[SetRendererCallback](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/Media/Audio/AudioCapturerSampleC/entry/src/main/cpp/AudioCapture.cpp) -->
+<!-- @[SetRendererCallback](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/Media/Audio/AudioCapturerSampleC/entry/src/main/cpp/AudioCapture.cpp) -->  
 
 ``` C++
 int32_t MyOnWriteData(
@@ -183,7 +189,7 @@ int32_t MyOnWriteData(
     void* buffer,
     int32_t length)
 {
-    // Read data from the shared buffer and write the data with the specified length into the buffer.
+    // Read data from the shared buffer and write it into the buffer based on the length.
     return 0;
 }
 int32_t MyOnStreamEvent_Renderer(
@@ -246,7 +252,7 @@ OH_AudioStreamBuilder_GenerateRenderer(builder, &audioRenderer);
 
 ### Using Audio Streams
 
-The following uses recording as an example. You can use the following APIs to control the start, pause, stop, and release of audio streams.
+Taking playback as an example, you can use the following APIs to control the start, pause, stop, and release of an audio stream.
 
 > **NOTE**
 > 

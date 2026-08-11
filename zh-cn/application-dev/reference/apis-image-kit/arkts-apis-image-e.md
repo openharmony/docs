@@ -14,7 +14,7 @@ Image Kit提供的枚举类型集合，涵盖图片像素格式、图片格式�
 
 ## PixelMapFormat<sup>7+</sup>
 
-表示图片像素格式的枚举。
+表示图片像素格式的枚举，包含像素数据的颜色通道排列和位深信息。
 
 **系统能力：** SystemCapability.Multimedia.Image.Core
 
@@ -117,6 +117,10 @@ Image Kit提供的枚举类型集合，涵盖图片像素格式、图片格式�
 
 - 格式示例中的key为：image.PropertyKey.XXX（XXX为枚举的名称，如：image.PropertyKey.NEW_SUBFILE_TYPE） 。
 - 格式示例仅用于说明修改传值和读取结果的格式。具体接口使用方法请参考：[modifyImageProperty](arkts-apis-image-ImageSource.md#modifyimageproperty11)（修改单个Exif字段）、[modifyImageProperties](arkts-apis-image-ImageSource.md#modifyimageproperties12)（修改多个Exif字段）、[getImageProperty](arkts-apis-image-ImageSource.md#getimageproperty11)（读取单个Exif字段）、[getImageProperties](arkts-apis-image-ImageSource.md#getimageproperties12)（读取多个Exif字段）。
+
+> **说明：**
+>
+> 应用通过[PhotoAccessHelper](../apis-media-library-kit/arkts-apis-photoAccessHelper-PhotoAccessHelper.md)查询媒体库图片，读取GPS相关字段（如GPS_LATITUDE、GPS_LONGITUDE、GPS_ALTITUDE、GPS_TIME_STAMP和GPS_DATE_STAMP）前，应先声明并向用户申请[ohos.permission.MEDIA_LOCATION](../../security/AccessToken/permissions-for-all-user.md#ohospermissionmedia_location)权限。如果上述字段返回全为0或为空，请先检查该权限是否已获授权，并确认原始图片是否包含GPS信息。
 
 **系统能力：** SystemCapability.Multimedia.Image.Core
 

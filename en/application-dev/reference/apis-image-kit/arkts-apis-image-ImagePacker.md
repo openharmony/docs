@@ -2,7 +2,7 @@
 <!--Kit: Image Kit-->
 <!--Subsystem: Multimedia-->
 <!--Owner: @aulight02-->
-<!--Designer: @liyang_bryan-->
+<!--Designer: @XiaoYao555-->
 <!--Tester: @xchaosioda-->
 <!--Adviser: @w_Machine_cc-->
 
@@ -14,7 +14,7 @@ During encoding, do not modify or release the ImageSource, PixelMap, or Picture 
 
 Images occupy a large amount of memory. When you finish using an ImagePacker instance, call [release](#release) to free the memory promptly. Before releasing the instance, ensure that all asynchronous operations associated with the instance have finished and the instance is no longer needed.
 
-Currently, the following formats are supported: jpeg, webp, png, heic<sup>12+</sup>, and gif<sup>18+</sup>. (The supported formats may vary depending on the hardware. You can refer to the **supportedFormats** property of ImagePacker to see which ones are supported.)
+The currently supported formats are JPEG, WebP, PNG, HEIC<sup>12+</sup>, GIF<sup>18+</sup>, and TIFF (supported since API version 26.0.0, with support varying by hardware device. You can check the supported formats via the **supportedFormats** property of ImagePacker).
 
 > **NOTE**
 >
@@ -32,7 +32,7 @@ import { image } from '@kit.ImageKit';
 
 | Name            | Type          | Read Only| Optional| Description                      |
 | ---------------- | -------------- | ---- | ---- | -------------------------- |
-| supportedFormats | Array\<string> | Yes  | No  | Supported formats for image encoding, including jpeg, webp, png, heic<sup>12+</sup>, and gif<sup>18+</sup>. (The supported formats may vary depending on the hardware.)|
+| supportedFormats | Array\<string> | Yes  | No  | Supported image encoding formats, including JPEG, WebP, PNG, HEIC<sup>12+</sup>, GIF<sup>18+</sup>, and TIFF (supported since API version 26.0.0, with support varying by hardware device).|
 
 ## packToData<sup>13+</sup>
 
@@ -67,7 +67,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | 62980096| The operation failed. Possible cause: 1.Image upload exception. 2. Decoding process exception. 3. Insufficient memory.              |
 | 62980101 | The image data is abnormal. |
 | 62980106 | The image data is too large. This status code is thrown when an error occurs during the process of checking size. |
-| 62980113| Unknown image format.The image data provided is not in a recognized or supported format, or it may be corrupted.            |
+| 62980113| Unknown image format. The image data provided is not in a recognized or supported format, or it may be corrupted.            |
 | 62980119 | Failed to encode the image. |
 | 62980120 | Add pixelmap out of range. |
 | 62980172 | Failed to encode icc. |
@@ -129,7 +129,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | 62980096| The operation failed. Possible cause: 1.Image upload exception. 2. Decoding process exception. 3. Insufficient memory.              |
 | 62980101 | The image data is abnormal. |
 | 62980106 | The image data is too large. This status code is thrown when an error occurs during the process of checking size. |
-| 62980113| Unknown image format.The image data provided is not in a recognized or supported format, or it may be corrupted.            |
+| 62980113| Unknown image format. The image data provided is not in a recognized or supported format, or it may be corrupted.            |
 | 62980119 | Failed to encode the image. |
 | 62980120 | Add pixelmap out of range. |
 | 62980172 | Failed to encode icc. |
@@ -358,7 +358,7 @@ Encodes the image source into a file based on the specified encoding parameters.
 | Name  | Type                           | Mandatory| Description                          |
 | -------- | ------------------------------- | ---- | ------------------------------ |
 | source   | [ImageSource](arkts-apis-image-ImageSource.md)     | Yes  | Image source to encode.                |
-| fd       | number                          | Yes  | File descriptor.                  |
+| fd       | number                          | Yes  | File descriptor. The value range is [0, 65535].                  |
 | options   | [PackingOption](arkts-apis-image-i.md#packingoption) | Yes  | Encoding parameters.                |
 | callback | AsyncCallback\<void>            | Yes  | Callback used to return the result. If the operation is successful, **err** is **undefined**; otherwise, **err** is an error object. |
 
@@ -371,7 +371,7 @@ For details about the error codes, see [Image Error Codes](errorcode-image.md).
 | 62980096| The operation failed. Possible cause: 1.Image upload exception. 2. Decoding process exception. 3. Insufficient memory.              |
 | 62980101 | The image data is abnormal. |
 | 62980106 | The image data is too large. This status code is thrown when an error occurs during the process of checking size. |
-| 62980113| Unknown image format.The image data provided is not in a recognized or supported format, or it may be corrupted.            |
+| 62980113| Unknown image format. The image data provided is not in a recognized or supported format, or it may be corrupted.            |
 | 62980115 | Invalid input parameter. |
 | 62980119 | Failed to encode the image. |
 | 62980120 | Add pixelmap out of range. |
@@ -415,7 +415,7 @@ Encodes the image source into a file based on the specified encoding parameters.
 | Name| Type                           | Mandatory| Description          |
 | ------ | ------------------------------- | ---- | -------------- |
 | source | [ImageSource](arkts-apis-image-ImageSource.md)     | Yes  | Image source to encode.|
-| fd     | number                          | Yes  | File descriptor.  |
+| fd     | number                          | Yes  | File descriptor. The value range is [0, 65535].  |
 | options | [PackingOption](arkts-apis-image-i.md#packingoption) | Yes  | Encoding parameters.|
 
 **Return value**
@@ -433,7 +433,7 @@ For details about the error codes, see [Image Error Codes](errorcode-image.md).
 | 62980096| The operation failed. Possible cause: 1.Image upload exception. 2. Decoding process exception. 3. Insufficient memory.              |
 | 62980101 | The image data is abnormal. |
 | 62980106 | The image data is too large. This status code is thrown when an error occurs during the process of checking size. |
-| 62980113| Unknown image format.The image data provided is not in a recognized or supported format, or it may be corrupted.            |
+| 62980113| Unknown image format. The image data provided is not in a recognized or supported format, or it may be corrupted.            |
 | 62980115 | Invalid input parameter. |
 | 62980119 | Failed to encode the image. |
 | 62980120 | Add pixelmap out of range. |
@@ -478,7 +478,7 @@ Encodes the PixelMap into a file based on the specified encoding parameters. Thi
 | Name  | Type                           | Mandatory| Description                          |
 | -------- | ------------------------------- | ---- | ------------------------------ |
 | source   | [PixelMap](arkts-apis-image-PixelMap.md)          | Yes  | PixelMap to encode.          |
-| fd       | number                          | Yes  | File descriptor.                  |
+| fd       | number                          | Yes  | File descriptor. The value range is [0, 65535].                  |
 | options   | [PackingOption](arkts-apis-image-i.md#packingoption) | Yes  | Encoding parameters.                |
 | callback | AsyncCallback\<void>            | Yes  | Callback used to return the result. If the operation is successful, **err** is **undefined**; otherwise, **err** is an error object. |
 
@@ -491,7 +491,7 @@ For details about the error codes, see [Image Error Codes](errorcode-image.md).
 | 62980096| The operation failed. Possible cause: 1.Image upload exception. 2. Decoding process exception. 3. Insufficient memory.              |
 | 62980101 | The image data is abnormal. |
 | 62980106 | The image data is too large. This status code is thrown when an error occurs during the process of checking size. |
-| 62980113| Unknown image format.The image data provided is not in a recognized or supported format, or it may be corrupted.            |
+| 62980113| Unknown image format. The image data provided is not in a recognized or supported format, or it may be corrupted.            |
 | 62980115 | Invalid input parameter. |
 | 62980119 | Failed to encode the image. |
 | 62980120 | Add pixelmap out of range. |
@@ -539,7 +539,7 @@ Encodes the PixelMap into a file based on the specified encoding parameters. Thi
 | Name| Type                           | Mandatory| Description                |
 | ------ | ------------------------------- | ---- | -------------------- |
 | source | [PixelMap](arkts-apis-image-PixelMap.md)          | Yes  | PixelMap to encode.|
-| fd     | number                          | Yes  | File descriptor.        |
+| fd     | number                          | Yes  | File descriptor. The value range is [0, 65535].        |
 | options | [PackingOption](arkts-apis-image-i.md#packingoption) | Yes  | Encoding parameters.      |
 
 **Return value**
@@ -557,7 +557,7 @@ For details about the error codes, see [Image Error Codes](errorcode-image.md).
 | 62980096| The operation failed. Possible cause: 1.Image upload exception. 2. Decoding process exception. 3. Insufficient memory.              |
 | 62980101 | The image data is abnormal. |
 | 62980106 | The image data is too large. This status code is thrown when an error occurs during the process of checking size. |
-| 62980113| Unknown image format.The image data provided is not in a recognized or supported format, or it may be corrupted.            |
+| 62980113| Unknown image format. The image data provided is not in a recognized or supported format, or it may be corrupted.            |
 | 62980115 | Invalid input parameter. |
 | 62980119 | Failed to encode the image. |
 | 62980120 | Add pixelmap out of range. |
@@ -601,14 +601,14 @@ Encodes the Picture into a file based on the specified encoding parameters. This
 | Name | Type                        | Mandatory| Description                |
 | ------- | ---------------------------- | ---- | -------------------- |
 | picture  | [Picture](arkts-apis-image-Picture.md)          | Yes  | Picture to encode.|
-| fd      | number                       | Yes  | File descriptor.        |
+| fd      | number                       | Yes  | File descriptor. The value range is [0, 65535].        |
 | options | [PackingOption](arkts-apis-image-i.md#packingoption) | Yes  | Encoding parameters.      |
 
 **Return value**
 
 | Type          | Description                     |
 | -------------- | ------------------------- |
-| Promise\<void> | that returns no value.|
+| Promise\<void> | Promise that returns no value.|
 
 **Error codes**
 
@@ -667,14 +667,14 @@ Encodes multiple PixelMaps into a GIF file. This API uses a promise to return th
 | Name          | Type                                                     | Mandatory| Description                  |
 | ---------------- | --------------------------------------------------------- | ---- | ---------------------- |
 | pixelmapSequence | Array<[PixelMap](arkts-apis-image-PixelMap.md)>                             | Yes  | PixelMaps to encode.|
-| fd               | number                                                    | Yes  | File descriptor.          |
+| fd               | number                                                    | Yes  | File descriptor. The value range is [0, 65535].          |
 | options          | [PackingOptionsForSequence](arkts-apis-image-i.md#packingoptionsforsequence18) | Yes  | Options for encoding animated images.        |
 
 **Return value**
 
 | Type          | Description                     |
 | -------------- | ------------------------- |
-| Promise\<void> | that returns no value.|
+| Promise\<void> | Promise that returns no value.|
 
 **Error codes**
 
@@ -713,6 +713,154 @@ async function PackToFile(context : Context) {
     }).catch((error: BusinessError) => {
     console.error('Failed to packToFileMultiFrames.');
   })
+}
+```
+
+## packBinaryImageToTiffFile
+
+packBinaryImageToTiffFile(bufferInfo: BinaryBufferInfo, fd: number, options?: PackingOptionsForTiff): Promise\<void>
+
+Encodes binary image data into the TIFF file corresponding to the input parameter **fd**. This API uses a promise to return the result.
+
+**Since:** 26.0.0
+
+**Model restriction:** This API can be used only in the stage model.
+
+**System capability**: SystemCapability.Multimedia.Image.ImagePacker
+
+**Parameters**
+
+| Name| Type| Mandatory| Description|
+| ---- | ---- | ---- | ---- |
+| bufferInfo | [BinaryBufferInfo](arkts-apis-image-i.md#binarybufferinfo) | Yes| Image buffer information.|
+| fd | number | Yes| File descriptor ID. The value must be a positive integer.|
+| options | [PackingOptionsForTiff](arkts-apis-image-i.md#packingoptionsfortiff) | No| TIFF image encoding options.<br>If **options** is not passed, the default value of **compression** is **4** (CCITT G4).<br>If **options** is not passed, the default value of **orientation** is **1** (TOP_LEFT), indicating that the image is not rotated.|
+
+**Return value**
+
+| Type| Description|
+| ---- | ---- |
+| Promise\<void> | Promise that returns no value.|
+
+**Error codes**
+
+For details about the error codes, see [Image Error Codes](errorcode-image.md).
+
+| ID| Error Message|
+| -------- | -------- |
+| 7800202 | Invalid parameter. Possible causes: 1. Invalid FD; 2. Compression algorithm mismatch. |
+| 7800301 | Encode failed. |
+
+**Example**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+import { fileIo } from '@kit.CoreFileKit';
+import { hilog } from '@kit.PerformanceAnalysisKit';
+import { image } from '@kit.ImageKit';
+
+const DOMAIN = 0X00000;
+const TAG: string = 'PackBinaryImageToTiffFile';
+
+async function PackBinaryImageToTiffFile(context: Context) {
+  const width = 100;
+  const height = 100;
+  const rowBytes = 13;
+  const bufferSize = rowBytes * height;
+  const data: ArrayBuffer = new ArrayBuffer(bufferSize);
+
+  let bufferInfo: image.BinaryBufferInfo = {
+    size: { width: width, height: height },
+    data: data,
+    bytesPerRow: rowBytes
+  };
+
+  const filePath: string = context.filesDir + "/output.tiff";
+  let file = fileIo.openSync(filePath, fileIo.OpenMode.CREATE | fileIo.OpenMode.READ_WRITE);
+
+  let tiffOptions: image.PackingOptionsForTiff = {
+    compression: 4 // CCITT G4 compression.
+  };
+
+  const imagePackerObj: image.ImagePacker = image.createImagePacker();
+  await imagePackerObj.packBinaryImageToTiffFile(bufferInfo, file.fd, tiffOptions)
+    .then(() => {
+      hilog.info(DOMAIN, TAG, 'Succeeded in packing binary image to tiff file.');
+    }).catch((error: BusinessError) => {
+      hilog.error(DOMAIN, TAG, `Failed to pack binary image to tiff file. code ${error.code}, message is ${error.message}`);
+    });
+  fileIo.closeSync(file);
+}
+```
+
+## packBinaryImageToTiffData
+
+packBinaryImageToTiffData(bufferInfo: BinaryBufferInfo, options?: PackingOptionsForTiff): Promise\<ArrayBuffer>
+
+Encodes binary image data into TIFF data and returns the data in ArrayBuffer format. This API uses a promise to return the result.
+
+**Since:** 26.0.0
+
+**Model restriction:** This API can be used only in the stage model.
+
+**System capability**: SystemCapability.Multimedia.Image.ImagePacker
+
+**Parameters**
+
+| Name| Type| Mandatory| Description|
+| ---- | ---- | ---- | ---- |
+| bufferInfo | [BinaryBufferInfo](arkts-apis-image-i.md#binarybufferinfo) | Yes| Image buffer information.|
+| options | [PackingOptionsForTiff](arkts-apis-image-i.md#packingoptionsfortiff) | No| TIFF image encoding options.<br>If **options** is not passed, the default value of **compression** is **4** (CCITT G4).<br>If **options** is not passed, the default value of **orientation** is **1** (TOP_LEFT), indicating that the image is not rotated.|
+
+**Return value**
+
+| Type| Description|
+| ---- | ---- |
+| Promise\<ArrayBuffer> | Promise used to return the encoded data.|
+
+**Error codes**
+
+For details about the error codes, see [Image Error Codes](errorcode-image.md).
+
+| ID| Error Message|
+| -------- | -------- |
+| 7800202 | Invalid parameter. Possible causes: 1. Invalid FD; 2. Compression algorithm mismatch. |
+| 7800301 | Encode failed. |
+
+**Example**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+import { hilog } from '@kit.PerformanceAnalysisKit';
+import { image } from '@kit.ImageKit';
+
+const DOMAIN = 0X00000;
+const TAG: string = 'PackBinaryImageToTiffData';
+
+async function PackBinaryImageToTiffData() {
+  const width = 100;
+  const height = 100;
+  const rowBytes = 13;
+  const bufferSize = rowBytes * height;
+  const data: ArrayBuffer = new ArrayBuffer(bufferSize);
+
+  let bufferInfo: image.BinaryBufferInfo = {
+    size: { width: width, height: height },
+    data: data,
+    bytesPerRow: rowBytes
+  };
+
+  let tiffOptions: image.PackingOptionsForTiff = {
+    compression: 4 // CCITT G4 compression.
+  };
+
+  const imagePackerObj: image.ImagePacker = image.createImagePacker();
+  await imagePackerObj.packBinaryImageToTiffData(bufferInfo, tiffOptions)
+    .then((data: ArrayBuffer) => {
+      hilog.info(DOMAIN, TAG, 'Succeeded in packing binary image to tiff data.');
+    }).catch((error: BusinessError) => {
+      hilog.error(DOMAIN, TAG, `Failed to pack binary image to tiff data. code ${error.code}, message is ${error.message}`);
+    });
 }
 ```
 

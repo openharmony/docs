@@ -1,11 +1,12 @@
 # About This Kit
+
 <!--Kit: IPC Kit-->
 <!--Subsystem: Communication-->
 <!--Owner: @xdx19211@luodonghui0157-->
 <!--Designer: @zhaopeng_gitee-->
 <!--Tester: @Lyuxin-->
 <!--Adviser: @zhang_yixin13-->
-
+<!-- md-trans-meta sourceCommit=0b39df651d0906d9843f91519ac927b5893c788f translatedAt=2026-08-04T13:29:26.352Z pushedAt=2026-08-05T06:57:21.035Z -->
 
 ## Basic Concepts
 
@@ -16,7 +17,6 @@
 |Client  |Client                      |Client      |A proxy that requests services.|
 |Server  |Server                      |Server      |A stub that provides services.|
 
-
 > **NOTE**
 >
 >- Before using IPC and RPC for inter-process communication, you need to call the ability API for service connection to obtain the proxy object. IPC and RPC are typically used in the following scenarios:
@@ -25,12 +25,11 @@
 >
 >  - RPC is used <!--Del-->[<!--DelEnd-->in multi-device collaboration<!--Del-->](../application-models/hop-multi-device-collaboration.md)<!--DelEnd--> to implement remote API calls and data transfer cross devices.
 
-
 ## Working Principles
 
 Both IPC and RPC implement cross-process communication. IPC uses the Binder driver to implement cross-process communication in a device, while RPC uses the DSoftBus driver to implement cross-process communication across devices. Each process has its own resources and independent memory space, and one process is not allowed to access the resources and memory space of other processes. That is why cross-process communication is required.
 
-IPC and RPC use the client-server model where the client process obtains the proxy of the process where the server is located. The stub object uses the proxy to read and write data to implement inter-process communication. The proxy and stub provide a group of APIs defined by services. The proxy implements each specific request method, and the stub implements the processing method of each specific request and the content of the response data.
+IPC and RPC use the client-server model. In this model, the client process obtains the proxy of the server process, reads and writes data and initiates requests through the proxy, while the stub processes the requests and returns results, thereby implementing cross-process communication.
 
 ## Constraints
 
@@ -42,7 +41,6 @@ IPC and RPC use the client-server model where the client process obtains the pro
 
 - The proxy object pointing to the stub object of the remote device cannot be passed across processes twice on the local device.
 
-
  <!--RP1-->
- 	 
+
  <!--RP1End-->

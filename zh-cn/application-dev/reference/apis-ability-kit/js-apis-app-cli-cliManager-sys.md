@@ -52,12 +52,12 @@ CLI工具执行的结果。包含CLI工具的退出码、标准输出、标准�
 
 | 名称          | 类型     | 只读 | 必填 | 说明 |
 | ------------- | ------- | ---- | ---  |----------------- |
-| exitCode      | number  | 是   | 否   | 工具的退出码。默认值：undefined。 |
-| outputText    | string  | 是   | 否   | 工具的标准输出（stdout）。默认值：undefined。 |
-| errorText     | string  | 是   | 否   | 工具的标准错误输出（stderr）。默认值：undefined。 |
-| signalNumber  | number  | 是   | 否   | 工具的终止信号。默认值：undefined。 |
-| timeOut       | boolean | 是   | 是   | 工具的执行是否超时。true表示超时，false表示未超时。 |
-| executionTime | number  | 是   | 是   | 工具的执行时长。 |
+| exitCode      | number  | 否   | 否   | 工具的退出码。默认值：undefined。 |
+| outputText    | string  | 否   | 否   | 工具的标准输出（stdout）。默认值：undefined。 |
+| errorText     | string  | 否   | 否   | 工具的标准错误输出（stderr）。默认值：undefined。 |
+| signalNumber  | number  | 否   | 否   | 工具的终止信号。默认值：undefined。 |
+| timeOut       | boolean | 否   | 是   | 工具的执行是否超时。true表示超时，false表示未超时。 |
+| executionTime | number  | 否   | 是   | 工具的执行时长。 |
 
 
 ## SessionStatus
@@ -93,10 +93,10 @@ CLI工具执行的结果。包含CLI工具的退出码、标准输出、标准�
 
 | 名称      | 类型 | 只读 | 必填 | 说明 |
 | --------- | ---- | ---- | --- | ------------------ |
-| sessionId  | string | 是 | 是 | 会话id。 |
-| toolName  | string | 是 | 是 | 工具名称。 |
-| status  | [SessionStatus](#sessionstatus) | 是 | 是 | 会话状态。 |
-| result  | [ExecResult](#execresult) | 是 | 否 | 工具执行结果。默认值：undefined。 |
+| sessionId  | string | 否 | 是 | 会话id。 |
+| toolName  | string | 否 | 是 | 工具名称。 |
+| status  | [SessionStatus](#sessionstatus) | 否 | 是 | 会话状态。 |
+| result  | [ExecResult](#execresult) | 否 | 否 | 工具执行结果。默认值：undefined。 |
 
 ## cliManager.queryToolSummaries
 
@@ -126,8 +126,8 @@ queryToolSummaries(): Promise\<Array\<ToolSummary>>
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
-| 201      | Permission denied.                                           |
-| 202      | Not system application.                                      |
+| 201      | Permission denied, interface caller does not have permission "ohos.permission.QUERY_CLI_TOOL". |
+| 202      | Not system application. Interface caller is not a system app. |
 | 35600050 | System Error. 1. Connect to system service failed; 2. System service failed to communicate with dependency module. |
 
 **示例：**
@@ -178,8 +178,8 @@ queryTools(): Promise\<Array\<ToolInfo>>
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
-| 201      | Permission denied.                                           |
-| 202      | Not system application.                                      |
+| 201      | Permission denied, interface caller does not have permission "ohos.permission.QUERY_CLI_TOOL". |
+| 202      | Not system application. Interface caller is not a system app. |
 | 35600050 | System Error. 1. Connect to system service failed; 2. System service failed to communicate with dependency module. |
 
 **示例：**
@@ -236,8 +236,8 @@ getToolInfoByName(toolName: string): Promise\<ToolInfo>
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
-| 201      | Permission denied.                                           |
-| 202      | Not system application.                                      |
+| 201      | Permission denied, interface caller does not have permission "ohos.permission.QUERY_CLI_TOOL". |
+| 202      | Not system application. Interface caller is not a system app. |
 | 35600030 | No tool with the specified name exists.                      |
 | 35600050 | System Error. 1. Connect to system service failed; 2. System service failed to communicate with dependency module. |
 
@@ -296,8 +296,8 @@ execTool(toolName: string, subCommand: string, args: Record\<string, Object\>, c
 
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
-| 201 | Permission denied. |
-| 202 | Not system application. |
+| 201 | Permission denied, interface caller does not have permission "ohos.permission.EXEC_CLI_TOOL". |
+| 202 | Not system application. Interface caller is not a system app. |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 35600030 | No tool with the specified name exists. |
 | 35600031 | Maximum number of processes has been reached. |
@@ -318,7 +318,7 @@ let CLI_DEMO: abilityAccessCtrl.CliInfo = {
 };
 const authInfoList: Array<abilityAccessCtrl.CliAuthInfo> = [{
     cliInfo: CLI_DEMO,
-    permissionNames: ['ohos.permission.APPROXIMATELY_LOCATION', "ohos.permission.LOCATION"],
+    permissionNames: ['ohos.permission.APPROXIMATELY_LOCATION', 'ohos.permission.LOCATION'],
     authorizationResults: [true, true],
 }];
 let tokenId = rpc.IPCSkeleton.getCallingTokenId();
@@ -382,8 +382,8 @@ subscribeSession(sessionId: string, callback: ToolEventCallback): Promise\<void>
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
-| 201      | Permission denied.                                           |
-| 202      | Not system application.                                      |
+| 201      | Permission denied, interface caller does not have permission "ohos.permission.EXEC_CLI_TOOL". |
+| 202      | Not system application. Interface caller is not a system app. |
 | 35600032 | The session does not exist.                                  |
 | 35600050 | System Error. 1. Connect to system service failed; 2. System service failed to communicate with dependency module. |
 
@@ -449,8 +449,8 @@ clearSession(sessionId: string): Promise\<void>
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
-| 201      | Permission denied.                                           |
-| 202      | Not system application.                                      |
+| 201      | Permission denied, interface caller does not have permission "ohos.permission.EXEC_CLI_TOOL". |
+| 202      | Not system application. Interface caller is not a system app. |
 | 35600032 | The session does not exist.                                  |
 | 35600050 | System Error. 1. Connect to system service failed; 2. System service failed to communicate with dependency module. |
 
@@ -510,8 +510,8 @@ querySession(sessionId: string): Promise\<CliSessionInfo>
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
-| 201      | Permission denied.                                           |
-| 202      | Not system application.                                      |
+| 201      | Permission denied, interface caller does not have permission "ohos.permission.EXEC_CLI_TOOL". |
+| 202      | Not system application. Interface caller is not a system app. |
 | 35600032 | The session does not exist.                                  |
 | 35600050 | System Error. 1. Connect to system service failed; 2. System service failed to communicate with dependency module. |
 
@@ -685,8 +685,8 @@ sendMessage(sessionId: string, message: string): Promise\<void>
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
-| 201      | Permission denied.                                           |
-| 202      | Not system application.                                      |
+| 201      | Permission denied, interface caller does not have permission "ohos.permission.EXEC_CLI_TOOL". |
+| 202      | Not system application. Interface caller is not a system app. |
 | 35600032 | The session does not exist.                                  |
 | 35600033 | Failed to write message to tool.                             |
 | 35600050 | System Error. 1. Connect to system service failed; 2. System service failed to communicate with dependency module. |

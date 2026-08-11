@@ -1,4 +1,4 @@
-# commonEventSubscriber
+# CommonEventSubscriber
 <!--Kit: Basic Services Kit-->
 <!--Subsystem: Notification-->
 <!--Owner: @HuYueRong-->

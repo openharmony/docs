@@ -580,9 +580,11 @@ try {
 
 ## wifiManager.getAllowedWifiList<sup>19+</sup>
 
-getAllowedWifiList(admin: Want | null): Array&lt;WifiAccessInfo&gt;
+getAllowedWifiList(admin: Want): Array&lt;WifiAccessInfo&gt;
 
 获取Wi-Fi允许名单。
+
+本接口通过传入Want查询对应企业设备管理应用设置的策略，如需查询实际生效的策略，请使用[wifiManager.getAllowedWifiList](#wifimanagergetallowedwifilist)接口。
 
 **需要权限：** ohos.permission.ENTERPRISE_MANAGE_WIFI
 
@@ -595,7 +597,7 @@ getAllowedWifiList(admin: Want | null): Array&lt;WifiAccessInfo&gt;
 
 | 参数名 | 类型                                                    | 必填 | 说明                                   |
 | ------ | ------------------------------------------------------- | ---- | -------------------------------------- |
-| admin     | [Want](../apis-ability-kit/js-apis-app-ability-want.md) \| null | 是   | 企业设备管理扩展组件。Want中必须包含企业设备管理扩展能力的abilityName和所在应用的bundleName。<br>当设备存在多个MDM应用时，API版本26.0.0之前，传入Want时查询对应企业设备管理应用设置的策略。从API版本26.0.0开始，新增支持传入null时查询实际生效的策略。|
+| admin     | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | 是   | 企业设备管理扩展组件。Want中必须包含企业设备管理扩展能力的abilityName和所在应用的bundleName。|
 
 **返回值：**
 
@@ -632,6 +634,56 @@ try {
 }
 ```
 
+
+## wifiManager.getAllowedWifiList
+
+getAllowedWifiList(admin: Want | null): Array&lt;WifiAccessInfo&gt;
+
+获取Wi-Fi允许名单。
+
+**起始版本：** 26.0.0
+
+**需要权限：** ohos.permission.ENTERPRISE_MANAGE_WIFI
+
+**系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
+
+**模型约束：** 此接口仅可在Stage模型下使用。
+
+**参数：**
+
+| 参数名 | 类型                                                    | 必填 | 说明                                   |
+| ------ | ------------------------------------------------------- | ---- | -------------------------------------- |
+| admin     | [Want](../apis-ability-kit/js-apis-app-ability-want.md) \| null | 是   | 企业设备管理扩展组件。Want中必须包含企业设备管理扩展能力的abilityName和所在应用的bundleName。<br>当设备存在多个MDM应用时，传入Want时查询对应企业设备管理应用设置的策略，传入null时查询实际生效的策略。|
+
+**返回值：**
+
+| 类型                               | 说明                      |
+| ---------------------------------- | ------------------------- |
+| Array&lt;[WifiAccessInfo](#wifiaccessinfo19)&gt; | Wi-Fi允许名单数组。 |
+
+**错误码**：
+
+以下错误码的详细介绍请参见[企业设备管理错误码](errorcode-enterpriseDeviceManager.md)和[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| 9200001  | The application is not an administrator application of the device. |
+| 9200002  | The administrator application does not have permission to manage the device. |
+| 201      | Permission verification failed. The application does not have the permission required to call the API. |
+
+**示例：**
+
+```ts
+import { wifiManager } from '@kit.MDMKit';
+
+try {
+  // 参数需根据实际情况进行替换
+  let result: Array<wifiManager.WifiAccessInfo> = wifiManager.getAllowedWifiList(null);
+  console.info(`Succeeded in getting allowed Wi-Fi list. Result: ${JSON.stringify(result)}`);
+} catch (err) {
+  console.error(`Failed to get allowed Wi-Fi list. Code: ${err.code}, message: ${err.message}`);
+}
+```
 ## wifiManager.addDisallowedWifiList<sup>19+</sup>
 
 addDisallowedWifiList(admin: Want, list: Array&lt;WifiAccessInfo&gt;): void
@@ -750,9 +802,11 @@ try {
 
 ## wifiManager.getDisallowedWifiList<sup>19+</sup>
 
-getDisallowedWifiList(admin: Want | null): Array&lt;WifiAccessInfo&gt;
+getDisallowedWifiList(admin: Want): Array&lt;WifiAccessInfo&gt;
 
 获取Wi-Fi禁用名单。
+
+本接口通过传入Want查询对应企业设备管理应用设置的策略，如需查询实际生效的策略，请使用[wifiManager.getDisallowedWifiList](#wifimanagergetdisallowedwifilist)接口。
 
 **需要权限：** ohos.permission.ENTERPRISE_MANAGE_WIFI
 
@@ -765,7 +819,7 @@ getDisallowedWifiList(admin: Want | null): Array&lt;WifiAccessInfo&gt;
 
 | 参数名 | 类型                                                    | 必填 | 说明                                   |
 | ------ | ------------------------------------------------------- | ---- | -------------------------------------- |
-| admin     | [Want](../apis-ability-kit/js-apis-app-ability-want.md) \| null | 是   | 企业设备管理扩展组件。Want中必须包含企业设备管理扩展能力的abilityName和所在应用的bundleName。<br>当设备存在多个MDM应用时，API版本26.0.0之前，传入Want时查询对应企业设备管理应用设置的策略。从API版本26.0.0开始，新增支持传入null时查询实际生效的策略。|
+| admin     | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | 是   | 企业设备管理扩展组件。Want中必须包含企业设备管理扩展能力的abilityName和所在应用的bundleName。|
 
 **返回值：**
 
@@ -802,6 +856,56 @@ try {
 }
 ```
 
+
+## wifiManager.getDisallowedWifiList
+
+getDisallowedWifiList(admin: Want | null): Array&lt;WifiAccessInfo&gt;
+
+获取Wi-Fi禁用名单。
+
+**起始版本：** 26.0.0
+
+**需要权限：** ohos.permission.ENTERPRISE_MANAGE_WIFI
+
+**系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
+
+**模型约束：** 此接口仅可在Stage模型下使用。
+
+**参数：**
+
+| 参数名 | 类型                                                    | 必填 | 说明                                   |
+| ------ | ------------------------------------------------------- | ---- | -------------------------------------- |
+| admin     | [Want](../apis-ability-kit/js-apis-app-ability-want.md) \| null | 是   | 企业设备管理扩展组件。Want中必须包含企业设备管理扩展能力的abilityName和所在应用的bundleName。<br>当设备存在多个MDM应用时，传入Want时查询对应企业设备管理应用设置的策略，传入null时查询实际生效的策略。|
+
+**返回值：**
+
+| 类型                               | 说明                      |
+| ---------------------------------- | ------------------------- |
+| Array&lt;[WifiAccessInfo](#wifiaccessinfo19)&gt; | Wi-Fi禁用名单数组。 |
+
+**错误码**：
+
+以下错误码的详细介绍请参见[企业设备管理错误码](errorcode-enterpriseDeviceManager.md)和[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| 9200001  | The application is not an administrator application of the device. |
+| 9200002  | The administrator application does not have permission to manage the device. |
+| 201      | Permission verification failed. The application does not have the permission required to call the API. |
+
+**示例：**
+
+```ts
+import { wifiManager } from '@kit.MDMKit';
+
+try {
+  // 参数需根据实际情况进行替换
+  let result: Array<wifiManager.WifiAccessInfo> = wifiManager.getDisallowedWifiList(null);
+  console.info(`Succeeded in getting disallowed Wi-Fi list. Result: ${JSON.stringify(result)}`);
+} catch (err) {
+  console.error(`Failed to get disallowed Wi-Fi list. Code: ${err.code}, message: ${err.message}`);
+}
+```
 ## wifiManager.turnOnWifi<sup>20+</sup>
 
 turnOnWifi(admin: Want, isForce: boolean): void

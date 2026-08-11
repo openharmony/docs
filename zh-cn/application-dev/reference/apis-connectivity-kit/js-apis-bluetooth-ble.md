@@ -2643,7 +2643,7 @@ server端订阅GATT profile协议的连接状态变化事件。使用Callback异
 
 | 参数名      | 类型                                       | 必填   | 说明                                       |
 | -------- | ---------------------------------------- | ---- | ---------------------------------------- |
-| type     | string                                   | 是    | 事件回调类型，支持的事件为'connectionStateChange'，表示GATT profile连接状态发生变化的事件。<br>当client和server端之间的连接状态发生变化时，触发该事件。<br>例如：收到连接请求或者断连请求时，可能引起连接状态生变化。 |
+| type     | string                                   | 是    | 事件回调类型，支持的事件为'connectionStateChange'，表示GATT profile连接状态发生变化的事件。<br>当client和server端之间的连接状态发生变化时，触发该事件。<br>例如：收到连接请求或者断连请求时，可能引起连接状态发生变化。 |
 | callback | Callback&lt;[BLEConnectionChangeState](#bleconnectionchangestate)&gt; | 是    | 指定订阅的回调函数，会携带连接状态。                          |
 
 **错误码**：
@@ -4633,7 +4633,7 @@ client端订阅GATT profile协议的连接状态变化事件。使用Callback异
 
 | 参数名      | 类型                                       | 必填   | 说明                                       |
 | -------- | ---------------------------------------- | ---- | ---------------------------------------- |
-| type     | string                                   | 是    | 事件回调类型，支持的事件为'BLEConnectionStateChange'，表示连接状态变化事件。<br>client和server端之间的连接状态发生变化时，触发该事件。<br>当client端调用[connect](#connect)或[disconnect](#disconnect)时，可能引起连接状态生变化。 |
+| type     | string                                   | 是    | 事件回调类型，支持的事件为'BLEConnectionStateChange'，表示连接状态变化事件。<br>client和server端之间的连接状态发生变化时，触发该事件。<br>当client端调用[connect](#connect)或[disconnect](#disconnect)时，可能引起连接状态发生变化。 |
 | callback | Callback&lt;[BLEConnectionChangeState](#bleconnectionchangestate)&gt; | 是    | 指定订阅的回调函数，会携带连接状态信息。                           |
 
 **错误码**：

@@ -758,7 +758,7 @@ addAccessoryRight(tokenId: number, accessory: USBAccessory): void
 
 | 类型      | 说明          |
 | --------- | ------------- |
-| void      | 调用成功后，应用程序获得USB配件访问权限；调用失败时抛出异常。 |
+| void      | 无返回值，调用成功后，应用程序获得USB配件访问权限；调用失败时抛出异常。 |
 
 **错误码：**
 

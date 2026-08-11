@@ -71,9 +71,9 @@ enum Asset_TagType
 
 | 枚举项 | 描述 |
 | -- | -- |
-| ASSET_TYPE_BOOL = 0x1 << 28 | 标识关键资产属性的类型是bool。 |
-| ASSET_TYPE_NUMBER = 0x2 << 28 | 标识关键资产属性的类型是uint32_t。 |
-| ASSET_TYPE_BYTES = 0x3 << 28 | 标识关键资产属性的类型是byte数组。 |
+| ASSET_TYPE_BOOL = 0x1 << 28 | 表示关键资产属性的类型是bool。 |
+| ASSET_TYPE_NUMBER = 0x2 << 28 | 表示关键资产属性的类型是uint32_t。 |
+| ASSET_TYPE_BYTES = 0x3 << 28 | 表示关键资产属性的类型是byte数组。 |
 
 ### Asset_Tag
 

@@ -1,10 +1,12 @@
 # Using Canvas in ArkTS Widgets
+
 <!--Kit: Form Kit-->
 <!--Subsystem: Ability-->
 <!--Owner: @Qian-Win-->
 <!--Designer: @cx983299475-->
 <!--Tester: @mahailong123456-->
 <!--Adviser: @HelloShuo-->
+<!-- md-trans-meta sourceCommit=a08d450b4f575e3d4749ddeef9dd32275ec0a19e translatedAt=2026-08-03T02:28:03.969Z pushedAt=2026-08-03T07:05:55.583Z -->
 
 You can apply custom drawing in your ArkTS widget to create a more vibrant experience. Use the [\<Canvas>](../reference/apis-arkui/arkui-ts/ts-components-canvas-canvas.md) component to create a canvas on the widget, and then use the [CanvasRenderingContext2D](../reference/apis-arkui/arkui-ts/ts-canvasrenderingcontext2d.md) object to draw custom graphics on the canvas. The following code snippet draws a smiling face in the center of a canvas.
 
@@ -93,5 +95,6 @@ struct CustomCanvasDrawingCard {
 }
 ```
 
-The figure below shows the effect. 
+The following figure shows the running effect.
+
 ![WidgetCanvasDemo](figures/WidgetCanvasDemo.jpeg)

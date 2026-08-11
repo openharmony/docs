@@ -1,38 +1,61 @@
-# MDM Kit Terms
+# Glossary
+
 <!--Kit: MDM Kit-->
 <!--Subsystem: Customization-->
-<!--Owner: @huanleima-->
-<!--Designer: @liuzuming-->
+<!--Owner: @huanleima; @weizai16-->
+<!--Designer: @hp_guo-->
 <!--Tester: @lpw_work-->
-<!--Adviser: @Brilliantry_Rui-->
+<!--Adviser: @zhang_yixin13-->
+<!-- md-trans-meta sourceCommit=188ff5fef3d90fc0078e4760b9813c31639f710c translatedAt=2026-08-04T13:32:21.618Z pushedAt=2026-08-05T08:55:12.392Z -->
 
-## EDM
+## B
 
-An Enterprise Device Manager (EDM) serves as the core foundation of the enterprise device management framework.
+### Bring Your Own Device (BYOD)
 
-## BYOD
+An enterprise strategy that allows employees to bring their personal mobile devices, such as tablets or smartphones, to the workplace and connect these devices to the office environment. It is applicable to scenarios such as daily office work or external visitors accessing factory or lab environments with their own devices.
 
-Bring Your Own Device (BYOD) is an enterprise strategy that allows employees to bring their personal tablets or smartphones to the workplace and connect these devices to the office environment. This strategy applies to enterprise workplace scenarios, including those where external visitors access facilities such as factories and laboratories using their own devices.
+### BYOD Device Admin (BDA)
 
-## Administrator
-### SDA
+An Admin role activated by an MDM app in BYOD scenarios. It can perform basic device controls such as disabling photographing and recording.
 
-A Super Device Administrator (SDA) is capable of managing devices and other Device Administrator (DA) applications, including the activation and deactivation of such applications. It is applicable to enterprise device management scenarios.
+## C
 
-### DA
+### Corporate-Owned, Personally-Enabled (COPE)
 
-A Device Administrator (DA) is responsible for device management tasks, and is applicable to enterprise device management scenarios.
+A management model in which an enterprise purchases laptops, tablets, smartphones, and other devices and distributes them to employees. The enterprise owns the devices and can exercise full control over them.
 
-### BDA
+## D
 
-A BYOD Device Administrator (BDA) is designed to manage devices in common scenarios, such as disabling photographing and recording.
+### Device Admin (DA)
 
-## MDM Application (Device Administrator Application)
+An Admin role activated by an MDM app as a DA. It can control devices but cannot manage other DA apps. It is applicable to enterprise device office scenarios.
+
+## E
+
+### Enterprise Device Manager (EDM)
+
+The core foundation service of the enterprise device management framework. It manages the lifecycle of Admin components, including creation, keep-alive, startup, and shutdown, as well as permission verification and policy conflict handling for management interfaces.
+
+### EnterpriseAdminExtensionAbility
+
+A mandatory component for MDM applications. When developing an MDM application, you need to create an **EnterpriseAdminExtensionAbility** instance and implement MDM service logic in this instance. EnterpriseAdminExtensionAbility implements notifications of system management status changes and defines the callbacks to be invoked when a device administrator application is enabled or disabled or an application is installed or uninstalled. Once this ability is activated, it remains alive and will launch automatically after a system restart or user switch. Note that an MDM application with EnterpriseAdminExtensionAbility activated cannot be uninstalled.
+
+### Enterprise Mobility Management (EMM)
+
+A business domain that provides enterprises with a complete set of mobile device management software, solutions, and services. An EMM provider is a company that specializes in offering such products and services.
+
+## M
+
+### MDM App
+
 A Mobile Device Management (MDM) application is an enterprise-level application integrated with MDM capabilities. It can centrally manage, monitor, and protect mobile devices (such as smartphones, tablets, and laptops) in an enterprise. It allows IT administrators to remotely configure devices, enforce security policies, deploy applications and safeguard enterprise data.
 
-## EnterpriseAdminExtensionAbility
-EnterpriseAdminExtensionAbility is a mandatory component for MDM applications. When developing an MDM application, you need to create an **EnterpriseAdminExtensionAbility** instance and implement MDM service logic in this instance. EnterpriseAdminExtensionAbility implements notifications of system management status changes and defines the callbacks to be invoked when a device administrator application is enabled or disabled or an application is installed or uninstalled. Once this ability is activated, it remains alive and will launch automatically after a system restart or user switch. Note that an MDM application with EnterpriseAdminExtensionAbility activated cannot be uninstalled.
+### Mobile Device Management (MDM)
 
-## EMM Provider
+In a narrow sense, MDM refers to the management of mobile office devices such as phones and tablets. In a broad sense, MDM refers to enterprise device management in general, covering PCs, large screens, and wearables.
 
-An Enterprise Mobility Management (EMM) provider is a company that provides a complete set of EMM software, solutions, and services for other enterprises.
+## S
+
+### Super Device Admin (SDA)
+
+An Admin role activated by an MDM app as an SDA. It can control devices and manage other DA apps, including activating and deactivating them. It is applicable to enterprise device office scenarios.

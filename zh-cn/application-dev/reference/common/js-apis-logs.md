@@ -1,10 +1,10 @@
-# Console (控制台)
+# Class (Console)
 <!--Kit: ArkTS-->
 <!--Subsystem: CommonLibrary-->
-<!--Owner: @yao_dashuai-->
-<!--Designer: @yao_dashuai-->
+<!--Owner: @wang_zhaoyong-->
+<!--Designer: @wang_zhaoyong-->
 <!--Tester: @kirl75; @zsw_zhushiwei-->
-<!--Adviser: @ge-yafang-->
+<!--Adviser: @k1ngqaquuu-->
 
 本模块提供了一个简单的调试控制台，类似于浏览器提供的JavaScript控制台机制。
 
@@ -368,14 +368,16 @@ static group(...arguments: Object[]): void
 
 ```js
 console.info("outer");
-// outer
 console.group();
 console.info("level 1");
-//   level 1
 console.group("in level1");
-//   in level1
 console.info("level 2");
-//     level 2
+/**
+ * outer
+ *   level 1
+ *   in level1
+ *     level 2
+ */
 ```
 
 ## console.groupCollapsed<sup>10+</sup>
@@ -398,14 +400,16 @@ static groupCollapsed(...arguments: Object[]): void
 
 ```js
 console.groupCollapsed("outer");
-// outer
 console.groupCollapsed();
 console.info("level 1");
-//   level 1
 console.groupCollapsed("in level1");
-//   in level1
 console.info("level 2");
-//     level 2
+/**
+ * outer
+ *   level 1
+ *   in level1
+ *     level 2
+ */
 ```
 
 ## console.groupEnd<sup>10+</sup>
@@ -422,13 +426,15 @@ static groupEnd(): void
 
 ```js
 console.info("outer");
-// outer
 console.group();
 console.info("level 1");
-//   level 1
 console.groupEnd();
 console.info("outer");
-// outer
+/**
+ * outer
+ *   level 1
+ * outer
+ */
 ```
 
 ## console.table<sup>10+</sup>
@@ -587,11 +593,13 @@ static trace(...arguments: Object[]): void
 
 ```js
 console.trace();
-// Trace:
-//     xxxxxxxxxx(当前堆栈信息)
 console.trace("Show the trace");
-// Trace: Show the trace
-//     xxxxxxxxxx(当前堆栈信息)
+/**
+ * Trace:
+ *     xxxxxxxxxx(当前堆栈信息)
+ * Trace: Show the trace
+ *     xxxxxxxxxx(当前堆栈信息)
+ */
 ```
 
 ## console.traceHybridStack<sup>12+</sup>
@@ -608,6 +616,8 @@ static traceHybridStack(): void
 
 ```ts
 console.traceHybridStack();
-// TraceHybridStack:
-//     xxxxxxxxxx(当前线程混合堆栈信息)
+/**
+ * TraceHybridStack:
+ *     xxxxxxxxxx(当前线程混合堆栈信息)
+ */
 ```

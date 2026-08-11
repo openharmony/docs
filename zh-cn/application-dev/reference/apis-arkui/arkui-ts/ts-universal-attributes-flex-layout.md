@@ -2,7 +2,7 @@
 <!--Kit: ArkUI-->
 <!--Subsystem: ArkUI-->
 <!--Owner: @camlostshi-->
-<!--Designer: @lanshouren-->
+<!--Designer: @fenglinbailu-->
 <!--Tester: @liuli0427-->
 <!--Adviser: @Brilliantry_Rui-->
 
@@ -46,7 +46,7 @@ flexBasis(value: number | string): T
 
 flexGrow(value: number): T
 
-设置组件在父容器剩余空间中所占的比例。仅作为Flex、Column、Row和DynamicLayout容器的子组件时支持设置此属性。设置后组件会根据比例扩展占据父容器的剩余空间。当父容器为Column、Row时，需设置主轴方向的尺寸。Column和Row在未设置主轴尺寸（width/height/size）时仍遵守默认布局行为，在主轴上自适应子组件尺寸，此时可能影响flexGrow的剩余空间分配效果。设置该属性会触发二次布局，在对性能有严格要求的场景下建议使用[layoutWeight](ts-universal-attributes-size.md#layoutweight)替代，详情请参考[Flex布局性能提升使用指导](../../../performance/flex-development-performance-boost.md)。
+设置组件在父容器剩余空间中所占的比例。仅作为Flex、Column、Row和DynamicLayout容器的子组件时支持设置此属性。设置后组件会根据比例扩展占据父容器的剩余空间。当父容器为Column、Row时，需设置主轴方向的尺寸。Column和Row在未设置主轴尺寸（width/height/size）时仍遵守默认布局行为，在主轴上自适应子组件尺寸，此时可能影响flexGrow的剩余空间分配效果。设置该属性会触发二次布局，在对性能有严格要求的场景下建议使用[layoutWeight](ts-universal-attributes-size.md#layoutweight)替代。
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
@@ -70,7 +70,7 @@ flexGrow(value: number): T
 
 flexShrink(value: number): T
 
-设置父容器空间不足时，压缩尺寸分配给此属性所在组件的比例。仅作为Flex、Column、Row和DynamicLayout容器的子组件时支持设置此属性。当父容器为Column、Row时，父容器需设置主轴方向的尺寸（即width/height/size），此时flexShrink才生效。Column和Row在未设置主轴尺寸（width/height/size）时仍遵守默认布局行为，在主轴上自适应子组件尺寸，此时flexShrink不生效。设置该属性会触发二次布局，在对性能有严格要求的场景下建议使用[layoutWeight](ts-universal-attributes-size.md#layoutweight)替代，详情请参考[Flex布局性能提升使用指导](../../../performance/flex-development-performance-boost.md)。
+设置父容器空间不足时，压缩尺寸分配给此属性所在组件的比例。仅作为Flex、Column、Row和DynamicLayout容器的子组件时支持设置此属性。当父容器为Column、Row时，父容器需设置主轴方向的尺寸（即width/height/size），此时flexShrink才生效。Column和Row在未设置主轴尺寸（width/height/size）时仍遵守默认布局行为，在主轴上自适应子组件尺寸，此时flexShrink不生效。设置该属性会触发二次布局，在对性能有严格要求的场景下建议使用[layoutWeight](ts-universal-attributes-size.md#layoutweight)替代。
 
 >  **说明：**
 >

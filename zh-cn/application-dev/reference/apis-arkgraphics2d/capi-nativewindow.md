@@ -7,7 +7,7 @@
 <!--Adviser: @ge-yafang-->
 ## 概述
 
-提供NativeWindow功能，作为数据生产者，可用来和egl对接。
+提供NativeWindow功能，作为数据生产者，可用来和EGL对接。
 
 **起始版本：** 8
 

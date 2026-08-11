@@ -231,7 +231,7 @@ getGainmapPixelmap(): PixelMap | null
 
 | 类型                      | 说明                                   |
 | ------------------------- | -------------------------------------- |
-| [PixelMap](arkts-apis-image-PixelMap.md) \| null | 返回Pixelmap对象，如果没有则返回null。 |
+| [PixelMap](arkts-apis-image-PixelMap.md) \| null | 返回PixelMap对象，如果没有则返回null。 |
 
 **示例：**
 

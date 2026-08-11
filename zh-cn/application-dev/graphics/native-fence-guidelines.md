@@ -15,7 +15,7 @@ NativeFence是管理fenceFd同步状态的模块。fenceFd是一种文件描述�
 
 | 接口名 | 描述 |
 | -------- | -------- |
-| OH_NativeFence_IsValid (int fenceFd) | 检查fenceFd是否有效。 |
+| OH_NativeFence_IsValid (int fenceFd) | 检查fenceFd是否合法。 |
 | OH_NativeFence_Wait (int fenceFd, uint32_t timeout) | 阻塞传入的fenceFd，超时参数指定了允许等待的最长时间。 |
 | OH_NativeFence_WaitForever (int fenceFd) | 永久阻塞传入的fenceFd。 |
 | OH_NativeFence_Close (int fenceFd) | 关闭fenceFd。 |

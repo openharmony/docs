@@ -42,7 +42,7 @@
 | 名称 | typedef关键字 | 描述 |
 | -- | -- | -- |
 | [NativeWindowOperation](#nativewindowoperation) | NativeWindowOperation | OH_NativeWindow_NativeWindowHandleOpt函数中的操作码。 |
-| [OHScalingMode](#ohscalingmode) | OHScalingMode | 缩放模式Scaling Mode。 |
+| [OHScalingMode](#ohscalingmode) | OHScalingMode | 缩放模式。 |
 | [OHScalingModeV2](#ohscalingmodev2) | OHScalingModeV2 | 渲染缩放模式枚举。 |
 | [OHHDRMetadataKey](#ohhdrmetadatakey) | OHHDRMetadataKey | 枚举HDR元数据关键字。 |
 | [OHSurfaceSource](#ohsurfacesource) | OHSurfaceSource | 本地窗口内容来源类型枚举。 |
@@ -124,7 +124,7 @@ OH_NativeWindow_NativeWindowHandleOpt函数中的操作码。
 | SET_TRANSFORM | 设置本地窗口缓冲区变换，函数中的可变参数是[输入] int32_t transform，取值具体可见[OH_NativeBuffer_TransformType](capi-buffer-common-h.md#oh_nativebuffer_transformtype)枚举值。 |
 | GET_TRANSFORM | 获取本地窗口缓冲区变换，函数中的可变参数是[输出] int32_t *transform，取值具体可见[OH_NativeBuffer_TransformType](capi-buffer-common-h.md#oh_nativebuffer_transformtype)枚举值。 |
 | SET_UI_TIMESTAMP | 设置本地窗口缓冲区UI时间戳，函数中的可变参数是[输入] uint64_t uiTimestamp。 |
-| GET_BUFFERQUEUE_SIZE | 获取内存队列大小，函数中的可变参数是[输出] int32_t \*size。<br/>**起始版本：** 12 |
+| GET_BUFFERQUEUE_SIZE | 获取缓冲区队列大小，函数中的可变参数是[输出] int32_t \*size。<br/>**起始版本：** 12 |
 | SET_SOURCE_TYPE | 设置本地窗口内容来源，函数中的可变参数是[输入] int32_t sourceType，取值具体可见[OHSurfaceSource](#ohsurfacesource)枚举值。<br/>**起始版本：** 12 |
 | GET_SOURCE_TYPE | 获取本地窗口内容来源，函数中的可变参数是[输出] int32_t *sourceType，取值具体可见[OHSurfaceSource](#ohsurfacesource)枚举值。<br/>**起始版本：** 12 |
 | SET_APP_FRAMEWORK_TYPE | 设置本地窗口应用框架名称，函数中的可变参数是[输入] char* frameworkType，最大支持64字节。<br/>**起始版本：** 12 |
@@ -141,7 +141,7 @@ enum OHScalingMode
 
 **描述**
 
-缩放模式Scaling Mode。
+缩放模式。
 
 **系统能力：** SystemCapability.Graphic.Graphic2D.NativeWindow
 
@@ -541,7 +541,7 @@ BufferHandle *OH_NativeWindow_GetBufferHandleFromNative(OHNativeWindowBuffer *bu
 
 | 类型 | 说明 |
 | -- | -- |
-| [BufferHandle](capi-nativewindow-bufferhandle.md) | BufferHandle 返回一个指针，指向[BufferHandle](capi-nativewindow-bufferhandle.md)的结构体实例。 |
+| [BufferHandle](capi-nativewindow-bufferhandle.md)* | 返回一个指针，指向[BufferHandle](capi-nativewindow-bufferhandle.md)的结构体实例。 |
 
 ### OH_NativeWindow_NativeObjectReference()
 

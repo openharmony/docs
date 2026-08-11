@@ -1,10 +1,12 @@
 # Introduction to Variable Frame Rates
+
 <!--Kit: ArkGraphics 2D-->
 <!--Subsystem: Graphics-->
 <!--Owner: @wh_qwe-->
 <!--Designer: @wh_qwe-->
 <!--Tester: @zhaoxiaoguang2-->
 <!--Adviser: @ge-yafang-->
+<!-- md-trans-meta sourceCommit=8274e2d7a391483e6c7c9de842768baf61c0596c translatedAt=2026-08-03T11:18:30.875Z pushedAt=2026-08-04T03:52:51.445Z -->
 
 Nowadays, low-temperature polycrystalline oxide (LTPO) screens are widely used. This type of screen supports switching between frame rates at multiple levels.
 
@@ -16,15 +18,20 @@ The variable frame rate capability enables you to achieve a balance between perf
 
 OpenHarmony supports this capability. You can use the variable frame rate APIs to develop related services.
 
-
 ## Use Scenarios
+
 The variable frame rate capability allows you to specify the frame rate in different scenarios. Typical use scenarios are as follows:
+
 - Configure the frame rate parameter for property animations or explicit animations. For details, see [Requesting Frame Rates for Animations](displaysync-animation.md).
+
 - Request an independent frame rate for UI components. For details, see [Requesting Frame Rates for UI Components](displaysync-ui.md).
+
 - Request an independent frame rate for custom content (such as gaming) through the **XComponent** on the native side. For details, see [Requesting Frame Rates for Custom Content](displaysync-xcomponent.md).
+
 - Request an independent frame rate for drawing of non-UI threads through NativeVsync on the native side. For details, see [NativeDisplaySoloist Development (C/C++)](displaysoloist-native-guidelines.md).
 
 ## Working Principles
+
 The variable frame rate provides the basic frame rate configuration for animation components, **XComponent**, and UI components.
 
 After a valid expected frame rate is set, the system collects the configured frame rate and divides the frequency on the rendering pipeline.

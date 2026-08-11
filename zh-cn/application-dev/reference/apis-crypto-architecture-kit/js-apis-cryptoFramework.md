@@ -93,7 +93,7 @@ import { cryptoFramework } from '@kit.CryptoArchitectureKit';
 
 | 名称 | 类型                  | 只读 | 可选 | 说明                                                         |
 | ---- | --------------------- | ---- | ---- | ------------------------------------------------------------ |
-| iv   | [DataBlob](#datablob) | 否   | 否  | 加密和解密参数iv。常见取值如下：<br/>- AES的CBC\|CTR\|OFB\|CFB模式：iv长度为16字节。<br/>- 3DES的CBC\|OFB\|CFB模式：iv长度为8字节。<br/>- SM4<sup>10+</sup>的CBC\|CTR\|OFB\|CFB模式：iv长度为16字节。 |
+| iv   | [DataBlob](#datablob) | 否   | 否  | 加解密参数iv。常见长度如下：<br/>- AES的CBC\|CTR\|OFB\|CFB模式：iv长度为16字节。<br/>- 3DES的CBC\|OFB\|CFB模式：iv长度为8字节。<br/>- SM4<sup>10+</sup>的CBC\|CTR\|OFB\|CFB模式：iv长度为16字节。 |
 
 > **说明：**
 >
@@ -191,9 +191,9 @@ import { cryptoFramework } from '@kit.CryptoArchitectureKit';
 
 | 名称    | 类型                  | 只读 | 可选 | 说明                                                         |
 | ------- | --------------------- | ---- | ---- | ------------------------------------------------------------ |
-| nonce      | Uint8Array | 否   | 否   | 指明加解密参数nonce。对于AES算法的CCM模式长度为7-13字节；对于AES算法的GCM模式、SM4算法的GCM模式长度为1-128字节，推荐使用12字节；对于ChaCha20算法的Poly1305模式长度为12字节。       |
+| nonce      | Uint8Array | 否   | 否   | 指明加解密参数nonce。<br>**说明：** <br>对于AES-CCM，nonce长度的取值范围为7~13字节。<br>对于AES-GCM，nonce长度范围为1~128字节，推荐使用12字节。 <br>对于SM4-GCM，nonce长度范围为1~128字节，推荐使用12字节。 <br>对于ChaCha20-Poly1305，nonce长度必须为12字节。     |
 | authenticatedData     | Uint8Array | 否   | 是   | 指定可选的附加认证数据。                             |
-| tagLen | number | 否   | 是   | 指定加解密参数authTag长度，单位为字节。对于AES算法的CCM模式，tagLen仅支持4、6、8、10、12、14、16，若不填则默认为12；对于AES算法的GCM模式与SM4算法的GCM模式，tagLen仅支持4、8、12、13、14、15、16，若不填则默认为16；对于ChaCha20算法的Poly1305模式，tagLen仅支持16。 |
+| tagLen | number | 否   | 是   | 认证标签长度，单位为字节。<br>加密时，标签将被添加到密文末尾。<br>解密时，标签应位于密文末尾。<br>取值应为整数。<br>**说明：** <br>对于AES-CCM，默认值为12。支持的取值为4、6、8、10、12、14和16。<br>对于AES-GCM，默认值为16。支持的取值为4、8、12、13、14、15和16。<br>对于SM4-GCM，默认值为16。支持的取值为4、8、12、13、14、15和16。<br>对于ChaCha20-Poly1305，默认值为16。支持的取值为16。 |
 
 ## CryptoMode
 
@@ -300,7 +300,7 @@ import { cryptoFramework } from '@kit.CryptoArchitectureKit';
 
 表示加解密参数的枚举。这些参数支持通过[setCipherSpec](#setcipherspec10)接口设置，通过[getCipherSpec](#getcipherspec10)接口获取。
 
-当前只支持RSA算法和SM2算法，从API version 11开始，增加对SM2_MD_NAME_STR参数的支持，详细规格请参考[加解密规格](../../security/CryptoArchitectureKit/crypto-asym-encrypt-decrypt-spec.md)。
+当前只支持RSA算法和SM2算法，详细规格请参考[加解密规格](../../security/CryptoArchitectureKit/crypto-asym-encrypt-decrypt-spec.md)。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -320,7 +320,7 @@ import { cryptoFramework } from '@kit.CryptoArchitectureKit';
 
 表示签名验签参数的枚举。这些参数支持通过[setSignSpec](#setsignspec10)、[setVerifySpec](#setverifyspec10)接口设置，通过[getSignSpec](#getsignspec10)、[getVerifySpec](#getverifyspec10)接口获取。
 
-当前只支持RSA算法和SM2算法，从API version 11开始，增加对SM2_USER_ID_UINT8ARR参数的支持。从API版本26.0.0开始，支持ML-DSA算法。详细规格请参考[签名验签规格](../../security/CryptoArchitectureKit/crypto-sign-sig-verify-overview.md)。
+当前只支持RSA算法和SM2算法，从API版本26.0.0开始，支持ML-DSA算法。详细规格请参考[签名验签规格](../../security/CryptoArchitectureKit/crypto-sign-sig-verify-overview.md)。
 
 **系统能力：**
 - API版本12+：SystemCapability.Security.CryptoFramework.Signature
@@ -1010,7 +1010,7 @@ async function testGenerateAesKey() {
 
 getKeySize(): number
 
-以同步方式获取密钥的比特长度。密钥可以是对称密钥、公钥或私钥。
+获取密钥大小，单位为bits。密钥可以是对称密钥、公钥或私钥。
 
 **起始版本：** 26.0.0
 
@@ -1024,7 +1024,7 @@ getKeySize(): number
 
 | 类型                  | 说明              |
 | --------------------- | ------------------------ |
-| number | 获取密钥的比特长度。 |
+| number | 密钥大小，单位为bits。 |
 
 **错误码：**
 
@@ -1231,13 +1231,13 @@ getEncodedPem(format: string): string
 
 | 参数名 | 类型                  | 必填 | 说明                 |
 | ---- | --------------------- | ---- | -------------------- |
-| format  | string | 是   | 指定的获取密钥字符串的编码格式。支持RSA密钥，format取值支持'X509'或'PKCS1'。<br>从API版本26.0.0起，支持EC、ML-DSA和ML-KEM密钥，format取值支持'X509'。|
+| format  | string | 是   | 指定的获取密钥字符串的编码格式。支持RSA密钥，format取值支持"X509"或"PKCS1"。<br>从API版本26.0.0起，支持EC、ML-DSA和ML-KEM密钥，format取值支持"X509"。|
 
 **返回值：**
 
 | 类型                        | 说明                              |
 | --------------------------- | --------------------------------- |
-| string | 用于获取指定密钥格式的具体内容。 |
+| string | PEM编码的公钥数据。 |
 
 **错误码：**
 以下错误码的详细介绍请参见[cryptoFramework错误码](errorcode-crypto-framework.md)。
@@ -1503,7 +1503,7 @@ getEncodedDer(format: string): DataBlob
 
 | 类型                        | 说明                              |
 | --------------------------- | --------------------------------- |
-| [DataBlob](#datablob) | 返回满足ASN.1语法和DER编码的指定密钥格式的ECC私钥数据。 |
+| [DataBlob](#datablob) | DER编码的私钥数据。 |
 
 **错误码：**
 以下错误码的详细介绍请参见[cryptoFramework错误码](errorcode-crypto-framework.md)。
@@ -1546,13 +1546,13 @@ getEncodedPem(format: string): string
 
 | 参数名 | 类型                  | 必填 | 说明                 |
 | ---- | --------------------- | ---- | -------------------- |
-| format  | string | 是   | 指定的获取密钥字符串的编码格式。支持RSA密钥，format取值支持'PKCS8'或'PKCS1'。<br>从API版本26.0.0起，支持EC密钥，format取值支持'PKCS8'或'EC'。<br>从API版本26.0.0起，支持ML-DSA和ML-KEM密钥，format取值支持'PKCS8'。|
+| format  | string | 是   | 指定的获取密钥字符串的编码格式。支持RSA密钥，format取值支持"PKCS8"或"PKCS1"。<br>从API版本26.0.0起，支持EC密钥，format取值支持"PKCS8"或"EC"。<br>从API版本26.0.0起，支持ML-DSA和ML-KEM密钥，format取值支持"PKCS8"。|
 
 **返回值：**
 
 | 类型                        | 说明                              |
 | --------------------------- | --------------------------------- |
-| string | 用于获取指定密钥格式的具体内容。 |
+| string | PEM编码的私钥数据。 |
 
 **错误码：**
 
@@ -1611,13 +1611,13 @@ getEncodedPem(format: string, config: KeyEncodingConfig): string
 | 参数名 | 类型                  | 必填 | 说明                 |
 | ---- | --------------------- | ---- | -------------------- |
 | format  | string | 是   | 指定的获取密钥字符串的编码格式。其中，私钥可为'PKCS1' 或'PKCS8'格式。|
-| config | [KeyEncodingConfig](#keyencodingconfig18) | 是 | 指定编码的算法和口令，对私钥进行编码操作。 |
+| config | [KeyEncodingConfig](#keyencodingconfig18) | 是 | 用于加密私钥的参数。 |
 
 **返回值：**
 
 | 类型                        | 说明                              |
 | --------------------------- | --------------------------------- |
-| string | 用于获取指定密钥格式的具体内容。如果填了config参数，则获取编码后的内容。 |
+| string | PEM编码的加密的私钥数据。 |
 
 **错误码：**
 
@@ -1986,7 +1986,7 @@ function eccGetKeyDataTest() {
 
 createSymKeyGenerator(algName: string): SymKeyGenerator
 
-通过指定算法名称获取相应的对称密钥生成器实例。
+创建对应算法的对称密钥生成器实例。
 
 支持的规格详见[对称密钥生成和转换规格](../../security/CryptoArchitectureKit/crypto-sym-key-generation-conversion-spec.md)。
 
@@ -2006,7 +2006,7 @@ createSymKeyGenerator(algName: string): SymKeyGenerator
 
 | 类型                                | 说明                       |
 | ----------------------------------- | -------------------------- |
-| [SymKeyGenerator](#symkeygenerator) | 返回对称密钥生成器的对象。 |
+| [SymKeyGenerator](#symkeygenerator) | 返回对称密钥生成器实例。 |
 
 **错误码：**
 
@@ -2027,9 +2027,7 @@ let symKeyGenerator = cryptoFramework.createSymKeyGenerator('3DES192');
 
 ## SymKeyGenerator
 
-对称密钥生成器。
-
-在使用该类的方法前，先使用[createSymKeyGenerator](#cryptoframeworkcreatesymkeygenerator)构建SymKeyGenerator实例。
+对称密钥生成器接口，定义生成对称密钥的方法。调用前，需通过[createSymKeyGenerator](#cryptoframeworkcreatesymkeygenerator)方法创建一个SymKeyGenerator实例。
 
 ### 属性
 
@@ -2049,9 +2047,7 @@ generateSymKey(callback: AsyncCallback\<SymKey>): void
 
 获取对称密钥生成器随机生成的密钥。使用callback异步回调。
 
-必须在使用[createSymKeyGenerator](#cryptoframeworkcreatesymkeygenerator)创建对称密钥生成器后，才能使用本函数。
-
-目前支持使用OpenSSL的RAND_priv_bytes()作为底层能力生成随机密钥。
+目前使用OpenSSL的RAND_priv_bytes()作为底层能力生成随机密钥。
 
 > **说明：**
 >
@@ -2095,9 +2091,7 @@ generateSymKey(): Promise\<SymKey>
 
 获取该对称密钥生成器随机生成的密钥。使用Promise异步回调。
 
-必须在使用[createSymKeyGenerator](#cryptoframeworkcreatesymkeygenerator)创建对称密钥生成器后，才能使用本函数。
-
-目前支持使用OpenSSL的RAND_priv_bytes()作为底层能力生成随机密钥。
+目前使用OpenSSL的RAND_priv_bytes()作为底层能力生成随机密钥。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -2141,9 +2135,7 @@ generateSymKeySync(): SymKey
 
 同步获取对称密钥生成器随机生成的密钥。
 
-必须在使用[createSymKeyGenerator](#cryptoframeworkcreatesymkeygenerator)创建对称密钥生成器后，才能使用本函数。
-
-目前支持使用OpenSSL的RAND_priv_bytes()作为底层能力生成随机密钥。
+目前使用OpenSSL的RAND_priv_bytes()作为底层能力生成随机密钥。
 
 > **说明：**
 >
@@ -2188,8 +2180,6 @@ function testGenerateSymKeySync() {
 convertKey(key: DataBlob, callback: AsyncCallback\<SymKey>): void
 
 将指定数据转换为对称密钥。使用callback异步回调。
-
-必须在使用[createSymKeyGenerator](#cryptoframeworkcreatesymkeygenerator)创建对称密钥生成器后，才能使用本函数。
 
 > **说明：**
 >
@@ -2245,8 +2235,6 @@ function testConvertKey() {
 convertKey(key: DataBlob): Promise\<SymKey>
 
 将指定数据转换为对称密钥。使用Promise异步回调。
-
-在使用本函数前，需先通过[createSymKeyGenerator](#cryptoframeworkcreatesymkeygenerator)创建对称密钥生成器。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -2309,8 +2297,6 @@ convertKeySync(key: DataBlob): SymKey
 
 将指定数据转换为对称密钥。
 
-必须在使用[createSymKeyGenerator](#cryptoframeworkcreatesymkeygenerator)创建对称密钥生成器后，才能使用本函数。
-
 > **说明：**
 >
 > 对于HMAC算法的对称密钥，如果在创建对称密钥生成器时指定了具体哈希算法（如"HMAC|SHA256"），则需要传入与哈希长度一致的二进制密钥数据（如SHA256对应的256位密钥数据）。如果在创建对称密钥生成器时未指定具体哈希算法，如仅指定"HMAC"，则支持传入长度在1到4096字节范围内的任意二进制密钥数据。
@@ -2364,7 +2350,7 @@ function testConvertKeySync() {
 
 createAsyKeyGenerator(algName: string): AsyKeyGenerator
 
-通过指定算法名称的字符串，获取相应的非对称密钥生成器实例。
+创建对应算法的非对称密钥生成器实例。
 
 支持的规格详见[非对称密钥生成和转换规格](../../security/CryptoArchitectureKit/crypto-asym-key-generation-conversion-spec.md)。
 
@@ -2406,7 +2392,7 @@ let asyKeyGenerator = cryptoFramework.createAsyKeyGenerator('ECC256');
 
 ## AsyKeyGenerator
 
-非对称密钥生成器。在使用该类的方法前，需要先使用[createAsyKeyGenerator](#cryptoframeworkcreateasykeygenerator)方法构建一个AsyKeyGenerator实例。
+非对称密钥生成器接口，定义生成非对称密钥的方法。调用前，需通过[createAsyKeyGenerator](#cryptoframeworkcreateasykeygenerator)方法创建一个AsyKeyGenerator实例。
 
 ### 属性
 
@@ -2963,7 +2949,7 @@ function TestConvertPemKeyBySync() {
 
 convertPemKeySync(pubKey: string | null, priKey: string | null, password: string): KeyPair
 
-解析密钥数据，生成非对称密钥对象。支持加密的私钥，同步传入私钥口令解密私钥。使用同步方法。
+解析密钥数据，生成非对称密钥对象。支持加密的私钥，同步传入私钥口令解密私钥。
 
 > **说明：**
 > convertPemKeySync接口与convertPemKey接口注意事项相同，见[convertPemKey](#convertpemkey18)接口说明。
@@ -3039,7 +3025,7 @@ function TestConvertPemKeyBySync() {
 
 createAsyKeyGeneratorBySpec(asyKeySpec: AsyKeySpec): AsyKeyGeneratorBySpec
 
-指定密钥参数，获取AsyKeyGeneratorBySpec非对称密钥生成器实例。
+创建指定密钥规格的非对称密钥生成器实例。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -3057,7 +3043,7 @@ createAsyKeyGeneratorBySpec(asyKeySpec: AsyKeySpec): AsyKeyGeneratorBySpec
 
 | 类型                                            | 说明                       |
 | ----------------------------------------------- | -------------------------- |
-| [AsyKeyGeneratorBySpec](#asykeygeneratorbyspec10) | 返回AsyKeyGeneratorBySpec非对称密钥生成器实例。 |
+| [AsyKeyGeneratorBySpec](#asykeygeneratorbyspec10) | 返回AsyKeyGeneratorBySpec实例。 |
 
 **错误码：**
 
@@ -3105,7 +3091,7 @@ let asyKeyGeneratorBySpec = cryptoFramework.createAsyKeyGeneratorBySpec(asyKeyPa
 
 ## AsyKeyGeneratorBySpec<sup>10+</sup>
 
-AsyKeyGeneratorBySpec非对称密钥生成器。在使用该类的方法前，需要先使用[createAsyKeyGeneratorBySpec()](#cryptoframeworkcreateasykeygeneratorbyspec10)方法构建一个AsyKeyGeneratorBySpec实例。
+指定密钥规格的非对称密钥生成器接口，定义根据指定密钥规格生成非对称密钥的方法。调用前，需通过[createAsyKeyGeneratorBySpec()](#cryptoframeworkcreateasykeygeneratorbyspec10)方法构建一个AsyKeyGeneratorBySpec实例。
 
 ### 属性
 
@@ -3418,7 +3404,7 @@ function testGeneratePriKey() {
 
 generatePriKey(): Promise\<PriKey>
 
-获取该非对称密钥生成器生成的密钥。使用Promise异步回调。
+获取该非对称密钥生成器生成的私钥。使用Promise异步回调。
 
 当使用[PRIVATE_KEY_SPEC](#asykeyspectype10)类型的密钥参数来创建密钥生成器时，可以得到指定的私钥；当使用[KEY_PAIR_SPEC](#asykeyspectype10)类型的密钥参数来创建密钥生成器时，可以从生成的密钥对中获取指定的私钥。
 
@@ -3491,7 +3477,7 @@ function testGeneratePriKey() {
 
 generatePriKeySync(): PriKey
 
-同步获取该非对称密钥生成器生成的密钥。
+使用该非对称密钥生成器生成私钥。该接口以同步方式返回结果。
 
 当使用[PRIVATE_KEY_SPEC](#asykeyspectype10)类型的密钥参数来创建密钥生成器时，可以得到指定的私钥；当使用[KEY_PAIR_SPEC](#asykeyspectype10)类型的密钥参数来创建密钥生成器时，可以从生成的密钥对中获取指定的私钥。
 
@@ -3638,7 +3624,7 @@ function testGeneratePubKey() {
 
 generatePubKey(): Promise\<PubKey>
 
-获取该非对称密钥生成器生成的密钥。使用Promise异步回调。
+获取该非对称密钥生成器生成的公钥。使用Promise异步回调。
 
 当使用[PUBLIC_KEY_SPEC](#asykeyspectype10)类型的密钥参数来创建密钥生成器时，可以得到指定的公钥；当使用[KEY_PAIR_SPEC](#asykeyspectype10)类型的密钥参数来创建密钥生成器时，可以从生成的密钥对中获取指定的公钥。
 
@@ -3711,7 +3697,7 @@ function testGeneratePubKey() {
 
 generatePubKeySync(): PubKey
 
-同步获取该非对称密钥生成器生成的密钥。
+同步获取该非对称密钥生成器生成的公钥。
 
 当使用[PUBLIC_KEY_SPEC](#asykeyspectype10)类型的密钥参数来创建密钥生成器时，可以得到指定的公钥；使用[KEY_PAIR_SPEC](#asykeyspectype10)类型的密钥参数时，可以从生成的密钥对中获取指定的公钥。
 
@@ -4112,7 +4098,7 @@ try {
 
 createCipher(transformation: string): Cipher
 
-通过指定算法名称，获取相应的[Cipher](#cipher)实例。
+创建加解密实例。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -4135,7 +4121,7 @@ createCipher(transformation: string): Cipher
 
 | 类型              | 说明                     |
 | ----------------- | ------------------------ |
-| [Cipher](#cipher) | 返回加解密生成器的对象。 |
+| [Cipher](#cipher) | 返回对应算法的Cipher实例。 |
 
 **错误码：**
 
@@ -4165,7 +4151,7 @@ try {
 
 ## Cipher
 
-提供加解密的算法操作功能，按序调用本类中的[init()](#init-1)、[update()](#update)、[doFinal()](#dofinal)方法，可以实现对称加密/对称解密/非对称加密/非对称解密。
+加解密接口，定义对称加解密和非对称加解密方法。调用前，需通过[createCipher(transformation: string): Cipher](#cryptoframeworkcreatecipher)方法创建一个Cipher实例。按序调用Cipher实例中的[init()](#init-1)、[update()](#update)、[doFinal()](#dofinal)方法，可以实现对称加密/对称解密/非对称加密/非对称解密。
 
 完整的加解密流程示例可参考[开发指南](../../security/CryptoArchitectureKit/crypto-encryption-decryption-overview.md)。
 
@@ -4817,7 +4803,7 @@ function testGetCipherSpec() {
 
 createSign(algName: string): Sign
 
-生成Sign实例。
+创建签名实例。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -4835,7 +4821,7 @@ createSign(algName: string): Sign
 
 | 类型 | 说明                               |
 | ---- | ---------------------------------- |
-| [Sign](#sign) | 返回由输入算法指定生成的Sign对象。 |
+| [Sign](#sign) | 返回对应算法的Sign实例。 |
 
 **错误码：**
 以下错误码的详细介绍请参见[cryptoFramework错误码](errorcode-crypto-framework.md)。
@@ -4864,9 +4850,9 @@ let signer5 = cryptoFramework.createSign('RSA1024|PKCS1|SHA256|OnlySign');
 
 ## Sign
 
-Sign类，使用Sign方法之前需要创建该类的实例进行操作，通过[createSign(algName: string): Sign](#cryptoframeworkcreatesign)方法构造此实例。按序调用本类中的init、update、sign方法完成签名操作。签名操作的示例代码详见[签名验签开发指导](../../security/CryptoArchitectureKit/crypto-rsa-sign-sig-verify-pkcs1.md)。
+签名接口，定义基于私钥对数据进行签名的方法。调用前，需通过[createSign(algName: string): Sign](#cryptoframeworkcreatesign)方法构造此实例。按序调用本类中的init、update、sign方法完成签名操作。签名操作的示例代码详见[签名验签开发指导](../../security/CryptoArchitectureKit/crypto-rsa-sign-sig-verify-pkcs1.md)。
 
-Sign类不支持重复初始化，当业务方需要使用新密钥签名时，需要重新创建新Sign对象并调用init初始化。
+Sign实例不支持重复初始化，当业务方需要使用新密钥签名时，需要重新创建新Sign实例并调用init初始化。
 
 业务方使用时，调用createSign接口确定签名的模式，调用init接口设置密钥。
 
@@ -4894,9 +4880,9 @@ Sign类不支持重复初始化，当业务方需要使用新密钥签名时，�
 
 init(priKey: PriKey, callback: AsyncCallback\<void>): void
 
-使用私钥初始化Sign对象。使用callback异步回调。init、update、sign为三段式接口，需要成组使用。其中init和sign必选，update可选。
+使用私钥初始化Sign实例。使用callback异步回调。init、update、sign为三段式接口，需要成组使用。其中init和sign必选，update可选。
 
-Sign类不支持重复初始化。
+Sign实例不支持重复初始化。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -4926,9 +4912,9 @@ Sign类不支持重复初始化。
 
 init(priKey: PriKey): Promise\<void>
 
-使用私钥初始化Sign对象。使用Promise异步回调。init、update、sign为三段式接口，需要成组使用。其中init和sign必选，update可选。
+使用私钥初始化Sign实例。使用Promise异步回调。init、update、sign为三段式接口，需要成组使用。其中init和sign必选，update可选。
 
-Sign类不支持重复初始化。
+Sign实例不支持重复初始化。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -4965,7 +4951,7 @@ initSync(priKey: PriKey): void
 
 使用私钥初始化Sign对象，通过同步方式获取结果。initSync、updateSync、signSync为三段式接口，需要成组使用。其中initSync和signSync必选，updateSync可选。
 
-Sign类不支持重复调用initSync。
+Sign实例不支持重复调用initSync。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -5551,7 +5537,7 @@ function testGetSignSpec() {
 
 createVerify(algName: string): Verify
 
-生成Verify实例。
+创建验签实例。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -5569,7 +5555,7 @@ createVerify(algName: string): Verify
 
 | 类型   | 说明                                 |
 | ------ | ------------------------------------ |
-| Verify | 返回由输入算法指定生成的Verify对象。 |
+| [Verify](#verify) | 返回对应算法的Verify实例。 |
 
 **错误码：**
 
@@ -5595,9 +5581,9 @@ let verifier3 = cryptoFramework.createVerify('RSA1024|PKCS1|SHA256|Recover');
 
 ## Verify
 
-Verify类，使用Verify方法之前需要创建该类的实例进行操作，通过[createVerify(algName: string): Verify](#cryptoframeworkcreateverify)方法构造此实例。按序调用本类中的init、update、verify方法完成签名操作。验签操作的示例代码详见[签名验签开发指导](../../security/CryptoArchitectureKit/crypto-rsa-sign-sig-verify-pkcs1.md)。
+验签接口，定义基于公钥对签名数据进行验签的方法。调用前，需通过[createVerify(algName: string): Verify](#cryptoframeworkcreateverify)方法构造此实例。按序调用本类中的init、update、verify方法完成签名操作。验签操作的示例代码详见[签名验签开发指导](../../security/CryptoArchitectureKit/crypto-rsa-sign-sig-verify-pkcs1.md)。
 
-Verify类不支持重复初始化，当业务方需要使用新密钥验签时，需要重新创建新Verify对象并调用init初始化。
+Verify实例不支持重复初始化，当业务方需要使用新密钥验签时，需要重新创建新Verify实例并调用init初始化。
 
 业务方使用时，在createVerify时确定验签的模式，调用init接口设置密钥。
 
@@ -5623,7 +5609,7 @@ Verify类不支持重复初始化，当业务方需要使用新密钥验签时�
 
 init(pubKey: PubKey, callback: AsyncCallback\<void>): void
 
-传入公钥初始化Verify对象。使用callback异步回调。init、update、verify为三段式接口，需要成组使用。其中init和verify必选，update可选。
+传入公钥初始化Verify实例。使用callback异步回调。init、update、verify为三段式接口，需要成组使用。其中init和verify必选，update可选。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -5653,7 +5639,7 @@ init(pubKey: PubKey, callback: AsyncCallback\<void>): void
 
 init(pubKey: PubKey): Promise\<void>
 
-传入公钥初始化Verify对象。使用Promise异步回调。init、update、verify为三段式接口，需要成组使用。其中init和verify必选，update可选。
+传入公钥初始化Verify实例。使用Promise异步回调。init、update、verify为三段式接口，需要成组使用。其中init和verify必选，update可选。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -6463,7 +6449,7 @@ function testGetVerifySpec() {
 
 createKeyAgreement(algName: string): KeyAgreement
 
-生成KeyAgreement实例。
+创建密钥协商实例。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -6481,7 +6467,7 @@ createKeyAgreement(algName: string): KeyAgreement
 
 | 类型         | 说明                                       |
 | ------------ | ------------------------------------------ |
-| KeyAgreement | 返回由输入算法指定生成的KeyAgreement对象。 |
+| KeyAgreement | 返回对应算法的KeyAgreement实例。 |
 
 **错误码：**
 
@@ -6503,7 +6489,7 @@ let keyAgreement = cryptoFramework.createKeyAgreement('ECC256');
 
 ## KeyAgreement
 
-KeyAgreement类，使用密钥协商方法之前需要创建该类的实例进行操作，通过[createKeyAgreement(algName: string): KeyAgreement](#cryptoframeworkcreatekeyagreement)方法构造此实例。
+密钥协商接口，定义基于非对称密钥对生成共享密钥的方法。调用前，需通过[createKeyAgreement(algName: string): KeyAgreement](#cryptoframeworkcreatekeyagreement)方法构造此实例。
 
 ### 属性
 
@@ -6515,7 +6501,7 @@ KeyAgreement类，使用密钥协商方法之前需要创建该类的实例进�
 
 | 名称    | 类型   | 只读 | 可选 | 说明                         |
 | ------- | ------ | ---- | ---- | ---------------------------- |
-| algName | string | 是   | 否   | 密钥协商指定的算法名称。 |
+| algName | string | 是   | 否   | 密钥协商的算法名称。 |
 
 ### generateSecret
 
@@ -6673,7 +6659,7 @@ async function testGenerateSecretSync() {
 
 createMd(algName: string): Md
 
-生成Md实例，用于进行消息摘要的计算与操作。
+创建消息摘要实例。
 
 支持的规格详见[MD消息摘要算法规格](../../security/CryptoArchitectureKit/crypto-generate-message-digest-overview.md#支持的算法与规格)。
 
@@ -6697,7 +6683,7 @@ createMd(algName: string): Md
 
 | 类型 | 说明                                    |
 | ---- | --------------------------------------- |
-| Md   | 返回由输入算法指定生成的[Md](#md)对象。 |
+| [Md](#md)  | 返回对应算法的Md实例。 |
 
 **错误码：**
 
@@ -6724,7 +6710,7 @@ try {
 
 ## Md
 
-Md类，调用Md方法进行消息摘要（Message Digest）计算。调用前，需要通过[createMd](#cryptoframeworkcreatemd)构造Md实例。
+消息摘要接口，定义计算消息摘要的方法。调用前，需通过[createMd](#cryptoframeworkcreatemd)方法创建一个Md实例。
 
 ### 属性
 
@@ -7194,7 +7180,7 @@ function getLength() {
 
 createMac(algName: string): Mac
 
-生成Mac实例，用于消息认证码的计算与操作。
+创建消息认证码实例。
 
 支持的规格详见[HMAC消息认证码算法规格](../../security/CryptoArchitectureKit/crypto-compute-mac-overview.md)。
 
@@ -7214,7 +7200,7 @@ createMac(algName: string): Mac
 
 | 类型 | 说明                                      |
 | ---- | ----------------------------------------- |
-| Mac  | 返回由输入算法指定生成的[Mac](#mac)对象。 |
+| [Mac](#mac) | 返回对应算法的Mac实例。 |
 
 **错误码：**
 
@@ -7244,7 +7230,7 @@ try {
 
 createMac(macSpec: MacSpec): Mac
 
-生成Mac实例，用于进行消息认证码的计算与操作。
+创建消息认证码实例。
 
 支持的规格详见[MAC消息认证码算法规格](../../security/CryptoArchitectureKit/crypto-compute-mac-overview.md)。
 
@@ -7262,7 +7248,7 @@ createMac(macSpec: MacSpec): Mac
 
 | 类型 | 说明                                      |
 | ---- | ----------------------------------------- |
-| Mac  | 返回由指定入参参数生成的[Mac](#mac)对象。 |
+| [Mac](#mac)  | 返回对应算法的Mac实例。 |
 
 **错误码：**
 
@@ -7296,7 +7282,7 @@ try {
 
 ## Mac
 
-Mac类，调用Mac方法进行消息认证码（Message Authentication Code）计算。调用前，需要通过[createMac](#cryptoframeworkcreatemac)构造Mac实例。
+消息认证码接口，定义基于对称密钥计算消息认证码的方法。调用前，需通过[createMac](#cryptoframeworkcreatemac)方法创建一个Mac实例。
 
 ### 属性
 
@@ -7720,7 +7706,7 @@ function testGetMacLength() {
 
 createRandom(): Random
 
-生成Random实例，用于进行随机数的计算与设置种子。
+创建随机数实例。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -7736,7 +7722,7 @@ createRandom(): Random
 
 | 类型   | 说明                                            |
 | ------ | ----------------------------------------------- |
-| [Random](#random) | 返回由输入算法指定生成的[Random](#random)对象。<br>支持的规格详见框架概述[随机数算法规格](../../security/CryptoArchitectureKit/crypto-generate-random-number.md#支持的算法与规格)。 |
+| [Random](#random) | 返回Random实例。 |
 
 **错误码：**
 
@@ -7762,7 +7748,7 @@ try {
 
 ## Random
 
-Random类，调用Random方法生成随机数。调用前，需要通过[createRandom](#cryptoframeworkcreaterandom)构造Random实例。
+随机数接口，定义随机数生成的方法。调用前，需通过[createRandom](#cryptoframeworkcreaterandom)创建一个Random实例。
 
 ### 属性
 
@@ -8078,7 +8064,7 @@ export default {
 
 enableHardwareEntropy(): void
 
-开启硬件熵源。
+开启硬件熵源。将从TEE中获取安全随机数作为该随机数实例的熵源。
 
 **原子化服务API：** 从API version 21开始，该接口支持在原子化服务中使用。
 
@@ -8176,7 +8162,7 @@ rand.generateRandom(12, (err, randData) => {
 
 createKdf(algName: string): Kdf
 
-密钥派生函数（key derivation function）实例生成。
+创建密钥派生函数实例。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -8188,13 +8174,13 @@ createKdf(algName: string): Kdf
 
 | 参数名  | 类型   | 必填 | 说明                              |
 | ------- | ------ | ---- | --------------------------------- |
-| algName | string | 是   | 指定密钥派生算法（包含HMAC配套的散列函数）：目前支持PBKDF2、HKDF算法、SCRYPT算法，如"PBKDF2\|SHA256", "HKDF\|SHA256", "SCRYPT"。<br>支持的规格详见[密钥派生函数规格](../../security/CryptoArchitectureKit/crypto-key-derivation-overview.md)。|
+| algName | string | 是   | 指定密钥派生算法（包含HMAC配套的散列函数）：目前支持PBKDF2、HKDF算法、SCRYPT算法，如"PBKDF2\|SHA256"、 "HKDF\|SHA256"、 "SCRYPT"和"X963KDF\|SHA256"等。<br>支持的规格详见[密钥派生函数规格](../../security/CryptoArchitectureKit/crypto-key-derivation-overview.md)。|
 
 **返回值**：
 
 | 类型         | 说明                                       |
 | ------------ | ------------------------------------------ |
-| [Kdf](#kdf11) | 返回由输入算法指定生成的Kdf对象。 |
+| [Kdf](#kdf11) | 返回对应算法的Kdf实例。 |
 
 **错误码：**
 
@@ -8216,7 +8202,7 @@ let kdf = cryptoFramework.createKdf('PBKDF2|SHA256');
 
 ## Kdf<sup>11+</sup>
 
-密钥派生函数（key derivation function）类，使用密钥派生方法之前需要创建该类的实例进行操作，通过createKdf(algName: string): Kdf方法构造此实例。
+密钥派生函数（KDF）接口，定义基于密钥派生参数派生密钥的方法。调用前，需通过[createKdf](#cryptoframeworkcreatekdf11)方法构造此实例。
 
 ### 属性
 
@@ -8459,7 +8445,7 @@ generateSecretSync(params: KdfSpec): DataBlob
 
 static genEccSignatureSpec(data: Uint8Array): EccSignatureSpec
 
-从ASN1 DER格式的sm2签名数据获取r和s。
+从ASN.1 DER编码的ECC/SM2签名数据获取r和s。
 
 **原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
 
@@ -8469,7 +8455,7 @@ static genEccSignatureSpec(data: Uint8Array): EccSignatureSpec
 
 | 参数名 | 类型   | 必填 | 说明                   |
 | ------ | ------ | ---- | ---------------------- |
-| data   | Uint8Array        | 是   | ASN1 DER格式的签名数据。 |
+| data   | Uint8Array        | 是   | ASN.1 DER编码的签名数据。 |
 
 **返回值：**
 
@@ -8514,7 +8500,7 @@ static genEccSignatureSpec(data: Uint8Array): EccSignatureSpec
 
 static genEccSignature(spec: EccSignatureSpec): Uint8Array;
 
-将（r、s）的ECC/SM2签名数据转换为ASN1 DER格式。
+将（r、s）的ECC/SM2签名数据转换为ASN.1 DER编码。
 
 **原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
 
@@ -8530,7 +8516,7 @@ static genEccSignature(spec: EccSignatureSpec): Uint8Array;
 
 | 类型               | 说明     |
 | ------------------ | -------- |
-| Uint8Array | ASN1 DER格式的签名数据。 |
+| Uint8Array | ASN.1 DER编码的签名数据。 |
 
 **错误码：**
 
@@ -8605,7 +8591,7 @@ static genEccSignature(spec: EccSignatureSpec): Uint8Array;
 
 createKem(algNameId: KemAlgNameId): Kem
 
-生成Kem实例，用于密钥封装和解封装操作。
+创建一个用于密钥封装和解封装操作的Kem实例。
 
 **起始版本：** 26.0.0
 
@@ -8625,7 +8611,7 @@ createKem(algNameId: KemAlgNameId): Kem
 
 | 类型        | 说明                          |
 | ----------- | ----------------------------- |
-| [Kem](#kem) | 返回根据输入算法生成的Kem对象。 |
+| [Kem](#kem) | 返回对应算法的Kem实例。 |
 
 **错误码：**
 
@@ -8657,7 +8643,7 @@ function createKem() {
 
 ## Kem
 
-Kem类，使用密钥封装方法之前需要创建该类的实例进行操作，通过[createKem](#cryptoframeworkcreatekem)方法构造此实例。
+密钥封装机制（KEM）接口，定义基于密钥封装机制进行密钥封装和解封装的方法。调用前，需通过[createKem(algNameId: KemAlgNameId): Kem](#cryptoframeworkcreatekem)方法创建一个Kem实例。
 
 **起始版本：** 26.0.0
 

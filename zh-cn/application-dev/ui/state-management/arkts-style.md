@@ -28,7 +28,7 @@
 
 > **说明：**
 >
-> 只能在当前文件内使用@Styles，不支持export。
+> 只能在当前文件内使用\@Styles，不支持export。
 >
 > 若需要实现样式导出，推荐使用[AttributeModifier](../../ui/arkts-user-defined-extension-attributeModifier.md)。
 
@@ -88,7 +88,7 @@ struct FancyUse {
   }
 ```
 
-- 不支持在\@Styles方法内使用逻辑组件，逻辑组件内的属性不生效。
+- 不支持在\@Styles方法内使用条件渲染语句，条件渲染语句内的属性不生效。
 
 ``` TypeScript
   // 错误写法

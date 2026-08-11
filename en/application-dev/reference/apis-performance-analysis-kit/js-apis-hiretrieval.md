@@ -91,7 +91,7 @@ For details about the error codes, see [Application Grayscale Error Codes](error
 
 | ID| Error Message|
 | -------- | ----------------------------------------------------------------------------------------------------------------------------------------------- |
-| 36000001 | Initialization error. Possibly caused by invoking this function before invoking init function                                                   |
+| 36000001 | Initialization error. Possibly caused by invoking this function before invoking init function.                                                  |
 
 **Example**
 
@@ -130,7 +130,7 @@ For details about the error codes, see [Application Grayscale Error Codes](error
 
 | ID| Error Message|
 | -------- | ----------------------------------------------------------------------------------------------- |
-| 36000001 | Initialization error. Possibly caused by invoking this function before invoking init function   |
+| 36000001 | Initialization error. Possibly caused by invoking this function before invoking init function.  |
 
 **Example**
 
@@ -216,7 +216,7 @@ For details about the error codes, see [Application Grayscale Error Codes](error
 
 | ID| Error Message|
 | -------- | -------------------------------------------------------------------------------------------------- |
-| 36000001 | Initialization error. Possibly caused by invoking this function before invoking init function      |
+| 36000001 | Initialization error. Possibly caused by invoking this function before invoking init function.     |
 
 **Example**
 

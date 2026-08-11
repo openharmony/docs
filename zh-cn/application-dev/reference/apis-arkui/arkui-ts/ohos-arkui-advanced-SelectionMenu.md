@@ -486,6 +486,7 @@ struct Index {
   private editorMenuOptions: Array<EditorMenuOptions> =
     [
       {
+        // $r('sys.media.wifi_router_fill')需要替换为开发者所需的图像资源文件。
         icon: $r('sys.media.wifi_router_fill'),
         symbolStyle: new SymbolGlyphModifier($r('sys.symbol.save')),
         action: () => {
@@ -516,6 +517,7 @@ struct Index {
         }
       },
       {
+        // $r('sys.media.save_button_picture')需要替换为开发者所需的图像资源文件。
         icon: $r('sys.media.save_button_picture'),
         symbolStyle: new SymbolGlyphModifier($r('sys.symbol.camera')),
         action: () => {
@@ -546,6 +548,7 @@ struct Index {
         }
       },
       {
+        // $r('sys.media.waveform_folder_fill')需要替换为开发者所需的图像资源文件。
         icon: $r('sys.media.waveform_folder_fill'),
         symbolStyle: new SymbolGlyphModifier($r('sys.symbol.car')),
         action: () => {
@@ -585,6 +588,7 @@ struct Index {
       }, builder: (): void => this.sliderPanel()
       },
       {
+        // $r('sys.media.thermometer_fill')需要替换为开发者所需的图像资源文件。
         icon: $r('sys.media.thermometer_fill'), action: () => {
         if (this.controller) {
           let selection = this.controller.getSelection();

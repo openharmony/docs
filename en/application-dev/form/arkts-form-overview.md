@@ -1,9 +1,9 @@
 # ArkTS Widget Overview
 <!--Kit: Form Kit-->
 <!--Subsystem: Ability-->
-<!--Owner: @cx983299475-->
-<!--Designer: @xueyulong-->
-<!--Tester: @yangyuecheng-->
+<!--Owner: @Qian-Win-->
+<!--Designer: @cx983299475-->
+<!--Tester: @mahailong123456-->
 <!--Adviser: @HelloShuo-->
 
 This document describes how to develop an ArkTS widget based on the declarative paradigm.
@@ -52,7 +52,7 @@ The overall running framework and rendering process of static widgets are the sa
 | Interactive widget| Supports overflow animation capabilities alongside dynamic widget capabilities.| Suitable for scenarios requiring complex logic and interactions, and where overflow animation is needed for better visual experience, such as widget games on the home screen.| Provides enhanced capabilities at the cost of high memory overhead.|
 
 ### Dynamic Widget
-For dynamic ArkTS widgets, the [postCardAction](../reference/apis-arkui/js-apis-postCardAction.md#postcardaction-1) API is provided for the interaction between **Card.ets** and FormExtensionAbility. Currently, this API supports the router, message, call events, and touch events in the widget.
+For dynamic ArkTS widgets, the [postCardAction](../reference/apis-arkui/js-apis-postCardAction.md#postcardaction-1) API is provided for the interaction between **Card.ets** and FormExtensionAbility. Currently, this API supports three types of events: router, message, and call. It can be called only in the tap event of a widget component.
 
 **Figure 4** Implementation principles of ArkTS event interaction<br>
 ![WidgetPostCardAction](figures/WidgetPostCardAction.png)
@@ -60,13 +60,15 @@ For dynamic ArkTS widgets, the [postCardAction](../reference/apis-arkui/js-apis-
 Dynamic widget events are used in the following scenarios:
 - router event: used to redirect to the UIAbility of the application, enabling the feature of navigating from a widget to an internal application page after a widget is touched.
 - call event: used to launch the UIAbility of the application to the background. Then the UIAbility can be used to request the corresponding background [continuous task](../arkts-utils/long-time-task-overview.md) to complete features such as music playback.
-- message event: used to launch the FormExtensionAbility, which then notifies the application via the **onFormEvent** callback, thereby fulfilling the feature of passing messages to the application after a widget is touched.
+- message event: used to launch the FormExtensionAbility and notify it through the **onFormEvent** callback, thereby implementing message delivery when a component in the widget is tapped and updating the widget content.
 
 ### Static Widget
 The **FormLink** component is provided for interactions between static widgets and widget providers. It supports three types of events: router, message, and call. See [FormLink](../reference/apis-arkui/arkui-ts/ts-container-formlink.md).
 
 ### Interactive Widget
 Interactive widgets are supported since API version 20. They provide overflow animations and implement human-machine interactions to improve information notifications, shallow interactions, and playability. For details, see [Overview of Interactive Widgets](arkts-ui-liveform-overview.md).
+
+<!--RP1--><!--RP1End-->
 
 ## Constraints
 ArkTS widgets support running logic code within the UI. Compared to JS widgets, they offer more robust capabilities but also introduce an increased risk of malicious activities conducted through the widgets. The code (in **widget.abc**) that carries the ArkTS widget UI runs in the system public FRS process and is finally displayed in the widget host (generally the home screen application). To ensure the stability of the system rendering process, isolation security between widgets, and resource usage such as memory and power consumption, the following constraints are imposed on the capabilities available to the ArkTS widget UI:
@@ -81,7 +83,7 @@ ArkTS widgets support running logic code within the UI. Compared to JS widgets, 
 
 - For widget UI page development, ArkTS widgets support only some components, events, animations, data management, state management, and API capabilities of the [declarative paradigm](../ui/arkts-ui-development-overview.md). For APIs that can be used in ArkTS widgets, a description (for example) will be added as follows: "Widget capability: This API can be used in ArkTS widgets since API version 12."
 
-- The event processing of widget content is independent of that of widget host. To prevent gesture conflicts, avoid using swipers in the widget when the widget host supports left and right swipes.
+- The event processing of widget content is independent of that of the widget host. To prevent gesture conflicts, components that support left and right swipes are not supported in widgets.
 
 In addition, ArkTS widgets do not support the following features:
 
@@ -91,6 +93,12 @@ In addition, ArkTS widgets do not support the following features:
 
 - Hot reload
 
-- setTimeOut
+- [setTimeout](../reference/common/js-apis-timer.md#settimeout)
 
 - For details about widget constraints in DevEco Studio, see [Constraints](https://developer.huawei.com/consumer/en/doc/harmonyos-guides/ide-service-widget#section1181172254318).
+
+## Samples
+
+The following sample is provided for ArkTS widget development:
+
+- [JS and C++ Communication for Stage Model Widgets (ArkTS) (API10)](https://gitcode.com/openharmony/applications_app_samples/tree/master/code/SuperFeature/Widget/FormGame)

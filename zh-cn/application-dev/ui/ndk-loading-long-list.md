@@ -693,7 +693,7 @@ private:
    #endif // MYAPPLICATION_LAZYTEXTLISTEXAMPLE1_H
    ```
 
-3. 添加新的ListItem时，优先复用已缓存的[ListItem](../reference/apis-arkui/arkui-ts/ts-container-listitem.md)实例，并更新其内容；若无可用缓存，则创建新的ListItem。当回调返回空时，创建一个默认的ListItem作为兜底方案。最后，将生成的节点句柄回填至[OH_ArkUI_NodeAdapterEvent_SetItem](../reference/apis-arkui/capi-native-node-h.md#oh_arkui_nodeadapterevent_setitem)事件中，完成绑定。
+3. 添加新的ListItem时，优先复用已缓存的[ListItem](../reference/apis-arkui/arkui-ts/ts-container-listitem.md)实例，并更新其内容；若无可用缓存，则创建新的ListItem。当回调返回空时，创建一个默认的ListItem作为兜底方案。最后，通过[OH_ArkUI_NodeAdapterEvent_SetItem](../reference/apis-arkui/capi-native-node-h.md#oh_arkui_nodeadapterevent_setitem)接口将生成的节点句柄回填至事件中，完成绑定。
    <!-- @[Item_adapter](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkUISample/NativeType/NdkCreateList/entry/src/main/cpp/ArkUIListItemAdapter.h) -->
    
    ``` C

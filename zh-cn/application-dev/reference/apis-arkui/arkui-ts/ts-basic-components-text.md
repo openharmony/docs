@@ -3112,19 +3112,19 @@ struct TextExample14 {
   build() {
     Column({ space: 10 }) {
       Text() {
-        Span("Hello")
+        Span('Hello')
           .fontSize(50)
         // $r('app.media.startIcon')需要替换为开发者所需的图像资源文件。
         ImageSpan($r('app.media.startIcon'))
           .width(30).height(30)
           .verticalAlign(ImageSpanAlignment.FOLLOW_PARAGRAPH)// 从API version 20开始，支持ImageSpanAlignment.FOLLOW_PARAGRAPH
-        Span("World")
+        Span('World')
       }
       .textVerticalAlign(TextVerticalAlign.CENTER)
       .borderWidth(1)
     }
     .alignItems(HorizontalAlign.Center)
-    .width("100%")
+    .width('100%')
   }
 }
 ```
@@ -3150,7 +3150,7 @@ struct TextNumberTransition {
         .borderWidth(1)
         .fontSize(40)
         .contentTransition(this.numberTransition)
-      Button("change number")
+      Button('change number')
         .onClick(() => {
           this.number++;
         })
@@ -3286,7 +3286,7 @@ struct Index {
           .fontSize(25)
           .borderWidth(1)
           .copyOption(CopyOptions.LocalDevice)
-        Button("setTextSelection")
+        Button('setTextSelection')
           .onClick(() => {
             this.controller.setTextSelection(1, 6, { menuPolicy: MenuPolicy.HIDE })
           })

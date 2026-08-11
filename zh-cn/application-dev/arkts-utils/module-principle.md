@@ -67,7 +67,7 @@ CommonJS与ES Module互相引用的规格如下表所示，导入和导出语法
 
 ### JSON文件
 
-JSON（JavaScript Object Notation）是一种轻量级的数据交互格式，采用完全独立于编程语言的文本格式来存储和表示数据。
+JSON（JavaScript Object Notation）是一种轻量级的数据交换格式，采用完全独立于编程语言的文本格式来存储和表示数据。
 
 JSON文件只能使用default方式导入，如下所示：
 

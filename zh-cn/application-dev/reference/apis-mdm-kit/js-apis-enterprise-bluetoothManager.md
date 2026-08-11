@@ -200,9 +200,11 @@ try {
 
 ## bluetoothManager.getAllowedBluetoothDevices
 
-getAllowedBluetoothDevices(admin: Want | null): Array\<string>
+getAllowedBluetoothDevices(admin: Want): Array\<string>
 
 获取蓝牙设备可用名单。
+
+本接口通过传入Want查询对应企业设备管理应用设置的策略，如需查询实际生效的策略，请使用[bluetoothManager.getAllowedBluetoothDevices](#bluetoothmanagergetallowedbluetoothdevices-1)接口。
 
 **需要权限：** ohos.permission.ENTERPRISE_MANAGE_BLUETOOTH
 
@@ -215,7 +217,7 @@ getAllowedBluetoothDevices(admin: Want | null): Array\<string>
 
 | 参数名 | 类型                                                    | 必填 | 说明           |
 | ------ | ------------------------------------------------------- | ---- | -------------- |
-| admin     | [Want](../apis-ability-kit/js-apis-app-ability-want.md) \| null | 是   | 企业设备管理扩展组件。Want中必须包含企业设备管理扩展能力的abilityName和所在应用的bundleName。<br>当设备存在多个MDM应用时，API版本26.0.0之前，传入Want时查询对应企业设备管理应用设置的策略。从API版本26.0.0开始，新增支持传入null时查询实际生效的策略。|
+| admin     | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | 是   | 企业设备管理扩展组件。Want中必须包含企业设备管理扩展能力的abilityName和所在应用的bundleName。|
 
 **返回值：**
 
@@ -255,6 +257,59 @@ try {
 }
 ```
 
+
+## bluetoothManager.getAllowedBluetoothDevices
+
+getAllowedBluetoothDevices(admin: Want | null): Array\<string>
+
+获取蓝牙设备可用名单。
+
+**起始版本：** 26.0.0
+
+**需要权限：** ohos.permission.ENTERPRISE_MANAGE_BLUETOOTH
+
+**系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
+
+**模型约束：** 此接口仅可在Stage模型下使用。
+
+**参数：**
+
+| 参数名 | 类型                                                    | 必填 | 说明           |
+| ------ | ------------------------------------------------------- | ---- | -------------- |
+| admin     | [Want](../apis-ability-kit/js-apis-app-ability-want.md) \| null | 是   | 企业设备管理扩展组件。Want中必须包含企业设备管理扩展能力的abilityName和所在应用的bundleName。<br>当设备存在多个MDM应用时，传入Want时查询对应企业设备管理应用设置的策略，传入null时查询实际生效的策略。|
+
+**返回值：**
+
+| 类型           | 说明                                |
+| -------------- | ----------------------------------- |
+| Array\<string> | 可用名单中蓝牙设备MAC地址的数组。 |
+
+**错误码**：
+
+以下错误码的详细介绍请参见[企业设备管理错误码](errorcode-enterpriseDeviceManager.md)和[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| 9200001  | The application is not an administrator application of the device. |
+| 9200002  | The administrator application does not have permission to manage the device. |
+| 201      | Permission verification failed. The application does not have the permission required to call the API. |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+
+**示例：**
+
+```ts
+import { bluetoothManager } from '@kit.MDMKit';
+
+// 创建企业设备管理扩展组件
+try {
+  // 获取蓝牙设备允许名单
+  // 参数需根据实际情况进行替换
+  let result: Array<string> = bluetoothManager.getAllowedBluetoothDevices(null);
+  console.info(`Succeeded in getting allowed bluetooth devices. Result: ${JSON.stringify(result)}`);
+} catch(err) {
+  console.error(`Failed to get allowed bluetooth devices. Code: ${err.code}, message: ${err.message}`);
+}
+```
 ## bluetoothManager.addDisallowedBluetoothDevices<sup>20+</sup>
 
 addDisallowedBluetoothDevices(admin: Want, deviceIds: Array&lt;string&gt;): void
@@ -371,9 +426,11 @@ try {
 
 ## bluetoothManager.getDisallowedBluetoothDevices<sup>20+</sup>
 
-getDisallowedBluetoothDevices(admin: Want | null): Array&lt;string&gt;
+getDisallowedBluetoothDevices(admin: Want): Array&lt;string&gt;
 
 获取蓝牙设备禁用名单。
+
+本接口通过传入Want查询对应企业设备管理应用设置的策略，如需查询实际生效的策略，请使用[bluetoothManager.getDisallowedBluetoothDevices](#bluetoothmanagergetdisallowedbluetoothdevices)接口。
 
 **需要权限：** ohos.permission.ENTERPRISE_MANAGE_BLUETOOTH
 
@@ -385,7 +442,7 @@ getDisallowedBluetoothDevices(admin: Want | null): Array&lt;string&gt;
 
 | 参数名 | 类型                                                    | 必填 | 说明           |
 | ------ | ------------------------------------------------------- | ---- | -------------- |
-| admin     | [Want](../apis-ability-kit/js-apis-app-ability-want.md) \| null | 是   | 企业设备管理扩展组件。Want中必须包含企业设备管理扩展能力的abilityName和所在应用的bundleName。<br>当设备存在多个MDM应用时，API版本26.0.0之前，传入Want时查询对应企业设备管理应用设置的策略。从API版本26.0.0开始，新增支持传入null时查询实际生效的策略。|
+| admin     | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | 是   | 企业设备管理扩展组件。Want中必须包含企业设备管理扩展能力的abilityName和所在应用的bundleName。|
 
 **返回值：**
 
@@ -424,6 +481,58 @@ try {
 }
 ```
 
+
+## bluetoothManager.getDisallowedBluetoothDevices
+
+getDisallowedBluetoothDevices(admin: Want | null): Array&lt;string&gt;
+
+获取蓝牙设备禁用名单。
+
+**起始版本：** 26.0.0
+
+**需要权限：** ohos.permission.ENTERPRISE_MANAGE_BLUETOOTH
+
+**系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
+
+**模型约束：** 此接口仅可在Stage模型下使用。
+
+**参数：**
+
+| 参数名 | 类型                                                    | 必填 | 说明           |
+| ------ | ------------------------------------------------------- | ---- | -------------- |
+| admin     | [Want](../apis-ability-kit/js-apis-app-ability-want.md) \| null | 是   | 企业设备管理扩展组件。Want中必须包含企业设备管理扩展能力的abilityName和所在应用的bundleName。<br>当设备存在多个MDM应用时，传入Want时查询对应企业设备管理应用设置的策略，传入null时查询实际生效的策略。|
+
+**返回值：**
+
+| 类型           | 说明                                |
+| -------------- | ----------------------------------- |
+| Array&lt;string&gt; | 禁用名单中蓝牙设备MAC地址的数组。 |
+
+**错误码**：
+
+以下错误码的详细介绍请参见[企业设备管理错误码](errorcode-enterpriseDeviceManager.md)和[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| 9200001  | The application is not an administrator application of the device. |
+| 9200002  | The administrator application does not have permission to manage the device. |
+| 201      | Permission verification failed. The application does not have the permission required to call the API. |
+
+**示例：**
+
+```ts
+import { bluetoothManager } from '@kit.MDMKit';
+
+// 创建企业设备管理扩展组件
+try {
+  // 获取蓝牙设备禁用名单
+  // 参数需根据实际情况进行替换
+  let result: Array<string> = bluetoothManager.getDisallowedBluetoothDevices(null);
+  console.info(`Succeeded in getting disallowed bluetooth devices. Result: ${JSON.stringify(result)}`);
+} catch(err) {
+  console.error(`Failed to get disallowed bluetooth devices. Code: ${err.code}, message: ${err.message}`);
+}
+```
 ## bluetoothManager.turnOnBluetooth<sup>20+</sup>
 
 turnOnBluetooth(admin: Want): void
@@ -647,6 +756,8 @@ try {
 getDisallowedBluetoothProtocols(admin: Want, accountId: number): Array&lt;Protocol&gt;
 
 获取指定用户的蓝牙协议禁用名单。
+
+本接口通过传入Want查询对应企业设备管理应用设置的策略，如需查询实际生效的策略，请使用[bluetoothManager.getDisallowedBluetoothProtocols](#bluetoothmanagergetdisallowedbluetoothprotocols)接口。
 
 **需要权限：** ohos.permission.ENTERPRISE_MANAGE_BLUETOOTH
 

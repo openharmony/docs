@@ -1,130 +1,269 @@
 # Image Kit
+
 <!--Kit: Image Kit-->
 <!--Subsystem: Multimedia-->
 <!--Owner: @aulight02-->
-<!--Designer: @liyang_bryan-->
+<!--Designer: @XiaoYao555-->
 <!--Tester: @xchaosioda-->
 <!--Adviser: @w_Machine_cc-->
+<!-- md-trans-meta sourceCommit=92177e27e9e27a18151783969cb0ac50486d8081 translatedAt=2026-08-03T04:07:11.805Z pushedAt=2026-08-04T02:12:51.278Z -->
 
 - ArkTS APIs<!--image-arkts-->
+
   - @ohos.multimedia.image (Image Processing)<!--js-apis-image-->
+
     - [Module Description](arkts-apis-image.md)
+
     - [Functions](arkts-apis-image-f.md)
+
     - [Interface (AuxiliaryPicture)](arkts-apis-image-AuxiliaryPicture.md)
+
     - [Interface (Image)](arkts-apis-image-Image.md)
+
     - [Interface (ImageCreator)](arkts-apis-image-ImageCreator.md)
+
     - [Interface (ImagePacker)](arkts-apis-image-ImagePacker.md)
+
     - [Interface (ImageReceiver)](arkts-apis-image-ImageReceiver.md)
+
     - [Interface (ImageSource)](arkts-apis-image-ImageSource.md)
+
     - [Interface (Metadata)](arkts-apis-image-Metadata.md)
+
     - [Class (ExifMetadata)](arkts-apis-image-ExifMetadata.md)
+
     - [Class (MakerNoteHuaweiMetadata)](arkts-apis-image-MakerNoteHuaweiMetadata.md)
+
     - [Class (HeifsMetadata)](arkts-apis-image-HeifsMetadata.md)
+
     - [Class (WebPMetadata)](arkts-apis-image-WebPMetadata.md)
+
+    - [Class (GifMetadata)](arkts-apis-image-GifMetadata.md)
+
+    - [Class (JfifMetadata)](arkts-apis-image-JfifMetadata.md)
+
+    - [Class (TiffMetadata)](arkts-apis-image-TiffMetadata.md)
+
+    - [Class (PngMetadata)](arkts-apis-image-PngMetadata.md)
+
+    - [Class (XMPMetadata)](arkts-apis-image-XMPMetadata.md)
+
+    - [Class (AvisMetadata)](arkts-apis-image-AvisMetadata.md)
+
     - [Interface (Picture)](arkts-apis-image-Picture.md)
+
     - [Interface (PixelMap)](arkts-apis-image-PixelMap.md)
+
     - [Interfaces (Others)](arkts-apis-image-i.md)
+
     - [Enums](arkts-apis-image-e.md)
+
     - [Types](arkts-apis-image-t.md)
+
     - [Constants](arkts-apis-image-c.md)
+
   - [@ohos.multimedia.sendableImage (Image Processing Based on Sendable Objects)](js-apis-sendableImage.md)
+
   - [@ohos.multimedia.videoProcessingEngine (Video Processing Engine)](js-apis-videoProcessingEngine.md)
+
   <!--Del-->
+
   - [@ohos.multimedia.image (Image Processing) (System API)](js-apis-image-sys.md)
+
   <!--DelEnd-->
+
 - C APIs<!--image-c-->
+
   - Modules<!--image-module-->
+
     - [Image_NativeModule](capi-image-nativemodule.md)
+
     - [Image](capi-image.md)
+
     - [ImageEffect](capi-imageeffect.md)
+
     - [ImageProcessing](capi-imageprocessing.md)
+
   - Header Files<!--image-headerfile-->
+
     - [image_common.h](capi-image-common-h.md)
+
     - [image_native.h](capi-image-native-h.md)
+
     - [image_packer_native.h](capi-image-packer-native-h.md)
+
     - [image_receiver_native.h](capi-image-receiver-native-h.md)
+
     - [image_source_native.h](capi-image-source-native-h.md)
+
     - [picture_native.h](capi-picture-native-h.md)
+
     - [pixelmap_native.h](capi-pixelmap-native-h.md)
+
     - [image_mdk.h](capi-image-mdk-h.md)
+
     - [image_mdk_common.h](capi-image-mdk-common-h.md)
+
     - [image_packer_mdk.h](capi-image-packer-mdk-h.md)
+
     - [image_pixel_map_mdk.h](capi-image-pixel-map-mdk-h.md)
+
     - [image_pixel_map_napi.h](capi-image-pixel-map-napi-h.md)
+
     - [image_receiver_mdk.h](capi-image-receiver-mdk-h.md)
+
     - [image_source_mdk.h](capi-image-source-mdk-h.md)
+
     - [image_effect.h](capi-image-effect-h.md)
+
     - [image_effect_errors.h](capi-image-effect-errors-h.md)
+
     - [image_effect_filter.h](capi-image-effect-filter-h.md)
+
     - [image_processing.h](capi-image-processing-h.md)
+
     - [image_processing_types.h](capi-image-processing-types-h.md)
+
   - Structs<!--image-struct-->
+
     - [OH_ImageSourceNative](capi-image-nativemodule-oh-imagesourcenative.md)
+
     - [OH_ImageSource_Info](capi-image-nativemodule-imagesource-info.md)
+
     - [OH_DecodingOptionsForPicture](capi-image-nativemodule-oh-decodingoptionsforpicture.md)
+
     - [OH_DecodingOptions](capi-image-nativemodule-oh-decodingoptions.md)
+
     - [OH_PixelmapNative](capi-image-nativemodule-oh-pixelmapnative.md)
+
     - [OH_NativeBuffer](capi-image-nativemodule-image-nativemodule-oh-nativebuffer.md)
+
     - [OH_Pixelmap_HdrStaticMetadata](capi-image-nativemodule-oh-pixelmap-hdrstaticmetadata.md)
+
     - [OH_NativeColorSpaceManager](capi-image-nativemodule-oh-nativecolorspacemanager.md)
+
     - [OH_Pixelmap_HdrDynamicMetadata](capi-image-nativemodule-oh-pixelmap-hdrdynamicmetadata.md)
+
     - [OH_Pixelmap_HdrGainmapMetadata](capi-image-nativemodule-oh-pixelmap-hdrgainmapmetadata.md)
+
     - [OH_Pixelmap_HdrMetadataValue](capi-image-nativemodule-oh-pixelmap-hdrmetadatavalue.md)
+
     - [OH_Pixelmap_InitializationOptions](capi-image-nativemodule-oh-pixelmap-initializationoptions.md)
+
     - [OH_Pixelmap_ImageInfo](capi-image-nativemodule-oh-pixelmap-imageinfo.md)
+
     - [Image_Size](capi-image-nativemodule-image-size.md)
+
     - [Image_Region](capi-image-nativemodule-image-region.md)
+
     - [OH_PictureMetadata](capi-image-nativemodule-oh-picturemetadata.md)
+
     - [Image_String](capi-image-nativemodule-image-string.md)
+
     - [OH_ImageNative](capi-image-nativemodule-oh-imagenative.md)
+
     - [OH_ImagePackerNative](capi-image-nativemodule-oh-imagepackernative.md)
+
     - [OH_ImageBufferData](capi-image-nativemodule-oh-imagebufferdata.md) 
+
     - [OH_PackingOptions](capi-image-nativemodule-oh-packingoptions.md)
+
     - [OH_PackingOptionsForSequence](capi-image-nativemodule-oh-packingoptionsforsequence.md)
+
     - [OH_ImageReceiverNative](capi-image-nativemodule-oh-imagereceivernative.md)
+
     - [OH_ImageReceiverOptions](capi-image-nativemodule-oh-imagereceiveroptions.md)
+
     - [OH_PictureNative](capi-image-nativemodule-oh-picturenative.md)
+
     - [OH_AuxiliaryPictureNative](capi-image-nativemodule-oh-auxiliarypicturenative.md)
+
     - [OH_AuxiliaryPictureInfo](capi-image-nativemodule-oh-auxiliarypictureinfo.md)
+
     - [OhosImageRect](capi-image-ohosimagerect.md)
+
     - [ImageNative_](capi-image-imagenative-.md)
+
     - [OhosImageComponent](capi-image-ohosimagecomponent.md)
+
     - [OhosImageSize](capi-image-ohosimagesize.md)
+
     - [ImagePacker_Opts_](capi-image-imagepacker-opts-.md)
+
     - [ImagePacker_Native_](capi-image-imagepacker-native-.md)
+
     - [OhosPixelMapInfos](capi-image-ohospixelmapinfos.md)
+
     - [NativePixelMap_](capi-image-nativepixelmap-.md)
+
     - [OhosPixelMapCreateOps](capi-image-ohospixelmapcreateops.md)
+
     - [OhosPixelMapInfo](capi-image-ohospixelmapinfo.md)
+
     - [OhosImageReceiverInfo](capi-image-ohosimagereceiverinfo.md)
+
     - [ImageReceiverNative_](capi-image-imagereceivernative-.md)
+
     - [OhosImageRegion](capi-image-ohosimageregion.md)
+
     - [ImageSourceNative_](capi-image-imagesourcenative-.md)
+
     - [OhosImageSourceOps](capi-image-ohosimagesourceops.md)
+
     - [OhosImageDecodingOps](capi-image-ohosimagedecodingops.md)
+
     - [OhosImageSourceInfo](capi-image-ohosimagesourceinfo.md)
+
     - [OhosImageSource](capi-image-ohosimagesource.md)
+
     - [OhosImageSourceDelayTimeList](capi-image-ohosimagesourcedelaytimelist.md)
+
     - [OhosImageSourceSupportedFormat](capi-image-ohosimagesourcesupportedformat.md)
+
     - [OhosImageSourceSupportedFormatList](capi-image-ohosimagesourcesupportedformatlist.md)
+
     - [OhosImageSourceProperty](capi-image-ohosimagesourceproperty.md)
+
     - [OhosImageSourceUpdateData](capi-image-ohosimagesourceupdatedata.md)
+
     - [OH_ImageEffect](capi-imageeffect-oh-imageeffect.md)
+
     - [ImageEffect_DataValue](capi-imageeffect-imageeffect-datavalue.md)
+
     - [OH_EffectFilter](capi-imageeffect-oh-effectfilter.md)
+
     - [OH_EffectFilterInfo](capi-imageeffect-oh-effectfilterinfo.md)
+
     - [OH_EffectBufferInfo](capi-imageeffect-oh-effectbufferinfo.md)
+
     - [ImageEffect_Any](capi-imageeffect-imageeffect-any.md)
+
     - [ImageEffect_FilterNames](capi-imageeffect-imageeffect-filternames.md)
+
     - [ImageEffect_FilterDelegate](capi-imageeffect-imageeffect-filterdelegate.md)
+
     - [ImageEffect_Region](capi-imageeffect-imageeffect-region.md)
+
     - [ImageEffect_Size](capi-imageeffect-imageeffect-size.md)
+
     - [ImageProcessing_ColorSpaceInfo](capi-imageprocessing-imageprocessing-colorspaceinfo.md)
+
     - [OH_ImageProcessing](capi-imageprocessing-oh-imageprocessing.md)
+
     - [Image_PositionArea](capi-image-nativemodule-image-positionarea.md)
+
     - [Image_Scale](capi-image-nativemodule-image-scale.md)
+
     - [OH_ComposeOptions](capi-image-nativemodule-oh-composeoptions.md)
+
     - [OH_ImageRawData](capi-image-nativemodule-oh-imagerawdata.md)
+
+    - [OH_PictureNative_AuxiliaryPictureCopyItem](capi-image-nativemodule-oh-picturenative-auxiliarypicturecopyitem.md)
+
+    - [OH_PictureNative_MetadataCopyItem](capi-image-nativemodule-oh-picturenative-metadatacopyitem.md)
+
 - Error Codes<!--image-arkts-errcode-->
+
   - [Image Error Codes](errorcode-image.md)
+
   - [Video Processing Engine Error Codes](errorcode-videoprocessingengine.md)
