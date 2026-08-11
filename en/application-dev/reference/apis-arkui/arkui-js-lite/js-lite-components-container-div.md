@@ -1,11 +1,12 @@
 # div
+
 <!--Kit: ArkUI-->
 <!--Subsystem: ArkUI-->
-<!--Owner: @lanshouren-->
-<!--Designer: @lanshouren-->
+<!--Owner: @fenglinbailu-->
+<!--Designer: @fenglinbailu-->
 <!--Tester: @liuli0427-->
 <!--Adviser: @Brilliantry_Rui-->
-<!-- md-trans-meta sourceCommit=dfb15c325281e5e789ea7ade45dfdd45876606ad translatedAt=2026-07-27T02:27:03.602Z pushedAt=2026-07-27T09:23:36.737Z -->
+<!-- md-trans-meta sourceCommit=45ec2d938cfede23d9ca90fe41c0d1f3e7b2b01d translatedAt=2026-08-11T01:54:49.134Z pushedAt=2026-08-11T02:10:36.642Z -->
 
 The **\<div>** component is a basic container that is used as the root node of the page structure or is used to group the content.
 
@@ -13,11 +14,9 @@ The **\<div>** component is a basic container that is used as the root node of t
 >
 > This component is supported since API version 4. Updates will be marked with a superscript to indicate their earliest API version.
 
-
 ## Child Components
 
 Supported.
-
 
 ## Attributes
 
@@ -28,7 +27,6 @@ Supported.
 | class | string | - | No| Style class of the component, which is used to refer to a style table.|
 | ref | string | - | No| Reference information of child elements, which is registered with the parent component on **$refs**.|
 
-
 ## Events
 
 | Name| Parameter| Description|
@@ -36,7 +34,6 @@ Supported.
 | click | - | Triggered when the component is clicked.|
 | longpress | - | Triggered when the component is long pressed.|
 | swipe<sup>5+</sup> | [SwipeEvent](js-lite-common-events.md#swipeevent) | Triggered when a user quickly swipes on the component.|
-
 
 ## Styles
 
@@ -60,7 +57,6 @@ Supported.
 | opacity<sup>5+</sup> | number | 1 | No| Opacity of an element. The value ranges from **0** to **1**. The value **1** means opaque, and **0** means completely transparent.|
 | [left\|top] | &lt;length&gt;&nbsp;\|&nbsp;&lt;percentage&gt;<sup>6+</sup> | - | No| Edge of the element.<br>- The **left** attribute specifies the left edge position of the element. This attribute defines the offset between the left edge of the margin area of a positioned element and left edge of its containing block.<br>- The **top** attribute specifies the top edge position of the element. This attribute defines the offset between the top edge of a positioned element and that of a block included in the element.|
 
-
 ## Example
 
 1. Flex style
@@ -75,7 +71,6 @@ Supported.
      </div>
    </div>
    ```
-
 
    ```css
    /* xxx.css */
@@ -123,7 +118,6 @@ Supported.
      </div>
    </div>
    ```
-
 
    ```css
    /* xxx.css */
