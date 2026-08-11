@@ -661,13 +661,13 @@ struct PasteboardTest {
 
 | 名称 | 类型 | 只读 | 可选 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
-| htmlText| string | 否 | 否 | HTML内容，需符合标准HTML格式。 |
-| want | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | 否 | 否 | Want内容。 |
-| mimeType | string | 否 | 否 | 默认数据类型。 |
-| plainText | string | 否 | 否 | 纯文本内容。 |
-| uri | string | 否 | 否 | URI内容，需符合标准URI格式。 |
-| pixelMap<sup>9+</sup> | [image.PixelMap](../apis-image-kit/arkts-apis-image-PixelMap.md) | 否 | 否 | PixelMap内容。 |
-| data<sup>9+</sup> | Record<string, ArrayBuffer> | 否 | 否 | 自定义数据内容。 |
+| htmlText| string | 否 | 否 | HTML内容，需符合标准HTML格式。对此属性的修改无效，如需刷新属性值，请使用[addEntry](#addentry14)。 |
+| want | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | 否 | 否 | Want内容。对此属性的修改无效，如需刷新属性值，请使用[addEntry](#addentry14)。 |
+| mimeType | string | 否 | 否 | 默认数据类型。对此属性的修改无效。 |
+| plainText | string | 否 | 否 | 纯文本内容。对此属性的修改无效，如需刷新属性值，请使用[addEntry](#addentry14)。|
+| uri | string | 否 | 否 | URI内容，需符合标准URI格式。对此属性的修改无效，如需刷新属性值，请使用[addEntry](#addentry14)。 |
+| pixelMap<sup>9+</sup> | [image.PixelMap](../apis-image-kit/arkts-apis-image-PixelMap.md) | 否 | 否 | PixelMap内容。对此属性的修改无效，如需刷新属性值，请使用[addEntry](#addentry14)。 |
+| data<sup>9+</sup> | Record<string, ArrayBuffer> | 否 | 否 | 自定义数据内容。对此属性的修改无效。 |
 
 ### toPlainText<sup>9+</sup>
 
