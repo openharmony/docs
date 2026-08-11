@@ -12,8 +12,6 @@
 >
 > - 从API version 10开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 >
-> - 本模块接口仅可在Stage模型下使用。
->
 > - 当前页面仅包含本模块的系统接口，其他公开接口参见[@ohos.uiAppearance (用户界面外观)](js-apis-uiappearance.md)。
 
 
@@ -203,7 +201,7 @@ setFontWeightScale(fontWeightScale: number): Promise\<void>
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -- | -- | -- | -- |
-| fontWeightScale | number | 是 | 需要设置的字体粗细。<br/> 取值范围：(0, 5.0]，超出范围会抛出异常401。 |
+| fontWeightScale | number | 是 | 需要设置的字体粗细。<br/> 取值范围：(0, 5.0]。 |
 
 **返回值：** 
 
@@ -223,7 +221,6 @@ setFontWeightScale(fontWeightScale: number): Promise\<void>
 | -- | -- |
 | 201 | Permission denied. |
 | 202 | Permission verification failed. A non-system application calls a system API. |
-| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameters types. 3. Parameter verification failed.  |
 | 500001 | Internal error. |
 
 **示例：** 
