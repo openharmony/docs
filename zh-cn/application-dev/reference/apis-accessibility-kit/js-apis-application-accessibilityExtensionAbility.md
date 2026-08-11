@@ -2,10 +2,10 @@
 
 <!--Kit: Accessibility Kit-->
 <!--Subsystem: BarrierFree-->
-<!--Owner: @qiiiiiiian-->
+<!--Owner: @fanzexuan-->
 <!--Designer: @z7o-->
 <!--Tester: @A_qqq-->
-<!--Adviser: @w_Machine_cc-->
+<!--Adviser: @wwwyyyhhhh-->
 
 AccessibilityExtensionAbility基于ExtensionAbility框架，提供辅助功能扩展业务的能力。
 

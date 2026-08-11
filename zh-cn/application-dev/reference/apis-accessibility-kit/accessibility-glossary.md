@@ -1,4 +1,11 @@
-# 术语
+# Accessibility Kit术语
+
+<!--Kit: Accessibility Kit-->
+<!--Subsystem: BarrierFree-->
+<!--Owner: @fanzexuan-->
+<!--Designer: @z7o-->
+<!--Tester: @A_qqq-->
+<!--Adviser: @wwwyyyhhhh-->
 
 ## A
 
