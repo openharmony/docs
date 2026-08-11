@@ -8,7 +8,7 @@
 
 ## 概述
 
-声明用于访问Native Accessibility的API，提供无障碍相关能力。
+声明用于访问Native Accessibility的API，提供无障碍相关能力。支持第三方框架将自身UI组件接入ArkUI无障碍服务体系，包括注册无障碍回调、设置和查询无障碍节点信息、主动上报无障碍事件以及适配多实例场景等，使系统无障碍服务能够识别并操作三方框架的UI组件，适用于第三方UI框架需要与系统无障碍能力进行交互的场景。
 
 **引用文件：** <arkui/native_interface_accessibility.h>
 
@@ -142,7 +142,7 @@ Accessibility操作类型的枚举。
 | ARKUI_ACCESSIBILITY_NATIVE_ACTION_TYPE_COPY = 0x00000400 | 复制文本组件的选定内容。                                                                                                                      |
 | ARKUI_ACCESSIBILITY_NATIVE_ACTION_TYPE_PASTE = 0x00000800 | 粘贴文本组件的选定内容。                                                                                                                      |
 | ARKUI_ACCESSIBILITY_NATIVE_ACTION_TYPE_CUT = 0x00001000 | 剪切文本组件的选定内容。                                                                                                                      |
-| ARKUI_ACCESSIBILITY_NATIVE_ACTION_TYPE_SELECT_TEXT = 0x00002000 | 针对文本组件进行选择操作。结合ArkUI_AccessibilityActionArguments使用，配置selectTextBegin（表示选择起始位置），selectTextEnd（表示选择结束位置），selectTextInForward（true表示为前光标，false表示为后光标）进入编辑区选择一段文本内容。                                                                    |
+| ARKUI_ACCESSIBILITY_NATIVE_ACTION_TYPE_SELECT_TEXT = 0x00002000 | 针对文本组件进行选择操作。需结合ArkUI_AccessibilityActionArguments使用，配置selectTextBegin（选择起始位置）、selectTextEnd（选择结束位置）、selectTextInForward（true表示前光标，false表示后光标），配置后在编辑区选择一段文本内容。                                                                    |
 | ARKUI_ACCESSIBILITY_NATIVE_ACTION_TYPE_SET_TEXT = 0x00004000 | 设置文本组件的文本内容。                                                                                                                      |
 | ARKUI_ACCESSIBILITY_NATIVE_ACTION_TYPE_SET_CURSOR_POSITION = 0x00100000 | 针对文本组件设置光标位置，结合[ArkUI_AccessibilityActionArguments](capi-arkui-accessibility-arkui-accessibilityactionarguments.md)使用，配置可输入文本组件的光标位置。 |
 | ARKUI_ACCESSIBILITY_NATIVE_ACTION_TYPE_NEXT_HTML_ITEM = 0x02000000 | 焦点移动操作中支持查找下一个焦点。此处的HTML并不代表网页元素，仅用于表示具有可自行查找下一个可见聚焦组件的能力，与Web支持的能力相似。实现[findNextFocusAccessibilityNode](capi-arkui-accessibility-arkui-accessibilityprovidercallbacks.md#findnextfocusaccessibilitynode)的能力才可配置该属性。<br>**起始版本：** 15 |
@@ -170,7 +170,7 @@ Accessibility事件类型的枚举。
 | ARKUI_ACCESSIBILITY_NATIVE_EVENT_TYPE_TEXT_UPDATE = 0x00000010 | 文本更新事件，需要在文本更新时发送。 |
 | ARKUI_ACCESSIBILITY_NATIVE_EVENT_TYPE_PAGE_STATE_UPDATE = 0x00000020 | 页面更新事件，当页面跳转、切换、大小更改或移动时发送。 |
 | ARKUI_ACCESSIBILITY_NATIVE_EVENT_TYPE_PAGE_CONTENT_UPDATE = 0x00000800 | 页面内容发生变化时需要发送事件。 |
-| ARKUI_ACCESSIBILITY_NATIVE_EVENT_TYPE_SCROLLED = 0x000001000 | scrolled事件，当可滚动的组件上发生滚动事件时，会发送此事件。 |
+| ARKUI_ACCESSIBILITY_NATIVE_EVENT_TYPE_SCROLLED = 0x00001000 | scrolled事件，当可滚动的组件上发生滚动事件时，会发送此事件。 |
 | ARKUI_ACCESSIBILITY_NATIVE_EVENT_TYPE_ACCESSIBILITY_FOCUSED = 0x00008000 | Accessibility焦点事件，在UI组件响应后发送。 |
 | ARKUI_ACCESSIBILITY_NATIVE_EVENT_TYPE_ACCESSIBILITY_FOCUS_CLEARED = 0x00010000 | Accessibility焦点清除事件，在UI组件响应后发送。 |
 | ARKUI_ACCESSIBILITY_NATIVE_EVENT_TYPE_REQUEST_ACCESSIBILITY_FOCUS = 0x02000000 | 主动请求指定节点聚焦。 |
@@ -195,7 +195,7 @@ Accessibility错误代码状态的枚举。
 | 枚举项 | 描述 |
 | -- | -- |
 | ARKUI_ACCESSIBILITY_NATIVE_RESULT_SUCCESSFUL = 0 | 成功。 |
-| ARKUI_ACCESSIBILITY_NATIVE_RESULT_FAILED = -1 | 操作失败，请检查接口调用流程。可能原因:接口执行过程中出现内部错误。解决措施:请检查调用流程是否正确,若问题持续存在请排查系统状态。 |
+| ARKUI_ACCESSIBILITY_NATIVE_RESULT_FAILED = -1 | 操作失败，请检查接口调用流程。可能原因：接口执行过程中出现内部错误。解决措施：请检查调用流程是否正确，若问题持续存在请排查系统状态。 |
 | ARKUI_ACCESSIBILITY_NATIVE_RESULT_BAD_PARAMETER = -2 | 无效参数，请检查传入的参数是否正确。可能原因:传入的参数为空指针或不符合接口要求。解决措施:请检查传入参数是否合法,确保指针不为空且参数值在有效范围内。 |
 | ARKUI_ACCESSIBILITY_NATIVE_RESULT_OUT_OF_MEMORY = -3 | 内存不足，请检查系统内存使用情况。可能原因:系统内存资源不足,无法完成操作。解决措施:请释放不必要的资源后重试。 |
 
@@ -330,6 +330,12 @@ void OH_ArkUI_SendAccessibilityAsyncEvent(ArkUI_AccessibilityProvider* provider,
 
 
 主动上报事件接口，通知无障碍服务。
+
+**使用流程：**
+1. 先通过[OH_ArkUI_CreateAccessibilityEventInfo](#oh_arkui_createaccessibilityeventinfo)创建事件信息对象
+2. 通过[OH_ArkUI_AccessibilityEventSetEventType](#oh_arkui_accessibilityeventseteventtype)、[OH_ArkUI_AccessibilityEventSetTextAnnouncedForAccessibility](#oh_arkui_accessibilityeventsettextannouncedforaccessibility)等方法配置事件类型及相关信息
+3. 调用本接口发送事件
+4. 发送完成后通过[OH_ArkUI_DestoryAccessibilityEventInfo](#oh_arkui_destoryaccessibilityeventinfo)释放事件信息对象
 
 **起始版本：** 13
 
@@ -1014,7 +1020,7 @@ int32_t OH_ArkUI_AccessibilityElementInfoSetEnabled(ArkUI_AccessibilityElementIn
 > - 当isEnabled为false时，无障碍辅助应用会播报“已禁用”或“不可用”，提示用户该组件当前不可交互。
 > - 对于被禁用的组件（如灰色按钮），应设置isEnabled为false，并通过[OH_ArkUI_AccessibilityElementInfoSetClickable](#oh_arkui_accessibilityelementinfosetclickable)设置clickable为true，这样无障碍辅助应用会提示用户该组件存在但当前不可用。
 > - 如果isEnabled为false且clickable也为false，无障碍辅助应用可能完全跳过该组件。
-> - 所有需要被用户交互的组件必须显式设置为true。
+> - 所有需要与用户交互的组件必须显式设置为true。
 
 **起始版本：** 13
 

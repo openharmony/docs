@@ -12,7 +12,7 @@ typedef struct ArkUI_AnimateOption ArkUI_AnimateOption
 
 ## 概述
 
-设置动画效果相关参数。
+定义动画效果的配置参数，用于配置动画的相关属性。
 
 **起始版本：** 12
 

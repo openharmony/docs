@@ -14,7 +14,7 @@ Image Kit提供的枚举类型集合，涵盖图片像素格式、图片格式�
 
 ## PixelMapFormat<sup>7+</sup>
 
-表示图片像素格式的枚举。
+表示图片像素格式的枚举，包含像素数据的颜色通道排列和位深信息。
 
 **系统能力：** SystemCapability.Multimedia.Image.Core
 
@@ -118,6 +118,10 @@ Image Kit提供的枚举类型集合，涵盖图片像素格式、图片格式�
 - 格式示例中的key为：image.PropertyKey.XXX（XXX为枚举的名称，如：image.PropertyKey.NEW_SUBFILE_TYPE） 。
 - 格式示例仅用于说明修改传值和读取结果的格式。具体接口使用方法请参考：[modifyImageProperty](arkts-apis-image-ImageSource.md#modifyimageproperty11)（修改单个Exif字段）、[modifyImageProperties](arkts-apis-image-ImageSource.md#modifyimageproperties12)（修改多个Exif字段）、[getImageProperty](arkts-apis-image-ImageSource.md#getimageproperty11)（读取单个Exif字段）、[getImageProperties](arkts-apis-image-ImageSource.md#getimageproperties12)（读取多个Exif字段）。
 
+> **说明：**
+>
+> 应用通过[PhotoAccessHelper](../apis-media-library-kit/arkts-apis-photoAccessHelper-PhotoAccessHelper.md)查询媒体库图片，读取GPS相关字段（如GPS_LATITUDE、GPS_LONGITUDE、GPS_ALTITUDE、GPS_TIME_STAMP和GPS_DATE_STAMP）前，应先声明并向用户申请[ohos.permission.MEDIA_LOCATION](../../security/AccessToken/permissions-for-all-user.md#ohospermissionmedia_location)权限。如果上述字段返回全为0或为空，请先检查该权限是否已获授权，并确认原始图片是否包含GPS信息。
+
 **系统能力：** SystemCapability.Multimedia.Image.Core
 
 | 名称               |   值                    |   说明                    |   格式示例               |
@@ -168,7 +172,7 @@ Image Kit提供的枚举类型集合，涵盖图片像素格式、图片格式�
 | GPS_ALTITUDE<sup>12+</sup>               | "GPSAltitude"               | 基于GPSAltitudeRef的高度。<br/>**读写能力：** 可读写。<br> | **修改传参格式说明：** 非负有理数字符串。<br />**修改示例：**`imageSource.modifyImageProperty(key,'123.45');`<br />**读取结果示例：** "123.45" |
 | GPS_TIME_STAMP<sup>10+</sup>              | "GPSTimeStamp"              | GPS时间戳。<br/>**读写能力：** 可读写。<br> | **修改传参格式说明：** 格式为"HH:mm:ss.ddd"。<br />**修改示例：**`imageSource.modifyImageProperty(key,'12:30:30.123');`<br />**读取结果示例：** "12:30:30.123" |
 | GPS_SATELLITES<sup>12+</sup>             | "GPSSatellites"             | 用于测量的GPS卫星。<br/>**读写能力：** 可读写。<br> | **修改传参格式说明：** 字符串。<br />**修改示例：**`imageSource.modifyImageProperty(key,'GPS Satellites');`<br />**读取结果示例：** "GPSSatellites" |
-| GPS_STATUS<sup>12+</sup>                 | "GPSStatus"                 | 录制图像时GPS接收器的状态。<br/>  'A'："Measurement in progress"，GPS有效，已成功锁定卫星信号，位置数据可信；<br />'V'："Measurement interrupted，GPS无效，当前未能定位，位置数据可能为空或不准。<br />**读写能力：** 可读写。<br> | **修改传参格式说明：**  修改时传入对应的字母或者字符串。<br />**修改示例：**`imageSource.modifyImageProperty(key,'A');`<br />或`imageSource.modifyImageProperty(key,'Measurement in progress');`<br />**读取结果示例：** "A" |
+| GPS_STATUS<sup>12+</sup>                 | "GPSStatus"                 | 录制图像时GPS接收器的状态。<br/>  'A'："Measurement in progress"，GPS有效，已成功锁定卫星信号，位置数据可信；<br />'V'："Measurement interrupted"，GPS无效，当前未能定位，位置数据可能为空或不准。<br />**读写能力：** 可读写。<br> | **修改传参格式说明：**  修改时传入对应的字母或者字符串。<br />**修改示例：**`imageSource.modifyImageProperty(key,'A');`<br />或`imageSource.modifyImageProperty(key,'Measurement in progress');`<br />**读取结果示例：** "A" |
 | GPS_MEASURE_MODE<sup>12+</sup>           | "GPSMeasureMode"            | GPS测量模式。用于表示图像拍摄时GPS定位使用的测量模式，即是使用2D（平面）定位还是3D（含高度）定位。<br/>2："2-dimensional measurement"，2D测量（纬度+经度）。<br/>3："3-dimensional measurement"，3D测量（纬度+经度+高度）。<br />**读写能力：** 可读写。<br> | **修改传参格式说明：** 修改时传入相应的数字或者字符串。<br />**修改示例：**`imageSource.modifyImageProperty(key,'2');`<br />或`imageSource.modifyImageProperty(key,'2-dimensional measurement');`<br />**读取结果示例：** "2" |
 | GPS_DOP<sup>12+</sup>                    | "GPSDOP"                    | GPS DOP（数据精度等级），用于表示拍摄时GPS测量结果的定位精度水平。<br/>**读写能力：** 可读写。<br> | **修改传参格式说明：** 非负有理数字符串。<br />**修改示例：**`imageSource.modifyImageProperty(key,'1.5');`<br />**读取结果示例：** "1.5" |
 | GPS_SPEED_REF<sup>12+</sup>              | "GPSSpeedRef"               | 用来表示GPS接收器移动速度的单位。<br/>'K'："km/h"。<br />'M'："mph"。<br />'N'："knots"。<br />**读写能力：** 可读写。 | **修改传参格式说明：** 修改时传入对应的字母或者字符串。<br />**修改示例：**`imageSource.modifyImageProperty(key,'K');`<br />或`imageSource.modifyImageProperty(key,'km/h');`<br />**读取结果示例：** "K" |

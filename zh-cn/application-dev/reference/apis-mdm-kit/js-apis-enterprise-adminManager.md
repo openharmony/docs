@@ -427,7 +427,7 @@ startAdminProvision(admin: Want, type: AdminType, context: common.Context, param
 
 **错误码**：
 
-以下的错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                                               |
 | ------- | ----------------------------------------------------- |

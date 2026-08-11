@@ -1,18 +1,18 @@
 # About This Kit
+
 <!--Kit: IME Kit-->
 <!--Subsystem: MiscServices-->
-<!--Owner: @illybyy-->
+<!--Owner: @codexu62-->
 <!--Designer: @andeszhang-->
 <!--Tester: @murphy84-->
 <!--Adviser: @zhang_yixin13-->
+<!-- md-trans-meta sourceCommit=f0e283ec5c4bc528d359a2a2fde61332cedaf473 translatedAt=2026-08-04T08:27:59.267Z pushedAt=2026-08-04T08:36:39.692Z -->
 
 IME Kit is responsible for establishing a communication channel between the application in which the text input box is located and the input method application, to ensure that the two work together to provide text input, and also enables system applications to manage the input method application.
-
 
 ## When to Use
 
 IME Kit provides two types of APIs: input method framework APIs and input method service APIs. With these APIs, you can develop and manage an input method and implement a custom text input box.
-
 
 ## Working Principles
 
@@ -28,7 +28,6 @@ IME Kit provides two types of APIs: input method framework APIs and input method
 
   Can be bound to an input method and implement operations such as typing, deleting, selecting text and moving the cursor.
 
-
 ## Available Capabilities
 
 - The APIs related to the input method service are provided for input methods. You can use these APIs to create a soft keyboard window, insert or delete characters, select text, and listen for physical keyboard key events.
@@ -37,11 +36,9 @@ IME Kit provides two types of APIs: input method framework APIs and input method
 
 - APIs are also provided for system applications to manage input methods. For example, they can be used to display or hide the soft keyboard, switch between input methods, and obtain the list of input methods.
 
-
 ## Relationship with Other Kits
 
 ArkUI: With respect to soft keyboards and custom text input boxes, IME Kit can use some components, events, animations, and state management capabilities provided by ArkUI, for example, the **\<Text>** and **\<Button>** components and the **onClick** event.
-
 
 ## Constraints
 

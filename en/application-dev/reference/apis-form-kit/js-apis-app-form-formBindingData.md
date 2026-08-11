@@ -1,11 +1,14 @@
 # @ohos.app.form.formBindingData (formBindingData)
+
 <!--Kit: Form Kit-->
 <!--Subsystem: Ability-->
 <!--Owner: @Qian-Win-->
 <!--Designer: @cx983299475-->
 <!--Tester: @mahailong123456-->
 <!--Adviser: @HelloShuo-->
-The **FormBindingData** module provides APIs for widget data binding. You can use the APIs to create a **FormBindingData** object and obtain related information.
+<!-- md-trans-meta sourceCommit=63ea2217f398de4dc749a4e19504d46a64273860 translatedAt=2026-07-31T08:19:50.231Z pushedAt=2026-07-31T09:12:34.423Z -->
+
+This module provides the widget data binding capability, supporting the creation of FormBindingData objects and the setting of widget display data. It is applicable to scenarios such as widget data update and image data transfer, helping you conveniently manage widget display content and improve the efficiency of widget data management.
 
 > **NOTE**
 >
@@ -16,7 +19,6 @@ The **FormBindingData** module provides APIs for widget data binding. You can us
 ```ts
 import { formBindingData } from '@kit.FormKit';
 ```
-
 
 ## ProxyData<sup>10+</sup>
 
@@ -30,13 +32,12 @@ Defines the subscription information about the widget update by proxy.
 
 | Name| Type| Read-Only| Optional| Description|
 | -------- | -------- | -------- | -------- | -------- |
-| key<sup>10+</sup> | string | No| No| Subscriber ID of the widget update by proxy. The value is the same as that of the data publisher.|
-| subscriberId<sup>10+</sup> | string | No| Yes| Subscription condition of the widget update by proxy. The default value is the current widget ID (specified by **formId**).|
-
+| key | string | No | No | Subscription identifier for the widget proxy update, which must be consistent with the data publisher. |
+| subscriberId | string | No | Yes | Subscription condition for the widget proxy update, used to specify the message filtering condition for the subscription. After being set, it matches the corresponding widget proxy update message based on **subscriberId**. The default value is **formId** of the current widget. Pass this parameter when a specific subscription condition is required; otherwise, the default value is **formId** of the current widget. |
 
 ## FormBindingData
 
-Describes a **FormBindingData** object.
+Defines the properties of the FormBindingData object.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -45,7 +46,7 @@ Describes a **FormBindingData** object.
 | Name| Type| Read-Only| Optional| Description|
 | -------- | -------- | -------- |-------- | -------- |
 | data | Object | No| No| Data to be displayed on the widget. The value can be an object containing multiple key-value pairs or a JSON string.|
-| proxies<sup>10+</sup> | Array<[ProxyData](#proxydata10)> | No| Yes| Subscription information of the widget update by proxy. The default value is an empty array.<br>**Model restriction**: This API can be used only in the stage model.<br>|
+| proxies<sup>10+</sup> | Array<[ProxyData](#proxydata10)> | No | Yes | Subscription information for widget proxy update. After being configured, subscribes to agent refresh messages. The default value is an empty array, indicating that no widget proxy update messages are subscribed to. Pass this parameter when the widget proxy update feature is needed. If not passed, the default value is an empty array (proxy update not used).<br>**Model restriction:** This API can be used only in the stage model.|
 
 ## formBindingData.createFormBindingData
 
@@ -61,14 +62,13 @@ Creates a **FormBindingData** object.
 
 | Name| Type          | Mandatory| Description                                                        |
 | ------ | -------------- | ---- | ------------------------------------------------------------ |
-| obj    | Object \| string | No  | Data to be displayed on the widget. The value can be an object containing multiple key-value pairs or a JSON string. The image data is identified by **'formImages'**, and the content is multiple key-value pairs, each of which consists of an image identifier and image file descriptor. The final format is {'formImages': {'key1': fd1, 'key2': fd2}}.<br>**NOTE**<br>During [widget update](../../form/arkts-ui-widget-interaction-overview.md), when the widget UI receives widget data through @LocalStorageProp, the **FormBindingData** object is serialized, that is, the widget data is converted into the string type. Since API version 20, if the widget data is updated using shared memory, the total size of the updated data cannot exceed 10 MB, and the number of updated images cannot exceed 20. In API version 19 and earlier versions, the maximum number of image files is 5, and the maximum memory size of each image is 2 MB. Exceeding this 2 MB limit for any image will result in abnormal display.|
-
+| obj    | Object \| string | No   | Data to be displayed on the widget, used to bind the content displayed on the form UI. This parameter is passed when data needs to be delivered to the widget. It can be an object containing several key-value pairs or a JSON string. If not passed, an empty FormBindingData object is created, and the widget displays the default content. Image data is identified by 'formImages', with the content being key-value pairs of image identifiers and image file descriptors `{'formImages': {'key1': fd1, 'key2': fd2}}`.<br>**Note:** During the [widget update](../../form/arkts-ui-widget-interaction-overview.md) process, when the widget UI receives widget data through [@LocalStorageProp](../../ui/state-management/arkts-localstorage.md#localstorageprop), the FormBindingData object is serialized, meaning the widget data is converted to the string type. Since API version 20, if the widget update data is updated through shared memory, the total update data size does not exceed 10 MB, and the number of update images does not exceed 20. For API version 19 and earlier, the maximum number of image files is 5, with each image limited to 2 MB of memory. Images exceeding the limit may display abnormally. |
 
 **Return value**
 
 | Type                               | Description                                   |
 | ----------------------------------- | --------------------------------------- |
-| [FormBindingData](#formbindingdata) | **FormBindingData** object created based on the passed data.|
+| [FormBindingData](#formbindingdata) | FormBindingData object created based on the input data, which is used for widget data binding and provides the data to be displayed on the widget. |
 
 **Error codes**
 
@@ -77,7 +77,6 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | ID| Error Message|
 | -------- | -------- |
 | 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed. |
-
 
 **Example**
 
@@ -93,20 +92,25 @@ struct Index {
   pathDir: string = this.content.filesDir;
 
   createFormBindingData() {
+    let filePath = this.pathDir + "/form.png";
+    let fd: number = -1;
     try {
-      let filePath = this.pathDir + "/form.png";
-      let file = fileIo.openSync(filePath);
+      fd = fileIo.openSync(filePath, fileIo.OpenMode.READ_ONLY).fd;
       let formImagesParam: Record<string, number> = {
-        'image': file.fd
+        'image': fd
       };
       let createFormBindingDataParam: Record<string, string | Record<string, number>> = {
         'name': '21°',
         'imgSrc': 'image',
         'formImages': formImagesParam
       };
-      formBindingData.createFormBindingData(createFormBindingDataParam);
+      let formBindingDataObj = formBindingData.createFormBindingData(createFormBindingDataParam);
     } catch (error) {
-      console.error(`catch error, code: ${(error as BusinessError).code}, message: ${(error as BusinessError).message})`);
+      console.error(`catch error, code: ${(error as BusinessError).code}, message: ${(error as BusinessError).message}`);
+    } finally {
+      if (fd !== -1) {
+        fileIo.closeSync(fd);
+      }
     }
   }
 

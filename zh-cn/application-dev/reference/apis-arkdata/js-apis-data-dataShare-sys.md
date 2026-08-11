@@ -1,8 +1,8 @@
 # @ohos.data.dataShare (数据共享)(系统接口)
 <!--Kit: ArkData-->
 <!--Subsystem: DistributedDataManager-->
-<!--Owner: @woodenarow-->
-<!--Designer: @woodenarow; @xuelei3-->
+<!--Owner: @lvcong_oh-->
+<!--Designer: @lvcong_oh-->
 <!--Tester: @chenwan188; @logic42-->
 <!--Adviser: @ge-yafang-->
 
@@ -99,6 +99,7 @@ createDataShareHelper(context: Context, uri: string, options: DataShareHelperOpt
 
 **系统能力：** SystemCapability.DistributedDataManager.DataShare.Consumer
 
+**参数：**
 
 | 参数名   | 类型                                                 | 必填 | 说明                                                         |
 | -------- | -------------------------------------------------------- | ---- | ------------------------------------------------------------ |
@@ -641,7 +642,7 @@ addTemplate(uri: string, subscriberId: string, template: Template): void
 | -------- | -------------------- |
 | 202      | Permission verification failed. A non-system application calls a system API.|
 | 401      | Parameter error.Possible causes:1.Mandatory parameters are left unspecified; 2.Incorrect parameters types.|
-| 15700011 | The URI does not exist.|
+| 15700011 | The URI is not exist.|
 | 15700013 | The DataShareHelper instance is already closed.|
 
 **示例：**
@@ -691,7 +692,7 @@ delTemplate(uri: string, subscriberId: string): void
 | -------- | -------------------- |
 | 202      | Permission verification failed. A non-system application calls a system API.|
 | 401      | Parameter error.Possible causes:1.Mandatory parameters are left unspecified; 2.Incorrect parameters types.|
-| 15700011 | The URI does not exist.|
+| 15700011 | The URI is not exist.|
 | 15700013 | The DataShareHelper instance is already closed.|
 
 **示例：**
@@ -960,7 +961,7 @@ publish(data: Array&lt;PublishedItem&gt;, bundleName: string, version: number, c
 | -------- | -------------------------- |
 | 202      | Permission verification failed. A non-system application calls a system API.|
 | 401      | Parameter error.Possible causes:1.Mandatory parameters are left unspecified; 2.Incorrect parameters types.|
-| 15700012 | The data area does not exist.|
+| 15700012 | The data area is not exist.|
 | 15700013 | The DataShareHelper instance is already closed.|
 
 **示例：**
@@ -1699,7 +1700,7 @@ batchUpdate(operations: Record&lt;string, Array&lt;UpdateOperation&gt;&gt;): Pro
 | -------- | ------------------------------------ |
 | 202      | Permission verification failed. A non-system application calls a system API.|
 | 401      | Parameter error.Possible causes:1.Mandatory parameters are left unspecified; 2.Incorrect parameters types.|
-| 15700000 | Inner error.                         |
+| 15700000 | Inner error. Possible causes: 1.The internal status is abnormal; 2.The interface is incorrectly used; 3.Permission configuration error; 4.A system error. |
 | 15700013 | The DataShareHelper instance is already closed. |
 
 **示例：**

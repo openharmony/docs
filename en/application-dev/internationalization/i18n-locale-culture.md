@@ -5,14 +5,14 @@
 <!--Owner: @yliupy-->
 <!--Designer: @sunyaozu-->
 <!--Tester: @lpw_work-->
-<!--Adviser: @Brilliantry_Rui-->
+<!--Adviser: @ningningW-->
+<!-- md-trans-meta sourceCommit=9d4329aa9b07ce81fc1a2c848fb4cea93e274a8e translatedAt=2026-08-04T12:23:46.659Z pushedAt=2026-08-04T12:57:18.244Z -->
 
 ## Use Cases
 
 In a broad sense, a locale ID uniquely identifies a specific geographical region by using digits, letters, symbols, or their combinations.
 
-Regarding internationalization, a locale ID is an abstraction of a user group, including the user language, script (for example, simplified Chinese or traditional Chinese), country/region, and other cultural habits (for example, calendar and numeral system). Locales ID are the basis for an application to implement internationalization capabilities.
-
+Regarding internationalization, a locale ID is an abstraction of a user group, including the user language, script (for example, simplified Chinese or traditional Chinese), country/region, and other cultural habits (for example, calendar and numeral system). Locale IDs are the basis for an application to implement internationalization capabilities.
 
 ## How It Works
 
@@ -53,7 +53,6 @@ A language ID consists of the language, script, and country/region, and does not
 | ne | deva | 
 | ur | latn | 
 | Others| arab | 
-
 
 ## How to Develop
 

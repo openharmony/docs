@@ -1,10 +1,12 @@
 # Custom Render Node (RenderNode)
+
 <!--Kit: ArkUI-->
 <!--Subsystem: ArkUI-->
 <!--Owner: @sunbees-->
 <!--Designer: @sunbees-->
 <!--Tester: @khq-->
 <!--Adviser: @Brilliantry_Rui-->
+<!-- md-trans-meta sourceCommit=39f66a31c4cd77f8015af575d95ace022de7992b translatedAt=2026-08-05T01:23:45.403Z pushedAt=2026-08-05T01:44:22.900Z -->
 
 ## Overview
 
@@ -22,11 +24,11 @@ With **RenderNode**, you can add, delete, query, and modify nodes, thereby chang
 
 > **NOTE**
 >
-> - The subtree structure obtained from **RenderNode** is constructed based on the parameters passed through the [appendChild](../reference/apis-arkui/js-apis-arkui-renderNode.md#appendchild) API.
+> - The subtree structure obtained in RenderNode is built from parameters passed by you through the [appendChild](../reference/apis-arkui/js-apis-arkui-renderNode.md#appendchild) API of RenderNode.
 >
-> - To integrate a **RenderNode** with the system for display, you need to mount the **RenderNode** obtained from a **FrameNode** onto the component tree.
+> - To display a RenderNode directly with the system, it must be mounted to the tree through the RenderNode obtained from a FrameNode.
 
-<!-- @[operation_node_tree](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkUISample/NativeType/CustomRenderNode/entry/src/main/ets/pages/OperationNodeTree.ets) -->
+<!-- @[operation_node_tree](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkUISample/NativeType/CustomRenderNode/entry/src/main/ets/pages/OperationNodeTree.ets) --> 
 
 ``` TypeScript
 import { FrameNode, NodeController, RenderNode } from '@kit.ArkUI';
@@ -42,7 +44,7 @@ renderNode.frame = {
   width: 200,
   height: 350
 };
-renderNode.backgroundColor = 0xffff0000;
+renderNode.backgroundColor = 0xfff5f5f5;
 for (let i = 0; i < 5; i++) {
   const node = new RenderNode();
   // Set the frame size of the node.
@@ -53,7 +55,7 @@ for (let i = 0; i < 5; i++) {
     height: 50
   };
   // Set the background color of the node.
-  node.backgroundColor = 0xff00ff00;
+  node.backgroundColor = 0xff00bfff;
   // Mount the new node to the RenderNode.
   renderNode.appendChild(node);
 }
@@ -88,16 +90,21 @@ export struct OperationNodeTree {
         Button('getNextSibling')
           .onClick(() => {
             const child = renderNode.getChild(1);
-            const nextSibling = child!.getNextSibling()
-            if (child === null || nextSibling === null) {
-              hilog.info(DOMAIN, TEST_TAG, ' the child or nextChild is null');
-              this.myLog = 'the child or nextChild is null';
-            } else {
-              // Obtain the position of the child node.
-              hilog.info(DOMAIN, TEST_TAG, `the position of child is x: ${child.position.x}, y: ${child.position.y}, ` +
-                `the position of nextSibling is x: ${nextSibling.position.x}, y: ${nextSibling.position.y}`);
-              this.myLog = `the position of child is x: ${child.position.x}, y: ${child.position.y}, ` +
-                `the position of nextSibling is x: ${nextSibling.position.x}, y: ${nextSibling.position.y}`;
+            if (child === null) {
+              hilog.info(DOMAIN, TEST_TAG, ' the child is null');
+              this.myLog = 'the child is null';
+            } else{
+              const nextSibling = child!.getNextSibling()
+              if (nextSibling === null) {
+                hilog.info(DOMAIN, TEST_TAG, ' the nextSibling is null');
+                this.myLog = 'the nextSibling is null';
+              } else {
+                // Obtain the position information of the child node.
+                hilog.info(DOMAIN, TEST_TAG, `the position of child is x: ${child.position.x}, y: ${child.position.y}, ` +
+                  `the position of nextSibling is x: ${nextSibling.position.x}, y: ${nextSibling.position.y}`);
+                this.myLog = `the position of child is x: ${child.position.x}, y: ${child.position.y}, ` +
+                  `the position of nextSibling is x: ${nextSibling.position.x}, y: ${nextSibling.position.y}`;
+              }
             }
           });
       }.width(300).margin({ left: 20 });
@@ -106,6 +113,7 @@ export struct OperationNodeTree {
   }
 }
 ```
+
 ![](figures/operation_node_tree.png)
 
 ## Setting and Obtaining Rendering-related Attributes
@@ -326,6 +334,7 @@ export struct RenderingProperties {
   }
 }
 ```
+
 ![](figures/rendering_properties.gif)
 
 ## Using Custom Drawing
@@ -431,6 +440,7 @@ export struct CustomDraw {
   }
 }
 ```
+
 ![](figures/custom_draw.gif)
 
 ## Adjusting the Transformation Matrix of the Custom Drawing Canvas
@@ -653,6 +663,9 @@ static napi_value OnDraw(napi_env env, napi_callback_info info)
     OH_Drawing_CanvasAttachPen(canvas, pen);
 
     OH_Drawing_CanvasDrawPath(canvas, path);
+    OH_Drawing_CanvasDetachPen(canvas);
+    OH_Drawing_PenDestroy(pen);
+    OH_Drawing_PathDestroy(path);
 
     return nullptr;
 }
@@ -684,6 +697,7 @@ extern "C" __attribute__((constructor)) void RegisterEntryModule(void)
 ```
 
 Add the following content to the **src/main/cpp/CMakeLists.txt** file of the project:
+
 ```cmake
 # the minimum version of CMake.
 cmake_minimum_required(VERSION 3.4.1)
@@ -701,6 +715,7 @@ target_link_libraries(entry PUBLIC libnative_drawing.so)
 ```
 
 Add the definition of the custom drawing API on the ArkTS side to the **src/main/cpp/types/libentry/index.d.ts** file of the project. The following is an example:
+
 <!-- @[index](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkUISample/NativeType/CustomRenderNode/entry/src/main/cpp/types/libentry/Index.d.ts) -->
 
 ``` TypeScript
@@ -711,7 +726,7 @@ export const nativeOnDraw: (id: number, context: DrawContext, width: number, hei
 
 Code in ArkTS:
 
-<!-- @[custom_draw_canvas_native](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkUISample/NativeType/CustomRenderNode/entry/src/main/ets/pages/CustomDrawCanvasNative.ets) -->
+<!-- @[custom_draw_canvas_native](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkUISample/NativeType/CustomRenderNode/entry/src/main/ets/pages/CustomDrawCanvasNative.ets) --> 
 
 ``` TypeScript
 import bridge from 'libentry.so'; // This .so file is written and generated by Node-API.
@@ -727,8 +742,8 @@ class MyRenderNode extends RenderNode {
 
   draw(context: DrawContext) {
     // The width and height in the context need to be converted from vp to px.
-    bridge.nativeOnDraw(0, context, this.uiContext.vp2px(context.size.height),
-      this.uiContext.vp2px(context.size.width));
+    bridge.nativeOnDraw(0, context, this.uiContext.vp2px(context.size.width),
+      this.uiContext.vp2px(context.size.height));
   }
 }
 
@@ -763,6 +778,8 @@ export struct CustomDrawCanvasNative {
   }
 }
 ```
+
+![RenderNode-NodeAPI](./figures/renderNode-NodeAPI.png)
 
 ## Setting the Label
 
@@ -818,6 +835,7 @@ export struct SetLabel {
   }
 }
 ```
+
 ![](figures/set_label.png)
 
 ## Checking RenderNode Reference Status

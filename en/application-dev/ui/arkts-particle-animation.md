@@ -1,10 +1,11 @@
 # Particle Animation
 <!--Kit: ArkUI-->
 <!--Subsystem: ArkUI-->
-<!--Owner: @CCFFWW-->
-<!--Designer: @CCFFWW-->
+<!--Owner: @hehongyang3-->
+<!--Designer: @hehongyang3-->
 <!--Tester: @lxl007-->
 <!--Adviser: @Brilliantry_Rui-->
+<!-- md-trans-meta sourceCommit=4431c59b895d1d02940f60be4527223815858a92 translatedAt=2026-07-09T11:47:49.363Z pushedAt=2026-07-09T11:48:53.800Z -->
 
 [Particle animation](../reference/apis-arkui/arkui-ts/ts-particle-animation.md) is created using the **Particle** component and consists of a multitude of particles that are randomly generated within a specified area. These particles can take the form of points, images, or other shapes. By animating different aspects of the particles, such as color, opacity, scale, velocity, acceleration, and spin angle, you can create engaging and dynamic visual effects. For example, you can simulate an impressive snowfall animation by animating the particles to represent snowflakes.
 
@@ -29,12 +30,12 @@ struct ParticleExample {
             },
           },
           color:{
-            range:['rgb(39, 135, 217)','rgb(0, 74, 175)'],// Initial color range.
+            range:['rgb(39, 135, 217)','rgb(0, 74, 175)'], // Initial color range
           },
         },
       ]
       }).width(250).height(250)
-    }.width("100%").height("100%").align(Alignment.Center)
+    }.width('100%').height('100%').align(Alignment.Center)
   }
 }
 ```
@@ -130,7 +131,7 @@ Particle({ particles: [
         ]
       }
     },
-    acceleration: { // Acceleration. speed indicates the acceleration speed, and angle indicates the acceleration direction.
+    acceleration: { // Configuration of acceleration, which changes in two dimensions: magnitude and direction. speed indicates the magnitude of acceleration, and angle indicates the direction of acceleration.
       speed: {
         range: [3, 9],
         updater: {

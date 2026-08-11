@@ -1,19 +1,23 @@
 # Using Component Snapshot (ComponentSnapshot)
+
 <!--Kit: ArkUI-->
 <!--Subsystem: ArkUI-->
 <!--Owner: @yihao-lin-->
 <!--Designer: @piggyguy-->
 <!--Tester: @songyanhong-->
 <!--Adviser: @Brilliantry_Rui-->
+<!-- md-trans-meta sourceCommit=420a0e345618a384b19f5eff841d06e4f6f03cfe translatedAt=2026-08-04T06:39:49.760Z pushedAt=2026-08-04T08:39:59.624Z -->
+
 ## Overview
+
 Component snapshot is the capability to generate a pixel map ([PixelMap](../reference/apis-image-kit/arkts-apis-image-PixelMap.md)) from the rendering result of a component node tree within an application. It supports two approaches:<br>Taking a snapshot of a component that is already attached to the UI tree<br>Taking a snapshot of an offline component implemented using **Builder** or **ComponentContent**.
 
 > **NOTE**
 >
 > Component snapshot relies on UI context and must be called in an environment with a clear context. Therefore, preferably use the [ComponentSnapshot](../reference/apis-arkui/arkts-apis-uicontext-componentsnapshot.md) object returned by the **getComponentSnapshot** API of **UIContext**. Avoid using the **componentSnapshot** API imported directly from @kit.ArkUI.
 
-
 ### Taking a Snapshot of a Component Attached to the UI Tree
+
 To take a snapshot of a component that is already attached to the UI tree, use [get](../reference/apis-arkui/arkts-apis-uicontext-componentsnapshot.md#get12-1) or [getSync](../reference/apis-arkui/arkts-apis-uicontext-componentsnapshot.md#getsync12). Pass the component ID (configured in advance using the **.id** universal attribute) to specify the component root node. The system only traverses components attached to the tree when searching for the component to take a snapshot; it does not search cached or off-screen components. The system uses the first found result, so the application must ensure the uniqueness of component IDs.
 
 Starting from API version 15, if you already know the ID of the component (obtained via [getUniqueId](../reference/apis-arkui/js-apis-arkui-frameNode.md#getuniqueid12)), you can also use [getWithUniqueId](../reference/apis-arkui/arkts-apis-uicontext-componentsnapshot.md#getwithuniqueid15) or [getSyncWithUniqueId](../reference/apis-arkui/arkts-apis-uicontext-componentsnapshot.md#getsyncwithuniqueid15) to take a snapshot of the component directly, skipping the component search process.
@@ -24,16 +28,18 @@ The snapshot captures only the most recent frame. If you trigger a component upd
 >
 > Avoid triggering updates of the component being snapped to prevent interference with the snapshot content.
 
-
 ### Taking a Snapshot of an Offline Component
+
 Offline components are components that are encapsulated using **Builder** or **ComponentContent** but have not yet been attached to the tree. To take snapshots of them, use [createFromBuilder](../reference/apis-arkui/arkts-apis-uicontext-componentsnapshot.md#createfrombuilder12-1). Since API version 18, you can also use [createFromComponent](../reference/apis-arkui/arkts-apis-uicontext-componentsnapshot.md#createfromcomponent18) to take snapshots of offline components.
 
 Since offline components do not participate in actual rendering, taking snapshots of them takes longer because the system must first perform offline construction, layout, and resource loading. Snapshots taken before these operations complete may return unexpected results. Therefore, it is usually necessary to set a sufficient delay to ensure the system completes these operations. For image resources, set the [syncLoad](../reference/apis-arkui/arkui-ts/ts-basic-components-image.md#syncload8) attribute of the **Image** component to **true** to force synchronous loading. This ensures images are loaded, downloaded, and decoded during offline component construction, allowing the image pixels to be correctly displayed during the snapshot process.
 
 ## Use Cases
+
 The following use cases illustrate common usage methods of the component snapshot capability.
 
 ### Capturing Long Content (Scrolling Snapshot)
+
 Long content is usually implemented using scrollable container components. When you take a snapshot, only the visible content within the container is captured, and content beyond the boundary is not included. If [LazyForEach](../reference/apis-arkui/arkui-ts/ts-rendering-control-lazyforeach.md) or [Repeat](../reference/apis-arkui/arkui-ts/ts-rendering-control-repeat.md) is used, content that exceeds the display range will not be built or captured by the system.
 
 You can use scrollable container APIs to simulate user swiping for page-by-page snapshots, then stitch the **PixelMap** objects of each page by offset to generate a complete long image. The key points are simulating swiping, maintaining the relationship between displacement and pixel maps, and implementing **PixelMap** read and write operations.
@@ -221,23 +227,32 @@ async saveSnapshot(result: SaveButtonOnClickResult): Promise<void> {
       const helper = photoAccessHelper.getPhotoAccessHelper(this.context);
       const uri = await helper.createAsset(photoAccessHelper.PhotoType.IMAGE, 'png');
       const file = await fileIo.open(uri, fileIo.OpenMode.READ_WRITE | fileIo.OpenMode.CREATE);
-      const imagePackerApi: image.ImagePacker = image.createImagePacker();
-      const packOpts: image.PackingOption = {
-        format: 'image/png',
-        quality: 100,
-      };
-      imagePackerApi.packToData(this.mergedImage, packOpts).then((data) => {
+      try {
+        const imagePackerApi: image.ImagePacker = image.createImagePacker();
+        const packOpts: image.PackingOption = {
+          format: 'image/png',
+          quality: 100,
+        };
+        const data = await imagePackerApi.packToData(this.mergedImage, packOpts);
         fileIo.writeSync(file.fd, data);
-        fileIo.closeSync(file.fd);
         Logger.info(TAG, `Succeeded in packToFile`);
         this.getUIContext().getPromptAction().showToast({
           // Replace $r('app.string.save_album_success') with the actual resource file. In this example, the value in the resource file is "Saved to album."
           message: $r('app.string.save_album_success'),
           duration: 1800
         })
-      }).catch((error: BusinessError) => {
-        Logger.error(TAG, `Failed to packToFile. Error code is ${error.code}, message is ${error.message}`);
-      });
+      } catch (error) {
+        let businessError = error as BusinessError;
+        Logger.error(TAG,
+          `Failed to packToFile. Error code is ${businessError.code}, message is ${businessError.message}`);
+      } finally {
+        try {
+          fileIo.closeSync(file.fd);
+        } catch (err) {
+          let error = err as BusinessError;
+          Logger.error(TAG, `Failed to close file. Error code is ${error.code}, message is ${error.message}`);
+        }
+      }
     }
     // ...
   } catch (err) {
@@ -269,6 +284,7 @@ closeSnapPopup(): void {
 ```
 
 ### Encapsulating a Global Screenshot API
+
 As mentioned earlier, snapshot APIs must be used where the UI context is clear. However, applications sometimes need to encapsulate a unified global snapshot API for different modules. For example, in the following example, the component built by **awardBuilder** has a fixed structure. **GlobalStaticSnapshot** provides a global method **getAwardSnapshot** that meets the needs of different modules to take snapshots of components in the same fixed mode, achieving the encapsulation of a global snapshot API. This functionality is supported since API version 18.
 
 <!-- @[global_snapshot](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkUISample/ComponentSnapshot/entry/src/main/ets/view/GlobalScreenshot.ets) -->
@@ -322,7 +338,9 @@ export class GlobalStaticSnapshot {
 See [Long Screenshot](https://developer.huawei.com/consumer/en/doc/best-practices/bpta-long-snapshot-practice#section1566681910427).
 
 ## Best Practices for Component Screenshot
+
 ### Reasonably Controlling Snapshot Timing
+
 When implementing snapshot functionality, note that the component rendering process is not completed in one go. When building and displaying components, the system goes through complex steps, such as measurement, layout, and command submission, before finally presenting them on the screen during a hardware refresh. Therefore, in specific scenarios, if the snapshot API is called immediately after component refresh, it may fail to capture the expected content or result in snapshot failure errors.
 
 To ensure accurate snapshot results, it is recommended that you execute the snapshot operation after the component is fully rendered.
@@ -346,16 +364,21 @@ The main factor affecting the snapshot expectation is the time difference betwee
 Another common reason for unexpected snapshots is image resource loading. Image components support both online resource links and local resources, and most image resources are in compressed formats such as PNG and JPEG. These resources need to be decoded by the system into a pixel map format that can be submitted for drawing, a process that occurs on an asynchronous I/O thread by default. This can lead to unexpected snapshot behavior due to the uncertainty of the process duration.
 
 The following optimization approaches can be taken:
+
 1. Pre-parse images into PixelMap format and configure the PixelMap for the image component. This approach is recommended for optimization.
+
 2. Set the [syncLoad](../reference/apis-arkui/arkui-ts/ts-basic-components-image.md#syncload8) attribute of the image component to **true** to force synchronous loading. This ensures that resources can be directly submitted when the component is built.
+
 3. Specify the delay duration and set **checkImageStatus** to **true** to attempt to take a snapshot. If error 160001 is returned, retry with an increased delay.
 
-
 ### Timely Saving and Releasing Pixel Map Objects
+
 To release resources promptly, assign the **PixelMap** object returned by the snapshot API to null when it is no longer in use.
 
 ### Appropriately Controlling Sampling Precision
+
 Avoid capturing images that are excessively large, ideally not larger than the screen size. If the size of the image to capture exceeds device-specific underlying limits, the capture will fail. You can reduce sampling precision by controlling the **scale** parameter in **SnapshotOptions**, which significantly saves memory and improves snapshot efficiency.
 
 ### Using Other Capabilities for Self-Rendering Scenarios
+
 Although snapshots can be taken by simply passing a component root node, this is not the recommended way when the child components include [Video](../reference/apis-arkui/arkui-ts/ts-media-components-video.md), [XComponent](../reference/apis-arkui/arkui-ts/ts-basic-components-xcomponent.md), or [Web](../reference/apis-arkweb/arkts-basic-components-web.md) components. It is recommended that you use the [image.createPixelMapFromSurface](../reference/apis-image-kit/arkts-apis-image-f.md#imagecreatepixelmapfromsurface11) API.

@@ -1,10 +1,12 @@
 # Interface (ImageReceiver)
+
 <!--Kit: Image Kit-->
 <!--Subsystem: Multimedia-->
 <!--Owner: @aulight02-->
 <!--Designer: @XiaoYao555-->
 <!--Tester: @xchaosioda-->
 <!--Adviser: @w_Machine_cc-->
+<!-- md-trans-meta sourceCommit=791f15158a2551a4a160285457a793e77ffb08ff translatedAt=2026-08-03T03:56:14.320Z pushedAt=2026-08-04T03:27:12.539Z -->
 
 The **ImageReceiver** class provides APIs to obtain the surface ID of a component, read the latest image, read the next image, and release the ImageReceiver instance. The ImageReceiver acts as the receiver and consumer of images. Its parameter properties do not actually affect the received images. The configuration of image properties should be done on the sending side (the producer), such as when creating a camera preview stream with [createPreviewOutput](../apis-camera-kit/arkts-apis-camera-CameraManager.md#createpreviewoutput).
 
@@ -116,12 +118,24 @@ Reads the latest image from the ImageReceiver instance. This API uses an asynchr
 import { BusinessError } from '@kit.BasicServicesKit';
 
 async function ReadLatestImage(receiver : image.ImageReceiver) {
-  receiver.readLatestImage((err: BusinessError, img: image.Image) => {
-    if (err) {
-      console.error(`Failed to read the latest Image.code ${err.code},message is ${err.message}`);
-    } else {
-      console.info('Succeeded in reading the latest Image.');
+  receiver.readLatestImage((err: BusinessError, latestImage: image.Image) => {
+    if (err || latestImage === undefined) {
+      console.error('Failed to readLatestImage.');
+      return;
     }
+    // Parse the image content.
+    latestImage.getComponent(image.ComponentType.JPEG, async (err: BusinessError,
+      imgComponent: image.Component) => {
+      if (err || imgComponent === undefined) {
+        console.error('Failed to getComponent.');
+      }
+      if (imgComponent.byteBuffer) {
+        // Process the binary image data.
+        console.info(`getComponent with width:${latestImage.size.width} height:${latestImage.size.height}`);
+      } else {
+        console.error('byteBuffer is null');
+      }
+    })
   });
 }
 ```
@@ -149,8 +163,20 @@ Reads the latest image from the ImageReceiver instance. This API uses a promise 
 import { BusinessError } from '@kit.BasicServicesKit';
 
 async function ReadLatestImage(receiver : image.ImageReceiver) {
-  receiver.readLatestImage().then((img: image.Image) => {
-    console.info('Succeeded in reading the latest Image.');
+  receiver.readLatestImage().then((latestImage: image.Image) => {
+    // Parse the image content.
+    latestImage.getComponent(image.ComponentType.JPEG, async (err: BusinessError,
+      imgComponent: image.Component) => {
+      if (err || imgComponent === undefined) {
+        console.error('Failed to getComponent.');
+      }
+      if (imgComponent.byteBuffer) {
+        // Process the binary image data.
+        console.info(`getComponent with width:${latestImage.size.width} height:${latestImage.size.height}`);
+      } else {
+        console.error('byteBuffer is null');
+      }
+    })    
   }).catch((error: BusinessError) => {
     console.error(`Failed to read the latest Image.code ${error.code},message is ${error.message}`);
   });
@@ -180,12 +206,24 @@ Reads the next image from the ImageReceiver instance. This API uses an asynchron
 import { BusinessError } from '@kit.BasicServicesKit';
 
 async function ReadNextImage(receiver : image.ImageReceiver) {
-  receiver.readNextImage((err: BusinessError, img: image.Image) => {
-    if (err) {
-      console.error(`Failed to read the next Image.code ${err.code},message is ${err.message}`);
-    } else {
-      console.info('Succeeded in reading the next Image.');
+  receiver.readNextImage((err: BusinessError, nextImage: image.Image) => {
+    if (err || nextImage === undefined) {
+      console.error('Failed to readNextImage.');
+      return;
     }
+    // Parse the image content.
+    nextImage.getComponent(image.ComponentType.JPEG, async (err: BusinessError,
+      imgComponent: image.Component) => {
+      if (err || imgComponent === undefined) {
+        console.error('Failed to getComponent.');
+      }
+      if (imgComponent.byteBuffer) {
+        // Process the binary image data.
+        console.info(`getComponent with width:${nextImage.size.width} height:${nextImage.size.height} stride:${imgComponent.rowStride}`);
+      } else {
+        console.error('byteBuffer is null');
+      }
+    })
   });
 }
 ```
@@ -213,8 +251,20 @@ Reads the next image from the ImageReceiver instance. This API uses a promise to
 import { BusinessError } from '@kit.BasicServicesKit';
 
 async function ReadNextImage(receiver : image.ImageReceiver) {
-  receiver.readNextImage().then((img: image.Image) => {
+  receiver.readNextImage().then((nextImage: image.Image) => {
     console.info('Succeeded in reading the next Image.');
+    nextImage.getComponent(image.ComponentType.JPEG, async (err: BusinessError,
+      imgComponent: image.Component) => {
+      if (err || imgComponent === undefined) {
+        console.error('Failed to getComponent.');
+      }
+      if (imgComponent.byteBuffer) {
+        // Process the binary image data.
+        console.info(`getComponent with width:${nextImage.size.width} height:${nextImage.size.height} stride:${imgComponent.rowStride}`);
+      } else {
+        console.error('byteBuffer is null');
+      }
+    })
   }).catch((error: BusinessError) => {
     console.error(`Failed to read the next Image.code ${error.code},message is ${error.message}`);
   });
@@ -241,7 +291,13 @@ Listens for image arrival events. This API uses an asynchronous callback to retu
 ```ts
 async function On(receiver : image.ImageReceiver) {
   receiver.on('imageArrival', () => {
-    // Implement the callback logic when an image is received.
+    // After the image arrival callback is triggered, read the latest or next image for processing.
+    receiver.readLatestImage().then((img: image.Image) => {
+      console.info('Succeeded in reading the latest Image.');
+      // Process the image data.
+    }).catch((error: BusinessError) => {
+      console.error(`Failed to read the latest Image.`);
+    });
   });
 }
 ```
@@ -323,7 +379,7 @@ Before releasing the instance, ensure that all asynchronous operations associate
 
 | Type          | Description              |
 | -------------- | ------------------ |
-| Promise\<void> |  Promise that returns no value.|
+| Promise\<void> | Promise that returns no value. |
 
 **Example**
 

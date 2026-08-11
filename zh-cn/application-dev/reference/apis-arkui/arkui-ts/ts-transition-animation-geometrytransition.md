@@ -6,19 +6,19 @@
 <!--Tester: @lxl007-->
 <!--Adviser: @ge-yafang-->
 
-在视图切换过程中提供丝滑的上下文传承过渡。通用transition机制提供了opacity、scale等转场效果，geometryTransition通过安排绑定的in/out组件（in指新视图、out指旧视图）的frame、position使得原本独立的transition动画在空间位置上发生联系，将视觉焦点由旧视图位置引导到新视图位置。
+在视图切换过程中提供丝滑的上下文衔接过渡。通用transition机制提供了opacity、scale等转场效果。geometryTransition通过安排绑定的in/out组件（in指新视图、out指旧视图）的frame、position，使得原本独立的transition动画在空间位置上发生联系，将视觉焦点由旧视图位置引导到新视图位置。in/out组件需要配合transition使用，以保证组件离场不被立即析构并提供转场效果；若不配合transition使用，out组件离场时将被立即析构，共享元素转场动画可能无法正常呈现。
 
 > **说明：**
 >
 > 从API version 7开始支持，从API version 10开始生效。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 >
-> [geometryTransition](ts-transition-animation-geometrytransition.md)必须配合[animateTo](../arkts-apis-uicontext-uicontext.md#animateto)使用才有动画效果，动效时长、曲线跟随[animateTo](../arkts-apis-uicontext-uicontext.md#animateto)中的配置，不支持[animation](ts-animatorproperty.md)动画。
+[geometryTransition](ts-transition-animation-geometrytransition.md)必须配合[animateTo](../arkts-apis-uicontext-uicontext.md#animateto)使用才有动画效果，动效时长、曲线跟随[animateTo](../arkts-apis-uicontext-uicontext.md#animateto)中的配置。参与转场的组件需设置[transition](ts-transition-animation-component.md#transition)以保证组件离场时不会被立即析构，从而使共享元素转场动画能够正常播放。不支持[animation](ts-animatorproperty.md)动画。
 
 ## geometryTransition
 
 geometryTransition(id: string): T
 
-组件内隐式共享元素转场。
+组件内隐式共享元素转场。必须配合[animateTo](../arkts-apis-uicontext-uicontext.md#animateto)使用才有动画效果，动效时长、曲线跟随[animateTo](../arkts-apis-uicontext-uicontext.md#animateto)中的配置，不支持[animation](ts-animatorproperty.md)动画。geometryTransition会同步圆角，但仅限于geometryTransition绑定处，不会操作容器内部子组件的borderRadius。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -34,7 +34,7 @@ geometryTransition(id: string): T
 
 | 类型 | 说明 |
 | -------- | -------- |
-| T | 返回当前组件。 |
+| T | 返回当前组件，用于链式调用。 |
 
 ## geometryTransition<sup>11+</sup>
 
@@ -53,13 +53,13 @@ geometryTransition(id: string, options?: GeometryTransitionOptions): T
 | 参数名  | 类型                 | 必填 | 说明                                                     |
 | ------- | ------------------------ | ---- | ------------------------------------------------------------ |
 | id      | string                   | 是   | 用于设置绑定关系，id置空字符串清除绑定关系避免参与共享行为，id可更换重新建立绑定关系。同一个id只能有两个组件绑定，且分别作为in（新视图）和out（旧视图）两种不同类型角色，不能多个组件绑定同一个id。 |
-| options | [GeometryTransitionOptions](#geometrytransitionoptions11) | 否   | 组件内共享元素转场动画参数。<br>默认值为 { follow: false }。                                    |
+| options | [GeometryTransitionOptions](#geometrytransitionoptions11) | 否   | 组件内隐式共享元素转场动画参数，需配合[animateTo](../arkts-apis-uicontext-uicontext.md#animateto)使用才有动画效果。<br>默认值为 { follow: false }。                                    |
 
 **返回值：**
 
 | 类型 | 说明 |
 | -------- | -------- |
-| T | 返回当前组件。 |
+| T | 返回当前组件，用于链式调用。 |
 
 ## GeometryTransitionOptions<sup>11+</sup>
 
@@ -71,7 +71,7 @@ geometryTransition(id: string, options?: GeometryTransitionOptions): T
 
 | 名称 | 类型 | 只读 | 可选 | 说明                                                   |
 | ------ | -------- | -------- | ---- | ------------------------------------------------------------ |
-| follow | boolean  | 否 | 是   | 仅用于if范式下标记始终在组件树上的组件是否跟随做共享动画。true代表跟随做共享动画，false代表不跟随做共享动画。<br/>默认值：false |
+| follow | boolean  | 否 | 是   | 仅用于if范式下标记始终在组件树上的组件是否跟随共享元素转场。if范式是指在build()方法中使用if条件语句控制组件显隐的声明式UI开发模式。true表示跟随共享元素转场，false表示不跟随共享元素转场。<br>默认值：false |
 
 ## 示例
 

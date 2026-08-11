@@ -2,7 +2,7 @@
 <!--Kit: ArkUI-->
 <!--Subsystem: ArkUI-->
 <!--Owner: @fenglinbailu; @yangcan18; @guozejun-->
-<!--Designer: @lanshouren; @yangcan18; @guozejun-->
+<!--Designer: @fenglinbailu; @yangcan18; @guozejun-->
 <!--Tester: @fredyuan912-->
 <!--Adviser: @HelloCrease-->
 
@@ -21,7 +21,7 @@
 
 ## List组件与其他组件并列使用时，若未设置List滚动方向上的尺寸，无法拖动到底部(API 9)
 
-给List加上layoutWeight属性，设置列表自适应占满剩余高度。原理：List属于可滚动容器组件，默认高度是占满全屏幕高度，当出现其他固定高度的组件占领了屏幕的部分高度时，需要开发人员显性的指定List组件占满剩余高度，而不是全屏幕高度。
+给List加上layoutWeight属性，设置列表自适应占满剩余高度。原理：List属于可滚动容器组件，默认高度是占满全屏幕高度，当出现其他固定高度的组件占领了屏幕的部分高度时，需要开发人员显式的指定List组件占满剩余高度，而不是全屏幕高度。
 
 
 ## Tabs组件在点击Tab项时是否支持禁止切换(API 9)

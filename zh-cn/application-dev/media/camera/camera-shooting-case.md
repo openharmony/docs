@@ -158,7 +158,7 @@ async function cameraShootingCase(context: Context, surfaceId: string): Promise<
       return;
     }
 
-    // 创建预览输出流,其中参数 surfaceId 参考上文 XComponent 组件，预览流为XComponent组件提供的surface。
+    // 创建预览输出流，其中参数 surfaceId 参考上文 XComponent 组件，预览流为XComponent组件提供的surface。
     resources.previewOutput = cameraManager.createPreviewOutput(previewProfilesArray[0], surfaceId);
     if (!resources.previewOutput) {
       console.error('previewOutput is null');

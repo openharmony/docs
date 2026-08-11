@@ -1,8 +1,8 @@
 # Modal Transition
 <!--Kit: ArkUI-->
 <!--Subsystem: ArkUI-->
-<!--Owner: @CCFFWW-->
-<!--Designer: @CCFFWW-->
+<!--Owner: @hehongyang3-->
+<!--Designer: @hehongyang3-->
 <!--Tester: @lxl007-->
 <!--Adviser: @Brilliantry_Rui-->
 
@@ -33,7 +33,7 @@ You can bind a full-screen modal to a component through the [bindContentCover](.
    // Use @Builder to build a modal view.
    @Builder MyBuilder() {
      Column() {
-       Text('my model view')
+      Text('my modal view')
      }
      // Use the transition API to implement the transition animation for component appearance and disappearance. The transition API must be added to the first component of the builder.
      .transition(TransitionEffect.translate({ y: 1000 }).animation({ curve: curves.springMotion(0.6, 0.8) }))
@@ -46,7 +46,7 @@ You can bind a full-screen modal to a component through the [bindContentCover](.
    // Define the state variable to control the visibility of the modal.
    @State isPresent: boolean = false;
 
-   Button('Click to present model view')
+   Button('Click to present modal view')
      // Bind a modal to the component. ModalTransition.NONE means not to use the default transition animation for the modal. You can use onDisappear to control state variable changes.
      .bindContentCover(this.isPresent, this.MyBuilder(), {
                modalTransition: ModalTransition.NONE,
@@ -306,7 +306,7 @@ struct BindSheetDemo {
   mySheet() {
     Column() {
       Flex({ direction: FlexDirection.Row, wrap: FlexWrap.Wrap }) {
-        ForEach(this.menuList, (item: string) => {
+        ForEach(this.menuList, (item: Resource) => {
           Text(item)
             .fontSize(16)
             .fontColor(0x333333)
@@ -446,7 +446,7 @@ struct BindMenuDemo {
 }
 ```
 
-
+<!--Del-->![image_0000001599643478]  (figures/Creating-Menu-bindMenu.gif)<!--DelEnd-->
 
 
 ## Creating a Context Menu with bindContextMenu
@@ -471,14 +471,14 @@ struct BindContextMenuDemo {
     $r('app.string.modal_transition_text26'),
     // Replace $r('app.string.modal_transition_text27') with the actual resource file. In this example, the value in the resource file is "Search".
     $r('app.string.modal_transition_text27')];
-  // Replace $r('app.mdia.icon_2') with the actual resource file.
+  // Replace $r('app.media.icon_2') with the actual resource file.
   private pics: Resource[] = [$r('app.media.icon_1'), $r('app.media.icon_2')];
 
   // Use @Builder to build custom menu items.
   @Builder
   myMenu() {
     Column() {
-      ForEach(this.menu, (item: string) => {
+      ForEach(this.menu, (item: Resource) => {
         Row() {
           Text(item)
             .fontSize(18)

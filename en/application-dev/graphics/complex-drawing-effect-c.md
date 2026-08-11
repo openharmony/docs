@@ -3,12 +3,12 @@
 <!--Kit: ArkGraphics 2D-->
 <!--Subsystem: Graphics-->
 <!--Owner: @hangmengxin-->
-<!--Designer: @wangyanglan-->
+<!--Designer: @wanyanglan-->
 <!--Tester: @nobuggers-->
 <!--Adviser: @ge-yafang-->
+<!-- md-trans-meta sourceCommit=0e0cd691ac1d5f7a6d2136e199b2bf5082d665f6 translatedAt=2026-08-03T11:17:18.881Z pushedAt=2026-08-04T02:45:29.812Z -->
 
-You can use a brush or a pen to implement complex drawing effects in addition to the basic fill color, stroke color, and style settings. The following lists some major challenges:
-
+You can use a brush or a pen to implement complex drawing effects in addition to the basic fill color, stroke color, and style settings. For example:
 
 - Blend mode
 
@@ -17,7 +17,6 @@ You can use a brush or a pen to implement complex drawing effects in addition to
 - Shader effect, such as linear gradient and radial gradient
 
 - Filtering effect, such as blurring
-
 
 ## Blend Mode
 
@@ -59,7 +58,6 @@ OH_Drawing_PointDestroy(point);
 ```
 
 ![Blend-Mode](figures/Blend-Mode.png)
-
 
 ## Path Effect
 
@@ -105,15 +103,13 @@ OH_Drawing_PathEffectDestroy(pathEffect);
 
 | Path Without Dashed Lines| Path With Dashed Lines|
 | -------- | -------- |
-| ![Path-Without-Dashed-Lines](figures/Path-Without-Dashed-Lines.png)| ![Path-With-Dashed-Lines](figures/Path-With-Dashed-Lines.png)|
-
+| ![Path without dashed lines](figures/Path-Without-Dashed-Lines.png) | ![Path with dashed lines](figures/Path-With-Dashed-Lines.png) |
 
 ## Shader Effect
 
 The shader effect is implemented based on the brush or pen. You can use **OH_Drawing_BrushSetShaderEffect()** to set the shader effect of the brush, or use **OH_Drawing_PenSetShaderEffect()** to set the shader effect of the pen. Currently, different shader effects are supported, such as linear gradient, radial gradient, and sector gradient.
 
 For details about shader-related APIs and parameters, see [drawing_shader_effect](../reference/apis-arkgraphics2d/capi-drawing-shader-effect-h.md).
-
 
 ### Linear Gradient Shader Effect
 
@@ -126,9 +122,13 @@ You can use the **OH_Drawing_ShaderEffectCreateLinearGradient()** API to create 
 - The relative position array is used to determine the relative position of each color in the gradient. If the relative position is empty, the colors are evenly distributed between the start point and end point.
 
 - The tiling mode is used to determine how to continue the gradient effect outside the gradient area. The options are as follows:
+
   - **CLAMP**: Replicates the edge color if the image exceeds its original boundary.
+
   - **REPEAT**: Repeats the image in both horizontal and vertical directions.
+
   - **MIRROR**: Repeats the image in both horizontal and vertical directions and alternates the mirrored image between adjacent images.
+
   - **DECAL**: Renders the shader effect's image only within the original boundary, and returns transparent black elsewhere.
 
 The following uses the rectangle drawing and the linear gradient shader effect implemented by a brush as an example. The sample code and effect are as follows:
@@ -169,7 +169,6 @@ OH_Drawing_PointDestroy(endPt);
 The following figure shows the rectangle with the linear gradient shader effect.
 
 ![Linear-Gradient-Shader-Effect](figures/Linear-Gradient-Shader-Effect.png)
-
 
 ### Radial Gradient Shader Effect
 
@@ -215,7 +214,6 @@ The following figure shows the rectangle with the radial gradient shader effect.
 
 ![Radial-Gradient-Shader-Effect](figures/Radial-Gradient-Shader-Effect.png)
 
-
 ### Sector Gradient Shader Effect
 
 You can use the **OH_Drawing_ShaderEffectCreateSweepGradient()** API to create the sector gradient shader effect to be set. The API takes five parameters, which are the center point, color array, relative position array, number of colors and relative positions, and tiling mode.
@@ -258,13 +256,11 @@ The following figure shows the rectangle with the sector gradient shader effect.
 
 ![sector-gradient-shader-effect](figures/sector-gradient-shader-effect.png)
 
-
 ## Filter Effects
 
 The filter effect can be implemented based on the brush or pen. You can use **OH_Drawing_PenSetFilter()** to set the filter effect of the pen, or use **OH_Drawing_BrushSetFilter()** to set the filter effect of the brush. Currently, different filter effects are supported, such as image filters, color filters, and mask filters.
 
 For details about the filter-related APIs and parameters, see [drawing_filter.h](../reference/apis-arkgraphics2d/capi-drawing-filter-h.md).
-
 
 ### Color Filter Effects
 
@@ -350,8 +346,7 @@ OH_Drawing_FilterDestroy(filter);
 
 | Original Image| Image with a Color Filter Based on a 5×4 Color Matrix|
 | -------- | -------- |
-| ![Original-Image6](figures/Original-Image6.png)| ![Image-with-a-Color](figures/Image-with-a-Color.png)|
-
+| ![Original-Image6](figures/Original-Image6.png) | ![Image with a Color Filter](figures/Image-with-a-Color.png) |
 
 ### Image Filter Effects
 
@@ -408,8 +403,7 @@ OH_Drawing_FilterDestroy(filter);
 
 | Original Image| Image with the Filter Effect|
 | -------- | -------- |
-| ![Original-Image5](figures/Original-Image5.png)| ![Image-with-the-Filter](figures/Image-with-the-Filter.png)|
-
+| ![Original-Image5](figures/Original-Image5.png) | ![Image-with-the-Filter](figures/Image-with-the-Filter.png) |
 
 ### Mask Filter Effect
 
@@ -463,12 +457,14 @@ OH_Drawing_FilterDestroy(filter);
 
 | Original Image| Image with the Mask Effect|
 | -------- | -------- |
-| ![Original-Image4](figures/Original-Image4.png)| ![Image-with-the-Mask-Effect](figures/Image-with-the-Mask-Effect.png)|
+| ![Original-Image4](figures/Original-Image4.png) | ![Image-with-the-Mask-Effect](figures/Image-with-the-Mask-Effect.png) |
 
 <!--RP1-->
+
 ## Samples
 
 The following samples are provided to help you better understand how to use the **Drawing** APIs (C/C++) for development:
 
 - [NDKGraphicsDraw (API20)](https://gitcode.com/openharmony/applications_app_samples/tree/master/code/DocsSample/ArkGraphics2D/Drawing/NDKGraphicsDraw)
+
 <!--RP1End-->

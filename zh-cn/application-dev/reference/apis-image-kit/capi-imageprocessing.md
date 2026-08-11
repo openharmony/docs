@@ -1,8 +1,15 @@
 # ImageProcessing
 
+<!--Kit: Image Kit-->
+<!--Subsystem: Multimedia-->
+<!--Owner: @zy_194-->
+<!--Designer: @gongzheng92-->
+<!--Tester: @gongzheng92-->
+<!--Adviser: @w_Machine_cc-->
+
 ## 概述
 
-ImageProcessing模块提供图片处理功能的API接口，包括颜色空间转换和元数据生成。
+ImageProcessing模块提供图片处理功能的API接口，包括色彩空间转换和元数据生成。
 
 <!--RP1--><!--RP1End-->
 

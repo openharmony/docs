@@ -2000,7 +2000,11 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 function createAlphaPixelmapSync(pixelMap: image.PixelMap) {
   try {
-    let pixelmap: image.PixelMap = pixelMap.createAlphaPixelmapSync();
+    let alphaPixelMap: image.PixelMap = pixelMap.createAlphaPixelmapSync();
+    if (alphaPixelMap == undefined) {
+      console.error(`Failed to create alpha PixelMap.`);
+      return;
+    }
     console.info('Succeeded in creating alpha PixelMap.');
   } catch (e) {
     const err = e as BusinessError;

@@ -9,13 +9,11 @@
 
 agentConstant模块提供Agent相关的常量。
 
+**起始版本：** 26.0.0
+
 > **说明：**
 >
-> 本模块首批接口从API版本26.0.0开始支持。
->
-> 本模块接口仅可在Stage模型下使用。
->
-> 本模块接口均为系统接口。
+> 当前页面仅包含本模块的系统接口，其他公开接口参考[@ohos.app.agent.agentConstant (Agent常量)](js-apis-app-agent-agentConstant.md)。
 
 ## 导入模块
 
@@ -30,6 +28,10 @@ Agent卡片的类型。
 **原子化服务API**：从API版本26.0.0开始，该枚举支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Ability.AgentRuntime.Core
+
+**起始版本：** 26.0.0
+
+**模型约束：** 此接口仅可在Stage模型下使用。
 
 | 名称      | 值   | 说明                   |
 | --------- | ---- | ---------------------- |

@@ -1208,7 +1208,7 @@ target_link_libraries(sample PUBLIC libnative_media_vdec.so)
 
     硬件解码在处理buffer数据时（释放数据前），输出回调开发者收到的AVbuffer是宽、高对齐后的图像数据。
 
-    一般需要获取数据的宽、高、跨距、像素格式来保证解码输出数据被正确的处理。
+    一般需要获取数据的宽、高、跨距、像素格式来保证解码输出数据被正确地处理。
 
     具体实现请参考：[Buffer模式](#buffer模式)的步骤3-调用OH_VideoDecoder_RegisterCallback()设置回调函数来获取数据的宽、高、跨距、像素格式。
 
@@ -1233,7 +1233,7 @@ target_link_libraries(sample PUBLIC libnative_media_vdec.so)
 | --------------------------------------- | ----------------------------------------------------------------------- |
 | 动态分辨率切换         | 仅硬件解码器支持输入码流分辨率发生变化，发生变化后会触发OH_VideoDecoder_RegisterCallback接口设置的回调函数OnStreamChanged()。<br>具体可参考上文中：Surface模式步骤-3或Buffer模式步骤-3。  |
 | 动态切换surface  | 通过调用OH_VideoDecoder_SetSurface可动态切换OHNativeWindow，仅Surface模式支持。<br>具体可参考上文中：Surface模式步骤-6。    |
-| 低时延解码  | 通过调用OH_VideoDecoder_Configure接口配置低时键值。<br>具体可参考上文中：Surface模式的步骤-5或Buffer模式步骤-5。      |
+| 低时延解码  | 通过调用OH_VideoDecoder_Configure接口配置低时延键值。<br>具体可参考上文中：Surface模式的步骤-5或Buffer模式步骤-5。      |
 
 
 

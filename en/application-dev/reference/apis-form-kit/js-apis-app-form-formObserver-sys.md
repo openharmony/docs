@@ -1,10 +1,12 @@
 # @ohos.app.form.formObserver (formObserver) (System API)
+
 <!--Kit: Form Kit-->
 <!--Subsystem: Ability-->
 <!--Owner: @Qian-Win-->
 <!--Designer: @cx983299475-->
 <!--Tester: @mahailong123456-->
 <!--Adviser: @HelloShuo-->
+<!-- md-trans-meta sourceCommit=d4511e00f2585cc001e7987579963a134102f59c translatedAt=2026-07-31T08:22:26.734Z pushedAt=2026-08-01T01:19:02.360Z -->
 
 The **formObserver** module provides APIs related to widget listeners. You can use the APIs to subscribe to and unsubscribe from widget addition, removal, and visibility change events, and obtain information about running widgets.
 
@@ -72,7 +74,7 @@ Subscribes to widget addition events. This API uses an asynchronous callback to 
 | Name| Type   | Mandatory| Description   |
 | ------ | ------ | ---- | ------- |
 | type | string | Yes  | Event type. The value **'formAdd'** indicates a widget addition event.|
-| hostBundleName | string | Yes| Name of the bundle that functions as the widget host. If no value is passed in, widget addition events of all widget hosts are subscribed to.|
+| hostBundleName | string | Yes| Bundle name of the widget host's package.|
 | observerCallback | Callback&lt;formInfo.[RunningFormInfo](js-apis-app-form-formInfo-sys.md#runningforminfo10)&gt; | Yes| Callback used to return the information about the new widget.|
 
 **Error codes**
@@ -102,7 +104,7 @@ formObserver.on('formAdd', bundleName, callback);
 
 off(type: 'formAdd', hostBundleName?: string, observerCallback?: Callback<formInfo.RunningFormInfo>): void;
 
-Unsubscribes from widget addition events. This API uses an asynchronous callback to return the information about the new widget.
+Unsubscribes from widget addition events. This API uses an asynchronous callback to return the result.
 
 **Required permissions**: ohos.permission.OBSERVE_FORM_RUNNING
 
@@ -113,7 +115,7 @@ Unsubscribes from widget addition events. This API uses an asynchronous callback
 | Name| Type   | Mandatory| Description   |
 | ------ | ------ | ---- | ------- |
 | type | string | Yes  | Event type. The value **'formAdd'** indicates a widget addition event.|
-| hostBundleName | string | No| Name of the bundle that functions as the widget host.<br> To cancel the subscription for a given bundle name, this parameter must be set to the same value as **bundleName** in **on('formAdd')**.<br> If no value is passed in, the subscriptions for all the widget hosts are canceled.|
+| hostBundleName | string | No | Bundle name of the widget host's package for the subscription.<br> When this parameter is set, this API corresponds to the **on** API with **bundleName** specified during registration.<br> If this parameter is not set, this API unsubscribes from the widget adding events of all widget hosts, and corresponds to the **on** API without **bundleName** specified during registration. |
 | observerCallback | Callback&lt;formInfo.[RunningFormInfo](js-apis-app-form-formInfo-sys.md#runningforminfo10)&gt; | No| Callback used to return the information about the new widget. If no value is passed in, all the subscriptions to the specified event are canceled.<br> To cancel the subscription with a given callback, this parameter must be set to the same value as **callback** in **on('formAdd')**.|
 
 **Error codes**
@@ -138,11 +140,12 @@ let callback = (data: formInfo.RunningFormInfo) => {
 
 formObserver.off('formAdd', bundleName, callback);
 ```
+
 > **NOTE**
 >
 > **on('formAdd', callback)** and **off('formAdd', callback)** must be used in pairs.
 > **on('formAdd', bundleName, callback)** and **off('formAdd', bundleName, callback)** must be used in pairs.
-> To cancel the subscription with a given callback or for a given bundle name, the **callback** or **bundleName** parameter in **off()** must be set to the same value as that in **on()**.
+> An event subscribed to using **on()** can only be unsubscribed using its corresponding **off()**.
 
 ## on('formRemove')
 
@@ -197,7 +200,7 @@ Subscribes to widget removal events. This API uses an asynchronous callback to r
 | Name| Type   | Mandatory| Description   |
 | ------ | ------ | ---- | ------- |
 | type | string | Yes  | Event type. The value **'formRemove'** indicates a widget removal event.|
-| hostBundleName | string | Yes| Name of the bundle that functions as the widget host. If no value is passed in, widget removal events of all widget hosts are subscribed to.|
+| hostBundleName | string | Yes| Bundle name of the widget host's package.|
 | observerCallback | Callback&lt;formInfo.[RunningFormInfo](js-apis-app-form-formInfo-sys.md#runningforminfo10)&gt; | Yes| Callback used to return the information about the widget removed.|
 
 **Error codes**
@@ -238,7 +241,7 @@ Unsubscribes from widget removal events. This API uses an asynchronous callback 
 | Name| Type   | Mandatory| Description   |
 | ------ | ------ | ---- | ------- |
 | type | string | Yes  | Event type. The value **'formRemove'** indicates a widget removal event.|
-| hostBundleName | string | No| Name of the bundle that functions as the widget host.<br> To cancel the subscription for a given bundle name, this parameter must be set to the same value as **bundleName** in **on('formRemove')**.<br> If no value is passed in, the subscriptions for all the widget hosts are canceled.|
+| hostBundleName | string | No| Bundle name of the widget host's package.<br> To cancel the subscription for a given bundle name, this parameter must be set to the same value as **bundleName** in **on('formRemove')**.<br> If no value is passed in, the subscriptions for all the widget hosts are canceled.|
 | observerCallback | Callback&lt;formInfo.[RunningFormInfo](js-apis-app-form-formInfo-sys.md#runningforminfo10)&gt; | No| Callback used to return the information about the widget removed. If no value is passed in, all the subscriptions to the specified event are canceled.<br> To cancel the subscription with a given callback, this parameter must be set to the same value as **callback** in **on('formRemove')**.|
 
 **Error codes**
@@ -263,11 +266,12 @@ let callback = (data: formInfo.RunningFormInfo) => {
 
 formObserver.off('formRemove', bundleName, callback);
 ```
+
 > **NOTE**
 >
 > - **on('formRemove', callback)** and **off('formRemove', callback)** must be used in pairs.
 > - **on('formRemove', bundleName, callback)** and **off('formRemove', bundleName, callback)** must be used in pairs.
-> - To cancel the subscription with a given callback or for a given bundle name, the **callback** or **bundleName** parameter in **off()** must be set to the same value as that in **on()**.
+> - An event subscribed to using **on()** can only be unsubscribed using its corresponding **off()**.
 
 ## on('notifyVisible')
 
@@ -285,8 +289,8 @@ Subscribes to events indicating that a widget becomes visible. This API uses an 
 
 | Name    | Type                                                        | Mandatory| Description                                                        |
 | ---------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| type       | string                                                       | Yes  | Event type. This value **'notifyVisible'** indicates a widget visibility event.     |
-| observerCallback   | Callback &lt;Array&lt;[formInfo.RunningFormInfo](js-apis-app-form-formInfo-sys.md#runningforminfo10)&gt;&gt; | Yes  | Callback used to return an array of widgets that have subscribed to the event.           |
+| type       | string                                                       | Yes  | Event type. This value is fixed at **'notifyVisible'**, indicating a widget visibility event.     |
+| observerCallback   | Callback &lt;Array&lt;[formInfo.RunningFormInfo](js-apis-app-form-formInfo-sys.md#runningforminfo10)&gt;&gt; | Yes  | Callback used to return an array of widget information that have subscribed to the event.           |
 
 **Error codes**
 
@@ -328,7 +332,7 @@ Subscribes to events indicating that a widget becomes visible. This API uses an 
 | Name    | Type                                                        | Mandatory| Description                                                        |
 | ---------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | type       | string                                                       | Yes  | Event type. This value **'notifyVisible'** indicates a widget visibility event.     |
-| hostBundleName | string                                                       | Yes  | Name of the bundle that functions as the widget host, on which the widget visibility state changes are subscribed.|
+| hostBundleName | string                                                       | Yes  | Bundle name of the widget host's package, on which the widget visibility state changes are subscribed.|
 | observerCallback   | Callback &lt;Array&lt;[formInfo.RunningFormInfo](js-apis-app-form-formInfo-sys.md#runningforminfo10)&gt;&gt; | Yes  | Callback used to return an array of widgets that have subscribed to the event.           |
 
 **Error codes**
@@ -339,7 +343,6 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | -------- | ------------------------------------------------------------ |
 | 202      | The application is not a system application.                                    |
 | 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed. |
-
 
 **Example**
 
@@ -372,7 +375,7 @@ Unsubscribes from events indicating that a widget becomes visible. This API uses
 | Name    | Type                                                        | Mandatory| Description                                                        |
 | ---------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | type       | string                                                       | Yes  | Event type. This value **'notifyVisible'** indicates a widget visibility event.|
-| hostBundleName | string                                                       | No  | Name of the bundle that functions as the widget host, on which the widget visibility state changes are subscribed.<br> To cancel the subscription for a given bundle name, this parameter must be set to the same value as **bundleName** in **on('notifyVisible')**.|
+| hostBundleName | string                                                       | No  | Bundle name of the widget host's package, on which the widget visibility state changes are subscribed.<br> To cancel the subscription for a given bundle name, this parameter must be set to the same value as **bundleName** in **on('notifyVisible')**.|
 | observerCallback   | Callback &lt;Array&lt;[formInfo.RunningFormInfo](js-apis-app-form-formInfo-sys.md#runningforminfo10)&gt;&gt; | No  | Callback used to return an array of widgets that have unsubscribed from the event. If no value is passed in, all the subscriptions to the specified event are canceled.<br> To cancel the subscription with a given callback, this parameter must be set to the same value as **callback** in **on('notifyVisible')**.|
 
 **Error codes**
@@ -404,7 +407,7 @@ formObserver.off('notifyVisible', bundleName, callback);
 >
 > - **on('notifyVisible', callback)** and **off('notifyVisible', callback)** must be used in pairs.
 > - **on('notifyVisible', bundleName, callback)** and **off('notifyVisible', bundleName, callback)** must be used in pairs.
-> - To cancel the subscription with a given callback or for a given bundle name, the **callback** or **bundleName** parameter in **off()** must be set to the same value as that in **on()**.
+> - An event subscribed to using **on()** can only be unsubscribed using its corresponding **off()**.
 
 ## on('notifyInvisible')
 
@@ -448,7 +451,6 @@ let callback = (data: formInfo.RunningFormInfo[]) => {
 formObserver.on('notifyInvisible', callback);
 ```
 
-
 ## on('notifyInvisible')
 
  on(type: 'notifyInvisible', hostBundleName: string, observerCallback: Callback&lt;Array&lt;formInfo.RunningFormInfo&gt;>): void
@@ -466,7 +468,7 @@ Subscribes to events indicating that a widget becomes invisible. This API uses a
 | Name    | Type                                                        | Mandatory| Description                                                        |
 | ---------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | type       | string                                                       | Yes  | Event type. This value **'notifyInvisible'** indicates a widget invisibility event.     |
-| hostBundleName | string                                                       | Yes  | Name of the bundle that functions as the widget host, on which the widget visibility state changes are subscribed.|
+| hostBundleName | string                                                       | Yes  | Bundle name of the widget host's package, on which the widget visibility state changes are subscribed.|
 | observerCallback   | Callback &lt;Array&lt;[formInfo.RunningFormInfo](js-apis-app-form-formInfo-sys.md#runningforminfo10)&gt;&gt; | Yes  | Callback used to return an array of widgets that have subscribed to the event.         |
 
 **Error codes**
@@ -498,7 +500,7 @@ formObserver.on('notifyInvisible', bundleName, callback);
 
  off(type: 'notifyInvisible', hostBundleName?: string, observerCallback?: Callback&lt;Array&lt;formInfo.RunningFormInfo>&gt;): void
 
-Unsubscribes from events indicating that a widget becomes invisible. This API uses an asynchronous callback to return the result.
+Unsubscribes events indicating that a widget becomes invisible. This API uses an asynchronous callback to return the result.
 
 **Required permissions**: ohos.permission.OBSERVE_FORM_RUNNING
 
@@ -509,7 +511,7 @@ Unsubscribes from events indicating that a widget becomes invisible. This API us
 | Name    | Type                                                        | Mandatory| Description                                                        |
 | ---------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | type       | string                                                       | Yes  | Event type. This value **'notifyInvisible'** indicates a widget invisibility event.   |
-| hostBundleName | string                                                       | No  | Name of the bundle that functions as the widget host, on which the widget visibility state changes are subscribed.<br> To cancel the subscription for a given bundle name, this parameter must be set to the same value as **bundleName** in **on('notifyVisible')**.<br> |
+| hostBundleName | string                                                       | No  | Bundle name of the widget host, which is used to unsubscribe from invisibility change events for a specific host. When this parameter is provided, this API corresponds to the **on** API with the same **bundleName** specified.<br> |
 | observerCallback   | Callback &lt;Array&lt;[formInfo.RunningFormInfo](js-apis-app-form-formInfo-sys.md#runningforminfo10)&gt;&gt; | No  | Callback used to return an array of widgets that have unsubscribed from the event. If no value is passed in, all the subscriptions to the specified event are canceled.<br> To cancel the subscription with a given callback, this parameter must be set to the same value as **callback** in **on('notifyInvisible')**.|
 
 **Error codes**
@@ -541,8 +543,7 @@ formObserver.off('notifyInvisible', bundleName, callback);
 >
 > - **on('notifyInvisible', callback)** and **off('notifyInvisible', callback)** must be used in pairs.
 > - **on('notifyInvisible', bundleName, callback)** and **off('notifyInvisible', bundleName, callback)** must be used in pairs.
-> - To cancel the subscription with a given callback or for a given bundle name, the **callback** or **bundleName** parameter in **off()** must be set to the same value as that in **on()**.
-
+> - An event subscribed to using **on()** can only be unsubscribed using its corresponding **off()**.
 
 ## getRunningFormInfos
 
@@ -559,11 +560,11 @@ Obtains the information about all non-temporary widgets running on the device. T
 | Name| Type   | Mandatory| Description   |
 | ------ | ------ | ---- | ------- |
 | callback | AsyncCallback&lt;Array&lt;formInfo.[RunningFormInfo](js-apis-app-form-formInfo-sys.md#runningforminfo10)&gt;&gt; | Yes| Callback used to return the information about all non-temporary widgets. If the widget information is obtained, **error** is **undefined**, and **data** is the information obtained.|
-| hostBundleName | string | No|  Name of the bundle that functions as the widget host. If a value is passed in, only the information about the non-temporary widgets that are running under the widget host is returned.<br> If no value is passed in, information about all running non-temporary widgets on the device is returned.|
+| hostBundleName | string | No| Bundle name of the widget host's package. If a value is passed in, only the information about the non-temporary widgets that are running under the widget host is returned.<br> If no value is passed in, information about all running non-temporary widgets on the device is returned.|
 
 **Error codes**
 
-For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Form Error Codes](errorcode-form.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Widget Error Codes](errorcode-form.md).
 
 | ID| Error Message|
 | -------- | -------- |
@@ -610,11 +611,11 @@ Obtains the information about all non-temporary widgets running on the device. T
 | ------ | ------ | ---- | ------- |
 | callback | AsyncCallback&lt;Array&lt;formInfo.[RunningFormInfo](js-apis-app-form-formInfo-sys.md#runningforminfo10)&gt;&gt; | Yes|  Callback used to return the information about all non-temporary widgets. If the widget information is obtained, **error** is **undefined**, and **data** is the information obtained.|
 | isUnusedIncluded | boolean | Yes|  Whether the unused widget is included.<br>**true**: The unused widget is included.<br>**false**: The unused widget is not included.|
-| hostBundleName | string | No|  Name of the bundle that functions as the widget host. If a value is passed in, only the information about the non-temporary widgets that are running under the widget host is returned.<br> If no value is passed in, information about all running non-temporary widgets on the device is returned.|
+| hostBundleName | string | No| Bundle name of the widget host's package. If a value is passed in, only the information about the non-temporary widgets that are running under the widget host is returned.<br> If no value is passed in, information about all running non-temporary widgets on the device is returned.|
 
 **Error codes**
 
-For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Form Error Codes](errorcode-form.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Widget Error Codes](errorcode-form.md).
 
 | ID| Error Message|
 | -------- | -------- |
@@ -659,7 +660,7 @@ Obtains the information about all non-temporary widgets running on the device. T
 
 | Name| Type   | Mandatory| Description   |
 | ------ | ------ | ---- | ------- |
-| hostBundleName | string | No|  Name of the bundle that functions as the widget host. If a value is passed in, only the information about the non-temporary widgets that are running under the widget host is returned.<br> If no value is passed in, information about all running non-temporary widgets on the device is returned.|
+| hostBundleName | string | No| Bundle name of the widget host's package. If a value is passed in, only the information about the non-temporary widgets that are running under the widget host is returned.<br> If no value is passed in, information about all running non-temporary widgets on the device is returned.|
 
 **Return value**
 
@@ -669,7 +670,7 @@ Obtains the information about all non-temporary widgets running on the device. T
 
 **Error codes**
 
-For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Form Error Codes](errorcode-form.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Widget Error Codes](errorcode-form.md).
 
 | ID| Error Message|
 | -------- | -------- |
@@ -711,7 +712,7 @@ Obtains the information about all non-temporary widgets running on the device. T
 | Name| Type   | Mandatory| Description   |
 | ------ | ------ | ---- | ------- |
 | isUnusedIncluded | boolean | Yes|  Whether the unused widget is included.<br>**true**: The unused widget is included.<br>**false**: The unused widget is not included.|
-| hostBundleName | string | No|  Name of the bundle that functions as the widget host. If a value is passed in, only the information about the non-temporary widgets that are running under the widget host is returned.<br> If no value is passed in, information about all running non-temporary widgets on the device is returned.|
+| hostBundleName | string | No| Bundle name of the widget host's package. If a value is passed in, only the information about the non-temporary widgets that are running under the widget host is returned.<br> If no value is passed in, information about all running non-temporary widgets on the device is returned.|
 
 **Return value**
 
@@ -721,7 +722,7 @@ Obtains the information about all non-temporary widgets running on the device. T
 
 **Error codes**
 
-For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Form Error Codes](errorcode-form.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Widget Error Codes](errorcode-form.md).
 
 | ID| Error Message|
 | -------- | -------- |
@@ -774,7 +775,7 @@ Obtains the information about widgets based on the widget provider. This API use
 
 **Error codes**
 
-For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Form Error Codes](errorcode-form.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Widget Error Codes](errorcode-form.md).
 
 | ID| Error Message|
 | -------- | -------- |
@@ -784,7 +785,6 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | 16500050 | IPC connection error. |
 | 16500100 | Failed to obtain the configuration information. |
 | 16501000  | An internal functional error occurred. |
-
 
 ```ts
 import { formInfo, formObserver } from '@kit.FormKit';
@@ -826,11 +826,11 @@ Obtains the information about widgets based on the widget provider. This API use
 | Name     | Type           | Mandatory| Description                            |
 | ----------- | --------------- | ---- | -------------------------------- |
 | formProviderFilter     | [formInfo.FormProviderFilter](js-apis-app-form-formInfo-sys.md#formproviderfilter10) | Yes  | Information about the widget provider.|
-| callback | AsyncCallback&lt;Array&lt;[formInfo.RunningFormInfo](js-apis-app-form-formInfo-sys.md#runningforminfo10)&gt;&gt; | Yes| Callback used to used to return an array of the widgets. If the widget information is obtained, **error** is **undefined**, and **data** is the information obtained. Otherwise, **error** is an error object.|
+| callback | AsyncCallback&lt;Array&lt;[formInfo.RunningFormInfo](js-apis-app-form-formInfo-sys.md#runningforminfo10)&gt;&gt; | Yes | Callback used to return the list of added widget information. If the operation is successful, **error** is **undefined**, and **data** is the list of queried widget information. Otherwise, **error** is an error object. |
 
 **Error codes**
 
-For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Form Error Codes](errorcode-form.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Widget Error Codes](errorcode-form.md).
 
 | ID| Error Message|
 | -------- | -------- |
@@ -895,7 +895,7 @@ Obtains the information about the widget based on the widget ID. This API uses a
 
 **Error codes**
 
-For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Form Error Codes](errorcode-form.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Widget Error Codes](errorcode-form.md).
 
 | ID| Error Message|
 | -------- | -------- |
@@ -928,7 +928,7 @@ try {
 
 getRunningFormInfoById(formId: string, isUnusedIncluded: boolean): Promise&lt;formInfo.RunningFormInfo&gt;
 
-Obtains the information about the widget based on the widget ID. This API uses a promise to return the result.
+Queries the added widget information based on **formId**. This API uses a promise to return the result.
 
 **Model restriction**: This API can be used only in the stage model.
 
@@ -951,7 +951,7 @@ Obtains the information about the widget based on the widget ID. This API uses a
 
 **Error codes**
 
-For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Form Error Codes](errorcode-form.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Widget Error Codes](errorcode-form.md).
 
 | ID| Error Message|
 | -------- | -------- |
@@ -997,11 +997,11 @@ Obtains the information about the widget based on the widget ID. This API uses a
 | Name     | Type           | Mandatory| Description                            |
 | ----------- | --------------- | ---- | -------------------------------- |
 | formId     | string | Yes  | Widget ID.|
-| callback | AsyncCallback&lt;[formInfo.RunningFormInfo](js-apis-app-form-formInfo-sys.md#runningforminfo10)&gt; | Yes| Callback used to used to return the widget information. If the widget information is obtained, **error** is **undefined**, and **data** is the information obtained. Otherwise, **error** is an error object.|
+| callback | AsyncCallback&lt;[formInfo.RunningFormInfo](js-apis-app-form-formInfo-sys.md#runningforminfo10)&gt; | Yes | Callback used to return the added widget information. If the operation is successful, **error** is **undefined**, and **data** is the queried widget information. Otherwise, **error** is an error object. |
 
 **Error codes**
 
-For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Form Error Codes](errorcode-form.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Widget Error Codes](errorcode-form.md).
 
 | ID| Error Message|
 | -------- | -------- |
@@ -1050,11 +1050,11 @@ Obtains the information about the widget based on the widget ID. This API uses a
 | ----------- | --------------- | ---- | -------------------------------- |
 | formId     | string | Yes  | Widget ID.|
 | isUnusedIncluded     | boolean | Yes  | Whether the unused widget is included.<br>**true**: The unused widget is included.<br>**false**: The unused widget is not included.|
-| callback | AsyncCallback&lt;[formInfo.RunningFormInfo](js-apis-app-form-formInfo-sys.md#runningforminfo10)&gt; | Yes| Callback used to used to return the widget information. If the widget information is obtained, **error** is **undefined**, and **data** is the information obtained. Otherwise, **error** is an error object.|
+| callback | AsyncCallback&lt;[formInfo.RunningFormInfo](js-apis-app-form-formInfo-sys.md#runningforminfo10)&gt; | Yes | Callback used to return the result. If the operation is successful, **error** is **undefined**, and **data** is the queried form information. Otherwise, **error** is an error object. |
 
 **Error codes**
 
-For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Form Error Codes](errorcode-form.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Widget Error Codes](errorcode-form.md).
 
 | ID| Error Message|
 | -------- | -------- |
@@ -1137,7 +1137,7 @@ Subscribes to widget router events for a given bundle that functions as the widg
 | Name          | Type                                    | Mandatory| Description                                                        |
 | ---------------- | ---------------------------------------- | ---- | ------------------------------------------------------------ |
 | type             | string                                   | Yes  | Event type. The value **'router'** indicates a widget router event.                            |
-| hostBundleName   | string                                   | Yes  | Name of the bundle that functions as the widget host. If no value is passed in, widget router events of all widget hosts are subscribed to.|
+| hostBundleName   | string                                   | Yes  | Bundle name of the widget host's package. If no value is passed in, widget router events of all widget hosts are subscribed to.|
 | observerCallback | Callback&lt;[formInfo.RunningFormInfo](js-apis-app-form-formInfo-sys.md#runningforminfo10)&gt; | Yes  | Callback used to return the widget information.                   |
 
 **Error codes**
@@ -1176,7 +1176,7 @@ Unsubscribes from widget router events. This API uses an asynchronous callback t
 | Name          | Type                                    | Mandatory| Description                                                        |
 | ---------------- | ---------------------------------------- | ---- | ------------------------------------------------------------ |
 | type             | string                                   | Yes  | Event type. The value **'router'** indicates a widget router event.                            |
-| hostBundleName   | string                                   | No  | Name of the bundle that functions as the widget host.<br>To cancel the subscription for a given bundle name, this parameter must be set to the same value as **bundleName** in **on('router')**.<br>If no value is passed in, the subscriptions for all the widget hosts are canceled.|
+| hostBundleName   | string                                   | No  | Bundle name of the widget host's package.<br>To cancel the subscription for a given bundle name, this parameter must be set to the same value as **bundleName** in **on('router')**.<br>If no value is passed in, the subscriptions for all the widget hosts are canceled.|
 | observerCallback | Callback&lt;[formInfo.RunningFormInfo](js-apis-app-form-formInfo-sys.md#runningforminfo10)&gt; | No  | Callback used to return the widget information. If no value is passed in, all the subscriptions to the specified event are canceled.<br>To cancel the subscription with a given callback, this parameter must be set to the same value as **callback** in **on('router')**.|
 
 **Error codes**
@@ -1252,7 +1252,7 @@ Subscribes to widget message events for a given bundle that functions as the wid
 | Name          | Type                                    | Mandatory| Description                                                        |
 | ---------------- | ---------------------------------------- | ---- | ------------------------------------------------------------ |
 | type             | string                                   | Yes  | Event type. This value **'message'** indicates a widget message event.                           |
-| hostBundleName   | string                                   | Yes  | Name of the bundle that functions as the widget host. If no value is passed in, widget message events of all widget hosts are subscribed to.|
+| hostBundleName   | string                                   | Yes  | Bundle name of widget host.|
 | observerCallback | Callback&lt;[formInfo.RunningFormInfo](js-apis-app-form-formInfo-sys.md#runningforminfo10)&gt; | Yes  | Callback used to return the widget information.                   |
 
 **Error codes**
@@ -1291,7 +1291,7 @@ Unsubscribes from widget message events. This API uses an asynchronous callback 
 | Name          | Type                                    | Mandatory| Description                                                        |
 | ---------------- | ---------------------------------------- | ---- | ------------------------------------------------------------ |
 | type             | string                                   | Yes  | Event type. This value **'message'** indicates a widget message event.                        |
-| hostBundleName   | string                                   | No  | Name of the bundle that functions as the widget host.<br>To cancel the subscription for a given bundle name, this parameter must be set to the same value as **bundleName** in **on('message')**.<br>If no value is passed in, the subscriptions for all the widget hosts are canceled.|
+| hostBundleName   | string                                   | No   | Bundle name of the widget host's package for the specified subscription.<br>When this parameter is specified, this API corresponds to the **on** API where **bundleName** is specified during registration.<br>If this parameter is not specified, this API unsubscribes from the message event of all widget hosts, corresponding to the **on** API where **bundleName** is not specified during registration. |
 | observerCallback | Callback&lt;[formInfo.RunningFormInfo](js-apis-app-form-formInfo-sys.md#runningforminfo10)&gt; | No  | Callback used to return the widget information. If no value is passed in, all the subscriptions to the specified event are canceled.<br>To cancel the subscription with a given callback, this parameter must be set to the same value as **callback** in **on('message')**.|
 
 **Error codes**
@@ -1310,7 +1310,7 @@ import { formInfo, formObserver } from '@kit.FormKit';
 
 let hostBundleName: string = 'ohos.samples.FormApplication';
 let callback = (data: formInfo.RunningFormInfo) => {
-  console.info(`Unregister form Message event Listening. ID: ${data.formId}`);
+  console.info(`Unregister from Message event Listening. ID: ${data.formId}`);
 };
 formObserver.off('message', hostBundleName, callback);
 ```
@@ -1367,7 +1367,7 @@ Subscribes to widget call events for a given bundle that functions as the widget
 | Name          | Type                                    | Mandatory| Description                                                        |
 | ---------------- | ---------------------------------------- | ---- | ------------------------------------------------------------ |
 | type             | string                                   | Yes  | Event type. This value **'call'** indicates a widget call event.                              |
-| hostBundleName   | string                                   | Yes  | Name of the bundle that functions as the widget host. If no value is passed in, widget call events of all widget hosts are subscribed to.|
+| hostBundleName   | string                                   | Yes  | Bundle name of the widget host's package. |
 | observerCallback | Callback&lt;[formInfo.RunningFormInfo](js-apis-app-form-formInfo-sys.md#runningforminfo10)&gt; | Yes  | Callback used to return the widget information.                   |
 
 **Error codes**
@@ -1406,7 +1406,7 @@ Unsubscribes from widget call events. This API uses an asynchronous callback to 
 | Name          | Type                                    | Mandatory| Description                                                        |
 | ---------------- | ---------------------------------------- | ---- | ------------------------------------------------------------ |
 | type             | string                                   | Yes  | Event type. This value **'call'** indicates a widget call event.                          |
-| hostBundleName   | string                                   | No  | Name of the bundle that functions as the widget host.<br>To cancel the subscription for a given bundle name, this parameter must be set to the same value as **bundleName** in **on('call')**.<br>If no value is passed in, the subscriptions for all the widget hosts are canceled.|
+| hostBundleName   | string                                   | No   | Bundle name of the widget host's package for the specified subscription.<br>When this parameter is specified, this API corresponds to the **on** API where **bundleName** is specified during registration.<br>If this parameter is not specified, this API unsubscribes from the call events of all widget hosts, corresponding to the **on** API where **bundleName** is not specified during registration. |
 | observerCallback | Callback&lt;[formInfo.RunningFormInfo](js-apis-app-form-formInfo-sys.md#runningforminfo10)&gt; | No  | Callback used to return the widget information. If no value is passed in, all the subscriptions to the specified event are canceled.<br>To cancel the subscription with a given callback, this parameter must be set to the same value as **callback** in **on('call')**.|
 
 **Error codes**

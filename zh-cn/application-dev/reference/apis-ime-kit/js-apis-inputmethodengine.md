@@ -1635,7 +1635,7 @@ setUiContent(path: string, storage: LocalStorage, callback: AsyncCallback&lt;voi
 | 参数名   | 类型                   | 必填 | 说明     |
 | -------- | ---------------------- | ---- | -------- |
 | path | string | 是   | LocalStorage相关联的具体页面的路径。路径长度建议不超过1024字符。 |
-| storage | [LocalStorage](../apis-arkui/arkui-ts/ts-state-management.md#localstorage9) | 是   | 存储单元，为应用程序范围内的可变和不可变状态属性提供存储。|
+| storage | [LocalStorage](../apis-arkui/arkui-ts/ts-state-management.md#localstorage9) | 是   | 存储单元，为应用程序范围内的可变状态属性和不可变状态属性提供存储。|
 | callback | AsyncCallback&lt;void&gt;  | 是   | 回调函数。当面板页面内容加载成功，err为undefined，否则err为错误对象。 |
 
 **错误码：**

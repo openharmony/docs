@@ -1,10 +1,12 @@
 # Adding an Event Listener
+
 <!--Kit: ArkUI-->
 <!--Subsystem: ArkUI-->
 <!--Owner: @yihao-lin-->
 <!--Designer: @piggyguy-->
 <!--Tester: @songyanhong-->
 <!--Adviser: @Brilliantry_Rui-->
+<!-- md-trans-meta sourceCommit=39f66a31c4cd77f8015af575d95ace022de7992b translatedAt=2026-08-05T01:26:37.868Z pushedAt=2026-08-05T06:07:31.459Z -->
 
 NDK APIs provide the event listening capability for components. This section describes how to listen for component events, layout and drawing events, and light/dark mode change events.
 
@@ -24,13 +26,14 @@ First, you can use the [addNodeEventReceiver](../reference/apis-arkui/capi-arkui
 >
 > - [registerNodeEventReceiver](../reference/apis-arkui/capi-arkui-nativemodule-arkui-nativenodeapi-1.md#registernodeeventreceiver) is a global event listener function. Unlike [addNodeEventReceiver](../reference/apis-arkui/capi-arkui-nativemodule-arkui-nativenodeapi-1.md#addnodeeventreceiver), [registerNodeEventReceiver](../reference/apis-arkui/capi-arkui-nativemodule-arkui-nativenodeapi-1.md#registernodeeventreceiver) can listen for the event triggers of all native components, but it can only accept a single function pointer. If it is called multiple times, only the last function pointer provided will be used for callbacks. To release the listener, use the [unregisterNodeEventReceiver](../reference/apis-arkui/capi-arkui-nativemodule-arkui-nativenodeapi-1.md#unregisternodeeventreceiver) function.
 
-The following examples are based on [Integrating with ArkTS Pages](ndk-access-the-arkts-page.md).
+The following examples are based on [Integrating with ArkTS Pages](ndk-access-the-arkts-page.md). For details, see [Sample Code](#sample-code).
 
 ### Listening for Node Events
 
 Bind event handlers to nodes using **addNodeEventReceiver**, and then register specific event listeners via **registerNodeEvent**.
 
 Define a pointer of type [ArkUI_NativeNodeAPI_1](../reference/apis-arkui/capi-arkui-nativemodule-arkui-nativenodeapi-1.md):
+
 <!-- @[define_node](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkUISample/NdkAddInteractionEvent/entry/src/main/cpp/Common.h) -->
 
 ``` C
@@ -38,6 +41,7 @@ ArkUI_NativeNodeAPI_1 *nodeAPI = nullptr;
 ```
 
 Call the [OH_ArkUI_GetModuleInterface](../reference/apis-arkui/capi-native-interface-h.md#oh_arkui_getmoduleinterface) API to assign a value to the defined pointer:
+
 <!-- @[get_module_interface](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkUISample/NdkAddInteractionEvent/entry/src/main/cpp/NativeEntry.cpp) -->
 
 ``` C++
@@ -45,6 +49,7 @@ OH_ArkUI_GetModuleInterface(ARKUI_NATIVE_NODE, ArkUI_NativeNodeAPI_1, nodeAPI);
 ```
 
 Define an event trigger callback:
+
 <!-- @[node_event_receiver](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkUISample/NdkAddInteractionEvent/entry/src/main/cpp/Function.h) -->
 
 ``` C
@@ -54,6 +59,7 @@ void NodeEventReceiver(ArkUI_NodeEvent *event) {
 ```
 
 Create a node, bind the event trigger callback to the node, and register the event for the node:
+
 <!-- @[create_and_register_node](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkUISample/NdkAddInteractionEvent/entry/src/main/cpp/Function.h) -->
 
 ``` C
@@ -67,6 +73,7 @@ For details about event types, see [ArkUI_NodeEventType](../reference/apis-arkui
 Deregister events using **unregisterNodeEvent** and remove handlers with **removeNodeEventReceiver**.
 
 Unregister the specified event type for the node:
+
 <!-- @[unregister_node_event](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkUISample/NdkAddInteractionEvent/entry/src/main/cpp/Function.h) -->
 
 ``` C
@@ -74,6 +81,7 @@ nodeAPI->unregisterNodeEvent(button, NODE_ON_CLICK_EVENT);
 ```
 
 Remove the event handler:
+
 <!-- @[remove_node_event_receiver](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkUISample/NdkAddInteractionEvent/entry/src/main/cpp/Function.h) -->
 
 ``` C
@@ -85,6 +93,7 @@ nodeAPI->removeNodeEventReceiver(button, NodeEventReceiver);
 Register a global event handler via **registerNodeEventReceiver** for centralized event listening. Release it via **unregisterNodeEventReceiver** when it is no longer needed.
 
 Register a global event handler:
+
 <!-- @[register_global_event](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkUISample/NdkAddInteractionEvent/entry/src/main/cpp/Function.h) -->
 
 ``` C
@@ -107,6 +116,7 @@ nodeAPI->registerNodeEventReceiver([](ArkUI_NodeEvent *event) {
 ```
 
 Unregister the registered global event handler:
+
 <!-- @[unregister_node_event_receiver](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkUISample/NdkAddInteractionEvent/entry/src/main/cpp/Function.h) -->
 
 ``` C
@@ -118,7 +128,7 @@ nodeAPI->unregisterNodeEventReceiver();
 1. Encapsulate methods for event registration and listener calling in the ArkUINode base class object.
 
    <!-- @[arkui_node](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkUISample/NdkAddInteractionEvent/entry/src/main/cpp/ArkUINode.h) -->
-   
+
    ``` C
    // ArkUINode.h
    // Provide encapsulation of universal attributes and events.
@@ -331,8 +341,9 @@ nodeAPI->unregisterNodeEventReceiver();
    ```
 
 2. Register the list event [NODE_LIST_ON_SCROLL_INDEX](../reference/apis-arkui/capi-native-node-h.md#arkui_nodeeventtype) in the **ArkUIListNode** object.
+
    <!-- @[arkui_list_node](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkUISample/NdkAddInteractionEvent/entry/src/main/cpp/ArkUIListNode.h) -->
-   
+
    ``` C
    // ArkUIListNode.h
    // List encapsulation class object
@@ -397,10 +408,10 @@ nodeAPI->unregisterNodeEventReceiver();
    #endif // MYAPPLICATION_ARKUILISTNODE_H
    ```
 
-
 3. Add an event listener to the text list item. In this example, the [NODE_ON_CLICK_EVENT](../reference/apis-arkui/capi-native-node-h.md#arkui_nodeeventtype) event is used as an example to illustrate how to add event response information.
+
    <!-- @[normal_text_list_example](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkUISample/NdkAddInteractionEvent/entry/src/main/cpp/NormalTextListExample.h) -->
-   
+
    ``` C
    // NormalTextListExample.h
    // Text list example.
@@ -533,7 +544,6 @@ nodeAPI->unregisterNodeEventReceiver();
    target_link_libraries(entry PUBLIC libace_napi.z.so libace_ndk.z.so libhilog_ndk.z.so)
    ```
 
-
 ## Listening for Component Layout and Drawing Events
 
 Since API version 16, NDK APIs provide functions for registering and unregistering callbacks for UI component layout completion and drawing completion events. You can use the following APIs to listen for when specific node layouts are completed or when drawing is finished, and register corresponding callbacks:
@@ -546,11 +556,9 @@ Use [OH_ArkUI_UnregisterLayoutCallbackOnNodeHandle](../reference/apis-arkui/capi
 
 Use [OH_ArkUI_UnregisterDrawCallbackOnNodeHandle](../reference/apis-arkui/capi-native-node-h.md#oh_arkui_unregisterdrawcallbackonnodehandle) to unregister a drawing completion callback.
 
-
 > **NOTE**
 >
 > [OH_ArkUI_RegisterLayoutCallbackOnNodeHandle](../reference/apis-arkui/capi-native-node-h.md#oh_arkui_registerlayoutcallbackonnodehandle) and [OH_ArkUI_RegisterDrawCallbackOnNodeHandle](../reference/apis-arkui/capi-native-node-h.md#oh_arkui_registerdrawcallbackonnodehandle) can be used to listen for component layout completion or drawing completion events, but only one function pointer can be registered, which means subsequent calls will overwrite the previous callbacks.
-
 
 The following example is based on the [Integrating with ArkTS Pages](ndk-access-the-arkts-page.md) section and provides the development guidelines for listening to component layout and drawing events.
 
@@ -697,7 +705,6 @@ std::shared_ptr<ArkUIBaseNode> CreateTextListExample()
 
 #endif // MYAPPLICATION_NORMALTEXTLISTEXAMPLE_H
 ```
-
 
 ## Listening for the Color Mode Change Event
 

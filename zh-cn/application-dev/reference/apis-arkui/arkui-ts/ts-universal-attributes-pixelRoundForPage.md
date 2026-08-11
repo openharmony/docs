@@ -1,8 +1,8 @@
 # 页面级像素取整
 <!--Kit: ArkUI-->
 <!--Subsystem: ArkUI-->
-<!--Owner: @Lichtschein-->
-<!--Designer: @lanshouren-->
+<!--Owner: @zhangwentao96-->
+<!--Designer: @fenglinbailu-->
 <!--Tester: @liuli0427-->
 <!--Adviser: @Brilliantry_Rui-->
 

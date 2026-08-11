@@ -271,7 +271,7 @@
 
 实际预览流的宽高指的是相机输出流的分辨率，请参考[profile](arkts-apis-camera-i.md#profile)中的size。
 
-预览流的数据获取请参考[双路预览(ArkTs)](../../media/camera/camera-dual-channel-preview.md)。
+预览流的数据获取请参考[双路预览(ArkTS)](../../media/camera/camera-dual-channel-preview.md)。
 
 **原子化服务API：** 从API version 19开始，该接口支持在原子化服务中使用。
 

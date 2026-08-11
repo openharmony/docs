@@ -207,7 +207,7 @@ async function videoRecording(context: common.Context, surfaceId: string): Promi
   }
 
   // 获取视频输入surface。
-  let videoSurfaceId: string | undefined = undefined; // 该surfaceID用于传递给相机接口创造videoOutput。
+  let videoSurfaceId: string | undefined = undefined; // 该surfaceID用于传递给相机接口创建videoOutput。
   try {
     videoSurfaceId = await resources.avRecorder.getInputSurface();
   } catch (error) {

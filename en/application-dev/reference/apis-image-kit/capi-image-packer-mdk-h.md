@@ -1,10 +1,12 @@
 # image_packer_mdk.h
+
 <!--Kit: Image Kit-->
 <!--Subsystem: Multimedia-->
 <!--Owner: @aulight02-->
-<!--Designer: @liyang_bryan-->
+<!--Designer: @XiaoYao555-->
 <!--Tester: @xchaosioda-->
 <!--Adviser: @w_Machine_cc-->
+<!-- md-trans-meta sourceCommit=1a9fd5f0ccee234fe1c8d19ee00da4a54d4f14a1 translatedAt=2026-08-03T04:04:50.694Z pushedAt=2026-08-04T02:42:24.066Z -->
 
 ## Overview
 
@@ -24,7 +26,7 @@ Release the encoder object using **OH_ImagePacker_Release**.
 
 **Library**: libimage_packer_ndk.z.so
 
-**System capability**: SystemCapability.Multimedia.Image.Core
+**System capability:** SystemCapability.Multimedia.Image.ImagePacker
 
 **Since**: 11
 
@@ -63,7 +65,6 @@ Obtains an ImagePacker object at the JavaScript native layer.
 
 **Since**: 11
 
-
 **Parameters**
 
 | Name| Description|
@@ -88,7 +89,6 @@ ImagePacker_Native* OH_ImagePacker_InitNative(napi_env env, napi_value packer)
 Converts an ImagePacker object at the JavaScript native layer into an ImagePacker_Native object.
 
 **Since**: 11
-
 
 **Parameters**
 
@@ -118,7 +118,6 @@ int32_t OH_ImagePacker_PackToData(ImagePacker_Native* native, napi_value source,
 Packs a PixelMap object or an ImagePacker object at the JavaScript native layer to a buffer (defined by **outData**) based on the specified ImagePacker_Opts struct.
 
 **Since**: 11
-
 
 **Parameters**
 
@@ -151,7 +150,6 @@ int32_t OH_ImagePacker_PackToFile(ImagePacker_Native* native, napi_value source,
 Packs a PixelMap object or an ImagePacker object at the JavaScript native layer to a file based on the specified ImagePacker_Opts struct.
 
 **Since**: 11
-
 
 **Parameters**
 
@@ -187,7 +185,6 @@ It is not used to release the ImagePacker object at the JavaScript native layer.
 It is parsed by calling [OH_ImagePacker_InitNative](#oh_imagepacker_initnative).
 
 **Since**: 11
-
 
 **Parameters**
 

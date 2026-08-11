@@ -1,10 +1,12 @@
 # Drawing and Displaying Simple Text (C/C++)
+
 <!--Kit: ArkGraphics 2D-->
 <!--Subsystem: Graphics-->
 <!--Owner: @gmiao522-->
 <!--Designer: @liumingxiang-->
 <!--Tester: @yhl0101-->
 <!--Adviser: @ge-yafang-->
+<!-- md-trans-meta sourceCommit=42f976b62471ab2445bc82b76c3d32c4239f6e74 translatedAt=2026-08-03T11:22:15.636Z pushedAt=2026-08-04T07:28:47.524Z -->
 
 ## Overview
 
@@ -12,11 +14,11 @@ In a simple user interface, only a few lines of static text need to be displayed
 
 ## Available APIs
 
-| API Definition| Description| 
+| API Definition| Description|
 | -------- | -------- |
-| OH_Drawing_TextStyle\* OH_Drawing_CreateTextStyle(void) | Creates an **OH_Drawing_TextStyle** object.| 
-| void OH_Drawing_SetTextStyleFontSize(OH_Drawing_TextStyle\* style, double fontSize) | Sets the font size for a text style.| 
-| void OH_Drawing_SetTextStyleFontWeight(OH_Drawing_TextStyle\* style, int fontWeight) | Sets the font weight for a text style. Currently, only the default system font supports font weight adjustment. For other fonts, if the weight is less than semi-bold, there is no variation in stroke thickness. If the weight is greater than or equal to semi-bold, it might result in a fake bold effect.| 
+| OH_Drawing_TextStyle\* OH_Drawing_CreateTextStyle(void) | Creates an **OH_Drawing_TextStyle** object.|
+| void OH_Drawing_SetTextStyleFontSize(OH_Drawing_TextStyle\* style, double fontSize) | Sets the font size for a text style.|
+| void OH_Drawing_SetTextStyleFontWeight(OH_Drawing_TextStyle\* style, int fontWeight) | Sets the font weight. |
 
 ## How to Develop
 
@@ -25,7 +27,7 @@ In a simple user interface, only a few lines of static text need to be displayed
 2. Initialize the paragraph style and set the text alignment to center alignment.
 
    <!-- @[drawing_simple_text_c_create_typographyStyle](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkGraphics2D/TextEngine/NDKDrawingSimpleText/entry/src/main/cpp/samples/sample_bitmap.cpp) -->
-   
+
    ``` C++
    // Create a TypographyStyle object, which is required for creating Typography.
    OH_Drawing_TypographyStyle *typoStyle = OH_Drawing_CreateTypographyStyle();
@@ -36,7 +38,7 @@ In a simple user interface, only a few lines of static text need to be displayed
 3. Initialize the text style. Here, the font color is set to pure black, the font size to **60**, and the font weight to **400**.
 
    <!-- @[drawing_simple_text_c_create_textStyle](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkGraphics2D/TextEngine/NDKDrawingSimpleText/entry/src/main/cpp/samples/sample_bitmap.cpp) -->
-   
+
    ``` C++
    // Set the text color, size, and weight. If TextStyle is not set, the default TextStyle in TypographyStyle is used.
    OH_Drawing_TextStyle *txtStyle = OH_Drawing_CreateTextStyle();
@@ -48,7 +50,7 @@ In a simple user interface, only a few lines of static text need to be displayed
 4. Initialize the paragraph object and add text.
 
    <!-- @[drawing_simple_text_c_create_typography](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkGraphics2D/TextEngine/NDKDrawingSimpleText/entry/src/main/cpp/samples/sample_bitmap.cpp) -->
-   
+
    ``` C++
    // Create a FontCollection object to manage the font matching logic.
    OH_Drawing_FontCollection *fc = OH_Drawing_CreateFontCollection();
@@ -67,7 +69,7 @@ In a simple user interface, only a few lines of static text need to be displayed
 5. Layout the paragraph and draw the text.
 
    <!-- @[drawing_simple_text_c_layout_and_paint](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkGraphics2D/TextEngine/NDKDrawingSimpleText/entry/src/main/cpp/samples/sample_bitmap.cpp) -->
-   
+
    ``` C++
    // Set the maximum width.
    double maxWidth = width_;
@@ -79,7 +81,7 @@ In a simple user interface, only a few lines of static text need to be displayed
 6. Release the memory.
 
    <!-- @[drawing_simple_text_c_destroy](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkGraphics2D/TextEngine/NDKDrawingSimpleText/entry/src/main/cpp/samples/sample_bitmap.cpp) -->
-   
+
    ``` C++
    // Release the memory.
    OH_Drawing_DestroyTypographyStyle(typoStyle);
@@ -91,4 +93,4 @@ In a simple user interface, only a few lines of static text need to be displayed
 
 ## Effect
 
-![Simple-text-drawing](figures/Simple-text-drawing.png)
+![Simple text drawing](figures/Simple-text-drawing.png)

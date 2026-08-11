@@ -17,7 +17,7 @@
     - [使用AVPlayer添加视频外挂字幕(ArkTS)](video-subtitle.md)
     - [使用SoundPool播放短音频(ArkTS)](using-soundpool-for-playback.md)
   - 录制<!--media-recording-arkts-->
-    - [使用AVRecorder录制音频(ArkTS)](using-avrecorder-for-recording.md)
+    - [使用AVRecorder录制音频（ArkTS）](using-avrecorder-for-recording.md)
     - [使用AVRecorder录制视频(ArkTS)](video-recording.md)
     - [使用AVScreenCaptureRecorder录屏写文件(ArkTS)](using-avscreencapture-ArkTs.md)
   - 媒体信息查询<!--media-info-arkts-->
@@ -32,7 +32,7 @@
     - [使用AVPlayer播放音频(C/C++)](using-ndk-avplayer-for-playback.md)
     - [使用AVPlayer播放视频(C/C++)](using-ndk-avplayer-for-video-playback.md)
     - [使用AVPlayer播放流媒体(C/C++)](using-ndk-avplayer-for-streaming.md)
-    - [使用LPP播放器播放视频(C/C++)](using-ndk-lpp-for-playback.md)
+    - [使用LPP播放器播放视频 (C/C++)](using-ndk-lpp-for-playback.md)
   - 录制<!--media-recording-c-->
     - [使用AVRecorder录制音频(C/C++)](using-ndk-avrecorder-for-audio-recording.md)
     - [使用AVRecorder录制视频(C/C++)](using-ndk-avrecorder-for-video-recording.md)
@@ -42,7 +42,7 @@
       - [录屏常见问题](avscreencapture-faqs.md)
     - [使用AVScreenCapture录屏写文件(C/C++)](using-avscreencapture-for-file.md)
     - [使用AVScreenCapture实现窗口级录屏(C/C++)](using-avscreencapture-for-file-with-window.md)<!--RP3--><!--RP3End-->
-    - [屏幕录制支持矩形区域录制(C/C++)](video-supports-rectangular-area-recording.md)
+    - [屏幕录制支持矩形区域录制](video-supports-rectangular-area-recording.md)
   - 媒体信息查询<!--media-info-c-->
     - [使用AVMetadataExtractor获取元数据(C/C++)](using-ndk-avmetadataextractor-for-media.md)
     - [使用AVImageGenerator获取视频帧(C/C++)](using-ndk-avimagegenerator-for-video.md)

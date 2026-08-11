@@ -1,9 +1,9 @@
 # Mechanic Kit（机械体设备控制器）<!--mechanic-kit-->
 <!--Kit: Mechanic Kit-->
 <!--Subsystem: Mechanic-->
-<!--Owner: @hobbycao-->
-<!--Designer: @saga2025-->
-<!--Tester: @zhaodengqi-->
+<!--Owner: @qxqxqxqxqx-->
+<!--Designer: @peter__1024-->
+<!--Tester: @Aullar-->
 <!--Adviser: @hu-zhiqiong-->
 
 - [Mechanic Kit简介](mechanic-kit-intro.md)
@@ -11,3 +11,4 @@
 <!--Del-->
 - [设备转动控制开发指南（仅对系统应用开放）](rotation-control-guide-sys.md)
 <!--DelEnd-->
+- [术语](mechanic-glossary.md)

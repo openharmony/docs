@@ -1,10 +1,12 @@
 # image_native.h
+
 <!--Kit: Image Kit-->
 <!--Subsystem: Multimedia-->
 <!--Owner: @aulight02-->
-<!--Designer: @liyang_bryan-->
+<!--Designer: @XiaoYao555-->
 <!--Tester: @xchaosioda-->
 <!--Adviser: @w_Machine_cc-->
+<!-- md-trans-meta sourceCommit=9329f19aa2995f079ff9cf109a20aad0033a91a3 translatedAt=2026-08-03T03:57:50.670Z pushedAt=2026-08-04T03:04:24.840Z -->
 
 ## Overview
 
@@ -63,7 +65,6 @@ The type of data stored in the OH_ImageNative object depends on whether the appl
 
 **Since**: 12
 
-
 **Parameters**
 
 | Name| Description|
@@ -88,7 +89,6 @@ Image_ErrorCode OH_ImageNative_GetComponentTypes(OH_ImageNative *image,uint32_t 
 Obtains the component types of an [OH_ImageNative](capi-image-nativemodule-oh-imagenative.md) object.
 
 **Since**: 12
-
 
 **Parameters**
 
@@ -116,7 +116,6 @@ Obtains the buffer corresponding to a component type in an [OH_ImageNative](capi
 
 **Since**: 12
 
-
 **Parameters**
 
 | Name| Description|
@@ -142,7 +141,6 @@ Image_ErrorCode OH_ImageNative_GetBufferSize(OH_ImageNative *image,uint32_t comp
 Obtains the size of the buffer corresponding to a component type in an [OH_ImageNative](capi-image-nativemodule-oh-imagenative.md) object.
 
 **Since**: 12
-
 
 **Parameters**
 
@@ -172,14 +170,13 @@ Camera preview stream data must be read based on the stride. For details, see [S
 
 **Since**: 12
 
-
 **Parameters**
 
 | Name| Description|
 | -- | -- |
 | [OH_ImageNative](capi-image-nativemodule-oh-imagenative.md) *image | Pointer to an OH_ImageNative object.|
 | uint32_t componentType | Component type. The value is obtained using the [OH_ImageNative_GetComponentTypes](#oh_imagenative_getcomponenttypes) API.|
-| int32_t *rowStride | Pointer to the row stride obtained.|
+| int32_t *rowStride | Pointer to the pixel row stride obtained.|
 
 **Returns**
 
@@ -198,7 +195,6 @@ Image_ErrorCode OH_ImageNative_GetPixelStride(OH_ImageNative *image,uint32_t com
 Obtains the pixel stride corresponding to a component type in an [OH_ImageNative](capi-image-nativemodule-oh-imagenative.md) object.
 
 **Since**: 12
-
 
 **Parameters**
 
@@ -230,13 +226,12 @@ To obtain the generation time of a photo, you can use [OH_ImageSourceNative_GetI
 
 **Since**: 12
 
-
 **Parameters**
 
 | Name| Description|
 | -- | -- |
 | [OH_ImageNative](capi-image-nativemodule-oh-imagenative.md) *image | Pointer to an OH_ImageNative object.|
-| int64_t *timestamp | Pointer to the timestamp.|
+| int64_t *timestamp | Pointer to the timestamp obtained.|
 
 **Returns**
 
@@ -255,7 +250,6 @@ Image_ErrorCode OH_ImageNative_Release(OH_ImageNative *image)
 Releases an [OH_ImageNative](capi-image-nativemodule-oh-imagenative.md) object.
 
 **Since**: 12
-
 
 **Parameters**
 

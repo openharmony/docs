@@ -42,7 +42,7 @@ CounterComponent({&nbsp;options:&nbsp;CounterOptions&nbsp;})
 
 | 名称   | 类型                              | 必填 | 装饰器类型 | 说明                    |
 | ------- | --------------------------------- | ---- | ---------- | ----------------------- |
-| options | [CounterOptions](#counteroptions) | 是   | \@Prop      | 定义Counter组件的类型及样式选项。 |
+| options | [CounterOptions](#counteroptions) | 是   | \@Prop      | 配置选项，用于配置Counter组件的类型和样式。包含type（Counter类型）、direction（布局方向）、numberOptions（列表型和紧凑型样式）、inlineOptions（数值内联样式）、dateOptions（日期内联样式）等配置项。 |
 
 ## CounterOptions
 
@@ -115,7 +115,7 @@ InlineStyleOptions定义了数值内联型Counter的属性和事件。
 | min       | number                 | 否  | 是  | 设置Counter的最小值。<br>默认值：0<br>取值范围：(-∞, max]<br>超出取值范围时（即设置值大于max），按max处理。<br>值为undefined时，按默认值处理。 |
 | max       | number                 | 否  | 是  | 设置Counter的最大值。<br>默认值：999<br>取值范围：[min, +∞)<br>超出取值范围时（即设置值小于min），按min处理。<br>值为undefined时，按默认值处理。 |
 | textWidth | number                 | 否  | 是  | 设置数值文本的宽度。<br>默认值：自适应文本宽度。<br>取值范围：[0, +∞)<br>单位：vp<br>超出取值范围时（即设置值小于0），按0处理。<br>值为undefined时，按默认值处理。|
-| onChange  | (value: number) => void | 否  | 是  | 数值改变时，返回当前值。使用场景：当需要在数值变化时执行自定义操作（如更新关联UI、记录日志、保存状态等）时传入此回调。<br>value：当前显示的数值。<br>默认值：数值改变时，不返回值。<br>值为undefined时，按默认值处理。 |
+| onChange  | (value: number) => void | 否  | 是  | 数值改变时，返回当前值。使用场景：当需要在数值变化时执行自定义操作（如更新关联UI、记录日志、保存状态等）时传入此回调。<br>value：当前显示的数值。<br>默认值：不触发数值改变时的回调。<br>值为undefined时，按默认值处理。 |
 
 > **说明：**
 >
@@ -337,7 +337,7 @@ struct DateStyleExample {
 
 ### 示例5（镜像布局展示）
 
-设置direction属性，实现列表型、紧凑型、数值内联型、日期内联型Counter的镜像布局。
+该示例通过设置direction属性，实现了列表型、紧凑型、数值内联型、日期内联型Counter的镜像布局。
 
 ```ts
 import { CounterType, CounterComponent, DateData } from '@kit.ArkUI';

@@ -5,7 +5,7 @@
 <!--Designer: @tsj_20201-->
 <!--Tester: @fredyuan912-->
 <!--Adviser: @Brilliantry_Rui-->
-- [Introduction to ArkUI](arkui-overview.md)
+- [About This Kit](arkui-overview.md)
 - UI Development (ArkTS-based Declarative Development Paradigm)<!--arkts-ui-development-->
   - [UI Development (ArkTS-based Declarative Development Paradigm) Overview](arkts-ui-development-overview.md)
   - Basic Syntax of UI Paradigms<!--arkts-ui-paradigm-basic-syntax-->
@@ -117,7 +117,7 @@
   - Setting Component Navigation and Page Routing<!--arkts-set-navigation-routing-->
     - [Component Navigation and Page Routing Overview](arkts-navigation-introduction.md)
     - [Component Navigation (Navigation) (Recommended)]<!--arkts-navigation-navigation-->
-      - [Introduction to Navigation Architecture](./arkts-navigation-architecture.md)
+      - [Navigation Architecture](./arkts-navigation-architecture.md)
       - [Subpage](./arkts-navigation-navdestination.md)
       - [Page Routing](./arkts-navigation-jump.md)
       - [Transition Animation](./arkts-navigation-animation.md)
@@ -139,7 +139,7 @@
   - Lists and Grids<!--arkts-list-and-grid-->
     - [List and Grid Overview](arkts-list-grid-development-overview.md)
     - [Creating a List (List)](arkts-layout-development-create-list.md)
-    - [Creating an Arc List (ArcList)](arkts-layout-development-create-arclist.md) (Recommended for Circular Screens)
+    - [Creating an Arc List (ArcList) (Recommended for Circular Screens)](arkts-layout-development-create-arclist.md)
     - [Creating a Grid (Grid/GridItem)](arkts-layout-development-create-grid.md)<!--RP11--><!--RP11End-->
     - [Creating a Waterfall Flow (WaterFlow)](arkts-layout-development-create-waterflow.md)<!--RP12--><!--RP12End-->
     - [Creating Lazy Layouts (LazyColumnLayout/LazyVGridLayout/LazyVWaterFlowLayout)](arkts-layout-development-create-lazy-layout.md)
@@ -189,7 +189,7 @@
        - [Global Popup Independent of UI Components (openPopup)](arkts-popup-and-menu-components-uicontext-popup.md)
      - Binding Modal Pages<!--arkts-bind-modal-->
         - [Modal Page Overview](arkts-modal-overview.md)
-        - [Binding a Semi-Modal Page (bindSheet)](arkts-sheet-page.md)
+        - [Binding a Semi-Modal Sheet (bindSheet)](arkts-sheet-page.md)
         - [Binding a Full-Modal Page (bindContentCover)](arkts-contentcover-page.md)
      - [Using Toasts (Toast)](arkts-create-toast.md)
      - [Managing Overlays (OverlayManager)](arkts-create-overlaymanager.md)<!--RP9--><!--RP9End-->
@@ -250,7 +250,7 @@
       - [Custom Node Overview](arkts-user-defined-node.md)
       - [Custom Placeholder Nodes](arkts-user-defined-place-holder.md)
       - [Custom Component Node (FrameNode)](arkts-user-defined-arktsNode-frameNode.md)
-      - [Custom RenderNode (RenderNode)](arkts-user-defined-arktsNode-renderNode.md)
+      - [Custom Render Node (RenderNode)](arkts-user-defined-arktsNode-renderNode.md)
       - [Custom Declarative Node (BuilderNode)](arkts-user-defined-arktsNode-builderNode.md)
       - [Setting Custom Node Cross-Language Attributes](arkts-user-defined-arktsNode-crossLanguage.md)<!--RP3--><!--RP3End-->
     - Custom Drawing<!--arkts-draw-->
@@ -302,7 +302,7 @@
     - [Image Display (Image)](ndk-image-component.md)
     - [Using the Swiper Component](ndk-swiper.md)
   - [Building Form Components](ndk-build-form-components.md)
-  - [Building Dialog Boxes](ndk-build-pop-up-window.md)
+  - [Building a Dialog Box](ndk-build-pop-up-window.md)
   - Using Animation<!--arkts-use-animation-ndk-->
     - [Using Animations](ndk-use-animation.md)
     - [Animation Development](ndk-use-animation-scene.md)
@@ -315,8 +315,8 @@
     - [Binding Drag Events](ndk-drag-event.md)
   - Using Customization Capabilities<!--arkts-build-custom-ndk-->
     - [Building Custom Components](ndk-build-custom-components.md)
-    - [Implementing Custom Drawing](arkts-user-defined-draw.md)
-  - [Integrating Accessibility Through XComponent](ndk-accessibility-xcomponent.md)
+    - [Custom Drawing](arkts-user-defined-draw.md)
+  - [Integrating Accessibility Through Custom Drawing](ndk-accessibility-xcomponent.md)
   - [Launching EmbeddedUIExtensionAbility with EmbeddedComponent](ndk-embedded-component.md)
   - [Querying and Operating Custom Nodes](ndk-node-query-operate.md)
   - [Ensuring Multi-Instance Functionality in the NDK](ndk-scope-task.md)

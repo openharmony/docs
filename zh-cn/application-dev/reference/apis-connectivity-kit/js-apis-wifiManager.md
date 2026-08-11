@@ -595,7 +595,7 @@ WAPI(Wireless LAN Authentication and Privacy Infrastructure) 身份验证协议�
   - 在wapiConfig中：
     - wapiAsCert传递AS证书的文本内容。
     - wapiUserCert传递用户证书的文本内容。
- - 方式二:通过配置preSharedKey进行链接。WifiDeviceConfig中关键字段的配置如下:
+- 方式二:通过配置preSharedKey进行连接。WifiDeviceConfig中关键字段的配置如下:
    - preSharedKey传参为路由器上设置的密码;
    - securityType设置为WIFI_SEC_TYPE_WAPI_PSK。
 

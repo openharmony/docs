@@ -12,7 +12,7 @@ typedef struct ArkUI_Matrix4ScaleOptions ArkUI_Matrix4ScaleOptions
 
 ## 概述
 
-定义矩阵缩放变换的参数配置对象。
+定义4×4矩阵缩放变换的参数配置对象，各参数及其取值原则详见成员变量说明。
 
 **起始版本：** 24
 

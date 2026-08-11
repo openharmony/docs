@@ -15,7 +15,7 @@
 
 ## 基本概念
 
-- WIFI 共享：通过 WIFI 热点共享网络。
+- Wi-Fi共享：通过Wi-Fi热点共享网络。
 - 蓝牙共享：通过蓝牙共享网络。
 - USB 共享：通过 USB 共享网络。
 
@@ -42,14 +42,14 @@
 | --------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------- |
 | isSharingSupported(callback: AsyncCallback\<boolean>): void;    | 获取当前系统是否支持网络共享，使用 callback 方式作为异步方法。                                                       |
 | isSharing(callback: AsyncCallback\<boolean>): void;             | 获取当前共享状态，使用 callback 方式作为异步方法。                                                                   |
-| startSharing(type: SharingIfaceType, callback: AsyncCallback\<void>): void;  | 开启共享，type 为共享类型，目前支持 Wifi 热点、蓝牙、USB，使用 callback 方式作为异步方法。                |
-| stopSharing(type: SharingIfaceType, callback: AsyncCallback\<void>): void;  | 停止指定类型共享，type 为共享类型，包括 Wifi 热点、蓝牙、USB，使用 callback 方式作为异步方法。             |
+| startSharing(type: SharingIfaceType, callback: AsyncCallback\<void>): void;  | 开启共享，type为共享类型，目前支持Wi-Fi热点、蓝牙、USB，使用callback方式作为异步方法。                |
+| stopSharing(type: SharingIfaceType, callback: AsyncCallback\<void>): void;  | 停止指定类型共享，type为共享类型，包括Wi-Fi热点、蓝牙、USB，使用callback方式作为异步方法。             |
 | getStatsRxBytes(callback: AsyncCallback\<number>): void;         | 获取共享接收数据量，单位 KB，使用 callback 方式作为异步方法。                                                        |
 | getStatsTxBytes(callback: AsyncCallback\<number>): void;         | 获取共享发送数据量，单位 KB，使用 callback 方式作为异步方法。                                                        |
 | getStatsTotalBytes(callback: AsyncCallback\<number>): void;      | 获取共享总数据流量，单位 KB，使用 callback 方式作为异步方法。                                                        |
 | getSharingIfaces(state: SharingIfaceState, callback: AsyncCallback\<Array\<string>>): void;  | 获取指定状态的网卡名称，state 为状态，包括正在共享、可共享、共享错误，使用 callback 方式作为异步方法。 |
-| getSharingState(type: SharingIfaceType, callback: AsyncCallback\<SharingIfaceState>): void;  | 获取指定类型共享状态，type 为类型，目前支持 Wifi 热点、蓝牙、USB，使用 callback 方式作为异步方法。  |
-| getSharableRegexes(type: SharingIfaceType, callback: AsyncCallback\<Array\<string>>): void;  | 获取与指定类型匹配的网卡正则表达式列表，type 为类型，目前支持 Wifi 热点、蓝牙、USB，使用 callback 方式作为异步方法。 |
+| getSharingState(type: SharingIfaceType, callback: AsyncCallback\<SharingIfaceState>): void;  | 获取指定类型共享状态，type为类型，目前支持Wi-Fi热点、蓝牙、USB，使用callback方式作为异步方法。  |
+| getSharableRegexes(type: SharingIfaceType, callback: AsyncCallback\<Array\<string>>): void;  | 获取与指定类型匹配的网卡正则表达式列表，type为类型，目前支持Wi-Fi热点、蓝牙、USB，使用callback方式作为异步方法。 |
 | on(type: 'sharingStateChange', callback: Callback\<boolean>): void;        | 注册共享状态改变监听，返回网络共享的状态。                                                                |
 | off(type: 'sharingStateChange', callback?: Callback\<boolean>): void;      | 注销共享状态改变监听，返回网络共享的状态。                                                                |
 | function on(type: 'interfaceSharingStateChange', callback: Callback\<{ type: SharingIfaceType, iface: string, state: SharingIfaceState }>): void;    | 注册指定网卡共享状态改变监听。    |

@@ -47,7 +47,7 @@ MetadataBinding（记忆链接）指由第三方应用提供[鸿蒙App Linking�
    import { Callback } from '@kit.BasicServicesKit';
    ```
 
-2. 定义记忆服务回调及包名, 函数接收回传编码的内容。   
+2. 定义记忆服务回调及包名，函数接收回传编码的内容。   
 
    <!-- @[metadata_binding_parameter](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/Stationary/MetadataBinding/entry/src/main/ets/pages/Index.ets) -->
    

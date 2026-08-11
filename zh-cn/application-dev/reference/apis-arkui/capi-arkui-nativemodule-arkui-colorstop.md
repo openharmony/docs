@@ -26,8 +26,8 @@ typedef struct {...} ArkUI_ColorStop
 
 | 名称 | 描述 |
 | -- | -- |
-| const uint32_t* colors | 颜色数组，与stops数组成对对应，每个颜色对应一个渐变位置，数组长度必须与size一致。 |
-| float* stops | 位置数组，取值范围为0.0~1.0，表示渐变色的位置偏移，数组长度必须与size一致。 |
-| int size | 数组长度，colors和stops数组的实际元素个数。 |
+| const uint32_t* colors | 颜色数组，与stops数组按索引一一对应，每个颜色对应一个渐变位置，数组长度必须与size一致。 |
+| float* stops | 位置数组，与colors数组成对对应，取值范围为0.0~1.0，表示渐变色的位置偏移，数组长度必须与size一致。设置小于0的值时，自动修正为0。 |
+| int size | 数组长度，必须与colors和stops数组的实际元素个数一致，设置前需先确定colors和stops数组的实际元素个数。 |
 
 

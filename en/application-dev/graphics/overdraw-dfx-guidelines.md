@@ -1,6 +1,8 @@
 # Overdraw Debugging
 
-Deeply nested layouts of an application can lead to performance issues such as redundant use of CPU, GPU, and other computing resources. For example, in a deeply nested layout, drawing instructions of some components are partially or completely covered by drawing instructions of others during rendering. When an application draws a pixel on the screen multiple times within a single frame of rendering, this is called overdraw. To help you reduce overdraw, the system introduces the overdraw debugging feature. With this feature, you can view the location and level of the component that causes overdraw.
+<!-- md-trans-meta sourceCommit=b6a9d350d597e5a7ebd15d61bba2ace5e5dcfa1c translatedAt=2026-08-03T11:21:23.250Z pushedAt=2026-08-04T07:13:28.746Z -->
+
+When an app page layout is deeply nested, the drawing instructions of some components may be partially or completely covered by those of other components during rendering, resulting in redundant consumption of CPU, GPU, and other computing resources. This situation, where pixels on a screen are drawn multiple times, is called overdraw. You can use the overdraw debugging commands provided by the system to identify the locations and hierarchy of components that cause overdraw, thereby reducing the rendering load of the app.
 
 This topic describes how to use the overdraw debugging feature and how to reduce overdraw.
 
@@ -36,17 +38,19 @@ You can use the shell commands to enable or disable the overdraw debugging featu
 
   ![](figures/overdraw-check.png)
 
-
 ## Analyzing Overdrawn Components
 
 After you enable overdraw debugging and open an application UI, overdrawn pixels are highlighted by boxes with different colors. A deeper color represents a higher level of overdraw. The mapping is as follows:
 
-- Original color: no overdraw.
-- Blue-purple: Overdraw occurs once.
-- Green: Overdraw occurs twice.
-- Light red: Overdraw occurs for three times.
-- Dark red: Overdraw occurs for four times or more.
+- Original color: No overdraw.
 
+- Blue-purple: Overdraw occurs once.
+
+- Green: Overdraw occurs twice.
+
+- Light red: Overdraw occurs three times.
+
+- Dark red: Overdraw occurs four times or more.
 
 The following is a sample application with redundant background color nesting.
 

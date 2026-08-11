@@ -6,7 +6,7 @@
 <!--Tester: @fredyuan0912-->
 <!--Adviser: @Brilliantry_Rui-->
 
-DynamicComponent用于支持在本页面内嵌入显示独立Abc（.abc文件）提供的UI，展示的内容在Worker线程中运行。
+DynamicComponent用于支持在本页面内嵌入显示独立Abc（方舟字节码，.abc文件）提供的UI，展示的内容在Worker线程中运行。
 
 通常用于动态加载Abc页面的模块化开发场景。通过Worker线程隔离运行Abc UI，避免阻塞主线程，提升应用流畅度。
 
@@ -37,13 +37,13 @@ DynamicComponent(options: DynamicOptions)
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| options | [DynamicOptions](#dynamicoptions) | 是 | DynamicComponent的构造配置参数，用于配置要加载的Abc页面入口、运行Worker及显示选项。 |
+| options | [DynamicOptions](#dynamicoptions) | 是 | DynamicComponent的构造配置参数，用于配置要加载的Abc页面入口、运行Worker、显示选项及跨进程嵌套等。 |
 
 ## Worker
 
 type Worker = Worker
 
-用于运行Abc的Worker线程对象。
+用于运行Abc的Worker线程对象。需通过worker.ThreadWorker创建。
 
 **起始版本：** 26.0.0
 
@@ -159,7 +159,7 @@ struct Index {
         .height('60%')
         .onError((error: BusinessError) => {
           this.errorMessage = `code: ${error.code}, message: ${error.message}`;
-          hilog.error(0x0000, 'DynamicComponentDemo', `onError: ${this.errorMessage}`);
+          console.error(`onError: code: ${error.code}, message: ${error.message}`);
         })
         .borderWidth(10)
         .borderColor(Color.Red)

@@ -1,10 +1,12 @@
 # Common UI Application Freezing Issues
+
 <!--Kit: ArkUI-->
 <!--Subsystem: ArkUI-->
 <!--Owner: @caoruihong-->
-<!--Designer: @lmleon-->
+<!--Designer: @dutie123-->
 <!--Tester: @fredyuan0912-->
 <!--Adviser: @Brilliantry_Rui-->
+<!-- md-trans-meta sourceCommit=6a7a9695d382ab21344e9751f365130fa72ffa09 translatedAt=2026-08-04T06:38:10.428Z pushedAt=2026-08-04T08:30:28.291Z -->
 
 This document summarizes common ArkUI API misuse scenarios that may cause application freezes, and provides guidance to help you avoid similar issues during development.
 
@@ -36,7 +38,6 @@ Do not set **syncLoad** to **true** when loading images from the network.
 **Reference**
 
 [syncLoad](../reference/apis-arkui/arkui-ts/ts-basic-components-image.md#syncload8)
-
 
 ## Executing Time-Consuming Tasks on the Main UI Thread
 

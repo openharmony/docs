@@ -1,10 +1,12 @@
 # Using the Input Method in a Custom Edit Box
+
 <!--Kit: IME Kit-->
 <!--Subsystem: MiscServices-->
-<!--Owner: @illybyy-->
+<!--Owner: @codexu62-->
 <!--Designer: @andeszhang-->
 <!--Tester: @murphy84-->
 <!--Adviser: @zhang_yixin13-->
+<!-- md-trans-meta sourceCommit=f0e283ec5c4bc528d359a2a2fde61332cedaf473 translatedAt=2026-08-04T08:30:37.965Z pushedAt=2026-08-04T09:02:35.985Z -->
 
 In the inputmethod framework, use [getController](../reference/apis-ime-kit/js-apis-inputmethod.md#inputmethodgetcontroller9) to obtain the [InputMethodController](../reference/apis-ime-kit/js-apis-inputmethod.md#inputmethodcontroller) instance for binding the input method and listening to various events of the input method application, such as insertion, deletion, selection, and cursor movement. In this way, the input method can be used in the custom edit box, implementing more flexible and free editing operations.
 
@@ -25,7 +27,7 @@ In the inputmethod framework, use [getController](../reference/apis-ime-kit/js-a
 2. In the component, use the **Text** component to show the text in the custom edit box, and the **inputText** state variable to specify the text to display in the text input box.
 
    <!-- @[input_case_input_CustomInputText](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/InputMethod/KikaInputMethod/entry/src/main/ets/components/CustomInput.ets) -->
-   
+
    ``` TypeScript
    import { BusinessError } from '@kit.BasicServicesKit';
    import { inputMethod } from '@kit.IMEKit';
@@ -57,11 +59,10 @@ In the inputmethod framework, use [getController](../reference/apis-ime-kit/js-a
      }
    ```
 
-
 3. In the component, obtain an **inputMethodController** instance. When the text is clicked, call the **controller** instance's **attach** method to bind and activate the soft keyboard, and register the input method to listen for text insertion and deletion events. This example only demonstrates insertion and deletion.
 
    <!-- @[input_case_input_CustomInput](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/InputMethod/KikaInputMethod/entry/src/main/ets/components/CustomInput.ets) -->
-   
+
    ``` TypeScript
    import { BusinessError } from '@kit.BasicServicesKit';
    import { inputMethod } from '@kit.IMEKit';
@@ -123,15 +124,14 @@ In the inputmethod framework, use [getController](../reference/apis-ime-kit/js-a
    }
    ```
 
-
 4. Import the component to the application UI layout. In this example, the **Index.ets** and **CustomInput.ets** files are in the same directory.
 
    <!-- @[input_case_input_CustomInput](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/InputMethod/KikaInputMethod/entry/src/main/ets/pages/PrivatePreview.ets) -->
-   
+
    ``` TypeScript
    CustomInput()
    ```
 
-
 ## Effect
+
   ![Example effect](./figures/image-1.png)

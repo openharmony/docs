@@ -1,10 +1,12 @@
 # IPC and RPC Development (ArkTS)
+
 <!--Kit: IPC Kit-->
 <!--Subsystem: Communication-->
 <!--Owner: @xdx19211@luodonghui0157-->
 <!--Designer: @zhaopeng_gitee-->
 <!--Tester: @Lyuxin-->
 <!--Adviser: @zhang_yixin13-->
+<!-- md-trans-meta sourceCommit=a058faf9554a4e15f6e3d83e8300a629fbc557db translatedAt=2026-08-04T13:29:15.897Z pushedAt=2026-08-05T06:56:22.419Z -->
 
 ## When to Use
 
@@ -25,6 +27,7 @@ IPC/RPC is used to implement object communication across processes (one-to-one m
 > - The complete IPC & RPC communication development process involves the implementation of the system **ServiceExtensionAbility**, so this guide only provides sample code for the client.
 
 <!--Del-->
+
 ### Server Implementation
 
 Create a ServiceExtensionAbility as follows:
@@ -47,7 +50,7 @@ Create a ServiceExtensionAbility as follows:
 > - The **ServiceExtensionAbility** module is only open to system applications. When using this module, you need to manually replace the SDK in the current project with the full SDK. To use the full SDK, you need to manually obtain it from the image site and replace it in DevEco Studio. For details, see [Switching to Full SDK](../faqs/full-sdk-switch-guide.md).
 
   <!-- @[service_impl](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/IPC/IPC_sendMessage/IPC_Stub/entry/src/main/ets/ServiceExtAbility/ServiceExtAbility.ets) -->
-  
+
   ``` TypeScript
   import { ServiceExtensionAbility, Want } from '@kit.AbilityKit';
   import { rpc } from '@kit.IPCKit';
@@ -99,6 +102,7 @@ Create a ServiceExtensionAbility as follows:
     }
   }
   ```
+
 <!--DelEnd-->
 
 ### Client Implementation
@@ -122,7 +126,7 @@ Create a ServiceExtensionAbility as follows:
   Import dependencies and define required variables.
 
   <!-- @[front-end_dependencies](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/IPC/IPC_sendMessage/IPC_Client/entry/src/main/ets/pages/Index.ets) -->
-  
+
   ``` TypeScript
   import { BusinessError } from '@kit.BasicServicesKit';
   import { Want, common } from '@kit.AbilityKit';
@@ -137,7 +141,7 @@ Create a ServiceExtensionAbility as follows:
   // Death notification
   class MyDeathRecipient implements rpc.DeathRecipient {
     onRemoteDied() {
-      hilog.info(0x0000, 'testTag', 'server is died');
+      hilog.info(0x0000, 'testTag', 'server is dead');
     }
   }
   let deathRecipient = new MyDeathRecipient();
@@ -146,7 +150,7 @@ Create a ServiceExtensionAbility as follows:
   Connect to the service, obtain the proxy object, send information to the server, and tear down the connection when the communication is over.
 
   <!-- @[function_implement](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/IPC/IPC_sendMessage/IPC_Client/entry/src/main/ets/pages/Index.ets) -->
-  
+
   ``` TypeScript
   // Connect to the service.
   function connectAbility(context:common.UIAbilityContext, promptAction: PromptAction) {
@@ -251,12 +255,12 @@ Create a ServiceExtensionAbility as follows:
   }
   ```
 
-  In the RPC (inter-process communication across devices) scenario, the following is an example of the client:
+  In the RPC (inter-process communication across devices) scenario, the following is an example of a client:
 
   Import dependencies and define required variables.
 
   <!-- @[rpc_front-end_dependencies](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/IPC/RPC_sendMessage/RPC_Client/entry/src/main/ets/pages/Index.ets) -->
-  
+
   ``` TypeScript
   import { BusinessError } from '@kit.BasicServicesKit';
   import { rpc } from '@kit.IPCKit';
@@ -275,7 +279,7 @@ Create a ServiceExtensionAbility as follows:
   // Death notification
   class MyDeathRecipient implements rpc.DeathRecipient {
     onRemoteDied() {
-      hilog.info(0x0000, 'testTag', 'server is died');
+      hilog.info(0x0000, 'testTag', 'server is dead');
     }
   };
   let deathRecipient = new MyDeathRecipient();
@@ -284,7 +288,7 @@ Create a ServiceExtensionAbility as follows:
 Obtain the [permission for multi-device collaboration](../security/AccessToken/permissions-for-all-user.md#ohospermissiondistributed_datasync), obtain the peer device ID (unique network identifier of the device, which can be retrieved via **distributedDeviceManager**) in the networking scenario, connect to the service, acquire the proxy object, and send messages to the server. Disconnect once the communication between the proxy object and server ends.
 
   <!-- @[rpc_function_implement](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/IPC/RPC_sendMessage/RPC_Client/entry/src/main/ets/pages/Index.ets) -->
-  
+
   ``` TypeScript
   // Obtain the permission.
   function getPermission(context:common.UIAbilityContext) {
@@ -437,11 +441,13 @@ Obtain the [permission for multi-device collaboration](../security/AccessToken/p
   ```
 
 <!--Del-->
+
 In the FA model, the [connectAbility](../reference/apis-ability-kit/js-apis-ability-featureAbility.md#featureabilityconnectability7) API is used to connect to an ability.
 
 After IPC is complete, call [disconnectAbility](../reference/apis-ability-kit/js-apis-ability-featureAbility.md#featureabilitydisconnectability7) to disable the connection. The **connectId** is saved when the service is connected.
 
 <!--code_no_check_fa-->
+
 ``` TypeScript
 import { featureAbility } from '@kit.AbilityKit';
 
@@ -454,16 +460,19 @@ function disconnectCallback() {
 // Use the connectId saved when the service is successfully connected to disable the connection.
 featureAbility.disconnectAbility(connectId, disconnectCallback);
 ```
+
 <!--DelEnd-->
 
 ## Sample
 
 > **NOTE**
 >
-> - The following complete examples involve **ServiceExtensionAbility** and requires the use of the full SDK. Before referencing an example, read the README of the example to complete the corresponding configuration before compiling.
+> - The following complete examples involve **ServiceExtensionAbility** and require the use of the full SDK. Before referencing an example, read the README of the example to complete the corresponding configuration before compiling.
 
 For the end-to-end complete example of IPC and RPC development, see the following:
 
 - [Complete IPC Example - Using Parcelable/ArrayBuffer](https://gitcode.com/openharmony/applications_app_samples/tree/master/code/SystemFeature/IPC/ObjectTransfer)
+
 - [Complete IPC Example - Passing Strings and Using Death Listener](https://gitcode.com/openharmony/applications_app_samples/tree/master/code/DocsSample/IPC/IPC_sendMessage)
+
 - [Complete RPC Example - Passing Strings and Using Death Listener](https://gitcode.com/openharmony/applications_app_samples/tree/master/code/DocsSample/IPC/RPC_sendMessage)

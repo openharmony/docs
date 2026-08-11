@@ -1,7 +1,7 @@
 # OH_NativeXComponent_Callback
 <!--Kit: ArkUI-->
 <!--Subsystem: ArkUI-->
-<!--Owner: @sd-wu-->
+<!--Owner: @pengzhiwen3-->
 <!--Designer: @dutie123-->
 <!--Tester: @liuli0427-->
 <!--Adviser: @Brilliantry_Rui-->
@@ -51,7 +51,7 @@ void (*OnSurfaceCreated)(OH_NativeXComponent* component, void* window)
 | 参数项                                | 描述 |
 |------------------------------------| -- |
 | [OH_NativeXComponent](capi-oh-nativexcomponent-native-xcomponent-oh-nativexcomponent.md)* component | 表示指向OH_NativeXComponent实例的指针。 |
-| void* window                       | 表示NativeWindow句柄。<br/>通过XComponent生命周期获取的NativeWindow本身由系统侧持有了一次引用计数，并会在OnSurfaceDestroyed回调触发之后将引用计数减一，引用计数归零后NativeWindow将被释放。 |
+| void* window                       | 表示NativeWindow句柄。<br>通过XComponent生命周期获取的NativeWindow本身由系统侧持有了一次引用计数，并会在OnSurfaceDestroyed回调触发之后将引用计数减一，引用计数归零后NativeWindow将被释放。 |
 
 ### OnSurfaceChanged()
 
@@ -71,7 +71,7 @@ void (*OnSurfaceChanged)(OH_NativeXComponent* component, void* window)
 | 参数项 | 描述 |
 | -- | -- |
 | [OH_NativeXComponent](capi-oh-nativexcomponent-native-xcomponent-oh-nativexcomponent.md)* component | 表示指向OH_NativeXComponent实例的指针。 |
-|  void* window | 表示NativeWindow句柄。 |
+| void* window | 表示NativeWindow句柄。该句柄在Surface尺寸或格式发生变化时传入，开发者可通过该句柄感知Surface的最新状态并更新渲染配置。 |
 
 ### OnSurfaceDestroyed()
 
@@ -91,7 +91,7 @@ void (*OnSurfaceDestroyed)(OH_NativeXComponent* component, void* window)
 | 参数项 | 描述 |
 | -- | -- |
 | [OH_NativeXComponent](capi-oh-nativexcomponent-native-xcomponent-oh-nativexcomponent.md)* component | 表示指向OH_NativeXComponent实例的指针。 |
-|  void* window | 表示NativeWindow句柄。<br/>在此回调触发后，系统侧持有的NativeWindow引用计数将减一，引用计数归零后NativeWindow将被释放。 |
+|  void* window | 表示NativeWindow句柄。此回调触发后，系统侧持有的NativeWindow引用计数将减一，引用计数归零后NativeWindow将被释放，请勿在此回调之后继续使用该window句柄。 |
 
 ### DispatchTouchEvent()
 
@@ -102,7 +102,7 @@ void (*DispatchTouchEvent)(OH_NativeXComponent* component, void* window)
 **描述：**
 
 
-当触摸事件被触发时调用，开发者可在此回调中获取触摸事件数据以实现自定义交互逻辑（如手势识别、自定义绘制等）。
+当触摸事件被分发时调用，开发者可在此回调中获取触摸事件数据以实现自定义交互逻辑（如手势识别、自定义绘制等）。
 
 **起始版本：** 8
 
@@ -111,6 +111,6 @@ void (*DispatchTouchEvent)(OH_NativeXComponent* component, void* window)
 | 参数项 | 描述 |
 | -- | -- |
 | [OH_NativeXComponent](capi-oh-nativexcomponent-native-xcomponent-oh-nativexcomponent.md)* component | 表示指向OH_NativeXComponent实例的指针。 |
-|  void* window | 表示NativeWindow句柄。 |
+|  void* window | 表示NativeWindow句柄。<br/>通过XComponent生命周期获取的NativeWindow本身由系统侧持有了一次引用计数，并会在OnSurfaceDestroyed回调触发之后将引用计数减一，引用计数归零后NativeWindow将被释放。 |
 
 

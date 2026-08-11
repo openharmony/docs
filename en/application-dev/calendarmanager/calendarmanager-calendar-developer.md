@@ -6,7 +6,7 @@
 <!--Designer: @qq_42718467-->
 <!--Tester: @z30055209-->
 <!--Adviser: @ge-yafang-->
-<!-- md-trans-meta sourceCommit=2e8ed2014cd1fbe9e33d268d0dc93a7addc42728 translatedAt=2026-07-25T11:27:37.937Z pushedAt=2026-07-25T11:30:59.248Z -->
+<!-- md-trans-meta sourceCommit=d88cb3706725257c508905ecb0cc9fb863683388 translatedAt=2026-08-01T02:49:30.752Z pushedAt=2026-08-01T03:00:50.583Z -->
 
 Calendar is used to store and manage personal or team events. Users can easily view, edit, and share event information on the calendar.
 
@@ -104,8 +104,6 @@ The table below lists the main APIs used for calendar management. For details ab
     ```
 
 4. Create a **Calendar** object based on the calendar account information.
-
-   Before creating a calendar account, query the account information first. If the account does not exist, an exception is thrown; after catching the exception, create the calendar account. Otherwise, duplicate accounts may be created.
 
     <!-- @[calendarData_indexImport](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/Calendar/CalendarManager/entry/src/main/ets/pages/Index.ets) -->
 
