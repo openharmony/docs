@@ -4480,7 +4480,7 @@ setMemoryNameSync(name: string): void
 
 > **说明：**
 >
-> HarmonyOS设备仅支持DMA和SHARE_MEMORY内存类型的PixelMap设置内存标识符，其他设备仅支持DMA内存类型的PixelMap设置内存标识符。
+> 仅支持DMA和SHARE_MEMORY内存类型的PixelMap设置内存标识符。
 
 **系统能力：** SystemCapability.Multimedia.Image.Core
 

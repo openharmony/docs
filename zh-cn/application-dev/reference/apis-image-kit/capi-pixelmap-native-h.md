@@ -119,7 +119,7 @@
 | [Image_ErrorCode OH_PixelmapNative_SetMetadata(OH_PixelmapNative *pixelmap, OH_Pixelmap_HdrMetadataKey key, OH_Pixelmap_HdrMetadataValue *value)](#oh_pixelmapnative_setmetadata) | 设置Pixelmap的HDR元数据。 |
 | [Image_ErrorCode OH_PixelmapNative_SetColorSpaceNative(OH_PixelmapNative *pixelmap, OH_NativeColorSpaceManager *colorSpaceNative)](#oh_pixelmapnative_setcolorspacenative) | 设置Pixelmap的NativeColorSpaceManager对象，用于管理Pixelmap的色彩空间信息。 |
 | [Image_ErrorCode OH_PixelmapNative_GetColorSpaceNative(OH_PixelmapNative *pixelmap, OH_NativeColorSpaceManager **colorSpaceNative)](#oh_pixelmapnative_getcolorspacenative) | 获取Pixelmap的NativeColorSpaceManager对象，用于查询Pixelmap当前配置的色彩空间信息。 |
-| [Image_ErrorCode OH_PixelmapNative_SetMemoryName(OH_PixelmapNative *pixelmap, char *name, size_t *size)](#oh_pixelmapnative_setmemoryname) | 设置Pixelmap的内存标识符，便于在内存调试或问题定位时识别该内存。<br>HarmonyOS设备仅支持DMA和SHARE_MEMORY内存类型的PixelMap设置内存标识符，其他设备仅支持DMA内存类型的PixelMap设置内存标识符。 |
+| [Image_ErrorCode OH_PixelmapNative_SetMemoryName(OH_PixelmapNative *pixelmap, char *name, size_t *size)](#oh_pixelmapnative_setmemoryname) | 设置Pixelmap的内存标识符，便于在内存调试或问题定位时识别该内存。<br>仅支持DMA和SHARE_MEMORY内存类型的PixelMap设置内存标识符。 |
 | [Image_ErrorCode OH_PixelmapNative_GetByteCount(OH_PixelmapNative *pixelmap, uint32_t *byteCount)](#oh_pixelmapnative_getbytecount) | 获取Pixelmap中所有像素所占用的总字节数，不包含内存对齐填充字节。 |
 | [Image_ErrorCode OH_PixelmapNative_GetAllocationByteCount(OH_PixelmapNative *pixelmap, uint32_t *allocationByteCount)](#oh_pixelmapnative_getallocationbytecount) | 获取Pixelmap实际分配的用于存储像素数据的内存字节数，包含内存对齐填充字节。与[OH_PixelmapNative_GetByteCount](#oh_pixelmapnative_getbytecount)（不包含内存填充）不同，本接口返回的是系统为Pixelmap分配的真实内存大小。 |
 | [Image_ErrorCode OH_PixelmapNative_AccessPixels(OH_PixelmapNative *pixelmap, void **addr)](#oh_pixelmapnative_accesspixels) | 获取Pixelmap像素数据的内存地址，并锁定这块内存。<br> 当该内存被锁定时，任何修改或释放该Pixelmap的像素数据的操作均会失败或无效。<br> 使用完毕后，必须调用[OH_PixelmapNative_UnaccessPixels](capi-pixelmap-native-h.md#oh_pixelmapnative_unaccesspixels)释放内存锁，两者需配对使用。 |
@@ -2004,7 +2004,7 @@ Image_ErrorCode OH_PixelmapNative_SetMemoryName(OH_PixelmapNative *pixelmap, cha
 
 **描述**
 
-设置Pixelmap的内存标识符，便于在内存调试或问题定位时识别该内存。<br>HarmonyOS设备仅支持DMA和SHARE_MEMORY内存类型的PixelMap设置内存标识符，其他设备仅支持DMA内存类型的PixelMap设置内存标识符。
+设置Pixelmap的内存标识符，便于在内存调试或问题定位时识别该内存。<br>仅支持DMA和SHARE_MEMORY内存类型的PixelMap设置内存标识符。
 
 **起始版本：** 13
 

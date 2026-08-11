@@ -1153,6 +1153,11 @@ scale(x: number, y: number): Promise\<void>
 
 根据输入的宽高缩放倍数对图片进行缩放。使用Promise异步回调。
 
+> **说明：**
+>
+> - 建议宽高的缩放倍数取正数，否则会产生翻转效果。
+> - 缩放倍数 = 缩放后的图像尺寸 / 缩放前的图像尺寸。
+
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.Image.Core
@@ -1191,6 +1196,11 @@ function scale(pixelMap: sendableImage.PixelMap) {
 scaleSync(x: number, y: number): void
 
 根据输入的宽高缩放倍数对图片进行缩放。同步返回结果。
+
+> **说明：**
+>
+> - 建议宽高的缩放倍数取正数，否则会产生翻转效果。
+> - 缩放倍数 = 缩放后的图像尺寸 / 缩放前的图像尺寸。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
