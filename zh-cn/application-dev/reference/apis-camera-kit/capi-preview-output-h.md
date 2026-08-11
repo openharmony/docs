@@ -560,7 +560,7 @@ bool OH_PreviewOutput_IsLogViewAssistSupported(const Camera_PreviewOutput* previ
 
 | 参数项 | 描述 |
 | -- | -- |
-| [Camera_PreviewOutput](capi-oh-camera-camera-previewoutput.md)* previewOutput | 预览输出实例。 |
+| const[Camera_PreviewOutput](capi-oh-camera-camera-previewoutput.md)* previewOutput | 预览输出实例。 |
 
 **返回：**
 

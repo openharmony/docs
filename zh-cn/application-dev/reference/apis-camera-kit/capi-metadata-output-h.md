@@ -329,7 +329,7 @@ Camera_ErrorCode OH_MetadataOutput_RegisterMetadataObjectExtAvailableCallback(Ca
 | -- | -- |
 | [Camera_MetadataOutput](capi-oh-camera-camera-metadataoutput.md)* metadataOutput | 元数据输出实例的指针。 |
 | void* context | 用户提供的上下文指针。 |
-| [OH_MetadataOutput_OnMetadataObjectExtAvailable](capi-metadata-output-h.md#oh_metadataoutput_onmetadataobjectextavailable)* callback | 监听元数据对象上报事件的回调的指针。 |
+| [OH_MetadataOutput_OnMetadataObjectExtAvailable](capi-metadata-output-h.md#oh_metadataoutput_onmetadataobjectextavailable) callback | 监听元数据对象上报事件的回调的指针。 |
 
 **返回：**
 
@@ -355,7 +355,7 @@ Camera_ErrorCode OH_MetadataOutput_UnregisterMetadataObjectExtAvailableCallback(
 | -- | -- |
 | [Camera_MetadataOutput](capi-oh-camera-camera-metadataoutput.md)* metadataOutput | 元数据输出实例的指针。 |
 | void* context | 用户提供的上下文指针。 |
-| [OH_MetadataOutput_OnMetadataObjectExtAvailable](capi-metadata-output-h.md#oh_metadataoutput_onmetadataobjectextavailable)* callback | 监听元数据对象上报事件的回调的指针。 |
+| [OH_MetadataOutput_OnMetadataObjectExtAvailable](capi-metadata-output-h.md#oh_metadataoutput_onmetadataobjectextavailable) callback | 监听元数据对象上报事件的回调的指针。 |
 
 **返回：**
 
@@ -381,7 +381,7 @@ Camera_ErrorCode OH_MetadataOutput_RegisterErrorExtCallback(Camera_MetadataOutpu
 | -- | -- |
 | [Camera_MetadataOutput](capi-oh-camera-camera-metadataoutput.md)* metadataOutput | 元数据输出实例的指针。 |
 | void* context | 用户提供的上下文指针。 |
-| [OH_MetadataOutput_OnErrorExt](capi-metadata-output-h.md#oh_metadataoutput_onerrorext)* callback | 监听错误事件的回调的指针。 |
+| [OH_MetadataOutput_OnErrorExt](capi-metadata-output-h.md#oh_metadataoutput_onerrorext) callback | 监听错误事件的回调的指针。 |
 
 **返回：**
 
@@ -407,7 +407,7 @@ Camera_ErrorCode OH_MetadataOutput_UnregisterErrorExtCallback(Camera_MetadataOut
 | -- | -- |
 | [Camera_MetadataOutput](capi-oh-camera-camera-metadataoutput.md)* metadataOutput | 元数据输出实例的指针。 |
 | void* context | 用户提供的上下文指针。 |
-| [OH_MetadataOutput_OnErrorExt](capi-metadata-output-h.md#oh_metadataoutput_onerrorext)* callback | 监听错误事件的回调的指针。 |
+| [OH_MetadataOutput_OnErrorExt](capi-metadata-output-h.md#oh_metadataoutput_onerrorext) callback | 监听错误事件的回调的指针。 |
 
 **返回：**
 
@@ -431,7 +431,7 @@ bool OH_MetadataOutput_IsLockMetadataObjectTrackingSupported(const Camera_Metada
 
 | 参数项 | 描述 |
 | -- | -- |
-| [Camera_MetadataOutput](capi-oh-camera-camera-metadataoutput.md)* metadataOutput | MetadataOutput实例的指针。 |
+| const[Camera_MetadataOutput](capi-oh-camera-camera-metadataoutput.md)* metadataOutput | MetadataOutput实例的指针。 |
 
 **返回：**
 
