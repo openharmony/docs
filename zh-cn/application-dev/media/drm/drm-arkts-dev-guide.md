@@ -21,7 +21,7 @@ DRM Kit提供MediaKeySystem实现DRM证书管理、DRM许可证管理功能，�
    import { drm } from '@kit.DrmKit';
    ```
 
-2. 导入BusinessError模块抛出Drm Kit接口的错误码。
+2. 导入BusinessError模块抛出DRM Kit接口的错误码。
 
    ```ts
    import { BusinessError } from '@kit.BasicServicesKit';
