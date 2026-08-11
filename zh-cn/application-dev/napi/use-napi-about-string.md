@@ -358,8 +358,7 @@ static napi_value CreateExternalStringUtf16(napi_env env, napi_callback_info inf
         NAPI_AUTO_LENGTH,       // 字符串长度，如果传入NAPI_AUTO_LENGTH，则字符串需要以'\0'结尾
         StringFinalizerUTF16,   // 字符串的析构回调函数
         nullptr,                // 传递给析构回调函数的hint参数，本例不需要
-        &result                 // 接受创建的ArkTS字符串值
-    );
+        &result);               // 接收创建的ArkTS字符串值
     // 重要：str指向的内存必须在ArkTS string对象的整个生命周期内保持有效。
     // 而且在调用此接口后，str指向的内存内容必须保持不可变。任何对该内存的写入操作都可能导致程序崩溃。
     if (status != napi_ok) {
@@ -426,8 +425,7 @@ static napi_value CreateExternalStringAscii(napi_env env, napi_callback_info inf
         NAPI_AUTO_LENGTH,       // 字符串长度，如果传入NAPI_AUTO_LENGTH，则字符串需要以'\0'结尾
         StringFinalizerASCII,   // 字符串的析构回调函数
         nullptr,                // 传递给析构回调函数的hint参数，本例不需要
-        &result                 // 接受创建的ArkTS字符串值
-    );
+        &result);               // 接收创建的ArkTS字符串值
     // 重要：str指向的内存必须在ArkTS string对象的整个生命周期内保持有效。
     // 而且在调用此接口后，str指向的内存内容必须保持不可变。任何对该内存的写入操作都可能导致程序崩溃。
     if (status != napi_ok) {
