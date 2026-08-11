@@ -515,7 +515,7 @@ let customConfig: ConfigFactory = ConfigFactory.createCustom('EXAMPLE_API_URL', 
 
 ### 子类构造函数的默认行为
 
-当子类构造函数未显式调用父类构造函数时，编译器会自动生成调用父类无参构造函数的代码。
+当子类构造函数未显式调用父类构造函数时，若父类存在无参构造函数，编译器会自动生成调用父类无参构造函数的代码；若父类仅有带参构造函数，则编译报错。
 
 <!-- @[inheriting_parent_constructor](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/Start/LearningArkTs/ArkTSFullLanguageGuide/entry/src/main/ets/pages/Initialization.ets) -->
 

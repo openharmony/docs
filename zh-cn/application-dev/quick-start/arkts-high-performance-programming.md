@@ -70,7 +70,7 @@ function getNum(num: number): number {
 
 优化后的代码如下，可以将`Time.info[num - Time.start]`提取为常量，这样可以显著减少属性访问次数，提升性能。
 
-<!-- @[constant_in_loop_batter](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/Start/LearningArkTS/PerformantPractices/entry/src/main/ets/pages/Index.ets) -->
+<!-- @[constant_in_loop_better](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/Start/LearningArkTS/PerformantPractices/entry/src/main/ets/pages/Index.ets) -->
 
 ``` TypeScript
 class TimeBetter {
@@ -110,7 +110,7 @@ fooWithout();
 
 建议使用参数传递函数外部的变量，以替代使用闭包。
 
-<!-- @[outside_variable_batter](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/Start/LearningArkTS/PerformantPractices/entry/src/main/ets/pages/Index.ets) -->
+<!-- @[outside_variable_better](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/Start/LearningArkTS/PerformantPractices/entry/src/main/ets/pages/Index.ets) -->
 
 ``` TypeScript
 let arr_ = [0, 1, 2];
@@ -138,7 +138,7 @@ function add(left?: number, right?: number): number | undefined {
 ```
 
 根据业务需求，将函数参数声明为必选参数。考虑使用默认参数。
-<!-- @[avoid_optional_parameters_batter](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/Start/LearningArkTS/PerformantPractices/entry/src/main/ets/pages/Index.ets) --> 
+<!-- @[avoid_optional_parameters_better](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/Start/LearningArkTS/PerformantPractices/entry/src/main/ets/pages/Index.ets) --> 
 
 ``` TypeScript
 function addWithParams(left: number = 0, right: number = 0): number {
@@ -167,7 +167,7 @@ for (let i = 0; i < 3; i++) {
 
 优化后的代码示例：
 
-<!-- @[use_typearray_batter](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/Start/LearningArkTS/PerformantPractices/entry/src/main/ets/pages/Index.ets) -->
+<!-- @[use_typearray_better](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/Start/LearningArkTS/PerformantPractices/entry/src/main/ets/pages/Index.ets) -->
 
 ``` TypeScript
 const typedArray1 = Int8Array.from([1, 2, 3]);
@@ -206,7 +206,7 @@ let arrUnion: (number | string)[] = [1, 'hello']; // 联合类型数组
 ```
 
 根据业务需求，将相同类型的数据放在同一数组中。  
-<!-- @[avoid_joint_type_batter](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/Start/LearningArkTS/PerformantPractices/entry/src/main/ets/pages/Index.ets) -->
+<!-- @[avoid_joint_type_better](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/Start/LearningArkTS/PerformantPractices/entry/src/main/ets/pages/Index.ets) -->
 
 ``` TypeScript
 let arrInt: number[] = [1, 2, 3];
@@ -247,7 +247,7 @@ function sum(num: number): number {
 
 优化后的代码示例：
 
-<!-- @[exception_handling_batter](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/Start/LearningArkTS/PerformantPractices/entry/src/main/ets/pages/Index.ets) -->     
+<!-- @[exception_handling_better](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/Start/LearningArkTS/PerformantPractices/entry/src/main/ets/pages/Index.ets) -->     
 
 ``` TypeScript
 function divBetter(a: number, b: number): number {
