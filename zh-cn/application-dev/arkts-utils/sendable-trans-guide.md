@@ -336,6 +336,7 @@ export function observeJSON2(): LayoutS {
 
 ``` TypeScript
 import { testProtobuf } from '../turbotrans_protobuf/test1'
+import { test_pb } from '../protobuf/test_pb'
 
 @Concurrent
 export function observeProtobuf(): test_pb {
