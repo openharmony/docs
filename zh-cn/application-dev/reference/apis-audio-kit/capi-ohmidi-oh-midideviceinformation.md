@@ -32,6 +32,6 @@ typedef struct {...} OH_MIDIDeviceInformation
 | char deviceName[256] | 设备名称。<br>**起始版本：** 24 |
 | uint64_t vendorId | 厂商ID。<br>**起始版本：** 24 |
 | uint64_t productId | 产品ID。<br>**起始版本：** 24 |
-| char deviceAddress[64] | 设备物理地址，采用冒号分隔的十六进制MAC地址格式（如"00:11:22:33:44:55"，仅BLE设备类型时有效）。<br>**起始版本：** 24 |
+| char deviceAddress[64] | 设备物理地址，采用冒号分隔的十六进制MAC地址格式，例如"00:11:22:33:44:55"，仅BLE设备类型时有效。<br>**起始版本：** 24 |
 
 

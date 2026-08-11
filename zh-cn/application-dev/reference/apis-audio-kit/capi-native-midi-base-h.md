@@ -230,7 +230,7 @@ typedef void (*OH_MIDIDevice_OnReceived)(void *userData, const OH_MIDIEvent *eve
 
 | 参数项 | 描述 |
 | -- | -- |
-| void \*userData | 注册回调时（如[OH_MIDIDevice_OpenInputPort](./capi-native-midi-h.md#oh_mididevice_openinputport)）传入的用户自定义数据指针。 |
+| void \*userData | 调用[OH_MIDIDevice_OpenInputPort](./capi-native-midi-h.md#oh_mididevice_openinputport)时传入的用户自定义数据指针。 |
 | [const OH_MIDIEvent](capi-ohmidi-oh-midievent.md) \*events | 指向接收到的MIDI事件数组的指针。<br>**注意：** events数组及其中所有数据指针仅在此回调范围内有效。如需保留数据，请先进行复制。 |
 | size_t eventCount | 数组中的事件数。 |
 
