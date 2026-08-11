@@ -233,7 +233,7 @@ let ret: Array<usbManager.USBPort> = usbManager.getPorts();
 
 getSupportedModes(portId: number): PortModeType
 
-获取指定的端口支持的模式列表的组合掩码。适用于系统应用需要查询USB-C端口能力判断是否支持特定模式（如Host、Device或DRP模式）的场景。返回值为PortModeType的组合掩码，可通过位运算判断端口是否支持特定模式。PortModeType包括：NONE（0，无模式）、UFP（1，上行端口模式，dataRole为DEVICE）、DFP（2，下行端口模式，dataRole为HOST）、DRP（3，双角色模式，可在UFP和DFP间切换）、NUM_MODES（4，当前不支持）。开发者可根据返回值判断端口是否支持所需的电源角色和数据传输角色组合。
+获取指定的端口支持的模式列表的组合掩码。适用于系统应用需要查询USB-C端口能力判断是否支持特定模式（如UFP、DFP或DRP模式）的场景。返回值为PortModeType的组合掩码，可通过位运算判断端口是否支持特定模式。PortModeType包括：NONE（0，无模式）、UFP（1，上行端口模式，dataRole为DEVICE）、DFP（2，下行端口模式，dataRole为HOST）、DRP（3，双角色模式，可在UFP和DFP间切换）、NUM_MODES（4，当前不支持）。开发者可根据返回值判断端口是否支持所需的电源角色和数据传输角色组合。
 
 > **说明：**
 >
@@ -627,7 +627,7 @@ let ret: Array<usbManager.USBPort> = usbManager.getPortList();
 
 getPortSupportModes(portId: number): PortModeType
 
-获取指定的端口支持的模式列表的组合掩码。适用于系统应用需要查询USB-C端口能力判断是否支持特定模式（如UFP、DFP或DRP模式）的场景。开发者模式关闭时，如果没有设备接入，接口返回undefined，注意需要对接口返回值做判空处理。
+获取指定的端口支持的模式列表的组合掩码。适用于系统应用需要查询USB-C端口能力判断是否支持特定模式（如UFP、DFP或DRP模式）的场景。开发者模式关闭时，如果没有设备接入，接口返回undefined，注意需要对接口返回值做判空处理。详细枚举值参见[PortModeType](#portmodetype)。
 
 > **说明：**
 >
@@ -673,7 +673,7 @@ let ret: usbManager.PortModeType = usbManager.getPortSupportModes(0);
 
 setPortRoleTypes(portId: number, powerRole: PowerRoleType, dataRole: DataRoleType): Promise\<void\>
 
-设置指定端口当前的角色类型，包含电源角色、数据传输角色。使用Promise异步回调。调用成功后端口的电源角色和数据传输角色将切换为指定的角色。适用于系统应用需要动态切换USB端口角色的场景。开发者模式关闭时，如果没有设备接入，操作可能会失败，调用失败时抛出异常。
+设置指定端口当前的角色类型，包含电源角色、数据传输角色。使用Promise异步回调。调用成功后端口的电源角色和数据传输角色将切换为指定的角色。适用于系统应用需要动态切换USB端口角色的场景。开发者模式关闭时，如果没有设备接入，操作可能会失败，调用失败时抛出异常。角色约束详情参见[USBPortStatus](#usbportstatus)。
 
 **使用建议：**
 - 建议先调用[getPortList](#getportlist12)获取端口列表，得到有效的portId
@@ -827,9 +827,9 @@ USB设备端口角色信息。currentMode表示端口的当前USB模式，其值
 
 | 名称             | 类型   | 只读 | 可选 | 说明                   |
 | ---------------- | ------ | ---- | ---- | ---------------------- |
-| currentMode      | number | 否   | 否   | 当前的USB模式。        |
-| currentPowerRole | number | 否   | 否   | 当前设备电源角色。     |
-| currentDataRole  | number | 否   | 否   | 当前设备数据传输角色。 |
+| currentMode      | number | 否   | 否   | 当前的USB模式，取值参见[PortModeType](#portmodetype)。        |
+| currentPowerRole | number | 否   | 否   | 当前设备电源角色，取值参见[PowerRoleType](#powerroletype)。     |
+| currentDataRole  | number | 否   | 否   | 当前设备数据传输角色，取值参见[DataRoleType](#dataroletype)。 |
 
 ## FunctionType
 
@@ -865,7 +865,7 @@ USB端口模式类型。
 | NONE      | 0  | 无。                                                 |
 | UFP       | 1  | 数据上行，需要外部供电。                             |
 | DFP       | 2  | 数据下行，对外提供电源。                             |
-| DRP       | 3  | 既可以做DFP（Host），也可以做UFP（Device），当前不支持。 |
+| DRP       | 3  | 既可以做DFP（HOST），也可以做UFP（DEVICE），当前不支持。 |
 | NUM_MODES | 4  | 当前不支持。                                         |
 
 ## PowerRoleType
