@@ -27,6 +27,6 @@ typedef struct {...} NativeDisplayManager_DisplayHdrFormat
 | 名称 | 描述 |
 | -- | -- |
 | uint32_t hdrFormatLength | 显示设备支持的HDR格式数量。 |
-| uint32_t* hdrFormats | 显示设备支持的HDR格式数据。 |
+| uint32_t* hdrFormats | 指向显示设备支持的HDR格式数组的指针。 |
 
 
