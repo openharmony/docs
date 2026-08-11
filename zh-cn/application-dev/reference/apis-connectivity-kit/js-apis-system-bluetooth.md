@@ -3,13 +3,13 @@
 <!--Kit: Connectivity Kit-->
 <!--Subsystem: Communication-->
 <!--Owner: @enjoy_sunshine-->
-<!--Designer: @chengguohong; @tangjia15-->
+<!--Designer: @tangjia15-->
 <!--Tester: @wangfeng517-->
 <!--Adviser: @zhang_yixin13-->
 
 > **说明：**
 >
-> - 从API Version 7 开始，该接口不再维护，推荐使用[`@ohos.bluetooth.ble`](js-apis-bluetooth-ble.md)等相关profile接口。
+> - 从API Version 7 开始，该接口不再维护，推荐使用[@ohos.bluetooth.ble](js-apis-bluetooth-ble.md)等相关profile接口。
 >
 > - 本模块首批接口从API version 6开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 
@@ -17,7 +17,7 @@
 ## 导入模块
 
 
-```
+```js
 import bluetooth from '@system.bluetooth';
 ```
 
@@ -39,17 +39,17 @@ import bluetooth from '@system.bluetooth';
 
 **示例：**
 
-  ```
+  ```js
   bluetooth.startBLEScan({
     interval:0,
     success() {
-      console.log('call bluetooth.startBLEScan success.');
+      console.info('call bluetooth.startBLEScan success.');
     },
     fail(code, data) {
-      console.log('call bluetooth.startBLEScan failed, code:' + code + ', data:' + data);
+      console.info('call bluetooth.startBLEScan failed, code:' + code + ', data:' + data);
     },
     complete() {
-      console.log('call bluetooth.startBLEScan complete.');
+      console.info('call bluetooth.startBLEScan complete.');
     }
   });
   ```
@@ -72,16 +72,16 @@ import bluetooth from '@system.bluetooth';
 
 **示例：**
 
-  ```
+  ```js
   bluetooth.stopBLEScan({
     success() {
-      console.log('call bluetooth.stopBLEScan success.');
+      console.info('call bluetooth.stopBLEScan success.');
     },
     fail(data, code) {
-      console.log('call bluetooth.stopBLEScan fail, code:' + code + ', data:' + data);
+      console.info('call bluetooth.stopBLEScan fail, code:' + code + ', data:' + data);
     },
     complete() {
-      console.log('call bluetooth.stopBLEScan complete.');
+      console.info('call bluetooth.stopBLEScan complete.');
     }
   });
   ```
@@ -119,13 +119,13 @@ import bluetooth from '@system.bluetooth';
 
 **示例：**
 
-  ```
+  ```js
   bluetooth.subscribeBLEFound({
     success(data) {
-      console.log('call bluetooth.subscribeBLEFound success, data: ${data}.');
+      console.info('call bluetooth.subscribeBLEFound success, data: ${data}.');
     },
     fail(data, code) {
-      console.log('call bluetooth.startBLEScan failed, code:' + code + ', data:' + data);
+      console.info('call bluetooth.startBLEScan failed, code:' + code + ', data:' + data);
     }
   });
   ```
@@ -139,7 +139,7 @@ import bluetooth from '@system.bluetooth';
 
 **示例：**
 
-  ```
+  ```js
   bluetooth.unsubscribeBLEFound();
   ```
 

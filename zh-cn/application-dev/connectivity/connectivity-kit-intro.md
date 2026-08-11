@@ -3,7 +3,7 @@
 <!--Kit: Connectivity Kit-->
 <!--Subsystem: Communication-->
 <!--Owner: @enjoy_sunshine-->
-<!--Designer: @chengguohong; @tangjia15-->
+<!--Designer: @tangjia15-->
 <!--Tester: @wangfeng517-->
 <!--Adviser: @zhang_yixin13-->
 
@@ -85,7 +85,7 @@ NFC英文全称Near Field Communication，近距离无线通信。NFC服务提�
   提供了伙伴设备与OpenHarmony设备互通服务，在模块内可以实现互通业务比如媒体控制，电话反控，健康检测等。详情请参考[@ohos.FusionConnectivity.partnerAgent](../reference/apis-connectivity-kit/js-apis-fusionConnectivity-partnerAgent.md)文档。
 
 - **融合测距模块**<br/>
-  融合测距模块，提供了星闪[HADM](terminology.md#hadm)测距服务，在模块内可以使用星闪HADM测距的能力。详情请参考[@ohos.FusionConnectivity.ranging](../reference/apis-connectivity-kit/js-apis-fusionConnectivity-ranging.md)文档。
+  融合测距模块，提供了星闪[HADM](fusion-connectivity/fusion-connectivity-terminology.md#hadm)测距服务，在模块内可以使用星闪HADM测距的能力。详情请参考[@ohos.FusionConnectivity.ranging](../reference/apis-connectivity-kit/js-apis-fusionConnectivity-ranging.md)文档。
 
 ### 运作机制
 
