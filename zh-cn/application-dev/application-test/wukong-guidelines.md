@@ -223,7 +223,7 @@ wukong部件架构图以及部件内子模块职责如下所述。
 - 指定页面压测
 
   ```bash
-  > 显示启动
+  > 显式启动
   > hdc_std shell
   $ wukong exec -b bundlename -e abilityname -U uri
 
