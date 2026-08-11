@@ -1,10 +1,12 @@
 # Interface (AudioLoopback)
+
 <!--Kit: Audio Kit-->
 <!--Subsystem: Multimedia-->
-<!--Owner: @songshenke-->
-<!--Designer: @caixuejiang; @hao-liangfei; @zhanganxiang-->
+<!--Owner: @tom_guo-->
+<!--Designer: @trytocalm-->
 <!--Tester: @Filger-->
 <!--Adviser: @w_Machine_cc-->
+<!-- md-trans-meta sourceCommit=5f9e806871621611605b568487a9f725a7d1bd04 translatedAt=2026-08-10T01:22:24.231Z pushedAt=2026-08-10T03:02:27.006Z -->
 
 This interface provides APIs for audio monitoring.
 
@@ -12,7 +14,7 @@ Before calling any API in AudioLoopback, you must use [audio.createAudioLoopback
 
 When audio loopback is enabled, the system creates a low-latency renderer and capturer to implement low-latency in-ear monitoring. The audio captured is routed back to the renderer through an internal path. The renderer follows the audio focus strategy for [STREAM_USAGE_MUSIC](arkts-apis-audio-e.md#streamusage), whereas the capturer follows the strategy for [SOURCE_TYPE_MIC](arkts-apis-audio-e.md#sourcetype8).
 
-The system automatically chooses the input and output devices. If these devices do not support low latency, audio loopback does not work. If another audio stream takes over the audio focus or if the input or output device changes to the one that does not support low latency, the system disables audio loopback automatically.
+The input/output devices are automatically selected by the system. If the current input/output devices do not support low latency, audio loopback cannot be enabled. During operation, if the audio focus is preempted by another audio stream and the input/output devices are switched to devices that do not support low latency, the system automatically disables audio loopback.
 
 > **NOTE**
 >
@@ -77,7 +79,7 @@ For details about the error codes, see [Audio Error Codes](errorcode-audio.md).
 
 | ID| Error Message|
 | ------- | --------------------------------------------|
-| 6800101 | Parameter verification failed, form 0.0 to 1.0. |
+| 6800101 | Parameter verification failed. The value must range from 0.0 to 1.0. |
 
 **Example**
 
@@ -89,6 +91,31 @@ audioLoopback.setVolume(0.5).then(() => {
 }).catch((err: BusinessError) => {
   console.error(`setVolume Fail: ${err}`);
 });
+```
+
+## getVolume
+
+getVolume(): number
+
+Obtains the audio loopback output volume.
+
+**Since**: 26.0.0
+
+**Model restriction**: This API can be used only in the stage model.
+
+**System capability**: SystemCapability.Multimedia.Audio.Capturer
+
+**Return value**
+
+| Type                | Description                          |
+| ------------------- | ----------------------------- |
+| number | Current audio loopback output volume, ranging from [0.0, 1.0]. |
+
+**Example**
+
+```ts
+let volume = audioLoopback.getVolume();
+console.info(`Current loopback volume is ${volume}.`);
 ```
 
 ## on('statusChange')<sup>20+</sup>
@@ -134,7 +161,7 @@ audioLoopback.on('statusChange', (status: audio.AudioLoopbackStatus) => {
 
 off(type: 'statusChange', callback?: Callback&lt;AudioLoopbackStatus&gt;): void
 
-Unsubscribes from the audio loopback status event. This API uses an asynchronous callback to return the result.
+Unsubscribes from the audio loopback status change event.
 
 **System capability**: SystemCapability.Multimedia.Audio.Capturer
 
@@ -142,7 +169,7 @@ Unsubscribes from the audio loopback status event. This API uses an asynchronous
 
 | Name| Type  | Mandatory| Description                                               |
 | :----- | :----- | :--- | :-------------------------------------------------- |
-| type   | string | Yes  | Event type. The event **'statusChange'** is triggered when the status of the audio loopback is changed.|
+| type   | string | Yes   | Event callback type. The supported event is 'statusChange'. |
 | callback | Callback\<[AudioLoopbackStatus](arkts-apis-audio-e.md#audioloopbackstatus20)> | No| Callback used to return the audio loopback status.|
 
 **Error codes**
@@ -177,6 +204,60 @@ audioLoopback.on('statusChange', statusChangeCallback);
 audioLoopback.off('statusChange', statusChangeCallback);
 ```
 
+## getSupportedDevicePairs
+
+getSupportedDevicePairs(): Array<AudioDevicePair\>
+
+Obtains the audio input/output device pairs that support loopback under the current device connection state.
+
+**Since**: 26.0.0
+
+**Model restriction**: This API can be used only in the stage model.
+
+**System capability**: SystemCapability.Multimedia.Audio.Capturer
+
+**Return value**
+
+| Type                | Description                          |
+| ------------------- | ----------------------------- |
+| Array<[AudioDevicePair](arkts-apis-audio-i.md#audiodevicepair)\> | Array of audio input/output devices that support loopback.<br>If no available input/output device pair exists, an empty array is returned. |
+
+**Example**
+
+```ts
+let supportedPairs = audioLoopback.getSupportedDevicePairs();
+if (supportedPairs.length === 0) {
+  console.info('No supported loopback device pair found.');
+}
+```
+
+## getPreferredDevicePair
+
+getPreferredDevicePair(): AudioDevicePair | null
+
+Obtains the system-recommended audio input/output device pair for loopback under the current device connection state.
+
+**Since**: 26.0.0
+
+**Model restriction**: This API can be used only in the stage model.
+
+**System capability**: SystemCapability.Multimedia.Audio.Capturer
+
+**Return value**
+
+| Type                | Description                          |
+| ------------------- | ----------------------------- |
+| [AudioDevicePair](arkts-apis-audio-i.md#audiodevicepair) \| null | System-recommended audio input/output device pair.<br>If no available input/output device pair exists, null is returned. |
+
+**Example**
+
+```ts
+let preferredPair = audioLoopback.getPreferredDevicePair();
+if (preferredPair === null) {
+  console.info('No preferred loopback device pair found.');
+}
+```
+
 ## enable<sup>20+</sup>
 
 enable(enable: boolean): Promise<boolean\>
@@ -191,7 +272,7 @@ Enables or disables audio loopback. This API uses a promise to return the result
 
 | Name| Type  | Mandatory| Description                                               |
 | :----- | :----- | :--- | :-------------------------------------------------- |
-| enable   | boolean | Yes  | Whether to enable or disable audio loopback. **true** to enable, **false** otherwise.|
+| enable   | boolean | Mandatory   | Whether to enable the audio loopback device. The value **true** indicates yes, and **false** indicates no. |
 
 **Return value**
 
@@ -255,12 +336,7 @@ For details about the error codes, see [Audio Error Codes](errorcode-audio.md).
 **Example**
 
 ```ts
-import { BusinessError } from '@kit.BasicServicesKit';
-try {
   audioLoopback.setReverbPreset(audio.AudioLoopbackReverbPreset.THEATER);
-} catch (err) {
-  console.error(`setReverbPreset :ERROR: ${err}`);
-}
 ```
 
 ## getReverbPreset<sup>21+</sup>
@@ -346,7 +422,7 @@ Obtains the equalizer type of audio loopback.
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 try {
-  let reverbPreset = audioLoopback.getEqualizerPreset();
+  let equalizerPreset = audioLoopback.getEqualizerPreset();
 } catch (err) {
   console.error(`getEqualizerPreset:ERROR: ${err}`);
 }
