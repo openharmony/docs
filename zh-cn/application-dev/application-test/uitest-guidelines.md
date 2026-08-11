@@ -164,7 +164,7 @@ export default function abilityTest() {
     })
 
     /**
-     * 查找类型为'Image'的控件，并进行对其进行双指放大操作
+     * 查找类型为'Image'的控件，并对其进行双指放大操作
      */
     it('componentPinch', TestType.FUNCTION, async () => {
       let driver: Driver = Driver.create();
@@ -283,7 +283,7 @@ export default function abilityTest() {
     })
     /**
      * 基于控件的文本输入，指定以复制粘贴方式注入输入指定文本
-     * 指定以追加方式输入，即在输入文本签不清空原有内容
+     * 指定以追加方式输入，即在输入文本前不清空原有内容
      */
     it('componentInputTextAddition', TestType.FUNCTION, async () => {
       let driver = Driver.create();
@@ -644,7 +644,7 @@ hdc shell uitest screenCap -p /data/local/tmp/1.png
 | -i | - | 不过滤不可见控件，也不做窗口合并。|
 | -a | - | 保存控件的BackgroundColor、Content、FontColor、FontSize、extraAttrs属性数据。<br>**说明** ：默认不保存上述属性数据， **-a和-i不可同时使用。** | 
 | -b | \<bundleName\> | 获取指定包名对应目标窗口的控件树信息。|
-| -w | \<windowId\>  | 获取指定ID目标窗口的控件树信息。<br> **说明：**<br>可通过hidumper工具<!--RP11-->[获取应用窗口信息](../dfx/hidumper.md#获取应用窗口信息)<!--RP11End-->, 包含应用对应窗口的id。|
+| -w | \<windowId\>  | 获取指定ID目标窗口的控件树信息。<br> **说明：**<br>可通过hidumper工具<!--RP11-->[获取应用窗口信息](../dfx/hidumper.md#获取应用窗口信息)<!--RP11End-->，包含应用对应窗口的id。|
 | -m | \<true\|false\> | 指定在获取控件树信息时是否合并窗口信息。true表示合并窗口信息，false表示不合并窗口信息，不设置时默认为true。 |
 | -d | \<displayId\>  | 多屏场景下，获取指定ID屏幕下的控件树。<br> **说明：**<br> 1. 从API version 20开始支持该命令。<br>2. 可通过hidumper工具<!--RP11-->[获取应用窗口信息](../dfx/hidumper.md#获取应用窗口信息)<!--RP11End-->，包含应用对应窗口的DisplayId。|
 
