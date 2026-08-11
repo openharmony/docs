@@ -7,8 +7,8 @@
 <!--Adviser: @zhang_yixin13-->
 
 短信服务提供了管理短信的一些基础能力，包括：
- - 创建、发送短信
- - 获取发送短信的默认SIM卡槽ID
+ - 创建、发送短信。
+ - 获取发送短信的默认SIM卡槽ID。
  - 检查当前设备是否具备短信发送和接收能力等。
 
 > **说明：**
@@ -25,7 +25,9 @@ import { sms } from '@kit.TelephonyKit';
 
 createMessage\(pdu: Array&lt;number&gt;, specification: string, callback: AsyncCallback\<ShortMessage\>\): void
 
-根据协议数据单元(PDU)和指定的短信协议创建短信实例。使用callback异步回调。使用场景：在接收到短信后，将系统返回的PDU数据解析为短信实例，以读取短信正文、发送者地址等内容。
+根据协议数据单元(PDU)和指定的短信协议创建短信实例。使用callback异步回调。
+
+使用场景：在接收到短信后，将系统返回的PDU数据解析为短信实例，以读取短信正文、发送者地址等内容。
 
 **系统能力**：SystemCapability.Telephony.SmsMms
 
@@ -333,17 +335,6 @@ getDefaultSmsSlotId\(callback: AsyncCallback&lt;number&gt;\): void
 | -------- | --------------------------- | ---- | ---------------------------------------- |
 | callback | AsyncCallback&lt;number&gt; | 是   | 获取发送短信的默认SIM卡槽ID的回调函数。<br>- 0：卡槽1<br>- 1：卡槽2 |
 
-**错误码：**
-
-以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)和[电话子系统错误码](errorcode-telephony.md)。
-
-| 错误码ID |                 错误信息                     |
-| -------- | -------------------------------------------- |
-| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.                            |
-| 8300002  | Operation failed. Cannot connect to service. |
-| 8300003  | System internal error.                       |
-| 8300999  | Unknown error code.                          |
-
 **示例：**
 
 ```ts
@@ -373,16 +364,6 @@ getDefaultSmsSlotId\(\): Promise&lt;number&gt;
 | 类型            | 说明                                                         |
 | --------------- | ------------------------------------------------------------ |
 | Promise&lt;number&gt; | 以Promise形式返回发送短信的默认SIM卡：<br>- 0：卡槽1<br>- 1：卡槽2 |
-
-**错误码：**
-
-以下错误码的详细介绍请参见[电话子系统错误码](errorcode-telephony.md)。
-
-| 错误码ID |                 错误信息                     |
-| -------- | -------------------------------------------- |
-| 8300002  | Operation failed. Cannot connect to service. |
-| 8300003  | System internal error.                       |
-| 8300999  | Unknown error code.                          |
 
 **示例：**
 
@@ -556,7 +537,7 @@ promise.then((data: number) => {
 | serviceCenter    | string                                                       |  否  |  是  | 短信中心地址，格式为带国家代码的手机号。默认使用SIM卡中的短信中心地址。     |
 | destinationPort  | number                                                       |  否  |  是  | 如果发送数据短信，destinationPort 是必需的。否则是可选的，不传入时不设置数据端口。  |
 | sendCallback     | AsyncCallback&lt;[ISendShortMessageCallback](#isendshortmessagecallback)&gt; |  否  |  是  | 短信发送结果回调，返回短信发送的结果，参考[ISendShortMessageCallback](#isendshortmessagecallback)。发送数据短信时，此项必填；发送文本短信时，此项可选，不填写则不会收到短信发送结果的回调通知。|
-| deliveryCallback | AsyncCallback&lt;[IDeliveryShortMessageCallback](#ideliveryshortmessagecallback)&gt; |  否  |  是  | 短信送达结果回调，返回短信递送报告，参考[IDeliveryShortMessageCallback](#ideliveryshortmessagecallback)。发送数据短信时，此项必填；发送文本短信时，此项可选，不填写则不会收到短信送到报告的回调通知。|
+| deliveryCallback | AsyncCallback&lt;[IDeliveryShortMessageCallback](#ideliveryshortmessagecallback)&gt; |  否  |  是  | 短信送达结果回调，返回短信递送报告，参考[IDeliveryShortMessageCallback](#ideliveryshortmessagecallback)。发送数据短信时，此项必填；发送文本短信时，此项可选，不填写则不会收到短信送达报告的回调通知。|
 
 
 

@@ -434,7 +434,7 @@ observer.on('callStateChange', (data: observer.CallStateInfo) => {
 ```
 
 
-## observer.on('callStateChange')<sup>11+</sup>
+## observer.on('callStateChange')<sup>6+</sup>
 
 on(type: 'callStateChange', options: ObserverOptions, callback: Callback\<CallStateInfo\>): void
 
@@ -540,7 +540,6 @@ on(type: 'callStateChangeEx', callback: Callback\<TelCallState\>, options?: Obse
 
 | 错误码ID |                  错误信息                    |
 | -------- | -------------------------------------------- |
-| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.                             |
 | 8800001  | Invalid parameter value.                     |
 | 8800002  | Service connection failed.                   |
 | 8800003  | System internal error.                       |
@@ -588,7 +587,6 @@ off(type: 'callStateChangeEx', callback?: Callback\<TelCallState\>): void
 
 | 错误码ID |                  错误信息                    |
 | -------- | -------------------------------------------- |
-| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.                             |
 | 8800001  | Invalid parameter value.                     |
 | 8800002  | Service connection failed.                   |
 | 8800003  | System internal error.                       |
@@ -1163,7 +1161,6 @@ onCCallStateChange\(callback: Callback\<CCallStateInfo\>, options?: ObserverOpti
 | 错误码ID |                 错误信息                     |
 | -------- | -------------------------------------------- |
 | 201      | Permission denied                         |
-| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.                             |
 | 8800001  | Invalid parameter value.                     |
 | 8800002  | Service connection failed.                   |
 | 8800003  | System internal error.                       |
@@ -1212,7 +1209,6 @@ offCCallStateChange\(callback?: Callback\<CCallStateInfo\>\): void
 | 错误码ID |                 错误信息                     |
 | -------- | -------------------------------------------- |
 | 201      | Permission denied                         |
-| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.                             |
 | 8800001  | Invalid parameter value.                     |
 | 8800002  | Service connection failed.                   |
 | 8800003  | System internal error.                       |
@@ -1235,7 +1231,7 @@ observer.offCCallStateChange();
 
 onCommunicationStateChange\(callback: Callback\<boolean\>, options?:ObserverOptions\): void
 
-订阅5A网络状态变化事件，使用callback方式作为异步方法。
+订阅5A网络状态变化事件，使用callback异步回调。
 
 **起始版本：** 26.0.0
 
@@ -1277,7 +1273,7 @@ observer.onCommunicationStateChange(callback, options);
 
 offCommunicationStateChange\(callback: Callback\<boolean\>, options?:ObserverOptions\): void
 
-取消订阅5A网络状态变化事件，使用callback方式作为异步方法。
+取消订阅5A网络状态变化事件，使用callback异步回调。
 
 **起始版本：** 26.0.0
 
