@@ -6,6 +6,7 @@
 <!--Designer: @lanming-->
 <!--Tester: @PAFT-->
 <!--Adviser: @zengyawen-->
+<!-- md-trans-meta sourceCommit=586ca0df7c9e6070a6064e9c1b3f797ce18bcafe translatedAt=2026-08-11T02:01:32.954Z pushedAt=2026-08-11T07:47:32.056Z -->
 
 ## Checking the Revocation Status of Local Certificate Chain with Only Leaf Certificate Checked
 
@@ -13,11 +14,12 @@ The revocation status check of the local certificate chain supports checking onl
 
 ### How to Develop
 
-1. Import the [cert](../../reference/apis-device-certificate-kit/js-apis-cert.md) module.
+1. Import the [certificate module](../../reference/apis-device-certificate-kit/js-apis-cert.md).
 
    ```ts
    import { cert } from '@kit.DeviceCertificateKit';
    ```
+
 2. Call [cert.createX509CertChain](../../reference/apis-device-certificate-kit/js-apis-cert.md#certcreatex509certchain11) to create a certificate chain object.
 
 3. Call [cert.createX509Cert](../../reference/apis-device-certificate-kit/js-apis-cert.md#certcreatex509cert) to create an X.509 certificate object.
@@ -79,10 +81,10 @@ async function createCert(certData: string): Promise<cert.X509Cert> {
   return x509Cert;
 }
 
-export async function createCRL(crmPem: string): Promise<cert.CertCRLCollection> {
+export async function createCRL(crlPem: string): Promise<cert.CertCRLCollection> {
   try {
     let crlEncodingBlob: cert.EncodingBlob = {
-      data: stringToUint8Array(crmPem),
+      data: stringToUint8Array(crlPem),
       encodingFormat: cert.EncodingFormat.FORMAT_PEM
     }
     let crl: cert.X509CRL = await cert.createX509CRL(crlEncodingBlob);
@@ -120,15 +122,16 @@ async function doTestLeafCertCrlCheck() {
 
 ## Checking the Revocation Status of Intermediate CA Certificates in a Certificate Chain Online
 
-The revocation status of intermediate CA certificates in a certificate chain can be checked online since API version 22.
+Starting from API version 22, you can check the revocation status of intermediate CA certificates in a certificate chain online.
 
 ### How to Develop
 
-1. Import the [cert](../../reference/apis-device-certificate-kit/js-apis-cert.md) module.
+1. Import the [certificate module](../../reference/apis-device-certificate-kit/js-apis-cert.md).
 
    ```ts
    import { cert } from '@kit.DeviceCertificateKit';
    ```
+
 2. Call [cert.createX509CertChain](../../reference/apis-device-certificate-kit/js-apis-cert.md#certcreatex509certchain11) to create a certificate chain object.
 
 3. Call [cert.createX509Cert](../../reference/apis-device-certificate-kit/js-apis-cert.md#certcreatex509cert) to create an X.509 certificate object.
@@ -216,21 +219,21 @@ async function doTestCaCheck() {
 }
 ```
 
-
 ## Ignoring the Network Unreachable Exception During Online Certificate Revocation Check in Certificate Chain Validation
 
-The network unreachable exception during online certificate revocation check can be ignored during certificate chain validation since API version 23.
+Starting from API version 23, you can ignore the network unreachable exception during online certificate revocation check in certificate chain validation.
 
 ### How to Develop
 
-1. Import the [cert](../../reference/apis-device-certificate-kit/js-apis-cert.md) module.
+1. Import the [certificate module](../../reference/apis-device-certificate-kit/js-apis-cert.md).
 
    ```ts
    import { cert } from '@kit.DeviceCertificateKit';
    ```
+
 2. Call [cert.createX509CertChain](../../reference/apis-device-certificate-kit/js-apis-cert.md#certcreatex509certchain11-2) to create a certificate chain object.
 
-3. Call [cert.createX509Cert](../../reference/apis-device-certificate-kit/js-apis-cert.md#certcreatex509cert) to create an X.509 certificate object. Construct **cert.CertChainValidationParameters** and set **revocationCheckParam** to **RevocationCheckOptions.REVOCATION_CHECK_OPTION_IGNORE_NETWORK_ERROR** to ignore the network unreachable exception.
+3. Call [cert.createX509Cert](../../reference/apis-device-certificate-kit/js-apis-cert.md#certcreatex509cert) to create an X.509 certificate object. Construct the `cert.CertChainValidationParameters` certificate chain validation parameters, and set `revocationCheckParam` to `RevocationCheckOptions.REVOCATION_CHECK_OPTION_IGNORE_NETWORK_ERROR` to ignore the network unreachable scenario.
 
 4. Call [cert.validate](../../reference/apis-device-certificate-kit/js-apis-cert.md#validate11) and pass the certificate chain verification parameters to verify the certificate chain.
 

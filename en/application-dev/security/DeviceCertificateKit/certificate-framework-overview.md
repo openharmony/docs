@@ -6,6 +6,7 @@
 <!--Designer: @lanming-->
 <!--Tester: @PAFT-->
 <!--Adviser: @zengyawen-->
+<!-- md-trans-meta sourceCommit=c3c3aa3aaad4832d462b5cbd97f74e458e42b92c translatedAt=2026-08-11T01:58:02.480Z pushedAt=2026-08-11T02:53:35.210Z -->
 
 The certificate framework shields the differences between third-party certificate algorithm libraries. It provides the capabilities of parsing and validating a certificate, certificate extensions, and a certificate revocation list (CRL), and validating a certificate chain.
 
@@ -16,11 +17,11 @@ You can use the APIs provided by the certificate framework to achieve rapid deve
 
 ## Basic Concepts
 
-The certificate framework provides APIs for parsing, serializing, signing an X.509 certificate, verifying the signature of an X.509 certificate, and operating X.509 CRLs and the certificate chain validator.
+Device Certificate Kit provides capabilities related to X.509 certificate parsing, serialization, X.509 certificate signature verification, X.509 Certificate Revocation List (CRL) handling, and certificate chain validation.
 
 Before you get started, familiarity with the basic certificate concepts is helpful, which include but are not limited to the following:
 
-- Digital certificate<br>- X.509 (also referred to as "X509" in this document)<br>- Certificate chain<br>- To Be Signed (TBS, which refers to the data structure to be signed in an X.509 certificate, including the version number, serial number, signature algorithm identifier, issuer, validity period, subject, subject public key information, and extension)<br>- CRL
+Digital certificates, the X.509 digital certificate standard, certificate chains, TBS (To Be Signed, the data structure within an X.509 certificate that is signed, typically containing fields such as the version number, serial number, signature algorithm identifier, issuer, validity period, subject, subject public key information, and extensions), and CRL (Certificate Revocation List).
 
 ## Certificate Specifications
 
@@ -28,27 +29,27 @@ The following describes certificate specifications.
 
 ### Certificate Chain Validation
 
-The certificate chain validator does not verify the certificate validity period because the device system time is untrusted. To check the validity of a certificate, use [checkValidityWithDate()](../../reference/apis-device-certificate-kit/js-apis-cert.md#checkvaliditywithdate) of **X509Cert**.
+Because the device-side system time is not trusted, certificate chain validation does not include checking the certificate validity period. If you need to check the time validity of a certificate, use the [checkValidityWithDate()](../../reference/apis-device-certificate-kit/js-apis-cert.md#checkvaliditywithdate) method of the X.509 certificate.
 
 ### Certificate Format
 
 Currently, only the certificates in DER and PEM formats are supported.
 
-### X.509 Certificate Structure 
+### X.509 Certificate Structure
 
-![](figures/X509_certificate_structure.png)
+![X509-certificate-structure](figures/X509-certificate-structure.png)
 
 Certificate example:
 
-![](figures/certificate_example.png)
+![sample-certificate-file](figures/certificate_example.png)
 
 ### X.509 CRL Structure
 
-![](figures/CRL_structure.png)
+![certificate-revocation-list-structure](figures/CRL_structure.png)
 
 CRL example:
 
-![](figures/CRL_example.png)
+![sample-CRL-file](figures/CRL_example.png)
 
 ## Constraints
 
@@ -59,29 +60,44 @@ The certificate framework depends on the basic algorithm capabilities of the Cry
 You can use the certificate framework to implement the following functionalities. Before you start, be sure to familiarize yourself with [Certificate Specifications](#certificate-specifications).
 
 - [Certificate Development](create-parse-verify-cert-object.md)
+
 - [Certificate Extension Development](create-parse-verify-certextension-object.md)
+
 - [CRL Development](create-parse-verify-crl-object.md)
+
 - [Certificate Chain Validator Development](create-verify-cerchainvalidator-object.md)
+
 - [Certificate and CRL Collection Development](create-get-cert-crl-object.md)
+
 - [Certificate Chain Development](create-verify-certchain-object.md)
-- [Creating a TrustAnchor Object Array from a p12 File](create-trustanchor-from-p12.md)
+
+- [Constructing a TrustAnchor Array from a PKCS #12 File for Certificate Chain Validation](create-trustanchor-from-p12.md)
+
 - [Using the Prebuilt CA Certificate to Validate a Certificate Chain](verify-certchain-by-systemca.md)
+
 - [Certificate Signing with CMS](create-cms-sign-object.md)
+
 - [Certificate Encapsulation with CMS](create-cms-enveloped-object.md)
+
 - [Certificate Signature Verification with CMS](create-cms-verify-object.md)
+
 - [Certificate Decapsulation with CMS](create-cms-decapsulation-object.md)
-- [Creating and Parsing a Certificate with PKCS #12](create-parse-pkcs12.md)
+
+- [Creating and Parsing a PKCS #12 Certificate](create-parse-pkcs12.md)
+
 - [Online Validation of Certificate Revocation Status of a Certificate Chain](create-verify-cerchainvalidator-revocation-object.md)
+
 - [Downloading the Missing Intermediate CA Certificate During Certificate Chain Validation](allow-download-Intermediate-Cert.md)
+
 - [Building and Validating a Certificate Chain](build-and-verify-cert-chain.md)
 
 The following table lists the classes provided by the certificate framework. Based on the classes, you can learn the related APIs.
 
 | Name| Class| Description|
 | -------- | -------- | -------- |
-| X.509 certificate| [X509Cert](../../reference/apis-device-certificate-kit/js-apis-cert.md#x509cert) | Parses and serializes X.509 certificates, verifies X.509 certificate signatures, and queries certificate information.|
-| Certificate extension| [CertExtension](../../reference/apis-device-certificate-kit/js-apis-cert.md#certextension10) | Obtains the extended fields in the X.509 certificate, such as whether the CA is used and the CRL distribution point.|
-| X.509 CRL| [X509CRL](../../reference/apis-device-certificate-kit/js-apis-cert.md#x509crl11) | Provides features such as X.509 certificate revocation list parsing, serialization, and information query.|
+| X.509 Certificate | [X509Cert](../../reference/apis-device-certificate-kit/js-apis-cert.md#x509cert) | Provides capabilities such as X.509 certificate parsing, serialization, signature verification, and certificate information query. |
+| Certificate Extension | [CertExtension](../../reference/apis-device-certificate-kit/js-apis-cert.md#certextension10) | Provides access to extension fields in X.509 certificates, such as whether it is a CA, CRL distribution points, and other fields. |
+| X.509 Certificate Revocation List | [X509CRL](../../reference/apis-device-certificate-kit/js-apis-cert.md#x509crl11) | Provides capabilities such as X.509 CRL parsing, serialization, and information query. |
 | Certificate chain validator| [CertChainValidator](../../reference/apis-device-certificate-kit/js-apis-cert.md#certchainvalidator) | Verifies the certificate chain (excluding the certificate validity period) and queries the certificate chain algorithm name.|
 | Certificate and CRL collection| [CertCRLCollection](../../reference/apis-device-certificate-kit/js-apis-cert.md#certcrlcollection11) | Queries certificates and certificate revocation lists (CRLs).|
-| X.509 certificate chain| [X509CertChain](../../reference/apis-device-certificate-kit/js-apis-cert.md#x509certchain11) | Verifies the certificate chain and obtains the certificate list.|
+| X.509 Certificate Chain | [X509CertChain](../../reference/apis-device-certificate-kit/js-apis-cert.md#x509certchain11) | Provides certificate chain validation and certificate list retrieval capabilities. |

@@ -6,21 +6,23 @@
 <!--Designer: @lanming-->
 <!--Tester: @PAFT-->
 <!--Adviser: @zengyawen-->
+<!-- md-trans-meta sourceCommit=ae628f395efd1389baf7d540181f9bb8c5132144 translatedAt=2026-08-11T01:59:34.164Z pushedAt=2026-08-11T07:37:08.863Z -->
 
 Certificate signature verification with CMS is supported since API version 22.
 
-PKCS #7 is a standard syntax for storing signed or encrypted data. The extension of PKCS #7, which is CMS, supports the following data types: data, signed data, encapsulated data, signed and encapsulated data, digest data, and encrypted data. It is often used to protect data integrity and confidentiality.
+PKCS #7 is a standard syntax for storing signed or encrypted data. CMS (Cryptographic Message Syntax), as an extension of PKCS #7, supports the following data types: data, signed data, encapsulated data, signed and encapsulated data, digest data, and encrypted data. This standard is commonly used to protect data integrity and confidentiality.
 
 Currently, only CMS signature data and encapsulated data are supported.
 
 ## How to Develop
 
-1. Import the [cert](../../reference/apis-device-certificate-kit/js-apis-cert.md) module.
+1. Import the [certificate module](../../reference/apis-device-certificate-kit/js-apis-cert.md).
 
    ```ts
    import { cert } from '@kit.DeviceCertificateKit';
    ```
-2. For details about the signature development procedure, see [Certificate Signing with CMS](../../security/DeviceCertificateKit/create-cms-sign-object.md).
+
+2. For signature development steps, see [CMS Signature](../../security/DeviceCertificateKit/create-cms-sign-object.md).
 
 3. Call [cert.createCmsParser](../../reference/apis-device-certificate-kit/js-apis-cert.md#certcreatecmsparser22) to create a **CmsParser** object.
 
@@ -109,7 +111,12 @@ async function createX509Cert(inStream: string): Promise<cert.X509Cert> {
     encodingFormat: cert.EncodingFormat.FORMAT_PEM
 
   };
-  let x509Cert: cert.X509Cert = await cert.createX509Cert(encodingBlob);
+  let x509Cert: cert.X509Cert = {} as cert.X509Cert;
+  try {
+    x509Cert = await cert.createX509Cert(encodingBlob);
+  } catch (error) {
+    console.error(`createX509Cert failed: errCode: ${error.code}, message: ${error.message}`);
+  }
 
   return x509Cert;
 }
