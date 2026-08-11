@@ -44,7 +44,6 @@ struct Index {
   private sessionId: string = "";
   private avsessionController?: avSession.AVSessionController;
   private currentAVSession?: avSession.AVSession;
-  context = this.getUIContext();
 
   aboutToAppear(): void {
 
@@ -73,7 +72,7 @@ struct Index {
 
 getAVPlaybackState(callback: AsyncCallback\<AVPlaybackState>): void
 
-获取当前的远端播放状态。结果通过callback异步回调方式返回。
+获取当前的远端播放状态。使用callback异步回调。
 
 **系统能力：** SystemCapability.Multimedia.AVSession.Core
 
@@ -109,7 +108,7 @@ avcontroller.getAVPlaybackState((err: BusinessError, state: avSession.AVPlayback
 
 getAVPlaybackState(): Promise\<AVPlaybackState>
 
-获取当前的远端播放状态。结果通过Promise异步回调方式返回。
+获取当前的远端播放状态。使用Promise异步回调。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -143,7 +142,7 @@ avcontroller.getAVPlaybackState().then((state: avSession.AVPlaybackState) => {
 
 getAVMetadata(): Promise\<AVMetadata>
 
-获取会话元数据。结果通过Promise异步回调方式返回。
+获取会话元数据。使用Promise异步回调。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -177,7 +176,7 @@ avcontroller.getAVMetadata().then((metadata: avSession.AVMetadata) => {
 
 getAVMetadata(callback: AsyncCallback\<AVMetadata>): void
 
-获取会话元数据。结果通过callback异步回调方式返回。
+获取会话元数据。使用callback异步回调。
 
 **系统能力：** SystemCapability.Multimedia.AVSession.Core
 
@@ -213,7 +212,7 @@ avcontroller.getAVMetadata((err: BusinessError, metadata: avSession.AVMetadata) 
 
 getAVQueueTitle(): Promise\<string>
 
-获取当前会话播放列表的名称。结果通过Promise异步回调方式返回。
+获取当前会话播放列表的名称。使用Promise异步回调。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -247,7 +246,7 @@ avcontroller.getAVQueueTitle().then((title: string) => {
 
 getAVQueueTitle(callback: AsyncCallback\<string>): void
 
-获取当前播放列表的名称。结果通过callback异步回调方式返回。
+获取当前会话播放列表的名称。使用callback异步回调。
 
 **系统能力：** SystemCapability.Multimedia.AVSession.Core
 
@@ -283,7 +282,7 @@ avcontroller.getAVQueueTitle((err: BusinessError, title: string) => {
 
 getAVQueueItems(): Promise\<Array\<AVQueueItem>>
 
-获取当前会话播放列表相关信息。结果通过Promise异步回调方式返回。
+获取当前会话播放列表相关信息。使用Promise异步回调。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -317,7 +316,7 @@ avcontroller.getAVQueueItems().then((items: avSession.AVQueueItem[]) => {
 
 getAVQueueItems(callback: AsyncCallback\<Array\<AVQueueItem>>): void
 
-获取当前播放列表相关信息。结果通过callback异步回调方式返回。
+获取当前会话播放列表相关信息。使用callback异步回调。
 
 **系统能力：** SystemCapability.Multimedia.AVSession.Core
 
@@ -353,7 +352,7 @@ avcontroller.getAVQueueItems((err: BusinessError, items: avSession.AVQueueItem[]
 
 skipToQueueItem(itemId: number): Promise\<void>
 
-设置指定播放列表单项的ID，发送给session端处理，session端可以选择对这个单项歌曲进行播放。结果通过Promise异步回调方式返回。
+设置指定播放列表单项的ID，发送给session端处理，session端可以选择对这个单项歌曲进行播放。使用Promise异步回调。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -395,7 +394,7 @@ avcontroller.skipToQueueItem(queueItemId).then(() => {
 
 skipToQueueItem(itemId: number, callback: AsyncCallback\<void>): void
 
-设置指定播放列表单项的ID，发送给session端处理，session端可以选择对这个单项歌曲进行播放。结果通过callback异步回调方式返回。
+设置指定播放列表单项的ID，发送给session端处理，session端可以选择对这个单项歌曲进行播放。使用callback异步回调。
 
 **系统能力：** SystemCapability.Multimedia.AVSession.Core
 
@@ -434,7 +433,7 @@ avcontroller.skipToQueueItem(queueItemId, (err: BusinessError) => {
 
 getOutputDevice(): Promise\<OutputDeviceInfo>
 
-获取播放设备信息。结果通过Promise异步回调方式返回。
+获取播放设备信息。使用Promise异步回调。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -467,7 +466,7 @@ avcontroller.getOutputDevice().then((deviceInfo: avSession.OutputDeviceInfo) => 
 
 getOutputDevice(callback: AsyncCallback\<OutputDeviceInfo>): void
 
-获取播放设备信息。结果通过callback异步回调方式返回。
+获取播放设备信息。使用callback异步回调。
 
 **系统能力：** SystemCapability.Multimedia.AVSession.Core
 
@@ -502,7 +501,7 @@ avcontroller.getOutputDevice((err: BusinessError, deviceInfo: avSession.OutputDe
 
 sendAVKeyEvent(event: KeyEvent): Promise\<void>
 
-发送按键事件到控制器对应的会话。结果通过Promise异步回调方式返回。
+发送按键事件到控制器对应的会话。使用Promise异步回调。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -550,7 +549,7 @@ avcontroller.sendAVKeyEvent(event).then(() => {
 
 sendAVKeyEvent(event: KeyEvent, callback: AsyncCallback\<void>): void
 
-发送按键事件到会话。结果通过callback异步回调方式返回。
+发送按键事件到会话。使用callback异步回调。
 
 **系统能力：** SystemCapability.Multimedia.AVSession.Core
 
@@ -595,7 +594,7 @@ avcontroller.sendAVKeyEvent(event, (err: BusinessError) => {
 
 getLaunchAbility(): Promise\<WantAgent>
 
-获取应用在会话中保存的WantAgent对象。结果通过Promise异步回调方式返回。
+获取应用在会话中保存的WantAgent对象。使用Promise异步回调。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -620,7 +619,7 @@ getLaunchAbility(): Promise\<WantAgent>
 **示例：**
 
 ```ts
-avcontroller.getLaunchAbility().then((agent: object) => {
+avcontroller.getLaunchAbility().then((agent: WantAgent) => {
   console.info(`Succeeded in getting launch ability: ${agent}`);
 });
 ```
@@ -629,7 +628,7 @@ avcontroller.getLaunchAbility().then((agent: object) => {
 
 getLaunchAbility(callback: AsyncCallback\<WantAgent>): void
 
-获取应用在会话中保存的WantAgent对象。结果通过callback异步回调方式返回。
+获取应用在会话中保存的WantAgent对象。使用callback异步回调。
 
 **系统能力：** SystemCapability.Multimedia.AVSession.Core
 
@@ -652,7 +651,7 @@ getLaunchAbility(callback: AsyncCallback\<WantAgent>): void
 **示例：**
 
 ```ts
-avcontroller.getLaunchAbility((err: BusinessError, agent: object) => {
+avcontroller.getLaunchAbility((err: BusinessError, agent: WantAgent) => {
   if (err) {
     console.error(`Failed to get launch ability, code: ${err.code}, message: ${err.message}`);
     return;
@@ -696,7 +695,7 @@ let time: number = avcontroller.getRealPlaybackPositionSync();
 
 isActive(): Promise\<boolean>
 
-获取会话是否被激活。结果通过Promise异步回调方式返回。
+获取会话是否被激活。使用Promise异步回调。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -730,7 +729,7 @@ avcontroller.isActive().then((isActive: boolean) => {
 
 isActive(callback: AsyncCallback\<boolean>): void
 
-判断会话是否被激活。结果通过callback异步回调方式返回。
+判断会话是否被激活。使用callback异步回调。
 
 **系统能力：** SystemCapability.Multimedia.AVSession.Core
 
@@ -766,7 +765,7 @@ avcontroller.isActive((err: BusinessError, isActive: boolean) => {
 
 destroy(): Promise\<void>
 
-销毁当前控制器，销毁后当前控制器不可再用。结果通过Promise异步回调方式返回。
+销毁当前控制器，销毁后当前控制器不可再用。使用Promise异步回调。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -799,7 +798,7 @@ avcontroller.destroy().then(() => {
 
 destroy(callback: AsyncCallback\<void>): void
 
-销毁当前控制器，销毁后当前控制器不可再用。结果通过callback异步回调方式返回。
+销毁当前控制器，销毁后当前控制器不可再用。使用callback异步回调。
 
 **系统能力：** SystemCapability.Multimedia.AVSession.Core
 
@@ -834,7 +833,7 @@ avcontroller.destroy((err: BusinessError) => {
 
 getValidCommands(): Promise\<Array\<AVControlCommandType>>
 
-获取会话支持的有效命令。结果通过Promise异步回调方式返回。
+获取会话支持的有效命令。使用Promise异步回调。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -868,7 +867,7 @@ avcontroller.getValidCommands().then((validCommands: avSession.AVControlCommandT
 
 getValidCommands(callback: AsyncCallback\<Array\<AVControlCommandType>>): void
 
-获取会话支持的有效命令。结果通过callback异步回调方式返回。
+获取会话支持的有效命令。使用callback异步回调。
 
 **系统能力：** SystemCapability.Multimedia.AVSession.Core
 
@@ -904,7 +903,7 @@ avcontroller.getValidCommands((err: BusinessError, validCommands: avSession.AVCo
 
 sendControlCommand(command: AVControlCommand): Promise\<void>
 
-通过控制器发送命令到其对应的会话。结果通过Promise异步回调方式返回。
+通过控制器发送命令到其对应的会话。使用Promise异步回调。
 
 > **说明：**
 >
@@ -953,7 +952,7 @@ avcontroller.sendControlCommand(avCommand).then(() => {
 
 sendControlCommand(command: AVControlCommand, callback: AsyncCallback\<void>): void
 
-通过会话控制器发送命令到其对应的会话。结果通过callback异步回调方式返回。
+通过会话控制器发送命令到其对应的会话。使用callback异步回调。
 
 > **说明：**
 >
@@ -999,7 +998,7 @@ avcontroller.sendControlCommand(avCommand, (err: BusinessError) => {
 
 sendCommonCommand(command: string, args: {[key: string]: Object}): Promise\<void>
 
-通过会话控制器发送自定义控制命令到其对应的会话。结果通过Promise异步回调方式返回。
+通过会话控制器发送自定义控制命令到其对应的会话。使用Promise异步回调。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -1050,7 +1049,7 @@ avcontroller.sendCommonCommand(commandName, {command : "This is my command"}).th
 
 sendCommonCommand(command: string, args: {[key: string]: Object}, callback: AsyncCallback\<void>): void
 
-通过会话控制器发送自定义命令到其对应的会话。结果通过callback异步回调方式返回。
+通过会话控制器发送自定义命令到其对应的会话。使用callback异步回调。
 
 **系统能力：** SystemCapability.Multimedia.AVSession.Core
 
@@ -1098,7 +1097,7 @@ avcontroller.sendCommonCommand(commandName, {command : "This is my command"}, (e
 
 sendCustomData(data: Record\<string, Object>): Promise\<void>
 
-发送私有数据到远端设备。使用Promise异步回调。
+发送自定义数据到远端设备。使用Promise异步回调。
 
 **原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
 
@@ -1139,7 +1138,6 @@ struct Index {
   private sessionId: string = "";
   private controller: avSession.AVSessionController | undefined = undefined;
   private currentAVSession?: avSession.AVSession;
-  context = this.getUIContext();
 
   aboutToAppear(): void {
     avSession.createAVSession(this.getUIContext().getHostContext(), this.tag, "audio")
@@ -1148,11 +1146,8 @@ struct Index {
         this.sessionId = this.currentAVSession.sessionId;
         this.controller = await this.currentAVSession.getController();
         console.info(`Succeeded in creating AV session, sessionId: ${this.sessionId}`);
+        (this.controller as avSession.AVSessionController).sendCustomData({ customData: "This is my data" });
       });
-
-    if (this.controller !== undefined) {
-      (this.controller as avSession.AVSessionController).sendCustomData({ customData: "This is my data" })
-    }
   }
 
   build() {
@@ -1210,7 +1205,6 @@ struct Index {
   private sessionId: string = "";
   private controller: avSession.AVSessionController | undefined = undefined;
   private currentAVSession?: avSession.AVSession;
-  context = this.getUIContext();
 
   aboutToAppear(): void {
 
@@ -1220,12 +1214,10 @@ struct Index {
         this.sessionId = this.currentAVSession.sessionId;
         this.controller = await this.currentAVSession.getController();
         console.info(`Succeeded in creating AV session, sessionId: ${this.sessionId}`);
+        (this.controller as avSession.AVSessionController).getExtras().then((extras) => {
+          console.info(`Succeeded in getting extras: ${extras}`);
+        });
       });
-    if (this.controller !== undefined) {
-      (this.controller as avSession.AVSessionController).getExtras().then((extras) => {
-        console.info(`Succeeded in getting extras: ${extras}`);
-      });
-    }
   }
 
   build() {
@@ -1314,7 +1306,7 @@ getExtrasWithEvent(extraEvent: string): Promise\<ExtraInfo>
 **示例：**
 
 ```ts
-let controller: avSession.AVSessionController | ESObject;
+let controller: avSession.AVSessionController | undefined;
 const COMMON_COMMAND_STRING_1 = 'AUDIO_GET_VOLUME';
 const COMMON_COMMAND_STRING_2 = 'AUDIO_GET_AVAILABLE_DEVICES';
 const COMMON_COMMAND_STRING_3 = 'AUDIO_GET_PREFERRED_OUTPUT_DEVICE_FOR_RENDERER_INFO';
@@ -1411,7 +1403,7 @@ offDesktopLyricEnabled(callback?: Callback\<boolean>): void
 
 | 参数名 | 类型                   | 必填 | 说明                            |
 | ------ | ---------------------- | ---- | -------------------------------- |
-| callback   | Callback\<boolean> | 否   | 回调函数。当监听事件取消成功，err为undefined，否则返回错误对象。<br>该参数为可选参数，若不填写该参数，则认为取消所有桌面歌词功能启用状态变更事件监听。 |
+| callback   | Callback\<boolean> | 否   | 回调函数，返回true表示桌面歌词功能启用；返回false表示桌面歌词功能未启用。<br>该参数为可选参数，若不填写该参数，则认为取消所有桌面歌词功能启用状态变更事件监听。 |
 
 **错误码：**
 
@@ -1549,7 +1541,7 @@ offDesktopLyricVisibilityChanged(callback?: Callback\<boolean>): void
 
 | 参数名 | 类型                   | 必填 | 说明                            |
 | ------ | ---------------------- | ---- | -------------------------------- |
-| callback   | Callback\<boolean> | 否   | 回调函数。当监听事件取消成功，err为undefined，否则返回错误对象。<br>该参数为可选参数，若不填写该参数，则认为取消所有显示桌面歌词状态变更事件监听。 |
+| callback   | Callback\<boolean> | 否   | 回调函数，返回true表示开启显示桌面歌词状态；返回false表示关闭显示桌面歌词状态。<br>该参数为可选参数，若不填写该参数，则认为取消所有显示桌面歌词状态变更事件监听。 |
 
 **错误码：**
 
@@ -1580,7 +1572,7 @@ setDesktopLyricState(state: DesktopLyricState): Promise\<void>
 
 | 参数名 | 类型   | 必填 | 说明       |
 | ------ | ------ | ---- | ---------- |
-| state | [DesktopLyricState](./arkts-apis-avsession-i.md#desktoplyricstate23) | 是   | 桌面歌词状态。 |
+| state | [DesktopLyricState](arkts-apis-avsession-i.md#desktoplyricstate23) | 是   | 桌面歌词状态。 |
 
 **返回值：**
 
@@ -1623,7 +1615,7 @@ getDesktopLyricState(): Promise\<DesktopLyricState>
 
 | 类型           | 说明                          |
 | -------------- | ----------------------------- |
-| Promise\<[DesktopLyricState](./arkts-apis-avsession-i.md#desktoplyricstate23)> |  Promise对象。返回桌面歌词状态。 |
+| Promise\<[DesktopLyricState](arkts-apis-avsession-i.md#desktoplyricstate23)> |  Promise对象。返回桌面歌词状态。 |
 
 **错误码：**
 
@@ -1657,7 +1649,7 @@ onDesktopLyricStateChanged(callback: Callback\<DesktopLyricState>): void
 
 | 参数名 | 类型                   | 必填 | 说明                            |
 | ------ | ---------------------- | ---- | -------------------------------- |
-| callback   | Callback\<[DesktopLyricState](./arkts-apis-avsession-i.md#desktoplyricstate23)> | 是   | 回调函数。返回桌面歌词状态。 |
+| callback   | Callback\<[DesktopLyricState](arkts-apis-avsession-i.md#desktoplyricstate23)> | 是   | 回调函数。返回桌面歌词状态。 |
 
 **错误码：**
 
@@ -1690,7 +1682,7 @@ offDesktopLyricStateChanged(callback?: Callback\<DesktopLyricState>): void
 
 | 参数名 | 类型                   | 必填 | 说明                            |
 | ------ | ---------------------- | ---- | -------------------------------- |
-| callback   | Callback\<[DesktopLyricState](./arkts-apis-avsession-i.md#desktoplyricstate23)> | 否   | 回调函数。当监听事件取消成功，err为undefined，否则返回错误对象。<br>该参数为可选参数，若不填写该参数，则认为取消所有桌面歌词状态变更事件监听。 |
+| callback   | Callback\<[DesktopLyricState](arkts-apis-avsession-i.md#desktoplyricstate23)> | 否   | 回调函数，返回桌面歌词状态。<br>该参数为可选参数，若不填写该参数，则认为取消所有桌面歌词状态变更事件监听。 |
 
 **错误码：**
 
@@ -1724,8 +1716,8 @@ on(type: 'metadataChange', filter: Array\<keyof AVMetadata> | 'all', callback: (
 | 参数名   | 类型                                                         | 必填 | 说明                                                         |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | type     | string                                                       | 是   | 事件回调类型，支持事件`'metadataChange'`：当元数据需要更新时，触发该事件。<br>需要更新表示对应属性值被重新设置过，不论新值与旧值是否相同。 |
-| filter   | Array\<keyof AVMetadata>\|'all' | 是   |'all'表示关注元数据所有字段变化；Array\<keyof AVMetadata>表示关注Array中的字段变化。|
-| callback | (data: [AVMetadata](arkts-apis-avsession-i.md#avmetadata10)) => void                    | 是   | 回调函数，参数data是需要更新的元数据。只包含需要更新的元数据属性，不代表当前全量的元数据。   |
+| filter   | Array\<keyof AVMetadata>\|'all' | 是   |Array\<keyof AVMetadata>表示关注Array中的字段变化。<br>'all'表示关注元数据所有字段变化。|
+| callback | (data: [AVMetadata](arkts-apis-avsession-i.md#avmetadata10)) => void                    | 是   | 回调函数，参数data是发生变化的元数据。只包含发生变化的元数据属性，不代表当前全量的元数据。   |
 
 **错误码：**
 
@@ -1765,7 +1757,7 @@ off(type: 'metadataChange', callback?: (data: AVMetadata) => void)
 | 参数名   | 类型                                               | 必填 | 说明                                                    |
 | -------- | ------------------------------------------------ | ---- | ------------------------------------------------------ |
 | type     | string                                           | 是   | 取消对应的监听事件，支持事件`'metadataChange'`。         |
-| callback | (data: [AVMetadata](arkts-apis-avsession-i.md#avmetadata10)) => void        | 否   | 回调函数，参数data是需要更新的元数据。只包含需要更新的元数据属性，并不代表当前全量的元数据。<br>该参数为可选参数，若不填写该参数，则认为取消所有相关会话的事件监听。                         |
+| callback | (data: [AVMetadata](arkts-apis-avsession-i.md#avmetadata10)) => void        | 否   | 回调函数，参数data是发生变化的元数据。只包含发生变化的元数据属性，并不代表当前全量的元数据。<br>该参数为可选参数，若不填写该参数，则认为取消所有相关会话的事件监听。                         |
 
 **错误码：**
 
@@ -1800,7 +1792,7 @@ on(type: 'playbackStateChange', filter: Array\<keyof AVPlaybackState> | 'all', c
 | 参数名   | 类型       | 必填 | 说明      |
 | --------| -----------|-----|------------|
 | type     | string    | 是   | 事件回调类型，支持事件`'playbackStateChange'`，当播放状态需要更新时，触发该事件。<br>需要更新表示对应属性值被重新设置过，不论新值与旧值是否相同。 |
-| filter   | Array\<keyof AVPlaybackState>\|'all' | 是   | 'all'表示关注播放状态所有字段更新。<br>Array\<keyof AVPlaybackstate> 表示关注Array中的字段更新。 |
+| filter   | Array\<keyof AVPlaybackState>\|'all' | 是   | Array\<keyof AVPlaybackstate> 表示关注Array中的字段更新。<br>'all'表示关注播放状态所有字段更新。|
 | callback | (state: [AVPlaybackState](arkts-apis-avsession-i.md#avplaybackstate10)) => void       | 是   | 回调函数，参数state是需要更新的播放状态。只包含需要更新的播放状态属性，并不代表当前全量的播放状态。|
 
 **错误码：**
@@ -1875,7 +1867,7 @@ on(type: 'callMetadataChange', filter: Array\<keyof CallMetadata> | 'all', callb
 | 参数名   | 类型       | 必填 | 说明      |
 | --------| -----------|-----|------------|
 | type     | string    | 是   | 事件回调类型，支持事件`'callMetadataChange'`：当通话元数据变化时，触发该事件。 |
-| filter   |  Array\<keyof CallMetadata>\|'all'| 是   |'all'表示关注通话元数据所有字段变化；Array<keyof CallMetadata\> 表示关注Array中的字段变化。\| 'all'。|
+| filter   |  Array\<keyof CallMetadata>\|'all'| 是   |Array<keyof CallMetadata\> 表示关注Array中的字段变化。<br>'all'表示关注通话元数据所有字段变化。|
 | callback | Callback<[CallMetadata](arkts-apis-avsession-i.md#callmetadata11)\>   | 是   | 回调函数，参数callmetadata是变化后的通话元数据。|
 
 **错误码：**
@@ -1950,7 +1942,7 @@ on(type: 'callStateChange', filter: Array\<keyof AVCallState> | 'all', callback:
 | 参数名   | 类型       | 必填 | 说明      |
 | --------| -----------|-----|------------|
 | type     | string    | 是   | 事件回调类型，支持事件`'callStateChange'`：当通话状态变化时，触发该事件。 |
-| filter   |  Array\<keyof AVCallState>\|'all' | 是   | 'all' 表示关注通话状态所有字段变化；Array\<keyof AVCallState>表示关注Array中的字段变化。\| 'all'。 |
+| filter   |  Array\<keyof AVCallState>\|'all' | 是   | Array\<keyof AVCallState>表示关注Array中的字段变化。<br>'all'表示关注通话状态所有字段变化。 |
 | callback | Callback<[AVCallState](arkts-apis-avsession-i.md#avcallstate11)\>       | 是   | 回调函数，参数callstate是变化后的通话状态。|
 
 **错误码：**
@@ -2025,7 +2017,7 @@ on(type: 'sessionDestroy', callback: () => void)
 | 参数名   | 类型       | 必填 | 说明                                                         |
 | -------- | ---------- | ---- | ------------------------------------------------------------ |
 | type     | string     | 是   | 事件回调类型，支持事件`'sessionDestroy'`：当检测到会话销毁时，触发该事件。 |
-| callback | () => void | 是   | 回调函数。当监听事件注册成功，err为undefined，否则为错误对象。                  |
+| callback | () => void | 是   | 回调函数。当会话销毁时触发回调。                  |
 
 **错误码：**
 
@@ -2060,7 +2052,7 @@ off(type: 'sessionDestroy', callback?: () => void)
 | 参数名   | 类型       | 必填 | 说明                                                      |
 | -------- | ---------- | ---- | ----------------------------------------------------- |
 | type     | string     | 是   | 取消对应的监听事件，支持事件`'sessionDestroy'`。         |
-| callback | () => void | 否   | 回调函数。当监听事件取消成功，err为undefined，否则返回错误对象。<br>该参数为可选参数，若不填写该参数，则认为取消所有相关会话的事件监听。                                               |
+| callback | () => void | 否   | 回调函数，与on方法注册的回调函数一致。<br>该参数为可选参数，若不填写该参数，则认为取消所有相关会话的事件监听。                                               |
 
 **错误码：**
 
@@ -2480,7 +2472,7 @@ off(type: 'queueTitleChange', callback?: (title: string) => void): void
 | 参数名    | 类型                    | 必填 | 说明                                                                                                    |
 | -------- | ----------------------- | ---- | ------------------------------------------------------------------------------------------------------- |
 | type     | string                  | 是   | 取消对应的监听事件，支持事件`'queueTitleChange'`。                                                         |
-| callback | (title: string) => void | 否   | 回调函数，参数items是变化的播放列表名称。<br>该参数为可选参数，若不填写该参数，则认为取消所有相关会话的事件监听。 |
+| callback | (title: string) => void | 否   | 回调函数，参数title是变化的播放列表名称。<br>该参数为可选参数，若不填写该参数，则认为取消所有相关会话的事件监听。 |
 
 **错误码：**
 
@@ -2548,7 +2540,7 @@ off(type: 'extrasChange', callback?: (extras: {[key: string]: Object}) => void):
 | 参数名    | 类型                    | 必填 | 说明                                                                                                    |
 | -------- | ----------------------- | ---- | ------------------------------------------------------------------------------------------------------- |
 | type     | string                  | 是   | 取消对应的监听事件，支持事件`'extrasChange'`。                                                         |
-|  callback |  (extras: {[key: string]: Object}) => void | 否   | 注册监听事件时的回调函数。<br>该参数为可选参数，若不填写该参数，则认为取消会话所有与此事件相关的监听。|
+|  callback |  (extras: {[key: string]: Object}) => void | 否   | 回调函数，extras为媒体提供方新设置的自定义媒体数据包。<br>该参数为可选参数，若不填写该参数，则认为取消会话所有与此事件相关的监听。|
 
 **错误码：**
 
@@ -2595,8 +2587,8 @@ on(type: 'customDataChange', callback: Callback\<Record\<string, Object>>): void
 **示例：**
 
 ```ts
-avcontroller.on('customDataChange', (callback) => {
-  console.info(`Caught customDataChange event,the new callback is: ${JSON.stringify(callback)}`);
+avcontroller.on('customDataChange', (data) => {
+  console.info(`Caught customDataChange event,the new data is: ${JSON.stringify(data)}`);
 });
 
 ```
@@ -2616,7 +2608,7 @@ off(type: 'customDataChange', callback?: Callback\<Record\<string, Object>>): vo
 | 参数名   | 类型                               | 必填 | 说明                                                         |
 | -------- | ---------------------------------- | ---- | ------------------------------------------------------------ |
 | type     | string                             | 是   | 取消对应的监听事件，支持的事件是'customDataChange'。         |
-| callback | Callback\<Record\<string, Object>> | 否   | 注册监听事件时的回调函数。该参数为可选参数，若不填写该参数，则认为取消会话所有与此事件相关的监听。 |
+| callback | Callback\<Record\<string, Object>> | 否   | 回调函数，用于接收自定义数据。该参数为可选参数，若不填写该参数，则认为取消会话所有与此事件相关的监听。 |
 
 **错误码：**
 
@@ -2701,7 +2693,7 @@ let metaData: avSession.AVMetadata = avcontroller.getAVMetadataSync();
 
 getAVCallState(): Promise\<AVCallState>
 
-获取通话状态数据。结果通过Promise异步回调方式返回。
+获取通话状态数据。使用Promise异步回调。
 
 **系统能力：** SystemCapability.Multimedia.AVSession.Core
 
@@ -2733,7 +2725,7 @@ avcontroller.getAVCallState().then((callstate: avSession.AVCallState) => {
 
 getAVCallState(callback: AsyncCallback\<AVCallState>): void
 
-获取通话状态数据。结果通过callback异步回调方式返回。
+获取通话状态数据。使用callback异步回调。
 
 **系统能力：** SystemCapability.Multimedia.AVSession.Core
 
@@ -2757,6 +2749,10 @@ getAVCallState(callback: AsyncCallback\<AVCallState>): void
 
 ```ts
 avcontroller.getAVCallState((err: BusinessError, callstate: avSession.AVCallState) => {
+  if (err) {
+    console.error(`Failed to get AV call state, code: ${err.code}, message: ${err.message}`);
+    return;
+  }
   console.info(`Succeeded in getting AV call state: ${callstate.state}`);
 });
 ```
@@ -2765,7 +2761,7 @@ avcontroller.getAVCallState((err: BusinessError, callstate: avSession.AVCallStat
 
 getCallMetadata(): Promise\<CallMetadata>
 
-获取通话会话的元数据。结果通过Promise异步回调方式返回。
+获取通话会话的元数据。使用Promise异步回调。
 
 **系统能力：** SystemCapability.Multimedia.AVSession.Core
 
@@ -2797,7 +2793,7 @@ avcontroller.getCallMetadata().then((calldata: avSession.CallMetadata) => {
 
 getCallMetadata(callback: AsyncCallback\<CallMetadata>): void
 
-获取通话会话的元数据。结果通过callback异步回调方式返回。
+获取通话会话的元数据。使用callback异步回调。
 
 **系统能力：** SystemCapability.Multimedia.AVSession.Core
 
@@ -2820,7 +2816,11 @@ getCallMetadata(callback: AsyncCallback\<CallMetadata>): void
 **示例：**
 
 ```ts
-avcontroller.getCallMetadata((calldata: avSession.CallMetadata) => {
+avcontroller.getCallMetadata((err: BusinessError, calldata: avSession.CallMetadata) => {
+  if (err) {
+    console.error(`Failed to get call metadata, code: ${err.code}, message: ${err.message}`);
+    return;
+  }
   console.info(`Succeeded in getting call metadata, name: ${calldata.name}`);
 });
 ```

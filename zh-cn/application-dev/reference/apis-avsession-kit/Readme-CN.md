@@ -21,7 +21,7 @@
   <!--Del-->
   - [@ohos.app.ability.MediaControlExtensionAbility (播控扩展能力)(系统接口)](js-apis-app-ability-MediaControlExtensionAbility-sys.md)
   - [@ohos.multimedia.avsession (媒体会话管理)(系统接口)](js-apis-avsession-sys.md)
-  - application
+  - application (应用)
     - [MediaControlExtensionContext (播控扩展能力上下文)(系统接口)](js-apis-inner-application-MediaControlExtensionContext-sys.md)
     <!--DelEnd-->
   - @ohos.multimedia.avMusicTemplate (音频模板)<!--apis-avsession-avmusictemplate-->
@@ -29,7 +29,7 @@
     - [Functions](arkts-apis-avMusicTemplate-f.md)
     - [Class (AVMusicTemplate)](arkts-apis-avMusicTemplate-AVMusicTemplate.md)
     - [Class (AVMusicTemplateController)](arkts-apis-avMusicTemplate-AVMusicTemplateController.md)
-    - [Interface (其他)](arkts-apis-avMusicTemplate-i.md)
+    - [Interfaces (其他)](arkts-apis-avMusicTemplate-i.md)
     - [Enums](arkts-apis-avMusicTemplate-e.md)
     - [Types](arkts-apis-avMusicTemplate-t.md)
   <!--Del-->

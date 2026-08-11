@@ -38,7 +38,7 @@
 
 ### AVSessionType；媒体会话类型
 
-定义媒体会话类型的参数，包括audio（音频会话）、video（视频会话）、voice_call（通话会话）、video_call（视频通话会话）、photo（图片会话）五种类型。不同类型决定了播控中心展示的控制模板样式。
+定义媒体会话类型的参数，包括audio（音频会话）、video（视频会话）、voice_call（语音通话会话）、video_call（视频通话会话）、photo（图片会话）五种类型。不同类型决定了播控中心展示的控制模板样式。
 
 ## B
 
@@ -50,7 +50,7 @@
 
 ### DisplayTag；媒体音源标识
 
-标识媒体音源的标签，用于在播控中心展示媒体音频音源信息。目前支持TAG_AUDIO_VIVID标识，标识该媒体音源是Audio Vivid。
+标识媒体音源的标签，用于在播控中心展示媒体音频信息。目前支持TAG_AUDIO_VIVID，表示该音源是Audio Vivid。
 
 ## P
 
