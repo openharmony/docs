@@ -39,6 +39,8 @@ User-Agent（简称UA）是一个特殊的字符串，包含设备类型、操�
 >
 > - 当前默认User-Agent的ArkWeb字段前有两个空格。
 >
+> - 依据[RFC 7230 Section 3.2](https://www.rfc-editor.org/info/rfc7230/#section-3.2)规范，自定义User-Agent字符串严禁包含空字符(\0)、回车符(\r)和换行符(\n)，否则会导致应用崩溃。
+>
 > - 当前通过User-Agent中是否含有"Mobile"字段来判断是否开启前端HTML页面中meta标签的viewport属性。当User-Agent中不含有"Mobile"字段时，meta标签中viewport属性默认关闭，此时可通过显式设置[metaViewport](../reference/apis-arkweb/arkts-basic-components-web-attributes.md#metaviewport12)属性为true来覆盖关闭状态。
 >
 > - 建议通过OpenHarmony关键字识别是否是OpenHarmony设备，同时可以通过DeviceType识别设备类型用于不同设备上的页面显示（ArkWeb关键字表示设备使用的web内核，OpenHarmony关键字表示设备使用的操作系统，因此推荐通过OpenHarmony关键字识别是否是OpenHarmony设备）。
