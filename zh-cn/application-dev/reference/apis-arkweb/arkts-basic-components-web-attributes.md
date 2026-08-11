@@ -4681,3 +4681,45 @@ enableFullscreenVideoOverlay(enabled: boolean)
     }
   }
   ```
+
+## enableMediaNetworkProxy
+
+enableMediaNetworkProxy(enabled: boolean)
+
+设置Web组件是否开启媒体资源网络请求代理功能。当属性没有显式调用时，默认不开启该能力。
+
+> **说明：**
+>
+> - 当前只支持HLS流媒体视频。
+
+**起始版本：** 26.0.0
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
+**模型约束：** 此接口仅可在Stage模型下使用。
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明                         |
+| ------ | -------- | ---- | -------------------------------- |
+| enabled | boolean  | 是   | 设置Web组件是否开启媒体资源网络请求代理功能。<br>true表示开启该功能。<br>false表示不开启。 |
+
+**示例：**
+
+  ```ts
+  // xxx.ets
+  import { webview } from '@kit.ArkWeb';
+
+  @Entry
+  @Component
+  struct WebComponent {
+    controller: webview.WebviewController = new webview.WebviewController();
+
+    build() {
+      Column() {
+        Web({ src: 'www.example.com', controller: this.controller })
+        .enableMediaNetworkProxy(true)
+      }
+    }
+  }
+  ```
