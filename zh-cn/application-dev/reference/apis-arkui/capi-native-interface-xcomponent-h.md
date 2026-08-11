@@ -254,10 +254,10 @@ enum OH_NativeXComponent_EventSourceType
 | 枚举项 | 描述 |
 | -- | -- |
 | OH_NATIVEXCOMPONENT_SOURCE_TYPE_UNKNOWN = 0 | 未知的输入源类型。 |
-| OH_NATIVEXCOMPONENT_SOURCE_TYPE_MOUSE = 1 | 表示输入源生成鼠标多点触摸事件。 |
+| OH_NATIVEXCOMPONENT_SOURCE_TYPE_MOUSE = 1 | 表示输入源生成鼠标事件。 |
 | OH_NATIVEXCOMPONENT_SOURCE_TYPE_TOUCHSCREEN = 2 | 表示输入源生成一个触摸屏多点触摸事件。 |
 | OH_NATIVEXCOMPONENT_SOURCE_TYPE_TOUCHPAD = 3 | 表示输入源生成一个触摸板多点触摸事件。 |
-| OH_NATIVEXCOMPONENT_SOURCE_TYPE_JOYSTICK = 4 | 表示输入源生成一个操纵杆多点触摸事件。 |
+| OH_NATIVEXCOMPONENT_SOURCE_TYPE_JOYSTICK = 4 | 表示输入源生成一个操纵杆事件。 |
 | OH_NATIVEXCOMPONENT_SOURCE_TYPE_KEYBOARD = 5 | 表示输入源生成一个键盘事件。<br>**起始版本：** 10 |
 
 ### OH_NativeXComponent_MouseEventAction
@@ -380,8 +380,8 @@ int32_t OH_NativeXComponent_GetXComponentSize(OH_NativeXComponent* component, co
 | -- | -- |
 | [OH_NativeXComponent](capi-oh-nativexcomponent-native-xcomponent-oh-nativexcomponent.md)* component | 表示指向[OH_NativeXComponent](capi-oh-nativexcomponent-native-xcomponent-oh-nativexcomponent.md)实例的指针。 |
 | const void* window | 表示NativeWindow句柄。 |
-| uint64_t* width | 表示指向当前Surface宽度的指针。单位：vp。 |
-| uint64_t* height | 表示指向当前Surface高度的指针。单位：vp。 |
+| uint64_t* width | 表示指向当前Surface宽度的指针。单位：px。 |
+| uint64_t* height | 表示指向当前Surface高度的指针。单位：px。 |
 
 **返回：**
 
