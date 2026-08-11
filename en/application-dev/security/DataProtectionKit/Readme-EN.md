@@ -10,7 +10,7 @@
 
 - DLP Service<!--dlp-->
 
-  - [DLP Service Overview](dlp-overview.md)
+  - [About This Kit](dlp-overview.md)
 
   - [DLP Service Development (ArkTS)](dlp-guidelines.md)
 

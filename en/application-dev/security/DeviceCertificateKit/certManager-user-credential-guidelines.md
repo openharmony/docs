@@ -1,4 +1,4 @@
-# User Certificate Credential Development Guide
+# User Certificate Credential Development
 
 <!--Kit: Device Certificate Kit-->
 <!--Subsystem: Security-->
