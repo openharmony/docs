@@ -370,12 +370,14 @@ Web组件提供了自适应页面布局的能力，详情见[ Web组件大小自
 兼容性问题处理不当也会导致页面白屏。
 * 特殊协议拦截。
 * 若H5页面调用tel:、mailto:等协议导致白屏，需通过onInterceptRequest拦截并调用系统拨号能力：
-   ```c
+   ```ts
    .onInterceptRequest((event) => {
-       if (event.request.url.startsWith('tel:')) {
+       if (event.request.getRequestUrl().startsWith('tel:')) {
            // 调用系统拨号能力
-           call.makeCall({ phoneNumber: '123456' });
-           return { responseCode: 404 }; // 阻止默认行为
+           call.makeCall('123456');
+           let response = new WebResourceResponse();
+           response.setResponseCode(404);
+           return response; // 阻止默认行为
        }
        return null;  
    })
