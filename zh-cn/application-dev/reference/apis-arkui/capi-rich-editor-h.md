@@ -86,7 +86,7 @@ enum OH_ArkUI_TextEditorSpanType
 
 **描述**
 
-自定义文本选择菜单span类型枚举，用于标识文本编辑器中文本选择菜单的span类型。不同span类型对应不同的内容结构，影响自定义菜单的显示和交互行为。例如，当用户选中纯文本内容时使用TEXT类型，选中包含图文等混合内容时使用MIXED类型，需要自定义菜单项布局时使用BUILDER类型。
+自定义文本选择菜单span类型枚举，用于标识文本编辑器中文本选择菜单的span类型。不同span类型对应不同的内容结构，影响自定义菜单的显示和交互行为。例如，当用户选中纯文本内容时使用OH_ARKUI_TEXT_EDITOR_SPAN_TYPE_TEXT类型，选中包含图文等混合内容时使用OH_ARKUI_TEXT_EDITOR_SPAN_TYPE_MIXED类型，需要自定义菜单项布局时使用OH_ARKUI_TEXT_EDITOR_SPAN_TYPE_BUILDER类型。
 
 **起始版本：** 24
 
