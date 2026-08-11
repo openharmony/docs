@@ -1045,7 +1045,7 @@ async function usbCancelTransfer() {
   }
   // 获取endpoint端点地址。
   let endpoint = device.configs?.[0]?.interfaces?.[0]?.endpoints.find((value) => {
-    return value.direction === 0 && value.type === 2
+    return value.direction === 0 && value.type === 2;
   });
   if (endpoint === undefined) {
     console.info(`invalid endpoint`);
