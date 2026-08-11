@@ -593,6 +593,39 @@ for (let entry of iterMap.entries()) {
 }
 ```
 
+### Record<K,V> 类型
+
+`Record<K, V>`是ArkTS内置的工具类型，将键类型`K`映射到值类型`V`，适合表达“字符串键值对象”。当键固定为字符串或数值、结构相对简单时，比`Map`更轻量，常用对象字面量初始化。
+
+<!-- @[record_type_basic](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/Start/LearningArkTs/ArkTSFullLanguageGuide/entry/src/main/ets/pages/Collections.ets) -->
+
+``` TypeScript
+let ages: Record<string, number> = {
+  'John': 25,
+  'Mary': 21
+};
+ages['John']; // 25
+```
+
+键类型`K`可为`string`或`number`（不含`bigint`），值类型`V`可为任意类型；按下标读取返回`V | undefined`，使用前需判空。
+
+当值为复合结构时，可用接口描述其形状：
+
+<!-- @[record_type_complex](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/Start/LearningArkTs/ArkTSFullLanguageGuide/entry/src/main/ets/pages/Collections.ets) -->
+
+``` TypeScript
+interface PersonInfo {
+  age: number;
+  salary: number;
+}
+let staff: Record<string, PersonInfo> = {
+  'John': { age: 25, salary: 10},
+  'Mary': { age: 21, salary: 20}
+};
+```
+
+与`Map`相比，`Record`基于对象字面量、键只能为字符串或数值、无`size`属性（需`Object.keys(obj).length`计算）、不支持任意类型键。需要任意类型键、动态增删键值对或保持插入顺序时优先使用`Map`（见[Map与普通对象的区别](#map与普通对象的区别)）。
+
 ### Map与普通对象的区别
 
 Map键可以是任意类型，对象键只能是字符串，Map更适合动态键值存储。
