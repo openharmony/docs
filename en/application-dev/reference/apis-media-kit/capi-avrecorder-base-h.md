@@ -207,7 +207,7 @@ Enumerates the modes available for creating a recording file.
 | Enum Item| Description|
 | -- | -- |
 | AVRECORDER_APP_CREATE = 0 | The application creates a media file in the sandbox.|
-| AVRECORDER_AUTO_CREATE_CAMERA_SCENE = 1 | The system creates a media file. This value is valid only in camera recording scenarios.|
+| AVRECORDER_AUTO_CREATE_CAMERA_SCENE = 1 | The system creates a media file. |
 
 
 ## Function Description
