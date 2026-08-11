@@ -19,7 +19,7 @@
 - 自定义组件存在父节点且父节点未销毁。
 - 自定义组件由[BuilderNode](./arkts-user-defined-arktsNode-builderNode.md)创建，该前端对象既未被回收，也未解除对后端自定义组件的引用。BuilderNode创建时，默认持有后端节点的强引用。
 - 通过调用[OH_ArkUI_GetNodeHandleFromNapiValue](../reference/apis-arkui/capi-native-node-napi-h.md#oh_arkui_getnodehandlefromnapivalue)方法，可以获取BuilderNode或ComponentContent对象中的root节点，此操作会使后端节点的引用计数加一。
-- 在[NodeContent](../reference/apis-arkui/js-apis-arkui-NodeContent.md)中，通过[addFrameNode](../reference/apis-arkui/js-apis-arkui-NodeContent.md#addframenode12)方法增加了对被添加的FrameNode对象节点的引用关系。然而，该NodeContent对象未被回收，且未通过[removeFrameNode](../reference/apis-arkui/js-apis-arkui-NodeContent.md#removeframenode12)接口删除所增加的引用关系。
+- 在[NodeContent](../reference/apis-arkui/js-apis-arkui-NodeContent.md)中，通过[addFrameNode](../reference/apis-arkui/js-apis-arkui-NodeContent.md#addframenode)方法增加了对被添加的FrameNode对象节点的引用关系。然而，该NodeContent对象未被回收，且未通过[removeFrameNode](../reference/apis-arkui/js-apis-arkui-NodeContent.md#removeframenode)接口删除所增加的引用关系。
 
 **解决措施**
 
