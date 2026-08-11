@@ -178,6 +178,7 @@ CustomDialog是自定义弹出框，可用于广告、中奖、警告、软件�
     ``` TypeScript
     @CustomDialog
     struct CustomDialogExample {
+      // 数据监听仅支持@Link或@Consume，其他方式如@Prop、@ObjectLink不适用此场景
       @Link textValue: string;
       controller?: CustomDialogController;
       cancel: () => void = () => {
