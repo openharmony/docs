@@ -1,8 +1,8 @@
 # Interfaces (Others)
 <!--Kit: Audio Kit-->
 <!--Subsystem: Multimedia-->
-<!--Owner: @songshenke-->
-<!--Designer: @caixuejiang; @hao-liangfei; @zhanganxiang-->
+<!--Owner: @boxwall-->
+<!--Designer: @magekkkk-->
 <!--Tester: @Filger-->
 <!--Adviser: @w_Machine_cc-->
 
@@ -18,7 +18,7 @@ Describes audio stream information.
 
 | Name        | Type                                              | Read-Only| Optional| Description              |
 | ------------ | ------------------------------------------------- | ---- |---| ------------------ |
-| samplingRate | [AudioSamplingRate](arkts-apis-audio-e.md#audiosamplingrate8)          | No| No| Audio sampling rate.|
+| samplingRate | [AudioSamplingRate](arkts-apis-audio-e.md#audiosamplingrate8) \| number| No| No| Sampling rate of the audio file, in Hz. [AudioSamplingRate](arkts-apis-audio-e.md#audiosamplingrate8) can be passed.<br>Since API version 26.0.0:<br>- The **samplingRate** parameter can be of the number type.<br>- Audio rendering extension supports sampling rates ranging from 8000 Hz to 384000 Hz, with a step of 10 Hz. The sampling rate varies according to the device type.|
 | channels     | [AudioChannel](arkts-apis-audio-e.md#audiochannel8)                    | No| No| Number of audio channels.|
 | sampleFormat | [AudioSampleFormat](arkts-apis-audio-e.md#audiosampleformat8)          | No| No| Audio sample format.    |
 | encodingType | [AudioEncodingType](arkts-apis-audio-e.md#audioencodingtype8)          | No| No| Audio encoding type.    |
@@ -41,13 +41,13 @@ Describes audio renderer configurations.
 
 | Name        | Type                                    | Read-Only| Optional| Description            |
 | ------------ | ---------------------------------------- | ---- |---| ---------------- |
-| streamInfo   | [AudioStreamInfo](#audiostreaminfo8)     | No| No| Describes audio stream information.<br>**System capability**: SystemCapability.Multimedia.Audio.Renderer|
-| rendererInfo | [AudioRendererInfo](#audiorendererinfo8) | No| No| Describes audio renderer information.<br>**System capability**: SystemCapability.Multimedia.Audio.Renderer|
+| streamInfo   | [AudioStreamInfo](#audiostreaminfo8)     | No| No| Audio stream information.<br>**System capability**: SystemCapability.Multimedia.Audio.Renderer|
+| rendererInfo | [AudioRendererInfo](#audiorendererinfo8) | No| No| Audio renderer information.<br>**System capability**: SystemCapability.Multimedia.Audio.Renderer|
 | privacyType<sup>10+</sup> | [AudioPrivacyType](arkts-apis-audio-e.md#audioprivacytype10) | No| Yes| Whether the audio stream can be recorded by other applications. The default value is **0**.<br>**System capability**: SystemCapability.Multimedia.Audio.PlaybackCapture|
 
 ## InterruptEvent<sup>9+</sup>
 
-Describes the interruption event received by the application when the audio is interrupted.
+Interruption event received by the application when the audio is interrupted.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -73,6 +73,8 @@ Describes the audio device blocked status and device information.
 ## AudioSessionStrategy<sup>12+</sup>
 
 Describes an audio session strategy.
+
+**Atomic service API:** This API can be used in atomic services since API version 26.0.0.
 
 **System capability**: SystemCapability.Multimedia.Audio.Core
 
@@ -133,7 +135,7 @@ Describes an audio device.
 | ----------------------------- | -------------------------- | ---- | ---- | ---------- |
 | deviceRole                    | [DeviceRole](arkts-apis-audio-e.md#devicerole)  | Yes  | No  | Device role.<br> **System capability**: SystemCapability.Multimedia.Audio.Device<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
 | deviceType                    | [DeviceType](arkts-apis-audio-e.md#devicetype)  | Yes  | No  | Device type.<br> **System capability**: SystemCapability.Multimedia.Audio.Device<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
-| id<sup>9+</sup>               | number                     | Yes  | No  | Unique device ID.<br> **System capability**: SystemCapability.Multimedia.Audio.Device<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
+| id<sup>9+</sup>               | number                     | Yes  | No  | Unique ID of a device.<br> **System capability**: SystemCapability.Multimedia.Audio.Device<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
 | name<sup>9+</sup>             | string                     | Yes  | No  | Device name.<br>For a Bluetooth device, you must request the ohos.permission.USE_BLUETOOTH permission.<br> **System capability**: SystemCapability.Multimedia.Audio.Device<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
 | address<sup>9+</sup>          | string                     | Yes  | No  | Static MAC address of the device.<br>For a Bluetooth device, you must request the ohos.permission.USE_BLUETOOTH permission.<br> **System capability**: SystemCapability.Multimedia.Audio.Device<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
 | sampleRates<sup>9+</sup>      | Array&lt;number&gt;        | Yes  | No  | Supported sampling rates.<br> **System capability**: SystemCapability.Multimedia.Audio.Device<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
@@ -145,6 +147,21 @@ Describes an audio device.
 | model<sup>22+</sup>           | string                     | Yes  | Yes| Model of the device.<br> **System capability**: SystemCapability.Multimedia.Audio.Device|
 | capabilities<sup>22+</sup>    | Array&lt;[AudioStreamInfo](#audiostreaminfo8)&gt;| Yes  | Yes| Audio stream capabilities supported by the device.<br> **System capability**: SystemCapability.Multimedia.Audio.Device|
 
+## AudioDevicePair
+
+Describes the audio device pair used for loopback, including the input device and output device.
+
+**Since:** 26.0.0
+
+**Model restriction:** This API can be used only in the stage model.
+
+**System capability**: SystemCapability.Multimedia.Audio.Device
+
+| Name             | Type                                             | Read-Only| Optional| Description              |
+| :---------------- | :------------------------------------------------ | :--- |---| :----------------- |
+| inputDevice | [AudioDeviceDescriptor](#audiodevicedescriptor) | No| No| Input audio device description.|
+| outputDevice | [AudioDeviceDescriptor](#audiodevicedescriptor) | No| No| Output audio device description.|
+
 ## VolumeEvent<sup>9+</sup>
 
 Describes the event received by the application when the volume is changed.
@@ -155,7 +172,7 @@ Describes the event received by the application when the volume is changed.
 | ---------- | ----------------------------------- | ---- |---|-------------------------------------------|
 | volumeType | [AudioVolumeType](arkts-apis-audio-e.md#audiovolumetype) | No| No| Audio volume type.                                   |
 | volume     | number                              | No| No|Volume to set. The value range can be obtained by calling **getMinVolume** and **getMaxVolume**. |
-| updateUi   | boolean                             | No| No|  Whether to show the volume change in UI. **true** to show, **false** otherwise.            |
+| updateUi   | boolean | No| No| Indicates whether to display the system volume bar. The value **true** indicates yes, and the value **false** indicates no.<br>If your application has a custom volume bar, you are advised to control its display dynamically based on this parameter: if **updateUi** is set to **true**, hide the custom volume bar; if **updateUi** is set to **false**, show it. This helps avoid the issue of both the system volume bar and the custom volume bar being displayed or hidden at the same time.|
 | volumeMode<sup>19+</sup> | [AudioVolumeMode](arkts-apis-audio-e.md#audiovolumemode19) | No| Yes| Audio volume mode. The default value is **SYSTEM_GLOBAL**.|
 
 
@@ -180,7 +197,7 @@ Describes the event received by the application when the audio stream volume is 
 | ---------- | ----------------------------------- | ---- |---|-------------------------------------------------------- |
 | streamUsage | [StreamUsage](arkts-apis-audio-e.md#streamusage) | No| No| Audio stream for which the volume changes.         |
 | volume | number | No| No| Volume.         |
-| updateUi | boolean | No| No| Whether to show the volume change in UI. **true** to show, **false** otherwise.         |
+| updateUi   | boolean | No| No| Indicates whether to display the system volume bar. The value **true** indicates yes, and the value **false** indicates no.<br>If your application has a custom volume bar, you are advised to control its display dynamically based on this parameter: if **updateUi** is set to **true**, hide the custom volume bar; if **updateUi** is set to **false**, show it. This helps avoid the issue of both the system volume bar and the custom volume bar being displayed or hidden at the same time.|
 | previousVolume<sup>23+</sup> | number | No| Yes| Volume level before change.|
 
 ## DeviceChangeAction
@@ -198,14 +215,13 @@ Describes the device connection status and device information.
 
 Describes the event received by the application when the audio stream device is changed.
 
-**Atomic service API**: This API can be used in atomic services since API version 12.
-
 **System capability**: SystemCapability.Multimedia.Audio.Device
 
 | Name             | Type                                                               | Read-Only| Optional| Description              |
 | :---------------- |:------------------------------------------------------------------| :--- |---| :----------------- |
-| devices              | [AudioDeviceDescriptors](arkts-apis-audio-t.md#audiodevicedescriptors)                 | No| No| Device information.|
-| changeReason | [AudioStreamDeviceChangeReason](arkts-apis-audio-e.md#audiostreamdevicechangereason11) | No| No| Reason for the change.|
+| devices              | [AudioDeviceDescriptors](arkts-apis-audio-t.md#audiodevicedescriptors)                 | No| No| Device information.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
+| changeReason | [AudioStreamDeviceChangeReason](arkts-apis-audio-e.md#audiostreamdevicechangereason11) | No| No| Reason for the change.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
+| preDevices | [AudioDeviceDescriptors](arkts-apis-audio-t.md#audiodevicedescriptors) | No| Yes| Device information before the audio stream device change.<br>**Since:** 26.0.0<br>**Model restriction:** This API can be used only in the stage model.<br>**Atomic service API**: This API can be used in atomic services since API version 26.0.0.|
 
 ## CurrentOutputDeviceChangedEvent<sup>20+</sup>
 
@@ -218,6 +234,7 @@ Describes the event indicating that the output device changes.
 | devices              | [AudioDeviceDescriptors](arkts-apis-audio-t.md#audiodevicedescriptors)                 | No| No| Device information.|
 | changeReason | [AudioStreamDeviceChangeReason](arkts-apis-audio-e.md#audiostreamdevicechangereason11) | No| No| Reason for the device change.|
 | recommendedAction | [OutputDeviceChangeRecommendedAction](arkts-apis-audio-e.md#outputdevicechangerecommendedaction20) | No| No| Recommended action after the device change.|
+| preDevices | [AudioDeviceDescriptors](arkts-apis-audio-t.md#audiodevicedescriptors) | No| Yes| Device information before the output device change.<br>**Since:** 26.0.0<br>**Model restriction:** This API can be used only in the stage model.|
 
 ## CurrentInputDeviceChangedEvent<sup>21+</sup>
 
@@ -260,7 +277,8 @@ Describes audio capturer configurations.
 | ----------------------------------- | --------------------------------------------------------- | ---- |---| ------------------------------------------------------------ |
 | streamInfo                          | [AudioStreamInfo](#audiostreaminfo8)                      | No| No| Audio stream information.<br>**System capability**: SystemCapability.Multimedia.Audio.Capturer  |
 | capturerInfo                        | [AudioCapturerInfo](#audiocapturerinfo8)                   | No| No| Audio capturer information.<br>**System capability**: SystemCapability.Multimedia.Audio.Capturer       |
-| playbackCaptureConfig<sup>(deprecated)</sup> | [AudioPlaybackCaptureConfig](#audioplaybackcaptureconfigdeprecated) | No| Yes| Defines configuration for capturing played audio.<br>**System capability**: SystemCapability.Multimedia.Audio.PlaybackCapture<br> This API is supported since API version 10 and deprecated since API version 12. You are advised to use [AVScreenCapture](../apis-media-kit/capi-avscreencapture.md) instead. |
+| playbackCaptureConfig<sup>(deprecated)</sup> | [AudioPlaybackCaptureConfig](#audioplaybackcaptureconfigdeprecated) | No| Yes| Configuration for capturing played audio.<br>**System capability**: SystemCapability.Multimedia.Audio.PlaybackCapture<br> This API is supported since API version 10 and deprecated since API version 12. You are advised to use [AVScreenCapture](../apis-media-kit/capi-avscreencapture.md) instead. |
+| playbackCaptureMode | [AudioPlaybackCaptureMode](arkts-apis-audio-e.md#audioplaybackcapturemode) | No| Yes| Internal recording mode. It can be set to an enumeration value from **AudioPlaybackCaptureMode** or a bitwise OR combination of the enumeration values. Currently, only **MODE_DEFAULT** (0x0), **MODE_MEDIA** (0x1), **MODE_EXCLUDING_SELF** (0x8000), and the bitwise OR combination of **MODE_MEDIA** and **MODE_EXCLUDING_SELF** (0x8001) are supported.<br>**Since:** 26.0.0<br>**Model restriction:** This API can be used only in the stage model.<br>**System capability**: SystemCapability.Multimedia.Audio.PlaybackCapture|
 
 ## AudioInterrupt<sup>(deprecated)</sup>
 
@@ -320,3 +338,17 @@ Describes the callback invoked for audio interruption or focus gain events.
 | type       | [InterruptType](arkts-apis-audio-e.md#interrupttype)             | No| Yes| Type of the audio interruption event.                                              |
 | hint       | [InterruptHint](arkts-apis-audio-e.md#interrupthint)             | No| Yes| Hint provided along with the audio interruption event.                                              |
 | activated  | boolean                                     | No| Yes| Whether the focus is gained or released. **true** if the focus is gained or released, **false** if the focus fails to be gained or released.|
+
+## SystemRecordControllerConfig
+
+Describes the configuration information of the system recording control panel.
+
+**Since:** 26.0.0
+
+**Model restriction:** This API can be used only in the stage model.
+
+**System capability**: SystemCapability.Multimedia.Audio.Capturer
+
+| Name| Type| Read-Only| Optional| Description|
+| :---- | :---- | :---- | :---- | :---- |
+| sourceType | [SourceType](arkts-apis-audio-e.md#sourcetype8) | No| No| Audio source type expected to be used by the application. The system determines the recording scenario based on this parameter and provides users with matched noise reduction mode options. The supported audio source types include **SOURCE_TYPE_MIC**, **SOURCE_TYPE_CAMCORDER**, and **SOURCE_TYPE_LIVE**.|
