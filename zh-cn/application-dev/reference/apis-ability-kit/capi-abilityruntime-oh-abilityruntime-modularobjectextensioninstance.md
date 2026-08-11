@@ -13,7 +13,7 @@ typedef struct OH_AbilityRuntime_ModularObjectExtensionInstance OH_AbilityRuntim
 
 ## 概述
 
-定义OH_AbilityRuntime_ModObjExtensionInstance结构体。
+定义OH_AbilityRuntime_ModularObjectExtensionInstance结构体，其类型别名为OH_AbilityRuntime_ModObjExtensionInstance，表示ModularObjectExtensionAbility的实例。
 
 **起始版本：** 26.0.0
 

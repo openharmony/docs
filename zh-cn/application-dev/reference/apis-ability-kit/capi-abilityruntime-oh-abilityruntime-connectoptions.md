@@ -13,7 +13,7 @@ typedef struct OH_AbilityRuntime_ConnectOptions OH_AbilityRuntime_ConnectOptions
 
 ## 概述
 
-定义OH_AbilityRuntime_ConnectOptions结构体类型。
+定义OH_AbilityRuntime_ConnectOptions结构体类型，用于配置连接ExtensionAbility时的回调选项，包括连接成功、断开连接和连接失败的回调。
 
 **起始版本：** 26.0.0
 

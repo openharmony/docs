@@ -61,8 +61,8 @@ typedef void (*OH_AbilityRuntime_ConnectOptions_OnConnectCallback)(OH_AbilityRun
 | 参数项 | 描述 |
 | -- | -- |
 | OH_AbilityRuntime_ConnectOptions \*connectOptions | 指向[OH_AbilityRuntime_ConnectOptions](capi-abilityruntime-oh-abilityruntime-connectoptions.md)实例的指针。 |
-| AbilityBase_Element \*element | 表示ExtensionAbility的组件名称。 |
-| OHIPCRemoteProxy \*proxy | 表示远端对象实例。 |
+| [AbilityBase_Element](capi-abilitybase-element.md) \*element | 表示ExtensionAbility的组件名称。 |
+| [OHIPCRemoteProxy](../apis-ipc-kit/capi-ohipcparcel-ohipcremoteproxy.md) \*proxy | 表示远端对象实例。 |
 
 ### OH_AbilityRuntime_ConnectOptions_OnDisconnectCallback()
 
@@ -81,7 +81,7 @@ typedef void (*OH_AbilityRuntime_ConnectOptions_OnDisconnectCallback)(OH_Ability
 | 参数项 | 描述 |
 | -- | -- |
 | OH_AbilityRuntime_ConnectOptions \*connectOptions | 指向[OH_AbilityRuntime_ConnectOptions](capi-abilityruntime-oh-abilityruntime-connectoptions.md)实例的指针。 |
-| AbilityBase_Element \*element | 表示ExtensionAbility的组件名称。 |
+| [AbilityBase_Element](capi-abilitybase-element.md) \*element | 表示ExtensionAbility的组件名称。 |
 
 ### OH_AbilityRuntime_ConnectOptions_OnFailedCallback()
 
@@ -136,7 +136,7 @@ AbilityRuntime_ErrorCode OH_AbilityRuntime_DestroyConnectOptions(OH_AbilityRunti
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_AbilityRuntime_ConnectOptions](capi-abilityruntime-oh-abilityruntime-connectoptions.md) *connectOptions | 待销毁的ConnectOptions对象。 |
+| [OH_AbilityRuntime_ConnectOptions](capi-abilityruntime-oh-abilityruntime-connectoptions.md) *connectOptions | 指向待销毁的[OH_AbilityRuntime_ConnectOptions](capi-abilityruntime-oh-abilityruntime-connectoptions.md)实例的指针。 |
 
 **返回：**
 
