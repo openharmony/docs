@@ -1,10 +1,12 @@
 # @ohos.multimedia.cameraPicker (Camera Picker)
+
 <!--Kit: Camera Kit-->
 <!--Subsystem: Multimedia-->
 <!--Owner: @qano-->
 <!--Designer: @leo_ysl-->
 <!--Tester: @xchaosioda-->
 <!--Adviser: @w_Machine_cc-->
+<!-- md-trans-meta sourceCommit=16e14688e6b4698fdbbc596e6d05381c94e73549 translatedAt=2026-08-11T02:04:48.603Z pushedAt=2026-08-12T07:56:30.326Z -->
 
 The module provides APIs for an application to use the system camera to take photos or record videos, depending on the media type specified by the application. The application must call these APIs within a UIAbility. Otherwise, the camera picker cannot be started.
 
@@ -26,7 +28,7 @@ Starts the camera picker and enters the corresponding mode based on the media ty
 
 > **NOTE**
 >
-> When an application is running on a widescreen foldable device and the camera picker is launched while the device is unfolded, switching the device from unfolded to folded will automatically move the camera picker to the background.
+> When an app is running on a widescreen foldable device and the camera picker is launched while the device is unfolded, switching the device from unfolded to folded will automatically move the camera picker to the background.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -81,7 +83,6 @@ Enumerates the media types displayed in the camera picker.
 | PHOTO           | 'photo' | Photo mode. |
 | VIDEO           | 'video' | Video mode.|
 
-
 ## PickerProfile
 
 Defines the configuration information about the camera picker.
@@ -93,9 +94,8 @@ Defines the configuration information about the camera picker.
 | Name          | Type                              | Read-Only| Optional| Description        |
 | -------------- | --------------------------------- | ----- | ----- | ------------ |
 | cameraPosition       | [camera.CameraPosition](arkts-apis-camera-e.md#cameraposition) | No  | No  | Camera position.  |
-| saveUri        | string                            | No  | Yes  | URI for saving the configuration information. For details about the default value, see [File URI](../apis-core-file-kit/js-apis-file-fileuri.md#constructor10). The **saveUri** parameter is optional. If it is not specified, images and videos are automatically saved to the media library. To prevent them from being saved to the media library, specify a valid file path within your application's sandbox. When you use your own resource path, ensure that the file exists and is writable; otherwise, the save operation fails.|
+| saveUri        | string                            | No   | Yes   | URI for saving the configuration information. For details about the default value, see [constructor](../apis-core-file-kit/js-apis-file-fileuri.md#constructor10). The **saveUri** parameter is optional. If it is not specified, images and videos are automatically saved to the media library. To prevent them from being saved to the media library, specify a valid file path within your application's sandbox. When you use your own resource path, ensure that the file exists and is writable; otherwise, the save operation fails.|
 | videoDuration  | number                            | No  | Yes  | Maximum video duration, in seconds. The default value is **0**, indicating that the maximum video duration is not set.|
-
 
 ## PickerResult
 

@@ -1,10 +1,12 @@
 # Interface (PhotoSession)
+
 <!--Kit: Camera Kit-->
 <!--Subsystem: Multimedia-->
 <!--Owner: @qano-->
 <!--Designer: @leo_ysl-->
 <!--Tester: @xchaosioda-->
 <!--Adviser: @w_Machine_cc-->
+<!-- md-trans-meta sourceCommit=425e79ed59a841b19860caacc0b050f68405d43e translatedAt=2026-08-11T01:59:51.789Z pushedAt=2026-08-11T11:02:00.811Z -->
 
 **PhotoSession** inherits from [Session](arkts-apis-camera-Session.md), [Flash](arkts-apis-camera-Flash.md), [AutoExposure](arkts-apis-camera-AutoExposure.md), [WhiteBalance](arkts-apis-camera-WhiteBalance.md), [Focus](arkts-apis-camera-Focus.md), [Zoom](arkts-apis-camera-Zoom.md), [ColorManagement](arkts-apis-camera-ColorManagement.md), [AutoDeviceSwitch](arkts-apis-camera-AutoDeviceSwitch.md), [Macro](arkts-apis-camera-Macro.md), [ManualExposure](arkts-apis-camera-ManualExposure.md), [ManualFocus](arkts-apis-camera-ManualFocus.md), [ManualIso](arkts-apis-camera-ManualIso.md), [OIS](arkts-apis-camera-OIS.md), and [Aperture](arkts-apis-camera-Aperture.md).
 
@@ -50,7 +52,7 @@ Checks whether this session supports a preconfigured resolution.
 
 For details about the error codes, see [Camera Error Codes](errorcode-camera.md).
 
-| Error Code  | Error Message                       |
+| ID  | Error Message                       |
 |---------|-----------------------------|
 | 7400201 | Camera service fatal error. |
 
@@ -92,7 +94,7 @@ Preconfigures this session.
 
 For details about the error codes, see [Camera Error Codes](errorcode-camera.md).
 
-| Error Code  | Error Message                       |
+| ID  | Error Message                       |
 |---------|-----------------------------|
 | 7400201 | Camera service fatal error. |
 
@@ -384,7 +386,7 @@ Subscribes to system pressure level change events. This API uses an asynchronous
 | Name | Type                                                     | Mandatory| Description                                                             |
 |---------|----------------------------------------------------------|------|-------------------------------------------------------------------|
 |type     | string                                                   | Yes  | Event type. The value is fixed at **'systemPressureLevelChange'**. The event can be listened for when a session is created.|
-|callback | AsyncCallback\<[SystemPressureLevel](arkts-apis-camera-e.md#systempressurelevel20)\> | Yes| Callback used to return the current system pressure level.|
+|callback | AsyncCallback\<[SystemPressureLevel](arkts-apis-camera-e.md#systempressurelevel20)\> | Yes | Callback used to return the current system pressure level. |
 
 **Example**
 

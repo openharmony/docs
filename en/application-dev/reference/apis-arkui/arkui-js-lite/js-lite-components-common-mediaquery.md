@@ -2,19 +2,19 @@
 
 <!--Kit: ArkUI-->
 <!--Subsystem: ArkUI-->
-<!--Owner: @lanshouren-->
-<!--Designer: @lanshouren-->
+<!--Owner: @song-song-song-->
+<!--Designer: @fenglinbailu-->
 <!--Tester: @liuli0427-->
 <!--Adviser: @Brilliantry_Rui-->
-<!-- md-trans-meta sourceCommit=dfb15c325281e5e789ea7ade45dfdd45876606ad translatedAt=2026-07-27T02:26:59.368Z pushedAt=2026-07-27T09:23:36.740Z -->
+<!-- md-trans-meta sourceCommit=45ec2d938cfede23d9ca90fe41c0d1f3e7b2b01d translatedAt=2026-08-11T01:55:02.032Z pushedAt=2026-08-11T02:10:34.465Z -->
 
 >  **NOTE**
 >
 >  - The initial APIs of this module are supported since API version 8. Updates will be marked with a superscript to indicate their earliest API version.
 >
->  - The **media** attribute uses the actual size, physical pixel, and screen resolution of the device by default.
+>  - The **media** attribute uses the actual size and physical pixel of the device by default.
 
-Media queries are widely used. You can use them to modify the application style based on the device type or specific features and device parameters (such as the screen resolution). Specifically, media queries allow you to design a layout style based on the device and application attributes.
+Media queries are widely used. You can use them to modify the app style based on the device type or specific features and device parameters (such as the screen size). Specifically, media queries allow you to design a layout style based on the device and app attributes.
 
 ## CSS Syntax Rules
 

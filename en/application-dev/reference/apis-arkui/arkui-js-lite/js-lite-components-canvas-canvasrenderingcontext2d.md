@@ -6,13 +6,13 @@
 <!--Designer: @fenglinbailu-->
 <!--Tester: @liuli0427-->
 <!--Adviser: @Brilliantry_Rui-->
-<!-- md-trans-meta sourceCommit=dfb15c325281e5e789ea7ade45dfdd45876606ad translatedAt=2026-07-27T02:26:31.277Z pushedAt=2026-07-27T09:23:36.721Z -->
+<!-- md-trans-meta sourceCommit=d1ba127e4ee0130e07cd7244dd66eb327583c11b translatedAt=2026-08-11T01:54:55.155Z pushedAt=2026-08-11T02:10:31.941Z -->
 
 **CanvasRenderingContext2D** allows you to draw rectangles and text on a canvas.
 
 > **NOTE**
 >
-> Starting from API version 23, the previewer is no longer subject to the restriction that JS files cannot exceed 48 KB.
+> Since API version 23, the previewer is no longer subject to the restriction that the JS file size cannot exceed 48 KB. For API version 22 and earlier, the JS file size cannot exceed 48 KB.
 
 **Example**
 

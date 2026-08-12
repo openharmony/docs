@@ -1,10 +1,12 @@
 # Types
+
 <!--Kit: Camera Kit-->
 <!--Subsystem: Multimedia-->
 <!--Owner: @qano-->
 <!--Designer: @leo_ysl-->
 <!--Tester: @xchaosioda-->
 <!--Adviser: @w_Machine_cc-->
+<!-- md-trans-meta sourceCommit=c8ffbd9c829ae140605625a64c8182ad6cceaa74 translatedAt=2026-08-11T01:59:33.758Z pushedAt=2026-08-12T01:08:17.058Z -->
 
 > **NOTE**
 >

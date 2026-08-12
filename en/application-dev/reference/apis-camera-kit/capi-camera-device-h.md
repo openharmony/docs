@@ -1,10 +1,12 @@
 # camera_device.h
+
 <!--Kit: Camera Kit-->
 <!--Subsystem: Multimedia-->
 <!--Owner: @qano-->
 <!--Designer: @leo_ysl-->
 <!--Tester: @xchaosioda-->
 <!--Adviser: @w_Machine_cc-->
+<!-- md-trans-meta sourceCommit=7b5b0cb39f94db799420f13dcf4f3f8b2658983b translatedAt=2026-08-11T02:00:52.461Z pushedAt=2026-08-12T01:29:52.999Z -->
 
 ## Overview
 
@@ -40,6 +42,7 @@ Defines the basic APIs of the camera device.
 | [Camera_ErrorCode OH_CameraDevice_GetSensorPhysicalSize(const Camera_Device* camera, float* width, float* height)](#oh_cameradevice_getsensorphysicalsize) | Obtains the physical dimensions of a camera sensor.|
 | [Camera_ErrorCode OH_CameraDevice_GetSensorPixelArraySize(const Camera_Device* camera, uint32_t* width, uint32_t* height)](#oh_cameradevice_getsensorpixelarraysize) | Obtains the pixel array dimensions of a camera sensor.|
 | [Camera_ErrorCode OH_CameraDevice_GetSensorColorFilterArrangement(const Camera_Device* camera, OH_Camera_SensorColorFilterArrangement* sensorCFA)](#oh_cameradevice_getsensorcolorfilterarrangement) | Obtains the color filter array arrangement of a camera sensor.|
+| [Camera_ErrorCode OH_CameraDevice_GetAutomotiveCameraPosition(const Camera_Device* camera, OH_Camera_AutomotiveCameraPosition* automotiveCameraPosition)](#oh_cameradevice_getautomotivecameraposition) | Obtains the camera position on a car. |
 
 ## Function Description
 
@@ -399,4 +402,28 @@ Obtains the color filter array arrangement of a camera sensor.
 | Type| Description|
 | -- | -- |
 | [Camera_ErrorCode](capi-camera-h.md#camera_errorcode) | **CAMERA_OK**: The operation is successful.<br>         **CAMERA_INVALID_ARGUMENT**: A parameter is missing or the parameter type is incorrect.<br>         **CAMERA_SERVICE_FATAL_ERROR**: The camera service is abnormal.|
-<!--no_check-->
+
+### OH_CameraDevice_GetAutomotiveCameraPosition()
+
+```c
+Camera_ErrorCode OH_CameraDevice_GetAutomotiveCameraPosition(const Camera_Device* camera, OH_Camera_AutomotiveCameraPosition* automotiveCameraPosition)
+```
+
+**Description**
+
+Obtains the camera position on a car.
+
+**Since**: 26.0.0
+
+**Parameters**
+
+| Name | Description |
+| -- | -- |
+| const [Camera_Device](capi-oh-camera-camera-device.md)* camera | Pointer to the **Camera_Device** instance used to retrieve the attribute. |
+| [OH_Camera_AutomotiveCameraPosition](capi-camera-h.md#oh_camera_automotivecameraposition)* automotiveCameraPosition | Output parameter, which returns the enumerated values of the camera position on a car. |
+
+**Returns**
+
+| Type | Description |
+| -- | -- |
+| [Camera_ErrorCode](capi-camera-h.md#camera_errorcode) | **CAMERA_OK**: The operation is successful.<br>         **CAMERA_INVALID_ARGUMENT**: A parameter is missing or the parameter type is incorrect.<br>         **CAMERA_SERVICE_FATAL_ERROR**: The camera service is abnormal. |
