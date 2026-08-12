@@ -1,10 +1,12 @@
 # Window Development FAQs
+
 <!--Kit: ArkUI-->
 <!--Subsystem: Window-->
 <!--Owner: @JUGaaab-->
 <!--Designer: @ki_ja-->
 <!--Tester: @qinliwen0417-->
 <!--Adviser: @ge-yafang-->
+<!-- md-trans-meta sourceCommit=e5f4a12518daa36e56bebaf91a68665e9bbab092 translatedAt=2026-08-11T10:12:17.065Z pushedAt=2026-08-11T11:30:31.757Z -->
 
 ## How to Launch Application B During the Startup of Application A
 
@@ -35,7 +37,7 @@ export default class EntryAbility extends UIAbility {
 
         windowStage.on('windowStageEvent', (data) => {
             let eventType: window.WindowStageEventType = data;
-            // Listen for Application A switching to the ACTIVE state.
+            // Listen for application A switching to the ACTIVE state.
             if (eventType === window.WindowStageEventType.ACTIVE) {
                 try {
                     // Launch application B.
@@ -64,7 +66,7 @@ export default class EntryAbility extends UIAbility {
 
 In application development, dynamically obtaining the window width and height is mainly used to implement responsive layout to adapt to devices of different sizes or window status changes (such as split-screen, maximization, restoration, and drag resizing).
 
-You are advised to use [getMainWindowSync()](../reference/apis-arkui/arkts-apis-window-WindowStage.md#getmainwindowsync9), [getMainWindow()](../reference/apis-arkui/arkts-apis-window-WindowStage.md#getmainwindow9-1), or [getSubWindow()](../reference/apis-arkui/arkts-apis-window-WindowStage.md#getsubwindow9-1) to obtain the window instance (windowClass), and then call the [getWindowProperties()](../reference/apis-arkui//arkts-apis-window-Window.md#getwindowproperties9) API through the instance to obtain the **WindowProperties** attribute. You can obtain the window width and height based on the attribute. The sample code snippet is as follows:
+You are advised to use [getMainWindowSync()](../reference/apis-arkui/arkts-apis-window-WindowStage.md#getmainwindowsync9), [getMainWindow()](../reference/apis-arkui/arkts-apis-window-WindowStage.md#getmainwindow9-1), or [getSubWindow()](../reference/apis-arkui/arkts-apis-window-WindowStage.md#getsubwindow9-1) to obtain the window instance (**windowClass**), and then call the [getWindowProperties()](../reference/apis-arkui//arkts-apis-window-Window.md#getwindowproperties9) API through the instance to obtain the **WindowProperties** attribute. You can obtain the window width and height based on the attribute. The sample code is as follows:
 
 ```ts
 import { UIAbility } from '@kit.AbilityKit';
@@ -91,8 +93,7 @@ export default class EntryAbility extends UIAbility {
 }
 ```
 
-
-## How to Listen for Soft Keyboard Height Changes
+## How to Obtain the Soft Keyboard Height
 
 The fixed soft keyboard is a specific type of avoid area, which corresponds to the **TYPE_KEYBOARD** type in [AvoidAreaType](../reference/apis-arkui/arkts-apis-window-e.md#avoidareatype7). You can use [getWindowAvoidArea()](../reference/apis-arkui/arkts-apis-window-Window.md#getwindowavoidarea9) and [on('avoidAreaChange')](../reference/apis-arkui/arkts-apis-window-Window.md#onavoidareachange9) to dynamically listen for changes in the soft keyboard avoid area height.
 
@@ -127,7 +128,6 @@ export default class EntryAbility extends UIAbility {
 }
 ```
 
-
 ## How to Obtain the Height of the PC's Default System Title Bar
 
 Call [getWindowDecorHeight()](../reference/apis-arkui/arkts-apis-window-Window.md#getwindowdecorheight11) to obtain the height of the title bar.
@@ -159,12 +159,11 @@ export default class EntryAbility extends UIAbility {
 }
 ```
 
-
 ## How to Implement or Determine Immersive Window Layout
 
-An [immersive layout](window-terminology.md#immersive-layout) is a window state that helps an application UI focus on content by reducing distractions from irrelevant elements.
+[Immersive layout](immersive-window-feature.md#immersive-layout) is a state that allows the app's layout area to extend to the entire window display area.
 
-For a non-[freeform window](window-terminology.md#freeform-window), immersive layout can be set by calling [setWindowLayoutFullScreen()](../reference/apis-arkui/arkts-apis-window-Window.md#setwindowlayoutfullscreen9). For a freeform window, you can call [setWindowDecorVisible()](../reference/apis-arkui/arkts-apis-window-Window.md#setwindowdecorvisible11) to control the title bar visibility. When the title bar is hidden, the window is in immersive layout.
+For a non-[freeform window](window-terminology.md#freeform-window), immersive layout can be set by calling [setWindowLayoutFullScreen()](../reference/apis-arkui/arkts-apis-window-Window.md#setwindowlayoutfullscreen9). For a freeform window, the visibility of the window title bar can be controlled through the [setWindowDecorVisible()](../reference/apis-arkui/arkts-apis-window-Window.md#setwindowdecorvisible11) API. When the title bar is hidden, the window is in immersive layout.
 
 You can use [isImmersiveLayout()](../reference/apis-arkui/arkts-apis-window-Window.md#isimmersivelayout20) to check whether the window is in immersive layout.
 
@@ -196,7 +195,6 @@ export default class EntryAbility extends UIAbility {
 }
 ```
 
-
 ## How to Hide the Status Bar and Bottom Navigation Area
 
 Call [setSpecificSystemBarEnabled()](../reference/apis-arkui/arkts-apis-window-Window.md#setspecificsystembarenabled11) to hide the status bar and bottom navigation bar.
@@ -222,12 +220,11 @@ export default class EntryAbility extends UIAbility {
       // Hide the bottom navigation area.
       windowClass.setSpecificSystemBarEnabled('navigationIndicator', false);
     } catch (exception) {
-      console.error('Failed to obtain isImmersiveLayout. Cause: ' + JSON.stringify(exception));
+      console.error('Failed to set status bar or navigation indicator bar invisible. Cause: ' + JSON.stringify(exception));
     }
   }
 }
 ```
-
 
 ## How to Obtain the Status Bar Height
 
@@ -253,7 +250,7 @@ export default class EntryAbility extends UIAbility {
       // Obtain the height of the status bar avoid area.
       let statusBarHeight = windowClass.getWindowAvoidArea(window.AvoidAreaType.TYPE_SYSTEM).topRect.height;
     } catch (exception) {
-      console.error(`Failed to enable the listener for system avoid area changes. Cause code: ${exception.code}, message: ${exception.message}`);
+      console.error(`Failed to get window avoid area. Cause code: ${exception.code}, message: ${exception.message}`);
     }
   }
 }
@@ -261,13 +258,13 @@ export default class EntryAbility extends UIAbility {
 
 ## How to Set the Window Background to Transparent
 
-You can call [setWindowBackgroundColor()](../reference/apis-arkui/arkts-apis-window-Window.md#getwindowavoidarea9) and pass **'\#00XXXXXX'** (X indicates any hexadecimal digit) or transparent [ColorMetrics](../reference/apis-arkui/js-apis-arkui-graphics.md#colormetrics12) to make the window background transparent.
+To make the window background transparent, call [setWindowBackgroundColor](../reference/apis-arkui/arkts-apis-window-Window.md#setwindowbackgroundcolor9) and pass **'\#00XXXXXX'** (where *X* represents any hexadecimal digit) or a transparent [ColorMetrics](../reference/apis-arkui/js-apis-arkui-graphics.md#colormetrics12) value.
 
 > **NOTE**
 > 
-> - On devices that support [free windows](window-terminology.md#free-windows), a window container is available. Its background color covers the entire window, including both the title bar and content area. If the [setWindowBackgroundColor()](../reference/apis-arkui/arkts-apis-window-Window.md#getwindowavoidarea9) API is called, the background color of the window container is displayed, because this API only sets the background color of the application content.
+> - On devices that support [freeform windows](window-terminology.md#freeform-window), a window container is available. Its background color covers the entire window, including both the title bar and the content area. Calling [setWindowBackgroundColor](../reference/apis-arkui/arkts-apis-window-Window.md#setwindowbackgroundcolor9) only sets the background color of the app content area, through which the window container background color is visible.
 > 
-> - You can call the [setWindowContainerColor()](../reference/apis-arkui/arkts-apis-window-Window.md#setwindowcontainercolor20) API to set the container to be transparent on 2-in-1 and tablets. Currently, the container background color cannot be set on other devices.
+> - On PC/2-in-1 and tablet devices, you can call [setWindowContainerColor()](../reference/apis-arkui/arkts-apis-window-Window.md#setwindowcontainercolor20) to make the container transparent. On other devices, setting the container background color is not supported.
 
 The example code is as follows:
 
@@ -317,9 +314,9 @@ struct OrientationTestView {
   private windowClass = (this.context as common.UIAbilityContext).windowStage.getMainWindowSync();
   setOrientation(orientation: number) {
     this.windowClass.setPreferredOrientation(orientation).then(() => {
-      console.log('setWindowOrientation: ' + orientation + ' Succeeded.');
+      console.info('setWindowOrientation: ' + orientation + ' Succeeded.');
     }).catch((err: BusinessError) => {
-      console.log('setWindowOrientation: ' + orientation + ' Failed. Cause: ' + JSON.stringify(err));
+      console.error('setWindowOrientation: ' + orientation + ' Failed. Cause: ' + JSON.stringify(err));
     })
   }
   build() {
@@ -340,9 +337,9 @@ For more information, see:
 
 - [Best Practice: Display Orientation Switching](https://developer.huawei.com/consumer/en/doc/best-practices/bpta-landscape-and-portrait-development)
 
-- [setPreferredOrientation() parameter enum: Orientation](../reference/apis-arkui/arkts-apis-window-e.md#orientation9)
+- [Orientation](../reference/apis-arkui/arkts-apis-window-e.md#orientation9)
 
-## How to Keep the Screen in Landscape/Portrait Mode Without Rotating with the Sensors 
+## How to Keep the Screen in Landscape/Portrait Mode Without Rotating with the Sensors
 
 Set the application's rotation policy to LANDSCAPE via the [setPreferredOrientation()](../reference/apis-arkui/arkts-apis-window-Window.md#setpreferredorientation9-1) API to keep the application in landscape mode; set it to **PORTRAIT** to keep it in portrait mode; set it to **LOCKED** to lock the current application orientation without rotating with the screen (using LOCKED is not recommended as it may cause unexpected orientation changes).
 
@@ -434,17 +431,17 @@ The options are as follows:
 | -------- | -------- |
 | "fullscreen" | Full screen.|
 | "split" | Split screen.|
-| "floating" | Floating window.|
+| "floating" | Floating window mode. |
 
 > **NOTE**
 > 
-> - The value of **supportWindowMode** is a string array. The default value is **["fullscreen", "split", "floating"]**.
+> - The **supportWindowMode** field is of the string array type and can be left unspecified. The default value is **["fullscreen", "split", "floating"]**.
 > 
-> - When **fullscreen** and **split** are both configured for a [freeform window](window-terminology.md#freeform-window), the window will be started in floating window mode if the value of [targetAPIVersion](../quick-start/app-configuration-file.md#tags-in-the-configuration-file) is less than 15, and in full-screen mode if the value is greater than or equal to 15.
+> - When both **fullscreen** and **split** are configured in the [freeform window](window-terminology.md#freeform-window) state, if the app's [targetAPIVersion](../quick-start/app-configuration-file.md#tags-in-the-configuration-file) is earlier than 15, the window starts in floating window mode. If the app's [targetAPIVersion](../quick-start/app-configuration-file.md#tags-in-the-configuration-file) is 15 or later, the window starts in fullscreen mode.
 
 The following is a configuration example of the module.json5 file:
 
-```json
+```json5
 {
   "module": {
     "abilities": [
@@ -471,7 +468,7 @@ In addition to the preceding configuration methods, you can also configure the w
 
 - Use the [metadata](window-config-m.md) tag, with the name **'ohos.ability.window.supportWindowModeInFreeMultiWindow'**. This field takes effect only in free windows mode.
 
-- When starting **UIAbility**, use the **supportWindowModes** field in [StartOptions](../reference/apis-ability-kit/js-apis-app-ability-startOptions.md#startoptions) to specify whether to display the maximum, window-based, or split-screen button.
+- When starting **UIAbility**, use the **supportWindowModes** field in [StartOptions](../reference/apis-ability-kit/js-apis-app-ability-startOptions.md#startoptions) to specify whether to display the maximum, windowed, or split-screen button.
 
 - After startup, call the [setSupportedWindowModes()](../reference/apis-arkui/arkts-apis-window-WindowStage.md#setsupportedwindowmodes15) API to dynamically change the window mode supported by the current main window.
 
@@ -492,15 +489,15 @@ In application development, there are two ways to determine whether an applicati
   | Name| Value| Description|
   | -------- | -------- | -------- |
   | UNDEFINED | 0 | The window mode is not defined.|
-  | FULL_SCREEN | 1 | The application is displayed in full screen.<br>In [freeform window](window-terminology.md#freeform-window) state, the window occupies the entire screen with no dock, title bar, or status bar displayed by default.<br>You can use [maximize()](../reference/apis-arkui/arkts-apis-window-Window.md#maximize12) and [setTitleAndDockHoverShown()](../reference/apis-arkui/arkts-apis-window-Window.md#settitleanddockhovershown14) to configure whether the title bar and dock are displayed when hovering over hot zones.<br>The last call takes precedence when both the **maximize()** and **setTitleAndDockHoverShown()** APIs are called.<br>In non-[freeform window](window-terminology.md#freeform-window) state, the window occupies the entire screen with no title bar or dock displayed. You can use [setSpecificSystemBarEnabled()](../reference/apis-arkui/arkts-apis-window-Window.md#setspecificsystembarenabled11) to configure whether to display the status bar.|
-  | MAXIMIZE | 2 | The application window is maximized. On 2-in-1 devices, the window covers the entire screen with a dock and a status bar.|
+  | FULL_SCREEN | 1 | The window is in full screen mode. In the [freeform window](window-terminology.md#freeform-window) state, the window fills the entire screen, with no dock bar, title bar, or status bar displayed by default.<br>The display of the title bar and dock bar when hovering over the hot zone can be configured through [maximize()](../reference/apis-arkui/arkts-apis-window-Window.md#maximize12) and [setTitleAndDockHoverShown()](../reference/apis-arkui/arkts-apis-window-Window.md#settitleanddockhovershown14).<br>When both **maximize()** and **setTitleAndDockHoverShown()** are called, the effect set by the last call takes precedence.<br>In the non-[freeform window](window-terminology.md#freeform-window) state, the window fills the entire screen, with no title bar or dock bar displayed. Whether the status bar is displayed can be configured through [setSpecificSystemBarEnabled()](../reference/apis-arkui/arkts-apis-window-Window.md#setspecificsystembarenabled11). |
+  | MAXIMIZE | 2 | The window is in maximized mode. On PC/2-in-1 devices, the window fills the entire screen, with the dock bar and status bar displayed. |
   | MINIMIZE | 3 | The application window is minimized.|
   | FLOATING | 4 | The application is displayed in a floating window.|
   | SPLIT_SCREEN | 5 | The application is displayed in split-screen mode.|
 
 - Call the [on('windowStatusChange')](../reference/apis-arkui/arkts-apis-window-Window.md#onwindowstatuschange11) API to listen for window mode changes.
 
-  If the application needs to respond immediately when the window mode changes (for example, from full-screen to floating window), this API can be used to listen for window mode changes for service adaptation.
+If an app needs to respond immediately when the window mode changes (for example, from fullscreen to floating window mode), this API can be used to listen for window mode changes and implement corresponding business adaptations.
 
   ```ts
   import { UIAbility } from '@kit.AbilityKit';
@@ -517,7 +514,7 @@ In application development, there are two ways to determine whether an applicati
       try {
         // Register a listener for window status changes.
         windowClass.on('windowStatusChange', (windowStatusType: window.WindowStatusType) => {
-          console.log(`status change, new status: ${windowStatusType}`);
+          console.info(`status change, new status: ${windowStatusType}`);
         });
       } catch (error) {
         console.error(`status listen err: ${JSON.stringify(error)}`);
@@ -541,7 +538,7 @@ In application development, there are two ways to determine whether an applicati
       console.info(`Succeeded in enabling the listener for window status changes. Data: ${JSON.stringify(WindowStatusType)}`);
     });
   } catch (exception) {
-    console.error(`Failed to unregister callback. Cause code: ${exception.code}, message: ${exception.message}`);
+    console.error(`Failed to register callback. Cause code: ${exception.code}, message: ${exception.message}`);
   }
   ```
 
@@ -551,7 +548,7 @@ In application development, there are two ways to determine whether an applicati
 
 ## How to Set the Global Floating Window Background to Transparent
 
-You can call [setWindowBackgroundColor()](../reference/apis-arkui/arkts-apis-window-Window.md#getwindowavoidarea9) and pass **'\#00XXXXXX'** (X indicates any hexadecimal digit) or transparent [ColorMetrics](../reference/apis-arkui/js-apis-arkui-graphics.md#colormetrics12) to make the window background transparent.
+To make the window background transparent, call [setWindowBackgroundColor](../reference/apis-arkui/arkts-apis-window-Window.md#setwindowbackgroundcolor9) and pass **'\#00XXXXXX'** (where X represents any hexadecimal digit) or a transparent [ColorMetrics](../reference/apis-arkui/js-apis-arkui-graphics.md#colormetrics12) value.
 
 ## How to Determine Whether an Application is Partially or Fully Obscured
 
@@ -569,11 +566,78 @@ Call the [on('freeWindowModeChange')](../reference/apis-arkui/arkts-apis-window-
 
 ## How to Set a Privacy Window
 
-Call the [setWindowPrivacyMode()](../reference/apis-arkui/arkts-apis-window-Window.md#setwindowprivacymode9-1) API to set a window to the privacy mode. In this mode, the window content cannot be captured or recorded.
+The [setWindowPrivacyMode](../reference/apis-arkui/arkts-apis-window-Window.md#setwindowprivacymode9-1) API can be called to set a window to privacy mode. When a window is in privacy mode, its content cannot be captured through screenshots or screen recording.
 
 For the PiP and floating ball windows, their privacy mode follows the parent window.
 
 To take a screenshot of a privacy window, you can use the [snapshotIgnorePrivacy()](../reference/apis-arkui/arkts-apis-window-Window.md#snapshotignoreprivacy18) API.
+
+## How to Implement a Blur Effect When the App Goes to the Background and Appears in the Multitasking Window
+
+Your app can listen to the main window lifecycle state and store the state using [AppStorage](../ui/state-management/arkts-appstorage.md). When the state is the foreground non-interactive state or the background state, set the [foregroundBlurStyle](../reference/apis-arkui/arkui-ts/ts-universal-attributes-foreground-blur-style.md#foregroundblurstyle) attribute for the component.
+
+The example code is as follows:
+
+```ts
+// EntryAbility.ets
+import { UIAbility } from '@kit.AbilityKit';
+import { window } from '@kit.ArkUI';
+
+export default class EntryAbility extends UIAbility {
+  onWindowStageCreate(windowStage: window.WindowStage): void {
+    windowStage.loadContent('pages/Index', (err) => {
+      if (err.code) {
+        console.error(`Failed to load the content. Cause code: ${err.code}, message: ${err.message}`);
+        return;
+      }
+      console.info('Succeeded in loading the content.');
+    });
+    AppStorage.setOrCreate('windowStage', windowStage);
+    windowStage.on('windowStageEvent', (data) => {
+      console.info('Succeeded in enabling the listener for window stage event changes. Data : ' +
+        JSON.stringify(data));
+      // Perform corresponding processing based on the event state type.
+      if (data == window.WindowStageEventType.SHOWN) {
+        console.info('current window stage event is SHOWN');
+        AppStorage.setOrCreate('interact', true);
+        // When the app enters the foreground, it is in the interactive state by default.
+        // ...
+      } else if (data == window.WindowStageEventType.HIDDEN) {
+        console.info('current window stage event is HIDDEN');
+        AppStorage.setOrCreate('interact', false);
+        // When the app enters the background, it is in the non-interactive state by default.
+        // ...
+      } else if (data == window.WindowStageEventType.PAUSED) {
+        console.info('current window stage event is PAUSED');
+        AppStorage.setOrCreate('interact', false);
+        // When the foreground app enters the multitasking view and becomes non-interactive in the foreground, switch to the non-interactive state.
+        // ...
+      } else if (data == window.WindowStageEventType.RESUMED) {
+        console.info('current window stage event is RESUMED');
+        AppStorage.setOrCreate('interact', true);
+        // When the app returns to the foreground from the multitasking view and becomes interactive again, restore the interactive state.
+        // ...
+      }
+    });
+  }
+}
+```
+
+```ts
+// ets/pages/Index.ets
+@Entry
+@Component
+struct Index {
+  @StorageLink('interact') interact: boolean = true;
+  build() {
+    Column() {
+      Text('Text('Text Text')')
+        .fontSize(60)
+    }
+    .foregroundBlurStyle(this.interact ? BlurStyle.NONE : BlurStyle.COMPONENT_ULTRA_THICK) // The blur level can be customized.
+  }
+}
+```
 
 ## What Are the Position/Size Restrictions for APIs Such as resize and moveWindowTo
 
@@ -583,34 +647,38 @@ There is no restriction on the window position when [moveWindowTo()](../referenc
 
 > **NOTE**
 > 
-> **Other restrictions on the resize API**:
+> **Other restrictions on the resize API:**
 > 
-> - In the [freeform window](window-terminology.md#freeform-window) state, this API takes effect only when the window is in floating window mode (that is, the window mode is **window.WindowStatusType.FLOATING**, which can be obtained by [getWindowStatus()](../reference/apis-arkui/arkts-apis-window-Window.md#getwindowstatus12)). Otherwise, the error code 1300002 is returned.
+> - In the [freeform window](window-terminology.md#freeform-window) state, the API takes effect only when the window is in floating window mode (that is, the window mode is **window.WindowStatusType.FLOATING**, which can be obtained through [getWindowStatus()](../reference/apis-arkui/arkts-apis-window-Window.md#getwindowstatus12)). Otherwise, error code 1300002 is thrown.
 > 
-> - In non-[freeform window](window-terminology.md#freeform-window) mode, this API does not work for the main window.
+> - In the non-[freeform window](window-terminology.md#freeform-window) state, the API does not take effect for the main window.
 > 
-> **Other restrictions on the moveWindowTo API**:
+> **Other restrictions on the moveWindowTo API:**
 > 
-> - This API is best suited for the floating window mode (when the window mode is **window.WindowStatusType.FLOATING**, which you can check using [getWindowStatus()](../reference/apis-arkui/arkts-apis-window-Window.md#getwindowstatus12)). You are not advised to use it in other window modes.
+> - It is not recommended to use this API in window modes other than floating window mode (that is, the window mode is **window.WindowStatusType.FLOATING**, which can be obtained through [getWindowStatus()](../reference/apis-arkui/arkts-apis-window-Window.md#getwindowstatus12)).
 > 
-> - In [freeform window](window-terminology.md#freeform-window) mode, the window moves relative to the screen. In non-freeform window mode, the window moves relative to the parent window.
+> - In the [freeform window](window-terminology.md#freeform-window) state, the window moves relative to the screen. In the non-freeform window state, the window moves relative to the parent window.
 > 
-> - To move the window relative to the screen while in non-freeform window mode, call [moveWindowToGlobal()](../reference/apis-arkui/arkts-apis-window-Window.md#movewindowtoglobal15).
+> - To move the window relative to the screen in the non-freeform window state, use [moveWindowToGlobal()](../reference/apis-arkui/arkts-apis-window-Window.md#movewindowtoglobal15).
 > 
-> - In non-[freeform window](window-terminology.md#freeform-window) mode, this API does not work for the main window.
+> - In the non-[freeform window](window-terminology.md#freeform-window) state, the API does not take effect for the main window.
 
 ## How to Set or Remove Watermarks
 
 <!--Del-->
+
 Watermarks are classified into the following types by scope:
 
 - Window-level watermark: You can call [setWaterMarkFlag()](../reference/apis-arkui/js-apis-window-sys.md#setwatermarkflag10) to add or remove a security watermark for the current window.
+
 <!--DelEnd-->
 
 - Process-level watermark: You can call [setWatermarkImageForAppWindows()](../reference/apis-arkui/arkts-apis-window-f.md#windowsetwatermarkimageforappwindows21) to set or cancel a process-level watermark, which takes effect for the windows of the current process, including the windows newly created by the process.
 
 <!--Del-->
-- Screen-level watermark: You can call [setWaterMarkImage()](../reference/apis-arkui/js-apis-window-sys.md#setwatermarkflag10) to set or cancel a screen-level watermark.
+
+- Screen-level watermark: [window.setWaterMarkImage](../reference/apis-arkui/js-apis-window-sys.md#windowsetwatermarkimage10) can be called to set or remove a screen-level watermark.
+
 <!--DelEnd-->
 
 ## How to Move a Created Window to an Extended Screen
@@ -621,7 +689,7 @@ Watermarks are classified into the following types by scope:
 
 ## How to Achieve a Semi-Transparent Background for a Child Window
 
-A child window can call the [setWindowBackgroundColor()](../reference/apis-arkui/arkts-apis-window-Window.md#setwindowbackgroundcolor9) API, passing **'\#XXYYYYYY'** (where **XX** represents any non-zero hexadecimal value and **Y** represents any hexadecimal digit) or a semi-transparent **ColorMetrics**.
+For a child window, call [setWindowBackgroundColor](../reference/apis-arkui/arkts-apis-window-Window.md#setwindowbackgroundcolor9) and pass **'\#XXYYYYYY'** (where XX represents any non-zero hexadecimal value and Y represents any hexadecimal digit) or a semi-transparent [ColorMetrics](../reference/apis-arkui/js-apis-arkui-graphics.md#colormetrics12) value.
 
 The example code is as follows:
 
@@ -639,8 +707,8 @@ windowClass.loadContent("pages/page2", storage, (err: BusinessError) => {
   return;
   }
   console.info('Succeeded in loading the content.');
-  let color1: string = '#8800FF33'; // Use the ARGB mode.
-  let color2: ColorMetrics = ColorMetrics.numeric(0x88112233); // Use the ColorMetrics mode.
+  let color1: string = '#8800FF33'; // Use the ARGB format.
+  let color2: ColorMetrics = ColorMetrics.numeric(0x88112233);  // Use the ColorMetrics format.
   try {
     windowClass?.setWindowBackgroundColor(color1);
     windowClass?.setWindowBackgroundColor(color2);
@@ -654,10 +722,119 @@ windowClass.loadContent("pages/page2", storage, (err: BusinessError) => {
 
 Currently, brightness can be set only at the window level.
 
-[setWindowBrightness()](../reference/apis-arkui/arkts-apis-window-Window.md#setwindowbrightness9-1) can be called on a specific page on the main window to achieve page-level brightness adjustment. Calling this API with value **-1** passed when exiting the page will restore the system default brightness.
+To achieve page-level brightness adjustment, an app can call [setWindowBrightness()](../reference/apis-arkui/arkts-apis-window-Window.md#setwindowbrightness9-1) on the main window to adjust the brightness when entering a specific page, and call [setWindowBrightness()](../reference/apis-arkui/arkts-apis-window-Window.md#setwindowbrightness9-1) with **-1** on the main window to restore the system screen brightness when exiting that page.
 
 ## How to Restore System Default Brightness
 
-For phones and tablets, the application can call [setWindowBrightness()](../reference/apis-arkui/arkts-apis-window-Window.md#setwindowbrightness9-1) with **-1** passed to restore the system default brightness.
+For phones and tablets, the app can call [setWindowBrightness()](../reference/apis-arkui/arkts-apis-window-Window.md#setwindowbrightness9-1) with **-1** passed to restore the system default brightness.
 
-For PCs and 2-in-1 devices, the window brightness and system brightness have been normalized. Therefore, after the [setWindowBrightness()](../reference/apis-arkui/arkts-apis-window-Window.md#setwindowbrightness9-1) API is called, the system brightness is directly changed. Currently, there is no method to restore the window brightness.
+For PCs and 2-in-1 devices, the window brightness and system brightness have been normalized. Therefore, after the [setWindowBrightness()](../reference/apis-arkui/arkts-apis-window-Window.md#setwindowbrightness9-1) API is called, the system brightness is directly changed. Currently, there is no method to restore the window brightness to the value before the call.
+
+## How to Properly Obtain the Topmost Window
+
+**Symptom**
+
+When [getLastWindow()](../reference/apis-arkui/arkts-apis-window-f.md#windowgetlastwindow9) is called to obtain the topmost window of the app, a child window that is being destroyed is obtained.
+
+**Possible Causes**
+
+When [destroyWindow()](../reference/apis-arkui/arkts-apis-window-Window.md#destroywindow9) is called to destroy a child window, [getLastWindow()](../reference/apis-arkui/arkts-apis-window-f.md#windowgetlastwindow9) is called before the destruction is complete, resulting in obtaining a child window that is being destroyed.
+
+**Solution**
+
+Before calling [getLastWindow()](../reference/apis-arkui/arkts-apis-window-f.md#windowgetlastwindow9) to obtain the topmost window of the app, ensure that operations such as child window destruction and window creation have been completed.
+
+**Sample Code**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+import { window } from '@kit.ArkUI';
+
+let lastWindow: window.Window | undefined = undefined;
+// Not recommended approach.
+try {
+  // Obtain the window instance first.
+  windowClass.destroyWindow();
+  try {
+    window.getLastWindow(this.context).then((topWindow) => {
+      lastWindow = topWindow;
+    }).catch((err: BusinessError) => {
+      console.error(`Failed to obtain the last window. Cause code: ${err.code}, message: ${err.message}`);
+    });
+  } catch (exception) {
+    console.error(`Failed to obtain the last window. Cause code: ${exception.code}, message: ${exception.message}`);
+  }
+} catch (exception) {
+  console.error(`Failed to destroy. Cause code: ${exception.code}, message: ${exception.message}`);
+};
+
+// Recommended approach.
+try {
+  // Obtain the window instance first.
+  windowClass.destroyWindow().then(() => {
+    try {
+      window.getLastWindow(this.context).then((topWindow) => {
+        lastWindow = topWindow;
+      }).catch((err: BusinessError) => {
+        console.error(`Failed to obtain the last window. Cause code: ${err.code}, message: ${err.message}`);
+      });
+    } catch (exception) {
+      console.error(`Failed to obtain the last window. Cause code: ${exception.code}, message: ${exception.message}`);
+    }
+  }).catch((err: BusinessError) => {
+    console.error(`Failed to destroy the window. Cause code: ${err.code}, message: ${err.message}`);
+  });
+} catch (exception) {
+  console.error(`Failed to destroy. Cause code: ${exception.code}, message: ${exception.message}`);
+};
+```
+
+## Window Type (type Field) Returned by getWindowProperties Does Not Meet Expectations
+
+**Symptom**
+
+Due to historical reasons, when [getWindowProperties()](../reference/apis-arkui/arkts-apis-window-Window.md#getwindowproperties9) is called in the main window scenario, the obtained window type, that is, [WindowType](../reference/apis-arkui/arkts-apis-window-e.md#windowtype7), is **TYPE_SYSTEM_ALERT** instead of **TYPE_MAIN**.
+
+**Solution**
+
+A new field will be provided in a future API version to fix this issue.
+
+When creating a window within an app, the window type must be specified. You can directly perceive the window type and do not need to actively obtain it through this API.
+
+## Avoid Area Data Obtained Through getWindowAvoidArea in Callbacks Such as on('windowSizeChange') Is Not Up-to-Date
+
+**Symptom**
+
+In window property change callbacks such as [on('windowSizeChange')](../reference/apis-arkui/arkts-apis-window-Window.md#onwindowsizechange7) and [on('windowRectChange')](../reference/apis-arkui/arkts-apis-window-Window.md#onwindowrectchange12), the avoid area data obtained through the [getWindowAvoidArea()](../reference/apis-arkui/arkts-apis-window-Window.md#getwindowavoidarea9) API is inaccurate.
+
+**Possible Causes**
+
+The update of the avoid area depends on both the update of window position/size properties and the update of the position/size of system UI elements (such as the status bar). When the window property update callback is triggered, the system UI elements may not have been updated yet. Therefore, the accurate avoid area cannot be obtained through the **getWindowAvoidArea()** API at this point.
+
+**Solution**
+
+Use the dedicated avoid area listener [on('avoidAreaChange')](../reference/apis-arkui/arkts-apis-window-Window.md#onavoidareachange9) to listen for avoid area changes, and avoid actively obtaining the avoid area through the **getWindowAvoidArea()** API in other window property change event callbacks.
+
+**Sample Code**
+
+```ts
+import { window } from '@kit.ArkUI';
+
+// In the code, windowClass is assumed to be an obtained Window instance.
+
+// Incorrect: Listen for the windowSizeChange event to proactively obtain the avoid area.
+windowClass.on('windowSizeChange', () => {
+  try {
+    const systemAvoidArea = windowClass.getWindowAvoidArea(window.AvoidAreaType.TYPE_SYSTEM);  // The obtained avoid area is inaccurate.
+  } catch (exception) {
+    console.error(`Failed to get window avoid area. Cause code: ${exception.code}, message: ${exception.message}`);
+  }
+});
+
+// Correct: Listen for the avoidAreaChange event.
+windowClass.on('avoidAreaChange', (data) => {
+  if (data.type === window.AvoidAreaType.TYPE_SYSTEM) {
+    const systemAvoidArea = data.area;  // The data in the callback always contains the accurate avoid area.
+  }
+});
+```
