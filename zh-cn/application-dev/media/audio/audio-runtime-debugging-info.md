@@ -384,7 +384,7 @@ let debugManager = audio.getAudioManager().getDebuggingManager();
 debugManager.printLoopbackInfo(audioLoopback, -1);
 
 // 输出到文件。
-let context = this.getUIContext().getHostContext() as common.UIAbilityContext;                                                              
+let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
 let filePath = context.filesDir + '/audio_loopback_debug.txt';
 let file = fs.openSync(filePath, fs.OpenMode.READ_WRITE | fs.OpenMode.CREATE);
 debugManager.printLoopbackInfo(audioLoopback, file.fd);
