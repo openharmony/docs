@@ -62,7 +62,7 @@ export default class EnterpriseAdminAbility extends EnterpriseAdminExtensionAbil
 
   // 应用卸载回调方法，应用可在此回调函数中进行事件上报，通知企业管理员。
   onBundleRemoved(bundleName: string) {
-    console.info('EnterpriseAdminAbility onBundleRemoved bundleName' + bundleName);
+    console.info('EnterpriseAdminAbility onBundleRemoved bundleName:' + bundleName);
   }
 
   // 普通设备管理应用激活回调方法，应用可在此回调函数中进行初始化策略设置。
@@ -72,7 +72,7 @@ export default class EnterpriseAdminAbility extends EnterpriseAdminExtensionAbil
 
   // 普通设备管理应用解除激活回调方法，应用可在此回调函数中通知企业管理员设备已脱管。
   onDeviceAdminDisabled(bundleName: string) {
-    console.info('EnterpriseAdminAbility onDeviceAdminDisabled bundleName' + bundleName);
+    console.info('EnterpriseAdminAbility onDeviceAdminDisabled bundleName:' + bundleName);
   }
 };
 ```
