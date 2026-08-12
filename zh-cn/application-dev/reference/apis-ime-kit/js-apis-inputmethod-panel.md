@@ -83,8 +83,8 @@ import { PanelInfo, PanelType, PanelFlag } from '@kit.IMEKit';
 
 | 名称 | 类型 | 只读 | 可选 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
-| type | [PanelType](#paneltype) | 否 | 否 | 输入法面板类型。决定面板是软键盘还是状态栏。不填写时默认为`SOFT_KEYBOARD`(0)。 |
-| flag | [PanelFlag](#panelflag) | 否 | 是 | 输入法面板状态类型。<br/>- 默认值为`FLAG_FIXED`(0)，表示固定态面板类型。<br/>- 当前仅用于描述软键盘类型的面板的状态。<br/>- 不同状态类型下面板的显隐行为不同：`FLAG_FIXED`和`FLAG_FLOATING`由系统控制显隐，`FLAG_CANDIDATE`由开发者自行控制显隐。 |
+| type | [PanelType](#paneltype) | 否 | 是 | 输入法面板类型。决定面板是软键盘还是状态栏。不填写时默认为`SOFT_KEYBOARD`(0)。 |
+| flag | [PanelFlag](#panelflag) | 否 | 否 | 输入法面板状态类型。<br/>- 默认值为`FLAG_FIXED`(0)，表示固定态面板类型。<br/>- 当前仅用于描述软键盘类型的面板的状态，对`STATUS_BAR`类型面板设置不产生实际效果。<br/>- 不同状态类型下面板的显隐行为不同：`FLAG_FIXED`和`FLAG_FLOATING`由系统控制显隐，`FLAG_CANDIDATE`由开发者自行控制显隐。 |
 
 PanelInfo参数使用建议：
 

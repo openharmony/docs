@@ -26,7 +26,7 @@
 | KeyboardDelegate | 键盘代理对象，提供物理键盘按键事件监听、光标位置变化监听、文本选择变化监听、文本内容变化监听、编辑框属性变化监听等能力。通过`getKeyboardDelegate()`获取实例。 |
 | InputClient | 输入客户端对象，提供对编辑框的文本操作能力，包括插入文本、删除文本（前删/后删）、获取光标前后文本、移动光标、选中文本、发送功能键和扩展编辑动作、设置预览文本、发送私有数据、自定义消息通信等。通过订阅`inputStart`事件在回调中获取实例。 |
 | KeyboardController | 键盘控制器对象，提供隐藏键盘、退出当前输入类型等能力。通过订阅`inputStart`事件在回调中获取实例。 |
-| Panel | 输入法面板对象，提供面板页面内容加载、大小调整、位置移动、显示/隐[destroyPanel]藏、面板状态切换、隐私模式设置、沉浸模式与效果设置、面板矩形区域预设置、热区更新等能力。通过`createPanel()`获取实例。 |
+| Panel | 输入法面板对象，提供面板页面内容加载、大小调整、位置移动、显示/隐藏、面板状态切换、隐私模式设置、沉浸模式与效果设置、面板矩形区域预设置、热区更新等能力。通过`createPanel()`获取实例。 |
 | MessageHandler | 自定义通信对象，用于接收编辑框应用发送的自定义通信数据，并提供终止通知回调。通过`InputClient.recvMessage()`注册。 |
 
 输入法应用的典型使用流程涉及多个API的组合调用，核心流程为：获取InputMethodAbility实例 -> 订阅inputStart事件 -> 在回调中获取KeyboardController和InputClient -> 创建Panel -> 加载面板页面内容 -> 通过InputClient操作编辑框文本 -> 通过KeyboardController控制键盘显隐。
@@ -135,7 +135,7 @@ import { inputMethodEngine } from '@kit.IMEKit';
 
 getInputMethodAbility(): InputMethodAbility
 
-获取输入法应用客户端实例[InputMethodAbility](#inputmethodability)（输入法能力对象），仅支持输入法应用调用。<br/>输入法应用获取该实例后，可订阅软键盘显示/隐藏请求事件、创建/销毁输入法面板等。
+获取输入法能力对象实例[InputMethodAbility](#inputmethodability)，仅支持输入法应用调用。<br/>输入法应用获取该实例后，可订阅软键盘显示/隐藏请求事件、创建/销毁输入法面板等。
 
 **系统能力：** SystemCapability.MiscServices.InputMethodFramework
 
@@ -143,7 +143,7 @@ getInputMethodAbility(): InputMethodAbility
 
 | 类型                                      | 说明               |
 | ----------------------------------------- | ------------------ |
-| [InputMethodAbility](#inputmethodability) | 输入法应用客户端。 |
+| [InputMethodAbility](#inputmethodability) | 输入法能力对象。 |
 
 **示例：**
 
@@ -483,7 +483,7 @@ off(type: 'inputStop', callback: () => void): void
 | 参数名   | 类型   | 必填 | 说明                                                         |
 | -------- | ------ | ---- | ------------------------------------------------------------ |
 | type     | string | 是   | 设置监听类型，固定取值为'inputStop'。 |
-| callback | () => void   | 是   | 取消订阅的回调函数，用于取消特定的键盘显示/隐藏事件订阅。传入callback时取消指定回调的订阅，不传入时取消type对应的所有回调事件。|
+| callback | () => void   | 是   | 取消订阅的回调函数。|
 
 **示例：**
 
@@ -1013,7 +1013,7 @@ createPanel(ctx: BaseContext, info: PanelInfo): Promise&lt;Panel&gt;
 **返回值：**
 | 类型   | 说明                                                                 |
 | ------- | ------------------------------------------------------------------ |
-| Promise&lt;[Panel](#panel10)&gt; | 回调函数。当输入法面板创建成功，返回当前创建的输入法面板对象。  |
+| Promise&lt;[Panel](#panel10)&gt; | Promise对象。当输入法面板创建成功，返回当前创建的输入法面板对象。  |
 
 **错误码：**
 
@@ -1091,29 +1091,26 @@ let panelInfo: inputMethodEngine.PanelInfo = {
   flag: inputMethodEngine.PanelFlag.FLG_FIXED
 }
 
+// 在InputMethodExtensionAbility类中使用
 let inputPanel: inputMethodEngine.Panel | undefined = undefined;
-// context为InputMethodExtensionAbility类提供的上下文对象，无需额外获取
-if (this.context) {
-  inputMethodEngine.getInputMethodAbility()
-    .createPanel(this.context, panelInfo, (err: BusinessError, panel: inputMethodEngine.Panel) => {
+inputMethodEngine.getInputMethodAbility().createPanel(this.context, panelInfo, (err: BusinessError, panel: inputMethodEngine.Panel) => {
+  if (err) {
+    console.error(`Failed to create panel. Code is ${err.code}, message is ${err.message}`);
+    return;
+  }
+  inputPanel = panel;
+  console.info('Succeed in creating panel.');
+  // 创建成功后再销毁
+  if (inputPanel) {
+    inputMethodEngine.getInputMethodAbility().destroyPanel(inputPanel, (err: BusinessError) => {
       if (err) {
-        console.error(`Failed to create panel. Code is ${err.code}, message is ${err.message}`);
+        console.error(`Failed to destroy panel. Code is ${err.code}, message is ${err.message}`);
         return;
       }
-      inputPanel = panel;
-      console.info('Succeed in creating panel.');
-    })
-}
-
-if (inputPanel) {
-  inputMethodEngine.getInputMethodAbility().destroyPanel(inputPanel, (err: BusinessError) => {
-    if (err) {
-      console.error(`Failed to destroy panel. Code is ${err.code}, message is ${err.message}`);
-      return;
-    }
-    console.info('Succeed in destroying panel.');
-  })
-}
+      console.info('Succeed in destroying panel.');
+    });
+  }
+});
 ```
 
 ### destroyPanel<sup>10+</sup>
@@ -3326,7 +3323,7 @@ inputMethodEngine.getInputMethodAbility()
           console.info(`recv message, msgId is ${msgId}, msgParam is ${JSON.stringify(msgParam)}`);
         }
       }
-      client.recvMessage(messageHandler);
+      inputClient.recvMessage(messageHandler);
     });
 ```
 
@@ -4644,6 +4641,8 @@ console.info(`Succeeded in getTextIndexAtCursorSync, index: ${index}`);
 sendExtendAction(action: ExtendAction, callback: AsyncCallback&lt;void&gt;): void
 
 发送扩展编辑操作。使用callback异步回调。
+
+使用场景：输入法应用需要触发编辑框的扩展编辑功能。例如：用户点击键盘上的剪切按钮时发送CUT操作；用户点击复制按钮时发送COPY操作；用户点击粘贴按钮时发送PASTE操作；用户点击全选按钮时发送SELECT_ALL操作；自定义工具栏中集成编辑快捷操作。
 
 > **说明**
 >

@@ -61,7 +61,7 @@ import { InputMethodSubtype } from '@kit.IMEKit';
 
 async function switchInputMethodWithSubtype() {
   // 1. 获取当前输入法
-  const currentIme: inputMethod.InputMethodProperty | undefined = inputMethod.getCurrentInputMethod();
+  const currentIme: inputMethod.InputMethodProperty = inputMethod.getCurrentInputMethod();
   if (!currentIme) {
     console.error("Failed to get current input method");
     return;
@@ -74,7 +74,7 @@ async function switchInputMethodWithSubtype() {
     console.error(`Failed to switchInputMethod. Code: ${err.code}, message: ${err.message}`);
   }
   // 3. 获取当前输入法子类型
-  const currentSubtype: InputMethodSubtype | undefined = inputMethod.getCurrentInputMethodSubtype();
+  const currentSubtype: InputMethodSubtype = inputMethod.getCurrentInputMethodSubtype();
   if (!currentSubtype) {
     console.error("Failed to get current input subtype");
     return;
@@ -642,11 +642,14 @@ getDefaultInputMethod(userId?: number): InputMethodProperty
 **示例：**
 
 ```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
 try {
   let defaultIme: inputMethod.InputMethodProperty = inputMethod.getDefaultInputMethod(100);
   console.info('Succeeded in getting default input method, name: ' + defaultIme.name + ', id: ' + defaultIme.id);
 } catch (err) {
-  console.error(`Failed to getDefaultInputMethod. Code: ${err.code}, message: ${err.message}`);
+  let error = err as BusinessError;
+  console.error(`Failed to getDefaultInputMethod. Code: ${error.code}, message: ${error.message}`);
 }
 ```
 
@@ -692,12 +695,14 @@ getSystemInputMethodConfigAbility(userId?: number): ElementName
 
 ```ts
 import { bundleManager } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   let inputMethodConfig: bundleManager.ElementName = inputMethod.getSystemInputMethodConfigAbility(100);
   console.info('Succeeded in getting system input method config ability, bundleName: ' + inputMethodConfig.bundleName);
 } catch (err) {
-  console.error(`Failed to getSystemInputMethodConfigAbility. Code: ${err.code}, message: ${err.message}`);
+  let error = err as BusinessError;
+  console.error(`Failed to getSystemInputMethodConfigAbility. Code: ${error.code}, message: ${error.message}`);
 }
 ```
 
@@ -798,11 +803,14 @@ getCurrentInputMethod(userId?: number): InputMethodProperty
 **示例：**
 
 ```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
 try {
   let currentIme: inputMethod.InputMethodProperty = inputMethod.getCurrentInputMethod(100);
   console.info('Succeeded in getting current input method, name: ' + currentIme.name + ', id: ' + currentIme.id);
 } catch (err) {
-  console.error(`Failed to getCurrentInputMethod. Code: ${err.code}, message: ${err.message}`);
+  let error = err as BusinessError;
+  console.error(`Failed to getCurrentInputMethod. Code: ${error.code}, message: ${error.message}`);
 }
 ```
 
@@ -848,12 +856,14 @@ getCurrentInputMethodSubtype(userId?: number): InputMethodSubtype
 
 ```ts
 import { InputMethodSubtype } from '@kit.IMEKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   let currentImeSubType: InputMethodSubtype = inputMethod.getCurrentInputMethodSubtype(100);
   console.info('Succeeded in getting current input method subtype, id: ' + currentImeSubType.id);
 } catch (err) {
-  console.error(`Failed to getCurrentInputMethodSubtype. Code: ${err.code}, message: ${err.message}`);
+  let error = err as BusinessError;
+  console.error(`Failed to getCurrentInputMethodSubtype. Code: ${error.code}, message: ${error.message}`);
 }
 ```
 
@@ -957,11 +967,14 @@ getAllInputMethodsSync(userId?: number): Array&lt;InputMethodProperty&gt;
 **示例：**
 
 ```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
 try {
   let imeProperty: Array<inputMethod.InputMethodProperty> = inputMethod.getSetting().getAllInputMethodsSync(100);
   console.info('Succeeded in getting all input methods, count: ' + imeProperty.length);
 } catch (err) {
-  console.error(`Failed to getAllInputMethodsSync. Code: ${err.code}, message: ${err.message}`);
+  let error = err as BusinessError;
+  console.error(`Failed to getAllInputMethodsSync. Code: ${error.code}, message: ${error.message}`);
 }
 ```
 
@@ -1009,13 +1022,15 @@ getInputMethodSubtypes(bundleName: string, userId?: number): Array&lt;InputMetho
 
 ```ts
 import { InputMethodSubtype } from '@kit.IMEKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let inputMethodSetting: inputMethod.InputMethodSetting = inputMethod.getSetting();
 try {
   let subtypes: Array<InputMethodSubtype> = inputMethodSetting.getInputMethodSubtypes('com.example.keyboard', 100);
   console.info('Succeeded in getting input method subtypes, count: ' + subtypes.length);
 } catch (err) {
-  console.error(`Failed to getInputMethodSubtypes. Code: ${err.code}, message: ${err.message}`);
+  let error = err as BusinessError;
+  console.error(`Failed to getInputMethodSubtypes. Code: ${error.code}, message: ${error.message}`);
 }
 ```
 
@@ -1068,11 +1083,14 @@ getInputMethodsSync(enable: boolean, userId?: number): Array&lt;InputMethodPrope
 **示例：**
 
 ```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
 try {
   let imeProperty: Array<inputMethod.InputMethodProperty> = inputMethod.getSetting().getInputMethodsSync(true, 100);
   console.info('Succeeded in getting enabled input methods, count: ' + imeProperty.length);
 } catch (err) {
-  console.error(`Failed to getInputMethodsSync. Code: ${err.code}, message: ${err.message}`);
+  let error = err as BusinessError;
+  console.error(`Failed to getInputMethodsSync. Code: ${error.code}, message: ${error.message}`);
 }
 ```
 
