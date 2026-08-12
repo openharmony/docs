@@ -1,16 +1,19 @@
 # Building and Running Applications Using OpenMP
-<!--Kit: NDK Development-->
+
+<!--Kit: ArkTS-->
 <!--Subsystem: arkcompiler-->
-<!--Owner: @rePeek-->
+<!--Owner: @yangming4249-->
 <!--Designer: @ychen3--->
 <!--Tester: @zsw_zhushiwei-->
-<!--Adviser: @fang-jinxu-->
+<!--Adviser: @k1ngqaquuu-->
+<!-- md-trans-meta sourceCommit=21434ce8d323ecbd7d67463989a2ef075be92cec translatedAt=2026-08-12T06:28:49.580Z pushedAt=2026-08-12T10:01:05.227Z -->
 
 The OpenHarmony NDK provides dynamic and static library files of OpenMP so that you can use OpenMP in native applications. This topic guides you through on how to call library files in [DevEco Studio](https://developer.huawei.com/consumer/en/deveco-studio/) to use OpenMP. For details about the APIs and examples, see [clang-OpenMPSupport](https://clang.llvm.org/docs/OpenMPSupport.html).
 
 ## How to Develop
 
 ### Creating a Native C++ Project
+
 [Creating an NDK Project](./create-with-ndk.md)
 
 ### Adding Dependencies
@@ -158,6 +161,6 @@ Check the device connection and [sign the application](https://developer.huawei.
 
 > **NOTE**
 > 
-> When an OpenMP application is running, the error message "dlopen_impl load library header failed for libarcher.so" will be displayed in HiLog, as shown in the following figure. The **libarcher.so** file in the error information is used only when the OpenMP application has Tsan enabled. Currently, OpenHarmony does not support Tsan of OpenMP applications. Therefore, this error message does not affect the normal running of the application and can be ignored.
+> When an OpenMP program runs, HiLog outputs the error message "dlopen_impl load library header failed for libarcher.so" (as shown in the following figure). The libarcher.so mentioned in this error message is required only when Tsan detection is enabled for the OpenMP program. Currently, OpenHarmony does not support Tsan detection for OpenMP programs, so this error message can be ignored and does not affect normal program execution.
 >
 > ![image2](./figures/omp-error.png)

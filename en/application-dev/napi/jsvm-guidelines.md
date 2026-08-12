@@ -1,10 +1,12 @@
 # JSVM-API Development Specifications
-<!--Kit: NDK Development-->
+
+<!--Kit: ArkTS-->
 <!--Subsystem: arkcompiler-->
-<!--Owner: @yuanxiaogou; @string_sz-->
+<!--Owner: @yuanxiaogou-->
 <!--Designer: @knightaoko-->
 <!--Tester: @test_lzz-->
-<!--Adviser: @fang-jinxu-->
+<!--Adviser: @k1ngqaquuu-->
+<!-- md-trans-meta sourceCommit=f34ddda28f1bcebae0ddfbd293a9ffe8cb2789f9 translatedAt=2026-08-12T06:25:54.564Z pushedAt=2026-08-12T08:55:47.659Z -->
 
 ## Lifecycle Management
 
@@ -15,10 +17,13 @@ Each **JSVM_Value** belongs to a specific **HandleScope** instance, which is cre
 **NOTE**
 
 1. **JSVM_Value** can be created only after **HandleScope** is opened; otherwise, the application may crash. Node-API does not have this restriction.
+
 2. **JSVM_Value** cannot be used after the corresponding **HandleScope** is closed. To hold **JSVM_Value** persistently, call **OH_JSVM_CreateReference** to convert **JSVM_Value** to **JSVM_Ref**.
+
 3. The scopes (including **JSVM_VMScope**, **JSVM_EnvScope**, and **JSVM_HandleScope**) must be closed in reverse order. The scope opened first must be closed last. Otherwise, the application may crash.
 
 **Example (scope closing error)**
+
 ```c++
 // If JSVM_VMScope is not closed in reverse order, the application may crash.
 JSVM_VM vm;
@@ -34,7 +39,6 @@ OH_JSVM_CloseVMScope(vm, vmScope1);
 OH_JSVM_CloseVMScope(vm, vmScope2);
 OH_JSVM_DestroyVM(vm);
 ```
-
 
 **Encapsulation in C++**
 
@@ -113,10 +117,15 @@ A JS object belongs to a specific **JSVM_Env**. Therefore, you cannot set an obj
 **NOTE**
 
 1. You can use **OH_JSVM_IsLocked** to check whether the calling thread holds the lock of the JSVM instance instead of setting a loop to wait for other threads to release the lock.
+
 2. Nested use of **OH_JSVM_AcquireLock** in the same thread will not cause deadlock.
+
 3. When using **OH_JSVM_ReleaseLock**, you need to check whether it is at the outermost layer to prevent the inner layer from releasing the lock of the entire thread when **OH_JSVM_AcquireLock** is nested in the same thread.
+
 4. After **OH_JSVM_AcquireLock** is called, use **OH_JSVM_OpenHandleScope** to enable the JSVM instance to enter the thread. Before **OH_JSVM_ReleaseLock** is called, use **OH_JSVM_CloseHandleScope** to enable the JSVM instance to exit the thread.
+
 5. A JSVM instance cannot be nested across threads. If you need to temporarily change the thread that uses the JSVM instance, ensure that **JSVM_Value** is saved as **JSVM_Ref**. After the lock is released, **JSVM_Value** cannot be accessed.
+
 6. The sequence of obtaining resources is as follows: Lock -> VMScope -> EnvScope -> HandleScope. The sequence of releasing resources is the opposite. An incorrect sequence may cause the application to crash.
 
 **Encapsulation in C++**
@@ -158,8 +167,6 @@ class LockWrapper {
   bool isLocked;
 };
 ```
-
-
 
 **Example (correct)**
 
@@ -230,7 +237,7 @@ If **argv** is not **nullptr**, the arguments actually passed from JS will be wr
 
 ```cpp
 static JSVM_Value IncorrectDemo1(JSVM_Env env, JSVM_CallbackInfo info) {
-    // argc is not correctly initialized and is set to a random value. If the length of argv is less than the number of arguments specified by argc, data overwriting occurs.
+    // argc is not properly initialized, and its value is an indeterminate random value. As a result, the length of argv may be less than the number declared by argc, causing out-of-bounds data access.
     size_t argc;
     JSVM_Value argv[10] = {nullptr};
     OH_JSVM_GetCbInfo(env, info, &argc, argv, nullptr, nullptr);
@@ -269,7 +276,7 @@ static JSVM_Value GetArgvDemo1(napi_env env, JSVM_CallbackInfo info) {
 
 static JSVM_Value GetArgvDemo2(napi_env env, JSVM_CallbackInfo info) {
     size_t argc = 2;
-    JSVM_Value* argv[2] = {nullptr};
+    JSVM_Value argv[2] = {nullptr};
     // The arguments (of the quantity specified by argc) passed from JS or undefined will be written to argv of OH_JSVM_GetCbInfo.
     OH_JSVM_GetCbInfo(env, info, &argc, argv, nullptr, nullptr);
     // Service code.
@@ -284,7 +291,8 @@ static JSVM_Value GetArgvDemo2(napi_env env, JSVM_CallbackInfo info) {
 
  Exception handling can be classified into the following types based on the primary/secondary relationship:
 
-1. If a C++ exception occurs when the JSVM executes a C++ callback function (JS is primary and native is secondary), the exception needs to be thrown to the JSVM. The following example demonstrates the implementation of the C++ callback function in three difference scenarios. **NOTE**<br>If the JSVM-API call in a C++ callback fails, you can either throw an exception to the JSVM or not. To throw an exception, ensure that there is no pending exception in the JSVM. If you choose not to throw an exception, JS **try-catch** can capture such JS exceptions. For details, see **NativeFunctionExceptionDemo3**.
+1. If a C++ exception occurs when the JSVM executes a C++ callback function (JS is primary and native is secondary), the exception needs to be thrown to the JSVM. The following example demonstrates the implementation of the C++ callback function in three different scenarios. If the JSVM-API call in a C++ callback fails, you can either throw an exception to the JSVM or not. To throw an exception, ensure that there is no pending exception in the JSVM. If you choose not to throw an exception, JS **try-catch** can capture such JS exceptions. For details, see **NativeFunctionExceptionDemo3**.
+
     ```c++
     // JSVM is primary, and native is secondary.
     void DoSomething() {
@@ -345,7 +353,7 @@ static JSVM_Value GetArgvDemo2(napi_env env, JSVM_CallbackInfo info) {
 
     // Bind NativeFunction to the JSVM. The process is omitted here.
     std::string sourcecodestr = R"JS(
-        // The console log needs to be implemented.
+        // console.log requires user implementation.
         try {
             // Call the native function.
             NativeFunction()
@@ -363,7 +371,8 @@ static JSVM_Value GetArgvDemo2(napi_env env, JSVM_CallbackInfo info) {
     JSVM_CALL(OH_JSVM_RunScript(env, script, &result));
     ```
 
-2. If JSVM-API (native is primary and JS is secondary) fails to be called from C++, clear the pending exceptions in JSVM to prevent the impact on subsequent JSVM-API execution and set a branch to handling C++ exception (or throw a C++ exception).
+2. If JSVM-API (native is primary and JS is secondary) fails to be called from C++, clear the pending exceptions in JSVM to prevent the impact on subsequent JSVM-API execution and set a branch to handle C++ exception (or throw a C++ exception).
+
     ```c++
     std::string sourcecodestr = R"JS(
         throw Error('Error throw from js');
@@ -397,7 +406,7 @@ static JSVM_Value GetArgvDemo2(napi_env env, JSVM_CallbackInfo info) {
 
     ```
 
-## Binding Object Context
+## Binding Objects to Context
 
 **[Rule]**: The JS function and object generated by JSVM-API can be accessed from JS only after they are bound to the context. The `const char *` parameter in **OH_JSVM_CreateFunction** is the property **name** of the created function, without pointing to the function name in the context. This rule also applies to the class and object generated by JSVM-API.
 
@@ -420,7 +429,7 @@ OH_JSVM_CreateStringLatin1(env, "FunctionNameInJSContext", JSVM_AUTO_LENGTH, &ke
 OH_JSVM_SetProperty(env, global, key, JSFunc);
 // Call the function from JS.
 std::string sourcecodestr = R"JS(
-    // The console log needs to be implemented.
+    // console.log requires user implementation.
     FunctionNameInJSContext() // The call is successful.
     consolelog(FunctionNameInJSContext.name) // Print "NativeFunction."
     try {

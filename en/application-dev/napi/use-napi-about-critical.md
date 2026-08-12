@@ -5,7 +5,8 @@
 <!--Owner: @xliu-huanwei; @shilei123; @huanghello-->
 <!--Designer: @shilei123-->
 <!--Tester: @kirl75; @zsw_zhushiwei-->
-<!--Adviser: @fang-jinxu-->
+<!--Adviser: @k1ngqaquuu-->
+<!-- md-trans-meta sourceCommit=88fc26dbb0c9f93d86550b575acd5207366a25bd translatedAt=2026-08-12T06:38:16.250Z pushedAt=2026-08-12T11:09:56.412Z -->
 
 The Node-API extension APIs **napi_open_critical_scope** and **napi_close_critical_scope** are used to open and close a critical scope, respectively.
 
@@ -91,8 +92,9 @@ After the critical scope is closed, do not use the critical API or its return re
       if (napi_get_value_string_utf16(env, value, nullptr, 0, &strLength) != napi_ok) {
          return {};
       }
-      /* The Node-API requires that the buffer length be greater than the string length, which is used to write the end flag of the C string.
-         Therefore, to obtain the complete string, the buffer size must be the string length plus 1.*/
+      /* The Node-API requires the buffer length to be greater than the string length to accommodate the null terminator of the C string.
+       * Therefore, to obtain the complete string, the buffer size must be the string length plus 1.
+       */
       std::vector<char16_t> result(strLength + 1);
       if (napi_get_value_string_utf16(env, value, result.data(), result.size(), &strLength) != napi_ok) {
          return {};
@@ -193,4 +195,3 @@ After the critical scope is closed, do not use the critical API or its return re
    makeTest("你好");        // Expected result: 0 or 2
    makeTest("测试字符串");   // Expected result: 1 or 3
    ```
-<!--no_check-->

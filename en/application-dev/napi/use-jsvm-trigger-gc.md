@@ -1,10 +1,12 @@
 # Triggering GC Using JSVM-API
-<!--Kit: NDK Development-->
+
+<!--Kit: ArkTS-->
 <!--Subsystem: arkcompiler-->
-<!--Owner: @yuanxiaogou; @string_sz-->
+<!--Owner: @yuanxiaogou-->
 <!--Designer: @knightaoko-->
 <!--Tester: @test_lzz-->
-<!--Adviser: @fang-jinxu-->
+<!--Adviser: @k1ngqaquuu-->
+<!-- md-trans-meta sourceCommit=21434ce8d323ecbd7d67463989a2ef075be92cec translatedAt=2026-08-12T06:36:55.666Z pushedAt=2026-08-12T11:05:04.183Z -->
 
 ## Introduction
 
@@ -137,13 +139,17 @@ static JSVM_PropertyDescriptor descriptor[] = {
     {"triggerGC", nullptr, method++, nullptr, nullptr, nullptr, JSVM_DEFAULT},
 };
 ```
+
 **JS Example**
+
 ```cpp
 const char *srcCallNative = R"JS(triggerGC();)JS";
 ```
+
 **Execution Result**
 
 The following information is displayed in the log:
+
 ```cpp
 == before GC ==
 gc type: 4

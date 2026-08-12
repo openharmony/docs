@@ -1,140 +1,271 @@
 # Node-API
+
 <!--Kit: Common-->
 <!--Subsystem: Common-->
 <!--Owner: @fang-jinxu-->
-<!--Designer: @lingminghw-->
+<!--Designer: @fang-jinxu-->
 <!--Tester: @RayShih-->
 <!--Adviser: @fang-jinxu-->
+<!-- md-trans-meta sourceCommit=fa3fc214ef4b265f033bc3f0d0a2df54f511a497 translatedAt=2026-08-12T06:29:04.991Z pushedAt=2026-08-12T11:26:54.032Z -->
+
 - [About This Kit](ndk-development-overview.md)
+
 - [Creating an NDK Project](create-with-ndk.md)
+
 - Building an NDK Project<!--build-with-ndk-->
+
   - [Overview](build-with-ndk-overview.md)
+
   - [Building an NDK Project with the DevEco Studio Template](build-with-ndk-ide.md)
+
   - [Building an NDK Project with the Command Line CMake](build-with-ndk-cmake.md)
+
   - [Building an NDK Project with Prebuilt Libraries](build-with-ndk-prebuilts.md)<!--RP1--><!--RP1End-->
+
 - Code Development<!--coding-->
+
   - [Overview](develop-code-overview.md)
+
   - C/C++ Standard Library<!--c-cpp-->
+
     - [C/C++ Library Mechanisms](c-cpp-overview.md)
+
     - [Using fdsan](fdsan.md)
-  - Using Node-API<!--using-napi-interaction-with-cpp-->
+
+  - Using Node-API for ArkTS/JS and C/C++ Language Interaction<!--using-napi-interaction-with-cpp-->
+
     - [Node-API Overview](napi-introduction.md)
+
     - [Node-API Status Codes](napi_status_introduction.md)
+
     - [Node-API Data Types and APIs](napi-data-types-interfaces.md)
+
     - [Node-API Development Specifications](napi-guidelines.md)
+
     - [Node-API Development Process](use-napi-process.md)
+
     - Node-API Guides<!--napi-use-->
+
       - [Using Node-API Extension APIs](use-napi-about-extension.md)
+
       - [Working with Arrays Using Node-API](use-napi-about-array.md)
+
       - [Working with ArrayBuffer Using Node-API](use-napi-about-arraybuffer.md)
+
       - [Working with BigInt Using Node-API](use-napi-about-bigint.md)
+
       - [Working with Buffer Using Node-API](use-napi-about-buffer.md)
+
       - [Working with Basic Data Types Using Node-API](use-napi-basic-data-types.md)
+
       - [Working with Class Using Node-API](use-napi-about-class.md)
+
       - [Working with Cleanup Hooks Using Node-API](use-napi-about-cleanuphook.md)
+
       - [Working with Date Using Node-API](use-napi-about-date.md)
+
       - [Error Handling Using Node-API](use-napi-about-error.md)
+
       - [Associating Data with a Running Environment to Tie Their Lifecycle Using Node-API](use-napi-about-environmental-life-cycle.md)
+
       - [Working with Functions Using Node-API](use-napi-about-function.md)
+
       - [Performing Lifecycle Management Using Node-API](use-napi-life-cycle.md)
+
       - [Working with Objects Using Node-API](use-napi-about-object.md)
+
       - [Working with Other Node-API Utilities](use-napi-about-other-practical-tools.md)
+
       - [Working with Primitives Using Node-API](use-napi-about-primitive.md)
+
       - [Implementing Asynchronous Operations Using Node-API](use-napi-about-promise.md)
+
       - [Setting ArkTS Object Properties Using Node-API](use-napi-about-property.md)
+
       - [Working with String Using Node-API](use-napi-about-string.md)
+
       - [Customizing Asynchronous Operations Using Node-API](use-napi-about-custom-asynchronous-operations.md)
+
     - Typical Node-API Use Cases<!--napi-scenarios-->
+
       - [Asynchronous Task Development Using Node-API](use-napi-asynchronous-task.md)
+
       - [Thread Safety Development Using Node-API](use-napi-thread-safety.md)
+
       - [Wrapping a Native Object in an ArkTS Object](use-napi-object-wrap.md)
+
       - [Wrapping a Native Object in a Sendable ArkTS Object](use-sendable-napi.md)
+
       - [Creating an ArkTS Runtime Environment Using Node-API](use-napi-ark-runtime.md)
+
       - [Loading a Module in the Main Thread Using Node-API](use-napi-load-module.md)
+
       - [Running or Stopping an Event Loop in an Asynchronous Thread Using Node-API Extension APIs](use-napi-event-loop.md)
+
       - [Loading a Module Using Node-API](use-napi-load-module-with-info.md)
+
       - [Passing a Task with the Specified Priority to an ArkTS Thread from an Asynchronous Thread Using Node-API](use-call-threadsafe-function-with-priority.md)
+
       - [Creating, Switching, and Destroying a Context in a Thread Using Node-API Extension APIs](use-napi-about-context.md)
+
       - [Creating a Strong Reference to an ArkTS Object Using Node-API Extension APIs](use-napi-about-strong-reference.md)
+
       - [Creating and Destroying a Critical Scope and Accessing String Content Using Node-API Extension APIs](use-napi-about-critical.md)
+
       - [Analyzing Exceptions and Crashes Triggered by Using Node-API](use-napi-about-crash.md)
+
       - [Calling an ArkTS Method with Return Value of a Promise Using Node-API](use-napi-method-promise.md)
+
       - [Creating a Sendable Strong Reference to an ArkTS Object Using Node-API Extension APIs](use-napi-about-sendable-reference.md)
+
+      - [Accelerating Property Access Using Extended Node-APIs](use-napi-about-fast-property-access.md)
+
     - Node-API FAQs<!--napi-questions-->
+
       - [Node-API FAQs](use-napi-faqs.md)
+
       - [FAQs About Stability](napi-faq-about-stability.md)
+
       - [FAQs About Memory Leaks](napi-faq-about-memory-leak.md)
+
       - [FAQs About Basic Functionalities](napi-faq-about-common-basic.md)
+
   - Using JSVM-API<!--jsvm-->
+
     - [JSVM-API Overview](jsvm-introduction.md)
+
     - [JSVM-API Data Types and APIs](jsvm-data-types-interfaces.md)
+
     - [JSVM-API Development Process](use-jsvm-process.md)
+
     - JSVM-API Development Specifications<!--jsvm-development-standards-->
+
       - [JSVM-API Development Specifications](jsvm-guidelines.md)
+
       - [JSVM-API FAQs](jsvm-frequently-questions.md)
+
     - JSVM-API Guides<!--jsvm-use-->
+
       - [Working with Tasks Using JSVM-API](use-jsvm-execute_tasks.md)
+
       - [Working with VM Snapshots Using JSVM-API](use-jsvm-create-snapshot.md)
+
       - [Working with Wasm Using JSVM-API](use-jsvm-about-wasm.md)
+
       - [Creating and Calling JS Functions Using JSVM-API](use-jsvm-function-call.md)
+
       - [Performing JSON Operations Using JSVM-API](use-jsvm-about-JSON.md)
+
       - [Working with Arrays Using JSVM-API](use-jsvm-about-array.md)
+
       - [Working with ArrayBuffer Using JSVM-API](use-jsvm-about-arraybuffer.md)
+
+      - [Creating an ArrayBuffer from External Memory Using JSVM-API](use-jsvm-about-external-arraybuffer.md)
+
       - [Working with BigInt Using JSVM-API](use-jsvm-about-bigint.md)
+
       - [Working with Classes Using JSVM-API](use-jsvm-about-class.md)
+
       - [Working with Date Using JSVM-API](use-jsvm-about-date.md)
+
       - [Performing Debug Operations Using JSVM-API](use-jsvm-about-debug-option.md)
+
       - [Working with Objects Using JSVM-API](use-jsvm-about-object.md)
+
       - [Working with Primitives Using JSVM-API](use-jsvm-about-primitive.md)
+
       - [Implementing Asynchronous Operations Using JSVM-API](use-jsvm-about-promise.md)
+
       - [Setting JS Object Properties Using JSVM-API](use-jsvm-about-property.md)
+
       - [Working with Strings Using JSVM-API](use-jsvm-about-string.md)
+
       - [Obtaining the JSVM-API Version Using JSVM-API](use-jsvm-about-version.md)
+
       - [Error Handling Using JSVM-API](use-jsvm-error.md)
+
       - [Debugging and Profiling JS Code Using JSVM-API](use-jsvm-heapstatistics-debugger-cpuprofiler-heapsnapshot.md)
+
       - [Performing Lifecycle Management Using JSVM-API](use-jsvm-life-cycle.md)
+
       - [Performing Memory Management Using JSVM-API](use-jsvm-memory-management.md)
+
       - [Comparing JS Values Using JSVM-API](use-jsvm-strict-equals.md)
+
       - [Customizing Exception Handling Using JSVM-API](use-jsvm-trigger-exceptions.md)
+
       - [Triggering GC Using JSVM-API](use-jsvm-trigger-gc.md)
+
+      - [Using JSVM-API to Obtain Heap Snapshots and Monitor Heap Memory Thresholds](use-jsvm-threshold-callback.md)
+
       - [Setting the private Property Using JSVM-API](use-jsvm-about-private.md)
+
       - [Working with Latin1/UTF16 Strings Using JSVM-API](use-jsvm-about-external-string.md)
+
       - [Working with Proxy Using JSVM-API](use-jsvm-about-proxy.md)
+
       - [Working with Well-Known Symbols Using JSVM-API](use-jsvm-about-well-known-symbols.md)
+
       - [Working with Wrapper Objects Using JSVM-API](use-jsvm-about-wrapper-object.md)
+
       - [Creating and Obtaining Values Using JSVM-API](use-jsvm-basic-data-types.md)
+
     - Typical JSVM-API Use Cases<!--jsvm-scenarios-->
+
       - [JSVM-API Debugging](jsvm-debugger-cpuprofiler-heapsnapshot.md)
+
       - [Working with Trace Using JSVM-API](use-jsvm-about-trace.md)
+
       - [Requesting the JIT Profile for JSVMs](jsvm-apply-jit-profile.md)
+
       - [JSVM-API Secure Shield Mode](jsvm-secure-shield-mode.md)
+
       - [Troubleshooting JSVM-API Memory Leaks](jsvm-locate-memory-leak.md)
+
       - JSVM-API Tuning and Performant Coding Cases<!--jsvm-usage-examples-->
+
         - [Creating and Destroying JSVMs Using JSVM-API](use-jsvm-runtime-task.md)
+
         - [Accelerating Compilation Using a Code Cache](use-jsvm-about-code-cache.md)
+
         - [JSVM Tuning Practices](jsvm-optimizations.md)
+
     - JSVM Performance Debugging Guides<!--jsvm-performance-->
+
       - [Collecting V8 Trace Data Using HiSmartPerf](use-jsvm-about-v8-trace.md)
+
       - [Analyzing Web Page Memory Using DevTools](use-jsvm-about-analyze-memory-usage.md)
+
   - Longque-JS-API<!--longque-->
+
     - [Using Longque JS APIs](use-longque-js-api.md)
+
   - OpenMP Support<!--openmp-->
+
     - [OpenMP Overview](openmp-overview.md)
+
     - [Building and Running Applications Using OpenMP](openmp-guideline.md)
+
   - Resource Management<!--resource-management-->
+
     - [Raw File Development](rawfile-guidelines.md)
-  - Thread Scheduling<!--thread-scheduling-->
-    - [QoS Development](qos-guidelines.md)
-    - [Gewu Development](gewu-ndk-api-guidelines.md)
-  - Memory Management<!--memory-management-->
-    - [Purgeable Memory Development](purgeable-memory-guidelines.md)
+
   - Bundle Management<!--bundle-management-->
-    - [Native Bundle Development](native-bundle-guidelines.md)
+
+    - [Native Bundle Development](native-bundle-guidelines.md)<!--RP3--><!--RP3End-->
+
 - Debugging and Profiling<!--debugging-profiling-->
+
   - [Overview](debug-performance-profiling-overview.md)
+
   - [C/C++ Memory Error Detection](debug-asan.md)<!--RP2--><!--RP2End-->
+
 - Hardware Compatibility<!--hardware-compatibility-->
+
   - [Overview](hw-guide.md)
+
   - [OpenHarmony ABIs](ohos-abi.md)
+
   - [CPU Features](cpu-features.md)
+
   - [Using Neon Instructions](neon-guide.md)

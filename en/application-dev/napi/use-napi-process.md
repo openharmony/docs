@@ -1,29 +1,26 @@
 # Node-API Development Process
-<!--Kit: NDK-->
+
+<!--Kit: ArkTS-->
 <!--Subsystem: arkcompiler-->
 <!--Owner: @xliu-huanwei; @shilei123; @huanghello-->
 <!--Designer: @shilei123-->
 <!--Tester: @kirl75; @zsw_zhushiwei-->
-<!--Adviser: @fang-jinxu-->
-
+<!--Adviser: @k1ngqaquuu-->
+<!-- md-trans-meta sourceCommit=21434ce8d323ecbd7d67463989a2ef075be92cec translatedAt=2026-08-12T06:42:52.619Z pushedAt=2026-08-12T11:16:50.361Z -->
 
 To implement cross-language interaction using Node-API, you need to register and load modules based on the Node-API mechanism first.
-
 
 - ArkTS/JS: Call C++ methods by importing the required .so library.
 
 - Native: Implement module registration via a .cpp file. You need to declare the name of the library to register and define the mappings between the native and JS/ArkTS APIs in the callbacks registered.
 
-
 The following demonstrates how to implement cross-language interaction by calling **callNative()** in ArkTS/JS code and implementing **CallNative()** in native code.
-
 
 ## Creating a Native C++ Project
 
 - In DevEco Studio, choose **New** > **Create Project**, select the **Native C++** template, click **Next**, select the API version, set the project name, and click **Finish**.
 
 - The main code of the project created consists of two parts: **cpp** and **ets**. For details about the project structure, see <!--RP1-->[C++ Project Directory Structure](https://developer.huawei.com/consumer/en/doc/harmonyos-guides-V5/ide-project-structure-V5)<!--RP1End-->.
-
 
 ## Implementing Native APIs
 
@@ -52,6 +49,7 @@ The following demonstrates how to implement cross-language interaction by callin
       napi_module_register(&demoModule);
   }
   ```
+
 > **NOTE**<br>You do not need to copy the above code as it is pre-configured in the **napi_init.cpp** file when the native C++ project is created.
 
 - Initialize the module.
@@ -160,7 +158,6 @@ The following demonstrates how to implement cross-language interaction by callin
   }
   ```
 
-
 ## Calling C/C++ APIs on ArkTS
 
 On ArkTS, import the .so file that contains the processing logic on the native side to use C/C++ APIs.
@@ -202,14 +199,11 @@ struct Index {
 }
 ```
 
-
 ## Node-API Constraints
-
 
 ### Naming Rules of .so Files
 
 The case of the module name to import must be the same as that registered. For example, if the module name is **entry**, the **.so** file name must be **libentry.so**, and the **nm_modname** field in **napi_module** must be **entry**. When importing the module in ArkTS, use **import ***xxx* **from 'libentry.so'**.
-
 
 ### Registration
 
@@ -217,15 +211,15 @@ The case of the module name to import must be the same as that registered. For e
 
 - The name of the module registration entry, that is, the function modified by **__attribute__((constructor))** must be unique. For example, the **RegisterDemoModule** function in this document.
 
-
 ### Multithread Processing
 
 Each engine instance corresponds to an ArkTS thread. The objects of an instance cannot be operated across threads. Otherwise, the application crashes. Observe the following rules:
 
 - The Node-API can be used only by ArkTS threads.
-- The input parameter **env** of a native API can be bound to an ArkTS thread and can be used only by the thread that creates the env.
-- Data created using Node-APIs must be released before **env** is completely destroyed. Otherwise, memory leaks may be caused. In addition, accessing or using the data after **napi_env** is destroyed may cause the process to crash.
 
+- The input parameter **env** of a native API can be bound to an ArkTS thread and can be used only by the thread that creates the env.
+
+- Data created using Node-APIs must be released before **env** is completely destroyed. Otherwise, memory leaks may be caused. In addition, accessing or using the data after **napi_env** is destroyed may cause the process to crash.
 
 ### Debugging Device Selection
 

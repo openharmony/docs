@@ -1,10 +1,12 @@
 # Customizing Asynchronous Operations Using Node-API
-<!--Kit: NDK-->
+
+<!--Kit: ArkTS-->
 <!--Subsystem: arkcompiler-->
 <!--Owner: @xliu-huanwei; @shilei123; @huanghello-->
 <!--Designer: @shilei123-->
 <!--Tester: @kirl75; @zsw_zhushiwei-->
-<!--Adviser: @fang-jinxu-->
+<!--Adviser: @k1ngqaquuu-->
+<!-- md-trans-meta sourceCommit=21434ce8d323ecbd7d67463989a2ef075be92cec translatedAt=2026-08-12T06:38:33.841Z pushedAt=2026-08-12T11:10:01.524Z -->
 
 ## Introduction
 
@@ -15,12 +17,15 @@ Node-API provides APIs for customizing asynchronous (async for short) operations
 Async operations are used to complete I/O-intensive or compute-intensive tasks, which usually need to be executed without blocking the main thread. Before you get started, understand the following concepts:
 
 - Async model: Node-API provides APIs that implement async operations using a promise or a callback. Promise is a programming model based on future values. It allows results of async operations to be encapsulated in objects and called in a chain. Callback is a traditional async programming mode. It uses callback functions to process async operation results.
+
 - Temporary result: When a native method (Node-API) is called, it immediately returns a temporary result to the ArkTS caller. The temporary result is usually a flag indicating an async operation being performed or a handle for subsequent processing of an async operation result.
+
 - Callback/Promise: When an async operation is complete, the result is returned to the ArkTS caller through a callback function or a promise object. This allows the processing of the subsequent logic after the async operation is complete.
 
 ## Available APIs
 
 The following table lists the APIs provided by the Node-API module for customizing async operations. You can use these APIs to implement ArkTS callbacks and manage the resource lifecycle in C/C++. These APIs help implement complex async operations and effective interaction with ArkTS. The following table lists the use cases of these APIs.
+
 | API| Description|
 | -------- | -------- |
 | napi_async_init, napi_async_destroy| Creates/Destroys an async context. You can use these APIs to handle time-consuming tasks, such as file I/O operations and network requests, without blocking the main thread. You can use **napi_async_init** to create an async context for executing the task, and use **napi_async_destroy** after the task is complete to destroy and release related resources.|
@@ -92,6 +97,8 @@ static napi_value AsynchronousWork(napi_env env, napi_callback_info info)
     if (funcType == napi_function) {
         napi_make_callback(env, context, recv, func, 1, argv, &result);
     } else {
+        napi_async_destroy(env, context);
+        napi_close_callback_scope(env, scope);
         napi_throw_error(env, nullptr, "Unexpected argument type");
         return nullptr;
     }
@@ -107,18 +114,15 @@ static napi_value AsynchronousWork(napi_env env, napi_callback_info info)
 }
 ```
 
-
-
 API declaration:
 
 index.d.ts
+
 <!-- @[napi_async_open_close_callback_scope_api](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIUse/NodeAPICustomAsynchronousOperations/entry/src/main/cpp/types/libentry/Index.d.ts) -->
 
 ``` TypeScript
 export const asynchronousWork: (object: Object, obj: Object, fun: Function, num: number) => number | undefined;
 ```
-
-
 
 ArkTS code:
 
@@ -148,8 +152,6 @@ try {
   // ···
 }
 ```
-
-
 
 To print logs in the native CPP, add the following information to the **CMakeLists.txt** file and add the header file by using **#include "hilog/log.h"**.
 
