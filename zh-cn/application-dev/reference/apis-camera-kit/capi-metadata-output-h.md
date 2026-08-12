@@ -431,7 +431,7 @@ bool OH_MetadataOutput_IsLockMetadataObjectTrackingSupported(const Camera_Metada
 
 | 参数项 | 描述 |
 | -- | -- |
-| const[Camera_MetadataOutput](capi-oh-camera-camera-metadataoutput.md)* metadataOutput | MetadataOutput实例的指针。 |
+| const [Camera_MetadataOutput](capi-oh-camera-camera-metadataoutput.md)* metadataOutput | MetadataOutput实例的指针。 |
 
 **返回：**
 
