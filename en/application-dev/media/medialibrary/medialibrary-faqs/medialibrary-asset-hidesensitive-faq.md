@@ -1,10 +1,12 @@
 # Geolocation Information Is Missing from Images
+
 <!--Kit: Media Library Kit-->
 <!--Subsystem: Multimedia-->
 <!--Owner: @zhaochang14-->
 <!--Designer: @liweilu1-->
 <!--Tester: @xchaosioda-->
 <!--Adviser: @w_Machine_cc-->
+<!-- md-trans-meta sourceCommit=fea077926b0978d03b1b37767b2d1723ff105d6c translatedAt=2026-08-11T01:56:01.670Z pushedAt=2026-08-12T03:35:32.466Z -->
 
 ## Symptom
 
@@ -20,7 +22,7 @@ To protect sensitive information in user images, [Media Library Kit](../photoAcc
 
 ## Solution
 
-After the application requests the [ohos.permissions.MEDIA_LOCATION](../../../security/AccessToken/permissions-for-all-user.md#ohospermissionmedia_location) permission, desensitization is disabled for the application, allowing it to obtain all sensitive information from the image.
+After the app requests the [ohos.permission.MEDIA_LOCATION](../../../security/AccessToken/permissions-for-all-user.md#ohospermissionmedia_location) permission, the desensitization level of the app changes to no desensitization, allowing the app to obtain all sensitive information of the image normally.
 
 **Example**
 

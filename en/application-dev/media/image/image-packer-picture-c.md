@@ -1,10 +1,12 @@
 # Using Image_NativeModule to Encode Pictures
+
 <!--Kit: Image Kit-->
 <!--Subsystem: Multimedia-->
 <!--Owner: @aulight02-->
-<!--Designer: @liyang_bryan-->
+<!--Designer: @XiaoYao555-->
 <!--Tester: @xchaosioda-->
 <!--Adviser: @w_Machine_cc-->
+<!-- md-trans-meta sourceCommit=51871fad202ca89cea4824e5e1f6eae94c62de6c translatedAt=2026-08-11T01:44:59.546Z pushedAt=2026-08-11T07:23:11.034Z -->
 
 With Image_NativeModule, you can create and release ImagePacker instances and encode picture objects.
 
@@ -35,7 +37,7 @@ Create a native C++ application in DevEco Studio. The project created by default
 1. Import the required header files.
 
    <!-- @[decodingPicture_import](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/Media/Image/ImageNativeSample/entry/src/main/cpp/loadPicture.cpp) -->     
-   
+
    ``` C++
    #include <hilog/log.h>
    #include <multimedia/image_framework/image/image_native.h>
@@ -48,7 +50,7 @@ Create a native C++ application in DevEco Studio. The project created by default
 2. Modify the log macro definition as required.
 
    <!-- @[define_logInfo](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/Media/Image/ImageNativeSample/entry/src/main/cpp/loadImageSource.cpp) -->   
-   
+
    ``` C++
    #undef LOG_DOMAIN
    #undef LOG_TAG
@@ -59,7 +61,7 @@ Create a native C++ application in DevEco Studio. The project created by default
 3. Define constants used for image processing.
 
    <!-- @[define_const](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/Media/Image/ImageNativeSample/entry/src/main/cpp/loadPicture.cpp) -->      
-   
+
    ``` C++
    #define AUTO 0
    #define SDR 1
@@ -70,7 +72,7 @@ Create a native C++ application in DevEco Studio. The project created by default
 4. Define the ImagePictureNative class.
 
    <!-- @[define_pictureClass](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/Media/Image/ImageNativeSample/entry/src/main/cpp/imageKits.h) -->   
-   
+
    ``` C
    class ImagePictureNative {
    public:
@@ -88,7 +90,7 @@ Create a native C++ application in DevEco Studio. The project created by default
 5. Create an instance of ImagePictureNative.
 
    <!-- @[create_pictureClass](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/Media/Image/ImageNativeSample/entry/src/main/cpp/loadPicture.cpp) -->   
-   
+
    ``` C++
    static ImagePictureNative *g_thisPicture = new ImagePictureNative();
    ```
@@ -96,7 +98,7 @@ Create a native C++ application in DevEco Studio. The project created by default
 6. Create the **GetJsResult** function to process the NAPI return value.
 
    <!-- @[get_returnValue](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/Media/Image/ImageNativeSample/entry/src/main/cpp/napi_init.cpp) -->   
-   
+
    ``` C++
    // Process the NAPI return value.
    napi_value GetJsResult(napi_env env, int result)
@@ -110,7 +112,7 @@ Create a native C++ application in DevEco Studio. The project created by default
 7. After an ImagePacker instance is created and encoding parameters are specified, the Picture object is encoded to a file or buffer.
 
    <!-- @[pack_picture](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/Media/Image/ImageNativeSample/entry/src/main/cpp/loadPicture.cpp) -->    
-   
+
    ``` C++
    // Set packing parameters.
    void SetPackOptions(OH_PackingOptions *packerOptions,
@@ -145,15 +147,21 @@ Create a native C++ application in DevEco Studio. The project created by default
            g_thisPicture->errorCode = OH_ImagePackerNative_Create(&g_thisPicture->imagePacker);
        }
        
-       char strFormat[MAX_FORMAT_LENGTH];
-       size_t strFormatSize;
-       napi_get_value_string_utf8(env, args[0], strFormat, MAX_FORMAT_LENGTH, &strFormatSize);
+       char strFormat[MAX_FORMAT_LENGTH] = {0};
+       size_t strFormatSize = 0;
+       if (napi_get_value_string_utf8(env, args[0], strFormat, sizeof(strFormat), &strFormatSize) != napi_ok) {
+           OH_LOG_ERROR(LOG_APP, "PackToDataFromPicture napi_get_value_string_utf8 failed!");
+           delete[] outData;
+           return GetJsResult(env, IMAGE_BAD_PARAMETER);
+       }
+       strFormat[MAX_FORMAT_LENGTH - 1] = '\0';
        OH_LOG_DEBUG(LOG_APP, "PackToDataFromPicture format: %{public}s", strFormat);
    
        Image_MimeType format;
        format.size = strFormatSize;
        format.data = const_cast<char *>(strFormat);
-       uint32_t quality = 95;
+       // Set the encoding quality. The default value of quality is 0, and a value no lower than 80 is recommended. In this example, it is set to 90 to balance image quality and file size.
+       uint32_t quality = 90;
        bool needsPackProperties = true;
        int32_t desiredDynamicRange = AUTO;
        SetPackOptions(g_thisPicture->packerOptions, format, quality, needsPackProperties, desiredDynamicRange);
@@ -198,15 +206,20 @@ Create a native C++ application in DevEco Studio. The project created by default
            g_thisPicture->errorCode = OH_ImagePackerNative_Create(&g_thisPicture->imagePacker);
        }
        
-       char strFormat[MAX_FORMAT_LENGTH];
-       size_t strFormatSize;
-       napi_get_value_string_utf8(env, args[1], strFormat, MAX_FORMAT_LENGTH, &strFormatSize);
+       char strFormat[MAX_FORMAT_LENGTH] = {0};
+       size_t strFormatSize = 0;
+       if (napi_get_value_string_utf8(env, args[1], strFormat, sizeof(strFormat), &strFormatSize) != napi_ok) {
+           OH_LOG_ERROR(LOG_APP, "PackToFileFromPicture napi_get_value_string_utf8 failed!");
+           return GetJsResult(env, IMAGE_BAD_PARAMETER);
+       }
+       strFormat[MAX_FORMAT_LENGTH - 1] = '\0';
        OH_LOG_INFO(LOG_APP, "PackToFileFromPicture format: %{public}s", strFormat);
    
        Image_MimeType format;
        format.size = strFormatSize;
        format.data = const_cast<char *>(strFormat);
-       uint32_t quality = 95;
+       // Set the encoding quality. The default value of quality is 0, and a value no lower than 80 is recommended. In this example, it is set to 90 to balance image quality and file size.
+       uint32_t quality = 90;
        bool needsPackProperties = false;
        int32_t desiredDynamicRange = SDR;
        SetPackOptions(g_thisPicture->packerOptions, format, quality, needsPackProperties, desiredDynamicRange);
