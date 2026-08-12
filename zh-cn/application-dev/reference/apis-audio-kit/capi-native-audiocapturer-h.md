@@ -50,8 +50,8 @@
 | [typedef void (\*OH_AudioCapturer_OnErrorCallback)(OH_AudioCapturer* capturer, void* userData, OH_AudioStream_Result error)](#oh_audiocapturer_onerrorcallback) | OH_AudioCapturer_OnErrorCallback | 音频录制流的错误事件回调函数。 |
 | [OH_AudioStream_Result OH_AudioCapturer_GetFastStatus(OH_AudioCapturer* capturer, OH_AudioStream_FastStatus* status)](#oh_audiocapturer_getfaststatus) | - | 获取音频录制过程中的运行状态，是否在低时延状态下工作。 |
 | [typedef void (\*OH_AudioCapturer_OnFastStatusChange)(OH_AudioCapturer* capturer, void* userData, OH_AudioStream_FastStatus status)](#oh_audiocapturer_onfaststatuschange) | OH_AudioCapturer_OnFastStatusChange | 音频录制过程中低时延状态改变事件的回调函数。 |
-| [typedef void (\*OH_AudioCapturer_OnPlaybackCaptureStartCallback)(OH_AudioCapturer* capturer, void* userData, OH_AudioStream_PlaybackCaptureStartState state)](#oh_audiocapturer_onplaybackcapturestartcallback) | OH_AudioCapturer_OnPlaybackCaptureStartCallback | 音频录制过程中用于内录（录制的是设备内部应用的声音）启动结果的回调函数。该API暂不对外支持。 |
-| [OH_AudioStream_Result OH_AudioCapturer_RequestPlaybackCaptureStart(OH_AudioCapturer* capturer, OH_AudioCapturer_OnPlaybackCaptureStartCallback callback, void* userData)](#oh_audiocapturer_requestplaybackcapturestart) | - | 异步请求启动内录流。该函数是非阻塞的，意味着系统在接收到启动请求后，将继续处理用户授权和内录流的启动。<br> 最终结果将通过回调函数返回。该API暂不对外支持。 |
+| [typedef void (\*OH_AudioCapturer_OnPlaybackCaptureStartCallback)(OH_AudioCapturer* capturer, void* userData, OH_AudioStream_PlaybackCaptureStartState state)](#oh_audiocapturer_onplaybackcapturestartcallback) | OH_AudioCapturer_OnPlaybackCaptureStartCallback | 音频录制过程中用于内录（录制的是设备内部应用的声音）启动结果的回调函数。该API最初仅对特定系统应用可用，从API版本26.0.0开始，支持任意应用使用。 |
+| [OH_AudioStream_Result OH_AudioCapturer_RequestPlaybackCaptureStart(OH_AudioCapturer* capturer, OH_AudioCapturer_OnPlaybackCaptureStartCallback callback, void* userData)](#oh_audiocapturer_requestplaybackcapturestart) | - | 异步请求启动内录流。该函数是非阻塞的，意味着系统在接收到启动请求后，将继续处理用户授权和内录流的启动。<br>最终结果将通过回调函数返回。该API最初仅对特定系统应用可用，从API版本26.0.0开始，支持任意应用使用。 |
 | [OH_AudioStream_Result OH_AudioCapturer_SetIndependentAudioSessionStrategy(OH_AudioCapturer* capturer, const OH_AudioSession_Strategy* strategy, uint32_t behavior)](#oh_audiocapturer_setindependentaudiosessionstrategy) | - | 设置独立的音频会话策略和行为参数。当音频采集器在运行状态时调用此接口后，必须重新调用接口[OH_AudioCapturer_Start](capi-native-audiocapturer-h.md#oh_audiocapturer_start)使其生效。 |
 | [OH_AudioStream_Result OH_AudioCapturer_SetNoiseReductionMode(OH_AudioCapturer* capturer, OH_AudioNoiseReductionMode noiseReductionMode)](#oh_audiocapturer_setnoisereductionmode) | - | 设置当前录音流的降噪模式。 |
 | [OH_AudioStream_Result OH_AudioCapturer_GetNoiseReductionMode(OH_AudioCapturer* capturer, OH_AudioNoiseReductionMode* noiseReductionMode)](#oh_audiocapturer_getnoisereductionmode) | - | 获取当前录音流的降噪模式。 |
@@ -673,7 +673,7 @@ typedef void (*OH_AudioCapturer_OnPlaybackCaptureStartCallback)(OH_AudioCapturer
 
 **描述**
 
-音频录制过程中用于内录（录制的是设备内部应用的声音）启动结果的回调函数。该API暂不对外支持。
+音频录制过程中用于内录（录制的是设备内部应用的声音）启动结果的回调函数。该API最初仅对特定系统应用可用，从API版本26.0.0开始，支持任意应用使用。
 
 **起始版本：** 23
 
@@ -693,7 +693,7 @@ OH_AudioStream_Result OH_AudioCapturer_RequestPlaybackCaptureStart(OH_AudioCaptu
 
 **描述**
 
-异步请求启动内录流。该函数是非阻塞的，意味着系统在接收到启动请求后，将继续处理用户授权和内录流的启动。<br> 最终结果将通过回调函数返回。该API暂不对外支持。
+异步请求启动内录流。该函数是非阻塞的，意味着系统在接收到启动请求后，将继续处理用户授权和内录流的启动。<br>最终结果将通过回调函数返回。该API最初仅对特定系统应用可用，从API版本26.0.0开始，支持任意应用使用。
 
 **起始版本：** 23
 
