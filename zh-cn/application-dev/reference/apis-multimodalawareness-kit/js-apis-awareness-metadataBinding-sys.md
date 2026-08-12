@@ -61,7 +61,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 let encodedImage: image.PixelMap | undefined = undefined;
 let metadata: string = '';
-// scrImage需通过image内的接口获取有效的PixelMap对象
+// srcImage需通过image内的接口获取有效的PixelMap对象
 let srcImage: image.PixelMap | undefined = undefined;
 metadataBinding.encodeImage(srcImage, metadata).then((pixelMap: image.PixelMap) => {
   encodedImage = pixelMap;
