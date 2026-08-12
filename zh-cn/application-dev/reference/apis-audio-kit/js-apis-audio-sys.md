@@ -2360,7 +2360,7 @@ setAudioEffectProperty(propertyArray: Array\<AudioEffectProperty>): void
 
 **系统接口：** 该接口为系统接口。
 
-**系统能力：** SystemCapability.Multimedia.Audio.core
+**系统能力：** SystemCapability.Multimedia.Audio.Core
 
 **参数：**
 
@@ -5508,9 +5508,9 @@ isCollaborativePlaybackSupported(): boolean
 
 **返回值：**
 
-| 类型    | 必填 | 说明                                                    |
-| ------- |------|------------------------------------------------------- |
-| boolean |  是  | 表示系统是否支持移动全景声能力，true表示支持，false表示不支持。 |
+| 类型    | 说明                                                    |
+| ------- |------------------------------------------------------- |
+| boolean | 表示系统是否支持移动全景声能力，true表示支持，false表示不支持。 |
 
 **错误码：**
 
@@ -5566,7 +5566,7 @@ setCollaborativePlaybackEnabledForDevice(deviceDescriptor: AudioDeviceDescriptor
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
-| 201     | Not system application.                     |
+| 202     | Not system application.                     |
 | 6800101 | Parameter verification failed. Possible causes:1. The specified device is not an A2DP device.2. The specified device is not connected.|
 | 801     | Capability not supported.                   |
 
@@ -5617,9 +5617,9 @@ isCollaborativePlaybackEnabledForDevice(deviceDescriptor: AudioDeviceDescriptor)
 
 **返回值：**
 
-| 类型    | 必填 | 说明                                                    |
-| ------- |------|------------------------------------------------------- |
-| boolean |  是  | 返回指定设备移动全景声是否开启/关闭，true表示开启，false表示关闭。   |
+| 类型    | 说明                                                    |
+| ------- |------------------------------------------------------- |
+| boolean | 返回指定设备移动全景声是否开启/关闭，true表示开启，false表示关闭。   |
 
 **错误码：**
 
