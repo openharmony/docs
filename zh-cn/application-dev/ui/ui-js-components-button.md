@@ -76,7 +76,7 @@ button是按钮组件，其类型包括胶囊按钮、圆形按钮、文本按�
 ```
 
 
-![Button-Type](figures/Button-Type.png)
+![button-type](figures/button-type.png)
 
 
 > **说明：**
