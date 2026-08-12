@@ -378,28 +378,36 @@ export default class MigrationAbility extends UIAbility {
    > continueType标签类型为字符串数组，如果配置了多个字段，当前仅第一个字段会生效。
 
 ```json5
-   {
-     {
-       "module": {
-         "abilities": [
-           {
-             "name": "Ability-deviceA",
-             "continueType": ['continueType1'],
-           }
-         ]
-       }
-     },
-     {
-       "module": {
-         "abilities": [
-           {
-             "name": "Ability-deviceB",
-             "continueType": ['continueType1'],
-           }
-         ]
-       }
-     }
-   }
+{
+  "module": {
+    "abilities": [
+      {
+        "name": "EntryAbility",
+        "continueType": ["continueType"],
+        "continueBundleName": ["com.demo.example2"],
+       
+      }
+    ]
+    
+  }
+}
+```
+
+```json5
+{
+  "module": {
+    "abilities": [
+      {
+        "name": "EntryAbility",
+        "continueType": ["continueType"],
+        "continueBundleName": ["com.demo.example1"],
+       
+      }
+    ]
+    
+  }
+}
+
 ```
 
 ### 支持同应用不同BundleName的Ability跨端迁移
