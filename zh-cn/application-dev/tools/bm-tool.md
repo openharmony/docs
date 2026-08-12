@@ -45,7 +45,7 @@ bm help
 
 ### userId
 
-表示当前系统账号的编号，系统账号的相关接口请参考[@ohos.account.osAccount (系统账号管理)](../reference/apis-basic-services-kit/js-apis-osAccount.md)，下面给出几种常见的系统账号。
+表示当前系统账号的编号，详情请参考[系统账号ID体系](../basic-services/account/os-account-introduction.md#系统账号id体系)，系统账号的相关接口请参考[@ohos.account.osAccount (系统账号管理)](../reference/apis-basic-services-kit/js-apis-osAccount.md)，下面给出几种常见的系统账号。
 
 - userId = 100，表示编号为100的系统账号，系统默认账号，在设备出厂首次启动时由系统账号管理模块创建，且创建完成后会在100账号下安装所有的预置应用。
 
@@ -53,6 +53,7 @@ bm help
 
 - userId = 0，表示共有系统账号，也叫账号0，该共有系统账号和系统账号编号不同，不是系统账号管理模块创建的。在账号0下安装的应用，所有系统账号共享，会在每个系统账号下都会显示。所有三方应用都不能安装到账号0下。
 
+- userId = 1，表示企业级公共服务账号，企业级服务与应用安装并运行在此账号下，安装此账号下的应用需要申请[ohos.permission.SUPPORT_INSTALL_ON_U1](../security/AccessToken/permissions-for-enterprise-apps.md#ohospermissionsupport_install_on_u1)权限。
 
 ## 安装命令（install）
 
