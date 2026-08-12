@@ -6,7 +6,7 @@
 <!--Designer: @leo_ysl-->
 <!--Tester: @xchaosioda-->
 <!--Adviser: @w_Machine_cc-->
-<!-- md-trans-meta sourceCommit=bbff19eea26e8c5a9fae30bb354e8040d0b91f67 translatedAt=2026-08-11T02:05:18.431Z pushedAt=2026-08-12T07:40:09.937Z -->
+<!-- md-trans-meta sourceCommit=bbff19eea26e8c5a9fae30bb354e8040d0b91f67 translatedAt=2026-08-11T02:05:18.431Z pushedAt=2026-08-12T08:23:02.187Z -->
 
 ## Overview
 
@@ -80,7 +80,7 @@ The file declares the photo output concepts.
 | [Camera_ErrorCode OH_PhotoOutput_EnableAutoExtendedGainmapDelivery(Camera_PhotoOutput* photoOutput, bool enabled)](#oh_photooutput_enableautoextendedgainmapdelivery) | - | Enables or disables the delivery of an automatically extended gain map. |
 | [Camera_ErrorCode OH_PhotoOutput_CreatePhotoCaptureSettingExt(Camera_PhotoOutput* photoOutput, OH_Camera_PhotoCaptureSettingExt** setting)](#oh_photooutput_createphotocapturesettingext) | - | Creates a **PhotoCaptureSettingExt** instance. |
 | [Camera_ErrorCode OH_PhotoOutput_DestroyPhotoCaptureSettingExt(OH_Camera_PhotoCaptureSettingExt* setting)](#oh_photooutput_destroyphotocapturesettingext) | - | Destroys the **PhotoCaptureSettingExt** instance. |
-| [Camera_ErrorCode OH_PhotoCaptureSettingExt_SetImageRotation(OH_Camera_PhotoCaptureSettingExt* photoCaptureSettingExt, Camera_ImageRotation rotation)](#oh_photocapturesettingext_setimagerotation) | - | Stes the image rotation angle in the photo capture setting extension. |
+| [Camera_ErrorCode OH_PhotoCaptureSettingExt_SetImageRotation(OH_Camera_PhotoCaptureSettingExt* photoCaptureSettingExt, Camera_ImageRotation rotation)](#oh_photocapturesettingext_setimagerotation) | - | Sets the image rotation angle in the photo capture setting extension. |
 | [Camera_ErrorCode OH_PhotoCaptureSettingExt_SetLocation(OH_Camera_PhotoCaptureSettingExt* photoCaptureSettingExt, Camera_Location location)](#oh_photocapturesettingext_setlocation) | - | Sets the image location information in the photo capture setting extension. |
 | [Camera_ErrorCode OH_PhotoCaptureSettingExt_SetMirror(OH_Camera_PhotoCaptureSettingExt* photoCaptureSettingExt, bool mirror)](#oh_photocapturesettingext_setmirror) | - | Sets the mirror effect in the photo capture setting extension. |
 | [Camera_ErrorCode OH_PhotoCaptureSettingExt_SetCompressionQuality(OH_Camera_PhotoCaptureSettingExt* photoCaptureSettingExt, uint8_t compressionQuality)](#oh_photocapturesettingext_setcompressionquality) | - | Sets the image compression quality in the photo capture setting extension. |
@@ -1129,7 +1129,7 @@ Camera_ErrorCode OH_PhotoCaptureSettingExt_SetImageRotation(OH_Camera_PhotoCaptu
 
 **Description** 
 
-Stes the image rotation angle in the photo capture setting extension.
+Sets the image rotation angle in the photo capture setting extension.
 
 **Since**: 26.0.0 
 
