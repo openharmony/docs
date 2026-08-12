@@ -792,7 +792,7 @@ int32_t OH_AudioSuiteEngineSystem_SetAudioFormat(OH_AudioNode* audioNode, OH_Aud
 
 | 类型 | 说明 |
 | -- | -- |
-| int32_t | [AUDIOSUITE_SUCCESS](capi-native-audio-suite-base-h.md#oh_audiosuite_result)：函数执行成功。<br>         202：非系统应用调用了此系统API。<br>         [AUDIOSUITE_ERROR_INVALID_PARAM](capi-native-audio-suite-base-h.md#oh_audiosuite_result)：参数为空指针获取其他非法值。<br>         [AUDIOSUITE_ERROR_NODE_NOT_EXIST](capi-native-audio-suite-base-h.md#oh_audiosuite_result)：节点不存在或已被销毁。<br>         [AUDIOSUITE_ERROR_UNSUPPORTED_OPERATION](capi-native-audio-suite-base-h.md#oh_audiosuite_result)：节点是效果节点。<br>         [AUDIOSUITE_ERROR_INVALID_STATE](capi-native-audio-suite-base-h.md#oh_audiosuite_result)：管线不在停止状态。<br>         [AUDIOSUITE_ERROR_TIMEOUT](capi-native-audio-suite-base-h.md#oh_audiosuite_result)：操作处理超时。<br>         [AUDIOSUITE_ERROR_SYSTEM](capi-native-audio-suite-base-h.md#oh_audiosuite_result)：系统发生其他异常。 |
+| int32_t | [AUDIOSUITE_SUCCESS](capi-native-audio-suite-base-h.md#oh_audiosuite_result)：函数执行成功。<br>         202：非系统应用调用了此系统API。<br>         [AUDIOSUITE_ERROR_INVALID_PARAM](capi-native-audio-suite-base-h.md#oh_audiosuite_result)：参数为空指针或其他非法值。<br>         [AUDIOSUITE_ERROR_NODE_NOT_EXIST](capi-native-audio-suite-base-h.md#oh_audiosuite_result)：节点不存在或已被销毁。<br>         [AUDIOSUITE_ERROR_UNSUPPORTED_OPERATION](capi-native-audio-suite-base-h.md#oh_audiosuite_result)：节点是效果节点。<br>         [AUDIOSUITE_ERROR_INVALID_STATE](capi-native-audio-suite-base-h.md#oh_audiosuite_result)：管线不在停止状态。<br>         [AUDIOSUITE_ERROR_TIMEOUT](capi-native-audio-suite-base-h.md#oh_audiosuite_result)：操作处理超时。<br>         [AUDIOSUITE_ERROR_SYSTEM](capi-native-audio-suite-base-h.md#oh_audiosuite_result)：系统发生其他异常。 |
 <!--DelEnd-->
 
 ### OH_AudioSuiteEngine_ConnectNodes()
