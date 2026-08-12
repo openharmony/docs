@@ -121,7 +121,7 @@ metadataBinding.decodeImage(encodedImage).then((metadata: string) => {
 ## metadataBinding.notifyMetadataBindingEvent
 notifyMetadataBindingEvent(bundleName: string): Promise&lt;string&gt;
 
-推送待嵌入的元数据信息给调用编码接口的应用或服务。系统会向指定包名的应用推送信息，并返回当前所在页面的applink信息，用户后续的编码处理。使用Promise异步回调。
+推送待嵌入的元数据信息给调用编码接口的应用或服务。系统会向指定包名的应用推送信息，并返回当前所在页面的applink信息，用于后续的编码处理。使用Promise异步回调。
 
 **系统能力**：SystemCapability.MultimodalAwareness.metadataBinding
 
