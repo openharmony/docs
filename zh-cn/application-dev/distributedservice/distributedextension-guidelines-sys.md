@@ -99,7 +99,7 @@ hidumper -s 4700 -a "buscenter -l remote_device_info"
    
    DistributedExtensionAbility配置文件示例：
    
-   ```json
+   ```json5
    "extensionAbilities": [
      {
        "name": "EntrydistributedAbility",
