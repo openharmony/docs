@@ -79,7 +79,7 @@ setVideoStabilizationMode(mode: VideoStabilizationMode): void
 
 | 参数名      | 类型                                              | 必填 | 说明                    |
 | -------- | ------------------------------------------------- | ---- | --------------------- |
-| mode     | [VideoStabilizationMode](arkts-apis-camera-e.md#videostabilizationmode) | 是   | 需要设置的视频防抖模式。   |
+| mode     | [VideoStabilizationMode](arkts-apis-camera-e.md#videostabilizationmode) | 是   | 需要设置的视频防抖模式。 |
 
 **错误码：**
 
