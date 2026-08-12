@@ -309,7 +309,7 @@ try {
 | authType       | [UserAuthType](#userauthtype8)[]   |  否  |  否  | 认证类型列表，用来指定用户认证界面提供的认证方法。可同时指定多种认证类型，如[UserAuthType.PIN, UserAuthType.FACE, UserAuthType.FINGERPRINT]，用户可选择任意一种完成认证。认证类型的选择会影响认证结果复用的匹配条件。暂不支持同时发起伴随设备认证和其他认证类型。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
 | authTrustLevel | [AuthTrustLevel](#authtrustlevel8) |  否  |  否  | 期望达到的认证可信等级。认证可信等级决定了认证的安全强度，应根据业务场景的安全需求选择合适的等级：<br>- ATL1：适用于业务风控、一般个人数据查询等低安全场景。<br>- ATL2：适用于应用登录、维持设备解锁状态等中等安全场景。<br>- ATL3：适用于设备解锁等较高安全场景。<br>- ATL4：适用于小额支付等高安全场景。<br>典型操作需要的身份认证可信等级，以及身份认证可信等级的划分请参见[认证可信等级划分原则](../../security/UserAuthenticationKit/user-authentication-overview.md#生物认证可信等级划分原则)。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
 | reuseUnlockResult<sup>12+</sup> | [ReuseUnlockResult](#reuseunlockresult12) |  否  |  是  | 表示可以复用解锁认证的结果。配置后，若满足复用条件，系统将直接返回之前的认证结果，无需用户再次进行认证交互。默认为不复用。启用认证结果复用可以提升用户体验，但应根据业务场景的安全需求合理配置复用模式和有效时长。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
-| skipLockedBiometricAuth<sup>20+</sup> | boolean |  否  |  是  | 是否跳过已禁用的认证方式自动切换至其它方式的认证。若无可切换的认证方式则关闭控件，返回认证冻结错误码。<br/>- true：生物认证冻结时，跳过倒计时界面直接切换到其他方式的认证（如从冻结的指纹切换到PIN）。适用于希望快速完成认证的场景。<br/>- false（默认）：不跳过，用户需要等待冻结倒计时结束后才能继续尝试该认证方式或手动切换。<br>**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。|
+| skipLockedBiometricAuth<sup>20+</sup> | boolean |  否  |  是  | 是否跳过已禁用的认证方式自动切换至其他方式的认证。若无可切换的认证方式则关闭控件，返回认证冻结错误码。<br/>- true：生物认证冻结时，跳过倒计时界面直接切换到其他方式的认证（如从冻结的指纹切换到PIN）。适用于希望快速完成认证的场景。<br/>- false（默认）：不跳过，用户需要等待冻结倒计时结束后才能继续尝试该认证方式或手动切换。<br>**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。|
 
 ## WidgetParam<sup>10+</sup>
 
