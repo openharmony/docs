@@ -267,7 +267,7 @@ The callback has been registered.
 
 **可能原因**
 
-该错误码能原因是指定的callback已经注册过。
+该错误码可能原因是指定的callback已经注册过。
 
 **处理步骤**
 
