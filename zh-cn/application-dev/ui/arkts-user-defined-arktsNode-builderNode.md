@@ -1502,7 +1502,7 @@ BuilderNode节点只有通过以下方式上下树时，才会根据该节点是
 | 类 | 接口 |
 | -------- | -------- |
 | [FrameNode](../reference/apis-arkui/js-apis-arkui-frameNode.md) | [appendChild](../reference/apis-arkui/js-apis-arkui-frameNode.md#appendchild12)、[insertChildAfter](../reference/apis-arkui/js-apis-arkui-frameNode.md#insertchildafter12)、[removeChild](../reference/apis-arkui/js-apis-arkui-frameNode.md#removechild12)、[clearChildren](../reference/apis-arkui/js-apis-arkui-frameNode.md#clearchildren12)、[addComponentContent](../reference/apis-arkui/js-apis-arkui-frameNode.md#addcomponentcontent12) |
-| [NodeContent](../reference/apis-arkui/js-apis-arkui-NodeContent.md) | [addFrameNode](../reference/apis-arkui/js-apis-arkui-NodeContent.md#addframenode12)、[removeFrameNode](../reference/apis-arkui/js-apis-arkui-NodeContent.md#removeframenode12) |
+| [NodeContent](../reference/apis-arkui/js-apis-arkui-NodeContent.md) | [addFrameNode](../reference/apis-arkui/js-apis-arkui-NodeContent.md#addframenode)、[removeFrameNode](../reference/apis-arkui/js-apis-arkui-NodeContent.md#removeframenode) |
 | [NodeController](../reference/apis-arkui/js-apis-arkui-nodeController.md) | [makeNode](../reference/apis-arkui/js-apis-arkui-nodeController.md#makenode) |
 | [RenderNode](../reference/apis-arkui/js-apis-arkui-renderNode.md) | [appendChild](../reference/apis-arkui/js-apis-arkui-renderNode.md#appendchild)、[insertChildAfter](../reference/apis-arkui/js-apis-arkui-renderNode.md#insertchildafter)、[removeChild](../reference/apis-arkui/js-apis-arkui-renderNode.md#removechild)、[clearChildren](../reference/apis-arkui/js-apis-arkui-renderNode.md#clearchildren) |
 | [NodeAdapter](../reference/apis-arkui/js-apis-arkui-frameNode.md#nodeadapter12) | 节点通过[LazyForEach](../reference/apis-arkui/arkui-ts/ts-rendering-control-lazyforeach.md)方式上下树时 |
@@ -2507,7 +2507,7 @@ struct FreezeBuildNode {
 
 2. 创建NodeContainer和对应的NodeController，渲染后台Web组件。
 
-    <!-- @[Common_CommonIndex](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkUISample/BuilderNode/entry/src/main/ets/Common/CommonIndex.ets) --> 
+    <!-- @[Common_CommonIndex](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkUISample/BuilderNode/entry/src/main/ets/Common/CommonIndex.ets) -->  
     
     ``` TypeScript
     import { UIContext } from '@kit.ArkUI';
@@ -2552,7 +2552,7 @@ struct FreezeBuildNode {
     export class MyNodeController2 extends NodeController {
       private rootnode: BuilderNode<Data[]> | null = null;
     
-      // 必须要重写的方法，用于构建节点数、返回节点挂载在对应NodeContainer中。
+      // 必须要重写的方法，用于构建节点树、返回节点挂载在对应NodeContainer中。
       // 在对应NodeContainer创建的时候调用、或者通过rebuild方法调用刷新。
       makeNode(uiContext: UIContext): FrameNode | null {
         hilog.info(0xF811, 'testTag', '%{public}s', ' uicontext is undefined :' + (uiContext === undefined));

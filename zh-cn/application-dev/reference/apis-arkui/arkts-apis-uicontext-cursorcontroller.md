@@ -80,7 +80,7 @@ setCursor(value: PointerStyle): void
 
 | 参数名     | 类型                                       | 必填   | 说明      |
 | ------- | ---------------------------------------- | ---- | ------- |
-| value | [PointerStyle](arkts-apis-uicontext-t.md#pointerstyle12) | 是    | 鼠标光标样式，指定要设置的系统预定义光标类型（如箭头、手型指针、十字准星等），各样式含义详见PointerStyle枚举说明。 |
+| value | [PointerStyle](arkts-apis-uicontext-t.md#pointerstyle) | 是    | 鼠标光标样式，指定要设置的系统预定义光标类型（如箭头、手型指针、十字准星等），各样式含义详见PointerStyle枚举说明。 |
 
 **示例：**
 

@@ -85,9 +85,6 @@
        let req: notificationManager.NotificationRequest = data.request;
        hilog.info(DOMAIN_NUMBER, TAG, `onCancel callback. req.id: ${req.id}`);
      },
-     onUpdate: (data) => {
-       hilog.info(DOMAIN_NUMBER, TAG, `onUpdate callback. req.id: ${data.sortedHashCode}`);
-     },
      onConnect: () => {
        hilog.info(DOMAIN_NUMBER, TAG, `onConnect callback.`);
      },

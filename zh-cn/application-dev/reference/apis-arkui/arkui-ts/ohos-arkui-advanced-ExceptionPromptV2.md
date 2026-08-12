@@ -224,7 +224,6 @@ struct Index {
 从API版本26.0.0开始，该示例使用自定义弹窗设置弹窗类型的异常提示。
 
 ```ts
-import { promptAction } from '@kit.ArkUI';
 import { ExceptionPromptV2, MarginTypeV2, PromptOptionsV2 } from '@kit.ArkUI';
 
 @Entry
@@ -272,7 +271,7 @@ struct Index1 {
         .margin({ top: 420 })
         .zIndex(999)
         .onClick(() => {
-          promptAction.openCustomDialog({
+          this.getUIContext().getPromptAction().openCustomDialog({
             builder: () => {
               this.customDialogComponent()
             },

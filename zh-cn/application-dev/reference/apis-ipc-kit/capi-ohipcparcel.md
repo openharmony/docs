@@ -8,7 +8,7 @@
 
 ## 概述
 
-提供IPC序列化/反序列化C接口，主要用于跨进程通信时的数据打包与解包。
+提供IPC序列化/反序列化C接口，用于在IPC通信过程中对数据进行序列化和反序列化操作。
 
 **系统能力：** SystemCapability.Communication.IPC.Core
 

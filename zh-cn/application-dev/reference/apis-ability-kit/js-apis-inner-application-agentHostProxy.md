@@ -104,7 +104,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 const TAG: string = '[AgentExtensionAbility] ';
 
 export default class MyAgentExtensionAbility extends AgentExtensionAbility {
-  // 数据发送处理
+  // 安全认证处理
   onAuth(proxy: common.AgentHostProxy, handshakeData: string) {
     console.info(TAG + `onAuth ${handshakeData}`);
     try {

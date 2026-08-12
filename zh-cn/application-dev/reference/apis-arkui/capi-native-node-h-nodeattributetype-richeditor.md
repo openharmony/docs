@@ -1,7 +1,7 @@
 # ArkUI_NodeAttributeType（富文本类组件相关属性）
 <!--Kit: ArkUI-->
 <!--Subsystem: ArkUI-->
-<!--Owner: @xiangyuan6; @hddgzw-->
+<!--Owner: @xiangyuan6; @carnivore233-->
 <!--Designer: @xiangyuan6; @xiangyuan6-->
 <!--Tester: @jiaoaozihao-->
 <!--Adviser: @Brilliantry_Rui-->
@@ -380,7 +380,7 @@ TextEditor组件内容最大行数，支持属性设置、属性重置和属性�
 NODE_TEXT_EDITOR_ENABLE_HAPTIC_FEEDBACK = 22016
 ```
 
-TextEditor组件触觉反馈开关，启用后，在文本拖选等交互操作时将产生触觉反馈震动响应，支持属性设置、属性重置和属性获取。<br>
+TextEditor组件触感反馈开关，启用后，在文本拖选等交互操作时将产生触感反馈震动响应，支持属性设置、属性重置和属性获取。<br>
 作为属性设置方法参数、属性获取方法返回值[ArkUI_AttributeItem](capi-arkui-nativemodule-arkui-attributeitem.md)格式如下。<br>
 
 **起始版本：** 24
@@ -390,13 +390,13 @@ TextEditor组件触觉反馈开关，启用后，在文本拖选等交互操作�
 
 | 参数项 | 描述 |
 | -- | -- |
-| .value[0].i32 | 是否在文本编辑器中启用触觉反馈，0表示不启用，1表示启用，默认值为1。 |
+| .value[0].i32 | 是否在文本编辑器中启用触感反馈，0表示不启用，1表示启用，默认值为1。 |
 
 **返回：**
 
 | 类型 | 说明 |
 | -- | -- |
-| .value[0].i32 | 是否启用了触觉反馈，0表示不启用，1表示启用。 |
+| .value[0].i32 | 是否启用了触感反馈，0表示不启用，1表示启用。 |
 
 ## NODE_TEXT_EDITOR_COPY_OPTIONS
 

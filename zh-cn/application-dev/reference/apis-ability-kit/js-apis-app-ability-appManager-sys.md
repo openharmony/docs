@@ -615,7 +615,7 @@ killProcessWithAccount(bundleName: string, accountId: number): Promise\<void\>
 
 | 类型             | 说明              |
 | -------------- | --------------- |
-| Promise\<void> | 无返回结果的Promise对象。 |
+| Promise\<void> | Promise对象。无返回结果的Promise对象。 |
 
 **错误码**：
 
@@ -720,7 +720,7 @@ try {
 
 killProcessWithAccount(bundleName: string, accountId: number, callback: AsyncCallback\<void\>): void
 
-终止account进程。使用callback异步回调。
+终止指定系统账号下的应用进程。使用callback异步回调。
 
 > **说明：**
 >
@@ -968,7 +968,7 @@ clearUpApplicationData(bundleName: string): Promise\<void>
 
 | 类型 | 说明 |
 | -------- | -------- |
-| Promise\<void> | 以Promise方式返回接口运行结果，可进行错误处理或其他自定义处理。 |
+| Promise\<void> | Promise对象。无返回结果的Promise对象。 |
 
 **错误码**：
 
@@ -1687,7 +1687,7 @@ struct Index {
 
 ## appManager.getSupportedProcessCachePids<sup>14+</sup>
 
-getSupportedProcessCachePids(bundleName : string): Promise\<Array\<number>>
+getSupportedProcessCachePids(bundleName: string): Promise\<Array\<number>>
 
 查询当前应用中支持缓存后快速启动的进程PID，可用于进程管理。使用Promise异步回调。
 
@@ -1821,7 +1821,7 @@ setKeepAliveForBundle(bundleName: string, userId: number, enable: boolean): Prom
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
-**设备行为差异**：从API version 18开始，该接口仅在2in1和Wearable设备上生效。对于API version 18之前版本，该接口仅在PC/2in1设备上生效。其他情况下调用该接口将返回错误码801。
+**设备行为差异**：从API version 18开始，该接口仅在PC/2in1和Wearable设备上生效。对于API version 18之前版本，该接口仅在PC/2in1设备上生效。其他情况下调用该接口将返回错误码801。
 
 **系统接口**：此接口为系统接口。
 

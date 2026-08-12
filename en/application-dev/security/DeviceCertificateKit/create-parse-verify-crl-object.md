@@ -6,32 +6,34 @@
 <!--Designer: @lanming-->
 <!--Tester: @PAFT-->
 <!--Adviser: @zengyawen-->
+<!-- md-trans-meta sourceCommit=586ca0df7c9e6070a6064e9c1b3f797ce18bcafe translatedAt=2026-08-11T02:01:13.312Z pushedAt=2026-08-11T07:43:31.128Z -->
 
 This topic walks you through on how to create a certificate revocation list (CRL) instance, obtain CRL information, check whether a certificate has been revoked, and print the revocation date if the certificate has been revoked.
 
 ## How to Develop
 
-1. Import the [certFramework](../../reference/apis-device-certificate-kit/js-apis-cert.md) and [cryptoFramework](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md) modules.
+1. Import the [certificate module](../../reference/apis-device-certificate-kit/js-apis-cert.md) and the [crypto framework](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md).
+
    ```ts
    import { cert } from '@kit.DeviceCertificateKit';
    import { cryptoFramework } from '@kit.CryptoArchitectureKit';
    ```
 
-2. Use [cert.createX509CRL](../../reference/apis-device-certificate-kit/js-apis-cert.md#certcreatex509crl11) to create an X.509 CRL instance.
+2. Based on existing CRL data, call [cert.createX509CRL](../../reference/apis-device-certificate-kit/js-apis-cert.md#certcreatex509crl11) to create an X.509 CRL object.
 
-3. Obtain CRL information.
+3. Parse CRL information.
 
-   Here is an example of obtaining the CRL version, CRL type, CRL issuer name, and string-type data of the CRL object. For more field information, see [@ohos.security.cert (Certificate)](../../reference/apis-device-certificate-kit/js-apis-cert.md#x509crl11).
+   This example demonstrates how to obtain the CRL version, CRL type, CRL issuer name, and string-type data of the CRL object. For more field retrieval APIs, see the API reference [X509CRL11+](../../reference/apis-device-certificate-kit/js-apis-cert.md#x509crl11).
 
-4. Create a **PublicKey** instance.
+4. Create a **PublicKey** instance based on the existing public key.
 
-   For details, see [convertKey](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#convertkey-3).
+   For details, see Crypto Architecture Kit - Generating an Asymmetric Key Pair from Binary Data [convertKey](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#convertkey-3).
 
 5. Use [X509CRL.verify](../../reference/apis-device-certificate-kit/js-apis-cert.md#verify11) to verify the signature.
 
-6. Use [cert.createX509Cert](../../reference/apis-device-certificate-kit/js-apis-cert.md#certcreatex509cert) to create an **X509Cert** object based on the existing X.509 certificate data.
+6. Based on existing X.509 certificate data, call [cert.createX509Cert](../../reference/apis-device-certificate-kit/js-apis-cert.md#certcreatex509cert) to create a certificate object.
 
-7. Use [X509CRL.isRevoked](../../reference/apis-device-certificate-kit/js-apis-cert.md#isrevoked11) to check whether the X.509 certificate has been revoked.
+7. Call [X509CRL.isRevoked](../../reference/apis-device-certificate-kit/js-apis-cert.md#isrevoked11) to check whether the X.509 certificate has been revoked.
 
 8. Use [X509CRL.getRevokedCert](../../reference/apis-device-certificate-kit/js-apis-cert.md#getrevokedcert11) to obtain the revoked certificate.
 
@@ -118,15 +120,15 @@ function crlSample(): void {
     };
     let revokedFlag = true;
     let serial: bigint = BigInt('0');
-    cert.createX509Cert(certBlob, (err, cert) => {
-      serial = cert.getCertSerialNumber();
+    cert.createX509Cert(certBlob, (err, x509Cert) => {
+      serial = x509Cert.getCertSerialNumber();
       if (err == null) {
         try {
           // Check whether the certificate has been revoked.
-          revokedFlag = x509Crl.isRevoked(cert);
+          revokedFlag = x509Crl.isRevoked(x509Cert);
           console.info(`revokedFlag is: ${revokedFlag}`);
           if (!revokedFlag) {
-            console.info('the given cert is not revoked.');
+            console.info('the given x509Cert is not revoked.');
             return;
           }
           // Obtain the revoked certificate based on the serial number.

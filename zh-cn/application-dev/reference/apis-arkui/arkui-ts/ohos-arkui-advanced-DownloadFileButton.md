@@ -14,7 +14,7 @@
 >
 > 该组件从API version 12开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 
-##  导入模块
+## 导入模块
 
 ```ts
 import { DownloadFileButton } from '@kit.ArkUI';
@@ -32,7 +32,7 @@ import { DownloadFileButton } from '@kit.ArkUI';
 
 DownloadFileButton({ contentOptions: DownloadContentOptions, styleOptions: DownloadStyleOptions })
 
-下载文件按钮组件，默认显示图标和文字。
+下载文件按钮，在下载文件场景中提供统一样式的下载按钮。
 
 **装饰器类型：**@Component
 
@@ -40,9 +40,9 @@ DownloadFileButton({ contentOptions: DownloadContentOptions, styleOptions: Downl
 
 **系统能力**： SystemCapability.ArkUI.ArkUI.Full
 
-| 名称           | 类型                                              | 必填 | 装饰器类型 | 说明                             |
+| 名称 | 类型 | 必填 | 装饰器类型 | 说明 |
 | -------------- | ------------------------------------------------- | ---- | ---------- | -------------------------------- |
-| contentOptions | [DownloadContentOptions](#downloadcontentoptions) | 是   | @State     | 创建包含指定元素内容的下载按钮。 |
+| contentOptions | [DownloadContentOptions](#downloadcontentoptions) | 是 | @State | 设置下载按钮显示的内容。 |
 | styleOptions   | [DownloadStyleOptions](#downloadstyleoptions)     | 是   | @State     | 创建包含指定元素样式的下载按钮。 |
 
 ## DownloadContentOptions
@@ -55,8 +55,8 @@ DownloadFileButton({ contentOptions: DownloadContentOptions, styleOptions: Downl
 
 | 名称 | 类型                                                         | 只读 | 可选 | 说明                                                         |
 | ---- | ------------------------------------------------------------ | ---- | ---- | ------------------------------------------------------------ |
-| icon | [DownloadIconStyle](#downloadiconstyle) | 否   | 是   | 设置下载按钮的图标风格。 <br/>不传入该参数表示没有图标，icon和text至少存在一个。 |
-| text | [DownloadDescription](#downloaddescription) | 否   | 是   | 设置下载按钮的文本描述。 <br/>不传入该参数表示没有文字描述，icon和text至少存在一个。 |
+| icon | [DownloadIconStyle](#downloadiconstyle) | 否   | 是   | 设置下载按钮的图标风格。<br>默认值：不设置。不传入该参数表示没有图标，icon和text至少存在一个，若两者均未设置则组件无法正常显示。 |
+| text | [DownloadDescription](#downloaddescription) | 否   | 是   | 设置下载按钮的文本描述。<br>默认值：不设置。不传入该参数表示没有文字描述，icon和text至少存在一个，若两者均未设置则组件无法正常显示。 |
 
 ## DownloadStyleOptions
 
@@ -68,15 +68,15 @@ DownloadFileButton({ contentOptions: DownloadContentOptions, styleOptions: Downl
 
 | 名称            | 类型                                                         | 只读 | 可选 | 说明                                                         |
 | --------------- | ------------------------------------------------------------ | ---- | ---- | ------------------------------------------------------------ |
-| iconSize        | [Dimension](ts-types.md#dimension10)    | 否   | 是   | 下载控件上图标的尺寸，不支持百分比。 <br/>默认值：16vp            |
-| layoutDirection | [DownloadLayoutDirection](#downloadlayoutdirection) | 否   | 是   | 下载控件上图标和文字分布的方向。 <br/>默认值：DownloadLayoutDirection.HORIZONTAL |
-| fontSize        | [Dimension](ts-types.md#dimension10) | 否   | 是   | 下载控件上文字的尺寸，不支持百分比。 <br/>默认值：16fp            |
-| fontStyle       | [FontStyle](ts-appendix-enums.md#fontstyle) | 否   | 是   | 下载控件上文字的样式。 <br/>默认值：FontStyle.Normal              |
-| fontWeight      | number\|[FontWeight](ts-appendix-enums.md#fontweight)\|string | 否   | 是   | 下载控件上文字粗细，number类型取值[100, 900]，取值间隔为100，默认为400，取值越大，字体越粗。string类型仅支持number类型取值的字符串形式，例如"400"，以及"bold"、"bolder"、"lighter"、"regular"、"medium"，分别对应FontWeight中相应的枚举值。 <br/>默认值：FontWeight.Medium |
-| fontFamily      | string\|[Resource](ts-types.md#resource) | 否   | 是   | 下载控件上文字的字体。<br/> 默认字体：'HarmonyOS Sans'      |
-| fontColor       | [ResourceColor](ts-types.md#resourcecolor) | 否   | 是   | 下载控件上文字的颜色。 <br/>默认值：#ffffffff                     |
-| iconColor       | [ResourceColor](ts-types.md#resourcecolor) | 否   | 是   | 下载控件上图标的颜色。 <br/>默认值：#ffffffff                     |
-| textIconSpace   | [Dimension](ts-types.md#dimension10) | 否   | 是   | 下载控件中图标和文字的间距。<br/> 默认值：4vp                     |
+| iconSize | [Dimension](ts-types.md#dimension10) | 否 | 是 | 下载文件控件上图标的尺寸，不支持百分比。仅当contentOptions.icon设置时生效。<br>默认值：16vp<br>单位：vp |
+| layoutDirection | [DownloadLayoutDirection](#downloadlayoutdirection) | 否 | 是 | 下载文件按钮上图标和文字分布的方向。仅当contentOptions.icon和contentOptions.text都设置时生效。 <br>默认值：DownloadLayoutDirection.HORIZONTAL |
+| fontSize        | [Dimension](ts-types.md#dimension10) | 否   | 是   | 下载文件控件上文字的尺寸，不支持百分比。仅当contentOptions.text设置时生效。<br>默认值：16fp<br>单位：fp |
+| fontStyle | [FontStyle](ts-appendix-enums.md#fontstyle) | 否 | 是 | 下载文件按钮上文字的样式。仅当contentOptions.text设置时生效。 <br>默认值：FontStyle.Normal |
+| fontWeight | number\|[FontWeight](ts-appendix-enums.md#fontweight)\|string | 否 | 是 | 下载文件按钮上文字粗细，仅当contentOptions.text设置时生效。number类型取值[100, 900]，取值间隔为100，默认为400，取值越大，字体越粗。string类型仅支持number类型取值的字符串形式，例如"400"，以及"bold"、"bolder"、"lighter"、"regular"、"medium"，分别对应FontWeight中相应的枚举值。 <br>默认值：FontWeight.Medium |
+| fontFamily | string\|[Resource](ts-types.md#resource) | 否 | 是 | 下载文件按钮上文字的字体。仅当contentOptions.text设置时生效。<br> 默认字体：'HarmonyOS Sans'|
+| fontColor | [ResourceColor](ts-types.md#resourcecolor) | 否 | 是 | 下载文件按钮上文字的颜色。仅当contentOptions.text设置时生效。<br>默认值：#ffffffff |
+| iconColor | [ResourceColor](ts-types.md#resourcecolor) | 否 | 是 | 下载文件按钮上图标的颜色。仅当contentOptions.icon设置时生效。 <br>默认值：#ffffffff |
+| textIconSpace | [Dimension](ts-types.md#dimension10) | 否 | 是 | 下载文件按钮中图标和文字的间距。仅当contentOptions.icon和contentOptions.text都设置时生效。<br> 默认值：4vp<br>单位：vp |
 
 ## DownloadIconStyle
 
@@ -95,7 +95,7 @@ DownloadFileButton({ contentOptions: DownloadContentOptions, styleOptions: Downl
 
 ## DownloadDescription
 
-下载按钮中文字的内容。
+下载按钮中文字的内容。不同文本描述适用于不同场景：DOWNLOAD用于一般文件下载场景，DOWNLOAD_FILE用于需要强调文件对象的下载场景，SAVE系列用于保存场景（如保存图片、保存文件），DOWNLOAD_AND_SHARE用于下载后需要分享的场景，RECEIVE系列用于接收文件场景。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -124,8 +124,8 @@ DownloadFileButton({ contentOptions: DownloadContentOptions, styleOptions: Downl
 
 | 名称       | 值   | 说明                                       |
 | ---------- | ---- | ------------------------------------------ |
-| HORIZONTAL | 0    | 下载控件上图标和文字分布的方向为水平排列。 |
-| VERTICAL   | 1    | 下载控件上图标和文字分布的方向为垂直排列。 |
+| HORIZONTAL | 0    | 下载文件按钮上图标和文字分布的方向为水平排列。 |
+| VERTICAL   | 1    | 下载文件按钮上图标和文字分布的方向为垂直排列。 |
 
 ## 事件
 
@@ -160,7 +160,7 @@ struct Index {
           fontColor: '#ffffffff',
           iconColor: '#ffffffff',
           textIconSpace: '4vp'
-        }
+       }
       })
         .backgroundColor('#007dff')
         .borderStyle(BorderStyle.Dotted)
@@ -192,7 +192,9 @@ struct Index {
         }
         console.info(`downloadAction result:  ${JSON.stringify(result)}`);
       });
-    } catch (e) {
+    } catch (error) {
+      const err: BusinessError = error as BusinessError;
+      console.error(`downloadAction failed. Code: ${err.code}, message: ${err.message}`);
     }
   }
 }

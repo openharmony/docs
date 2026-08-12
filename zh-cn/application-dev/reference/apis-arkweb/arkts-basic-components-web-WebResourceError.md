@@ -20,7 +20,7 @@ WebResourceError是Web组件中提供资源加载失败错误信息的类。该�
 
 constructor()
 
-WebResourceError的构造函数。
+WebResourceError的构造函数，创建WebResourceError对象，用于封装Web组件资源加载失败时的错误信息。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -28,7 +28,7 @@ WebResourceError的构造函数。
 
 getErrorCode(): number
 
-获取加载资源的错误码。
+获取加载资源的错误码。用于判断资源加载失败的具体原因（如网络错误、服务器错误、权限问题等），以便开发者根据错误类型采取相应的处理策略（如重试、提示用户、降级显示等）。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -36,13 +36,13 @@ getErrorCode(): number
 
 | 类型     | 说明          |
 | ------ | ----------- |
-| number | 返回加载资源的错误码。错误码含义参考[WebNetErrorList](arkts-apis-netErrorList.md#webneterrorlist)、HTTP协议状态码。 |
+| number | 返回加载资源的错误码。错误码含义参考[WebNetErrorList](arkts-apis-netErrorList.md#webneterrorlist)或HTTP协议状态码。 |
 
 ## getErrorInfo
 
 getErrorInfo(): string
 
-获取加载资源的错误信息。
+获取加载资源的错误信息。用于详细描述资源加载失败的具体原因，开发者可将错误信息输出到日志用于调试分析，或向用户显示友好的错误提示。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 

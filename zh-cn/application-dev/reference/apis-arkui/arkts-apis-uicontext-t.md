@@ -31,7 +31,7 @@ type CustomBuilderWithId = (id: number)&nbsp;=&gt;&nbsp;void
 | -------- | -------- | -------- | -------- |
 | id | number | 是 | 组件ID。 |
 
-## ClickEventListenerCallback<sup>12+</sup>
+## ClickEventListenerCallback
 
 type ClickEventListenerCallback = (event: ClickEvent, node?: FrameNode) => void
 
@@ -70,7 +70,7 @@ Pan手势事件监听函数类型，可用于需要监听组件拖拽、平移�
 | current | [GestureRecognizer](arkui-ts/ts-gesture-common.md#gesturerecognizer12) | 是   | 触发事件监听的手势识别器的相关信息。  |
 | node | [FrameNode](js-apis-arkui-frameNode.md) | 否 | 触发事件监听的手势事件所绑定的组件。不传入该参数时，默认值为undefined。 |
 
-## GestureEventListenerCallback<sup>12+</sup>
+## GestureEventListenerCallback
 
 type GestureEventListenerCallback = (event: GestureEvent, node?: FrameNode) => void
 
@@ -143,7 +143,7 @@ type GestureListenerCallback = (info: GestureTriggerInfo) => void
 | ------- | ----------------- | ---- | --------------------------------- |
 | info   | [GestureTriggerInfo](arkts-apis-uicontext-i.md#gesturetriggerinfo20)     | 是   |  交互触发的手势详情。 |
 
-## PointerStyle<sup>12+</sup>
+## PointerStyle
 
 type PointerStyle = pointer.PointerStyle
 
@@ -157,7 +157,7 @@ type PointerStyle = pointer.PointerStyle
 | -- | -- |
 |[pointer.PointerStyle](../apis-input-kit/js-apis-pointer.md#pointerstyle) |光标样式。|
 
-## Context<sup>12+</sup>
+## Context
 
 type Context = common.Context
 

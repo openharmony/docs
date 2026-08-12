@@ -3,7 +3,7 @@
 <!--Kit: Connectivity Kit-->
 <!--Subsystem: Communication-->
 <!--Owner: @guoxiadi-->
-<!--Designer: @chengguohong; @tangjia15-->
+<!--Designer: @tangjia15-->
 <!--Tester: @wangfeng517-->
 <!--Adviser: @zhang_yixin13-->
 
@@ -18,7 +18,7 @@
 ## 关键流程
 
 1. 伙伴设备应用需要先实现[PartnerAgentExtensionAbility](../../reference/apis-connectivity-kit/js-apis-fusionConnectivity-partnerAgentExtensionAbility.md)，里面实现应用被系统唤醒后需要实现的数据传输业务操作。
-2. 伙伴设备触发和伙伴设备的[蓝牙配对](../../connectivity/bluetooth/br-pair-device-development-guide.md)操作，再调用 **bindDevice** 接口注册伙伴设备。PartnerAgent服务感知到伙伴设备注册后，才会调用蓝牙服务接口进行[BLE](../../connectivity/terminology.md#ble)扫描和监听蓝牙连接状态去发现伙伴设备，进而拉起伙伴设备[ExtensionAbility](../../reference/apis-connectivity-kit/js-apis-fusionConnectivity-partnerAgentExtensionAbility.md)。若伙伴设备未注册，PartnerAgent服务不会拉起伙伴设备Extension。
+2. 伙伴设备触发和伙伴设备的[蓝牙配对](../../connectivity/bluetooth/br-pair-device-development-guide.md)操作，再调用 **bindDevice** 接口注册伙伴设备。PartnerAgent服务感知到伙伴设备注册后，才会调用蓝牙服务接口进行[BLE](../../connectivity/bluetooth/terminology.md#ble)扫描和监听蓝牙连接状态去发现伙伴设备，进而拉起伙伴设备[ExtensionAbility](../../reference/apis-connectivity-kit/js-apis-fusionConnectivity-partnerAgentExtensionAbility.md)。若伙伴设备未注册，PartnerAgent服务不会拉起伙伴设备Extension。
 3. 该注册信息会持久化存储，OpenHarmony设备重启后依旧生效。
 4. 伙伴设备应用不需要使用该设备后，可调用 **unbindDevice** 接口解注册设备。
 
@@ -57,7 +57,7 @@
 应用需要实现[PartnerAgentExtensionAbility](../../reference/apis-connectivity-kit/js-apis-fusionConnectivity-partnerAgentExtensionAbility.md)，本模块会在OpenHarmony设备BLE扫描到或连上**已注册**的伙伴设备时被拉起，OpenHarmony设备和已注册伙伴设备断开蓝牙连接后，本模块会延迟3分钟销毁伙伴设备Extension进程。它通过提供以下函数运行保持应用可唤醒。
 - **onDeviceDiscovered(deviceAddress: PartnerDeviceAddress)**
 
-  已注册设备[ACL](../../connectivity/terminology.md#acl)连接成功或BLE扫描发现时触发该回调，开发者可以在此进行一些数据传输业务操作，如蓝牙[SPP连接](../bluetooth/spp-development-guide.md)、设备发现信息打印等。
+  已注册设备[ACL](../../connectivity/bluetooth/terminology.md#acl)连接成功或BLE扫描发现时触发该回调，开发者可以在此进行一些数据传输业务操作，如蓝牙[SPP连接](../bluetooth/spp-development-guide.md)、设备发现信息打印等。
 
 - **onDestroyWithReason(reason: PartnerAgentExtensionAbilityDestroyReason)**
  

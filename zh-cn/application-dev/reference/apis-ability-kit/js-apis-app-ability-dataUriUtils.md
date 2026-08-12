@@ -30,7 +30,7 @@ getId(uri: string): number
 
 | 参数名 | 类型   | 必填 | 说明                        |
 | ---- | ------ | ---- | --------------------------- |
-| uri  | string | 是   | 表示要附加ID的uri对象。 |
+| uri  | string | 是   | 表示要获取ID的uri对象。 |
 
 **返回值：**
 
@@ -50,12 +50,13 @@ getId(uri: string): number
 
 ```ts
 import { dataUriUtils } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   let id = dataUriUtils.getId('com.example.dataUriUtils/1221');
   console.info(`get id: ${id}`);
 } catch (err) {
-  console.error(`get id err ,check the uri ${err}`);
+  console.error(`get id err, code: ${JSON.stringify((err as BusinessError).code)}, msg: ${JSON.stringify((err as BusinessError).message)}`);
 }
 ```
 
@@ -147,7 +148,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 try {
   let uri = dataUriUtils.deleteId('com.example.dataUriUtils/1221');
   console.info(`delete id with the uri is: ${uri}`);
-} catch(err) {
+} catch (err) {
   console.error(`delete id err, code: ${JSON.stringify((err as BusinessError).code)}, msg: ${JSON.stringify((err as BusinessError).message)}`);
 }
 ```
@@ -195,6 +196,7 @@ try {
     'com.example.dataUriUtils/1221',
     id
   );
+  console.info(`update id with the uri is: ${uri}`);
 } catch (err) {
   console.error(`update id err, code: ${JSON.stringify((err as BusinessError).code)}, msg: ${JSON.stringify((err as BusinessError).message)}`);
 }

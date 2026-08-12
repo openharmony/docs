@@ -48,7 +48,7 @@ class CustomData implements lang.ISendable {
 ```
 
 ## RetentionPolicy<sup>24+</sup>
-描述[注解](../../quick-start/introduction-to-arkts.md#注解)类型保留策略的枚举类型。其枚举值和[Retention](#retention24)结合使用，以指定注解的生命周期。
+描述[注解](../../quick-start/arkts-language-guide-annotations.md#注解的基础概念)类型保留策略的枚举类型。其枚举值和[Retention](#retention24)结合使用，以指定注解的生命周期。
 
 **模型约束：** 此接口仅可在Stage模型下使用。
 

@@ -1643,14 +1643,13 @@ setNoiseReductionMode(noiseReductionMode: NoiseReductionMode): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)和[Audio错误码](errorcode-audio.md)。
+以下错误码的详细介绍请参见[Audio错误码](errorcode-audio.md)。
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
-| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
 | 6800101 | Parameter verification failed. |
 | 6800103 | Illegal state, audio capturer is in running or released state. |
-| 6800104 | The set mode is not supported. |
+| 6800104 | The setted mode is not supported. |
 | 6800301 | Audio server process died. |
 
 **示例：**

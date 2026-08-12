@@ -3,16 +3,16 @@
 <!--Kit: Connectivity Kit-->
 <!--Subsystem: Communication-->
 <!--Owner: @enjoy_sunshine-->
-<!--Designer: @chengguohong; @tangjia15-->
+<!--Designer: @tangjia15-->
 <!--Tester: @wangfeng517-->
 <!--Adviser: @zhang_yixin13-->
 
 本模块提供一种蓝牙套接字功能，可实现设备间连接和数据传输。当两个设备间进行蓝牙套接字通信交互时，依据设备功能的不同，可区分客户端与服务端。
 
-支持的套接字链路类型包括[RFCOMM](../../connectivity/terminology.md#rfcomm)和[L2CAP](../../connectivity/terminology.md#l2cap)。
+支持的套接字链路类型包括[RFCOMM](../../connectivity/bluetooth/terminology.md#rfcomm)和[L2CAP](../../connectivity/bluetooth/terminology.md#l2cap)。
 
-- RFCOMM链路类型也称为串口通信协议（Serial Port Profile, [SPP](../../connectivity/terminology.md#spp)），适用于传统蓝牙（[BR](../../connectivity/terminology.md#br)/[EDR](../../connectivity/terminology.md#edr)）。
-- L2CAP链路类型适用于传统蓝牙（BR/EDR）和低功耗蓝牙（[BLE](../../connectivity/terminology.md#ble)）。
+- RFCOMM链路类型也称为串口通信协议（Serial Port Profile, [SPP](../../connectivity/bluetooth/terminology.md#spp)），适用于传统蓝牙（[BR](../../connectivity/bluetooth/terminology.md#br)/[EDR](../../connectivity/bluetooth/terminology.md#edr)）。
+- L2CAP链路类型适用于传统蓝牙（BR/EDR）和低功耗蓝牙（[BLE](../../connectivity/bluetooth/terminology.md#ble)）。
 
 通过[socket.sppConnect](#socketsppconnect)创建客户端套接字并向服务端发起连接。
 
@@ -93,7 +93,7 @@ try {
 ## socket.getL2capPsm<sup>20+</sup>
 getL2capPsm(serverSocket: number): number
 
-获取服务端L2CAP链路类型套接字的协议/服务多路复用器值（Protocol/Service Multiplexer, [PSM](../../connectivity/terminology.md#psm)），该值用于标识特定的服务数据传输通道。
+获取服务端L2CAP链路类型套接字的协议/服务多路复用器值（Protocol/Service Multiplexer, [PSM](../../connectivity/bluetooth/terminology.md#psm)），该值用于标识特定的服务数据传输通道。
 
 >**说明：**
 >

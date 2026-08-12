@@ -818,7 +818,7 @@ try {
 
 pairDeviceOutOfBand(transport: BluetoothTransport, p192Data: OobData | null, p256Data: OobData | null): Promise&lt;void&gt;
 
-通过带外（Out of Band, [OOB](../../connectivity/terminology.md#oob)）通信机制发起与对端蓝牙设备的配对流程。使用Promise异步回调。
+通过带外（Out of Band, [OOB](../../connectivity/bluetooth/terminology.md#oob)）通信机制发起与对端蓝牙设备的配对流程。使用Promise异步回调。
 
 - 蓝牙配对状态通过[on('bondStateChange')](js-apis-bluetooth-connection.md#connectiononbondstatechange)的回调结果获取。
 
@@ -835,8 +835,8 @@ pairDeviceOutOfBand(transport: BluetoothTransport, p192Data: OobData | null, p25
 | 参数名      | 类型     | 必填   | 说明                                  |
 | -------- | ------ | ---- | ----------------------------------- |
 | transport | [BluetoothTransport](js-apis-bluetooth-connection.md#bluetoothtransport) | 是    | 表示在配对对端设备时使用的传输方式。<br>- 若使用传统蓝牙（BR/EDR），则传入TRANSPORT_BR_EDR。若使用低功耗蓝牙（BLE），则传入TRANSPORT_LE。不支持其他[BluetoothTransport](js-apis-bluetooth-connection.md#bluetoothtransport)类型。|
-| p192Data | [OobData](#oobdata23) \| null | 是    | 配对过程中使用的OOB数据。P-192指一种椭圆曲线算法，其秘钥长度为192位，在蓝牙4.1及以前的传统配对方案中广泛使用。<br>- 若不使用该值，需传入null。<br>- p192Data与p256Data需至少传入一个有效值，若两者同时传入，则p256Data生效，p192Data不生效。|
-| p256Data | [OobData](#oobdata23) \| null | 是    | 配对过程中使用的OOB数据。P-256指一种椭圆曲线算法，其秘钥长度为256位，自蓝牙4.2开始成为安全连接的核心基础。基于P-256的OOB数据相比基于P-192的OOB数据具有更强的抗攻击能力与保密性。若非必须兼容蓝牙4.1或更早版本的旧设备，推荐使用p256Data。<br>- 若不使用该值，需传入null。<br>- p192Data与p256Data需至少传入一个有效值，若两者同时传入，则p256Data生效，p192Data不生效。|
+| p192Data | [OobData](#oobdata23) \| null | 是    | 配对过程中使用的OOB数据。P-192指一种椭圆曲线算法，其密钥长度为192位，在蓝牙4.1及以前的传统配对方案中广泛使用。<br>- 若不使用该值，需传入null。<br>- p192Data与p256Data需至少传入一个有效值，若两者同时传入，则p256Data生效，p192Data不生效。|
+| p256Data | [OobData](#oobdata23) \| null | 是    | 配对过程中使用的OOB数据。P-256指一种椭圆曲线算法，其密钥长度为256位，自蓝牙4.2开始成为安全连接的核心基础。基于P-256的OOB数据相比基于P-192的OOB数据具有更强的抗攻击能力与保密性。若非必须兼容蓝牙4.1或更早版本的旧设备，推荐使用p256Data。<br>- 若不使用该值，需传入null。<br>- p192Data与p256Data需至少传入一个有效值，若两者同时传入，则p256Data生效，p192Data不生效。|
 
 **返回值：**
 
@@ -892,7 +892,7 @@ try {
 
 generateLocalOobData(transport: BluetoothTransport): Promise&lt;OobData&gt;
 
-获取本机的带外（Out of Band, [OOB](../../connectivity/terminology.md#oob)）通信数据。使用Promise异步回调。
+获取本机的带外（Out of Band, [OOB](../../connectivity/bluetooth/terminology.md#oob)）通信数据。使用Promise异步回调。
 
 **系统接口**：此接口为系统接口。
 

@@ -1,10 +1,12 @@
 # Interface (AudioSessionManager)
+
 <!--Kit: Audio Kit-->
 <!--Subsystem: Multimedia-->
-<!--Owner: @songshenke-->
-<!--Designer: @caixuejiang; @hao-liangfei; @zhanganxiang-->
+<!--Owner: @funny_sunix-->
+<!--Designer: @hao-liangfei-->
 <!--Tester: @Filger-->
 <!--Adviser: @w_Machine_cc-->
+<!-- md-trans-meta sourceCommit=35adc31eaf96d9a7e6271e45a667c27fecde38b0 translatedAt=2026-08-10T01:22:38.480Z pushedAt=2026-08-10T03:11:08.127Z -->
 
 This interface implements audio session management.
 
@@ -26,6 +28,8 @@ import { audio } from '@kit.AudioKit';
 activateAudioSession(strategy: AudioSessionStrategy): Promise\<void>
 
 Activates an audio session. This API uses a promise to return the result.
+
+**Atomic service API**: This API can be used in atomic services since API version 26.0.0.
 
 **System capability**: SystemCapability.Multimedia.Audio.Core
 
@@ -49,7 +53,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | ------- | ---------------------------------------------|
 | 401 | Parameter error. Possible causes: 1.Mandatory parameters unspecified. 2.Incorrect parameter types. |
 | 6800101 | Parameter verification failed.|
-| 6800301 | System error. Returned by promise. |
+| 6800301 | System error. Possible causes: 1.Focus preemption failure. 2.Audio server process died. |
 
 **Example**
 
@@ -73,6 +77,8 @@ deactivateAudioSession(): Promise\<void>
 
 Deactivates this audio session. This API uses a promise to return the result.
 
+**Atomic service API**: This API can be used in atomic services since API version 26.0.0.
+
 **System capability**: SystemCapability.Multimedia.Audio.Core
 
 **Return value**
@@ -87,7 +93,7 @@ For details about the error codes, see [Audio Error Codes](errorcode-audio.md).
 
 | ID| Error Message|
 | ------- | ---------------------------------------------|
-| 6800301 | System error. Returned by promise. |
+| 6800301 | System error. Possible causes: 1.The audio session does not exist or has been released. 2.Audio server process died. |
 
 **Example**
 
@@ -106,6 +112,8 @@ audioSessionManager.deactivateAudioSession().then(() => {
 isAudioSessionActivated(): boolean
 
 Checks whether this audio session is activated.
+
+**Atomic service API**: This API can be used in atomic services since API version 26.0.0.
 
 **System capability**: SystemCapability.Multimedia.Audio.Core
 
@@ -126,6 +134,8 @@ let isActivated = audioSessionManager.isAudioSessionActivated();
 on(type: 'audioSessionDeactivated', callback: Callback\<AudioSessionDeactivatedEvent>): void
 
 Subscribes to the audio session deactivation event, which is triggered when an audio session is deactivated. This API uses an asynchronous callback to return the result.
+
+**Atomic service API**: This API can be used in atomic services since API version 26.0.0.
 
 **System capability**: SystemCapability.Multimedia.Audio.Core
 
@@ -159,6 +169,8 @@ audioSessionManager.on('audioSessionDeactivated',
 off(type: 'audioSessionDeactivated', callback?: Callback\<AudioSessionDeactivatedEvent>): void
 
 Unsubscribes from the audio session deactivation event. This API uses an asynchronous callback to return the result.
+
+**Atomic service API**: This API can be used in atomic services since API version 26.0.0.
 
 **System capability**: SystemCapability.Multimedia.Audio.Core
 
@@ -215,7 +227,7 @@ For details about the error codes, see [Audio Error Codes](errorcode-audio.md).
 | ID| Error Message|
 | ------- | ---------------------------------------------|
 | 6800101 | Parameter verification failed. |
-| 6800103 | Operation not permit at current state.|
+| 6800103 | Operation not permitted at current state.|
 | 6800301 | Audio client call audio service error, System error. |
 
 **Example**
@@ -305,8 +317,9 @@ Sets the default audio output device. This API uses a promise to return the resu
 
 > **NOTE**
 >
-> - This API applies to the following scenario: When [AudioSessionScene](arkts-apis-audio-e.md#audiosessionscene20) is set to **VoIP**, the setting takes effect immediately after the AudioSession is activated. For non-VoIP scenarios, the setting does not take effect upon AudioSession activation. Instead, the setting applies when [StreamUsage](arkts-apis-audio-e.md#streamusage) for playback is voice message, VoIP voice call, or VoIP video call. Supported devices include the earpiece, speaker, and system default device.
-> - This API can be called at any time after an AudioSessionManager instance is created. The system records the device set by the application. However, the setting takes effect only after the AudioSession is activated. When the application starts playing, if an external device like Bluetooth headsets or wired headsets is connected, the system prioritizes audio output through the external device. Otherwise, the system uses the device set by the application.
+> - This API applies to the following scenario: when the set [AudioSessionScene](arkts-apis-audio-e.md#audiosessionscene20) is a VoIP scenario, it takes effect immediately after the AudioSession is activated. If [AudioSessionScene](arkts-apis-audio-e.md#audiosessionscene20) is a non-VoIP scenario, it does not take effect upon AudioSession activation, and only takes effect when [StreamUsage](arkts-apis-audio-e.md#streamusage) of the started playback is voice message, VoIP voice call, or VoIP video call. The earpiece, speaker, and system default device are supported.
+> - This API can be called at any time after the AudioSessionManager is created. The system records the default built-in output device set by the app. However, it takes effect only after the AudioSession is activated. When the app starts playback, if an external device such as a Bluetooth headset or wired headset is connected, the system prioritizes audio output from the external device. Otherwise, the system uses the default built-in output device set by the app.
+> - Since AudioSessionManager is an app-level setting, calling this API to set the default audio output device applies to all audio streams within the applicable scope of the current app, and overrides the default audio output device information set by the [setDefaultOutputDevice](../../reference/apis-audio-kit/arkts-apis-audio-AudioRenderer.md#setdefaultoutputdevice12) API of AudioRenderer.
 
 **System capability**: SystemCapability.Multimedia.Audio.Device
 
@@ -367,12 +380,65 @@ For details about the error codes, see [Audio Error Codes](errorcode-audio.md).
 | ID  | Error Message|
 |---------| --------------------------------------------|
 | 6800101 | Parameter verification failed. |
-| 6800103 | Operation not permit at current state. Return by promise. |
+| 6800103 | Operation not permitted at current state. Return by promise. |
 
 **Example**
 
 ```ts
 let deviceType = audioSessionManager.getDefaultOutputDevice();
+```
+
+## setMediaOutputDevice
+
+setMediaOutputDevice(deviceType: DeviceType): Promise&lt;void&gt;
+
+Switches the media output device to the built-in speaker when other external audio devices (such as Bluetooth headphones or wired headphones) are connected. This API uses a promise to return the result.
+
+> **NOTE**
+>
+> - This API applies only to media playback scenarios and affects all media streams initiated within the app.
+> - If there is a concurrent playback stream with a higher priority or the user manually selects an output device, the actual output device used by the app may differ from the device set by this API. The app can listen for the [CurrentOutputDeviceChangedEvent](arkts-apis-audio-i.md#currentoutputdevicechangedevent20) event to obtain the currently active output device.
+> - When the app needs to clear the speaker output configuration previously set through this API, it can do so by calling this API to set the media output device to DEFAULT (system default device). This setting is valid only while the app is running. When the app exits, the setting configured by this API is automatically cleared.
+
+**Since**: 26.0.0
+
+**Model restriction:** This API can be used only in the stage model.
+
+**System capability:** SystemCapability.Multimedia.Audio.Device
+
+**Device behavior differences:** When this API sets the output device to speaker on a device without a speaker, the setting does not take effect.
+
+**Parameters**
+
+| Name     | Type             | Mandatory   | Description                                                      |
+| ---------- |----------------| ------ |---------------------------------------------------------|
+| deviceType | [DeviceType](arkts-apis-audio-e.md#devicetype) | Yes     | Device type.<br>Only the following devices are supported: SPEAKER and DEFAULT (system default device). |
+
+**Return value**
+
+| Type                | Description                          |
+| ------------------- | ----------------------------- |
+| Promise&lt;void&gt; | Promise that returns no value. |
+
+**Error codes**
+
+For details about the error codes, see [Audio Error Codes](errorcode-audio.md).
+
+| ID | Error Message |
+| ------- | --------------------------------------------|
+| 6800101 | Parameter verification failed, for example, the selected device type is not supported. |
+| 6800301 | System error. Possible causes: 1. Internal variable memory allocation failed. 2. Audio server process died. 3. Speaker device is not available. |
+
+**Example**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+audioSessionManager.setMediaOutputDevice(audio.DeviceType.SPEAKER).then(() => {
+  console.info('setMediaOutputDevice Success!');
+}).catch((err: BusinessError) => {
+  console.error(`setMediaOutputDevice Fail: ${err}`);
+});
 ```
 
 ## on('currentOutputDeviceChanged')<sup>20+</sup>
@@ -406,7 +472,7 @@ For details about the error codes, see [Audio Error Codes](errorcode-audio.md).
 import { audio } from '@kit.AudioKit';
 
 let currentOutputDeviceChangedCallback = (currentOutputDeviceChangedEvent: audio.CurrentOutputDeviceChangedEvent) => {
-  console.info(`reason of audioSessionStateChanged: ${currentOutputDeviceChangedEvent.changeReason} `);
+  console.info(`reason of currentOutputDeviceChanged: ${currentOutputDeviceChangedEvent.changeReason} `);
 };
 
 audioSessionManager.on('currentOutputDeviceChanged', currentOutputDeviceChangedCallback);
@@ -444,7 +510,7 @@ audioSessionManager.off('currentOutputDeviceChanged');
 
 // For the same event, if the callback parameter passed to the off API is the same as that passed to the on API, the off API cancels the subscription registered with the specified callback parameter.
 let currentOutputDeviceChangedCallback = (currentOutputDeviceChangedEvent: audio.CurrentOutputDeviceChangedEvent) => {
-  console.info(`reason of audioSessionStateChanged: ${currentOutputDeviceChangedEvent.changeReason} `);
+  console.info(`reason of currentOutputDeviceChanged: ${currentOutputDeviceChangedEvent.changeReason} `);
 };
 
 audioSessionManager.on('currentOutputDeviceChanged', currentOutputDeviceChangedCallback);
@@ -615,7 +681,7 @@ For details about the error codes, see [Audio Error Codes](errorcode-audio.md).
 import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
-  let data: audio.AudioDeviceDescriptors = audioSessionManager.getAvailableDevices(audio.DeviceUsage.MEDIA_OUTPUT_DEVICES);
+  let data: audio.AudioDeviceDescriptors = audioSessionManager.getAvailableDevices(audio.DeviceUsage.MEDIA_INPUT_DEVICES);
   console.info('Succeeded in doing getAvailableDevices.');
 
   if (data[0]) {
@@ -897,6 +963,54 @@ For details about the error codes, see [Audio Error Codes](errorcode-audio.md).
 
 ```ts
 audio.getAudioManager().getSessionManager().enableMuteSuggestionWhenMixWithOthers(true);
+```
+
+## setCapturerMuteHint<sup>24+</sup>
+
+setCapturerMuteHint(mute: boolean): Promise&lt;void&gt;
+
+Reports the mute state of the recording streams within the current audio session to the system audio module. <!--RP1-->This API does not trigger muting of recording streams, and is currently used only on certain PC/2-in-1 devices to optimize device power consumption. <!--RP1End-->This API uses a promise to return the result.
+
+> **NOTE**
+>
+> - This API is used to report the mute state of the recording streams within the current audio session to the system audio module, and does not change the actual mute state of the recording streams.
+> - This API can be called only when there is a running recording stream in the current audio session. Otherwise, error code 6800103 is returned.
+> - If a recording stream has called both the stream-level API [AudioCapturer.setMuteHint](arkts-apis-audio-AudioCapturer.md#setmutehint24) and this API, the stream-level API takes precedence, and the value set by the stream-level API is used.
+
+**Model restriction**: This API can be used only in the stage model.
+
+**System capability**: SystemCapability.Multimedia.Audio.Capturer
+
+**Parameters**
+
+| Name   | Type               | Mandatory | Description      |
+| -------- | ----------------- | ---- | --------- |
+| mute   | boolean           | Yes   | Mute state reported by the app to the system audio module. The value **true** indicates that the app mutes the current stream, and **false** indicates that muting is canceled. |
+
+**Return value**
+
+| Type           | Description                      |
+| -------------- | ------------------------- |
+| Promise&lt;void&gt; | Promise that returns no value. |
+
+**Error codes**
+
+For details about the error codes, see [Audio Error Codes](errorcode-audio.md).
+
+| ID | Error Message |
+| ------- | ---------------------------------------------|
+| 6800103 | Operation not permitted at current state, there is no audio capturer running. |
+
+**Example**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+audioSessionManager.setCapturerMuteHint(true).then(() => {
+  console.info('Successfully set capturer mute hint.');
+}).catch((err: BusinessError) => {
+  console.error(`Failed to setCapturerMuteHint. Code: ${err.code}, message: ${err.message}`);
+});
 ```
 
 ## isOtherMediaPlaying<sup>23+</sup>

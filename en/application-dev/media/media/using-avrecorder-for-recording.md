@@ -5,8 +5,7 @@
 <!--Owner: @gcw_dyOv3Sds-->
 <!--Designer: @chris2981-->
 <!--Tester: @xdlinc-->
-<!--Adviser: @w_Machine_cc-->
-<!-- md-trans-meta sourceCommit=e87845f14c6495fcace23ae74841b09d126e4925 translatedAt=2026-08-11T01:52:35.506Z pushedAt=2026-08-11T13:01:15.989Z -->
+<!--Adviser: @zzs911-->
 
 In this topic, you will learn how to use [AVRecorder](media-kit-intro.md#avrecorder) to develop audio recording functionalities including starting, pausing, resuming, and stopping recording.
 

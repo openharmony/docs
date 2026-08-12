@@ -30,7 +30,7 @@ import { appManager } from '@kit.AbilityKit';
 | bundleNames | Array&lt;string&gt; | 否 | 否 | 进程中所有运行的Bundle名称。<br>**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。 |
 | state<sup>10+</sup> | [appManager.ProcessState](js-apis-app-ability-appManager.md#processstate10)| 否 | 否 | 当前进程运行状态。<br>**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。|
 | bundleType<sup>12+</sup> | [bundleManager.BundleType](js-apis-bundleManager.md#bundletype) | 否 | 否 | 当前进程运行的包类型。<br>**原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。 |
-| appCloneIndex<sup>12+</sup> | number   | 否   | 是   | 分身应用索引。<br>**原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。  |
+| appCloneIndex<sup>12+</sup> | number   | 否   | 是   | 应用分身索引，用于标识不同的分身应用实例。0表示主应用，正整数表示对应的分身实例索引。<br>**原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。  |
 | isPreload | boolean   | 否   | 是   | 进程是否为预加载。当进程是预加载且还未被某个组件启动请求所使用时为true；反之为false。<br>**模型约束：** 此接口仅可在Stage模型下使用。<br>**原子化服务API**：从API version 26.0.0开始，该接口支持在原子化服务中使用。<br>**起始版本**：26.0.0  |
 
 **示例：**

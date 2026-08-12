@@ -234,6 +234,7 @@ setOsAccountDistributedInfo(accountInfo: DistributedInfo, callback: AsyncCallbac
 | 12300001 | System service exception. |
 | 12300002 | Invalid accountInfo. |
 | 12300003 | Account not found. |
+| 12300406 | The distributed account information has already been bound to a sub-profile of the same OS account.<br>适用版本：26.0.0+ |
 
 **示例：**
 
@@ -292,6 +293,7 @@ setOsAccountDistributedInfo(accountInfo: DistributedInfo): Promise&lt;void&gt;
 | 12300001 | System service exception. |
 | 12300002 | Invalid accountInfo. |
 | 12300003 | Account not found. |
+| 12300406 | The distributed account information has already been bound to a sub-profile of the same OS account.<br>适用版本：26.0.0+ |
 
 **示例：**
 

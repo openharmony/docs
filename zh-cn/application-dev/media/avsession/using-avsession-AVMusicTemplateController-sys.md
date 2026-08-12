@@ -71,7 +71,7 @@
        };
 
      /**
-      * 通过getAllAVMusicTemplateDescriptors创建模板。
+      * 根据bundleName创建音频模板控制器。
       */
      public createAvMusicTemplateController(bundleName: string) {
        if (this.isStringEmpty(bundleName)) {
@@ -300,7 +300,8 @@
          description: 'description'
        };
        let searchPlayInfo: avMusicTemplate.SearchPlayInfo = {
-         musicInfo: searchPlayMusicInfo
+         musicInfo: searchPlayMusicInfo,
+         videoInfo: undefined
        };
        try {
          let operResult: avMusicTemplate.OperResult | undefined =
@@ -319,27 +320,44 @@
    }
    ```
 
-4. 在不能实时获取数据的场景下（登录、下载等），音频模板系统需要注册监听，接受媒体应用主动同步过来的数据。监听接口详情请查看[AVMusicTemplateController](../../reference/apis-avsession-kit/arkts-apis-avMusicTemplate-AVMusicTemplateController.md)。
+4. 在不能实时获取数据的场景下（登录、下载等），音频模板系统需要注册监听，接收媒体应用主动同步过来的数据。监听接口详情请查看[AVMusicTemplateController](../../reference/apis-avsession-kit/arkts-apis-avMusicTemplate-AVMusicTemplateController.md)。
 
    例如，在登录导致用户信息变化的场景下，需要注册监听[onUserInfoChange](../../reference/apis-avsession-kit/arkts-apis-avMusicTemplate-AVMusicTemplateController.md#onuserinfochange)。因为用户在音频模板系统界面扫码登录时，登录状态仅媒体应用可感知。
 
-      ``` TypeScript
-      import { avMusicTemplate } from '@kit.AVSessionKit';
-
-      const TAG: string = 'ControllerManager';
-
-      export class ControllerManager {
-        private controller: avMusicTemplate.AVMusicTemplateController | undefined = undefined;
-        private userInfoChangeCallback: Callback<avMusicTemplate.UserInfo> = (userInfo: avMusicTemplate.UserInfo) => {
-          console.info(TAG, 'userInfoChangeCallback');
-        };
-      
-        private registerListener() {
-          // 注册用户信息改变的监听。
-          this.controller?.onUserInfoChange(this.userInfoChangeCallback);
-        }
-      }
-      ```
+   ``` TypeScript
+   import { avMusicTemplate } from '@kit.AVSessionKit';
+   
+   const TAG: string = 'ControllerManager';
+   
+   export class ControllerManager {
+     private controller: avMusicTemplate.AVMusicTemplateController | undefined = undefined;
+     private userInfoChangeCallback: Callback<avMusicTemplate.UserInfo> = (userInfo: avMusicTemplate.UserInfo) => {
+       console.info(TAG, 'userInfoChangeCallback');
+     };
+   
+     private createController(sessionId: string) {
+       if (sessionId === null || sessionId === undefined) {
+         console.warn(TAG, 'createController: sessionId is invalid');
+         return;
+       }
+       if (this.controller != undefined) {
+         console.warn(TAG, 'createController: controller not undefined');
+         return;
+       }
+       try {
+         this.controller = avMusicTemplate.createAVMusicTemplateController(sessionId);
+         this.registerListener();
+       } catch (e) {
+         console.error(TAG, `Failed to createAVMusicTemplateController. Code: ${e?.code}`);
+       }
+     }
+   
+     private registerListener() {
+       // 注册用户信息改变的监听。
+       this.controller?.onUserInfoChange(this.userInfoChangeCallback);
+     }
+   }
+   ```
 
 5. 在音频模板系统应用退出时及时取消事件监听，并释放资源。注销音频模板接口详情请查看[@ohos.multimedia.avMusicTemplate (音频模板)(系统接口)](../../reference/apis-avsession-kit/js-apis-avMusicTemplate-sys.md)，注销事件监听接口详情请查看[AVMusicTemplateController](../../reference/apis-avsession-kit/arkts-apis-avMusicTemplate-AVMusicTemplateController.md)。
 
@@ -356,38 +374,7 @@
       * 注销监听。
       */
      public unregisterListener() {
-       // 注销用户信息改变的监听。
-       this.controller?.offUserInfoChange();
-   
-       // 注销对话框命令改变的监听。
-       this.controller?.offDialogCommandChange();
-   
-       // 注销当前单曲改变的监听。
-       this.controller?.offCurrentSingleChange();
-   
-       // 注销媒体实体改变的监听。
-       this.controller?.offMediaEntitiesChange();
-   
-       // 注销标签页内容改变的监听。
-       this.controller?.offTabContentChange();
-   
-       // 注销播放列表改变的监听。
-       this.controller?.offPlaylistChange();
-   
-       // 注销下载媒体状态改变的监听。
-       this.controller?.offDownloadMediaEntityStatusChange();
-   
-       // 注销自定义元素改变的监听。
-       this.controller?.offCustomElementsChange();
-   
-       // 注销设置改变的监听。
-       this.controller?.offSettingsChange();
-   
-       // 注销上报执行动作的监听。
-       this.controller?.offReportExecuteAction();
-   
-       // 注销通知媒体中心拉起指定三方应用界面的信息的监听。
-       this.controller?.offExtensionAbilityChange();
+       // ...
      }
 
      /**

@@ -11,7 +11,7 @@ appManager模块提供App管理的能力，包括查询当前是否处于稳定�
 
 > **说明：**
 > 
-> 本模块首批接口从API version 8 开始支持，从API version 9废弃，替换模块为[@ohos.app.ability.appManager](js-apis-app-ability-appManager.md)。后续版本的新增接口，采用上角标单独标记接口的起始版本。
+> 本模块首批接口从API version 8开始支持，从API version 9开始废弃，替换模块为[@ohos.app.ability.appManager](js-apis-app-ability-appManager.md)。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 >
 > 当前页面仅包含本模块的系统接口，其他公开接口参见[@ohos.application.appManager (appManager)](js-apis-application-appManager.md)。
 
@@ -93,7 +93,7 @@ unregisterApplicationStateObserver(observerId: number,  callback: AsyncCallback\
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | observerId | number | 是 | 表示观察者的编号代码。 |
-| callback | AsyncCallback\<void> | 是 | 表示指定的callback回调方法。 |
+| callback | AsyncCallback\<void> | 是 | 取消注册的回调函数。 |
 
 **示例：**
     
@@ -270,7 +270,7 @@ appManager.killProcessWithAccount(bundleName, accountId)
 
 killProcessWithAccount(bundleName: string, accountId: number, callback: AsyncCallback\<void\>): void
 
-切断account进程。使用callback异步回调。
+根据Bundle名称和账号ID终止指定账号下的应用进程。使用callback异步回调。
 
 > **说明：** 
 >
@@ -288,7 +288,7 @@ killProcessWithAccount(bundleName: string, accountId: number, callback: AsyncCal
 | -------- | -------- | -------- | -------- |
 | bundleName | string | 是 | 应用Bundle名称。 |
 | accountId | number | 是 | 系统账号的账号ID，详情参考[getCreatedOsAccountsCount](../apis-basic-services-kit/js-apis-osAccount.md#getcreatedosaccountscountdeprecated)。 |
-| callback | AsyncCallback\<void\> | 是 | 回调函数，当切断account进程成功，err为undefined，否则为错误对象。 |
+| callback | AsyncCallback\<void\> | 是 | 回调函数，当终止指定账号下的应用进程成功，err为undefined，否则为错误对象。 |
 
 **示例：**
 
@@ -326,7 +326,7 @@ killProcessesByBundleName(bundleName: string, callback: AsyncCallback\<void>)
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| bundleName | string | 是 | 表示Bundle名称。 |
+| bundleName | string | 是 | 应用Bundle名称。 |
 | callback | AsyncCallback\<void> | 是 | 回调函数，当通过Bundle名称终止进程成功，err为undefined，否则为错误对象。 |
 
 **示例：**
@@ -364,7 +364,7 @@ killProcessesByBundleName(bundleName: string): Promise\<void>
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| bundleName | string | 是 | 表示Bundle名称。 |
+| bundleName | string | 是 | 应用Bundle名称。 |
 
 **返回值：**
 
@@ -404,7 +404,7 @@ clearUpApplicationData(bundleName: string, callback: AsyncCallback\<void>)
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| bundleName | string | 是 | 表示Bundle名称。 |
+| bundleName | string | 是 | 应用Bundle名称。 |
 | callback | AsyncCallback\<void> | 是 | 回调函数，当通过Bundle名称清除应用数据成功，err为undefined，否则为错误对象。 |
 
 **示例：**
@@ -442,7 +442,7 @@ clearUpApplicationData(bundleName: string): Promise\<void>
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| bundleName | string | 是 | 表示Bundle名称。 |
+| bundleName | string | 是 | 应用Bundle名称。 |
 
 **返回值：**
 

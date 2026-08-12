@@ -5,8 +5,7 @@
 <!--Owner: @gcw_dyOv3Sds-->
 <!--Designer: @chris2981-->
 <!--Tester: @xdlinc-->
-<!--Adviser: @w_Machine_cc-->
-<!-- md-trans-meta sourceCommit=538fbff37ca84fc2c14a2fdf1f0a11dec4e60e5f translatedAt=2026-08-11T01:54:36.185Z pushedAt=2026-08-12T03:13:57.227Z -->
+<!--Adviser: @zzs911-->
 
 AVRecorder supports separate audio or video recording, integrating audio capture, audio encoding, video encoding, and audio-video muxing. It is suitable for scenarios where you need to implement simple audio/video recording and directly obtain a local media file.
 
@@ -18,7 +17,7 @@ During app development, you can actively obtain the current state through the st
 
 ![Recording state change](figures/audio-recording-status-change.png)
 
-For details about the states, see [AVRecorderState](../../reference/apis-media-kit/arkts-apis-media-t.md#avrecorderstate9).
+For details about the states, see [OH_AVRecorder_State](../../reference/apis-media-kit/capi-avrecorder-base-h.md#oh_avrecorder_state).
 
 ## Requesting Permissions
 

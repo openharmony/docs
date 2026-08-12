@@ -32,7 +32,7 @@ import { Vibrator } from '@kit.SensorServiceKit';
 
 ### Vibrator.vibrate
 
-static vibrate(options?: [VibrateOptions](#vibrateoptions)): void
+static vibrate(options?: VibrateOptions): void
 
 触发设备振动，根据指定的振动模式执行短振动或长振动效果。该接口通过callback方式返回调用结果。
 
@@ -81,7 +81,7 @@ import vibrator from '@system.vibrator';
 
 export default {
   data: {
-    TAG: "WearLiteSample:",
+    TAG: 'WearLiteSample:',
     result: ''
   },
   vibrate() {

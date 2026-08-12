@@ -3,7 +3,7 @@
 <!--Kit: Connectivity Kit-->
 <!--Subsystem: Communication-->
 <!--Owner: @enjoy_sunshine-->
-<!--Designer: @chengguohong; @tangjia15-->
+<!--Designer: @tangjia15-->
 <!--Tester: @wangfeng517-->
 <!--Adviser: @zhang_yixin13-->
 
@@ -48,3 +48,7 @@
 在传统蓝牙中，通过查询来发现周围设备，并主动发起配对和连接的设备称为中心设备，响应其他设备的查询并接受配对和连接请求的设备称为外围设备。
 
 在低功耗蓝牙中，扫描其他设备并主动发起连接的设备称为中心设备，发送广播并接受其他设备连接请求的设备称为外围设备。
+
+<!--RP1-->
+
+<!--RP1End-->

@@ -72,6 +72,7 @@
 | aspect-ratio     | 应用页面显示区域的宽度与高度的比值。<br/>例如：aspect-ratio: 1/2 |
 | min-aspect-ratio | 应用页面显示区域的宽度与高度的最小比值。                     |
 | max-aspect-ratio | 应用页面显示区域的宽度与高度的最大比值。                     |
+| device-type      | 设备的类型。<br/>可选值：liteWearable、smartVision。 |
 | round-screen     | 屏幕类型，圆形屏幕为 true，&nbsp;非圆形屏幕为&nbsp;false。 |
 
 

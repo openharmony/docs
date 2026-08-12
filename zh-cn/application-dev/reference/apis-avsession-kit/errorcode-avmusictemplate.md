@@ -26,7 +26,7 @@ Failed to create the AVMusicTemplate.
 
 **处理步骤**
 
-可以尝试重启设备。
+重启设备。
 
 ## 35000002 音频模板控制器创建失败
 
@@ -40,11 +40,12 @@ Failed to create the AVMusicTemplate controller.
 
 **可能原因**
 
-创建AVMusicTemplateController的参数sessionId不合法。
+创建AVMusicTemplateController的参数sessionId不合法。sessionId需为有效的字符串格式，且对应已创建的AVMusicTemplate实例。
 
 **处理步骤**
 
-检查sessionId是否为空或者是否有创建过该sessionId对应的AVMusicTemplate的应用。
+1. 检查sessionId是否为空、是否合法。一个应用进程内，一个sessionId对应一个AVMusicTemplateController。
+2. 是否有创建过该sessionId对应的AVMusicTemplate的应用。
 
 ## 35000003 模板监听未注册
 
@@ -63,7 +64,7 @@ Template listener not registered.
 **处理步骤**
 
 1. 检查应用是否正常创建AVMusicTemplate实例。
-2. 检查应用内其他核心功能是否出现了异常。
+2. 检查应用内音频模板相关功能是否出现了异常。如AVMusicTemplate创建、控制器注册等。
 
 ## 35000004 未注册模板控制器回调
 
@@ -100,7 +101,7 @@ AVMusicTemplate does not exist.
 
 **处理步骤**
 
-1. 检查应用是否正常创建AVMusicTemplate实例。
+1. 检查sessionId是否为空，并确认是否已为该sessionId创建过对应的AVMusicTemplate实例。
 2. 检查应用内其他核心功能是否出现了异常。
 
 ## 35000006 模板控制器不存在
@@ -156,7 +157,7 @@ AVMusicTemplate Manager services do not exist.
 
 **处理步骤**
 
-可以尝试重启设备。
+重启设备。
 
 ## 35000009 音频模板管理服务异常
 
@@ -175,7 +176,7 @@ AVMusicTemplate Manager services exception.
 **处理步骤**
 
 1. 检查应用内其他核心功能是否出现了异常。
-2. 尝试重启设备。
+2. 重启设备。
 
 ## 35000010 数据超过了允许的最大传输容量
 
@@ -189,11 +190,11 @@ The data exceeds the maximum allowable transmission capacity.
 
 **可能原因**
 
-传输的数据超过允许传输的1MB容量限制。
+通过AVMusicTemplate相关接口传输的元数据超过1MB容量限制。
 
 **处理步骤**
 
-针对超过1MB的数据采用分批传输。
+将超过1MB的数据分批传输。
 
 ## 35000011 数据写入错误，数据无效
 
@@ -203,7 +204,7 @@ The data write error, data is invalid.
 
 **错误描述**
 
-写数据失败，数据不可用。
+数据写入失败，数据无效。
 
 **可能原因**
 

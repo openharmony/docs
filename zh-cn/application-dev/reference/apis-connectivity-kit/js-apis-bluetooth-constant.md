@@ -3,11 +3,11 @@
 <!--Kit: Connectivity Kit-->
 <!--Subsystem: Communication-->
 <!--Owner: @enjoy_sunshine-->
-<!--Designer: @chengguohong; @tangjia15-->
+<!--Designer: @tangjia15-->
 <!--Tester: @wangfeng517-->
 <!--Adviser: @zhang_yixin13-->
 
-本模块提供了蓝牙[Profile](../../connectivity/terminology.md#profile)、设备类型相关的常量定义。
+本模块提供了蓝牙[Profile](../../connectivity/bluetooth/terminology.md#profile)、设备类型相关的常量定义。
 
 > **说明：**
 >
@@ -21,16 +21,16 @@ import { constant } from '@kit.ConnectivityKit';
 
 ## ProfileId
 
-枚举，表示蓝牙[Profile](../../connectivity/terminology.md#profile)协议的标识。
+枚举，表示蓝牙[Profile](../../connectivity/bluetooth/terminology.md#profile)协议的标识。
 
 **系统能力**：SystemCapability.Communication.Bluetooth.Core
 
 | 名称                               | 值    | 说明              |
 | -------------------------------- | ------ | --------------- |
-| PROFILE_A2DP_SOURCE              | 1 | [A2DP Source](../../connectivity/terminology.md#a2dp-source) Profile，负责发送音频数据端使用的协议。 |
-| PROFILE_HANDSFREE_AUDIO_GATEWAY | 4 | [HFP Ag](../../connectivity/terminology.md#hfp-ag) Profile，负责通话音频网关使用的协议。  |
-| PROFILE_HID_HOST | 6 | [HID Host](../../connectivity/terminology.md#hid-host) Profile，负责与[HID Device](../../connectivity/terminology.md#hid-device)建立通信并处理数据交互的协议。  |
-| PROFILE_PAN_NETWORK | 7 | [NAP](../../connectivity/terminology.md#nap) Profile，负责提供网络共享端使用的协议。  |
+| PROFILE_A2DP_SOURCE              | 1 | [A2DP Source](../../connectivity/bluetooth/terminology.md#a2dp-source) Profile，负责发送音频数据端使用的协议。 |
+| PROFILE_HANDSFREE_AUDIO_GATEWAY | 4 | [HFP Ag](../../connectivity/bluetooth/terminology.md#hfp-ag) Profile，负责通话音频网关使用的协议。  |
+| PROFILE_HID_HOST | 6 | [HID Host](../../connectivity/bluetooth/terminology.md#hid-host) Profile，负责与[HID Device](../../connectivity/bluetooth/terminology.md#hid-device)建立通信并处理数据交互的协议。  |
+| PROFILE_PAN_NETWORK | 7 | [NAP](../../connectivity/bluetooth/terminology.md#nap) Profile，负责提供网络共享端使用的协议。  |
 
 ## ProfileConnectionState
 
@@ -165,7 +165,7 @@ import { constant } from '@kit.ConnectivityKit';
 
 ## ProfileUuids<sup>12+</sup>
 
-枚举，由蓝牙技术联盟（[Bluetooth Special Interest Group](../../connectivity//terminology.md#bluetooth-sig)）定义，使用通用唯一标识（Universally Unique Identifier，[UUID](../../connectivity/terminology.md#uuid)）表示不同的蓝牙协议Profile。
+枚举，由蓝牙技术联盟（[Bluetooth Special Interest Group](../../connectivity/bluetooth/terminology.md#bluetooth-sig)）定义，使用通用唯一标识（Universally Unique Identifier，[UUID](../../connectivity/bluetooth/terminology.md#uuid)）表示不同的蓝牙协议Profile。
 
 **系统能力**：SystemCapability.Communication.Bluetooth.Core
 

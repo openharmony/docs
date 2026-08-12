@@ -3,11 +3,11 @@
 <!--Kit: Connectivity Kit-->
 <!--Subsystem: Communication-->
 <!--Owner: @enjoy_sunshine-->
-<!--Designer: @chengguohong; @tangjia15-->
+<!--Designer: @tangjia15-->
 <!--Tester: @wangfeng517-->
 <!--Adviser: @zhang_yixin13-->
 
-本模块提供基于人机接口协议（Human Interface Device Profile，[HID](../../connectivity/terminology.md#hid)）技术的蓝牙人机交互能力，支持获取连接状态等方法。
+本模块提供基于人机接口协议（Human Interface Device Profile，[HID](../../connectivity/bluetooth/terminology.md#hid)）技术的蓝牙人机交互能力，支持获取连接状态等方法。
 
 当本端设备被注册为HID设备的角色时，可以使用[HidDeviceProfile](#hiddeviceprofile23)相关接口，且仅支持与传统蓝牙类型设备连接和交互。
 
@@ -51,7 +51,7 @@ type BluetoothAddress = common.BluetoothAddress
 
 createHidHostProfile(): HidHostProfile
 
-创建蓝牙[HID Host](../../connectivity/terminology.md#hid-host)实例。通过该实例可使用本端作为HID Host的接口，如：获取和其他设备间的蓝牙HID连接状态。
+创建蓝牙[HID Host](../../connectivity/bluetooth/terminology.md#hid-host)实例。通过该实例可使用本端作为HID Host的接口，如：获取和其他设备间的蓝牙HID连接状态。
 
 **系统能力**：SystemCapability.Communication.Bluetooth.Core
 
@@ -59,7 +59,7 @@ createHidHostProfile(): HidHostProfile
 
 | 类型                            | 说明         |
 | ----------------------------- | ---------- |
-| HidHostProfile | 返回HID Host实例。<br>- 该类继承于[BaseProfile](#baseprofile)，因此可以使用其父类中的方法。<br>- 和该实例角色相对应的是[HID Device](../../connectivity/terminology.md#hid-device)角色。 |
+| HidHostProfile | 返回HID Host实例。<br>- 该类继承于[BaseProfile](#baseprofile)，因此可以使用其父类中的方法。<br>- 和该实例角色相对应的是[HID Device](../../connectivity/bluetooth/terminology.md#hid-device)角色。 |
 
 **错误码**：
 
@@ -85,7 +85,7 @@ try {
 
 createHidDeviceProfile(): HidDeviceProfile
 
-创建蓝牙[HID Device](../../connectivity/terminology.md#hid-device)实例。通过该实例可使用本端作为HID Device的接口，如：获取和其他设备间的蓝牙HID连接状态。
+创建蓝牙[HID Device](../../connectivity/bluetooth/terminology.md#hid-device)实例。通过该实例可使用本端作为HID Device的接口，如：获取和其他设备间的蓝牙HID连接状态。
 
 **系统能力**：SystemCapability.Communication.Bluetooth.Core
 
@@ -95,7 +95,7 @@ createHidDeviceProfile(): HidDeviceProfile
 
 | 类型                            | 说明         |
 | ----------------------------- | ---------- |
-| [HidDeviceProfile](#hiddeviceprofile23) | 返回HID Device实例。<br>- 该类继承于[BaseProfile](#baseprofile)，因此可以使用其父类中的方法。<br>- 和该实例角色相对应的是[HID Host](../../connectivity/terminology.md#hid-host)角色。 |
+| [HidDeviceProfile](#hiddeviceprofile23) | 返回HID Device实例。<br>- 该类继承于[BaseProfile](#baseprofile)，因此可以使用其父类中的方法。<br>- 和该实例角色相对应的是[HID Host](../../connectivity/bluetooth/terminology.md#hid-host)角色。 |
 
 **错误码**：
 
@@ -118,11 +118,11 @@ try {
 
 ## HidDeviceProfile<sup>23+</sup>
 
-该实例表示蓝牙HID通信中的[HID Device](../../connectivity/terminology.md#hid-device)角色。
+该实例表示蓝牙HID通信中的[HID Device](../../connectivity/bluetooth/terminology.md#hid-device)角色。
 - 该类继承于[BaseProfile](#baseprofile)，因此可以使用其父类中的方法。
 - 使用该类的方法前，需通过[createHidDeviceProfile](#hidcreatehiddeviceprofile23)方法构造该类的实例。
 - 通过该实例可以操作设备端的行为，如注册HID设备([registerHidDevice](#registerhiddevice23))，发送报告([sendReport](#sendreport23))等。
-- 和该实例角色相对应的是[HID Host](../../connectivity/terminology.md#hid-host)。
+- 和该实例角色相对应的是[HID Host](../../connectivity/bluetooth/terminology.md#hid-host)。
 
 
 ### registerHidDevice<sup>23+</sup>
@@ -481,7 +481,7 @@ try {
 
 onGetReport(callback: Callback&lt;GetReportData&gt;): void
 
-订阅HID主机向HID设备发送的[GET_REPORT](../../connectivity/terminology.md#hid)传输请求事件，使用callback异步回调。收到回调后可以通过调用接口[replyReport](#replyreport23)进行回复。当收到的数据不符合预期时，可以通过调用接口[reportError](#reporterror23)进行回复。
+订阅HID主机向HID设备发送的[GET_REPORT](../../connectivity/bluetooth/terminology.md#hid)传输请求事件，使用callback异步回调。收到回调后可以通过调用接口[replyReport](#replyreport23)进行回复。当收到的数据不符合预期时，可以通过调用接口[reportError](#reporterror23)进行回复。
 
 **需要权限**：ohos.permission.ACCESS_BLUETOOTH
 
@@ -522,7 +522,7 @@ try {
 
 offGetReport(callback?: Callback&lt;GetReportData&gt;): void
 
-取消订阅主机向HID设备发出的[GET_REPORT](../../connectivity/terminology.md#hid)传输请求事件的回调。使用callback异步回调。
+取消订阅主机向HID设备发出的[GET_REPORT](../../connectivity/bluetooth/terminology.md#hid)传输请求事件的回调。使用callback异步回调。
 
 **需要权限**：ohos.permission.ACCESS_BLUETOOTH
 
@@ -564,7 +564,7 @@ try {
 
 onSetReport(callback: Callback&lt;SetReportData&gt;): void
 
-订阅HID主机向HID设备发送的[SET_REPORT](../../connectivity/terminology.md#hid)传输请求事件，使用callback异步回调。当收到的数据不符合预期时，可以通过调用接口[reportError](#reporterror23)进行回复。
+订阅HID主机向HID设备发送的[SET_REPORT](../../connectivity/bluetooth/terminology.md#hid)传输请求事件，使用callback异步回调。当收到的数据不符合预期时，可以通过调用接口[reportError](#reporterror23)进行回复。
 
 **需要权限**：ohos.permission.ACCESS_BLUETOOTH
 
@@ -605,7 +605,7 @@ try {
 
 offSetReport(callback?: Callback&lt;SetReportData&gt;): void
 
-取消订阅主机向HID设备发出的[SET_REPORT](../../connectivity/terminology.md#hid)传输请求事件的回调。使用callback异步回调。
+取消订阅主机向HID设备发出的[SET_REPORT](../../connectivity/bluetooth/terminology.md#hid)传输请求事件的回调。使用callback异步回调。
 
 **需要权限**：ohos.permission.ACCESS_BLUETOOTH
 
@@ -729,7 +729,7 @@ try {
 
 onSetProtocol(callback: Callback&lt;ProtocolData&gt;): void
 
-订阅HID主机向HID设备发送的[SET_PROTOCOL](../../connectivity/terminology.md#hid)请求事件，使用callback异步回调。
+订阅HID主机向HID设备发送的[SET_PROTOCOL](../../connectivity/bluetooth/terminology.md#hid)请求事件，使用callback异步回调。
 
 **需要权限**：ohos.permission.ACCESS_BLUETOOTH
 
@@ -770,7 +770,7 @@ try {
 
 offSetProtocol(callback?: Callback&lt;ProtocolData&gt;): void
 
-取消订阅主机向HID设备发送的[SET_PROTOCOL](../../connectivity/terminology.md#hid)请求事件的回调。使用callback异步回调。
+取消订阅主机向HID设备发送的[SET_PROTOCOL](../../connectivity/bluetooth/terminology.md#hid)请求事件的回调。使用callback异步回调。
 
 **需要权限**：ohos.permission.ACCESS_BLUETOOTH
 
@@ -892,7 +892,7 @@ try {
 
 ## HidDeviceSdp<sup>23+</sup>
 
-描述HID设备在服务发现协议([SDP](../../connectivity/terminology.md#sdp))中的服务注册配置。该结构定义了HID设备的身份标识、能力描述和协议特征，是HID主机发现、识别和连接HID设备的关键参数。
+描述HID设备在服务发现协议([SDP](../../connectivity/bluetooth/terminology.md#sdp))中的服务注册配置。该结构定义了HID设备的身份标识、能力描述和协议特征，是HID主机发现、识别和连接HID设备的关键参数。
 
 **系统能力**：SystemCapability.Communication.Bluetooth.Core
 
@@ -925,7 +925,7 @@ try {
 
 ## GetReportData<sup>23+</sup>
 
-描述HID主机向HID设备发送的[GET_REPORT](../../connectivity/terminology.md#hid)传输请求事件的信息。
+描述HID主机向HID设备发送的[GET_REPORT](../../connectivity/bluetooth/terminology.md#hid)传输请求事件的信息。
 
 **系统能力**：SystemCapability.Communication.Bluetooth.Core
 
@@ -939,7 +939,7 @@ try {
 
 ## SetReportData<sup>23+</sup>
 
-描述HID主机向HID设备发送的[SET_REPORT](../../connectivity/terminology.md#hid)传输请求事件的信息。
+描述HID主机向HID设备发送的[SET_REPORT](../../connectivity/bluetooth/terminology.md#hid)传输请求事件的信息。
 
 **系统能力**：SystemCapability.Communication.Bluetooth.Core
 

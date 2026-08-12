@@ -19,7 +19,7 @@ Access right denied. Call requestRight to get the USBDevicePipe access right fir
 
 **错误描述**
 
-当调用USB模块部分接口时，如果没有相关权限，需先调用requestRight方法申请权限，会报此错误码。
+当调用USB模块部分接口时，需先调用requestRight方法申请权限，如果没有相关权限，会报此错误码。
 
 **可能原因**
 

@@ -1,4 +1,4 @@
-# Creating a TrustAnchor Object Array from a .p12 File
+# Creating a TrustAnchor Object Array from a PKCS #12 File
 
 <!--Kit: Device Certificate Kit-->
 <!--Subsystem: Security-->
@@ -6,14 +6,15 @@
 <!--Designer: @lanming-->
 <!--Tester: @PAFT-->
 <!--Adviser: @zengyawen-->
+<!-- md-trans-meta sourceCommit=78d27a16851062ae03d6a51de8b99e33aec772a0 translatedAt=2026-08-11T02:01:12.490Z pushedAt=2026-08-11T07:45:43.529Z -->
 
-This topic walks you through on how to create a **TrustAnchor** object array from a .p12 file during certificate chain verification.
+Construct a **TrustAnchor** object array from a PKCS #12 file during certificate chain validation.
 
 ## How to Develop
 
-1. Import the [cert](../../reference/apis-device-certificate-kit/js-apis-cert.md) module.
+1. Import the [certificate module](../../reference/apis-device-certificate-kit/js-apis-cert.md).
 
-2. Use [cert.createTrustAnchorsWithKeyStore](../../reference/apis-device-certificate-kit/js-apis-cert.md#certcreatetrustanchorswithkeystore12) to create an [X509TrustAnchor](../../reference/apis-device-certificate-kit/js-apis-cert.md#x509trustanchor11) array object based on the .p12 file.
+2. Based on the existing PKCS #12 file data, use [cert.createTrustAnchorsWithKeyStore](../../reference/apis-device-certificate-kit/js-apis-cert.md#certcreatetrustanchorswithkeystore12) to create an [X509TrustAnchor](../../reference/apis-device-certificate-kit/js-apis-cert.md#x509trustanchor11) object array and return the result.
 
 <!-- @[trust_array_constructed_from_p12_file_during_validation](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/Security/DeviceCertificateKit/CertificateAlgorithmLibrary/entry/src/main/ets/pages/CreateTrustanchorFromP12.ets) -->
 

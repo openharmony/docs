@@ -42,8 +42,7 @@
 - [资源分类与访问](resource-categories-and-access.md)
 - 学习ArkTS语言<!--learning-arkts-->
   - [初识ArkTS语言](arkts-get-started.md)
-  - [ArkTS语言介绍](introduction-to-arkts.md)
-  - 基础语法<!--arkts-language-guide-->
+  - ArkTS语法<!--arkts-language-guide-->
     - [基础知识](arkts-language-guide-basics.md)
     - [基本操作符](arkts-language-guide-basic-operators.md)
     - [字符串](arkts-language-guide-strings.md)
@@ -64,7 +63,7 @@
     - [高级运算符](arkts-language-guide-advanced-operators.md)
     - [模块系统](arkts-language-guide-module-system.md)
     - [注解](arkts-language-guide-annotations.md)
-  - [ArkTS语言规范](arkts-coding-style-guide.md)
+  - [ArkTS编程规范](arkts-coding-style-guide.md)
   - 从TypeScript到ArkTS的适配指导<!--typescript-to-arkts-migration-->
     - [ArkTS语法适配背景](arkts-migration-background.md)
     - [从TypeScript到ArkTS的适配规则](typescript-to-arkts-migration-guide.md)

@@ -3,7 +3,7 @@
 <!--Kit: Connectivity Kit-->
 <!--Subsystem: Communication-->
 <!--Owner: @enjoy_sunshine-->
-<!--Designer: @chengguohong; @tangjia15-->
+<!--Designer: @tangjia15-->
 <!--Tester: @wangfeng517-->
 <!--Adviser: @zhang_yixin13-->
 
@@ -12,7 +12,7 @@
 > **说明：**
 >
 > 本模块首批接口从API version 9开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
-> 从API Version 10 开始，该接口不再维护，推荐使用[`@ohos.bluetooth.ble`](js-apis-bluetooth-ble.md)等相关profile接口。
+> 从API Version 10 开始，该接口不再维护，推荐使用[@ohos.bluetooth.ble](js-apis-bluetooth-ble.md)等相关profile接口。
 > 当前页面仅包含本模块的系统接口，其他公开接口参见[@ohos.bluetoothManager](js-apis-bluetoothManager.md)。
 
 
@@ -280,7 +280,7 @@ isTetheringOn(): boolean
 
 > **说明：**
 >
-> 从API version 9开始支持，从API version 10开始废弃，建议使用[isTetheringOn](js-apis-bluetooth-pan-sys.md#istetheringon)替代。
+> 从API version 9开始支持，从API version 10开始废弃，建议使用[isTetheringOn](js-apis-bluetooth-pan.md#istetheringon)替代。
 
 **系统接口**：此接口为系统接口。
 

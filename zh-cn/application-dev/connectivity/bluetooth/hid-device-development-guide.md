@@ -3,12 +3,12 @@
 <!--Kit: Connectivity Kit-->
 <!--Subsystem: Communication-->
 <!--Owner: @enjoy_sunshine-->
-<!--Designer: @chengguohong; @tangjia15-->
+<!--Designer: @tangjia15-->
 <!--Tester: @wangfeng517-->
 <!--Adviser: @zhang_yixin13-->
 
 ## 简介
-本指南主要提供了基于人机接口设备协议（Human Interface Device Profile，[HID](../../connectivity/terminology.md#hid)）实现将设备模拟为蓝牙键盘、鼠标、游戏手柄等输入设备的开发指导。在HID设备通信模型中，依据设备角色的不同，可区分为[HID host](../../connectivity/terminology.md#hid-host)和[HID device](../../connectivity/terminology.md#hid-device)。本指南将重点阐述如何为应用提供HID设备能力，连接其他蓝牙HID主机（如电脑、平板、手机等）并进行数据交互的实现方法。
+本指南主要提供了基于人机接口设备协议（Human Interface Device Profile，[HID](terminology.md#hid)）实现将设备模拟为蓝牙键盘、鼠标、游戏手柄等输入设备的开发指导。在HID设备通信模型中，依据设备角色的不同，可区分为[HID host](terminology.md#hid-host)和[HID device](terminology.md#hid-device)。本指南将重点阐述如何为应用提供HID设备能力，连接其他蓝牙HID主机（如电脑、平板、手机等）并进行数据交互的实现方法。
 
 ## 实现原理
 HID设备作为输入能力的提供方，需要先为本机应用注册HID设备能力，并声明其功能类型（如键盘、鼠标等）及对应的HID报告描述符。

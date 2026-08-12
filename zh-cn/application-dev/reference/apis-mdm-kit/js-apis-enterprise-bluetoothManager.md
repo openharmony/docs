@@ -1048,9 +1048,9 @@ try {
 
 | 名称                | 值  | 说明    |
 | ----------------- | ---- | ----- |
-| GATT | 0 | [GATT协议](../../connectivity/terminology.md#gatt)。 |
-| SPP | 1 | [SPP协议](../../connectivity/terminology.md#spp)。 |
-| OPP | 2 | [OPP协议](../../connectivity/terminology.md#opp)。 |
+| GATT | 0 | [GATT协议](../../connectivity/bluetooth/terminology.md#gatt)。 |
+| SPP | 1 | [SPP协议](../../connectivity/bluetooth/terminology.md#spp)。 |
+| OPP | 2 | [OPP协议](../../connectivity/bluetooth/terminology.md#opp)。 |
 
 ## TransferPolicy
 

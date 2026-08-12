@@ -68,7 +68,7 @@ struct Parent {
 
 上述代码中so的实现可参考<!--RP1-->[Native XComponent](https://gitcode.com/openharmony/applications_app_samples/tree/master/code/DocsSample/ArkUISample/NativeXComponent)<!--RP1End-->。
 
-### addFrameNode<sup>12+</sup>
+### addFrameNode
 
 addFrameNode(node: FrameNode): void
 
@@ -92,7 +92,7 @@ addFrameNode(node: FrameNode): void
 | -------- | -------------------------------- |
 | 100025 | The parameter is invalid. Details about the invalid parameter and the reason are included in the error message. For example: "The parameter 'node' is invalid: it cannot be adopted." <br>适用版本：22+ |
 
-### removeFrameNode<sup>12+</sup>
+### removeFrameNode
 
 removeFrameNode(node: FrameNode): void
 

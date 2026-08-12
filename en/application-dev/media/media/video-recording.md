@@ -5,8 +5,7 @@
 <!--Owner: @gcw_dyOv3Sds-->
 <!--Designer: @chris2981-->
 <!--Tester: @xdlinc-->
-<!--Adviser: @w_Machine_cc-->
-<!-- md-trans-meta sourceCommit=c762d5590997ee857200dc2bee7887632750ad51 translatedAt=2026-08-11T01:57:53.890Z pushedAt=2026-08-12T03:30:17.064Z -->
+<!--Adviser: @zzs911-->
 
 You can use the [AVRecorder](media-kit-intro.md#avrecorder) to develop the video recording service. The AVRecorder supports audio capture, audio encoding, video encoding, audio encapsulation, and video encapsulation. It is applicable to simple video recording scenarios and can be used to generate local video files directly.
 

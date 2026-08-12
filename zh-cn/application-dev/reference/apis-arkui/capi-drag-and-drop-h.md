@@ -1831,7 +1831,7 @@ int32_t OH_ArkUI_NotifyDragResult(int32_t requestIdentify, ArkUI_DragResult resu
 ### OH_ArkUI_NotifySuggestedDropOperation()
 
 ```c
-int32_t OH_ArkUI_NotifySuggestedDropOperation(int32_t requestIdentify, ArkUI_DropOperation operation)
+int32_t OH_ArkUI_NotifySuggestedDropOperation(int32_t requestIdentity, ArkUI_DropOperation operation)
 ```
 
 **描述：**
@@ -1846,7 +1846,7 @@ int32_t OH_ArkUI_NotifySuggestedDropOperation(int32_t requestIdentify, ArkUI_Dro
 
 | 参数项 | 描述 |
 | -- | -- |
-| int32_t requestIdentify | 由[OH_ArkUI_DragEvent_RequestDragEndPending](capi-drag-and-drop-h.md#oh_arkui_dragevent_requestdragendpending)返回的标识符，用来标识本次拖拽事件。 |
+| int32_t requestIdentity | 由[OH_ArkUI_DragEvent_RequestDragEndPending](capi-drag-and-drop-h.md#oh_arkui_dragevent_requestdragendpending)返回的标识符，用来标识本次拖拽事件。 |
 | [ArkUI_DropOperation](capi-drag-and-drop-h.md#arkui_dropoperation) operation | 落入行为类型[ArkUI_DropOperation](capi-drag-and-drop-h.md#arkui_dropoperation)。 |
 
 **返回：**
@@ -1873,7 +1873,7 @@ int32_t OH_ArkUI_NotifyDisableDefaultDropAnimation(int32_t requestIdentity, bool
 
 | 参数项 | 描述 |
 | -- | -- |
-| int32_t requestIdentify | 由[OH_ArkUI_DragEvent_RequestDragEndPending](capi-drag-and-drop-h.md#oh_arkui_dragevent_requestdragendpending)返回的标识符，用来标识本次拖拽事件。 |
+| int32_t requestIdentity | 由[OH_ArkUI_DragEvent_RequestDragEndPending](capi-drag-and-drop-h.md#oh_arkui_dragevent_requestdragendpending)返回的标识符，用来标识本次拖拽事件。 |
 | bool disable | 通知是否禁用系统默认落入动画。true表示禁用系统默认落入动画，false表示使用系统默认落入动画。 |
 
 **返回：**

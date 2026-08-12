@@ -3,7 +3,7 @@
 <!--Kit: Connectivity Kit-->
 <!--Subsystem: Communication-->
 <!--Owner: @enjoy_sunshine-->
-<!--Designer: @chengguohong; @tangjia15-->
+<!--Designer: @tangjia15-->
 <!--Tester: @wangfeng517-->
 <!--Adviser: @zhang_yixin13-->
 
@@ -20,7 +20,7 @@ import { baseProfile } from '@kit.ConnectivityKit';
 ```
 ## BaseProfile
 
-基础Profile接口定义，提供订阅和获取连接状态等公共能力。如：[A2dpSourceProfile](js-apis-bluetooth-a2dp.md#a2dpsourceprofile)、[HandsFreeAudioGatewayProfile](js-apis-bluetooth-hfp.md#handsfreeaudiogatewayprofile)等[Profile](../../connectivity/terminology.md#profile)类型都继承于该类。
+基础Profile接口定义，提供订阅和获取连接状态等公共能力。如：[A2dpSourceProfile](js-apis-bluetooth-a2dp.md#a2dpsourceprofile)、[HandsFreeAudioGatewayProfile](js-apis-bluetooth-hfp.md#handsfreeaudiogatewayprofile)等[Profile](../../connectivity/bluetooth/terminology.md#profile)类型都继承于该类。
 
 ## ProfileConnectionState
 
@@ -49,7 +49,7 @@ type ProfileConnectionState = constant.ProfileConnectionState
 | deviceId | string                        | 否   | 否   | 对端设备地址，例如："XX:XX:XX:XX:XX:XX"。   |
 | state    | [ProfileConnectionState](js-apis-bluetooth-constant.md#profileconnectionstate)        | 否   | 否   | Profile连接状态。 |
 | cause<sup>12+</sup>| [DisconnectCause](#disconnectcause12) | 否 | 否 | Profile断开连接的原因。|
-| role| [PanRole](#panrole) | 否 | 是 | 当前对端设备对应的[PAN](../../connectivity/terminology.md#pan)角色。<br> **起始版本**：26.0.0|
+| role| [PanRole](#panrole) | 否 | 是 | 当前对端设备对应的[PAN](../../connectivity/bluetooth/terminology.md#pan)角色。<br> **起始版本**：26.0.0|
 
 ## DisconnectCause<sup>12+</sup>
 
@@ -80,8 +80,8 @@ type ProfileConnectionState = constant.ProfileConnectionState
 
 | 名称                 | 值  | 说明     |
 | ------------------ | ---- | ------ |
-| ROLE_PANNAP            | 0    |[NAP](../../connectivity/terminology.md#panu)角色。 |
-| ROLE_PANU      | 1    |[PANU](../../connectivity/terminology.md#panu)角色。 |
+| ROLE_PANNAP            | 0    |[NAP](../../connectivity/bluetooth/terminology.md#nap)角色。 |
+| ROLE_PANU      | 1    |[PANU](../../connectivity/bluetooth/terminology.md#panu)角色。 |
 
 
 ## BaseProfile.getConnectedDevices
