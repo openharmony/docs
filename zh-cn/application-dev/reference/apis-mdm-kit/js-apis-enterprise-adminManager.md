@@ -619,7 +619,6 @@ enableSelfDeviceAdmin(admin: Want, credential: string): void
 ```ts
 import { Want } from '@kit.AbilityKit';
 import { adminManager } from '@kit.MDMKit';
-import { BusinessError } from '@kit.BasicServicesKit';
 
 let wantTemp: Want = {
   // 需根据实际情况进行替换
