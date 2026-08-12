@@ -1,4 +1,4 @@
-# 剪贴板术语表
+# 剪贴板术语
 <!--Kit: Basic Services Kit-->
 <!--Subsystem: DistributedDataManager-->
 <!--Owner: @yangxiaodong41-->

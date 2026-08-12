@@ -88,10 +88,10 @@ const systemPasteboard: pasteboard.SystemPasteboard = pasteboard.getSystemPasteb
       await systemPasteboard.setData(pasteData);
       hilog.info(0xFF00, '[Sample_pasteboard]', 'Set data to pasteboard successfully');
     } catch (error) {
-      hilog.error(0xFF00, '[Sample_pasteboard]', `Failed to set data to pasteboard, error: ${error}`);
+      hilog.error(0xFF00, '[Sample_pasteboard]', `Failed to set data to pasteboard, error: ${error.message}`);
     }
   }
-  export async function getPlainData(type: string): Promise<string> {
+  export async function getPlainData(): Promise<string> {
     try {
       // 从系统剪贴板中读取数据
       let data = await systemPasteboard.getData();
@@ -106,7 +106,7 @@ const systemPasteboard: pasteboard.SystemPasteboard = pasteboard.getSystemPasteb
       }
       return result;
     } catch (error) {
-      hilog.error(0xFF00, '[Sample_pasteboard]', `Failed to get data from pasteboard, error: ${error}`);
+      hilog.error(0xFF00, '[Sample_pasteboard]', `Failed to get data from pasteboard, error: ${error.message}`);
       return '';
     }
   }
