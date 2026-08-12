@@ -474,7 +474,7 @@ SSL is null.
 
 **错误描述**
 
-SSL/TLS连接对象为空，参数错误。
+SSL对象为空。
 
 **可能原因**
 
@@ -502,7 +502,7 @@ An error occurred when reading data on the TLS socket.
 
 **错误描述**
 
-等待套接字可读。
+在TLS套接字上读取数据时发生错误。
 
 **可能原因**
 
@@ -520,7 +520,7 @@ An error occurred when writing data on the TLS socket.
 
 **错误描述**
 
-等待套接字可写。
+在TLS套接字上写入数据时发生错误。
 
 **可能原因**
 
@@ -576,7 +576,7 @@ TLS系统调用发生不可恢复的致命I/O错误。
 
 3. 尝试重新建立TLS连接。
 
-## 2303506 清除TLS连接出错
+## 2303506 关闭TLS连接失败
 
 **错误信息**
 
@@ -584,7 +584,7 @@ Failed to close the TLS connection.
 
 **错误描述**
 
-TLS/SSL连接已关闭。
+关闭TLS连接失败。
 
 **可能原因**
 

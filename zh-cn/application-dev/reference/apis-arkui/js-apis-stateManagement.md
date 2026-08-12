@@ -724,7 +724,7 @@ static canBeObserved\<T extends object\>(source: T): ObservedResult
 
 ``` ts
 import { UIUtils } from '@kit.ArkUI';
-import { DecoratorInfo, ElementInfo } from '@ohos.arkui.StateManagement';
+import { DecoratorInfo, ElementInfo } from '@kit.ArkUI';
 import { hilog } from '@kit.PerformanceAnalysisKit';
 
 const TAG = 'CanBeObserved';

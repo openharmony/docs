@@ -3,11 +3,11 @@
 <!--Kit: Connectivity Kit-->
 <!--Subsystem: Communication-->
 <!--Owner: @enjoy_sunshine-->
-<!--Designer: @chengguohong; @tangjia15-->
+<!--Designer: @tangjia15-->
 <!--Tester: @wangfeng517-->
 <!--Adviser: @zhang_yixin13-->
 
-本模块提供基于电话簿访问协议（Phone Book Access Profile，[PBAP](../../connectivity/terminology.md#pbap)）的蓝牙电话簿访问能力，支持获取连接状态等方法。
+本模块提供基于电话簿访问协议（Phone Book Access Profile，[PBAP](../../connectivity/bluetooth/terminology.md#pbap)）的蓝牙电话簿访问能力，支持获取连接状态等方法。
 
 > **说明：**
 >
@@ -35,7 +35,7 @@ type BaseProfile = baseProfile.BaseProfile
 
 createPbapServerProfile(): PbapServerProfile
 
-创建蓝牙电话簿访问协议中的[PSE](../../connectivity/terminology.md#pse)实例。通过该实例可使用本端作为PSE设备的接口，如：获取和其他设备间的蓝牙电话簿服务连接状态。
+创建蓝牙电话簿访问协议中的[PSE](../../connectivity/bluetooth/terminology.md#pse)实例。通过该实例可使用本端作为PSE设备的接口，如：获取和其他设备间的蓝牙电话簿服务连接状态。
 
 **系统能力**：SystemCapability.Communication.Bluetooth.Core。
 
@@ -43,7 +43,7 @@ createPbapServerProfile(): PbapServerProfile
 
 | 类型                            | 说明         |
 | ----------------------------- | ---------- |
-|PbapServerProfile | 返回PSE实例。<br>- 该类继承于[BaseProfile](#baseprofile)，因此可以使用其父类中的方法。<br>- 和该实例角色相对应的是[PCE](../../connectivity/terminology.md#pce)角色。 |
+|PbapServerProfile | 返回PSE实例。<br>- 该类继承于[BaseProfile](#baseprofile)，因此可以使用其父类中的方法。<br>- 和该实例角色相对应的是[PCE](../../connectivity/bluetooth/terminology.md#pce)角色。 |
 
 **错误码**：
 

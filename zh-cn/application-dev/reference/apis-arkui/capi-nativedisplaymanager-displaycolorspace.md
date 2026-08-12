@@ -12,7 +12,7 @@ typedef struct {...} NativeDisplayManager_DisplayColorSpace
 
 ## 概述
 
-显示设备支持的所有色域类型。
+显示设备支持的色域类型信息。
 
 **起始版本：** 14
 
@@ -27,6 +27,6 @@ typedef struct {...} NativeDisplayManager_DisplayColorSpace
 | 名称 | 描述 |
 | -- | -- |
 | uint32_t colorSpaceLength | 显示设备支持的色域类型数量。 |
-| uint32_t* colorSpaces | 显示设备支持的色域类型数据。 |
+| uint32_t* colorSpaces | 指向显示设备支持的色域类型数组的指针。 |
 
 

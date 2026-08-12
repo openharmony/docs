@@ -5,8 +5,7 @@
 <!--Owner: @gcw_dyOv3Sds-->
 <!--Designer: @chris2981-->
 <!--Tester: @xdlinc-->
-<!--Adviser: @w_Machine_cc-->
-<!-- md-trans-meta sourceCommit=538fbff37ca84fc2c14a2fdf1f0a11dec4e60e5f translatedAt=2026-08-11T01:55:14.979Z pushedAt=2026-08-12T03:22:50.706Z -->
+<!--Adviser: @zzs911-->
 
 AVRecorder supports audio and video recording, integrating audio capture, audio encoding, video encoding, and media muxing capabilities. It is suitable for scenarios where you need to implement simple video recording and directly obtain local media files.
 
@@ -16,7 +15,7 @@ During app development, you can actively obtain the current status through the s
 
 **Figure 1** Recording state transition
 
-![Recording state change](figures/recording-status-change-ndk.png)
+![Recording state change](figures/video-recording-status-change.png)
 
 For detailed status descriptions, refer to [OH_AVRecorder_State](../../reference/apis-media-kit/capi-avrecorder-base-h.md#oh_avrecorder_state).
 

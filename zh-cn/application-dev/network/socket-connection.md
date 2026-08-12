@@ -131,7 +131,7 @@ UDP与TCP流程大体类似，下面以TCP为例：
             hilog.info(0x0000, 'testTag', 'send success');
             // ···
           }).catch(() => {
-            hilog.info(0x0000, 'testTag', 'send fail');
+            hilog.error(0x0000, 'testTag', 'send fail');
             // ···
           });
         }).catch((err: BusinessError) => {
@@ -198,7 +198,7 @@ UDP与TCP流程大体类似，下面以TCP为例：
       hilog.info(0x0000, 'testTag', 'listen success');
       // ···
     }).catch(() => {
-      hilog.info(0x0000, 'testTag', 'listen fail');
+      hilog.error(0x0000, 'testTag', 'listen fail');
       // ···
     });
     ```
@@ -255,7 +255,7 @@ UDP与TCP流程大体类似，下面以TCP为例：
           hilog.info(0x0000, 'testTag', 'close success');
         // ···
         }).catch((err: BusinessError) => {
-          hilog.info(0x0000, 'testTag', 'close fail');
+          hilog.error(0x0000, 'testTag', 'close fail');
         // ···
         });
     
@@ -448,10 +448,10 @@ UDP与TCP流程大体类似，下面以TCP为例：
      client.send(sendOpt).then(() => {
        hilog.info(0x0000, 'testTag', `send success`);
      }).catch((err: Object) => {
-       hilog.info(0x0000, 'testTag', `send failed: ` + JSON.stringify(err));
+       hilog.error(0x0000, 'testTag', `send failed: ` + JSON.stringify(err));
      });
    }).catch((err: Object) => {
-     hilog.info(0x0000, 'testTag', `connect fail: ` + JSON.stringify(err));
+     hilog.error(0x0000, 'testTag', `connect fail: ` + JSON.stringify(err));
    });
    ```
 
@@ -527,7 +527,7 @@ UDP与TCP流程大体类似，下面以TCP为例：
    server.on('connect', (connection: socket.LocalSocketConnection) => {
      // 订阅LocalSocketConnection相关的事件。
      connection.on('error', (err: Object) => {
-       hilog.info(0x0000, 'testTag', 'on error success');
+       hilog.error(0x0000, 'testTag', 'on error received');
      });
    
      connection.on('message', (value: socket.LocalSocketMessageInfo) => {
@@ -895,7 +895,7 @@ UDP与TCP流程大体类似，下面以TCP为例：
        hilog.info(0x0000, 'testTag', 'tls connect success');
        // ...
      }).catch((e: BusinessError) => {
-       hilog.info(0x0000, 'testTag', 'tls connect fail');
+       hilog.error(0x0000, 'testTag', 'tls connect fail');
        // ...
      });
    }).catch((e: BusinessError) => {
@@ -1026,6 +1026,7 @@ UDP与TCP流程大体类似，下面以TCP为例：
        // 可以指定传入on中的callback取消一个订阅，也可以不指定callback清空所有订阅。
        client.off('message', callback);
        client.off('message');
+     });
    ```
 
 5. 取消订阅TLSSocketServer的相关事件。

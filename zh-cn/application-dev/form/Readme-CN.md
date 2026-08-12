@@ -34,10 +34,8 @@
       - [卡片拉起应用UIAbility到后台（call事件）](arkts-ui-widget-event-call.md)
       - [卡片传递消息给应用（message事件）](arkts-ui-widget-event-formextensionability.md)
       - [通过router或call事件刷新卡片内容](arkts-ui-widget-event-uiability.md)
-    - ArkTS卡片编辑<!--arkts-ui-widget-edit-->
-      - [ArkTS卡片编辑概述](arkts-ui-widget-event-formeditextensionability-overview.md)
-    - 应用内请求卡片加桌<!--arkts-ui-widget-add-->
-      - [应用内拉起卡片管理加桌](arkts-ui-widget-open-formmanager.md)
+    - [ArkTS卡片编辑](arkts-ui-widget-event-formeditextensionability.md)
+    - [在应用内将ArkTS卡片添加到桌面](arkts-ui-widget-open-formmanager.md)
     <!--RP1--><!--RP1End-->
     <!--RP2--><!--RP2End-->
     <!--RP4--><!--RP4End-->
@@ -47,12 +45,10 @@
   - 互动卡片开发<!--arkts-ui-liveform-->
     - [互动卡片概述](arkts-ui-liveform-overview.md)
     - [趣味交互类型互动卡片开发指导](arkts-ui-liveform-funinteraction-development.md)
-    - 场景动效类型互动卡片<!--arkts-ui-liveform-sceneanimation-->
-      - [场景动效类型互动卡片概述](arkts-ui-liveform-sceneanimation-overview.md)
-      - [场景动效类型互动卡片开发指导](arkts-ui-liveform-sceneanimation-development.md)
-      <!--Del-->
-      - [场景动效类型互动卡片开发指导（仅对系统应用开放）](arkts-ui-liveform-sceneanimation-development-sys.md)
-      <!--DelEnd-->
+    - [场景动效类型互动卡片开发指导](arkts-ui-liveform-sceneanimation-development.md)
+    <!--Del-->
+    - [场景动效类型互动卡片开发指导（仅对系统应用开放）](arkts-ui-liveform-sceneanimation-development-sys.md)
+    <!--DelEnd-->
 <!--RP5--><!--RP5End-->
   - [ArkTS卡片适配常见问题](arkts-ui-widget-adapt-faq.md)
 - JS卡片开发<!--form-js-ui-->

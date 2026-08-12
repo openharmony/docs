@@ -6,7 +6,7 @@
 <!--Tester: @chen-gong1-->
 <!--Adviser: @w_Machine_cc-->
 
-调用[avMusicTemplate.createAVMusicTemplate](arkts-apis-avMusicTemplate-f.md#avmusictemplatecreateavmusictemplate)获取实例后，可获取其ID，启动音频模板界面，并配置数据获取方法。随后，同步数据给模板控制方，以完成后续操作。
+开发者调用[avMusicTemplate.createAVMusicTemplate](arkts-apis-avMusicTemplate-f.md#avmusictemplatecreateavmusictemplate)获取实例后，可获取其ID，启动音频模板界面，并配置数据获取方法。随后，同步数据给模板控制方，以完成数据交互和界面更新等操作。
 
 > **说明：**
 >
@@ -37,7 +37,7 @@ import { avMusicTemplate } from '@kit.AVSessionKit';
 
 export class TemplateManager {
   private template: avMusicTemplate.AVMusicTemplate | undefined = undefined;
-  private static sInstance: TemplateManager;
+  private static instance: TemplateManager;
 
   private constructor() {
   }
@@ -48,11 +48,11 @@ export class TemplateManager {
    * @returns 模板控制器实例。
    */
   public static getInstance(): TemplateManager {
-    if (!TemplateManager.sInstance) {
-      TemplateManager.sInstance = new TemplateManager();
+    if (!TemplateManager.instance) {
+      TemplateManager.instance = new TemplateManager();
     }
-    return TemplateManager.sInstance;
-  };
+    return TemplateManager.instance;
+  }
 
   /**
    * 创建音频模板。
@@ -60,7 +60,7 @@ export class TemplateManager {
   public createTemplate() {
     if (this.template) {
       console.warn('createTemplate: template not undefined');
-      return
+      return;
     }
     this.template = avMusicTemplate.createAVMusicTemplate(avMusicTemplate.AVMusicTemplateType.DEFAULT);
     console.info('Succeeded in creating template.');
@@ -143,10 +143,13 @@ import { avMusicTemplate } from '@kit.AVSessionKit';
 export class TemplateManager {
   private template: avMusicTemplate.AVMusicTemplate | undefined = undefined;
   private queryMainTabsEvent: avMusicTemplate.QueryMainTabsEvent = async () => {
-    return new Promise<avMusicTemplate.MediaTab[]>(async (resolve, reject) => {
-      let tabs: avMusicTemplate.MediaTab[] = await this.getMainTabs();
-      resolve(tabs);
-    });
+    try {
+      return await this.getMainTabs();
+    } catch (e) {
+      const msg = `Failed to queryMainTabsEvent. Code: ${e?.code}`;
+      console.error(msg);
+      throw e instanceof Error ? e : new Error(e?.message ?? msg);
+    }
   };
 
   /**
@@ -819,7 +822,7 @@ export class TemplateManager {
       isSupportPlayMode: true,
       isSupportPlayRate: true,
       supportedPlayRate: ['1', '2', '3'],
-      currentPlayRate: 'string;',
+      currentPlayRate: '1',
       isSupportSoundQuality: false,
       isSupportSoundEffect: true,
       totalDuration: 60,
@@ -839,7 +842,7 @@ export class TemplateManager {
       title: '歌曲标题',
       desc: '歌曲描述',
       imageUrl: '',
-      playState: 0,
+      playState: avMusicTemplate.PlaybackState.PLAYBACK_STATE_PREPARE,
       isVip: false,
       singer: '',
       tags: [],
@@ -2189,11 +2192,6 @@ export class TemplateManager {
   };
 
   /**
-   * 模拟设置改变。
-   *
-   * @returns Promise类型的设置条目。
-   */
-  /**
    * 模拟操作结果。
    *
    * @returns 操作结果。
@@ -3037,61 +3035,61 @@ setCurrentSingle(single: Single): Promise&lt;void&gt;
 import { avMusicTemplate } from '@kit.AVSessionKit';
 
 export class TemplateManager {
-    private template: avMusicTemplate.AVMusicTemplate | undefined = undefined;
+  private template: avMusicTemplate.AVMusicTemplate | undefined = undefined;
 
-    public async setCurrentSingle() {
-        let single: avMusicTemplate.Single = await this.createCurrentSingle()
-        this.template?.setCurrentSingle(single);
-    };
+  public async setCurrentSingle() {
+    let single: avMusicTemplate.Single = await this.createCurrentSingle()
+    this.template?.setCurrentSingle(single);
+  };
 
-    /**
-     * 模拟获取当前单曲。
-     *
-     * @returns 当前单曲。
-     */
-    private async createCurrentSingle(): Promise<avMusicTemplate.Single> {
-        let playInfo: avMusicTemplate.PlayInfo = {
-            playCounts: '100w',
-            isSupportNext: true,
-            isSupportPrev: false,
-            isSupportQuickForward: true,
-            isSupportQuickBackward: true,
-            quickForwardStep: 10,
-            quickBackwardStep: 10,
-            isSupportSkipHead: false,
-            isSupportSkipTail: true,
-            isSupportPlayMode: true,
-            isSupportPlayRate: true,
-            supportedPlayRate: ['1', '2', '3'],
-            currentPlayRate: 'string;',
-            isSupportSoundQuality: false,
-            isSupportSoundEffect: true,
-            totalDuration: 60,
-            currentPlayDuration: 10,
-            isSupportProgress: false,
-        }
-        let favoriteData: avMusicTemplate.FavoriteData = {
-            isSupportFav: true,
-            isFavorite: false,
-            favCounts: '1000+'
-        }
-        let single: avMusicTemplate.Single = {
-            mediaId: 'mediaId',
-            mediaType: avMusicTemplate.EntityType.SINGLE,
-            parentId: 'parentId',
-            parentMediaType: avMusicTemplate.EntityType.SINGLE,
-            title: '歌曲标题',
-            desc: '歌曲描述',
-            imageUrl: '',
-            playState: 0,
-            isVip: false,
-            singer: '',
-            tags: [],
-            playInfo: playInfo,
-            favSubscribeData: favoriteData
-        }
-        return single;
-    };
+  /**
+   * 模拟获取当前单曲。
+   *
+   * @returns 当前单曲。
+   */
+  private async createCurrentSingle(): Promise<avMusicTemplate.Single> {
+    let playInfo: avMusicTemplate.PlayInfo = {
+      playCounts: '100w',
+      isSupportNext: true,
+      isSupportPrev: false,
+      isSupportQuickForward: true,
+      isSupportQuickBackward: true,
+      quickForwardStep: 10,
+      quickBackwardStep: 10,
+      isSupportSkipHead: false,
+      isSupportSkipTail: true,
+      isSupportPlayMode: true,
+      isSupportPlayRate: true,
+      supportedPlayRate: ['1', '2', '3'],
+      currentPlayRate: '1',
+      isSupportSoundQuality: false,
+      isSupportSoundEffect: true,
+      totalDuration: 60,
+      currentPlayDuration: 10,
+      isSupportProgress: false,
+    }
+    let favoriteData: avMusicTemplate.FavoriteData = {
+      isSupportFav: true,
+      isFavorite: false,
+      favCounts: '1000+'
+    }
+    let single: avMusicTemplate.Single = {
+      mediaId: 'mediaId',
+      mediaType: avMusicTemplate.EntityType.SINGLE,
+      parentId: 'parentId',
+      parentMediaType: avMusicTemplate.EntityType.SINGLE,
+      title: '歌曲标题',
+      desc: '歌曲描述',
+      imageUrl: '',
+      playState: avMusicTemplate.PlaybackState.PLAYBACK_STATE_PREPARE,
+      isVip: false,
+      singer: '',
+      tags: [],
+      playInfo: playInfo,
+      favSubscribeData: favoriteData
+    }
+    return single;
+  };
 }
 ```
 
@@ -3133,23 +3131,23 @@ setMediaEntities(entities: MediaEntity[]): Promise&lt;void&gt;
 import { avMusicTemplate } from '@kit.AVSessionKit';
 
 export class TemplateManager {
-    private template: avMusicTemplate.AVMusicTemplate | undefined = undefined;
+  private template: avMusicTemplate.AVMusicTemplate | undefined = undefined;
 
-    /**
-     * 媒体播放后信息后，如：歌单的播放状态。
-     */
-    public setMediaEntities() {
-        let mediaEntities: avMusicTemplate.MediaEntity[] = [{
-            mediaId: 'mediaId',
-            mediaType: avMusicTemplate.EntityType.SINGLE,
-            parentId: 'parentId',
-            parentMediaType: avMusicTemplate.EntityType.SINGLE,
-            title: 'title',
-            imageUrl: 'imageUrl',
-            playState: avMusicTemplate.PlaybackState.PLAYBACK_STATE_PREPARE
-        }];
-        this.template?.setMediaEntities(mediaEntities);
-    };
+  /**
+   * 向音频模板控制方同步媒体资源变更信息，如歌单播放状态。
+   */
+  public setMediaEntities() {
+    let mediaEntities: avMusicTemplate.MediaEntity[] = [{
+      mediaId: 'mediaId',
+      mediaType: avMusicTemplate.EntityType.SINGLE,
+      parentId: 'parentId',
+      parentMediaType: avMusicTemplate.EntityType.SINGLE,
+      title: 'title',
+      imageUrl: 'imageUrl',
+      playState: avMusicTemplate.PlaybackState.PLAYBACK_STATE_PREPARE
+    }];
+    this.template?.setMediaEntities(mediaEntities);
+  };
 }
 ```
 ## setTabContent
@@ -3191,38 +3189,39 @@ setTabContent(tabId: string, tabContent: MediaTabContent): Promise&lt;void&gt;
 import { avMusicTemplate } from '@kit.AVSessionKit';
 
 export class TemplateManager {
-    private template: avMusicTemplate.AVMusicTemplate | undefined = undefined;
-    /**
-     * 某个tab页签下的内容发生变化后通知界面刷新。
-     */
-    public setTabContent() {
-        let mediaEntity: avMusicTemplate.MediaEntity[] = [{
-            mediaId: 'mediaId',
-            mediaType: avMusicTemplate.EntityType.SINGLE,
-            parentId: 'parentId',
-            parentMediaType: avMusicTemplate.EntityType.SINGLE,
-            title: 'title',
-            imageUrl: 'imageUrl',
-            playState: avMusicTemplate.PlaybackState.PLAYBACK_STATE_PREPARE
-        }]
-        let compilation: avMusicTemplate.Compilation[] = [{
-            errorCode: 0,
-            errorMsg: 'success',
-            id: 'id',
-            title: 'title',
-            hasMoreData: true,
-            totalSize: 2,
-            memberMediaType: avMusicTemplate.EntityType.SINGLE,
-            topElements: mediaEntity
-        }]
-        let mediaTabContent: avMusicTemplate.MediaTabContent = {
-            errorCode: 0,
-            errorMsg: 'success',
-            tabId: 'tabId',
-            compilations: compilation
-        }
-        this.template?.setTabContent('tabId', mediaTabContent);
-    };
+  private template: avMusicTemplate.AVMusicTemplate | undefined = undefined;
+
+  /**
+   * 向音频模板控制方同步标签页内容信息，用于标签页内容变化后刷新界面。
+   */
+  public setTabContent() {
+    let mediaEntity: avMusicTemplate.MediaEntity[] = [{
+      mediaId: 'mediaId',
+      mediaType: avMusicTemplate.EntityType.SINGLE,
+      parentId: 'parentId',
+      parentMediaType: avMusicTemplate.EntityType.SINGLE,
+      title: 'title',
+      imageUrl: 'imageUrl',
+      playState: avMusicTemplate.PlaybackState.PLAYBACK_STATE_PREPARE
+    }]
+    let compilation: avMusicTemplate.Compilation[] = [{
+      errorCode: 0,
+      errorMsg: 'success',
+      id: 'id',
+      title: 'title',
+      hasMoreData: true,
+      totalSize: 2,
+      memberMediaType: avMusicTemplate.EntityType.SINGLE,
+      topElements: mediaEntity
+    }]
+    let mediaTabContent: avMusicTemplate.MediaTabContent = {
+      errorCode: 0,
+      errorMsg: 'success',
+      tabId: 'tabId',
+      compilations: compilation
+    }
+    this.template?.setTabContent('tabId', mediaTabContent);
+  };
 }
 ```
 ## setPlaylist
@@ -3263,33 +3262,33 @@ setPlaylist(playlist: PageMediaEntity): Promise&lt;void&gt;
 import { avMusicTemplate } from '@kit.AVSessionKit';
 
 export class TemplateManager {
-    private template: avMusicTemplate.AVMusicTemplate | undefined = undefined;
+  private template: avMusicTemplate.AVMusicTemplate | undefined = undefined;
 
-    /**
-     * 播放列表发送变化后通知界面刷新。
-     */
-    public setPlaylist() {
-        let mediaEntity: avMusicTemplate.MediaEntity = {
-            mediaId: 'mediaId',
-            mediaType: avMusicTemplate.EntityType.SINGLE,
-            parentId: 'parentId',
-            parentMediaType: avMusicTemplate.EntityType.SINGLE,
-            title: 'title',
-            imageUrl: 'imageUrl',
-            playState: avMusicTemplate.PlaybackState.PLAYBACK_STATE_PREPARE
-        }
-        let pageMediaEntity: avMusicTemplate.PageMediaEntity = {
-            errorCode: 0,
-            errorMsg: 'success',
-            pageIndex: 0,
-            pageSize: 1,
-            hasMoreData: true,
-            totalSize: 2,
-            memberMediaType: avMusicTemplate.EntityType.SINGLE,
-            elements: [mediaEntity]
-        }
-        this.template?.setPlaylist(pageMediaEntity);
-    };
+  /**
+   * 向音频模板控制方同步播放列表，用于播放列表变化后刷新界面。
+   */
+  public setPlaylist() {
+    let mediaEntity: avMusicTemplate.MediaEntity = {
+      mediaId: 'mediaId',
+      mediaType: avMusicTemplate.EntityType.SINGLE,
+      parentId: 'parentId',
+      parentMediaType: avMusicTemplate.EntityType.SINGLE,
+      title: 'title',
+      imageUrl: 'imageUrl',
+      playState: avMusicTemplate.PlaybackState.PLAYBACK_STATE_PREPARE
+    }
+    let pageMediaEntity: avMusicTemplate.PageMediaEntity = {
+      errorCode: 0,
+      errorMsg: 'success',
+      pageIndex: 0,
+      pageSize: 1,
+      hasMoreData: true,
+      totalSize: 2,
+      memberMediaType: avMusicTemplate.EntityType.SINGLE,
+      elements: [mediaEntity]
+    }
+    this.template?.setPlaylist(pageMediaEntity);
+  };
 }
 ```
 
@@ -3334,7 +3333,7 @@ export class TemplateManager {
   private template: avMusicTemplate.AVMusicTemplate | undefined = undefined;
 
   /**
-   * 下载状态，进度刷新。
+   * 向音频模板控制方同步单曲下载状态信息，用于刷新下载进度。
    */
   public setDownloadMediaEntityStatus(mediaEntity: avMusicTemplate.MediaEntity) {
     this.template?.setDownloadMediaEntityStatus(mediaEntity);
@@ -3392,38 +3391,38 @@ setCustomElements(actionType: ActionType, customType: CustomType, customElement:
 import { avMusicTemplate } from '@kit.AVSessionKit';
 
 export class TemplateManager {
-    private template: avMusicTemplate.AVMusicTemplate | undefined = undefined;
+  private template: avMusicTemplate.AVMusicTemplate | undefined = undefined;
 
-    /**
-     * 自定义数据发生变化后通知。
-     */
-    public setCustomElements() {
-        let mediaEntity: avMusicTemplate.MediaEntity = {
-            mediaId: 'mediaId',
-            mediaType: avMusicTemplate.EntityType.SINGLE,
-            parentId: 'parentId',
-            parentMediaType: avMusicTemplate.EntityType.SINGLE,
-            title: 'title',
-            imageUrl: 'imageUrl',
-            playState: avMusicTemplate.PlaybackState.PLAYBACK_STATE_PREPARE
-        }
-        let compilation: avMusicTemplate.Compilation = {
-            errorCode: 0,
-            errorMsg: 'success',
-            id: 'id',
-            title: 'title',
-            hasMoreData: true,
-            totalSize: 2,
-            memberMediaType: avMusicTemplate.EntityType.SINGLE,
-            topElements: [mediaEntity]
-        }
-        let customElement: avMusicTemplate.CustomElement = {
-            errorCode: 0,
-            errorMsg: 'success',
-            customCompilations: [compilation]
-        }
-        this.template?.setCustomElements('add', 'COMPILATION', customElement);
-    };
+  /**
+   * 向音频模板控制方同步自定义元素变更信息。
+   */
+  public setCustomElements() {
+    let mediaEntity: avMusicTemplate.MediaEntity = {
+      mediaId: 'mediaId',
+      mediaType: avMusicTemplate.EntityType.SINGLE,
+      parentId: 'parentId',
+      parentMediaType: avMusicTemplate.EntityType.SINGLE,
+      title: 'title',
+      imageUrl: 'imageUrl',
+      playState: avMusicTemplate.PlaybackState.PLAYBACK_STATE_PREPARE
+    }
+    let compilation: avMusicTemplate.Compilation = {
+      errorCode: 0,
+      errorMsg: 'success',
+      id: 'id',
+      title: 'title',
+      hasMoreData: true,
+      totalSize: 2,
+      memberMediaType: avMusicTemplate.EntityType.SINGLE,
+      topElements: [mediaEntity]
+    }
+    let customElement: avMusicTemplate.CustomElement = {
+      errorCode: 0,
+      errorMsg: 'success',
+      customCompilations: [compilation]
+    }
+    this.template?.setCustomElements('add', 'COMPILATION', customElement);
+  };
 }
 ```
 ## setSettings
@@ -3464,22 +3463,22 @@ setSettings(settingItems: SettingItem[]): Promise&lt;void&gt;
 import { avMusicTemplate } from '@kit.AVSessionKit';
 
 export class TemplateManager {
-    private template: avMusicTemplate.AVMusicTemplate | undefined = undefined;
+  private template: avMusicTemplate.AVMusicTemplate | undefined = undefined;
 
-    /**
-     * 设置项变化后通知。
-     */
-    public setSettings() {
-        let settingItems: avMusicTemplate.SettingItem[] = [{
-            id: 'id',
-            title: 'title',
-            desc: 'desc',
-            mediaId: 'mediaId',
-            settingType: avMusicTemplate.SettingType.SWITCH,
-            settingValue: false
-        }];
-        this.template?.setSettings(settingItems);
-    };
+  /**
+   * 向音频模板控制方同步设置信息。
+   */
+  public setSettings() {
+    let settingItems: avMusicTemplate.SettingItem[] = [{
+      id: 'id',
+      title: 'title',
+      desc: 'desc',
+      mediaId: 'mediaId',
+      settingType: avMusicTemplate.SettingType.SWITCH,
+      settingValue: false
+    }];
+    this.template?.setSettings(settingItems);
+  };
 }
 ```
 
@@ -3522,16 +3521,16 @@ reportExecuteAction(actionType: string, params: string): Promise&lt;void&gt;
 import { avMusicTemplate } from '@kit.AVSessionKit';
 
 export class TemplateManager {
-    private template: avMusicTemplate.AVMusicTemplate | undefined = undefined;
+  private template: avMusicTemplate.AVMusicTemplate | undefined = undefined;
 
-    /**
-     * 模拟向媒体中心同步执行操作信息。
-     */
-    public reportExecuteAction() {
-        let actionType: string = 'actionType';
-        let params: string = 'params';
-        this.template?.reportExecuteAction(actionType, params);
-    };
+  /**
+   * 向音频模板控制方同步执行操作信息。
+   */
+  public reportExecuteAction() {
+    let actionType: string = 'actionType';
+    let params: string = 'params';
+    this.template?.reportExecuteAction(actionType, params);
+  };
 }
 ```
 
@@ -3572,36 +3571,34 @@ setExtensionAbility(want: WantAgent): Promise&lt;void&gt;
 ```ts
 import { avMusicTemplate } from '@kit.AVSessionKit';
 import { wantAgent } from '@kit.AbilityKit';
-import { BusinessError } from '@kit.BasicServicesKit';
 
 export class TemplateManager {
-    private template: avMusicTemplate.AVMusicTemplate | undefined = undefined;
+  private template: avMusicTemplate.AVMusicTemplate | undefined = undefined;
 
-    /**
-     * 媒体应用需要拉起应用的自定义界面时调用。
-     */
-    public setExtensionAbility() {
-        let wantAgentInfo: wantAgent.WantAgentInfo = {
-            wants: [
-                {
-                    bundleName: "com.example.templateprovider",
-                    abilityName: 'EntryAbility',
-                    type: 'action',
-                    parameters: {
-                        'ability.want.params.uiExtensionType': 'action'
-                    }
-                }
-            ],
-            actionType: wantAgent.OperationType.START_ABILITIES,
-            requestCode: 0
+  /**
+   * 媒体应用需要拉起应用的自定义界面时调用。
+   */
+  public setExtensionAbility() {
+    let wantAgentInfo: wantAgent.WantAgentInfo = {
+      wants: [
+        {
+          bundleName: "com.example.templateprovider",
+          abilityName: 'EntryAbility',
+          type: 'action',
+          parameters: {
+            'ability.want.params.uiExtensionType': 'action'
+          }
         }
-        wantAgent.getWantAgent(wantAgentInfo).then((agent) => {
-            this.template?.setExtensionAbility(agent);
-        })
-    };
+      ],
+      actionType: wantAgent.OperationType.START_ABILITIES,
+      requestCode: 0
+    }
+    wantAgent.getWantAgent(wantAgentInfo).then((agent) => {
+      this.template?.setExtensionAbility(agent);
+    })
+  };
 }
 ```
-
 
 ## destroy
 

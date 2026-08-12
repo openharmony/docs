@@ -435,7 +435,7 @@ isActiveSync(volumeType: AudioVolumeType): boolean
 
 > **说明：**
 >
-> 从API版本9开始支持，从API版本20开始废弃，建议使用[isStreamActive](arkts-apis-audio-AudioStreamManager.md#isstreamactive20)替代。注意替代接口与原接口入参存在差异，例如[StreamUsage](arkts-apis-audio-e.md#streamusage)中提供了`STREAM_USAGE_MUSIC`、`STREAM_USAGE_MOVIE`、`STREAM_USAGE_AUDIOBOOK`、`STREAM_USAGE_GAME`等更细分的类型，而[AudioVolumeType](arkts-apis-audio-e.md#audiovolumetype)中这些类型统一归入`MEDIA`类型。具体映射关系请参考[音量控制](../../media/audio/using-right-streamusage-for-playback.md#音量控制)中常见的播放流类型与音量类型的对应关系，迁移时根据实际业务场景选择对应的StreamUsage值。
+> 从API version 10开始支持，从API version 20开始废弃，建议使用[isStreamActive](#isstreamactive20)替代。注意替代接口与原接口入参存在差异，例如[StreamUsage](arkts-apis-audio-e.md#streamusage)中提供了`STREAM_USAGE_MUSIC`、`STREAM_USAGE_MOVIE`、`STREAM_USAGE_AUDIOBOOK`、`STREAM_USAGE_GAME`等更细分的类型，而[AudioVolumeType](arkts-apis-audio-e.md#audiovolumetype)中这些类型统一归入`MEDIA`类型。具体映射关系请参考[音量控制](../../media/audio/using-right-streamusage-for-playback.md#音量控制)中常见的播放流类型与音量类型的对应关系，迁移时根据实际业务场景选择对应的StreamUsage值。
 
 **系统能力：** SystemCapability.Multimedia.Audio.Renderer
 

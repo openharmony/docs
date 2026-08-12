@@ -3,15 +3,15 @@
 <!--Kit: Connectivity Kit-->
 <!--Subsystem: Communication-->
 <!--Owner: @enjoy_sunshine-->
-<!--Designer: @chengguohong; @tangjia15-->
+<!--Designer: @tangjia15-->
 <!--Tester: @wangfeng517-->
 <!--Adviser: @zhang_yixin13-->
 
-本模块提供了基于低功耗蓝牙（Bluetooth Low Energy，[BLE](../../connectivity/terminology.md#ble)）技术的蓝牙能力，支持发起BLE扫描、发送BLE广播报文、以及基于通用属性协议（Generic Attribute Profile，[GATT](../../connectivity/terminology.md#gatt)）的连接和传输数据。
+本模块提供了基于低功耗蓝牙（Bluetooth Low Energy，[BLE](../../connectivity/bluetooth/terminology.md#ble)）技术的蓝牙能力，支持发起BLE扫描、发送BLE广播报文、以及基于通用属性协议（Generic Attribute Profile，[GATT](../../connectivity/bluetooth/terminology.md#gatt)）的连接和传输数据。
 
 > **说明：**
 > - 本模块首批接口从API version 10开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
-> - 接口中涉及的[UUID](../../connectivity/terminology.md#uuid)服务，可以通过工具函数[util.generateRandomUUID](../apis-arkts/js-apis-util.md#utilgeneraterandomuuid9)生成。
+> - 接口中涉及的[UUID](../../connectivity/bluetooth/terminology.md#uuid)服务，可以通过工具函数[util.generateRandomUUID](../apis-arkts/js-apis-util.md#utilgeneraterandomuuid9)生成。
 
 
 
@@ -4120,7 +4120,7 @@ try {
 
 setBLEMtuSize(mtu: number): void
 
-client端同server端协商[MTU](../../connectivity/terminology.md#mtu)（最大传输单元）大小。<br>
+client端同server端协商[MTU](../../connectivity/bluetooth/terminology.md#mtu)（最大传输单元）大小。<br>
 - 需先调用[connect](#connect)方法，等GATT profile连接成功后才能使用。<br>
 - 通过[on('BLEMtuChange')](#onblemtuchange-1)，订阅MTU协商结果。<br>
 - 如果未协商，MTU大小默认为23字节。
@@ -4168,7 +4168,7 @@ try {
 
 setBLEMtu(mtu: number): Promise&lt;number&gt;
 
-client端同server端协商[MTU](../../connectivity/terminology.md#mtu)（最大传输单元）大小。<br>
+client端同server端协商[MTU](../../connectivity/bluetooth/terminology.md#mtu)（最大传输单元）大小。<br>
 - 需先调用[connect](#connect-1)方法，等GATT profile连接成功后才能使用。<br>
 - 需保证入参符合取值范围，不在取值范围内会直接返回异常。<br>
 - 如果未协商，MTU大小默认为23字节。

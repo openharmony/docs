@@ -54,7 +54,7 @@ int32_t OH_Vibrator_PlayVibration(int32_t duration, Vibrator_Attribute attribute
 
 | 参数项 | 类型 | 必填 | 描述 |
 | -- | -- | -- | -- |
-| duration | int32_t | 是 | 振动时长，单位：毫秒。用于控制马达振动的持续时间。取值范围[1, 60000]。 |
+| duration | int32_t | 是 | 振动时长，单位：ms（毫秒）。用于控制马达振动的持续时间。取值范围[1, 60000]。 |
 | attribute | [Vibrator_Attribute](capi-vibrator-vibrator-attribute.md) | 是 | 振动属性，用于配置振动的强度、模式等特性。请参考[Vibrator_Attribute](capi-vibrator-vibrator-attribute.md)。 |
 
 **返回：**

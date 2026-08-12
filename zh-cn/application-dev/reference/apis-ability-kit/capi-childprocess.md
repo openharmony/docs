@@ -10,7 +10,7 @@
 
 提供子进程的管理能力，支持创建Native子进程并在父子进程间建立IPC通道，用于实现多进程应用开发。
 
-创建的子进程不支持UI界面，也不支持Context相关的接口调用。通过此模块和[childProcessManager](js-apis-app-ability-childProcessManager.md)（非SELF_FORK模式）启动的子进程总数最大为512个。
+创建的子进程不支持UI界面，也不支持Context相关的接口调用。通过本模块和[childProcessManager](js-apis-app-ability-childProcessManager.md)启动的子进程总数最大为512个，其中childProcessManager在SELF_FORK模式下启动的子进程不计入总数。
 
 **系统能力：** SystemCapability.Ability.AbilityRuntime.Core
 

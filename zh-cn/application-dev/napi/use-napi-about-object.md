@@ -89,13 +89,13 @@ class Person {
 // 创建类的实例
 const person = new Person('Alice', 30);
 // 传入实例对象，获取该对象的原型
-let applePrototype = testNapi.getPrototype(person);
-// 判断通过testNapi.getPrototype()函数获取到的原型是不是apple的原型
+let personPrototype = testNapi.getPrototype(person);
+// 判断通过testNapi.getPrototype()函数获取到的原型是不是person的原型
 // 在DevEco Studio 4.1及以后的版本中，由于ArkTS没有原型的概念，
 // 因此尝试进行原型赋值或相关操作时，
 // 将会触发错误提示'Prototype assignment is not supported (arkts-no-prototype-assignment)'，
 // 以下代码需在ts文件中执行
-if (applePrototype === Person.prototype) {
+if (personPrototype === Person.prototype) {
   hilog.info(0x0000, 'Node-API', 'get_prototype_success');
 } else {
   hilog.error(0x0000, 'Node-API', 'get_prototype_fail');
@@ -635,7 +635,8 @@ static napi_value CreateExternal(napi_env env, napi_callback_info info)
     // 返回带有外部数据的对象
     napi_status status = napi_create_external(env, data, finalizeCallback, nullptr, &result);
     if (status != napi_ok) {
-        OH_LOG_ERROR(LOG_APP, " Node-API Failed to create external data");
+        OH_LOG_ERROR(LOG_APP, "Node-API Failed to create external data");
+        free(data);
         return nullptr;
     }
     return result;

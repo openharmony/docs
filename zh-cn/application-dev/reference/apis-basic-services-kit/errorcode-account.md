@@ -773,6 +773,20 @@ The foreground sub-profile with a logged-in distributed account cannot be direct
 
 将前台子身份资料关联的分布式账号登出后，再触发切换操作。
 
+## 12300406 该分布式账号信息已经与目标系统账号的其他子身份资料绑定
+
+**错误信息**
+
+The distributed account information has already been bound to a sub-profile of the target OS account.
+
+**可能原因**
+
+该分布式账号信息已经与目标系统账号的其他子身份资料绑定。
+
+**处理步骤**
+
+停止绑定操作，或者在目标系统账号下触发解绑后再执行绑定操作。
+
 ## 12400001 应用不存在
 
 **错误信息**

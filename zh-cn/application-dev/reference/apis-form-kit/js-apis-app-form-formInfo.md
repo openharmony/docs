@@ -35,7 +35,7 @@ import { formInfo } from '@kit.FormKit';
 | description | string               | 否    | 否     | 卡片描述。 <br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | descriptionId<sup>10+</sup>      | number               | 否    | 否     | 卡片描述ID。 <br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。<br>**说明：** 数值为大于0小于2^32的整数。 |
 | type        | [FormType](#formtype)             | 否    | 否     | 卡片类型。当前支持JS卡片、ArkTS卡片。<br>**说明：** 当卡片类型为JS时，isDynamic强制为true，transparencyEnabled不生效，jsComponentName为必填项。 <br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。|
-| jsComponentName      | string               | 否    | 否     | JS卡片的组件名，仅当卡片类型为JS时有效。|
+| jsComponentName      | string               | 否    | 否     | JS卡片的组件名，仅当卡片类型为JS时有效。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。|
 | colorMode<sup>(deprecated)</sup>  | [ColorMode](#colormodedeprecated) | 否    | 否     | 卡片颜色模式。 <br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。<br> **说明：** <br> 从API version 9开始支持，从API version 20开始废弃。无替代接口。 |
 | isDefault    | boolean      | 否    | 否     | 卡片是否是默认卡片。<br/>-&nbsp;true：默认卡片。<br/>-&nbsp;false：非默认卡片。 <br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | updateEnabled  | boolean               | 否    | 否     | 卡片是否使能更新。<br/>-&nbsp;true：表示支持周期性刷新。<br/>-&nbsp;false：表示不支持周期性刷新。 <br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
@@ -247,10 +247,10 @@ import { formInfo } from '@kit.FormKit';
 
 | 名称 | 类型 | 只读 | 可选  | 说明 |
 |-----|-----|------|-----|-------|
-| left   | number | 否 | 否   | 描述矩形的左上角顶点的 x 坐标，单位：vp，用于定位卡片区域的位置。范围参考[请求参数约束](../../form/arkts-ui-liveform-sceneanimation-overview.md#请求参数约束)。|
-| top    | number | 否 | 否   | 描述矩形的左上角顶点的 y 坐标，单位：vp，用于定位卡片区域的位置。范围参考[请求参数约束](../../form/arkts-ui-liveform-sceneanimation-overview.md#请求参数约束)。|
-| width  | number | 否 | 否   | 描述矩形的宽度，单位：vp，用于定义卡片区域的尺寸。范围参考[请求参数约束](../../form/arkts-ui-liveform-sceneanimation-overview.md#请求参数约束)。|
-| height | number | 否 | 否   | 描述矩形的高度，单位：vp，用于定义卡片区域的尺寸。范围参考[请求参数约束](../../form/arkts-ui-liveform-sceneanimation-overview.md#请求参数约束)。|
+| left   | number | 否 | 否   | 描述矩形的左上角顶点的 x 坐标，单位：vp，用于定位卡片区域的位置。范围参考[请求参数约束](../../form/arkts-ui-liveform-sceneanimation-development.md#请求参数约束)。|
+| top    | number | 否 | 否   | 描述矩形的左上角顶点的 y 坐标，单位：vp，用于定位卡片区域的位置。范围参考[请求参数约束](../../form/arkts-ui-liveform-sceneanimation-development.md#请求参数约束)。|
+| width  | number | 否 | 否   | 描述矩形的宽度，单位：vp，用于定义卡片区域的尺寸。范围参考[请求参数约束](../../form/arkts-ui-liveform-sceneanimation-development.md#请求参数约束)。|
+| height | number | 否 | 否   | 描述矩形的高度，单位：vp，用于定义卡片区域的尺寸。范围参考[请求参数约束](../../form/arkts-ui-liveform-sceneanimation-development.md#请求参数约束)。|
 
 ## FormLocation<sup>20+</sup>
 

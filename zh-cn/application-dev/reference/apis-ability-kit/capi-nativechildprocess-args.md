@@ -27,5 +27,5 @@ typedef struct {...} NativeChildProcess_Args
 
 | 名称                                          | 描述 |
 |---------------------------------------------| -- |
-| char* entryParams                           | 入口参数，大小不能超过150KB。 |
-| struct [NativeChildProcess_FdList](capi-nativechildprocess-fdlist.md) fdList | 传递给子进程的文件描述符信息列表。 |
+| char* entryParams                           | 传递给子进程入口函数的参数字符串，大小不能超过150KB，超出限制时接口返回错误。 |
+| struct [NativeChildProcess_FdList](capi-nativechildprocess-fdlist.md) fdList | 传递给子进程的文件描述符信息列表，文件描述符记录个数不能超过16个。子进程可通过这些文件描述符与主进程进行通信。 |

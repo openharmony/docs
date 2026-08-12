@@ -6,20 +6,22 @@
 <!--Designer: @lanming-->
 <!--Tester: @PAFT-->
 <!--Adviser: @zengyawen-->
+<!-- md-trans-meta sourceCommit=78d27a16851062ae03d6a51de8b99e33aec772a0 translatedAt=2026-08-11T02:00:06.505Z pushedAt=2026-08-11T07:40:35.533Z -->
 
-Certificate parsing with PKCS #12 is supported since API version 18.
+Certificates with PKCS #12 can be parsed since API version 18.
 
-Certificate creation with PKCS #12 is supported since API version 21.
+Certificates with PKCS #12 can be created since API version 21.
 
-PKCS #12 is a standard format used to store and transmit private keys, certificates, and certificate chains. This format uses passwords to protect multiple cryptographic objects and packs them into an encrypted container file. It can store private keys, public key certificates, CA certificates, and other related cryptographic data. PKCS #12 is widely used in secure storage, cross-platform transmission, and certificate backup of digital certificates. It is one of the important standards for certificate management and PKI applications.
+PKCS #12 is a standard format used to store and transmit private keys, certificates, and their associated certificate chains. This format uses password protection to pack multiple cryptographic objects into an encrypted container file, supporting the storage of private keys, public key certificates, certificate authority certificates, and other related cryptographic data. PKCS #12 is widely used in scenarios such as secure storage of digital certificates, cross-platform transmission, and certificate backup, and is one of the important standards for certificate management and PKI applications.
 
 ## How to Develop
 
-1. Import the [cert](../../reference/apis-device-certificate-kit/js-apis-cert.md) module.
+1. Import the [certificate module](../../reference/apis-device-certificate-kit/js-apis-cert.md).
 
    ```ts
    import { cert } from '@kit.DeviceCertificateKit';
    ```
+
 2. Call [cert.createPkcs12](../../reference/apis-device-certificate-kit/js-apis-cert.md#certcreatepkcs1221) to create a PKCS #12 file.
 
 3. Call [cert.parsePkcs12](../../reference/apis-device-certificate-kit/js-apis-cert.md#certparsepkcs1218) to parse the PKCS #12 file.

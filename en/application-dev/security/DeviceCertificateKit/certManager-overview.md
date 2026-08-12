@@ -1,4 +1,4 @@
-# Certificate Management Overview
+# Certificate Manager Overview
 
 <!--Kit: Device Certificate Kit-->
 <!--Subsystem: Security-->
@@ -6,49 +6,60 @@
 <!--Designer: @chande-->
 <!--Tester: @zhangzhi1995-->
 <!--Adviser: @zengyawen-->
+<!-- md-trans-meta sourceCommit=1985ec3e5b58133a2cd1dfe00a69bfda6f9ebf20 translatedAt=2026-08-11T01:58:29.571Z pushedAt=2026-08-11T07:51:38.430Z -->
 
-The **certManager** module provides system-level certificate management capabilities to implement management and secure use of certificates throughout their lifecycle (installation, storage, use, and destruction). In addition, it provides APIs for starting the certificate management dialog box so that you can view and manage certificates and credentials on the application UI.
+A device user may have certificate credentials that need to be stored securely for identity authentication and verification by other entities (devices, servers, or individuals). For example, an enterprise internal website issues certificate credentials to employees for identity authentication when they log in to the internal website.
 
-## Basic Concepts
+The Certificate Manager APIs provide certificate credential management capabilities for users and your app. These capabilities enable encryption and secure storage of private data (the private key of the certificate) within certificate credentials.
 
-- Certificate: a file that is signed by a Certificate Authority (CA) and contains the public key owner information and public key. X.509 is a common certificate format.
-- Credential: private key corresponding to the public key in a certificate.
-- Keystore file: a file that contains the certificate and credential. PKCS#12 (.p12) is a common keystore file format.
-- Signature: ciphertext obtained by encrypting the message digest using the private key of an asymmetric key pair.
-- Signature verification: a process involving decrypting the signature using the signer's public key, generating a hash from the data received, and comparing the generated hash with the original hash. If the two hashes match, the signature is valid, which means the signed data has not been changed.
+In addition to storing certificate credentials, the Certificate Manager can also store CA certificates for verifying the certificate credentials of other entities (devices, servers, or individuals). For example, your app can use a pre-installed CA certificate to perform trust verification on the HTTPS certificate chain of an app server.
 
-### Certificate Lifecycle Management
+![](figures/certificate-manager-intro.PNG)
 
-You can use the APIs provided by the **certManager** module to implement lifecycle management of service certificates/credentials and CA certificates. The certificate lifecycle management involves the following:
+## Functional Architecture
 
-- Certificate installation: You can use **install()** to pass in a certificate file or keystore file.
+![](figures/certificate-manager-function-arch.PNG)
 
-- Certificate storage: The **certManager** module stores the installed certificate in a directory of the certificate manager service. The private key credential corresponding to the certificate is stored in the HUKS module.
+The Certificate Manager provides management capabilities for the following certificate types:
 
-- Certificate usage: You can obtain a certificate file and perform service-related operations, and use the APIs provided by **certManager** module to implement signing and signature verification with the certificate and private key.
+- CA certificate:
 
-- Certificate destruction: You can use APIs to destroy one or more certificates or credentials stored in the directory of the certificate manager service.
+  1. System CA certificate: A CA certificate pre-installed by the operating system.<!--RP1--><!--RP1End-->
 
-### Certificate Management Dialog Box
+  2. User CA certificate: A CA certificate that belongs to the device user, typically installed and managed by the device user. An application can bring up the certificate manager dialog via API, guiding the user to install or uninstall user CA certificates.
 
-The certificate management dialog box allows you to view and manage certificates and credentials on the application UI.
+- Certificate credentials:
 
-- Certificate viewing: View the list and details of CA certificates and credentials.
+  1. System certificate credential: used for device identity authentication by a server when a system service (such as WLAN or VPN) connects to the server. It is typically installed and managed by the device user. An app can launch a dialog of the Certificate Manager through APIs to guide the user in installing system certificate credentials.
 
-- Certificate installation: Install user CA certificates and credentials from the storage device. For 2-in-1 devices, you can directly call the dialog box API for installing certificates.
+  2. User certificate credential: a certificate credential that belongs to the device user, installed and managed by the device user. An app can launch a dialog of the Certificate Manager through APIs to guide the user in installing user certificate credentials. Before using a user certificate credential, the app must call the Certificate Manager APIs to obtain user authorization.
 
-- Certificate deletion: Delete a specified user CA certificate. For 2-in-1 devices, you can directly call the dialog box API for destroying certificates.
+  3. Application certificate credential: a certificate credential that belongs to an app, installed and managed by the app through the Certificate Manager APIs. The device user cannot view or manage application certificate credentials.
 
-- Certificate details: For 2-in-1 devices, you can call the dialog box API for viewing certificate details to display certificate details.
+> **NOTE**
+>
+> The device user can go to the **Certificates &amp; Credentials** page in the Settings app to view and manage CA certificates and certificate credentials.
+
+| Certificate Type | Certificate Ownership | Certificate Management Method | Actions Available to Device User | Actions Available to App | Typical Scenario |
+|-----|-------------------|-------------------------------|--------|----|----------------|
+| System CA certificate | Operating system | Pre-installed by the operating system | View | Read | Verify the certificate chain of a public website server. |
+| User CA certificate | Device user | Managed by the user | Install/Uninstall/View | Read, launch the install/uninstall dialog | Verify the certificate chain of an enterprise internal server. |
+| System certificate credential | Operating system | Managed by the user | Install/Uninstall/View | Launch the install dialog | Perform access authentication when the device connects to an enterprise internal WLAN/VPN service. |
+| User certificate credential | Device user | Managed by the user | Install/Uninstall/Revoke authorization/View | Launch the install/authorization dialog<br>Read and sign | Log in to an enterprise internal server through mutual HTTPS. |
+| Application certificate credential | App | Managed by the app | NA | Read/Install/Uninstall/Sign | The app server authenticates the app identity. |
 
 ## Constraints
 
-Currently, this module supports only the installation and use of application certificates and credentials of the RSA, ECC, and SM2 algorithms.
+The Certificate Manager currently supports only certificates of the RSA, ECC, and SM2 algorithm types.
 
 ## Development
 
-You can use this module to implement the following functionalities.
+The Certificate Manager provides development guidance for the following functionalities. Refer to them during development.
 
-- [Application Certificate Development](certManager-private-credential-guidelines.md)
 - [CA Certificate Development](certManager-ca-certs-guidelines.md)
-- [Certificate Management Dialog Box Development](certManagerDialog-guidelines.md)
+
+- [Application Certificate Credential Development](certManager-private-credential-guidelines.md)
+
+- [User Certificate Credential Development](certManager-user-credential-guidelines.md)
+
+- [System Certificate Credential Development](certManager-system-credential-guidelines.md)

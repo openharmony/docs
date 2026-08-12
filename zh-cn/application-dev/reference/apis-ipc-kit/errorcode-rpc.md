@@ -31,7 +31,7 @@ Failed to call mmap.
 
 **处理步骤**
 
-1. 请检查调用Ashmem::create()时是否指定了超大内存。
+1. 请检查调用Ashmem::create()时是否指定了超过系统限制的内存大小。
 2. 请检查执行映射时系统是否有足够的内存可用。
 
 ## 1900002 系统调用ioctl失败
@@ -158,7 +158,7 @@ The proxy or remote object is invalid.
 
 **错误描述**
 
-非法的代理对象或者远程对象。
+无效的代理对象或远程对象。
 
 **可能原因**
 
@@ -182,7 +182,7 @@ Failed to write data to the message sequence.
 
 **可能原因**
 
-sequence默认空间已满。
+MessageSequence默认空间已满。
 
 **处理步骤**
 
@@ -196,7 +196,7 @@ Failed to read data from the message sequence.
 
 **错误描述**
 
-读取MessageSequence数据失败。
+读取MessageSequence数据失败。MessageSequence采用顺序读写方式，读取顺序必须与写入顺序严格一致。
 
 **可能原因**
 
@@ -259,5 +259,5 @@ Failed to call dup.
 
 **处理步骤**
 
-1. 请检查入参fd是否依然有效。
+1. 请检查入参fd是否依然有效（如：fd值大于等于0，且未被关闭）。
 2. 请排查进程是否已经耗尽了fd资源。
