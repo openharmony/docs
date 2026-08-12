@@ -491,7 +491,7 @@ off(type: 'callStateChange', callback?: Callback\<CallStateInfo\>): void
 | 参数名   | 类型                                                         | 必填 | 说明                                                         |
 | -------- | ------------------------------------------------------------ | ---- | ----------------------------------------------------------- |
 | type     | string                                                       | 是   | 通话状态变化事件，参数固定为"callStateChange"。               |
-| callback | Callback\<[CallStateInfo](#callstateinfo11)\>                | 否   | 回调函数，返回通话状态信息对象。参考[CallState](js-apis-call.md#callstate)。<br>其中，三方应用仅能获取state通话状态。number受系统权限管控，仅面向系统应用开放。 |
+| callback | Callback\<[CallStateInfo](#callstateinfo11)\>                | 否   | 回调函数，返回通话状态信息对象。<br>其中，三方应用仅能获取state通话状态。number受系统权限管控，仅面向系统应用开放。 |
 
 **错误码：**
 
