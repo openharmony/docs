@@ -885,7 +885,7 @@ OH_AudioStream_Result OH_AudioRenderer_SetDefaultOutputDevice(OH_AudioRenderer* 
 
 | 类型 | 说明 |
 | -- | -- |
-| [OH_AudioStream_Result](capi-native-audiostream-base-h.md#oh_audiostream_result) | AUDIOSTREAM_SUCCESS：函数执行成功。<br>         AUDIOSTREAM_ERROR_INVALID_PARAM：<br>                                                  1. 参数renderer为nullptr;<br>                                                  2. 参数deviceType无效。<br>         AUDIOSTREAM_ERROR_ILLEGAL_STATE：执行状态异常。<br>         AUDIOSTREAM_ERROR_SYSTEM：出现系统错误。 |
+| [OH_AudioStream_Result](capi-native-audiostream-base-h.md#oh_audiostream_result) | AUDIOSTREAM_SUCCESS：函数执行成功。<br>         AUDIOSTREAM_ERROR_INVALID_PARAM：<br>                                                  1. 参数renderer为nullptr。<br>                                                  2. 参数deviceType无效。<br>         AUDIOSTREAM_ERROR_ILLEGAL_STATE：执行状态异常。<br>         AUDIOSTREAM_ERROR_SYSTEM：出现系统错误。 |
 
 ### OH_AudioRenderer_OnInterruptCallback()
 

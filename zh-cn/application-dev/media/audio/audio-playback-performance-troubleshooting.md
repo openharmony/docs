@@ -98,6 +98,6 @@
 ## 相关文档参考
 
 - 使用OHAudio播放的示例代码，请参考[推荐使用OHAudio开发音频播放功能(C/C++)](using-ohaudio-for-playback.md)。
-- 使用AudioRenderer播放的示例代码，请参考[使用AudioRenderer开发音频播放功能(ArkTs)](using-audiorenderer-for-playback.md)。
+- 使用AudioRenderer播放的示例代码，请参考[使用AudioRenderer开发音频播放功能(ArkTS)](using-audiorenderer-for-playback.md)。
 - 推荐抓取Trace日志，进行进一步的性能分析，具体操作请参考[音频性能分析方法](audio-performance.md#音频性能分析方法)。
 - 在负载场景下，开发者可通过接入[音频工作组管理](audio-workgroup.md)能力提升应用的调度优先级，由系统保障线程资源分配满足预期时间要求。
