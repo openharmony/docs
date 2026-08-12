@@ -384,7 +384,10 @@ subscribe(capability: OnscreenAwarenessCap, callback: Callback&lt;OnscreenAwaren
 
 开启屏幕内容主动感知，并订阅屏幕感知结果。
 
-**需要权限**：ohos.permission.GET_SCREEN_CONTENT
+**需要权限**：
+
+- API版本26+：ohos.permission.ONSCREEN_AWARENESS.
+- API版本23-24：ohos.permission.GET_SCREEN_CONTENT.
 
 **系统能力**：SystemCapability.MultimodalAwareness.OnScreenAwareness
 
