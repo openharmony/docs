@@ -101,20 +101,22 @@ hidumper -s 4700 -a "buscenter -l remote_device_info"
    
    ```json5
    {
-     "extensionAbilities": [
-      {
-        "name": "EntrydistributedAbility",
-        "srcEntry": "./ets/entrybackupability/EntryDistributedAbility.ets",
-        "type": "distributed",
-        "exported": false,
-        "metadata": [
-          {
-            "name": "ohos.extension.DistributedExtension",
-          }
-        ],
-        "srcEntry": "./ets/common/MDSExtension.ts"
-      }
-     ]
+     "module": {
+       "extensionAbilities": [
+        {
+          "name": "EntrydistributedAbility",
+          "srcEntry": "./ets/entrybackupability/EntryDistributedAbility.ets",
+          "type": "distributed",
+          "exported": false,
+          "metadata": [
+            {
+              "name": "ohos.extension.DistributedExtension",
+            }
+          ],
+          "srcEntry": "./ets/common/MDSExtension.ts"
+        }
+       ]
+     }
    }
    
    ```
