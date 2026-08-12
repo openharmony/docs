@@ -15,8 +15,8 @@
 3. **打开设备**：建立设备连接会话。  
 4. **打开端口**：根据端口方向（输入/输出）分别打开端口。  
 5. **数据交互**：  
-   - **接收**：通过回调函数接收UMP（Universal MIDI Packet 通用MIDI数据包）格式的MIDI数据。  
-   - **发送**：构建UMP数据包并通过输出端口发送。  
+   - **接收**：通过回调函数接收UMP（Universal MIDI Packet）格式的MIDI数据。  
+   - **发送**：构建UMP（Universal MIDI Packet）并通过输出端口发送。  
 6. **释放资源**：使用完毕后关闭端口、设备并销毁客户端。
 
 **引用文件：** <ohmidi/native_midi.h>
@@ -217,7 +217,7 @@ OH_MIDIStatusCode OH_MIDIClient_OpenBLEDevice(OH_MIDIClient *client, const char 
 | 参数项 | 描述 |
 | -- | -- |
 | [OH_MIDIClient](capi-ohmidi-oh-midiclientstruct.md) *client | 目标客户端句柄。传入的client指针必须为[OH_MIDIClient_Create](capi-native-midi-h.md#oh_midiclient_create)创建的实例。 |
-| const char *deviceAddr | BLE设备的MAC地址（格式："XX:XX:XX:XX:XX:XX"，X为十六进制字符0-9、A-F，例如："AA:BB:CC:DD:EE:FF"）。 |
+| const char *deviceAddr | BLE设备的MAC地址。<br>格式："XX:XX:XX:XX:XX:XX"，X为十六进制字符0-9、A-F，例如："AA:BB:CC:DD:EE:FF"。 |
 | [OH_MIDIClient_OnDeviceOpened](capi-native-midi-base-h.md#oh_midiclient_ondeviceopened) callback | 连接过程完成时要调用的回调函数。 |
 | void *userData | 传递给回调的用户自定义数据指针。 |
 
@@ -456,7 +456,7 @@ OH_MIDIStatusCode OH_MIDIDevice_Send(OH_MIDIDevice *device, uint32_t portIndex, 
 | -- | -- |
 | [OH_MIDIDevice](capi-ohmidi-oh-mididevicestruct.md) *device | 目标设备句柄。传入的device指针必须为[OH_MIDIClient_OpenDevice](capi-native-midi-h.md#oh_midiclient_opendevice)或[OH_MIDIClient_OpenBLEDevice](capi-native-midi-h.md#oh_midiclient_openbledevice)返回的实例。 |
 | uint32_t portIndex | 目标端口索引，须为已通过[OH_MIDIDevice_OpenOutputPort](capi-native-midi-h.md#oh_mididevice_openoutputport)打开的输出端口索引。 |
-| [const OH_MIDIEvent](capi-ohmidi-oh-midievent.md) *events | 指向要发送的事件数组的指针，内存空间需要由开发者分配。 |
+| const [OH_MIDIEvent](capi-ohmidi-oh-midievent.md) *events | 指向要发送的事件数组的指针，内存空间需要由开发者分配。 |
 | uint32_t eventCount | 数组中的事件数量。 |
 | uint32_t *eventsWritten | 输出参数，用于接收成功发送的事件数量。当返回OH_MIDI_STATUS_WOULD_BLOCK时，可用于从断点处继续发送剩余事件。 |
 
@@ -464,7 +464,7 @@ OH_MIDIStatusCode OH_MIDIDevice_Send(OH_MIDIDevice *device, uint32_t portIndex, 
 
 | 类型 | 说明 |
 | -- | -- |
-| [OH_MIDIStatusCode](capi-native-midi-base-h.md#oh_midistatuscode) | OH_MIDI_STATUS_OK：所有数据均已成功处理并写入。<br>         OH_MIDI_STATUS_INVALID_DEVICE_HANDLE：设备句柄无效。<br>         OH_MIDI_STATUS_INVALID_PORT：端口索引无效，或未打开。<br>         OH_MIDI_STATUS_WOULD_BLOCK：缓冲区已满（检查eventsWritten）。<br>         OH_MIDI_STATUS_GENERIC_INVALID_ARGUMENT：参数events为nullptr，或eventsWritten为nullptr。<br>         OH_MIDI_STATUS_GENERIC_IPC_FAILURE：连接系统服务失败。 |
+| [OH_MIDIStatusCode](capi-native-midi-base-h.md#oh_midistatuscode) | OH_MIDI_STATUS_OK：所有数据均已成功处理并写入。<br>         OH_MIDI_STATUS_INVALID_DEVICE_HANDLE：设备句柄无效。<br>         OH_MIDI_STATUS_INVALID_PORT：端口索引无效，或未打开。<br>         OH_MIDI_STATUS_WOULD_BLOCK：缓冲区已满（检查eventsWritten）。<br>         OH_MIDI_STATUS_GENERIC_INVALID_ARGUMENT：参数events或eventsWritten为nullptr。<br>         OH_MIDI_STATUS_GENERIC_IPC_FAILURE：连接系统服务失败。 |
 
 ### OH_MIDIDevice_SendSysEx()
 

@@ -8,7 +8,7 @@
 
 ## 概述
 
-声明MIDI模块的基础数据结构，定义MIDI接口的基础类型、枚举、结构体和回调函数。MIDI模块提供标准化的MIDI数据通信能力，支持USB和BLE设备的连接与枚举，兼容MIDI 1.0和MIDI 2.0协议（基于UMP格式），适用于音乐演奏数据传输、MIDI设备控制等需要与外部MIDI硬件交互的场景。
+声明MIDI模块的基础数据结构，定义MIDI接口的基础类型、枚举、结构体和回调函数。MIDI模块提供标准化的MIDI数据通信能力，支持USB和BLE设备的连接与枚举，基于UMP格式兼容MIDI 1.0和MIDI 2.0协议，适用于音乐演奏数据传输、MIDI设备控制等需要与外部MIDI硬件交互的场景。
 
 **引用文件：** <ohmidi/native_midi_base.h>
 
@@ -26,7 +26,7 @@
 
 | 名称 | typedef关键字 | 描述 |
 | -- | -- | -- |
-| [OH_MIDIEvent](capi-ohmidi-oh-midievent.md) | OH_MIDIEvent | MIDI事件结构体（通用）。事件数据以Universal MIDI Packets（UMP）格式传输。原始字节流（MIDI 1.0）数据需要先转换为UMP格式后再填充此结构体。|
+| [OH_MIDIEvent](capi-ohmidi-oh-midievent.md) | OH_MIDIEvent | MIDI事件结构体（通用）。事件数据以UMP（Universal MIDI Packets）格式传输。原始字节流（MIDI 1.0）数据需要先转换为UMP格式后再填充此结构体。|
 | [OH_MIDIDeviceInformation](capi-ohmidi-oh-midideviceinformation.md) | OH_MIDIDeviceInformation | 设备信息结构体。存储设备ID、设备名称等信息。 |
 | [OH_MIDIPortInformation](capi-ohmidi-oh-midiportinformation.md) | OH_MIDIPortInformation | 端口信息结构体。用于枚举端口，包含可显示的端口名称。 |
 | [OH_MIDIPortDescriptor](capi-ohmidi-oh-midiportdescriptor.md) | OH_MIDIPortDescriptor | 端口描述符结构体，用于打开端口时指定端口索引和协议行为。 |
@@ -183,7 +183,7 @@ typedef void (*OH_MIDICallback_OnDeviceChange)(void *userData, OH_MIDIDeviceChan
 | -- |--------------------------------------------------------------------------------------|
 | void \*userData | 调用[OH_MIDIClient_Create](./capi-native-midi-h.md#oh_midiclient_create)时传入的用户自定义数据指针。 |
 | [OH_MIDIDeviceChangeAction](capi-native-midi-base-h.md#oh_mididevicechangeaction) action | 设备变化操作（已连接/已断开）。                                                                     |
-| [OH_MIDIDeviceInformation](capi-ohmidi-oh-midideviceinformation.md) deviceInfo | 变化设备的信息。<br>**注意：** 此对象仅在此回调范围内有效。如需持久化特定属性（如ID或名称），请对该设备信息进行复制。                                                                             |
+| [OH_MIDIDeviceInformation](capi-ohmidi-oh-midideviceinformation.md) deviceInfo | 变化设备的信息。<br>此对象仅在此回调范围内有效。如需持久化特定属性（如ID或名称），请对该设备信息进行复制。                                                                             |
 
 ### OH_MIDICallback_OnError()
 
@@ -231,7 +231,7 @@ typedef void (*OH_MIDIDevice_OnReceived)(void *userData, const OH_MIDIEvent *eve
 | 参数项 | 描述 |
 | -- | -- |
 | void \*userData | 调用[OH_MIDIDevice_OpenInputPort](./capi-native-midi-h.md#oh_mididevice_openinputport)时传入的用户自定义数据指针。 |
-| [const OH_MIDIEvent](capi-ohmidi-oh-midievent.md) \*events | 指向接收到的MIDI事件数组的指针。<br>**注意：** events数组及其中所有数据指针仅在此回调范围内有效。如需保留数据，请先进行复制。 |
+| const [OH_MIDIEvent](capi-ohmidi-oh-midievent.md) \*events | 指向接收到的MIDI事件数组的指针。<br> events数组及其中所有数据指针仅在此回调范围内有效。如需保留数据，请先进行复制。 |
 | size_t eventCount | 数组中的事件数。 |
 
 ### OH_MIDIClient_OnDeviceOpened()
@@ -257,6 +257,6 @@ typedef void (*OH_MIDIClient_OnDeviceOpened)(void *userData, bool opened, OH_MID
 | void \*userData | 调用[OH_MIDIClient_OpenBLEDevice](./capi-native-midi-h.md#oh_midiclient_openbledevice)时传入的用户自定义数据指针。                                                        |
 | bool opened | 设备是否成功打开。<br> true表示设备成功打开，设备句柄有效；false表示设备打开失败，设备句柄为NULL。                                                                                                |
 | [OH_MIDIDevice](capi-ohmidi-oh-mididevicestruct.md) \*device | 已打开设备的句柄。<br> 如果opened为true，应用必须在不再需要时调用[OH_MIDIClient_CloseDevice](./capi-native-midi-h.md#oh_midiclient_closedevice)关闭此句柄。<br> 如果opened为false，此参数为NULL。 |
-| [OH_MIDIDeviceInformation](capi-ohmidi-oh-midideviceinformation.md) info | 已打开设备的信息。<br> 如果opened为false，此参数的内容无效。<br> **注意：** 此对象仅在此回调范围内有效。如需持久化特定属性（如ID或名称），请对该设备信息进行复制。                                                                                        |
+| [OH_MIDIDeviceInformation](capi-ohmidi-oh-midideviceinformation.md) info | 已打开设备的信息。<br> 如果opened为false，此参数的内容无效。<br> 此对象仅在此回调范围内有效。如需持久化特定属性（如ID或名称），请对该设备信息进行复制。                                                                                        |
 
 
