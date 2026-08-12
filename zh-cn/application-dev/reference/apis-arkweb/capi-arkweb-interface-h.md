@@ -75,7 +75,7 @@ ArkWeb_AnyNativeAPI* OH_ArkWeb_GetNativeAPI(ArkWeb_NativeAPIVariantKind type)
 
 **描述：**
 
-根据传入的API类型，获取对应的Native API结构体。用于在Native代码中获取Controller以控制Web组件行为、获取CookieManager以管理Cookie、获取WebMessagePort以实现消息通信、获取JavaScriptValue以操作JavaScript对象等场景。
+根据传入的API类型，获取对应的Native API结构体。用于在Native代码中获取Controller以控制Web组件行为、获取CookieManager以管理Cookie、获取WebMessagePort以实现消息通信、获取JavaScriptValue以操作JavaScript对象等场景。该接口可能返回空指针，开发者在使用返回值前必须进行判空处理，避免空指针解引用导致应用崩溃。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
