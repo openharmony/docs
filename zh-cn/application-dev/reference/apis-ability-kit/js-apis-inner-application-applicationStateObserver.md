@@ -78,7 +78,7 @@ onProcessDied(processData: ProcessData): void
 
 onProcessStateChanged(processData: ProcessData): void
 
-进程状态更新时执行的回调函数。
+进程状态发生变化时执行的回调函数。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 

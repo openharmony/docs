@@ -612,7 +612,7 @@ off(type: 'applicationState', observerId: number, callback: AsyncCallback\<void>
 | -------- | -------- | -------- | -------- |
 | type | string | 是 | 调用接口类型，固定填'applicationState'字符串。 |
 | observerId | number | 是 | 注册的应用状态监听器ID，即[on('applicationState')](#appmanageronapplicationstate14)返回的监听器ID。 |
-| callback | AsyncCallback\<void> | 是 | 回调函数。当取消注册应用程序状态观测器成功，err为undefined，否则为错误对象。 |
+| callback | AsyncCallback\<void> | 是 | 回调函数。当注销应用状态监听器成功，err为undefined，否则为错误对象。 |
 
 **错误码**：
 

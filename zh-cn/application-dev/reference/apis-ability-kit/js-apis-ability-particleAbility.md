@@ -196,7 +196,7 @@ acquireDataAbilityHelper(uri: string): DataAbilityHelper
 
 | 参数名 | 类型   | 必填 | 说明                     |
 | :--- | ------ | ---- | ------------------------ |
-| uri  | string | 是   | 表示要打开的文件的路径。 |
+| uri  | string | 是   | 表示要访问的DataAbility的URI。 |
 
 **返回值：**
 

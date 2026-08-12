@@ -106,7 +106,7 @@ Extension生命周期回调，如果是[startServiceExtensionAbility](js-apis-in
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | want |  [Want](js-apis-app-ability-want.md) | 是 | 当前Extension相关的Want类型信息，包括ability名称、bundle名称等。 |
-| startId | number | 是 | 返回拉起次数。首次拉起初始值返回1，多次之后自动递增。 |
+| startId | number | 是 | 表示拉起次数。首次拉起初始值返回1，多次之后自动递增。 |
 
 **示例：**
 
