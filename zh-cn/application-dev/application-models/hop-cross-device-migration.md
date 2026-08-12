@@ -377,38 +377,38 @@ export default class MigrationAbility extends UIAbility {
    > continueType在本应用中要保证唯一，字符串以字母、数字和下划线组成，最大长度127个字节，不支持中文。
    > continueType标签类型为字符串数组，如果配置了多个字段，当前仅第一个字段会生效。
 
-```json5
-{
-  "module": {
-    "abilities": [
-      {
-        "name": "EntryAbility",
-        "continueType": ["continueType"],
-        "continueBundleName": ["com.demo.example2"],
+   ```json5
+   {
+     "module": {
+       "abilities": [
+         {
+           "name": "EntryAbility",
+           "continueType": ["continueType"],
+           "continueBundleName": ["com.demo.example2"],
+          
+         }
+       ]
        
-      }
-    ]
-    
-  }
-}
-```
-
-```json5
-{
-  "module": {
-    "abilities": [
-      {
-        "name": "EntryAbility",
-        "continueType": ["continueType"],
-        "continueBundleName": ["com.demo.example1"],
+     }
+   }
+   ```
+   
+   ```json5
+   {
+     "module": {
+       "abilities": [
+         {
+           "name": "EntryAbility",
+           "continueType": ["continueType"],
+           "continueBundleName": ["com.demo.example1"],
+          
+         }
+       ]
        
-      }
-    ]
-    
-  }
-}
-
-```
+     }
+   }
+   
+   ```
 
 ### 支持同应用不同BundleName的Ability跨端迁移
 相同应用在不同设备类型下可能使用了不同的BundleName，该场景下如果需要支持应用跨端迁移，需要在不同BundleName的应用的module.json5配置文件中的abilities标签进行如下配置：
