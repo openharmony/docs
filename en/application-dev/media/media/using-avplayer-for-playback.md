@@ -1,18 +1,18 @@
 # Using AVPlayer to Play Audio (ArkTS)
+
 <!--Kit: Media Kit-->
 <!--Subsystem: Multimedia-->
 <!--Owner: @chennotfound-->
 <!--Designer: @dongyu_dy-->
 <!--Tester: @xchaosioda-->
 <!--Adviser: @w_Machine_cc-->
+<!-- md-trans-meta sourceCommit=29aa363c8c07cd0d943043ae209ad0a85fcdc3c5 translatedAt=2026-08-11T01:52:47.727Z pushedAt=2026-08-11T12:51:21.301Z -->
 
 [AVPlayer](media-kit-intro.md#avplayer) is used for end-to-end playback of raw media assets. This topic demonstrates how to use AVPlayer to play a complete audio track. To play PCM audio data, call [AudioRenderer](../audio/using-audiorenderer-for-playback.md).
 
 The full playback process includes creating an AVPlayer instance, setting the media asset to play, setting playback parameters (volume, speed, and focus mode), controlling playback (play, pause, seek, and stop), resetting the playback configuration, and releasing the instance.
 
-
 During application development, you can use the **state** property of AVPlayer to obtain its state or call **on('stateChange')** to listen for state changes. If the application performs an operation when the AVPlayer is not in the given state, the system may throw an exception or generate other undefined behavior.
-
 
 **Figure 1** Playback state transition
 ![Playback status change](figures/playback-status-change.png)
@@ -24,9 +24,13 @@ For details about the states, see [AVPlayerState](../../reference/apis-media-kit
 This topic describes only how to implement the playback of a media asset. In practice, background playback and playback conflicts may be involved. You can refer to the following description to handle the situation based on your service requirements.
 
 - If you want the application to continue playing the media asset in the background or when the screen is off, use the [AVSession](../avsession/avsession-access-scene.md) and [continuous task](../../task-management/continuous-task.md) to prevent the playback from being forcibly interrupted by the system.
+
 - If the media asset being played involves audio, the playback may be interrupted by other applications based on the system audio management policy. (For details, see [Processing Audio Interruption Events](../audio/audio-playback-concurrency.md).) It is recommended that the player application proactively listen for audio interruption events and handle the events accordingly to avoid the inconsistency between the application status and the expected effect.
+
 - When a device is connected to multiple audio output devices, the application can listen for audio output device changes through [on('audioOutputDeviceChangeWithInfo')](../../reference/apis-media-kit/arkts-apis-media-AVPlayer.md#onaudiooutputdevicechangewithinfo11) and handle them accordingly.
+
 - To access online media resources, you must request the ohos.permission.INTERNET permission.
+
 - To switch between the receiver and speaker, refer to the instructions provided in [Switching Audio Output Devices](../audio/audio-output-device-switcher.md).
 
 ## How to Develop
@@ -70,13 +74,13 @@ For details about the APIs, see [AVPlayer](../../reference/apis-media-kit/arkts-
     avPlayer.on('durationUpdate', (duration: number) => {
         // Add your service logic as required.
     });
-    avPlayer.on('timeUpdate', (time:number) => {
+    avPlayer.on('timeUpdate', (time: number) => {
         // Add your service logic as required.
     });
-    avPlayer.on('seekDone', (seekDoneTime:number) => {
+    avPlayer.on('seekDone', (seekDoneTime: number) => {
         // Add your service logic as required.
     });
-    avPlayer.on('speedDone', (speed:number) => {
+    avPlayer.on('speedDone', (speed: number) => {
         // Add your service logic as required.
     });
     avPlayer.on('volumeChange', (vol: number) => {
@@ -91,6 +95,7 @@ For details about the APIs, see [AVPlayer](../../reference/apis-media-kit/arkts-
     ```
 
 3. Set the media asset URL. The AVPlayer enters the **initialized** state.
+
    > **NOTE**
    >
    > The URL in the code snippet below is for reference only. You need to check the media asset validity and set the URL based on service requirements.
@@ -117,17 +122,17 @@ For details about the APIs, see [AVPlayer](../../reference/apis-media-kit/arkts-
 
    ```ts
    let fdPath = 'fd://'; // Example only. Replace with the actual resource URL.
-   let path : string = `${this.context.filesDir}/${this.fileName}`; // Example only. Replace with the actual resource URL.
+   let path : string = `${this.context.filesDir}/${this.fileName}`; // This is only for illustration. Replace it with the actual app sandbox file path.
    let file = await fs.open(path);
    fdPath = fdPath + file.fd;
    this.avPlayer = await media.createAVPlayer();
-   this.avPlayer.url = url;
+   this.avPlayer.url = fdPath;
    ```
 
 4. (Optional) Set the audio renderer information. The information must be set when the AVPlayer is in the initialized state, that is, before **prepare()** is called for the first time. If the media source contains videos, the default value of **usage** is **STREAM_USAGE_MOVIE**. Otherwise, the default value of **usage** is **STREAM_USAGE_MUSIC**. The default value of **rendererFlags** is 0.
 
-    To ensure that the audio behavior meets the expectation, you are advised to proactively configure [audio.AudioRendererInfo](../../reference/apis-audio-kit/arkts-apis-audio-i.md#audiorendererinfo8) and select a proper stream type (specified by [usage](../../media/audio/using-right-streamusage-and-sourcetype.md)) based on your service scenario and requirements.
-    
+    To ensure that audio behavior meets usage expectations, you are advised to proactively configure [audio.AudioRendererInfo](../../reference/apis-audio-kit/arkts-apis-audio-i.md#audiorendererinfo8) based on specific business scenarios and actual requirements, and [select an appropriate playback stream type](../../media/audio/using-right-streamusage-for-playback.md) for the audio.
+
     ```ts
     import { audio } from '@kit.AudioKit';
 
@@ -152,6 +157,7 @@ For details about the APIs, see [AVPlayer](../../reference/apis-media-kit/arkts-
     ```
 
 6. Perform audio playback control. Specifically, call **play()**, **pause()**, **seek()**, and **stop()** as required.
+
    > **NOTE**
    >
    > Starting from API version 23, silent frames are skipped during audio playback.
@@ -191,16 +197,16 @@ For details about the APIs, see [AVPlayer](../../reference/apis-media-kit/arkts-
     ```ts
     import { BusinessError } from '@kit.BasicServicesKit';
 
-    await avPlayer.reset((err: BusinessError) => {
+    avPlayer.reset((err: BusinessError) => {
         avPlayer.url = url;
         if (err) {
-            console.error('Failed to reset,error message is :' + err.message);
+            console.error('Failed to reset, error message is :' + err.message);
         } else {
             console.info('Succeeded in resetting');
         }
     });
-    // Change the URL.
-    let url = 'https://xxx.xxx.xxx.mp3';
+    // Replace the URL.
+    let url = 'https://example.com/audio.mp3'; // This is only an example. Replace it with the actual resource file URL.
     if (avPlayer == null) {
         return;
     }
@@ -226,6 +232,7 @@ For details about the APIs, see [AVPlayer](../../reference/apis-media-kit/arkts-
 Refer to the sample code below to play a complete piece of music. In this example, 3 seconds after the playback starts, the playback is paused for 3 seconds and then resumed.
 
 1. Create a project, download the [sample project](https://gitcode.com/openharmony/applications_app_samples/tree/master/code/DocsSample/Media/AVPlayer/AVPlayerArkTSAudio), and copy its resources to the corresponding directories.
+
     ```text
     AVPlayerArkTSAudio
     entry/src/main/ets/
@@ -243,4 +250,5 @@ Refer to the sample code below to play a complete piece of music. In this exampl
     └── rawfile
         └── test_01.mp3 (audio resource)
     ```
+
 2. Compile and run the project.

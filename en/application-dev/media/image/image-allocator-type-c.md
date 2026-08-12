@@ -1,25 +1,28 @@
-# Allocating Memory for Image Decoding (C/C++)
+# Image Decoding Memory Optimization (C/C++)
+
 <!--Kit: Image Kit-->
 <!--Subsystem: Multimedia-->
 <!--Owner: @aulight02-->
-<!--Designer: @liyang_bryan-->
+<!--Designer: @XiaoYao555-->
 <!--Tester: @xchaosioda-->
 <!--Adviser: @w_Machine_cc-->
+<!-- md-trans-meta sourceCommit=51871fad202ca89cea4824e5e1f6eae94c62de6c translatedAt=2026-08-11T01:42:46.183Z pushedAt=2026-08-11T03:01:43.186Z -->
 
-When an application decodes images, it must allocate the necessary memory for the decoding process. This guide describes different types of memory and how to allocate them.
+When performing image decoding, an app needs to request the corresponding memory. The memory usage is closely related to the memory allocation type and pixel format. This guide introduces different memory types and pixel formats, and explains how to combine them for optimal decoding performance.
 
 The application obtains a PixelMap through the decoding API and passes it to the **Image** component for display.
 
-If the PixelMap consumes a significant amount of memory and relies on shared memory, the RenderScript main thread may face an extended texture upload time, leading to noticeable lag. To mitigate this, the graphics subsystem offers a Direct Memory Access (DMA) zero-copy feature, which helps eliminate this overhead during image rendering.
+When a PixelMap is large and uses shared memory, the RS main thread experiences a long texture upload time, causing frame drops. The graphics subsystem provides the DMA memory zero-copy feature, which avoids texture upload time consumption during image drawing. In addition, setting an appropriate pixel format (such as YUV) can further reduce memory usage.
 
 ## Memory Types
 
 The memory types for the PixelMap are as follows:
 
 - SHARE_MEMORY: shared memory. Texture upload is required.
+
 - DMA_ALLOC: DMA memory. Texture upload is not required.
 
-You can call [OH_ImageSourceNative_CreatePixelmapUsingAllocator](../../reference/apis-image-kit/capi-image-source-native-h.md#oh_imagesourcenative_createpixelmapusingallocator) to customize the memory allocation type for decoding.
+The system provides the [OH_ImageSourceNative_CreatePixelmapUsingAllocator](../../reference/apis-image-kit/capi-image-source-native-h.md#oh_imagesourcenative_createpixelmapusingallocator) API, allowing you to customize the memory allocation type for decoding. For details about the API definition and usage examples, see the image decoding API description in [image_source_native.h](../../reference/apis-image-kit/capi-image-source-native-h.md).
 
 ### Differences Between SHARE_MEMORY and DMA_ALLOC
 
@@ -41,38 +44,25 @@ You can call [OH_ImageSourceNative_CreatePixelmapUsingAllocator](../../reference
   When SHARE_MEMORY is used, image data needs to be copied to GPU memory through the CPU, increasing the texture upload time. With DMA_ALLOC, data is directly stored in memory that is accessible by the GPU, avoiding the time-consuming copy process.
 
   - SHARE_MEMORY time consumption: Single-frame rendering of a 4K image takes about 20 ms.
+
   - DMA_ALLOC time consumption: The time of single-frame rendering for a 4K image can be reduced to about 4 ms. This optimization is particularly significant in scenarios involving the display of large images and frequent dynamic image loading.
+
 - **Reduced CPU load**
 
   DMA_ALLOC allows the GPU to directly access decoded data, reducing the load caused by memory copying.
 
-## Default Memory Allocation Method
-
-When [OH_ImageSourceNative_CreatePixelmap](../../reference/apis-image-kit/capi-image-source-native-h.md#oh_imagesourcenative_createpixelmap) is called for decoding, different memory allocation types are used in different scenarios.
-
-DMA_ALLOC is used in the following scenarios:
-
-- Decoding HDR images.
-- Decoding HEIF images.
-- Decoding JPEG images, when the original image's width and height are both between 1024 pixels and 8192 pixels, [PIXEL_FORMAT](../../reference/apis-image-kit/capi-pixelmap-native-h.md#pixel_format) is **PIXEL_FORMAT_RGBA_8888** or **PIXEL_FORMAT_NV21**, and the number of concurrent tasks in the system does not exceed 3.
-- Decoding images in other formats. The value of [desiredSize](../../reference/apis-image-kit/capi-image-nativemodule-oh-decodingoptions.md) must be greater than or equal to 512 * 512 pixels (consider the original image size if **desiredSize** is not set), and the width must be a multiple of 64.
-
-In all other cases, SHARE_MEMORY is used.
-
-## Custom Memory Allocation Method
-
-By default, the system selects the optimal memory allocation method for performance. In specific scenarios, applications can use a specified memory allocation method.
-
-When you call [OH_ImageSourceNative_CreatePixelmapUsingAllocator](../../reference/apis-image-kit/capi-image-source-native-h.md#oh_imagesourcenative_createpixelmapusingallocator) for decoding, the system automatically selects hardware or software decoding based on the [decoding options](../../reference/apis-image-kit/capi-image-nativemodule-oh-decodingoptions.md) and [memory application type](../../reference/apis-image-kit/capi-image-source-native-h.md#image_allocator_type).
-
-When creating a PixelMap, the system determines whether to use DMA_ALLOC or SHARE_MEMORY based on the user-specified allocator type.
+> **NOTE**
+>
+> When using DMA_ALLOC, you must pay attention to the difference between the stride and the image width, and perform alignment before data reading, parsing, and display.
 
 ### Restrictions
 
 The current image decoding feature has the following restrictions on memory allocation modes:
 
 - HDR image decoding supports only DMA_ALLOC.
+
 - Hardware decoding supports only DMA_ALLOC.
+
 - SVG image decoding supports only SHARE_MEMORY.
 
 When [OH_ImageSourceNative_CreatePixelmapUsingAllocator](../../reference/apis-image-kit/capi-image-source-native-h.md#oh_imagesourcenative_createpixelmapusingallocator) is used for decoding, if the specified memory allocation mode does not match the image format or decoding method, an exception indicating a memory allocation failure is thrown.
@@ -88,13 +78,16 @@ The stride describes the storage width of each row of pixel data of an image in 
 When memory is allocated using DMA_ALLOC, the stride must meet the hardware alignment requirements.
 
 - The stride value must be an integer multiple of the number of bytes required by the hardware platform.
-- If the stride does not meet the alignment requirements, the system automatically pads the data.
+
+- When the stride value is greater than the image width, the system automatically pads the data.
+
   The stride value can be obtained by calling [OH_PixelmapNative_GetImageInfo](../../reference/apis-image-kit/capi-pixelmap-native-h.md#oh_pixelmapnative_getimageinfo).
 
 1. Call [OH_PixelmapNative_GetImageInfo](../../reference/apis-image-kit/capi-pixelmap-native-h.md#oh_pixelmapnative_getimageinfo) to obtain an OH_Pixelmap_ImageInfo object.
+
 2. Call [OH_PixelmapImageInfo_GetRowStride](../../reference/apis-image-kit/capi-pixelmap-native-h.md#oh_pixelmapimageinfo_getrowstride) to obtain the stride value.
 
-The sample code for obtaining and operating the stride by the C APIs is as follows: Open the **src/main/cpp/CMakeLists.txt** file of the native project, add **libimage_packer.so** and **libhilog_ndk.z.so** (on which the log APIs depend) to the **target_link_libraries** dependency.
+The sample code for obtaining and operating the stride by the C APIs is as follows. Before using the sample code, open the **src/main/cpp/CMakeLists.txt** file of the native project, and add **libimage_source.so** and the logging dependency **libhilog_ndk.z.so** to **target_link_libraries**.
 
 ```txt
 target_link_libraries(entry PUBLIC libhilog_ndk.z.so libimage_source.so libimage_packer.so libpixelmap.so)
@@ -107,7 +100,7 @@ target_link_libraries(entry PUBLIC libhilog_ndk.z.so libimage_source.so libimage
 1. Create the **GetJsResult** function to process the NAPI return value.
 
    <!-- @[get_returnValue](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/Media/Image/ImageNativeSample/entry/src/main/cpp/napi_init.cpp) -->    
-   
+
    ``` C++
    // Process the NAPI return value.
    napi_value GetJsResult(napi_env env, int result)
@@ -118,10 +111,10 @@ target_link_libraries(entry PUBLIC libhilog_ndk.z.so libimage_source.so libimage
    }
    ```
 
-2. Obtain and operate the stride value.
+2. Obtain and manipulate the stride value.
 
-   <!-- @[allocator_operations](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/Media/Image/ImageNativeSample/entry/src/main/cpp/loadAllocator.cpp) -->     
-   
+   <!-- @[allocator_operations](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/Media/Image/ImageNativeSample/entry/src/main/cpp/loadAllocator.cpp) -->      
+
    ``` C++
    #include <cstring>
    #include <hilog/log.h>
@@ -147,8 +140,8 @@ target_link_libraries(entry PUBLIC libhilog_ndk.z.so libimage_source.so libimage
                return 8; // 8 bytes per pixel (since there are 16-bit floating-point number per channel and 4 channels in total).
            case PIXEL_FORMAT_NV21:
            case PIXEL_FORMAT_NV12:
-               // The NV21 and NV12 formats are YUV 4:2:0 semi-planar formats. 2 is returned as the number of bytes per pixel.
-               return 2; // 2 bytes per pixel (simplified processing).
+               // NV21 and NV12 are YUV 4:2:0 semi-planar formats, and the row stride cannot be calculated using an integer number of bytes per pixel.
+               return 0;
            case PIXEL_FORMAT_RGBA_1010102:
                return 4; // 4 bytes per pixel.
            case PIXEL_FORMAT_YCBCR_P010:
@@ -189,29 +182,14 @@ target_link_libraries(entry PUBLIC libhilog_ndk.z.so libimage_source.so libimage
        return;
    }
    
-   void DataCopy(OH_PixelmapNative *pixelmap, OH_ImageSourceNative* imageSource, OH_DecodingOptions *options,
-                 IMAGE_ALLOCATOR_TYPE allocatorType)
+   static void CopyPixelRows(void *pixels, void *newPixels, const PixelmapInfo &srcInfo, uint32_t dstRowStride,
+       IMAGE_ALLOCATOR_TYPE allocatorType)
    {
-       PixelmapInfo srcInfo;
-       GetPixelmapInfo(pixelmap, &srcInfo);
-       GetPixelmapAddrInfo(pixelmap, &srcInfo);
-   
-       void *pixels = nullptr;
-       OH_PixelmapNative_AccessPixels(pixelmap, &pixels);
-       OH_PixelmapNative *newPixelmap = nullptr;
-       OH_ImageSourceNative_CreatePixelmap(imageSource, options, &newPixelmap);
-       uint32_t dstRowStride = srcInfo.width * GetPixelFormatBytes(srcInfo.pixelFormat);
-       void *newPixels = nullptr;
-       OH_PixelmapNative_AccessPixels(newPixelmap, &newPixels);
        uint8_t *src = reinterpret_cast<uint8_t *>(pixels);
        uint8_t *dst = reinterpret_cast<uint8_t *>(newPixels);
        uint32_t dstSize = srcInfo.byteCount;
-       uint32_t rowSize;
-       if (allocatorType == IMAGE_ALLOCATOR_TYPE::IMAGE_ALLOCATOR_TYPE_DMA) {
-           rowSize = srcInfo.rowStride;
-       } else {
-           rowSize = dstRowStride;
-       }
+       uint32_t rowSize = allocatorType == IMAGE_ALLOCATOR_TYPE::IMAGE_ALLOCATOR_TYPE_DMA ? srcInfo.rowStride :
+           dstRowStride;
        for (uint32_t i = 0; i < srcInfo.height; ++i) {
            if (dstSize >= dstRowStride) {
                std::copy(src, src + dstRowStride, dst);
@@ -222,6 +200,41 @@ target_link_libraries(entry PUBLIC libhilog_ndk.z.so libimage_source.so libimage
            dst += dstRowStride;
            dstSize -= dstRowStride;
        }
+   }
+   
+   void DataCopy(OH_PixelmapNative *pixelmap, OH_ImageSourceNative* imageSource, OH_DecodingOptions *options,
+                 IMAGE_ALLOCATOR_TYPE allocatorType)
+   {
+       PixelmapInfo srcInfo;
+       GetPixelmapInfo(pixelmap, &srcInfo);
+       GetPixelmapAddrInfo(pixelmap, &srcInfo);
+       void *pixels = nullptr;
+       OH_PixelmapNative_AccessPixels(pixelmap, &pixels);
+       OH_PixelmapNative *newPixelmap = nullptr;
+       Image_ErrorCode image_ErrorCode = OH_ImageSourceNative_CreatePixelmap(imageSource, options, &newPixelmap);
+       if (image_ErrorCode != IMAGE_SUCCESS || newPixelmap == nullptr) {
+           OH_PixelmapNative_UnaccessPixels(pixelmap);
+           OH_DecodingOptions_Release(options);
+           OH_ImageSourceNative_Release(imageSource);
+           OH_PixelmapNative_Release(pixelmap);
+           if (newPixelmap != nullptr) {
+               OH_PixelmapNative_Release(newPixelmap);
+           }
+           return;
+       }
+       int32_t pixelBytes = GetPixelFormatBytes(srcInfo.pixelFormat);
+       if (pixelBytes == 0) {
+           OH_PixelmapNative_UnaccessPixels(pixelmap);
+           OH_DecodingOptions_Release(options);
+           OH_ImageSourceNative_Release(imageSource);
+           OH_PixelmapNative_Release(pixelmap);
+           OH_PixelmapNative_Release(newPixelmap);
+           return;
+       }
+       uint32_t dstRowStride = srcInfo.width * pixelBytes;
+       void *newPixels = nullptr;
+       OH_PixelmapNative_AccessPixels(newPixelmap, &newPixels);
+       CopyPixelRows(pixels, newPixels, srcInfo, dstRowStride, allocatorType);
        OH_PixelmapNative_UnaccessPixels(newPixelmap);
        OH_PixelmapNative_UnaccessPixels(pixelmap);
        OH_DecodingOptions_Release(options);
@@ -251,26 +264,152 @@ target_link_libraries(entry PUBLIC libhilog_ndk.z.so libimage_source.so libimage
    
        OH_ImageSourceNative* imageSource = nullptr;
        Image_ErrorCode image_ErrorCode = OH_ImageSourceNative_CreateFromUri(filePath, pathSize, &imageSource);
+       if (image_ErrorCode != IMAGE_SUCCESS || imageSource == nullptr) {
+           return GetJsResult(env, image_ErrorCode == IMAGE_SUCCESS ? IMAGE_BAD_PARAMETER : image_ErrorCode);
+       }
        OH_DecodingOptions *options = nullptr;
-       OH_DecodingOptions_Create(&options);
+       image_ErrorCode = OH_DecodingOptions_Create(&options);
+       if (image_ErrorCode != IMAGE_SUCCESS || options == nullptr) {
+           OH_ImageSourceNative_Release(imageSource);
+           return GetJsResult(env, image_ErrorCode == IMAGE_SUCCESS ? IMAGE_BAD_PARAMETER : image_ErrorCode);
+       }
        IMAGE_ALLOCATOR_TYPE allocatorType = IMAGE_ALLOCATOR_TYPE::IMAGE_ALLOCATOR_TYPE_DMA;  // Use DMA to create a PixelMap.
        OH_PixelmapNative *pixelmap = nullptr;
        image_ErrorCode = OH_ImageSourceNative_CreatePixelmapUsingAllocator(imageSource, options, allocatorType, &pixelmap);
+       if (image_ErrorCode != IMAGE_SUCCESS || pixelmap == nullptr) {
+           OH_DecodingOptions_Release(options);
+           OH_ImageSourceNative_Release(imageSource);
+           return GetJsResult(env, image_ErrorCode == IMAGE_SUCCESS ? IMAGE_BAD_PARAMETER : image_ErrorCode);
+       }
        DataCopy(pixelmap, imageSource, options, allocatorType);
        return GetJsResult(env, image_ErrorCode);
    }
    ```
 
+## Pixel Format
+
+The pixel format after image decoding directly affects the memory usage. The main supported pixel formats are as follows.
+
+### Differences Between RGBA_8888 and YUV Formats
+
+| Name | RGBA_8888 | NV21/NV12 (YUV 4:2:0) |
+| -- | -- | -- |
+| Definition | Color information consists of four components: R (Red), G (Green), B (Blue), and Alpha (transparency). Each component occupies 8 bits, totaling 32 bits. | Color information consists of the luminance component Y and interleaved chrominance components UV. The Y component occupies 8 bits, and the UV components occupy an average of 4 bits due to 4:2:0 sampling, totaling an average of 12 bits. |
+| Bytes per Pixel | 4 bytes | Approximately 1.5 bytes |
+| Memory Usage Calculation | Width × height × 4 | Width × height × 1.5 |
+| Applicable Scenarios | Scenarios that require Alpha channel processing, such as transparency compositing and shadow effects. | Scenarios such as image preview and display, with low memory usage, suitable for decoding large images. |
+| Advantages | Supports complete Alpha channel operations with good compatibility. | Low memory usage. JPEG hardware decoding can directly output, avoiding format conversion overhead. |
+
+### Advantages of Using YUV Format
+
+- **Significantly reduces memory usage**
+
+  Taking a 4K image (3840×2160) as an example:
+
+  - RGBA_8888 memory usage: 3840 × 2160 × 4 ≈ 33.2 MB
+
+  - NV21 memory usage: 3840 × 2160 × 1.5 ≈ 12.4 MB
+
+  - Memory savings of approximately 62.5%, effectively reducing app memory pressure.
+
+- **Reduces format conversion overhead**
+
+  During hardware decoding of images in formats such as JPEG, the decoder can directly output YUV format data, reducing format conversion overhead.
+
+> **NOTE**
+>
+> - SVG and TIFF images do not support decoding to YUV pixel format.
+> - The YUV format does not include an Alpha channel. For images that require transparency, use the RGBA_8888 format.
+
+### Setting YUV Pixel Format
+
+When decoding with the YUV format, set the pixel format through OH_DecodingOptions_SetPixelFormat. It is recommended to use it together with DMA memory allocation.
+
+<!-- @[allocator_yuv_operations](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/Media/Image/ImageNativeSample/entry/src/main/cpp/loadAllocator.cpp) -->
+
+``` C++
+napi_value CreatePixelmapWithYUV(napi_env env, napi_callback_info info)
+{
+    napi_value argValue[1] = {nullptr};
+    size_t argCount = 1;
+    if (napi_get_cb_info(env, info, &argCount, argValue, nullptr, nullptr) != napi_ok || argCount < 1 ||
+        argValue[0] == nullptr) {
+        OH_LOG_ERROR(LOG_APP, "CreatePixelmapWithYUV napi_get_cb_info failed!");
+        return GetJsResult(env, IMAGE_BAD_PARAMETER);
+    }
+    const size_t maxPathLength = 1024;
+    char filePath[maxPathLength];
+    size_t pathSize = maxPathLength;
+    napi_get_value_string_utf8(env, argValue[0], filePath, maxPathLength, &pathSize);
+
+    OH_ImageSourceNative* imageSource = nullptr;
+    Image_ErrorCode errorCode = OH_ImageSourceNative_CreateFromUri(filePath, pathSize, &imageSource);
+    
+    OH_DecodingOptions *options = nullptr;
+    OH_DecodingOptions_Create(&options);
+    // Set the YUV pixel format (NV21 or NV12) to optimize memory usage.
+    OH_DecodingOptions_SetPixelFormat(options, PIXEL_FORMAT_NV21);
+    
+    // Use DMA memory allocation with the YUV format for optimal decoding performance.
+    IMAGE_ALLOCATOR_TYPE allocatorType = IMAGE_ALLOCATOR_TYPE::IMAGE_ALLOCATOR_TYPE_DMA;
+    OH_PixelmapNative *pixelmap = nullptr;
+    errorCode = OH_ImageSourceNative_CreatePixelmapUsingAllocator(imageSource, options, allocatorType, &pixelmap);
+    if (errorCode == IMAGE_SUCCESS && pixelmap != nullptr) {
+        // Obtain PixelMap information and verify the pixel format.
+        OH_Pixelmap_ImageInfo *imageInfo = nullptr;
+        OH_PixelmapImageInfo_Create(&imageInfo);
+        OH_PixelmapNative_GetImageInfo(pixelmap, imageInfo);
+        
+        uint32_t width;
+        uint32_t height;
+        uint32_t rowStride;
+        int32_t pixelFormat;
+        OH_PixelmapImageInfo_GetWidth(imageInfo, &width);
+        OH_PixelmapImageInfo_GetHeight(imageInfo, &height);
+        OH_PixelmapImageInfo_GetRowStride(imageInfo, &rowStride);
+        OH_PixelmapImageInfo_GetPixelFormat(imageInfo, &pixelFormat);
+        OH_LOG_INFO(LOG_APP, "YUV PixelMap created: width=%{public}u, height=%{public}u, "
+                    "rowStride=%{public}u, pixelFormat=%{public}d",
+                    width, height, rowStride, pixelFormat);
+        OH_PixelmapImageInfo_Release(imageInfo);
+    } else {
+        OH_LOG_ERROR(LOG_APP, "CreatePixelmapWithYUV failed, errorCode=%{public}d", errorCode);
+    }
+    
+    OH_DecodingOptions_Release(options);
+    options = nullptr;
+    OH_ImageSourceNative_Release(imageSource);
+    imageSource = nullptr;
+    return GetJsResult(env, errorCode);
+}
+```
+
+## Default System Memory Allocation
+
+When [OH_ImageSourceNative_CreatePixelmap](../../reference/apis-image-kit/capi-image-source-native-h.md#oh_imagesourcenative_createpixelmap) is called for decoding, different memory allocation types are used in different scenarios.
+
+DMA_ALLOC is used in the following scenarios:
+
+- Decoding HDR images
+
+- Decoding HEIF images
+
+- Decoding JPEG images, when the original image width and height are both between 1024 and 8192 pixels, [PIXEL_FORMAT](../../reference/apis-image-kit/capi-pixelmap-native-h.md#pixel_format) is PIXEL_FORMAT_RGBA_8888 or PIXEL_FORMAT_NV21, and the hardware is not busy (concurrency is 3).
+
+- Decoding images in other formats, when **desiredSize** in [OH_DecodingOptions](../../reference/apis-image-kit/capi-image-nativemodule-oh-decodingoptions.md) is greater than or equal to 512 × 512 pixels (the original image size is used if **desiredSize** is not set), and the width is a multiple of 64.
+
+In all other scenarios, SHARE_MEMORY is used.
 
 ## Memory Restrictions for Decoding a Single Image
 
 To prevent system crashes from memory overflow, the system enforces memory restrictions on processes. For details, see [Application-Killed Issues Detection](https://developer.huawei.com/consumer/en/doc/best-practices/bpta-stability-runtime-appkilled-detection).
 
-The image framework imposes a 2 GB memory limit for decoding a single image. Processes should actively manage their memory usage. To avoid process termination, you are advised to release [OH_PixelmapNative](../../reference/apis-image-kit/capi-image-nativemodule-oh-pixelmapnative.md) when it is no longer needed.
+The image framework imposes a 2 GB memory limit for decoding a single image. Processes should actively manage their own memory. You are advised to release [OH_PixelmapNative](../../reference/apis-image-kit/capi-image-nativemodule-oh-pixelmapnative.md) in a timely manner when it is no longer in use, to avoid process termination by the system.
 
 Applications can use [onMemoryLevel](../../reference/apis-ability-kit/js-apis-app-ability-abilityStage.md#onmemorylevel) to listen for system memory changes.
 
 The calculation rule for PixelMap memory allocation is as follows:
+
 ```TypeScript
 pixels_size (pixel memory size) = stride (image pixel storage width) * height (image pixel height)
 ```
@@ -280,6 +419,7 @@ For images with original pixel memory exceeding 2 GB and supporting downsampling
 Starting from API version 21, for images that support downsampling decoding, when **desiredSize** (expected output size) is set, the decoder calculates PixelMap pixel memory at the optimal downsampling rate with a base gradient of 1/8. This means that it selects the highest clarity sampling rate among 7/8, 6/8, ..., 1/8.
 
 The table below lists the downsampling decoding support for different image formats in the image framework.
+
 | Support for Downsampling| Image Format                                                 |
 | ------------ | --------------------------------------------------------- |
 | Supported         | .jpg, .png, .heic (Refer to the device specification document for specific support.)|

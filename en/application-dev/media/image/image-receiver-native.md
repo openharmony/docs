@@ -1,18 +1,18 @@
 # Image Receiving
+
 <!--Kit: Image Kit-->
 <!--Subsystem: Multimedia-->
 <!--Owner: @aulight02-->
-<!--Designer: @liyang_bryan-->
+<!--Designer: @XiaoYao555-->
 <!--Tester: @xchaosioda-->
 <!--Adviser: @w_Machine_cc-->
+<!-- md-trans-meta sourceCommit=63d391bf35d499615891b75295edb22575da9bc1 translatedAt=2026-08-11T01:46:51.178Z pushedAt=2026-08-11T08:33:50.060Z -->
 
 > **NOTE**
 >
-> This guide uses the APIs provided by the [Image](../../reference/apis-image-kit/capi-image.md) module, which supports basic functionalities such as image encoding/decoding, image receiver operations, and image data processing. These APIs are introduced prior to API version 11, and no additional features will be included in later versions. Therefore, these APIs are not recommended.
->
-> You can also use the C APIs provided by the [Image_NativeModule](../../reference/apis-image-kit/capi-image-nativemodule.md) module, which includes all the foundational features of the Image module while adding new capabilities like multi-image encoding/decoding. For details about the development guide, see [Using Image_NativeModule to Decode Images (C/C++)](image-source-c.md). These APIs are available since API version 12 and are expected to keep evolving. You are encouraged to use them.
->
-> You are not advised to use both sets of C APIs in your code. It may cause compatibility issues in some scenarios.
+> The APIs used in this development guide are the C APIs provided by the [Image](../../reference/apis-image-kit/capi-image.md) module, which support image encoding/decoding, image receiver, image data processing, and other functions. These APIs were released before API version 11 and will not receive new features in later versions. **They are no longer recommended.**<br>
+> You can use the C APIs provided by the [Image_NativeModule](../../reference/apis-image-kit/capi-nativemodule.md) module, which not only offer the basic image framework capabilities mentioned above but also support new features such as multi-image encoding/decoding. For related development instructions, see [Using Image_NativeModule to Decode Images](image-source-c.md). These APIs are supported from API version 12 onward and will continue to evolve. **They are recommended for developers.**<br>
+> Using both sets of C APIs together is not recommended, as they may be incompatible in certain scenarios.
 
 You can use the **ImageReceiver** class to obtain the surface ID of a component, read the latest image or the next image, and release ImageReceiver instances.
 
@@ -136,7 +136,7 @@ To obtain input data of an image from a camera, you must request the **ohos.perm
 
 ### Calling the Native APIs
 
-For details about the APIs, see [Image](../../reference/apis-image-kit/capi-image.md).
+For detailed API descriptions, see [Image](../../reference/apis-image-kit/capi-image.md).
 
 Obtain the JS resource object from the **hello.cpp** file and convert it to a native resource object. Then you can call native APIs.
 
@@ -145,7 +145,6 @@ Obtain the JS resource object from the **hello.cpp** file and convert it to a na
 ```c++
 #include <multimedia/image_framework/image_mdk.h>
 #include <multimedia/image_framework/image_receiver_mdk.h>
-#include <malloc.h>
 #include <hilog/log.h>
 
 static napi_value createFromReceiver(napi_env env, napi_callback_info info)
@@ -168,17 +167,16 @@ static napi_value createFromReceiver(napi_env env, napi_callback_info info)
    int32_t format;
    OH_Image_Receiver_GetFormat(imgReceiver_c, &format);
    OH_LOG_Print(LOG_APP, LOG_INFO, 0xFF00, "[receiver]", "format: %{public}d", format);
-   char * surfaceId = static_cast<char *>(malloc(sizeof(char)));
-   OH_Image_Receiver_GetReceivingSurfaceId(imgReceiver_c, surfaceId, sizeof(char));
-   OH_LOG_Print(LOG_APP, LOG_INFO, 0xFF00, "[receiver]", "surfaceId: %{public}c", surfaceId[0]);
+   char surfaceId[128] = {0};
+   OH_Image_Receiver_GetReceivingSurfaceId(imgReceiver_c, surfaceId, sizeof(surfaceId));
+   OH_LOG_Print(LOG_APP, LOG_INFO, 0xFF00, "[receiver]", "surfaceId: %{public}s", surfaceId);
    OhosImageSize size;
    OH_Image_Receiver_GetSize(imgReceiver_c, &size);
    OH_LOG_Print(LOG_APP, LOG_INFO, 0xFF00, "[receiver]", "OH_Image_Receiver_GetSize  width: %{public}d, height:%{public}d", size.width, size.height);
    
-   int32_t ret;
    napi_value nextImage;
    // Alternatively, call OH_Image_Receiver_ReadNextImage(imgReceiver_c, &nextImage).
-   ret = OH_Image_Receiver_ReadLatestImage(imgReceiver_c, &nextImage);
+   OH_Image_Receiver_ReadLatestImage(imgReceiver_c, &nextImage);
    
    ImageNative * nextImage_native = OH_Image_InitImageNative(env, nextImage);
 
@@ -187,12 +185,12 @@ static napi_value createFromReceiver(napi_env env, napi_callback_info info)
    OH_LOG_Print(LOG_APP, LOG_INFO, 0xFF00, "[receiver]", "OH_Image_Size  width: %{public}d, height:%{public}d", imageSize.width, imageSize.height);
 
    OhosImageComponent imgComponent;
-   ret = OH_Image_GetComponent(nextImage_native, 4, &imgComponent); // 4=jpeg
+   OH_Image_GetComponent(nextImage_native, OHOS_IMAGE_COMPONENT_FORMAT_JPEG, &imgComponent);
    
    uint8_t *img_buffer = imgComponent.byteBuffer;
    
-   ret = OH_Image_Release(nextImage_native);
-   ret = OH_Image_Receiver_Release(imgReceiver_c);
+   OH_Image_Release(nextImage_native);
+   OH_Image_Receiver_Release(imgReceiver_c);
    return nextImage;
 }
 ```

@@ -6,8 +6,9 @@
 <!--Designer: @stupig001-->
 <!--Tester: @xdlinc-->
 <!--Adviser: @w_Machine_cc-->
+<!-- md-trans-meta sourceCommit=3692b2f13706e00100fce76ce4f745bacc7102e6 translatedAt=2026-08-11T01:49:48.392Z pushedAt=2026-08-11T12:19:49.841Z -->
 
-## Error Code AV_SCREEN_CAPTURE_ERR_OPERATE_NOT_PERMIT Is Reported When Starting Screen Capture
+## Error Code AV_SCREEN_CAPTURE_ERR_OPERATE_NOT_PERMIT Is Reported When the Number of Instances Exceeds the Limit
 
 This error occurs when the number of instances exceeds the system limit. The current specification allows a maximum of two instances per data format. You are advised to release any extra instances before creating new ones.
 
@@ -21,6 +22,6 @@ Screen capture session limit policy:
 
 2. Each application can create up to two instances per operational mode (saving to files or saving as streams). A typical use case is simultaneously recording meeting content while sharing the screen during an online meeting.
 
-## Error Code AV_SCREEN_CAPTURE_ERR_OPERATE_NOT_PERMIT Is Reported When Starting Screen Capture During a Call
+## Error Code AV_SCREEN_CAPTURE_ERR_OPERATE_NOT_PERMIT Is Reported When Starting Screen Capture Without Setting the Keep-Capture Strategy During a Call
 
-Starting from API version 20, you can call [OH_AVScreenCapture_StrategyForKeepCaptureDuringCall()](../../reference/apis-media-kit/capi-native-avscreen-capture-h.md#oh_avscreencapture_strategyforkeepcaptureduringcall) to keep screen capture during a cellular call.
+Starting from API version 20, to keep screen capture active during a call, call [OH_AVScreenCapture_StrategyForKeepCaptureDuringCall()](../../reference/apis-media-kit/capi-native-avscreen-capture-h.md#oh_avscreencapture_strategyforkeepcaptureduringcall) to set the strategy for keeping screen capture during cellular calls.

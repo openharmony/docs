@@ -1,10 +1,12 @@
 # Using AVMetadataExtractor to Extract Audio and Video Metadata (ArkTS)
+
 <!--Kit: Media Kit-->
 <!--Subsystem: Multimedia-->
 <!--Owner: @hanzhengshi-->
 <!--Designer: @chris2981-->
 <!--Tester: @xchaosioda-->
 <!--Adviser: @w_Machine_cc-->
+<!-- md-trans-meta sourceCommit=38236a392b26aa1df44666e8a345f2ae3c8d2d6e translatedAt=2026-08-11T01:50:02.964Z pushedAt=2026-08-11T12:10:05.991Z -->
 
 You can use [AVMetadataExtractor](media-kit-intro.md#avmetadataextractor) to obtain metadata from a raw media asset. This topic walks you through on how to obtain the metadata of a media resource.
 
@@ -15,6 +17,7 @@ The full process of obtaining the metadata of a media asset includes creating an
 For details about the APIs, see [AVMetadataExtractor](../../reference/apis-media-kit/arkts-apis-media-AVMetadataExtractor.md).
 
 1. Use [createAVMetadataExtractor()](../../reference/apis-media-kit/arkts-apis-media-f.md#mediacreateavmetadataextractor11-1) to create an instance.
+
    ```ts
    import { media } from '@kit.MediaKit';
    // Create an AVMetadataExtractor instance.
@@ -22,10 +25,11 @@ For details about the APIs, see [AVMetadataExtractor](../../reference/apis-media
    ```
 
 2. Set resources. Specifically, set the **fdSrc** property (indicating the file descriptor) and **dataSrc** property (indicating the data source descriptor), or call **setUrlSource** to set an online media link.
-   
+
    You need to check the resource validity and set either property based on the actual situation.
-   
-   - To set **fdSrc**, use **ResourceManager.getRawFd** to obtain the file descriptor of the resource file packed in the HAP. For details, see [ResourceManager API Reference](../../reference/apis-localization-kit/js-apis-resource-manager.md#getrawfd9). You can also access the resource through the application sandbox path (ensure that the resource is available). For details, see [Obtaining Application File Paths](../../application-models/application-context-stage.md#obtaining-application-file-paths). For details about the application sandbox and how to push files to the application sandbox directory, see [File Management](../../file-management/app-sandbox-directory.md).
+
+   - If **fdSrc** is set, you can use **ResourceManager.getRawFd** to open the HAP resource file descriptor. For details, see [getRawFd](../../reference/apis-localization-kit/js-apis-resource-manager.md#getrawfd9) in the **ResourceManager** API. You can also access the corresponding resource through the app sandbox path (ensure the resource is available). For details, see [Obtaining Application File Paths](../../application-models/application-context-stage.md#obtaining-application-file-paths). For an introduction to the app sandbox and how to push files to it, see [Application Sandbox](../../file-management/app-sandbox-directory.md).
+
      ```ts
      import { common } from '@kit.AbilityKit';
      import { media } from '@kit.MediaKit';
@@ -40,6 +44,7 @@ For details about the APIs, see [AVMetadataExtractor](../../reference/apis-media
      ```
 
    - To set **dataSrc**, set **callback** in **dataSrc** to ensure that the corresponding resource can be correctly read when the callback is invoked, and use the application sandbox directory to access the resource. For details, see [Obtaining Application File Paths](../../application-models/application-context-stage.md#obtaining-application-file-paths). For details about the application sandbox and how to push files to the application sandbox directory, see [File Management](../../file-management/app-sandbox-directory.md).
+
      ```ts
      import { fileIo, ReadOptions } from '@kit.CoreFileKit';
      import { common } from '@kit.AbilityKit';
@@ -77,9 +82,13 @@ For details about the APIs, see [AVMetadataExtractor](../../reference/apis-media
      };
      // Set the dataSrc property.
      avMetadataExtractor.dataSrc = dataSrc;
+
+     // Close the fd after completing subsequent metadata retrieval or frame extraction operations.
+     fileIo.closeSync(fd);
      ```
 
    - If [setUrlSource](../../reference/apis-media-kit/arkts-apis-media-AVMetadataExtractor.md#seturlsource20) is used, fill in both the **url** and **headers** properties correctly to ensure that the URL is accessible.
+
      ```ts
      import { media } from '@kit.MediaKit';
 
@@ -94,6 +103,7 @@ For details about the APIs, see [AVMetadataExtractor](../../reference/apis-media
      ```
 
    - If different AVMetadataExtractor or [AVImageGenerator](../../reference/apis-media-kit/arkts-apis-media-AVImageGenerator.md) instances need to operate the same resource, the file descriptor needs to be opened for multiple times. Therefore, do not share a file descriptor.
+
      ```ts
      import { common } from '@kit.AbilityKit';
      import { fileIo } from '@kit.CoreFileKit';
@@ -109,6 +119,7 @@ For details about the APIs, see [AVMetadataExtractor](../../reference/apis-media
      ```
 
 3. Obtain metadata. Specifically, call **fetchMetadata()** to obtain an [AVMetadata](../../reference/apis-media-kit/arkts-apis-media-i.md#avmetadata11) object. You can access its properties to obtain the metadata.
+
    ```ts
    // Obtain the metadata (callback mode).
    avMetadataExtractor.fetchMetadata((error, metadata) => {
@@ -123,6 +134,7 @@ For details about the APIs, see [AVMetadataExtractor](../../reference/apis-media
    ```
 
 4. For a video resource, you can use **fetchMetadata** to obtain the width and height of the video resource from the metadata of the AVMetadata object.
+
    ```ts
    // Obtain the width and height of the video resource.
    let metadata = await avMetadataExtractor.fetchMetadata();
@@ -131,6 +143,7 @@ For details about the APIs, see [AVMetadataExtractor](../../reference/apis-media
    ```
 
 5. For an audio resource, in addition to obtaining metadata such as the title and duration of the audio resource through the AVMetadata object, you can retrieve the album cover by calling **fetchAlbumCover()**.
+
    ```ts
    import { image } from '@kit.ImageKit';
    // Declare a pixelMap object, which is used for image display.
@@ -149,6 +162,7 @@ For details about the APIs, see [AVMetadataExtractor](../../reference/apis-media
    ```
 
 6. (Optional) Call **fetchFrameByTime** to obtain the video thumbnail.
+
    ```ts
    import { image } from '@kit.ImageKit';
    // Declare a pixelMap object, which is used for image display.
@@ -165,6 +179,7 @@ For details about the APIs, see [AVMetadataExtractor](../../reference/apis-media
    ```
 
 7. (Optional) Call **fetchFramesByTimes** to obtain video thumbnails in batches.
+
    ```ts
    import { image } from '@kit.ImageKit';
    // Declare a pixelMap object, which is used for image display.
@@ -177,12 +192,12 @@ For details about the APIs, see [AVMetadataExtractor](../../reference/apis-media
      height : 300
    }
    // Obtain the video thumbnail (callback mode).
-   avMetadataExtractor.fetchFramesByTimes(timesUs, queryOption, param, async (frameInfo: media.FrameInfo, err: BusinessError) => {
+   avMetadataExtractor.fetchFramesByTimes(timesUs, queryOption, param, (frameInfo: media.FrameInfo, err: BusinessError) => {
      if (err) {
-       console.error(`fetch failed, error = ${JSON.stringify(err)}`);
+       console.error(TAG, `fetch frame failed, error code: ${err.code}, error message: ${err.message}`);
        return;
      }
-     console.info(`fetch success.`);
+     console.info(TAG, `fetch frame successfully.`);
      if (frameInfo !== undefined && frameInfo.image !== undefined) {
        this.pixelMap = frameInfo.image;
      }
@@ -193,6 +208,7 @@ For details about the APIs, see [AVMetadataExtractor](../../reference/apis-media
    ```
 
 8. Call **release()** to release the instance.
+
    ```ts
    // Release the instance (callback mode).
    avMetadataExtractor.release((error) => {
@@ -212,6 +228,7 @@ For details about the APIs, see [AVMetadataExtractor](../../reference/apis-media
 Refer to the sample project to obtain audio metadata and album cover.
 
 1. Create a project, download the [sample project](https://gitcode.com/openharmony/applications_app_samples/tree/master/code/DocsSample/Media/AVMetadataExtractor/AVMetadataExtractorArkTS), and copy its resources to the corresponding directories.
+
    ```txt
     AVMetadataExtractorArkTS
     entry/src/main/ets/
@@ -228,4 +245,5 @@ Refer to the sample project to obtain audio metadata and album cover.
     └── rawfile
         └── test.mp3 (audio resource)
    ```
+
 2. Compile and run the project.

@@ -1,20 +1,27 @@
 # Using AVPlayer to Set Playback URLs (ArkTS)
+
 <!--Kit: Media Kit-->
 <!--Subsystem: Multimedia-->
-<!--Owner: @xushubo; @chennotfound-->
+<!--Owner: @chennotfound-->
 <!--Designer: @dongyu_dy-->
 <!--Tester: @xchaosioda-->
 <!--Adviser: @w_Machine_cc-->
+<!-- md-trans-meta sourceCommit=425e79ed59a841b19860caacc0b050f68405d43e translatedAt=2026-08-11T01:51:03.683Z pushedAt=2026-08-11T12:38:03.121Z -->
+
 This topic describes how to use the AVPlayer to set URLs in different playback scenarios.
 
 This guide focuses only on the methods for setting playback URLs. For other scenarios and comprehensive sample code, see [Video Playback](video-playback.md).
 
 This guide describes the following scenarios:
+
 - [Setting URLs for Streaming Media Playback](#setting-urls-for-streaming-media-playback)
+
 - [Setting URLs for Local Raw File Playback](#setting-urls-for-local-raw-file-playback)
 
 ## Setting URLs for Streaming Media Playback
+
 **Case 1: playing HTTP/HTTPS media assets**
+
 ```ts
  import { media } from '@kit.MediaKit';
  // Define the class member avPlayer.
@@ -33,6 +40,7 @@ This guide describes the following scenarios:
 ```
 
 **Case 2: playing HLS media assets (VOD/live streaming)**
+
 ```ts
  import { media } from '@kit.MediaKit';
  // Define the class member avPlayer.
@@ -53,6 +61,7 @@ This guide describes the following scenarios:
 **Case 3: setting the HTTP request header information for playback**
 
 If the server needs to verify the HTTP request header, you can set the HTTP request header information through [createMediaSourceWithUrl](../../reference/apis-media-kit/arkts-apis-media-f.md#mediacreatemediasourcewithurl12).
+
 ```ts
  import { media } from '@kit.MediaKit';
  // Define the class member avPlayer.
@@ -77,6 +86,7 @@ If the server needs to verify the HTTP request header, you can set the HTTP requ
 **Case 4: playing an online streaming media asset by parsing an M3U8 file in the local raw file folder**
 
 If an application needs to play an online streaming media asset by parsing an M3U8 file in the local raw file folder, the application can obtain the file descriptor through [resourceManager.getRawFd](../../reference/apis-localization-kit/js-apis-resource-manager.md#getrawfd9), combine the file descriptor into fdUrl, and set the MIME type to **APPLICATION_M3U8** through [setMimeType](../../reference/apis-media-kit/arkts-apis-media-MediaSource.md#setmimetype12).
+
 ```ts
  import { media } from '@kit.MediaKit';
  import { common } from '@kit.AbilityKit';
@@ -110,6 +120,7 @@ If an application needs to play an online streaming media asset by parsing an M3
 **Case 5: playing an online streaming media asset by parsing an M3U8 file in the application sandbox**
 
 If an application needs to play an online streaming media asset by parsing an M3U8 file in the application sandbox, the application can obtain the file handle through [fileIo.openSync](../../reference/apis-core-file-kit/js-apis-file-fs.md#fileioopensync), combine the file handle into fdUrl, and set the MIME type to **APPLICATION_M3U8** through [setMimeType](../../reference/apis-media-kit/arkts-apis-media-MediaSource.md#setmimetype12).
+
 ```ts
  import { media } from '@kit.MediaKit';
  import { fileIo } from '@kit.CoreFileKit';
@@ -148,7 +159,9 @@ If an application needs to play an online streaming media asset by parsing an M3
 ```
 
 ## Setting URLs for Local Raw File Playback
+
 **Case 1: application sandbox file playback**
+
 ```ts
  import { media } from '@kit.MediaKit';
  import { fileIo } from '@kit.CoreFileKit';
@@ -199,7 +212,9 @@ If an application needs to play an online streaming media asset by parsing an M3
 ```
 
 ## Running the Sample Project
+
 1. Create a project, download the [sample project](https://gitcode.com/openharmony/applications_app_samples/tree/master/code/DocsSample/Media/AVPlayer/AVPlayerArkTSURL), and copy its resources to the corresponding directories. You can also directly run the sample project.
+
     ```txt
     AVPlayerArkTSURL
     entry/src/main/ets/
@@ -218,7 +233,9 @@ If an application needs to play an online streaming media asset by parsing an M3
         ├── test.m3u8 (m3u8 resource)
         └── test_01.mp3 (audio resource)
     ```
+
 2. Request the network permission in the **/entry/src/main/module.json5** file. Alternatively, replace the **module.json5** file with that in the sample project.
+
     ```json
     "requestPermissions": [
       {
@@ -229,9 +246,11 @@ If an application needs to play an online streaming media asset by parsing an M3
       }
     ]
     ```
+
 3. Comment out or uncomment the above examples in the **entry/src/main/ets/pages/Index.ets** file, and compile and run the application.
 
-4. After installing the application, you can add **/entry/src/main/resources/rawfile/test.m3u8** from the sample project to the application sandbox using the following command, and then run the related sandbox examples. `<FILESDIR>` refers to the physical path. In the sample project, you can obtain the application sandbox path by printing **this.context.filesDir** using **console.info**. Then, refer to the `mapping table between application sandbox paths and physical paths` in the [application sandbox guide](../../file-management/app-sandbox-directory.md) to locate the corresponding physical path.
+4. After installing the app, you can add the sample project's **/entry/src/main/resources/rawfile/test.m3u8** to the application sandbox using the following command to run the application sandbox-related examples: (```<FILESDIR>``` is the physical path. Taking the sample project as an example, you can obtain the application sandbox path by printing **this.context.filesDir** using **console.info**, and then find the physical path based on the ```application sandbox path and physical path mapping table``` in the [application sandbox guide](../../file-management/app-sandbox-directory.md)).
+
     ```txt
     hdc file send "[Directory]\test.m3u8" <FILESDIR>
     hdc file send "[Directory]\test_01.mp3" <FILESDIR>

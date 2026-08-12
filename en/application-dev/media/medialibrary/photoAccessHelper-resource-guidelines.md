@@ -1,10 +1,12 @@
 # Managing Media Assets
+
 <!--Kit: Media Library Kit-->
 <!--Subsystem: Multimedia-->
-<!--Owner: @yixiaoff-->
+<!--Owner: @zhaochang14-->
 <!--Designer: @liweilu1-->
 <!--Tester: @xchaosioda-->
 <!--Adviser: @w_Machine_cc-->
+<!-- md-trans-meta sourceCommit=00d7cb908705b920a9ee7ee48de288635f9580c9 translatedAt=2026-08-11T01:57:47.769Z pushedAt=2026-08-12T03:43:47.460Z -->
 
 Applications can call photoAccessHelper APIs to manage media assets (images and videos).
 
@@ -22,21 +24,23 @@ You can obtain media assets based on the specified conditions, such as the media
 Use [PhotoAccessHelper.getAssets](../../reference/apis-media-library-kit/arkts-apis-photoAccessHelper-PhotoAccessHelper.md#getassets-1) with the [FetchOptions](../../reference/apis-media-library-kit/arkts-apis-photoAccessHelper-i.md#fetchoptions) object to specify the search criteria. Unless otherwise specified, all the media assets to be obtained in this document exist in the database. If no media asset is obtained, check whether the media assets exist in the database.
 
 > **NOTE**
-> When [PhotoAccessHelper.PhotoKeys](../../reference/apis-media-library-kit/arkts-apis-photoAccessHelper-e.md#photokeys) is used as the search criterion, only the [DataSharePredicates.equalTo](../../reference/apis-arkdata/js-apis-data-dataSharePredicates.md#equalto10) API is supported.
+> When using [PhotoAccessHelper.PhotoKeys](../../reference/apis-media-library-kit/arkts-apis-photoAccessHelper-e.md#photokeys).URI as a query condition, only the [DataSharePredicates.equalTo](../../reference/apis-arkdata/js-apis-data-dataSharePredicates.md#equalto) method is supported.
 
 To obtain the object at the specified position (for example, the first one, the last one, or the one with the specified index) in the result set, use [FetchResult](../../reference/apis-media-library-kit/arkts-apis-photoAccessHelper-FetchResult.md).
 
 **Prerequisites**
 
 - A PhotoAccessHelper instance is obtained.
+
 - The application has the **ohos.permission.READ_IMAGEVIDEO** permission. For details, see [Requesting Permissions](photoAccessHelper-preparation.md#requesting-permissions).
+
 - The [dataSharePredicates](../../reference/apis-arkdata/js-apis-data-dataSharePredicates.md) module is imported.
 
 ### Obtaining an Image or Video by Name
 
 The following example describes how to obtain the image **test.jpg**.
 
-<!-- @[get_media_resource](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/MediaLibraryKit/ResourceUsageSample/entry/src/main/ets/getmediaresourceability/GetMediaResourceAbility.ets) -->
+<!-- @[get_media_resource](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/MediaLibraryKit/ResourceUsageSample/entry/src/main/ets/getmediaresourceability/GetMediaResourceAbility.ets) -->  
 
 ``` TypeScript
 import { dataSharePredicates } from '@kit.ArkData';
@@ -52,16 +56,19 @@ async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper) {
     fetchColumns: [],
     predicates: predicates
   };
+  let fetchResult: photoAccessHelper.FetchResult<photoAccessHelper.PhotoAsset> | null = null;
   try {
-    let fetchResult: photoAccessHelper.FetchResult<photoAccessHelper.PhotoAsset> = 
-      await phAccessHelper.getAssets(fetchOptions);
+    fetchResult = await phAccessHelper.getAssets(fetchOptions);
     let photoAsset: photoAccessHelper.PhotoAsset = await fetchResult.getFirstObject();
     console.info('getAssets photoAsset.displayName : ' + photoAsset.displayName);
-    fetchResult.close();
     // ...
   } catch (err) {
     console.error('getAssets failed with err: ' + err);
     // ...
+  } finally {
+    if (fetchResult !== null) {
+      fetchResult.close();
+    }
   }
 }
 ```
@@ -75,7 +82,9 @@ The thumbnails offer a quick preview on images and videos. You can use [PhotoAss
 **Prerequisites**
 
 - A PhotoAccessHelper instance is obtained.
+
 - The application has the **ohos.permission.READ_IMAGEVIDEO** permission. For details, see [Requesting Permissions](photoAccessHelper-preparation.md#requesting-permissions).
+
 - The [dataSharePredicates](../../reference/apis-arkdata/js-apis-data-dataSharePredicates.md) module is imported.
 
 For example, obtain the file descriptor (FD) of an image, and decode the image into a PixelMap for display or processing. For details, see [Image Decoding](../image/image-decoding.md).
@@ -85,11 +94,14 @@ Example: Obtain the thumbnail at the size of 720 x 720 of an image.
 **How to Develop**
 
 1. Set the fetch options.
+
 2. Call [PhotoAccessHelper.getAssets](../../reference/apis-media-library-kit/arkts-apis-photoAccessHelper-PhotoAccessHelper.md#getassets-1) to obtain image assets.
+
 3. Call [FetchResult.getFirstObject](../../reference/apis-media-library-kit/arkts-apis-photoAccessHelper-FetchResult.md#getfirstobject-1) to obtain the first image from the result set.
+
 4. Call **PhotoAsset.getThumbnail** to obtain the [PixelMap](../../reference/apis-image-kit/arkts-apis-image-PixelMap.md) of the thumbnail of the image.
 
-<!-- @[get_media_thumbnails](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/MediaLibraryKit/ResourceUsageSample/entry/src/main/ets/getmediathumbnailsability/GetMediaThumbnailsAbility.ets) -->
+<!-- @[get_media_thumbnails](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/MediaLibraryKit/ResourceUsageSample/entry/src/main/ets/getmediathumbnailsability/GetMediaThumbnailsAbility.ets) -->  
 
 ``` TypeScript
 import { dataSharePredicates } from '@kit.ArkData';
@@ -105,25 +117,29 @@ async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper) {
     predicates: predicates
   };
 
+  let fetchResult: photoAccessHelper.FetchResult<photoAccessHelper.PhotoAsset> | null = null;
   try {
-    let fetchResult: photoAccessHelper.FetchResult<photoAccessHelper.PhotoAsset> = 
-      await phAccessHelper.getAssets(fetchOptions);
+    fetchResult = await phAccessHelper.getAssets(fetchOptions);
     let photoAsset: photoAccessHelper.PhotoAsset = await fetchResult.getFirstObject();
     console.info('getAssets photoAsset.displayName : ' + photoAsset.displayName);
     let size: image.Size = { width: 720, height: 720 };
     let pixelMap: image.PixelMap =  await photoAsset.getThumbnail(size);
     let imageInfo: image.ImageInfo = await pixelMap.getImageInfo()
     console.info('getThumbnail successful, pixelMap ImageInfo size: ' + JSON.stringify(imageInfo.size));
-    fetchResult.close();
     // ...
   } catch (err) {
     console.error('getThumbnail failed with err: ' + err);
     // ...
+  } finally {
+    if (fetchResult !== null) {
+      fetchResult.close();
+    }
   }
 }
 ```
 
 <!--Del-->
+
 ## Creating a Media Asset
 
 Use [MediaAssetChangeRequest](../../reference/apis-media-library-kit/arkts-apis-photoAccessHelper-MediaAssetChangeRequest.md) to create a media asset change request object for a media asset, and use [PhotoAccessHelper.applyChanges](../../reference/apis-media-library-kit/arkts-apis-photoAccessHelper-PhotoAccessHelper.md#applychanges11) to apply the changes.
@@ -131,6 +147,7 @@ Use [MediaAssetChangeRequest](../../reference/apis-media-library-kit/arkts-apis-
 **Prerequisites**
 
 - A PhotoAccessHelper instance is obtained.
+
 - The application has the **ohos.permission.WRITE_IMAGEVIDEO** permission. For details, see [Requesting Permissions](photoAccessHelper-preparation.md#requesting-permissions).
 
 ### Creating an Image or Video Asset (for System Applications Only)
@@ -140,8 +157,11 @@ Example: Create an image asset.
 **How to Develop**
 
 1. Set the file name and **createOption** for setting attributes for the image asset to create.
+
 2. Call **MediaAssetChangeRequest.createAssetRequest** to create a media asset change request object.
+
 3. Call **MediaAssetChangeRequest.getWriteCacheHandler** to obtain the handle of the file to write and write the content of the image asset.
+
 4. Call **PhotoAccessHelper.applyChanges** to apply the changes to the image.
 
 ```ts
@@ -165,7 +185,8 @@ async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper, cont
 }
 ```
 
-You can also use **MediaAssetChangeRequest.addResource** to specify the data source information of the media asset, including the [application sandbox](../../reference/apis-media-library-kit/arkts-apis-photoAccessHelper-MediaAssetChangeRequest.md#addresource11), [ArrayBuffer](../../reference/apis-media-library-kit/arkts-apis-photoAccessHelper-MediaAssetChangeRequest.md#addresource11-1), and [PhotoProxy](../../reference/apis-media-library-kit/js-apis-photoAccessHelper-sys.md#addresource11).
+An app can also call [MediaAssetChangeRequest.addResource](../../reference/apis-media-library-kit/arkts-apis-photoAccessHelper-MediaAssetChangeRequest.md#addresource11) to specify the data source of the media asset content.
+
 <!--DelEnd-->
 
 ## Renaming a Media Asset
@@ -179,6 +200,7 @@ Use [FetchResult](../../reference/apis-media-library-kit/arkts-apis-photoAccessH
 **Prerequisites**
 
 - A PhotoAccessHelper instance is obtained.
+
 - The application has the **ohos.permission.WRITE_IMAGEVIDEO** and **ohos.permission.READ_IMAGEVIDEO** permissions. For details, see [Requesting Permissions](photoAccessHelper-preparation.md#requesting-permissions).
 
 The following example describes how to rename an image named **oldTestPhoto**.
@@ -186,9 +208,13 @@ The following example describes how to rename an image named **oldTestPhoto**.
 **How to Develop**
 
 1. Set the fetch options.
+
 2. Call [PhotoAccessHelper.getAssets](../../reference/apis-media-library-kit/arkts-apis-photoAccessHelper-PhotoAccessHelper.md#getassets-1) to obtain image assets.
+
 3. Call [FetchResult.getFirstObject](../../reference/apis-media-library-kit/arkts-apis-photoAccessHelper-FetchResult.md#getfirstobject-1) to obtain the image asset to rename.
+
 4. Call [MediaAssetChangeRequest.setTitle](../../reference/apis-media-library-kit/arkts-apis-photoAccessHelper-MediaAssetChangeRequest.md#settitle11) to rename the image.
+
 5. Call [PhotoAccessHelper.applyChanges](../../reference/apis-media-library-kit/arkts-apis-photoAccessHelper-PhotoAccessHelper.md#applychanges11) to save the modification to the database.
 
 <!-- @[rename_media](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/MediaLibraryKit/ResourceUsageSample/entry/src/main/ets/renamemediaability/RenameMediaAbility.ets) -->
@@ -208,19 +234,22 @@ async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper) {
   };
   let newTitle: string = 'newTestPhoto';
 
+  let fetchResult: photoAccessHelper.FetchResult<photoAccessHelper.PhotoAsset> | null = null;
   try {
-    let fetchResult: photoAccessHelper.FetchResult<photoAccessHelper.PhotoAsset> = 
-      await phAccessHelper.getAssets(fetchOptions);
+    fetchResult = await phAccessHelper.getAssets(fetchOptions);
     let photoAsset: photoAccessHelper.PhotoAsset = await fetchResult.getFirstObject();
     let assetChangeRequest: photoAccessHelper.MediaAssetChangeRequest = 
       new photoAccessHelper.MediaAssetChangeRequest(photoAsset);
     assetChangeRequest.setTitle(newTitle);
     await phAccessHelper.applyChanges(assetChangeRequest);
-    fetchResult.close();
     // ...
   } catch (err) {
     console.error(`rename failed with error: ${err.code}, ${err.message}`);
     // ...
+  } finally {
+    if (fetchResult !== null) {
+      fetchResult.close();
+    }
   }
 }
 ```
@@ -234,6 +263,7 @@ The file moved to the trash will be retained for 30 days before being deleted pe
 **Prerequisites**
 
 - A PhotoAccessHelper instance is obtained.
+
 - The application has the **ohos.permission.WRITE_IMAGEVIDEO** and **ohos.permission.READ_IMAGEVIDEO** permissions. For details, see [Requesting Permissions](photoAccessHelper-preparation.md#requesting-permissions).
 
 Example: Move the first file in the result set to the trash.
@@ -241,11 +271,14 @@ Example: Move the first file in the result set to the trash.
 **How to Develop**
 
 1. Set the fetch options.
+
 2. Call [PhotoAccessHelper.getAssets](../../reference/apis-media-library-kit/arkts-apis-photoAccessHelper-PhotoAccessHelper.md#getassets-1) to obtain image assets.
+
 3. Call [FetchResult.getFirstObject](../../reference/apis-media-library-kit/arkts-apis-photoAccessHelper-FetchResult.md#getfirstobject-1) to obtain the first image.
+
 4. Call [MediaAssetChangeRequest.deleteAssets](../../reference/apis-media-library-kit/arkts-apis-photoAccessHelper-MediaAssetChangeRequest.md#deleteassets11) to move the image to the trash.
 
-<!-- @[move_media_to_recycle_bin](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/MediaLibraryKit/ResourceUsageSample/entry/src/main/ets/movemediatorecyclebinability/MoveMediaToRecycleBinAbility.ets) -->
+<!-- @[move_media_to_recycle_bin](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/MediaLibraryKit/ResourceUsageSample/entry/src/main/ets/movemediatorecyclebinability/MoveMediaToRecycleBinAbility.ets) -->  
 
 ``` TypeScript
 import { dataSharePredicates } from '@kit.ArkData';
@@ -260,16 +293,19 @@ async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper, cont
     predicates: predicates
   };
 
+  let fetchResult: photoAccessHelper.FetchResult<photoAccessHelper.PhotoAsset> | null = null;
   try {
-    let fetchResult: photoAccessHelper.FetchResult<photoAccessHelper.PhotoAsset> = 
-      await phAccessHelper.getAssets(fetchOptions);
+    fetchResult = await phAccessHelper.getAssets(fetchOptions);
     let photoAsset: photoAccessHelper.PhotoAsset = await fetchResult.getFirstObject();
     await photoAccessHelper.MediaAssetChangeRequest.deleteAssets(context, [photoAsset]);
-    fetchResult.close();
     // ...
   } catch (err) {
     console.error(`deleteAssets failed with error: ${err.code}, ${err.message}`);
     // ...
+  } finally {
+    if (fetchResult !== null) {
+      fetchResult.close();
+    }
   }
 }
 ```
