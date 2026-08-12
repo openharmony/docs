@@ -220,7 +220,7 @@ struct ScrollBarExample {
 
 从API version 14开始，可通过[enableNestedScroll](#enablenestedscroll14)属性使ScrollBar组件支持嵌套滚动。本示例同时使用从API version 20开始支持的[scrollBarColor](#scrollbarcolor20)属性设置滚动条颜色。
 ```ts
-import { ColorMetrics, EdgeEffect, NestedScrollMode } from '@kit.ArkUI'
+import { ColorMetrics } from '@kit.ArkUI'
 
 @Entry
 @Component

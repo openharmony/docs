@@ -2329,7 +2329,7 @@ int32_t OH_ArkUI_List_CloseAllSwipeActions(ArkUI_NodeHandle node, void* userData
 | -- | -- |
 | [ArkUI_NodeHandle](capi-arkui-nativemodule-arkui-node8h.md) node | 需要注册事件的节点对象。 |
 | void* userData | 自定义事件参数，当事件触发时在回调参数中携带回来。 |
-| onFinish | 在收起动画完成后触发的回调。 |
+| void (\*onFinish)(void\* userData) | 在收起动画完成后触发的回调。 |
 
 **返回：**
 
