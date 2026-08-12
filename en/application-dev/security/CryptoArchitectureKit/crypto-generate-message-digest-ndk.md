@@ -6,10 +6,12 @@
 <!--Designer: @lanming-->
 <!--Tester: @PAFT-->
 <!--Adviser: @zengyawen-->
+<!-- md-trans-meta sourceCommit=df6785f32b4da7a1b730d36b8c75ab56c8212ae1 translatedAt=2026-08-12T07:09:03.458Z pushedAt=2026-08-12T07:27:25.096Z -->
 
 For details about the algorithm specifications, see [Supported Algorithms and Specifications](crypto-generate-message-digest-overview.md#supported-algorithms-and-specifications).
 
 ## Adding the Dynamic Library in the CMake Script
+
 ```txt
 target_link_libraries(entry PUBLIC libohcrypto.so)
 ```
@@ -71,7 +73,6 @@ The following provides examples of MD operations with different data passing met
   }
   ```
 
-
 ### Generating an MD by Passing In Data by Segment
 
 1. Call [OH_CryptoDigest_Create](../../reference/apis-crypto-architecture-kit/capi-crypto-digest-h.md#oh_cryptodigest_create) with the MD algorithm **SHA256** to generate an MD operation instance (**OH_CryptoDigest**).
@@ -112,6 +113,7 @@ The following provides examples of MD operations with different data passing met
 
       ret = OH_CryptoDigest_Create("SHA256", &ctx);
       if (ret != CRYPTO_SUCCESS) {
+          free(testData);
           return ret;
       }
       do {
@@ -131,6 +133,7 @@ The following provides examples of MD operations with different data passing met
           }
           mdLen = OH_CryptoDigest_GetLength(ctx);
       } while (0);
+      free(testData);
       OH_Crypto_FreeDataBlob(&out);
       OH_DigestCrypto_Destroy(ctx);
       return ret;
