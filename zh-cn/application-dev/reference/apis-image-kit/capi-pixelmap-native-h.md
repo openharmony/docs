@@ -1209,8 +1209,8 @@ Image_ErrorCode OH_PixelmapNative_ApplyScale(OH_PixelmapNative *pixelmap, float 
 | 参数项 | 描述 |
 | -- | -- |
 | [OH_PixelmapNative](capi-image-nativemodule-oh-pixelmapnative.md) *pixelmap | 被缩放的OH_PixelmapNative的指针。 |
-| float scaleX | 宽度的缩放倍数。取值不能为0。 |
-| float scaleY | 高度的缩放倍数。取值不能为0。 |
+| float scaleX | 宽度的缩放倍数。<br>取值不能为0，建议取正数，否则会产生翻转效果。 |
+| float scaleY | 高度的缩放倍数。<br>取值不能为0，建议取正数，否则会产生翻转效果。 |
 
 **返回：**
 
@@ -1235,8 +1235,8 @@ Image_ErrorCode OH_PixelmapNative_Scale(OH_PixelmapNative *pixelmap, float scale
 | 参数项 | 描述 |
 | -- | -- |
 | [OH_PixelmapNative](capi-image-nativemodule-oh-pixelmapnative.md) *pixelmap | 被操作的OH_PixelmapNative指针。 |
-| float scaleX | 宽度的缩放比例。取值不能为0。 |
-| float scaleY | 高度的缩放比例。取值不能为0。 |
+| float scaleX | 宽度的缩放比例。<br>取值不能为0，建议取正数，否则会产生翻转效果。 |
+| float scaleY | 高度的缩放比例。<br>取值不能为0，建议取正数，否则会产生翻转效果。 |
 
 **返回：**
 
@@ -1261,8 +1261,8 @@ Image_ErrorCode OH_PixelmapNative_ApplyScaleWithAntiAliasing(OH_PixelmapNative *
 | 参数项 | 描述 |
 | -- | -- |
 | [OH_PixelmapNative](capi-image-nativemodule-oh-pixelmapnative.md) *pixelmap | 被缩放的OH_PixelmapNative的指针。 |
-| float scaleX | 宽度的缩放倍数。取值不能为0。 |
-| float scaleY | 高度的缩放倍数。取值不能为0。 |
+| float scaleX | 宽度的缩放倍数。<br>取值不能为0，建议取正数，否则会产生翻转效果。 |
+| float scaleY | 高度的缩放倍数。<br>取值不能为0，建议取正数，否则会产生翻转效果。 |
 | [OH_PixelmapNative_AntiAliasingLevel](#oh_pixelmapnative_antialiasinglevel) level | 采用的缩放算法。该参数对于ASTC格式的Pixelmap不生效。 |
 
 **返回：**
@@ -1288,8 +1288,8 @@ Image_ErrorCode OH_PixelmapNative_ScaleWithAntiAliasing(OH_PixelmapNative *pixel
 | 参数项 | 描述 |
 | -- | -- |
 | [OH_PixelmapNative](capi-image-nativemodule-oh-pixelmapnative.md) *pixelmap | 被操作的OH_PixelmapNative指针。 |
-| float scaleX | 宽度的缩放比例。取值不能为0。 |
-| float scaleY | 高度的缩放比例。取值不能为0。 |
+| float scaleX | 宽度的缩放比例。<br>取值不能为0，建议取正数，否则会产生翻转效果。 |
+| float scaleY | 高度的缩放比例。<br>取值不能为0，建议取正数，否则会产生翻转效果。 |
 | [OH_PixelmapNative_AntiAliasingLevel](#oh_pixelmapnative_antialiasinglevel) level | 缩放算法。该参数对于ASTC格式的Pixelmap不生效。 |
 
 **返回：**
@@ -1316,8 +1316,8 @@ Image_ErrorCode OH_PixelmapNative_CreateScaledPixelMap(OH_PixelmapNative *srcPix
 | -- | -- |
 | [OH_PixelmapNative](capi-image-nativemodule-oh-pixelmapnative.md) *srcPixelmap | 被操作的OH_PixelmapNative指针，源Pixelmap对象指针。 |
 | [OH_PixelmapNative](capi-image-nativemodule-oh-pixelmapnative.md) **dstPixelmap | 被操作的OH_PixelmapNative指针，目标Pixelmap对象指针。 |
-| float scaleX | 宽度的缩放比例。取值不能为0。 |
-| float scaleY | 高度的缩放比例。取值不能为0。 |
+| float scaleX | 宽度的缩放比例。<br>取值不能为0，建议取正数，否则会产生翻转效果。 |
+| float scaleY | 高度的缩放比例。<br>取值不能为0，建议取正数，否则会产生翻转效果。 |
 
 **返回：**
 
@@ -1343,8 +1343,8 @@ Image_ErrorCode OH_PixelmapNative_CreateScaledPixelMapWithAntiAliasing(OH_Pixelm
 | -- | -- |
 | [OH_PixelmapNative](capi-image-nativemodule-oh-pixelmapnative.md) *srcPixelmap | 被操作的OH_PixelmapNative指针，源Pixelmap对象指针。 |
 | [OH_PixelmapNative](capi-image-nativemodule-oh-pixelmapnative.md) **dstPixelmap | 被操作的OH_PixelmapNative指针，目标Pixelmap对象指针。 |
-| float scaleX | 宽度的缩放比例。取值不能为0。 |
-| float scaleY | 高度的缩放比例。取值不能为0。 |
+| float scaleX | 宽度的缩放比例。<br>取值不能为0，建议取正数，否则会产生翻转效果。 |
+| float scaleY | 高度的缩放比例。<br>取值不能为0，建议取正数，否则会产生翻转效果。 |
 | [OH_PixelmapNative_AntiAliasingLevel](#oh_pixelmapnative_antialiasinglevel) level | 缩放算法。该参数对于ASTC格式的Pixelmap不生效。 |
 
 **返回：**
@@ -1421,7 +1421,7 @@ Image_ErrorCode OH_PixelmapNative_CreateCroppedAndScaledPixelMap(OH_PixelmapNati
 | -- | -- |
 | [OH_PixelmapNative](capi-image-nativemodule-oh-pixelmapnative.md) *srcPixelmap | 源Pixelmap。 |
 | [Image_Region](capi-image-nativemodule-image-region.md) *region | 裁剪区域。 |
-| [Image_Scale](capi-image-nativemodule-image-scale.md) *scale | 宽和高的缩放倍数。不能为0。 |
+| [Image_Scale](capi-image-nativemodule-image-scale.md) *scale | 宽和高的缩放倍数。<br>取值不能为0，建议取正数，否则会产生翻转效果。 |
 | [OH_PixelmapNative_AntiAliasingLevel](capi-pixelmap-native-h.md#oh_pixelmapnative_antialiasinglevel) level | 要使用的缩放插值算法。该参数对于ASTC格式的Pixelmap不生效。 |
 | [OH_PixelmapNative](capi-image-nativemodule-oh-pixelmapnative.md) **dstPixelmap | 被创建的目标Pixelmap。 |
 
