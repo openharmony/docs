@@ -379,24 +379,25 @@ export default class MigrationAbility extends UIAbility {
 
 ```json5
    {
-     "module": {
-       "abilities": [
-         {
-           "name": "Ability-deviceA",
-           "continueType": ['continueType1'],
-         }
-       ]
-     }
-   }
-
-   {
-     "module": {
-       "abilities": [
-         {
-           "name": "Ability-deviceB",
-           "continueType": ['continueType1'],
-         }
-       ]
+     {
+       "module": {
+         "abilities": [
+           {
+             "name": "Ability-deviceA",
+             "continueType": ['continueType1'],
+           }
+         ]
+       }
+     },
+     {
+       "module": {
+         "abilities": [
+           {
+             "name": "Ability-deviceB",
+             "continueType": ['continueType1'],
+           }
+         ]
+       }
      }
    }
 ```
@@ -457,7 +458,7 @@ export default class MigrationAbility extends UIAbility {
      "module": {
        "abilities": [
          {
-           "name": "EntryAbility"
+           "name": "EntryAbility",
            "continueType": ['EntryAbility_ContinueQuickStart'],
          }
        ]

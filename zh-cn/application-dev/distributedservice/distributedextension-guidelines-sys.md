@@ -100,20 +100,23 @@ hidumper -s 4700 -a "buscenter -l remote_device_info"
    DistributedExtensionAbility配置文件示例：
    
    ```json5
-   "extensionAbilities": [
-     {
-       "name": "EntrydistributedAbility",
-       "srcEntry": "./ets/entrybackupability/EntryDistributedAbility.ets",
-       "type": "distributed",
-       "exported": false,
-       "metadata": [
-         {
-           "name": "ohos.extension.DistributedExtension",
-         }
-       ],
-       "srcEntry": "./ets/common/MDSExtension.ts",
-     }
-   ]
+   {
+     "extensionAbilities": [
+      {
+        "name": "EntrydistributedAbility",
+        "srcEntry": "./ets/entrybackupability/EntryDistributedAbility.ets",
+        "type": "distributed",
+        "exported": false,
+        "metadata": [
+          {
+            "name": "ohos.extension.DistributedExtension",
+          }
+        ],
+        "srcEntry": "./ets/common/MDSExtension.ts",
+      }
+     ]
+   }
+   
    ```
 2. 导入开发所需模块。
    
