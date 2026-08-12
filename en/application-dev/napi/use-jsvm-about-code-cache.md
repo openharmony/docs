@@ -6,9 +6,9 @@
 <!--Designer: @knightaoko-->
 <!--Tester: @test_lzz-->
 <!--Adviser: @k1ngqaquuu-->
-<!-- md-trans-meta sourceCommit=d475d826f8ab6e97b4b69944b8a9a6d84f792324 translatedAt=2026-08-12T06:30:22.495Z pushedAt=2026-08-12T10:53:20.996Z -->
+<!-- md-trans-meta sourceCommit=d475d826f8ab6e97b4b69944b8a9a6d84f792324 translatedAt=2026-08-12T06:30:22.495Z pushedAt=2026-08-12T11:36:22.168Z -->
 
-##Introduction to Code Cache
+## Introduction to Code Cache
 
 JSVM-API provides APIs for creating a code cache and using the code cache to store and manage compiled code to accelerate compilation. The code cache stores the code that has been compiled into native code by the compiler. This helps speed up the execution by avoiding repeated compilation of the same code. The procedure for creating and using a code cache is as follows:
 
@@ -20,7 +20,7 @@ JSVM-API provides APIs for creating a code cache and using the code cache to sto
 
 The compilation using the code cache greatly reduces the compilation time because the serialized script in the code cache only needs to be deserialized, eliminating the need for parsing and compiling the code. In this way, the compilation process is simplified as a process for reading data.
 
-##Code Cache Verification Specifications
+## Code Cache Verification Specifications
 
 | Specification      | Description                                           |
 | ---------- | -------------------------------------------------- |
