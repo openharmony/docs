@@ -3433,7 +3433,7 @@ struct TailIndentsExample {
     ])
 
   styledString3:StyledString =
-    new StyledString('设置tailIndents数组\n设置tailIndents数组\n设置tailIndents数组\n设置tailIndents数组\n设置tailIndents数组', [
+    new StyledString('设置tailIndents数组_设置tailIndents数组_设置tailIndents数组_设置tailIndents数组_设置tailIndents数组_设置tailIndents数组', [
       {
         start: 0,
         length: 120,
