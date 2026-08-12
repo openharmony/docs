@@ -1823,7 +1823,7 @@ onMarqueeStateChange(callback: Callback\<MarqueeState\>)
 
 | 参数名    | 类型                                             | 必填  | 说明                       |
 |--------|---------------------------------------------------|-----|--------------------------|
-| callback  | Callback\<[MarqueeState](#marqueestate18枚举说明)\> | 是   | 通过callback参数指定触发回调的状态，状态由MarqueeState枚举定义，例如开始滚动、完成一次滚动、滚动完成。 |
+| callback  | Callback\<[MarqueeState](#marqueestate18枚举说明)\> | 是   | 通过callback参数指定触发回调的状态，状态由MarqueeState枚举定义，例如开始滚动、完成一次滚动、滚动完成或停止滚动。 |
 
 ## TextOptions<sup>11+</sup>
 
@@ -1912,7 +1912,7 @@ getLayoutManager(): LayoutManager
 
 | 类型                                       | 说明      |
 | ---------------------------------------- | ------- |
-| [LayoutManager](ts-text-common.md#layoutmanager12) | 布局管理器对象，用于获取文本布局信息，包括行数、字形位置、行信息、字符绘制区域等。 |
+| [LayoutManager](ts-text-common.md#layoutmanager12) | 布局管理器对象，用于获取文本布局信息，包括行数、字形位置、行信息、字符绘制区域等。<br>**说明：**<br>当TextController还未绑定Text组件，或绑定的Text组件已被销毁/卸载时，会返回undefined。 |
 
 ### setTextSelection<sup>23+</sup>
 
@@ -2012,7 +2012,7 @@ Marquee状态回调的返回值。
 |--------|----|-------------------------------|
 | START  | 0  | 跑马灯滚动开始。                     |
 | BOUNCE | 1  | 完成一次跑马灯滚动，如果循环次数不是1，将会多次返回。 |
-| FINISH | 2  | 跑马灯全部循环次数完成。              |
+| FINISH | 2  | 跑马灯全部循环次数完成或跑马灯停止滚动（例如[TextMarqueeOptions](#textmarqueeoptions18对象说明)中start被设置为false）。              |
 
 ## 示例
 
@@ -2772,7 +2772,11 @@ struct TextExample10 {
           .fontSize(25)
           .borderWidth(1)
           .onAreaChange(() => {
+            // getLayoutManager在TextController未绑定Text或Text被销毁时会返回undefined，使用时需做判空处理
             let layoutManager: LayoutManager = this.controller.getLayoutManager();
+            if (!layoutManager) {
+              return;
+            }
             this.lineCount = 'LineCount: ' + layoutManager.getLineCount();
           })
 
@@ -2783,6 +2787,9 @@ struct TextExample10 {
         Button("相对组件坐标[150,50]字形信息")
           .onClick(() => {
             let layoutManager: LayoutManager = this.controller.getLayoutManager();
+            if (!layoutManager) {
+              return;
+            }
             let position: PositionWithAffinity = layoutManager.getGlyphPositionAtCoordinate(150, 50);
             this.glyphPositionAtCoordinate =
               '相对组件坐标[150,50] glyphPositionAtCoordinate position: ' + position.position + ' affinity: ' +
@@ -2795,6 +2802,9 @@ struct TextExample10 {
         Button('首行行信息、文本样式信息、以及字体属性信息')
           .onClick(() => {
             let layoutManager: LayoutManager = this.controller.getLayoutManager();
+            if (!layoutManager) {
+              return;
+            }
             let lineMetrics: LineMetrics = layoutManager.getLineMetrics(0);
             this.lineMetrics = 'lineMetrics is ' + JSON.stringify(lineMetrics) + '\n\n';
             let runMetrics = lineMetrics.runMetrics;
@@ -2809,6 +2819,9 @@ struct TextExample10 {
         Button('获取指定矩形宽度和高度下，文本中任意区间范围内字符或占位符的绘制区域信息')
           .onClick(() => {
             let layoutManager: LayoutManager = this.controller.getLayoutManager();
+            if (!layoutManager) {
+              return;
+            }
             let range: TextRange = { start: 0, end: 1 };
             let rectsForRangeInfo: text.TextBox[] =
               layoutManager.getRectsForRange(range, text.RectWidthStyle.TIGHT, text.RectHeightStyle.TIGHT);
@@ -3524,7 +3537,11 @@ struct TextExample10 {
 
       Button('相对组件坐标[150,50]字形信息')
         .onClick(() => {
+          // getLayoutManager在TextController未绑定Text或Text被销毁时会返回undefined，使用时需做判空处理
           let layoutManager: LayoutManager = this.textController.getLayoutManager();
+          if (!layoutManager) {
+            return;
+          }
           let position1: PositionWithAffinity = layoutManager.getGlyphPositionAtCoordinate(150, 50);
           this.str1 = '相对组件坐标[150,50] glyphPosition position: ' + position1.position +
             ' affinity: ' +
