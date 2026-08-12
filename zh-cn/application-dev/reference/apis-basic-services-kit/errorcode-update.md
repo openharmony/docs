@@ -47,14 +47,3 @@
 - `applyNewVersion`
 
 详细信息可参考[@ohos.update (升级)(系统接口)](../apis-basic-services-kit/js-apis-update-sys.md)。
-
-## 调用流程
-
-```mermaid
-graph LR
-    A[客户端应用] -->|调用接口| B[升级服务进程]
-    B -->|处理请求| C[执行升级操作]
-    C -->|返回结果| A
-    B -->|异常| D[IPC error]
-    D --> E[返回错误码 11500104]
-```
