@@ -703,7 +703,7 @@ OH_AudioStream_Result OH_AudioCapturer_RequestPlaybackCaptureStart(OH_AudioCaptu
 | -- | -- |
 | [OH_AudioCapturer](capi-ohaudio-oh-audiocapturerstruct.md)* capturer | 指向[OH_AudioStreamBuilder_GenerateCapturer](capi-native-audiostreambuilder-h.md#oh_audiostreambuilder_generatecapturer)创建的音频流实例。 |
 | [OH_AudioCapturer_OnPlaybackCaptureStartCallback](capi-native-audiocapturer-h.md#oh_audiocapturer_onplaybackcapturestartcallback) callback | 用于接收启动请求最终结果的回调函数。 |
-| void* userData | 指向应用自定义的数据存储区域, 该结构将传递给回调函数。 |
+| void* userData | 指向应用自定义的数据存储区域，该结构将传递给回调函数。 |
 
 **返回：**
 
