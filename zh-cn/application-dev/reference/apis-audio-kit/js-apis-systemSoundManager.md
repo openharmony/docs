@@ -38,7 +38,7 @@ createSystemSoundPlayer(): Promise&lt;SystemSoundPlayer | null&gt;
 
 创建系统音效播放器对象。使用Promise异步回调。
 
-**说明：**
+> **说明：**
 >
 > - 调用createSystemSoundPlayer()创建播放器后，必须在使用完毕后调用release()释放播放器资源。
 > - 详细的使用说明和方法关系请参见[SystemSoundPlayer (音效播放器)](js-apis-inner-multimedia-systemSoundPlayer.md)。
