@@ -132,14 +132,14 @@ private changeOrientation(isLandscape: boolean) {
 
 <!-- @[switch between portrait and landscape](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkWeb/ArkWebFullScreen/entry/src/main/ets/pages/Index.ets) -->
 ``` TypeScript
-import web_webview from '@ohos.web.webview';
+import { webview } from '@kit.ArkWeb';
 import { window, router } from '@kit.ArkUI';
 import { common } from '@kit.AbilityKit';
 
 @Entry
 @Component
 struct WebVideo {
-  controller: web_webview.WebviewController = new web_webview.WebviewController();
+  controller: webview.WebviewController = new webview.WebviewController();
   @State isFullScreen: boolean = false;
 
   // 改变设备横竖屏状态
