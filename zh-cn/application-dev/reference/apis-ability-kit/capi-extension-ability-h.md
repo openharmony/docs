@@ -60,7 +60,7 @@ ExtensionAbility创建回调函数类型。ExtensionAbility中必须实现的回
 
 | 参数名 | 描述 |
 |--------|------|
-| [AbilityRuntime_ExtensionInstanceHandle](capi-abilityruntime-extensioninstance8h.md) handle | 回调函数传入AbilityRuntime_ExtensionInstanceHandle实例的指针。 |
+| [AbilityRuntime_ExtensionInstanceHandle](capi-abilityruntime-extensioninstance8h.md) handle | 回调函数传入AbilityRuntime_ExtensionInstanceHandle实例。 |
 | const char *abilityName | 回调函数传入的ExtensionAbility的名称。 |
 
 ## 变量说明
