@@ -6,13 +6,13 @@
 <!--Designer: @andeszhang-->
 <!--Tester: @murphy84-->
 <!--Adviser: @zhang_yixin13-->
-<!-- md-trans-meta sourceCommit=4c244f2ed12456a4c6059eccff764e442d7872b9 translatedAt=2026-08-10T06:46:08.709Z pushedAt=2026-08-12T04:00:23.437Z -->
+<!-- md-trans-meta sourceCommit=4c244f2ed12456a4c6059eccff764e442d7872b9 translatedAt=2026-08-10T06:46:08.709Z pushedAt=2026-08-12T08:56:42.103Z -->
 
 ## Overview
 
 Provides methods for creating, destroying, reading, and writing input method attach option objects, used to manage configuration parameters when an app attaches to an input method.
 
-Functionality: Creates and manages **InputMethod_AttachOptions** instances. You can configure whether to show the keyboard upon attachment (**showKeyboard**) and the reason for requesting the keyboard (**requestKeyboardReason**). **AttachOptions**, controls the initial behavior when attaching to the input method service, is a mandatory parameter for **OH_InputMethodController_Attach**.
+Functionality: Creates and manages **InputMethod_AttachOptions** instances. You can configure whether to show the keyboard upon attachment (**showKeyboard**) and the reason for requesting the keyboard (**requestKeyboardReason**). **AttachOptions**, controlling the initial behavior when attaching to the input method service, is a mandatory parameter for **OH_InputMethodController_Attach**.
 
 Usage scenarios: Before an app attaches to the input method service, create **AttachOptions** to configure the attachment behavior.
 
