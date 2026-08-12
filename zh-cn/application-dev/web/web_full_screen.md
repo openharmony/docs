@@ -149,7 +149,7 @@ private changeOrientation(isLandscape: boolean) {
 
 完整示例：
 
-<!-- @[switch between portrait and landscape](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkWeb/ArkWebPictureInPicture/entry1/src/main/ets/pages/Full_screen.ets) -->
+<!-- @[switch between portrait and landscape](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkWeb/ArkWebFullScreen/entry/src/main/ets/pages/Index.ets) -->
 ``` TypeScript
 import web_webview from '@ohos.web.webview';
 import { window, router } from '@kit.ArkUI';
