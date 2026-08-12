@@ -1,4 +1,4 @@
-# Dialog Window Development Guide
+# Dialog Window Development
 
 <!--Kit: ArkUI-->
 <!--Subsystem: Window-->

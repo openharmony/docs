@@ -14,9 +14,9 @@
 
   - [Window Type Development Overview](window-type-overview.md)
 
-  - [Subwindow Development Guide](subwindow-guide.md)
+  - [Subwindow Development](subwindow-guide.md)
 
-  - [Modal Window Development](dialog-window-guide.md)
+  - [Dialog Window Development](dialog-window-guide.md)
 
   - [Global Floating Window Development](global-floating-window-guide.md)<!--RP1--><!--RP1End-->
 
@@ -34,7 +34,7 @@
 
     - [Freeform Window Overview](freeform-window-overview.md)
 
-    - [App Adaptation to Freeform Window](application-adaptation-freeform-window.md)
+    - [App Adaptation for Freeform Windows](application-adaptation-freeform-window.md)
 
 - Basic Window Capabilities<!--window-basic-capabilities-->
 
