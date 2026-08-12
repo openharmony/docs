@@ -27,9 +27,11 @@ Repeat需要和状态管理V2一起使用，状态管理V2提供了\@ObservedV2�
 - 其余V1装饰器遵循迁移规则，替换成V2相关装饰器。
 - 直接把ForEach的循环结构替换成Repeat结构。
 
-```ts
+<!-- @[foreach_to_repeat_child_properties](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkUISample/RenderingControl/entry/src/main/ets/pages/RepeatMigration/ForEachToRepeatChildProperties.ets) -->
+
+``` TypeScript
 @ObservedV2
-class ArticleChangeChild {
+export class ArticleChangeChild {
   public id: string;
   public title: string;
   public brief: string;
@@ -47,7 +49,7 @@ class ArticleChangeChild {
 
 @Entry
 @ComponentV2
-struct ArticleListChangeView {
+export struct ArticleListChangeView {
   @Local articleList: Array<ArticleChangeChild> = [
     new ArticleChangeChild('001', 'Article 0', 'Abstract', false, 100),
     new ArticleChangeChild('002', 'Article 1', 'Abstract', false, 100),
@@ -76,7 +78,7 @@ struct ArticleListChangeView {
 }
 
 @ComponentV2
-struct ArticleCardChangeChild {
+export struct ArticleCardChangeChild {
   @Require @Param article: ArticleChangeChild;
 
   handleLiked() {
@@ -102,8 +104,8 @@ struct ArticleCardChangeChild {
           .margin({ bottom: 8 })
 
         Row() {
-          // 此处app.media.iconLiked'，'app.media.iconUnLiked'仅作示例，请开发者自行替换，否则imageSource创建失败会导致后续无法正常执行。
-          Image(this.article.isLiked ? $r('app.media.iconLiked') : $r('app.media.iconUnLiked'))
+          // 此处app.media.iconLiked'，'app.media.iconUnliked'仅作示例，请开发者自行替换，否则imageSource创建失败会导致后续无法正常执行。
+          Image(this.article.isLiked ? $r('app.media.iconLiked') : $r('app.media.iconUnliked'))
             .width(24)
             .height(24)
             .margin({ right: 8 })
@@ -141,10 +143,17 @@ LazyForEach根据数据源循环渲染子组件。
 
 **示例1 - 迁移前**
 
-```ts
-/* BasicDataSource代码见文档末尾BasicDataSource示例代码: string类型数组的BasicDataSource代码 */
+<!-- @[lazyforeach_to_repeat_initial_rendering_before](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkUISample/RenderingControl/entry/src/main/ets/pages/RepeatMigration/LazyForEachToRepeatInitialRenderingBefore.ets) -->
 
-class MyDataSource extends BasicDataSource {
+``` TypeScript
+import { hilog } from '@kit.PerformanceAnalysisKit';
+// BasicDataSource代码见文档末尾BasicDataSource示例代码: string类型数组的BasicDataSource代码。
+import { BasicDataSource } from './BasicDataSource';
+
+const TAG = '[Sample_RenderingControl]';
+const DOMAIN = 0xF811;
+
+export class MyDataSource extends BasicDataSource {
   private dataArray: string[] = [];
 
   public totalCount(): number {
@@ -163,7 +172,7 @@ class MyDataSource extends BasicDataSource {
 
 @Entry
 @Component
-struct MyComponent {
+export struct MyComponent {
   private data: MyDataSource = new MyDataSource();
 
   aboutToAppear() {
@@ -179,7 +188,7 @@ struct MyComponent {
           Row() {
             Text(item).fontSize(50)
               .onAppear(() => {
-                console.info(`appear: ${item}`);
+                hilog.info(DOMAIN, TAG, `appear: ${item}`);
               })
           }.margin({ left: 10, right: 10 })
         }
@@ -197,7 +206,7 @@ struct MyComponent {
 
    Repeat推荐和状态管理V2装饰器配合使用（[懒加载](../rendering-control/arkts-new-rendering-control-repeat.md#懒加载能力说明)模式下只支持和状态管理V2装饰器配合使用）。如果之前使用的是状态管理V1装饰器，需要修改为状态管理V2装饰器。
 
-   ```ts
+   ``` TypeScript
    // 迁移前 - LazyForEach
    @Component // 状态管理V1
    struct MyComponent {
@@ -225,7 +234,7 @@ struct MyComponent {
 
    LazyForEach使用专用的数据结构[IDataSource](../../reference/apis-arkui/arkui-ts/ts-rendering-control-lazyforeach.md#idatasource)作为数据源。迁移至Repeat后，不再使用IDataSource作为数据源，而是使用状态管理V2装饰的数组作为数据源。
 
-   ```ts
+   ``` TypeScript
    // 迁移前 - LazyForEach
    class MyDataSource implements IDataSource {
      private dataArray: string[] = [];
@@ -251,7 +260,7 @@ struct MyComponent {
 
    从LazyForEach迁移至Repeat时，两者的语法存在差异。Repeat需要在[.each()](../../reference/apis-arkui/arkui-ts/ts-rendering-control-repeat.md#each)或[.template()](../../reference/apis-arkui/arkui-ts/ts-rendering-control-repeat.md#template)中设置组件生成函数，在[.key()](../../reference/apis-arkui/arkui-ts/ts-rendering-control-repeat.md#key)中设置键值生成函数。
 
-   ```ts
+   ``` TypeScript
    // 迁移前 - LazyForEach
    List() {
      LazyForEach(
@@ -287,7 +296,7 @@ struct MyComponent {
 
    从LazyForEach迁移至Repeat时，需要调用[virtualScroll](../../reference/apis-arkui/arkui-ts/ts-rendering-control-repeat.md#virtualscroll)属性，使能懒加载。
 
-   ```ts
+   ``` TypeScript
    // 迁移前 - LazyForEach
    LazyForEach(data, (item) => {...}, (item) => item)
    
@@ -302,10 +311,16 @@ struct MyComponent {
 
 **示例1 - 迁移后**
 
-```ts
+<!-- @[lazyforeach_to_repeat_initial_rendering](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkUISample/RenderingControl/entry/src/main/ets/pages/RepeatMigration/LazyForEachToRepeatInitialRendering.ets) -->
+
+``` TypeScript
+import { hilog } from '@kit.PerformanceAnalysisKit';
+const TAG = '[Sample_RenderingControl]';
+const DOMAIN = 0xF811;
+
 @Entry
 @ComponentV2 // 使用状态管理V2
-struct MyComponent {
+export struct MyComponent {
   @Local data: Array<string> = []; // 数据源为状态管理V2装饰的数组
 
   aboutToAppear() {
@@ -322,7 +337,7 @@ struct MyComponent {
             Row() {
               Text(repeatItem.item).fontSize(50)
                 .onAppear(() => {
-                  console.info(`appear: ${repeatItem.item}`);
+                  hilog.info(DOMAIN, TAG, `appear: ${repeatItem.item}`);
                 })
             }.margin({ left: 10, right: 10 })
           }
@@ -350,10 +365,17 @@ struct MyComponent {
 
 **示例2 - 迁移前**
 
-```ts
-/* BasicDataSource代码见文档末尾BasicDataSource示例代码: string类型数组的BasicDataSource代码 */
+<!-- @[lazyforeach_to_repeat_data_update_before](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkUISample/RenderingControl/entry/src/main/ets/pages/RepeatMigration/LazyForEachToRepeatDataUpdateBefore.ets) -->
 
-class MyDataSource extends BasicDataSource {
+``` TypeScript
+import { hilog } from '@kit.PerformanceAnalysisKit';
+// BasicDataSource代码见文档末尾BasicDataSource示例代码: string类型数组的BasicDataSource代码。
+import { BasicDataSource } from './BasicDataSource';
+
+const TAG = '[Sample_RenderingControl]';
+const DOMAIN = 0xF811;
+
+export class MyDataSource extends BasicDataSource {
   private dataArray: string[] = [];
 
   public totalCount(): number {
@@ -393,7 +415,7 @@ class MyDataSource extends BasicDataSource {
   // 修改多个数据
   public modifyAllData(): void {
     this.dataArray = this.dataArray.map((item: string) => {
-        return 'Changed ' + item;
+      return 'Changed ' + item;
     });
     this.notifyDataReload();
   }
@@ -401,7 +423,7 @@ class MyDataSource extends BasicDataSource {
 
 @Entry
 @Component
-struct MyComponent {
+export struct MyComponent {
   private data: MyDataSource = new MyDataSource();
   private count: number = 0;
 
@@ -470,13 +492,13 @@ struct MyComponent {
    - 对于LazyForEach，在修改数据源后需要调用对应的接口通知其更新。
    - 对于Repeat，由状态管理V2监听其数据源变化，并触发更新。因此，开发者直接修改数据源即可，无需其他额外操作。
 
-   ```ts
+   ``` TypeScript
    // 以修改单个数据为例
    // 迁移前 - LazyForEach
    class MyDataSource implements IDataSource {
      private dataArray: string[] = [];
      
-     public changeData(index: number, newData: string): void {
+     public changeData(index: number, data: string): void {
        this.dataArray.splice(index, 1, data);
        this.notifyDataChange(index);
      }
@@ -496,10 +518,12 @@ struct MyComponent {
 
 **示例2 - 迁移后**
 
-```ts
+<!-- @[lazyforeach_to_repeat_data_update](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkUISample/RenderingControl/entry/src/main/ets/pages/RepeatMigration/LazyForEachToRepeatDataUpdate.ets) -->
+
+``` TypeScript
 @Entry
 @ComponentV2
-struct MyComponent {
+export struct MyComponent {
   @Local data: Array<string> = [];
   private count: number = 0;
 
@@ -519,9 +543,11 @@ struct MyComponent {
         .onClick(() => { this.data.splice(0, 1); })
       // 点击交换子组件
       Button('Swap item 0 and item 1')
-        .onClick(() => { let temp: string = this.data[0];
-                         this.data[0] = this.data[1];
-                         this.data[1] = temp; })
+        .onClick(() => {
+          let temp: string = this.data[0];
+          this.data[0] = this.data[1];
+          this.data[1] = temp;
+          })
       // 点击修改单个子组件
       Button('Change item 0')
         .onClick(() => { this.data.splice(0, 1, `Changed item ${this.count++}`); })
@@ -560,10 +586,25 @@ LazyForEach可以使用[@Observed与@ObjectLink](./arkts-observed-and-objectlink
 
 **示例3 - 迁移前**
 
-```ts
-/* BasicDataSource代码见文档末尾BasicDataSource示例代码: StringData类型数组的BasicDataSource代码 */
+<!-- @[lazyforeach_to_repeat_child_properties_before](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkUISample/RenderingControl/entry/src/main/ets/pages/RepeatMigration/LazyForEachToRepeatChildPropertiesBefore.ets) -->
 
-class MyDataSource extends BasicDataSource {
+``` TypeScript
+import { hilog } from '@kit.PerformanceAnalysisKit';
+// GenericBasicDataSource代码见文档末尾GenericBasicDataSource示例代码。
+import { GenericBasicDataSource } from './GenericBasicDataSource';
+const TAG = '[Sample_RenderingControl]';
+const DOMAIN = 0xF811;
+
+@Observed
+export class StringData {
+  public message: string;
+
+  constructor(message: string) {
+    this.message = message;
+  }
+}
+
+export class MyDataSource extends GenericBasicDataSource<StringData> {
   private dataArray: StringData[] = [];
 
   public totalCount(): number {
@@ -580,18 +621,9 @@ class MyDataSource extends BasicDataSource {
   }
 }
 
-@Observed
-class StringData {
-  message: string;
-
-  constructor(message: string) {
-    this.message = message;
-  }
-}
-
 @Entry
 @Component
-struct MyComponent {
+export struct MyComponent {
   private data: MyDataSource = new MyDataSource();
 
   aboutToAppear() {
@@ -615,14 +647,14 @@ struct MyComponent {
 }
 
 @Component
-struct ChildComponent {
+export struct ChildComponent {
   @ObjectLink data: StringData;
 
   build() {
     Row() {
       Text(this.data.message).fontSize(50)
         .onAppear(() => {
-          console.info(`appear: ${this.data.message}`);
+          hilog.info(DOMAIN, TAG, `appear: ${this.data.message}`);
         })
     }.margin({ left: 10, right: 10 })
   }
@@ -637,10 +669,16 @@ Repeat需要和状态管理V2一起使用，状态管理V2提供了[@ObservedV2�
 
 **示例3 - 迁移后**
 
-```ts
+<!-- @[lazyforeach_to_repeat_child_properties](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkUISample/RenderingControl/entry/src/main/ets/pages/RepeatMigration/LazyForEachToRepeatChildProperties.ets) -->
+
+``` TypeScript
+import { hilog } from '@kit.PerformanceAnalysisKit';
+const TAG = '[Sample_RenderingControl]';
+const DOMAIN = 0xF811;
+
 @ObservedV2
-class StringData {
-  @Trace message: string; // 观测子属性
+export class StringData {
+  @Trace public message: string; // 观测子属性
 
   constructor(message: string) {
     this.message = message;
@@ -649,7 +687,7 @@ class StringData {
 
 @Entry
 @ComponentV2
-struct MyComponent {
+export struct MyComponent {
   @Local data: StringData[] = [];
 
   aboutToAppear() {
@@ -665,7 +703,7 @@ struct MyComponent {
           ListItem() {
             Text(repeatItem.item.message).fontSize(50)
               .onAppear(() => {
-                console.info(`appear: ${repeatItem.item.message}`);
+                hilog.info(DOMAIN, TAG, `appear: ${repeatItem.item.message}`);
               })
           }
           .onClick(() => {
@@ -693,10 +731,22 @@ struct MyComponent {
 
 **示例4 - 迁移前**
 
-```ts
-/* BasicDataSource代码见文档末尾BasicDataSource示例代码: StringData类型数组的BasicDataSource代码 */
+<!-- @[lazyforeach_to_repeat_internal_state_before](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkUISample/RenderingControl/entry/src/main/ets/pages/RepeatMigration/LazyForEachToRepeatInternalStateBefore.ets) -->
 
-class MyDataSource extends BasicDataSource {
+``` TypeScript
+// GenericBasicDataSource代码见文档末尾GenericBasicDataSource示例代码。
+import { GenericBasicDataSource } from './GenericBasicDataSource';
+
+@ObservedV2
+export class StringData {
+  @Trace public message: string;
+
+  constructor(message: string) {
+    this.message = message;
+  }
+}
+
+export class MyDataSource extends GenericBasicDataSource<StringData> {
   private dataArray: StringData[] = [];
 
   public totalCount(): number {
@@ -713,19 +763,10 @@ class MyDataSource extends BasicDataSource {
   }
 }
 
-@ObservedV2
-class StringData {
-  @Trace message: string;
-
-  constructor(message: string) {
-    this.message = message;
-  }
-}
-
 @Entry
 @ComponentV2
-struct MyComponent {
-  data: MyDataSource = new MyDataSource();
+export struct MyComponent {
+  private data: MyDataSource = new MyDataSource();
 
   aboutToAppear() {
     for (let i = 0; i <= 20; i++) {
@@ -752,7 +793,7 @@ struct MyComponent {
 }
 
 @ComponentV2
-struct ChildComponent {
+export struct ChildComponent {
   @Local message: string = '?';
 
   build() {
@@ -775,10 +816,12 @@ Repeat本身支持与状态管理V2联合使用，将LazyForEach相关代码修�
 
 **示例4 - 迁移后**
 
-```ts
+<!-- @[lazyforeach_to_repeat_internal_state](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkUISample/RenderingControl/entry/src/main/ets/pages/RepeatMigration/LazyForEachToRepeatInternalState.ets) -->
+
+``` TypeScript
 @ObservedV2
-class StringData {
-  @Trace message: string;
+export class StringData {
+  @Trace public message: string;
 
   constructor(message: string) {
     this.message = message;
@@ -787,7 +830,7 @@ class StringData {
 
 @Entry
 @ComponentV2
-struct MyComponent {
+export struct MyComponent {
   @Local data: StringData[] = [];
 
   aboutToAppear() {
@@ -818,7 +861,7 @@ struct MyComponent {
 }
 
 @ComponentV2
-struct ChildComponent {
+export struct ChildComponent {
   @Local message: string = '?';
 
   build() {
@@ -848,10 +891,22 @@ struct ChildComponent {
 
 **示例5 - 迁移前**
 
-```ts
-/* BasicDataSource代码见文档末尾BasicDataSource示例代码: StringData类型数组的BasicDataSource代码 */
+<!-- @[lazyforeach_to_repeat_external_input_before](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkUISample/RenderingControl/entry/src/main/ets/pages/RepeatMigration/LazyForEachToRepeatExternalInputBefore.ets) -->
 
-class MyDataSource extends BasicDataSource {
+``` TypeScript
+// GenericBasicDataSource代码见文档末尾GenericBasicDataSource示例代码。
+import { GenericBasicDataSource } from './GenericBasicDataSource';
+
+@ObservedV2
+export class StringData {
+  @Trace public message: string;
+
+  constructor(message: string) {
+    this.message = message;
+  }
+}
+
+export class MyDataSource extends GenericBasicDataSource<StringData> {
   private dataArray: StringData[] = [];
 
   public totalCount(): number {
@@ -868,19 +923,10 @@ class MyDataSource extends BasicDataSource {
   }
 }
 
-@ObservedV2
-class StringData {
-  @Trace message: string;
-
-  constructor(message: string) {
-    this.message = message;
-  }
-}
-
 @Entry
 @ComponentV2
-struct MyComponent {
-  data: MyDataSource = new MyDataSource();
+export struct MyComponent {
+  private data: MyDataSource = new MyDataSource();
 
   aboutToAppear() {
     for (let i = 0; i <= 20; i++) {
@@ -903,7 +949,7 @@ struct MyComponent {
 }
 
 @ComponentV2
-struct ChildComponent {
+export struct ChildComponent {
   @Param @Require data: string = ''; // 接收来自外部的变量
 
   build() {
@@ -922,10 +968,12 @@ Repeat本身支持与状态管理V2联合使用，将LazyForEach相关代码修�
 
 **示例5 - 迁移后**
 
-```ts
+<!-- @[lazyforeach_to_repeat_external_input](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkUISample/RenderingControl/entry/src/main/ets/pages/RepeatMigration/LazyForEachToRepeatExternalInput.ets) -->
+
+``` TypeScript
 @ObservedV2
-class StringData {
-  @Trace message: string;
+export class StringData {
+  @Trace public message: string;
 
   constructor(message: string) {
     this.message = message;
@@ -934,7 +982,7 @@ class StringData {
 
 @Entry
 @ComponentV2
-struct MyComponent {
+export struct MyComponent {
   @Local data: StringData[] = [];
 
   aboutToAppear() {
@@ -961,7 +1009,7 @@ struct MyComponent {
 }
 
 @ComponentV2
-struct ChildComponent {
+export struct ChildComponent {
   @Param @Require data: string = ''; // 接收来自外部的变量
 
   build() {
@@ -987,10 +1035,17 @@ LazyForEach的[onMove](../../reference/apis-arkui/arkui-ts/ts-universal-attribut
 
 **示例6 - 迁移前**
 
-```ts
-/* BasicDataSource代码见文档末尾BasicDataSource示例代码: string类型数组的BasicDataSource代码 */
+<!-- @[lazyforeach_to_repeat_drag_sort_before](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkUISample/RenderingControl/entry/src/main/ets/pages/RepeatMigration/LazyForEachToRepeatDragSortBefore.ets) -->
 
-class MyDataSource extends BasicDataSource {
+``` TypeScript
+import { hilog } from '@kit.PerformanceAnalysisKit';
+// BasicDataSource代码见文档末尾BasicDataSource示例代码: string类型数组的BasicDataSource代码。
+import { BasicDataSource } from './BasicDataSource';
+
+const TAG = '[Sample_RenderingControl]';
+const DOMAIN = 0xF811;
+
+export class MyDataSource extends BasicDataSource {
   private dataArray: string[] = [];
 
   public totalCount(): number {
@@ -1014,7 +1069,7 @@ class MyDataSource extends BasicDataSource {
 
 @Entry
 @Component
-struct Parent {
+export struct Parent {
   private data: MyDataSource = new MyDataSource();
 
   aboutToAppear(): void {
@@ -1028,7 +1083,7 @@ struct Parent {
       List() {
         LazyForEach(this.data, (item: string) => {
           ListItem() {
-            Text(item.toString())
+            Text(item)
               .fontSize(16)
               .textAlign(TextAlign.Center)
               .size({ height: 100, width: '100%' })
@@ -1036,9 +1091,9 @@ struct Parent {
           .borderRadius(10)
           .backgroundColor('#FFFFFFFF')
         }, (item: string) => item)
-          .onMove((from: number, to: number) => { // 实现拖拽排序
-            this.data.moveDataWithoutNotify(from, to);
-          })
+        .onMove((from: number, to: number) => { // 实现拖拽排序
+          this.data.moveDataWithoutNotify(from, to);
+        })
       }
       .width('100%')
       .height('100%')
@@ -1056,10 +1111,12 @@ Repeat具有与LazyForEach相同的onMove属性。将LazyForEach相关代码修�
 
 **示例6 - 迁移后**
 
-```ts
+<!-- @[lazyforeach_to_repeat_drag_sort](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkUISample/RenderingControl/entry/src/main/ets/pages/RepeatMigration/LazyForEachToRepeatDragSort.ets) -->
+
+``` TypeScript
 @Entry
 @ComponentV2
-struct Parent {
+export struct Parent {
   @Local data: string[] = [];
 
   aboutToAppear(): void {
@@ -1115,10 +1172,24 @@ LazyForEach自身并不具备组件复用能力，为实现组件复用，需要
 
 **示例7 - 迁移前**
 
-```ts
-/* BasicDataSource代码见文档末尾BasicDataSource示例代码: StringData类型数组的BasicDataSource代码 */
+<!-- @[lazyforeach_to_repeat_reuse_before](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkUISample/RenderingControl/entry/src/main/ets/pages/RepeatMigration/LazyForEachToRepeatReuseBefore.ets) -->
 
-class MyDataSource extends BasicDataSource {
+``` TypeScript
+import { hilog } from '@kit.PerformanceAnalysisKit';
+// GenericBasicDataSource代码见文档末尾GenericBasicDataSource示例代码。
+import { GenericBasicDataSource } from './GenericBasicDataSource';
+const TAG = '[Sample_RenderingControl]';
+const DOMAIN = 0xF811;
+
+export class StringData {
+  public message: string;
+
+  constructor(message: string) {
+    this.message = message;
+  }
+}
+
+export class MyDataSource extends GenericBasicDataSource<StringData> {
   private dataArray: StringData[] = [];
 
   public totalCount(): number {
@@ -1135,18 +1206,10 @@ class MyDataSource extends BasicDataSource {
   }
 }
 
-class StringData {
-  message: string;
-
-  constructor(message: string) {
-    this.message = message;
-  }
-}
-
 @Entry
 @Component
-struct MyComponent {
-  data: MyDataSource = new MyDataSource();
+export struct MyComponent {
+  private data: MyDataSource = new MyDataSource();
 
   aboutToAppear() {
     for (let i = 0; i <= 30; i++) {
@@ -1160,7 +1223,7 @@ struct MyComponent {
         ListItem() {
           ChildComponent({ data: item })
             .onAppear(() => {
-              console.info(`onAppear: ${item.message}`);
+              hilog.info(DOMAIN, TAG, `onAppear: ${item.message}`);
             })
         }
       }, (item: StringData, index: number) => index.toString())
@@ -1170,21 +1233,21 @@ struct MyComponent {
 
 @Reusable
 @Component
-struct ChildComponent {
+export struct ChildComponent {
   @State data: StringData = new StringData('');
 
   aboutToAppear(): void {
-    console.info(`aboutToAppear: ${this.data.message}`);
+    hilog.info(DOMAIN, TAG, `aboutToAppear: ${this.data.message}`);
   }
 
   aboutToRecycle(): void {
-    console.info(`aboutToRecycle: ${this.data.message}`);
+    hilog.info(DOMAIN, TAG, `aboutToRecycle: ${this.data.message}`);
   }
 
   // 对复用的组件进行数据更新
   aboutToReuse(params: Record<string, ESObject>): void {
     this.data = params.data as StringData;
-    console.info(`aboutToReuse: ${this.data.message}`);
+    hilog.info(DOMAIN, TAG, `aboutToReuse: ${this.data.message}`);
   }
 
   build() {
@@ -1210,9 +1273,15 @@ Repeat本身具备复用能力，且默认开启。将LazyForEach相关代码迁
 
 修改后的示例如下。
 
-```ts
-class StringData {
-  message: string;
+<!-- @[lazyforeach_to_repeat_reuse_self](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkUISample/RenderingControl/entry/src/main/ets/pages/RepeatMigration/LazyForEachToRepeatReuseSelf.ets) -->
+
+``` TypeScript
+import { hilog } from '@kit.PerformanceAnalysisKit';
+const TAG = '[Sample_RenderingControl]';
+const DOMAIN = 0xF811;
+
+export class StringData {
+  public message: string;
 
   constructor(message: string) {
     this.message = message;
@@ -1221,7 +1290,7 @@ class StringData {
 
 @Entry
 @ComponentV2
-struct MyComponent {
+export struct MyComponent {
   @Local data: StringData[] = [];
 
   aboutToAppear() {
@@ -1253,9 +1322,15 @@ struct MyComponent {
 
 使用\@ReusableV2装饰器的迁移示例如下所示。
 
-```ts
-class StringData {
-  message: string;
+<!-- @[lazyforeach_to_repeat_reuse_v2](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkUISample/RenderingControl/entry/src/main/ets/pages/RepeatMigration/LazyForEachToRepeatReuseV2.ets) -->
+
+``` TypeScript
+import { hilog } from '@kit.PerformanceAnalysisKit';
+const TAG = '[Sample_RenderingControl]';
+const DOMAIN = 0xF811;
+
+export class StringData {
+  public message: string;
 
   constructor(message: string) {
     this.message = message;
@@ -1264,7 +1339,7 @@ class StringData {
 
 @Entry
 @ComponentV2
-struct MyComponent {
+export struct MyComponent {
   @Local data: StringData[] = [];
 
   aboutToAppear() {
@@ -1280,7 +1355,7 @@ struct MyComponent {
           ListItem() {
             ChildComponent({ data: repeatItem.item })
               .onAppear(() => {
-                console.info(`onAppear: ${repeatItem.item.message}`);
+                hilog.info(DOMAIN, TAG, `onAppear: ${repeatItem.item.message}`);
               })
           }
         })
@@ -1293,19 +1368,19 @@ struct MyComponent {
 // 使用@ReusableV2实现组件复用（API 18）
 @ReusableV2
 @ComponentV2
-struct ChildComponent {
+export struct ChildComponent {
   @Param data: StringData = new StringData('');
 
   aboutToAppear(): void {
-    console.info(`aboutToAppear: ${this.data.message}`);
+    hilog.info(DOMAIN, TAG, `aboutToAppear: ${this.data.message}`);
   }
 
   aboutToRecycle(): void {
-    console.info(`aboutToRecycle: ${this.data.message}`);
+    hilog.info(DOMAIN, TAG, `aboutToRecycle: ${this.data.message}`);
   }
 
   aboutToReuse(): void {
-    console.info(`aboutToReuse: ${this.data.message}`);
+    hilog.info(DOMAIN, TAG, `aboutToReuse: ${this.data.message}`);
   }
 
   build() {
@@ -1331,10 +1406,34 @@ LazyForEach自身并不具备模板渲染能力。为实现模板渲染能力，
 
 **示例8 - 迁移前**
 
-```ts
-/* BasicDataSource代码见文档末尾BasicDataSource示例代码: StringData类型数组的BasicDataSource代码 */
+<!-- @[lazyforeach_to_repeat_template_before](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkUISample/RenderingControl/entry/src/main/ets/pages/RepeatMigration/LazyForEachToRepeatTemplateBefore.ets) -->
 
-class MyDataSource extends BasicDataSource {
+``` TypeScript
+import { hilog } from '@kit.PerformanceAnalysisKit';
+// GenericBasicDataSource代码见文档末尾GenericBasicDataSource示例代码。
+import { GenericBasicDataSource } from './GenericBasicDataSource';
+const TAG = '[Sample_RenderingControl]';
+const DOMAIN = 0xF811;
+
+export class StringData {
+  public message: string;
+  public type: number;
+
+  constructor(message: string, type: number) {
+    this.message = message;
+    this.type = type;
+  }
+
+  getType(): number {
+    if (this.type >= 1) {
+      return 1;
+    } else {
+      return 0;
+    }
+  }
+}
+
+export class MyDataSource extends GenericBasicDataSource<StringData> {
   private dataArray: StringData[] = [];
 
   public totalCount(): number {
@@ -1351,28 +1450,10 @@ class MyDataSource extends BasicDataSource {
   }
 }
 
-class StringData {
-  message: string;
-  type: number;
-
-  constructor(message: string, type: number) {
-    this.message = message;
-    this.type = type;
-  }
-
-  getType(): number {
-    if (this.type >= 1) {
-      return 1;
-    } else {
-      return 0;
-    }
-  }
-}
-
 @Entry
 @Component
-struct MyComponent {
-  data: MyDataSource = new MyDataSource();
+export struct MyComponent {
+  private data: MyDataSource = new MyDataSource();
 
   aboutToAppear() {
     for (let i = 0; i <= 200; i++) {
@@ -1389,13 +1470,13 @@ struct MyComponent {
             // 模板A
             ChildComponentA({ data: item })
               .onAppear(() => {
-                console.info(`type A onAppear: ${item.message}`);
+                hilog.info(DOMAIN, TAG, `type A onAppear: ${item.message}`);
               })
           } else {
             // 模板B
             ChildComponentB({ data: item })
               .onAppear(() => {
-                console.info(`type B onAppear: ${item.message}`);
+                hilog.info(DOMAIN, TAG, `type B onAppear: ${item.message}`);
               })
           }
         }
@@ -1407,20 +1488,20 @@ struct MyComponent {
 // 使用@Reusable实现组件复用
 @Reusable
 @Component
-struct ChildComponentA {
+export struct ChildComponentA {
   @State data: StringData = new StringData('', 0);
 
   aboutToAppear(): void {
-    console.info(`type A aboutToAppear: ${this.data.message}`);
+    hilog.info(DOMAIN, TAG, `type A aboutToAppear: ${this.data.message}`);
   }
 
   aboutToRecycle(): void {
-    console.info(`type A aboutToRecycle: ${this.data.message}`);
+    hilog.info(DOMAIN, TAG, `type A aboutToRecycle: ${this.data.message}`);
   }
 
   aboutToReuse(params: Record<string, ESObject>): void {
     this.data = params.data as StringData;
-    console.info(`type A aboutToReuse: ${this.data.message}`);
+    hilog.info(DOMAIN, TAG, `type A aboutToReuse: ${this.data.message}`);
   }
 
   build() {
@@ -1433,20 +1514,20 @@ struct ChildComponentA {
 
 @Reusable
 @Component
-struct ChildComponentB {
+export struct ChildComponentB {
   @State data: StringData = new StringData('', 0);
 
   aboutToAppear(): void {
-    console.info(`type B aboutToAppear: ${this.data.message}`);
+    hilog.info(DOMAIN, TAG, `type B aboutToAppear: ${this.data.message}`);
   }
 
   aboutToRecycle(): void {
-    console.info(`type B aboutToRecycle: ${this.data.message}`);
+    hilog.info(DOMAIN, TAG, `type B aboutToRecycle: ${this.data.message}`);
   }
 
   aboutToReuse(params: Record<string, ESObject>): void {
     this.data = params.data as StringData;
-    console.info(`type B aboutToReuse: ${this.data.message}`);
+    hilog.info(DOMAIN, TAG, `type B aboutToReuse: ${this.data.message}`);
   }
 
   build() {
@@ -1466,10 +1547,12 @@ Repeat本身具备模板渲染能力，开发者可以通过[templateId](../../r
 
 **示例8 - 迁移方案1：使用Repeat自身的模板渲染能力**
 
-```ts
-class StringData {
-  message: string;
-  type: number;
+<!-- @[lazyforeach_to_repeat_template_self](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkUISample/RenderingControl/entry/src/main/ets/pages/RepeatMigration/LazyForEachToRepeatTemplateSelf.ets) -->
+
+``` TypeScript
+export class StringData {
+  public message: string;
+  public type: number;
 
   constructor(message: string, type: number) {
     this.message = message;
@@ -1487,8 +1570,8 @@ class StringData {
 
 @Entry
 @ComponentV2
-struct MyComponent {
-  data: StringData[] = [];
+export struct MyComponent {
+  @Local data: StringData[] = [];
 
   aboutToAppear() {
     for (let i = 0; i <= 200; i++) {
@@ -1536,10 +1619,16 @@ struct MyComponent {
 
 **示例8 - 迁移方案2：由开发者实现模板渲染能力**
 
-```ts
-class StringData {
-  message: string;
-  type: number;
+<!-- @[lazyforeach_to_repeat_template_custom](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkUISample/RenderingControl/entry/src/main/ets/pages/RepeatMigration/LazyForEachToRepeatTemplateCustom.ets) -->
+
+``` TypeScript
+import { hilog } from '@kit.PerformanceAnalysisKit';
+const TAG = '[Sample_RenderingControl]';
+const DOMAIN = 0xF811;
+
+export class StringData {
+  public message: string;
+  public type: number;
 
   constructor(message: string, type: number) {
     this.message = message;
@@ -1557,8 +1646,8 @@ class StringData {
 
 @Entry
 @ComponentV2
-struct MyComponent {
-  data: StringData[] = [];
+export struct MyComponent {
+  @Local data: StringData[] = [];
 
   aboutToAppear() {
     for (let i = 0; i <= 200; i++) {
@@ -1575,12 +1664,12 @@ struct MyComponent {
             if (repeatItem.item.getType() == 0) {
               ChildComponentA({ data: repeatItem.item }) // 模板A
                 .onAppear(() => {
-                  console.info(`type A onAppear: ${repeatItem.item.message}`);
+                  hilog.info(DOMAIN, TAG, `type A onAppear: ${repeatItem.item.message}`);
                 })
             } else {
               ChildComponentB({ data: repeatItem.item }) // 模板B
                 .onAppear(() => {
-                  console.info(`type B onAppear: ${repeatItem.item.message}`);
+                  hilog.info(DOMAIN, TAG, `type B onAppear: ${repeatItem.item.message}`);
                 })
             }
           }
@@ -1594,19 +1683,19 @@ struct MyComponent {
 // 使用@ReusableV2实现组件复用（API version 18开始支持使用）
 @ReusableV2
 @ComponentV2
-struct ChildComponentA {
+export struct ChildComponentA {
   @Param data: StringData = new StringData('', 0);
 
   aboutToAppear(): void {
-    console.info(`type A aboutToAppear: ${this.data.message}`);
+    hilog.info(DOMAIN, TAG, `type A aboutToAppear: ${this.data.message}`);
   }
 
   aboutToRecycle(): void {
-    console.info(`type A aboutToRecycle: ${this.data.message}`);
+    hilog.info(DOMAIN, TAG, `type A aboutToRecycle: ${this.data.message}`);
   }
 
   aboutToReuse(): void {
-    console.info(`type A aboutToReuse: ${this.data.message}`);
+    hilog.info(DOMAIN, TAG, `type A aboutToReuse: ${this.data.message}`);
   }
 
   build() {
@@ -1619,19 +1708,19 @@ struct ChildComponentA {
 
 @ReusableV2
 @ComponentV2
-struct ChildComponentB {
+export struct ChildComponentB {
   @Param data: StringData = new StringData('', 0);
 
   aboutToAppear(): void {
-    console.info(`type B aboutToAppear: ${this.data.message}`);
+    hilog.info(DOMAIN, TAG, `type B aboutToAppear: ${this.data.message}`);
   }
 
   aboutToRecycle(): void {
-    console.info(`type B aboutToRecycle: ${this.data.message}`);
+    hilog.info(DOMAIN, TAG, `type B aboutToRecycle: ${this.data.message}`);
   }
 
   aboutToReuse(): void {
-    console.info(`type B aboutToReuse: ${this.data.message}`);
+    hilog.info(DOMAIN, TAG, `type B aboutToReuse: ${this.data.message}`);
   }
 
   build() {
@@ -1652,9 +1741,15 @@ struct ChildComponentB {
 
 ### string类型数组的BasicDataSource代码
 
-```ts
+<!-- @[basic_data_source_string](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkUISample/RenderingControl/entry/src/main/ets/pages/RepeatMigration/BasicDataSource.ets) -->
+
+``` TypeScript
+import { hilog } from '@kit.PerformanceAnalysisKit';
+const TAG = '[Sample_RenderingControl]';
+const DOMAIN = 0xF811;
+
 // BasicDataSource实现了IDataSource接口，用于管理listener监听，以及通知LazyForEach数据更新
-class BasicDataSource implements IDataSource {
+export class BasicDataSource implements IDataSource {
   private listeners: DataChangeListener[] = [];
   private originDataArray: string[] = [];
 
@@ -1669,7 +1764,7 @@ class BasicDataSource implements IDataSource {
   // 该方法为框架侧调用，为LazyForEach组件向其数据源处添加listener监听
   registerDataChangeListener(listener: DataChangeListener): void {
     if (this.listeners.indexOf(listener) < 0) {
-      console.info('add listener');
+      hilog.info(DOMAIN, TAG, 'add listener');
       this.listeners.push(listener);
     }
   }
@@ -1678,7 +1773,7 @@ class BasicDataSource implements IDataSource {
   unregisterDataChangeListener(listener: DataChangeListener): void {
     const pos = this.listeners.indexOf(listener);
     if (pos >= 0) {
-      console.info('remove listener');
+      hilog.info(DOMAIN, TAG, 'remove listener');
       this.listeners.splice(pos, 1);
     }
   }
@@ -1731,61 +1826,68 @@ class BasicDataSource implements IDataSource {
 }
 ```
 
+### GenericBasicDataSource示例代码
 
-### StringData类型数组的BasicDataSource代码
+<!-- @[generic_basic_data_source](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkUISample/RenderingControl/entry/src/main/ets/pages/RepeatMigration/GenericBasicDataSource.ets) -->
 
-```ts
-class BasicDataSource implements IDataSource {
+``` TypeScript
+// GenericBasicDataSource实现了IDataSource接口，用于管理listener监听，以及通知LazyForEach数据更新
+export class GenericBasicDataSource<T> implements IDataSource {
   private listeners: DataChangeListener[] = [];
-  private originDataArray: StringData[] = [];
+  private originDataArray: T[] = [];
 
   public totalCount(): number {
     return this.originDataArray.length;
   }
 
-  public getData(index: number): StringData {
+  public getData(index: number): T {
     return this.originDataArray[index];
   }
 
+  // 该方法为框架侧调用，为LazyForEach组件向其数据源处添加listener监听
   registerDataChangeListener(listener: DataChangeListener): void {
     if (this.listeners.indexOf(listener) < 0) {
-      console.info('add listener');
       this.listeners.push(listener);
     }
   }
 
+  // 该方法为框架侧调用，为对应的LazyForEach组件在数据源处去除listener监听
   unregisterDataChangeListener(listener: DataChangeListener): void {
     const pos = this.listeners.indexOf(listener);
     if (pos >= 0) {
-      console.info('remove listener');
       this.listeners.splice(pos, 1);
     }
   }
 
+  // 通知LazyForEach组件需要重载所有子组件
   notifyDataReload(): void {
     this.listeners.forEach(listener => {
       listener.onDataReloaded();
     });
   }
 
+  // 通知LazyForEach组件需要在index对应索引处添加子组件
   notifyDataAdd(index: number): void {
     this.listeners.forEach(listener => {
       listener.onDataAdd(index);
     });
   }
 
+  // 通知LazyForEach组件在index对应索引处数据有变化，需要重建该子组件
   notifyDataChange(index: number): void {
     this.listeners.forEach(listener => {
       listener.onDataChange(index);
     });
   }
 
+  // 通知LazyForEach组件需要在index对应索引处删除该子组件
   notifyDataDelete(index: number): void {
     this.listeners.forEach(listener => {
       listener.onDataDelete(index);
     });
   }
 
+  // 通知LazyForEach组件将from索引和to索引处的子组件进行交换
   notifyDataMove(from: number, to: number): void {
     this.listeners.forEach(listener => {
       listener.onDataMove(from, to);
