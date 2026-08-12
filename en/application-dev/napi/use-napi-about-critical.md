@@ -195,3 +195,5 @@ After the critical scope is closed, do not use the critical API or its return re
    makeTest("你好");        // Expected result: 0 or 2
    makeTest("测试字符串");   // Expected result: 1 or 3
    ```
+
+<!--no_check-->

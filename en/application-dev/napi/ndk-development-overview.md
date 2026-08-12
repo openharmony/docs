@@ -6,7 +6,7 @@
 <!--Designer: @huang_huijin-->
 <!--Tester: @zsw_zhushiwei-->
 <!--Adviser: @k1ngqaquuu-->
-<!-- md-trans-meta sourceCommit=fa3fc214ef4b265f033bc3f0d0a2df54f511a497 translatedAt=2026-08-12T06:28:16.205Z pushedAt=2026-08-12T09:57:34.523Z -->
+<!-- md-trans-meta sourceCommit=fa3fc214ef4b265f033bc3f0d0a2df54f511a497 translatedAt=2026-08-12T06:28:16.205Z pushedAt=2026-08-12T12:02:10.234Z -->
 
 The Native Development Kit (NDK) is a toolset that allows you to use C and C++ code with OpenHarmony. As a subset of OpenHarmony SDK, it provides native APIs, compile scripts, and compile toolchain to help you implement key application features using C or C++. The NDK covers only some basic underlying capabilities of OpenHarmony, such as the C runtime libc, graphics library, window system, multimedia, compression library, and Node-API that bridges ArkTS/JS and C code. It does not provide complete capabilities of ArkTS/JS APIs.
 
@@ -56,7 +56,7 @@ Before getting started, familiarity with the following basics is helpful.
 
 ### NDK Directory Structure
 
-For details about how to obtain the NDK, see <!--RP1-->[Building an NDK Project with CMake](build-with-ndk-cmake.md#downloading-the-ndk)<!--RP1End-->.
+For details about how to obtain the NDK, see <!--RP1-->[Downloading the NDK Development Package](build-with-ndk-cmake.md#downloading-the-ndk-development-package)<!--RP1End-->.
 
 - **build** directory: stores the predefined toolchain script file <!--RP2-->[ohos.toolchain.cmake](build-with-ndk-overview.md#introduction-to-ohostoolchaincmake).<!--RP2End-->
 

@@ -6,7 +6,7 @@
 <!--Designer: @shilei123-->
 <!--Tester: @kirl75; @zsw_zhushiwei-->
 <!--Adviser: @k1ngqaquuu-->
-<!-- md-trans-meta sourceCommit=5c6e465f4cb7e5e44777311b9850301a734295d4 translatedAt=2026-08-12T06:28:16.922Z pushedAt=2026-08-12T09:45:35.443Z -->
+<!-- md-trans-meta sourceCommit=5c6e465f4cb7e5e44777311b9850301a734295d4 translatedAt=2026-08-12T06:28:16.922Z pushedAt=2026-08-12T12:00:35.772Z -->
 
 ## Data Types
 
@@ -539,7 +539,7 @@ Node-API is extended based on the native modules provided by Node.js. The follow
 
 ### Extended Capabilities
 
-[Extended Node-API Interfaces](../reference/native-lib/napi.md#extended-node-api-interfaces)
+[Node-API Extended APIs](../reference/native-lib/napi.md#node-api-extended-apis)
 
 | API| Description|
 | -------- | -------- |
@@ -960,3 +960,5 @@ napi_status napi_set_property_with_callsite_info(napi_env env,
 | napi_get_version | Obtains the latest Node-API version supported by the node runtime.|
 | node_api_get_module_file_name | Obtains the absolute path of the module to be loaded.|
 | napi_strict_equals | Compares whether two values are strictly equal, that is, whether they are of the same type and have the same value.|
+
+<!--no_check-->

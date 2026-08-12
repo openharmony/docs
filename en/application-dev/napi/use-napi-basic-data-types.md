@@ -6,7 +6,7 @@
 <!--Designer: @shilei123-->
 <!--Tester: @kirl75; @zsw_zhushiwei-->
 <!--Adviser: @k1ngqaquuu-->
-<!-- md-trans-meta sourceCommit=21434ce8d323ecbd7d67463989a2ef075be92cec translatedAt=2026-08-12T06:41:57.788Z pushedAt=2026-08-12T11:15:55.962Z -->
+<!-- md-trans-meta sourceCommit=21434ce8d323ecbd7d67463989a2ef075be92cec translatedAt=2026-08-12T06:41:57.788Z pushedAt=2026-08-12T12:10:13.840Z -->
 
 ## Introduction
 
@@ -316,7 +316,7 @@ ArkTS code:
 
 ``` TypeScript
 // napi_create_int32
-hilog.info(0x0000, 'testTag', 'Test Node-API napi_create_int32：' + testNapi.createInt32());
+hilog.info(0x0000, 'testTag', 'Test Node-API napi_create_int32:' + testNapi.createInt32());
 ```
 
 ### napi_create_uint32

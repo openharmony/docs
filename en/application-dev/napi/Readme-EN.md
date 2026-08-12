@@ -6,7 +6,7 @@
 <!--Designer: @fang-jinxu-->
 <!--Tester: @RayShih-->
 <!--Adviser: @fang-jinxu-->
-<!-- md-trans-meta sourceCommit=fa3fc214ef4b265f033bc3f0d0a2df54f511a497 translatedAt=2026-08-12T06:29:04.991Z pushedAt=2026-08-12T11:26:54.032Z -->
+<!-- md-trans-meta sourceCommit=fa3fc214ef4b265f033bc3f0d0a2df54f511a497 translatedAt=2026-08-12T06:29:04.991Z pushedAt=2026-08-12T12:14:49.232Z -->
 
 - [About This Kit](ndk-development-overview.md)
 
@@ -18,7 +18,7 @@
 
   - [Building an NDK Project with the DevEco Studio Template](build-with-ndk-ide.md)
 
-  - [Building an NDK Project with the Command Line CMake](build-with-ndk-cmake.md)
+  - [Building NDK Projects with Command-Line CMake](build-with-ndk-cmake.md)
 
   - [Building an NDK Project with Prebuilt Libraries](build-with-ndk-prebuilts.md)<!--RP1--><!--RP1End-->
 
@@ -56,7 +56,7 @@
 
       - [Working with Buffer Using Node-API](use-napi-about-buffer.md)
 
-      - [Working with Basic Data Types Using Node-API](use-napi-basic-data-types.md)
+      - [Creating Basic Data Types Using Node-API](use-napi-basic-data-types.md)
 
       - [Working with Class Using Node-API](use-napi-about-class.md)
 
@@ -112,9 +112,9 @@
 
       - [Creating and Destroying a Critical Scope and Accessing String Content Using Node-API Extension APIs](use-napi-about-critical.md)
 
-      - [Analyzing Exceptions and Crashes Triggered by Using Node-API](use-napi-about-crash.md)
+      - [Analyzing Error Logs and Crashes Triggered by Using Node-API](use-napi-about-crash.md)
 
-      - [Calling an ArkTS Method with Return Value of a Promise Using Node-API](use-napi-method-promise.md)
+      - [Calling an ArkTS Method with Return Value of a promise Using Node-API](use-napi-method-promise.md)
 
       - [Creating a Sendable Strong Reference to an ArkTS Object Using Node-API Extension APIs](use-napi-about-sendable-reference.md)
 
@@ -178,7 +178,7 @@
 
       - [Setting JS Object Properties Using JSVM-API](use-jsvm-about-property.md)
 
-      - [Working with Strings Using JSVM-API](use-jsvm-about-string.md)
+      - [Creating and Obtaining String Values Using JSVM-API](use-jsvm-about-string.md)
 
       - [Obtaining the JSVM-API Version Using JSVM-API](use-jsvm-about-version.md)
 
@@ -202,7 +202,7 @@
 
       - [Working with Latin1/UTF16 Strings Using JSVM-API](use-jsvm-about-external-string.md)
 
-      - [Working with Proxy Using JSVM-API](use-jsvm-about-proxy.md)
+      - [Using Proxy APIs Provided by JSVM-API](use-jsvm-about-proxy.md)
 
       - [Working with Well-Known Symbols Using JSVM-API](use-jsvm-about-well-known-symbols.md)
 
@@ -216,7 +216,7 @@
 
       - [Working with Trace Using JSVM-API](use-jsvm-about-trace.md)
 
-      - [Requesting the JIT Profile for JSVMs](jsvm-apply-jit-profile.md)
+      - [Requesting the JIT Profile for JSVM-API](jsvm-apply-jit-profile.md)
 
       - [JSVM-API Secure Shield Mode](jsvm-secure-shield-mode.md)
 
@@ -232,7 +232,7 @@
 
     - JSVM Performance Debugging Guides<!--jsvm-performance-->
 
-      - [Collecting V8 Trace Data Using HiSmartPerf](use-jsvm-about-v8-trace.md)
+      - [Using HiSmartPerf to Collect JSVM Trace](use-jsvm-about-v8-trace.md)
 
       - [Analyzing Web Page Memory Using DevTools](use-jsvm-about-analyze-memory-usage.md)
 
