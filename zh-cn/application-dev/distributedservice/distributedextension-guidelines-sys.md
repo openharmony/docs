@@ -105,12 +105,11 @@ hidumper -s 4700 -a "buscenter -l remote_device_info"
        "extensionAbilities": [
         {
           "name": "EntrydistributedAbility",
-          "srcEntry": "./ets/entrybackupability/EntryDistributedAbility.ets",
           "type": "distributed",
           "exported": false,
           "metadata": [
             {
-              "name": "ohos.extension.DistributedExtension",
+              "name": "ohos.extension.DistributedExtension"
             }
           ],
           "srcEntry": "./ets/common/MDSExtension.ts"
