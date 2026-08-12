@@ -6,12 +6,12 @@
 <!--Designer: @XiaoYao555-->
 <!--Tester: @xchaosioda-->
 <!--Adviser: @w_Machine_cc-->
-<!-- md-trans-meta sourceCommit=63d391bf35d499615891b75295edb22575da9bc1 translatedAt=2026-08-11T01:46:51.178Z pushedAt=2026-08-11T08:33:50.060Z -->
+<!-- md-trans-meta sourceCommit=63d391bf35d499615891b75295edb22575da9bc1 translatedAt=2026-08-11T01:46:51.178Z pushedAt=2026-08-12T04:27:13.450Z -->
 
 > **NOTE**
 >
 > The APIs used in this development guide are the C APIs provided by the [Image](../../reference/apis-image-kit/capi-image.md) module, which support image encoding/decoding, image receiver, image data processing, and other functions. These APIs were released before API version 11 and will not receive new features in later versions. **They are no longer recommended.**<br>
-> You can use the C APIs provided by the [Image_NativeModule](../../reference/apis-image-kit/capi-nativemodule.md) module, which not only offer the basic image framework capabilities mentioned above but also support new features such as multi-image encoding/decoding. For related development instructions, see [Using Image_NativeModule to Decode Images](image-source-c.md). These APIs are supported from API version 12 onward and will continue to evolve. **They are recommended for developers.**<br>
+> You can use the C APIs provided by the [Image_NativeModule](../../reference/apis-image-kit/capi-image-nativemodule.md) module, which not only offer the basic image framework capabilities mentioned above but also support new features such as multi-image encoding/decoding. For related development instructions, see [Using Image_NativeModule to Decode Images](image-source-c.md). These APIs are supported from API version 12 onward and will continue to evolve. **They are recommended for developers.**<br>
 > Using both sets of C APIs together is not recommended, as they may be incompatible in certain scenarios.
 
 You can use the **ImageReceiver** class to obtain the surface ID of a component, read the latest image or the next image, and release ImageReceiver instances.

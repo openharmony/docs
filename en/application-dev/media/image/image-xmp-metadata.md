@@ -123,7 +123,7 @@ Use `":"` to separate the namespace prefix from the tag name, to locate a specif
 
 > **NOTE**
 >
-> - When using standard namespaces (such as `xmp`, `dc`, `exif`, etc.), no additional registration is required. Image Kit supports, but is not limited to, the standard namespaces defined in [Constants](../../reference/apis-image-kit/arkts-apis-image-c.md#constants).
+> - When using standard namespaces (such as `xmp`, `dc`, `exif`, etc.), no additional registration is required. Image Kit supports, but is not limited to, the standard namespaces defined in [Constants](../../reference/apis-image-kit/arkts-apis-image-c.md#constants-1).
 > - When using a custom namespace, you must first register it via [registerXMPNamespace](../../reference/apis-image-kit/arkts-apis-image-XMPMetadata.md#registerxmpnamespace).
 
 **Example**

@@ -6,7 +6,7 @@
 <!--Designer: @yxc2-->
 <!--Tester: @zengxi_3007-->
 <!--Adviser: @w_Machine_cc-->
-<!-- md-trans-meta sourceCommit=d23f27e4e91626bb44da832d5d2b617b9743db25 translatedAt=2026-08-11T01:51:32.959Z pushedAt=2026-08-12T03:33:39.489Z -->
+<!-- md-trans-meta sourceCommit=d23f27e4e91626bb44da832d5d2b617b9743db25 translatedAt=2026-08-11T01:51:32.959Z pushedAt=2026-08-12T04:32:17.107Z -->
 
 - [About This Kit](media-kit-intro.md)
 
@@ -32,7 +32,7 @@
 
     - [Using AVRecorder to Record Videos (ArkTS)](video-recording.md)
 
-    - [Using AVScreenCaptureRecorder to Capture Screens and Write Them to Files (ArkTS)](using-avscreencapture-ArkTs.md)
+    - [Using AVScreenCaptureRecorder to Record Screens and Write Them to Files (ArkTS)](using-avscreencapture-ArkTs.md)
 
   - Media Information Query<!--media-info-arkts-->
 
