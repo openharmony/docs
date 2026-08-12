@@ -75,14 +75,14 @@ export default class EntryAbility extends UIAbility {
     try {
       // 手动调用run方法
       startupManager.run(startParams).then(() => {
-        console.info(`StartupTest startupManager run then, startParams = ${startParams}.`);
+        hilog.info(0x0000, 'testTag', 'StartupTest startupManager run then, startParams = %{public}s.', startParams.join(','));
       }).catch((error: BusinessError) => {
-        console.error(`StartupTest promise catch failed, error code: ${error.code}, error msg: ${error.message}.`);
+        hilog.error(0x0000, 'testTag', 'StartupTest promise catch failed, error code: %{public}d, error msg: %{public}s.', error.code, error.message);
       });
     } catch (error) {
       let errMsg = (error as BusinessError).message;
       let errCode = (error as BusinessError).code;
-      console.error(`Startup.run failed, err code: ${errCode}, err msg: ${errMsg}.`);
+      hilog.error(0x0000, 'testTag', 'startupManager.run failed, err code: %{public}d, err msg: %{public}s.', errCode, errMsg);
     }
   }
 
@@ -155,7 +155,7 @@ export default class MyAbilityStage extends AbilityStage {
         hilog.info(0x0000, 'testTag', '%{public}s', 'startupManager.run success');
       }).catch((error: BusinessError) => {
         hilog.error(0x0000, 'testTag', `startupManager.run promise catch error code: ${error.code}, error msg: ${error.message}`);
-      })
+      });
     } catch (error) {
       hilog.error(0x0000, 'testTag', `startupManager.run catch error code: ${error.code}, error msg: ${error.message}`);
     }
@@ -192,7 +192,7 @@ export default class EntryAbility extends UIAbility {
         hilog.error(0x0000, 'testTag', `StartupTask_001 promise catch failed, error code: ${error.code}, error msg: ${error.message}`);
       });
     } catch (error) {
-      hilog.error(0x0000, 'testTag', `StartupTask_001.run failed, error code: ${error.code}, error msg: ${error.message}`);
+      hilog.error(0x0000, 'testTag', `startupManager.run failed, error code: ${error.code}, error msg: ${error.message}`);
     }
   }
 
@@ -258,14 +258,14 @@ export default class EntryAbility extends UIAbility {
         hilog.error(0x0000, 'testTag', `StartupTask_001 promise catch failed, error code: ${error.code}, error msg: ${error.message}`);
       });
     } catch (error) {
-      hilog.error(0x0000, 'testTag', `StartupTask_001.run failed, error code: ${error.code}, error msg: ${error.message}`);
+      hilog.error(0x0000, 'testTag', `startupManager.run failed, error code: ${error.code}, error msg: ${error.message}`);
     }
   }
 
   onWindowStageCreate(windowStage: window.WindowStage) {
     hilog.info(0x0000, 'testTag', '%{public}s', 'Ability onWindowStageCreate');
     let result = startupManager.getStartupTaskResult('StartupTask_001'); // 手动获取启动任务结果
-    hilog.info(0x0000, 'testTag', 'getStartupTaskResult result = %{public}s', result);
+    hilog.info(0x0000, 'testTag', 'getStartupTaskResult result = %{public}s', JSON.stringify(result));
     windowStage.loadContent('pages/Index', (err, data) => {
       if (err.code) {
         hilog.error(0x0000, 'testTag', `Failed to load the content. Cause error code: ${err.code}, error msg: ${err.message}`);
@@ -324,7 +324,7 @@ export default class EntryAbility extends UIAbility {
         hilog.error(0x0000, 'testTag', `StartupTask_001 promise catch failed, error code: ${error.code}, error msg: ${error.message}`);
       });
     } catch (error) {
-      hilog.error(0x0000, 'testTag', `StartupTask_001.run failed, error code: ${error.code}, error msg: ${error.message}`);
+      hilog.error(0x0000, 'testTag', `startupManager.run failed, error code: ${error.code}, error msg: ${error.message}`);
     }
   }
 
@@ -333,14 +333,14 @@ export default class EntryAbility extends UIAbility {
     let result1 = startupManager.isStartupTaskInitialized('StartupTask_001');
     let result2 = startupManager.isStartupTaskInitialized('libentry_001');
     if (result1) {
-      console.info('StartupTask_001 init successful');
+      hilog.info(0x0000, 'testTag', 'StartupTask_001 init successful');
     } else {
-      console.info('StartupTask_001 uninitialized');
+      hilog.info(0x0000, 'testTag', 'StartupTask_001 uninitialized');
     }
     if (result2) {
-      console.info('libentry_001 init successful');
+      hilog.info(0x0000, 'testTag', 'libentry_001 init successful');
     } else {
-      console.info('libentry_001 uninitialized');
+      hilog.info(0x0000, 'testTag', 'libentry_001 uninitialized');
     }
 
     windowStage.loadContent('pages/Index', (err, data) => {
@@ -391,14 +391,14 @@ import { BusinessError } from '@kit.BasicServicesKit';
 export default class EntryAbility extends UIAbility {
   onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
     hilog.info(0x0000, 'testTag', '%{public}s', 'Ability onCreate');
-    try{
+    try {
       startupManager.run(['StartupTask_001', 'libentry_001']).then(() => {
         hilog.info(0x0000, 'testTag', 'StartupTask_001 init successful');
       }).catch((error: BusinessError) => {
         hilog.error(0x0000, 'testTag', `StartupTask_001 promise catch failed, error code: ${error.code}, error msg: ${error.message}`);
       });
     } catch (error) {
-      hilog.error(0x0000, 'testTag', `StartupTask_001.run failed, error code: ${error.code}, error msg: ${error.message}`);
+      hilog.error(0x0000, 'testTag', `startupManager.run failed, error code: ${error.code}, error msg: ${error.message}`);
     }
   }
 

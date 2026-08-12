@@ -1,7 +1,7 @@
 # ServiceExtensionContext (系统接口)
 <!--Kit: Ability Kit-->
 <!--Subsystem: Ability-->
-<!--Owner: @yewei0794-->
+<!--Owner: @xialiangwei-->
 <!--Designer: @jsjzju-->
 <!--Tester: @liangchengguang-->
 <!--Adviser: @HelloCrease-->
@@ -47,6 +47,10 @@ class EntryAbility extends ServiceExtensionAbility {
 startAbility(want: Want, callback: AsyncCallback&lt;void&gt;): void
 
 启动Ability。仅支持在主线程调用。使用callback异步回调。
+
+> **说明：**
+>
+> 组件启动规则详见：[设备内组件启动规则（仅对系统应用开放）](../../application-models/component-startup-rules-inner-device-sys.md)。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -128,6 +132,10 @@ class EntryAbility extends ServiceExtensionAbility {
 startAbility(want: Want, options?: StartOptions): Promise\<void>
 
 启动Ability。仅支持在主线程调用。使用Promise异步回调。
+
+> **说明：**
+>
+> 组件启动规则详见：[设备内组件启动规则（仅对系统应用开放）](../../application-models/component-startup-rules-inner-device-sys.md)。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -219,6 +227,10 @@ startAbility(want: Want, options: StartOptions, callback: AsyncCallback&lt;void&
 
 启动Ability。仅支持在主线程调用。使用callback异步回调。
 
+> **说明：**
+>
+> 组件启动规则详见：[设备内组件启动规则（仅对系统应用开放）](../../application-models/component-startup-rules-inner-device-sys.md)。
+
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
 **系统接口**：此接口为系统接口。
@@ -307,7 +319,8 @@ startAbilityWithAccount(want: Want, accountId: number, callback: AsyncCallback\<
 
 > **说明：**
 >
-> 组件启动规则详见：[组件启动规则（Stage模型）](../../application-models/component-startup-rules.md)。
+> - 组件启动规则详见：[组件启动规则（Stage模型）](../../application-models/component-startup-rules.md)。
+> - 当accountId为当前用户时，无需进行权限校验。
 
 **需要权限**：ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS
 
@@ -341,8 +354,8 @@ startAbilityWithAccount(want: Want, accountId: number, callback: AsyncCallback\<
 | 16000009 | An ability cannot be started or stopped in Wukong mode. |
 | 16000010 | The call with the continuation and prepare continuation flag is forbidden.        |
 | 16000011 | The context does not exist.        |
-| 16000012 | The application is controlled.        |
-| 16000013 | The application is controlled by EDM.       |
+| 16000012 | The application is controlled. |
+| 16000013 | The application is controlled by EDM. |
 | 16000019 | No matching ability is found. <br>适用版本：12+ |
 | 16000050 | Internal error. |
 | 16000053 | The ability is not on the top of the UI. |
@@ -398,7 +411,8 @@ startAbilityWithAccount(want: Want, accountId: number, options: StartOptions, ca
 
 > **说明：**
 >
-> 组件启动规则详见：[组件启动规则（Stage模型）](../../application-models/component-startup-rules.md)。
+> - 组件启动规则详见：[组件启动规则（Stage模型）](../../application-models/component-startup-rules.md)。
+> - 当accountId为当前用户时，无需进行权限校验。
 
 **需要权限**：ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS
 
@@ -462,6 +476,7 @@ class EntryAbility extends ServiceExtensionAbility {
       bundleName: 'com.example.myapplication',
       abilityName: 'EntryAbility'
     };
+    // accountId为系统账号ID，可通过getOsAccountLocalId接口获取，此处以100为例
     let accountId = 100;
     let options: StartOptions = {
       windowMode: 0
@@ -495,6 +510,7 @@ startAbilityWithAccount(want: Want, accountId: number, options?: StartOptions): 
 > **说明：**
 >
 > 组件启动规则详见：[组件启动规则（Stage模型）](../../application-models/component-startup-rules.md)。
+> 当accountId为当前用户时，无需进行权限校验。
 
 **需要权限**：ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS
 
@@ -534,8 +550,8 @@ startAbilityWithAccount(want: Want, accountId: number, options?: StartOptions): 
 | 16000009 | An ability cannot be started or stopped in Wukong mode. |
 | 16000010 | The call with the continuation and prepare continuation flag is forbidden.        |
 | 16000011 | The context does not exist.        |
-| 16000012 | The application is controlled.        |
-| 16000013 | The application is controlled by EDM.       |
+| 16000012 | The application is controlled. |
+| 16000013 | The application is controlled by EDM. |
 | 16000019 | No matching ability is found. <br>适用版本：12+ |
 | 16000050 | Internal error. |
 | 16000053 | The ability is not on the top of the UI. |
@@ -563,6 +579,7 @@ class EntryAbility extends ServiceExtensionAbility {
       bundleName: 'com.example.myapplication',
       abilityName: 'EntryAbility'
     };
+    // accountId为系统账号ID，可通过getOsAccountLocalId接口获取，此处以100为例
     let accountId = 100;
     let options: StartOptions = {
       windowMode: 0
@@ -591,6 +608,10 @@ class EntryAbility extends ServiceExtensionAbility {
 startServiceExtensionAbility(want: Want, callback: AsyncCallback\<void>): void
 
 启动一个新的ServiceExtensionAbility。仅支持在主线程调用。使用callback异步回调。
+
+> **说明：**
+>
+> 组件启动规则详见：[设备内组件启动规则（仅对系统应用开放）](../../application-models/component-startup-rules-inner-device-sys.md)。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -662,6 +683,10 @@ class EntryAbility extends ServiceExtensionAbility {
 startServiceExtensionAbility(want: Want): Promise\<void>
 
 启动一个新的ServiceExtensionAbility。仅支持在主线程调用。使用Promise异步回调。
+
+> **说明：**
+>
+> 组件启动规则详见：[设备内组件启动规则（仅对系统应用开放）](../../application-models/component-startup-rules-inner-device-sys.md)。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -741,8 +766,8 @@ startServiceExtensionAbilityWithAccount(want: Want, accountId: number, callback:
 
 > **说明：**
 > 
-> 组件启动规则详见：[组件启动规则（Stage模型）](../../application-models/component-startup-rules.md)。  
-> 当accountId为当前用户时，无需进行权限校验。
+> - 组件启动规则详见：[组件启动规则（Stage模型）](../../application-models/component-startup-rules.md)。
+> - 当accountId为当前用户时，无需进行权限校验。
 
 **需要权限**：ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS
 
@@ -793,6 +818,7 @@ class EntryAbility extends ServiceExtensionAbility {
       bundleName: 'com.example.myapplication',
       abilityName: 'EntryAbility'
     };
+    // accountId为系统账号ID，可通过getOsAccountLocalId接口获取，此处以100为例
     let accountId = 100;
 
     try {
@@ -821,8 +847,8 @@ startServiceExtensionAbilityWithAccount(want: Want, accountId: number): Promise\
 
 > **说明：**
 > 
-> 组件启动规则详见：[组件启动规则（Stage模型）](../../application-models/component-startup-rules.md)。  
-> 当accountId为当前用户时，无需进行权限校验。
+> - 组件启动规则详见：[组件启动规则（Stage模型）](../../application-models/component-startup-rules.md)。
+> - 当accountId为当前用户时，无需进行权限校验。
 
 **需要权限**：ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS
 
@@ -878,6 +904,7 @@ class EntryAbility extends ServiceExtensionAbility {
       bundleName: 'com.example.myapplication',
       abilityName: 'EntryAbility'
     };
+    // accountId为系统账号ID，可通过getOsAccountLocalId接口获取，此处以100为例
     let accountId = 100;
 
     try {
@@ -937,8 +964,8 @@ startAbilityAsCaller(want: Want, callback: AsyncCallback\<void>): void
 | 16000009 | An ability cannot be started or stopped in Wukong mode. |
 | 16000010 | The call with the continuation and prepare continuation flag is forbidden.        |
 | 16000011 | The context does not exist.        |
-| 16000012 | The application is controlled.        |
-| 16000013 | The application is controlled by EDM.       |
+| 16000012 | The application is controlled.  |
+| 16000013 | The application is controlled by EDM.  |
 | 16000050 | Internal error. |
 | 16000053 | The ability is not on the top of the UI. |
 | 16000055 | Installation-free timed out. |
@@ -1015,8 +1042,8 @@ startAbilityAsCaller(want: Want, options: StartOptions, callback: AsyncCallback\
 | 16000008 | The crowdtesting application expires. |
 | 16000009 | An ability cannot be started or stopped in Wukong mode. |
 | 16000011 | The context does not exist.        |
-| 16000012 | The application is controlled.        |
-| 16000013 | The application is controlled by EDM.       |
+| 16000012 | The application is controlled.  |
+| 16000013 | The application is controlled by EDM.  |
 | 16000050 | Internal error. |
 | 16000053 | The ability is not on the top of the UI. |
 | 16000055 | Installation-free timed out. |
@@ -1104,8 +1131,8 @@ startAbilityAsCaller(want: Want, options?: StartOptions): Promise\<void>
 | 16000009 | An ability cannot be started or stopped in Wukong mode. |
 | 16000010 | The call with the continuation and prepare continuation flag is forbidden.        |
 | 16000011 | The context does not exist.        |
-| 16000012 | The application is controlled.        |
-| 16000013 | The application is controlled by EDM.       |
+| 16000012 | The application is controlled.  |
+| 16000013 | The application is controlled by EDM.  |
 | 16000050 | Internal error. |
 | 16000053 | The ability is not on the top of the UI. |
 | 16000055 | Installation-free timed out. |
@@ -1236,7 +1263,7 @@ stopServiceExtensionAbility(want: Want): Promise\<void>
 
 | 类型 | 说明 |
 | -------- | -------- |
-| Promise&lt;void&gt; | Promise对象。无返回结果的Promise对象。 |
+| Promise&lt;void&gt; | Promise对象，无返回结果。 |
 
 **错误码：**
 
@@ -1343,6 +1370,7 @@ class EntryAbility extends ServiceExtensionAbility {
       bundleName: 'com.example.myapplication',
       abilityName: 'EntryAbility'
     };
+    // accountId为系统账号ID，可通过getOsAccountLocalId接口获取，此处以100为例
     let accountId = 100;
 
     try {
@@ -1423,6 +1451,7 @@ class EntryAbility extends ServiceExtensionAbility {
       bundleName: 'com.example.myapplication',
       abilityName: 'EntryAbility'
     };
+    // accountId为系统账号ID，可通过getOsAccountLocalId接口获取，此处以100为例
     let accountId = 100;
 
     try {
@@ -1653,7 +1682,7 @@ connectServiceExtensionAbilityWithAccount(want: Want, accountId: number, options
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | want | [Want](js-apis-app-ability-want.md) | 是 | 启动Ability的Want信息。 |
-| accountId | number | 是 | 系统账号的账号ID，可通过系统账号管理接口获取。 |
+| accountId | number | 是 | 系统账号的账号ID，可以通过[getOsAccountLocalId](../apis-basic-services-kit/js-apis-osAccount.md#getosaccountlocalid9)接口获取。 |
 | options | [ConnectOptions](js-apis-inner-ability-connectOptions.md) | 是 | 连接选项，用于返回连接成功、连接中断或连接失败的信息。 |
 
 **返回值：**
@@ -1700,6 +1729,7 @@ class EntryAbility extends ServiceExtensionAbility {
       bundleName: 'com.example.myapplication',
       abilityName: 'EntryAbility'
     };
+    // accountId为系统账号ID，可通过getOsAccountLocalId接口获取，此处以100为例
     let accountId = 100;
     let options: common.ConnectOptions = {
       onConnect(elementName, remote) {
@@ -2546,7 +2576,7 @@ openLink(link: string, options?: OpenLinkOptions): Promise&lt;void&gt;
 | 16000006 | Cross-user operations are not allowed. |
 | 16000008 | The crowdtesting application expires. |
 | 16000009 | An ability cannot be started or stopped in Wukong mode. |
-| 16000010 | The call with the continuation flag is forbidden.        |
+| 16000010 | The call with the continuation flag is forbidden. |
 | 16000011 | The context does not exist.        |
 | 16000012 | The application is controlled.        |
 | 16000013 | The application is controlled by EDM.       |
@@ -2793,7 +2823,7 @@ openAtomicService(appId: string, options?: AtomicServiceOptions): Promise&lt;voi
 **示例：**
 
 ```ts
-import { ServiceExtensionAbility, AtomicServiceOptions } from '@kit.AbilityKit';
+import { ServiceExtensionAbility, Want, AtomicServiceOptions } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 export default class ServiceExtension extends ServiceExtensionAbility {
