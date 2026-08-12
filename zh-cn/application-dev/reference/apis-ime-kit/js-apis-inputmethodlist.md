@@ -16,11 +16,11 @@
 
 本模块与输入法框架其他模块的关系如下：
 
-— [@ohos.inputMethod](js-apis-inputmethod.md)：面向普通前台应用，提供输入法的控制与管理能力（如显示/隐藏软键盘、切换输入法等），可通过程序化接口`switchInputMethod`切换输入法，适用于无需交互式选择界面的场景。
+- [@ohos.inputMethod](js-apis-inputmethod.md)：面向普通前台应用，提供输入法的控制与管理能力（如显示/隐藏软键盘、切换输入法等），可通过程序化接口`switchInputMethod`切换输入法，适用于无需交互式选择界面的场景。
 
-— [@ohos.inputMethodEngine](js-apis-inputmethodengine.md)：面向输入法应用，提供创建软键盘窗口、插入/删除字符等输入法服务端能力。
+- [@ohos.inputMethodEngine](js-apis-inputmethodengine.md)：面向输入法应用，提供创建软键盘窗口、插入/删除字符等输入法服务端能力。
 
-— @ohos.inputMethodList（本模块）：面向系统应用和输入法应用，提供可视化的输入法切换列表弹窗控件，适用于需要交互式选择界面的场景。
+- @ohos.inputMethodList（本模块）：面向系统应用和输入法应用，提供可视化的输入法切换列表弹窗控件，适用于需要交互式选择界面的场景。
 
 > **说明：**
 >
