@@ -47,6 +47,8 @@ int32_t OH_CertManager_GetUkeyCertificate(const OH_CM_Blob *keyUri, const OH_CM_
 
 **需要权限：** ohos.permission.ACCESS_CERT_MANAGER
 
+**起始版本：** 22
+
 **参数：**
 
 | 参数项 | 描述 |
@@ -73,6 +75,8 @@ int32_t OH_CertManager_GetPrivateCertificate(const OH_CM_Blob *keyUri, OH_CM_Cre
 
 **需要权限：** ohos.permission.ACCESS_CERT_MANAGER
 
+**起始版本：** 22
+
 **参数：**
 
 | 参数项 | 描述 |
@@ -98,6 +102,8 @@ int32_t OH_CertManager_GetPublicCertificate(const OH_CM_Blob *keyUri, OH_CM_Cred
 
 **需要权限：** ohos.permission.ACCESS_CERT_MANAGER
 
+**起始版本：** 22
+
 **参数：**
 
 | 参数项 | 描述 |
@@ -121,6 +127,8 @@ void OH_CertManager_FreeUkeyCertificate(OH_CM_CredentialDetailList *certificateL
 
 销毁证书详情信息列表。
 
+**起始版本：** 22
+
 **参数：**
 
 | 参数项 | 描述 |
@@ -136,6 +144,8 @@ void OH_CertManager_FreeCredential(OH_CM_Credential *certificate)
 **描述**
 
 销毁证书详情。
+
+**起始版本：** 22
 
 **参数：**
 
