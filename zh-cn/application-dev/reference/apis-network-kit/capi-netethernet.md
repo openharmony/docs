@@ -1,4 +1,4 @@
-# netmanager_ext
+# NetEthernet
 
 <!--Kit: Network Kit-->
 <!--Subsystem: Communication-->
