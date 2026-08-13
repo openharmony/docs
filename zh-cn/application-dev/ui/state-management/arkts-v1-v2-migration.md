@@ -13,7 +13,7 @@
 <!--RP1End-->
 
 <!--RP2-->
-为帮助已基于V1开发的应用平滑迁移至V2，本文提供了[状态管理V1向V2的迁移指导](./arkts-v1-v2-migration-inner-component.md)，涵盖迁移过程中的常见场景，便于开发者结合自身业务灵活适配。同时，针对迁移过渡阶段可能出现的[状态管理V1和V2混用场景](./arkts-v1-v2-mixusage-before-api-version.md)，文章讲解了V1使用V2组件的规则和实操方法，并根据API version 19前后的差异，分别提供了针对性解决方案，帮助开发者实现逐步改造。
+为帮助已基于V1开发的应用平滑迁移至V2，本文提供了[状态管理V1向V2的迁移指导](./arkts-v1-v2-migration-inner-component.md)，涵盖迁移过程中的常见场景，便于开发者结合自身业务灵活适配。同时，针对迁移过渡阶段可能出现的[状态管理V1和V2混用场景](./arkts-v1-v2-mixusage-before-api-version.md)，文章讲解了V1和V2组件混用的规则和实操方法，并根据API version 19前后的差异，分别提供了针对性解决方案，帮助开发者实现逐步改造。
 <!--RP2End-->
 
 
