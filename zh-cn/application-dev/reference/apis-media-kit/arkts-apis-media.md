@@ -4,7 +4,7 @@
 <!--Owner: @chenkun613227-->
 <!--Designer: @chris2981-->
 <!--Tester: @xchaosioda-->
-<!--Adviser: @w_Machine_cc-->
+<!--Adviser: @zzs911-->
 
 媒体子系统为开发者提供一套简单且易于理解的接口，使得开发者能够方便接入系统并使用系统的媒体资源。
 
