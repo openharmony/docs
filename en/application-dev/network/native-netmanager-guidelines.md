@@ -1,10 +1,12 @@
 # Network Connection Management (C/C++)
+
 <!--Kit: Network Kit-->
 <!--Subsystem: Communication-->
 <!--Owner: @wmyao_mm-->
 <!--Designer: @guo-min_net-->
 <!--Tester: @tongxilin-->
 <!--Adviser: @zhang_yixin13-->
+<!-- md-trans-meta sourceCommit=1a8a5b4e7336401b1823c689884b3d262fdca43f translatedAt=2026-08-13T03:07:29.211Z pushedAt=2026-08-13T06:15:25.208Z -->
 
 ## When to Use
 
@@ -14,7 +16,6 @@ The **NetConnection** module provides the capability of querying common network 
 
 The following table lists the common NetConnection APIs. For details, see [net_connection.h](../reference/apis-network-kit/capi-net-connection-h.md).
 
-
 | API| **Test Description**|
 | -------- | -------- |
 | OH_NetConn_HasDefaultNet(int32_t \*hasDefaultNet) | Checks whether the default data network is activated and determines whether a network connection is available.|
@@ -22,7 +23,7 @@ The following table lists the common NetConnection APIs. For details, see [net_c
 | OH_NetConn_IsDefaultNetMetered(int32_t \*isMetered) | Checks whether the data traffic usage on the current network is metered.|
 | OH_NetConn_GetConnectionProperties(NetConn_NetHandle \*netHandle, NetConn_ConnectionProperties *prop) | Obtains network connection information based on the specified **netHandle**.|
 | OH_NetConn_GetNetCapabilities (NetConn_NetHandle \*netHandle, NetConn_NetCapabilities \*netCapacities) | Obtains network capability information based on the specified **netHandle**.|
-| OH_NetConn_GetDefaultHttpProxy (NetConn_HttpProxy \*httpProxy) | Obtains the default HTTP proxy configuration of the network. If the global proxy is set, the global HTTP proxy configuration is returned. If the application has been bound to the network specified by **netHandle**, the HTTP proxy configuration of this network is returned. In other cases, the HTTP proxy configuration of the default network is returned.|
+| OH_NetConn_GetDefaultHttpProxy (NetConn_HttpProxy \*httpProxy) | Obtains the default proxy configuration of the network. If a global proxy is set, the global proxy configuration is returned. If the process is bound to the network corresponding to the specified netHandle, the proxy configuration of the network corresponding to the network handle is returned. In other cases, the proxy configuration of the default network is returned. |
 | OH_NetConn_GetAddrInfo (char \*host, char \*serv, struct addrinfo \*hint, struct addrinfo \*\*res, int32_t netId) | Obtains the DNS result based on the specified **netId**.|
 | OH_NetConn_FreeDnsResult(struct addrinfo \*res) | Releases the DNS query result.|
 | OH_NetConn_GetAllNets(NetConn_NetHandleList \*netHandleList) | Obtains the list of all connected networks.|
@@ -55,7 +56,9 @@ Add the following library to **CMakeLists.txt**.
 libace_napi.z.so
 libnet_connection.so
 ```
+
 <!-- [CMAKE_list_add_lib_file](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/NetWork_Kit/NetWorkKit_NetManager/NetConnection_Exploitation_case/entry/src/main/cpp/CMakeLists.txt) -->
+
 **Including Header Files**
 
 <!-- @[header_file](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/NetWork_Kit/NetWorkKit_NetManager/NetConnection_Exploitation_case/entry/src/main/cpp/napi_init.cpp) -->
@@ -65,12 +68,13 @@ libnet_connection.so
 #include "network/netmanager/net_connection.h"
 #include "network/netmanager/net_connection_type.h"
 ```
+
 ### Building the Project
 
 1. Write the code for calling the API in the source file, encapsulate it into a value of the `napi_value` type, and return the value to the Node.js environment.
 
    <!-- @[build_project1](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/NetWork_Kit/NetWorkKit_NetManager/NetConnection_Exploitation_case/entry/src/main/cpp/napi_init.cpp) -->
-   
+
    ``` C++
    // Obtain the default network.
    static napi_value GetDefaultNet(napi_env env, napi_callback_info info)
@@ -106,13 +110,13 @@ libnet_connection.so
        return result;
    }
    ```
-   > **NOTE**<br>The two functions are used to obtain information about the default network connection of the system. Wherein, GetDefaultNet is used to receive the test parameters passed from ArkTS and return the corresponding return value after the API is called. You can change param as needed. If the return value is **0**, the parameters are obtained successfully. If the return value is **401**, the parameters are incorrect. If the return value is **201**, the user does not have the operation permission. NetId indicates the ID of the default network connection. You can use the information for further network operations.
 
+   > **NOTE**<br>The two functions are used to obtain information about the default network connection of the system. Wherein, GetDefaultNet is used to receive the test parameters passed from ArkTS and return the corresponding return value after the API is called. You can change param as needed. If the return value is **0**, the parameters are obtained successfully. If the return value is **401**, the parameters are incorrect. If the return value is **201**, the user does not have the operation permission. NetId indicates the ID of the default network connection. You can use the information for further network operations.
 
 2. Initialize and export the `napi_value` objects encapsulated through **NAPI**, and expose the preceding two functions to JavaScript through external function APIs.
 
    <!-- @[build_project2](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/NetWork_Kit/NetWorkKit_NetManager/NetConnection_Exploitation_case/entry/src/main/cpp/napi_init.cpp) -->
-   
+
    ``` C++
    EXTERN_C_START
    static napi_value Init(napi_env env, napi_value exports)
@@ -128,10 +132,11 @@ libnet_connection.so
    }
    EXTERN_C_END
    ```
-3. Register the objects successfully initialized in the previous step into the `Node.js` file by using the `napi_module_register` function of `RegisterEntryModule`.
+
+3. Register the objects successfully initialized in the previous step into `Node.js` by using the `napi_module_register` function of `RegisterEntryModule`.
 
    <!-- @[build_project3](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/NetWork_Kit/NetWorkKit_NetManager/NetConnection_Exploitation_case/entry/src/main/cpp/napi_init.cpp) -->
-   
+
    ``` C++
    static napi_module demoModule = {
        .nm_version = 1,
@@ -145,21 +150,24 @@ libnet_connection.so
     
    extern "C" __attribute__((constructor)) void RegisterEntryModule(void) { napi_module_register(&demoModule); }
    ```
+
 4. Define the types of the two functions in the `index.d.ts` file of the project.
 
    - The `GetDefaultNet` function accepts the numeric parameter code and returns a numeric value.
+
    - The `NetId` function does not accept parameters and returns a numeric value.
 
    <!-- @[defining_function_types](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/NetWork_Kit/NetWorkKit_NetManager/NetConnection_Exploitation_case/entry/src/main/cpp/types/libentry/Index.d.ts) -->
-   
+
    ``` TypeScript
    export const GetDefaultNet: (code: number) => number;
    export const NetId: () => number;
    ```
+
 5. Call the encapsulated APIs in the `index.ets` file.
 
    <!-- @[build_project5](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/NetWork_Kit/NetWorkKit_NetManager/NetConnection_Exploitation_case/entry/src/main/ets/pages/Index.ets) -->    
-   
+
    ``` TypeScript
    import testNetManager from 'libentry.so';
    import { hilog } from '@kit.PerformanceAnalysisKit';
@@ -234,6 +242,7 @@ libnet_connection.so
      // ...
    }
    ```
+
 6. Configure the `CMakeLists.txt` file. Add the required shared library, that is, `libnet_connection.so`, to `target_link_libraries` in the `CMakeLists.txt` file automatically generated by the project.
 
    > **NOTE**
@@ -251,6 +260,7 @@ After the preceding steps, the entire project is set up. Then, you can connect t
 2. Run the project. The following figure is displayed on the device.
 
    - If you click `GetDefaultNet`, you'll obtain the default network ID.
+
    - If you click `codeNumber`, you'll obtain the status code returned by the API.
 
    ![netmanager-1.png](./figures/netmanager-1.png)

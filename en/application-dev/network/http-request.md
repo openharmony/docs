@@ -1,10 +1,12 @@
 # Using HTTP for Network Access
+
 <!--Kit: Network Kit-->
 <!--Subsystem: Communication-->
 <!--Owner: @wmyao_mm-->
 <!--Designer: @guo-min_net-->
 <!--Tester: @tongxilin-->
 <!--Adviser: @zhang_yixin13-->
+<!-- md-trans-meta sourceCommit=4adc34af5c27c45b2593c410f9b794378b879132 translatedAt=2026-08-13T03:09:04.363Z pushedAt=2026-08-13T03:59:21.925Z -->
 
 <!--Kit: Network Kit-->
 <!--Subsystem: Communication-->
@@ -14,7 +16,7 @@
 
 ## When to Use
 
-An application can initiate a data request over HTTP. Common HTTP methods include **GET**, **POST**, **OPTIONS**, **HEAD**, **PUT**, **DELETE**, **TRACE**, and **CONNECT**. Currently, two HTTP request methods are provided. If the amount of data sent or received by the request is small, you can use [HttpRequest.request](../reference/apis-network-kit/js-apis-http.md#request). If you are uploading or downloading a large file and care about the data sending and receiving progress, you can use [HttpRequest.requestInstream](../reference/apis-network-kit/js-apis-http.md#requestinstream10). From API version 22, if you need to insert custom logic at key nodes in the "HTTP request-response" lifecycle, you can use the [HTTP Interceptor](#http-interceptor).
+An app initiates a data request over HTTP, supporting the common GET, POST, OPTIONS, HEAD, PUT, DELETE, TRACE, and CONNECT methods. Two HTTP request modes are currently provided. If the amount of data sent or received in a request is small, use [HttpRequest.request](../reference/apis-network-kit/js-apis-http.md#request). For uploading or downloading large files, where you need to track the data sending and receiving progress, use HTTP request streaming transmission [HttpRequest.requestInStream](../reference/apis-network-kit/js-apis-http.md#requestinstream10). Starting from API version 22, if you need to insert custom logic at key nodes in the "HTTP request-response" lifecycle, use the [HTTP interceptor](#http-interceptor).
 
 <!--RP1-->
 
@@ -25,14 +27,14 @@ The following table lists the functions supported by the HTTP request. The optio
 | Category    | Function                          |Feature Description                     | Available Since        |
 | ----------- | -----------------------------------|-----------------------------|------------------------|
 | Basic    | Setting the request method                     | Specifies the request method, including **GET**, **POST**, **HEAD**, **PUT**, **DELETE**, **TRACE**, **CONNECT**, and **OPTIONS**. The default value is **GET**. |  API version 6  |
-| Basic    | Setting additional data of the request                | Specifies additional data can be carried with the request. This parameter is not used by default.| API version 6    |
+| Basic    | Setting additional data of the request                | Specifies that additional data can be carried with the request. This parameter is not used by default.| API version 6    |
 | Basic    | Setting the read timeout interval                | Specifies the total time from the start to the end of a request, including DNS resolution, connection setup, and transmission. The default value is **60000**, in ms.|  API version 6   |
 | Basic    | Setting the connection timeout interval                | Specifies the connection timeout interval. The default value is **60000**, in ms.|  API version 6   |
 | Basic    | Setting the HTTP request header                 | Specifies the HTTP request header. If the request method is **POST**, **PUT**, **DELETE**, or left empty, the default value is {'content-Type': 'application/json'}. Otherwise, the default value is {'content-Type': 'application/x-www-form-urlencoded'}.|  API version 6   |
 | Basic    | Setting the response data type               | Specifies the type of the HTTP response data. This parameter is not used by default. If this parameter is set, the system returns the specified type of data preferentially.|  API version 9   |
 | Basic    | Setting the priority of concurrent requests             |  Specifies the priority of concurrent HTTP/HTTPS requests. A larger value indicates a higher priority. The value ranges from 1 to 1000. The default value is **1**.|  API version 9   |
 | Basic    | Enabling the cache               | Specifies whether to use the cache. The default value is **true**. The data in the cache is preferentially read. The cache takes effect with the current process. The new cache replaces the old cache. If this parameter is set to **false**, the cache is not used.|  API version 9   |
-| Basic    | Setting the protocol type                | Specifies the protocol type. The default value is automatically assigned by the system. You can set it to **HTTP 1.1**, **HTTP 2**, or **HTTP 3**.|  API version 9   |
+| basic function     | Setting the protocol type                 | Specifies the protocol type. HTTPS requests use HTTP/2 by default and fall back to HTTP/1.1 on failure; HTTP uses HTTP/1.1 directly. You can specify HTTP 1.1, HTTP 2, or HTTP 3 as the protocol version. |  API version 9   |
 | Proxy setting    | Setting the HTTP request proxy                | Specifies whether to use the HTTP proxy. The default value is **false**, indicating that proxy is not used. If this parameter is set to **true**, the default proxy of the system is used. You can also configure a custom network proxy through **HttpProxy**.|  API version 10  |
 | Certificate verification    | Setting the CA certificate path                  | Specifies the CA certificate path. If the CA certificate path is set, the system uses the CA certificate in the specified path. Otherwise, the system uses the preset CA certificate.| API version 10    |
 | Certificate verification    | Setting the transmission of client certificates           | Specifies whether to enable the transmission of client certificates, which include the certificate path, certificate type, certificate key path, and password information.| API version 11    |
@@ -46,6 +48,7 @@ The following table lists the functions supported by the HTTP request. The optio
 | Certificate verification    | Setting whether to skip SSL certificate verification                    | Specifies whether to skip SSL certificate verification.| API version 18    |
 | Certificate verification    | Setting the certificate verification version and cipher suite            | Customizes the certificate verification version and cipher suite.|  API version 18  |
 | Certificate verification    | Setting server authentication for secure connections       | Specifies server authentication for secure connections.|  API version 18   |
+| proxy settings     | Setting SOCKS5 proxy        | Sets a SOCKS5 proxy. By default, no SOCKS5 proxy is used. If a custom SOCKS5 proxy is correctly configured through [Socks5Proxy](../reference/apis-network-kit/js-apis-net-connection.md#socks5proxy), HttpProxy does not take effect. |  API version 26.0.0   |
 
 ## Initiating HTTP Data Requests
 
@@ -58,7 +61,7 @@ Complete sample code: [Http_case](https://gitcode.com/openharmony/applications_a
 1. Import the **http**, **BusinessError**, and **common** modules.
 
    <!-- @[HTTP_case_module_import_data_request](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/NetWork_Kit/NetWorkKit_Datatransmission/HTTP_case/entry/src/main/ets/pages/Index.ets) -->  
-   
+
    ``` TypeScript
    import { http } from '@kit.NetworkKit';
    import { BusinessError } from '@kit.BasicServicesKit';
@@ -68,10 +71,10 @@ Complete sample code: [Http_case](https://gitcode.com/openharmony/applications_a
 
 2. Create an **HttpRequest** object.
 
-    Call **createHttp()** to create an **HttpRequest** object.
+    Call [createHttp()](../reference/apis-network-kit/js-apis-http.md#httpcreatehttp) to create an **HttpRequest** object.
 
     <!-- @[HTTP_case_create_http_method](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/NetWork_Kit/NetWorkKit_Datatransmission/HTTP_case/entry/src/main/ets/pages/Index.ets) -->
-    
+
     ``` TypeScript
     let context: common.UIAbilityContext = this.getUIContext().getHostContext() as common.UIAbilityContext;
     // Each httpRequest corresponds to an HTTP request task and cannot be reused.
@@ -80,10 +83,10 @@ Complete sample code: [Http_case](https://gitcode.com/openharmony/applications_a
 
 3. Subscribe to the HTTP response header events.
 
-    Call **httpRequest.on()** to subscribe to HTTP response header events. This API returns a response earlier than the request. You can subscribe to HTTP response header events based on service requirements.
+    Call the corresponding [on()](../reference/apis-network-kit/js-apis-http.md#onheadersreceive8) method of the object to subscribe to HTTP response header events. This API returns before the request does. You can subscribe to this message based on your business requirement.
 
    <!-- @[HTTP_case_http_request_on_method](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/NetWork_Kit/NetWorkKit_Datatransmission/HTTP_case/entry/src/main/ets/pages/Index.ets) -->
-   
+
    ``` TypeScript
    // This API is used to listen for HTTP Response Header events, which is returned earlier than the result of the HTTP request. It is up to you whether to listen for HTTP response header events.
    // on('headerReceive', AsyncCallback) will be replaced by on('headersReceive', Callback) in API version 8.
@@ -92,13 +95,12 @@ Complete sample code: [Http_case](https://gitcode.com/openharmony/applications_a
    });
    ```
 
-
 4. Initiate an HTTP request, and parse the server response event.
 
-    Call **request()** to initiate a network request. You need to pass in the URL and optional parameters of the HTTP request. Parse the returned result based on service requirements.
+    Call the corresponding [request()](../reference/apis-network-kit/js-apis-http.md#httprequest) method of the object, pass in the URL and optional parameters of the HTTP request, initiate the network request, and parse the returned result based on your actual business requirement.
 
    <!-- @[HTTP_case_http_request_request_method](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/NetWork_Kit/NetWorkKit_Datatransmission/HTTP_case/entry/src/main/ets/pages/Index.ets) -->
-   
+
    ``` TypeScript
    httpRequest.request(
      // Customize EXAMPLE_URL in extraData on your own. It is up to you whether to add parameters to the URL.
@@ -182,23 +184,24 @@ Complete sample code: [Http_case](https://gitcode.com/openharmony/applications_a
    );
    ```
 
-
 5. Unsubscribe from HTTP response header events.
 
-    Call **off()** to unsubscribe from HTTP response header events.
+    Call the corresponding [off()](../reference/apis-network-kit/js-apis-http.md#offheadersreceive8) method of the object to unsubscribe from HTTP response header events.
 
     ```ts
     // Unsubscribe from HTTP response header events when the callback information is no longer needed. For details about how to use the API, see the sample code in step 4.
     httpRequest.off('headersReceive');
     ```
+
 6. Call **destroy()** to destroy the **httpRequest** object when it is no longer needed.
 
-    Call **httpRequest.destroy()** to release resources after the request is processed.
+    When the request is no longer needed, call [destroy()](../reference/apis-network-kit/js-apis-http.md#destroy) to destroy it.
 
     ```ts
     // Call destroy to destroy the httpRequest when it is no longer needed. For details about how to use the API, see the sample code in step 4.
     httpRequest.destroy();
     ```
+
 ## Initiating an HTTP Streaming Request
 
 HTTP streaming refers to the process where, when handling an HTTP response, only a small chunk of the response content is processed at a time, rather than loading the entire response into memory all at once. This is particularly useful for scenarios such as processing large files and real-time data streams, among others.
@@ -208,7 +211,7 @@ Complete sample code: [Http_case](https://gitcode.com/openharmony/applications_a
 1. Import the **http**, **BusinessError**, and **common** modules.
 
      <!-- @[HTTP_case_module_import_data_request](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/NetWork_Kit/NetWorkKit_Datatransmission/HTTP_case/entry/src/main/ets/pages/Index.ets) -->
-     
+
      ``` TypeScript
      import { http } from '@kit.NetworkKit';
      import { BusinessError } from '@kit.BasicServicesKit';
@@ -218,10 +221,10 @@ Complete sample code: [Http_case](https://gitcode.com/openharmony/applications_a
 
 2. Create an **HttpRequest** object for HTTP streaming.
 
-    Call **createHttp()** to create an **HttpRequest** object.
+    Call [createHttp()](../reference/apis-network-kit/js-apis-http.md#httpcreatehttp) to create an **HttpRequest** object.
 
     <!-- @[request_in_stream_create_http_method](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/NetWork_Kit/NetWorkKit_Datatransmission/HTTP_case/entry/src/main/ets/pages/Index.ets) -->
-    
+
     ``` TypeScript
     // Each httpRequest corresponds to an HTTP request task and cannot be reused.
     let httpRequest = http.createHttp();
@@ -229,10 +232,10 @@ Complete sample code: [Http_case](https://gitcode.com/openharmony/applications_a
 
 3. Subscribe to HTTP streaming response events on demand.
 
-	The server response is returned via the **dataReceive** callback. You can subscribe to this callback to obtain the server response. You can also subscribe to other streaming response events as needed.
-  
+   The data returned by the server is returned in the **dataReceive** callback. You can obtain the server response data by subscribing to this message. Other streaming response events can be subscribed to on demand.
+
    <!-- @[request_in_stream_data_receive](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/NetWork_Kit/NetWorkKit_Datatransmission/HTTP_case/entry/src/main/ets/pages/Index.ets) -->
-   
+
    ``` TypeScript
    // Subscribe to events indicating receiving of HTTP streaming responses.
    let res = new ArrayBuffer(0);
@@ -266,7 +269,7 @@ Complete sample code: [Http_case](https://gitcode.com/openharmony/applications_a
 4. Initiate an HTTP streaming request to obtain server data.
 
    <!-- @[request_in_stream_get_server_data](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/NetWork_Kit/NetWorkKit_Datatransmission/HTTP_case/entry/src/main/ets/pages/Index.ets) -->
-   
+
    ``` TypeScript
    let streamInfo: http.HttpRequestOptions = {
      method: http.RequestMethod.POST, // Optional. The default value is http.RequestMethod.GET. The GET method is used to retrieve data from the server while the POST method is used to submit data such as forms and files to the server.
@@ -301,13 +304,12 @@ Complete sample code: [Http_case](https://gitcode.com/openharmony/applications_a
      })
    ```
 
-
 5. Unsubscribe from the HTTP streaming response events subscribed in step 3, and call **destroy()** to destroy the **httpRequest** object.
 
-    Call the **off()** API of the **httpRequest** object to unsubscribe from the events subscribed in step 3. When the request is complete, call **destroy()** to destroy the **httpRequest** object. For details about how to use this API, see the sample code in step 4.
+    Call the corresponding [off()](../reference/apis-network-kit/js-apis-http.md#offdatareceive10) method of the object to unsubscribe from the events in step 3, and when the request is no longer needed, call [destroy()](../reference/apis-network-kit/js-apis-http.md#destroy) to destroy it. For the timing of calling this method, see the sample code in step 4.
 
    <!-- @[request_in_stream_destroy_request_method](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/NetWork_Kit/NetWorkKit_Datatransmission/HTTP_case/entry/src/main/ets/pages/Index.ets) -->
-   
+
    ``` TypeScript
    public destroyRequest(httpRequest: http.HttpRequest) {
      // Unsubscribe from the events indicating receiving of HTTP streaming responses.
@@ -322,6 +324,7 @@ Complete sample code: [Http_case](https://gitcode.com/openharmony/applications_a
      httpRequest.destroy();
    }
    ```
+
 ## Initiating a WebDAV Request Using HTTP
 
 In API version 23 and later versions, HTTP requests support WebDAV-based file access. WebDAV is an extension of HTTP and supports operations such as creating, reading, updating, deleting, moving, and copying (MKCOL, GET, PUT, DELETE, MOVE and COPY) files on remote servers.
@@ -618,6 +621,7 @@ struct Index {
   }
 }
 ```
+
 ## Configuring Certificate Verification
 
 Certificate-related configurations are required for using the HTTPS protocol. The applications that provide services for Internet users only need to trust the system's prebuilt CA certificates. Currently, the HTTP module trusts the CA certificates preset in the system by default. No special setting is required. If an application needs to trust only the certificates specified by developers, or skip certificate verification, you can configure certificate pinning.
@@ -627,7 +631,7 @@ Certificate-related configurations are required for using the HTTPS protocol. Th
    During the TLS handshake, the client verifies the server certificate to ensure that the connection is trusted. The server certificate usually includes the domain name certificate and intermediate CA certificate.
 
  **Certificate Chain Composition**
- 
+
    The certificate chain adopts the hierarchical trust structure: **server certificate ← intermediate CA certificate ← root CA certificate**. The **←** symbol indicates the issuance and trust relationship. The certificate chain must be fully traceable back to a trusted root certificate.
 
 **Process to Be Verified**
@@ -635,51 +639,70 @@ Certificate-related configurations are required for using the HTTPS protocol. Th
    After receiving the certificate chain, the client performs three-level verification:
 
 1. Verify the integrity of the certificate chain.
+
    - Starting from the server certificate, verify the digital signature level by level to ensure that each level of the certificate is validly issued by the previous level, thereby forming a complete trust chain.
 
 2. Verify the trustworthiness of the root certificate.
+
    - Check whether the root certificate exists in the certificate repository.
+
    - The repository sources are as follows:
+
      - Preset certificate.
+
      - Application trust certificate.
+
      - CA certificate specified by the request.
+
    - You can specify the application-level and request-level trust certificates using related APIs (for details, see the following **Configuration Reference**).
 
 3. Verify the validity of the certificate content.
+
    - Certificate validity period check.
+
    - Domain name matching verification: The subject alternative name (SAN) and common name (CN) are the same as the access domain name.
+
    - Certificate revocation status check: Certificate Revocation List (CRL) and Online Certificate Status Protocol (OCSP).
 
  Verification Result
- 
+
    - Verification succeeds: The TLS handshake continues and a secure connection is established.
+
    - Verification fails: The connection is terminated and an error message is displayed.
 
 This process ensures that only the server that holds a valid and trusted certificate can establish a secure connection.
 
  **Configuration Reference**
- 
+
 1. Configuring the application trust certificate: [Network Connection Security Configuration](https://developer.huawei.com/consumer/en/doc/best-practices/bpta-network-ca-security#section5454123841911).
+
 2. Configuring the request-level CA certificate:
+
    - Configuring the HTTPS request CA certificate through the caPath and caData fields of [httprequestoptions](../reference/apis-network-kit/js-apis-http.md#httprequestoptions).
+
    - Configuring the WebSocket request CA certificate through the caPath field of [websocketrequestoptions](../reference/apis-network-kit/js-apis-webSocket.md#websocketrequestoptions).
+
    - Specifying the TLS request CA certificate through the ca field of [tlssecureoptions](../reference/apis-network-kit/js-apis-socket.md#tlssecureoptions9).
+
 3. Configuring certificate verification skipping:
+
    - HTTPS: configure through [remoteValidation](../reference/apis-network-kit/js-apis-http.md#remotevalidation18) = 'skip'.
-   - WebSocket: configure through skipServerCertVerification = false of [websocketrequestoptions](../reference/apis-network-kit/js-apis-webSocket.md#websocketrequestoptions).
-   - TLSSocket: configure through skipRemoteValidation = false of [tlsconnectoptions](../reference/apis-network-kit/js-apis-socket.md#tlsconnectoptions9).
+
+   - WebSocket: configure through skipServerCertVerification = true of [websocketrequestoptions](../reference/apis-network-kit/js-apis-webSocket.md#websocketrequestoptions).
+
+   - TLSSocket: configure through skipRemoteValidation = true of [tlsconnectoptions](../reference/apis-network-kit/js-apis-socket.md#tlsconnectoptions9).
 
  **Debugging Reference**
- 
-   - Check whether the specified certificate is trusted through the API. For details, see [networkSecurity.certVerification](../reference/apis-network-kit/js-apis-networkSecurity.md#networksecuritycertverification).
-   - Check whether the certificate chain of the domain name server is trusted by the system using the openssl command: `hdc shell openssl s_client -connect *host name*:*port* -CApath /etc/security/certificates -brief` If `Verification: OK` is displayed, the certificate chain is trusted. You can replace `-trace -showcerts` with `-brief` to print detailed TLS handshake information.
 
+   - Check whether the specified certificate is trusted through the API. For details, see [networkSecurity.certVerification](../reference/apis-network-kit/js-apis-networkSecurity.md#networksecuritycertverification).
+
+   - Use the OpenSSL command to verify whether the domain name server certificate chain is trusted by the system: `hdc shell openssl s_client -connect host:port -CApath /etc/security/certificates -brief`. If `Verification: OK` appears, the certificate chain is trusted. Replace `-brief` with `-trace -showcerts` to print detailed TLS handshake information.
 
 ### Certificate Pinning
 
-You can prebuild application-level certificates or a public key hash values for certificate pinning. This way, an HTTPS connection can be established only when the prebuilt certificate is used.
+You can prebuild application-level certificates or public key hash values for certificate pinning. This way, an HTTPS connection can be established only when the prebuilt certificate is used.
 
-Both modes are configured through `src/main/resources/base/profile/network_config.json`. In the configuration file, you can create mapping between prebuilt certificates and network servers.
+Both modes are configured through `src/main/resources/base/profile/network_config.json`. In the configuration file, you can create a mapping between prebuilt certificates and network servers.
 
 If you do not know the certificate mapping a server domain name, you can use the following command to obtain the certificate. When running the command, change `www.example.com` to the server domain name and `www.example.com.pem` to the name of the obtained certificate file.
 
@@ -691,7 +714,9 @@ openssl s_client -servername www.example.com -connect www.example.com:443 \
 If you are using a Windows environment, you need to:
 
 * Replace `/dev/null` with `NUL`.
+
 * Press **Enter** to exit. This is different from OpenSSL of Linux, which may exit until the user enters a value.
+
 * If the **sed** command is not present, copy the content between `-----BEGIN CERTIFICATE-----` and `-----END CERTIFICATE-----` (with these two lines included) in the command output and save it.
 
 **Prebuilding Application-level Certificate**
@@ -804,7 +829,7 @@ The following is an example configuration of the certificate pin:
     ]
   },
   "trust-global-user-ca": false,
-  "trust-current-user-ca": false,
+  "trust-current-user-ca": false
 }
 ```
 
@@ -818,7 +843,7 @@ The following is an example configuration of the certificate pin:
 |trust-anchors              | array           |Trusted CA. The value can contain any number of items. An item must contain one **certificates**.|
 |certificates               | string          |CA certificate path.|
 |domains                    | array           |Domain. The value can contain any number of items. An item must contain one **name** (string: domain name) and can contain zero or one **include-subdomains**.|
-|include-subdomains         | boolean         |Whether a rule applies to subdomains. Whether a rule applies to subdomains. The value **true** indicates that the rule applies to subdomains, and the value **false** indicates the opposite.|
+|include-subdomains         | boolean         |Whether the rule applies to subdomains. **true**: the rule applies to the domain and all its subdomains; **false**: the rule applies only to the domain. The default value is **true**. |
 |pin-set                    | object          |Certificate public key hash setting. The value must contain one **pin** and can contain zero or one **expiration**.|
 |expiration                 | string          |Expiration time of the certificate public key hash.|
 |pin                        | array           |Certificate public key hash. The value can contain any number of items. An item must contain one **digest-algorithm** and **digest**.|
@@ -829,15 +854,16 @@ The following is an example configuration of the certificate pin:
 
 By default, the system trusts the prebuilt CA certificates and user-installed CA certificates. To further improve security, you can configure untrusted user-installed CA certificates in **src/main/resources/base/profile/network_config.json**. For more network connection security configurations, see [Network Connection Security Configuration](https://developer.huawei.com/consumer/en/doc/best-practices/bpta-network-ca-security#section5454123841911).
 
-```json
+```json5
 {
   "network-security-config": {
-    ... ...
+    // Other network security configurations.
   },
   "trust-global-user-ca": false, // Set whether to trust the CA certificate manually installed by the enterprise MDM system or device administrator. The default value is true.
   "trust-current-user-ca" : false // Set whether to trust the certificate installed by the current user. The default value is true.
 }
 ```
+
 ### Configuring Plaintext HTTP Access Permissions
 
 This configuration item is used to control whether HTTP requests can be transmitted in plaintext. The following is an example of configuring plaintext HTTP access permissions (including application, component, and domain name configurations) and the description of each field. For more network connection security configurations, see [Network Connection Security Configuration](https://developer.huawei.com/consumer/en/doc/best-practices/bpta-network-ca-security#section5454123841911).
@@ -845,13 +871,12 @@ This configuration item is used to control whether HTTP requests can be transmit
 >
 > The configuration priority rules are as follows: **component-config** > **domain-config** > **base-config**. The configuration with a higher priority overrides the configuration with a lower priority.
 
-
-```json
+``` json5
 // src/main/resources/base/profile/network_config.json
 {
   "network-security-config": {
     "base-config": {
-      "cleartextTrafficPermitted": true // Optional, supported since API version 20.
+      "cleartextTrafficPermitted": true // Optional. Supported since API version 18.
     },
     "domain-config": [
       {
@@ -861,14 +886,14 @@ This configuration item is used to control whether HTTP requests can be transmit
             "name": "example.com"
           }
         ],
-        "cleartextTrafficPermitted": false // Optional, supported since API version 20.
+        "cleartextTrafficPermitted": false // Optional. Supported since API version 18.
       }
     ],
     "component-config": {
-        "Request": true // Optional. Supported since API version 20. The default value true indicates that plaintext transmission can be disabled. The value false indicates the opposite.
-    	"Network Kit": true, // Optional, supported since API version 20.
-    	"ArkWeb": false // Optional, supported since API version 20.
-        "Media Kit": false // Optional, supported since API version 23.
+        "Request": true, // Optional. Supported since API version 20. The default value is true. The value true indicates that prohibiting plaintext transmission is supported, and false indicates that prohibiting plaintext transmission is not supported.
+        "Network Kit": true, // Optional. Supported since API version 20.
+        "ArkWeb": false, // Optional. Supported since API version 20.
+        "Media Kit": false, // Optional. Supported since API version 23.
         "Remote Communication Kit": false // Optional, supported since API version 23.
     }
   }
@@ -879,17 +904,17 @@ This configuration item is used to control whether HTTP requests can be transmit
 
 | Field                     | Type           | Mandatory| Description                                  |
 | --------------------------| --------------- |--------- |-------------------------------------- |
-|base-config                     | array          | No| Indicates the plaintext configuration of the application scope. This field has the lowest priority.|
+|base-config                     | object          | No| Indicates the application-wide cleartext configuration. It has the lowest priority. |
 |cleartextTrafficPermitted<sup>18+</sup>  | boolean          |No| Whether plaintext HTTP is allowed. The value **true** indicates that plaintext HTTP is allowed, and the value **false** indicates the opposite.|
 |domain-config                     | array          | No|  Indicates the plaintext configuration of each domain. The value can contain any number of items. Each item must contain one **domains**. If rules conflict in the same domain, the first matched rule is used. The priority is lower than that of **component-config**.|
-|include-subdomains         | boolean         | No| If this parameter is set to **true**, **name** supports regular expression matching. If this parameter is set to **false**, **name** does not support regular expression matching. Note: The regular expression matching delay increases by about 10 to 15 milliseconds for every 1000 domain name configurations. When the number of domain name configurations exceeds 10,000, regular expression matching takes a long time.|
+|include-subdomains         | boolean         | No| Indicates whether the rule applies to subdomains. The value **true** indicates that it applies to subdomains, and **false** indicates that it does not. It defaults to **true**. Note: For every additional 1000 domain configurations, the latency of regular expression matching increases by approximately 10 to 15 milliseconds. When the number of domain configurations exceeds 10000, regular expression matching incurs high latency. It defaults to **true**. |
 |name         | string         | No| Main domain name.|
-|component-config<sup>20+</sup>                    | array          |  No| Indicates the plaintext configuration of each component. This field has the highest priority.|
-|Request                    | boolean          |No| [Request](../reference/apis-basic-services-kit/js-apis-request.md) supports plaintext HTTP by default since API version 18. The plaintext HTTP feature cannot be configured. Plaintext HTTP can be enabled or disabled since API version 20. The value **true** indicates that plaintext transmission is disabled, and the value **false** indicates the opposite. The default value is **true**.|
-|Network Kit                 | boolean          |No| Network Kit supports plaintext HTTP by default since API version 18. The plaintext HTTP feature cannot be configured. Plaintext HTTP can be enabled or disabled since API version 20. The value **true** indicates that plaintext transmission is disabled, and the value **false** indicates the opposite. The default value is **true**.|
-|ArkWeb                    | boolean          |No| Plaintext HTTP can be enabled or disabled since API version 20. The value **true** indicates that plaintext transmission is disabled, and the value **false** indicates the opposite. The default value is **false**.|
-|Media Kit                    | boolean          |No|Plaintext HTTP can be enabled or disabled since API version 23. The value **true** indicates that plaintext transmission is disabled, and the value **false** indicates the opposite. The default value is **false**.|
-|Remote Communication Kit                    | boolean          |No| Plaintext HTTP can be enabled or disabled since API version 23. The value **true** indicates that plaintext transmission is disabled, and the value **false** indicates the opposite. The default value is **false**.|
+|component-config<sup>20+</sup>                    | object         |  No| Indicates the cleartext configuration of each component. It has the highest priority.|
+|Request                    | boolean          |No| [Request](../reference/apis-basic-services-kit/js-apis-request.md) supports cleartext HTTP by default since API version 18, and this cannot be configured. Since API version 20, you can enable or disable cleartext HTTP. The value **true** indicates support, and **false** indicates no support. It defaults to **true**.|
+|Network Kit                 | boolean          |No| Network Kit supports plaintext HTTP by default since API version 18. The plaintext HTTP feature cannot be configured. Plaintext HTTP can be enabled or disabled since API version 20. The value **true** indicates that plaintext transmission is enabled, and the value **false** indicates the opposite. The default value is **true**.|
+|ArkWeb                    | boolean          |No| Plaintext HTTP can be enabled or disabled since API version 20. The value **true** indicates that plaintext transmission is enabled, and the value **false** indicates the opposite. The default value is **false**.|
+|Media Kit                    | boolean          |No|Plaintext HTTP can be enabled or disabled since API version 23. The value **true** indicates that plaintext transmission is enabled, and the value **false** indicates the opposite. The default value is **false**.|
+|Remote Communication Kit                    | boolean          |No| Plaintext HTTP can be enabled or disabled since API version 23. The value **true** indicates that plaintext transmission is enabled, and the value **false** indicates the opposite. The default value is **false**.|
 
 ## HTTP Interceptor
 
@@ -900,7 +925,7 @@ From API version 22, the HTTP Interceptor module provides a powerful and customi
 | Point Name                       | Position Description                                                    | Output and Input Parameters of the interceptorHandle API for the Intercept Point                                                  |
 | :-------------------------------- | ------------------------------------------------------------ | ------------------------------------------------------------ |
 | INITIAL_REQUEST  | The first intercept point after the initial request is assembled. Suitable for adding global parameters, signing, and encrypting the request body.| The output parameter **true** indicates that the **request** value in the input parameter is the original value and can be modified, while the **response** value is empty and cannot be modified.<br>The output parameter **false** indicates that the **request** value in the input parameter is the original value and cannot be modified, while the **response** value is empty and can be modified.|
-| CONNECT_NETWORK| Located before a network connection is established, for example, a TCP/TLS connection. Suitable for network link-related operations, such as recording the network connection start time.| The output parameter **true** indicates that the **request** value in the input parameter is the original value and can be modified, while the **response** value is empty and cannot be modified.<br>The output parameter **false** indicates that the **request** value in the input parameter is the original value and cannot be modified, while the **response** value is empty and can be modified.|
+| NETWORK_CONNECT | Before a network connection is established, for example, a TCP/TLS connection. Suitable for operations related to the network link, such as recording the network connection start time. | The output parameter **true** indicates that the **request** value in the input parameter is the original value and can be modified, while the **response** value is empty and cannot be modified.<br>The output parameter **false** indicates that the **request** value in the input parameter is the original value and cannot be modified, while the **response** value is empty and can be modified. |
 | CACHE_CHECKED      | Located after the cache check logic hits the cache and determined that the cache is available. Suitable for viewing the cache value or modifying the queried cache result.| The output parameter **true** indicates that the **request** value in the input parameter is the original value and cannot be modified, while the **response** value is the original value and cannot be modified.<br>The output parameter **false** indicates that the **request** value in the input parameter is the original value and cannot be modified, while the **response** value is the original value and can be modified.|
 | REDIRECTION      | Located before a redirection response is received and a new request is ready to be sent. Allows the target URL or request information of redirection to be modified.| The output parameter **true** indicates that the **request** value in the input parameter is the original value and the URL can be modified. The **response** value is the original value and the modification is invalid.<br>The output parameter **false** indicates that the **request** value in the input parameter is the original value and cannot be modified, while the **response** value is the original value and can be modified.|
 | FINAL_RESPONSE   | Located after the final response is obtained. The last intercept point, which is suitable for unified decryption, parsing, logging, and error handling of responses.| The output parameter **true** indicates that the **request** value in the input parameter is the original value and cannot be modified, while the **response** value is the original value and cannot be modified.<br>The output parameter **false** indicates that the **request** value in the input parameter is the original value and cannot be modified, while the **response** value is the original value and can be modified.|
@@ -916,7 +941,7 @@ From API version 22, the HTTP Interceptor module provides a powerful and customi
 1.  Import the modules required by the HTTP request interceptor.
 
     <!-- @[HTTP_interceptor_case_import](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/NetWork_Kit/NetWorkKit_Datatransmission/HTTP_interceptor_case/entry/src/main/ets/pages/Index.ets) -->  
-    
+
     ``` TypeScript
     import { http } from '@kit.NetworkKit';
     import { BusinessError } from '@kit.BasicServicesKit';
@@ -926,16 +951,16 @@ From API version 22, the HTTP Interceptor module provides a powerful and customi
 2.  Call [createHttp()](../reference/apis-network-kit/js-apis-http.md#httpcreatehttp) to create an **HttpRequest** object.
 
      <!-- @[HTTP_interceptor_case_creat_request](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/NetWork_Kit/NetWorkKit_Datatransmission/HTTP_interceptor_case/entry/src/main/ets/pages/Index.ets) -->
-     
+
      ``` TypeScript
      // Create an HTTP request.
      let httpRequest: http.HttpRequest = http.createHttp();
      ```
 
-3.  Call the **HttpInterceptorChain()** method to create an interceptor chain object.
+3.  Call [HttpInterceptorChain()](../reference/apis-network-kit/js-apis-http.md#httpinterceptorchain22) to create an interceptor chain object.
 
     <!-- @[HTTP_interceptor_case_chain](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/NetWork_Kit/NetWorkKit_Datatransmission/HTTP_interceptor_case/entry/src/main/ets/pages/Index.ets) -->
-    
+
     ``` TypeScript
     // Create an interceptor chain.
     let chain: http.HttpInterceptorChain = new http.HttpInterceptorChain();
@@ -944,7 +969,7 @@ From API version 22, the HTTP Interceptor module provides a powerful and customi
 4.  Create an interceptor class to implement the **http.HttpInterceptor** API.
 
     <!-- @[HTTP_interceptor_case_creat_http_interceptor](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/NetWork_Kit/NetWorkKit_Datatransmission/HTTP_interceptor_case/entry/src/main/ets/pages/Index.ets) -->
-    
+
     ``` TypeScript
     class InitialHttpInterceptor implements http.HttpInterceptor {
       interceptorType: http.InterceptorType = http.InterceptorType.INITIAL_REQUEST;
@@ -1034,10 +1059,10 @@ From API version 22, the HTTP Interceptor module provides a powerful and customi
     }
     ```
 
-5.  Call the **addChain()** method to add the required interceptor instance to the interceptor chain.
+5.  Call [addChain()](../reference/apis-network-kit/js-apis-http.md#addchain22) to add the required interceptor instances to the interceptor chain.
 
     <!-- @[HTTP_interceptor_case_addChain](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/NetWork_Kit/NetWorkKit_Datatransmission/HTTP_interceptor_case/entry/src/main/ets/pages/Index.ets) -->
-    
+
     ``` TypeScript
     // Create the required interceptor object and add it to the interceptor chain.
     chain.addChain([
@@ -1047,10 +1072,10 @@ From API version 22, the HTTP Interceptor module provides a powerful and customi
     ]);
     ```
 
-6.  Call the **apply()** method to attach the configured interceptor chain to **httpRequest**.
+6.  Call [apply()](../reference/apis-network-kit/js-apis-http.md#apply22) to attach the currently configured interceptor chain to the httpRequest.
 
     <!-- @[HTTP_interceptor_case_apply](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/NetWork_Kit/NetWorkKit_Datatransmission/HTTP_interceptor_case/entry/src/main/ets/pages/Index.ets) -->
-    
+
     ``` TypeScript
     // Attach the configured interceptor chain to **httpRequest**.
     chain.apply(httpRequest);
@@ -1059,7 +1084,7 @@ From API version 22, the HTTP Interceptor module provides a powerful and customi
 7.  Create request options.
 
     <!-- @[HTTP_interceptor_case_options](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/NetWork_Kit/NetWorkKit_Datatransmission/HTTP_interceptor_case/entry/src/main/ets/pages/Index.ets) -->
-    
+
     ``` TypeScript
     // Create request options.
     let options: http.HttpRequestOptions = {
@@ -1069,10 +1094,10 @@ From API version 22, the HTTP Interceptor module provides a powerful and customi
     };
     ```
 
-8.  Call the **request()** method of this object to initiate a network request. You need to pass in the URL and optional parameters of the HTTP request. Parse the server response event as required.
+8.  Call the corresponding [request()](../reference/apis-network-kit/js-apis-http.md#request-1) method of the object, pass in the URL and optional parameters of the HTTP request, initiate the network request, and parse the server response events based on your actual service requirement.
 
     <!-- @[HTTP_interceptor_case_request](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/NetWork_Kit/NetWorkKit_Datatransmission/HTTP_interceptor_case/entry/src/main/ets/pages/Index.ets) -->
-    
+
     ``` TypeScript
     // Initiate a request.
     httpRequest.request(EXAMPLE_URL, options, (err: BusinessError, res: http.HttpResponse) => {
@@ -1087,23 +1112,24 @@ From API version 22, the HTTP Interceptor module provides a powerful and customi
     });
     ```
 
-9.  Call the **destroy()** method to destroy the HTTP request.
+9.  Call [destroy()](../reference/apis-network-kit/js-apis-http.md#destroy) to destroy the HTTP request.
 
     <!-- @[HTTP_interceptor_case_request_destroy](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/NetWork_Kit/NetWorkKit_Datatransmission/HTTP_interceptor_case/entry/src/main/ets/pages/Index.ets) -->
-    
+
     ``` TypeScript
     // Destroy the request.
     httpRequest.destroy();
     ```
 
 ## 
+
 ## Samples
 
 The following sample is provided to help you better understand how to develop the HTTP data request feature:
 
 * [Upload and Download (ArkTS) (API10)](https://gitcode.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/Connectivity/UploadAndDownLoad)
 
-* [Http (ArkTS) (API10) ](https://gitcode.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/Connectivity/Http)
+* [Http (ArkTS) (API10)](https://gitcode.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/Connectivity/Http)
 
 * [Http_case](https://gitcode.com/openharmony/applications_app_samples/tree/master/code/DocsSample/NetWork_Kit/NetWorkKit_Datatransmission/HTTP_case)
 

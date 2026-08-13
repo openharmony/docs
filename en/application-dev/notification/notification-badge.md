@@ -2,10 +2,11 @@
 
 <!--Kit: Notification Kit-->
 <!--Subsystem: Notification-->
-<!--Owner: @peixu-->
-<!--Designer: @dongqingran; @wulong158-->
+<!--Owner: @HuYueRong-->
+<!--Designer: @dongqingran-->
 <!--Tester: @wanghong1997-->
 <!--Adviser: @fang-jinxu-->
+<!-- md-trans-meta sourceCommit=a56d795a51f9068e61c2cc2726ea675f5d93d82a translatedAt=2026-08-13T03:10:43.818Z pushedAt=2026-08-13T07:29:19.150Z -->
 
 The system provides APIs for setting the notification badge, which is displayed in the upper right corner of the application icon on the home screen to notify the user of the count of unread notifications.
 
@@ -13,10 +14,9 @@ When a new notification arrives, the count on the badge is incremented by 1.
 
 After a notification is read, the count on the badge is decremented by 1. If there is no unread notification, the badge is not displayed.
 
-
 ## Available APIs
 
-If **badgeNumber** is set to **0**, badges are cleared; if the value is greater than **99**, **99+** is displayed on the badge.
+If **badgeNumber** is set to a value less than or equal to **0**, badges are cleared; if the value is greater than **99**, **99+** is displayed on the badge.
 
 - You can use either of the following methods to increase the count on the badge:
 
@@ -30,13 +30,12 @@ If **badgeNumber** is set to **0**, badges are cleared; if the value is greater 
   | -------- | -------- |
   | setBadgeNumber(badgeNumber: number): Promise\<void\> | Sets the number count on the badge.|
 
-
 ## How to Develop
 
 1. Import the **NotificationManager** module.
 
    <!-- @[manage_notification_badges_header](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/Notification-Kit/Notification/entry/src/main/ets/filemanager/ManageNotificationBadges.ets) -->    
-   
+
    ``` TypeScript
    import { notificationManager } from '@kit.NotificationKit';
    import { hilog } from '@kit.PerformanceAnalysisKit';
@@ -45,15 +44,15 @@ If **badgeNumber** is set to **0**, badges are cleared; if the value is greater 
    const TAG: string = '[PublishOperation]';
    const DOMAIN_NUMBER: number = 0xFF00;
    ```
-   
+
 2. Increase the count on the badge.
 
-   When publishing a notification, pass the **badgeNumber** parameter in [NotificationRequest](../reference/apis-notification-kit/js-apis-inner-notification-notificationRequest.md#notificationrequest-1). For details, see [Publishing a Text Notification](text-notification.md).
-   
+When publishing a notification, you can carry the related information in the **badgeNumber** field of [NotificationRequest](../reference/apis-notification-kit/js-apis-inner-notification-notificationRequest.md#notificationrequest-1). For details, see [Publishing a Text Notification](text-notification.md).
+
    In this example, the **setBadgeNumber** API is called to add a badge. This API is called after a new notification is published.
 
    <!-- @[add_badge_count](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/Notification-Kit/Notification/entry/src/main/ets/filemanager/ManageNotificationBadges.ets) -->
-   
+
    ``` TypeScript
    let badgeNumber: number = 9;
    notificationManager.setBadgeNumber(badgeNumber).then(() => {
@@ -69,7 +68,7 @@ If **badgeNumber** is set to **0**, badges are cleared; if the value is greater 
    After a notification is read, the application needs to call the API to set the number of remaining unread notifications. The badge is then updated.
 
    <!-- @[reduce_badge_count](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/Notification-Kit/Notification/entry/src/main/ets/filemanager/ManageNotificationBadges.ets) -->
-   
+
    ``` TypeScript
    let badgeNumber: number = 8;
    notificationManager.setBadgeNumber(badgeNumber).then(() => {
@@ -91,7 +90,7 @@ If **badgeNumber** is set to **0**, badges are cleared; if the value is greater 
     The sample code is as follows:
 
     <!-- @[increase_badge_count_seq](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/Notification-Kit/Notification/entry/src/main/ets/filemanager/ManageNotificationBadges.ets) -->
-    
+
     ``` TypeScript
     let badgeNumber: number = 10;
     notificationManager.setBadgeNumber(badgeNumber).then(() => {
@@ -111,12 +110,12 @@ If **badgeNumber** is set to **0**, badges are cleared; if the value is greater 
 
 - Positive example
 
-    Dependencies existing between multiple API callings ensures that the next setting can be performed only after the previous setting is complete.
+    Dependencies existing between multiple API callings ensure that the next setting can be performed only after the previous setting is complete.
 
     The sample code is as follows:
 
     <!-- @[update_badge_count_idempotent](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/Notification-Kit/Notification/entry/src/main/ets/filemanager/ManageNotificationBadges.ets) -->
-    
+
     ``` TypeScript
     let badgeNumber: number = 10;
     notificationManager.setBadgeNumber(badgeNumber).then(() => {

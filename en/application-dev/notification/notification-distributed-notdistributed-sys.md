@@ -2,27 +2,30 @@
 
 <!--Kit: Notification Kit-->
 <!--Subsystem: Notification-->
-<!--Owner: @peixu-->
-<!--Designer: @dongqingran; @wulong158-->
+<!--Owner: @HuYueRong-->
+<!--Designer: @dongqingran-->
 <!--Tester: @wanghong1997-->
 <!--Adviser: @fang-jinxu-->
+<!-- md-trans-meta sourceCommit=87516eb2d53d74e50d8d0d5e2de34178ba62e0e2 translatedAt=2026-08-13T03:11:00.884Z pushedAt=2026-08-13T07:35:04.696Z -->
 
-By default, notifications are published across devices. If an application has implemented notification across devices (for example, SMS notifications are sent to devices such as watches, tablets, and 2-in-1 devices), you need to manage the distributed devices to avoid duplicate notifications.
+By default, notification messages support cross-device collaboration. If an app has already implemented cross-device collaboration through the distributed communication capability (for example, SMS notification messages are synchronized by the SMS app itself to devices such as wearables, tablets, and PCs/2-in-1 devices), you need to manage the devices that collaborate on distributed notifications to avoid duplicate delivery of notification messages on different devices.
 
 Since API version 18, a system application is supported to publish notifications in the following manners:
 
 - If a notification of an application is published only on the current device, set the **notDistributed** field in the [NotificationRequest](../reference/apis-notification-kit/js-apis-inner-notification-notificationRequest-sys.md) parameter to **true**.
+
 - If a notification of an application is published based on the device management list, set the **notDistributed** field in the [NotificationRequest](../reference/apis-notification-kit/js-apis-inner-notification-notificationRequest-sys.md) parameter to **false** and **forceDistributed** to **true**.
 
 ## Available APIs
 
-| **API** | **Description**| **Description**|
+| **API** | **Description**| **Notes**|
 | -------- | -------- |-------- |
 | [publish](../reference/apis-notification-kit/js-apis-notificationManager.md#notificationmanagerpublish)(request: NotificationRequest, callback: AsyncCallback\<void\>): void | Publishes a notification.| For details, see the description of the **notDistributed** and **forceDistributed** fields in the [NotificationRequest](../reference/apis-notification-kit/js-apis-inner-notification-notificationRequest-sys.md) object.|
 
 ## Prerequisites
 
  - The user has connected the watch to the phone through the Huawei Health app.
+
  - The user has turned on the switch for syncing notifications from phone to watch for specified applications in **Huawei Health** > **Devices** > **Notifications** on their phones.
 
 ## How to Develop

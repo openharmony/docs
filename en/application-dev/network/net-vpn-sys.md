@@ -1,23 +1,25 @@
-# VPN Management (For System Applications Only)
+# VPN Management (for System Applications Only)
+
 <!--Kit: Network Kit-->
 <!--Subsystem: Communication-->
 <!--Owner: @wmyao_mm-->
 <!--Designer: @guo-min_net-->
 <!--Tester: @tongxilin-->
 <!--Adviser: @zhang_yixin13-->
+<!-- md-trans-meta sourceCommit=b1d9d3abadea2a204bcfb0a138a00c3ba9c20f7c translatedAt=2026-08-13T03:10:31.412Z pushedAt=2026-08-13T06:52:45.673Z -->
 
 ## Overview
 
-A virtual private network (VPN) is a dedicated network established on a public network. On a VPN, the connection between any two nodes does not have an end-to-end physical link required by the traditional private network. Instead, user data is transmitted over a logical link because a VPN is a logical network deployed over the network platform (such as the Internet) provided by the public network service provider.
+A virtual private network (VPN) is a dedicated network established on a public network. On a VPN, the connection between any two nodes does not have an end-to-end physical link required by the traditional private network. Instead, it is a logical network built on the network platform (such as the Internet) provided by public network service providers, and user data is transmitted over logical links.
 
 > **NOTE**
-> To maximize the application running efficiency, most API calls are called asynchronously in callback or promise mode. The following code examples use the promise mode. For details about the APIs, see [API Reference](../reference/apis-network-kit/js-apis-net-vpn-sys.md).
+> To maximize the app running efficiency, most API calls are called asynchronously in callback or promise mode. The following code examples use the promise mode. For details about the other modes, see [@ohos.net.vpn (VPN Management) (System API)](../reference/apis-network-kit/js-apis-net-vpn-sys.md).
 
 The following describes the development procedure specific to each application scenario.
 
 ## Available APIs
 
-For the complete list of APIs and example code, see [API Reference](../reference/apis-network-kit/js-apis-net-vpn-sys.md).
+For the complete JS API reference and sample code, see [@ohos.net.vpn (VPN Management) (System API)](../reference/apis-network-kit/js-apis-net-vpn-sys.md).
 
 | Name                                                           | Description                                         |
 | ----------------------------------------------------------------- | --------------------------------------------------- |
@@ -28,9 +30,13 @@ For the complete list of APIs and example code, see [API Reference](../reference
 ## Starting a VPN
 
 1. Establish a VPN tunnel. The following uses the UDP tunnel as an example.
+
 2. Enable protection for the UDP tunnel.
+
 3. Establish a VPN.
+
 4. Process data of the virtual network interface card (vNIC), such as reading or writing data.
+
 5. Destroy the VPN.
 
 This example shows how to develop an application using native C++ code. For details, see [Simple Native C++ Example (ArkTS) (API9)](https://gitcode.com/openharmony/codelabs/tree/master/NativeAPI/NativeTemplateDemo).
@@ -408,6 +414,6 @@ extern "C" __attribute__((constructor)) void RegisterEntryModule(void) { napi_mo
 
 ## Samples
 
-The following samples are provided to help you better better understand how to develop VPN management:
+The following samples are provided to help you better understand how to develop VPN management:
 
 - [VPN Application](https://gitcode.com/openharmony/applications_app_samples/tree/master/code/DocsSample/NetWork_Kit/NetWorkKit_NetManager/VPNControl_Case)
