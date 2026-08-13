@@ -6,7 +6,7 @@
 <!--Designer: @oatuwwutao-->
 <!--Tester: @kirl75; @zsw_zhushiwei-->
 <!--Adviser: @k1ngqaquuu-->
-<!-- md-trans-meta sourceCommit=e25164b4c5d2db315865d228475dc21473dba5fb translatedAt=2026-08-13T08:52:59.444Z pushedAt=2026-08-13T11:56:19.091Z -->
+<!-- md-trans-meta sourceCommit=e25164b4c5d2db315865d228475dc21473dba5fb translatedAt=2026-08-13T08:52:59.444Z pushedAt=2026-08-13T15:17:30.467Z -->
 
 ArkTS provides a rich set of advanced operators for scenarios such as bitwise operations, type checking, and object operations. ArkTS advanced operators include bitwise operators (bitwise AND, OR, XOR, NOT, left shift, and right shift), optional chaining (?.), nullish coalescing (??), and the spread operator (...), which are used to handle complex scenarios such as bit-level operations, safe access, and collection spreading.
 
@@ -252,7 +252,7 @@ A compound assignment operator combines a binary operation and an assignment int
 
 ``` TypeScript
 variable operator= expression
-等价于: variable = variable operator expression
+Equivalent to: variable = variable operator expression
 ```
 
 <!-- @[compound_assignment_basics](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/Start/LearningArkTs/ArkTSFullLanguageGuide/entry/src/main/ets/pages/AdvancedOperators.ets) -->

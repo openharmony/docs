@@ -6,7 +6,7 @@
 <!--Designer: @oatuwwutao-->
 <!--Tester: @kirl75; @zsw_zhushiwei-->
 <!--Adviser: @k1ngqaquuu-->
-<!-- md-trans-meta sourceCommit=c25b60c237b212cfc232b5aee67d2c42ba90278a translatedAt=2026-08-13T08:58:56.022Z pushedAt=2026-08-13T13:08:26.429Z -->
+<!-- md-trans-meta sourceCommit=c25b60c237b212cfc232b5aee67d2c42ba90278a translatedAt=2026-08-13T08:58:56.022Z pushedAt=2026-08-13T15:16:10.387Z -->
 
 Generics are a powerful type system feature in TypeScript/ArkTS that allow type parameters to be used when defining functions, classes, and interfaces, enabling code reuse and type safety.
 
@@ -914,7 +914,7 @@ TypeScript provides generic utility types such as `Partial<T>`, `Required<T>`, `
 
 ### Using Explicit Interfaces Instead of Pick and Omit
 
-ArkTS does not support `Pick<T,K>` and `Omit<T,K>`. For details, see [TypeScript to ArkTS Migration Guide](typescript-to-arkts-migration-guide.md#utility-types-are-not-supported). Use explicitly defined interfaces to express the required subset of properties instead.
+ArkTS does not support `Pick<T,K>` and `Omit<T,K>`. For details, see [TypeScript to ArkTS Migration Guide](typescript-to-arkts-migration-guide.md#some-utility-types-are-not-supported). Use explicitly defined interfaces to express the required subset of properties instead.
 
 <!-- @[related_interfaces](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/Start/LearningArkTs/ArkTSFullLanguageGuide/entry/src/main/ets/pages/Generics.ets) -->
 

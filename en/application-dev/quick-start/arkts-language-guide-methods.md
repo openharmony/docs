@@ -6,7 +6,7 @@
 <!--Designer: @oatuwwutao-->
 <!--Tester: @kirl75; @zsw_zhushiwei-->
 <!--Adviser: @k1ngqaquuu-->
-<!-- md-trans-meta sourceCommit=c25b60c237b212cfc232b5aee67d2c42ba90278a translatedAt=2026-08-13T09:01:15.096Z pushedAt=2026-08-13T13:26:15.889Z -->
+<!-- md-trans-meta sourceCommit=c25b60c237b212cfc232b5aee67d2c42ba90278a translatedAt=2026-08-13T09:01:15.096Z pushedAt=2026-08-13T15:19:46.621Z -->
 
 Methods define the behavior of a class. ArkTS supports instance methods, static methods, method overloading, and other features.
 
@@ -1456,11 +1456,11 @@ function createOptionalService(available: boolean): OptionalService | null {
 let service1: OptionalService | null = createOptionalService(true);
 let service2: OptionalService | null = createOptionalService(false);
 
-// 可选链调用方法
+// Call a method using optional chaining.
 service1?.process();  // 'Processing...'
-service2?.process();  // 不执行
+service2?.process();  // Not executed.
 
-// 可选链调用并获取返回值
+// Call a method using optional chaining and obtain the return value.
 let data1: string | null | undefined = service1?.getData();
 console.info(`${data1}`);  // 'data'
 

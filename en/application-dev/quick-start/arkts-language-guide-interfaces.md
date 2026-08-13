@@ -6,7 +6,7 @@
 <!--Designer: @oatuwwutao-->
 <!--Tester: @kirl75; @zsw_zhushiwei-->
 <!--Adviser: @k1ngqaquuu-->
-<!-- md-trans-meta sourceCommit=e25164b4c5d2db315865d228475dc21473dba5fb translatedAt=2026-08-13T09:01:27.006Z pushedAt=2026-08-13T13:21:37.626Z -->
+<!-- md-trans-meta sourceCommit=e25164b4c5d2db315865d228475dc21473dba5fb translatedAt=2026-08-13T09:01:27.006Z pushedAt=2026-08-13T15:16:39.681Z -->
 
 Interfaces are an important way to define the structure of objects in TypeScript/ArkTS. An interface defines a contract of a set of properties and methods, which constrains the shape of an object and enables code decoupling and reuse.
 
@@ -527,7 +527,7 @@ console.info(`${miClonedUser.name}`); // Alice
 
 ### Interface Composition Type
 
-An intersection type (`&`) combines multiple interfaces into a composite type that satisfies all constraints. ArkTS does not support intersection types (`arkts-no-intersection-types`). Use interface multiple inheritance instead. For details, see [TypeScript to ArkTS Cookbook](typescript-to-arkts-migration-guide.md#use-inheritance-instead-of-intersection-type).
+An intersection type (`&`) combines multiple interfaces into a composite type that satisfies all constraints. ArkTS does not support intersection types (`arkts-no-intersection-types`). Use interface multiple inheritance instead. For details, see [TypeScript to ArkTS Cookbook](typescript-to-arkts-migration-guide.md#use-inheritance-instead-of-intersection-types).
 
 **TypeScript comparison**
 

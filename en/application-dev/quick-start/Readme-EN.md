@@ -6,7 +6,7 @@
 <!--Designer: @hanfeng6-->
 <!--Tester: @memghaiyang-->
 <!--Adviser: @HelloCrease-->
-<!-- md-trans-meta sourceCommit=e25164b4c5d2db315865d228475dc21473dba5fb translatedAt=2026-08-13T09:07:43.086Z pushedAt=2026-08-13T14:13:35.330Z -->
+<!-- md-trans-meta sourceCommit=e25164b4c5d2db315865d228475dc21473dba5fb translatedAt=2026-08-13T09:07:43.086Z pushedAt=2026-08-13T15:20:42.392Z -->
 
 <!--Del-->
 
@@ -112,7 +112,7 @@
 
     - [Generics](arkts-language-guide-generics.md)
 
-    - [Async Concurrency](arkts-language-guide-async-concurrency.md)
+    - [Asynchronous Concurrency](arkts-language-guide-async-concurrency.md)
 
     - [Advanced Operators](arkts-language-guide-advanced-operators.md)
 

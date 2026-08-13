@@ -6,7 +6,7 @@
 <!--Designer: @oatuwwutao-->
 <!--Tester: @kirl75; @zsw_zhushiwei-->
 <!--Adviser: @k1ngqaquuu-->
-<!-- md-trans-meta sourceCommit=c25b60c237b212cfc232b5aee67d2c42ba90278a translatedAt=2026-08-13T08:58:09.458Z pushedAt=2026-08-13T13:02:35.825Z -->
+<!-- md-trans-meta sourceCommit=c25b60c237b212cfc232b5aee67d2c42ba90278a translatedAt=2026-08-13T08:58:09.458Z pushedAt=2026-08-13T15:15:44.548Z -->
 
 ArkTS provides rich function features, including parameters, return values, type definitions, overloads, higher-order functions, and more.
 
@@ -1596,7 +1596,7 @@ let someObj: SomeObject = createSomeInstance(SomeObject, 'hello');
 console.info(`${someObj.value}`); // hello
 ```
 
-ArkTS does not support constructor function types (`arkts-no-ctor-signatures-funcs`). For details, see [TypeScript to ArkTS Cookbook](typescript-to-arkts-migration-guide.md#constructor-function-types-are-not-supported). Use the factory pattern instead.
+ArkTS does not support constructor function types (`arkts-no-ctor-signatures-funcs`). For details, see [TypeScript to ArkTS Cookbook](typescript-to-arkts-migration-guide.md#constructor-function-type-is-not-supported). Use the factory pattern instead.
 
 <!-- @[construct_signature_alternative](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/Start/LearningArkTs/ArkTSFullLanguageGuide/entry/src/main/ets/pages/Functions.ets) -->
 

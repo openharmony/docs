@@ -6,7 +6,7 @@
 <!--Designer: @oatuwwutao-->
 <!--Tester: @kirl75; @zsw_zhushiwei-->
 <!--Adviser: @k1ngqaquuu-->
-<!-- md-trans-meta sourceCommit=c25b60c237b212cfc232b5aee67d2c42ba90278a translatedAt=2026-08-13T08:57:17.197Z pushedAt=2026-08-13T12:51:22.503Z -->
+<!-- md-trans-meta sourceCommit=c25b60c237b212cfc232b5aee67d2c42ba90278a translatedAt=2026-08-13T08:57:17.197Z pushedAt=2026-08-13T15:15:10.613Z -->
 
 An enum is a type that defines a set of named constants. Enums make code clearer and easier to maintain by avoiding magic numbers or strings.
 
@@ -1273,7 +1273,7 @@ The advantage of an enum is that it provides built-in type safety and supports r
 
 ## Heterogeneous Enum
 
-TypeScript supports heterogeneous enums, that is, enums mixing numeric and string values. ArkTS does not support heterogeneous enums (`arkts-no-enum-mixed-types`). For details, see [TypeScript to ArkTS Cookbook](typescript-to-arkts-migration-guide.md#initializing-enum-members-only-with-compile-time-expressions-of-the-same-type). When values of different types are required, split them into multiple enums.
+TypeScript supports heterogeneous enums, that is, enums mixing numeric and string values. ArkTS does not support heterogeneous enums (`arkts-no-enum-mixed-types`). For details, see [TypeScript to ArkTS Cookbook](typescript-to-arkts-migration-guide.md#enumeration-members-can-be-initialized-only-with-compile-time-expressions-of-the-same-type). When values of different types are required, split them into multiple enums.
 
 **TypeScript comparison**
 

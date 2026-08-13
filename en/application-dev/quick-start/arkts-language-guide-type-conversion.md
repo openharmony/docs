@@ -1215,9 +1215,9 @@ let areaCircle: SwitchCircle = { kind: 'areaCircle', radius: 5 };
 let square: SwitchSquare = { kind: 'square', sideLength: 4 };
 let areaRectangle: SwitchRectangle = { kind: 'areaRectangle', width: 3, height: 6 };
 
-console.info(`area：${getArea(areaCircle)}`);     // area: 78.53981633974483
-console.info(`area：${getArea(square)}`);     // area: 16
-console.info(`area：${getArea(areaRectangle)}`);  // area: 18
+console.info(`area:${getArea(areaCircle)}`);     // area: 78.53981633974483
+console.info(`area:${getArea(square)}`);     // area: 16
+console.info(`area:${getArea(areaRectangle)}`);  // area: 18
 ```
 
 ### Conversion Handling for Optional Types (T | undefined)
