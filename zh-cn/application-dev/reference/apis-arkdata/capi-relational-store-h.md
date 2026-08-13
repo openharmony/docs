@@ -1278,7 +1278,7 @@ int OH_Rdb_ExecuteV2(OH_Rdb_Store *store, const char *sql, const OH_Data_Values 
 |------------------------------------------------------|-----------------------------------------------------------------------------------------------------------------------------------------|
 | [OH_Rdb_Store](capi-rdb-oh-rdb-store.md) *store          | 指向[OH_Rdb_Store](capi-rdb-oh-rdb-store.md)实例的指针。                                                                                          |
 | const char *sql                                      | 指定要执行的SQL语句。                                                                                                                            |
-| const [OH_Data_Values](capi-rdb-oh-data-values.md) *args | 可选参数，指向[OH_Data_Values](capi-rdb-oh-data-values.md)实例的指针。                                                                                                   |
+| const [OH_Data_Values](capi-rdb-oh-data-values.md) *args | 表示SQL语句中参数的值，指向OH_Data_Values实例的指针。SQL语句完整时，args可填写为nullptr。                                                                                                   |
 | [OH_Data_Value](capi-rdb-oh-data-value.md) **result                           | 执行成功时指向[OH_Data_Value](capi-rdb-oh-data-value.md)实例的指针，作为出参使用。使用完成后，必须通过[OH_Value_Destroy](capi-oh-data-value-h.md#oh_value_destroy)接口释放内存。 |
 
 **返回：**
