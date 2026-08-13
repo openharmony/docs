@@ -6,7 +6,7 @@
 <!--Designer: @lilong32; @CCCZKing-->
 <!--Tester: @zhangjiaji111-->
 <!--Adviser: @zhang_yixin13-->
-<!-- md-trans-meta sourceCommit=8a03c39231c24a89e7d2329d21e5c175c46ce77e translatedAt=2026-08-12T11:15:45.226Z pushedAt=2026-08-13T08:52:25.150Z -->
+<!-- md-trans-meta sourceCommit=8a03c39231c24a89e7d2329d21e5c175c46ce77e translatedAt=2026-08-12T11:15:45.226Z pushedAt=2026-08-13T09:17:22.872Z -->
 
 > **NOTE**
 > 
@@ -202,7 +202,7 @@ Replace the standard service UUID in the API parameters with a custom service UU
 
 The standard service UUID consists of **37BEA880-FC70-11EA-B720-000000000000** officially defined by the NearLink Alliance and a 16-bit UUID. The first 112 bits of the custom service UUID must be different from the basic ID.
 
-## 36100050 Cooperative Device Set Management Not Supported
+## 36100050 Coordinated Device Set Management Not Supported
 
 **Error Message**
 
@@ -210,15 +210,15 @@ Coordinated Devices Set Management not supported.
 
 **Description**
 
-The device does not support cooperative device set management.
+The device does not support coordinated device set management.
 
 **Possible Causes**
 
-The device does not support cooperative device set management.
+The device does not support coordinated device set management.
 
 **Solution**
 
-To use the cooperative device set function, use a device that supports NearLink cooperative device set management, such as the phones and tablets that support NearLink audio. Alternatively, [submit a ticket online](https://developer.huawei.com/consumer/en/support/feedback/#/).
+To use the coordinated device set function, use a device that supports NearLink coordinated device set management, such as the phones and tablets that support NearLink audio. Alternatively, [submit a ticket online](https://developer.huawei.com/consumer/en/support/feedback/#/).
 
 ## 36100099 Operation Failed
 
