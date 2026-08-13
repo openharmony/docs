@@ -3472,6 +3472,7 @@ struct TailIndentsExample {
         .textAlign(TextAlign.End)
         .borderWidth(1)
         .borderColor(Color.Blue)
+        .width('100%')
 
       Text(undefined, { controller: this.txtController3 })
         .onAppear(() => {
@@ -3480,6 +3481,7 @@ struct TailIndentsExample {
         .textAlign(TextAlign.End)
         .borderWidth(1)
         .borderColor(Color.Blue)
+        .width('100%')
     }
     .height('100%')
     .width('100%')
