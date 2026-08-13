@@ -1,10 +1,12 @@
 # Router Error Codes
+
 <!--Kit: ArkUI-->
 <!--Subsystem: ArkUI-->
-<!--Owner: @mayaolll-->
+<!--Owner: @huangxiaolinabc-->
 <!--Designer: @fangzhiyuan1-->
 <!--Tester: @Giacinta-->
 <!--Adviser: @Brilliantry_Rui-->
+<!-- md-trans-meta sourceCommit=c8d89821f92b220ca7659a1de29fb1e3b0412c5b translatedAt=2026-08-13T01:29:26.696Z pushedAt=2026-08-13T01:50:48.617Z -->
 
 > **NOTE**
 >
@@ -76,11 +78,15 @@ This error code is reported during navigation when the builder function for crea
 
 **Possible Causes**
 
-The builder function for creating the **NavDestination** component is not registered at the time of navigation.
+- The builder function for creating the **NavDestination** component is not registered during navigation.
+
+- The target page for navigation does not contain the **Navigation** component.
+
+- The route table is not configured.
 
 **Solution**
 
-Make sure the **builder** function for creating the **NavDestination** component is registered.
+Check whether **Navigation** provides the builder function for creating the **NavDestination** component. Make sure the route table is correctly configured and the target page for navigation contains the **Navigation** component.
 
 ## 100006 NavDestination Not Found
 
@@ -130,13 +136,13 @@ This error code is reported when the system fails to obtain route navigation inf
 
 **Possible Causes**
 
-The current node is not within a **Navigation** component.
+The current node may not be mounted under the page.
 
 **Solution**
 
-Check whether the current node is within a **Navigation** component.
+Check whether the current node is on the page.
 
-## 106202 Invalid Buffer Size
+## 106202 Buffer Size Not Sufficient to Hold the Target Data
 
 **Error Message**
 
@@ -144,7 +150,7 @@ buffer size is not large enough.
 
 **Description**
 
-This error code is reported when an invalid buffer size is provided.
+This error code is reported when the input buffer size is not large enough to hold the target data.
 
 **Possible Causes**
 
@@ -172,7 +178,7 @@ The entered URI is incorrect or does not exist.
 
 Ensure that the URI is correct.
 
-## 300001 HSP Download Failure Before Redirection
+## 300001 Silent Installation of the HSP Failed Before Navigation
 
 **Error Message**
 
@@ -180,7 +186,7 @@ hsp silent install fail.
 
 **Description**
 
-This error code is reported when the download of the HSP, which contains the target page, fails before **Navigation** performs the redirection.
+This error code is reported when the silent installation of the HSP containing the target page fails before **Navigation** performs the redirection.
 
 **Possible Causes**
 

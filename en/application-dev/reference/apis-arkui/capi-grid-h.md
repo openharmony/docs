@@ -6,7 +6,7 @@
 <!--Designer: @guozejun-->
 <!--Tester: @leiyuqian-->
 <!--Adviser: @Brilliantry_Rui-->
-<!-- md-trans-meta sourceCommit=e4da1f59f2bfae1b45300542e10b9243ddb9c5c2 translatedAt=2026-08-11T09:09:02.359Z pushedAt=2026-08-12T01:59:28.583Z -->
+<!-- md-trans-meta sourceCommit=e4da1f59f2bfae1b45300542e10b9243ddb9c5c2 translatedAt=2026-08-11T09:09:02.359Z pushedAt=2026-08-12T07:41:43.691Z -->
 
 ## Overview
 
@@ -144,7 +144,7 @@ Sets the irregular grid item index array for the grid layout.
 | -- | -- |
 | [ArkUI_GridLayoutOptions](capi-arkui-nativemodule-arkui-gridlayoutoptions.md)* option | Pointer to the **Grid** layout option array to set. |
 | uint32_t* irregularIndexes | Pointer to the array of irregular grid item indexes used to set the **Grid** layout options. |
-| int32_t size | Pointer to the array of irregular grid item indexes used to set the **Grid** layout options. |
+| int32_t size | Number of elements in the **irregularIndexes** array. |
 
 **Returns**
 
