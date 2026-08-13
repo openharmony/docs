@@ -6478,7 +6478,7 @@ setWindowFocusable(isFocusable: boolean, callback: AsyncCallback&lt;void&gt;): v
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------------------- |
 | 401     | Parameter error. Possible cause: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
-| 1300002 | This window state is abnormal.               |
+| 1300002 | This window state is abnormal. Possible cause: 1. The window is not created or destroyed; 2. The screen of the window is not allowed to be focused. |
 | 1300003 | This window manager service works abnormally. |
 
 **示例：**
@@ -6532,7 +6532,7 @@ setWindowFocusable(isFocusable: boolean): Promise&lt;void&gt;
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------------------- |
 | 401     | Parameter error. Possible cause: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
-| 1300002 | This window state is abnormal.               |
+| 1300002 | This window state is abnormal. Possible cause: 1. The window is not created or destroyed; 2. The screen of the window is not allowed to be focused. |
 | 1300003 | This window manager service works abnormally. |
 
 **示例：**
@@ -8836,9 +8836,9 @@ setSubWindowModal(isModal: boolean): Promise&lt;void&gt;
 | -------- | ------------------------------ |
 | 401      | Parameter error. Possible cause: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 801      | Capability not supported. Failed to call the API due to limited device capabilities. |
-| 1300002  | This window state is abnormal. |
+| 1300002 | This window state is abnormal. Possible cause: The window is not created or destroyed. |
 | 1300003  | This window manager service works abnormally.<br>适用版本：20+ |
-| 1300004  | Unauthorized operation.        |
+| 1300004  | Unauthorized operation. Possible cause: Invalid window type. Only subwindows are supported. |
 
 **示例：**
 
@@ -9636,7 +9636,7 @@ setWindowTopmost(isWindowTopmost: boolean): Promise&lt;void&gt;
 | 201      | Permission verification failed. The application does not have the permission required to call the API.  |
 | 401      | Parameter error. Possible cause: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 801      | Capability not supported. Failed to call the API due to limited device capabilities. |
-| 1300002  | This window state is abnormal. Possible cause: The window is not created or destroyed. |
+| 1300002 | This window state is abnormal. Possible cause: The window is not created or destroyed. |
 | 1300004  | Unauthorized operation. Possible cause: Invalid window type. Only main windows are supported. |
 
 **示例：**
@@ -9720,10 +9720,10 @@ raiseToAppTop(): Promise&lt;void&gt;
 
 | 错误码ID | 错误信息 |
 | ------- | ------------------------------ |
-| 1300002 | This window state is abnormal. |
+| 1300002 | This window state is abnormal. Possible cause: 1. The window is not created or destroyed; 2. The window is not shown. |
 | 1300003 | This window manager service works abnormally. |
-| 1300004 | Unauthorized operation. |
-| 1300009 | The parent window is invalid. |
+| 1300004 | Unauthorized operation. Possible cause: Invalid window type. Only subwindows are supported. |
+| 1300009 | The parent window is invalid. Possible cause: The parent window does not exist or has been destroyed. |
 
 **示例：**
 
@@ -9787,10 +9787,10 @@ setRaiseByClickEnabled(enable: boolean): Promise&lt;void&gt;
 | ------- | ------------------------------ |
 | 401     | Parameter error. Possible cause: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 801     | Capability not supported. Failed to call the API due to limited device capabilities. |
-| 1300002 | This window state is abnormal. |
+| 1300002 | This window state is abnormal. Possible cause: 1. The window is not created or destroyed; 2. The window is not shown. |
 | 1300003 | This window manager service works abnormally. |
-| 1300004 | Unauthorized operation. |
-| 1300009 | The parent window is invalid. |
+| 1300004 | Unauthorized operation. Possible cause: Invalid window type. Only subwindows are supported. |
+| 1300009 | The parent window is invalid. Possible cause: The parent window does not exist or has been destroyed. |
 
 **示例：**
 
@@ -10837,9 +10837,9 @@ setExclusivelyHighlighted(exclusivelyHighlighted: boolean): Promise&lt;void&gt;
 | -------- | ------------------------------------------------------------------------------------------------------------ |
 | 401     | Parameter error. Possible cause: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 801      | Capability not supported. Failed to call the API due to limited device capabilities.                         |
-| 1300002  | This window state is abnormal. Possible cause: The window is not created or destroyed. |
+| 1300002 | This window state is abnormal. Possible cause: The window is not created or destroyed. |
 | 1300003  | This window manager service works abnormally.                                                                |
-| 1300004  | Unauthorized operation.                                                                                |
+| 1300004  | Unauthorized operation. Possible cause: Invalid window type. Main window, dialog window and the subwindow with modal attributes are not supported. |
 
 **示例：**
 
@@ -11322,7 +11322,7 @@ setSubWindowZLevel(zLevel: number): Promise&lt;void&gt;
 | 1300002 | This window state is abnormal. Possible cause: The window is not created or destroyed. |
 | 1300003 | This window manager service works abnormally. |
 | 1300004 | Unauthorized operation. Possible cause: Invalid window type. Only non-modal subwindows are supported. |
-| 1300009 | The parent window is invalid.                 |
+| 1300009 | The parent window is invalid. Possible cause: The parent window does not exist or has been destroyed. |
 
 **示例：**
 
@@ -11361,7 +11361,7 @@ export default class EntryAbility extends UIAbility {
 
 getSubWindowZLevel(): number
 
-获取当前子窗口层级级别。不支持主窗、系统窗调用。
+获取当前子窗口层级级别。
 
 非[独立子窗](../../windowmanager/window-type-overview.md#辅助窗口)支持调用。[独立子窗](../../windowmanager/window-type-overview.md#辅助窗口)调用该接口不生效也不报错，返回默认值0。
 
@@ -11384,8 +11384,8 @@ getSubWindowZLevel(): number
 | 错误码ID | 错误信息                                                                                                     |
 | -------- | ------------------------------------------------------------------------------------------------------------ |
 | 801      | Capability not supported. Function getSubWindowZLevel can not work correctly due to limited device capabilities. |
-| 1300002  | This window state is abnormal.                                                                               |
-| 1300004  | Unauthorized operation.                                                                                |
+| 1300002 | This window state is abnormal. Possible cause: The window is not created or destroyed. |
+| 1300004  | Unauthorized operation. Possible cause: Invalid window type. Only subwindows are supported. |
 
 **示例：**
 
