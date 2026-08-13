@@ -365,3 +365,5 @@ vpnConnection.create(vpnConfig).then((data) => {
 ## VPN Demo
 
 The OpenHarmony project provides a sample application named [VPN](https://gitcode.com/openharmony/applications_app_samples/tree/master/code/DocsSample/NetWork_Kit/NetWorkKit_NetManager/VPNControl_Case), which showcases how to implement the VPN service.
+
+<!--no_check-->

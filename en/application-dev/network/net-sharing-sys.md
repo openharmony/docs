@@ -1,4 +1,4 @@
-# Network Sharing (For System Applications Only)
+# Network Sharing (for System Applications Only)
 
 <!--Kit: Network Kit-->
 <!--Subsystem: Communication-->

@@ -45,3 +45,5 @@ The core purpose of this extension ability is to allow third-party apps to recei
 ## Working Principles
 
 ![notification_subscription_extension_ability](figures/notification_subscription_extension_ability.png)
+
+<!--no_check-->

@@ -1,4 +1,4 @@
-# Ethernet Connection Management (For System Applications Only)
+# Ethernet Connection Management (for System Applications Only)
 
 <!--Kit: Network Kit-->
 <!--Subsystem: Communication-->
