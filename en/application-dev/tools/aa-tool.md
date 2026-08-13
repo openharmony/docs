@@ -795,7 +795,7 @@ If the prestart mode specified in the **aa pre-start** command is not supported,
 
 **Possible Causes**
 
-The value of the **-m** parameter in the **aa pre-start** command is not **1**. Currently, only **1** is supported, indicating to prestart the application to a specific lifecycle starge.
+The value of the **-m** parameter in the **aa pre-start** command is not **1**. Currently, only **1** is supported, indicating to prestart the application to a specific lifecycle stage.
 
 **Solution**
 

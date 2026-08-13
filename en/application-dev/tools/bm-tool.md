@@ -1983,7 +1983,7 @@ The bundle fails to be uninstalled because the signature configuration file fail
 
 1. Restart the phone and uninstall the bundle again (for PCs or 2-in-1 devices, ensure that the bundle is uninstalled for all users<!--RP10--><!--RP10End-->).
 
-2. If the unstallation still fails after you repeat the preceding steps 3 to 5 times, export the log file. <!--RP13-->[Submit a new issue](https://atomgit.com/openharmony/docs/issues) for help.<!--RP13End-->
+2. If the uninstallation still fails after you repeat the preceding steps 3 to 5 times, export the log file. <!--RP13-->[Submit a new issue](https://atomgit.com/openharmony/docs/issues) for help.<!--RP13End-->
 
     ```bash
     hdc file recv /data/log/hilog/
