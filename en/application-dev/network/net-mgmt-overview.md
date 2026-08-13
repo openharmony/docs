@@ -1,20 +1,29 @@
 # About This Kit
+
 <!--Kit: Network Kit-->
 <!--Subsystem: Communication-->
 <!--Owner: @wmyao_mm-->
 <!--Designer: @guo-min_net-->
 <!--Tester: @tongxilin-->
 <!--Adviser: @zhang_yixin13-->
+<!-- md-trans-meta sourceCommit=742fd8e7f742ee980eb300ddfd075065ca362dff translatedAt=2026-08-13T03:08:18.329Z pushedAt=2026-08-13T06:37:20.044Z -->
 
 Network Kit provides the following functions:
 
 - [HTTP data request](http-request.md): initiates a data request through HTTP.
+
 - [WebSocket connection](websocket-connection.md): establishes a bidirectional connection between the server and client through WebSocket.
+
 - [Socket connection](socket-connection.md): transmits data through Socket.
-- [Network connection management](net-connection-manager.md): provides basic network management capabilities, including management of Wi-Fi/cellular/Ethernet connection priorities, network quality evaluation, subscription to network connection status changes, query of network connection information, and DNS resolution.
+
+- [Network connection management](net-connection-manager.md): provides basic network management capabilities, including priority management of multiple network connections such as Wi-Fi, cellular, and Ethernet, network quality evaluation, subscription to default/specified network connection state changes, query of network connection information, and DNS resolution.
+
 - [mDNS management](net-mdns.md): provides Multicast DNS (mDNS) management capabilities, such as adding, removing, discovering, and resolving local services on a LAN.<!--Del-->
+
 - [Network sharing](net-sharing-sys.md): shares a device's Internet connection with other connected devices by means of Wi-Fi hotspot, Bluetooth, and USB sharing, and queries the network sharing state and shared mobile data volume.
-- [Ethernet connection](net-ethernet-sys.md): provides wired network capabilities, which allow you to set the IP address, subnet mask, gateway, and Domain Name System (DNS) server of a wired network.
+
+- [Ethernet connection](net-ethernet-sys.md): provides wired network capabilities, including setting the IP address, subnet mask, gateway, and DNS information of a wired network.
+
 <!--DelEnd-->
 
 <!--RP1-->
