@@ -1,10 +1,12 @@
 # Implementing Asynchronous Operations Using JSVM-API
-<!--Kit: NDK Development-->
+
+<!--Kit: ArkTS-->
 <!--Subsystem: arkcompiler-->
-<!--Owner: @yuanxiaogou; @string_sz-->
+<!--Owner: @yuanxiaogou-->
 <!--Designer: @knightaoko-->
 <!--Tester: @test_lzz-->
-<!--Adviser: @fang-jinxu-->
+<!--Adviser: @k1ngqaquuu-->
+<!-- md-trans-meta sourceCommit=fa3fc214ef4b265f033bc3f0d0a2df54f511a497 translatedAt=2026-08-12T06:33:05.981Z pushedAt=2026-08-12T10:57:56.363Z -->
 
 ## Introduction
 
@@ -12,13 +14,18 @@ JSVM-API provides APIs for implementing asynchronous operations. An asynchronous
 
 ## Basic Concepts
 
-**Promise** is an object used to handle asynchronous operations in JavaScript (JS). It has three states: **pending**, **fulfilled**, and **rejected**. The initial state is **pending**, which can be changed to **fulfilled** by **resolve()** and to **rejected** by **reject()**. Once the state is **fulfilled** or **rejected**, the promise state cannot be changed. Read on the following to learn basic concepts related to **Promise**:
+Promise is an object used to handle asynchronous operations in JavaScript. A Promise has three states: pending, fulfilled, and rejected. The initial state of a Promise is pending. The resolve function can change its state from pending to fulfilled, and the reject function can change its state from pending to rejected. Once a Promise is fulfilled or rejected, its state cannot be changed. The following are some basic concepts:
 
 - Synchronous: Code is executed line by line in sequence. Each line of code is executed after the previous line of code is executed. During synchronous execution, if an operation takes a long time, the execution of the entire application will be blocked until the operation is complete.
+
 - Asynchronous: Tasks can be executed concurrently without waiting for the end of the previous task. In JS, common asynchronous operations apply for timers, event listening, and network requests. Instead of blocking subsequent tasks, the asynchronous task uses a callback or promise to process its result.
+
 - **Promise**: a JS object used to handle asynchronous operations. Generally, it is exposed externally by using **then()**, **catch()**, or **finally()** to custom logic.
+
 - **deferred**: a utility object associated with the **Promise** object to set **resolve()** and **reject()** of **Promise**. It is used internally to maintain the state of the asynchronous model and set the **resolve()** and **reject()** callbacks.
+
 - **resolve**: a function used to change the promise state from **pending** to **fulfilled**. The parameters passed to **resolve()** can be obtained from **then()** of the **Promise** object.
+
 - **reject**: a function used to change the promise state from **pending** to **rejected**. The parameters passed to **reject()** can be obtained from **catch()** of the **Promise** object.
 
 **Promise** allows multiple callbacks to be called in a chain, providing better code readability and a better way to deal with asynchronous operations. JSVM-API provides APIs for implementing JS promises in C/C++.
@@ -43,12 +50,15 @@ Call **OH_JSVM_IsPromise** to check whether the given **JSVM_Value** is a **Prom
 
 CPP code:
 
-```cpp
-// hello.cpp
+<!-- @[oh_jsvm_ispromise](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/JSVMAPI/JsvmUsageGuide/JsvmAboutPromise/ispromise/src/main/cpp/hello.cpp) -->
+
+``` C++
 #include "napi/native_api.h"
 #include "ark_runtime/jsvm.h"
-#include <hilog/log.h>
-// Define OH_JSVM_IsPromise.
+#include "hilog/log.h"
+// ...
+
+// Sample method for OH_JSVM_IsPromise
 static JSVM_Value IsPromise(JSVM_Env env, JSVM_CallbackInfo info)
 {
     size_t argc = 1;
@@ -65,23 +75,23 @@ static JSVM_Value IsPromise(JSVM_Env env, JSVM_CallbackInfo info)
     OH_JSVM_GetBoolean(env, isPromise, &result);
     return result;
 }
-// Register the IsPromise callback.
+// Register callback for IsPromise
 static JSVM_CallbackStruct param[] = {
     {.data = nullptr, .callback = IsPromise},
 };
 static JSVM_CallbackStruct *method = param;
-// Alias for the IsPromise method to be called from JS.
+// Alias of the IsPromise method for JS calls
 static JSVM_PropertyDescriptor descriptor[] = {
     {"isPromise", nullptr, method++, nullptr, nullptr, nullptr, JSVM_DEFAULT},
 };
 
-// Call the C++ code from JS.
-const char *srcCallNative = R"JS(isPromise())JS";
+// Sample test JS
+const char *SRC_CALL_NATIVE = R"JS(isPromise())JS";
 ```
-<!-- @[oh_jsvm_ispromise](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/JSVMAPI/JsvmUsageGuide/JsvmAboutPromise/ispromise/src/main/cpp/hello.cpp) -->
 
 Expected result:
-```
+
+```txt
 JSVM OH_JSVM_IsPromise success:0
 ```
 
@@ -95,12 +105,15 @@ Call **OH_JSVM_ResolveDeferred** to change the promise state from **pending** to
 
 CPP code:
 
-```cpp
-// hello.cpp
+<!-- @[oh_jsvm_resolvedeferred_and_rejectdeferred](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/JSVMAPI/JsvmUsageGuide/JsvmAboutPromise/resolvereject/src/main/cpp/hello.cpp) -->
+
+``` C++
 #include "napi/native_api.h"
 #include "ark_runtime/jsvm.h"
-#include <hilog/log.h>
-// Define OH_JSVM_CreatePromise, OH_JSVM_ResolveDeferred, and OH_JSVM_RejectDeferred.
+#include "hilog/log.h"
+// ...
+
+// Sample method for OH_JSVM_CreatePromise, OH_JSVM_ResolveDeferred, and OH_JSVM_RejectDeferred
 static JSVM_Value CreatePromise(JSVM_Env env, JSVM_CallbackInfo info)
 {
     JSVM_Deferred defer = nullptr;
@@ -114,21 +127,22 @@ static JSVM_Value CreatePromise(JSVM_Env env, JSVM_CallbackInfo info)
     } else {
         OH_LOG_INFO(LOG_APP, "JSVM CreatePromise success:%{public}d", isPromise);
     }
-    // Convert the Boolean value to JSVM_Value and return it.
+    // Convert the boolean value to a returnable JSVM_Value
     OH_JSVM_GetBoolean(env, isPromise, &returnIsPromise);
     return returnIsPromise;
 }
 
 static JSVM_Value ResolveRejectDeferred(JSVM_Env env, JSVM_CallbackInfo info)
 {
-    // Obtain and parse parameters.
+    // Obtain and parse parameters
     size_t argc = 3;
     JSVM_Value args[3] = {nullptr};
     OH_JSVM_GetCbInfo(env, info, &argc, args, nullptr, nullptr);
-    // The first parameter is the data to be passed to Resolve(), the second parameter is the data to be passed to reject(), and the third parameter is the Promise state.
+    // The first parameter is the information passed to resolve, the second parameter is the information passed to reject, and the third parameter is the Promise status
     bool status = false;
-    OH_JSVM_GetValueBool(env, args[2], &status);
-    // Create a Promise object.
+    constexpr size_t PROMISE_STATUS_ARG_INDEX = 2;
+    OH_JSVM_GetValueBool(env, args[PROMISE_STATUS_ARG_INDEX], &status);
+    // Create a Promise object
     JSVM_Deferred deferred = nullptr;
     JSVM_Value promise = nullptr;
     JSVM_Status createStatus = OH_JSVM_CreatePromise(env, &deferred, &promise);
@@ -136,7 +150,7 @@ static JSVM_Value ResolveRejectDeferred(JSVM_Env env, JSVM_CallbackInfo info)
         OH_JSVM_ThrowError(env, nullptr, "Create promise failed");
         return nullptr;
     }
-    // Set the promise state based on the third parameter.
+    // Set resolve or reject based on the third parameter
     if (status) {
         OH_JSVM_ResolveDeferred(env, deferred, args[0]);
         OH_LOG_INFO(LOG_APP, "OH_JSVM_ResolveDeferred resolve");
@@ -148,27 +162,27 @@ static JSVM_Value ResolveRejectDeferred(JSVM_Env env, JSVM_CallbackInfo info)
     OH_JSVM_GetBoolean(env, true, &result);
     return result;
 }
-// Register the CreatePromise and ResolveRejectDeferred callbacks.
+// Register callbacks for CreatePromise and ResolveRejectDeferred
 static JSVM_CallbackStruct param[] = {
     {.data = nullptr, .callback = CreatePromise},
     {.data = nullptr, .callback = ResolveRejectDeferred},
 };
 static JSVM_CallbackStruct *method = param;
-// Aliases for the CreatePromise and ResolveRejectDeferred methods to be called from JS.
+// Aliases of the CreatePromise and ResolveRejectDeferred methods for JS calls
 static JSVM_PropertyDescriptor descriptor[] = {
-    {"createPromise", nullptr, method++, nullptr, nullptr, nullptr, JSVM_DEFAULT},
-    {"resolveRejectDeferred", nullptr, method++, nullptr, nullptr, nullptr, JSVM_DEFAULT},
+    {"createPromise", nullptr, method, nullptr, nullptr, nullptr, JSVM_DEFAULT},
+    {"resolveRejectDeferred", nullptr, method+1, nullptr, nullptr, nullptr, JSVM_DEFAULT},
 };
 
-// Call the C++ code from JS.
-const char *srcCallNative = R"JS(createPromise();
-                                 resolveRejectDeferred('success', 'fail', true);
-                                 resolveRejectDeferred('success', 'fail', false);)JS";
+// Sample test JS
+const char *SRC_CALL_NATIVE_CREATE_PROMISE = R"JS(createPromise())JS";
+const char *SRC_CALL_NATIVE_RESOLVE_REJECT_DEFERRED1 = R"JS(resolveRejectDeferred('success', 'fail', true))JS";
+const char *SRC_CALL_NATIVE_RESOLVE_REJECT_DEFERRED2 = R"JS(resolveRejectDeferred('success', 'fail', false))JS";
 ```
-<!-- @[oh_jsvm_resolvedeferred_and_rejectdeferred](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/JSVMAPI/JsvmUsageGuide/JsvmAboutPromise/resolvereject/src/main/cpp/hello.cpp) -->
 
 Expected result:
-```
+
+```txt
 JSVM CreatePromise success:1
 OH_JSVM_ResolveDeferred resolve
 OH_JSVM_RejectDeferred reject
@@ -180,7 +194,7 @@ Call **OH_JSVM_PromiseRegisterHandler** to register a callback that is invoked a
 
 The following describes only part of the C++ code. For details about other framework code, such as the **TestJSVM** function, see the implementation of **OH_JSVM_SetMicrotaskPolicy** in [Working with Tasks Using JSVM-API](use-jsvm-execute_tasks.md).
 
-```cpp
+``` C++
 static int PromiseRegisterHandler(JSVM_VM vm, JSVM_Env env) {
     const char *defineFunction = R"JS(
         var x1 = 0;
@@ -269,7 +283,8 @@ static void RunDemo(JSVM_VM vm, JSVM_Env env) {
 ```
 
 Expected result:
-```
+
+```txt
 Before promise resolved, x1: 0, x2: 0
 After promise resolved, x1: 2, x2: 3
 ```

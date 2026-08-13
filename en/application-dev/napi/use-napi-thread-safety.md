@@ -1,16 +1,16 @@
 # Thread Safety Development Using Node-API
-<!--Kit: NDK-->
+
+<!--Kit: ArkTS-->
 <!--Subsystem: arkcompiler-->
 <!--Owner: @xliu-huanwei; @shilei123; @huanghello-->
 <!--Designer: @shilei123-->
 <!--Tester: @kirl75; @zsw_zhushiwei-->
-<!--Adviser: @fang-jinxu-->
-
+<!--Adviser: @k1ngqaquuu-->
+<!-- md-trans-meta sourceCommit=21434ce8d323ecbd7d67463989a2ef075be92cec translatedAt=2026-08-12T06:42:53.205Z pushedAt=2026-08-12T11:16:54.642Z -->
 
 ## When to Use
 
 [napi_create_threadsafe_function](../reference/native-lib/napi.md#napi_create_threadsafe_function) is a Node-API used to create a thread-safe JS function, which can be called from multiple threads without race conditions or deadlocks. The following scenarios are involved:
-
 
 - Asynchronous computing: If a time-consuming computing or I/O operation needs to be performed, you can create a thread-safe function to have the computing or I/O operation executed in a dedicated thread. This ensures normal running of the main thread and improves the response speed of your application.
 
@@ -18,9 +18,10 @@
 
 - Multithread programming: In the case of multithread programming, a thread-safe function can ensure communication and synchronization between multiple threads.
 
-
 ## Example
+
 1. Configure the **CMakeLists.txt** file.
+
    ``` txt
    # the minimum version of CMake.
    cmake_minimum_required(VERSION 3.5.0)
@@ -46,7 +47,7 @@
 2. Define a thread-safe function at the native entry.
 
    <!-- @[napi_thread_safety_cpp](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIClassicUseCases/NodeAPIApplicationScenario/entry/src/main/cpp/thread_safety.cpp) -->
-   
+
    ``` C++
    #include "napi/native_api.h"
    #include "hilog/log.h"
@@ -66,7 +67,9 @@
        CallbackData *callbackData = reinterpret_cast<CallbackData *>(data);
        std::promise<std::string> promise;
        auto future = promise.get_future();
+       napi_acquire_threadsafe_function(callbackData->tsfn);
        napi_call_threadsafe_function(callbackData->tsfn, &promise, napi_tsfn_nonblocking);
+       napi_release_threadsafe_function(callbackData->tsfn, napi_tsfn_release);
        try {
            auto result = future.get();
            OH_LOG_INFO(LOG_APP, "XXX, Result from JS %{public}s", result.c_str());
@@ -130,6 +133,7 @@
        napi_delete_async_work(env, callbackData->work);
        callbackData->tsfn = nullptr;
        callbackData->work = nullptr;
+       delete callbackData;
    }
    
    static napi_value StartThread(napi_env env, napi_callback_info info)
@@ -157,6 +161,7 @@
    ```
 
 3. Module registration.
+
    ```c++
    EXTERN_C_START
    static napi_value Init(napi_env env, napi_value exports)
@@ -185,18 +190,19 @@
 4. ArkTS code:
 
    <!-- @[napi_thread_safety_dts](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIClassicUseCases/NodeAPIApplicationScenario/entry/src/main/cpp/types/libentry1/Index.d.ts) -->
-   
+
    ``` TypeScript
    export const startThread: (a: () => Promise<string>) => void;
    ```
 
    Import the header files.
+
    ``` ts
    import nativeModule from 'libentry1.so';
    ```
-   
+
    <!-- @[napi_thread_safety_ets](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIClassicUseCases/NodeAPIApplicationScenario/entry/src/main/ets/pages/Index.ets) -->
-   
+
    ``` TypeScript
    // index.ets
    let callback = (): Promise<string> => {
@@ -216,6 +222,7 @@
 ### C++ and ArkTS Child Thread Interaction Based on [Worker](../../application-dev/arkts-utils/worker-introduction.md)
 
 1. Configure the **CMakeLists.txt** file.
+
    ``` txt
    # the minimum version of CMake.
    cmake_minimum_required(VERSION 3.5.0)
@@ -241,7 +248,7 @@
 2. Define a thread-safe function and create a child thread at the native entry.
 
    <!-- @[napi_call_threadsafe_function_cpp](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIClassicUseCases/NodeAPIApplicationScenario/entry/src/main/cpp/thread_safety.cpp) -->
-   
+
    ``` C++
    #include "napi/native_api.h"
    #include "hilog/log.h"
@@ -372,10 +379,11 @@
      },
    }
    ```
+
 5. Sample code of the worker thread.
 
    <!-- @[napi_call_threadsafe_function_worker](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIClassicUseCases/NodeAPIApplicationScenario/entry/src/main/ets/workers/Worker.ets) -->
-   
+
    ``` TypeScript
    // entry/src/main/ets/workers/Worker.ets
    
@@ -396,19 +404,20 @@
 6. Description of the API in the .d.ts file.
 
    <!-- @[napi_call_threadsafe_function_dts](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIClassicUseCases/NodeAPIApplicationScenario/entry/src/main/cpp/types/libentry1/Index.d.ts) -->
-   
+
    ``` TypeScript
    export const startWithCallback: (input: string, callback: (msg: string) => void) => void;
    ```
 
 7. Call APIs from ArkTS.
+
    ``` ts
    import nativeModule from 'libentry1.so';
    import { worker } from '@kit.ArkTS';
    ```
 
    <!-- @[napi_call_threadsafe_function_worker_ets](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIClassicUseCases/NodeAPIApplicationScenario/entry/src/main/ets/pages/Index.ets) -->  
-   
+
    ``` TypeScript
    // index.ets
    const wk = new worker.ThreadWorker('entry/ets/workers/Worker.ets');
@@ -456,7 +465,7 @@
    ```
 
    <!-- @[napi_call_threadsafe_function_taskpool_ets](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIClassicUseCases/NodeAPIApplicationScenario/entry/src/main/ets/pages/Index.ets) -->
-   
+
    ``` TypeScript
    // index.ets
    testTaskpool();

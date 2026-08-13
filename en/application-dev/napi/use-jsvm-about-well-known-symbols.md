@@ -1,10 +1,12 @@
 # Working with Well-Known Symbols Using JSVM-API
-<!--Kit: NDK Development-->
+
+<!--Kit: ArkTS-->
 <!--Subsystem: arkcompiler-->
-<!--Owner: @yuanxiaogou; @string_sz-->
+<!--Owner: @yuanxiaogou-->
 <!--Designer: @knightaoko-->
 <!--Tester: @test_lzz-->
-<!--Adviser: @fang-jinxu-->
+<!--Adviser: @k1ngqaquuu-->
+<!-- md-trans-meta sourceCommit=21434ce8d323ecbd7d67463989a2ef075be92cec translatedAt=2026-08-12T06:34:03.593Z pushedAt=2026-08-12T11:01:31.952Z -->
 
 ## Introduction
 
@@ -82,6 +84,7 @@ const char *srcCallNative = R"JS(wellKnownSymbols();)JS";
 ```
 
 Expected result:
-```
+
+```txt
 JSVM OH_JSVM_GetSymbolToStringTag result is correct : 1
 ```
