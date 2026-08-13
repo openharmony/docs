@@ -109,7 +109,7 @@ int32_t (*registerOnWillAppear)(ArkUI_NativeDialogHandle handle, void* userData,
 |-------------------------------------| -- |
 | [ArkUI_NativeDialogHandle](capi-arkui-nativemodule-arkui-nativedialog8h.md) handle | 指向自定义弹窗控制器的指针。 |
 | void* userData                      | 用户自定义数据。 |
-| callback                            | 自定义弹窗显示之前的回调函数。 |
+| void (*callback)(void* userData)                            | 自定义弹窗显示之前的回调函数。 |
 
 **返回：**
 
@@ -140,7 +140,7 @@ int32_t (*registerOnDidAppear)(ArkUI_NativeDialogHandle handle, void* userData, 
 | -- | -- |
 | [ArkUI_NativeDialogHandle](capi-arkui-nativemodule-arkui-nativedialog8h.md) handle | 指向自定义弹窗控制器的指针。 |
 | void* userData | 用户自定义数据。 |
-| callback | 自定义弹窗显示之后的回调函数。 |
+| void (*callback)(void* userData) | 自定义弹窗显示之后的回调函数。 |
 
 **返回：**
 
@@ -171,7 +171,7 @@ int32_t (*registerOnWillDisappear)(ArkUI_NativeDialogHandle handle, void* userDa
 | -- | -- |
 | [ArkUI_NativeDialogHandle](capi-arkui-nativemodule-arkui-nativedialog8h.md) handle | 指向自定义弹窗控制器的指针。 |
 | void* userData | 用户自定义数据。 |
-| callback | 自定义弹窗关闭之前的回调函数。 |
+| void (*callback)(void* userData) | 自定义弹窗关闭之前的回调函数。 |
 
 **返回：**
 
@@ -202,7 +202,7 @@ int32_t (*registerOnDidDisappear)(ArkUI_NativeDialogHandle handle, void* userDat
 | -- | -- |
 | [ArkUI_NativeDialogHandle](capi-arkui-nativemodule-arkui-nativedialog8h.md) handle | 指向自定义弹窗控制器的指针。 |
 | void* userData | 用户自定义数据。 |
-| callback | 自定义弹窗关闭之后的回调函数。 |
+| void (*callback)(void* userData) | 自定义弹窗关闭之后的回调函数。 |
 
 **返回：**
 
