@@ -434,7 +434,7 @@ Web同层渲染的配置。用于配置Web同层渲染选项，包括支持固�
 
 ## OnWindowNewEvent<sup>12+</sup>
 
-定义网页要求用户创建窗口时触发的回调。从API version 23开始，如需获取更多窗口信息，可使用[OnWindowNewExtEvent](#onwindownewextevent23)。
+定义网页要求用户创建窗口时触发的回调信息。从API version 23开始，如需获取更多窗口信息，可使用[OnWindowNewExtEvent](#onwindownewextevent23)。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
