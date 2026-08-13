@@ -44,17 +44,7 @@ When the scheduling conditions are met or the task scheduling ends, the system c
 
 - **Scheduling delay**: The system schedules deferred tasks in a unified manner based on the memory, power consumption, device temperature, and user habits. For example, when the system memory resources are insufficient or the temperature reaches a certain level, the system delays task scheduling.
 
-- **Restrictions for WorkSchedulerExtensionAbility**: The following APIs cannot be called in the WorkSchedulerExtensionAbility:
-
-  [@ohos.resourceschedule.backgroundTaskManager (Background Task Management)](../reference/apis-backgroundtasks-kit/js-apis-resourceschedule-backgroundTaskManager.md)
-
-  [@ohos.backgroundTaskManager (Background Task Management)](../reference/apis-backgroundtasks-kit/js-apis-backgroundTaskManager.md)
-
-  [@ohos.multimedia.camera (Camera Management)](../reference/apis-camera-kit/arkts-apis-camera.md)
-
-  [@ohos.multimedia.audio (Audio Management)](../reference/apis-audio-kit/arkts-apis-audio.md)
-
-  [@ohos.multimedia.media (Media)](../reference/apis-media-kit/arkts-apis-media.md)
+- For details about the restrictions on calling [WorkSchedulerExtensionAbility](../reference/apis-backgroundtasks-kit/js-apis-WorkSchedulerExtensionAbility.md) APIs, see [Constraints](../reference/apis-backgroundtasks-kit/js-apis-WorkSchedulerExtensionAbility.md#constraints).
 
 
 ## Available APIs
@@ -68,7 +58,7 @@ The table below lists the APIs used for developing deferred tasks. For details a
 | [stopWork(work: WorkInfo, needCancel?: boolean): void](../reference/apis-backgroundtasks-kit/js-apis-resourceschedule-workScheduler.md#workschedulerstopwork) | Cancel the deferred task.|
 | [getWorkStatus(workId: number, callback: AsyncCallback&lt;WorkInfo&gt;): void](../reference/apis-backgroundtasks-kit/js-apis-resourceschedule-workScheduler.md#workschedulergetworkstatus) | Obtains the information about a deferred task. This API uses an asynchronous callback to return the result.|
 | [getWorkStatus(workId: number): Promise&lt;WorkInfo&gt;](../reference/apis-backgroundtasks-kit/js-apis-resourceschedule-workScheduler.md#workschedulergetworkstatus-1) | Obtains the information about a deferred task. This API uses a promise to return the result.|
-| [obtainAllWorks(callback: AsyncCallback\<Array\<WorkInfo>>): void](../reference/apis-backgroundtasks-kit/js-apis-resourceschedule-workScheduler.md#workschedulerobtainallworks10) | Obtains all the deferred tasks. This API uses an asynchronous callback to return the result.|
+| [obtainAllWorks(callback: AsyncCallback&lt;Array&lt;WorkInfo&gt;&gt;): void](../reference/apis-backgroundtasks-kit/js-apis-resourceschedule-workScheduler.md#workschedulerobtainallworks10) | Obtains all the deferred tasks. This API uses an asynchronous callback to return the result.|
 | [obtainAllWorks(): Promise&lt;Array&lt;WorkInfo&gt;&gt;](../reference/apis-backgroundtasks-kit/js-apis-resourceschedule-workScheduler.md#workschedulerobtainallworks)  | Obtains all the deferred tasks. This API uses a promise to return the result.|
 | [stopAndClearWorks(): void](../reference/apis-backgroundtasks-kit/js-apis-resourceschedule-workScheduler.md#workschedulerstopandclearworks) | Stops and clears all the deferred tasks.|
 | [isLastWorkTimeOut(workId: number, callback: AsyncCallback\<boolean>): void](../reference/apis-backgroundtasks-kit/js-apis-resourceschedule-workScheduler.md#workschedulerislastworktimeout10) | Checks whether the last execution of a deferred task has timed out. This API uses an asynchronous callback to return the result. It is applicable to repeated tasks.|
@@ -95,21 +85,24 @@ The development of deferred task scheduling consists of two steps: implementing 
 
 1. Create a project directory.
 
-   In the **./entry/src/main/ets** directory of the project, create a directory and an ArkTS file. For example, create a directory and name it **WorkSchedulerExtension**. In the **WorkSchedulerExtension** directory, create an ArkTS file named **WorkSchedulerExtension.ets** and implement the callbacks for deferred task scheduling.
+   In the **./entry/src/main/ets** directory of the project, create a directory and an ArkTS file. For example, create a directory and name it **WorkSchedulerAbility**. In the **WorkSchedulerAbility** directory, create an ArkTS file named **WorkSchedulerAbility.ets** and implement the callbacks for deferred task scheduling.
 
-2. Import the module.
+2. Import the module. No permission is required.
+
+   <!-- @[extension_include](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/BackGroundTasksKit/WorkScheduler/entry/src/main/ets/WorkSchedulerAbility/WorkSchedulerAbility.ets) -->
    
-   ```ts
-   import { WorkSchedulerExtensionAbility, workScheduler } from '@kit.BackgroundTasksKit';
+   ``` TypeScript
+   import {workScheduler, WorkSchedulerExtensionAbility} from '@kit.BackgroundTasksKit';
    ```
 
 3. Implement the lifecycle callbacks for the WorkSchedulerExtensionAbility.
-   <!-- @[workSchedulerExtension](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/SystemFeature/TaskManagement/WorkScheduler/entry/src/main/ets/WorkSchedulerAbility/WorkSchedulerAbility.ets) -->
+   <!-- @[workSchedulerExtension](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/BackGroundTasksKit/WorkScheduler/entry/src/main/ets/WorkSchedulerAbility/WorkSchedulerAbility.ets) --> 
    
-   ```ts
+   ``` TypeScript
    export default class WorkSchedulerAbility extends WorkSchedulerExtensionAbility {
      // Callback invoked when the system starts scheduling the deferred task.
      onWorkStart(workInfo: workScheduler.WorkInfo) {
+       // ...
        console.info(`onWorkStart, workInfo = ${JSON.stringify(workInfo)}`);
        // Print the parameter, for example, key1, in parameters.
        console.info(`work info parameters: ${JSON.parse(workInfo.parameters?.toString()).key1}`);
@@ -128,16 +121,20 @@ The development of deferred task scheduling consists of two steps: implementing 
 
    - Set **srcEntry** to the code path of the WorkSchedulerExtensionAbility component.
 
-   ```json
+   <!-- @[workScheduler_configure](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/BackGroundTasksKit/WorkScheduler/entry/src/main/module.json5) -->
+   
+   ``` JSON5
    {
      "module": {
-         "extensionAbilities": [
-           {
-             "name": "MyWorkSchedulerExtensionAbility",
-             "srcEntry": "./ets/WorkSchedulerExtension/WorkSchedulerExtension.ets",
-             "type": "workScheduler"
-           }
-         ]
+       // ...
+       "extensionAbilities": [
+         {
+           "name": "WorkSchedulerAbility",
+           "srcEntry": "./ets/WorkSchedulerAbility/WorkSchedulerAbility.ets",
+           "type": "workScheduler",
+           // ...
+         }
+       ]
      }
    }
    ```
@@ -146,14 +143,16 @@ The development of deferred task scheduling consists of two steps: implementing 
 ### Implementing Deferred Task Scheduling
 
 1. Import the module.
+
+   <!-- @[workScheduler_include](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/BackGroundTasksKit/WorkScheduler/entry/src/main/ets/feature/WorkSchedulerSystem.ets) -->
    
-   ```ts
-   import { workScheduler } from '@kit.BackgroundTasksKit';
+   ``` TypeScript
    import { BusinessError } from '@kit.BasicServicesKit';
+   import { workScheduler } from '@kit.BackgroundTasksKit';
    ```
 
 2. Start a deferred task.
-   <!-- @[startWork](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/SystemFeature/TaskManagement/WorkScheduler/entry/src/main/ets/feature/WorkSchedulerSystem.ets) -->
+   <!-- @[startWork](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/BackGroundTasksKit/WorkScheduler/entry/src/main/ets/feature/WorkSchedulerSystem.ets) -->
    
    ``` TypeScript
    let workInfo: workScheduler.WorkInfo = {
@@ -174,17 +173,17 @@ The development of deferred task scheduling consists of two steps: implementing 
    ```
 
 3. Cancel the deferred task.
-   <!-- @[stopWork](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/SystemFeature/TaskManagement/WorkScheduler/entry/src/main/ets/feature/WorkSchedulerSystem.ets) -->
-
-   ```ts
-   // Create workinfo.
+   <!-- @[stopWork](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/BackGroundTasksKit/WorkScheduler/entry/src/main/ets/feature/WorkSchedulerSystem.ets) --> 
+   
+   ``` TypeScript
+   // Create workInfo.
    let workInfo: workScheduler.WorkInfo = {
      workId: 1,
-     networkType: workScheduler.NetworkType.NETWORK_TYPE_WIFI,
+     networkType: workScheduler.NetworkType.NETWORK_TYPE_ANY,
      bundleName: 'ohos.samples.workschedulerextensionability',
      abilityName: 'WorkSchedulerAbility',
+     // ...
    }
-   
    try {
      workScheduler.stopWork(workInfo);
      console.info(`stopWork success`);
@@ -197,7 +196,13 @@ The development of deferred task scheduling consists of two steps: implementing 
 Check whether the **onWorkStart** and **onWorkStop** methods of WorkSchedulerExtensionAbility are correctly implemented and can be successfully called.
 
    After the deferred task is requested, its callback can be triggered only when the required conditions are met. To quickly perform the verification, trigger the callback manually using the following [hidumper](../dfx/hidumper.md) command.
-
+   
+   > **NOTE**
+   > 
+   > - `-s 1904`: sends a command to the WorkScheduler system service (1904 is the service ID).
+   > - `-a`: carries additional parameters, which must be enclosed in quotation marks.
+   > - `-t`: specifies the target application package name and **ExtensionAbility** name. The example values `com.example.application` and `MyWorkSchedulerExtensionAbility` need to be replaced with actual ones.
+   
    ```ts
    $ hidumper -s 1904 -a '-t com.example.application MyWorkSchedulerExtensionAbility'
 
@@ -206,3 +211,11 @@ Check whether the **onWorkStart** and **onWorkStop** methods of WorkSchedulerExt
 
    ----------------------------------WorkSchedule----------------------------------
    ```
+
+## Samples
+
+The following sample is provided to help you better understand how to develop deferred task scheduling:
+
+- [Delayed Task Scheduling (ArkTS) (API9)] (https://gitcode.com/openharmony/applications_app_samples/tree/master/code/DocsSample/BackGroundTasksKit/WorkScheduler)
+
+<!--no_check-->

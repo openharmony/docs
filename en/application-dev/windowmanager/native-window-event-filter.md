@@ -1,10 +1,12 @@
 # Using WindowManager to Manage Multimodal Input Events (C/C++)
+
 <!--Kit: ArkUI-->
 <!--Subsystem: Window-->
-<!--Owner: @waterwin-->
+<!--Owner: @fei_1007-->
 <!--Designer: @stupidb-->
 <!--Tester: @qinliwen0417-->
 <!--Adviser: @ge-yafang-->
+<!-- md-trans-meta sourceCommit=1d2e539fa76ba959f887435f6b2f6352d2e02e4a translatedAt=2026-08-11T10:11:13.323Z pushedAt=2026-08-11T11:19:41.367Z -->
 
 ## When to Use
 
@@ -17,16 +19,9 @@ Currently, WindowManager supports filtering multimodal input events and injectin
 You can use the capability provided by the WindowManager module to intercept key events so that they are not distributed to internal components of your application.
 
 ### Linking the Dynamic Library in the CMake Script
-```
-target_link_libraries(entry PUBLIC libnative_window_manager.so libohinput.so)
-```
 
-### Adding Header Files
-```c++
-#include "multimodalinput/oh_input_manager.h"
-#include "multimodalinput/oh_key_code.h"
-#include "window_manager/oh_window_comm.h"
-#include "window_manager/oh_window_event_filter.h"
+```txt
+target_link_libraries(entry PUBLIC libnative_window_manager.so libohinput.so)
 ```
 
 ### Available APIs
@@ -37,14 +32,20 @@ target_link_libraries(entry PUBLIC libnative_window_manager.so libohinput.so)
 | OH_NativeWindowManager_UnregisterKeyEventFilter(int32_t windowId) | Unregisters the key event filter of a window.              |
 
 - After an application window is created, bind a key event filter using the window ID.
+
 - The key event filter is triggered only when the application window receives a key event.
+
 - If the callback function returns **true**, the event is intercepted; if it returns **false**, the event is not intercepted.
+
 - Only one key event filter can be registered for the same window ID. The last registered key event filter overwrites the previously registered one. To filter a multi-key event, you are advised to process the multi-key combination in a filter.
 
 ### Example
 
 The following sample code describes how to register and unregister a key event filter. The following uses the Esc key and number keys as an example.
-```c++
+
+<!-- @[keyEventFilter](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkUISample/NdkEventDistribution/KeyEventFilter/entry/src/main/cpp/napi_init.cpp) -->
+
+``` C++
 #include "napi/native_api.h"
 #include "window_manager/oh_window_comm.h"
 #include "window_manager/oh_window_event_filter.h"
@@ -52,59 +53,56 @@ The following sample code describes how to register and unregister a key event f
 #include "multimodalinput/oh_key_code.h"
 
 // Set a filter.
-static bool filterFunc(Input_KeyEvent *event) {
-  auto keyCode = OH_Input_GetKeyEventKeyCode(event);
-  auto action = OH_Input_GetKeyEventAction(event);
-  // Case1: Implement the event filter for the Esc key.
-  // return keyCode == Input_KeyCode::KEYCODE_ESCAPE;
+static bool filterFunc(Input_KeyEvent *event)
+{
+    auto keyCode = OH_Input_GetKeyEventKeyCode(event);
+    auto action = OH_Input_GetKeyEventAction(event);
 
-  // Case 2: Implement the event filter for the number keys only when they are pressed.
-  // return keyCode >= Input_KeyCode::KEYCODE_0 && keyCode <= Input_KeyCode::KEYCODE_9
-  //  && action == Input_KeyEventAction::KEY_ACTION_DOWN;
-  
-  // Implement the event filter for the combination of the Esc key and a pressed-down number key. (Case1 || Case2).
-  return (keyCode >= Input_KeyCode::KEYCODE_0 && keyCode <= Input_KeyCode::KEYCODE_9
-     && action == Input_KeyEventAction::KEY_ACTION_DOWN) || (keyCode == Input_KeyCode::KEYCODE_ESCAPE);
+    // Filter the press of the Escape key and number keys.
+    return (keyCode >= Input_KeyCode::KEYCODE_0 && keyCode <= Input_KeyCode::KEYCODE_9
+         && action == Input_KeyEventAction::KEY_ACTION_DOWN) || (keyCode == Input_KeyCode::KEYCODE_ESCAPE);
 }
 
-static napi_value registerFilter(napi_env env, napi_callback_info info) {
-  size_t argc = 1;
-  napi_value args[1] = {nullptr};
-  napi_get_cb_info(env, info, &argc, args, nullptr, nullptr);
+static napi_value registerFilter(napi_env env, napi_callback_info info)
+{
+    size_t argc = 1;
+    napi_value args[1] = {nullptr};
+    napi_get_cb_info(env, info, &argc, args, nullptr, nullptr);
   
-  int32_t windowId;
-  napi_get_value_int32(env, args[0], &windowId);
+    int32_t windowId;
+    napi_get_value_int32(env, args[0], &windowId);
   
-  // Register the filter for the window specified by the window ID.
-  auto res = OH_NativeWindowManager_RegisterKeyEventFilter(windowId, filterFunc);
+    // Register the filter function filterFunc for the window corresponding to windowId.
+    auto res = OH_NativeWindowManager_RegisterKeyEventFilter(windowId, filterFunc);
   
-  napi_value errCode;
-  napi_create_int32(env, res, &errCode);
-  return errCode;
+    napi_value errCode;
+    napi_create_int32(env, res, &errCode);
+    return errCode;
 }
 
-static napi_value clearFilter(napi_env env, napi_callback_info info) {
-  size_t argc = 1;
-  napi_value args[1] = {nullptr};
-  napi_get_cb_info(env, info, &argc, args, nullptr, nullptr);
+static napi_value clearFilter(napi_env env, napi_callback_info info)
+{
+    size_t argc = 1;
+    napi_value args[1] = {nullptr};
+    napi_get_cb_info(env, info, &argc, args, nullptr, nullptr);
 
-  int32_t windowId;
-  napi_get_value_int32(env, args[0], &windowId);
+    int32_t windowId;
+    napi_get_value_int32(env, args[0], &windowId);
 
-  auto res = OH_NativeWindowManager_UnregisterKeyEventFilter(windowId);
-  napi_value errCode;
-  napi_create_int32(env, res, &errCode);
-  return errCode;
-
+    auto res = OH_NativeWindowManager_UnregisterKeyEventFilter(windowId);
+    napi_value errCode;
+    napi_create_int32(env, res, &errCode);
+    return errCode;
 }
 
 EXTERN_C_START
-static napi_value Init(napi_env env, napi_value exports) {
-  napi_property_descriptor desc[] = {
-    {"registerFilter", nullptr, registerFilter, nullptr, nullptr, nullptr, napi_default, nullptr},
-    {"clearFilter", nullptr, clearFilter, nullptr, nullptr, nullptr, napi_default, nullptr}};
-  napi_define_properties(env, exports, sizeof(desc) / sizeof(desc[0]), desc);
-  return exports;
+static napi_value Init(napi_env env, napi_value exports)
+{
+    napi_property_descriptor desc[] = {
+        {"registerFilter", nullptr, registerFilter, nullptr, nullptr, nullptr, napi_default, nullptr},
+        {"clearFilter", nullptr, clearFilter, nullptr, nullptr, nullptr, napi_default, nullptr}};
+    napi_define_properties(env, exports, sizeof(desc) / sizeof(desc[0]), desc);
+    return exports;
 }
 EXTERN_C_END
 ```
@@ -113,19 +111,10 @@ EXTERN_C_END
 
 You can use the capability provided by the WindowManager module to inject touch events into a specified window. This operation is supported only for windows within the same process. It does not trigger changes in window focus, z-order, or dragging. Instead, the events are directly sent to ArkUI.
 
-
 ### Linking the Dynamic Library in the CMake Script
 
-```
+```txt
 target_link_libraries(entry PUBLIC libnative_window_manager.so libohinput.so)
-```
-
-### Adding Header Files
-
-```c++
-#include "multimodalinput/oh_input_manager.h"
-#include "window_manager/oh_window.h"
-#include "napi/native_api.h"
 ```
 
 ### Available APIs
@@ -165,73 +154,87 @@ target_link_libraries(entry PUBLIC libnative_window_manager.so libohinput.so)
 
 The following sample code describes how to inject a multimodal touch event into the target window, using a single event injection as an example.
 
-```c++
+<!-- @[injectTouchEvent](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkUISample/NdkEventDistribution/InjectTouchEvent/entry/src/main/cpp/napi_init.cpp) -->
+
+``` C++
 #include "napi/native_api.h"
 #include "window_manager/oh_window.h"
 #include "multimodalinput/oh_input_manager.h"
 
-static napi_value injectEvent(napi_env env, napi_callback_info info) {
-  size_t argc = 10;
-  napi_value args[10] = {nullptr};
-  napi_get_cb_info(env, info, &argc, args, nullptr, nullptr);
+const int32_t ARGS_TWO = 2;
+const int32_t ARGS_THREE = 3;
+const int32_t ARGS_FOUR = 4;
+const int32_t ARGS_FIVE = 5;
+const int32_t ARGS_SIX = 6;
+const int32_t ARGS_SEVEN = 7;
+const int32_t ARGS_EIGHT = 8;
+const int32_t ARGS_NINE = 9;
+const int32_t ARGS_TEN = 10;
 
-  int32_t windowId;
-  napi_get_value_int32(env, args[0], &windowId);
+static napi_value injectEvent(napi_env env, napi_callback_info info)
+{
+    size_t argc = ARGS_TEN;
+    napi_value args[ARGS_TEN] = {nullptr};
+    napi_get_cb_info(env, info, &argc, args, nullptr, nullptr);
 
-  int32_t displayId;
-  napi_get_value_int32(env, args[1], &displayId);
+    int32_t windowId;
+    napi_get_value_int32(env, args[0], &windowId);
 
-  int32_t windowX;
-  napi_get_value_int32(env, args[2], &windowX);
+    int32_t displayId;
+    napi_get_value_int32(env, args[1], &displayId);
 
-  int32_t windowY;
-  napi_get_value_int32(env, args[3], &windowY);
+    int32_t windowX;
+    napi_get_value_int32(env, args[ARGS_TWO], &windowX);
 
-  int32_t action;
-  napi_get_value_int32(env, args[4], &action);
+    int32_t windowY;
+    napi_get_value_int32(env, args[ARGS_THREE], &windowY);
 
-  int32_t fingerId;
-  napi_get_value_int32(env, args[5], &fingerId);
+    int32_t action;
+    napi_get_value_int32(env, args[ARGS_FOUR], &action);
 
-  int32_t displayX;
-  napi_get_value_int32(env, args[6], &displayX);
+    int32_t fingerId;
+    napi_get_value_int32(env, args[ARGS_FIVE], &fingerId);
 
-  int32_t displayY;
-  napi_get_value_int32(env, args[7], &displayY);
+    int32_t displayX;
+    napi_get_value_int32(env, args[ARGS_SIX], &displayX);
 
-  int32_t actionTime;
-  napi_get_value_int32(env, args[8], &actionTime);
+    int32_t displayY;
+    napi_get_value_int32(env, args[ARGS_SEVEN], &displayY);
 
-  int32_t TE_WindowId;
-  napi_get_value_int32(env, args[9], &TE_WindowId);
+    int32_t actionTime;
+    napi_get_value_int32(env, args[ARGS_EIGHT], &actionTime);
+
+    int32_t TE_WindowId;
+    napi_get_value_int32(env, args[ARGS_NINE], &TE_WindowId);
   
-  // Construct a multimodal touch event.
-  Input_TouchEvent* touchEvent = OH_Input_CreateTouchEvent();
-  OH_Input_SetTouchEventAction(touchEvent, action);
-  OH_Input_SetTouchEventFingerId(touchEvent, fingerId);
-  OH_Input_SetTouchEventDisplayX(touchEvent, displayX);
-  OH_Input_SetTouchEventDisplayY(touchEvent, displayY);
-  OH_Input_SetTouchEventActionTime(touchEvent, actionTime);
-  OH_Input_SetTouchEventWindowId(touchEvent, TE_WindowId);
-  OH_Input_SetTouchEventDisplayId(touchEvent, displayId);
+    // Construct a multimodal event touchEvent.
+    Input_TouchEvent* touchEvent = OH_Input_CreateTouchEvent();
+    OH_Input_SetTouchEventAction(touchEvent, action);
+    OH_Input_SetTouchEventFingerId(touchEvent, fingerId);
+    OH_Input_SetTouchEventDisplayX(touchEvent, displayX);
+    OH_Input_SetTouchEventDisplayY(touchEvent, displayY);
+    OH_Input_SetTouchEventActionTime(touchEvent, actionTime);
+    OH_Input_SetTouchEventWindowId(touchEvent, TE_WindowId);
+    OH_Input_SetTouchEventDisplayId(touchEvent, displayId);
 
-  // Inject the multimodal touch event to the window with the specified windowId.
-  auto res = OH_WindowManager_InjectTouchEvent(windowId, touchEvent, windowX, windowY);
+    // Inject a multimodal touch event into the window corresponding to windowId.
+    auto res = OH_WindowManager_InjectTouchEvent(windowId, touchEvent, windowX, windowY);
 
-  // Destroy the touchEvent object after using it.
-  OH_Input_DestroyTouchEvent(&touchEvent);
+    // Destroy the object after using touchEvent.
+    OH_Input_DestroyTouchEvent(&touchEvent);
   
-  napi_value errCode;
-  napi_create_int32(env, res, &errCode);
-  return errCode;
+    napi_value errCode;
+    napi_create_int32(env, res, &errCode);
+    return errCode;
 }
 
 EXTERN_C_START
-static napi_value Init(napi_env env, napi_value exports) {
-  napi_property_descriptor desc[] = {
-    {"injectEvent", nullptr, injectEvent, nullptr, nullptr, nullptr, napi_default, nullptr}};
-  napi_define_properties(env, exports, sizeof(desc) / sizeof(desc[0]), desc);
-  return exports;
+static napi_value Init(napi_env env, napi_value exports)
+{
+    napi_property_descriptor desc[] = {
+        {"injectEvent", nullptr, injectEvent, nullptr, nullptr, nullptr, napi_default, nullptr}};
+    napi_define_properties(env, exports, sizeof(desc) / sizeof(desc[0]), desc);
+    return exports;
 }
 EXTERN_C_END
 ```

@@ -6,6 +6,7 @@
 <!--Designer: @lanming-->
 <!--Tester: @PAFT-->
 <!--Adviser: @zengyawen-->
+<!-- md-trans-meta sourceCommit=df6785f32b4da7a1b730d36b8c75ab56c8212ae1 translatedAt=2026-08-12T07:09:02.499Z pushedAt=2026-08-12T07:18:49.972Z -->
 
 This topic uses RSA, ECC, and SM2 as an example to describe how to convert binary data into an asymmetric key pair (**OH_CryptoKeyPair**). That is, convert a piece of external or internal binary data into a **KeyPair** object for subsequent operations, such as encryption and decryption.
 
@@ -18,6 +19,7 @@ This topic uses RSA, ECC, and SM2 as an example to describe how to convert binar
 > - The private key must use the ASN.1 syntax and DER encoding format and comply with PKCS\#8 specifications.
 
 ## Adding the Dynamic Library in the CMake Script
+
 ```txt
 target_link_libraries(entry PUBLIC libohcrypto.so)
 ```
@@ -79,7 +81,6 @@ For details about the algorithm specifications, see [RSA](crypto-asym-key-genera
     }
     ```
 
-
 ## Converting Binary Data into an ECC Key Pair
 
 For details about the algorithm specifications, see [ECC](crypto-asym-key-generation-conversion-spec.md#ecc).
@@ -96,46 +97,45 @@ For details about the algorithm specifications, see [ECC](crypto-asym-key-genera
 
   <!-- @[convert_ecc_keypair](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/Security/CryptoArchitectureKit/KeyGenerationConversion/BinaryDataConvertAsymmetricKeyPair/entry/src/main/cpp/types/project/ecc.cpp) -->
 
-    ``` C++
-    #include "CryptoArchitectureKit/crypto_common.h"
-    #include "CryptoArchitectureKit/crypto_asym_key.h"
-    #include "file.h"
-
-    OH_Crypto_ErrCode doAsymEccCovert()
-    {
-        OH_CryptoAsymKeyGenerator *ctx = nullptr;
-        OH_Crypto_ErrCode ret;
-
-        ret = OH_CryptoAsymKeyGenerator_Create("ECC256", &ctx);
-        if (ret != CRYPTO_SUCCESS) {
-            return ret;
-        }
-
-        uint8_t ecc224PubKeyBlobData[] = {48, 89, 48, 19, 6, 7, 42, 134, 72, 206, 61, 2, 1, 6, 8, 42, 134, 72, 206,
-            61, 3, 1, 7, 3, 66, 0, 4, 157, 58, 248, 205, 95, 171, 229, 33, 116, 44, 192, 12, 115, 119, 84, 156,
-            128, 56, 180, 246, 84, 43, 33, 244, 224, 221, 181, 154, 155, 222, 157, 124, 131, 217, 214, 134, 199,
-            155, 61, 196, 203, 107, 13, 227, 121, 57, 199, 109, 220, 103, 55, 78, 148, 185, 226, 212, 162, 31,
-            66, 201, 50, 129, 1, 156};
-
-        uint8_t ecc224PriKeyBlobData[] = {48, 49, 2, 1, 1, 4, 32, 255, 121, 33, 196, 188, 159, 112, 149, 146, 107,
-            243, 78, 152, 214, 12, 119, 87, 199, 207, 57, 116, 64, 150, 240, 121, 22, 88, 138, 196, 71, 70, 222,
-            160, 10, 6, 8, 42, 134, 72, 206, 61, 3, 1, 7};
-        Crypto_DataBlob pubBlob = {.data = ecc224PubKeyBlobData, .len = sizeof(ecc224PubKeyBlobData)};
-        Crypto_DataBlob priBlob = {.data = ecc224PriKeyBlobData, .len = sizeof(ecc224PriKeyBlobData)};
-
-        OH_CryptoKeyPair *dupKeyPair = nullptr;
-        ret = OH_CryptoAsymKeyGenerator_Convert(ctx, CRYPTO_DER, &pubBlob, &priBlob, &dupKeyPair);
-        if (ret != CRYPTO_SUCCESS) {
-            OH_CryptoAsymKeyGenerator_Destroy(ctx);
-            return ret;
-        }
-
-        OH_CryptoAsymKeyGenerator_Destroy(ctx);
-        OH_CryptoKeyPair_Destroy(dupKeyPair);
-        return ret;
-    }
-    ```
-
+  ``` C++
+  #include "CryptoArchitectureKit/crypto_common.h"
+  #include "CryptoArchitectureKit/crypto_asym_key.h"
+  #include "file.h"
+  
+  OH_Crypto_ErrCode doAsymEccCovert()
+  {
+      OH_CryptoAsymKeyGenerator *ctx = nullptr;
+      OH_Crypto_ErrCode ret;
+  
+      ret = OH_CryptoAsymKeyGenerator_Create("ECC256", &ctx);
+      if (ret != CRYPTO_SUCCESS) {
+          return ret;
+      }
+  
+      uint8_t ecc256PubKeyBlobData[] = {48, 89, 48, 19, 6, 7, 42, 134, 72, 206, 61, 2, 1, 6, 8, 42, 134, 72, 206,
+          61, 3, 1, 7, 3, 66, 0, 4, 157, 58, 248, 205, 95, 171, 229, 33, 116, 44, 192, 12, 115, 119, 84, 156,
+          128, 56, 180, 246, 84, 43, 33, 244, 224, 221, 181, 154, 155, 222, 157, 124, 131, 217, 214, 134, 199,
+          155, 61, 196, 203, 107, 13, 227, 121, 57, 199, 109, 220, 103, 55, 78, 148, 185, 226, 212, 162, 31,
+          66, 201, 50, 129, 1, 156};
+  
+      uint8_t ecc256PriKeyBlobData[] = {48, 49, 2, 1, 1, 4, 32, 255, 121, 33, 196, 188, 159, 112, 149, 146, 107,
+          243, 78, 152, 214, 12, 119, 87, 199, 207, 57, 116, 64, 150, 240, 121, 22, 88, 138, 196, 71, 70, 222,
+          160, 10, 6, 8, 42, 134, 72, 206, 61, 3, 1, 7};
+      Crypto_DataBlob pubBlob = {.data = ecc256PubKeyBlobData, .len = sizeof(ecc256PubKeyBlobData)};
+      Crypto_DataBlob priBlob = {.data = ecc256PriKeyBlobData, .len = sizeof(ecc256PriKeyBlobData)};
+  
+      OH_CryptoKeyPair *dupKeyPair = nullptr;
+      ret = OH_CryptoAsymKeyGenerator_Convert(ctx, CRYPTO_DER, &pubBlob, &priBlob, &dupKeyPair);
+      if (ret != CRYPTO_SUCCESS) {
+          OH_CryptoAsymKeyGenerator_Destroy(ctx);
+          return ret;
+      }
+  
+      OH_CryptoAsymKeyGenerator_Destroy(ctx);
+      OH_CryptoKeyPair_Destroy(dupKeyPair);
+      return ret;
+  }
+  ```
 
 ## Converting Binary Data into an SM2 Key Pair
 
