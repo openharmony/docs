@@ -892,7 +892,7 @@ Defines a custom transition animation for the **NavDestination** component.
 | ----  | ---   | ---- | ---- |----- |
 | onTransitionEnd | Callback\<void> | No| Yes| Callback triggered when the transition animation ends.|
 | duration | number | No| Yes| Duration of the transition animation.<br>Default value: **1000** (in milliseconds)|
-| curve | [Curve](ts-appendix-enums.md#curve) | No| Yes| Curve type of the animation.<br>Default value: Curve.EaseInOut](ts-appendix-enums.md#curve)|
+| curve | [Curve](ts-appendix-enums.md#curve) | No| Yes| Curve type of the animation.<br>Default value: [Curve.EaseInOut](ts-appendix-enums.md#curve)|
 | delay | number | No| Yes| Delay of the transition animation. <br>Default value: **0** (in milliseconds)|
 | event | Callback\<void> | No| No| Closure function specifying the transition animation. The system generates the corresponding transition animation based on the modifications to the component's UI state within the closure. For details, see **event** in [animateTo](../arkts-apis-uicontext-uicontext.md#animateto).|
 

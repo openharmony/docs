@@ -285,7 +285,7 @@ The format of the [ArkUI_AttributeItem](capi-arkui-nativemodule-arkui-attributei
 NODE_SCROLL_EDGE = 1002010
 ```
 
-Edge position to scroll to for the [Scroll]../apis-arkui/arkui-ts/ts-container-scroll.md) component. This attribute can be set and obtained as required through APIs.<br>
+Edge position to scroll to for the [Scroll](./apis-arkui/arkui-ts/ts-container-scroll.md) component. This attribute can be set and obtained as required through APIs.<br>
 The format of the [ArkUI_AttributeItem](capi-arkui-nativemodule-arkui-attributeitem.md) parameter for setting the attribute and the format of the return value **ArkUI_AttributeItem** are as follows.<br>
 
 **Since**: 12
