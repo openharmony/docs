@@ -5,7 +5,8 @@
 <!--Owner: @oatuwwutao-->
 <!--Designer: @oatuwwutao; @cy917474985-->
 <!--Tester: @kirl75; @zsw_zhushiwei-->
-<!--Adviser: @zhang_yixin13-->
+<!--Adviser: @k1ngqaquuu-->
+<!-- md-trans-meta sourceCommit=e25164b4c5d2db315865d228475dc21473dba5fb translatedAt=2026-08-13T09:03:36.267Z pushedAt=2026-08-13T13:45:41.513Z -->
 
 In this topic, specific use cases are presented to provide suggestions on adapting TS code to ArkTS for compliance with ArkTS syntax rules. Each chapter is named after an ArkTS syntax rule. Each use case provides the TS code before adaptation and the ArkTS code after adaptation.
 
@@ -72,8 +73,8 @@ function printObj(obj: string) {
   console.info(obj);
   // ...
 }
-// ...
-          printObj('abc'); // abc
+
+printObj('abc'); // abc
 ```
 
 ### Marking JSON.parse Return Value Type
@@ -201,7 +202,7 @@ type ControllerConstructor = {
   new (value: string): Controller;
 }
 
-class testMenu {
+class TestMenu {
   controller: ControllerConstructor = Controller
   createController() {
     if (this.controller) {
@@ -211,7 +212,7 @@ class testMenu {
   }
 }
 
-let t = new testMenu();
+let t = new TestMenu();
 console.info(t.createController()!.value);
 ```
 
@@ -359,7 +360,7 @@ interface ControllerConstructor {
   new (value: string): Controller;
 }
 
-class testMenu {
+class TestMenu {
   controller: ControllerConstructor = Controller
   createController() {
     if (this.controller) {
@@ -369,7 +370,7 @@ class testMenu {
   }
 }
 
-let t = new testMenu();
+let t = new TestMenu();
 console.info(t.createController()!.value);
 ```
 
@@ -1016,7 +1017,7 @@ let d = +'string';
 <!-- @[no_polymorphic](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/Start/LearningArkTs/MigrationFromTypeScriptToArkTS/AdaptationCases/entry/src/main/ets/pages/BasicAdaptation.ets) -->  
 
 ``` TypeScript
-let a = Number.parseInt('5'); // Explicit conversion using Number.parseInt.
+let a = Number.parseInt('5'); // Use Number.parseInt for explicit conversion.
 let b = -Number.parseInt('5');
 let c = ~Number.parseInt('5');
 let d = new Number('123');
@@ -1052,7 +1053,7 @@ let t: typeof c = { value: 123 };
 <!-- @[no_type_query_one](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/Start/LearningArkTs/MigrationFromTypeScriptToArkTS/AdaptationCases/entry/src/main/ets/pages/module1.ets) -->  
 
 ``` TypeScript
-// File name: module1.ets
+// module1.ets
 class C {
   public value: number = 0
 }
@@ -1063,7 +1064,7 @@ export { C }
 <!-- @[no_type_query_two](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/Start/LearningArkTs/MigrationFromTypeScriptToArkTS/AdaptationCases/entry/src/main/ets/pages/module2.ets) -->  
 
 ``` TypeScript
-// File name: module2.ets
+// module2.ets
 import { C } from './module1'
 let t: C = { value: 123 };
 ```
@@ -1279,12 +1280,12 @@ function foo4() {
 }
 
 let obj = { value: 'abc' };
-foo.apply(obj);
+foo4.apply(obj);
 ```
 
 **After adaptation: mode 1**
 
-Use the method of a class. If the method is used by multiple classes, consider using the inheritance mechanism.
+Implement it by using a class method. If the method is used by multiple classes, consider using an inheritance mechanism.
 
 <!-- @[no_standalone_this_one](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/Start/LearningArkTs/MigrationFromTypeScriptToArkTS/AdaptationCases/entry/src/main/ets/pages/BasicAdaptation.ets) -->  
 
@@ -1450,7 +1451,7 @@ class Controller {
 
 type ControllerConstructor = new (value: string) => Controller;
 
-class testMenu {
+class TestMenu {
   controller: ControllerConstructor = Controller
   createController() {
     if (this.controller) {
@@ -1460,8 +1461,8 @@ class testMenu {
   }
 }
 
-let t = new testMenu()
-console.info(t.createController()!.value)
+let t = new TestMenu();
+console.info(t.createController()!.value);
 ```
 
 **After adaptation**
@@ -1501,7 +1502,6 @@ ArkTS does not support **globalThis** for two reasons:<br> - A static type canno
 > 1. You are advised to transfer data between modules based on the service logic and import/export syntax.
 > 
 > 2. If necessary, you can construct a singleton object to implement the function of a global object. (Do not define the singleton in a HAR as it will be duplicated into different HAPs during packaging, breaking the singleton guarantee.)
-
 
 Construct a singleton object.
 
@@ -1771,7 +1771,7 @@ entries.forEach((value, key) => {
 
 ``` TypeScript
 interface I {
-  name:string
+  name: string;
 }
 
 class A {}
@@ -1790,24 +1790,22 @@ class Test {
 <!-- @[strictProperty_initialization](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/Start/LearningArkTs/MigrationFromTypeScriptToArkTS/AdaptationCases/entry/src/main/ets/pages/StrictModeCheck.ets) -->  
 
 ``` TypeScript
-{
-  interface I {
-    name:string
-  }
+interface I {
+  name: string;
+}
 
-  class A {}
+class A {}
 
-  class Test {
-    public a: number;
-    public b: string;
-    public c: boolean;
-    public d: I = { name:'abc' };
-    public e: A | null = null;
-    constructor(a:number, b:string, c:boolean) {
-      this.a = a;
-      this.b = b;
-      this.c = c;
-    }
+class Test {
+  public a: number;
+  public b: string;
+  public c: boolean;
+  public d: I = { name:'abc' };
+  public e: A | null = null;
+  constructor(a:number, b:string, c:boolean) {
+    this.a = a;
+    this.b = b;
+    this.c = c;
   }
 }
 ```
@@ -1895,10 +1893,11 @@ class Test {
 
 ​ Mode (ii): **prop?:A**
 
-​ Mode 3 (iii): **prop: A | undefined = undefined**
+Mode (iii): `prop: A | undefined = undefined`
 
 - From the perspective of performance, the **null** type is used only for type check during compilation and has no impact on VM performance. In contrast, **undefined | A** is treated as a union type and may result in additional overhead at runtime.
-- In terms of code readability and simplicity, **prop?:A** is the syntax sugar of **prop: A | undefined = undefined**. You are advised to use optional properties.
+
+- From the perspective of code readability and conciseness, `prop?:A` is syntactic sugar for `prop: A | undefined = undefined`. **The optional property syntax is recommended.**
 
 ### Strict Function Type Check
 
@@ -2255,7 +2254,6 @@ Use the regular **import { ... } from '...'** syntax to import types.
 ```typescript
 import type {A, B, C, D } from '***'
 ```
-
 
 **After adaptation**
 

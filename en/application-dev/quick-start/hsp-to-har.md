@@ -1,10 +1,12 @@
 # Converting HSP to HAR
+
 <!--Kit: Ability Kit-->
 <!--Subsystem: BundleManager-->
 <!--Owner: @wanghang904-->
 <!--Designer: @hanfeng6-->
-<!--Tester: @kongjing2-->
-<!--Adviser: @Brilliantry_Rui-->
+<!--Tester: @memghaiyang-->
+<!--Adviser: @HelloCrease-->
+<!-- md-trans-meta sourceCommit=e614db0ed9ef9e65ff9f340640f4a0fd5317e78d translatedAt=2026-08-13T09:05:27.181Z pushedAt=2026-08-13T13:52:49.402Z -->
 
 The HSP has requirements on the consistency of bundle names and signatures. Installing an HSP file in the debugging phase may cause many integration issues during multi-module development. In this case, you are advised to use the HAR file instead. This topic describes how to convert an HSP project to an HAR project by changing the configuration items.
 
@@ -21,7 +23,7 @@ The HSP has requirements on the consistency of bundle names and signatures. Inst
 1. In the **module.json5** file of the HSP module, change the value of the **type** field to **har** and delete the **deliveryWithInstall** and **pages** fields.
 
     <!-- @[hsp_to_har_001](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/bmsSample/HspToHar/library/src/main/module.json5) -->
-    
+
     ``` JSON5
     {
       "module": {
@@ -40,7 +42,7 @@ The HSP has requirements on the consistency of bundle names and signatures. Inst
 3. Replace the content in the **hvigorfile.ts** file of the HSP module with the following:
 
     <!-- @[hsp_to_har_002](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/bmsSample/HspToHar/library/hvigorfile.ts) -->
-    
+
     ``` TypeScript
     // MyApplication\library\hvigorfile.ts
     import { harTasks } from '@ohos/hvigor-ohos-plugin';

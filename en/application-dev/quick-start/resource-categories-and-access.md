@@ -40,7 +40,7 @@ resources
 >
 > - Files in resource directories and resource group directories are considered as resource files and will not be obfuscated during application packaging.
 >
-> - For details about the resource packaging policies in directories other than **resources**, see [copyCodeResource](https://developer.huawei.com/consumer/en/doc/harmonyos-guides/ide-hvigor-build-profile#table1476161719356).
+> - For details about the resource packaging policies in directories other than **resources**, see the description of **copyCodeResource** under [resOptions](https://developer.huawei.com/consumer/en/doc/harmonyos-guides/ide-hvigor-build-profile#section754823013348).
 >
 > - The common resource files used across projects in the stage model are stored in the **resources** directory under **AppScope**.
 >
@@ -63,7 +63,7 @@ Table 2 Resource group directories
 
 | Directory   | Description                                    | Resource File                                    |
 | --------- | ---------------------------------------- | ---------------------------------------- |
-| element | Indicates element resources. Each type of data is represented by a JSON file. (Only files are supported in this directory.) The options are as follows.<br>- **boolean**: boolean data<br>- **color**: color data<br>- **float**: floating point number, ranging from -2^128 to 2^128<br>- **intarray**: array of integers<br>- **integer**: integer, ranging from -2^31 to 2^31-1<br>- **plural**: plural form data<br>- **strarray**: array of strings<br>- **string**: string. For details about how to format strings, see [API Reference](../reference/apis-localization-kit/js-apis-resource-manager.md#getstringsync10).<!--Del--><br>- **pattern**: style (for system applications only)<!--DelEnd--><!--Del--><br>- **theme**: theme (for system applications only)<!--DelEnd-->| It is recommended that files in the **element** subdirectory be named the same as the following files, each of which can contain only data of the same type:<br>-&nbsp;boolean.json<br>-&nbsp;color.json<br>-&nbsp;float.json<br>-&nbsp;intarray.json<br>-&nbsp;integer.json<br>-&nbsp;plural.json<br>-&nbsp;strarray.json<br>-&nbsp;string.json<!--Del--><br>-&nbsp;pattern.json<!--DelEnd--><!--Del--><br>-&nbsp;theme.json<!--DelEnd--> |
+| element | Indicates element resources. Each type of data is represented by a JSON file. (Only files are supported in this directory.) The options are as follows.<br>- **boolean**: boolean data.<br>- **color**: color data.<br>- **float**: floating point number, ranging from `-2^128` to `2^128`.<br>- **intarray**: array of integers.<br>- **integer**: integer, ranging from `-2^31` to `2^31-1`.<br>- **plural**: plural form data.<br>- **strarray**: array of strings.<br>- **string**: string. The maximum length of a single string is 65535 bytes. For extra-long strings, you are advised to store them as text files in the **rawfile** directory. For details about how to add placeholders in strings and format them, see [getStringSync](../reference/apis-localization-kit/js-apis-resource-manager.md#getstringsync10).<!--Del--><br>- **pattern**: style (for system applications only).<!--DelEnd--><!--Del--><br>- **theme**: theme (for system applications only).<!--DelEnd-->| It is recommended that files in the **element** subdirectory be named the same as the following files, each of which can contain only data of the same type:<br>-&nbsp;boolean.json<br>-&nbsp;color.json<br>-&nbsp;float.json<br>-&nbsp;intarray.json<br>-&nbsp;integer.json<br>-&nbsp;plural.json<br>-&nbsp;strarray.json<br>-&nbsp;string.json<!--Del--><br>-&nbsp;pattern.json<!--DelEnd--><!--Del--><br>-&nbsp;theme.json<!--DelEnd--> |
 | media   | Indicates media resources, including non-text files such as images, audios, and videos. (Only files are supported in this directory.)<br>Table 3 and Table 4 describe the types of images, audios, and videos.             | The file name can be customized, for example, **icon.png**.                    |
 | profile  | Indicates a custom configuration file. You can obtain the file content by using the [getProfileByAbility](../reference/apis-ability-kit/js-apis-bundleManager.md#bundlemanagergetprofilebyability) API. (Only JSON files are supported in this directory.)      | The file name can be customized, for example, **test_profile.json**.          |
 
@@ -480,8 +480,7 @@ To access system resources, use the `$r('sys.type.name')` format, where **sys** 
 >
 > - The use of system resources is only supported in the declarative development paradigm.
 >
-> - The default system font used on the UI is HarmonyOS Sans, and the supported character range follows the standards in [Information technology—Chinese coded character set GB18030-2022](https://openstd.samr.gov.cn/bzgk/gb/newGbInfo?hcno=A1931A578FE14957104988029B0833D3). If the characters cannot be displayed in HarmonyOS Sans, the system uses another font with the highest priority to display the characters. For details about the priority of the system fonts, see the **/system/etc/fontconfig.json** configuration file on the device.
-
+> - The default system font used on the UI is HarmonyOS Sans, and the supported character range follows the standards in [Information technology-Chinese coded character set GB18030-2022](https://openstd.samr.gov.cn/bzgk/std/newGbInfo?hcno=A1931A578FE14957104988029B0833D3). If the characters cannot be displayed in HarmonyOS Sans, the system uses another font with the highest priority to display the characters. For details about the priority of the system fonts, see the **/system/etc/fontconfig.json** configuration file on the device.
 <!-- @[system_resource](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ResourceManagement/ResourceCategoriesAndAccess/entry/src/main/ets/pages/Index.ets) -->
 
 ``` TypeScript
@@ -658,9 +657,16 @@ Overlay is a resource replacement mechanism. With overlay resource packages, you
 1. Place the overlay resource package in the target application installation path. For example, for the com.example.overlay application, place the overlay resource package in **data/app/el1/bundle/public/com.example.overlay/**.
 2. The application uses [addResource(path)](../reference/apis-localization-kit/js-apis-resource-manager.md#addresource10) to load overlay resources and uses [removeResource(path)](../reference/apis-localization-kit/js-apis-resource-manager.md#removeresource10) to remove overlay resources. The path to an overlay resource consists of the application's sandbox root directory (obtained through **getContext().bundleCodeDir**) and the overlay resource bundle name. For example, **let path = getContext().bundleCodeDir + "overlay *resource bundle name*"**, such as **/data/storage/el1/bundle/overlayResourceBundleName**.
 
+
+> **NOTE**
+>
+> When an overlay package is loaded, the system uses the intersection of resources in the overlay package and the target module resources. If multiple target modules share the same overlay package, only the first loaded module takes effect. Resources outside the intersection do not take effect for subsequent modules.
+>
+> Example: target module 1 contains resources A and B, target module 2 contains resources B and C, and the overlay package contains resources A, B, and C. After target module 1 loads the overlay package, the overlay package retains resources A and B. When target module 2 loads the overlay package later, resource C cannot take effect.
+
 ### Using overlay in static mode
 
-This feature is enabled by default. For details about how to enable and disable this feature, see [@ohos.bundle.overlay (overlay Module)](../reference/apis-ability-kit/js-apis-overlay.md).
+This feature is enabled by default. For details about how to enable and disable this feature, see [@ohos.bundle.overlay (overlay Feature Module)](../reference/apis-ability-kit/js-apis-overlay.md).
 
 The **app.json5** file in the inter-application overlay resource package supports the following fields:
 ```json
@@ -737,6 +743,8 @@ The **module.json5** file in the cross-application overlay resource package supp
 > - Other fields such as **Ability**, **ExtensionAbility**, and **Permission** are not supported.
 >
 > - The overlay feature does not support JSON images.
+>
+> - When an overlay package is loaded, the system uses the intersection of resources in the overlay package and the target module resources. Other resources in the overlay package do not take effect. To improve performance and memory efficiency, you are advised to place only replacement resources in the overlay package.
 
 If the **module.json5** file of a module contains the **targetModuleName** and **targetPriority fields** during project creation on DevEco Studio, the module is identified as a module with the overlay feature in the installation phase. Modules with the overlay feature generally provide an overlay resource file for other modules on the device, so that the module specified by **targetModuleName** can display different colors, labels, themes, and the like by using the overlay resource file in a running phase.
 
@@ -747,4 +755,22 @@ If the **module.json5** file of a module contains the **targetModuleName** and *
 
 -  
 <!--DelEnd-->
+## Terms
+
+### Qualifier
+
+A label value used to characterize an application scenario or device feature. It is used to name resource directories so that resources can be dynamically matched. Qualifiers include the mobile country code (MCC), mobile network code (MNC), language, script, country or region, screen orientation, device type, color mode, and screen density. Qualifiers are combined in a fixed order and separated by specific delimiters. A qualifier participates in resource matching only when its value is consistent with the current device state.
+
+### Qualifiers directory
+
+A resource directory named by combining one or more qualifiers. It is used to store resource files that match specific device features or application scenarios.
+
+### rawfile
+
+A special resource directory under **resources**. It supports multiple levels of subdirectories for storing various types of files. Files in this directory are directly packed into the application in raw form and are accessed by the specified file path and file name. Native APIs can be used to obtain file contents, file lists, and file descriptors.
+
+### resfile
+
+A special resource directory under **resources**. It supports multiple levels of subdirectories for storing various types of files. Files in this directory are directly packed into the application in raw form. After the application is installed, files in this directory are decompressed to the application sandbox path. After the directory is obtained through the **resourceDir** attribute of **Context**, files can be accessed in read-only mode by file path.
+
 <!--no_check-->

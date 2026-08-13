@@ -1,16 +1,19 @@
 # Structure of the module Tag
+
 <!--Kit: Ability Kit-->
 <!--Subsystem: BundleManager-->
 <!--Owner: @wanghang904-->
 <!--Designer: @hanfeng6-->
-<!--Tester: @kongjing2-->
-<!--Adviser: @Brilliantry_Rui-->
+<!--Tester: @memghaiyang-->
+<!--Adviser: @HelloCrease-->
+<!-- md-trans-meta sourceCommit=74dbad5c7db60e1e7acbdd97ecfcb9536c7d7b13 translatedAt=2026-08-13T09:09:07.745Z pushedAt=2026-08-13T14:10:37.577Z -->
 
 The **module** tag contains the HAP configuration.
 
  **Table 1** Internal structure of the module tag
 
 <!--Table: 15%; 60%; 10%; 15%-->
+
 | Name| Description| Data Type| Initial Value Allowed|
 | -------- | -------- | -------- | -------- |
 | mainAbility | Ability whose icon is displayed in the Service Center. When the resident process is started, the **mainAbility** is started.| String| Yes (initial value: left empty)|
@@ -102,13 +105,13 @@ Example of the **module** tag structure:
 **Table 2** Internal structure of the distro attribute
 
 <!--Table: 15%; 60%; 10%; 15%-->
+
 | Name| Description| Data Type| Initial Value Allowed|
 | -------- | -------- | -------- | -------- |
 | moduleName | Name of the HAP file. The maximum length is 31 bytes. This name can be changed during application updates. However, if it is changed, directories related to the module must be migrated. For details, see [@ohos.file.fs (File Management)](../reference/apis-core-file-kit/js-apis-file-fs.md).| String| No|
 | moduleType | Type of the HAP file, which can **entry**, **feature**, or **har**.| String| No|
 | installationFree | Whether the HAP file supports the installation-free feature. **true**: The HAP file supports the installation-free feature and meets installation-free constraints. **false**: The HAP file does not support the installation-free feature. If this tag is set to **true** for an entry-type HAP file (**entry.hap**), it must also be set to **true** for feature-type HAP files (**feature.hap**) of the same application. If this tag is set to **false** for an entry-type HAP file, it can be set to **true** or **false** for feature-type modules of the same application based on service requirements.| Boolean| No|
-| deliveryWithInstall | Whether the HAP file will be installed when the user installs the application. **true**: The HAP file will be installed when the user installs the application. **false**: The HAP file will not be installed when the user installs the application.| Boolean| No|
-
+| deliveryWithInstall | Whether the HAP file will be installed when the user installs the app. **true**: The HAP file will be installed when the user installs the app. **false**: The HAP file will not be installed when the user installs the app. | Boolean | No |
 
 Example of the **distro** attribute structure:
 
@@ -129,7 +132,7 @@ Example of the **distro** attribute structure:
 | -------- | -------- | -------- | -------- |
 | parameters | Metadata of the parameters to be passed for calling the ability. The metadata of each parameter consists of the **description**, **name**, and **type** sub-attributes.| Object array| Yes (initial value: left empty)|
 | results | Metadata of the ability return value. The metadata of each return value consists of the **description**, **name**, and **type** sub-attributes.| Object array| Yes (initial value: left empty)|
-| customizeData | Custom metadata of the parent component. The attributes **parameters** and **results** cannot be configured in **application**.| Object array| Yes (initial value: left empty)|
+| customizeData | Custom metadata of the parent component. The attributes **parameters** and **results** cannot be configured in **application**. | Object array | Yes (initial value: left empty) |
 
 ## Internal Structure of the parameters Attribute
 
@@ -161,7 +164,6 @@ Example of the **distro** attribute structure:
 | value | Value of the data element. The value is a string with a maximum of 255 bytes.| String| Yes (initial value: left empty)|
 | extra | Custom format of the data element. The value is a resource index that identifies the data.| String| Yes (initial value: left empty)|
 
-
 Example of the metadata attribute:
 
 ```json
@@ -189,6 +191,7 @@ Example of the metadata attribute:
 **Table 7** Values of the deviceType attribute
 
 <!--RP2-->
+
 | Device Type| Value| Description|
 | -------- | -------- | -------- |
 | Tablet| tablet | - |
@@ -198,6 +201,7 @@ Example of the metadata attribute:
 | Telematics device| car | - |
 | Default device| default | Default device type. For details, see [Standard-System Development Boards](../../device-dev/dev-board-on-the-master.md#standard-system-development-boards).|
 | 2-in-1 device| 2-in-1 device| PC, mainly used for multi-window and multi-task interactions, and keyboard and mouse operations. It fully showcases the device productivity.|
+
 <!--RP2End-->
 
 ## Internal Structure of the abilities Attribute
@@ -205,9 +209,10 @@ Example of the metadata attribute:
 **Table 8** Internal structure of the abilities attribute
 
 <!--Table: 15%; 60%; 10%; 15%-->
+
 | Name| Description| Data Type| Initial Value Allowed|
 | -------- | -------- | -------- | -------- |
-| process | Name of the process running the application or ability. If the **process** attribute is configured in the **deviceConfig** tag, all abilities of the application run in this process. You can set the **process** attribute for a specific ability in the **abilities** attribute, so that the ability can run in the particular process. If this attribute is set to the name of the process running other applications, all these applications can run in the same process, provided they have the same unified user ID and the same signature. The value can contain a maximum of 31 bytes.| String| Yes (initial value: left empty)|
+| process | Name of the process running the application or ability. If the `process` attribute is configured in the `deviceConfig` tag, all abilities of the application run in this process. You can set the `process` attribute for a specific ability in the `abilities` attribute, so that the ability can run in the particular process. If this attribute is set to the name of the process running other applications, all these applications can run in the same process, provided they have the same unified user ID and the same signature. The value can contain a maximum of 31 bytes. | String | Yes (initial value: left empty) |
 | name | Ability name. The value can be a reverse domain name, in the format of *bundleName*.*className*, for example, **com.example.myapplication.EntryAbility**. Alternatively, the value can start with a period (.) followed by the class name, for example, **.EntryAbility**.<br>The ability name must be unique in an application. Note: If you use DevEco Studio to create the project, an ability named **EntryAbility** will be created by default, and its configuration will be saved to the **config.json** file. If you use other tools in DevEco Studio, the value of this attribute can be customized. The value can contain a maximum of 127 bytes.| String| No|
 | description | Description of the ability. The value can be a string or a resource index to descriptions in multiple languages. The value can contain a maximum of 255 bytes.| String| Yes (initial value: left empty)|
 | icon | Index to the ability icon file. Example value: **$media:ability_icon**. In the **skills** attribute of the ability, if the **actions** value contains **action.system.home** and the **entities** value contains **entity.system.home**, the icon of the ability is also used as the icon of the application. If multiple abilities address this condition, the icon of the first candidate ability is used as the application icon.<br>Note: The **icon** and **label** values of an application are visible to users. Ensure that at least one of them is different from any existing icons or labels.| String| Yes (initial value: left empty)|
@@ -232,17 +237,17 @@ Example of the metadata attribute:
 | forms | Information about the widgets used by the ability. This attribute is valid only when **formsEnabled** is set to **true**.| Object array| Yes (initial value: left empty)|
 | srcLanguage | Programming language of the ability, which you can specify when creating the project. The options are **js**, **ets**, and **java**.| String| Yes (initial value: **js**)|
 | srcPath | JS code path corresponding to the ability. The value can contain a maximum of 127 bytes.| String| No|
-| uriPermission | Application data that the ability can access. This attribute consists of the **mode** and **path** sub-attributes. This attribute is valid only for the capability of the type provider.| Object| Yes (initial value: left empty)|
+| uriPermission | Application data that the ability can access. This attribute consists of the `mode` and `path` sub-attributes. This attribute is valid only for the ability of the type provider. | Object | Yes (initial value: left empty) |
 | startWindowIcon | Index to the icon file of the ability startup page. This attribute applies only to the ability using the Page template. Example: **$media:icon**.| String| Yes (initial value: left empty)|
 | startWindowBackground | Index to the background color resource file of the ability startup page. This attribute applies only to the ability using the Page template. Example: **$color:red**.| String| Yes (initial value: left empty)|
 | removeMissionAfterTerminate | Whether to remove the relevant task from the task list after the ability is destroyed. This attribute applies only to the ability using the Page template. The value **true** means to remove the relevant task from the task list after the ability is destroyed, and **false** means the opposite.| Boolean| Yes (initial value: **false**)|
-
 
 Application icons cannot be hidden from the home screen:
 
 The system strictly controls applications without icons to prevent malicious applications from deliberately configuring no icon to block uninstall attempts.
 
 Setting the application icon to be displayed on the home screen:<br>Set **icon**, **label**, and **skills** under **abilities** in the **config.json** file. Make sure the **skills** configuration contains **action.system.home** and **entity.system.home**.
+
 ```json
 {
   "module":{
@@ -254,30 +259,49 @@ Setting the application icon to be displayed on the home screen:<br>Set **icon**
         "entities": ["entity.system.home"],
         "uris": []
       }]
-    }],
+    }]
   }
 }
 ```
 
 To hide an entry icon on the home screen, you must configure the **AllowAppDesktopIconHide** privilege.<!--Del--> For details, see [Application Privilege Configuration Guide](../../device-dev/subsystems/subsys-app-privilege-config-guide.md).<!--DelEnd--> The rules for displaying the entry icon and entry label are as follows:
+
 * The HAP file contains Page ability configuration.
+
   * The application icon on the home screen is set under **abilities** in the **config.json** file.
+
     * The application does not have the privilege to hide its icon from the home screen.
+
       * The system uses the icon configured for the Page ability as the entry icon and displays it on the home screen. Touching this icon will direct the user to the home page of the Page ability.
+
       * The system uses the label configured for the PageAbility as the entry label and displays it on the home screen. If no label is configured, the bundle name is returned.
+
     * The application has the privilege to hide its icon from the home screen.
+
       * The application information is not returned when the home screen queries the information, and the entry icon and label of the application are not displayed on the home screen.
+
   * The application icon on the home screen is not set under **abilities** in the **config.json** file.
+
     * The application does not have the privilege to hide its icon from the home screen.
+
       * The system uses the default icon as the entry icon and displays it on the home screen. Touching this icon will direct the user to the application details screen under application management, as shown in Figure 1.
+
       * The system uses the bundle name of the application as the entry label and displays it on the home screen.
+
     * The application has the privilege to hide its icon from the home screen.
+
       * The application information is not returned when the home screen queries the information, and the entry icon and label of the application are not displayed on the home screen.
+
 * The HAP file does not contain Page ability configuration.
+
   * The application does not have the privilege to hide its icon from the home screen.
+
     * The system uses the default icon as the entry icon and displays it on the home screen. Touching this icon will direct the user to the application details screen under application management, as shown in Figure 1.
+
     * The system uses the bundle name of the application as the entry label and displays it on the home screen.
+
   * The application has the privilege to hide its icon from the home screen.
+
     * The application information is not returned when the home screen queries the information, and the entry icon and label of the application are not displayed on the home screen.
 
 **Figure 1** Application details screen
@@ -285,6 +309,7 @@ To hide an entry icon on the home screen, you must configure the **AllowAppDeskt
 ![Application details screen](figures/application_details.jpg)
 
 **NOTE**<br>The label displayed on the application details screen may be different from the one displayed on the home screen. These two are the same if the entry icon and label are configured for the non-Page ability.<br>
+
 ## Internal Structure of the uriPermission Attribute
 
 **Table 9** Internal structure of the uriPermission attribute
@@ -293,7 +318,6 @@ To hide an entry icon on the home screen, you must configure the **AllowAppDeskt
 | -------- | -------- | -------- | -------- |
 | path | Path. The value can contain maximum of 255 bytes.| String| No|
 | mode | Matching mode.| String| Yes (initial value: **default**)|
-
 
 Example of the **abilities** attribute structure:
 
@@ -361,11 +385,13 @@ Example of the **abilities** attribute structure:
   }
 ]
 ```
+
 ## Internal Structure of the skills Attribute
 
 **Table 10** Internal structure of the skills attribute
 
 <!--Table: 10%; 60%; 15%; 15%-->
+
 | Name| Description| Data Type| Initial Value Allowed|
 | -------- | -------- | -------- | -------- |
 | actions | Actions of the **want** that can be accepted by the ability. Generally, the value is an **action** value predefined in the system.| String array| Yes (initial value: left empty)|
@@ -385,7 +411,6 @@ Example of the **abilities** attribute structure:
 | path | **path** value of the URI.| String| Yes (initial value: left empty)|
 | pathRegx | **pathRegx** value of the URI.| String| Yes (initial value: left empty)|
 | type | **type** value of the URI. The value is a MIME type. Typical values include **audio/aac** and **text/css**.<br>The wildcard formats of ***/*** or **mainType/*** is supported but **mainType/subType.*** is not. The **mainType** is a standard media type.| String| Yes (initial value: left empty)|
-
 
 Example of the **skills** attribute structure:
 
@@ -435,6 +460,7 @@ Example of the **skills** attribute structure:
 **Table 14** Internal structure of the js attribute
 
 <!--Table: 10%; 60%; 15%; 15%-->
+
 | Name| Description| Data Type| Initial Value Allowed|
 | -------- | -------- | -------- | -------- |
 | name | Name of the JavaScript component.| String| No|
@@ -460,7 +486,6 @@ Example of the **skills** attribute structure:
 | -------- | -------- | -------- | -------- |
 | type | Type of the JS component.| String. The value can be **pageAbility** or **form**.| Yes (initial value: **pageAbility**)|
 | syntax | Syntax type of the JS component.| String. The value can be **hml** or **ets**.| Yes (initial value: **hml**)|
-
 
 Example of the **js** attribute structure:
 
@@ -505,7 +530,6 @@ Example of the **js** attribute structure:
 | targetClass | Target class of the shortcut.| String| Yes (initial value: left empty)|
 | targetBundle | Application bundle name for the target ability of the shortcut.| String| Yes (initial value: left empty)|
 
-
 Example of the **shortcuts** attribute structure:
 
 ```json
@@ -528,6 +552,7 @@ Example of the **shortcuts** attribute structure:
 **Table 19** Internal structure of the forms attribute
 
 <!--Table: 15%; 60%; 10%; 15%-->
+
 | Name| Description| Data Type| Initial Value Allowed|
 | -------- | -------- | -------- | -------- |
 | name | Class name of the widget. The value is a string with a maximum of 127 bytes.| String| No|
@@ -554,7 +579,6 @@ Example of the **shortcuts** attribute structure:
 | name | Key name that identifies a data item. The value is a string with a maximum of 255 bytes.| String| Yes (initial value: left empty)|
 | value | Value of the data item. The value is a string with a maximum of 255 bytes.| String| Yes (initial value: left empty)|
 | extra | Format of the current custom data. The value is the resource value of **extra**.| String| Yes (initial value: left empty)|
-
 
 Example of the **forms** attribute structure:
 
@@ -653,6 +677,7 @@ Example of the **forms** attribute structure:
 **Table 25** Internal structure of the screenDensity attribute
 
 <!--Table: 10%; 60%; 15%; 15%-->
+
 | Name| Description| Data Type| Initial Value Allowed|
 | -------- | -------- | -------- | -------- |
 | policy | Rule for the sub-attribute value. Set this attribute to **exclude** or **include**.<br>- **exclude**: Exclude the matches of the sub-attribute value.<br>- **include**: Include the matches of the sub-attribute value.| String| No|
@@ -666,7 +691,6 @@ Example of the **forms** attribute structure:
 | -------- | -------- | -------- | -------- |
 | policy | Rule for the sub-attribute value. Set this attribute to **exclude** or **include**.<br>- **exclude**: Exclude the matches of the sub-attribute value.<br>- **include**: Include the matches of the sub-attribute value.| String| No|
 | value | Country/Region code of the area to which the application is to be distributed. The value is a string array, of which each substring indicates a country or region. The substring consists of two uppercase letters.| String array| No|
-
 
 Example of the **distroFilter** attribute structure:
 
@@ -707,7 +731,6 @@ Example of the **distroFilter** attribute structure:
 | type | Type array of the current static common event.| String array| Yes (initial value: left empty)|
 | events | A set of events for the wants that can be received. The value can be system predefined or custom.| String array| No|
 
-
 Example of the **commonEvents** attribute structure:
 
 ```json
@@ -744,6 +767,7 @@ Example of the **commonEvents** attribute structure:
 ```
 
 <!--Del-->
+
 ## Internal Structure of the definePermissions Attribute
 
 **definePermissions** applies only to system applications and does not take effect for third-party applications.
@@ -759,4 +783,5 @@ Example of the **commonEvents** attribute structure:
 | distributedSceneEnabled | Whether the permission can be used in distributed scenarios.<br>- **true**: This permission can be used in distributed scenarios.<br>- **false**: This permission cannot be used in distributed scenarios.| Boolean| Yes (initial value: **false**)|
 | label | Brief description of the permission. The value is a resource index to the description.| String| Yes (initial value: left empty)|
 | description | Detailed description of the permission. The value is a string with a maximum of 255 bytes or a string resource index.| String| Yes (initial value: left empty)|
+
 <!--DelEnd-->

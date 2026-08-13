@@ -2,14 +2,15 @@
 
 <!--Kit: ArkTS-->
 <!--Subsystem: ArkCompiler-->
-<!--Owner: @fanglou-->
-<!--Designer: @qyhuo32-->
+<!--Owner: @oatuwwutao-->
+<!--Designer: @oatuwwutao-->
 <!--Tester: @kirl75; @zsw_zhushiwei-->
-<!--Adviser: @zhang_yixin13-->
+<!--Adviser: @k1ngqaquuu-->
+<!-- md-trans-meta sourceCommit=d6200ee580e2d2b406a92c0e4a15bf6480d0d39a translatedAt=2026-08-13T09:05:36.340Z pushedAt=2026-08-13T13:48:08.313Z -->
 
 ArkTS is a new programming language that brings new development experience and opportunities to developers familiar with Java. It inherits the features of modern languages in terms of syntax and programming paradigms, and is deeply optimized for the ecosystem. Understanding the differences and commonalities between Java and ArkTS can help you quickly get started with application development and avoid common programming pitfalls.
 
-This topic compares ArkTS with Java from the perspective of basic syntax, language structure, and type system. For details, see [Introduction to ArkTS](./introduction-to-arkts.md).
+This document compares and introduces ArkTS based on the Java language. For more details, see [ArkTS syntax](./arkts-language-guide-basics.md).
 
 ## Exploring the Differences Between Java and ArkTS
 
@@ -32,29 +33,30 @@ const program: string = 'ArkTS';
 let version = 5.0;
 ```
 
-### Primitive Types 
-| Java      | ArkTS           | Sample Code                         | Key Difference                 |  
-|----------------|----------------------|-----------------------------------|-------------------------------|  
-| `boolean`      | `boolean`            | `let isDone: boolean = false;`    | They are defined similarly and used for logical judgments in Java and ArkTS, with no runtime boxing or unboxing operations.                     |  
-| `byte`         | `number`             | `let b: number = 100;`            | Java: the value of **byte** type is an 8-bit integer.<br>ArkTS: **number** represents small-range integer type.|  
-| `short`        | `number`             | `let s: number = 300;`            | Java: the value of **short** type is a 16-bit integer.<br>ArkTS: **number** represents small-range integer type.|  
-| `int`          | `number`             | `let count: number = 10;`         | Java: the value of **int** type is a 32-bit integer.<br>ArkTS: **number** represents double-precision floating-point type, which can store integers and floating-point numbers.      |  
-| `long`         | `number`             | `let largeNum: number = 9007199254740991;` | Java: the suffix **L** must be added, for example, **9007199254740991L**.<br>ArkTS: **number** represents all numeric types.         |  
-| `float`        | `number`             | `let pi: number = 3.14;`          | Java: the suffix **f** must be added, for example, **3.14f**.<br>ArkTS: **number** represents all numeric types. No special identifier is required.      |  
-| `double`       | `number`             | `let e: number = 2.71828;`        | Java: the **double** type is used.<br>ArkTS: **number** represents all numeric types.        |  
-| `char`         | `string`             | `let c: string = 'a';`            | ArkTS: **string**, instead of **char**, is used to represent string type.  |  
-| `String`       | `string`             | `let message: string = 'Hello';`  | They are defined similarly, but the **string** type of ArkTS supports template literals (for example, **${name}**) and more flexible operations. |  
+### Primitive Types
+
+| Java      | ArkTS           | Sample Code                         | Key Difference                 |
+|----------------|----------------------|-----------------------------------|-------------------------------|
+| `boolean`      | `boolean`            | `let isDone: boolean = false;`    | They are defined similarly and used for logical judgments in Java and ArkTS, with no runtime boxing or unboxing operations.                     |
+| `byte`         | `number`             | `let b: number = 100;`            | In Java, `byte` is an 8-bit integer.<br>ArkTS uses a single `number` type to represent it, and `number` is a double-precision floating-point type that can store both integers and floating-point numbers. |
+| `short`        | `number`             | `let s: number = 300;`            | In Java, `short` is a 16-bit integer.<br>ArkTS uses a single `number` type to represent it, and `number` is a double-precision floating-point type that can store both integers and floating-point numbers. |
+| `int`          | `number`             | `let count: number = 10;`         | In Java, `int` is a 32-bit integer.<br>ArkTS uses a single `number` type to represent it, and `number` is a double-precision floating-point type that can store both integers and floating-point numbers.       |
+| `long`         | `number`             | `let largeNum: number = 9007199254740991;` | In Java, an `L` suffix is required (for example, `9007199254740991L`).<br>ArkTS uses a single `number` type to represent it, and `number` is a double-precision floating-point type.          |
+| `float`        | `number`             | `let pi: number = 3.14;`          | In Java, an `f` suffix is required (for example, `3.14f`).<br>ArkTS uses a single `number` type to represent it, and `number` is a double-precision floating-point type.       |
+| `double`       | `number`             | `let e: number = 2.71828;`        | Java distinguishes between `float` and `double`.<br>ArkTS uses a single `number` type to represent it, and `number` is a double-precision floating-point type.         |
+| `char`         | `string`             | `let c: string = 'a';`            | ArkTS: **string**, instead of **char**, is used to represent string type.  |
+| `String`       | `string`             | `let message: string = 'Hello';`  | They are defined similarly, but the **string** type of ArkTS supports template literals (for example, **${name}**) and more flexible operations. |
 
 ### Complication Types
-| Java               | ArkTS           | Sample Code in ArkTS                                                                | Key Difference                                                                |  
-|-----------------------------|--------------------------|-------------------------------------------------------------------------|-----------------------------------------------------------------------------|  
-| **Array**: `int[] arr = new int[5];`| **Array**: `let arr: Array<number> = [1, 2, 3];`| `// Initialize an array at fixed length (similar to Java).`<br>`let fixedArr: number[] = new Array<number>(5);`<br>`// Initialize an array at dynamic length. Syntactic sugar is used.`<br>`let dynamicArr = [4, 5, 6];`<br>| The length of a Java array is fixed.<br>The length of an ArkTS array is dynamic. Operations such as **push** and **pop** are supported. You can use **[]** to simplify initialization. ArkTS array does not go out of bounds. If the array subscript exceeds the array length, **undefined** is returned.|  
-| **List**: `List<String> list = new ArrayList<>();`| **Array**: `let strList: Array<string> = ['a', 'b'];`| `strList.push('c'); // Push an element to the end of an array.`<br>`let firstItem = strList[0]; // Access by index.`<br>| Java list separates APIs (such as **List**) from implementation classes (such as **ArrayList**).<br>ArkTS array uses basic types and set features, simplifying syntax.|  
-| **Map**: `Map<String, Integer> map = new HashMap<>();`| **Map**: `let map: Map<string, number> = new Map();`| `map.set('key', 1); // Add a KV pair.`<br>`let value = map.get('key'); // Obtain the value.`<br>`map.has('key'); // Check whether the key exists.`<br>|Java **Map** requires explicit declaration of generic types.<br>ArkTS **Map** supports chain calls (such as **map.set('a', 1).set('b', 2)**), which is more direct.|  
-| **Interface**: `interface Shape { double area(); }`| **interface**: `interface Shapes { area(): number; }`| `class Rectangles implements Shapes {`<br>`  public width: number = 0;`<br>`  public height: number = 0;`<br>`  area(): number { return this.width * this.height; }`<br>`}`<br>| The syntax structures of Java and ArkTS are similar, but ArkTS APIs do not require explicit modifiers (such as **public** in Java) and support optional properties (such as **name?: string**).|  
-| **Class**: `class Circle implements Shape { /* Class definition */ }`| **class**: `class Circles implements Shape { /* Class definition */ }`| `class Circles {`<br>`  radius: number;`<br>`  constructor(radius: number = 10) { // Support default parameter values.`<br>`    this.radius = radius;`<br>`  }`<br>`}`<br>| ArkTS classes support property default values and optional parameters, featuring a more concise syntax.|  
-| **Enum**: `enum Color { RED, GREEN, BLUE; }`| **enum**: `enum Colors { Red, Green, Blue }`| `enum Colors { Red = 1, Green, Blue };`<br>`let color = Colors.Green; // The value is 2, which is automatically incremented.`<br>| The basic concepts are the same. However, ArkTS enum does not support custom constructors and methods like Java. Only a simple numeric or string enum is supported.|  
 
+| Java               | ArkTS           | Sample Code in ArkTS                                                                | Key Difference                                                                |
+|-----------------------------|--------------------------|-------------------------------------------------------------------------|-----------------------------------------------------------------------------|
+| **Array**: `int[] arr = new int[5];`| **Array**: `let arr: Array<number> = [1, 2, 3];`| `// Initialize an array at fixed length (similar to Java).`<br>`let fixedArr: number[] = new Array<number>(5);`<br>`// Initialize an array at dynamic length. Syntactic sugar is used.`<br>`let dynamicArr = [4, 5, 6];`<br>| The length of a Java array is fixed.<br>The length of an ArkTS array is dynamic. Operations such as **push** and **pop** are supported. You can use **[]** to simplify initialization. ArkTS array does not go out of bounds. If the array subscript exceeds the array length, **undefined** is returned.|
+| **List**: `List<String> list = new ArrayList<>();`| **Array**: `let strList: Array<string> = ['a', 'b'];`| `strList.push('c'); // Push an element to the end of an array.`<br>`let firstItem = strList[0]; // Access by index.`<br>| Java list separates APIs (such as **List**) from implementation classes (such as **ArrayList**).<br>ArkTS array uses basic types and set features, simplifying syntax.|
+| **Map**: `Map<String, Integer> map = new HashMap<>();`| **Map**: `let map: Map<string, number> = new Map();`| `map.set('key', 1); // Add a KV pair.`<br>`let value = map.get('key'); // Obtain the value.`<br>`map.has('key'); // Check whether the key exists.`<br>|Java **Map** requires explicit declaration of generic types.<br>ArkTS **Map** supports chain calls (such as **map.set('a', 1).set('b', 2)**), which is more direct.|
+| **Interface**: `interface Shape { double area(); }` | **interface**: `interface Shape { area(): number; }` | ```class Rectangle implements Shape {```<br>```  public width: number = 0;```<br>```  public height: number = 0;```<br>```  area(): number { return this.width * this.height; }```<br>```}```<br> | The syntax is similar, but ArkTS interface implementations do not require explicit modifiers (such as Java's `public`), and they support optional properties (such as `name?: string`). |
+| **Class**: `class Circle implements Shape { /* Class definition */ }` | **class**: `class Circle implements Shape { /* Class definition */ }` | ```class Circle {```<br>```  radius: number;```<br>```  constructor(radius: number = 10) { // Support default parameter values.```<br>```    this.radius = radius;```<br>```  }```<br>```}```<br> | ArkTS classes support default property values and optional parameters, making the syntax more concise. |
+| **Enum**: `enum Color { RED, GREEN, BLUE; }`| **enum**: `enum Colors { Red, Green, Blue }`| `enum Colors { Red = 1, Green, Blue };`<br>`let color = Colors.Green; // The value is 2, which is automatically incremented.`<br>| The basic concepts are the same. However, ArkTS enum does not support custom constructors and methods like Java. Only a simple numeric or string enum is supported.|
 
 ### Functions
 
@@ -86,12 +88,12 @@ Java supports compile-time polymorphism, allowing multiple methods with the same
 
 ```java
 class Example {
-    // Method 1: accept an int parameter.
+    // Method 1: Accepts an int parameter.
     void print(int value) {
         System.out.println("Integer: " + value);
     }
 
-    // Method 2: accept a string parameter.
+    // Method 2: Accepts a String parameter.
     void print(String value) {
         System.out.println("String: " + value);
     }
@@ -202,7 +204,7 @@ In Java, **this** always points to the instance of the current class, which is d
 ```java
 class MyClass {
   void method() {
-    System.out.println(this); // Always point to the instance of MyClass.
+    System.out.println(this); // Always points to the MyClass instance.
   }
 }
 ```
@@ -237,8 +239,8 @@ function callFunction(fn: () => void) {
   let a: A = new A();
   let b: B = new B();
 
-  // callFunction(a.foo); // Program crashes. The context of this changes.
-  // b.callFunction(a.foo); // Program crashes. The context of this changes.
+  // callFunction(a.foo); // The program crashes because the context of this has changed.
+  // b.callFunction(a.foo); // The program crashes because the context of this has changed.
   b.callFunction(a.foo.bind(b)) // Output 'I am B'.
 ```
 
@@ -247,7 +249,6 @@ function callFunction(fn: () => void) {
 The type system of ArkTS is different from that of Java.
 
 ### Type Inference and Optional Types
-
 
 Compared with Java that requires explicit type declaration and strict null check, the type system of ArkTS provides more flexible expression modes.
 

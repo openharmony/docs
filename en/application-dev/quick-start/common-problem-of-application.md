@@ -1,10 +1,12 @@
 # FAQs About Application Packages
+
 <!--Kit: Ability Kit-->
 <!--Subsystem: BundleManager-->
 <!--Owner: @wanghang904-->
 <!--Designer: @hanfeng6-->
-<!--Tester: @kongjing2-->
-<!--Adviser: @Brilliantry_Rui-->
+<!--Tester: @memghaiyang-->
+<!--Adviser: @HelloCrease-->
+<!-- md-trans-meta sourceCommit=118f8441400d9fe18d8b62ac25f5326a0afdedf5 translatedAt=2026-08-13T09:04:30.295Z pushedAt=2026-08-13T13:46:55.831Z -->
 
 ## How Do I Obtain the Fingerprint in the Signature Information?
 
@@ -32,7 +34,6 @@ try {
 }
 ```
 
-
 * Use [Bundle Manager](../tools/bm-tool.md) to obtain the fingerprint information. The fingerprint information is generated using the SHA-256 hash algorithm.
 
 ```shell
@@ -52,6 +53,7 @@ bm dump -n com.example.myapplication | grep fingerprint
 **appIdentifier**, generated during application signing, is a field in the <!--RP1-->[profile](../security/app-provision-structure.md)<!--RP1End--> and is the unique identifier of an application. There are two ways to generate an application identifier:
 
 1. Randomly generate the **appIdentifier** field through [automatic signing](https://developer.huawei.com/consumer/en/doc/harmonyos-guides/ide-signing#section18815157237) on DevEco Studio. Signing on different devices or re-signing will result in different values of **appIdentifier**.
+
 2. <!--RP2-->Manually configure the signature. The **appIdentifier** field here is the same as the **app-identifier** field in the [HarmonyAppProvision configuration file](../security/app-provision-structure.md). For details, see [hapsigner Guide](../security/hapsigntool-guidelines.md).<!--RP2End-->
 
 Therefore, manual signing is recommended in scenarios where **appIdentifier** must remain unchanged, such as cross-device debugging, cross-application interaction debugging, or multi-user development with a shared key. For details, see [Use Cases for Automatic and Manual Signing](https://developer.huawei.com/consumer/en/doc/harmonyos-guides/ide-signing#section54361623194519).
@@ -80,7 +82,6 @@ try {
 }
 ```
 
-
 * Use the [bm](../tools/bm-tool.md) tool.
 
 ```shell
@@ -90,7 +91,6 @@ bm dump -n com.example.myapplication | grep appIdentifier
 ```
 
 ![alt text](figures/get_appIdentifier.png)
-
 
 ## What Is appId?
 
@@ -120,7 +120,6 @@ try {
 }
 ```
 
-
 * Use the [bm](../tools/bm-tool.md) tool.
 
 ```shell
@@ -128,13 +127,14 @@ hdc shell
 # Replace **ohos.app.hap.myapplication** with the actual bundle name.
 bm dump -n ohos.app.hap.myapplication |grep '"appId":'
 ```
+
 ![alt text](figures/get_appId.png)
 
 ## Application UID
 
 A UID is a unique identifier used by the system for [application sandbox](../security/AccessToken/access-token-overview.md#application-sandbox) isolation. It is assigned to each application process to ensure runtime isolation between applications, such as file system isolation and memory space isolation.
 
-The algorithm for generating a UID is as follows: uid = userId * 200000 + (bundleId % 200000). Here, **%** indicates the modulo operation, which calculates the remainder of **bundleId** divided by 200,000. **userId** indicates the ID of the user for whom the application is installed. You can obtain it through the [getOsAccountLocalId API](../reference/apis-basic-services-kit/js-apis-osAccount.md#getosaccountlocalid9). **bundleId** indicates the unique ID of the application. Its value ranges from 10000 to 65535 and is used only internally by the system. It can be derived from **uid** and **userId**<!--Del-->, or obtained through [getBundleIdForUid](../reference/apis-basic-services-kit/js-apis-osAccount-sys.md#getbundleidforuid9)<!--DelEnd-->.
+The UID is generated as follows: uid = userId * 200000 + (bundleId % 200000). Here, % is the modulo operation, which calculates the remainder of bundleId divided by 200000. userId indicates the user ID where the app is to be installed, and can be obtained through the [getOsAccountLocalId](../reference/apis-basic-services-kit/js-apis-osAccount.md#getosaccountlocalid9) API. bundleId indicates the unique ID of the app, an integer ranging from 10000 to 65535 that is used only within the system. It can be obtained by reverse calculation from uid and userId<!--Del-->, or through [getBundleIdForUid](../reference/apis-basic-services-kit/js-apis-osAccount-sys.md#getbundleidforuid9)<!--DelEnd-->.
 
 ## How to Obtain the Application UID?
 
@@ -145,6 +145,7 @@ hdc shell
 # Replace **ohos.app.hap.myapplication** with the actual bundle name.
 bm dump -n ohos.app.hap.myapplication |grep uid
 ```
+
 ![alt text](figures/get_uid.png)
 
-* You can call [bundleManager.getBundleInfoForSelf](../reference/apis-ability-kit/js-apis-bundleManager.md#bundlemanagergetbundleinfoforself) to obtain the application's own **BundleInfo**. For sample code, see [How do I obtain appIdentifier from application information?](#how-do-i-obtain-appidentifier-from-application-information). The UID can be obtained through **bundleInfo.appInfo.uid**.
+* You can call [bundleManager.getBundleInfoForSelf](../reference/apis-ability-kit/js-apis-bundleManager.md#bundlemanagergetbundleinfoforself) to obtain its own BundleInfo application package information. For sample code, see [How do I obtain appId from application information?](#how-do-i-obtain-appid-from-application-information). The value is obtained through bundleInfo.appInfo.uid.<!--RP3--><!--RP3End-->
