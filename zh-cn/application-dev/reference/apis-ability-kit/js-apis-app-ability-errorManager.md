@@ -945,7 +945,7 @@ ErrorObserver模块。该模块定义了错误观测器的接口，包含onUnhan
 
 type LoopObserver = _LoopObserver
 
-LoopObserver模块。定义异常监听，可作为 `errormanager.on` 函数的参数，监听并处理当前应用主线程超时的事件。
+LoopObserver模块。定义异常监听，可作为 `errorManager.on` 函数的参数，监听并处理当前应用主线程超时的事件。
 
 该接口通过在ArkUI事件循环的消息处理前后记录时间戳，计算消息执行时长，当执行时长超过设定的timeout阈值时触发onLoopTimeOut回调。详细监测机制请参见[LoopObserver](js-apis-inner-application-loopObserver.md)。
 
