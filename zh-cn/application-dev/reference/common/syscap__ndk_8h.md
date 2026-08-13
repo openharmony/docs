@@ -25,7 +25,7 @@
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| bool [canIUse](#canIUse) (const char \*cap) | 返回指定的系统能力是否被支持。返回true表示支持，返回false表示不支持。cap参数为系统能力名称，格式为"SystemCapability.xxx.xxx"。 <br>系统能力（SystemCapability，简称 SysCap），指操作系统中每一个相对独立的特性。不同的设备对应不同的系统能力集，每个系统能力对应一个或多个API。开发者可根据系统能力来判断是否可以使用对应的API。 <br>**起始版本：** 8 |
+| bool [canIUse](#caniuse) (const char \*cap) | 返回指定的系统能力是否被支持。返回true表示支持，返回false表示不支持。cap参数为系统能力名称，格式为"SystemCapability.xxx.xxx"。 <br>系统能力（SystemCapability，简称 SysCap），指操作系统中每一个相对独立的特性。不同的设备对应不同的系统能力集，每个系统能力对应一个或多个API。开发者可根据系统能力来判断是否可以使用对应的API。 <br>**起始版本：** 8 |
 
 ## 函数说明
 
