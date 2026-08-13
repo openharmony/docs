@@ -394,6 +394,10 @@ int32_t OH_NetConn_RegisterDnsResolver(OH_NetConn_CustomDnsResolver resolver)
 
 **起始版本：** 13
 
+**废弃版本：** 26.0.0
+
+**替代接口：** OH_NetConn_RegisterCustomDnsResolver
+
 
 **参数：**
 
@@ -420,6 +424,10 @@ int32_t OH_NetConn_UnregisterDnsResolver(void)
 **系统能力：** SystemCapability.Communication.NetManager.Core
 
 **起始版本：** 13
+
+**废弃版本：** 26.0.0
+
+**替代接口：** OH_NetConn_UnregisterCustomDnsResolver
 
 **返回：**
 
