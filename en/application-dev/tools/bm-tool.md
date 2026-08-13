@@ -3,8 +3,8 @@
 <!--Subsystem: BundleManager-->
 <!--Owner: @wanghang904-->
 <!--Designer: @hanfeng6-->
-<!--Tester: @kongjing2-->
-<!--Adviser: @Brilliantry_Rui-->
+<!--Tester: @memghaiyang-->
+<!--Adviser: @HelloCrease-->
 
 Bundle Manager (bm) is a tool for installing, uninstalling, updating, and querying bundles. It provides basic capabilities for debugging application installation bundles.
 
@@ -45,11 +45,11 @@ bm help
 
 ### userId
 
-ID of the current system account. For details about the APIs related to system accounts, see [@ohos.account.osAccount (System Account Management)](../reference/apis-basic-services-kit/js-apis-osAccount.md). The following lists several common system accounts.
+ID of the current system account. For details about the APIs related to system accounts, see [@ohos.account.osAccount (OS Account Management)](../reference/apis-basic-services-kit/js-apis-osAccount.md). The following lists several common system accounts.
 
 - **userId = 100**: System account with ID 100. This is the default system account, which is created by the system account management module when the device is started for the first time after delivery. After the account is created, all pre-installed bundles are installed for ID 100.
 
-- **userId = 102**: System account with ID 102. This account is created by the system account management module. <!--Del-->You can create an account using the [createOsAccountForDomain](../reference/apis-basic-services-kit/js-apis-osAccount-sys.md) API. <!--DelEnd-->Only system bundles can create accounts. Bundles installed for account 100 are not displayed for account 102. If necessary, reinstall the bundles for account 102. When account 102 is created, the system installs the pre-installed system bundles for account 102.
+- **userId = 102**: System account with ID 102. This account is created by the system account management module. <!--Del-->You can create an account using the [createOsAccountForDomain](../reference/apis-basic-services-kit/js-apis-osAccount-sys.md#createosaccountfordomain8) API. <!--DelEnd-->Only system bundles can create accounts. Bundles installed for account 100 are not displayed for account 102. If necessary, reinstall the bundles for account 102. When account 102 is created, the system installs the pre-installed system bundles for account 102.
 
 - **userId = 0**: Shared system account, also called account 0. Unlike the system account, the shared system account is not created by the system account management module. Bundles installed for account 0 are shared by all system accounts and are displayed for each system account. All third-party bundles cannot be installed for account 0.
 
@@ -111,7 +111,7 @@ bm uninstall [-h] [-n bundleName] [-m moduleName] [-k] [-s] [-v versionCode] [-u
 | -n | Used to uninstall a bundle. This parameter is mandatory.|
 | -m | Used to specify the name of an application module to be uninstalled. This parameter is optional. By default, all modules are uninstalled.|
 | -k | Used to uninstall a bundle with or without retaining the bundle data. This parameter is optional. By default, the bundle data is deleted along the uninstall.|
-| -s |  Used to uninstall an HSP. This parameter is mandatory only for the HSP uninstallation.|
+| -s | Used to uninstall an HSP. This parameter is mandatory only for the HSP uninstallation.|
 | -v | Used to uninstall an HSP of a given version number. This parameter is optional. By default, all shared bundles with the specified bundle name are uninstalled.|
 | -u | Used to specify the [user](#userid). By default, the bundle is uninstalled for the current active user. This parameter is optional. The bundle can be uninstalled only for the current active user or user 0.<br>**NOTE**<br> If the current active user is 100, the bundle will be uninstalled only for the current active user 100 when the **bm uninstall -n com.ohos.app -u 102** command is executed.|
 
@@ -274,7 +274,7 @@ bm get [-h] [-u]
 
 | Parameter| Description|
 | -------- | -------- |
-| -h |Used to display help information.|
+| -h | Used to display help information.|
 | -u | Used to obtain the UDID of a device. This parameter is mandatory.|
 
 
@@ -372,11 +372,11 @@ bm dump-dependencies [-h] [-n bundleName] [-m moduleName]
 | -------- | -------- |
 | -h | Used to display help information.|
 | -n | Used to display information about the shared library on which a specified bundle depends. This parameter is mandatory.|
-| -m | Used to display information about the shared library on which a specified module of a bundle depends. This parameter is optional.|
+| -m | Used to display information about the shared library on which a specified module of a bundle depends. This parameter is mandatory.|
 
 Example
 ```Bash
-# Display information about the shared library on which a specified module of a bundle depends.
+# Used to display information about the shared library on which a specified module of a bundle depends.
 bm dump-dependencies -n com.ohos.app -m entry
 ```
 
@@ -392,7 +392,7 @@ bm compile [-h] [-m mode] [-r bundleName] [-a]
 | -------- | -------- |
 | -h | Used to display help information.|
 | -a | Used to compile all bundles. This parameter is optional.|
-| -m |  Used to compile a bundle based on the bundle name. The value can be **partial** or **full**. This parameter is optional.|
+| -m | Used to compile a bundle based on the bundle name. The value can be **partial** or **full**. This parameter is optional.|
 | -r | Used to check whether a bundle is removed. This parameter is optional.|
 
 Example
@@ -415,8 +415,8 @@ bm copy-ap [-h] [-a] [-n bundleName]
 | Parameter| Description|
 | -------- | -------- |
 | -h | Used to display help information.|
-| -a |  Used to copy the .ap files related to all bundles. By default, .ap files related to all bundles are copied. This parameter is optional.|
-| -n |  Used to copy the .ap file related to a specified bundle, which is the current bundle by default. This parameter is optional.|
+| -a | Used to copy the .ap files related to all bundles. By default, .ap files related to all bundles are copied. This parameter is optional.|
+| -n | Used to copy the .ap file related to a specified bundle, which is the current bundle by default. This parameter is optional.|
 
 Example
 
@@ -469,7 +469,7 @@ bm dump-target-overlay [-h] [-b bundleName] [-m moduleName] [-u userId]
 | -------- | -------- |
 | -h | Used to display help information.|
 | -b | Used to display all **OverlayBundleInfo** about a specified bundle. This parameter is mandatory.|
-| -m |  Used to display **OverlayModuleInfo** based on a specified bundle name and module name. By default, **OverlayModuleInfo** of the main module of the current bundle is displayed. This parameter is optional.|
+| -m | Used to display **OverlayModuleInfo** based on a specified bundle name and module name. By default, **OverlayModuleInfo** of the main module of the current bundle is displayed. This parameter is optional.|
 | -u | Used to query **OverlayModuleInfo** of a specified user(#userid). By default, the information is queried by the current active user. This parameter is optional. The bundle can be queried only for the current active user or user 0.<br>**NOTE**<br> If the current active user is 100, when you run the **bm dump-target-overlay -b com.ohos.app -u 102** command to query all associated **OverlayBundleInfo** in the target bundle **com.ohos.app**, only the **OverlayModuleInfo** of the current active user 100 is returned.|
 
 Example
@@ -551,7 +551,7 @@ The system account ID does not exist during bundle installation.
 
 1. Restart the phone and try again.
 
-2. If the installation still fails after you repeat the preceding steps three to five times, export the log file and submit an [online ticket](https://developer.huawei.com/consumer/en/support/feedback/#/) for help.
+2. If the installation still fails after you repeat the preceding steps 3 to 5 times, export the log file. <!--RP13-->[Submit a new issue](https://atomgit.com/openharmony/docs/issues) for help.<!--RP13End-->
 
     ```shell
     hdc file recv /data/log/hilog/
@@ -609,6 +609,11 @@ The HAP/HSP file is not signed.
 **Solution**
 
 You can choose to use automatic or manual signing based on the actual scenario. For example, if the Internet is unavailable, manual signing is recommended. For details, see [Application Scenarios](https://developer.huawei.com/consumer/en/doc/harmonyos-guides/ide-signing#section54361623194519).
+
+> **NOTE**
+>
+> In the **products** tag of the project-level **build-profile.json5** file, the **signingConfig** field is optional. If this field is missing, the signature will become invalid. For details, see the field description under the [products](https://developer.huawei.com/consumer/en/doc/harmonyos-guides/ide-hvigor-build-profile-app#section45865492619) tag.
+>
 
 Method 1: Use [automatic signing](https://developer.huawei.com/consumer/en/doc/harmonyos-guides/ide-signing#section18815157237) to sign the HAP file after the device is connected.
 
@@ -779,7 +784,7 @@ Method 2: Manually sign the HAP file. For details, see [Signing Your App/Atomic 
 
 error: install parse profile prop check error.
 
-![Example](figures/error-message02.png)
+![Example figure](figures/error-message02.png)
 
 **Symptom**
 
@@ -804,7 +809,7 @@ When you start debugging or run an application, the error message "error: instal
 
            The format of the new .cer file is shown below. (The file content is an example.)
 
-           ![Example](figures/cer-file-example.png)
+           ![Example figure](figures/cer-file-example.png)
 
         * Use the keytool (available in the **jbr/bin** folder of the DevEco Studio installation directory) to obtain the SHA-256 value of the certificate fingerprint from the .cer file:
 
@@ -815,7 +820,7 @@ When you start debugging or run an application, the error message "error: instal
 
            The following figure shows an example.
 
-           ![Example](figures/sha-256-fingerprint.png)
+           ![Example figure](figures/sha-256-fingerprint.png)
 
            After colons are removed, the obtained signature fingerprint is **5753DDBC1A8EF88A62058A9FC4B6AFAFC1C5D8D1A1B86FB3532739B625F8F3DB**.
 
@@ -841,7 +846,7 @@ When you start debugging or run an application, the error message "error: instal
 
     3. Add the signature fingerprint obtained to **app_signature** in the **install_list_capability.json** file. Note that the signature fingerprint must be configured under the corresponding bundle name.
 
-       ![Example](figures/error-message05.png)
+       ![Example figure](figures/error-message05.png)
 
     4. Push the modified **install_list_capability.json** file to the device and restart the device.
 
@@ -886,7 +891,16 @@ Scenario 1: When the HSP and HAP are in the same project, perform the following 
 Scenario 2: When the HSP and HAP are not in the same project, perform the following operations:
 
 Before installing the HAP, run the [bm install](#install) command to install the dependent HSP.
-  
+
+Scenario 3: When the integrated HSP is required, perform the following operations:
+
+If the integrated HSP is required, you need to install the package compiled from the integrated HSP at the same time or in advance when using the hdc tool to install the application. To check whether the integrated HSP is required, perform the following steps:
+
+When DevEco Studio automatically installs and runs an application, check logs in **Run**. If the **remote_hsp** directory exists, the integrated HSP is required. The HSP file in the **remote_hsp** directory is the package generated after the integrated HSP is compiled.
+
+![Example](figures/remote_hsp.png)
+
+
 ### 9568259 Some Fields Are Missing in the Configuration File
 **Error Message**
 
@@ -974,22 +988,26 @@ An internal service error occurs during the installation.
 
 Restart the device and try again.
 
-### 9568262 Incorrect Plugin Installation Command
+### 9568262 Application Installation and Parsing Failure
 **Error Message**
 
 error: install parse failed.
 
 **Symptom**
 
-The command used for installing the plugin is incorrect.
+The application fails to be installed and parsed.
 
 **Possible Causes**
 
-The [bm install](#install) command is used to install the plugin.
+1. The [bm install](#install) command is used to install the plugin.
+2. The [bm install](#install) command is used to install a package whose [bundleType](../quick-start/app-configuration-file.md#tags-in-the-configuration-file) is skill.
+3. **skillProfiles** is configured in the **module.json** file of the application to be installed, but the configured skill name and skill directory name are different from **name** in **frontmatter** in the **SKILL.md** file.
 
 **Solution**
 
-Use the [bm install-plugin](#install-plugin) command to install the plugin.
+1. Use the [bm install-plugin](#install-plugin) command to install the plugin.
+2. Skill packages cannot be installed using commands. Change the type of the application [bundleType](../quick-start/app-configuration-file.md#tags-in-the-configuration-file)<!--Del--> or use the preset mode<!--DelEnd-->.
+3. Check that the skill name under **skillProfiles** in the **module.json** file, the subdirectory name in the **skills** directory, and the name of **frontmatter** in the **SKILL.md file** are the same.
 
 ### 9568265 Incorrect Internal Parameter During Installation
 **Error Message**
@@ -1103,7 +1121,7 @@ The passed-in installation package path is invalid.
 
 error: signature verification failed due to not trusted app source.
 
-![Example](figures/error-message01.png)
+![Example](figures/error-message.png)
 
 **Symptom**
 
@@ -1119,8 +1137,8 @@ When you start debugging or run an application, the error message "error: signat
 **Solution**
 
 <!--RP9-->
-<!--RP9End-->
-1. Use [automatic signing](https://developer.huawei.com/consumer/en/doc/harmonyos-guides/ide-signing#section18815157237) to sign the HAP file after the device is connected.<!--Del-->
+
+1. Use [automatic signing](https://developer.huawei.com/consumer/en/doc/harmonyos-guides/ide-signing#section18815157237) to sign the HAP file after the device is connected.<!--RP9End--><!--Del-->
 
 2. If manual signing is used, for OpenHarmony bundles, add the **UDID** of the debugging device to the **UnsgnedDebugProfileTemplate.json** file. For details, see [hapsigner Guide](../security/hapsigntool-guidelines.md).
 
@@ -1136,7 +1154,6 @@ When you start debugging or run an application, the error message "error: signat
         ```shell
           DevEco Studio installation path\sdk\version number or default\openharmony\toolchains\lib\
 
-          Example: xxxx\Huawei\DevEco Studio\sdk\HarmonyOS-NEXT-DB1\openharmony\toolchains\lib\
           Example: xxxx\Huawei\DevEco Studio\sdk\default\openharmony\toolchains\lib\
         ```
 
@@ -1180,7 +1197,7 @@ The file or directory cannot be created due to insufficient storage space.
 
 **Solution**
 
-Check the device storage and free up enough space to meet the installation requirements, then try installing the bundle again.
+Check the device storage where the bundle is to be installed and free up enough space to meet the installation requirements, then try installing the bundle again. If cleaning up storage on the emulator still fails, try creating a new emulator with more storage space. For details, refer to [Creating an Emulator](https://developer.huawei.com/consumer/en/doc/harmonyos-guides/ide-emulator-create#section1764055173710).
 <!--RP4-->
 ```bash
 # Check the disk space usage.
@@ -1230,7 +1247,7 @@ During bundle installation or update, the token update API of the ability is cal
 
 1. Restart the phone and try again.
 
-2. If the installation still fails after you repeat the preceding steps three to five times, export the log file and submit an [online ticket](https://developer.huawei.com/consumer/en/support/feedback/#/) for help.
+2. If the installation still fails after you repeat the preceding steps 3 to 5 times, export the log file. <!--RP13-->[Submit a new issue](https://atomgit.com/openharmony/docs/issues) for help.<!--RP13End-->
 
     ```shell
     hdc file recv /data/log/hilog/
@@ -1267,7 +1284,7 @@ The installation fails due to SysCap inconsistency.
 
 **Possible Causes**
 
-The [SysCap](./../reference/syscap.md) configured in multiple HAP/HSP files is inconsistent.
+The [SysCap](./../reference/syscap.md#syscap-usage) configured in multiple HAP/HSP files is inconsistent.
 
 **Solution**
 
@@ -1673,7 +1690,7 @@ There is an application control policy.
 
 **Solution**
 
-No solution is available for enterprise control. You can submit an [online ticket](https://developer.huawei.com/consumer/en/support/feedback/#/) for help.
+No solution is available for enterprise control. <!--RP13-->[Submit a new issue](https://atomgit.com/openharmony/docs/issues) for help.<!--RP13End-->
 
 
 ### 9568304 Current Device Type Not Supported
@@ -1842,7 +1859,7 @@ An unknown system exception occurs.
     ls -ls
     ```
 
-3. Export the crash file and log file and submit them to [online tickets](https://developer.huawei.com/consumer/en/support/feedback/#/) for help.
+3. Export the crash file and log file. <!--RP13-->[Submit a new issue](https://atomgit.com/openharmony/docs/issues) for help.<!--RP13End-->
 
     ```bash
     hdc file recv /data/log/faultlog/faultlogger/
@@ -1892,7 +1909,7 @@ The file copy operation fails during bundle installation.
 
 1. Restart the phone and try again.
 
-2. If the installation still fails after you repeat the preceding steps three to five times, export the log file and submit an [online ticket](https://developer.huawei.com/consumer/en/support/feedback/#/) for help.
+2. If the installation still fails after you repeat the preceding steps 3 to 5 times, export the log file. <!--RP13-->[Submit a new issue](https://atomgit.com/openharmony/docs/issues) for help.<!--RP13End-->
 
     ```bash
     hdc file recv /data/log/hilog/
@@ -1940,7 +1957,7 @@ The installation fails because an exception occurs when the code signature confi
 
 1. Restart the phone and try again.
 
-2. If the installation still fails after you repeat the preceding steps three to five times, export the log file and submit an [online ticket](https://developer.huawei.com/consumer/en/support/feedback/#/) for help.
+2. If the installation still fails after you repeat the preceding steps 3 to 5 times, export the log file. <!--RP13-->[Submit a new issue](https://atomgit.com/openharmony/docs/issues) for help.<!--RP13End-->
 
     ```bash
     hdc file recv /data/log/hilog/
@@ -1966,7 +1983,7 @@ The bundle fails to be uninstalled because the signature configuration file fail
 
 1. Restart the phone and uninstall the bundle again (for PCs or 2-in-1 devices, ensure that the bundle is uninstalled for all users<!--RP10--><!--RP10End-->).
 
-2. If the uninstallation still fails after repeating the preceding steps three to five times, export the log file and submit an [online ticket](https://developer.huawei.com/consumer/en/support/feedback/#/) for help.
+2. If the unstallation still fails after you repeat the preceding steps 3 to 5 times, export the log file. <!--RP13-->[Submit a new issue](https://atomgit.com/openharmony/docs/issues) for help.<!--RP13End-->
 
     ```bash
     hdc file recv /data/log/hilog/
@@ -2023,7 +2040,7 @@ The bm tool process is abnormal or the permission is lost. As a result, the bm t
 
 1. Restart the device and uninstall the application again.
 
-2. If the installation still fails after you repeat the preceding steps three to five times, export the log file and submit an [online ticket](https://developer.huawei.com/consumer/en/support/feedback/#/) for help.
+2. If the installation still fails after you repeat the preceding steps 3 to 5 times, export the log file. <!--RP13-->[Submit a new issue](https://atomgit.com/openharmony/docs/issues) for help.<!--RP13End-->
 
     ```bash
     # Export the log file.
@@ -2055,7 +2072,7 @@ An unknown system exception occurs.
     ls -ls
     ```
 
-3. Export the crash file and log file and submit them to [online tickets](https://developer.huawei.com/consumer/en/support/feedback/#/) for help.
+3. Export the crash file and log file. <!--RP13-->[Submit a new issue](https://atomgit.com/openharmony/docs/issues) for help.<!--RP13End-->
 
     ```bash
     hdc file recv /data/log/faultlog/faultlogger/
@@ -2113,7 +2130,7 @@ The installation fails due to an unknown system error.
 
 1. Restart the phone and try again.
 
-2. If the installation still fails after you repeat the preceding steps three to five times, export the log file and submit an [online ticket](https://developer.huawei.com/consumer/en/support/feedback/#/) for help.
+2. If the installation still fails after you repeat the preceding steps 3 to 5 times, export the log file. <!--RP13-->[Submit a new issue](https://atomgit.com/openharmony/docs/issues) for help.<!--RP13End-->
 
     ```bash
     # Export the log file.
@@ -2357,7 +2374,7 @@ The passed-in parameter is invalid or the passed-in directory is empty during th
 
 1. Restart the phone and try again.
 
-2. If the installation still fails after you repeat the preceding steps three to five times, export the log file and submit an [online ticket](https://developer.huawei.com/consumer/en/support/feedback/#/) for help.
+2. If the installation still fails after you repeat the preceding steps 3 to 5 times, export the log file. <!--RP13-->[Submit a new issue](https://atomgit.com/openharmony/docs/issues) for help.<!--RP13End-->
 
     ```bash
     # Export the log file.
@@ -2382,7 +2399,7 @@ You do not have the write permission when creating a file directory.
 
 1. Restart the phone and try again.
 
-2. If the installation still fails after you repeat the preceding steps three to five times, export the log file and submit an [online ticket](https://developer.huawei.com/consumer/en/support/feedback/#/) for help.
+2. If the installation still fails after you repeat the preceding steps 3 to 5 times, export the log file. <!--RP13-->[Submit a new issue](https://atomgit.com/openharmony/docs/issues) for help.<!--RP13End-->
 
     ```bash
     # Export the log file.
@@ -2407,7 +2424,7 @@ The directory to be deleted does not exist, or you do not have the write permiss
 
 1. Restart the phone and try again.
 
-2. If the installation still fails after you repeat the preceding steps three to five times, export the log file and submit an [online ticket](https://developer.huawei.com/consumer/en/support/feedback/#/) for help.
+2. If the installation still fails after you repeat the preceding steps 3 to 5 times, export the log file. <!--RP13-->[Submit a new issue](https://atomgit.com/openharmony/docs/issues) for help.<!--RP13End-->
 
     ```bash
     # Export the log file.
@@ -2432,7 +2449,7 @@ During the installation, the .so file fails to be extracted from the HAP file be
 
 1. Restart the phone and try again.
 
-2. If the installation still fails after you repeat the preceding steps three to five times, export the log file and submit an [online ticket](https://developer.huawei.com/consumer/en/support/feedback/#/) for help.
+2. If the installation still fails after you repeat the preceding steps 3 to 5 times, export the log file. <!--RP13-->[Submit a new issue](https://atomgit.com/openharmony/docs/issues) for help.<!--RP13End-->
 
     ```bash
     # Export the log file.
@@ -2457,7 +2474,7 @@ The directory name contains more than 260 characters, or you do not have the wri
 
 1. Restart the phone and try again.
 
-2. If the installation still fails after you repeat the preceding steps three to five times, export the log file and submit an [online ticket](https://developer.huawei.com/consumer/en/support/feedback/#/) for help.
+2. If the installation still fails after you repeat the preceding steps 3 to 5 times, export the log file. <!--RP13-->[Submit a new issue](https://atomgit.com/openharmony/docs/issues) for help.<!--RP13End-->
 
     ```bash
     # Export the log file.
@@ -2481,7 +2498,7 @@ You do not have the write permission on the files to be cleared.
 
 1. Restart the phone and try again.
 
-2. If the installation still fails after you repeat the preceding steps three to five times, export the log file and submit an [online ticket](https://developer.huawei.com/consumer/en/support/feedback/#/) for help.
+2. If the installation still fails after you repeat the preceding steps 3 to 5 times, export the log file. <!--RP13-->[Submit a new issue](https://atomgit.com/openharmony/docs/issues) for help.<!--RP13End-->
 
     ```bash
     # Export the log file.
@@ -2704,7 +2721,7 @@ The target application cannot be uninstalled.
 
 **Solution**
 
-No solution is available. You can submit an [online ticket](https://developer.huawei.com/consumer/en/support/feedback/#/) for help.
+No solution is available. <!--RP13-->[Submit an issue](https://atomgit.com/openharmony/docs/issues) for help.<!--RP13End-->
 
 ### 9568413 Current Device Not Supported
 
@@ -2714,6 +2731,7 @@ error: check syscap filed and device type is not supported.
 
 **Symptom**
 
+<!--RP12-->
 The [device types](../quick-start/module-configuration-file.md#devicetypes) configured for the bundle are not supported.
 
 **Possible Causes**
@@ -2722,7 +2740,7 @@ The [device types](../quick-start/module-configuration-file.md#devicetypes) conf
 
 **Solution**
 
-Correct the [device types](../quick-start/module-configuration-file.md#devicetypes).
+Correct the [device types](../quick-start/module-configuration-file.md#devicetypes).<!--RP12End-->
 
 ### 9568415 The Encrypted Bundle Whose Signing Certificate Is Debug or Debug Is True in Configuration File Cannot Be Installed
 **Error Message**
@@ -2770,13 +2788,19 @@ The new bundle cannot be installed because its bundle name matches that of the u
 
 **Possible Causes**
 
-The [key](https://developer.huawei.com/consumer/en/doc/harmonyos-guides/ide-signing#section462703710326) in the bundle signature information and <!--RP7-->the **app-identifier** in the bundle [profile](../security/app-provision-structure.md)<!--RP7End--> are different from those of the uninstalled pre-installed bundle.
+Although the pre-installed bundle has been uninstalled, the system still installs the preset bundle before installing the new bundle package. This is because the key in the installation signature information of the pre-installed bundle and the <!--RP7-->**app-identifier** in the bundle profile<!--RP7End--> are different from those of the newly installed bundle.
 
 **Solution**
 
-Method 1: Re-sign the bundle to ensure that either the [key](https://developer.huawei.com/consumer/en/doc/harmonyos-guides/ide-signing#section462703710326) in the bundle signature information or <!--RP7-->the **app-identifier** in the bundle [profile](../security/app-provision-structure.md)<!--RP7End--> is the same as that of the pre-installed bundle.
+Method 1: Re-sign the bundle.
 
-Method 2: Modify the [bundleName](../quick-start/app-configuration-file.md#tags-in-the-configuration-file) of the new bundle to ensure it is different from the pre-installed bundle's bundle name.
+Re-sign the bundle to ensure that either the [key](https://developer.huawei.com/consumer/en/doc/harmonyos-guides/ide-signing#section462703710326) in the bundle signature information or the <!--RP7-->**app-identifier** in the bundle [profile](../security/app-provision-structure.md)<!--RP7End--> is the same as that of the pre-installed bundle.
+
+<!--RP11--><!--RP11End-->
+
+Method 2: Change the bundle name.
+
+Modify the [bundleName](../quick-start/app-configuration-file.md#tags-in-the-configuration-file) of the new bundle to ensure it is different from the pre-installed bundle's bundle name.
 
 ### 9568418 Failed to Uninstall a Bundle Configured with an Uninstallation Disposed Rule
 **Error Message**
@@ -3089,7 +3113,7 @@ error: install parse syscap error.
 
 **Symptom**
 
-Failed to obtain the [SysCap](./../reference/syscap.md) information from the installation package during the installation.
+Failed to obtain the [SysCap](./../reference/syscap.md#syscap-usage) information from the installation package during the installation.
 
 **Possible Causes**
 
@@ -3121,7 +3145,7 @@ The Bundle Binary Interface (ABI) supported by the device does not match that co
 
 **Solution**
 
-1. Connect the device or Emulator to DevEco Studio. For details, please refer to [Running an App/FA](https://developer.huawei.com/consumer/en/doc/harmonyos-guides/ide-run-device).
+1. Connect the device or Emulator to DevEco Studio. For details, see [Running Your App on a Local Real Device](https://developer.huawei.com/consumer/en/doc/harmonyos-guides/ide-run-device).
 
 2. Run the [hdc command](#environment-requirements-hdc) to query ABIs supported on this device.
 
@@ -3180,7 +3204,7 @@ The bundle manager or other services are abnormal.
 **Solution**
 1. Restart the phone and try again.
 
-2. If the installation still fails after you repeat the preceding steps three to five times, export the log file and submit an [online ticket](https://developer.huawei.com/consumer/en/support/feedback/#/) for help.
+2. If the installation still fails after you repeat the preceding steps 3 to 5 times, export the log file. <!--RP13-->[Submit a new issue](https://atomgit.com/openharmony/docs/issues) for help.<!--RP13End-->
 
     ```bash
     # Export the log file.
@@ -3463,4 +3487,6 @@ The security control capability is enhanced for pre-installed bundles that have 
 
 Rectify the fault based on the error information and error code.
 <!--DelEnd-->
+
+
 <!--no_check-->

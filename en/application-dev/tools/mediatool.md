@@ -6,74 +6,21 @@
 <!--Designer: @liweilu1-->
 <!--Tester: @xchaosioda-->
 <!--Adviser: @w_Machine_cc-->
+<!-- md-trans-meta sourceCommit=2845f22b3a6c7c573421bce7ff3e32f73246613d translatedAt=2026-07-20T10:51:22.477Z pushedAt=2026-07-21T03:32:30.706Z -->
 
 You can use [mediatool](#mediatool-1) or [hdc commands](#hdc-commands) to operate media library resources. The media library provides and manages data for the gallery. Images and videos in the media library are displayed on the gallery screen.
 
 ## mediatool
 
-mediatool is a lightweight command line tool set that built in the **/bin** folder. You can run the **hdc shell** command to invoke it.
+mediatool is a lightweight command line tool set built in the **/bin** folder. You can run the **hdc shell** command to invoke it.
 
 ### Prerequisites
 
 - The devices are properly connected.
+
 - **Developer options** is enabled in system settings.
+
 - The **hdc shell** command is executed to enter the command line execution mode.
-
-### mediatool send
-
-```shell
-mediatool send <path-to-local-media-file> [-ts] [-tas] [-rf] [-urf]
-```
-
-Sends images, audios, and videos in **\<path-to-local-media-file>** of the device to the media library for storage.  The original file names are used. If **\<path-to-local-media-file>** indicates a folder, all files in the folder are sent to the media library. After a file is successfully saved, the URI of the file is displayed.
-
-By default, a thumbnail is generated in synchronous mode when a media file is being saved to the media library, and the source file in **\<path-to-local-media-file>** is deleted once the saving process is complete.
-
-| Parameter              | Description            |
-| ---- |--------------- |
-| -ts | Creates a thumbnail in synchronous mode when an image or a video is being saved. The media file is displayed after the thumbnail is generated. However, the saving takes a longer time. This parameter is used by default.|
-| -tas | Creates a thumbnail in asynchronous mode when an image or a video is being saved. This parameter conflicts with **-ts**. The media file is displayed before the thumbnail is generated, and the saving takes a shorter time.|
-| -rf | Deletes the source file after a media file is saved. This parameter is used by default.|
-| -urf | Retains the source file after a media file is saved. This parameter conflicts with **-rf**.|
-
-**Example**
-
-```shell
-> mediatool send /data/tmp/MyImage.jpg
-file://media/Photo/3/IMG_1721381297_001/MyImage.jpg # The image is saved successfully, and the URI of the image is displayed.
-```
-
-### mediatool list
-
-```shell
-mediatool list <resource-uri>
-```
-
-Displays the information of a resource file specified by **\<resource-uri>** in the media library in CSV format.
-
-For example, if the URI of image A in the media library is **file://media/Photo/3/IMG_1721381297_001/MyImage.jpg**, you can run **mediatool list file://media/Photo/3** or **mediatool list file://media/Photo/3/IMG_1721381297_001/MyImage.jpg** to display the resource information.
-
-The following resource information is contained:
-
-- **uri**: URI of the media resource.
-- **display_name**: name of the media resource.
-- **data**: path of the source file of the media resource on the device.
-
-You can also set **\<resource-uri>** to **all**, which displays the information about all the resource files in the media library.
-
-**Example**
-
-```shell
-# Use a valid URI for query.
-> mediatool list file://media/Photo/3
-Table Name: Photos
-uri, display_name, data
-"file://media/Photo/3/IMG_1721381297_001/MyImage.jpg", "MyImage.jpg", "/storage/cloud/100/files/Photo/2/IMG_1721381297_001.jpg"
-
-# Use an invalid URI for query.
-> mediatool list file://media/Photo/
-[FAIL] uri invalid. uri:file://media/Photo/
-```
 
 <!--DelEnd-->
 
@@ -88,11 +35,13 @@ Exports the source file specified by **\<media-target>** in the media library to
 **\<media-target>** can be in either of the following formats:
 
 * File path in the system media directory. You can obtain the file path by running the [mediatool ls -l](#mediatool-ls--l) command. The folder path cannot be specified.
+
 * URI of the media library. (For details, see [Media Library URI Introduction and Obtaining Method](#media-library-uri-introduction-and-obtaining-method).)
 
 If **\<media-target>** specifies a file path, only the following paths are supported; they are mapped to one another and all resolve to the current user's system media directory.
 
 * **/storage/media/local/files/Photo** and lower file paths.
+
 * **/storage/media/\<uid\>/local/files/Photo** and lower file paths. **\<uid\>** must be the current user ID. Otherwise, an error message is displayed, indicating that the path is invalid.
 
 **\<dest-path>** is the path of the file to be created or the folder path. If it is set to a folder path, the file will be exported to the folder, and the file name remains the same as that in the media library. If it is set to a file path, do not use the path of an existing file. <!--Del-->The **<dest-path>** parameter must specify a path that can be accessed.<!--DelEnd--><!--RP1--><!--RP1End-->
@@ -208,6 +157,7 @@ Lists all the files in the system media path specified by **\<media-path>**. The
 **\<media-path>** supports only the following paths; they are mapped to one another and all resolve to the current user's system media directory.
 
 * **/storage/media/local/files/Photo** and its subdirectories.
+
 * **/storage/media/\<uid\>/local/files/Photo** and its subdirectories. **\<uid\>** must be the current user ID. Otherwise, an error message is displayed, indicating that the path is invalid.
 
 The **-l** option is mandatory. If **-l** is not specified, an error is reported.
@@ -320,12 +270,6 @@ The URI uniquely identifies a media library asset. mediatool uses the URI to det
 To obtain the URI, perform the following steps:
 
 * Add the **-u** option to **mediatool query** to return the URI of the corresponding media asset. You need to enter the display name of the corresponding asset (the name displayed in Gallery contains the extension).
-
-<!--Del-->
-
-* Run the **mediatool list all** command to obtain the URI list and display names of all media library assets.
-
-<!--DelEnd-->
 
 The media library URI can be used in the **mediatool recv** command to export a specific media library asset or in the **mediatool delete** command to delete a specific media library asset.
 

@@ -3,8 +3,8 @@
 <!--Subsystem: BundleManager-->
 <!--Owner: @jsjzju-->
 <!--Designer: @jsjzju-->
-<!--Tester: @lixueqing513-->
-<!--Adviser: @Brilliantry_Rui-->
+<!--Tester: @liangchengguang-->
+<!--Adviser: @HelloCrease-->
 
 The unpacking tool is a commissioning tool used to unpack HAP (an application package), HSP (dynamically shared library), and APP (application set to launch to the application market) files. It also provides Java APIs to parse the HAP, HSP, and APP files.
 
@@ -166,10 +166,10 @@ The package parsing APIs are used by the application market to parse an HAP, HSP
 
 | Class              | Prototype                                                    | Type    | Description                                                           |
 | ------------------ | ------------------------------------------------------------ | -------- |-------------------------------------------------------------------|
-| UncompressEntrance | UncompressResult parseApp(String appPath, ParseAppMode parseMode, String hapName) | Java| Function: Parses **pack.info** in the APP file.<br>Input parameters: **appPath**, **parseMode** (**ALL**/**HAP_LIST**/**HAP_INFO**), and **hapName** (required when **parseMode** is set to **HAP_INFO**).<br>Return value: **UncompressResult**.|
-| UncompressEntrance | UncompressResult parseApp(InputStream input, ParseAppMode parseMode, String hapName) | Java| Function: Parses **pack.info** in the APP file.<br>Input parameters: **input**, **parseMode** (**ALL**/**HAP_LIST**/**HAP_INFO**), and **hapName** (required when **parseMode** is set to **HAP_INFO**).<br>Return value: **UncompressResult**.|
-| UncompressEntrance | UncompressResult parseHap(String hapPath)                    | Java| Function: Parses the JSON file in the APP file.<br>Input parameter: **hapPath**.<br>Return value: **UncompressResult**.   |
-| UncompressEntrance | UncompressResult parseHap(InputStream input)                 | Java| Function: Parses the JSON file in the APP file.<br>Input parameter: **input**.<br>Return value: **UncompressResult**.  |
+| UncompressEntrance | UncompressResult parseApp(String appPath, ParseAppMode parseMode, String hapName) | Java| Function: Parses **pack.info** in the APP bundle.<br>Input parameters: **appPath**, **parseMode** (**ALL**/**HAP_LIST**/**HAP_INFO**), and **hapName** (required when **parseMode** is set to **HAP_INFO**).<br>Return value: **UncompressResult**.|
+| UncompressEntrance | UncompressResult parseApp(InputStream input, ParseAppMode parseMode, String hapName) | Java| Function: Parses **pack.info** in the APP bundle.<br>Input parameters: **input**, **parseMode** (**ALL**/**HAP_LIST**/**HAP_INFO**), and **hapName** (required when **parseMode** is set to **HAP_INFO**).<br>Return value: **UncompressResult**.|
+| UncompressEntrance | UncompressResult parseHap(String hapPath)                    | Java| Function: Parses the JSON file in the HAP bundle.<br>Input parameter: **hapPath**.<br>Return value: **UncompressResult**.   |
+| UncompressEntrance | UncompressResult parseHap(InputStream input)                 | Java| Function: Parses the JSON file in the HAP bundle.<br>Input parameter: **input**.<br>Return value: **UncompressResult**.  |
 
 ## Fields of the Unpacking Tool
 
@@ -227,15 +227,30 @@ The package parsing APIs are used by the application market to parse an HAP, HSP
 | labelId                        | int     | Label resource ID of an application. | NA          |
 | icon                           | String  | Icon of an application.| NA          |
 | label                          | String  | Label of an application. | NA          |
-| description                    | String  | Description of the application.   | This field is newly added to the stage model.  |
+| description                    | String  | Description of the application.   | New in the stage model.  |
 | minCompatibleVersionCode       | int     | Earliest compatible version of the application. | NA          |
-| distributedNotificationEnabled | boolean | Whether the distributed notification feature is enabled for the application. The value **true** indicates that the feature is enabled, and **false** indicates the opposite.  | This field is newly added to the stage model.  |
+| distributedNotificationEnabled | boolean | Whether the distributed notification feature is enabled for the application. The value **true** indicates that the feature is enabled, and **false** indicates the opposite.  | New in the stage model.  |
 | bundleType                     | String  | Bundle type.<br>- **app**: The bundle is used for an application.<br>- **atomicService**: The bundle is used for an atomic service.<br>- **shared**: The bundle is used for a shared library.| NA   |
 | compileSdkVersion              | String  | SDK version used for compiling the application.  | This field is valid only for API version 10 and later.  |
 | compileSdkType                 | String  | SDK type used for compiling the application.  | This field is valid only for API version 10 and later.  |
 | labels                         | HashMap\<String, String> | Labels of the application in multiple languages.| NA          |
 | descriptions                   | HashMap\<String, String> | Descriptions of the application in multiple languages.| NA          |
 | buildVersion                    | String  | [buildVersion](../quick-start/app-configuration-file.md#tags-in-the-configuration-file) in the application. | This field is supported since API version 23.         |
+| deduplicateSo                  | boolean | Whether to enable SO file deduplication during application packaging. The value **true** indicates that SO file deduplication is enabled, and **false** indicates that SO file deduplication is disabled. This field comes from the **deduplicateSo** configuration in the **pack.info** file.| Supported since API version 26.0.0.|
+| alternateIcons                  | List\<[AlternateIcon](#alternateicon)\> | List of alternate icons of an application.| Supported since API version 26.0.0. |
+
+### AlternateIcon
+
+List of alternate application icons, which supports dynamically switching application icons at runtime.
+
+For details, see [alternateIcons](../quick-start/app-configuration-file.md#alternateicons).
+
+**Since**: API version 26.0.0
+
+| Field | Type  | Description                          |
+| ----- | ------ | ----------------------------- |
+| name  | String | Name of the alternate icon.          |
+| icon  | String | Path to the alternate icon.      |
 
 ### HapInfo Struct
 
@@ -260,18 +275,19 @@ The package parsing APIs are used by the application market to parse an HAP, HSP
 | commonEvents         | CommonEvent struct (see **CommonEvent Struct** below)      | Static event.                        | NA     |
 | shortcuts            | list\<Shortcut>             | Shortcuts used by the application.             | NA                  |
 | distroFilter         | DistroFilter struct          | Information distributed by the application market by device form.    | NA               |
-| srcEntrance          | String                      | Entry code path of the application.          | This field is newly added to the stage model.         |
-| process              | String                      | Process name of the HAP.                     | This field is newly added to the stage model.      |
+| srcEntrance          | String                      | Entry code path of the application.          | New in the stage model.         |
+| process              | String                      | Process name of the HAP.                     | New in the stage model.      |
 | mainElement          | String                      | Entry ability name or ExtensionAbility name of the HAP file.| This field is newly added to the stage model. In the FA model, the value of **mainAbility** is automatically assigned to **mainElement**.|
-| uiSyntax             | String                      | Syntax type of a JS component.        | This field is newly added to the stage model.      |
-| pages                | List\<String>               | Information about each page in a JS component.      | This field is newly added to the stage model.      |
-| extensionAbilityInfos| List\<ExtensionAbilityInfo> | Information about the ExtensionAbility.      | This field is newly added to the stage model.       |
+| uiSyntax             | String                      | Syntax type of a JS component.        | New in the stage model.      |
+| pages                | List\<String>               | Information about each page in a JS component.      | New in the stage model.      |
+| extensionAbilityInfos| List\<ExtensionAbilityInfo> | Information about the ExtensionAbility.      | New in the stage model.       |
 | moduleAtomicService  | ModuleAtomicService struct (see **ModuleAtomicService Struct** below)| Information about the atomic service in the HAP.| NA              |
 | formInfos            | List\<AbilityFormInfo>      | Widget information.                      | NA              |
 | descriptions         | HashMap\<String, String>    | Description of the HAP.                   | NA             |
 | compressedSize       | long                        | Size of the compressed HAP, in bytes.        | NA              |
 | originalSize         | long                        | Original size of the HAP, in bytes.        | NA             |
 | isModuleAbcCompressed  | boolean                   | Whether the [modules.abc](https://developer.huawei.com/consumer/en/doc/harmonyos-guides/ide-compile-build) file is compressed. The value **true** indicates that the file is compressed, and **false** indicates that the opposite.        | NA             |
+| skillProfiles    | List\<[SkillProfileInfo](#skillprofileinfo)\>  | Skill configuration information of the current module and is used to define the skill capabilities of an AI agent.  | Supported since API version 26.0.0. |
 <!--RP1--><!--RP1End-->
 
 ### AbilityInfo Struct
@@ -433,20 +449,20 @@ The package parsing APIs are used by the application market to parse an HAP, HSP
 
 | Field           | Type                    | Description                                                 | Remarks               |
 | --------------- | ------------------------ | ----------------------------------------------------- | ------------------ |
-| name            | String                   | Logical name of the ExtensionAbility.      | This field is supported only in the stage model.                     |
-| srcEntrance     | String                   | JS code path of the ExtensionAbility. | This field is supported only in the stage model.                  |
-| icon            | String                   | Icon ID of the ExtensionAbility.      | This field is supported only in the stage model.                     |
-| label           | String                   | ExtensionAbility name visible to users.   | This field is supported only in the stage model.          |
-| description     | String                   | Description of the ExtensionAbility.           | This field is supported only in the stage model.                |
+| name            | String                   | Logical name of the ExtensionAbility.      | Supported in the stage model.                     |
+| srcEntrance     | String                   | JS code path of the ExtensionAbility. | Supported in the stage model.                  |
+| icon            | String                   | Icon ID of the ExtensionAbility.      | Supported in the stage model.                     |
+| label           | String                   | ExtensionAbility name visible to users.   | Supported in the stage model.          |
+| description     | String                   | Description of the ExtensionAbility.           | Supported in the stage model.                |
 | type            | String                   | Type of the ExtensionAbility, which can be **form**, **workScheduler**, **inputMethod**, **service**, **accessibility**, **dataShare**, **fileShare**, **wallpaper**, or **backup**.| This field is supported only in the stage model. Currently, only **form** and **staticSubscriber** information is parsed. The information of other types is not parsed.       |
-| permissions     | List\<String>            | Permissions required when the ExtensionAbility is called by the ability of another application.| This field is supported only in the stage model.     |
-| readPermission  | String                   | Permission required for reading data in the ExtensionAbility.                        | This field is supported only in the stage model. |
-| writePermission | String                   | Permission required for writing data to the ExtensionAbility.                          | This field is supported only in the stage model.   |
-| visible         | boolean                  | Whether the ExtensionAbility can be called by other applications. The value **true** means that it can be invoked by other applications, and **false** means the opposite.             | This field is supported only in the stage model. |
-| skills          | List\<SkillInfo>         | Skills of the Want that the extensionAbility can receive.             | This field is supported only in the stage model.  |
-| metadataInfos   | List\<ModuleMetadataInfo>| Metadata that the ExtensionAbility can receive.               | This field is supported only in the stage model. |
+| permissions     | List\<String>            | Permissions required when the ExtensionAbility is called by the ability of another application.| Supported in the stage model.     |
+| readPermission  | String                   | Permission required for reading data in the ExtensionAbility.                        | Supported in the stage model. |
+| writePermission | String                   | Permission required for writing data to the ExtensionAbility.                          | Supported in the stage model.   |
+| visible         | boolean                  | Whether the ExtensionAbility can be called by other applications. The value **true** means that it can be invoked by other applications, and **false** means the opposite.             | Supported in the stage model. |
+| skills          | List\<SkillInfo>         | Skills of the Want that the extensionAbility can receive.             | Supported in the stage model.  |
+| metadataInfos   | List\<ModuleMetadataInfo>| Metadata that the ExtensionAbility can receive.               | Supported in the stage model. |
 | metadata        | MetaData Struct          | Metadata of the ExtensionAbility. | The information in **metadata** is assigned to **CustomizeData**.|
-| uri             | String                   | URI of the data provided by the ExtensionAbility.                      | This field is supported only in the stage model.     |
+| uri             | String                   | URI of the data provided by the ExtensionAbility.                      | Supported in the stage model.     |
 | descriptions    | HashMap\<String, String> | Descriptions of the ExtensionAbility in multiple languages.   | NA                 |
 | labels          | HashMap\<String, String> | Names of the ExtensionAbility displayed to users in multiple languages. | NA                   |
 
@@ -482,7 +498,7 @@ The package parsing APIs are used by the application market to parse an HAP, HSP
 | supportDimensions   | List\<String>            | Dimensions supported by the widget, which can be **1 * 2**, **2 * 2**, **2 * 4**, or **4 * 4**.  | NA        |
 | defaultDimension    | String                   | Default dimensions of the widget. The value must be available in the **supportDimensions** array of the widget.| NA        |
 | MetaData            | MetaData                 | Custom data of the widget.                                        | NA        |
-| description         | String                   | Description of the widget.                            | This field is newly added to the stage model.|
+| description         | String                   | Description of the widget.                            | New in the stage model.|
 | src                 | String                   | JS code of the widget.                                      | NA        |
 | windowInfo          | ModuleWindowInfo struct  | Window information of the ability.                                      | NA        |
 | isDefault           | boolean                  | Whether the widget is a default one. Each HAP has only one default widget. The value **true** indicates the widget is a default one, and **false** indicates the opposite.     | NA        |
@@ -599,3 +615,16 @@ The package parsing APIs are used by the application market to parse an HAP, HSP
 |-----------------|---------|-------------------------------------| ---- |
 | designWidth     | int     | Designed width of the used scene of the module.          | NA   |
 | autoDesignWidth | boolean | Automatically designed width of the used scene of the module. The value **true** indicates that **designWidth** is ignored and the baseline width is calculated based on the device width and screen density, and **false** indicates that the baseline width is **designWidth**.| NA   |
+
+### SkillProfileInfo
+
+**Since**: API version 26.0.0
+
+| Field              | Type          | Description                                                        | Remarks|
+| ------------------ | -------------- | ------------------------------------------------------------ | ---- |
+| name               | String         | Name of the skill, which must be unique within the current module. The value can contain a maximum of 64 bytes, including only lowercase letters, digits, and hyphens (-). It must start and end with a lowercase letter or digit.| NA   |
+| abilityName        | String         | Name of the component associated with the skill. This field applies only to modules of the **entry**, **feature**, and **shared** types. Modules of the skill type do not support this field. The default value is the name of the entry ability.| NA   |
+| srcEntries         | List\<String\> | List of code file paths that implement the skill and points to **.ets** files that contain the skill implementation logic. Each element is a file path relative to the **skills** directory of the current module.| NA   |
+| permissions        | List\<String\> | List of permissions required to invoke the skill.| NA   |
+| version        | String | Version number of the skill.| Complies with the semantic versioning format: *Major version number*.*Minor version number*.*Patch number*.  |
+| visibility        | String | Visibility of the skill.| private (visible only to the current application), system (visible to system applications), or public (visible to all applications)|
