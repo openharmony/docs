@@ -12,8 +12,6 @@
 
 **引用文件：** <syscap_ndk.h>
 
-**库：** deviceinfo_ndk.z.so
-
 **系统能力：** SystemCapability.Startup.SystemInfo
 
 **起始版本：** 8
