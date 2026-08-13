@@ -9,7 +9,9 @@
 
 ## 简介
 
-restool是一种应用工程资源编译工具，通过编译资源文件创建资源索引、解析资源，开发者可以调用[资源管理接口](../reference/apis-localization-kit/js-apis-resource-manager.md)获取到对应资源。restool工具保存在sdk安装目录下的toolchains子目录。
+restool是应用资源编译工具，会解析应用资源文件生成资源索引文件和资源二进制文件等产物，生成的产物由[打包工具](../tools/packing-tool.md)打包到应用包中，在应用运行阶段开发者可以通过[资源管理](../reference/apis-localization-kit/js-apis-resource-manager.md)接口获取应用包中的资源。
+
+restool工具存放在SDK安装目录下的toolchains文件夹中。
 
 ## 参数说明
 
@@ -442,7 +444,13 @@ Failed to create the directory or file 'xxx'.
 
 **处理步骤**
 
-检查文件路径是否准确且有访问权限。
+1. 检查文件路径是否准确。
+2. 检查文件权限。若文件权限为只读，修改文件权限为可读可写。具体操作如下：
+   - Windows：选中文件，点击鼠标右键，选择属性，取消勾选"只读"属性。
+   - Linux/MacOS：执行chmod命令"chmod 644 文件路径"。
+    > **说明**
+    >
+    > 若报错的文件路径为编译产物build目录下的路径，需先手动删除报错的文件，再修改其对应的源文件的权限。如报错路径为"entry\build\default\intermediates\res\default\resources\base\profile\form_config.json"，则修改对应的源文件"entry\src\main\resources\base\profile\form_config.json"的权限。
 
 ### 11204003 删除文件失败
 
@@ -460,7 +468,13 @@ Failed to delete the directory or file 'xxx'.
 
 **处理步骤**
 
-检查文件路径是否准确且有访问权限。
+1. 检查文件路径是否准确。
+2. 检查文件权限。若文件权限为只读，修改文件权限为可读可写。具体操作如下：
+   - Windows：选中文件，点击鼠标右键，选择属性，取消勾选"只读"属性。
+   - Linux/MacOS：执行chmod命令"chmod 644 文件路径"。
+    > **说明**
+    >
+    > 若报错的文件路径为编译产物build目录下的路径，需先手动删除报错的文件，再修改其对应的源文件的权限。如报错路径为"entry\build\default\intermediates\res\default\resources\base\profile\form_config.json"，则修改对应的源文件"entry\src\main\resources\base\profile\form_config.json"的权限。
 
 ### 11204004 拷贝文件失败
 
@@ -478,7 +492,13 @@ Failed to copy the file from 'xxx' to 'xxx'.
 
 **处理步骤**
 
-检查文件路径是否准确且有访问权限。
+1. 检查文件路径是否准确。
+2. 检查文件权限。若文件权限为只读，修改文件权限为可读可写。具体操作如下：
+   - Windows：选中文件，点击鼠标右键，选择属性，取消勾选"只读"属性。
+   - Linux/MacOS：执行chmod命令"chmod 644 文件路径"。
+    > **说明**
+    >
+    > 若报错的文件路径为编译产物build目录下的路径，需先手动删除报错的文件，再修改其对应的源文件的权限。如报错路径为"entry\build\default\intermediates\res\default\resources\base\profile\form_config.json"，则修改对应的源文件"entry\src\main\resources\base\profile\form_config.json"的权限。
 
 ### 11204005 打开文件失败
 
@@ -496,7 +516,13 @@ Failed to open the file 'xxx'.
 
 **处理步骤**
 
-检查文件路径是否准确且有访问权限。
+1. 检查文件路径是否准确。
+2. 检查文件权限。若文件权限为只读，修改文件权限为可读可写。具体操作如下：
+   - Windows：选中文件，点击鼠标右键，选择属性，取消勾选"只读"属性。
+   - Linux/MacOS：执行chmod命令"chmod 644 文件路径"。
+    > **说明**
+    >
+    > 若报错的文件路径为编译产物build目录下的路径，需先手动删除报错的文件，再修改其对应的源文件的权限。如报错路径为"entry\build\default\intermediates\res\default\resources\base\profile\form_config.json"，则修改对应的源文件"entry\src\main\resources\base\profile\form_config.json"的权限。
 
 ### 11204006 读取文件失败
 
