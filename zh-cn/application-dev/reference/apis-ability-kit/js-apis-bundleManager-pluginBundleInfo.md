@@ -7,6 +7,7 @@
 <!--Adviser: @HelloCrease-->
 
 插件信息，通过接口[pluginBundleManager.getAllLocalPluginInfoForSelf](js-apis-pluginBundleManager.md#pluginbundlemanagergetalllocalplugininfoforself)获取当前应用已通过自分发方式安装的所有插件信息。该信息包含插件的名称、图标、版本号及模块信息，用于管理已安装的插件，并基于版本号和模块信息进行兼容性检查与更新。
+
 **起始版本：** 26.0.0
 
 ## 导入模块

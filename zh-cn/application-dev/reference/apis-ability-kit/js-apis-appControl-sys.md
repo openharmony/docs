@@ -494,7 +494,7 @@ deleteDisposedStatusSync(appId: string, appIndex?: number) : void
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types.|
 | 801 | Capability not supported. |
 | 17700005 | The specified app ID is invalid. |
-| 17700061 | AppIndex is not in the valid range. |
+| 17700061 | AppIndex is not in the valid range.<br>适用版本： 12+ |
 
 **示例：**
 
@@ -549,7 +549,7 @@ getDisposedRule(appId: string, appIndex?: number): DisposedRule
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types.|
 | 801 | Capability not supported. |
 | 17700005 | The specified app ID is invalid. |
-| 17700061 | AppIndex is not in the valid range. |
+| 17700061 | AppIndex is not in the valid range.<br>适用版本： 12+ |
 
 **示例：**
 
@@ -695,7 +695,7 @@ setDisposedRule(appId: string, rule: DisposedRule, appIndex?: number): void
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types.|
 | 801 | Capability not supported. |
 | 17700005 | The specified app ID is invalid. |
-| 17700061 | AppIndex is not in the valid range. |
+| 17700061 | AppIndex is not in the valid range.<br>适用版本： 12+ |
 
 **示例：**
 
