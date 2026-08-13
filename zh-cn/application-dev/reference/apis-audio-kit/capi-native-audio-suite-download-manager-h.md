@@ -59,6 +59,8 @@ typedef void (*OH_AudioSuite_DownloadCallback)(OH_AudioSuite_DownloadStatusInfoA
 
 **起始版本：** 26.0.0
 
+**系统接口：** 此接口为系统接口。
+
 **参数：**
 
 | 参数项 | 描述 |
@@ -76,6 +78,8 @@ int32_t OH_AudioSuite_GetDownloadManager(OH_AudioSuite_DownloadManager **downloa
 获取音频下载管理器句柄，由OH_AudioSuite_GetDownloadManager获取，用于后续调用下载相关接口时标识操作目标。
 
 **起始版本：** 26.0.0
+
+**系统接口：** 此接口为系统接口。
 
 **参数：**
 
@@ -100,6 +104,8 @@ int32_t OH_AudioSuite_RegisterDownloadCallback(OH_AudioSuite_DownloadManager *do
 注册下载状态回调。
 
 **起始版本：** 26.0.0
+
+**系统接口：** 此接口为系统接口。
 
 **参数：**
 
@@ -126,6 +132,8 @@ int32_t OH_AudioSuite_UnregisterDownloadCallback(OH_AudioSuite_DownloadManager *
 
 **起始版本：** 26.0.0
 
+**系统接口：** 此接口为系统接口。
+
 **参数：**
 
 | 参数项 | 描述 |
@@ -150,6 +158,8 @@ int32_t OH_AudioSuite_StartDownload(OH_AudioSuite_DownloadManager *downloadManag
 开始下载。
 
 **起始版本：** 26.0.0
+
+**系统接口：** 此接口为系统接口。
 
 **参数：**
 
@@ -176,6 +186,8 @@ int32_t OH_AudioSuite_PauseDownload(OH_AudioSuite_DownloadManager *downloadManag
 
 **起始版本：** 26.0.0
 
+**系统接口：** 此接口为系统接口。
+
 **参数：**
 
 | 参数项 | 描述 |
@@ -200,6 +212,8 @@ int32_t OH_AudioSuite_CancelDownload(OH_AudioSuite_DownloadManager *downloadMana
 取消下载。
 
 **起始版本：** 26.0.0
+
+**系统接口：** 此接口为系统接口。
 
 **参数：**
 
@@ -226,6 +240,8 @@ int32_t OH_AudioSuite_StartBackgroundDownload(OH_AudioSuite_DownloadManager *dow
 
 **起始版本：** 26.0.0
 
+**系统接口：** 此接口为系统接口。
+
 **参数：**
 
 | 参数项 | 描述 |
@@ -250,6 +266,8 @@ int32_t OH_AudioSuite_GetDownloadStatus(OH_AudioSuite_DownloadManager *downloadM
 获取下载状态。
 
 **起始版本：** 26.0.0
+
+**系统接口：** 此接口为系统接口。
 
 **参数：**
 
@@ -276,6 +294,8 @@ int32_t OH_AudioSuite_UninstallCloudRom(OH_AudioSuite_DownloadManager *downloadM
 卸载已下载的云端文件。
 
 **起始版本：** 26.0.0
+
+**系统接口：** 此接口为系统接口。
 
 **参数：**
 

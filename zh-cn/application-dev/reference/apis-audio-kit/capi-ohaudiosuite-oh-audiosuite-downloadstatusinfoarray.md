@@ -16,6 +16,8 @@ typedef struct OH_AudioSuite_DownloadStatusInfoArray {...} OH_AudioSuite_Downloa
 
 **起始版本：** 26.0.0
 
+**系统接口：** 此接口为系统接口。
+
 **相关模块：** [OHAudioSuite](capi-ohaudiosuite.md)
 
 **所在头文件：** [native_audio_suite_download_manager.h](capi-native-audio-suite-download-manager-h.md)
