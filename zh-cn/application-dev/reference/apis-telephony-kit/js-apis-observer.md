@@ -144,7 +144,7 @@ type TelCallState = call.TelCallState
 
 |       类型       |            说明             |
 | ---------------- | --------------------------- |
-| [call.TelCallState](js-apis-call.md#telcallstate21) | 通话状态码。 |
+| [call.TelCallState](js-apis-call.md#telcallstate21) | 通话状态码（去电过程通知去电号码状态TEL_CALL_STATE_OFFHOOK和去电接通状态TEL_CALL_STATE_CONNECTED）。 |
 
 
 ## observer.on('networkStateChange')
@@ -434,7 +434,7 @@ observer.on('callStateChange', (data: observer.CallStateInfo) => {
 ```
 
 
-## observer.on('callStateChange')<sup>6+</sup>
+## observer.on('callStateChange')
 
 on(type: 'callStateChange', options: ObserverOptions, callback: Callback\<CallStateInfo\>): void
 

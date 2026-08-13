@@ -29,7 +29,7 @@ dial\(phoneNumber: string, callback: AsyncCallback\<boolean\>\): void
 
 > **说明：**
 >
-> 从API version 6 开始支持，从API version 9 开始废弃。
+> 从API version 6 开始支持，从API version 9 开始废弃。替代接口能力仅对系统应用开放。
 
 **需要权限**：ohos.permission.PLACE_CALL（该权限仅系统应用可申请）
 
@@ -61,7 +61,7 @@ dial\(phoneNumber: string, options: DialOptions, callback: AsyncCallback\<boolea
 
 > **说明：**
 >
-> 从API version 6 开始支持，从API version 9 开始废弃。
+> 从API version 6 开始支持，从API version 9 开始废弃。替代接口能力仅对系统应用开放。
 
 **需要权限**：ohos.permission.PLACE_CALL（该权限仅系统应用可申请）
 
@@ -96,7 +96,7 @@ dial\(phoneNumber: string, options?: DialOptions\): Promise\<boolean\>
 
 > **说明：**
 >
-> 从API version 6 开始支持，从API version 9 开始废弃。
+> 从API version 6 开始支持，从API version 9 开始废弃。替代接口能力仅对系统应用开放。
 
 **需要权限**：ohos.permission.PLACE_CALL（该权限仅系统应用可申请）
 
@@ -235,7 +235,7 @@ makeCall\(phoneNumber: string, options?: MakeCallOptions\): Promise\<void\>
 
 | 参数名      | 类型   | 必填 | 说明       |
 | ----------- | ------ | ---- | ---------- |
-| phoneNumber | string | 是   | 电话号码, 支持数字格式和tel格式（如"tel:13xxxx"）。 |
+| phoneNumber | string | 是   | 电话号码，支持数字格式和tel格式（如"tel:13xxxx"）。 |
 | options | [MakeCallOptions](#makecalloptions24) | 否   | 通话参数。 |
 
 **返回值：**
