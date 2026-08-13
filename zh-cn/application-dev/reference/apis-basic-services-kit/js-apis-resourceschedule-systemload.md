@@ -92,7 +92,7 @@ function onSystemLoadChange(res: systemLoad.SystemLoadLevel) {
 
 try {
     systemLoad.off('systemLoadChange', onSystemLoadChange);
-    console.info(`unregister systemload callback succeeded:. `);
+    console.info(`unregister systemload callback succeeded. `);
 } catch (err) {
     console.error(`unregister systemload callback failed: ` + JSON.stringify(err));
 }
