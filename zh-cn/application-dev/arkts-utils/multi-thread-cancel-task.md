@@ -42,7 +42,7 @@
    
    @Concurrent
    function cancel(send: SendableTest) {
-     // 在多线程中通过任务ID取消任务
+     // 在子线程中通过任务ID取消任务
      taskpool.cancel(send.getTaskId());
      console.info('cancel task finished');
    }
