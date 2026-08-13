@@ -41,7 +41,7 @@ typedef struct {...} OH_VBucket
 | [int (*destroy)(OH_VBucket *bucket)](#destroy)               | 销毁OH_VBucket对象，并回收该对象占用的内存。        |
 
 
-### 成员函数说明
+## 成员函数说明
 
 ### putText()
 

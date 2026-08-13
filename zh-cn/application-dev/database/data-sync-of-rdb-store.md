@@ -369,7 +369,7 @@ schema文件为json格式，文件主要为在dbSchema字段下进行多项配�
   - dbName：数据库名称，string类型，必填字段。如示例中数据库名为"RdbTest.db"，则此处配置为："RdbTest"。<!--RP21--><!--RP21End-->
   - tables：数据库中表信息，array[table]。
     - tableName：表名，string类型，必填字段。
-    - deviceSyncFields：指定端端同步对应的列，array[string]，其中字段必须在fields中，且必须在数据库表中，否则不会同步；该字段为必填字段，否则设置分布式表失败。<!--RP1--><!--RP1End-->
+    - deviceSyncFields：指定端端同步对应的列，array[string]，必填字段。其中字段必须在fields中，且必须在数据库表中，否则不会同步；未填写该字段时设置分布式表失败。<!--RP1--><!--RP1End-->
     - fields：数据库表字段详细信息，array[field]。
       - columnName：字段名，string类型，必填字段。
       - type：字段类型，string类型，必填字段，可选参数范围为：["Text", "Integer", "Long", "Float", "Double", "Blob" ]。
