@@ -16,6 +16,8 @@ typedef struct OH_AudioSuite_MetaFrame {...} OH_AudioSuite_MetaFrame
 
 **起始版本：** 26.0.0
 
+**系统接口：** 此接口为系统接口。
+
 **相关模块：** [OHAudioSuite](capi-ohaudiosuite.md)
 
 **所在头文件：** [native_audio_suite_base.h](capi-native-audio-suite-base-h.md)
