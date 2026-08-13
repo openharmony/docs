@@ -26,7 +26,7 @@
 
 | 名称 | typedef关键字 | 描述 |
 | -- | -- | -- |
-| [OH_MIDIEvent](capi-ohmidi-oh-midievent.md) | OH_MIDIEvent | MIDI事件结构体（通用）。事件数据以UMP（Universal MIDI Packets）格式传输。原始字节流（MIDI 1.0）数据需要先转换为UMP格式后再填充此结构体。|
+| [OH_MIDIEvent](capi-ohmidi-oh-midievent.md) | OH_MIDIEvent | MIDI事件结构体（通用）。事件数据以UMP（Universal MIDI Packet）格式传输。原始字节流（MIDI 1.0）数据需要先转换为UMP格式后再填充此结构体。|
 | [OH_MIDIDeviceInformation](capi-ohmidi-oh-midideviceinformation.md) | OH_MIDIDeviceInformation | 设备信息结构体。存储设备ID、设备名称等信息。 |
 | [OH_MIDIPortInformation](capi-ohmidi-oh-midiportinformation.md) | OH_MIDIPortInformation | 端口信息结构体。用于枚举端口，包含可显示的端口名称。 |
 | [OH_MIDIPortDescriptor](capi-ohmidi-oh-midiportdescriptor.md) | OH_MIDIPortDescriptor | 端口描述符结构体，用于打开端口时指定端口索引和协议行为。 |
@@ -115,7 +115,7 @@ MIDI协议版本枚举，用于指定端口使用的MIDI协议行为。
 
 > **说明：** 
 > 
-> SDK始终使用UMP（Universal MIDI Packets）格式进行数据传输，无论选择何种协议。此枚举定义连接的数据行为和语义，而不是数据结构。MT（Message Type，消息类型）是UMP数据包的消息类型标识，不同MT值对应不同类型的MIDI消息。
+> SDK始终使用UMP（Universal MIDI Packet）格式进行数据传输，无论选择何种协议。此枚举定义连接的数据行为和语义，而不是数据结构。MT（Message Type，消息类型）是UMP数据包的消息类型标识，不同MT值对应不同类型的MIDI消息。
 
 **起始版本：** 24
 
