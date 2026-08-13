@@ -219,4 +219,3 @@ struct Index {
 }
 ```
 
-![curveTrailOptimizedGif](figures/curveTrailOptimizedGif.gif)
