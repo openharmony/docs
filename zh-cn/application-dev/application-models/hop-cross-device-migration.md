@@ -53,7 +53,7 @@
 
 1. 在[module.json5配置文件](../quick-start/module-configuration-file.md)的abilities标签中配置跨端迁移标签`continuable`。
 
-   ```json
+   ```json5
    {
      "module": {
        "abilities": [
@@ -377,29 +377,38 @@ export default class MigrationAbility extends UIAbility {
    > continueType在本应用中要保证唯一，字符串以字母、数字和下划线组成，最大长度127个字节，不支持中文。
    > continueType标签类型为字符串数组，如果配置了多个字段，当前仅第一个字段会生效。
 
-```json
+   ```json5
    {
      "module": {
        "abilities": [
          {
-           "name": "Ability-deviceA",
-           "continueType": ['continueType1'],
+           "name": "EntryAbility",
+           "continueType": ["continueType"],
+           "continueBundleName": ["com.demo.example2"],
+          
          }
        ]
+       
      }
    }
-
+   ```
+   
+   ```json5
    {
      "module": {
        "abilities": [
          {
-           "name": "Ability-deviceB",
-           "continueType": ['continueType1'],
+           "name": "EntryAbility",
+           "continueType": ["continueType"],
+           "continueBundleName": ["com.demo.example1"],
+          
          }
        ]
+       
      }
    }
-```
+   
+   ```
 
 ### 支持同应用不同BundleName的Ability跨端迁移
 相同应用在不同设备类型下可能使用了不同的BundleName，该场景下如果需要支持应用跨端迁移，需要在不同BundleName的应用的module.json5配置文件中的abilities标签进行如下配置：
@@ -416,7 +425,7 @@ export default class MigrationAbility extends UIAbility {
 
    不同BundleName的相同应用在设备A和设备B之间相互迁移，设备A应用的BundleName为com.demo.example1，设备B应用的BundleName为com.demo.example2。
 
-```JSON
+```json5
 {
   "module": {
     "abilities": [
@@ -432,7 +441,7 @@ export default class MigrationAbility extends UIAbility {
 }
 ```
 
-```JSON
+```json5
 {
   "module": {
     "abilities": [
@@ -452,12 +461,12 @@ export default class MigrationAbility extends UIAbility {
 ### 支持快速拉起目标应用
 默认情况下，发起迁移后不会立即拉起对端的目标应用，而是等待迁移数据从源端同步到对端后，才会拉起。为了发起迁移后能够立即拉起目标应用，做到及时响应，可以通过在continueType标签中添加“_ContinueQuickStart”后缀进行生效，这样待迁移数据从源端同步到对端后只恢复迁移数据即可，提升应用迁移体验。
 
-   ```json
+   ```json5
    {
      "module": {
        "abilities": [
          {
-           "name": "EntryAbility"
+           "name": "EntryAbility",
            "continueType": ['EntryAbility_ContinueQuickStart'],
          }
        ]
@@ -466,7 +475,7 @@ export default class MigrationAbility extends UIAbility {
    ```
 配置快速拉起功能后，用户触发迁移，等待迁移数据返回的过程中，并行拉起应用，减小用户等待迁移启动时间。同时需注意，应用在迁移的提前启动时，首次触发迁移会收到`launchReason`为提前拉起 (PREPARE_CONTINUATION)的[onCreate()](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md#oncreate)/[onNewWant()](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md#onnewwant)请求。应用可以通过此`launchReason`，解决跳转、时序等问题，也可以在迁移快速启动时，增加loading界面。
 
-从API version 18开始，在快速拉起时含loading界面的应用，支持[获取应用跨端迁移快速拉起结果](../reference/apis-ability-kit/js-apis-app-ability-continueManager.md#continuemanageron)。根据快速拉起结果，应用可以进行相应操作，例如快速拉起成功时退出loading界面进入接续页面。
+从API version 18开始，在快速拉起时含loading界面的应用，支持[continueManager.on](../reference/apis-ability-kit/js-apis-app-ability-continueManager.md#continuemanageron)。根据快速拉起结果，应用可以进行相应操作，例如快速拉起成功时退出loading界面进入接续页面。
 
 快速拉起流程如下图所示。
 
@@ -997,7 +1006,7 @@ export default class MigrationAbility extends UIAbility {
 若应用想要同步多个资产，可采用两种方式实现
 
 1. 可将每个资产作为分布式数据对象的一个根属性实现，适用于要迁移的资产数量固定的场景。
-2. 可以将资产数组传化为`Object`传递，适用于需要迁移的资产个数会动态变化的场景（如，用户选择了不定数量的图片）。当前不支持直接将资产数组作为根属性传递。
+2. 可以将资产数组转化为`Object`传递，适用于需要迁移的资产个数会动态变化的场景（如，用户选择了不定数量的图片）。当前不支持直接将资产数组作为根属性传递。
 
 其中方式1的实现可以直接参照添加一个资产的方式添加更多资产。方式2的示例如下所示：
 
