@@ -1193,7 +1193,7 @@ struct WaterFlowDemo {
   oneColumnSection: SectionOptions = {
     itemsCount: 4,                     // 该分组包含4个FlowItem
     crossCount: 1,                     // 使用1列布局
-    columnsGap: '5vp',
+    columnsGap: 5,
     rowsGap: 10,
     margin: this.sectionMargin,
     // 回调函数：动态设置每个item的高度
