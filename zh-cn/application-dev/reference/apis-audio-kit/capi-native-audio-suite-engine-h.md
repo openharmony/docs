@@ -337,6 +337,8 @@ int32_t OH_AudioSuiteEngine_MetaRenderFrame(OH_AudioSuitePipeline* audioSuitePip
 
 **起始版本：** 26.0.0
 
+**系统接口：** 此接口为系统接口。
+
 **参数：**
 
 | 参数项 | 描述 |
@@ -463,6 +465,8 @@ int32_t OH_AudioSuiteNodeBuilderSystem_SetNodeType(OH_AudioNodeBuilder* builder,
 
 **起始版本：** 26.0.0
 
+**系统接口：** 此接口为系统接口。
+
 **参数：**
 
 | 参数项 | 描述 |
@@ -513,6 +517,8 @@ int32_t OH_AudioSuiteNodeBuilderSystem_SetFormat(OH_AudioNodeBuilder* builder, O
 设置节点支持的音频格式。
 
 **起始版本：** 26.0.0
+
+**系统接口：** 此接口为系统接口。
 
 **参数：**
 
@@ -601,11 +607,13 @@ typedef int32_t (*OH_InputNode_RequestMetaDataCallback)(OH_AudioNode* audioNode,
 
 **起始版本：** 26.0.0
 
+**系统接口：** 此接口为系统接口。
+
 **参数：**
 
 | 参数项 | 描述 |
 | -- | -- |
-| (OH_AudioNode\* audioNode | 音频编创节点句柄。通过[OH_AudioSuiteEngine_CreateNode](capi-native-audio-suite-engine-h.md#oh_audiosuiteengine_createnode)获取。 |
+| OH_AudioNode\* audioNode | 音频编创节点句柄。通过[OH_AudioSuiteEngine_CreateNode](capi-native-audio-suite-engine-h.md#oh_audiosuiteengine_createnode)获取。 |
 | void\* userData | 由用户传递的用户数据指针。 |
 | [OH_AudioSuite_MetaFrame](capi-ohaudiosuite-oh-audiosuite-metaframe.md)\* metaFrame | 音频元数据帧结构体指针。 |
 | int32_t\* responseMetaDataSize | 应用程序实际写入的元数据的大小，单位是字节。 |
@@ -628,6 +636,8 @@ int32_t OH_AudioSuiteNodeBuilder_SetRequestMetaDataCallback(OH_AudioNodeBuilder*
 配置当前输入节点构造器的写入音频数据和元数据回调函数。只有[INPUT_NODE_TYPE_DEFAULT](capi-native-audio-suite-base-h.md#oh_audionode_type)支持该设置。
 
 **起始版本：** 26.0.0
+
+**系统接口：** 此接口为系统接口。
 
 **参数：**
 
@@ -780,6 +790,8 @@ int32_t OH_AudioSuiteEngineSystem_SetAudioFormat(OH_AudioNode* audioNode, OH_Aud
 设置输入输出节点的音频格式，指定音频源的音频格式输入节点，或为输出节点指定目标音频格式。
 
 **起始版本：** 26.0.0
+
+**系统接口：** 此接口为系统接口。
 
 **参数：**
 
@@ -1411,6 +1423,8 @@ int32_t OH_AudioSuiteEngineSystem_SetNodeParam(OH_AudioNode* audioNode, uint8_t*
 
 **起始版本：** 26.0.0
 
+**系统接口：** 此接口为系统接口。
+
 **参数：**
 
 | 参数项 | 描述 |
@@ -1437,6 +1451,8 @@ int32_t OH_AudioSuiteEngineSystem_GetNodeParam(OH_AudioNode* audioNode, uint8_t*
 
 **起始版本：** 26.0.0
 
+**系统接口：** 此接口为系统接口。
+
 **参数：**
 
 | 参数项 | 描述 |
@@ -1462,6 +1478,8 @@ int32_t OH_AudioSuiteEngineSystem_GetNodeInOutSize(OH_AudioNode* audioNode, uint
 获取系统节点的输入和输出帧大小。
 
 **起始版本：** 26.0.0
+
+**系统接口：** 此接口为系统接口。
 
 **参数：**
 

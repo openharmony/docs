@@ -124,6 +124,8 @@ enum OH_AudioSuite_SystemNodeType
 
 **起始版本：** 26.0.0
 
+**系统接口：** 此接口为系统接口。
+
 | 枚举项 | 描述 |
 | -- | -- |
 | OH_AUDIOSUITE_EFFECT_NODE_SYSTEM_TYPE_DIALOGUE_ENHANCE = 301 | 用于对话增强的系统效果节点。 |
