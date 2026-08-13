@@ -66,7 +66,7 @@
    
    const workerPort: ThreadWorkerGlobalScope = worker.workerPort;
    
-   workerPort.onmessage = async (e: MessageEvents) => {
+   workerPort.onmessage = (e: MessageEvents) => {
      if (e.data === 'start') {
        try {
          // 调用方法

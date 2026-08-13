@@ -199,13 +199,13 @@ Native Transferable对象有两种模式：共享模式和转移模式。本示�
        }
    
        bool isDetached_ = false;
+       std::mutex numberSetMutex_{};
    
    private:
        CustomNativeObject(const CustomNativeObject &) = delete;
        CustomNativeObject &operator=(const CustomNativeObject &) = delete;
    
        std::unordered_set<uint32_t> numberSet_{};
-       std::mutex numberSetMutex_{};
    };
    
    void FinalizeCallback(napi_env env, void *data, void *hint)
@@ -219,10 +219,17 @@ Native Transferable对象有两种模式：共享模式和转移模式。本示�
        if (hint == nullptr) {
            return value;
        }
-       napi_value jsObject = nullptr;
-       napi_get_reference_value(env, reinterpret_cast<napi_ref>(hint), &jsObject);
-       void *object = nullptr;
-       if (static_cast<CustomNativeObject *>(value)->isDetached_) {
+       CustomNativeObject *obj = static_cast<CustomNativeObject *>(value);
+       // 加锁保护 isDetached_ 的读取，与 SetTransferDetached 的写入互斥
+       bool isDetached = false;
+       {
+           std::lock_guard<std::mutex> lock(obj->numberSetMutex_); // 需要std::mutex numberSetMutex_{};改为public
+           isDetached = obj->isDetached_;
+       }
+       if (isDetached) {
+           napi_value jsObject = nullptr;
+           napi_get_reference_value(env, reinterpret_cast<napi_ref>(hint), &jsObject);
+           void *object = nullptr;
            napi_remove_wrap(env, jsObject, &object);
        }
        return value;
@@ -242,8 +249,13 @@ Native Transferable对象有两种模式：共享模式和转移模式。本示�
        napi_define_properties(env, object, sizeof(desc) / sizeof(desc[0]), desc);
        // 将JS对象object和native对象value生命周期进行绑定
        napi_wrap(env, object, value, FinalizeCallback, nullptr, nullptr);
+   
+       // 创建指向新 JS 对象的强引用
+       napi_ref objectRef = nullptr;
+       napi_create_reference(env, object, 1, &objectRef);
+   
        // JS对象携带native信息
-       napi_coerce_to_native_binding_object(env, object, DetachCallback, AttachCallback, value, nullptr);
+       napi_coerce_to_native_binding_object(env, object, DetachCallback, AttachCallback, value, objectRef);
        return object;
    }
    
@@ -301,7 +313,7 @@ Native Transferable对象有两种模式：共享模式和转移模式。本示�
    
    export const clear: () => void;
    
-   export const setTransferDetached: (b: boolean) => number;
+   export const setTransferDetached: (b: boolean) => void;
    ```
 
 3. ArkTS对象调用Native侧实现的各项功能。
@@ -355,7 +367,7 @@ Native Transferable对象有两种模式：共享模式和转移模式。本示�
      testNapi.setTransferDetached(true);
      let address: number = testNapi.getAddress();
      console.info('host thread address is ' + address);
-   
+     // 传递testNapi是为了触发转移，不是供函数使用
      let task1 = new taskpool.Task(getAddress, testNapi);
      await taskpool.execute(task1);
    

@@ -50,7 +50,7 @@
      system: appTasks, /* Built-in plugin of Hvigor. It cannot be modified. */
      plugins: [
        turboTransJsonPlugin(hvigor, {
-         ignoreModuleNames: ['TurboTransCore' , 'TurboTransJSON',  'PerformanceBaseline','TurboTransProtobuf'], // 忽略的模块
+         ignoreModuleNames: ['TurboTransCore', 'TurboTransJSON', 'PerformanceBaseline', 'TurboTransProtobuf'], // 忽略的模块
          scanDir: ['src/main/ets'], // 扫描目录
          deserializationMode: 'performance', // 反序列化模式
        }),
@@ -69,7 +69,9 @@
      <!-- @[transferableObject_Layout](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/ArkTsConcurrent/TurboTrans/entry/src/main/ets/turbotrans_JSON/layout.ets) --> 
      
      ``` TypeScript
+     // 本文件在工程中的路径：entry/src/main/ets/turbotrans_JSON/layout.ets
      import { Serializable, SerialName } from '@hadss/turbo-trans-core';
+     import { collections } from '@kit.ArkTS';
      // ...
      
      @Serializable({ generateSendable: true})
@@ -97,6 +99,7 @@
      <!-- @[transferableObject_testJSON](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/ArkTsConcurrent/TurboTrans/entry/src/main/ets/turbotrans_JSON/test1.ets) --> 
      
      ``` TypeScript
+     // 本文件在工程中的路径：entry/src/main/ets/turbotrans_JSON/test1.ets
      import { TJSON } from '@hadss/turbo-trans-json';
      import { Layout, LayoutS } from 'entry/ets/turbotrans_JSON/layout';
      import type { ITSerializable } from '@hadss/turbo-trans-json';
@@ -108,7 +111,7 @@
        obj.arr = [3, 4];
        let str = JSON.stringify(obj);
        let layoutNormal = TJSON.fromString<Layout>(str, Layout);
-       console.info('111 layout arr: ' + layoutNormal.arr);
+       console.info('testJSON1 layout arr: ' + layoutNormal.arr);
        let layoutSendable = (layoutNormal as object as ITSerializable).toSendable();
        if (ArkTSUtils.isSendable(layoutSendable)) {
          console.info('expect layout from JSON string is Sendable');
@@ -122,7 +125,7 @@
      export function testJSON2(): LayoutS {
        let layoutStr = '{"type":"Text","arr":[3,4]}';
        let layoutNormal = TJSON.fromString<Layout>(layoutStr, Layout);
-       console.info('222 layout arr: ' + layoutNormal.arr);
+       console.info('testJSON2 layout arr: ' + layoutNormal.arr);
        let layoutSendable = (layoutNormal as object as ITSerializable).toSendable();
        if (ArkTSUtils.isSendable(layoutSendable)) {
          console.info('expect layout from simple string is Sendable');
@@ -387,6 +390,7 @@ import { UIUtils } from '@kit.ArkUI';
 struct Index {
   @Local message: string = 'Hello World';
   // 替换成 pb: test_pb = test_pb.create(); 则用于observeProtobuf返回Sendable对象的场景
+  // @Local test_pb = test_pb.create();
   @Local layout: LayoutS = new LayoutS();
 
   build() {

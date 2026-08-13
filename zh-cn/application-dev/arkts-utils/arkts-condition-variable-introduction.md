@@ -62,11 +62,11 @@ ArkTS语言支持异步操作，从API version 18开始支持异步任务的等�
                // 创建conditionVariable对象。
                const conditionVariable: ArkTSUtils.locks.ConditionVariable = new ArkTSUtils.locks.ConditionVariable();
                // 将实例conditionVariable传递给wait线程。
-               await taskpool.execute(wait, conditionVariable);
+               taskpool.execute(wait, conditionVariable);
                // 将实例conditionVariable传递给notifyAll线程，唤醒wait线程，日志输出"TaskPool Thread Wait: success"。
                await taskpool.execute(notifyAll, conditionVariable);
                // 将实例conditionVariable传递给waitFor线程。
-               await taskpool.execute(waitFor, conditionVariable);
+               taskpool.execute(waitFor, conditionVariable);
                // 将实例conditionVariable传递给notifyOne线程，唤醒waitFor线程，日志输出"TaskPool Thread WaitFor: success"。
                await taskpool.execute(notifyOne, conditionVariable);
    
@@ -74,11 +74,11 @@ ArkTS语言支持异步操作，从API version 18开始支持异步任务的等�
                const conditionVariableRequest: ArkTSUtils.locks.ConditionVariable =
                  ArkTSUtils.locks.ConditionVariable.request('Request1');
                // 将实例conditionVariableRequest传递给wait线程。
-               await taskpool.execute(wait, conditionVariableRequest);
+               taskpool.execute(wait, conditionVariableRequest);
                // 将实例conditionVariableRequest传递给notifyAll线程，唤醒wait线程，日志输出"TaskPool Thread Wait: success"。
                await taskpool.execute(notifyAll, conditionVariableRequest);
                // 将实例conditionVariableRequest传递给waitFor线程。
-               await taskpool.execute(waitFor, conditionVariableRequest);
+               taskpool.execute(waitFor, conditionVariableRequest);
                // 将实例conditionVariableRequest传递给notifyOne线程，唤醒waitFor线程，日志输出"TaskPool Thread WaitFor: success"。
                await taskpool.execute(notifyOne, conditionVariableRequest);
              })
