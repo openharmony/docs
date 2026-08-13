@@ -73,7 +73,7 @@
 如果应用仅申请了星闪长时任务，因设备远离等原因导致星闪断连，系统将取消应用的星闪长时任务。为确保星闪接续使用体验，在断连后的1-10分钟内（具体时长受系统负载影响），系统允许满足如下条件的应用在恢复连接时重新保活，实现在后台长时间运行。 
  
 1. 主动注册长时任务暂停监听的事件以避免星闪断连之后长时任务被系统直接取消，可参考[on('continuousTaskSuspend')](../reference/apis-backgroundtasks-kit/js-apis-resourceschedule-backgroundTaskManager.md#backgroundtaskmanageroncontinuoustasksuspend20)，这样在星闪断连时系统不会立即取消长时任务，而是将其标记为暂停态。 
-2. 为保证在星闪断连之后能及时恢复连接，本端设备应用在星闪连接之后通过[onDeviceFound](../reference/apis-connectivity-kit/js-apis-nearlink-scan.md#scanondevicefound)订阅星闪扫描结果，断连之后，本端设备通过[startScan](../reference/apis-connectivity-kit/js-apis-nearlink-scan.md#scanstartscan)主动发起星闪扫描，通过[startAdvertising](../reference/apis-connectivity-kit/js-apis-nearlink-advertising.md#advertisingstartadvertising)对端设备发送星闪广播。 
+2. 为保证在星闪断连之后能及时恢复连接，本端设备应用在星闪连接之后通过[onDeviceFound](../reference/apis-connectivity-kit/js-apis-nearlink-scan.md#scanondevicefound)订阅星闪扫描结果，断连之后，本端设备通过[startScan](../reference/apis-connectivity-kit/js-apis-nearlink-scan.md#scanstartscan)主动发起星闪扫描，对端设备则通过[startAdvertising](../reference/apis-connectivity-kit/js-apis-nearlink-advertising.md#advertisingstartadvertising)发送星闪广播。 
 3. 本端设备成功扫描到对端设备之后，需要通过[connect](../reference/apis-connectivity-kit/js-apis-nearlink-ssap.md#connect)向对端设备发起连接。如无其他业务扫描需求，本端设备可使用[stopScan](../reference/apis-connectivity-kit/js-apis-nearlink-scan.md#scanstopscan)停止星闪扫描。
 
 关于长时任务通知说明：
