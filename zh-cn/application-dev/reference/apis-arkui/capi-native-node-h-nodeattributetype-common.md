@@ -81,13 +81,13 @@ NODE_BACKGROUND_COLOR = 2
 
 | 参数项 | 描述 |
 | -- | -- |
-| .value[0].u32 | 背景色数值，0xargb格式，形如 0xFFFF0000 表示红色。 |
+| .value[0].u32 | 背景色数值，0xARGB格式，形如 0xFFFF0000 表示红色。 |
 
 **返回：**
 
 | 类型 | 说明 |
 | -- | -- |
-| .value[0].u32 | 背景色数值，0xargb格式，形如 0xFFFF0000 表示红色。 |
+| .value[0].u32 | 背景色数值，0xARGB格式，形如 0xFFFF0000 表示红色。 |
 
 ## NODE_BACKGROUND_IMAGE
 
