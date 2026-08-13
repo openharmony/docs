@@ -1,4 +1,4 @@
-# @ohos.nearlink.remoteDevice (对端设备的连接能力)(系统接口)
+# @ohos.nearlink.remoteDevice (远端设备的连接能力)(系统接口)
 <!--Kit: Connectivity Kit-->
 <!--Subsystem: Communication-->
 <!--Owner: @CCCZKing-->
@@ -7,7 +7,7 @@
 <!--Adviser: @zhang_yixin13-->
 
 
-本模块提供了查询远端设备信息、发起配对等功能。
+本模块提供了星闪远端设备的连接与管理能力，包括连接/断开远端设备、可信配对、设置配对确认及密码、调整连接间隔、订阅配对请求等。
 
 **起始版本：** 26.0.0
 
@@ -105,7 +105,7 @@ try {
   let addr: string = '11:22:33:44:AA:FF';
   let device: remoteDevice.RemoteDevice = remoteDevice.createRemoteDevice(addr);
   device.startCrediblePairing().then(() => {
-    console.info("start pairing success");
+    console.info('start pairing success');
   });
 } catch (err) {
   console.error('errCode: ' + (err as BusinessError).code + ', errMessage: ' + (err as BusinessError).message);
@@ -152,7 +152,7 @@ try {
   let addr: string = '11:22:33:44:AA:FF';
   let device: remoteDevice.RemoteDevice = remoteDevice.createRemoteDevice(addr);
   device.removePairedDevice().then(() => {
-    console.info("remove paired device success");
+    console.info('remove paired device success');
   });
 } catch (err) {
   console.error('errCode: ' + (err as BusinessError).code + ', errMessage: ' + (err as BusinessError).message);
@@ -163,7 +163,7 @@ try {
 
 setPairingConfirmation(accept: boolean): void
 
-配对请求确认，配对时弹框用户授权。
+设置配对请求的确认结果。需先通过[remoteDevice.onPairingRequest](#remotedeviceonpairingrequest)订阅配对请求。
 
 **起始版本：** 26.0.0
 
@@ -244,7 +244,7 @@ try {
   let addr: string = '11:22:33:44:AA:FF';
   let device: remoteDevice.RemoteDevice = remoteDevice.createRemoteDevice(addr);
   device.connect().then(() => {
-    console.info("connect success");
+    console.info('connect success');
   });
 } catch (err) {
   console.error('errCode: ' + (err as BusinessError).code + ', errMessage: ' + (err as BusinessError).message);
@@ -291,7 +291,7 @@ try {
   let addr: string = '11:22:33:44:AA:FF';
   let device: remoteDevice.RemoteDevice = remoteDevice.createRemoteDevice(addr);
   device.disconnect().then(() => {
-    console.info("disconnect success");
+    console.info('disconnect success');
   });
 } catch (err) {
   console.error('errCode: ' + (err as BusinessError).code + ', errMessage: ' + (err as BusinessError).message);
@@ -316,7 +316,7 @@ setDeviceAlias(alias: string): void
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| alias | string | 是 | 远端设备别名。| 
+| alias | string | 是 | 远端设备别名。最大长度为64个字符，不能为空。| 
 
 **错误码：**
 
@@ -335,6 +335,8 @@ setDeviceAlias(alias: string): void
 import { remoteDevice } from '@kit.ConnectivityKit';
 import { BusinessError } from '@ohos.base';
 
+let addr: string = '11:22:33:44:AA:FF'; // 扫描获取到的远端设备地址
+let device: remoteDevice.RemoteDevice = remoteDevice.createRemoteDevice(addr);
 try {
   let alias: string = 'test';
   device.setDeviceAlias(alias);
@@ -380,6 +382,8 @@ getDeviceAlias(): string
 import { remoteDevice } from '@kit.ConnectivityKit';
 import { BusinessError } from '@ohos.base';
 
+let addr: string = '11:22:33:44:AA:FF'; // 扫描获取到的远端设备地址
+let device: remoteDevice.RemoteDevice = remoteDevice.createRemoteDevice(addr);
 try {
   let alias: string = 'test';
   device.setDeviceAlias(alias);
@@ -406,7 +410,7 @@ getDeviceModel(): DeviceModel
 
 | 类型 | 说明 |
 | -------- | -------- |
-| DeviceModel | 远端设备的型号。 |
+| [DeviceModel](#devicemodel) | 远端设备的型号。 |
 
 **错误码：**
 
@@ -472,9 +476,9 @@ import { BusinessError } from '@kit.BasicServicesKit';
 try {
   let addr: string = '00:11:22:33:AA:FF';
   let device: remoteDevice.RemoteDevice = remoteDevice.createRemoteDevice(addr);
-  device.cancelDevicePairing().then(() =>{
+  device.cancelDevicePairing().then(() => {
     console.info('cancelDevicePairing success');
-  }).catch ((err: BusinessError) => {
+  }).catch((err: BusinessError) => {
     console.error('errCode: ' + err.code + ', errMessage: ' + err.message);
   });
 } catch (err) {
@@ -529,9 +533,9 @@ try {
   let addr: string = '00:11:22:33:AA:FF';
   let passcode: string = '123456';
   let device: remoteDevice.RemoteDevice = remoteDevice.createRemoteDevice(addr);
-  device.setPairingPasscode(passcode).then(() =>{
+  device.setPairingPasscode(passcode).then(() => {
     console.info('setPairingPasscode success');
-  }).catch ((err: BusinessError) => {
+  }).catch((err: BusinessError) => {
     console.error('errCode: ' + err.code + ', errMessage: ' + err.message);
   });
 } catch (err) {
@@ -578,9 +582,9 @@ import { BusinessError } from '@kit.BasicServicesKit';
 try {
   let addr: string = '00:11:22:33:AA:FF';
   let device: remoteDevice.RemoteDevice = remoteDevice.createRemoteDevice(addr);
-  device.getRssiValue().then((rssi: number) =>{
+  device.getRssiValue().then((rssi: number) => {
     console.info('getRssiValue: ' + rssi);
-  }).catch ((err: BusinessError) => {
+  }).catch((err: BusinessError) => {
     console.error('errCode: ' + err.code + ', errMessage: ' + err.message);
   });
 } catch (err) {
@@ -627,7 +631,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 try {
   let addr: string = '00:11:22:33:AA:FF';
   let device: remoteDevice.RemoteDevice = remoteDevice.createRemoteDevice(addr);
-  let interval:number = nearlinkConstant.ConnectionInterval.HIGH_SPEED_INTERVAL_4_5;
+  let interval: nearlinkConstant.ConnectionInterval = nearlinkConstant.ConnectionInterval.HIGH_SPEED_INTERVAL_4_5;
   device.setConnectionInterval(interval);
 } catch (err) {
   console.error('errCode: ' + (err as BusinessError).code + ', errMessage: ' + (err as BusinessError).message);
@@ -670,15 +674,15 @@ onPairingRequest(callback: Callback&lt;PairingRequestParam&gt;): void
 
 **示例：**
 ```typescript
-import { manager } from '@kit.ConnectivityKit';
+import { remoteDevice } from '@kit.ConnectivityKit';
 import { BusinessError, Callback } from '@ohos.base';
 
-let callback: Callback<manager.PairingRequestParam> = (data: manager.PairingRequestParam) => {
+let callback: Callback<remoteDevice.PairingRequestParam> = (data: remoteDevice.PairingRequestParam) => {
   console.info('pairing request param: ' + JSON.stringify(data));
 };
 
 try {
-  manager.onPairingRequest(callback);
+  remoteDevice.onPairingRequest(callback);
 } catch (err) {
   console.error('errCode: ' + (err as BusinessError).code + ', errMessage: ' + (err as BusinessError).message);
 }
@@ -702,7 +706,7 @@ offPairingRequest(callback?: Callback&lt;PairingRequestParam&gt;): void
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| callback | Callback&lt;[PairingRequestParam](js-apis-nearlink-remote-device.md#pairingrequestparam)&gt; | 否 | 回调函数，返回配对请求字段。<br/>填写该参数则取消当前callback订阅。不填写该参数则取消该type对应的所有回调。| 
+| callback | Callback&lt;[PairingRequestParam](js-apis-nearlink-remote-device.md#pairingrequestparam)&gt; | 否 | 回调函数，返回配对请求字段。<br>填写该参数则取消当前callback订阅。不填写该参数则取消该事件对应的所有回调。| 
 
 **错误码：**
 
@@ -716,11 +720,11 @@ offPairingRequest(callback?: Callback&lt;PairingRequestParam&gt;): void
 
 **示例：**
 ```typescript
-import { manager } from '@kit.ConnectivityKit';
-import { BusinessError, Callback } from '@ohos.base';
+import { remoteDevice } from '@kit.ConnectivityKit';
+import { BusinessError } from '@ohos.base';
 
 try {
-  manager.offPairingRequest();
+  remoteDevice.offPairingRequest();
 } catch (err) {
   console.error('errCode: ' + (err as BusinessError).code + ', errMessage: ' + (err as BusinessError).message);
 }

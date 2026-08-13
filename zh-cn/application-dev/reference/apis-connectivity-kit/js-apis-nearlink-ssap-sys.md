@@ -7,7 +7,7 @@
 <!--Adviser: @zhang_yixin13-->
 
 
-本模块提供了SSAP（星闪服务交互协议 SparkLink Service Access Protocol）连接功能。
+本模块提供了SSAP（星闪服务交互协议 SparkLink Service Access Protocol）连接功能，包括创建SSAP客户端、建立连接、调用服务端方法、读写描述符、订阅事件通知等。
 
 
 **起始版本：** 26.0.0
@@ -25,6 +25,8 @@ import { ssap } from '@kit.ConnectivityKit';
 
 
 ## Client
+
+提供与远端设备进行SSAP数据交互的系统级方法，使用前需要先通过[ssap.createClient](js-apis-nearlink-ssap.md#ssapcreateclient)创建一个[Client](#client)实例。
 
 **起始版本：** 26.0.0
 
@@ -54,7 +56,7 @@ setPropertyIndication(property: Property, enable: boolean): Promise&lt;void&gt;
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | property | [Property](js-apis-nearlink-ssap.md#property) | 是 | 服务端属性。 |
-| enable | boolean | 是 | 是否启用属性值。true: 启用属性值更改。false: 禁用属性值更改。 |
+| enable | boolean | 是 | 是否启用属性值更改指示。true: 启用指示。false: 禁用指示。 |
 
 **返回值：** 
 
@@ -85,17 +87,17 @@ let addr: string = '00:11:22:33:AA:FF'; // 扫描获取到的远端设备地址
 let client: ssap.Client;
 try {
   let arrayBufferProperty = new ArrayBuffer(1);
-  let properV = new Uint8Array(arrayBufferProperty);
-  properV[0] = 1;
+  let propertyValue = new Uint8Array(arrayBufferProperty);
+  propertyValue[0] = 1;
   let property: ssap.Property = {
     serviceUuid: 'FFFFFFFF-1234-5678-ABCD-000000004386',
     propertyUuid: 'FFFFFFFF-1234-5678-ABCD-000000001234',
     value: arrayBufferProperty
   };
-  client = ssap.createClient(addr);
+  client = ssap.createClient(addr); // 一个应用针对一个远端设备只需要创建一次实例
   client.setPropertyIndication(property, true).then(() => {
     console.info('setPropertyIndication successfully');
-  }).catch ((err: BusinessError) => {
+  }).catch((err: BusinessError) => {
     console.error('errCode: ' + err.code + ', errMessage: ' + err.message);
   });
 } catch (err) {
@@ -129,7 +131,7 @@ callMethod(method: Method): Promise&lt;Method&gt;
 
 | 类型 | 说明 |
 | -------- | -------- |
-| Promise&lt;[Method](#method)&gt; | Promise对象，返回Method对象。 |
+| Promise&lt;[Method](#method)&gt; | Promise对象，返回调用结果对应的Method对象，其中result字段为服务端方法执行后的返回值。 |
 
 **错误码：**
 
@@ -155,20 +157,20 @@ try {
   client = ssap.createClient(addr); // 一个应用针对一个远端设备只需要创建一次实例
   client.connect().then(() => {
     console.info('connect success');
-  }).catch ((err: BusinessError) => {
+  }).catch((err: BusinessError) => {
     console.error('errCode: ' + err.code + ', errMessage: ' + err.message);
   });
-  let arrayBufferC = new ArrayBuffer(8);
+  let valueBuffer = new ArrayBuffer(8);
   let method: ssap.Method = { // 这里要求method对应的服务发现时对端Service里带的method
     serviceUuid: 'FFFFFFFF-1234-5678-ABCD-000000004386',
     methodUuid: 'FFFFFFFF-1234-5678-ABCD-000000001234',
-    parameter: arrayBufferC
+    parameter: valueBuffer
   };
   // 连接耗时较长，等待连接完成才能获取服务，实际开发者根据连接速度调整定时器长度
   setTimeout(() => {
     client.callMethod(method).then((result: ssap.Method) => {
       console.info('callMethod successfully: ' + JSON.stringify(result));
-    }).catch ((err: BusinessError) => {
+    }).catch((err: BusinessError) => {
       console.error('errCode: ' + err.code + ', errMessage: ' + err.message);
     });
   }, 3000);
@@ -204,7 +206,7 @@ readDescriptor(descriptor: PropertyDescriptor): Promise&lt;PropertyDescriptor&gt
 
 | 类型 | 说明 |
 | -------- | -------- |
-| Promise&lt;[PropertyDescriptor](js-apis-nearlink-ssap.md#propertydescriptor)&gt; | Promise对象，返回服务端属性描述符对象。 |
+| Promise&lt;[PropertyDescriptor](js-apis-nearlink-ssap.md#propertydescriptor)&gt; | Promise对象，返回从服务端读取到的属性描述符对象。 |
 
 **错误码：**
 
@@ -230,14 +232,14 @@ try {
   client = ssap.createClient(addr); // 一个应用针对一个远端设备只需要创建一次实例
   client.connect().then(() => {
     console.info('connect success');
-  }).catch ((err: BusinessError) => {
+  }).catch((err: BusinessError) => {
     console.error('errCode: ' + err.code + ', errMessage: ' + err.message);
   });
-  let arrayBufferC = new ArrayBuffer(8);
+  let valueBuffer = new ArrayBuffer(8);
   let descriptor: ssap.PropertyDescriptor = { // 这里要求descriptor对应的服务发现时对端Service里带的descriptor
     serviceUuid: 'FFFFFFFF-1234-5678-ABCD-000000004386',
     propertyUuid: 'FFFFFFFF-1234-5678-ABCD-000000001234',
-    value: arrayBufferC,
+    value: valueBuffer,
     descriptorType: ssap.PropertyDescriptorType.PROPERTY,
     isWriteable: true
   };
@@ -245,7 +247,7 @@ try {
   setTimeout(() => {
     client.readDescriptor(descriptor).then((result: ssap.PropertyDescriptor) => {
       console.info('readDescriptor successfully: ' + JSON.stringify(result));
-    }).catch ((err: BusinessError) => {
+    }).catch((err: BusinessError) => {
       console.error('errCode: ' + err.code + ', errMessage: ' + err.message);
     });
   }, 3000);
@@ -307,14 +309,14 @@ try {
   client = ssap.createClient(addr); // 一个应用针对一个远端设备只需要创建一次实例
   client.connect().then(() => {
     console.info('connect success');
-  }).catch ((err: BusinessError) => {
+  }).catch((err: BusinessError) => {
     console.error('errCode: ' + err.code + ', errMessage: ' + err.message);
   });
-  let arrayBufferC = new ArrayBuffer(8);
+  let valueBuffer = new ArrayBuffer(8);
   let descriptor: ssap.PropertyDescriptor = { // 这里要求descriptor对应的服务发现时对端Service里带的descriptor
     serviceUuid: 'FFFFFFFF-1234-5678-ABCD-000000004386',
     propertyUuid: 'FFFFFFFF-1234-5678-ABCD-000000001234',
-    value: arrayBufferC,
+    value: valueBuffer,
     descriptorType: ssap.PropertyDescriptorType.PROPERTY,
     isWriteable: true
   };
@@ -322,7 +324,7 @@ try {
   setTimeout(() => {
     client.writeDescriptor(descriptor).then(() => {
       console.info('writeDescriptor successfully');
-    }).catch ((err: BusinessError) => {
+    }).catch((err: BusinessError) => {
       console.error('errCode: ' + err.code + ', errMessage: ' + err.message);
     });
   }, 3000);
@@ -391,7 +393,7 @@ offEventNotify(callback?: Callback&lt;Event&gt;): void
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| callback | Callback&lt;[Event](#event)&gt; | 否 | 回调函数，返回服务的事件对象。<br/>不填写该参数则取消该type对应的所有回调。 |
+| callback | Callback&lt;[Event](#event)&gt; | 否 | 回调函数，返回服务的事件对象。<br>填写该参数则取消当前callback订阅。不填写该参数则取消该事件对应的所有回调。 |
 
 **示例：**
 ```typescript
@@ -425,10 +427,10 @@ try {
 
 | 名称 | 类型 | 只读 | 可选 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
-| serviceUuid | string | 否 | 否 | 星闪服务UUID，长度必须为36字节，该值由36个十六进制数字和连字符（-）组成，例如： FFFFFFFF-1234-5678-ABCD-000000001234，表示一个128位标识符。 不允许使用NearLink标准UUID。 |
+| serviceUuid | string | 否 | 否 | 星闪服务UUID，长度必须为36个字符，由32个十六进制数字和4个连字符（-）组成，例如： FFFFFFFF-1234-5678-ABCD-000000001234，表示一个128位标识符。 不允许使用星闪标准UUID。 |
 | properties | [Property](js-apis-nearlink-ssap.md#property)[] | 否 | 否 | 表示服务的Property列表。 |
-| methods | [Method](#method)[] | 否 | 是 | 表示服务的方法列表。 |
-| events | [Event](#event)[] | 否 | 是 | 表示服务的事件列表。 |
+| methods | [Method](#method)[] | 否 | 是 | 表示服务的方法列表。若未配置该字段，则服务不提供任何方法。 |
+| events | [Event](#event)[] | 否 | 是 | 表示服务的事件列表。若未配置该字段，则服务不提供任何事件。 |
 
 
 ## Method
@@ -445,7 +447,7 @@ try {
 
 | 名称 | 类型 | 只读 | 可选 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
-| serviceUuid | string | 否 | 否 | 星闪服务UUID，长度必须为36字节，该值由36个十六进制数字和连字符（-）组成，例如： FFFFFFFF-1234-5678-ABCD-000000001234，表示一个128位标识符。 不允许使用NearLink标准UUID。 |
+| serviceUuid | string | 否 | 否 | 星闪服务UUID，长度必须为36个字符，由32个十六进制数字和4个连字符（-）组成，例如： FFFFFFFF-1234-5678-ABCD-000000001234，表示一个128位标识符。 不允许使用星闪标准UUID。 |
 | methodUuid | string | 否 | 否 | 表示方法UUID。数据格式同serviceUuid。 |
 | parameter | ArrayBuffer | 否 | 是 | 表示方法的参数。若未配置则默认不携带该字段。 |
 | result | ArrayBuffer | 否 | 是 | 表示方法的返回值。若未配置则默认不携带该字段。 |
@@ -465,6 +467,6 @@ try {
 
 | 名称 | 类型 | 只读 | 可选 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
-| serviceUuid | string | 否 | 否 | 星闪服务UUID，长度必须为36字节，该值由36个十六进制数字和连字符（-）组成，例如： FFFFFFFF-1234-5678-ABCD-000000001234，表示一个128位标识符。 不允许使用NearLink标准UUID。 |
+| serviceUuid | string | 否 | 否 | 星闪服务UUID，长度必须为36个字符，由32个十六进制数字和4个连字符（-）组成，例如： FFFFFFFF-1234-5678-ABCD-000000001234，表示一个128位标识符。 不允许使用星闪标准UUID。 |
 | eventUuid | string | 否 | 否 | 表示事件UUID。数据格式同serviceUuid。 |
 | parameter | ArrayBuffer | 否 | 是 | 表示事件的参数。若未配置则默认不携带该字段。 |

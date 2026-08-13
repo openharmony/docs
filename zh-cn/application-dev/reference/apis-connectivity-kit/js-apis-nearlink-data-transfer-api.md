@@ -7,7 +7,7 @@
 <!--Adviser: @zhang_yixin13-->
 
 
-本模块提供了星闪数据传输的功能。
+本模块提供了星闪数据传输的功能，包括端口通道的注册与销毁、远端设备连接管理、连接状态查询与订阅、数据的发送与接收等。
 
 
 **起始版本：** 26.0.0
@@ -41,7 +41,7 @@ type ConnectionState = nearlinkConstant.ConnectionState
 
 createPort(uuid: string): void
 
-注册端口通道。
+注册端口通道。端口通道注册后方可用于连接远端设备，不再使用时需通过[dataTransfer.destroyPort](#datatransferdestroyport)销毁。
 
 **起始版本：** 26.0.0
 
@@ -55,7 +55,7 @@ createPort(uuid: string): void
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| uuid | string | 是 | 星闪服务UUID，长度必须为36字节，该值由36个十六进制数字和连字符（-）组成，例如： FFFFFFFF-1234-5678-ABCD-000000001234，表示一个128位标识符。 不允许使用NearLink标准UUID。 |
+| uuid | string | 是 | 星闪服务UUID，长度必须为36个字符，由32个十六进制数字和4个连字符（-）组成，例如： FFFFFFFF-1234-5678-ABCD-000000001234，表示一个128位标识符。 不允许使用星闪标准UUID。 |
 
 **错误码：**
 
@@ -105,7 +105,7 @@ destroyPort(uuid: string): void
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| uuid | string | 是 | 星闪服务UUID，长度必须为36字节，该值由36个十六进制数字和连字符（-）组成，例如： FFFFFFFF-1234-5678-ABCD-000000001234，表示一个128位标识符。 不允许使用NearLink标准UUID。 |
+| uuid | string | 是 | 星闪服务UUID，长度必须为36个字符，由32个十六进制数字和4个连字符（-）组成，例如： FFFFFFFF-1234-5678-ABCD-000000001234，表示一个128位标识符。 不允许使用星闪标准UUID。 |
 
 **错误码：**
 
@@ -182,14 +182,14 @@ import { dataTransfer} from '@kit.ConnectivityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
-  // 构造端口通道建立的参数
+  // 构造连接参数
   let connectionParams:dataTransfer.ConnectionParams = {
-    address: '01:02:03:04:05:06', // 星闪远端设备地址
+    address: '01:02:03:04:05:06', // 星闪远端设备地址，可通过扫描获取
     uuid: 'FFFFFFFF-1234-5678-ABCD-000000001234', // 星闪服务UUID
   };
-  dataTransfer.connect(connectionParams).then(()=>{
+  dataTransfer.connect(connectionParams).then(() => {
     console.info('connect success');
-  }).catch ((err: BusinessError) => {
+  }).catch((err: BusinessError) => {
     console.error('errCode: ' + err.code + ', errMessage: ' + err.message);
   });
 } catch (err) {
@@ -244,14 +244,14 @@ import { dataTransfer} from '@kit.ConnectivityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
-  // 构造端口通道建立的参数
+  // 构造连接参数，用于指定要断开的连接
   let connectionParams:dataTransfer.ConnectionParams = {
-    address: '01:02:03:04:05:06', // 星闪远端设备地址
+    address: '01:02:03:04:05:06', // 星闪远端设备地址，可通过扫描获取
     uuid: 'FFFFFFFF-1234-5678-ABCD-000000001234', // 星闪服务UUID
   };
-  dataTransfer.disconnect(connectionParams).then(()=>{
+  dataTransfer.disconnect(connectionParams).then(() => {
     console.info('disconnect success');
-  }).catch ((err: BusinessError) => {
+  }).catch((err: BusinessError) => {
     console.error('errCode: ' + err.code + ', errMessage: ' + err.message);
   });
 } catch (err) {
@@ -321,7 +321,7 @@ offConnectionStateChanged(callback?: Callback&lt;ConnectionResult&gt;): void
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| callback | Callback&lt;[ConnectionResult](#connectionresult)&gt; | 否 | 回调函数，返回与远端设备端口连接参数的协商结果。<br/>填写该参数则取消当前callback订阅。不填写该参数则取消该type对应的所有回调。 |
+| callback | Callback&lt;[ConnectionResult](#connectionresult)&gt; | 否 | 回调函数，返回与远端设备端口连接参数的协商结果。<br>填写该参数则取消当前callback订阅。不填写该参数则取消该事件对应的所有回调。 |
 
 **错误码：**
 
@@ -407,7 +407,7 @@ try {
 
 writeData(params: DataParams): Promise&lt;void&gt;
 
-通过设备地址和UUID向远端设备发数据。使用Promise异步回调。
+通过设备地址和UUID向远端设备发送数据。使用Promise异步回调。
 
 **起始版本：** 26.0.0
 
@@ -463,7 +463,7 @@ try {
   };
   dataTransfer.writeData(dataParams).then(() => {
     console.info('writeData success');
-  }).catch ((err: BusinessError) => {
+  }).catch((err: BusinessError) => {
     console.error('errCode: ' + err.code + ', errMessage: ' + err.message);
   });
 } catch (err) {
@@ -490,7 +490,7 @@ onReadData(callback: Callback&lt;DataParams&gt;): void
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| callback | Callback&lt;[DataParams](#dataparams)&gt; | 是 | 回调函数，返回端口数据发送和接收的参数。 |
+| callback | Callback&lt;[DataParams](#dataparams)&gt; | 是 | 回调函数，返回端口通道接收到的数据参数。 |
 
 **错误码：**
 
@@ -533,7 +533,7 @@ offReadData(callback?: Callback&lt;DataParams&gt;): void
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| callback | Callback&lt;[DataParams](#dataparams)&gt; | 否 | 回调函数，返回端口数据发送和接收的参数。<br/>填写该参数则取消当前callback订阅。不填写该参数则取消该type对应的所有回调。 |
+| callback | Callback&lt;[DataParams](#dataparams)&gt; | 否 | 回调函数，返回端口通道接收到的数据参数。<br>填写该参数则取消当前callback订阅。不填写该参数则取消该事件对应的所有回调。 |
 
 **错误码：**
 
@@ -570,7 +570,7 @@ try {
 | 名称 | 类型 | 只读 | 可选 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
 | address | string | 否 | 否 | 远端设备的星闪地址。地址格式参考：11:22:33:AA:BB:FF。 |
-| uuid | string | 否 | 否 | 星闪服务UUID，长度必须为36字节，该值由36个十六进制数字和连字符（-）组成，例如： FFFFFFFF-1234-5678-ABCD-000000001234，表示一个128位标识符。 不允许使用NearLink标准UUID。 |
+| uuid | string | 否 | 否 | 星闪服务UUID，长度必须为36个字符，由32个十六进制数字和4个连字符（-）组成，例如： FFFFFFFF-1234-5678-ABCD-000000001234，表示一个128位标识符。 不允许使用星闪标准UUID。 |
 | transferMode | [TransferMode](#transfermode) | 否 | 是 | 表示和远端设备的数据传输模式。默认值是BASIC。 |
 
 
@@ -587,8 +587,8 @@ try {
 | 名称 | 类型 | 只读 | 可选 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
 | address | string | 否 | 否 | 远端设备的星闪地址。地址格式参考：11:22:33:AA:BB:FF。 |
-| uuid | string | 否 | 否 | 星闪服务UUID，长度必须为36字节，该值由36个十六进制数字和连字符（-）组成，例如： FFFFFFFF-1234-5678-ABCD-000000001234，表示一个128位标识符。 不允许使用NearLink标准UUID。 |
-| data | ArrayBuffer | 否 | 否 | 发送的数据包。 |
+| uuid | string | 否 | 否 | 星闪服务UUID，长度必须为36个字符，由32个十六进制数字和4个连字符（-）组成，例如： FFFFFFFF-1234-5678-ABCD-000000001234，表示一个128位标识符。 不允许使用星闪标准UUID。 |
+| data | ArrayBuffer | 否 | 否 | 数据包。通过[dataTransfer.writeData](#datatransferwritedata)发送时表示待发送的数据，通过[dataTransfer.onReadData](#datatransferonreaddata)接收时表示接收到的数据。 |
 
 
 ## ConnectionResult
@@ -604,7 +604,7 @@ try {
 | 名称 | 类型 | 只读 | 可选 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
 | address | string | 否 | 否 | 远端设备的星闪地址。地址格式参考：11:22:33:AA:BB:FF。 |
-| uuid | string | 否 | 否 | 星闪服务UUID，长度必须为36字节，该值由36个十六进制数字和连字符（-）组成，例如： FFFFFFFF-1234-5678-ABCD-000000001234，表示一个128位标识符。 不允许使用NearLink标准UUID。 |
+| uuid | string | 否 | 否 | 星闪服务UUID，长度必须为36个字符，由32个十六进制数字和4个连字符（-）组成，例如： FFFFFFFF-1234-5678-ABCD-000000001234，表示一个128位标识符。 不允许使用星闪标准UUID。 |
 | mtu | number | 否 | 否 | 协商后的发送和接收数据的包长，单位为byte，范围[0, 65535]。 |
 | state | [ConnectionState](js-apis-nearlink-constant.md#connectionstate) | 否 | 否 | 与远端设备的连接状态。 |
 
@@ -622,7 +622,7 @@ try {
 | 名称 | 类型 | 只读 | 可选 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
 | address | string | 否 | 否 | 远端设备的星闪地址。地址格式参考：11:22:33:AA:BB:FF。 |
-| uuid | string | 否 | 否 | 星闪服务UUID，长度必须为36字节，该值由36个十六进制数字和连字符（-）组成，例如： FFFFFFFF-1234-5678-ABCD-000000001234，表示一个128位标识符。 不允许使用NearLink标准UUID。 |
+| uuid | string | 否 | 否 | 星闪服务UUID，长度必须为36个字符，由32个十六进制数字和4个连字符（-）组成，例如： FFFFFFFF-1234-5678-ABCD-000000001234，表示一个128位标识符。 不允许使用星闪标准UUID。 |
 
 
 ## TransferMode
