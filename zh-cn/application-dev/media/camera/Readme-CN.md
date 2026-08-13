@@ -67,3 +67,4 @@
     - [会话配置问题](camera-sessionconfig-faq.md)
   - [相机预览画面旋转异常问题](camera-rotation-faq.md)
   - [白平衡相关问题](camera-whitebalance-faq.md)
+  - [色域空间配置异常问题](camera-colorspace-faq.md)
