@@ -1373,7 +1373,7 @@ OH_Cursor *OH_Rdb_ExecuteQueryV2(OH_Rdb_Store *store, const char *sql, const OH_
 | -- | -- |
 | [OH_Rdb_Store](capi-rdb-oh-rdb-store.md) *store | 指向[OH_Rdb_Store](capi-rdb-oh-rdb-store.md)实例的指针。 |
 | const char *sql | 指定要执行的SQL语句。 |
-| const [OH_Data_Values](capi-rdb-oh-data-values.md) *args | 表示SQL语句中参数的值，指向[OH_Data_Values](capi-rdb-oh-data-values.md)实例的指针。SQL语句完整时，args可填写为nullptr。 |
+| const [OH_Data_Values](capi-rdb-oh-data-values.md) *args | 表示SQL语句中参数的值，指向OH_Data_Values实例的指针。SQL语句完整时，args可填写为nullptr。 |
 
 **返回：**
 
@@ -2310,7 +2310,7 @@ OH_Cursor *OH_Rdb_QuerySqlWithoutRowCount(OH_Rdb_Store *store, const char *sql, 
 | -- | -- |
 | [OH_Rdb_Store](capi-rdb-oh-rdb-store.md) *store | 指向[OH_Rdb_Store](capi-rdb-oh-rdb-store.md)实例的指针。 |
 | const char *sql | 要执行的SQL语句。 |
-| [const OH_Data_Values](capi-rdb-oh-data-values.md) *args | 指向[OH_Data_Values](capi-rdb-oh-data-values.md)实例的指针。SQL语句完整时，args可填写为nullptr。 |
+| const [OH_Data_Values](capi-rdb-oh-data-values.md) *args | 表示SQL语句中参数的值，指向OH_Data_Values实例的指针。SQL语句完整时，args可填写为nullptr。 |
 
 **返回：**
 
