@@ -830,9 +830,9 @@ let slotId: number = 0;
 try {
   // 启用指定卡槽的SIM卡
   telephonyManager.activeSim(wantTemp, slotId);
-  console.info(`success to active SIM`);
+  console.info(`success in activating SIM card on slot ${slotId}`);
 } catch (err) {
-  console.error(`Failed to active SIM. Code: ${err.code}, message: ${err.message}`);
+  console.error(`Failed to activate SIM on slot ${slotId}. Code: ${err.code}, message: ${err.message}`);
 }
 ```
 
@@ -889,9 +889,9 @@ let slotId: number = 0;
 try {
   // 停用指定卡槽的SIM卡
   telephonyManager.deactiveSim(wantTemp, slotId);
-  console.info(`success to deactive SIM`);
+  console.info(`success in deactivating SIM card on slot ${slotId}`);
 } catch (err) {
-  console.error(`Failed to deactive SIM. Code: ${err.code}, message: ${err.message}`);
+  console.error(`Failed to deactivate SIM on slot ${slotId}. Code: ${err.code}, message: ${err.message}`);
 }
 ```
 
@@ -948,9 +948,9 @@ let slotId: number = 0;
 try {
   // 设置指定卡槽为默认数据流量卡
   telephonyManager.setDefaultData(wantTemp, slotId);
-  console.info(`success to set default data SIM ID`);
+  console.info(`success in setting default data SIM ID on slot ${slotId}`);
 } catch (err) {
-  console.error(`Failed to set default data. Code: ${err.code}, message: ${err.message}`);
+  console.error(`Failed to set default data on slot ${slotId}. Code: ${err.code}, message: ${err.message}`);
 }
 ```
 
@@ -1009,8 +1009,8 @@ let wantTemp: Want = {
 try {
   // 获取当前默认数据流量卡的卡槽ID
   let slotId: number = telephonyManager.getDefaultData(wantTemp);
-  console.info(`success to get default data SIM ID, current is ${slotId}`);
+  console.info(`success in getting default data SIM ID on slot ${slotId}`);
 } catch (err) {
-  console.error(`Failed to get default data. Code: ${err.code}, message: ${err.message}`);
+  console.error(`Failed to get default data on slot ${slotId}. Code: ${err.code}, message: ${err.message}`);
 }
 ```

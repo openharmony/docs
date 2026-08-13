@@ -779,7 +779,7 @@ The location is inoperable.
 
 **错误信息**
 
-set default data sim failed.
+Failed to set the default data SIM card. The airplane mode is enabled or no SIM card is inserted.
 
 **错误描述**
 
@@ -1204,6 +1204,24 @@ Restricted account.
 
 确认系统账号的类型是否支持此类操作。
 
+## 9201042 切换开关状态失败
+
+**错误信息**
+
+Failed to toggle the switch state.
+
+**错误描述**
+
+当切换开关状态失败时，会产生此错误码。
+
+**可能原因**
+
+当前设备蓝牙、Wi-Fi、NFC或星闪等相关服务处于异常状态。
+
+**处理步骤**
+
+确认设备相关服务是否正常运行。
+
 ## 9201043 API调用的前置条件未满足
 
 **错误信息**
@@ -1212,7 +1230,7 @@ Prerequisites for the API call have not been satisfied. For example, distributed
 
 **错误描述**
 
-当API调用的前置条件未满足时，会产生此错误码。
+在未禁用设备间单向传输能力的情况下添加允许分布式双向协同应用名单时，会产生此错误码。
 
 **可能原因**
 
@@ -1248,7 +1266,7 @@ This permission cannot be disallowed.
 
 **错误描述**
 
-需要禁用指定权限时，会产生此错误码。
+禁用APL等级不为normal或system_basic的权限时，会产生此错误码。
 
 **可能原因**
 
@@ -1266,7 +1284,7 @@ The number of signed-in accounts reaches the upper limit.
 
 **错误描述**
 
-当前设备上已登录的系统账号数量达到最大上限。
+当前设备上已登录的系统账号数量达到上限。
 
 **可能原因**
 

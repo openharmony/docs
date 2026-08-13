@@ -735,7 +735,7 @@ try {
     }
   },
   // ...
-]
+];
 ```
 
 
@@ -803,7 +803,7 @@ try {
     }
   },
   // ...
-]
+];
 ```
 ## applicationManager.addAutoStartApps<sup>20+</sup>
 
@@ -944,7 +944,7 @@ try {
     }
   },
   // ...
-]
+];
 ```
 
 
@@ -1012,7 +1012,7 @@ try {
     }
   },
   // ...
-]
+];
 ```
 ## applicationManager.isModifyAutoStartAppsDisallowed<sup>20+</sup>
 
@@ -1310,7 +1310,7 @@ let wantTemp: Want = {
 
 try {
   let result: Array<string> = applicationManager.getKeepAliveApps(wantTemp, 100);
-  console.info('Succeeded in getting keep alive apps.');
+  console.info(`Succeeded in getting keep alive apps. Result is ${result}`);
 } catch (err) {
   console.error(`Failed to get keep alive apps. Code is ${err.code}, message is ${err.message}`);
 }
@@ -2613,7 +2613,7 @@ try {
     "index": 5
   },
   // ...
-]
+];
 ```
 
 
@@ -3081,13 +3081,13 @@ async function queryTrafficStats() {
     endTime: Math.floor(new Date(2026, 3, 16, 0, 0, 0, 0).getTime() / 1000),
     // 网络类型为BEARER_CELLULAR时，需要传simId；网络类型为BEARER_WIFI时，不需要传simId；
     simId: simId
-  }
+  };
   await applicationManager.queryTrafficStats(wantTemp, bundleName, appIndex, accountId, networkInfo)
     .then(result => {
       console.info('Succeeded in querying traffic stats.');
     }).catch((error: BusinessError) => {
       console.error(`Failed to query traffic stats. Code is ${error.code}, message is ${error.message}`);
-    })
+    });
 }
 ```
 

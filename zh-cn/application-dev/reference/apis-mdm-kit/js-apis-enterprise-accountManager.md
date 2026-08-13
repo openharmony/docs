@@ -333,7 +333,7 @@ async function setDomainAccountPolicy() {
       accountInfo2 = domainAccountInfo;
     }).catch((err: BusinessError) => {
       console.error(`Failed to get account domain info. Code: ${err.code}, message: ${err.message}`);
-    })
+    });
   try {
     accountManager.setDomainAccountPolicy(wantTemp, accountInfo2, policy);
     console.info('Succeeded in setting domain account policy.');
@@ -424,7 +424,7 @@ async function getDomainAccountPolicy() {
     })
     .catch((err: BusinessError) => {
       console.error(`Failed to get account domain info. Code: ${err.code}, message: ${err.message}`);
-    })
+    });
   try {
     domainAccountPolicy = accountManager.getDomainAccountPolicy(wantTemp, accountInfo2);
     console.info('Succeeded in getting domain account policy.');
@@ -451,14 +451,14 @@ async function getDomainAccountPolicy() {
 
 createNormalOsAccount(admin: Want, name: string): Promise&lt;osAccount.OsAccountInfo&gt;
 
-创建普通系统账号。最多可以创建2个normal类型的系统账号 ([osAccount.OsAccountType](../apis-basic-services-kit/js-apis-osAccount.md#osaccounttype)) 。
+创建普通系统账号。使用Promise异步回调。最多可以创建2个normal类型的系统账号 ([osAccount.OsAccountType](../apis-basic-services-kit/js-apis-osAccount.md#osaccounttype)) 。
 > **说明：**
 > 
 > 创建账号的流程比较耗时，当调用此接口后，后续如果在应用主线程调用其他同步接口时需要等待该接口异步返回。
 > 
 > 创建系统账号对设备的性能影响较大，此接口仅支持12GB及以上运行内存的手机、平板设备使用。
 
-**起始版本**：26.0.0
+**起始版本：** 26.0.0
 
 **需要权限：** ohos.permission.ENTERPRISE_MANAGE_LOCAL_ACCOUNTS
 
@@ -520,9 +520,9 @@ accountManager.createNormalOsAccount(wantTemp, "TestAccountName").then((accountI
 
 removeOsAccount(admin: Want, accountId: number): Promise&lt;void&gt;
 
-移除系统账号。当前仅支持手机、平板设备使用，可以移除使用[createNormalOsAccount](#accountmanagercreatenormalosaccount)创建的普通系统账号（normal类型）和[addOsAccountAsync](#accountmanageraddosaccountasync)创建的系统账号（admin、normal、guest类型），不可移除默认系统账号（ID为100）。
+移除系统账号。使用Promise异步回调。当前仅支持手机、平板设备使用，可以移除使用[createNormalOsAccount](#accountmanagercreatenormalosaccount)创建的普通系统账号（normal类型）和[addOsAccountAsync](#accountmanageraddosaccountasync)创建的系统账号（admin、normal、guest类型），不可移除默认系统账号（ID为100）。
 
-**起始版本**：26.0.0
+**起始版本：** 26.0.0
 
 **需要权限：** ohos.permission.ENTERPRISE_MANAGE_LOCAL_ACCOUNTS
 
@@ -589,9 +589,9 @@ accountManager.createNormalOsAccount(wantTemp, "TestAccountName").then((accountI
 
 activateOsAccount(admin: Want, accountId: number): Promise&lt;void&gt;
 
-切换系统账号。当前仅支持手机、平板设备使用，只能在[createNormalOsAccount](#accountmanagercreatenormalosaccount)创建的普通系统账号和默认系统账号 (ID为100) 之间切换。
+切换系统账号。使用Promise异步回调。当前仅支持手机、平板设备使用，只能在[createNormalOsAccount](#accountmanagercreatenormalosaccount)创建的普通系统账号和默认系统账号 (ID为100) 之间切换。
 
-**起始版本**：26.0.0
+**起始版本：** 26.0.0
 
 **需要权限：** ohos.permission.ENTERPRISE_INTERACT_ACROSS_LOCAL_ACCOUNTS
 

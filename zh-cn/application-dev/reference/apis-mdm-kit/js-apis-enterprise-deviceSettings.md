@@ -100,7 +100,7 @@ getValue(admin: Want, item: string): string
 
 | 类型   | 说明                                                         |
 | ------ | ------------------------------------------------------------ |
-| string | 策略类型值。<br/>当item为screenOff时，返回设备息屏时间（单位：毫秒），对于PC/2in1设备，返回设备电池供电下的息屏时间（单位：毫秒）。<br/>当item为powerPolicy时，返回电源策略，对于PC/2in1设备，返回设备电池供电下的电源策略，格式为JSON字符串:{"powerScene":xx,"powerPolicy":{"powerPolicyAction":xx,"delayTime":xx}}。powerScene为电源策略场景；delayTime为延迟时间（单位：毫秒）；powerPolicyAction为休眠策略。<br/>电源策略场景：<br/>- 0：超时场景。<br/>休眠策略：<br/>- 0：不执行动作。<br/>- 1：自动进入睡眠。<br/>- 2：强制进入睡眠。<br/>- 3：进入休眠，该策略暂不生效。<br/>- 4：关机。<br/>当item为eyeComfort时，返回的value为护眼模式开关状态的字符串。<br/>- on：全天开启护眼模式。<br/>- off：关闭护眼模式。<br/>- unknown：其他模式。 |
+| string | 策略类型值。<br/>当item为screenOff时，返回设备息屏时间（单位：毫秒），对于PC/2in1设备，返回设备电池供电下的息屏时间（单位：毫秒）。<br/>当item为powerPolicy时，返回电源策略，对于PC/2in1设备，返回设备电池供电下的电源策略，格式为JSON字符串：{"powerScene":xx,"powerPolicy":{"powerPolicyAction":xx,"delayTime":xx}}。powerScene为电源策略场景；delayTime为延迟时间（单位：毫秒）；powerPolicyAction为休眠策略。<br/>电源策略场景：<br/>- 0：超时场景。<br/>休眠策略：<br/>- 0：不执行动作。<br/>- 1：自动进入睡眠。<br/>- 2：强制进入睡眠。<br/>- 3：进入休眠，该策略暂不生效。<br/>- 4：关机。<br/>当item为eyeComfort时，返回的value为护眼模式开关状态的字符串。<br/>- on：全天开启护眼模式。<br/>- off：关闭护眼模式。<br/>- unknown：其他模式。 |
 
 **错误码**：
 
@@ -177,7 +177,7 @@ setHomeWallpaper(admin: Want, fd: number): Promise&lt;void&gt;
 import { deviceSettings } from '@kit.MDMKit';
 import { common, Want } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
-import { fileIo as fs }  from '@kit.CoreFileKit';
+import { fileIo }  from '@kit.CoreFileKit';
 
 let wantTemp: Want = {
   // 请根据实际情况修改
@@ -190,13 +190,13 @@ const context = this.getUIContext().getHostContext() as common.UIAbilityContext;
 // 参数根据实际情况进行替换
 let filename: string = "homewallpaper.jpg";
 let filePath: string = context.filesDir + '/' + filename;
-let fd: number = fs.openSync(filePath, fs.OpenMode.READ_WRITE).fd;
+let fd: number = fileIo.openSync(filePath, fileIo.OpenMode.READ_WRITE).fd;
 deviceSettings.setHomeWallpaper(wantTemp, fd).then(() => {
   console.info('Succeeded in setting home wallpaper');
 }).catch((err: BusinessError) => {
   console.error(`Failed to set home wallpaper. Code: ${err.code}, message: ${err.message}`);
 }).finally(() => {
-  fs.closeSync(fd);
+  fileIo.closeSync(fd);
 });
 ```
 ## deviceSettings.setUnlockWallpaper<sup>20+</sup>
@@ -242,7 +242,7 @@ setUnlockWallpaper(admin: Want, fd: number): Promise&lt;void&gt;
 import { deviceSettings } from '@kit.MDMKit';
 import { common, Want } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
-import { fileIo as fs }  from '@kit.CoreFileKit';
+import { fileIo }  from '@kit.CoreFileKit';
 
 let wantTemp: Want = {
   // 需根据实际情况进行替换
@@ -255,13 +255,13 @@ const context = this.getUIContext().getHostContext() as common.UIAbilityContext;
 // 参数根据实际情况进行替换
 let filename: string = "lockwallpaper.jpg";
 let filePath: string = context.filesDir + '/' + filename;
-let fd: number = fs.openSync(filePath, fs.OpenMode.READ_WRITE).fd;
+let fd: number = fileIo.openSync(filePath, fileIo.OpenMode.READ_WRITE).fd;
 deviceSettings.setUnlockWallpaper(wantTemp, fd).then(() => {
   console.info('Succeeded in setting lock wallpaper');
 }).catch((err: BusinessError) => {
   console.error(`Failed to set lock wallpaper. Code: ${err.code}, message: ${err.message}`);
 }).finally(() => {
-  fs.closeSync(fd);
+  fileIo.closeSync(fd);
 });
 ```
 
@@ -313,7 +313,7 @@ let wantTemp: Want = {
 try {
   // 需根据实际情况进行替换
   let accountId = 100;
-  let deviceName: string = "deviceName"
+  let deviceName: string = "deviceName";
   deviceSettings.setValueForAccount(wantTemp, deviceSettings.SettingsItem.DEVICE_NAME, accountId, deviceName);
   console.info('Succeeded in setting device name.');
 } catch (err) {
@@ -431,7 +431,7 @@ let menusToHidden: Array<deviceSettings.SettingsMenu> = [
   // 需根据实际情况进行替换或增加
   deviceSettings.SettingsMenu.ACCOUNT_ID,
   deviceSettings.SettingsMenu.WIFI,
-]
+];
 
 try {
   deviceSettings.addHiddenSettingsMenu(wantTemp, menusToHidden);
@@ -494,7 +494,7 @@ let menusToHidden: Array<deviceSettings.SettingsMenu> = [
   // 需根据实际情况进行替换或增加
   deviceSettings.SettingsMenu.ACCOUNT_ID,
   deviceSettings.SettingsMenu.WIFI,
-]
+];
 
 try {
   deviceSettings.removeHiddenSettingsMenu(wantTemp, menusToHidden);
