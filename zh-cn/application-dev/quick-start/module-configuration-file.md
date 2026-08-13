@@ -563,12 +563,12 @@ extensionAbilities示例：
 |fileShare|文件共享的ExtensionAbility。<!--Del-->|
 |sysPicker/camera|拉起相机picker的ExtensionAbility。<!--DelEnd-->|
 |vpn|为开发者提供[@ohos.app.ability.VpnExtensionAbility (三方VPN能力)](../reference/apis-network-kit/js-apis-VpnExtensionAbility.md)的ExtensionAbility。|
-|wallpaper|壁纸的ExtensionAbility。<br/>**说明：**<br/>该类型已经废弃，不再维护。|
+|wallpaper|壁纸的ExtensionAbility。|
 |backup|数据备份的ExtensionAbility。|
 |enterpriseAdmin|[企业设备管理](../mdm/mdm-kit-admin.md)的ExtensionAbility。企业设备管理应用必须拥有此类型的ExtensionAbility。|
 |window|该ExtensionAbility会在启动过程中创建一个window，为开发者提供界面开发。开发者开发出来的界面将通过UIExtensionComponent控件组合到其他应用的窗口中，三方应用配置不生效，当前配置仅在系统应用中有效。|
-|thumbnail|获取文件缩略图的ExtensionAbility，开发者可以对自定义文件类型的文件提供缩略图。<br/>**说明：**<br/>该类型已经废弃，不再维护。|
-|preview|该ExtensionAbility会将文件解析后在一个窗口中显示，开发者可以通过将此窗口组合到其他应用窗口中。<br/>**说明：**<br/>该类型已经废弃，不再维护。|
+|thumbnail|获取文件缩略图的ExtensionAbility，开发者可以对自定义文件类型的文件提供缩略图。|
+|preview|该ExtensionAbility会将文件解析后在一个窗口中显示，开发者可以通过将此窗口组合到其他应用窗口中。|
 |print|打印框架的ExtensionAbility。|
 |push|推送的ExtensionAbility。|
 |driver|驱动框架的ExtensionAbility。应用配置了driver类型的ExtensionAbility后会被视为驱动应用，驱动应用在安装、卸载和恢复时不会区分用户，且创建新用户时也会安装设备上已有的驱动应用。例如，创建子用户时会默认安装主用户已有的驱动应用，在子用户上卸载驱动应用时，主用户上对应的驱动应用也会同时被卸载。|
