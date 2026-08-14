@@ -32,7 +32,7 @@
   - [@ohos.FusionConnectivity.PartnerAgentExtensionAbility (支持设备状态通知的ExtensionAbility组件)](js-apis-fusionConnectivity-partnerAgentExtensionAbility.md)
   - [@ohos.FusionConnectivity.ranging (融合测距模块)](js-apis-fusionConnectivity-ranging.md)
   - [@ohos.nearlink.manager (星闪基础管理能力)](js-apis-nearlink-manager.md)
-  - [@ohos.nearlink.remoteDevice (远端设备的连接能力)](js-apis-nearlink-remote-device.md)
+  - [@ohos.nearlink.remoteDevice (星闪远端设备连接能力)](js-apis-nearlink-remote-device.md)
   - [@ohos.nearlink.advertising (星闪广播能力)](js-apis-nearlink-advertising.md)
   - [@ohos.nearlink.scan (星闪扫描能力)](js-apis-nearlink-scan.md)
   - [@ohos.nearlink.ssap (星闪SSAP连接能力)](js-apis-nearlink-ssap.md)
@@ -62,7 +62,7 @@
   - [@ohos.nearlink.scan (星闪扫描能力)(系统接口)](js-apis-nearlink-scan-sys.md)
   - [@ohos.nearlink.ssap (星闪SSAP连接能力)(系统接口)](js-apis-nearlink-ssap-sys.md)
   - [@ohos.nearlink.constant (星闪公共常量定义)(系统接口)](js-apis-nearlink-constant-sys.md)
-  - [@ohos.nearlink.remoteDevice (远端设备的连接能力)(系统接口)](js-apis-nearlink-remote-device-sys.md)
+  - [@ohos.nearlink.remoteDevice (星闪远端设备连接能力)(系统接口)](js-apis-nearlink-remote-device-sys.md)
   <!--DelEnd-->
   - tag<!--connectivity-nfc-tag-arkts-->
     - [nfctech (标准NFC-Tag Nfc 技术)](js-apis-nfctech.md)

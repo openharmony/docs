@@ -1,4 +1,4 @@
-# @ohos.nearlink.remoteDevice (远端设备的连接能力)
+# @ohos.nearlink.remoteDevice (星闪远端设备连接能力)
 <!--Kit: Connectivity Kit-->
 <!--Subsystem: Communication-->
 <!--Owner: @CCCZKing-->
