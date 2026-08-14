@@ -901,7 +901,7 @@ void OH_Drawing_SetTypographyTextMaxLines(OH_Drawing_TypographyStyle* style, int
 | 参数项 | 描述 |
 | -- | -- |
 | [OH_Drawing_TypographyStyle](capi-drawing-oh-drawing-typographystyle.md)* style | 指向排版样式[OH_Drawing_TypographyStyle](capi-drawing-oh-drawing-typographystyle.md)的指针，由[OH_Drawing_CreateTypographyStyle](capi-drawing-text-typography-h.md#oh_drawing_createtypographystyle)获取。 |
-| int lineNumber | 最大行数，整数。传入0或负数时不限制行数。 |
+| int lineNumber | 最大行数，整数。传入0或负数时不显示文字。 |
 
 ### OH_Drawing_CreateTextStyle()
 
