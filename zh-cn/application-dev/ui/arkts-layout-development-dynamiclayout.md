@@ -23,7 +23,7 @@
 
 ``` TypeScript
 import {
-  DynamicLayout, DynamicLayoutAttribute,RowLayoutAlgorithm, ColumnLayoutAlgorithm, LayoutAlgorithm
+  DynamicLayout, RowLayoutAlgorithm, ColumnLayoutAlgorithm, LayoutAlgorithm
 } from '@kit.ArkUI';
 
 @Entry
@@ -79,7 +79,7 @@ struct CreateDynamicLayout {
 
 ``` TypeScript
 import {
-  DynamicLayout, DynamicLayoutAttribute, RowLayoutAlgorithm, LengthMetrics
+  DynamicLayout,  RowLayoutAlgorithm, LengthMetrics
 } from '@kit.ArkUI';
 
 @Entry
@@ -157,7 +157,7 @@ struct RowLayoutExample {
 
 ``` TypeScript
 import {
-  DynamicLayout, DynamicLayoutAttribute, ColumnLayoutAlgorithm, LengthMetrics
+  DynamicLayout,  ColumnLayoutAlgorithm, LengthMetrics
 } from '@kit.ArkUI';
 
 @Entry
@@ -235,7 +235,7 @@ struct ColumnLayoutExample {
 
 ``` TypeScript
 import {
-  DynamicLayout, DynamicLayoutAttribute, StackLayoutAlgorithm
+  DynamicLayout,  StackLayoutAlgorithm
 } from '@kit.ArkUI';
 
 @Entry
@@ -307,7 +307,7 @@ struct StackLayoutExample {
 
 ``` TypeScript
 import {
-  DynamicLayout, DynamicLayoutAttribute, GridLayoutAlgorithm, LengthMetrics
+  DynamicLayout,  GridLayoutAlgorithm, LengthMetrics
 } from '@kit.ArkUI';
 
 export class GridDataSource implements IDataSource {
@@ -416,7 +416,7 @@ struct GridLayoutExample {
 
 ``` TypeScript
 import {
-  DynamicLayout, DynamicLayoutAttribute, CustomLayoutAlgorithm, FrameNode, LayoutConstraint, Position, LayoutAlgorithm
+  DynamicLayout,  CustomLayoutAlgorithm, FrameNode, LayoutConstraint, Position, LayoutAlgorithm
 } from '@kit.ArkUI';
 
 // 自定义布局算法类
@@ -515,7 +515,7 @@ struct CustomLayoutBasic {
 
 ``` TypeScript
 import {
-  DynamicLayout, DynamicLayoutAttribute, CustomLayoutAlgorithm, LayoutAlgorithm, FrameNode, LayoutConstraint, Position
+  DynamicLayout,  CustomLayoutAlgorithm, LayoutAlgorithm, FrameNode, LayoutConstraint, Position
 } from '@kit.ArkUI';
 
 // 瀑布流布局算法
@@ -680,7 +680,7 @@ interface Product {
 
 ``` TypeScript
 import {
-  DynamicLayout, DynamicLayoutAttribute, CustomLayoutAlgorithm, LayoutAlgorithm, FrameNode, LayoutConstraint, Position
+  DynamicLayout,  CustomLayoutAlgorithm, LayoutAlgorithm, FrameNode, LayoutConstraint, Position
 } from '@kit.ArkUI';
 
 // 2x2网格布局算法
@@ -837,7 +837,7 @@ struct GridLayoutExample {
 
 ``` TypeScript
 import {
-  DynamicLayout, DynamicLayoutAttribute, CustomLayoutAlgorithm, LayoutAlgorithm, FrameNode, LayoutConstraint, Position
+  DynamicLayout,  CustomLayoutAlgorithm, LayoutAlgorithm, FrameNode, LayoutConstraint, Position
 } from '@kit.ArkUI';
 
 // 标签云布局算法
@@ -988,7 +988,7 @@ DynamicLayout在切换布局算法时会保持子组件的状态不变，比如�
 
 ``` TypeScript
 import {
-  DynamicLayout, DynamicLayoutAttribute, ColumnLayoutAlgorithm, LayoutAlgorithm, curves, LengthMetrics,
+  DynamicLayout,  ColumnLayoutAlgorithm, LayoutAlgorithm, curves, LengthMetrics,
   GridLayoutAlgorithm
 } from '@kit.ArkUI';
 
@@ -1131,7 +1131,7 @@ DynamicLayout支持以下几种方式触发重新布局：
 
   ``` TypeScript
   import {
-    DynamicLayout, DynamicLayoutAttribute, RowLayoutAlgorithm, ColumnLayoutAlgorithm,
+    DynamicLayout,  RowLayoutAlgorithm, ColumnLayoutAlgorithm,
     StackLayoutAlgorithm, GridLayoutAlgorithm, LayoutAlgorithm, LengthMetrics
   } from '@kit.ArkUI';
 
@@ -1247,7 +1247,7 @@ DynamicLayout支持以下几种方式触发重新布局：
 
   ``` TypeScript
   import { 
-    DynamicLayout, DynamicLayoutAttribute, RowLayoutAlgorithm, ColumnLayoutAlgorithm, LengthMetrics 
+    DynamicLayout,  RowLayoutAlgorithm, ColumnLayoutAlgorithm, LengthMetrics 
   } from '@kit.ArkUI';
 
   @Entry
@@ -1303,7 +1303,7 @@ DynamicLayout支持以下几种方式触发重新布局：
 
   ``` TypeScript
   import {
-    DynamicLayout, DynamicLayoutAttribute, RowLayoutAlgorithm, LengthMetrics
+    DynamicLayout,  RowLayoutAlgorithm, LengthMetrics
   } from '@kit.ArkUI';
 
   @Entry
@@ -1376,7 +1376,7 @@ DynamicLayout支持以下几种方式触发重新布局：
 
   ``` TypeScript
   import {
-    DynamicLayout, DynamicLayoutAttribute, ColumnLayoutAlgorithm, LayoutAlgorithm, LengthMetrics, mediaquery,
+    DynamicLayout,  ColumnLayoutAlgorithm, LayoutAlgorithm, LengthMetrics, mediaquery,
     GridLayoutAlgorithm
   } from '@kit.ArkUI';
 
