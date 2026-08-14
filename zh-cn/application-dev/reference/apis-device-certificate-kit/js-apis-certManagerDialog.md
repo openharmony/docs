@@ -322,7 +322,7 @@ let context: common.Context = new UIContext().getHostContext() as common.Context
 /* certificateType为证书类型，此处赋值CA_CERT，即删除CA证书 */
 let certificateType: certificateManagerDialog.CertificateType = certificateManagerDialog.CertificateType.CA_CERT;
 /* certUri为业务安装证书返回的唯一标识符，此处仅为示例 */
-let certUri: string = "test";
+let certUri: string = 'test';
 try {
   certificateManagerDialog.openUninstallCertificateDialog(context, certificateType, certUri).then(() => {
     console.info('Succeeded in opening uninstall certificate');
@@ -584,7 +584,7 @@ import { UIContext } from '@kit.ArkUI';
 /* context为应用的上下文信息，调用方自行获取，此处仅为示例 */
 let context: common.Context = new UIContext().getHostContext() as common.Context;
 /* keyUri为证书凭据的唯一标识符，调用方自行获取，此处仅为示例 */
-let keyUri: string = "test";
+let keyUri: string = 'test';
 let ukeyAuthRequest: certificateManagerDialog.UkeyAuthRequest = { keyUri: keyUri };
 try {
   certificateManagerDialog.openUkeyAuthDialog(context, ukeyAuthRequest).then(() => {
