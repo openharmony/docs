@@ -1,16 +1,21 @@
 # App Check Tool
+
 <!--Kit: Ability Kit-->
 <!--Subsystem: BundleManager-->
 <!--Owner: @jsjzju-->
 <!--Designer: @jsjzju-->
 <!--Tester: @lixueqing513-->
 <!--Adviser: @Brilliantry_Rui-->
+<!-- md-trans-meta sourceCommit=83eb20b2da17b66d3089c14abb21986b856a3985 translatedAt=2026-08-12T09:17:34.767Z pushedAt=2026-08-13T03:04:28.428Z -->
 
 ## Overview
 
 The app check tool is used to analyze and detect application installation packages. Based on the parameter settings, it scans the HAP, HSP, or APP file in the specified path and generates detection reports, providing data support for you to optimize the package structure or locate problems. The tool provides the following functions:
+
 - Scans for duplicate files.
+
 - Scans for large files (files that exceed the specified size).
+
 - Collects statistics on the size and proportion of each type of file.<br>
 
 By default, the tool generates detection reports in JSON and HTML format.<br>
@@ -19,7 +24,9 @@ The **app_check_tool.jar** package of the tool is stored in the **toolchains** d
 ![App check tool architecture](figures/app-check-tool-construct.png)
 
 ## Constraints
+
 - The app check tool must run in Java 8 or later.
+
 - The directory where the app check tool is running must have the read and write permissions.
 
 ## Scanning for Duplicate Files
@@ -67,7 +74,7 @@ java -jar app_check_tool.jar --input ./test.app --out-path ./test --stat-duplica
 | param     | String | Parameter passed in by the scanning program.         |
 | startTime | String | Start time of the task.             |
 | stopTime  | String | End time of the task.             |
-| result    | Struct | Duplicate file statistics result. For details, see Table 3.      |
+| result    | Vector\<Struct> | Duplicate file statistical result field information. For details, see Table 3.       |
 
 **Table 3 Fields of the result**
 
@@ -109,7 +116,6 @@ java -jar app_check_tool.jar --input ./test.app --out-path ./test --stat-file-si
 }]
 ```
 
-
 **Table 5 Fields of the output**
 
 | Field     | Type  | Description                               |
@@ -119,7 +125,7 @@ java -jar app_check_tool.jar --input ./test.app --out-path ./test --stat-file-si
 | param     | String | Parameter passed in by the scanning program.                 |
 | startTime | String | Start time of the task.                     |
 | stopTime  | String | End time of the task.                     |
-| result    | Struct | Statistics result of files that exceed the specified size. For details, see Table 6.             |
+| result    | Vector\<Struct> | Field information of the statistical result for files exceeding the specified size. For details, see Table 6.              |
 
 **Table 6 Fields of the result**
 
@@ -181,8 +187,6 @@ java -jar app_check_tool.jar --input ./test.app --out-path ./test --stat-suffix 
 }]
 ```
 
-
-
 **Table 8 Fields of the output**
 
 | Field     | Type           | Description                                                                                  |
@@ -193,7 +197,7 @@ java -jar app_check_tool.jar --input ./test.app --out-path ./test --stat-suffix 
 | startTime | String          | Start time of the task.                                                                        |
 | stopTime  | String          | End time of the task.                                                                        |
 | pathList  | Vector\<String> | Paths of multiple HAP and HSP files.                                                                 |
-| result    | Struct          | Statistics result of the file size proportion of each type. For details, see Table 9.                                   |
+| result    | Vector\<Struct>          | Statistical result field information for file size proportion by type. For details, see Table 9.                                    |
 
 **Table 9 Fields of the result**
 
@@ -201,9 +205,10 @@ java -jar app_check_tool.jar --input ./test.app --out-path ./test --stat-suffix 
 | --------- | ------ | ------------------------------------------ |
 | suffix    | String | File name extension.                        |
 | totalSize | int    | Total size of scanned files of the same type, in bytes.|
-| files     | Struct  | Path and size of files of the same type. For details, see Table 10.                    |
+| files     | Vector\<Struct>  | Field information about the corresponding paths and sizes of same type files. For details, see Table 10.                     |
 
 **Table 10 Fields of the Struct**
+
 | Field    | Type  | Description                                                               |
 | -------- | ------ | ------------------------------------------------------------------- |
 | file     | String | Path of a file.                                                         |

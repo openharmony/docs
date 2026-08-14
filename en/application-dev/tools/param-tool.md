@@ -1,16 +1,19 @@
 # param
+
 <!--Kit: Basic Services Kit-->
 <!--Subsystem: Startup-->
 <!--Owner: @chenjinxiang3-->
 <!--Designer: @liveery-->
 <!--Tester: @liuhaonan2-->
 <!--Adviser: @fang-jinxu-->
+<!-- md-trans-meta sourceCommit=c2effa7732d4d3438a4b10f36e206877f78a226e translatedAt=2026-08-13T03:16:51.088Z pushedAt=2026-08-13T06:33:16.426Z -->
 
 The param tool enables you to operate system parameters. It is valid only for standard-system devices.
 
 ## Environment Setup
 
 * You have obtained the <!--Del-->[<!--DelEnd-->hdc tool<!--Del-->](../../device-dev/subsystems/subsys-toolchain-hdc-guide.md)<!--DelEnd--> to run hdc shell commands.
+
 * The device is properly connected.
 
 ## Commands
@@ -39,11 +42,12 @@ The param tool enables you to operate system parameters. It is valid only for st
   ```bash
   param ls [-r] [name]
   ```
+
   **Example**<br>
   ![ls-integrity](figures/param-ls-integrity.png)
 
   ![ls-part](figures/param-ls-part.png)
-  
+
   ![ls](figures/param-ls.png)
 
 ## get
@@ -53,6 +57,7 @@ The param tool enables you to operate system parameters. It is valid only for st
   ```bash
   param get [name]
   ```
+
   **Example**<br>
   ![get](figures/param-get.png)
 
@@ -63,6 +68,7 @@ The param tool enables you to operate system parameters. It is valid only for st
   ```bash
   param set name value
   ```
+
   **Example**<br>
   ![set](figures/param-set.png)
 
@@ -73,6 +79,7 @@ The param tool enables you to operate system parameters. It is valid only for st
   ```bash
   param wait name [value] [timeout]
   ```
+
   **Example**<br>
   ![wait](figures/param-wait.png)
 
@@ -83,5 +90,12 @@ The param tool enables you to operate system parameters. It is valid only for st
   ```bash
   param save
   ```
+
   **Example**<br>
   ![save](figures/param-save.png)
+
+## System Parameter Error Codes
+
+**Error code description**
+
+For details about the error codes, see [system parameter](https://gitcode.com/openharmony/docs/blob/master/en/device-dev/subsystems/subsys-boot-init-sysparam.md#system-parameter-error-codes).
