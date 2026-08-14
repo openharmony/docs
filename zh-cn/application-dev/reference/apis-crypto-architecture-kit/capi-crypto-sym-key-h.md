@@ -11,6 +11,8 @@
 
 定义对称密钥接口。
 
+**引用文件：** <CryptoArchitectureKit/crypto_sym_key.h>
+
 **库：** libohcrypto.so
 
 **系统能力：** SystemCapability.Security.CryptoFramework
