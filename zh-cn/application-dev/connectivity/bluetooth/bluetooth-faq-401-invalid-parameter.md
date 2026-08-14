@@ -62,7 +62,7 @@ let scanOptions: ble.ScanOptions = {
 };
 
 try {
-    bleScanner.on('BLEDevicefind', onReceiveEvent);
+    bleScanner.on("BLEDevicefind", onReceiveEvent);
     bleScanner.startScan([scanFilter], scanOptions);
     console.info('startScan success');
 } catch (err) {
