@@ -1699,7 +1699,7 @@ try {
     certType: certificateManager.CertType.CA_CERT_SYSTEM
   };
   let systemCAPath = certificateManager.getCertificateStorePath(property1);
-  console.info(`Succeeded in getting system ca path: ${systemCAPath}`);
+  console.info(`Succeeded in getting system CA path: ${systemCAPath}`);
 
   /* 获取当前用户的用户CA存储位置 */
   let property2: certificateManager.CertStoreProperty = {
@@ -1707,7 +1707,7 @@ try {
     certScope: certificateManager.CertScope.CURRENT_USER
   };
   let userCACurrentPath = certificateManager.getCertificateStorePath(property2);
-  console.info(`Succeeded in getting current user's user ca path: ${userCACurrentPath}`);
+  console.info(`Succeeded in getting current user's user CA path: ${userCACurrentPath}`);
 
   /* 获取设备公共的用户CA存储位置 */
   let property3: certificateManager.CertStoreProperty = {
@@ -1715,7 +1715,7 @@ try {
     certScope: certificateManager.CertScope.GLOBAL_USER
   };
   let globalCACurrentPath = certificateManager.getCertificateStorePath(property3);
-  console.info(`Succeeded in getting global user's user ca path: ${globalCACurrentPath}`);
+  console.info(`Succeeded in getting global user's user CA path: ${globalCACurrentPath}`);
 
   /* 获取SM算法系统CA的存储位置 */
   let property4: certificateManager.CertStoreProperty = {
@@ -1723,7 +1723,7 @@ try {
     certAlg: certificateManager.CertAlgorithm.SM
   };
   let smSystemCAPath = certificateManager.getCertificateStorePath(property4);
-  console.info(`Succeeded in getting SM system ca path: ${smSystemCAPath}`);
+  console.info(`Succeeded in getting SM system CA path: ${smSystemCAPath}`);
 } catch (error) {
   console.error(`Failed to get store path. Code: ${error.code}, message: ${error.message}`);
 }
