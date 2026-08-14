@@ -1,4 +1,4 @@
-# Getting Resource ID (ArkTS)
+# Obtaining a Resource ID (ArkTS)
 
 <!--Kit: Universal Keystore Kit-->
 <!--Subsystem: Security-->

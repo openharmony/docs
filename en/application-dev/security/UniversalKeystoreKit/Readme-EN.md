@@ -70,7 +70,7 @@
 
     - Key Encapsulation<!--huks-kem-->
 
-      - [Key Encapsulation Mechanism Overview and Algorithm Specifications](huks-kem-overview.md)
+      - [Key Encapsulation Mechanism and Algorithm Specifications](huks-kem-overview.md)
 
       - [Key Encapsulation (ArkTS)](huks-kem-arkts.md)
 
@@ -178,9 +178,9 @@
 
     - [Resource Management Overview and Specifications](huks-resource-management-overview.md)
 
-    - [Obtaining Resource ID (ArkTS)](huks-extension-get-resource-id-arkts.md)
+    - [Obtaining a Resource ID (ArkTS)](huks-extension-get-resource-id-arkts.md)
 
-    - [Opening/Closing Resources (ArkTS)](huks-open-close-resource-arkts.md)
+    - [Opening/Closing a Resource (ArkTS)](huks-open-close-resource-arkts.md)
 
     - [Opening and Closing Resources (C/C++)](huks-open-close-resource-ndk.md)
 
@@ -188,11 +188,11 @@
 
     - [Key Generation, Import, and Export](huks-extension-key-generation-import-overview.md)
 
-    - [Key Generation (ArkTS)](huks-extension-key-generation-arkts.md)
+    - [Generating a Key (ArkTS)](huks-extension-key-generation-arkts.md)
 
-    - [Key Import (ArkTS)](huks-extension-key-import-arkts.md)
+    - [Importing a Key (ArkTS)](huks-extension-key-import-arkts.md)
 
-    - [Public Key Export (ArkTS)](huks-extension-key-export-arkts.md)
+    - [Exporting a Public Key (ArkTS)](huks-extension-key-export-arkts.md)
 
   - UKey PIN Authentication Management<!--huks-ukey-pin-authentication-management-->
 
