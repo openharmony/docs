@@ -236,6 +236,11 @@ void OnChatResponse(void *context, const char *response)
     }
     try {
         json responseJson = json::parse(response);
+        std::string role = responseJson.at("message").at("role").get<std::string>();
+        if (role != "assistant") {
+            DEMO_LOGW("Discarding invalid response due to incorrect role");
+            return;
+        }
         chatContext->responseContent += responseJson.at("message").at("content").get<std::string>();
         json finishReasonJson = responseJson.at("finish_reason");
         if (!finishReasonJson.is_null()) {

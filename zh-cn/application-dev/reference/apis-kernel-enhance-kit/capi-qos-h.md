@@ -68,7 +68,7 @@
 ### OH_QoS_GewuSession
 
 ```c
-typedef unsigned int OH_QoS_GewuSession;
+typedef unsigned int OH_QoS_GewuSession
 ```
 
 **描述**
@@ -80,7 +80,7 @@ typedef unsigned int OH_QoS_GewuSession;
 ### OH_QoS_GewuRequest
 
 ```c
-typedef unsigned int OH_QoS_GewuRequest;
+typedef unsigned int OH_QoS_GewuRequest
 ```
 
 **描述**
