@@ -5,7 +5,7 @@
 <!--Owner: @oatuwwutao-->
 <!--Designer: @oatuwwutao; @cy917474985-->
 <!--Tester: @kirl75; @zsw_zhushiwei-->
-<!--Adviser: @zhang_yixin13-->
+<!--Adviser: @k1ngqaquuu-->
 
 ## Purpose
 
@@ -150,12 +150,12 @@ A constant name must consist of uppercase letters separated by underscores (_). 
 <!-- @[Uppercase_Underline](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/Start/LearningArkTS/CodingStyleGuide/entry/src/main/ets/pages/Index.ets) -->  
 
 ``` TypeScript
+const MAX_USER_SIZE = 10000;
+
 enum UserType1 {
   TEACHER = 0,
   STUDENT = 1
 };
-
-const MAX_USER_SIZE = 10000;
 ```
 
 ### Do Not Use Negative Boolean Variable Names
@@ -382,10 +382,8 @@ Use spaces to highlight keywords and important information. The general recommen
 2. Do not add a space between the method name and the open parentheses of the parameter list when defining or calling the method.
 3. Add a space between the keyword **else** or **catch** and the close brace (}).
 4. Add a space before the open brace ({), except when:
-
-a. The open brace is used as the first parameter of a method or the first element in an array, for example, **foo({ name: 'abc' })**.
-
-b. The open brace is used in a template name, for example, **abc${name}**.
+    - The open brace is used as the first parameter of a method or the first element in an array, for example, **foo({ name: 'abc' })**.
+    - The open brace is used in a template, for example, **abc${name}**.
 5. Spaces are added before and after the binary operator (+, -, *, =, <, >, <=, >=, ===, !==, &&, ||). Spaces are added on both sides of the ternary operator (? :).
 6. Add a space after the comma in array initialization and the comma between multiple parameters in a method.
 7. Do not add a space before a comma (,) or semicolon (;).
@@ -593,7 +591,7 @@ try {
   doSomething();
 }
 catch (err) {
-  // Error handling.
+  // Error handling
 }
 ```
 
@@ -605,7 +603,7 @@ catch (err) {
 try {
   doSomething();
 } catch (err) {
-  // Error handling.
+  // Error handling
 }
 ```
 
@@ -882,7 +880,7 @@ export function getObject1(value: number): I {
 // Index.ets
 import { getObject1 } from './lib';
 // ...
-let obj1: I = getObject1(123);
+let obj1: ESObject = getObject1(123);
 ```
 
 **[Correct Example]**
@@ -921,7 +919,7 @@ ArkTS provides two array types: **T[]** and **Array\<T>**. To improve code reada
 
 **[Incorrect Example]**
 
-<!-- @[use_T[]_incorrectExample](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/Start/LearningArkTS/CodingStyleGuide/entry/src/main/ets/pages/Index.ets) -->    
+<!-- @[use_T_incorrectExample](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/Start/LearningArkTS/CodingStyleGuide/entry/src/main/ets/pages/Index.ets) -->    
 
 ``` TypeScript
 let x: Array<number> = [1, 2, 3];
@@ -930,7 +928,7 @@ let y: Array<string> = ['a', 'b', 'c'];
 
 **[Correct Example]**
 
-<!-- @[use_T[]_correctExample](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/Start/LearningArkTS/CodingStyleGuide/entry/src/main/ets/pages/Index.ets) -->  
+<!-- @[use_T_correctExample](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/Start/LearningArkTS/CodingStyleGuide/entry/src/main/ets/pages/Index.ets) -->  
 
 ``` TypeScript
 // Use the T[] syntax.

@@ -1,17 +1,16 @@
-# Application Configuration Files (FA Model)
+# FA Model Application Configuration Files
+
 <!--Kit: Ability Kit-->
 <!--Subsystem: BundleManager-->
 <!--Owner: @wanghang904-->
 <!--Designer: @hanfeng6-->
-<!--Tester: @kongjing2-->
-<!--Adviser: @Brilliantry_Rui-->
-
+<!--Tester: @memghaiyang-->
+<!--Adviser: @HelloCrease-->
+<!-- md-trans-meta sourceCommit=e614db0ed9ef9e65ff9f340640f4a0fd5317e78d translatedAt=2026-08-13T08:48:59.913Z pushedAt=2026-08-13T11:38:59.103Z -->
 
 Each application project must have configuration files in its code directory. These configuration files provide basic application information for build tools, the operating system, and application markets.
 
-
 The application configuration file contains the following information:
-
 
 - Basic information of the application, including the bundle name, vendor, and version number. Such information must be set under the **app** tag.
 
@@ -19,9 +18,7 @@ The application configuration file contains the following information:
 
 - Device-specific information of the application. Such information affects the functioning of the application on the device.
 
-
 When developing an application in the Feature Ability (FA) model, you must declare the package structure of the application in the **config.json** file.
-
 
 ## Configuration File Internal Structure
 
@@ -34,7 +31,6 @@ The **config.json** file consists of three mandatory tags, namely, **app**, **de
 | [module](module-structure.md) | HAP configuration. It is valid only for the current HAP file.| Object| No|
 
 Example of the **config.json** file:
-
 
 ```json
 {

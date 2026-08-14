@@ -5,7 +5,8 @@
 <!--Owner: @oatuwwutao-->
 <!--Designer: @oatuwwutao; @cy917474985-->
 <!--Tester: @kirl75; @zsw_zhushiwei-->
-<!--Adviser: @zhang_yixin13-->
+<!--Adviser: @k1ngqaquuu-->
+<!-- md-trans-meta sourceCommit=e25164b4c5d2db315865d228475dc21473dba5fb translatedAt=2026-08-13T08:50:44.903Z pushedAt=2026-08-13T11:51:52.249Z -->
 
 ## Overview
 
@@ -20,7 +21,7 @@ You are advised to use **const** to declare variables that remain unchanged.
 <!-- @[const_variable](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/Start/LearningArkTS/PerformantPractices/entry/src/main/ets/pages/Index.ets) -->
 
 ``` TypeScript
-const index = 10000; // This variable does not change in the subsequent process. You are advised to declare it as a constant.
+const index = 10000; // This variable does not change later, so declare it as a constant.
 ```
 
 ### Avoiding Mixed Use of Integers and Floating-Point Numbers in Variables of the number Type
@@ -31,10 +32,10 @@ For variables of the **number** type, integer data and floating-point data are d
 
 ``` TypeScript
 let intNum = 1;
-intNum = 1.1; // This variable is declared as an integer data type. Avoid assigning a floating-point number to it.
+intNum = 1.1;  // This variable is declared as integer data. Do not assign floating-point data to it later.
 
 let doubleNum = 1.1;
-doubleNum = 1; // This variable is declared as a floating-point data type. Avoid assigning an integer to it.
+doubleNum = 1;  // This variable is declared as floating-point data. Do not assign integer data to it later.
 ```
 
 ### Avoiding Overflow in Arithmetic Operations
@@ -44,7 +45,6 @@ When arithmetic operations run into overflow, the engine enters a slower logic b
 - For operations such as addition, subtraction, multiplication, and exponentiation, the value should not be greater than **INT32_MAX** (2147483647) or less than **INT32_MIN** (-2147483648).
 
 - For operations such as & (and) and >>> (unsigned right shift), the value should not be greater than **INT32_MAX**.
-
 
 ### Extracting Constants in Loops to Reduce Attribute Access Times
 
@@ -61,16 +61,16 @@ class Time {
 function getNum(num: number): number {
   let total: number = 348;
   for (let index: number = 0x8000; index > 0x8; index >>= 1) {
-    // The system searches for info and start of Time multiple times, and the values found each time are the same.
+    // Here, `info` and `start` of `Time` are looked up multiple times, and each lookup returns the same value.
     total += ((Time.info[num - Time.start] & index) !== 0) ? 1 : 0;
   }
   return total;
 }
 ```
 
-You can extract **Time.info[num - Time.start]** as a constant to reduce the number of attribute access times and improves performance. The optimized code is as follows.
+You can extract **Time.info[num - Time.start]** as a constant to reduce the number of attribute access times and improve performance. The optimized code is as follows.
 
-<!-- @[constant_in_loop_batter](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/Start/LearningArkTS/PerformantPractices/entry/src/main/ets/pages/Index.ets) -->
+<!-- @[constant_in_loop_better](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/Start/LearningArkTS/PerformantPractices/entry/src/main/ets/pages/Index.ets) -->
 
 ``` TypeScript
 class TimeBetter {
@@ -80,7 +80,7 @@ class TimeBetter {
 
 function getNumBetter(num: number): number {
   let total: number = 348;
-  const info = TimeBetter.info[num - TimeBetter.start]; // Extract constants from the loop.
+  const info = TimeBetter.info[num - TimeBetter.start];  // Extract the invariant from the loop.
   for (let index: number = 0x8000; index > 0x8; index >>= 1) {
     if ((info & index) != 0) {
       total++;
@@ -110,7 +110,7 @@ fooWithout();
 
 In performance-sensitive scenarios, you are advised to pass external variables using parameters.
 
-<!-- @[outside_variable_batter](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/Start/LearningArkTS/PerformantPractices/entry/src/main/ets/pages/Index.ets) -->
+<!-- @[outside_variable_better](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/Start/LearningArkTS/PerformantPractices/entry/src/main/ets/pages/Index.ets) -->
 
 ``` TypeScript
 let arr_ = [0, 1, 2];
@@ -138,7 +138,8 @@ function add(left?: number, right?: number): number | undefined {
 ```
 
 Declare function parameters as mandatory parameters based on service requirements. You can use the default parameters.
-<!-- @[avoid_optional_parameters_batter](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/Start/LearningArkTS/PerformantPractices/entry/src/main/ets/pages/Index.ets) --> 
+
+<!-- @[avoid_optional_parameters_better](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/Start/LearningArkTS/PerformantPractices/entry/src/main/ets/pages/Index.ets) --> 
 
 ``` TypeScript
 function addWithParams(left: number = 0, right: number = 0): number {
@@ -167,7 +168,7 @@ for (let i = 0; i < 3; i++) {
 
 Sample code after optimization:
 
-<!-- @[use_typearray_batter](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/Start/LearningArkTS/PerformantPractices/entry/src/main/ets/pages/Index.ets) -->
+<!-- @[use_typearray_better](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/Start/LearningArkTS/PerformantPractices/entry/src/main/ets/pages/Index.ets) -->
 
 ``` TypeScript
 const typedArray1 = Int8Array.from([1, 2, 3]);
@@ -185,11 +186,11 @@ When allocating an array whose size exceeds 1024 bytes or a sparse array during 
 <!-- @[avoid_sparse_array](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/Start/LearningArkTS/PerformantPractices/entry/src/main/ets/pages/Index.ets) -->
 
 ``` TypeScript
-// Allocate an array of 100,000 bytes, for which a hash table is used to store elements.
+// Directly allocating an array of size 100000 is handled at runtime by using a hash table to store elements.
 let count = 100000;
 let res: number[] = new Array(count).fill(0);
 
-// The array will become a sparse array when the value is changed to 9999 after the array is created.
+// After creating an array, assigning a value directly at index 9999 makes it a sparse array.
 let result: number[] = [];
 result[9999] = 0;
 ```
@@ -201,12 +202,13 @@ When appropriate, use arrays that contain elements of the same type. That is, av
 <!-- @[avoid_joint_type_poor](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/Start/LearningArkTS/PerformantPractices/entry/src/main/ets/pages/Index.ets) -->
 
 ``` TypeScript
-let arrNum: number[] = [1, 1.1, 2]; // Integer and floating-point data are mixed in the numeric array.
-let arrUnion: (number | string)[] = [1, 'hello'];  // Union array.
+let arrNum: number[] = [1, 1.1, 2]; // Mix integer and floating-point type data in a numeric array.
+let arrUnion: (number | string)[] = [1, 'hello']; // Union type array
 ```
 
 Place the data of the same type in the same array based on service requirements. 
-<!-- @[avoid_joint_type_batter](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/Start/LearningArkTS/PerformantPractices/entry/src/main/ets/pages/Index.ets) -->
+
+<!-- @[avoid_joint_type_better](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/Start/LearningArkTS/PerformantPractices/entry/src/main/ets/pages/Index.ets) -->
 
 ``` TypeScript
 let arrInt: number[] = [1, 2, 3];
@@ -247,9 +249,16 @@ function sum(num: number): number {
 
 Sample code after optimization:
 
-<!-- @[exception_handling_batter](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/Start/LearningArkTS/PerformantPractices/entry/src/main/ets/pages/Index.ets) -->     
+<!-- @[exception_handling_better](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/Start/LearningArkTS/PerformantPractices/entry/src/main/ets/pages/Index.ets) -->     
 
 ``` TypeScript
+function divBetter(a: number, b: number): number {
+  if (a <= 0 || b <= 0) {
+    return NaN;
+  }
+  return a / b;
+}
+
 function sumBetter(num: number): number {
   let sum = 0;
   for (let t = 1; t < 100; t++) {
