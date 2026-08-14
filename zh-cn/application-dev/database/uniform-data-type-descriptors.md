@@ -88,7 +88,7 @@ utd.json5文件需要在类型为entry的HAP中配置。
 
 + **FilenameExtensions：** 应用自定义标准化数据类型所关联的文件后缀。可以缺省；可以为多个，每个后缀为以.开头且长度不超过127的字符串。
 
-+ **MIMETypes：** 应用自定义标准化数据类型所关联的web消息数据类型。可以缺省；可以为多个，每个类型为长度不超过127的字符串。
++ **MIMETypes：** 应用自定义标准化数据类型所关联的多用途互联网邮件扩展类型。可以缺省；可以为多个，每个类型为长度不超过127的字符串。
 
 + **Description：** 应用自定义标准化数据类型的简要说明。可以缺省；填写时，长度为不超过255的字符串。
 
@@ -303,7 +303,7 @@ utd.json5文件需要在类型为entry的HAP中配置。
     ```
 
 2. 针对“text/plain”MIMEType，使用getUniformDataTypesByMIMEType()方法获取对应UTD数据类型。
-3. 针对UTD数据类型，使用getTypeDescriptor()方法查询对应的MIMEType列表。
+3. 根据UTD数据类型，使用getTypeDescriptor()方法查询对应的文件后缀列表。
 
     <!-- @[get_filename_extension_by_mimeType](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkData/Udmf/UniformDataTypeDescriptors/entry/src/main/ets/pages/Index.ets) -->
     

@@ -9,7 +9,7 @@
 
 ## 场景介绍
 
-针对[UTD标准化数据类型](../reference/apis-arkdata/capi-utd-h.md)中的部分常见类型，为了方便业务使用，提供了标准化数据结构。例如，系统定义的桌面图标类型（标准化数据类型标识为'OH_UdsAppItem'）明确定义了相关描述信息。
+针对[utd.h](../reference/apis-arkdata/capi-utd-h.md)中定义的部分常见UTD标准化数据类型，为了方便业务使用，提供了标准化数据结构。例如，系统定义的桌面图标类型（标准化数据类型标识为'OH_UdsAppItem'）明确定义了相关描述信息。
 
 某些业务场景下应用可以直接使用我们具体定义的UTD标准化数据结构，例如跨应用拖拽场景。拖出方应用可以按照标准化数据结构将拖拽数据写入[绑定拖拽事件](../ui/ndk-drag-event.md)，拖入方应用从拖拽事件中读取拖拽数据并按照标准化数据结构进行数据的解析。这使得不同应用间的数据交互遵从相同的标准定义，有效减少了跨应用数据交互的开发工作量。
 
@@ -19,7 +19,7 @@
 
 ## 接口说明
 
-详细的接口说明请参考[标准化数据结构相关接口](../reference/apis-arkdata/capi-uds-h.md)。
+详细的接口说明请参考[uds.h](../reference/apis-arkdata/capi-uds-h.md)中定义的标准化数据结构相关接口。
 
 | 接口名称                                                                                    | 描述                                          | 
 |-----------------------------------------------------------------------------------------|---------------------------------------------|
@@ -34,7 +34,7 @@
 | int OH_UdsFileUri_SetFileUri(OH_UdsFileUri* pThis, const char* fileUri)                 | 设置文件Uri类型对象的Uri信息 |
 | int OH_UdsFileUri_SetFileType(OH_UdsFileUri* pThis, const char* fileType)               | 设置文件Uri类型对象的文件类型 |
 | int OH_UdmfRecord_AddFileUri(OH_UdmfRecord* pThis, OH_UdsFileUri* fileUri)              | 增加文件Uri类型数据至统一数据记录中 |
-| int OH_Udmf_SetUnifiedData(Udmf_Intention intention, OH_UdmfData* unifiedData,char* key, unsigned int keyLen) | 从统一数据管理框架数据库中写入统一数据对象数据 |
+| int OH_Udmf_SetUnifiedData(Udmf_Intention intention, OH_UdmfData* unifiedData,char* key, unsigned int keyLen) | 向统一数据管理框架数据库中写入统一数据对象数据 |
 | void OH_UdsPlainText_Destroy(OH_UdsPlainText* pThis)                                    | 销毁纯文本类型数据指针指向的实例对象 |
 | void OH_UdmfData_Destroy(OH_UdmfData* pThis)                                            | 销毁统一数据对象指针指向的实例对象 |
 | void OH_UdsFileUri_Destroy(OH_UdsFileUri* pThis)                                        | 销毁文件Uri类型的实例对象 |

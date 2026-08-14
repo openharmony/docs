@@ -179,7 +179,7 @@ enum Udmf_AuthPermission
 
 - FileUri类型数据：拖拽场景下默认授权为READ+WRITE+PERSIST（读+写+持久化授权）。
 
-- HTML类型数据，仅针对HTML文本中img标签下的uri做读授权。
+- HTML类型数据：仅针对HTML文本中img标签下的uri做读授权。
 
 **起始版本：** 26.0.0
 
