@@ -1,4 +1,4 @@
-# 色域空间配置异常问题
+# 色彩空间配置异常问题
 <!--Kit: Camera Kit-->
 <!--Subsystem: Multimedia-->
 <!--Owner: @qano-->
@@ -44,6 +44,6 @@
 
 通过[getSupportedColorSpace](../../reference/apis-camera-kit/arkts-apis-camera-ColorManagementQuery.md#getsupportedcolorspaces12)查询当前会话生效的色彩空间，处理相机输出流数据时配置正确的色彩空间信息。
 
-1. 在[PixelMap](../../reference/apis-image-kit/arkts-apis-image-PixelMap.md)使用场景下，通过[setColorSpace](../../reference/apis-image-kit/arkts-apis-image-PixelMap.md#setcolorspace10)设置图像的色彩空间属性。
+1. 若使用[ImageReceiver](../image/image-receiver.md)实现图片接收时，首先需要将imageArrival事件监听获取底层返回的[Image](../../reference/apis-image-kit/arkts-apis-image-Image.md)数据转成[PixelMap](../../reference/apis-image-kit/arkts-apis-image-PixelMap.md)做图像数据处理或送显，并在创建[PixelMap](../../reference/apis-image-kit/arkts-apis-image-PixelMap.md)后，可通过[setColorSpace](../../reference/apis-image-kit/arkts-apis-image-PixelMap.md#setcolorspace10)设置图像的色彩空间属性。
 
-2. 在[NativeWindow](../../reference/apis-arkgraphics2d/capi-nativewindow.md)使用场景下，可先通过[OH_NativeWindow_GetColorSpace](../../reference/apis-arkgraphics2d/capi-external-window-h.md#oh_nativewindow_getcolorspace)获取OHNativeWindow色彩空间属性，再通过[OH_NativeWindow_SetColorSpace](../../reference/apis-arkgraphics2d/capi-external-window-h.md#oh_nativewindow_setcolorspace)设置OHNativeWindow色彩空间属性。
+2. 若使用[NativeWindow](../../reference/apis-arkgraphics2d/capi-nativewindow.md)对相机获取的预览流或录像流数据进行拷贝处理，为了避免数据拷贝时丢失色彩空间属性，可先通过[OH_NativeWindow_GetColorSpace](../../reference/apis-arkgraphics2d/capi-external-window-h.md#oh_nativewindow_getcolorspace)获取OHNativeWindow色彩空间属性，再通过[OH_NativeWindow_SetColorSpace](../../reference/apis-arkgraphics2d/capi-external-window-h.md#oh_nativewindow_setcolorspace)设置NativeWindow色彩空间属性。
