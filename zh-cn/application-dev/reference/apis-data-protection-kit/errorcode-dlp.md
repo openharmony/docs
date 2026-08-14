@@ -72,7 +72,7 @@ Credential task time out.
 
 **错误描述**
 
-DLP（数据防泄漏，Data Loss Prevention）文件加解密操作在规定时间内未完成，导致操作超时失败。
+DLP（数据防泄露，Data Loss Prevention）文件加解密操作在规定时间内未完成，导致操作超时失败。
 
 **可能原因**
 
