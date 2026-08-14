@@ -543,10 +543,6 @@ if (isRegistered) {
 
 描述测距结果，每次测距测量完成后通过[startRanging](#rangingstartranging)的callback回调返回。
 
-> **说明：**
->
-> 当前版本中angle字段为预留字段，暂不保证角度数据的有效性；confidence字段为固定值，不代表实际测量可信度。后续版本将完善上述字段。
-
 **起始版本**：26.0.0
 
 **系统能力**：SystemCapability.Communication.FusionConnectivity.Core
