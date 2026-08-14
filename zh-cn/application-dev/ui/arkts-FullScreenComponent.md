@@ -1,4 +1,4 @@
-# 全屏启动原子化服务组件（FullScreenLaunchComponent）
+# 全屏启动原子化服务 (FullScreenLaunchComponent)
 <!--Kit: ArkUI-->
 <!--Subsystem: ArkUI-->
 <!--Owner: @dutie123-->
