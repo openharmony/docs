@@ -440,12 +440,14 @@ async function getDomainAccountPolicy() {
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
 
+**模型约束：** 此接口仅可在Stage模型下使用。
+
 <!--Table: 28%; 10%; 8%; 8%; 46%-->
 | 名称                           | 类型   | 只读 | 可选 | 说明                                                         |
 | ------------------------------ | ------ | ---- | ---- |------------------------------------------------------------ |
-| authenticationValidityPeriod   | number | 否   | 是   |表示域账号认证Token的有效期（单位：s），用于控制用户在Token有效期内无需重复认证即可访问系统资源。取值范围是[-1,2147483647]。有效期起始时间为最后一次域账号的认证时间点，如登录、锁屏后解锁等。<br/>默认值为-1，表示Token永久有效。取值为0，表示Token立即失效。Token过期/失效后，用户进入系统时必须进行域账号认证，验证域账号和密码。 |
-| passwordValidityPeriod         | number | 否   | 是   |表示域账号密码有效期（单位：s），用于用户定期修改密码以提升账号安全性。取值范围是[-1,2147483647]，有效期起始时间为设备侧最后一次修改密码的时间点。<br/>默认值为-1，表示域账号密码永久有效。 |
-| passwordExpirationNotification | number | 否   | 是   |表示域账号密码过期前提示时间（单位：s），取值范围是[0,2147483647]。<br/>默认值为0，表示域账号密码过期不提示。<br/>**说明：**passwordExpirationNotification需与passwordValidityPeriod配合使用，当系统时间大于或等于（设备侧最后一次修改域账号密码时间 + passwordValidityPeriod - passwordExpirationNotification）时，会发页面通知提示密码即将过期。 |
+| authenticationValidityPeriod   | number | 否   | 是   |表示域账号认证Token的有效期（单位：s），用于控制用户在Token有效期内无需重复认证即可访问系统资源。取值范围是[-1, 2147483647]。有效期起始时间为最后一次域账号的认证时间点，如登录、锁屏后解锁等。<br/>默认值为-1，表示Token永久有效。取值为0，表示Token立即失效。Token过期/失效后，用户进入系统时必须进行域账号认证，验证域账号和密码。 |
+| passwordValidityPeriod         | number | 否   | 是   |表示域账号密码有效期（单位：s），用于用户定期修改密码以提升账号安全性。取值范围是[-1, 2147483647]，有效期起始时间为设备侧最后一次修改密码的时间点。<br/>默认值为-1，表示域账号密码永久有效。 |
+| passwordExpirationNotification | number | 否   | 是   |表示域账号密码过期前提示时间（单位：s），取值范围是[0, 2147483647]。<br/>默认值为0，表示域账号密码过期不提示。<br/>**说明：**passwordExpirationNotification需与passwordValidityPeriod配合使用，当系统时间大于或等于（设备侧最后一次修改域账号密码时间 + passwordValidityPeriod - passwordExpirationNotification）时，会发页面通知提示密码即将过期。 |
 
 ## accountManager.createNormalOsAccount
 

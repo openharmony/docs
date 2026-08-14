@@ -44,7 +44,7 @@ startAbilityByAdmin(admin: Want, want: Want): Promise\<void>
 > 
 > 如果被启动的UIAbility有权限保护，需要额外申请对应的权限。
 
-**需要权限**：ohos.permission.ENTERPRISE_START_ABILITIES
+**需要权限：**ohos.permission.ENTERPRISE_START_ABILITIES
 
 **系统能力**：SystemCapability.Customization.EnterpriseDeviceManager
 
@@ -123,7 +123,7 @@ export default class EnterpriseAdminAbility extends EnterpriseAdminExtensionAbil
     // 需根据实际情况进行替换
     let admin: Want = {
       bundleName: 'com.example.myapplication',
-      abilityName: 'EnterpriseAdminAbility',
+      abilityName: 'EnterpriseAdminAbility'
     };
     // 需根据实际情况进行替换
     let want: Want = {
@@ -141,7 +141,7 @@ export default class EnterpriseAdminAbility extends EnterpriseAdminExtensionAbil
     // 通过context获取到preferences数据
     let options: preferences.Options = {
       // 需根据实际情况进行替换
-      name: "key",
+      name: "key"
     };
     try {
       let preference = preferences.getPreferencesSync(this.context, options);

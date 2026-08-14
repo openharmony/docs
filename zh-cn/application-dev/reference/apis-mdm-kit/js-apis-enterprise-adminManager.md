@@ -27,7 +27,7 @@ disableAdmin(admin: Want, userId?: number): Promise\<void>
 解除激活指定用户的设备管理应用。使用Promise异步回调。调用成功后，指定的设备管理应用将被解除激活，不再具备设备管理能力。
 
 **需要权限：** ohos.permission.MANAGE_ENTERPRISE_DEVICE_ADMIN（仅系统应用支持申请）或ohos.permission.START_PROVISIONING_MESSAGE或ohos.permission.ENTERPRISE_DEACTIVATE_DEVICE_ADMIN
-<br/>- 从API version 23开始，支持申请ohos.permission.ENTERPRISE_DEACTIVATE_DEVICE_ADMIN权限，仅当[SDA](../../mdm/mdm-kit-term.md#super-device-admin-sda超级设备管理员)或[DA](../../mdm/mdm-kit-term.md#device-admin-da普通设备管理员)设备管理应用解除激活自身时，可以申请该权限。<br/>- 从API version 20开始，支持申请ohos.permission.START_PROVISIONING_MESSAGE权限。仅当[BYOD](../../mdm/mdm-kit-term.md#bring-your-own-device-byod自带设备办公)设备管理应用解除激活自身时，可以申请该权限。<br/>- API 19及之前的版本，需要申请ohos.permission.MANAGE_ENTERPRISE_DEVICE_ADMIN（仅系统应用支持申请）。
+<br/>- 从API version 23开始，支持申请ohos.permission.ENTERPRISE_DEACTIVATE_DEVICE_ADMIN权限，仅当[SDA](../../mdm/mdm-kit-term.md#super-device-admin-sda超级设备管理员)或[DA](../../mdm/mdm-kit-term.md#device-admin-da普通设备管理员)设备管理应用解除激活自身时，可以申请该权限。<br/>- 从API version 20开始，支持申请ohos.permission.START_PROVISIONING_MESSAGE权限。仅当[BYOD](../../mdm/mdm-kit-term.md#bring-your-own-device-byod自带设备办公)设备管理应用解除激活自身时，可以申请该权限。<br/>- API version 19及之前的版本，需要申请ohos.permission.MANAGE_ENTERPRISE_DEVICE_ADMIN（仅系统应用支持申请）。
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
 
@@ -145,7 +145,7 @@ subscribeManagedEventSync(admin: Want, managedEvents: Array\<ManagedEvent>): voi
 | 参数名        | 类型                                                    | 必填 | 说明                   |
 | ------------- | ------------------------------------------------------- | ---- | ---------------------- |
 | admin         | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | 是   | 企业设备管理扩展组件。Want中必须包含企业设备管理扩展能力的abilityName和所在应用的bundleName。 |
-| managedEvents | Array\<[ManagedEvent](#managedevent)>                   | 是   | 订阅事件数组，用于指定需要订阅的系统管理事件。数组元素为[ManagedEvent](#managedevent)枚举值，可订阅多个事件类型，如应用安装/卸载/启动/停止事件、系统更新事件等。         |
+| managedEvents | Array\<[ManagedEvent](#managedevent)>                   | 是   | 订阅事件数组，用于指定需要订阅的系统管理事件。数组元素为[ManagedEvent](#managedevent)枚举值，可订阅多个事件类型，如应用安装/卸载/启动/停止事件/系统更新事件等。         |
 
 **错误码**：
 
@@ -170,7 +170,8 @@ let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EnterpriseAdminAbility'
 };
-let events: Array<adminManager.ManagedEvent> = [adminManager.ManagedEvent.MANAGED_EVENT_BUNDLE_ADDED, adminManager.ManagedEvent.MANAGED_EVENT_BUNDLE_REMOVED];
+let events: Array<adminManager.ManagedEvent> = [adminManager.ManagedEvent.MANAGED_EVENT_BUNDLE_ADDED,
+  adminManager.ManagedEvent.MANAGED_EVENT_BUNDLE_REMOVED];
 
 try {
   adminManager.subscribeManagedEventSync(wantTemp, events);
@@ -221,7 +222,8 @@ let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EnterpriseAdminAbility'
 };
-let events: Array<adminManager.ManagedEvent> = [adminManager.ManagedEvent.MANAGED_EVENT_BUNDLE_ADDED, adminManager.ManagedEvent.MANAGED_EVENT_BUNDLE_REMOVED];
+let events: Array<adminManager.ManagedEvent> = [adminManager.ManagedEvent.MANAGED_EVENT_BUNDLE_ADDED,
+  adminManager.ManagedEvent.MANAGED_EVENT_BUNDLE_REMOVED];
 
 try {
   adminManager.unsubscribeManagedEventSync(wantTemp, events);
@@ -361,7 +363,7 @@ getDelegatedBundleNames(admin: Want, policy: string): Array&lt;string&gt;
 | 参数名        | 类型                                                    | 必填 | 说明               |
 | ------------- | ------------------------------------------------------- | ---- | ------------------ |
 | admin         | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | 是   | 企业设备管理扩展组件。Want中必须包含企业设备管理扩展能力的abilityName和所在应用的bundleName。 |
-| policy | string                   | 是   | 委托策略。 |
+| policy | string                   | 是   | [委托策略](../../mdm/mdm-kit-appendix.md#可委托策略列表)。 |
 
 
 **返回值：**
@@ -456,9 +458,9 @@ const context = this.getUIContext().getHostContext() as common.UIAbilityContext;
 try {
   console.info('context:' + JSON.stringify(context));
   adminManager.startAdminProvision(wantTemp, adminManager.AdminType.ADMIN_TYPE_BYOD, context, recordParameters);
-  console.info('startAdminProvision::success');
+  console.info('Succeeded in starting Admin Provision');
 } catch (error) {
-  console.error('startAdminProvision::errorCode: ' + error.code + ' errorMessage: ' + error.message);
+  console.error('Failed to start Admin Provision::errorCode: ' + error.code + ' errorMessage: ' + error.message);
 }
 ```
 
@@ -631,7 +633,7 @@ let credential: string = '{"enterpriseId": "123456", "appIdentifier": "123456", 
 
 try {
   adminManager.enableSelfDeviceAdmin(wantTemp, credential);
-  console.info(`succeed in enable self device admin.`);
+  console.info(`succeed in enabling self device admin.`);
 } catch (err) {
   console.error(`Failed to enable self device admin. Code: ${err.code}, message: ${err.message}`);
 }

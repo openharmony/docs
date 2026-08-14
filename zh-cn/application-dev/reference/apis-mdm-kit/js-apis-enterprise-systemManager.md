@@ -175,7 +175,7 @@ let wantTemp: Want = {
 // 默认升级策略
 let otaUpdatePolicy1: systemManager.OtaUpdatePolicy = {
   "policyType": systemManager.PolicyType.DEFAULT,
-  "version": "version_1.0.0.0",
+  "version": "version_1.0.0.0"
 };
 try {
   systemManager.setOtaUpdatePolicy(wantTemp, otaUpdatePolicy1);
@@ -186,7 +186,7 @@ try {
 // 禁止升级
 let otaUpdatePolicy2: systemManager.OtaUpdatePolicy = {
   "policyType": systemManager.PolicyType.PROHIBIT,
-  "version": "version_1.0.0.1",
+  "version": "version_1.0.0.1"
 };
 try {
   systemManager.setOtaUpdatePolicy(wantTemp, otaUpdatePolicy2);
@@ -198,7 +198,7 @@ try {
 let otaUpdatePolicy3: systemManager.OtaUpdatePolicy = {
   "policyType": systemManager.PolicyType.UPDATE_TO_SPECIFIC_VERSION,
   "version": "version_1.0.0.2",
-  "latestUpdateTime": 1716343200, // 时间戳
+  "latestUpdateTime": 1716343200 // 时间戳
 };
 try {
   systemManager.setOtaUpdatePolicy(wantTemp, otaUpdatePolicy3);
@@ -211,7 +211,7 @@ let otaUpdatePolicy4: systemManager.OtaUpdatePolicy = {
   "policyType": systemManager.PolicyType.WINDOWS,
   "version": "version_1.0.0.3",
   "installStartTime": 1716281049, // 时间戳
-  "installEndTime": 1716343200, // 时间戳
+  "installEndTime": 1716343200 // 时间戳
 };
 try {
   systemManager.setOtaUpdatePolicy(wantTemp, otaUpdatePolicy4);
@@ -223,7 +223,7 @@ try {
 let otaUpdatePolicy5: systemManager.OtaUpdatePolicy = {
   "policyType": systemManager.PolicyType.POSTPONE,
   "version": "version_1.0.0.4",
-  "delayUpdateTime": 5, // 单位（小时）
+  "delayUpdateTime": 5 // 单位（小时）
 };
 try {
   systemManager.setOtaUpdatePolicy(wantTemp, otaUpdatePolicy5);
@@ -235,7 +235,7 @@ try {
 let otaUpdatePolicy6: systemManager.OtaUpdatePolicy = {
   "policyType": systemManager.PolicyType.DEFAULT,
   "version": "version_1.0.0.5",
-  "disableSystemOtaUpdate": true,
+  "disableSystemOtaUpdate": true
 };
 try {
   systemManager.setOtaUpdatePolicy(wantTemp, otaUpdatePolicy6);
@@ -292,7 +292,7 @@ let wantTemp: Want = {
   abilityName: 'EnterpriseAdminAbility'
 };
 try {
-  let policy: systemManager.OtaUpdatePolicy= systemManager.getOtaUpdatePolicy(wantTemp);
+  let policy: systemManager.OtaUpdatePolicy = systemManager.getOtaUpdatePolicy(wantTemp);
   console.info(`Succeeded in getting update policy: ${JSON.stringify(policy)}`);
 } catch (err) {
   console.error(`Failed to get update policy. Code is ${err.code}, message is ${err.message}`);
@@ -1209,7 +1209,7 @@ let wantTemp: Want = {
 };
 
 let keyCodes: Array<systemManager.KeyCode> = [
-  systemManager.KeyCode.POWER, systemManager.KeyCode.VOLUME_UP,
+  systemManager.KeyCode.POWER, systemManager.KeyCode.VOLUME_UP
 ];
 
 try {
