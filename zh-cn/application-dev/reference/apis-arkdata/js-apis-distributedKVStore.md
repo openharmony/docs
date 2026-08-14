@@ -35,7 +35,7 @@ import { distributedKVStore } from '@kit.ArkData';
 | 名称     | 类型              | 只读 | 可选 | 说明                                                         |
 | ---------- | ---------------|----- | ---- | ------------------------------------------------------------ |
 | context    | [BaseContext](../apis-ability-kit/js-apis-inner-application-baseContext.md)    | 否   | 否   | 应用的上下文。 <br>FA模型的应用Context定义见[Context](../apis-ability-kit/js-apis-inner-app-context.md)。<br>Stage模型的应用Context定义见[Context](../apis-ability-kit/js-apis-inner-application-uiAbilityContext.md)。<br>从API version 10开始，context的参数类型为[BaseContext](../apis-ability-kit/js-apis-inner-application-baseContext.md)。 |
-| bundleName | string          | 否   | 否   | 调用方的包名，不可为空且长度范围为1-256字节。                                               |
+| bundleName | string          | 否   | 否   | 调用方的包名，不可为空且长度范围为1-256字节（Byte）。                                               |
 
 ## Constants
 
@@ -45,11 +45,11 @@ import { distributedKVStore } from '@kit.ArkData';
 
 | 名称                  | 类型   | 只读 | 可选 | 说明                                                       |
 | --------------------- | ------ | ---- | ---- | ---------------------------------------------------------- |
-| MAX_KEY_LENGTH        | number | 是   | 否   | 值为1024，表示数据库中Key允许的最大长度，单位字节。        |
-| MAX_VALUE_LENGTH      | number | 是   | 否   | 值为4194303，表示数据库中Value允许的最大长度，单位字节。   |
-| MAX_KEY_LENGTH_DEVICE | number | 是   | 否   | 值为896，表示设备协同数据库中Key允许的最大长度，单位字节。 |
-| MAX_STORE_ID_LENGTH   | number | 是   | 否   | 值为128，表示数据库标识符允许的最大长度，单位字节。        |
-| MAX_QUERY_LENGTH      | number | 是   | 否   | 值为512000，表示最大查询长度，单位字节。                   |
+| MAX_KEY_LENGTH        | number | 是   | 否   | 值为1024，表示数据库中Key允许的最大长度，单位：字节（Byte）。        |
+| MAX_VALUE_LENGTH      | number | 是   | 否   | 值为4194303，表示数据库中Value允许的最大长度，单位：字节（Byte）。   |
+| MAX_KEY_LENGTH_DEVICE | number | 是   | 否   | 值为896，表示设备协同数据库中Key允许的最大长度，单位：字节（Byte）。 |
+| MAX_STORE_ID_LENGTH   | number | 是   | 否   | 值为128，表示数据库标识符允许的最大长度，单位：字节（Byte）。        |
+| MAX_QUERY_LENGTH      | number | 是   | 否   | 值为512000，表示最大查询长度，单位：字节（Byte）。                   |
 | MAX_BATCH_SIZE        | number | 是   | 否   | 值为128，表示最大批处理操作数量。                          |
 
 ## ValueType
@@ -63,7 +63,7 @@ import { distributedKVStore } from '@kit.ArkData';
 | STRING     | 0 | 表示值类型为字符串。   |
 | INTEGER    | 1 | 表示值类型为整数。     |
 | FLOAT      | 2 | 表示值类型为浮点数。   |
-| BYTE_ARRAY | 3 | 表示值类型为字节数组。 |
+| BYTE_ARRAY | 3 | 表示值类型为字节（Byte）数组。 |
 | BOOLEAN    | 4 | 表示值类型为布尔值。   |
 | DOUBLE     | 5 | 表示值类型为双浮点数。 |
 
@@ -192,7 +192,7 @@ import { distributedKVStore } from '@kit.ArkData';
 | root    | [FieldNode](#fieldnode) | 否  | 否  | 存放了Value中所有字段的定义。 |
 | indexes | Array\<string>          | 否  | 否  | 索引字段定义，只有通过此字段指定的FieldNode才会创建索引，格式为：`'$.field1'`, `'$.field2'`。|
 | mode    | number                  | 否  | 否  | Schema的模式，可以取值0或1，0表示COMPATIBLE模式，1表示STRICT模式。|
-| skip    | number                  | 否  | 否  | 支持在检查Value时，跳过skip指定的字节数，取值范围为[0, 4 * 1024 * 1024 - 2]字节。|
+| skip    | number                  | 否  | 否  | 支持在检查Value时，跳过skip指定的字节（Byte）数，取值范围为[0, 4 * 1024 * 1024 - 2]字节（Byte）。|
 
 STRICT：STRICT模式要求用户插入的值必须与Schema定义严格匹配，字段数量和格式都不能有差异。如果不匹配，数据库将在插入数据时返回错误。
 
@@ -545,7 +545,7 @@ closeKVStore(appId: string, storeId: string, callback: AsyncCallback&lt;void&gt;
 
 | 参数名   | 类型                  | 必填 | 说明                                                         |
 | -------- | ------------------------- | ---- | ------------------------------------------------------------ |
-| appId    | string                    | 是   | 应用的BundleName，不可为空且长度范围为1-256字节。                                      |
+| appId    | string                    | 是   | 应用的BundleName，不可为空且长度范围为1-256字节（Byte）。                                      |
 | storeId  | string                    | 是   | 要关闭的数据库唯一标识符，长度范围为1-[MAX_STORE_ID_LENGTH](#constants)，且只能包含字母数字或下划线_。 |
 | callback | AsyncCallback&lt;void&gt; | 是   | 回调函数。当要关闭的数据库成功关闭，err为undefined，否则为错误对象。     |
 
@@ -611,7 +611,7 @@ closeKVStore(appId: string, storeId: string, kvConfig?: Options): Promise&lt;voi
 
 | 参数名  | 类型 | 必填 | 说明                                                         |
 | ------- | -------- | ---- | ------------------------------------------------------------ |
-| appId   | string   | 是   | 应用的BundleName，不可为空且长度范围为1-256字节。                           |
+| appId   | string   | 是   | 应用的BundleName，不可为空且长度范围为1-256字节（Byte）。                           |
 | storeId | string   | 是   | 要关闭的数据库唯一标识符，长度范围为1-[MAX_STORE_ID_LENGTH](#constants)，且只能包含字母数字或下划线_。 |
 | kvConfig<sup>24+</sup> | [Options](#options)  | 否   | 要关闭的数据库的配置信息，默认为空。 |
 
@@ -682,7 +682,7 @@ deleteKVStore(appId: string, storeId: string, callback: AsyncCallback&lt;void&gt
 
 | 参数名   | 类型                  | 必填 | 说明                                                         |
 | -------- | ------------------------- | ---- | ------------------------------------------------------------ |
-| appId    | string                    | 是   | 应用的BundleName，不可为空且长度范围为1-256字节。                                      |
+| appId    | string                    | 是   | 应用的BundleName，不可为空且长度范围为1-256字节（Byte）。                                      |
 | storeId  | string                    | 是   | 要删除的数据库唯一标识符，长度范围为1-[MAX_STORE_ID_LENGTH](#constants)，且只能包含字母数字或下划线_。 |
 | callback | AsyncCallback&lt;void&gt; | 是   | 回调函数。当要删除的数据库成功删除，err为undefined，否则为错误对象。     |
 
@@ -750,7 +750,7 @@ deleteKVStore(appId: string, storeId: string, kvConfig?: Options): Promise&lt;vo
 
 | 参数名  | 类型 | 必填 | 说明                                                         |
 | ------- | -------- | ---- | ------------------------------------------------------------ |
-| appId   | string   | 是   | 应用的BundleName，不可为空且长度范围为1-256字节。                           |
+| appId   | string   | 是   | 应用的BundleName，不可为空且长度范围为1-256字节（Byte）。                           |
 | storeId | string   | 是   | 要删除的数据库唯一标识符，长度范围为1-[MAX_STORE_ID_LENGTH](#constants)，且只能包含字母数字或下划线_。 |
 | kvConfig<sup>24+</sup> | [Options](#options)  | 否   | 要删除的数据库的配置信息，默认为空。 |
 
@@ -822,7 +822,7 @@ getAllKVStoreId(appId: string, callback: AsyncCallback&lt;string[]&gt;): void
 
 | 参数名   | 类型                      | 必填 | 说明                                                |
 | -------- | ----------------------------- | ---- | --------------------------------------------------- |
-| appId    | string                        | 是   | 应用的BundleName，不可为空且长度范围为1-256字节。                              |
+| appId    | string                        | 是   | 应用的BundleName，不可为空且长度范围为1-256字节（Byte）。                              |
 | callback | AsyncCallback&lt;string[]&gt; | 是   | 回调函数。返回所有创建的分布式键值数据库的storeId。 |
 
 **错误码：**
@@ -866,7 +866,7 @@ getAllKVStoreId(appId: string): Promise&lt;string[]&gt;
 
 | 参数名 | 类型 | 必填 | 说明                   |
 | ------ | -------- | ---- | ---------------------- |
-| appId  | string   | 是   | 应用的BundleName，不可为空且长度范围为1-256字节。 |
+| appId  | string   | 是   | 应用的BundleName，不可为空且长度范围为1-256字节（Byte）。 |
 
 **返回值：**
 
