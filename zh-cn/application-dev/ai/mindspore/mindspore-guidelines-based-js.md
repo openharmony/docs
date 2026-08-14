@@ -13,7 +13,7 @@
 
 图像分类可实现对图像中物体的识别，在医学影像分析、自动驾驶、电子商务、人脸识别等领域有广泛的应用。
 
-若需基于本Demo适配自有模型，请优先选择静态Shape模型。由于ArkTS暂不支持[动态Shape](mindspore-lite-term.md#dynamic-shape动态shape)，如确有相关需求，请参考[使用MindSpore Lite实现图像分类（C/C++）](mindspore-guidelines-based-native.md)，通过Native侧的[OH_AI_ModelResize](../../../application-dev/reference/apis-mindspore-lite-kit/capi-model-h.md#oh_ai_modelresize)接口对模型inputs进行动态调整。
+若需基于本Demo适配自有模型，请优先选择静态Shape模型。注意：ArkTS接口不支持NPU后端动态Shape模型推理。 
 
 ## 接口说明
 
