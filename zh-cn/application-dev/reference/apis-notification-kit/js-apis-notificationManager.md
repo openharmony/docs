@@ -6,7 +6,7 @@
 <!--Tester: @wanghong1997-->
 <!--Adviser: @fang-jinxu-->
 
-本模块提供通知管理的能力，应用可使用本模块完成通知的完整生命周期管理。其中涉及通知的发布、更新与取消，通知渠道的创建与查询、通知能力授权状态的查询与申请、应用角标的设置、通知中心存量通知的查询等操作。
+本模块提供通知管理的能力，应用可使用本模块完成通知的完整生命周期管理。其中涉及通知的发布、更新与取消，[通知渠道](../../notification/notification-glossary.md#notification-slot通知渠道)的创建与查询、通知能力授权状态的查询与申请、应用角标的设置、[通知中心](../../notification/notification-glossary.md#notification-center通知中心)存量通知的查询等操作。
 
 **API组合使用关系说明**：
 
@@ -14,7 +14,7 @@
 
 1. **授权查询与申请流程**：发布通知前，先通过isNotificationEnabled查询通知能力的授权状态。如果通知能力未授权，通过requestEnableNotification引导用户开启通知权限。
 
-2. **通知发布与更新流程**：通过publish发布通知，通知内容通过NotificationRequest指定。如果新发布通知与已有通知的ID和标签相同，将自动更新已有通知。如果新发布通知与已有通知的ID或标签不相同，将创建新的通知。
+2. **通知发布与更新流程**：通过publish发布通知，[通知内容](../../notification/notification-glossary.md#notification-content通知内容)通过NotificationRequest指定。如果新发布通知与已有通知的ID和标签相同，将自动更新已有通知。如果新发布通知与已有通知的ID或标签不相同，将创建新的通知。
 
 3. **通知取消流程**：通过cancel取消指定ID的通知，通过cancelAll取消本应用所有通知，通过cancelGroup取消指定分组下的通知。
 
@@ -41,7 +41,7 @@ publish(request: NotificationRequest, callback: AsyncCallback\<void\>): void
 
 发布通知。使用callback异步回调。
 
-发布通知后，通知将以通知卡片的形式展示在设备的通知中心、状态栏等位置。如果新发布通知与已发布通知的ID和标签都相同，则新通知将取代原有通知，实现通知的更新效果。
+发布通知后，通知将以[通知卡片](../../notification/notification-glossary.md#notification-card通知卡片)的形式展示在设备的[通知中心](../../notification/notification-glossary.md#notification-center通知中心)、状态栏等位置。如果新发布通知与已发布通知的ID和标签都相同，则新通知将取代原有通知，实现通知的更新效果。
 
 **系统能力**：SystemCapability.Notification.Notification
 
@@ -108,7 +108,7 @@ publish(request: NotificationRequest): Promise\<void\>
 
 发布通知。使用Promise异步回调。
 
-发布通知后，通知将以通知卡片的形式展示在设备的通知中心、状态栏等位置。如果新发布通知与已发布通知的ID和标签都相同，则新通知将取代原有通知，实现通知的更新效果。
+发布通知后，通知将以[通知卡片](../../notification/notification-glossary.md#notification-card通知卡片)的形式展示在设备的[通知中心](../../notification/notification-glossary.md#notification-center通知中心)、状态栏等位置。如果新发布通知与已发布通知的ID和标签都相同，则新通知将取代原有通知，实现通知的更新效果。
 
 **系统能力**：SystemCapability.Notification.Notification
 
@@ -177,7 +177,7 @@ cancel(id: number, label: string, callback: AsyncCallback\<void\>): void
 
 根据通知ID和标签label取消已发布的通知。使用callback异步回调。
 
-取消后，对应的通知将从通知中心、状态栏等位置移除，用户不再可见。适用于需要精确取消某一条带有特定标签的通知的场景。
+取消后，对应的通知将从[通知中心](../../notification/notification-glossary.md#notification-center通知中心)、状态栏等位置移除，用户不再可见。适用于需要精确取消某一条带有特定标签的通知的场景。
 
 与仅传入通知ID的[notificationManager.cancel(id, callback)](#notificationmanagercancel-2)相比，此接口额外传入label参数，可精确取消同一ID，不同标签的通知。
 
@@ -225,7 +225,7 @@ cancel(id: number, label?: string): Promise\<void\>
 
 根据通知ID和标签label取消已发布的通知。使用Promise异步回调。
 
-取消后，对应的通知将从通知中心、状态栏等位置移除，用户不再可见。
+取消后，对应的通知将从[通知中心](../../notification/notification-glossary.md#notification-center通知中心)、状态栏等位置移除，用户不再可见。
 
 **系统能力**：SystemCapability.Notification.Notification
 
@@ -272,7 +272,7 @@ cancel(id: number, callback: AsyncCallback\<void\>): void
 
 根据指定的通知ID取消已发布的通知。使用callback异步回调。
 
-取消后，对应的通知将从通知中心、状态栏等位置移除，用户不再可见。
+取消后，对应的通知将从[通知中心](../../notification/notification-glossary.md#notification-center通知中心)、状态栏等位置移除，用户不再可见。
 
 与带label参数的[notificationManager.cancel(id, label, callback)](#notificationmanagercancel)相比，此接口不传入label，将取消与指定ID匹配的通知。当发布通知，label不为空时，则需使用接口`notificationManager.cancel(id, label, callback)`取消通知。
 
@@ -319,7 +319,7 @@ cancelAll(callback: AsyncCallback\<void\>): void
 
 取消当前应用所有已发布的通知。使用callback异步回调。
 
-取消后，当前应用的所有通知将从通知中心、状态栏等位置移除，用户不再可见。适用于应用退出或用户手动清除全部通知的场景。
+取消后，当前应用的所有通知将从[通知中心](../../notification/notification-glossary.md#notification-center通知中心)、状态栏等位置移除，用户不再可见。适用于应用退出或用户手动清除全部通知的场景。
 
 **系统能力**：SystemCapability.Notification.Notification
 
@@ -362,7 +362,7 @@ cancelAll(): Promise\<void\>
 
 取消当前应用所有已发布的通知。使用Promise异步回调。
 
-取消后，当前应用的所有通知将从通知中心、状态栏等位置移除，用户不再可见。适用于应用退出或用户手动清除全部通知的场景。
+取消后，当前应用的所有通知将从[通知中心](../../notification/notification-glossary.md#notification-center通知中心)、状态栏等位置移除，用户不再可见。适用于应用退出或用户手动清除全部通知的场景。
 
 **系统能力**：SystemCapability.Notification.Notification
 
@@ -398,7 +398,7 @@ notificationManager.cancelAll().then(() => {
 
 addSlot(type: SlotType, callback: AsyncCallback\<void\>): void
 
-创建指定类型的通知渠道。使用callback异步回调。
+创建指定类型的[通知渠道](../../notification/notification-glossary.md#notification-slot通知渠道)。使用callback异步回调。
 
 通知渠道[NotificationSlot](js-apis-inner-notification-notificationSlot.md#notificationslot-1)定义了通知的提醒方式（如提示音、振动、横幅等）和级别。发布通知前，应用需先创建对应类型的通知渠道，或者发布通知时系统将自动创建对应类型的通知渠道。同一类型的通知渠道只能创建一个。
 
@@ -443,7 +443,7 @@ notificationManager.addSlot(notificationManager.SlotType.SOCIAL_COMMUNICATION, a
 
 addSlot(type: SlotType): Promise\<void\>
 
-创建指定类型的通知渠道。使用Promise异步回调。
+创建指定类型的[通知渠道](../../notification/notification-glossary.md#notification-slot通知渠道)。使用Promise异步回调。
 
 通知渠道[NotificationSlot](js-apis-inner-notification-notificationSlot.md#notificationslot-1)定义了通知的提醒方式（如提示音、振动、横幅等）和级别。发布通知前，应用需先创建对应类型的通知渠道，或者发布通知时系统将自动创建对应类型的通知渠道。同一类型的通知渠道只能创建一个。
 
@@ -489,7 +489,7 @@ notificationManager.addSlot(notificationManager.SlotType.SOCIAL_COMMUNICATION).t
 
 getSlot(slotType: SlotType, callback: AsyncCallback\<NotificationSlot\>): void
 
-获取指定类型的通知渠道。使用callback异步回调。
+获取指定类型的[通知渠道](../../notification/notification-glossary.md#notification-slot通知渠道)。使用callback异步回调。
 
 用于查询已创建的通知渠道的详细配置信息，包括提醒方式、级别、锁屏显示等设置。需先通过[addSlot](#notificationmanageraddslot)创建对应类型的通知渠道，否则获取结果为空。
 
@@ -534,7 +534,7 @@ notificationManager.getSlot(slotType, getSlotCallback);
 
 getSlot(slotType: SlotType): Promise\<NotificationSlot\>
 
-获取指定类型的通知渠道。使用Promise异步回调。
+获取指定类型的[通知渠道](../../notification/notification-glossary.md#notification-slot通知渠道)。使用Promise异步回调。
 
 用于查询已创建的通知渠道的详细配置信息，包括提醒方式、级别、锁屏显示等设置。需先通过[addSlot](#notificationmanageraddslot)创建对应类型的通知渠道，否则获取结果为空。
 
@@ -580,7 +580,7 @@ notificationManager.getSlot(slotType).then((data: notificationManager.Notificati
 
 getSlots(callback: AsyncCallback\<Array\<NotificationSlot>>): void
 
-获取当前应用的所有通知渠道。使用callback异步回调。
+获取当前应用的所有[通知渠道](../../notification/notification-glossary.md#notification-slot通知渠道)。使用callback异步回调。
 
 用于批量查询当前应用已创建的所有通知渠道的配置信息，包括各渠道的类型、提醒方式、级别等设置。适用于需要查看所有渠道配置的场景。需先通过[addSlot](#notificationmanageraddslot)创建对应类型的通知渠道，否则获取结果为空。
 
@@ -624,7 +624,7 @@ notificationManager.getSlots(getSlotsCallback);
 
 getSlots(): Promise\<Array\<NotificationSlot>>
 
-获取当前应用的所有通知渠道。使用Promise异步回调。
+获取当前应用的所有[通知渠道](../../notification/notification-glossary.md#notification-slot通知渠道)。使用Promise异步回调。
 
 用于批量查询当前应用已创建的所有通知渠道的配置信息，包括各渠道的类型、提醒方式、级别等设置。适用于需要查看所有渠道配置的场景。需先通过[addSlot](#notificationmanageraddslot)创建对应类型的通知渠道，否则获取结果为空。
 
@@ -662,9 +662,9 @@ notificationManager.getSlots().then((data: Array<notificationManager.Notificatio
 
 removeSlot(slotType: SlotType, callback: AsyncCallback\<void\>): void
 
-删除当前应用指定类型的通知渠道。使用callback异步回调。
+删除当前应用指定类型的[通知渠道](../../notification/notification-glossary.md#notification-slot通知渠道)。使用callback异步回调。
 
-删除后，对应类型的通知渠道及其配置将被永久移除，后续发布该类型通知时系统将自动创建默认渠道。已通过该渠道发布的通知不受影响，仍可在通知中心查看。适用于需要重新配置渠道时先删除再创建的场景。
+删除后，对应类型的通知渠道及其配置将被永久移除，后续发布该类型通知时系统将自动创建默认渠道。已通过该渠道发布的通知不受影响，仍可在[通知中心](../../notification/notification-glossary.md#notification-center通知中心)查看。适用于需要重新配置渠道时先删除再创建的场景。
 
 **系统能力**：SystemCapability.Notification.Notification
 
@@ -707,9 +707,9 @@ notificationManager.removeSlot(slotType, removeSlotCallback);
 
 removeSlot(slotType: SlotType): Promise\<void\>
 
-删除当前应用指定类型的通知渠道。使用Promise异步回调。
+删除当前应用指定类型的[通知渠道](../../notification/notification-glossary.md#notification-slot通知渠道)。使用Promise异步回调。
 
-删除后，对应类型的通知渠道及其配置将被永久移除，后续发布该类型通知时系统将自动创建默认渠道。已通过该渠道发布的通知不受影响，仍可在通知中心查看。适用于需要重新配置渠道时先删除再创建的场景。
+删除后，对应类型的通知渠道及其配置将被永久移除，后续发布该类型通知时系统将自动创建默认渠道。已通过该渠道发布的通知不受影响，仍可在[通知中心](../../notification/notification-glossary.md#notification-center通知中心)查看。适用于需要重新配置渠道时先删除再创建的场景。
 
 **系统能力**：SystemCapability.Notification.Notification
 
@@ -753,9 +753,9 @@ notificationManager.removeSlot(slotType).then(() => {
 
 removeAllSlots(callback: AsyncCallback\<void\>): void
 
-删除当前应用所有通知渠道。使用callback异步回调。
+删除当前应用所有[通知渠道](../../notification/notification-glossary.md#notification-slot通知渠道)。使用callback异步回调。
 
-删除后，当前应用的所有通知渠道及其配置将被永久移除，后续发布通知时系统将自动创建对应类型的渠道。已通过这些渠道发布的通知不受影响，仍可在通知中心查看。适用于需要一次性清除所有渠道配置的场景。
+删除后，当前应用的所有通知渠道及其配置将被永久移除，后续发布通知时系统将自动创建对应类型的渠道。已通过这些渠道发布的通知不受影响，仍可在[通知中心](../../notification/notification-glossary.md#notification-center通知中心)查看。适用于需要一次性清除所有渠道配置的场景。
 
 **系统能力**：SystemCapability.Notification.Notification
 
@@ -795,9 +795,9 @@ notificationManager.removeAllSlots(removeAllSlotsCallback);
 
 removeAllSlots(): Promise\<void\>
 
-删除当前应用所有通知渠道。使用Promise异步回调。
+删除当前应用所有[通知渠道](../../notification/notification-glossary.md#notification-slot通知渠道)。使用Promise异步回调。
 
-删除后，当前应用的所有通知渠道及其配置将被永久移除，后续发布通知时系统将自动创建对应类型的渠道。已通过这些渠道发布的通知不受影响，仍可在通知中心查看。适用于需要一次性清除所有渠道配置的场景。
+删除后，当前应用的所有通知渠道及其配置将被永久移除，后续发布通知时系统将自动创建对应类型的渠道。已通过这些渠道发布的通知不受影响，仍可在[通知中心](../../notification/notification-glossary.md#notification-center通知中心)查看。适用于需要一次性清除所有渠道配置的场景。
 
 **系统能力**：SystemCapability.Notification.Notification
 
@@ -833,7 +833,7 @@ notificationManager.removeAllSlots().then(() => {
 
 isNotificationEnabled(callback: AsyncCallback\<boolean\>): void
 
-查询当前应用通知授权状态。使用callback异步回调。
+查询当前应用[通知授权](../../notification/notification-glossary.md#notification-authorization通知授权)状态。使用callback异步回调。
 
 用于在发布通知前检查当前应用是否被允许发送通知，避免在通知授权关闭时发布导致失败。
 
@@ -878,7 +878,7 @@ notificationManager.isNotificationEnabled(isNotificationEnabledCallback);
 
 isNotificationEnabled(): Promise\<boolean\>
 
-查询当前应用通知授权状态。使用Promise异步回调。
+查询当前应用[通知授权](../../notification/notification-glossary.md#notification-authorization通知授权)状态。使用Promise异步回调。
 
 用于在发布通知前检查当前应用是否被允许发送通知，避免在通知使能关闭时发布导致失败。
 
@@ -918,7 +918,7 @@ notificationManager.isNotificationEnabled().then((data: boolean) => {
 
 isNotificationEnabledSync(): boolean
 
-同步查询当前应用通知授权状态。
+同步查询当前应用[通知授权](../../notification/notification-glossary.md#notification-authorization通知授权)状态。
 
 用于在发布通知前快速检查当前应用是否被允许发送通知。此接口为同步接口，调用后立即返回结果，适用于需要在同步代码流程中获取使能状态的场景。
 
@@ -963,7 +963,7 @@ setBadgeNumber(badgeNumber: number): Promise\<void\>
 
 | 参数名      | 类型   | 必填 | 说明       |
 | ----------- | ------ | ---- | ---------- |
-| badgeNumber | number | 是   | 角标个数。当角标设定个数取值小于或等于0时，清除角标。取值大于99时，通知角标将显示99+。 |
+| badgeNumber | number | 是   | 角标个数。当角标设定个数取值小于或等于0时，清除角标。取值大于99时，[通知角标](../../notification/notification-glossary.md#notification-badge通知角标)将显示99+。 |
 
 **返回值：**
 
@@ -1013,7 +1013,7 @@ setBadgeNumber(badgeNumber: number, callback: AsyncCallback\<void\>): void
 
 | 参数名      | 类型                  | 必填 | 说明               |
 | ----------- | --------------------- | ---- | ------------------ |
-| badgeNumber | number                | 是   | 角标个数。当角标设定个数取值小于或等于0时，清除角标。取值大于99时，通知角标将显示99+。         |
+| badgeNumber | number                | 是   | 角标个数。当角标设定个数取值小于或等于0时，清除角标。取值大于99时，[通知角标](../../notification/notification-glossary.md#notification-badge通知角标)将显示99+。         |
 | callback    | AsyncCallback\<void\> | 是   | 回调函数。当设定角标个数成功，err为undefined，否则为错误对象。 |
 
 **错误码：**
@@ -1089,7 +1089,7 @@ getActiveNotificationCount(callback: AsyncCallback\<number\>): void
 
 获取当前应用的通知数量。使用callback异步回调。
 
-用于查询当前应用在通知中心中已发布的存量通知数量。适用于需要展示未读通知数量提示的场景。
+用于查询当前应用在[通知中心](../../notification/notification-glossary.md#notification-center通知中心)中已发布的存量通知数量。适用于需要展示未读通知数量提示的场景。
 
 **系统能力**：SystemCapability.Notification.Notification
 
@@ -1132,7 +1132,7 @@ getActiveNotificationCount(): Promise\<number\>
 
 获取当前应用的通知数量。使用Promise异步回调。
 
-用于查询当前应用在通知中心中已发布的存量通知数量。适用于需要展示未读通知数量提示的场景。
+用于查询当前应用在[通知中心](../../notification/notification-glossary.md#notification-center通知中心)中已发布的存量通知数量。适用于需要展示未读通知数量提示的场景。
 
 **系统能力**：SystemCapability.Notification.Notification
 
@@ -1170,7 +1170,7 @@ getActiveNotifications(callback: AsyncCallback\<Array\<NotificationRequest>>): v
 
 获取当前应用未删除的通知列表。使用callback异步回调。
 
-用于查询当前应用在通知中心中所有存量通知的详细信息列表，包括每条通知的ID、标签、内容、创建时间等。
+用于查询当前应用在[通知中心](../../notification/notification-glossary.md#notification-center通知中心)中所有存量通知的详细信息列表，包括每条通知的ID、标签、内容、创建时间等。
 
 **系统能力**：SystemCapability.Notification.Notification
 
@@ -1212,7 +1212,7 @@ getActiveNotifications(): Promise\<Array\<NotificationRequest\>\>
 
 获取当前应用未删除的通知列表。使用Promise异步回调。
 
-用于查询当前应用在通知中心中所有存量通知的详细信息列表，包括每条通知的ID、标签、内容、创建时间等。
+用于查询当前应用在[通知中心](../../notification/notification-glossary.md#notification-center通知中心)中所有存量通知的详细信息列表，包括每条通知的ID、标签、内容、创建时间等。
 
 **系统能力**：SystemCapability.Notification.Notification
 
@@ -1298,7 +1298,7 @@ cancelGroup(groupName: string, callback: AsyncCallback\<void\>): void
 
 取消当前应用指定组下的通知。使用callback异步回调。
 
-通知组`groupName`是在发布通知时通过[NotificationRequest](js-apis-inner-notification-notificationRequest.md#notificationrequest-1)的`groupName`字段指定的分组标识。取消后，该组下所有通知将从通知中心移除。适用于需要按业务分组批量取消通知的场景。
+通知组`groupName`是在发布通知时通过[NotificationRequest](js-apis-inner-notification-notificationRequest.md#notificationrequest-1)的`groupName`字段指定的分组标识。取消后，该组下所有通知将从[通知中心](../../notification/notification-glossary.md#notification-center通知中心)移除。适用于需要按业务分组批量取消通知的场景。
 
 **系统能力**：SystemCapability.Notification.Notification
 
@@ -1342,7 +1342,7 @@ cancelGroup(groupName: string): Promise\<void\>
 
 取消当前应用指定组下的通知。使用Promise异步回调。
 
-通知组`groupName`是在发布通知时通过[NotificationRequest](js-apis-inner-notification-notificationRequest.md#notificationrequest-1)的`groupName`字段指定的分组标识。取消后，该组下所有通知将从通知中心移除。适用于需要按业务分组批量取消通知的场景。
+通知组`groupName`是在发布通知时通过[NotificationRequest](js-apis-inner-notification-notificationRequest.md#notificationrequest-1)的`groupName`字段指定的分组标识。取消后，该组下所有通知将从[通知中心](../../notification/notification-glossary.md#notification-center通知中心)移除。适用于需要按业务分组批量取消通知的场景。
 
 **系统能力**：SystemCapability.Notification.Notification
 
@@ -1472,7 +1472,7 @@ notificationManager.isSupportTemplate(templateName).then((data: boolean) => {
 
 requestEnableNotification(context: UIAbilityContext, callback: AsyncCallback\<void\>): void
 
-应用需要获取用户授权才能发送通知。在通知发布前调用该接口，可以拉起通知授权弹窗，让用户选择是否允许发送通知。使用callback异步回调。
+应用需要获取用户授权才能发送通知。在通知发布前调用该接口，可以拉起[通知授权](../../notification/notification-glossary.md#notification-authorization通知授权)弹窗，让用户选择是否允许发送通知。使用callback异步回调。
 
 > **说明：**
 >
@@ -1537,7 +1537,7 @@ class MyAbility extends UIAbility {
 
 requestEnableNotification(context: UIAbilityContext): Promise\<void\>
 
-应用需要获取用户授权才能发送通知。在通知发布前调用该接口，可以拉起通知授权弹窗，让用户选择是否允许发送通知。使用Promise异步回调。
+应用需要获取用户授权才能发送通知。在通知发布前调用该接口，可以拉起[通知授权](../../notification/notification-glossary.md#notification-authorization通知授权)弹窗，让用户选择是否允许发送通知。使用Promise异步回调。
 
 > **说明：**
 >
@@ -1692,7 +1692,7 @@ notificationManager.requestEnableNotification().then(() => {
 
 isDistributedEnabled(callback: AsyncCallback\<boolean>): void
 
-查询设备是否支持跨设备协同通知。使用callback异步回调。
+查询设备是否支持[跨设备协同](../../notification/notification-glossary.md#cross-device-collaboration跨设备协同)通知。使用callback异步回调。
 
 > **说明：**
 >
@@ -1738,7 +1738,7 @@ notificationManager.isDistributedEnabled(isDistributedEnabledCallback);
 
 isDistributedEnabled(): Promise\<boolean>
 
-查询设备是否支持跨设备协同通知。使用Promise异步回调。
+查询设备是否支持[跨设备协同](../../notification/notification-glossary.md#cross-device-collaboration跨设备协同)通知。使用Promise异步回调。
 
 > **说明：**
 >
@@ -1780,7 +1780,7 @@ notificationManager.isDistributedEnabled().then((data: boolean) => {
 
 openNotificationSettings(context: UIAbilityContext): Promise\<void\>
 
-拉起应用的通知设置界面，该页面以半模态形式呈现，可用于设置通知开关、通知提醒方式等。使用Promise异步回调。
+拉起应用的[通知设置](../../notification/notification-glossary.md#notification-setting通知设置)界面，该页面以半模态形式呈现，可用于设置通知开关、[通知提醒方式](../../notification/notification-glossary.md#notification-reminder-mode通知提醒方式)等。使用Promise异步回调。
 
 适用于用户需要手动修改通知设置的场景，如用户拒绝授权后二次申请，或需要修改通知提醒方式（振动、响铃等）。当[requestEnableNotification](#notificationmanagerrequestenablenotification10)弹窗被用户拒绝后，开发者可调用此接口引导用户前往通知设置页面手动开启。
 
@@ -1842,7 +1842,7 @@ class MyAbility extends UIAbility {
 
 openNotificationSettingsWithResult(context: UIAbilityContext): Promise\<NotificationSetting\>
 
-拉起应用的通知设置界面，该页面以半模态形式呈现，可用于设置通知开关、通知提醒方式等。使用Promise异步回调，当半模态窗口关闭时返回用户设置的状态。
+拉起应用的[通知设置](../../notification/notification-glossary.md#notification-setting通知设置)界面，该页面以半模态形式呈现，可用于设置通知开关、[通知提醒方式](../../notification/notification-glossary.md#notification-reminder-mode通知提醒方式)等。使用Promise异步回调，当半模态窗口关闭时返回用户设置的状态。
 
 与[openNotificationSettings](#notificationmanageropennotificationsettings13)相比，此接口在半模态窗口关闭时返回[NotificationSetting](#notificationsetting20)对象，开发者可根据返回结果判断用户是否开启了通知权限，从而决定后续逻辑。
 
@@ -1906,7 +1906,7 @@ class MyAbility extends UIAbility {
 
 getNotificationSetting(): Promise\<NotificationSetting\>
 
-获取应用的通知设置，包括锁屏通知、横幅通知、桌面角标、振动、铃声等开关状态。使用Promise异步回调。
+获取应用的[通知设置](../../notification/notification-glossary.md#notification-setting通知设置)，包括锁屏通知、横幅通知、桌面角标、振动、铃声等开关状态。使用Promise异步回调。
 
 **系统能力**：SystemCapability.Notification.Notification
 
@@ -1942,7 +1942,7 @@ notificationManager.getNotificationSetting().then((data: notificationManager.Not
 
 isGeofenceEnabled(): Promise\<boolean\>
 
-检查地理围栏功能是否已启用。使用Promise异步回调。
+检查[地理围栏](../../notification/notification-glossary.md#geofence地理围栏)功能是否已启用。使用Promise异步回调。
 
 **系统能力**：SystemCapability.Notification.Notification
 
@@ -1978,7 +1978,7 @@ notificationManager.isGeofenceEnabled().then((data: boolean) => {
 
 ## ContentType
 
-通知内容类型。
+[通知内容类型](../../notification/notification-glossary.md#content-type通知内容类型)。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -1991,7 +1991,7 @@ notificationManager.isGeofenceEnabled().then((data: boolean) => {
 | NOTIFICATION_CONTENT_PICTURE      | 2          | 图片类型通知。          |
 | NOTIFICATION_CONTENT_CONVERSATION | 3          | 社交类型通知。 |
 | NOTIFICATION_CONTENT_MULTILINE    | 4          | 多行文本类型通知。        |
-| NOTIFICATION_CONTENT_SYSTEM_LIVE_VIEW<sup>11+</sup>    | 5 | 系统实况窗类型通知。不支持三方应用直接创建该类型通知。系统代理创建系统实况窗类型通知后，三方应用可以通过发布相同ID的通知来更新指定内容。|
+| NOTIFICATION_CONTENT_SYSTEM_LIVE_VIEW<sup>11+</sup>    | 5 | [系统实况窗](../../notification/notification-glossary.md#system-live-view系统实况窗)类型通知。不支持三方应用直接创建该类型通知。系统代理创建系统实况窗类型通知后，三方应用可以通过发布相同ID的通知来更新指定内容。|
 | NOTIFICATION_CONTENT_LIVE_VIEW<sup>11+</sup>    | 6 | 普通实况窗类型通知。仅系统应用可用。  |
 
 ## SlotLevel
@@ -2013,7 +2013,7 @@ notificationManager.isGeofenceEnabled().then((data: boolean) => {
 
 ## SlotType
 
-通知渠道类型。
+[通知渠道](../../notification/notification-glossary.md#notification-slot通知渠道)类型。
 
 不同类型对应不同的[SlotLevel](#slotlevel)，决定通知的提醒行为。
 
@@ -2033,7 +2033,7 @@ notificationManager.isGeofenceEnabled().then((data: boolean) => {
 
 ## NotificationSetting<sup>20+</sup>
 
-通知提醒方式开关的设置状态。
+[通知提醒方式](../../notification/notification-glossary.md#notification-reminder-mode通知提醒方式)开关的设置状态。
 
 **系统能力**：SystemCapability.Notification.Notification
 
@@ -2043,7 +2043,7 @@ notificationManager.isGeofenceEnabled().then((data: boolean) => {
 | soundEnabled     | boolean | 否   |  否  | 表示是否开启响铃。<br/> - true：开启。<br/> - false：关闭。 |
 | lockScreenEnabled     | boolean | 否   |  是  | 表示是否开启锁屏通知。<br/>**模型约束**: 此接口仅可在Stage模型下使用。<br/>**起始版本**：26.0.0<br/> - true：开启。<br/> - false：关闭。 |
 | bannerEnabled     | boolean | 否   |  是  | 表示是否开启横幅通知。<br/>**模型约束**: 此接口仅可在Stage模型下使用。<br/>**起始版本**：26.0.0<br/> - true：开启。<br/> - false：关闭。 |
-| badgeNumberEnabled     | boolean | 否   |  是  | 表示是否开启通知角标数字展示。<br/>**模型约束**: 此接口仅可在Stage模型下使用。<br/>**起始版本**：26.0.0<br/> - true：开启。<br/> - false：关闭。 |
+| badgeNumberEnabled     | boolean | 否   |  是  | 表示是否开启[通知角标](../../notification/notification-glossary.md#notification-badge通知角标)数字展示。<br/>**模型约束**: 此接口仅可在Stage模型下使用。<br/>**起始版本**：26.0.0<br/> - true：开启。<br/> - false：关闭。 |
 | notificationEnabled     | boolean | 否   |  是  | 表示应用通知使能状态。<br/>**模型约束**: 此接口仅可在Stage模型下使用。<br/>**起始版本**：26.0.0<br/> - true：开启。<br/> - false：关闭。 |
 
 ## PriorityNotificationType<sup>23+</sup>
@@ -2100,7 +2100,7 @@ type NotificationBasicContent = _NotificationBasicContent
 
 type NotificationContent = _NotificationContent
 
-通知内容。
+[通知内容](../../notification/notification-glossary.md#notification-content通知内容)。
 
 **系统能力**：SystemCapability.Notification.Notification
 
@@ -2148,7 +2148,7 @@ type NotificationPictureContent = _NotificationPictureContent
 
 type NotificationSystemLiveViewContent = _NotificationSystemLiveViewContent
 
-系统实况窗通知内容。
+[系统实况窗](../../notification/notification-glossary.md#system-live-view系统实况窗)[通知内容](../../notification/notification-glossary.md#notification-content通知内容)。
 
 **系统能力**：SystemCapability.Notification.Notification
 
@@ -2160,7 +2160,7 @@ type NotificationSystemLiveViewContent = _NotificationSystemLiveViewContent
 
 type NotificationRequest = _NotificationRequest
 
-通知请求。
+[通知请求](../../notification/notification-glossary.md#notification-request通知请求)。
 
 **系统能力**：SystemCapability.Notification.Notification
 
@@ -2172,7 +2172,7 @@ type NotificationRequest = _NotificationRequest
 
 type NotificationParameters = _NotificationParameters
 
-描述通知请求中wantAgent的部分信息。
+描述[通知请求](../../notification/notification-glossary.md#notification-request通知请求)中wantAgent的部分信息。
 
 **模型约束**：此接口仅可在Stage模型下使用。
 
@@ -2198,7 +2198,7 @@ type DistributedOptions = _DistributedOptions
 
 type NotificationSlot = _NotificationSlot
 
-通知渠道。
+[通知渠道](../../notification/notification-glossary.md#notification-slot通知渠道)。
 
 **系统能力**：SystemCapability.Notification.Notification
 
@@ -2234,7 +2234,7 @@ type NotificationUserInput = _NotificationUserInput
 
 type NotificationCapsule = _NotificationCapsule
 
-通知胶囊。
+[通知胶囊](../../notification/notification-glossary.md#notification-capsule通知胶囊)。
 
 **系统能力**：SystemCapability.Notification.Notification
 
@@ -2246,7 +2246,7 @@ type NotificationCapsule = _NotificationCapsule
 
 type NotificationButton = _NotificationButton
 
-通知按钮。
+[通知按钮](../../notification/notification-glossary.md#notification-button通知按钮)。
 
 **系统能力**：SystemCapability.Notification.Notification
 
@@ -2270,7 +2270,7 @@ type NotificationTime = _NotificationTime
 
 type NotificationProgress = _NotificationProgress
 
-通知进度。
+[通知进度](../../notification/notification-glossary.md#notification-progress通知进度)。
 
 **系统能力**：SystemCapability.Notification.Notification
 

@@ -6,16 +6,16 @@
 <!--Tester: @wanghong1997-->
 <!--Adviser: @fang-jinxu-->
 
-系统支持多种通知渠道，不同通知渠道对应的通知提醒方式不同，可以根据应用的实际场景选择适合的通知渠道，并对通知渠道进行管理（支持创建、查询、删除等操作）。
+系统支持多种[通知渠道](notification-glossary.md#notification-slot通知渠道)，不同通知渠道对应的[通知提醒方式](notification-glossary.md#notification-reminder-mode通知提醒方式)不同，可以根据应用的实际场景选择适合的通知渠道，并对通知渠道进行管理（支持创建、查询、删除等操作）。
 
 ## 通知渠道类型说明
 
-不同类型的通知渠道对应的通知提醒方式不同，详见下表。其中，Y代表支持，N代表不支持。
+不同类型的[通知渠道](notification-glossary.md#notification-slot通知渠道)对应的[通知提醒方式](notification-glossary.md#notification-reminder-mode通知提醒方式)不同，详见下表。其中，Y代表支持，N代表不支持。
 
 <!--RP1-->
 <!--RP1End-->
 <!--RP2-->
-| SlotType             | 取值   | 分类     | 通知中心 | 横幅 | 锁屏 | 铃声/振动 | 状态栏图标 | 自动亮屏 |
+| SlotType             | 取值   | 分类     | [通知中心](notification-glossary.md#notification-center通知中心) | 横幅 | 锁屏 | 铃声/振动 | 状态栏图标 | 自动亮屏 |
 | -------------------- | ------ | --------| ------- |------|------|----------|-----------|---------|
 | SOCIAL_COMMUNICATION | 1      | 社交通讯 | Y | Y | Y | Y | Y | Y |
 | SERVICE_INFORMATION  | 2      | 服务提醒 | Y | Y | Y | Y | Y | Y |
@@ -27,7 +27,7 @@
 
 ## 接口说明
 
-通知渠道主要接口如下。其他接口介绍详情参见[@ohos.notificationManager (NotificationManager模块)](../reference/apis-notification-kit/js-apis-notificationManager.md)。
+[通知渠道](notification-glossary.md#notification-slot通知渠道)主要接口如下。其他接口介绍详情参见[@ohos.notificationManager (NotificationManager模块)](../reference/apis-notification-kit/js-apis-notificationManager.md)。
 
 | **接口名** | **描述** |
 | ---------- | -------- |
@@ -52,7 +52,7 @@
    const DOMAIN_NUMBER: number = 0xFF00;
    ```
 
-2. 创建指定类型的通知渠道。
+2. 创建指定类型的[通知渠道](notification-glossary.md#notification-slot通知渠道)。
 
    <!-- @[create_type_channel](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/Notification-Kit/Notification/entry/src/main/ets/filemanager/ManageNotificationWays.ets) -->
    
@@ -70,7 +70,7 @@
 
 3. 查询指定类型的通知渠道。
 
-   获取对应渠道是否创建以及该渠道支持的通知提醒方式，比如是否有铃声，是否有振动，锁屏是否可见等。
+   获取对应渠道是否创建以及该渠道支持的[通知提醒方式](notification-glossary.md#notification-reminder-mode通知提醒方式)，比如是否有铃声，是否有振动，锁屏是否可见等。
 
    <!-- @[get_type_channel](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/Notification-Kit/Notification/entry/src/main/ets/filemanager/ManageNotificationWays.ets) -->
    
