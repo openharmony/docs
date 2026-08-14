@@ -7,7 +7,7 @@
 <!--Adviser: @zhang_yixin13-->
 
 
-本模块提供了星闪服务交互协议（SparkLink Service Access Protocol，SSAP）连接功能，包括创建SSAP客户端与服务端、连接与断开、服务发现、属性读写与通知、MTU协商等。
+本模块提供了星闪服务交互协议（SparkLink Service Access Protocol，SSAP）连接功能，包括创建客户端与服务端、连接管理、服务发现、属性读写与通知、MTU协商等。
 
 **模型约束：** 此接口仅可在Stage模型下使用。
 

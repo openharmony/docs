@@ -7,7 +7,7 @@
 <!--Adviser: @zhang_yixin13-->
 
 
-本模块提供了SSAP（星闪服务交互协议 SparkLink Service Access Protocol）连接功能，包括创建SSAP客户端、建立连接、调用服务端方法、读写描述符、订阅事件通知等。
+本模块提供了SSAP（星闪服务交互协议 SparkLink Service Access Protocol）连接功能，包括客户端创建与连接、调用服务端方法、读写描述符、订阅事件通知等。
 
 
 **起始版本：** 26.0.0
