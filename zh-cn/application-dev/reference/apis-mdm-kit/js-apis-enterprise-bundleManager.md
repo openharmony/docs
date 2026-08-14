@@ -1231,7 +1231,8 @@ let wantTemp: Want = {
   abilityName: 'EnterpriseAdminAbility'
 };
 try {
-  let result: Array<bundleManager.AppDistributionType> = bundleManager.getInstallationAllowedAppDistributionTypes(wantTemp);
+  let result: Array<bundleManager.AppDistributionType> =
+    bundleManager.getInstallationAllowedAppDistributionTypes(wantTemp);
   console.info(`Succeeded in getting allowed appDistributionTypes. Result: ${JSON.stringify(result)}`);
 } catch (err) {
   console.error(`Failed to get allowed appDistributionTypes. Code: ${err.code}, message: ${err.message}`);
@@ -1282,7 +1283,8 @@ import { bundleManager } from '@kit.MDMKit';
 
 try {
   // 参数需根据实际情况进行替换
-  let result: Array<bundleManager.AppDistributionType> = bundleManager.getInstallationAllowedAppDistributionTypes(null);
+  let result: Array<bundleManager.AppDistributionType> =
+    bundleManager.getInstallationAllowedAppDistributionTypes(null);
   console.info(`Succeeded in getting allowed appDistributionTypes. Result: ${JSON.stringify(result)}`);
 } catch (err) {
   console.error(`Failed to get allowed appDistributionTypes. Code: ${err.code}, message: ${err.message}`);
@@ -1338,7 +1340,7 @@ let bundleNames: Array<string> = ['com.huaweicloud.m'];
 try {
   bundleManager.installMarketApps(wantTemp, bundleNames);
   console.info(`Succeeded in installing market apps.`);
-} catch(err) {
+} catch (err) {
   console.error(`Failed to install market apps. Code: ${err.code}, message: ${err.message}`);
 }
 ```
@@ -1433,6 +1435,8 @@ bundleManager.getInstalledBundleStorageStats(wantTemp, bundleNames, accountId).t
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
 
+**模型约束：** 此接口仅可在Stage模型下使用。
+
 | 名称                     | 类型                   | 只读 | 可选 | 说明                                                         |
 | ------------------------ | ---------------------- | ---- | ---- | ------------------------------------------------------------ |
 | userId                   | number                 | 否   | 是 | 指示用户ID，默认值：调用方所在用户，取值范围：大于等于0。    |
@@ -1444,6 +1448,8 @@ bundleManager.getInstalledBundleStorageStats(wantTemp, bundleNames, accountId).t
 应用程序签名证书的分发类型。详细介绍请参见[ApplicationInfo](../apis-ability-kit/js-apis-bundleManager-applicationInfo.md#applicationinfo-1)的appDistributionType属性。
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
+
+**模型约束：** 此接口仅可在Stage模型下使用。
 
 | 名称         | 值 | 说明                            |
 | ----------- | -------- | ------------------------------- |
@@ -1459,6 +1465,8 @@ bundleManager.getInstalledBundleStorageStats(wantTemp, bundleNames, accountId).t
 描述应用包信息。
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
+
+**模型约束：** 此接口仅可在Stage模型下使用。
 
 | 名称                              | 类型                                                         | 只读 | 可选 | 说明                                                         |
 | --------------------------------- | ------------------------------------------------------------ | ---- | ---- | ------------------------------------------------------------ |
@@ -1482,6 +1490,8 @@ bundleManager.getInstalledBundleStorageStats(wantTemp, bundleNames, accountId).t
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
 
+**模型约束：** 此接口仅可在Stage模型下使用。
+
 | 名称      | 类型           | 只读 | 可选 | 说明                        |
 | --------- | -------------- | ---- | ---- | --------------------------- |
 | appId     | string         | 是   | 否   | 应用的appId，表示应用的唯一标识，详情信息可参考[什么是appId](../../quick-start/common-problem-of-application.md#什么是appid)。                 |
@@ -1495,6 +1505,8 @@ bundleManager.getInstalledBundleStorageStats(wantTemp, bundleNames, accountId).t
 应用程序信息。
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
+
+**模型约束：** 此接口仅可在Stage模型下使用。
 
 | 名称                       | 类型                                                         | 只读 | 可选 | 说明                                                         |
 | -------------------------- | ------------------------------------------------------------ | ---- | ---- | ------------------------------------------------------------ |
@@ -1532,6 +1544,8 @@ bundleManager.getInstalledBundleStorageStats(wantTemp, bundleNames, accountId).t
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
 
+**模型约束：** 此接口仅可在Stage模型下使用。
+
 | 名称         | 类型     | 只读   | 可选  |说明          |
 | ---------- | ------ | ----- | ----  | ---------------|
 | bundleName | string | 否    | 否 | 应用的bundle名称。 |
@@ -1543,6 +1557,8 @@ bundleManager.getInstalledBundleStorageStats(wantTemp, bundleNames, accountId).t
 包信息获取标志，指示需要获取的包信息的内容。
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
+
+**模型约束：** 此接口仅可在Stage模型下使用。
 
 | 名称                           | 值        | 说明                                                         |
 | --------------------------    | ---------- | ------------------------------------------------------------ |

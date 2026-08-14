@@ -375,7 +375,7 @@ let policy: securityManager.PasswordPolicy = {
   complexityRegex: '^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[!@#$%^&*])[a-zA-Z\\d!@#$%^&*]{8,}$',
   validityPeriod: 1,
   additionalDescription: '至少八个字符，至少一个大写字母，一个小写字母，一个数字和一个特殊字符',
-  passwordAlgs: securityManager.PasswordAlgs.SCRYPT_HKDF_SM4,
+  passwordAlgs: securityManager.PasswordAlgs.SCRYPT_HKDF_SM4
 };
 try {
   securityManager.setPasswordPolicy(wantTemp, policy);
@@ -1123,7 +1123,8 @@ let appInstanceTemp: securityManager.ApplicationInstance = {
 };
 let permissionsTemp: Array<string> = ['ohos.permission.CAMERA', 'ohos.permission.LOCATION'];
 try {
-  securityManager.setPermissionManagedState(wantTemp, appInstanceTemp, permissionsTemp, securityManager.PermissionManagedState.GRANTED);
+  securityManager.setPermissionManagedState(wantTemp, appInstanceTemp, permissionsTemp,
+    securityManager.PermissionManagedState.GRANTED);
   console.info('Succeeded in setting permission managed state.');
 } catch (err) {
   console.error(`Failed to set permission managed state.  Code: ${err.code}, message: ${err.message}`);
@@ -1186,7 +1187,8 @@ let appInstanceTemp: securityManager.ApplicationInstance = {
 };
 let permissionTemp: string = 'ohos.permission.ENTERPRISE_MANAGE_USER_GRANT_PERMISSION';
 try {
-  let result: securityManager.PermissionManagedState = securityManager.getPermissionManagedState(wantTemp, appInstanceTemp, permissionTemp);
+  let result: securityManager.PermissionManagedState =
+    securityManager.getPermissionManagedState(wantTemp, appInstanceTemp, permissionTemp);
   console.info(`Succeeded in getting permission managed state, result : ${result}`);
 } catch (err) {
   console.error(`Failed to get permission managed state. Code: ${err.code}, message: ${err.message}`);
@@ -1959,7 +1961,8 @@ let wantTemp: Want = {
 let permission: string = 'ohos.permission.CAMERA';
 let accountId: number = 100;
 try {
-  let result: Array<common.ApplicationInstance> = securityManager.getAllowedPermissionBundles(wantTemp, permission, accountId);
+  let result: Array<common.ApplicationInstance> =
+    securityManager.getAllowedPermissionBundles(wantTemp, permission, accountId);
   console.info(`Succeeded in getting allowed permission bundles, result : ${JSON.stringify(result)}`);
 } catch (err) {
   console.error(`Failed to get allowed permission bundles. Code: ${err.code}, message: ${err.message}`);

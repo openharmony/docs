@@ -78,7 +78,7 @@ import { Want } from '@kit.AbilityKit';
 
 let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
-  abilityName: 'EnterpriseAdminAbility',
+  abilityName: 'EnterpriseAdminAbility'
 };
 
 try {
@@ -131,7 +131,7 @@ import { Want } from '@kit.AbilityKit';
 let wantTemp: Want = {
   // 需根据实际情况进行替换
   bundleName: 'com.example.myapplication',
-  abilityName: 'EnterpriseAdminAbility',
+  abilityName: 'EnterpriseAdminAbility'
 };
 
 let profile: wifiManager.WifiProfile = {
@@ -157,7 +157,7 @@ import { Want } from '@kit.AbilityKit';
 let wantTemp: Want = {
   // 需根据实际情况进行替换
   bundleName: 'com.example.myapplication',
-  abilityName: 'EnterpriseAdminAbility',
+  abilityName: 'EnterpriseAdminAbility'
 };
 
 let profile: wifiManager.WifiProfile = {
@@ -184,7 +184,7 @@ import { Want } from '@kit.AbilityKit';
 let wantTemp: Want = {
   // 需根据实际情况进行替换
   bundleName: 'com.example.myapplication',
-  abilityName: 'EnterpriseAdminAbility',
+  abilityName: 'EnterpriseAdminAbility'
 };
 
 let profile: wifiManager.WifiProfile = {
@@ -211,7 +211,7 @@ import { Want } from '@kit.AbilityKit';
 let wantTemp: Want = {
   // 需根据实际情况进行替换
   bundleName: 'com.example.myapplication',
-  abilityName: 'EnterpriseAdminAbility',
+  abilityName: 'EnterpriseAdminAbility'
 };
 
 let profile: wifiManager.WifiProfile = {
@@ -237,7 +237,7 @@ import { Want } from '@kit.AbilityKit';
 let wantTemp: Want = {
   // 需根据实际情况进行替换
   bundleName: 'com.example.myapplication',
-  abilityName: 'EnterpriseAdminAbility',
+  abilityName: 'EnterpriseAdminAbility'
 };
 
 let profile: wifiManager.WifiProfile = {
@@ -263,7 +263,7 @@ import { Want } from '@kit.AbilityKit';
 let wantTemp: Want = {
   // 需根据实际情况进行替换
   bundleName: 'com.example.myapplication',
-  abilityName: 'EnterpriseAdminAbility',
+  abilityName: 'EnterpriseAdminAbility'
 };
 
 // EAP-PEAP 配置示例
@@ -279,7 +279,7 @@ let profile: wifiManager.WifiProfile = {
     password: 'passwd',
     anonymousIdentity: '',
     caPath: '/system/etc/security/caCerts/company-ca.pem',
-    caCertAliases:  '',
+    caCertAliases: '',
     clientCertAliases: '',
     certEntry: new Uint8Array(),
     certPassword: '',
@@ -306,7 +306,7 @@ import { Want } from '@kit.AbilityKit';
 let wantTemp: Want = {
   // 需根据实际情况进行替换
   bundleName: 'com.example.myapplication',
-  abilityName: 'EnterpriseAdminAbility',
+  abilityName: 'EnterpriseAdminAbility'
 };
 
 // EAP-TLS 配置示例
@@ -349,7 +349,7 @@ import { Want } from '@kit.AbilityKit';
 let wantTemp: Want = {
   // 需根据实际情况进行替换
   bundleName: 'com.example.myapplication',
-  abilityName: 'EnterpriseAdminAbility',
+  abilityName: 'EnterpriseAdminAbility'
 };
 
 // EAP-TTLS 配置示例
@@ -392,7 +392,7 @@ import { Want } from '@kit.AbilityKit';
 let wantTemp: Want = {
   // 需根据实际情况进行替换
   bundleName: 'com.example.myapplication',
-  abilityName: 'EnterpriseAdminAbility',
+  abilityName: 'EnterpriseAdminAbility'
 };
 
 // EAP-SIM 配置示例
@@ -408,7 +408,7 @@ let profile: wifiManager.WifiProfile = {
     password:'',
     anonymousIdentity: '',
     caPath: '',
-    caCertAliases:  'carrier-root-ca',
+    caCertAliases: 'carrier-root-ca',
     clientCertAliases: '',
     certEntry: new Uint8Array(),
     certPassword: '',
@@ -436,7 +436,7 @@ import { Want } from '@kit.AbilityKit';
 let wantTemp: Want = {
   // 需根据实际情况进行替换
   bundleName: 'com.example.myapplication',
-  abilityName: 'EnterpriseAdminAbility',
+  abilityName: 'EnterpriseAdminAbility'
 };
 
 let profile: wifiManager.WifiProfile = {

@@ -79,7 +79,7 @@ let wantTemp: Want = {
 try {
   locationManager.setLocationPolicy(wantTemp, locationManager.LocationPolicy.DISALLOW_LOCATION_SERVICE);
   console.info(`Succeeded in setting location policy.`);
-} catch(err) {
+} catch (err) {
   console.error(`Failed to set location policy. Code: ${err.code}, message: ${err.message}`);
 }
 ```
@@ -135,7 +135,7 @@ let wantTemp: Want = {
 try {
   let result: locationManager.LocationPolicy = locationManager.getLocationPolicy(wantTemp);
   console.info(`Succeeded in getting location policy. policy: ${result}`);
-} catch(err) {
+} catch (err) {
   console.error(`Failed to get location policy. Code: ${err.code}, message: ${err.message}`);
 }
 ```

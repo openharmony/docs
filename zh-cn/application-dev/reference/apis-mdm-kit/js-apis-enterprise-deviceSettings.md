@@ -144,6 +144,8 @@ setHomeWallpaper(admin: Want, fd: number): Promise&lt;void&gt;
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
 
+**模型约束：** 此接口仅可在Stage模型下使用。
+
 **冲突规则：** [配置](../../mdm/mdm-kit-multi-mdm.md#规则3配置)。
 
 **参数：**
@@ -177,7 +179,7 @@ setHomeWallpaper(admin: Want, fd: number): Promise&lt;void&gt;
 import { deviceSettings } from '@kit.MDMKit';
 import { common, Want } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
-import { fileIo }  from '@kit.CoreFileKit';
+import { fileIo } from '@kit.CoreFileKit';
 
 let wantTemp: Want = {
   // 请根据实际情况修改
@@ -208,6 +210,8 @@ setUnlockWallpaper(admin: Want, fd: number): Promise&lt;void&gt;
 **需要权限：** ohos.permission.ENTERPRISE_SET_WALLPAPER
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
+
+**模型约束：** 此接口仅可在Stage模型下使用。
 
 **冲突规则：** [配置](../../mdm/mdm-kit-multi-mdm.md#规则3配置)。
 
@@ -242,7 +246,7 @@ setUnlockWallpaper(admin: Want, fd: number): Promise&lt;void&gt;
 import { deviceSettings } from '@kit.MDMKit';
 import { common, Want } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
-import { fileIo }  from '@kit.CoreFileKit';
+import { fileIo } from '@kit.CoreFileKit';
 
 let wantTemp: Want = {
   // 需根据实际情况进行替换
@@ -430,7 +434,7 @@ let wantTemp: Want = {
 let menusToHidden: Array<deviceSettings.SettingsMenu> = [
   // 需根据实际情况进行替换或增加
   deviceSettings.SettingsMenu.ACCOUNT_ID,
-  deviceSettings.SettingsMenu.WIFI,
+  deviceSettings.SettingsMenu.WIFI
 ];
 
 try {
@@ -493,7 +497,7 @@ let wantTemp: Want = {
 let menusToHidden: Array<deviceSettings.SettingsMenu> = [
   // 需根据实际情况进行替换或增加
   deviceSettings.SettingsMenu.ACCOUNT_ID,
-  deviceSettings.SettingsMenu.WIFI,
+  deviceSettings.SettingsMenu.WIFI
 ];
 
 try {
@@ -632,6 +636,7 @@ try {
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
 
+**模型约束：** 此接口仅可在Stage模型下使用。
 
 | 名称 | 值   | 说明           |
 | ---- | ---- | -------------- |
@@ -643,6 +648,8 @@ try {
 设置项列表。
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
+
+**模型约束：** 此接口仅可在Stage模型下使用。
 
 | 名称   | 值 | 说明         |
 | ------ | ------ | ----------- |

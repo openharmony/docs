@@ -343,7 +343,7 @@ getUsbStorageDeviceAccessPolicy(admin: Want): UsbPolicy
 
 本接口通过传入Want查询对应企业设备管理应用设置的策略，如需查询实际生效的策略，请使用[usbManager.getUsbStorageDeviceAccessPolicy](#usbmanagergetusbstoragedeviceaccesspolicy-1)接口。
 
-**需要权限：
+**需要权限：**
  - API版本26.0.0之前：ohos.permission.ENTERPRISE_MANAGE_USB
  - API版本26.0.0开始：ohos.permission.ENTERPRISE_MANAGE_USB 或者 ohos.permission.PERSONAL_MANAGE_RESTRICTIONS（应用调用[adminManager.startAdminProvision](./js-apis-enterprise-adminManager.md#adminmanagerstartadminprovision15)接口激活为自带设备管理应用）。
 
