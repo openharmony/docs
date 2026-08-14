@@ -1021,6 +1021,8 @@ try {
 
 Wi-Fi的SSID和BSSID信息。
 
+设置允许名单时，SSID和BSSID需要同时满足，才可以连接该Wi-Fi；设置禁用名单时，SSID和BSSID满足其中一个，就不能连接该Wi-Fi。
+
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
 
 **模型约束：** 此接口仅可在Stage模型下使用。
