@@ -65,7 +65,7 @@
     - [native_audiostreambuilder.h](capi-native-audiostreambuilder-h.md)
     - [native_audio_suite_base.h](capi-native-audio-suite-base-h.md)
     <!--Del-->
-    - [native_audio_suite_download_manager.h](capi-native-audio-suite-download-manager-h.md)
+    - [native_audio_suite_download_manager.h（系统接口）](capi-native-audio-suite-download-manager-h-sys.md)
     <!--DelEnd-->
     - [native_audio_suite_engine.h](capi-native-audio-suite-engine-h.md)
     - [native_audio_session_base.h](capi-native-audio-session-base-h.md)
@@ -93,16 +93,22 @@
     - [OH_AudioRendererStruct](capi-ohaudio-oh-audiorendererstruct.md)
     - [OH_AudioCapturerStruct](capi-ohaudio-oh-audiocapturerstruct.md)
     - [OH_AudioFormat](capi-ohaudiosuite-oh-audioformat.md)
+    <!--Del-->
+    - [OH_AudioSuite_SystemNodeFormat（系统接口）](capi-ohaudiosuite-oh-audiosuite-systemnodeformat-sys.md)
+    <!--DelEnd-->
     - [OH_AudioDataArray](capi-ohaudiosuite-oh-audiodataarray.md)
+    <!--Del-->
+    - [OH_AudioSuite_MetaFrame（系统接口）](capi-ohaudiosuite-oh-audiosuite-metaframe-sys.md)
+    <!--DelEnd-->
     - [OH_EqualizerFrequencyBandGains](capi-ohaudiosuite-oh-equalizerfrequencybandgains.md)
     - [OH_AudioSuiteEngineStruct](capi-ohaudiosuite-oh-audiosuiteenginestruct.md)
     - [OH_AudioSuitePipelineStruct](capi-ohaudiosuite-oh-audiosuitepipelinestruct.md)
     - [OH_AudioNodeStruct](capi-ohaudiosuite-oh-audionodestruct.md)
     - [OH_AudioNodeBuilderStruct](capi-ohaudiosuite-oh-audionodebuilderstruct.md)
     <!--Del-->
-    - [OH_AudioSuite_DownloadStatusInfo](capi-ohaudiosuite-oh-audiosuite-downloadstatusinfo.md)
-    - [OH_AudioSuite_DownloadStatusInfoArray](capi-ohaudiosuite-oh-audiosuite-downloadstatusinfoarray.md)
-    - [OH_AudioSuite_DownloadManagerStruct](capi-ohaudiosuite-oh-audiosuite-downloadmanagerstruct.md)
+    - [OH_AudioSuite_DownloadStatusInfo（系统接口）](capi-ohaudiosuite-oh-audiosuite-downloadstatusinfo-sys.md)
+    - [OH_AudioSuite_DownloadStatusInfoArray（系统接口）](capi-ohaudiosuite-oh-audiosuite-downloadstatusinfoarray-sys.md)
+    - [OH_AudioSuite_DownloadManagerStruct（系统接口）](capi-ohaudiosuite-oh-audiosuite-downloadmanagerstruct-sys.md)
     <!--DelEnd-->
     - [OH_AudioSuite_SpaceRenderPositionParams](capi-ohaudiosuite-oh-audiosuite-spacerenderpositionparams.md)
     - [OH_AudioSuite_PureVoiceChangeOption](capi-ohaudiosuite-oh-audiosuite-purevoicechangeoption.md)

@@ -1,4 +1,4 @@
-# OH_AudioSuite_DownloadStatusInfoArray
+# OH_AudioSuite_DownloadStatusInfoArray（系统接口）
 <!--Kit: Audio Kit-->
 <!--Subsystem: Multimedia-->
 <!--Owner: @xxngwang-->
@@ -16,9 +16,11 @@ typedef struct OH_AudioSuite_DownloadStatusInfoArray {...} OH_AudioSuite_Downloa
 
 **起始版本：** 26.0.0
 
+**系统接口：** 此接口为系统接口。
+
 **相关模块：** [OHAudioSuite](capi-ohaudiosuite.md)
 
-**所在头文件：** [native_audio_suite_download_manager.h](capi-native-audio-suite-download-manager-h.md)
+**所在头文件：** [native_audio_suite_download_manager.h](capi-native-audio-suite-download-manager-h-sys.md)
 
 ## 汇总
 
@@ -27,6 +29,6 @@ typedef struct OH_AudioSuite_DownloadStatusInfoArray {...} OH_AudioSuite_Downloa
 | 名称 | 描述 |
 | -- | -- |
 | uint32_t size | 下载状态信息指针数组大小。<br>**起始版本：** 26.0.0 |
-| [OH_AudioSuite_DownloadStatusInfo](capi-ohaudiosuite-oh-audiosuite-downloadstatusinfo.md) **downloadStatusInfo | 下载状态信息指针数组。<br>**起始版本：** 26.0.0 |
+| [OH_AudioSuite_DownloadStatusInfo](capi-ohaudiosuite-oh-audiosuite-downloadstatusinfo-sys.md) **downloadStatusInfo | 下载状态信息指针数组。<br>**起始版本：** 26.0.0 |
 
 
