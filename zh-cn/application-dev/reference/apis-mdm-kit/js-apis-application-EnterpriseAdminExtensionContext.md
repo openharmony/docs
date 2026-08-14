@@ -6,6 +6,8 @@
 <!--Tester: @lpw_work-->
 <!--Adviser: @zhang_yixin13-->
 
+EnterpriseAdminExtensionContext在@ohos.enterprise.common模块中作为类型导出，具体接口定义见本文档。
+
 EnterpriseAdminExtensionContext是[EnterpriseAdminExtensionAbility](js-apis-EnterpriseAdminExtensionAbility.md)的上下文环境，继承自[ExtensionContext](../apis-ability-kit/js-apis-inner-application-extensionContext.md)。
 
 每个EnterpriseAdminExtensionAbility组件实例化时，系统都会自动创建对应的EnterpriseAdminExtensionContext。开发者可以通过EnterpriseAdminExtensionContext获取应用的沙箱路径、启动其他的组件。该上下文环境只能在当前EnterpriseAdminExtensionAbility中使用，不能传递到其他组件中使用。
@@ -32,7 +34,7 @@ import { common } from '@kit.MDMKit';
 
 startAbilityByAdmin(admin: Want, want: Want): Promise\<void>
 
-在[EnterpriseAdminExtensionAbility](js-apis-EnterpriseAdminExtensionAbility.md)组件中直接启动另外一个组件（页面没有弹窗提醒），目前支持[UIAbility](../apis-ability-kit/js-apis-app-ability-uiAbility.md)，[AppServiceExtensionAbility](../apis-ability-kit/js-apis-app-ability-appServiceExtensionAbility.md)。调用成功后，目标组件将被启动并进入运行状态。使用Promise异步回调。
+在[EnterpriseAdminExtensionAbility](js-apis-EnterpriseAdminExtensionAbility.md)组件中静默启动另外一个组件（无需用户确认即可启动），支持[UIAbility](../apis-ability-kit/js-apis-app-ability-uiAbility.md)，[AppServiceExtensionAbility](../apis-ability-kit/js-apis-app-ability-appServiceExtensionAbility.md)。调用成功后，目标组件将被启动并进入运行状态。使用Promise异步回调。
 
 > **说明：**
 >
@@ -54,7 +56,7 @@ startAbilityByAdmin(admin: Want, want: Want): Promise\<void>
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| admin | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | 是 | 企业设备管理扩展组件。Want中必须包含企业设备管理扩展能力的abilityName和所在应用的bundleName。设置后系统将以此参数验证调用方的设备管理员身份和权限。 |
+| admin | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | 是 | 企业设备管理扩展组件。admin参数需传入当前应用自身的企业设备管理扩展组件信息，Want中必须包含当前应用的企业设备管理扩展能力的abilityName和所在应用的bundleName。设置后系统将以此参数验证调用方的设备管理员身份和权限。 |
 | want | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | 是 | 启动组件的必要信息，Want中必须包含被启动组件的abilityName和所在应用的bundleName。设置后系统将根据bundleName定位目标应用，根据abilityName定位并启动目标组件。 |
 
 **返回值：**
