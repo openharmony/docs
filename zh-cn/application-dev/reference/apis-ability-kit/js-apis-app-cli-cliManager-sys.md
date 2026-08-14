@@ -350,7 +350,7 @@ subscribeSession(sessionId: string, callback: ToolEventCallback): Promise\<void>
 
 > **说明：**
 >
-> 会话仅限创建进程管理：只有调用`execTool`创建该会话的进程可以调用本接口。其他进程即使获取到`sessionId`，调用本接口也会抛出错误码201（Permission denied）。
+> 会话仅限创建进程管理：只有调用`execTool`或`execCmd`创建该会话的进程可以调用本接口。其他进程即使获取到`sessionId`，调用本接口也会抛出错误码201（Permission denied）。
 
 **起始版本：** 26.0.0
 
@@ -418,7 +418,7 @@ clearSession(sessionId: string): Promise\<void>
 
 > **说明：**
 >
-> 会话仅限创建进程管理：只有调用`execTool`创建该会话的进程可以调用本接口。其他进程即使获取到`sessionId`，调用本接口也会抛出错误码201（Permission denied）。
+> 会话仅限创建进程管理：只有调用`execTool`或`execCmd`创建该会话的进程可以调用本接口。其他进程即使获取到`sessionId`，调用本接口也会抛出错误码201（Permission denied）。
 
 **起始版本：** 26.0.0
 
@@ -479,7 +479,7 @@ querySession(sessionId: string): Promise\<CliSessionInfo>
 
 > **说明：**
 >
-> 会话仅限创建进程管理：只有调用`execTool`创建该会话的进程可以调用本接口。其他进程即使获取到`sessionId`，调用本接口也会抛出错误码201（Permission denied）。
+> 会话仅限创建进程管理：只有调用`execTool`或`execCmd`创建该会话的进程可以调用本接口。其他进程即使获取到`sessionId`，调用本接口也会抛出错误码201（Permission denied）。
 
 **起始版本：** 26.0.0
 
@@ -653,7 +653,7 @@ sendMessage(sessionId: string, message: string): Promise\<void>
 
 > **说明：**
 >
-> 会话仅限创建进程管理：只有调用`execTool`创建该会话的进程可以调用本接口。其他进程即使获取到`sessionId`，调用本接口也会抛出错误码201（Permission denied）。
+> 会话仅限创建进程管理：只有调用`execTool`或`execCmd`创建该会话的进程可以调用本接口。其他进程即使获取到`sessionId`，调用本接口也会抛出错误码201（Permission denied）。
 
 **起始版本：** 26.0.0
 
