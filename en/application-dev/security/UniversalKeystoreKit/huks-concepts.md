@@ -6,6 +6,7 @@
 <!--Designer: @HighLowWorld-->
 <!--Tester: @wxy1234564846-->
 <!--Adviser: @zengyawen-->
+<!-- md-trans-meta sourceCommit=3780eaa820092ee975c32f64eb288f44d3471751 translatedAt=2026-08-13T08:20:25.871Z pushedAt=2026-08-13T10:20:24.674Z -->
 
 Familiarity with the following concepts is helpful because they are used throughout your development process.
 
@@ -23,7 +24,7 @@ Key pair material = Key pair material header + Key pair material content
 
 For example, an application needs an RSA key in Uint8Array format, the variables are assigned with values based on the structure of the RSA key pair material in the memory.
 
-The following figure illustrates the structure of the RSA key material. For details about the key material formats of other algorithms, see the tables below.
+The following figure uses the RSA key material memory structure as an example. For the formats of other algorithms, see the table below the sample.
 
 ![keyt](figures/keyt.png)
 
@@ -76,29 +77,44 @@ let rsa2048KeyPairMaterial = new Uint8Array([
 ```
 
 - RSA key pair material format
+
   | Key<br>Algorithm| Key<br>Size| Modulus n<br>Length L<sub>n</sub>| Public Key Exponent e<br>Length L<sub>e</sub>| Private Key Exponent d<br>Length L<sub>d</sub>| n | e | d |
   | -------- | -------- | -------- | -------- | -------- | -------- | -------- | -------- |
   | 4 bytes| 4 bytes| 4 bytes| 4 bytes| 4 bytes| L<sub>n</sub> bytes| L<sub>e</sub> bytes| L<sub>d</sub> bytes|
 
 - ECC key pair material format
+
   | Key<br>Algorithm| Key<br>Size| X Coordinate<br>Length L<sub>x</sub>| Y Coordinate<br>Length L<sub>y</sub>| Z Coordinate<br>Length L<sub>z</sub>| x | y | z |
   | -------- | -------- | -------- | -------- | -------- | -------- | -------- | -------- |
   | 4 bytes| 4 bytes| 4 bytes| 4 bytes| 4 bytes| L<sub>x</sub> bytes| L<sub>y</sub> bytes| L<sub>z</sub> bytes|
+
 <!--Del-->
+
 - DSA key pair material format
+
   | Key<br>Algorithm| Key<br>Size| Private Key x<br>Length L<sub>x</sub>| Public Key y<br>Length L<sub>y</sub>| Prime Number p<br>Length L<sub>p</sub>| Prime Factor q<br>Length L<sub>q</sub>| g length (L<sub>g</sub>)| x | y | p | q | g |
   | -------- | -------- | -------- | -------- | -------- | -------- | -------- | -------- | -------- | -------- | -------- | -------- |
   | 4 bytes| 4 bytes| 4 bytes| 4 bytes| 4 bytes| 4 bytes| 4 bytes| L<sub>x</sub> bytes| L<sub>y</sub> bytes| L<sub>p</sub> bytes| L<sub>q</sub> bytes| L<sub>g</sub> bytes|
+
 <!--DelEnd-->
+
 - DH key pair material format
+
   | Key<br>Algorithm| Key<br>Size| Public Key (pk)<br>Length L<sub>pk</sub>| Private Key (sk)<br>Length L<sub>sk</sub>| Reserved<br>Field| pk | sk |
   | -------- | -------- | -------- | -------- | -------- | -------- | -------- |
   | 4 bytes| 4 bytes| 4 bytes| 4 bytes| 4 bytes| L<sub>pk</sub> bytes| L<sub>sk</sub> bytes|
 
 - Curve25519 key pair material format
+
   | Key<br>Algorithm| Key<br>Size| Public Key (pk)<br>Length L<sub>pk</sub>| Private Key (sk)<br>Length L<sub>sk</sub>| Reserved<br>Field| pk | sk |
   | -------- | -------- | -------- | -------- | -------- | -------- | -------- |
   | 4 bytes| 4 bytes| 4 bytes| 4 bytes| 4 bytes| L<sub>pk</sub> bytes| L<sub>sk</sub> bytes|
+
+- ML-DSA key pair material format:
+
+  | Key<br>Algorithm | Security<br>Parameter Set | Public Key (pk)<br>Length L<sub>pk</sub> | Private Key (sk)<br>Length L<sub>sk</sub> | Reserved<br>Field | pk | sk |
+  | -------- | -------- | -------- | -------- | -------- | -------- | -------- |
+  | 4 bytes | 4 bytes | 4 bytes | 4 bytes | 4 bytes | L<sub>pk</sub> bytes | L<sub>sk</sub> bytes |
 
 ### Public Key Material Format
 

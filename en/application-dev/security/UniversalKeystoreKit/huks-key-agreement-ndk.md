@@ -6,10 +6,12 @@
 <!--Designer: @HighLowWorld-->
 <!--Tester: @wxy1234564846-->
 <!--Adviser: @zengyawen-->
+<!-- md-trans-meta sourceCommit=3278ee705378631554cefba415ca42904851087c translatedAt=2026-08-13T08:23:54.675Z pushedAt=2026-08-13T10:20:24.706Z -->
 
 This topic uses X25519, DH, and ECDH as an example to demonstrate how to perform key agreement for HUKS-managed keys. For details about the scenarios and supported algorithm specifications, see [Supported Algorithms](huks-key-agreement-overview.md#supported-algorithms).
 
 ## Linking the Dynamic Library in the CMake Script
+
 ```txt
 target_link_libraries(entry PUBLIC libhuks_ndk.z.so)
 ```
@@ -51,12 +53,15 @@ Note: The tag value set in key agreement should not conflict with the tag value 
 **Key Deletion**
 
 Delete the keys from device A and device B when the keys are not required. For details, see [Deleting a Key](huks-delete-key-ndk.md).
- 
- ## Development Cases
- The following uses the X25519, DH, and ECDH keys as examples for key agreement. 
+
+## Development Cases
+
+The following uses X25519, DH, and ECDH keys as examples to perform key agreement.
 
 ### X25519 Asymmetric Key Agreement
+
 Prepare the X25519 key agreement materials.
+
 <!-- @[prepare_X25519_cpp](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/Security/UniversalKeystoreKit/KeyUsage/KeyExchange/entry/src/main/cpp/types/projects/napi_X25519.cpp) -->
 
 ``` C++
@@ -130,7 +135,9 @@ static struct OH_Huks_Blob g_keyAlias01001 = {(uint32_t)strlen("HksX25519AgreeKe
 static struct OH_Huks_Blob g_keyAlias02001 = {(uint32_t)strlen("HksX25519AgreeKeyAliasTest001_2"),
                                               (uint8_t *)"HksX25519AgreeKeyAliasTest001_2"};
 ```
+
 Perform key agreement.
+
 <!-- @[key_agreement_X25519_cpp](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/Security/UniversalKeystoreKit/KeyUsage/KeyExchange/entry/src/main/cpp/types/projects/napi_X25519.cpp) -->
 
 ``` C++
@@ -311,10 +318,13 @@ napi_value X25519AgreeKey(napi_env env, napi_callback_info info)
     return ret;
 }
 ```
+
 <!-- -->
 
 ### DH Key Agreement
+
 Prepare the DH key agreement materials.
+
 <!-- @[prepare_DH_cpp](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/Security/UniversalKeystoreKit/KeyUsage/KeyExchange/entry/src/main/cpp/types/projects/napi_DH.cpp) -->
 
 ``` C++
@@ -403,7 +413,9 @@ static struct OH_Huks_Blob g_keyAlias01001 = {(uint32_t)strlen("HksDHAgreeKeyAli
 static struct OH_Huks_Blob g_keyAlias02001 = {(uint32_t)strlen("HksDHAgreeKeyAliasTest001_2"),
                                               (uint8_t *)"HksDHAgreeKeyAliasTest001_2"};
 ```
+
 Perform key agreement.
+
 <!-- @[key_agreement_DH_cpp](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/Security/UniversalKeystoreKit/KeyUsage/KeyExchange/entry/src/main/cpp/types/projects/napi_DH.cpp) -->
 
 ``` C++
@@ -599,10 +611,13 @@ napi_value DhAgreeKey(napi_env env, napi_callback_info info)
     return ret;
 }
 ```
+
 <!-- -->
 
 ### ECDH Key Agreement
+
 Prepare the ECDH key agreement materials.
+
 <!-- @[prepare_ECDH_cpp](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/Security/UniversalKeystoreKit/KeyUsage/KeyExchange/entry/src/main/cpp/types/projects/napi_ECDH.cpp) -->
 
 ``` C++
@@ -674,8 +689,11 @@ static struct OH_Huks_Blob g_keyAlias01001 = {(uint32_t)strlen("HksECDHAgreeKeyA
 static struct OH_Huks_Blob g_keyAlias02001 = {(uint32_t)strlen("HksECDHAgreeKeyAliasTest001_2"),
                                               (uint8_t *)"HksECDHAgreeKeyAliasTest001_2"};
 ```
+
 <!-- -->
+
 Functions for ECDH key agreement, including memory allocation, parameter initialization, key generation, and resource cleanup.
+
 <!-- @[key_agreement_ECDH_cpp_one](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/Security/UniversalKeystoreKit/KeyUsage/KeyExchange/entry/src/main/cpp/types/projects/napi_ECDH.cpp) -->
 
 ``` C++
@@ -815,8 +833,11 @@ static void CleanKey(struct OH_Huks_Blob *genKeyAlias,
     OH_Huks_FreeParamSet(finishParamSet);
 }
 ```
+
 <!-- -->
+
 The complete workflow of ECDH key agreement is as follows:
+
 <!-- @[key_agreement_ECDH_cpp_two](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/Security/UniversalKeystoreKit/KeyUsage/KeyExchange/entry/src/main/cpp/types/projects/napi_ECDH.cpp) -->
 
 ``` C++
