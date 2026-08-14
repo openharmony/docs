@@ -6,7 +6,7 @@
 <!--Designer: @lilong32; @CCCZKing-->
 <!--Tester: @zhangjiaji111-->
 <!--Adviser: @zhang_yixin13-->
-<!-- md-trans-meta sourceCommit=41ecf77f71c02d2e6f9cd090506d7778236a93de translatedAt=2026-08-12T11:31:43.373Z pushedAt=2026-08-14T06:51:58.072Z -->
+<!-- md-trans-meta sourceCommit=41ecf77f71c02d2e6f9cd090506d7778236a93de translatedAt=2026-08-12T11:31:43.373Z pushedAt=2026-08-14T11:11:55.893Z -->
 
 This module provides functions such as querying remote device information and initiating pairing.
 
@@ -24,7 +24,7 @@ import { remoteDevice } from '@kit.ConnectivityKit';
 
 type PairingState = nearlinkConstant.PairingState
 
-Enumerates the pairing statuss with a remote device.
+Enumerates the pairing statuses with a remote device.
 
 **Since**: 26.0.0
 
