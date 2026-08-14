@@ -23,7 +23,7 @@ import { scan } from '@kit.ConnectivityKit';
 
 startScan(filters: ScanFilters[] | null, options?: ScanOptions): Promise&lt;void&gt;
 
-发起星闪扫描。使用Promise异步回调。需先调用onDeviceFound订阅扫描结果回调，本接口发起扫描后，扫描到的设备信息通过onDeviceFound回调上报。扫描完成后可调用stopScan停止扫描。需先调用onDeviceFound订阅扫描结果回调，本接口发起扫描后，扫描到的设备信息通过onDeviceFound回调上报。扫描完成后可调用stopScan停止扫描。需先调用onDeviceFound订阅扫描结果回调，本接口发起扫描后，扫描到的设备信息通过onDeviceFound回调上报。扫描完成后可调用stopScan停止扫描。
+发起星闪扫描。使用Promise异步回调。需先调用[scan.onDeviceFound](#scanondevicefound)订阅扫描结果回调，本接口发起扫描后，扫描到的设备信息通过[scan.onDeviceFound](#scanondevicefound)回调上报。扫描完成后可调用[scan.stopScan](#scanstopscan)停止扫描。
 
 **起始版本：** 26.0.0
 

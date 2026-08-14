@@ -141,7 +141,7 @@ SSAP客户端类，提供了和服务端进行连接和数据传输等操作方�
 
 - 使用该类的方法前，需通过[ssap.createClient](#ssapcreateclient)方法构造该类的实例。
 
-同一应用针对同一远端设备创建一个 Client 实例即可，重复创建会增加不必要的资源开销。
+同一应用针对同一远端设备创建一个 [Client](#client) 实例即可，重复创建会增加不必要的资源开销。
 
 **起始版本：** 26.0.0
 
@@ -260,7 +260,7 @@ try {
 
 close(): void
 
-关闭客户端，断开与远端服务端的连接。如仅需断开当前连接而保留实例，请使用disconnect方法。
+关闭客户端，断开与远端服务端的连接。如仅需断开当前连接而保留实例，请使用[disconnect](#disconnect)方法。
 
 **起始版本：** 26.0.0
 
@@ -510,7 +510,7 @@ try {
 
 setPropertyNotification(property: Property, enable: boolean): Promise&lt;void&gt;
 
-设置Property变化通知。需在调用connect()成功建立连接后使用。使用Promise异步回调。
+设置[Property](#property)变化通知。需在调用[connect](#connect)成功建立连接后使用。使用Promise异步回调。
 
 **起始版本：** 26.0.0
 
@@ -878,7 +878,7 @@ SSAP服务端类，提供了和客户端进行连接和数据交互等操作方�
 
 - 使用该类的方法前，需通过[ssap.createServer](#ssapcreateserver)方法构造该类的实例。
 
-同一应用创建一个 Server 实例即可，重复创建会增加不必要的资源开销。
+同一应用创建一个 [Server](#server) 实例即可，重复创建会增加不必要的资源开销。
 
 **起始版本：** 26.0.0
 

@@ -157,7 +157,7 @@ import { advertising } from '@kit.ConnectivityKit';
 
 startAdvertising(advertisingParams: AdvertisingParams): Promise&lt;number&gt;
 
-发送星闪广播。使用Promise异步回调。适用于设备发现、设备信息广播等需要将本端设备能力或数据对外发布的业务场景，配合advertising.onAdvertisingStateChange可监听广播启停状态。适用于设备发现、设备信息广播等需要将本端设备能力或数据对外发布的业务场景，配合advertising.onAdvertisingStateChange可监听广播启停状态。适用于设备发现、设备信息广播等需要将本端设备能力或数据对外发布的业务场景，配合advertising.onAdvertisingStateChange可监听广播启停状态。
+发送星闪广播。使用Promise异步回调。适用于设备发现、设备信息广播等需要将本端设备能力或数据对外发布的业务场景，配合[advertising.onAdvertisingStateChange](#advertisingonadvertisingstatechange)可监听广播启停状态。
 
 **起始版本：** 26.0.0
 
@@ -304,7 +304,7 @@ try {
 
 onAdvertisingStateChange(callback: Callback&lt;AdvertisingStateChangeInfo&gt;): void
 
-订阅星闪广播状态变化事件。使用callback异步回调。当调用startAdvertising启动广播或stopAdvertising停止广播时，回调函数会被触发，返回对应的广播ID与广播状态。需与offAdvertisingStateChange配对使用。当调用startAdvertising启动广播或stopAdvertising停止广播时，回调函数会被触发，返回对应的广播ID与广播状态。需与offAdvertisingStateChange配对使用。当调用startAdvertising启动广播或stopAdvertising停止广播时，回调函数会被触发，返回对应的广播ID与广播状态。需与offAdvertisingStateChange配对使用。
+订阅星闪广播状态变化事件。使用callback异步回调。当调用[advertising.startAdvertising](#advertisingstartadvertising)启动广播或[advertising.stopAdvertising](#advertisingstopadvertising)停止广播时，回调函数会被触发，返回对应的广播ID与广播状态。需与[advertising.offAdvertisingStateChange](#advertisingoffadvertisingstatechange)配对使用。
 
 应用需具备ohos.permission.ACCESS_NEARLINK权限，方可接收此事件上报。
 

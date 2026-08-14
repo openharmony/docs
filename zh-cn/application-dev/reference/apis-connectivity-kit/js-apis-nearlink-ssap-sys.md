@@ -30,7 +30,7 @@ SSAP客户端类，提供了和服务端进行连接和数据传输等操作方�
 
 - 使用该类的方法前，需通过[ssap.createClient](js-apis-nearlink-ssap.md#ssapcreateclient)方法构造该类的实例。
 
-同一应用针对同一远端设备创建一个 Client 实例即可，重复创建会增加不必要的资源开销。
+同一应用针对同一远端设备创建一个 [Client](#client) 实例即可，重复创建会增加不必要的资源开销。
 
 **起始版本：** 26.0.0
 
@@ -188,7 +188,7 @@ try {
 
 readDescriptor(descriptor: PropertyDescriptor): Promise&lt;PropertyDescriptor&gt;
 
-读取服务端描述符。需在调用connect()建立连接成功后使用，使用Promise异步回调。
+读取服务端描述符。需在调用[connect](js-apis-nearlink-ssap.md#connect)建立连接成功后使用，使用Promise异步回调。
 
 **起始版本：** 26.0.0
 
