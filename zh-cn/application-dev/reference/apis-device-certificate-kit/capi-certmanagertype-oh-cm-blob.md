@@ -27,7 +27,7 @@ typedef struct {...} OH_CM_Blob
 
 | 名称 | 描述 |
 | -- | -- |
-| uint32_t size | 数据大小，单位：Byte。 |
+| uint32_t size | 数据大小。 |
 | uint8_t *data | 指向数据内存的指针。 |
 
 
