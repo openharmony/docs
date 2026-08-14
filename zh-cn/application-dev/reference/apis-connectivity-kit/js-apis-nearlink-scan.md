@@ -159,7 +159,7 @@ onDeviceFound(callback: Callback\<ScanResults[]\>): void
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| callback | Callback&zwnj;\<&zwnj;&zwnj;[ScanResults](#scanresults)&zwnj;[]&zwnj;\> | 是 | 回调函数，返回星闪扫描结果数组对象。应用若具备ohos.permission.GET_NEARLINK_PEER_MAC权限，则扫描结果返回设备真实地址；否则，返回随机地址。 |
+| callback | Callback&zwnj;\<&zwnj;&zwnj;[ScanResults](#scanresults)&zwnj;[]&zwnj;\> | 是 | 回调函数，返回星闪扫描结果数组对象。扫描结果默认返回随机地址；应用若具备系统权限ohos.permission.GET_NEARLINK_PEER_MAC，则返回设备真实地址。 |
 
 **错误码：**
 

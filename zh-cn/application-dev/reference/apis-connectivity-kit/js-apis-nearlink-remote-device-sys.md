@@ -646,7 +646,7 @@ onPairingRequest(callback: Callback&lt;PairingRequestParam&gt;): void
 
 应用需具备ohos.permission.ACCESS_NEARLINK权限，方可接收此事件上报。
 
-应用若具备ohos.permission.GET_NEARLINK_PEER_MAC权限，则事件返回设备真实地址；否则，返回随机地址。
+事件默认返回随机地址；应用若具备系统权限ohos.permission.GET_NEARLINK_PEER_MAC，则返回设备真实地址。
 
 **起始版本：** 26.0.0
 
