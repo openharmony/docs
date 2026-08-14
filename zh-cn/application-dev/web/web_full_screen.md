@@ -81,6 +81,7 @@ Web组件全屏模式仅改变内容布局，不触发应用窗口方向切换�
 使用Web组件进入全屏模式时，窗口的横竖屏状态不会主动发生变化，需要通过Web组件的[onFullScreenEnter](../reference/apis-arkweb/arkts-basic-components-web-events.md#onfullscreenenter9)和[onFullScreenExit](../reference/apis-arkweb/arkts-basic-components-web-events.md#onfullscreenexit9)方法，监听Web组件进入和退出全屏模式事件。
 
 <!-- @[toggle fullscreen](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkWeb/ArkWebFullScreen/entry/src/main/ets/pages/Index.ets) -->
+
 ``` TypeScript
 Web({ src:$rawfile("video.html"), controller: this.controller }) // 注意替换
   .domStorageAccess(true)
@@ -98,6 +99,7 @@ Web({ src:$rawfile("video.html"), controller: this.controller }) // 注意替换
 通过Window提供的setPreferredOrientation方法设置横竖屏。
 
 <!-- @[toggle screen orientation](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkWeb/ArkWebFullScreen/entry/src/main/ets/pages/Index.ets) -->
+
 ``` TypeScript
 // 改变设备横竖屏状态
 private changeOrientation(isLandscape: boolean) {
@@ -115,6 +117,7 @@ private changeOrientation(isLandscape: boolean) {
 自定义侧滑操作时，判断当前视频是否处于全屏状态，若处于全屏状态下则先执行侧滑退出全屏的逻辑。
 
 <!-- @[exit full screen](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkWeb/ArkWebFullScreen/entry/src/main/ets/pages/Index.ets) -->
+
 ``` TypeScript
  onBackPress(): boolean | void {
     if (this.isFullScreen) {
@@ -131,6 +134,7 @@ private changeOrientation(isLandscape: boolean) {
 完整示例：
 
 <!-- @[switch between portrait and landscape](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkWeb/ArkWebFullScreen/entry/src/main/ets/pages/Index.ets) -->
+
 ``` TypeScript
 import { webview } from '@kit.ArkWeb';
 import { window, router } from '@kit.ArkUI';
