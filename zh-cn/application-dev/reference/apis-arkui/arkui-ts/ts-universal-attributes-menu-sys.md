@@ -25,5 +25,5 @@
 <!--Table: 20%; 20%; 10%; 10%; 40%-->
 | 名称                  | 类型                                                         | 只读 | 可选 | 说明                                                         |
 | --------------------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ | ------------------------------------------------------------ |
-| distortionMode | [DistortionMode](./ts-appendix-enums-sys.md#distortionmode) | 否 | 是 | 设置系统材质下菜单的非线性动画模式。<br />**默认值：** DistortionMode.DISTORTION_AUTO <br/>**起始版本：** 26.0.0 <br />**系统接口：** 此接口为系统接口。<br />**模型约束：** 此接口仅可在Stage模型下使用。 |
-| edgeLightMode | [EdgeLightMode](./ts-appendix-enums-sys.md#edgelightmode)| 否 | 是 | 设置系统材质下菜单的流光动画模式。<br />**默认值：** EdgeLightMode.EDGELIGHT_DISABLED <br/>**起始版本：** 26.0.0 <br />**系统接口：** 此接口为系统接口。<br />**模型约束：** 此接口仅可在Stage模型下使用。 |
+| distortionMode | [DistortionMode](./ts-appendix-enums-sys.md#distortionmode) | 否 | 是 | 设置系统材质下菜单的非线性动画模式。<br />**默认值：** DistortionMode.DISTORTION_AUTO <br/>**起始版本：** 26.0.0 <br />**系统接口：** 此接口为系统接口。|
+| edgeLightMode | [EdgeLightMode](./ts-appendix-enums-sys.md#edgelightmode)| 否 | 是 | 设置系统材质下菜单的流光动画模式。<br />**默认值：** EdgeLightMode.EDGELIGHT_DISABLED <br/>**起始版本：** 26.0.0 <br />**系统接口：** 此接口为系统接口。|
