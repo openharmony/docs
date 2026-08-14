@@ -1,4 +1,4 @@
-# NearLink错误码
+# 星闪错误码
 <!--Kit: Connectivity Kit-->
 <!--Subsystem: Communication-->
 <!--Owner: @CCCZKing-->

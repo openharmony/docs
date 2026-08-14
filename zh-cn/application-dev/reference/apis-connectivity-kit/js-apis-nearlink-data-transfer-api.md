@@ -59,7 +59,7 @@ createPort(uuid: string): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[NearLink错误码](errorcode-nearlink-service.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[星闪错误码](errorcode-nearlink-service.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
@@ -74,7 +74,7 @@ createPort(uuid: string): void
 
 **示例：** 
 ```typescript
-import { dataTransfer} from '@kit.ConnectivityKit';
+import { dataTransfer } from '@kit.ConnectivityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
@@ -109,7 +109,7 @@ destroyPort(uuid: string): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[NearLink错误码](errorcode-nearlink-service.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[星闪错误码](errorcode-nearlink-service.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
@@ -123,7 +123,7 @@ destroyPort(uuid: string): void
 
 **示例：** 
 ```typescript
-import { dataTransfer} from '@kit.ConnectivityKit';
+import { dataTransfer } from '@kit.ConnectivityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
@@ -164,7 +164,7 @@ connect(params: ConnectionParams): Promise&lt;void&gt;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[NearLink错误码](errorcode-nearlink-service.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[星闪错误码](errorcode-nearlink-service.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
@@ -178,7 +178,7 @@ connect(params: ConnectionParams): Promise&lt;void&gt;
 
 **示例：** 
 ```typescript
-import { dataTransfer} from '@kit.ConnectivityKit';
+import { dataTransfer } from '@kit.ConnectivityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
@@ -226,7 +226,7 @@ disconnect(params: ConnectionParams): Promise&lt;void&gt;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[NearLink错误码](errorcode-nearlink-service.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[星闪错误码](errorcode-nearlink-service.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
@@ -240,7 +240,7 @@ disconnect(params: ConnectionParams): Promise&lt;void&gt;
 
 **示例：** 
 ```typescript
-import { dataTransfer} from '@kit.ConnectivityKit';
+import { dataTransfer } from '@kit.ConnectivityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
@@ -282,7 +282,7 @@ onConnectionStateChanged(callback: Callback&lt;ConnectionResult&gt;): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[NearLink错误码](errorcode-nearlink-service.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[星闪错误码](errorcode-nearlink-service.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
@@ -291,7 +291,7 @@ onConnectionStateChanged(callback: Callback&lt;ConnectionResult&gt;): void
 
 **示例：** 
 ```typescript
-import { dataTransfer} from '@kit.ConnectivityKit';
+import { dataTransfer } from '@kit.ConnectivityKit';
 import { BusinessError, Callback } from '@kit.BasicServicesKit';
 
 let callback: Callback<dataTransfer.ConnectionResult> = (data: dataTransfer.ConnectionResult) => {
@@ -325,7 +325,7 @@ offConnectionStateChanged(callback?: Callback&lt;ConnectionResult&gt;): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[NearLink错误码](errorcode-nearlink-service.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[星闪错误码](errorcode-nearlink-service.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
@@ -334,7 +334,7 @@ offConnectionStateChanged(callback?: Callback&lt;ConnectionResult&gt;): void
 
 **示例：** 
 ```typescript
-import { dataTransfer} from '@kit.ConnectivityKit';
+import { dataTransfer } from '@kit.ConnectivityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
@@ -373,7 +373,7 @@ getConnectionState(params: ConnectionStateParams): ConnectionState
 
 **错误码：**
 
-以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[NearLink错误码](errorcode-nearlink-service.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[星闪错误码](errorcode-nearlink-service.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
@@ -431,7 +431,7 @@ writeData(params: DataParams): Promise&lt;void&gt;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[NearLink错误码](errorcode-nearlink-service.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[星闪错误码](errorcode-nearlink-service.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
@@ -446,7 +446,7 @@ writeData(params: DataParams): Promise&lt;void&gt;
 
 **示例：** 
 ```typescript
-import { dataTransfer} from '@kit.ConnectivityKit';
+import { dataTransfer } from '@kit.ConnectivityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
@@ -494,7 +494,7 @@ onReadData(callback: Callback&lt;DataParams&gt;): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[NearLink错误码](errorcode-nearlink-service.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[星闪错误码](errorcode-nearlink-service.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
@@ -503,7 +503,7 @@ onReadData(callback: Callback&lt;DataParams&gt;): void
 
 **示例：** 
 ```typescript
-import { dataTransfer} from '@kit.ConnectivityKit';
+import { dataTransfer } from '@kit.ConnectivityKit';
 import { BusinessError, Callback } from '@kit.BasicServicesKit';
 
 let callback: Callback<dataTransfer.DataParams> = (data: dataTransfer.DataParams) => {
@@ -537,7 +537,7 @@ offReadData(callback?: Callback&lt;DataParams&gt;): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[NearLink错误码](errorcode-nearlink-service.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[星闪错误码](errorcode-nearlink-service.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
@@ -546,7 +546,7 @@ offReadData(callback?: Callback&lt;DataParams&gt;): void
 
 **示例：** 
 ```typescript
-import { dataTransfer} from '@kit.ConnectivityKit';
+import { dataTransfer } from '@kit.ConnectivityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 try {

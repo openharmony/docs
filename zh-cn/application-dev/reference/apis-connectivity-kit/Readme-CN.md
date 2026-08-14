@@ -80,7 +80,7 @@
   - [NFC错误码](errorcode-nfc.md)
   - [SE(secureElement)错误码](errorcode-se.md)
   - [融合短距服务子系统错误码](errorcode-fusionConnectivity.md)
-  - [NearLink错误码](errorcode-nearlink-service.md)
+  - [星闪错误码](errorcode-nearlink-service.md)
 - 已停止维护的接口<!--connectivity-arkts-dep-->
   - [@ohos.bluetooth (蓝牙)](js-apis-bluetooth.md)
   - [@ohos.bluetoothManager (蓝牙)](js-apis-bluetoothManager.md)
