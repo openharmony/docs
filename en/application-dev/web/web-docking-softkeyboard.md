@@ -1,23 +1,27 @@
 # Docking to the Soft Keyboard
+
 <!--Kit: ArkWeb-->
 <!--Subsystem: Web-->
 <!--Owner: @weixin_41848015-->
 <!--Designer: @libing23232323-->
 <!--Tester: @ghiker-->
 <!--Adviser: @HelloShuo-->
+<!-- md-trans-meta sourceCommit=4216569c26016267071c2019e832c7c6779d2d7e translatedAt=2026-08-14T03:45:07.580Z pushedAt=2026-08-14T08:02:39.667Z -->
 
 By docking the **Web** component to the soft keyboard, you can manage the display and interaction of the soft keyboard in your application, and can also customize its features to suit your specific needs. The main scenarios are as follows:
 
 - Bringing up the system soft keyboard to enter text: When a user taps a text box on a web page, the default soft keyboard is displayed at the bottom of the screen. The user can enter text using the soft keyboard, and the entered content is displayed in the text box.
+
 - Customizing the **Enter** key type of the system soft keyboard: You can set different **Enter** keys. For example, **Confirm**, **Next**, and **Submit**.
+
 - Specifying the soft keyboard avoidance mode: On a mobile device, the input method is usually displayed at the lower part of the screen. The application can set different soft keyboard avoidance modes for web pages. For example, relocating, resizing, or no avoidance.
+
 - Defining a custom soft keyboard: On a mobile device, you can use a self-drawing soft keyboard to replace the system soft keyboard.
-
-
 
 ## W3C Standard Attributes for the Interaction Between the Web Page Text Box and the Soft Keyboard
 
 To support the interaction between the web page and the system soft keyboard and custom soft keyboard, ArkWeb complies with and implements the following input component attributes in the W3C specifications:
+
 - **type**
 
   The **type** attribute defines the type of the **input** element, which affects the input validation, display mode, and keyboard type. The common type values are as follows.
@@ -76,8 +80,8 @@ To support the interaction between the web page and the system soft keyboard and
 >
 >The **inputmode** is used to optimize the keyboard input experience on mobile devices and does not affect the basic input behavior or verification.
 
-
 ## Automatically Displaying the Soft Keyboard
+
 To improve user experience, you can call the [showTextInput()](../reference/apis-ime-kit/js-apis-inputmethod.md#showtextinput10) API to automatically display the soft keyboard after the page is loaded.
 
 ```html
@@ -95,7 +99,7 @@ To improve user experience, you can call the [showTextInput()](../reference/apis
 ```
 
 ```ts
-//Index.ets
+// Index.ets
 import { webview } from '@kit.ArkWeb';
 import { inputMethod } from '@kit.IMEKit';
 
@@ -122,9 +126,10 @@ struct WebComponent {
 
 On a mobile device, you can set the avoidance mode for the soft keyboard on the web page.
 
-1. Call [setKeyboardAvoidMode()](../reference/apis-arkui/arkui-ts/ts-universal-attributes-expand-safe-area.md#setkeyboardavoidmode11) of UIContext in your application code to set the avoidance mode, which can be **Resize** or **Offset** for the **Web** component.
+1. Set the soft keyboard avoidance mode of [UIContext](../reference/apis-arkui/arkts-apis-uicontext-uicontext.md) in the app code by calling [setKeyboardAvoidMode()](../reference/apis-arkui/arkui-ts/ts-universal-attributes-expand-safe-area.md#setkeyboardavoidmode11). The ArkWeb component supports both the **Resize** and **Offset** modes.
 
 - In the **Resize** mode, the height of the application window can be reduced to avoid the soft keyboard, and the **Web** component is re-arranged with ArkUI.
+
 - In the **Offset** mode (the default mode), the height of the application window remains unchanged, and the **Web** component performs avoidance based on its own avoidance mode.
 
 (1) Set the soft keyboard avoidance mode of **UIContext**.
@@ -151,6 +156,7 @@ onWindowStageCreate(windowStage: window.WindowStage) {
   });
 }
 ```
+
 (2) Enable the soft keyboard in the **Web** component.
 
 ```html
@@ -166,10 +172,11 @@ onWindowStageCreate(windowStage: window.WindowStage) {
   </body>
 </html>
 ```
+
 <!-- @[soft_keyboard_index](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkWeb/ManageWebPageInteracts/entry2/src/main/ets/pages/Index.ets) -->
 
 ``` TypeScript
-//Index.ets
+// Index.ets
 import { webview } from '@kit.ArkWeb';
 
 @Entry
@@ -185,20 +192,23 @@ struct KeyboardAvoidExample {
   }
 }
 ```
+
 The **Web** component is re-arranged with ArkUI, as shown in Figure 1 and Figure 2.
 
 **Figure 1** Soft keyboard in the default avoidance mode
 
 ![default-keyboardavoid](figures/default-keyboardavoid.png)
 
-**Figure 2** Soft keyboard following the avoidance mode of the ArkUI soft keyboard
+**Figure 2** Soft keyboard re-arranged with ArkUI
 
 ![arkui-keyboardavoid](figures/arkui-keyboardavoid.png)
 
 2. When the keyboard avoidance mode of **UIContext** is **Offset**, the application can set the keyboard avoidance mode of the **Web** component through the [WebKeyboardAvoidMode()](../reference/apis-arkweb/arkts-basic-components-web-e.md#webkeyboardavoidmode12) API of the **Web** component. This API is at a higher priority than **virtualKeyboard.overlayContent** on the W3C side.
 
 - **RESIZE_VISUAL**: Only the size of the visual viewport is adjusted, and the size of the layout viewport is not adjusted.
-- **RESIZE_CONTENT**: The size of both the visual viewport and the layout viewport is adjusted.
+
+- **RESIZE_CONTENT**: Both the size of the visual viewport and the size of the layout viewport are adjusted.
+
 - **OVERLAYS_CONTENT**: No viewport size is adjusted, and the soft keyboard overlays the content of the web page.
 
 >**NOTE**
@@ -223,7 +233,7 @@ struct KeyboardAvoidExample {
     Column() {
       Row().height('50%').width('100%').backgroundColor(Color.Gray)
       Web({ src: $rawfile('index.html'),controller: this.controller})
-        .keyboardAvoidMode (WebKeyboardAvoidMode.OVERLAYS_CONTENT) // The Web component does not adjust the size of any viewport.
+        .keyboardAvoidMode(WebKeyboardAvoidMode.OVERLAYS_CONTENT) // At this point, the ArkWeb component does not resize any viewport.
       Text('I can see the bottom of the page')    
         .width('100%')
         .textAlign(TextAlign.Center)
@@ -233,6 +243,7 @@ struct KeyboardAvoidExample {
   }
 }
 ```
+
 The **Web** component performs avoidance based on its avoidance mode, as shown in Figure 3.
 
 **Figure 3** Soft keyboard avoidance mode of the **Web** component page
@@ -260,26 +271,25 @@ The **Web** component performs avoidance based on its avoidance mode, as shown i
   }
   ```
 
-
 The following are interaction scenarios with other **Web** component behaviors.
 
 | Overlapping Scenario        | Specifications                                      |
 | ------------ | ---------------------------------------- |
-| Same-layer rendering component        | The soft keyboard avoidance mode of the same-layer **Web** component is the same as that in common scenarios.<br></div>The soft keyboard avoidance mode of the same-layer system component is implemented by ArkUI.|
+| Same-layer rendering | Same-layer Web: The soft keyboard avoidance method is the same as in the normal scenario.<br>Same-layer system component: ArkUI is responsible for the soft keyboard avoidance mode. |
 | Offscreen component creation      | By default, the soft keyboard avoidance mode used in non-offscreen created component is used. You can set other avoidance modes before attaching the component to the tree.  |
 | customDialog | The **customDialog** component avoids the keyboard by itself.                       |
 | Foldable device         | The soft keyboard avoidance behavior is the same as that in common scenarios. The soft keyboard is opened and closed based on the screen status.   |
 | Soft keyboard docking       | The soft keyboard avoidance behavior is the same as that in common scenarios.                       |
 | Web nested scrolling     | In the nested scrolling scenario, the soft keyboard avoidance mode of the **Web** component is not recommended, including **RESIZE_VISUAL** and **RESIZE_CONTENT**.|
 
-
-
 ## Blocking System Soft Keyboard and Custom Soft Keyboard
 
 An application can listen for the [onInterceptKeyboardAttach](../reference/apis-arkweb/arkts-basic-components-web-events.md#oninterceptkeyboardattach12) callback to control the display of the soft keyboard and use any of the following options:
 
 - The system soft keyboard with default settings
+
 - The system soft keyboard with a custom **Enter** key
+
 - The custom soft keyboard of the application
 
 ```ts
@@ -307,7 +317,7 @@ An application can listen for the [onInterceptKeyboardAttach](../reference/apis-
        */
       @Builder
       customKeyboardBuilder() {
-		  // Implement a custom keyboard component and connect it to WebKeyboardController to implement operations such as input, deletion, and close.
+      // Implement the custom keyboard component here, and connect it to WebKeyboardController to implement input, deletion, closing, and other operations.
         Row() {
           Text("Finish")
             .fontSize(20)

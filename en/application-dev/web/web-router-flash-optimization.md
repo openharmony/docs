@@ -1,17 +1,22 @@
 # Optimizing the Page Flash During the Redirection
+
 <!--Kit: ArkWeb-->
 <!--Subsystem: Web-->
 <!--Owner: @wangxinbao01-->
 <!--Designer: @defeng20201-->
 <!--Tester: @ghiker-->
 <!--Adviser: @HelloShuo-->
-When an application uses a router such as the **Navigation** component to navigate to a **Web** component page, the bottom of the page may flash during web page loading, which affects user experience.
+<!-- md-trans-meta sourceCommit=3c5650cff0dc64efaab27ca2186a757c6e64624b translatedAt=2026-08-14T03:50:00.633Z pushedAt=2026-08-14T09:34:13.043Z -->
+
+When an app uses a router such as [Navigation](../reference/apis-arkui/arkui-ts/ts-basic-components-navigation.md) to navigate to a **Web** component page, flickering may occur at the bottom of the page during web page loading, which affects user experience.
 
 ## Causes
 
 When a router such as the **Navigation** component is used to navigate to a **Web** component page, the application determines whether to hide the system navigation bar based on the callback notification of the web page. If it decides to hide the system navigation bar, the layout of the **Web** component is adjusted accordingly. The layout adjustment process can be simplified into the following four phases:
+
 ![web-router-flash-optimization.png](figures/web-router-flash-optimization.png)
-Description of the four phases in the figure (from left to right):
+
+Description of the four states in the figure (from left to right):
 
 1. The application is routed to the web page. The top of the page is the system navigation bar, and the bottom is the **Web** component. In this case, the web page can be loaded properly.
 

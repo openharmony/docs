@@ -1,10 +1,12 @@
 # Using Motion and Orientation Sensors
+
 <!--Kit: ArkWeb-->
 <!--Subsystem: Web-->
 <!--Owner: @zhang-yinglie-->
 <!--Designer: @handyohos-->
 <!--Tester: @ghiker-->
 <!--Adviser: @HelloShuo-->
+<!-- md-trans-meta sourceCommit=855ec084cbd18d37d8db81dfd0dffccc9a76c1b8 translatedAt=2026-08-14T03:51:07.288Z pushedAt=2026-08-14T09:44:53.686Z -->
 
 ## Overview
 
@@ -18,8 +20,8 @@ To access the motion and orientation sensors, invoke the following W3C standards
 | ------------------------- | ------------ | -------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | Accelerometer             | Accelerometer      | Obtains acceleration data in the X, Y, and Z axes.                                                                                                                   |
 | Gyroscope                 | Gyroscope      | Obtains angular velocity data in the X, Y, and Z axes.                                                                                                                   |
-| AbsoluteOrientationSensor | Absolute orientation    | Obtains the quaternion including the X, Y, Z, and W components that indicates the absolute orientation of the device.                                                                                                |
-| RelativeOrientationSensor | Relative orientation    | Obtains the quaternion including the X, Y, Z, and W components that indicates the relative orientation of the device.                                                                                                |
+| AbsoluteOrientationSensor | Absolute orientation | Obtains the quaternion that represents the absolute orientation of the device, including the X, Y, Z, and W components. |
+| RelativeOrientationSensor | Relative orientation | Obtains the quaternion that represents the relative orientation of the device, including the X, Y, Z, and W components. |
 | DeviceMotionEvent         | Device motion event| Listens for the device motion events to obtain the acceleration data of the device in the X, Y, and Z axes, acceleration data that contains gravity in the X, Y, and Z axes, and rotation rate data of the device in the alpha, beta, and gamma axes.|
 | DeviceOrientationEvent    | Device orientation event| Listens for the device orientation events to obtain the angles of the device around the X, Y, and Z axes.                                                                                                           |
 
@@ -27,8 +29,7 @@ To access the motion and orientation sensors, invoke the following W3C standards
 
 To use the preceding APIs, you need to declare the corresponding sensor permissions in the **module.json5** file. For details, see [Declaring Permissions in the Configuration File](../security/AccessToken/declare-permissions.md).
 
-
-```json
+``` JSON5
     "requestPermissions":[
       {
         "name" : "ohos.permission.ACCELEROMETER" // Accelerometer permission
@@ -206,7 +207,7 @@ When the **Web** component is connected to a motion or orientation sensor, confi
                }
            }
    
-           // Listen for the device orientation events and execute the corresponding processing logic.
+           // Listen for the absolute orientation event of the device and execute the corresponding processing logic.
            function listenDeviceOrientationEvent2() {
                removeDeviceOrientationEvent2();
                if ('DeviceOrientationEvent' in window) {
@@ -216,7 +217,7 @@ When the **Web** component is connected to a motion or orientation sensor, confi
                }
            }
    
-           // Remove the device orientation event listener.
+           // Remove the previously added absolute orientation event listener.
            function removeDeviceOrientationEvent2() {
                if ('DeviceOrientationEvent' in window) {
                  window.removeEventListener('deviceorientationabsolute', handleOrientationEvent, false);
