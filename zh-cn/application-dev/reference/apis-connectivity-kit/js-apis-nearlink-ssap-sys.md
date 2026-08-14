@@ -26,7 +26,11 @@ import { ssap } from '@kit.ConnectivityKit';
 
 ## Client
 
-提供与远端设备进行SSAP数据交互的系统级方法，使用前需要先通过[ssap.createClient](js-apis-nearlink-ssap.md#ssapcreateclient)创建一个[Client](#client)实例。
+SSAP客户端类，提供了和服务端进行连接和数据传输等操作方法。
+
+- 使用该类的方法前，需通过[ssap.createClient](js-apis-nearlink-ssap.md#ssapcreateclient)方法构造该类的实例。
+
+同一应用针对同一远端设备创建一个 Client 实例即可，重复创建会增加不必要的资源开销。
 
 **起始版本：** 26.0.0
 
@@ -39,7 +43,7 @@ import { ssap } from '@kit.ConnectivityKit';
 
 setPropertyIndication(property: Property, enable: boolean): Promise&lt;void&gt;
 
-启用或禁用属性值更改时的指示。使用Promise异步回调。
+启用或禁用服务端属性值更改时的指示（当属性值发生变化时，服务端主动向客户端发送通知）。使用Promise异步回调。
 
 **起始版本：** 26.0.0
 
@@ -94,7 +98,7 @@ try {
     propertyUuid: 'FFFFFFFF-1234-5678-ABCD-000000001234',
     value: arrayBufferProperty
   };
-  client = ssap.createClient(addr); // 一个应用针对一个远端设备只需要创建一次实例
+  client = ssap.createClient(addr); // 同一应用针对同一远端设备只需创建一个实例
   client.setPropertyIndication(property, true).then(() => {
     console.info('setPropertyIndication successfully');
   }).catch((err: BusinessError) => {
@@ -109,7 +113,7 @@ try {
 
 callMethod(method: Method): Promise&lt;Method&gt;
 
-调用服务端方法。使用Promise异步回调。
+调用服务端方法。例如，在设备控制场景中，客户端可调用服务端提供的配置方法来远程设置设备参数或触发特定操作。使用Promise异步回调。
 
 **起始版本：** 26.0.0
 
@@ -125,7 +129,7 @@ callMethod(method: Method): Promise&lt;Method&gt;
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| method | [Method](#method) | 是 | 服务端方法。 |
+| method | [Method](#method) | 是 | 服务端方法。需与服务发现时获取的对端Service中的method对应。 |
 
 **返回值：** 
 
@@ -154,7 +158,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 let addr: string = '00:11:22:33:AA:FF'; // 扫描获取到的远端设备地址
 let client: ssap.Client;
 try {
-  client = ssap.createClient(addr); // 一个应用针对一个远端设备只需要创建一次实例
+  client = ssap.createClient(addr); // 同一应用针对同一远端设备只需创建一个实例
   client.connect().then(() => {
     console.info('connect success');
   }).catch((err: BusinessError) => {
@@ -184,7 +188,7 @@ try {
 
 readDescriptor(descriptor: PropertyDescriptor): Promise&lt;PropertyDescriptor&gt;
 
-读取服务端描述符。使用Promise异步回调。
+读取服务端描述符。需在调用connect()建立连接成功后使用，使用Promise异步回调。
 
 **起始版本：** 26.0.0
 
@@ -200,7 +204,7 @@ readDescriptor(descriptor: PropertyDescriptor): Promise&lt;PropertyDescriptor&gt
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| descriptor | [PropertyDescriptor](js-apis-nearlink-ssap.md#propertydescriptor) | 是 | 服务端属性描述符。 |
+| descriptor | [PropertyDescriptor](js-apis-nearlink-ssap.md#propertydescriptor) | 是 | 服务端属性描述符。需与服务发现时获取的对端Service中的descriptor对应。 |
 
 **返回值：** 
 
@@ -229,7 +233,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 let addr: string = '00:11:22:33:AA:FF'; // 扫描获取到的远端设备地址
 let client: ssap.Client;
 try {
-  client = ssap.createClient(addr); // 一个应用针对一个远端设备只需要创建一次实例
+  client = ssap.createClient(addr); // 同一应用针对同一远端设备只需创建一个实例
   client.connect().then(() => {
     console.info('connect success');
   }).catch((err: BusinessError) => {
@@ -261,7 +265,7 @@ try {
 
 writeDescriptor(descriptor: PropertyDescriptor): Promise&lt;void&gt;
 
-改写服务端的描述符。使用Promise异步回调。
+改写服务端的描述符。例如，在需要更新属性附加配置信息的场景中，客户端通过改写描述符来修改服务端属性的扩展元数据。使用Promise异步回调。
 
 **起始版本：** 26.0.0
 
@@ -277,7 +281,7 @@ writeDescriptor(descriptor: PropertyDescriptor): Promise&lt;void&gt;
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| descriptor | [PropertyDescriptor](js-apis-nearlink-ssap.md#propertydescriptor) | 是 | 服务端属性描述符。 |
+| descriptor | [PropertyDescriptor](js-apis-nearlink-ssap.md#propertydescriptor) | 是 | 服务端属性描述符。需与服务发现时获取的对端Service中的descriptor对应。 |
 
 **返回值：** 
 
@@ -306,7 +310,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 let addr: string = '00:11:22:33:AA:FF'; // 扫描获取到的远端设备地址
 let client: ssap.Client;
 try {
-  client = ssap.createClient(addr); // 一个应用针对一个远端设备只需要创建一次实例
+  client = ssap.createClient(addr); // 同一应用针对同一远端设备只需创建一个实例
   client.connect().then(() => {
     console.info('connect success');
   }).catch((err: BusinessError) => {
@@ -338,7 +342,7 @@ try {
 
 onEventNotify(callback: Callback&lt;Event&gt;): void
 
-订阅事件通知事件。使用callback异步回调。
+订阅事件通知事件。例如，在设备状态监控场景中，客户端通过订阅事件来实时接收服务端推送的状态变化通知（如设备告警、数据更新等）。使用callback异步回调。
 
 应用需具备ohos.permission.ACCESS_NEARLINK权限，方可接收此事件上报。
 
@@ -367,7 +371,7 @@ let onEventNotify:(data: ssap.Event) => void = (data: ssap.Event) => {
 let addr: string = '00:11:22:33:AA:FF'; // 扫描获取到的远端设备地址
 let client: ssap.Client;
 try {
-  client = ssap.createClient(addr); // 一个应用针对一个远端设备只需要创建一次实例
+  client = ssap.createClient(addr); // 同一应用针对同一远端设备只需创建一个实例
   client.onEventNotify(onEventNotify);
 } catch (err) {
   console.error('errCode: ' + (err as BusinessError).code + ', errMessage: ' + (err as BusinessError).message);
@@ -406,7 +410,7 @@ let onEventNotify:(data: ssap.Event) => void = (data: ssap.Event) => {
 let addr: string = '00:11:22:33:AA:FF'; // 扫描获取到的远端设备地址
 let client: ssap.Client;
 try {
-  client = ssap.createClient(addr); // 一个应用针对一个远端设备只需要创建一次实例
+  client = ssap.createClient(addr); // 同一应用针对同一远端设备只需创建一个实例
   client.onEventNotify(onEventNotify);
   client.offEventNotify(onEventNotify);
 } catch (err) {
@@ -449,8 +453,8 @@ try {
 | -------- | -------- | -------- | -------- | -------- |
 | serviceUuid | string | 否 | 否 | 星闪服务UUID，长度必须为36个字符，由32个十六进制数字和4个连字符（-）组成，例如： FFFFFFFF-1234-5678-ABCD-000000001234，表示一个128位标识符。 不允许使用星闪标准UUID。 |
 | methodUuid | string | 否 | 否 | 表示方法UUID。数据格式同serviceUuid。 |
-| parameter | ArrayBuffer | 否 | 是 | 表示方法的参数。若未配置则默认不携带该字段。 |
-| result | ArrayBuffer | 否 | 是 | 表示方法的返回值。若未配置则默认不携带该字段。 |
+| parameter | ArrayBuffer | 否 | 是 | 表示方法的参数，数据格式由具体服务定义。若未配置则默认不携带该字段。 |
+| result | ArrayBuffer | 否 | 是 | 表示方法的返回值，数据格式由具体服务定义。若未配置则默认不携带该字段。 |
 
 
 ## Event
@@ -469,4 +473,4 @@ try {
 | -------- | -------- | -------- | -------- | -------- |
 | serviceUuid | string | 否 | 否 | 星闪服务UUID，长度必须为36个字符，由32个十六进制数字和4个连字符（-）组成，例如： FFFFFFFF-1234-5678-ABCD-000000001234，表示一个128位标识符。 不允许使用星闪标准UUID。 |
 | eventUuid | string | 否 | 否 | 表示事件UUID。数据格式同serviceUuid。 |
-| parameter | ArrayBuffer | 否 | 是 | 表示事件的参数。若未配置则默认不携带该字段。 |
+| parameter | ArrayBuffer | 否 | 是 | 表示事件的参数，数据格式由具体服务定义。若未配置则默认不携带该字段。 |

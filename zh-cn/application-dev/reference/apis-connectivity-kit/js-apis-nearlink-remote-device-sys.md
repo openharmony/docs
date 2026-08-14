@@ -163,7 +163,7 @@ try {
 
 setPairingConfirmation(accept: boolean): void
 
-设置配对请求的确认结果。需先通过[remoteDevice.onPairingRequest](#remotedeviceonpairingrequest)订阅配对请求。
+设置配对请求的确认结果。对端设备的配对请求通过[remoteDevice.onPairingRequest](#remotedeviceonpairingrequest)获取。
 
 **起始版本：** 26.0.0
 

@@ -309,7 +309,7 @@ try {
 
 onAcbStateChange(callback: Callback&lt;AcbStateParam&gt;): void
 
-订阅逻辑链路连接状态变化事件。使用callback异步回调。与[remoteDevice.onConnectionStateChange](#remotedeviceonconnectionstatechange)监听设备层级连接状态不同，本接口监听逻辑链路层级的连接状态。
+订阅逻辑链路连接状态变化事件。使用callback异步回调。适用于需要在逻辑链路建立或断开时触发相应处理的场景，如数据传输前的链路就绪检查或断连后的资源清理。与[remoteDevice.onConnectionStateChange](#remotedeviceonconnectionstatechange)监听设备层级连接状态不同，本接口监听逻辑链路层级的连接状态。
 
 应用需具备ohos.permission.ACCESS_NEARLINK权限，方可接收此事件上报。
 
@@ -404,7 +404,7 @@ try {
 
 startPairing(): Promise&lt;void&gt;
 
-发起与远端设备的配对。使用Promise异步回调。
+发起与远端设备的配对。使用Promise异步回调。发起配对后，将依据本端与远端设备的输入输出能力标识（即设备是否具备显示、键盘输入等能力）弹出不同类型的弹窗，需使用者进一步确认。发起配对后，将依据本端与远端设备的输入输出能力标识（即设备是否具备显示、键盘输入等能力）弹出不同类型的弹窗，需使用者进一步确认。发起配对后，将依据本端与远端设备的输入输出能力标识（即设备是否具备显示、键盘输入等能力）弹出不同类型的弹窗，需使用者进一步确认。
 
 **起始版本：** 26.0.0
 
@@ -642,7 +642,7 @@ try {
 
 getAcbState(): AcbState
 
-获取和远端设备的逻辑链路连接状态。与[getConnectionState](#getconnectionstate)获取设备层级连接状态不同，本接口获取逻辑链路（ACB）层级的连接状态。
+获取和远端设备的逻辑链路连接状态。适用于需要确认逻辑链路是否就绪的场景，如在进行数据传输或消息通信前检查逻辑链路状态。与[getConnectionState](#getconnectionstate)获取设备层级连接状态不同，本接口获取逻辑链路（ACB）层级的连接状态。
 
 **起始版本：** 26.0.0
 
@@ -746,8 +746,8 @@ try {
 
 | 名称 | 类型 | 只读 | 可选 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
-| manufacturerData | string | 否 | 否 | 厂商信息。 |
-| modelData | string | 否 | 否 | 设备型号信息。 |
+| manufacturerData | string | 否 | 否 | 厂商信息。数据为二进制编码格式，可通过buffer.from(manufacturerData, 'binary')等方式解析。 |
+| modelData | string | 否 | 否 | 设备型号信息。数据为二进制编码格式，可通过buffer.from(modelData, 'binary')等方式解析。 |
 
 ### ConnectionStateParam
 

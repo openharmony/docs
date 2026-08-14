@@ -44,7 +44,7 @@ createCdsmClient(address: string): CdsmClient
 
 | 类型 | 说明 |
 | -------- | -------- |
-| [CdsmClient](#cdsmclient) | CDSM客户端实例。 |
+| [CdsmClient](#cdsmclient) | 用于查询和订阅远端设备合作设备集合信息的CDSM客户端实例。 |
 
 **错误码：**
 
@@ -77,9 +77,9 @@ try {
 
 ## CdsmClient
 
-提供获取远端设备的合作设备集合信息的方法，使用前需要使用cdsm.createCdsmClient方法创建一个CdsmClient实例。
+提供获取远端设备的合作设备集合信息的方法，使用前需要使用cdsm.createCdsmClient方法创建一个CdsmClient实例。适用于需要获知一组星闪设备（合作设备集合）的成员组成及连接状态变化并据此进行业务联动的场景。
 
-一个应用针对一个远端设备只需要创建一次实例。
+同一应用针对同一远端设备创建一个 CdsmClient 实例即可，重复创建会增加不必要的资源开销。
 
 **起始版本：** 26.0.0
 
@@ -127,7 +127,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 let addr: string = '00:11:22:33:AA:FF'; // 已配对连接的合作设备集合的成员设备地址
 let client: cdsm.CdsmClient;
 try {
-  client = cdsm.createCdsmClient(addr); // 一个应用针对一个远端设备只需要创建一次实例
+  client = cdsm.createCdsmClient(addr); // 同一应用针对同一远端设备只需创建一个实例
   let cdsmInformation: cdsm.CdsmInfo = client.getCdsmInfo();
   console.info('cdsmInformation:' + JSON.stringify(cdsmInformation));
 } catch (err) {
@@ -168,7 +168,7 @@ let callback: Callback<cdsm.CdsmInfo> = (data: cdsm.CdsmInfo) => {
 let addr: string = '00:11:22:33:AA:FF'; // 已配对连接的合作设备集合的成员设备地址
 let client: cdsm.CdsmClient;
 try {
-  client = cdsm.createCdsmClient(addr); // 一个应用针对一个远端设备只需要创建一次实例
+  client = cdsm.createCdsmClient(addr); // 同一应用针对同一远端设备只需创建一个实例
   client.onCdsmInfoChange(callback);
 } catch (err) {
   console.error('errCode: ' + (err as BusinessError).code + ', errMessage: ' + (err as BusinessError).message);
@@ -206,7 +206,7 @@ let callback: Callback<cdsm.CdsmInfo> = (data: cdsm.CdsmInfo) => {
 let addr: string = '00:11:22:33:AA:FF'; // 已配对连接的合作设备集合的成员设备地址
 let client: cdsm.CdsmClient;
 try {
-  client = cdsm.createCdsmClient(addr); // 一个应用针对一个远端设备只需要创建一次实例
+  client = cdsm.createCdsmClient(addr); // 同一应用针对同一远端设备只需创建一个实例
   client.onCdsmInfoChange(callback);
   client.offCdsmInfoChange(callback);
 } catch (err) {

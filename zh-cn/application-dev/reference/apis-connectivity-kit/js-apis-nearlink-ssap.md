@@ -137,9 +137,11 @@ try {
 
 ## Client
 
-提供和远端设备ssap数据交互操作方法，使用前需要使用[ssap.createClient](#ssapcreateclient)方法创建一个[Client](#client)实例。
+SSAP客户端类，提供了和服务端进行连接和数据传输等操作方法。
 
-一个应用针对一个远端设备只需要创建一次实例。
+- 使用该类的方法前，需通过[ssap.createClient](#ssapcreateclient)方法构造该类的实例。
+
+同一应用针对同一远端设备创建一个 Client 实例即可，重复创建会增加不必要的资源开销。
 
 **起始版本：** 26.0.0
 
@@ -187,7 +189,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 let addr: string = '00:11:22:33:AA:FF'; // 扫描获取到的远端设备地址
 let client: ssap.Client;
 try {
-  client = ssap.createClient(addr); // 一个应用针对一个远端设备只需要创建一次实例
+  client = ssap.createClient(addr); // 同一应用针对同一远端设备只需创建一个实例
   client.connect().then(() => {
     console.info('connect success');
   }).catch((err: BusinessError) => {
@@ -237,7 +239,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 let addr: string = '00:11:22:33:AA:FF'; // 扫描获取到的远端设备地址
 let client: ssap.Client;
 try {
-  client = ssap.createClient(addr); // 一个应用针对一个远端设备只需要创建一次实例
+  client = ssap.createClient(addr); // 同一应用针对同一远端设备只需创建一个实例
   client.connect().then(() => {
     console.info('connect success'); // 建立连接
   }).catch((err: BusinessError) => {
@@ -258,7 +260,7 @@ try {
 
 close(): void
 
-关闭客户端。
+关闭客户端，断开与远端服务端的连接。如仅需断开当前连接而保留实例，请使用disconnect方法。
 
 **起始版本：** 26.0.0
 
@@ -286,7 +288,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 let addr: string = '00:11:22:33:AA:FF'; // 扫描获取到的远端设备地址
 let client: ssap.Client;
 try { 
-  client = ssap.createClient(addr); // 一个应用针对一个远端设备只需要创建一次实例
+  client = ssap.createClient(addr); // 同一应用针对同一远端设备只需创建一个实例
   client.close();
 } catch (err) {
   console.error('errCode: ' + (err as BusinessError).code + ', errMessage: ' + (err as BusinessError).message);
@@ -332,7 +334,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 let addr: string = '00:11:22:33:AA:FF'; // 扫描获取到的远端设备地址
 let client: ssap.Client;
 try {
-  client = ssap.createClient(addr); // 一个应用针对一个远端设备只需要创建一次实例
+  client = ssap.createClient(addr); // 同一应用针对同一远端设备只需创建一个实例
   client.connect().then(() => {
     console.info('connect success');
   }).catch((err: BusinessError) => {
@@ -398,7 +400,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 let addr: string = '00:11:22:33:AA:FF'; // 扫描获取到的远端设备地址
 let client: ssap.Client;
 try {
-  client = ssap.createClient(addr); // 一个应用针对一个远端设备只需要创建一次实例
+  client = ssap.createClient(addr); // 同一应用针对同一远端设备只需创建一个实例
   client.connect().then(() => {
     console.info('connect success');
   }).catch((err: BusinessError) => {
@@ -474,7 +476,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 let addr: string = '00:11:22:33:AA:FF'; // 扫描获取到的远端设备地址
 let client: ssap.Client;
 try {
-  client = ssap.createClient(addr); // 一个应用针对一个远端设备只需要创建一次实例
+  client = ssap.createClient(addr); // 同一应用针对同一远端设备只需创建一个实例
   client.connect().then(() => {
     console.info('connect success');
   }).catch((err: BusinessError) => {
@@ -508,7 +510,7 @@ try {
 
 setPropertyNotification(property: Property, enable: boolean): Promise&lt;void&gt;
 
-设置属性变化通知。使用Promise异步回调。
+设置Property变化通知。需在调用connect()成功建立连接后使用。使用Promise异步回调。
 
 **起始版本：** 26.0.0
 
@@ -522,7 +524,7 @@ setPropertyNotification(property: Property, enable: boolean): Promise&lt;void&gt
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| property | [Property](#property) | 是 | 服务端属性。该属性需支持NOTIFY操作。 |
+| property | [Property](#property) | 是 | 服务端属性。该属性需支持NOTIFY操作（即operation包含NOTIFY，详见Operation）。 |
 | enable | boolean | 是 | 是否打开通知功能。true: 打开通知功能。false: 关闭通知功能。 |
 
 **返回值：** 
@@ -551,7 +553,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 let addr: string = '00:11:22:33:AA:FF'; // 扫描获取到的远端设备地址
 let client: ssap.Client;
 try {
-  client = ssap.createClient(addr); // 一个应用针对一个远端设备只需要创建一次实例
+  client = ssap.createClient(addr); // 同一应用针对同一远端设备只需创建一个实例
   client.connect().then(() => {
     console.info('connect success');
   }).catch((err: BusinessError) => {
@@ -624,7 +626,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 let addr: string = '00:11:22:33:AA:FF'; // 扫描获取到的远端设备地址
 let client: ssap.Client;
 try {
-  client = ssap.createClient(addr); // 一个应用针对一个远端设备只需要创建一次实例
+  client = ssap.createClient(addr); // 同一应用针对同一远端设备只需创建一个实例
   client.connect().then(() => {
     console.info('connect success');
   });
@@ -673,7 +675,7 @@ let onPropertyChange:(data: ssap.Property) => void = (data: ssap.Property) => {
 let addr: string = '00:11:22:33:AA:FF'; // 扫描获取到的远端设备地址
 let client: ssap.Client;
 try {
-  client = ssap.createClient(addr); // 一个应用针对一个远端设备只需要创建一次实例
+  client = ssap.createClient(addr); // 同一应用针对同一远端设备只需创建一个实例
   client.onPropertyChange(onPropertyChange);
 } catch (err) {
   console.error('errCode: ' + (err as BusinessError).code + ', errMessage: ' + (err as BusinessError).message);
@@ -710,7 +712,7 @@ let onPropertyChange:(data: ssap.Property) => void = (data: ssap.Property) => {
 let addr: string = '00:11:22:33:AA:FF'; // 扫描获取到的远端设备地址
 let client: ssap.Client;
 try {
-  client = ssap.createClient(addr); // 一个应用针对一个远端设备只需要创建一次实例
+  client = ssap.createClient(addr); // 同一应用针对同一远端设备只需创建一个实例
   client.offPropertyChange(onPropertyChange);
 } catch (err) {
   console.error('errCode: ' + (err as BusinessError).code + ', errMessage: ' + (err as BusinessError).message);
@@ -749,7 +751,7 @@ let onConnectionStateChange:(data: ssap.ConnectionChangeState) => void = (data: 
 let addr: string = '00:11:22:33:AA:FF'; // 扫描获取到的远端设备地址
 let client: ssap.Client;
 try {
-  client = ssap.createClient(addr); // 一个应用针对一个远端设备只需要创建一次实例
+  client = ssap.createClient(addr); // 同一应用针对同一远端设备只需创建一个实例
   client.onConnectionStateChange(onConnectionStateChange);
 } catch (err) {
   console.error('errCode: ' + (err as BusinessError).code + ', errMessage: ' + (err as BusinessError).message);
@@ -786,7 +788,7 @@ let onConnectionStateChange:(data: ssap.ConnectionChangeState) => void = (data: 
 let addr: string = '00:11:22:33:AA:FF'; // 扫描获取到的远端设备地址
 let client: ssap.Client;
 try {
-  client = ssap.createClient(addr); // 一个应用针对一个远端设备只需要创建一次实例
+  client = ssap.createClient(addr); // 同一应用针对同一远端设备只需创建一个实例
   client.offConnectionStateChange(onConnectionStateChange);
 } catch (err) {
   console.error('errCode: ' + (err as BusinessError).code + ', errMessage: ' + (err as BusinessError).message);
@@ -825,7 +827,7 @@ let onMtuChange:(data: number) => void = (data: number) => {
 let addr: string = '00:11:22:33:AA:FF'; // 扫描获取到的远端设备地址
 let client: ssap.Client;
 try {
-  client = ssap.createClient(addr); // 一个应用针对一个远端设备只需要创建一次实例
+  client = ssap.createClient(addr); // 同一应用针对同一远端设备只需创建一个实例
   client.onMtuChange(onMtuChange);
 } catch (err) {
   console.error('errCode: ' + (err as BusinessError).code + ', errMessage: ' + (err as BusinessError).message);
@@ -862,7 +864,7 @@ let onMtuChange:(data: number) => void = (data: number) => {
 let addr: string = '00:11:22:33:AA:FF'; // 扫描获取到的远端设备地址
 let client: ssap.Client;
 try {
-  client = ssap.createClient(addr); // 一个应用针对一个远端设备只需要创建一次实例
+  client = ssap.createClient(addr); // 同一应用针对同一远端设备只需创建一个实例
   client.offMtuChange(onMtuChange);
 } catch (err) {
   console.error('errCode: ' + (err as BusinessError).code + ', errMessage: ' + (err as BusinessError).message);
@@ -872,9 +874,11 @@ try {
 
 ## Server
 
-提供和远端设备ssap数据交互操作方法，使用前需要使用createServer方法创建一个Server实例。
+SSAP服务端类，提供了和客户端进行连接和数据交互等操作方法。
 
-一个应用只需要创建一次Server实例。
+- 使用该类的方法前，需通过[ssap.createServer](#ssapcreateserver)方法构造该类的实例。
+
+同一应用创建一个 Server 实例即可，重复创建会增加不必要的资源开销。
 
 **起始版本：** 26.0.0
 
