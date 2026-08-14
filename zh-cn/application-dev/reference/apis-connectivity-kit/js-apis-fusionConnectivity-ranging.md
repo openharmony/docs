@@ -284,7 +284,7 @@ startPassiveRanging(capabilityType: RangingTypes): Promise&lt;number&gt;
 
 | 类型               | 说明         |
 | ---------------- | ---------- |
-| Promise&lt;number&gt; | Promise对象，返回被动测距会话的句柄标识符handle，数值范围[0, INT_MAX)。<br> 该句柄用于：1. 在[stopPassiveRanging](#rangingstoppassiveranging)中指定要停止的被动测距会话。2. 在[onRangingStateChange](#rangingonrangingstatechange)回调的[stateInfo.handle](#rangingstatechangeinfo)中标识对应的被动测距会话。   |
+| Promise&lt;number&gt; | Promise对象，返回被动测距会话的句柄标识符handle，数值范围[0, 2147483647)。<br> 该句柄用于：1. 在[stopPassiveRanging](#rangingstoppassiveranging)中指定要停止的被动测距会话。2. 在[onRangingStateChange](#rangingonrangingstatechange)回调的[stateInfo.handle](#rangingstatechangeinfo)中标识对应的被动测距会话。   |
 
 **错误码**：
 
@@ -519,7 +519,7 @@ if (isRegistered) {
 
 | 名称            | 类型                     | 只读 | 可选 | 说明        |
 | ------------- | ---------------------- | ---- | ---- | --------- |
-| deviceId      | string                 | 否   | 否   | 目标测距设备的地址，格式为xx:xx:xx:xx:xx:xx，其中x为十六进制数字，范围为0\~9和A\~F，分隔符为冒号，示例："11:22:33:44:55:66"。该参数需要按照指定格式填写，如果填入的参数不合法，会抛出[34900054](errorcode-fusionConnectivity.md#34900054-参数不符合业务规格)的错误码。  |
+| deviceId      | string                 | 否   | 否   | 目标测距设备的地址，格式为xx:xx:xx:xx:xx:xx，其中x为十六进制数字，范围为0~9和A~F，分隔符为冒号，示例："11:22:33:44:55:66"。该参数需要按照指定格式填写，如果填入的参数不合法，会抛出[34900054](errorcode-fusionConnectivity.md#34900054-参数不符合业务规格)的错误码。  |
 | capabilityType | [RangingTypes](#rangingtypes) | 否   | 否   | 测距能力类型，用于指定使用的测距技术。该参数必须要填入定义的有效值，否则引用该参数的接口会抛出[34900052](errorcode-fusionConnectivity.md#34900052-不支持指定类型的测距服务)错误。 |
 
 ## RangingStateChangeInfo
@@ -553,7 +553,7 @@ if (isRegistered) {
 | ------ | -------------------------------- | ---- | ---- | ----------- |
 | deviceId | string                           | 否   | 否   | 测距设备地址。    |
 | distance | [RangingMeasurement](#rangingmeasurement) | 否   | 否   | 测距输出的距离测量结果，value单位：cm。  |
-| angle   | [RangingMeasurement](#rangingmeasurement) | 否   | 否   | 测距输出的方位角，value单位：度，取值范围：[0, 360)。   |
+| angle   | [RangingMeasurement](#rangingmeasurement) | 否   | 否   | 测距输出的方位角，value单位：度，有效值的取值范围：[0, 360)，返回-1表示不支持测角。   |
 | rssi    | number                           | 否   | 否   | 接收信号强度指示[RSSI](../../connectivity/bluetooth/terminology.md#rssi)，单位：dBm。    |
 
 ## RangingCapabilitySupported
