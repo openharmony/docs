@@ -6,7 +6,7 @@
 <!--Designer: @gzweioh-->
 <!--Tester: @ghiker-->
 <!--Adviser: @HelloShuo-->
-<!-- md-trans-meta sourceCommit=653d7ca392c1878e92f7acb2b5a9b04b5870a0ef translatedAt=2026-08-14T03:50:29.565Z pushedAt=2026-08-14T09:35:59.264Z -->
+<!-- md-trans-meta sourceCommit=653d7ca392c1878e92f7acb2b5a9b04b5870a0ef translatedAt=2026-08-14T03:50:29.565Z pushedAt=2026-08-14T10:17:39.496Z -->
 
 WebRTC (Web Real-Time Communications) is a real-time communication technology that allows web applications or sites to establish peer-to-peer connections between browsers without an intermediary, enabling the transmission of video streams, audio streams, or any other data. The standards included in WebRTC allow users to create peer-to-peer data sharing and audio/video conferencing without installing any plug-ins or third-party software. WebRTC applies to all modern browsers and native clients on major platforms. The underlying technology is implemented as an open web standard and is provided as a regular JavaScript API in all major browsers.
 
@@ -62,7 +62,7 @@ Call the W3C standard protocol API **navigator.mediaDevices.getUserMedia()** in 
 
 ### System-Side Authorization
 
-In the [Complete Example Code](../web/web-rtc.md#complete-example-code), **requestPermissionsFromUser** is called so that after the app is opened, a dialog box asking whether to allow the app to access the camera and microphone is displayed. Click **Always allow** or **Ask every time** to authorize the app to access the camera and microphone.
+In the [Complete Example Code](../web/web-rtc.md#complete-example), **requestPermissionsFromUser** is called so that after the app is opened, a dialog box asking whether to allow the app to access the camera and microphone is displayed. Click **Always allow** or **Ask every time** to authorize the app to access the camera and microphone.
 
 ### App-Side Authorization
 

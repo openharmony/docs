@@ -6,7 +6,7 @@
 <!--Designer: @zhufenghao-->
 <!--Tester: @ghiker-->
 <!--Adviser: @HelloShuo-->
-<!-- md-trans-meta sourceCommit=de6c5587afdcf50b930b84ee7fea72915daa554b translatedAt=2026-08-14T03:47:47.046Z pushedAt=2026-08-14T09:05:04.983Z -->
+<!-- md-trans-meta sourceCommit=de6c5587afdcf50b930b84ee7fea72915daa554b translatedAt=2026-08-14T03:47:47.046Z pushedAt=2026-08-14T10:20:38.406Z -->
 
 As a key component of user interaction, menus build a clear navigation system and present function entries through a structured layout, allowing users to quickly find target content or perform operations. As an important hub of human-machine interaction, menus significantly improve the accessibility and user experience of the Web component and are an indispensable part of app design. The Web component menu types include the [text selection menu](./web-menu.md#text-selection-menu), [context menu](./web-menu.md#context-menu), and [custom menu](./web-menu.md#custom-menu). You can flexibly select a menu type based on your specific requirements.
 
@@ -895,7 +895,7 @@ struct WebComponent {
   <!DOCTYPE html>
   <html>
     <head>
-        <title>测试网页</title>
+        <title>Test Page</title>
     </head>
     <body>
       <h1>editMenuOptions Demo</h1>

@@ -6,7 +6,7 @@
 <!--Designer: @yaomingliu-->
 <!--Tester: @ghiker-->
 <!--Adviser: @HelloShuo-->
-<!-- md-trans-meta sourceCommit=7837ae684682097baf9f7ec77030bf59ebda9fcb translatedAt=2026-08-14T03:49:13.205Z pushedAt=2026-08-14T09:26:33.206Z -->
+<!-- md-trans-meta sourceCommit=7837ae684682097baf9f7ec77030bf59ebda9fcb translatedAt=2026-08-14T03:49:13.205Z pushedAt=2026-08-14T10:18:47.335Z -->
 
 Web page loading failures can be caused by various factors. This topic lists troubleshooting methods for common issues to help you quickly locate the cause.
 
@@ -168,19 +168,19 @@ Cross-origin errors and Service Worker request failures generally report ERR_FAI
 
     Using setPathAllowingUniversalAccess to lift cross-origin access restrictions on directories is a high-risk operation. Based on the principle of least privilege, the paths opened for el1 and el2 are fixed, and each path in the path list must conform to one of the following path formats:
 
-    1. The app file directory is obtained through [Context.filesDir](../reference/apis-ability-kit/js-apis-inner-application-context.md#attribute). Examples of its subdirectories are as follows:
+    1. The app file directory is obtained through [Context.filesDir](../reference/apis-ability-kit/js-apis-inner-application-context.md#properties). Examples of its subdirectories are as follows:
 
        * /data/storage/el2/base/files/example
 
        * /data/storage/el2/base/haps/entry/files/example
 
-    2. The app resource directory is obtained through [Context.resourceDir](../reference/apis-ability-kit/js-apis-inner-application-context.md#attribute). Examples of its subdirectories are as follows:
+    2. The app resource directory is obtained through [Context.resourceDir](../reference/apis-ability-kit/js-apis-inner-application-context.md#properties). Examples of its subdirectories are as follows:
 
        * /data/storage/el1/bundle/entry/resources/resfile
 
        * /data/storage/el1/bundle/entry/resources/resfile/example
 
-    3. Starting from API version 21, the app cache directory is also included, which is obtained through [Context.cacheDir](../reference/apis-ability-kit/js-apis-inner-application-context.md#attribute). Its subdirectories are as follows:
+    3. Starting from API version 21, the app cache directory is also included, which is obtained through [Context.cacheDir](../reference/apis-ability-kit/js-apis-inner-application-context.md#properties). Its subdirectories are as follows:
 
        * /data/storage/el2/base/cache
 

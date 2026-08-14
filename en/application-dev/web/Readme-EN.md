@@ -6,13 +6,13 @@
 <!--Designer: @kurli1-->
 <!--Tester: @ghiker-->
 <!--Adviser: @HelloShuo-->
-<!-- md-trans-meta sourceCommit=acd648864c5ac6cd486518c7536b2edad7479627 translatedAt=2026-08-14T03:41:26.114Z pushedAt=2026-08-14T09:55:04.633Z -->
+<!-- md-trans-meta sourceCommit=acd648864c5ac6cd486518c7536b2edad7479627 translatedAt=2026-08-14T03:41:26.114Z pushedAt=2026-08-14T10:27:01.145Z -->
 
 - [About This Kit](web-component-overview.md)
 
 - [ArkWeb Process](web_component_process.md)
 
-- [Lifecycle of Web Components](web-event-sequence.md)
+- [Lifecycle of the Web Component](web-event-sequence.md)
 
 - Setting Basic Attributes and Events<!--web-set-attributes-events-->
 
@@ -48,7 +48,7 @@
 
   - [Establishing a Data Channel Between the Application and the Frontend Page](web-app-page-data-channel.md)
 
-  - [Mutual Invoking (C/C++) Between the Application and the Frontend Page](arkweb-ndk-jsbridge.md)
+  - [Mutual Invoking Between the Application and the Frontend Page (C/C++)](arkweb-ndk-jsbridge.md)
 
   - [Establishing a Data Channel Between the Application and the Frontend Page (C/C++)](arkweb-ndk-page-data-channel.md)
 
@@ -76,7 +76,7 @@
 
   - [Intelligent Tracking Prevention](web-intelligent-tracking-prevention.md)
 
-  - [Enabling Ads Blocking](web-adsblock.md)
+  - [Using the Ad Blocking Feature](web-adsblock.md)
 
   - [Using Secure Shield Mode](web-secure-shield-mode.md)
 
@@ -86,13 +86,13 @@
 
   - [Managing Page Redirection and Browsing History Navigation](web-redirection-and-browsing-history-mgmt.md)
 
-  - [Intercepting Network Requests Initiated by Web Components](web-scheme-handler.md)
+  - [Intercepting Network Requests Initiated by the Web Component](web-scheme-handler.md)
 
   - [Customizing Page Request Responses](web-resource-interception-request-mgmt.md)
 
-  - [Accelerating Web Page Access with Preconnecting and Prefetching](web-predictor.md)
+  - [Accelerating Web Page Access](web-predictor.md)
 
-  - [Setting Back-forward Cache](web-set-back-forward-cache.md)
+  - [Setting the Backward-Forward Cache](web-set-back-forward-cache.md)
 
   - [Migrating Web Components Between Different Windows](web-component-migrate.md)
 
@@ -124,7 +124,7 @@
 
   - [Using Web Component Menus to Process Web Content](web-menu.md)
 
-  - [Interacting with the System Clipboard](web-clipboard.md)
+  - [Processing Web Page Content by Interacting with the System Clipboard](web-clipboard.md)
 
   - [Using Smart Text Data Detector](web-data-detector.md)<!--RP5--><!--RP5End-->
 

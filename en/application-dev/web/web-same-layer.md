@@ -6,7 +6,7 @@
 <!--Designer: @dzichou-->
 <!--Tester: @ghiker-->
 <!--Adviser: @HelloShuo-->
-<!-- md-trans-meta sourceCommit=f0524ade16836279b29e1c928b6b7514bb1a1dfd translatedAt=2026-08-14T03:52:56.323Z pushedAt=2026-08-14T09:40:24.771Z -->
+<!-- md-trans-meta sourceCommit=f0524ade16836279b29e1c928b6b7514bb1a1dfd translatedAt=2026-08-14T03:52:56.323Z pushedAt=2026-08-14T10:19:57.576Z -->
 
 In the system, applications can use the **Web** component to load web pages. If the capability or performance of non-system UI components is inferior to that of system components, you can use the ArkUI component to render these components (same-layer components).
 
@@ -1092,7 +1092,7 @@ Code on the application side:
   <!DOCTYPE html>
   <html>
   <head>
-      <title>同层渲染测试HTML</title>
+      <title>Same-layer Rendering Test HTML</title>
       <meta name="viewport">
   </head>
   <body>
@@ -1387,7 +1387,7 @@ struct Page{
   <!DOCTYPE html>
   <html>
   <head>
-      <title>同层渲染HTML</title>
+      <title>Same-layer Rendering HTML</title>
       <meta name="viewport" content="initial-scale=1.0">
   </head>
   <body>

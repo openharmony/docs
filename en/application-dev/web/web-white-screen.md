@@ -6,7 +6,7 @@
 <!--Designer: @dzichou-->
 <!--Tester: @ghiker-->
 <!--Adviser: @HelloShuo-->
-<!-- md-trans-meta sourceCommit=72ccdda7a546195e184c31b0386f3d1471ff4b28 translatedAt=2026-08-14T03:52:29.676Z pushedAt=2026-08-14T09:48:00.456Z -->
+<!-- md-trans-meta sourceCommit=72ccdda7a546195e184c31b0386f3d1471ff4b28 translatedAt=2026-08-14T03:52:29.676Z pushedAt=2026-08-14T10:18:10.396Z -->
 
 There are many reasons for white screen issues on web pages. This topic describes how to troubleshoot common white screen issues.
 
@@ -218,19 +218,19 @@ If a white screen issue persists after the network and permission configurations
 
     Using setPathAllowingUniversalAccess to open cross-origin access restrictions for directories is a high-risk operation. Based on the principle of least privilege, the paths opened for el1 and el2 are fixed, and the paths in the path list must conform to one of the following path formats:
 
-    1. The application file directory is obtained through [Context.filesDir](../reference/apis-ability-kit/js-apis-inner-application-context.md#attribute). Example subdirectories are as follows:
+    1. The application file directory is obtained through [Context.filesDir](../reference/apis-ability-kit/js-apis-inner-application-context.md#properties). Example subdirectories are as follows:
 
        * /data/storage/el2/base/files/example
 
        * /data/storage/el2/base/haps/entry/files/example
 
-    2. The application resource directory is obtained through [Context.resourceDir](../reference/apis-ability-kit/js-apis-inner-application-context.md#attribute). Example subdirectories are as follows:
+    2. The application resource directory is obtained through [Context.resourceDir](../reference/apis-ability-kit/js-apis-inner-application-context.md#properties). Example subdirectories are as follows:
 
        * /data/storage/el1/bundle/entry/resources/resfile
 
        * /data/storage/el1/bundle/entry/resources/resfile/example
 
-    3. Since API version 21, the application cache directory is obtained through [Context.cacheDir](../reference/apis-ability-kit/js-apis-inner-application-context.md#attribute). Example subdirectories are as follows:
+    3. Since API version 21, the application cache directory is obtained through [Context.cacheDir](../reference/apis-ability-kit/js-apis-inner-application-context.md#properties). Example subdirectories are as follows:
 
        * /data/storage/el2/base/cache
 
@@ -238,7 +238,7 @@ If a white screen issue persists after the network and permission configurations
 
        * The **cache/web** directory is not allowed in the set directory path. Otherwise, an exception with the code **401** is thrown. If the set directory path is **cache**, **cache/web** is also not allowed to be accessed.
 
-    4. Since API version 21, the application temporary directory is obtained through [Context.tempDir](../reference/apis-ability-kit/js-apis-inner-application-context.md#attribute). Example subdirectories are as follows:
+    4. Since API version 21, the application temporary directory is obtained through [Context.tempDir](../reference/apis-ability-kit/js-apis-inner-application-context.md#properties). Example subdirectories are as follows:
 
        * /data/storage/el2/base/temp
 

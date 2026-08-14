@@ -6,7 +6,7 @@
 <!--Designer: @zhufenghao-->
 <!--Tester: @ghiker-->
 <!--Adviser: @HelloShuo-->
-<!-- md-trans-meta sourceCommit=ed167df66a96022fba65e719fceebf8eb263c3fa translatedAt=2026-08-14T03:46:36.979Z pushedAt=2026-08-14T08:37:08.388Z -->
+<!-- md-trans-meta sourceCommit=ed167df66a96022fba65e719fceebf8eb263c3fa translatedAt=2026-08-14T03:46:36.979Z pushedAt=2026-08-14T10:17:02.854Z -->
 
 On mobile or touch-enabled web applications, users interact with web pages through gestures. ArkWeb supports the recognition of common gestures, such as touch and hold, swipe, and tap, providing a rich user interaction experience.
 
@@ -94,7 +94,7 @@ struct Index {
 
 - ArkUI gestures
 
-  ArkWeb consumes some ArkUI gestures, for example, the [swipe gesture](../ui/arkts-gesture-events-single-gesture.md#swipe-gesture-pangesture). If you want to handle these gestures yourself instead of letting ArkWeb consume them, refer to ArkUI's [gesture conflict handling](../ui/arkts-gesture-events-gesture-judge.md). For a specific example, see [example](../reference/apis-arkui/arkui-ts/ts-gesture-customize-judge.md#example).
+  ArkWeb consumes some ArkUI gestures, for example, the [swipe gesture](../ui/arkts-gesture-events-single-gesture.md#swipe-gesture-swipegesture). If you want to handle these gestures yourself instead of letting ArkWeb consume them, refer to ArkUI's [gesture conflict handling](../ui/arkts-gesture-events-gesture-judge.md). For a specific example, see [example](../reference/apis-arkui/arkui-ts/ts-gesture-customize-judge.md#example).
 
 - ArkWeb gestures
 
