@@ -8,7 +8,7 @@
 <!--Adviser: @zhang_yixin13-->
 
 ## 问题现象
-在BLE蓝牙应用开发过程中，调用[startScan](../../reference/apis-connectivity-kit/js-apis-bluetooth-ble.md#startscan15)或其它携带可选参数的接口时，如果将可选属性显式设置为undefined（例如在对象字面量中写入manufactureId: undefined），接口会抛出错误码401（Invalid parameter），提示无效参数。
+在BLE蓝牙应用开发过程中，调用携带可选参数的接口时，如果将可选属性显式设置为undefined，比如[startScan](../../reference/apis-connectivity-kit/js-apis-bluetooth-ble.md#startscan15)，（在对象字面量中写入manufactureId: undefined），接口会抛出错误码401（Invalid parameter），提示无效参数。
 
 ## 问题原因
 bleScanner.startScan等接口的底层由C/C++实现。在TS侧调用这些接口时，参数会通过NAPI传递到系统底层进行解析：
