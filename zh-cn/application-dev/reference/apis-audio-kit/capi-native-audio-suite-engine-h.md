@@ -344,7 +344,7 @@ int32_t OH_AudioSuiteEngine_MetaRenderFrame(OH_AudioSuitePipeline* audioSuitePip
 | 参数项 | 描述 |
 | -- | -- |
 | [OH_AudioSuitePipeline](capi-ohaudiosuite-oh-audiosuitepipelinestruct.md)* audioSuitePipeline | 音频编创管线句柄。通过[OH_AudioSuiteEngine_CreatePipeline](capi-native-audio-suite-engine-h.md#oh_audiosuiteengine_createpipeline)获取。 |
-| [OH_AudioSuite_MetaFrame](capi-ohaudiosuite-oh-audiosuite-metaframe.md)* metaFrame | 音频元数据帧结构体指针。 |
+| [OH_AudioSuite_MetaFrame](capi-ohaudiosuite-oh-audiosuite-metaframe-sys.md)* metaFrame | 音频元数据帧结构体指针。 |
 | int32_t* responseAudioSize | 接口实际写入的音频数据的大小，单位是字节。 |
 | int32_t* responseMetaSize | 接口实际写入的元数据的大小，单位是字节。 |
 | bool* finishedFlag | 该标志用于向用户指示是否已完成所有数据处理。 |
@@ -525,7 +525,7 @@ int32_t OH_AudioSuiteNodeBuilderSystem_SetFormat(OH_AudioNodeBuilder* builder, O
 | 参数项 | 描述 |
 | -- | -- |
 | [OH_AudioNodeBuilder](capi-ohaudiosuite-oh-audionodebuilderstruct.md)* builder | 音频编创节点构造器句柄。通过[OH_AudioSuiteNodeBuilder_Create](capi-native-audio-suite-engine-h.md#oh_audiosuitenodebuilder_create)获取。 |
-| [OH_AudioSuite_SystemNodeFormat](capi-ohaudiosuite-oh-audiosuite-systemnodeformat.md) audioFormat | 音频节点格式。 |
+| [OH_AudioSuite_SystemNodeFormat](capi-ohaudiosuite-oh-audiosuite-systemnodeformat-sys.md) audioFormat | 音频节点格式。 |
 
 **返回：**
 
@@ -615,7 +615,7 @@ typedef int32_t (*OH_InputNode_RequestMetaDataCallback)(OH_AudioNode* audioNode,
 | -- | -- |
 | OH_AudioNode\* audioNode | 音频编创节点句柄。通过[OH_AudioSuiteEngine_CreateNode](capi-native-audio-suite-engine-h.md#oh_audiosuiteengine_createnode)获取。 |
 | void\* userData | 由用户传递的用户数据指针。 |
-| [OH_AudioSuite_MetaFrame](capi-ohaudiosuite-oh-audiosuite-metaframe.md)\* metaFrame | 音频元数据帧结构体指针。 |
+| [OH_AudioSuite_MetaFrame](capi-ohaudiosuite-oh-audiosuite-metaframe-sys.md)\* metaFrame | 音频元数据帧结构体指针。 |
 | int32_t\* responseMetaDataSize | 应用程序实际写入的元数据的大小，单位是字节。 |
 | bool\* finished | 此布尔值表示是否已成功写入所有音频数据。 |
 
@@ -798,7 +798,7 @@ int32_t OH_AudioSuiteEngineSystem_SetAudioFormat(OH_AudioNode* audioNode, OH_Aud
 | 参数项 | 描述 |
 | -- | -- |
 | [OH_AudioNode](capi-ohaudiosuite-oh-audionodestruct.md)* audioNode | 音频编创节点句柄。通过[OH_AudioSuiteEngine_CreateNode](capi-native-audio-suite-engine-h.md#oh_audiosuiteengine_createnode)获取。 |
-| [OH_AudioSuite_SystemNodeFormat](capi-ohaudiosuite-oh-audiosuite-systemnodeformat.md)* audioFormat | 音频格式。 |
+| [OH_AudioSuite_SystemNodeFormat](capi-ohaudiosuite-oh-audiosuite-systemnodeformat-sys.md)* audioFormat | 音频格式。 |
 
 **返回：**
 

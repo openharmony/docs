@@ -1,4 +1,4 @@
-# native_audio_suite_download_manager.h
+# native_audio_suite_download_manager.h（系统接口）
 <!--Kit: Audio Kit-->
 <!--Subsystem: Multimedia-->
 <!--Owner: @xxngwang-->
@@ -26,9 +26,9 @@
 
 | 名称 | typedef关键字 | 描述 |
 | -- | -- | -- |
-| [OH_AudioSuite_DownloadStatusInfo](capi-ohaudiosuite-oh-audiosuite-downloadstatusinfo.md) | OH_AudioSuite_DownloadStatusInfo | 定义下载状态信息结构。 |
-| [OH_AudioSuite_DownloadStatusInfoArray](capi-ohaudiosuite-oh-audiosuite-downloadstatusinfoarray.md) | OH_AudioSuite_DownloadStatusInfoArray | 定义下载状态信息数组结构。 |
-| [OH_AudioSuite_DownloadManagerStruct](capi-ohaudiosuite-oh-audiosuite-downloadmanagerstruct.md) | OH_AudioSuite_DownloadManager | 声明音频下载管理器。<br> 音频下载管理器的句柄用于执行下载相关功能。 |
+| [OH_AudioSuite_DownloadStatusInfo](capi-ohaudiosuite-oh-audiosuite-downloadstatusinfo-sys.md) | OH_AudioSuite_DownloadStatusInfo | 定义下载状态信息结构。 |
+| [OH_AudioSuite_DownloadStatusInfoArray](capi-ohaudiosuite-oh-audiosuite-downloadstatusinfoarray-sys.md) | OH_AudioSuite_DownloadStatusInfoArray | 定义下载状态信息数组结构。 |
+| [OH_AudioSuite_DownloadManagerStruct](capi-ohaudiosuite-oh-audiosuite-downloadmanagerstruct-sys.md) | OH_AudioSuite_DownloadManager | 声明音频下载管理器。<br> 音频下载管理器的句柄用于执行下载相关功能。 |
 
 ### 函数
 
@@ -65,7 +65,7 @@ typedef void (*OH_AudioSuite_DownloadCallback)(OH_AudioSuite_DownloadStatusInfoA
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_AudioSuite_DownloadStatusInfoArray](capi-ohaudiosuite-oh-audiosuite-downloadstatusinfoarray.md) *downloadStatusInfoArray | 指向下载状态信息数组的指针。 |
+| [OH_AudioSuite_DownloadStatusInfoArray](capi-ohaudiosuite-oh-audiosuite-downloadstatusinfoarray-sys.md) *downloadStatusInfoArray | 指向下载状态信息数组的指针。 |
 
 ### OH_AudioSuite_GetDownloadManager()
 
@@ -85,7 +85,7 @@ int32_t OH_AudioSuite_GetDownloadManager(OH_AudioSuite_DownloadManager **downloa
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_AudioSuite_DownloadManager](capi-ohaudiosuite-oh-audiosuite-downloadmanagerstruct.md) **downloadManager | 指向接收下载管理器句柄的指针。 |
+| [OH_AudioSuite_DownloadManager](capi-ohaudiosuite-oh-audiosuite-downloadmanagerstruct-sys.md) **downloadManager | 指向接收下载管理器句柄的指针。 |
 
 **返回：**
 
@@ -111,8 +111,8 @@ int32_t OH_AudioSuite_RegisterDownloadCallback(OH_AudioSuite_DownloadManager *do
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_AudioSuite_DownloadManager](capi-ohaudiosuite-oh-audiosuite-downloadmanagerstruct.md) *downloadManager | 下载管理器句柄。 |
-| [const OH_AudioSuite_DownloadCallback](capi-native-audio-suite-download-manager-h.md#oh_audiosuite_downloadcallback) *callback | 接收下载状态更新的回调函数。 |
+| [OH_AudioSuite_DownloadManager](capi-ohaudiosuite-oh-audiosuite-downloadmanagerstruct-sys.md) *downloadManager | 下载管理器句柄。 |
+| [const OH_AudioSuite_DownloadCallback](capi-native-audio-suite-download-manager-h-sys.md#oh_audiosuite_downloadcallback) *callback | 接收下载状态更新的回调函数。 |
 
 **返回：**
 
@@ -138,8 +138,8 @@ int32_t OH_AudioSuite_UnregisterDownloadCallback(OH_AudioSuite_DownloadManager *
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_AudioSuite_DownloadManager](capi-ohaudiosuite-oh-audiosuite-downloadmanagerstruct.md) *downloadManager | 下载管理器句柄。 |
-| [const OH_AudioSuite_DownloadCallback](capi-native-audio-suite-download-manager-h.md#oh_audiosuite_downloadcallback) *callback | 需要取消注册的回调函数。 |
+| [OH_AudioSuite_DownloadManager](capi-ohaudiosuite-oh-audiosuite-downloadmanagerstruct-sys.md) *downloadManager | 下载管理器句柄。 |
+| [const OH_AudioSuite_DownloadCallback](capi-native-audio-suite-download-manager-h-sys.md#oh_audiosuite_downloadcallback) *callback | 需要取消注册的回调函数。 |
 
 **返回：**
 
@@ -165,7 +165,7 @@ int32_t OH_AudioSuite_StartDownload(OH_AudioSuite_DownloadManager *downloadManag
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_AudioSuite_DownloadManager](capi-ohaudiosuite-oh-audiosuite-downloadmanagerstruct.md) *downloadManager | 下载管理器句柄。 |
+| [OH_AudioSuite_DownloadManager](capi-ohaudiosuite-oh-audiosuite-downloadmanagerstruct-sys.md) *downloadManager | 下载管理器句柄。 |
 | const char *featureName | 需要下载的云端文件名称。 |
 
 **返回：**
@@ -192,7 +192,7 @@ int32_t OH_AudioSuite_PauseDownload(OH_AudioSuite_DownloadManager *downloadManag
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_AudioSuite_DownloadManager](capi-ohaudiosuite-oh-audiosuite-downloadmanagerstruct.md) *downloadManager | 下载管理器句柄。 |
+| [OH_AudioSuite_DownloadManager](capi-ohaudiosuite-oh-audiosuite-downloadmanagerstruct-sys.md) *downloadManager | 下载管理器句柄。 |
 | const char *featureName | 需要暂停的云端文件名称。 |
 
 **返回：**
@@ -219,7 +219,7 @@ int32_t OH_AudioSuite_CancelDownload(OH_AudioSuite_DownloadManager *downloadMana
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_AudioSuite_DownloadManager](capi-ohaudiosuite-oh-audiosuite-downloadmanagerstruct.md) *downloadManager | 下载管理器句柄。 |
+| [OH_AudioSuite_DownloadManager](capi-ohaudiosuite-oh-audiosuite-downloadmanagerstruct-sys.md) *downloadManager | 下载管理器句柄。 |
 | const char *featureName | 需要取消的云端文件名称。 |
 
 **返回：**
@@ -246,7 +246,7 @@ int32_t OH_AudioSuite_StartBackgroundDownload(OH_AudioSuite_DownloadManager *dow
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_AudioSuite_DownloadManager](capi-ohaudiosuite-oh-audiosuite-downloadmanagerstruct.md) *downloadManager | 下载管理器句柄。 |
+| [OH_AudioSuite_DownloadManager](capi-ohaudiosuite-oh-audiosuite-downloadmanagerstruct-sys.md) *downloadManager | 下载管理器句柄。 |
 | const char *featureName | 需要下载的云端文件名称。 |
 
 **返回：**
@@ -273,9 +273,9 @@ int32_t OH_AudioSuite_GetDownloadStatus(OH_AudioSuite_DownloadManager *downloadM
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_AudioSuite_DownloadManager](capi-ohaudiosuite-oh-audiosuite-downloadmanagerstruct.md) *downloadManager | 下载管理器句柄。 |
+| [OH_AudioSuite_DownloadManager](capi-ohaudiosuite-oh-audiosuite-downloadmanagerstruct-sys.md) *downloadManager | 下载管理器句柄。 |
 | const char *featureName | 云端文件名称。 |
-| [OH_AudioSuite_DownloadStatusInfo](capi-ohaudiosuite-oh-audiosuite-downloadstatusinfo.md) *status | 指向接收下载状态信息的指针。 |
+| [OH_AudioSuite_DownloadStatusInfo](capi-ohaudiosuite-oh-audiosuite-downloadstatusinfo-sys.md) *status | 指向接收下载状态信息的指针。 |
 
 **返回：**
 
@@ -301,7 +301,7 @@ int32_t OH_AudioSuite_UninstallCloudRom(OH_AudioSuite_DownloadManager *downloadM
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_AudioSuite_DownloadManager](capi-ohaudiosuite-oh-audiosuite-downloadmanagerstruct.md) *downloadManager | 下载管理器句柄。 |
+| [OH_AudioSuite_DownloadManager](capi-ohaudiosuite-oh-audiosuite-downloadmanagerstruct-sys.md) *downloadManager | 下载管理器句柄。 |
 | const char *featureName | 需要卸载的云端文件名称。 |
 
 **返回：**

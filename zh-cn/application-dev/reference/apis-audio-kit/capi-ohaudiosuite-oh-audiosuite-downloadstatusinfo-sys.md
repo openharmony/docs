@@ -1,4 +1,4 @@
-# OH_AudioSuite_DownloadStatusInfo
+# OH_AudioSuite_DownloadStatusInfo（系统接口）
 <!--Kit: Audio Kit-->
 <!--Subsystem: Multimedia-->
 <!--Owner: @xxngwang-->
@@ -20,7 +20,7 @@ typedef struct OH_AudioSuite_DownloadStatusInfo {...} OH_AudioSuite_DownloadStat
 
 **相关模块：** [OHAudioSuite](capi-ohaudiosuite.md)
 
-**所在头文件：** [native_audio_suite_download_manager.h](capi-native-audio-suite-download-manager-h.md)
+**所在头文件：** [native_audio_suite_download_manager.h](capi-native-audio-suite-download-manager-h-sys.md)
 
 ## 汇总
 

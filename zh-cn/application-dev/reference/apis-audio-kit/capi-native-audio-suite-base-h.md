@@ -27,9 +27,9 @@
 | 名称 | typedef关键字 | 描述 |
 | -- | -- | -- |
 | [OH_AudioFormat](capi-ohaudiosuite-oh-audioformat.md) | OH_AudioFormat | 定义音频编创的音频流信息，用于描述基本音频格式。 |
-|<!--DelRow--> [OH_AudioSuite_SystemNodeFormat](capi-ohaudiosuite-oh-audiosuite-systemnodeformat.md) | OH_AudioSuite_SystemNodeFormat | 定义系统节点的基本音频格式。 |
+|<!--DelRow--> [OH_AudioSuite_SystemNodeFormat](capi-ohaudiosuite-oh-audiosuite-systemnodeformat-sys.md) | OH_AudioSuite_SystemNodeFormat | 定义系统节点的基本音频格式。 |
 | [OH_AudioDataArray](capi-ohaudiosuite-oh-audiodataarray.md) | OH_AudioDataArray | 定义多路输出渲染接口的输出数据描述。当管线中存在多输出效果节点时，通过多输出渲染接口获取处理过后的音频数据。 |
-|<!--DelRow--> [OH_AudioSuite_MetaFrame](capi-ohaudiosuite-oh-audiosuite-metaframe.md) | OH_AudioSuite_MetaFrame | 定义包含音频数据和元数据的帧结构。 |
+|<!--DelRow--> [OH_AudioSuite_MetaFrame](capi-ohaudiosuite-oh-audiosuite-metaframe-sys.md) | OH_AudioSuite_MetaFrame | 定义包含音频数据和元数据的帧结构。 |
 | [OH_EqualizerFrequencyBandGains](capi-ohaudiosuite-oh-equalizerfrequencybandgains.md) | OH_EqualizerFrequencyBandGains | 定义音频编创均衡器效果节点配置参数。 |
 | [OH_AudioSuite_SpaceRenderPositionParams](capi-ohaudiosuite-oh-audiosuite-spacerenderpositionparams.md) | OH_AudioSuite_SpaceRenderPositionParams | 定义3D空间渲染效果节点固定摆位模式的配置参数。左手坐标系：伸出左手，用拇指和食指形成一个“L”形。<br> 拇指指向右侧，食指向上，其余手指指向前。<br> 此时形成了一个3D的左手坐标系。在这个坐标系中，拇指、食指<br> 和其他手指分别代表x轴、y轴和z轴的正方向。 |
 | [OH_AudioSuite_SpaceRenderRotationParams](capi-ohaudiosuite-oh-audiosuite-spacerenderrotationparams.md) | OH_AudioSuite_SpaceRenderRotationParams | 定义空间渲染效果节点旋转模式配置参数。 |
