@@ -153,7 +153,7 @@ struct Index {
     
     ``` TypeScript
     import { worker, ThreadWorkerGlobalScope, MessageEvents } from '@kit.ArkTS';
-    // 返回句柄
+    // 导入句柄类型
     import Handle from './handle'; 
     
     let workerPort : ThreadWorkerGlobalScope = worker.workerPort;
@@ -165,19 +165,17 @@ struct Index {
     workerPort.onmessage = (e : MessageEvents): void => {
       switch (e.data.type as number) {
         case 0:
-          let result: boolean = false;
-          result = handler.syncSet(e.data.data);
-          console.info("worker: result is " + result);
+          let result: boolean = handler.syncSet(e.data.data);
+          console.info('worker: result is ' + result);
           workerPort.postMessage({'message': 'the result of syncSet() is ' + result, 'isTerminate': false});
           break;
         case 1:
-          let num: number = 0;
-          num = handler.syncGet();
-          console.info("worker: num is " + num);
+          let num: number = handler.syncGet();
+          console.info('worker: num is ' + num);
           workerPort.postMessage({'message': 'the result of syncGet() is ' + num, 'isTerminate': true});
           break;
         default:
-          workerPort.postMessage({ type: 'message', value: 'send message is invalid' });
+          workerPort.postMessage({ 'message': 'send message is invalid', 'isTerminate': false });
           break;
       }
     }

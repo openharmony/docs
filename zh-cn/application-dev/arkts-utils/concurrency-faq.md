@@ -351,7 +351,7 @@ TaskPool实现任务的函数（Concurrent函数）入参和返回结果需满�
 <!-- @[test_instanceof](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/ArkTsConcurrent/ConcurrencyFaq/entry/src/main/ets/pages/TestInstanceof.ets) -->     
 
 ``` TypeScript
-// pages/TestInstancof.ets
+// pages/TestInstanceof.ets
 import { worker, ErrorEvent } from '@kit.ArkTS'
 import { A } from './Sendable'
 
@@ -363,7 +363,7 @@ function testInstanceof() {
     // 打印test instanceof in main thread success
     console.info('test instanceof in main thread success');
   } else {
-    console.info('test instanceof in main thread failed');
+    console.error('test instanceof in main thread failed');
   }
   workerInstance.postMessageWithSharedSendable(a);
   workerInstance.onerror = (err: ErrorEvent) => {
@@ -456,7 +456,7 @@ JS异常：TypeError: Cannot set sendable property with mismatched type
    <!-- @[define_resolveTwo](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/ArkTsConcurrent/ConcurrencyFaq/entry/src/main/ets/pages/SolveMismatchTypeTwo.ets) -->     
    
    ``` TypeScript
-   // SoluteMismatchTypeTwo.ets
+   // pages/SolveMismatchTypeTwo.ets
    import { collections } from '@kit.ArkTS'
    
    @Sendable
@@ -476,7 +476,7 @@ JS异常：TypeError: Cannot set sendable property with mismatched type
    <!-- @[define_resolveThree](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/ArkTsConcurrent/ConcurrencyFaq/entry/src/main/ets/pages/SolveMismatchTypeThree.ets) -->    
    
    ``` TypeScript
-   // SoluteMismatchTypeThree.ets
+   // pages/SolveMismatchTypeThree.ets
    import { collections } from '@kit.ArkTS'
    
    @Sendable
@@ -601,7 +601,7 @@ Sendable装饰器修饰的类与Observed装饰器修饰的类定义在同一个e
 <!-- @[initialize_item](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/ArkTsConcurrent/ConcurrencyFaq/entry/src/main/ets/pages/SolveItemInitialized.ets) -->     
 
 ``` TypeScript
-// SoluteItemInitialized.ets
+// pages/SolveItemInitialized.ets
 import { taskpool } from '@kit.ArkTS'
 import { BusinessError } from '@kit.BasicServicesKit'
 import { SendableItem } from './Sendable'
@@ -614,9 +614,9 @@ function createTask() {
 function executeTask() {
   let task = new taskpool.Task(createTask);
   taskpool.execute(task).then((res) => {
-    console.info('execute task success');
+    console.info(`execute task success`);
   }).catch((e: BusinessError) => {
-    console.error('execute task error: ' + e.message);
+    console.error(`execute task error: ${e.message}`);
   })
 }
 
@@ -647,7 +647,7 @@ Observed装饰器仅支持在UI线程使用，不能在子线程、Worker、Task
 <!-- @[initialize_item](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/ArkTsConcurrent/ConcurrencyFaq/entry/src/main/ets/pages/SolveItemInitialized.ets) -->     
 
 ``` TypeScript
-// SoluteItemInitialized.ets
+// pages/SolveItemInitialized.ets
 import { taskpool } from '@kit.ArkTS'
 import { BusinessError } from '@kit.BasicServicesKit'
 import { SendableItem } from './Sendable'
@@ -660,9 +660,9 @@ function createTask() {
 function executeTask() {
   let task = new taskpool.Task(createTask);
   taskpool.execute(task).then((res) => {
-    console.info('execute task success');
+    console.info(`execute task success`);
   }).catch((e: BusinessError) => {
-    console.error('execute task error: ' + e.message);
+    console.error(`execute task error: ${e.message}`);
   })
 }
 
