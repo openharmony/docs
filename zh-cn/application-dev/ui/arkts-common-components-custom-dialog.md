@@ -766,8 +766,8 @@ struct CustomDialogExample {
         .onClick(() => {
           hilog.info(DOMAIN, 'testTag', 'state:' + this.controller?.getState());
         }).margin(20)
-      // 请将$r('app.string.close_widows')替换为实际资源文件，在本示例中该资源文件的value值为"点我关闭弹窗"
-      Button($r('app.string.close_widows'))
+      // 请将$r('app.string.close_windows')替换为实际资源文件，在本示例中该资源文件的value值为"点我关闭弹窗"
+      Button($r('app.string.close_windows'))
         .onClick(() => {
           if (this.getDialogController() !== undefined) {
             this.getDialogController().close()
