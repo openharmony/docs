@@ -606,7 +606,7 @@ struct Index {
 使用WithTheme自定义主题的弹出框，通过WithTheme包装LoadingDialogV2实现主题风格定制。
 
 ```ts
-import { CustomColors, CustomTheme, LoadingDialogV2, UIContext, WithTheme  } from '@kit.ArkUI';
+import { CustomColors, CustomTheme, LoadingDialogV2, UIContext } from '@kit.ArkUI';
 
 class CustomThemeImpl implements CustomTheme {
   colors?: CustomColors;
