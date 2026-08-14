@@ -226,7 +226,7 @@ try {
 
 onConnectionStateChange(callback: Callback&lt;ConnectionStateParam&gt;): void
 
-订阅连接状态变化事件。使用callback异步回调。与[remoteDevice.onAcbStateChange](#remotedeviceonacbstatechange)的区别在于：本接口监听设备层级的连接状态变化，onAcbStateChange监听逻辑链路（ACB）层级的连接状态变化。
+订阅连接状态变化事件。使用callback异步回调。与[remoteDevice.onAcbStateChange](#remotedeviceonacbstatechange)监听逻辑链路层级连接状态不同，本接口监听设备层级的连接状态变化。
 
 应用需具备ohos.permission.ACCESS_NEARLINK权限，方可接收此事件上报。
 
@@ -595,7 +595,7 @@ try {
 
 getConnectionState(): ConnectionState
 
-获取本端设备和远端设备的连接状态。与[getAcbState](#getacbstate)的区别在于：本接口获取设备层级的连接状态，getAcbState获取逻辑链路（ACB）层级的连接状态。
+获取本端设备和远端设备的连接状态。与[getAcbState](#getacbstate)获取逻辑链路（ACB）层级连接状态不同，本接口获取设备层级的连接状态。
 
 **起始版本：** 26.0.0
 
