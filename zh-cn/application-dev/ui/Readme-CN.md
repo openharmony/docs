@@ -275,7 +275,7 @@
     - [检查页面布局](arkts-inspector-overview.md)
     - [媒体查询 (@ohos.mediaquery)](arkts-layout-development-media-query.md)
     - 嵌入式组件<!--arkts-ui-cross-process-->
-      - [全屏启动原子化服务 (FullScreenLaunchComponent)](arkts-FullScreenComponent.md)
+      - [全屏启动原子化服务组件 (FullScreenLaunchComponent)](arkts-FullScreenComponent.md)
       - [同应用进程嵌入式组件 (EmbeddedComponent)](arkts-embedded-components.md)
     <!--Del-->
     - [跨进程应用能力扩展（UIExtension，仅对系统应用开放）](arkts-ui-extension-components-sys.md)
