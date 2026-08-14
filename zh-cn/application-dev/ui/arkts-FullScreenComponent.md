@@ -1,4 +1,4 @@
-# 全屏启动原子化服务组件（FullScreenLaunchComponent）
+# 全屏启动原子化服务 (FullScreenLaunchComponent)
 <!--Kit: ArkUI-->
 <!--Subsystem: ArkUI-->
 <!--Owner: @dutie123-->
@@ -25,7 +25,9 @@ FullScreenLaunchComponent允许开发者以全屏方式拉起原子化服务，�
 
 FullScreenLaunchComponent提供的一种全屏启动原子化服务的能力。需要拉起原子化服务时，拉起方向AMS查询被拉起方是否授权使用方可以嵌入式运行原子化服务。已授权时，使用方全屏嵌入式运行原子化服务；未授权时，使用方跳出式拉起原子化服务。
 
-<!--Del-->全屏嵌入式运行原子化服务是指，通过[UIExtension](./arkts-ui-extension-components-sys.md)封装的组件方式嵌入到使用方的组件树中，拉起EmbeddableUIAbility，展示提供方的应用内容，以实现组件式的交互体验。<!--DelEnd-->
+<!--Del-->
+全屏嵌入式运行原子化服务是指，通过[UIExtension](./arkts-ui-extension-components-sys.md)封装的组件方式嵌入到使用方的组件树中，拉起EmbeddableUIAbility，展示提供方的应用内容，以实现组件式的交互体验。
+<!--DelEnd-->
 
 跳出式运行原子化服务是指，非组件化的方式拉起EmbeddableUIAbility，交互体验接近独立窗口。
 
@@ -162,7 +164,7 @@ FullScreenLaunchComponent不支持通用事件，会将事件经过坐标转换�
 应用开发者（提供方）需要考虑如下设计约束：
 
 - 尽量使用布局变化少的场景。
-- 当由布局变化时，提供方js线程尽量少的执行任务，确保js线程能够及时响应布局变化的任务。
+- 当有布局变化时，提供方js线程尽量少的执行任务，确保js线程能够及时响应布局变化的任务。
 
 应用开发者（使用方）可以通过如下方式消减闪白问题：
 
