@@ -1070,7 +1070,7 @@ struct MonitorWildcardDate {
         .width(300)
         .margin(10)
         .onClick(() => {
-          this.date.setTime(1000000);
+            this.date.setTime(1000);
         })
       // API调用触发onDateChanged
       Button(`Assign new Date`)
@@ -1231,7 +1231,7 @@ onSetChange(m: IMonitor) {
 - `setInstance`被赋新值。
 - 调用Set的API，例如`add`、`delete`、`clear`时触发。与Array、Date不同的是，只有当变化真的发生时，回调才会触发。这意味着，当对空Set调用`clear`，对不存在的Set元素调用`delete`，以及不实际新增元素的`add`调用都不会触发@Monitor回调。
 
-与Array不同，@Monitor无法对Set的某一个key做监听。
+与Array不同，@Monitor无法对Set的某一个元素做监听。
 
 使用通配符监听Set对象的示例如下。
 
@@ -2301,7 +2301,7 @@ struct Index {
 ### 无法监听变量从可访问变为不可访问和从不可访问变为可访问
 \@Monitor仅会保存变量可访问时的值，当状态变量变为不可访问的状态时，并不会记录其值的变化。在下面的例子中，点击三个Button，均不会触发`onChange`的回调。
 
-从API version 20开始，如果需要监听可访问到不可访问和不可访问到可访问的状态变化，可以使用[addMonitor](./arkts-new-addMonitor-clearMonitor.md#监听变量从可访问到不访问和从不可访问到可访问)。
+从API version 20开始，可以使用addMonitor[监听变量从可访问到不可访问和从不可访问到可访问](./arkts-new-addMonitor-clearMonitor.md#监听变量从可访问到不可访问和从不可访问到可访问)的状态变化。
 
 从API版本26.0.0开始，使用配置项的\@Monitor能够正常处理变量在可访问与不可访问之间的切换。在下面的例子中，若将`@Monitor('user.age')`改写为使用配置项的形式`@Monitor({}, 'user.age')`，则点击三个Button均会触发`onChange`回调，dirty中将包含路径`user.age`，其对应的IMonitorValue的before值与now值会分别反映可访问性切换前后的状态（变量可访问时为实际值，变量不可访问时为undefined）。
 

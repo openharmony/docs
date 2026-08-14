@@ -1,23 +1,28 @@
 # DLP Service Development (ArkTS)
+
 <!--Kit: Data Protection Kit-->
 <!--Subsystem: Security-->
 <!--Owner: @winnieHuYu-->
 <!--Designer: @QRF-->
 <!--Tester: @nacyli-->
 <!--Adviser: @zengyawen-->
+<!-- md-trans-meta sourceCommit=ea89afb9ae1513bcb89f85eac0b35098803eb4b4 translatedAt=2026-08-11T01:57:10.247Z pushedAt=2026-08-11T02:20:43.826Z -->
 
 <!--RP1-->
+
 The Data Loss Prevention (DLP) service is a system solution provided to prevent leakage of sensitive data. It provides a file format called DLP. A DLP file consists of the original file in ciphertext and the authorization credential, and ".dlp" is added to the end of the original file name (including the file name extension), for example, **test.docx.dlp**.
 
 A DLP file can be accessed only after successful device-cloud authentication (network connection required). The permissions for accessing a DLP file include the following:
 
 - Read-only: The user can only read the file.
+
 - Edit: The user can read and write the file, but cannot change the permission on the file.
+
 - Full control: The user can read and write the file, change the permission on the file, and restore the plaintext of the file.
 
 When an application accesses a DLP file, the system automatically installs a dual application. The dual application inherits the data and configuration of the original application, but they do not share data with each other. The dual application is running in a sandbox, which is restricted from external access to prevent data leakage. For simplicity, the dual application running in a sandbox is referred to as a sandbox application hereinafter. Each time a DLP file is opened, a sandbox application is generated. The sandbox applications are also isolated from each other. When an application is closed, its sandbox application will be automatically uninstalled and the temporary data generated in the sandbox directory will be cleared.
 
-Normally, the application is unaware of the sandbox and accesses the file in plaintext, like accessing a common file. However, the DLP sandbox restricts the application from accessing external resources (such as the network, clipboard, screenshot capturing, screen recording, and Bluetooth). For better user experience, you need to adapt your application based on service requirements. For example, for a read-only file, you'd better hide the **Save** button and disable automatic Internet access.
+Under normal circumstances, an app does not perceive the existence of the sandbox and accesses decrypted plaintext, which is no different from accessing a regular file. However, the DLP sandbox restricts its permissions to access external resources (such as the network, clipboard, screenshots, screen recording, Bluetooth, etc.). For a better user experience, the app needs to be adapted. For example, when a file is read-only, the app should not display a **Save** button and should not proactively connect to the network.
 
 ## Sandbox Restrictions
 
@@ -57,10 +62,11 @@ For an application in the DLP sandbox state, the permissions granted to the appl
 ## How to Develop
 
 This document provides API sample code. For details about how to create a project, see [Creating a Project](https://developer.huawei.com/consumer/en/doc/harmonyos-guides/ide-project).
+
 1. Import the [dlpPermission](../../reference/apis-data-protection-kit/js-apis-dlppermission.md) module.
 
     <!-- @[dlp_include](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/SystemFeature/Security/DLP/entry/src/main/ets/pages/Index.ets) -->
-    
+
     ``` TypeScript
     import { dlpPermission } from '@kit.DataProtectionKit';
     import { identifySensitiveContent } from '@kit.DataProtectionKit';
@@ -68,10 +74,10 @@ This document provides API sample code. For details about how to create a projec
 
 2. Open an encrypted file. The system automatically installs a dual application for your application. <br>Add the following code to your application page ability: 
 
-   Prerequisites for using this API: The DLP credential server has been connected. 
+   Prerequisites for using This API: The DLP credential server has been connected. 
 
     <!-- @[dlp_prepareForOpenDlpFile](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/SystemFeature/Security/DLP/entry/src/main/ets/pages/Index.ets) -->
-    
+
     ``` TypeScript
     openDlpFile(dlpUri: string, fileName: string, fd: number) {
       let want:Want = {
@@ -115,7 +121,7 @@ This document provides API sample code. For details about how to create a projec
     ```
 
     Add **ohos.want.action.viewData** to the **module.json5** file.
-   
+
     ``` JSON5
     "skills": [
       {
@@ -129,7 +135,7 @@ This document provides API sample code. For details about how to create a projec
       }
     ]
     ```
-  
+
 3. Generate an encrypted DLP file. 
 
    Prerequisites for using this API: The DLP credential server has been connected.
@@ -141,8 +147,9 @@ This document provides API sample code. For details about how to create a projec
     A file of the supported type that can be read or written by an application with DLP permissions is available. For example, a file in the **Files** directory. 
 
     Start the DLP manager application in borderless mode. This API can be called only in the UIAbility context and supports only the stage model. Run the following code to open the permission settings page of the DLP manager application, enter the account information, and tap **Save**. On the page started by file Picker, select the directory to save the DLP file.
+
     <!-- @[dlp_generateDlpFiles](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/SystemFeature/Security/DLP/entry/src/main/ets/pages/Index.ets) -->
-    
+
     ``` TypeScript
     generateDlpFiles() {
       try {
@@ -175,7 +182,7 @@ This document provides API sample code. For details about how to create a projec
    Prerequisites for using this API: The DLP file has been opened by the demo application.
 
     <!-- @[dlp_isInSandBox](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/SystemFeature/Security/DLP/entry/src/main/ets/pages/Index.ets) -->
-    
+
     ``` TypeScript
     isInSandbox() {
       dlpPermission.isInSandbox().then((data) => {
@@ -190,13 +197,12 @@ This document provides API sample code. For details about how to create a projec
     }
     ```
 
-
 5. Obtain the permissions on the file. The permissions of the DLP sandbox application vary with the user's permission on the file. For more information, see [Sandbox Restrictions](#sandbox-restrictions). 
-   
+
    Prerequisites for using this API: The DLP file has been opened by the demo application.
 
     <!-- @[dlp_getDLPPermissionInfo](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/SystemFeature/Security/DLP/entry/src/main/ets/pages/Index.ets) -->
-    
+
     ``` TypeScript
     getDLPPermissionInfo() {
       dlpPermission.getDLPPermissionInfo().then((data) => {
@@ -214,7 +220,7 @@ This document provides API sample code. For details about how to create a projec
 6. Obtain the list of file name extension types that support the DLP solution. Based on the information obtained, you can learn what types of files can be used to generate DLP files.
 
     <!-- @[dlp_getDLPSupportedFileTypes](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/SystemFeature/Security/DLP/entry/src/main/ets/pages/Index.ets) -->
-    
+
     ``` TypeScript
     getDLPSupportedFileTypes() {
       dlpPermission.getDLPSupportedFileTypes((err, result) => {
@@ -232,7 +238,7 @@ This document provides API sample code. For details about how to create a projec
    Prerequisites for using this API: The DLP file needs to be checked.
 
     <!-- @[dlp_isCurrentDlpFile](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/SystemFeature/Security/DLP/entry/src/main/ets/pages/Index.ets) -->  
-    
+
     ``` TypeScript
     isCurrentDlpFile() {
       let file = this.openFile(this.uri);
@@ -257,11 +263,11 @@ This document provides API sample code. For details about how to create a projec
       });
     }
     ```
-    
+
 8. Subscribe to or unsubscribe from the DLP file open event.
 
     <!-- @[dlp_subscribe](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/SystemFeature/Security/DLP/entry/src/main/ets/pages/Index.ets) -->
-    
+
     ``` TypeScript
     event(info: dlpPermission.AccessedDLPFileInfo) {
       console.info('openDlpFile event');
@@ -293,13 +299,12 @@ This document provides API sample code. For details about how to create a projec
     }
     ```
 
-
 9. Obtain information about the DLP files that are recently accessed. 
 
    Prerequisites for using this API: The DLP file has been opened by the demo application.
 
     <!-- @[dlp_getDLPFileAccessRecords](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/SystemFeature/Security/DLP/entry/src/main/ets/pages/Index.ets) -->
-    
+
     ``` TypeScript
     getDLPFileAccessRecords() {
       dlpPermission.getDLPFileAccessRecords().then((res) => {
@@ -319,7 +324,7 @@ This document provides API sample code. For details about how to create a projec
     Prerequisites for using this API: The DLP file has been opened by the demo application.
 
     <!-- @[dlp_getRetentionSandboxList](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/SystemFeature/Security/DLP/entry/src/main/ets/pages/Index.ets) -->
-    
+
     ``` TypeScript
     getRetentionSandboxList() {
       dlpPermission.getRetentionSandboxList().then((res) => {
@@ -333,10 +338,11 @@ This document provides API sample code. For details about how to create a projec
       });
     }
     ```
+
 11. Set sandbox application configuration.
 
     <!-- @[dlp_setSandboxAppConfig](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/SystemFeature/Security/DLP/entry/src/main/ets/pages/Index.ets) -->
-    
+
     ``` TypeScript
     setSandboxAppConfig() {
       dlpPermission.setSandboxAppConfig('configInfo').then(() => {
@@ -351,11 +357,10 @@ This document provides API sample code. For details about how to create a projec
     }
     ```
 
-
 12. Clear the sandbox application configuration.
 
     <!-- @[dlp_cleanSandboxAppConfig](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/SystemFeature/Security/DLP/entry/src/main/ets/pages/Index.ets) -->
-    
+
     ``` TypeScript
     cleanSandboxAppConfig() {
       dlpPermission.cleanSandboxAppConfig().then(() => {
@@ -373,7 +378,7 @@ This document provides API sample code. For details about how to create a projec
 13. Obtain the sandbox application configuration.
 
     <!-- @[dlp_getSandboxAppConfig](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/SystemFeature/Security/DLP/entry/src/main/ets/pages/Index.ets) -->
-    
+
     ``` TypeScript
     getSandboxAppConfig() {
       dlpPermission.getSandboxAppConfig().then((res) => {
@@ -389,11 +394,11 @@ This document provides API sample code. For details about how to create a projec
     ```
 
 14. Start the DLP manager application in borderless mode. This API can be called only in the UIAbility context and supports only the stage model. 
-    
+
     Prerequisites for using this API: The DLP credential server has been connected.
 
     <!-- @[dlp_startDLPManagerForResult](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/SystemFeature/Security/DLP/entry/src/main/ets/pages/Index.ets) -->
-    
+
     ``` TypeScript
     startDLPManagerForResult() {
       try {
@@ -418,11 +423,13 @@ This document provides API sample code. For details about how to create a projec
       }
     }
     ```
+
 15. Check whether the current system provides the DLP feature. 
 
     Prerequisites for using this API: The DLP credential server has been connected.
+
     <!-- @[dlp_isDLPFeature](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/SystemFeature/Security/DLP/entry/src/main/ets/pages/Index.ets) -->
-    
+
     ``` TypeScript
     isDLPFeature() {
       dlpPermission.isDLPFeatureProvided().then((res) => {
@@ -436,11 +443,13 @@ This document provides API sample code. For details about how to create a projec
       });
     }
     ```
+
 16. Sets the protection policy for enterprise applications.  
 
     Prerequisites for using this API: The DLP credential server has been connected.
-    
+
     16.1 Policy format
+
     | Field| Type| Description|
     | -------- | -------- | -------- |
     | rules | Array&lt;Rule&gt; | Rule list. A policy can contain a maximum of 32 rules.|
@@ -448,12 +457,14 @@ This document provides API sample code. For details about how to create a projec
     | ruleConflictAlg | number | Rule conflict resolution algorithm. The value **0** indicates the first match, and the value **1** indicates the complete match.|
 
     16.2 Rule format
+
     | Field| Type| Description|
     | -------- | -------- | -------- |
     | ruleId |string | Rule name. The value can contain a maximum of 64 bytes and can contain only letters (case-sensitive), digits (0-9), and underscores (_).|
-    | attributes | Array&lt;Attribute&gt; | Attribute list. A rule can contain a maximum of 32 attributes.|
+    | attributes | Array&lt;Attribute&gt; | List of specific attribute information. A rule can contain multiple attributes, with a maximum of 32. |
 
     16.3 Attribute format
+
     | Field| Type| Description|
     | -------- | -------- | -------- |
     | attributeId |string | Attribute name.|
@@ -462,6 +473,7 @@ This document provides API sample code. For details about how to create a projec
     | opt | number | Comparison method, which is used to compare the actual attribute with the policy attribute.|
 
     16.4 Supported attributes
+
     | Attribute Name| Attribute Value| Attribute Value Type| Scenario|
     | -------- | -------- | -------- | -------- |
     | DeviceHealthyStatus |1 <br> 2 <br> 3 <br> 4 | Integer| 1: The device health report is normal.<br>2: The device has health risks, but the risk factor is irrelevant to the root.<br> 3: The device has health risks, and the risk factor is relevant to the root.<br> 4: An exception occurs.|
@@ -470,7 +482,7 @@ This document provides API sample code. For details about how to create a projec
     | AdvancedSecurityMode | 1 <br> 2 | Integer| 1: The advanced security mode is enabled on the device.<br>2: The advanced security mode is disabled on the device. |
 
     <!-- @[dlp_setDLPProtectPolicy](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/SystemFeature/Security/DLP/entry/src/main/ets/pages/Index.ets) -->
-    
+
     ``` TypeScript
     setDLPProtectPolicy() {
       try {
@@ -504,9 +516,11 @@ This document provides API sample code. For details about how to create a projec
       }
     }
     ```
+
 17. (Available since API version 21) Identify sensitive content in a specified file. 
+
     <!-- @[dlp_scanSensitiveInfo](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/SystemFeature/Security/DLP/entry/src/main/ets/pages/Index.ets) -->
-    
+
     ``` TypeScript
     scanSensitiveInfo() {
       let filepath = this.uri;

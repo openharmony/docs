@@ -1,10 +1,10 @@
 # FAQs About Stability
-<!--Kit: NDK-->
+<!--Kit: ArkTS-->
 <!--Subsystem: arkcompiler-->
 <!--Owner: @xliu-huanwei; @shilei123; @huanghello-->
 <!--Designer: @shilei123-->
 <!--Tester: @kirl75; @zsw_zhushiwei-->
-<!--Adviser: @fang-jinxu-->
+<!--Adviser: @k1ngqaquuu-->
 
 ## How do I troubleshoot the issue that an application often crashes during running
 
@@ -272,4 +272,5 @@ target_link_libraries(entry PUBLIC libace_napi.z.so libhilog_ndk.z.so)
 3. All scopes created in the native method must be closed before the method returns. 
 
 References:
+
 [Performing Lifecycle Management Using Node-API](https://developer.huawei.com/consumer/en/doc/harmonyos-guides/use-napi-life-cycle#napi_open_handle_scopenapi_close_handle_scope)

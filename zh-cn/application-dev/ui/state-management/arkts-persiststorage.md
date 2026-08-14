@@ -128,7 +128,7 @@ onWindowStageCreate(windowStage: window.WindowStage): void {
   4. PersistentStorage将属性“aProp”和值47写入磁盘，AppStorage中“aProp”对应的值和其后续的更改将被持久化。
   5. 在TestPageOne组件中创建状态变量\@StorageLink('aProp') aProp，和AppStorage中“aProp”双向绑定，在创建的过程中会在AppStorage中查找，成功找到“aProp”，所以使用其在AppStorage找到的值47。
 
-  **图1** PersistProp初始化流程  
+  **图1** persistProp初始化流程  
 
   ![zh-cn_image_0000001553348833](figures/PersistProp-initialization.png)
 

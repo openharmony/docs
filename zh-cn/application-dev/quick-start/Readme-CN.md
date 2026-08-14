@@ -42,7 +42,7 @@
 - [资源分类与访问](resource-categories-and-access.md)
 - 学习ArkTS语言<!--learning-arkts-->
   - [初识ArkTS语言](arkts-get-started.md)
-  - 语法<!--arkts-language-guide-->
+  - ArkTS语法<!--arkts-language-guide-->
     - [基础知识](arkts-language-guide-basics.md)
     - [基本操作符](arkts-language-guide-basic-operators.md)
     - [字符串](arkts-language-guide-strings.md)

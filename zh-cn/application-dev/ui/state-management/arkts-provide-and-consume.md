@@ -59,10 +59,10 @@
 | \@Provide变量装饰器 | 说明                                       |
 | -------------- | ---------------------------------------- |
 | 装饰器参数          | 别名：常量字符串，可选。<br/>如果指定了别名，则通过别名来绑定变量；如果未指定别名，则通过变量名绑定变量。<br/>allowOverride：允许重写，string类型，可选。<br/>如果使用allowOverride指定别名，则别名可以被重写，即可以存在同名的@Provide变量。<br/>未使用allowOverride时则不允许重名。示例见[\@Provide支持allowOverride参数](#provide支持allowoverride参数)。 |
-| 允许装饰的变量类型      | Object、class、string、number、boolean、enum类型，以及这些类型的数组。<br/>API version 10开始支持[Date类型](#装饰date类型变量)。<br/>API version 11及以上支持[Map](#装饰map类型变量)、[Set](#装饰set类型变量)类型、undefined和null类型、ArkUI框架定义的联合类型[Length](../../reference/apis-arkui/arkui-ts/ts-types.md#length)、[ResourceStr](../../reference/apis-arkui/arkui-ts/ts-types.md#resourcestr)、[ResourceColor](../../reference/apis-arkui/arkui-ts/ts-types.md#resourcecolor)类型以及这些类型的联合类型，示例见[@Provide和Consume支持联合类型实例](#provide和consume支持联合类型实例)。 |
+| 允许装饰的变量类型      | Object、class、string、number、boolean、enum类型，以及这些类型的数组。<br/>API version 10开始支持[Date类型](#装饰date类型变量)。<br/>API version 11及以上支持[Map](#装饰map类型变量)、[Set](#装饰set类型变量)类型、undefined和null类型、ArkUI框架定义的联合类型[Length](../../reference/apis-arkui/arkui-ts/ts-types.md#length)、[ResourceStr](../../reference/apis-arkui/arkui-ts/ts-types.md#resourcestr)、[ResourceColor](../../reference/apis-arkui/arkui-ts/ts-types.md#resourcecolor)类型以及这些类型的联合类型，示例见[\@Provide和\@Consume支持联合类型实例](#provide和consume支持联合类型实例)。 |
 | 不允许装饰的变量类型 | 不支持装饰Function类型。 |
 | 初始化规则 | 必须定义本地默认值。<br/>可以从父组件传入非undefined类型变量，此时使用该传入变量进行初始化。<br/>父组件未传入或传入undefined类型变量时，使用本地默认值进行初始化。 |
-| 同步规则        | **在子组件使用时：** <br/>不与父组件中的任何类型变量同步。<br/>父组件传入的外部变量对\@Provide初始化时，仅作为初始值，后续变量的变化不会同步至\@Provide。<br/>**在父组件使用时：** <br/>可以初始化子组件的常规变量、\@State、\@Link、[\@Prop](./arkts-prop.md)、\@Provide。<br/>\@Provide变量的变化会同步给子组件的\@Link、\@Prop变量。<br/>与后代子组件中别名匹配的\@Consume变量双同步。 |
+| 同步规则        | **在子组件使用时：** <br/>不与父组件中的任何类型变量同步。<br/>父组件传入的外部变量对\@Provide初始化时，仅作为初始值，后续变量的变化不会同步至\@Provide。<br/>**在父组件使用时：** <br/>可以初始化子组件的常规变量、\@State、\@Link、[\@Prop](./arkts-prop.md)、\@Provide。<br/>\@Provide变量的变化会同步给子组件的\@Link、\@Prop变量。<br/>与后代子组件中别名匹配的\@Consume变量双向同步。 |
 
   **图1** \@Provide初始化规则图示  
 
@@ -107,7 +107,7 @@
    4. 从API version 20开始，在初始化\@Consume变量时，如果在Map中没有该变量名/alias（别名）对应的\@Provide的变量，而\@Consume的变量设置了默认值时，\@Consume变量会利用默认值创建一个临时的数据源，保证通知链路的连续性。
 
 2. 当\@Provide装饰的数据变化时：
-   1. 通过初始渲染的步骤可知，子组件\@Consume已把自己注册给父组件。父组件\@Provide变量变更后，会遍历更新所有依赖它的系统组件（elementid）和状态变量（\@Consume）。
+   1. 通过初始渲染的步骤可知，子组件\@Consume已把自己注册给父组件。父组件\@Provide变量变更后，会遍历更新所有依赖它的系统组件（elementId）和状态变量（\@Consume）。
    2. 通知\@Consume更新后，子组件所有依赖\@Consume的系统组件（elementId）都会被通知更新。以此实现\@Provide对\@Consume状态数据同步。
 
 3. 当\@Consume装饰的数据变化时：
@@ -770,7 +770,7 @@ struct Parent {
 
 ### @Provide和@Consume支持联合类型实例
 
-@Provide和@Consume支持联合类型和undefined和null。以下示例中，count类型为string | undefined，当点击祖先组件Ancestors中的Button改变count的属性或者类型时，Child中也会对应刷新。
+@Provide和@Consume支持联合类型和undefined和null。以下示例中，count类型为string | undefined，当点击祖先组件Ancestors中的Button改变count的值或者类型时，Child中也会对应刷新。
 
 <!-- @[provide_consume_Provide_Consume](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkUISample/ParadigmStateManagement/entry/src/main/ets/pages/provideAndConsume/ProvideConsumeFederation.ets) --> 
 

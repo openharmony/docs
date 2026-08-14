@@ -1,18 +1,18 @@
 # PixelMap Operation
+
 <!--Kit: Image Kit-->
 <!--Subsystem: Multimedia-->
 <!--Owner: @yaozhupeng-->
 <!--Designer: @yaozhupeng-->
 <!--Tester: @zhaoxiaoguang2-->
 <!--Adviser: @w_Machine_cc-->
+<!-- md-trans-meta sourceCommit=ba3f6c99832577d149cf0c227912c266e5256745 translatedAt=2026-08-11T01:46:05.276Z pushedAt=2026-08-11T07:48:24.066Z -->
 
 > **NOTE**
 >
-> This guide uses the APIs provided by the [Image](../../reference/apis-image-kit/capi-image.md) module, which supports basic functionalities such as image encoding/decoding, image receiver operations, and image data processing. These APIs are introduced prior to API version 11, and no additional features will be included in later versions. Therefore, these APIs are not recommended.
->
-> You can also use the C APIs provided by the [Image_NativeModule](../../reference/apis-image-kit/capi-image-nativemodule.md) module, which includes all the foundational features of the Image module while adding new capabilities like multi-image encoding/decoding. For details about the development guide, see [Using Image_NativeModule to Decode Images (C/C++)](image-source-c.md). These APIs are available since API version 12 and are expected to keep evolving. You are encouraged to use them.
->
-> You are not advised to use both sets of C APIs in your code. It may cause compatibility issues in some scenarios.
+> The APIs used in the current development guide are C APIs in the [Image](../../reference/apis-image-kit/capi-image.md) module, which support image encoding/decoding, image receivers, and image data processing. These APIs were released before API version 11 and will not receive new features in later versions. They are **no longer recommended**.<br>
+> You can use the C APIs in the [Image_NativeModule](../../reference/apis-image-kit/capi-image-nativemodule.md) module, which not only provide the basic image framework features mentioned above but also support new capabilities such as multi-image encoding/decoding. For related development guidance, see the content under [Using Image_NativeModule to Decode Images](image-source-c.md). These APIs are available from API version 12 and will continue to evolve. They are **recommended for use**.<br>
+> Using both sets of C APIs at the same time is not recommended, as they may be incompatible in certain scenarios.
 
 This topic describes how to use native image APIs to perform PixelMap operations.
 
@@ -60,18 +60,21 @@ Obtain the JS resource object from the **hello.cpp** file and convert it to a na
 #include <stdlib.h>
 ```
 
-1. Create a PixelMap object.
+1. Create a **PixelMap** object.
 
     ```c++
     napi_value CreatePixelMapTest(napi_env env, napi_callback_info info) {
+        const int32_t PIXEL_FORMAT_BGRA_8888 = 4;
+ 	    const uint32_t ALPHA_TYPE_UNKNOWN = 0;
+
         napi_value udfVar = nullptr;
         napi_value pixelMap = nullptr;
 
         struct OhosPixelMapCreateOps createOps;
         createOps.width = 4;
         createOps.height = 6;
-        createOps.pixelFormat = 4;
-        createOps.alphaType = 0;
+        createOps.pixelFormat = PIXEL_FORMAT_BGRA_8888;
+        createOps.alphaType = ALPHA_TYPE_UNKNOWN;
         size_t bufferSize = createOps.width * createOps.height * 4;
         void *buff = malloc(bufferSize);
         if (buff == nullptr) {
@@ -91,7 +94,7 @@ Obtain the JS resource object from the **hello.cpp** file and convert it to a na
     }
     ```
 
-2. Create a PixelMap object that contains only alpha channel information.
+2. Create a **PixelMap** object that contains only alpha channel information.
 
     ```c++
     napi_value CreateAlphaPixelMap(napi_env env, napi_callback_info info) {
@@ -170,35 +173,36 @@ Obtain the JS resource object from the **hello.cpp** file and convert it to a na
         OH_PixelMap_SetOpacity(native, opacity);
 
         // Scale the image.
-        // scaleX: The width of the image after scaling is 0.5 of the original width.
-        // scaleY: The height of the image after scaling is 0.5 of the original height.
+        // scaleX: The width is scaled to 0.5x of the original.
+        // scaleY: The height is scaled to 0.5x of the original.
         float scaleX = 0.5;
         float scaleY = 0.5;
         OH_PixelMap_Scale(native, scaleX, scaleY);
 
         // Translate the image.
-        // translateX: Translate the image by 50 units downwards.
-        // translateY: Translate the image by 50 units rightwards.
+        // translateX: Offset downward by 50 pixels.
+        // translateY: Offset rightward by 50 pixels.
         float translateX = 50;
         float translateY = 50;
         OH_PixelMap_Translate(native, translateX, translateY);
 
-        // Rate the image clockwise by 90°.
+        // Set the rotation angle.
+        // angle: Rotate 90 degrees clockwise.
         float angle = 90;
         OH_PixelMap_Rotate(native, angle);
 
-        // Flip the image.
-        // flipX: whether to flip the image horizontally. The value 1 means to flip the image and 0 means the opposite.
-        // flipY: whether to flip the image vertically. The value 1 means to flip the image and 0 means the opposite.
+        // Set the flip.
+        // flipX: Horizontal flip. 0 means no flip, and 1 means flip.
+        // flipY: Vertical flip. 0 means no flip, and 1 means flip.
         int32_t flipX = 0;
         int32_t flipY = 1;
         OH_PixelMap_Flip(native, flipX, flipY);
 
         // Crop the image.
-        // cropX: x-axis coordinate of the start point for cropping.
-        // cropY: y-axis coordinate of the start point for cropping.
-        // cropH: height after cropping (10), cropping from top to bottom.
-        // cropW: width after cropping (10), cropping from left to right.
+        // cropX: The x-coordinate of the crop start point.
+        // cropY: The y-coordinate of the crop start point.
+        // cropH: Crop height 10, from top to bottom (the cropped image height is 10).
+        // cropW: Crop width 10, from left to right (the cropped image width is 10).
         int32_t cropX = 1;
         int32_t cropY = 1;
         int32_t cropW = 10;
@@ -207,10 +211,12 @@ Obtain the JS resource object from the **hello.cpp** file and convert it to a na
 
         // Obtain the memory address of the PixelMap object and lock the memory.
         void *pixelAddr = nullptr;
-        OH_PixelMap_AccessPixels(native, &pixelAddr);
+        int32_t ret = OH_PixelMap_AccessPixels(native, &pixelAddr);
 
-        // Unlock the memory of the PixelMap object.
-        OH_PixelMap_UnAccessPixels(native);
+        if (ret == IMAGE_RESULT_SUCCESS) {
+            // Release the memory lock on the PixelMap object data.
+            OH_PixelMap_UnAccessPixels(native);
+        }
 
         return result;
     }

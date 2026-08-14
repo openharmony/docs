@@ -4,7 +4,7 @@
 <!--Owner: @xliu-huanwei; @shilei123; @huanghello-->
 <!--Designer: @shilei123-->
 <!--Tester: @kirl75; @zsw_zhushiwei-->
-<!--Adviser: @fang-jinxu-->
+<!--Adviser: @k1ngqaquuu-->
 
 ## 模块加载失败，报错信息显示`Error message: is not callable`.
 
@@ -46,7 +46,7 @@ extern "C" __attribute__((constructor)) void RegisterEntryModule()
 - 具体问题：在大量需要通过C++调用ArkTS方法进行通信的场景，如何保证异步任务的有序性？
 - 参考方案： 
 
-可参考线程安全函数来实现，napi_call_threadsafe_function可保证异步任务执行顺序, 需要注意的是这些异步任务会投递到ArkTS线程顺序执行，如果是投递到主线程，异步任务的执行时间过长可能导致应用冻结退出，所以不建议将长耗时的任务通过线程安全函数投递到主线程执行。   
+可参考线程安全函数来实现，napi_call_threadsafe_function可保证异步任务执行顺序，需要注意的是这些异步任务会投递到ArkTS线程顺序执行，如果是投递到主线程，异步任务的执行时间过长可能导致应用冻结退出，所以不建议将长耗时的任务通过线程安全函数投递到主线程执行。   
 
 [使用Node-API接口进行线程安全开发](use-napi-thread-safety.md)
 
@@ -184,7 +184,7 @@ napi_value NapiGenericFailure(napi_env env, napi_callback_info)
 
 不支持该功能，每次napi_get_value_string_utf8都需要有一个拷贝过程。
 
-拷贝是必要的，因为会涉及到string生命周期。当触发GC的时候，ArkTS对象可能会在虚拟机里面被搬移，可能搬移到其它地方，也可能直接对象被回收。如果直接返回类似char*的地址，对象被移动或回收后，原地址的指向的内存可能发生变化。  
+拷贝是必要的，因为会涉及到string生命周期。当触发GC的时候，ArkTS对象可能会在虚拟机里面被搬移，可能搬移到其它地方，也可能直接对象被回收。如果直接返回类似char*的地址，对象被移动或回收后，原地址指向的内存可能发生变化。  
 
 ## 多线程下napi_env的使用注意事项
 

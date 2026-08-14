@@ -29,7 +29,7 @@
     - [Functions](arkts-apis-avMusicTemplate-f.md)
     - [Class (AVMusicTemplate)](arkts-apis-avMusicTemplate-AVMusicTemplate.md)
     - [Class (AVMusicTemplateController)](arkts-apis-avMusicTemplate-AVMusicTemplateController.md)
-    - [Interface (其他)](arkts-apis-avMusicTemplate-i.md)
+    - [Interfaces (其他)](arkts-apis-avMusicTemplate-i.md)
     - [Enums](arkts-apis-avMusicTemplate-e.md)
     - [Types](arkts-apis-avMusicTemplate-t.md)
   <!--Del-->

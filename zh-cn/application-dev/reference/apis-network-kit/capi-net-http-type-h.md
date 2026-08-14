@@ -63,7 +63,7 @@
 | NET_HTTPMETHOD_DELETE "DELETE"   | HTTP请求DELETE方法。<br>**起始版本：** 20  |
 | NET_HTTP_METHOD_POST "POST"      | HTTP请求POST方法。<br>**起始版本：** 20    |
 | NET_HTTP_METHOD_PUT "PUT"        | HTTP请求PUT方法。<br>**起始版本：** 20     |
-| NET_HTTP_METHOD_PATCH "CONNECT"  | HTTP请求CONNECT方法。<br>**起始版本：** 20 |
+| NET_HTTP_METHOD_PATCH "PATCH"  | HTTP请求PATCH方法。<br>**起始版本：** 20 |
 
 ### 函数
 

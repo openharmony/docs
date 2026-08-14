@@ -6,7 +6,7 @@
 <!--Tester: @TerryTsao-->
 <!--Adviser: @zhang_yixin13-->
 
-除了前面章节提到的组件状态管理和应用状态管理，ArkTS还提供了\@Watch、$$运算符和\@Track来为开发者提供更多功能：
+除了前面章节提到的组件状态管理和应用状态管理，ArkTS还提供了\@Watch、$$运算符、\@Track和自定义组件冻结来为开发者提供更多功能：
 
 - [\@Watch](arkts-watch.md)：用于监听状态变量的变化。
 

@@ -1,10 +1,12 @@
 # Using AVPlayer to Play Streaming Media (ArkTS)
+
 <!--Kit: Media Kit-->
 <!--Subsystem: Multimedia-->
-<!--Owner: @xushubo; @chennotfound-->
+<!--Owner: @chennotfound-->
 <!--Designer: @dongyu_dy-->
 <!--Tester: @xchaosioda-->
 <!--Adviser: @w_Machine_cc-->
+<!-- md-trans-meta sourceCommit=5431dfef3480aa170de3ea7c328962a87045baac translatedAt=2026-08-11T01:52:52.487Z pushedAt=2026-08-11T12:46:08.351Z -->
 
 This topic describes how to use [AVPlayer](media-kit-intro.md#avplayer) for streaming live broadcasts and video-on-demand. The examples demonstrate how to play streaming videos in an end-to-end manner.
 
@@ -23,7 +25,7 @@ This guide focuses solely on streaming media playback. For details about other s
 
 The full streaming media playback process includes creating an AVPlayer instance, setting the media asset to play and the window to display the video, setting playback parameters (volume, speed, and scale type), controlling playback (play, pause, seek, and stop), resetting the playback configuration, and releasing the instance. During application development, you can use the **state** property of the AVPlayer to obtain the AVPlayer state or call **on('stateChange')** to listen for state changes. Performing actions when the AVPlayer is in an incorrect state can lead to exceptions or undefined behavior. For details, see [AVPlayerState](../../reference/apis-media-kit/arkts-apis-media-t.md#avplayerstate9).  
 
-1. Call **createAVPlayer()** to create an AVPlayer instance. The AVPlayer is the **idle** state.
+1. Call **createAVPlayer()** to create an AVPlayer instance. The AVPlayer is in the **idle** state.
 
 2. Set the events to listen for, which will be used in the full-process scenario. The table below lists the supported events.
 
@@ -37,9 +39,10 @@ The full streaming media playback process includes creating an AVPlayer instance
    | speedDone | Used to listen for the completion status of the **setSpeed()** request.<br>This event is reported when the AVPlayer plays videos at the speed specified in **setSpeed()**.|
    | volumeChange | Used to listen for the completion status of the **setVolume()** request.<br>This event is reported when the AVPlayer plays videos at the volume specified in **setVolume()**.|
    | bufferingUpdate | Used to listen for network playback buffer information. This event reports the buffer percentage and playback progress.|
-   | audioInterrupt | Used to listen for audio interruption. This event is used together with the **audioInterruptMode** property.<br>This event is reported when the current audio playback is interrupted by another (for example, when a call is coming), so the application can process the event in time.|
+   | audioInterrupt | Used to listen for audio interruption. This event is used together with the **audioInterruptMode** property.<br>This event is reported when the current audio playback is interrupted by another (for example, when a call comes), so the application can process the event in time.|
 
 3. Set the media asset. Specifically, [use the AVPlayer to set the playback URL](playback-url-setting-method.md). The AVPlayer transitions to the initialized state.
+
    > **NOTE**
    >
    > The URL in the code snippet below is for reference only. You need to check the media asset validity and set the URL based on service requirements.
@@ -67,7 +70,7 @@ The standard process for playing streaming media follows the development steps o
 
 ### Buffering Status for Streaming Media
 
-If the download speed falls below the bit rate of the media source, playback stuttering may occur. In this case, the AVPlayer detects a lack of data in the buffer and will accumulate some data before resuming playback to prevent continuous stuttering. The buffering event reporting sequence for a single instance of stuttering is as follows: BUFFERING_START -> BUFFERING_PERCENT 0 -> ... -> BUFFERING_PERCENT 100 -> BUFFERING_END. The CACHED_DURATION event is continuously reported throughout the stuttering and playback phases, until the download reaches the end of the resource. For details, see [BufferingInfoType](../../reference/apis-media-kit/arkts-apis-media-e.md#bufferinginfotype8).
+When the download rate is lower than the bitrate of the media source, playback stuttering occurs. In this case, the player detects insufficient buffer data and buffers some data before resuming playback to avoid continuous stuttering. The buffering event reporting process for a single stuttering event is as follows: BUFFERING_START -> BUFFERING_PERCENT 0 -> ... -> BUFFERING_PERCENT 100 -> BUFFERING_END. CACHED_DURATION is continuously reported during both stuttering and playback until the resource is fully downloaded. For details, see [BufferingInfoType](../../reference/apis-media-kit/arkts-apis-media-e.md#bufferinginfotype8).
 
 Sample code for listening for the bufferingUpdate event:
 
@@ -137,7 +140,7 @@ this.avPlayer.setMediaSource(mediaSource, playbackStrategy);
 
 ### DASH Audio and Video Track Switching
 
-DASH streaming media includes multiple audio, video, and subtitle tracks, each with different resolutions, bit rates, sampling rates, and encoding formats. By default, the AVPlayer automatically select video tracks with different bit rates based on the network status. You can manually select an audio or video track for playback based on service requirements. In this case, the adaptive bit rate switching feature becomes invalid.
+DASH streaming media includes multiple audio, video, and subtitle tracks, each with different resolutions, bit rates, sampling rates, and encoding formats. By default, the AVPlayer automatically selects video tracks with different bit rates based on the network status. You can manually select an audio or video track for playback based on service requirements. In this case, the adaptive bit rate switching feature becomes invalid.
 
 1. Set the [trackChange](../../reference/apis-media-kit/arkts-apis-media-AVPlayer.md#ontrackchange12) event.
 
@@ -153,7 +156,7 @@ DASH streaming media includes multiple audio, video, and subtitle tracks, each w
     })
     ```
 
-2. Call [getTrackDescription](../../reference/apis-media-kit/arkts-apis-media-AVPlayer.md#gettrackdescription9) to obtain the list of all audio and video tracks. You can determine the index of the target track based on an actual requirement and information about each field in [MediaDescription](../../reference/apis-media-kit/arkts-apis-media-i.md#mediadescription8).
+2. Call [getTrackDescription](../../reference/apis-media-kit/arkts-apis-media-AVPlayer.md#gettrackdescription9) to obtain the list of all audio and video tracks. You can determine the index of the target track based on actual requirements and information about each field in [MediaDescription](../../reference/apis-media-kit/arkts-apis-media-i.md#mediadescription8).
 
     ```ts
     // The following uses the 1080p video track index as an example.
@@ -207,6 +210,7 @@ If the network is disconnected when the AVPlayer is playing streaming media, the
 Refer to the following example to play a complete streaming video.
 
 1. Create a project, download the [sample project](https://gitcode.com/openharmony/applications_app_samples/tree/master/code/DocsSample/Media/AVPlayer/AVPlayerArkTSStreamingMedia), and copy its resources to the corresponding directories.
+
     ```txt
     AVPlayerArkTSAudio
     entry/src/main/ets/
@@ -226,6 +230,7 @@ Refer to the following example to play a complete streaming video.
     ```
 
 2. Request the network permission in the **/entry/src/main/module.json5** file. Alternatively, replace the **module.json5** file with that in the sample project.
+
     ```json
     "requestPermissions": [
       {
@@ -236,6 +241,7 @@ Refer to the following example to play a complete streaming video.
       }
     ]
     ```
+
 3. Comment out or uncomment the above examples in the **entry/src/main/ets/pages/Index.ets** file, and compile and run the application.
 
 ## Development Example

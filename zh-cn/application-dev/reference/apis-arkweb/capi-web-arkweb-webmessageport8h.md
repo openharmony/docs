@@ -12,7 +12,7 @@ typedef struct ArkWeb_WebMessagePort* ArkWeb_WebMessagePortPtr
 
 ## 概述
 
-ArkWeb_WebMessagePort是Web消息端口结构体，定义了消息通信的端口类型和基本操作。该结构体支持通过消息端口在Native代码和Web页面之间建立双向通信通道。
+ArkWeb_WebMessagePort是Web消息端口结构体，表示MessageChannel的两个端口之一，用于发送和接收消息。该结构体支持在Native代码和Web页面之间进行双向消息通信。
 
 **起始版本：** 12
 

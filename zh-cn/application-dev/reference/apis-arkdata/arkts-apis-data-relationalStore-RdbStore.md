@@ -862,7 +862,7 @@ if (store != undefined) {
 
 ```ts
 let createSql = "CREATE TABLE IF NOT EXISTS test (id INTEGER PRIMARY KEY AUTOINCREMENT, data1 floatvector(2));";
-await store!.execute(createSql, 0, undefined);  // 创建关系表，第二个参数0表示不开启显示事务，第三个参数undefined表示sql未使用绑定参数化
+await store!.execute(createSql, 0, undefined); // 创建关系表，第二个参数0表示不开启显式事务，第三个参数undefined表示sql未使用绑定参数化
 let floatVector = Float32Array.from([1.2, 2.3]);
 let valueBucketArray = new Array<relationalStore.ValuesBucket>();
 for (let i = 0; i < 100; i++) { // 构造一个BucketArray用于写入

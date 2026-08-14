@@ -88,8 +88,8 @@ hidumper -s 4700 -a "buscenter -l remote_device_info"
 | 接口名                                                               | 描述                       |
 | -------------------------------------------------------------------- | -------------------------- |
 | onCreate(want: Want): void;                                          | 分布式协同触发创建。       |
-| onDestroy(): void;                                                   | 分布式协同销毁 。          |
-| onCollaborate(wantParam: Record): AbilityConstant.CollaborateResult; | 分布式协同有请求时时回调。 |
+| onDestroy(): void;                                                   | 分布式协同销毁。          |
+| onCollaborate(wantParam: Record): AbilityConstant.CollaborateResult; | 分布式协同有请求时回调。 |
 
 ### 开发步骤
 
@@ -99,21 +99,25 @@ hidumper -s 4700 -a "buscenter -l remote_device_info"
    
    DistributedExtensionAbility配置文件示例：
    
-   ```json
-   "extensionAbilities": [
-     {
-       "name": "EntrydistributedAbility",
-       "srcEntry": "./ets/entrybackupability/EntryDistributedAbility.ets",
-       "type": "distributed",
-       "exported": false,
-       "metadata": [
-         {
-           "name": "ohos.extension.DistributedExtension",
-         }
-       ],
-       "srcEntry": "./ets/common/MDSExtension.ts",
+   ```json5
+   {
+     "module": {
+       "extensionAbilities": [
+        {
+          "name": "EntrydistributedAbility",
+          "type": "distributed",
+          "exported": false,
+          "metadata": [
+            {
+              "name": "ohos.extension.DistributedExtension"
+            }
+          ],
+          "srcEntry": "./ets/common/MDSExtension.ts"
+        }
+       ]
      }
-   ]
+   }
+   
    ```
 2. 导入开发所需模块。
    

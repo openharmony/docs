@@ -392,7 +392,7 @@ getAllDisplayPhysicalResolution(): Promise&lt;Array&lt;DisplayPhysicalResolution
 
 | 类型 | 说明 |
 | ----------------------------------------------- | ------------------------------------------------------- |
-| Promise&lt;Array&lt;[DisplayPhysicalResolution](#displayphysicalresolution12)&gt;&gt; | Promise对象。返回当前所有的DisplayPhysicalResolution对象。 |
+| Promise&lt;Array&lt;[DisplayPhysicalResolution](#displayphysicalresolution12)&gt;&gt; | Promise对象。返回当前所有的DisplayPhysicalResolution对象，对象数组内按物理屏幕分辨率信息从低到高的顺序排列。 |
 
 **错误码：**
 
@@ -1430,7 +1430,6 @@ setVirtualScreenSurface(screenId:number, surfaceId: string): Promise&lt;void&gt;
 | ------- | ----------------------- |
 | 201     | Permission verification failed. The application does not have the permission required to call the API. |
 | 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
-| 801     | Capability not supported. Function setVirtualScreenSurface can not work correctly due to limited device capabilities. |
 | 1400001 | Invalid display or screen. |
 | 1400003 | This display manager service works abnormally. |
 

@@ -6,6 +6,7 @@
 <!--Designer: @zhouben25-->
 <!--Tester: @leetestnady-->
 <!--Adviser: @HelloCrease-->
+<!-- md-trans-meta sourceCommit=7be3499f7c151ec869cff3a879d447af32ef1a02 translatedAt=2026-08-11T01:57:14.720Z pushedAt=2026-08-11T07:57:01.730Z -->
 
 The **WorkSchedulerExtensionContext** module, inherited from [ExtensionContext](../apis-ability-kit/js-apis-inner-application-extensionContext.md), provides a context environment for the **WorkSchedulerExtensionAbility**.
 
@@ -13,8 +14,9 @@ This module provides APIs for accessing the resources of a **WorkSchedulerExtens
 
 > **NOTE**
 > 
-> The initial APIs of this module are supported since API version 10. Newly added APIs will be marked with a superscript to indicate their earliest API version. 
-> The APIs of this module can be used only in the stage model.
+> - The initial APIs of this module are supported since API version 10. Newly added APIs will be marked with a superscript to indicate their earliest API version.
+> 
+> - The APIs of this module can be used only in the stage model.
 
 ## How to Use
 

@@ -152,6 +152,7 @@ enum CommonEvent_ErrCode
 | 枚举项 | 描述 |
 | -- | -- |
 | COMMONEVENT_ERR_OK = 0 | 成功。 |
+| COMMONEVENT_ERR_PERMISSION_ERROR = 201 | 权限错误。 |
 | COMMONEVENT_ERR_INVALID_PARAMETER = 401 | 参数错误。参数不合法，请检查参数类型、取值范围或参数是否为空。 |
 | COMMONEVENT_ERR_SENDING_LIMIT_EXCEEDED = 1500003| 事件发送频率过高。请检查应用是否过于频繁地发送公共事件，如发送频率超过每5毫秒20个，请降低公共事件发送频率或增加发送间隔后重新尝试。<br>**起始版本：** 20 |
 | COMMONEVENT_ERR_NOT_SYSTEM_SERVICE = 1500004 | 三方应用无法发送系统公共事件。请检查当前应用是否为系统应用，或当前服务是否为系统服务。 |

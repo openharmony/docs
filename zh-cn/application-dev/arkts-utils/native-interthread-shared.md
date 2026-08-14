@@ -24,8 +24,12 @@ ArkTS文件定义。
 ``` TypeScript
 @Sendable
 export class SendableObjTest {
-  static newSendable() {
-    return 1024;
+  private value: number = 1024;
+  static newSendable(): SendableObjTest {
+    return new SendableObjTest();
+  }
+  public getValue(): number {
+    return this.value;
   }
 }
 ```
@@ -38,6 +42,8 @@ export class SendableObjTest {
 #include <thread>
 
 #include "napi/native_api.h"
+// 用于对比确认获取的sendable对象的value的值
+const int SENDABLE_VALUE = 1024;
 
 static void* g_serializationData = nullptr;
 static void* CreateEnvAndSendSendable(void*)
@@ -79,6 +85,7 @@ static void* CreateEnvAndSendSendable(void*)
     if (ret != napi_ok) {
         std::abort();
     }
+    napi_destroy_ark_runtime(&env);
     return nullptr;
 }
 ```
@@ -98,8 +105,12 @@ ArkTS文件定义。
 ``` TypeScript
 @Sendable
 export class SendableObjTest {
-  static newSendable() {
-    return 1024;
+  private value: number = 1024;
+  static newSendable(): SendableObjTest {
+    return new SendableObjTest();
+  }
+  public getValue(): number {
+    return this.value;
   }
 }
 ```
@@ -112,6 +123,8 @@ export class SendableObjTest {
 #include <thread>
 
 #include "napi/native_api.h"
+// 用于对比确认获取的sendable对象的value的值
+const int SENDABLE_VALUE = 1024;
 
 static void* g_serializationData = nullptr;
 static void* CreateEnvAndSendSendable(void*)
@@ -153,6 +166,7 @@ static void* CreateEnvAndSendSendable(void*)
     if (ret != napi_ok) {
         std::abort();
     }
+    napi_destroy_ark_runtime(&env);
     return nullptr;
 }
 
@@ -175,24 +189,40 @@ static void* CreateEnvAndReceiveSendable(void*)
     if (ret != napi_ok) {
         std::abort();
     }
+    // 4. 从 result 对象上获取 getValue 方法
+    napi_value getValueFunc = nullptr;
+    ret = napi_get_named_property(env, result, "getValue", &getValueFunc);
+    if (ret != napi_ok) {
+        std::abort();
+    }
+    // 5. 以 result 作为 this 调用 getValue 方法，返回值存入 valueResult
+    napi_value valueResult = nullptr;
+    ret = napi_call_function(env, result, getValueFunc, 0, nullptr, &valueResult);
+    if (ret != napi_ok) {
+        std::abort();
+    }
+    // 6. 确认valueResult为 number 类型
     napi_valuetype valuetype0;
-    napi_typeof(env, result, &valuetype0);
+    napi_typeof(env, valueResult, &valuetype0);
     if (valuetype0 != napi_number) {
         std::abort();
     }
+    // 7. 1024是判断ArkTS返回的结果是否正确
     int value0;
-    napi_get_value_int32(env, result, &value0);
-    // 1024是判断ArkTS返回的结果是否正确
-    if (value0 != 1024) {
+    napi_get_value_int32(env, valueResult, &value0);
+    if (value0 != SENDABLE_VALUE) {
         std::abort();
     }
+    napi_destroy_ark_runtime(&env);
     return nullptr;
 }
 
 static napi_value TestSendSendable([[maybe_unused]] napi_env env, [[maybe_unused]] napi_callback_info info)
 {
+    // UI 主线程创建 t1 线程
     std::thread t1(CreateEnvAndSendSendable, nullptr);
     t1.join();
+    // UI 主线程创建 t2 线程
     std::thread t2(CreateEnvAndReceiveSendable, nullptr);
     t2.join();
     return nullptr;

@@ -290,10 +290,9 @@ switchInputMethod(target: InputMethodProperty, callback: AsyncCallback&lt;boolea
 
 使用后效果：成功时系统将当前输入法切换为目标输入法，目标输入法成为新的当前输入法；失败时当前输入法不变。
 
-> **说明：**
->
->  - 在API version 9-10版本，仅支持系统应用调用且需要权限ohos.permission.CONNECT_IME_ABILITY。
->  - 在API version 11版本起，仅支持当前输入法应用调用。
+**需要权限：**
+- API版本9-10：ohos.permission.CONNECT_IME_ABILITY
+- API版本11+：N/A
 
 **需要权限：**
 - API版本9-10：ohos.permission.CONNECT_IME_ABILITY
@@ -353,10 +352,9 @@ switchInputMethod(target: InputMethodProperty): Promise&lt;boolean&gt;
 
 使用后效果：成功时系统将当前输入法切换为目标输入法；失败时当前输入法不变。
 
-> **说明：**
->
->  - 在API version 9-10版本，仅支持系统应用调用且需要权限ohos.permission.CONNECT_IME_ABILITY。
->  - 在API version 11版本起，仅支持当前输入法应用调用。
+**需要权限：**
+- API版本9-10：ohos.permission.CONNECT_IME_ABILITY
+- API版本11+：N/A
 
 **需要权限：**
 - API版本9-10：ohos.permission.CONNECT_IME_ABILITY
@@ -440,11 +438,9 @@ switchCurrentInputMethodSubtype(target: InputMethodSubtype, callback: AsyncCallb
 
 切换当前输入法的子类型。使用callback异步回调。
 
-> **说明：**
->
->  - 在API version 9版本，仅支持系统应用调用且需要权限ohos.permission.CONNECT_IME_ABILITY。
->  - 在API version 10版本，支持系统应用和当前输入法应用调用；需要权限ohos.permission.CONNECT_IME_ABILITY。
->  - 在API version 11版本起，仅支持当前输入法调用。
+**需要权限：**
+- API版本9-10：ohos.permission.CONNECT_IME_ABILITY
+- API版本11+：N/A
 
 **需要权限：**
 - API版本9-10：ohos.permission.CONNECT_IME_ABILITY
@@ -510,11 +506,9 @@ switchCurrentInputMethodSubtype(target: InputMethodSubtype): Promise&lt;boolean&
 
 切换当前输入法的子类型。使用promise异步回调。
 
-> **说明：**
->
->  - 在API version 9版本，仅支持系统应用调用且需要权限ohos.permission.CONNECT_IME_ABILITY。
->  - 在API version 10版本，支持系统应用和当前输入法应用调用；需要权限ohos.permission.CONNECT_IME_ABILITY。
->  - 在API version 11版本起，仅支持当前输入法调用。
+**需要权限：**
+- API版本9-10：ohos.permission.CONNECT_IME_ABILITY
+- API版本11+：N/A
 
 **需要权限：**
 - API版本9-10：ohos.permission.CONNECT_IME_ABILITY
@@ -605,10 +599,9 @@ switchCurrentInputMethodAndSubtype(inputMethodProperty: InputMethodProperty, inp
 
 切换至指定输入法的指定子类型，适用于跨输入法切换子类型。使用callback异步回调。
 
-> **说明：**
->
->  - 在API version 9-10版本，仅支持系统应用调用且需要权限ohos.permission.CONNECT_IME_ABILITY。
->  - 在API version 11版本起，仅支持当前输入法调用。
+**需要权限：**
+- API版本9-10：ohos.permission.CONNECT_IME_ABILITY
+- API版本11+：N/A
 
 **需要权限：**
 - API版本9-10：ohos.permission.CONNECT_IME_ABILITY
@@ -666,10 +659,9 @@ switchCurrentInputMethodAndSubtype(inputMethodProperty: InputMethodProperty, inp
 
 切换至指定输入法的指定子类型，适用于跨输入法切换子类型。使用promise异步回调。
 
-> **说明：**
->
->  - 在API version 9-10版本，仅支持系统应用调用且需要权限ohos.permission.CONNECT_IME_ABILITY。
->  - 在API version 11版本起，仅支持当前输入法调用。
+**需要权限：**
+- API版本9-10：ohos.permission.CONNECT_IME_ABILITY
+- API版本11+：N/A
 
 **需要权限：**
 - API版本9-10：ohos.permission.CONNECT_IME_ABILITY

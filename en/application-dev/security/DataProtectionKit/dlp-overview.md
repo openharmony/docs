@@ -1,12 +1,14 @@
 # About This Kit
+
 <!--Kit: Data Protection Kit-->
 <!--Subsystem: Security-->
 <!--Owner: @winnieHuYu-->
 <!--Designer: @QRF-->
 <!--Tester: @nacyli-->
 <!--Adviser: @zengyawen-->
+<!-- md-trans-meta sourceCommit=ea89afb9ae1513bcb89f85eac0b35098803eb4b4 translatedAt=2026-08-11T01:56:44.928Z pushedAt=2026-08-11T02:39:32.051Z -->
 
-The Data Loss Prevention (DLP) service is a system-level solution provided to prevent data disclosure. It provides capabilities for cross-device file access management, encrypted storage, and access authorization. The data owner can grant the permission (read only, edit, or full control, etc.) on a confidential file based on account authentication. The confidential file is encrypted and stored in ciphertext. Only the user who has passed the device-cloud authentication using a DLP-capable device can access or modify the file.
+Data Loss Prevention (DLP) is a system-level data leak prevention solution provided by the system. It offers capabilities such as file permission management, encrypted storage, and authorized access. Data owners can configure permissions for confidential files based on account authentication, with options including read-only, edit, and owner permissions. The confidential files are then stored in ciphertext. On devices that support the DLP mechanism, authentication and authorization can be performed through device-cloud synergy, allowing users to obtain the ability to access and modify the data.
 
 DLP is a system solution. You can implement complete DLP capabilities with little or no adaptation.
 
@@ -54,7 +56,7 @@ The DLP solution consists of the following components:
 
 10. The cloud module sends the permission policy and encryption key to the DLP permission manager application through the DLP permission management service.
 
-11. The DLP permission manager application invokes the DLP permission management service to install a DLP sandbox application for the application and perform access control based on the authorization.
+11. The DLP permission manager application calls the DLP permission management service to install a DLP sandbox clone of the application, and restricts the sandbox permissions based on the authorization policy, including but not limited to network, printing, and clipboard, to prevent data leakage.
 
 12. The DLP permission manager application uses a link mechanism to map the plaintext and ciphertext. Based on the open-source Filesystem in Userspace (FUSE), the link mechanism creates a virtual link file (which is mapped to the DLP file) and shares the link file to the application. The application can access and edit the plaintext file, and the operations are synchronized to the DLP file in real time.
 

@@ -1,10 +1,12 @@
 # Creating a Static Shortcut of the Application
+
 <!--Kit: Ability Kit-->
 <!--Subsystem: BundleManager-->
 <!--Owner: @wanghang904-->
 <!--Designer: @hanfeng6-->
-<!--Tester: @kongjing2-->
-<!--Adviser: @Brilliantry_Rui-->
+<!--Tester: @memghaiyang-->
+<!--Adviser: @HelloCrease-->
+<!-- md-trans-meta sourceCommit=e614db0ed9ef9e65ff9f340640f4a0fd5317e78d translatedAt=2026-08-13T09:08:03.137Z pushedAt=2026-08-13T14:11:08.855Z -->
 
 With applications getting more feature-packed, it becomes tougher for users to find and use specific features. To make things smoother, you can create home screen shortcuts for popular features in your application, allowing for quick application launch and direct access to these features. Typical feature shortcuts include "Quick Photo" in camera applications, "Create Note" in note applications, and frequently used location navigation in map applications. All of these shortcuts enable users to quickly access specific feature pages, greatly improving operation efficiency and making users more reliant on the application. You can also create shortcuts to meet personalized workflow and preference needs. For details about how to configure shortcuts, see [How to Configure](#how-to-configure). For details about shortcut management, see [shortcutManager Module](../reference/apis-ability-kit/js-apis-shortcutManager.md).
 
@@ -19,6 +21,7 @@ This topic uses navigation as an example. When using a map application for navig
 The following describes how to configure a static shortcut in a project.
 
 1. Add the following content to the **entry/src/main/resources/base/element/string.json** file:
+
     ```json
     {
       "string": [
@@ -33,7 +36,6 @@ The following describes how to configure a static shortcut in a project.
       ]
     }
     ```
-
 
 2. Configure the shortcut file.
 
@@ -78,9 +80,8 @@ The following describes how to configure a static shortcut in a project.
 
 3. Configure **metadata** in the **module.json5** file of the application, which points to the shortcut file.
 
-
     <!-- @[typical_scenario_configuration](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/bmsSample/TypicalScenarioConfiguration/entry/src/main/module.json5) -->
-    
+
     ``` JSON5
     {
       "module": {

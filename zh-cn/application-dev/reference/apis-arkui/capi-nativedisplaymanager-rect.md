@@ -26,9 +26,9 @@ typedef struct {...} NativeDisplayManager_Rect
 
 | 名称 | 描述 |
 | -- | -- |
-| int32_t left | 矩形区域的左边界，单位为px，该参数为整数。 |
-| int32_t top | 矩形区域的上边界，单位为px，该参数为整数。 |
-| uint32_t width | 矩形区域的宽度，单位为px，该参数为整数。 |
-| uint32_t height | 矩形区域的高度，单位为px，该参数为整数。 |
+| int32_t left | 矩形区域的左边界，单位为px。 |
+| int32_t top | 矩形区域的上边界，单位为px。 |
+| uint32_t width | 矩形区域的宽度，单位为px。 |
+| uint32_t height | 矩形区域的高度，单位为px。 |
 
 

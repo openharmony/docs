@@ -85,7 +85,7 @@ openFile(uri: string, mode: string): Promise\<number>
 
 | 类型             | 说明             |
 | ---------------- | ---------------- |
-| Promise\<number> | Promise对象，返回文件说明符。 |
+| Promise\<number> | Promise对象，返回文件描述符。 |
 
 **示例：**
 
@@ -454,7 +454,7 @@ denormalizeUri(uri: string): Promise\<string>
 
 | 参数名 | 类型   | 必填 | 说明                    |
 | ---- | ------ | ---- | ----------------------- |
-| uri  | string | 是   | 表示要规范化的uri对象。 |
+| uri  | string | 是   | 表示要反规范化的uri对象。 |
 
 **返回值：**
 

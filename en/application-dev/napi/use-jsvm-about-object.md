@@ -1,10 +1,12 @@
 # Working with Objects Using JSVM-API
-<!--Kit: NDK Development-->
+
+<!--Kit: ArkTS-->
 <!--Subsystem: arkcompiler-->
-<!--Owner: @yuanxiaogou; @string_sz-->
+<!--Owner: @yuanxiaogou-->
 <!--Designer: @knightaoko-->
 <!--Tester: @test_lzz-->
-<!--Adviser: @fang-jinxu-->
+<!--Adviser: @k1ngqaquuu-->
+<!-- md-trans-meta sourceCommit=f34ddda28f1bcebae0ddfbd293a9ffe8cb2789f9 translatedAt=2026-08-12T06:32:22.614Z pushedAt=2026-08-12T10:57:40.079Z -->
 
 ## Overview
 
@@ -15,6 +17,7 @@ JSVM-API provides APIs for basic JavaScript (JS) object operations, including cr
 You may need to define and operate objects when using JSVM-API in development. For example, define an API with an object as an input parameter, perform operations on the object, and have a result object returned. In this process, you need to ensure that the API definition is clear and compatible with the properties and methods of the object.
 
 - API: defines the interaction protocol between components. An API includes input parameters, output result, and possible error handling. By calling APIs, components can interact and exchange data with each other without knowing the internal implementation details.
+
 - Object: a composite data type that allows values of different types in an independent entity in JS. An object is a collection of properties and methods. A property is a value associated with an object, and a method is an operation that the object can perform.
 
 ## Available APIs
@@ -44,15 +47,15 @@ Call **OH_JSVM_GetPrototype** to obtain the prototype of a JS object.
 
 CPP code:
 
-```cpp
-// hello.cpp
+<!-- @[oh_jsvm_get_prototype](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/JSVMAPI/JsvmUsageGuide/JsvmAboutObject/getprototype/src/main/cpp/hello.cpp) -->
+
+``` C++
 #include "napi/native_api.h"
+#include "hilog/log.h"
 #include "ark_runtime/jsvm.h"
-#include <hilog/log.h>
-#include <fstream>
-#include <string>
-// Register the GetPrototype callback.
-// Define OH_JSVM_GetPrototype.
+// ...
+
+// Sample method for OH_JSVM_GetPrototype
 static JSVM_Value GetPrototype(JSVM_Env env, JSVM_CallbackInfo info)
 {
     size_t argc = 1;
@@ -67,22 +70,23 @@ static JSVM_Value GetPrototype(JSVM_Env env, JSVM_CallbackInfo info)
     }
     return result;
 }
+// Register the GetPrototype callback
 static JSVM_CallbackStruct param[] = {
     {.data = nullptr, .callback = GetPrototype},
 };
 static JSVM_CallbackStruct *method = param;
-// Alias for the getPrototype method to be called from JS.
+// Alias of the GetPrototype method for JS calls
 static JSVM_PropertyDescriptor descriptor[] = {
     {"getPrototype", nullptr, method++, nullptr, nullptr, nullptr, JSVM_DEFAULT},
 };
-// Call the C++ code from JS.
-const char* srcCallNative = R"JS(const myObject = {};
+// Sample test JS
+const char* SRC_CALL_NATIVE = R"JS(const myObject = {};
     const proto = getPrototype(myObject);
     console.info(proto === Object.prototype);)JS";
 ```
-<!-- @[oh_jsvm_get_prototype](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/JSVMAPI/JsvmUsageGuide/JsvmAboutObject/getprototype/src/main/cpp/hello.cpp) -->
 
 Expected result:
+
 ```ts
 JSVM GetPrototype success
 ```
@@ -93,49 +97,51 @@ Call **OH_JSVM_CreateObject** to create a default JS object.
 
 CPP code:
 
-```cpp
-// hello.cpp
+<!-- @[oh_jsvm_create_object](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/JSVMAPI/JsvmUsageGuide/JsvmAboutObject/createobject/src/main/cpp/hello.cpp) -->
+
+``` C++
 #include "napi/native_api.h"
 #include "ark_runtime/jsvm.h"
-#include <hilog/log.h>
-#include <fstream>
-// Define OH_JSVM_CreateObject.
+#include "hilog/log.h"
+// ...
+
+// Sample method for OH_JSVM_CreateObject
 static JSVM_Value CreateObject(JSVM_Env env, JSVM_CallbackInfo info)
 {
     JSVM_Value object = nullptr;
-    // Create an empty object.
+    // Create an empty object
     JSVM_Status status = OH_JSVM_CreateObject(env, &object);
     if (status != JSVM_OK) {
         OH_LOG_ERROR(LOG_APP, "JSVM CreateObject fail");
     } else {
         OH_LOG_INFO(LOG_APP, "JSVM CreateObject success");
     }
-    // Set the object property.
+    // Set the property of the object
     JSVM_Value name = nullptr;
-    // Set the property name to "name".
+    // Set the property name to "name"
     OH_JSVM_CreateStringUtf8(env, "name", JSVM_AUTO_LENGTH, &name);
     JSVM_Value value = nullptr;
     // Set the property value to "Hello from N-API!"
     OH_JSVM_CreateStringUtf8(env, "Hello OH_JSVM_CreateObject!", JSVM_AUTO_LENGTH, &value);
-    // Set the property on the object.
+    // Set the property on the object
     OH_JSVM_SetProperty(env, object, name, value);
     return object;
 }
-// Register the CreateObject callback.
+// Register the CreateObject callback
 static JSVM_CallbackStruct param[] = {
     {.data = nullptr, .callback = CreateObject},
 };
 static JSVM_CallbackStruct *method = param;
-// Alias for the createObject method to be called from JS.
+// Alias of the CreateObject method for JS calls
 static JSVM_PropertyDescriptor descriptor[] = {
     {"createObject", nullptr, method++, nullptr, nullptr, nullptr, JSVM_DEFAULT},
 };
-// Call the C++ code from JS.
-const char* srcCallNative = R"JS(createObject())JS";
+// Sample test JS
+const char* SRC_CALL_NATIVE = R"JS(createObject())JS";
 ```
-<!-- @[oh_jsvm_create_object](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/JSVMAPI/JsvmUsageGuide/JsvmAboutObject/createobject/src/main/cpp/hello.cpp) -->
 
 Expected result:
+
 ```ts
 JSVM CreateObject success
 ```
@@ -146,46 +152,50 @@ Call **OH_JSVM_ObjectFreeze** to freeze a JS object. Once a JS object is frozen,
 
 CPP code:
 
-```cpp
-// hello.cpp
+<!-- @[oh_jsvm_object_freeze](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/JSVMAPI/JsvmUsageGuide/JsvmAboutObject/objectfreeze/src/main/cpp/hello.cpp) -->
+
+``` C++
 #include "napi/native_api.h"
 #include "ark_runtime/jsvm.h"
-#include <hilog/log.h>
-// Define OH_JSVM_ObjectFreeze.
+#include "hilog/log.h"
+// ...
+
+// Sample method for OH_JSVM_ObjectFreeze
+const int FREEZE_TEST_VALUE = 111111;
 static JSVM_Value ObjectFreeze(JSVM_Env env, JSVM_CallbackInfo info)
 {
-    // Accept an object passed in from JS.
+    // Accept an object passed from the JavaScript side
     size_t argc = 1;
     JSVM_Value argv[1] = {nullptr};
     OH_JSVM_GetCbInfo(env, info, &argc, argv, nullptr, nullptr);
-    // Call OH_JSVM_ObjectFreeze to freeze the object passed in.
+    // Call OH_JSVM_ObjectFreeze to freeze the passed object
     JSVM_Status status = OH_JSVM_ObjectFreeze(env, argv[0]);
     if (status == JSVM_OK) {
         OH_LOG_INFO(LOG_APP, "Test JSVM OH_JSVM_ObjectFreeze success");
     }
-    // Check whether the properties of the frozen object can be modified.
+    // Test whether the property of the frozen object can be modified
     JSVM_Value value = nullptr;
-    OH_JSVM_CreateInt32(env, 111111, &value);
+    OH_JSVM_CreateInt32(env, FREEZE_TEST_VALUE, &value);
     OH_JSVM_SetNamedProperty(env, argv[0], "data", value);
-    // Return the properties modified after the freezing to JS.
+    // Return the modified property of the frozen object to the JavaScript side
     return argv[0];
 }
-// Register the ObjectFreeze callback.
+// Register the ObjectFreeze callback
 static JSVM_CallbackStruct param[] = {
     {.data = nullptr, .callback = ObjectFreeze},
 };
 static JSVM_CallbackStruct *method = param;
-// Alias for the ObjectFreeze method to be called from JS.
+// Alias of the ObjectFreeze method for JS calls
 static JSVM_PropertyDescriptor descriptor[] = {
     {"objectFreeze", nullptr, method++, nullptr, nullptr, nullptr, JSVM_DEFAULT},
 };
-// Call the C++ code from JS.
-const char* srcCallNative = R"JS(let obj = { data: 55, message: "hello world"};
+// Sample test JS
+const char* SRC_CALL_NATIVE = R"JS(let obj = { data: 55, message: "hello world"};
   objectFreeze(obj))JS";
 ```
-<!-- @[oh_jsvm_object_freeze](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/JSVMAPI/JsvmUsageGuide/JsvmAboutObject/objectfreeze/src/main/cpp/hello.cpp) -->
 
 Expected result:
+
 ```ts
 Test JSVM OH_JSVM_ObjectFreeze success
 ```
@@ -196,29 +206,33 @@ Call **OH_JSVM_ObjectSeal** to seal a JS object. Once a JS object is sealed, new
 
 CPP code:
 
-```cpp
-// hello.cpp
+<!-- @[oh_jsvm_object_seal](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/JSVMAPI/JsvmUsageGuide/JsvmAboutObject/objectseal/src/main/cpp/hello.cpp) -->
+
+``` C++
 #include "napi/native_api.h"
 #include "ark_runtime/jsvm.h"
-#include <hilog/log.h>
-// Define OH_JSVM_ObjectSeal.
+#include "hilog/log.h"
+// ...
+
+// Sample method for OH_JSVM_ObjectSeal
+const int TEST_VALUE = 111111;
 static JSVM_Value ObjectSeal(JSVM_Env env, JSVM_CallbackInfo info)
 {
-    // Accept an object passed in from JS.
+    // Accept an object passed from the JavaScript side
     size_t argc = 1;
     JSVM_Value argv[1] = {nullptr};
     OH_JSVM_GetCbInfo(env, info, &argc, argv, nullptr, nullptr);
-    // Call OH_JSVM_ObjectSeal to seal the object passed in.
+    // Call OH_JSVM_ObjectSeal to seal the passed object so that no new properties can be added
     JSVM_Status status = OH_JSVM_ObjectSeal(env, argv[0]);
     if (status == JSVM_OK) {
         OH_LOG_INFO(LOG_APP, "Test JSVM OH_JSVM_ObjectSeal success");
     }
-    // Check whether the properties of the sealed object can be modified, deleted, or added.
-    // Modify a property of the sealed object.
+    // Check whether properties of the sealed object can be modified, deleted, or added
+    // Modify the sealed object
     JSVM_Value changeValue = nullptr;
-    OH_JSVM_CreateInt32(env, 111111, &changeValue);
+    OH_JSVM_CreateInt32(env, TEST_VALUE, &changeValue);
     OH_JSVM_SetNamedProperty(env, argv[0], "data", changeValue);
-    // Delete a property from the sealed object.
+    // Delete from the sealed object
     JSVM_Value deleteProperty = nullptr;
     OH_JSVM_CreateStringUtf8(env, "message", JSVM_AUTO_LENGTH, &deleteProperty);
     bool result = false;
@@ -226,29 +240,29 @@ static JSVM_Value ObjectSeal(JSVM_Env env, JSVM_CallbackInfo info)
     if (result) {
         OH_LOG_INFO(LOG_APP, "Test JSVM OH_JSVM_ObjectSeal failed");
     }
-    // Add a property to the sealed object.
+    // Add to the sealed object
     JSVM_Value addValue = nullptr;
     OH_JSVM_CreateStringUtf8(env, "addValue", JSVM_AUTO_LENGTH, &addValue);
     OH_JSVM_SetNamedProperty(env, argv[0], "newProperty", addValue);
-    // Return the modified object to JS.
+    // Return the modified sealed object to the JavaScript side
     return argv[0];
 }
-// Register the ObjectSeal callback.
+// Register the ObjectSeal callback
 static JSVM_CallbackStruct param[] = {
     {.data = nullptr, .callback = ObjectSeal},
 };
 static JSVM_CallbackStruct *method = param;
-// Alias for the ObjectSeal method to be called from JS.
+// Alias of the ObjectSeal method for JS calls
 static JSVM_PropertyDescriptor descriptor[] = {
     {"objectSeal", nullptr, method++, nullptr, nullptr, nullptr, JSVM_DEFAULT},
 };
-// Call the C++ code from JS.
-const char* srcCallNative = R"JS( let obj = { data: 55, message: "hello world"};
+// Sample test JS
+const char* SRC_CALL_NATIVE = R"JS( let obj = { data: 55, message: "hello world"};
   objectSeal(obj))JS";
 ```
-<!-- @[oh_jsvm_object_seal](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/JSVMAPI/JsvmUsageGuide/JsvmAboutObject/objectseal/src/main/cpp/hello.cpp) -->
 
 Expected result:
+
 ```ts
 Test JSVM OH_JSVM_ObjectSeal success
 ```
@@ -259,12 +273,15 @@ Call **OH_JSVM_Typeof** to return the type of a JS object.
 
 CPP code:
 
-```cpp
-// hello.cpp
+<!-- @[oh_jsvm_typeof](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/JSVMAPI/JsvmUsageGuide/JsvmAboutObject/typeof/src/main/cpp/hello.cpp) -->
+
+``` C++
 #include "napi/native_api.h"
 #include "ark_runtime/jsvm.h"
-#include <hilog/log.h>
-// Define OH_JSVM_Typeof.
+#include "hilog/log.h"
+// ...
+
+// Sample method for OH_JSVM_Typeof
 static JSVM_Value GetTypeof(JSVM_Env env, JSVM_CallbackInfo info)
 {
     size_t argc = 1;
@@ -321,21 +338,21 @@ static JSVM_Value GetTypeof(JSVM_Env env, JSVM_CallbackInfo info)
     }
     return type;
 }
-// Register the GetTypeof callback.
+// Register the GetTypeof callback
 static JSVM_CallbackStruct param[] = {
     {.data = nullptr, .callback = GetTypeof},
 };
 static JSVM_CallbackStruct *method = param;
-// Alias for the GetTypeof method to be called from JS.
+// Alias of the GetTypeof method for TS calls
 static JSVM_PropertyDescriptor descriptor[] = {
     {"getTypeof", nullptr, method++, nullptr, nullptr, nullptr, JSVM_DEFAULT},
 };
-// Call the C++ code from JS.
-const char* srcCallNative = R"JS(getTypeof(true);)JS";
+// Sample test JS
+const char* SRC_CALL_NATIVE = R"JS(getTypeof(true);)JS";
 ```
-<!-- @[oh_jsvm_typeof](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/JSVMAPI/JsvmUsageGuide/JsvmAboutObject/typeof/src/main/cpp/hello.cpp) -->
 
 Expected result:
+
 ```ts
 JSVM Input type is boolean
 ```
@@ -346,15 +363,18 @@ Call **OH_JSVM_Instanceof** to check whether an object is an instance of a const
 
 CPP code:
 
-```cpp
-// hello.cpp
+<!-- @[oh_jsvm_instanceof](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/JSVMAPI/JsvmUsageGuide/JsvmAboutObject/instanceof/src/main/cpp/hello.cpp) -->
+
+``` C++
 #include "napi/native_api.h"
 #include "ark_runtime/jsvm.h"
-#include <hilog/log.h>
-// Define OH_JSVM_Instanceof.
+#include "hilog/log.h"
+// ...
+
+// Sample method for OH_JSVM_Instanceof
 static JSVM_Value InstanceOf(JSVM_Env env, JSVM_CallbackInfo info)
 {
-    // Obtain the two parameters passed from JS.
+    // Obtain two parameters passed from the JavaScript side
     size_t argc = 2;
     JSVM_Value args[2] = {nullptr};
     OH_JSVM_GetCbInfo(env, info, &argc, args, nullptr, nullptr);
@@ -369,17 +389,17 @@ static JSVM_Value InstanceOf(JSVM_Env env, JSVM_CallbackInfo info)
     OH_JSVM_GetBoolean(env, result, &returnValue);
     return returnValue;
 }
-// Register the InstanceOf callback.
+// Register the InstanceOf callback
 static JSVM_CallbackStruct param[] = {
     {.data = nullptr, .callback = InstanceOf},
 };
 static JSVM_CallbackStruct *method = param;
-// Alias for the InstanceOf method to be called from JS.
+// Alias of the InstanceOf method for TS calls
 static JSVM_PropertyDescriptor descriptor[] = {
     {"instanceOf", nullptr, method++, nullptr, nullptr, nullptr, JSVM_DEFAULT},
 };
-// Call the C++ code from JS.
-const char* srcCallNative = R"JS(class Person {
+// Sample test JS
+const char* SRC_CALL_NATIVE = R"JS(class Person {
         name;
         age;
         constructor(name, age) {
@@ -390,9 +410,9 @@ const char* srcCallNative = R"JS(class Person {
      instanceOf(new Person('Alice', 30), Person);
      ;)JS";
 ```
-<!-- @[oh_jsvm_instanceof](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/JSVMAPI/JsvmUsageGuide/JsvmAboutObject/instanceof/src/main/cpp/hello.cpp) -->
 
 Expected result:
+
 ```ts
 JSVM InstanceOf: 1
 ```
@@ -407,32 +427,34 @@ Call **OH_JSVM_CheckObjectTypeTag** to check whether a tag matches the tag type 
 
 CPP code:
 
-```cpp
-// hello.cpp
+<!-- @[oh_jsvm_check_object_type_tag](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/JSVMAPI/JsvmUsageGuide/JsvmAboutObject/checkobjecttypetag/src/main/cpp/hello.cpp) -->
+
+``` C++
 #include "napi/native_api.h"
+#include "hilog/log.h"
 #include "ark_runtime/jsvm.h"
-#include <hilog/log.h>
 #define NUMBERINT_FOUR 4
-// Define a static constant JSVM_TypeTag array to store type tags.
+// ...
+// Define a static constant JSVM_TypeTag array to store type tags
 static const JSVM_TypeTag TagsData[NUMBERINT_FOUR] = {
     {0x9e4b2449547061b3, 0x33999f8a6516c499},
     {0x1d55a794c53a726d, 0x43633f509f9c944e},
-    {0, 0}, // Indicates the default tag or no tag.
+    {0, 0}, // Used to indicate no tag or the default tag
     {0x6a971439f5b2e5d7, 0x531dc28a7e5317c0},
 };
-// Define OH_JSVM_TypeTagObject.
+// Sample method for OH_JSVM_TypeTagObject
 static JSVM_Value SetTypeTagToObject(JSVM_Env env, JSVM_CallbackInfo info)
 {
-    // Obtain the two parameters passed from JS.
+    // Obtain two parameters passed from the JavaScript side
     size_t argc = 2;
     JSVM_Value args[2] = {nullptr};
     OH_JSVM_GetCbInfo(env, info, &argc, args, nullptr, nullptr);
-    // Obtain the index number and convert it to JSVM_Value.
+    // Obtain the index number and convert it to JSVM_Value
     int32_t index = 0;
     OH_JSVM_GetValueInt32(env, args[1], &index);
-    // Set the type tag for the parameter (object).
+    // Set the type tag for the parameter (object)
     JSVM_Status status = OH_JSVM_TypeTagObject(env, args[0], &TagsData[index]);
-    // Convert the bool value to JSVM_Value and return it.
+    // Convert the bool result to JSVM_Value and return it
     JSVM_Value result = nullptr;
     if (status != JSVM_OK) {
         OH_LOG_ERROR(LOG_APP, "JSVM SetTypeTagToObject fail");
@@ -443,17 +465,17 @@ static JSVM_Value SetTypeTagToObject(JSVM_Env env, JSVM_CallbackInfo info)
     }
     return result;
 }
-// Define OH_JSVM_CheckObjectTypeTag.
+// Sample method for OH_JSVM_CheckObjectTypeTag
 static JSVM_Value CheckObjectTypeTag(JSVM_Env env, JSVM_CallbackInfo info)
 {
-    // Obtain the two parameters passed from JS.
+    // Obtain two parameters passed from the JavaScript side
     size_t argc = 2;
     JSVM_Value args[2] = {nullptr};
     OH_JSVM_GetCbInfo(env, info, &argc, args, nullptr, nullptr);
-    // Obtain the index number and convert it to JSVM_Value.
+    // Obtain the index number and convert it to JSVM_Value
     int32_t index = 0;
     OH_JSVM_GetValueInt32(env, args[1], &index);
-    // Check the type tag of the object.
+    // Check the type tag of the object
     bool checkResult = false;
     JSVM_Status status = OH_JSVM_CheckObjectTypeTag(env, args[0], &TagsData[index], &checkResult);
     if (status != JSVM_OK) {
@@ -461,35 +483,35 @@ static JSVM_Value CheckObjectTypeTag(JSVM_Env env, JSVM_CallbackInfo info)
     } else {
         OH_LOG_INFO(LOG_APP, "JSVM CheckObjectTypeTag:%{public}d", checkResult);
     }
-    // Convert the bool value to JSVM_Value and return it.
+    // Convert the bool result to JSVM_Value and return it
     JSVM_Value checked = nullptr;
     OH_JSVM_GetBoolean(env, checkResult, &checked);
     return checked;
 }
-// Registers the SetTypeTagToObject and CheckObjectTypeTag callbacks.
+// Register the SetTypeTagToObject and CheckObjectTypeTag callbacks
 static JSVM_CallbackStruct param[] = {
     {.data = nullptr, .callback = SetTypeTagToObject},
     {.data = nullptr, .callback = CheckObjectTypeTag},
 };
 static JSVM_CallbackStruct *method = param;
-// Aliases for the SetTypeTagToObject and CheckObjectTypeTag methods to be called from JS.
+// Aliases of the SetTypeTagToObject and CheckObjectTypeTag methods for TS calls
 static JSVM_PropertyDescriptor descriptor[] = {
-    {"setTypeTagToObject", nullptr, method++, nullptr, nullptr, nullptr, JSVM_DEFAULT},
-    {"checkObjectTypeTag", nullptr, method++, nullptr, nullptr, nullptr, JSVM_DEFAULT},
+    {"setTypeTagToObject", nullptr, method, nullptr, nullptr, nullptr, JSVM_DEFAULT},
+    {"checkObjectTypeTag", nullptr, method+1, nullptr, nullptr, nullptr, JSVM_DEFAULT},
 };
-// Call the C++ code from JS.
-const char* srcCallNative = R"JS(
+// Sample test JS
+const char* SRC_CALL_NATIVE = R"JS(
          class Obj {
            data;
            message;
          }
          let obj= { data: 0, message: "hello world"};
          setTypeTagToObject(obj, 0);
-         checkObjectTypeTag(obj,0);)JS";
+         checkObjectTypeTag(obj, 0);)JS";
 ```
-<!-- @[oh_jsvm_check_object_type_tag](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/JSVMAPI/JsvmUsageGuide/JsvmAboutObject/checkobjecttypetag/src/main/cpp/hello.cpp) -->
 
 Expected result:
+
 ```ts
 JSVM SetTypeTagToObject success
 JSVM CheckObjectTypeTag:1
@@ -504,13 +526,17 @@ Call **OH_JSVM_CreateExternal** to create a JS object that wraps an external poi
 
 CPP code:
 
-```cpp
-// hello.cpp
+<!-- @[oh_jsvm_create_external](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/JSVMAPI/JsvmUsageGuide/JsvmAboutObject/createexternal/src/main/cpp/hello.cpp) -->
+
+``` C++
 #include "napi/native_api.h"
+#include "hilog/log.h"
 #include "ark_runtime/jsvm.h"
-#include <hilog/log.h>
-#include <fstream>
-// Define OH_JSVM_CreateExternal.
+#include <cstdlib>
+#include <cstring>
+// ...
+
+// Sample method for OH_JSVM_CreateExternal
 static JSVM_Value CreateExternal(JSVM_Env env, JSVM_CallbackInfo info)
 {
     size_t dataSize = 10;
@@ -534,21 +560,21 @@ static JSVM_Value CreateExternal(JSVM_Env env, JSVM_CallbackInfo info)
     }
     return external;
 }
-// Register the CreateExternal callback.
+// Register the CreateExternal callback
 static JSVM_CallbackStruct param[] = {
     {.data = nullptr, .callback = CreateExternal},
 };
 static JSVM_CallbackStruct *method = param;
-// Alias for the CreateExternal method to be called from JS.
+// Alias of the CreateExternal method for JS calls
 static JSVM_PropertyDescriptor descriptor[] = {
     {"createExternal", nullptr, method++, nullptr, nullptr, nullptr, JSVM_DEFAULT},
 };
-// Call the C++ code from JS.
-const char* srcCallNative = R"JS(createExternal())JS";
+// Sample test JS
+const char* SRC_CALL_NATIVE = R"JS(createExternal())JS";
 ```
-<!-- @[oh_jsvm_create_external](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/JSVMAPI/JsvmUsageGuide/JsvmAboutObject/createexternal/src/main/cpp/hello.cpp) -->
 
 Expected result:
+
 ```ts
 JSVM CreateExternal success
 ```
@@ -559,12 +585,15 @@ Call **OH_JSVM_CreateExternal** to create a JS object that wraps a custom C/C++ 
 
 CPP code:
 
-```cpp
-// hello.cpp
+<!-- @[oh_jsvm_get_value_external](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/JSVMAPI/JsvmUsageGuide/JsvmAboutObject/getvalueexternal/src/main/cpp/hello.cpp) -->
+
+``` C++
 #include "napi/native_api.h"
 #include "ark_runtime/jsvm.h"
-#include <hilog/log.h>
-// Define OH_JSVM_GetValueExternal.
+#include "hilog/log.h"
+// ...
+
+// Sample method for OH_JSVM_GetValueExternal
 static JSVM_Value GetValueExternal(JSVM_Env env, JSVM_CallbackInfo info)
 {
     static int data = 0x12345;
@@ -575,34 +604,34 @@ static JSVM_Value GetValueExternal(JSVM_Env env, JSVM_CallbackInfo info)
     } else {
         OH_LOG_INFO(LOG_APP, "JSVM OH_JSVM_CreateExternal success");
     }
-    void *data_value;
-    status = OH_JSVM_GetValueExternal(env, externalValue, &data_value);
+    void *dataValue;
+    status = OH_JSVM_GetValueExternal(env, externalValue, &dataValue);
     if (status != JSVM_OK) {
         OH_LOG_ERROR(LOG_APP, "JSVM GetValueExternal fail");
     } else {
         OH_LOG_INFO(LOG_APP, "JSVM GetValueExternal success");
     }
-    // Convert the sign bit into a value of int type and pass it.
+    // Convert the symbol bit to int type and pass it out
     JSVM_Value returnValue = nullptr;
-    int retData = *static_cast<int *>(data_value);
+    int retData = *static_cast<int *>(dataValue);
     OH_JSVM_CreateInt32(env, retData, &returnValue);
     return returnValue;
 }
-// Register the GetValueExternal callback.
+// Register the GetValueExternal callback
 static JSVM_CallbackStruct param[] = {
     {.data = nullptr, .callback = GetValueExternal},
 };
 static JSVM_CallbackStruct *method = param;
-// Alias for the GetValueExternal method to be called from JS.
+// Alias of the GetValueExternal method for JS calls
 static JSVM_PropertyDescriptor descriptor[] = {
     {"getValueExternal", nullptr, method++, nullptr, nullptr, nullptr, JSVM_DEFAULT},
 };
-// Call the C++ code from JS.
-const char* srcCallNative = R"JS(getValueExternal())JS";
+// Sample test JS
+const char* SRC_CALL_NATIVE = R"JS(getValueExternal())JS";
 ```
-<!-- @[oh_jsvm_get_value_external](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/JSVMAPI/JsvmUsageGuide/JsvmAboutObject/getvalueexternal/src/main/cpp/hello.cpp) -->
 
 Expected result:
+
 ```ts
 JSVM OH_JSVM_CreateExternal success
 JSVM GetValueExternal success
@@ -614,12 +643,15 @@ Call **OH_JSVM_CreateSymbol** to create a symbol. Symbol is a special data type 
 
 CPP code:
 
-```cpp
-// hello.cpp
+<!-- @[oh_jsvm_create_symbol](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/JSVMAPI/JsvmUsageGuide/JsvmAboutObject/createsymbol/src/main/cpp/hello.cpp) -->
+
+``` C++
 #include "napi/native_api.h"
+#include "hilog/log.h"
 #include "ark_runtime/jsvm.h"
-#include <hilog/log.h>
-// Define OH_JSVM_CreateSymbol.
+// ...
+
+// Sample method for OH_JSVM_CreateSymbol
 static JSVM_Value CreateSymbol(JSVM_Env env, JSVM_CallbackInfo info)
 {
     JSVM_Value result = nullptr;
@@ -636,21 +668,21 @@ static JSVM_Value CreateSymbol(JSVM_Env env, JSVM_CallbackInfo info)
     }
     return returnSymbol;
 }
-// Register the CreateSymbol callback.
+// Register the CreateSymbol callback
 static JSVM_CallbackStruct param[] = {
     {.data = nullptr, .callback = CreateSymbol},
 };
 static JSVM_CallbackStruct *method = param;
-// Alias for the CreateSymbol method to be called from JS.
+// Alias of the CreateSymbol method for JS calls
 static JSVM_PropertyDescriptor descriptor[] = {
     {"createSymbol", nullptr, method++, nullptr, nullptr, nullptr, JSVM_DEFAULT},
 };
-// Call the C++ code from JS.
-const char* srcCallNative = R"JS(createSymbol())JS";
+// Sample test JS
+const char* SRC_CALL_NATIVE = R"JS(createSymbol())JS";
 ```
-<!-- @[oh_jsvm_create_symbol](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/JSVMAPI/JsvmUsageGuide/JsvmAboutObject/createsymbol/src/main/cpp/hello.cpp) -->
 
 Expected result:
+
 ```ts
 JSVM CreateSymbol Success
 ```
@@ -661,18 +693,22 @@ Call **OH_JSVM_SymbolFor** to search for a symbol with the given key in a global
 
 CPP code:
 
-```cpp
-// hello.cpp
+<!-- @[oh_jsvm_symbol_for](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/JSVMAPI/JsvmUsageGuide/JsvmAboutObject/symbolfor/src/main/cpp/hello.cpp) -->
+
+``` C++
 #include "napi/native_api.h"
 #include "ark_runtime/jsvm.h"
-#include <hilog/log.h>
-// Define a constant to store the maximum length of a string.
+#include "hilog/log.h"
+// ...
+
+static const size_t TESTMO_LENGTH = 9;
+// Define a constant to store the maximum string length
 static const int MAX_BUFFER_SIZE = 128;
-// Define OH_JSVM_SymbolFor.
+// Sample method for OH_JSVM_SymbolFor
 static JSVM_Value SymbolFor(JSVM_Env env, JSVM_CallbackInfo info)
 {
     JSVM_Value description = nullptr;
-    OH_JSVM_CreateStringUtf8(env, "test_demo", 9, &description);
+    OH_JSVM_CreateStringUtf8(env, "test_demo", TESTMO_LENGTH, &description);
     char buffer[MAX_BUFFER_SIZE];
     size_t bufferSize = MAX_BUFFER_SIZE;
     size_t copied = 0;
@@ -686,24 +722,24 @@ static JSVM_Value SymbolFor(JSVM_Env env, JSVM_CallbackInfo info)
     if (valuetypeSymbol == JSVM_SYMBOL && status == JSVM_OK) {
         OH_LOG_INFO(LOG_APP, "JSVM OH_JSVM_SymbolFor success");
     }
-    // Return the result.
+    // Return the result
     return result_symbol;
 }
-// Register the SymbolFor callback.
+// Register the SymbolFor callback
 static JSVM_CallbackStruct param[] = {
     {.data = nullptr, .callback = SymbolFor},
 };
 static JSVM_CallbackStruct *method = param;
-// Alias for the SymbolFor method to be called from JS.
+// Alias of the SymbolFor method for JS calls
 static JSVM_PropertyDescriptor descriptor[] = {
     {"symbolFor", nullptr, method++, nullptr, nullptr, nullptr, JSVM_DEFAULT},
 };
-// Call the C++ code from JS.
-const char* srcCallNative = R"JS(symbolFor())JS";
+// Sample test JS
+const char* SRC_CALL_NATIVE = R"JS(symbolFor())JS";
 ```
-<!-- @[oh_jsvm_symbol_for](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/JSVMAPI/JsvmUsageGuide/JsvmAboutObject/symbolfor/src/main/cpp/hello.cpp) -->
 
 Expected result:
+
 ```ts
 JSVM OH_JSVM_SymbolFor success
 ```

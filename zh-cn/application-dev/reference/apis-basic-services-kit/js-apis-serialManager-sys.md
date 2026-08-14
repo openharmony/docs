@@ -80,7 +80,7 @@ function addSerialRight() {
   }
 
   let portId: number = portList[0].portId;
-  let bundleFlags = bundleManager.BundleFlag.GET_BUNDLE_INFO_DEFAULT;
+  let bundleFlags = bundleManager.BundleFlag.GET_BUNDLE_INFO_WITH_APPLICATION;
 
   bundleManager.getBundleInfoForSelf(bundleFlags).then((bundleInfo) => {
     console.info('getBundleInfoForSelf successfully. Data: %{public}s', JSON.stringify(bundleInfo));

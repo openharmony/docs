@@ -1,25 +1,26 @@
-# Application Window Development (Stage Model)
+# App Window Development (Stage Model)
+
 <!--Kit: ArkUI-->
 <!--Subsystem: Window-->
-<!--Owner: @waterwin-->
-<!--Designer: @nyankomiya-->
+<!--Owner: @fei_1007-->
+<!--Designer: @gcw_sPCsris4-->
 <!--Tester: @qinliwen0417-->
 <!--Adviser: @ge-yafang-->
+<!-- md-trans-meta sourceCommit=19d0e8dbccdd9765ceafae62e52b988d19566645 translatedAt=2026-08-11T10:11:26.460Z pushedAt=2026-08-11T10:57:11.365Z -->
 
 ## Basic Concepts
 
-- Immersive window: a window display mode where the system windows (generally the status bar and navigation bar) are hidden to allow users to fully engage with the content. The immersive window feature is applicable only to the main window of an application in full-screen mode. It does not apply to a main window in freeform window mode or an auxiliary window (for example, a child window or a global floating window).
+- Window immersive: the ability to control system windows such as the status bar and navigation bar, reducing the abruptness of system UI elements like the status bar and navigation bar, thereby delivering an optimal user experience. The immersive capability takes effect only when the app main window is in full-screen mode. Generally, auxiliary windows of an app (such as subwindows and global floating windows) and the app main window in free window mode cannot use the immersive capability.
 
-- Global floating window: a special type of application auxiliary window that can remain displayed on the foreground even after the application's main window and corresponding ability are moved to the background. Global floating windows can be used to continue displaying the UI in a small window after the application is moved to the background, such as displaying lyrics on the home screen for a music application. Before creating a global floating window, the application needs to request the corresponding permission.
-
+- Global floating window: a special type of app auxiliary window that can remain displayed in the foreground even after the app main window and the corresponding UIAbility are moved to the background. Global floating windows can be used to continue displaying UI in a small window after an app is moved to the background. Before creating a global floating window, an app must apply for the corresponding permission.
 
 ## When to Use
 
-In the stage model, you can perform the following operations during application window development:
+In the stage model, typical scenarios for managing app windows include:
 
-- Setting the properties and content of the main window of an application
+- Setting the main window properties and target page of the app
 
-- Setting the properties and content of the child window of an application
+- Setting the subwindow properties and target page of the app
 
 - Experiencing the immersive window feature
 
@@ -27,50 +28,49 @@ In the stage model, you can perform the following operations during application 
 
 - Listening for interactive and non-interactive window events
 
-The following describes the development procedure specific to each application scenario.
+The specific development methods are described below.
 
 ## Available APIs
 
-The table below lists the common APIs used for application window development. For details about more APIs, see [Window](../reference/apis-arkui/arkts-apis-window.md).
+The common APIs involved in the above scenarios are shown in the following table. For more API descriptions, see [@ohos.window (Window)](../reference/apis-arkui/arkts-apis-window.md).
 
-| Instance        | API                                                      | Description                                                        |
+| Instance Name | API Name | Description |
 | -------------- | ------------------------------------------------------------ | ------------------------------------------------------------ |
-| WindowStage    | getMainWindow(callback: AsyncCallback&lt;Window&gt;): void   | Obtains the main window of this window stage.<br>This API can be used only in the stage model.|
-| WindowStage    | loadContent(path: string, callback: AsyncCallback&lt;void&gt;): void | Loads content to the main window in this window stage.<br>**path**: path of the page from which the content will be loaded. The path is configured in the **main_pages.json** file of the project.<br>This API can be used only in the stage model.|
-| WindowStage    | createSubWindow(name: string, callback: AsyncCallback&lt;Window&gt;): void | Creates a child window.<br>This API can be used only in the stage model.            |
-| WindowStage    | on(eventType: 'windowStageEvent', callback: Callback&lt;WindowStageEventType&gt;): void | Subscribes to window stage lifecycle change events.<br>This API can be used only in the stage model.|
-| Window static method| createWindow(config: Configuration, callback: AsyncCallback\<Window>): void | Creates a child window or system window.<br>**config**: parameters used for creating the window.            |
-| Window         | setUIContent(path: string, callback: AsyncCallback&lt;void&gt;): void | Loads the content of a page, with its path in the current project specified, to this window.<br>**path**: path of the page from which the content will be loaded. The path is configured in the **main_pages.json** file of the project in the stage model.                                    |
-| Window         | setWindowBrightness(brightness: number, callback: AsyncCallback&lt;void&gt;): void | Sets the brightness for this window.                                            |
-| Window         | setWindowTouchable(isTouchable: boolean, callback: AsyncCallback&lt;void&gt;): void | Sets whether this window is touchable. **true** if touchable, **false** otherwise.|
-| Window         | moveWindowTo(x: number, y: number, callback: AsyncCallback&lt;void&gt;): void | Moves this window.                                          |
-| Window         | resize(width: number, height: number, callback: AsyncCallback&lt;void&gt;): void | Changes the window size.                                          |
-| Window         | setWindowLayoutFullScreen(isLayoutFullScreen: boolean): Promise&lt;void&gt; | Sets whether to enable an immersive layout for the main window or child window. **true** to enable, **false** otherwise.|
-| Window         | setWindowSystemBarEnable(names: Array&lt;'status'\|'navigation'&gt;): Promise&lt;void&gt; | <!--RP4-->Sets whether to show the status bar and three-button navigation bar in the main window. The visibility of the status bar and three-button navigation bar is controlled by **status** and **navigation**, respectively.<!--RP4End--><br>For example, if this parameter is set to **['status',&nbsp;'navigation']**, all of them are shown. If this parameter is set to **[]**, they are hidden.|
-| Window         | setWindowSystemBarProperties(systemBarProperties: SystemBarProperties): Promise&lt;void&gt; | Sets the properties of the status bar and navigation bar in this window.<br>**systemBarProperties**: properties of the status bar and navigation bar.|
-| Window         | showWindow(callback: AsyncCallback\<void>): void             | Shows this window.                                              |
-| Window         | on(type: 'touchOutside', callback: Callback&lt;void&gt;): void | Subscribes to touch events outside this window.                          |
-| Window         | destroyWindow(callback: AsyncCallback&lt;void&gt;): void     | Destroys this window.                                              |
+| WindowStage    | getMainWindow(callback: AsyncCallback&lt;Window&gt;): void   | Obtains the main window of this `WindowStage` instance.<br/>This API can be used only in the stage model. |
+| WindowStage    | loadContent(path: string, callback: AsyncCallback&lt;void&gt;): void | Loads a specific page for the main window of this `WindowStage`.<br>Here, `path` is the path of the page content to be loaded into the window. This path must be added to the `main_pages.json` file of the project.<br/>This API can be used only in the stage model. |
+| WindowStage    | createSubWindow(name: string, callback: AsyncCallback&lt;Window&gt;): void | Creates a subwindow.<br/>This API can be used only in the stage model. |
+| WindowStage    | on(eventType: 'windowStageEvent', callback: Callback&lt;WindowStageEventType&gt;): void | Enables listening for `WindowStage` lifecycle changes.<br/>This API can be used only in the stage model. |
+| window static method | createWindow(config: Configuration, callback: AsyncCallback\<Window>): void | Creates a subwindow or system window.<br/>-`config`: parameters for creating the window. |
+| Window         | setUIContent(path: string, callback: AsyncCallback&lt;void&gt;): void | Loads specific page content for the window based on the path of a page in the current project.<br>Here, `path` is the path of the page content to be loaded into the window. In the stage model, this path must be added to the `main_pages.json` file of the project. |
+| Window         | setWindowBrightness(brightness: number, callback: AsyncCallback&lt;void&gt;): void | Sets the screen brightness value. |
+| Window         | setWindowTouchable(isTouchable: boolean, callback: AsyncCallback&lt;void&gt;): void | Sets whether the window is touchable. The value `true` indicates touchable, and `false` indicates not touchable. |
+| Window         | moveWindowTo(x: number, y: number, callback: AsyncCallback&lt;void&gt;): void | Moves the current window position. |
+| Window         | resize(width: number, height: number, callback: AsyncCallback&lt;void&gt;): void | Resizes the current window. |
+| Window         | setWindowLayoutFullScreen(isLayoutFullScreen: boolean): Promise&lt;void&gt; | Sets whether the layout of the main window or subwindow is immersive. The value `true` indicates immersive layout, and `false` indicates non-immersive layout. |
+| Window         | setWindowSystemBarEnable(names: Array&lt;'status'\|'navigation'&gt;): Promise&lt;void&gt; | <!--RP4-->Sets the visibility mode of the status bar and three-key navigation bar of the main window. The status bar is controlled by `status`, and the three-key navigation bar is controlled by `navigation`<!--RP4End-->.<br>For example, if this parameter is set to `['status',&nbsp;'navigation']`, both are displayed; if it is set to `[]`, neither is displayed. |
+| Window         | setWindowSystemBarProperties(systemBarProperties: SystemBarProperties): Promise&lt;void&gt; | Sets the properties of the navigation bar and status bar in the window.<br/>`systemBarProperties`: a collection of properties for the navigation bar and status bar. |
+| Window         | showWindow(callback: AsyncCallback\<void>): void             | Shows the current window. |
+| Window         | on(type: 'touchOutside', callback: Callback&lt;void&gt;): void | Enables listening for tap events outside the current window area. |
+| Window         | destroyWindow(callback: AsyncCallback&lt;void&gt;): void     | Destroys the current window. |
 
+## Setting the Main Window of an App
 
-## Setting the Main Window of an Application
-
-In the stage model, the main window of an application is created and maintained by a UIAbility instance. In the **onWindowStageCreate** callback of the UIAbility instance, use **WindowStage** to obtain the main window of the application and set its properties. You can also set the properties (for example, **maxWindowWidth**) in the [abilities tag of the module.json5 file](../quick-start/module-configuration-file.md#abilities).
+In the stage model, the main window is created and its lifecycle maintained by `UIAbility`. In the `onWindowStageCreate` callback of `UIAbility`, you can obtain the app main window through `WindowStage` to set its properties and perform other operations. You can also set properties of the app main window in the app configuration file, such as the maximum window width `maxWindowWidth`. For details, see [abilities tag in the module.json5 Configuration File](../quick-start/module-configuration-file.md#abilities).
 
 ### How to Develop
 
-1. Obtain the main window.
+1. Obtain the app main window.
 
-   Call **getMainWindow** to obtain the main window of the application.
+   Obtain the app main window through the `getMainWindow` API.
 
-2. Set the properties of the main window.
+2. Set main window properties.
 
-   You can set multiple properties of the main window, such as the background color, brightness, and whether the main window is touchable. The code snippet below uses the **touchable** property as an example.
+   You can set multiple properties of the main window, such as the background color, brightness value, and whether it is touchable. You can select the corresponding API as needed. The code snippet below uses the **touchable** property as an example.
 
-3. Load content to the main window.
+3. Load the corresponding target page for the main window.
 
-   Call **loadContent** to load content to the main window.
-   
+   Use the `loadContent` API to load the target page of the main window.
+
 <!-- @[create_main_window](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkUISample/ArkUIWindowSamples/CreateMainWindow/entry/src/main/ets/entryability/EntryAbility.ets) -->
 
 ``` TypeScript
@@ -84,7 +84,7 @@ const TAG: string = '[Sample_CreatMainWindow]';
 
 export default class EntryAbility extends UIAbility {
   onWindowStageCreate(windowStage: window.WindowStage) {
-    // 1. Obtain the main window of the application.
+    // 1. Obtain the main window of the app.
     let windowClass: window.Window | null = null;
     windowStage.getMainWindow((err: BusinessError, data) => {
       let errCode: number = err.code;
@@ -94,7 +94,7 @@ export default class EntryAbility extends UIAbility {
       }
       windowClass = data;
       hilog.info(DOMAIN, TAG, `Succeeded in obtaining the main window. Result:${data}`);
-      // 2. Set the touchable property of the main window.
+      // 2. Set the main window properties. For example, set the touchable property.
       let isTouchable: boolean = true;
       windowClass.setWindowTouchable(isTouchable, (err: BusinessError) => {
         let errCode: number = err.code;
@@ -105,7 +105,7 @@ export default class EntryAbility extends UIAbility {
         hilog.info(DOMAIN, TAG, `Succeeded in setting the window to be touchable.`);
       })
     })
-    // 3. Load content to the main window.
+    // 3. Load the target page for the main window.
     windowStage.loadContent('pages/Index', (err: BusinessError) => {
       let errCode: number = err.code;
       if (errCode) {
@@ -118,44 +118,45 @@ export default class EntryAbility extends UIAbility {
 };
 ```
 
-## Setting a Child Window of an Application
+## Setting an App Subwindow
 
-You can create an application child window, such as a dialog box, and set its properties.
+You can create subwindows as needed, such as dialogs, and perform operations like setting their properties.
 
 > **NOTE**
->
-> In the following scenarios, you are not advised to use child windows. Instead, consider using the [overlay](../reference/apis-arkui/arkui-ts/ts-universal-attributes-overlay.md) capability of components first. 
-> - On mobile devices (tablets in non-freeform mode and phones), child windows cannot extend beyond the boundaries of the application's main window when it is in floating-window or split-screen mode, just like components. 
-> - In split-screen or freeform window mode, components, when compared with child windows, offer better real-time adaptability to changes in the main window's position and size. 
-> - On certain platforms, system configurations may restrict child windows to default system animations and rounded shadows, offering no customization options for applications and thereby limiting their versatility.
+> The following scenarios are not recommended for using subwindows. You are advised to prioritize using the control [overlay](../reference/apis-arkui/arkui-ts/ts-universal-attributes-overlay.md) capability.
+> - On mobile devices (tablets in non-freeform mode and phones), subwindows cannot extend beyond the main window range when the main window is in multi-window floating window mode or split-screen mode, which is consistent with controls.
+> - In split-screen window and freeform window modes, controls have a better real-time following capability than subwindows when the main window position and size change.
+> - On some device platforms, due to actual system configuration restrictions, subwindows only have the system's default animation effects and rounded corner shadows, which apps cannot set, resulting in low flexibility.
 
 ### How to Develop
 
-1. Create a child window.
+1. Create an app subwindow.
 
-   Call **createSubWindow** to create a child window.
-   
-   The child window created uses an [immersive layout](../windowmanager/window-terminology.md#immersive-layout) by default.
+   Create an app subwindow through the `createSubWindow` API.
 
-2. Set the properties of the child window.
+   After being created, a subwindow uses the [immersive layout](../windowmanager/immersive-window-feature.md#immersive-layout) by default.
 
-   After the child window is created, you can set its properties, such as the size, position, background color, and brightness.
+2. Set subwindow properties.
 
-   You are advised to set the size and position of the child window before calling **showWindow**.
+   After the subwindow is created, you can change its size, position, and other properties, as well as set properties such as the window background color and brightness based on the app's needs.
 
-   If the size of the child window is not set, the following will happen after **showWindow** is called:
-    + In [freeform window](./window-terminology.md#freeform-window) mode, the child window will default to the size of the current physical screen.<!--RP3--><!--RP3End-->
-    + In non-freeform window mode, the child window will default to the size of the main window.
+   Before calling `showWindow`, you are advised to set the size and position of the subwindow.
 
-3. Load content to and show the child window.
+   If the subwindow size is not set, after `showWindow` is called:
 
-   Call **setUIContent** to load content to the child window and **showWindow** to show the child window.
+   + In the [freeform window](./window-terminology.md#freeform-window) state, the default subwindow size is the size of the current physical screen.<!--RP3--><!--RP3End-->
 
-4. Destroy the child window.
+   + In the non-freeform window state, the default subwindow size is the size of the main window.
 
-   When the child window is no longer needed, you can call **destroyWindow** to destroy it.
+3. Load and display the specific content of the subwindow.
 
-The code snippet for creating a child window in **onWindowStageCreate** is as follows:
+   Load and display the specific content of the subwindow through the `setUIContent` and `showWindow` APIs.
+
+4. Destroy the subwindow.
+
+   When a subwindow is no longer needed, you can destroy it using the `destroyWindow` API based on the specific implementation logic.
+
+The following is the complete sample code for creating a subwindow directly in **onWindowStageCreate**:
 
 <!-- @[create_sub_window](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkUISample/ArkUIWindowSamples/CreateSubWindow/entry/src/main/ets/entryability/EntryAbility.ets) -->
 
@@ -173,7 +174,7 @@ let sub_windowClass: window.Window | null = null;
 
 export default class EntryAbility extends UIAbility {
   showSubWindow() {
-    // 1. Create a child window.
+    // 1. Create the application subwindow.
     if (windowStage_ == null) {
       hilog.error(DOMAIN, TAG, `Failed to create the subwindow. Cause: windowStage_ is null`);
     } else {
@@ -189,7 +190,7 @@ export default class EntryAbility extends UIAbility {
           return;
         }
         hilog.info(DOMAIN, TAG, `Succeeded in creating the subwindow. Data: ${JSON.stringify(data)}`);
-        // 2. Set the position, size, and other properties of the child window.
+        // 2. After the subwindow is created, set its position, size, and related properties.
         sub_windowClass.moveWindowTo(300, 300, (err: BusinessError) => {
           let errCode: number = err.code;
           if (errCode) {
@@ -206,7 +207,7 @@ export default class EntryAbility extends UIAbility {
           }
           hilog.info(DOMAIN, TAG, `Succeeded in changing the window size.`);
         });
-        // 3. Load content to the child window.
+        // 3. Load the target page for the subwindow.
         sub_windowClass.setUIContent('pages/Index', (err: BusinessError) => {
           let errCode: number = err.code;
           if (errCode) {
@@ -218,7 +219,7 @@ export default class EntryAbility extends UIAbility {
             hilog.error(DOMAIN, TAG, `sub_windowClass is null`);
             return;
           }
-          // 3. Show the child window.
+          // 4. Show the subwindow.
           sub_windowClass.showWindow((err: BusinessError) => {
             let errCode: number = err.code;
             if (errCode) {
@@ -237,7 +238,7 @@ export default class EntryAbility extends UIAbility {
       hilog.error(DOMAIN, TAG, `sub_windowClass is null`);
       return;
     }
-    // 4. Destroy the child window when it is no longer needed (depending on the service logic).
+    // 5. Destroy the subwindow. When the subwindow is no longer needed, destroy it by calling destroy based on the specific implementation logic.
     sub_windowClass.destroyWindow((err: BusinessError) => {
       let errCode: number = err.code;
       if (errCode) {
@@ -250,18 +251,18 @@ export default class EntryAbility extends UIAbility {
 
   onWindowStageCreate(windowStage: window.WindowStage) {
     windowStage_ = windowStage;
-    // Create a child window when it is needed, for example, when a touch event occurs in the main window. Calling onWindowStageCreate is not always necessary. The code here is for reference only.
+    // You can create a subwindow at an appropriate time, such as on a button click event on the main window. It is not mandatory to call this in onWindowStageCreate; this is only for demonstration.
     this.showSubWindow();
   }
 
   onWindowStageDestroy() {
-    // Destroy the child window when it is no longer needed, for example, when the Close button in the child window is touched. Calling onWindowStageDestroy is not always necessary. The code here is for reference only.
+    // You can destroy a subwindow at an appropriate time, such as when clicking the close button on the subwindow. It is not mandatory to call this in onWindowStageDestroy; this is only for demonstration.
     this.destroySubWindow();
   }
 };
 ```
 
-You can also click a button on a page to create a child window. The code snippet is as follows:
+Additionally, you can create a subwindow by clicking a button on a page. The complete sample code is as follows:
 
 <!-- @[create_sub_window2_entryability](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkUISample/ArkUIWindowSamples/CreateSubWindow2/entry/src/main/ets/entryability/EntryAbility.ets) -->
 
@@ -284,7 +285,7 @@ export default class EntryAbility extends UIAbility {
       hilog.info(DOMAIN, TAG, `Succeeded in loading the content.`);
     });
 
-    // Transfer the window stage to the Index page.
+    // Pass windowStage to the Index page.
     AppStorage.setOrCreate('windowStage', windowStage);
   }
 }
@@ -308,9 +309,9 @@ let sub_windowClass: window.Window | undefined = undefined;
 struct Index {
   @State message: string = 'Hello World';
   private createSubWindow(){
-    // Obtain the window stage.
+    // Obtain the windowStage.
     windowStage_ = AppStorage.get('windowStage');
-    // 1. Create a child window.
+    // 1. Create the application subwindow.
     if (windowStage_ == null) {
       hilog.error(DOMAIN, TAG, `Failed to create the subwindow. Cause: windowStage_ is null`);
     } else {
@@ -326,7 +327,7 @@ struct Index {
           return;
         }
         hilog.info(DOMAIN, TAG, `Succeeded in creating the subwindow. Data: ${JSON.stringify(data)}`);
-        // 2. Set the position, size, and other properties of the child window.
+        // 2. After the subwindow is created, set its position, size, and related properties.
         sub_windowClass.moveWindowTo(300, 300, (err: BusinessError) => {
           let errCode: number = err.code;
           if (errCode) {
@@ -343,7 +344,7 @@ struct Index {
           }
           hilog.info(DOMAIN, TAG, `Succeeded in changing the window size.`);
         });
-        // 3. Load content to the child window.
+        // 3. Load the target page for the subwindow.
         sub_windowClass.setUIContent('pages/SubWindow', (err: BusinessError) => {
           let errCode: number = err.code;
           if (errCode) {
@@ -355,7 +356,7 @@ struct Index {
             hilog.error(DOMAIN, TAG, `sub_windowClass is null`);
             return;
           }
-          // 3. Show the child window.
+          // 3. Show the subwindow.
           sub_windowClass.showWindow((err: BusinessError) => {
             let errCode: number = err.code;
             if (errCode) {
@@ -373,7 +374,7 @@ struct Index {
       hilog.error(DOMAIN, TAG, `sub_windowClass is null`);
       return;
     }
-    // 4. Destroy the child window when it is no longer needed (depending on the service logic).
+    // 4. Destroy the subwindow. When the subwindow is no longer needed, destroy it by calling the destroy method based on the specific implementation logic.
     sub_windowClass.destroyWindow((err: BusinessError) => {
       let errCode: number = err.code;
       if (errCode) {
@@ -440,28 +441,28 @@ struct SubWindow {
 
 ## Experiencing the Immersive Window Feature
 
-To create a better video watching and gaming experience, you can use the immersive window feature to hide the status bar and navigation bar. This feature is available only for the main window of an application. Since API version 10, the immersive window has the same size as the full screen by default; its layout is controlled by the component module; the background color of its status bar and navigation bar is transparent, and the text color is black. When an application window calls **setWindowLayoutFullScreen**, with **true** passed in, an immersive window layout is used. If **false** is passed in, a non-immersive window layout is used.
+In scenarios such as watching videos or playing games, users often prefer to hide unnecessary system windows like the status bar and navigation bar for a better immersive experience. In such cases, the window immersive mode (which applies only to the app main window) can be used to achieve the desired effect. Starting from API version 10, the immersive window is configured to full-screen size by default, with the layout controlled by the component module. The status bar and navigation bar have transparent backgrounds with black text. When the app window calls the `setWindowLayoutFullScreen` API, setting it to `true` means the component module controls an immersive full-screen layout that ignores the status bar and navigation bar, while setting it to `false` means the component module controls a non-immersive full-screen layout that avoids the status bar and navigation bar.
 
 > **NOTE**
 >
-> Currently, immersive UI development supports window-level configuration, but not page-level configuration. If page redirection is required, you can set the immersive mode at the beginning of the page lifecycle, for example, in the **onPageShow** callback, and then restore the default settings when the page exits, for example, in the **onPageHide** callback.
+> Currently, immersive UI development supports only window-level configuration, not page-level configuration. If page-level switching is required, you can set the immersive mode at the beginning of the page lifecycle, for example, in `onPageShow`, and restore the default settings when the page exits, for example, in `onPageHide`.
 
 ### How to Develop
 
-1. Obtain the main window.
+1. Obtain the app main window.
 
-   Call **getMainWindow** to obtain the main window of the application.
+   Obtain the app main window through the `getMainWindow` API.
 
-2. Implement the immersive effect. You can use either of the following methods:
+2. Implement the immersive effect. There are two methods:
 
-   - Method 1: When the main window of the application is a full-screen window, call **setWindowSystemBarEnable** to hide the status bar and navigation bar.
+   - Method 1: When the app main window is a full-screen window, call the `setWindowSystemBarEnable` API to hide the navigation bar and status bar, thereby achieving the immersive effect.
 
-   - Method 2: Call **setWindowLayoutFullScreen** to enable the full-screen mode for the main window layout. Call **setWindowSystemBarProperties** to set the opacity, background color, text color, and highlighted icon of the status bar and navigation bar to create a display effect consistent with that of the main window.
+   - Method 2: Call the `setWindowLayoutFullScreen` API to set the app main window to full-screen layout; then call the `setWindowSystemBarProperties` API to set properties such as transparency, background/text color, and highlighted icons of the navigation bar and status bar, so as to keep them consistent with the main window display and achieve an immersive effect.
 
-3. Load content to the immersive window.
+3. Load and display the specific content of the immersive window.
 
-   Call **loadContent** to load content to the immersive window.
-   
+   Use the `loadContent` API to load the specific content of the immersive window.
+
 <!-- @[set_window_system_bar_enable](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkUISample/ArkUIWindowSamples/SetWindowSystemBarEnable/entry/src/main/ets/entryability/EntryAbility.ets) -->
 
 ``` TypeScript
@@ -475,7 +476,7 @@ const TAG: string = '[Sample_SetWindowSystemBarEnable]';
 
 export default class EntryAbility extends UIAbility {
   onWindowStageCreate(windowStage: window.WindowStage) {
-    // 1. Obtain the main window of the application.
+    // 1. Obtain the app main window.
     let windowClass: window.Window | null = null;
     windowStage.getMainWindow((err: BusinessError, data) => {
       let errCode: number = err.code;
@@ -486,7 +487,7 @@ export default class EntryAbility extends UIAbility {
       windowClass = data;
       hilog.info(DOMAIN, TAG, `Succeeded in obtaining the main window. Data: ${JSON.stringify(data)}`);
 
-      // 2. Implement the immersive effect by hiding the status bar and navigation bar.
+      // 2. Implement the immersive effect. Method 1: Hide the navigation bar and status bar.
       let names: 'status'[] | 'navigation'[] = [];
       windowClass.setWindowSystemBarEnable(names)
         .then(() => {
@@ -495,7 +496,7 @@ export default class EntryAbility extends UIAbility {
         .catch((err: BusinessError) => {
           hilog.error(DOMAIN, TAG, `Failed to set the system bar to be visible. Cause: ${JSON.stringify(err)}`);
         });
-      // 2. Alternatively, implement the immersive effect by setting the properties of the status bar and navigation bar.
+      // 2. Implement the immersive effect. Method 2: Set the window to full-screen layout, and configure properties such as the transparency, background/text color, and highlighted icons of the navigation bar and status bar to maintain visual consistency with the main window.
       let isLayoutFullScreen = true;
       windowClass.setWindowLayoutFullScreen(isLayoutFullScreen)
         .then(() => {
@@ -507,7 +508,7 @@ export default class EntryAbility extends UIAbility {
       let sysBarProps: window.SystemBarProperties = {
         statusBarColor: '#ff00ff',
         navigationBarColor: '#00ff00',
-        // The following properties are supported since API version 8.
+        // The following two properties are supported since API version 8.
         statusBarContentColor: '#ffffff',
         navigationBarContentColor: '#ffffff'
       };
@@ -519,7 +520,7 @@ export default class EntryAbility extends UIAbility {
           hilog.error(DOMAIN, TAG, `Failed to set the system bar properties. Cause: ${JSON.stringify(err)}`);
         });
     })
-    // 3. Load content to the immersive window.
+    // 3. Load the target page for the immersive window.
     windowStage.loadContent('pages/Index', (err: BusinessError) => {
       let errCode: number = err.code;
       if (errCode) {
@@ -532,33 +533,33 @@ export default class EntryAbility extends UIAbility {
 };
 ```
 
-<!--RP2-->
-## Setting a Global Floating Window<!--RP2End-->
+## Setting a Global Floating Window (Restricted)
 
-A global floating window can be created on top of an existing task to display a window that always stays in the foreground. Even if the task that creates the global floating window is moved to the background, the global floating window can still be displayed in the foreground. Typically, a global floating window is positioned above all application windows, and you can create a global floating window and perform operations such as setting its properties.
-
+A global floating window allows you to create a window that remains displayed in the foreground on top of an existing task. Even if the task that creates the global floating window is moved to the background, the global floating window can still be displayed in the foreground. Typically, a global floating window is positioned above all app windows. Developers can create a global floating window and perform operations such as setting its properties.
 
 ### How to Develop
 
 <!--RP1-->
-**Prerequisites**: To create a global floating window (a window of the type **WindowType.TYPE_FLOAT**), you must request the ohos.permission.SYSTEM_FLOAT_WINDOW permission. For details, see [Requesting Permissions for system_basic Applications](../security/AccessToken/determine-application-mode.md#requesting-permissions-for-system_basic-applications).
+
+**Prerequisites:** To create a window of the `WindowType.TYPE_FLOAT` type, i.e., a global floating window, you need to request the `ohos.permission.SYSTEM_FLOAT_WINDOW` permission. This permission is restricted. For details about how to request the permission, see [Applying for Restricted Permissions](../security/AccessToken/declare-permissions-in-acl.md).
+
 <!--RP1End-->
 
 1. Create a global floating window.
 
-   Call **window.createWindow** to create a global floating window.
+   Create a window of the global floating window type by calling the `window.createWindow` API.
 
-2. Set properties of the global floating window.
+2. Set properties such as the size and position of the global floating window.
 
-   After the global floating window is created, you can set its properties, such as the size, position, background color, and brightness.
+   After the global floating window is created, you can change its size, position, and other properties, as well as set properties such as the window background color and brightness based on app requirements.
 
-3. Load content to and show the global floating window.
+3. Load and display the specific content of the global floating window.
 
-   Call **setUIContent** to load content to the global floating window and **showWindow** to show the window.
+   Load and display the specific content of the global floating window through the `setUIContent` and `showWindow` APIs.
 
 4. Destroy the global floating window.
 
-   When the global floating window is no longer needed, you can call **destroyWindow** to destroy it.
+When a global floating window is no longer needed, you can destroy it using the `destroyWindow` API based on the specific implementation logic.
 
 <!-- @[create_float_window](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkUISample/ArkUIWindowSamples/CreateFloatWindow/entry/src/main/ets/entryability/EntryAbility.ets) -->
 
@@ -573,7 +574,7 @@ const TAG: string = '[Sample_CreatFloatWindow]';
 
 export default class EntryAbility extends UIAbility {
   onWindowStageCreate(windowStage: window.WindowStage) {
-    // 1. Create a floating window.
+    // 1. Create a global floating window.
     let windowClass: window.Window | null = null;
     let config: window.Configuration = {
       name: 'floatWindow', windowType: window.WindowType.TYPE_FLOAT, ctx: this.context
@@ -586,7 +587,7 @@ export default class EntryAbility extends UIAbility {
       }
       hilog.info(DOMAIN, TAG, `Succeeded in creating the floatWindow. Data: ${JSON.stringify(data)}`);
       windowClass = data;
-      // 2. Set the position, size, and other properties of the floating window.
+      // 2. After the global floating window is created, set its position, size, and related properties.
       windowClass.moveWindowTo(300, 300, (err: BusinessError) => {
         let errCode: number = err.code;
         if (errCode) {
@@ -603,7 +604,7 @@ export default class EntryAbility extends UIAbility {
         }
         hilog.info(DOMAIN, TAG, `Succeeded in changing the window size.`);
       });
-      // 3. Load content to the floating window.
+      // 3. Load the target page for the global floating window.
       windowClass.setUIContent('pages/Index', (err: BusinessError) => {
         let errCode: number = err.code;
         if (errCode) {
@@ -611,7 +612,7 @@ export default class EntryAbility extends UIAbility {
           return;
         }
         hilog.info(DOMAIN, TAG, `Succeeded in loading the content.`);
-        // 3. Show the floating window.
+        // 3. Show the global floating window.
         (windowClass as window.Window).showWindow((err: BusinessError) => {
           let errCode: number = err.code;
           if (errCode) {
@@ -621,19 +622,19 @@ export default class EntryAbility extends UIAbility {
           hilog.info(DOMAIN, TAG, `Succeeded in showing the window.`);
         });
       });
-      // 4. Destroy the floating window when it is no longer needed (depending on the service logic).
+      // 4. Destroy the global floating window. When the global floating window is no longer needed, use destroy to destroy it based on the specific implementation logic.
     });
   }
 };
 ```
 
-## Listening for Interactive and Non-Interactive Window Events
+## Listening for Interactive and Non-interactive Window Events
 
-When running in the foreground, an application may switch between interactive and non-interactive states and process services depending on the state. For example, when the user opens the multitasking screen, an application becomes non-interactive and pauses the service interaction with the user, such as video playback or camera preview; when the user switched back to the foreground, the application becomes interactive again, and the paused service needs to be resumed.
+During foreground display, an app may enter certain non-interactive scenarios, a typical one being entering the multitasking screen. In such cases, some apps may need to pause a service that is currently interacting with the user, such as a video app pausing a playing video or a camera pausing the preview stream. When the app returns to the foreground from multitasking, it becomes interactive again, and the suspended business needs to be resumed, such as resuming video playback or the camera preview stream.
 
 ### How to Develop
 
-After a **WindowStage** object is created, the application can listen for the **'windowStageEvent'** event to obtain window stage lifecycle changes, for example, whether the window stage is interactive or non-interactive in the foreground. The application can process services based on the reported event status.
+After creating a **WindowStage** object, you can listen for the `'windowStageEvent'` event type to monitor events such as the window entering the foreground, background, foreground interactive, and foreground non-interactive states. The app can perform corresponding service processing based on these reported event states.
 
 <!-- @[listen_window_stage](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkUISample/ArkUIWindowSamples/ListenWindowStage/entry/src/main/ets/entryability/EntryAbility.ets) -->
 
@@ -652,22 +653,22 @@ export default class EntryAbility extends UIAbility {
       windowStage.on('windowStageEvent', (data) => {
         hilog.info(DOMAIN, TAG, `Succeeded in enabling the listener for window stage event changes. Data: ${JSON.stringify(data)}`);
 
-        // Process services based on the event status.
+        // Select the corresponding processing based on the event state type.
         if (data === window.WindowStageEventType.SHOWN) {
           hilog.info(DOMAIN, TAG, `current window stage event is SHOWN`);
-          // The application enters the foreground and is interactive by default.
+          // The application enters the foreground and is in the interactive state by default.
           // ...
         } else if (data === window.WindowStageEventType.HIDDEN) {
           hilog.info(DOMAIN, TAG, `current window stage event is HIDDEN`);
-          // The application enters the background and is non-interactive by default.
+          // The application enters the background and is in the non-interactive state by default.
           // ...
         } else if (data === window.WindowStageEventType.PAUSED) {
           hilog.info(DOMAIN, TAG, `current window stage event is PAUSED`);
-          // The user opens the multitasking screen when the application is running in the foreground, and the application becomes non-interactive.
+          // The foreground application enters multi-task mode and switches to the non-interactive state.
           // ...
         } else if (data === window.WindowStageEventType.RESUMED) {
           hilog.info(DOMAIN, TAG, `current window stage event is RESUMED`);
-          // The user switches back from the multitasking screen to the application, and the application becomes interactive.
+          // Restore the interactive state when returning to the foreground from the recent tasks screen.
           // ...
         }
 
@@ -679,3 +680,13 @@ export default class EntryAbility extends UIAbility {
   }
 }
 ```
+
+## Samples
+
+The following samples are provided for window development (stage model):
+
+- [`Window`: Multi-device Typical Page (Settings) (API9)](https://gitcode.com/openharmony/applications_app_samples/tree/master/code/SuperFeature/MultiDeviceAppDev/Settings)
+
+- [Global Floating Window (ArkTS) (API10) (Full SDK)](https://gitcode.com/openharmony/applications_app_samples/tree/master/code/SystemFeature/WindowManagement/WindowRatio)
+
+- [Window Management (ArkTS) (API12) (Full SDK)](https://gitcode.com/openharmony/applications_app_samples/tree/master/code/SystemFeature/WindowManagement/WindowManage)

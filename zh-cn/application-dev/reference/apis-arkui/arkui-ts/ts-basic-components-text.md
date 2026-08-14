@@ -735,9 +735,9 @@ fontVariations(fontVariations: Array&lt;FontVariation&gt;)
 
 **起始版本：** 26.0.0
 
-**模型约束：** 此接口仅可在Stage模型下使用。
-
 **原子化服务API：** 从API版本26.0.0开始，该接口支持在原子化服务中使用。
+
+**模型约束：** 此接口仅可在Stage模型下使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -825,9 +825,9 @@ incrementalUpdatePolicy(policy: IncrementalUpdatePolicy \| undefined)
 
 **起始版本：** 26.0.0
 
-**模型约束：** 此接口仅可在Stage模型下使用。
-
 **原子化服务API：** 从API版本26.0.0开始，该接口支持在原子化服务中使用。
+
+**模型约束：** 此接口仅可在Stage模型下使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -1289,6 +1289,8 @@ orphanCharOptimization(enabled: Optional\<boolean>)
 **起始版本：** 26.0.0
 
 **原子化服务API：** 从API版本26.0.0开始，该接口支持在原子化服务中使用。
+
+**模型约束：** 此接口仅可在Stage模型下使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -1774,9 +1776,9 @@ onWillCopy(callback: Callback\<string, boolean>)
 
 **起始版本：** 26.0.0
 
-**模型约束：** 此接口仅可在Stage模型下使用。
-
 **原子化服务API：** 从API版本26.0.0开始，该接口支持在原子化服务中使用。
+
+**模型约束：** 此接口仅可在Stage模型下使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -1821,7 +1823,7 @@ onMarqueeStateChange(callback: Callback\<MarqueeState\>)
 
 | 参数名    | 类型                                             | 必填  | 说明                       |
 |--------|---------------------------------------------------|-----|--------------------------|
-| callback  | Callback\<[MarqueeState](#marqueestate18枚举说明)\> | 是   | 通过callback参数指定触发回调的状态，状态由MarqueeState枚举定义，例如开始滚动、完成一次滚动、滚动完成。 |
+| callback  | Callback\<[MarqueeState](#marqueestate18枚举说明)\> | 是   | 通过callback参数指定触发回调的状态，状态由MarqueeState枚举定义，例如开始滚动、完成一次滚动、滚动完成或停止滚动。 |
 
 ## TextOptions<sup>11+</sup>
 
@@ -1910,7 +1912,7 @@ getLayoutManager(): LayoutManager
 
 | 类型                                       | 说明      |
 | ---------------------------------------- | ------- |
-| [LayoutManager](ts-text-common.md#layoutmanager12) | 布局管理器对象，用于获取文本布局信息，包括行数、字形位置、行信息、字符绘制区域等。 |
+| [LayoutManager](ts-text-common.md#layoutmanager12) | 布局管理器对象，用于获取文本布局信息，包括行数、字形位置、行信息、字符绘制区域等。<br>**说明：**<br>当TextController还未绑定Text组件，或绑定的Text组件已被销毁/卸载时，会返回undefined。 |
 
 ### setTextSelection<sup>23+</sup>
 
@@ -2010,7 +2012,7 @@ Marquee状态回调的返回值。
 |--------|----|-------------------------------|
 | START  | 0  | 跑马灯滚动开始。                     |
 | BOUNCE | 1  | 完成一次跑马灯滚动，如果循环次数不是1，将会多次返回。 |
-| FINISH | 2  | 跑马灯全部循环次数完成。              |
+| FINISH | 2  | 跑马灯全部循环次数完成或跑马灯停止滚动（例如[TextMarqueeOptions](#textmarqueeoptions18对象说明)中start被设置为false）。              |
 
 ## 示例
 
@@ -2770,7 +2772,11 @@ struct TextExample10 {
           .fontSize(25)
           .borderWidth(1)
           .onAreaChange(() => {
+            // getLayoutManager在TextController未绑定Text或Text被销毁时会返回undefined，使用时需做判空处理
             let layoutManager: LayoutManager = this.controller.getLayoutManager();
+            if (!layoutManager) {
+              return;
+            }
             this.lineCount = 'LineCount: ' + layoutManager.getLineCount();
           })
 
@@ -2781,6 +2787,9 @@ struct TextExample10 {
         Button("相对组件坐标[150,50]字形信息")
           .onClick(() => {
             let layoutManager: LayoutManager = this.controller.getLayoutManager();
+            if (!layoutManager) {
+              return;
+            }
             let position: PositionWithAffinity = layoutManager.getGlyphPositionAtCoordinate(150, 50);
             this.glyphPositionAtCoordinate =
               '相对组件坐标[150,50] glyphPositionAtCoordinate position: ' + position.position + ' affinity: ' +
@@ -2793,6 +2802,9 @@ struct TextExample10 {
         Button('首行行信息、文本样式信息、以及字体属性信息')
           .onClick(() => {
             let layoutManager: LayoutManager = this.controller.getLayoutManager();
+            if (!layoutManager) {
+              return;
+            }
             let lineMetrics: LineMetrics = layoutManager.getLineMetrics(0);
             this.lineMetrics = 'lineMetrics is ' + JSON.stringify(lineMetrics) + '\n\n';
             let runMetrics = lineMetrics.runMetrics;
@@ -2807,6 +2819,9 @@ struct TextExample10 {
         Button('获取指定矩形宽度和高度下，文本中任意区间范围内字符或占位符的绘制区域信息')
           .onClick(() => {
             let layoutManager: LayoutManager = this.controller.getLayoutManager();
+            if (!layoutManager) {
+              return;
+            }
             let range: TextRange = { start: 0, end: 1 };
             let rectsForRangeInfo: text.TextBox[] =
               layoutManager.getRectsForRange(range, text.RectWidthStyle.TIGHT, text.RectHeightStyle.TIGHT);
@@ -3522,7 +3537,11 @@ struct TextExample10 {
 
       Button('相对组件坐标[150,50]字形信息')
         .onClick(() => {
+          // getLayoutManager在TextController未绑定Text或Text被销毁时会返回undefined，使用时需做判空处理
           let layoutManager: LayoutManager = this.textController.getLayoutManager();
+          if (!layoutManager) {
+            return;
+          }
           let position1: PositionWithAffinity = layoutManager.getGlyphPositionAtCoordinate(150, 50);
           this.str1 = '相对组件坐标[150,50] glyphPosition position: ' + position1.position +
             ' affinity: ' +
@@ -3558,7 +3577,7 @@ struct TextExample10 {
 
 从API版本26.0.0开始，新增orphanCharOptimization接口。
 
-``` ts
+```ts
 // xxx.ets
 @Entry
 @Component
@@ -3877,3 +3896,127 @@ struct DataDetectorDemo {
 }
 ```
 <!--RP5--><!--RP5End-->
+
+### 示例34（长按含表情符号文本绘制渐变高亮背景）
+
+该示例通过[getLayoutManager](#getlayoutmanager12)接口获取文本的布局管理对象，使用[LayoutManager](ts-text-common.md#layoutmanager12)中以UTF-16编码查询的[getCharacterPositionAtCoordinate](ts-text-common.md#getcharacterpositionatcoordinate)根据长按坐标获取字符位置与亲和性，再通过[getGlyphRangeForCharacterRange](ts-text-common.md#getglyphrangeforcharacterrange)获取对应的字形索引范围与实际字符范围，最后通过[getRectsForRange](ts-text-common.md#getrectsforrange14)获取文本矩形区域，并在[Canvas](ts-components-canvas-canvas.md)上绘制渐变背景，实现对包含表情符号（字形簇）文本的高亮。
+
+从API版本26.0.0开始，新增带编码类型参数的getCharacterPositionAtCoordinate、getGlyphRangeForCharacterRange、getCharacterRangeForGlyphRange接口重载，以及TextEncoding枚举。
+
+```ts
+// xxx.ets
+import { LengthMetrics } from '@kit.ArkUI';
+import { text } from '@kit.ArkGraphics2D';
+
+const TEXT_CONTENT: string =
+  '这是一段包含表情符号的测试文本\u{1F60A}。长按文字可查看渐变高亮效果\u{1F389}。\n' +
+  '复杂表情符号\u{1F468}\u{200D}\u{1F469}\u{200D}\u{1F467}\u{200D}\u{1F466}也会被正确处理' +
+  '\u{1F3F3}\u{FE0F}\u{200D}\u{1F308}，再来一些emoji\u{1F680}\u{1F31F}\u{1F4BB}和中文混排。\n' +
+  '第三行：可以长按不同位置试试各种字符\u{1F600}\u{1F431}\u{1F409}。';
+
+@Entry
+@Component
+struct Utf16GlyphHighlightPage {
+  private textController: TextController = new TextController();
+  private canvasContext: CanvasRenderingContext2D = new CanvasRenderingContext2D(new RenderingContextSettings(true));
+  @State isCanvasReady: boolean = false;
+  @State resultInfo: string = '长按下方文字（含表情符号）查看渐变背景高亮效果';
+
+  aboutToAppear(): void {
+    const styledString = new MutableStyledString(TEXT_CONTENT, [{
+      start: 0, length: TEXT_CONTENT.length,
+      styledKey: StyledStringKey.FONT,
+      styledValue: new TextStyle({ fontSize: LengthMetrics.vp(24) })
+    }]);
+    this.textController.setStyledString(styledString);
+  }
+
+  build() {
+    Column() {
+      Text(this.resultInfo)
+        .fontSize(13).fontColor('#666666')
+        .padding({ left: 16, right: 16, top: 12, bottom: 8 })
+        .margin({ left: 12, right: 12, top: 12 })
+        .width('100%').height(110)
+      Stack({ alignContent: Alignment.TopStart }) {
+        Canvas(this.canvasContext).width('100%').height('100%')
+          .onReady(() => { this.isCanvasReady = true; })
+        Text(undefined, { controller: this.textController })
+          .gesture(LongPressGesture({ repeat: false, duration: 500 })
+            .onAction((event: GestureEvent) => { this.handleLongPress(event); }))
+      }
+      .layoutWeight(1).width('100%')
+      .padding({ left: 16, right: 16, top: 12 })
+      .margin({ left: 12, right: 12, bottom: 12 }).clip(true)
+    }.height('100%').width('100%')
+  }
+
+  private handleLongPress(event: GestureEvent): void {
+    // 处理流程：坐标转px -> getCharacterPositionAtCoordinate获取字符位置与亲和性 ->
+    //           依亲和性确定字符范围 -> getGlyphRangeForCharacterRange获取字形范围与实际字符范围 ->
+    //           getRectsForRange获取矩形区域 -> Canvas绘制渐变背景
+    if (!this.isCanvasReady) { this.resultInfo = 'Canvas 尚未就绪，请稍后重试'; return; }
+    const uiContext = this.getUIContext();
+    // 获取文本布局管理对象，用于后续的字符位置/字形范围/矩形区域查询
+    const layoutManager = this.textController.getLayoutManager();
+    if (!layoutManager) { this.resultInfo = 'LayoutManager 不可用'; return; }
+    const finger = event.fingerList[0];
+    if (!finger) { this.resultInfo = '未获取到手指信息'; return; }
+    // 将长按坐标从vp转换为px，供布局查询接口使用
+    const localXPx = uiContext.vp2px(finger.localX);
+    const localYPx = uiContext.vp2px(finger.localY);
+    // 以UTF-16编码查询距离长按坐标最近的字符位置及亲和性
+    const posAffinity = layoutManager.getCharacterPositionAtCoordinate(localXPx, localYPx, TextEncoding.TEXT_ENCODING_UTF16);
+    if (!posAffinity) { this.resultInfo = 'getCharacterPositionAtCoordinate 返回 undefined'; return; }
+    const index = posAffinity.position;
+    const affinity = posAffinity.affinity;
+    let charStart: number, charEnd: number;
+    if (affinity === text.Affinity.UPSTREAM) {
+      charStart = Math.max(0, index - 1); charEnd = index;
+    } else {
+      charStart = index; charEnd = index + 1;
+    }
+    // 根据字符范围查询对应的字形范围与实际字符范围（UTF-16编码）
+    const glyphRanges = layoutManager.getGlyphRangeForCharacterRange(
+      { start: charStart, end: charEnd }, TextEncoding.TEXT_ENCODING_UTF16);
+    if (!glyphRanges || glyphRanges.length === 0) {
+      this.resultInfo = `getGlyphRangeForCharacterRange 返回空, index=${index}, affinity=${affinity}`; return;
+    }
+    const actualRange: TextRange = glyphRanges.length >= 2 ? glyphRanges[1] : { start: charStart, end: charEnd };
+    // 根据实际字符范围获取文本矩形区域，用于绘制高亮背景
+    const textBoxes = layoutManager.getRectsForRange(actualRange, text.RectWidthStyle.TIGHT, text.RectHeightStyle.TIGHT);
+    if (!textBoxes || textBoxes.length === 0) {
+      this.resultInfo = `getRectsForRange 返回空, range=[${actualRange.start}, ${actualRange.end}]`; return;
+    }
+    this.drawGradientBackground(uiContext, textBoxes);
+    const affinityStr = affinity === text.Affinity.UPSTREAM ? 'UPSTREAM(0)' : 'DOWNSTREAM(1)';
+    this.resultInfo =
+      `坐标: (${finger.localX.toFixed(1)}, ${finger.localY.toFixed(1)})vp\n` +
+      `UTF16偏移: ${index}, 亲和性: ${affinityStr}\n` +
+      `传入范围: [${charStart}, ${charEnd}] -> 实际字符范围: [${actualRange.start}, ${actualRange.end}]\n` +
+      `矩形数: ${textBoxes.length}`;
+  }
+
+  private drawGradientBackground(uiContext: UIContext, textBoxes: TextBox[]): void {
+    const ctx = this.canvasContext;
+    ctx.clearRect(0, 0, 5000, 5000);
+    for (const box of textBoxes) {
+      const r = box.rect;
+      const l = uiContext.px2vp(r.left), t = uiContext.px2vp(r.top);
+      const w = uiContext.px2vp(r.right) - l, h = uiContext.px2vp(r.bottom) - t;
+      if (w <= 0 || h <= 0) continue;
+      const g = ctx.createLinearGradient(l, t, l + w, t + h);
+      g.addColorStop(0, 'rgba(187, 153, 255, 0.66)');
+      g.addColorStop(1, 'rgba(129, 229, 255, 0.66)');
+      ctx.fillStyle = g;
+      ctx.beginPath();
+      ctx.roundRect(l, t, w, h, 4);
+      ctx.fill();
+    }
+  }
+}
+```
+
+该效果图会因设备尺寸差异有显示区别，仅供参考。
+
+![textUtf16GlyphHighlight](figures/textUtf16GlyphHighlight.gif)

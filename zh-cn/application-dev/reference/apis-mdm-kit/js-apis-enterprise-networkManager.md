@@ -1511,7 +1511,7 @@ let config: networkManager.InterfaceConfig = {
   "gateway": "192.168.1.1",
   "netMask": "255.255.255.0",
   "dnsServers": "192.168.1.1"
-}
+};
 let networkInterface: string = "eth0"; // 需根据实际情况进行替换
 try {
   networkManager.setEthernetConfig(wantTemp, networkInterface, config);

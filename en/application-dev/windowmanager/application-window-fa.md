@@ -1,81 +1,80 @@
 # Application Window Development (FA Model)
+
 <!--Kit: ArkUI-->
 <!--Subsystem: Window-->
-<!--Owner: @waterwin-->
-<!--Designer: @nyankomiya-->
+<!--Owner: @fei_1007-->
+<!--Designer: @gcw_sPCsris4-->
 <!--Tester: @qinliwen0417-->
 <!--Adviser: @ge-yafang-->
+<!-- md-trans-meta sourceCommit=d92a834fa37fa220b93af036aac498daf001d662 translatedAt=2026-08-11T10:10:31.776Z pushedAt=2026-08-12T02:23:28.840Z -->
 
 ## Basic Concepts
 
-Immersive window: a window display mode where the system windows (generally the status bar and navigation bar) are hidden to allow users to fully engage with the content.
+Window immersive capability: the ability to control system windows such as the status bar and navigation bar, reducing the visual abruptness of these system UI elements to deliver an optimal user experience.
 
-The immersive window feature is applicable only to the main window of an application in full-screen mode. It does not apply to a main window in any other mode or a child window (for example, a dialog box or a floating window).
+The immersive capability takes effect only when the main window of an application (app for short) is used as a full-screen window. Generally, auxiliary windows such as app subwindows, global floating windows, and modal windows, as well as the app main window in free window mode, cannot use the immersive capability.
 
 > **NOTE**
 >
-> Currently, immersive UI development supports window-level configuration, but not page-level configuration. If page redirection is required, you can set the immersive mode at the beginning of the page lifecycle, for example, in the **onPageShow** callback, and then restore the default settings when the page exits, for example, in the **onPageHide** callback.
+> Currently, immersive UI development supports only window-level configuration, not page-level configuration. If page-level switching is required, you can set the immersive mode at the beginning of the page lifecycle, for example, in **onPageShow**, and then restore the default settings when the page exits, for example, in **onPageHide**.
 
 ## When to Use
 
-In the FA model, you can perform the following operations during application window development:
+In the FA model, typical scenarios for managing app windows include:
 
-- Setting the properties and content of the child window of an application
+- Setting the subwindow attributes and target page of the app
 
-- Experiencing the immersive window feature
+- Experience window immersive capabilities.
 
- 
+The specific development methods are described below.
 
+## APIs
 
-## Available APIs
+The common APIs involved in the above scenarios are shown in the following table. For more API descriptions, see [@ohos.window (Window)](../reference/apis-arkui/arkts-apis-window.md).
 
-The table below lists the common APIs used for application window development. For details about more APIs, see [Window](../reference/apis-arkui/arkts-apis-window.md).
-
-| Instance        | API                                                      | Description                                                        |
+| Instance Name | API Name | Description |
 | -------------- | ------------------------------------------------------------ | ------------------------------------------------------------ |
-| Window static method| createWindow(config: Configuration, callback: AsyncCallback\<Window>): void | Creates a child window.<br>**config**: parameters used for creating the window.              |
-| Window static method| findWindow(name: string): Window                             | Finds a window based on the name.                                    |
-| Window         | setUIContent(path: string, callback: AsyncCallback&lt;void&gt;): void | Loads the content of a page, with its path in the current project specified, to this window.<br>**path**: path of the page from which the content will be loaded. The path is configured in the **config.json** file of the project in the FA model.                                |
-| Window         | moveWindowTo(x: number, y: number, callback: AsyncCallback&lt;void&gt;): void | Moves this window.                                              |
-| Window         | setWindowBrightness(brightness: number, callback: AsyncCallback&lt;void&gt;): void | Sets the brightness for this window.                                            |
-| Window         | resize(width: number, height: number, callback: AsyncCallback&lt;void&gt;): void | Changes the window size.                                          |
-| Window         | setWindowLayoutFullScreen(isLayoutFullScreen: boolean): Promise&lt;void&gt; | Sets whether to enable an immersive layout for the main window or child window. **true** to enable, **false** otherwise.|
-| Window         | setWindowSystemBarEnable(names: Array&lt;'status'\|'navigation'&gt;): Promise&lt;void&gt; | <!--RP1-->Sets whether to show the status bar and three-button navigation bar in the main window. The visibility of the status bar and three-button navigation bar is controlled by **status** and **navigation**, respectively.<!--RP1End--><br>For example, if this parameter is set to **['status',&nbsp;'navigation']**, all of them are shown. If this parameter is set to **[]**, they are hidden.|
-| Window         | setWindowSystemBarProperties(systemBarProperties: SystemBarProperties): Promise&lt;void&gt; | Sets the properties of the status bar and navigation bar in this window.<br>**systemBarProperties**: properties of the status bar and navigation bar.|
-| Window         | showWindow(callback: AsyncCallback\<void>): void             | Shows this window.                                              |
-| Window         | on(type: 'touchOutside', callback: Callback&lt;void&gt;): void | Enables listening for touch events outside this window.                          |
-| Window         | destroyWindow(callback: AsyncCallback&lt;void&gt;): void     | Destroys this window.                                              |
+| window static method | createWindow(config: Configuration, callback: AsyncCallback\<Window>): void | Creates a subwindow.<br>-`config`: used for creating the window. |
+| window static method | findWindow(name: string): Window | Finds the window corresponding to `name`. |
+| Window | setUIContent(path: string, callback: AsyncCallback&lt;void&gt;): void | Loads specific page content for the window based on the path of a page in the current project.<br>Here, `path` is the path of the page content to be loaded into the window. In the FA model, this path must be added to the `config.json` file of the project. |
+| Window | moveWindowTo(x: number, y: number, callback: AsyncCallback&lt;void&gt;): void | Moves the current window position. |
+| Window | setWindowBrightness(brightness: number, callback: AsyncCallback&lt;void&gt;): void | Sets the screen brightness value. |
+| Window | resize(width: number, height: number, callback: AsyncCallback&lt;void&gt;): void | Changes the current window size. |
+| Window | setWindowLayoutFullScreen(isLayoutFullScreen: boolean): Promise&lt;void&gt; | Sets whether the layout of the main window or subwindow is an immersive layout. The value **true** indicates an immersive layout, and **false** indicates a non-immersive layout. |
+| Window | setWindowSystemBarEnable(names: Array&lt;'status'\|'navigation'&gt;): Promise&lt;void&gt; | <!--RP1-->Sets the display modes for the status bar and the three‑button navigation bar of the main window.<!--RP1End--> The status bar is managed via the status setting, while the navigation bar is managed via the navigation setting. <br>For example, if this parameter is set to `['status',&nbsp;'navigation']`, all are shown; if set to `[]`, none are shown. |
+| Window | setWindowSystemBarProperties(systemBarProperties: SystemBarProperties): Promise&lt;void&gt; | Sets the properties of the navigation bar and status bar within the window..<br>`systemBarProperties`: A collection of properties for the navigation bar and status bar. |
+| Window | showWindow(callback: AsyncCallback\<void>): void | Shows the current window. |
+| Window | on(type: 'touchOutside', callback: Callback&lt;void&gt;): void | Enables listening for tap events outside the current window area. |
+| Window | destroyWindow(callback: AsyncCallback\<void>): void | Destroys the current window. |
 
+## Setting an App Subwindow
 
-## Setting the Child Window of an Application
-
-You can create a child window, such as a dialog box, and set its properties.
+You can create app subwindows as needed, such as dialogs, and perform operations like setting their attributes.
 
 > **NOTE**
->
-> In the following scenarios, you are not advised to use child windows. Instead, consider using the [overlay](../reference/apis-arkui/arkui-ts/ts-universal-attributes-overlay.md) capability of components first. 
-> - On mobile devices (tablets in non-freeform mode and phones), child windows cannot extend beyond the boundaries of the main window when it is in floating or split-screen mode, just like components. 
-> - In split-screen or freeform window mode, components, when compared with child windows, offer better real-time adaptability to changes in the main window's position and size. 
-> - On certain platforms, system configurations may restrict child windows to default system animations and rounded shadows, offering no customization options for applications and thereby limiting their versatility.
+> The following scenarios are not recommended for using subwindows. You are advised to prioritize using the control [overlay](../reference/apis-arkui/arkui-ts/ts-universal-attributes-overlay.md) capability.
+> - On mobile devices (tablets in non-freeform mode and phones), subwindows cannot extend beyond the main window range when the main window is in multi-window floating window mode or split-screen mode, which is consistent with controls.
+> - In split-screen window and freeform window modes, controls have a better real-time following capability than subwindows when the main window position and size change.
+> - On some device platforms, due to actual system configuration restrictions, subwindows only have the system's default animation effects and rounded corner shadows, which apps cannot set, resulting in low flexibility.
 
 ### How to Develop
 
-1. Create or obtain a child window.
+1. Create/obtain a subwindow object.
 
-   - Call **window.createWindow** to create a child window.
+   - A subwindow can be created using the `window.createWindow` API.
 
-     In non-[freeform window](../windowmanager/window-terminology.md#freeform-window) mode, the child window created uses an [immersive layout](../windowmanager/window-terminology.md#immersive-layout) by default.
+     In the non-[freeform window](../windowmanager/window-terminology.md#freeform-window) state, a subwindow uses [immersive layout](../windowmanager/immersive-window-feature.md#immersive-layout) by default after creation.
 
-     In freeform window mode, the child window created uses an immersive layout when [decorEnabled](../reference/apis-arkui/arkts-apis-window-i.md#configuration9) is set to **false**, and it uses a non-immersive layout when this parameter is set to **true**.
-     
-   - Call **window.findWindow** to find an available child window.
+     In the freeform window state, when the subwindow parameter [decorEnabled](../reference/apis-arkui/arkts-apis-window-i.md#configuration9) is set to **false**, the subwindow uses immersive layout after creation; when **decorEnabled** is set to **true**, the subwindow uses non-immersive layout after creation.
+
+   - You can also use the `window.findWindow` API to locate an already created window and obtain the subwindow.
 
    ```ts
    import { window } from '@kit.ArkUI';
    import { BusinessError } from '@kit.BasicServicesKit';
    
    let windowClass: window.Window | null = null;
-   // Method 1: Create a child window.
+   // Method 1: Create a subwindow.
    let config: window.Configuration = { name: "subWindow", windowType: window.WindowType.TYPE_APP };
    window.createWindow(config, (err: BusinessError, data) => {
      let errCode: number = err.code;
@@ -90,7 +89,7 @@ You can create a child window, such as a dialog box, and set its properties.
       return;
      }
    });
-   // Method 2: Find a child window.
+   // Method 2: Find the subwindow.
    try {
      windowClass = window.findWindow('subWindow');
    } catch (exception) {
@@ -98,12 +97,12 @@ You can create a child window, such as a dialog box, and set its properties.
    }
    ```
 
-2. Set the properties of the child window.
+2. Set subwindow attributes.
 
-   After the child window is created, you can set its properties, such as the size, position, background color, and brightness.
+   After the subwindow is created, you can change its size, position, and other attributes, as well as set attributes such as the window background color and brightness based on the app's needs.
 
    ```ts
-   // Move the child window.
+   // Move the subwindow position.
    windowClass.moveWindowTo(300, 300, (err: BusinessError) => {
      let errCode: number = err.code;
      if (errCode) {
@@ -112,7 +111,7 @@ You can create a child window, such as a dialog box, and set its properties.
      }
      console.info('Succeeded in moving the window.');
    });
-   // Change the size of the child window.
+   // Change the subwindow size.
    windowClass.resize(500, 500, (err: BusinessError) => {
      let errCode: number = err.code;
      if (errCode) {
@@ -123,12 +122,12 @@ You can create a child window, such as a dialog box, and set its properties.
    });
    ```
 
-3. Load content to and show the child window.
+3. Load and display the specific content of the subwindow.
 
-   Call **setUIContent** to load content to the child window and **showWindow** to show the child window.
+Load and display the specific content of the subwindow through the `setUIContent` and `showWindow` APIs.
 
    ```ts
-   // Load content to the child window.
+   // Load the corresponding target page for the subwindow.
    windowClass.setUIContent("pages/page2", (err: BusinessError) => {
      let errCode: number = err.code;
      if (errCode) {
@@ -140,7 +139,7 @@ You can create a child window, such as a dialog box, and set its properties.
        console.error('windowClass is null');
        return;
      }
-     // Show the child window.
+     // Display the subwindow.
      windowClass.showWindow((err: BusinessError) => {
        let errCode: number = err.code;
        if (errCode) {
@@ -152,12 +151,12 @@ You can create a child window, such as a dialog box, and set its properties.
    });
    ```
 
-4. Destroy the child window.
+4. Destroy the subwindow.
 
-   When the child window is no longer needed, you can call **destroyWindow** to destroy it.
+When a subwindow is no longer needed, you can destroy it using the **destroyWindow** API based on the scenario-specific implementation logic.
 
    ```ts
-   // Call destroy() to destroy the child window when it is no longer needed.
+   // When a subwindow is no longer needed, destroy it using the destroyWindow API based on the scenario-specific implementation logic.
    windowClass.destroyWindow((err: BusinessError) => {
      let errCode: number = err.code;
      if (errCode) {
@@ -168,20 +167,19 @@ You can create a child window, such as a dialog box, and set its properties.
    });
    ```
 
-## Experiencing the Immersive Window Feature
+## Immersive Window Experience
 
-To create a better video watching and gaming experience, you can use the immersive window feature to hide the status bar and navigation bar. This feature is available only for the main window of an application. Since API version 10, the immersive window has the same size as the full screen by default; its layout is controlled by the component module; the background color of its status bar and navigation bar is transparent, and the text color is black. When an application window calls **setWindowLayoutFullScreen**, with **true** passed in, an immersive window layout is used. If **false** is passed in, a non-immersive window layout is used.
-
+In scenarios such as watching videos or playing games, users often prefer to hide unnecessary system windows such as the status bar and navigation bar for a better immersive experience. The window immersive capability (which applies only to the main window) can be used to achieve this effect. Starting from API version 10, an immersive window is configured to full-screen size by default, with its layout controlled by the component module. The status bar and navigation bar backgrounds are transparent, and the text color is black. When the app window calls the `setWindowLayoutFullScreen` API, setting it to `true` means the component module controls an immersive full-screen layout that ignores the status bar and navigation bar, while setting it to `false` means the component module controls a non-immersive full-screen layout that avoids the status bar and navigation bar.
 
 ### How to Develop
 
-1. Obtain the main window.
+1. Obtain the main window object.
 
    > **NOTE**
    >
-   > The immersive window feature can be implemented only after the main window is obtained.
+   > The immersive capability requires that the main window object has been successfully obtained.
    >
-   > Ensure that the top window of the application is the main window. You can use **window.getLastWindow** to obtain the main window.
+   > Ensure that the last displayed window in the app is the main window, and then use the `window.getLastWindow` API to obtain the main window.
 
    ```ts
    import { window } from '@kit.ArkUI';
@@ -210,13 +208,14 @@ To create a better video watching and gaming experience, you can use the immersi
    });
    ```
 
-2. Implement the immersive effect. You can use either of the following methods:
+2. Implement the immersive effect. There are two approaches:
 
-   - Method 1: When the main window of the application is a full-screen window, call **setWindowSystemBarEnable** to hide the status bar and navigation bar.
-   - Method 2: Call **setWindowLayoutFullScreen** to enable the full-screen mode for the main window layout. Call **setWindowSystemBarProperties** to set the opacity, background color, text color, and highlighted icon of the status bar and navigation bar to create a display effect consistent with that of the main window.
+   - Approach 1: When the app main window is a full-screen window, call the `setWindowSystemBarEnable` API to set the navigation bar and status bar to be hidden, thereby achieving the immersive effect.
+
+   - Approach 2: Call the `setWindowLayoutFullScreen` API to set the app main window to an immersive layout. Then call the `setWindowSystemBarProperties` API to configure attributes such as transparency, background/text colors, and highlighted icons for the navigation bar and status bar, keeping them consistent with the main window display to achieve the immersive effect.
 
    ```ts
-   // Implement the immersive effect by hiding the status bar and navigation bar.
+   // Implement the immersive effect. Approach 1: Set the navigation bar and status bar to be hidden.
    let names: Array<'status' | 'navigation'> = [];
    mainWindowClass.setWindowSystemBarEnable(names)
     .then(() => {
@@ -225,8 +224,8 @@ To create a better video watching and gaming experience, you can use the immersi
     .catch((err: BusinessError) => {
       console.error('Failed to set the system bar to be visible. Cause:' + JSON.stringify(err));
     });
-   // Implement the immersive effect by setting the properties of the status bar and navigation bar.
-    
+   // Implement the immersive effect.
+   // Method 2: Set the window to full-screen layout, and configure attributes such as the transparency, background/text color, and highlighted icons of the status bar and navigation bar to stay consistent with the main window display.
    let isLayoutFullScreen: boolean = true;
    mainWindowClass.setWindowLayoutFullScreen(isLayoutFullScreen)
     .then(() => {
@@ -238,7 +237,7 @@ To create a better video watching and gaming experience, you can use the immersi
    let sysBarProps: window.SystemBarProperties = {
      statusBarColor: '#ff00ff',
      navigationBarColor: '#00ff00',
-     // The following properties are supported since API version 8.
+     // The following two attributes are supported since API version 8.
      statusBarContentColor: '#ffffff',
      navigationBarContentColor: '#ffffff'
    };
@@ -251,12 +250,12 @@ To create a better video watching and gaming experience, you can use the immersi
     });
    ```
 
-3. Load content to and show the immersive window.
+3. Load and display the specific content of the immersive window.
 
-   Call **setUIContent** to load content to the immersive window and **showWindow** to show the window.
+   Load and display the specific content of the immersive window through the `setUIContent` and `showWindow` APIs.
 
    ```ts
-   // Load content to the immersive window.
+   // Load the corresponding target page for the immersive window.
    mainWindowClass.setUIContent("pages/page3", (err: BusinessError) => {
      let errCode: number = err.code;
      if (errCode) {

@@ -2329,7 +2329,7 @@ int32_t OH_ArkUI_List_CloseAllSwipeActions(ArkUI_NodeHandle node, void* userData
 | -- | -- |
 | [ArkUI_NodeHandle](capi-arkui-nativemodule-arkui-node8h.md) node | 需要注册事件的节点对象。 |
 | void* userData | 自定义事件参数，当事件触发时在回调参数中携带回来。 |
-| onFinish | 在收起动画完成后触发的回调。 |
+| void (\*onFinish)(void\* userData) | 在收起动画完成后触发的回调。 |
 
 **返回：**
 
@@ -2531,7 +2531,7 @@ int32_t OH_ArkUI_RegisterLayoutCallbackOnNodeHandle(ArkUI_NodeHandle node,void* 
 | -- | -- |
 | [ArkUI_NodeHandle](capi-arkui-nativemodule-arkui-node8h.md) node | 指定需要注册回调函数的目标节点。 |
 | void* userData | 执行回调函数时传给回调函数的用户自定义参数。 |
-| onLayoutCompleted | 布局完成时的回调函数。 |
+| void (*onLayoutCompleted)(void* userData) | 布局完成时的回调函数。 |
 
 **返回：**
 
@@ -2559,7 +2559,7 @@ int32_t OH_ArkUI_RegisterDrawCallbackOnNodeHandle(ArkUI_NodeHandle node,void* us
 | -- | -- |
 | [ArkUI_NodeHandle](capi-arkui-nativemodule-arkui-node8h.md) node | 指定需要注册回调函数的目标节点。 |
 | void* userData | 执行回调函数时传给回调函数的用户自定义参数。 |
-| onDrawCompleted | 绘制完成时的回调函数。 |
+| void (*onDrawCompleted)(void* userData) | 绘制完成时的回调函数。 |
 
 **返回：**
 
@@ -3184,7 +3184,7 @@ int32_t OH_ArkUI_NativeModule_RegisterCommonEvent(ArkUI_NodeHandle node, ArkUI_N
 | [ArkUI_NodeHandle](capi-arkui-nativemodule-arkui-node8h.md) node | 目标节点。  |
 | [ArkUI_NodeEventType](capi-native-node-h.md#arkui_nodeeventtype) eventType | 事件类型。 |
 | void* userData | 开发者自定义的数据指针，以便在回调函数中处理自定义数据，需确保自定义函数执行时数据有效。 |
-| callback | 开发者自定义的回调函数。 |
+| void (\*callback)(ArkUI_NodeEvent\* event) | 开发者自定义的回调函数。 |
 
 **返回：**
 

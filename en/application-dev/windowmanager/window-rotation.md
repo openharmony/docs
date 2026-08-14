@@ -2,10 +2,11 @@
 
 <!--Kit: ArkUI-->
 <!--Subsystem: Window-->
-<!--Owner: @waterwin-->
-<!--Designer: @nyankomiya-->
+<!--Owner: @fei_1007-->
+<!--Designer: @gcw_sPCsris4; @qinliwen0417-->
 <!--Tester: @qinliwen0417-->
 <!--Adviser: @ge-yafang-->
+<!-- md-trans-meta sourceCommit=0db215da74052f413c7e510405ec74a1a5667839 translatedAt=2026-08-11T10:13:04.409Z pushedAt=2026-08-12T02:56:43.096Z -->
 
 ## Overview
 
@@ -13,15 +14,17 @@ Users can hold their mobile devices in various orientations. To ensure an optima
 
 The system provides screen rotation features, allowing you to define how your application responds to orientation changes.
 
-A device has four display orientations. When a user holds the device upright, if the screen width is greater than its height, it is in LANDSCAPE mode, and the opposite orientation is LANDSCAPE_INVERTED. Conversely, if the screen height is greater than its width, it is in PORTRAIT mode, and the opposite is PORTRAIT_INVERTED.
+A device has four display orientations. When a user holds the device upright, if the screen width is greater than its height, it is in **LANDSCAPE** mode, and the opposite orientation is **LANDSCAPE_INVERTED**. Conversely, if the screen height is greater than its width, it is in **PORTRAIT** mode, and the opposite is **PORTRAIT_INVERTED**.
 
-The final display orientation is determined by multiple factors: the rotation strategy set by the application, the current holding direction of the device (gravity sensor angle), the system rotation lock switch status (viewable/setting via the pull-down control panel), and the application's scenario (such as split-screen, floating window, or running in the background). Rotation strategies set via the system are effective for the main window, and settings for other windows are ignored.
+The system comprehensively determines the display orientation of an application based on the rotation policy set by the application, the current holding orientation of the device (gravity sensor angle), the system rotation lock switch status (which can be viewed or set by pulling down the control panel), and the scenario the application is in (such as split screen, smart multi-window floating window, or app background). For devices running OpenHarmony 7.0.0 or later, the system also considers the **Smart rotation** switch status (on devices that support the smart sensor, you can enable the Smart Rotation switch via **Settings** > **System** > **Smart rotation**) to determine the display orientation of the app.
 
-The general principle of how the "application's scenario" affect the display orientation is as follows:
+Only the main window supports setting a rotation policy. Setting a rotation policy for a non-main window has no effect and does not report an error, and does not affect the display orientation.
+
+The general principle of how the "application's scenario" affects the display orientation is as follows:
 
 - If the application's main window is displayed in full screen, changes in rotation strategies take effect immediately.
 
-- If the application's main window is not displayed in full screen, changes in rotation strategies take effect only when the main window enters full-screen mode.
+- If the application's main window is not displayed in full screen, changes to the rotation strategy do not take effect immediately. The orientation change takes effect only when the application's main window enters full-screen display.
 
 For details about the differences between rotation strategies and device-related differences, see [Rotation Strategies and Device Differences](#rotation-strategies-and-device-differences). For details about the rotation strategies and restrictions in different scenarios, see [Behavior Restrictions of the Rotation API](#behavior-restrictions-of-the-rotation-api).
 
@@ -43,18 +46,17 @@ When a foreground application calls [setPreferredOrientation()](../reference/api
 
   Scenario 2: An application switches from **PORTRAIT** to **AUTO_ROTATION** while the user holds the phone sideways. The application immediately rotates from portrait to landscape.
 
-- Under special circumstances, such as floating windows, split-screen, multitasking, application background, and free windows, the system ignores the rotation strategy setting. The API call is successful, but the application's display orientation does not change until the application exits these scenarios.
+- In special cases, such as multi-window floating windows, split-screen, multitasking, application background, and free windows, the system ignores the rotation policy set by the app. The API can be called normally, but the application's display orientation does not change. The system readjusts the application's display layout based on the rotation policy only when the application exits these scenarios.
 
-  Scenario 1: In special scenarios such as split-screen and floating windows, the system locks the application to portrait for consistency. Setting the rotation strategy to **LANDSCAPE** has no immediate effect.
+  Scenario 1: In special scenarios such as split-screen and multi-window floating windows, the system forces the application to display in portrait orientation to maintain the display effect. In this case, if the application changes its rotation strategy to **LANDSCAPE**, the display orientation does not change.
 
   Scenario 2: In free windows mode, all applications are forced to display in a small window, and rotation strategies are ignored.
 
 Additionally, the application's display orientation is strongly related to the sensor. On devices without a sensor, setting the rotation strategy also does not take effect. For example, devices like TVs do not have sensors and can normally call [setPreferredOrientation()](../reference/apis-arkui/arkts-apis-window-Window.md#setpreferredorientation9-1), but the actual orientation does not change.
 
-
 ## Rotation Strategies and Device Differences
 
-Applications can set their display orientation by configuring the **orientation** field in the [model.json5](../quick-start/module-configuration-file.md) file or by calling the [setPreferredOrientation()](../reference/apis-arkui/arkts-apis-window-Window.md#setpreferredorientation9-1) API to set the **orientation** field at runtime. The meaning of the **orientation** field is the same in both cases, representing the rotation strategy. For details, see [Setting the Window Rotation Policy](https://developer.huawei.com/consumer/en/doc/best-practices/bpta-landscape-and-portrait-development#section58861731201715).
+An application can set the display orientation by configuring the **orientation** field in the [module.json5 configuration file](../quick-start/module-configuration-file.md) or by calling the [setPreferredOrientation()](../reference/apis-arkui/arkts-apis-window-Window.md#setpreferredorientation9-1) API at runtime to set the **orientation** field. Regardless of the method used, the [orientation](../reference/apis-arkui/arkts-apis-window-e.md#orientation9) field has the same meaning, that is, the rotation display orientation type enumeration (also called the rotation policy). For details, see [Setting the Window Rotation Policy](https://developer.huawei.com/consumer/en/doc/best-practices/bpta-landscape-and-portrait-development#section58861731201715).
 
 The system provides 18 orientation types to meet the needs of different scenarios. Depending on the usage scenario, these orientation types can be divided into fixed, automatic rotation, temporary, and others.
 
@@ -85,46 +87,46 @@ These four types lock the application to a specific orientation, regardless of h
 | AUTO_ROTATION_LANDSCAPE_RESTRICTED | 10 | Automatically rotates with the sensor, under the restriction of the rotation switch in the Control Panel. The orientation can be landscape or reverse landscape.|
 | AUTO_ROTATION_UNSPECIFIED | 12 | Automatically rotates with the sensor, under the restriction of the rotation switch in the Control Panel. The orientation that can be rotated to is determined by the system. For example, the window can rotate to portrait, landscape, or reverse landscape, but not reverse portrait, on a certain device.|
 
-These seven types are commonly used to set the application to adjust its orientation according to the gravity sensor so that the application always displays the page correctly when the user holds the device.
+These seven orientation types are commonly used to set the app to adjust its orientation according to the gravity sensor so that the app always displays the page correctly when the user holds the device. For devices running OpenHarmony 7.0.0 or later, a new capability is added to set the app to adjust its orientation according to the smart sensor, and the final app orientation is determined by both the gravity sensor and the smart sensor together.
 
 There are some differences in these seven types depending on the usage scenario. For example:
 
-- Types with **RESTRICTED** (such as **AUTO_ROTATION_RESTRICTED**, **AUTO_ROTATION_PORTRAIT_RESTRICTED**, and **AUTO_ROTATION_LANDSCAPE_RESTRICTED**) are controlled by the rotation switch in the control panel. When the rotation lock is enabled, applications set to these types are fixed in the locked direction and no longer adjust the page according to the gravity sensor.
+- Types with **RESTRICTED** (such as **AUTO_ROTATION_RESTRICTED**, **AUTO_ROTATION_PORTRAIT_RESTRICTED**, and **AUTO_ROTATION_LANDSCAPE_RESTRICTED**) are controlled by the rotation switch in the control center. When rotation lock is enabled, apps with these types are fixed at the locked orientation and no longer adjust the page according to the gravity sensor. For devices running OpenHarmony 7.0.0 or later, when rotation lock is enabled, apps with these types are fixed at the locked orientation and no longer adjust the page according to either the gravity sensor or the smart sensor.
 
 - Types with **PORTRAIT** or **LANDSCAPE** restrict the application to rotate between portrait/inverted portrait and landscape/inverted landscape.
 
 - **AUTO_ROTATION_UNSPECIFIED** is a special type that supports auto-rotation and is controlled by the rotation lock switch in the control panel, similar to **AUTO_ROTATION_RESTRICTED**.
 
 > **NOTE**
-> 
-> **AUTO_ROTATION_RESTRICTED** and **AUTO_ROTATION_UNSPECIFIED** are very similar in functionality, both supporting automatic rotation controlled by the rotation lock switch. However, there are still some differences between these two rotation strategies on different devices.
-> 
-> - **System rotation lock switch is off**
-> 
->   **AUTO_ROTATION_RESTRICTED** supports rotation to all four directions of the device. However, the rotation orientation supported by **AUTO_ROTATION_UNSPECIFIED** is affected by the product form of the system. On a straight-board phone or when the device is in a straight-board-like form factor, applications with this orientation type support rotation to portrait, landscape, and inverted landscape, but not to inverted portrait. On a tablet or when the device is in a tablet-like form factor, applications support rotation to all four directions of the device.
-> 
-> - **System rotation lock switch is on**
-> 
->   On a straight-board phone or when the device is in a straight-board-like form factor, neither **AUTO_ROTATION_RESTRICTED** nor **AUTO_ROTATION_UNSPECIFIED** supports locking in landscape mode. If an application is set to either of these rotation strategies and rotates to landscape, and then the user pulls down the control panel to enable rotation lock, the application is forced to rotate to portrait and remains in the locked state. On a tablet or when the device is in a tablet-like form factor, both rotation strategies support locking in landscape mode. If an application wants to support automatic rotation on a straight-board phone and can lock to the current direction, **USER_ROTATION** is recommended.
+>
+> The two rotation policies, **AUTO_ROTATION_RESTRICTED** and **AUTO_ROTATION_UNSPECIFIED**, are very similar in functionality: both support auto-rotation controlled by the rotation lock switch. However, there are some differences between them on different products.
+>
+> - **When the system rotation lock switch is off**
+>
+>   The **AUTO_ROTATION_RESTRICTED** policy allows rotation to all four orientations of the device. In contrast, the orientations to which **AUTO_ROTATION_UNSPECIFIED** can rotate depend on the product form factor of the device. On a bar phone or when the device is in a bar-phone-like form, apps with this orientation type can rotate to three orientations—portrait, landscape, and reverse landscape—but not to reverse portrait. On a tablet or when the device is in a tablet-like form, apps can rotate to all four orientations of the device.
+>
+> - **When the system rotation lock switch is on**
+>
+>   On a bar phone or when the device is in a bar-phone-like form, neither **AUTO_ROTATION_RESTRICTED** nor **AUTO_ROTATION_UNSPECIFIED** supports locking to landscape. When an application is set to either of these two rotation policies and rotates to landscape, if the user then pulls down the control panel and enables rotation lock, the application is forced to rotate to portrait and remains in the rotation-locked state. On a tablet or when the device is in a tablet-like form, both rotation policies support locking to landscape. If an application needs to support auto-rotation on a bar phone while also being able to lock to the current orientation, it is recommended to prioritize using the **USER_ROTATION** rotation policy.
 
 ### Temporary Orientation Types
 
 | Name| Value| Description |
 | -------- | -------- | -------- |
 | USER_ROTATION_PORTRAIT | 13 | Temporarily rotates to portrait mode, and then automatically rotates with the sensor, under the restriction of the rotation switch in the Control Panel. The orientation that can be rotated to is determined by the system.|
-| USER_ROTATION_LANDSCAPE | 14 | Temporarily rotating to landscape mode, and then automatically rotating with the sensor, under the restriction of the rotation switch in the Control Panel. The orientation that can be rotated to is determined by the system.|
-| USER_ROTATION_PORTRAIT_INVERTED | 15 | Temporarily rotating to reverse portrait mode, and then automatically rotating with the sensor, under the restriction of the rotation switch in the Control Panel. The orientation that can be rotated to is determined by the system.|
-| USER_ROTATION_LANDSCAPE_INVERTED | 16 | Temporarily rotating to reverse landscape mode, and then automatically rotating with the sensor, under the restriction of the rotation switch in the Control Panel. The orientation that can be rotated to is determined by the system.|
+| USER_ROTATION_LANDSCAPE | 14 | Temporarily rotates to landscape mode, and then automatically rotates with the sensor, under the restriction of the rotation switch in the Control Panel. The orientation that can be rotated to is determined by the system.|
+| USER_ROTATION_PORTRAIT_INVERTED | 15 | Temporarily rotates to reverse portrait mode, and then automatically rotates with the sensor, under the restriction of the rotation switch in the Control Panel. The orientation that can be rotated to is determined by the system.|
+| USER_ROTATION_LANDSCAPE_INVERTED | 16 | Temporarily rotates to reverse landscape mode, and then automatically rotates with the sensor, under the restriction of the rotation switch in the Control Panel. The orientation that can be rotated to is determined by the system.|
 
-These four types support automatic rotation based on the gravity sensor while also being controlled by the rotation lock switch in the control panel. Different from **AUTO_ROTATION_RESTRICTED**, these four types immediately temporarily rotate the application to the specified orientation when set. For example, if the user is holding the phone in portrait mode and the application is displayed in portrait, when the application sets the rotation strategy to **USER_ROTATION_LANDSCAPE**, the application immediately rotates to landscape display. These four types are commonly used by video applications when switching from PiP playback to full-screen playback.
+These four orientation types are controlled by the rotation lock in the control center and also support automatic rotation based on the gravity sensor. For devices running OpenHarmony 7.0.0 or later, a new capability is added to support automatic rotation based on the smart sensor (on devices that support the smart sensor, you can enable the Smart Rotation switch via **Settings > System > Smart Rotation**). They differ from **AUTO_ROTATION_RESTRICTED** in that when these four orientation types are set by the app, the app is immediately and temporarily rotated to the specified orientation. For example, when a user holds the phone in portrait mode and the app is displayed in portrait, if the app sets the rotation policy to **USER_ROTATION_LANDSCAPE**, the app immediately rotates to landscape display. These four types are typically used when a video app transitions from small-window playback to full-screen playback.
 
 > **NOTE**
-> 
-> **USER_ROTATION_PORTRAIT_INVERTED** behaves differently across devices.
-> 
-> - On a straight-board phone or when the device is in a straight-board-like form factor, applications set to the **USER_ROTATION_PORTRAIT_INVERTED** rotation strategy cannot temporarily rotate to inverted portrait. Instead, they still display in portrait mode, and when rotating automatically, they can rotate only to portrait, landscape, and inverted landscape, but not to inverted portrait.
-> 
-> - On a tablet or when the device is in a tablet-like form factor, when the rotation lock switch is off, it supports automatic rotation to portrait, inverted portrait, landscape, and inverted landscape.
+>
+> **USER_ROTATION_PORTRAIT_INVERTED** is a special temporary orientation type with differences across devices.
+>
+> - On a bar phone or when the device is in a bar-phone-like form, an application set to the **USER_ROTATION_PORTRAIT_INVERTED** rotation policy cannot temporarily rotate to reverse portrait. Instead, it still displays in portrait orientation, and during auto-rotation, it can only rotate to three orientations—portrait, landscape, and reverse landscape—but not to reverse portrait.
+>
+> - On a tablet or when the device is in a tablet-like form, when the rotation lock switch is off, the application can auto-rotate to all four orientations: portrait, reverse portrait, landscape, and reverse landscape.
 
 ### Other Orientation Types
 
@@ -136,8 +138,8 @@ These four types support automatic rotation based on the gravity sensor while al
 
 These three types are used in the following specific scenarios:
 
-- **UNSPECIFIED** is the default type used by the system when the application has neither set it in the **model.json5** file nor called **setPreferredOrientation()** at runtime. In this case, the application's display orientation is determined by the system. Typically, on a straight-board phone, the application defaults to portrait display and does not support rotation; on a tablet, it supports rotation to all four directions and is controlled by the system rotation lock switch in the control panel.
+- **UNSPECIFIED** is the undefined orientation type. That is, when the application has neither set it in the **module.json5** file nor called **setPreferredOrientation()** at runtime, the system uses this type by default. In this case, the application's display orientation is determined by the system. Typically, on a bar phone, the default is portrait display with no rotation support; on a tablet, rotation to all four orientations is supported and controlled by the system rotation lock switch in the control center.
 
-- **LOCKED** is commonly used in application launch scenarios. Applications set to this strategy maintain the same orientation as the previous application when launched by another application. The orientation of the application may also change due to application switching and other reasons when this strategy is effective.
+- **LOCKED** is the locked mode, typically used in application-launching-application scenarios. An application set to this strategy maintains the same orientation as the previous application when launched by another app. When this strategy is in effect, the application's orientation may also change due to reasons such as application switching.
 
 - **FOLLOW_DESKTOP** is a mode that follows the home screen. Typically, the home screen on a straight-board phone is fixed in portrait mode and cannot rotate, while the home screen on a tablet can rotate. Foldable devices are special in that the home screen cannot rotate when the device is folded, similar to a straight-board phone, but it can rotate like a tablet when the device is unfolded.

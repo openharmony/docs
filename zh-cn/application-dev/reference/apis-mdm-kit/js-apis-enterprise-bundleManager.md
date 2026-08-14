@@ -345,7 +345,7 @@ let wantTemp: Want = {
 let appIds: Array<string> = ['com.example.******_******/******5t5CoBM='];
 
 try {
-  bundleManager.removeDisallowedInstallBundlesSync(wantTemp, appIds, 100)
+  bundleManager.removeDisallowedInstallBundlesSync(wantTemp, appIds, 100);
   console.info('Succeeded in removing disallowed install bundles.');
 } catch (err) {
   console.error(`Failed to remove disallowed install bundles. Code is ${err.code}, message is ${err.message}`);
@@ -1334,7 +1334,7 @@ let wantTemp: Want = {
   abilityName: 'EnterpriseAdminAbility'
 };
 // 需根据实际情况进行替换
-let bundleNames: Array<string> = [ 'com.huaweicloud.m' ];
+let bundleNames: Array<string> = ['com.huaweicloud.m'];
 try {
   bundleManager.installMarketApps(wantTemp, bundleNames);
   console.info(`Succeeded in installing market apps.`);
@@ -1423,7 +1423,7 @@ bundleManager.getInstalledBundleStorageStats(wantTemp, bundleNames, accountId).t
     "dataSize": 1216566
   },
   // ...
-]
+];
 ```
 
 

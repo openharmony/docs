@@ -1,10 +1,12 @@
 # Interface (Focus)
+
 <!--Kit: Camera Kit-->
 <!--Subsystem: Multimedia-->
 <!--Owner: @qano-->
 <!--Designer: @leo_ysl-->
 <!--Tester: @xchaosioda-->
 <!--Adviser: @w_Machine_cc-->
+<!-- md-trans-meta sourceCommit=f0e09e3de648081eea4659387ebc6bc9008f04fc translatedAt=2026-08-11T01:58:58.234Z pushedAt=2026-08-11T10:20:44.524Z -->
 
 **Focus** inherits from [FocusQuery](arkts-apis-camera-FocusQuery.md).
 
@@ -230,5 +232,90 @@ function getFocalLength(photoSession: camera.PhotoSession): number {
     console.error(`The getFocalLength call failed. error code: ${err.code}`);
   }
   return focalLength;
+}
+```
+
+## lockFocusTracking
+
+lockFocusTracking(focusPoint: Point): void
+
+Locks focus tracking to continuously track a specified object. The tracking object is specified by the **focusPoint** parameter.
+
+**Since**: 26.0.0
+
+**Atomic service API**: This API can be used in atomic services since API version 26.0.0.
+
+**Model restriction:** This API can be used only in the stage model.
+
+**System capability**: SystemCapability.Multimedia.Camera.Core
+
+**Parameters**
+
+| Name      | Type                     | Mandatory | Description                 |
+| -------- | ----------------------- | ---- | ------------------- |
+| focusPoint    | [Point](arkts-apis-camera-i.md#point)         | Yes   | Focus point. Both x and y is within the range of [0, 1]. If the value is out of the range, the setting does not take effect. (0, 0) indicates the upper left corner of the image, and (1, 1) indicates the lower right corner of the image.  |
+
+**Error codes**
+
+For details about the error codes, see [Camera Error Codes](errorcode-camera.md).
+
+| ID         | Error Message        |
+| --------------- | --------------- |
+| 7400103                | Session not config, only throw in session usage.   |
+| 7400201                | Camera service fatal error.  |
+
+**Example**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+function lockFocusTracking(photoSession: camera.PhotoSession): void {
+  try {
+    const focusPoint: camera.Point = {x: 0, y: 0};
+    photoSession.lockFocusTracking(focusPoint);
+  } catch (error) {
+    // If the operation fails, error.code is returned and processed.
+    let err = error as BusinessError;
+    console.error(`The lockFocusTrack call failed. error code: ${err.code}`);
+  }
+}
+```
+
+## unlockFocusTracking
+
+unlockFocusTracking(): void
+
+Unlocks focus tracking.
+
+**Since**: 26.0.0
+
+**Atomic service API**: This API can be used in atomic services since API version 26.0.0.
+
+**Model restriction:** This API can be used only in the stage model.
+
+**System capability**: SystemCapability.Multimedia.Camera.Core
+
+**Error codes**
+
+For details about the error codes, see [Camera Error Codes](errorcode-camera.md).
+
+| ID         | Error Message        |
+| --------------- | --------------- |
+| 7400103                | Session not config, only throw in session usage.   |
+| 7400201                | Camera service fatal error.  |
+
+**Example**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+function unlockFocusTracking(photoSession: camera.PhotoSession): void {
+  try {
+    photoSession.unlockFocusTracking();
+  } catch (error) {
+    // If the operation fails, error.code is returned and processed.
+    let err = error as BusinessError;
+    console.error(`The unlockFocusTrack call failed. error code: ${err.code}`);
+  }
 }
 ```

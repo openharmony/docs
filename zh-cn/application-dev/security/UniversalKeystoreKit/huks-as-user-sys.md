@@ -1,4 +1,4 @@
-# 指定用户身份操作(仅对系统应用开放)
+# 指定用户身份操作（仅对系统应用开放）
 
 <!--Kit: Universal Keystore Kit-->
 <!--Subsystem: Security-->

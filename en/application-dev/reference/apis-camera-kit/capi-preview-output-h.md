@@ -1,10 +1,12 @@
 # preview_output.h
+
 <!--Kit: Camera Kit-->
 <!--Subsystem: Multimedia-->
 <!--Owner: @qano-->
 <!--Designer: @leo_ysl-->
 <!--Tester: @xchaosioda-->
 <!--Adviser: @w_Machine_cc-->
+<!-- md-trans-meta sourceCommit=49098dc8bf8e2b87271445659fa4b6b57bf81d5e translatedAt=2026-08-11T02:03:52.519Z pushedAt=2026-08-12T07:52:34.000Z -->
 
 ## Overview
 
@@ -53,6 +55,8 @@ The file declares the preview output concepts.
 | [Camera_ErrorCode OH_PreviewOutput_IsBandwidthCompressionSupported(Camera_PreviewOutput* previewOutput, bool* isSupported)](#oh_previewoutput_isbandwidthcompressionsupported) | - | Checks whether preview bandwidth compression is supported. This involves reducing data volume through encoding to minimize bandwidth usage during transmission.|
 | [Camera_ErrorCode OH_PreviewOutput_EnableBandwidthCompression(Camera_PreviewOutput* previewOutput, bool enabled)](#oh_previewoutput_enablebandwidthcompression) | - | Enables preview bandwidth compression.<br>This function must be called prior to [OH_CaptureSession_CommitConfig()](capi-capture-session-h.md#oh_capturesession_commitconfig). Otherwise, the preview output stream format will be affected.|
 | [Camera_ErrorCode OH_PreviewOutput_AddDeferredSurface(const Camera_PreviewOutput* previewOutput, const char* surfaceId)](#oh_previewoutput_adddeferredsurface) | - | Adds a surface for delayed preview.|
+| [bool OH_PreviewOutput_IsLogViewAssistSupported(const Camera_PreviewOutput* previewOutput)](#oh_previewoutput_islogviewassistsupported) | - | Checks whether view assist is supported.|
+| [Camera_ErrorCode OH_PreviewOutput_SetLogViewAssistEnable(Camera_PreviewOutput* previewOutput, bool enable)](#oh_previewoutput_setlogviewassistenable) | - | Enables view assist.<br>This API can be called only after [OH_CaptureSession_CommitConfig()](capi-capture-session-h.md#oh_capturesession_commitconfig) is called. |
 
 ## Function Description
 
@@ -115,7 +119,6 @@ Defines the callback defined in the [PreviewOutput_Callbacks](capi-oh-camera-pre
 **See also**
 
 [CAMERA_SERVICE_FATAL_ERROR](capi-camera-h.md#camera_errorcode)
-
 
 ### OH_PreviewOutput_RegisterCallback()
 
@@ -541,3 +544,52 @@ Adds a surface for delayed preview.
 | Type| Description|
 | -- | -- |
 | [Camera_ErrorCode](capi-camera-h.md#camera_errorcode) | **CAMERA_OK**: The operation is successful.<br>         **CAMERA_INVALID_ARGUMENT**: A parameter is missing or the parameter type is incorrect.|
+
+### OH_PreviewOutput_IsLogViewAssistSupported()
+
+```c
+bool OH_PreviewOutput_IsLogViewAssistSupported(const Camera_PreviewOutput* previewOutput)
+```
+
+**Description**
+
+Checks whether view assist is supported.
+
+**Since**: 26.0.0
+
+**Parameters**
+
+| Name | Description |
+| -- | -- |
+| [Camera_PreviewOutput](capi-oh-camera-camera-previewoutput.md)* previewOutput | Pointer to the target **PreviewOutput** instance. |
+
+**Returns**
+
+| Type | Description |
+| -- | -- |
+| bool | Whether view assist is supported. The value **true** indicates it is supported, and **false** indicates otherwise. |
+
+### OH_PreviewOutput_SetLogViewAssistEnable()
+
+```c
+Camera_ErrorCode OH_PreviewOutput_SetLogViewAssistEnable(Camera_PreviewOutput* previewOutput, bool enable)
+```
+
+**Description**
+
+Enables view assist.<br> This API can be called only after [OH_CaptureSession_CommitConfig()](capi-capture-session-h.md#oh_capturesession_commitconfig) is called.
+
+**Since**: 26.0.0
+
+**Parameters**
+
+| Name | Description |
+| -- | -- |
+| [Camera_PreviewOutput](capi-oh-camera-camera-previewoutput.md)* previewOutput | Pointer to the **previewOutput** instance for which view assist is to be enabled. |
+| bool enable | Whether to enable view assist for preview. The value **true** indicates that view assist is enabled, and the value **false** indicates otherwise. |
+
+**Returns**
+
+| Type | Description |
+| -- | -- |
+| [Camera_ErrorCode](capi-camera-h.md#camera_errorcode) | **CAMERA_OK**: The operation is successful.<br> **CAMERA_ERROR_CAPABILITY_NOT_SUPPORTED**: The device does not support this capability.<br> **CAMERA_INVALID_ARGUMENT**: A parameter is missing or the parameter type is incorrect.<br> **CAMERA_SESSION_NOT_CONFIG**: The camera session is not configured.<br> **CAMERA_SERVICE_FATAL_ERROR**: The camera service is abnormal. |

@@ -86,7 +86,7 @@ Creates an [OH_RDB_ReturningContext](capi-rdb-oh-rdb-returningcontext.md) instan
 
 | Type| Description|
 | -- | -- |
-| [OH_RDB_ReturningContext *](capi-rdb-oh-rdb-returningcontext.md) | Returns a pointer to the [OH_RDB_ReturningContext](capi-rdb-oh-rdb-returningcontext.md) instance if the operation is successful; returns **nullptr** otherwise. You must release the memory via the [OH_RDB_DestroyReturningContext](capi-oh-rdb-types-h.md#oh_rdb_destroyreturningcontext API after use.|
+| [OH_RDB_ReturningContext *](capi-rdb-oh-rdb-returningcontext.md) | Returns a pointer to the [OH_RDB_ReturningContext](capi-rdb-oh-rdb-returningcontext.md) instance if the operation is successful; returns **nullptr** otherwise. You must release the memory via the [OH_RDB_DestroyReturningContext](capi-oh-rdb-types-h.md#oh_rdb_destroyreturningcontext) API after use.|
 
 ### OH_RDB_DestroyReturningContext()
 

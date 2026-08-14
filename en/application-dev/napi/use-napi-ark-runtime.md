@@ -1,10 +1,12 @@
 # Creating an ArkTS Runtime Environment Using Node-API
-<!--Kit: NDK-->
+
+<!--Kit: ArkTS-->
 <!--Subsystem: arkcompiler-->
 <!--Owner: @xliu-huanwei; @shilei123; @huanghello-->
 <!--Designer: @shilei123-->
 <!--Tester: @kirl75; @zsw_zhushiwei-->
-<!--Adviser: @fang-jinxu-->
+<!--Adviser: @k1ngqaquuu-->
+<!-- md-trans-meta sourceCommit=2cc827181a31e0a77238ca42eb3b41991d5fd686 translatedAt=2026-08-12T06:41:39.506Z pushedAt=2026-08-12T11:15:47.160Z -->
 
 ## When to Use
 
@@ -19,7 +21,7 @@ A maximum of 64 runtime environments can be created for a process.
 - API declaration
 
    <!-- @[napi_ark_runtime_dts](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIClassicUseCases/NodeAPIApplicationScenario/entry/src/main/cpp/types/libentry/Index.d.ts) -->
-   
+
    ``` TypeScript
    // index.d.ts
    export const createArkRuntime: () => object;
@@ -47,15 +49,17 @@ A maximum of 64 runtime environments can be created for a process.
   Configure the **build-profile.json5** file of the current module as follows:
 
   <!-- @[napi_ark_runtime_build](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIClassicUseCases/NodeAPIApplicationScenario/entry/build-profile.json5) -->
-  
+
   ``` JSON5
-  "buildOption": {
-    "arkOptions" : {
-      "runtimeOnly" : {
-        "sources": [
-          "./src/main/ets/pages/ObjectUtils.ets"
-        ]
-      }
+    "buildOption": {
+      "arkOptions" : {
+        "runtimeOnly" : {
+          "sources": [
+            "./src/main/ets/pages/ObjectUtils.ets"
+          ]
+        }
+      },
+  // ...
     },
   ```
 
@@ -90,11 +94,12 @@ A maximum of 64 runtime environments can be created for a process.
   }
   ```
 
-- Functionality implementation 
+- Feature implementation
+
   Create a thread and an ArkTS runtime environment, and load the module. For details about how to load a custom module, see [Loading a Module Using Node-API](use-napi-load-module-with-info.md).
 
   <!-- @[napi_ark_runtime_cpp](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIClassicUseCases/NodeAPIApplicationScenario/entry/src/main/cpp/napi_init.cpp) -->
-  
+
   ``` C++
   #include "napi/native_api.h"
   #include <pthread.h>
@@ -102,35 +107,51 @@ A maximum of 64 runtime environments can be created for a process.
   static void *CreateArkRuntimeFunc(void *arg)
   {
       // 1. Create the ArkTS runtime environment.
-      napi_env env;
+      napi_env env = nullptr;
       napi_status ret = napi_create_ark_runtime(&env);
       if (ret != napi_ok) {
           return nullptr;
       }
   
-      napi_handle_scope scope;
-      napi_open_handle_scope(env, &scope);
+      napi_handle_scope scope = nullptr;
+      if (napi_open_handle_scope(env, &scope) != napi_ok) {
+          napi_destroy_ark_runtime(&env);
+          return nullptr;
+      }
   
       // 2. Load custom modules.
-      napi_value objUtils;
+      napi_value objUtils = nullptr;
       ret = napi_load_module_with_info(env, "entry/src/main/ets/pages/ObjectUtils", "com.example.myapplication/entry",
                                        &objUtils);
       if (ret != napi_ok) {
+          OH_LOG_INFO(LOG_APP, "Failed to load module");
+          napi_close_handle_scope(env, scope);
+          napi_destroy_ark_runtime(&env);
           return nullptr;
       }
   
       // 3. Use the logger in ArkTS.
-      napi_value logger;
+      napi_value logger = nullptr;
       ret = napi_get_named_property(env, objUtils, "Logger", &logger);
       if (ret != napi_ok) {
+          napi_close_handle_scope(env, scope);
+          napi_destroy_ark_runtime(&env);
           return nullptr;
       }
       ret = napi_call_function(env, objUtils, logger, 0, nullptr, nullptr);
+      if (ret != napi_ok) {
+          napi_close_handle_scope(env, scope);
+          napi_destroy_ark_runtime(&env);
+          return nullptr;
+      }
   
       napi_close_handle_scope(env, scope);
   
       // 4. Destroy the ArkTS runtime environment.
       ret = napi_destroy_ark_runtime(&env);
+      if (ret != napi_ok) {
+          OH_LOG_INFO(LOG_APP, "Failed to destroy ark runtime");
+      }
   
       return nullptr;
   }
@@ -145,14 +166,15 @@ A maximum of 64 runtime environments can be created for a process.
   ```
 
 - Import the header file of ArkTS.
+
   ``` TypeScript
   import testNapi from 'libentry.so';
   ```
 
 - ArkTS sample code
-  
+
   <!-- @[napi_ark_runtime_utils](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIClassicUseCases/NodeAPIApplicationScenario/entry/src/main/ets/pages/ObjectUtils.ets) -->
-  
+
   ``` TypeScript
   export function Logger() {
     console.info('print log');
@@ -160,7 +182,7 @@ A maximum of 64 runtime environments can be created for a process.
   ```
 
   <!-- @[napi_ark_runtime_ets](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIClassicUseCases/NodeAPIApplicationScenario/entry/src/main/ets/pages/Index.ets) -->
-  
+
   ``` TypeScript
   // index.ets
   testNapi.createArkRuntime();

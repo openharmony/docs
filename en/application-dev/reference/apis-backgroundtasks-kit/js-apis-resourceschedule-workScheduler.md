@@ -6,6 +6,7 @@
 <!--Designer: @zhouben25-->
 <!--Tester: @leetestnady-->
 <!--Adviser: @HelloCrease-->
+<!-- md-trans-meta sourceCommit=16406a28f1b526bb5e02cd6879fb66133d3852a7 translatedAt=2026-08-11T01:56:55.207Z pushedAt=2026-08-11T06:58:31.120Z -->
 
 The **workScheduler** module provides the APIs for registering, canceling, and querying deferred tasks. You can use the APIs to register tasks that do not have high requirements on real-time performance as deferred tasks. The system schedules and executes the deferred tasks at an appropriate time, subject to the storage space, power consumption, and more. For details, see [Deferred Task Scheduling](../../task-management/work-scheduler.md).
 
@@ -30,6 +31,7 @@ Requests a deferred task. Upon successful request, the deferred task is added to
 **System capability**: SystemCapability.ResourceSchedule.WorkScheduler
 
 **Parameters**
+
 | Name | Type                   | Mandatory  | Description            |
 | ---- | --------------------- | ---- | -------------- |
 | work | [WorkInfo](#workinfo) | Yes   | Deferred task information, such as the task ID and trigger condition.|
@@ -38,7 +40,7 @@ Requests a deferred task. Upon successful request, the deferred task is added to
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [workScheduler Error Codes](errorcode-workScheduler.md).
 
-| Error Code | Error Message            |
+| ID| Error Message            |
 | ---- | --------------------- |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types; 3. Parameter verification failed. |
 | 9700001 | Memory operation failed. |
@@ -94,7 +96,7 @@ Stops a deferred task.
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [workScheduler Error Codes](errorcode-workScheduler.md).
 
-| Error Code | Error Message            |
+| ID| Error Message            |
 | ---- | --------------------- |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types; 3. Parameter verification failed. |
 | 9700001 | Memory operation failed. |
@@ -149,7 +151,7 @@ Obtains the information a deferred task. This API uses an asynchronous callback 
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [workScheduler Error Codes](errorcode-workScheduler.md).
 
-| Error Code | Error Message            |
+| ID| Error Message            |
 | ---- | --------------------- |
 | 401 | Parameter error. Possible causes: Parameter verification failed. |
 | 9700001 | Memory operation failed. |
@@ -196,7 +198,7 @@ Obtains the information a deferred task. This API uses a promise to return the r
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [workScheduler Error Codes](errorcode-workScheduler.md).
 
-| Error Code | Error Message            |
+| ID| Error Message            |
 | ---- | --------------------- |
 | 401 | Parameter error. Possible causes: Parameter verification failed. |
 | 9700001 | Memory operation failed. |
@@ -240,12 +242,12 @@ Obtains all the deferred tasks. This API uses an asynchronous callback to return
 | Type                             | Description                                      |
 | ------------------------------- | ---------------------------------------- |
 | Array\<[WorkInfo](#workinfo)> | List of deferred tasks. If deferred tasks have been added to the execution queue, the list of all deferred tasks in the current application is returned. Otherwise, an empty list is returned.|
-  
+
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [workScheduler Error Codes](errorcode-workScheduler.md).
 
-| Error Code | Error Message            |
+| ID| Error Message            |
 | ---- | --------------------- |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types. |
 | 9700001 | Memory operation failed. |
@@ -270,7 +272,7 @@ Obtains all the deferred tasks. This API uses an asynchronous callback to return
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [workScheduler Error Codes](errorcode-workScheduler.md).
 
-| Error Code | Error Message            |
+| ID| Error Message            |
 | ---- | --------------------- |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types. |
 | 9700001 | Memory operation failed. |
@@ -310,7 +312,7 @@ Obtains all the deferred tasks. This API uses a promise to return the result.
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [workScheduler Error Codes](errorcode-workScheduler.md).
 
-| Error Code | Error Message            |
+| ID| Error Message            |
 | ---- | --------------------- |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types. |
 | 9700001 | Memory operation failed. |
@@ -334,7 +336,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 stopAndClearWorks(): void
 
-Stops and clears all the deferred tasks.
+Stops and cancels all deferred tasks of the current app. This method can be used all deferred tasks need to be cleared when an app exits or is uninstalled.
 
 **System capability**: SystemCapability.ResourceSchedule.WorkScheduler
 
@@ -342,7 +344,7 @@ Stops and clears all the deferred tasks.
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [workScheduler Error Codes](errorcode-workScheduler.md).
 
-| Error Code | Error Message            |
+| ID| Error Message            |
 | ---- | --------------------- |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types. |
 | 9700001 | Memory operation failed. |
@@ -385,12 +387,12 @@ Checks whether the last execution of a task timed out. This API uses an asynchro
 | Type                             | Description                                      |
 | ------------------------------- | ---------------------------------------- |
 |boolean| Whether the last execution of a deferred task timed out. If **workId** is valid, it returns whether the last execution of the task obtained from WorkSchedulerService timed out; otherwise, an exception is thrown. **true** indicates that the last execution of the deferred task corresponding to the **workId** timed out, while **false** indicates the opposite.|
-  
+
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [workScheduler Error Codes](errorcode-workScheduler.md).
 
-| Error Code | Error Message            |
+| ID| Error Message            |
 | ---- | --------------------- |
 | 401 | Parameter error. Possible causes: Parameter verification failed. |
 | 9700001 | Memory operation failed. |
@@ -417,7 +419,7 @@ Checks whether the last execution of a task timed out. This API uses an asynchro
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [workScheduler Error Codes](errorcode-workScheduler.md).
 
-| Error Code | Error Message            |
+| ID| Error Message            |
 | ---- | --------------------- |
 | 401 | Parameter error. Possible causes: Parameter verification failed. |
 | 9700001 | Memory operation failed. |
@@ -464,7 +466,7 @@ Checks whether the last execution of a task timed out. This API uses a promise t
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [workScheduler Error Codes](errorcode-workScheduler.md).
 
-| Error Code | Error Message            |
+| ID| Error Message            |
 | ---- | --------------------- |
 | 401 | Parameter error. Possible causes: Parameter verification failed. |
 | 9700001 | Memory operation failed. |

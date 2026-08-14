@@ -1,18 +1,23 @@
 # Accessing and Managing Moving Photos
+
 <!--Kit: Media Library Kit-->
 <!--Subsystem: Multimedia-->
 <!--Owner: @yixiaoff-->
 <!--Designer: @liweilu1-->
 <!--Tester: @xchaosioda-->
 <!--Adviser: @w_Machine_cc-->
+<!-- md-trans-meta sourceCommit=00d7cb908705b920a9ee7ee48de288635f9580c9 translatedAt=2026-08-11T01:56:37.404Z pushedAt=2026-08-12T03:39:04.412Z -->
 
 A moving photo is a photo form that combines an image and a video, empowering a static image with dynamic video effect. It helps users capture dynamic moments and improves the fault tolerance rate of photographing.
 
 The media library provides the capabilities of accessing and managing moving photo assets, including:
 
 - [Saving Moving Photo Assets](#saving-moving-photo-assets)
+
 - [Obtaining a Moving Photo Object](#obtaining-a-moving-photo-object)
+
 - [Playing Moving Photos with MovingPhotoView](movingphotoview-guidelines.md)
+
 - [Reading Moving Photo Assets](#reading-moving-photo-assets)
 
 The capability of taking moving photos is provided by Camera Kit. For details, see [Moving Photos (ArkTS)](../camera/camera-moving-photo.md).
@@ -28,22 +33,26 @@ For details, see [SaveButton](../../reference/apis-arkui/arkui-ts/ts-security-co
 **How to Develop**
 
 1. Set the properties of the **SaveButton** security component.
+
 2. Create a button with **SaveButton**.
+
 3. Call [MediaAssetChangeRequest.createAssetRequest](../../reference/apis-media-library-kit/arkts-apis-photoAccessHelper-MediaAssetChangeRequest.md#createassetrequest11) to create an asset change request with **PhotoSubtype** set to **MOVING_PHOTO**.
+
 4. Call [MediaAssetChangeRequest.addResource](../../reference/apis-media-library-kit/arkts-apis-photoAccessHelper-MediaAssetChangeRequest.md#addresource11) to set the image and video of the moving photo. The video duration of the moving photo cannot exceed 10s.
-   
+
    In the following example, the image and video of the moving photo are specified by **fileUri** of the [application file](../../file-management/app-file-access.md) in the application sandbox.
-   
+
    You can also specify the assets in **ArrayBuffer**. For details, see [MediaAssetChangeRequest.addResource(type: ResourceType, data: ArrayBuffer)](../../reference/apis-media-library-kit/arkts-apis-photoAccessHelper-MediaAssetChangeRequest.md#addresource11-1).
 
 5. Call [PhotoAccessHelper.applyChanges](../../reference/apis-media-library-kit/arkts-apis-photoAccessHelper-PhotoAccessHelper.md#applychanges11) to apply changes for the moving photo.
 
-<!-- @[Save_Button](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/MediaLibraryKit/MovingPhotoSample/entry/src/main/ets/pages/Scene1.ets) -->
+<!-- @[Save_Button](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/MediaLibraryKit/MovingPhotoSample/entry/src/main/ets/pages/Scene1.ets) -->  
 
 ``` TypeScript
 import { photoAccessHelper } from '@kit.MediaLibraryKit';
 import { common } from '@kit.AbilityKit';
 // ...
+import { fileUri } from '@kit.CoreFileKit';
 
 @Entry({ routeName : 'Scene1' })
 @Component
@@ -71,8 +80,9 @@ export struct Scene1 {
                 let context: Context = this.getUIContext().getHostContext() as common.UIAbilityContext;
                 let phAccessHelper = photoAccessHelper.getPhotoAccessHelper(context);
                 // Ensure that the assets specified by imageFileUri and videoFileUri exist.
-                let imageFileUri = 'file://' + context.filesDir + '/create_moving_photo.jpg';
-                let videoFileUri = 'file://' + context.filesDir + '/create_moving_photo.mp4';
+                let photoPath = context.filesDir;
+                let imageFileUri = fileUri.getUriFromPath(photoPath) + '/create_moving_photo.jpg';
+                let videoFileUri = fileUri.getUriFromPath(photoPath) + '/create_moving_photo.mp4';
 
                 let assetChangeRequest: photoAccessHelper.MediaAssetChangeRequest =
                   photoAccessHelper.MediaAssetChangeRequest.createAssetRequest(context,
@@ -120,7 +130,9 @@ If you want to play an obtained moving photo, see [Playing Moving Photos with Mo
 ### Obtaining a Moving Photo Object from the Media Library
 
 1. Select the [URI of a media file](../../file-management/user-file-uri-intro.md#media-file-uri) of the moving photo by using **Picker**.
+
 2. Call [PhotoAccessHelper.getAssets](../../reference/apis-media-library-kit/arkts-apis-photoAccessHelper-PhotoAccessHelper.md#getassets-1) and [FetchResult.getFirstObject](../../reference/apis-media-library-kit/arkts-apis-photoAccessHelper-FetchResult.md#getfirstobject-1) to obtain the photo asset corresponding to the URI.
+
 3. Call [MediaAssetManager.requestMovingPhoto](../../reference/apis-media-library-kit/arkts-apis-photoAccessHelper-MediaAssetManager.md#requestmovingphoto12) to obtain the moving photo object.
 
 <!-- @[Obtaining_Moving_Photo_Sample](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/MediaLibraryKit/MovingPhotoSample/entry/src/main/ets/pages/Scene2.ets) -->

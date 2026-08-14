@@ -7,7 +7,7 @@
 <!--Tester: @nierong182-->
 <!--Adviser: @ge-yafang-->
 
-本文档介绍了MindSpore Lite Kit与ONNX Opset18相比所支持的CPU后端算子列表以及对应关系。在使用模型转换工具将ONNX模型转换为ms模型进行部署时，通过查询此表可以知道MindSpore Lite Kit所支持的常用ONNX算子，以确保模型转换成功。
+本文档介绍了MindSpore Lite Kit与ONNX Opset18相比所支持的CPU后端[算子](mindspore-lite-term.md#operator算子)列表以及对应关系。在使用模型转换工具将ONNX模型转换为ms模型进行部署时，通过查询此表可以知道MindSpore Lite Kit所支持的常用ONNX算子，以确保模型转换成功。
 
 > **说明：**
 >
@@ -15,7 +15,7 @@
 
 | MindSpore Lite算子名称 | 算子功能                                                     | 对应ONNX算子名称                                             | 算子规格                                                     |
 | ---------------------- | ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ |
-| Abs                    | 逐元素计算绝对值                                             | Abs                                                          | 不支持uint8类型。不支持输入张量量化参数为空。                |
+| Abs                    | 逐元素计算绝对值                                             | Abs                                                          | 不支持uint8类型。不支持输入[张量](mindspore-lite-term.md#tensor张量)量化参数为空。                |
 | Activation             | 激活函数                                                     | Celu<br>Clip<br>Elu<br>Gelu<br>HSigmoid<br>LeakyRelu<br>PRelu<br>Relu<br>Sigmoid<br>SoftMax<br>SoftPlus<br>Tanh | -                                                            |
 | AddFusion              | 逐元素计算加法                                               | Add                                                          | -                                                            |
 | ArgMaxFusion           | 求某一维度最大值                                             | ArgMax                                                       | 不支持uint8类型。不支持输入张量量化参数为空。                |

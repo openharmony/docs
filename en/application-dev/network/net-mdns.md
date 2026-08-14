@@ -1,23 +1,27 @@
 # Using MDNS for LAN Access
+
 <!--Kit: Network Kit-->
 <!--Subsystem: Communication-->
 <!--Owner: @wmyao_mm-->
 <!--Designer: @guo-min_net-->
 <!--Tester: @tongxilin-->
 <!--Adviser: @zhang_yixin13-->
+<!-- md-trans-meta sourceCommit=742fd8e7f742ee980eb300ddfd075065ca362dff translatedAt=2026-08-13T03:08:21.096Z pushedAt=2026-08-13T06:35:57.538Z -->
 
 ## Overview
 
 Multicast DNS (MDNS) provides functions such as adding, removing, discovering, and resolving local services on a LAN.
-- Local service: a service provider on a LAN, for example, a printer or scanner.
+
+- Local service: the provider of services within the LAN, such as printers and scanners.
 
 Typical MDNS management scenarios include:
 
 - Managing local services on a LAN, such as adding, removing, and resolving local services.
-- Discovering local services and listening to the status changes of local services of the specified type through the **DiscoveryService** object.
+
+- Discover local services and listen to the status changes of local services of the specified type through the [DiscoveryService](../reference/apis-network-kit/js-apis-net-mdns.md#discoveryservice) object.
 
 > **NOTE**
-> To maximize the application running efficiency, most API calls are called asynchronously in callback or promise mode. The following code examples use the promise mode. For details about the APIs, see [MDNS Management](../reference/apis-network-kit/js-apis-net-mdns.md).
+> To maximize the app running efficiency, most API calls are asynchronous. For asynchronous APIs, both callback and promise modes are provided. The following examples use the promise mode. For more modes, see [@ohos.net.mdns (MDNS Management)](../reference/apis-network-kit/js-apis-net-mdns.md).
 
 The following describes the development procedure specific to each application scenario.
 
@@ -28,10 +32,11 @@ The following describes the development procedure specific to each application s
 ## Managing Local Services
 
 1. Connect the device to the Wi-Fi network.
-2. Import the **mdns**, **BusinessError**, and **common** namespaces from @kit.NetworkKit.
+
+2. Import the **mdns**, **BusinessError**, and [common](../reference/apis-ability-kit/js-apis-app-ability-common.md) namespaces from @kit.NetworkKit.
 
    <!-- @[MDNS_case_module_import](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/NetWork_Kit/NetWorkKit_Datatransmission/MDNS_case/entry/src/main/ets/pages/Index.ets) -->
-   
+
    ``` TypeScript
    // Import the mdns namespace from @kit.NetworkKit.
    import { mdns } from '@kit.NetworkKit';
@@ -39,10 +44,11 @@ The following describes the development procedure specific to each application s
    import { common } from '@kit.AbilityKit';
    import { hilog } from '@kit.PerformanceAnalysisKit';
    ```
-3. Call **addLocalService** to add a local service.
+
+3. Call [addLocalService](../reference/apis-network-kit/js-apis-net-mdns.md#mdnsaddlocalservice-1) to add a local service.
 
    <!-- @[MDNS_add_local_service](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/NetWork_Kit/NetWorkKit_Datatransmission/MDNS_case/entry/src/main/ets/pages/Index.ets) -->
-   
+
    ``` TypeScript
    // Create a LocalService object.
    private localServiceInfo: mdns.LocalServiceInfo = {
@@ -64,10 +70,10 @@ The following describes the development procedure specific to each application s
      // ...
    ```
 
-4. (Optional) Call **resolveLocalService** to resolve the local service for the IP address of the local network.
-   
+4. Call [resolveLocalService](../reference/apis-network-kit/js-apis-net-mdns.md#mdnsresolvelocalservice-1) to resolve the IP address of the local network (optional; use it as needed).
+
    <!-- @[MDNS_resolve_local_service](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/NetWork_Kit/NetWorkKit_Datatransmission/MDNS_case/entry/src/main/ets/pages/Index.ets) -->
-   
+
    ``` TypeScript
    // (Optional) Call resolveLocalService to resolve the local service.
    mdns.resolveLocalService(context, this.localServiceInfo).then((data: mdns.LocalServiceInfo) => {
@@ -76,10 +82,10 @@ The following describes the development procedure specific to each application s
    })
    ```
 
-5. Call **removeLocalService** to remove the local service.
+5. Call [removeLocalService](../reference/apis-network-kit/js-apis-net-mdns.md#mdnsremovelocalservice-1) to remove a local service.
 
    <!-- @[MDNS_remove_local_service](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/NetWork_Kit/NetWorkKit_Datatransmission/MDNS_case/entry/src/main/ets/pages/Index.ets) -->
-   
+
    ``` TypeScript
    // Call removeLocalService to remove the local service.
    mdns.removeLocalService(context, this.localServiceInfo).then((data: mdns.LocalServiceInfo) => {
@@ -91,10 +97,11 @@ The following describes the development procedure specific to each application s
 ## Discovering Local Services
 
 1. Connect the device to the Wi-Fi network.
+
 2. Import the **mdns** namespace from **@kit.NetworkKit**.
 
    <!-- @[MDNS_case_module_import](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/NetWork_Kit/NetWorkKit_Datatransmission/MDNS_case/entry/src/main/ets/pages/Index.ets) -->
-   
+
    ``` TypeScript
    // Import the mdns namespace from @kit.NetworkKit.
    import { mdns } from '@kit.NetworkKit';
@@ -102,10 +109,11 @@ The following describes the development procedure specific to each application s
    import { common } from '@kit.AbilityKit';
    import { hilog } from '@kit.PerformanceAnalysisKit';
    ```
-3. Create a **DiscoveryService** object, which is used to discover MDNS services of the specified type.
+
+3. Create a [DiscoveryService](../reference/apis-network-kit/js-apis-net-mdns.md#mdnscreatediscoveryservice) object to discover MDNS services of the specified service type.
 
    <!-- @[create_discovery_service_object](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/NetWork_Kit/NetWorkKit_Datatransmission/MDNS_case/entry/src/main/ets/pages/Index.ets) -->
-   
+
    ``` TypeScript
    let context: common.UIAbilityContext = this.getUIContext().getHostContext() as common.UIAbilityContext;
        
@@ -114,11 +122,11 @@ The following describes the development procedure specific to each application s
    let serviceType = '_print._tcp';
    let discoveryService = mdns.createDiscoveryService(context, serviceType);
    ```
-  
+
 4. Subscribe to MDNS service discovery status changes.
 
     <!-- @[discovery_service_on_method](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/NetWork_Kit/NetWorkKit_Datatransmission/MDNS_case/entry/src/main/ets/pages/Index.ets) -->
-    
+
     ``` TypeScript
     // Subscribe to mDNS service discovery status changes.
     discoveryService.on('discoveryStart', (data: mdns.DiscoveryEventInfo) => {
@@ -140,23 +148,25 @@ The following describes the development procedure specific to each application s
 5. Enable discovery of MDNS services on the LAN.
 
    <!-- @[start_searching_MDNS_method](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/NetWork_Kit/NetWorkKit_Datatransmission/MDNS_case/entry/src/main/ets/pages/Index.ets) -->
-   
+
    ``` TypeScript
    // Enable discovery of mDNS services on the LAN.
    discoveryService.startSearchingMDNS();
    ```
+
 6. Stop searching for MDNS services on the LAN.
 
    <!-- @[stop_searching_MDNS_method](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/NetWork_Kit/NetWorkKit_Datatransmission/MDNS_case/entry/src/main/ets/pages/Index.ets) -->
-   
+
    ``` TypeScript
    // Stop searching for mDNS services on the LAN.
    discoveryService.stopSearchingMDNS();
    ```
+
 7. Unsubscribe from MDNS service discovery status changes.
 
    <!-- @[discovery_service_off_method](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/NetWork_Kit/NetWorkKit_Datatransmission/MDNS_case/entry/src/main/ets/pages/Index.ets) -->
-   
+
    ``` TypeScript
    // Unsubscribe from mDNS service discovery status changes.
    discoveryService.off('discoveryStart', (data: mdns.DiscoveryEventInfo) => {
@@ -174,6 +184,7 @@ The following describes the development procedure specific to each application s
      // ...
    });
    ```
+
 ## Samples
 
 The following sample is provided to help you better understand MDNS management:

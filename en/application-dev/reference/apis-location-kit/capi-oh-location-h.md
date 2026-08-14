@@ -18,7 +18,7 @@ Defines APIs for querying the location switch status, and starting and stopping 
 
 **Since**: 13
 
-**Related module**: [Location] (capi-location.md)
+**Related module**: [Location](capi-location.md)
 
 ## Summary
 

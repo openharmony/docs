@@ -31,9 +31,9 @@
    ``` TypeScript
    import { taskpool } from '@kit.ArkTS';
    import { IconItemSource } from './IconItemSource';
-   
+   // 实现接收Task消息的方法
    function notice(data: number): void {
-     console.info('子线程任务已执行完，共加载图片: ', data);
+     console.info('子线程已加载数据，共加载图片: ', data);
    }
    
    // 通过Task的sendData方法，即时通知宿主线程信息

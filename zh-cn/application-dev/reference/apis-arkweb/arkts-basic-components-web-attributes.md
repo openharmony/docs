@@ -534,7 +534,7 @@ mediaPlayGestureAccess(access: boolean)
 
 multiWindowAccess(multiWindow: boolean)
 
-设置是否开启多窗口权限。当属性没有显式调用时，默认不开启多窗口权限。
+设置是否开启多窗口权限。当属性没有显式调用时，默认不开启。
 
 使能多窗口权限时，需要实现onWindowNew事件，示例代码参考[onWindowNew](./arkts-basic-components-web-events.md#onwindownew9)。
 
@@ -544,7 +544,7 @@ multiWindowAccess(multiWindow: boolean)
 
 | 参数名         | 类型    | 必填   | 说明         |
 | ----------- | ------- | ---- | ------------ |
-| multiWindow | boolean | 是    | 设置是否开启多窗口权限。<br>true表示设置开启多窗口权限，false表示设置不开启多窗口权限。 |
+| multiWindow | boolean | 是    | 设置是否开启多窗口权限。<br>true表示开启，false表示不开启。 |
 
 ## horizontalScrollBarAccess<sup>9+</sup>
 

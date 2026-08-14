@@ -1,4 +1,4 @@
-# 开发使用SCSI协议的设备驱动
+# 开发适用SCSI协议的设备驱动
 <!--Kit: Driver Development Kit-->
 <!--Subsystem: Driver-->
 <!--Owner: @zgene94-->

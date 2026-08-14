@@ -1,10 +1,12 @@
 # Using AVTranscoder to Transcode Videos (ArkTS)
+
 <!--Kit: Media Kit-->
 <!--Subsystem: Multimedia-->
 <!--Owner: @wang-haizhou6-->
 <!--Designer: @HmQQQ-->
 <!--Tester: @xchaosioda-->
 <!--Adviser: @w_Machine_cc-->
+<!-- md-trans-meta sourceCommit=96ff78e2aadddba9fa0a3d5b83b43dfd7221d4f5 translatedAt=2026-08-11T01:54:04.877Z pushedAt=2026-08-12T01:45:10.928Z -->
 
 You can use the [AVTranscoder](media-kit-intro.md#avtranscoder) to implement video transcoding. <!--RP1--><!--RP1End--> You can check whether the current device supports the AVTranscoder by calling [canIUse](../../reference/common/js-apis-syscap.md#caniuse). If the return value of **canIUse("SystemCapability.Multimedia.Media.AVTranscoder")** is **true**, the transcoding capability can be used.
 
@@ -75,9 +77,17 @@ For details about the APIs, see [AVTranscoder](../../reference/apis-media-kit/ar
        if (this.avTranscoder != undefined) {
          // 1. Release the AVTranscoder instance.
          await this.avTranscoder.release();
+         let lastFdDst = this.avTranscoder.fdDst;
+         let lastFdSrc = this.avTranscoder.fdSrc;
          this.avTranscoder = undefined;
          // 2. Close the FD of the output file.
-         fileIo.closeSync(this.avTranscoder!.fdDst);
+         if (lastFdDst != undefined) {
+           fs.closeSync(lastFdDst);
+         }
+         // 3. Close the transcoding source file fd.
+         if (lastFdSrc != undefined) {
+           fs.closeSync(lastFdSrc.fd);
+         }
        }
      }
    }
@@ -85,16 +95,17 @@ For details about the APIs, see [AVTranscoder](../../reference/apis-media-kit/ar
 
    ```
 
-3. Set the FD of the source video file.
+3. Set the FD of the source video file (**fdSrc**).
+
    > **NOTE**
    >
-   > The **fdSrc** value in the code snippet below is for reference only. You need to check the media asset validity and set **fdSrc** based on service requirements.
-   > 
-   > - If local files are used for transcoding, ensure that the files are available and the application sandbox path is used for access. For details about how to obtain the application sandbox path, see [Obtaining Application File Paths](../../application-models/application-context-stage.md#obtaining-application-file-paths). For details about the application sandbox and how to push files to the application sandbox directory, see [File Management](../../file-management/app-sandbox-directory.md).
-   > 
-   > - To obtain the application file path, you should use the **Context** property. You are advised to use **getUIContext** to obtain a **UIContext** instance and use **getHostContext** to call **getContext** of the bound instance. For details, see [getHostContext](../../reference/apis-arkui/arkts-apis-uicontext-uicontext.md#gethostcontext12).
+   > The **fdSrc** in the following code example is for reference only. You need to verify resource availability and set it based on the actual situation:
    >
-   > - You can also use **ResourceManager.getRawFd()** to obtain the FD of a file packed in the HAP file. For details, see [ResourceManager API Reference](../../reference/apis-localization-kit/js-apis-resource-manager.md#getrawfd9).
+   > - If you use a local resource for transcoding, ensure that the resource file is available and use the app sandbox path to access the corresponding resource. For details, see [Obtaining Application File Paths](../../application-models/application-context-stage.md#obtaining-application-file-paths). For an introduction to the app sandbox and how to push files to it, see [Application Sandbox](../../file-management/app-sandbox-directory.md).
+   >
+   > - Obtain the app file path through the **Context** property. You are advised to use **getUIContext** to obtain a **UIContext** instance and use **getHostContext** to call **getContext** of the bound instance. For details, see [getHostContext](../../reference/apis-arkui/arkts-apis-uicontext-uicontext.md#gethostcontext12).
+   >
+   > - To use **ResourceManager.getRawFd()** to open a HAP resource file descriptor, see [getRawFd](../../reference/apis-localization-kit/js-apis-resource-manager.md#getrawfd9) in ResourceManager.
 
    ```ts
    // Import the ets/transcoder/AVTranscoderManager.ets file.
@@ -155,11 +166,12 @@ For details about the APIs, see [AVTranscoder](../../reference/apis-media-kit/ar
    }
    ```
 
-4. Set the FD of the target video file.
+4. Set the FD of the target video file (**fdSrc**)..
+
    > **NOTE**
    >
    > **fdDst** specifies the FD of the output file after transcoding. The value is a number. You must call [ohos.file.fs of Core File Kit](../../reference/apis-core-file-kit/js-apis-file-fs.md) to implement access to the application file. For details, see [Accessing Application Files](../../file-management/app-file-access.md).
-   
+
    ```ts
    import { fileIo } from '@kit.CoreFileKit';
    import { media } from '@kit.MediaKit';
@@ -210,6 +222,7 @@ For details about the APIs, see [AVTranscoder](../../reference/apis-media-kit/ar
      await this.avTranscoder.prepare(this.avConfig);
    }
    ```
+
    <!--RP2--><!--RP2End-->
 
 6. Call **start()** to start transcoding.
@@ -272,7 +285,8 @@ For details about the APIs, see [AVTranscoder](../../reference/apis-media-kit/ar
      }
    }
    ```
-10. A complete example of starting, pausing, resuming, and exiting transcoding.
+
+10. A complete example of starting, pausing, resuming, and completing transcoding.
 
     ```ts
     async avTranscoderDemo() {
@@ -285,8 +299,9 @@ For details about the APIs, see [AVTranscoder](../../reference/apis-media-kit/ar
 ## Running the Sample Project
 
 Refer to the sample code below to implement transcoding, covering the process of starting, pausing, resuming, and exiting transcoding.
-  
+
 1. Create a project, download the [sample project](https://gitcode.com/openharmony/applications_app_samples/tree/master/code/DocsSample/Media/AVTranscoder/AVTranscoderArkTS), and copy its resources to the corresponding directories.
+
     ```txt
     AVTranscoderArkTS
     entry/src/main/ets/
@@ -307,4 +322,5 @@ Refer to the sample code below to implement transcoding, covering the process of
     └── rawfile
         └── H264_AAC.mp4 (Video resource)
     ```
+
 2. Compile and run the project.

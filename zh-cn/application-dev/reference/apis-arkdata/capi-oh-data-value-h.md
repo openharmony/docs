@@ -108,7 +108,7 @@ OH_Data_Value *OH_Value_Create(void)
 
 | 类型                                   | 说明                                                         |
 | -------------------------------------- | ------------------------------------------------------------ |
-| [OH_Data_Value](capi-rdb-oh-data-value.md) | 执行成功时返回指向[OH_Data_Value](capi-rdb-oh-data-value.md)实例的指针。否则返回nullptr。<br>使用完成后，必须通过[OH_Value_Destroy](#oh_value_destroy)接口释放内存。 |
+| [OH_Data_Value](capi-rdb-oh-data-value.md) * | 执行成功时返回指向[OH_Data_Value](capi-rdb-oh-data-value.md)实例的指针。否则返回nullptr。<br>使用完成后，必须通过[OH_Value_Destroy](#oh_value_destroy)接口释放内存。 |
 
 ### OH_Value_Destroy()
 

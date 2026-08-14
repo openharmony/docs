@@ -1,10 +1,12 @@
 # Performing Lifecycle Management Using Node-API
-<!--Kit: NDK-->
+
+<!--Kit: ArkTS-->
 <!--Subsystem: arkcompiler-->
 <!--Owner: @xliu-huanwei; @shilei123; @huanghello-->
 <!--Designer: @shilei123-->
 <!--Tester: @kirl75; @zsw_zhushiwei-->
-<!--Adviser: @fang-jinxu-->
+<!--Adviser: @k1ngqaquuu-->
+<!-- md-trans-meta sourceCommit=2cc827181a31e0a77238ca42eb3b41991d5fd686 translatedAt=2026-08-12T06:42:33.943Z pushedAt=2026-08-12T11:16:16.917Z -->
 
 ## Introduction
 
@@ -21,8 +23,11 @@ Scope is used to manage the **napi_value** lifecycle in the framework layer. You
 Node-API provides APIs for creating and manipulating ArkTS objects, managing references to and lifecycle of the ArkTS objects, and registering garbage collection (GC) callbacks in C/C++. Before you get started, you need to understand the following concepts:
 
 - **Scope**: Used to manage the lifecycle of ArkTS objects. Object handles created in a scope can be used only within the scope by default. After the scope is closed, the objects created in the scope cannot be accessed unless they are explicitly escaped from the current scope.
+
 - Reference management: Node-API provides APIs for creating, deleting, and managing object references to extend the lifecycle of objects and prevent the use-after-free issues. In addition, reference management also helps prevent memory leaks.
+
 - Escapable scope: used to return the values created within the **escapable_handle_scope** to a parent scope. It is created by **napi_open_escapable_handle_scope** and closed by **napi_close_escapable_handle_scope**.
+
 - GC callback: You can register GC callbacks to perform specific cleanup operations when ArkTS objects are garbage-collected.
 
 Understanding these concepts helps you securely and effectively manipulate ArkTS objects in C/C++ and perform object lifecycle management.
@@ -30,6 +35,7 @@ Understanding these concepts helps you securely and effectively manipulate ArkTS
 ## Available APIs
 
 The following table lists the APIs for ArkTS object lifecycle management.  
+
 | API| Description|
 | -------- | -------- |
 | napi_open_handle_scope<br>napi_close_handle_scope| Opens a scope and closes a scope respectively. When processing ArkTS objects with Node-API, you need to create a temporary scope to store object references so that the objects can be correctly accessed during the execution and closed after the execution.|
@@ -45,12 +51,15 @@ The following table lists the APIs for ArkTS object lifecycle management.
 If you are just starting out with Node-API, see [Node-API Development Process](use-napi-process.md). The following demonstrates only the C++ and ArkTS code related to lifecycle management.
 
 The following header files are required for the C++ code:
+
 ```cpp
 #include "napi/native_api.h"
 // log.h is used to print logs in C++.
 #include "hilog/log.h"
 ```
+
 The following modules are required for the ArkTS code:
+
 ```ts
 import { hilog } from '@kit.PerformanceAnalysisKit';
 import testNapi from 'libentry.so';
@@ -66,7 +75,7 @@ For details about the code of lifecycle management, see:
 
 [Lifecycle Management](napi-guidelines.md#lifecycle-management) 
 
-For details about the code of typical incorrect usage, see:
+For the code examples of typical incorrect usage, see the following link:
 
 [Typical Error Scenarios](napi-faq-about-stability.md#what-are-the-typical-error-scenarios-of-lifecycle-related-development-between-napi_open_handle_scope-and-napi_close_handle_scope)
 
@@ -118,10 +127,10 @@ static napi_value HandleScope(napi_env env, napi_callback_info info)
 }
 ```
 
-
 API declaration:
 
 index.d.ts
+
 <!-- @[napi_open_close_handle_scope_api](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIUse/NodeAPILifeCycle/entry/src/main/cpp/types/libentry/Index.d.ts) -->
 
 ``` TypeScript
@@ -129,7 +138,6 @@ export const handleScopeTest: () => string; // napi_open_handle_scope, napi_clos
 
 export const handleScope: () => string;
 ```
-
 
 ArkTS code:
 
@@ -150,8 +158,8 @@ try {
 }
 ```
 
+The framework layer defines the interface mapping table between the ArkTS side and the native side in the core initialization function Init. When a function on the native side is accessed from the ArkTS side through the mapping table, the framework layer automatically adds a scope, eliminating the need to call `napi_open_handle_scope` and `napi_close_handle_scope` to manage the lifecycle of ArkTS objects. That is, a scope is automatically opened before entering a native function written by you and automatically closed after the native function returns. The lifecycle of ArkTS objects created in the native function ends when the native function returns, so no memory leak occurs. The following example uses the `NewObject` function (functions mapped in the interface mapping table do not require manual calls to `napi_open_handle_scope` and `napi_close_handle_scope` to manage the lifecycle of ArkTS objects):
 
-The framework layer defines the API mapping table between the ArkTS and native sides in the core initialization function **Init**. When the ArkTS side accesses the native function through the API in the mapping table, the framework layer automatically adds the scope. You do not need to add the **napi_open_handle_scope** and **napi_close_handle_scope** APIs to manage the lifecycle of ArkTS objects. That is, the scope is automatically opened when the native function is called and automatically closed when the native function ends. The lifecycle of the ArkTS object created in the native function ends when the native function returns, and no memory leak occurs. The following example defines the **NewObject** function. (You do not need to add **napi_open_handle_scope** and **napi_close_handle_scope** to define the function in the API mapping table to manage the lifecycle of the ArkTS object.)
 ```cpp
 // Open the scope before calling NewObject.
 napi_value NewObject(napi_env env, napi_callback_info info)
@@ -189,7 +197,7 @@ static napi_value Init(napi_env env, napi_value exports)
 
 Use **napi_open_escapable_handle_scope** to open an escapable scope, which allows the declared values in the scope to be returned to the parent scope. The scope must be closed using **napi_close_escapable_handle_scope**. Use **napi_escape_handle** to promote the lifecycle of an ArkTS object so that it is valid for the lifetime of the parent scope.
 
-These APIs are helpful for managing ArkTS objects more flexibly in C/C++, especially when passing cross-scope values.
+The preceding APIs allow you to manage incoming ArkTS objects more flexibly, and are particularly useful when handling cross-scope value passing.
 
 CPP code:
 
@@ -221,16 +229,15 @@ static napi_value EscapableHandleScopeTest(napi_env env, napi_callback_info info
 }
 ```
 
-
 API declaration:
 
 index.d.ts
+
 <!-- @[napi_open_close_escapable_handle_scope_api](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIUse/NodeAPILifeCycle/entry/src/main/cpp/types/libentry/Index.d.ts) -->
 
 ``` TypeScript
 export const escapableHandleScopeTest: () => string; // napi_open_escapable_handle_scope, napi_close_escapable_handle_scope, and napi_escape_handle
 ```
-
 
 ArkTS code:
 
@@ -250,6 +257,7 @@ try {
   // ...
 }
 ```
+
 ### napi_ref
 
 Use **napi_ref** to manage the lifecycle of ArkTS objects. **napi_ref** is a reference type, which can be strong reference or weak reference. It is a weak reference when the **ref** count is 0, and a strong reference when the **ref** count is greater than 0. A strong reference prevents the garbage collector from reclaiming the referenced object. It is suitable for scenarios where the object needs to be kept alive for a long time. However, the reference count and release must be managed manually; otherwise, memory leaks will occur. A weak reference, by contrast, does not prevent garbage collection and allows the object to be reclaimed normally when it is no longer held by any other strong references. It is applicable to temporary reference scenarios such as caching, as it can become invalid automatically, but it is necessary to check whether the object is still alive when obtaining it. You need to use strong and weak reference types correctly to balance memory management and performance.
@@ -311,7 +319,7 @@ static napi_value CreateWeakReference(napi_env env, napi_callback_info info)
 
 static napi_value GetWeakReferenceValue(napi_env env, napi_callback_info info)
 {
-    napi_value weakValue;
+    napi_value weakValue = nullptr;
     napi_status status = napi_get_reference_value(env, g_weakRef, &weakValue);
     if (status != napi_ok) {
         napi_throw_error(env, nullptr, "Failed to get reference value");
@@ -588,10 +596,10 @@ static napi_value DeleteReference(napi_env env, napi_callback_info info)
 }
 ```
 
-
 API declaration:
 
 // index.d.ts
+
 <!-- @[napi_create_delete_reference_api](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIUse/NodeAPILifeCycle/entry/src/main/cpp/types/libentry/Index.d.ts) -->
 
 ``` TypeScript
@@ -603,7 +611,6 @@ export const useReference: () => Object | undefined; // napi_get_reference_value
 
 export const deleteReference: () => string | undefined; // napi_delete_reference and napi_reference_unref
 ```
-
 
 ArkTS code:
 
@@ -628,7 +635,6 @@ try {
   // ...
 }
 ```
-
 
 To print logs in the native CPP, add the following information to the **CMakeLists.txt** file and add the header file by using **#include "hilog/log.h"**.
 

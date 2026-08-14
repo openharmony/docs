@@ -1,10 +1,12 @@
 # Consistency Verification for Application Installation and Update
+
 <!--Kit: Ability Kit-->
 <!--Subsystem: BundleManager-->
 <!--Owner: @wanghang904-->
 <!--Designer: @hanfeng6-->
-<!--Tester: @kongjing2-->
-<!--Adviser: @Brilliantry_Rui-->
+<!--Tester: @memghaiyang-->
+<!--Adviser: @HelloCrease-->
+<!-- md-trans-meta sourceCommit=74dbad5c7db60e1e7acbdd97ecfcb9536c7d7b13 translatedAt=2026-08-13T09:05:56.428Z pushedAt=2026-08-13T13:53:52.281Z -->
 
 As applications become more and more complex, they are split into multiple modules for development and maintenance. Different teams are responsible for one or more modules. During application installation and update, consistency verification is performed on different fields to ensure application security and validity. This topic describes the consistency verification rules for signing certificates and configuration files during multi-module installation or update.
 
@@ -25,7 +27,6 @@ As applications become more and more complex, they are split into multiple modul
 |appProvisionType|Profile type. <!--RP3-->The value comes from **type** defined in the application [profile](../security/app-provision-structure.md). Profiles are classified into two types: debug profiles are used for local debugging and release profiles are used for application release.<!--RP3End-->|Yes|No consistency verification is performed when an application is updated to a later version.|
 |apl|Application [APLs](../security/AccessToken/app-permission-mgmt-overview.md#basic-concepts-in-the-permission-mechanism), which are classified into three levels: normal, system_basic, and system_core.|Yes|No consistency verification is performed when an application is updated to a later version.|
 
-
 ## Consistency Verification for Configuration File
 
 |Field|Description|Consistency Verification for Installations|Consistency Verification for Updates|
@@ -36,7 +37,7 @@ As applications become more and more complex, they are split into multiple modul
 |<!--DelRow--> singleton|Whether an application is installed for a single user (User 0).|No|Yes|
 |<!--DelRow--> appType|Application type, which specifies the third-party application or system application.|Yes|Yes|
 |<!--DelRow--> isStage|Whether an application is in the stage model.|Yes. The FA model and stage model cannot be changed in the same version.|No|
-|targetBundleName|Target bundle name. The application with this field has the overlay feature. This field comes from the [app.json5 configuration file](./app-configuration-file.md).|Yes|Yes|
+|targetBundleName|Identifies the target app specified by the current package. The app with this field has the overlay feature. This field comes from the targetBundleName field in the [app.json5 configuration file](./app-configuration-file.md).|Yes|Yes|
 |targetPriority|Priority of the target application. This field comes from the [app.json5 configuration file](./app-configuration-file.md).|Yes|Yes|
 |bundleType|Bundle type. This field comes from the [app.json5 configuration file](./app-configuration-file.md).|Yes|Yes|
 |installationFree|Whether installation-free is supported. This field comes from the [module.json5 configuration file](./module-configuration-file.md).|Yes|Yes|

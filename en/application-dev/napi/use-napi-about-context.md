@@ -1,10 +1,13 @@
 # Creating, Switching, and Destroying a Context in a Thread Using Node-API Extension APIs
-<!--Kit: NDK-->
+
+<!--Kit: ArkTS-->
 <!--Subsystem: arkcompiler-->
 <!--Owner: @xliu-huanwei; @shilei123; @huanghello-->
 <!--Designer: @shilei123-->
 <!--Tester: @kirl75; @zsw_zhushiwei-->
-<!--Adviser: @fang-jinxu-->
+<!--Adviser: @k1ngqaquuu-->
+<!-- md-trans-meta sourceCommit=21434ce8d323ecbd7d67463989a2ef075be92cec translatedAt=2026-08-12T06:38:13.734Z pushedAt=2026-08-12T11:06:10.719Z -->
+
 When an application is started, the main thread of the application is an ArkTS thread, which has a context managed by the system. When ArkTS interacts with C/C++, **napi_env** represents the context on the C/C++ side. Every context has an independent **globalThis** object.
 
 You can use the extension APIs **napi_create_ark_context** and **napi_destroy_ark_context** in Node-API to create and destroy a new context in the current thread. The new context and the original context in the thread share the same runtime virtual machine.
@@ -18,6 +21,7 @@ To switch to a specified context, you can call the extension API **napi_switch_a
 You can access some properties and methods on **globalThis** in a new context, and then switch back to the original context to ensure context isolation.
 
 ## Scenario
+
 You can use the **napi_create_ark_context** API to create a context environment in the current thread, which has an independent **globalThis** object.
 
 This indicates that the original context on the current thread is isolated from the newly created context , that is, the **globalThis** objects in the contexts are different.
@@ -29,6 +33,7 @@ Some standard and extension APIs of the Node-API are context-adaptive. When thes
 Note that when returning from the C++/C side to the ArkTS side, you need to call **napi_switch_ark_context** to switch the context back to the corresponding context. Otherwise, the ArkTS code will be executed in another context, causing unpredictable stability issues.
 
 ## Node-APIs That Support Multi-Runtime Context
+
 The following table lists the Node-APIs that can be executed in a multi-context environment. Some of these Node-APIs can automatically switch the context.
 
 Even if **napi_switch_ark_context** is not actively called to switch the runtime context, these APIs can still determine whether to switch the context by comparing whether the runtime context is the same as the runtime environment specified by the API.
@@ -208,6 +213,7 @@ If an API does not involve context switching, it is irrelevant to the runtime co
 |napi_throw_business_error | Yes|
 
 ## Node-APIs That Do Not Support Multi-Runtime Context
+
 | API| Return Value of Multi-Runtime Context Call|
 | -------- | -------- |
 |napi_define_sendable_class | napi_invalid_arg |
@@ -229,7 +235,9 @@ If an API does not involve context switching, it is irrelevant to the runtime co
 |napi_get_strong_sendable_reference_value | napi_invalid_arg |
 
 ### Sample Code
+
 - Module registration
+
     ```c++
     // napi_init.cpp
     #include "napi/native_api.h"
@@ -351,14 +359,18 @@ If an API does not involve context switching, it is irrelevant to the runtime co
         napi_module_register(&demoModule);
     }
     ```
+
 - API declaration
+
     ```ts
     // index.d.ts
     export const callFunctionInContext: (func: (func:()=>number)=>{}) => number;
     ```
 
 - Compilation configuration
+
 1. Configure the **CMakeLists.txt** file as follows:
+
     ```txt
     // CMakeLists.txt
     # the minimum version of CMake.
@@ -382,6 +394,7 @@ If an API does not involve context switching, it is irrelevant to the runtime co
     ```
 
 2. Add the following to the **build-profile.json5** file of the project.
+
     ```json
     {
         "buildOption" : {
@@ -398,15 +411,18 @@ If an API does not involve context switching, it is irrelevant to the runtime co
     ```
 
 - ArkTS sample code
+
     ```ts
     // index.ets
     import testNapi from "libentry.so"
+
     // Execute the GetLocation method in the plugin1 or plugin2 module.
     function getLocation(func: () => number) {
         return func();
     }
     testNapi.callFunctionInContext(getLocation)
     ```
+
     ```ts
     // ets/pages/plugin1.ets
     globalThis.a = 2000;
@@ -415,6 +431,7 @@ If an API does not involve context switching, it is irrelevant to the runtime co
         return globalThis.a;
     }
     ```
+
     ```ts
     // ets/pages/plugin2.ets
     globalThis.a = 3000;

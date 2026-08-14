@@ -147,6 +147,6 @@
 ## 相关文档参考
 
 - 使用OHAudio播放的示例代码，请参考[推荐使用OHAudio开发音频播放功能(C/C++)](using-ohaudio-for-playback.md)。
-- 使用AudioRenderer播放的示例代码，请参考[使用AudioRenderer开发音频播放功能(ArkTs)](using-audiorenderer-for-playback.md)。
+- 使用AudioRenderer播放的示例代码，请参考[使用AudioRenderer开发音频播放功能(ArkTS)](using-audiorenderer-for-playback.md)。
 - 如果问题与其他音频任务并发有关，优先参考[音频焦点介绍](audio-playback-concurrency.md)，同时参考[处理音频焦点变化](audio-playback-concurrency.md#处理音频焦点变化)。
 - 后台播放适配指南，可参考[后台播放](../avsession/avsession-background-scene.md)。

@@ -424,7 +424,7 @@ struct Index {
 该示例通过设置menuItemDivider和menuItemGroupDivider属性实现分割线样式。
 
 ```ts
-import { LengthMetrics, DividerMode } from '@kit.ArkUI'
+import { LengthMetrics } from '@kit.ArkUI'
 
 @Entry
 @Component

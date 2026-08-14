@@ -106,7 +106,7 @@ struct Index {
    import { worker } from '@kit.ArkTS';
    import { BusinessError } from '@kit.BasicServicesKit';
    
-   const workerInstance: worker.ThreadWorker = new worker.ThreadWorker('entry/ets/workers/MyWorker1.ts');
+   const workerInstance: worker.ThreadWorker = new worker.ThreadWorker('entry/ets/workers/MyWorker1.ets');
    
    let done = false;
    
@@ -196,7 +196,7 @@ struct Index {
     ``` TypeScript
     // Worker线程销毁后，执行onexit回调方法
     workerInstance.onexit = (): void => {
-      console.info('main thread terminate');
+      console.info('worker thread terminate');
     }
     ```
 

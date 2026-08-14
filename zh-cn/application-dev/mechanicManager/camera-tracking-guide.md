@@ -2,7 +2,7 @@
 <!--Kit: Mechanic Kit-->
 <!--Subsystem: Mechanic-->
 <!--Owner: @qxqxqxqxqx-->
-<!--Designer: @Marssssss-->
+<!--Designer: @peter_1024-->
 <!--Tester: @Aullar-->
 <!--Adviser: @hu-zhiqiong-->
 
@@ -23,7 +23,7 @@
 |getCameraTrackingEnabled(): boolean | 检查是否启用了摄像头跟踪。<br>**说明**：从API version 20开始支持。|
 |on(type: 'trackingStateChange', callback: Callback\<TrackingEventInfo>): void | 注册trackingStateChange事件的回调监听。<br>**说明**：从API version 20开始支持。|
 |off(type: 'trackingStateChange', callback?: Callback\<TrackingEventInfo>): void | 取消注册trackingStateChange事件的回调监听。<br>**说明**：从API version 20开始支持。|
-|getCameraTrackingLayout(): CameraTrackingLayout | 获取此机械设备摄像头跟踪布局。<br>**说明**：从API version 20开始支持。|
+|getCameraTrackingLayout(): CameraTrackingLayout | 获取此机械体设备摄像头跟踪布局。<br>**说明**：从API version 20开始支持。|
 
 ## 开发步骤
 

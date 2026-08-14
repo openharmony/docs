@@ -1,14 +1,17 @@
-# Application Package Structure in Stage Model
+# Application Package Structure
+
 <!--Kit: Ability Kit-->
 <!--Subsystem: BundleManager-->
 <!--Owner: @wanghang904-->
 <!--Designer: @hanfeng6-->
-<!--Tester: @kongjing2-->
-<!--Adviser: @Brilliantry_Rui-->
+<!--Tester: @memghaiyang-->
+<!--Adviser: @HelloCrease-->
+<!-- md-trans-meta sourceCommit=e614db0ed9ef9e65ff9f340640f4a0fd5317e78d translatedAt=2026-08-13T08:49:47.324Z pushedAt=2026-08-13T11:48:06.779Z -->
 
 This topic explores the structure of an application package in different phases of application development – development phase, build phase, and release phase.
 
 ## Package Structure in the Development Phase
+
 Create a project in DevEco Studio and try to create multiple modules of different types. To gain a better understanding of the application package structure in the development phase, you are advised to learn this topic by referring to the directory in a real project.
 
 **Figure 1** Project structure (for reference only)
@@ -23,6 +26,7 @@ Create a project in DevEco Studio and try to create multiple modules of differen
 The table below lists the main file types in the project structure.
 
 <!--Table: 25%; 75%-->
+
 | File Type| Description|
 | -------- | -------- |
 | Configuration files| A collection of application-level and module-level configurations.<br> - **AppScope &gt; [app.json5](app-configuration-file.md)**: application-wide configuration, such as the bundle name, version number, application icon, application name, and dependent SDK version number.<br> - **ModuleName &gt; src &gt; main &gt; [module.json5](module-configuration-file.md)**: basic information, supported device types, component information, and required permissions of the module.|
@@ -30,8 +34,8 @@ The table below lists the main file types in the project structure.
 | Resource files| A collection of application-level and module-level resource files, including images, multimedia, strings, and layout files. For details, see [Resource Categories and Access](resource-categories-and-access.md).<br> - **AppScope &gt; resources**: resource files required for the application.<br> - **ModuleName &gt; src &gt; main &gt; resources**: resource files required for the module.|
 | Other configuration files| A collection of files used for compilation and building, including build configuration files, build scripts, obfuscation rule files, and files declaring dependencies.<br> - **build-profile.json5**: [project-level](https://developer.huawei.com/consumer/en/doc/harmonyos-guides/ide-hvigor-build-profile-app) or [module-level](https://developer.huawei.com/consumer/en/doc/harmonyos-guides/ide-hvigor-build-profile) build configuration file, including the [application signature](https://developer.huawei.com/consumer/en/doc/harmonyos-guides/ide-signing) and product configuration.<br> - **hvigorfile.ts**: project-level or module-level build task script. Developers can customize the build tool version and configuration parameters that control the build behavior.<br> - **[obfuscation-rules.txt](https://developer.huawei.com/consumer/en/doc/harmonyos-guides/ide-build-obfuscation#section760533133313)**: obfuscation rule file. When obfuscation is enabled, DevEco Studio compiles, obfuscates, and compresses code during builds in Release mode.<br> - **[oh-package.json5](https://developer.huawei.com/consumer/en/doc/harmonyos-guides/ide-oh-package-json5)**: stores information about dependent libraries, including the dependent third-party libraries and shared packages.|
 
-
 ## Package Structure in the Build Phase
+
 Depending on its type, a module is built into a HAP, a HAR, or an HSP. Then you can use DevEco Studio or a packaging tool to package the module into an App Pack and release it to the AppGallery. When the HAP and HSP are built, the HARs on which they depend are packaged into them. Therefore, only the .hap and .hsp files are contained in the App Pack. Below you can see the mapping between the development view (in the development phase) and the view after build and packaging (in the build phase).
 
 **Figure 2** Mapping between the development view and the view after build and packaging
@@ -39,10 +43,12 @@ Depending on its type, a module is built into a HAP, a HAR, or an HSP. Then you 
 ![app-view](figures/app-view.png)
 
 The module file is changed from the development state to the compilation state as follows:
-- **ets** directory: The ArkTS source code files are built into .abc files.
-- **resources** directory: The resource files in the **AppScope** directory are merged into this directory. If files with the same name exist in these two directories, the ones in the **AppScope** directory are retained after build and packaging.
-- Module configuration file: Fields in the **app.json5** file in the **AppScope** directory are integrated into the **module.json5** file in the **Module_name** directory, generating the final **module.json** file for the created HAP or HSP.
 
+- **ets** directory: The ArkTS source code files are built into .abc files.
+
+- **resources** directory: The resource files in the **AppScope** directory are merged into this directory. If files with the same name exist in these two directories, the ones in the **AppScope** directory are retained after build and packaging.
+
+- Module configuration file: Fields in the **app.json5** file in the **AppScope** directory are integrated into the **module.json5** file in the **Module_name** directory, generating the final **module.json** file for the created HAP or HSP.
 
 ## Package Structure in the Release Phase
 

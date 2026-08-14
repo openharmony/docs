@@ -1,17 +1,21 @@
 # @ohos.bundleState (Device Usage Statistics) (System API)
+
 <!--Kit: Background Tasks Kit-->
 <!--Subsystem: ResourceSchedule-->
 <!--Owner: @xufu7-->
 <!--Designer: @zhouben25-->
 <!--Tester: @leetestnady-->
 <!--Adviser: @HelloCrease-->
+<!-- md-trans-meta sourceCommit=428e1286778a3a7ab9f84d96d96e298fc6f7e862 translatedAt=2026-08-11T01:56:03.079Z pushedAt=2026-08-11T03:04:34.361Z -->
 
 This module provides APIs for collecting statistics on device usage.
 
 System applications can call these APIs to implement the following features:
 
 - Query the usage duration in different time segments, events (foreground, background, start and end of continuous tasks), and the number of notifications, on a per application basis.
+
 - Query the bundle group information of the invoking application itself.
+
 - Query the idle status of applications, including the invoking application itself.
 
 > **NOTE**
@@ -319,7 +323,7 @@ Queries the priority group of this application. This API uses an asynchronous ca
 
 | Name     | Type                   | Mandatory  | Description                        |
 | -------- | --------------------- | ---- | -------------------------- |
-| callback | AsyncCallback&lt;number&gt; | Yes   | Callback used to return the priority group.|
+| callback | AsyncCallback&lt;number&gt; | Yes | Callback used to return the priority group. |
 
 **Example**
 
@@ -416,6 +420,7 @@ bundleState.queryCurrentBundleActiveStates(0, 20000000000000).then((res: Array<b
 ```
 
 ## BundleStateInfo<sup>(deprecated)</sup>
+
 > This API is supported since API version 7 and deprecated since API version 9. Use [usageStatistics.BundleStatsInfo](js-apis-resourceschedule-deviceUsageStatistics-sys.md#bundlestatsinfo) instead.
 
 Provides the usage duration information of an application.
@@ -452,6 +457,7 @@ Merges the device usage statistics of applications with the same bundle name.
 | toMerge | [BundleStateInfo](#bundlestateinfodeprecated) | Yes| Device usage statistics to merge.|
 
 ## BundleActiveState<sup>(deprecated)</sup>
+
 > This API is supported since API version 7 and deprecated since API version 9. Use [usageStatistics.BundleEvents](js-apis-resourceschedule-deviceUsageStatistics-sys.md#bundleevents) instead.
 
 Provides information about an application event.
@@ -468,6 +474,7 @@ Provides information about an application event.
 | nameOfClass           | string | No   | Class name.|
 
 ## BundleActiveInfoResponse<sup>(deprecated)</sup>
+
 > This API is supported since API version 7 and deprecated since API version 9. Use [usageStatistics.BundleStatsMap](js-apis-resourceschedule-deviceUsageStatistics-sys.md#bundlestatsmap) instead.
 
 Provides the usage duration information of an application.
@@ -479,6 +486,7 @@ Provides the usage duration information of an application.
 | [key: string]: BundleStateInfo | [key: string]: [BundleStateInfo](#bundlestateinfodeprecated) | Yes   | Usage duration information by application.|
 
 ## IntervalType<sup>(deprecated)</sup>
+
 > This API is supported since API version 7 and deprecated since API version 9. Use [usageStatistics.intervaltype](js-apis-resourceschedule-deviceUsageStatistics-sys.md#intervaltype) instead.
 
 Enumerates the interval types for querying the application usage duration.

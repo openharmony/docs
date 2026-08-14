@@ -1,7 +1,7 @@
 # ExtensionRunningInfo (系统接口)
 <!--Kit: Ability Kit-->
 <!--Subsystem: Ability-->
-<!--Owner: @yewei0794-->
+<!--Owner: @xialiangwei-->
 <!--Designer: @jsjzju-->
 <!--Tester: @liangchengguang-->
 <!--Adviser: @HelloCrease-->
@@ -36,7 +36,7 @@ import { abilityManager } from '@kit.AbilityKit';
 | uid | number | 否 | 否 | 应用程序的uid。 |
 | processName | string | 否 | 否 | 进程名称。 |
 | startTime | number | 否 | 否 | Extension被启动时的时间戳。 |
-| clientPackage | Array&lt;String&gt; | 否 | 否 | 表示当前进程下的所有包名。 |
+| clientPackage | Array&lt;string&gt; | 否 | 否 | 表示当前进程下的所有包名。 |
 | type | [bundle.ExtensionAbilityType](js-apis-bundleManager.md#extensionabilitytype) | 否 | 否 | Extension类型。 |
 
 **示例：**

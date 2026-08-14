@@ -1,10 +1,12 @@
 # divider
+
 <!--Kit: ArkUI-->
 <!--Subsystem: ArkUI-->
 <!--Owner: @fenglinbailu-->
-<!--Designer: @lanshouren-->
+<!--Designer: @fenglinbailu-->
 <!--Tester: @liuli0427-->
 <!--Adviser: @Brilliantry_Rui-->
+<!-- md-trans-meta sourceCommit=45ec2d938cfede23d9ca90fe41c0d1f3e7b2b01d translatedAt=2026-08-11T01:54:47.343Z pushedAt=2026-08-11T02:10:40.797Z -->
 
 The **\<divider>** component is used to separate content blocks and content elements. It can be used in a list or for UI layout.
 
@@ -19,7 +21,6 @@ In addition to the [universal attributes](js-service-widget-common-attributes.md
 | Name| Type| Default Value| Mandatory| Description|
 | -------- | -------- | -------- | -------- | -------- |
 | vertical | boolean | false | No| Whether to use the vertical divider. The default value is **false**, indicating that the horizontal divider is used.|
-
 
 ## Styles
 
@@ -39,14 +40,11 @@ Only the following styles are supported.
 | flex-shrink | number | 1 | No| How much a child component will shrink. The shrink occurs only when the sum of default element widths is greater than that of the parent component. Value **0** indicates that the child component does not shrink.<br>This attribute takes effect only when the parent component is **\<div>**, **\<list-item>**, or **\<tabs>**.|
 | flex-basis | &lt;length&gt; | - | No| Initial length of a child component on the main axis.<br>This attribute takes effect only when the parent component is **\<div>**, **\<list-item>**, or **\<tabs>**.|
 
-
 ## Events
 
 Not supported.
 
-
 ## Example
-
 
 ```html
 <!-- xxx.hml -->
@@ -56,7 +54,6 @@ Not supported.
   </div>
 </div>
 ```
-
 
 ```css
 /* xxx.css */
@@ -83,6 +80,7 @@ Not supported.
   line-cap: round;
 }
 ```
+
 **4 x 4 widget**
 
 ![divider](figures/divider.png)

@@ -2,11 +2,11 @@
 <!--Kit: Multimodal Awareness Kit-->
 <!--Subsystem: MultimodalAwareness-->
 <!--Owner: @dilligencer-->
-<!--Designer: @zou_ye-->
+<!--Designer: @saga2025-->
 <!--Tester: @judan-->
 <!--Adviser: @hu-zhiqiong-->
 
-本模块提供对设备状态的感知能力。
+本模块提供对设备状态的感知能力。该模块通过监听设备传感器数据，为应用提供设备姿态等感知能力。
 
 > **说明：**
 >
@@ -29,7 +29,7 @@ getDeviceRotationRadian(): Promise&lt;DeviceRotationRadian&gt;
 
 **系统能力**：SystemCapability.MultimodalAwareness.DeviceStatus
 
-**系统接口**：此接口为系统接口
+**系统接口**：此接口为系统接口。
 
 **错误码**：
 
@@ -51,9 +51,9 @@ getDeviceRotationRadian(): Promise&lt;DeviceRotationRadian&gt;
       deviceStatus.getDeviceRotationRadian().then((radian: deviceStatus.DeviceRotationRadian) => {
          console.info('x:' + radian.x + ' y:' + radian.y + ' z:' + radian.z);
       }).catch((err: BusinessError) => {
-         console.error('get device rotation radian failed, errmsg:' + err);
-      })
+         console.error(`Failed to get device rotation radians. Code: ${err.code}, message: ${err.message}`);
+      });
    } catch (err) {
-      console.error('invoke failed, errmsg:' + err)
+      console.error(`Failed to invoke. Code: ${err.code}, message: ${err.message}`);
    }
    ```

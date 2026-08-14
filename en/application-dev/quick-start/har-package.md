@@ -1,21 +1,27 @@
 # HAR
+
 <!--Kit: Ability Kit-->
 <!--Subsystem: BundleManager-->
 <!--Owner: @wanghang904-->
 <!--Designer: @hanfeng6-->
-<!--Tester: @kongjing2-->
-<!--Adviser: @Brilliantry_Rui-->
+<!--Tester: @memghaiyang-->
+<!--Adviser: @HelloCrease-->
+<!-- md-trans-meta sourceCommit=e614db0ed9ef9e65ff9f340640f4a0fd5317e78d translatedAt=2026-08-13T09:05:20.354Z pushedAt=2026-08-13T13:52:38.361Z -->
 
 A Harmony Archive (HAR) is a static shared package that can contain code, C++ libraries, resource files, and configuration files (also called profiles). It enables modules and projects to share code of ArkUI components, resources, and more.
 
 ## When to Use
+
 - Supports intra-application sharing or, after being released, intra-application sharing.
+
 - As a second-party library for internal applications, by being released to the [OHPM private repository](https://developer.huawei.com/consumer/en/doc/harmonyos-guides/ide-ohpm-repo).
+
 - As a third-party library for external applications, by being released to the [OHPM central repository](https://ohpm.openharmony.cn/#/en/home).
 
 ## Constraints
 
 - A HAR can only be referenced as a dependency of an application module. It cannot be installed or run independently on a device.
+
 - Since API version 14, the declaration of the [UIAbility](../application-models/uiability-overview.md) component in the configuration file is supported. For details about how to configure a **UIAbility**, see [Adding a UIAbility to a Module](https://developer.huawei.com/consumer/en/doc/harmonyos-guides/ide-add-new-ability#section18658758104318). Starting a **UIAbility** in a HAR is the same as starting one [in an application](../application-models/uiability-intra-device-interaction.md).
 
 > **NOTE**
@@ -23,11 +29,17 @@ A Harmony Archive (HAR) is a static shared package that can contain code, C++ li
 > If the [startAbility](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#startability) API is used to start the **UIAbility** in the HAR, the value of **moduleName** in the API parameter must be the module name of the [HAP](hap-package.md) or [HSP](in-app-hsp.md) that depends on the HAR.
 
 - Since API version 18, HAR supports the declaration of the [ExtensionAbility](../application-models/extensionability-overview.md) component in the configuration file. However, **ExtensionAbility** with entry capabilities (that is, **entity.system.home** and **ohos.want.action.home** configured for the **skill** tag) is not supported. For details about how to configure an **ExtensionAbility** in a HAR, see [Adding an ExtensionAbility to a Module](https://developer.huawei.com/consumer/en/doc/harmonyos-guides/ide-add-new-ability#section18891639459). For API version 17 and earlier versions, the [ExtensionAbility](../application-models/extensionability-overview.md) component cannot be declared in the configuration file.
+
 - A HAR does not support the declaration of the [pages](./module-configuration-file.md#pages) tag in the configuration file. Still, it can include pages, which can be redirected through [Navigation](../ui/arkts-navigation-jump.md#routing-operations).
+
 - A HAR does not support referencing resources in the **AppScope** folder. This is because the content in the **AppScope** folder is not packaged into the HAR during building.
+
 - As the HSP supports only intra-application sharing, a HAR that depends on any HSP can be shared only within the same application. Do not release such a HAR to a second-party or third-party repository for other applications to use; otherwise, build failures will occur.
+
 - When multiple HAPs or HSPs reference the same HAR, the application package may contain multiple copies of code and resource files for the HAPs or HSPs, resulting in an unwelcome large package size.
+
 - A HAR can depend on other HARs or HSPs, but does not support cyclic dependency or dependency transfer.
+
 - When a HAP references a HAR, the system automatically combines their permission configurations during compilation and build. Therefore, you do not need to repeatedly request the same permission in the HAP and HAR.
 
 > **NOTE**
@@ -36,10 +48,9 @@ A Harmony Archive (HAR) is a static shared package that can contain code, C++ li
 >
 > Dependency transfer: For example, there are three HARs. HAR-A depends on HAR-B, and HAR-B depends on HAR-C. If dependency transfer is not supported, HAR-A can use the methods and components of HAR-B, but cannot directly use that of HAR-C.
 
-
 ## Creating a HAR
-You can create a HAR module for calling C++ code in DevEco Studio. During the creation, turn on **Enable native** on the **Configure New Module** page. For details, see [Creating a HAR Module](https://developer.huawei.com/consumer/en/doc/harmonyos-guides/ide-har#section643521083015).
 
+You can create a HAR module for calling C++ code in DevEco Studio. During the creation, turn on **Enable native** on the **Configure New Module** page. For details, see [Creating a HAR Module](https://developer.huawei.com/consumer/en/doc/harmonyos-guides/ide-har#section643521083015).
 
 ## Developing a HAR
 
@@ -62,6 +73,7 @@ The **Index.ets** file acts as the entry of the HAR export declaration file and 
 > When compiling together with the host application, the HAR code is directly compiled into the host application. A HAR package serves as an intermediate build product rather than a final runtime entity. At runtime, the HAR operates under the identity of its host application, and the system differentiates behaviors based on the version of the host application. If it is necessary to implement version-specific behaviors for the host application within the HAR, you can call the [getBundleInfoForSelf](../reference/apis-ability-kit/js-apis-bundleManager.md#bundlemanagergetbundleinfoforself) API to obtain the host application's **targetVersion**, and then execute different logic based on the obtained **targetVersion**.
 
 ### Exporting ArkUI Components
+
 Export ArkUI components using **export**. The code snippet is as follows:
 
 <!-- @[har_package_002](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/bmsSample/HarPackage/library/src/main/ets/components/mainpage/MainPage.ets) -->
@@ -100,7 +112,6 @@ export struct MainPage {
 }
 ```
 
-
 In the **Index.ets** file, declare the APIs that the HAR exposes to external systems. The code snippet is as follows:
 
 <!-- @[har_package_003](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/bmsSample/HarPackage/library/Index.ets) -->
@@ -110,8 +121,8 @@ In the **Index.ets** file, declare the APIs that the HAR exposes to external sys
 export { MainPage } from './src/main/ets/components/mainpage/MainPage';
 ```
 
-
 ### Exporting Classes and Methods
+
 Use **export** to export classes and methods. Multiple classes and methods can be exported. The code snippet is as follows:
 
 <!-- @[har_package_004](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/bmsSample/HarPackage/library/src/main/ets/test.ets) -->
@@ -133,7 +144,6 @@ export function func2() {
 }
 ```
 
-
 In the **Index.ets** file, declare the APIs that the HAR exposes to external systems. The code snippet is as follows:
 
 <!-- @[har_package_005](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/bmsSample/HarPackage/library/Index.ets) -->
@@ -143,8 +153,8 @@ In the **Index.ets** file, declare the APIs that the HAR exposes to external sys
 export { Log, func, func2 } from './src/main/ets/test';
 ```
 
-
 ### Exporting Native Methods
+
 The HAR can contain .so files written in C++. Native methods in the .so file can be exported from the HAR in the following way. In the example, the **add** API in the **liblibrary.so** file is exported.
 
 <!-- @[har_package_007](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/bmsSample/HarPackage/library/src/main/ets/utils/nativeTest.ets) -->
@@ -159,7 +169,6 @@ export function nativeAdd(a: number, b: number): number {
 }
 ```
 
-
 In the **Index.ets** file, declare the APIs that the HAR exposes to external systems. The code snippet is as follows:
 
 <!-- @[har_package_006](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/bmsSample/HarPackage/library/Index.ets) -->
@@ -169,12 +178,16 @@ In the **Index.ets** file, declare the APIs that the HAR exposes to external sys
 export { nativeAdd } from './src/main/ets/utils/nativeTest';
 ```
 
-
 ### Exporting Resources
+
 Specifically, DevEco Studio collects resource files from the HAP module and its dependent modules, and overwrites the resource files with the same name (if any) based on the following priorities (in descending order):
+
 - AppScope (supported only by the stage model)
+
 - Modules in the HAP
+
 - Dependent HAR modules<br>If resource conflicts occur between dependent HAR modules, they are overwritten based on the dependency sequence indicated under **dependencies** in the **oh-package.json5** file. The module that is higher in the dependency sequence list has a higher priority. For example, in the following example, if **dayjs** and **lottie** folders contain files with the same name, resources in **dayjs** are used preferentially.
+
 > **NOTE**
 > 
 > With regard to resources in the internationalization folder of **AppScope**, HAP, and HAR directories, the preceding priority rules also apply to resources with the same internationalization qualifier. In addition, resources with internationalization qualifiers are prioritized over those in the **base** folder. For example, if resources with the same name are configured in both the **base** folder under **AppScope** and the **en_US** folder of a HAR, the one in the **en_US** folder is prioritized for internationalization purposes.
@@ -221,8 +234,8 @@ struct IndexSec {
 }
 ```
 
-
 ### Referencing ETS Classes and Methods
+
 Use **import** to reference the classes and methods exported from the HAR. The code snippet is as follows:
 
 <!-- @[har_package_010](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/bmsSample/HarPackage/entry/src/main/ets/pages/Index.ets) -->
@@ -267,6 +280,7 @@ struct Index {
 ```
 
 ### Referencing Native Methods
+
 Use **import** to reference the native methods exported from the HAR. The code snippet is as follows:
 
 <!-- @[har_package_011](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/bmsSample/HarPackage/entry/src/main/ets/pages/Index.ets) -->
@@ -309,6 +323,7 @@ struct Index {
 ```
 
 ### Referencing Resources
+
 Use **$r** to reference resources in the HAR. For example, add the **name: hello_har** string (defined in the **string.json** file) and **icon_har.png** image to the **src/main/resources** directory of the HAR module, and then reference the string and image in the entry module. The code snippet is as follows:
 
 <!-- @[har_package_012](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/bmsSample/HarPackage/entry/src/main/ets/pages/Index.ets) -->
@@ -363,14 +378,14 @@ For details, see [Building a HAR](https://developer.huawei.com/consumer/en/doc/h
 
 ### Configuring Obfuscation
 
-HAR can be used as a second-party or third-party library for other applications. To protect code assets, you are advised to [enable code obfuscation](../arkts-utils/source-obfuscation-guide.md#enabling-source-code-obfuscation).
+HAR can be provided to other apps as a second-party or third-party library. If you need to protect code assets, it is recommended that you obfuscate the source code by following [HAR Package Obfuscation Recommendations](../arkts-utils/source-obfuscation-practice.md#har-package-obfuscation-recommendations).
 
 After [code obfuscation](../arkts-utils/source-obfuscation.md) is enabled, DevEco Studio compiles, obfuscates, and compresses code when building HARs to protect code assets.
 
 The obfuscation capability is enabled by default for the HAR module. When the compilation module is release, simple code obfuscation is automatically performed for the HAR module of API version 10 or later. **Since DevEco Studio 5.0.3.600, the code obfuscation is disabled by default when a project is created.** You can enable this feature by setting **enable** in the **ruleOptions** field in the **build-profile.json5** file of the HAR module. For details, see [Using Obfuscation for Code Hardening](https://developer.huawei.com/consumer/en/doc/harmonyos-guides/ide-build-obfuscation). The configuration is as follows:
 
   <!-- @[har_package_013](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/bmsSample/HarPackage/library/build-profile.json5) -->
-  
+
   ``` JSON5
   {
     "apiType": "stageMode",
@@ -409,6 +424,6 @@ The obfuscation capability is enabled by default for the HAR module. When the co
 
 For details, see [Publishing a Shared Package](https://developer.huawei.com/consumer/en/doc/harmonyos-guides/ide-har-publish).
 
-##  
+## Samples
 
--  
+- [Shopping App Example](https://gitcode.com/openharmony/applications_app_samples/tree/master/code/Solutions/Shopping/OrangeShopping)

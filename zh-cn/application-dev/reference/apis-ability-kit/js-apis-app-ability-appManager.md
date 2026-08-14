@@ -280,12 +280,15 @@ getRunningProcessInformation(): Promise\<Array\<ProcessInformation>>
 
 > **说明：**
 >
-> - 对于API version 11之前的版本，该接口需要申请权限ohos.permission.GET_RUNNING_INFO（该权限仅系统应用可申请）。
-> - 从API version 11开始，该接口仅用于获取调用方自身的进程信息，不再需要申请权限。
+> 从API version 11开始，该接口仅用于获取调用方自身的进程信息，不再需要申请权限。
 
 **原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
+
+**需要权限**：
+
+API版本9-10：ohos.permission.GET_RUNNING_INFO（该权限仅系统应用可申请）
 
 **返回值：**
 
@@ -322,12 +325,15 @@ getRunningProcessInformation(callback: AsyncCallback\<Array\<ProcessInformation>
 
 > **说明：**
 >
-> - 对于API version 11之前的版本，该接口需要申请权限ohos.permission.GET_RUNNING_INFO（该权限仅系统应用可申请）。
-> - 从API version 11开始，该接口仅用于获取调用方自身的进程信息，不再需要申请权限。
+> 从API version 11开始，该接口仅用于获取调用方自身的进程信息，不再需要申请权限。
 
 **原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
+
+**需要权限**：
+
+API版本9-10：ohos.permission.GET_RUNNING_INFO（该权限仅系统应用可申请）
 
 **参数：**
 
@@ -612,7 +618,7 @@ off(type: 'applicationState', observerId: number, callback: AsyncCallback\<void>
 | -------- | -------- | -------- | -------- |
 | type | string | 是 | 调用接口类型，固定填'applicationState'字符串。 |
 | observerId | number | 是 | 注册的应用状态监听器ID，即[on('applicationState')](#appmanageronapplicationstate14)返回的监听器ID。 |
-| callback | AsyncCallback\<void> | 是 | 回调函数。当取消注册应用程序状态观测器成功，err为undefined，否则为错误对象。 |
+| callback | AsyncCallback\<void> | 是 | 回调函数。当注销应用状态监听器成功，err为undefined，否则为错误对象。 |
 
 **错误码**：
 

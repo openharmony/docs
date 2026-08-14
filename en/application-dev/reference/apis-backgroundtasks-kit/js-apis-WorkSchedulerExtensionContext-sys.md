@@ -6,6 +6,7 @@
 <!--Designer: @zhouben25-->
 <!--Tester: @leetestnady-->
 <!--Adviser: @HelloCrease-->
+<!-- md-trans-meta sourceCommit=16406a28f1b526bb5e02cd6879fb66133d3852a7 translatedAt=2026-08-11T01:57:01.952Z pushedAt=2026-08-11T07:56:39.815Z -->
 
 The **WorkSchedulerExtensionContext** module, inherited from [ExtensionContext](../apis-ability-kit/js-apis-inner-application-extensionContext.md), provides a context environment for the **WorkSchedulerExtensionAbility**.
 
@@ -13,11 +14,11 @@ This module directly serves as the context for **WorkSchedulerExtension** and pr
 
 > **NOTE**
 > 
-> The initial APIs of this module are supported since API version 10. Newly added APIs will be marked with a superscript to indicate their earliest API version.
+> - The initial APIs of this module are supported since API version 10. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 >
-> The APIs of this module can be used only in the stage model.
+> - The APIs of this module can be used only in the stage model.
 >
-> The APIs provided by this module are system APIs.
+> - The APIs provided by this module are system APIs.
 
 ## How to Use
 
@@ -37,7 +38,7 @@ class MyWorkSchedulerExtensionAbility extends WorkSchedulerExtensionAbility {
 
 startServiceExtensionAbility(want: Want): Promise\<void>
 
-Starts a **ServiceExtensionAbility**. This API uses a promise to return the result.
+Starts the **ServiceExtensionAbility**. This API is used to start the associated service ability when a task is running in the background. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.ResourceSchedule.WorkScheduler
 
@@ -57,7 +58,7 @@ Starts a **ServiceExtensionAbility**. This API uses a promise to return the resu
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Ability Error Codes](../apis-ability-kit/errorcode-ability.md).
 
-| Error Code| Error Message|
+| ID| Error Message|
 | ------- | -------- |
 | 201 | The application does not have permission to call the interface. |
 | 202 | The application is not system-app, can not use system-api. |
@@ -107,7 +108,7 @@ export default class MyWorkSchedulerExtensionAbility extends WorkSchedulerExtens
 
 stopServiceExtensionAbility(want: Want): Promise\<void>
 
-Stops a **ServiceExtensionAbility**. This API uses a promise to return the result.
+Stops the ServiceExtensionAbility. This API is used when the task running in the background is complete or the associated service capability is no longer needed. This API uses a promise to return the result asynchronously.
 
 **System capability**: SystemCapability.ResourceSchedule.WorkScheduler
 
@@ -127,7 +128,7 @@ Stops a **ServiceExtensionAbility**. This API uses a promise to return the resul
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Ability Error Codes](../apis-ability-kit/errorcode-ability.md).
 
-| Error Code| Error Message|
+| ID| Error Message|
 | ------- | -------- |
 | 201 | The application does not have permission to call the interface. |
 | 202 | The application is not system-app, can not use system-api. |

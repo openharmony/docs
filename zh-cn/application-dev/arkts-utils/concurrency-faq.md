@@ -39,7 +39,7 @@
              .fontSize(50)
              .fontWeight(FontWeight.Bold)
              .onClick(() => {
-               console.info('test start');
+               console.info(`test start`);
                // 其他业务逻辑
                // ...
                let task: taskpool.Task = new taskpool.Task(createTask, 1, 2);
@@ -121,13 +121,13 @@
                 .fontSize(50)
                 .fontWeight(FontWeight.Bold)
                 .onClick(() => {
-                  console.info('test start');
+                  console.info(`test start`);
                   // 其他业务逻辑
                   // ...
                   let task: taskpool.Task = new taskpool.Task(createTask, 1, 2);
                   taskpool.execute(task).then((res: Object) => {
                     // 任务执行完处理结果
-                    this.message = '任务执行结果:'+ res;
+                    this.message = '任务执行结果: '+ res;
                     // ...
                   }).catch((e: Error) => {
                     // 任务发生异常后处理异常
@@ -298,7 +298,7 @@ TaskPool实现任务的函数（Concurrent函数）入参和返回结果需满�
      taskpool.execute(task).then((res) => {
      }).catch((e: BusinessError) => {
        // 打印“返回结果序列化失败”异常信息
-       console.error('execute task failed ' + e.message);
+       console.error(`execute task failed ${e.message}`);
      })
    }
    ```
@@ -337,7 +337,7 @@ TaskPool实现任务的函数（Concurrent函数）入参和返回结果需满�
        // task1
        let task1: taskpool.Task = new taskpool.Task(printArgs, res);
      }).catch((e: BusinessError) => {
-       console.error('execute task failed ' + e.message);
+       console.error(`execute task failed ${e.message}`);
      })
    }
    ```
@@ -402,9 +402,9 @@ workerPort.onmessage = (e: MessageEvents) => {
   let a: A = e.data as A;
   if (a instanceof A) {
     // 打印test instanceof in worker thread success
-    console.info('test instanceof in worker thread success');
+    console.info(`test instanceof in worker thread success`);
   } else {
-    console.info('test instanceof in worker thread failed');
+    console.error(`test instanceof in worker thread failed`);
   }
 }
 ```
@@ -585,9 +585,9 @@ TaskPool的任务执行函数Concurrent函数只能使用局部变量和函数�
      let task: taskpool.Task = new taskpool.Task(createTask, 1)
      taskpool.execute(task).then((res) => {
        testObject.setName(res as string);
-       console.info('execute task success, name is ' + testObject.getName());
+       console.info(`execute task success, name is ${testObject.getName()}`);
      }).catch((e: BusinessError) => {
-       console.error('execute task error: ' + e.message);
+       console.error(`execute task error: ${e.message}`);
      })
    }
    ```
