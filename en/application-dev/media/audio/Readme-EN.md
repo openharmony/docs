@@ -6,7 +6,7 @@
 <!--Designer: @magekkkk-->
 <!--Tester: @Filger-->
 <!--Adviser: @w_Machine_cc-->
-<!-- md-trans-meta sourceCommit=fd8ed1a59024b16bfd80938b476bae38fb83db08 translatedAt=2026-08-06T13:40:56.247Z pushedAt=2026-08-07T10:49:55.451Z -->
+<!-- md-trans-meta sourceCommit=0c41b557946363a5e20d43f171b1b823766cdc67 translatedAt=2026-08-15T01:56:51.447Z pushedAt=2026-08-15T09:40:30.190Z -->
 
 - [About This Kit](audio-kit-intro.md)
 
@@ -71,15 +71,23 @@
 
   - [Audio Recording Development](audio-recording-overview.md)
 
-  - [Choosing the Right Recording Stream Type](using-right-sourcetype-for-recording.md)
+  - Microphone Recording (External Recording) Features<!--external-audio-recording-->
 
-  - [(Recommended) Using OHAudio for Audio Recording (C/C++)](using-ohaudio-for-recording.md)
+    - [Choosing the Right Recording Stream Type](using-right-sourcetype-for-recording.md)
 
-  - [Using AudioCapturer for Audio Recording (ArkTS)](using-audiocapturer-for-recording.md)
+    - [(Recommended) Using OHAudio for Audio Recording (C/C++)](using-ohaudio-for-recording.md)
 
-  - [Low-Latency Audio Recording (C/C++)](audio-fast-recording.md)
+    - [Using AudioCapturer for Audio Recording (ArkTS)](using-audiocapturer-for-recording.md)
 
-  - [Implementing Background Recording](background-recording.md)
+    - [Low-Latency Audio Recording (C/C++)](audio-fast-recording.md)
+
+    - [Implementing Background Recording](background-recording.md)
+
+  - System Audio Recording (Internal Recording) Features<!--system-audio-recording-->
+
+    - [System Audio Recording Overview and API Selection](audio-recording-system-audio-overview.md)
+
+    - [Implementing System Audio Recording](implement-system-audio-recording.md)
 
   - [Managing Microphone Mute State](mic-management.md)
 
@@ -126,6 +134,8 @@
   - [Audio Format Conversion (C/C++)](audio-suite-format-converter.md)
 
   - [Spatial Rendering (C/C++)](audio-suite-space-render.md)
+
+  - [Audio Effects (C/C++)](audio-suite-effects.md)
 
 - MIDI Device Communication<!--midi-->
 

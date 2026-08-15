@@ -3,10 +3,10 @@
 <!--Kit: Connectivity Kit-->
 <!--Subsystem: Communication-->
 <!--Owner: @enjoy_sunshine-->
-<!--Designer: @chengguohong; @tangjia15-->
+<!--Designer: @tangjia15-->
 <!--Tester: @wangfeng517-->
 <!--Adviser: @zhang_yixin13-->
-<!-- md-trans-meta sourceCommit=f27c946fc782ac1d031692b6ff0d2063a86e9e01 translatedAt=2026-07-25T11:35:19.292Z pushedAt=2026-07-27T08:00:50.041Z -->
+<!-- md-trans-meta sourceCommit=0d2f738e5b32ae4e59e35d8f85fdf6bde8c047f9 translatedAt=2026-08-15T01:41:32.265Z pushedAt=2026-08-15T06:09:08.394Z -->
 
 ## Overview
 
@@ -104,9 +104,9 @@ The converged short-range communication service provides unified management of s
 
 Provides interconnection services between partner devices and OpenHarmony devices. Within the module, interconnection services such as media control, phone call reverse control, and health monitoring can be implemented. For details, see [@ohos.FusionConnectivity.partnerAgent (Device Status Notification Module)](../reference/apis-connectivity-kit/js-apis-fusionConnectivity-partnerAgent.md).
 
-- **Fusion connectivity module**<br/>
+- **Converged ranging module**<br/>
 
-  Provides the NearLink [HADM](terminology.md#high-accuracy-distance-measurement-hadm) ranging service. Within the module, the NearLink HADM ranging capability can be used. For details, see [@ohos.FusionConnectivity.ranging](../reference/apis-connectivity-kit/js-apis-fusionConnectivity-ranging.md).
+Provides the NearLink [HADM](fusion-connectivity/fusion-connectivity-terminology.md#high-accuracy-distance-measurement-hadm) ranging service. Within the module, the NearLink HADM ranging capability can be used. For details, see [@ohos.FusionConnectivity.ranging](../reference/apis-connectivity-kit/js-apis-fusionConnectivity-ranging.md).
 
 ### Working Principles
 
@@ -121,5 +121,3 @@ Device capabilities can be used only after the related switch is enabled after u
 For Bluetooth services, the following sample is available:
 
 - [Bluetooth](https://gitcode.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/Connectivity/Bluetooth)
-
-<!--no_check-->

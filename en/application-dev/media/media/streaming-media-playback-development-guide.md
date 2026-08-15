@@ -6,7 +6,7 @@
 <!--Designer: @dongyu_dy-->
 <!--Tester: @xchaosioda-->
 <!--Adviser: @w_Machine_cc-->
-<!-- md-trans-meta sourceCommit=5431dfef3480aa170de3ea7c328962a87045baac translatedAt=2026-08-11T01:52:52.487Z pushedAt=2026-08-11T12:46:08.351Z -->
+<!-- md-trans-meta sourceCommit=33d2950a9107bad2f62b4952124cd406fec77618 translatedAt=2026-08-15T01:58:26.868Z pushedAt=2026-08-15T09:04:09.391Z -->
 
 This topic describes how to use [AVPlayer](media-kit-intro.md#avplayer) for streaming live broadcasts and video-on-demand. The examples demonstrate how to play streaming videos in an end-to-end manner.
 
@@ -112,6 +112,7 @@ HLS streams currently support playback at multiple bit rates. By default, the AV
     import { media } from '@kit.MediaKit';
     // Define the class member avPlayer.
     private avPlayer: media.AVPlayer | null = null;
+    private bitrate: number = 0;
 
     // Create an AVPlayer instance.
     this.avPlayer = await media.createAVPlayer();
@@ -120,7 +121,7 @@ HLS streams currently support playback at multiple bit rates. By default, the AV
       console.info('bitrateDone called, and bitrate value is: ' + bitrate);
     })
     // Set the playback bit rate.
-    this.bitrate: number = 96000;
+    this.bitrate = 96000;
     this.avPlayer.setBitrate(this.bitrate);
     ```
 

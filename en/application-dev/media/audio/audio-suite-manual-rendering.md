@@ -6,7 +6,7 @@
 <!--Designer: @jay-liusong-->
 <!--Tester: @Filger-->
 <!--Adviser: @w_Machine_cc-->
-<!-- md-trans-meta sourceCommit=6169ae798a73a187e0c6a78db7822bf9cfe652bb translatedAt=2026-08-06T01:56:39.038Z pushedAt=2026-08-06T08:23:07.240Z -->
+<!-- md-trans-meta sourceCommit=7916f8e417a52f266eb8609e7aa226ddb0132eda translatedAt=2026-08-15T01:56:16.767Z pushedAt=2026-08-15T08:59:33.475Z -->
 
 Starting from API version 22, [OHAudioSuite](../../reference/apis-audio-kit/capi-ohaudiosuite.md) provides offline audio editing capability, allowing you to process audio data in non-real-time preview scenarios. You can combine multiple audio nodes to implement complex audio processing pipelines.
 
@@ -47,7 +47,7 @@ Based on your service scenario, call [OH_AudioSuiteNodeBuilder_SetFormat()](../.
 
 ### Basic Offline Editing
 
-Use effect nodes (for example, equalizer effect node) to process the input Pulse Code Modulation (PCM) audio data and output PCM audio data with the applied audio effects.
+Use an effect node (such as an equalizer effect node) to process the input PCM (Pulse Code Modulation) audio data and output PCM audio data with the corresponding sound effect. This section uses the equalizer effect as an example to demonstrate the offline editing process. For details about other effect nodes, see [Audio Effects (C/C++)](audio-suite-effects.md).
 
 **Figure 1** Basic offline editing
 
@@ -236,6 +236,8 @@ Use effect nodes (for example, equalizer effect node) to process the input Pulse
 
 Use a source separation node to separate input PCM audio data into vocal and background tracks, and then use an output node to output these tracks separately.
 
+Before creating a source separation node, call [OH_AudioSuiteEngine_IsNodeTypeSupported()](../../reference/apis-audio-kit/capi-native-audio-suite-engine-h.md#oh_audiosuiteengine_isnodetypesupported) to check whether the node type is supported to avoid node creation failure.
+
 **Figure 2** Source separation editing
 
 ![single_in_multi_out](figures/audiosuite-audio-separation-edit.png)
@@ -302,6 +304,20 @@ The sample code is as follows:
    }
    ```
 
+   <!-- @[audioSuite_IsSupportedSeparationNode](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/Media/Audio/AudioSuiteSample/entry/src/main/cpp/manual_rendering.cpp) -->
+
+   ``` C++
+   // Determine whether the source separation node is supported.
+   bool isSupported = false;
+   OH_AudioSuiteEngine_IsNodeTypeSupported(OH_AudioNode_Type::EFFECT_MULTII_OUTPUT_NODE_TYPE_AUDIO_SEPARATION,
+                                           &isSupported);
+   if (!isSupported) {
+       OH_LOG_Print(LOG_APP, LOG_ERROR, GLOBAL_RESMGR, TAG, "Audio separation node is not supported on this device.");
+       nodes.isNodeSupported = false;
+       return nodes;
+   }
+   ```
+
    <!-- @[audioSuite_CreateSeparationNode](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/Media/Audio/AudioSuiteSample/entry/src/main/cpp/manual_rendering.cpp) -->
 
    ``` C++
@@ -359,7 +375,7 @@ The sample code is as follows:
 
 3. Render audio data.
 
-   For the pipeline that contains the source separation node , use [OH_AudioSuiteEngine_MultiRenderFrame()](../../reference/apis-audio-kit/capi-native-audio-suite-engine-h.md#oh_audiosuiteengine_multirenderframe) to render and obtain two streams of PCM audio data.
+   For the pipeline that contains the source separation node, use [OH_AudioSuiteEngine_MultiRenderFrame()](../../reference/apis-audio-kit/capi-native-audio-suite-engine-h.md#oh_audiosuiteengine_multirenderframe) to render and obtain two streams of PCM audio data.
 
    <!-- @[audioSuite_StartSeparationPipeline](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/Media/Audio/AudioSuiteSample/entry/src/main/cpp/manual_rendering.cpp) -->
 

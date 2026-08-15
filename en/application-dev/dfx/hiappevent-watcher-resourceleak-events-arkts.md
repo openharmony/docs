@@ -6,7 +6,7 @@
 <!--Designer: @peterhuangyu-->
 <!--Tester: @gcw_KuLfPSbe-->
 <!--Adviser: @jinqiuheng-->
-<!-- md-trans-meta sourceCommit=4c8819205f56fd5d5b541e669e941b128e6c4fc1 translatedAt=2026-07-31T01:27:52.428Z pushedAt=2026-07-31T06:19:20.537Z -->
+<!-- md-trans-meta sourceCommit=281a5975cfb5f25896e63aa56d3d9f8deabd3462 translatedAt=2026-08-15T01:48:14.606Z pushedAt=2026-08-15T07:14:44.534Z -->
 
 ## Available APIs
 
@@ -334,11 +334,11 @@ The following example describes how to subscribe to the memory leak event.
 
    As shown in the preceding information, **eventInfo** contains the [params](hiappevent-watcher-resourceleak-events.md#params) field of the resource leak event. You can determine the current leak type based on the **resource_type** field in **eventInfo**.
 
-5. Enable **System resource leak log** in **Developer options**. (You need to restart the device to enable or disable this functionality.) Click the **Run** button in DevEco Studio to run the project. Click **js leak** and wait for 3 to 5 seconds. The application will exit unexpectedly. After the application restarts, the system reports a JS memory leak event.
+5. Enable **System resource leak log** in **Developer options**. (You need to restart the device to enable or disable this functionality.) Click the **Run** button in DevEco Studio to run the project. Click **js leak** and wait for 3 to 5 seconds. The app will exit unexpectedly. After the app restarts, the system reports a JS memory leak event.
 
-   For the same application, the JS memory leak event can be reported at most once within 24 hours. If the memory leak needs to be reported again within a shorter time, restart the device.
+   For the same app, the JS memory leak event can be reported at most once within 24 hours. If the memory leak needs to be reported again within a shorter time, restart the device.
 
-6. After the JS memory leak event is reported, the system calls the **onReceive** function of the application. You can view the following event information in the **Log** window.
+6. After the JS memory leak event is reported, the system calls the **onReceive** function of the app. You can view the following event information in the **Log** window.
 
    ```text
    HiAppEvent onReceive: domain=OS

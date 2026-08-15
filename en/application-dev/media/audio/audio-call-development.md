@@ -6,7 +6,7 @@
 <!--Designer: @magekkkk-->
 <!--Tester: @Filger-->
 <!--Adviser: @w_Machine_cc-->
-<!-- md-trans-meta sourceCommit=3863b055c6e9408de6b26fc09812f154ff7c048c translatedAt=2026-08-06T01:42:12.414Z pushedAt=2026-08-06T02:18:43.124Z -->
+<!-- md-trans-meta sourceCommit=b1fa1b915ee15db082bf8f1cefb71ce8e32f9517 translatedAt=2026-08-15T01:55:11.124Z pushedAt=2026-08-15T08:45:09.953Z -->
 
 During an audio call, the app needs to simultaneously perform audio output (playing the peer voice) and audio input (recording the local voice). You can use AudioRenderer for audio output and AudioCapturer for audio input, and leverage the 3A algorithms (acoustic echo cancellation, noise suppression, and automatic gain control) provided since API version 8 to improve call quality.
 
@@ -39,8 +39,6 @@ The 3A algorithm typically includes the following audio processing capabilities:
 - If the input or output device is switched during a call, the system may reselect the audio path. The app should monitor device changes and reconfirm the call experience.
 
 - When developing call services, configure both the playback stream and the recording stream according to the call scenario. If a playback type other than `STREAM_USAGE_VOICE_COMMUNICATION` or `STREAM_USAGE_VIDEO_COMMUNICATION` is used, or a recording type other than `SOURCE_TYPE_VOICE_COMMUNICATION` is used, the system cannot identify the call scenario, and processing strategies such as echo cancellation, noise suppression, and automatic gain control may not take effect or may produce unexpected results.
-
-- Starting the recording stream alone does not enable 3A. A call-type playback stream must also be started simultaneously.
 
 ## Audio Call Development
 

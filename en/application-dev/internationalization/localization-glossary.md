@@ -3,10 +3,10 @@
 <!--Kit: Localization Kit-->
 <!--Subsystem: Global-->
 <!--Owner: @yliupy-->
-<!--Designer: @sunyaozu-->
+<!--Designer: @zw_feifei-->
 <!--Tester: @lpw_work-->
 <!--Adviser: @ningningW-->
-<!-- md-trans-meta sourceCommit=be7e35f23d7f85dfcac628b0e432069d01deb407 translatedAt=2026-08-04T12:27:13.706Z pushedAt=2026-08-04T13:24:01.956Z -->
+<!-- md-trans-meta sourceCommit=1a7fdda7cb0bdacc6b1c367c8fd0def17530cd88 translatedAt=2026-08-15T01:54:12.038Z pushedAt=2026-08-15T08:42:49.895Z -->
 
 ## A
 

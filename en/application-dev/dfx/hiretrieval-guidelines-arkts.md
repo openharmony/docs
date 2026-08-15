@@ -6,7 +6,7 @@
 <!--Designer: @jiangwenhao-->
 <!--Tester: @gcw_KuLfPSbe-->
 <!--Adviser: @jinqiuheng-->
-<!-- md-trans-meta sourceCommit=038bac74a06eb490e81d540063ca8d9689a0ecf0 translatedAt=2026-07-31T01:32:37.054Z pushedAt=2026-07-31T07:41:00.613Z -->
+<!-- md-trans-meta sourceCommit=64258e0e6b719d3b41cdb2b292d7e24160e5581f translatedAt=2026-08-15T01:48:04.229Z pushedAt=2026-08-15T07:21:44.897Z -->
 
 ## Overview
 
@@ -98,7 +98,7 @@ Fault log collection mainly relies on the fault collection APIs provided by the 
            deviceModel: "M70",
          };
          hiRetrieval.participate(cfg);
-         // Execute the app report gray-scale collection task.
+         // Execute the app grayscale collection task.
          hiRetrieval.run();
        } catch (err) {
          hilog.error(DOMAIN, 'testTag', 'hiretrieval error: %{public}s', JSON.stringify(err));

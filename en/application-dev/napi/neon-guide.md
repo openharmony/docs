@@ -5,8 +5,8 @@
 <!--Owner: @liyiming13-->
 <!--Designer: @liyiming13-->
 <!--Tester: @zsw_zhushiwei-->
-<!--Adviser: @fang-jinxu-->
-<!-- md-trans-meta sourceCommit=b228a4c386558bd1fe10bf7c246053ea9037c8ee translatedAt=2026-08-12T06:28:12.188Z pushedAt=2026-08-12T09:59:08.698Z -->
+<!--Adviser: @k1ngqaquuu-->
+<!-- md-trans-meta sourceCommit=12aac1929b88019dcd40c2acbe77012a74a55e31 translatedAt=2026-08-15T01:57:45.481Z pushedAt=2026-08-15T09:05:17.593Z -->
 
 Arm Neon is an advanced Single Instruction Multiple Data (SIMD) architecture extension for Arm processors. It supports parallel processing of multiple pieces of data by using one instruction. It is widely used in fields such as multimedia encoding/decoding and 2D/3D graphics to improve execution performance.
 

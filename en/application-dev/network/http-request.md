@@ -6,7 +6,7 @@
 <!--Designer: @guo-min_net-->
 <!--Tester: @tongxilin-->
 <!--Adviser: @zhang_yixin13-->
-<!-- md-trans-meta sourceCommit=4adc34af5c27c45b2593c410f9b794378b879132 translatedAt=2026-08-13T03:09:04.363Z pushedAt=2026-08-13T03:59:21.925Z -->
+<!-- md-trans-meta sourceCommit=246ebc97dd477d19ad4ede4dd145918c1ebd7d59 translatedAt=2026-08-15T01:58:21.508Z pushedAt=2026-08-15T09:14:36.017Z -->
 
 <!--Kit: Network Kit-->
 <!--Subsystem: Communication-->
@@ -890,7 +890,7 @@ This configuration item is used to control whether HTTP requests can be transmit
       }
     ],
     "component-config": {
-        "Request": true, // Optional. Supported since API version 20. The default value is true. The value true indicates that prohibiting plaintext transmission is supported, and false indicates that prohibiting plaintext transmission is not supported.
+        "Request": true, // Optional. This property is supported since API version 20, and the default value is true. The value true enables the cleartext HTTP feature, and false disables it.
         "Network Kit": true, // Optional. Supported since API version 20.
         "ArkWeb": false, // Optional. Supported since API version 20.
         "Media Kit": false, // Optional. Supported since API version 23.
@@ -905,16 +905,16 @@ This configuration item is used to control whether HTTP requests can be transmit
 | Field                     | Type           | Mandatory| Description                                  |
 | --------------------------| --------------- |--------- |-------------------------------------- |
 |base-config                     | object          | No| Indicates the application-wide cleartext configuration. It has the lowest priority. |
-|cleartextTrafficPermitted<sup>18+</sup>  | boolean          |No| Whether plaintext HTTP is allowed. The value **true** indicates that plaintext HTTP is allowed, and the value **false** indicates the opposite.|
+|cleartextTrafficPermitted<sup>18+</sup>  | boolean          |No| Whether plaintext HTTP is allowed. The value **true** indicates that plaintext HTTP is allowed, and the value **false** indicates the opposite. It defaults to **true**.|
 |domain-config                     | array          | No|  Indicates the plaintext configuration of each domain. The value can contain any number of items. Each item must contain one **domains**. If rules conflict in the same domain, the first matched rule is used. The priority is lower than that of **component-config**.|
 |include-subdomains         | boolean         | No| Indicates whether the rule applies to subdomains. The value **true** indicates that it applies to subdomains, and **false** indicates that it does not. It defaults to **true**. Note: For every additional 1000 domain configurations, the latency of regular expression matching increases by approximately 10 to 15 milliseconds. When the number of domain configurations exceeds 10000, regular expression matching incurs high latency. It defaults to **true**. |
-|name         | string         | No| Main domain name.|
+|name         | string         | No| Configures the main domain name.|
 |component-config<sup>20+</sup>                    | object         |  No| Indicates the cleartext configuration of each component. It has the highest priority.|
-|Request                    | boolean          |No| [Request](../reference/apis-basic-services-kit/js-apis-request.md) supports cleartext HTTP by default since API version 18, and this cannot be configured. Since API version 20, you can enable or disable cleartext HTTP. The value **true** indicates support, and **false** indicates no support. It defaults to **true**.|
-|Network Kit                 | boolean          |No| Network Kit supports plaintext HTTP by default since API version 18. The plaintext HTTP feature cannot be configured. Plaintext HTTP can be enabled or disabled since API version 20. The value **true** indicates that plaintext transmission is enabled, and the value **false** indicates the opposite. The default value is **true**.|
-|ArkWeb                    | boolean          |No| Plaintext HTTP can be enabled or disabled since API version 20. The value **true** indicates that plaintext transmission is enabled, and the value **false** indicates the opposite. The default value is **false**.|
-|Media Kit                    | boolean          |No|Plaintext HTTP can be enabled or disabled since API version 23. The value **true** indicates that plaintext transmission is enabled, and the value **false** indicates the opposite. The default value is **false**.|
-|Remote Communication Kit                    | boolean          |No| Plaintext HTTP can be enabled or disabled since API version 23. The value **true** indicates that plaintext transmission is enabled, and the value **false** indicates the opposite. The default value is **false**.|
+|Request                    | boolean          |No| [Request](../reference/apis-basic-services-kit/js-apis-request.md) supports cleartext HTTP by default since API version 18, and this cannot be configured. Since API version 20, you can enable or disable cleartext HTTP. The value **true** indicates that the configuration is enabled, and **false** indicates that it is disabled. It defaults to **true**.|
+|Network Kit                 | boolean          |No| Network Kit supports cleartext HTTP by default since API version 18, and this cannot be configured. Since API version 20, you can enable or disable cleartext HTTP. The value **true** indicates that the configuration is enabled, and **false** indicates that it is disabled. It defaults to **true**. |
+|ArkWeb                    | boolean          |No| ArkWeb supports enabling or disabling cleartext HTTP since API version 20. The value **true** indicates that the configuration is enabled, and **false** indicates that it is disabled. It defaults to **false**. |
+|Media Kit                    | boolean          |No| Media Kit supports enabling or disabling cleartext HTTP since API version 23. The value **true** indicates that the configuration is enabled, and **false** indicates that it is disabled. It defaults to **false**. |
+|Remote Communication Kit                    | boolean          |No| Remote Communication Kit supports enabling or disabling cleartext HTTP since API version 23. The value **true** indicates that the configuration is enabled, and **false** indicates that it is disabled. It defaults to **false**. |
 
 ## HTTP Interceptor
 

@@ -6,7 +6,7 @@
 <!--Designer: @cx983299475-->
 <!--Tester: @mahailong123456-->
 <!--Adviser: @HelloShuo-->
-<!-- md-trans-meta sourceCommit=82886b064c133066e30eb28f6355e03be846d012 translatedAt=2026-08-03T02:29:25.345Z pushedAt=2026-08-03T07:40:41.489Z -->
+<!-- md-trans-meta sourceCommit=6d7419f1dd9729a9ceaeb24a3a1f1c514f7b60b3 translatedAt=2026-08-15T01:50:26.013Z pushedAt=2026-08-15T08:19:07.300Z -->
 
 - [About This Kit](formkit-overview.md)
 
@@ -65,13 +65,9 @@
 
       - [Updating Widget Content Through the router or call Event](arkts-ui-widget-event-uiability.md)
 
-    - ArkTS Widget Editing<!--arkts-ui-widget-edit-->
+    - [Editing ArkTS Widgets](arkts-ui-widget-event-formeditextensionability.md)
 
-      - [Overview of ArkTS Widget Editing](arkts-ui-widget-event-formeditextensionability-overview.md)
-
-    - Widget Addition to Home Screen<!--arkts-ui-widget-add-->
-
-      - [Adding Widgets to the Home Screen](arkts-ui-widget-open-formmanager.md)
+    - [Adding ArkTS Widgets to the Home Screen from Within an App](arkts-ui-widget-open-formmanager.md)
 
     <!--RP1--><!--RP1End-->
     <!--RP2--><!--RP2End-->
@@ -88,17 +84,13 @@
 
     - [Developing a Fun-based Widget](arkts-ui-liveform-funinteraction-development.md)
 
-    - Scene-based Widget<!--arkts-ui-liveform-sceneanimation-->
+    - [Developing a Scene-based Widget](arkts-ui-liveform-sceneanimation-development.md)
 
-      - [Overview of Scene-based Widgets](arkts-ui-liveform-sceneanimation-overview.md)
+    <!--Del-->
 
-      - [Developing a Scene-based Widget](arkts-ui-liveform-sceneanimation-development.md)
+    - [Developing a Scene-based Widget (for System Applications Only)](arkts-ui-liveform-sceneanimation-development-sys.md)
 
-      <!--Del-->
-
-      - [Developing a Scene-based Widget (for System Applications)](arkts-ui-liveform-sceneanimation-development-sys.md)
-
-      <!--DelEnd-->
+    <!--DelEnd-->
 <!--RP5--><!--RP5End-->
 
   - [ArkTS Widget Adaptation FAQs](arkts-ui-widget-adapt-faq.md)

@@ -6,7 +6,7 @@
 <!--Designer: @jay-liusong-->
 <!--Tester: @Filger-->
 <!--Adviser: @w_Machine_cc-->
-<!-- md-trans-meta sourceCommit=2fb1b7ad434693dc0e8b053b36a0ebe807477ab5 translatedAt=2026-08-06T01:46:59.391Z pushedAt=2026-08-06T08:17:36.643Z -->
+<!-- md-trans-meta sourceCommit=9d1897fa3dab6fc356e7d2cd6662301d7b025cb1 translatedAt=2026-08-15T01:55:56.092Z pushedAt=2026-08-15T08:58:39.185Z -->
 
 Starting from API version 26.0.0, [OHAudioSuite](../../reference/apis-audio-kit/capi-ohaudiosuite.md) provides PCM (Pulse Code Modulation) audio format conversion capabilities. In scenarios such as pure audio transcoding, you can use the format conversion APIs to convert PCM audio data from one format to another, including conversion of sample rate, channel layout, and sample format (bit depth).
 
@@ -24,7 +24,9 @@ target_link_libraries(sample PUBLIC libohaudiosuite.so)
 
 Include the header file &lt;[native_audio_converter.h](../../reference/apis-audio-kit/capi-native-audio-converter-h.md)&gt; to use audio format conversion APIs.
 
-```cpp
+<!-- @[format_conversion_header_file](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/Media/Audio/AudioSuiteSample/entry/src/main/cpp/audio_format_converter.cpp) -->
+
+``` C++
 #include <ohaudiosuite/native_audio_converter.h>
 ```
 

@@ -1,11 +1,12 @@
 # Database Backup and Restore (C/C++)
+
 <!--Kit: ArkData-->
 <!--Subsystem: DistributedDataManager-->
 <!--Owner: @baijidong-->
 <!--Designer: @htt1997-->
 <!--Tester: @logic42-->
 <!--Adviser: @ge-yafang-->
-<!-- md-trans-meta sourceCommit=dcae6f10c07044342acb5b2dc0416e100c5bcaa2 translatedAt=2026-06-17T06:40:40.925Z pushedAt=2026-06-22T12:45:21.333Z -->
+<!-- md-trans-meta sourceCommit=b5bb88bb94d89f6d282aea4674234254f4d4bb26 translatedAt=2026-08-15T01:42:12.822Z pushedAt=2026-08-15T06:21:59.473Z -->
 
 ## When to Use
 
@@ -13,7 +14,7 @@ If an error occurs during the operation or storage, you can restore the database
 
 If a database is tampered with, deleted, or powered off, the database may be unavailable due to data loss, data corruption, or dirty data. In this case, you can use the backup and restore capability to restore the database to the available state.
 
-Currently, only RDB stores (C/C++) supports database backup and restore.
+Currently, only RDB stores (C/C++) support database backup and restore.
 
 ## How to Develop
 
@@ -35,7 +36,6 @@ A database backup can be used to quickly restore an RDB store in abnormal state.
     #include "hilog/log.h"
     ```
 
-
 3. Call **OH_Rdb_Backup** to back up the database.
 
     <!-- @[BackupRdbStore](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkData/RelationalStore/NativeDataEncryption/entry/src/main/cpp/napi_init.cpp) -->
@@ -56,8 +56,6 @@ A database backup can be used to quickly restore an RDB store in abnormal state.
     OH_Rdb_DestroyConfig(config);
     config = nullptr;
     ```
-
-
 
 4. Call **OH_Rdb_Restore** to restore the database.
 
@@ -81,8 +79,6 @@ A database backup can be used to quickly restore an RDB store in abnormal state.
     config = nullptr;
     ```
 
-
-
 5. Call **OH_Rdb_RegisterCorruptedHandler** to register a handler for processing database exceptions.
 
     Since API version 22, you can call **OH_Rdb_RegisterCorruptedHandler** to register a handler for processing database exceptions.
@@ -103,7 +99,7 @@ A database backup can be used to quickly restore an RDB store in abnormal state.
         }
         // Use the standby database to restore the database through the store handle.
         int errCode = OH_Rdb_Restore(store, restorePath);
-        // The restore operation will fail if other APIs are occupying the write connection. Call this API after other calls are complete.
+        // restore may fail when other APIs occupy the write connection. Wait until other calls finish before calling it.
         if (errCode != 0) {
             OH_LOG_ERROR(LOG_APP, "restore failed! errCode is: %{public}d", errCode);
             // Wait until other threads' calls are complete and retry. Do not retry for too many times or wait for too long to avoid occupying too many system resources.

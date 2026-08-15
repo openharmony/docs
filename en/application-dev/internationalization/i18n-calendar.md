@@ -3,10 +3,10 @@
 <!--Kit: Localization Kit-->
 <!--Subsystem: Global-->
 <!--Owner: @yliupy-->
-<!--Designer: @sunyaozu-->
+<!--Designer: @zw_feifei-->
 <!--Tester: @lpw_work-->
 <!--Adviser: @ningningW-->
-<!-- md-trans-meta sourceCommit=b4bc1de04741b2b7eb55943f0035c70ca9a9b7d9 translatedAt=2026-08-04T12:24:22.787Z pushedAt=2026-08-04T12:38:03.688Z -->
+<!-- md-trans-meta sourceCommit=1a7fdda7cb0bdacc6b1c367c8fd0def17530cd88 translatedAt=2026-08-15T01:52:42.717Z pushedAt=2026-08-15T08:41:28.260Z -->
 
 ## Function Description
 
