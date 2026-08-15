@@ -148,3 +148,4 @@
   - [使用X963KDF进行密钥派生(C/C++)](crypto-key-derivation-using-x963kdf-ndk.md)<!--RP1--><!--RP1End-->
 - Crypto Architecture Kit常见问题<!--crypto-faqs-->
   - [AES解密失败返回错误码17630001](crypto-aes-decryption-error-faq.md)
+- [Crypto Architecture Kit术语](crypto-architecture-glossary.md)
