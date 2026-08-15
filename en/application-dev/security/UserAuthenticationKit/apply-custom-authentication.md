@@ -6,6 +6,7 @@
 <!--Designer: @lichangting518-->
 <!--Tester: @jane_lz-->
 <!--Adviser: @zengyawen-->
+<!-- md-trans-meta sourceCommit=ebfce68b85e3c1c39c3a7543955bdd1d3b7ea7c7 translatedAt=2026-08-14T06:45:07.775Z pushedAt=2026-08-14T07:59:38.467Z -->
 
 If the biometric authentication fails and the user taps the navigation button for a custom authentication, the unified user authentication framework will terminate the system authentication process and instruct the caller to launch the custom authentication page.
 
@@ -16,7 +17,9 @@ Since payment password authentication is not a system authentication capability,
 When the user taps this button, the application that initiates the custom authentication request will receive a special authentication result returned by the user authentication framework, indicating that the system authentication process is ended and prompting the application to launch its custom authentication page. As a result, the payment password authentication page customized by the service is displayed.
 
 <!--RP1-->
+
 ![](figures/authentication-widget.png)
+
 <!--RP1End-->
 
 As shown in the following figure, the selected area is the **WidgetParam.navigationButtonText** field. You can configure this field to guide users to switch from biometric authentication to the service password authentication customized by the application.
@@ -24,15 +27,15 @@ As shown in the following figure, the selected area is the **WidgetParam.navigat
 > **NOTE**
 > The lock screen password authentication and custom authentication are mutually exclusive.
 
-| Authentication Type| Switch to Custom Authentication<br>(√ indicates supported, x indicates not supported)| 
+| Authentication Type| Switch to Custom Authentication<br>(√ indicates supported, x indicates not supported)|
 | -------- | -------- |
-| Lock screen password authentication| × | 
-| Facial authentication| √ | 
-| Fingerprint authentication| √ | 
-| Facial + fingerprint authentication<sup>18+</sup>| √ | 
-| Facial + lock screen password authentication| × | 
-| Fingerprint + lock screen password authentication| × | 
-| Facial + fingerprint + lock screen password authentication| × | 
+| Lock screen password authentication | x |
+| Facial authentication| √ |
+| Fingerprint authentication| √ |
+| Facial + fingerprint authentication<sup>18+</sup>| √ |
+| Face + lock screen password authentication | x |
+| Fingerprint + lock screen password authentication | x |
+| Face + fingerprint + lock screen password authentication | x |
 
 ## Development Example
 
@@ -96,8 +99,6 @@ applyingCustomAuthentication() {
 }
 ```
 
-
 ## Sample Code
 
-  - [Switching to custom authentication](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/UserAuthentication)
-  
+  - [Switching to Custom Authentication](https://gitcode.com/openharmony/applications_app_samples/tree/master/code/DocsSample/UserAuthentication)

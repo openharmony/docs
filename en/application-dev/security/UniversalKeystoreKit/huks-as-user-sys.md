@@ -6,6 +6,7 @@
 <!--Designer: @HighLowWorld-->
 <!--Tester: @wxy1234564846-->
 <!--Adviser: @zengyawen-->
+<!-- md-trans-meta sourceCommit=d3532cdb382de60022a0814eb4efa4eadebea1d6 translatedAt=2026-08-13T08:20:23.011Z pushedAt=2026-08-13T10:20:24.671Z -->
 
 To implement isolation and access control for key data, HUKS provides APIs with the user ID specified for concurrent key operations initiated by multiple users.
 
@@ -16,6 +17,7 @@ To implement isolation and access control for key data, HUKS provides APIs with 
 ## Constraints
 
 - The range of the caller user ID is **0** to **99**, including **0** and **99**.
+
 - The APIs are available only for system applications.
 
 ## Available APIs

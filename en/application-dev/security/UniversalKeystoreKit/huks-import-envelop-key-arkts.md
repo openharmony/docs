@@ -1,4 +1,4 @@
-# Key Import Using Digital Envelope (ArkTS)
+# Importing a Key Using a Digital Envelope (ArkTS)
 
 <!--Kit: Universal Keystore Kit-->
 <!--Subsystem: Security-->
@@ -6,6 +6,7 @@
 <!--Designer: @HighLowWorld-->
 <!--Tester: @wxy1234564846-->
 <!--Adviser: @zengyawen-->
+<!-- md-trans-meta sourceCommit=13bb74d44fd56945b2b502ec07cedd46734751f0 translatedAt=2026-08-13T08:22:38.868Z pushedAt=2026-08-13T10:20:24.685Z -->
 
 The [digital envelope](huks-key-import-overview.md#digital-envelope-import) feature is supported since API version 23.
 
@@ -16,14 +17,29 @@ To import keys using digital envelope, you need to use the [HUKS_TAG_UNWRAP_ALGO
 When importing a key pair of an asymmetric key using digital envelope, you need to add the [HUKS_TAG_ASYMMETRIC_PUBLIC_KEY_DATA](../../reference/apis-universal-keystore-kit/js-apis-huks.md#hukstag) tag and encapsulate the public key in X.509 DER format into the tag. Only key pairs can be imported for asymmetric keys.
 
 ## How to Develop
+
 1. Device A (service side) generates an SM4 key (**cipherSm4**).
-2. Device A uses the generated SM4 key to encrypt the to-be-imported key **importKey** in ECB/NoPadding mode (**enImportKey** is set to **Encrypt(cipherSm4, importKey)**).
+
+2. Device A uses the generated SM4 key to encrypt the key to be imported (**importKey**) in ECB/NoPadding mode, obtaining the encrypted key **enImportKey** = Encrypt(**cipherSm4**, **importKey**).
+
 3. Device B (key importer) exports the SM2 public key. Device A receives the key.
+
 4. Device A uses the received SM2 public key to encrypt the generated SM4 key (**enSm4** is set to **Encrypt(Sm2, cipherSm4)**).
+
 5. Device A sends the digital envelope data to device B.
-6. Device B uses the imported **WrappedKey** to import the key using digital envelope. If the key to be imported is an asymmetric key, you only need to encrypt the raw key in this step. If the key pair of the asymmetric key is imported, the public key is encapsulated in DER format into [HUKS_TAG_ASYMMETRIC_PUBLIC_KEY_DATA](../../reference/apis-universal-keystore-kit/js-apis-huks.md#hukstag).
+
+6. Device B uses [importWrappedKeyItem](../../reference/apis-universal-keystore-kit/js-apis-huks.md#huksimportwrappedkeyitem9) to import the digital envelope key. If the key to be imported is a symmetric key, you only need to encrypt the raw key in this step. If the key pair of an asymmetric key is imported, encapsulate the public key in DER format and place it in [HUKS_TAG_ASYMMETRIC_PUBLIC_KEY_DATA](../../reference/apis-universal-keystore-kit/js-apis-huks.md#hukstag).
+
+> **NOTE**
+>
+> If the peer device is not an OpenHarmony device and does not support the key management service, the following requirements must be met when constructing the digital envelope data:
+>
+> - The SM2 encryption result is combined in the C1C3C2 order, where C1x and C1y each occupy 32 bytes.
+>
+> - The SM2 encryption result uses the ASN.1 format, where bigint is stored in big-endian order.
 
 ### RSA
+
 ```ts
 import { BusinessError } from "@kit.BasicServicesKit";
 import { huks } from "@kit.UniversalKeystoreKit";
@@ -219,6 +235,7 @@ async function EnvelopRsaTest()
 ```
 
 ### AES
+
 ```ts
 import { BusinessError } from "@kit.BasicServicesKit";
 import { huks } from "@kit.UniversalKeystoreKit";

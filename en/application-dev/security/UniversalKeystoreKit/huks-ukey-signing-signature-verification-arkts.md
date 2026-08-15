@@ -6,6 +6,7 @@
 <!--Designer: @HighLowWorld-->
 <!--Tester: @wxy1234564846-->
 <!--Adviser: @zengyawen-->
+<!-- md-trans-meta sourceCommit=36b64f907faaaf7d23ead95995be1fcb7ed61c89 translatedAt=2026-08-13T08:26:20.521Z pushedAt=2026-08-13T10:20:24.759Z -->
 
 This topic provides signing and signature verification development cases with the following algorithms:
 
@@ -17,7 +18,7 @@ For details about the scenarios and supported algorithm specifications, see [Sig
 
 **Signing**
 
-1. Obtain [keyUri](../../reference/apis-device-certificate-kit/js-apis-certManagerDialog.md#certreference22) as **resourceId** and the key alias by calling the [certificate selection API](../../reference/apis-device-certificate-kit/js-apis-certManagerDialog.md#certificatemanagerdialogopenauthorizedialog22) provided by the certificate management system, [open the resource](huks-open-close-resource-ndk.md#opening-resources), and complete the PIN authentication.
+1. Obtain [keyUri](../../reference/apis-device-certificate-kit/js-apis-certManagerDialog.md#certreference22) as the resourceId through [openAuthorizeDialog](../../reference/apis-device-certificate-kit/js-apis-certManagerDialog.md#certificatemanagerdialogopenauthorizedialog22) provided by the certificate management system capability, use it as the key alias, and complete PIN authentication after [opening the resource](huks-open-close-resource-ndk.md#opening-resources).
 
 2. Specify the plaintext to be signed.
 
@@ -29,7 +30,7 @@ For details about the scenarios and supported algorithm specifications, see [Sig
 
 **Signature verification**
 
-1. Obtain [keyUri](../../reference/apis-device-certificate-kit/js-apis-certManagerDialog.md#certreference22) as **resourceId** and the key alias by calling the [certificate selection API](../../reference/apis-device-certificate-kit/js-apis-certManagerDialog.md#certificatemanagerdialogopenauthorizedialog22) provided by the certificate management system, and [open the resource](huks-open-close-resource-ndk.md#opening-resources).
+1. Obtain [keyUri](../../reference/apis-device-certificate-kit/js-apis-certManagerDialog.md#certreference22) as the resourceId through [openAuthorizeDialog](../../reference/apis-device-certificate-kit/js-apis-certManagerDialog.md#certificatemanagerdialogopenauthorizedialog22) provided by the certificate management system capability, use it as the key alias, and then [open the resource](huks-open-close-resource-ndk.md#opening-resources).
 
 2. Obtain the signature to be verified.
 
@@ -44,6 +45,7 @@ For details about the scenarios and supported algorithm specifications, see [Sig
 ## Development Cases
 
 ### RSA/SHA256/PSS
+
 ```ts
 /*
  * The key algorithm RSA, digest algorithm SHA-256, and padding mode PSS are used.
@@ -118,22 +120,22 @@ function GetRsaVerifyProperties() {
 }
 
 async function initSession(keyAlias: string, huksOptions: huks.HuksOptions) {
-  console.info(`promise: enter initSession`);
+  console.info('promise: enter initSession.');
   try {
     await huks.initSession(keyAlias, huksOptions)
       .then((data) => {
         handle = data.handle;
-        console.info(`promise: initSession success`);
+        console.info('promise: initSession success.');
       }).catch((error: BusinessError) => {
         console.error(`promise: initSession failed, errCode : ${error.code}, errMsg : ${error.message}`);
       })
   } catch (error) {
-    console.error(`promise: initSession input arg invalid`);
+    console.error('promise: initSession input arg invalid.');
   }
 }
 
 async function updateSession(handle: number, huksOptions: huks.HuksOptions) {
-  console.info(`promise: enter updateSession`);
+  console.info('promise: enter updateSession.');
   try {
     await huks.updateSession(handle, huksOptions)
       .then((data) => {
@@ -143,12 +145,12 @@ async function updateSession(handle: number, huksOptions: huks.HuksOptions) {
         console.error(`promise: updateSession failed, errCode : ${error.code}, errMsg : ${error.message}`);
       })
   } catch (error) {
-    console.error(`promise: updateSession input arg invalid`);
+    console.error('promise: updateSession input arg invalid.');
   }
 }
 
 async function finishSession(handle: number, huksOptions: huks.HuksOptions) {
-  console.info(`promise: enter finishSession`);
+  console.info('promise: enter finishSession.');
   try {
     await huks.finishSession(handle, huksOptions)
       .then((data) => {
@@ -158,12 +160,12 @@ async function finishSession(handle: number, huksOptions: huks.HuksOptions) {
         console.error(`promise: finishSession failed, errCode : ${error.code}, errMsg : ${error.message}`);
       })
   } catch (error) {
-    console.error(`promise: finishSession input arg invalid`);
+    console.error('promise: finishSession input arg invalid.');
   }
 }
 
 async function Sign(keyAlias: string, plaintext: string) {
-  console.info(`enter Sign`);
+  console.info('enter Sign.');
   let signProperties = GetRsaSignProperties();
   let options: huks.HuksOptions = {
     properties: signProperties,
@@ -177,7 +179,7 @@ async function Sign(keyAlias: string, plaintext: string) {
 }
 
 async function Verify(keyAlias: string, plaintext: string, signature: Uint8Array) {
-  console.info(`enter Verify`);
+  console.info('enter Verify.');
   let verifyProperties = GetRsaVerifyProperties();
   let options: huks.HuksOptions = {
     properties: verifyProperties,

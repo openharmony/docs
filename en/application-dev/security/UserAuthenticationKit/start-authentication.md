@@ -6,6 +6,7 @@
 <!--Designer: @lichangting518-->
 <!--Tester: @jane_lz-->
 <!--Adviser: @zengyawen-->
+<!-- md-trans-meta sourceCommit=f17f5e51786f8b19e5c7fc4d59531893c0dc122f translatedAt=2026-08-14T06:45:15.076Z pushedAt=2026-08-14T07:59:38.472Z -->
 
 A user authentication is required before an application accesses a critical functionality or sensitive data. This topic walks you through the process.
 
@@ -31,44 +32,53 @@ The system provides a unified user authentication widget, which stands out with 
 The following figure shows the style of the user authentication widget, which can be set via the [WidgetParam](../../reference/apis-user-authentication-kit/js-apis-useriam-userauth.md#widgetparam10) parameter.
 
 <!--RP1-->
-![](figures/user-authentication-widget.png)
+
+![unified-UI-component-authentication](figures/unified-UI-component-authentication.png)
+
 <!--RP1End-->
 
 - ①: Title (**WidgetParam.title**) of the user authentication page, which cannot be empty or exceed 500 characters. You are advised to set the title to the authentication purpose, for example, payment and application login.
+
 <!--RP2-->
+
 - ②: Text on the navigation button (**WidgetParam.navigationButtonText**), which cannot exceed 60 characters. It can be configured only in single fingerprint or facial authentication scenarios in API versions 10 to 17. Since API version 18, it can also be configured in the combined fingerprint and facial authentication.
 
   If biometric authentication fails, a button is displayed. The user can tap the button to switch to custom authentication.<!--RP2End-->
 
 <!--Del-->
+
 - The following shows the display modes (**WidgetParam.windowMode**) of the user authentication widget.
-  
+
   The user authentication widget provides two display modes: dialog box (default mode, as shown in figure on the left) and full screen (as shown in the figure on the right).
 
   Currently, the full screen mode is available only for system applications.
 
-  ![](figures/widget_display_modes.png)
+  ![popup-authentication](figures/popup-authentication.png)
+
 <!--DelEnd-->
 
 The user authentication widget supports the following types of authentication:
 
-- Lock screen password authentication
+- Lock screen password authentication.
 
-- Facial authentication
+- Facial authentication.
 
-- Fingerprint authentication
+- Fingerprint authentication.
 
-- Facial + lock screen password authentication
+- Facial + lock screen password authentication.
 
-- Fingerprint + lock screen password authentication
+- Fingerprint + lock screen password authentication.
 
-- Facial + fingerprint + lock screen password authentication
+- Facial + fingerprint + lock screen password authentication.
 
-- Facial authentication + custom navigation button
+- Facial authentication + custom navigation button.
 
-- Fingerprint authentication + custom navigation button
+- Fingerprint authentication + custom navigation button.
 
-- Facial authentication + fingerprint authentication + custom navigation button<sup>18+</sup>
+- Starting from API version 18, facial + fingerprint + custom navigation button authentication is supported.
+
+<!--RP3--><!--RP3End-->
+
 
 ## How to Develop
 
@@ -130,7 +140,6 @@ initiatingUserAuthentication1() {
 }
 ```
 
-
 **Example 2**
 
 Initiate user authentication (trusted authentication level ≥ ATL3), using face recognition + authentication type-related validation + reuse of the maximum valid duration for device unlock, and then retrieve the authentication result.
@@ -185,7 +194,6 @@ initiatingUserAuthentication2() {
   }
 }
 ```
-
 
 **Example 3**
 
@@ -242,7 +250,6 @@ initiatingUserAuthentication3() {
 }
 ```
 
-
 **Example 4**
 
 Start the user authentication widget in application modal dialog mode.
@@ -297,7 +304,6 @@ initiatingUserAuthentication4() {
 }
 ```
 
-
 ## Sample Code
 
-  - [Initiating authentication](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/UserAuthentication)
+  - [Initiating Authentication](https://gitcode.com/openharmony/applications_app_samples/tree/master/code/DocsSample/UserAuthentication)

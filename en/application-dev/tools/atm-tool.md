@@ -61,7 +61,7 @@ atm perm -c -i ********* -p ohos.permission.CAMERA
 # Resets the user_grant permission status of a specified application process.
 atm perm -r -i *********
 
-# Resets the user_grant permission status of a application process in the specified bundle.
+# Resets the user_grant permission status of an application process in the specified bundle.
 atm perm -r -b com.ohos.bundlename
 ```
 

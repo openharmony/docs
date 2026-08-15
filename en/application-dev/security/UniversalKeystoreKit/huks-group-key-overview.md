@@ -6,6 +6,7 @@
 <!--Designer: @HighLowWorld-->
 <!--Tester: @wxy1234564846-->
 <!--Adviser: @zengyawen-->
+<!-- md-trans-meta sourceCommit=3278ee705378631554cefba415ca42904851087c translatedAt=2026-08-13T08:22:05.549Z pushedAt=2026-08-13T10:20:24.683Z -->
 
 From API version 23, HUKS supports the group key function, which is used to share keys across HAP applications developed by the same developer.
 
@@ -17,10 +18,11 @@ When a group ID is specified for multiple HAP applications in the configuration,
 > - A group key is strictly limited to the HAP applications in the same group of the same developer. The group containing different developers or different groups that the same developer belongs to cannot access each other's group key, ensuring key isolation and security.
 
 ## **Specifications**
+
 | Local Key Operation Supported| API Version| Description|
 | ---- | ---- | ---- |
-| [Key generation](huks-key-generation-overview.md)| 23+ | A group key can be generated.|
-| [Key import](huks-key-import-overview.md)| 23+ | A group key can be imported.|
+| [Key Generation](huks-key-generation-overview.md) | 23+ | Supports generating group keys. |
+| [Key Import](huks-key-import-overview.md) | 23+ | Supports importing group keys. |
 | [Encryption and decryption](huks-encryption-decryption-overview.md)| 23+ | A group key can be used for encryption and decryption.|
 | [Signing and signature verification](huks-signing-signature-verification-overview.md)| 23+ | A group key can be used for signing and signature verification.|
 | [Key agreement](huks-key-agreement-overview.md)| 23+ | A group key can be used for key agreement.|

@@ -6,18 +6,21 @@
 <!--Designer: @HighLowWorld-->
 <!--Tester: @wxy1234564846-->
 <!--Adviser: @zengyawen-->
+<!-- md-trans-meta sourceCommit=111094881c901cfe5b4be59a153e21d81f72600f translatedAt=2026-08-13T08:25:12.332Z pushedAt=2026-08-13T10:20:24.722Z -->
 
 ## Opening Resources
-From API version 22, **huksExternalCrypto** provides the APIs for opening and closing resources. Before performing key operations (such as key operations, common operations, and PIN authentication), applications need to call [OH_Huks_OpenResource](../../reference/apis-universal-keystore-kit/capi-native-huks-external-crypto-api-h.md#oh_huks_openresource) to open resources. To open resources, you need to obtain **resourceId** by calling the [certificate selection API](../../reference/apis-device-certificate-kit/js-apis-certManagerDialog.md#certificatemanagerdialogopenauthorizedialog22) provided by the certificate management system.
+
+Starting from API 22, huksExternalCrypto provides APIs for opening and closing resources. Before performing key operations (key operations, general operations, PIN authentication, etc.), an app must call [OH_Huks_OpenResource](../../reference/apis-universal-keystore-kit/capi-native-huks-external-crypto-api-h.md#oh_huks_openresource) to open the resource. Opening a resource requires a `resourceId`, which is obtained by calling [openAuthorizeDialog](../../reference/apis-device-certificate-kit/js-apis-certManagerDialog.md#certificatemanagerdialogopenauthorizedialog22) provided by the certificate management capability.
 
 ### Linking the Dynamic Library in the CMake Script
+
 ```txt
 target_link_libraries(entry PUBLIC libhuks_ndk.z.so libhuks_external_crypto.z.so)
 ```
 
 ### How to Develop
 
-1. Obtain [keyUri](../../reference/apis-device-certificate-kit/js-apis-certManagerDialog.md#certreference22) as **resourceId** by calling the [certificate selection API](../../reference/apis-device-certificate-kit/js-apis-certManagerDialog.md#certificatemanagerdialogopenauthorizedialog22) provided by the certificate management system.
+1. Obtain the [keyUri](../../reference/apis-device-certificate-kit/js-apis-certManagerDialog.md#certreference22) by calling [openAuthorizeDialog](../../reference/apis-device-certificate-kit/js-apis-certManagerDialog.md#certificatemanagerdialogopenauthorizedialog22) provided by the certificate management capability, and use it as the `resourceId`.
 
 2. Initialize the parameter set: Construct the parameter set **paramSet** by using [OH_Huks_InitExternalCryptoParamSet](../../reference/apis-universal-keystore-kit/capi-native-huks-external-crypto-api-h.md#oh_huks_initexternalcryptoparamset), [OH_Huks_AddExternalCryptoParams](../../reference/apis-universal-keystore-kit/capi-native-huks-external-crypto-api-h.md#oh_huks_addexternalcryptoparams), and [OH_Huks_BuildExternalCryptoParamSet](../../reference/apis-universal-keystore-kit/capi-native-huks-external-crypto-api-h.md#oh_huks_buildexternalcryptoparamset).
 
@@ -93,20 +96,21 @@ static napi_value OpenResource(napi_env env, napi_callback_info info)
 <!--Tester: @wxy1234564846-->
 <!--Adviser: @zengyawen-->
 
-An ecosystem application calls the certificate HAP UI to display a certificate list. When a user selects a certificate, and the ecosystem application obtains **resourceId** that can be used to closing the corresponding resource. For details about the scenarios and specifications, see [Resource Management Overview and Specifications](huks-resource-management-overview.md).
+An ecosystem application calls the certificate HAP UI to display a certificate list. When a user selects a certificate, and the ecosystem application obtains **resourceId** that can be used to close the corresponding resource. For details about the scenarios and specifications, see [Resource Management Overview and Specifications](huks-resource-management-overview.md).
 
 ### Linking the Dynamic Library in the CMake Script
+
 ```txt
 target_link_libraries(entry PUBLIC libhuks_ndk.z.so libhuks_external_crypto.z.so)
 ```
 
 ### How to Develop
 
-1. Obtain **resourceId** by calling the [certificate selection API](../../reference/apis-device-certificate-kit/js-apis-certManagerDialog.md#certificatemanagerdialogopenauthorizedialog22) provided by the certificate management system.
+1. Obtain the `resourceId` by calling [openAuthorizeDialog](../../reference/apis-device-certificate-kit/js-apis-certManagerDialog.md#certificatemanagerdialogopenauthorizedialog22) provided by the certificate management capability.
 
 2. Initialize the parameter set: Construct the parameter set **paramSet** by using [OH_Huks_InitExternalCryptoParamSet](../../reference/apis-universal-keystore-kit/capi-native-huks-external-crypto-api-h.md#oh_huks_initexternalcryptoparamset), [OH_Huks_AddExternalCryptoParams](../../reference/apis-universal-keystore-kit/capi-native-huks-external-crypto-api-h.md#oh_huks_addexternalcryptoparams), and [OH_Huks_BuildExternalCryptoParamSet](../../reference/apis-universal-keystore-kit/capi-native-huks-external-crypto-api-h.md#oh_huks_buildexternalcryptoparamset).
 
-3. Call [OH_Huks_CloseResource](../../reference/apis-universal-keystore-kit/capi-native-huks-external-crypto-api-h.md#oh_huks_closeresource) to close the resource. This API calls [onClearUkeyPinAuthState](../../reference/apis-universal-keystore-kit/js-apis-CryptoExtensionAbility.md#cryptoextensionabilityonclearukeypinauthstate) to clear the PIN authentication status associated with the resource, and calls [onFinishSession](../../reference/apis-universal-keystore-kit/js-apis-CryptoExtensionAbility.md#cryptoextensionabilityonfinishsession) to clear the session handle associated with the resource.
+3. Call [OH_Huks_CloseResource](../../reference/apis-universal-keystore-kit/capi-native-huks-external-crypto-api-h.md#oh_huks_closeresource) to close the resource. This API invokes [onClearUkeyPinAuthState](../../reference/apis-universal-keystore-kit/js-apis-CryptoExtensionAbility.md#onclearukeypinauthstate) to clear the PIN authentication state associated with the resource, and invokes [onFinishSession](../../reference/apis-universal-keystore-kit/js-apis-CryptoExtensionAbility.md#onfinishsession) to clear the session handle associated with the resource.
 
 ### Development Cases
 
