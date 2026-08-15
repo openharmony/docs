@@ -265,7 +265,11 @@ try {
 
 writeDescriptor(descriptor: PropertyDescriptor): Promise&lt;void&gt;
 
-改写服务端的描述符。例如，在需要更新属性附加配置信息的场景中，客户端通过改写描述符来修改服务端属性的扩展元数据。使用Promise异步回调。
+改写服务端的描述符。使用Promise异步回调。
+
+> **说明：**
+>
+> 此接口不支持写入客户端属性配置描述符（CLIENT_PROPERTY_CONFIG），如需配置客户端属性通知或指示，请使用[setPropertyNotification](#setpropertynotification)或[setPropertyIndication](#setpropertyindication)。
 
 **起始版本：** 26.0.0
 
