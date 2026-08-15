@@ -31,11 +31,11 @@ For details about how to use related APIs, see [IndexUtil](../reference/apis-loc
    ``` TypeScript
    // Create index.
    let indexUtil: i18n.IndexUtil = i18n.getInstance('zh-CN');
-   let indexList = indexUtil.getIndexList(); // indexList = ['…', 'A', 'B', 'C', ... 'X', 'Y', 'Z', '…']
+   let indexList = indexUtil.getIndexList(); // indexList = ['...', 'A', 'B', 'C', ... 'X', 'Y', 'Z', '...']
 
    // Multi-language index sorting.
    indexUtil.addLocale('ru-RU');
-   // indexList = ['…', 'A', 'B', 'C', ... 'X', 'Y', 'Z', '…', 'А', 'Б', 'В', ... 'Э', 'Ю', 'Я', '…']
+   // indexList = ['...', 'A', 'B', 'C', ... 'X', 'Y', 'Z', '...', 'А', 'Б', 'В', ... 'Э', 'Ю', 'Я', '...']
    indexList = indexUtil.getIndexList();
 
    // Obtain the index value of a string.

@@ -1212,3 +1212,5 @@ OH_Drawing_DestroyTextShadow(shadowCopy);
 ```
 
 ![styleCopy](figures/styleCopy.png)
+
+<!--no_check-->

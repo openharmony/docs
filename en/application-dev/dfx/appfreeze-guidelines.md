@@ -553,7 +553,7 @@ The following table uses **two complete lifecycle switches** as an example to ex
    | - | JsAbilityStage::Create | Loads [AbilityStage](../application-models/abilitystage.md). | - | No, system-side load process. |
    | - | JsAbilityStage::OnCreate begin | The AbilityStage [onCreate](../reference/apis-ability-kit/js-apis-app-ability-abilityStage.md#oncreate) lifecycle starts. | Time-consuming operations are executed in AbilityStage onCreate. | Yes, avoid executing time-consuming operations in AbilityStage onCreate. |
    | - | JsAbilityStage::OnCreate end | The AbilityStage onCreate lifecycle ends, and AbilityStage initialization is complete. The time can be calculated by comparing with begin. | AbilityStage onCreate takes too long. | Yes, optimize the AbilityStage onCreate logic. |
-   | - | JsAbilityStage::OnAboutToCreateAbility begin (InsightIntent Scenario) | AbilityStage is about to create an Ability ([onAboutToCreateAbility](../reference/apis-ability-kit/js-apis-app-ability-abilityStage.md#onabouttocreateability24) callback). | Time-consuming operations are executed in onAboutToCreateAbility. | Yes, avoid executing time-consuming operations in onAboutToCreateAbility. |
+   | - | JsAbilityStage::OnAboutToCreateAbility begin (InsightIntent Scenario) | AbilityStage is about to create an Ability callback). | Time-consuming operations are executed in onAboutToCreateAbility. | Yes, avoid executing time-consuming operations in onAboutToCreateAbility. |
    | - | JsAbilityStage::OnAboutToCreateAbility end (InsightIntent Scenario) | The onAboutToCreateAbility callback ends. The time can be calculated by comparing with begin. | onAboutToCreateAbility takes too long. | Yes, optimize the onAboutToCreateAbility logic. |
    | - | JsAbilityStage::OnAboutToCreateAbilityAsync begin (InsightIntent Scenario) | Asynchronously creates an Ability (onAboutToCreateAbilityAsync callback). | The asynchronous Promise is not resolved in time. | Yes, ensure that the Promise returned by onAboutToCreateAbilityAsync is resolved in time. |
    | - | JsAbilityStage::OnAboutToCreateAbilityAsync end (InsightIntent Scenario) | The onAboutToCreateAbilityAsync callback ends. | The asynchronous Promise is not resolved in time. | Yes, ensure that the Promise returned by onAboutToCreateAbilityAsync is resolved in time. |
@@ -898,3 +898,4 @@ When the given `<bundleName>` parameter is invalid or does not exist, the follow
 ```text
 error: failed to detach app debug.
 ```
+

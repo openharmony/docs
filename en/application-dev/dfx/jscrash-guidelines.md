@@ -81,7 +81,7 @@ The fault log file name format is **jscrash-Process name-Process UID-Millisecond
 | SubmitterStacktrace | Submitter thread stack.| 20 | No| By default, the asynchronous thread stack tracing functionality is enabled only in the ARM 64-bit system.<br>For versions earlier than API version 22, the functionality of submitting asynchronous tasks by third-party and system applications through [libuv](../reference/native-lib/libuv.md) and [ffrt](../reference/apis-ffrt-kit/capi-ffrt.md) is enabled only in the debug version by default.<br>Since API version 22, the functionality of submitting asynchronous tasks by third-party applications through **libuv** is enabled by default in both debug and release versions. The functionality of submitting asynchronous tasks by third-party and system applications through **ffrt** is enabled by default only in the debug version.|
 | HiLog | HiLog logs printed before the fault occurs. A maximum of 1000 lines can be printed.| 20 | Yes| - |
 | AsyncStack | Promise stack.| 23 | No| In ARM64, if the promise stack is enabled, this field is contained.|
-| ModuleImportStack | Module loading chain. | 26.0.0 | No | On ARM 64-bit systems, this field is included if the [module loading chain debug switch](../arkts-utils/arkts-module-debug.md) is enabled. |
+| ModuleImportStack | Module loading chain. | 26.0.0 | No | On ARM 64-bit systems, this field is included if the module loading chain debug switch is enabled. |
 | NativeModuleErrorInfo | .so load failure information, up to 20 load failure records | 26.0.0 | Yes | - |
 
 Example of the JS crash log specifications:

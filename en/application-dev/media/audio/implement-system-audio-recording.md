@@ -440,3 +440,5 @@ The playback end can control whether other apps are allowed to record by configu
 - When developing with ArkTS APIs, the playback end can use `privacyType` in [AudioRendererOptions](../../reference/apis-audio-kit/arkts-apis-audio-i.md#audiorendereroptions8) to control whether the playback stream is allowed to be recorded by other apps.
 
 - When developing with C APIs, the playback end can use [OH_AudioStreamBuilder_SetRendererPrivacy()](../../reference/apis-audio-kit/capi-native-audiostreambuilder-h.md#oh_audiostreambuilder_setrendererprivacy) to control whether the playback stream is allowed to be recorded by other apps.
+
+<!--no_check-->

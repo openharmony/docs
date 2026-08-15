@@ -6,7 +6,7 @@
 <!--Designer: @cx983299475-->
 <!--Tester: @mahailong123456-->
 <!--Adviser: @HelloShuo-->
-<!-- md-trans-meta sourceCommit=7eb91d6df8b4aeed3953bbb4aaef8a6f065801e4 translatedAt=2026-08-15T01:50:43.919Z pushedAt=2026-08-15T08:15:20.716Z -->
+<!-- md-trans-meta sourceCommit=7eb91d6df8b4aeed3953bbb4aaef8a6f065801e4 translatedAt=2026-08-15T01:50:43.919Z pushedAt=2026-08-15T10:30:32.135Z -->
 
 ArkTS widgets provide widget page editing capabilities, allowing users to customize widget content, for example, editing a contact widget, modifying the contacts displayed in a widget, and editing a weather widget.
 
@@ -28,7 +28,7 @@ The following example describes how to use semi-modal widget editing.
 
     - Editing area: The white area is the editing area, which is a custom layout area of the app and is used to implement the widget editing layout. The layout of the widget editing area is drawn by the app after inheriting [FormEditExtensionAbility](../reference/apis-form-kit/js-apis-app-form-formEditExtensionAbility.md), and can be used for simple editing layouts.
 
-    - FormEditDemo: This field is the app name of the widget host app, configured through the `label` field in the [app.json5](../quick-start/app-configuration-file.md#configuration-file-tags) configuration file.
+    - FormEditDemo: This field is the app name of the widget host app, configured through the `label` field in the [app.json5](../quick-start/app-configuration-file.md#tags-in-the-configuration-file) configuration file.
 
     - widget: This field is the widget name, configured through the [name](./arkts-ui-widget-configuration.md#fields-in-configuration-file) field in the widget `form_config.json` configuration file.
 
