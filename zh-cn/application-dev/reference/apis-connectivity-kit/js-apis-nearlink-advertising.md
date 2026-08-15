@@ -51,7 +51,7 @@ import { advertising } from '@kit.ConnectivityKit';
 | -------- | -------- | -------- | -------- | -------- |
 | interval | number | 否 | 是 | 广播间隔配置参数。单位slot，范围160-16777215，默认值为5000。1个slot对应的时间长度是0.125ms，例如：5000\*0.125=625ms。 |
 | power | [TxPowerMode](#txpowermode) | 否 | 是 | 广播发射功率配置参数。如果不配置，则默认值为ADV_TX_POWER_LOW。 |
-| isConnectable | boolean | 否 | 是 | 表示广播能否连接。true: 表示可连接的广播。false：表示不可连接的广播。默认值为true。 |
+| isConnectable | boolean | 否 | 是 | 表示广播能否连接。true：表示可连接的广播。false：表示不可连接的广播。默认值为true。 |
 
 
 ## AdvertisingData

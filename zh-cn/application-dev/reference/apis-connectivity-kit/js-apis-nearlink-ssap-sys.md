@@ -60,7 +60,7 @@ setPropertyIndication(property: Property, enable: boolean): Promise&lt;void&gt;
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | property | [Property](js-apis-nearlink-ssap.md#property) | 是 | 服务端属性。 |
-| enable | boolean | 是 | 是否启用属性值更改指示。true: 启用指示。false: 禁用指示。 |
+| enable | boolean | 是 | 是否启用属性值更改指示。true：启用指示。false：禁用指示。 |
 
 **返回值：** 
 

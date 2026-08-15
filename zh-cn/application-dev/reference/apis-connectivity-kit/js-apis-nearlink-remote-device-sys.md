@@ -177,7 +177,7 @@ setPairingConfirmation(accept: boolean): void
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| accept | boolean | 是 | 配对确认。true: 接受配对。false: 拒绝配对。| 
+| accept | boolean | 是 | 配对确认。true：接受配对。false：拒绝配对。| 
 
 **错误码：**
 
