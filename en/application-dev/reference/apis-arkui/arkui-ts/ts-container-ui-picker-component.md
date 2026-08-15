@@ -1,83 +1,84 @@
 # UIPickerComponent
+
 <!--Kit: ArkUI-->
 <!--Subsystem: ArkUI-->
 <!--Owner: @luoying_ace_admin-->
 <!--Designer: @weixin_52725220-->
 <!--Tester: @xiong0104-->
 <!--Adviser: @Brilliantry_Rui-->
+<!-- md-trans-meta sourceCommit=deefc04466e0d705aaf0ef3b6730983854ef7737 translatedAt=2026-08-13T11:56:14.017Z pushedAt=2026-08-15T09:42:49.330Z -->
 
-The **UIPickerComponent** container is used to implement user selection operations. It supports single selection from a limited set of options and can be applied to various scenarios such as time selection, date selection, region selection, and status selection. Its display effect is a three-dimensional wheel style, supporting customizable options including text type, image type, and text-image combination type.
+The **UIPickerComponent** container is a component used to implement user selection operations. It allows users to make a single selection from a limited set of options, and uses a 3D wheel style to provide intuitive visual feedback and a smooth scrolling experience. This component supports on-demand customization of options, including text type, image type, and image-text combination type, which can provide richer information display based on service requirements. It can be widely used in various scenarios such as time selection, date selection, region selection, and status selection.
 
 >  **NOTE**
 >
-> - This component is supported since API version 22. Updates will be marked with a superscript to indicate their earliest API version.
+> - The initial APIs of this module are supported since API version 22. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 >
-> - The height of the **UIPickerComponent** container options is fixed at 40 vp, and a maximum of seven options can be displayed. Due to the three-dimensional wheel display effect, options other than the selected one will be rotated at different angles, so the actual visible height will be less than 40 vp.
+> - The **UIPickerComponent** container has a default option row height of 40 vp and displays 7 options by default. You can configure them through the [itemHeight](#itemheight) and [displayedItemCount](#displayeditemcount) attributes. Because the display effect is a 3D wheel style, options other than the selected one are rotated at different angles, so the actual visible height is smaller than the option row height.
 >
-> - It is recommended that the [height](./ts-universal-attributes-size.md#height) of the **UIPickerComponent** container be set to 200 vp. When the set height is greater than or equal to this recommended value, all 7 options can be fully displayed. Otherwise, the display area will be cropped from the top and bottom edges towards the center, and the number of displayed options will be reduced accordingly, always keeping the selected item vertically centered.
+> - It is recommended that the [height](./ts-universal-attributes-size.md#height) of the **UIPickerComponent** container be set to 200 vp. When the set height is greater than or equal to this recommended value, the default 7 options can be fully displayed. If more visible items or a larger option height are configured through [displayedItemCount](#displayeditemcount) or [itemHeight](#itemheight), it is recommended to increase the component height accordingly. When the set height is smaller than the recommended value, the display range is cropped from the top and bottom edges toward the center, and the number of options that can be displayed is reduced accordingly, with the selected item always kept vertically centered.
 >
-> - When the **UIPickerComponent** container's [width](./ts-universal-attributes-size.md#width) is not set, the maximum width of the visible child components in the current view is taken as the container width. You are advised to set the width of the **UIPickerComponent** container or set the same width for each child component to avoid dynamic changes in container width during sliding, which affects the display effect.
+> - When the [width](./ts-universal-attributes-size.md#width) of the **UIPickerComponent** container is not set, the maximum width of the visible child components in the current view is used as the container width. It is recommended to set a width for the **UIPickerComponent** container, or set the same width for each child component, to avoid dynamic changes in the container width during scrolling, which may affect the display effect.
 >
-> - The alignment mode of child components in the **UIPickerComponent** container is fixed to center alignment, and cannot be changed via the [align](ts-universal-attributes-location.md#align) attribute.
+> - The alignment of child components in the **UIPickerComponent** container is fixed to center alignment. Changing the alignment of child components through the [align](ts-universal-attributes-location.md#align) attribute is not supported.
 >
-> - Currently, the **UIPickerComponent** container does not support wearables.
+> - The **UIPickerComponent** container currently does not support smartwatch devices. You can obtain the device type through **deviceInfo.deviceType** to determine whether the device is a smartwatch.
 >
 > - This component supports [WithTheme](./ts-container-with-theme.md) since API version 26.0.0.
 
 ## Child Components
 
-- Multiple child components are supported.
+- Supports multiple child components.
 
-- Supported child component types: [Text](./ts-basic-components-text.md), [Image](./ts-basic-components-image.md), [Row](./ts-container-row.md), and [SymbolGlyph](./ts-basic-components-symbolGlyph.md)
+- Supported child component types: [Text](./ts-basic-components-text.md), [Image](./ts-basic-components-image.md), [Row](./ts-container-row.md), and [SymbolGlyph](./ts-basic-components-symbolGlyph.md).
 
-- Supported rendering control types: [if/else](../../../ui/rendering-control/arkts-rendering-control-ifelse.md) and [ForEach](../../../ui/rendering-control/arkts-rendering-control-foreach.md)
+- Supported rendering control types: [if/else](../../../ui/rendering-control/arkts-rendering-control-ifelse.md) and [ForEach](../../../ui/rendering-control/arkts-rendering-control-foreach.md).
 
 >  **NOTE**
 >
-> - When the Row **container** is used as a child component, the **Row** container can contain only the **Text**, **Image**, and **SymbolGlyph** basic components. Including other container components may affect the display effect or cause sliding functionality abnormalities.
+> - When a **Row** container is used as a child component, the **Row** container can contain only the basic components **Text**, **Image**, and **SymbolGlyph**. Including other container components may affect the display effect or cause abnormal scrolling.
 >
-> - When counting the number of child components, the **Row** container and its child components are counted as one child component.
+> - When counting child components, the child components inside a **Row** container are not counted. A **Row** container and its child components are counted as one child component.
 >
-> - When the child component is **Text**, **Image**, or **SymbolGlyph**, the [height](./ts-universal-attributes-size.md#height) attribute does not take effect and is fixed at 40 vp.
+> - When the child component is **Text**, **Image**, or **SymbolGlyph**, the [height](./ts-universal-attributes-size.md#height) attribute does not take effect. The actual height is determined by the [itemHeight](#itemheight) attribute (40 vp by default). The child component content is displayed within the option area.
 >
-> - When the child component is a **Row** container, its [height](./ts-universal-attributes-size.md#height) attribute does not take effect and is fixed at 40 vp. The [height](./ts-universal-attributes-size.md#height) attribute of the child components in the **Row** container takes effect. The final display effect is determined by the **Row** container.
+> - When the child component is a **Row** container, the [height](./ts-universal-attributes-size.md#height) attribute of the **Row** container does not take effect. The actual height is determined by the [itemHeight](#itemheight) attribute (40 vp by default). The [height](./ts-universal-attributes-size.md#height) attribute of the child components inside the **Row** container takes effect normally, and the final display effect is determined by the **Row** container.
 >
-> - The text-image combination option requires that the **Row** container contain the **Text** and **Image** components. When using the text-image combination option, you are advised to set the image's [height](./ts-universal-attributes-size.md#height) to 40 vp or below to avoid cropping when images are large.
+> - An option that combines an image and text requires a **Row** container to contain the image and text components. When using an option that combines an image and text, you are advised to set the [height](./ts-universal-attributes-size.md#height) of the image to 40 vp or less to prevent the image from being cropped when it is large.
 >
-> - The **fontSize** attribute of all text components (including the **Text** components in the **Row** container) in the **UIPickerComponent** container is 20 fp by default. User settings will override the default value, and abnormal values will be processed according to the result of handling the text component's [fontSize](./ts-basic-components-text.md#fontsize). You are advised to set the **fontSize** attribute to a unified value or not to set it to ensure a good display effect.
-
+> - The **fontSize** attribute of all text components in the **UIPickerComponent** container (including the text components inside a **Row** container) is 20 fp by default. A user setting overrides the default value. If an invalid value is set, the result processed by the text component [fontSize](./ts-basic-components-text.md#fontsize) prevails. You are advised to set **fontSize** uniformly or not set it to ensure a good display effect.
 
 ## APIs
 
 UIPickerComponent(options?: UIPickerComponentOptions)
 
-Creates a **UIPickerComponent** container, whose selected item is determined by the **selectedIndex** attribute in the **options** parameter.
+Creates a **UIPickerComponent** container. The selected item is determined by the **selectedIndex** attribute value in the **options** parameter.
 
-**Model restriction**: This API can be used only in the stage model.
+**Model restriction:** This API can be used only in the stage model.
 
 **Atomic service API**: This API can be used in atomic services since API version 22.
 
-**System capability**: SystemCapability.ArkUI.ArkUI.Full
+**System capability:** SystemCapability.ArkUI.ArkUI.Full
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
+| Name | Type | Mandatory | Description |
 | -------- | -------- | -------- | -------- |
-| options |  [UIPickerComponentOptions](#uipickercomponentoptions)| No| Parameters of the **UIPickerComponent** container. If the parameter is left empty, the component is a placeholder but the content is empty.|
+| options |  [UIPickerComponentOptions](#uipickercomponentoptions-object-description)| No | Parameters of the **UIPickerComponent** container, which are used to customize the initial selected item and other settings. When this parameter is omitted, the component occupies space but displays empty content. Pass this parameter when you need to set the initial selected item. |
 
-## UIPickerComponentOptions
+## UIPickerComponentOptions Object Description
 
 Describes the parameters of the **UIPickerComponent** container.
 
-**Model restriction**: This API can be used only in the stage model.
+**Model restriction:** This API can be used only in the stage model.
 
 **Atomic service API**: This API can be used in atomic services since API version 22.
 
-**System capability**: SystemCapability.ArkUI.ArkUI.Full
+**System capability:** SystemCapability.ArkUI.ArkUI.Full
 
-| Name| Type| Read-Only| Optional| Description|
+| Name | Type | Read-Only | Optional | Description |
 | -------- | -------- | -------- | -------- | -------- |
-| selectedIndex | number | No| Yes| Index of the selected item.<br>Value range: an integer in the range of [0, Number of child components – 1]. If the value is not within the value range, the default value is used. If a decimal number is set, the integer part after rounding down is used.<br>Default value: **0**<br>**NOTE**<br>When counting the number of child components, the **Row** container and its child components are counted as one child component.|
+| selectedIndex | number | No | Yes | Index of the selected item, used to specify the initially selected option.<br>Value range: an integer in [0, number of child components - 1]. If the value is out of the range, the default value is used. If a decimal is set, the integer obtained by rounding down is used.<br>Default value: **0**. Pass this parameter when the component needs to initially display a specific option.<br>**Note:**<br>When counting the number of child components, child components inside a **Row** container are not counted. A **Row** container and its child components are counted as one child component. |
 
 ## Attributes
 
@@ -87,64 +88,105 @@ In addition to the [universal attributes](ts-component-general-attributes.md), t
 
 canLoop(isLoop: Optional\<boolean>)
 
-Sets whether the option list can loop scrolling.
+Sets whether the option list can loop scrolling. When there are many options and infinite scrolling is required, enable the loop; when there are few options or the selection range needs to be limited, disable the loop.
 
-**Model restriction**: This API can be used only in the stage model.
+**Model restriction:** This API can be used only in the stage model.
 
 **Atomic service API**: This API can be used in atomic services since API version 22.
 
-**System capability**: SystemCapability.ArkUI.ArkUI.Full
+**System capability:** SystemCapability.ArkUI.ArkUI.Full
 
-**Parameters**
+**Parameters** 
 
-| Name| Type   | Mandatory| Description                                                        |
+| Name | Type    | Mandatory | Description                                                         |
 | ------ | ------- | ---- | ------------------------------------------------------------ |
-| isLoop  | [Optional](ts-universal-attributes-custom-property.md#optionalt)\<boolean> | Yes  | Whether loop scrolling is enabled.<br>- **true**: Loop scrolling is enabled.<br>- **false**: Loop scrolling is disabled.<br>Default value: **true**<br>If the value of **isLoop** is **undefined**, the default value is used.<br>If the number of child components is less than 8, loop scrolling will not occur regardless of whether **isLoop** is set to **true** or **false**.|
+| isLoop  | [Optional](ts-universal-attributes-custom-property.md#optionalt)\<boolean> | Yes   | Whether loop scrolling is enabled.<br>- **true**: Loop scrolling is enabled.<br>- **false**: Loop scrolling is disabled.<br>Default value: **true**<br>When the value of **isLoop** is **undefined**, the default value is used.<br>When the number of child components is less than or equal to the number of visible options (set by [displayedItemCount](#displayeditemcount), which defaults to **7**), loop scrolling will not occur regardless of whether **isLoop** is set to **true** or **false**. |
 
 ### enableHapticFeedback
 
 enableHapticFeedback(enable: Optional\<boolean>)
 
-Sets whether to enable haptic feedback.
+Sets whether to enable haptic feedback. Haptic feedback can be enabled in scenarios where the user interaction experience needs to be enhanced.
 
-To enable haptic feedback, you must declare the following permission under **requestPermissions** in **module** in **src/main/module.json5** of the project.
+To enable haptic feedback, configure the requestPermissions field in the "module" section of the src/main/module.json5 file of the project to request the vibration permission, as follows:
+
 ``` json
 "requestPermissions": [
    {
-      "name": "ohos.permission.VIBRATE",
+      "name": "ohos.permission.VIBRATE"
    }
 ]
 ```
 
-**Model restriction**: This API can be used only in the stage model.
+**Model restriction:** This API can be used only in the stage model.
 
 **Atomic service API**: This API can be used in atomic services since API version 22.
 
-**System capability**: SystemCapability.ArkUI.ArkUI.Full
+**System capability:** SystemCapability.ArkUI.ArkUI.Full
 
 **Parameters**
 
-| Name| Type                                         | Mandatory | Description                                                                                 |
+| Name | Type                                          | Mandatory | Description                                                                                  |
 | ------ | --------------------------------------------- |-----|-------------------------------------------------------------------------------------|
-| enable  | [Optional](ts-universal-attributes-custom-property.md#optionalt)\<boolean> | Yes  | Whether to enable haptic feedback.<br>- **true**: Enable haptic feedback.<br>- **false**: Disable haptic feedback.<br>Default value: **true**<br>If the value of **enable** is **undefined**, the default value is used.<br>After this function is enabled, whether haptic feedback is available depends on the hardware support of the system.|
+| enable  | [Optional](ts-universal-attributes-custom-property.md#optionalt)\<boolean> | Yes   | Whether to enable haptic feedback.<br>- **true**: enables haptic feedback.<br>- **false**: disables haptic feedback.<br>Default value: **true**<br>When the value of **enable** is **undefined**, the default value is used.<br>After it is enabled, whether haptic feedback is available depends on the hardware support of the system.|
 
 ### selectionIndicator
 
 selectionIndicator(style: Optional\<PickerIndicatorStyle>)
 
-Sets the style of the selected item indicator.
+Sets the style of the selected item indicator. Use a background indicator when the selected area needs to be highlighted, and use a divider indicator when a simple and lightweight marker is required.
 
-**Model restriction**: This API can be used only in the stage model.
+**Model restriction:** This API can be used only in the stage model.
 
 **Atomic service API**: This API can be used in atomic services since API version 22.
 
-**System capability**: SystemCapability.ArkUI.ArkUI.Full
+**System capability:** SystemCapability.ArkUI.ArkUI.Full
 
-**Parameters**
+**Parameters** 
 
-| Name| Type                                                        | Mandatory| Description                                                        |
+| Name | Type                                                         | Mandatory | Description                                                         |
 | ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| style  | [Optional](ts-universal-attributes-custom-property.md#optionalt)\<[PickerIndicatorStyle](ts-container-ui-picker-component.md#pickerindicatorstyle)> | Yes  | Style of the selected item indicator.<br>Default value:<br>{<br>type: PickerIndicatorType.BACKGROUND,<br>borderRadius: {<br>value:12,<br>unit:LengthUnit.vp<br>},<br>backgroundColor: 'sys.color.comp_background_tertiary'<br>}<br>If the value of **style** is **undefined**, the default value is used.|
+| style  | [Optional](ts-universal-attributes-custom-property.md#optionalt)\<[PickerIndicatorStyle](ts-container-ui-picker-component.md#pickerindicatorstyle)> | Yes   | Style of the selected item indicator.<br>Default value:<br>**{<br>type: PickerIndicatorType.BACKGROUND,<br>borderRadius: {<br>value:12,<br>unit:LengthUnit.vp<br>},<br>backgroundColor: 'sys.color.comp_background_tertiary'<br>}**<br>When the value of **style** is **undefined**, the default value is used.|
+
+### itemHeight
+
+itemHeight(height: Optional\<LengthMetrics>)
+
+Sets the height of each option in the **UIPickerComponent** container. If this API is not called, the height of each option is 40 vp. When the option content is large or a larger font is required, you can increase the height to avoid content clipping. When the option content is concise or a compact display is required, you can decrease the height. This attribute, together with [displayedItemCount](#displayeditemcount), affects the display effect of the component. You are advised to adjust it in combination with the component [height](./ts-universal-attributes-size.md#height) attribute to ensure complete display.
+
+**Since:** 26.0.0
+
+**Model restriction:** This API can be used only in the stage model.
+
+**Atomic service API:** This API can be used in atomic services since API version 26.0.0.
+
+**System capability:** SystemCapability.ArkUI.ArkUI.Full
+
+**Parameters** 
+
+| Name | Type | Mandatory | Description |
+| ------ | ---- | ---- | ---- |
+| height | [Optional](ts-universal-attributes-custom-property.md#optionalt)\<[LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12)> | Yes | Height of the option.<br>Unit: same as that of [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12).<br>Value range: [40 vp, 64 vp]<br>If the value is less than 40 vp or greater than 64 vp, the default value 40 vp is used.<br>If the value of height is **undefined**, the default value 40 vp is used.<br>The "Percentage" type is not supported. |
+
+### displayedItemCount
+
+displayedItemCount(count: Optional\<number>)
+
+Sets the number of visible options in the **UIPickerComponent** container. If this API is not called, the number of visible options is 7 rows. Reduce the number of visible options when space needs to be saved, and increase it when more preview information needs to be provided. This attribute, together with [itemHeight](#itemheight), affects the display effect of the component. It is recommended to adjust it in combination with the component [height](./ts-universal-attributes-size.md#height) attribute to ensure complete display.
+
+**Since:** 26.0.0
+
+**Model restriction:** This API can be used only in the stage model.
+
+**Atomic service API:** This API can be used in atomic services since API version 26.0.0.
+
+**System capability:** SystemCapability.ArkUI.ArkUI.Full
+
+**Parameters** 
+
+| Name | Type | Mandatory | Description |
+| ------ | ---- | ---- | ---- |
+| count | [Optional](ts-universal-attributes-custom-property.md#optionalt)\<number> | Yes | Number of visible options.<br>Value range: an integer in [2, 9].<br>If a decimal is set, the value is rounded down to an integer.<br>If an even number is set, it is automatically converted to an odd number greater than the value (for example, 2 becomes 3 and 8 becomes 9).<br>If the value is outside the value range, the default value of 7 rows is used.<br>If the value of count is **undefined**, the default value of 7 rows is used. |
 
 ## Events
 
@@ -154,98 +196,107 @@ In addition to the [universal events](ts-component-general-events.md), the follo
 
 onChange(callback: Optional\<OnUIPickerComponentCallback>)
 
-Triggered when the selected item changes.
+Triggered when the selected item changes while the picker options are being scrolled. It applies to scenarios where the UI needs to be updated in real time, corresponding data needs to be loaded, or related logic needs to be executed when the selected item changes.
 
 >  **NOTE**
 > 
-> If more than half of an option's area enters the selected item area, the option becomes the selected item.
+> If more than half of an option enters the selected item area, the option becomes the selected item.
 > 
-> The selected item area can be identified by setting [selectionIndicator](#selectionindicator). If the selected item indicator is set to the background, the background area is the selected item area. If the selected item indicator is set to the divider, the area between the center lines of the upper and lower dividers is the selected item area.
+> The selected item area can be identified by setting [selectionIndicator](#selectionindicator). If the selected item indicator is set to the background, the background area is the selected item area. If the selected item indicator is set to a divider line, the area between the center lines of the upper and lower divider lines is the selected item area.
 
-**Model restriction**: This API can be used only in the stage model.
+**Model restriction:** This API can be used only in the stage model.
 
 **Atomic service API**: This API can be used in atomic services since API version 22.
 
-**System capability**: SystemCapability.ArkUI.ArkUI.Full
+**System capability:** SystemCapability.ArkUI.ArkUI.Full
 
-**Parameters**
+**Parameters** 
 
-| Name| Type                                      | Mandatory| Description                                             |
+| Name | Type                                       | Mandatory | Description                                              |
 | ------ | ------------------------------------------ | ---- | ------------------------------------------------- |
-| callback  | [Optional](ts-universal-attributes-custom-property.md#optionalt)\<[OnUIPickerComponentCallback](#onuipickercomponentcallback)> | Yes  | Callback triggered when the selected item changes.<br>If **callback** is set to **undefined**, the callback is not used.|
+| callback  | [Optional](ts-universal-attributes-custom-property.md#optionalt)\<[OnUIPickerComponentCallback](#onuipickercomponentcallback)> | Yes   | Callback invoked when the selected item changes.<br>When the value of **callback** is **undefined**, the callback is not used. |
 
 ### onScrollStop
 
 onScrollStop(callback: Optional\<OnUIPickerComponentCallback>)
 
-Triggered when the picker scrolling stops. The picker scrolling stops when the scrolling animation triggered by an action is complete. If a new scrolling animation is triggered before the previous one finishes, it does not count as scrolling stop.
+Triggered when the picker stops scrolling. The picker stops scrolling when the scrolling animation triggered by a certain action is completely finished. If a new scrolling animation is triggered before the current scrolling animation finishes, it is not considered as scrolling stop. This event is suitable for scenarios where the final selection result needs to be submitted, the loading animation needs to be stopped, or a one-time callback needs to be executed after scrolling ends.
 
-**Model restriction**: This API can be used only in the stage model.
+> **NOTE**
+>
+> Differences between **onChange** and **onScrollStop**:
+>
+> - **Trigger timing**: **onChange** is triggered immediately when the selected item changes; **onScrollStop** is triggered after the scrolling animation completely stops.
+> - **Trigger frequency**: During continuous scrolling, **onChange** may be triggered multiple times (each time the selected item changes); **onScrollStop** is triggered only once when scrolling stops.
+> - **Use scenarios**: **onChange** is suitable for scenarios that require real-time response (such as displaying the selected content in real time and updating other components in linkage); **onScrollStop** is suitable for scenarios that require final confirmation (such as submitting the final selection result and saving data).
+> - **Relationship between the two**: A complete scrolling operation may trigger these two events in sequence. They can be used simultaneously or selectively based on actual requirements.
+
+**Model restriction:** This API can be used only in the stage model.
 
 **Atomic service API**: This API can be used in atomic services since API version 22.
 
-**System capability**: SystemCapability.ArkUI.ArkUI.Full
+**System capability:** SystemCapability.ArkUI.ArkUI.Full
 
-**Parameters**
+**Parameters** 
 
-| Name| Type                                      | Mandatory| Description                                             |
+| Name | Type                                       | Mandatory | Description                                              |
 | ------ | ------------------------------------------ | ---- | ------------------------------------------------- |
-| callback | [Optional](ts-universal-attributes-custom-property.md#optionalt)\<[OnUIPickerComponentCallback](#onuipickercomponentcallback)> | Yes  | Callback triggered when the picker scrolling stops.<br>If **callback** is set to **undefined**, the callback is not used.|
+| callback | [Optional](ts-universal-attributes-custom-property.md#optionalt)\<[OnUIPickerComponentCallback](#onuipickercomponentcallback)> | Yes   | Callback invoked when the picker stops scrolling. When the value of **callback** is **undefined**, the callback is not used. |
 
 ## PickerIndicatorStyle
 
-Sets parameters of the selected item indicator style.
+Describes the parameters of the selected item indicator style.
 
-**Model restriction**: This API can be used only in the stage model.
+**Model restriction:** This API can be used only in the stage model.
 
 **Atomic service API**: This API can be used in atomic services since API version 22.
 
-**System capability**: SystemCapability.ArkUI.ArkUI.Full
+**System capability:** SystemCapability.ArkUI.ArkUI.Full
 
-| Name | Type  | Read-Only| Optional| Description                                      |
+| Name | Type | Read-Only | Optional | Description |
 | ----- | ------ | ---- | ---- | ------------------------------------------ |
-| type  | [PickerIndicatorType](#pickerindicatortype)| No  | No  | Type of the selected item indicator.<br>Default value: **PickerIndicatorType.BACKGROUND**<br>If the value of **type** is a decimal number, the integer after rounding down is used. If the value of **type** is not within the value range of **PickerIndicatorType**, the default value is used.|
-| strokeWidth |  [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12)      | No  | Yes  | Stroke width of the divider.<br>Default value: **2.0px**.<br>Unit: same as that of **LengthMetrics**<br>Value range: [0, half the height of the selected item (that is, 20 vp)]. If the value of **strokeWidth** is less than 0 or greater than half the height of the selected item, the default value is used. Percentages are not supported.<br>**NOTE**<br>1. This parameter takes effect only when **type** is set to **PickerIndicatorType.DIVIDER**.<br>2. If this parameter is set in **LengthMetrics.resource** mode, the value of a non-length attribute will be treated as 0 vp. |
-| dividerColor       | [ResourceColor](ts-types.md#resourcecolor) | No  | Yes  | Color of the divider.<br>Default value: **'sys.color.comp_divider'**<br>**NOTE**<br>This parameter takes effect only when **type** is set to **PickerIndicatorType.DIVIDER**.|
-| startMargin |  [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12)       | No  | Yes  | Distance between the divider and the start edge of the **UIPickerComponent** container.<br>Default value: **0**<br>Unit: same as that of **LengthMetrics**<br>Value range: The sum of **startMargin** and **endMargin** must not exceed the width of the **UIPickerComponent** container. If the value is less than 0 or the sum of **startMargin** and **endMargin** exceeds the width of the **UIPickerComponent** container, the default value is used. Percentages are not supported.<br>**NOTE**<br>This parameter takes effect only when **type** is set to **PickerIndicatorType.DIVIDER**.|
-| endMargin   |  [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12)        | No  | Yes  | Distance between the divider and the end edge of the **UIPickerComponent** container.<br>Default value: **0**<br>Unit: same as that of **LengthMetrics**<br>Value range: The sum of **startMargin** and **endMargin** must not exceed the width of the **UIPickerComponent** container. If the value is less than 0 or the sum of **startMargin** and **endMargin** exceeds the width of the **UIPickerComponent** container, the default value is used. Percentages are not supported.<br>**NOTE**<br>This parameter takes effect only when **type** is set to **PickerIndicatorType.DIVIDER**.|
-| backgroundColor  | [ResourceColor](ts-types.md#resourcecolor) | No | Yes | Background color of the selected item.<br>Default value: **'sys.color.comp_background_tertiary'**<br>**NOTE**<br>This parameter takes effect only when **type** is set to **PickerIndicatorType.BACKGROUND**.  |
-| borderRadius  | [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12) &nbsp;\|&nbsp; [BorderRadiuses](ts-types.md#borderradiuses9) &nbsp;\|&nbsp; [LocalizedBorderRadiuses](ts-types.md#localizedborderradiuses12) | No | Yes | Background border radius of the selected item.<br>Default value: **{ value:12, unit:LengthUnit.vp }**, meaning 12 vp for all corners<br>Value range: no more than half of the smaller value between the width and height of the selected item. If the value is less than 0, the default value is used. If the value is greater than the maximum value, the maximum value is used.<br>**NOTE**<br>1. This parameter takes effect only when **type** is set to **PickerIndicatorType.BACKGROUND**.<br>2. [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12): Sets the size and unit of the four corner radii in a unified manner.<br>3. [BorderRadiuses](ts-types.md#borderradiuses9): Sets the size (unit: vp) of the four corner radii individually.<br>4. [LocalizedBorderRadiuses](ts-types.md#localizedborderradiuses12): Sets the size and unit of the four corner radii individually.|
+| type | [PickerIndicatorType](#pickerindicatortype) | No | No | Type of the selected item indicator.<br>Default value: **PickerIndicatorType.BACKGROUND**<br>If the value of **type** is a decimal, the integer obtained by rounding down is used. If the value of type is outside the range of the **PickerIndicatorType** enum, the default value is used. |
+| strokeWidth | [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12) | No | Yes | Width of the divider line.<br>Default value: **{ value: 2.0, unit: LengthUnit.px }**<br>Unit: same as **LengthMetrics**.<br>Value range: [0, half of the selected item height]. If **strokeWidth** is less than 0 or greater than half of the selected item height, the default value is used. Note: The selected item height can be set through the **itemHeight** attribute. The default value is 40 vp, in which case the upper limit of the value range is 20 vp. When **itemHeight** is set to another value, the upper limit changes accordingly. The "Percentage" type is not supported.<br>**NOTE**<br>1. Takes effect when **type** is **PickerIndicatorType.DIVIDER**.<br>2. When the value is set through **LengthMetrics.resource**, a value of a non-length attribute is processed as 0 vp. |
+| dividerColor | [ResourceColor](ts-types.md#resourcecolor) | No | Yes | Color of the divider line.<br>Default value: **'sys.color.comp_divider'**<br>**NOTE**<br>Takes effect when type is **PickerIndicatorType.DIVIDER**. |
+| startMargin | [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12) | No | Yes | Distance between the divider line and the start edge of the **UIPickerComponent** container.<br>Default value: **0**<br>Unit: same as **LengthMetrics**.<br>Value range: the sum of **startMargin** and **endMargin** must not exceed the width of the **UIPickerComponent** container. If the value is less than 0 or the sum of **startMargin** and **endMargin** exceeds the width of the **UIPickerComponent** container, the default value is used. The percentage type is not supported.<br>**NOTE**<br>Takes effect when **type** is **PickerIndicatorType.DIVIDER**. |
+| endMargin | [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12) | No | Yes | Distance between the divider line and the end edge of the **UIPickerComponent** container.<br>Default value: **0**<br>Unit: same as **LengthMetrics**.<br>Value range: the sum of **startMargin** and **endMargin** must not exceed the width of the **UIPickerComponent** container. If the value is less than 0 or the sum of **startMargin** and **endMargin** exceeds the width of the **UIPickerComponent** container, the default value is used. The percentage type is not supported.<br>**NOTE**<br>Takes effect when **type** is **PickerIndicatorType.DIVIDER**. |
+| backgroundColor | [ResourceColor](ts-types.md#resourcecolor) | No | Yes | Color of the selected item background.<br>Default value: **'sys.color.comp_background_tertiary'**<br>**NOTE**<br>Takes effect when **type** is **PickerIndicatorType.BACKGROUND**. |
+| borderRadius | [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12) &nbsp;\|&nbsp; [BorderRadiuses](ts-types.md#borderradiuses9) &nbsp;\|&nbsp; [LocalizedBorderRadiuses](ts-types.md#localizedborderradiuses12) | No | Yes | Corner radius of the selected item background border.<br>Default value: **{ value:12, unit:LengthUnit.vp }**, which means the four corner radii are all 12 vp.<br>Value range: let x be the smaller of the width and height of the selected item; the maximum value does not exceed half of x. If the value is less than 0, the default value is used. If the value is greater than the maximum value, the maximum value is used.<br>**NOTE**<br>1. Takes effect when **type** is **PickerIndicatorType.BACKGROUND**.<br>2. [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12): sets the size and unit of the four corner radii uniformly.<br>3. [BorderRadiuses](ts-types.md#borderradiuses9): sets the size of the four corner radii separately (in vp).<br>4. [LocalizedBorderRadiuses](ts-types.md#localizedborderradiuses12): sets the size and unit of the four corner radii separately. |
 
 ## PickerIndicatorType
 
 Enumerates the types of the selected item indicator.
 
-**Model restriction**: This API can be used only in the stage model.
+**Model restriction:** This API can be used only in the stage model.
 
-**Atomic service API**: This API can be used in atomic services since API version 22.
+**Atomic service API:** This type can be used in atomic services since API version 22.
 
-**System capability**: SystemCapability.ArkUI.ArkUI.Full
+**System capability:** SystemCapability.ArkUI.ArkUI.Full
 
-| Name| Value| Description|
+| Name | Value | Description |
 | -------- | - |-------- |
-| BACKGROUND | 0 | Identifies the selected item by adding a background to it.|
-| DIVIDER | 1 | Identifies the selected item by adding dividers above and below its edges.|
+| BACKGROUND | 0 | Identifies the selected item by adding a background to it. |
+| DIVIDER | 1 | Identifies the selected item by adding divider lines to the upper and lower edges of it. |
 
 ## OnUIPickerComponentCallback
 
 type OnUIPickerComponentCallback = (selectedIndex: number) => void
 
-Defines the callback types for the [onChange](#onchange) and [onScrollStop](#onscrollstop) events.
+Defines the callback type for the [onChange](#onchange) and [onScrollStop](#onscrollstop) events.
 
-**Model restriction**: This API can be used only in the stage model.
+**Model restriction:** This API can be used only in the stage model.
 
 **Atomic service API**: This API can be used in atomic services since API version 22.
 
-**System capability**: SystemCapability.ArkUI.ArkUI.Full
+**System capability:** SystemCapability.ArkUI.ArkUI.Full
 
-**Parameters**
+**Parameters** 
 
-| Name    | Type                                      | Mandatory| Description                                                        |
+| Name     | Type                                       | Mandatory | Description                                                         |
 | ---------- | ------------------------------------------ | ---- | ------------------------------------------------------------ |
-| selectedIndex | number | Yes  | Index of the selected item.<br>Value range: an integer in the range of [0, Number of child components – 1].|
+| selectedIndex | number | Yes   | Index of the currently selected item.<br>Value range: an integer in [0, number of child components - 1]. |
 
-## Example
+## Examples
 
 ### Example 1: Switching Loop Scrolling and Enabling/Disabling Haptic Feedback
 
@@ -261,7 +312,7 @@ struct UIPickerComponentAttrsExample {
   @State hapticFeedback: boolean = true;
 
   aboutToAppear(): void {
-    // Construct options.
+    // Construct the option data.
     for (let i = 1; i <= 10; i++) {
       this.dataArray.push(i.toString())
     }
@@ -275,9 +326,9 @@ struct UIPickerComponentAttrsExample {
             Text(item)
           })
         }
-        // Configure the option list looping.
+        // Configure the loop scrolling of the option list.
         .canLoop(this.loop)
-        // Configure haptic feedback.
+        // Configure the haptic feedback.
         .enableHapticFeedback(this.hapticFeedback)
         .width('70%')
       }
@@ -312,33 +363,37 @@ struct UIPickerComponentAttrsExample {
 
 ### Example 2: Setting Event Callbacks
 
-Since API version 22, this example demonstrates how to set the **onChange** and **onScrollStop** callbacks of the **UIPickerComponent** container based on status selection.
+Since API version 22, this example implements the **onChange** and **onScrollStop** event callbacks of the **UIPickerComponent** container based on status selection.
 
 ```ts
 // xxx.ets
 @Entry
 @Component
 struct UIPickerComponentEventsExample {
-  // Construct status options.
-  private dataArray: string[] = ['To-do', 'In progress', 'Completed'];
+  // Construct the status option data.
+  private dataArray: string[] = ['To do', 'In progress', 'Completed'];
   @State onChangeDesc: string = '';
   @State onScrollStopDesc: string = '';
+  @State index: number = 0;
 
   build() {
     Column() {
       Row() {
-        UIPickerComponent() {
+        UIPickerComponent({
+          selectedIndex: this.index
+        }) {
           ForEach(this.dataArray, (item: string) => {
             Text(item)
           })
         }
-        // Configure the onChange callback.
+        // Configure the onChange event callback.
         .onChange((selectedIndex: number) => {
-          this.onChangeDesc = 'on change: ' + selectedIndex
+          this.index = selectedIndex;
+          this.onChangeDesc = 'on change: ' + selectedIndex;
         })
-        // Configure the onScrollStop callback.
+        // Configure the onScrollStop event callback.
         .onScrollStop((selectedIndex: number) => {
-          this.onScrollStopDesc = 'on scroll stop: ' + selectedIndex
+          this.onScrollStopDesc = 'on scroll stop: ' + selectedIndex;
         })
         .width('70%')
       }
@@ -354,10 +409,11 @@ struct UIPickerComponentEventsExample {
 }
 ```
 
+<!--Del-->![containerPicker] (./figures/ContainerPickerDemo2.gif)<!--DelEnd-->
 
 ### Example 3: Setting the Selected Item Index
 
-Since API version 22, this example demonstrates how to set the selected item index of the **UIPickerComponent** container.
+Since API version 22, this example implements setting the selected item index of the **UIPickerComponent** container.
 
 ```ts
 // xxx.ets
@@ -368,7 +424,7 @@ struct UIPickerComponentSelectedIndexExample {
   @State selectedIndex: number = 0;
 
   aboutToAppear(): void {
-    // Construct options.
+    // Construct the option data.
     for (let i = 1; i <= 10; i++) {
       this.dataArray.push(i.toString())
     }
@@ -378,7 +434,7 @@ struct UIPickerComponentSelectedIndexExample {
     Column() {
       Row() {
         UIPickerComponent({
-          // Configure the index of the selected item.
+          // Configure the selected item index.
           selectedIndex: this.selectedIndex
         }) {
           ForEach(this.dataArray, (item: string) => {
@@ -386,10 +442,10 @@ struct UIPickerComponentSelectedIndexExample {
           })
         }
         .onChange((selectedIndex: number) => {
-          this.selectedIndex = selectedIndex
+          this.selectedIndex = selectedIndex;
         })
         .onScrollStop((selectedIndex: number) => {
-          this.selectedIndex = selectedIndex
+          this.selectedIndex = selectedIndex;
         })
         .width('70%')
       }
@@ -408,7 +464,7 @@ struct UIPickerComponentSelectedIndexExample {
 
 ### Example 4: Setting the Selected Item Indicator
 
-Since API version 22, this example demonstrates how to set the selected item indicator of the **UIPickerComponent** container. Scenarios include the following: When using a background indicator, set the background color and background corner radius. When using a divider indicator, set the divider color, divider width, start side margin, and end side margin.
+Since API version 22, this example implements setting the selected item indicator of the **UIPickerComponent** container. Specifically, when a background indicator is used, set **backgroundColor** and **borderRadius** of [PickerIndicatorStyle](#pickerindicatorstyle); when a divider indicator is used, set **strokeWidth**, **dividerColor**, **startMargin**, and **endMargin** of [PickerIndicatorStyle](#pickerindicatorstyle).
 
 ```ts
 // xxx.ets
@@ -418,7 +474,7 @@ import { LengthMetrics } from '@kit.ArkUI';
 @Component
 struct UIPickerComponentIndicatorExample {
   private dataArray: string[] = [];
-  @State indicatorType: PickerIndicatorType | undefined = undefined;
+  @State indicatorType: Optional<PickerIndicatorType> = undefined;
   @State bgColor: Color | undefined = undefined;
   @State dividerColor: Color | undefined = undefined;
   @State strokeWidth: LengthMetrics = LengthMetrics.px(2);
@@ -477,7 +533,7 @@ struct UIPickerComponentIndicatorExample {
       }
 
       Row() {
-        Text('Start Side Margin')
+        Text('Start Margin')
       }.margin(2)
 
       Row() {
@@ -508,7 +564,7 @@ struct UIPickerComponentIndicatorExample {
       }
 
       Row() {
-        Text('End Side Margin')
+        Text('End Margin')
       }.margin(2)
 
       Row() {
@@ -645,7 +701,7 @@ struct UIPickerComponentIndicatorExample {
   }
 
   aboutToAppear(): void {
-    // Construct options.
+    // Construct the option data.
     for (let i = 1; i <= 10; i++) {
       this.dataArray.push(i.toString())
     }
@@ -707,7 +763,7 @@ struct UIPickerComponentIndicatorExample {
 
 ### Example 5: Customizing the Month Picker
 
-Since API version 22, this example demonstrates how to use the **UIPickerComponent** container to nest text child components to implement the month picker.
+Since API version 22, this example uses the **UIPickerComponent** container with nested text child components to implement a month picker.
 
 ```ts
 // xxx.ets
@@ -718,9 +774,9 @@ struct MonthUIPickerComponentExample {
   private monthArray: string[] = [];
 
   aboutToAppear(): void {
-    // Construct options.
+    // Construct the option data.
     for (let i = 1; i <= 12; i++) {
-      this.monthArray.push(i + 'Month')
+      this.monthArray.push(i + 'month')
     }
   }
 
@@ -739,15 +795,15 @@ struct MonthUIPickerComponentExample {
       .canLoop(true)
       // Disable haptic feedback.
       .enableHapticFeedback(false)
-      // Set the indicator of the selected item to a divider.
+      // Configure the selected item indicator as a divider.
       .selectionIndicator({ type: PickerIndicatorType.DIVIDER })
       // Subscribe to the selected item change event.
       .onChange((idx: number) => {
-        console.info('UIPickerComponent item changed: ' + this.monthArray[idx])
+        console.info('UIPickerComponent item changed: ' + this.monthArray[idx]);
       })
-      // Subscribe to the scrolling stop event.
+      // Subscribe to the scroll stop event.
       .onScrollStop((idx: number) => {
-        console.info('UIPickerComponent scroll stopped: ' + this.monthArray[idx])
+        console.info('UIPickerComponent scroll stopped: ' + this.monthArray[idx]);
       })
     }
     .width('100%')
@@ -759,17 +815,17 @@ struct MonthUIPickerComponentExample {
 
 ### Example 6: Customizing the Area Picker
 
-Since API version 22, this example demonstrates how to use the multi-column **UIPickerComponent** container combination to implement an area selector.
+Since API version 22, this example uses a multi-column **UIPickerComponent** container combination to implement an area selector.
 
 ```ts
 // xxx.ets
 
 type RegionDict = Record<string, Record<string, Array<string>>>;
-// Define a region dictionary.
+// Define the region dictionary.
 let regionData: RegionDict = {
   'Liaoning': {
     'Shenyang': ['Shenhe District', 'Heping District', 'Hunnan District'],
-    'Dalian': ['Zhongshan District', 'Jinzhou District', 'Changhai County'],
+    'Dalian': ['Zhongshan District', 'Jinzhou District', 'Changhai County']
   },
   'Jilin': {
     'Changchun': ['Nanguan District', 'Kuancheng District', 'Chaoyang District'],
@@ -798,16 +854,16 @@ struct RegionUIPickerComponentExample {
 
   flushCityColumn() {
     let currentProvince = this.provinces[this.provinceIndex]
-    this.cities = Object.keys(regionData[currentProvince])
-    this.cityIndex = 0
+    this.cities = Object.keys(regionData[currentProvince]);
+    this.cityIndex = 0;
     this.flushCountyColumn()
   }
 
   flushCountyColumn() {
     let currentProvince = this.provinces[this.provinceIndex]
     let currentCity = this.cities[this.cityIndex]
-    this.counties = regionData[currentProvince][currentCity]
-    this.countyIndex = 0
+    this.counties = regionData[currentProvince][currentCity];
+    this.countyIndex = 0;
   }
 
   build() {
@@ -822,12 +878,12 @@ struct RegionUIPickerComponentExample {
           })
         }
         .onChange((selectedIndex: number) => {
-          this.provinceIndex = selectedIndex
+          this.provinceIndex = selectedIndex;
           this.flushCityColumn()
 
         })
         .onScrollStop((selectedIndex: number) => {
-          this.provinceIndex = selectedIndex
+          this.provinceIndex = selectedIndex;
         })
         .selectionIndicator({ type: PickerIndicatorType.DIVIDER })
         .width('25%')
@@ -841,11 +897,11 @@ struct RegionUIPickerComponentExample {
           })
         }
         .onChange((selectedIndex: number) => {
-          this.cityIndex = selectedIndex
+          this.cityIndex = selectedIndex;
           this.flushCountyColumn()
         })
         .onScrollStop((selectedIndex: number) => {
-          this.cityIndex = selectedIndex
+          this.cityIndex = selectedIndex;
         })
         .selectionIndicator({ type: PickerIndicatorType.DIVIDER })
         .width('25%')
@@ -859,10 +915,10 @@ struct RegionUIPickerComponentExample {
           })
         }
         .onChange((selectedIndex: number) => {
-          this.countyIndex = selectedIndex
+          this.countyIndex = selectedIndex;
         })
         .onScrollStop((selectedIndex: number) => {
-          this.countyIndex = selectedIndex
+          this.countyIndex = selectedIndex;
         })
         .selectionIndicator({ type: PickerIndicatorType.DIVIDER })
         .width('25%')
@@ -877,7 +933,7 @@ struct RegionUIPickerComponentExample {
 
 ### Example 7: Customizing Option Types
 
-Since API version 22, this example uses the **UIPickerComponent** container to implement pickers with different option types, including text picker, image picker, and text-image combination picker.
+Since API version 22, this example uses the **UIPickerComponent** container to implement pickers with different option types, including a text picker, an image picker, and a combined image-text picker.
 
 ```ts
 // xxx.ets
@@ -886,13 +942,13 @@ Since API version 22, this example uses the **UIPickerComponent** container to i
 struct UIPickerComponentExample {
   @State textList: string[] =
     ['text1', 'text2', 'text3', 'text4', 'text5', 'text6', 'text7', 'text8'];
-  // Replace $r('sys.media.*') with the image resource file you use.
+  // Replace the following $r('sys.media.*') resource files with the image resource files you use.
   @State imageList: Resource[] =
     [$r('sys.media.ohos_ic_normal_white_grid_audio'), $r('sys.media.ohos_ic_normal_white_grid_calendar'),
       $r('sys.media.ohos_ic_normal_white_grid_compress'), $r('sys.media.ohos_ic_normal_white_grid_doc'),
       $r('sys.media.ohos_ic_normal_white_grid_flac'), $r('sys.media.ohos_ic_normal_white_grid_folder'),
       $r('sys.media.ohos_ic_normal_white_grid_html'), $r('sys.media.ohos_ic_normal_white_grid_image')];
-  // Replace the $r('sys.symbol.*') file with the image resource file you use.
+  // Replace the following $r('sys.symbol.*') resource files with the image resource files you use.
   @State symbolList: Resource[] =
     [$r('sys.symbol.calendar_01'), $r('sys.symbol.calendar_02'), $r('sys.symbol.calendar_03'),
       $r('sys.symbol.calendar_04'), $r('sys.symbol.calendar_05'), $r('sys.symbol.calendar_06'),
@@ -974,14 +1030,16 @@ struct UIPickerComponentExample {
 
 ### Example 8: Customizing the Time Picker
 
-Since API version 22, this example implements a time picker with the following functions: enabling/disabling loop scrolling, showing/hiding seconds, toggling 24-hour format, displaying/hiding leading zeros, adapting to the current system language for content rendering, and adjusting the column display order based on language habits.
+Since API version 22, this example implements a time picker with the following features: setting whether to loop scrolling, whether to display seconds, whether to use the 24-hour format, and whether to display leading zeros. It can also display content in the language corresponding to the current system language and adjust the display order of each column based on language habits.
 
 > **NOTE**
-> - In this example, the content of each column of the time picker is displayed in the corresponding language based on the system language. For example, AM/PM is displayed in the English system.
-> - In this example, the columns of the time picker are adjusted according to the system language, for example: English system displays hour/minute/second/AMPM.
+> - In this example, the content of each column of the time picker is displayed in the language corresponding to the system language. For example, an English system displays AM/PM, while a Chinese system displays morning/afternoon.
+> - In this example, the display order of each column of the time picker is adjusted according to the system language. For example, an English system displays hour/minute/second/AMPM, while a Chinese system displays morning/afternoon/hour/minute/second.
 
-To achieve text switching with system language, you need to add the text for the corresponding languages in the project's **resource** directory, for example:
-- Chinese (default): Create the **base** directory in the **resource** directory, create the **element** directory in the **base** directory, and add the **string.json** file to the **element** directory. (If the file already exists, add the following key-value pair in the name-value format to the file. Do not directly overwrite the original file.) The following shows the file content:
+To make "morning/afternoon" switch with the system language, you need to add the corresponding language translations in the resource directory of the project. For example:
+
+- Chinese (default): Create a **base** directory under the **resource** directory, create an **element** directory under the **base** directory, and add a **string.json** file under the **element** directory (if the file already exists, append the following "name"-"value" key-value pairs to the file instead of overwriting the original file). The file content is as follows:
+
     ```json
     {
       "string": [
@@ -1000,7 +1058,9 @@ To achieve text switching with system language, you need to add the text for the
       ]
     }
     ```
-- English: Create the **en** directory in the **resource** directory, create the **element** directory in the **en** directory, and add the **string.json** file to the **element** directory. If the file already exists, add the key-value pair in the name-value format to the file. Do not overwrite the original file. The following shows the file content:
+
+- English: Create the **en** directory under the **resource** directory, create the **element** directory under the **en** directory, and add the **string.json** file under the **element** directory (if the file already exists, append the following "name"-"value" key-value pairs to the file instead of overwriting the original file). The file content is as follows:
+
     ```json
     {
       "string": [
@@ -1019,7 +1079,9 @@ To achieve text switching with system language, you need to add the text for the
       ]
     }
     ```
-- Arabic: Create the **ar** directory in the **resource** directory, create the **element** directory in the **ar** directory, and add the **string.json** file to the **element** directory. If the file already exists, add the key-value pair in the name-value format to the file. Do not overwrite the original file. The following shows the file content:
+
+- Arabic: Create the **ar** directory under the **resource** directory, create the **element** directory under the **ar** directory, and add the **string.json** file under the **element** directory (if the file already exists, append the following "name"-"value" key-value pairs to the file instead of overwriting the original file). The file content is as follows:
+
     ```json
     {
       "string": [
@@ -1038,9 +1100,11 @@ To achieve text switching with system language, you need to add the text for the
       ]
     }
     ```
-- Other languages are similar.
 
-Sample code:
+- The same applies to other languages.
+
+The sample code is as follows:
+
 ```ts
 // xxx.ets
 import { LengthMetrics } from '@kit.ArkUI';
@@ -1089,8 +1153,9 @@ struct TimeUIPickerComponentExample {
   sysLanguageChanged: boolean = false
   zero: string = '0'
   systemLanguage: string = i18n.System.getSystemLanguage();
-  // Create a NumberFormat object using the current system locale ID.
+  // Create a NumberFormat object using the current locale ID of the system.
   formatter: intl.NumberFormat = new intl.NumberFormat();
+  private subscriber: commonEventManager.CommonEventSubscriber | undefined = undefined;
 
   aboutToAppear(): void {
     this.zero = this.formatter.format(0)
@@ -1099,23 +1164,22 @@ struct TimeUIPickerComponentExample {
     this.flushMinSecColumn()
     this.flushCurrentTime()
     this.flushBorderStyle()
-    let subscriber: commonEventManager.CommonEventSubscriber;
     let subscribeInfo: commonEventManager.CommonEventSubscribeInfo = {
       events: [commonEventManager.Support.COMMON_EVENT_LOCALE_CHANGED]
     };
-    // Create a subscriber to listen for the system language changes.
+    // Create a subscriber to listen for system language changes.
     commonEventManager.createSubscriber(subscribeInfo)
       .then((commonEventSubscriber: commonEventManager.CommonEventSubscriber) => {
         console.info("CreateSubscriber");
-        subscriber = commonEventSubscriber;
-        commonEventManager.subscribe(subscriber, (err, data) => {
+        this.subscriber = commonEventSubscriber;
+        commonEventManager.subscribe(this.subscriber, (err, data) => {
           if (err) {
             console.error(`Failed to subscribe common event. error code: ${err.code}, message: ${err.message}.`);
             return;
           }
           this.formatter = new intl.NumberFormat();
-          this.zero = this.formatter.format(0)
-          this.sysLanguageChanged = true
+          this.zero = this.formatter.format(0);
+          this.sysLanguageChanged = true;
           this.systemLanguage = i18n.System.getSystemLanguage();
           this.flushAmPmColumn()
           this.flushHourColumn()
@@ -1127,6 +1191,17 @@ struct TimeUIPickerComponentExample {
       .catch((err: BusinessError) => {
         console.error(`CreateSubscriber failed, code is ${err.code}, message is ${err.message}`);
       });
+  }
+
+  // Refresh the UI state after the system language changes.
+  aboutToDisappear(): void {
+    if (this.subscriber) {
+      commonEventManager.unsubscribe(this.subscriber, (err) => {
+        if (err) {
+          console.error(`Failed to unsubscribe common event. error code: ${err.code}, message: ${err.message}.`);
+        }
+      });
+    }
   }
 
   onPageShow(): void {
@@ -1155,12 +1230,13 @@ struct TimeUIPickerComponentExample {
   }
 
   flushAmPmColumn() {
-    // Set whether to display the amPm column at the end based on linguistic habits.
+    // Set whether the amPm column is placed last based on language habits.
     if (this.systemLanguage.startsWith('en') || this.systemLanguage == 'ug') {
       this.amPmAtLast = true
     } else {
       this.amPmAtLast = false
     }
+    this.amPmArr = [];
     this.amPmArr[0] = this.getUIContext().getHostContext()?.resourceManager.getStringSync($r('app.string.am').id)
     this.amPmArr[1] = this.getUIContext().getHostContext()?.resourceManager.getStringSync($r('app.string.pm').id)
   }
@@ -1180,7 +1256,7 @@ struct TimeUIPickerComponentExample {
   flushBorderStyle() {
     let realStartBorder = this.startBorderStyle
     let realEndBorder = this.endBorderStyle
-    // Set the time sequence of the RTL language based on linguistic habits.
+    // Set the time order of the RTL language based on language habits.
     if (this.systemLanguage == 'ar' || this.systemLanguage == 'ug') {
       this.isRtl = true
       realStartBorder = this.endBorderStyle
@@ -1225,8 +1301,8 @@ struct TimeUIPickerComponentExample {
   @Builder
   buildAmPmColumn() {
     UIPickerComponent({ selectedIndex: this.amPmIndex }) {
-      ForEach(this.amPmArr, (amPm: string) => {
-        Text(amPm)
+      ForEach(this.amPmArr, (amPm: string | undefined) => {
+        Text(amPm ?? '')
       })
     }
     .width('200px')
@@ -1317,18 +1393,18 @@ struct TimeUIPickerComponentExample {
   flushCurrentTime() {
     this.currentTime = ''
     if (!this.useMilitary) {
-      this.currentTime += this.amPmArr[this.amPmIndex] + ' '
+      this.currentTime += this.amPmArr[this.amPmIndex] + ' ';
     }
-    this.currentTime += this.hourArr[this.hourIndex] + ':' + this.minSecArr[this.minIndex]
+    this.currentTime += this.hourArr[this.hourIndex] + ':' + this.minSecArr[this.minIndex];
     if (this.showSecond) {
-      this.currentTime += ':' + this.minSecArr[this.secIndex]
+      this.currentTime += ':' + this.minSecArr[this.secIndex];
     }
   }
 
   build() {
     Column() {
       Row() {
-        // Create columns according to the display sequence of the RTL language.
+        // Create columns based on the display order of the RTL language.
         if (!this.isRtl) {
           if (!this.useMilitary && !this.amPmAtLast) {
             this.buildAmPmColumn()
@@ -1392,14 +1468,14 @@ struct TimeUIPickerComponentExample {
               this.useMilitary = isOn
               if (this.useMilitary) {
                 if (this.amPmIndex) {
-                  this.hourIndex += 12
+                  this.hourIndex += 12;
                 }
               } else {
                 if (this.hourIndex >= 12) {
-                  this.amPmIndex = 1
-                  this.hourIndex -= 12
+                  this.amPmIndex = 1;
+                  this.hourIndex -= 12;
                 } else {
-                  this.amPmIndex = 0
+                  this.amPmIndex = 0;
                 }
               }
               this.flushBorderStyle()
@@ -1426,3 +1502,135 @@ struct TimeUIPickerComponentExample {
 ```
 
 ![containerPicker](./figures/ContainerPickerDemo8.gif)
+
+### Example 9: Setting the Item Height
+
+This example uses [itemHeight](#itemheight) to set the item height of the **UIPickerComponent** container.
+
+Since API version 26.0.0, the [itemHeight](#itemheight) attribute is added.
+
+```ts
+// xxx.ets
+import { LengthMetrics } from '@kit.ArkUI';
+
+@Entry
+@Component
+struct UIPickerComponentItemHeightExample {
+  private dataArray: string[] = [];
+  @State pickerItemHeight: LengthMetrics | undefined = undefined;
+  @State selectedIndex: number = 0;
+
+  aboutToAppear(): void {
+    for (let i = 1; i <= 10; i++) {
+      this.dataArray.push('Item' + i)
+    }
+  }
+
+  build() {
+    Column({ space: 12 }) {
+      Text('Current itemHeight:' + (this.pickerItemHeight ? this.pickerItemHeight.value + 'vp' : 'Default value (40vp)'))
+        .fontSize(16)
+
+      UIPickerComponent({
+        selectedIndex: this.selectedIndex
+      }) {
+        ForEach(this.dataArray, (item: string) => {
+          Text(item)
+        })
+      }
+      .width('70%')
+      .itemHeight(this.pickerItemHeight)
+      .onChange((selectedIndex: number) => {
+        this.selectedIndex = selectedIndex
+      })
+
+      Row({ space: 12 }) {
+        Button('40vp')
+          .onClick(() => {
+            this.pickerItemHeight = LengthMetrics.vp(40)
+          })
+        Button('50vp')
+          .onClick(() => {
+            this.pickerItemHeight = LengthMetrics.vp(50)
+          })
+        Button('64vp')
+          .onClick(() => {
+            this.pickerItemHeight = LengthMetrics.vp(64)
+          })
+      }
+    }
+    .width('100%')
+    .padding(16)
+  }
+}
+```
+
+<!--Del-->![containerPicker] (./figures/ContainerPickerDemo9.jpg)<!--DelEnd-->
+
+### Example 10: Setting the Number of Visible Items
+
+This example uses [displayedItemCount](#displayeditemcount) to set the number of visible items in the **UIPickerComponent** container.
+
+Since API version 26.0.0, the [displayedItemCount](#displayeditemcount) attribute is added.
+
+```ts
+// xxx.ets
+@Entry
+@Component
+struct UIPickerComponentDisplayedCountExample {
+  private dataArray: string[] = [];
+  @State visibleCount: number = 7;
+  @State selectedIndex: number = 0;
+
+  aboutToAppear(): void {
+    for (let i = 1; i <= 12; i++) {
+      this.dataArray.push('Item' + i)
+    }
+  }
+
+  build() {
+    Column({ space: 12 }) {
+      Text('displayedItemCount: ' + this.visibleCount)
+        .fontSize(16)
+
+      UIPickerComponent({
+        selectedIndex: this.selectedIndex
+      }) {
+        ForEach(this.dataArray, (item: string) => {
+          Text(item)
+        })
+      }
+      .onChange((selectedIndex: number) => {
+        this.selectedIndex = selectedIndex
+      })
+      .width('70%')
+      .displayedItemCount(this.visibleCount)
+
+      Row({ space: 12 }) {
+        Button('Item 3')
+          .width(120)
+          .height(40)
+          .onClick(() => {
+            this.visibleCount = 3
+          })
+        Button('Item 5')
+          .width(120)
+          .height(40)
+          .onClick(() => {
+            this.visibleCount = 5
+          })
+        Button('Item 8 (auto changes to 9)')
+          .width(120)
+          .height(40)
+          .onClick(() => {
+            this.visibleCount = 8
+          })
+      }
+    }
+    .width('100%')
+    .padding(16)
+  }
+}
+```
+
+<!--Del-->![containerPicker] (./figures/ContainerPickerDemo10.jpg)<!--DelEnd-->
