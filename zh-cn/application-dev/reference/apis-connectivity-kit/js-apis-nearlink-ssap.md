@@ -139,9 +139,9 @@ try {
 
 SSAP客户端类，提供了和服务端进行连接和数据传输等操作方法。
 
-- 使用该类的方法前，需通过[ssap.createClient](#ssapcreateclient)方法构造该类的实例。
+使用该类的方法前，需通过[ssap.createClient](#ssapcreateclient)方法构造该类的实例。
 
-同一应用针对同一远端设备创建一个 [Client](#client) 实例即可，重复创建会增加不必要的资源开销。
+同一应用针对同一远端设备创建一个[Client](#client)实例即可，重复创建会增加不必要的资源开销。
 
 **起始版本：** 26.0.0
 
@@ -524,7 +524,7 @@ setPropertyNotification(property: Property, enable: boolean): Promise&lt;void&gt
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| property | [Property](#property) | 是 | 服务端属性。该属性需支持NOTIFY操作（即operation包含NOTIFY，详见Operation）。 |
+| property | [Property](#property) | 是 | 服务端属性。该属性需支持NOTIFY操作（即operation包含NOTIFY，详见[Operation](#operation)）。 |
 | enable | boolean | 是 | 是否打开通知功能。true: 打开通知功能。false: 关闭通知功能。 |
 
 **返回值：** 
@@ -876,9 +876,9 @@ try {
 
 SSAP服务端类，提供了和客户端进行连接和数据交互等操作方法。
 
-- 使用该类的方法前，需通过[ssap.createServer](#ssapcreateserver)方法构造该类的实例。
+使用该类的方法前，需通过[ssap.createServer](#ssapcreateserver)方法构造该类的实例。
 
-同一应用创建一个 [Server](#server) 实例即可，重复创建会增加不必要的资源开销。
+同一应用创建一个[Server](#server)实例即可，重复创建会增加不必要的资源开销。
 
 **起始版本：** 26.0.0
 
