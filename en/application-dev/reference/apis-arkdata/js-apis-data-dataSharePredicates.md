@@ -1,10 +1,12 @@
 # @ohos.data.dataSharePredicates (DataShare Predicates)
+
 <!--Kit: ArkData-->
 <!--Subsystem: DistributedDataManager-->
 <!--Owner: @woodenarow-->
 <!--Designer: @woodenarow; @xuelei3-->
 <!--Tester: @chenwan188; @logic42-->
 <!--Adviser: @ge-yafang-->
+<!-- md-trans-meta sourceCommit=e5066c2f55fbac2949890593f85e3dd2d951dc38 translatedAt=2026-08-14T08:54:55.943Z pushedAt=2026-08-15T03:12:59.301Z -->
 
 **DataSharePredicates** provides a filter object to query data in a database by using **DataShare** APIs. It is often used to update, delete, and query data.
 
@@ -15,7 +17,9 @@ The APIs provided by **DataSharePredicates** correspond to the filter criteria o
 - It is used as a search criterion in the media file management service. For details, see [FetchOptions](../apis-media-library-kit/arkts-apis-photoAccessHelper-i.md#fetchoptions) in the fetch options of the album management. In this scenario, you do not need to pay attention to the database type.
 
 <!--Del-->
-- It is used as a search criterion when APIs of the [RDB store](js-apis-data-relationalStore-sys.md) and [KV store](js-apis-distributedKVStore-sys.md) are called. In this scenario, use the corresponding predicate based on the database type.
+
+- It is used as the search criteria when APIs of the [RDB store](js-apis-data-relationalStore-sys.md) and [distributed KV store](js-apis-distributedKVStore-sys.md) are called. In this scenario, use the corresponding predicate based on the database type.
+
 <!--DelEnd-->
 
 > **NOTE**
@@ -24,8 +28,6 @@ The APIs provided by **DataSharePredicates** correspond to the filter criteria o
 >
 > - The APIs of this module can be used only in the stage model.
 
-
-
 ## Modules to Import
 
 ```ts
@@ -33,9 +35,12 @@ import { dataSharePredicates } from '@kit.ArkData';
 ```
 
 ## DataSharePredicates
+
 Provides APIs for setting different **DataSharePredicates** objects. This type is not multi-thread safe. If a **DataSharePredicates** instance is operated by multiple threads at the same time in an application, use a lock for it.
 
-### equalTo<sup>10+</sup>
+**System capability:** SystemCapability.DistributedDataManager.DataShare.Core
+
+### equalTo
 
 equalTo(field: string, value: ValueType): DataSharePredicates
 
@@ -43,7 +48,7 @@ Creates a **DataSharePredicates** object to search for the records in the specif
 
 Currently, both the RDB store and KV store support this predicate.
 
-**System capability**: SystemCapability.DistributedDataManager.DataShare.Core
+**System capability:** SystemCapability.DistributedDataManager.DataShare.Core
 
 **Atomic service API**: This API can be used in atomic services since API version 20.
 
@@ -51,8 +56,8 @@ Currently, both the RDB store and KV store support this predicate.
 
 | Name| Type                                               | Mandatory| Description                  |
 | ------ | --------------------------------------------------- | ---- | ---------------------- |
-| field  | string                                              | Yes  | Column name in the database table.<br>If this parameter is set to **undefined** or **null**, the predicate used is invalid.    |
-| value  | [ValueType](js-apis-data-valuesBucket.md#valuetype) | Yes  | Value to match.<br>If this parameter is set to **undefined** or **null**, the predicate used is invalid. |
+| field  | string                                              | Yes   | Column name in the database table.</br>If **field** is **undefined** or **null**, the predicate configured by this API call is invalid.     |
+| value  | [ValueType](js-apis-data-valuesBucket.md#valuetype) | Yes   | Value to match against the predicate.</br>If **value** is **undefined** or **null**, the predicate configured by this API call is invalid.  |
 
 **Return value**
 
@@ -67,8 +72,7 @@ let predicates = new dataSharePredicates.DataSharePredicates();
 predicates.equalTo("NAME", "Rose");
 ```
 
-
-### and<sup>10+</sup>
+### and
 
 and(): DataSharePredicates
 
@@ -76,7 +80,7 @@ Creates a **DataSharePredicates** object to add the AND condition.
 
 Currently, both the RDB store and KV store support this predicate.
 
-**System capability**: SystemCapability.DistributedDataManager.DataShare.Core
+**System capability:** SystemCapability.DistributedDataManager.DataShare.Core
 
 **Atomic service API**: This API can be used in atomic services since API version 20.
 
@@ -95,7 +99,7 @@ predicates.equalTo("NAME", "lisi")
     .equalTo("SALARY", 200.5);
 ```
 
-### orderByAsc<sup>10+</sup>
+### orderByAsc
 
 orderByAsc(field: string): DataSharePredicates
 
@@ -103,7 +107,7 @@ Creates a **DataSharePredicates** object that sorts records in ascending order.
 
 Currently, both the RDB store and KV store support this predicate.
 
-**System capability**: SystemCapability.DistributedDataManager.DataShare.Core
+**System capability:** SystemCapability.DistributedDataManager.DataShare.Core
 
 **Atomic service API**: This API can be used in atomic services since API version 20.
 
@@ -111,7 +115,7 @@ Currently, both the RDB store and KV store support this predicate.
 
 | Name| Type  | Mandatory| Description              |
 | ------ | ------ | ---- | ------------------ |
-| field  | string | Yes  | Column name in the database table.<br>If this parameter is set to **undefined** or **null**, the predicate used is invalid.|
+| field  | string | Yes  | Column name in the database table. </br>If **field** is **undefined** or **null**, the predicate configured by this API call is invalid. |
 
 **Return value**
 
@@ -126,7 +130,7 @@ let predicates = new dataSharePredicates.DataSharePredicates();
 predicates.orderByAsc("AGE");
 ```
 
-### orderByDesc<sup>10+</sup>
+### orderByDesc
 
 orderByDesc(field: string): DataSharePredicates
 
@@ -134,7 +138,7 @@ Creates a **DataSharePredicates** object that sorts data in descending order.
 
 Currently, both the RDB store and KV store support this predicate.
 
-**System capability**: SystemCapability.DistributedDataManager.DataShare.Core
+**System capability:** SystemCapability.DistributedDataManager.DataShare.Core
 
 **Atomic service API**: This API can be used in atomic services since API version 20.
 
@@ -142,7 +146,7 @@ Currently, both the RDB store and KV store support this predicate.
 
 | Name| Type  | Mandatory| Description              |
 | ------ | ------ | ---- | ------------------ |
-| field  | string | Yes  | Column name in the database table.<br>If this parameter is set to **undefined** or **null**, the predicate used is invalid. |
+| field  | string  | Yes   | Column name in the database table.</br>If **field** is **undefined** or **null**, the predicate configured by this API call is invalid.  |
 
 **Return value**
 
@@ -157,7 +161,7 @@ let predicates = new dataSharePredicates.DataSharePredicates();
 predicates.orderByDesc("AGE");
 ```
 
-### limit<sup>10+</sup>
+### limit
 
 limit(total: number, offset: number): DataSharePredicates
 
@@ -165,7 +169,7 @@ Creates a **DataSharePredicates** object to specify the number of records in the
 
 Currently, both the RDB store and KV store support this predicate.
 
-**System capability**: SystemCapability.DistributedDataManager.DataShare.Core
+**System capability:** SystemCapability.DistributedDataManager.DataShare.Core
 
 **Atomic service API**: This API can be used in atomic services since API version 20.
 
@@ -173,7 +177,7 @@ Currently, both the RDB store and KV store support this predicate.
 
 | Name  | Type  | Mandatory| Description          |
 | -------- | ------ | ---- | -------------- |
-| total    | number | Yes  | Maximum number of records.<br>If the KV store is used and **total** is **undefined** or **null**, the maximum number of records is 0. For details about the value range, see the description of this parameter in [limit](./js-apis-distributedKVStore.md#limit).<br>If the RDB store is used and **total** is **undefined** or **null**, the maximum number of records is not limited. For details about the value range, see the description of this parameter in [limitAs](./js-apis-distributedKVStore.md#limit).<br> <br> |
+| total    | number | Yes  | Maximum number of records.<br>If the KV store is used and **total** is **undefined** or **null**, the maximum number of records is 0. For details about the value range, see the description of this parameter in [limit](./js-apis-distributedKVStore.md#limit).<br>If the RDB store is used and **total** is **undefined** or **null**, the maximum number of records is not limited. For details about the value range, see the description of this parameter in [limitAs](arkts-apis-data-relationalStore-RdbPredicates.md#limitas).|
 | offset | number | Yes  | Start position of the query result.<br>If this parameter is set to **undefined** or **null**, the start position is the beginning of the result set.<br>For details about the value range in a KV store, see the description of this parameter in [limit](./js-apis-distributedKVStore.md#limit).<br>For details about the value range in an RDB store, see the description of the **rowOffset** parameter in [offsetAs](arkts-apis-data-relationalStore-RdbPredicates.md#offsetas).|
 
 **Return value**
@@ -189,7 +193,7 @@ let predicates = new dataSharePredicates.DataSharePredicates();
 predicates.equalTo("NAME", "Rose").limit(10, 3);
 ```
 
-### in<sup>10+</sup>
+### in
 
 in(field: string, value: Array&lt;ValueType&gt;): DataSharePredicates
 
@@ -197,7 +201,7 @@ Creates a **DataSharePredicates** object to match the data that is within the sp
 
 Currently, both the RDB store and KV store support this predicate.
 
-**System capability**: SystemCapability.DistributedDataManager.DataShare.Core
+**System capability:** SystemCapability.DistributedDataManager.DataShare.Core
 
 **Atomic service API**: This API can be used in atomic services since API version 20.
 
@@ -205,8 +209,8 @@ Currently, both the RDB store and KV store support this predicate.
 
 | Name | Type            | Mandatory| Description                                   |
 | ------- | ---------------- | ---- | --------------------------------------- |
-| field   | string           | Yes| Column name in the database table.<br>If this parameter is set to **undefined** or **null**, the predicate used is invalid.                  |
-| value | Array&lt;[ValueType](js-apis-data-valuesBucket.md#valuetype)&gt; | Yes  | Array of the values to match.|
+| field   | string           | Yes | Column name in the database table.</br>If **field** is **undefined** or **null**, the predicate configured by this API call is invalid.</br>When **field** is the string **'null'** or **'undefined'**, the key-value database and relational database APIs may return unexpected matching results or throw an exception when using this predicate.                   |
+| value | Array<[ValueType](js-apis-data-valuesBucket.md#valuetype)> | Yes   | Value to match, specified as an array of **ValueType**.</br>If **value** is **undefined** or **null**, the predicate configured by this API call is invalid. |
 
 **Return value**
 
@@ -229,7 +233,7 @@ Creates a **DataSharePredicates** object to match the data that is not equal to 
 
 Currently, both the RDB store and KV store support this predicate.
 
-**System capability**: SystemCapability.DistributedDataManager.DataShare.Core
+**System capability:** SystemCapability.DistributedDataManager.DataShare.Core
 
 **Parameters**
 
@@ -255,11 +259,11 @@ predicates.notEqualTo("NAME", "Rose");
 
 beginWrap(): DataSharePredicates
 
-Adds a left parenthesis to this **DataSharePredicates**. This API is similar to "(" in an SQL statement and must be used with the right parenthesis.
+Adds a left parenthesis to the predicate, which is equivalent to "(" in an SQL statement and must be used together with the right parenthesis.
 
 Currently, only RDB store supports this predicate.
 
-**System capability**: SystemCapability.DistributedDataManager.DataShare.Core
+**System capability:** SystemCapability.DistributedDataManager.DataShare.Core
 
 **Return value**
 
@@ -283,11 +287,11 @@ predicates.equalTo("NAME", "lisi")
 
 endWrap(): DataSharePredicates
 
-Adds a right parenthesis to this **DataSharePredicates**. This API is similar to ")" in an SQL statement and must be used with the left parenthesis.
+Adds a right parenthesis to the predicate, which is equivalent to ")" in an SQL statement and must be used together with the left parenthesis.
 
 Currently, only RDB store supports this predicate.
 
-**System capability**: SystemCapability.DistributedDataManager.DataShare.Core
+**System capability:** SystemCapability.DistributedDataManager.DataShare.Core
 
 **Return value**
 
@@ -315,7 +319,7 @@ Creates a **DataSharePredicates** object to add the OR condition.
 
 Currently, both the RDB store and KV store support this predicate.
 
-**System capability**: SystemCapability.DistributedDataManager.DataShare.Core
+**System capability:** SystemCapability.DistributedDataManager.DataShare.Core
 
 **Return value**
 
@@ -340,7 +344,7 @@ Creates a **DataSharePredicates** object to match the data that matches the spec
 
 Currently, both the RDB store and KV store support this predicate.
 
-**System capability**: SystemCapability.DistributedDataManager.DataShare.Core
+**System capability:** SystemCapability.DistributedDataManager.DataShare.Core
 
 **Parameters**
 
@@ -370,7 +374,7 @@ Creates a **DataSharePredicates** object to match the data that is within the sp
 
 Currently, only RDB store supports this predicate.
 
-**System capability**: SystemCapability.DistributedDataManager.DataShare.Core
+**System capability:** SystemCapability.DistributedDataManager.DataShare.Core
 
 **Parameters**
 
@@ -401,7 +405,7 @@ Creates a **DataSharePredicates** object to match the data that is out of the sp
 
 Currently, only RDB store supports this predicate.
 
-**System capability**: SystemCapability.DistributedDataManager.DataShare.Core
+**System capability:** SystemCapability.DistributedDataManager.DataShare.Core
 
 **Parameters**
 
@@ -432,7 +436,7 @@ Creates a **DataSharePredicates** object to match the data that is greater than 
 
 Currently, both the RDB store and KV store support this predicate.
 
-**System capability**: SystemCapability.DistributedDataManager.DataShare.Core
+**System capability:** SystemCapability.DistributedDataManager.DataShare.Core
 
 **Parameters**
 
@@ -462,7 +466,7 @@ Creates a **DataSharePredicates** object to match the data that is less than the
 
 Currently, both the RDB store and KV store support this predicate.
 
-**System capability**: SystemCapability.DistributedDataManager.DataShare.Core
+**System capability:** SystemCapability.DistributedDataManager.DataShare.Core
 
 **Parameters**
 
@@ -492,7 +496,7 @@ Creates a **DataSharePredicates** object to match the data that is greater than 
 
 Currently, both the RDB store and KV store support this predicate.
 
-**System capability**: SystemCapability.DistributedDataManager.DataShare.Core
+**System capability:** SystemCapability.DistributedDataManager.DataShare.Core
 
 **Parameters**
 
@@ -522,7 +526,7 @@ Creates a **DataSharePredicates** object to match the data that is less than or 
 
 Currently, both the RDB store and KV store support this predicate.
 
-**System capability**: SystemCapability.DistributedDataManager.DataShare.Core
+**System capability:** SystemCapability.DistributedDataManager.DataShare.Core
 
 **Parameters**
 
@@ -552,7 +556,7 @@ Creates a **DataSharePredicates** object to match the data that is not in the sp
 
 Currently, both the RDB store and KV store support this predicate.
 
-**System capability**: SystemCapability.DistributedDataManager.DataShare.Core
+**System capability:** SystemCapability.DistributedDataManager.DataShare.Core
 
 **Parameters**
 
