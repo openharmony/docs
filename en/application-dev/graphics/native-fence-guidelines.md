@@ -6,7 +6,7 @@
 <!--Designer: @conan13234-->
 <!--Tester: @nobuggers-->
 <!--Adviser: @ge-yafang-->
-<!-- md-trans-meta sourceCommit=a5378ff86c391d40eb43f856a491e6ef7f252c53 translatedAt=2026-08-03T11:20:40.682Z pushedAt=2026-08-04T06:53:33.730Z -->
+<!-- md-trans-meta sourceCommit=1f370dd3425411b659f906071e53860b94f0e2f1 translatedAt=2026-08-15T01:51:26.591Z pushedAt=2026-08-15T08:26:29.838Z -->
 
 ## Overview
 
@@ -18,7 +18,7 @@ You can use its APIs to set the blocking time, block **fenceFd** permanently, cl
 
 | Name| Description|
 | -------- | -------- |
-| OH_NativeFence_IsValid (int fenceFd) | Checks whether **fenceFd** is valid.|
+| OH_NativeFence_IsValid (int fenceFd) | Checks whether **fenceFd** is valid. |
 | OH_NativeFence_Wait (int fenceFd, uint32_t timeout) | Blocks the input **fenceFd**. The timeout parameter specifies the maximum waiting time.|
 | OH_NativeFence_WaitForever (int fenceFd) | Permanently blocks the input **fenceFd**.|
 | OH_NativeFence_Close (int fenceFd) | Closes **fenceFd**.|

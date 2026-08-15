@@ -6,7 +6,7 @@
 <!--Designer: @andeszhang-->
 <!--Tester: @murphy84-->
 <!--Adviser: @zhang_yixin13-->
-<!-- md-trans-meta sourceCommit=f0e283ec5c4bc528d359a2a2fde61332cedaf473 translatedAt=2026-08-04T08:30:37.965Z pushedAt=2026-08-04T09:02:35.985Z -->
+<!-- md-trans-meta sourceCommit=8e856b06a34a819612cae112a81452d688b21bcf translatedAt=2026-08-15T01:53:18.116Z pushedAt=2026-08-15T08:41:10.952Z -->
 
 In the inputmethod framework, use [getController](../reference/apis-ime-kit/js-apis-inputmethod.md#inputmethodgetcontroller9) to obtain the [InputMethodController](../reference/apis-ime-kit/js-apis-inputmethod.md#inputmethodcontroller) instance for binding the input method and listening to various events of the input method application, such as insertion, deletion, selection, and cursor movement. In this way, the input method can be used in the custom edit box, implementing more flexible and free editing operations.
 
@@ -59,7 +59,7 @@ In the inputmethod framework, use [getController](../reference/apis-ime-kit/js-a
      }
    ```
 
-3. In the component, obtain an **inputMethodController** instance. When the text is clicked, call the **controller** instance's **attach** method to bind and activate the soft keyboard, and register the input method to listen for text insertion and deletion events. This example only demonstrates insertion and deletion.
+3. In the component, obtain an **InputMethodController** instance. When the text is tapped, call the **controller** instance's **attach** method to bind and activate the soft keyboard, and  register listeners for input method events such as text insertion and deletion. This example only demonstrates insertion and deletion.
 
    <!-- @[input_case_input_CustomInput](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/InputMethod/KikaInputMethod/entry/src/main/ets/components/CustomInput.ets) -->
 

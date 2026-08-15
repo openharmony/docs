@@ -3,10 +3,10 @@
 <!--Kit: Localization Kit-->
 <!--Subsystem: Global-->
 <!--Owner: @yliupy-->
-<!--Designer: @sunyaozu-->
+<!--Designer: @zw_feifei-->
 <!--Tester: @lpw_work-->
 <!--Adviser: @ningningW-->
-<!-- md-trans-meta sourceCommit=9d4329aa9b07ce81fc1a2c848fb4cea93e274a8e translatedAt=2026-08-04T12:24:34.457Z pushedAt=2026-08-04T12:52:16.147Z -->
+<!-- md-trans-meta sourceCommit=1a7fdda7cb0bdacc6b1c367c8fd0def17530cd88 translatedAt=2026-08-15T01:53:00.502Z pushedAt=2026-08-15T08:42:04.577Z -->
 
 ## Function Description
 
@@ -47,5 +47,3 @@ For details about the APIs, see [getDisplayCountry](../reference/apis-localizati
    // locale: locale ID, for example, en-GB, en-US, or zh-Hans-CN.
    // sentenceCase: whether the first letter of the country/region name needs to be capitalized. The default value is true.
    ```
-
-<!--no_check-->

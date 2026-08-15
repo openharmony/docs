@@ -6,7 +6,7 @@
 <!--Designer: @liumingxiang-->
 <!--Tester: @yhl0101-->
 <!--Adviser: @ge-yafang-->
-<!-- md-trans-meta sourceCommit=983fa161ee12961fd07ba0428e932a03e0d706d9 translatedAt=2026-08-03T11:18:42.293Z pushedAt=2026-08-04T03:45:55.212Z -->
+<!-- md-trans-meta sourceCommit=8e9d3b746529fedba672cd46a96d4746984bcb6c translatedAt=2026-08-15T01:50:51.244Z pushedAt=2026-08-15T08:21:26.128Z -->
 
 When drawing text, simple text can be drawn and displayed by selecting appropriate fonts, sizes, and colors. Additionally, complex text drawing is supported by setting other styles, languages, paragraphs, etc.
 
@@ -27,6 +27,8 @@ Multi-language support is the foundation of globalized applications. Multi-langu
 When multi-language text is used, you can specify the **locale** field in **TextStyle** to match the corresponding font, skipping the process of traversing the font list to save time and memory.
 
 ### Available APIs
+
+The following table lists the APIs related to multilingual text drawing. For details, see [drawing_text_typography.h](../reference/apis-arkgraphics2d/capi-drawing-text-typography-h.md).
 
 | API Definition| Description| 
 | -------- | -------- |
@@ -88,6 +90,8 @@ OH_Drawing_DestroyTypography(typography);
 Multi-line text is more complex than single-line text. Generally, text typography, word break, text alignment, line limit, etc., are required for multi-line text, mainly achieved by setting paragraph styles.
 
 ### Available APIs
+
+The following table lists the APIs related to multiline text drawing. For details, see [drawing_text_typography.h](../reference/apis-arkgraphics2d/capi-drawing-text-typography-h.md).
 
 | API Definition| Description| 
 | -------- | -------- |
@@ -1208,5 +1212,3 @@ OH_Drawing_DestroyTextShadow(shadowCopy);
 ```
 
 ![styleCopy](figures/styleCopy.png)
-
-<!--no_check-->

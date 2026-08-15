@@ -6,7 +6,7 @@
  <!--Designer: @magekkkk-->
  <!--Tester: @Filger-->
  <!--Adviser: @w_Machine_cc-->
-<!-- md-trans-meta sourceCommit=1fbb3c5295b854c479b5b3f61badd31b93df018d translatedAt=2026-08-06T13:41:39.745Z pushedAt=2026-08-07T02:11:28.601Z -->
+<!-- md-trans-meta sourceCommit=5e96177c24aa23aee8ea58c394f1a2c3298d3e1c translatedAt=2026-08-15T01:55:39.975Z pushedAt=2026-08-15T08:46:28.695Z -->
 
 When implementing audio playback functionality, you may encounter issues such as stuttering, noise, and audio distortion. This topic describes common causes of playback stuttering and noise, along with troubleshooting methods, and provides reference code examples and a diagnostic workflow.
 

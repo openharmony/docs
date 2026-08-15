@@ -3,10 +3,10 @@
 <!--Kit: Connectivity Kit-->
 <!--Subsystem: Communication-->
 <!--Owner: @enjoy_sunshine-->
-<!--Designer: @chengguohong; @tangjia15-->
+<!--Designer: @tangjia15-->
 <!--Tester: @wangfeng517-->
 <!--Adviser: @zhang_yixin13-->
-<!-- md-trans-meta sourceCommit=ec7fab66fa30d750fca536e273d689ddd59486a0 translatedAt=2026-07-25T11:34:37.789Z pushedAt=2026-07-27T08:00:44.206Z -->
+<!-- md-trans-meta sourceCommit=14ca614ebb030bf413b2d8393352ad7521a1d1b9 translatedAt=2026-08-15T01:40:39.950Z pushedAt=2026-08-15T03:44:57.565Z -->
 
 - [Bluetooth Overview](bluetooth-overview.md)
 

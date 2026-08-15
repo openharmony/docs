@@ -6,7 +6,7 @@
 <!--Designer: @ccfriend-->
 <!--Tester: @chen-gong1-->
 <!--Adviser: @w_Machine_cc-->
-<!-- md-trans-meta sourceCommit=5e27a9d8e4aa1182efeac63bd0abe94a4aacf820 translatedAt=2026-08-10T03:48:16.434Z pushedAt=2026-08-10T08:02:52.206Z -->
+<!-- md-trans-meta sourceCommit=1ee34ce1eff50a8cf8b3b2ed4ccfabed4f0b661c translatedAt=2026-08-15T01:57:14.696Z pushedAt=2026-08-15T09:02:13.350Z -->
 
 Starting from API version 23, you can create an audio template controller to provide unified UI management (playlists, favorites, media details, etc.) and media playback control operations (play, pause, search, favorites, etc.) for other media apps that have connected to the audio template. This document describes the system API capabilities of the audio template and the basic development process, including listening for media apps connecting to the audio template, querying media app service data, and sending operation commands to media apps. For details about how a media app connects to the audio template, see [Using the Audio Template](using-avsession-AVMusicTemplate.md).
 
@@ -76,7 +76,7 @@ The basic development steps for the audio template system are as follows:
        };
 
      /**
-      * Create a template using getAllAVMusicTemplateDescriptors.
+      * Create an audio template controller based on bundleName.
       */
      public createAvMusicTemplateController(bundleName: string) {
        if (this.isStringEmpty(bundleName)) {
@@ -305,7 +305,8 @@ The basic development steps for the audio template system are as follows:
          description: 'description'
        };
        let searchPlayInfo: avMusicTemplate.SearchPlayInfo = {
-         musicInfo: searchPlayMusicInfo
+         musicInfo: searchPlayMusicInfo,
+         videoInfo: undefined
        };
        try {
          let operResult: avMusicTemplate.OperResult | undefined =
@@ -328,23 +329,40 @@ The basic development steps for the audio template system are as follows:
 
    For example, in a scenario where login causes user information changes, register the listener [onUserInfoChange](../../reference/apis-avsession-kit/arkts-apis-avMusicTemplate-AVMusicTemplateController.md#onuserinfochange). This is because when a user logs in by scanning a QR code on the audio template system UI, only the media application can detect the login state.
 
-      ``` TypeScript
-      import { avMusicTemplate } from '@kit.AVSessionKit';
+   ``` TypeScript
+   import { avMusicTemplate } from '@kit.AVSessionKit';
+   
+   const TAG: string = 'ControllerManager';
 
-      const TAG: string = 'ControllerManager';
+   export class ControllerManager {
+     private controller: avMusicTemplate.AVMusicTemplateController | undefined = undefined;
+     private userInfoChangeCallback: Callback<avMusicTemplate.UserInfo> = (userInfo: avMusicTemplate.UserInfo) => {
+       console.info(TAG, 'userInfoChangeCallback');
+     };
 
-      export class ControllerManager {
-        private controller: avMusicTemplate.AVMusicTemplateController | undefined = undefined;
-        private userInfoChangeCallback: Callback<avMusicTemplate.UserInfo> = (userInfo: avMusicTemplate.UserInfo) => {
-          console.info(TAG, 'userInfoChangeCallback');
-        };
+     private createController(sessionId: string) {
+       if (sessionId === null || sessionId === undefined) {
+         console.warn(TAG, 'createController: sessionId is invalid');
+         return;
+       }
+       if (this.controller != undefined) {
+         console.warn(TAG, 'createController: controller not undefined');
+         return;
+       }
+       try {
+         this.controller = avMusicTemplate.createAVMusicTemplateController(sessionId);
+         this.registerListener();
+       } catch (e) {
+         console.error(TAG, `Failed to createAVMusicTemplateController. Code: ${e?.code}`);
+       }
+     }
       
-        private registerListener() {
-          // Register a listener for user information changes.
-          this.controller?.onUserInfoChange(this.userInfoChangeCallback);
-        }
-      }
-      ```
+     private registerListener() {
+       // Register the listener for user information changes.
+       this.controller?.onUserInfoChange(this.userInfoChangeCallback);
+     }
+   }
+   ```
 
 5. When the audio template system app exits, promptly cancel event listeners and release resources. For details about unregistering the audio template API, see [@ohos.multimedia.avMusicTemplate (Audio Template) (System API)](../../reference/apis-avsession-kit/js-apis-avMusicTemplate-sys.md). For details about unregistering the event listener API, see [AVMusicTemplateController](../../reference/apis-avsession-kit/arkts-apis-avMusicTemplate-AVMusicTemplateController.md).
 
@@ -361,38 +379,7 @@ The basic development steps for the audio template system are as follows:
       * Unregister the listener.
       */
      public unregisterListener() {
-       // Unregister the listener for user information changes.
-       this.controller?.offUserInfoChange();
-   
-       // Unregister the listener for dialog command changes.
-       this.controller?.offDialogCommandChange();
-   
-       // Unregister the listener for current single changes.
-       this.controller?.offCurrentSingleChange();
-   
-       // Unregister the listener for media entity changes.
-       this.controller?.offMediaEntitiesChange();
-   
-       // Unregister the listener for tab content changes.
-       this.controller?.offTabContentChange();
-   
-       // Unregister the listener for playlist changes.
-       this.controller?.offPlaylistChange();
-   
-       // Unregister the listener for download media entity status changes.
-       this.controller?.offDownloadMediaEntityStatusChange();
-   
-       // Unregister the listener for custom element changes.
-       this.controller?.offCustomElementsChange();
-   
-       // Unregister the listener for settings changes.
-       this.controller?.offSettingsChange();
-   
-       // Unregister the listener for reporting execution actions.
-       this.controller?.offReportExecuteAction();
-   
-       // Unregister the listener for notifying the media center to launch a specified third-party application interface.
-       this.controller?.offExtensionAbilityChange();
+       // ...
      }
 
      /**

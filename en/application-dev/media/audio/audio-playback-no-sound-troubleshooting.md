@@ -6,7 +6,7 @@
  <!--Designer: @magekkkk-->
  <!--Tester: @Filger-->
  <!--Adviser: @w_Machine_cc-->
-<!-- md-trans-meta sourceCommit=b374109fe9de9ef34e398ccee5ce0184f9042b3c translatedAt=2026-08-06T13:42:01.251Z pushedAt=2026-08-07T02:08:04.736Z -->
+<!-- md-trans-meta sourceCommit=5e96177c24aa23aee8ea58c394f1a2c3298d3e1c translatedAt=2026-08-15T01:55:22.653Z pushedAt=2026-08-15T08:45:58.023Z -->
 
 When implementing audio playback, developers may encounter issues such as failure to create or start a playback instance, or silent playback. This document describes common symptoms, related background knowledge, and troubleshooting methods for silent playback scenarios, and provides sample code and troubleshooting procedures for direct reference.
 
@@ -165,7 +165,7 @@ Refer to the following example for audio parameter settings.
 
 - For sample code on using OHAudio for playback, see [(Recommended) Using OHAudio for Audio Playback (C/C++)](using-ohaudio-for-playback.md).
 
-- For sample code on using AudioRenderer for playback, see [Using AudioRenderer for Audio Playback (ArkTS)](using-audiorenderer-for-playback.md).
+- For sample code of using AudioRenderer for playback, refer to [Using AudioRenderer for Audio Playback (ArkTS)](using-audiorenderer-for-playback.md).
 
 - If the issue is related to concurrency with other audio tasks, refer to [Introduction to Audio Focus](audio-playback-concurrency.md) first, and also see [Handling Audio Focus Changes](audio-playback-concurrency.md#handling-audio-focus-changes).
 

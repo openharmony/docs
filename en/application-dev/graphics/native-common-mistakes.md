@@ -6,7 +6,7 @@
 <!--Designer: @conan13234-->
 <!--Tester: @nobuggers-->
 <!--Adviser: @ge-yafang-->
-<!-- md-trans-meta sourceCommit=740dcdea7b2e0f63c4b99baa0eb4f2e92e763430 translatedAt=2026-08-03T11:20:37.704Z pushedAt=2026-08-04T06:49:46.159Z -->
+<!-- md-trans-meta sourceCommit=1f370dd3425411b659f906071e53860b94f0e2f1 translatedAt=2026-08-15T01:51:09.858Z pushedAt=2026-08-15T08:26:08.224Z -->
 
 This section describes common issues that may arise during development with **NativeWindow**, **NativeBuffer**, and **NativeImage**, helping you avoid or locate these issues in a timely manner and improve app stability.
 
@@ -89,7 +89,7 @@ Possible causes are as follows:
 
 ```c++
 OH_NativeImage *image_ = OH_NativeImage_Create(textureId, GL_TEXTURE_2D);
-OHNativeWindow *nativewindow_ = OH_NativeImage_AcquireNativeWindow();
+OHNativeWindow *nativewindow_ = OH_NativeImage_AcquireNativeWindow(image_);
 
 // Error: OH_NativeImage_Destroy decrements the OHNativeWindow reference count internally, so calling OH_NativeWindow_DestroyNativeWindow is unnecessary.
 OH_NativeImage_Destroy(image_);
@@ -104,7 +104,7 @@ Solution: Delete **OH_NativeWindow_DestroyNativeWindow(nativewindow_)**, and set
 
 ```c++
 OH_NativeImage *image_ = OH_NativeImage_Create(textureId, GL_TEXTURE_2D);
-OHNativeWindow *nativewindow_ = OH_NativeImage_AcquireNativeWindow();
+OHNativeWindow *nativewindow_ = OH_NativeImage_AcquireNativeWindow(image_);
 
 // Set image_ and nativewindow_ to null when releasing NativeImage to prevent subsequent use of wild pointers.
 OH_NativeImage_Destroy(image_);
@@ -329,7 +329,7 @@ if (error) {
 }
 
 OH_NativeWindow_NativeWindowFlushBuffer(nativewindow_, buffer, fence, region);
-OH_NativeWindow_NativeObjectReference(buffer);
+OH_NativeWindow_NativeObjectUnreference(buffer);
 ```
 
 **Typical Error Code 2**

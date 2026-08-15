@@ -6,7 +6,7 @@
 <!--Designer: @peterhuangyu-->
 <!--Tester: @gcw_KuLfPSbe;@lipengpeng97-->
 <!--Adviser: @jinqiuheng-->
-<!-- md-trans-meta sourceCommit=69884e5262c53f0a947af1d2a8fa134d89b67ca7 translatedAt=2026-07-29T04:10:38.380Z pushedAt=2026-07-29T06:34:52.446Z -->
+<!-- md-trans-meta sourceCommit=903fa1e7788456f1328927a68af57d97fa343a93 translatedAt=2026-08-15T01:46:35.884Z pushedAt=2026-08-15T07:06:33.952Z -->
 
 ## Overview
 
@@ -833,4 +833,68 @@ The clustering specifications for enhanced log information are consistent with t
 
 You can obtain clustering features for enhanced log information by referring to [AppFreeze Fault Information Clustering](#appfreeze-fault-information-clustering) and use these features for clustering enhanced log information.
 
-<!--no_check-->
+## Disabling AppFreeze Detection
+
+During development and debugging, you can disable AppFreeze detection by using the following commands to prevent timeout detection from affecting your development and debugging.
+
+### Environment Requirements
+
+Before using the disabling command, obtain the [hdc tool](hdc.md#environment-setup) and run `hdc shell` to enter the device shell.
+
+### Constraints
+
+- **App type restriction**: Only debug-type apps support disabling detection. Release-type apps do not support this feature.
+
+- **Execution timing restriction**: Run the disabling command after the app is started.
+
+### How to Use
+
+**Enter debug mode**
+
+```shell
+aa attach -b <bundleName>
+```
+
+Examples:
+
+```shell
+aa attach -b com.example.appfreeze
+```
+
+When the app successfully enters debug mode, the following is returned:
+
+```text
+attach app debug successfully.
+```
+
+When the given `<bundleName>` parameter is invalid or does not exist, the following content is returned. For more details, see [attach](../tools/aa-tool.md#attach).
+
+```text
+error: failed to attach app debug.
+```
+
+**Exit debug mode**
+
+After debugging is complete, run the `aa detach` command to exit debug mode and restore the AppFreeze detection capability, ensuring that fault detection is not affected during normal app running.
+
+```shell
+aa detach -b <bundleName>
+```
+
+Examples:
+
+```shell
+aa detach -b com.example.appfreeze
+```
+
+When the app exits debug mode, the following is returned:
+
+```text
+detach app debug successfully.
+```
+
+When the given `<bundleName>` parameter is invalid or does not exist, the following content is returned. For more details, see [detach](../tools/aa-tool.md#detach).
+
+```text
+error: failed to detach app debug.
+```

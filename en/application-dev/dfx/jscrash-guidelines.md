@@ -6,7 +6,7 @@
 <!--Designer: @Maplestory91-->
 <!--Tester: @gcw_KuLfPSbe-->
 <!--Adviser: @jinqiuheng-->
-<!-- md-trans-meta sourceCommit=deda4f19015dd8c61f2e0d855c3c53292d681c7b translatedAt=2026-07-31T01:35:29.798Z pushedAt=2026-07-31T08:25:40.850Z -->
+<!-- md-trans-meta sourceCommit=949476dcd3d8ed42b1b2d346673060a5d59aa582 translatedAt=2026-08-15T01:48:07.938Z pushedAt=2026-08-15T07:21:58.511Z -->
 
 ## Overview
 
@@ -82,6 +82,7 @@ The fault log file name format is **jscrash-Process name-Process UID-Millisecond
 | HiLog | HiLog logs printed before the fault occurs. A maximum of 1000 lines can be printed.| 20 | Yes| - |
 | AsyncStack | Promise stack.| 23 | No| In ARM64, if the promise stack is enabled, this field is contained.|
 | ModuleImportStack | Module loading chain. | 26.0.0 | No | On ARM 64-bit systems, this field is included if the [module loading chain debug switch](../arkts-utils/arkts-module-debug.md) is enabled. |
+| NativeModuleErrorInfo | .so load failure information, up to 20 load failure records | 26.0.0 | Yes | - |
 
 Example of the JS crash log specifications:
 
@@ -362,6 +363,25 @@ HiLog:
 ...
 ```
 
+### NativeModuleErrorInfo
+
+The NativeModuleErrorInfo in the JS crash log can record up to 20 earliest .so loading failure entries. If the total exceeds 20, search for the keyword `Load native module failed` in hilog to check whether any .so loading failures occurred. The format of NativeModuleErrorInfo is as follows:
+
+```text
+...
+Stacktrace:
+...
+HybridStack:
+...
+NativeModuleErrorInfo:
+There are a total of 2 SO loading failure messages, and 2 of them are displayed here.
+#1 ModuleName:module1 Reason:dlopen failed: load module default/module1 failed.
+#2 ModuleName:module2 Reason:dlopen failed: load module default/module2 failed.
+...
+HiLog:
+...
+```
+
 ## JsCrash Clustering
 
 JsCrash clustering information starts with the `Stacktrace:` field and includes the call stack of `HybridStack:` on ARM 64-bit systems.
@@ -389,5 +409,3 @@ HybridStack:
 ```
 
 The clustering method is the same as that for Cpp Crash. For details, see [CppCrash Clustering](cppcrash-guidelines.md#cppcrash-clustering).
-
-<!--no_check-->

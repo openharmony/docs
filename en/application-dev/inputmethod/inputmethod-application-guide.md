@@ -6,7 +6,7 @@
 <!--Designer: @andeszhang-->
 <!--Tester: @murphy84-->
 <!--Adviser: @zhang_yixin13-->
-<!-- md-trans-meta sourceCommit=50dd23f41cb3e600d8f371a868db33f7562e8a56 translatedAt=2026-08-04T08:29:36.745Z pushedAt=2026-08-04T08:46:14.126Z -->
+<!-- md-trans-meta sourceCommit=8e856b06a34a819612cae112a81452d688b21bcf translatedAt=2026-08-15T01:53:22.262Z pushedAt=2026-08-15T08:39:28.113Z -->
 
 [InputMethodExtensionAbility](../reference/apis-ime-kit/js-apis-inputmethod-extension-ability.md) provides the **onCreate()** and **onDestroy()** callbacks, as described below. Override them as required. InputMethodExtensionAbility lifecycle:
 
@@ -75,7 +75,7 @@ To implement an input method application, manually create an InputMethodExtensio
    }
    ```
 
-2. **KeyboardController.ets** file. In addition to creating the input method window, setting input method event listeners, and implementing text insertion and deletion, KeyboardController can also use [getSystemPanelCurrentInsets](../reference/apis-ime-kit/js-apis-inputmethodengine.md#getsystempanelcurrentinsets21) to obtain the offset area between the input method keyboard and the system panel. The input method system panel varies across devices. When a device has a system panel, the offset area of the input method soft keyboard relative to the system panel is shown in the following figure:
+2. **KeyboardController.ets** file. In addition to creating the input method window, setting input method event listeners, and implementing text insertion and deletion, KeyboardController can also use the [getSystemPanelCurrentInsets](../reference/apis-ime-kit/js-apis-inputmethodengine.md#getsystempanelcurrentinsets21) method of the Panel object to obtain the offset area between the input method keyboard and the system panel. The input method system panel varies across devices. When a device has a system panel, the offset area of the input method soft keyboard relative to the system panel is shown in the following figure:
 
    ![Offset area diagram](./figures/offset-area-between-the-system-panel-and-soft-keyboard.png)
 

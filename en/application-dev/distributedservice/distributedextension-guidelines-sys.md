@@ -6,7 +6,7 @@
 <!--Designer: @gsxiaowen-->
 <!--Tester: @hanjiawei-->
 <!--Adviser: @hu-zhiqiong-->
-<!-- md-trans-meta sourceCommit=48f0b89caa0858009fb5f232c63d18dc83a99567 translatedAt=2026-08-01T02:51:08.185Z pushedAt=2026-08-01T06:58:23.759Z -->
+<!-- md-trans-meta sourceCommit=71fc984f7d50d301b27718c4ef8b2d391a022442 translatedAt=2026-08-15T01:48:08.941Z pushedAt=2026-08-15T07:01:07.122Z -->
 
 ## Overview
 
@@ -26,7 +26,7 @@ During cross-device collaboration, when device A is running in the background an
 
 Before you get started, familiarize yourself with the following concepts:
 
-* **Distributed Message Service (DMS)**
+* **Distributed Management Service (DMS)**
 
   A framework that provides distributed component management capabilities.
 
@@ -97,8 +97,8 @@ For details about how to use the APIs, see [@ohos.application.DistributedExtensi
 | Name                                                              | Description                      |
 | -------------------------------------------------------------------- | -------------------------- |
 | onCreate(want: Want): void;                                          | Creates a distributed collaboration task.      |
-| onDestroy(): void;                                                   | Destroys a distributed collaboration task.         |
-| onCollaborate(wantParam: Record): AbilityConstant.CollaborateResult; | Called when distributed collaboration is requested.|
+| onDestroy(): void;                                                   | Destroys a distributed collaboration task.          |
+| onCollaborate(wantParam: Record): AbilityConstant.CollaborateResult; | Called when distributed collaboration is requested. |
 
 ### Development Procedure
 
@@ -108,21 +108,25 @@ For details about how to use the APIs, see [@ohos.application.DistributedExtensi
 
    Example:
 
-   ```json
-   "extensionAbilities": [
-     {
-       "name": "EntrydistributedAbility",
-       "srcEntry": "./ets/entrybackupability/EntryDistributedAbility.ets",
-       "type": "distributed",
-       "exported": false,
-       "metadata": [
-         {
-           "name": "ohos.extension.DistributedExtension",
-         }
-       ],
-       "srcEntry": "./ets/common/MDSExtension.ts",
+   ```json5
+   {
+     "module": {
+       "extensionAbilities": [
+        {
+          "name": "EntrydistributedAbility",
+          "type": "distributed",
+          "exported": false,
+          "metadata": [
+            {
+              "name": "ohos.extension.DistributedExtension"
+            }
+          ],
+          "srcEntry": "./ets/common/MDSExtension.ts"
+        }
+       ]
      }
-   ]
+   }
+   
    ```
 
 2. Import the required modules.

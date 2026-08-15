@@ -3,10 +3,10 @@
 <!--Kit: Localization Kit-->
 <!--Subsystem: Global-->
 <!--Owner: @yliupy-->
-<!--Designer: @sunyaozu-->
+<!--Designer: @zw_feifei-->
 <!--Tester: @lpw_work-->
 <!--Adviser: @ningningW-->
-<!-- md-trans-meta sourceCommit=9d4329aa9b07ce81fc1a2c848fb4cea93e274a8e translatedAt=2026-08-04T12:25:21.395Z pushedAt=2026-08-04T13:10:59.107Z -->
+<!-- md-trans-meta sourceCommit=1a7fdda7cb0bdacc6b1c367c8fd0def17530cd88 translatedAt=2026-08-15T01:53:34.386Z pushedAt=2026-08-15T08:42:16.301Z -->
 
 ## Function Description
 
@@ -41,5 +41,3 @@ For details about how to use related APIs, see [IndexUtil](../reference/apis-loc
    // Obtain the index value of a string.
    let index = indexUtil.getIndex('Hello'); // index = 'N'
    ```
-
-<!--no_check-->

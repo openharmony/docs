@@ -1,4 +1,4 @@
-# Adding Widgets to the Home Screen
+# Adding ArkTS Widgets to the Home Screen from Within an App
 
 <!--Kit: Form Kit-->
 <!--Subsystem: Ability-->
@@ -6,7 +6,7 @@
 <!--Designer: @cx983299475-->
 <!--Tester: @mahailong123456-->
 <!--Adviser: @HelloShuo-->
-<!-- md-trans-meta sourceCommit=a08d450b4f575e3d4749ddeef9dd32275ec0a19e translatedAt=2026-08-03T02:27:31.668Z pushedAt=2026-08-03T07:00:44.052Z -->
+<!-- md-trans-meta sourceCommit=6d7419f1dd9729a9ceaeb24a3a1f1c514f7b60b3 translatedAt=2026-08-15T01:50:03.204Z pushedAt=2026-08-15T08:17:58.947Z -->
 
 Since API version 18, Form Kit provides the capability of adding ArkTS widgets to the home screen in an application, allowing users to conveniently view information or quickly access the application.
 

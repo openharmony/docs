@@ -6,7 +6,7 @@
 <!--Designer: @liumingxiang-->
 <!--Tester: @yhl0101-->
 <!--Adviser: @ge-yafang-->
-<!-- md-trans-meta sourceCommit=cc9ab098c82a97707ffdb5b7d7053b861bc0839c translatedAt=2026-08-03T11:24:29.884Z pushedAt=2026-08-04T07:48:19.301Z -->
+<!-- md-trans-meta sourceCommit=8e9d3b746529fedba672cd46a96d4746984bcb6c translatedAt=2026-08-15T01:52:00.573Z pushedAt=2026-08-15T08:35:47.980Z -->
 
 ## Overview
 
@@ -32,13 +32,13 @@ The following text measurement capabilities are supported:
 
 The following table lists the common APIs for text measurement. For details, see [drawing_text_typography.h](../reference/apis-arkgraphics2d/capi-drawing-text-typography-h.md).
 
-| Name| Description| 
+| Name| Description|
 | -------- | -------- |
-| double OH_Drawing_TypographyGetLongestLine(OH_Drawing_Typography\*) | Obtains the width of the longest line. You are advised to round up the return value in actual use.| 
-| double OH_Drawing_TypographyGetLongestLineWithIndent(OH_Drawing_Typography\*) | Obtains the width of the longest line, including its indentation. You are advised to round up the return value in actual use.| 
-| size_t OH_Drawing_TypographyGetLineCount (OH_Drawing_Typography\* ) | Obtains the number of lines.| 
-| OH_Drawing_LineMetrics\* OH_Drawing_TypographyGetLineMetrics (OH_Drawing_Typography\* ) | Obtains the metrics about a certain line in a paragraph, including the height, width, and start coordinates of a line.| 
-| double OH_Drawing_TextStyleGetLetterSpacing (OH_Drawing_TextStyle \*) | Obtains the letter spacing of a text style.| 
+| double OH_Drawing_TypographyGetLongestLine(OH_Drawing_Typography\* typography) | Obtains the width of the longest line. You are advised to round up the return value in actual use. |
+| double OH_Drawing_TypographyGetLongestLineWithIndent(OH_Drawing_Typography\* typography) | Obtains the width of the longest line, including its indentation. You are advised to round up the return value in actual use. |
+| size_t OH_Drawing_TypographyGetLineCount(OH_Drawing_Typography\* typography) | Obtains the number of lines. |
+| OH_Drawing_LineMetrics\* OH_Drawing_TypographyGetLineMetrics(OH_Drawing_Typography\* typography) | Obtains the metrics about a certain line in a paragraph, including the height, width, and start coordinates of a line. |
+| double OH_Drawing_TextStyleGetLetterSpacing(OH_Drawing_TextStyle\* style) | Obtains the letter spacing of a text style. |
 
 ## How to Develop
 

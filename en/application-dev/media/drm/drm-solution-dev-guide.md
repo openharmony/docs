@@ -450,7 +450,7 @@ clearplay :: host {
     }
 }
 ```
-The **/etc/drm/drm_plugin_lazyloding.cfg** file on the device is the lazy loading list configuration file of the DRM framework. The file is in the format of key-value pairs, where the DRM solution name is the key and the DRM service name is the value.
+The `/etc/drm/drm_plugin_lazyloading.cfg` file on the device is the lazy loading list configuration file of the DRM framework. The file is in the format of key-value pairs, where the DRM solution name is the key and the DRM service name is the value.
 ```json
 {
     "plugin_services": {

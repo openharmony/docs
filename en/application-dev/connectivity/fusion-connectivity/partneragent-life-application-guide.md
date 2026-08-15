@@ -3,10 +3,10 @@
 <!--Kit: Connectivity Kit-->
 <!--Subsystem: Communication-->
 <!--Owner: @guoxiadi-->
-<!--Designer: @chengguohong; @tangjia15-->
+<!--Designer: @tangjia15-->
 <!--Tester: @wangfeng517-->
 <!--Adviser: @zhang_yixin13-->
-<!-- md-trans-meta sourceCommit=dcae6f10c07044342acb5b2dc0416e100c5bcaa2 translatedAt=2026-06-17T06:38:13.589Z pushedAt=2026-06-18T08:33:24.292Z -->
+<!-- md-trans-meta sourceCommit=14ca614ebb030bf413b2d8393352ad7521a1d1b9 translatedAt=2026-08-15T01:41:24.105Z pushedAt=2026-08-15T06:06:01.485Z -->
 
 ## Overview
 
@@ -24,7 +24,7 @@ These scenarios require partner devices to maintain long-term interconnection wi
 
 1. A partner device application must first implement [PartnerAgentExtensionAbility](../../reference/apis-connectivity-kit/js-apis-fusionConnectivity-partnerAgentExtensionAbility.md), where it implements the data transmission service operations required after the application is woken up by the system.
 
-2. The partner device application triggers [Bluetooth pairing](../../connectivity/bluetooth/br-pair-device-development-guide.md) with the partner device, and then calls the **bindDevice** API to register the partner device. After detecting that the partner device is registered, the **PartnerAgent** service calls Bluetooth service APIs to perform [BLE](../../connectivity/terminology.md#ble) scanning and listen for Bluetooth connection status to discover the partner device, and then starts the partner device [ExtensionAbility](../../reference/apis-connectivity-kit/js-apis-fusionConnectivity-partnerAgentExtensionAbility.md). If the partner device is not registered, the **PartnerAgent** service does not start the partner device Extension.
+2. The partner device application triggers [Bluetooth pairing](../../connectivity/bluetooth/br-pair-device-development-guide.md) with the partner device, and then calls the **bindDevice** API to register the partner device. After detecting that the partner device is registered, the **PartnerAgent** service calls Bluetooth service APIs to perform [BLE](../../connectivity/bluetooth/terminology.md#ble) scanning and listen for Bluetooth connection status to discover the partner device, and then starts the partner device [ExtensionAbility](../../reference/apis-connectivity-kit/js-apis-fusionConnectivity-partnerAgentExtensionAbility.md). If the partner device is not registered, the **PartnerAgent** service does not start the partner device Extension.
 
 3. The registration information is persistently stored and remains valid after the OpenHarmony device restarts.
 
@@ -68,7 +68,7 @@ The application must implement [PartnerAgentExtensionAbility](../../reference/ap
 
 - **onDeviceDiscovered(deviceAddress: PartnerDeviceAddress)**
 
-  This callback is triggered when an [ACL](../../connectivity/terminology.md#acl) connection is established with a registered device or when the registered device is discovered through BLE scanning. You can perform data transmission service operations in this callback, such as establishing a Bluetooth [SPP connection](../bluetooth/spp-development-guide.md) or printing device discovery information.
+This callback is triggered when an [ACL](../../connectivity/bluetooth/terminology.md#acl) connection is established with a registered device or when the registered device is discovered through BLE scanning. You can perform data transmission service operations in this callback, such as establishing a Bluetooth [SPP connection](../bluetooth/spp-development-guide.md) or printing device discovery information.
 
 - **onDestroyWithReason(reason: PartnerAgentExtensionAbilityDestroyReason)**
 

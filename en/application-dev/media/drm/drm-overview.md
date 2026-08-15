@@ -6,7 +6,7 @@
 <!--Designer: @chris2981-->
 <!--Tester: @xdlinc-->
 <!--Adviser: @w_Machine_cc-->
-<!-- md-trans-meta sourceCommit=a9320ecd035940af0ce5bc397c533f4f5a6fe0f2 translatedAt=2026-08-11T01:41:26.689Z pushedAt=2026-08-11T02:45:26.282Z -->
+<!-- md-trans-meta sourceCommit=aed44431c2458a23bfa70a81a14615c1700888a3 translatedAt=2026-08-15T01:57:17.871Z pushedAt=2026-08-15T09:03:13.675Z -->
 
 Digital Rights Management (DRM) Kit provides digital rights protection services, offering capabilities for authorizing and decrypting DRM-encrypted content. It includes features such as DRM plugin management, certificate management, license management, content authorization, and content decryption, enabling the integration of DRM solutions, certificate provisioning, and content authorization and decryption.
 

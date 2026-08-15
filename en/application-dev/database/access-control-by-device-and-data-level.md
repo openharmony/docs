@@ -6,7 +6,7 @@
 <!--Designer: @widecode; @htt1997-->
 <!--Tester: @yippo; @logic42-->
 <!--Adviser: @ge-yafang-->
-<!-- md-trans-meta sourceCommit=dcae6f10c07044342acb5b2dc0416e100c5bcaa2 translatedAt=2026-06-17T06:39:34.994Z pushedAt=2026-06-22T07:40:13.061Z -->
+<!-- md-trans-meta sourceCommit=21aa413cf1755b055fbf63fdc2c1e46117039e5c translatedAt=2026-08-15T01:42:10.350Z pushedAt=2026-08-15T06:11:38.029Z -->
 
 ## Basic Concepts
 
@@ -28,28 +28,34 @@ The data can be rated into four security levels as below.
 ### Device Security Levels
 
 <!--RP1-->
+
 Device security levels are classified into SL1 to SL5 based on devices' security capabilities, such as whether a Trusted Execution Environment (TEE) or a secure storage chip is available. For example, the development boards RK3568 and Hi3516 are SL1 (lower security) devices, and tablets are SL4 (higher security) devices.
 
 When devices are networked, you can run the `hidumper -s 3511` command to check the device security level. If no result is returned, run the `service_control start dslm_service` command to start the corresponding service, and then run the hidumper command again. The following figure shows the security level of an RK3568 device.
+
 <!--RP1End-->
 <!--Del-->
+
 ![Device-Security-Levels](figures/Device-Security-Levels.png)
+
 <!--DelEnd-->
 
 ## Access Control Mechanism in Cross-Device Sync
 
 In cross-device data sync, data access is controlled based on the device security level and data security labels. In principle, data can be synced only to the devices whose data security labels are not higher than the device's security level. The access control matrix is as follows.
 
-|Device Security Level|Data Security Labels of the Synchronization Device|
+|Device Security Level|Data Security Labels That Can Be Synced|
 |---|---|
 |SL1|S1|
-|SL2|S1 to S2|
-|SL3|S1 to S3|
-|SL4|S1 to S4|
-|SL5|S1 to S4| 
+|SL2|S1~S2|
+|SL3|S1~S3|
+|SL4|S1~S4|
+|SL5|S1~S4|
 
 <!--RP2-->
+
 For example, the security level of development boards RK3568 and Hi3516 is SL1. The database with data security label S1 can be synced with RK3568 and Hi3516, but the databases with database labels S2-S4 cannot.
+
 <!--RP2End-->
 
 ## When to Use

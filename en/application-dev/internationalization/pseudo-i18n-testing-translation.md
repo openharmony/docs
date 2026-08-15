@@ -3,10 +3,10 @@
 <!--Kit: Localization Kit-->
 <!--Subsystem: Global-->
 <!--Owner: @yliupy-->
-<!--Designer: @sunyaozu-->
+<!--Designer: @zw_feifei-->
 <!--Tester: @lpw_work-->
 <!--Adviser: @ningningW-->
-<!-- md-trans-meta sourceCommit=956fea084c5f89c2b8306f0b49ee44f16e3ae05f translatedAt=2026-08-04T12:27:18.563Z pushedAt=2026-08-04T13:23:47.199Z -->
+<!-- md-trans-meta sourceCommit=1a7fdda7cb0bdacc6b1c367c8fd0def17530cd88 translatedAt=2026-08-15T01:54:24.139Z pushedAt=2026-08-15T08:42:58.745Z -->
 
 ## Use Cases
 

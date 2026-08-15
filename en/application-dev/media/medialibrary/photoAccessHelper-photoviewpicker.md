@@ -6,7 +6,7 @@
 <!--Designer: @liweilu1-->
 <!--Tester: @xchaosioda-->
 <!--Adviser: @w_Machine_cc-->
-<!-- md-trans-meta sourceCommit=6edd6d27aaca62496dc96318d4c8a47f63927216 translatedAt=2026-08-11T01:57:34.457Z pushedAt=2026-08-12T03:42:28.073Z -->
+<!-- md-trans-meta sourceCommit=8bc6eb9b043e320094531d7c2aa0228f7356e5c7 translatedAt=2026-08-15T01:57:44.442Z pushedAt=2026-08-15T09:04:52.663Z -->
 
 When a user needs to share files such as images and videos, use **Picker** to start Gallery for the user to select the files to share. No permission is required when Picker is used. Currently, a UIAbility is used to start Gallery with the window component. The procedure is as follows:
 
@@ -22,7 +22,7 @@ When a user needs to share files such as images and videos, use **Picker** to st
    import { photoAccessHelper } from '@kit.MediaLibraryKit';
    ```
 
-2. Create a PhotoSelectOptions instance.
+2. Create a PhotoSelectOptions instance for image-video files.
 
    <!-- @[PickerMediaLibrary_createOptions](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/Media/Picker/PickerMediaLibrarySample/entry/src/main/ets/pages/Index.ets) -->
 

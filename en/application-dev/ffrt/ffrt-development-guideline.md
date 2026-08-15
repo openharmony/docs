@@ -6,7 +6,7 @@
 <!--Designer: @zhanglu161-->
 <!--Tester: @lotsof-->
 <!--Adviser: @jinqiuheng-->
-<!-- md-trans-meta sourceCommit=a4bb221ea8dcccf781d5793faa6c8f62723e3e12 translatedAt=2026-08-03T08:19:14.069Z pushedAt=2026-08-03T10:49:28.927Z -->
+<!-- md-trans-meta sourceCommit=b74b00cc5805225620b940e38531d901e6362478 translatedAt=2026-08-15T01:49:37.969Z pushedAt=2026-08-15T07:45:37.942Z -->
 
 ## Overview
 
@@ -548,7 +548,7 @@ Using the standard library's recursive mutex in FFRT tasks may lead to deadlocks
     }
     ```
 
-- Noncompliant example 2: Not calling of destroy() may cause memory leak.
+- Noncompliant example 2: Not calling destroy() may cause memory leak.
 
     ```cpp
     #include <stdio.h>
