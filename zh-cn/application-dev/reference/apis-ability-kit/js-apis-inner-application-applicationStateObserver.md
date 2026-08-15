@@ -126,7 +126,7 @@ type ProcessData = _ProcessData.default
 
 | 类型 | 说明 |
 | --- | --- |
-| [ProcessData](js-apis-inner-application-processData.md) | 进程数据信息。 |
+| _[ProcessData](js-apis-inner-application-processData.md).default | 进程数据信息。 |
 
 **示例：**
 ```ts
