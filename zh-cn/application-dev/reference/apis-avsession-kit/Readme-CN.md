@@ -21,7 +21,7 @@
   <!--Del-->
   - [@ohos.app.ability.MediaControlExtensionAbility (播控扩展能力)(系统接口)](js-apis-app-ability-MediaControlExtensionAbility-sys.md)
   - [@ohos.multimedia.avsession (媒体会话管理)(系统接口)](js-apis-avsession-sys.md)
-  - application (应用)
+  - application
     - [MediaControlExtensionContext (播控扩展能力上下文)(系统接口)](js-apis-inner-application-MediaControlExtensionContext-sys.md)
     <!--DelEnd-->
   - @ohos.multimedia.avMusicTemplate (音频模板)<!--apis-avsession-avmusictemplate-->

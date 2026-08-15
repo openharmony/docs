@@ -1720,7 +1720,7 @@ struct Index {
   build() {
     Column() {
       Text(this.message)
-        .onClick(() => {
+        .onClick(async () => {
           // 获取当前系统中所有session的描述符。
           let descriptors = await AVSessionManager.getAllSessionDescriptors();
           if (descriptors.length === 0) {
@@ -1732,8 +1732,8 @@ struct Index {
 
           let avCastController: avSession.AVCastController;
           avSession.getAVCastController(sessionId, (avcontroller: avSession.AVCastController) => {
-              avCastController = avcontroller;
-              console.info('Succeeded in getting AV cast controller.');
+            avCastController = avcontroller;
+            console.info('Succeeded in getting AV cast controller.');
           });
         })
     }
@@ -1794,7 +1794,7 @@ struct Index {
   build() {
     Column() {
       Text(this.message)
-        .onClick(() => {
+        .onClick(async () => {
           // 获取当前系统中所有session的描述符。
           let descriptors = await AVSessionManager.getAllSessionDescriptors();
           if (descriptors.length === 0) {

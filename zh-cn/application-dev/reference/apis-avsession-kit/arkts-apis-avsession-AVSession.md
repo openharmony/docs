@@ -2073,7 +2073,7 @@ onPlay(callback: Callback\<CommandInfo>): void
 
 | 参数名   | 类型                                                               | 必填 | 说明     |
 | -------- |------------------------------------------------------------------| ---- | --------- |
-| callback | Callback\<[CommandInfo](arkts-apis-avsession-i.md#commandinfo22)> | 是   | 回调函数，当暂停命令被发送到会话时触发回调。                                        |
+| callback | Callback\<[CommandInfo](arkts-apis-avsession-i.md#commandinfo22)> | 是   | 回调函数，当播放命令被发送到会话时，触发该事件回调。                                        |
 
 **错误码：**
 
@@ -2109,7 +2109,7 @@ on(type: 'pause', callback: () => void): void
 | 参数名   | 类型                 | 必填 | 说明     |
 | -------- | -------------------- | ---- | --------- |
 | type     | string               | 是   | 事件回调类型，支持的事件为`'pause'`，当暂停命令被发送到会话时，触发该事件回调。 |
-| callback | () => void | 是   | 回调函数，当停止命令被发送到会话时触发回调。     |
+| callback | () => void | 是   | 回调函数。     |
 
 **错误码：**
 
@@ -2146,7 +2146,7 @@ on(type:'stop', callback: () => void): void
 | 参数名   | 类型                 | 必填 | 说明     |
 | -------- | -------------------- | ---- | --------- |
 | type     | string               | 是   | 事件回调类型，支持的事件是`'stop'`，当停止命令被发送到会话时，触发该事件回调。 |
-| callback | () => void | 是   | 回调函数，当播放下一首命令被发送到会话时触发回调。          |
+| callback | () => void | 是   | 回调函数。          |
 
 **错误码：**
 
@@ -2183,7 +2183,7 @@ on(type:'playNext', callback: () => void): void
 | 参数名   | 类型                 | 必填 | 说明     |
 | -------- | -------------------- | ---- | --------- |
 | type     | string               | 是   | 事件回调类型，支持的事件是`'playNext'`，当播放下一首命令被发送到会话时，触发该事件回调。 |
-| callback | () => void | 是   | 回调函数，当播放上一首命令被发送到会话时触发回调。     |
+| callback | () => void | 是   | 回调函数。     |
 
 **错误码：**
 
@@ -2255,7 +2255,7 @@ on(type:'playPrevious', callback: () => void): void
 | 参数名   | 类型                 | 必填 | 说明     |
 | -------- | -------------------- | ---- | --------- |
 | type     | string               | 是   | 事件回调类型，支持的事件是`'playPrevious'`，当播放上一首命令被发送到会话时，触发该事件回调。 |
-| callback | () => void | 是   | 回调函数，当播放上一首命令被发送到会话时触发回调。       |
+| callback | () => void | 是   | 回调函数。       |
 
 **错误码：**
 
