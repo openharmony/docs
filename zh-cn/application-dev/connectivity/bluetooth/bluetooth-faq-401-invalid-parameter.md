@@ -36,7 +36,7 @@ let manufactureId: number | undefined = undefined; // 模拟实际业务中可�
 let manufactureData: Uint8Array = new Uint8Array([1, 2, 3, 4]);
 let manufactureDataMask: Uint8Array = new Uint8Array([0xFF, 0xFF, 0xFF, 0xFF]);
 
-// 不推荐将undefined直接写入对象字面量（会返回401错误码）
+// 将undefined直接写入对象字面量（会返回401错误码）
 // let scanFilter: ble.ScanFilter = {
 //     manufactureId: undefined,
 //     manufactureData: manufactureData.buffer,
