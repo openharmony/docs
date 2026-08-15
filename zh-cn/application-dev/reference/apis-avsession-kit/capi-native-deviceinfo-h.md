@@ -58,7 +58,7 @@ AVSession_ErrCode OH_DeviceInfo_GetAVCastCategory(AVSession_DeviceInfo *deviceIn
 | 参数项 | 描述 |
 | -- | -- |
 | [AVSession_DeviceInfo](capi-ohavsession-avsession-deviceinfo.md) *deviceInfo | 表示设备信息实例指针。 |
-| [AVSession_AVCastCategory](capi-native-avsession-base-h.md#avsession_avcastcategory) *aVCastCategory | 输出参数，用于接收投播类别的指针变量，具体枚举值含义见AVSession_AVCastCategory。 |
+| [AVSession_AVCastCategory](capi-native-avsession-base-h.md#avsession_avcastcategory) *aVCastCategory | 输出参数，用于接收投播类别的指针变量。 |
 
 **返回：**
 
