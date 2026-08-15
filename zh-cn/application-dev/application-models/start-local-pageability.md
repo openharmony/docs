@@ -37,8 +37,12 @@ const domain: number = 0xFF00;
       moduleName: 'entry',
       abilityName: 'com.samples.famodelabilitydevelop.PageAbilitySingleton'
     };
-    await featureAbility.startAbility({ want: want });
-    hilog.info(domain, TAG, `Start ability succeed`);
+    let code: number = await featureAbility.startAbility({ want: want });
+    if (code === 0) {
+      hilog.info(domain, TAG, `Start ability succeed`);
+    } else {
+      hilog.error(domain, TAG, `Start ability failed with code ${code}`);
+    }
   }
   catch (error) {
     hilog.error(domain, TAG, 'Start ability failed with ' + error);
