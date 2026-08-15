@@ -47,6 +47,8 @@ import { relationalStore } from '@kit.ArkData';
 
 **系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
 
+**系统接口：** 此接口为系统接口。
+
 | 名称                              | 值   | 说明             |
 | ------------------------------- | --- | -------------- |
 | SINGLE      | 0 | 表示将数据写入单个关系型数据库存储。      |
