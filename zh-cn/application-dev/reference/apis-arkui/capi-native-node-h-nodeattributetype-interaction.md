@@ -216,7 +216,7 @@ NODE_VISIBLE_AREA_CHANGE_RATIO = 93
 定义控制组件触发可视区域面积变更事件的可视区域面积占组件本身面积的比例阈值。<br>
 作为属性设置方法参数、属性获取方法返回值[ArkUI_AttributeItem](capi-arkui-nativemodule-arkui-attributeitem.md)格式如下。<br>
 
-**起始版本：** 22
+**起始版本：** 12
 
 **参数：**
 
