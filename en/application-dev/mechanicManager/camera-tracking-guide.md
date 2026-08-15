@@ -6,7 +6,7 @@
 <!--Designer: @peter_1024-->
 <!--Tester: @Aullar-->
 <!--Adviser: @hu-zhiqiong-->
-<!-- md-trans-meta sourceCommit=cfbdbe72fe68925b4ef9154383f3258db7677d28 translatedAt=2026-08-15T11:11:13.386Z pushedAt=2026-08-15T11:40:28.607Z -->
+<!-- md-trans-meta sourceCommit=cfbdbe72fe68925b4ef9154383f3258db7677d28 translatedAt=2026-08-15T11:11:13.386Z pushedAt=2026-08-15T11:56:24.611Z -->
 
 Mechanic Manager is supported since API version 20, offering richer photography experiences with professional features such as object tracking and automatic composition for applications (including third-party applications).
 
@@ -25,7 +25,7 @@ For API usage instructions, see [@ohos.distributedHardware.mechanicManager (Mech
 |getCameraTrackingEnabled(): boolean | Checks whether camera tracking is enabled.<br>**Note**: This API is supported since API version 20.|
 |on(type: 'trackingStateChange', callback: Callback\<TrackingEventInfo>): void | Registers a callback listener for the **trackingStateChange** events.<br>**Note**: This API is supported since API version 20.|
 |off(type: 'trackingStateChange', callback?: Callback\<TrackingEventInfo>): void | Unregisters the callback listener for **trackingStateChange** events.<br>**Note**: This API is supported since API version 20.|
-|getCameraTrackingLayout(): CameraTrackingLayout | Obtains the camera tracking layout of the mechanical device.<br>**Note:** This API is supported since API version 20.|
+|getCameraTrackingLayout(): CameraTrackingLayout | Obtains the camera tracking layout of the mechanic device.<br>**Note:** This API is supported since API version 20.|
 
 ## How to Develop
 
