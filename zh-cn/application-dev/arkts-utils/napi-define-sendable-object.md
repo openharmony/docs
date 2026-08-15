@@ -50,6 +50,19 @@ ArkTS支持开发者自定义Native Sendable对象，Sendable对象提供了并�
     target_link_libraries(entry PUBLIC libace_napi.z.so libhilog_ndk.z.so)
     ```
 
+   修改与Index.d.ets同目录下的配置文件oh-package.json5，配置如下：
+
+   <!-- @[define_libentry](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/ArkTsConcurrent/ApplicationMultithreadingDevelopment/PracticalCaseSendable/entry/src/main/cpp/types/libentry/oh-package.json5) -->    
+   
+   ``` JSON5
+   {
+     "name": "libentry.so",
+     "types": "./Index.d.ets",
+     "version": "1.0.0",
+     "description": "Please describe the basic information."
+   }
+   ```
+
 3. Native实现各项接口功能，例如取值、设置值或者给Native对象的值加1等功能。
 
    <!-- @[init_sendable](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/ArkTsConcurrent/ApplicationMultithreadingDevelopment/PracticalCaseSendable/entry/src/main/cpp/napi_init.cpp) -->
@@ -277,17 +290,3 @@ ArkTS支持开发者自定义Native Sendable对象，Sendable对象提供了并�
      }
    }
    ```
-
-5. 修改与Index.d.ets同目录下的配置文件oh-package.json5，配置如下：
-
-   <!-- @[define_libentry](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/ArkTsConcurrent/ApplicationMultithreadingDevelopment/PracticalCaseSendable/entry/src/main/cpp/types/libentry/oh-package.json5) -->    
-   
-   ``` JSON5
-   {
-     "name": "libentry.so",
-     "types": "./Index.d.ets",
-     "version": "1.0.0",
-     "description": "Please describe the basic information."
-   }
-   ```
-
