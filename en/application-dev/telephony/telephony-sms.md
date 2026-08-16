@@ -1,10 +1,12 @@
 # SMS Service Development
+
 <!--Kit: Telephony Kit-->
 <!--Subsystem: Telephony-->
 <!--Owner: @shao-yikai-->
 <!--Designer: @wnazgul-->
 <!--Tester: @jiang_99-->
 <!--Adviser: @zhang_yixin13-->
+<!-- md-trans-meta sourceCommit=f9a9b9785e9bcc5cb366299e64289f5600fae304 translatedAt=2026-08-14T10:11:28.905Z pushedAt=2026-08-16T01:50:38.861Z -->
 
 ## When to Use
 
@@ -13,8 +15,11 @@ The Short Messaging Service (SMS) module provides basic SMS management functions
 Typical development scenarios are as follows:
 
 - On web pages:
-  - The **Send Message** button is displayed when users open a web page. After the user taps the button, the SMS application is started, and the user can then enter the recipient number and SMS message content to send an SMS message.
+
+  - The **Send Message** button is displayed when user opens a web page. After the user taps the button, the SMS application is started, and the user can then enter the recipient number and SMS message content to send an SMS message.
+
 - On applications:
+
   - When a user taps the **Send Message** button on a mobile application, the application calls the system function to start the SMS application, and the user can then enter the recipient number and SMS message content to send an SMS message.
 
 ## Basic Concepts
@@ -22,22 +27,25 @@ Typical development scenarios are as follows:
 - SMS
 
   A service capable of SMS message storage and forwarding. It enables mobile phones to send and receive SMS messages. The content of the SMS message can be text, digits, or binary non-text data. The information about the sender is stored in the Short Message Service Center (SMSC) and forwarded to the recipient.
+
 - SMSC
-  
+
   An entity that relays, stores, or forwards SMS messages between base stations and mobile devices. It uses the GSM 03.40 protocol for sending SMS messages to or receiving SMS messages from mobile phones.
+
 - PDU
-  
+
   Protocol data unit, which uses the following encoding schemes to send and receive SMS messages: 7-bit, 8-bit, and UCS-2. 7-bit encoding is used to send common ASCII characters, 8-bit encoding to send data messages, and UCS-2 encoding to send Unicode characters.
 
 ## Constraints
 
 1. The SMS service is available only on standard-system devices.
+
 2. An available SIM card must be present on the device, and the permission to send SMS messages must be granted.
 
 ## Available APIs
 
 > **NOTE**
-> To maximize the application running efficiency, most APIs are called asynchronously in callback or promise mode. The following code examples use the callback mode. For details about the APIs, see the [API Reference](../reference/apis-telephony-kit/js-apis-sms.md).
+> To ensure app running efficiency, most API calls are asynchronous. For asynchronous APIs, both callback and promise modes are provided. The following examples use the callback mode. For other calling modes, see [@ohos.telephony.sms (SMS service)](../reference/apis-telephony-kit/js-apis-sms.md).
 
 | Name                                                      | Description                                                   |
 | ------------------------------------------------------------ | ------------------------------------------------------- |
@@ -54,10 +62,13 @@ Typical development scenarios are as follows:
 1. Declare the required permission:
 
    - To send SMS messages, call the **sendShortMessage** API and declare the **ohos.permission.SEND\_MESSAGES** permission. The permission is of the **system\_basic** level.
-   - To set the SMSC address, call the** setSmscAddr** API and declare the **ohos.permission.SET\_TELEPHONY\_STATE** permission. The permission is of the **system\_basic** level.
-   - To obtain the SMSC address, call the** getSmscAddr** API and declare the **ohos.permission.GET\_TELEPHONY\_STATE** permission. The permission is of the **system\_basic** level.
-  
+
+   - To set the SMSC address, call the **setSmscAddr** API and declare the **ohos.permission.SET\_TELEPHONY\_STATE** permission. The permission is of the **system\_basic** level.
+
+   - To obtain the SMSC address, call the **getSmscAddr** API and declare the **ohos.permission.GET\_TELEPHONY\_STATE** permission. The permission is of the **system\_basic** level.
+
      Before requesting the permission, ensure that the [basic principles for using permissions](../security/AccessToken/app-permission-mgmt-overview.md#basic-principles-for-using-permissions) are met. Then, declare the required permission by referring to [Requesting Application Permissions](../security/AccessToken/determine-application-mode.md#requesting-permissions-for-system_basic-applications).
+
 2. Import the required modules.
 
 3. Send an SMS message.
@@ -89,7 +100,7 @@ sms.sendShortMessage(options, (err: BusinessError) => {
 
 ## Redirecting to the SMS Message Editing Page of the Application
 
-The API for sending SMS messages can be called only after the required system permission is granted. For a third-party application, it also needs to implement the function of redirecting to the SMS editing page and obtaining the edited content and recipient number by calling the **startAbility** API.
+The API for sending SMS messages requires system permissions to call. If a third-party app needs to send SMS messages, it must implement the function of redirecting to the SMS message editing page within the app, and carry the message content and recipient number. This can be implemented by calling the `startAbility` API of the Ability framework to specify the number and redirect to the SMS message sending page. After [obfuscation](https://developer.huawei.com/consumer/en/doc/harmonyos-guides/ide-build-obfuscation) is enabled, `contactsName` and `telephone` may be obfuscated. It is recommended that you retain the property names in `-keep-property-name`.
 
 ```ts
 // Sample code
@@ -122,7 +133,7 @@ struct JumpMessage {
             bundleName: "com.ohos.mms",
             abilityName: "com.ohos.mms.MainAbility",
             parameters: {
-                contactObjects: JSON.stringify(params),
+                contactObjects: JSON.stringify(params), // After obfuscation is enabled, contactsName and telephone may be obfuscated. It is recommended that you preserve the property names in -keep-property-name.
                 pageFlag: "conversation",
                 // Enter the SMS message content.
                 content: "SMS message content"
@@ -167,8 +178,11 @@ sms:106XXXXXXXXXX?body=SMS message content
 ```
 
 + `sms:`: SMS scheme, which is mandatory.
+
 + `106XXXXXXXXXX`: recipient number, which is optional. If there are multiple addresses, separate them with commas (,).
+
 + `?`: start declaration character of the SMS message content. This parameter is mandatory if the SMS message content is present.
+
 + `body-value`: SMS message content, which is optional.
 
 ### Developing a Caller Application
