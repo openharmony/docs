@@ -181,11 +181,13 @@ When using **.key()**, pay attention to the following:
 
 Key value generation example:
 
-```ts
+<!-- @[repeat_key_generation](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkUISample/RenderingControl/entry/src/main/ets/pages/RenderingRepeat/RepeatKeyGeneration.ets) -->
+
+``` TypeScript
 @ObservedV2
 class ExampleData {
-  @Trace str: string;
-  num: number;
+  @Trace public str: string;
+  public num: number;
 
   constructor(s: string, n: number) {
     this.str = s;
@@ -195,7 +197,7 @@ class ExampleData {
 
 @Entry
 @ComponentV2
-struct Index {
+struct RepeatKeyGeneration {
   @Local exampleList: Array<ExampleData> = [];
 
   aboutToAppear(): void {
@@ -1618,7 +1620,9 @@ When **Repeat** is used together with [@Builder](../state-management/arkts-build
 
 The sample code is as follows:
 
-``` ts
+<!-- @[repeat_builder](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkUISample/RenderingControl/entry/src/main/ets/pages/RenderingRepeat/RepeatBuilderPage.ets) -->
+
+``` TypeScript
 import { UIUtils, Binding } from '@kit.ArkUI';
 
 @Entry
@@ -1657,9 +1661,12 @@ struct RepeatBuilderPage {
           .each((ri) => {
             ListItem() {
               Column({ space: 2 }) {
-                this.buildItem1(UIUtils.makeBinding<number>(() => ri.item)) // Use the UIUtils.makeBinding() function to update state variables within the @Builder function.
-                this.buildItem2(ri) // Reference passing: triggers UI refresh on data change.
-                this.buildItem3(ri.item) // Value passing: does not trigger UI refresh.
+                // Use the UIUtils.makeBinding () function to refresh state variables in the @Builder function.
+                this.buildItem1(UIUtils.makeBinding<number>(() => ri.item))
+                // Reference passing: triggers UI refresh on data change.
+                this.buildItem2(ri)
+                // Value passing: does not trigger UI refresh.
+                this.buildItem3(ri.item)
               }
             }.border({ width: 1 })
           }).virtualScroll()
@@ -1679,8 +1686,6 @@ struct RepeatBuilderPage {
   }
 }
 ```
-
-<!-- [repeat_builder](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkUISample/RenderingControl/entry/src/main/ets/pages/RenderingRepeat/RepeatBuilderPage.ets) -->
 
 In this example, parameters passed to @Builder include the following: **makeBinding()**, reference passing, and value passing. The figure below illustrates the UI behavior. When the button is clicked to update the data, components using value passing will not reflect the change in the UI.
 
