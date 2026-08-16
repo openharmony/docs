@@ -97,7 +97,7 @@
        HiCollie_ErrorCode errorCode = OH_HiCollie_SetTimer(param, &id);  // 注册HiCollieTimer函数执行时长超时检测一次性任务
        if (errorCode == HICOLLIE_SUCCESS) {  // HiCollieTimer任务注册成功
            OH_LOG_INFO(LogType::LOG_APP, "HiCollieTimer taskId: %{public}d", id); // 打印任务id
-           sleep(2);  // 模拟执行耗时函数，在这里简单的将线程阻塞2s
+           sleep(2);  // 模拟执行耗时函数，在这里简单地将线程阻塞2s
            OH_HiCollie_CancelTimer(id);  // 根据id取消已注册任务
        }
        return nullptr;

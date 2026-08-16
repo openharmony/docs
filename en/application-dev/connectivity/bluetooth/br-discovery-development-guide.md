@@ -3,31 +3,38 @@
 <!--Kit: Connectivity Kit-->
 <!--Subsystem: Communication-->
 <!--Owner: @enjoy_sunshine-->
-<!--Designer: @chengguohong; @tangjia15-->
+<!--Designer: @tangjia15-->
 <!--Tester: @wangfeng517-->
 <!--Adviser: @zhang_yixin13-->
-<!-- md-trans-meta sourceCommit=dcae6f10c07044342acb5b2dc0416e100c5bcaa2 translatedAt=2026-06-17T06:37:48.039Z pushedAt=2026-06-18T01:10:36.237Z -->
+<!-- md-trans-meta sourceCommit=14ca614ebb030bf413b2d8393352ad7521a1d1b9 translatedAt=2026-08-15T01:40:15.967Z pushedAt=2026-08-15T03:22:17.981Z -->
 
 ## Introduction
+
 This document describes how to implement the Bluetooth device discovery capabilities, such as scanning for nearby devices, setting the Bluetooth scan mode, and retrieving information about paired devices.
 
 ## How to Develop
 
 ### Applying for Required Permissions
+
 Apply for the **ohos.permission.ACCESS_BLUETOOTH** permission. For details about how to configure and apply for permissions, see [Declaring Permissions](../../security/AccessToken/declare-permissions.md) and [Requesting User Authorization](../../security/AccessToken/request-user-authorization.md).
 
 ### Importing Required Modules
+
 Import the **connection** and **BusinessError** modules.
+
 ```ts
 import { connection } from '@kit.ConnectivityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 ```
 
 ### Scanning for Nearby Bluetooth Devices
+
 This function allows your application to scan for nearby Bluetooth devices and obtain partial information about them. This process can also be referred to as search, discovery, or find. Only nearby Bluetooth devices that are in a discoverable state can be scanned by the local Bluetooth device.
 
 **1. Subscribing to Scan Result Reporting Events**<br>
+
 - You are advised to use the scan result reporting mode supported since API version 18. This allows you to obtain more device information, including the device address, signal strength, name, and type. For details, see [connection.on('discoveryResult')](../../reference/apis-connectivity-kit/js-apis-bluetooth-connection.md#connectionondiscoveryresult18).
+
 ```ts
 // Define the callback for scan result reporting events.
 function onReceiveEvent(data: Array<connection.DiscoveryResult>) {
@@ -41,7 +48,9 @@ try {
   console.error('errCode: ' + (err as BusinessError).code + ', errMessage: ' + (err as BusinessError).message);
 }
 ```
+
 - The scan result reporting mode in API version 17 or earlier can retrieve only the device address information. For details, see [connection.on('bluetoothDeviceFind')](../../reference/apis-connectivity-kit/js-apis-bluetooth-connection.md#connectiononbluetoothdevicefind).
+
 ```ts
 // Define the callback for scan result reporting events.
 function onReceiveEvent(data: Array<string>) {
@@ -58,6 +67,7 @@ try {
 
 **2. Initiating a Device Scan**<br>
 A scan process takes about 12 seconds after being initiated. The application can initiate pairing, connection, and data transmission with the discovered Bluetooth device. For details, see [Device Pairing](br-pair-device-development-guide.md) and [SPP-based Connection and Data Transmission](spp-development-guide.md).
+
 ```ts
 try {
   // Check whether scanning is in progress on the local device.
@@ -70,8 +80,10 @@ try {
   console.error('errCode: ' + (err as BusinessError).code + ', errMessage: ' + (err as BusinessError).message);
 }
 ```
+
 **3. Stopping the Device Scan**<br>
 Scanning is a process that consumes a large amount of Bluetooth hardware resources. When the expected Bluetooth device is discovered, the device scanning must be stopped before a connection is initiated.
+
 ```ts
 // Define the callback for scan result reporting events.
 function onReceiveEvent(data: Array<string>) {
@@ -93,8 +105,11 @@ try {
 ```
 
 ### Setting the Bluetooth Scan Mode of the Local Device
+
 The Bluetooth scan mode of the local device determines whether the local device can be scanned or connected by other Bluetooth devices. Typically, non-system applications do not need to concern themselves with this mode, as the system settings application will handle its configuration.
+
 - If the Bluetooth settings screen is in the foreground when Bluetooth has been enabled, the Bluetooth scan mode of the local device is set to [SCAN_MODE_CONNECTABLE_GENERAL_DISCOVERABLE](../../reference/apis-connectivity-kit/js-apis-bluetooth-connection.md#scanmode). In this mode, the local device can be discovered by other Bluetooth devices and can accept incoming connections
+
 - If the Bluetooth settings screen is in the background when Bluetooth has been enabled, the Bluetooth scan mode of the local device is set to [SCAN_MODE_CONNECTABLE](../../reference/apis-connectivity-kit/js-apis-bluetooth-connection.md#scanmode). In this mode, the local device can accept incoming connections but cannot be discovered by other Bluetooth devices.
 
 ```ts
@@ -112,6 +127,7 @@ try {
 ```
 
 ### Retrieving Information About Paired Devices
+
 To streamline device scanning, check if the device is paired before initiating a scan. You can also initiate connection and data transmission processes for paired devices. For details, see [Device Pairing](br-pair-device-development-guide.md) and [SPP-based Connection and Data Transmission](spp-development-guide.md).
 
 ```ts
@@ -130,6 +146,7 @@ try {
 ```
 
 ## Sample Code
+
 ```ts
 import { connection } from '@kit.ConnectivityKit';
 import { BusinessError } from '@kit.BasicServicesKit';

@@ -1,10 +1,12 @@
 # Using Socket for Network Access
+
 <!--Kit: Network Kit-->
 <!--Subsystem: Communication-->
 <!--Owner: @wmyao_mm-->
 <!--Designer: @guo-min_net-->
 <!--Tester: @tongxilin-->
 <!--Adviser: @zhang_yixin13-->
+<!-- md-trans-meta sourceCommit=8afc34f10cffeb751b25bb9c79ee3a256aa4e3af translatedAt=2026-08-13T03:10:32.928Z pushedAt=2026-08-13T07:22:29.824Z -->
 
 ## Overview
 
@@ -17,10 +19,15 @@ The Socket Connection module allows an application to transmit data over a socke
 ## Basic Concepts
 
 - Socket: An abstraction of endpoints for bidirectional communication between application processes running on different hosts in a network.
+
 - Transmission Control Protocol (TCP: A byte stream–based transport layer communication protocol that is connection-oriented and reliable.
+
 - User Datagram Protocol (UDP): A simple, datagram-oriented transport layer protocol that is connectionless.
+
 - Multicast: A UDP-based communication mode that implements broadcast communication between all devices in a group.
+
 - LocalSocket: An inter-process communication (IPC) mechanism that implements communication between processes on a device without using a network.
+
 - Transport Layer Security (TLS): A protocol that provides confidentiality and data integrity between two communication applications.
 
 ## When to Use
@@ -28,11 +35,17 @@ The Socket Connection module allows an application to transmit data over a socke
 Applications can transmit data over TCP, UDP, Multicast, or TLS socket connections. The main application scenarios include:
 
 - Transmitting data on the TCP/UDP socket client (UDP does not distinguish between the client and server. The client is the party that sends data to the server.)
+
 - Transmitting data on the TCP socket server
+
 - Transmitting data over multicast socket connections
+
 - Transmitting data over the local socket client connection between different processes of the same device 
+
 - Transmitting data over the local socket server connection between different processes of the same device 
+
 - Implementing encrypted data transmission over TLS socket client connections
+
 - Implementing encrypted data transmission over TLS socket server connections
 
 >**NOTE**
@@ -46,7 +59,7 @@ The implementation is similar for UDP socket and TCP socket connections. The fol
 1. Import the required socket module.
 
     <!-- @[tcp_client_worker_import](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/NetWork_Kit/NetWorkKit_Datatransmission/Socket/entry/src/main/ets/workers/TcpClientWorker.ets) -->
-    
+
     ``` TypeScript
     import { socket } from '@kit.NetworkKit';
     import { BusinessError } from '@kit.BasicServicesKit';
@@ -56,7 +69,7 @@ The implementation is similar for UDP socket and TCP socket connections. The fol
 2. Create a TCP socket connection. A **TCPSocket** object is returned.
 
     <!-- @[tcp_client_worker_tcpClient](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/NetWork_Kit/NetWorkKit_Datatransmission/Socket/entry/src/main/ets/workers/TcpClientWorker.ets) -->
-    
+
     ``` TypeScript
     // Create a TCP socket connection. A TCPSocket object is returned.
     let tcpClient: socket.TCPSocket = socket.constructTCPSocketInstance();
@@ -65,7 +78,7 @@ The implementation is similar for UDP socket and TCP socket connections. The fol
 3. (Optional) Subscribe to TCP socket connection events.
 
       <!-- @[tcp_client_worker_socketInfo](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/NetWork_Kit/NetWorkKit_Datatransmission/Socket/entry/src/main/ets/workers/TcpClientWorker.ets) -->
-      
+
       ``` TypeScript
       class SocketInfo {
         public message: ArrayBuffer = new ArrayBuffer(1);
@@ -93,7 +106,8 @@ The implementation is similar for UDP socket and TCP socket connections. The fol
       ```
 
 4. Bind the IP address and port number. The port number can be specified or randomly allocated by the system. After the binding is successful, you can establish a connection to the specified IP address and port number and send data over the connection.
-	 ```ts
+
+   ```ts
     // Bind the local IP address and port number.
     let ipAddress : socket.NetAddress = {} as socket.NetAddress;
     ipAddress.address = "192.168.xxx.xxx";
@@ -104,8 +118,9 @@ The implementation is similar for UDP socket and TCP socket connections. The fol
     netAddress.address = "192.168.xxx.xxx";
     netAddress.port = 5678;
     ```
+
     <!-- @[tcp_client_worker_ipAddress](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/NetWork_Kit/NetWorkKit_Datatransmission/Socket/entry/src/main/ets/workers/TcpClientWorker.ets) -->
-    
+
     ``` TypeScript
       // Bind the local IP address and port number.
     // ···
@@ -131,7 +146,7 @@ The implementation is similar for UDP socket and TCP socket connections. The fol
             hilog.info(0x0000, 'testTag', 'send success');
             // ···
           }).catch(() => {
-            hilog.info(0x0000, 'testTag', 'send fail');
+            hilog.error(0x0000, 'testTag', 'send fail');
             // ···
           });
         }).catch((err: BusinessError) => {
@@ -143,7 +158,7 @@ The implementation is similar for UDP socket and TCP socket connections. The fol
 5. Enable the TCP socket connection to be automatically closed after use.
 
     <!-- @[tcp_client_worker_disConnect](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/NetWork_Kit/NetWorkKit_Datatransmission/Socket/entry/src/main/ets/workers/TcpClientWorker.ets) -->
-    
+
     ``` TypeScript
     // Enable the socket connection to be automatically closed after use. Then, unsubscribe from events of the connection.
     setTimeout(() => {
@@ -167,7 +182,7 @@ The TCP socket connection process on the server is as follows:
 1. Import the required socket module.
 
     <!-- @[tcp_server_worker_import](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/NetWork_Kit/NetWorkKit_Datatransmission/Socket/entry/src/main/ets/workers/TcpServerWorker.ets) -->
-    
+
     ``` TypeScript
     import { socket } from '@kit.NetworkKit';
     import { BusinessError } from '@kit.BasicServicesKit';
@@ -177,28 +192,30 @@ The TCP socket connection process on the server is as follows:
 2. Create a TCP socket server connection. A **TCPSocketServer** object is returned.
 
     <!-- @[tcp_server_worker_tcpServer](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/NetWork_Kit/NetWorkKit_Datatransmission/Socket/entry/src/main/ets/workers/TcpServerWorker.ets) -->
-    
+
     ``` TypeScript
     // Create a TCP socket server connection. A TCPSocketServer object is returned.
     let tcpServer: socket.TCPSocketServer = socket.constructTCPSocketServerInstance();
     ```
 
 3. Bind the local IP address and port, and listen for and accept TCP socket connections established over the socket.
-	 ```ts
+
+   ```ts
     // Bind the local IP address and port number for listening.
     let ipAddress : socket.NetAddress = {} as socket.NetAddress;
     ipAddress.address = "192.168.xxx.xxx";
     ipAddress.port = 4651;
     ```
+
     <!-- @[tcp_server_worker_ipAddress](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/NetWork_Kit/NetWorkKit_Datatransmission/Socket/entry/src/main/ets/workers/TcpServerWorker.ets) -->
-    
+
     ``` TypeScript
     // Bind the local IP address and port number for listening.
     tcpServer.listen(ipAddress).then(() => {
       hilog.info(0x0000, 'testTag', 'listen success');
       // ···
     }).catch(() => {
-      hilog.info(0x0000, 'testTag', 'listen fail');
+      hilog.error(0x0000, 'testTag', 'listen fail');
       // ···
     });
     ```
@@ -206,7 +223,7 @@ The TCP socket connection process on the server is as follows:
 4. Subscribe to **connect** events of the **TCPSocketServer** object to listen for client connection status changes. A **TCPSocketConnection** object is returned after a connection is established between the client and the server. Through this object, you can subscribe to the **close** and **message** events of the client, send data over the connection, disconnect from the client, and unsubscribe from events of **TCPSocketConnection**.
 
     <!-- @[tcp_server_worker_socketInfo](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/NetWork_Kit/NetWorkKit_Datatransmission/Socket/entry/src/main/ets/workers/TcpServerWorker.ets) -->
-    
+
     ``` TypeScript
       class SocketInfo {
         public message: ArrayBuffer = new ArrayBuffer(1);
@@ -255,7 +272,7 @@ The TCP socket connection process on the server is as follows:
           hilog.info(0x0000, 'testTag', 'close success');
         // ···
         }).catch((err: BusinessError) => {
-          hilog.info(0x0000, 'testTag', 'close fail');
+          hilog.error(0x0000, 'testTag', 'close fail');
         // ···
         });
     
@@ -269,7 +286,7 @@ The TCP socket connection process on the server is as follows:
 5. Disable listening for events of the **TCPSocketServer** object.
 
     <!-- @[tcp_server_worker_setTimeout](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/NetWork_Kit/NetWorkKit_Datatransmission/Socket/entry/src/main/ets/workers/TcpServerWorker.ets) -->
-    
+
     ``` TypeScript
     // Set the connection timeout interval (for example, 30 seconds).
     setTimeout(() => {
@@ -282,7 +299,7 @@ The TCP socket connection process on the server is as follows:
 1. Import the required socket module.
 
    <!-- @[multicast_worker_import](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/NetWork_Kit/NetWorkKit_Datatransmission/Socket/entry/src/main/ets/workers/MulticastWorker.ets) -->
-   
+
    ``` TypeScript
    import { socket } from '@kit.NetworkKit';
    import { hilog } from '@kit.PerformanceAnalysisKit';
@@ -291,13 +308,14 @@ The TCP socket connection process on the server is as follows:
 2. Create a **MulticastSocket** object.
 
    <!-- @[multicast_worker_multicast](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/NetWork_Kit/NetWorkKit_Datatransmission/Socket/entry/src/main/ets/workers/MulticastWorker.ets) -->
-   
+
    ``` TypeScript
    // Create a MulticastSocket object.
    let multicast: socket.MulticastSocket = socket.constructMulticastSocketInstance();
    ```
 
 3. Specify a **MulticastSocket** object by the IP address and port number, and add it to the multicast group.
+
    ```ts
    // Construct a object to add it to a multicast group.
    let addr : socket.NetAddress = {
@@ -306,8 +324,9 @@ The TCP socket connection process on the server is as follows:
      family: 1
    }
    ```
+
    <!-- @[multicast_worker_multicastConfig](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/NetWork_Kit/NetWorkKit_Datatransmission/Socket/entry/src/main/ets/workers/MulticastWorker.ets) -->
-   
+
    ``` TypeScript
    // Add the MulticastSocket object to a multicast group.
    multicast.addMembership(addr).then(() => {
@@ -322,7 +341,7 @@ The TCP socket connection process on the server is as follows:
 4. Subscribe to **message** events.
 
    <!-- @[multicast_worker_on_message](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/NetWork_Kit/NetWorkKit_Datatransmission/Socket/entry/src/main/ets/workers/MulticastWorker.ets) -->
-   
+
    ``` TypeScript
    // Subscribe to message events and convert the received data of the ArrayBuffer type to strings.
    class SocketInfo {
@@ -344,7 +363,7 @@ The TCP socket connection process on the server is as follows:
 5. Send data in broadcast mode. All **MulticastSocket** objects in the same multicast group for which **message** event listening has been enabled will receive the data.
 
    <!-- @[multicast_worker_send](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/NetWork_Kit/NetWorkKit_Datatransmission/Socket/entry/src/main/ets/workers/MulticastWorker.ets) -->
-   
+
    ``` TypeScript
    // Send a multicast message.
    multicast.send({ data: 'Hello multicast group!', address: addr }).then(() => {
@@ -357,7 +376,7 @@ The TCP socket connection process on the server is as follows:
 6. Unsubscribe from **message** events.
 
    <!-- @[multicast_worker_off_message](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/NetWork_Kit/NetWorkKit_Datatransmission/Socket/entry/src/main/ets/workers/MulticastWorker.ets) -->
-   
+
    ``` TypeScript
    // Unsubscribe from message events.
    multicast.off('message');
@@ -366,7 +385,7 @@ The TCP socket connection process on the server is as follows:
 7. Drop the **MulticastSocket** object from the multicast group.
 
    <!-- @[multicast_worker_dropMembership](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/NetWork_Kit/NetWorkKit_Datatransmission/Socket/entry/src/main/ets/workers/MulticastWorker.ets) -->
-   
+
    ``` TypeScript
    // Drop the MulticastSocket object from the multicast group.
    multicast.dropMembership(addr).then(() => {
@@ -376,12 +395,13 @@ The TCP socket connection process on the server is as follows:
      hilog.error(0x0000, 'testTag', `Multicast: Failed to drop membership - ${JSON.stringify(err)}`);
    });
    ```
+
 ## Transmitting Data over Local Socket Connections
 
 1. Import the required socket module.
 
    <!-- @[local_socket_worker_import](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/NetWork_Kit/NetWorkKit_Datatransmission/Socket/entry/src/main/ets/workers/LocalSocketWorker.ets) -->
-   
+
    ``` TypeScript
    import { socket } from '@kit.NetworkKit';
    import { common } from '@kit.AbilityKit';
@@ -391,7 +411,7 @@ The TCP socket connection process on the server is as follows:
 2. Call **constructLocalSocketInstance** to create a **LocalSocket** object.
 
    <!-- @[local_socket_worker_client](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/NetWork_Kit/NetWorkKit_Datatransmission/Socket/entry/src/main/ets/workers/LocalSocketWorker.ets) -->
-   
+
    ``` TypeScript
    // Create a local socket connection. A LocalSocket object is returned.
    let client: socket.LocalSocket = socket.constructLocalSocketInstance();
@@ -400,7 +420,7 @@ The TCP socket connection process on the server is as follows:
 3. Subscribe to **message** events of the **LocalSocket** object and other events (optional).
 
    <!-- @[local_socket_worker_on_message](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/NetWork_Kit/NetWorkKit_Datatransmission/Socket/entry/src/main/ets/workers/LocalSocketWorker.ets) -->
-   
+
    ``` TypeScript
    client.on('message', (value: socket.LocalSocketMessageInfo) => {
      const uintArray = new Uint8Array(value.message);
@@ -422,6 +442,7 @@ The TCP socket connection process on the server is as follows:
      hilog.info(0x0000, 'testTag', 'Client closed');
    });
    ```
+
 4. Connect to server based on the specified address of the local socket file. After the connection is established successfully, you can then send data over it.
 
    ```ts
@@ -439,8 +460,9 @@ The TCP socket connection process on the server is as follows:
      data: 'Hello world!'
    }
    ```
+
    <!-- @[local_socket_worker_sendOpt](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/NetWork_Kit/NetWorkKit_Datatransmission/Socket/entry/src/main/ets/workers/LocalSocketWorker.ets) -->
-   
+
    ``` TypeScript
    client.connect(connectOpt).then(() => {
      hilog.info(0x0000, 'testTag', `connect success`);
@@ -448,17 +470,17 @@ The TCP socket connection process on the server is as follows:
      client.send(sendOpt).then(() => {
        hilog.info(0x0000, 'testTag', `send success`);
      }).catch((err: Object) => {
-       hilog.info(0x0000, 'testTag', `send failed: ` + JSON.stringify(err));
+       hilog.error(0x0000, 'testTag', `send failed: ` + JSON.stringify(err));
      });
    }).catch((err: Object) => {
-     hilog.info(0x0000, 'testTag', `connect fail: ` + JSON.stringify(err));
+     hilog.error(0x0000, 'testTag', `connect fail: ` + JSON.stringify(err));
    });
    ```
 
 5. If the socket connection is no longer needed, unsubscribe from message events and close the connection.
 
    <!-- @[local_socket_worker_close_server](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/NetWork_Kit/NetWorkKit_Datatransmission/Socket/entry/src/main/ets/workers/LocalSocketWorker.ets) -->
-   
+
    ``` TypeScript
    // If the socket connection is no longer needed, unsubscribe from message events and close the connection.
    client.off('message');
@@ -480,7 +502,7 @@ The local socket connection process on the server is as follows:
 1. Import the required socket module.
 
    <!-- @[local_socket_worker_import](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/NetWork_Kit/NetWorkKit_Datatransmission/Socket/entry/src/main/ets/workers/LocalSocketWorker.ets) -->
-   
+
    ``` TypeScript
    import { socket } from '@kit.NetworkKit';
    import { common } from '@kit.AbilityKit';
@@ -490,7 +512,7 @@ The local socket connection process on the server is as follows:
 2. Call **constructLocalSocketServerInstance** to create a **LocalSocketServer** object.
 
    <!-- @[local_socket_server_create](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/NetWork_Kit/NetWorkKit_Datatransmission/Socket/entry/src/main/ets/workers/LocalSocketWorker.ets) -->
-   
+
    ``` TypeScript
    // Create a local socket server connection. A LocalSocketServer object is returned.
    let server: socket.LocalSocketServer = socket.constructLocalSocketServerInstance();
@@ -506,8 +528,9 @@ The local socket connection process on the server is as follows:
      address: sandboxPath
    }
    ```
+
    <!-- @[local_socket_worker_server_listen](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/NetWork_Kit/NetWorkKit_Datatransmission/Socket/entry/src/main/ets/workers/LocalSocketWorker.ets) -->
-   
+
    ``` TypeScript
    server.listen(listenAddr).then(() => {
      // ...
@@ -518,16 +541,16 @@ The local socket connection process on the server is as follows:
    });
    ```
 
-4. Subscribe to the **connect** and optionally other events of the local socket client . A **LocalSocketConnection** object is returned after a connection established between the client and the server. Through this object, you can subscribe to the **message** and optionally other events of the client, send data over the connection, disconnect from the client, and unsubscribe from events of **LocalSocketConnection**.
+4. Subscribe to the **connect** and optionally other events of the local socket client. A **LocalSocketConnection** object is returned after a connection established between the client and the server. Through this object, you can subscribe to the **message** and optionally other events of the client, send data over the connection, disconnect from the client, and unsubscribe from events of **LocalSocketConnection**.
 
    <!-- @[local_socket_worker_server_connection](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/NetWork_Kit/NetWorkKit_Datatransmission/Socket/entry/src/main/ets/workers/LocalSocketWorker.ets) -->
-   
+
    ``` TypeScript
    // Subscribe to connect events of the LocalSocketServer object.
    server.on('connect', (connection: socket.LocalSocketConnection) => {
      // Subscribe to events of the LocalSocketConnection object.
      connection.on('error', (err: Object) => {
-       hilog.info(0x0000, 'testTag', 'on error success');
+       hilog.error(0x0000, 'testTag', 'on error received');
      });
    
      connection.on('message', (value: socket.LocalSocketMessageInfo) => {
@@ -568,10 +591,10 @@ The local socket connection process on the server is as follows:
    });
    ```
 
-5.  Disable listening for events of the **LocalSocketServer** object.
+5.  Unsubscribe from events of the **LocalSocketServer** object.
 
     <!-- @[local_socket_worker_server_off](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/NetWork_Kit/NetWorkKit_Datatransmission/Socket/entry/src/main/ets/workers/LocalSocketWorker.ets) -->
-    
+
     ``` TypeScript
     // Unsubscribe from events of the LocalSocketServer object.
     server.off('connect');
@@ -585,7 +608,7 @@ To implement the TLS socket process (two-way authentication) on the client, perf
 1. Import the required socket module.
 
    <!-- @[two_way_tls_worker_import](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/NetWork_Kit/NetWorkKit_Datatransmission/Socket/entry/src/main/ets/workers/TwoWayTlsWorker.ets) -->
-   
+
    ``` TypeScript
    import { socket } from '@kit.NetworkKit';
    import { BusinessError } from '@kit.BasicServicesKit';
@@ -595,13 +618,14 @@ To implement the TLS socket process (two-way authentication) on the client, perf
 2. Create a TLSSocket connection. A **TLSSocket** object is returned.
 
    <!-- @[two-way_constructTLSSocketInstance](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/NetWork_Kit/NetWorkKit_Datatransmission/Socket/entry/src/main/ets/workers/TwoWayTlsWorker.ets) -->
-   
+
    ``` TypeScript
    // Create a TLS socket connection (for two-way authentication). A TLSSocketConnection object is returned.
    let tlsSocket: socket.TLSSocket | null = socket.constructTLSSocketInstance();
    ```
 
 3. Bind the local IP address and port. Ensure that the bind operation is successful before subscribing to events of the **TLSSocket** object. Upload the client CA certificate and digital certificate, and call the [connect](../reference/apis-network-kit/js-apis-socket.md#connect9) API to establish a connection. After the connection is successful, call the [send](../reference/apis-network-kit/js-apis-socket.md#send9) API to send data.
+
    ```ts
    // Bind the local IP address and port number.
    let ipAddress : socket.NetAddress = {} as socket.NetAddress;
@@ -628,8 +652,9 @@ To implement the TLS socket process (two-way authentication) on the client, perf
    tlsTwoWayConnectOption.secureOptions = tlsSecureOption;
    tlsTwoWayConnectOption.ALPNProtocols = ["spdy/1", "http/1.1"];
    ```
+
    <!-- @[two-way_bindTlsSocket](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/NetWork_Kit/NetWorkKit_Datatransmission/Socket/entry/src/main/ets/workers/TwoWayTlsWorker.ets) -->
-   
+
    ``` TypeScript
    class SocketInfo {
      public message: ArrayBuffer = new ArrayBuffer(1);
@@ -681,10 +706,10 @@ To implement the TLS socket process (two-way authentication) on the client, perf
    });
    ```
 
-5. Enable the TLS socket connection to be automatically closed after use.
+4. After the TLSSocket connection is no longer needed, actively close it.
 
    <!-- @[two-way_closeTlsSocket](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/NetWork_Kit/NetWorkKit_Datatransmission/Socket/entry/src/main/ets/workers/TwoWayTlsWorker.ets) -->
-   
+
    ``` TypeScript
    // Enable the socket connection to be automatically closed after use. Then, unsubscribe from events of the connection.
    tlsSocket!.close((err: BusinessError) => {
@@ -704,7 +729,7 @@ To implement the TLS socket process (one-way authentication) on the client, perf
 1. Import the required socket module.
 
    <!-- @[one_way_tls_worker_import](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/NetWork_Kit/NetWorkKit_Datatransmission/Socket/entry/src/main/ets/workers/OneWayTlsWorker.ets) -->
-   
+
    ``` TypeScript
    import { socket } from '@kit.NetworkKit';
    import { BusinessError } from '@kit.BasicServicesKit';
@@ -714,13 +739,14 @@ To implement the TLS socket process (one-way authentication) on the client, perf
 2. Create a TLSSocket connection. A **TLSSocket** object is returned.
 
    <!-- @[create_tls_worker_object](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/NetWork_Kit/NetWorkKit_Datatransmission/Socket/entry/src/main/ets/workers/OneWayTlsWorker.ets) -->
-   
+
    ``` TypeScript
    // Create a TLS socket connection (for one-way authentication). A TLSSocketConnection object is returned.
    let tlsOneWaySocket: socket.TLSSocket = socket.constructTLSSocketInstance();  // One way authentication
    ```
 
 3. Bind the local IP address and port. Ensure that the bind operation is successful before subscribing to events of the **TLSSocket** object. Upload the client CA certificate and digital certificate, and call the [connect](../reference/apis-network-kit/js-apis-socket.md#connect9) API to establish a connection. After the connection is successful, call the [send](../reference/apis-network-kit/js-apis-socket.md#send9) API to send data.
+
    ```ts
    // Bind the local IP address and port number.
    let ipAddress : socket.NetAddress = {} as socket.NetAddress;
@@ -739,8 +765,9 @@ To implement the TLS socket process (one-way authentication) on the client, perf
    tlsOneWayConnectOptions.address = serverAddress;
    tlsOneWayConnectOptions.secureOptions = tlsOneWaySecureOption;
    ```
+
    <!-- @[tls_worker_bind_the_server](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/NetWork_Kit/NetWorkKit_Datatransmission/Socket/entry/src/main/ets/workers/OneWayTlsWorker.ets) -->
-   
+
    ``` TypeScript
    class SocketInfo {
      public message: ArrayBuffer = new ArrayBuffer(1);
@@ -794,7 +821,7 @@ To implement the TLS socket process (one-way authentication) on the client, perf
 4. Enable the TLS socket connection to be automatically closed after use.
 
    <!-- @[tls_worker_close_the_server](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/NetWork_Kit/NetWorkKit_Datatransmission/Socket/entry/src/main/ets/workers/OneWayTlsWorker.ets) -->
-   
+
    ``` TypeScript
    // Enable the socket connection to be automatically closed after use. Then, unsubscribe from events of the connection.
    tlsOneWaySocket!.close((err: BusinessError) => {
@@ -818,7 +845,7 @@ The following uses two-way authentication as an example to describe how to upgra
 1. Import the required socket module.
 
    <!-- @[tcp_to_tls_server_import](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/NetWork_Kit/NetWorkKit_Datatransmission/Socket/entry/src/main/ets/workers/Tcp2TwoWayTlsWorker.ets) -->
-   
+
    ``` TypeScript
    import { socket } from '@kit.NetworkKit';
    import { BusinessError } from '@kit.BasicServicesKit';
@@ -828,13 +855,14 @@ The following uses two-way authentication as an example to describe how to upgra
 2. Create a TCP socket connection. For details, see [Transmitting Data over TCP Socket or UDP Socket Connections](#transmitting-data-over-tcp-socket-or-udp-socket-connections).
 
    <!-- @[tcp_to_tls_server_create_object](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/NetWork_Kit/NetWorkKit_Datatransmission/Socket/entry/src/main/ets/workers/Tcp2TwoWayTlsWorker.ets) -->
-   
+
    ``` TypeScript
    // Create a TCP socket connection. A TCPSocket object is returned.
    let tcpSocket: socket.TCPSocket = socket.constructTCPSocketInstance();
    ```
 
-3. Bind the local IP address and port. After the binding is successful, connect to the specified IP address and port of the server. After the connection is successful, use the **TCPSocket** object to create a **TLSSocket** object, enable two-way authentication, and upload the client CA certificate and digital certificate to establish a TLS socket connection. If the connection is no longer needed, close the connection and unsubscribe from related events.
+3. Bind the local IP address and port. After the binding succeeds, connect to the server IP address and port. After the connection succeeds, use the TCPSocket object to create a TLSSocket, configure mutual authentication, and upload the client CA certificate and digital certificate to establish a TLSSocket connection. After the connection is no longer needed, actively close it and cancel the subscription to related events.
+
    ```ts
    // Connect to the specified IP address and port of the server.
    let serverAddress: socket.NetAddress = {} as socket.NetAddress;
@@ -862,8 +890,9 @@ The following uses two-way authentication as an example to describe how to upgra
    tlsTwoWayConnectOption.secureOptions = tlsSecureOption;
    tlsTwoWayConnectOption.ALPNProtocols = ["spdy/1", "http/1.1"];
    ```
+
    <!-- @[tcp_Upgrade_to_tls_server](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/NetWork_Kit/NetWorkKit_Datatransmission/Socket/entry/src/main/ets/workers/Tcp2TwoWayTlsWorker.ets) -->
-   
+
    ``` TypeScript
    // If a specific port needs to be bound, the bind API can be used.
    tcpSocket.connect(tcpConnect).then(() => {
@@ -895,7 +924,7 @@ The following uses two-way authentication as an example to describe how to upgra
        hilog.info(0x0000, 'testTag', 'tls connect success');
        // ...
      }).catch((e: BusinessError) => {
-       hilog.info(0x0000, 'testTag', 'tls connect fail');
+       hilog.error(0x0000, 'testTag', 'tls connect fail');
        // ...
      });
    }).catch((e: BusinessError) => {
@@ -904,10 +933,10 @@ The following uses two-way authentication as an example to describe how to upgra
    });
    ```
 
-4. Enable the TCPSocket connection to be automatically closed after use. Then, disable listening for TCPSocket events.
+4. After the connection is no longer needed, actively close it and cancel the subscription to related events.
 
    <!-- @[tls_server_close](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/NetWork_Kit/NetWorkKit_Datatransmission/Socket/entry/src/main/ets/workers/Tcp2TwoWayTlsWorker.ets) -->
-   
+
    ``` TypeScript
    // Enable the socket connection to be automatically closed after use. Then, unsubscribe from events of the connection.
    tlsSocket!.close((err: BusinessError) => {
@@ -931,7 +960,7 @@ The TLS socket connection process on the server is as follows:
 1. Import the required socket module.
 
    <!-- @[tls_server_import](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/NetWork_Kit/NetWorkKit_Datatransmission/Socket/entry/src/main/ets/workers/TlsServerWorker.ets) -->
-   
+
    ``` TypeScript
    import { socket } from '@kit.NetworkKit';
    import { BusinessError } from '@kit.BasicServicesKit';
@@ -941,12 +970,13 @@ The TLS socket connection process on the server is as follows:
 2. Create a TLS socket server connection.
 
    <!-- @[tls_server_instance](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/NetWork_Kit/NetWorkKit_Datatransmission/Socket/entry/src/main/ets/workers/TlsServerWorker.ets) -->
-   
+
    ``` TypeScript
    let tlsServer: socket.TLSSocketServer = socket.constructTLSSocketServerInstance();
    ```
 
 3. Start the service and bind the IP address and port number to set up a TLS socket connection. Then, create and initialize a TLS session, and load and verify the certificate key.
+
    ```ts
    let netAddress: socket.NetAddress = {
      address: '192.168.xx.xxx',
@@ -970,8 +1000,9 @@ The TLS socket connection process on the server is as follows:
      ALPNProtocols: ["spdy/1", "http/1.1"]
    }
    ```
+
    <!-- @[tlsServer_start_service](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/NetWork_Kit/NetWorkKit_Datatransmission/Socket/entry/src/main/ets/workers/TlsServerWorker.ets) -->
-   
+
    ``` TypeScript
    tlsServer.listen(tlsConnectOptions).then(() => {
      hilog.info(0x0000, 'testTag', 'listen callback success');
@@ -982,10 +1013,10 @@ The TLS socket connection process on the server is as follows:
    });
    ```
 
-4. Subscribe to the **connect** events of the **TLSSocketServer** object. After receiving a client connection, obtain the **TLSSocketConnection** object through the callback. Through this object, you can subscribe to events of the **TLSSocketConnection** object and send data to the client. If the TLS socket connection is no longer needed, close the connection and unsubscribe from related events.
+4. Subscribe to the connection event of TLSSocketServer. When a client connection is received, obtain the TLSSocketConnection object through the callback. Through this object, you can subscribe to events related to TLSSocketConnection and send data to the client. After the TLSSocketConnection is no longer needed, actively disconnect it and cancel the subscription callback.
 
    <!-- @[tlsServer_connection_methods](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/NetWork_Kit/NetWorkKit_Datatransmission/Socket/entry/src/main/ets/workers/TlsServerWorker.ets) -->
-   
+
    ``` TypeScript
    class SocketInfo {
      public message: ArrayBuffer = new ArrayBuffer(1);
@@ -1026,12 +1057,13 @@ The TLS socket connection process on the server is as follows:
        // You can pass the callback of the on function if you want to unsubscribe from a certain type of events. If you do not pass the callback, you will unsubscribe from all events.
        client.off('message', callback);
        client.off('message');
+     });
    ```
 
-5. // Unsubscribe from events of the TLSSocketServer object.
+5. Unsubscribe from events of the TLSSocketServer object.
 
    <!-- @[tlsServer_off_connect](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/NetWork_Kit/NetWorkKit_Datatransmission/Socket/entry/src/main/ets/workers/TlsServerWorker.ets) -->
-   
+
    ``` TypeScript
    tlsServer.close();
    // Unsubscribe from events of the TLSSocketServer object.

@@ -68,11 +68,12 @@
    taskGroup.addTask(new taskpool.Task(loadPicture, 20));
    taskGroup.addTask(new taskpool.Task(loadPicture, 10));
    taskpool.execute(taskGroup).then((ret: object) => {
-     let tmpLength = (ret as IconItemSource[][]).length
+     let retA = ret as IconItemSource[][];
+     let tmpLength = (retA).length
      for (let i = 0; i < tmpLength; i++) {
-       for (let j = 0; j < ret[i].length; j++) {
-         if (ret[i][j]) {
-           iconItemSourceList.push(ret[i][j]);
+       for (let j = 0; j < retA[i].length; j++) {
+         if (retA[i][j]) {
+           iconItemSourceList.push(retA[i][j]);
          }
        }
      }

@@ -69,7 +69,10 @@ InputMethod_TextConfig *OH_TextConfig_Create(void)
 
 使用后效果：创建成功后返回一个新的TextConfig实例指针，后续可通过Set*接口设置配置属性。
 
-生命周期管理：返回的对象必须通过[OH_TextConfig_Destroy](#oh_textconfig_destroy)销毁，Create与Destroy必须配对使用。未销毁会导致内存泄漏。同一个实例只能被销毁一次。
+生命周期管理：返回的对象必须通过[OH_TextConfig_Destroy](#oh_textconfig_destroy)销毁。Create与Destroy必须配对使用，同一个实例只能被销毁一次，未销毁会导致内存泄漏。
+> **说明：**
+>
+> 由[OH_TextEditorProxy_GetTextConfigFunc](capi-inputmethod-text-editor-proxy-capi-h.md#oh_texteditorproxy_gettextconfigfunc)回调框架提供的config参数的内存由框架管理，回调返回后自动释放，不可调用Destroy销毁，仅由OH_TextConfig_Create创建的对象需要自行销毁。
 
 **起始版本：** 12
 
@@ -101,7 +104,7 @@ void OH_TextConfig_Destroy(InputMethod_TextConfig *config)
 
 | 参数项 | 描述 |
 | -- | -- |
-| [InputMethod_TextConfig](capi-inputmethod-inputmethod-textconfig.md) *config | 输入指针，表示指向即将被销毁的[InputMethod_TextConfig](capi-inputmethod-inputmethod-textconfig.md)实例的指针。若传入NULL，函数不做任何处理，不会导致崩溃。销毁后该指针失效，建议设置为NULL。注意：由GetTextConfigFunc回调框架提供的config参数的内存由框架管理，回调返回后自动释放，不可在回调外部调用Destroy销毁。 |
+| [InputMethod_TextConfig](capi-inputmethod-inputmethod-textconfig.md) *config | 输入指针，表示指向即将被销毁的[InputMethod_TextConfig](capi-inputmethod-inputmethod-textconfig.md)实例的指针。若传入NULL，函数不做任何处理，不会导致崩溃。销毁后该指针失效，建议设置为NULL。注意：由GetTextConfigFunc回调框架提供的config参数的内存由框架管理，不可在回调外部调用Destroy销毁，回调返回后自动释放。 |
 
 ### OH_TextConfig_SetInputType()
 

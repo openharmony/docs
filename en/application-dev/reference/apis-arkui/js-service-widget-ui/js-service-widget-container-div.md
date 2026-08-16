@@ -1,11 +1,12 @@
 # div
+
 <!--Kit: ArkUI-->
 <!--Subsystem: ArkUI-->
-<!--Owner: @lanshouren-->
-<!--Designer: @lanshouren-->
+<!--Owner: @fenglinbailu-->
+<!--Designer: @fenglinbailu-->
 <!--Tester: @liuli0427-->
 <!--Adviser: @Brilliantry_Rui-->
-
+<!-- md-trans-meta sourceCommit=45ec2d938cfede23d9ca90fe41c0d1f3e7b2b01d translatedAt=2026-08-11T01:55:13.475Z pushedAt=2026-08-11T02:10:50.101Z -->
 
 The **\<div>** component is a basic container that is used as the root node of the page structure or is used to group the content.
 
@@ -17,11 +18,9 @@ The **\<div>** component is a basic container that is used as the root node of t
 
 Supported.
 
-
 ## Attributes
 
 The [universal attributes](js-service-widget-common-attributes.md) are supported.
-
 
 ## Styles
 
@@ -42,16 +41,14 @@ In addition to the [universal styles](js-service-widget-common-styles.md), the f
 | grid-auto-flow | string | - | No| How grid items are laid out automatically. Available values are as follows:<br>- **row**: Elements are filled row by row. When there is no horizontal space in a row, a new row is added.<br>- **column**: Elements are filled column by column. When there is no vertical space in a column, a new column is added.|
 | align-items | string | - | No| How items are aligned along the cross axis in a flex container. Available values are as follows:<br>- **stretch**: Items are stretched to the same height or width as the flex container along the cross axis.<br>- **flex-start**: Items are aligned to the start of the cross axis.<br>- **flex-end**: Items are aligned to the end of the cross axis.<br>- **center**: Items are aligned in the center of the cross axis.<br>- **baseline**: In a vertical layout, items are aligned to the start of the cross axis, which means that this value is equivalent of **flex-start**. In a horizontal layout, items are aligned with the text baseline if there is text involved, and aligned to the bottom otherwise.|
 
-
 ## Events
 
 The [universal events](js-service-widget-common-events.md) are supported.
 
-
 ## Example
 
 1. Flex style
-  
+
    ```html
    <!-- xxx.hml -->
    <div class="container">
@@ -63,7 +60,6 @@ The [universal events](js-service-widget-common-events.md) are supported.
    </div>
    ```
 
-   
    ```css
    /* xxx.css */
    .container {
@@ -95,12 +91,13 @@ The [universal events](js-service-widget-common-events.md) are supported.
      background-color: #41ba41;
    }
    ```
+
     **2 x 4 widget**
 
     ![en-us_Flex-example](figures/Flex-example.png)
 
 2. Flex wrap style
-  
+
    ```html
    <!-- xxx.hml -->
    <div class="container">
@@ -112,7 +109,6 @@ The [universal events](js-service-widget-common-events.md) are supported.
    </div>
    ```
 
-   
    ```css
    /* xxx.css */
    .container {
@@ -145,6 +141,7 @@ The [universal events](js-service-widget-common-events.md) are supported.
      background-color: #41ba41;
    }
    ```
+
    **4 x 4 widget**
 
    ![en-us_Flex-Wrap-example](figures/Flex-Wrap-example.png)

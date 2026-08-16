@@ -2,11 +2,11 @@
 
 <!--Kit: Performance Analysis Kit-->
 <!--Subsystem: HiviewDFX-->
-<!--Owner: @xuxinao-->
+<!--Owner: @Chenyufan466765692-->
 <!--Designer: @peterhuangyu-->
 <!--Tester: @gcw_KuLfPSbe-->
 <!--Adviser: @jinqiuheng-->
-<!-- md-trans-meta sourceCommit=552600b0ea7451a7ac2f58aae751acd2a0a9b5bf translatedAt=2026-07-29T10:48:36.686Z pushedAt=2026-07-29T12:33:06.419Z -->
+<!-- md-trans-meta sourceCommit=62cd3afbfc3cb8d5be9bed68f5d83aa9317dd50c translatedAt=2026-08-15T01:46:02.324Z pushedAt=2026-08-15T07:11:29.650Z -->
 
 ## Event Specifications
 
@@ -62,6 +62,7 @@ To ensure smooth reception of event callbacks during development, you are advise
            hilog.info(0x0000, 'testTag', `HiAppEvent eventInfo.params.reason=${eventInfo.params['reason']}`);
            hilog.info(0x0000, 'testTag', `HiAppEvent eventInfo.params.app_running_unique_id=${eventInfo.params['app_running_unique_id']}`);
            hilog.info(0x0000, 'testTag', `HiAppEvent eventInfo.params.bundle_version=${eventInfo.params['bundle_version']}`);
+           hilog.info(0x0000, 'testTag', `HiAppEvent eventInfo.params.last_exit_detail_info=${JSON.stringify(eventInfo.params['last_exit_detail_info'])}`);
          }
        }
      }
@@ -160,4 +161,5 @@ To ensure smooth reception of event callbacks during development, you are advise
    HiAppEvent eventInfo.params.foreground=true
    HiAppEvent eventInfo.params.app_running_unique_id=207544
    HiAppEvent eventInfo.params.bundle_version=1000000
+   HiAppEvent eventInfo.params.last_exit_detail_info={"exit_msg":"THREAD_BLOCK_6S","kill_reason":"ThreadBlock6S","pid":"28549","process_name":"com.samples.freezedebug","process_state":"2","pss":"0","rss":"0","timestamp":"1785743803766","uid":"20020204"}
    ```

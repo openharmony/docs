@@ -1,11 +1,12 @@
 # stack
+
 <!--Kit: ArkUI-->
 <!--Subsystem: ArkUI-->
-<!--Owner: @lanshouren-->
-<!--Designer: @lanshouren-->
+<!--Owner: @fenglinbailu-->
+<!--Designer: @fenglinbailu-->
 <!--Tester: @liuli0427-->
 <!--Adviser: @Brilliantry_Rui-->
-<!-- md-trans-meta sourceCommit=dfb15c325281e5e789ea7ade45dfdd45876606ad translatedAt=2026-07-27T02:27:27.529Z pushedAt=2026-07-27T09:23:36.749Z -->
+<!-- md-trans-meta sourceCommit=45ec2d938cfede23d9ca90fe41c0d1f3e7b2b01d translatedAt=2026-08-11T01:54:44.377Z pushedAt=2026-08-11T02:10:38.833Z -->
 
 The **\<stack>** component provides a stack container where child components are successively stacked and the latter one overwrites the previous one.
 
@@ -13,11 +14,9 @@ The **\<stack>** component provides a stack container where child components are
 >
 > This component is supported since API version 4. Updates will be marked with a superscript to indicate their earliest API version.
 
-
 ## Child Components
 
 Supported.
-
 
 ## Attributes
 
@@ -28,7 +27,6 @@ Supported.
 | class | string | -    | No   | Style class of the component, which is used to refer to a style table.                         |
 | ref   | string | -    | No   | Reference information of child elements, which is registered with the parent component on **$refs**.|
 
-
 ## Events
 
 | Name                | Parameter                               | Description         |
@@ -36,7 +34,6 @@ Supported.
 | click              | -                                 | Triggered when the component is clicked. |
 | longpress          | -                                 | Triggered when the component is long pressed. |
 | swipe<sup>5+</sup> | [SwipeEvent](js-lite-common-events.md#swipeevent) | Triggered when a user quickly swipes on the component.|
-
 
 ## Styles
 
@@ -60,9 +57,7 @@ Supported.
 >
 > The absolute positioning does not support a percentage. Therefore, **margin** cannot be set for the child components of the **\<stack>** component.
 
-
 ## Example
-
 
 ```html
 <!-- xxx.hml -->
@@ -72,7 +67,6 @@ Supported.
   <div class="front-child bd-radius"></div>
 </stack>
 ```
-
 
 ```css
 /* xxx.css */

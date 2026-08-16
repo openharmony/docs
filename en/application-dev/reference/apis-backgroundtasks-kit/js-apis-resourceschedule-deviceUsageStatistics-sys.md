@@ -1,10 +1,12 @@
 # @ohos.resourceschedule.usageStatistics (Device Usage Statistics) (System API)
+
 <!--Kit: Background Tasks Kit-->
 <!--Subsystem: ResourceSchedule-->
 <!--Owner: @xufu7-->
 <!--Designer: @zhouben25-->
 <!--Tester: @leetestnady-->
 <!--Adviser: @HelloCrease-->
+<!-- md-trans-meta sourceCommit=cbf8346f66e41cef33ef9ad8bde72cb116377770 translatedAt=2026-08-11T01:58:07.591Z pushedAt=2026-08-11T06:55:49.530Z -->
 
 The **usageStatistics** module provides APIs for collecting statistics on device usage. For example, you can use the APIs to query whether an application is commonly used and an application's priority group, usage duration, system events (hibernation, wakeup, unlocking, and screen locking), application events (foreground, background, and start and end of continuous tasks), and the number of notifications.
 
@@ -41,7 +43,7 @@ Checks whether an application is commonly used (with the value of **GroupType** 
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [DeviceUsageStatistics Error Codes](errorcode-DeviceUsageStatistics.md).
 
-| Error Code | Error Message            |
+| ID | Error Message            |
 | ---- | --------------------- |
 | 201  | Permission denied. |
 | 202  | Not System App. |
@@ -54,11 +56,12 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | 10000006   | Failed to get the application information.    |
 
 **Example**
+
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 import { usageStatistics } from '@kit.BackgroundTasksKit';
 
-usageStatistics.isIdleState("com.ohos.camera", (err: BusinessError, res: boolean) => {
+usageStatistics.isIdleState('com.ohos.camera', (err: BusinessError, res: boolean) => {
   if (err) {
     console.error('BUNDLE_ACTIVE isIdleState callback failed. code is: ' + err.code + ',message is: ' + err.message);
   } else {
@@ -93,7 +96,7 @@ Checks whether an application is commonly used (with the value of **GroupType** 
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [DeviceUsageStatistics Error Codes](errorcode-DeviceUsageStatistics.md).
 
-| Error Code | Error Message            |
+| ID | Error Message            |
 | ---- | --------------------- |
 | 201  | Permission denied. |
 | 202  | Not System App. |
@@ -111,13 +114,14 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 import { BusinessError } from '@kit.BasicServicesKit';
 import { usageStatistics } from '@kit.BackgroundTasksKit';
 
-usageStatistics.isIdleState("com.ohos.camera").then((res: boolean) => {
+usageStatistics.isIdleState('com.ohos.camera').then((res: boolean) => {
   console.info('BUNDLE_ACTIVE isIdleState promise succeeded, result: ' + JSON.stringify(res));
 }).catch((err: BusinessError) => {
   console.error('BUNDLE_ACTIVE isIdleState promise failed. code is: ' + err.code + ',message is: ' + err.message);
 });
 ```
-## usageStatistics.isIdleStateSync<sup>10+<sup>
+
+## usageStatistics.isIdleStateSync<sup>10+</sup>
 
 isIdleStateSync(bundleName: string): boolean
 
@@ -143,7 +147,7 @@ Checks whether an application is commonly used (with the value of **GroupType** 
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [DeviceUsageStatistics Error Codes](errorcode-DeviceUsageStatistics.md).
 
-| Error Code | Error Message            |
+| ID | Error Message            |
 | ---- | --------------------- |
 | 201  | Permission denied. |
 | 202  | Not System App. |
@@ -156,10 +160,11 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | 10000006   | Failed to get the application information.    |
 
 **Example**
+
 ```ts
 import { usageStatistics } from '@kit.BackgroundTasksKit';
 
-let isIdleState: boolean = usageStatistics.isIdleStateSync("com.ohos.camera");
+let isIdleState: boolean = usageStatistics.isIdleStateSync('com.ohos.camera');
 ```
 
 ## usageStatistics.queryAppGroup
@@ -182,7 +187,7 @@ Queries the priority group of this application. This API uses a promise to retur
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [DeviceUsageStatistics Error Codes](errorcode-DeviceUsageStatistics.md).
 
-| Error Code | Error Message            |
+| ID | Error Message            |
 | ---- | --------------------- |
 | 201  | Permission denied. |
 | 202  | Not System App. |
@@ -228,11 +233,11 @@ Queries the priority group of this application. This API uses an asynchronous ca
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [DeviceUsageStatistics Error Codes](errorcode-DeviceUsageStatistics.md).
 
-| Error Code | Error Message            |
+| ID | Error Message            |
 | ---- | --------------------- |
 | 201  | Permission denied. |
 | 202  | Not System App. |
-| 401 | Parameter error. |
+| 401 | Parameter error. Possible cause: Parameter verification failed. |
 | 801 | Capability not supported.|
 | 10000001   | Memory operation failed.           |
 | 10000002   | Failed to write data into parcel. Possible reasons: 1. Invalid parameters; 2. Failed to apply for memory.         |
@@ -257,7 +262,7 @@ usageStatistics.queryAppGroup((err: BusinessError, res: number) => {
 });
 ```
 
-## usageStatistics.queryAppGroupSync<sup>10+<sup>
+## usageStatistics.queryAppGroupSync<sup>10+</sup>
 
 queryAppGroupSync(): number
 
@@ -277,7 +282,7 @@ Queries the priority group of this application. This API returns the result sync
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [DeviceUsageStatistics Error Codes](errorcode-DeviceUsageStatistics.md).
 
-| Error Code | Error Message            |
+| ID | Error Message            |
 | ---- | --------------------- |
 | 201  | Permission denied. |
 | 202  | Not System App. |
@@ -324,7 +329,7 @@ Queries the priority group of the application specified by **bundleName**. This 
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [DeviceUsageStatistics Error Codes](errorcode-DeviceUsageStatistics.md).
 
-| Error Code | Error Message            |
+| ID | Error Message            |
 | ---- | --------------------- |
 | 201  | Permission denied. |
 | 202  | Not System App. |
@@ -345,7 +350,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 import { BusinessError } from '@kit.BasicServicesKit';
 import { usageStatistics } from '@kit.BackgroundTasksKit';
 
-let bundleName: string = "com.ohos.camera";
+let bundleName: string = 'com.ohos.camera';
 usageStatistics.queryAppGroup(bundleName).then((res: number) => {
   console.info('BUNDLE_ACTIVE queryAppGroup promise succeeded. result: ' + JSON.stringify(res));
 }).catch((err: BusinessError) => {
@@ -374,7 +379,7 @@ Queries the priority group of the application specified by **bundleName**. This 
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [DeviceUsageStatistics Error Codes](errorcode-DeviceUsageStatistics.md).
 
-| Error Code | Error Message            |
+| ID | Error Message            |
 | ---- | --------------------- |
 | 201  | Permission denied. |
 | 202  | Not System App. |
@@ -394,7 +399,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 import { BusinessError } from '@kit.BasicServicesKit';
 import { usageStatistics } from '@kit.BackgroundTasksKit';
 
-let bundleName: string = "com.ohos.camera";
+let bundleName: string = 'com.ohos.camera';
 usageStatistics.queryAppGroup(bundleName, (err: BusinessError, res: number) => {
   if(err) {
     console.error('BUNDLE_ACTIVE queryAppGroup callback failed. code is: ' + err.code + ',message is: ' + err.message);
@@ -404,7 +409,7 @@ usageStatistics.queryAppGroup(bundleName, (err: BusinessError, res: number) => {
 });
 ```
 
-## usageStatistics.queryAppGroupSync<sup>10+<sup>
+## usageStatistics.queryAppGroupSync<sup>10+</sup>
 
 queryAppGroupSync(bundleName: string): number
 
@@ -430,7 +435,7 @@ Queries the priority group of the application specified by **bundleName**. This 
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [DeviceUsageStatistics Error Codes](errorcode-DeviceUsageStatistics.md).
 
-| Error Code | Error Message            |
+| ID | Error Message            |
 | ---- | --------------------- |
 | 201  | Permission denied. |
 | 202  | Not System App. |
@@ -449,7 +454,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 ```ts
 import { usageStatistics } from '@kit.BackgroundTasksKit';
 
-let priorityGroup: number = usageStatistics.queryAppGroupSync("com.ohos.camera");
+let priorityGroup: number = usageStatistics.queryAppGroupSync('com.ohos.camera');
 ```
 
 ## usageStatistics.setAppGroup
@@ -479,7 +484,7 @@ Sets a new group for the application specified by **bundleName**. This API uses 
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [DeviceUsageStatistics Error Codes](errorcode-DeviceUsageStatistics.md).
 
-| Error Code | Error Message            |
+| ID | Error Message            |
 | ---- | --------------------- |
 | 201  | Permission denied. |
 | 202  | Not System App. |
@@ -498,7 +503,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 import { BusinessError } from '@kit.BasicServicesKit';
 import { usageStatistics } from '@kit.BackgroundTasksKit';
 
-let bundleName: string = "com.example.deviceUsageStatistics";
+let bundleName: string = 'com.example.deviceUsageStatistics';
 let newGroup = usageStatistics.GroupType.DAILY_GROUP;
 
 usageStatistics.setAppGroup(bundleName, newGroup).then( () => {
@@ -512,7 +517,7 @@ usageStatistics.setAppGroup(bundleName, newGroup).then( () => {
 
 setAppGroup(bundleName: string, newGroup: GroupType, callback: AsyncCallback&lt;void&gt;): void
 
-Sets a new group for the application specified by **bundleName**. This API uses an asynchronous callback to return the result. It can be called only by the current application.
+Sets a new group for the app specified by **bundleName**. This API uses an asynchronous callback to return the result. It can be called only by the current app.
 
 **Required permissions**: ohos.permission.BUNDLE_ACTIVE_INFO
 
@@ -530,7 +535,7 @@ Sets a new group for the application specified by **bundleName**. This API uses 
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [DeviceUsageStatistics Error Codes](errorcode-DeviceUsageStatistics.md).
 
-| Error Code | Error Message            |
+| ID | Error Message            |
 | ---- | --------------------- |
 | 201  | Permission denied. |
 | 202  | Not System App. |
@@ -549,7 +554,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 import { BusinessError } from '@kit.BasicServicesKit';
 import { usageStatistics } from '@kit.BackgroundTasksKit';
 
-let bundleName: string = "com.example.deviceUsageStatistics";
+let bundleName: string = 'com.example.deviceUsageStatistics';
 let newGroup = usageStatistics.GroupType.DAILY_GROUP;
 
 usageStatistics.setAppGroup(bundleName, newGroup, (err: BusinessError) => {
@@ -583,7 +588,7 @@ Queries the application usage duration statistics based on the specified start t
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [DeviceUsageStatistics Error Codes](errorcode-DeviceUsageStatistics.md).
 
-| Error Code | Error Message            |
+| ID | Error Message            |
 | ---- | --------------------- |
 | 201  | Permission denied. |
 | 202  | Not System App. |
@@ -639,7 +644,7 @@ Queries the application usage duration statistics based on the specified start t
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [DeviceUsageStatistics Error Codes](errorcode-DeviceUsageStatistics.md).
 
-| Error Code | Error Message            |
+| ID | Error Message            |
 | ---- | --------------------- |
 | 201  | Permission denied. |
 | 202  | Not System App. |
@@ -693,7 +698,7 @@ Queries the usage duration of an application (including cloned applications) bas
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [DeviceUsageStatistics Error Codes](errorcode-DeviceUsageStatistics.md).
 
-| Error Code | Error Message            |
+| ID | Error Message            |
 | ---- | --------------------- |
 | 201  | Permission denied. |
 | 202  | Not System App. |
@@ -746,7 +751,7 @@ Queries application usage details based on the specified bundle name and applica
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [DeviceUsageStatistics Error Codes](errorcode-DeviceUsageStatistics.md).
 
-| Error Code | Error Message            |
+| ID | Error Message            |
 | ---- | --------------------- |
 | 201  | Permission denied. |
 | 202  | Not System App. |
@@ -766,7 +771,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 import { usageStatistics } from '@kit.BackgroundTasksKit';
 
 // Replace com.ohos.camera with the actual bundle name.
-usageStatistics.queryLastUseTime({"com.ohos.camera": [0]}).then((res:usageStatistics.AppStatsMap) => {
+usageStatistics.queryLastUseTime({'com.ohos.camera': [0]}).then((res:usageStatistics.AppStatsMap) => {
   console.info('queryLastUseTime promise success.');
   console.info('queryLastUseTime promise result ' + JSON.stringify(res));
 }).catch((err: BusinessError) => {
@@ -797,7 +802,7 @@ Queries the application usage duration statistics in the specified time frame at
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [DeviceUsageStatistics Error Codes](errorcode-DeviceUsageStatistics.md).
 
-| Error Code | Error Message            |
+| ID | Error Message            |
 | ---- | --------------------- |
 | 201  | Permission denied. |
 | 202  | Not System App. |
@@ -857,7 +862,7 @@ Queries the application usage duration statistics in the specified time frame at
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [DeviceUsageStatistics Error Codes](errorcode-DeviceUsageStatistics.md).
 
-| Error Code | Error Message            |
+| ID | Error Message            |
 | ---- | --------------------- |
 | 201  | Permission denied. |
 | 202  | Not System App. |
@@ -909,7 +914,7 @@ Queries events of all applications based on the specified start time and end tim
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [DeviceUsageStatistics Error Codes](errorcode-DeviceUsageStatistics.md).
 
-| Error Code | Error Message            |
+| ID | Error Message            |
 | ---- | --------------------- |
 | 201  | Permission denied. |
 | 202  | Not System App. |
@@ -975,7 +980,7 @@ Queries events of all applications in a specified period based on the specified 
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [DeviceUsageStatistics Error Codes](errorcode-DeviceUsageStatistics.md).
 
-| Error Code | Error Message            |
+| ID | Error Message            |
 | ---- | --------------------- |
 | 201  | Permission denied. |
 | 202  | Not System App. |
@@ -1003,6 +1008,7 @@ usageStatistics.queryBundleEvents(0, 20000000000000, 100).then((res: Array<usage
   console.error('BUNDLE_ACTIVE queryBundleEvents promise failed. code is: ' + err.code + ',message is: ' + err.message);
 });
 ```
+
 ## usageStatistics.queryBundleEvents
 
 queryBundleEvents(begin: number, end: number): Promise&lt;Array&lt;BundleEvents&gt;&gt;
@@ -1030,7 +1036,7 @@ Queries events of all applications based on the specified start time and end tim
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [DeviceUsageStatistics Error Codes](errorcode-DeviceUsageStatistics.md).
 
-| Error Code | Error Message            |
+| ID | Error Message            |
 | ---- | --------------------- |
 | 201  | Permission denied. |
 | 202  | Not System App. |
@@ -1080,7 +1086,7 @@ Queries events of this application based on the specified start time and end tim
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [DeviceUsageStatistics Error Codes](errorcode-DeviceUsageStatistics.md).
 
-| Error Code | Error Message            |
+| ID | Error Message            |
 | ---- | --------------------- |
 | 202  | Not System App. |
 | 401 | Parameter error. Possible cause: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types; 3. Parameter verification failed. |
@@ -1143,7 +1149,7 @@ Queries events of all applications in a specified period based on the specified 
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [DeviceUsageStatistics Error Codes](errorcode-DeviceUsageStatistics.md).
 
-| Error Code | Error Message            |
+| ID | Error Message            |
 | ---- | --------------------- |
 | 202  | Not System App. |
 | 10000001   | Memory operation failed.           |
@@ -1175,7 +1181,7 @@ usageStatistics.queryCurrentBundleEvents(0, 20000000000000, 100).then((res: Arra
 
 queryCurrentBundleEvents(begin: number, end: number): Promise&lt;Array&lt;BundleEvents&gt;&gt;
 
-Queries events of this application based on the specified start time and end time. This API uses a promise to return the result.
+Queries events of this app based on the specified start time and end time. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.ResourceSchedule.UsageStatistics.App
 
@@ -1196,7 +1202,7 @@ Queries events of this application based on the specified start time and end tim
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [DeviceUsageStatistics Error Codes](errorcode-DeviceUsageStatistics.md).
 
-| Error Code | Error Message            |
+| ID | Error Message            |
 | ---- | --------------------- |
 | 202  | Not System App. |
 | 401 | Parameter error. Possible cause: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types; 3. Parameter verification failed. |
@@ -1252,7 +1258,7 @@ Queries statistics about system events (hibernation, wakeup, unlocking, and lock
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [DeviceUsageStatistics Error Codes](errorcode-DeviceUsageStatistics.md).
 
-| Error Code | Error Message            |
+| ID | Error Message            |
 | ---- | --------------------- |
 | 201  | Permission denied. |
 | 202  | Not System App. |
@@ -1272,8 +1278,8 @@ import { BusinessError } from '@kit.BasicServicesKit';
 import { usageStatistics } from '@kit.BackgroundTasksKit';
 
 usageStatistics.queryDeviceEventStats(0, 20000000000000).then((res: Array<usageStatistics.DeviceEventStats>) => {
-  console.info('BUNDLE_ACTIVE queryDeviceEventStates promise success.');
-  console.info('BUNDLE_ACTIVE queryDeviceEventStates promise result ' + JSON.stringify(res));
+  console.info('BUNDLE_ACTIVE queryDeviceEventStats promise success.');
+  console.info('BUNDLE_ACTIVE queryDeviceEventStats promise result ' + JSON.stringify(res));
 }).catch((err: BusinessError) => {
   console.error('BUNDLE_ACTIVE queryDeviceEventStats promise failed. code is: ' + err.code + ',message is: ' + err.message);
 });
@@ -1301,7 +1307,7 @@ Queries statistics about system events (hibernation, wakeup, unlocking, and lock
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [DeviceUsageStatistics Error Codes](errorcode-DeviceUsageStatistics.md).
 
-| Error Code | Error Message            |
+| ID | Error Message            |
 | ---- | --------------------- |
 | 201  | Permission denied. |
 | 202  | Not System App. |
@@ -1357,7 +1363,7 @@ Queries the number of notifications from all applications based on the specified
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [DeviceUsageStatistics Error Codes](errorcode-DeviceUsageStatistics.md).
 
-| Error Code | Error Message            |
+| ID | Error Message            |
 | ---- | --------------------- |
 | 201  | Permission denied. |
 | 202  | Not System App. |
@@ -1406,7 +1412,7 @@ Queries the number of notifications from all applications based on the specified
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [DeviceUsageStatistics Error Codes](errorcode-DeviceUsageStatistics.md).
 
-| Error Code | Error Message            |
+| ID | Error Message            |
 | ---- | --------------------- |
 | 201  | Permission denied. |
 | 202  | Not System App. |
@@ -1439,7 +1445,7 @@ usageStatistics.queryNotificationEventStats(0, 20000000000000, (err: BusinessErr
 
 queryModuleUsageRecords(): Promise&lt;Array&lt;HapModuleInfo&gt;&gt;
 
-Queries the usage records of unused HAP files for each application in the FA model. If the HAP file contains FA widgets, the usage records also contain the widget information. This API uses a promise to return the result.
+Queries the usage records of different HAP files for each app in the FA model (no more than 1000 records). If the HAP file contains FA widgets, the usage records also contain the widget information. This API uses a promise to return the result.
 
 This API uses a promise to return a maximum of 1000 FA usage records sorted by time (most recent first).
 
@@ -1451,13 +1457,13 @@ This API uses a promise to return a maximum of 1000 FA usage records sorted by t
 
 | Type                                      | Description                                |
 | ---------------------------------------- | ---------------------------------- |
-| Promise&lt;Array&lt;[HapModuleInfo](#hapmoduleinfo)&gt;&gt; | Promise used to return the usage records of unused HAP files (no more than 1000 records).|
+| Promise&lt;Array&lt;[HapModuleInfo](#hapmoduleinfo)&gt;&gt; | Promise used to return the usage records of different HAP files (no more than 1000 records). |
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [DeviceUsageStatistics Error Codes](errorcode-DeviceUsageStatistics.md).
 
-| Error Code | Error Message            |
+| ID | Error Message            |
 | ---- | --------------------- |
 | 201  | Permission denied. |
 | 202  | Not System App. |
@@ -1492,7 +1498,7 @@ usageStatistics.queryModuleUsageRecords().then((res: Array<usageStatistics.HapMo
 
 queryModuleUsageRecords(callback: AsyncCallback&lt;Array&lt;HapModuleInfo&gt;&gt;): void
 
-Queries the usage records of unused HAP files for each application in the FA model. If the HAP file contains FA widgets, the usage records also contain the widget information. This API uses an asynchronous callback to return a maximum of 1000 usage records.
+Queries the usage records of different HAP files for each app in the FA model (no more than 1000 records). If the HAP file contains FA widgets, the usage records also contain the widget information. This API uses an asynchronous callback to return the result.
 
 **Required permissions**: ohos.permission.BUNDLE_ACTIVE_INFO
 
@@ -1502,13 +1508,13 @@ Queries the usage records of unused HAP files for each application in the FA mod
 
 | Name     | Type                                      | Mandatory  | Description                                 |
 | -------- | ---------------------------------------- | ---- | ----------------------------------- |
-| callback | AsyncCallback&lt;Array&lt;[HapModuleInfo](#hapmoduleinfo)&gt;&gt; | Yes   | Callback used to return the result. A maximum of 1000 usage records can be returned.|
+| callback | AsyncCallback&lt;Array&lt;[HapModuleInfo](#hapmoduleinfo)&gt;&gt; | Yes | Callback used to return the usage records of different HAP files (no more than 1000 records). |
 
 **Error codes**
 
-For details about the error codes, see [DeviceUsageStatistics Error Codes](errorcode-DeviceUsageStatistics.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [DeviceUsageStatistics Error Codes](errorcode-DeviceUsageStatistics.md).
 
-| Error Code       | Error Message                      |
+| ID       | Error Message                      |
 | ---------- | ----------------------------       |
 | 201  | Permission denied. |
 | 202  | Not System App. |
@@ -1544,7 +1550,7 @@ usageStatistics.queryModuleUsageRecords((err: BusinessError, res: Array<usageSta
 
 queryModuleUsageRecords(maxNum: number): Promise&lt;Array&lt;HapModuleInfo&gt;&gt;
 
-Queries a given number of usage records of unused HAP files for each application in the FA model. If the HAP file contains FA widgets, the usage records also contain the widget information. This API uses a promise to return the result.
+Queries a given number of usage records of different HAP files for each app in the FA model based on **maxNum**. If the HAP file contains FA widgets, the usage records also contain the widget information. This API uses a promise to return the result.
 
 **Required permissions**: ohos.permission.BUNDLE_ACTIVE_INFO
 
@@ -1560,13 +1566,13 @@ Queries a given number of usage records of unused HAP files for each application
 
 | Type                                      | Description                                |
 | ---------------------------------------- | ---------------------------------- |
-| Promise&lt;Array&lt;[HapModuleInfo](#hapmoduleinfo)&gt;&gt; | Promise used to return the result. The usage records returned does not exceed the value of **maxNum**.|
+| Promise used to return the usage records of different HAP files for each app in the FA model. The usage records returned does not exceed the value of **maxNum**. |
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [DeviceUsageStatistics Error Codes](errorcode-DeviceUsageStatistics.md).
 
-| Error Code | Error Message            |
+| ID | Error Message            |
 | ---- | --------------------- |
 | 201  | Permission denied. |
 | 202  | Not System App. |
@@ -1600,7 +1606,7 @@ usageStatistics.queryModuleUsageRecords(1000).then((res: Array<usageStatistics.H
 
 queryModuleUsageRecords(maxNum: number, callback: AsyncCallback&lt;Array&lt;HapModuleInfo&gt;&gt;): void
 
-Queries a given number of usage records of unused HAP files for each application in the FA model. If the HAP file contains FA widgets, the usage records also contain the widget information. This API uses an asynchronous callback to return the result.
+Queries a given number of usage records of different HAP files for each app in the FA model based on **maxNum**. If the HAP file contains FA widgets, the usage records also contain the widget information. This API uses an asynchronous callback to return the result.
 
 **Required permissions**: ohos.permission.BUNDLE_ACTIVE_INFO
 
@@ -1611,13 +1617,13 @@ Queries a given number of usage records of unused HAP files for each application
 | Name     | Type                                      | Mandatory  | Description                                 |
 | -------- | ---------------------------------------- | ---- | ----------------------------------- |
 | maxNum   | number                                   | Yes   |  Number of usage records, in the range [1, 1000].|
-| callback | AsyncCallback&lt;Array&lt;[HapModuleInfo](#hapmoduleinfo)&gt;&gt; | Yes   | Callback used to return the result. The usage records returned does not exceed the value of **maxNum**.|
+| callback | AsyncCallback&lt;Array&lt;[HapModuleInfo](#hapmoduleinfo)&gt;&gt; | Yes | Callback used to return the usage records of different HAP files for each app in the FA model. The usage records returned does not exceed the value of **maxNum**. |
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [DeviceUsageStatistics Error Codes](errorcode-DeviceUsageStatistics.md).
 
-| Error Code | Error Message            |
+| ID | Error Message            |
 | ---- | --------------------- |
 | 201  | Permission denied. |
 | 202  | Not System App. |
@@ -1675,7 +1681,7 @@ Registers a callback for application group changes. When an application group of
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [DeviceUsageStatistics Error Codes](errorcode-DeviceUsageStatistics.md).
 
-| Error Code | Error Message            |
+| ID | Error Message            |
 | ---- | --------------------- |
 | 201  | Permission denied. |
 | 202  | Not System App. |
@@ -1686,7 +1692,6 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | 10000003   | Failed to get system ability manager. |
 | 10000004   | Failed to access the device usage service.        |
 | 10100001   | Repeated operation on the application group. |
-
 
 **Example**
 
@@ -1730,7 +1735,7 @@ Registers a callback for application group changes. When an application group of
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [DeviceUsageStatistics Error Codes](errorcode-DeviceUsageStatistics.md).
 
-| Error Code | Error Message            |
+| ID | Error Message            |
 | ---- | --------------------- |
 | 201  | Permission denied. |
 | 202  | Not System App. |
@@ -1741,7 +1746,6 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | 10000003   | Failed to get system ability manager. |
 | 10000004   | Failed to access the device usage service.        |
 | 10100001   | Repeated operation on the application group. |
-
 
 **Example**
 
@@ -1786,7 +1790,7 @@ Unregisters the callback for application group changes. This API uses a promise 
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [DeviceUsageStatistics Error Codes](errorcode-DeviceUsageStatistics.md).
 
-| Error Code | Error Message            |
+| ID | Error Message            |
 | ---- | --------------------- |
 | 201  | Permission denied. |
 | 202  | Not System App. |
@@ -1815,7 +1819,7 @@ usageStatistics.unregisterAppGroupCallBack().then( () => {
 
 unregisterAppGroupCallBack(callback: AsyncCallback&lt;void&gt;): void;
 
-Unregisters the callback for application group changes. This API uses an asynchronous callback to return the result.
+Unregisters the callback for app group changes. This API uses an asynchronous callback to return the result.
 
 **Required permissions**: ohos.permission.BUNDLE_ACTIVE_INFO
 
@@ -1831,7 +1835,7 @@ Unregisters the callback for application group changes. This API uses an asynchr
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [DeviceUsageStatistics Error Codes](errorcode-DeviceUsageStatistics.md).
 
-| Error Code | Error Message            |
+| ID | Error Message            |
 | ---- | --------------------- |
 | 201  | Permission denied. |
 | 202  | Not System App. |
@@ -1955,7 +1959,7 @@ Provides the usage duration information of an application.
 
 ## AppStatsMap<sup>15+</sup>
 
-Provides the detailed usage information of an application (including application clones).
+Provides the detailed usage information of an app (including app clones).
 
 **System capability**: SystemCapability.ResourceSchedule.UsageStatistics.App
 

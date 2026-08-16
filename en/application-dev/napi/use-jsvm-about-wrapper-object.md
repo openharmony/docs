@@ -1,10 +1,12 @@
 # Working with Wrapper Objects Using JSVM-API
-<!--Kit: NDK Development-->
+
+<!--Kit: ArkTS-->
 <!--Subsystem: arkcompiler-->
-<!--Owner: @yuanxiaogou; @string_sz-->
+<!--Owner: @yuanxiaogou-->
 <!--Designer: @knightaoko-->
 <!--Tester: @test_lzz-->
-<!--Adviser: @fang-jinxu-->
+<!--Adviser: @k1ngqaquuu-->
+<!-- md-trans-meta sourceCommit=21434ce8d323ecbd7d67463989a2ef075be92cec translatedAt=2026-08-12T06:34:09.251Z pushedAt=2026-08-12T11:01:35.143Z -->
 
 ## Introduction
 
@@ -74,6 +76,7 @@ const char *srcCallNative = R"JS(wrapperObject();)JS";
 ```
 
 Expected result:
-```
+
+```txt
 JSVM OH_JSVM_IsNumberObject: 1
 ```

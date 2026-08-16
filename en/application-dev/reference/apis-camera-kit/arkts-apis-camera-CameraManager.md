@@ -6,7 +6,7 @@
 <!--Designer: @leo_ysl-->
 <!--Tester: @xchaosioda-->
 <!--Adviser: @w_Machine_cc-->
-<!-- md-trans-meta sourceCommit=df2388ac9ece670e2be6918a776640e250f776ef translatedAt=2026-06-25T02:36:35.048Z pushedAt=2026-06-25T06:57:19.555Z -->
+<!-- md-trans-meta sourceCommit=425e79ed59a841b19860caacc0b050f68405d43e translatedAt=2026-08-11T01:57:39.071Z pushedAt=2026-08-11T09:15:09.424Z -->
 
 **CameraManager** implements camera management. Before calling any API in **CameraManager**, you must use [getCameraManager](arkts-apis-camera-f.md#cameragetcameramanager) to obtain a **CameraManager** instance.
 
@@ -221,7 +221,7 @@ Before calling this API, call [getSupportedCameras](#getsupportedcameras) to obt
 
 For details about the error codes, see [Camera Error Codes](errorcode-camera.md).
 
-| Error Code        | Error Message       |
+| ID        | Error Message       |
 | --------------- | --------------- |
 | 7400101                |  Parameter missing or parameter type incorrect.               |
 | 7400102                |  Operation not allowed.<br>Applicable versions: 12 and later               |
@@ -276,7 +276,7 @@ Before calling this API, specify the camera position and type based on the usage
 
 For details about the error codes, see [Camera Error Codes](errorcode-camera.md).
 
-| Error Code        | Error Message       |
+| ID        | Error Message       |
 | --------------- | --------------- |
 | 7400101                |  Parameter missing or parameter type incorrect.               |
 | 7400102                |  Operation not allowed.<br>Applicable versions: 12 and later               |
@@ -329,7 +329,7 @@ Creates a **PreviewOutput** instance. This API returns the result synchronously.
 
 For details about the error codes, see [Camera Error Codes](errorcode-camera.md).
 
-| Error Code        | Error Message       |
+| ID        | Error Message       |
 | --------------- | --------------- |
 | 7400101                |  Parameter missing or parameter type incorrect.               |
 | 7400201                |  Camera service fatal error.<br>Applicable versions: 12 and later               |
@@ -379,7 +379,7 @@ Creates a **PreviewOutput** instance without configuration. This API returns the
 
 For details about the error codes, see [Camera Error Codes](errorcode-camera.md).
 
-| Error Code  | Error Message                                          |
+| ID  | Error Message                                          |
 |---------|------------------------------------------------|
 | 7400101 | Parameter missing or parameter type incorrect. |
 | 7400201 | Camera service fatal error.                    |
@@ -428,7 +428,7 @@ Creates a deferred **PreviewOutput** instance and adds it, instead of a common *
 
 For details about the error codes, see [Camera Error Codes](errorcode-camera.md).
 
-| Error Code        | Error Message       |
+| ID        | Error Message       |
 | --------------- | --------------- |
 | 7400101                |  Parameter missing or parameter type incorrect.               |
 | 7400201                |  Camera service fatal error.               |
@@ -478,7 +478,7 @@ Creates a **PhotoOutput** instance. This API returns the result synchronously.
 
 For details about the error codes, see [Camera Error Codes](errorcode-camera.md).
 
-| Error Code   | Error Message                                          |
+| ID   | Error Message                                          |
 |----------|------------------------------------------------|
 | 7400101  | Parameter missing or parameter type incorrect. |
 | 7400201  | Camera service fatal error.<br>Applicable versions: 12 and later    |
@@ -536,7 +536,7 @@ In video recording mode, if SDR or HDR VIVID is enabled, the camera format and c
 
 For details about the error codes, see [Camera Error Codes](errorcode-camera.md).
 
-| Error Code        | Error Message       |
+| ID        | Error Message       |
 | --------------- | --------------- |
 | 7400101                |  Parameter missing or parameter type incorrect.               |
 | 7400201                |  Camera service fatal error.<br>Applicable versions: 12 and later               |
@@ -586,7 +586,7 @@ Creates a **VideoOutput** instance without configuration. This API returns the r
 
 For details about the error codes, see [Camera Error Codes](errorcode-camera.md).
 
-| Error Code   | Error Message                                          |
+| ID   | Error Message                                          |
 |----------|------------------------------------------------|
 | 7400101  | Parameter missing or parameter type incorrect. |
 | 7400201  | Camera service fatal error.                    |
@@ -635,7 +635,7 @@ Creates a **MetadataOutput** instance. This API returns the result synchronously
 
 For details about the error codes, see [Camera Error Codes](errorcode-camera.md).
 
-| Error Code        | Error Message       |
+| ID        | Error Message       |
 | --------------- | --------------- |
 | 7400101                |  Parameter missing or parameter type incorrect.               |
 | 7400201                |  Camera service fatal error.<br>Applicable versions: 12 and later               |
@@ -684,7 +684,7 @@ Creates a **Session** instance with a given scene mode. This API returns the res
 
 For details about the error codes, see [Camera Error Codes](errorcode-camera.md).
 
-| Error Code  | Error Message                                                                                                                                          |
+| ID  | Error Message                                                                                                                                          |
 |---------|------------------------------------------------------------------------------------------------------------------------------------------------|
 | 7400101 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3.Parameter verification failed.<br>Applicable versions: 19 and later |
 | 7400201 | Camera service fatal error.                                                                                                                    |
@@ -939,7 +939,7 @@ Sets the flashlight mode.
 
 For details about the error codes, see [Camera Error Codes](errorcode-camera.md).
 
-| Error Code        | Error Message       |
+| ID        | Error Message       |
 | --------------- | --------------- |
 | 7400101 | Parameter missing or parameter type incorrect.<br>Applicable versions: 11-17 |
 | 7400102 | Operation not allowed.<br>Applicable versions: 12 and later |
@@ -1054,9 +1054,9 @@ function isTorchLevelControlSupported(cameraManager: camera.CameraManager): bool
 }
 ```
 
-## SetTorchModeOnWithLevel
+## setTorchModeOnWithLevel
 
-SetTorchModeOnWithLevel(torchLevel: number): void
+setTorchModeOnWithLevel(torchLevel: number): void
 
 Sets the specified brightness level for the flashlight.
 
@@ -1064,7 +1064,7 @@ Sets the specified brightness level for the flashlight.
 
 **Model restriction**: This API can be used only in the stage model.
 
-**Atomic service API**: This API can be used in atomic services since API version 26.
+**Atomic service API**: This API can be used in atomic services since API version 26.0.0.
 
 **System capability**: SystemCapability.Multimedia.Camera.Core
 
@@ -1078,7 +1078,7 @@ Sets the specified brightness level for the flashlight.
 
 For details about the error codes, see [Camera Error Codes](errorcode-camera.md).
 
-| Error Code        | Error Message       |
+| ID        | Error Message       |
 | --------------- | --------------- |
 | 7400201 | Camera service fatal error. |
 | 7400102 | Operation not allowed. |
@@ -1121,7 +1121,7 @@ Obtains the camera lens of the specified [CameraPosition](arkts-apis-camera-e.md
 
 For details about the error codes, see [Camera Error Codes](errorcode-camera.md).
 
-| Error Code        | Error Message       |
+| ID        | Error Message       |
 | --------------- | --------------- |
 | 7400201 | Camera service fatal error. |
 
@@ -1171,7 +1171,7 @@ Obtains the list of cameras that meet the search criteria based on the camera po
 
 For details about the error codes, see [Camera Error Codes](errorcode-camera.md).
 
-| Error Code        | Error Message       |
+| ID        | Error Message       |
 | --------------- | --------------- |
 | 7400201 | Camera service fatal error. |
 
@@ -1219,7 +1219,7 @@ Obtains the concurrency information of the specified cameras. If the return valu
 
 For details about the error codes, see [Camera Error Codes](errorcode-camera.md).
 
-| Error Code        | Error Message       |
+| ID        | Error Message       |
 | --------------- | --------------- |
 | 7400201 | Camera service fatal error. |
 
@@ -1305,7 +1305,7 @@ Creates a **PhotoOutput** instance. This API returns the result synchronously.
 
 For details about the error codes, see [Camera Error Codes](errorcode-camera.md).
 
-| Error Code        | Error Message       |
+| ID        | Error Message       |
 | --------------- | --------------- |
 | 7400101                |  Parameter missing or parameter type incorrect.               |
 
@@ -1347,7 +1347,7 @@ Creates a **CaptureSession** instance. This API returns the result synchronously
 
 For details about the error codes, see [Camera Error Codes](errorcode-camera.md).
 
-| Error Code        | Error Message       |
+| ID        | Error Message       |
 | --------------- | --------------- |
 | 7400201                |  Camera service fatal error.               |
 

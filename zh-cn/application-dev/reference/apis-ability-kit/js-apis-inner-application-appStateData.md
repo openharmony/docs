@@ -67,7 +67,7 @@ let applicationStateObserver: appManager.ApplicationStateObserver = {
 
 try {
   const observerId = appManager.on('applicationState', applicationStateObserver);
-  console.info(`[appManager] observerCode: ${observerId}`);
+  console.info(`[appManager] observerId: ${observerId}`);
 } catch (paramError) {
   let code = (paramError as BusinessError).code;
   let message = (paramError as BusinessError).message;

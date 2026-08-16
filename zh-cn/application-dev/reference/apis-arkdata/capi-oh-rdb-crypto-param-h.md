@@ -124,7 +124,7 @@ OH_Rdb_CryptoParam *OH_Rdb_CreateCryptoParam(void)
 
 | 类型                                             | 说明                                                         |
 | ------------------------------------------------ | ------------------------------------------------------------ |
-| [OH_Rdb_CryptoParam](capi-rdb-oh-rdb-cryptoparam.md) | 成功时返回指向[OH_Rdb_CryptoParam](capi-rdb-oh-rdb-cryptoparam.md)实例的指针。<br>否则返回nullptr。使用完成后，必须通过[OH_Rdb_DestroyCryptoParam](capi-oh-rdb-crypto-param-h.md#oh_rdb_destroycryptoparam)接口释放内存。 |
+| [OH_Rdb_CryptoParam](capi-rdb-oh-rdb-cryptoparam.md) * | 成功时返回指向[OH_Rdb_CryptoParam](capi-rdb-oh-rdb-cryptoparam.md)实例的指针。<br>否则返回nullptr。使用完成后，必须通过[OH_Rdb_DestroyCryptoParam](capi-oh-rdb-crypto-param-h.md#oh_rdb_destroycryptoparam)接口释放内存。 |
 
 ### OH_Rdb_DestroyCryptoParam()
 

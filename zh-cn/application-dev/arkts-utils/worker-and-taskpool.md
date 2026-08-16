@@ -29,7 +29,7 @@ ArkTS应用开发过程中，可以选择TaskPool或Worker线程进行多任务�
      build() {
        RelativeContainer() {
          Button(this.message)
-           .fontSize(25)
+           .fontSize(19)
            .id('HelloWorld')
            .fontWeight(FontWeight.Bold)
            .alignRules({
@@ -77,7 +77,7 @@ ArkTS应用开发过程中，可以选择TaskPool或Worker线程进行多任务�
        // 调用TaskPool执行并发任务
        const task = new taskpool.Task(parallelTask, processedData);
        const result = await taskpool.execute(task);
-       console.info('Worker线程返回结果: ', result);
+       console.info('TaskPool线程返回结果: ', result);
    
        // 将最终结果返回主线程
        workerPort.postMessage({

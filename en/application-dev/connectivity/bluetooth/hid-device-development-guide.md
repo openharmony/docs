@@ -3,14 +3,14 @@
 <!--Kit: Connectivity Kit-->
 <!--Subsystem: Communication-->
 <!--Owner: @enjoy_sunshine-->
-<!--Designer: @chengguohong; @tangjia15-->
+<!--Designer: @tangjia15-->
 <!--Tester: @wangfeng517-->
 <!--Adviser: @zhang_yixin13-->
-<!-- md-trans-meta sourceCommit=dcae6f10c07044342acb5b2dc0416e100c5bcaa2 translatedAt=2026-06-17T06:38:02.502Z pushedAt=2026-06-18T02:56:34.861Z -->
+<!-- md-trans-meta sourceCommit=14ca614ebb030bf413b2d8393352ad7521a1d1b9 translatedAt=2026-08-15T01:40:45.953Z pushedAt=2026-08-15T04:20:55.556Z -->
 
 ## Overview
 
-This guide primarily provides development instructions for simulating a device as a Bluetooth keyboard, mouse, gamepad, or other input device based on the Human Interface Device Profile ([HID](../../connectivity/terminology.md#hid)). In the HID device communication model, roles can be distinguished as [HID host](../../connectivity/terminology.md#hid-host) and [HID device](../../connectivity/terminology.md#hid-device) based on device capabilities. This guide focuses on how to provide HID device capabilities for an application, connect to other Bluetooth HID hosts (such as PCs, tablets, and phones), and perform data interaction.
+This guide primarily provides development instructions for simulating a device as a Bluetooth keyboard, mouse, gamepad, or other input device based on the Human Interface Device Profile ([HID](terminology.md#hid)). In the HID device communication model, roles can be distinguished as [HID host](terminology.md#hid-host) and [HID device](terminology.md#hid-device) based on device capabilities. This guide focuses on how to provide HID device capabilities for an app, connect to other Bluetooth HID hosts (such as PCs, tablets, and phones), and perform data interaction.
 
 ## Implementation Principles
 

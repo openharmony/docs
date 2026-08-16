@@ -17,10 +17,6 @@
 
 若需要使用模拟器运行该示例，请参考：[使用模拟器运行应用](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides/ide-run-emulator)
 
-## 基本概念
-
-- N-API：用于构建ArkTS本地化组件的一套接口。可利用N-API，将C/C++开发的库封装成ArkTS模块。
-
 ## 开发流程
 
 1. 选择语音识别模型。

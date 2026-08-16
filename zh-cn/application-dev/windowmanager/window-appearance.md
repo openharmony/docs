@@ -310,10 +310,6 @@ struct Index {
   @State statusText: string = 'Move the sliders to change the current window background color.';
   @State applyModeText: string = 'Current mode: string (#AARRGGBB)';
 
-  aboutToAppear(): void {
-    this.applyWindowBackgroundColor();
-  }
-
   // 将0~255的通道值转换成两位十六进制字符串，用于拼接 #AARRGGBB。
   private toHex(value: number): string {
     return Math.round(value).toString(16).padStart(2, '0').toUpperCase();
@@ -323,7 +319,7 @@ struct Index {
   private getColorValue(): string {
     return `#${this.toHex(this.alpha)}${this.toHex(this.red)}${this.toHex(this.green)}${this.toHex(this.blue)}`;
   }
- // ...
+  // ...
   // 直接用ColorMetrics.rgba(...)设置窗口背景色。
   private applyByColorMetrics(): void {
     if (!this.mainWindow) {
@@ -345,6 +341,6 @@ struct Index {
     }
   }
 
- // ...
+  // ...
 }
 ```

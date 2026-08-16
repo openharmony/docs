@@ -1,10 +1,12 @@
-# Playing Moving Photos with MovingPhotoView 
+# Playing Moving Photos with MovingPhotoView
+
 <!--Kit: Media Library Kit-->
 <!--Subsystem: FileManagement-->
 <!--Owner: @tangye123456-->
 <!--Designer: @YanSanzo-->
 <!--Tester: @tinygreyy-->
 <!--Adviser: @w_Machine_cc-->
+<!-- md-trans-meta sourceCommit=f54aea239b05f95120e350943376ec3af39fe8f4 translatedAt=2026-08-11T01:57:29.227Z pushedAt=2026-08-12T03:37:21.611Z -->
 
 The system provides the **MovingPhotoView** component, which can be used to play moving photos in social networking and gallery applications.
 
@@ -13,8 +15,11 @@ The system provides the **MovingPhotoView** component, which can be used to play
 The restrictions on using the **MovingPhotoView** component are as follows:
 
 - Currently, live properties cannot be set.
+
 - Currently, the ArkUI [expandSafeArea](../../reference/apis-arkui/arkui-ts/ts-universal-attributes-expand-safe-area.md#expandsafearea) cannot be set.
+
 - When this component is long pressed to trigger playback, the component area is zoomed in to 1.1 times.
+
 - This component uses [AVPlayer](../../reference/apis-media-kit/arkts-apis-media-AVPlayer.md) to play moving photos. A maximum of three AVPlayers can be used at the same time. Otherwise, frame freezing may occur.
 
 ## How to Develop
@@ -28,13 +33,17 @@ The restrictions on using the **MovingPhotoView** component are as follows:
 
     API version 21 and earlier:
 
-     ```ts
-     import { MovingPhotoView, MovingPhotoViewController, MovingPhotoViewAttribute } from '@kit.MediaLibraryKit';
+     <!-- @[movingphotoview_import_api21](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/MediaLibraryKit/MovingPhotoViewSample/entry/src/main/ets/pages/Index.ets) -->
+
+     ``` TypeScript
+     //import { MovingPhotoView, MovingPhotoViewController, MovingPhotoViewAttribute } from '@kit.MediaLibraryKit';
      ```
 
     API version 22 and later:
 
-     ```ts
+     <!-- @[movingphotoview_import_api22](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/MediaLibraryKit/MovingPhotoViewSample/entry/src/main/ets/pages/Index.ets) -->
+
+     ``` TypeScript
      import { MovingPhotoView, MovingPhotoViewController } from '@kit.MediaLibraryKit';
      ```
 
@@ -44,13 +53,17 @@ The restrictions on using the **MovingPhotoView** component are as follows:
 
    For details about how to create and obtain a moving photo object, see [Accessing and Managing Moving Photo Assets](photoAccessHelper-movingphoto.md).
 
-   ```ts
-   src: photoAccessHelper.MovingPhoto | undefined = undefined;
+   <!-- @[movingphotoview_src](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/MediaLibraryKit/MovingPhotoViewSample/entry/src/main/ets/pages/Index.ets) -->
+
+   ``` TypeScript
+   @State src: photoAccessHelper.MovingPhoto | undefined = undefined
    ```
 
 3. Create a [MovingPhotoViewController](../../reference/apis-media-library-kit/ohos-multimedia-movingphotoview.md#movingphotoviewcontroller) to control the playback status (such as playing or stopping) of the moving photo.
 
-   ```ts
+   <!-- @[movingphotoview_controller](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/MediaLibraryKit/MovingPhotoViewSample/entry/src/main/ets/pages/Index.ets) -->
+
+   ``` TypeScript
    controller: MovingPhotoViewController = new MovingPhotoViewController();
    ```
 
@@ -58,64 +71,75 @@ The restrictions on using the **MovingPhotoView** component are as follows:
 
    The values in the following sample code are only examples. For details about the value range of each parameter, see [@ohos.multimedia.movingphotoview](../../reference/apis-media-library-kit/ohos-multimedia-movingphotoview.md).
 
-   ```ts
-    // For API version 21 and earlier, use the following: import { photoAccessHelper, MovingPhotoView, MovingPhotoViewController, MovingPhotoViewAttribute } from '@kit.MediaLibraryKit';
-    // For API version 22 and later, use the following:
-    import { photoAccessHelper, MovingPhotoView, MovingPhotoViewController } from '@kit.MediaLibraryKit';
+   <!-- @[movingphotoview_component](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/MediaLibraryKit/MovingPhotoViewSample/entry/src/main/ets/pages/Index.ets) -->
 
-    @Entry
-    @Component
-    struct Index {
-      @State src: photoAccessHelper.MovingPhoto | undefined = undefined
-      @State isMuted: boolean = false
-      controller: MovingPhotoViewController = new MovingPhotoViewController();
-      build() {
-        Column() {
-          MovingPhotoView({
-            movingPhoto: this.src,
-            controller: this.controller
-          })
-            // Whether to mute the playback. The default value is false. In this example, it is controlled by the button.
-            .muted(this.isMuted)
-            // Video display mode. The default value is Cover.
-            .objectFit(ImageFit.Cover)
-            // Triggered when the playback starts.
-            .onStart(() => {
-              console.info('onStart');
-            })
-            // Triggered when the playback ends.
-            .onFinish(() => {
-              console.info('onFinish');
-            })
-            // Triggered when the playback stops.
-            .onStop(() => {
-              console.info('onStop')
-            })
-            // Triggered when an error occurs.
-            .onError(() => {
-              console.error('onError');
-            })
+   ``` TypeScript
+   // For API version 21 and earlier, import as follows: import { photoAccessHelper, MovingPhotoView, MovingPhotoViewController, MovingPhotoViewAttribute } from '@kit.MediaLibraryKit';
+   // For API version 22 and later, import as follows:
+   // import { photoAccessHelper, MovingPhotoView, MovingPhotoViewController } from '@kit.MediaLibraryKit';
+   
+   @Entry
+   @Component
+   struct Index {
+     @State src: photoAccessHelper.MovingPhoto | undefined = undefined
+     // ...
+     @State isMuted: boolean = false
+     controller: MovingPhotoViewController = new MovingPhotoViewController();
+   
+     // ...
+   
+     build() {
+       Column() {
+         // ...
+
+         MovingPhotoView({
+           movingPhoto: this.src,
+           controller: this.controller
+         })
+           // Whether to play muted. Controlled by a button here. The default value is false, meaning unmuted playback.
+           .muted(this.isMuted)
+           // Video display mode. The default value is Cover.
+           .objectFit(ImageFit.Cover)
+           // Triggered when playback starts.
+           .onStart(() => {
+             console.info('onStart');
+           })
+           // Triggered when playback ends.
+           .onFinish(() => {
+             console.info('onFinish');
+           })
+           // Triggered when playback stops.
+           .onStop(() => {
+             console.info('onStop')
+           })
+           // Triggered when an error occurs.
+           .onError(() => {
+             console.error('onError');
+           })
+         // ...
     
-          Row() {
-            // Button for starting playback.
-            Button('start')
-              .onClick(() => {
-                this.controller.startPlayback()
-              })
-              .margin(5)
-            // Button for stopping playback.
-            Button('stop')
-              .onClick(() => {
-                this.controller.stopPlayback()
-              })
-              .margin(5)
-          }
-          .alignItems(VerticalAlign.Center)
-          .justifyContent(FlexAlign.Center)
-          .height('15%')
-        }
-      }
-    }
+         Row() {
+           // Button: Start playback.
+           Button('PLAY')
+             .onClick(() => {
+               this.controller.startPlayback()
+             })
+             .margin(5)
+           // Button: Stop playback.
+           Button('STOP')
+             .onClick(() => {
+               this.controller.stopPlayback()
+             })
+             .margin(5)
+           // ...
+         }
+         .alignItems(VerticalAlign.Center)
+         .justifyContent(FlexAlign.Center)
+         .height('15%')
+       }
+       // ...
+     }
+   }
    ```
 
 ## Effect

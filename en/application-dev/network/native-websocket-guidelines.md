@@ -1,10 +1,12 @@
 # Using WebSocket for Network Access (C/C++)
+
 <!--Kit: Network Kit-->
 <!--Subsystem: Communication-->
 <!--Owner: @wmyao_mm-->
 <!--Designer: @guo-min_net-->
 <!--Tester: @tongxilin-->
 <!--Adviser: @zhang_yixin13-->
+<!-- md-trans-meta sourceCommit=742fd8e7f742ee980eb300ddfd075065ca362dff translatedAt=2026-08-13T03:07:45.076Z pushedAt=2026-08-13T06:23:23.350Z -->
 
 ## When to Use
 
@@ -14,21 +16,20 @@ The WebSocket module can be used to establish bidirectional connections between 
 
 The following table lists the common WebSocket APIs. For details, see [net_websocket.h](../reference/apis-network-kit/capi-net-websocket-h.md).
 
-
 | API| Description|
 | -------- | -------- |
 | OH_WebSocketClient_Constructor(WebSocket_OnOpenCallback onOpen, WebSocket_OnMessageCallback onMessage, WebSocket_OnErrorCallback onError, WebSocket_OnCloseCallback onclose) | Constructor used to create a WebSocket client. |
 | OH_WebSocketClient_AddHeader(struct WebSocket \*client, struct WebSocket_Header header) | Adds the header information to the client request. |
 | OH_WebSocketClient_Connect(struct WebSocket \*client, const char \*url, struct WebSocket_RequestOptions options) | Connects the WebSocket client to the server. |
 | OH_WebSocketClient_Send(struct WebSocket \*client, char \*data, size_t length) | Sends data from the WebSocket client to the server. |
-| OH_WebSocketClient_Close(struct WebSocket \*client, struct WebSocket_CloseOption options) | Lets the WebSocket client proactively close the connection. |
-| OH_WebSocketClient_Destroy(struct WebSocket \*client) | Releases the context and resources of the WebSocket connection. |
+| OH_WebSocketClient_Close(struct WebSocket \*client, struct WebSocket_CloseOption options) | Closes the WebSocket connection proactively on the client side. |
+| OH_WebSocketClient_Destroy(struct WebSocket \*client) | Releases the WebSocket connection context and resources. |
 
 ## Development Example
 
 ### How to Develop
 
-To use related APIs to establish a connection to the WebSocket server, you need to create a Native C++ project, encapsulate the APIs in the source file, and call these APIs at the ArkTS layer. You can use **hilog** or **console.log** to print the log information on the console or generate device logs.
+To use related APIs to establish a connection to the WebSocket server, you need to create a Native C++ project, encapsulate the APIs in the source file, and call these APIs at the ArkTS layer. You can use **hilog** or **console.info** to print the log information on the console or generate device logs.
 
 The following walks you through on how to establish a connection to the WebSocket server, send messages to the WebSocket server, and close the WebSocket connection.
 
@@ -42,6 +43,7 @@ Add the following library to **CMakeLists.txt**.
 libace_napi.z.so
 libnet_websocket.so
 ```
+
 **Including Header Files**
 
 ```c
@@ -49,6 +51,7 @@ libnet_websocket.so
 #include "network/netstack/net_websocket.h"
 #include "network/netstack/net_websocket_type.h"
 ```
+
 ### Building the Project
 
 1. Write the API call code in the source file to allow applications to receive the URL string passed from ArkTS, create a pointer to the **WebSocketClient** object, and check whether the connection to the WebSocket server is successful.
@@ -87,6 +90,7 @@ static void onMessage(struct WebSocket *wsClient, char *data, uint32_t length)
     }
     tmp[length] = '\0';
     OH_LOG_INFO(LOG_APP, "onMessage: len: %{public}u, data: %{public}s", length, tmp);
+    delete[] tmp;
 }
 
 static void onError(struct WebSocket *wsClient, WebSocket_ErrorResult errorResult)
@@ -193,8 +197,7 @@ static napi_value CloseWebsocket(napi_env env, napi_callback_info info)
 }
 ```
 
-On receiving a WebSocket URL, the **ConnectWebsocket** function attempts to connect to the server identified by the URL. If the connection is successful, **true** is returned. Otherwise, **false** is returned. Before creating a pointer to the **WebSocketClient** object, define the **onOpen**, **onMessage**, **onError**, and **onClose** callbacks for the WebSocket connection. In the sample code, functions such as `OH_WebSocketClient_Send` and `OH_WebSocketClient_Close` are also called to send messages to the server and proactively close the WebSocket connection.
-
+The `ConnectWebsocket` function receives a WebSocket URL and attempts to establish a connection. It returns **true** if the connection is successful and **false** otherwise. Before creating the WebSocket struct pointer that represents the WebSocket client, define the following callbacks: the `onOpen` callback for when the connection is opened, the `onMessage` callback for receiving normal messages, the `onError` callback for receiving error messages, and the `onClose` callback for receiving close messages. In the sample code, functions such as [`OH_WebSocketClient_Send`](../reference/apis-network-kit/capi-net-websocket-h.md#oh_websocketclient_send) and [`OH_WebSocketClient_Close`](../reference/apis-network-kit/capi-net-websocket-h.md#oh_websocketclient_close) are also called to send messages to the server and proactively close the WebSocket connection.
 
 2. Initialize and export the `napi_value` objects encapsulated through **NAPI**, and expose the preceding functions to JavaScript through external function APIs. In the sample code, the `ConnectWebsocket` function is exposed as the external function `Connect`, the `SendMessage` function is exposed as the external function `Send`, and the `CloseWebsocket` function is exposed as the external function `Close`.
 
@@ -215,7 +218,7 @@ static napi_value Init(napi_env env, napi_value exports)
 EXTERN_C_END
 ```
 
-3. Register the objects successfully initialized in the previous step into the Node.js file by using the `napi_module_register` function of `RegisterEntryModule`.
+3. Register the objects successfully initialized in the previous step into Node.js by using the `napi_module_register` function of `RegisterEntryModule`.
 
 <!-- @[websocket_napi_module](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/NetWork_Kit/NetWorkKit_Datatransmission/WebSocket_C/entry/src/main/cpp/napi_init.cpp) -->
 

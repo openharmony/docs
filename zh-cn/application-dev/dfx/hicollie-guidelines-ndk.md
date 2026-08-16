@@ -14,8 +14,8 @@
 
 | 接口名 | 描述 |
 | -------- | -------- |
-| OH_HiCollie_Init_StuckDetection | 注册应用业务线程卡死的周期性检测任务。用户实现回调函数, 用于定时检测业务线程卡死情况。<br/>默认检测时间：3s上报BUSSINESS_THREAD_BLOCK_3S告警事件，6s上报BUSSINESS_THREAD_BLOCK_6S卡死事件。<br/>**说明**：在非主线程使用该接口。 |
-| OH_HiCollie_Init_StuckDetectionWithTimeout | 注册应用业务线程卡死的周期性检测任务。用户实现回调函数, 用于定时检测业务线程卡死情况。<br/>开发者可以设置卡死检测时间，可设置的时间范围：[3, 15]，单位：s。<br/>**说明**：<br/>- 在非主线程使用该接口。<br/>- 从API version 18开始，支持该接口。 |
+| OH_HiCollie_Init_StuckDetection | 注册应用业务线程卡死的周期性检测任务。用户实现回调函数，用于定时检测业务线程卡死情况。<br/>默认检测时间：3s上报BUSSINESS_THREAD_BLOCK_3S告警事件，6s上报BUSSINESS_THREAD_BLOCK_6S卡死事件。<br/>**说明**：在非主线程使用该接口。 |
+| OH_HiCollie_Init_StuckDetectionWithTimeout | 注册应用业务线程卡死的周期性检测任务。用户实现回调函数，用于定时检测业务线程卡死情况。<br/>开发者可以设置卡死检测时间，可设置的时间范围：[3, 15]，单位：s。<br/>**说明**：<br/>- 在非主线程使用该接口。<br/>- 从API version 18开始，支持该接口。 |
 | OH_HiCollie_Init_JankDetection | 注册应用业务线程卡顿检测的回调函数。<br/>线程卡顿监控功能需要开发者实现两个卡顿检测回调函数，分别放在业务线程处理事件的前后。作为插桩函数，监控业务线程处理事件执行情况。<br/>**说明**：在非主线程使用该接口。 |
 | OH_HiCollie_Report | 上报应用业务线程卡死事件，生成卡死故障日志，辅助定位应用卡死问题。<br/>先调用OH_HiCollie_Init_StuckDetection或OH_HiCollie_Init_StuckDetectionWithTimeout接口，初始化检测的task。<br/>如果task任务超时，结合业务逻辑，调用OH_HiCollie_Report接口上报卡死事件。<br/>**说明**：<br/>- 在非主线程使用该接口。<br/>- 该接口仅对[release版本应用](performance-analysis-kit-terminology.md#release版本应用)生效，对[debug版本应用](performance-analysis-kit-terminology.md#debug版本应用)不生效。 |
 | OH_HiCollie_ReportInputBlock | 上报应用输入无响应事件，生成卡死故障日志，辅助定位应用卡死问题。如果在PC或平板设备上，还会弹窗提示用户继续等待或关闭应用，其他设备不会弹窗。建议如下两种方式使用该接口。<br/>方式一（推荐）：配合OH_HiCollie_Report、OH_HiCollie_Init_StuckDetection或OH_HiCollie_Init_StuckDetectionWithTimeout接口使用，业务线程通过上述接口周期性检测自身卡死情况，当满足业务线程卡死且有输入事件（如屏幕点击、鼠标点击、键盘输入等）条件时再调用OH_HiCollie_ReportInputBlock接口。<br/>方式二：业务线程不通过OH_HiCollie_Report、OH_HiCollie_Init_StuckDetection或OH_HiCollie_Init_StuckDetectionWithTimeout接口也能检测自身卡死情况，则应用结合业务线程卡死情况和输入事件再调用OH_HiCollie_ReportInputBlock接口。<br/>**说明**：<br/>- 该接口可以在主线程使用，比如输入事件需要先经过主线程再封装传递给业务线程处理，业务线程卡死时维护一个状态标志位，主线程结合业务线程的卡死状态标志位和输入事件再调用该接口。<br/>- 该接口仅对[release版本应用](performance-analysis-kit-terminology.md#release版本应用)生效，对[debug版本应用](performance-analysis-kit-terminology.md#debug版本应用)不生效。<br/>- 从API version 24开始，支持该接口。 |

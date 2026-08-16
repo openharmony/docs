@@ -263,7 +263,7 @@ type ClearSearchHistoryEvent = () => Promise&lt;OperResult&gt;
 
 type LoginEvent = (controlType: LoginType, id?: string) => Promise&lt;QrCodeInfo[]&gt;
 
-登录事件。使用Promise异步回调。
+登录事件。用于控制登录流程，包括查询登录信息、刷新登录信息、取消操作和退出登录。使用Promise异步回调。
 
 **模型约束：** 此接口仅可在Stage模型下使用。
 
@@ -342,7 +342,7 @@ type DialogActionType = 'open' | 'close' | 'refresh'
 
 type HandleMemberPurchaseEvent = (info: MemberPurchaseInfo) => Promise&lt;DialogInfo&gt;
 
-处理购买会员事件。使用Promise异步回调。
+处理购买会员事件。系统会在用户触发购买操作时调用此事件。使用Promise异步回调。
 
 **模型约束：** 此接口仅可在Stage模型下使用。
 
@@ -364,7 +364,7 @@ type HandleMemberPurchaseEvent = (info: MemberPurchaseInfo) => Promise&lt;Dialog
 
 type QueryMemberPurchaseEvent = (memberPurchaseType: MemberPurchaseType) => Promise&lt;MemberPurchaseInfo[]&gt;
 
-购买会员查询事件。使用Promise异步回调。
+购买会员查询事件。用于根据会员购买类型查询可用的会员购买信息，系统会在用户进入会员购买页面时调用此事件。使用Promise异步回调。
 
 **模型约束：** 此接口仅可在Stage模型下使用。
 
@@ -386,7 +386,7 @@ type QueryMemberPurchaseEvent = (memberPurchaseType: MemberPurchaseType) => Prom
 
 type QueryCustomContentEvent = (queryType: CustomType[]) => Promise&lt;CustomElement&gt;
 
-自定义内容查询事件。使用Promise异步回调。
+自定义内容查询事件。用于查询用户基本信息、界面选项卡配置、代码编译选项和系统设置项等自定义内容。使用Promise异步回调。
 
 **模型约束：** 此接口仅可在Stage模型下使用。
 
@@ -425,7 +425,7 @@ type CustomType = 'USER_INFO' | 'TAB' | 'COMPILATION' | 'SETTINGS'
 
 type DownloadMediaEntityEvent = (controlType: DownloadControlType, mediaEntity: MediaEntity) => Promise&lt;OperResult&gt;
 
-媒体实体下载事件。使用Promise异步回调。
+媒体实体下载事件。用于控制媒体实体的下载流程，支持开始下载、暂停下载、恢复下载和删除下载操作。使用Promise异步回调。
 
 **模型约束：** 此接口仅可在Stage模型下使用。
 
@@ -448,7 +448,7 @@ type DownloadMediaEntityEvent = (controlType: DownloadControlType, mediaEntity: 
 
 type DownloadControlType = 'startDownload' | 'deleteDownload' | 'resumeDownload' | 'pauseDownload'
 
-定义下载操作的控制类型，包括开始下载、删除下载、恢复下载和暂停下载。该类型可取的值为下表字符串。
+下载操作控制类型。该类型可取的值为下表字符串。
 
 **模型约束：** 此接口仅可在Stage模型下使用。
 
@@ -509,7 +509,7 @@ type ProblemAndAdviceEvent = (advice: string) => Promise&lt;OperResult&gt;
 
 type PlayForSearchEvent = (command: SearchPlayInfoType, args: SearchPlayInfo) => Promise&lt;OperResult&gt;
 
-搜播事件。使用Promise异步回调。
+搜索并播放媒体的事件。使用Promise异步回调。
 
 **模型约束：** 此接口仅可在Stage模型下使用。
 

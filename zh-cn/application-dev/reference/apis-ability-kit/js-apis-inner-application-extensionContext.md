@@ -1,7 +1,7 @@
 # ExtensionContext
 <!--Kit: Ability Kit-->
 <!--Subsystem: Ability-->
-<!--Owner: @yewei0794-->
+<!--Owner: @xialiangwei-->
 <!--Designer: @jsjzju-->
 <!--Tester: @liangchengguang-->
 <!--Adviser: @HelloCrease-->
@@ -34,11 +34,11 @@ import { common } from '@kit.AbilityKit';
 | extensionAbilityInfo | [ExtensionAbilityInfo](js-apis-bundleManager-extensionAbilityInfo.md) | 否 | 否 | 所属[ExtensionAbility](js-apis-app-ability-extensionAbility.md)的信息。 |
 
 ## 使用场景
-ExtensionContext主要用于查询所属ExtensionAbility的信息、Module的配置信息以及HAP包的信息，开发者可根据自身业务需求使用对应的信息。
+ExtensionContext主要用于查询所属ExtensionAbility的信息、Module的配置信息以及HAP模块的信息，开发者可根据自身业务需求使用对应的信息。
 
 **示例：**
 
-在扩展的[FormExtensionAbility](../apis-form-kit/js-apis-app-form-formExtensionAbility.md)中获取上下文，查询该扩展的FormExtensionAbility所属HAP包等信息。
+在扩展的[FormExtensionAbility](../apis-form-kit/js-apis-app-form-formExtensionAbility.md)中获取上下文，查询该扩展的FormExtensionAbility所属HAP模块等信息。
 
 ```ts
 import { FormExtensionAbility, formBindingData } from '@kit.FormKit';

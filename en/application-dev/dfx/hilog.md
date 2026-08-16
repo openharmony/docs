@@ -6,7 +6,7 @@
 <!--Designer: @milkbread123-->
 <!--Tester: @yufeifei-->
 <!--Adviser: @jinqiuheng-->
-<!-- md-trans-meta sourceCommit=f370d11b7e4c484c027e66cff1f0c0d08157ec33 translatedAt=2026-07-31T01:31:44.576Z pushedAt=2026-07-31T07:39:08.971Z -->
+<!-- md-trans-meta sourceCommit=6db932f4e45adea0278f47bd1ea65c69afe45603 translatedAt=2026-08-15T01:47:42.996Z pushedAt=2026-08-15T07:21:27.513Z -->
 
 HiLog is a log system that provides logging for the system framework, services, and applications to record information on user operations and system running status. You can run the hilog commands to query related log information.
 
@@ -690,7 +690,7 @@ The flow control is performed by process. The application logs printed in the **
 
 This log indicates that the number of logs printed by the** com.example.myapplication** process exceeds the upper limit. Before 17:02:34.219, 3091 lines of logs are discarded due to the upper limit control.
 
-**Solution**: Disable the process control mechanism by referring to [Setting Process Flow Control](#setting-process-flow-control).
+**Handling method**: Refer to [Setting Process Flow Control](#setting-process-flow-control) to disable the corresponding control mechanism. It is recommended that each app process print no more than 50 KB of logs per second. Otherwise, log overlimit may be triggered, resulting in log loss.
 
 ### System Logs
 
@@ -706,7 +706,7 @@ The flow control is performed by domain ID. The system logs printed in the **LOG
 
 This log indicates that the number of logs whose domain ID is **02C02** exceeds the upper limit. Before 17:02:34.219, 108 lines of logs are discarded due to the upper limit control.
 
-**Solution**: Disable the domain control mechanism by referring to [Setting Domain Flow Control](#setting-domain-flow-control).
+**Handling method**: Refer to [Setting Domain Flow Control](#setting-domain-flow-control) to disable the corresponding control mechanism. It is recommended that each domain ID print no more than 50 KB of logs per second. Otherwise, log overlimit may be triggered, resulting in log loss.
 
 ## Handling Log Loss
 

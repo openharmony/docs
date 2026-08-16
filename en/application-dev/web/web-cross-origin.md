@@ -1,10 +1,12 @@
 # Resolving Cross-Origin Resource Access
+
 <!--Kit: ArkWeb-->
 <!--Subsystem: Web-->
 <!--Owner: @aohui-->
 <!--Designer: @yaomingliu-->
 <!--Tester: @ghiker-->
 <!--Adviser: @HelloShuo-->
+<!-- md-trans-meta sourceCommit=df43b8cd7284167bf41a7a5f049ab6572e368164 translatedAt=2026-08-14T03:45:17.028Z pushedAt=2026-08-14T07:39:43.140Z -->
 
 ## Background
 
@@ -22,9 +24,10 @@ Access to script at 'xxx' from origin 'xxx' has been blocked by CORS policy: Cro
 
   The following uses an example to describe how to use HTTP or HTTPS to access local cross-origin resources. the **index.html** and **js/script.js** files are stored in the **rawfile** folder of the project directory. When the resource protocol is used to access the **index.html** file, the **js/script.js** file is intercepted due to cross-origin access and cannot be loaded. In the example, the domain name **https:\//www\.example.com/** is used to replace the original resource protocol, and the **onInterceptRequest** API is used to replace the resource to ensure that the **js/script.js** file can be successfully loaded. In this way, the cross-origin interception problem is solved.
 
-  <!-- @[cors_loccross_one](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkWeb/ManageWebCompSecPriv/entry/src/main/ets/pages/LocCrossOriginResAccSol_one.ets) -->
-  
+  <!-- @[cors_loccross_one](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkWeb/ManageWebCompSecPriv/entry/src/main/ets/pages/LocCrossOriginResAccSol_one.ets) -->    
+
   ``` TypeScript
+  // main/ets/pages/LocCrossOriginResAccSol_one.ets
   import { webview } from '@kit.ArkWeb';
   
   @Entry
@@ -84,23 +87,26 @@ Access to script at 'xxx' from origin 'xxx' has been blocked by CORS policy: Cro
     }
   }
   ```
+
   <!---->
 
   ```html
   <!-- main/resources/rawfile/index.html -->
   <html>
   <head>
-  	<meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
   </head>
   <body>
   <script crossorigin src="./js/script.js"></script>
   </body>
   </html>
   ```
+
   <!---->
-  <!-- @[cors_script_raw](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkWeb/ManageWebCompSecPriv/entry/src/main/resources/rawfile/js/script.js)-->
-  
+  <!-- @[cors_script_raw](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkWeb/ManageWebCompSecPriv/entry/src/main/resources/rawfile/js/script.js)-->    
+
   ``` JavaScript
+  // main/resources/rawfile/js/script.js
   const body = document.body;
   const element = document.createElement('div');
   element.textContent = 'success';
@@ -109,34 +115,42 @@ Access to script at 'xxx' from origin 'xxx' has been blocked by CORS policy: Cro
 
 - Method 2
 
-  Use [setPathAllowingUniversalAccess](../reference/apis-arkweb/arkts-apis-webview-WebviewController.md#setpathallowinguniversalaccess12) to set a path list for allowing cross-origin access to local files using the file protocol. Note that only the resources in the path list can be accessed by the file protocol when this method is used. In this case, the behavior of [fileAccess](../reference/apis-arkweb/arkts-basic-components-web-attributes.md#fileaccess) is overwritten. The paths in the list should be any of the following directories:
+Use [setPathAllowingUniversalAccess](../reference/apis-arkweb/arkts-apis-webview-WebviewController.md#setpathallowinguniversalaccess12) to set a path list. When resources in the list are accessed through the file protocol, cross-origin access to local files is allowed. In addition, once the path list is set, the file protocol can access only the resources in the list (in this case, the behavior of [fileAccess](../reference/apis-arkweb/arkts-basic-components-web-attributes.md#fileaccess) is overridden by this API).
 
-  1. The application file directory and its subdirectories, which can be obtained through [Context.filesDir](../reference/apis-ability-kit/js-apis-inner-application-context.md#context), such as:
+Removing the cross-origin access restriction on directories through setPathAllowingUniversalAccess is a high-risk operation. Based on the principle of least privilege, the paths opened for el1 and el2 are fixed, and the paths in the path list must conform to one of the following path formats:
+
+1. The application file directory is retrieved via [Context.filesDir](../reference/apis-ability-kit/js-apis-inner-application-context.md#context), and example subdirectories are as follows:
 
   * /data/storage/el2/base/files/example
+
   * /data/storage/el2/base/haps/entry/files/example
 
-  2. The application resource directory and its subdirectories, which can be obtained through [Context.resourceDir](../reference/apis-ability-kit/js-apis-inner-application-context.md#context), such as:
+2. The application resource directory is retrieved via [Context.resourceDir](../reference/apis-ability-kit/js-apis-inner-application-context.md#context), and example subdirectories are as follows:
 
   * /data/storage/el1/bundle/entry/resources/resfile
+
   * /data/storage/el1/bundle/entry/resources/resfile/example
 
-  3. Since API version 21, the application cache directory is obtained through [Context.cacheDir](../reference/apis-ability-kit/js-apis-inner-application-context.md#context). Example subdirectories are as follows:
+3. Since API version 21, the application cache directory is retrieved via [Context.cacheDir](../reference/apis-ability-kit/js-apis-inner-application-context.md#properties), and example subdirectories are as follows:
 
   * /data/storage/el2/base/cache
+
   * /data/storage/el2/base/haps/entry/cache/example
+
   * The **cache/web** directory is not allowed. If it is included, an exception with the code **401** will be thrown. If the **cache** directory is set, **cache/web** cannot be accessed.
 
-  4. Since API version 21, the application temporary directory is obtained through [Context.tempDir](../reference/apis-ability-kit/js-apis-inner-application-context.md#context). Example subdirectories are as follows:
+4. Since API version 21, the application temporary directory is retrieved via [Context.tempDir](../reference/apis-ability-kit/js-apis-inner-application-context.md#properties), and example subdirectories are as follows:
 
   * /data/storage/el2/base/temp
+
   * /data/storage/el2/base/haps/entry/temp/example
 
   If a path is not any of the preceding paths, an error code 401 is reported and the path list fails to be set. If the path list is empty, the access scope of the file protocol complies with the [fileAccess](../reference/apis-arkweb/arkts-basic-components-web-attributes.md#fileaccess) rule. The following is an example:
 
-  <!-- @[cors_loccross_two](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkWeb/ManageWebCompSecPriv/entry/src/main/ets/pages/LocCrossOriginResAccSol_two.ets) -->
-  
+  <!-- @[cors_loccross_two](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkWeb/ManageWebCompSecPriv/entry/src/main/ets/pages/LocCrossOriginResAccSol_two.ets) -->    
+
   ``` TypeScript
+  // main/ets/pages/LocCrossOriginResAccSol_two.ets
   import { webview } from '@kit.ArkWeb';
   import { BusinessError } from '@kit.BasicServicesKit';
   
@@ -169,6 +183,7 @@ Access to script at 'xxx' from origin 'xxx' has been blocked by CORS policy: Cro
     }
   }
   ```
+
   <!---->
 
   ```html
@@ -181,28 +196,28 @@ Access to script at 'xxx' from origin 'xxx' has been blocked by CORS policy: Cro
       <title>Demo</title>
       <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no,   viewport-fit=cover">
       <script>
-  		function getFile() {
-  			var file = "file:///data/storage/el1/bundle/entry/resources/resfile/js/script.js";
+      function getFile() {
+        var file = "file:///data/storage/el1/bundle/entry/resources/resfile/js/script.js";
         // Use the file protocol to access the local JS file through XMLHttpRequest.
-  			var xmlHttpReq = new XMLHttpRequest();
-  			xmlHttpReq.onreadystatechange = function(){
-  			    console.info("readyState:" + xmlHttpReq.readyState);
-  			    console.info("status:" + xmlHttpReq.status);
-  				if(xmlHttpReq.readyState == 4){
-  				    if (xmlHttpReq.status == 200) {
+        var xmlHttpReq = new XMLHttpRequest();
+        xmlHttpReq.onreadystatechange = function(){
+            console.info("readyState:" + xmlHttpReq.readyState);
+            console.info("status:" + xmlHttpReq.status);
+          if(xmlHttpReq.readyState == 4){
+              if (xmlHttpReq.status == 200) {
                   // If the path list is set on eTS, resources can be obtained.
-  				        const element = document.getElementById('text');
+                  const element = document.getElementById('text');
                           element.textContent = "load " + file + " success";
-  				    } else {
+              } else {
                   // If the path list is not set on eTS, a CORS error is triggered.
-  				        const element = document.getElementById('text');
+                  const element = document.getElementById('text');
                           element.textContent = "load " + file + " failed";
-  				    }
-  				}
-  			}
-  			xmlHttpReq.open("GET", file);
-  			xmlHttpReq.send(null);
-  		}
+              }
+          }
+        }
+        xmlHttpReq.open("GET", file);
+        xmlHttpReq.send(null);
+      }
       </script>
   </head>
 
@@ -215,10 +230,12 @@ Access to script at 'xxx' from origin 'xxx' has been blocked by CORS policy: Cro
 
   </html>
   ```
+
  <!---->
- <!-- @[cors_script](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkWeb/ManageWebCompSecPriv/entry/src/main/resources/resfile/js/script.js) -->
- 
+ <!-- @[cors_script](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkWeb/ManageWebCompSecPriv/entry/src/main/resources/resfile/js/script.js) -->    
+
  ``` JavaScript
+ // main/resources/resfile/js/script.js
  const body = document.body;
  const element = document.createElement('div');
  element.textContent = 'success';

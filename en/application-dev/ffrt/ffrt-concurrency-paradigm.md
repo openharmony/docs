@@ -6,7 +6,7 @@
 <!--Designer: @zhanglu161-->
 <!--Tester: @lotsof-->
 <!--Adviser: @jinqiuheng-->
-<!-- md-trans-meta sourceCommit=a4bb221ea8dcccf781d5793faa6c8f62723e3e12 translatedAt=2026-08-03T08:17:25.111Z pushedAt=2026-08-03T09:32:03.642Z -->
+<!-- md-trans-meta sourceCommit=b74b00cc5805225620b940e38531d901e6362478 translatedAt=2026-08-15T01:49:10.788Z pushedAt=2026-08-15T07:41:45.257Z -->
 
 To cope with fixed task execution sequence, flexible priority-based scheduling, and complex task dependencies in actual services, Function Flow Runtime (FFRT) supports three paradigms: serial queue, concurrent queue, and task graph.
 
@@ -62,7 +62,7 @@ For details about the development sample, see [Task Graph (C)](ffrt-concurrency-
 
 ## Job Partner
 
-Since API version 20, FFRT supports the Job_Partner feature. The job partner is often used for:
+Since API version 20, FFRT supports the Job_Partner feature. The job partner concurrency paradigm is often used for:
 
 1. **Multithreaded collaboration**: In many real-world applications, some functionalities must run in a specific environment, while others can run in any environment. This is when multithreaded collaboration is needed: certain functionalities run in thread A, then switch back to thread B, and finally return to thread A.
 

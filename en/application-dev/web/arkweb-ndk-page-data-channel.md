@@ -1,10 +1,12 @@
 # Establishing a Data Channel Between the Application and the Frontend Page (C/C++)
+
 <!--Kit: ArkWeb-->
 <!--Subsystem: Web-->
 <!--Owner: @aohui-->
 <!--Designer: @yaomingliu-->
 <!--Tester: @ghiker-->
 <!--Adviser: @HelloShuo-->
+<!-- md-trans-meta sourceCommit=ef16f1fbed2b878b5ab3c16c802540e18c54cbe1 translatedAt=2026-08-14T03:41:08.033Z pushedAt=2026-08-14T07:08:37.994Z -->
 
 The native **PostWebMessage** is provided to implement communication between the frontend page and the application, which reduces unnecessary switching to the ArkTS environment and allows messages and callbacks to be reported in non-UI threads to avoid UI blocking. Currently, only the string and buffer can be sent.
 
@@ -14,7 +16,7 @@ If an application is developed using ArkTS and C++ language, or if its architect
 
   ![arkweb_jsbridge_arch](figures/arkweb_jsbridge_arch.png)
 
-  The preceding figure shows a general architecture of applets with universal applicability. In this architecture, the logical layer depends on a JavaScript runtime built in an application, and the runtime runs in an existing C++ environment. The logic layer can communicate with the view layer (in which ArkWeb as the renderer) in the C++ environment through the native API, instead of using the ArkTS **PostWebMessage** API in the ArkTS environment.
+  The preceding figure shows a general architecture of applets with universal applicability. In this architecture, the logical layer depends on a JavaScript runtime built in an application, and the runtime runs in an existing C++ environment. The logic layer can communicate with the view layer (in which ArkWeb serves as the renderer) in the C++ environment through the native API, instead of using the ArkTS **PostWebMessage** API in the ArkTS environment.
 
   The figure on the left shows that the application needs to invoke the ArkTS environment and then the C++ environment to build an applet using the ArkTS **PostWebMessage** API. Using the native **PostWebMessage** API is more efficient because the switch between the ArkTS and C++ environments is not required, as shown in the figure on the right.
 
@@ -194,8 +196,8 @@ Use [ARKWEB_MEMBER_MISSING](../reference/apis-arkweb/capi-arkweb-type-h.md#enums
 
 * ArkTS code:
 
-  <!-- @[webview_and_native_modules_are_used_to_implement_complex_message_interaction_between_applications_and_h5_pages](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkWeb/UseFrontendJSApp/entry5/src/main/ets/pages/Index.ets) -->
-  
+  <!-- @[webview_and_native_modules_are_used_to_implement_complex_message_interaction_between_applications_and_h5_pages](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkWeb/ArkWebJsBridge/entry/src/main/ets/pages/Index.ets) -->
+
   ``` TypeScript
   import testNapi from 'libentry.so';
   import { webview } from '@kit.ArkWeb';
@@ -214,8 +216,8 @@ Use [ARKWEB_MEMBER_MISSING](../reference/apis-arkweb/capi-arkweb-type-h.md#enums
       testNapi.nativeWebInit(this.webTag);
     }
   
-    aboutToDisAppear() {
-      console.error('aboutToDisAppear');
+    aboutToDisappear() {
+      console.error('aboutToDisappear');
     }
   
     build() {
@@ -458,10 +460,10 @@ Use [ARKWEB_MEMBER_MISSING](../reference/apis-arkweb/capi-arkweb-type-h.md#enums
 
 * ArkTS APIs exposed on the Node-API side
 
-  <!-- @[the_arkts_interface_is_exposed_on_the_node_api_side](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkWeb/UseFrontendJSApp/entry5/src/main/cpp/types/libentry5/Index.d.ts) -->
-  
+  <!-- @[the_arkts_interface_is_exposed_on_the_node_api_side](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkWeb/ArkWebJsBridge/entry/src/main/cpp/types/libentry/Index.d.ts) -->
+
   ``` TypeScript
-  // entry5/src/main/cpp/types/libentry5/index.d.ts
+  // entry/src/main/cpp/types/libentry/index.d.ts
   export const nativeWebInit: (webName: string) => void;
   export const createWebMessagePorts: (webName: string) => void;
   export const postMessage: (webName: string) => void;
@@ -507,13 +509,13 @@ Use [ARKWEB_MEMBER_MISSING](../reference/apis-arkweb/capi-arkweb-type-h.md#enums
 
 * Node-API layer code
 
-  <!-- @[the_node_api_layer_code_for_the_data_channel_between_the_application_side_and_the_frontend_page](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkWeb/UseFrontendJSApp/entry5/src/main/cpp/hello.cpp) -->
-  
+  <!-- @[the_node_api_layer_code_for_the_data_channel_between_the_application_side_and_the_frontend_page](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkWeb/ArkWebJsBridge/entry/src/main/cpp/hello.cpp) -->
+
   ``` C++
-  #include "napi/native_api.h"
-  #include <string>
   #include "hilog/log.h"
+  #include "napi/native_api.h"
   #include "web/arkweb_interface.h"
+  #include <string>
   #include <thread>
   
   constexpr unsigned int LOG_PRINT_DOMAIN = 0xFF00;
@@ -557,21 +559,21 @@ Use [ARKWEB_MEMBER_MISSING](../reference/apis-arkweb/capi-arkweb-type-h.md#enums
       size_t webTagLength = 0;
       napi_get_value_string_utf8(env, args[0], webTagValue, webTagSize + 1, &webTagLength);
       OH_LOG_Print(
-          LOG_APP, LOG_ERROR, LOG_PRINT_DOMAIN, "ArkWeb",
+          LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "ArkWeb",
           "Native Development Kit NativeWebInit webTag:%{public}s", webTagValue);
   
       controller = reinterpret_cast<ArkWeb_ControllerAPI *>(OH_ArkWeb_GetNativeAPI(ARKWEB_NATIVE_CONTROLLER));
       if (controller)
-          OH_LOG_Print(LOG_APP, LOG_ERROR, LOG_PRINT_DOMAIN, "ArkWeb", "get ArkWeb_ControllerAPI success");
+          OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "ArkWeb", "get ArkWeb_ControllerAPI success");
   
       webMessagePort =
           reinterpret_cast<ArkWeb_WebMessagePortAPI *>(OH_ArkWeb_GetNativeAPI(ARKWEB_NATIVE_WEB_MESSAGE_PORT));
       if (webMessagePort)
-          OH_LOG_Print(LOG_APP, LOG_ERROR, LOG_PRINT_DOMAIN, "ArkWeb", "get ArkWeb_WebMessagePortAPI success");
+          OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "ArkWeb", "get ArkWeb_WebMessagePortAPI success");
   
       webMessage = reinterpret_cast<ArkWeb_WebMessageAPI *>(OH_ArkWeb_GetNativeAPI(ARKWEB_NATIVE_WEB_MESSAGE));
       if (webMessage)
-          OH_LOG_Print(LOG_APP, LOG_ERROR, LOG_PRINT_DOMAIN, "ArkWeb", "get ArkWeb_WebMessageAPI success");
+          OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "ArkWeb", "get ArkWeb_WebMessageAPI success");
   
       OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "ArkWeb", "Native Development Kit NativeWebInit end");
       delete[] webTagValue;
@@ -698,7 +700,7 @@ Use [ARKWEB_MEMBER_MISSING](../reference/apis-arkweb/capi-arkweb-type-h.md#enums
   
       // Wait until all threads are detached.
       for (int i = 0; i < numThreads; ++i) {
-          threads[i].detach();
+          threads[i].join();
       }
       delete[] webTagValue;
       return nullptr;
@@ -761,7 +763,7 @@ Use [ARKWEB_MEMBER_MISSING](../reference/apis-arkweb/capi-arkweb-type-h.md#enums
           "ArkWeb", "Native Development Kit Refresh webTag:%{public}s", webTagValue);
   
       // Send a message.
-      OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "ArkWeb", "Native Development Kit starts sending messages");
+      OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "ArkWeb", "Native Development Kit postMessage begin");
   
       if (g_web_message_port_arr == nullptr) {
           OH_LOG_Print(LOG_APP, LOG_ERROR, LOG_PRINT_DOMAIN, "ArkWeb", "webMessagePort is nullptr");

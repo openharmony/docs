@@ -1,10 +1,12 @@
 # Interface (ColorManagement)
+
 <!--Kit: Camera Kit-->
 <!--Subsystem: Multimedia-->
 <!--Owner: @qano-->
 <!--Designer: @leo_ysl-->
 <!--Tester: @xchaosioda-->
 <!--Adviser: @w_Machine_cc-->
+<!-- md-trans-meta sourceCommit=e78a6cc17babc03b49d63c81464e0e9d7953f5bb translatedAt=2026-08-11T01:58:14.487Z pushedAt=2026-08-11T09:25:20.192Z -->
 
 **ColorManagement** inherits from [ColorManagementQuery](arkts-apis-camera-ColorManagementQuery.md).
 
@@ -37,8 +39,12 @@ For different modes, enabling HDR, setting the color space, and configuring [Cam
 
 To obtain HDR images in photo mode, set the color space to **DISPLAY_P3** or **BT2020_HLG**. **BT2020_HLG** provides a wider color gamut, and should be used together with the **CameraFormat**, including **CAMERA_FORMAT_YCRCB_P010** and **CAMERA_FORMAT_YCBCR_P010**, to improve the image quality.
 
+In video recording mode, you can set the color space to **H_LOG** to record LOG videos. This is not supported in front camera and macro modes.
+
 Since API version 23, you can call the [getSupportedFullOutputCapability](arkts-apis-camera-CameraManager.md#getsupportedfulloutputcapability23) API to check whether the preview format P010 is supported in photo mode.
+
  - If the application does not set the color space, the default color space in photo mode is SRGB when the **CameraFormat** is **CAMERA_FORMAT_YUV_420_SP**, and the default color space is **BT2020_HLG** when the **CameraFormat** is **CAMERA_FORMAT_YCRCB_P010** or **CAMERA_FORMAT_YCBCR_P010**.
+
  - If the application sets the color space, in photo mode, the **CameraFormat** and **ColorSpace** must be configured according to the following mapping table. Otherwise, an error code will be returned in [setColorSpace](arkts-apis-camera-ColorManagement.md#setcolorspace12) or [commitConfig](arkts-apis-camera-Session.md#commitconfig11-1).
 
 Photo mode:

@@ -47,7 +47,7 @@ UDMF针对多对多跨应用数据共享的不同业务场景，提供了标准�
 | int OH_UdmfRecord_AddHyperlink(OH_UdmfRecord* pThis, OH_UdsHyperlink* hyperlink) | 向OH_UdmfRecord添加超链接类型数据。             |
 | OH_UdmfData* OH_UdmfData_Create()                            | 创建一个指向统一数据对象OH_UdmfData的指针。                 |
 | int OH_UdmfData_AddRecord(OH_UdmfData* pThis, OH_UdmfRecord* record) | 向OH_UdmfData中增加一条OH_UdmfRecord数据记录。      |
-| int OH_Udmf_SetUnifiedDataByOptions(OH_UdmfOptions* options, OH_UdmfData *unifiedData, char *key, unsigned int keyLen)        | 从统一数据管理框架数据库中写入统一数据对象OH_UdmfData数据。                          |
+| int OH_Udmf_SetUnifiedDataByOptions(OH_UdmfOptions* options, OH_UdmfData* unifiedData, char* key, unsigned int keyLen)        | 向统一数据管理框架数据库中写入统一数据对象OH_UdmfData数据。                          |
 | void OH_UdsHyperlink_Destroy(OH_UdsHyperlink* pThis)         | 销毁超链接类型指针指向的实例对象。 |
 | void OH_UdmfRecord_Destroy(OH_UdmfRecord* pThis)             | 销毁指向统一数据记录OH_UdmfRecord的指针。                   |
 | void OH_UdmfData_Destroy(OH_UdmfData* pThis)                 | 销毁指向统一数据对象OH_UdmfData的指针。                     |

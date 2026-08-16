@@ -545,7 +545,7 @@ console.info(`${!isB}`);  // true
 
 // 双重否定转换为布尔值
 let notValue: number = 5;
-console.info(`${!!notValue}`);  // true（等同于Boolean(notValue))
+console.info(`${!!notValue}`);  // true（等同于Boolean(notValue)）
 ```
 
 ### 逻辑与运算符 (&&)

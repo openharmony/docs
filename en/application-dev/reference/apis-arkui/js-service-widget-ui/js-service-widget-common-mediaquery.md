@@ -1,11 +1,12 @@
 # Media Query
+
 <!--Kit: ArkUI-->
 <!--Subsystem: ArkUI-->
-<!--Owner: @lanshouren-->
-<!--Designer: @lanshouren-->
+<!--Owner: @fenglinbailu-->
+<!--Designer: @fenglinbailu-->
 <!--Tester: @liuli0427-->
 <!--Adviser: @Brilliantry_Rui-->
-
+<!-- md-trans-meta sourceCommit=45ec2d938cfede23d9ca90fe41c0d1f3e7b2b01d translatedAt=2026-08-11T01:55:08.627Z pushedAt=2026-08-11T02:10:45.561Z -->
 
 Media queries are widely used on mobile devices. You can use them to modify the application style based on the device type or specific features and device parameters (such as the screen resolution). Specifically, media queries allow you to:
 
@@ -13,18 +14,15 @@ Media queries are widely used on mobile devices. You can use them to modify the 
 
 2. Update the page layout to adapt to dynamic screen changes (for example, screen splitting or switching between landscape and portrait modes).
 
-
 > **NOTE**
 >
 > The initial APIs of this module are supported since API version 8. Updates will be marked with a superscript to indicate their earliest API version.
 >
 > The **media** attribute uses the actual size, physical pixel, and screen resolution of the device by default. Do not confuse them with the configuration based on basic screen width 720 px.
 
-
 ## CSS Syntax Rules
 
 Use **@media** to import query statements. The rule is as follows:
-
 
 ```css
 @media [media-type] [and|not|only] [(media-feature)] {
@@ -42,11 +40,9 @@ Example:
 
 \@media screen and (device-type: tv) or (resolution &lt; 2) { ... } // Multi-condition query that contains the media type and multiple media features.
 
-
 ## Referencing Resources on a Page
 
 Use **@import** to import a media query. The rule is as follows:
-
 
 ```js
 @import url [media-type] [and|not|only] [(media-feature)];
@@ -54,18 +50,15 @@ Use **@import** to import a media query. The rule is as follows:
 
 Example:
 
-
 ```js
 @import '../common/style.css' screen and (min-width: 600) and (max-width: 1200);
 ```
-
 
 ## Media Type
 
 | Type| Description|
 | -------- | -------- |
 | screen | Media query based on screen-related parameters.|
-
 
 ## Media Logical Operation
 
@@ -91,7 +84,6 @@ At MediaQuery Level 4, range query is imported so that you can use the operators
 | &gt;= | Greater than or equal to, for example, **screen and (height >= 600)**.|
 | &lt; | Less than, for example, **screen and (height < 50)**.|
 | &gt; | Greater than, for example, **screen and (height > 600)**.|
-
 
 ## Media Features
 
@@ -119,9 +111,7 @@ At MediaQuery Level 4, range query is imported so that you can use the operators
 | round-screen | Screen type. The value **true** means that the screen is round, and **false** means the opposite.|
 | dark-mode<sup>6+</sup> | Whether the device is in dark mode. The value **true** means that the device is in dark mode, and **false** means the opposite.|
 
-
 ## Sample Code
-
 
 ```html
 <!-- xxx.hml -->
@@ -131,7 +121,6 @@ At MediaQuery Level 4, range query is imported so that you can use the operators
   </div>
 </div>
 ```
-
 
 ```css
 /* xxx.css */

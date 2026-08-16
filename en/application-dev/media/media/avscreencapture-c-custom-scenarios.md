@@ -6,6 +6,7 @@
 <!--Designer: @stupig001-->
 <!--Tester: @xdlinc-->
 <!--Adviser: @w_Machine_cc-->
+<!-- md-trans-meta sourceCommit=448fbb624ecca901e0e0d000496a23c1a0b2fe39 translatedAt=2026-08-11T01:50:51.350Z pushedAt=2026-08-11T12:18:41.555Z -->
 
 AVScreenCapture enables applications to implement scenario-based custom configurations. Refer to the guidelines below for specific setup instructions.
 
@@ -17,10 +18,13 @@ Starting from API version 20, cellular call handling is supported.
 
 Call [OH_AVScreenCapture_StrategyForKeepCaptureDuringCall](../../reference/apis-media-kit/capi-native-avscreen-capture-h.md#oh_avscreencapture_strategyforkeepcaptureduringcall) to set whether screen capture continues during cellular calls.
 
-```c++
+<!-- @[screenCapture_buffer_strategy_keepCaptureDuringCall](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/Media/ScreenCapture/ScreenCaptureSample/entry/src/main/cpp/napi_init.cpp) -->
+
+``` C++
 OH_AVScreenCapture_CaptureStrategy* strategy = OH_AVScreenCapture_CreateCaptureStrategy();
 OH_AVScreenCapture_StrategyForKeepCaptureDuringCall(strategy, true);
 OH_AVScreenCapture_SetCaptureStrategy(capture, strategy);
+OH_AVScreenCapture_ReleaseCaptureStrategy(strategy);
 ```
 
 ### B-Frame Encoding Control
@@ -29,10 +33,13 @@ Starting from API version 20, you can set whether to use B-frame encoding.
 
 Call [OH_AVScreenCapture_StrategyForBFramesEncoding](../../reference/apis-media-kit/capi-native-avscreen-capture-h.md#oh_avscreencapture_strategyforbframesencoding) to enable B-frame encoding, which helps reduce the size of captured files.
 
-```c++
+<!-- @[screenCapture_buffer_strategy_BFramesEncoding](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/Media/ScreenCapture/ScreenCaptureSample/entry/src/main/cpp/napi_init.cpp) -->
+
+``` C++
 OH_AVScreenCapture_CaptureStrategy* strategy = OH_AVScreenCapture_CreateCaptureStrategy();
 OH_AVScreenCapture_StrategyForBFramesEncoding(strategy, true);
 OH_AVScreenCapture_SetCaptureStrategy(capture, strategy);
+OH_AVScreenCapture_ReleaseCaptureStrategy(strategy);
 ```
 
 ### Screen Capture Picker Control
@@ -43,10 +50,21 @@ Starting from API version 23, screen capture pickers can be configured on phones
 
 Call [OH_AVScreenCapture_StrategyForPickerPopUp](../../reference/apis-media-kit/capi-native-avscreen-capture-h.md#oh_avscreencapture_strategyforpickerpopup) to set whether to display the screen capture picker.
 
-```c++
+<!-- @[screenCapture_buffer_strategy_pickerPopUp](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/Media/ScreenCapture/ScreenCaptureSample/entry/src/main/cpp/napi_init.cpp) -->
+
+``` C++
+// Create a CaptureStrategy object.
 OH_AVScreenCapture_CaptureStrategy* strategy = OH_AVScreenCapture_CreateCaptureStrategy();
+
+// Set whether to display the screen capture Picker.
+// Set to true, indicating that the Picker is displayed uniformly after screen recording starts.
 OH_AVScreenCapture_StrategyForPickerPopUp(strategy, true);
+
+// Set the CaptureStrategy to the AVScreenCapture instance.
 OH_AVScreenCapture_SetCaptureStrategy(capture, strategy);
+
+// Release the CaptureStrategy object.
+OH_AVScreenCapture_ReleaseCaptureStrategy(strategy);
 ```
 
 ## Setting Rotation Adaptation
@@ -57,11 +75,14 @@ Call [OH_AVScreenCapture_StrategyForCanvasFollowRotation](../../reference/apis-m
 
 After this API is called, you do not need to call [OH_AVScreenCapture_ResizeCanvas](../../reference/apis-media-kit/capi-native-avscreen-capture-h.md#oh_avscreencapture_resizecanvas) to manually change the resolution.
 
-```c++
+<!-- @[screenCapture_buffer_strategy_canvasFollowRotation](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/Media/ScreenCapture/ScreenCaptureSample/entry/src/main/cpp/napi_init.cpp) -->
+
+``` C++
 OH_AVScreenCapture_CaptureStrategy* strategy = OH_AVScreenCapture_CreateCaptureStrategy();
 // Set StrategyForCanvasFollowRotation to true to enable automatic rotation following. This will automatically adjust the virtual screen size after a rotation, ensuring the output follows the rotation promptly.
 OH_AVScreenCapture_StrategyForCanvasFollowRotation(strategy, true);
 OH_AVScreenCapture_SetCaptureStrategy(capture, strategy);
+OH_AVScreenCapture_ReleaseCaptureStrategy(strategy);
 ```
 
 ## Setting Microphone Control
@@ -74,29 +95,35 @@ Call [OH_AVScreenCapture_SetMicrophoneEnabled](../../reference/apis-media-kit/ca
 > - Configure the ohos.permission.MICROPHONE permission. For details, see [Requesting User Authorization](../../security/AccessToken/request-user-authorization.md).
 > - Apply for a continuous task. For details, see [Continuous Task](../../task-management/continuous-task.md).
 
-```c++
+<!-- @[screenCapture_buffer_strategy_setMicrophoneEnabled](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/Media/ScreenCapture/ScreenCaptureSample/entry/src/main/cpp/napi_init.cpp) -->
+
+``` C++
 bool isMic = true;
-OH_AVScreenCapture_SetMicrophoneEnabled(capture, isMic);
+OH_AVScreenCapture_SetMicrophoneEnabled(g_avCapture, isMic);
 ```
 
 ## Setting Privacy Mode
 
-Starting from API version 20, you can call [OH_AVScreenCapture_StrategyForPrivacyMaskMode](../../reference/apis-media-kit/capi-native-avscreen-capture-h.md#oh_avscreencapture_strategyforprivacymaskmode) to set the privacy window masking mode for screen capture.
+Starting from API version 20, you can use [OH_AVScreenCapture_StrategyForPrivacyMaskMode](../../reference/apis-media-kit/capi-native-avscreen-capture-h.md#oh_avscreencapture_strategyforprivacymaskmode) to set the privacy window mask mode for screen recording.
 
+<!-- @[screenCapture_buffer_strategy_privacyMaskMode](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/Media/ScreenCapture/ScreenCaptureSample/entry/src/main/cpp/napi_init.cpp) -->
 
-```c++
-// The value 0 means that the full-screen masking mode is used, and 1 means that the window masking mode is used. The default mode is full-screen masking.
-int value = 0;
+``` C++
+// Set value to 0 to indicate full-screen masking mode. Set value to 1 to indicate window masking mode. The default is full-screen masking mode. You can select an appropriate value based on actual requirements.
+int value = PRIVACY_MASK_MODE_FULL_SCREEN;
 OH_AVScreenCapture_CaptureStrategy* strategy = OH_AVScreenCapture_CreateCaptureStrategy();
 OH_AVScreenCapture_StrategyForPrivacyMaskMode(strategy, value);
 OH_AVScreenCapture_SetCaptureStrategy(capture, strategy);
+OH_AVScreenCapture_ReleaseCaptureStrategy(strategy);
 ```
 
 Starting from API version 12, you can call [OH_AVScreenCapture_SkipPrivacyMode](../../reference/apis-media-kit/capi-native-avscreen-capture-h.md#oh_avscreencapture_skipprivacymode) to set windows exempt from privacy masking during screen capture. Currently, you must pass all privacy child window and main window IDs. Pass an empty array to cancel privacy mode exemptions.
 
-```c++
+<!-- @[screenCapture_buffer_skipPrivacyMode](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/Media/ScreenCapture/ScreenCaptureSample/entry/src/main/cpp/napi_init.cpp) -->
+
+``` C++
 std::vector<int> windowIdsSkipPrivacy = {};
-OH_AVScreenCapture_SkipPrivacyMode(capture, &windowIdsSkipPrivacy[0],
+OH_AVScreenCapture_SkipPrivacyMode(capture, windowIdsSkipPrivacy.empty() ? nullptr : &windowIdsSkipPrivacy[0],
     static_cast<int32_t>(windowIdsSkipPrivacy.size()));
 ```
 
@@ -104,16 +131,20 @@ OH_AVScreenCapture_SkipPrivacyMode(capture, &windowIdsSkipPrivacy[0],
 
 Starting from API version 20, you can configure the capture area.
 
-Call [OH_AVScreenCapture_SetCaptureArea](../../reference/apis-media-kit/capi-native-avscreen-capture-h.md#oh_avscreencapture_setcapturearea) to set the coordinates and size of the area to capture. The example below creates a 100 px * 100 px rectangle area starting at (0, 0). This API can be called both before and after capture starts.
+You can set the area coordinates and size as needed. Call [OH_AVScreenCapture_SetCaptureArea](../../reference/apis-media-kit/capi-native-avscreen-capture-h.md#oh_avscreencapture_setcapturearea) to set the area to capture. The following example creates a rectangular area 100 px wide and 100 px high, starting from (0, 0). This API can be called both before and after screen recording starts.
 
-```c++
+<!-- @[screenCapture_buffer_setCaptureArea](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/Media/ScreenCapture/ScreenCaptureSample/entry/src/main/cpp/napi_init.cpp) -->
+
+``` C++
 OH_Rect* region = new OH_Rect;
-    region->x = 0;
-    region->y = 0;
-    region->width = 100;
-    region->height = 100;
-uint64_t regionDisplayId = 0; // ID of the display where the rectangle area is located.
+region->x = 0;
+region->y = 0;
+region->width = CAPTURE_REGION_SIZE;
+region->height = CAPTURE_REGION_SIZE;
+uint64_t regionDisplayId = 0; // Pass in the screen ID where the rectangular region is located.
 OH_AVScreenCapture_SetCaptureArea(capture, regionDisplayId, region);
+delete region;
+region = nullptr;
 ```
 
 ## Setting Cursor Visibility
@@ -122,8 +153,10 @@ Starting from API version 15, you can set cursor visibility during capture.
 
 Call [OH_AVScreenCapture_ShowCursor](../../reference/apis-media-kit/capi-native-avscreen-capture-h.md#oh_avscreencapture_showcursor) to set cursor visibility during capture. This API can be called both before and after capture starts.
 
-```c++
-OH_AVScreenCapture_ShowCursor(capture, false);
+<!-- @[screenCapture_buffer_showCursor](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/Media/ScreenCapture/ScreenCaptureSample/entry/src/main/cpp/napi_init.cpp) -->
+
+``` C++
+OH_AVScreenCapture_ShowCursor(g_avCapture, false);
 ```
 
 ## Setting the Maximum Frame Rate
@@ -132,16 +165,20 @@ Starting from API version 14, you can set the maximum frame rate.
 
 Call [OH_AVScreenCapture_SetMaxVideoFrameRate](../../reference/apis-media-kit/capi-native-avscreen-capture-h.md#oh_avscreencapture_setmaxvideoframerate) to set the maximum frame rate for screen capture. This API must be called after capture starts.
 
-```c++
-OH_AVScreenCapture_SetMaxVideoFrameRate(capture, 20);
+<!-- @[screenCapture_buffer_setMaxVideoFrameRate](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/Media/ScreenCapture/ScreenCaptureSample/entry/src/main/cpp/napi_init.cpp) -->
+
+``` C++
+OH_AVScreenCapture_SetMaxVideoFrameRate(g_avCapture, CAPTURE_VIDEO_FRAME_RATE);
 ```
 
 ## Setting Screen Resolution
 
 Use [OH_AVScreenCapture_ResizeCanvas](../../reference/apis-media-kit/capi-native-avscreen-capture-h.md#oh_avscreencapture_resizecanvas) to adjust the screen capture resolution. This API must be called after screen capture starts. The resolution is subject to range limits. The maximum video width and height must not exceed the ranges defined by [OH_AVCapability_GetVideoWidthRange](../../reference/apis-avcodec-kit/capi-native-avcapability-h.md#oh_avcapability_getvideowidthrange) and [OH_AVCapability_GetVideoHeightRange](../../reference/apis-avcodec-kit/capi-native-avcapability-h.md#oh_avcapability_getvideoheightrange).
 
-```c++
-OH_AVScreenCapture_ResizeCanvas(capture, 768, 1280);
+<!-- @[screenCapture_buffer_resizeCanvas](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/Media/ScreenCapture/ScreenCaptureSample/entry/src/main/cpp/napi_init.cpp) -->
+
+``` C++
+OH_AVScreenCapture_ResizeCanvas(g_avCapture, CANVAS_RESIZE_WIDTH, CANVAS_RESIZE_HEIGHT);
 ```
 
 ## Setting Content Filtering
@@ -152,16 +189,20 @@ Call [OH_AVScreenCapture_ContentFilter_AddAudioContent](../../reference/apis-med
 
 Call [OH_AVScreenCapture_ContentFilter_AddWindowContent](../../reference/apis-media-kit/capi-native-avscreen-capture-h.md#oh_avscreencapture_contentfilter_addwindowcontent) to exclude specific windows by their window IDs.
 
-```c++
-OH_AVScreenCapture_ContentFilter *contentFilter= OH_AVScreenCapture_CreateContentFilter();
+<!-- @[screenCapture_buffer_excludeContent](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/Media/ScreenCapture/ScreenCaptureSample/entry/src/main/cpp/napi_init.cpp) -->  
+
+``` C++
+OH_AVScreenCapture_ContentFilter *contentFilter = OH_AVScreenCapture_CreateContentFilter();
 // Filter notification sounds.
 OH_AVScreenCapture_ContentFilter_AddAudioContent(contentFilter, OH_SCREEN_CAPTURE_NOTIFICATION_AUDIO);
-// Exclude specific window IDs.
+// If a specific window needs to be excluded, fill the window ID array first.
 std::vector<int> windowIdsExclude = {};
-OH_AVScreenCapture_ContentFilter_AddWindowContent(contentFilter, &windowIdsExclude[0],
-    static_cast<int32_t>(windowIdsExclude.size()));
+OH_AVScreenCapture_ContentFilter_AddWindowContent(contentFilter, windowIdsExclude.empty() ?
+    nullptr : &windowIdsExclude[0], static_cast<int32_t>(windowIdsExclude.size()));
 
 OH_AVScreenCapture_ExcludeContent(capture, contentFilter);
+OH_AVScreenCapture_ReleaseContentFilter(contentFilter);
+contentFilter = nullptr;
 ```
 
 ## Additional Resources

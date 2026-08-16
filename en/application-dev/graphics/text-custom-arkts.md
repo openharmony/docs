@@ -6,7 +6,7 @@
 <!--Designer: @liumingxiang-->
 <!--Tester: @yhl0101-->
 <!--Adviser: @ge-yafang-->
-<!-- md-trans-meta sourceCommit=748eb7fc0c90f58e584a4c9f09c054a70b75d7f4 translatedAt=2026-08-03T11:22:54.140Z pushedAt=2026-08-04T07:37:21.530Z -->
+<!-- md-trans-meta sourceCommit=8e9d3b746529fedba672cd46a96d4746984bcb6c translatedAt=2026-08-15T01:51:55.356Z pushedAt=2026-08-15T08:34:49.516Z -->
 
 In complex text layout scenarios, when the standard text components provided by the system cannot meet specific visual or interaction requirements, you can use the underlying text drawing capability provided by ArkGraphics 2D to directly control the canvas and text style to implement refined control over the text appearance and layout. This capability applies to scenarios that require highly customized text rendering effects, such as artistic fonts, complex rich text orchestration, or special dynamic text effects.
 
@@ -28,7 +28,7 @@ This capability applies to the following scenarios:
 
 ### Available APIs
 
-The following table lists the common APIs for text shaping. For detailed API descriptions, see [@ohos.graphics.text (Text)](../reference/apis-arkgraphics2d/js-apis-graphics-text.md) and [TextBlob](../reference/apis-arkgraphics2d/arkts-apis-graphics-drawing-TextBlob.md).
+The following table describes the commonly used APIs for text shaping. For details about the APIs, see [@ohos.graphics.text (Text Module)](../reference/apis-arkgraphics2d/js-apis-graphics-text.md), [TextBlob](../reference/apis-arkgraphics2d/arkts-apis-graphics-drawing-TextBlob.md), and [drawTextBlob](../reference/apis-arkgraphics2d/arkts-apis-graphics-drawing-Canvas.md#drawtextblob).
 
 | API| Description|
 | -------- | -------- |

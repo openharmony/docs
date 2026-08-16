@@ -20,7 +20,7 @@
 
     - [C++ Crash (Process Crash) Detection](cppcrash-guidelines.md)
 
-  - [Address Sanitizer detection](address-sanitizer-guidelines.md)
+  - [Address Sanitizer Detection](address-sanitizer-guidelines.md)
 
   - [Application Freeze Detection](appfreeze-guidelines.md)<!--RP1--><!--RP1End-->
 

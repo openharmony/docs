@@ -6,11 +6,11 @@
 <!--Designer: @junathuawei1; @zph000-->
 <!--Tester: @lj_liujing; @yippo; @logic42-->
 <!--Adviser: @ge-yafang-->
-<!-- md-trans-meta sourceCommit=deff468b8adbfa4199da5cbe7b6cbc33f2bddb1e translatedAt=2026-06-24T07:38:53.057Z pushedAt=2026-06-25T10:36:00.435Z -->
+<!-- md-trans-meta sourceCommit=814e5538573180f4836543a1c6592fa1ff24a7c3 translatedAt=2026-08-15T01:43:23.525Z pushedAt=2026-08-15T06:29:40.661Z -->
 
 ## When to Use
 
-Uniform data structs are provided to define data of common [uniform data types](../reference/apis-arkdata/capi-utd-h.md). For example, the data struct for the system-defined home screen icon (whose uniform data type is **OH_UdsAppItem**) is provided to help you easily define the data.
+Standardized data structures are provided for some common UTD standardized data types defined in [utd.h](../reference/apis-arkdata/capi-utd-h.md) to facilitate business use. For example, the system-defined home screen icon type (whose standardized data type identifier is `OH_UdsAppItem`) clearly defines the related description information.
 
 In some scenarios, applications can directly use the standardized UTD data structs that we define, such as for cross-application drag-and-drop. The source application writes drag data to the [drag event](../ui/ndk-drag-event.md) by using the standardized data structs. The destination application reads the drag data from the drag event and parses it by using the same standardized data structs. This enables data exchange between applications to follow a common standard, significantly reducing the development effort required for cross-application data exchange.
 
@@ -20,9 +20,9 @@ In some scenarios, applications can directly use the standardized UTD data struc
 
 ## Available APIs
 
-For details about the APIs, see [uds.h](../reference/apis-arkdata/capi-uds-h.md).
+For details about the APIs, see the standardized data structure APIs defined in [uds.h](../reference/apis-arkdata/capi-uds-h.md).
 
-| API                                                                                   | Description                                         | 
+| API                                                                                   | Description                                         |
 |-----------------------------------------------------------------------------------------|---------------------------------------------|
 | OH_UdmfData* OH_UdmfData_Create()                                                       | Creates an **OH_UdmfData** instance and a pointer to it.|
 | OH_UdmfRecord* OH_UdmfRecord_Create()                                                   | Creates an **OH_UdmfRecord** instance and a pointer to it.|
@@ -35,7 +35,7 @@ For details about the APIs, see [uds.h](../reference/apis-arkdata/capi-uds-h.md)
 | int OH_UdsFileUri_SetFileUri(OH_UdsFileUri* pThis, const char* fileUri)                 | Sets the URI information for an **OH_UdsFileUri** instance.|
 | int OH_UdsFileUri_SetFileType(OH_UdsFileUri* pThis, const char* fileType)               | Sets the file type for an **OH_UdsFileUri** instance.|
 | int OH_UdmfRecord_AddFileUri(OH_UdmfRecord* pThis, OH_UdsFileUri* fileUri)              | Adds **OH_UdsFileUri** data to an **OH_UdmfData** instance.|
-| int OH_Udmf_SetUnifiedData(Udmf_Intention intention, OH_UdmfData* unifiedData,char* key, unsigned int keyLen) | Sets an **OH_UdmfData** instance in the UDMF database.|
+| int OH_Udmf_SetUnifiedData(Udmf_Intention intention, OH_UdmfData* unifiedData,char* key, unsigned int keyLen) | Sets an **OH_UdmfData** instance in the UDMF database. |
 | void OH_UdsPlainText_Destroy(OH_UdsPlainText* pThis)                                    | Destroys an **OH_UdsPlainText** instance.|
 | void OH_UdmfData_Destroy(OH_UdmfData* pThis)                                            | Destroys an **OH_UdmfData** instance.|
 | void OH_UdsFileUri_Destroy(OH_UdsFileUri* pThis)                                        | Destroys an **OH_UdsFileUri** instance.|
@@ -65,7 +65,7 @@ libudmf.so, libhilog_ndk.z.so
 
 ## Using the PlainText Data Struct
 
-1. Create a pointer to an **PlainText** object.
+1. Create a pointer to a **PlainText** object.
 
 2. Set content for the **PlainText** object.
 

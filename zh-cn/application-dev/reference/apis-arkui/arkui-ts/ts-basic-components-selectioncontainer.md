@@ -49,7 +49,7 @@ SelectionContainer(value?: SelectionContainerOptions)
 > **说明：**
 >
 > - 不支持[隐私遮罩](ts-universal-attributes-obscured.md)。
-> - 不支持[图形变换](ts-universal-attributes-transformation.md)，跨节点场景中Text子组件不支持图形变换。
+> - 不支持[图形变换](ts-universal-attributes-transformation.md)，在SelectionContainer容器中子组件Text不支持图形变换。
 
 ### copyOption
 
@@ -81,8 +81,8 @@ caretColor(color: Optional\<ResourceColor>)
 
 > **说明：**
 >
-> - 该属性在跨节点场景中用于各Text子组件选中文本手柄颜色。
-> - 在跨节点场景中Text子组件[caretColor](ts-basic-components-text.md#caretcolor14)设置无效，始终使用SelectionContainer的配置。
+> - 该属性在SelectionContainer容器上用于控制各子组件Text选中文本手柄颜色。
+> - 在SelectionContainer容器中子组件Text的[caretColor](ts-basic-components-text.md#caretcolor14)设置无效，始终使用SelectionContainer的配置。
 
 **起始版本：** 26.0.0
 
@@ -104,7 +104,7 @@ selectedBackgroundColor(color: Optional\<ResourceColor>)
 
 > **说明：**
 >
-> - 该属性在跨节点场景中用于各Text子组件选中区域的高亮颜色。
+> - 该属性在SelectionContainer容器上用于控制各子组件Text选中区域的高亮颜色。
 > - Text子组件已显式设置[selectedBackgroundColor](ts-basic-components-text.md#selectedbackgroundcolor14)时，优先使用Text子组件的配置；未设置时，使用SelectionContainer的配置。
 
 **起始版本：** 26.0.0
@@ -181,7 +181,7 @@ bindSelectionMenu(spanType: Optional\<TextSpanType>, content: Optional\<CustomBu
 > - bindSelectionMenu的长按响应时长为600ms，[bindContextMenu](ts-universal-attributes-menu.md#bindcontextmenu8)的长按响应时长为800ms，当两者同时绑定且触发方式均为长按时，优先响应bindSelectionMenu。
 > - 自定义菜单过长时，建议内部嵌套使用[Scroll](ts-container-scroll.md)组件，避免键盘被遮挡。
 > - 选区跨越不可复制Text时，菜单仅基于实际选中的可复制文本进行显示和处理。
-> - 在跨节点场景中子组件Text的[bindSelectionMenu](ts-basic-components-text.md#bindselectionmenu11)设置无效，始终使用SelectionContainer的配置。
+> - 在SelectionContainer容器中子组件Text的[bindSelectionMenu](ts-basic-components-text.md#bindselectionmenu11)设置无效，始终使用SelectionContainer的配置。
 
 **起始版本：** 26.0.0
 
@@ -206,7 +206,8 @@ editMenuOptions(editMenu: Optional\<SelectionContainerEditMenuOptions>)
 
 > **说明：**
 >
-> 当同时为当前场景设置了[bindSelectionMenu](#bindselectionmenu)和editMenuOptions时，优先使用bindSelectionMenu，editMenuOptions不生效。bindSelectionMenu用于完全自定义菜单风格和触发条件，由开发者定义所有菜单项；editMenuOptions用于在系统默认菜单基础上添加扩展项，触发条件不变。建议根据自定义程度需求选择。
+> - 当同时为当前场景设置了[bindSelectionMenu](#bindselectionmenu)和editMenuOptions时，优先使用bindSelectionMenu，editMenuOptions不生效。bindSelectionMenu用于完全自定义菜单风格和触发条件，由开发者定义所有菜单项；editMenuOptions用于在系统默认菜单基础上添加扩展项，触发条件不变。建议根据自定义程度需求选择。
+> - 在SelectionContainer容器中子组件Text的[editMenuOptions](ts-basic-components-text.md#editmenuoptions12)设置无效，始终使用SelectionContainer的配置。
 
 **起始版本：** 26.0.0
 

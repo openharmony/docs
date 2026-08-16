@@ -97,7 +97,7 @@ onClick(event: (event: ClickEvent) => void): T
 
 ## ClickEvent
 
-继承于[BaseEvent](ts-gesture-customize-judge.md#baseevent8)。
+继承于[BaseEvent](#baseevent8)。
 
 ### 属性
 
@@ -147,9 +147,34 @@ getCurrentLocalPosition?(): Coordinate2D
 | ------- | ----------------------------------------------------- |
 | [Coordinate2D](ts-types.md#coordinate2d) | 点击位置相对于当前组件实时位置的左上角坐标。 |
 
+## BaseEvent<sup>8+</sup>
+
+基础事件类型。
+
+### 属性
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+<!--Table: 20%; 20%; 8%; 8%; 44%-->
+| 名称    | 类型                                       | 只读 | 可选 | 说明         |
+| ---------| ---------------------------------------- | ---- | ---- | -----------|
+| target   | [EventTarget](./ts-universal-events-click.md#eventtarget8) | 否 | 否 | 触发手势事件的元素对象。<br>**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。|
+| timestamp | number | 否 | 否 | 事件时间戳，触发事件时距离系统启动的时间间隔。<br>单位：ns<br>取值范围：[0, +∞)<br>**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| source   | [SourceType](./ts-gesture-settings.md#sourcetype枚举说明8) | 否 | 否 | 事件输入设备的类型。<br>**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。  |
+| pressure<sup>9+</sup> | number | 否 | 否 | 按压的压力大小。<br>默认值：0<br>取值范围：[0,1]，典型值0.913168，压感大小与数值正相关。在部分设备中，由于设备的硬件参数配置不同，可能会返回大于1的值。<br>**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| tiltX<sup>9+</sup> | number | 否 | 否 | 手写笔在设备平面上的投影与设备平面X轴的夹角。<br>单位：deg<br>默认值：0<br>**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| tiltY<sup>9+</sup> | number | 否 | 否 |手写笔在设备平面上的投影与设备平面Y轴的夹角。<br>单位：deg<br>默认值：0<br>**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| rollAngle<sup>17+</sup> | number | 否 | 是 | 手写笔绕笔身长轴方向旋转的角度，类似于螺丝刀使用时旋转的角度。取值范围：[-179, 179]，其中[0, 179]对应正角度值为[0, 179]，[-179, -1]的部分实际值为[65357, 65535]。0为硬件参考基准，不代表笔身无旋转。正值表示从基准方向顺时针旋转（指从笔身指向笔尖方向，使用右手定则确定的旋转方向为顺时针方向），负值表示从基准方向逆时针旋转。当持续旋转超过±179时，数值跳变到对侧边界继续变化。<br>单位：deg<br>**卡片能力：** 从API version 17开始，该接口支持在ArkTS卡片中使用。<br>**原子化服务API：** 从API version 17开始，该接口支持在原子化服务中使用。<br>**模型约束：** 此接口仅可在Stage模型下使用。 |
+| sourceTool<sup>9+</sup> | [SourceTool](./ts-gesture-settings.md#sourcetool枚举说明9) | 否 | 否 | 事件输入源的类型。<br>**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。  |
+| axisHorizontal<sup>12+</sup> | number | 否 | 是 | 水平轴值。<br>默认值：0<br>**说明：**<br>当前仅在鼠标滚轮或触控板双指滑动触发的Pan手势，或使用Ctrl+鼠标滚轮触发的Pinch手势中可以获取。<br>对于Shift+鼠标滚轮触发的横向滚动场景，axisHorizontal为0，滚动值体现在axisVertical中。<br>**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。<br>**模型约束：** 此接口仅可在Stage模型下使用。|
+| axisVertical<sup>12+</sup> | number | 否 | 是 | 垂直轴值。<br>默认值：0<br>**说明：**<br>当前仅在鼠标滚轮或触控板双指滑动触发的Pan手势，或使用Ctrl+鼠标滚轮触发的Pinch手势中可以获取。<br>对于Shift+鼠标滚轮触发的横向滚动场景，滚动值体现在axisVertical中。<br>**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。<br>**模型约束：** 此接口仅可在Stage模型下使用。 |
+| axisPinch<sup>21+</sup> | number | 否 | 是 |  双指缩放比例。<br>默认值：0<br>**说明：**<br>仅在触控板上通过双指缩放操作触发的Pinch手势，或在轴事件中，可以获取该值；在其他场景下，获取到的将是默认值。<br>缩放比例是指在双指缩放事件触发过程中，双指当前距离与最初按下时距离的比值。<br>取值范围：[0, +∞)<br>**卡片能力：** 从API version 21开始，该接口支持在ArkTS卡片中使用。<br>**原子化服务API：** 从API version 21开始，该接口支持在原子化服务中使用。<br>**模型约束：** 此接口仅可在Stage模型下使用。 |
+| deviceId<sup>12+</sup> | number | 否 | 是 | 触发当前事件的输入设备ID。<br>默认值：0<br>取值范围：[0, +∞)<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。<br>**模型约束：** 此接口仅可在Stage模型下使用。|
+| targetDisplayId<sup>15+</sup> | number | 否 | 是 | 事件发生的屏幕ID。  <br>默认值：0<br>取值范围：[0, +∞)<br>**原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。<br>**模型约束：** 此接口仅可在Stage模型下使用。 |
+
 ## EventTarget<sup>8+</sup>
 
-[BaseEvent](ts-gesture-customize-judge.md#baseevent8)中参数target的类型。
+[BaseEvent](#baseevent8)中参数target的类型。
 
 触发事件的元素对象的显示区域。
 

@@ -75,9 +75,9 @@ import { InputMethodSubtype } from '@kit.IMEKit';
 | label | string | 是 | 是 | 输入法子类型的标签。用于在UI界面展示子类型的名称，如"中文（简体）"、"English"等。 |
 | labelId<sup>10+</sup> | number | 是 | 是 | 输入法子类型的标签资源号。用于通过资源ID加载标签文本，支持多语言场景下的标签国际化显示。 |
 | name | string | 是 | 否 | 输入法子类型所属应用的包名。与输入法应用在module.json5中配置的bundleName保持一致，用于标识该子类型属于哪个输入法应用。 |
-| id | string | 是 | 否 | 输入法子类型的id。与输入法应用在module.json5中配置的subtype id保持一致，用于在同输入法应用内唯一标识一个子类型。 |
+| id | string | 是 | 否 | 输入法子类型的id。与输入法应用在module.json5中配置的subtype id保持一致，用于在同一输入法应用内唯一标识一个子类型。 |
 | mode | 'upper' \| 'lower' | 是 | 是 | 输入法子类型的模式，包括upper（大写）和lower（小写）。用于描述键盘的大小写状态模式。 |
-| locale | string | 是 | 否 | 输入法子类型的区域。遵循ICU Locale格式，如'zh-CN'表示中文（简体，中国）、'en-US'表示英文（美国）。用于标识子类型的语言和地区。 |
+| locale | string | 是 | 否 | 输入法子类型的区域。遵循ICU Locale格式（下划线分隔，如'zh_CN'），也兼容POSIX风格（连字符分隔，如'zh-CN'）。用于标识子类型的语言和地区。 |
 | language | string | 是 | 否 | 输入法子类型的语言，如'zh'（中文）、'en'（英文）。用于标识子类型的语言，是locale的子集。 |
 | icon | string | 是 | 是 | 输入法子类型的图标，可以通过iconId查询获取。 |
 | iconId | number | 是 | 是 | 输入法子类型的图标id。用于通过资源ID加载子类型图标。 |
@@ -97,7 +97,7 @@ id参数：
 
 locale参数：
 - 含义/功能：输入法子类型的区域标识，遵循ICU Locale格式。
-- 取值范围：ICU Locale格式的字符串，常见格式为'语言代码-国家代码'，如'zh-CN'、'en-US'、'ja-JP'等。语言代码遵循ISO 639标准（两字母小写代码），国家代码遵循ISO 3166标准（两字母大写代码）。
+- 取值范围：ICU Locale格式或POSIX格式的字符串。ICU标准格式为'语言代码_国家代码'（如'zh_CN'、'en_US'、'ja_JP'），POSIX风格为'语言代码-国家代码'（如'zh-CN'、'en-US'、'ja-JP'）。语言代码遵循ISO 639标准（两字母小写代码），国家代码遵循ISO 3166标准（两字母大写代码）。
 - 格式样例：'zh-CN'（中文简体，中国）、'en-US'（英文，美国）、'zh-TW'（中文繁体，台湾）、'ja-JP'（日文，日本）。
 
 language参数：

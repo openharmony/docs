@@ -52,6 +52,8 @@ onConnect(): void
 
 FaultLogExtensionAbility生命周期回调。当系统服务完成连接时调用此接口，用于执行初始化操作，该方法可选择性重写。
 
+**模型约束**：此接口仅可在Stage模型下使用。
+
 **系统能力**：SystemCapability.HiviewDFX.Hiview.FaultLogger
 
 **示例：**
@@ -69,6 +71,8 @@ onDisconnect(): void
 
 FaultLogExtensionAbility生命周期回调。当系统服务完成断开连接时调用此接口，用于释放资源清理运行状态，该方法可选择性重写。
 
+**模型约束**：此接口仅可在Stage模型下使用。
+
 **系统能力**：SystemCapability.HiviewDFX.Hiview.FaultLogger
 
 **示例：**
@@ -85,6 +89,8 @@ export default class MyFaultLogExtension extends FaultLogExtensionAbility {
 onFaultReportReady(): void
 
 FaultLogExtensionAbility回调。系统服务通知FaultLogExtensionAbility可以进行故障处理时，回调此接口，可以在该方法中订阅故障事件进行处理。
+
+**模型约束**：此接口仅可在Stage模型下使用。
 
 **系统能力**：SystemCapability.HiviewDFX.Hiview.FaultLogger
 
@@ -114,29 +120,29 @@ FaultLogExtensionAbility回调。系统服务通知FaultLogExtensionAbility可�
 FaultLogExtensionAbility不支持以下模块的引用。
 | Kit名称 | 模块名称 |
 | ------- | ------- |
-| AVSessionKit | [@ohos.multimedia.avsession (媒体会话管理)](../apis-avsession-kit/arkts-apis-avsession.md) |
-| AbilityKit | [@ohos.UIAbilityContext](../apis-ability-kit/js-apis-inner-application-uiAbilityContext.md) |
+| AVSession Kit | [@ohos.multimedia.avsession (媒体会话管理)](../apis-avsession-kit/arkts-apis-avsession.md) |
+| Ability Kit | [@ohos.UIAbilityContext](../apis-ability-kit/js-apis-inner-application-uiAbilityContext.md) |
 | ArkUI | [@ohos.window (窗口)](../apis-arkui/arkts-apis-window.md) |
-| AudioKit | [@ohos.multimedia.audio (音频管理)](../apis-audio-kit/arkts-apis-audio.md) |
-| BackgroundTasksKit | [@ohos.backgroundTaskManager (后台任务管理)](../apis-backgroundtasks-kit/js-apis-backgroundTaskManager.md) |
-| BackgroundTasksKit | [@ohos.reminderAgent (后台代理提醒)](..//apis-backgroundtasks-kit/js-apis-reminderAgent.md) |
-| BackgroundTasksKit | [@ohos.reminderAgentManager (后台代理提醒)](../apis-backgroundtasks-kit/js-apis-reminderAgentManager.md) |
-| BackgroundTasksKit | [@ohos.resourceschedule.backgroundTaskManager (后台任务管理)](../apis-backgroundtasks-kit/js-apis-resourceschedule-backgroundTaskManager.md) |
-| BasicServicesKit | [@ohos.power (系统电源管理)](../apis-basic-services-kit/js-apis-power.md) |
-| BasicServicesKit | [@ohos.wallpaper (壁纸)](../apis-basic-services-kit/js-apis-wallpaper.md) |
-| CameraKit | [@ohos.multimedia.camera (相机管理)](../apis-camera-kit/arkts-apis-camera.md) |
-| CameraKit | [@ohos.multimedia.cameraPicker (相机选择器)](../apis-camera-kit/js-apis-cameraPicker.md) |
-| ConnectivityKit | [@ohos.wifiManager (WLAN)](../apis-connectivity-kit/js-apis-wifiManager.md) |
-| ConnectivityKit | [@ohos.wifiManagerExt (WLAN扩展接口)](../apis-connectivity-kit/js-apis-wifiManagerExt.md) |
-| ConnectivityKit | [@ohos.wifiext (WLAN扩展接口)](../apis-connectivity-kit/js-apis-wifiext.md) |
-| IMEKit | [@ohos.inputMethod (输入法框架)](../apis-ime-kit/js-apis-inputmethod.md) |
-| MediaLibraryKit | [@ohos.multimedia.movingphotoview (动态照片)](../apis-media-library-kit/ohos-multimedia-movingphotoview.md) |
-| NotificationKit | [@ohos.notification (Notification模块)](../apis-notification-kit/js-apis-notification.md) |
-| NotificationKit | [@ohos.notificationManager (NotificationManager模块)](../apis-notification-kit/js-apis-notificationManager.md) |
-| <!--DelRow--> NotificationKit | [@ohos.notificationSubscribe (NotificationSubscribe模块)](../apis-notification-kit/js-apis-notificationSubscribe-sys.md) |
-| SensorServiceKit | [@ohos.vibrator (振动)](../apis-sensor-service-kit/js-apis-vibrator.md) |
-| TelephonyKit | [@ohos.telephony.call (拨打电话)](../apis-telephony-kit/js-apis-call.md) |
-| TelephonyKit | [@ohos.telephony.sim (SIM卡管理)](../apis-telephony-kit/js-apis-sim.md) |
-| TelephonyKit | [@ohos.telephony.sms (短信服务)](../apis-telephony-kit/js-apis-sms.md) |
-| <!--DelRow--> UserAuthenticationKit | [@ohos.userIAM.faceAuth (人脸认证)](../apis-user-authentication-kit/js-apis-useriam-faceauth-sys.md) |
-| UserAuthenticationKit | [@ohos.userIAM.userAuth (用户认证)](../apis-user-authentication-kit/js-apis-useriam-userauth.md) |
+| Audio Kit | [@ohos.multimedia.audio (音频管理)](../apis-audio-kit/arkts-apis-audio.md) |
+| Background Tasks Kit | [@ohos.backgroundTaskManager (后台任务管理)](../apis-backgroundtasks-kit/js-apis-backgroundTaskManager.md) |
+| Background Tasks Kit | [@ohos.reminderAgent (后台代理提醒)](..//apis-backgroundtasks-kit/js-apis-reminderAgent.md) |
+| Background Tasks Kit | [@ohos.reminderAgentManager (后台代理提醒)](../apis-backgroundtasks-kit/js-apis-reminderAgentManager.md) |
+| Background Tasks Kit | [@ohos.resourceschedule.backgroundTaskManager (后台任务管理)](../apis-backgroundtasks-kit/js-apis-resourceschedule-backgroundTaskManager.md) |
+| Basic Services Kit | [@ohos.power (系统电源管理)](../apis-basic-services-kit/js-apis-power.md) |
+| Basic Services Kit | [@ohos.wallpaper (壁纸)](../apis-basic-services-kit/js-apis-wallpaper.md) |
+| Camera Kit | [@ohos.multimedia.camera (相机管理)](../apis-camera-kit/arkts-apis-camera.md) |
+| Camera Kit | [@ohos.multimedia.cameraPicker (相机选择器)](../apis-camera-kit/js-apis-cameraPicker.md) |
+| Connectivity Kit | [@ohos.wifiManager (WLAN)](../apis-connectivity-kit/js-apis-wifiManager.md) |
+| Connectivity Kit | [@ohos.wifiManagerExt (WLAN扩展接口)](../apis-connectivity-kit/js-apis-wifiManagerExt.md) |
+| Connectivity Kit | [@ohos.wifiext (WLAN扩展接口)](../apis-connectivity-kit/js-apis-wifiext.md) |
+| IME Kit | [@ohos.inputMethod (输入法框架)](../apis-ime-kit/js-apis-inputmethod.md) |
+| Media Library Kit | [@ohos.multimedia.movingphotoview (动态照片)](../apis-media-library-kit/ohos-multimedia-movingphotoview.md) |
+| Notification Kit | [@ohos.notification (Notification模块)](../apis-notification-kit/js-apis-notification.md) |
+| Notification Kit | [@ohos.notificationManager (NotificationManager模块)](../apis-notification-kit/js-apis-notificationManager.md) |
+| <!--DelRow--> Notification Kit | [@ohos.notificationSubscribe (NotificationSubscribe模块)](../apis-notification-kit/js-apis-notificationSubscribe-sys.md) |
+| Sensor Service Kit | [@ohos.vibrator (振动)](../apis-sensor-service-kit/js-apis-vibrator.md) |
+| Telephony Kit | [@ohos.telephony.call (拨打电话)](../apis-telephony-kit/js-apis-call.md) |
+| Telephony Kit | [@ohos.telephony.sim (SIM卡管理)](../apis-telephony-kit/js-apis-sim.md) |
+| Telephony Kit | [@ohos.telephony.sms (短信服务)](../apis-telephony-kit/js-apis-sms.md) |
+| <!--DelRow--> User Authentication Kit | [@ohos.userIAM.faceAuth (人脸认证)](../apis-user-authentication-kit/js-apis-useriam-faceauth-sys.md) |
+| User Authentication Kit | [@ohos.userIAM.userAuth (用户认证)](../apis-user-authentication-kit/js-apis-useriam-userauth.md) |

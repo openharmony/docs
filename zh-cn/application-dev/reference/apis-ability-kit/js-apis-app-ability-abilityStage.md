@@ -446,7 +446,7 @@ onAboutToCreateAbility(): void
 
 > **说明：**
 >
-> - 从API版本26.0.0开始，若实现了[AbilityStage.onAboutToCreateAbilityAsync](#onabouttocreateabilityasync2600)，则不会触发本回调函数。
+> - 从API版本26.0.0开始，若实现了[AbilityStage.onAboutToCreateAbilityAsync](#onabouttocreateabilityasync)，则不会触发本回调函数。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -463,7 +463,7 @@ export default class MyAbilityStage extends AbilityStage {
 }
 ```
 
-### onAboutToCreateAbilityAsync<sup>26.0.0+</sup>
+### onAboutToCreateAbilityAsync
 
 onAboutToCreateAbilityAsync(): Promise\<void\>
 
@@ -472,6 +472,8 @@ onAboutToCreateAbilityAsync(): Promise\<void\>
 此方法返回的Promise成功resolve后，后续的生命周期回调才会继续执行；否则将被挂起。
 
 开发者可通过重写此方法，在AbilityStage创建首个Ability之前，执行必要的异步初始化与准备工作。
+
+**起始版本：** 26.0.0
 
 > **说明：**
 >

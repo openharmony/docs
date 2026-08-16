@@ -78,7 +78,7 @@ onProcessDied(processData: ProcessData): void
 
 onProcessStateChanged(processData: ProcessData): void
 
-进程状态更新时执行的回调函数。
+进程状态发生变化时执行的回调函数。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -126,7 +126,7 @@ type ProcessData = _ProcessData.default
 
 | 类型 | 说明 |
 | --- | --- |
-| [_ProcessData.default](js-apis-inner-application-processData.md) | 进程数据信息。 |
+| [ProcessData](js-apis-inner-application-processData.md) | 进程数据信息。 |
 
 **示例：**
 ```ts

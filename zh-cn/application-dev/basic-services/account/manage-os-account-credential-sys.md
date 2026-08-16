@@ -65,7 +65,7 @@
 1. 定义PIN码输入器，并获取PIN码。
 
    ```ts
-    let pinData: Uint8Array = new Uint8Array([31, 32, 33, 34, 35, 36]);
+    let pinData: Uint8Array = new Uint8Array([31, 32, 33, 34, 35, 36]); // 示例值
     // ···
     let inputer: osAccount.IInputer = {
        onGetData: (authSubType: osAccount.AuthSubType, callback: osAccount.IInputData) => {
@@ -135,7 +135,7 @@
    **定义挑战值：**
 
    ```ts
-   let challenge: Uint8Array = new Uint8Array([1, 2, 3, 4, 5]);
+   let challenge: Uint8Array = new Uint8Array([1, 2, 3, 4, 5]); // 示例值
    ```
 
    **定义认证类型、认证可信等级：**
@@ -174,7 +174,7 @@ PIN码认证成功后，可以录入人脸/指纹，操作流程与录入PIN码�
     let faceCredInfo: osAccount.CredentialInfo = {
       credType: osAccount.AuthType.FACE,
       credSubType: osAccount.AuthSubType.FACE_2D,
-      token: new Uint8Array([1, 2, 3, 4, 5])
+      token: new Uint8Array([1, 2, 3, 4, 5]) // 示例值
     }
    ```
 
@@ -196,7 +196,7 @@ PIN码认证成功后，可以录入人脸/指纹，操作流程与录入PIN码�
    let fingerprintCredInfo: osAccount.CredentialInfo = {
       credType: osAccount.AuthType.FINGERPRINT,
       credSubType: osAccount.AuthSubType.FINGERPRINT_CAPACITIVE,
-      token: new Uint8Array([1, 2, 3, 4, 5])
+      token: new Uint8Array([1, 2, 3, 4, 5]) // 示例值
    }
    ```
 
@@ -224,7 +224,7 @@ PIN码认证成功后，可以录入人脸/指纹，操作流程与录入PIN码�
    **定义挑战值：**
 
    ```ts
-   let challenge: Uint8Array = new Uint8Array([1, 2, 3, 4, 5]);
+   let challenge: Uint8Array = new Uint8Array([1, 2, 3, 4, 5]); // 示例值
    ```
 
    **定义认证类型、认证可信等级：**
@@ -263,7 +263,7 @@ PIN码认证成功后，可以录入人脸/指纹，操作流程与录入PIN码�
     // ···
       credType:osAccount.AuthType.PIN,
       credSubType:osAccount.AuthSubType.PIN_SIX,
-      token:new Uint8Array([1, 2, 3, 4, 5])
+      token:new Uint8Array([1, 2, 3, 4, 5]) // 示例值
    };
    ```
 
@@ -309,8 +309,8 @@ PIN码认证成功后，可以录入人脸/指纹，操作流程与录入PIN码�
 1. 获取指纹类型的凭据信息。
 
    ```ts
-    let credentialId: Uint8Array = new Uint8Array([1, 2, 3, 4, 5]);
-    let token: Uint8Array = new Uint8Array([1, 2, 3, 4, 5]);
+    let credentialId: Uint8Array = new Uint8Array([1, 2, 3, 4, 5]); // 示例值
+    let token: Uint8Array = new Uint8Array([1, 2, 3, 4, 5]); // 示例值
     let credInfoList: osAccount.EnrolledCredInfo[] = 
       await userIDM.getAuthInfo(osAccount.AuthType.FINGERPRINT);
     if (credInfoList.length != 0) {
@@ -351,6 +351,8 @@ PIN码认证成功后，可以录入人脸/指纹，操作流程与录入PIN码�
 具体开发实例如下：
 
    ```ts
-   userIDM.closeSession(this.cid);
+   let userIDM = new osAccount.UserIdentityManager();
+   let accountId = 100; // 示例值
+   userIDM.closeSession(accountId);
    ```
 

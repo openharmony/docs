@@ -13,15 +13,7 @@
 
 图像分类可实现对图像中物体的识别，在医学影像分析、自动驾驶、电子商务、人脸识别等领域有广泛的应用。
 
-若需基于本Demo适配自有模型，请优先选择静态Shape模型。由于ArkTS暂不支持动态Shape，如确有相关需求，请参考[使用MindSpore Lite实现图像分类（C/C++）](mindspore-guidelines-based-native.md)，通过Native侧的[OH_AI_ModelResize](../../../application-dev/reference/apis-mindspore-lite-kit/capi-model-h.md#oh_ai_modelresize)接口对模型inputs进行动态调整。
-
-## 基本概念
-
-在进行开发前，请先了解以下概念。
-
-**张量**：它与数组和矩阵非常相似，是MindSpore Lite网络运算中的基本数据结构。
-
-**Float16推理模式**：  Float16又称半精度，它使用16比特表示一个数。Float16推理模式表示推理的时候用半精度进行推理。 
+若需基于本Demo适配自有模型，请优先选择静态Shape模型。注意：ArkTS接口不支持NPU后端动态Shape模型推理。 
 
 ## 接口说明
 
@@ -73,7 +65,7 @@
 
 2. 调用[@ohos.ai.mindSporeLite](../../reference/apis-mindspore-lite-kit/js-apis-mindSporeLite.md)实现端侧推理。具体开发过程及细节如下：
 
-   1. 创建上下文，设置线程数、设备类型等参数。本样例模型，不支持使用NNRt推理。
+   1. 创建上下文，设置线程数、设备类型等参数。本样例模型，不支持使用[NNRt](mindspore-lite-term.md#nnrt神经网络运行时)推理。
    2. 加载模型。本文从内存加载模型。
    3. 加载数据。模型执行之前需要先获取输入，再向输入的张量中填充数据。
    4. 执行推理。使用predict接口进行模型推理。

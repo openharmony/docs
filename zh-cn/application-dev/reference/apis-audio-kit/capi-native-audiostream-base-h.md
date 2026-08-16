@@ -57,8 +57,8 @@
 | [OH_AudioStream_PrivacyType](#oh_audiostream_privacytype) | OH_AudioStream_PrivacyType | 用于标识对应播放音频流是否支持被其他应用录制。 |
 | [OH_AudioData_Callback_Result](#oh_audiodata_callback_result) | OH_AudioData_Callback_Result | 定义音频数据回调结果。 |
 | [OH_AudioStream_LatencyType](#oh_audiostream_latencytype) | OH_AudioStream_LatencyType | 定义音频时延类型。 |
-| [OH_AudioStream_PlaybackCaptureMode](#oh_audiostream_playbackcapturemode) | OH_AudioStream_PlaybackCaptureMode | 表示内录（录制设备内部应用的声音）的过滤类型，每种过滤类型可录制不同的播放流类型。该API暂不对外支持。 |
-| [OH_AudioStream_PlaybackCaptureStartState](#oh_audiostream_playbackcapturestartstate) | OH_AudioStream_PlaybackCaptureStartState | 定义内录的启动状态，该状态在调用[OH_AudioCapturer_RequestPlaybackCaptureStart](./capi-native-audiocapturer-h.md#oh_audiocapturer_requestplaybackcapturestart)函数后异步返回。该API暂不对外支持。 |
+| [OH_AudioStream_PlaybackCaptureMode](#oh_audiostream_playbackcapturemode) | OH_AudioStream_PlaybackCaptureMode | 表示内录（录制设备内部应用的声音）的过滤类型，每种过滤类型可录制不同的播放流类型。该API最初仅对特定系统应用可用，从API版本26.0.0开始，支持任意应用使用。 |
+| [OH_AudioStream_PlaybackCaptureStartState](#oh_audiostream_playbackcapturestartstate) | OH_AudioStream_PlaybackCaptureStartState | 定义内录的启动状态，该状态在调用[OH_AudioCapturer_RequestPlaybackCaptureStart](./capi-native-audiocapturer-h.md#oh_audiocapturer_requestplaybackcapturestart)函数后异步返回。该API最初仅对特定系统应用可用，从API版本26.0.0开始，支持任意应用使用。 |
 
 ### 函数
 
@@ -469,7 +469,7 @@ enum OH_AudioStream_PlaybackCaptureMode
 
 **描述**
 
-表示内录（录制设备内部应用的声音）的过滤类型，每种过滤类型可录制不同的播放流类型。该API暂不对外支持。
+表示内录（录制设备内部应用的声音）的过滤类型，每种过滤类型可录制不同的播放流类型。该API最初仅对特定系统应用可用，从API版本26.0.0开始，支持任意应用使用。
 
 **起始版本：** 23
 
@@ -487,7 +487,7 @@ enum OH_AudioStream_PlaybackCaptureStartState
 
 **描述**
 
-定义内录的启动状态，该状态在调用[OH_AudioCapturer_RequestPlaybackCaptureStart](./capi-native-audiocapturer-h.md#oh_audiocapturer_requestplaybackcapturestart)函数后异步返回。该API暂不对外支持。
+定义内录的启动状态，该状态在调用[OH_AudioCapturer_RequestPlaybackCaptureStart](./capi-native-audiocapturer-h.md#oh_audiocapturer_requestplaybackcapturestart)函数后异步返回。该API最初仅对特定系统应用可用，从API版本26.0.0开始，支持任意应用使用。
 
 **起始版本：** 23
 

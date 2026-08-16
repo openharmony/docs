@@ -7,7 +7,7 @@
 <!--Tester: @gcw_KuLfPSbe--> 
 <!--Adviser: @jinqiuheng-->
 
-定义异常监听，可以作为[ErrorManager.on](./js-apis-app-ability-errorManager.md#errormanageronloopobserver12)的入参，用于监听应用主线程事件处理超时的情况。通过回调机制实时获取主线程消息实际执行时间，帮助开发者及时发现和定位故障问题。
+定义应用主线程异常监听，可以作为[ErrorManager.on](./js-apis-app-ability-errorManager.md#errormanageronloopobserver12)的入参，用于监听应用主线程事件处理超时的情况。通过回调机制实时获取主线程消息实际执行时间，帮助开发者及时发现和定位故障问题。
 
 > **说明：**
 > 

@@ -1,10 +1,12 @@
 # OpenMP Overview
-<!--Kit: NDK Development-->
+
+<!--Kit: ArkTS-->
 <!--Subsystem: arkcompiler-->
-<!--Owner: @yangming4249-->
+<!--Owner: @rePeek-->
 <!--Designer: @ychen3--->
 <!--Tester: @zsw_zhushiwei-->
-<!--Adviser: @fang-jinxu-->
+<!--Adviser: @k1ngqaquuu-->
+<!-- md-trans-meta sourceCommit=21434ce8d323ecbd7d67463989a2ef075be92cec translatedAt=2026-08-12T11:19:40.242Z pushedAt=2026-08-12T11:20:16.606Z -->
 
 [Open Multi-Processing (OpenMP)](https://www.openmp.org/) provides a set of APIs that support multi-platform shared memory multiprocessing programming. It consists of a set of compiler directives, library routines, and environment variables that influence runtime behavior. It provides high-level abstract description of parallel algorithms, making it suitable for developing parallel applications on multi-core processor devices. Based on the **pragma** directives added to the application, the compiler automatically processes the application segments in parallel. Using OpenMP can reduce the complexity of parallel programming.
 
@@ -14,6 +16,6 @@ OpenMP has been widely used in scientific computing, image processing, machine l
 
 ## Version Description
 
-Currently, the OpenHarmony uses the OpenMP library provided by [llvm 15.0.4](https://github.com/llvm/llvm-project/releases/tag/llvmorg-15.0.4). For details about the OpenMP API version, see [clang-OpenMPSupport](https://clang.llvm.org/docs/OpenMPSupport.html).
+Currently, OpenHarmony uses the OpenMP library implemented in [llvm 15.0.4](https://github.com/llvm/llvm-project/releases/tag/llvmorg-15.0.4). For details about the corresponding OpenMP API version, see [clang-OpenMPSupport](https://clang.llvm.org/docs/OpenMPSupport.html).
 
-For details about how to use OpenMP in OpenHarmony applications, see [Building and Running Applications with OpenMP](openmp-guideline.md).
+For details about how to use OpenMP in OpenHarmony apps, see [Building and Running Applications Using OpenMP](./openmp-guideline.md).

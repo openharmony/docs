@@ -33,7 +33,9 @@ ArkUI框架对于`ForEach`的键值生成有一套特定的判断规则，这主
 
 键值生成示例:
 
-```ts
+<!-- @[foreach_key_generation](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkUISample/RenderingControl/entry/src/main/ets/pages/RenderingForeach/ForEachKeyGeneration.ets) -->
+
+``` TypeScript
 interface ChildItemType {
   str: string;
   num: number;
@@ -41,7 +43,7 @@ interface ChildItemType {
 
 @Entry
 @Component
-struct Index {
+export struct ForEachKeyGeneration {
   @State simpleList: Array<ChildItemType> = [
     { str: 'one', num: 1 },
     { str: 'two', num: 2 },
@@ -66,7 +68,7 @@ struct Index {
 }
 
 @Component
-struct ChildItem {
+export struct ChildItem {
   @Prop str: string = '';
   @Prop num: number = 0;
 
@@ -492,8 +494,8 @@ struct ArticleCardChangeChild {
           .margin({ bottom: 8 })
 
         Row() {
-          // 此处'app.media.iconLiked'，'app.media.iconUnLiked'仅作示例，请开发者自行替换，否则imageSource创建失败会导致后续无法正常执行。
-          Image(this.article.isLiked ? $r('app.media.iconLiked') : $r('app.media.iconUnLiked'))
+          // 此处'app.media.iconLiked'，'app.media.iconUnliked'仅作示例，请开发者自行替换，否则imageSource创建失败会导致后续无法正常执行。
+          Image(this.article.isLiked ? $r('app.media.iconLiked') : $r('app.media.iconUnliked'))
             .width(24)
             .height(24)
             .margin({ right: 8 })
@@ -645,7 +647,7 @@ struct ForEachAbnormalChildItem {
 }
 ```
 
-上述代码的初始渲染效果和点击“在第1项后插入新项”文本组件后的渲染效果如下图所示。
+上述代码的初始渲染效果和点击“Insert Item After First Item”文本组件后的渲染效果如下图所示。
 
 **图10**  渲染结果非预期运行效果图  
 ![ForEach-UnexpectedRenderingResult](figures/ForEach-UnexpectedRenderingResult.gif)
@@ -741,7 +743,7 @@ ForEach(this.simpleList, (item: string) => {
 提供了第三个参数`KeyGenerator`，在这个例子中，对数据源的不同数据项生成不同的key，并且对同一个数据项每次生成相同的key。
 
 ### 数据变化不渲染
-点击按钮`Like/UnLike first article`，第一个组件会切换点赞手势和后面的点赞数量，但是点击按钮`Replace first article`之后再点击按钮`Like/UnLike first article`就不生效了。原因是替换`articleList[0]`之后，`articleList`状态变量发生变化，触发ForEach重新渲染，但是新的`articleList[0]`生成的key没有变，ForEach不会将数据更新同步给子组件，因此第一个组件仍然绑定旧的`articleList[0]`。新`articleList[0]`的属性发生变更，第一个组件感知不到，不会重新渲染。点击点赞手势，会触发渲染。因为变更的是跟组件绑定的数组项的属性，组件会感知并重新渲染。
+点击按钮`Like/Unlike first article`，第一个组件会切换点赞手势和后面的点赞数量，但是点击按钮`Replace first article`之后再点击按钮`Like/Unlike first article`就不生效了。原因是替换`articleList[0]`之后，`articleList`状态变量发生变化，触发ForEach重新渲染，但是新的`articleList[0]`生成的key没有变，ForEach不会将数据更新同步给子组件，因此第一个组件仍然绑定旧的`articleList[0]`。新`articleList[0]`的属性发生变更，第一个组件感知不到，不会重新渲染。点击点赞手势，会触发渲染。因为变更的是跟组件绑定的数组项的属性，组件会感知并重新渲染。
 
 <!-- @[article_list_view_three](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkUISample/RenderingControl/entry/src/main/ets/pages/RenderingForeach/ArticleListView3.ets) -->
 
@@ -837,8 +839,8 @@ struct ArticleCardChangeData {
           .margin({ bottom: 8 })
 
         Row() {
-          // 此处'app.media.iconLiked'，'app.media.iconUnLiked'仅作示例，请开发者自行替换，否则imageSource创建失败会导致后续无法正常执行。
-          Image(this.article.isLiked ? $r('app.media.iconLiked') : $r('app.media.iconUnLiked'))
+          // 此处'app.media.iconLiked'，'app.media.iconUnliked'仅作示例，请开发者自行替换，否则imageSource创建失败会导致后续无法正常执行。
+          Image(this.article.isLiked ? $r('app.media.iconLiked') : $r('app.media.iconUnliked'))
             .width(24)
             .height(24)
             .margin({ right: 8 })
@@ -974,6 +976,7 @@ struct GenerationKeyChildItem {
 
 开发者定义`keyGenerator`函数，应用正常启动：
 
+**图16** 键值生成失败  
 ![ForEach-StateVarNoRender](figures/ForEach-defined-keyGenerator2.PNG)  
 
 使用默认的键值生成函数，应用发生jscrash： 

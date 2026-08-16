@@ -1,11 +1,12 @@
 # SCSI Peripheral DDK Development
+
 <!--Kit: Driver Development Kit-->
 <!--Subsystem: Driver-->
 <!--Owner: @zgene94-->
 <!--Designer: @w00373942-->
 <!--Tester: @dong-dongzhen-->
 <!--Adviser: @hu-zhiqiong-->
-<!-- md-trans-meta sourceCommit=deff468b8adbfa4199da5cbe7b6cbc33f2bddb1e translatedAt=2026-06-24T07:40:14.315Z pushedAt=2026-06-25T06:57:15.673Z -->
+<!-- md-trans-meta sourceCommit=4e2e44136e02c57f70e721649f26e12ec63e7374 translatedAt=2026-08-15T01:44:20.622Z pushedAt=2026-08-15T06:45:02.069Z -->
 
 ## Overview
 
@@ -43,7 +44,7 @@ Before you get started, understand the following concepts:
 
 - **Logical block**
 
-    A logical block is a basic data storage unit. It represents a data area of a fixed size on a device and is usually used for data read and write operations. The size of a logical block may be 512 bytes, 1024 bytes, 2048 bytes, and so on. A specific size depends on a configuration of the device and a design of the file system.
+    A logical block is a basic data storage unit. It represents a data area of a fixed size on a device and is usually used for data read and write operations. The size of a logical block may be 512 bytes, 1024 bytes, 2048 bytes, and so on. A specific size depends on the configuration of the device and a design of the file system.
 
 - **CDB**
 
@@ -100,11 +101,13 @@ The following describes how to use the ScsiPeripheralDDK to develop non-standard
 **Adding Dynamic Link Libraries**
 
 Add the following libraries to **CMakeLists.txt**.
+
 ```txt
 libscsi.z.so
 ```
 
 **Including Header Files**
+
 ```c++
 #include <scsi_peripheral/scsi_peripheral_api.h>
 #include <scsi_peripheral/scsi_peripheral_types.h>
@@ -262,12 +265,14 @@ libscsi.z.so
     ret = OH_ScsiPeripheral_Release();
     ```
 
-
 ### Debugging and Verification
 
 Upon completion of driver application development, you can install the application on the OpenHarmony device. The test procedure is as follows:
 
 1. Click the driver application on the device. The application is started on the device.
+
 2. Check whether the application can read the basic information about the SCSI device.
+
 3. Select a SCSI command, enter parameters, and click the **Send** button.
+
 4. (Optional) Set the direction, CDB data, and CDB length, and click the **Send** button to run the corresponding SCSI command.

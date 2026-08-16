@@ -1,4 +1,4 @@
-# 使用ECDSA密钥对签名验签 (C/C++)
+# 使用ECDSA密钥对签名验签(C/C++)
 
 <!--Kit: Crypto Architecture Kit-->
 <!--Subsystem: Security-->

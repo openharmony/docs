@@ -1,8 +1,8 @@
-# 使用剪贴板进行复制粘贴 (C/C++)
+# 使用剪贴板进行复制粘贴（C/C++）
 <!--Kit: Basic Services Kit-->
 <!--Subsystem: MiscServices-->
 <!--Owner: @yangxiaodong41-->
-<!--Designer: @guo867-->
+<!--Designer: @zhusiyuan2-->
 <!--Tester: @maxiaorong-->
 <!--Adviser: @fang-jinxu-->
 

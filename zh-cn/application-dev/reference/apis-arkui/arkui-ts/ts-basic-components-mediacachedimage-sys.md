@@ -23,6 +23,8 @@ MediaCachedImage(src: PixelMap | ResourceStr | DrawableDescriptor | ASTCResource
 
 **系统接口：** 此接口为系统接口。
 
+**模型约束：** 此接口仅可在Stage模型下使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：** 
@@ -44,6 +46,8 @@ MediaCachedImage(src: PixelMap | ResourceStr | DrawableDescriptor | ASTCResource
 纹理类型，用于设置纹理拼接的属性值。
 
 **系统接口：** 此接口为系统接口。
+
+**模型约束：** 此接口仅可在Stage模型下使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -89,4 +93,4 @@ struct MediaCachedImageExample {
 }
 ```
 
-![zh-cn_image_0000001592882500](figures/mediacachedimage-sample-picture.gif)
+![zh-cn_image_0000001592882500](figures/loadingImagesOfBasicTypes.gif)

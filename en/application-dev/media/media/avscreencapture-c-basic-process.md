@@ -6,11 +6,14 @@
 <!--Designer: @stupig001-->
 <!--Tester: @xdlinc-->
 <!--Adviser: @w_Machine_cc-->
+<!-- md-trans-meta sourceCommit=43c1adf3f25f07bf57adc71363909a2bed19eb63 translatedAt=2026-08-11T01:52:27.040Z pushedAt=2026-08-11T12:14:34.594Z -->
 
 Screen capture enables you to collect screen data for scenarios like screen recording, meeting sharing, and live streaming. By calling the C APIs of the [AVScreenCapture](media-kit-intro.md#avscreencapture) module, you can collect audio and video data from both internal and external sources. The AVScreenCapture module works with the Window and Graphics modules to complete video capture.
 
 Starting from API version 22, the following capabilities are introduced to screen capture on PCs/2-in-1 devices:
+
 - Capture while the screen is off but not locked: This requires the ohos.permission.TIMEOUT_SCREENOFF_DISABLE_LOCK permission. For details about the permission configuration, see [Declaring Permissions](../../security/AccessToken/declare-permissions.md).
+
 - Capture without privacy protection pop-ups: This requires the ohos.permission.CUSTOM_SCREEN_RECORDING permission. For details about the permission configuration, see [Requesting Restricted Permissions](../../security/AccessToken/restricted-permissions.md).
 
 ## Workflow Overview
@@ -33,7 +36,7 @@ The captured screen content can be output in the following forms:
 
 - When using AVScreenCapture, you must be aware of its state transitions. APIs should only be called in the appropriate states, as calling them in an incorrect state will cause errors. You should check the state before attempting transitions to avoid exceptions.
 
-- When screen capture starts, a privacy protection pop-up is displayed, containing the **Hide private content** option. If this option is selected, private information (such as banner notifications, the control panel, or call screen) will be masked. The specific private information may vary by product. The actual captured result prevails.
+- When screen capture starts, a privacy protection pop-up is displayed, containing the **Hide private content** option. If this option is selected, private information (such as banner notifications, the control panel, or call screen) will be masked. The specific private information may vary by product. The actual capture result shall apply.
 
   Privacy protection pop-up:
 
@@ -46,13 +49,18 @@ The captured screen content can be output in the following forms:
 Link the dynamic libraries in the CMake script.
 
 ```CMake
-target_link_libraries(entry PUBLIC libnative_avscreen_capture.so libnative_buffer.so libnative_media_core.so) 
+target_link_libraries(entry PUBLIC libnative_avscreen_capture.so libnative_buffer.so libnative_media_core.so libnative_display_manager.so)
 ```
 
 Add the header files.
 
-```c++
+<!-- @[screenCapture_import_buffer](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/Media/ScreenCapture/ScreenCaptureSample/entry/src/main/cpp/main.h) --> 
+
+``` C
+#include "hilog/log.h"
 #include "napi/native_api.h"
+#include <window_manager/oh_display_info.h>
+#include <window_manager/oh_display_manager.h>
 #include <multimedia/player_framework/native_avscreen_capture.h>
 #include <multimedia/player_framework/native_avscreen_capture_base.h>
 #include <multimedia/player_framework/native_avscreen_capture_errors.h>
@@ -65,8 +73,10 @@ Add the header files.
 
 Instantiate the object by creating an [OH_AVScreenCapture](../../reference/apis-media-kit/capi-avscreencapture-oh-avscreencapture.md) instance by calling [OH_AVScreenCapture_Create](../../reference/apis-media-kit/capi-native-avscreen-capture-h.md#oh_avscreencapture_create).
 
-```c++
-OH_AVScreenCapture* capture = OH_AVScreenCapture_Create(); 
+<!-- @[screenCapture_create_buffer](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/Media/ScreenCapture/ScreenCaptureSample/entry/src/main/cpp/napi_init.cpp) --> 
+
+``` C++
+g_avCapture = OH_AVScreenCapture_Create();
 ```
 
 ### Configuring Audio Capture Parameters
@@ -76,28 +86,24 @@ After creating the AVScreenCapture instance, configure the required audio parame
 If microphone audio capture needs to be configured, do as follows:
 
 - Configure the ohos.permission.MICROPHONE permission. For details, see [Requesting User Authorization](../../security/AccessToken/request-user-authorization.md).
+
 - Apply for a continuous task. For details, see [Continuous Task](../../task-management/continuous-task.md).
 
 When you save the captured content to a file, only internal capture is enabled by default. The microphone can be dynamically enabled or disabled during capture. Once enabled, both internal and external (microphone) audio can be recorded simultaneously.
 
 Internal audio information must be configured. Microphone audio information can be set as needed based on the actual scenario.
 
-```c++
+<!-- @[screenCapture_config_buffer_audio](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/Media/ScreenCapture/ScreenCaptureSample/entry/src/main/cpp/napi_init.cpp) -->   
+
+``` C++
 // Microphone capture information. If both internal and microphone audio are set, their parameters must be consistent.
-OH_AudioCaptureInfo micCapInfo = {
-    .audioSampleRate = 48000,
-    .audioChannels = 2,
-    .audioSource = OH_MIC
-}; 
+OH_AudioCaptureInfo micCapInfo = {.audioSampleRate = 48000, .audioChannels = 2, .audioSource = OH_MIC};
 // Internal audio capture information, which is mandatory. If both internal and microphone audio are set, their parameters must be consistent.
-OH_AudioCaptureInfo innerCapInfo = {
-    .audioSampleRate = 48000,
-    .audioChannels = 2,
-    .audioSource = OH_ALL_PLAYBACK
-};
+OH_AudioCaptureInfo innerCapInfo = {.audioSampleRate = 48000, .audioChannels = 2, .audioSource = OH_ALL_PLAYBACK};
 //Configure audio output specifications for screen capture. audioBitrate ensures that the bit rate of the output file matches the expected bit rate and has no strong correlation with audioSampleRate.
+// To ensure audio quality, the audio bitrate is set to 128000. If the screen recording content is primarily voice without music or game sound effects, the bitrate can be reduced to 96000 or 48000.
 OH_AudioEncInfo audioEncInfo = {
-    .audioBitrate = 48000,
+    .audioBitrate = 128000,
     .audioCodecformat = OH_AAC_LC
 };
 OH_AudioInfo audioInfo = {
@@ -107,26 +113,42 @@ OH_AudioInfo audioInfo = {
 };  
 // You can set the microphone switch separately.
 bool isMic = true;
-OH_AVScreenCapture_SetMicrophoneEnabled(capture, isMic);
+OH_AVScreenCapture_SetMicrophoneEnabled(g_avCapture, isMic);
 ```
 
 ### Configuring Video Capture Parameters
 
 The video capture information [OH_VideoInfo](../../reference/apis-media-kit/capi-avscreencapture-oh-videoinfo.md) includes the input specifications [OH_VideoCaptureInfo](../../reference/apis-media-kit/capi-avscreencapture-oh-videocaptureinfo.md) and output specifications [OH_VideoEncInfo](../../reference/apis-media-kit/capi-avscreencapture-oh-videoencinfo.md).
 
-```c++
+<!-- @[screenCapture_config_buffer_video](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/Media/ScreenCapture/ScreenCaptureSample/entry/src/main/cpp/napi_init.cpp) --> 
+
+``` C++
+// Obtain screen information.
+uint64_t displayId = 0;
+NativeDisplayManager_ErrorCode ret = OH_NativeDisplayManager_GetDefaultDisplayId(&displayId);
+
+NativeDisplayManager_DisplayInfo* displayInfo = nullptr;
+ret = OH_NativeDisplayManager_CreateDisplayById(displayId, &displayInfo);
+if (ret != DISPLAY_MANAGER_OK || !displayInfo) {
+    return;
+}
+int32_t screenWidth = displayInfo->width;
+int32_t screenHeight = displayInfo->height;
+OH_NativeDisplayManager_DestroyDisplay(displayInfo);
+displayInfo = nullptr;
 // Input specifications for screen capture.
 OH_VideoCaptureInfo videoCapInfo = {
-    .videoFrameWidth = 768,
-    .videoFrameHeight = 1280,
+    .videoFrameWidth = screenWidth,
+    .videoFrameHeight = screenHeight,
     .videoSource = OH_VIDEO_SOURCE_SURFACE_RGBA
- };
+};
 // Output specifications for screen capture.
 OH_VideoEncInfo videoEncInfo = {
     .videoCodec = OH_H264,
     .videoBitrate = 2000000,
     .videoFrameRate = 30
- };
+};
+
 OH_VideoInfo videoInfo = {
     .videoCapInfo = videoCapInfo,
     .videoEncInfo = videoEncInfo
@@ -140,50 +162,138 @@ The AVScreenCapture instance configuration [OH_AVScreenCaptureConfig](../../refe
 After configuration, call [OH_AVScreenCapture_Init](../../reference/apis-media-kit/capi-native-avscreen-capture-h.md#oh_avscreencapture_init) to apply the settings to the [OH_AVScreenCapture](../../reference/apis-media-kit/capi-avscreencapture-oh-avscreencapture.md) instance.
 
 > **NOTE**
-> On PCs/2-in-1 devices, different screen capture modes trigger different pop-up behaviors. For details, see [PC/2-in-1 Pop-up Mode Configuration](#pc2-in-1-pop-up-mode-configuration).
+>
+> Different screen capture modes can be selected based on the capture scenario. For details, see [Screen Capture Mode Description](#screen-capture-mode-description). On PCs/2-in-1 devices, different capture modes exhibit different popup behaviors. For details, see [Popup Mode Description](#popup-mode-description).
 
-```c++
+<!-- @[screenCapture_config_buffer_init](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/Media/ScreenCapture/ScreenCaptureSample/entry/src/main/cpp/napi_init.cpp) -->
+
+``` C++
 // Initialize the screen capture parameters and pass an OH_AVScreenCaptureConfig struct.
-OH_AVScreenCaptureConfig config = {
-    .dataType = OH_ORIGINAL_STREAM,
-    .audioInfo = audioInfo,
+config = {
     .captureMode = OH_CAPTURE_HOME_SCREEN, // Set the screen capture mode.
+    .dataType = OH_ORIGINAL_STREAM, // Screen capture data type: original stream or file.
+    .audioInfo = audioInfo,
     .videoInfo = videoInfo
 };
-OH_AVScreenCapture_Init(capture, config);
+// Call the OH_AVScreenCapture_Init method in the StartScreenCapture_01() function to apply the configuration to OH_AVScreenCapture.
 ```
 
 ### Setting Callbacks for Data Updates, State Changes, and Error Reporting
 
-Callback functions are used to listen for events during screen capture, such as errors, audio/video stream generation, and state changes. For details, [Error Callback](../../reference/apis-media-kit/capi-native-avscreen-capture-base-h.md#oh_avscreencaptureonerror), [Status Callback](../../reference/apis-media-kit/capi-native-avscreen-capture-h.md#oh_avscreencapture_setstatecallback), and [Data Obtaining Callback](../../reference/apis-media-kit/capi-native-avscreen-capture-h.md#oh_avscreencapture_setdatacallback).
+Callback functions are primarily used to listen for events during screen capture, such as errors, audio/video stream generation, and capture state changes. For details, see the error callback [OH_AVScreenCaptureOnError](../../reference/apis-media-kit/capi-native-avscreen-capture-base-h.md#oh_avscreencaptureonerror), state callback [OH_AVScreenCapture_SetStateCallback](../../reference/apis-media-kit/capi-native-avscreen-capture-h.md#oh_avscreencapture_setstatecallback), and data callback [OH_AVScreenCapture_SetDataCallback](../../reference/apis-media-kit/capi-native-avscreen-capture-h.md#oh_avscreencapture_setdatacallback).
 
-```c++
+<!-- @[screenCapture_config_buffer_callback](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/Media/ScreenCapture/ScreenCaptureSample/entry/src/main/cpp/napi_init.cpp) --> 
+
+``` C++
 // Set callbacks.
 // OnError(), a callback function invoked when an error occurs.
-void OnError(OH_AVScreenCapture *capture, int32_t errorCode, void *userData) {
+void OnError(OH_AVScreenCapture *capture, int32_t errorCode, void *userData)
+{
     (void)capture;
-    // Handle the event based on the error code.
-    (void)errorCode;
+    OH_LOG_INFO(LOG_APP, "==ScreenCaptureSample== ScreenCapture OnError errorCode is %{public}d", errorCode);
     (void)userData;
 }
 
 // OnStateChange(), a callback function invoked when the state changes.
-void OnStateChange(struct OH_AVScreenCapture *capture, OH_AVScreenCaptureStateCode stateCode, void *userData) {
-    (void)capture;
-    if (stateCode == OH_AVScreenCaptureStateCode::OH_SCREEN_CAPTURE_STATE_CANCELED) { // Modify the state code as required.
-        // Process the screen capture state change.
+void OnStateChange(struct OH_AVScreenCapture *capture, OH_AVScreenCaptureStateCode stateCode, void *userData)
+{
+    if (stateCode == OH_SCREEN_CAPTURE_STATE_STARTED) {
+        OH_LOG_INFO(LOG_APP, "==ScreenCaptureSample== ScreenCapture OnStateChange started");
+        // Handle the state change.
+        // Optional: Configure the screen capture rotation.
+        int32_t ret = OH_AVScreenCapture_SetCanvasRotation(capture, true);
+        // Optional: Modify the canvas resolution.
+        ret = OH_AVScreenCapture_ResizeCanvas(g_avCapture, CANVAS_RESIZE_WIDTH, CANVAS_RESIZE_HEIGHT);
+        // Optional: Set whether to show the cursor.
+        ret = OH_AVScreenCapture_ShowCursor(g_avCapture, true);
+        // Optional: Set the maximum video frame rate.
+        ret = OH_AVScreenCapture_SetMaxVideoFrameRate(g_avCapture, CAPTURE_VIDEO_FRAME_RATE);
+    }
+    if (stateCode == OH_SCREEN_CAPTURE_STATE_INTERRUPTED_BY_OTHER) {
+        // Handle the state change.
     }
     (void)userData;
 }
 
 // Obtain and process the OnBufferAvailable() callback function of the original audio and video stream data.
-void OnBufferAvailable(OH_AVScreenCapture *capture, OH_AVBuffer *buffer, OH_AVScreenCaptureBufferType bufferType, int64_t timestamp, void *userData) {
-    // Screen capture is in progress.
+void HandleVideoBuffer(OH_AVBuffer *buffer)
+{
+    OH_NativeBuffer *nativebuffer = OH_AVBuffer_GetNativeBuffer(buffer);
+    if (nativebuffer == nullptr) {
+        return;
+    }
+    int bufferLen = OH_AVBuffer_GetCapacity(buffer);
+    OH_AVCodecBufferAttr info;
+    int32_t ret = OH_AVBuffer_GetBufferAttr(buffer, &info);
+    OH_LOG_INFO(LOG_APP, "==ScreenCaptureSample== ScreenCapture size %{public}d", info.size);
+    OH_LOG_INFO(LOG_APP, "==ScreenCaptureSample== ScreenCapture bufferLen %{public}d", bufferLen);
+
+    OH_NativeBuffer_Config config;
+    OH_NativeBuffer_GetConfig(nativebuffer, &config);
+    OH_LOG_INFO(LOG_APP, "==ScreenCaptureSample== ScreenCapture height %{public}d width %{public}d",
+        config.height, config.width);
+    uint8_t *buf = OH_AVBuffer_GetAddr(buffer);
+    if (buf == nullptr) {
+        return;
+    }
+    size_t written = fwrite(buf, 1, bufferLen, g_vFile);
+    if (written != bufferLen) {
+        OH_LOG_ERROR(LOG_APP, "fwrite failed");
+    }
+    OH_NativeBuffer_Unreference(nativebuffer);
+    buffer = nullptr;
+    OH_LOG_INFO(LOG_APP, "==ScreenCaptureSample== ScreenCapture OnBufferAvailable inner audio");
 }
-int *userData = nullptr;// User-defined data.
-OH_AVScreenCapture_SetErrorCallback(capture, OnError, userData);
-OH_AVScreenCapture_SetStateCallback(capture, OnStateChange, userData);
-OH_AVScreenCapture_SetDataCallback(capture, OnBufferAvailable, userData);
+
+void HandleAudioBuffer(OH_AVBuffer *buffer, FILE *file, const char *logMsg)
+{
+    int bufferLen = OH_AVBuffer_GetCapacity(buffer);
+    uint8_t *buf = OH_AVBuffer_GetAddr(buffer);
+    if (buf == nullptr) {
+        return;
+    }
+    OH_LOG_INFO(LOG_APP, "==ScreenCaptureSample== ScreenCapture OnBufferAvailable inner audio");
+    size_t written = fwrite(buf, 1, bufferLen, g_innerFile);
+    if (written != bufferLen) {
+        OH_LOG_ERROR(LOG_APP, "fwrite failed");
+    }
+}
+
+void OnBufferAvailable(OH_AVScreenCapture *capture, OH_AVBuffer *buffer, OH_AVScreenCaptureBufferType bufferType,
+                       int64_t timestamp, void *userData)
+{
+    if (!g_isRunning) {
+        return;
+    }
+    OH_LOG_INFO(LOG_APP, "==ScreenCaptureSample== ScreenCapture OnBufferAvailable bufferType is %{public}d",
+        bufferType);
+    if (bufferType == OH_SCREEN_CAPTURE_BUFFERTYPE_VIDEO) {
+        // Handle the video buffer.
+        HandleVideoBuffer(buffer);
+    } else if (bufferType == OH_SCREEN_CAPTURE_BUFFERTYPE_AUDIO_INNER) {
+        // Handle the internal recording buffer.
+        HandleAudioBuffer(buffer, g_innerFile, "ScreenCapture OnBufferAvailable inner audio");
+    } else if (bufferType == OH_SCREEN_CAPTURE_BUFFERTYPE_AUDIO_MIC) {
+        // Handle the microphone buffer.
+        HandleAudioBuffer(buffer, g_micFile, "ScreenCapture OnBufferAvailable mic audio");
+    }
+    return;
+}
+// Set the callback function OnDisplaySelected() for obtaining the screen capture display ID.
+void OnDisplaySelected(struct OH_AVScreenCapture *capture, uint64_t displayId, void *userData)
+{
+    (void)capture;
+    OH_LOG_INFO(LOG_APP, "==ScreenCaptureSample== ScreenCapture OnError errorCode is %{public}uld", displayId);
+    (void)userData;
+}
+
+void SetCallback(struct OH_AVScreenCapture *capture)
+{
+    OH_AVScreenCapture_SetErrorCallback(capture, OnError, nullptr);
+    OH_AVScreenCapture_SetStateCallback(capture, OnStateChange, nullptr);
+    OH_AVScreenCapture_SetDataCallback(capture, OnBufferAvailable, nullptr);
+    OH_AVScreenCapture_SetDisplayCallback(capture, OnDisplaySelected, nullptr);
+}
 ```
 
 ### Starting Screen Capture
@@ -192,73 +302,82 @@ After screen capture is started by calling [OH_AVScreenCapture_StartScreenCaptur
 
 Within the callbacks, you can call [OH_AVScreenCapture_AcquireAudioBuffer](../../reference/apis-media-kit/capi-native-avscreen-capture-h.md#oh_avscreencapture_acquireaudiobuffer) to obtain the audio stream and [OH_AVScreenCapture_AcquireVideoBuffer](../../reference/apis-media-kit/capi-native-avscreen-capture-h.md#oh_avscreencapture_acquirevideobuffer) to obtain the video stream.
 
-```c++
-OH_AVScreenCapture_StartScreenCapture(capture);
+<!-- @[screenCapture_startScreenCapture](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/Media/ScreenCapture/ScreenCaptureSample/entry/src/main/cpp/napi_init.cpp) -->
+
+``` C++
+result = OH_AVScreenCapture_StartScreenCapture(g_avCapture);
 ```
 
 ### Processing Captured Data
 
 Depending on the audio and video capture parameters, different data streams are generated, including video streams, internal audio streams, and microphone audio streams. You can process these according to your scenario, such as routing the streams to other modules for desktop sharing or live video streaming.
 
-```c++
-bool IsCaptureStreamRunning = true;
+<!-- @[screenCapture_config_buffer_OnBufferAvailable](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/Media/ScreenCapture/ScreenCaptureSample/entry/src/main/cpp/napi_init.cpp) --> 
+
+``` C++
 // Obtain and process the OnBufferAvailable() callback function of the original audio and video stream data.
-void OnBufferAvailable(OH_AVScreenCapture *capture, OH_AVBuffer *buffer, OH_AVScreenCaptureBufferType bufferType, int64_t timestamp, void *userData) {
-    // Screen capture is in progress.
-    if (IsCaptureStreamRunning) {
-        if (bufferType == OH_SCREEN_CAPTURE_BUFFERTYPE_VIDEO) {
-            // Video buffer.
-            OH_NativeBuffer *nativeBuffer = OH_AVBuffer_GetNativeBuffer(buffer);
-            if (nativeBuffer != nullptr && capture != nullptr) {
-                // Obtain the buffer capacity.
-                int bufferLen = OH_AVBuffer_GetCapacity(buffer);
-
-                // Obtain the buffer attribute.
-                OH_AVCodecBufferAttr info;
-                OH_AVBuffer_GetBufferAttr(buffer, &info);
-
-                // Obtain the native buffer configuration.
-                OH_NativeBuffer_Config config;
-                OH_NativeBuffer_GetConfig(nativeBuffer, &config);
-
-                // Obtain the buffer address.
-                uint8_t *buf = OH_AVBuffer_GetAddr(buffer);
-                if (buf == nullptr) {
-                    return;
-                }
-                // Use the buffer data.
-
-                // The reference count of the native buffer is decremented by 1. When the reference count reaches 0, the buffer is released.
-                OH_NativeBuffer_Unreference(nativeBuffer);
-            }
-        } else if (bufferType == OH_SCREEN_CAPTURE_BUFFERTYPE_AUDIO_INNER) {
-            // Buffer for internal recording.
-            // Obtain the buffer attribute.
-            OH_AVCodecBufferAttr info;
-            OH_AVBuffer_GetBufferAttr(buffer, &info);
-
-            // Obtain the buffer capacity.
-            int bufferLen = OH_AVBuffer_GetCapacity(buffer);
-
-            // Obtain the buffer address.
-            uint8_t *buf = OH_AVBuffer_GetAddr(buffer);
-            if (buf == nullptr) {
-                return;
-            }
-            // Use the buffer data.
-        } else if (bufferType == OH_SCREEN_CAPTURE_BUFFERTYPE_AUDIO_MIC) {
-            // Microphone buffer.
-            // Obtain the buffer capacity.
-            int bufferLen = OH_AVBuffer_GetCapacity(buffer);
-
-            // Obtain the buffer address.
-            uint8_t *buf = OH_AVBuffer_GetAddr(buffer);
-            if (buf == nullptr) {
-                return;
-            }
-            // Use the buffer data.
-        }
+void HandleVideoBuffer(OH_AVBuffer *buffer)
+{
+    OH_NativeBuffer *nativebuffer = OH_AVBuffer_GetNativeBuffer(buffer);
+    if (nativebuffer == nullptr) {
+        return;
     }
+    int bufferLen = OH_AVBuffer_GetCapacity(buffer);
+    OH_AVCodecBufferAttr info;
+    int32_t ret = OH_AVBuffer_GetBufferAttr(buffer, &info);
+    OH_LOG_INFO(LOG_APP, "==ScreenCaptureSample== ScreenCapture size %{public}d", info.size);
+    OH_LOG_INFO(LOG_APP, "==ScreenCaptureSample== ScreenCapture bufferLen %{public}d", bufferLen);
+
+    OH_NativeBuffer_Config config;
+    OH_NativeBuffer_GetConfig(nativebuffer, &config);
+    OH_LOG_INFO(LOG_APP, "==ScreenCaptureSample== ScreenCapture height %{public}d width %{public}d",
+        config.height, config.width);
+    uint8_t *buf = OH_AVBuffer_GetAddr(buffer);
+    if (buf == nullptr) {
+        return;
+    }
+    size_t written = fwrite(buf, 1, bufferLen, g_vFile);
+    if (written != bufferLen) {
+        OH_LOG_ERROR(LOG_APP, "fwrite failed");
+    }
+    OH_NativeBuffer_Unreference(nativebuffer);
+    buffer = nullptr;
+    OH_LOG_INFO(LOG_APP, "==ScreenCaptureSample== ScreenCapture OnBufferAvailable inner audio");
+}
+
+void HandleAudioBuffer(OH_AVBuffer *buffer, FILE *file, const char *logMsg)
+{
+    int bufferLen = OH_AVBuffer_GetCapacity(buffer);
+    uint8_t *buf = OH_AVBuffer_GetAddr(buffer);
+    if (buf == nullptr) {
+        return;
+    }
+    OH_LOG_INFO(LOG_APP, "==ScreenCaptureSample== ScreenCapture OnBufferAvailable inner audio");
+    size_t written = fwrite(buf, 1, bufferLen, g_innerFile);
+    if (written != bufferLen) {
+        OH_LOG_ERROR(LOG_APP, "fwrite failed");
+    }
+}
+
+void OnBufferAvailable(OH_AVScreenCapture *capture, OH_AVBuffer *buffer, OH_AVScreenCaptureBufferType bufferType,
+                       int64_t timestamp, void *userData)
+{
+    if (!g_isRunning) {
+        return;
+    }
+    OH_LOG_INFO(LOG_APP, "==ScreenCaptureSample== ScreenCapture OnBufferAvailable bufferType is %{public}d",
+        bufferType);
+    if (bufferType == OH_SCREEN_CAPTURE_BUFFERTYPE_VIDEO) {
+        // Process the video buffer.
+        HandleVideoBuffer(buffer);
+    } else if (bufferType == OH_SCREEN_CAPTURE_BUFFERTYPE_AUDIO_INNER) {
+        // Process the internal recording buffer.
+        HandleAudioBuffer(buffer, g_innerFile, "ScreenCapture OnBufferAvailable inner audio");
+    } else if (bufferType == OH_SCREEN_CAPTURE_BUFFERTYPE_AUDIO_MIC) {
+        // Process the microphone buffer.
+        HandleAudioBuffer(buffer, g_micFile, "ScreenCapture OnBufferAvailable mic audio");
+    }
+    return;
 }
 ```
 
@@ -266,38 +385,56 @@ void OnBufferAvailable(OH_AVScreenCapture *capture, OH_AVBuffer *buffer, OH_AVSc
 
 Call [OH_AVScreenCapture_StopScreenCapture](../../reference/apis-media-kit/capi-native-avscreen-capture-h.md#oh_avscreencapture_stopscreencapture) to stop screen capture or sharing and release the microphone.
 
-```c++
-// Stop screen capture.
-OH_AVScreenCapture_StopScreenCapture(capture);
+<!-- @[screenCapture_stopScreenCapture](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/Media/ScreenCapture/ScreenCaptureSample/entry/src/main/cpp/napi_init.cpp) -->
+
+``` C++
+result = OH_AVScreenCapture_StopScreenCapture(g_avCapture);
 ```
 
 ### Releasing Resources
 
 Call [OH_AVScreenCapture_Release](../../reference/apis-media-kit/capi-native-avscreen-capture-h.md#oh_avscreencapture_release) to release the created OH_AVScreenCapture instance. This must be done after screen capture is stopped.
 
-```c++
-// Release screen capture resources.
-OH_AVScreenCapture_Release(capture);
+<!-- @[screenCapture_releaseScreenCapture](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/Media/ScreenCapture/ScreenCaptureSample/entry/src/main/cpp/napi_init.cpp) -->
+
+``` C++
+result = OH_AVScreenCapture_Release(g_avCapture);
+if (result != AV_SCREEN_CAPTURE_ERR_BASE) {
+    OH_LOG_ERROR(LOG_APP, "StopScreenCapture OH_AVScreenCapture_Release: %{public}d", result);
+}
+OH_LOG_INFO(LOG_APP, "OH_AVScreenCapture_Release success");
+g_avCapture = nullptr;
 ```
 
-## PC/2-in-1 Pop-up Mode Configuration
+## Screen Capture Mode Description
 
-The system provides the following screen capture modes: [Capturing a Specified Screen](#capturing-a-specified-screen), [Capturing the Main Screen](#capturing-the-main-screen), and [Capturing a Specified Window](#capturing-a-specified-window-recommended).
+The system provides three screen capture modes: [Capturing a Specified Screen](#capturing-a-specified-screen), [Capturing the Main Screen](#capturing-the-main-screen), and [Capturing a Specified Window](#capturing-a-specified-window). Different capture modes are set through [OH_CaptureMode](../../reference/apis-media-kit/capi-native-avscreen-capture-base-h.md#oh_capturemode).
 
-The screen capture mode uses the display ID (**displayId**) and window ID (**missionIds**). For details about how to obtain the display ID and window ID, see [Obtaining displayId](../../reference/apis-arkui/capi-oh-display-manager-h.md#oh_nativedisplaymanager_createalldisplays) and [Obtaining missionIds](../../reference/apis-arkui/arkts-apis-window-Window.md#getwindowproperties9).
+The screen capture mode uses the screen ID (displayId) and window ID (missionIds). For acquisition methods, see [OH_NativeDisplayManager_CreateAllDisplays](../../reference/apis-arkui/capi-oh-display-manager-h.md#oh_nativedisplaymanager_createalldisplays) and [getWindowProperties](../../reference/apis-arkui/arkts-apis-window-Window.md#getwindowproperties9), respectively.
 
 ### Capturing a Specified Screen
 
 This is the [OH_CAPTURE_SPECIFIED_SCREEN](../../reference/apis-media-kit/capi-native-avscreen-capture-base-h.md#oh_capturemode) mode.
 
-In this mode, after screen capture starts, the PC/2-in-1 device displays a pop-up for selecting the content to share. By default, the screen corresponding to the **videoCapInfo.displayId** parameter is selected. If the window corresponding to the provided **displayId** does not exist, no selection is made.
+In this mode, the screen capture app captures the content of a specified screen. The screen corresponding to the **videoCapInfo.displayId** parameter is selected by default. If the screen corresponding to the passed **displayId** does not exist, no selection is made.
 
-```c++
-// Configure the screen capture width and height in config based on the PC's or 2-in-1 device's resolution.
-config.videoInfo.videoCapInfo.videoFrameWidth = 2880;
-config.videoInfo.videoCapInfo.videoFrameHeight = 1920;
+<!-- @[screenCapture_PCSpecifiedScreenConfigBuffer](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/Media/ScreenCapture/ScreenCaptureSample/entry/src/main/cpp/napi_init.cpp) --> 
 
-// Set the screen capture mode to OH_CAPTURE_SPECIFIED_SCREEN and pass a display ID.
+``` C++
+uint64_t displayId = 0;
+NativeDisplayManager_ErrorCode ret = OH_NativeDisplayManager_GetDefaultDisplayId(&displayId);
+
+NativeDisplayManager_DisplayInfo* displayInfo = nullptr;
+ret = OH_NativeDisplayManager_CreateDisplayById(displayId, &displayInfo);
+if (ret != DISPLAY_MANAGER_OK || !displayInfo) {
+    return;
+}
+// Configure the screen capture width and height in config based on the device resolution.
+config.videoInfo.videoCapInfo.videoFrameWidth = displayInfo->width;
+config.videoInfo.videoCapInfo.videoFrameHeight = displayInfo->height;
+OH_NativeDisplayManager_DestroyDisplay(displayInfo);
+displayInfo = nullptr;
+// Set the screen capture mode to OH_CAPTURE_SPECIFIED_SCREEN and pass the screen ID.
 config.captureMode = OH_CAPTURE_SPECIFIED_SCREEN;
 config.videoInfo.videoCapInfo.displayId = 0;
 ```
@@ -308,69 +445,107 @@ config.videoInfo.videoCapInfo.displayId = 0;
 
 This is the [OH_CAPTURE_HOME_SCREEN](../../reference/apis-media-kit/capi-native-avscreen-capture-base-h.md#oh_capturemode) mode.
 
-In this mode, after screen capture starts, the PC/2-in-1 device does not display a pop-up for selecting the content to share. Instead, it displays a privacy protection pop-up. The configured **videoCapInfo.displayId** parameter does not take effect, and the display ID of the main screen is used by default.
+In this mode, the screen capture app captures the content of the device's home screen. After screen capture starts, the configured **videoCapInfo.displayId** parameter does not take effect, and the home screen's **displayId** is used by default.
 
-```c++
-// Configure the screen capture width and height in config based on the PC's or 2-in-1 device's resolution.
-config.videoInfo.videoCapInfo.videoFrameWidth = 2880;
-config.videoInfo.videoCapInfo.videoFrameHeight = 1920;
+<!-- @[screenCapture_PCHomeScreenConfigBuffer](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/Media/ScreenCapture/ScreenCaptureSample/entry/src/main/cpp/napi_init.cpp) --> 
 
-// Set the screen capture mode to OH_CAPTURE_HOME_SCREEN and pass a display ID.
+``` C++
+uint64_t displayId = 0;
+NativeDisplayManager_ErrorCode ret = OH_NativeDisplayManager_GetDefaultDisplayId(&displayId);
+
+NativeDisplayManager_DisplayInfo* displayInfo = nullptr;
+ret = OH_NativeDisplayManager_CreateDisplayById(displayId, &displayInfo);
+if (ret != DISPLAY_MANAGER_OK || !displayInfo) {
+    return;
+}
+// Configure the width and height for screen capture in config based on the device resolution.
+config.videoInfo.videoCapInfo.videoFrameWidth = displayInfo->width;
+config.videoInfo.videoCapInfo.videoFrameHeight = displayInfo->height;
+OH_NativeDisplayManager_DestroyDisplay(displayInfo);
+displayInfo = nullptr;
+// Set the screen capture mode to OH_CAPTURE_HOME_SCREEN.
 config.captureMode = OH_CAPTURE_HOME_SCREEN;
 ```
 
-### Capturing a Specified Window (Recommended)
+### Capturing a Specified Window
 
 This is the [OH_CAPTURE_SPECIFIED_WINDOW](../../reference/apis-media-kit/capi-native-avscreen-capture-base-h.md#oh_capturemode) mode.
 
-The application should configure the screen capture height and width values according to the PC/2-in-1 device resolution and pass the display ID.
+Configure the screen capture height and width values based on the device resolution and pass the screen ID.
 
-To capture a specific window, the target window ID must be set. In this scenario, after screen capture starts, the PC/2-in-1 device displays a pop-up for selecting the content to share, and the specified window is selected by default.
+To capture a specified window, set the target window ID. In this scenario, after screen capture starts, the system selects the specified window by default.
 
-```c++
-// Configure the screen capture width and height in config based on the PC's or 2-in-1 device's resolution.
-config.videoInfo.videoCapInfo.videoFrameWidth = 2880;
-config.videoInfo.videoCapInfo.videoFrameHeight = 1920;
+<!-- @[SetPCSpecifiedWindowScreenConfigBuffer](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/Media/ScreenCapture/ScreenCaptureSample/entry/src/main/cpp/napi_init.cpp) --> 
 
-// Set the screen capture mode to OH_CAPTURE_SPECIFIED_WINDOW and pass a display ID.
+``` C++
+uint64_t displayId = 0;
+NativeDisplayManager_ErrorCode ret = OH_NativeDisplayManager_GetDefaultDisplayId(&displayId);
+
+NativeDisplayManager_DisplayInfo* displayInfo = nullptr;
+ret = OH_NativeDisplayManager_CreateDisplayById(displayId, &displayInfo);
+if (ret != DISPLAY_MANAGER_OK || !displayInfo) {
+    return;
+}
+// Configure the screen capture width and height in config based on the device resolution.
+config.videoInfo.videoCapInfo.videoFrameWidth = displayInfo->width;
+config.videoInfo.videoCapInfo.videoFrameHeight = displayInfo->height;
+OH_NativeDisplayManager_DestroyDisplay(displayInfo);
+displayInfo = nullptr;
+// Set the screen capture mode to OH_CAPTURE_SPECIFIED_WINDOW and pass in the screen ID.
 config.captureMode = OH_CAPTURE_SPECIFIED_WINDOW;
 config.videoInfo.videoCapInfo.displayId = 0;
 
-// (Optional) Pass a window ID if you want to capture a specific window.
-std::vector<int32_t> missionIds = {61}; // Window 61 is selected in the picker by default.
-config.videoInfo.videoCapInfo.missionIDs = &missionIds[0];
-config.videoInfo.videoCapInfo.missionIDsLen = static_cast<int32_t>(missionIds.size());
+// (Optional) If there is a desired window to capture, pass in a single window ID.
+g_missionIds = {61}; // Indicates that the Picker defaults to selecting window 61.
+config.videoInfo.videoCapInfo.missionIDs = g_missionIds.data();
+config.videoInfo.videoCapInfo.missionIDsLen = static_cast<int32_t>(g_missionIds.size());
+
+// Execute "g_missionIds.clear()" after the configuration parameters are set.
 ```
 
 <!--RP2--><!--RP2End-->
 
-To capture multiple windows simultaneously, pass a list of the desired window IDs. In this scenario, the PC/2-in-1 device does not display a pop-up for selecting the content to share. Instead, it displays the privacy protection pop-up.
+To capture multiple windows simultaneously, pass the list of window IDs to be captured.
 
-```c++
-// Configure the screen capture width and height in config based on the PC's or 2-in-1 device's resolution.
-config.videoInfo.videoCapInfo.videoFrameWidth = 2880;
-config.videoInfo.videoCapInfo.videoFrameHeight = 1920;
+<!-- @[SetPCSpecifiedWindowScreenConfigBuffer2](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/Media/ScreenCapture/ScreenCaptureSample/entry/src/main/cpp/napi_init.cpp) --> 
 
-// Set the screen capture mode to OH_CAPTURE_SPECIFIED_WINDOW and pass a display ID.
+``` C++
+uint64_t displayId = 0;
+NativeDisplayManager_ErrorCode ret = OH_NativeDisplayManager_GetDefaultDisplayId(&displayId);
+
+NativeDisplayManager_DisplayInfo* displayInfo = nullptr;
+ret = OH_NativeDisplayManager_CreateDisplayById(displayId, &displayInfo);
+if (ret != DISPLAY_MANAGER_OK || !displayInfo) {
+    return;
+}
+// Configure the width and height of the screen recording in config based on the device resolution.
+config.videoInfo.videoCapInfo.videoFrameWidth = displayInfo->width;
+config.videoInfo.videoCapInfo.videoFrameHeight = displayInfo->height;
+OH_NativeDisplayManager_DestroyDisplay(displayInfo);
+displayInfo = nullptr;
+// Set the screen recording mode to OH_CAPTURE_SPECIFIED_WINDOW and pass in the screen ID.
 config.captureMode = OH_CAPTURE_SPECIFIED_WINDOW;
 config.videoInfo.videoCapInfo.displayId = 0;
 
-// Pass multiple window IDs.
-vector<int32_t> missionIds = {60, 61}; // Windows 60 and 61 are to be captured simultaneously.
-config.videoInfo.videoCapInfo.missionIDs = &missionIds[0];
-config.videoInfo.videoCapInfo.missionIDsLen = static_cast<int32_t>(missionIds.size());
+// Pass in multiple window IDs.
+g_missionIds2 = {60, 61}; // Indicates that windows 60 and 61 are expected to be recorded simultaneously.
+config.videoInfo.videoCapInfo.missionIDs = g_missionIds2.data();
+config.videoInfo.videoCapInfo.missionIDsLen = static_cast<int32_t>(g_missionIds2.size());
+
+// Execute "g_missionIds2.clear()" after the configuration parameters are complete.
 ```
 
-## Phone/Tablet Popup Mode Configuration
+## Popup Mode Description
 
-Starting from API version 23, phone and tablet devices support controlling whether the shared content selection popup is displayed through a strategy configuration.
+Starting from API version 23, PCs/2-in-1 devices, phones, and tablet devices support controlling whether the shared content selection popup is uniformly displayed through [OH_AVScreenCapture_StrategyForPickerPopUp](../../reference/apis-media-kit/capi-native-avscreen-capture-h.md#oh_avscreencapture_strategyforpickerpopup).
 
-On PC and 2-in-1 devices, whether the shared content selection popup is displayed is determined by the capture mode. On phone and tablet devices, the popup mode can be configured through [OH_AVScreenCapture_StrategyForPickerPopUp](../../reference/apis-media-kit/capi-native-avscreen-capture-h.md#oh_avscreencapture_strategyforpickerpopup) without specifying a capture mode.
+**OH_AVScreenCapture_StrategyForPickerPopUp is set to true**
 
-```c++
-// Create an AVScreenCapture instance.
-OH_AVScreenCapture* capture = OH_AVScreenCapture_Create();
+Indicates that the picker is uniformly displayed after screen capture starts on the device, without specifying a capture mode.
 
+<!-- @[screenCapture_buffer_strategy_pickerPopUp](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/Media/ScreenCapture/ScreenCaptureSample/entry/src/main/cpp/napi_init.cpp) -->
+
+``` C++
 // Create a CaptureStrategy object.
 OH_AVScreenCapture_CaptureStrategy* strategy = OH_AVScreenCapture_CreateCaptureStrategy();
 
@@ -384,6 +559,41 @@ OH_AVScreenCapture_SetCaptureStrategy(capture, strategy);
 // Release the CaptureStrategy object.
 OH_AVScreenCapture_ReleaseCaptureStrategy(strategy);
 ```
+
+**OH_AVScreenCapture_StrategyForPickerPopUp is set to false**
+
+Indicates that the picker is not displayed after screen capture starts on the device. Only the privacy protection popup is displayed, without specifying a capture mode.
+
+<!-- @[screenCapture_buffer_strategy_pickerPopUpFalse](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/Media/ScreenCapture/ScreenCaptureSample/entry/src/main/cpp/napi_init.cpp) --> 
+
+``` C++
+// Create a CaptureStrategy object.
+OH_AVScreenCapture_CaptureStrategy* strategy = OH_AVScreenCapture_CreateCaptureStrategy();
+
+// Set whether to display the screen capture Picker.
+// The value false means the Picker is not displayed after screen recording starts.
+OH_AVScreenCapture_StrategyForPickerPopUp(strategy, false);
+
+// Set the CaptureStrategy to the AVScreenCapture instance.
+OH_AVScreenCapture_SetCaptureStrategy(capture, strategy);
+
+// Release the CaptureStrategy object.
+OH_AVScreenCapture_ReleaseCaptureStrategy(strategy);
+```
+
+**OH_AVScreenCapture_StrategyForPickerPopUp is set to the default value**
+
+For PCs/2-in-1 devices, phones, and tablet devices, the screen capture popup behavior differs.
+
+- On PCs/2-in-1 devices, different popup behaviors occur depending on the capture mode.
+
+  - **Capturing a Specified Screen (OH_CAPTURE_SPECIFIED_SCREEN)**: After screen capture starts, the shared content selection popup is displayed, and the screen corresponding to the **displayId** parameter is selected by default.
+
+  - **Capturing the Home Screen (OH_CAPTURE_HOME_SCREEN)**: After screen capture starts, the shared content selection popup is not displayed. Only the privacy protection popup is displayed. The **displayId** parameter does not take effect, and the home screen ID is used by default.
+
+  - **Capturing a Specified Window (OH_CAPTURE_SPECIFIED_WINDOW)**: When a single window ID is passed, the shared content selection popup is displayed and the specified window is selected by default. When multiple window IDs are passed, the shared content selection popup is not displayed, and only the privacy protection popup is displayed.
+
+- On phones and tablet devices, the picker is not displayed in any capture mode. Only the privacy protection popup is displayed.
 
 ## Additional Resources
 

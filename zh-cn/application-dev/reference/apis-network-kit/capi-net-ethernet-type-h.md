@@ -12,7 +12,7 @@
 
 为以太网网卡模块C接口定义数据结构。
 
-**引用文件：** <network/net_ethernet/net_ethernet_type.h>
+**引用文件：** <network/netmanager_ext/net_ethernet_type.h>
 
 **库：** libnet_ethernet.so
 

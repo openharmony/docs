@@ -6,7 +6,7 @@
 <!--Designer: @andeszhang-->
 <!--Tester: @murphy84-->
 <!--Adviser: @zhang_yixin13-->
-<!-- md-trans-meta sourceCommit=4c9d75d31172775e314035a008f004edb927a657 translatedAt=2026-08-04T08:28:29.871Z pushedAt=2026-08-04T08:56:50.919Z -->
+<!-- md-trans-meta sourceCommit=8e856b06a34a819612cae112a81452d688b21bcf translatedAt=2026-08-15T01:52:26.489Z pushedAt=2026-08-15T08:36:45.072Z -->
 
 ## B
 
@@ -30,7 +30,7 @@ An immersive mode that applies a dark immersive effect to the input method panel
 
 ### EditorAttribute
 
-Attributes that describe the characteristics of an editor box, including **textInputType**, **enterKeyType**, and **immersiveMode**.
+Attributes that describe the characteristics of an editor box, including **inputPattern**, **enterKeyType**, and **immersiveMode**.
 
 ### ExtensionContext
 
@@ -52,7 +52,7 @@ A state in which the input method panel displays candidate words for user input.
 
 ### Full Access Mode
 
-A full-access mode for input method applications, providing complete input method functions.
+A full experience mode for input method apps, providing complete input method functions.
 
 ## I
 

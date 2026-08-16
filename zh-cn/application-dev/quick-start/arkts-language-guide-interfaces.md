@@ -1516,7 +1516,7 @@ function tsCreateSquare(config: TsSquareConfig): { color: string; area: number }
 }
 
 let tsEpSquare2 = tsCreateSquare({ colour: 'red', width: 100 });
-// 编译错误：'colour' does not exist in type 'SquareConfig'
+// 编译错误：'colour' does not exist in type 'TsSquareConfig'
 ```
 
 绕过多余属性检查的常用方法包括类型断言、添加索引签名或先赋值给中间变量。大多数多余属性错误是真正的bug，应优先修复。

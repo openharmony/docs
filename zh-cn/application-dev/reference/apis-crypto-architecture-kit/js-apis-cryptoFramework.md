@@ -156,7 +156,7 @@ import { cryptoFramework } from '@kit.CryptoArchitectureKit';
 
 | 名称    | 类型                  | 只读 | 可选 | 说明                                                         |
 | ------- | --------------------- | ---- | ---- | ------------------------------------------------------------ |
-| iv      | [DataBlob](#datablob) | 否   | 否   | Nonce（通过iv字段传入），长度为12字节。                              |
+| iv      | [DataBlob](#datablob) | 否   | 否   | nonce（通过iv字段传入），长度为12字节。                              |
 | aad     | [DataBlob](#datablob) | 否   | 否   | 指明加解密参数aad。                             |
 | authTag | [DataBlob](#datablob) | 否   | 否   | 指定加解密参数authTag，长度为16字节。 |
 
@@ -758,7 +758,7 @@ import { cryptoFramework } from '@kit.CryptoArchitectureKit';
 | password | string \| Uint8Array | 否   | 否   | 用户输入的原始密码。|
 | salt | Uint8Array | 否   | 否   | 盐值。 |
 | iterations | number | 否   | 否   | 迭代次数，需要为正整数。 |
-| keySize | number | 否   | 否   | 派生得到的密钥字节长度，单位为bytes。 |
+| keySize | number | 否   | 否   | 派生得到的密钥字节长度，需要为正整数，单位为bytes。 |
 
 > **说明：**
 >
@@ -776,8 +776,8 @@ import { cryptoFramework } from '@kit.CryptoArchitectureKit';
 | ------- | ------ | ---- | ---- | ------------------------------------------------------------ |
 | key | string \| Uint8Array | 否   | 否   | 密钥材料。|
 | salt | Uint8Array | 否   | 否   | 盐值。 |
-| info | Uint8Array | 否   | 否   | 拓展信息。 |
-| keySize | number | 否   | 否   | 派生得到的密钥字节长度，单位为bytes。 |
+| info | Uint8Array | 否   | 否   | 扩展信息。 |
+| keySize | number | 否   | 否   | 派生得到的密钥字节长度，需要为正整数，单位为bytes。 |
 
 > **说明：**
 >
@@ -1144,9 +1144,9 @@ async function testgetAsyKeySpec() {
   let commKeySpec = genEccCommonSpec(); // 使用参数属性，构造ECC公私钥公共密钥参数对象。
   let generatorBySpec = cryptoFramework.createAsyKeyGeneratorBySpec(commKeySpec); // 使用密钥参数对象创建生成器。
   let keyPair = await generatorBySpec.generateKeyPair();
-  let key = keyPair.pubKey;
-  let p = key.getAsyKeySpec(cryptoFramework.AsyKeySpecItem.ECC_FP_P_BN);
-  console.info('ecc item --- p: ' + p.toString(16));
+  let pubKey = keyPair.pubKey;
+  let eccPrimeP = pubKey.getAsyKeySpec(cryptoFramework.AsyKeySpecItem.ECC_FP_P_BN);
+  console.info('ecc item --- p: ' + eccPrimeP.toString(16));
 }
 ```
 
@@ -1201,7 +1201,7 @@ async function testGetEncodedDer() {
   let keyPair = await generator.convertKey(pubKeyBlob, null);
   let key = keyPair.pubKey;
   let returnBlob = key.getEncodedDer('X509|UNCOMPRESSED');
-  console.info('returnBlob data：' + returnBlob.data);
+  console.info('returnBlob data: ' + returnBlob.data);
 }
 ```
 
@@ -1388,7 +1388,7 @@ async function testClearMem() {
   keyGenPromise.then(keyPair => {
     let priKey = keyPair.priKey;
     let returnBlob = priKey.getEncodedDer('PKCS8');
-    console.info('returnBlob data：' + returnBlob.data);
+    console.info('returnBlob data: ' + returnBlob.data);
     priKey.clearMem(); // 对于非对称私钥，clearMem()释放内部密钥结构。执行clearMem后，不支持getEncoded()。
   });
 }
@@ -1460,9 +1460,9 @@ async function testgetAsyKeySpec() {
   let commKeySpec = genEccCommonSpec(); // 使用参数属性，构造ECC公私钥公共密钥参数对象。
   let generatorBySpec = cryptoFramework.createAsyKeyGeneratorBySpec(commKeySpec); // 使用密钥参数对象创建生成器。
   let keyPair = await generatorBySpec.generateKeyPair();
-  let key = keyPair.priKey;
-  let p = key.getAsyKeySpec(cryptoFramework.AsyKeySpecItem.ECC_FP_P_BN);
-  console.info('ecc item --- p: ' + p.toString(16));
+  let pirKey = keyPair.priKey;
+  let eccPrimeP = pirKey.getAsyKeySpec(cryptoFramework.AsyKeySpecItem.ECC_FP_P_BN);
+  console.info('ecc item --- p: ' + eccPrimeP.toString(16));
 }
 ```
 ### getEncodedDer<sup>12+</sup>
@@ -1515,7 +1515,7 @@ async function testGetEncodedDer() {
   keyGenPromise.then(keyPair => {
     let priKey = keyPair.priKey;
     let returnBlob = priKey.getEncodedDer('PKCS8');
-    console.info('returnBlob data：' + returnBlob.data);
+    console.info('returnBlob data: ' + returnBlob.data);
   });
 }
 ```
@@ -2069,7 +2069,7 @@ import { cryptoFramework } from '@kit.CryptoArchitectureKit';
 
 let symKeyGenerator = cryptoFramework.createSymKeyGenerator('3DES192');
   symKeyGenerator.generateSymKey((err, symKey) => {
-    console.info('Generate symKey result: success, algName：' + symKey.algName);
+    console.info('Generate symKey result: success, algName: ' + symKey.algName);
   });
 ```
 
@@ -2272,7 +2272,7 @@ function testConvertKey() {
   let keyMaterialBlob = genKeyMaterialBlob();
   symKeyGenerator.convertKey(keyMaterialBlob)
     .then(symKey => {
-      console.info('Convert symKey result: success, algName：' + symKey.algName);
+      console.info('Convert symKey result: success, algName: ' + symKey.algName);
     }).catch((error: BusinessError) => {
       console.error(`Convert symKey failed, ${error.code}, ${error.message}`);
     });
@@ -3889,7 +3889,7 @@ static convertPoint(curveName: string, encodedPoint: Uint8Array): Point
 >
 > 根据RFC5480规范中第2.2节的描述：<br/>
 > 1. 非压缩的点数据，表示为：前缀0x04\|x坐标\|y坐标；
-> 2. 压缩的点数据，对于Fp素数域上的点（当前暂不支持F2m域），表示为：前缀0x03\|x坐标 (坐标y是奇数时)，前缀0x02\|x坐标 (坐标y是偶数时)。
+> 2. 压缩的点数据，对于Fp素数域上的点（当前暂不支持F2m域），表示为：前缀0x03\|x坐标（坐标y是奇数时），前缀0x02\|x坐标（坐标y是偶数时）。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -4287,7 +4287,7 @@ init(opMode: CryptoMode, key: Key, params: ParamsSpec | null, callback: AsyncCal
 | -------- | ------------------------- | ---- | ------------------------------------------------------------ |
 | opMode   | [CryptoMode](#cryptomode) | 是   | 要执行的操作（加密或解密）。                                           |
 | key      | [Key](#key)               | 是   | 用于加密或解密的密钥。                                       |
-| params   | [ParamsSpec](#paramsspec) \| null<sup>10+</sup> | 是   | 指定加密或解密的参数，对于ECB等没有参数的算法模式，请传入null。API 10之前只支持ParamsSpec， API 10之后增加支持null。 |
+| params   | [ParamsSpec](#paramsspec) \| null | 是   | 指定加密或解密的参数，对于ECB等没有参数的算法模式，请传入null。API 10之前只支持ParamsSpec， API 10之后增加支持null。 |
 | callback | AsyncCallback\<void>      | 是   | 回调函数。当加解密初始化成功，err为undefined，否则为错误对象。     |
 
 **错误码：**
@@ -4362,7 +4362,7 @@ init(opMode: CryptoMode, key: Key, params: ParamsSpec | null): Promise\<void>
 | ------ | ------------------------- | ---- | ------------------------------------------------------------ |
 | opMode | [CryptoMode](#cryptomode) | 是   | 要执行的操作（加密或解密）。                                           |
 | key    | [Key](#key)               | 是   | 用于加密或解密的密钥。                                       |
-| params | [ParamsSpec](#paramsspec) \| null<sup>10+</sup> | 是   | 指定加密或解密的参数，对于ECB等没有参数的算法模式，请传入null。API 10之前仅支持ParamsSpec，从API 10开始增加对null的支持。 |
+| params | [ParamsSpec](#paramsspec) \| null | 是   | 指定加密或解密的参数，对于ECB等没有参数的算法模式，请传入null。API 10之前只支持ParamsSpec，API 10之后增加支持null。 |
 
 **返回值：**
 
@@ -4673,7 +4673,7 @@ function cipherByCallback() {
       cipher.update(plainText, (err, encryptUpdate) => {
         cipher.doFinal(null, (err, tag) => {
           gcmParams.authTag = tag;
-          console.info('encryptUpdate plainText：' + encryptUpdate.data);
+          console.info('encryptUpdate plainText: ' + encryptUpdate.data);
         });
       });
     });
@@ -7409,21 +7409,21 @@ let plainText = "123456";
 function mdTest() {
     let inData = StringToUint8Array(plainText);
     let md = cryptoFramework.createMd('SHA256');
-    console.info("createMd " + typeof md);
+    console.info('createMd ' + typeof md);
 
     md.update({data: inData}, function (finishErr) {
         if (finishErr) {
-            console.error("Digest update failed. Code:" + finishErr.code + " : " + finishErr.message);
+            console.error('Digest update failed. Code: ' + finishErr.code + " : " + finishErr.message);
         } else {
-            console.info("Digest update successfully.");
+            console.info('Digest update successfully.');
         }
     })
 
     md.digest(function (finishErr, digestOutput){
         if (finishErr) {
-            console.error("Digest failed. Code:" + finishErr.code + " : " + finishErr.message);
+            console.error('Digest failed. Code: ' + finishErr.code + " : " + finishErr.message);
         } else {
-            console.info("Digest successfully:" + digestOutput);
+            console.info('Digest successfully:' + digestOutput);
         }
     })
 }
@@ -7542,7 +7542,7 @@ function mdTestSync() {
     let mdResult = md.digestSync();
     console.info('Digest successfully. result:' + mdResult.data);
     let mdLen = md.getMdLength();
-    console.info("Digest successfully. md len: " + mdLen);
+    console.info('Digest successfully. md len: ' + mdLen);
 }
 
 export default {
@@ -8334,11 +8334,11 @@ function randTest() {
     let seed = new Uint8Array([1, 2, 3]);
     rand.setSeed({ data : seed });
 
-    rand.generateRandom(12, function (finishErr, randData){
+    rand.generateRandom(12, function (finishErr, randData) {
         if (finishErr) {
-            console.error("GenerateRandom failed. Code:" + finishErr.code + " : " + finishErr.message);
+            console.error('GenerateRandom failed. Code:' + finishErr.code + ' : ' + finishErr.message);
         } else {
-            console.info("GenerateRandom successfully:" + randData);
+            console.info('GenerateRandom successfully: ' + randData);
         }
     })
 }
@@ -8461,9 +8461,9 @@ function randTestSync() {
     try {
         let randData = rand.generateRandomSync(randLen);
         if (randData != null) {
-            console.info("GenerateRandom successfully: " + randData.data);
+            console.info('GenerateRandom successfully: ' + randData.data);
         } else {
-            console.error("GenerateRandom failed!");
+            console.error('GenerateRandom failed!');
         }
     } catch (error) {
         console.error(`GenerateRandom random number failed. Code: ${error.code}, message: ${error.message}`);

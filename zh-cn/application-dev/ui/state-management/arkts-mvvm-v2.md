@@ -16,7 +16,7 @@
 
 ## 通过状态管理V2版本实现ViewModel
 
-在MVVM模式中，ViewModel负责管理数据状态，并在数据变化时自动更新视图。ArkUI的状态管理V2版本提供了丰富的装饰器和工具，帮助开发者在自定义组件之间共享数据，确保数据变化自动同步到UI。常用的状态管理装饰器包括[\@Local](./arkts-new-local.md)、[\@Param](./arkts-new-param.md)、[\@Event](./arkts-new-event.md)、[\@ObservedV2、\@Trace](./arkts-new-observedV2-and-trace.md)等等。此外，V2还提供了[AppStorageV2](./arkts-new-appstoragev2.md)和[PersistenceV2](./arkts-new-persistencev2.md)作为全局状态存储工具，用于应用间的状态共享和持久化存储。
+在MVVM模式中，ViewModel负责管理数据状态，并在数据变化时自动更新视图。ArkUI的状态管理V2版本提供了丰富的装饰器和工具，帮助开发者在自定义组件之间共享数据，确保数据变化自动同步到UI。常用的状态管理装饰器包括[\@Local](./arkts-new-local.md)、[\@Param](./arkts-new-param.md)、[\@Event](./arkts-new-event.md)、[\@ObservedV2、\@Trace](./arkts-new-observedV2-and-trace.md)等等。此外，V2还提供了[AppStorageV2](./arkts-new-appstoragev2.md)和[PersistenceV2](./arkts-new-persistencev2.md)作为全局状态存储工具，用于应用内的状态共享和持久化存储。
 
 本节将通过一个简单的todolist示例，逐步引入和使用状态管理V2的装饰器及工具，从基础的静态任务列表开始，逐步扩展功能。每个步骤都基于上一步扩展，帮助开发者循序渐进地理解并掌握各个装饰器的使用方法。
 
@@ -676,7 +676,7 @@ struct SettingPage {
 
 为了确保用户重新打开应用时能看到之前的任务状态，建议使用PersistenceV2进行数据持久化存储。PersistenceV2可将数据保存在设备磁盘上，与AppStorageV2的运行时内存相比，它能确保数据在应用关闭后再次启动时保持不变。
 
-在示例9中，创建了一个TaskList类，用于通过PersistenceV2持久化存储所有任务信息，键为"TaskList"，数据对应TaskList类。第一次通过connect连接TaskList时，如果没有数据，会创建一个默认tasks数组为空的新TaskList实例。在aboutToAppear生命周期函数中，连接到PersistenceV2的TaskList，若无存储任务数据，会从本地文件defaultTasks.json中加载任务并存储到PersistenceV2中。此后，每个任务的完成状态都会同步到PersistenceV2中。这样，即使应用关闭后再次打开，所有任务数据依旧保持不变，实现了持久化的应用状态存储功能。
+在示例9中，创建了一个TaskList类，用于通过PersistenceV2持久化存储所有任务信息，键为"TaskList"，数据对应TaskList类。第一次通过connect连接TaskList时，如果没有数据，会创建一个默认tasks数组为空的新TaskList实例。在aboutToAppear生命周期函数中，连接到PersistenceV2的TaskList，若无存储任务数据，会从rawfile资源文件defaultTasks.json中加载任务并存储到PersistenceV2中。此后，每个任务的完成状态都会同步到PersistenceV2中。这样，即使应用关闭后再次打开，所有任务数据依旧保持不变，实现了持久化的应用状态存储功能。
 
 **示例9**
 
@@ -844,7 +844,7 @@ JSON文件存放在src/main/resources/rawfile/defaultTasks.json路径下。
 
 随着应用功能逐步扩展，代码中的某些UI元素开始重复，不仅增加了代码量，也让维护变得复杂。为解决此问题，建议使用\@Builder装饰器，将重复的UI组件抽象为独立的构建方法，便于复用和代码模块化。
 
-在示例10中，通过使用\@Builder定义的ActionButton方法，实现了按钮文字、样式和点击事件的统一管理，提高了代码的简洁性和可维护性。同时优化了界面组件的布局和样式，包括间距、颜色和尺寸等视觉元素，最终呈现出一个功能完善且界面简洁美观的待办事项应用。
+在示例10中，通过使用\@Builder定义的actionButton方法，实现了按钮文字、样式和点击事件的统一管理，提高了代码的简洁性和可维护性。同时优化了界面组件的布局和样式，包括间距、颜色和尺寸等视觉元素，最终呈现出一个功能完善且界面简洁美观的待办事项应用。
 
 **示例10**
 

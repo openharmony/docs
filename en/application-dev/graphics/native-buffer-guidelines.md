@@ -6,7 +6,7 @@
 <!--Designer: @conan13234-->
 <!--Tester: @nobuggers-->
 <!--Adviser: @ge-yafang-->
-<!-- md-trans-meta sourceCommit=740dcdea7b2e0f63c4b99baa0eb4f2e92e763430 translatedAt=2026-08-03T11:21:04.697Z pushedAt=2026-08-04T06:48:11.525Z -->
+<!-- md-trans-meta sourceCommit=1f370dd3425411b659f906071e53860b94f0e2f1 translatedAt=2026-08-15T01:51:11.063Z pushedAt=2026-08-15T08:25:39.374Z -->
 
 ## Overview
 
@@ -23,7 +23,7 @@ Common use cases of NativeBuffer include image data processing, video encoding/d
 | OH_NativeBuffer_Unreference (OH_NativeBuffer \*buffer) | Decreases the reference count of an **OH_NativeBuffer** instance by 1 and, when the reference count reaches 0, destroys the instance.|
 | OH_NativeBuffer_GetConfig (OH_NativeBuffer \*buffer, OH_NativeBuffer_Config \*config) | Obtains the properties of an **OH_NativeBuffer** instance.|
 | OH_NativeBuffer_Map (OH_NativeBuffer \*buffer, void \*\*virAddr) | Maps the ION memory allocated to an **OH_NativeBuffer** instance to the process address space.|
-| OH_NativeBuffer_Unmap (OH_NativeBuffer \*buffer) | Unmaps the ION memory allocated to an **OH_NativeBuffer** instance from the process address space.|
+| OH_NativeBuffer_Unmap (OH_NativeBuffer \*buffer) | Unmaps the ION memory allocated to an **OH_NativeBuffer** instance from the process address space. |
 | OH_NativeBuffer_GetSeqNum (OH_NativeBuffer \*buffer) | Obtains the sequence number of an **OH_NativeBuffer** instance.|
 
 For detailed API descriptions, see [OH_NativeBuffer](../reference/apis-arkgraphics2d/capi-oh-nativebuffer.md).

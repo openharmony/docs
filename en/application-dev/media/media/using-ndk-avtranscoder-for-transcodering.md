@@ -1,10 +1,12 @@
 # Using AVTranscoder to Transcode Videos (C/C++)
+
 <!--Kit: Media Kit-->
 <!--Subsystem: Multimedia-->
 <!--Owner: @wang-haizhou6-->
 <!--Designer: @HmQQQ-->
 <!--Tester: @xchaosioda-->
 <!--Adviser: @w_Machine_cc-->
+<!-- md-trans-meta sourceCommit=425e79ed59a841b19860caacc0b050f68405d43e translatedAt=2026-08-11T01:56:06.517Z pushedAt=2026-08-12T03:23:36.445Z -->
 
 Starting from API version 20, NDK (C/C++) APIs are provided for video transcoding.
 
@@ -32,7 +34,7 @@ To use system logging, include the following header file:
 #include <hilog/log.h>
 ```
 
-In addition, link the following dynamic libraries in the CMake script:
+Link the following dynamic library in the CMake script:
 
 ```c
 target_link_libraries(sample PUBLIC libhilog_ndk.z.so)
@@ -221,7 +223,7 @@ Read [AVTranscoder](../../reference/apis-media-kit/capi-avtranscoder.md) for the
 
     ```c++
     const std::int32_t AUDIO_BITRATE = 200000;
-    OH_AVTranscoderConfig_SetDstAudioBitrate(config, AUDIO_BITRATE); // (Optional) Audio bit rate.
+    OH_AVTranscoderConfig_SetDstAudioBitrate(config, AUDIO_BITRATE); // Refer to the avcodec audio encoder bitrate setting. Adjust based on actual requirements.
     ```
 
 10. (Optional) Call **OH_AVTranscoderConfig_SetDstVideoBitrate()** to set the bit rate of the output video.
@@ -230,7 +232,9 @@ Read [AVTranscoder](../../reference/apis-media-kit/capi-avtranscoder.md) for the
     const std::int32_t VIDEO_BITRATE = 3000000;
     OH_AVTranscoderConfig_SetDstVideoBitrate(config, VIDEO_BITRATE); // (Optional) Video bit rate.
     ```
+
     <!--RP2--><!--RP2End-->
+
 11. Call **OH_AVTranscoder_Prepare()** to prepare for transcoding. After a successful call, the instance transitions to the **AVTRANSCODER_PREPARED** state.
 
     ```c++

@@ -1,10 +1,12 @@
 # Obtaining the Rotation Angle of an Image
+
 <!--Kit: Image Kit-->
 <!--Subsystem: Multimedia-->
 <!--Owner: @aulight02-->
-<!--Designer: @liyang_bryan-->
+<!--Designer: @XiaoYao555-->
 <!--Tester: @xchaosioda-->
 <!--Adviser: @w_Machine_cc-->
+<!-- md-trans-meta sourceCommit=ccdf26d9d10c53eff04ea24e30d31cc6f6b71655 translatedAt=2026-08-11T10:28:11.292Z pushedAt=2026-08-11T11:33:22.638Z -->
 
 ## Introduction to Image Rotation Angles
 
@@ -27,7 +29,7 @@ To properly display an image, you need to carry out the specific operations asso
 | 7      | "Right-bottom" | Horizontal mirror flip followed by a clockwise rotation of 90°.|
 | 8      | "Left-bottom"  | Clockwise rotation of 270°.               |
 
-In ArkTS scenarios, for details about how to read and edit the rotation angle information of an image, see [Editing EXIF Data](../image-tool.md). The corresponding **propertyKey** must be set to **ORIENTATION**.
+In ArkTS scenarios, for details about how to read and edit the rotation angle information of an image, see [Reading and Editing Image Exif Data](../image-tool.md). The corresponding **propertyKey** must be set to **ORIENTATION**.
 
 In C/C++ scenarios, for details about how to read and edit the rotation angle information of an image, see [Using Image_NativeModule to Edit EXIF Data](../image-tool-c.md). The corresponding **key** must be set to **OHOS_IMAGE_PROPERTY_ORIENTATION**.
 
@@ -37,7 +39,7 @@ In C/C++ scenarios, for details about how to read and edit the rotation angle in
 
 Some images may lack EXIF data or may not have the **Orientation** field written in the EXIF data. These images do not require rotation (consistent with the case where **Orientation** is 1).
 
-### Why EXIF Data might be lost?
+### Why EXIF data might be lost?
 
 This is related to the source of the image. Images transmitted over the network may have been re-encoded without preserving EXIF data. As a result, the rotation angle cannot be obtained.
 

@@ -2603,9 +2603,9 @@ onFullScreenExit(callback: () => void)
 
 onWindowNew(callback: Callback\<OnWindowNewEvent\>)
 
-使能multiWindowAccess情况下，通知用户新建窗口请求。
+在开启multiWindowAccess（多窗口访问）属性的情况下，通知应用有新建窗口请求。如需获取更丰富的窗口信息建议使用onWindowNewExt。
 
-若不调用[setWebController](./arkts-basic-components-web-ControllerHandler.md#setwebcontroller9)接口，会造成render进程阻塞。
+若不调用[setWebController](./arkts-basic-components-web-ControllerHandler.md#setwebcontroller9)接口，会造成渲染进程阻塞。
 
 如果没有创建新窗口，调用[setWebController](./arkts-basic-components-web-ControllerHandler.md#setwebcontroller9)接口时设置成null，通知Web没有创建新窗口。
 
@@ -2704,11 +2704,11 @@ onWindowNew(callback: Callback\<OnWindowNewEvent\>)
 
 onWindowNewExt(callback: Callback\<OnWindowNewExtEvent\>)
 
-在启用[multiWindowAccess](./arkts-basic-components-web-attributes.md#multiwindowaccess9)的情况下，通知用户新建窗口请求。
+在启用[multiWindowAccess](./arkts-basic-components-web-attributes.md#multiwindowaccess9)的情况下，通知应用有新建窗口请求。
 
 > **说明：**
 >
-> - 若不调用[setWebController](./arkts-basic-components-web-ControllerHandler.md#setwebcontroller9)接口，会造成render进程阻塞。
+> - 若不调用[setWebController](./arkts-basic-components-web-ControllerHandler.md#setwebcontroller9)接口，会造成渲染进程阻塞。
 >
 > - 若未创建新窗口，调用[setWebController](./arkts-basic-components-web-ControllerHandler.md#setwebcontroller9)接口并设置成null，通知Web未创建新窗口。
 >
@@ -2811,7 +2811,7 @@ onWindowNewExt(callback: Callback\<OnWindowNewExtEvent\>)
 
 onActivateContent(callback: Callback\<void>)
 
-当Web页面触发window.open(url, name)时，会根据name查找是否存在已绑定的Web实例。若存在，该实例将收到此回调以通知应用需将其展示至前端；若不存在，则通过[onWindowNew](#onwindownew9)通知应用创建新Web实例。
+Web页面触发window.open(url, name)时，会根据name查找是否存在已绑定的Web实例。若存在，该实例将收到此回调以通知应用需将其展示至前端；若不存在，则通过[onWindowNew](#onwindownew9)通知应用创建新Web实例。
 
 > **说明：**
 >
@@ -2913,7 +2913,7 @@ onActivateContent(callback: Callback\<void>)
 
 onWindowExit(callback: () => void)
 
-通知用户窗口关闭请求。和[onWindowNew](#onwindownew9)一样，从安全角度讲，应用应该确保用户可以知道他们交互的页面已关闭。
+通知应用有窗口关闭请求。和[onWindowNew](#onwindownew9)一样，从安全角度考虑，应用应确保用户可以知道他们交互的页面已关闭。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 

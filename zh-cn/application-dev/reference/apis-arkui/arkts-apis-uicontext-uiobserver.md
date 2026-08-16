@@ -999,7 +999,7 @@ off(type: 'navDestinationSwitch', observerOptions: observer.NavDestinationSwitch
 
 on(type: 'willClick', callback: GestureEventListenerCallback): void
 
-监听点击事件指令下发情况，所注册回调将于点击事件触发前触发。回调类型为[GestureEventListenerCallback](arkts-apis-uicontext-t.md#gestureeventlistenercallback12)。从API version 20开始支持屏幕朗读触控模式。
+监听点击事件指令下发情况，所注册回调将于点击事件触发前触发。回调类型为[GestureEventListenerCallback](arkts-apis-uicontext-t.md#gestureeventlistenercallback)。从API version 20开始支持屏幕朗读触控模式。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -1010,7 +1010,7 @@ on(type: 'willClick', callback: GestureEventListenerCallback): void
 | 参数名   | 类型                                                         | 必填 | 说明                                                         |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | type     | string                                                       | 是   | 监听事件，固定为'willClick'，用于监听点击事件指令下发情况，所注册回调将于点击事件触发前触发。 |
-| callback | [GestureEventListenerCallback](arkts-apis-uicontext-t.md#gestureeventlistenercallback12) | 是   | 回调函数。可以获得点击事件的[GestureEvent](arkui-ts/ts-gesture-common.md#gestureevent对象说明)和组件的[FrameNode](js-apis-arkui-frameNode.md)。  |
+| callback | [GestureEventListenerCallback](arkts-apis-uicontext-t.md#gestureeventlistenercallback) | 是   | 回调函数。可以获得点击事件的[GestureEvent](arkui-ts/ts-gesture-common.md#gestureevent对象说明)和组件的[FrameNode](js-apis-arkui-frameNode.md)。  |
 
 **示例：**
 
@@ -1115,7 +1115,7 @@ off(type: 'willClick', callback?: GestureEventListenerCallback): void
 | 参数名   | 类型                                                         | 必填 | 说明                                                  |
 | -------- | ------------------------------------------------------------ | ---- | ----------------------------------------------------- |
 | type     | string                                                       | 是   | 监听事件，固定为'willClick'，即点击事件指令下发情况。 |
-| callback | [GestureEventListenerCallback](arkts-apis-uicontext-t.md#gestureeventlistenercallback12) | 否   | 需要被注销的回调函数。不传参数时，取消所有的点击事件指令下发监听回调。                                |
+| callback | [GestureEventListenerCallback](arkts-apis-uicontext-t.md#gestureeventlistenercallback) | 否   | 需要被注销的回调函数。不传参数时，取消所有的点击事件指令下发监听回调。                                |
 
 **示例：**
 
@@ -1125,7 +1125,7 @@ off(type: 'willClick', callback?: GestureEventListenerCallback): void
 
 on(type: 'didClick', callback: GestureEventListenerCallback): void
 
-监听点击事件指令下发情况，所注册回调将于点击事件触发后触发。回调类型为[GestureEventListenerCallback](arkts-apis-uicontext-t.md#gestureeventlistenercallback12)。从API version 20开始支持屏幕朗读触控模式。
+监听点击事件指令下发情况，所注册回调将于点击事件触发后触发。回调类型为[GestureEventListenerCallback](arkts-apis-uicontext-t.md#gestureeventlistenercallback)。从API version 20开始支持屏幕朗读触控模式。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -1136,7 +1136,7 @@ on(type: 'didClick', callback: GestureEventListenerCallback): void
 | 参数名   | 类型                                                         | 必填 | 说明                                                         |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | type     | string                                                       | 是   | 监听事件，固定为'didClick'，用于监听点击事件指令下发情况，所注册回调将于点击事件触发后触发。 |
-| callback | [GestureEventListenerCallback](arkts-apis-uicontext-t.md#gestureeventlistenercallback12) | 是   | 回调函数。可以获得点击事件的[GestureEvent](arkui-ts/ts-gesture-common.md#gestureevent对象说明)和组件的[FrameNode](js-apis-arkui-frameNode.md)。  |
+| callback | [GestureEventListenerCallback](arkts-apis-uicontext-t.md#gestureeventlistenercallback) | 是   | 回调函数。可以获得点击事件的[GestureEvent](arkui-ts/ts-gesture-common.md#gestureevent对象说明)和组件的[FrameNode](js-apis-arkui-frameNode.md)。  |
 
 **示例：**
 
@@ -1157,7 +1157,7 @@ off(type: 'didClick', callback?: GestureEventListenerCallback): void
 | 参数名   | 类型                                                         | 必填 | 说明                                                 |
 | -------- | ------------------------------------------------------------ | ---- | ---------------------------------------------------- |
 | type     | string                                                       | 是   | 监听事件，固定为'didClick'，即点击事件指令下发情况。 |
-| callback | [GestureEventListenerCallback](arkts-apis-uicontext-t.md#gestureeventlistenercallback12) | 否   | 需要被注销的回调函数。不传参数时，取消所有的点击事件指令下发监听回调。                               |
+| callback | [GestureEventListenerCallback](arkts-apis-uicontext-t.md#gestureeventlistenercallback) | 否   | 需要被注销的回调函数。不传参数时，取消所有的点击事件指令下发监听回调。                               |
 
 **示例：**
 
@@ -1167,7 +1167,7 @@ off(type: 'didClick', callback?: GestureEventListenerCallback): void
 
 on(type: 'willClick', callback: ClickEventListenerCallback): void
 
-监听点击事件指令下发情况，所注册回调将于点击事件触发前触发。回调类型为[ClickEventListenerCallback](arkts-apis-uicontext-t.md#clickeventlistenercallback12)。从API version 20开始支持屏幕朗读触控模式。
+监听点击事件指令下发情况，所注册回调将于点击事件触发前触发。回调类型为[ClickEventListenerCallback](arkts-apis-uicontext-t.md#clickeventlistenercallback)。从API version 20开始支持屏幕朗读触控模式。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -1178,7 +1178,7 @@ on(type: 'willClick', callback: ClickEventListenerCallback): void
 | 参数名   | 类型                                                        | 必填 | 说明                                                         |
 | -------- | ----------------------------------------------------------- | ---- | ------------------------------------------------------------ |
 | type     | string                                                      | 是   | 监听事件，固定为'willClick'，用于监听点击事件指令下发情况，所注册回调将于点击事件触发前触发。 |
-| callback | [ClickEventListenerCallback](arkts-apis-uicontext-t.md#clickeventlistenercallback12) | 是   | 回调函数。可以获得点击事件的[ClickEvent](arkui-ts/ts-universal-events-click.md#clickevent)和组件的[FrameNode](js-apis-arkui-frameNode.md)。    |
+| callback | [ClickEventListenerCallback](arkts-apis-uicontext-t.md#clickeventlistenercallback) | 是   | 回调函数。可以获得点击事件的[ClickEvent](arkui-ts/ts-universal-events-click.md#clickevent)和组件的[FrameNode](js-apis-arkui-frameNode.md)。    |
 
 **示例：**
 
@@ -1199,7 +1199,7 @@ off(type: 'willClick', callback?: ClickEventListenerCallback): void
 | 参数名   | 类型                                                        | 必填 | 说明                                                  |
 | -------- | ----------------------------------------------------------- | ---- | ----------------------------------------------------- |
 | type     | string                                                      | 是   | 监听事件，固定为'willClick'，即点击事件指令下发情况。 |
-| callback | [ClickEventListenerCallback](arkts-apis-uicontext-t.md#clickeventlistenercallback12) | 否   | 需要被注销的回调函数。不传参数时，取消所有的点击事件指令下发监听回调。                                |
+| callback | [ClickEventListenerCallback](arkts-apis-uicontext-t.md#clickeventlistenercallback) | 否   | 需要被注销的回调函数。不传参数时，取消所有的点击事件指令下发监听回调。                                |
 
 **示例：**
 
@@ -1209,7 +1209,7 @@ off(type: 'willClick', callback?: ClickEventListenerCallback): void
 
 on(type: 'didClick', callback: ClickEventListenerCallback): void
 
-监听点击事件指令下发情况，所注册回调将于点击事件触发后触发。回调类型为[ClickEventListenerCallback](arkts-apis-uicontext-t.md#clickeventlistenercallback12)。从API version 20开始支持屏幕朗读触控模式。
+监听点击事件指令下发情况，所注册回调将于点击事件触发后触发。回调类型为[ClickEventListenerCallback](arkts-apis-uicontext-t.md#clickeventlistenercallback)。从API version 20开始支持屏幕朗读触控模式。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -1220,7 +1220,7 @@ on(type: 'didClick', callback: ClickEventListenerCallback): void
 | 参数名   | 类型                                                        | 必填 | 说明                                                         |
 | -------- | ----------------------------------------------------------- | ---- | ------------------------------------------------------------ |
 | type     | string                                                      | 是   | 监听事件，固定为'didClick'，用于监听点击事件指令下发情况，所注册回调将于点击事件触发后触发。 |
-| callback | [ClickEventListenerCallback](arkts-apis-uicontext-t.md#clickeventlistenercallback12) | 是   | 回调函数。可以获得点击事件的[ClickEvent](arkui-ts/ts-universal-events-click.md#clickevent)和组件的[FrameNode](js-apis-arkui-frameNode.md)。    |
+| callback | [ClickEventListenerCallback](arkts-apis-uicontext-t.md#clickeventlistenercallback) | 是   | 回调函数。可以获得点击事件的[ClickEvent](arkui-ts/ts-universal-events-click.md#clickevent)和组件的[FrameNode](js-apis-arkui-frameNode.md)。    |
 
 **示例：**
 
@@ -1241,7 +1241,7 @@ off(type: 'didClick', callback?: ClickEventListenerCallback): void
 | 参数名   | 类型                                                        | 必填 | 说明                                                 |
 | -------- | ----------------------------------------------------------- | ---- | ---------------------------------------------------- |
 | type     | string                                                      | 是   | 监听事件，固定为'didClick'，即点击事件指令下发情况。 |
-| callback | [ClickEventListenerCallback](arkts-apis-uicontext-t.md#clickeventlistenercallback12) | 否   | 需要被注销的回调函数。不传参数时，取消所有的点击事件指令下发监听回调。                               |
+| callback | [ClickEventListenerCallback](arkts-apis-uicontext-t.md#clickeventlistenercallback) | 否   | 需要被注销的回调函数。不传参数时，取消所有的点击事件指令下发监听回调。                               |
 
 **示例：**
 

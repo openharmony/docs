@@ -1,10 +1,12 @@
 # Setting ArkTS Object Properties Using Node-API
-<!--Kit: NDK-->
+
+<!--Kit: ArkTS-->
 <!--Subsystem: arkcompiler-->
 <!--Owner: @xliu-huanwei; @shilei123; @huanghello-->
 <!--Designer: @shilei123-->
 <!--Tester: @kirl75; @zsw_zhushiwei-->
-<!--Adviser: @fang-jinxu-->
+<!--Adviser: @k1ngqaquuu-->
+<!-- md-trans-meta sourceCommit=21434ce8d323ecbd7d67463989a2ef075be92cec translatedAt=2026-08-12T06:41:12.594Z pushedAt=2026-08-12T11:14:51.606Z -->
 
 ## Introduction
 
@@ -15,13 +17,17 @@ Node-API provides APIs for obtaining and setting properties of ArkTS objects in 
 Before working with ArkTS objects using Node-API, you need to understand the following concepts:
 
 - Object: a composite data type that allows values of different types in an independent entity in ArkTS. An object is a collection of properties and methods. A property is a value associated with the object, and a method is an operation that the object can perform.
+
 - Property: a feature, in the key-value format, of an object in ArkTS. Each property has a name (key or identifier) and a value. The property value can be of any data type, including the basic type, object, and function.
+
 - Enumerable property: a property in ArkTS with **enumerable** set to **true**. An enumerable property can be traversed by **for...in**.
+
 - Own property: a property defined for an object rather than inherited from the prototype chain.
 
 ## Available APIs
 
 The following table lists the APIs for manipulating ArkTS object properties.  
+
 | API| Description|
 | -------- | -------- |
 | napi_get_property_names | Obtains the names of the enumerable properties of an object in an array of strings.  |
@@ -46,16 +52,17 @@ Call **napi_get_property_names** to obtain the names of the enumerable propertie
 
 CPP code:
 
-```cpp
-#include "napi/native_api.h"
+<!-- @[napi_get_property_names](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIUse/NodeAPIProperty/entry/src/main/cpp/napi_init.cpp) -->
 
+``` C++
+// napi_get_property_names
 static napi_value GetPropertyNames(napi_env env, napi_callback_info info)
 {
-    // Parse the ArkTS input parameters.
+    // Parse the parameters passed from ArkTS.
     size_t argc = 1;
-    napi_value args[1] = { nullptr };
+    napi_value args[1] = {nullptr};
     napi_get_cb_info(env, info, &argc, args, nullptr, nullptr);
-    // Obtain the names of all the enumerable properties of the object in the form of a string array and output the string array in result.
+    // Obtain the names of the object's enumerable properties as a string array, and pass them out through result.
     napi_value result;
     napi_status status = napi_get_property_names(env, args[0], &result);
     if (status != napi_ok) {
@@ -65,38 +72,42 @@ static napi_value GetPropertyNames(napi_env env, napi_callback_info info)
     return result;
 }
 ```
-<!-- @[napi_get_property_names](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIUse/NodeAPIProperty/entry/src/main/cpp/napi_init.cpp) -->
 
 API declaration:
 
-```ts
-// index.d.ts
-export const getPropertyNames: (obj: Object) => Array<string> | undefined;
+<!-- @[napi_get_property_names_api](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIUse/NodeAPIProperty/entry/src/main/cpp/types/libentry/Index.d.ts) --> 
+
+``` TypeScript
+export const getPropertyNames: (obj: Object) => Array<string> | undefined; // napi_get_property_names
 ```
-<!-- @[napi_get_property_names_api](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIUse/NodeAPIProperty/entry/src/main/cpp/types/libentry/Index.d.ts) -->
 
 ArkTS code:
 
-```ts
-import { hilog } from '@kit.PerformanceAnalysisKit';
-import testNapi from 'libentry.so';
+<!-- @[ark_napi_get_property_names](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIUse/NodeAPIProperty/entry/src/main/ets/pages/Index.ets) -->
 
+``` TypeScript
+// napi_get_property_names
 try {
   class Obj {
-    data: number = 0
-    message: string = ""
+    public data: number = 0
+    public message: string = ''
   }
-  let obj: Obj = { data: 0, message: "hello world" };
+
+  let obj: Obj = { data: 0, message: 'hello world' };
   let propertyNames = testNapi.getPropertyNames(obj);
   if (Array.isArray(propertyNames) && propertyNames.length > 0) {
-    hilog.info(0x0000, 'testTag', 'Test Node-API napi_get_property_names: %{public}s', propertyNames[0]);
-    hilog.info(0x0000, 'testTag', 'Test Node-API napi_get_property_names: %{public}s', propertyNames[1]);
+    hilog.info(0x0000, 'testTag', 'Test Node-API napi_get_property_names: %{public}s',
+      propertyNames[0]);
+    hilog.info(0x0000, 'testTag', 'Test Node-API napi_get_property_names: %{public}s',
+      propertyNames[1]);
+    // ...
   }
 } catch (error) {
-  hilog.error(0x0000, 'testTag', 'Test Node-API napi_get_property_names error: %{public}s', error.message);
+  hilog.error(0x0000, 'testTag', 'Test Node-API napi_get_property_names error: %{public}s',
+    error.message);
+  // ...
 }
 ```
-<!-- @[ark_napi_get_property_names](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIUse/NodeAPIProperty/entry/src/main/ets/pages/Index.ets) -->
 
 ### napi_set_property
 
@@ -104,60 +115,60 @@ Call **napi_set_property** to set a property for an object.
 
 CPP code:
 
-```cpp
-#include "napi/native_api.h"
+<!-- @[napi_set_property](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIUse/NodeAPIProperty/entry/src/main/cpp/napi_init.cpp) -->
 
-static constexpr int INT_ARG_2 = 2; // Input parameter index.
-
+``` C++
+// napi_set_property
 static napi_value SetProperty(napi_env env, napi_callback_info info)
 {
-    // Obtain the parameters passed from ArkTS. The first parameter specifies the object, the second parameter specifies the property name, and the third parameter specifies the property value to set.
+    // Receive three parameters from the ArkTS side: the first parameter is the object to set, the second is the property, and the third is the value corresponding to the property.
     size_t argc = 3;
-    napi_value args[3] = { nullptr };
+    napi_value args[3] = {nullptr};
     napi_status status = napi_get_cb_info(env, info, &argc, args, nullptr, nullptr);
     if (status != napi_ok) {
         napi_throw_error(env, nullptr, "Node-API napi_get_cb_info fail");
-        return nullptr;
     }
-    // Call napi_set_property to set the property name and value to the object. If the operation fails, throw an error.
+    // Call the napi_set_property API to set the property and value into the object. If it fails, throw an error directly.
     status = napi_set_property(env, args[0], args[1], args[INT_ARG_2]);
     if (status != napi_ok) {
         napi_throw_error(env, nullptr, "Node-API napi_set_property fail");
         return nullptr;
     }
-    // Return the object that is successfully set.
+    // Return the object that was set successfully.
     return args[0];
 }
 ```
-<!-- @[napi_set_property](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIUse/NodeAPIProperty/entry/src/main/cpp/napi_init.cpp) -->
 
 API declaration:
 
-```ts
-// index.d.ts
-export const setProperty: (obj: Object, key: String, value: string) => Object | undefined;
+<!-- @[napi_set_property_api](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIUse/NodeAPIProperty/entry/src/main/cpp/types/libentry/Index.d.ts) --> 
+
+``` TypeScript
+export const setProperty: (obj: Object, key: String, value: string) => Object | undefined; // napi_set_property
 ```
-<!-- @[napi_set_property_api](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIUse/NodeAPIProperty/entry/src/main/cpp/types/libentry/Index.d.ts) -->
 
 ArkTS code:
 
-```ts
-import { hilog } from '@kit.PerformanceAnalysisKit';
-import testNapi from 'libentry.so';
+<!-- @[ark_napi_set_property](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIUse/NodeAPIProperty/entry/src/main/ets/pages/Index.ets) -->
 
+``` TypeScript
+// napi_set_property
 try {
   class Obj {
-    data: number = 0
-    message: string = ""
+    public data: number = 0
+    public message: string = ''
   }
-  let obj: Obj = { data: 0, message: "hello world" };
-  let result = testNapi.setProperty(obj, "code", "hi");
-  hilog.info(0x0000, 'testTag', 'Test Node-API napi_set_property: %{public}s', JSON.stringify(result));
+
+  let obj: Obj = { data: 0, message: 'hello world' };
+  let result = testNapi.setProperty(obj, 'code', 'hi');
+  hilog.info(0x0000, 'testTag', 'Test Node-API napi_set_property: %{public}s',
+    JSON.stringify(result));
+  // ...
 } catch (error) {
   hilog.info(0x0000, 'testTag', 'Test Node-API napi_set_property error: %{public}s', error.message);
+  // ...
 }
 ```
-<!-- @[ark_napi_set_property](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIUse/NodeAPIProperty/entry/src/main/ets/pages/Index.ets) -->
 
 ### napi_get_property
 
@@ -165,16 +176,17 @@ Call **napi_get_property** to obtain the value of the specified property in an o
 
 CPP code:
 
-```cpp
-#include "napi/native_api.h"
+<!-- @[napi_get_property](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIUse/NodeAPIProperty/entry/src/main/cpp/napi_init.cpp) -->
 
+``` C++
+// napi_get_property
 static napi_value GetProperty(napi_env env, napi_callback_info info)
 {
-    // Obtain the two parameters passed from ArkTS.
+    // Receive two parameters from ArkTS.
     size_t argc = 2;
-    napi_value args[2] = { nullptr };
+    napi_value args[2] = {nullptr};
     napi_get_cb_info(env, info, &argc, args, nullptr, nullptr);
-    // The first parameter specifies the target object, and the second specifies the property name. Call napi_get_property to obtain the value of the property.
+    // The first parameter passed in is the object to check, and the second is the property to check. Obtain the corresponding value by calling the napi_get_property API.
     napi_value result;
     napi_status status = napi_get_property(env, args[0], args[1], &result);
     if (status != napi_ok) {
@@ -184,34 +196,36 @@ static napi_value GetProperty(napi_env env, napi_callback_info info)
     return result;
 }
 ```
-<!-- @[napi_get_property](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIUse/NodeAPIProperty/entry/src/main/cpp/napi_init.cpp) -->
 
 API declaration:
 
-```ts
-// index.d.ts
-export const getProperty: (obj: Object, key: string) => string | undefined;
+<!-- @[napi_get_property_api](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIUse/NodeAPIProperty/entry/src/main/cpp/types/libentry/Index.d.ts) --> 
+
+``` TypeScript
+export const getProperty: (obj: Object, key: string) => string | undefined; // napi_get_property
 ```
-<!-- @[napi_get_property_api](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIUse/NodeAPIProperty/entry/src/main/cpp/types/libentry/Index.d.ts) -->
 
 ArkTS code:
 
-```ts
-import { hilog } from '@kit.PerformanceAnalysisKit';
-import testNapi from 'libentry.so';
+<!-- @[ark_napi_get_property](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIUse/NodeAPIProperty/entry/src/main/ets/pages/Index.ets) -->
 
+``` TypeScript
+// napi_get_property
 try {
   class Obj {
-    data: number = 0
-    message: string = ""
+    public data: number = 0
+    public message: string = ''
   }
-  let obj: Obj = { data: 0, message: "hello world" };
-  hilog.info(0x0000, 'testTag', 'Test Node-API napi_get_property: %{public}s', testNapi.getProperty(obj, "message"));
+
+  let obj: Obj = { data: 0, message: 'hello world' };
+  hilog.info(0x0000, 'testTag', 'Test Node-API napi_get_property: %{public}s',
+    testNapi.getProperty(obj, 'message'));
+  // ...
 } catch (error) {
   hilog.info(0x0000, 'testTag', 'Test Node-API napi_get_property error: %{public}s', error.message);
+  // ...
 }
 ```
-<!-- @[ark_napi_get_property](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIUse/NodeAPIProperty/entry/src/main/ets/pages/Index.ets) -->
 
 ### napi_has_property
 
@@ -219,17 +233,18 @@ Call **napi_has_property** to check whether an object has the specified property
 
 CPP code:
 
-```cpp
-#include "napi/native_api.h"
+<!-- @[napi_has_property](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIUse/NodeAPIProperty/entry/src/main/cpp/napi_init.cpp) -->
 
+``` C++
+// napi_has_property
 static napi_value HasProperty(napi_env env, napi_callback_info info)
 {
-    // Pass in two parameters from ArkTS. The first parameter specifies the target object, and the second parameter specifies the property to check.
+    // Two parameters are passed from the ArkTS side: the first is the object to check, and the second is the property to check for existence in the object.
     size_t argc = 2;
-    napi_value args[2] = { nullptr };
+    napi_value args[2] = {nullptr};
     napi_get_cb_info(env, info, &argc, args, nullptr, nullptr);
 
-    // Pass the parameters to napi_has_property. If the API is successfully called, convert the result to napi_value and return napi_value. Otherwise, throw an error.
+    // Pass the parameters to the napi_has_property method. If the API call succeeds, convert the result to napi_value and return it; otherwise, throw an error.
     bool result;
     napi_status status = napi_has_property(env, args[0], args[1], &result);
     if (status != napi_ok) {
@@ -237,43 +252,46 @@ static napi_value HasProperty(napi_env env, napi_callback_info info)
         return nullptr;
     }
 
-    // If the property exists in the object, output true, convert the result to napi_value, and return napi_value.
+    // If the property exists in the object, output true, convert the result to napi_value, and return it.
     napi_value returnResult;
     napi_get_boolean(env, result, &returnResult);
     return returnResult;
 }
 ```
-<!-- @[napi_has_property](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIUse/NodeAPIProperty/entry/src/main/cpp/napi_init.cpp) -->
 
 API declaration:
 
-```ts
-// index.d.ts
-export const hasProperty: (obj: Object, key: number | string) => boolean | undefined;
-```
 <!-- @[napi_has_property_api](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIUse/NodeAPIProperty/entry/src/main/cpp/types/libentry/Index.d.ts) -->
+
+``` TypeScript
+export const hasProperty: (obj: Object, key: number | string) => boolean | undefined; // napi_has_property
+```
 
 ArkTS code:
 
-```ts
-import { hilog } from '@kit.PerformanceAnalysisKit';
-import testNapi from 'libentry.so';
+<!-- @[ark_napi_has_property](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIUse/NodeAPIProperty/entry/src/main/ets/pages/Index.ets) -->
 
+``` TypeScript
+// napi_has_property
 try {
   class Obj {
-    data: number = 0
-    message: string = ""
+    public data: number = 0
+    public message: string = ''
   }
-  let obj: Obj = { data: 0, message: "hello world" };
+
+  let obj: Obj = { data: 0, message: 'hello world' };
   let resultFalse = testNapi.hasProperty(obj, 0);
-  let resultTrue = testNapi.hasProperty(obj, "data");
-  hilog.info(0x0000, 'testTag', 'Test Node-API napi_has_property: %{public}s', JSON.stringify(resultFalse));
-  hilog.info(0x0000, 'testTag', 'Test Node-API napi_has_property: %{public}s', JSON.stringify(resultTrue));
+  let resultTrue = testNapi.hasProperty(obj, 'data');
+  hilog.info(0x0000, 'testTag', 'Test Node-API napi_has_property: %{public}s',
+    JSON.stringify(resultFalse));
+  hilog.info(0x0000, 'testTag', 'Test Node-API napi_has_property: %{public}s',
+    JSON.stringify(resultTrue));
+  // ...
 } catch (error) {
   hilog.info(0x0000, 'testTag', 'Test Node-API napi_has_property error: %{public}s', error.message);
+  // ...
 }
 ```
-<!-- @[ark_napi_has_property](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIUse/NodeAPIProperty/entry/src/main/ets/pages/Index.ets) -->
 
 ### napi_delete_property
 
@@ -283,15 +301,16 @@ If the object is non-extensible or the property is not configurable, the propert
 
 CPP code:
 
-```cpp
-#include "napi/native_api.h"
+<!-- @[napi_delete_property](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIUse/NodeAPIProperty/entry/src/main/cpp/napi_init.cpp) -->
 
-// Delete the specified property from the object and return a bool value indicating whether the deletion is successful.
+``` C++
+// napi_delete_property
+// Delete the specified property from the passed-in Object, and return a bool result indicating whether the deletion was successful.
 static napi_value DeleteProperty(napi_env env, napi_callback_info info)
 {
-    // Obtain the two parameters passed from ArkTS.
+    // Receive two parameters from ArkTS.
     size_t argc = 2;
-    napi_value args[2] = { nullptr };
+    napi_value args[2] = {nullptr};
     napi_get_cb_info(env, info, &argc, args, nullptr, nullptr);
 
     napi_valuetype valueType;
@@ -300,49 +319,54 @@ static napi_value DeleteProperty(napi_env env, napi_callback_info info)
         napi_throw_error(env, nullptr, "Expects an object as argument.");
         return nullptr;
     }
-    // Delete the specified property and store the operation result in result.
+    // Delete the specified property, and store the result in result.
     bool result = false;
     napi_status status = napi_delete_property(env, args[0], args[1], &result);
     if (status != napi_ok) {
         napi_throw_error(env, nullptr, "Node-API napi_delete_property failed");
         return nullptr;
     }
-    // Convert the bool value to napi_value and return it.
+    // Convert the bool result to napi_value and return it.
     napi_value ret;
     napi_get_boolean(env, result, &ret);
     return ret;
 }
 ```
-<!-- @[napi_delete_property](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIUse/NodeAPIProperty/entry/src/main/cpp/napi_init.cpp) -->
 
 API declaration:
 
-```ts
-// index.d.ts
-export const deleteProperty: (obj: Object, key:string) => boolean;
-```
 <!-- @[napi_delete_property_api](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIUse/NodeAPIProperty/entry/src/main/cpp/types/libentry/Index.d.ts) -->
+
+``` TypeScript
+export const deleteProperty: (obj: Object, key: string) => boolean; // napi_delete_property
+```
 
 ArkTS code:
 
-```ts
-import { hilog } from '@kit.PerformanceAnalysisKit';
-import testNapi from 'libentry.so';
+<!-- @[ark_napi_delete_property](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIUse/NodeAPIProperty/entry/src/main/ets/pages/napiDeleteProperty.ts) --> 
 
-class Obj {
-  first: number = 0;
+``` TypeScript
+import testNapi from 'libentry.so';
+import { hilog } from '@kit.PerformanceAnalysisKit';
+
+export function napiDeleteProperty() {
+  class Obj {
+    first: number = 0;
+  }
+
+  let obj: Obj = { first: 1 };
+  hilog.info(0x0000, 'testTag', 'Test Node-API napi_delete_property first: %{public}s',
+    testNapi.deleteProperty(obj, 'first'));
+  // Set the new property as non-configurable
+  // The Object.defineProperty method is not supported in DevEco Studio 4.1.0.400 and above versions, and needs to be used in TS (TypeScript)
+  Object.defineProperty(obj, 'config', {
+    configurable: false,
+    value: 'value'
+  })
+  hilog.info(0x0000, 'testTag', 'Test Node-API napi_delete_property config: %{public}s',
+    testNapi.deleteProperty(obj, 'config'));
 }
-let obj: Obj = { first: 1 };
-hilog.info(0x0000, 'testTag', 'Test Node-API napi_delete_property first: %{public}s', testNapi.deleteProperty(obj, 'first'));
-// Set the new property to unconfigurable.
-// The Object.defineProperty method is not supported in DevEco Studio 4.1.0.400 or later. It must be used in TS.
-Object.defineProperty(obj, 'config', {
-  configurable: false,
-  value: "value"
-})
-hilog.info(0x0000, 'testTag', 'Test Node-API napi_delete_property config: %{public}s', testNapi.deleteProperty(obj, 'config'));
 ```
-<!-- @[ark_napi_delete_property](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIUse/NodeAPIProperty/entry/src/main/ets/pages/napiDeleteProperty.ts) -->
 
 ### napi_has_own_property
 
@@ -350,14 +374,15 @@ Call **napi_has_own_property** to check whether an ArkTS object has its own prop
 
 CPP code:
 
-```cpp
-#include "napi/native_api.h"
+<!-- @[napi_has_own_property](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIUse/NodeAPIProperty/entry/src/main/cpp/napi_init.cpp) -->
 
+``` C++
+// napi_has_own_property
 static napi_value NapiHasOwnProperty(napi_env env, napi_callback_info info)
 {
-    // Obtain the two parameters passed from ArkTS.
+    // Receive two parameters from ArkTS.
     size_t argc = 2;
-    napi_value args[2] = { nullptr };
+    napi_value args[2] = {nullptr};
     napi_get_cb_info(env, info, &argc, args, nullptr, nullptr);
     // Check whether the first parameter is an object.
     napi_valuetype valueTypeObj;
@@ -373,43 +398,47 @@ static napi_value NapiHasOwnProperty(napi_env env, napi_callback_info info)
         napi_throw_error(env, nullptr, "Second argument must be a string.");
         return nullptr;
     }
-    // Check whether the object has the specified property and returns the result in hasProperty.
+    // Check whether the object has the specified property, and store the result in hasProperty.
     bool hasProperty;
     napi_status status = napi_has_own_property(env, args[0], args[1], &hasProperty);
     if (status != napi_ok) {
         napi_throw_error(env, nullptr, "napi_has_own_property failed");
         return nullptr;
     }
-    // Convert the bool value to napi_value and return it.
+    // Convert the bool result to napi_value and return it.
     napi_value result;
     napi_get_boolean(env, hasProperty, &result);
     return result;
 }
 ```
-<!-- @[napi_has_own_property](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIUse/NodeAPIProperty/entry/src/main/cpp/napi_init.cpp) -->
 
 API declaration:
 
-```ts
-// index.d.ts
-export const napiHasOwnProperty: (obj: Object, key:string) => boolean | undefined;
-```
 <!-- @[napi_has_own_property_api](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIUse/NodeAPIProperty/entry/src/main/cpp/types/libentry/Index.d.ts) -->
+
+``` TypeScript
+export const napiHasOwnProperty: (obj: Object, key: string) => boolean | undefined; // napi_has_own_property
+```
 
 ArkTS code:
 
-```ts
+<!-- @[ark_napi_has_own_property](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIUse/NodeAPIProperty/entry/src/main/ets/pages/napiHasOwnProperty.ts) -->
+
+``` TypeScript
 import { hilog } from '@kit.PerformanceAnalysisKit';
 import testNapi from 'libentry.so';
 
-let myObj = { 'myProperty': 1 };
-let inheritedObj = { 'inheritedProperty': 2 };
-// The Object.setPrototypeOf method is not supported in DevEco Studio 4.1.0.400 or later. It must be used in TS.
-Object.setPrototypeOf(myObj, inheritedObj);
-hilog.info(0x0000, 'testTag', 'Test Node-API napi_has_own_property my: %{public}s', testNapi.napiHasOwnProperty(myObj, 'myProperty'));
-hilog.info(0x0000, 'testTag', 'Test Node-API napi_has_own_property inherited: %{public}s', testNapi.napiHasOwnProperty(myObj, 'inheritedProperty'));
+export function napiHasOwnProperty() {
+  let myObj = { 'myProperty': 1 };
+  let inheritedObj = { 'inheritedProperty': 2 };
+  // The Object.setPrototypeOf method is not supported in DevEco Studio 4.1.0.400 and later versions, and must be used in TypeScript (TS).
+  Object.setPrototypeOf(myObj, inheritedObj);
+  hilog.info(0x0000, 'testTag', 'Test Node-API napi_has_own_property my: %{public}s',
+    testNapi.napiHasOwnProperty(myObj, 'myProperty'));
+  hilog.info(0x0000, 'testTag', 'Test Node-API napi_has_own_property inherited: %{public}s',
+    testNapi.napiHasOwnProperty(myObj, 'inheritedProperty'));
+}
 ```
-<!-- @[ark_napi_has_own_property](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIUse/NodeAPIProperty/entry/src/main/ets/pages/napiHasOwnProperty.ts) -->
 
 ### napi_set_named_property
 
@@ -417,63 +446,61 @@ Call **napi_set_named_property** to set a property for an ArkTS object.
 
 CPP code:
 
-```cpp
-#include "napi/native_api.h"
-#include "hilog/log.h"
+<!-- @[napi_set_named_property](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIUse/NodeAPIProperty/entry/src/main/cpp/napi_init.cpp) -->
 
+``` C++
+// napi_set_named_property
 static napi_value NapiSetNamedProperty(napi_env env, napi_callback_info info)
 {
-    // Obtain the parameter passed from ArkTS.
+    // Receive one parameter from ArkTS.
     size_t argc = 1;
     napi_value str;
     const int32_t strLength = 32;
     char strKey[strLength] = "";
     napi_get_cb_info(env, info, &argc, &str, nullptr, nullptr);
-    // Obtain the string passed in and store it in strKey.
+    // Obtain the passed-in parameter string and store it in strKey.
     size_t keyLength;
     napi_status status = napi_get_value_string_utf8(env, str, strKey, strLength, &keyLength);
     if (status != napi_ok) {
-        OH_LOG_ERROR(LOG_APP, "napi_get_value_string_utf8 failed");
+        napi_throw_error(env, nullptr, "napi_get_value_string_utf8 failed");
         return nullptr;
     }
-    // Create an object.
+    // Create a new object.
     napi_value newObj;
     napi_create_object(env, &newObj);
-    // Set the property value to 1234.
+    // Set the integer value 1234 as the property value.
     int32_t value = 1234;
     napi_value numValue;
     napi_create_int32(env, value, &numValue);
-    // Associate the integer value with the property name.
+    // Associate the integer value with the specified property name.
     status = napi_set_named_property(env, newObj, strKey, numValue);
     if (status != napi_ok) {
-        OH_LOG_ERROR(LOG_APP, "napi_set_named_property failed");
+        napi_throw_error(env, nullptr, "napi_set_named_property failed");
         return nullptr;
     }
-    // Return the newObj object with the specified property set.
+    // Return the object newObj with the named property set.
     return newObj;
 }
 ```
-<!-- @[napi_set_named_property](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIUse/NodeAPIProperty/entry/src/main/cpp/napi_init.cpp) -->
 
 API declaration:
 
-```ts
-// index.d.ts
-export const napiSetNamedProperty: (key: string) => Object | undefined;
-```
 <!-- @[napi_set_named_property_api](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIUse/NodeAPIProperty/entry/src/main/cpp/types/libentry/Index.d.ts) -->
+
+``` TypeScript
+export const napiSetNamedProperty: (key: string) => Object | undefined; // napi_set_named_property
+```
 
 ArkTS code:
 
-```ts
-import { hilog } from '@kit.PerformanceAnalysisKit';
-import testNapi from 'libentry.so';
+<!-- @[ark_napi_set_named_property](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIUse/NodeAPIProperty/entry/src/main/ets/pages/Index.ets) -->
 
+``` TypeScript
+// napi_set_named_property
 let obj = testNapi.napiSetNamedProperty('myProperty');
 let objAsString = JSON.stringify(obj);
 hilog.info(0x0000, 'testTag', 'Test Node-API napi_set_named_property: %{public}s', objAsString);
 ```
-<!-- @[ark_napi_set_named_property](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIUse/NodeAPIProperty/entry/src/main/ets/pages/Index.ets) -->
 
 ### napi_get_named_property
 
@@ -481,21 +508,22 @@ Call **napi_get_named_property** to obtain the value of the specified property f
 
 CPP code:
 
-```cpp
-#include "napi/native_api.h"
+<!-- @[napi_get_named_property](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIUse/NodeAPIProperty/entry/src/main/cpp/napi_init.cpp) -->
 
+``` C++
+// napi_get_named_property
 static napi_value NapiGetNamedProperty(napi_env env, napi_callback_info info)
 {
-    // Obtain the two parameters passed from ArkTS.
+    // Receive two parameters from ArkTS.
     size_t argc = 2;
-    napi_value args[2] = { nullptr };
+    napi_value args[2] = {nullptr};
     const int32_t strLength = 32;
     char strKey[strLength] = "";
     napi_get_cb_info(env, info, &argc, args, nullptr, nullptr);
-    // Obtain the name of the property to obtain.
+    // Obtain the name of the property to retrieve.
     size_t keyLength;
     napi_get_value_string_utf8(env, args[1], strKey, strLength, &keyLength);
-    // Obtain the value of the property and store it in result.
+    // Obtain the value of the specified property and store it in result.
     napi_value result;
     napi_status status = napi_get_named_property(env, args[0], strKey, &result);
     if (status != napi_ok) {
@@ -506,43 +534,52 @@ static napi_value NapiGetNamedProperty(napi_env env, napi_callback_info info)
     return result;
 }
 ```
-<!-- @[napi_get_named_property](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIUse/NodeAPIProperty/entry/src/main/cpp/napi_init.cpp) -->
 
 API declaration:
 
-```ts
-// index.d.ts
-export const napiGetNamedProperty: (obj: Object, key: string) => boolean | number | string | Object | undefined;
-```
 <!-- @[napi_get_named_property_api](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIUse/NodeAPIProperty/entry/src/main/cpp/types/libentry/Index.d.ts) -->
+
+``` TypeScript
+export const napiGetNamedProperty: (obj: Object,
+  key: string) => boolean | number | string | Object | undefined; // napi_get_named_property
+```
 
 ArkTS code:
 
-```ts
-import { hilog } from '@kit.PerformanceAnalysisKit';
-import testNapi from 'libentry.so';
+<!-- @[ark_napi_get_named_property](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIUse/NodeAPIProperty/entry/src/main/ets/pages/Index.ets) -->
 
+``` TypeScript
+// napi_get_named_property
 interface NestedObj {
   nestedStr: string;
   nestedNum: number;
 }
+
 class Obj {
-  str: string = "";
-  num: number = 0;
-  bol: boolean = false;
-  nestedObj: NestedObj = { nestedStr: "", nestedNum: 0 };
+  public str: string = '';
+  public num: number = 0;
+  public bol: boolean = false;
+  public nestedObj: NestedObj = { nestedStr: '', nestedNum: 0 };
 }
-let obj: Obj = {str: "bar", num: 42, bol: true,
-  nestedObj: { nestedStr: "nestedValue", nestedNum: 123 }};
-hilog.info(0x0000, 'testTag', 'Test Node-API napi_get_named_property : %{public}s', testNapi.napiGetNamedProperty(obj, 'str'));
-hilog.info(0x0000, 'testTag', 'Test Node-API napi_get_named_property : %{public}d', testNapi.napiGetNamedProperty(obj, 'num'));
-hilog.info(0x0000, 'testTag', 'Test Node-API napi_get_named_property : %{public}s', testNapi.napiGetNamedProperty(obj, 'bol'));
+
+let obj: Obj = {
+  str: 'bar',
+  num: 42,
+  bol: true,
+  nestedObj: { nestedStr: 'nestedValue', nestedNum: 123 }
+};
+hilog.info(0x0000, 'testTag', 'Test Node-API napi_get_named_property : %{public}s',
+  testNapi.napiGetNamedProperty(obj, 'str'));
+hilog.info(0x0000, 'testTag', 'Test Node-API napi_get_named_property : %{public}d',
+  testNapi.napiGetNamedProperty(obj, 'num'));
+hilog.info(0x0000, 'testTag', 'Test Node-API napi_get_named_property : %{public}s',
+  testNapi.napiGetNamedProperty(obj, 'bol'));
 let nestedObj = testNapi.napiGetNamedProperty(obj, 'nestedObj');
 let objAsString = JSON.stringify(nestedObj);
 hilog.info(0x0000, 'testTag', 'Test Node-API napi_get_named_property : %{public}s', objAsString);
-hilog.info(0x0000, 'testTag', 'Test Node-API napi_get_named_property : %{public}s', testNapi.napiGetNamedProperty(obj, 'null'));
+hilog.info(0x0000, 'testTag', 'Test Node-API napi_get_named_property : %{public}s',
+  testNapi.napiGetNamedProperty(obj, 'null'));
 ```
-<!-- @[ark_napi_get_named_property](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIUse/NodeAPIProperty/entry/src/main/ets/pages/Index.ets) -->
 
 ### napi_has_named_property
 
@@ -550,66 +587,74 @@ Call **napi_has_named_property** to check whether an ArkTS object contains the s
 
 CPP code:
 
-```cpp
-#include "napi/native_api.h"
+<!-- @[napi_has_named_property](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIUse/NodeAPIProperty/entry/src/main/cpp/napi_init.cpp) -->
 
+``` C++
+// napi_has_named_property
 static napi_value NapiHasNamedProperty(napi_env env, napi_callback_info info)
 {
-    // Obtain the two parameters passed from ArkTS.
+    // Receive two parameters from ArkTS.
     size_t argc = 2;
-    napi_value args[2] = { nullptr };
+    napi_value args[2] = {nullptr};
     const int32_t strLength = 32;
     char strKey[strLength] = "";
     napi_get_cb_info(env, info, &argc, args, nullptr, nullptr);
-    // Obtain the property name.
+    // Obtain the name of the property to check.
     size_t keyLength;
     napi_get_value_string_utf8(env, args[1], strKey, strLength, &keyLength);
-    // Check whether the object has the specified property and stores the result in hasProperty.
+    // Check whether the object has the specified named property, and store the result in hasProperty.
     bool hasProperty = false;
     napi_status status = napi_has_named_property(env, args[0], strKey, &hasProperty);
     if (status != napi_ok) {
         napi_throw_error(env, nullptr, "napi_has_named_property failed");
         return nullptr;
     }
-    // Convert the bool value to napi_value and return it.
+    // Convert the bool result to napi_value and return it.
     napi_value result;
     napi_get_boolean(env, hasProperty, &result);
     return result;
 }
 ```
-<!-- @[napi_has_named_property](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIUse/NodeAPIProperty/entry/src/main/cpp/napi_init.cpp) -->
 
 API declaration:
 
-```ts
-// index.d.ts
-export const napiHasNamedProperty: (obj: Object, key:string) => boolean | undefined;
-```
 <!-- @[napi_has_named_property_api](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIUse/NodeAPIProperty/entry/src/main/cpp/types/libentry/Index.d.ts) -->
+
+``` TypeScript
+export const napiHasNamedProperty: (obj: Object, key: string) => boolean | undefined; // napi_has_named_property
+```
 
 ArkTS code:
 
-```ts
-import { hilog } from '@kit.PerformanceAnalysisKit';
-import testNapi from 'libentry.so';
+<!-- @[ark_napi_has_named_property](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIUse/NodeAPIProperty/entry/src/main/ets/pages/Index.ets) -->
 
+``` TypeScript
+// napi_has_named_property
 interface NestedObj {
   nestedStr: string;
   nestedNum: number;
 }
+
 class Obj {
-  str: string = "";
-  num: number = 0;
-  bol: boolean = false;
-  nestedObj: NestedObj = { nestedStr: "", nestedNum: 0 };
+  public str: string = '';
+  public num: number = 0;
+  public bol: boolean = false;
+  public nestedObj: NestedObj = { nestedStr: '', nestedNum: 0 };
 }
-let obj: Obj = {str: "bar", num: 42, bol: true,
-  nestedObj: { nestedStr: "nestedValue", nestedNum: 123 }};
-hilog.info(0x0000, 'testTag', 'Test Node-API napi_has_named_property : %{public}s', testNapi.napiHasNamedProperty(obj, 'str'));
-hilog.info(0x0000, 'testTag', 'Test Node-API napi_has_named_property : %{public}s', testNapi.napiHasNamedProperty(obj, 'nestedStr'));
-hilog.info(0x0000, 'testTag', 'Test Node-API napi_has_named_property : %{public}s', testNapi.napiHasNamedProperty(obj, 'bol'));
+
+let obj: Obj = {
+  str: 'bar',
+  num: 42,
+  bol: true,
+  nestedObj: { nestedStr: 'nestedValue', nestedNum: 123 }
+};
+hilog.info(0x0000, 'testTag', 'Test Node-API napi_has_named_property : %{public}s',
+  testNapi.napiHasNamedProperty(obj, 'str'));
+hilog.info(0x0000, 'testTag', 'Test Node-API napi_has_named_property : %{public}s',
+  testNapi.napiHasNamedProperty(obj, 'nestedStr'));
+hilog.info(0x0000, 'testTag', 'Test Node-API napi_has_named_property : %{public}s',
+  testNapi.napiHasNamedProperty(obj, 'bol'));
 ```
-<!-- @[ark_napi_has_named_property](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIUse/NodeAPIProperty/entry/src/main/ets/pages/Index.ets) -->
 
 ### napi_define_properties
 
@@ -617,10 +662,10 @@ Call **napi_define_properties** to set object properties.
 
 CPP code:
 
-```cpp
-#include <string>
-#include "napi/native_api.h"
+<!-- @[napi_define_properties](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIUse/NodeAPIProperty/entry/src/main/cpp/napi_init.cpp) -->
 
+``` C++
+// napi_define_properties
 static napi_value DefineMethodPropertiesExample(napi_env env, napi_callback_info info)
 {
     // Create a property value of the int32 type.
@@ -629,23 +674,24 @@ static napi_value DefineMethodPropertiesExample(napi_env env, napi_callback_info
     napi_create_int32(env, propValue, &returnValue);
     return returnValue;
 }
-// Define a getter callback.
+
+// Getter callback function.
 static napi_value GetterCallback(napi_env env, napi_callback_info info)
 {
     napi_value result;
     const char *str = u8"World!";
     size_t length = strlen(str);
-    // Create property values.
+    // Create the value of the property.
     napi_create_string_utf8(env, str, length, &result);
     return result;
 }
 
-// Define a setter callback.
+// Setter callback function.
 static napi_value SetterCallback(napi_env env, napi_callback_info info)
 {
-    // Obtain the parameters passed to setter.
+    // Obtain the parameters passed to the setter.
     size_t argc = 1;
-    napi_value argv[1] = { nullptr };
+    napi_value argv[1] = {nullptr};
     napi_value result;
     napi_get_cb_info(env, info, &argc, argv, nullptr, nullptr);
     size_t length = 0;
@@ -657,16 +703,18 @@ static napi_value SetterCallback(napi_env env, napi_callback_info info)
     delete[] buf;
     return result;
 }
+
 static napi_value DefineMethodProperties(napi_env env, napi_callback_info info)
 {
     napi_value obj;
     napi_create_object(env, &obj);
-    // Define the defineMethodPropertiesExample function for the obj object, define a variable in the defineMethodPropertiesExample function, and return the variable. When the obj object is called, the defineMethodPropertiesExample will be called.
-    napi_property_descriptor descriptor[] = {
-        {"defineMethodPropertiesExample", nullptr, DefineMethodPropertiesExample, nullptr, nullptr, nullptr, napi_default, nullptr}};
+    // Define a function defineMethodPropertiesExample on the obj object. In the function defineMethodPropertiesExample, a variable is defined and returned. This function can be called when invoking this object of obj.
+    napi_property_descriptor descriptor[] = {{"defineMethodPropertiesExample", nullptr, DefineMethodPropertiesExample,
+                                              nullptr, nullptr, nullptr, napi_default, nullptr}};
     napi_define_properties(env, obj, sizeof(descriptor) / sizeof(descriptor[0]), descriptor);
     return obj;
 }
+
 static napi_value DefineStringProperties(napi_env env, napi_callback_info info)
 {
     napi_value obj;
@@ -692,53 +740,61 @@ static napi_value CreateStringWithGetterSetter(napi_env env, napi_callback_info 
     napi_value setterFn;
     napi_create_function(env, nullptr, 0, SetterCallback, nullptr, &setterFn);
     napi_set_named_property(env, obj, "setterCallback", setterFn);
-    // Define properties with getter and setter.
-    napi_property_descriptor desc = {"defineGetterSetter", nullptr, nullptr, GetterCallback, SetterCallback, nullptr, napi_enumerable, nullptr};
+    // Define a property with getter and setter.
+    napi_property_descriptor desc = {"defineGetterSetter", nullptr, nullptr, GetterCallback, SetterCallback, nullptr,
+                                     napi_enumerable, nullptr};
     napi_define_properties(env, obj, 1, &desc);
     return obj;
 }
 ```
-<!-- @[napi_define_properties](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIUse/NodeAPIProperty/entry/src/main/cpp/napi_init.cpp) -->
 
 API declaration:
 
-```ts
-// index.d.ts
+<!-- @[napi_define_properties_api](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIUse/NodeAPIProperty/entry/src/main/cpp/types/libentry/Index.d.ts) -->
+
+``` TypeScript
 export class DefineMethodObj {
   defineMethodPropertiesExample: Function;
 }
+
 export class DefineStringObj {
   defineStringPropertiesExample: string;
 }
+
 export class DefineGetterSetterObj {
   getterCallback: Function;
   setterCallback: Function;
 }
-export const defineMethodProperties: () => DefineMethodObj;
+
+export const defineMethodProperties: () => DefineMethodObj; // napi_define_properties
+
 export const defineStringProperties: () => DefineStringObj;
+
 export const createStringWithGetterSetter: () => DefineGetterSetterObj;
 ```
-<!-- @[napi_define_properties_api](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIUse/NodeAPIProperty/entry/src/main/cpp/types/libentry/Index.d.ts) -->
 
 ArkTS code:
 
-```ts
-import { hilog } from '@kit.PerformanceAnalysisKit';
-import testNapi from 'libentry.so';
-
-// Define a property of the method type.
-hilog.info(0x0000, 'testTag', 'Test Node-API define_method_properties:%{public}d', testNapi.defineMethodProperties()
-  .defineMethodPropertiesExample());
-// Define a property of the string type.
-hilog.info(0x0000, 'testTag', 'Test Node-API define_string_properties::%{public}s ', testNapi.defineStringProperties()
-  .defineStringPropertiesExample);
-// getter and setter.
-hilog.info(0x0000, 'testTag', 'Test Node-API get::%{public}s ', testNapi.createStringWithGetterSetter()
-  .getterCallback());
-hilog.info(0x0000, 'testTag', 'Test Node-API setter::%{public}s ', testNapi.createStringWithGetterSetter()
-  .setterCallback('set data'));
-```
 <!-- @[ark_napi_define_properties](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIUse/NodeAPIProperty/entry/src/main/ets/pages/Index.ets) -->
+
+``` TypeScript
+// napi_define_properties
+// Define a property of the method type.
+hilog.info(0x0000, 'testTag', 'Test Node-API define_method_properties:%{public}d',
+  testNapi.defineMethodProperties()
+    .defineMethodPropertiesExample());
+// Define a property of the string type.
+hilog.info(0x0000, 'testTag', 'Test Node-API define_string_properties::%{public}s ',
+  testNapi.defineStringProperties()
+    .defineStringPropertiesExample);
+// Getter and setter.
+hilog.info(0x0000, 'testTag', 'Test Node-API get::%{public}s ',
+  testNapi.createStringWithGetterSetter()
+    .getterCallback());
+hilog.info(0x0000, 'testTag', 'Test Node-API setter::%{public}s ',
+  testNapi.createStringWithGetterSetter()
+    .setterCallback('set data'));
+```
 
 ### napi_get_all_property_names
 
@@ -746,21 +802,22 @@ Call **napi_get_all_property_names** to obtain all property names in an ArkTS ob
 
 CPP code:
 
-```cpp
-#include "napi/native_api.h"
+<!-- @[napi_get_all_property_names](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIUse/NodeAPIProperty/entry/src/main/cpp/napi_init.cpp) -->
 
+``` C++
+// napi_get_all_property_names
 static napi_value GetAllPropertyNames(napi_env env, napi_callback_info info)
 {
-    // obtain the parameter.
+    // Pass in one parameter.
     size_t argc = 1;
-    napi_value args[1] = { nullptr };
+    napi_value args[1] = {nullptr};
     napi_get_cb_info(env, info, &argc, args, nullptr, nullptr);
 
     // Obtain all property names of the given object.
     napi_value result;
     napi_status status = napi_get_all_property_names(env, args[0], napi_key_own_only, napi_key_writable,
                                                      napi_key_numbers_to_strings, &result);
-    // If the operation fails, throw an error.
+    // If obtaining the property names fails, throw an error.
     if (status != napi_ok) {
         napi_throw_error(env, nullptr, "Node-API napi_get_all_property_names fail");
         return nullptr;
@@ -769,35 +826,38 @@ static napi_value GetAllPropertyNames(napi_env env, napi_callback_info info)
     return result;
 }
 ```
-<!-- @[napi_get_all_property_names](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIUse/NodeAPIProperty/entry/src/main/cpp/napi_init.cpp) -->
 
 API declaration:
 
-```ts
-// index.d.ts
-export const getAllPropertyNames : (obj: Object) => Array<string> | undefined;
-```
 <!-- @[napi_get_all_property_names_api](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIUse/NodeAPIProperty/entry/src/main/cpp/types/libentry/Index.d.ts) -->
+
+``` TypeScript
+export const getAllPropertyNames: (obj: Object) => Array<string> | undefined; // napi_get_all_property_names
+```
 
 ArkTS code:
 
-```ts
-import { hilog } from '@kit.PerformanceAnalysisKit';
-import testNapi from 'libentry.so';
+<!-- @[ark_napi_get_all_property_names](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIUse/NodeAPIProperty/entry/src/main/ets/pages/Index.ets) -->
 
+``` TypeScript
+// napi_get_all_property_names
 try {
   class Obj {
-    data: number = 0
-    message: string = ""
+    public data: number = 0
+    public message: string = ''
   }
-  let obj: Obj = { data: 0, message: "hello world" };
+
+  let obj: Obj = { data: 0, message: 'hello world' };
   let propertyNames = testNapi.getAllPropertyNames(obj);
-  hilog.info(0x0000, 'testTag', 'Test Node-API napi_get_all_property_names: %{public}s', JSON.stringify(propertyNames));
+  hilog.info(0x0000, 'testTag', 'Test Node-API napi_get_all_property_names: %{public}s',
+    JSON.stringify(propertyNames));
+  // ...
 } catch (error) {
-  hilog.info(0x0000, 'testTag', 'Test Node-API napi_get_all_property_names error: %{public}s', error.message);
+  hilog.info(0x0000, 'testTag', 'Test Node-API napi_get_all_property_names error: %{public}s',
+    error.message);
+  // ...
 }
 ```
-<!-- @[ark_napi_get_all_property_names](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIUse/NodeAPIProperty/entry/src/main/ets/pages/Index.ets) -->
 
 To print logs in the native CPP, add the following information to the **CMakeLists.txt** file and add the header file by using **#include "hilog/log.h"**.
 

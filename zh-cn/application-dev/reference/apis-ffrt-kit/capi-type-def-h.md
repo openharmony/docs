@@ -27,7 +27,7 @@
 
 | 名称  | typedef关键字 | 描述                     |
 |-----|------------|------------------------|
-| int | ffrt_qos_t | QoS类型，用于设置任务的Qos等级。 |
+| int | ffrt_qos_t | QoS类型，用于设置任务的QoS等级。 |
 | int | ffrt_timer_t | 定时器句柄，用于标识已创建的定时器。 |
 | using qos = int | - | QoS类型。<br>**起始版本：** 10 |
 

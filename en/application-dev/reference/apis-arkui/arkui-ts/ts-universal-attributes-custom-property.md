@@ -1,16 +1,18 @@
 # Custom Property
+
 <!--Kit: ArkUI-->
 <!--Subsystem: ArkUI-->
 <!--Owner: @wangyang2022-->
 <!--Designer: @wangyang2022; @jiyujia926-->
 <!--Tester: @sally__; @songyanhong-->
 <!--Adviser: @Brilliantry_Rui-->
+<!-- md-trans-meta sourceCommit=32622137964e413dc3b3d2cfcce2fb11c339dbb4 translatedAt=2026-08-13T11:54:30.577Z pushedAt=2026-08-14T09:50:53.684Z -->
 
-Sets custom properties for a component. These custom properties can be obtained on their corresponding FrameNodes, allowing for more flexible component management.
+When you want to set custom properties on a component, you can use the custom property setting feature. These custom properties can be obtained on the FrameNode corresponding to the component, facilitating component management based on the custom properties.
 
 >  **NOTE**
 >
-> - The initial APIs of this module are supported since API version 12. Updates will be marked with a superscript to indicate their earliest API version.
+> - The initial APIs of this module are supported since API version 12. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 >
 > - The APIs of this module can be used only in the stage model.
 
@@ -26,6 +28,8 @@ Since API 26.0.0, custom components support setting and reading custom propertie
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
+**Model restriction:** This API can be used only in the stage model.
+
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 **Parameters**
@@ -39,8 +43,7 @@ Since API 26.0.0, custom components support setting and reading custom propertie
 
 | Type| Description|
 | --- | --- |
-| T | Current component.|
-
+| T | Current component, which can be used for chained calls. |
 
 ## Optional\<T>
 
@@ -56,8 +59,8 @@ Defines the Optional type. The value can be **undefined**.
 
 | Type| Description                      |
 | ---- | -------------------------- |
-| T | The object can be of any custom type.|
-| undefined | The object can be **undefined**.|
+| T | Type specified by the generic parameter T. |
+| undefined | The object is **undefined**.|
 
 ## Example
 
@@ -79,7 +82,7 @@ struct CustomPropertyExample {
         // Obtain the frameNode corresponding to the Column and query the set custom properties.
         const uiContext: UIContext = this.getUIContext();
         if (uiContext) {
-          const node: FrameNode | null = uiContext.getFrameNodeById("Test_Column") || null;
+          const node: FrameNode | null = uiContext.getFrameNodeById('Test_Column');
           if (node) {
             for (let i = 1; i < 4; i++) {
               const key = 'customProperty' + i;
@@ -147,7 +150,6 @@ struct CustomLayout {
   };
 
   @BuilderParam builder: () => void = this.doNothingBuilder;
-  @State startSize: number = 100;
   result: SizeResult = {
     width: 0,
     height: 0

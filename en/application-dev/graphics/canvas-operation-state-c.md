@@ -6,7 +6,7 @@
 <!--Designer: @wanyanglan-->
 <!--Tester: @nobuggers-->
 <!--Adviser: @ge-yafang-->
-<!-- md-trans-meta sourceCommit=6207ffe7b7862bdc71200930d32eca77c520d0d9 translatedAt=2026-08-03T11:18:00.236Z pushedAt=2026-08-04T02:37:49.932Z -->
+<!-- md-trans-meta sourceCommit=379459ed39b4b4ff1b499df9523039b8689cb0ba translatedAt=2026-08-15T01:50:30.489Z pushedAt=2026-08-15T08:20:06.044Z -->
 
 ## Overview
 
@@ -186,7 +186,7 @@ OH_Drawing_Brush* brush = OH_Drawing_BrushCreate();
 OH_Drawing_BrushSetColor(brush, OH_Drawing_ColorSetArgb(RGBA_MAX, RGBA_MAX, RGBA_MIN, RGBA_MIN));
 // Set the brush for the canvas.
 OH_Drawing_CanvasAttachBrush(canvas, brush);
-// Create a scaling matrix object. The four parameters are the X and Y coordinates of the rotation center and the scaling factors in the horizontal and vertical directions.
+// Create a scaling matrix object. The four parameters are the horizontal and vertical scaling factors and the scaling center coordinates.
 OH_Drawing_Matrix* matrix = OH_Drawing_MatrixCreateScale(2, 2, value200_, value300_);
 // Perform matrix transformation on the canvas.
 OH_Drawing_CanvasConcatMatrix(canvas, matrix);

@@ -1,10 +1,12 @@
 # Managing System Albums
+
 <!--Kit: Media Library Kit-->
 <!--Subsystem: Multimedia-->
 <!--Owner: @yixiaoff-->
 <!--Designer: @liweilu1-->
 <!--Tester: @xchaosioda-->
 <!--Adviser: @w_Machine_cc-->
+<!-- md-trans-meta sourceCommit=00d7cb908705b920a9ee7ee48de288635f9580c9 translatedAt=2026-08-11T01:57:59.735Z pushedAt=2026-08-12T03:44:01.600Z -->
 
 The photoAccessHelper module provides APIs for managing system albums, including **Favorites**, **Videos**, and **Screenshots**.
 
@@ -28,11 +30,13 @@ Use [PhotoAccessHelper.getAlbums](../../reference/apis-media-library-kit/arkts-a
 **Prerequisites**
 
 - A PhotoAccessHelper instance is obtained.
+
 - The application has the **ohos.permission.READ_IMAGEVIDEO** permission. For details, see [Requesting Permissions](photoAccessHelper-preparation.md#requesting-permissions).
 
 **How to Develop**
 
 1. Set the album type to **photoAccessHelper.AlbumType.SYSTEM** and the album subtype to **photoAccessHelper.AlbumSubtype.FAVORITE**.
+
 2. Call **PhotoAccessHelper.getAlbums** to obtain a Favorites object.
 
 <!-- @[get_favorite_object](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/MediaLibraryKit/SystemAlbumUsageSample/entry/src/main/ets/getfavoriteobjectability/GetFavoriteObjectAbility.ets) -->
@@ -58,6 +62,7 @@ async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper) {
 ```
 
 <!--Del-->
+
 ### Favoriting an Image or Video (for System Applications Only)
 
 Use [MediaAssetChangeRequest.setFavorite](../../reference/apis-media-library-kit/js-apis-photoAccessHelper-sys.md#setfavorite11) and [PhotoAccessHelper.applyChanges](../../reference/apis-media-library-kit/arkts-apis-photoAccessHelper-PhotoAccessHelper.md#applychanges11) to add an image or video to **Favorites**.
@@ -65,6 +70,7 @@ Use [MediaAssetChangeRequest.setFavorite](../../reference/apis-media-library-kit
 **Prerequisites**
 
 - A PhotoAccessHelper instance is obtained.
+
 - The application has the **ohos.permission.READ_IMAGEVIDEO** and **ohos.permission.WRITE_IMAGEVIDEO** permissions. For details, see [Requesting Permissions](photoAccessHelper-preparation.md#requesting-permissions).
 
 Example: Favorite an image.
@@ -72,7 +78,9 @@ Example: Favorite an image.
 **How to Develop**
 
 1. [Obtain media assets](photoAccessHelper-resource-guidelines.md#obtaining-media-assets).
+
 2. Call **MediaAssetChangeRequest.setFavorite** to set **favoriteState** to **true**.
+
 3. Call **PhotoAccessHelper.applyChanges** to apply the changes.
 
 ```ts
@@ -99,6 +107,7 @@ async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper) {
   }
 }
 ```
+
 <!--DelEnd-->
 
 ### Obtaining Images and Videos in Favorites
@@ -108,6 +117,7 @@ async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper) {
 **Prerequisites**
 
 - A PhotoAccessHelper instance is obtained.
+
 - The application has the **ohos.permission.READ_IMAGEVIDEO** permission. For details, see [Requesting Permissions](photoAccessHelper-preparation.md#requesting-permissions).
 
 Example: Obtain an image from **Favorites**.
@@ -115,11 +125,14 @@ Example: Obtain an image from **Favorites**.
 **How to Develop**
 
 1. [Obtain a Favorites object](#obtaining-a-favorites-object).
+
 2. Set **fetchOptions** for obtaining the image.
+
 3. Call **Album.getAssets** to obtain the image assets.
+
 4. Call [FetchResult.getFirstObject](../../reference/apis-media-library-kit/arkts-apis-photoAccessHelper-FetchResult.md#getfirstobject-1) to obtain the first image from the result set.
 
-<!-- @[get_media_from_favorites](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/MediaLibraryKit/SystemAlbumUsageSample/entry/src/main/ets/getmediafromfavoritesability/GetMediaFromFavoritesAbility.ets) -->
+<!-- @[get_media_from_favorites](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/MediaLibraryKit/SystemAlbumUsageSample/entry/src/main/ets/getmediafromfavoritesability/GetMediaFromFavoritesAbility.ets) -->  
 
 ``` TypeScript
 import { dataSharePredicates } from '@kit.ArkData';
@@ -134,27 +147,34 @@ async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper) {
     predicates: predicates
   };
 
+  let albumFetchResult: photoAccessHelper.FetchResult<photoAccessHelper.Album> | null = null;
+  let photoFetchResult: photoAccessHelper.FetchResult<photoAccessHelper.PhotoAsset> | null = null;
   try {
-    let albumFetchResult: photoAccessHelper.FetchResult<photoAccessHelper.Album> = 
-      await phAccessHelper.getAlbums(photoAccessHelper.AlbumType.SYSTEM, photoAccessHelper.AlbumSubtype.FAVORITE);
+    albumFetchResult = await phAccessHelper.getAlbums(photoAccessHelper.AlbumType.SYSTEM,
+      photoAccessHelper.AlbumSubtype.FAVORITE);
     let album: photoAccessHelper.Album = await albumFetchResult.getFirstObject();
     console.info('get favorite album successfully, albumUri: ' + album.albumUri);
 
-    let photoFetchResult: photoAccessHelper.FetchResult<photoAccessHelper.PhotoAsset> = 
-      await album.getAssets(fetchOptions);
+    photoFetchResult = await album.getAssets(fetchOptions);
     let photoAsset: photoAccessHelper.PhotoAsset = await photoFetchResult.getFirstObject();
     console.info('favorite album getAssets successfully, photoAsset displayName: ' + photoAsset.displayName);
-    photoFetchResult.close();
-    albumFetchResult.close();
     // ...
   } catch (err) {
     console.error('favorite failed with err: ' + err);
     // ...
+  } finally {
+    if (photoFetchResult) {
+      photoFetchResult.close();
+    }
+    if (albumFetchResult) {
+      albumFetchResult.close();
+    }
   }
 }
 ```
 
 <!--Del-->
+
 ### Unfavoriting an Image or Video (for System Applications Only)
 
 Use [MediaAssetChangeRequest.setFavorite](../../reference/apis-media-library-kit/js-apis-photoAccessHelper-sys.md#setfavorite11) and [PhotoAccessHelper.applyChanges](../../reference/apis-media-library-kit/arkts-apis-photoAccessHelper-PhotoAccessHelper.md#applychanges11) to remove an image or video from **Favorites**.
@@ -162,6 +182,7 @@ Use [MediaAssetChangeRequest.setFavorite](../../reference/apis-media-library-kit
 **Prerequisites**
 
 - A PhotoAccessHelper instance is obtained.
+
 - The application has the **ohos.permission.READ_IMAGEVIDEO** and **ohos.permission.WRITE_IMAGEVIDEO** permissions. For details, see [Requesting Permissions](photoAccessHelper-preparation.md#requesting-permissions).
 
 Example: Unfavorite an image.
@@ -169,9 +190,10 @@ Example: Unfavorite an image.
 **How to Develop**
 
 1. [Obtain the image in **Favorites**](#obtaining-images-and-videos-in-favorites).
-2. Call **MediaAssetChangeRequest.setFavorite** to set **favoriteState** to **false**.
-3. Call **PhotoAccessHelper.applyChanges** to apply the changes.
 
+2. Call **MediaAssetChangeRequest.setFavorite** to set **favoriteState** to **false**.
+
+3. Call **PhotoAccessHelper.applyChanges** to apply the changes.
 
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
@@ -204,6 +226,7 @@ async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper) {
   }
 }
 ```
+
 <!--DelEnd-->
 
 ## Videos
@@ -217,11 +240,13 @@ Use [PhotoAccessHelper.getAlbums](../../reference/apis-media-library-kit/arkts-a
 **Prerequisites**
 
 - A PhotoAccessHelper instance is obtained.
+
 - The application has the **ohos.permission.READ_IMAGEVIDEO** permission. For details, see [Requesting Permissions](photoAccessHelper-preparation.md#requesting-permissions).
 
 **How to Develop**
 
 1. Set the album type to **photoAccessHelper.AlbumType.SYSTEM** and the album subtype to **photoAccessHelper.AlbumSubtype.VIDEO**.
+
 2. Use **PhotoAccessHelper.getAlbums** to obtain a Videos object.
 
 <!-- @[get_video_album](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/MediaLibraryKit/SystemAlbumUsageSample/entry/src/main/ets/getvideoalbumability/GetVideoAlbumAbility.ets) -->
@@ -253,6 +278,7 @@ async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper) {
 **Prerequisites**
 
 - A PhotoAccessHelper instance is obtained.
+
 - The application has the **ohos.permission.READ_IMAGEVIDEO** permission. For details, see [Requesting Permissions](photoAccessHelper-preparation.md#requesting-permissions).
 
 Example: Obtain a video in **Videos**.
@@ -260,8 +286,11 @@ Example: Obtain a video in **Videos**.
 **How to Develop**
 
 1. [Obtain a Videos object](#obtaining-a-videos-object).
+
 2. Set **fetchOptions** for obtaining the video.
+
 3. Call **Album.getAssets** to obtain video assets.
+
 4. Call [FetchResult.getFirstObject](../../reference/apis-media-library-kit/arkts-apis-photoAccessHelper-FetchResult.md#getfirstobject-1) to obtain the first video asset.
 
 <!-- @[get_videos_from_video_album](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/MediaLibraryKit/SystemAlbumUsageSample/entry/src/main/ets/getvideosfromvideoalbumability/GetVideosFromVideoAlbumAbility.ets) --> 
@@ -300,6 +329,7 @@ async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper) {
 ```
 
 <!--Del-->
+
 ## Screenshots (for System Applications Only)
 
 **Screenshots** is a system album that holds user's screenshots and screen recording files.
@@ -311,11 +341,13 @@ Use [PhotoAccessHelper.getAlbums](../../reference/apis-media-library-kit/arkts-a
 **Prerequisites**
 
 - A PhotoAccessHelper instance is obtained.
+
 - The application has the **ohos.permission.READ_IMAGEVIDEO** permission. For details, see [Requesting Permissions](photoAccessHelper-preparation.md#requesting-permissions).
 
 **How to Develop**
 
 1. Set the album type to **photoAccessHelper.AlbumType.SYSTEM** and the album subtype to **photoAccessHelper.AlbumSubtype.SCREENSHOT**.
+
 2. Use **PhotoAccessHelper.getAlbums** to obtain a Screenshots object.
 
 ```ts
@@ -340,6 +372,7 @@ async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper) {
 **Prerequisites**
 
 - A PhotoAccessHelper instance is obtained.
+
 - The application has the **ohos.permission.READ_IMAGEVIDEO** permission. For details, see [Requesting Permissions](photoAccessHelper-preparation.md#requesting-permissions).
 
 Example: Obtain a media asset from **Screenshots**.
@@ -347,8 +380,11 @@ Example: Obtain a media asset from **Screenshots**.
 **How to Develop**
 
 1. [Obtain a Screenshots object](#obtaining-a-screenshots-object).
+
 2. Set **fetchOptions** for obtaining the media asset.
+
 3. Call **Album.getAssets** to obtain media assets.
+
 4. Call [FetchResult.getFirstObject](../../reference/apis-media-library-kit/arkts-apis-photoAccessHelper-FetchResult.md#getfirstobject-1) to obtain the first media asset.
 
 ```ts
@@ -377,4 +413,5 @@ async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper) {
   }
 }
 ```
+
 <!--DelEnd-->

@@ -25,7 +25,7 @@ MindSpore Lite是OpenHarmony内置的轻量化AI引擎，面向全场景构建�
 
 MindSpore Lite提供面向不同硬件设备的AI模型推理能力，使用MindSpore Lite的优势如下：
 
-- 更优性能：高效的内核算法和汇编级优化，支持CPU、NNRt专用芯片高性能推理，最大化发挥硬件算力，最小化推理时延和功耗。
+- 更优性能：高效的内核算法和汇编级优化，支持CPU、[NNRt](mindspore-lite-term.md#nnrt神经网络运行时)专用芯片高性能推理，最大化发挥硬件算力，最小化推理时延和功耗。
 - 轻量化：提供超轻量的解决方案，支持模型量化压缩，模型更小跑得更快，使能AI模型极限环境下的部署执行。
 - 全场景支持：支持多种操作系统以及嵌入式系统，适配多种软硬件智能设备上的AI应用。
 - 高效部署：支持MindSpore/TensorFlow Lite/Caffe/ONNX模型，提供模型压缩、数据处理等能力，统一训练和推理IR，方便用户快速部署。
@@ -38,7 +38,7 @@ MindSpore Lite提供面向不同硬件设备的AI模型推理能力，使用Mind
 
 MindSpore Lite开发流程分为两个阶段：
 
-- 模型转换
+- [模型转换](mindspore-lite-term.md#model-conversion模型转换)
 
   MindSpore Lite使用`.ms`格式模型进行推理。对于第三方框架模型，比如 TensorFlow、TensorFlow Lite、Caffe、ONNX等，可以使用MindSpore Lite提供的模型转换工具转换为`.ms`模型，使用方法可参考[推理模型转换](./mindspore-lite-converter-guidelines.md)。
 
@@ -46,7 +46,7 @@ MindSpore Lite开发流程分为两个阶段：
 
   调用MindSpore Lite运行时接口，实现模型推理/训练，大致步骤如下：
 
-    1. 创建推理/训练上下文，包括指定推理/训练硬件、设置线程数等。
+    1. 创建推理/训练[上下文](mindspore-lite-term.md#context上下文)，包括指定推理/训练硬件、设置线程数等。
     2. 加载`.ms`模型文件。
     3. 设置模型输入数据。
     4. 执行推理/训练，读取输出。
@@ -65,5 +65,5 @@ MindSpore Lite已作为系统部件在OpenHarmony标准系统内置，基于Mind
 <!--RP2-->
 Neural Network Runtime（NNRt，神经网络运行时）是面向AI领域的跨芯片推理计算运行时，作为中间桥梁连通上层AI推理框架和底层加速芯片，实现AI模型的跨芯片推理计算。
 
-MindSpore Lite支持配置Neural Network Runtime使能AI专用芯片（如NPU）加速推理，开发者可直接配置MindSpore Lite来使用NNRt硬件。因此，这里不再对NNRt具体展开说明，主要针对MindSpore Lite开发AI应用提供指导。关于更多NNRt的Native使用，请参见[NNRt Native模块](../nnrt/neural-network-runtime-guidelines.md)。
+MindSpore Lite支持配置Neural Network Runtime使能AI专用芯片（如[NPU](mindspore-lite-term.md#npu)）加速推理，开发者可直接配置MindSpore Lite来使用NNRt硬件。因此，这里不再对NNRt具体展开说明，主要针对MindSpore Lite开发AI应用提供指导。关于更多NNRt的Native使用，请参见[NNRt Native模块](../nnrt/neural-network-runtime-guidelines.md)。
 <!--RP2End-->

@@ -1,10 +1,12 @@
 # Performing Memory Management Using JSVM-API
-<!--Kit: NDK Development-->
+
+<!--Kit: ArkTS-->
 <!--Subsystem: arkcompiler-->
-<!--Owner: @yuanxiaogou; @string_sz-->
+<!--Owner: @yuanxiaogou-->
 <!--Designer: @knightaoko-->
 <!--Tester: @test_lzz-->
-<!--Adviser: @fang-jinxu-->
+<!--Adviser: @k1ngqaquuu-->
+<!-- md-trans-meta sourceCommit=21434ce8d323ecbd7d67463989a2ef075be92cec translatedAt=2026-08-12T06:35:33.492Z pushedAt=2026-08-12T11:03:28.583Z -->
 
 ## Introduction
 
@@ -31,11 +33,14 @@ Call **OH_JSVM_AdjustExternalMemory** to adjust the amount of externally allocat
 
 CPP code:
 
-```cpp
-// hello.cpp
+<!-- @[oh_jsvm_adjust_external_memory](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/JSVMAPI/JsvmUsageGuide/UsageInstructionsTwo/adjustexternalmemory/src/main/cpp/hello.cpp) -->
+
+``` C++
 #include "napi/native_api.h"
 #include "ark_runtime/jsvm.h"
-#include <hilog/log.h>
+#include "hilog/log.h"
+// ...
+
 // Define OH_JSVM_AdjustExternalMemory.
 static JSVM_Value AdjustExternalMemory(JSVM_Env env, JSVM_CallbackInfo info)
 {
@@ -62,6 +67,8 @@ static JSVM_CallbackStruct *method = param;
 static JSVM_PropertyDescriptor descriptor[] = {
     {"adjustExternalMemory", nullptr, method++, nullptr, nullptr, nullptr, JSVM_DEFAULT},
 };
+
+const char *SRC_CALL_NATIVE = R"JS(adjustExternalMemory())JS";
 ```
 
 JS example:
@@ -69,25 +76,30 @@ JS example:
 ```c++
 const char *srcCallNative = R"JS(adjustExternalMemory())JS";
 ```
-<!-- @[oh_jsvm_adjust_external_memory](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/JSVMAPI/JsvmUsageGuide/UsageInstructionsTwo/adjustexternalmemory/src/main/cpp/hello.cpp) -->
+
+The output is as follows:
+
 Expected result:
 
- 
-```cpp
+``` C++
 JSVM OH_JSVM_AdjustExternalMemory: success
 JSVM Allocate memory size: 1048576
 ```
+
 ### OH_JSVM_MemoryPressureNotification
 
 Call **OH_JSVM_MemoryPressureNotification** to notify the VM of insufficient system memory and selectively triggers garbage collection.
 
 CPP code:
 
-```cpp
-// hello.cpp
+<!-- @[oh_jsvm_memory_pressure_notification](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/JSVMAPI/JsvmUsageGuide/UsageInstructionsTwo/memorypressurenotification/src/main/cpp/hello.cpp) -->
+
+``` C++
 #include "napi/native_api.h"
 #include "ark_runtime/jsvm.h"
-#include <hilog/log.h>
+#include "hilog/log.h"
+// ...
+
 // Define OH_JSVM_MemoryPressureNotification.
 static JSVM_Value MemoryPressureNotification(JSVM_Env env, JSVM_CallbackInfo info)
 {
@@ -97,7 +109,8 @@ static JSVM_Value MemoryPressureNotification(JSVM_Env env, JSVM_CallbackInfo inf
         OH_LOG_ERROR(LOG_APP, "JSVM OH_JSVM_MemoryPressureNotification: failed");
     } else {
         OH_LOG_INFO(LOG_APP, "JSVM OH_JSVM_MemoryPressureNotification: success");
-        OH_LOG_INFO(LOG_APP, "JSVM Current JSVM memory pressure level: %{public}d", JSVM_MEMORY_PRESSURE_LEVEL_CRITICAL);
+        OH_LOG_INFO(LOG_APP, "JSVM Current JSVM memory pressure level: %{public}d",
+                    JSVM_MEMORY_PRESSURE_LEVEL_CRITICAL);
     }
     return nullptr;
 }
@@ -110,6 +123,8 @@ static JSVM_CallbackStruct *method = param;
 static JSVM_PropertyDescriptor descriptor[] = {
     {"memoryPressureNotification", nullptr, method++, nullptr, nullptr, nullptr, JSVM_DEFAULT},
 };
+
+const char *SRC_CALL_NATIVE = R"JS(memoryPressureNotification())JS";
 ```
 
 JS example:
@@ -117,11 +132,12 @@ JS example:
 ```c++
 const char *srcCallNative = R"JS(memoryPressureNotification())JS";
 ```
-<!-- @[oh_jsvm_memory_pressure_notification](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/JSVMAPI/JsvmUsageGuide/UsageInstructionsTwo/memorypressurenotification/src/main/cpp/hello.cpp) -->
+
+The output is as follows:
+
 Expected result:
 
- 
-```cpp
+``` C++
 JSVM OH_JSVM_MemoryPressureNotification: success
 JSVM Current JSVM memory pressure level: 2
 ```

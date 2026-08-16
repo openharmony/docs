@@ -1,10 +1,12 @@
 # Zooming Web Pages
+
 <!--Kit: ArkWeb-->
 <!--Subsystem: Web-->
 <!--Owner: @zourongchun-->
 <!--Designer: @zhufenghao-->
 <!--Tester: @ghiker-->
 <!--Adviser: @HelloShuo-->
+<!-- md-trans-meta sourceCommit=48c435b7d12dee891c0f5c79440e6921f900744d translatedAt=2026-08-14T03:50:40.622Z pushedAt=2026-08-14T09:42:38.121Z -->
 
 ArkWeb supports gesture zoom, mouse wheel zoom, and keyboard zoom, allowing users to adjust the display to a comfortable size. It also provides the capability of listening for and controlling the page zoom scale for applications to achieve personalized visual effects.
 
@@ -107,7 +109,7 @@ struct WebComponent {
 
 ## Listening for Page Zoom Scale Changes
 
-The application can listen for page zoom scale changes through the [onScaleChange](../reference/apis-arkweb/arkts-basic-components-web-events.md#onscalechange9) API. This API event corresponds to the gesture event (zoom with two fingers). **event.newScale** corresponds to the web page attribute **visualViewport.scale**.
+An app can listen for page zoom ratio changes through the [onScaleChange](../reference/apis-arkweb/arkts-basic-components-web-events.md#onscalechange9) API. This API event corresponds to a gesture event (pinch zoom), and `event.newScale` corresponds to the web page property `visualViewport.scale`.
 
 <!-- @[MonitorZoomRatio](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkWeb/WebManagementZooming/entry/src/main/ets/pages/MonitorZoomRatio.ets) -->
 
@@ -216,6 +218,7 @@ struct WebComponent {
   }
 }
 ```
+
 ![zoom-by-step](./figures/zoom-by-step.gif)
 
 ### Zooming to Target Scale
@@ -226,7 +229,7 @@ You can call the **onScaleChange** API to obtain the current page zoom scale, an
 factor = 100 * targetFactor / pageFactor
 ```
 
-<!-- @[ControlZoomToFixedRatio](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkWeb/WebManagementZooming/entry/src/main/ets/pages/ControlZoomToFixedRatio.ets) -->
+<!-- @[ControlZoomToFixedRatio](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkWeb/WebManagementZooming/entry/src/main/ets/pages/ControlZoomToFixedRatio.ets) --> 
 
 ``` TypeScript
 import { webview } from '@kit.ArkWeb';
@@ -261,11 +264,12 @@ struct WebComponent {
       Web({ src: 'www.example.com', controller: this.controller })
         .zoomAccess(true)
         .onScaleChange((event) => {
-          console.error('onScaleChange changed from ' + event.oldScale + ' to ' + event.newScale);
+          console.info('onScaleChange changed from ' + event.oldScale + ' to ' + event.newScale);
           this.pageFactor = event.newScale;
         })
     }
   }
 }
 ```
+
 ![zoom-to-target](./figures/zoom-to-target.gif)

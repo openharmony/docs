@@ -177,7 +177,7 @@ struct RichTextExample {
   }
   ```
 
-通过resources协议加载，适用Webview加载带有"#"路由的链接。
+通过resource协议加载，适用Webview加载带有"#"路由的链接。
 
 使用 `resource://rawfile/` 协议前缀可以避免常规 `$rawfile` 方式在处理带有"#"路由链接时的局限性。当URL中包含"#"号时，"#"后面的内容会被视为锚点（fragment）。
 

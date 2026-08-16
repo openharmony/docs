@@ -55,7 +55,7 @@
 - 语音通话（VoiceCommunication）类型音频流的默认输出设备为听筒。
 - 闹铃（Alarm）类型音频流的默认输出设备为扬声器。若先连接蓝牙耳机，再开始播放Alarm音频，则扬声器和蓝牙耳机会同时播放。
 
-当默认输出设备不符合使用诉求，应用[使用AudioRenderer开发音频播放功能(ArkTs)](using-audiorenderer-for-playback.md)时，可以调用[setDefaultOutputDevice](../../reference/apis-audio-kit/arkts-apis-audio-AudioRenderer.md#setdefaultoutputdevice12)设置默认发声设备。
+当默认输出设备不符合使用诉求，应用[使用AudioRenderer开发音频播放功能(ArkTS)](using-audiorenderer-for-playback.md)时，可以调用[setDefaultOutputDevice](../../reference/apis-audio-kit/arkts-apis-audio-AudioRenderer.md#setdefaultoutputdevice12)设置默认发声设备。
 
 ## 设置播放流类型
 

@@ -6,7 +6,7 @@
 <!--Designer: @liumingxiang-->
 <!--Tester: @yhl0101-->
 <!--Adviser: @ge-yafang-->
-<!-- md-trans-meta sourceCommit=983fa161ee12961fd07ba0428e932a03e0d706d9 translatedAt=2026-08-03T11:23:15.659Z pushedAt=2026-08-04T07:39:23.376Z -->
+<!-- md-trans-meta sourceCommit=8e9d3b746529fedba672cd46a96d4746984bcb6c translatedAt=2026-08-15T01:51:59.590Z pushedAt=2026-08-15T08:35:25.537Z -->
 
 In complex text layout scenarios, when the standard text components provided by the system cannot meet specific visual or interaction requirements, you can use the underlying text drawing capability provided by ArkGraphics 2D to directly control the canvas and text style to implement refined control over the text appearance and layout. This capability applies to scenarios that require highly customized text rendering effects, such as artistic fonts, complex rich text orchestration, or special dynamic text effects.
 
@@ -28,7 +28,7 @@ This capability applies to the following scenarios:
 
 ### Available APIs
 
-The following table lists the common APIs used for text shaping. For details about the APIs, see [drawing_text_typography.h](../reference/apis-arkgraphics2d/capi-drawing-text-typography-h.md) and [drawing_text_blob.h](../reference/apis-arkgraphics2d/capi-drawing-text-blob-h.md).
+The following table lists the commonly used APIs for text shaping. For details about the APIs, see [drawing_text_lineTypography.h](../reference/apis-arkgraphics2d/capi-drawing-text-linetypography-h.md), [drawing_text_line.h](../reference/apis-arkgraphics2d/capi-drawing-text-line-h.md), [drawing_text_run.h](../reference/apis-arkgraphics2d/capi-drawing-text-run-h.md), [drawing_text_blob.h](../reference/apis-arkgraphics2d/capi-drawing-text-blob-h.md), and [drawing_canvas.h](../reference/apis-arkgraphics2d/capi-drawing-canvas-h.md).
 
 | API| Description| 
 | -------- | -------- |

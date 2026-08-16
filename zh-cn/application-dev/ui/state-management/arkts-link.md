@@ -410,7 +410,7 @@ struct ArrayTypes {
 >
 > 从API version 11开始，\@Link支持Map类型。
 
-在下面的示例中，value类型为Map\<number, string\>，点击Button改变message的值，视图会随之刷新。
+在下面的示例中，value类型为Map\<number, string\>，点击Button改变value的值，视图会随之刷新。
 
 <!-- @[link_map_type](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkUISample/ComponentStateManagement/entry/src/main/ets/pages/LinkDecorator/DecoratingVariablesMapType.ets) -->  
 
@@ -693,7 +693,7 @@ struct ChangeVariablesChild {
 
 ![arkts-link-watch](figures/arkts-link-watch.gif)
 
-### Link支持联合类型实例
+### \@Link支持联合类型实例
 
 `@Link`支持联合类型、`undefined`和`null`。在以下示例中，`name`类型为`string | undefined`。点击父组件`UnionTypes`中的按钮可以改变`name`的属性或类型，`UnionChild`组件也会相应刷新。
 

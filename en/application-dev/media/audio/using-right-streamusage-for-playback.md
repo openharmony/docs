@@ -6,7 +6,7 @@
 <!--Designer: @magekkkk-->
 <!--Tester: @Filger-->
 <!--Adviser: @w_Machine_cc-->
-<!-- md-trans-meta sourceCommit=29aa363c8c07cd0d943043ae209ad0a85fcdc3c5 translatedAt=2026-08-06T01:56:08.982Z pushedAt=2026-08-06T10:27:32.346Z -->
+<!-- md-trans-meta sourceCommit=5e96177c24aa23aee8ea58c394f1a2c3298d3e1c translatedAt=2026-08-15T01:56:42.243Z pushedAt=2026-08-15T09:01:15.272Z -->
 
 The playback stream type is defined by [StreamUsage](../../reference/apis-audio-kit/arkts-apis-audio-e.md#streamusage) and describes the purpose of audio playback. The system manages volume, audio focus, and output device based on the playback stream type, and selects an audio channel in combination with audio stream parameters. To ensure that audio behavior meets expectations, you should choose an appropriate `StreamUsage` based on the actual playback scenario.
 
@@ -103,5 +103,3 @@ You can use the query APIs provided by AudioStreamManager to check whether the d
 >
 > - Audio channel support depends on the hardware capabilities and system configuration of the device, and varies by device.
 > - The result returned by the query API only indicates whether the system supports the corresponding audio channel under the specified parameters. The actual channel used must be determined based on the current running status and resource configuration of the system.
-
-<!--no_check-->
