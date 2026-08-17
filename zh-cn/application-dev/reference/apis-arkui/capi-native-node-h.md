@@ -953,7 +953,7 @@ ArkUI_NodeAdapterHandle handle, void* userData, void (*receiver)(ArkUI_NodeAdapt
 | -- | -- |
 | [ArkUI_NodeAdapterHandle](capi-arkui-nativemodule-arkui-nodeadapter8h.md) handle | 组件适配器对象。 |
 | void* userData | 自定义数据。 |
-| receiver | 事件接收回调。 |
+| void (\*receiver)(ArkUI_NodeAdapterEvent\* event) | 事件接收回调。 |
 
 **返回：**
 
@@ -2383,7 +2383,7 @@ int32_t OH_ArkUI_RegisterSystemColorModeChangeEvent(ArkUI_NodeHandle node,void* 
 | -- | -- |
 | [ArkUI_NodeHandle](capi-arkui-nativemodule-arkui-node8h.md) node | 指定的节点。 |
 | void* userData | 自定义事件参数，当事件触发时在回调参数中携带回来。 |
-| onColorModeChange | 事件触发后的回调。[ArkUI_SystemColorMode](capi-native-type-h.md#arkui_systemcolormode)用于定义系统深浅色模式。 |
+| void (\*onColorModeChange)(ArkUI_SystemColorMode colorMode, void\* userData) | 事件触发后的回调。[ArkUI_SystemColorMode](capi-native-type-h.md#arkui_systemcolormode)用于定义系统深浅色模式。 |
 
 **返回：**
 
@@ -2431,7 +2431,7 @@ int32_t OH_ArkUI_RegisterSystemFontStyleChangeEvent(ArkUI_NodeHandle node,void* 
 | -- | -- |
 | [ArkUI_NodeHandle](capi-arkui-nativemodule-arkui-node8h.md) node | 指定的节点。 |
 |  void* userData | 自定义事件参数，当事件触发时在回调参数中携带回来。 |
-| onFontStyleChange | 事件触发后的回调。 |
+| void (\*onFontStyleChange)(ArkUI_SystemFontStyleEvent\* event, void\* userData) | 事件触发后的回调。 |
 
 **返回：**
 
@@ -2531,7 +2531,7 @@ int32_t OH_ArkUI_RegisterLayoutCallbackOnNodeHandle(ArkUI_NodeHandle node,void* 
 | -- | -- |
 | [ArkUI_NodeHandle](capi-arkui-nativemodule-arkui-node8h.md) node | 指定需要注册回调函数的目标节点。 |
 | void* userData | 执行回调函数时传给回调函数的用户自定义参数。 |
-| void (*onLayoutCompleted)(void* userData) | 布局完成时的回调函数。 |
+| void (\*onLayoutCompleted)(void\* userData) | 布局完成时的回调函数。 |
 
 **返回：**
 
@@ -2559,7 +2559,7 @@ int32_t OH_ArkUI_RegisterDrawCallbackOnNodeHandle(ArkUI_NodeHandle node,void* us
 | -- | -- |
 | [ArkUI_NodeHandle](capi-arkui-nativemodule-arkui-node8h.md) node | 指定需要注册回调函数的目标节点。 |
 | void* userData | 执行回调函数时传给回调函数的用户自定义参数。 |
-| void (*onDrawCompleted)(void* userData) | 绘制完成时的回调函数。 |
+| void (\*onDrawCompleted)(void\* userData) | 绘制完成时的回调函数。 |
 
 **返回：**
 
@@ -3099,8 +3099,8 @@ int32_t OH_ArkUI_PostAsyncUITask(ArkUI_ContextHandle context, void* asyncUITaskD
 | -------- | -------- |
 | [ArkUI_ContextHandle](capi-arkui-nativemodule-arkui-context8h.md) context | UI实例对象指针。 |
 | void* asyncUITaskData | 开发者自定义数据指针，作为asyncUITask和onFinish的入参。可以传入空指针。 |
-| asyncUITask| 在非UI线程执行的函数。|
-| onFinish | asyncUITask执行完成后，在UI线程执行的函数。可以传入空指针。 |
+| void (\*asyncUITask)(void\* asyncUITaskData) | 在非UI线程执行的函数。|
+| void (\*onFinish)(void\* asyncUITaskData) | asyncUITask执行完成后，在UI线程执行的函数。可以传入空指针。 |
 
 **返回：**
 
@@ -3127,7 +3127,7 @@ int32_t OH_ArkUI_PostUITask(ArkUI_ContextHandle context, void* taskData, void (*
 | -------- | -------- |
 | [ArkUI_ContextHandle](capi-arkui-nativemodule-arkui-context8h.md) context | UI实例对象指针。  |
 | void* taskData | 开发者自定义数据指针，作为task的入参。可以传入空指针。 |
-| task | 在UI线程执行的函数。 |
+| void (\*task)(void\* taskData) | 在UI线程执行的函数。 |
 
 **返回：**
 
@@ -3156,7 +3156,7 @@ int32_t OH_ArkUI_PostUITaskAndWait(ArkUI_ContextHandle context, void* taskData, 
 | -------- | -------- |
 | [ArkUI_ContextHandle](capi-arkui-nativemodule-arkui-context8h.md) context | UI实例对象指针。  |
 | void* taskData | 开发者自定义数据指针，作为task的入参。可以传入空指针。 |
-| task | 在UI线程执行的函数。 |
+| void (\*task)(void\* taskData) | 在UI线程执行的函数。 |
 
 **返回：**
 
@@ -3316,7 +3316,7 @@ int32_t OH_ArkUI_SetForceDarkConfig(ArkUI_ContextHandle uiContext, bool forceDar
 | [ArkUI_ContextHandle](capi-arkui-nativemodule-arkui-context8h.md) uiContext | UI实例对象指针。<br>  如果该值为null，则该功能适用于整个应用进程。|
 | bool forceDark | 是否使用反色能力。取值为true：组件使用反色能力，取值为false：组件不使用反色能力。 |
 | [ArkUI_NodeType](#arkui_nodetype) nodeType | 指定使用反色能力生效组件范围。<br>   ARKUI_NODE_UNDEFINED代表对所有组件类型生效。 |
-| colorInvertFunc | 开发者自定义反色算法函数。<br> 如果该值为nullptr，则对组件使用系统默认反色算法，即三原色取反。 |
+| uint32_t (\*colorInvertFunc)(uint32_t color) | 开发者自定义反色算法函数。<br> 如果该值为nullptr，则对组件使用系统默认反色算法，即三原色取反。 |
 
 **返回：**
 
