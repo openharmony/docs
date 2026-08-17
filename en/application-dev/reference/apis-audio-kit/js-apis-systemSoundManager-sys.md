@@ -1598,7 +1598,7 @@ Sets a URI for an alarm tone. This API uses a promise to return the result.
 
 **Error codes**
 
-For details about the error codes, see [Universal Error Codes](../errorcode-universal.md), [Media Error Codes](../apis-media-kit/errorcode-media.md), and [Ringtone Error Codes](./errorcode-ringtone.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md), [Media Error Codes](../apis-media-kit/errorcode-media.md), and [Ringtone Error Codes](./errorcode-audio-ringtone-sys.md).
 
 | ID| Error Message             |
 | ------- | --------------------- |
@@ -1748,7 +1748,7 @@ Enables an alarm tone. This API uses a promise to return the result.
 
 **Error codes**
 
-For details about the error codes, see [Universal Error Codes](../errorcode-universal.md), [Media Error Codes](../apis-media-kit/errorcode-media.md), and [Ringtone Error Codes](./errorcode-ringtone.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md), [Media Error Codes](../apis-media-kit/errorcode-media.md), and [Ringtone Error Codes](./errorcode-audio-ringtone-sys.md).
 
 | ID| Error Message             |
 | ------- | --------------------- |
@@ -1853,7 +1853,7 @@ Adds a custom tone with a given URI to the tone library. This API uses a promise
 
 **Error codes**
 
-For details about the error codes, see [Universal Error Codes](../errorcode-universal.md), [Media Error Codes](../apis-media-kit/errorcode-media.md), and [Ringtone Error Codes](./errorcode-ringtone.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md), [Media Error Codes](../apis-media-kit/errorcode-media.md), and [Ringtone Error Codes](./errorcode-audio-ringtone-sys.md).
 
 | ID  | Error Message             |
 |---------| -------------------- |
@@ -1923,7 +1923,7 @@ Adds a custom tone with a given FD to the tone library. This API uses a promise 
 
 **Error codes**
 
-For details about the error codes, see [Universal Error Codes](../errorcode-universal.md), [Media Error Codes](../apis-media-kit/errorcode-media.md), and [Ringtone Error Codes](./errorcode-ringtone.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md), [Media Error Codes](../apis-media-kit/errorcode-media.md), and [Ringtone Error Codes](./errorcode-audio-ringtone-sys.md).
 
 | ID  | Error Message             |
 |---------| -------------------- |
@@ -2045,7 +2045,7 @@ Obtains the haptics settings of the tone. This API uses a promise to return the 
 
 **Error codes**
 
-For details about the error codes, see [Universal Error Codes](../errorcode-universal.md), [Media Error Codes](../apis-media-kit/errorcode-media.md), and [Ringtone Error Codes](./errorcode-ringtone.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md), [Media Error Codes](../apis-media-kit/errorcode-media.md), and [Ringtone Error Codes](./errorcode-audio-ringtone-sys.md).
 
 | ID  | Error Message             |
 |---------| -------------------- |
@@ -2098,7 +2098,7 @@ Sets the haptics settings for the tone. This API uses a promise to return the re
 
 **Error codes**
 
-For details about the error codes, see [Universal Error Codes](../errorcode-universal.md), [Media Error Codes](../apis-media-kit/errorcode-media.md), and [Ringtone Error Codes](./errorcode-ringtone.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md), [Media Error Codes](../apis-media-kit/errorcode-media.md), and [Ringtone Error Codes](./errorcode-audio-ringtone-sys.md).
 
 | ID  | Error Message             |
 |---------| -------------------- |
@@ -2155,7 +2155,7 @@ Obtains the haptics attributes of the tone in sync or non-sync mode. This API us
 
 **Error codes**
 
-For details about the error codes, see [Universal Error Codes](../errorcode-universal.md), [Media Error Codes](../apis-media-kit/errorcode-media.md), and [Ringtone Error Codes](./errorcode-ringtone.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md), [Media Error Codes](../apis-media-kit/errorcode-media.md), and [Ringtone Error Codes](./errorcode-audio-ringtone-sys.md).
 
 | ID  | Error Message             |
 |---------| -------------------- |
@@ -2206,7 +2206,7 @@ Obtains the attributes of the haptics feedback synchronized with the tone. This 
 
 **Error codes**
 
-For details about the error codes, see [Universal Error Codes](../errorcode-universal.md), [Media Error Codes](../apis-media-kit/errorcode-media.md), and [Ringtone Error Codes](./errorcode-ringtone.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md), [Media Error Codes](../apis-media-kit/errorcode-media.md), and [Ringtone Error Codes](./errorcode-audio-ringtone-sys.md).
 
 | ID  | Error Message             |
 |---------| -------------------- |
@@ -2259,7 +2259,7 @@ Enables haptics for the tone. This API uses a promise to return the result.
 
 **Error codes**
 
-For details about the error codes, see [Universal Error Codes](../errorcode-universal.md), [Media Error Codes](../apis-media-kit/errorcode-media.md), and [Ringtone Error Codes](./errorcode-ringtone.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md), [Media Error Codes](../apis-media-kit/errorcode-media.md), and [Ringtone Error Codes](./errorcode-audio-ringtone-sys.md).
 
 | ID| Error Message             |
 | ------- | --------------------- |
@@ -2357,7 +2357,7 @@ Obtains an array of attributes of ringtones. This API uses a promise to return t
 
 **Error codes**
 
-For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Ringtone Error Codes](./errorcode-ringtone.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Ringtone Error Codes](./errorcode-audio-ringtone-sys.md).
 
 | ID| Error Message             |
 | ------- | --------------------- |
@@ -2410,7 +2410,7 @@ Removes a list of custom tones in batch. This API uses a promise to return the r
 
 **Error codes**
 
-For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Ringtone Error Codes](./errorcode-ringtone.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Ringtone Error Codes](./errorcode-audio-ringtone-sys.md).
 
 | ID| Error Message             |
 | ------- | --------------------- |

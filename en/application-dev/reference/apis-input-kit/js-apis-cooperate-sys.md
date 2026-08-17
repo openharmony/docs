@@ -496,7 +496,7 @@ Registers a listener for screen hopping state changes. This API uses an asynchro
 
 > **Note:**
 >
->This API is supported since API version 9 and deprecated since API version 23. You are advised to use [cooperate.on](../apis-distributedservice-kit/js-apis-devicestatus-cooperate-sys.md#cooperateoncooperatemessage11) instead.
+>This API is supported since API version 9 and deprecated since API version 23. You are advised to use cooperate.on instead.
 
 **System capability**: SystemCapability.MultimodalInput.Input.Cooperator
 
@@ -551,7 +551,7 @@ Deregisters the listener for screen hopping status changes. This API uses an asy
 
 > **Note:**
 >
->This API is supported since API version 9 and deprecated since API version 23. You are advised to use [cooperate.off](../apis-distributedservice-kit/js-apis-devicestatus-cooperate-sys.md#cooperateoffcooperatemessage11) instead.
+>This API is supported since API version 9 and deprecated since API version 23. You are advised to use cooperate.off instead.
 
 **System capability**: SystemCapability.MultimodalInput.Input.Cooperator
 
