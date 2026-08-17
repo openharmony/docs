@@ -236,7 +236,7 @@
 
     <!--DelEnd-->
 
-    - [@ohos.window.floatingBall (floating ball window)](js-apis-floatingBall.md)
+    - [@ohos.window.floatingBall (Floating Ball Window)](js-apis-floatingBall.md)
 
     - @ohos.window (Window)<!--js-apis-window-->
 
@@ -258,7 +258,7 @@
 
     - [@ohos.animation.windowAnimationManager (Window Animation Management)(System API)](js-apis-windowAnimationManager-sys.md)
 
-    - [@ohos.window (Window)(System API)](js-apis-window-sys.md)
+    - [@ohos.window (Window) (System API)](js-apis-window-sys.md)
 
     <!--DelEnd-->
 
