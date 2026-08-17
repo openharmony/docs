@@ -265,7 +265,7 @@ Drm_ErrCode OH_MediaKeySystem_Create(const char *name, MediaKeySystem **mediaKey
 
 | 类型 | 说明 |
 | -- | -- |
-| [Drm_ErrCode](capi-native-drm-err-h.md#drm_errcode) | DRM_ERR_OK：执行成功。<br>DRM_ERR_INVALID_VAL：<br>输入参数descs为空指针。<br>输入参数count为空指针。<br>输入参数descs长度不足。<br>DRM_ERR_UNKNOWN：发生内部错误，请| [Drm_ErrCode](capi-native-drm-err-h.md#drm_errcode) | DRM_ERR_OK：执行成功。<br>DRM_ERR_INVALID_VAL：<br>输入参数name为空指针。<br>输入参数name长度为0。<br>输入参数mediaKeySystem为空指针。<br>DRM_ERR_UNKNOWN：发生内部错误，请查看日志详细信息。<br>DRM_ERR_SERVICE_DIED：服务死亡。<br>DRM_ERR_MAX_SYSTEM_NUM_REACHED：已创建的MediaKeySystem数量达到最大限制(64个)。 |查看日志详细信息。 |
+| [Drm_ErrCode](capi-native-drm-err-h.md#drm_errcode) | DRM_ERR_OK：执行成功。<br>DRM_ERR_INVALID_VAL：<br>输入参数name为空指针。<br>输入参数name长度为0。<br>输入参数mediaKeySystem为空指针。<br>DRM_ERR_UNKNOWN：发生内部错误，请查看日志详细信息。<br>DRM_ERR_SERVICE_DIED：服务死亡。<br>DRM_ERR_MAX_SYSTEM_NUM_REACHED：已创建的MediaKeySystem数量达到最大限制(64个)。 |
 
 ### OH_MediaKeySystem_SetConfigurationString()
 

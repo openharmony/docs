@@ -9,7 +9,7 @@
 
 - ArkTS API<!--drm-arkts-->
   - @ohos.multimedia.drm (数字版权保护)<!--js-apis-drm-->
-    - [模块描述](arkts-apis-drm.md)
+    - [@ohos.multimedia.drm](arkts-apis-drm.md)
     - [Functions](arkts-apis-drm-f.md)
     - [Interface (MediaKeySession)](arkts-apis-drm-MediaKeySession.md)
     - [Interface (MediaKeySystem)](arkts-apis-drm-MediaKeySystem.md)
