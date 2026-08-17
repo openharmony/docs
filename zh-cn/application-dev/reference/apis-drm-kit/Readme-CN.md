@@ -27,7 +27,7 @@
     - [DRM_MediaKeyRequestInfo](capi-drm-drm-mediakeyrequestinfo.md)
     - [DRM_MediaKeyRequest](capi-drm-drm-mediakeyrequest.md)
     - [DRM_Statistics](capi-drm-drm-statistics.md)
-    - [DRM_OfflineMediakeyIdArray](capi-drm-drm-offlinemediakeyidarray.md)
+    - [DRM_OfflineMediaKeyIdArray](capi-drm-drm-offlinemediakeyidarray.md)
     - [DRM_KeysInfo](capi-drm-drm-keysinfo.md)
     - [DRM_MediaKeyStatus](capi-drm-drm-mediakeystatus.md)
     - [DRM_PsshInfo](capi-drm-drm-psshinfo.md)

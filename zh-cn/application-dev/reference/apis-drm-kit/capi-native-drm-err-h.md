@@ -47,8 +47,8 @@ DRM错误码。
 
 | 枚举项 | 描述 |
 | -- | -- |
-| DRM_ERR_OK = 0 | 操作成功完成。 |
-| DRM_CAPI_ERR_BASE = 24700500 | 基础错误。 |
+| DRM_ERR_OK = 0 | 操作成功。 |
+| DRM_CAPI_ERR_BASE = 24700500 | 错误码基准值，用于生成其他错误码。 |
 | DRM_ERR_NO_MEMORY = DRM_CAPI_ERR_BASE + 1 | 内存不足。 |
 | DRM_ERR_OPERATION_NOT_PERMITTED = DRM_CAPI_ERR_BASE + 2 | 不支持的操作。 |
 | DRM_ERR_INVALID_VAL = DRM_CAPI_ERR_BASE + 3 | 无效参数。 |

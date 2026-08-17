@@ -13,7 +13,7 @@ typedef struct DRM_Statistics {...} DRM_Statistics
 
 ## 概述
 
-MediaKeySystem（媒体密钥系统）的度量信息。
+MediaKeySystem的统计信息。
 
 **起始版本：** 11
 

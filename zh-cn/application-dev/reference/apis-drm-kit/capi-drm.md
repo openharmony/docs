@@ -10,7 +10,7 @@
 
 提供数字版权保护能力的API。
 
-开发者可根据实际的开发需求，参考对应的开发指南及样例：
+开发者可根据开发需求，参考开发指南及样例：
 
 - [数字版权保护(C/C++)](../../media/drm/drm-c-dev-guide.md)
 - [基于AVCodec播放DRM节目(C/C++)](../../media/drm/drm-avcodec-integration.md)
