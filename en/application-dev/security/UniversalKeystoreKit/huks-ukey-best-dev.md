@@ -73,7 +73,7 @@ The following is an example of using the system capability for two-way SSL authe
 
 2. The **Web** component parses the certificate, calls the HUKS to open the resource, and queries the PIN authentication status.
 
-   First, call the NDK API of certificate management, OH_CertManager_GetUkeyCertificate](../../reference/apis-device-certificate-kit/capi-cm-native-api-h.md#oh_certmanager_getukeycertificate), to parse the certificate selected by the user and obtain the corresponding certificate data.
+   First, call the NDK API of certificate management, [OH_CertManager_GetUkeyCertificate](../../reference/apis-device-certificate-kit/capi-cm-native-api-h.md#oh_certmanager_getukeycertificate), to parse the certificate selected by the user and obtain the corresponding certificate data.
 
    Next, use **keyUri** selected by the user as the resource ID to call the HUKS NDK API, [OH_Huks_OpenResource](../../reference/apis-universal-keystore-kit/capi-native-huks-external-crypto-api-h.md#oh_huks_openresource) to open the resource.
 

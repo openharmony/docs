@@ -216,6 +216,6 @@ Check whether the **onWorkStart** and **onWorkStop** methods of WorkSchedulerExt
 
 The following sample is provided to help you better understand how to develop deferred task scheduling:
 
-- [Delayed Task Scheduling (ArkTS) (API9)] (https://gitcode.com/openharmony/applications_app_samples/tree/master/code/DocsSample/BackGroundTasksKit/WorkScheduler)
+- [Delayed Task Scheduling (ArkTS, API Version 9)](https://gitcode.com/openharmony/applications_app_samples/tree/master/code/DocsSample/BackGroundTasksKit/WorkScheduler)
 
 <!--no_check-->
