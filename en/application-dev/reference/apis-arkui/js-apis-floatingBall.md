@@ -64,7 +64,7 @@ Creates a floating ball controller. This API uses a promise to return the result
 
 **System capability**: SystemCapability.Window.SessionManager
 
-**Device behavior differences**: In versions earlier than OpenHarmony 7.0.0, this API can be called properly on tablets in non-[desktop mode](../../windowmanager/freeform-window-overview.md#desktop-mode) and phones. If it is called on other devices and tables in desktop mode, error code 801 is returned. Since OpenHarmony 7.0.0, this API can be properly called on phones, PCs/2-in-1 devices, and tablets. If it is called on other device types, error code 801 is returned.
+**Device behavior differences**: In versions earlier than OpenHarmony 7.0.0, this API can be called properly on tablets in non-[desktop mode](../../windowmanager/freeform-window-overview.md#desktop-mode) and phones. If it is called on other devices and tablets in desktop mode, error code 801 is returned. Since OpenHarmony 7.0.0, this API can be properly called on phones, PCs/2-in-1 devices, and tablets. If it is called on other device types, error code 801 is returned.
 
 **Parameters**
 
