@@ -978,7 +978,7 @@ Camera_ErrorCode OH_CameraManager_SetTorchModeOnWithLevel(Camera_Manager* camera
 
 | 参数项 | 描述 |
 | -- | -- |
-| [const Camera_Manager](capi-oh-camera-camera-manager.md)* cameraManager | 相机管理器实例。 |
+| [Camera_Manager](capi-oh-camera-camera-manager.md)* cameraManager | 相机管理器实例。 |
 | double torchLevel | 目标亮度水平。取值范围为[0.0, 1.0]。 |
 
 **返回：**

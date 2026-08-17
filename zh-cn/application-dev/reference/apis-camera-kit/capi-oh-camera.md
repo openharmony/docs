@@ -43,3 +43,4 @@
 | [photo_output.h](capi-photo-output-h.md) | 声明拍照输出概念。 |
 | [preview_output.h](capi-preview-output-h.md) | 声明预览输出概念。 |
 | [video_output.h](capi-video-output-h.md) | 声明录像输出概念。 |
+| [metadata_object_ext.h](capi-oh-camera-oh-camera-metadataobjectext.md) | 声明元数据对象扩展概念。<br>**起始版本：** 26.0.0 |
