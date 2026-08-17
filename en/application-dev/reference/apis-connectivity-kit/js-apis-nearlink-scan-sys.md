@@ -6,9 +6,9 @@
 <!--Designer: @lilong32; @CCCZKing-->
 <!--Tester: @zhangjiaji111-->
 <!--Adviser: @zhang_yixin13-->
-<!-- md-trans-meta sourceCommit=af1955eee0928cd91182a5d17e143d0faec0b2d7 translatedAt=2026-08-12T11:29:31.102Z pushedAt=2026-08-14T11:42:02.109Z -->
+<!-- md-trans-meta sourceCommit=d24a1f6e1187eccb8d59684feff7b18c39e0a378 translatedAt=2026-08-17T08:49:09.215Z pushedAt=2026-08-17T12:30:27.129Z -->
 
-This module provides the NearLink scanning capability.
+This module provides the definition of the NearLink scanning mode.
 
 **Since**: 26.0.0
 

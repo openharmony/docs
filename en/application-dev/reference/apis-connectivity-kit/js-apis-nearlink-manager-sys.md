@@ -6,9 +6,9 @@
 <!--Designer: @lilong32; @CCCZKing-->
 <!--Tester: @zhangjiaji111-->
 <!--Adviser: @zhang_yixin13-->
-<!-- md-trans-meta sourceCommit=8a03c39231c24a89e7d2329d21e5c175c46ce77e translatedAt=2026-08-12T11:28:49.029Z pushedAt=2026-08-14T11:39:13.398Z -->
+<!-- md-trans-meta sourceCommit=aa9545020692baaf11004432a3eb3c2a031071bf translatedAt=2026-08-17T08:49:08.929Z pushedAt=2026-08-17T12:04:36.826Z -->
 
-This module provides basic NearLink management capabilities, including obtaining device information and subscribing to status change events.
+This module provides basic NearLink management capabilities, including enabling or disabling NearLink, obtaining the MAC address of the local device, and setting the connection mode.
 
 **Since**: 26.0.0
 
@@ -193,7 +193,7 @@ import { BusinessError } from '@ohos.base';
 try {
   manager.factoryReset().then(() => {
     console.info('factoryReset success');
-  }).catch ((err: BusinessError) => {
+  }).catch((err: BusinessError) => {
     console.error('errCode: ' + err.code + ', errMessage: ' + err.message);
   });
 } catch (err) {
@@ -222,7 +222,7 @@ Enumerates the connection modes.
 
 setConnectionMode(mode: ConnectionMode, duration: number): Promise&lt;void&gt;
 
-Sets the discoverable mode. This API uses a promise to return the result.
+Sets the connection mode. This API uses a promise to return the result.
 
 **Since**: 26.0.0
 
@@ -238,8 +238,8 @@ Sets the discoverable mode. This API uses a promise to return the result.
 
 | Name | Type | Mandatory | Description |
 | -------- | -------- | -------- | -------- |
-| mode | [ConnectionMode](#connectionmode) | Yes | Discoverable mode to set. |
-| duration | number | Yes | Duration of the mode, in seconds. The value **0** indicates no time limit. |
+| mode | [ConnectionMode](#connectionmode) | Yes | Connection mode to be set. |
+| duration | number | Yes | Duration of the mode to set, in seconds. The value must be an integer greater than or equal to 0. The value **0** indicates no time limit. |
 
 **Return value**
 
@@ -267,11 +267,11 @@ import { manager } from '@kit.ConnectivityKit';
 import { BusinessError } from '@ohos.base';
 
 try {
-  let mode: number = manager.ConnectionMode.SLE_MODE_CONNECTABLE;
+  let mode: manager.ConnectionMode = manager.ConnectionMode.SLE_MODE_CONNECTABLE;
   let duration: number = 100;
   manager.setConnectionMode(mode, duration).then(() => {
-    console.info('connect success');
-  }).catch ((err: BusinessError) => {
+    console.info('setConnectionMode success');
+  }).catch((err: BusinessError) => {
     console.error('errCode: ' + err.code + ', errMessage: ' + err.message);
   });
 } catch (err) {
