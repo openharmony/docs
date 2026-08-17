@@ -34,7 +34,7 @@
 | OH_Drawing_Array* OH_Drawing_TextLineGetGlyphRuns(OH_Drawing_TextLine* line) | 获取文本行对象中的文本渲染单元数组。 | 
 | OH_Drawing_Array* OH_Drawing_GetRunGlyphs(OH_Drawing_Run* run, int64_t start, int64_t length) | 获取渲染单元指定范围内的字形数组。 | 
 | OH_Drawing_Font* OH_Drawing_GetRunFont(OH_Drawing_Run* run) | 获取渲染单元字体对象。 | 
-| OH_Drawing_Array* OH_Drawing_GetRunGlyphAdvances(OH_Drawing_Run* run, uint32_t start, uint32_t length) | 获取渲染单元字体宽度数组。 | 
+| OH_Drawing_Array* OH_Drawing_GetRunGlyphAdvances(OH_Drawing_Run* run, uint32_t start, uint32_t length) | 获取渲染单元字形宽度数组。 | 
 | OH_Drawing_TextBlobBuilder* OH_Drawing_TextBlobBuilderCreate(void) | 用于创建一个文本构造器对象。 | 
 | OH_Drawing_TextBlob* OH_Drawing_TextBlobBuilderMake(OH_Drawing_TextBlobBuilder* textBlobBuilder) | 用于从文本构造器中创建文本对象。 | 
 | void OH_Drawing_CanvasDrawTextBlob(OH_Drawing_Canvas* canvas, const OH_Drawing_TextBlob* textBlob, float x, float y) | 用于画一段文字。 | 
@@ -62,7 +62,7 @@
    #include <native_drawing/drawing_point.h>
    ```
 
-3. 创建段落样式，并使用构造段落生成器ParagraphBuilder生成段落实例。
+3. 创建段落样式，并使用OH_Drawing_CreateTypographyHandler创建排版处理器，用于生成段落实例。
 
    <!-- @[complex_text_c_independent_shaping_text_step1](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkGraphics2D/TextEngine/NDKComplexText1/entry/src/main/cpp/samples/draw_text_impl.cpp) -->
    
@@ -107,7 +107,7 @@
 
 6. 该步骤是文本塑形流程中的自定义绘制环节。通过调用OH_Drawing_GetRunGlyphs()方法获取文本中每个字符对应的字形序号，再结合OH_Drawing_GetRunFont()方法获取的字体对象，即可唯一确定每个字形的具体图形信息。
 
-   从 API version 20 开始，新增的OH_Drawing_GetRunGlyphAdvances()方法能够返回一个数组，其中包含了每个字形在绘制时建议占用的宽度和高度。依赖这些精确的测量数据，开发者可以自由地计算并定义每个字形的绘制位置，从而实现复杂的文本布局效果，如自定义字符间距、垂直偏移或特殊排版。
+   从 API version 20 开始，新增的OH_Drawing_GetRunGlyphAdvances()方法能够返回一个数组，包含范围内每个字形的字形宽度。依赖这些精确的测量数据，开发者可以自由地计算并定义每个字形的绘制位置，从而实现复杂的文本布局效果，如自定义字符间距、垂直偏移或特殊排版。
    <!-- @[complex_text_c_independent_shaping_text_step4](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkGraphics2D/TextEngine/NDKComplexText1/entry/src/main/cpp/samples/draw_text_impl.cpp) -->
    
    ``` C++
