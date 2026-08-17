@@ -318,7 +318,7 @@ OH_Drawing_Typeface* OH_Drawing_FontStyleSetCreateTypeface(OH_Drawing_FontStyleS
 | 参数项 | 描述 |
 | -- | -- |
 | [OH_Drawing_FontStyleSet](capi-drawing-oh-drawing-fontstyleset.md)* fontStyleSet | 指向字体样式集对象[OH_Drawing_FontStyleSet](capi-drawing-oh-drawing-fontstyleset.md)的指针。 |
-| int index | 指定的字型对象的索引，取值范围[0, OH_Drawing_FontStyleSetCount() - 1]。 |
+| int index | 指定的字型对象的索引，取值范围为[0, OH_Drawing_FontStyleSetCount() - 1]。 |
 
 **返回：**
 
@@ -346,7 +346,7 @@ OH_Drawing_FontStyleStruct OH_Drawing_FontStyleSetGetStyle(OH_Drawing_FontStyleS
 | 参数项 | 描述 |
 | -- | -- |
 | [OH_Drawing_FontStyleSet](capi-drawing-oh-drawing-fontstyleset.md)* fontStyleSet | 指向字体样式集对象[OH_Drawing_FontStyleSet](capi-drawing-oh-drawing-fontstyleset.md)的指针。 |
-| int32_t index | 指定的字体样式的索引，取值范围[0, OH_Drawing_FontStyleSetCount() - 1]。 |
+| int32_t index | 指定的字体样式的索引，取值范围为[0, OH_Drawing_FontStyleSetCount() - 1]。 |
 | char** styleName | 指定字体样式名称的字符串，会申请内存，不再需要时，请使用[OH_Drawing_FontStyleSetFreeStyleName](#oh_drawing_fontstylesetfreestylename)释放该对象指针。 |
 
 **返回：**
