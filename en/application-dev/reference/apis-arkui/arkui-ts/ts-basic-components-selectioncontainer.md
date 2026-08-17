@@ -371,7 +371,7 @@ Provides the custom edit menu options of **SelectionContainer**.
 
 | Name | Type | Read-Only | Optional | Description |
 | ---- | ---- | ---- | ---- | ---- |
-| onCreateMenu | [OnCreateMenuCallback](ts-text-common.md#oncreatemenucallback) | No | Yes | Triggered before each menu is displayed, used to pass the default menu item and return the processed menu item. The default value is empty, which does not trigger this callback. |
+| onCreateMenu | OnCreateMenuCallback | No | Yes | Triggered before each menu is displayed, used to pass the default menu item and return the processed menu item. The default value is empty, which does not trigger this callback. |
 | onMenuItemClick | [OnMenuItemClickWithTextCallback](#onmenuitemclickwithtextcallback) | No | Yes | Triggered when a menu item is tapped, used to intercept the execution behavior of the system default menu. The default value is empty, which does not trigger this callback. |
 | onPrepareMenu | [OnPrepareMenuCallback](ts-text-common.md#onpreparemenucallback20) | No | Yes | Triggered after the selected text changes and before the menu is displayed. The menu data can be adjusted in this callback. The default value is empty, which does not trigger this callback. |
 
@@ -795,5 +795,5 @@ struct SelectionContainerControllerExample {
 }
 ```
 
-<!--Del-->![selectionContainerController](figures/selectionContainerController.gif)
+<!--Del-->![selectionContainerController] (figures/selectionContainerController.gif)
 <!--DelEnd-->

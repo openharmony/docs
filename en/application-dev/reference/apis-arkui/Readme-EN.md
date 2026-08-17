@@ -14,7 +14,7 @@
 
     - [@ohos.animator (Animation)](js-apis-animator.md)
 
-    - [@ohos.arkui.componentSnapshot (Component Snapshot)](js-apis-arkui.componentSnapshot.md)
+    - [@ohos.arkui.componentSnapshot (Component Snapshot)](js-apis-arkui-componentSnapshot.md)
 
     - [@ohos.arkui.componentUtils (componentUtils)](js-apis-arkui-componentUtils.md)
 
