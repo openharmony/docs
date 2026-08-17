@@ -1,4 +1,4 @@
-# ArkUI (ArkUI)
+# ArkUI
 
 <!--Kit: ArkUI-->
 <!--Subsystem: ArkUI-->
