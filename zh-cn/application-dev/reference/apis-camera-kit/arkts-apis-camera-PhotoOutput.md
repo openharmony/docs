@@ -685,6 +685,8 @@ setMovingPhotoVideoCodecType(codecType: VideoCodecType): void
 
 设置动态照片短视频编码类型。
 
+设置之前，可先使用方法[getSupportedMovingPhotoVideoCodecTypes](#getsupportedmovingphotovideocodectypes13)查询设备支持的动态照片短视频编码类型。
+
 **原子化服务API：** 从API version 19开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.Camera.Core
