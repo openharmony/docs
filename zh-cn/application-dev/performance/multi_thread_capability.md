@@ -8,7 +8,7 @@
 
 ## 简介
 
-应用中的每个[进程](../application-models/process-model-stage.md)都会有一个主线程，主线程主要承担执行UI绘制操作、管理ArkTS引擎实例的创建和销毁、分发和处理事件、管理Ability生命周期等职责，具体可参见[线程模型概述](../application-models/thread-model-stage.md)。因此，开发应用时应当尽量避免将耗时的操作放在主线程中执行。ArkTS提供了**Worker**和**TaskPool**两种多线程并发能力，多线程并发允许在同一时间段内同时执行多段代码，这两个并发的基本能力可参见[TaskPool和Worker的对比](../arkts-utils/taskpool-vs-worker.md)。
+应用中的每个[进程](../application-models/process-model-overview.md)都会有一个主线程，主线程主要承担执行UI绘制操作、管理ArkTS引擎实例的创建和销毁、分发和处理事件、管理Ability生命周期等职责，具体可参见[线程模型概述](../application-models/thread-model-stage.md)。因此，开发应用时应当尽量避免将耗时的操作放在主线程中执行。ArkTS提供了**Worker**和**TaskPool**两种多线程并发能力，多线程并发允许在同一时间段内同时执行多段代码，这两个并发的基本能力可参见[TaskPool和Worker的对比](../arkts-utils/taskpool-vs-worker.md)。
 
 在介绍**Worker**和**TaskPool**的详细使用方法前，我们先简单介绍并发模型的相关概念，以便于大家的理解。
 
@@ -213,7 +213,7 @@ TaskPool的适用场景主要分为如下三类：
 
 使用步骤如下：
 
-1. 首先import引入TaskPool模块，TaskPool的API介绍可参见[@ohos.taskpool（启动TaskPool）](../reference/apis-arkts/js-apis-taskpool.md)。
+1. 首先import引入TaskPool模块，TaskPool的API介绍可参见[@ohos.taskpool (启动任务池)](../reference/apis-arkts/js-apis-taskpool.md)。
    
    ```typescript
    import { taskpool } from '@kit.ArkTS';
@@ -584,46 +584,46 @@ workerPort.onmessage = (e: MessageEvents): void => {
   import { Contact } from '../constant/Contact';
   
   /**
-     * 批量插入数据库
-     */
-    public async batchInsertData(context: common.Context, array: Array<Contact>): Promise<void> {
-      Logger.info(TAG, 'batch insert begin');
-      if (!context) {
-        Logger.info(TAG, 'context is null or undefined');
-      }
-  
-      if (predicates === null || predicates === undefined) {
-        Logger.info(TAG, 'predicates is null or undefined');
-      }
-  
-      if (!this.rdbStore) {
-        await this.initRdbStore(context);
-      }
-  
-      let valueBuckets: Array<ValuesBucket> = [];
-      for (let index = 0; index < array.length; index++) {
-        let Contact = array[index] as Contact;
-        let value1 = Contact.name;
-        let value2 = Contact.gender;
-        let value3 = Contact.phone;
-        let value4 = Contact.remark;
-        let value5 = Contact.age;
-  
-        const valueBucket: ValuesBucket = {
-          'name': value1,
-          'gender': value2,
-          'phone': value3,
-          'remark': value4,
-          'age': value5,
-        };
-        valueBuckets.push(valueBucket);
-      }
-  
-      if (this.rdbStore != undefined) {
-        let ret = await this.rdbStore.batchInsert(TABLE_NAME, valueBuckets);
-        Logger.info(TAG, `batch insert done:${ret}`);
-      }
+   * 批量插入数据库
+   */
+  public async batchInsertData(context: common.Context, array: Array<Contact>): Promise<void> {
+    Logger.info(TAG, 'batch insert begin');
+    if (!context) {
+      Logger.info(TAG, 'context is null or undefined');
     }
+
+    if (predicates === null || predicates === undefined) {
+      Logger.info(TAG, 'predicates is null or undefined');
+    }
+
+    if (!this.rdbStore) {
+      await this.initRdbStore(context);
+    }
+
+    let valueBuckets: Array<ValuesBucket> = [];
+    for (let index = 0; index < array.length; index++) {
+      let Contact = array[index] as Contact;
+      let value1 = Contact.name;
+      let value2 = Contact.gender;
+      let value3 = Contact.phone;
+      let value4 = Contact.remark;
+      let value5 = Contact.age;
+
+      const valueBucket: ValuesBucket = {
+        'name': value1,
+        'gender': value2,
+        'phone': value3,
+        'remark': value4,
+        'age': value5,
+      };
+      valueBuckets.push(valueBucket);
+    }
+
+    if (this.rdbStore != undefined) {
+      let ret = await this.rdbStore.batchInsert(TABLE_NAME, valueBuckets);
+      Logger.info(TAG, `batch insert done:${ret}`);
+    }
+  }
   ```
   
 - relationalStore数据库查询方法
