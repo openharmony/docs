@@ -206,9 +206,9 @@ typedef bool (*ArkUI_OnWillDismissEvent)(int32_t reason)
 
 **参数:**
 
-| 名称 | 描述 |
+| 参数项 | 描述 |
 | -------- | -------- |
-| reason | 触发弹窗关闭的原因，取值为[ArkUI_DismissReason](#arkui_dismissreason)枚举值。 |
+| int32_t reason | 触发弹窗关闭的原因，取值为[ArkUI_DismissReason](#arkui_dismissreason)枚举值。 |
 
 **返回：**
 
