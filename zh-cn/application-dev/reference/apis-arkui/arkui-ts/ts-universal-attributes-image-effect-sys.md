@@ -85,54 +85,6 @@ excludeFromRenderGroup(exclude: boolean \| undefined): T
 | -------- | -------- |
 | T | 返回当前组件，用于链式调用。 |
 
-## systemMaterial<sup>23+</sup>
-
-systemMaterial(material: SystemUiMaterial | undefined): T
-
-设置组件的系统材质。不同系统材质对应不同的属性影响效果，该接口影响背景色[backgroundColor](ts-universal-attributes-background.md#backgroundcolor)、边框颜色[borderColor](ts-universal-attributes-border.md#bordercolor)、边框宽度[borderWidth](ts-universal-attributes-border.md#borderwidth)、阴影[shadow](ts-universal-attributes-image-effect.md#shadow)，不建议与上述接口一起使用，同时使用时systemMaterial的效果可能与上述接口的设置产生冲突，导致渲染结果不符合预期。使用示例请参考[设置系统材质](../arkts-apis-uimaterial-sys.md#示例1设置系统材质)。
-
-**模型约束：** 此接口仅可在Stage模型下使用。
-
-**卡片能力：** 从API version 23开始，该接口支持在ArkTS卡片中使用。
-
-**原子化服务API：** 从API version 23开始，该接口支持在原子化服务中使用。
-
-**系统能力：** SystemCapability.ArkUI.ArkUI.Full
-
-**系统接口：** 此接口为系统接口。
-
-**参数：**
-
-| 参数名 | 类型                            | 必填 | 说明                                                         |
-| ------ | ------------------------------- | ---- | ------------------------------------------------------------ |
-| material  | [SystemUiMaterial](#systemuimaterial23) &nbsp;\|&nbsp; undefined  | 是   | 组件的系统材质对象。设置为undefined时恢复为无材质的效果。<br>**说明：**<br>不建议与backgroundColor、borderColor、borderWidth、shadow等接口一起使用，否则可能导致显示效果冲突。  |
-
-**返回值：**
-
-| 类型 | 说明 |
-| -------- | -------- |
-| T | 返回当前组件，用于链式调用。 |
-
-## SystemUiMaterial<sup>23+</sup>
-
-type SystemUiMaterial = import('../api/@ohos.arkui.uiMaterial').default.Material
-
-系统材质对象基类。
-
-**模型约束：** 此接口仅可在Stage模型下使用。
-
-**卡片能力：** 从API version 23开始，该接口支持在ArkTS卡片中使用。
-
-**原子化服务API：** 从API version 23开始，该接口支持在原子化服务中使用。
-
-**系统能力：** SystemCapability.ArkUI.ArkUI.Full
-
-**系统接口：** 此接口为系统接口。
-
-| 类型                              | 说明           |
-| --------------------------------- | -------------- |
-| import('../api/@ohos.arkui.uiMaterial').default.[Material](../arkts-apis-uimaterial-sys.md#material)     | 系统材质对象基类。 |
-
 ## edgeLight
    
 edgeLight(params: EdgeLightParams | undefined): T

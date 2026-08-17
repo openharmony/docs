@@ -2,9 +2,9 @@
 <!--Kit: ArkUI-->
 <!--Subsystem: ArkUI-->
 <!--Owner: @hehongyang3-->
-<!--Designer: @chensiyi_CE-->
+<!--Designer: @hehongyang3-->
 <!--Tester: @lxl007-->
-<!--Adviser: @ge-yafang-->
+<!--Adviser: @Brilliantry_Rui-->
 
 ``` cpp
 typedef struct ArkUI_MotionPathOptions ArkUI_MotionPathOptions
@@ -18,4 +18,4 @@ typedef struct ArkUI_MotionPathOptions ArkUI_MotionPathOptions
 
 **相关模块：** [ArkUI_NativeModule](capi-arkui-nativemodule.md)
 
-**所在头文件：** [native_type.h](capi-native-type-h.md)
+**所在头文件：** [native_type_visual.h](capi-native-type-visual-h.md)

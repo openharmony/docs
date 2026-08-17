@@ -69,9 +69,9 @@ EffectComponent(options?: EffectComponentOptions)
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称                | 类型  | 必填 | 说明                                                                                                                                  |
-|-------------------|-----|----|-------------------------------------------------------------------------------------------------------------------------------------|
-| effectLayer | [EffectLayer](#effectlayer20枚举说明) | 否   | EffectComponent的渲染层级。<br/>默认值：EffectLayer.NONE |
+| 名称            | 类型        |  只读   |   可选   | 说明                                     |
+|-------------------|-----|-------|----|-------------------------------------------------------------------------------------------------------------------------------------|
+| effectLayer | [EffectLayer](#effectlayer20枚举说明) |  否   |   是   | EffectComponent的渲染层级。<br/>默认值：EffectLayer.NONE |
 
 ## EffectLayer<sup>20+</sup>枚举说明
 

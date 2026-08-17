@@ -16,6 +16,8 @@
 >
 > - 该接口为[UIContext](../arkts-apis-uicontext-uicontext.md)类的成员函数，需要通过UIContext实例对象调用。调用顺序：先通过[getUIContext()](./ts-custom-component-api.md#getuicontext)获取UIContext实例，再调用keyframeAnimateTo方法。
 
+## keyframeAnimateTo
+
 keyframeAnimateTo(param: KeyframeAnimateParam, keyframes: Array&lt;KeyframeState&gt;): void
 
 设置关键帧动画。需通过UIContext实例对象调用。布局类改变宽高的动画，内容（如文字、[Canvas](ts-components-canvas-canvas.md)内容等）都是直接到终点状态，如需内容跟随宽高变化，可使用[renderFit](ts-universal-attributes-renderfit.md#renderfit)属性配置。
@@ -43,7 +45,7 @@ keyframeAnimateTo(param: KeyframeAnimateParam, keyframes: Array&lt;KeyframeState
 | delay      | number     | 否  | 是    | 动画的整体延迟时间，单位为ms（毫秒），默认不延迟播放。<br>默认值：0<br>取值范围：(-∞, +∞)<br>**说明：** <br>&nbsp;delay>=0为延迟播放，delay<0表示提前播放。设置浮点型的值时，截断取整。例如，设置值为200.5，按照200处理。对于delay<0的情况：当delay绝对值小于实际动画时长时，动画起始帧将直接跳至delay绝对值对应时刻的状态；当delay的绝对值大于等于实际动画时长，动画将在开始后第一帧直接运动到终点状态。其中实际动画时长等于单次动画时长乘以动画播放次数。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
 | iterations | number     | 否  | 是    | 动画播放次数。默认播放一次，设置为-1时表示无限次播放，此时onFinish回调不会被触发。设置为0时表示无动画效果。设置大于1时，每次迭代从动画起始状态重新执行完整的关键帧序列。<br>默认值：1<br>取值范围：[-1, +∞)<br>**说明：**<br>- 设置浮点型类型的值时，截断取整。例如，设置值为1.2，按照1处理。<br>- 设置小于-1的值时按-1处理，即无限次播放。<br>- iterations的取值影响delay&lt;0时的动画行为，具体参见delay参数说明。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
 | onFinish   | () => void | 否  | 是    | 动画播放完成回调。当keyframe动画所有次数播放完成后调用。当iterations设置为0时，无动画效果，不触发该回调；当iterations设置为-1（无限播放）时，动画不会播放完成，不触发该回调。在系统设置的开发者选项中关闭过渡动画，或UIAbility从前台切换至后台时会立即结束仍在播放中的有限循环keyframe动画，触发播放完成回调。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
-| expectedFrameRateRange<sup>19+</sup>   | [ExpectedFrameRateRange](./ts-explicit-animation.md#expectedframeraterange11) | 否 | 是 | 设置动画的期望帧率范围。<br>默认值：{min:0, max:0, expected:0}，即跟随应用帧率。<br>**说明：** <br>开发者通过设置有效的期望帧率后，系统会收集设置的请求帧率，进行综合评估和调度，在渲染管线上进行帧率调节，尽量满足开发者的期望帧率。开发者设置的期望帧率值不能代表最终实际效果，会受限于系统能力和屏幕刷新率。<br>**原子化服务API：** 从API version 19开始，该接口支持在原子化服务中使用。|
+| expectedFrameRateRange<sup>19+</sup>   | [ExpectedFrameRateRange](./ts-explicit-animation.md#expectedframeraterange11) | 否 | 是 | 设置动画的期望帧率范围。<br>默认值：{min:0, expected:0, max:0}，即跟随应用帧率。<br>**说明：** <br>开发者通过设置有效的期望帧率后，系统会收集设置的请求帧率，进行综合评估和调度，在渲染管线上进行帧率调节，尽量满足开发者的期望帧率。开发者设置的期望帧率值不能代表最终实际效果，会受限于系统能力和屏幕刷新率。<br>**原子化服务API：** 从API version 19开始，该接口支持在原子化服务中使用。|
 
 ## KeyframeState对象说明
 

@@ -83,7 +83,7 @@
 
 5. 设置回调参数。
 
-   <!-- @[set_callback](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkUISample/AnimationNDK/entry/src/main/cpp/ArkUIAnimate.h) -->
+   <!-- @[set_callback](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkUISample/AnimationNDK/entry/src/main/cpp/ArkUIAnimate.h) -->  
    
    ``` C
    // 设置完成的回调
@@ -101,12 +101,12 @@
            ArkUI_CurveHandle curve = data->curve;
            if (option) {
                OH_ArkUI_AnimateOption_Dispose(option);
-               OH_LOG_Print(LOG_APP, LOG_ERROR, LOG_PRINT_DOMAIN,
+               OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN,
                    "Init", "CXX OH_ArkUI_AnimateOption_Dispose  success!");
            }
            if (curve) {
                OH_ArkUI_Curve_DisposeCurve(curve);
-               OH_LOG_Print(LOG_APP, LOG_ERROR, LOG_PRINT_DOMAIN,
+               OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN,
                    "Init", "CXX OH_ArkUI_Curve_DisposeCurve  success!");
            }
            delete data; // 释放结构体
@@ -442,7 +442,7 @@
 
 该示例主要演示如何通过[keyframeAnimateTo](../reference/apis-arkui/capi-arkui-nativemodule-arkui-nativeanimateapi-1.md#keyframeanimateto)来设置关键帧动画，NDK接口开发的UI界面挂载到ArkTS主页面的完整流程可参考[接入ArkTS页面](ndk-access-the-arkts-page.md)。
 
-   <!-- @[get_keyframeAnimateTo](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkUISample/AnimationNDK/entry/src/main/cpp/ArkUIAnimate.h) -->
+   <!-- @[get_keyframeAnimateTo](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkUISample/AnimationNDK/entry/src/main/cpp/ArkUIAnimate.h) -->  
    
    ``` C
    // ArkUIColumnNode为工程内封装的node类型
@@ -517,12 +517,12 @@
                    ArkUI_CurveHandle curve = data->curve;
                    if (option) {
                        OH_ArkUI_KeyframeAnimateOption_Dispose(option);
-                       OH_LOG_Print(LOG_APP, LOG_ERROR, LOG_PRINT_DOMAIN,
+                       OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN,
                            "Init", "CXX OH_ArkUI_KeyframeAnimateOption_Dispose  success!");
                    }
                    if (curve) {
                        OH_ArkUI_Curve_DisposeCurve(curve);
-                       OH_LOG_Print(LOG_APP, LOG_ERROR, LOG_PRINT_DOMAIN,
+                       OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN,
                            "Init", "CXX OH_ArkUI_Curve_DisposeCurve  success!");
                    }
                    delete data; // 释放结构体
@@ -559,7 +559,7 @@
 
 该示例主要演示如何通过[createAnimator](../reference/apis-arkui/capi-arkui-nativemodule-arkui-nativeanimateapi-1.md#createanimator)来设置帧动画。
 
-   <!-- @[get_createAnimator](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkUISample/AnimationNDK/entry/src/main/cpp/ArkUIAnimate.h) -->
+   <!-- @[get_createAnimator](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkUISample/AnimationNDK/entry/src/main/cpp/ArkUIAnimate.h) -->  
    
    ``` C
    std::shared_ptr<ArkUIBaseNode> CreateAnimator()
