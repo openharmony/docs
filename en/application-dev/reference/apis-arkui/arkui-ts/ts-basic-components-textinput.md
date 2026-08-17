@@ -655,7 +655,7 @@ Defines the rules for generating passwords. When autofill is used, these rules a
 
 cancelButton(options: CancelButtonOptions)
 
-Sets the style of the cancel button on the right. Only icons of the image type are supported. The [inline style](../../../ui/arkts-common-components-text-input.md#inline-style) is not supported. For details, see [Example 4 Customizing the Cancel Button Style on the Right](#example-4-customizing-the-cancel-button-style-on-the-right).
+Sets the style of the cancel button on the right. Only icons of the image type are supported. The inline style is not supported. For details, see [Example 4 Customizing the Cancel Button Style on the Right](#example-4-customizing-the-cancel-button-style-on-the-right).
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -671,7 +671,7 @@ Sets the style of the cancel button on the right. Only icons of the image type a
 
 selectAll(value: boolean)
 
-Sets whether to select all text in the initial state. The [inline style](../../../ui/arkts-common-components-text-input.md#inline-style) is not supported.
+Sets whether to select all text in the initial state. The inline style is not supported.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -693,7 +693,7 @@ Sets the character counter displayed when the number of characters entered excee
 
 It is visible when the number of characters entered is greater than the character limit multiplied by the threshold percentage value. If **options** is not set, the text box border and character counter subscript turn red when the number of characters entered exceeds the limit. If **value** is set to **true** and [InputCounterOptions](ts-universal-attributes-text-style.md#inputcounteroptions11) is set, the text box border and character counter subscript turn red and the text box shakes when the number of characters entered reaches the limit, provided that the value of **thresholdPercentage** is valid. If **highlightBorder** is set to **false**, the text box border does not turn red. By default, **highlightBorder** is set to **true**.
 
-The character counter is not displayed in the [inline style](../../../ui/arkts-common-components-text-input.md#inline-style) and [password mode](../../../ui/arkts-common-components-text-input.md#password-mode).
+The character counter is not displayed in the inline style and [password mode](../../../ui/arkts-common-components-text-input.md#password-mode).
 
 [Example 5: Setting a Character Counter](#example-5-setting-a-character-counter) shows the effect of setting **showCounter**.
 
@@ -852,7 +852,7 @@ For more information about the font features, see [Low-level font feature settin
 
 wordBreak(value: WordBreak)
 
-Sets the word break rule. This attribute takes effect when the [inline style](../../../ui/arkts-common-components-text-input.md#inline-style) is set for the component, but has no effect on placeholder text.
+Sets the word break rule. This attribute takes effect when the inline style is set for the component, but has no effect on placeholder text.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -872,7 +872,7 @@ Sets the word break rule. This attribute takes effect when the [inline style](..
 
 textOverflow(value: TextOverflow)
 
-Sets the display mode for overflowing text. This attribute is supported only in the editing and non-editing states of the [inline style](../../../ui/arkts-common-components-text-input.md#inline-style).
+Sets the display mode for overflowing text. This attribute is supported only in the editing and non-editing states of the inline style.
 
 Chinese text is truncated by character. English text is truncated by word. To truncate English text by letter, set **wordBreak** to **WordBreak.BREAK_ALL**.
 
@@ -886,10 +886,10 @@ When **overflow** is set to **TextOverflow.None**, the effect is the same as **T
 
 | Name| Type                                                         | Mandatory| Description                                                                                               |
 | ------ | ------------------------------------------------------------ | ---- | -------------------------------------------------------------------------------------------------- |
-| value  | [TextOverflow](ts-appendix-enums.md#textoverflow)            | Yes  | Display mode of overflowing text.<br>Default value for the [inline style](../../../ui/arkts-common-components-text-input.md#inline-style) in the non-editing state: **TextOverflow.Ellipsis**<br>Default value for the inline style in the editing state: **TextOverflow.Clip**                    |
+| value  | [TextOverflow](ts-appendix-enums.md#textoverflow)            | Yes  | Display mode of overflowing text.<br>Default value for the inline style in the non-editing state: **TextOverflow.Ellipsis**<br>Default value for the inline style in the editing state: **TextOverflow.Clip**                    |
 
 >  **NOTE** 
->   The **TextInput** component does not support the **TextOverflow.MARQUEE** mode. When the **TextOverflow.MARQUEE** mode is set, the **TextOverflow.Ellipsis** mode is used for the non-editing state of the [inline style](../../../ui/arkts-common-components-text-input.md#inline-style), and **TextOverflow.Clip** mode is used for the editing state of the inline style as well as for the non-inline mode.
+>   The **TextInput** component does not support the **TextOverflow.MARQUEE** mode. When the **TextOverflow.MARQUEE** mode is set, the **TextOverflow.Ellipsis** mode is used for the non-editing state of the inline style, and **TextOverflow.Clip** mode is used for the editing state of the inline style as well as for the non-inline mode.
 >
 >  If inline mode is not set, the text displays in the default style, and any **textOverflow** setting will not take effect.
 
@@ -1015,7 +1015,7 @@ Sets the line break rule. This attribute takes effect when **wordBreak** is not 
 
 | Name  | Type                                                        | Mandatory| Description                                                        |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| strategy | [LineBreakStrategy](ts-appendix-enums.md#linebreakstrategy12) | Yes  | Line break rule.<br>Default value: **LineBreakStrategy.GREEDY**<br>**NOTE**<br>This attribute takes effect only when the [inline style](../../../ui/arkts-common-components-text-input.md#inline-style) is set.|
+| strategy | [LineBreakStrategy](ts-appendix-enums.md#linebreakstrategy12) | Yes  | Line break rule.<br>Default value: **LineBreakStrategy.GREEDY**<br>**NOTE**<br>This attribute takes effect only when the inline style is set.|
 
 ### editMenuOptions<sup>12+</sup>
 
@@ -1215,7 +1215,7 @@ Sets the maximum font scale factor for text.
 
 cancelButton(symbolOptions: CancelButtonSymbolOptions)
 
-Sets the style of the cancel button on the right. Only symbol-type icons are supported. The [inline style](../../../ui/arkts-common-components-text-input.md#inline-style) is not supported. For details, see [Example 15: Setting a Symbol-Type Cancel Button](#example-15-setting-a-symbol-type-cancel-button).
+Sets the style of the cancel button on the right. Only symbol-type icons are supported. The inline style is not supported. For details, see [Example 15: Setting a Symbol-Type Cancel Button](#example-15-setting-a-symbol-type-cancel-button).
 
 **Atomic service API**: This API can be used in atomic services since API version 18.
 
@@ -1231,7 +1231,7 @@ Sets the style of the cancel button on the right. Only symbol-type icons are sup
 
 ellipsisMode(mode: Optional\<EllipsisMode>)
 
-Sets the ellipsis position. The **ellipsisMode** attribute takes effect only in the [inline style](../../../ui/arkts-common-components-text-input.md#inline-style). It must be used together with **overflow** set to **TextOverflow.Ellipsis**. The **ellipsisMode** attribute does not take effect if set alone.
+Sets the ellipsis position. The **ellipsisMode** attribute takes effect only in the inline style. It must be used together with **overflow** set to **TextOverflow.Ellipsis**. The **ellipsisMode** attribute does not take effect if set alone.
 
 This attribute works normally in the non-editing state. In the editing state, **EllipsisMode.START** and **EllipsisMode.CENTER** take effect only when **maxLines** is set to **1**, while **EllipsisMode.END**, **EllipsisMode.MULTILINE_START**, and **EllipsisMode.MULTILINE_CENTER** take effect normally.
 
@@ -1438,7 +1438,7 @@ Enumerates the content types for autofill.
 | Name   | Description                                                        |
 | ------- | ------------------------------------------------------------ |
 | Default | Default style. The caret width is fixed at 1.5 vp, and the caret height is subject to the background height and font size of the selected text.|
-| Inline  | Inline style. The background height of the selected text is the same as the height of the text box.<br>This style is used in scenarios where editing and non-editing states are obvious, for example, renaming in the file list view.<br>The **showError** attribute is not supported for this style.<br>In the [inline style](../../../ui/arkts-common-components-text-input.md#inline-style), text cannot be dragged into the text box.|
+| Inline  | Inline style. The background height of the selected text is the same as the height of the text box.<br>This style is used in scenarios where editing and non-editing states are obvious, for example, renaming in the file list view.<br>The **showError** attribute is not supported for this style.<br>In the inline style, text cannot be dragged into the text box.|
 
 ## PasswordIcon<sup>10+</sup>
 
