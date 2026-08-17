@@ -23,20 +23,20 @@
         - [\@ReusableV2装饰器：V2组件复用](state-management/arkts-new-reusableV2.md) 
         - [全局复用：集中化的组件回收与复用](state-management/arkts-global-reuse-pool.md)<!--RP7--><!--RP7End-->
       - 自定义组件冻结<!--arkts-component-freeze-->
-        - [自定义组件冻结功能（V1）](state-management/arkts-custom-components-freeze.md)
-        - [自定义组件冻结功能（V2）](state-management/arkts-custom-components-freezeV2.md)<!--RP8--><!--RP8End-->
+        - [自定义组件冻结（V1）](state-management/arkts-custom-components-freeze.md)
+        - [自定义组件冻结（V2）](state-management/arkts-custom-components-freezeV2.md)<!--RP8--><!--RP8End-->
     - 组件扩展<!--arkts-extend-components-->
       - [组件扩展概述](state-management/arkts-extend-components-overview.md)
       - [\@Builder装饰器：自定义构建函数](state-management/arkts-builder.md)
-      - [\@LocalBuilder装饰器： 维持组件关系](state-management/arkts-localBuilder.md)
+      - [\@LocalBuilder装饰器：维持组件关系](state-management/arkts-localBuilder.md)
       - [\@BuilderParam装饰器：引用\@Builder函数](state-management/arkts-builderparam.md)
       - [wrapBuilder：封装全局@Builder](state-management/arkts-wrapBuilder.md)
       - [mutableBuilder：实现全局@Builder动态更新](state-management/arkts-mutableBuilder.md) 
       - [\@Styles装饰器：定义组件重用样式](state-management/arkts-style.md)
       - [\@Extend装饰器：定义扩展组件样式](state-management/arkts-extend.md)
       - [stateStyles：多态样式](state-management/arkts-statestyles.md)
-      - [\@AnimatableExtend装饰器：定义可动画属性](state-management/arkts-animatable-extend.md)
-    - [\@Require装饰器：校验构造传参](state-management/arkts-require.md)
+      - [@AnimatableExtend装饰器：定义可动画属性](state-management/arkts-animatable-extend.md)
+    - [@Require装饰器：校验构造传参](state-management/arkts-require.md)
   - 学习UI范式状态管理<!--arkts-state-management-->
     - [状态管理概述](state-management/arkts-state-management-overview.md)
     - [状态管理原理介绍](state-management/arkts-state-management-introduce.md)
@@ -62,16 +62,16 @@
     - 状态管理（V2）<!--arkts-state-management-v2-->
       - 管理组件拥有的状态<!--arkts-v2-manage-component-state-->
         - [\@Local装饰器：组件内部状态](state-management/arkts-new-local.md)
-        - [\@Param：组件外部输入](state-management/arkts-new-param.md)
-        - [\@Once：初始化同步一次](state-management/arkts-new-once.md)
+        - [\@Param装饰器：组件外部输入](state-management/arkts-new-param.md)
+        - [\@Once装饰器：初始化同步一次](state-management/arkts-new-once.md)
         - [\@Event装饰器：规范组件输出](state-management/arkts-new-event.md)
-        - [\@Provider装饰器和\@Consumer装饰器：跨组件层级双向同步](state-management/arkts-new-provider-and-consumer.md)
+        - [\@Provider和\@Consumer装饰器：跨组件层级双向同步](state-management/arkts-new-provider-and-consumer.md)
       - 管理数据对象的状态<!--arkts-v2-manage-data-object-state-->
         - [\@ObservedV2装饰器和\@Trace装饰器：类属性变化观测](state-management/arkts-new-observedV2-and-trace.md)
         - [\@Monitor装饰器：状态变量修改异步监听](state-management/arkts-new-monitor.md)
         - [\@SyncMonitor装饰器：状态变量修改同步监听](state-management/arkts-new-syncmonitor.md)
         - [\@Computed装饰器：计算属性](state-management/arkts-new-computed.md)
-        - [\@Type装饰器：标记类属性的类型](state-management/arkts-new-type.md)
+        - [\@Type装饰器: 标记类属性的类型](state-management/arkts-new-type.md)
       - 管理应用拥有的状态<!--arkts-v2-manage-application-state-->
         - [AppStorageV2: 应用全局UI状态存储](state-management/arkts-new-appstoragev2.md)
         - [PersistenceV2: 持久化存储UI状态](state-management/arkts-new-persistencev2.md)

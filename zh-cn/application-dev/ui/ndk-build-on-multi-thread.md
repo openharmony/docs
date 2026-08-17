@@ -264,7 +264,7 @@ export const disposeNodeTreeOnMultiThread: (content1: Object) => void;
 
 <!-- @[cmake_start](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkUISample/NdkBuildOnMultiThread/entry/src/main/cpp/CMakeLists.txt) -->
 
-``` cpp
+``` Text
 # the minimum version of CMake.
 cmake_minimum_required(VERSION 3.5.0)
 project(myapp)
