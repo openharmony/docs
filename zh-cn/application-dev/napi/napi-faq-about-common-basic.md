@@ -73,7 +73,7 @@ extern "C" __attribute__((constructor)) void RegisterEntryModule()
 
 可参考文档：  
 
-[Native侧子线程与UI主线程通信](https://developer.huawei.com/consumer/cn/doc/best-practices/bpta-native-sub-main-comm) 
+[Native侧子线程与UI主线程通信](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides/native_subthread-to-uimain) 
 
 [使用Node-API接口进行异步任务开发](use-napi-asynchronous-task.md)   
 
