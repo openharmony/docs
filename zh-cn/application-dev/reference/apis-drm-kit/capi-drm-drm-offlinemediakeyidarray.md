@@ -1,4 +1,4 @@
-# DRM_OfflineMediakeyIdArray
+# DRM_OfflineMediaKeyIdArray
 
 <!--Kit: Drm Kit-->
 <!--Subsystem: Multimedia-->

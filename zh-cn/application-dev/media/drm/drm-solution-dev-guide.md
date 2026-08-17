@@ -370,9 +370,7 @@ group("hdf_clearplay_interfaces") {
 
 ### 服务代码编译
 
-与编译系统部件编译类似：
-
-`./build.sh --product-name rk3568 --ccache --build-target drivers_peripheral_clearplay`
+与编译系统部件编译类似：`./build.sh --product-name rk3568 --ccache --build-target drivers_peripheral_clearplay`
 
 编译生成的二进制文件如下：
 

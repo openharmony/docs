@@ -1,4 +1,4 @@
-# 模块描述
+# @ohos.multimedia.drm
 
 <!--Kit: Drm Kit-->
 <!--Subsystem: Multimedia-->
