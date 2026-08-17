@@ -38,7 +38,7 @@
     - [SystemSoundPlayer (Sound Effect Player)](js-apis-inner-multimedia-systemSoundPlayer.md)
     <!--Del-->
     - [ringtonePlayer (Ringtone Player) (System API)](js-apis-inner-multimedia-ringtonePlayer-sys.md)
-    - [systemTonePlayer (System Alert Tone Player) (System API)](js-apis-inner-multimedia-systemTonePlayer-sys.md)
+    - [systemTonePlayer (System Tone Player) (System API)](js-apis-inner-multimedia-systemTonePlayer-sys.md)
     <!--DelEnd-->
 - ArkTS Components<!--audio-comp-->
   - [@ohos.multimedia.avVolumePanel (Volume Panel)](ohos-multimedia-avvolumepanel.md)
