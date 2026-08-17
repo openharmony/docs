@@ -6,7 +6,7 @@
 <!--Tester: @Filger-->
 <!--Adviser: @w_Machine_cc-->
 
-音量管理。
+AudioVolumeManager是音频系统中的音量管理模块。本模块提供音频音量管理能力，包括获取和设置应用级音量、获取音频流音量及音量范围、监听系统和应用级音量变化等。当需要精确控制应用音量或响应系统音量变化时，使用本模块接口完成相关操作。
 
 在使用AudioVolumeManager的接口之前，需先通过[getVolumeManager](arkts-apis-audio-AudioManager.md#getvolumemanager9)获取AudioVolumeManager实例。
 
@@ -33,7 +33,7 @@ getVolumeGroupManager(groupId: number, callback: AsyncCallback<AudioVolumeGroupM
 
 | 参数名     | 类型                                                         | 必填 | 说明                                                        |
 | ---------- | ------------------------------------------------------------ | ---- |-----------------------------------------------------------|
-| groupId    | number                                    | 是   | 音量组id，默认使用DEFAULT_VOLUME_GROUP_ID。                         |
+| groupId    | number                                    | 是   | 音量组ID，默认使用DEFAULT_VOLUME_GROUP_ID。                         |
 | callback   | AsyncCallback&lt;[AudioVolumeGroupManager](arkts-apis-audio-AudioVolumeGroupManager.md)&gt; | 是   | 回调函数。当获取音频组音量管理器实例成功，err为undefined，data为获取到的音频组音量管理器实例；否则为错误对象。 |
 
 **示例：**
@@ -46,13 +46,12 @@ let audioVolumeGroupManager: audio.AudioVolumeGroupManager;
 
 audioVolumeManager.getVolumeGroupManager(groupId, (err: BusinessError, value: audio.AudioVolumeGroupManager) => {
   if (err) {
-    console.error(`Failed to get volume group manager. Code: ${err.code}, message: ${err.message}`);
+    console.error(`Failed to obtain the volume group manager. Code: ${err.code}, message: ${err.message}`);
     return;
   }
-  console.info('Succeeded in getting volume group manager.');
   audioVolumeGroupManager = value;
+  console.info('Succeeded in obtaining the volume group manager.');
 });
-
 ```
 
 ## getVolumeGroupManager<sup>9+</sup>
@@ -67,7 +66,7 @@ getVolumeGroupManager(groupId: number\): Promise<AudioVolumeGroupManager\>
 
 | 参数名     | 类型                                      | 必填 | 说明                               |
 | ---------- | ---------------------------------------- | ---- |----------------------------------|
-| groupId    | number                                   | 是   | 音量组id，默认使用DEFAULT_VOLUME_GROUP_ID。|
+| groupId    | number                                   | 是   | 音量组ID，默认使用DEFAULT_VOLUME_GROUP_ID。|
 
 **返回值：**
 
@@ -78,17 +77,16 @@ getVolumeGroupManager(groupId: number\): Promise<AudioVolumeGroupManager\>
 **示例：**
 
 ```ts
-import { audio } from '@kit.AudioKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 let groupId: number = audio.DEFAULT_VOLUME_GROUP_ID;
 let audioVolumeGroupManager: audio.AudioVolumeGroupManager;
 
 audioVolumeManager.getVolumeGroupManager(groupId).then((value: audio.AudioVolumeGroupManager) => {
-  console.info('Succeeded in getting volume group manager.');
   audioVolumeGroupManager = value;
+  console.info('Succeeded in obtaining the volume group manager.');
 }).catch((err: BusinessError) => {
-  console.error(`Failed to get volume group manager. Code: ${err.code}, message: ${err.message}`);
+  console.error(`Failed to obtain the volume group manager. Code: ${err.code}, message: ${err.message}`);
 });
 ```
 
@@ -106,7 +104,7 @@ getVolumeGroupManagerSync(groupId: number\): AudioVolumeGroupManager
 
 | 参数名     | 类型                                      | 必填 | 说明                               |
 | ---------- | ---------------------------------------- | ---- |----------------------------------|
-| groupId    | number                                   | 是   | 音量组id，默认使用DEFAULT_VOLUME_GROUP_ID。|
+| groupId    | number                                   | 是   | 音量组ID，默认使用DEFAULT_VOLUME_GROUP_ID。|
 
 **返回值：**
 
@@ -130,10 +128,10 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   let audioVolumeGroupManager: audio.AudioVolumeGroupManager = audioVolumeManager.getVolumeGroupManagerSync(audio.DEFAULT_VOLUME_GROUP_ID);
-  console.info('Succeeded in getting volume group manager.');
+  console.info('Succeeded in obtaining the volume group manager.');
 } catch (err) {
   let error = err as BusinessError;
-  console.error(`Failed to get volume group manager. Code: ${error.code}, message: ${error.message}`);
+  console.error(`Failed to obtain the volume group manager. Code: ${error.code}, message: ${error.message}`);
 }
 ```
 
@@ -151,15 +149,17 @@ getAppVolumePercentage(): Promise<number\>
 
 | 类型                | 说明                 |
 | ------------------- |--------------------|
-| Promise&lt;number&gt; | Promise对象，返回应用的音量。 |
+| Promise&lt;number&gt; | Promise对象，返回应用的音量。<br>取值范围为[0, 100]，单位为百分号（%）。 |
 
 **示例：**
 
 ```ts
-import { audio } from '@kit.AudioKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 audioVolumeManager.getAppVolumePercentage().then((value: number) => {
-  console.info(`app volume is ${value}.`);
+  console.info(`Succeeded in obtaining the app volume percentage, appVolumePercentage: ${value}.`);
+}).catch((err: BusinessError) => {
+  console.error(`Failed to obtain the app volume percentage. Code: ${err.code}, message: ${err.message}`);
 });
 ```
 
@@ -177,13 +177,13 @@ setAppVolumePercentage(volume: number\): Promise<void\>
 
 | 参数名     | 类型                                      | 必填 | 说明       |
 | ---------- | ---------------------------------------- | ---- |----------|
-| volume    | number                                   | 是   | 要设置的音量值。 |
+| volume    | number                                   | 是   | 要设置的音量值。<br>取值范围为[0, 100]，单位为百分号（%）。 |
 
 **返回值：**
 
 | 类型                | 说明                            |
 | ------------------- | ------------------------------- |
-| Promise&lt;void&gt; | Promise对象。无返回结果的Promise对象。 |
+| Promise&lt;void&gt; | Promise对象，无返回结果。 |
 
 **错误码：**
 
@@ -197,10 +197,12 @@ setAppVolumePercentage(volume: number\): Promise<void\>
 **示例：**
 
 ```ts
-import { audio } from '@kit.AudioKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 audioVolumeManager.setAppVolumePercentage(20).then(() => {
-  console.info(`set app volume success.`);
+  console.info('Succeeded in setting the app volume percentage.');
+}).catch((err: BusinessError) => {
+  console.error(`Failed to set the app volume percentage. Code: ${err.code}, message: ${err.message}`);
 });
 ```
 
@@ -211,7 +213,8 @@ on(type: 'volumeChange', callback: Callback\<VolumeEvent>): void
 监听系统音量变化事件（当系统音量发生变化时触发）。使用callback异步回调。
 
 > **说明：**
-> 从API version 9开始支持，从API version 20开始废弃，建议使用[on('streamVolumeChange')](arkts-apis-audio-AudioVolumeManager.md#onstreamvolumechange20)替代。
+>
+> 从API version 9开始支持，从API version 20开始废弃，建议使用[on('streamVolumeChange')](#onstreamvolumechange20)替代。
 
 **系统能力：** SystemCapability.Multimedia.Audio.Volume
 
@@ -235,9 +238,7 @@ on(type: 'volumeChange', callback: Callback\<VolumeEvent>): void
 
 ```ts
 audioVolumeManager.on('volumeChange', (volumeEvent: audio.VolumeEvent) => {
-  console.info(`VolumeType of stream: ${volumeEvent.volumeType} `);
-  console.info(`Volume level: ${volumeEvent.volume} `);
-  console.info(`Whether to updateUI: ${volumeEvent.updateUi} `);
+  console.info(`Volume changed, volumeEvent: ${JSON.stringify(volumeEvent)}.`);
 });
 ```
 
@@ -245,10 +246,11 @@ audioVolumeManager.on('volumeChange', (volumeEvent: audio.VolumeEvent) => {
 
 off(type: 'volumeChange', callback?: Callback\<VolumeEvent>): void
 
-取消监听系统音量变化事件。使用callback异步回调。
+取消监听系统音量变化事件。
 
 > **说明：**
-> 从API version 12开始支持，从API version 20开始废弃，建议使用[off('streamVolumeChange')](arkts-apis-audio-AudioVolumeManager.md#offstreamvolumechange20)替代。
+>
+> 从API version 12开始支持，从API version 20开始废弃，建议使用[off('streamVolumeChange')](#offstreamvolumechange20)替代。
 
 **系统能力：** SystemCapability.Multimedia.Audio.Volume
 
@@ -256,8 +258,8 @@ off(type: 'volumeChange', callback?: Callback\<VolumeEvent>): void
 
 | 参数名   | 类型                                   | 必填 | 说明                                                         |
 | -------- | -------------------------------------- | ---- | ------------------------------------------------------------ |
-| type     | string                                 | 是   | 事件回调类型，支持的事件为'volumeChange'，当取消监听系统音量变化事件时，触发该事件。 |
-| callback | Callback<[VolumeEvent](arkts-apis-audio-i.md#volumeevent9)> | 否   | 回调函数，返回变化后的音量信息。 |
+| type     | string                                 | 是   | 事件回调类型，支持的事件为'volumeChange'。 |
+| callback | Callback<[VolumeEvent](arkts-apis-audio-i.md#volumeevent9)> | 否   | 回调函数。传入回调函数时，仅取消该回调对应的监听事件，需与[on('volumeChange')](#onvolumechangedeprecated)绑定同一回调函数；不传参数时，取消此事件类型下所有已订阅的监听事件。 |
 
 **错误码：**
 
@@ -276,9 +278,7 @@ audioVolumeManager.off('volumeChange');
 
 // 同一监听事件中，on方法和off方法传入callback参数一致，off方法取消对应on方法订阅的监听。
 let volumeChangeCallback = (volumeEvent: audio.VolumeEvent) => {
-  console.info(`VolumeType of stream: ${volumeEvent.volumeType} `);
-  console.info(`Volume level: ${volumeEvent.volume} `);
-  console.info(`Whether to updateUI: ${volumeEvent.updateUi} `);
+  console.info(`Volume changed, volumeEvent: ${JSON.stringify(volumeEvent)}.`);
 };
 
 audioVolumeManager.on('volumeChange', volumeChangeCallback);
@@ -313,9 +313,7 @@ on(type: 'appVolumeChange', callback: Callback\<VolumeEvent>): void
 
 ```ts
 audioVolumeManager.on('appVolumeChange', (volumeEvent: audio.VolumeEvent) => {
-  console.info(`VolumeType of stream: ${volumeEvent.volumeType} `);
-  console.info(`Volume level: ${volumeEvent.volume} `);
-  console.info(`Whether to updateUI: ${volumeEvent.updateUi} `);
+  console.info(`App volume changed, appVolumeEvent: ${JSON.stringify(volumeEvent)}.`);
 });
 ```
 
@@ -323,7 +321,7 @@ audioVolumeManager.on('appVolumeChange', (volumeEvent: audio.VolumeEvent) => {
 
 off(type: 'appVolumeChange', callback?: Callback\<VolumeEvent>): void
 
-取消监听当前应用的应用级音量变化事件。使用callback异步回调。
+取消监听当前应用的应用级音量变化事件。
 
 **系统能力：** SystemCapability.Multimedia.Audio.Volume
 
@@ -331,8 +329,8 @@ off(type: 'appVolumeChange', callback?: Callback\<VolumeEvent>): void
 
 | 参数名   | 类型                                   | 必填 | 说明                                                         |
 | -------- | -------------------------------------- | ---- | ------------------------------------------------------------ |
-| type     | string                                 | 是   | 事件回调类型，支持的事件为'appVolumeChange'，当取消监听当前应用的应用级音量变化事件时，触发该事件。 |
-| callback | Callback<[VolumeEvent](arkts-apis-audio-i.md#volumeevent9)> | 否   | 回调函数，返回变化后的音量信息。 |
+| type     | string                                 | 是   | 事件回调类型，支持的事件为'appVolumeChange'。 |
+| callback | Callback<[VolumeEvent](arkts-apis-audio-i.md#volumeevent9)> | 否   | 回调函数。传入回调函数时，仅取消该回调对应的监听事件，需与[on('appVolumeChange')](#onappvolumechange19)绑定同一回调函数；不传参数时，取消此事件类型下所有已订阅的监听事件。 |
 
 **错误码：**
 
@@ -350,9 +348,7 @@ audioVolumeManager.off('appVolumeChange');
 
 // 同一监听事件中，on方法和off方法传入callback参数一致，off方法取消对应on方法订阅的监听。
 let appVolumeChangeCallback = (volumeEvent: audio.VolumeEvent) => {
-  console.info(`VolumeType of stream: ${volumeEvent.volumeType} `);
-  console.info(`Volume level: ${volumeEvent.volume} `);
-  console.info(`Whether to updateUI: ${volumeEvent.updateUi} `);
+  console.info(`App volume changed, appVolumeEvent: ${JSON.stringify(volumeEvent)}.`);
 };
 
 audioVolumeManager.on('appVolumeChange', appVolumeChangeCallback);
@@ -393,16 +389,15 @@ getVolumeByStream(streamUsage: StreamUsage): number
 **示例：**
 
 ```ts
-// 获取指定音频流的音量值。
 import { BusinessError } from '@kit.BasicServicesKit';
-import { audio } from '@kit.AudioKit'
 
+// 获取指定音频流的音量值。
 try {
-  let volume : number = audio.getAudioManager().getVolumeManager().getVolumeByStream(audio.StreamUsage.STREAM_USAGE_MUSIC);
-  console.info(`Obtains the volume of a stream success.`);
+  let volume: number = audio.getAudioManager().getVolumeManager().getVolumeByStream(audio.StreamUsage.STREAM_USAGE_MUSIC);
+  console.info(`Succeeded in obtaining the volume by stream, volume: ${volume}.`);
 } catch (err) {
   let error = err as BusinessError;
-  console.error(`Failed to obtains the volume of a stream, error: ${error}`);
+  console.error(`Failed to obtain the volume by stream. Code: ${error.code}, message: ${error.message}`);
 }
 ```
 
@@ -439,16 +434,15 @@ getMinVolumeByStream(streamUsage: StreamUsage): number
 **示例：**
 
 ```ts
-// 获取指定音频流的最小音量。
 import { BusinessError } from '@kit.BasicServicesKit';
-import { audio } from '@kit.AudioKit'
 
+// 获取指定音频流的最小音量。
 try {
-  let volume : number = audio.getAudioManager().getVolumeManager().getMinVolumeByStream(audio.StreamUsage.STREAM_USAGE_MUSIC);
-  console.info(`Obtains the minimum volume allowed for a stream success.`);
+  let volume: number = audio.getAudioManager().getVolumeManager().getMinVolumeByStream(audio.StreamUsage.STREAM_USAGE_MUSIC);
+  console.info(`Succeeded in obtaining the minimum volume by stream, minVolume: ${volume}.`);
 } catch (err) {
   let error = err as BusinessError;
-  console.error(`Failed to obtains the minimum volume allowed for a stream, error: ${error}`);
+  console.error(`Failed to obtain the minimum volume by stream. Code: ${error.code}, message: ${error.message}`);
 }
 ```
 
@@ -485,16 +479,15 @@ getMaxVolumeByStream(streamUsage: StreamUsage): number
 **示例：**
 
 ```ts
-// 获取指定音频流的最大音量。
 import { BusinessError } from '@kit.BasicServicesKit';
-import { audio } from '@kit.AudioKit'
 
+// 获取指定音频流的最大音量。
 try {
-  let volume : number = audio.getAudioManager().getVolumeManager().getMaxVolumeByStream(audio.StreamUsage.STREAM_USAGE_MUSIC);
-  console.info(`Obtains the maximum volume allowed for a stream success.`);
+  let volume: number = audio.getAudioManager().getVolumeManager().getMaxVolumeByStream(audio.StreamUsage.STREAM_USAGE_MUSIC);
+  console.info(`Succeeded in obtaining the maximum volume by stream, maxVolume: ${volume}.`);
 } catch (err) {
   let error = err as BusinessError;
-  console.error(`Failed to obtains the maximum volume allowed for a stream, error: ${error}`);
+  console.error(`Failed to obtain the maximum volume by stream. Code: ${error.code}, message: ${error.message}`);
 }
 ```
 
@@ -529,18 +522,16 @@ isSystemMutedForStream(streamUsage: StreamUsage): boolean
 **示例：**
 
 ```ts
-// 检查指定音频流是否静音。
 import { BusinessError } from '@kit.BasicServicesKit';
-import { audio } from '@kit.AudioKit'
 
+// 检查指定音频流是否静音。
 try {
-  let isMuted : boolean = audio.getAudioManager().getVolumeManager().isSystemMutedForStream(audio.StreamUsage.STREAM_USAGE_MUSIC);
-  console.info(`Checks whether the system is muted based on the stream success.`);
+  let isMuted: boolean = audio.getAudioManager().getVolumeManager().isSystemMutedForStream(audio.StreamUsage.STREAM_USAGE_MUSIC);
+  console.info(`Succeeded in checking whether the system is muted for the stream, isMuted: ${isMuted}.`);
 } catch (err) {
   let error = err as BusinessError;
-  console.error(`Failed to checks whether the system is muted based on the stream, error: ${error}`);
+  console.error(`Failed to check whether the system is muted for the stream. Code: ${error.code}, message: ${error.message}`);
 }
-
 ```
 ## getVolumeInUnitOfDbByStream<sup>20+</sup>
 
@@ -554,7 +545,7 @@ getVolumeInUnitOfDbByStream(streamUsage: StreamUsage, volumeLevel: number, devic
 
 | 参数名   | 类型                                   | 必填 | 说明                                                         |
 | -------- | -------------------------------------- | ---- | ------------------------------------------------------------ |
-| streamUsage     | [StreamUsage](arkts-apis-audio-e.md#streamusage)                                 | 是   | 音频流。 |
+| streamUsage     | [StreamUsage](arkts-apis-audio-e.md#streamusage)                                 | 是   | 音频流类型。 |
 | volumeLevel     | number                                 | 是   | 音量等级。 |
 | device     | [DeviceType](arkts-apis-audio-e.md#devicetype)                                 | 是   | 设备类型。 |
 
@@ -575,16 +566,15 @@ getVolumeInUnitOfDbByStream(streamUsage: StreamUsage, volumeLevel: number, devic
 **示例：**
 
 ```ts
-// 获取系统通过音频流、音量等级和设备类型计算出的音量dB值。
 import { BusinessError } from '@kit.BasicServicesKit';
-import { audio } from '@kit.AudioKit'
 
+// 获取系统通过音频流、音量等级和设备类型计算出的音量dB值。
 try {
-  let volumeInDb : number = audio.getAudioManager().getVolumeManager().getVolumeInUnitOfDbByStream(audio.StreamUsage.STREAM_USAGE_MUSIC, 5, audio.DeviceType.SPEAKER);
-  console.info('Succeeded in getting volume in unit of db by stream.');
+  let volumeInDb: number = audio.getAudioManager().getVolumeManager().getVolumeInUnitOfDbByStream(audio.StreamUsage.STREAM_USAGE_MUSIC, 5, audio.DeviceType.SPEAKER);
+  console.info(`Succeeded in obtaining the volume in dB by stream, volumeInDb: ${volumeInDb}.`);
 } catch (err) {
   let error = err as BusinessError;
-  console.error(`Failed to get volume in unit of db by stream. Code: ${error.code}, message: ${error.message}`);
+  console.error(`Failed to obtain the volume in dB by stream. Code: ${error.code}, message: ${error.message}`);
 }
 ```
 
@@ -601,7 +591,7 @@ try {
 | 参数名   | 类型                                   | 必填 | 说明                                                         |
 | -------- | -------------------------------------- | ---- | ------------------------------------------------------------ |
 | type     | string                                 | 是   | 事件回调类型，支持的事件为'streamVolumeChange'，当系统音量发生变化时，触发该事件。 |
-| streamUsage     | [StreamUsage](arkts-apis-audio-e.md#streamusage)                                 | 是   | 音频流使用类型。 |
+| streamUsage     | [StreamUsage](arkts-apis-audio-e.md#streamusage)                                 | 是   | 需要监听音量变化的音频流类型。 |
 | callback | Callback<[StreamVolumeEvent](arkts-apis-audio-i.md#streamvolumeevent20)> | 是   | 回调函数，返回变化后的音量信息。 |
 
 **错误码：**
@@ -616,9 +606,7 @@ try {
 
 ```ts
 audioVolumeManager.on('streamVolumeChange', audio.StreamUsage.STREAM_USAGE_MUSIC, (streamVolumeEvent: audio.StreamVolumeEvent) => {
-  console.info(`StreamUsage of stream: ${streamVolumeEvent.streamUsage} `);
-  console.info(`Volume level: ${streamVolumeEvent.volume} `);
-  console.info(`Whether to updateUI: ${streamVolumeEvent.updateUi} `);
+  console.info(`Stream volume changed, streamVolumeEvent: ${JSON.stringify(streamVolumeEvent)}.`);
 });
 ```
 
@@ -626,7 +614,7 @@ audioVolumeManager.on('streamVolumeChange', audio.StreamUsage.STREAM_USAGE_MUSIC
 
 off(type: 'streamVolumeChange', callback?: Callback\<StreamVolumeEvent>): void
 
-取消监听系统音频流音量变化事件（当系统音频流音量发生变化时触发）。使用callback异步回调。
+取消监听系统音频流音量变化事件。
 
 **系统能力：** SystemCapability.Multimedia.Audio.Volume
 
@@ -634,8 +622,8 @@ off(type: 'streamVolumeChange', callback?: Callback\<StreamVolumeEvent>): void
 
 | 参数名   | 类型                                   | 必填 | 说明                                                         |
 | -------- | -------------------------------------- | ---- | ------------------------------------------------------------ |
-| type     | string                                 | 是   | 事件回调类型，支持的事件为'streamVolumeChange'，当取消监听系统音量变化事件时，触发该事件。 |
-| callback | Callback<[StreamVolumeEvent](arkts-apis-audio-i.md#streamvolumeevent20)> | 否   | 回调函数，返回变化后的音量信息。 |
+| type     | string                                 | 是   | 事件回调类型，支持的事件为'streamVolumeChange'。 |
+| callback | Callback<[StreamVolumeEvent](arkts-apis-audio-i.md#streamvolumeevent20)> | 否   | 回调函数。传入回调函数时，仅取消该回调对应的监听事件，需与[on('streamVolumeChange')](#onstreamvolumechange20)绑定同一回调函数；不传参数时，取消此事件类型下所有已订阅的监听事件。 |
 
 **示例：**
 
@@ -645,9 +633,7 @@ audioVolumeManager.off('streamVolumeChange');
 
 // 同一监听事件中，on方法和off方法传入callback参数一致，off方法取消对应on方法订阅的监听。
 let streamVolumeChangeCallback = (streamVolumeEvent: audio.StreamVolumeEvent) => {
-  console.info(`StreamUsage of stream: ${streamVolumeEvent.streamUsage} `);
-  console.info(`Volume level: ${streamVolumeEvent.volume} `);
-  console.info(`Whether to updateUI: ${streamVolumeEvent.updateUi} `);
+  console.info(`Stream volume changed, streamVolumeEvent: ${JSON.stringify(streamVolumeEvent)}.`);
 };
 
 audioVolumeManager.on('streamVolumeChange', audio.StreamUsage.STREAM_USAGE_MUSIC, streamVolumeChangeCallback);

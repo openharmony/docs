@@ -6,11 +6,11 @@
 <!--Designer: @zhanglu161-->
 <!--Tester: @lotsof-->
 <!--Adviser: @jinqiuheng-->
-<!-- md-trans-meta sourceCommit=246cbb87769d7ba2d4f71c6a8b417a57ec2cbfa6 translatedAt=2026-08-03T08:17:13.819Z pushedAt=2026-08-03T09:36:02.639Z -->
+<!-- md-trans-meta sourceCommit=b74b00cc5805225620b940e38531d901e6362478 translatedAt=2026-08-15T01:49:21.048Z pushedAt=2026-08-15T07:42:44.734Z -->
 
 ## Overview
 
-The FFRT serial queue is implemented based on the coroutine scheduling model. It provides efficient message queue functions and supports multiple service scenarios, such as asynchronous communication, mobile data peak clipping, lock-free status and resource management, and architecture decoupling. The following functions are supported:
+The FFRT serial queue is implemented based on the coroutine scheduling model. It provides efficient message queue functions and supports multiple service scenarios, such as asynchronous communication, traffic peak clipping, lock-free status and resource management, and architecture decoupling. The following functions are supported:
 
 - **Queue creation and destruction**: The queue name and priority can be specified during creation. Each queue is equivalent to an independent thread. Tasks in the queue are executed asynchronously compared with user threads.
 
@@ -164,18 +164,18 @@ int SerialQueueCExec()
 
 ## Available APIs
 
-The main FFRT APIs involved in the preceding example are as follows:
+The main FFRT APIs involved in the preceding sample are as follows. For details, see the methods under [ffrt_queue_t](ffrt-api-guideline-c.md#ffrt_queue_t):
 
 | Name                                                       | Description                                                                 |
 | ----------------------------------------------------------- | --------------------------------------------------------------------- |
-| [ffrt_queue_create](ffrt-api-guideline-c.md#ffrt_queue_t)   | Creates a queue.                                                           |
-| [ffrt_queue_destroy](ffrt-api-guideline-c.md#ffrt_queue_t)  | Destroys a queue.                                                           |
-| [ffrt_queue_submit_f](ffrt-api-guideline-c.md#ffrt_queue_t) | Submits a task to a queue.<br>**Note**: This API is supported since API version 20.|
+| ffrt_queue_create   | Creates a queue.                                                            |
+| ffrt_queue_destroy  | Destroys a queue.                                                            |
+| ffrt_queue_submit_f | Submits a task to the queue.<br/>**Note:** This API is supported since API version 20. |
 
 > **NOTE**
 >
 > - For details about how to use FFRT C++ APIs, see [Using FFRT C++ APIs](ffrt-development-guideline.md#using-ffrt-c-api-1).
-> - When using FFRT C or C++ APIs, you can use the FFRT C++ API third-party library to simplify header file inclusion, that is, use the `#include "ffrt/ffrt.h"` statement.
+> - When using FFRT C or C++ APIs, you can use the FFRT C++ API third-party library to simplify header file inclusion, that is, use the `#include "ffrt/ffrt.h"` header file inclusion statement.
 
 ## Constraints
 

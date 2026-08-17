@@ -6,7 +6,7 @@
 <!--Designer: @StevenLai1994-->
 <!--Tester: @gcw_KuLfPSbe-->
 <!--Adviser: @jinqiuheng-->
-<!-- md-trans-meta sourceCommit=0d7fc68be790c392e3877efaaaaf4b9e3eff81ca translatedAt=2026-07-29T10:48:30.504Z pushedAt=2026-07-29T12:29:35.918Z -->
+<!-- md-trans-meta sourceCommit=75499f1960105c83d6903f3ae3913c285e7bd788 translatedAt=2026-08-15T01:45:58.132Z pushedAt=2026-08-15T07:07:02.660Z -->
 
 ## **Available APIs**
 
@@ -124,7 +124,7 @@ The following describes how to subscribe an address sanitizer event for an array
           const char *names[] = {EVENT_ADDRESS_SANITIZER};
           // Add the events to watch, for example, system events.
           OH_HiAppEvent_SetAppEventFilter(systemEventWatcher, DOMAIN_OS, 0, names, 1);
-          // Set the implemented callback. After receiving the event, the watcher immediately triggers the OnReceive callback.
+          // Set the implemented callback function. The watcher triggers the OnReceive callback immediately after receiving an event.
           OH_HiAppEvent_SetWatcherOnReceive(systemEventWatcher, OnReceive);
           // Add a watcher to listen for the specified event.
           OH_HiAppEvent_AddWatcher(systemEventWatcher);

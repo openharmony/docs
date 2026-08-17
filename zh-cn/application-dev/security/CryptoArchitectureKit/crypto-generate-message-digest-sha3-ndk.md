@@ -1,4 +1,4 @@
-# 消息摘要计算SHA3-256(C/C++)
+# 消息摘要计算SHA3(C/C++)
 
 <!--Kit: Crypto Architecture Kit-->
 <!--Subsystem: Security-->

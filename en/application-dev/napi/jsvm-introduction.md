@@ -1,10 +1,12 @@
 # JSVM-API Overview
-<!--Kit: NDK Development-->
+
+<!--Kit: ArkTS-->
 <!--Subsystem: arkcompiler-->
-<!--Owner: @yuanxiaogou; @string_sz-->
+<!--Owner: @yuanxiaogou-->
 <!--Designer: @knightaoko-->
 <!--Tester: @test_lzz-->
-<!--Adviser: @fang-jinxu-->
+<!--Adviser: @k1ngqaquuu-->
+<!-- md-trans-meta sourceCommit=f34ddda28f1bcebae0ddfbd293a9ffe8cb2789f9 translatedAt=2026-08-12T06:27:00.283Z pushedAt=2026-08-12T08:58:14.295Z -->
 
 ## Introduction
 
@@ -14,14 +16,18 @@ OpenHarmony JSVM-API provides a set of APIs written in C programming language th
 
 OpenHarmony JSVM-API is not thread-safe. You need to ensure the thread safety of JSVM-API.
 
-JSVM-API allows dynamically loaded JS code to be directly run during application runtime. With JSVM-API, you can also use C/C++ to implement core functionalities that demand high performance or closely rely on underlying system invocation, register C++ methods in JS code, and directly call the JS code to improve the execution speed.
+JSVM-API allows dynamically loaded JS code to be directly run during application runtime. With JSVM-API, you can also use C/C++ to implement core functionalities that demand high performance or closely rely on underlying system invocation, register C++ methods in JS code, and directly call them in JS code to improve the execution speed.
 
 Unless otherwise specified, JSVM-API in this document refers to OpenHarmony JSVM-API.
+
+> **NOTE**
+>
+> JSVM-API only supports interaction between JS and C/C++. To implement interaction between ArkTS and C/C++, see [Node-API Overview](napi-introduction.md).
 
 ## JSVM-API Architecture
 
 **Figure 1** JSVM-API architecture
-  
+
 ![jsvm-api_mechanism](figures/jsvm-api_mechanism.png)
 
 - Native Module: module developed using JSVM-API in C/C++.
@@ -62,4 +68,4 @@ The interaction between JSVM-API and a native module is as follows:
 
 1. **Initialization**: Initialize the JSVM and JS context on the native module and register native functions in JS code. The native functions are hooked to **GlobalThis**, which is the global context of the JS execution environment.
 
-2. **Invocation**: Call JS APIs to invoke the native functions that are registered in **GlobalThis** using JSVM-API. The JS engine calls the corresponding C/C++ functions.
+2. **Invocation**: When the JS side calls the methods registered in the JS global context via JSVM-API, the JS engine locates and invokes the corresponding C/C++ methods.

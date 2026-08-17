@@ -6,7 +6,7 @@
 <!--Designer: @wanyanglan-->
 <!--Tester: @nobuggers-->
 <!--Adviser: @ge-yafang-->
-<!-- md-trans-meta sourceCommit=aa0a67ae9790115e74a1e29268966a05ae945ba8 translatedAt=2026-08-03T11:14:40.055Z pushedAt=2026-08-04T02:12:19.625Z -->
+<!-- md-trans-meta sourceCommit=379459ed39b4b4ff1b499df9523039b8689cb0ba translatedAt=2026-08-15T01:50:29.985Z pushedAt=2026-08-15T08:19:41.828Z -->
 
 ## Overview
 
@@ -219,7 +219,7 @@ Obtain the canvas that can be directly displayed through [RenderNode](../referen
      private rootNode: FrameNode | null = null;
      private myRenderNode = new MyRenderNodeIndirectDisplay();
    
-     // Create a PixeMap in aboutToAppear of MyNodeController.
+     // 4. Create a PixelMap in the aboutToAppear of MyNodeController.
      aboutToAppear(): void {
        let task = new taskpool.Task(createPixelMapAsync);
        taskpool.execute(task).then((pixel:Object)=>{

@@ -84,13 +84,13 @@ NODE_TEXT_INPUT_CARET_COLOR = 7002
 
 | 参数项 | 描述 |
 | -- | -- |
-| .value[0].u32 | 光标颜色数值，0xargb格式，形如 0xFFFF0000 表示红色。 |
+| .value[0].u32 | 光标颜色数值，0xARGB格式，形如 0xFFFF0000 表示红色。 |
 
 **返回：**
 
 | 类型 | 说明 |
 | -- | -- |
-| .value[0].u32 | 光标颜色数值，0xargb格式。 |
+| .value[0].u32 | 光标颜色数值，0xARGB格式。 |
 
 ## NODE_TEXT_INPUT_CARET_STYLE
 
@@ -204,13 +204,13 @@ NODE_TEXT_INPUT_PLACEHOLDER_COLOR = 7007
 
 | 参数项 | 描述 |
 | -- | -- |
-| .value[0].u32 | 颜色数值，0xargb格式，形如 0xFFFF0000 表示红色。 |
+| .value[0].u32 | 颜色数值，0xARGB格式，形如 0xFFFF0000 表示红色。 |
 
 **返回：**
 
 | 类型 | 说明 |
 | -- | -- |
-| .value[0].u32 | 颜色数值，0xargb格式。 |
+| .value[0].u32 | 颜色数值，0xARGB格式。 |
 
 ## NODE_TEXT_INPUT_PLACEHOLDER_FONT
 
@@ -306,13 +306,13 @@ NODE_TEXT_INPUT_SELECTED_BACKGROUND_COLOR = 7011
 
 | 参数项 | 描述 |
 | -- | -- |
-| .value[0].u32 | 颜色数值，0xargb格式，形如 0xFFFF0000 表示红色。 |
+| .value[0].u32 | 颜色数值，0xARGB格式，形如 0xFFFF0000 表示红色。 |
 
 **返回：**
 
 | 类型 | 说明 |
 | -- | -- |
-| .value[0].u32 | 颜色数值，0xargb格式。 |
+| .value[0].u32 | 颜色数值，0xARGB格式。 |
 
 ## NODE_TEXT_INPUT_SHOW_PASSWORD_ICON
 
@@ -380,7 +380,7 @@ NODE_TEXT_INPUT_CANCEL_BUTTON = 7014
 | -- | -- |
 | .value[0].i32 | 按钮样式，具体枚举值请参考[ArkUI_CancelButtonStyle](capi-text-input-h.md#arkui_cancelbuttonstyle)。默认值为ARKUI_CANCELBUTTON_STYLE_INPUT，表示清除按钮输入样式。 |
 | .value[1]?.f32 | 图标大小数值，单位为vp。取值范围：[0, +∞)。传入负数时不生效。不传入时使用系统默认图标大小。 |
-| .value[2]?.u32 | 按钮图标颜色数值，0xargb格式，形如 0xFFFF0000 表示红色。不传入时使用系统默认图标颜色。 |
+| .value[2]?.u32 | 按钮图标颜色数值，0xARGB格式，形如 0xFFFF0000 表示红色。不传入时使用系统默认图标颜色。 |
 | ?.string | 按钮图标地址，入参内容为图片本地地址，例如 /pages/icon.png。不传入时使用系统默认清除图标。 |
 
 **返回：**
@@ -389,7 +389,7 @@ NODE_TEXT_INPUT_CANCEL_BUTTON = 7014
 | -- | -- |
 | .value[0].i32 | 按钮样式[ArkUI_CancelButtonStyle](capi-text-input-h.md#arkui_cancelbuttonstyle)。 |
 | .value[1].f32 | 图标大小数值，单位为vp。 |
-| .value[2].u32 | 按钮图标颜色数值，0xargb格式。 |
+| .value[2].u32 | 按钮图标颜色数值，0xARGB格式。 |
 | .string | 按钮图标地址。 |
 
 ## NODE_TEXT_INPUT_TEXT_SELECTION
@@ -434,19 +434,19 @@ NODE_TEXT_INPUT_UNDERLINE_COLOR = 7016
 
 | 参数项 | 描述 |
 | -- | -- |
-| .value[0].u32 | typing下划线颜色，必填，表示键入时的下划线颜色，0xargb类型。 |
-| .value[1].u32 | normal下划线颜色，必填，表示非特殊状态时下划线颜色，0xargb类型。 |
-| .value[2].u32 | error下划线颜色，必填，表示错误时下划线颜色，0xargb类型。 |
-| .value[3].u32 | disable下划线颜色，必填，表示禁用时下划线颜色，0xargb类型。 |
+| .value[0].u32 | typing下划线颜色，必填，表示键入时的下划线颜色，0xARGB类型。 |
+| .value[1].u32 | normal下划线颜色，必填，表示非特殊状态时下划线颜色，0xARGB类型。 |
+| .value[2].u32 | error下划线颜色，必填，表示错误时下划线颜色，0xARGB类型。 |
+| .value[3].u32 | disable下划线颜色，必填，表示禁用时下划线颜色，0xARGB类型。 |
 
 **返回：**
 
 | 类型 | 说明 |
 | -- | -- |
-| .value[0].u32 | typing下划线颜色，表示键入时的下划线颜色，0xargb类型。 |
-| .value[1].u32 | normal下划线颜色，表示非特殊状态时下划线颜色，0xargb类型。 |
-| .value[2].u32 | error下划线颜色，表示错误时下划线颜色，0xargb类型。 |
-| .value[3].u32 | disable下划线颜色，表示禁用时下划线颜色，0xargb类型。 |
+| .value[0].u32 | typing下划线颜色，表示键入时的下划线颜色，0xARGB类型。 |
+| .value[1].u32 | normal下划线颜色，表示非特殊状态时下划线颜色，0xARGB类型。 |
+| .value[2].u32 | error下划线颜色，表示错误时下划线颜色，0xARGB类型。 |
+| .value[3].u32 | disable下划线颜色，表示禁用时下划线颜色，0xARGB类型。 |
 
 ## NODE_TEXT_INPUT_ENABLE_AUTO_FILL
 
@@ -1220,7 +1220,7 @@ NODE_TEXT_INPUT_LINEAR_GRADIENT = 7051
 | .value[0].f32 | 线性渐变的起始角度，单位为deg。当线性渐变的方向为[ArkUI_LinearGradientDirection](capi-native-type-visual-h.md#arkui_lineargradientdirection)的ARKUI_LINEAR_GRADIENT_DIRECTION_CUSTOM时，线性渐变的起始角度属性生效，否则按线性渐变的方向属性为主要布局方式。取值范围为(-∞,+∞)，0点方向顺时针旋转为正向角度，当超过360时，是按照360取余处理，默认值：180。 |
 | .value[1].i32 | 线性渐变的方向，取值为[ArkUI_LinearGradientDirection](capi-native-type-visual-h.md#arkui_lineargradientdirection)枚举。设置除ARKUI_LINEAR_GRADIENT_DIRECTION_CUSTOM之外的方向后，起始角度不生效。默认值：ARKUI_LINEAR_GRADIENT_DIRECTION_LEFT_BOTTOM。 |
 | .value[2].i32 | 渐变的颜色是否重复着色，0表示不重复着色，1表示重复着色。默认值：0。 |
-| .object | 指定位置处的渐变色颜色，参数类型为[ArkUI_ColorStop](capi-arkui-nativemodule-arkui-colorstop.md)。<br>- colors：渐变色颜色数组，元素为0xargb格式，形如0xFFFF0000表示红色。<br>- stops：指定颜色所处位置的数组，取值范围[0,1.0]，0表示容器开始处，1.0表示结尾处。建议递增设置。<br>- size：颜色个数，若小于colors数组长度则仅生效前size个颜色。 |
+| .object | 指定位置处的渐变色颜色，参数类型为[ArkUI_ColorStop](capi-arkui-nativemodule-arkui-colorstop.md)。<br>- colors：渐变色颜色数组，元素为0xARGB格式，形如0xFFFF0000表示红色。<br>- stops：指定颜色所处位置的数组，取值范围[0,1.0]，0表示容器开始处，1.0表示结尾处。建议递增设置。<br>- size：颜色个数，若小于colors数组长度则仅生效前size个颜色。 |
 
 **返回：**
 
@@ -1229,7 +1229,7 @@ NODE_TEXT_INPUT_LINEAR_GRADIENT = 7051
 | .value[0].f32 | 线性渐变的起始角度，单位为deg。当线性渐变的方向为[ArkUI_LinearGradientDirection](capi-native-type-visual-h.md#arkui_lineargradientdirection)的ARKUI_LINEAR_GRADIENT_DIRECTION_CUSTOM时，线性渐变的起始角度为设置值，其他情况均为默认值0。 |
 | .value[1].i32 | 线性渐变的方向。对应取值及含义请参考[ArkUI_LinearGradientDirection](capi-native-type-visual-h.md#arkui_lineargradientdirection)。 |
 | .value[2].i32 | 渐变的颜色是否重复着色，0表示不重复着色，1表示重复着色。默认值：0。 |
-| .object | 指定位置处的渐变色颜色。参数类型为[ArkUI_ColorStop](capi-arkui-nativemodule-arkui-colorstop.md)。<br> colors：渐变色颜色数组，数组元素为0xargb格式，形如0xFFFF0000表示红色。 <br> stops：stops表示指定颜色所处位置的数组，数组元素取值范围为[0,1.0]，0表示需要设置渐变色的容器的开始处，1.0表示容器的结尾处。 <br> size：生效后渐变色的颜色个数。 |
+| .object | 指定位置处的渐变色颜色。参数类型为[ArkUI_ColorStop](capi-arkui-nativemodule-arkui-colorstop.md)。<br> colors：渐变色颜色数组，数组元素为0xARGB格式，形如0xFFFF0000表示红色。 <br> stops：stops表示指定颜色所处位置的数组，数组元素取值范围为[0,1.0]，0表示需要设置渐变色的容器的开始处，1.0表示容器的结尾处。 <br> size：生效后渐变色的颜色个数。 |
 
 ## NODE_TEXT_INPUT_RADIAL_GRADIENT
 
@@ -1251,7 +1251,7 @@ NODE_TEXT_INPUT_RADIAL_GRADIENT = 7052
 | .value[1]?.f32 | 径向渐变的中心点Y轴坐标，即相对于当前文本输入框左上角的Y轴坐标，单位为vp。默认值为文本输入框高度的一半。 |
 | .value[2]?.f32 | 径向渐变的半径，单位为vp。取值范围[0, +∞)，默认值0。传入负数时不生效。 |
 | .value[3]?.i32 | 渐变的颜色是否重复着色，0表示不重复着色，1表示重复着色。默认值：0。 |
-| .object | 指定位置处的渐变色颜色。参数类型为[ArkUI_ColorStop](capi-arkui-nativemodule-arkui-colorstop.md)。<br> colors：渐变色数组，元素为0xargb格式，形如0xFFFF0000表示红色。 <br> stops：指定颜色所处位置的数组，取值范围[0,1.0]，0表示容器开始处，1.0表示结尾处。建议递增设置，若后一元素小于前一元素，则按等于前一元素的值处理。 <br> size：颜色个数，若小于colors数组长度则仅生效前size个颜色，不建议设置异常值。 |
+| .object | 指定位置处的渐变色颜色。参数类型为[ArkUI_ColorStop](capi-arkui-nativemodule-arkui-colorstop.md)。<br> colors：渐变色数组，元素为0xARGB格式，形如0xFFFF0000表示红色。 <br> stops：指定颜色所处位置的数组，取值范围[0,1.0]，0表示容器开始处，1.0表示结尾处。建议递增设置，若后一元素小于前一元素，则按等于前一元素的值处理。 <br> size：颜色个数，若小于colors数组长度则仅生效前size个颜色，不建议设置异常值。 |
 
 
 **返回：**
@@ -1262,7 +1262,7 @@ NODE_TEXT_INPUT_RADIAL_GRADIENT = 7052
 | .value[1]?.f32 | 径向渐变的中心点Y轴坐标，即相对于当前文本输入框左上角的Y轴坐标，单位为vp。 |
 | .value[2]?.f32 | 径向渐变的半径，单位为vp，默认值0。 |
 | .value[3]?.i32 | 渐变的颜色是否重复着色，0表示不重复着色，1表示重复着色。默认值：0。 |
-| .object | 指定位置处的渐变色颜色。参数类型为[ArkUI_ColorStop](capi-arkui-nativemodule-arkui-colorstop.md)。<br> colors：渐变色颜色数组，数组元素为0xargb格式，形如0xFFFF0000表示红色。 <br> stops：stops表示指定颜色所处位置的数组，数组元素取值范围为[0,1.0]，0表示需要设置渐变色的容器的开始处，1.0表示容器的结尾处。 <br> size：生效后渐变色的颜色个数。 |
+| .object | 指定位置处的渐变色颜色。参数类型为[ArkUI_ColorStop](capi-arkui-nativemodule-arkui-colorstop.md)。<br> colors：渐变色颜色数组，数组元素为0xARGB格式，形如0xFFFF0000表示红色。 <br> stops：stops表示指定颜色所处位置的数组，数组元素取值范围为[0,1.0]，0表示需要设置渐变色的容器的开始处，1.0表示容器的结尾处。 <br> size：生效后渐变色的颜色个数。 |
 
 ## NODE_TEXT_INPUT_TEXT_OVERFLOW
 
@@ -1425,13 +1425,13 @@ NODE_TEXT_AREA_PLACEHOLDER_COLOR = 8003
 
 | 参数项 | 描述 |
 | -- | -- |
-| .value[0].u32 | 颜色数值，0xargb格式，形如 0xFFFF0000 表示红色。 |
+| .value[0].u32 | 颜色数值，0xARGB格式，形如 0xFFFF0000 表示红色。 |
 
 **返回：**
 
 | 类型 | 说明 |
 | -- | -- |
-| .value[0].u32 | 颜色数值，0xargb格式。 |
+| .value[0].u32 | 颜色数值，0xARGB格式。 |
 
 ## NODE_TEXT_AREA_PLACEHOLDER_FONT
 
@@ -1479,13 +1479,13 @@ NODE_TEXT_AREA_CARET_COLOR = 8005
 
 | 参数项 | 描述 |
 | -- | -- |
-| .value[0].u32 | 光标颜色数值，0xargb格式，形如 0xFFFF0000 表示红色。 |
+| .value[0].u32 | 光标颜色数值，0xARGB格式，形如 0xFFFF0000 表示红色。 |
 
 **返回：**
 
 | 类型 | 说明 |
 | -- | -- |
-| .value[0].u32 | 光标颜色数值，0xargb格式。 |
+| .value[0].u32 | 光标颜色数值，0xARGB格式。 |
 
 ## NODE_TEXT_AREA_EDITING
 
@@ -1653,13 +1653,13 @@ NODE_TEXT_AREA_SELECTED_BACKGROUND_COLOR = 8012
 
 | 参数项 | 描述 |
 | -- | -- |
-| .value[0].u32 | 颜色数值，0xargb格式，形如 0xFFFF0000 表示红色。 |
+| .value[0].u32 | 颜色数值，0xARGB格式，形如 0xFFFF0000 表示红色。 |
 
 **返回：**
 
 | 类型 | 说明 |
 | -- | -- |
-| .value[0].u32 | 颜色数值，0xargb格式。 |
+| .value[0].u32 | 颜色数值，0xARGB格式。 |
 
 ## NODE_TEXT_AREA_ENTER_KEY_TYPE
 
@@ -2059,13 +2059,13 @@ NODE_TEXT_AREA_MIN_LINES = 8029
 
 | 参数项 | 描述 |
 | -- | -- |
-| .value[0].f32 | 最小行数，取值范围[1, +∞)。传入0或负数时参数不生效。 |
+| .value[0].i32 | 最小行数，取值范围[1, +∞)。传入0或负数时参数不生效。 |
 
 **返回：**
 
 | 类型 | 说明 |
 | -- | -- |
-| .value[0].f32 | 最小行数，取值范围[1, +∞)。 |
+| .value[0].i32 | 最小行数，取值范围[1, +∞)。 |
 
 ## NODE_TEXT_AREA_MAX_LINES_WITH_SCROLL
 
@@ -2083,13 +2083,13 @@ NODE_TEXT_AREA_MAX_LINES_WITH_SCROLL = 8030
 
 | 参数项 | 描述 |
 | -- | -- |
-| .value[0].f32 | 支持滚动时的最大行数。取值范围[1, +∞)。 |
+| .value[0].i32 | 支持滚动时的最大行数。取值范围[1, +∞)。 |
 
 **返回：**
 
 | 类型 | 说明 |
 | -- | -- |
-| .value[0].f32 | 支持滚动时的最大行数。取值范围[1, +∞)。 |
+| .value[0].i32 | 支持滚动时的最大行数。取值范围[1, +∞)。 |
 
 ## NODE_TEXT_AREA_LINE_HEIGHT
 
@@ -2179,13 +2179,13 @@ NODE_TEXT_AREA_SCROLL_BAR_COLOR = 8035
 
 | 参数项 | 描述 |
 | -- | -- |
-| .value[0].u32 | 滚动条颜色数值。0xargb类型。默认值：0x66182431，显示为灰色。 |
+| .data[0].u32 | 滚动条颜色数值，0xARGB格式。默认值：0x66182431，显示为灰色。 |
 
 **返回：**
 
 | 类型 | 说明 |
 | -- | -- |
-| .value[0].u32 | 滚动条颜色数值，0xargb格式。 |
+| .data[0].u32 | 滚动条颜色数值，0xARGB格式。 |
 
 ## NODE_TEXT_AREA_CUSTOM_KEYBOARD
 
@@ -2500,7 +2500,7 @@ NODE_TEXT_AREA_LINEAR_GRADIENT = 8048
 | .value[0].f32 | 线性渐变的起始角度，单位为deg。当线性渐变的方向为[ArkUI_LinearGradientDirection](capi-native-type-visual-h.md#arkui_lineargradientdirection)的ARKUI_LINEAR_GRADIENT_DIRECTION_CUSTOM时，线性渐变的起始角度属性生效，否则按线性渐变的方向属性为主要布局方式。取值范围为(-∞,+∞)，0点方向顺时针旋转为正向角度，当超过360时，是按照360取余处理，默认值：180。 |
 | .value[1].i32 | 线性渐变的方向。取值为[ArkUI_LinearGradientDirection](capi-native-type-visual-h.md#arkui_lineargradientdirection)中的枚举。设置除[ArkUI_LinearGradientDirection](capi-native-type-visual-h.md#arkui_lineargradientdirection)的ARKUI_LINEAR_GRADIENT_DIRECTION_CUSTOM之外的线性渐变方向后，线性渐变的起始角度不生效。默认值：[ArkUI_LinearGradientDirection](capi-native-type-visual-h.md#arkui_lineargradientdirection)的ARKUI_LINEAR_GRADIENT_DIRECTION_LEFT_BOTTOM |
 | .value[2].i32 | 渐变的颜色是否重复着色，0表示不重复着色，1表示重复着色。默认值：0。 |
-| .object | 指定位置处的渐变色颜色。参数类型为[ArkUI_ColorStop](capi-arkui-nativemodule-arkui-colorstop.md)。<br> colors：渐变色颜色数组，数组元素为0xargb格式，形如0xFFFF0000表示红色。 <br> stops：stops表示指定颜色所处位置的数组，数组元素取值范围为[0,1.0]，0表示需要设置渐变色的容器的开始处，1.0表示容器的结尾处。想要实现多个颜色渐变效果时，数组元素建议递增设置，如后一个数组元素比前一个数组元素小的话，按照等于前一个数组元素的值处理。 <br> size：颜色个数，若小于colors数组长度则仅生效前size个颜色，不建议设置大于colors数组长度或小于等于0的值以及异常值。 |
+| .object | 指定位置处的渐变色颜色。参数类型为[ArkUI_ColorStop](capi-arkui-nativemodule-arkui-colorstop.md)。<br> colors：渐变色颜色数组，数组元素为0xARGB格式，形如0xFFFF0000表示红色。 <br> stops：stops表示指定颜色所处位置的数组，数组元素取值范围为[0,1.0]，0表示需要设置渐变色的容器的开始处，1.0表示容器的结尾处。想要实现多个颜色渐变效果时，数组元素建议递增设置，如后一个数组元素比前一个数组元素小的话，按照等于前一个数组元素的值处理。 <br> size：颜色个数，若小于colors数组长度则仅生效前size个颜色，不建议设置大于colors数组长度或小于等于0的值以及异常值。 |
 
 **返回：**
 
@@ -2509,7 +2509,7 @@ NODE_TEXT_AREA_LINEAR_GRADIENT = 8048
 | .value[0].f32 | 线性渐变的起始角度，单位为deg。当线性渐变的方向为[ArkUI_LinearGradientDirection](capi-native-type-visual-h.md#arkui_lineargradientdirection)的ARKUI_LINEAR_GRADIENT_DIRECTION_CUSTOM时，线性渐变的起始角度为设置值，其他情况均为默认值0。 |
 | .value[1].i32 | 线性渐变的方向。对应取值及含义请参考[ArkUI_LinearGradientDirection](capi-native-type-visual-h.md#arkui_lineargradientdirection)。 |
 | .value[2].i32 | 渐变的颜色是否重复着色，0表示不重复着色，1表示重复着色。默认值：0。 |
-| .object | 指定位置处的渐变色颜色。参数类型为[ArkUI_ColorStop](capi-arkui-nativemodule-arkui-colorstop.md)。<br> colors：渐变色颜色数组，数组元素为0xargb格式，形如0xFFFF0000表示红色。 <br> stops：stops表示指定颜色所处位置的数组，数组元素取值范围为[0,1.0]，0表示需要设置渐变色的容器的开始处，1.0表示容器的结尾处。 <br> size：生效后渐变色的颜色个数。 |
+| .object | 指定位置处的渐变色颜色。参数类型为[ArkUI_ColorStop](capi-arkui-nativemodule-arkui-colorstop.md)。<br> colors：渐变色颜色数组，数组元素为0xARGB格式，形如0xFFFF0000表示红色。 <br> stops：stops表示指定颜色所处位置的数组，数组元素取值范围为[0,1.0]，0表示需要设置渐变色的容器的开始处，1.0表示容器的结尾处。 <br> size：生效后渐变色的颜色个数。 |
 
 ## NODE_TEXT_AREA_RADIAL_GRADIENT
 
@@ -2531,7 +2531,7 @@ NODE_TEXT_AREA_RADIAL_GRADIENT = 8049
 | .value[1]?.f32 | 径向渐变的中心点Y轴坐标，即相对于当前多行输入框左上角的Y轴坐标，单位为vp。默认值为多行输入框高度的一半。 |
 | .value[2]?.f32 | 径向渐变的半径，取值范围[0, +∞)，默认值0。传入负数时不生效。 |
 | .value[3]?.i32 | 渐变的颜色是否重复着色，0表示不重复着色，1表示重复着色。默认值：0。 |
-| .object | 指定位置处的渐变色颜色。参数类型为[ArkUI_ColorStop](capi-arkui-nativemodule-arkui-colorstop.md)。<br> colors：渐变色颜色数组，数组元素为0xargb格式，形如0xFFFF0000表示红色。 <br> stops：stops表示指定颜色所处位置的数组，数组元素取值范围为[0,1.0]，0表示需要设置渐变色的容器的开始处，1.0表示容器的结尾处。想要实现多个颜色渐变效果时，数组元素建议递增设置，如后一个数组元素比前一个数组元素小的话，按照等于前一个数组元素的值处理。 <br> size：颜色个数，若小于colors数组长度则仅生效前size个颜色，不建议设置大于colors数组长度或小于等于0的值以及异常值。 |
+| .object | 指定位置处的渐变色颜色。参数类型为[ArkUI_ColorStop](capi-arkui-nativemodule-arkui-colorstop.md)。<br> colors：渐变色颜色数组，数组元素为0xARGB格式，形如0xFFFF0000表示红色。 <br> stops：stops表示指定颜色所处位置的数组，数组元素取值范围为[0,1.0]，0表示需要设置渐变色的容器的开始处，1.0表示容器的结尾处。想要实现多个颜色渐变效果时，数组元素建议递增设置，如后一个数组元素比前一个数组元素小的话，按照等于前一个数组元素的值处理。 <br> size：颜色个数，若小于colors数组长度则仅生效前size个颜色，不建议设置大于colors数组长度或小于等于0的值以及异常值。 |
 
 
 **返回：**
@@ -2542,7 +2542,7 @@ NODE_TEXT_AREA_RADIAL_GRADIENT = 8049
 | .value[1]?.f32 | 径向渐变的中心点Y轴坐标，即相对于当前多行输入框左上角的Y轴坐标，单位为vp。 |
 | .value[2]?.f32 | 径向渐变的半径，单位为vp，默认值0。 |
 | .value[3]?.i32 | 渐变的颜色是否重复着色，0表示不重复着色，1表示重复着色。默认值：0。 |
-| .object | 指定位置处的渐变色颜色。参数类型为[ArkUI_ColorStop](capi-arkui-nativemodule-arkui-colorstop.md)。<br> colors：渐变色颜色数组，数组元素为0xargb格式，形如0xFFFF0000表示红色。 <br> stops：stops表示指定颜色所处位置的数组，数组元素取值范围为[0,1.0]，0表示需要设置渐变色的容器的开始处，1.0表示容器的结尾处。 <br> size：生效后渐变色的颜色个数。 |
+| .object | 指定位置处的渐变色颜色。参数类型为[ArkUI_ColorStop](capi-arkui-nativemodule-arkui-colorstop.md)。<br> colors：渐变色颜色数组，数组元素为0xARGB格式，形如0xFFFF0000表示红色。 <br> stops：stops表示指定颜色所处位置的数组，数组元素取值范围为[0,1.0]，0表示需要设置渐变色的容器的开始处，1.0表示容器的结尾处。 <br> size：生效后渐变色的颜色个数。 |
 
 ## NODE_TEXT_AREA_PUNCTUATION_OVERFLOW
 

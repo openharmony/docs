@@ -66,18 +66,18 @@ import { UIContext } from '@kit.ArkUI';
 import { util } from '@kit.ArkTS';
 
 function systemCredSample(): void {
-  /*// context is the context information of the application. The caller obtains it on their own. This is only an example.*/
+  /* context is the context information of the application. The caller obtains it on their own. This is only an example.*/
   let context: common.Context = new UIContext().getHostContext() as common.Context;
 
-  /*// The credential data to be installed must be assigned by the service. The data in this example is not real credential data.*/
+  /* The credential data to be installed must be assigned by the service. The data in this example is not real credential data.*/
   let keystoreBase64Str = 'MIIMJgIBAzCCC+AGCSqGSIb3DQEHAaCCC9EEggvNMIILyTCCBW4GCSqGSIb3DQEH' +
     // ...
     'G615kxCjeS6uixCHuij3pgQUhHiChcSeohRPrVkVPSPmYr9tjAYCAgQA';
-  /*// Convert the credential data to Uint8Array. The credential data is in DER format.*/
+  /* Convert the credential data to Uint8Array. The credential data is in DER format.*/
   let keystore: Uint8Array = new util.Base64Helper().decodeSync(keystoreBase64Str);
 
   try {
-    /*// Install the system certificate credential.*/
+    /* Install the system certificate credential.*/
     certificateManagerDialog.openInstallCertificateDialog(
       context,
       certificateManagerDialog.CertificateType.CREDENTIAL_SYSTEM,

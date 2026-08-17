@@ -49,7 +49,7 @@ import { Sensor } from '@kit.SensorServiceKit';
 
 **系统能力**：SystemCapability.Sensors.Sensor.Lite
 
-**需要权限**：ohos.permission.ACCELEROMETER，该权限为系统权限
+**需要权限**：ohos.permission.ACCELEROMETER
 
 **参数**：
 
@@ -409,7 +409,7 @@ static unsubscribeAccelerometer(): void
 
 **系统能力**：SystemCapability.Sensors.Sensor.Lite
 
-**需要权限**：ohos.permission.ACCELEROMETER，该权限为系统权限
+**需要权限**：ohos.permission.ACCELEROMETER
 
 **ArkTS示例**：
 
@@ -1179,7 +1179,7 @@ Sensor.unsubscribeDeviceOrientation();
 
 **系统能力**：SystemCapability.Sensors.Sensor.Lite
 
-**需要权限**：ohos.permission.GYROSCOPE，该权限为系统权限
+**需要权限**：ohos.permission.GYROSCOPE
 
 **参数**：
 
@@ -1240,7 +1240,7 @@ static unsubscribeGyroscope(): void
 > 除Lite Wearable外，从API version 8开始，建议使用[GYROSCOPE](js-apis-sensor.md#sensoroffsensortypesensor_type_id_gyroscopedeprecated)替代。
 **系统能力**：SystemCapability.Sensors.Sensor.Lite
 
-**需要权限**：ohos.permission.GYROSCOPE，该权限为系统权限
+**需要权限**：ohos.permission.GYROSCOPE
 
 **ArkTS示例**：
 

@@ -47,7 +47,7 @@ RestrictedWorker构造函数。使用其他方法前，均需先构造Restricted
 | 参数名    | 类型                            | 必填 | 说明                                                         |
 | --------- | ------------------------------- | ---- | ------------------------------------------------------------ |
 | scriptURL | string                          | 是   | Worker线程文件的路径，路径规则详细参考[文件路径注意事项](../../arkts-utils/worker-introduction.md#文件路径注意事项)。 |
-| options   | [WorkerOptions](js-apis-worker.md#workeroptions) | 否   | 构造RestrictedWorker时的选项。                                           |
+| options   | [WorkerOptions](js-apis-worker.md#workeroptions) | 否   | 构造RestrictedWorker时的选项。type默认值为'classic'，name默认'undefined'，shared默认'undefined'，priority默认'MEDIUM'。|
 
 **错误码：**
 

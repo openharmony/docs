@@ -1,10 +1,12 @@
 # Working with Tasks Using JSVM-API
-<!--Kit: NDK Development-->
+
+<!--Kit: ArkTS-->
 <!--Subsystem: arkcompiler-->
-<!--Owner: @yuanxiaogou; @string_sz-->
+<!--Owner: @yuanxiaogou-->
 <!--Designer: @knightaoko-->
 <!--Tester: @test_lzz-->
-<!--Adviser: @fang-jinxu-->
+<!--Adviser: @k1ngqaquuu-->
+<!-- md-trans-meta sourceCommit=21434ce8d323ecbd7d67463989a2ef075be92cec translatedAt=2026-08-12T06:35:14.921Z pushedAt=2026-08-12T11:02:39.277Z -->
 
 ## Introduction
 
@@ -13,6 +15,7 @@ This topic describes how to start a task queue on a VM, check whether there are 
 ## Basic Concepts
 
 - Task queue: a mechanism used to manage the scheduling and execution of asynchronous tasks to ensure that tasks are processed in sequence.
+
 - Micro task: a small task that needs to be executed as soon as possible. Micro tasks usually have a higher priority.
 
 ## Available APIs
@@ -30,22 +33,24 @@ If you are just starting out with JSVM-API, see [JSVM-API Development Process](u
 **Permission requirements**: To run the Wasm bytecode, the application must have the JIT permission. For details about how to apply for the permission, see [Requesting the JIT Permission](jsvm-apply-jit-profile.md).
 
 **Running restrictions**: In the current JSVM version, all functional modules of WebAssembly are disabled in Secure Shield mode. You need to evaluate application compatibility based on the restrictions. For details, see [JSVM-API Secure Shield Mode](jsvm-secure-shield-mode.md).
+
 ### OH_JSVM_PumpMessageLoop & OH_JSVM_PerformMicrotaskCheckpoint
 
 Call **OH_JSVM_PumpMessageLoop** to start running a task queue.
 
 CPP code:
 
-```cpp
+<!-- @[oh_jsvm_pump_message_loop_and_perform_microtask_checkpoint](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/JSVMAPI/JsvmUsageGuide/UsageInstructionsOne/pumpmessageloop/src/main/cpp/hello.cpp) -->
+
+``` C++
 #include <chrono>
-#include <string.h>
+#include <cstring>
+// ...
 
-static int g_aa = 0;
-
-// JS code to be executed.
-static const char *STR_TASK = R"JS( 
-    // Wasm bytecode (using the add module as an example)
-    // The following is the text format of the Wasm bytecode corresponding to wasmBuffer, which contains only the add function.
+// JS code to execute.
+static const char *STR_TASK = R"JS(
+    // wasm bytecode (using the add module as an example)
+    // The wasm bytecode text format corresponding to the following wasmBuffer is shown below. It contains only one function, add.
     // (module
     //   (func $add (param $lhs i32) (param $rhs i32) (result i32)
     //     local.get $lhs
@@ -57,7 +62,7 @@ static const char *STR_TASK = R"JS(
     var wasmBytes = new Uint8Array([0x00, 0x61, 0x73, 0x6d, 0x01, 0x00, 0x00, 0x00, 0x01, 0x07, 0x01,
                                        0x60, 0x02, 0x7f, 0x7f, 0x01, 0x7f, 0x03, 0x02, 0x01, 0x00, 0x07,
                                        0x07, 0x01, 0x03, 0x61, 0x64, 0x64, 0x00, 0x00, 0x0a, 0x09, 0x01,
-                                       0x07, 0x00, 0x20, 0x00, 0x20, 0x01, 0x6a, 0x0b]);    
+                                       0x07, 0x00, 0x20, 0x00, 0x20, 0x01, 0x6a, 0x0b]);
 
     var p = WebAssembly.instantiate(wasmBytes, {});
     p.then((result) => {
@@ -68,21 +73,23 @@ static const char *STR_TASK = R"JS(
     });
 )JS";
 
-// Ensure normal printing of the JS code information.
-static JSVM_Value ConsoleInfo(JSVM_Env env, JSVM_CallbackInfo info) {
+// Ensure that print information in the JS code is output normally.
+static JSVM_Value ConsoleInfo(JSVM_Env env, JSVM_CallbackInfo info)
+{
     size_t argc = 1;
     JSVM_Value args[1];
-    char log[256] = "";
+    #define MAX_LOG_LENGTH 255
+    char log[MAX_LOG_LENGTH + 1] = "";
     size_t logLength = 0;
     JSVM_CALL(OH_JSVM_GetCbInfo(env, info, &argc, args, NULL, NULL));
 
-    OH_JSVM_GetValueStringUtf8(env, args[0], log, 255, &logLength);
-    log[255] = 0;
+    OH_JSVM_GetValueStringUtf8(env, args[0], log, MAX_LOG_LENGTH, &logLength);
+    log[MAX_LOG_LENGTH] = 0;
     OH_LOG_INFO(LOG_APP, "JSVM API TEST: %{public}s", log);
     return nullptr;
 }
 
-// Register the consoleinfo callback.
+// Register the consoleinfo method.
 JSVM_CallbackStruct param[] = {
     {.data = nullptr, .callback = ConsoleInfo},
 };
@@ -90,21 +97,22 @@ JSVM_PropertyDescriptor descriptor[] = {
     {"consoleinfo", NULL, &param[0], NULL, NULL, NULL, JSVM_DEFAULT},
 };
 
-static int32_t TestJSVM() {
+static int32_t TestJSVM()
+{
     JSVM_InitOptions init_options;
     memset(&init_options, 0, sizeof(init_options));
     if (g_aa == 0) {
         OH_JSVM_Init(&init_options);
         g_aa++;
     }
-    // Create a JSVM instance and open the VM scope.
+    // Create a JavaScript VM instance and open the VM scope.
     JSVM_VM vm;
     JSVM_CreateVMOptions options;
     memset(&options, 0, sizeof(options));
     CHECK(OH_JSVM_CreateVM(&options, &vm));
     JSVM_VMScope vm_scope;
     CHECK(OH_JSVM_OpenVMScope(vm, &vm_scope));
-    
+
     JSVM_Env env;
     CHECK(OH_JSVM_CreateEnv(vm, sizeof(descriptor) / sizeof(descriptor[0]), descriptor, &env));
     JSVM_EnvScope envScope;
@@ -121,17 +129,18 @@ static int32_t TestJSVM() {
     auto start = std::chrono::system_clock::now();
     while (true) {
         // If no task is started in the task queue, set rst to false.
-        CHECK_RET(OH_JSVM_PumpMessageLoop(vm, &rst)); 
+        CHECK_RET(OH_JSVM_PumpMessageLoop(vm, &rst));
         CHECK_RET(OH_JSVM_PerformMicrotaskCheckpoint(vm));
-        // Exit at the scheduled time.
+        // Exit at a scheduled time.
         auto now = std::chrono::system_clock::now();
         auto cost = std::chrono::duration_cast<std::chrono::milliseconds>(now - start).count();
-        if (cost > 100) {
+        const int timeoutMs = 100;
+        if (cost > timeoutMs) {
             break;
         }
     }
 
-    // Close and destroy the environment and the VM.
+    // Close and destroy the environment and VM.
     CHECK_RET(OH_JSVM_CloseHandleScope(env, handlescope));
     CHECK_RET(OH_JSVM_CloseEnvScope(env, envScope));
     CHECK(OH_JSVM_DestroyEnv(env));
@@ -139,19 +148,23 @@ static int32_t TestJSVM() {
     CHECK(OH_JSVM_DestroyVM(vm));
     return 0;
 }
-
 ```
-<!-- @[oh_jsvm_pump_message_loop_and_perform_microtask_checkpoint](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/JSVMAPI/JsvmUsageGuide/UsageInstructionsOne/pumpmessageloop/src/main/cpp/hello.cpp) -->
+
 Expected result:
+
 ```txt
 JSVM API TEST: Called with instance [object Object]
 JSVM API TEST: Called Finally
 ```
+
 ### OH_JSVM_SetMicrotaskPolicy
+
 Call **OH_JSVM_SetMicrotaskPolicy** to set the execution policy for micro tasks.  
 
 The execution policy can be any of the following:
+
 - **JSVM_MicrotaskPolicy::JSVM_MICROTASK_EXPLICIT**: executes micro tasks after **OH_JSVM_PerformMicrotaskCheckpoint** is called.
+
 - **JSVM_MicrotaskPolicy::JSVM_MICROTASK_AUTO** (default): executes micro tasks automatically when the JS call stack is empty.
 
 CPP code:
@@ -188,7 +201,7 @@ static int SetMicrotaskPolicy(JSVM_VM vm, JSVM_Env env) {
     CHECK_RET(OH_JSVM_GetValueBool(env, hasEvaluateMicrotask, &val));
     OH_LOG_INFO(
         LOG_APP,
-        "Policy :JSVM_MICROTASK_AUTO, evaluateMicrotask before calling OH_JSVM_PerformMicrotaskCheckpoint: %{public}d",
+        "Policy: JSVM_MICROTASK_AUTO, evaluateMicrotask before calling OH_JSVM_PerformMicrotaskCheckpoint: %{public}d",
         val);
 
     CHECK_RET(OH_JSVM_PerformMicrotaskCheckpoint(vm));
@@ -196,7 +209,7 @@ static int SetMicrotaskPolicy(JSVM_VM vm, JSVM_Env env) {
     CHECK_RET(OH_JSVM_GetValueBool(env, hasEvaluateMicrotask, &val));
     OH_LOG_INFO(
         LOG_APP,
-        "Policy :JSVM_MICROTASK_AUTO, evaluateMicrotask after calling OH_JSVM_PerformMicrotaskCheckpoint: %{public}d",
+        "Policy: JSVM_MICROTASK_AUTO, evaluateMicrotask after calling OH_JSVM_PerformMicrotaskCheckpoint: %{public}d",
         val);
 
     return 0;
@@ -223,8 +236,8 @@ static int32_t TestJSVM() {
     }
     // Create a JSVM environment.
     CHECK(OH_JSVM_CreateVM(nullptr, &vm));
-    CHECK(OH_JSVM_CreateEnv(vm, 0, nullptr, &env));
     CHECK(OH_JSVM_OpenVMScope(vm, &vmScope));
+    CHECK(OH_JSVM_CreateEnv(vm, 0, nullptr, &env));
     CHECK_RET(OH_JSVM_OpenEnvScope(env, &envScope));
     CHECK_RET(OH_JSVM_OpenHandleScope(env, &handleScope));
 
@@ -234,14 +247,15 @@ static int32_t TestJSVM() {
     // Destroy the JSVM environment.
     CHECK_RET(OH_JSVM_CloseHandleScope(env, handleScope));
     CHECK_RET(OH_JSVM_CloseEnvScope(env, envScope));
-    CHECK(OH_JSVM_CloseVMScope(vm, vmScope));
     CHECK(OH_JSVM_DestroyEnv(env));
+    CHECK(OH_JSVM_CloseVMScope(vm, vmScope));
     CHECK(OH_JSVM_DestroyVM(vm));
     return 0;
 }
 ```
 
 Expected result:
+
 ```txt
 Policy :JSVM_MICROTASK_AUTO, evaluateMicrotask : 1
 Policy :JSVM_MICROTASK_AUTO, evaluateMicrotask before calling OH_JSVM_PerformMicrotaskCheckpoint: 0

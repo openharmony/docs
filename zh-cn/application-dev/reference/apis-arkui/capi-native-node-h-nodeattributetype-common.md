@@ -26,7 +26,7 @@ enum ArkUI_NodeAttributeType
 NODE_WIDTH = 0
 ```
 
-宽度属性，支持属性设置，属性重置和属性获取接口。
+宽度属性，支持属性设置，属性重置和属性获取接口。<br>
 作为属性设置方法参数、属性获取方法返回值[ArkUI_AttributeItem](capi-arkui-nativemodule-arkui-attributeitem.md)格式如下。<br>
 
 **起始版本：** 12
@@ -81,13 +81,13 @@ NODE_BACKGROUND_COLOR = 2
 
 | 参数项 | 描述 |
 | -- | -- |
-| .value[0].u32 | 背景色数值，0xargb格式，形如 0xFFFF0000 表示红色。 |
+| .value[0].u32 | 背景色数值，0xARGB格式，形如 0xFFFF0000 表示红色。 |
 
 **返回：**
 
 | 类型 | 说明 |
 | -- | -- |
-| .value[0].u32 | 背景色数值，0xargb格式，形如 0xFFFF0000 表示红色。 |
+| .value[0].u32 | 背景色数值，0xARGB格式，形如 0xFFFF0000 表示红色。 |
 
 ## NODE_BACKGROUND_IMAGE
 

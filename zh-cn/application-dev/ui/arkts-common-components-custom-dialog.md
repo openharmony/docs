@@ -178,6 +178,7 @@ CustomDialog是自定义弹出框，可用于广告、中奖、警告、软件�
     ``` TypeScript
     @CustomDialog
     struct CustomDialogExample {
+      // 数据监听仅支持@Link或@Consume，其他方式如@Prop、@ObjectLink不适用此场景
       @Link textValue: string;
       controller?: CustomDialogController;
       cancel: () => void = () => {
@@ -766,8 +767,8 @@ struct CustomDialogExample {
         .onClick(() => {
           hilog.info(DOMAIN, 'testTag', 'state:' + this.controller?.getState());
         }).margin(20)
-      // 请将$r('app.string.close_widows')替换为实际资源文件，在本示例中该资源文件的value值为"点我关闭弹窗"
-      Button($r('app.string.close_widows'))
+      // 请将$r('app.string.close_windows')替换为实际资源文件，在本示例中该资源文件的value值为"点我关闭弹窗"
+      Button($r('app.string.close_windows'))
         .onClick(() => {
           if (this.getDialogController() !== undefined) {
             this.getDialogController().close()

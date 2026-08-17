@@ -7,7 +7,7 @@
 <!--Adviser: @zhang_yixin13-->
 
 
-本模块提供了共用的一些常量定义。
+本模块提供了星闪通信中共用的一些常量定义，包括设备配对状态、设备连接状态、设备类型等枚举值。
 
 
 **起始版本：** 26.0.0
@@ -74,7 +74,7 @@ import { nearlinkConstant } from '@kit.ConnectivityKit';
 | DEVICE_COMPUTER | 0x000300 | 计算机。 |
 | DEVICE_LAPTOP | 0x000301 | 笔记本电脑。 |
 | DEVICE_TABLET | 0x000302 | 平板。 |
-| DEVICE_ALL_IN_ONE_COMPUTER | 0x000303 | 2in1。 |
+| DEVICE_ALL_IN_ONE_COMPUTER | 0x000303 | 一体机。 |
 | DEVICE_MINI_PC | 0x000304 | 迷你PC。 |
 | DEVICE_WATCH | 0x000400 | 手表。 |
 | DEVICE_SMART_WATCH | 0x000401 | 智能手表。 |
@@ -92,14 +92,14 @@ import { nearlinkConstant } from '@kit.ConnectivityKit';
 | DEVICE_LAPEL_MICROPHONE | 0x000702 | 佩戴式话筒。 |
 | DEVICE_WEARABLE_AUDIO | 0x000800 | 穿戴音频设备。 |
 | DEVICE_IN_EAR_EARPHONE | 0x000801 | 入耳式耳机。 |
-| DEVICE_HEADSET | 0x000802 | 头戴式受话器。 |
+| DEVICE_HEADSET | 0x000802 | 头戴式耳麦。 |
 | DEVICE_OVER_EAR_HEADPHONE | 0x000803 | 头戴式耳机。 |
 | DEVICE_NECKBAND_EARPHONE | 0x000804 | 颈带式耳机。 |
 | DEVICE_PERSONAL_CARE | 0x000900 | 个人护理。 |
 | DEVICE_INTELLIGENT_TOOTHBRUSH | 0x000901 | 智能牙刷。 |
 | DEVICE_SMART_CUP | 0x000902 | 智能杯。 |
 | DEVICE_INTELLIGENT_SHAVER | 0x000903 | 智能剃刀。 |
-| DEVICE_HVAC | 0x000A00 | 空调HVAC(Ventilating and Air Conditioning)。 |
+| DEVICE_HVAC | 0x000A00 | 通用暖通空调。 |
 | DEVICE_AIR_PURIFIER | 0x000A01 | 空气净化器。 |
 | DEVICE_HUMIDIFIER | 0x000A02 | 加湿器。 |
 | DEVICE_AIR_CIRCULATION_FAN | 0x000A03 | 空气循环风机。 |
@@ -111,7 +111,7 @@ import { nearlinkConstant } from '@kit.ConnectivityKit';
 | DEVICE_REMOTE_CONTROL | 0x000D00 | 远程控制设备。 |
 | DEVICE_TV_REMOTE_CONTROL | 0x000D01 | 电视遥控器。 |
 | DEVICE_IMAGING | 0x000E00 | 成像设备。 |
-| DEVICE_SMART_TV | 0x000E01 | 智能TV。 |
+| DEVICE_SMART_TV | 0x000E01 | 智能电视。 |
 | DEVICE_IP_CAMERA | 0x000E02 | 网络摄像机。 |
 | DEVICE_SCREEN_CASTER | 0x000E03 | 投影仪。 |
 | DEVICE_NETWORKING | 0x000F00 | 网络设备。 |

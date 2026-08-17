@@ -1890,7 +1890,7 @@ int main()
 
 ### ffrt_cond_t
 
-- FFRT提供的类似pthread信号量的性能实现，但不支持类似`PTHREAD_COND_INITIALIZER`的初始化。
+- FFRT提供的类似pthread条件变量的性能实现，但不支持类似`PTHREAD_COND_INITIALIZER`的初始化。
 
 **声明**
 
@@ -1934,7 +1934,7 @@ FFRT_C_API int ffrt_cond_init(ffrt_cond_t* cond, const ffrt_condattr_t* attr);
 
 参数
 
-- `cond`：指向所操作的信号量的指针。
+- `cond`：指向所操作的条件变量的指针。
 - `attr`：属性设定，空指针表示使用默认属性。
 
 返回值
@@ -1953,7 +1953,7 @@ FFRT_C_API int ffrt_cond_destroy(ffrt_cond_t* cond);
 
 参数
 
-- `cond`：指向所操作的信号量的指针。
+- `cond`：指向所操作的条件变量的指针。
 
 返回值
 
@@ -1971,7 +1971,7 @@ FFRT_C_API int ffrt_cond_signal(ffrt_cond_t* cond);
 
 参数
 
-- `cond`：指向所操作的信号量的指针。
+- `cond`：指向所操作的条件变量的指针。
 
 返回值
 
@@ -1989,7 +1989,7 @@ FFRT_C_API int ffrt_cond_broadcast(ffrt_cond_t* cond);
 
 参数
 
-- `cond`：指向所操作的信号量的指针。
+- `cond`：指向所操作的条件变量的指针。
 
 返回值
 
@@ -2007,7 +2007,7 @@ FFRT_C_API int ffrt_cond_wait(ffrt_cond_t* cond, ffrt_mutex_t* mutex);
 
 参数
 
-- `cond`：指向所操作的信号量的指针。
+- `cond`：指向所操作的条件变量的指针。
 - `mutex`：指向要在阻塞期间解锁的互斥锁的指针。
 
 返回值
@@ -2027,7 +2027,7 @@ FFRT_C_API int ffrt_cond_timedwait(ffrt_cond_t* cond, ffrt_mutex_t* mutex, const
 
 参数
 
-- `cond`：指向所操作的信号量的指针。
+- `cond`：指向所操作的条件变量的指针。
 - `mutex`：指向要在阻塞期间解锁的互斥锁的指针。
 - `time_point`：指向指定等待时限时间的对象的指针。
 

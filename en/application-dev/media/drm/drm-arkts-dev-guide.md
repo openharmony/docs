@@ -6,7 +6,7 @@
 <!--Designer: @chris2981-->
 <!--Tester: @xdlinc-->
 <!--Adviser: @w_Machine_cc-->
-<!-- md-trans-meta sourceCommit=c451c48874c8266797e6511464b993a7a38f128e translatedAt=2026-08-11T01:42:11.225Z pushedAt=2026-08-11T02:32:53.638Z -->
+<!-- md-trans-meta sourceCommit=39f9e7e8e62a796510f89ec225bd2e77a62ab6e0 translatedAt=2026-08-15T01:57:14.848Z pushedAt=2026-08-15T09:02:41.674Z -->
 
 DRM Kit provides ArkTS APIs for comprehensive digital rights management, covering certificate management, license management, content authorization, and content decryption.
 

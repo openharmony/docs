@@ -6,6 +6,7 @@
 <!--Designer: @HighLowWorld-->
 <!--Tester: @wxy1234564846-->
 <!--Adviser: @zengyawen-->
+<!-- md-trans-meta sourceCommit=938751e4702aa9713fca5c6265b7741bd118ef94 translatedAt=2026-08-13T08:20:23.121Z pushedAt=2026-08-13T10:20:24.673Z -->
 
 To ensure data security, delete the key that is no longer required.
 
@@ -13,7 +14,7 @@ The [Group Key](huks-group-key-overview.md) feature is supported since API versi
 
 ## How to Develop
 
-For example, delete a 256-bit HKDF key.
+Take deleting a DH key as an example.
 
 1. Specify the key alias. For details about the naming rules, see [Key Generation Overview and Algorithm Specifications](huks-key-generation-overview.md).
 
@@ -25,7 +26,7 @@ For example, delete a 256-bit HKDF key.
 
 ``` TypeScript
 /*
- * Delete a 256-bit HKDF key. This example uses promise-based APIs.
+ * The following uses the Promise-based operations of DH keys as an example.
  */
 import { huks } from '@kit.UniversalKeystoreKit';
 

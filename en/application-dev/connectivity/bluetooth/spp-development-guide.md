@@ -3,14 +3,17 @@
 <!--Kit: Connectivity Kit-->
 <!--Subsystem: Communication-->
 <!--Owner: @enjoy_sunshine-->
-<!--Designer: @chengguohong; @tangjia15-->
+<!--Designer: @tangjia15-->
 <!--Tester: @wangfeng517-->
 <!--Adviser: @zhang_yixin13-->
+<!-- md-trans-meta sourceCommit=14ca614ebb030bf413b2d8393352ad7521a1d1b9 translatedAt=2026-08-15T01:40:56.709Z pushedAt=2026-08-15T03:43:36.664Z -->
 
 ## Introduction
+
 This document provides guidance on how to connect devices and transfer data via Serial Port Profile (SPP). When two devices communicate via SPP, they can be distinguished as client and server based on their respective functions. This guide describes the implementation methods for both the client and server.
 
 ## How to Implement
+
 After obtaining the server's device address, the client can initiate a connection to the specific UUID of the server. The server's device address can be obtained through the device discovery process. For details, see [Bluetooth Discovery Development](br-discovery-development-guide.md). Once the connection between the two ends is successfully established, the client can send data to the server or receive data from the server.
 
 The server needs to support the UUID service for client connections and maintain listening for connection status changes. After the connection between the two ends is successfully established, the server can receive data from the client or send data to the client.
@@ -20,10 +23,13 @@ Both the client and the server can actively disconnect. The application needs to
 ## How to Develop
 
 ### Applying for Required Permissions
+
 Apply for the **ohos.permission.ACCESS_BLUETOOTH** permission. For details about how to configure and apply for permissions, see [Declaring Permissions](../../security/AccessToken/declare-permissions.md) and [Requesting User Authorization](../../security/AccessToken/request-user-authorization.md).
 
 ### Importing Required Modules
+
 Import the related modules.
+
 ```ts
 import { socket } from '@kit.ConnectivityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
@@ -33,6 +39,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 **1. Initiating a Connection**<br>
 The client can initiate a connection after searching for the target device through the device discovery process. The UUID service to be connected to must be consistent with the UUID service constructed when the server creates the socket. During the connection process, the Bluetooth subsystem will check whether the server supports this UUID service; if not, the connection will fail. Therefore, the application must ensure that the target device supports the required UUID service; otherwise, the connection initiated will be invalid.
+
 ```ts
 // Obtain the device address through the device discovery process.
 let peerDevice = 'XX:XX:XX:XX:XX:XX';
@@ -62,6 +69,7 @@ console.info('startConnect after ' + peerDevice);
 
 **2.1 Sending Data**<br>
 After the connection between the client and server is established, the client can send data to the server.
+
 ```ts
 let clientNumber = 1; // Note: The value is the client socket ID in the asynchronous callback returned when the client initiates a connection. The ID here is a pseudo-code ID.
 let arrayBuffer = new ArrayBuffer(2);
@@ -77,6 +85,7 @@ try {
 
 **2.2 Receiving Data**<br>
 After the connection between the client and server is established, the client can receive data from the server. This is implemented through [socket.on('sppRead ')](../../reference/apis-connectivity-kit/js-apis-bluetooth-socket.md#socketonsppread).
+
 ```ts
 let clientNumber = 1; // Note: The value is the client socket ID in the asynchronous callback returned when the client initiates a connection. The ID here is a pseudo-code ID.
 
@@ -96,6 +105,7 @@ try {
 
 **3. Disconnecting the Connection**<br>
 When an application no longer needs an established connection, it can proactively disconnect from the client. Before that, you need to disable listening for data read events.
+
 ```ts
 let clientNumber = 1; // Note: The value is the client socket ID in the asynchronous callback returned when the client initiates a connection. The ID here is a pseudo-code ID.
 
@@ -123,6 +133,7 @@ try {
 
 **1. Creating a Server Socket**<br>
 The server needs to register the specified UUID service in the Bluetooth subsystem by creating a socket. The UUID service can be named freely, such as using the application name. When a client sends a connection request, it includes a UUID to specify the target service. Connection establishment is permitted only when the server's and client's UUIDs are identical.
+
 ```ts
 // Define the server socket ID.
 let serverNumber = -1;
@@ -147,6 +158,7 @@ socket.sppListen("demonstration", option, (err, num: number) => {
 
 **2. Listening for Client Connections**<br>
 After the server socket is created, the server can listen for client connections. When a connection request is received, the server obtains the socket ID of the client. At this time, the connection between the server and client is successfully established.
+
 ```ts
 let serverNumber = 1; // Note: The value is the server socket ID in the asynchronous callback returned when the server socket is created. The ID here is a pseudo-code ID.
 
@@ -167,6 +179,7 @@ socket.sppAccept(serverNumber, (err, num: number) => {
 
 **3.1 Sending Data**<br>
 After the connection between the server and client is established, the server can send data to the client.
+
 ```ts
 let clientNumber = 1; // Note: The value is the client socket ID in the asynchronous callback returned when the server listens for a client connection. It is a pseudo-code ID here.
 
@@ -183,6 +196,7 @@ try {
 
 **3.2 Receiving Data**<br>
 After the connection between the server and client is established, the server can receive data from the client. This is implemented through [socket.on('sppRead ')](../../reference/apis-connectivity-kit/js-apis-bluetooth-socket.md#socketonsppread).
+
 ```ts
 let clientNumber = 1; // Note: The value is the client socket ID in the asynchronous callback returned when the server listens for a client connection. It is a pseudo-code ID here.
 
@@ -199,10 +213,12 @@ try {
   console.error('readData errCode: ' + (err as BusinessError).code + ', errMessage: ' + (err as BusinessError).message);
 }
 ```
+
 **4. Disconnecting the Connection**<br>
 When an application no longer needs an established connection, it can proactively disconnect from the server.
 
 - Before that, you need to disable listening for data read events.
+
 ```ts
 let clientNumber = 1; // Note: The value is the client socket ID in the asynchronous callback returned when the server listens for a client connection. It is a pseudo-code ID here.
 
@@ -230,6 +246,7 @@ try {
 When the application no longer needs the server socket, it needs to proactively close the socket. The Bluetooth subsystem then deletes the corresponding UUID service registered earlier. If the client initiates a connection at this time, the connection fails.
 
 - The application can also disconnect from the server when deleting the socket. Before that, the application needs to disable listening for data read events.
+
 ```ts
 let clientNumber = 1; // Note: The value is the client socket ID in the asynchronous callback returned when the server listens for a client connection. It is a pseudo-code ID here.
 let serverNumber = 1; // Note: The value is the server socket ID in the asynchronous callback returned when the server socket is created. The ID here is a pseudo-code ID.
@@ -258,6 +275,7 @@ try {
 ## Complete Sample Code
 
 ### Client
+
 ```ts
 import { socket } from '@kit.ConnectivityKit'
 import { BusinessError } from '@kit.BasicServicesKit';
@@ -351,6 +369,7 @@ export default sppClientManager as SppClientManager;
 ```
 
 ### Server
+
 ```ts
 import { socket } from '@kit.ConnectivityKit'
 import { BusinessError } from '@kit.BasicServicesKit';

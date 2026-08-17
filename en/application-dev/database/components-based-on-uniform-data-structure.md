@@ -1,10 +1,12 @@
 # Content Cards Based on Uniform Data Structs (ArkTS)
+
 <!--Kit: ArkData-->
 <!--Subsystem: DistributedDataManager-->
 <!--Owner: @jcwen-->
 <!--Designer: @junathuawei1; @zph000-->
 <!--Tester: @lj_liujing; @yippo; @logic42-->
 <!--Adviser: @ge-yafang-->
+<!-- md-trans-meta sourceCommit=814e5538573180f4836543a1c6592fa1ff24a7c3 translatedAt=2026-08-15T01:41:50.309Z pushedAt=2026-08-15T06:12:22.557Z -->
 
 ## When to Use
 
@@ -14,7 +16,7 @@ Preset cards provided by the system allow you to quickly display data of uniform
 
 You can use the content cards to quickly display content (including the title, description, image, and application information) and redirect to the corresponding source upon a tap. Passing the [ContentForm](../reference/apis-arkdata/js-apis-data-uniformDataStruct.md#contentform14) data, card width and height, and tap event callback in the [ContentFormCard](../reference/apis-arkdata/js-apis-data-UdmfComponents.md#contentformcard) API can achieve a good display effect.
 
-Since API version 20, [Content card](../reference/apis-arkdata/js-apis-data-UdmfComponents.md) is available.
+Starting from API version 20, you can use the content card component [UdmfComponents](../reference/apis-arkdata/js-apis-data-UdmfComponents.md).
 
 ### Available APIs
 

@@ -1350,7 +1350,7 @@ Obtains the length of a property array or a string property.
 
 Usage scenario: This API is applicable to query the required buffer size before reading image properties of the string, array, or binary object type. Typical process: Call this API to obtain the length, allocate the buffer (by the caller), and then call [OH_ImageSourceNative_GetImagePropertyString](#oh_imagesourcenative_getimagepropertystring), [OH_ImageSourceNative_GetImagePropertyIntArray](#oh_imagesourcenative_getimagepropertyintarray), [OH_ImageSourceNative_GetImagePropertyDoubleArray](#oh_imagesourcenative_getimagepropertydoublearray), or [OH_ImageSourceNative_GetImagePropertyBlob](#oh_imagesourcenative_getimagepropertyblob) to read the actual content.
 
-Resource management: This API does not allocate the buffer for property values. For subsequent property value reading, if the buffer is allocated by the caller, the caller is responsible for freeing it. If OH_ImageSourceNative_GetImageProperty](#oh_imagesourcenative_getimageproperty) or [OH_ImageSourceNative_GetImagePropertyWithNull](#oh_imagesourcenative_getimagepropertywithnull) is used and **value->data** is allocated by the system, you must call **free()** to release the buffer after use.
+Resource management: This API does not allocate the buffer for property values. For subsequent property value reading, if the buffer is allocated by the caller, the caller is responsible for freeing it. If [OH_ImageSourceNative_GetImageProperty](#oh_imagesourcenative_getimageproperty) or [OH_ImageSourceNative_GetImagePropertyWithNull](#oh_imagesourcenative_getimagepropertywithnull) is used and **value->data** is allocated by the system, you must call **free()** to release the buffer after use.
 
 **Since**: 23
 

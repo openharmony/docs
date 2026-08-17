@@ -3,10 +3,10 @@
 <!--Kit: Connectivity Kit-->
 <!--Subsystem: Communication-->
 <!--Owner: @enjoy_sunshine-->
-<!--Designer: @chengguohong; @tangjia15-->
+<!--Designer: @tangjia15-->
 <!--Tester: @wangfeng517-->
 <!--Adviser: @zhang_yixin13-->
-<!-- md-trans-meta sourceCommit=dcae6f10c07044342acb5b2dc0416e100c5bcaa2 translatedAt=2026-06-17T06:37:43.014Z pushedAt=2026-06-17T12:50:21.659Z -->
+<!-- md-trans-meta sourceCommit=629268201a1c74f349a992cd6b5c92758af41f29 translatedAt=2026-08-15T01:40:19.311Z pushedAt=2026-08-15T03:05:26.551Z -->
 
 ## Introduction
 
@@ -52,3 +52,7 @@ During Bluetooth pairing and connection establishment, devices can be classified
 In Bluetooth Classic, a device that discovers nearby devices through inquiry and actively initiates pairing and connections is referred to as a Central device. A device that responds to inquiries and accepts pairing and connection requests from other devices is referred to as a Peripheral device.
 
 In BLE, a device that scans for other devices and actively initiates connections is referred to as a Central device. A device that advertises and accepts connection requests from other devices is referred to as a Peripheral device.
+
+<!--RP1-->
+
+<!--RP1End-->

@@ -44,7 +44,7 @@
      @State message: string = 'Hello World';
      @State workerObject: worker.ThreadWorker | null = null;
      aboutToAppear(): void {
-       this.workerObject = new worker.ThreadWorker("entry/ets/workers/Worker.ets");
+       this.workerObject = new worker.ThreadWorker('entry/ets/workers/Worker.ets');
        this.workerObject.onmessage = (e: MessageEvents): void => {
          // 模拟耗时操作，每个接收到的消息处理100ms，让消息排队起来
          let start = new Date().getTime();

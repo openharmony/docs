@@ -1,10 +1,12 @@
 # Working with BigInt Using Node-API
-<!--Kit: NDK-->
+
+<!--Kit: ArkTS-->
 <!--Subsystem: arkcompiler-->
 <!--Owner: @xliu-huanwei; @shilei123; @huanghello-->
 <!--Designer: @shilei123-->
 <!--Tester: @kirl75; @zsw_zhushiwei-->
-<!--Adviser: @fang-jinxu-->
+<!--Adviser: @k1ngqaquuu-->
+<!-- md-trans-meta sourceCommit=2cc827181a31e0a77238ca42eb3b41991d5fd686 translatedAt=2026-08-12T06:37:54.636Z pushedAt=2026-08-12T11:05:33.703Z -->
 
 ## Introduction
 
@@ -15,7 +17,9 @@ BigInt is a data type used to represent integers of any precision in ArkTS, with
 Before using Node-API to operate BigInt values, you need to understand the following basic concepts:
 
 - BigInt: a data type used to represent integers of any precision in ArkTS. Unlike the Number type, BigInt can accurately represent very large integers without losing precision or causing overflows.
+
 - BigInt creation: You can use Node-API to create a ArkTS BigInt object from a C **Int64** or **Uint64** value. This makes it easy to create BigInt values using C/C++.
+
 - BigInt operation: Node-API provides APIs for operating BigInt values. You can use these APIs to obtain and convert BigInt values and perform arithmetic and bitwise operations.
 
 ## Available APIs
@@ -29,17 +33,19 @@ Before using Node-API to operate BigInt values, you need to understand the follo
 | napi_get_value_bigint_uint64 | Obtains an unsigned 64-bit integer from an ArkTS BigInt object.|
 | napi_get_value_bigint_words | Obtains the underlying 64-bit unsigned (uint64) integer from an ArkTS BigInt object. |
 
-
 ## Example
 
 If you are just starting out with Node-API, see [Node-API Development Process](use-napi-process.md). The following demonstrates only the C++ and ArkTS code related to BigInt conversions.
 
 The following header files are required for the C++ code:
+
 ```cpp
 #include "napi/native_api.h"
 #include "hilog/log.h"
 ```
+
 The following modules are required for the ArkTS code:
+
 ```ts
 import { hilog } from '@kit.PerformanceAnalysisKit';
 import testNapi from 'libentry.so';
@@ -51,7 +57,7 @@ Use **napi_create_bigint_int64** to create an ArkTS BigInt object from a signed 
 
 CPP code:
 
-<!-- @[napi_create_bigint_int64](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIUse/NodeAPIBigint/entry/src/main/cpp/napi_init.cpp) -->
+<!-- @[napi_create_bigint_int64](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIUse/NodeAPIBigint/entry/src/main/cpp/napi_init.cpp) --> 
 
 ``` C++
 // napi_create_bigint_int64
@@ -66,20 +72,19 @@ static napi_value CreateBigintInt64t(napi_env env, napi_callback_info info)
 }
 ```
 
-
 API declaration:
 
 index.d.ts
-<!-- @[napi_create_bigint_int64_api](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIUse/NodeAPIBigint/entry/src/main/cpp/types/libentry/Index.d.ts) -->
+
+<!-- @[napi_create_bigint_int64_api](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIUse/NodeAPIBigint/entry/src/main/cpp/types/libentry/Index.d.ts) --> 
 
 ``` TypeScript
 export const createBigintInt64t: () => bigint; // napi_create_bigint_int64
 ```
 
-
 ArkTS code:
 
-<!-- @[ark_napi_create_bigint_int64](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIUse/NodeAPIBigint/entry/src/main/ets/pages/Index.ets) -->
+<!-- @[ark_napi_create_bigint_int64](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIUse/NodeAPIBigint/entry/src/main/ets/pages/Index.ets) --> 
 
 ``` TypeScript
 // napi_create_bigint_int64
@@ -87,14 +92,13 @@ hilog.info(0x0000, 'testTag', 'Test Node-API napi_create_bigint_int64: %{public}
   testNapi.createBigintInt64t());
 ```
 
-
 ### napi_create_bigint_uint64
 
 Use **napi_create_bigint_uint64** to create an ArkTS BigInt object from an unsigned 64-bit integer in C/C++.
 
 CPP code:
 
-<!-- @[napi_create_bigint_uint64](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIUse/NodeAPIBigint/entry/src/main/cpp/napi_init.cpp) -->
+<!-- @[napi_create_bigint_uint64](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIUse/NodeAPIBigint/entry/src/main/cpp/napi_init.cpp) --> 
 
 ``` C++
 // napi_create_bigint_uint64
@@ -109,20 +113,19 @@ static napi_value CreateBigintUint64t(napi_env env, napi_callback_info info)
 }
 ```
 
-
 API declaration:
 
 index.d.ts
-<!-- @[napi_create_bigint_uint64_api](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIUse/NodeAPIBigint/entry/src/main/cpp/types/libentry/Index.d.ts) -->
+
+<!-- @[napi_create_bigint_uint64_api](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIUse/NodeAPIBigint/entry/src/main/cpp/types/libentry/Index.d.ts) --> 
 
 ``` TypeScript
 export const createBigintUint64t: () => bigint; // napi_create_bigint_uint64
 ```
 
-
 ArkTS code:
 
-<!-- @[ark_napi_create_bigint_uint64](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIUse/NodeAPIBigint/entry/src/main/ets/pages/Index.ets) -->
+<!-- @[ark_napi_create_bigint_uint64](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIUse/NodeAPIBigint/entry/src/main/ets/pages/Index.ets) --> 
 
 ``` TypeScript
 // napi_create_bigint_uint64
@@ -130,14 +133,13 @@ hilog.info(0x0000, 'testTag', 'Test Node-API napi_create_bigint_uint64: %{public
   testNapi.createBigintUint64t());
 ```
 
-
 ### napi_create_bigint_words
 
 Use **napi_create_bigint_words** to create an ArkTS BigInt object based on the given byte data.
 
 CPP code:
 
-<!-- @[napi_create_bigint_words](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIUse/NodeAPIBigint/entry/src/main/cpp/napi_init.cpp) -->
+<!-- @[napi_create_bigint_words](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIUse/NodeAPIBigint/entry/src/main/cpp/napi_init.cpp) --> 
 
 ``` C++
 // napi_create_bigint_words
@@ -157,20 +159,19 @@ static napi_value CreateBigintWords(napi_env env, napi_callback_info info)
 }
 ```
 
-
 API declaration:
 
 index.d.ts
-<!-- @[napi_create_bigint_words_api](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIUse/NodeAPIBigint/entry/src/main/cpp/types/libentry/Index.d.ts) -->
+
+<!-- @[napi_create_bigint_words_api](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIUse/NodeAPIBigint/entry/src/main/cpp/types/libentry/Index.d.ts) --> 
 
 ``` TypeScript
 export const createBigintWords: () => bigint | undefined; // napi_create_bigint_words
 ```
 
-
 ArkTS code:
 
-<!-- @[ark_napi_create_bigint_words](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIUse/NodeAPIBigint/entry/src/main/ets/pages/Index.ets) -->
+<!-- @[ark_napi_create_bigint_words](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIUse/NodeAPIBigint/entry/src/main/ets/pages/Index.ets) --> 
 
 ``` TypeScript
 // napi_create_bigint_words
@@ -184,14 +185,13 @@ try {
 }
 ```
 
-
 ### napi_get_value_bigint_int64
 
 Use **napi_get_value_bigint_int64** to obtain a signed 64-bit integer from an ArkTS BigInt object.
 
 CPP code:
 
-<!-- @[napi_get_value_bigint_int64](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIUse/NodeAPIBigint/entry/src/main/cpp/napi_init.cpp) -->
+<!-- @[napi_get_value_bigint_int64](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIUse/NodeAPIBigint/entry/src/main/cpp/napi_init.cpp) --> 
 
 ``` C++
 // napi_get_value_bigint_int64
@@ -221,20 +221,19 @@ static napi_value GetValueBigintInt64t(napi_env env, napi_callback_info info)
 }
 ```
 
-
 API declaration:
 
 index.d.ts
-<!-- @[napi_get_value_bigint_int64_api](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIUse/NodeAPIBigint/entry/src/main/cpp/types/libentry/Index.d.ts) -->
+
+<!-- @[napi_get_value_bigint_int64_api](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIUse/NodeAPIBigint/entry/src/main/cpp/types/libentry/Index.d.ts) --> 
 
 ``` TypeScript
 export const getValueBigintInt64t: (bigInt64: bigint) => boolean | undefined; // napi_get_value_bigint_int64
 ```
 
-
 ArkTS code:
 
-<!-- @[ark_napi_get_value_bigint_int64](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIUse/NodeAPIBigint/entry/src/main/ets/pages/Index.ets) -->
+<!-- @[ark_napi_get_value_bigint_int64](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIUse/NodeAPIBigint/entry/src/main/ets/pages/Index.ets) --> 
 
 ``` TypeScript
 // napi_get_value_bigint_int64
@@ -249,14 +248,13 @@ try {
 }
 ```
 
-
 ### napi_get_value_bigint_uint64
 
 Use **napi_get_value_bigint_uint64** to obtain an unsigned 64-bit integer from an ArkTS BigInt object.
 
 CPP code:
 
-<!-- @[napi_get_value_bigint_uint64](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIUse/NodeAPIBigint/entry/src/main/cpp/napi_init.cpp) -->
+<!-- @[napi_get_value_bigint_uint64](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIUse/NodeAPIBigint/entry/src/main/cpp/napi_init.cpp) --> 
 
 ``` C++
 // napi_get_value_bigint_uint64
@@ -281,20 +279,19 @@ static napi_value GetValueBigintUint64t(napi_env env, napi_callback_info info)
 }
 ```
 
-
 API declaration:
 
 index.d.ts
-<!-- @[napi_get_value_bigint_uint64_api](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIUse/NodeAPIBigint/entry/src/main/cpp/types/libentry/Index.d.ts) -->
+
+<!-- @[napi_get_value_bigint_uint64_api](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIUse/NodeAPIBigint/entry/src/main/cpp/types/libentry/Index.d.ts) --> 
 
 ``` TypeScript
 export const getValueBigintUint64t: (bigUint64: bigint) => boolean | undefined; // napi_get_value_bigint_uint64
 ```
 
-
 ArkTS code:
 
-<!-- @[ark_napi_get_value_bigint_uint64](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIUse/NodeAPIBigint/entry/src/main/ets/pages/Index.ets) -->
+<!-- @[ark_napi_get_value_bigint_uint64](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIUse/NodeAPIBigint/entry/src/main/ets/pages/Index.ets) --> 
 
 ``` TypeScript
 // napi_get_value_bigint_uint64
@@ -309,14 +306,13 @@ try {
 }
 ```
 
-
 ### napi_get_value_bigint_words
 
-Use **napi_get_value_bigint_words** to obtain the sign bit and underlying 64-bit unsigned integer array representation from an ArkTS object.
+Obtains the sign bit and underlying 64-bit unsigned integer array representation from an ArkTS object.
 
 CPP code:
 
-<!-- @[napi_get_value_bigint_words](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIUse/NodeAPIBigint/entry/src/main/cpp/napi_init.cpp) -->
+<!-- @[napi_get_value_bigint_words](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIUse/NodeAPIBigint/entry/src/main/cpp/napi_init.cpp) --> 
 
 ``` C++
 // napi_get_value_bigint_words
@@ -369,20 +365,19 @@ static napi_value GetValueBigintWords(napi_env env, napi_callback_info info)
 }
 ```
 
-
 API declaration:
 
 index.d.ts
-<!-- @[napi_get_value_bigint_words_api](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIUse/NodeAPIBigint/entry/src/main/cpp/types/libentry/Index.d.ts) -->
+
+<!-- @[napi_get_value_bigint_words_api](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIUse/NodeAPIBigint/entry/src/main/cpp/types/libentry/Index.d.ts) --> 
 
 ``` TypeScript
-export const getValueBigintWords: (bigIntWords: bigint) => bigint | undefined; // napi_get_value_bigint_words
+export const getValueBigintWords: (bigIntWords: bigint) => number | undefined; // napi_get_value_bigint_words
 ```
-
 
 ArkTS code:
 
-<!-- @[ark_napi_get_value_bigint_words](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIUse/NodeAPIBigint/entry/src/main/ets/pages/Index.ets) -->
+<!-- @[ark_napi_get_value_bigint_words](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIUse/NodeAPIBigint/entry/src/main/ets/pages/Index.ets) --> 
 
 ``` TypeScript
 // napi_get_value_bigint_words
@@ -399,7 +394,6 @@ try {
   // ...
 }
 ```
-
 
 To print logs in the native CPP, add the following information to the **CMakeLists.txt** file and add the header file by using **#include "hilog/log.h"**.
 

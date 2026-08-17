@@ -35,7 +35,7 @@ onUnhandledException(errMsg: string): void
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| errMsg | string | 是 | 有关异常的消息和错误堆栈跟踪。 |
+| errMsg | string | 是 | 有关异常的信息。 |
 
 **示例：**
 
@@ -44,8 +44,8 @@ import { errorManager } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 let observer: errorManager.ErrorObserver = {
-  onUnhandledException(errorMsg) {
-    console.error('onUnhandledException, errorMsg: ', errorMsg);
+  onUnhandledException(errMsg) {
+    console.error('onUnhandledException, errMsg: ', errMsg);
   }
 };
 
@@ -60,9 +60,9 @@ try {
 
 onException?(errObject: Error): void
 
-应用产生异常，上报js层时的回调。此回调为可选方法，若未实现，将使用系统默认异常处理逻辑。
+应用产生异常，上报JS层时的回调。此回调为可选方法，若未实现，将使用系统默认异常处理逻辑。
 
-可与[ErrorObserver.onUnhandledException](#errorobserveronunhandledexception)的配合使用，通过errorManager.on('error')注册ErrorObserver对象来实现异常监听。
+可与[ErrorObserver.onUnhandledException](#errorobserveronunhandledexception)配合使用，通过errorManager.on('error')注册ErrorObserver对象来实现异常监听。
 
 建议同时实现两个回调方法，用于获取完整的异常信息。
 
@@ -83,8 +83,8 @@ import { errorManager } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 let observer: errorManager.ErrorObserver = {
-  onUnhandledException(errorMsg) {
-    console.error('onUnhandledException, errorMsg: ', errorMsg);
+  onUnhandledException(errObject) {
+    console.error('onUnhandledException, errObject: ', errObject);
   },
   onException(errorObj) {
     console.error('onException, name: ', errorObj.name);

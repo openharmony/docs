@@ -1,10 +1,12 @@
 # Intercepting Network Requests Initiated by the Web Component
+
 <!--Kit: ArkWeb-->
 <!--Subsystem: Web-->
 <!--Owner: @aohui-->
 <!--Designer: @yaomingliu-->
 <!--Tester: @ghiker-->
 <!--Adviser: @HelloShuo-->
+<!-- md-trans-meta sourceCommit=4248a04d1b026b87b7cace162036b2fac054f3a9 translatedAt=2026-08-14T03:50:40.376Z pushedAt=2026-08-14T09:43:14.295Z -->
 
 The application can use [onInterceptRequest](../reference/apis-arkweb/arkts-basic-components-web-events.md#oninterceptrequest9) or the ArkTS and NDK APIs provided by **SchemeHandler** to intercept network requests initiated by **Web** components.
 
@@ -81,9 +83,15 @@ The creation of a **Web** component triggers the initialization of the web kerne
 
 In the NDK, you can call **testNapi.registerCustomSchemes** on the ETS side to register a custom scheme, and then call [initializeWebEngine](../reference/apis-arkweb/arkts-apis-webview-WebviewController.md#initializewebengine) to initialize the web kernel. The sample code is as follows:
 
-<!-- @[register_init_scheme](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkWeb/ArkWebSchemeHandler/entry/src/main/ets/entryability/EntryAbility.ets) -->
+<!-- @[register_init_scheme](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkWeb/ArkWebSchemeHandler/entry/src/main/ets/entryability/EntryAbility.ets) -->    
 
 ``` TypeScript
+import { AbilityConstant, UIAbility, Want } from '@kit.AbilityKit';
+import { hilog } from '@kit.PerformanceAnalysisKit';
+import { window } from '@kit.ArkUI';
+import testNapi from 'libentry.so';
+import { webview } from '@kit.ArkWeb';
+
 export default class EntryAbility extends UIAbility {
   onCreate(want: Want, launchParam: AbilityConstant.LaunchParam): void {
     // Register the configuration of the third-party protocol.
@@ -93,6 +101,9 @@ export default class EntryAbility extends UIAbility {
     // Set SchemeHandler.
     testNapi.setSchemeHandler();
   }
+
+// ...
+};
 ```
 
 C++ implementation of **testNapi.registerCustomSchemes**:
@@ -178,6 +189,7 @@ In the NDK, obtain information about intercepted requests:
   ```
 
 In ArkTS, obtain information about intercepted requests:
+
   ```ts
   this.schemeHandler.onRequestStart((request: webview.WebSchemeHandlerRequest, resourceHandler: webview.WebResourceHandler) => {
     try {
@@ -212,9 +224,9 @@ The network interception provides custom response information for intercepted re
 
 Error codes: 
 
-NDK: [arkweb_net_error_list.h](../reference/apis-arkweb/capi-arkweb-net-error-list-h.md) 
+NDK: [arkweb_net_error_list.h](../reference/apis-arkweb/capi-arkweb-net-error-list-h.md).
 
-ArkTS: [@ohos.web.netErrorList(The List of ArkWeb Network Protocol Stack Errors)](../reference/apis-arkweb/arkts-apis-netErrorList.md) 
+ArkTS: [@ohos.web.netErrorList (The List of ArkWeb Network Protocol Stack Errors)](../reference/apis-arkweb/arkts-apis-netErrorList.md).
 
 > **NOTE**
 >
@@ -288,13 +300,16 @@ Before calling [OH_ArkWebResourceHandler_DidFailWithError](../reference/apis-ark
 Since API version 20, you can directly use [OH_ArkWebResourceHandler_DidFailWithErrorV2](../reference/apis-arkweb/capi-arkweb-scheme-handler-h.md#oh_arkwebresourcehandler_didfailwitherrorv2) or [didFail(code: WebNetErrorList, completeIfNoResponse: boolean)](../reference/apis-arkweb/arkts-apis-webview-WebResourceHandler.md#didfail20) to end a network request. You do not need to use [OH_ArkWebResourceHandler_DidReceiveResponse](../reference/apis-arkweb/capi-arkweb-scheme-handler-h.md#oh_arkwebresourcehandler_didreceiveresponse) or [didReceiveResponse](../reference/apis-arkweb/arkts-apis-webview-WebResourceHandler.md#didreceiveresponse12) to return a response header to the web kernel.
 
 NDK sample code:
+
   ```c++
   void OnRequestStart(){
     // Return the network error code ARKWEB_ERR_CONNECTION_FAILED to end the request.
     OH_ArkWebResourceHandler_DidFailWithErrorV2(resourceHandler_, ARKWEB_ERR_CONNECTION_FAILED, true);
   }
   ```
+
 ArkTS sample code:
+
   ```ts
   this.schemeHandler.onRequestStart((request: webview.WebSchemeHandlerRequest, resourceHandler: webview.WebResourceHandler) => {
     // Call didFail(WebNetErrorList.ERR_CONNECTION_FAILED, true) to automatically construct a network request error ERR_CONNECTION_FAILED.
@@ -306,5 +321,7 @@ ArkTS sample code:
 ## Sample Code
 
 <!--RP1-->
+
 [Intercepting Network Requests Initiated by the Web Component](https://gitcode.com/openharmony/applications_app_samples/tree/master/code/DocsSample/ArkWeb/ArkWebSchemeHandler)
+
 <!--RP1End-->

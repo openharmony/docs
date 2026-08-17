@@ -1,4 +1,4 @@
-# Key Import Using Digital Envelope (C/C++)
+# Importing a Key Using a Digital Envelope (C/C++)
 
 <!--Kit: Universal Keystore Kit-->
 <!--Subsystem: Security-->
@@ -6,6 +6,7 @@
 <!--Designer: @HighLowWorld-->
 <!--Tester: @wxy1234564846-->
 <!--Adviser: @zengyawen-->
+<!-- md-trans-meta sourceCommit=d952bbd31d41cf1a9f05cfda257478eb0904ac62 translatedAt=2026-08-13T08:24:20.085Z pushedAt=2026-08-13T10:20:24.712Z -->
 
 The [digital envelope](./huks-key-import-overview.md#digital-envelope-import) feature is supported since API version 23.
 
@@ -16,18 +17,35 @@ To import keys using digital envelope, you need to use the [OH_HUKS_TAG_UNWRAP_A
 When importing a key pair of an asymmetric key using digital envelope, you need to add the [OH_HUKS_TAG_ASYMMETRIC_PUBLIC_KEY_DATA](../../reference/apis-universal-keystore-kit/capi-native-huks-type-h.md#oh_huks_tag) tag and encapsulate the public key in X.509 DER format into the tag. Only key pairs can be imported for asymmetric keys.
 
 ## Linking the Dynamic Library in the CMake Script
+
 ```txt
 target_link_libraries(entry PUBLIC libhuks_ndk.z.so)
 ```
+
 ## How to Develop
+
 1. Device A (service side) generates an SM4 key (**cipherSm4**).
-2. Device A uses the generated SM4 key to encrypt the value of **importKey** in ECB/NoPadding mode, obtaining the encrypted key (enImportKey=Encrypt(cipherSm4, importKey)).
+
+2. Device A uses the generated SM4 key to encrypt the key to be imported (**importKey**) in ECB/NoPadding mode, obtaining the encrypted key **enImportKey** = Encrypt(**cipherSm4**, **importKey**).
+
 3. Device B (key importer) exports the SM2 public key. Device A receives the key.
+
 4. Device A uses the received SM2 public key to encrypt the generated SM4 key (**enSm4** is set to **Encrypt(Sm2, cipherSm4)**).
+
 5. Device A sends the digital envelope data to device B.
-6. Device B uses the imported **WrappedKey** to import the key using digital envelope. If the key to be imported is an asymmetric key, you only need to encrypt the raw key in this step. If the key pair of the asymmetric key is imported, the public key is encapsulated in DER format into [OH_HUKS_TAG_ASYMMETRIC_PUBLIC_KEY_DATA](../../reference/apis-universal-keystore-kit/capi-native-huks-type-h.md#oh_huks_tag).
+
+6. Device B uses [OH_Huks_ImportWrappedKeyItem](../../reference/apis-universal-keystore-kit/capi-native-huks-api-h.md#oh_huks_importwrappedkeyitem) to import the key using a digital envelope. If the key to be imported is a symmetric key, you only need to encrypt the raw key in this step. If the key pair of an asymmetric key is imported, encapsulate the public key in DER format and place it in [OH_HUKS_TAG_ASYMMETRIC_PUBLIC_KEY_DATA](../../reference/apis-universal-keystore-kit/capi-native-huks-type-h.md#oh_huks_tag).
+
+> **NOTE**
+>
+> If the peer device is not an OpenHarmony device and does not support the key management service, the following requirements must be met when constructing the digital envelope data:
+>
+> - The SM2 encryption result is combined as C1C3C2, where C1x and C1y are 32 bytes each.
+>
+> - The SM2 encryption result uses the ASN.1 format, where bigint is stored in big-endian order.
 
 ### Example of Importing the RSA Key
+
 ```c
 #include <string.h>
 #include "napi/native_api.h"
@@ -231,6 +249,7 @@ static napi_value EnvelopImportKey(napi_env env, napi_callback_info info) {
 ```
 
 ### Example of Importing the AES Key
+
 ```c
 #include <string.h>
 #include "napi/native_api.h"

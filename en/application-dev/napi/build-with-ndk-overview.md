@@ -1,37 +1,45 @@
 # Overview
 
+<!--Kit: ArkTS-->
+<!--Subsystem: arkcompiler-->
+<!--Owner: @liyiming13-->
+<!--Designer: @liyiming13-->
+<!--Tester: @zsw_zhushiwei-->
+<!--Adviser: @k1ngqaquuu-->
+<!-- md-trans-meta sourceCommit=21434ce8d323ecbd7d67463989a2ef075be92cec translatedAt=2026-08-12T06:24:55.291Z pushedAt=2026-08-12T07:14:02.200Z -->
 
-By default, the OpenHarmony NDK uses CMake as the build system. To simplify your configuration process, the NDK provides the configuration file [ohos.toolchain.cmake](#introduction-to-ohostoolchaincmake) that complies with the OpenHarmony toolchain to predefine CMake variables.
+OpenHarmony NDK uses CMake as the default build system. The NDK package includes the base configuration file <!--RP2-->ohos.toolchain.cmake<!--RP2End-->, which is compliant with the OpenHarmony toolchain and predefines CMake variables to simplify your configuration.
 
+Common NDK project build methods include:
 
-You can build your project with the NDK in the following modes:
+- Building from source
 
+  There are different ways to build from source:
 
-- Build from source code
+  - Use the C++ app template provided by DevEco Studio and [compile and build with DevEco Studio](build-with-ndk-ide.md)
 
-  To build from source code, you can use:
-
-  - [C++ application template provided by DevEco Studio](build-with-ndk-ide.md)
-  - [CMake from the command line](build-with-ndk-cmake.md)
+  - [Compile and build using command-line CMake](build-with-ndk-cmake.md)
 
 - [Build with prebuilt libraries](build-with-ndk-prebuilts.md)
 
+This section uses specific examples to describe how to use the NDK in a native project and how to write CMake scripts to build an NDK project.
 
-This section uses examples to describe how to use the NDK in a native project and how to write a CMake script to build a project with the NDK.
-
+<!--RP1-->
 
 ## Introduction to ohos.toolchain.cmake
 
-**ohos.toolchain.cmake** is the toolchain script provided by the OpenHarmony NDK for CMake. It predefines the build parameters that need to be set for building OpenHarmony applications, such as the target of the cross compilation device and the link mode of C++ runtime libraries. These parameters can be passed in by running CMake commands to change the default compilation and linking behavior. The following table lists the common parameters in this file.
+`ohos.toolchain.cmake` is a toolchain script provided by OpenHarmony NDK for CMake. It predefines the compilation parameters required for building OpenHarmony apps, such as the cross-compilation target device and the linking mode of the C++ runtime library. When invoking CMake commands, you can pass these parameters from the command line to change the default compilation and linking behavior. The following table lists the commonly used parameters in this file.
 
-| Name| Type| Description|
+| Name | Type | Description |
 | -------- | -------- | -------- |
-| OHOS_STL | c++_shared/c++_static | Link mode of libc++.<br> Default value: **c++_shared**<br>Available options are as follows:<br>**c++_shared**: The native library dynamically links **libc++_shared.so**.<br>**c++_static**: The native library links the static library **libc++_static.a**.<br>Because some global variables are involved during C++ runtime, all native libraries must be linked to your application in the same mode.|
-| OHOS_ARCH | armeabi-v7a/arm64-v8a/x86_64 | Target architecture for native cross compilation. Available options are as follows: **armeabi-v7a**, **arm64-v8a**, and **x86_64**.|
-| OHOS_PLATFORM | OHOS | Target platform. Currently, only OpenHarmony is supported.|
+| OHOS_STL | c++_shared/c++_static | Linking mode of `libc++`. The default value is `c++_shared`.<br/>`c++_shared`: dynamically links `libc++_shared.so`. `c++_static`: statically links `libc++_static.a`.<br/>Because global variables exist in the C++ runtime, all native libraries in the same app must use the same linking mode. |
+| OHOS_ARCH | armeabi-v7a/arm64-v8a/x86_64 | Target architecture for native cross-compilation. Supported architectures are armeabi-v7a, arm64-v8a, and x86_64. |
+| OHOS_PLATFORM | OHOS | Platform. Currently, only the OpenHarmony platform is supported. |
 
-The preceding parameters control the cross compilation commands of Clang and generate proper command parameters.
+These parameters ultimately control Clang's cross-compilation commands and generate appropriate command arguments.
 
-- The **--target={arch}-linux-ohos** parameter instructs the compiler to generate binary files that comply with OpenHarmony ABI in the corresponding architecture.
+- `--target={arch}-linux-ohos`: instructs the compiler to generate binary files that conform to the OpenHarmony ABI for the corresponding architecture.
 
-- The **--sysroot={ndk_root}/sysroot** parameter notifies the compiler of the location of the OpenHarmony header files.
+- `--sysroot={ndk_root}/sysroot`: notifies the compiler of the location of the OpenHarmony header files.
+
+<!--RP1End-->

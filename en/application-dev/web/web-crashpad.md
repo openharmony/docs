@@ -1,22 +1,77 @@
 # Using Crashpad to Collect Web Component Crash Information
+
 <!--Kit: ArkWeb-->
 <!--Subsystem: Web-->
 <!--Owner: @qq_44167590-->
 <!--Designer: @hjoksky-->
 <!--Tester: @ghiker-->
 <!--Adviser: @HelloShuo-->
+<!-- md-trans-meta sourceCommit=6f1cd3840c5f7e83241b79517353499343338b04 translatedAt=2026-08-14T03:43:08.545Z pushedAt=2026-08-14T07:34:12.203Z -->
 
-The **Web** component supports process crash information collection using Crashpad. Crashpad is a tool provided by the Chromium kernel for handling process crash information. When an application process (web rendering process) crashes when using a **Web** component, Crashpad writes the **minidump** file to the sandbox directory of the main process of the application. This file is in binary format and the filename extension is **.dmp**. It records crash causes, thread information, and register information. You can use this file to analyze process crashes related to **Web** components.
+The Web component supports using Crashpad to record process crash information. Crashpad is a process crash information processing tool provided by the Chromium kernel. After a process (Web rendering process) crash caused by the app using the Web component occurs, Crashpad writes a dmp file to the app main process sandbox directory. This file is in binary format with the dmp suffix, and records the cause of the process crash, thread information, register information, and so on. The app can use this file to analyze crash issues related to Web component processes. The Web component supports the [onRenderExited](../reference/apis-arkweb/arkts-basic-components-web-events.md#onrenderexited9) and [onRenderProcessNotResponding](../reference/apis-arkweb/arkts-basic-components-web-events.md#onrenderprocessnotresponding12) APIs starting from API version 9 and API version 12, respectively. You can use these Web APIs to detect rendering process exit and rendering process unresponsiveness, and add app processing logic in these APIs.
 
 Procedure:
 
-1. When a process crashes because a **Web** component is used in the application, the corresponding **dmp** file is generated in the sandbox directory of the main process of the application. The sandbox path is as follows:
+1. After a process crash caused by the app using the Web component occurs, Crashpad receives the signal, and the corresponding Hilog log (excerpt) is as follows:
+
+  ```c
+  pid-30069             I     [crashpad_ohos.cc:254] crashpad SandboxedHandler::HandleCrash, received signo = 6
+  pid-30069             I     [crashpad_ohos.cc:182] crashpad SandboxedHandler::HandleCrashNonFatal, connect to handler successfully, need to request dump
+  ...
+  arkweb_cr..._handler  I     [crash_report_database.cc:91] crash dmp path : /data/storage/el2/log/crashpad/new/xxx.dmp
+  ```
+
+At this point, Crashpad starts requesting a dump. After the dump succeeds, a corresponding dmp file is generated in the app main process sandbox directory. The corresponding sandbox path is as follows:
 
    ```c
    /data/storage/el2/log/crashpad
    ```
 
-2. Access the DMP file of the application sandbox by referring to [Accessing Files on the Native Side](https://developer.huawei.com/consumer/en/doc/best-practices/bpta-file-native-side).
+2. Refer to <!--RP1-->Native Access to the App Sandbox<!--RP1End--> to access the dmp file in the app sandbox. You can also copy the file from the sandbox path where the dmp file is stored to a path that can be viewed. The example is as follows:
+
+<!-- @[web_get_dmp_files](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkWeb/ArkWebGetDmpFiles/entry/src/main/ets/pages/Index.ets) -->
+
+``` TypeScript
+import { fileIo as fs } from '@kit.CoreFileKit'
+import { BusinessError } from '@kit.BasicServicesKit'
+import { webview } from '@kit.ArkWeb'
+
+@Entry
+@Component
+struct Index {
+  controller: webview.WebviewController = new webview.WebviewController();
+  uiContext: UIContext = this.getUIContext();
+  build() {
+    RelativeContainer() {
+      Web({src:'chrome://memory-exhaust/', controller:this.controller})
+      Button('file')
+        .onClick(() => {
+          let pathDir = this.uiContext.getHostContext()?.filesDir;
+          console.info("pathdir=" + pathDir);
+          fs.copyDir("/data/storage/el2/log/crashpad/pending/", pathDir, 0)
+            .then(()=>{
+              console.info("copy files success");
+            })
+            .catch((err: BusinessError)=>{
+              console.error("copy failed with error message: " + err.message + ", error code: " + err.code);
+            })
+        })
+    }
+    .height('100%')
+    .width('100%')
+  }
+}
+```
+
+The preceding example copies all dmp files to a sandbox path that can be viewed. You can also search for ".dmp" in the Hilog log to obtain the dmp file name, so that a specific dmp file can be copied to another sandbox path. The specific path is:
+
+  ```c
+  /data/app/el2/100/base/com.example.myapplication/haps/entry/files/
+  ```
+
+This path can be viewed using DevEco Studio.
+
+![image.png](figures/arkweb-visible-sandbox-path.png 'image.png')
 
 3. Parse the DMP file as follows:
 
@@ -26,7 +81,7 @@ Procedure:
      ./minidump_stackwalk b678e0b5-894b-4794-9ab3-fb5d6dda06a3.dmp > parsed_stacktrace.txt
      ```
 
-     You can obtain minidump_stackwalk by compiling the source code of breakpad project. For details, see [Breakpad](https://chromium.googlesource.com/breakpad/breakpad).
+     minidump_stackwalk is obtained by compiling the source code of the Breakpad project. For the compilation method, see the project repository: [Breakpad repository address](https://chromium.googlesource.com/breakpad/breakpad).
 
    * Sample of the parsed file is as follows:
 
@@ -69,11 +124,12 @@ Procedure:
       ......
      ```
 
-   * Use the llvm toolchain to parse the crash source code. The example is as follows (Linux environment):
+   * Use the LLVM toolchain to parse the crash source code location. Note that the so file to be parsed must be an so file with a symbol table. If the stack shows that it is related to the web so, you can submit an issue or IR ticket in the community. The example is as follows (Linux environment):
 
      ```c
      ./llvm-addr2line -Cfpie libweb_engine.so 0x2e0b340
      ```
 
-     The llvm-addr2line toolchain can be obtained in the SDK.
+     The llvm-addr2line toolchain is located in the SDK.
+
 <!--no_check-->

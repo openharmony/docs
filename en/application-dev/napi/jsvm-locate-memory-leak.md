@@ -1,27 +1,33 @@
 # Troubleshooting JSVM-API Memory Leaks
-<!--Kit: NDK Development-->
+
+<!--Kit: ArkTS-->
 <!--Subsystem: arkcompiler-->
-<!--Owner: @yuanxiaogou; @string_sz-->
+<!--Owner: @yuanxiaogou-->
 <!--Designer: @knightaoko-->
 <!--Tester: @test_lzz-->
-<!--Adviser: @fang-jinxu-->
+<!--Adviser: @k1ngqaquuu-->
+<!-- md-trans-meta sourceCommit=f34ddda28f1bcebae0ddfbd293a9ffe8cb2789f9 translatedAt=2026-08-12T06:26:20.702Z pushedAt=2026-08-12T09:03:15.940Z -->
 
-JSVM memory usage includes native memory usage (C/C++ memory usage) and heap memory usage of the underlying JavaScript engine. Heap memory is used for maintaining a heap and its lifecycle to manage generated JavaScript objects by the JavaScript engine. Other memory is called native memory. When using the JSVM, you may encounter the two types of memory exceptions.
+JSVM memory usage includes native memory usage (C/C++ memory usage) and heap memory usage of the underlying JavaScript engine. The JavaScript engine maintains a heap to manage the JavaScript objects it generates, and the lifecycle of these objects is maintained by the JavaScript engine. Other memory is called native memory. When using the JSVM, you may encounter the two types of abnormal memory growth.
 
 This topic describes how to determine the memory leak type and how to locate the native memory leak and JavaScript engine heap memory leak.
 
 ## Determining the Memory Leak Type
 
-You can use hdc to connect to the device, run the following command to sample the memory of the target application, and compare the memory changes within a period of time to determine whether the native memory leaks or JavaScript memory leaks. In the **Pss Total** column in the following figure, **native heap** indicates the native memory usage, and **AnonPage other** indicates the JavaScript heap memory usage.
+You can connect to the device via hdc and run the following command to sample the memory of the target app, then compare the memory changes over a period of time to qualitatively determine whether the issue is a Native memory leak or abnormal JS heap memory growth. In the following figure, under the Pss Total column, native heap corresponds to Native memory usage, and AnonPage other corresponds to JS heap memory usage.
+
 ```hdc
 hidumper --mem $(pidof dest_app)
 ```
+
 <div align=left><img src="figures/jsvm_locate_memory_leak_hidump.png"/></div>
 
-
 ## Locating Native Memory Leaks
+
 ### When to Use
+
 1. **OH_JSVM_CreateReference** and **OH_JSVM_DeleteReference** are not called in pairs. As a result, references are not released.
+
 ```c++
 JSVM_Value obj = nullptr;
 OH_JSVM_CreateObject(env, &obj);
@@ -38,7 +44,9 @@ OH_JSVM_GetReferenceValue(env, reference, &result);
 ```
 
 ### How to Locate
+
 To analyze native memory leaks, you can use the memory analysis module of DevEco Studio. For details, see [Memory Analysis and Optimization](https://developer.huawei.com/consumer/en/doc/harmonyos-guides/ide-insight-session-allocations-memory).
+
 1. Use the **Allocation** module of Profiler to record the native memory information within a period of time.
 
    <div align=left><img src="figures/jsvm_locate_memory_leak_allocation1.png"/></div>  
@@ -47,10 +55,12 @@ To analyze native memory leaks, you can use the memory analysis module of DevEco
 
    <div align=left><img src="figures/jsvm_locate_memory_leak_allocation2.png"/></div> 
 
-
 ## Locating JavaScript Engine Heap Memory Leaks
+
 ### When to Use
+
 1. Global variables are misused. As a result, DOM elements are not released.
+
 ```js
 const elements = [];
 function createElements() {
@@ -67,4 +77,5 @@ function createElements() {
 Currently, JSVM provides OH_JSVM_OpenInspector to enable the inspector. For details, see [Using OH_JSVM_OpenInspector](https://developer.huawei.com/consumer/en/doc/harmonyos-guides/jsvm-debugger-cpuprofiler-heapsnapshot#using-oh_jsvm_openinspector) and [Using Chrome Inspect](https://developer.huawei.com/consumer/en/doc/harmonyos-guides/jsvm-debugger-cpuprofiler-heapsnapshot#using-chrome-inspect).
 
 Use DevTools to take a snapshot of the heap memory in the target scenario (click the garbage collection button above before taking a snapshot). Compare the snapshots to find the unreleased JavaScript objects and their locations in the source code to further locate the cause of the unreleased heap memory.
+
 <div align=left><img src="figures/jsvm_locate_memory_leak_devtool.png"/></div> 

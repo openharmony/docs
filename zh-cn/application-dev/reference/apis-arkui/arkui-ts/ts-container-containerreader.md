@@ -125,13 +125,9 @@ breakpointConfig(value?: BreakpointOptions)
 
 从API版本26.0.0开始，新增ContainerReader。
 
-> **说明：** 
->
-> 使用ContainerReader需要同时导入ContainerReaderAttribute，否则会导致编译报错。
-
 ```ts
 // xxx.ets
-import { ContainerReader, ContainerReaderAttribute, Size } from '@kit.ArkUI';
+import { ContainerReader, Size } from '@kit.ArkUI';
 
 @Entry
 @Component
@@ -197,13 +193,9 @@ struct Index {
 
 从API版本26.0.0开始，新增ContainerReader与breakpointConfig。
 
-> **说明：** 
->
-> 使用ContainerReader需要同时导入ContainerReaderAttribute，否则会导致编译报错。
-
 ```ts
 // xxx.ets
-import { ContainerReader, ContainerReaderAttribute, Size } from '@kit.ArkUI';
+import { ContainerReader, Size } from '@kit.ArkUI';
 
 @Entry
 @Component
@@ -276,13 +268,9 @@ struct Index {
 
 从API版本26.0.0开始，新增ContainerReader。
 
-> **说明：** 
->
-> 使用ContainerReader需要同时导入ContainerReaderAttribute，否则会导致编译报错。
-
 ```ts
 // xxx.ets
-import { ContainerReader, ContainerReaderAttribute, Size } from '@kit.ArkUI';
+import { ContainerReader, Size } from '@kit.ArkUI';
 
 @Entry
 @Component

@@ -1,4 +1,4 @@
-# NearLink错误码
+# 星闪错误码
 <!--Kit: Connectivity Kit-->
 <!--Subsystem: Communication-->
 <!--Owner: @CCCZKing-->
@@ -12,7 +12,7 @@
 > 以下仅介绍本模块特有错误码，通用错误码请参考[通用错误码说明文档](../errorcode-universal.md)。
 
 
-## 36100003  星闪关闭
+## 36100003 星闪关闭
 
 **错误信息**
 
@@ -28,7 +28,7 @@ NearLink disabled.
 
 **处理步骤**
 
-在设备的设置界面，通过“设置 &gt; 星闪和蓝牙 &gt; 星闪”（不同产品或系统版本可能为“设置 &gt; 多设备协同 &gt; 星闪”）路径打开星闪后重试，或请通过[在线提单](https://developer.huawei.com/consumer/cn/support/feedback/#/)提交问题。
+在设备的设置界面打开星闪后重试（通常路径为“设置 &gt; 星闪和蓝牙 &gt; 星闪”，不同产品或系统版本可能为“设置 &gt; 多设备协同 &gt; 星闪”），或请通过[在线提单](https://developer.huawei.com/consumer/cn/support/feedback/#/)提交问题。
 
 
 ## 36100020 端口重复注册
@@ -119,11 +119,11 @@ Integer out of range.
 
 **可能原因**
 
-整数超出范围。
+传入的整数参数超出接口定义的取值范围。
 
 **处理步骤**
 
-修改整数参数值到规格范围内，或请通过[在线提单](https://developer.huawei.com/consumer/cn/support/feedback/#/)提交问题。
+修改整数参数值到接口定义的有效取值范围内（具体取值范围请参见对应接口的参数说明），或请通过[在线提单](https://developer.huawei.com/consumer/cn/support/feedback/#/)提交问题。
 
 
 ## 36100041 无效地址
@@ -138,7 +138,7 @@ Invalid address.
 
 **可能原因**
 
-无效地址。
+传入的地址参数格式不正确，如长度不符、包含非法字符。
 
 **处理步骤**
 
@@ -159,7 +159,7 @@ Empty array.
 
 **可能原因**
 
-数组为空。
+传入的数组参数为空，或数组中未包含有效的元素。
 
 **处理步骤**
 
@@ -178,7 +178,7 @@ Invalid UUID.
 
 **可能原因**
 
-无效UUID。
+传入的UUID参数格式不正确，如长度不符、包含非法字符。
 
 **处理步骤**
 
@@ -199,11 +199,11 @@ NearLink standard UUID not allowed.
 
 **可能原因**
 
-接口参数中禁止使用标准服务UUID。限制场景包括：
+接口参数中禁止使用星闪标准服务UUID。限制场景包括：
 
-1. 禁止直接将标准服务UUID作为参数传入；
+1. 禁止直接将星闪标准服务UUID作为参数传入；
 
-2. 禁止在自定义服务、属性、方法等服务结构中包含标准服务UUID。
+2. 禁止在自定义服务、属性、方法等服务结构中包含星闪标准服务UUID。
 
 **处理步骤**
 
@@ -224,11 +224,11 @@ Coordinated Devices Set Management not supported.
 
 **可能原因**
 
-本设备不支持合作设备集合管理功能。
+当前设备硬件不支持合作设备集合管理功能。
 
 **处理步骤**
 
-如需使用合作设备集合管理功能，请使用支持星闪合作设备集合管理特性的设备，比如支持星闪音频的部分手机、平板等，或请通过[在线提单](https://developer.huawei.com/consumer/cn/support/feedback/#/)提交问题。
+如需使用合作设备集合管理功能，请使用支持星闪合作设备集合管理特性的设备，例如支持星闪音频的部分手机、平板等。也可通过查询设备能力接口确认设备是否支持该特性，或请通过[在线提单](https://developer.huawei.com/consumer/cn/support/feedback/#/)提交问题。
 
 
 ## 36100099 操作失败
@@ -249,4 +249,4 @@ Operation failed.
 
 **处理步骤**
 
-进行重试操作或请通过[在线提单](https://developer.huawei.com/consumer/cn/support/feedback/#/)提交问题。
+请重试操作；若问题持续存在，请通过[在线提单](https://developer.huawei.com/consumer/cn/support/feedback/#/)提交问题。

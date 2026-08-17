@@ -44,7 +44,7 @@ on(type: 'prepareContinue', context: Context, callback: AsyncCallback\<ContinueR
   | -------- |-------------------------------------------------------------------------------------------------| -------- |------------------------------------------|
   | type | string                                                                                          | 是 | 固定值：prepareContinue。                     |
   | context | [Context](../apis-ability-kit/js-apis-inner-application-baseContext.md)                                                                                         | 是 | Ability（应用组件）的Context。                         |
-  | callback | AsyncCallback&lt;[ContinueResultInfo](js-apis-app-ability-continueManager.md#continueresultinfo)&gt; | 是 | 回调函数。当快速拉起结果获取成功，err为undefined，ContinueResultInfo为获取到的快速启动结果。否则为错误对象。 |
+  | callback | AsyncCallback&lt;[ContinueResultInfo](js-apis-app-ability-continueManager.md#continueresultinfo)&gt; | 是 | 回调函数。当快速拉起结果获取成功，err为undefined，ContinueResultInfo为获取到的快速拉起结果。否则为错误对象。 |
 
 **错误码：**
 

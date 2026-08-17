@@ -6,6 +6,7 @@
 <!--Designer: @lanming-->
 <!--Tester: @PAFT-->
 <!--Adviser: @zengyawen-->
+<!-- md-trans-meta sourceCommit=d93383360d36e72d15ef3e14ccb0a6b358a4f8a5 translatedAt=2026-08-12T07:10:03.970Z pushedAt=2026-08-12T07:29:25.317Z -->
 
 The digital signature can be used to verify whether the data came from the stated sender and has been changed.
 
@@ -20,11 +21,11 @@ This topic describes the supported algorithms and specifications for signing and
 The Crypto framework supports the following padding modes for RSA signing and signature verification:
 
 - [PKCS1](#pkcs1): RSAES-PKCS1-V1_5 mode in RFC3447, corresponding to RSA_PKCS1_PADDING in OpenSSL.
-  
+
   If this mode is used, you need to set the message digest (**md**). The length of the MD output must be less than the length of the RSA key. For example, the length of the RSA2048 key is 256 bytes.
 
 - [PSS](#pss): RSASSA-PSS mode in RFC 3447, corresponding to RSA_PKCS1_PSS_PADDING in OpenSSL.
-  
+
   If this mode is used, you need to set two digests (**md** and **mgf1_md**), and the total length of the **md** digest, **saltLen**, and **2** must be less than or equal to the length of the RSA key.
 
   You can also set the salt length **saltLen** to obtain PSS-related parameters.  
@@ -122,13 +123,13 @@ As indicated by the last row in the preceding table, you can specify the RSA key
 
 The following table lists the parameters that can be set or obtained when the PSS mode is used. The symbol "√" indicates that the parameter can be obtained or set.
 
-| PSS Parameter| Value| Get| Set| 
+| PSS Parameter| Value| Get| Set|
 | -------- | -------- | -------- | -------- |
-| md | PSS_MD_NAME_STR | √ | - | 
-| mgf | PSS_MGF_NAME_STR | √ | - | 
-| mgf1_md | PSS_MGF1_MD_STR | √ | - | 
-| saltLen | PSS_SALT_LEN_NUM | √ | √ | 
-| trailer_field | PSS_TRAILER_FIELD_NUM | √ | - | 
+| md | PSS_MD_NAME_STR | √ | N/A |
+| mgf | PSS_MGF_NAME_STR | √ | N/A |
+| mgf1_md | PSS_MGF1_MD_STR | √ | N/A |
+| saltLen | PSS_SALT_LEN_NUM | √ | √ |
+| trailer_field | PSS_TRAILER_FIELD_NUM | √ | N/A |
 
 ### OnlySign/OnlyVerify in PKCS1 Mode
 
@@ -186,29 +187,29 @@ When creating an RSA signature verification (**Verify**) instance, you need to s
 
 In the following table, the options included in the square brackets ([]) are mutually exclusive. You can use only one of them in a string parameter. For example, if the asymmetric key type is **RSA2048**, padding mode is **PKCS1**, MD algorithm is **SHA256**, and signature verification mode is **Recover**, the string parameter is **RSA2048|PKCS1|SHA256|Recover**.
 
-| Asymmetric Key Type| Padding Mode| MD Algorithm| Signing Mode| API Version| 
-| -------- | -------- | -------- | -------- | -------- | 
-| RSA512 | PKCS1 | [NoHash\|MD5\|SHA1\|SHA224\|SHA256] | Recover | 12+ | 
-| RSA768 | PKCS1 | [NoHash\|MD5\|SHA1\|SHA224\|SHA256\|SHA384\|SHA512] | Recover | 12+ | 
-| RSA1024 | PKCS1 | [NoHash\|MD5\|SHA1\|SHA224\|SHA256\|SHA384\|SHA512] | Recover | 12+ | 
-| RSA2048 | PKCS1 | [NoHash\|MD5\|SHA1\|SHA224\|SHA256\|SHA384\|SHA512] | Recover | 12+ | 
-| RSA3072 | PKCS1 | [NoHash\|MD5\|SHA1\|SHA224\|SHA256\|SHA384\|SHA512] | Recover | 12+ | 
-| RSA4096 | PKCS1 | [NoHash\|MD5\|SHA1\|SHA224\|SHA256\|SHA384\|SHA512] | Recover | 12+ | 
-| RSA8192 | PKCS1 | [NoHash\|MD5\|SHA1\|SHA224\|SHA256\|SHA384\|SHA512] | Recover | 12+ | 
-| [RSA512\|RSA768\|RSA1024\|RSA2048\|RSA3072\|RSA4096\|RSA8192\|RSA] | NoPadding | NoHash | Recover | 12+ | 
-| RSA | PKCS1 | MD algorithm that meets the length requirements| Recover | 12+ | 
+| Asymmetric Key Type | Padding Mode | Digest Algorithm | Verify Mode | API Version |
+| -------- | -------- | -------- | -------- | -------- |
+| RSA512 | PKCS1 | [NoHash\|MD5\|SHA1\|SHA224\|SHA256] | Recover | 12+ |
+| RSA768 | PKCS1 | [NoHash\|MD5\|SHA1\|SHA224\|SHA256\|SHA384\|SHA512] | Recover | 12+ |
+| RSA1024 | PKCS1 | [NoHash\|MD5\|SHA1\|SHA224\|SHA256\|SHA384\|SHA512] | Recover | 12+ |
+| RSA2048 | PKCS1 | [NoHash\|MD5\|SHA1\|SHA224\|SHA256\|SHA384\|SHA512] | Recover | 12+ |
+| RSA3072 | PKCS1 | [NoHash\|MD5\|SHA1\|SHA224\|SHA256\|SHA384\|SHA512] | Recover | 12+ |
+| RSA4096 | PKCS1 | [NoHash\|MD5\|SHA1\|SHA224\|SHA256\|SHA384\|SHA512] | Recover | 12+ |
+| RSA8192 | PKCS1 | [NoHash\|MD5\|SHA1\|SHA224\|SHA256\|SHA384\|SHA512] | Recover | 12+ |
+| [RSA512\|RSA768\|RSA1024\|RSA2048\|RSA3072\|RSA4096\|RSA8192\|RSA] | NoPadding | NoHash | Recover | 12+ |
+| RSA | PKCS1 | a digest algorithm that meets the length requirement | Recover | 12+ |
 
 As indicated by the last row in the preceding table, you can specify the RSA key type without the key length to ensure compatibility with the key generated based on the key parameter. In this case, the signature restore operation varies depending on the actual key length.
 
 ## ECDSA
 
-Elliptic Curve Digital Signature Algorithm (ECDSA) is a digital signature algorithm (DSA) based on Elliptic Curve Cryptography (ECC). Compared with the ordinary Discrete Logarithm Problem (DLP) and Integer Factorization Problem (IFP), the ECC provides a higher unit bit strength than other public-key cryptographic systems.
+ECDSA (Elliptic Curve Digital Signature Algorithm) is a digital signature algorithm (DSA) based on elliptic curve cryptography (ECC). Compared with DLP (Discrete Logarithm Problem) and IFP (Integer Factorization Problem), elliptic curve cryptography offers higher strength per bit than other public-key cryptosystems.
 
 The Crypto framework provides ECDSA signing and signature verification capabilities that combine a variety of elliptic curves and MD algorithms, and support **OnlySign** and **OnlyVerify**.
 
 When creating an ECDSA asymmetric signing (**Sign**) or signature verification (**Verify**) instance, you need to specify the algorithm specifications in a string parameter. The string parameter consists of the asymmetric key type and MD with a vertical bar (|) in between.
 
-In the following table, the options included in the square brackets ([]) are mutually exclusive. You can use only one of them in a string parameter. For example, if the asymmetric key type is **ECC224** and MD algorithm is **SHA256**, the string parameter is **ECC224|SHA256**. For signature verification in **OnlySign** and **OnlyVerify** modes, the string parameters are **ECC224|SHA256|OnlySign** and **ECC224|SHA256|OnlyVerify**, respectively.
+As shown in the table, you can select only one option from each value range (the content in []) for string concatenation. For example, if you need a key with the asymmetric key type ECC224 and the digest algorithm SHA256, the string parameter is "ECC224|SHA256". For signing and verification in **OnlySign** and **OnlyVerify** modes, the string parameters are "ECC224|SHA256|OnlySign" and "ECC224|SHA256|OnlyVerify", respectively.
 
 > **NOTE**
 >
@@ -216,29 +217,29 @@ In the following table, the options included in the square brackets ([]) are mut
 >
 > Signature verification for empty messages is not supported.
 
-| Asymmetric Key Type| MD| Signing/Signature Verification Mode| API Version| 
+| Asymmetric Key Type| MD| Signing/Signature Verification Mode| API Version|
 | -------- | -------- | -------- | -------- |
-| ECC192 | [SHA1\|SHA224\|SHA256\|SHA384\|SHA512] | OnlySign/OnlyVerify | 26.0.0 | 
-| ECC224 | [SHA1\|SHA224\|SHA256\|SHA384\|SHA512] | OnlySign/OnlyVerify | 9+ | 
-| ECC256 | [SHA1\|SHA224\|SHA256\|SHA384\|SHA512] | OnlySign/OnlyVerify | 9+ | 
-| ECC384 | [SHA1\|SHA224\|SHA256\|SHA384\|SHA512] | OnlySign/OnlyVerify | 9+ | 
-| ECC521 | [SHA1\|SHA224\|SHA256\|SHA384\|SHA512] | OnlySign/OnlyVerify | 9+ | 
-| ECC_BrainPoolP160r1 | [SHA1\|SHA224\|SHA256\|SHA384\|SHA512] | OnlySign/OnlyVerify | 11+ | 
-| ECC_BrainPoolP160t1 | [SHA1\|SHA224\|SHA256\|SHA384\|SHA512] | OnlySign/OnlyVerify | 11+ | 
-| ECC_BrainPoolP192r1 | [SHA1\|SHA224\|SHA256\|SHA384\|SHA512] | OnlySign/OnlyVerify | 11+ | 
-| ECC_BrainPoolP192t1 | [SHA1\|SHA224\|SHA256\|SHA384\|SHA512] | OnlySign/OnlyVerify | 11+ | 
-| ECC_BrainPoolP224r1 | [SHA1\|SHA224\|SHA256\|SHA384\|SHA512] | OnlySign/OnlyVerify | 11+ | 
-| ECC_BrainPoolP224t1 | [SHA1\|SHA224\|SHA256\|SHA384\|SHA512] | OnlySign/OnlyVerify | 11+ | 
-| ECC_BrainPoolP256r1 | [SHA1\|SHA224\|SHA256\|SHA384\|SHA512] | OnlySign/OnlyVerify | 11+ | 
-| ECC_BrainPoolP256t1 | [SHA1\|SHA224\|SHA256\|SHA384\|SHA512] | OnlySign/OnlyVerify | 11+ | 
-| ECC_BrainPoolP320r1 | [SHA1\|SHA224\|SHA256\|SHA384\|SHA512] | OnlySign/OnlyVerify | 11+ | 
-| ECC_BrainPoolP320t1 | [SHA1\|SHA224\|SHA256\|SHA384\|SHA512] | OnlySign/OnlyVerify | 11+ | 
-| ECC_BrainPoolP384r1 | [SHA1\|SHA224\|SHA256\|SHA384\|SHA512] | OnlySign/OnlyVerify | 11+ | 
-| ECC_BrainPoolP384t1 | [SHA1\|SHA224\|SHA256\|SHA384\|SHA512] | OnlySign/OnlyVerify | 11+ | 
-| ECC_BrainPoolP512r1 | [SHA1\|SHA224\|SHA256\|SHA384\|SHA512] | OnlySign/OnlyVerify | 11+ | 
-| ECC_BrainPoolP512t1 | [SHA1\|SHA224\|SHA256\|SHA384\|SHA512] | OnlySign/OnlyVerify | 11+ | 
-| ECC_Secp256k1 | [SHA1\|SHA224\|SHA256\|SHA384\|SHA512] | OnlySign/OnlyVerify | 14+ | 
-| ECC | [SHA1\|SHA224\|SHA256\|SHA384\|SHA512] | OnlySign/OnlyVerify | 10+ | 
+| ECC192 | [SHA1\|SHA224\|SHA256\|SHA384\|SHA512] | OnlySign/OnlyVerify | 26.0.0+ |
+| ECC224 | [SHA1\|SHA224\|SHA256\|SHA384\|SHA512] | OnlySign/OnlyVerify | 9+ |
+| ECC256 | [SHA1\|SHA224\|SHA256\|SHA384\|SHA512] | OnlySign/OnlyVerify | 9+ |
+| ECC384 | [SHA1\|SHA224\|SHA256\|SHA384\|SHA512] | OnlySign/OnlyVerify | 9+ |
+| ECC521 | [SHA1\|SHA224\|SHA256\|SHA384\|SHA512] | OnlySign/OnlyVerify | 9+ |
+| ECC_BrainPoolP160r1 | [SHA1\|SHA224\|SHA256\|SHA384\|SHA512] | OnlySign/OnlyVerify | 11+ |
+| ECC_BrainPoolP160t1 | [SHA1\|SHA224\|SHA256\|SHA384\|SHA512] | OnlySign/OnlyVerify | 11+ |
+| ECC_BrainPoolP192r1 | [SHA1\|SHA224\|SHA256\|SHA384\|SHA512] | OnlySign/OnlyVerify | 11+ |
+| ECC_BrainPoolP192t1 | [SHA1\|SHA224\|SHA256\|SHA384\|SHA512] | OnlySign/OnlyVerify | 11+ |
+| ECC_BrainPoolP224r1 | [SHA1\|SHA224\|SHA256\|SHA384\|SHA512] | OnlySign/OnlyVerify | 11+ |
+| ECC_BrainPoolP224t1 | [SHA1\|SHA224\|SHA256\|SHA384\|SHA512] | OnlySign/OnlyVerify | 11+ |
+| ECC_BrainPoolP256r1 | [SHA1\|SHA224\|SHA256\|SHA384\|SHA512] | OnlySign/OnlyVerify | 11+ |
+| ECC_BrainPoolP256t1 | [SHA1\|SHA224\|SHA256\|SHA384\|SHA512] | OnlySign/OnlyVerify | 11+ |
+| ECC_BrainPoolP320r1 | [SHA1\|SHA224\|SHA256\|SHA384\|SHA512] | OnlySign/OnlyVerify | 11+ |
+| ECC_BrainPoolP320t1 | [SHA1\|SHA224\|SHA256\|SHA384\|SHA512] | OnlySign/OnlyVerify | 11+ |
+| ECC_BrainPoolP384r1 | [SHA1\|SHA224\|SHA256\|SHA384\|SHA512] | OnlySign/OnlyVerify | 11+ |
+| ECC_BrainPoolP384t1 | [SHA1\|SHA224\|SHA256\|SHA384\|SHA512] | OnlySign/OnlyVerify | 11+ |
+| ECC_BrainPoolP512r1 | [SHA1\|SHA224\|SHA256\|SHA384\|SHA512] | OnlySign/OnlyVerify | 11+ |
+| ECC_BrainPoolP512t1 | [SHA1\|SHA224\|SHA256\|SHA384\|SHA512] | OnlySign/OnlyVerify | 11+ |
+| ECC_Secp256k1 | [SHA1\|SHA224\|SHA256\|SHA384\|SHA512] | OnlySign/OnlyVerify | 14+ |
+| ECC | [SHA1\|SHA224\|SHA256\|SHA384\|SHA512] | OnlySign/OnlyVerify | 10+ |
 
 As indicated by the last row in the preceding table, you can specify the key type without the key length and curve name to ensure compatibility with the key generated based on the key parameter. In this case, the signing or signature verification operation varies depending on the actual key length.
 
@@ -287,3 +288,13 @@ When creating an Ed25519 asymmetric signing (Sign) or signature verification (Ve
 | Asymmetric Key Type| String Parameter| API Version| 
 | -------- | -------- | -------- |
 | Ed25519 | Ed25519 | 11+ | 
+
+## ML-DSA
+
+Starting from API version 26.0.0, the ML-DSA (Module-Lattice-Based Digital Signature Algorithm) is supported. This algorithm is a post-quantum cryptographic digital signature algorithm based on module lattices.
+
+Create an ML-DSA signing or signature verification instance using a string parameter.
+
+| Asymmetric Key Type | String Parameter | API Version |
+| -------- | -------- | -------- |
+| ML-DSA | ML-DSA | 26.0.0+ |

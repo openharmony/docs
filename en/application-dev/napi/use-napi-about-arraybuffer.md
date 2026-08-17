@@ -1,10 +1,12 @@
 # Working with ArrayBuffer Using Node-API
-<!--Kit: NDK-->
+
+<!--Kit: ArkTS-->
 <!--Subsystem: arkcompiler-->
 <!--Owner: @xliu-huanwei; @shilei123; @huanghello-->
 <!--Designer: @shilei123-->
 <!--Tester: @kirl75; @zsw_zhushiwei-->
-<!--Adviser: @fang-jinxu-->
+<!--Adviser: @k1ngqaquuu-->
+<!-- md-trans-meta sourceCommit=21434ce8d323ecbd7d67463989a2ef075be92cec translatedAt=2026-08-12T06:37:25.502Z pushedAt=2026-08-12T11:05:27.281Z -->
 
 ## Introduction
 
@@ -31,12 +33,15 @@ The following table lists the APIs used to manipulate data of the **ArrayBuffer*
 If you are just starting out with Node-API, see [Node-API Development Process](use-napi-process.md). The following demonstrates only the C++ and ArkTS code related to **ArrayBuffer** management.
 
 The following header files are required for the C++ code:
+
 ```cpp
 #include "napi/native_api.h"
 #include <cstring>
 #include "hilog/log.h"
 ```
+
 The following modules are required for the ArkTS code:
+
 ```ts
 import { hilog } from '@kit.PerformanceAnalysisKit';
 import testNapi from 'libentry.so';
@@ -82,7 +87,6 @@ index.d.ts
 export const isArrayBuffer: <T>(arrayBuffer: T) => boolean | undefined; // napi_is_arraybuffer
 ```
 
-
 ArkTS code:
 
 <!-- @[ark_napi_is_arraybuffer](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIUse/NodeAPIArraybuffer/entry/src/main/ets/pages/Index.ets) -->
@@ -103,7 +107,6 @@ try {
   // ...
 }
 ```
-
 
 Log output:
 
@@ -171,7 +174,6 @@ export class ArrayBufferInfo {
 export const getArrayBufferInfo: (data: ArrayBuffer) => ArrayBufferInfo | undefined; // napi_get_arraybuffer_info
 ```
 
-
 ArkTS code:
 
 <!-- @[ark_napi_get_arraybuffer_info](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIUse/NodeAPIArraybuffer/entry/src/main/ets/pages/Index.ets) -->
@@ -236,7 +238,6 @@ static napi_value IsDetachedArrayBuffer(napi_env env, napi_callback_info info)
 }
 ```
 
-
 API declaration:
 
 index.d.ts
@@ -247,7 +248,6 @@ index.d.ts
 export const detachedArrayBuffer: (buffer:ArrayBuffer) => ArrayBuffer; // napi_detach_arraybuffer
 export const isDetachedArrayBuffer: (arrayBuffer: ArrayBuffer) => boolean; //napi_is_detached_arraybuffer
 ```
-
 
 ArkTS code:
 
@@ -268,7 +268,6 @@ try {
   // ...
 }
 ```
-
 
 Log output:
 
@@ -316,7 +315,6 @@ static napi_value CreateArrayBuffer(napi_env env, napi_callback_info info)
 }
 ```
 
-
 API declaration:
 
 index.d.ts
@@ -337,7 +335,6 @@ hilog.info(0x0000, 'testTag', 'Test Node-API napi_create_arraybuffer:%{public}s'
   testNapi.createArrayBuffer(10).toString());
 ```
 
-
 To print logs in the native CPP, add the following information to the **CMakeLists.txt** file and add the header file by using **#include "hilog/log.h"**.
 
 ```text
@@ -354,4 +351,5 @@ Test Node-API napi_create_arraybuffer:[object ArrayBuffer]
 ## NOTE
 
 - Lifecycle and memory management: When using Node-API to process **ArrayBuffer** objects, note that the lifecycle of the buffer data segment of the **void*** type is managed by the engine and [cannot be deleted by users. Otherwise, a double free error may occur](napi-guidelines.md#avoiding-releasing-the-obtained-buffer-repeatedly).
+
 - Allocated buffer size: When the value of **byte_length** is large, no exception is thrown when the allocation fails. The memory specified by **data** is **nullptr**. It is recommended that ***data == nullptr** be strictly checked and the upper limit of **byte_length** be checked to avoid OOM.

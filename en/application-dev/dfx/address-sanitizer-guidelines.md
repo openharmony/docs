@@ -6,11 +6,11 @@
 <!--Designer: @StevenLai1994-->
 <!--Tester: @gcw_KuLfPSbe-->
 <!--Adviser: @jinqiuheng-->
-<!-- md-trans-meta sourceCommit=7d2af097640953124e9b1c3f7bd1ab79876767d6 translatedAt=2026-07-29T02:26:36.738Z pushedAt=2026-07-29T02:39:36.361Z -->
+<!-- md-trans-meta sourceCommit=75499f1960105c83d6903f3ae3913c285e7bd788 translatedAt=2026-08-15T01:45:43.566Z pushedAt=2026-08-15T07:02:08.689Z -->
 
 ## Overview
 
-Out-of-bounds address access refers to the access to an invalid address. As a result, the program runs abnormally and the application may crash. Common causes include use after free, double-free, stack-overflow, and heap-overflow. As application crash logs are limited and not the first crash site, it is difficult to locate out-of-bounds address access issues. Typically, you can use detection tools such as ASan, HWASan, and GWP-ASan to obtain more memory operation information. Since API 13, you are advised to use [HWASan](https://developer.huawei.com/consumer/en/doc/best-practices/bpta-stability-hwasan-detection) to analyze out-of-bounds address access issues.
+Out-of-bounds access refers to accessing an invalid address, which causes the program to run abnormally and typically manifests as an app crash. Common causes include use after free, double-free, stack-overflow, and heap-overflow. Because app crash logs are limited and do not capture the first crash site, out-of-bounds access issues are difficult to locate. Typically, you can use detection tools such as ASan, HWASan, and GWP-ASan to obtain more memory operation information. Since API version 13, you are advised to use [HWASan](https://developer.huawei.com/consumer/en/doc/best-practices/bpta-stability-hwasan-detection) to analyze out-of-bounds access issues.
 
 ## Common Out-of-bounds Types and Impacts
 
@@ -26,7 +26,7 @@ Both address sanitizer logs and process crash logs are managed by the FaultLogge
 
 **Method 1: DevEco Studio**
 
-DevEco Studio collects process crash logs from **/data/log/faultlog/faultlogger/** to FaultLog, where logs are displayed by process name, fault, and time. For details about how to obtain logs, see [Fault Log](https://developer.huawei.com/consumer/en/doc/harmonyos-guides/ide-fault-log).
+DevEco Studio collects process crash logs from **/data/log/faultlog/faultlogger/** to FaultLog, where logs are displayed by process name, fault type, and time. For details about how to obtain logs, see [Fault Log](https://developer.huawei.com/consumer/en/doc/harmonyos-guides/ide-fault-log).
 
 **Method 2: HiAppEvent APIs**
 

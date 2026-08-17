@@ -1,4 +1,4 @@
-# @ohos.nearlink.manager (星闪开关能力)(系统接口)
+# @ohos.nearlink.manager (星闪基础管理能力)(系统接口)
 <!--Kit: Connectivity Kit-->
 <!--Subsystem: Communication-->
 <!--Owner: @CCCZKing-->
@@ -7,7 +7,7 @@
 <!--Adviser: @zhang_yixin13-->
 
 
-本模块提供了管理星闪基础能力，包括获取设备信息、订阅状态变化事件等。
+本模块提供了星闪基础管理能力，包括打开/关闭星闪、获取本机MAC地址、设置连接模式等能力。
 
 
 **起始版本：** 26.0.0
@@ -42,7 +42,7 @@ enable(): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[NearLink错误码](errorcode-nearlink-service.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[星闪错误码](errorcode-nearlink-service.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
@@ -82,7 +82,7 @@ disable(): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[NearLink错误码](errorcode-nearlink-service.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[星闪错误码](errorcode-nearlink-service.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
@@ -127,7 +127,7 @@ getLocalAddress(): string
 
 **错误码：**
 
-以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[NearLink错误码](errorcode-nearlink-service.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[星闪错误码](errorcode-nearlink-service.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
@@ -174,7 +174,7 @@ factoryReset(): Promise&lt;void&gt;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[NearLink错误码](errorcode-nearlink-service.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[星闪错误码](errorcode-nearlink-service.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
@@ -191,7 +191,7 @@ import { BusinessError } from '@ohos.base';
 try {
   manager.factoryReset().then(() => {
     console.info('factoryReset success');
-  }).catch ((err: BusinessError) => {
+  }).catch((err: BusinessError) => {
     console.error('errCode: ' + err.code + ', errMessage: ' + err.message);
   });
 } catch (err) {
@@ -220,7 +220,7 @@ try {
 
 setConnectionMode(mode: ConnectionMode, duration: number): Promise&lt;void&gt;
 
-设置可发现模式。使用Promise异步回调。
+设置连接模式。使用Promise异步回调。
 
 **起始版本：** 26.0.0
 
@@ -236,8 +236,8 @@ setConnectionMode(mode: ConnectionMode, duration: number): Promise&lt;void&gt;
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| mode | [ConnectionMode](#connectionmode) | 是 | 表示要设置的可发现模式。| 
-| duration | number | 是 | 表示设置模式的持续时间，单位为s，若为0则表示无限制。|
+| mode | [ConnectionMode](#connectionmode) | 是 | 表示要设置的连接模式。| 
+| duration | number | 是 | 表示设置模式的持续时间，单位为s，取值范围为大于等于0的整数，若为0则表示无限制。|
 
 **返回值：**
 
@@ -247,7 +247,7 @@ setConnectionMode(mode: ConnectionMode, duration: number): Promise&lt;void&gt;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[NearLink错误码](errorcode-nearlink-service.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[星闪错误码](errorcode-nearlink-service.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
@@ -264,11 +264,11 @@ import { manager } from '@kit.ConnectivityKit';
 import { BusinessError } from '@ohos.base';
 
 try {
-  let mode: number = manager.ConnectionMode.SLE_MODE_CONNECTABLE;
+  let mode: manager.ConnectionMode = manager.ConnectionMode.SLE_MODE_CONNECTABLE;
   let duration: number = 100;
   manager.setConnectionMode(mode, duration).then(() => {
-    console.info('connect success');
-  }).catch ((err: BusinessError) => {
+    console.info('setConnectionMode success');
+  }).catch((err: BusinessError) => {
     console.error('errCode: ' + err.code + ', errMessage: ' + err.message);
   });
 } catch (err) {

@@ -3,16 +3,16 @@
 <!--Kit: Connectivity Kit-->
 <!--Subsystem: Communication-->
 <!--Owner: @enjoy_sunshine-->
-<!--Designer: @chengguohong; @tangjia15-->
+<!--Designer: @tangjia15-->
 <!--Tester: @wangfeng517-->
 <!--Adviser: @zhang_yixin13-->
-<!-- md-trans-meta sourceCommit=dcae6f10c07044342acb5b2dc0416e100c5bcaa2 translatedAt=2026-06-17T06:37:58.276Z pushedAt=2026-06-18T01:39:53.235Z -->
+<!-- md-trans-meta sourceCommit=14ca614ebb030bf413b2d8393352ad7521a1d1b9 translatedAt=2026-08-15T01:40:54.711Z pushedAt=2026-08-15T03:31:07.789Z -->
 
 ## Introduction
 
 This document guides you through implementing Bluetooth Low Energy (BLE) connection and data transmission between devices in accordance with the Generic Attribute Profile (GATT). When two devices communicate via GATT, they can be distinguished as client and server based on their respective functions. This guide describes the implementation methods for both the client and server.
 
-GATT is the core protocol of BLE, defining the mechanism for Bluetooth communication and data transmission based on services, characteristics, and descriptors. For details about related terms, see [Terminology](../terminology.md).
+GATT is the core protocol of BLE, defining the mechanism for Bluetooth communication and data transmission based on services, characteristics, and descriptors. For details about related terms, see [Glossary](terminology.md).
 
 ## How to Implement
 
@@ -211,7 +211,7 @@ When the server's characteristic value changes, the client can receive notificat
 
 Notifications do not require a client response, while indications mandate an acknowledgment. This acknowledgment mechanism is handled by the Bluetooth subsystem and therefore you do not need to implement this mechanism on your own. To enable the client to receive notifications or indications, also perform the following:
 
-- Subscribe to server's characteristic changes. For details, see [on('BLECharacteristicChange ')](../../reference/apis-connectivity-kit/js-apis-bluetooth-ble.md#onblecharacteristicchange).
+- Subscribe to server's characteristic changes. For details, see [on('BLECharacteristicChange')](../../reference/apis-connectivity-kit/js-apis-bluetooth-ble.md#onblecharacteristicchange).
 
 - Depending on the use case, enable the notification or indication function for server's characteristic changes. For details about related APIs, see [setCharacteristicChangeNotification](../../reference/apis-connectivity-kit/js-apis-bluetooth-ble.md#setcharacteristicchangenotification) and [setCharacteristicChangeIndication](../../reference/apis-connectivity-kit/js-apis-bluetooth-ble.md#setcharacteristicchangeindication).
 
@@ -385,7 +385,7 @@ Data transmission can be implemented by reading and writing characteristics, rea
 **4.1 Subscribing to Characteristic Read or Write Events**<br>
 You can subscribe to characteristic read or write events to obtain the operation requests of the client. For details about the related APIs, see [on('characteristicRead ')](../../reference/apis-connectivity-kit/js-apis-bluetooth-ble.md#oncharacteristicread) and [on('characteristicWrite ')](../../reference/apis-connectivity-kit/js-apis-bluetooth-ble.md#oncharacteristicwrite).
 
-- When receiving a characteristic read request, call [sendResponse](../../reference/apis-connectivity-kit/js-apis-bluetooth-ble.md#sendresponse) needs to be called to return the value of the corresponding characteristic.
+- When receiving a characteristic read request, [sendResponse](../../reference/apis-connectivity-kit/js-apis-bluetooth-ble.md#sendresponse) needs to be called to return the value of the corresponding characteristic.
 
 - When receiving a characteristic write request, save the characteristic value written by the client. Based on the **needRsp** parameter in [CharacteristicWriteRequest](../../reference/apis-connectivity-kit/js-apis-bluetooth-ble.md#characteristicwriterequest), determine whether to call [sendResponse](../../reference/apis-connectivity-kit/js-apis-bluetooth-ble.md#sendresponse) to acknowledge the write operation.
 
@@ -522,7 +522,7 @@ gattServer.on('descriptorRead', readDescriptorReq);
 gattServer.on('descriptorWrite', writeDescriptorReq);
 ```
 
-**4.3 Sending Notifications or Indications of Descriptor Value Changes**<br>
+**4.3 Sending Notifications or Indications of Characteristic Value Changes**<br>
 When the server's characteristic value changes, the server can notify the client of the change using a notification or indication. For details about the related APIs, see [notifyCharacteristicChanged](../../reference/apis-connectivity-kit/js-apis-bluetooth-ble.md#notifycharacteristicchanged).
 
 Notifications do not require a client response, while indications mandate an acknowledgment. The application determines whether to send a notification or indication based on the **confirm** parameter in [NotifyCharacteristic](../../reference/apis-connectivity-kit/js-apis-bluetooth-ble.md#notifycharacteristic). To enable the server to notify the client of characteristic value changes, also perform the following:

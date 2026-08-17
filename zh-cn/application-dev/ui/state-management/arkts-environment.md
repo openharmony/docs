@@ -18,10 +18,10 @@ Environment提供了读取系统环境变量并将其值写入AppStorage的功�
 
 | 键 | 数据类型 | 描述                                      |
 | ------------------ | ------------------ | ------------------ |
-| accessibilityEnabled              | string                  | 是否启用获取无障碍屏幕阅读。'true'表示启用，'false'表示不启用。|
-| colorMode              | [ColorMode](../../reference/apis-arkui/arkui-ts/ts-state-management-environment-variables.md#colormode)                  | 色彩模型类型。<br>- ColorMode.LIGHT：浅色。<br>- ColorMode.DARK：深色。                 |
+| accessibilityEnabled              | string                  | 是否启用无障碍屏幕阅读。'true'表示启用，'false'表示不启用。|
+| colorMode              | [ColorMode](../../reference/apis-arkui/arkui-ts/ts-state-management-environment-variables.md#colormode)                  | 色彩模式类型。<br>- ColorMode.LIGHT：浅色。<br>- ColorMode.DARK：深色。                 |
 | fontScale              | number                  | 字体大小比例。开发者需要配置configuration，设置fontSizeScale为"followSystem"，具体配置步骤可参考[configuration](../../quick-start/app-configuration-file.md#configuration标签)使fontScale跟随系统变化。<br>默认值跟随系统默认参数。                |
-| fontWeightScale              | number                  | 字体粗细程度。在不同的系统或者机型中，fontWeightScale的取值范围可能会有所不同。<br>默认值跟随系统默认参数。                |
+| fontWeightScale              | number                  | 字体粗细缩放比例。在不同的系统或者机型中，fontWeightScale的取值范围可能会有所不同。<br>默认值跟随系统默认参数。                |
 | layoutDirection              | [LayoutDirection](../../reference/apis-arkui/arkui-ts/ts-state-management-environment-variables.md#layoutdirection)                  | 布局方向类型：<br>- LayoutDirection.LTR：从左到右。<br>- LayoutDirection.RTL：从右到左。                 |
 | languageCode              | string                  | 当前系统语言值，取值必须为小写字母（例如：zh）。<br>默认值跟随系统默认参数。                 |
 

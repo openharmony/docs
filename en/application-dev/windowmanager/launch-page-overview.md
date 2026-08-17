@@ -1,4 +1,4 @@
-# Introduction to the Application Starting Window
+# Application Starting Window Overview
 <!--Kit: ArkUI-->
 <!--Subsystem: Window-->
 <!--Owner: @xiaochaobu-->

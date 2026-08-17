@@ -395,7 +395,10 @@ subscribe(capability: OnscreenAwarenessCap, callback: Callback&lt;OnscreenAwaren
 
 Enables proactive awareness on screen content and subscribes to a screen awareness result.
 
-**Required permissions**: ohos.permission.GET_SCREEN_CONTENT
+**Required permissions**:
+
+- API version 26+: ohos.permission.ONSCREEN_AWARENESS.
+- API version 23-24: ohos.permission.GET_SCREEN_CONTENT.
 
 **System capability**: SystemCapability.MultimodalAwareness.OnScreenAwareness
 
@@ -417,7 +420,7 @@ For details about the error codes, see [Onscreen Awareness Error Codes](errorcod
 
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
-| 201      | Permission denied. An attempt was made to get page content forbidden by permission: ohos.permission.GET_SCREEN_CONTENT. |
+| 201      | Permission denied. An attempt was made to get page content forbidden by permission: ohos.permission.ONSCREEN_AWARENESS or ohos.permission.GET_SCREEN_CONTENT. |
 | 202      | Permission check failed. A non-system application uses the system API. |
 | 801      | Capability not supported. Function can not work correctly due to limited device capabilities.|
 | 34000001 | Service exception. |
@@ -453,7 +456,10 @@ unsubscribe(capability: OnscreenAwarenessCap, callback?: Callback&lt;OnscreenAwa
 
 Disables proactive awareness on screen content and unsubscribes from a screen awareness result.
 
-**Required permissions**: ohos.permission.GET_SCREEN_CONTENT
+**Required permissions**:
+
+- API version 26+: ohos.permission.ONSCREEN_AWARENESS.
+- API version 23-24: ohos.permission.GET_SCREEN_CONTENT.
 
 **System capability**: SystemCapability.MultimodalAwareness.OnScreenAwareness
 
@@ -472,7 +478,7 @@ For details about the error codes, see [Onscreen Awareness Error Codes](errorcod
 
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
-| 201      | Permission denied. An attempt was made to get page content forbidden by permission: ohos.permission.GET_SCREEN_CONTENT. |
+| 201      | Permission denied. An attempt was made to get page content forbidden by permission: ohos.permission.ONSCREEN_AWARENESS or ohos.permission.GET_SCREEN_CONTENT. |
 | 202      | Permission check failed. A non-system application uses the system API. |
 | 801      | Capability not supported. Function can not work correctly due to limited device capabilities.|
 | 34000001 | Service exception. |
@@ -500,7 +506,10 @@ trigger(capability: OnscreenAwarenessCap, options?: OnscreenAwarenessOptions): P
 
 Proactively triggers screen content awareness and obtains the current screen awareness result.
 
-**Required permissions**: ohos.permission.GET_SCREEN_CONTENT
+**Required permissions**:
+
+- API version 26+: ohos.permission.ONSCREEN_AWARENESS.
+- API version 23-24: ohos.permission.GET_SCREEN_CONTENT.
 
 **System capability**: SystemCapability.MultimodalAwareness.OnScreenAwareness
 
@@ -525,7 +534,7 @@ For details about the error codes, see [Onscreen Awareness Error Codes](errorcod
 
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
-| 201      | Permission denied. An attempt was made to get page content forbidden by permission: ohos.permission.GET_SCREEN_CONTENT. |
+| 201      | Permission denied. An attempt was made to get page content forbidden by permission: ohos.permission.ONSCREEN_AWARENESS or ohos.permission.GET_SCREEN_CONTENT. |
 | 202      | Permission check failed. A non-system application uses the system API. |
 | 801      | Capability not supported. Function can not work correctly due to limited device capabilities.|
 | 34000001 | Service exception. |
@@ -561,7 +570,10 @@ capture(capability: OnscreenAwarenessCap, options?: OnscreenAwarenessOptions): P
 
 Proactively triggers screen content awareness to obtain page information.
 
-**Required permissions**: ohos.permission.GET_SCREEN_CONTENT
+**Required permissions**:
+
+- API version 26+: ohos.permission.ONSCREEN_AWARENESS.
+- API version 23-24: ohos.permission.GET_SCREEN_CONTENT.
 
 **System capability**: SystemCapability.MultimodalAwareness.OnScreenAwareness
 
@@ -594,7 +606,7 @@ For details about the error codes, see [Onscreen Awareness Error Codes](errorcod
 
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
-| 201      | Permission denied. An attempt was made to get page content forbidden by permission: ohos.permission.GET_SCREEN_CONTENT. |
+| 201      | Permission denied. An attempt was made to get page content forbidden by permission: ohos.permission.ONSCREEN_AWARENESS or ohos.permission.GET_SCREEN_CONTENT. |
 | 202      | Permission check failed. A non-system application uses the system API. |
 | 801      | Capability not supported. Function can not work correctly due to limited device capabilities.|
 | 34000001 | Service exception. |
@@ -640,7 +652,10 @@ interact(capability: OnscreenAwarenessCap, options?: OnscreenAwarenessOptions): 
 
 Actively triggers screen behavior interaction to recognize UI behaviors and provide UI feedback. For example, when the **capList** capability is **JumpContext**, tapping provides feedback information to precisely jump to a specified paragraph and highlight the text. When the **capList** capability is **InjectEvent**, tapping executes the corresponding tap event.
 
-**Required permissions**: ohos.permission.GET_SCREEN_CONTENT
+**Required permissions**:
+
+- API version 26+: ohos.permission.ONSCREEN_AWARENESS.
+- API version 23-24: ohos.permission.GET_SCREEN_CONTENT.
 
 **System capability**: SystemCapability.MultimodalAwareness.OnScreenAwareness
 
@@ -672,7 +687,7 @@ For details about the error codes, see [Onscreen Awareness Error Codes](errorcod
 
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
-| 201      | Permission denied. An attempt was made to get page content forbidden by permission: ohos.permission.GET_SCREEN_CONTENT. |
+| 201      | Permission denied. An attempt was made to get page content forbidden by permission: ohos.permission.ONSCREEN_AWARENESS or ohos.permission.GET_SCREEN_CONTENT. |
 | 202      | Permission check failed. A non-system application uses the system API. |
 | 801      | Capability not supported. Function can not work correctly due to limited device capabilities.|
 | 34000001 | Service exception. |
@@ -743,7 +758,10 @@ apperceive(capability: OnscreenAwarenessCap, options?: OnscreenAwarenessOptions)
 
 Proactively triggers screen content awareness to obtain the screen content for snapshot analysis.
 
-**Required permissions**: ohos.permission.GET_SCREEN_CONTENT
+**Required permissions**:
+
+- API version 26+: ohos.permission.ONSCREEN_AWARENESS.
+- API version 23-24: ohos.permission.GET_SCREEN_CONTENT.
 
 **System capability**: SystemCapability.MultimodalAwareness.OnScreenAwareness
 
@@ -778,7 +796,7 @@ For details about the error codes, see [Onscreen Awareness Error Codes](errorcod
 
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
-| 201      | Permission denied. An attempt was made to get page content forbidden by permission: ohos.permission.GET_SCREEN_CONTENT. |
+| 201      | Permission denied. An attempt was made to get page content forbidden by permission: ohos.permission.ONSCREEN_AWARENESS or ohos.permission.GET_SCREEN_CONTENT. |
 | 202      | Permission check failed. A non-system application uses the system API. |
 | 801      | Capability not supported. Function can not work correctly due to limited device capabilities.|
 | 34000001 | Service exception. |

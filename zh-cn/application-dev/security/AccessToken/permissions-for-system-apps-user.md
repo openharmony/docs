@@ -285,6 +285,8 @@
 
 **是否支持证书授权**：true
 
+**支持设备**：Phone | PC/2in1 | Tablet | TV | Wearable | Car
+
 **起始版本**：26.0.0
 
 ## ohos.permission.cli.MANAGE_WIFI_SCAN
@@ -297,6 +299,8 @@
 
 **是否支持证书授权**：true
 
+**支持设备**：Phone | PC/2in1 | Tablet | TV | Wearable | Car
+
 **起始版本**：26.0.0
 
 ## ohos.permission.cli.MANAGE_WIFI_CONNECT
@@ -308,5 +312,7 @@
 **授权方式**：用户授权（user_grant）
 
 **是否支持证书授权**：true
+
+**支持设备**：Phone | PC/2in1 | Tablet | TV | Wearable | Car
 
 **起始版本**：26.0.0

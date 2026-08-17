@@ -1,10 +1,12 @@
 # Loading a Module in the Main Thread Using Node-API
-<!--Kit: NDK-->
+
+<!--Kit: ArkTS-->
 <!--Subsystem: arkcompiler-->
 <!--Owner: @xliu-huanwei; @shilei123; @huanghello-->
 <!--Designer: @shilei123-->
 <!--Tester: @kirl75; @zsw_zhushiwei-->
-<!--Adviser: @fang-jinxu-->
+<!--Adviser: @k1ngqaquuu-->
+<!-- md-trans-meta sourceCommit=2cc827181a31e0a77238ca42eb3b41991d5fd686 translatedAt=2026-08-12T06:42:33.552Z pushedAt=2026-08-12T11:16:22.960Z -->
 
 ## **Scenario**
 
@@ -25,13 +27,17 @@ napi_status napi_load_module(napi_env env, const char* path, napi_value* result)
 ## Constraints
 
 - Do not use this API in non-main threads.
+
 - Do not use this API in the **Init()** function.
+
 - Do not load a file in the callback function of a thread-safe function.
+
 - Calling this API in the signal function is insecure. Direct calling may cause stack overflow.
 
 You are advised to use [napi_load_module_with_info](use-napi-load-module-with-info.md) to load modules. This API supports more scenarios.
 
 ## Scenarios Supported by napi_load_module
+
 | Scenario           | Scenario Description          | Remarks                        |
 | :------------- | :----------------------------- | :--------------------------- |
 | System module       |    Load **@ohos.** or **@system.**. | -                            |
@@ -41,39 +47,42 @@ You are advised to use [napi_load_module_with_info](use-napi-load-module-with-in
 | Local project module  | Load the name of an HSP module.          | -                            |
 | Remote package        | Load the name of a remote HAR module.       | -                            |
 | Remote package        | Load the ohpm package name.           | -                            |
-| Native library of a module  | Load **libNativeLibrary.so**.| -                            |
+| Module Native Library   | Loads a native module (.so file) | -                            |
 
 - **Loading a System Module**
 
-    ```cpp
-    static napi_value loadModule(napi_env env, napi_callback_info info) {
-        // 1. Call napi_load_module to load the @ohos.hilog module.
+    <!-- @[napi_load_module_napi_init](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIClassicUseCases/NodeAPILoadModule/entry/src/main/cpp/napi_init.cpp) -->
+
+    ``` C++
+    static napi_value loadModule(napi_env env, napi_callback_info info)
+    {
+        // 1. Use napi_load_module to load the @ohos.hilog module.
         napi_value result;
         napi_status status = napi_load_module(env, "@ohos.hilog", &result);
         if (status != napi_ok) {
             return nullptr;
         }
-
-        // 2. Call napi_get_named_property to obtain the info function.
+    
+        // 2. Use napi_get_named_property to obtain the info function.
         napi_value infoFn;
         status = napi_get_named_property(env, result, "info", &infoFn);
         if (status != napi_ok) {
             return nullptr;
         }
-        
+    
         napi_value tag;
         std::string formatStr = "test";
         napi_create_string_utf8(env, formatStr.c_str(), formatStr.size(), &tag);
-        
+    
         napi_value outputString;
         std::string str = "Hello OpenHarmony";
         napi_create_string_utf8(env, str.c_str(), str.size(), &outputString);
-        
+    
         napi_value flag;
         napi_create_int32(env, 0, &flag);
-
+    
         napi_value args[3] = {flag, tag, outputString};
-        // 3. Call napi_call_function to invoke the info function.
+        // 3. Use napi_call_function to call the info function.
         status = napi_call_function(env, result, infoFn, 3, args, nullptr);
         if (status != napi_ok) {
             return nullptr;
@@ -81,57 +90,66 @@ You are advised to use [napi_load_module_with_info](use-napi-load-module-with-in
         return result;
     }
     ```
-    <!-- @[napi_load_module_napi_init](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIClassicUseCases/NodeAPILoadModule/entry/src/main/cpp/napi_init.cpp) -->
 
 - **Loading a Module Defined in a File Under the ets Directory**
 
     For example, load a module from a file as shown in the following ArkTS code:
 
-    ```javascript
-    //./src/main/ets/Test.ets
+    <!-- @[napi_load_module_napi_test](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIClassicUseCases/NodeAPILoadModule/entry/src/main/ets/Test.ets) -->
+
+    ``` TypeScript
     let value = 123;
     function test() {
-      console.info("Hello OpenHarmony");
+      console.info('Hello OpenHarmony');
     }
     export {value, test};
     ```
-    <!-- @[napi_load_module_napi_test](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIClassicUseCases/NodeAPILoadModule/entry/src/main/ets/Test.ets) -->
 
 1. Add the following to the **build-profile.json5** file of the module.
 
-    ```json
-    {
-      "buildOption" : {
-        "arkOptions" : {
-          "runtimeOnly" : {
-            "sources": [
-              "./src/main/ets/Test.ets"
-            ]
-          }
+    <!-- @[napi_load_module_napi_build](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIClassicUseCases/NodeAPILoadModule/entry/build-profile.json5) -->  
+
+    ``` JSON5
+    "buildOption": {
+      "arkOptions" : {
+        "runtimeOnly" : {
+          "sources": [
+            "./src/main/ets/Test.ets"
+          ],
+          "packages": [
+            "library",
+            "sharedlibrary",
+            "@ohos/hypium",
+            "@ohos/axios",
+            "libentry7.so"
+          ]
         }
-      }
-    }
+      },
+    // ...
+    },
     ```
-    <!-- @[napi_load_module_napi_build](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIClassicUseCases/NodeAPILoadModule/entry/build-profile.json5) -->
 
 2. Call **napi_load_module** to load the module from the **Test.ets** file, call the **test()** function, and obtain the **value** variable.
 
-    ```cpp
-    static napi_value loadModule(napi_env env, napi_callback_info info) {
+    <!-- @[napi_load_module_napi_file](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIClassicUseCases/NodeAPILoadModule/entry/src/main/cpp/file.cpp) -->
+
+    ``` C++
+    static napi_value loadModule(napi_env env, napi_callback_info info)
+    {
         napi_value result;
-        // 1. Call napi_load_module to load the module from the Test.ets file.
+        // 1. Use napi_load_module to load the module in the Test file.
         napi_status status = napi_load_module(env, "ets/Test", &result);
         if (status != napi_ok) {
             return nullptr;
         }
     
         napi_value testFn;
-        // 2. Call napi_get_named_property to obtain the test function.
+        // 2. Use napi_get_named_property to obtain the test function.
         status = napi_get_named_property(env, result, "test", &testFn);
         if (status != napi_ok) {
             return nullptr;
         }
-        // 3. Call napi_call_function to invoke the test function.
+        // 3. Use napi_call_function to call the test function.
         status = napi_call_function(env, result, testFn, 0, nullptr, nullptr);
         if (status != napi_ok) {
             return nullptr;
@@ -141,7 +159,7 @@ You are advised to use [napi_load_module_with_info](use-napi-load-module-with-in
         napi_value key;
         std::string keyStr = "value";
         napi_create_string_utf8(env, keyStr.c_str(), keyStr.size(), &key);
-        // 4. Call napi_get_property to obtain the value variable.
+        // 4. Use napi_get_property to obtain the value variable.
         status = napi_get_property(env, result, key, &value);
         if (status != napi_ok) {
             return nullptr;
@@ -149,7 +167,7 @@ You are advised to use [napi_load_module_with_info](use-napi-load-module-with-in
         return result;
     }
     ```
-    <!-- @[napi_load_module_napi_file](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIClassicUseCases/NodeAPILoadModule/entry/src/main/cpp/file.cpp) -->
+
 - **Loading a File Path in a Module**
 
     For example, load a module from a file as shown in the following ArkTS code:
@@ -421,7 +439,7 @@ You are advised to use [napi_load_module_with_info](use-napi-load-module-with-in
 
 1. Configure **dependencies** in the **oh-package.json5** file of the module.
 
-    ```json
+    ``` JSON5
     {
       "dependencies": {
         "@ohos/axios": "2.2.4",
@@ -575,6 +593,7 @@ You are advised to use [napi_load_module_with_info](use-napi-load-module-with-in
       }
     }
     ```
+
 3. Call **napi_load_module** to load **har2** to **har1**, call the **test** function, and obtain the **value** variable.
 
     ```cpp

@@ -1,12 +1,18 @@
 # Taking Over the Media Playback on Web Pages
+
 <!--Kit: ArkWeb-->
 <!--Subsystem: Web-->
 <!--Owner: @zhangyao75477-->
-<!--Designer: @qiu-gongkai-->
+<!--Designer: @gzweioh-->
 <!--Tester: @ghiker-->
 <!--Adviser: @HelloShuo-->
+<!-- md-trans-meta sourceCommit=16323ca1d7f88c9bb8af541a7972663c80002af0 translatedAt=2026-08-14T03:41:43.410Z pushedAt=2026-08-14T06:57:56.399Z -->
 
 The **Web** component provides the capability for applications to take over media playback on web pages, which improves media playback qualities on the web page.
+
+## Constraints
+
+Due to the callback processing capability of system controls, it is recommended that no more than six native media player instances be hosted simultaneously in a single Web component instance. Exceeding the recommended number may cause the page to lag or freeze. It is recommended that only visible, currently playing video content be hosted.
 
 ## When to Use
 
@@ -36,18 +42,17 @@ When web media playback takeover is enabled, the playback architecture of the Ar
   > - In the preceding figure, step 1 indicates that the ArkWeb kernel creates a **WebMediaPlayer** to play media resources on web pages.
   > - Step 2 indicates that **WebMediaPlayer** uses **NativeMediaPlayer** provided by the application to render media data.
 
-
 ### Interactions Between the ArkWeb Kernel and Application
 
   ![interactions between arkweb and native media player](figures/interactions_between_arkweb_and_native_media_player.png)
 
   > **NOTE**
   >
-  > - For details about step 1 in the preceding figure, see [Enabling Web Media Playback Takeover](#enabling-web-media-playback-takeover).
-  > - For details about step 2, see [Creating a Native Media Player](#creating-a-native-media-player).
-  > - For details about step 3, see [Drawing Native Media Player Components](#drawing-native-media-player-components).
-  > - For details about step 4, see [Executing Playback Control Commands Sent by ArkWeb Kernel to the Native Media Player](#executing-playback-control-commands-sent-by-arkweb-kernel-to-the-native-media-player).
-  > - For details about step 5, see [Notifying the Status Information of Native Media Player to the ArkWeb Kernel](#notifying-the-status-information-of-native-media-player-to-the-arkweb-kernel).
+  > - For details about 1 in the preceding figure, see [Enabling Web Media Playback Takeover](#enabling-web-media-playback-takeover).
+  > - For details about 2 in the preceding figure, see [Creating a Native Media Player](#creating-a-native-media-player).
+  > - For details about 3 in the preceding figure, see [Drawing Native Media Player Components](#drawing-native-media-player-components).
+  > - For details about 4 in the preceding figure, see [Executing Playback Control Commands Sent by the ArkWeb Kernel to the Native Media Player](#executing-playback-control-commands-sent-by-the-arkweb-kernel-to-the-native-media-player).
+  > - For details about 5 in the preceding figure, see [Notifying the Status Information of Native Media Player to the ArkWeb Kernel](#notifying-the-status-information-of-native-media-player-to-the-arkweb-kernel).
 
 ## How to Develop
 
@@ -77,11 +82,12 @@ Use the [enableNativeMediaPlayer](../reference/apis-arkweb/arkts-basic-component
 
 After this feature is enabled, the ArkWeb kernel triggers the callback registered by [onCreateNativeMediaPlayer](../reference/apis-arkweb/arkts-apis-webview-WebviewController.md#oncreatenativemediaplayer12) when a media file needs to be played on the web page.
 
-The application needs to register a callback for creating a native media player by invoking **onCreateNativeMediaPlayer**.
+The app needs to call onCreateNativeMediaPlayer to register a callback for creating a native media player.
 
 The callback function determines whether to create a native media player to take over the web page media resources based on the media information.
 
-  * If the application does not take over the web page media resource, **null** is returned by the callback.
+  * If the app does not take over the current web media resource, return null in the callback.
+
   * If the application takes over the web page media resource, a native media player instance is returned by the callback.
 
 The native media player needs to implement the [NativeMediaPlayerBridge](../reference/apis-arkweb/arkts-apis-webview-NativeMediaPlayerBridge.md) API so that the ArkWeb kernel can control the playback on the native media player.
@@ -146,10 +152,10 @@ When an application takes over the media playback on web pages, it needs to draw
 
 This process is the same as that of [same-layer rendering](web-same-layer.md)
 
-1. In the application startup phase, the application should save **UIContext** to use it in subsequent rendering and drawing processes at the same layer.
+1. During app startup, save the [UIContext](../reference/apis-arkui/arkts-apis-uicontext-uicontext.md) so that it can be used in the subsequent same-layer rendering and drawing process.
 
    <!-- @[allow_subsequent_rendering_to_use_ui](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkWeb/UsingWebMultimedia/entry2/src/main/ets/entry2ability/Entry2Ability.ets) -->
-   
+
    ``` TypeScript
    import { window } from '@kit.ArkUI';
    
@@ -248,7 +254,7 @@ This process is the same as that of [same-layer rendering](web-same-layer.md)
 
 For details about how to dynamically create components and draw them on the surface, see [Using Same-Layer Rendering](web-same-layer.md).
 
-### Executing Playback Control Commands Sent by ArkWeb Kernel to the Native Media Player
+### Executing Playback Control Commands Sent by the ArkWeb Kernel to the Native Media Player
 
 To facilitate the control over native media player by the ArkWeb kernel, the application needs to implement the [NativeMediaPlayerBridge](../reference/apis-arkweb/arkts-apis-webview-NativeMediaPlayerBridge.md) API on the native media player and operate the native media player based on the functionality of each API method.
 
@@ -466,7 +472,6 @@ In the [onCreateNativeMediaPlayer](../reference/apis-arkweb/arkts-apis-webview-W
   }
   ```
 
-
 ## Sample Code
 
 - To play web page media, you need to configure the network access permission in the configuration file. For details, see [Declaring Permissions in the Configuration File](../security/AccessToken/declare-permissions.md).
@@ -480,7 +485,7 @@ In the [onCreateNativeMediaPlayer](../reference/apis-arkweb/arkts-apis-webview-W
     ]
   ```
 
-- Save **UIContext** during application startup.
+- Save the [UIContext](../reference/apis-arkui/arkts-apis-uicontext-uicontext.md) during app startup.
 
   ```ts
   // xxxAbility.ets
@@ -549,6 +554,8 @@ In the [onCreateNativeMediaPlayer](../reference/apis-arkweb/arkts-apis-webview-W
     }
 
     updateRect(x: number, y: number, width: number, height: number): void {
+      // The position and size of the <video> tag changed.
+      // Make corresponding changes based on this information change.
       let width_in_vp = this.uiContext!.px2vp(width);
       let height_in_vp = this.uiContext!.px2vp(height);
       console.info(`updateRect(${x}, ${y}, ${width}, ${height}), vp:{${width_in_vp}, ${height_in_vp}}`);
@@ -557,29 +564,37 @@ In the [onCreateNativeMediaPlayer](../reference/apis-arkweb/arkts-apis-webview-W
     }
 
     play() {
+      // Start local playback.
       console.info('NativeMediaPlayerImpl.play');
       this.nativePlayer.play();
     }
     pause() {
+      // Pause local playback.
       console.info('NativeMediaPlayerImpl.pause');
       this.nativePlayer.pause();
     }
     seek(targetTime: number) {
+      // Seek the local player to the specified time point.
       console.info(`NativeMediaPlayerImpl.seek(${targetTime})`);
       this.nativePlayer.seek(targetTime);
     }
     setVolume(volume: number) {
+      // The ArkWeb kernel requests adjusting the local player volume.
+      // Set the local player volume.
       console.info(`NativeMediaPlayerImpl.setVolume(${volume})`);
       this.nativePlayer.setVolume(volume);
     }
     setMuted(muted: boolean) {
+      // Mute or unmute the local player.
       console.info(`NativeMediaPlayerImpl.setMuted(${muted})`);
     }
     setPlaybackRate(playbackRate: number) {
+      // Adjust the local player playback speed.
       console.info(`NativeMediaPlayerImpl.setPlaybackRate(${playbackRate})`);
       this.nativePlayer.setPlaybackRate(playbackRate);
     }
     release() {
+      // Destroy the local player.
       console.info('NativeMediaPlayerImpl.release');
       this.nativePlayer?.release();
       this.nativePlayerInfo.show_native_media_player = false;
@@ -588,9 +603,11 @@ In the [onCreateNativeMediaPlayer](../reference/apis-arkweb/arkts-apis-webview-W
       this.nativePlayerInfo.destroyed();
     }
     enterFullscreen() {
+      // Set the local player to full-screen playback.
       console.info('NativeMediaPlayerImpl.enterFullscreen');
     }
     exitFullscreen() {
+      // Exit full-screen playback for the local player.
       console.info('NativeMediaPlayerImpl.exitFullscreen');
     }
   }
@@ -605,29 +622,36 @@ In the [onCreateNativeMediaPlayer](../reference/apis-arkweb/arkts-apis-webview-W
       this.component = component;
     }
     onPlaying() {
+      // Notify the ArkWeb kernel that the local player starts playback.
       console.info('AVPlayerListenerImpl.onPlaying');
       this.handler.handleStatusChanged(webview.PlaybackStatus.PLAYING);
     }
     onPaused() {
+      // Notify the ArkWeb kernel that the local player pauses playback.
       console.info('AVPlayerListenerImpl.onPaused');
       this.handler.handleStatusChanged(webview.PlaybackStatus.PAUSED);
     }
     onDurationChanged(duration: number) {
+      // Notify the ArkWeb kernel that the local player has parsed a new media duration.
       console.info(`AVPlayerListenerImpl.onDurationChanged(${duration})`);
       this.handler.handleDurationChanged(duration);
     }
     onBufferedTimeChanged(buffered: number) {
+      // Notify the ArkWeb kernel that the local player's buffered duration changes.
       console.info(`AVPlayerListenerImpl.onBufferedTimeChanged(${buffered})`);
       this.handler.handleBufferedEndTimeChanged(buffered);
     }
     onTimeUpdate(time: number) {
+      // Notify the ArkWeb kernel that the local playback progress changes.
       this.handler.handleTimeUpdate(time);
     }
     onEnded() {
+      // Notify the ArkWeb kernel that the local player finishes playback.
       console.info('AVPlayerListenerImpl.onEnded');
       this.handler.handleEnded();
     }
     onError() {
+      // Notify the ArkWeb kernel that the local player encounters an error.
       console.info('AVPlayerListenerImpl.onError');
       this.component.has_error = true;
       setTimeout(()=>{
@@ -635,11 +659,13 @@ In the [onCreateNativeMediaPlayer](../reference/apis-arkweb/arkts-apis-webview-W
       }, 200);
     }
     onVideoSizeChanged(width: number, height: number) {
+      // Notify the ArkWeb kernel that the video size changes.
       console.info(`AVPlayerListenerImpl.onVideoSizeChanged(${width}, ${height})`);
       this.handler.handleVideoSizeChanged(width, height);
       this.component.onSizeChanged(width, height);
     }
     onDestroyed(): void {
+      // Player destroyed.
       console.info('AVPlayerListenerImpl.onDestroyed');
     }
   }
@@ -673,6 +699,7 @@ In the [onCreateNativeMediaPlayer](../reference/apis-arkweb/arkts-apis-webview-W
     @State has_error: boolean = false;
 
     onSizeChanged(width: number, height: number) {
+      // Update the playback area ratio.
       this.video_width = width;
       this.video_height = height;
       let scale: number = this.view_width / width;
@@ -695,6 +722,7 @@ In the [onCreateNativeMediaPlayer](../reference/apis-arkweb/arkts-apis-webview-W
               console.info('NativePlayerComponent.onLoad, params[' + this.params
                 + '], text[' + this.params.text + '], text2[' + this.params.text2
                 + '], web_tab[' + this.params.playerInfo + '], handler[' + this.params.handler + ']');
+              // Set the Surface ID to the player.
               this.params.player.nativePlayer.setSurfaceID(this.mXComponentController.getXComponentSurfaceId());
 
               this.params.player.nativePlayer.avPlayerLiveDemo({
@@ -745,6 +773,7 @@ In the [onCreateNativeMediaPlayer](../reference/apis-arkweb/arkts-apis-webview-W
       .width('100%')
       .height('100%')
       .onAreaChange((oldValue: Area, newValue: Area) => {
+        // Triggered when the component area changes.
         console.info(`NativePlayerComponent.onAreaChange(${JSON.stringify(oldValue)}, ${JSON.stringify(newValue)})`);
         this.view_width = new Number(newValue.width).valueOf();
         this.view_height = new Number(newValue.height).valueOf();
@@ -852,6 +881,7 @@ In the [onCreateNativeMediaPlayer](../reference/apis-arkweb/arkts-apis-webview-W
     }
 
     updateNativePlayerRect(x: number, y: number, width: number, height: number) {
+      // Update the player position and size.
       this.playerComponent?.updateNativePlayerRect(x, y, width, height);
     }
 
@@ -915,6 +945,7 @@ In the [onCreateNativeMediaPlayer](../reference/apis-arkweb/arkts-apis-webview-W
           Web({ src: this.page_url, controller: this.controller })
             .enableNativeMediaPlayer({ enable: true, shouldOverlay: true })
             .onPageBegin(() => {
+              // Register the player creation callback when the page starts loading.
               this.controller.onCreateNativeMediaPlayer((handler: webview.NativeMediaPlayerHandler, mediaInfo: webview.MediaInfo) => {
                 console.info('onCreateNativeMediaPlayer(' + JSON.stringify(mediaInfo) + ')');
                 let nativePlayerInfo = new NativePlayerInfo(this, handler, mediaInfo, this.getUIContext());
@@ -923,11 +954,13 @@ In the [onCreateNativeMediaPlayer](../reference/apis-arkweb/arkts-apis-webview-W
               });
             })
             .onNativeEmbedGestureEvent((event)=>{
+              // Handle touch events.
               if (!event.touchEvent || !event.embedId) {
                 event.result?.setGestureEventResult(false);
                 return;
               }
               console.info(`WebComponent.onNativeEmbedGestureEvent, embedId[${event.embedId}]`);
+              // Find the corresponding player information.
               let native_player_info = this.getNativePlayerInfoByEmbedId(event.embedId);
               if (!native_player_info) {
                 console.info(`WebComponent.onNativeEmbedGestureEvent, embedId[${event.embedId}], no native_player_info`);
@@ -939,6 +972,7 @@ In the [onCreateNativeMediaPlayer](../reference/apis-arkweb/arkts-apis-webview-W
                 event.result?.setGestureEventResult(false);
                 return;
               }
+              // Pass the touch event to NodeController.
               let ret = native_player_info.node_controller.postTouchEvent(event.touchEvent);
               console.info(`WebComponent.postTouchEvent, ret[${ret}], touchEvent[${JSON.stringify(event.touchEvent)}]`);
               event.result?.setGestureEventResult(ret);
@@ -1044,7 +1078,7 @@ In the [onCreateNativeMediaPlayer](../reference/apis-arkweb/arkts-apis-webview-W
             break;
           case 'completed': // This state is reported upon the completion of the playback.
             console.info('AVPlayer state completed called.');
-            avPlayer.stop(); // Call stop() to stop the playback.
+            avPlayer.stop(); // Call the playback end API.
             break;
           case 'stopped': // This state is reported upon a successful callback of stop().
             console.info('AVPlayer state stopped called.');
@@ -1095,6 +1129,7 @@ In the [onCreateNativeMediaPlayer](../reference/apis-arkweb/arkts-apis-webview-W
       console.info(`AVPlayer url:[${playerParam.url}]`);
     }
 
+    // Execute the pending playback control commands in order.
     schedule() {
       if (!this.avPlayer) {
         return;
@@ -1138,6 +1173,7 @@ In the [onCreateNativeMediaPlayer](../reference/apis-arkweb/arkts-apis-webview-W
       return result;
     }
 
+    // Execute the play command.
     play() {
       let commandName = 'play';
       let checkResult = this.checkCommand(commandName, 'pause');
@@ -1157,6 +1193,7 @@ In the [onCreateNativeMediaPlayer](../reference/apis-arkweb/arkts-apis-webview-W
       }, name: commandName});
       this.schedule();
     }
+    // Execute the pause command.
     pause() {
       let commandName = 'pause';
       let checkResult = this.checkCommand(commandName, 'play');
@@ -1177,6 +1214,7 @@ In the [onCreateNativeMediaPlayer](../reference/apis-arkweb/arkts-apis-webview-W
       }, name: commandName});
       this.schedule();
     }
+    // Execute the resource release command.
     release() {
       this.commands.push({ func: ()=>{
         console.info('AVPlayer.release()');
@@ -1184,6 +1222,7 @@ In the [onCreateNativeMediaPlayer](../reference/apis-arkweb/arkts-apis-webview-W
       }});
       this.schedule();
     }
+    // Execute the seek command.
     seek(time: number) {
       this.commands.push({ func: ()=>{
         console.info(`AVPlayer.seek(${time})`);
@@ -1191,6 +1230,7 @@ In the [onCreateNativeMediaPlayer](../reference/apis-arkweb/arkts-apis-webview-W
       }});
       this.schedule();
     }
+    // Execute the volume setting command.
     setVolume(volume: number) {
       this.commands.push({ func: ()=>{
         console.info(`AVPlayer.setVolume(${volume})`);
@@ -1198,6 +1238,7 @@ In the [onCreateNativeMediaPlayer](../reference/apis-arkweb/arkts-apis-webview-W
       }});
       this.schedule();
     }
+    // Execute the playback speed setting command.
     setPlaybackRate(playbackRate: number) {
       let speed = media.PlaybackSpeed.SPEED_FORWARD_1_00_X;
       let delta = 0.05;

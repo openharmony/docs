@@ -3830,6 +3830,8 @@ Input_Result OH_Input_GetFunctionKeyState(int32_t keyCode, int32_t *state)
 
 获取功能键状态。
 
+**系统能力：** SystemCapability.MultimodalInput.Input.Core
+
 **起始版本：** 15
 
 
