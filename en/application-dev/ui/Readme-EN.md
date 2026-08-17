@@ -116,7 +116,7 @@
     - [\@CustomEnv: Custom Environment Variable](arkts-custom-env-property.md)
   - Setting Component Navigation and Page Routing<!--arkts-set-navigation-routing-->
     - [Component Navigation and Page Routing Overview](arkts-navigation-introduction.md)
-    - [Component Navigation (Navigation) (Recommended)]<!--arkts-navigation-navigation-->
+    - Component Navigation (Navigation) (Recommended)<!--arkts-navigation-navigation-->
       - [Navigation Architecture](./arkts-navigation-architecture.md)
       - [Subpage](./arkts-navigation-navdestination.md)
       - [Page Routing](./arkts-navigation-jump.md)
@@ -300,8 +300,7 @@
     - [Adding a Text Event Listener for a Text Box](ndk-textarea-event.md)
   - Media Display<!--arkts-build-media-ndk-->
     - [Image Display (Image)](ndk-image-component.md)
-    - [Using the Swiper Container](ndk-swiper.md)
-    - [Using the Arc Swiper Container (ArcSwiper)](ndk-arc-swiper.md)
+    - [Using the Swiper Container](ndk-swiper.md)  
   - [Building Form Components](ndk-build-form-components.md)
   - [Building a Dialog Box](ndk-build-pop-up-window.md)
   - Using Animation<!--arkts-use-animation-ndk-->
@@ -421,5 +420,3 @@
 - [Display Management](../displaymanager/Readme-EN.md)<!--display-manager-->
 - [ArkUI Glossary](arkui-glossary.md)
 
-
-<!--no_check-->
