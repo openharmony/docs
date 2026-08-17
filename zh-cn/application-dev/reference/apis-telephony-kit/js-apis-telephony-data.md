@@ -120,7 +120,7 @@ getCellularDataFlowType(callback: AsyncCallback\<DataFlowType\>): void
 
 | 错误码ID |                 错误信息                     |
 | -------- | -------------------------------------------- |
-| 201      | Permission denied. [since 22]                           |
+| 201      | Permission denied. <br>适用版本：22+                          |
 
 **示例：**
 
@@ -159,7 +159,7 @@ getCellularDataFlowType(): Promise\<DataFlowType\>
 
 | 错误码ID |                 错误信息                     |
 | -------- | -------------------------------------------- |
-| 201      | Permission denied. [since 22]                           |
+| 201      | Permission denied. <br>适用版本：22+                           |
 
 **示例：**
 
@@ -196,7 +196,7 @@ getCellularDataState(callback: AsyncCallback\<DataConnectState\>): void
 
 | 错误码ID |                 错误信息                     |
 | -------- | -------------------------------------------- |
-| 201      | Permission denied. [since 22]                           |
+| 201      | Permission denied. <br>适用版本：22+                           |
 
 **示例：**
 
@@ -235,7 +235,7 @@ getCellularDataState(): Promise\<DataConnectState\>
 
 | 错误码ID |                 错误信息                     |
 | -------- | -------------------------------------------- |
-| 201      | Permission denied. [since 22]                           |
+| 201      | Permission denied. <br>适用版本：22+                           |
 
 **示例：**
 
