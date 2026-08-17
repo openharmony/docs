@@ -2,9 +2,9 @@
 
 <!--Kit: Connectivity Kit-->
 <!--Subsystem: Communication-->
-<!--Owner: @enjoy_sunshine-->
+<!--Owner: @LHao_0324-->
 <!--Designer: @tangjia15-->
-<!--Tester: @wangfeng517-->
+<!--Tester: @zhangjiaji111-->
 <!--Adviser: @zhang_yixin13-->
 
 本模块基于星闪技术，为应用提供设备测距功能，适用于智能防丢、近场找物、数字钥匙等需要获取设备间精确距离的场景。主要功能特性包括：
