@@ -540,8 +540,8 @@ type DialogOptionsShadow = ShadowOptions&nbsp;\|&nbsp;ShadowStyle
 | isModal         | boolean                                                      | 否   | 是  | 弹窗是否为模态窗口。值为true表示为模态窗口且有蒙层，不可与弹窗周围其他控件进行交互，即蒙层区域无法事件透传。值为false表示为非模态窗口且无蒙层，可以与弹窗周围其他控件进行交互。<br/>默认值：true<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
 | showInSubWindow | boolean                                                      | 否   | 是  | 某弹窗需要显示在主窗口之外时，是否在子窗口显示此弹窗。值为true表示在子窗口显示弹窗。<br/>默认值：false，弹窗显示在应用内，而非独立子窗口。 <br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
 | displayModeInSubWindow | [DialogDisplayMode](arkui-ts/ts-appendix-enums.md#dialogdisplaymode) | 否   | 是  | 弹窗在子窗口中的显示模式。<br/>默认值：DialogDisplayMode.SCREEN_BASED<br/>**说明：**<br/>仅当showInSubWindow设置为true时生效。<br/>**起始版本：** 26.0.0<br/>**模型约束：** 此接口仅可在Stage模型下使用。<br/>**原子化服务API：** 从API版本26.0.0开始，该接口支持在原子化服务中使用。|
-| onWillDismiss<sup>12+</sup> | Callback<[DismissDialogAction](#dismissdialogaction12)> | 否 | 是 | 交互式关闭回调函数。<br/>**说明：** <br/>1.当用户执行点击遮障层关闭、侧滑（左滑/右滑）、三键back、键盘ESC关闭交互操作时，如果注册该回调函数，则不会立刻关闭弹窗。在回调函数中可以通过reason得到阻拦关闭弹窗的操作类型，从而根据原因选择是否能关闭弹窗。当前组件返回的reason中，暂不支持CLOSE_BUTTON的枚举值。<br/>2.在onWillDismiss回调中，不能再做onWillDismiss拦截。 <br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
-|  autoCancel<sup>12+</sup> |       boolean                                   | 否   | 是  | 点击遮障层时，是否关闭弹窗，true表示关闭弹窗。false表示不关闭弹窗。<br/>默认值：true <br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
+| onWillDismiss<sup>12+</sup> | Callback<[DismissDialogAction](#dismissdialogaction12)> | 否 | 是 | 交互式关闭回调函数。<br/>**说明：** <br/>1.当用户执行点击遮罩层关闭、侧滑（左滑/右滑）、三键back、键盘ESC关闭交互操作时，如果注册该回调函数，则不会立刻关闭弹窗。在回调函数中可以通过reason得到阻拦关闭弹窗的操作类型，从而根据原因选择是否能关闭弹窗。当前组件返回的reason中，暂不支持CLOSE_BUTTON的枚举值。<br/>2.在onWillDismiss回调中，不能再做onWillDismiss拦截。 <br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
+|  autoCancel<sup>12+</sup> |       boolean                                   | 否   | 是  | 点击遮罩层时，是否关闭弹窗，true表示关闭弹窗。false表示不关闭弹窗。<br/>默认值：true <br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
 |  maskColor<sup>12+</sup> |        [ResourceColor](arkui-ts/ts-types.md#resourcecolor) | 否    | 是   | 自定义蒙层颜色。<br>默认值: 0x33000000              <br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
 | transition<sup>12+</sup>          | [TransitionEffect](arkui-ts/ts-transition-animation-component.md#transitioneffect10对象说明) | 否   | 是  | 设置弹窗显示和退出的过渡效果。<br/>**说明：**<br/> 1.如果不设置，则使用默认的显示/退出动效。<br/> 2.显示动效中按back键，打断显示动效，执行退出动效，动画效果为显示动效与退出动效的曲线叠加后的效果。<br/> 3.退出动效中按back键，不会打断退出动效，退出动效继续执行，继续按back键退出应用。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
 | dialogTransition<sup>19+</sup>          | [TransitionEffect](arkui-ts/ts-transition-animation-component.md#transitioneffect10对象说明) | 否   | 是  | 设置弹窗内容显示的过渡效果。默认无动效。<br />**原子化服务API：** 从API version 19开始，该接口支持在原子化服务中使用。 |
@@ -578,7 +578,7 @@ Dialog关闭的信息。
 | 名称    | 类型                                                         | 只读 | 可选 | 说明                                                         |
 | ------- | ------------------------------------------------------------ | ---- | ---- | ------------------------------------------------------------ |
 | dismiss | Callback&lt;void&gt;                                         | 否   | 否   | Dialog关闭回调函数。开发者需要退出时调用，不需要退出时无需调用。 |
-| reason  | [DismissReason](./arkui-ts/ts-universal-attributes-popup.md#dismissreason12枚举说明) | 否   | 否   | 触发Dialog关闭的操作类型（如点击遮障层、按返回键等）。开发者可根据reason判断用户的具体关闭操作，决定是否调用dismiss()关闭Dialog。 |
+| reason  | [DismissReason](./arkui-ts/ts-universal-attributes-popup.md#dismissreason12枚举说明) | 否   | 否   | 触发Dialog关闭的操作类型（如点击遮罩层、按返回键等）。开发者可根据reason判断用户的具体关闭操作，决定是否调用dismiss()关闭Dialog。 |
 
 ## LevelMode<sup>15+</sup>
 
