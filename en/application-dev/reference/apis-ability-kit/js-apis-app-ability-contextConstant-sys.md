@@ -55,3 +55,4 @@ export default class EntryServiceExtAbility extends ServiceExtensionAbility {
   }
   }
 ```
+<!--no_check-->

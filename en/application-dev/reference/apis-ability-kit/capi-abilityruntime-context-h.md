@@ -6,7 +6,7 @@
 <!--Designer: @yangzhongkai-->
 <!--Tester: @liangchengguang-->
 <!--Adviser: @HelloCrease-->
-<!-- md-trans-meta sourceCommit=650803b1fa576dbf2144b7c991efd4398d52b615 translatedAt=2026-08-13T13:15:09.840Z pushedAt=2026-08-14T01:27:10.380Z -->
+<!-- md-trans-meta sourceCommit=650803b1fa576dbf2144b7c991efd4398d52b615 translatedAt=2026-08-13T13:15:09.840Z pushedAt=2026-08-17T10:49:52.373Z -->
 
 ## Overview
 
@@ -212,13 +212,13 @@ Gets the database file directory of the context.
 | [AbilityRuntime_ContextHandle](capi-abilityruntime-abilityruntime-context8h.md) context | Context for which the database file directory is to be obtained. |
 | char* buffer | Pointer to the buffer used to receive the database file directory of the context. |
 | const int32_t bufferSize | Buffer size. Unit: Byte. |
-| int32_t* writeLength | When [ABILITY_RUNTIME_ERROR_CODE_NO_ERROR](capi-ability-runtime-common-h.md#abilityruntime-errorcode) is returned, indicates the length of the string actually written to the buffer. Unit: Byte. |
+| int32_t* writeLength | When [ABILITY_RUNTIME_ERROR_CODE_NO_ERROR](capi-ability-runtime-common-h.md#abilityruntime_errorcode) is returned, indicates the length of the string actually written to the buffer. Unit: Byte. |
 
 **Returns**
 
 | Type | Description |
 | -- | -- |
-| [AbilityRuntime_ErrorCode](capi-ability-runtime-common-h.md#abilityruntime-errorcode) | Return execution result.<br>ABILITY_RUNTIME_ERROR_CODE_NO_ERROR - Operation successful.<br>ABILITY_RUNTIME_ERROR_CODE_PARAM_INVALID - The input parameter buffer or writeLength is null, or context is null, or the buffer size is smaller than the size to be written.<br>ABILITY_RUNTIME_ERROR_CODE_CONTEXT_NOT_EXIST - The context does not exist. |
+| [AbilityRuntime_ErrorCode](capi-ability-runtime-common-h.md#abilityruntime_errorcode) | Return execution result.<br>ABILITY_RUNTIME_ERROR_CODE_NO_ERROR - Operation successful.<br>ABILITY_RUNTIME_ERROR_CODE_PARAM_INVALID - The input parameter buffer or writeLength is null, or context is null, or the buffer size is smaller than the size to be written.<br>ABILITY_RUNTIME_ERROR_CODE_CONTEXT_NOT_EXIST - The context does not exist. |
 
 **Example:**
 
@@ -400,13 +400,13 @@ Gets the resource directory of the context.
 | [AbilityRuntime_ContextHandle](capi-abilityruntime-abilityruntime-context8h.md) context | Context for which the resource directory is to be obtained. |
 | char* buffer | Pointer to the buffer used to receive the resource directory of the context. |
 | const int32_t bufferSize | Buffer size. Unit: Byte. |
-| int32_t* writeLength | When [ABILITY_RUNTIME_ERROR_CODE_NO_ERROR](capi-ability-runtime-common-h.md#abilityruntime-errorcode) is returned, indicates the length of the string actually written to the buffer. Unit: Byte. |
+| int32_t* writeLength | When [ABILITY_RUNTIME_ERROR_CODE_NO_ERROR](capi-ability-runtime-common-h.md#abilityruntime_errorcode) is returned, indicates the length of the string actually written to the buffer. Unit: Byte. |
 
 **Returns**
 
 | Type | Description |
 | -- | -- |
-| [AbilityRuntime_ErrorCode](capi-ability-runtime-common-h.md#abilityruntime-errorcode) | Return execution result.<br>ABILITY_RUNTIME_ERROR_CODE_NO_ERROR - Operation successful.<br>ABILITY_RUNTIME_ERROR_CODE_PARAM_INVALID - The input parameter buffer or writeLength is null, or context is null, or the buffer size is smaller than the size to be written.<br>ABILITY_RUNTIME_ERROR_CODE_CONTEXT_NOT_EXIST - The context does not exist. |
+| [AbilityRuntime_ErrorCode](capi-ability-runtime-common-h.md#abilityruntime_errorcode) | Return execution result.<br>ABILITY_RUNTIME_ERROR_CODE_NO_ERROR - Operation successful.<br>ABILITY_RUNTIME_ERROR_CODE_PARAM_INVALID - The input parameter buffer or writeLength is null, or context is null, or the buffer size is smaller than the size to be written.<br>ABILITY_RUNTIME_ERROR_CODE_CONTEXT_NOT_EXIST - The context does not exist. |
 
 **Example:**
 
@@ -447,13 +447,13 @@ Obtains the cloud file directory of the context.
 | [AbilityRuntime_ContextHandle](capi-abilityruntime-abilityruntime-context8h.md) context | Context for which the cloud file directory is to be obtained. |
 | char* buffer | Pointer to the buffer used to receive the cloud file directory of the context. |
 | const int32_t bufferSize | Buffer size. Unit: Byte. |
-| int32_t* writeLength | When [ABILITY_RUNTIME_ERROR_CODE_NO_ERROR](capi-ability-runtime-common-h.md#abilityruntime-errorcode) is returned, indicates the length of the string actually written to the buffer. Unit: Byte. |
+| int32_t* writeLength | When [ABILITY_RUNTIME_ERROR_CODE_NO_ERROR](capi-ability-runtime-common-h.md#abilityruntime_errorcode) is returned, indicates the length of the string actually written to the buffer. Unit: Byte. |
 
 **Returns**
 
 | Type | Description |
 | -- | -- |
-| [AbilityRuntime_ErrorCode](capi-ability-runtime-common-h.md#abilityruntime-errorcode) | Return execution result.<br>ABILITY_RUNTIME_ERROR_CODE_NO_ERROR - Operation successful.<br>ABILITY_RUNTIME_ERROR_CODE_PARAM_INVALID - The input parameter buffer or writeLength is null, or context is null, or the buffer size is smaller than the size to be written.<br>ABILITY_RUNTIME_ERROR_CODE_CONTEXT_NOT_EXIST - The context does not exist. |
+| [AbilityRuntime_ErrorCode](capi-ability-runtime-common-h.md#abilityruntime_errorcode) | Return execution result.<br>ABILITY_RUNTIME_ERROR_CODE_NO_ERROR - Operation successful.<br>ABILITY_RUNTIME_ERROR_CODE_PARAM_INVALID - The input parameter buffer or writeLength is null, or context is null, or the buffer size is smaller than the size to be written.<br>ABILITY_RUNTIME_ERROR_CODE_CONTEXT_NOT_EXIST - The context does not exist. |
 
 **Example:**
 

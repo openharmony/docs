@@ -261,3 +261,4 @@ Called when the system locale changes after the listener for system environment 
   | Name | Type | Mandatory | Description |
   | -------- | -------- | -------- | -------- |
   | locale | string | Yes | System locale after the change. For details about this field, see [Configuration](js-apis-app-ability-configuration.md). |
+  <!--no_check-->

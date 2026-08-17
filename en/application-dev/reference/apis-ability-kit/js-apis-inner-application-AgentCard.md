@@ -6,7 +6,7 @@
 <!--Designer: @ccllee1-->
 <!--Tester: @liangchengguang-->
 <!--Adviser: @HelloCrease-->
-<!-- md-trans-meta sourceCommit=a9f9e0ba083e43e37b2825c7014b0a23a5613998 translatedAt=2026-08-13T13:21:00.367Z pushedAt=2026-08-17T03:42:28.505Z -->
+<!-- md-trans-meta sourceCommit=a9f9e0ba083e43e37b2825c7014b0a23a5613998 translatedAt=2026-08-13T13:21:00.367Z pushedAt=2026-08-17T11:33:17.162Z -->
 
 AgentCard is the "business card" of an Agent, used to describe the capabilities and skills of the Agent. It is configured by the developer in the Agent configuration file agent_config.json.
 
@@ -119,5 +119,5 @@ App information of the Agent.
 | bundleName     | string  | No   | No   | Bundle name of the AgentExtensionAbility to which the Agent belongs. |
 | moduleName     | string  | No   | No   | Module name of the AgentExtensionAbility to which the Agent belongs. |
 | abilityName     | string  | No   | No   | Ability name of the AgentExtensionAbility to which the Agent belongs. |
-| deviceTypes     | Array\<string>  | No   | Yes   | List of device types supported by the Agent. For the value range, see [deviceTypes](../../quick-start/module-configuration-file.md#devicetypes-tag). |
+| deviceTypes     | Array\<string>  | No   | Yes   | List of device types supported by the Agent. For the value range, see [deviceTypes](../../quick-start/module-configuration-file.md#devicetypes). |
 | minAppVersion     | string  | No   | Yes   | Minimum app version required for the Agent to run. Uses the semantic versioning format (for example, "1.0.0") to specify the minimum app version required to run the Agent. Apps with a version lower than this value cannot load and run the Agent correctly. |

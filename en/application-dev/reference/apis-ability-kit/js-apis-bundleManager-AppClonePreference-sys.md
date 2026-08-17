@@ -52,3 +52,4 @@ App clone preference, used to configure the selection policy between the main ap
 | --------- | -------------- | ---- | ---- | --------------------------- |
 | mode | [AppClonePreferenceMode](#appclonepreferencemode)         | No   | No   | Mode of the app clone preference. |
 | appIndex | number         | No   | Yes   | App clone index.<br>This parameter is mandatory when the value of **mode** is **AppClonePreferenceMode.CLONE_APP**, and is used to specify a specific clone app. The value is an integer ranging from 1 to 5 (the system supports a maximum of 5 clones).   |
+<!--no_check-->
