@@ -12,7 +12,7 @@ typedef struct {...} OH_Rdb_Store
 
 ## 概述
 
-表示数据库类型。
+表示数据库实例。需通过[OH_Rdb_GetOrOpen](capi-relational-store-h.md#oh_rdb_getoropen)或[OH_Rdb_CreateOrOpen](capi-relational-store-h.md#oh_rdb_createoropen)等函数获得。
 
 **起始版本：** 10
 

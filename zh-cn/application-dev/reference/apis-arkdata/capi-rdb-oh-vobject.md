@@ -48,7 +48,7 @@ int (*putInt64)(OH_VObject *valueObject, int64_t *value, uint32_t count)
 
 **描述**
 
-将int64类型的单个参数或者数组转换为OH_VObject类型的值。
+将int64_t类型的单个参数或者数组转换为OH_VObject类型的值。
 
 **起始版本：** 10
 
