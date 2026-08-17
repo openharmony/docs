@@ -1,5 +1,12 @@
 # DRM Kit（数字版权保护服务）
 
+<!--Kit: Drm Kit-->
+<!--Subsystem: Multimedia-->
+<!--Owner: @hanzhengshi-->
+<!--Designer: @chris2981-->
+<!--Tester: @xdlinc-->
+<!--Adviser: @qin_wei_jie-->
+
 - ArkTS API<!--drm-arkts-->
   - @ohos.multimedia.drm (数字版权保护)<!--js-apis-drm-->
     - [模块描述](arkts-apis-drm.md)
