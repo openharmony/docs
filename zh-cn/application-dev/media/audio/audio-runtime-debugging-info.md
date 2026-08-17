@@ -373,7 +373,7 @@ audioCapturer {
 
 **ArkTS接口：**
 
-<!-- @[print_loopback_info](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/Media/Audio/AudioCaptureSampleJS/entry/src/main/ets/pages/AudioLoopbackDebugInfo.ets) -->
+<!-- @[print_loopback_info](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/Media/Audio/AudioCaptureSampleJS/entry/src/main/ets/pages/AudioLoopbackDebugInfo.ets) -->  
 
 ``` TypeScript
 // audioLoopback为已创建的AudioLoopback实例。
