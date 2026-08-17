@@ -42,7 +42,7 @@
     - [State Management Principles](state-management/arkts-state-management-introduce.md)
     - [Differences Between State Management V1 and V2 Update Mechanisms](state-management/arkts-v1-v2-update-difference.md)
     - [MVVM V1](state-management/arkts-mvvm.md)
-    - [MVVM V2](state-management/arkts-mvvm-v2.md)
+    - [MVVM V2](state-management/arkts-mvvm-V2.md)
     - State Management V1<!--arkts-state-management-v1-->
       - Component State Management<!--arkts-v1-component-state-management-->
         - [\@State Decorator: State Owned by Component](state-management/arkts-state.md)

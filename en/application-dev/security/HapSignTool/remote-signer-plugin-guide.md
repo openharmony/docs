@@ -20,7 +20,7 @@ The HAP signing tool supports two modes: local signing and remote signing.
 
 Before using the remote signing plugin, you should understand the following basic concepts:
 
-- **[ISigner API](#signing-API)**
+- **[ISigner API](#signing-api)**
 
   An API that all remote signing plugins must implement. It defines the core methods for signing operations. By implementing this API, a plugin integrates its custom signing logic into the HAP signing tool.
 
@@ -172,7 +172,7 @@ public interface ISigner {
 
 3. Create the **signer.properties** configuration file.
 
-    Create the <codeph>signer.properties</codeph> file in the <codeph>src/main/resources/</codeph> directory:
+    Create the `signer.properties` file in the `src/main/resources/` directory:
 
     ```properties
     com.ohos.hapsigntool.signer.ISigner=com.example.MyRemoteSigner
@@ -180,7 +180,7 @@ public interface ISigner {
 
 4. Implementing the **ISigner** API.
 
-    Create the <codeph>MyRemoteSigner.java</codeph> class and implement the <codeph>ISigner</codeph> API:
+    Create the `MyRemoteSigner.java` class and implement the `ISigner` API:
 
     ```java
     package com.example;
