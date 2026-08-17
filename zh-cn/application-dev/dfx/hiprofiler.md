@@ -81,7 +81,7 @@ CONFIG
 | 命令 | 命令说明 | 
 | -------- | -------- |
 | -c | 设置该选项后，需要将配置文件放入/data/local/tmp目录下，将路径作为参数输入。 | 
-| -o | 自定义文件保存路径（需要以/data/local/tmp开头）。若不设置路径，则调优数据自动保存至/data/local/tmp/hiprofiler_data.htrace。重复调优会覆盖原来路径的文件。 | 
+| -o | 自定义文件保存路径（需要以/data/local/tmp开头）。若不设置路径，则调优数据自动保存至/data/local/tmp/hiprofiler_data.htrace。重复调优会覆盖原来路径的文件。<br>抓取[三合一维测日志](#抓取指定进程三合一维测日志)自定义文件保存路径必须是以.zip为后缀名的文件路径。若不设置路径，则三合一维测日志自动保存至/data/local/tmp/hiprofiler_data_{timestamp}.zip | 
 | -k | 杀掉已存在的调优服务进程。 | 
 | -s | 拉起调优服务进程。 | 
 | -t | 设置调优持续时间，单位：s。若需手动控制采集时长，请使用start/stop参数组合。|
@@ -1181,7 +1181,7 @@ CONFIG
 >
 > 抓取三合一维测日志，须在[native hook插件](#native-hook插件)配置中增加[restrace_tag参数](#restrace_tag参数介绍)为RES_COMPOSITE_HEAP。
 >
-> 三合一维测日志落盘在命令行-o指定的/data/local/tmp/目录下，是以hiprofiler_data_{timestamp}.zip命名的压缩文件。日志文件仅保留最新记录。
+> 三合一维测日志保存至[命令行](#命令行说明)-o参数指定的zip压缩文件。若未设置-o参数，则默认保存至/data/local/tmp/hiprofiler_data_{timestamp}.zip。三合一维测日志文件仅保留最新记录。
 >
 > 采集的进程仅支持[使用调试证书签名的应用](#使用调试证书签名的应用)。
 
