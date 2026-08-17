@@ -23,20 +23,20 @@
         - [\@ReusableV2装饰器：V2组件复用](state-management/arkts-new-reusableV2.md) 
         - [全局复用：集中化的组件回收与复用](state-management/arkts-global-reuse-pool.md)<!--RP7--><!--RP7End-->
       - 自定义组件冻结<!--arkts-component-freeze-->
-        - [自定义组件冻结（V1）](state-management/arkts-custom-components-freeze.md)
-        - [自定义组件冻结（V2）](state-management/arkts-custom-components-freezeV2.md)<!--RP8--><!--RP8End-->
+        - [自定义组件冻结功能（V1）](state-management/arkts-custom-components-freeze.md)
+        - [自定义组件冻结功能（V2）](state-management/arkts-custom-components-freezeV2.md)<!--RP8--><!--RP8End-->
     - 组件扩展<!--arkts-extend-components-->
       - [组件扩展概述](state-management/arkts-extend-components-overview.md)
       - [\@Builder装饰器：自定义构建函数](state-management/arkts-builder.md)
-      - [\@LocalBuilder装饰器：维持组件关系](state-management/arkts-localBuilder.md)
+      - [\@LocalBuilder装饰器： 维持组件关系](state-management/arkts-localBuilder.md)
       - [\@BuilderParam装饰器：引用\@Builder函数](state-management/arkts-builderparam.md)
       - [wrapBuilder：封装全局@Builder](state-management/arkts-wrapBuilder.md)
       - [mutableBuilder：实现全局@Builder动态更新](state-management/arkts-mutableBuilder.md) 
       - [\@Styles装饰器：定义组件重用样式](state-management/arkts-style.md)
       - [\@Extend装饰器：定义扩展组件样式](state-management/arkts-extend.md)
       - [stateStyles：多态样式](state-management/arkts-statestyles.md)
-      - [@AnimatableExtend装饰器：定义可动画属性](state-management/arkts-animatable-extend.md)
-    - [@Require装饰器：校验构造传参](state-management/arkts-require.md)
+      - [\@AnimatableExtend装饰器：定义可动画属性](state-management/arkts-animatable-extend.md)
+    - [\@Require装饰器：校验构造传参](state-management/arkts-require.md)
   - 学习UI范式状态管理<!--arkts-state-management-->
     - [状态管理概述](state-management/arkts-state-management-overview.md)
     - [状态管理原理介绍](state-management/arkts-state-management-introduce.md)
@@ -62,16 +62,16 @@
     - 状态管理（V2）<!--arkts-state-management-v2-->
       - 管理组件拥有的状态<!--arkts-v2-manage-component-state-->
         - [\@Local装饰器：组件内部状态](state-management/arkts-new-local.md)
-        - [\@Param装饰器：组件外部输入](state-management/arkts-new-param.md)
-        - [\@Once装饰器：初始化同步一次](state-management/arkts-new-once.md)
+        - [\@Param：组件外部输入](state-management/arkts-new-param.md)
+        - [\@Once：初始化同步一次](state-management/arkts-new-once.md)
         - [\@Event装饰器：规范组件输出](state-management/arkts-new-event.md)
-        - [\@Provider和\@Consumer装饰器：跨组件层级双向同步](state-management/arkts-new-provider-and-consumer.md)
+        - [\@Provider装饰器和\@Consumer装饰器：跨组件层级双向同步](state-management/arkts-new-provider-and-consumer.md)
       - 管理数据对象的状态<!--arkts-v2-manage-data-object-state-->
         - [\@ObservedV2装饰器和\@Trace装饰器：类属性变化观测](state-management/arkts-new-observedV2-and-trace.md)
         - [\@Monitor装饰器：状态变量修改异步监听](state-management/arkts-new-monitor.md)
         - [\@SyncMonitor装饰器：状态变量修改同步监听](state-management/arkts-new-syncmonitor.md)
         - [\@Computed装饰器：计算属性](state-management/arkts-new-computed.md)
-        - [\@Type装饰器: 标记类属性的类型](state-management/arkts-new-type.md)
+        - [\@Type装饰器：标记类属性的类型](state-management/arkts-new-type.md)
       - 管理应用拥有的状态<!--arkts-v2-manage-application-state-->
         - [AppStorageV2: 应用全局UI状态存储](state-management/arkts-new-appstoragev2.md)
         - [PersistenceV2: 持久化存储UI状态](state-management/arkts-new-persistencev2.md)
@@ -139,7 +139,7 @@
   - 列表与网格<!--arkts-list-and-grid-->
     - [列表与网格概述](arkts-list-grid-development-overview.md)
     - [创建列表 (List)](arkts-layout-development-create-list.md)
-    - [创建弧形列表 (ArcList)](arkts-layout-development-create-arclist.md)（圆形屏幕推荐使用）
+    - [弧形列表 (ArcList)（圆形屏幕推荐使用）](arkts-layout-development-create-arclist.md)
     - [创建网格 (Grid/GridItem)](arkts-layout-development-create-grid.md)<!--RP11--><!--RP11End-->
     - [创建瀑布流 (WaterFlow)](arkts-layout-development-create-waterflow.md)<!--RP12--><!--RP12End-->
     - [创建懒加载布局 (LazyColumnLayout/LazyVGridLayout/LazyVWaterFlowLayout)](arkts-layout-development-create-lazy-layout.md)
@@ -148,7 +148,7 @@
     - [文本概述](arkts-text-introduction.md)
     - [文本显示 (Text/Span)](arkts-common-components-text-display.md)
     - [文本输入 (TextInput/TextArea/Search)](arkts-common-components-text-input.md)
-    - [富文本编辑 (RichEditor)](arkts-common-components-richeditor.md)
+    - [富文本编辑（RichEditor）](arkts-common-components-richeditor.md)
     - [图标小符号 (SymbolGlyph/SymbolSpan)](arkts-common-components-symbol.md)
     - [属性字符串 (StyledString/MutableStyledString)](arkts-styled-string.md)
     - [图文混排](arkts-text-image-layout.md)
@@ -157,11 +157,11 @@
     - [显示图片 (Image)](arkts-graphics-display.md)
     - [视频播放 (Video)](arkts-common-components-video-player.md)
     - [创建轮播 (Swiper)](arkts-layout-development-create-looping.md)
-    - [创建弧形轮播 (ArcSwiper)](arkts-layout-development-arcswiper.md)（圆形屏幕推荐使用）<!--RP14--><!--RP14End-->
+    - [创建弧形轮播 (ArcSwiper)（圆形屏幕推荐使用）](arkts-layout-development-arcswiper.md)<!--RP14--><!--RP14End-->
   - 按钮与选择<!--arkts-form-selection-->
     - [按钮与选择组件概述](arkts-forms-overview.md)
     - [按钮 (Button)](arkts-common-components-button.md)
-    - [弧形按钮 (ArcButton)](arkts-advanced-components-arcbutton.md)（圆形屏幕推荐使用）
+    - [弧形按钮 (ArcButton)(圆形屏幕推荐使用)](arkts-advanced-components-arcbutton.md)
     - [单选框 (Radio)](arkts-common-components-radio-button.md)
     - [切换按钮 (Toggle)](arkts-common-components-switch.md)
   - 添加组件<!--arkts-add-component-->
@@ -181,23 +181,23 @@
        - [弹出框蒙层控制](arkts-dialog-mask.md)
      - 菜单<!--arkts-use-menu-->
        - [菜单概述](arkts-menu-overview.md)
-       - [菜单控制 (Menu)](arkts-popup-and-menu-components-menu.md)
+       - [菜单控制（Menu）](arkts-popup-and-menu-components-menu.md)
        - [不依赖UI组件的全局菜单 (openMenu)](arkts-popup-and-menu-components-uicontext-menu.md)
      - 气泡提示<!--arkts-use-popup-->
        - [气泡提示概述](arkts-popup-overview.md)
-       - [气泡提示 (Popup)](arkts-popup-and-menu-components-popup.md)
+       - [气泡提示（Popup）](arkts-popup-and-menu-components-popup.md)
        - [不依赖UI组件的全局气泡提示 (openPopup)](arkts-popup-and-menu-components-uicontext-popup.md)
      - 绑定模态页面<!--arkts-bind-modal-->
         - [绑定模态页面概述](arkts-modal-overview.md)
-        - [绑定半模态页面 (bindSheet)](arkts-sheet-page.md)
-        - [绑定全模态页面 (bindContentCover)](arkts-contentcover-page.md)
-     - [即时反馈 (Toast)](arkts-create-toast.md)
-     - [设置浮层 (OverlayManager)](arkts-create-overlaymanager.md)<!--RP9--><!--RP9End-->
+        - [绑定半模态页面（bindSheet）](arkts-sheet-page.md)
+        - [绑定全模态页面（bindContentCover）](arkts-contentcover-page.md)
+     - [即时反馈（Toast）](arkts-create-toast.md)
+     - [设置浮层（OverlayManager）](arkts-create-overlaymanager.md)<!--RP9--><!--RP9End-->
   - [沉浸光感](arkts-immersive-light-sense.md)
   - 几何图形绘制<!--arkts-draw-graphics-->
     - [几何图形绘制概述](arkts-shape-overview.md)
     - [绘制几何图形 (Shape)](arkts-geometric-shape-drawing.md)
-    - [形状裁剪 (clipShape)](arkts-clip-shape.md)
+    - [形状裁剪（clipShape）](arkts-clip-shape.md)
   - [添加交互响应](arkts-interaction-development-guide-overview.md)
     - [交互响应概述](arkts-interaction-capability-overview.md)
     - [交互基础机制说明](arkts-interaction-basic-principles.md)
@@ -257,7 +257,7 @@
       - [使用画布绘制自定义图形 (Canvas)](arkts-drawing-customization-on-canvas.md)
       - [自定义绘制修改器 (DrawModifier)](arkts-user-defined-extension-drawModifier.md)
     - Modifier机制<!--arkts-modifier-->
-      - [自定义扩展概述](arkts-user-defined-modifier.md)
+      - [自定义扩展能力概述](arkts-user-defined-modifier.md)
       - [内容修改器 (ContentModifier)](arkts-common-attributes-content-modifier.md)
       - [属性修改器 (AttributeModifier)](arkts-user-defined-extension-attributeModifier.md)
       - [属性更新器 (AttributeUpdater)](arkts-user-defined-extension-attributeUpdater.md)
@@ -297,7 +297,7 @@
   - 使用文本<!--arkts-build-text-ndk-->
     - [使用Text组件](ndk-use-text-component.md)
     - [使用属性字符串](ndk-styled-string.md)
-    - [输入框文本事件监听](ndk-textarea-event.md)
+    - [添加输入框文本事件监听](ndk-textarea-event.md)
   - 媒体展示<!--arkts-build-media-ndk-->
     - [显示图片（Image）](ndk-image-component.md)
     - [使用滑块视图容器 (Swiper)](ndk-swiper.md)
@@ -318,9 +318,9 @@
     - [自定义绘制](arkts-user-defined-draw.md)
   - [通过自绘制接入无障碍](ndk-accessibility-xcomponent.md)
   - [通过EmbeddedComponent拉起EmbeddedUIExtensionAbility](ndk-embedded-component.md)
-  - [查询和操作NDK节点](ndk-node-query-operate.md)
-  - [NDK多实例场景开发](ndk-scope-task.md)
-  - [NDK多线程创建组件](ndk-build-on-multi-thread.md)
+  - [查询和操作自定义节点](ndk-node-query-operate.md)
+  - [在NDK中保证多实例场景功能正常](ndk-scope-task.md)
+  - [使用多线程NDK接口并行化构建UI页面](ndk-build-on-multi-thread.md)
   - [构建渲染节点](ndk-embed-render-components.md)
 - UI开发 (兼容JS的类Web开发范式)<!--ui-js-dev-->
   - [UI开发 (兼容JS的类Web开发范式)概述](ui-js-overview.md)
