@@ -7,7 +7,7 @@
 <!--Adviser: @zengyawen-->
 
 - ArkTS APIs<!--universal-keystore-arkts-->
-  - [@ohos.security.huks (HUKS)](js-apis-huks.md)
+  - [@ohos.security.huks (Universal Keystore)](js-apis-huks.md)
   - [@ohos.security.huksExternalCrypto (External Key Management)](js-apis-huksExternalCrypto.md)
   - [@ohos.security.CryptoExtensionAbility (Key Extension Ability)](js-apis-CryptoExtensionAbility.md)
   <!--Del-->

@@ -1,4 +1,4 @@
-# @ohos.dlpPermission (数据防泄漏)(系统接口)
+# @ohos.dlpPermission (数据防泄露)(系统接口)
 <!--Kit: Data Protection Kit-->
 <!--Subsystem: Security-->
 <!--Owner: @winnieHuYu-->
@@ -7,7 +7,7 @@
 <!--Adviser: @zengyawen-->
 
 ## 模型简介
-数据防泄漏（Data Loss Prevention，简称为DLP）是系统级的数据防泄漏解决方案，提供跨设备文件的权限管理、加密存储、授权访问等能力。DLP通过加密技术对敏感文件进行保护，生成.dlp格式的加密文件（称为DLP文件）。当打开DLP文件时，系统会自动创建隔离的DLP沙箱环境，确保文件内容不会泄漏到非授权环境。
+数据防泄露（Data Loss Prevention，简称为DLP）是系统级的数据防泄露解决方案，提供跨设备文件的权限管理、加密存储、授权访问等能力。DLP通过加密技术对敏感文件进行保护，生成.dlp格式的加密文件（称为DLP文件）。当打开DLP文件时，系统会自动创建隔离的DLP沙箱环境，确保文件内容不会泄露到非授权环境。
 
 典型应用场景：
 
@@ -18,7 +18,7 @@
 > **说明：**
 >
 > - 本模块首批接口从API version 10开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
-> - 当前页面仅包含本模块的系统接口，其他公开接口参见[@ohos.dlpPermission (数据防泄漏)](js-apis-dlppermission.md)。
+> - 当前页面仅包含本模块的系统接口，其他公开接口参见[@ohos.dlpPermission (数据防泄露)](js-apis-dlppermission.md)。
 
 ## 关键Class/Interface介绍
 
@@ -98,8 +98,8 @@ import { dlpPermission } from '@kit.DataProtectionKit';
 
 dlpPermission.getDLPGatheringPolicy().then((gatheringPolicy: dlpPermission.GatheringPolicyType) => {
   console.info('gatheringPolicy: ', JSON.stringify(gatheringPolicy));
-}).catch((error: BusinessError)=> {
-  console.error(error.message);
+}).catch((error: BusinessError) => {
+  console.error(`Failed to get DLPGatheringPolicy. Code: ${error.code}, message: ${error.message}`);
 }); // 获取沙箱聚合策略。
 ```
 
@@ -142,7 +142,7 @@ import { dlpPermission } from '@kit.DataProtectionKit';
 
 dlpPermission.getDLPGatheringPolicy((err, gatheringPolicy) => {
   if (err) {
-    console.error('getDLPGatheringPolicy error,', err.code, err.message);
+    console.error(`Failed to get DLPGatheringPolicy. Code: ${err.code}, message: ${err.message}`);
   } else {
     console.info('gatheringPolicy：', JSON.stringify(gatheringPolicy));
   }
@@ -252,7 +252,7 @@ import { dlpPermission } from '@kit.DataProtectionKit';
 let uri = 'file://docs/storage/Users/currentUser/Desktop/test.txt.dlp';
 dlpPermission.installDLPSandbox('com.ohos.note', dlpPermission.DLPFileAccess.READ_ONLY, 100, uri, (err, res) => {
   if (err) {
-    console.error('installDLPSandbox error,', err.code, err.message);
+    console.error(`Failed to install DLPSandbox. Code: ${err.code}, message: ${err.message}`);
   } else {
     console.info('res', JSON.stringify(res));
   }
@@ -337,7 +337,7 @@ uninstallDLPSandbox(bundleName: string, userId: number, appIndex: number, callba
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | bundleName | string | 是 | 应用包名。最小7字节，最大128字节。超出范围时抛出错误码401。 |
-| userId | number | 是 | 当前的用户ID，通过账号子系统获取的系统账号ID，默认主用户ID：100。取值范围为[0, 2<sup>31</sup>-1]，超出范围将被截断。  |
+| userId | number | 是 | 当前的用户ID，通过账号子系统获取的系统账号ID，默认主用户ID：100。取值范围为[0, 2<sup>31</sup>-1]，超出范围将被截断。当传入参数值小于0时，输出错误日志。  |
 | appIndex | number | 是 | DLP沙箱号，即installDLPSandbox接口调用成功后的返回值，用于标识已安装的DLP沙箱。取值范围为[1000, 1100]，超出范围时输出错误日志。 |
 | callback | AsyncCallback&lt;void&gt; | 是 | 回调函数。当卸载DLP沙箱成功，err为undefined，否则为错误对象。|
 
@@ -364,13 +364,13 @@ dlpPermission.installDLPSandbox('com.ohos.note', dlpPermission.DLPFileAccess.REA
   console.info('dlpSandboxInfo：', JSON.stringify(dlpSandboxInfo));
   dlpPermission.uninstallDLPSandbox('com.ohos.note', 100, dlpSandboxInfo.appIndex, (err, res) => {
     if (err) {
-      console.error('uninstallDLPSandbox error,', err.code, err.message);
+      console.error(`Failed to uninstall DLPSandbox. Code: ${err.code}, message: ${err.message}`); 
     } else {
       console.info('res', JSON.stringify(res));
     }
   }); // 卸载DLP沙箱。
 }).catch((error: BusinessError)=> {
-  console.error(error.message);
+  console.error(`Failed to install or uninstall DLPSandbox. Code: ${error.code}, message: ${error.message}`);
 }); // 安装后卸载DLP沙箱。
 ```
 
@@ -414,7 +414,7 @@ DLP管理应用需要追踪沙箱的创建和销毁状态，以便维护沙箱�
 import { dlpPermission } from '@kit.DataProtectionKit';
 
 dlpPermission.on('uninstallDLPSandbox', (info: dlpPermission.DLPSandboxState) => {
-  console.info('uninstallDLPSandbox event', info.appIndex, info.bundleName)
+  console.info('uninstallDLPSandbox event', info.appIndex, info.bundleName);
 }); // 订阅。
 ```
 
@@ -480,7 +480,7 @@ dlpPermission.off('uninstallDLPSandbox', (info: dlpPermission.DLPSandboxState) =
 
 addDLPLinkFile(linkFileName: string): Promise&lt;void&gt;
 
-在FUSE文件系统(Filesystem in Userspace)添加link文件。FUSE是一种用户空间文件系统框架，允许在用户空间实现自定义文件系统逻辑。link文件是FUSE中映射到DLP密文的虚拟文件，对该文件的读写操作会同步到实际DLP文件。使用Promise异步回调。
+在FUSE文件系统（Filesystem in Userspace）添加link文件。FUSE是一种用户空间文件系统框架，允许在用户空间实现自定义文件系统逻辑。link文件是FUSE中映射到DLP密文的虚拟文件，对该文件的读写操作会同步到实际DLP文件。使用Promise异步回调。
 
 在调用addDLPLinkFile后需要调用[deleteDLPLinkFile](#deletedlplinkfile)移除DLP link文件。
 
@@ -524,7 +524,7 @@ import { dlpPermission } from '@kit.DataProtectionKit';
 import { fileIo } from '@kit.CoreFileKit';
 import { bundleManager } from '@kit.AbilityKit';
 
-async function ExampleFunction() {
+async function exampleFunction() {
   let uri = 'file://docs/storage/Users/currentUser/Desktop/test.txt.dlp';
   let file: number | undefined = undefined;
   let bundleFlags = bundleManager.BundleFlag.GET_BUNDLE_INFO_WITH_SIGNATURE_INFO;
@@ -546,7 +546,7 @@ async function ExampleFunction() {
   }
 }
 
-ExampleFunction();
+exampleFunction();
 ```
 
 ### addDLPLinkFile
@@ -608,7 +608,7 @@ async function ExampleFunction() {
   dlpFile = await dlpPermission.openDLPFile(file, appId); // 打开DLP文件。
   dlpFile.addDLPLinkFile('test.txt.dlp.link', async (err, res) => {
     if (err) {
-      console.error('addDLPLinkFile error,', err.code, err.message);
+      console.error(`Failed to add DLPLinkFile. Code: ${err.code}, message: ${err.message}`);
     } else {
       console.info('res', JSON.stringify(res));
     }
@@ -745,7 +745,7 @@ async function ExampleFunction() {
   await dlpFile.addDLPLinkFile('test.txt.dlp.link'); // 添加link文件。
   dlpFile.stopFuseLink(async (err, res) => {
     if (err) {
-      console.error('stopFuseLink error,', err.code, err.message);
+      console.error(`Failed to stop FuseLink. Code: ${err.code}, message: ${err.message}`);
     } else {
       console.info('res', JSON.stringify(res));
     }
@@ -885,7 +885,7 @@ async function ExampleFunction() {
   await dlpFile.stopFuseLink(); // 暂停link读写。
   dlpFile.resumeFuseLink(async (err, res) => {
     if (err) {
-      console.error('resumeFuseLink error,', err.code, err.message);
+      console.error(`Failed to resume FuseLink. Code: ${err.code}, message: ${err.message}`);
     } else {
       console.info('res', JSON.stringify(res));
     }
@@ -1030,7 +1030,7 @@ async function ExampleFunction() {
   await dlpFile.stopFuseLink(); // 暂停link读写。
   dlpFile.replaceDLPLinkFile('test_new.txt.dlp.link', async (err, res) => { // 替换link文件。
     if (err) {
-      console.error('replaceDLPLinkFile error,', err.code, err.message);
+      console.error(`Failed to replace DLPLinkFile. Code: ${err.code}, message: ${err.message}`);
     } else {
       console.info('res', JSON.stringify(res));
       await dlpFile?.resumeFuseLink(); // 恢复link读写。
@@ -1177,7 +1177,7 @@ async function ExampleFunction() {
   await dlpFile.addDLPLinkFile('test.txt.dlp.link'); // 添加link文件。
   dlpFile.deleteDLPLinkFile('test.txt.dlp.link', async (err, res) => { // 删除link文件。
     if (err) {
-      console.error('deleteDLPLinkFile error,', err.code, err.message);
+      console.error(`Failed to delete DLPLinkFile. Code: ${err.code}, message: ${err.message}`);
     } else {
       console.info('res', JSON.stringify(res));
     }
@@ -1335,7 +1335,7 @@ async function ExampleFunction() {
   dlpFile = await dlpPermission.openDLPFile(file, appId); // 打开DLP文件。
   dlpFile.recoverDLPFile(destFile, async (err, res) => { // 还原DLP文件。
     if (err) {
-      console.error('recoverDLPFile error,', err.code, err.message);
+      console.error(`Failed to recover DLPFile. Code: ${err.code}, message: ${err.message}`);
     } else {
       console.info('res', JSON.stringify(res));
     }
@@ -1354,7 +1354,7 @@ closeDLPFile(): Promise&lt;void&gt;
 
 关闭DLPFile，释放对象。使用Promise异步回调。
 
-调用[openDLPFile](#dlppermissionopendlpfile11)成功后返回DLPFile对象，必须在使用完毕后调用closeDLPFile()释放资源。
+调用[generateDLPFile](#dlppermissiongeneratedlpfile)/[openDLPFile](#dlppermissionopendlpfile11)成功后返回DLPFile对象，必须在使用完毕后调用closeDLPFile()释放资源。
 
 文件所有者决定关闭DLP文件时使用此接口。
 
@@ -1479,7 +1479,7 @@ async function ExampleFunction() {
   dlpFile = await dlpPermission.openDLPFile(file, appId); // 打开DLP文件。
   dlpFile.closeDLPFile((err, res) => { // 关闭DLP文件。
     if (err) {
-      console.error('closeDLPFile error,', err.code, err.message);
+      console.error(`Failed to close DLPFile. Code: ${err.code}, message: ${err.message}`);
     } else {
       console.info('res', JSON.stringify(res));
     }
@@ -1577,7 +1577,7 @@ ExampleFunction();
 
 generateDLPFile(plaintextFd: number, ciphertextFd: number, property: DLPProperty, callback: AsyncCallback&lt;DLPFile&gt;): void
 
-DLP管理应用调用该接口，将明文文件加密生成权限受控文件，仅在授权列表内的用户可以打开，授权又分为完全控制权限和只读权限。获取DLPFile管理对象，使用callback异步回调。使用完DLPFile对象后，应调用closeDLPFile释放对象，避免资源泄露。
+DLP管理应用调用该接口，将明文文件加密生成权限受控文件。仅授权列表内的用户可以打开该文件，授权又分为完全控制权限和只读权限。获取DLPFile管理对象，使用callback异步回调。使用完DLPFile对象后，应调用[closeDLPFile](#closedlpfile)释放对象，避免资源泄漏。
 
 调用generateDLPFile()成功后返回DLPFile对象，必须在使用完毕后调用closeDLPFile()释放资源。
 
@@ -1637,7 +1637,7 @@ let dlpProperty: dlpPermission.DLPProperty = {
 };
 dlpPermission.generateDLPFile(file, dlp, dlpProperty, (err, res) => { // 生成DLP文件。
   if (err) {
-    console.error('generateDLPFile error,', err.code, err.message);
+    console.error(`Failed to generate DLPFile. Code: ${err.code}, message: ${err.message}`);
   } else {
     console.info('res', JSON.stringify(res));
   }
@@ -1731,7 +1731,7 @@ ExampleFunction();
 
 openDLPFile(ciphertextFd: number, appId: string, callback: AsyncCallback&lt;DLPFile&gt;): void
 
-DLP管理应用调用该接口，打开DLP文件。使用callback异步回调。调用成功后返回DLPFile管理对象，可用于管理DLP文件的权限和进行相关操作。使用完DLPFile对象后，应调用closeDLPFile释放对象，避免资源泄露。
+DLP管理应用调用该接口，打开DLP文件。使用callback异步回调。调用成功后返回DLPFile管理对象，可用于管理DLP文件的权限和进行相关操作。使用完DLPFile对象后，应调用closeDLPFile释放对象，避免资源泄漏。
 
 **系统接口：** 此接口为系统接口。
 
@@ -1788,7 +1788,7 @@ appId = data.signatureInfo.appId; // appId通过应用包信息获取
 file = fileIo.openSync(uri).fd; // file通过文件打开获取fd
 dlpPermission.openDLPFile(file, appId, async (err, res) => { // 打开DLP文件。
   if (err) {
-    console.error('openDLPFile error,', err.code, err.message);
+    console.error(`Failed to open DLPFile. Code: ${err.code}, message: ${err.message}`);
   } else {
     console.info('res', JSON.stringify(res));
   }
@@ -1811,7 +1811,7 @@ dlpPermission.openDLPFile(file, appId, async (err, res) => { // 打开DLP文件�
 | -------- | -------- | -------- | -------- | -------- |
 | appIndex | number | 否 | 否 | 表示DLP沙箱应用索引。 |
 | tokenID | number | 否 | 否 | 表示DLP沙箱应用的tokenID。 |
-| bindAppIndex<sup>24+</sup> | number | 否 | 是 | 表示被绑定的DLP沙箱应用的应用索引。默认不返回，仅当沙箱应用是预览时返回。<br>**模型约束**：此接口仅可在Stage模型下使用。 |
+| bindAppIndex<sup>24+</sup> | number | 否 | 是 | 表示被绑定的DLP沙箱应用的应用索引。默认不返回，仅当沙箱应用是文件预览（Preview）时返回。<br>**模型约束**：此接口仅可在Stage模型下使用。 |
 
 ## DLPSandboxState
 

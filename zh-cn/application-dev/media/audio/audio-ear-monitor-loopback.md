@@ -341,7 +341,7 @@ AudioLoopback是音频返听器，可将音频以更低时延的方式实时传�
 
 使用AudioLoopback启用音频低时延返听示例代码如下所示。
 
-<!-- @[all_audioLoopback](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/Media/Audio/AudioCaptureSampleJS/entry/src/main/ets/pages/AudioLoopback.ets) -->    
+<!-- @[all_audioLoopback](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/Media/Audio/AudioCaptureSampleJS/entry/src/main/ets/pages/AudioLoopback.ets) -->
 
 ``` TypeScript
 import { audio } from '@kit.AudioKit'; // 导入audio模块。
@@ -353,9 +353,24 @@ let mode: audio.AudioLoopbackMode = audio.AudioLoopbackMode.HARDWARE;
 let audioLoopback: audio.AudioLoopback | undefined = undefined;
 let currentReverbPreset: audio.AudioLoopbackReverbPreset = audio.AudioLoopbackReverbPreset.THEATER;
 let currentEqualizerPreset: audio.AudioLoopbackEqualizerPreset = audio.AudioLoopbackEqualizerPreset.FULL;
-// ...
+let statusChangeCallback = (status: audio.AudioLoopbackStatus) => {
+  if (status == audio.AudioLoopbackStatus.UNAVAILABLE_DEVICE) {
+    console.info('Audio loopback status is: UNAVAILABLE_DEVICE');
+  } else if (status == audio.AudioLoopbackStatus.UNAVAILABLE_SCENE) {
+    console.info('Audio loopback status is: UNAVAILABLE_SCENE');
+  } else if (status == audio.AudioLoopbackStatus.AVAILABLE_IDLE) {
+    console.info('Audio loopback status is: AVAILABLE_IDLE');
+  } else if (status == audio.AudioLoopbackStatus.AVAILABLE_RUNNING) {
+    console.info('Audio loopback status is: AVAILABLE_RUNNING');
+  }
+};
 
-// ...
+async function requestMicrophonePermission(context: common.UIAbilityContext): Promise<boolean> {
+  let atManager = abilityAccessCtrl.createAtManager();
+  let result: PermissionRequestResult = await atManager
+    .requestPermissionsFromUser(context, ['ohos.permission.MICROPHONE']);
+  return result.authResults[0] === 0;
+}
 
 // 查询能力，创建实例。
 function init(updateCallback?: (msg: string, isError: boolean) => void): void {

@@ -80,7 +80,7 @@ MindSpore Lite模型转换工具提供了多种参数设置，用户可根据需
 |    --weightFile    | 转换CAFFE模型时必选 | 输入模型权重文件的路径。                                     | -                                                |
 |    --configFile    | 否                  | 1）可作为[训练后量化](mindspore-lite-term.md#post-training-quantization训练后量化)配置文件路径；2）可作为扩展功能配置文件路径。 | -                                                |
 |       --fp16       | 否                  | 设定在模型序列化时是否需要将float32数据格式的权重存储为float16数据格式。<br>默认值为off。 | on、off                                          |
-|    --inputShape    | 否                  | 设定模型输入的维度，输入维度的顺序和原始模型保持一致。对某些特定的模型可以进一步优化模型结构，但是转化后的模型将可能失去动态shape的特性。输入名和shape之间用`:`分割，多个输入用`;`分割，同时加上双引号`""`。例如配置为"inTensorName_1: 1,32,32,4;inTensorName_2:1,64,64,4;"。 | -                                                |
+|    --inputShape    | 否                  | 设定模型输入的维度，输入维度的顺序和原始模型保持一致。对某些特定的模型可以进一步优化模型结构，但是转换后的模型将可能失去动态shape的特性。输入名和shape之间用`:`分割，多个输入用`;`分割，同时加上双引号`""`。例如配置为"inTensorName_1: 1,32,32,4;inTensorName_2:1,64,64,4;"。 | -                                                |
 | --inputDataFormat  | 否                  | 设定导出模型的输入format，只对四维输入有效。<br>默认值为NHWC。 | NHWC、NCHW                                       |
 |  --inputDataType   | 否                  | 设定量化模型输入tensor的数据类型。仅当模型输入tensor的量化参数（scale和zero point）配置时有效。默认与原始模型输入tensor的数据类型保持一致。<br>默认值为DEFAULT。 | FLOAT32、INT8、UINT8、DEFAULT                    |
 |  --outputDataType  | 否                  | 设定量化模型输出tensor的数据类型。仅当模型输出tensor的量化参数（scale和zero point）配置时有效。默认与原始模型输出tensor的数据类型保持一致。<br>默认值为DEFAULT。 | FLOAT32、INT8、UINT8、DEFAULT                    |
@@ -104,7 +104,7 @@ MindSpore Lite模型转换工具提供了多种参数设置，用户可根据需
 ```bash
 CONVERT RESULT SUCCESS:0
 ```
-这表示已经成功将CAFFE模型转化为MindSpore Lite模型，获得新文件`lenet.ms`。
+这表示已经成功将CAFFE模型转换为MindSpore Lite模型，获得新文件`lenet.ms`。
 
 ## 离线模型转换（可选）
 
