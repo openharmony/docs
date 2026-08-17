@@ -1,8 +1,8 @@
 # @ohos.data.dataShare (数据共享)
 <!--Kit: ArkData-->
 <!--Subsystem: DistributedDataManager-->
-<!--Owner: @woodenarow-->
-<!--Designer: @woodenarow; @xuelei3-->
+<!--Owner: @lvcong_oh-->
+<!--Designer: @lvcong_oh-->
 <!--Tester: @chenwan188; @logic42-->
 <!--Adviser: @ge-yafang-->
 
@@ -81,11 +81,11 @@ export default class EntryAbility extends UIAbility {
 | 名称       | 类型                                                         | 只读 | 可选 | 说明           |
 | ---------- | ----------------------------------------------------------- | ----| ---- | -------------- |
 | uri        | string                                                      | 否 | 否  | 共享配置的全局唯一标识。固定格式为`"datashareproxy://{bundleName}/{path}"`，其中bundleName为配置发布方应用的bundleName，path可随意填写，但同一应用内不允许重复。字符串长度不超过256个字节。 |
-| value      | [ValueType](js-apis-data-valuesBucket.md#valuetype)         | 否 | 是   | 共享配置的值。不填则为空字符串。<br/>**说明：** <br/>1. API版本26.0.0之前，字符串长度不超过4096个字节；从API版本26.0.0开始，默认允许的字符串最大长度为4096字节，可以在[DataProxyConfig](#dataproxyconfig20)中配置maxValueLength将最大长度扩展到102400字节。<br/>2. 当首次发布共享配置时，如果未填写，将默认设置为空字符串。在更新共享配置时，如果未填写，共享配置的值将不会被更新。     |
-| allowList  | string\[]                                         | 否 | 是   | 允许订阅和读取共享配置的应用程序列表。不填则为空的字符串数组。数组最大长度为256，超过256的部分不生效。当首次发布共享配置时，如果未填写，将默认为空的允许列表。在更新共享配置时，如果未填写，共享配置的允许列表将不会被更新。一个空的允许列表表示只有发布者能够访问该共享配置。 <br/>API版本26.0.0之前，数组中每个元素为应用的[appIdentifier](../../quick-start/common-problem-of-application.md#什么是appidentifier)，单个appIdentifier最大长度128字节，超过128字节的appIdentifier不会生效。<br/>从API版本26.0.0开始，数组支持配置特殊字符串"all"（区分大小写）表示允许所有应用访问。|
-| isMultiValues      | boolean         | 否 | 是   | 表示是否为使用values的多值类型的共享配置。true表示本次发布的数据是多值类型，则value参数将被忽略。false表示非多值类型。默认为false。 <br/>**起始版本：** 26.0.0 |
-| values      | Record&lt;number, [ValueType](js-apis-data-valuesBucket.md#valuetype)&gt;         | 否 | 是   | 多值类型取值。Record中的第一个参数为key，key由用户指定，必须唯一。第二个参数为key对应的value。单个应用在单个URI下最多支持添加10个value，每个value最大长度为4096字节。同时，所有value的总长度受[DataProxyConfig](#dataproxyconfig20)中maxValueLength字段限制。该参数仅在isMultiValues设置为true时生效，且不允许为空。当isMultiValues为false时默认为undefined。 <br/>**起始版本：** 26.0.0 |
-| trustProviders      | string[]         | 否 | 是   | 可对多值类型共享多值配置进行赋值的App列表。数组最多包含256个元素，超出部分无效。数组中每个元素为某个应用的[appIdentifier](../../quick-start/common-problem-of-application.md#什么是appidentifier)。appIdentifier最大长度为128字节，超过128字节的部分不生效。<br/>若首次发布共享配置时未设置该参数，则默认赋值列表为空。赋值列表为空表示仅发布者可以对多值类型的共享配置进行赋值。该数组支持特殊字符串"all"（区分大小写），表示允许所有应用对多值类型的共享配置进行赋值。该参数仅在isMultiValues设置为true时生效。<br/>**起始版本：** 26.0.0 |
+| value      | [ValueType](js-apis-data-valuesBucket.md#valuetype)         | 否 | 是   | 共享配置的值。不填则为空字符串。<br>**说明：** <br>1. API版本26.0.0之前，字符串长度不超过4096个字节；从API版本26.0.0开始，默认允许的字符串最大长度为4096字节，可以在[DataProxyConfig](#dataproxyconfig20)中配置maxValueLength将最大长度扩展到102400字节。<br>2. 当首次发布共享配置时，如果未填写，将默认设置为空字符串。在更新共享配置时，如果未填写，共享配置的值将不会被更新。     |
+| allowList  | string\[]                                         | 否 | 是   | 允许订阅和读取共享配置的应用程序列表。不填则为空的字符串数组。数组最大长度为256，超过256的部分不生效。当首次发布共享配置时，如果未填写，将默认为空的允许列表。在更新共享配置时，如果未填写，共享配置的允许列表将不会被更新。一个空的允许列表表示只有发布者能够访问该共享配置。 <br>API版本26.0.0之前，数组中每个元素为应用的[appIdentifier](../../quick-start/common-problem-of-application.md#什么是appidentifier)，单个appIdentifier最大长度128字节，超过128字节的appIdentifier不会生效。<br>从API版本26.0.0开始，数组支持配置特殊字符串"all"（区分大小写）表示允许所有应用访问。|
+| isMultiValues      | boolean         | 否 | 是   | 表示是否为使用values的多值类型的共享配置。true表示本次发布的数据是多值类型，则value参数将被忽略。false表示非多值类型。默认为false。 <br>**起始版本：** 26.0.0 |
+| values      | Record&lt;number, [ValueType](js-apis-data-valuesBucket.md#valuetype)&gt;         | 否 | 是   | 多值类型取值。Record中的第一个参数为key，key由用户指定，必须唯一。第二个参数为key对应的value。单个应用在单个URI下最多支持添加10个value，每个value最大长度为4096字节。同时，所有value的总长度受[DataProxyConfig](#dataproxyconfig20)中maxValueLength字段限制。该参数仅在isMultiValues设置为true时生效，且不允许为空。当isMultiValues为false时默认为undefined。 <br>**起始版本：** 26.0.0 |
+| trustProviders      | string[]         | 否 | 是   | 可对多值类型共享多值配置进行赋值的App列表。数组最多包含256个元素，超出部分无效。数组中每个元素为某个应用的[appIdentifier](../../quick-start/common-problem-of-application.md#什么是appidentifier)。appIdentifier最大长度为128字节，超过128字节的部分不生效。<br>若首次发布共享配置时未设置该参数，则默认赋值列表为空。赋值列表为空表示仅发布者可以对多值类型的共享配置进行赋值。该数组支持特殊字符串"all"（区分大小写），表示允许所有应用对多值类型的共享配置进行赋值。该参数仅在isMultiValues设置为true时生效。<br>**起始版本：** 26.0.0 |
 
 ## DataProxyChangeInfo<sup>20+</sup>
 
@@ -98,7 +98,7 @@ export default class EntryAbility extends UIAbility {
 | type       | [ChangeType](#changetype20)                                | 否 | 否    | 通知变更的类型。 |
 | uri       | string                                                        | 否 | 否    | 通知变更指定URI。固定格式为`"datashareproxy://{bundleName}/{path}"`，其中bundleName为配置发布方应用的bundleName，path可随意填写，但同一应用内不允许重复，字符串长度不超过256个字节。|
 | value     | [ValueType](js-apis-data-valuesBucket.md#valuetype)             | 否 | 否     | 更新的数据。     |
-| values     | [ValueType](js-apis-data-valuesBucket.md#valuetype)[]          | 否 | 是     | 多值类型的变更数据。如果变更的数据类型不是多值类型，则values值为undefined。<br/>**起始版本：** 26.0.0     |
+| values     | [ValueType](js-apis-data-valuesBucket.md#valuetype)[]          | 否 | 是     | 多值类型的变更数据。如果变更的数据类型不是多值类型，则values值为undefined。<br>**起始版本：** 26.0.0     |
 
 ## DataProxyErrorCode<sup>20+</sup>
 
@@ -156,7 +156,7 @@ export default class EntryAbility extends UIAbility {
 | 名称       | 类型                                                          | 只读 | 可选 | 说明           |
 | ---------- | ----------------------------------------------------------- | ---- | ---- | -------------- |
 | type      | [DataProxyType](#dataproxytype20)                            | 否 | 否   | 数据代理操作的类型。 |
-| maxValueLength  | [DataProxyMaxValueLength](#dataproxymaxvaluelength)  | 否 | 是   | 设置共享配置的值允许的最大长度。如果未填写，默认为MAX_LENGTH_4K，即共享配置的值允许的最大长度为4096字节。<br/>**起始版本：** 26.0.0 |
+| maxValueLength  | [DataProxyMaxValueLength](#dataproxymaxvaluelength)  | 否 | 是   | 设置共享配置的值允许的最大长度。如果未填写，默认为MAX_LENGTH_4K，即共享配置的值允许的最大长度为4096字节。<br>**起始版本：** 26.0.0 |
 
 ## DataProxyMaxValueLength
 
@@ -195,7 +195,7 @@ on(event: 'dataChange', uris: string[], config: DataProxyConfig, callback: Async
 | 参数名     | 类型                        | 必填 | 说明                    |
 | -------- | ----------------------------- | ---- | ------------------------ |
 | event     | string                        | 是   | 订阅的事件/回调类型，支持的事件为'dataChange'，当配置发布方修改配置时，触发该事件。 |
-| uris     | string\[]             | 是   | 表示要订阅的共享配置对应的URI数组。<br/>**说明：** <br/>1. API版本26.0.0之前，数组最大长度为32；从API版本26.0.0开始，数组最大长度为64。<br/>2. URI固定格式为`"datashareproxy://{bundleName}/{path}"`，其中bundleName为配置发布方应用的bundleName，path可随意填写，但同一应用内不允许重复，字符串长度不超过256个字节。 |
+| uris     | string\[]             | 是   | 表示要订阅的共享配置对应的URI数组。<br>**说明：** <br>1. API版本26.0.0之前，数组最大长度为32；从API版本26.0.0开始，数组最大长度为64。<br>2. URI固定格式为`"datashareproxy://{bundleName}/{path}"`，其中bundleName为配置发布方应用的bundleName，path可随意填写，但同一应用内不允许重复，字符串长度不超过256个字节。 |
 | config      | [DataProxyConfig](#dataproxyconfig20)               | 是   | 表示数据代理操作的配置。从API版本26.0.0开始，当变更的共享配置内容长度超过[DataProxyConfig](#dataproxyconfig20)中maxValueLength字段配置的最大长度限制时，该共享配置内容会被截断。 |
 | callback | AsyncCallback&lt;[DataProxyChangeInfo](#dataproxychangeinfo20)\[]&gt; | 是   | 回调函数。当订阅成功时，err为undefined，data为获取到的DataProxyChangeInfo数组，包含变更类型、URI和变更的共享配置内容；否则为错误对象。|
 
@@ -255,7 +255,7 @@ off(event: 'dataChange', uris: string[], config: DataProxyConfig, callback?: Asy
 | 参数名     | 类型                        | 必填 | 说明                    |
 | -------- | ----------------------------- | ---- | ------------------------ |
 | event     | string                        | 是   | 订阅的事件/回调类型，支持的事件为'dataChange'。 |
-| uris     | string\[]             | 是   | 表示要取消订阅的共享配置对应的URI数组。<br/>**说明：** <br/>1. API版本26.0.0之前，数组最大长度为32；从API版本26.0.0开始，数组最大长度为64。<br/>2. URI固定格式为`"datashareproxy://{bundleName}/{path}"`，其中bundleName为配置发布方应用的bundleName，path可随意填写，但同一应用内不允许重复，字符串长度不超过256个字节。 |
+| uris     | string\[]             | 是   | 表示要取消订阅的共享配置对应的URI数组。<br>**说明：** <br>1. API版本26.0.0之前，数组最大长度为32；从API版本26.0.0开始，数组最大长度为64。<br>2. URI固定格式为`"datashareproxy://{bundleName}/{path}"`，其中bundleName为配置发布方应用的bundleName，path可随意填写，但同一应用内不允许重复，字符串长度不超过256个字节。 |
 | config      | [DataProxyConfig](#dataproxyconfig20)               | 是   | 表示数据代理操作的配置。 |
 | callback | AsyncCallback&lt;[DataProxyChangeInfo](#dataproxychangeinfo20)\[]&gt; | 否   | 需要取消的回调函数。不填写则取消所有已注册的回调函数。|
 
@@ -311,7 +311,7 @@ publish(data: ProxyData[], config: DataProxyConfig): Promise&lt;DataProxyResult[
 
 API版本26.0.0之前，每个应用支持最多32个共享配置；从API版本26.0.0开始，每个应用支持最多64个共享配置。
 
-从API版本26.0.0开始，支持发布多值类型配置，一个uri只能对应一种值类型。且配置发布后不允许使用publish更新已发布的多值类型uri。多值类型的操作接口见[putValue](#putvalue)，[removeValue](#removevalue)和[getValues](#getvalues)。
+从API版本26.0.0开始，支持发布多值类型配置，一个uri只能对应一种值类型。且配置发布后不允许使用publish更新已发布的多值类型uri。多值类型的操作接口见[putValue](#putvalue)、[removeValue](#removevalue)和[getValues](#getvalues)。
 
 **系统能力：** SystemCapability.DistributedDataManager.DataShare.Consumer
 
@@ -373,7 +373,7 @@ delete(uris: string[], config: DataProxyConfig): Promise&lt;DataProxyResult[]&gt
 
 | 参数名     | 类型                        | 必填 | 说明                    |
 | -------- | ----------------------------- | ---- | ------------------------ |
-| uris     | string\[]          | 是   | 表示需要删除的共享配置对应的URI数组。<br/>**说明：** <br/>1. API版本26.0.0之前，数组最大长度为32；从API版本26.0.0开始，数组最大长度为64。<br/>2. URI固定格式为`"datashareproxy://{bundleName}/{path}"`，其中bundleName为配置发布方应用的bundleName，path可随意填写，但同一应用内不允许重复，字符串长度不超过256个字节。 |
+| uris     | string\[]          | 是   | 表示需要删除的共享配置对应的URI数组。<br>**说明：** <br>1. API版本26.0.0之前，数组最大长度为32；从API版本26.0.0开始，数组最大长度为64。<br>2. URI固定格式为`"datashareproxy://{bundleName}/{path}"`，其中bundleName为配置发布方应用的bundleName，path可随意填写，但同一应用内不允许重复，字符串长度不超过256个字节。 |
 | config   | [DataProxyConfig](#dataproxyconfig20)   | 是   | 表示数据代理操作的配置。 |
 
 **返回值：**
@@ -466,7 +466,7 @@ get(uris: string[], config: DataProxyConfig): Promise&lt;DataProxyGetResult[]&gt
 
 | 参数名     | 类型                        | 必填 | 说明                    |
 | -------- | ----------------------------- | ---- | ------------------------ |
-| uris     | string\[]         | 是   | 表示需要获取的共享配置的URI数组。<br/>**说明：** <br/>1. API版本26.0.0之前，数组最大长度为32；从API版本26.0.0开始，数组最大长度为64。<br/>2. URI固定格式为`"datashareproxy://{bundleName}/{path}"`，其中bundleName为配置发布方应用的bundleName，path可随意填写，但同一应用内不允许重复，字符串长度不超过256个字节。 |
+| uris     | string\[]         | 是   | 表示需要获取的共享配置的URI数组。<br>**说明：** <br>1. API版本26.0.0之前，数组最大长度为32；从API版本26.0.0开始，数组最大长度为64。<br>2. URI固定格式为`"datashareproxy://{bundleName}/{path}"`，其中bundleName为配置发布方应用的bundleName，path可随意填写，但同一应用内不允许重复，字符串长度不超过256个字节。 |
 | config   | [DataProxyConfig](#dataproxyconfig20)   | 是   | 表示数据代理操作的配置。从API版本26.0.0开始，获取的共享配置项的值长度不能超出[DataProxyConfig](#dataproxyconfig20)中maxValueLength字段配置的最大长度限制。超出限制时，对应获取操作结果的返回值状态码[DataProxyErrorCode](#dataproxyerrorcode20)为OVER_LIMIT。 |
 
 **返回值：**
@@ -509,7 +509,7 @@ putValue(uri: string, key: number, value: ValueType, config: DataProxyConfig): P
 
 若传入的key不存在，则添加新的值；若传入的key已存在，则更新该key对应的值。
 
-默认情况下，单条数据（即URI）在单个应用中最多可添加10个值，每个值最大长度为4096字节。同时，单条数据（即一个URI）在单次应用中所有值总长度受限于数据[publish](#publish20)时指定的maxValueLength参数值。
+默认情况下，单条数据（即URI）在单个应用中最多可添加10个值，每个值最大长度为4096字节。同时，单条数据（即一个URI）在单个应用中所有值总长度受限于数据[publish](#publish20)时指定的maxValueLength参数值。
 
 **起始版本：** 26.0.0
 
@@ -587,7 +587,7 @@ removeValue(uri: string, key: number, config: DataProxyConfig): Promise&lt;void&
 | 参数名     | 类型                        | 必填 | 说明                    |
 | -------- | ----------------------------- | ---- | ------------------------ |
 | uri      | string   | 是   | 要操作的数据所对应的URI。固定格式为`"datashareproxy://{bundleName}/{path}"`，其中bundleName为配置发布方应用的bundleName，path可随意填写，但同一应用内不允许重复，字符串长度不超过256个字节。 |
-| key      | number   | 是   | 添加的值所对应的Key。 <br>取值范围为全体整数。 |
+| key      | number   | 是   | 要移除的值所对应的Key。 <br>取值范围为全体整数。 |
 | config   | [DataProxyConfig](#dataproxyconfig20)   | 是   | 表示数据代理操作的配置。 |
 
 **返回值：**
