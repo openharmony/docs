@@ -189,7 +189,7 @@ struct Index {
 }
 ```
 
-![](figures/containerReader_Demo001.gif)
+<!--Del--> <!--DelEnd-->
 
 ### Example 2: Configuring Custom Breakpoints
 
@@ -268,7 +268,7 @@ struct Index {
 
 Tap the button to change the width of the parent container, which returns different width breakpoint values, thereby adjusting the layout direction.
 
-![](figures/containerReader_Demo002.gif)
+<!--Del--> <!--DelEnd-->
 
 ### Example 3: Dynamically Adjusting the Number of Columns Using the Width Breakpoint
 
@@ -357,5 +357,4 @@ struct Index {
 }
 ```
 
-![](figures/containerReader_Demo003.gif)
-<!--no_check-->
+<!--Del--> <!--DelEnd-->

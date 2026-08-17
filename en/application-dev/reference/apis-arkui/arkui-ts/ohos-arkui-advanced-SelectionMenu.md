@@ -450,7 +450,7 @@ struct Index {
 >
 > Icons in bold and italics are not preset in the system. The sample code uses the default icons. You need to replace the icons in **editorMenuOptions** with the desired icons.
 
-![selectionmenu](figures/selectionmenu.gif)
+<!--Del--> <!--DelEnd-->
 
 ### Example 2: Setting the Symbol Icon
 

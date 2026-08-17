@@ -1015,7 +1015,7 @@ struct Index {
 }
 ```
 
-![](figures/chipv2_1.png)
+<!--Del--> <!--DelEnd-->
 
 ### Example 2: Setting the Active State of ChipV2
 
@@ -1080,7 +1080,7 @@ struct Index {
 }
 ```
 
-![](figures/chipv2_2.gif)
+<!--Del--> <!--DelEnd-->
 
 ### Example 3: Setting a Symbol Icon
 
@@ -1139,7 +1139,7 @@ struct Index {
 }
 ```
 
-![](figures/chipv2_3.gif)
+<!--Del--> <!--DelEnd-->
 
 ### Example 4: Listening for Internal Attribute Changes of Object-Type Attributes in ChipV2Options
 
@@ -1182,5 +1182,4 @@ struct Index {
 }
 ```
 
-![chipv2-sample4](figures/chipv2-make-observed.gif)
-<!--no_check-->
+<!--Del--> <!--DelEnd-->

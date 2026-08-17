@@ -399,7 +399,7 @@ Sets the parameters of the disturbance field.
 | strength  | number | No| Yes  |Field strength, which indicates the intensity of the repulsive force from the center outward. The default value is **0**. Positive values indicate a repulsive force directed outward, while negative values indicate an attractive force directed inward.<br>Value range: (-∞, +∞).|
 | shape  |   [DisturbanceFieldShape](#disturbancefieldshape12) | No| Yes  | Shape of the field.<br>Default value: **DisturbanceFieldShape.RECT**|
 | size  | [SizeT](../js-apis-arkui-graphics.md#sizett12)&lt;number&gt;| No| Yes |Size of the field.<br>Default value: {width:0, height:0}.<br>Value range of **width** and **height**: [0, +∞).|
-| position  | [PositionT](../js-apis-arkui-graphics.md#positiont12)&lt;number&gt; | No| Yes  |Position of the field.<br>Default value: {x:0, y:0}.<br>Value range of **x** and **y**: (-∞, +∞).|
+| position  | [PositionT](#positiontt12)&lt;number&gt; | No| Yes  |Position of the field.<br>Default value: {x:0, y:0}.<br>Value range of **x** and **y**: (-∞, +∞).|
 | feather  | number | No| Yes  |Feather value, which represents the degree of attenuation from the center of the field to its edges. The value is an integer ranging from 0 to 100. A value of 0 indicates that the field is rigid, and all particles within its range are repelled. The higher the feather value, the more gradual the field becomes, resulting in more particles close to the center point appearing within the field's range.<br>Default value: **0**.|
 | noiseScale  | number | No| Yes  |Noise scale, used to control the overall size of the noise pattern. The value is greater than or equal to 0.<br>Default value: **1**.|
 | noiseFrequency  | number | No| Yes  |Noise frequency. The higher the frequency, the finer the noise. The value is greater than or equal to 0.<br> Default value: **1**.|
@@ -429,7 +429,7 @@ Sets the emitter attributes.
 | ------ | ------- | ---- | ------- | --------------------- |
 | index   | number | No| No  |Index of the emitter based on the index array of the emitters in the initialization parameters. The value is rounded to the nearest whole number. The default value **0** is used in case of exceptions.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
 | emitRate  | number  | No| Yes  | Emit rate, that is, the number of particles emitted per second.<br>If no value is passed in, the current emit rate is retained. If a value less than 0 is passed in, the default value **5** is used. The **emitRate** value can significantly impact performance when it exceeds 5000; you are advised to set it to be less than 5000.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
-| position  | [PositionT](../js-apis-arkui-graphics.md#positiont12)&lt;number&gt; | No| Yes |Array of emitter positions. Only the number type is supported.<br>If no value is passed in, the current emitter position is retained. Two valid values must be passed in; if either is an invalid value, **position** will not take effect.<br>Value range of **x** and **y**: (-∞, +∞).<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
+| position  | [PositionT](#positiontt12)&lt;number&gt; | No| Yes |Array of emitter positions. Only the number type is supported.<br>If no value is passed in, the current emitter position is retained. Two valid values must be passed in; if either is an invalid value, **position** will not take effect.<br>Value range of **x** and **y**: (-∞, +∞).<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
 | size  | [SizeT](../js-apis-arkui-graphics.md#sizett12)&lt;number&gt;| No| Yes |Size of the emit window. Only the number type is supported.<br>If no value is passed in, the current emitter window size is retained. Two valid values greater than 0 must be passed in; if either is an invalid value, **size** will not take effect.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
 | annulusRegion<sup>20+</sup>  | [ParticleAnnulusRegion](ts-particle-animation.md#particleannulusregion20)| No| Yes|Ring emitter parameters. The parameters take effect only when the emitter shape corresponding to index is ring.<br>**Atomic service API**: This API can be used in atomic services since API version 20.|
 
@@ -651,7 +651,7 @@ Configures the annular emitter area.
 
 | Name  | Type  | Read-Only| Optional| Description|
 | ------ | ------ | -- | -- | ---- |
-| center      | [PositionT](../js-apis-arkui-graphics.md#positiont12)&lt;[LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12)&gt; | No| Yes | Center coordinates of the ring. The upper left corner of the component is the origin of the coordinates. Default value: {x:LengthMetrics.percent(0.5),y:LengthMetrics.percent(0.5)}  |
+| center      | [PositionT](#positiontt12)&lt;[LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12)&gt; | No| Yes | Center coordinates of the ring. The upper left corner of the component is the origin of the coordinates. Default value: {x:LengthMetrics.percent(0.5),y:LengthMetrics.percent(0.5)}  |
 | outerRadius      | [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12) | No| No  | Outer radius of the ring.  |
 | innerRadius  | [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12) | No| No | Inner radius of the ring.  |
 | startAngle | number | No| Yes  | Start angle of the ring.<br>Unit: kWh<br>Default value: **0**. |
@@ -685,7 +685,7 @@ Defines the area information of the particle field.
 | Name  | Type  | Read-Only| Optional| Description|
 | ------ | ------ | -- | -- | ---- |
 | shape      | [DisturbanceFieldShape](#disturbancefieldshape12) | No| Yes | Shape of the particle field.<br>Default value: DisturbanceFieldShape.RECT |
-| position      | [PositionT](../js-apis-arkui-graphics.md#positiont12)&lt;number&gt; | No| Yes| Center position of the particle field. The unit of coordinates is vp.<br>Default value: {x:0, y:0} |
+| position      | [PositionT](#positiontt12)&lt;number&gt; | No| Yes| Center position of the particle field. The unit of coordinates is vp.<br>Default value: {x:0, y:0} |
 | size  | [SizeT](../js-apis-arkui-graphics.md#sizett12)&lt;number&gt; | No| Yes | Size of the particle field. The unit of the value is vp.<br>Default value: {width:0, height:0}<br>The value can be:<br>width: [0, +∞)<br>height: [0, +∞)<br>If the width or height of the size is set to a negative value, the default value of width or height is used. |
 
 ## RippleFieldOptions<sup>22+</sup>
@@ -704,7 +704,7 @@ Parameter that describes the information about a particle disturbance field.
 | wavelength      | number | No| Yes| Wavelength of the wave in the particle disturbance field, that is, the distance of a wave period. The greater the wavelength, the slower the wave changes with the distance, and the less obvious the disturbance.<br>Value range: [0, +∞).<br>Default value: **0**.<br>If it is set to a negative value, the default value is used. |
 | waveSpeed  | number | No| Yes | Wave speed in the particle disturbance field. The greater the wave speed, the faster the wave changes with time, and the more obvious the disturbance.<br>Value range: [0, +∞).<br>Default value: **0**.<br>If it is set to a negative value, the default value is used. |
 | attenuation  | number | No| Yes | Attenuation coefficient of the wave in the particle disturbance field. The greater the attenuation coefficient, the faster the wave attenuates with time.<br>Value range: [0,1].<br>Default value: 0.0<br>If the value is not within the specified range, the default value is used. |
-| center  | [PositionT](../js-apis-arkui-graphics.md#positiont12)&lt;number&gt; | No| Yes | Center position of the force generated by the disturbance field. The upper left corner of the component is the origin of coordinates. The unit of coordinates is vp.<br>Default value: {x:0, y:0}|
+| center  | [PositionT](#positiontt12)&lt;number&gt; | No| Yes | Center position of the force generated by the disturbance field. The upper left corner of the component is the origin of coordinates. The unit of coordinates is vp.<br>Default value: {x:0, y:0}|
 | region  | [FieldRegion](ts-particle-animation.md#fieldregion22) | No| Yes | Information about the area affected by the disturbance field, including the shape, size, and center position of the area.<br>Default value: {shape:DisturbanceFieldShape.RECT, position:{x:0, y:0}, size:{width:0, height:0}} |
 
 ## VelocityFieldOptions<sup>22+</sup>

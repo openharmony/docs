@@ -121,7 +121,7 @@ Enumerates the union modes.
 | Name          | Value | Description                        |
 | -------------- | --- |---------------------------- |
 | SMOOTH_UNION       | 0   | Smooth union mode.           |
-| GRAVITY_UNION      | 1   | Gravity union mode.<br>**NOTE**<br>This mode takes effect only when [useUnionEffect](./ts-universal-attributes-use-union-effect-sys.md#useunioneffect-1) is used and **gravityCenter** of [GravityCenterOptions](./ts-universal-attributes-use-union-effect-sys.md#gravitycenteroptions) is set to **true**.           |
+| GRAVITY_UNION      | 1   | Gravity union mode.<br>**NOTE**<br>This mode takes effect only when [useUnionEffect](ts-universal-attributes-use-union-effect-sys.md#useunioneffect-1) is used and **gravityCenter** of [GravityCenterOptions](ts-universal-attributes-use-union-effect-sys.md#gravitycenteroptions) is set to **true**.           |
 
 ## Example
 
@@ -349,5 +349,3 @@ struct UnionEffectContainerPage {
   }
 }
 ```
-
-<!--no_check-->

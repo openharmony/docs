@@ -228,7 +228,7 @@ interface Product {
 
 ### Example 2: Switching the Layout Algorithm
 
-This example demonstrates how to dynamically switch the layout algorithm of the **DynamicLayout** component by changing the **LayoutAlgorithm** variable decorated by [@Local](../../../ ui/state-management/arkts-new-local.md). Specifically, it shows how to switch between [RowLayoutAlgorithm](../js-apis-arkui-layoutAlgorithm.md#rowlayoutalgorithm), [ColumnLayoutAlgorithm](../js-apis-arkui-layoutAlgorithm.md#columnlayoutalgorithm), [StackLayoutAlgorithm](../js-apis-arkui-layoutAlgorithm.md#stacklayoutalgorithm) and [GridLayoutAlgorithm](../js-apis-arkui-layoutAlgorithm.md#gridlayoutalgorithm).
+This example demonstrates how to dynamically switch the layout algorithm of the **DynamicLayout** component by changing the **LayoutAlgorithm** variable decorated by [\@Local](../../../ ui/state-management/arkts-new-local.md). Specifically, it shows how to switch between [RowLayoutAlgorithm](../js-apis-arkui-layoutAlgorithm.md#rowlayoutalgorithm), [ColumnLayoutAlgorithm](../js-apis-arkui-layoutAlgorithm.md#columnlayoutalgorithm), [StackLayoutAlgorithm](../js-apis-arkui-layoutAlgorithm.md#stacklayoutalgorithm) and [GridLayoutAlgorithm](../js-apis-arkui-layoutAlgorithm.md#gridlayoutalgorithm).
 
 Since API version 24, **RowLayoutAlgorithm**, **ColumnLayoutAlgorithm**, **StackLayoutAlgorithm**, and **GridLayoutAlgorithm** have been added.
 
@@ -407,4 +407,3 @@ struct PropertyChangeExample {
   }
 }
 ```
-<!--no_check-->
