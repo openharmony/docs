@@ -1,8 +1,8 @@
 # Interface (WindowStage)
 <!--Kit: ArkUI-->
 <!--Subsystem: Window-->
-<!--Owner: @waterwin-->
-<!--Designer: @nyankomiya-->
+<!--Owner: @fei_1007-->
+<!--Designer: @gcw_sPCsris4-->
 <!--Tester: @qinliwen0417-->
 <!--Adviser: @ge-yafang-->
 
@@ -32,7 +32,7 @@ getMainWindow(callback: AsyncCallback&lt;Window&gt;): void
 
 Obtains the main window of this WindowStage. This API uses an asynchronous callback to return the result.
 
-Before calling this API, you are advised to load the page by using [loadContent](../apis-arkui/arkts-apis-window-WindowStage.md#loadcontent9) or [setUIContent](arkts-apis-window-Window.md#setuicontent9-1).
+Before calling this API, you are advised to complete page loading via [loadContent](#loadcontent9) or [setUIContent](arkts-apis-window-Window.md#setuicontent9-1).
 
 **Model restriction**: This API can be used only in the stage model.
 
@@ -70,7 +70,7 @@ export default class EntryAbility extends UIAbility {
     console.info('onWindowStageCreate');
     windowStage.loadContent('pages/Index', (err) => {
       if (err.code) {
-        console.error('Failed to load the content. Cause:' + JSON.stringify(err));
+        console.error(`Failed to load the content. Cause code: ${err.code}, message: ${err.message}`);
         return;
       }
       console.info('Succeeded in loading the content.');
@@ -95,7 +95,7 @@ getMainWindow(): Promise&lt;Window&gt;
 
 Obtains the main window of this WindowStage. This API uses a promise to return the result.
 
-Before calling this API, you are advised to load the page by using [loadContent](../apis-arkui/arkts-apis-window-WindowStage.md#loadcontent9) or [setUIContent](arkts-apis-window-Window.md#setuicontent9-1).
+Before calling this API, you are advised to complete page loading via [loadContent](#loadcontent9) or [setUIContent](arkts-apis-window-Window.md#setuicontent9-1).
 
 **Model restriction**: This API can be used only in the stage model.
 
@@ -133,7 +133,7 @@ export default class EntryAbility extends UIAbility {
     console.info('onWindowStageCreate');
     windowStage.loadContent('pages/Index', (err) => {
       if (err.code) {
-        console.error('Failed to load the content. Cause:' + JSON.stringify(err));
+        console.error(`Failed to load the content. Cause code: ${err.code}, message: ${err.message}`);
         return;
       }
       console.info('Succeeded in loading the content.');
@@ -156,7 +156,7 @@ getMainWindowSync(): Window
 
 Obtains the main window of this WindowStage. This API returns the result synchronously.
 
-Before calling this API, you are advised to load the page by using [loadContent](../apis-arkui/arkts-apis-window-WindowStage.md#loadcontent9) or [setUIContent](arkts-apis-window-Window.md#setuicontent9-1).
+Before calling this API, you are advised to complete page loading via [loadContent](#loadcontent9) or [setUIContent](arkts-apis-window-Window.md#setuicontent9-1).
 
 **Model restriction**: This API can be used only in the stage model.
 
@@ -193,7 +193,7 @@ export default class EntryAbility extends UIAbility {
     console.info('onWindowStageCreate');
     windowStage.loadContent('pages/Index', (err) => {
       if (err.code) {
-        console.error('Failed to load the content. Cause:' + JSON.stringify(err));
+        console.error(`Failed to load the content. Cause code: ${err.code}, message: ${err.message}`);
         return;
       }
       console.info('Succeeded in loading the content.');
@@ -213,7 +213,7 @@ createSubWindow(name: string, callback: AsyncCallback&lt;Window&gt;): void
 
 Creates a child window for this WindowStage. This API uses an asynchronous callback to return the result.
 
-The child window created uses an [immersive layout](../../windowmanager/window-terminology.md#immersive-layout) by default.
+The child window created does not have a title bar and uses the [immersive layout](../../windowmanager/immersive-window-feature.md#immersive-layout) by default.
 
 **Model restriction**: This API can be used only in the stage model.
 
@@ -225,8 +225,8 @@ The child window created uses an [immersive layout](../../windowmanager/window-t
 
 | Name  | Type                                  | Mandatory| Description                                         |
 | -------- | -------------------------------------- | ---- | --------------------------------------------- |
-| name     | string                                 | Yes  | Name of the child window.                               |
-| callback | AsyncCallback&lt;[Window](arkts-apis-window-Window.md)&gt; | Yes  | Callback used to return the child window.|
+| name     | string                                 | Yes  | Name of a child window, which uniquely identifies the child window. It is advised that a meaningful name be used as the identifier.|
+| callback | AsyncCallback&lt;[Window](arkts-apis-window-Window.md)&gt; | Yes  | Callback used to return the child window object under the main window corresponding to the current WindowStage.|
 
 **Error codes**
 
@@ -235,7 +235,8 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | ID| Error Message|
 | ------- | ------------------------------ |
 | 401     | Parameter error. Possible cause: Incorrect parameter types. |
-| 1300002 | This window state is abnormal. Possible cause: The subWindow has been created and can not be created again.|
+| 1300002 | This window state is abnormal. Possible cause: The subWindow has been created and cannot be created again.|
+| 1300005 | This window stage is abnormal.<br>Applicable versions: 9|
 
 **Example**
 
@@ -261,7 +262,7 @@ export default class EntryAbility extends UIAbility {
         windowClass = data;
         console.info(`Succeeded in creating the subwindow. Data: ${JSON.stringify(data)}`);
         if (!windowClass) {
-          console.info('Failed to load the content. Cause: windowClass is null');
+          console.info('Failed to create the subwindow. Cause: windowClass is null');
         }
         else {
           windowClass.resize(500, 1000);
@@ -280,7 +281,7 @@ createSubWindow(name: string): Promise&lt;Window&gt;
 
 Creates a child window for this WindowStage. This API uses a promise to return the result.
 
-The child window created uses an [immersive layout](../../windowmanager/window-terminology.md#immersive-layout) by default.
+The child window created does not have a title bar and uses the [immersive layout](../../windowmanager/immersive-window-feature.md#immersive-layout) by default.
 
 **Model restriction**: This API can be used only in the stage model.
 
@@ -298,7 +299,7 @@ The child window created uses an [immersive layout](../../windowmanager/window-t
 
 | Type                            | Description                                            |
 | -------------------------------- | ------------------------------------------------ |
-| Promise&lt;[Window](arkts-apis-window-Window.md)&gt; | Promise used to return the child window.|
+| Promise&lt;[Window](arkts-apis-window-Window.md)&gt; | Promise used to return the child window object under the main window corresponding to the current WindowStage.|
 
 **Error codes**
 
@@ -307,7 +308,8 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | ID| Error Message|
 | ------- | ------------------------------ |
 | 401     | Parameter error. Possible cause: Incorrect parameter types. |
-| 1300002 | This window state is abnormal. Possible cause: The subWindow has been created and can not be created again.|
+| 1300002 | This window state is abnormal. Possible cause: The subWindow has been created and cannot be created again.|
+| 1300005 | This window stage is abnormal.<br>Applicable versions: 9|
 
 **Example**
 
@@ -344,7 +346,7 @@ createSubWindowWithOptions(name: string, options: SubWindowOptions): Promise&lt;
 
 Creates a child window for this WindowStage. This API uses a promise to return the result.
 
-In non-[freeform window mode](../../windowmanager/window-terminology.md#freeform-window), the child window created uses an [immersive layout](../../windowmanager/window-terminology.md#immersive-layout) by default.
+In non-[freeform window mode](../../windowmanager/window-terminology.md#freeform-window), the child window created does not have a title bar and uses the [immersive layout](../../windowmanager/immersive-window-feature.md#immersive-layout) by default.
 
 In freeform window mode, the child window created uses an immersive layout when [decorEnabled](arkts-apis-window-i.md#subwindowoptions11) is set to **false**, and it uses a non-immersive layout when this parameter is set to **true**.
 
@@ -359,13 +361,13 @@ In freeform window mode, the child window created uses an immersive layout when 
 | Name| Type  | Mandatory| Description          |
 | ------ | ------ | ---- | -------------- |
 | name   | string | Yes  | Name of the child window.|
-| options  | [SubWindowOptions](arkts-apis-window-i.md#subwindowoptions11) | Yes  | Parameters used for creating the child window. |
+| options  | [SubWindowOptions](arkts-apis-window-i.md#subwindowoptions11) | Yes  | Parameters for creating a child window. |
 
 **Return value**
 
 | Type                            | Description                                            |
 | -------------------------------- | ------------------------------------------------ |
-| Promise&lt;[Window](arkts-apis-window-Window.md)&gt; | Promise used to return the child window created.|
+| Promise&lt;[Window](arkts-apis-window-Window.md)&gt; | Promise used to return the child window object under the main window corresponding to the current WindowStage.|
 
 **Error codes**
 
@@ -375,7 +377,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | ------- | ------------------------------ |
 | 401     | Parameter error. Possible cause: Incorrect parameter types. |
 | 801     | Capability not supported. Failed to call the API due to limited device capabilities. |
-| 1300002 | This window state is abnormal. Possible cause: 1. The window is not created or destroyed; 2. The subWindow has been created and can not be created again. |
+| 1300002 | This window state is abnormal. Possible cause: 1. The window is not created or destroyed; 2. The subWindow has been created and cannot be created again. |
 | 1300005 | This window stage is abnormal. |
 
 **Example**
@@ -427,7 +429,7 @@ Obtains all the child windows of this WindowStage. This API uses an asynchronous
 
 | Name  | Type                                               | Mandatory| Description                                             |
 | -------- | --------------------------------------------------- | ---- | ------------------------------------------------- |
-| callback | AsyncCallback&lt;Array&lt;[Window](arkts-apis-window-Window.md)&gt;&gt; | Yes  | Callback used to return all the child windows.|
+| callback | AsyncCallback&lt;Array&lt;[Window](arkts-apis-window-Window.md)&gt;&gt; | Yes  | Callback used to return all child windows of the main window corresponding to the current WindowStage. If there are no child windows, an empty array is returned.|
 
 **Error codes**
 
@@ -435,7 +437,8 @@ For details about the error codes, see [Window Error Codes](errorcode-window.md)
 
 | ID| Error Message|
 | ------- | ------------------------------ |
-| 1300002 | This window state is abnormal. |
+| 1300002 | This window state is abnormal. Possible cause: The window is not created or destroyed. <br>Applicable versions: 10+|
+| 1300005 | This window stage is abnormal.<br>Applicable versions: 9|
 
 **Example**
 <!--code_no_check-->
@@ -480,7 +483,7 @@ Obtains all the child windows of this WindowStage. This API uses a promise to re
 
 | Type                                         | Description                                                |
 | --------------------------------------------- | ---------------------------------------------------- |
-| Promise&lt;Array&lt;[Window](arkts-apis-window-Window.md)&gt;&gt; | Promise used to return all the child windows.|
+| Promise&lt;Array&lt;[Window](arkts-apis-window-Window.md)&gt;&gt; | Promise used to return all child windows of the main window corresponding to the current WindowStage. If there are no child windows, an empty array is returned.|
 
 **Error codes**
 
@@ -488,7 +491,8 @@ For details about the error codes, see [Window Error Codes](errorcode-window.md)
 
 | ID| Error Message|
 | ------- | ------------------------------ |
-| 1300002 | This window state is abnormal. |
+| 1300002 | This window state is abnormal. Possible cause: The window is not created or destroyed. <br>Applicable versions: 10+|
+| 1300005 | This window stage is abnormal.<br>Applicable versions: 9|
 
 **Example**
 <!--code_no_check-->
@@ -545,6 +549,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | ------- | ------------------------------ |
 | 401     | Parameter error. Possible cause: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Invalid path parameter.|
 | 1300002 | This window state is abnormal. Possible cause: The window is not created or destroyed. |
+| 1300005 | This window stage is abnormal.<br>Applicable versions: 9|
 
 **Example**
 
@@ -613,6 +618,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | ------- | ------------------------------ |
 | 401     | Parameter error. Possible cause: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Invalid path parameter.|
 | 1300002 | This window state is abnormal. Possible cause: The window is not created or destroyed. |
+| 1300005 | This window stage is abnormal.<br>Applicable versions: 9|
 
 **Example**
 
@@ -640,7 +646,6 @@ export default class EntryAbility extends UIAbility {
     } catch (exception) {
       console.error(`Failed to load the content. Cause code: ${exception.code}, message: ${exception.message}`);
     }
-    ;
   }
 };
 ```
@@ -674,6 +679,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | ------- | ------------------------------ |
 | 401     | Parameter error. Possible cause: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Invalid path parameter.|
 | 1300002 | This window state is abnormal. Possible cause: The window is not created or destroyed. |
+| 1300005 | This window stage is abnormal.<br>Applicable versions: 9|
 
 **Example**
 
@@ -967,7 +973,7 @@ export struct Index {
 
 releaseUIContent(): Promise&lt;void&gt;
 
-Releases the content of the main window page of this WindowStage. This API uses a promise to return the result.<br>If this API is called when the application is running in the foreground, the page content will not be released immediately. The page content will be released only after the application transitions to the background. If this API is called when the main window does not load the page content, the API call does not take effect and no error is reported.
+Releases the content of the main window page of this WindowStage. This API uses a promise to return the result.<br>If this API is called when the application is running in the foreground, the page content will not be released immediately. The page content will be released only after the application transitions to the background. If this API is called when the main window does not load the page content, the API call neither takes effect nor reports an error.
 
 **Model restriction**: This API can be used only in the stage model.
 
@@ -1028,7 +1034,7 @@ export default class EntryAbility extends UIAbility {
 
 on(eventType: 'windowStageEvent', callback: Callback&lt;WindowStageEventType&gt;): void
 
-Subscribes to the WindowStage lifecycle change event.
+Subscribes to the WindowStage lifecycle change event. If there are requirements on the sequence of states, you are advised to use the [on('windowStageLifecycleEvent')](#onwindowstagelifecycleevent20) API.
 
 **Model restriction**: This API can be used only in the stage model.
 
@@ -1050,7 +1056,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | ID| Error Message|
 | ------- | ------------------------------ |
 | 401     | Parameter error. Possible cause: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
-| 1300002 | This window state is abnormal. |
+| 1300002 | This window state is abnormal. Possible cause: The window is not created or destroyed. |
 | 1300005 | This window stage is abnormal. |
 
 **Example**
@@ -1097,7 +1103,7 @@ If you call this API without having previously called [on('windowStageEvent')](#
 | Name  | Type                                                        | Mandatory| Description                                                        |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | eventType  | string                                                       | Yes  | Event type. The value is fixed at **'windowStageEvent'**, indicating the WindowStage lifecycle change event.|
-| callback | Callback&lt;[WindowStageEventType](arkts-apis-window-e.md#windowstageeventtype9)&gt; | No  | Callback used to return the WindowStage lifecycle state. If a value is passed in, the corresponding subscription is canceled. If no value is passed in, all subscriptions to the specified event are canceled.               |
+| callback | Callback&lt;[WindowStageEventType](arkts-apis-window-e.md#windowstageeventtype9)&gt; | No  | Callback used to specify the listener to be unregistered. If a value is passed in, the corresponding subscription is canceled. If no value is passed in, all lifecycle change listeners of the WindowStage are canceled.               |
 
 **Error codes**
 
@@ -1106,7 +1112,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | ID| Error Message|
 | ------- | ------------------------------ |
 | 401     | Parameter error. Possible cause: 1. Incorrect parameter types; 2. Parameter verification failed. |
-| 1300002 | This window state is abnormal. |
+| 1300002 | This window state is abnormal. Possible cause: The window is not created or destroyed. |
 | 1300005 | This window stage is abnormal. |
 
 **Example**
@@ -1121,9 +1127,9 @@ export default class EntryAbility extends UIAbility {
 
   onWindowStageCreate(windowStage: window.WindowStage) {
     console.info('onWindowStageCreate');
-    windowStage.loadContent('page/Index', (err) =>{
-      if(err.code) {
-        console.error('Failed to load the content. Cause:' + JSON.stringify(err));
+    windowStage.loadContent('page/Index', (err) => {
+      if (err.code) {
+        console.error(`Failed to load the content. Cause code: ${err.code}, message: ${err.message}`);
         return;
       }
       console.info('Succeeded in loading the content.');
@@ -1161,7 +1167,7 @@ Subscribes to the WindowStage lifecycle change event.
 >
 > 2. This API does not support listening for focus gain/loss states of the WindowStage. For such requirements, use [on('windowEvent')](arkts-apis-window-Window.md#onwindowevent10).
 >
-> 3. For details about system mechanisms and lifecycle transitions, see [Main Window Lifecycle](../../windowmanager/window-overview.md#main-window-lifecycle).
+> 3. For details about system mechanisms and lifecycle transitions, see [Managing the Lifecycle of an App's Main Window](../../windowmanager/window-lifecycle.md#managing-the-lifecycle-of-an-apps-main-window).
 
 **Model restriction**: This API can be used only in the stage model.
 
@@ -1181,7 +1187,7 @@ For details about the error codes, see [Window Error Codes](errorcode-window.md)
 | ID| Error Message|
 | ------- | ------------------------------ |
 | 801     | Capability not supported. Failed to call the API due to limited device capabilities. |
-| 1300002 | This window state is abnormal. |
+| 1300002 | This window state is abnormal. Possible cause: The window is not created or destroyed. |
 | 1300005 | This window stage is abnormal. |
 
 **Example**
@@ -1238,7 +1244,7 @@ Unsubscribes from the WindowStage lifecycle change event.
 | Name  | Type                                                        | Mandatory| Description                                                        |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | eventType  | string                                                       | Yes  | Event type. The value is fixed at **'windowStageLifecycleEvent'**, indicating the WindowStage lifecycle change event.|
-| callback | Callback&lt;[WindowStageLifecycleEventType](arkts-apis-window-e.md#windowstagelifecycleeventtype20)&gt; | No  | Callback used to return the WindowStage lifecycle state. If a value is passed in, the corresponding subscription is canceled. If no value is passed in, all subscriptions to the specified event are canceled.               |
+| callback | Callback&lt;[WindowStageLifecycleEventType](arkts-apis-window-e.md#windowstagelifecycleeventtype20)&gt; | No  | Callback used to specify the listener to be unregistered. If a value is passed in, the corresponding subscription is canceled. If no value is passed in, all lifecycle change listeners of the WindowStage are canceled.               |
 
 **Error codes**
 
@@ -1247,7 +1253,7 @@ For details about the error codes, see [Window Error Codes](errorcode-window.md)
 | ID| Error Message|
 | ------- | ------------------------------ |
 | 801     | Capability not supported. Failed to call the API due to limited device capabilities. |
-| 1300002 | This window state is abnormal. |
+| 1300002 | This window state is abnormal. Possible cause: The window is not created or destroyed. |
 | 1300005 | This window stage is abnormal. |
 
 **Example**
@@ -1285,7 +1291,7 @@ export default class EntryAbility extends UIAbility {
 
 on(eventType: 'windowStageClose', callback: Callback&lt;void&gt;): void
 
-Subscribes to the click event on the close button in the three-button navigation bar of the main window. This event is triggered when the close button in the three-button navigation bar of the main window is clicked. The registered lifecycle callback function [UIAbility.onPrepareToTerminate](../apis-ability-kit/js-apis-app-ability-uiAbility.md#onpreparetoterminate10) is not executed.
+Enables listening for click events on the close button of the main window title bar. When the close button on the main window title bar is clicked, this callback is triggered and the registered [UIAbility.onPrepareToTerminate](../apis-ability-kit/js-apis-app-ability-uiAbility.md#onpreparetoterminate10) lifecycle callback will not be executed.
 
 If the event is subscribed to multiple times, only the most recently subscribed-to event takes effect.
 
@@ -1301,16 +1307,16 @@ If there is an existing event subscribed to by calling [on('windowWillClose')](a
 
 **Device behavior differences**
 
-Before <!--RP4-->OpenHarmony 6.1<!--RP4End-->, this API can be called properly on a device that supports [freeform windows](../../windowmanager/window-terminology.md#freeform-window) and is in the freeform window state. If the device supports freeform windows but is not in the freeform window state, or if the device does not support freeform windows, error code 801 is returned.
+Before <!--RP4-->OpenHarmony 6.1<!--RP4End-->, this API is supported on a device that supports [freeform windows](../../windowmanager/window-terminology.md#freeform-window) and is in the freeform window state. If the device supports freeform windows but is not in the freeform window state, or if the device does not support freeform windows, this API returns error code 801.
 
-Since <!--RP4-->OpenHarmony 6.1<!--RP4End-->, this API can be called properly on a device that supports [freeform windows](../../windowmanager/window-terminology.md#freeform-window) and is in the freeform window state. If the device supports freeform windows but is not in the freeform window state, no error is thrown and this API does not take effect until the device is in the freeform window state. If the device does not support freeform windows, no error is thrown and this API does not take effect.
+Since <!--RP4-->OpenHarmony 6.1<!--RP4End-->, this API is supported on a device that supports [freeform windows](../../windowmanager/window-terminology.md#freeform-window) and is in the freeform window state. On a device that supports freeform windows but is not in the freeform window state, this API neither takes effect nor returns an error. Once the device enters the freeform window mode, this API takes effect. On a device that does not support freeform windows, this API neither takes effect nor returns an error.
 
 **Parameters**
 
 | Name  | Type                                                        | Mandatory| Description                                                        |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| eventType  | string                                                       | Yes  | Event type. The value is fixed at **'windowStageClose'**, indicating that the close button in the three-button navigation bar of the main window is clicked.|
-| callback | Callback&lt;void&gt; | Yes  | Callback invoked when the close button in the top-right corner of the main window is clicked. It does not return any parameter. The internal logic of the callback function requires a return value of the Boolean type. The return value determines whether to continue to close the main window. The value **true** means not to close the main window, and **false** means to continue to close the main window.|
+| eventType  | string                                                       | Yes  | Event to listen for. The value is fixed at **'windowStageClose'**, indicating the click event on the close button of the main window title bar.|
+| callback | Callback&lt;void&gt; | Yes  | Callback invoked when the close button in the top-right corner of the main window is clicked. The internal logic of the callback function requires a return value of the Boolean type. The return value determines whether to continue to close the main window. The value **true** means not to close the main window, and **false** means to continue to close the main window.|
 
 **Error codes**
 
@@ -1320,7 +1326,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | ------- | ------------------------------ |
 | 401     | Parameter error. Possible cause: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 801 | Capability not supported. Failed to call the API due to limited device capabilities. |
-| 1300002 | This window state is abnormal. |
+| 1300002 | This window state is abnormal. Possible cause: The window is not created or destroyed. |
 
 **Example**
 
@@ -1337,7 +1343,8 @@ export default class EntryAbility extends UIAbility {
     try {
       windowStage.on('windowStageClose', () => {
         console.info('Succeeded in enabling the listener for window stage close event.');
-        return false;
+        // Return true, indicating that the current main window will not be closed.
+        return true;
       });
     } catch (exception) {
       console.error(`Failed to enable the listener for window stage close event. Cause code: ${exception.code}, message: ${exception.message}`);
@@ -1360,16 +1367,16 @@ Unsubscribes from the event indicating that the main window is closed.
 
 **Device behavior differences**
 
-Before <!--RP4-->OpenHarmony 6.1<!--RP4End-->, this API can be called properly on a device that supports [freeform windows](../../windowmanager/window-terminology.md#freeform-window) and is in the freeform window state. If the device supports freeform windows but is not in the freeform window state, or if the device does not support freeform windows, error code 801 is returned.
+Before <!--RP4-->OpenHarmony 6.1<!--RP4End-->, this API is supported on a device that supports [freeform windows](../../windowmanager/window-terminology.md#freeform-window) and is in the freeform window state. If the device supports freeform windows but is not in the freeform window state, or if the device does not support freeform windows, this API returns error code 801.
 
-Since <!--RP4-->OpenHarmony 6.1<!--RP4End-->, this API can be called properly on a device that supports [freeform windows](../../windowmanager/window-terminology.md#freeform-window) and is in the freeform window state. If the device supports freeform windows but is not in the freeform window state, no error is thrown and this API does not take effect until the device is in the freeform window state. If the device does not support freeform windows, no error is thrown and this API does not take effect.
+Since <!--RP4-->OpenHarmony 6.1<!--RP4End-->, this API is supported on a device that supports [freeform windows](../../windowmanager/window-terminology.md#freeform-window) and is in the freeform window state. On a device that supports freeform windows but is not in the freeform window state, this API neither takes effect nor returns an error. Once the device enters the freeform window mode, this API takes effect. On a device that does not support freeform windows, this API neither takes effect nor returns an error.
 
 **Parameters**
 
 | Name  | Type                                                        | Mandatory| Description                                                        |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | eventType  | string                                                       | Yes  | Event type. The value is fixed at **'windowStageClose'**, indicating that the close button in the three-button navigation bar of the main window is clicked.|
-| callback | Callback&lt;void&gt; | No  | Callback invoked when the close button in the top-right corner of the main window is clicked. It does not return any parameter. The internal logic of the callback function requires a return value of the Boolean type. The return value determines whether to continue to close the main window. The value **true** means not to close the main window, and **false** means to continue to close the main window. If a value is passed in, the corresponding subscription is canceled. If no value is passed in, all subscriptions to the specified event are canceled.|
+| callback | Callback&lt;void&gt; | No  | Callback used to specify the listener to be unregistered. If a value is passed in, the corresponding subscription is canceled. If no value is passed in, all listeners for the close events of the main window are canceled.|
 
 **Error codes**
 
@@ -1379,7 +1386,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | ------- | ------------------------------ |
 | 401     | Parameter error. Possible cause: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 801 | Capability not supported. Failed to call the API due to limited device capabilities. |
-| 1300002 | This window state is abnormal. |
+| 1300002 | This window state is abnormal. Possible cause: The window is not created or destroyed. |
 
 **Example**
 
@@ -1395,7 +1402,8 @@ export default class EntryAbility extends UIAbility {
     console.info('onWindowStageCreate');
     const callback = () => {
       // ...
-      return false;
+      // Return true, indicating that the current main window will not be closed.
+      return true;
     }
     try {
       windowStage.on('windowStageClose', callback);
@@ -1412,7 +1420,7 @@ export default class EntryAbility extends UIAbility {
 
 setDefaultDensityEnabled(enabled: boolean): void
 
-Sets whether the main window of the application uses the system's default density. Child windows and system windows will follow the main window's setting. Before calling this API, call [WindowStage.loadContent()](#loadcontent9) to initialize the layout to ensure the correct call sequence.
+Sets whether the main window of the application uses the system's default density. Child windows and system windows will follow the main window's setting. Before calling this API, call [WindowStage.loadContent()](#loadcontent9) or [WindowStage.loadContentByName()](#loadcontentbyname11) to initialize the layout, ensuring the correct API call sequence.
 
 If this API is not called, the default density is not used.
 
@@ -1459,10 +1467,10 @@ export default class EntryAbility extends UIAbility {
           console.error(`Failed to load the content. Cause code: ${err.code}, message: ${err.message}`);
           return;
         }
-        console.info('onWindowStageCreate');
+        console.info('Succeeded in loading the content.');
       try {
         windowStage.setDefaultDensityEnabled(true);
-        console.info('Succeeded in loading the content.');
+        console.info('Succeeded in setting default density enabled.');
       } catch (exception) {
         console.error(`Failed to set default density enabled. Cause code: ${exception.code}, message: ${exception.message}`);
       }
@@ -1479,7 +1487,7 @@ Allows the main window of the application to customize its display size scale fa
 
 Existing child windows and system windows do not immediately re-layout to match the main window's new scale factor. They will re-layout to reflect this change only when their layout information (such as position, size, and system scale size) changes.
 
-If both this API and [setDefaultDensityEnabled(true)](#setdefaultdensityenabled12) are called, the setting from the last called API will be applied.
+When this API is used together with the **setDefaultDensityEnabled()** API with **true** passed, the setting from the last called API will be applied.
 
 **Model restriction**: This API can be used only in the stage model.
 
@@ -1501,7 +1509,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | ------- | ------------------------------ |
 | 401     | Parameter error. Possible cause: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 801     | Capability not supported. Failed to call the API due to limited device capabilities. |
-| 1300002 | This window state is abnormal. |
+| 1300002 | This window state is abnormal. Possible cause: The window is not created or destroyed. |
 | 1300005 | This window stage is abnormal. |
 
 **Example**
@@ -1531,7 +1539,7 @@ setCustomDensity(density: number, applyToSubWindow?: boolean): void
 
 Allows the main window of the application to customize its display size scale factor and control when child windows and system windows re-layout to match the main window.
 
-If both this API and [setDefaultDensityEnabled(true)](#setdefaultdensityenabled12) are called, the setting from the last called API will be applied.
+When this API is used together with the **setDefaultDensityEnabled()** API with **true** passed, the setting from the last called API will be applied.
 
 **Model restriction**: This API can be used only in the stage model.
 
@@ -1581,9 +1589,9 @@ export default class EntryAbility extends UIAbility {
 
 setWindowModal(isModal: boolean): Promise&lt;void&gt;
 
-Enables the modal property of the main window. This API uses a promise to return the result.
+Sets whether to enable the modal property of the main window. This API uses a promise to return the result asynchronously.
 
-This API must be called by the main window and the setting takes effect for the main window. After the modal property of the main window is enabled, other main windows in the same application process and their child windows do not respond to user interactions until the main window is closed or the main window's modal property is disabled.
+This API must be called by the main window and the setting takes effect for the main window. After the modal property of the main window is enabled, other main windows in the same application process where the main window is located and their child windows do not respond to user interactions until the main window is closed or the main window's modal property is disabled.
 
 **Model restriction**: This API can be used only in the stage model.
 
@@ -1591,7 +1599,7 @@ This API must be called by the main window and the setting takes effect for the 
 
 **System capability**: SystemCapability.Window.SessionManager
 
-**Device behavior differences**: This API can be called properly on a device that supports [freeform windows](../../windowmanager/window-terminology.md#freeform-window) and is in the freeform window state. If the device supports freeform windows but is not in the freeform window state, or if the device does not support freeform windows, error code 801 is returned.
+**Device behavior differences**: This API is supported on a device that supports [freeform windows](../../windowmanager/window-terminology.md#freeform-window) and is in the freeform window state. If the device supports freeform windows but is not in the freeform window state, or if the device does not support freeform windows, this API returns error code 801.
 
 **Parameters**
 
@@ -1616,7 +1624,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | 801      | Capability not supported. Failed to call the API due to limited device capabilities. |
 | 1300002  | This window state is abnormal. Possible cause: The window is not created or destroyed. |
 | 1300003  | This window manager service works abnormally. |
-| 1300005 | This window stage is abnormal. |
+| 1300005 | This window stage is abnormal. Possible cause: The window is not created or destroyed.<br>Applicable versions: 20+|
 
 **Example**
 
@@ -1708,16 +1716,14 @@ Enables or disables the auto-save feature for the size of the last closed main w
 
 When the auto-save feature is enabled, within the same UIAbility, the size of the last closed main window is remembered. When this main window is restarted, it will open at the remembered size according to the rules.
 
-The following rules apply in stacking scenarios: 1. If the current instance is a free-form window, the next opened window will adopt the same size when stacked. 2. If the current instance is maximized or in full-screen mode, the next opened window will maintain the maximized state when stacked.
-
 The following table describes the memory rules:
 |Last Window State|Memorizing Rule|
 |-------------|-------|
-|Free-form window|Retains the size/position of the free-form window, rebound if exceeding the workspace.|
-|Split-screen window|Retains the size and position of the free-form window before screen splitting.|
+|Freeform window|Retains the size/position of the freeform window, rebound if exceeding the workspace.|
+|Split-screen window|Retains the size and position of the freeform window before screen splitting.|
 |Maximized window|Retains the maximized state.|
-|Immersive window|Retains the size and position of the free-form window before immersive mode.|
-|Minimized window|Retains the size and position of the free-form window before minimization.|
+|Immersive window|Retains the size and position of the freeform window before immersive mode.|
+|Minimized window|Retains the size and position of the freeform window before minimization.|
 
 **Model restriction**: This API can be used only in the stage model.
 
@@ -1727,9 +1733,9 @@ The following table describes the memory rules:
 
 **Device behavior differences**
 
-In versions earlier than <!--RP4-->OpenHarmony 6.1<!--RP4End-->, this API can be called properly on 2-in-1 devices, and error code 801 is returned on other devices.
+Before <!--RP4-->OpenHarmony 6.1<!--RP4End-->, this API is supported on PCs/2-in-1 devices. On other device types, it returns error code 801.
 
-Since <!--RP4-->OpenHarmony 6.1<!--RP4End-->, this API can be called properly on a device that supports [freeform windows](../../windowmanager/window-terminology.md#freeform-window) and is in the freeform window state. If the device supports freeform windows but is not in the freeform window state, no error is thrown and this API does not take effect until the device is in the freeform window state. If the device does not support freeform windows, no error is thrown and this API does not take effect.
+Since <!--RP4-->OpenHarmony 6.1<!--RP4End-->, this API is supported on a device that supports [freeform windows](../../windowmanager/window-terminology.md#freeform-window) and is in the freeform window state. On a device that supports freeform windows but is not in the freeform window state, this API neither takes effect nor returns an error. Once the device enters the freeform window mode, this API takes effect. On a device that does not support freeform windows, this API neither takes effect nor returns an error.
 
 **Parameters**
 
@@ -1794,11 +1800,11 @@ When the auto-save feature is enabled, the size of the main window when it is cl
 The following table describes the memory rules:
 |Last Window State|Memorizing Rule|
 |-------------|-------|
-|Free-form window|Retains the size/position of the free-form window, rebound if exceeding the workspace.|
-|Split-screen window|Retains the size and position of the free-form window before screen splitting.|
+|Freeform window|Retains the size/position of the freeform window, rebound if exceeding the workspace.|
+|Split-screen window|Retains the size and position of the freeform window before screen splitting.|
 |Maximized window|Retains the maximized state.|
-|Immersive window|Retains the size and position of the free-form window before immersive mode.|
-|Minimized window|Retains the size and position of the free-form window before minimization.|
+|Immersive window|Retains the size and position of the freeform window before immersive mode.|
+|Minimized window|Retains the size and position of the freeform window before minimization.|
 
 **Model restriction**: This API can be used only in the stage model.
 
@@ -1808,9 +1814,9 @@ The following table describes the memory rules:
 
 **Device behavior differences**
 
-In versions earlier than <!--RP4-->OpenHarmony 6.1<!--RP4End-->, this API can be called properly on 2-in-1 devices, and error code 801 is returned on other devices.
+Before <!--RP4-->OpenHarmony 6.1<!--RP4End-->, this API is supported on PCs/2-in-1 devices. On other device types, it returns error code 801.
 
-Since <!--RP4-->OpenHarmony 6.1<!--RP4End-->, this API can be called properly on a device that supports [freeform windows](../../windowmanager/window-terminology.md#freeform-window) and is in the freeform window state. If the device supports freeform windows but is not in the freeform window state, no error is thrown and this API does not take effect until the device is in the freeform window state. If the device does not support freeform windows, no error is thrown and this API does not take effect.
+Since <!--RP4-->OpenHarmony 6.1<!--RP4End-->, this API is supported on a device that supports [freeform windows](../../windowmanager/window-terminology.md#freeform-window) and is in the freeform window state. On a device that supports freeform windows but is not in the freeform window state, this API neither takes effect nor returns an error. Once the device enters the freeform window mode, this API takes effect. On a device that does not support freeform windows, this API neither takes effect nor returns an error.
 
 **Parameters**
 
@@ -1877,9 +1883,9 @@ Checks whether the auto-save feature is enabled for the main window's size. This
 
 **Device behavior differences**
 
-In versions earlier than <!--RP4-->OpenHarmony 6.1<!--RP4End-->, this API can be called properly on 2-in-1 devices, and error code 801 is returned on other devices.
+Before <!--RP4-->OpenHarmony 6.1<!--RP4End-->, this API is supported on PCs/2-in-1 devices. On other device types, it returns error code 801.
 
-Since <!--RP4-->OpenHarmony 6.1<!--RP4End-->, this API can be called properly on a device that supports [freeform windows](../../windowmanager/window-terminology.md#freeform-window). If the device does not support freeform windows, no error is thrown and false is returned.
+Since <!--RP4-->OpenHarmony 6.1<!--RP4End-->, this API is supported on a device that supports [freeform windows](../../windowmanager/window-terminology.md#freeform-window). On a device that does not support freeform windows, this API returns **false** without reporting an error.
 
 **Return value**
 
@@ -1895,7 +1901,7 @@ For details about the error codes, see [Window Error Codes](errorcode-window.md)
 | ------- | ------------------------------ |
 | 801      | Capability not supported. Failed to call the API due to limited device capabilities. |
 | 1300002 | This window state is abnormal. Possible cause: 1. The window is not created or destroyed; 2. Internal task error. |
-| 1300003 | This window manager service works abnormally. |
+| 1300003 | This window manager service works abnormally. <br>Applicable versions: 20+|
 
 **Example**
 
@@ -1923,7 +1929,7 @@ export default class EntryAbility extends UIAbility {
 }
 ```
 
-### setImageForRecent
+## setImageForRecent
 
 setImageForRecent(imageResource: number | image.PixelMap, value: ImageFit): Promise&lt;void&gt;
 
@@ -1931,7 +1937,7 @@ Sets the image displayed in the multitasking view and on dock hover. This API us
 
 > **NOTE**
 >
-> Before calling this API, you are advised to complete page loading via [loadContent](#loadcontent9) or [setUIContent](arkts-apis-window-Window.md#setuicontent9-1). If this API is called before the application completes page loading, the intended functionality does not take effect. As a result, only the application's launch page is displayed in the multitasking view.
+> Before calling this API, you are advised to complete page loading via [loadContent](#loadcontent9) or [setUIContent](arkts-apis-window-Window.md#setuicontent9-1). If this API is called before the application completes page loading, the intended functionality does not take effect. As a result, only the application's launch page is displayed in the multitasking view. This API cannot be called when the application is running in the background. Otherwise, error code 1300002 will be returned.
 
 **Since**: 26.0.0
 
@@ -1945,7 +1951,7 @@ Sets the image displayed in the multitasking view and on dock hover. This API us
 
 | Name     | Type   | Mandatory| Description                                                        |
 | ----------- | ------- | ---- | ------------------------------------------------------------ |
-| imgResource | number \| [image.PixelMap](../apis-image-kit/arkts-apis-image-PixelMap.md) | Yes  | Custom image resource, which can be a resource ID or PixelMap. If you want to pass a resource ID, store the image in the **resources/base/media** directory and obtain its resource ID using the **$r** resource access method. For example, to obtain the resource ID of the **startIcon** image, use **$r("app.media.startIcon").id**.|
+| imageResource | number \| [image.PixelMap](../apis-image-kit/arkts-apis-image-PixelMap.md) | Yes  | Custom image resource, which can be a resource ID or PixelMap. If you want to pass a resource ID, store the image in the **resources/base/media** directory and obtain its resource ID using the **$r** resource access method. For example, to obtain the resource ID of the **startIcon** image, use **$r("app.media.startIcon").id**.|
 | value | [ImageFit](arkui-ts/ts-appendix-enums.md#imagefit) | Yes| Fill mode of the custom image.|
 
 **Return value**
@@ -1962,7 +1968,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | ------- | ------------------------------ |
 | 201     | Permission verification failed. The application does not have the permission required or a non-system application calls the API. |
 | 801     | Capability not supported. Failed to call the API due to limited device capabilities. |
-| 1300002 | This window state is abnormal. |
+| 1300002 | This window state is abnormal. Possible cause: 1. The window is not created or destroyed. 2. The WindowStage is running in the background. 3. Internal task error. |
 | 1300003 | This window manager service works abnormally. |
 | 1300016 | Parameter error. Possible cause: 1. Invalid parameter range. 2. Invalid parameter length. |
 
@@ -1989,9 +1995,9 @@ export default class EntryAbility extends UIAbility {
       let bufferArr = new Uint8Array(color);
       for (let i = 0; i < bufferArr.length; i += 4) {
         bufferArr[i] = 255;
-        bufferArr[i+1] = 0;
-        bufferArr[i+2] = 122;
-        bufferArr[i+3] = 255;
+        bufferArr[i + 1] = 0;
+        bufferArr[i + 2] = 122;
+        bufferArr[i + 3] = 255;
       }
       image.createPixelMap(color, {
         editable: true, pixelFormat: image.PixelMapFormat.RGBA_8888, size: { height: 512, width: 512 }
@@ -2006,27 +2012,27 @@ export default class EntryAbility extends UIAbility {
             console.error(`Failed to set image for recent. Cause code: ${err.code}, message: ${err.message}`);
           });
         } catch (exception) {
-          console.error(`Failed to set image for recent.`);
+          console.error(`Failed to set image for recent. Cause code: ${exception.code}, message: ${exception.message}`);
         }
       })
 
-      let imgResourceId = $r("app.media.startIcon").id
+      let imgResourceId = $r("app.media.startIcon").id;
       try {
-        let promise2 = windowStage.setImageForRecent(imgResourceId, ImageFit.Fill);
-        promise2.then(() => {
+        let imgResourcePromise = windowStage.setImageForRecent(imgResourceId, ImageFit.Fill);
+        imgResourcePromise.then(() => {
           console.info(`Succeeded in setting image for recent`);
         }).catch((err: BusinessError) => {
           console.error(`Failed to set image for recent. Cause code: ${err.code}, message: ${err.message}`);
         });
       } catch (exception) {
-        console.error(`Failed to set image for recent.`);
+        console.error(`Failed to set image for recent. Cause code: ${exception.code}, message: ${exception.message}`);
       }
     });
   }
 };
 ```
 
-### removeImageForRecent
+## removeImageForRecent
 
 removeImageForRecent(): Promise&lt;void&gt;
 
@@ -2054,7 +2060,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | ------- | ------------------------------ |
 | 201     | Permission verification failed. The application does not have the permission required or a non-system application calls the API. |
 | 801     | Capability not supported. Failed to call the API due to limited device capabilities. |
-| 1300002 | This window state is abnormal. |
+| 1300002 | This window state is abnormal. Possible cause: 1. The window is not created or destroyed. 2. Internal task error. |
 | 1300003 | This window manager service works abnormally. |
 
 **Example**
@@ -2077,7 +2083,7 @@ export default class EntryAbility extends UIAbility {
         console.error(`Failed to remove image for recent. Cause code: ${err.code}, message: ${err.message}`);
       });
     } catch (exception) {
-      console.error(`Failed to remove image for recent.`);
+      console.error(`Failed to remove image for recent. Cause code: ${exception.code}, message: ${exception.message}`);
     }
   }
 };
@@ -2097,7 +2103,7 @@ Sets the supported window modes of the main window. This API uses a promise to r
 
 **Device behavior differences**
 
-In versions earlier than <!--RP3-->OpenHarmony 6.1<!--RP3End-->, this API can be called on a device that supports [freeform windows](../../windowmanager/window-terminology.md#freeform-window) and is in the freeform window state. If the device supports freeform windows but is not in the freeform window state, or if the device does not support freeform windows, error code 801 is returned.
+Before <!--RP3-->OpenHarmony 6.1<!--RP3End-->, this API is supported on a device that supports [freeform windows](../../windowmanager/window-terminology.md#freeform-window) and is in the freeform window state. On a device that supports freeform windows but is not in the freeform window state, or on a device that does not support freeform windows, this API returns error code 801.
 
 Since <!--RP3-->OpenHarmony 6.1<!--RP3End-->, this API can be properly called on a device that supports freeform windows and is in the freeform window state, and the call takes effect immediately. If the device supports freeform windows but is not in the freeform window state, this API can be property called, and the call takes effect when the device switches to the freeform window state. If the device does not support freeform windows, error code 801 is returned.
 
@@ -2165,7 +2171,7 @@ Sets the supported window modes for the main window and optionally disables the 
 
 **Device behavior differences**
 
-In versions earlier than <!--RP3-->OpenHarmony 6.1<!--RP3End-->, this API can be called on a device that supports [freeform windows](../../windowmanager/window-terminology.md#freeform-window) and is in the freeform window state. If the device supports freeform windows but is not in the freeform window state, or if the device does not support freeform windows, error code 801 is returned.
+Before <!--RP3-->OpenHarmony 6.1<!--RP3End-->, this API is supported on a device that supports [freeform windows](../../windowmanager/window-terminology.md#freeform-window) and is in the freeform window state. On a device that supports freeform windows but is not in the freeform window state, or on a device that does not support freeform windows, this API returns error code 801.
 
 Since <!--RP3-->OpenHarmony 6.1<!--RP3End-->, this API can be properly called on a device that supports freeform windows and is in the freeform window state, and the call takes effect immediately. If the device supports freeform windows but is not in the freeform window state, this API can be property called, and the call takes effect when the device switches to the freeform window state. If the device does not support freeform windows, error code 801 is returned.
 
