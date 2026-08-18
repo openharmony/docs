@@ -6,7 +6,7 @@
 <!--Designer: @qq_43802146-->
 <!--Tester: @furryfurry123-->
 <!--Adviser: @zhang_yixin13-->
-<!-- md-trans-meta sourceCommit=2e8910b9dd45ffad663b5389c79983f40b734d4a translatedAt=2026-08-15T01:41:44.617Z pushedAt=2026-08-15T06:09:31.467Z -->
+<!-- md-trans-meta sourceCommit=f0989334f83c164cc4c97a2318e2e1824bb96991 translatedAt=2026-08-18T11:00:38.980Z pushedAt=2026-08-18T11:19:37.401Z -->
 
 - [About This Kit](connectivity-kit-intro.md)
 
@@ -33,6 +33,8 @@
   - Bluetooth FAQs<!--bluetooth-faq-->
 
     - [2900099 Bluetooth API Call Error](bluetooth/bluetooth-faq-2900099-errorcode.md)<!--RP1--><!--RP1End-->
+
+    - [401 Invalid Parameter Reported When an Optional Property Is Explicitly Set to undefined](bluetooth/bluetooth-faq-401-invalid-parameter.md)
 
   - [Bluetooth Glossary](bluetooth/terminology.md)
 

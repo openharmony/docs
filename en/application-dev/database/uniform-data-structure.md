@@ -6,7 +6,7 @@
 <!--Designer: @junathuawei1; @zph000-->
 <!--Tester: @lj_liujing; @yippo; @logic42-->
 <!--Adviser: @ge-yafang-->
-<!-- md-trans-meta sourceCommit=814e5538573180f4836543a1c6592fa1ff24a7c3 translatedAt=2026-08-15T01:43:15.419Z pushedAt=2026-08-15T06:31:52.809Z -->
+<!-- md-trans-meta sourceCommit=4b90a346c35ae86f50b36d420ba72b66b13ac32f translatedAt=2026-08-18T11:01:31.617Z pushedAt=2026-08-18T11:33:36.894Z -->
 
 ## When to Use
 
@@ -37,7 +37,7 @@ The data provider can call **addRecord()** provided by the UDMF to add data reco
     <!-- @[import_module](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkData/Udmf/UniformDataStructure/entry/src/main/ets/pages/UdmfInterface.ets) -->
 
     ``` TypeScript
-    // 1. Import the unifiedDataChannel and uniformTypeDescriptor modules.
+    // 1. Import the uniformDataStruct, unifiedDataChannel, and uniformTypeDescriptor modules.
     import { uniformDataStruct, uniformTypeDescriptor, unifiedDataChannel } from '@kit.ArkData';
     import { hilog } from '@kit.PerformanceAnalysisKit';
     ```
@@ -75,7 +75,7 @@ The data provider can call **addRecord()** provided by the UDMF to add data reco
     // Access the object property.
     hilog.info(0xFF00, '[Sample_Udmf]', `hyperlink.url = ${hyperlink.url}`);
 
-    // 3. Create a data record for a plain text and add it to the UnifiedData instance created.
+    // 3. Create a plain text data type record.
     let plainTextDetails: Record<string, string> = {
       'attr1': 'value1',
       'attr2': 'value2'
@@ -86,14 +86,14 @@ The data provider can call **addRecord()** provided by the UDMF to add data reco
       abstract: 'this is abstract',
       details: plainTextDetails
     }
-    // 4. Create a UnifiedData instance.
+    // 4. Create a unified data object and record.
     let unifiedData = new unifiedDataChannel.UnifiedData();
     let hyperlinkRecord =
       new unifiedDataChannel.UnifiedRecord(uniformTypeDescriptor.UniformDataType.HYPERLINK, hyperlink);
     let plainTextRecord =
       new unifiedDataChannel.UnifiedRecord(uniformTypeDescriptor.UniformDataType.PLAIN_TEXT, plainText);
 
-    // 5. Add a plainText data record.
+    // 5. Add a data record.
     unifiedData.addRecord(hyperlinkRecord);
     unifiedData.addRecord(plainTextRecord);
 
@@ -110,12 +110,12 @@ The data provider can call **addRecord()** provided by the UDMF to add data reco
         switch (type) {
           case uniformTypeDescriptor.UniformDataType.HYPERLINK:
             Object.keys(record).forEach(key => {
-              hilog.info(0xFF00, '[Sample_Udmf]', `show records: ${key} + , value: ${record[key]}`);
+              hilog.info(0xFF00, '[Sample_Udmf]', `show records: ${key}, value: ${record[key]}`);
             });
             break;
           case uniformTypeDescriptor.UniformDataType.PLAIN_TEXT:
             Object.keys(record).forEach(key => {
-              hilog.info(0xFF00, '[Sample_Udmf]', `show records: ${key} + , value: ${record[key]}`);
+              hilog.info(0xFF00, '[Sample_Udmf]', `show records: ${key}, value: ${record[key]}`);
             });
             break;
           default:

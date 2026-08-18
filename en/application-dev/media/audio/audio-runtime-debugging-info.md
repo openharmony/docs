@@ -6,7 +6,7 @@
 <!--Designer: @magekkkk-->
 <!--Tester: @Filger-->
 <!--Adviser: @w_Machine_cc-->
-<!-- md-trans-meta sourceCommit=dbc5c483199a2ea0e3b7cfa374aa5bf041bae633 translatedAt=2026-08-06T01:47:41.010Z pushedAt=2026-08-06T07:54:52.916Z -->
+<!-- md-trans-meta sourceCommit=a3f7155f1e6bb7e48d4c9deff57b23f465bc9974 translatedAt=2026-08-18T11:02:45.907Z pushedAt=2026-08-18T11:38:34.435Z -->
 
 Starting from API version 26.0.0, the system provides audio snapshot (Audio Debugging Info) capability, which allows apps to obtain the runtime status of the audio subsystem in the current process. Audio Debugging Info captures a point-in-time snapshot of the audio subsystem, including key information such as audio stream parameters, routing status, volume information, audio focus state, and error records. It helps you inspect the internal state of the audio subsystem without affecting app behavior. You can use the captured snapshot to obtain diagnostic information for troubleshooting issues related to audio rendering, audio capture, audio loopback, and audio sessions, such as silent playback, abnormal volume levels, and audio focus loss.
 
@@ -375,7 +375,7 @@ For API details, refer to [printLoopbackInfo](../../reference/apis-audio-kit/ark
 
 **ArkTS API:**
 
-<!-- @[print_loopback_info](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/Media/Audio/AudioCaptureSampleJS/entry/src/main/ets/pages/AudioLoopbackDebugInfo.ets) -->
+<!-- @[print_loopback_info](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/Media/Audio/AudioCaptureSampleJS/entry/src/main/ets/pages/AudioLoopbackDebugInfo.ets) -->  
 
 ``` TypeScript
 // audioLoopback is the created AudioLoopback instance.
@@ -386,7 +386,8 @@ let debugManager = audio.getAudioManager().getDebuggingManager();
 debugManager.printLoopbackInfo(audioLoopback, -1);
 
 // Output to a file.
-let filePath = getContext().filesDir + '/audio_loopback_debug.txt';
+let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
+let filePath = context.filesDir + '/audio_loopback_debug.txt';
 let file = fs.openSync(filePath, fs.OpenMode.READ_WRITE | fs.OpenMode.CREATE);
 debugManager.printLoopbackInfo(audioLoopback, file.fd);
 fs.closeSync(file);
@@ -629,5 +630,3 @@ Pipeline [ID: 1]                         // Unique identifier of the pipeline.
 - When the `pipeline` parameter is NULL, information about all pipelines under the engine is output.
 
 - The specific parameters for node attribute configuration vary by node type. For details, see the description of each node in [OHAudioSuite](../../reference/apis-audio-kit/capi-ohaudiosuite.md).
-
-<!--no_check-->

@@ -3,10 +3,10 @@
 <!--Kit: Multimodal Awareness Kit-->
 <!--Subsystem: MultimodalAwareness-->
 <!--Owner: @dilligencer-->
-<!--Designer: @zou_ye-->
+<!--Designer: @saga2025-->
 <!--Tester: @judan-->
 <!--Adviser: @hu-zhiqiong-->
-<!-- md-trans-meta sourceCommit=a95c0bab7e0dea9f68518dc2cd9f72dbab43b31f translatedAt=2026-07-28T02:36:39.103Z pushedAt=2026-07-28T06:19:05.451Z -->
+<!-- md-trans-meta sourceCommit=21c92f0c1bb5bce8b0b255803845ef148366250d translatedAt=2026-08-18T11:01:35.803Z pushedAt=2026-08-18T11:34:31.465Z -->
 
 Multimodal Awareness Kit allows an application to identify user activities (walking, running, driving, etc.) or postures based on the data collected by sensors including gyroscopes and acceleration sensors built in a HarmonyOS device.
 
@@ -22,8 +22,6 @@ Using multimodal awareness capabilities requires your application to request the
 
 ### Emulator Support
 
-This Kit supports the emulator.
-
-The emulator and physical devices differ in several general ways. For details, see [Differences Between the Emulator and the Real Device](https://developer.huawei.com/consumer/en/doc/harmonyos-guides/ide-emulator-specification).
+This Kit does not support the Emulator.
 
 <!--RP1End-->
