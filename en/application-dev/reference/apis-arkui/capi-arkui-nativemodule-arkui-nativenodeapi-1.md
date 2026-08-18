@@ -602,7 +602,7 @@ Registers a custom event for a node. Triggered events are returned through the c
 | Name                                                                                   | Description|
 |----------------------------------------------------------------------------------------| -- |
 | [ArkUI_NodeHandle](capi-arkui-nativemodule-arkui-node8h.md) node                       | Target node.|
-| [ArkUI_NodeCustomEventType](capi-native-node-node-attributes-node-attr-custom-h.md#arkui_nodecustomeventtype) eventType | Type of the event to register.|
+| ArkUI_NodeCustomEventType eventType | Type of the event to register.|
 | int32_t targetId                                                                       | Custom event ID, which is passed in the callback of [ArkUI_NodeCustomEvent](capi-arkui-nativemodule-arkui-nodecustomevent.md) when the event is triggered.|
 | void* userData                                                                         | Custom event parameter, which is passed in the callback of [ArkUI_NodeCustomEvent](capi-arkui-nativemodule-arkui-nodecustomevent.md) when the event is triggered.|
 
@@ -630,7 +630,7 @@ Unregisters a custom event for a node.
 | Name                                                                                   | Description           |
 |----------------------------------------------------------------------------------------|---------------|
 | [ArkUI_NodeHandle](capi-arkui-nativemodule-arkui-node8h.md) node                       | Target node.|
-| [ArkUI_NodeCustomEventType](capi-native-node-node-attributes-node-attr-custom-h.md#arkui_nodecustomeventtype) eventType | Type of the event to unregister.             |
+| ArkUI_NodeCustomEventType eventType | Type of the event to unregister.             |
 
 ### registerNodeCustomEventReceiver()
 

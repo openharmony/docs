@@ -303,7 +303,7 @@ The @Provide decorators with the duplicate key declared exist in the same compon
 
 **Solution**
 
-Ensure that the keys of the @Provide decorators are different in the same component, including its parent component and ancestor node. Alternatively, set [allowOverride](./arkui-ts/ts-state-management-v1-parameter.md#provideoptions) for the @Provide decorators with the duplicate key declared. For details, see [Support for the allowOverride Parameter](../../ui/state-management/arkts-provide-and-consume.md#support-for-the-allowoverride-parameter).
+Ensure that the keys of the @Provide decorators are different in the same component, including its parent component and ancestor node. Alternatively, set allowOverride for the @Provide decorators with the duplicate key declared. For details, see [Support for the allowOverride Parameter](../../ui/state-management/arkts-provide-and-consume.md#support-for-the-allowoverride-parameter).
 
 ## 140115 Invalid Type of a State Variable in State Management V1
 
