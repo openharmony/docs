@@ -1,10 +1,10 @@
 # libuv
 <!--Kit: NDK Development-->
 <!--Subsystem: Developtools-->
-<!--Owner: @fu-yongyong-->
-<!--Designer: @huangke11-->
+<!--Owner: @fileVerify-->
+<!--Designer: @StringChen-->
 <!--Tester: @liuhaonan2-->
-<!--Adviser: @fang-jinxu-->
+<!--Adviser: @k1ngqaquuu-->
 ## 简介
 
 [libuv](http://libuv.org/)是一个跨平台库，基于事件驱动来实现异步I/O，适用于网络编程和文件系统操作。它是Node.js的核心库之一，也被其他语言的开发者广泛使用。
@@ -839,7 +839,7 @@ export const testTimerAsyncSend:() => number;
 
 **提示：所有形如uv_xxx_init的函数，即使它是以线程安全的方式实现的，但使用时要注意，避免多个线程同时调用uv_xxx_init，否则它依旧会引起多线程资源竞争的问题。最好的方式是在事件循环线程中调用该函数。**
 
-**注：`uv_async_send`函数被调用后，回调函数是被异步触发的。如果调用了多次`uv_async_send`，libuv只保证至少有一次回调会被执行。这就可能导致一旦对同一句柄触发了多次`uv_async_send`，libuv对回调的处理可能会违背开发者的预期。多次对同一个async句柄进行send操作，还会导致任意两次相同句柄send操作之间提交的的其他async_cb任务丢失。** 而在Native侧，可以保证回调的执行次数和开发者调用`napi_call_threadsafe_function`的次数保持一致。
+**注：`uv_async_send`函数被调用后，回调函数是被异步触发的。如果调用了多次`uv_async_send`，libuv只保证至少有一次回调会被执行。这就可能导致一旦对同一句柄触发了多次`uv_async_send`，libuv对回调的处理可能会违背开发者的预期。多次对同一个async句柄进行send操作，还会导致任意两次相同句柄send操作之间提交的其他async_cb任务丢失。** 而在Native侧，可以保证回调的执行次数和开发者调用`napi_call_threadsafe_function`的次数保持一致。
 
 非线程安全函数：
 
