@@ -159,7 +159,7 @@ InputMethod_ErrorCode OH_InputMethodProxy_NotifySelectionChange(InputMethod_Inpu
 
 Notifies the input method of selection changes in the text input box. When the text content, cursor position, or text selection inside the input field changes, this API is called to send change information to the input method app, enabling the input method to perceive the text state of the edit box.
 
-Usage scenarios: This function is called when the text content in the edit box is modified, the cursor moves, or the user’s text selection changes. This ensures the text state remains synchronized between the input method app and the edit box.
+Usage scenarios: This function is called when the text content in the edit box is modified, the cursor moves, or the user's text selection changes. This ensures the text state remains synchronized between the input method app and the edit box.
 
 Use effect: If the call succeeds, the input method app receives the selection change information and updates its internal state accordingly, including candidate words and text suggestions. If the call fails, a corresponding error code is returned.
 
