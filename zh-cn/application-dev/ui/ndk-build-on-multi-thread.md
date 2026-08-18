@@ -284,8 +284,6 @@ add_library(entry SHARED
     card/CardCreator.cpp
     )
 target_link_libraries(entry PUBLIC libace_napi.z.so ace_ndk.z.so hilog_ndk.z.so)
-# [End cmake_start]
-
 ```
 
 ``` cpp
