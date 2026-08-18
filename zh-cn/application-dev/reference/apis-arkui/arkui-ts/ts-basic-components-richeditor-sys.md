@@ -17,7 +17,7 @@
 > - 当前页面仅包含本模块的系统接口，其他公开接口参见[RichEditor](ts-basic-components-richeditor.md)。
 ## RichEditorBuilderSpanOptions<sup>11+</sup>
 
-设置builder的偏移位置和样式。
+设置builder插入的偏移位置和样式。
 
 **系统接口：** 此接口为系统接口。
 
