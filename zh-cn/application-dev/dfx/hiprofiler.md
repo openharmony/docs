@@ -81,7 +81,7 @@ CONFIG
 | 命令 | 命令说明 | 
 | -------- | -------- |
 | -c | 设置该选项后，需要将配置文件放入/data/local/tmp目录下，将路径作为参数输入。 | 
-| -o | 自定义文件保存路径（需要以/data/local/tmp开头）。若不设置路径，则调优数据自动保存至/data/local/tmp/hiprofiler_data.htrace。重复调优会覆盖原来路径的文件。<br>抓取[三合一维测日志](#抓取指定进程三合一维测日志)时，自定义的保存路径必须是以.zip为后缀的文件。若不设置路径，则三合一维测日志自动保存至/data/local/tmp/hiprofiler_data_{timestamp}.zip | 
+| -o | 自定义文件保存路径（需要以/data/local/tmp开头）。若不设置路径，则调优数据自动保存至/data/local/tmp/hiprofiler_data.htrace。重复调优会覆盖原来路径的文件。<br>抓取[三合一维测日志](#抓取指定进程三合一维测日志)时，自定义保存路径必须是以.zip为后缀的文件。若不设置路径，则三合一维测日志自动保存至/data/local/tmp/hiprofiler_data_{timestamp}.zip | 
 | -k | 杀掉已存在的调优服务进程。 | 
 | -s | 拉起调优服务进程。 | 
 | -t | 设置调优持续时间，单位：s。若需手动控制采集时长，请使用start/stop参数组合。|
