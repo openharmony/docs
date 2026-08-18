@@ -8,7 +8,7 @@
 
 应用在进行图片解码操作时，需要申请对应内存。内存占用的大小与内存分配类型和像素格式密切相关。当前指导将介绍不同的内存类型、像素格式，以及如何组合使用以达到最优的解码性能。
 
-应用侧通过解码API接口获取PixelMap，并将其传递给[Image组件](../../../application-dev/reference/apis-arkui/arkui-js/js-components-basic-image.md)以进行显示。
+应用侧通过解码API接口获取PixelMap，并将其传递给[Image](../../reference/apis-arkui/arkui-ts/ts-basic-components-image.md)组件以进行显示。
 
 当PixelMap较大且使用共享内存时，RS主线程将经历较长的纹理上传时间，导致卡顿现象。图形侧提供了DMA内存零拷贝功能，可在绘制图片时避免纹理上传时间消耗。此外，通过设置合适的像素格式（如YUV格式），可进一步降低内存占用。
 
