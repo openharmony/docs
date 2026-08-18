@@ -28,19 +28,19 @@
 
 | 名称 | typedef关键字 | 描述 |
 | -- | -- | -- |
-| [OH_AudioAccessory_SetNoiseReductionCallback](#oh_audioaccessory_setnoisereductioncallback) | OH_AudioAccessory_SetNoiseReductionCallback | 音频配件降噪模式变更回调函数。 |
-| [OH_AudioManager_GetAccessoryManager](#oh_audiomanager_getaccessorymanager) | - | 获取音频配件管理器实例。 |
-| [OH_AudioAccessoryManager_CreateInput](#oh_audioaccessorymanager_createinput) | - | 创建音频配件实例，并设置其支持的音频流能力。 |
-| [OH_AudioAccessoryManager_SetAssociatedMacAddresses](#oh_audioaccessorymanager_setassociatedmacaddresses) | - | 设置与主音频配件组合使用的副配件MAC地址列表。 |
-| [OH_AudioAccessoryManager_RegisterNoiseReductionCapability](#oh_audioaccessorymanager_registernoisereductioncapability) | - | 注册音频配件的降噪能力。 |
-| [OH_AudioAccessoryManager_SetNoiseReductionMode](#oh_audioaccessorymanager_setnoisereductionmode) | - | 设置音频配件的降噪模式。 |
-| [OH_AudioAccessoryManager_Connected](#oh_audioaccessorymanager_connected) | - | 将音频配件连接到音频系统。 |
-| [OH_AudioAccessoryManager_Disconnected](#oh_audioaccessorymanager_disconnected) | - | 断开音频配件连接。 |
-| [OH_AudioAccessoryManager_Destroy](#oh_audioaccessorymanager_destroy) | - | 销毁音频配件实例。 |
+| [typedef bool (\*OH_AudioAccessory_SetNoiseReductionCallback)(OH_AudioAccessory *accessory, OH_AudioNoiseReductionMode mode)](#oh_audioaccessory_setnoisereductioncallback) | OH_AudioAccessory_SetNoiseReductionCallback | 音频配件降噪模式变更回调函数。 |
+| [OH_AudioCommon_Result OH_AudioManager_GetAccessoryManager(OH_AudioAccessoryManager **outManager)](#oh_audiomanager_getaccessorymanager) | - | 获取音频配件管理器实例。 |
+| [OH_AudioCommon_Result OH_AudioAccessoryManager_CreateInput(OH_AudioAccessoryManager *manager, const OH_AudioAccessoryInfo *info, const OH_AudioAccessoryCapabilities *capabilities, OH_AudioAccessory_OpenInputStreamCallback openInputStream, OH_AudioAccessory **outOwnedAccessory)](#oh_audioaccessorymanager_createinput) | - | 创建音频配件实例，并设置其支持的音频流能力。 |
+| [OH_AudioCommon_Result OH_AudioAccessoryManager_SetAssociatedMacAddresses(OH_AudioAccessoryManager *manager, OH_AudioAccessory *accessory, const char **macAddresses, uint32_t count)](#oh_audioaccessorymanager_setassociatedmacaddresses) | - | 设置与主音频配件组合使用的副配件MAC地址列表。 |
+| [OH_AudioCommon_Result OH_AudioAccessoryManager_RegisterNoiseReductionCapability(OH_AudioAccessoryManager *manager, OH_AudioAccessory *accessory, const OH_AudioAccessoryNoiseReductionCapability *capability, OH_AudioAccessory_SetNoiseReductionCallback onNoiseReduction)](#oh_audioaccessorymanager_registernoisereductioncapability) | - | 注册音频配件的降噪能力。 |
+| [OH_AudioCommon_Result OH_AudioAccessoryManager_SetNoiseReductionMode(OH_AudioAccessoryManager *manager, OH_AudioAccessory *accessory, OH_AudioNoiseReductionMode mode)](#oh_audioaccessorymanager_setnoisereductionmode) | - | 设置音频配件的降噪模式。 |
+| [OH_AudioCommon_Result OH_AudioAccessoryManager_Connected(OH_AudioAccessoryManager *manager, OH_AudioAccessory *accessory)](#oh_audioaccessorymanager_connected) | - | 将音频配件连接到音频系统。 |
+| [OH_AudioCommon_Result OH_AudioAccessoryManager_Disconnected(OH_AudioAccessoryManager *manager, OH_AudioAccessory *accessory)](#oh_audioaccessorymanager_disconnected) | - | 断开音频配件连接。 |
+| [OH_AudioCommon_Result OH_AudioAccessoryManager_Destroy(OH_AudioAccessoryManager *manager, OH_AudioAccessory *accessory)](#oh_audioaccessorymanager_destroy) | - | 销毁音频配件实例。 |
 
 ## 函数说明
 
-### OH_AudioAccessory_SetNoiseReductionCallback
+### OH_AudioAccessory_SetNoiseReductionCallback()
 
 ```c
 typedef bool (*OH_AudioAccessory_SetNoiseReductionCallback)(OH_AudioAccessory *accessory, OH_AudioNoiseReductionMode mode)

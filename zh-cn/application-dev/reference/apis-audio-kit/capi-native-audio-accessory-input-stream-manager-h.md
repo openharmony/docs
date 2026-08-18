@@ -28,23 +28,23 @@
 
 | 名称 | typedef关键字 | 描述 |
 | -- | -- | -- |
-| [OH_AudioAccessory_OpenInputStreamCallback](#oh_audioaccessory_openinputstreamcallback) | OH_AudioAccessory_OpenInputStreamCallback | 音频配件打开输入流的回调函数。 |
-| [OH_AudioAccessoryInputStream_StartCallback](#oh_audioaccessoryinputstream_startcallback) | OH_AudioAccessoryInputStream_StartCallback | 输入流启动事件回调函数。 |
-| [OH_AudioAccessoryInputStream_StopCallback](#oh_audioaccessoryinputstream_stopcallback) | OH_AudioAccessoryInputStream_StopCallback | 输入流停止事件回调函数。 |
-| [OH_AudioAccessoryInputStream_ReleaseCallback](#oh_audioaccessoryinputstream_releasecallback) | OH_AudioAccessoryInputStream_ReleaseCallback | 输入流释放事件回调函数。 |
-| [OH_AudioAccessoryInputStream_GetLatencyCallback](#oh_audioaccessoryinputstream_getlatencycallback) | OH_AudioAccessoryInputStream_GetLatencyCallback | 查询输入流当前时延的回调函数。 |
-| [OH_AudioAccessoryInputStream_GetFramePositionCallback](#oh_audioaccessoryinputstream_getframepositioncallback) | OH_AudioAccessoryInputStream_GetFramePositionCallback | 查询输入流当前采集位置的回调函数。 |
-| [OH_AudioAccessoryInputStreamManager_RegisterStartCallback](#oh_audioaccessoryinputstreammanager_registerstartcallback) | - | 注册输入流启动事件回调函数。应用需要通过音频配件输入流采集音频时，需注册此回调。如果未注册，音频系统将拒绝创建输入流并清理相关资源。 |
-| [OH_AudioAccessoryInputStreamManager_RegisterStopCallback](#oh_audioaccessoryinputstreammanager_registerstopcallback) | - | 注册输入流停止事件回调函数。应用需要通过音频配件输入流采集音频时，需注册此回调。如果未注册，音频系统将拒绝创建输入流并清理相关资源。 |
-| [OH_AudioAccessoryInputStreamManager_RegisterReleaseCallback](#oh_audioaccessoryinputstreammanager_registerreleasecallback) | - | 注册输入流释放事件回调函数。应用需要通过音频配件输入流采集音频时，需注册此回调。如果未注册，音频系统将拒绝创建输入流并清理相关资源。 |
-| [OH_AudioAccessoryInputStreamManager_RegisterLatencyCallback](#oh_audioaccessoryinputstreammanager_registerlatencycallback) | - | 注册输入流时延查询回调函数。应用需要通过音频配件输入流采集音频时，需注册此回调。如果未注册，音频系统将拒绝创建输入流并清理相关资源。 |
-| [OH_AudioAccessoryInputStreamManager_RegisterFramePositionCallback](#oh_audioaccessoryinputstreammanager_registerframepositioncallback) | - | 注册输入流帧位置查询回调函数，用于查询输入流当前采集位置。应用需要通过音频配件输入流采集音频时，需注册此回调。如果未注册，音频系统将拒绝创建输入流并清理相关资源。 |
-| [OH_AudioAccessoryInputStreamManager_Write](#oh_audioaccessoryinputstreammanager_write) | - | 向音频配件输入流写入音频数据。 |
-| [OH_AudioAccessoryInputStreamManager_GetWritableSize](#oh_audioaccessoryinputstreammanager_getwritablesize) | - | 获取音频配件输入流缓冲区的可写大小。 |
+| [typedef bool (\*OH_AudioAccessory_OpenInputStreamCallback)(OH_AudioAccessory *accessory, OH_AudioAccessoryInputStream *stream, OH_AudioStreamInfo *streamInfo)](#oh_audioaccessory_openinputstreamcallback) | OH_AudioAccessory_OpenInputStreamCallback | 音频配件打开输入流的回调函数。 |
+| [typedef bool (\*OH_AudioAccessoryInputStream_StartCallback)(OH_AudioAccessory *accessory, OH_AudioAccessoryInputStream *stream)](#oh_audioaccessoryinputstream_startcallback) | OH_AudioAccessoryInputStream_StartCallback | 输入流启动事件回调函数。 |
+| [typedef bool (\*OH_AudioAccessoryInputStream_StopCallback)(OH_AudioAccessory *accessory, OH_AudioAccessoryInputStream *stream)](#oh_audioaccessoryinputstream_stopcallback) | OH_AudioAccessoryInputStream_StopCallback | 输入流停止事件回调函数。 |
+| [typedef bool (\*OH_AudioAccessoryInputStream_ReleaseCallback)(OH_AudioAccessory *accessory, OH_AudioAccessoryInputStream *stream)](#oh_audioaccessoryinputstream_releasecallback) | OH_AudioAccessoryInputStream_ReleaseCallback | 输入流释放事件回调函数。 |
+| [typedef bool (\*OH_AudioAccessoryInputStream_GetLatencyCallback)(OH_AudioAccessory *accessory, OH_AudioAccessoryInputStream *stream, int32_t *latency)](#oh_audioaccessoryinputstream_getlatencycallback) | OH_AudioAccessoryInputStream_GetLatencyCallback | 查询输入流当前时延的回调函数。 |
+| [typedef bool (\*OH_AudioAccessoryInputStream_GetFramePositionCallback)(OH_AudioAccessory *accessory, OH_AudioAccessoryInputStream *stream, int64_t *framePosition, int64_t *timestamp)](#oh_audioaccessoryinputstream_getframepositioncallback) | OH_AudioAccessoryInputStream_GetFramePositionCallback | 查询输入流当前采集位置的回调函数。 |
+| [OH_AudioCommon_Result OH_AudioAccessoryInputStreamManager_RegisterStartCallback(OH_AudioAccessoryInputStream *stream, OH_AudioAccessoryInputStream_StartCallback callback)](#oh_audioaccessoryinputstreammanager_registerstartcallback) | - | 注册输入流启动事件回调函数。应用需要通过音频配件输入流采集音频时，需注册此回调。如果未注册，音频系统将拒绝创建输入流并清理相关资源。 |
+| [OH_AudioCommon_Result OH_AudioAccessoryInputStreamManager_RegisterStopCallback(OH_AudioAccessoryInputStream *stream, OH_AudioAccessoryInputStream_StopCallback callback)](#oh_audioaccessoryinputstreammanager_registerstopcallback) | - | 注册输入流停止事件回调函数。应用需要通过音频配件输入流采集音频时，需注册此回调。如果未注册，音频系统将拒绝创建输入流并清理相关资源。 |
+| [OH_AudioCommon_Result OH_AudioAccessoryInputStreamManager_RegisterReleaseCallback(OH_AudioAccessoryInputStream *stream, OH_AudioAccessoryInputStream_ReleaseCallback callback)](#oh_audioaccessoryinputstreammanager_registerreleasecallback) | - | 注册输入流释放事件回调函数。应用需要通过音频配件输入流采集音频时，需注册此回调。如果未注册，音频系统将拒绝创建输入流并清理相关资源。 |
+| [OH_AudioCommon_Result OH_AudioAccessoryInputStreamManager_RegisterLatencyCallback(OH_AudioAccessoryInputStream *stream, OH_AudioAccessoryInputStream_GetLatencyCallback callback)](#oh_audioaccessoryinputstreammanager_registerlatencycallback) | - | 注册输入流时延查询回调函数。应用需要通过音频配件输入流采集音频时，需注册此回调。如果未注册，音频系统将拒绝创建输入流并清理相关资源。 |
+| [OH_AudioCommon_Result OH_AudioAccessoryInputStreamManager_RegisterFramePositionCallback(OH_AudioAccessoryInputStream *stream, OH_AudioAccessoryInputStream_GetFramePositionCallback callback)](#oh_audioaccessoryinputstreammanager_registerframepositioncallback) | - | 注册输入流帧位置查询回调函数，用于查询输入流当前采集位置。应用需要通过音频配件输入流采集音频时，需注册此回调。如果未注册，音频系统将拒绝创建输入流并清理相关资源。 |
+| [OH_AudioCommon_Result OH_AudioAccessoryInputStreamManager_Write(OH_AudioAccessoryInputStream *stream, const uint8_t *data, uint32_t dataSize)](#oh_audioaccessoryinputstreammanager_write) | - | 向音频配件输入流写入音频数据。 |
+| [OH_AudioCommon_Result OH_AudioAccessoryInputStreamManager_GetWritableSize(OH_AudioAccessoryInputStream *stream, uint32_t *writableSize)](#oh_audioaccessoryinputstreammanager_getwritablesize) | - | 获取音频配件输入流缓冲区的可写大小。 |
 
 ## 函数说明
 
-### OH_AudioAccessory_OpenInputStreamCallback
+### OH_AudioAccessory_OpenInputStreamCallback()
 
 ```c
 typedef bool (*OH_AudioAccessory_OpenInputStreamCallback)(OH_AudioAccessory *accessory, OH_AudioAccessoryInputStream *stream, OH_AudioStreamInfo *streamInfo)
@@ -74,7 +74,7 @@ typedef bool (*OH_AudioAccessory_OpenInputStreamCallback)(OH_AudioAccessory *acc
 | -- | -- |
 | bool | true：流打开成功。<br>false：流打开失败。 |
 
-### OH_AudioAccessoryInputStream_StartCallback
+### OH_AudioAccessoryInputStream_StartCallback()
 
 ```c
 typedef bool (*OH_AudioAccessoryInputStream_StartCallback)(OH_AudioAccessory *accessory, OH_AudioAccessoryInputStream *stream)
@@ -101,7 +101,7 @@ typedef bool (*OH_AudioAccessoryInputStream_StartCallback)(OH_AudioAccessory *ac
 | -- | -- |
 | bool | true：启动事件处理成功。<br>false：启动事件处理失败。 |
 
-### OH_AudioAccessoryInputStream_StopCallback
+### OH_AudioAccessoryInputStream_StopCallback()
 
 ```c
 typedef bool (*OH_AudioAccessoryInputStream_StopCallback)(OH_AudioAccessory *accessory, OH_AudioAccessoryInputStream *stream)
@@ -128,7 +128,7 @@ typedef bool (*OH_AudioAccessoryInputStream_StopCallback)(OH_AudioAccessory *acc
 | -- | -- |
 | bool | true：停止事件处理成功。<br>false：停止事件处理失败。 |
 
-### OH_AudioAccessoryInputStream_ReleaseCallback
+### OH_AudioAccessoryInputStream_ReleaseCallback()
 
 ```c
 typedef bool (*OH_AudioAccessoryInputStream_ReleaseCallback)(OH_AudioAccessory *accessory, OH_AudioAccessoryInputStream *stream)
@@ -155,7 +155,7 @@ typedef bool (*OH_AudioAccessoryInputStream_ReleaseCallback)(OH_AudioAccessory *
 | -- | -- |
 | bool | true：释放事件处理成功。<br>false：释放事件处理失败。 |
 
-### OH_AudioAccessoryInputStream_GetLatencyCallback
+### OH_AudioAccessoryInputStream_GetLatencyCallback()
 
 ```c
 typedef bool (*OH_AudioAccessoryInputStream_GetLatencyCallback)(OH_AudioAccessory *accessory, OH_AudioAccessoryInputStream *stream, int32_t *latency)
@@ -183,7 +183,7 @@ typedef bool (*OH_AudioAccessoryInputStream_GetLatencyCallback)(OH_AudioAccessor
 | -- | -- |
 | bool | true：获取时延成功。<br>false：获取时延失败。 |
 
-### OH_AudioAccessoryInputStream_GetFramePositionCallback
+### OH_AudioAccessoryInputStream_GetFramePositionCallback()
 
 ```c
 typedef bool (*OH_AudioAccessoryInputStream_GetFramePositionCallback)(OH_AudioAccessory *accessory, OH_AudioAccessoryInputStream *stream, int64_t *framePosition, int64_t *timestamp)
