@@ -218,7 +218,7 @@ OpenHarmony提供了分布式增强连接能力，实现跨设备互联，完成
    ```
 3. 创建connection对象，订阅连接结果通知变化的事件，连接服务端。
     ```ts
-    const TAG = "testDemo";
+    const TAG = "TEST";
     // client端主动连接时调用
     linkEnhanceConnect(peerDeviceId: string) {
       console.info(TAG + 'connection server deviceId = ' + peerDeviceId);
