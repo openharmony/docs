@@ -2,10 +2,10 @@
 
 <!--Kit: Accessibility Kit-->
 <!--Subsystem: BarrierFree-->
-<!--Owner: @qiiiiiiian-->
+<!--Owner: @fanzexuan-->
 <!--Designer: @z7o-->
 <!--Tester: @A_qqq-->
-<!--Adviser: @w_Machine_cc-->
+<!--Adviser: @wwwyyyhhhh-->
 
 - ArkTS API<!--accessibility-arkts-->
   - [@ohos.accessibility (辅助功能)](js-apis-accessibility.md)

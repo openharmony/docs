@@ -99,7 +99,7 @@ The input parameters validation failed.
 
 **错误信息**
 
-No Available certificate for authorization
+No available certificate for authorization.
 
 **可能原因**
 

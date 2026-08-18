@@ -26,7 +26,7 @@ ArkUI（方舟UI框架）提供的Native侧动画接口集合。
 
 | 名称 | 描述 |
 | -- | -- |
-| [int32_t (\*animateTo)(ArkUI_ContextHandle context, ArkUI_AnimateOption* option, ArkUI_ContextCallback* update,ArkUI_AnimateCompleteCallback* complete)](#animateto) | 触发显式动画。 |
+| [int32_t (\*animateTo)(ArkUI_ContextHandle context, ArkUI_AnimateOption* option, ArkUI_ContextCallback* update, ArkUI_AnimateCompleteCallback* complete)](#animateto) | 触发显式动画。 |
 | [int32_t (\*keyframeAnimateTo)(ArkUI_ContextHandle context, ArkUI_KeyframeAnimateOption* option)](#keyframeanimateto) | 触发关键帧动画。 |
 | [ArkUI_AnimatorHandle (\*createAnimator)(ArkUI_ContextHandle context, ArkUI_AnimatorOption* option)](#createanimator) | 创建animator动画对象并返回其指针（调用者获取对象所有权）。 |
 | [void (\*disposeAnimator)(ArkUI_AnimatorHandle animatorHandle)](#disposeanimator) | 销毁传入指针所指向的animator动画对象，并释放其内存，销毁后不可再使用该指针。 |

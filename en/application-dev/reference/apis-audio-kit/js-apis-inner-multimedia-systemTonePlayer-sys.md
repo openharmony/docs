@@ -265,7 +265,7 @@ Sets the scale of the audio volume. No result is returned.
 
 **Error codes**
 
-For details about the error codes, see [Universal Error Codes](../errorcode-universal.md), [Media Error Codes](../apis-media-kit/errorcode-media.md), and [Ringtone Error Codes](./errorcode-ringtone.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md), [Media Error Codes](../apis-media-kit/errorcode-media.md), and [Ringtone Error Codes](./errorcode-audio-ringtone-sys.md).
 
 | ID| Error Message                                                                                                   |
 | -------- | ----------------------------------------------------------------------------------------------------------- |
@@ -345,7 +345,7 @@ Obtains the supported haptics styles. This API uses a promise to return the resu
 
 **Error codes**
 
-For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Ringtone Error Codes](./errorcode-ringtone.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Ringtone Error Codes](./errorcode-audio-ringtone-sys.md).
 
 | ID| Error Message                           |
 | -------- | ----------------------------------- |
@@ -382,7 +382,7 @@ Before calling this API, call [getSupportedHapticsFeatures](#getsupportedhaptics
 
 **Error codes**
 
-For details about the error codes, see [Universal Error Codes](../errorcode-universal.md), [Media Error Codes](../apis-media-kit/errorcode-media.md), and [Ringtone Error Codes](./errorcode-ringtone.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md), [Media Error Codes](../apis-media-kit/errorcode-media.md), and [Ringtone Error Codes](./errorcode-audio-ringtone-sys.md).
 
 | ID| Error Message                                                                                                   |
 | -------- | ----------------------------------------------------------------------------------------------------------- |
@@ -424,7 +424,7 @@ Obtains the haptics style of the ringtone. This API returns the result synchrono
 
 **Error codes**
 
-For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Ringtone Error Codes](./errorcode-ringtone.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Ringtone Error Codes](./errorcode-audio-ringtone-sys.md).
 
 
 | ID| Error Message                           |
@@ -468,7 +468,7 @@ The object to listen for is an audio stream specified by **streamId**. If **stre
 
 **Error codes**
 
-For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Ringtone Error Codes](./errorcode-ringtone.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Ringtone Error Codes](./errorcode-audio-ringtone-sys.md).
 
 | ID| Error Message|
 | ------- | --------------------------------------------|
@@ -514,7 +514,7 @@ Unsubscribes from the event indicating that the ringtone playback is finished. T
 
 **Error codes**
 
-For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Ringtone Error Codes](./errorcode-ringtone.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Ringtone Error Codes](./errorcode-audio-ringtone-sys.md).
 
 | ID| Error Message|
 | ------- | --------------------------------------------|
@@ -556,7 +556,7 @@ Subscribes to error events that occur during ringtone playback. This API uses an
 
 **Error codes**
 
-For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Ringtone Error Codes](./errorcode-ringtone.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Ringtone Error Codes](./errorcode-audio-ringtone-sys.md).
 
 | ID| Error Message|
 | ------- | --------------------------------------------|
@@ -592,7 +592,7 @@ Unsubscribes from error events that occur during ringtone playback. This API use
 
 **Error codes**
 
-For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Ringtone Error Codes](./errorcode-ringtone.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Ringtone Error Codes](./errorcode-audio-ringtone-sys.md).
 
 | ID| Error Message|
 | ------- | --------------------------------------------|

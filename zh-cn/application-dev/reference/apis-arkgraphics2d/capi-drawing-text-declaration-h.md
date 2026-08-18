@@ -32,13 +32,13 @@
 | [OH_Drawing_LineTypography](capi-drawing-oh-drawing-linetypography.md) | OH_Drawing_LineTypography | 用于从一段文字中提取单行数据进行排版。 |
 | [OH_Drawing_TypographyCreate](capi-drawing-oh-drawing-typographycreate.md) | OH_Drawing_TypographyCreate | 用于创建[OH_Drawing_Typography](capi-drawing-oh-drawing-typography.md)。 |
 | [OH_Drawing_TextBox](capi-drawing-oh-drawing-textbox.md) | OH_Drawing_TextBox | 用于接收文本框的矩形大小、方向和数量大小。 |
-| [OH_Drawing_PositionAndAffinity](capi-drawing-oh-drawing-positionandaffinity.md) | OH_Drawing_PositionAndAffinity | 用于接收字体的位置和亲和性。 |
-| [OH_Drawing_Range](capi-drawing-oh-drawing-range.md) | OH_Drawing_Range | 用于接收字体的起始位置和结束位置。 |
+| [OH_Drawing_PositionAndAffinity](capi-drawing-oh-drawing-positionandaffinity.md) | OH_Drawing_PositionAndAffinity | 用于接收文本的位置和光标的亲和性。 |
+| [OH_Drawing_Range](capi-drawing-oh-drawing-range.md) | OH_Drawing_Range | 用于接收文本的起始位置和结束位置。 |
 | [OH_Drawing_TextShadow](capi-drawing-oh-drawing-textshadow.md) | OH_Drawing_TextShadow | 用于管理文本阴影。 |
-| [OH_Drawing_FontParser](capi-drawing-oh-drawing-fontparser.md) | OH_Drawing_FontParser | 用来解析系统字体文件。 |
+| [OH_Drawing_FontParser](capi-drawing-oh-drawing-fontparser.md) | OH_Drawing_FontParser | 用于解析系统字体文件。 |
 | [OH_Drawing_TextTab](capi-drawing-oh-drawing-texttab.md) | OH_Drawing_TextTab | 用于管理文本制表符。 |
 | [OH_Drawing_TextLine](capi-drawing-oh-drawing-textline.md) | OH_Drawing_TextLine | 用于管理文本行。 |
 | [OH_Drawing_Run](capi-drawing-oh-drawing-run.md) | OH_Drawing_Run | 用于管理文本渲染单元。 |
-| [OH_Drawing_FontFullDescriptor](capi-drawing-oh-drawing-fontfulldescriptor.md) | OH_Drawing_FontFullDescriptor | 用于描述字体的详细信息，即字体描述符。 |
+| [OH_Drawing_FontFullDescriptor](capi-drawing-oh-drawing-fontfulldescriptor.md) | OH_Drawing_FontFullDescriptor | 用于描述字体的详细信息。 |
 | [OH_Drawing_FontVariationAxis](capi-drawing-oh-drawing-fontvariationaxis.md) | OH_Drawing_FontVariationAxis | 用于描述字体可变轴。 |
 | [OH_Drawing_FontVariationInstance](capi-drawing-oh-drawing-fontvariationinstance.md) | OH_Drawing_FontVariationInstance | 用于描述字体可变实例，存放预设的可变字体样式信息。 |

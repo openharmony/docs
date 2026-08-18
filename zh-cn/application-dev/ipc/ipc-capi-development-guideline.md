@@ -14,7 +14,7 @@ IPC CAPI接口不直接提供获取通信代理对象的能力，该功能由[Ab
 
 ![图](./figures/_i_p_c_architecture_diagram.png)
 
-进程间IPC通道的建立，请参考[Native子进程开发指导（C/C++）](../application-models/capi-nativechildprocess-development-guideline.md)。本文重点介绍IPC CAPI的使用。
+进程间IPC通道的建立，请参考[子进程开发指导（C/C++）](../application-models/capi-nativechildprocess-development-guideline.md)。本文重点介绍IPC CAPI的使用。
 
 ## 接口说明
 

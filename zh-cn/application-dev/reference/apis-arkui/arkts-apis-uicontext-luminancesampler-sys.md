@@ -16,13 +16,13 @@
 >
 > - 以下API需先使用UIContext中的[getLuminanceSampler](js-apis-arkui-UIContext-sys.md#getluminancesampler23)方法获取到LuminanceSampler对象，再通过该对象调用对应方法。
 
-## setBackgroundLuminanceSamplingConfigs<sup>23+</sup>
+## setBackgroundLuminanceSamplingConfigs
 
 setBackgroundLuminanceSamplingConfigs(configs: BackgroundLuminanceSamplingConfigs): void
 
 设置取色参数配置。当亮度阈值不在指定范围内或暗阈值大于亮阈值将抛出异常。
 
-**原子化服务API：** 从API version 23开始，该接口支持在原子化服务中使用。
+**模型约束：** 此接口仅可在Stage模型下使用。
 
 **系统接口：** 此接口为系统接口。
 
@@ -40,21 +40,21 @@ setBackgroundLuminanceSamplingConfigs(configs: BackgroundLuminanceSamplingConfig
 
 | 错误码ID  | 错误信息                |
 | ------ | ------- |
-| 100001 | 1. Incorrect parameter values. <br> 2. Incorrect parameters types.  |
+| 100001 | Internal error. 1. Incorrect parameter values. <br> 2. Incorrect parameters types.  |
 
 **示例：** 
 
-参考[offBackgroundLuminanceChange](#offbackgroundluminancechange23)的示例。
+参考[offBackgroundLuminanceChange](#offbackgroundluminancechange)的示例。
 
-## onBackgroundLuminanceChange<sup>23+</sup>
+## onBackgroundLuminanceChange
 
 onBackgroundLuminanceChange(samplingCallback: Callback&lt;number&gt;): void
 
 设置取色监听回调。
 
-回调的触发条件：背景亮度根据[setBackgroundLuminanceSamplingConfigs](./arkts-apis-uicontext-luminancesampler-sys.md#setbackgroundluminancesamplingconfigs23)接口设置的亮阈值和暗阈值分为三个区间，[0，暗阈值)，[暗阈值，亮阈值]，(亮阈值，255]。背景亮度所在区间发生变化（或者首次注册监听回调），并且距离上次取色的时间间隔达到设置的取色时间间隔时触发取色回调，并返回当前背景亮度。
+回调的触发条件：背景亮度根据[setBackgroundLuminanceSamplingConfigs](./arkts-apis-uicontext-luminancesampler-sys.md#setbackgroundluminancesamplingconfigs)接口设置的亮阈值和暗阈值分为三个区间，[0，暗阈值)，[暗阈值，亮阈值]，(亮阈值，255]。背景亮度所在区间发生变化（或者首次注册监听回调），并且距离上次取色的时间间隔达到设置的取色时间间隔时触发取色回调，并返回当前背景亮度。
 
-**原子化服务API：** 从API version 23开始，该接口支持在原子化服务中使用。
+**模型约束：** 此接口仅可在Stage模型下使用。
 
 **系统接口：** 此接口为系统接口。
 
@@ -64,19 +64,19 @@ onBackgroundLuminanceChange(samplingCallback: Callback&lt;number&gt;): void
 
 | 参数名     | 类型    | 必填   | 说明      |
 | --- | --- | --- | --- |
-| samplingCallback | Callback&lt;number&gt; | 是 | 监听回调。触发同时返回当前背景亮度。<br/>**说明**：监听回调里不能调用[offBackgroundLuminanceChange](#offbackgroundluminancechange23)。|
+| samplingCallback | Callback&lt;number&gt; | 是 | 监听回调。触发同时返回当前背景亮度。<br/>**说明**：监听回调里不能调用[offBackgroundLuminanceChange](#offbackgroundluminancechange)。|
 
 **示例：** 
 
-参考[offBackgroundLuminanceChange](#offbackgroundluminancechange23)的示例。
+参考[offBackgroundLuminanceChange](#offbackgroundluminancechange)的示例。
 
-## offBackgroundLuminanceChange<sup>23+</sup>
+## offBackgroundLuminanceChange
 
 offBackgroundLuminanceChange(samplingCallback?: Callback&lt;number&gt;): void
 
 取消注册取色监听回调。未指定回调时，取消所有监听。
 
-**原子化服务API：** 从API version 23开始，该接口支持在原子化服务中使用。
+**模型约束：** 此接口仅可在Stage模型下使用。
 
 **系统接口：** 此接口为系统接口。
 
@@ -90,7 +90,7 @@ offBackgroundLuminanceChange(samplingCallback?: Callback&lt;number&gt;): void
 
 **示例：**
 
-从API version 23开始，新增支持[setBackgroundLuminanceSamplingConfigs](#setbackgroundluminancesamplingconfigs23)、[onBackgroundLuminanceChange](#onbackgroundluminancechange23)、[offBackgroundLuminanceChange](#offbackgroundluminancechange23)接口，该示例通过调用这三个接口，展示了获取对应组件的取色器，并通过取色器给组件设置取色参数和取色回调，通过取色回调实现自定义的根据背景色反色效果。
+从API version 23开始，新增支持[setBackgroundLuminanceSamplingConfigs](#setbackgroundluminancesamplingconfigs)、[onBackgroundLuminanceChange](#onbackgroundluminancechange)、[offBackgroundLuminanceChange](#offbackgroundluminancechange)接口，该示例通过调用这三个接口，展示了获取对应组件的取色器，并通过取色器给组件设置取色参数和取色回调，通过取色回调实现自定义的根据背景色反色效果。
 
 ```ts
 import { LengthMetrics } from '@kit.ArkUI';

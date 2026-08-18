@@ -1,7 +1,7 @@
 # 自定义字体的注册和使用（ArkTS）
 <!--Kit: ArkGraphics 2D-->
 <!--Subsystem: Graphics-->
-<!--Owner: @oh_wangxk; @gmiao522; @Lem0nC-->
+<!--Owner: @gmiao522-->
 <!--Designer: @liumingxiang-->
 <!--Tester: @yhl0101-->
 <!--Adviser: @ge-yafang-->
@@ -100,7 +100,7 @@
    let paragraph = paragraphBuilder.build();
    ```
 
-6. 如果需要释放自定义字体，可以使用unloadFontSync接口。
+6. 如果需要注销自定义字体，可以使用unloadFontSync接口。
 
    <!-- @[arkts_custom_font_step6](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkGraphics2D/TextEngine/CustomFont/entry/src/main/ets/pages/Index.ets) -->
    

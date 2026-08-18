@@ -307,7 +307,7 @@ struct Index {
     // 构建提示弹出框，配置图片、内容、勾选状态和操作按钮
     TipsDialogV2({
       imageRes: $r('sys.media.ohos_ic_public_voice'),
-      content: '想要卸载这个APP嘛?',
+      content: '想要卸载这个APP吗?',
       title: 'TipsDialogV2',
       checkTips: '不再提示',
       checked: this.checked,

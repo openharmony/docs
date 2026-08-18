@@ -373,7 +373,7 @@ audioCapturer {
 
 **ArkTS接口：**
 
-<!-- @[print_loopback_info](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/Media/Audio/AudioCaptureSampleJS/entry/src/main/ets/pages/AudioLoopbackDebugInfo.ets) -->
+<!-- @[print_loopback_info](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/Media/Audio/AudioCaptureSampleJS/entry/src/main/ets/pages/AudioLoopbackDebugInfo.ets) -->  
 
 ``` TypeScript
 // audioLoopback为已创建的AudioLoopback实例。
@@ -384,7 +384,8 @@ let debugManager = audio.getAudioManager().getDebuggingManager();
 debugManager.printLoopbackInfo(audioLoopback, -1);
 
 // 输出到文件。
-let filePath = getContext().filesDir + '/audio_loopback_debug.txt';
+let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
+let filePath = context.filesDir + '/audio_loopback_debug.txt';
 let file = fs.openSync(filePath, fs.OpenMode.READ_WRITE | fs.OpenMode.CREATE);
 debugManager.printLoopbackInfo(audioLoopback, file.fd);
 fs.closeSync(file);

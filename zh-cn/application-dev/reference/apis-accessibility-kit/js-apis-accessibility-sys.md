@@ -2,10 +2,10 @@
 
 <!--Kit: Accessibility Kit-->
 <!--Subsystem: BarrierFree-->
-<!--Owner: @qiiiiiiian-->
+<!--Owner: @fanzexuan-->
 <!--Designer: @z7o-->
 <!--Tester: @A_qqq-->
-<!--Adviser: @w_Machine_cc-->
+<!--Adviser: @wwwyyyhhhh-->
 
 本模块提供无障碍事件类型和无障碍节点元素可执行的操作。
 

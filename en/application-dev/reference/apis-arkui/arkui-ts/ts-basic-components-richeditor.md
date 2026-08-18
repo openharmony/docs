@@ -3074,7 +3074,8 @@ struct SelectionMenu {
 >
 > Icons in bold and italics are not preset in the system. The sample code uses the default icons. You need to replace the icons in **iconArr** with the desired icons.
 
-![selectionMenu](figures/richEditorSelectionMenu.png)
+<!--Del-->![selectionMenu] (figures/richEditorSelectionMenu.png)
+<!--DelEnd-->
 
 ### Example 4: Updating the Image Style
 This example demonstrates how to update the image style using the [updateSpanStyle](#updatespanstyle) API.
@@ -5321,7 +5322,8 @@ struct Index {
 }
 ```
 
-![StyledString](figures/StyledString_example20.gif)
+<!--Del-->![StyledString] (figures/StyledString_example20.gif)
+<!--DelEnd-->
 
 ### Example 22: Obtaining Layout Information
 This example shows how to obtain layout information using the [getLayoutManager](#getlayoutmanager12) API. It includes obtaining the total number of lines for the component content or [placeholder](#placeholder12) using [getLineCount](ts-text-common.md#getlinecount12), the glyph position closest to a given coordinate using [getGlyphPositionAtCoordinate](ts-text-common.md#getglyphpositionatcoordinate12), and line metrics, text style information, and font properties using [getLineMetrics](ts-text-common.md#getlinemetrics12).
@@ -5486,7 +5488,8 @@ struct RichEditorExample {
 }
 ```
 
-![RichEditorEditMenuOptions](figures/richEditorEditMenuOptions.gif)
+<!--Del-->![RichEditorEditMenuOptions] (figures/richEditorEditMenuOptions.gif)
+<!--DelEnd-->
 
 ### Example 24: Setting Common Component Attributes
 This example shows how to set common attributes for the component. This includes the following:<br>- Set the scrollbar display mode using [barState](#barstate13) (available since API version 18).<br> - Configure whether the soft keyboard is automatically displayed when the component gains focus via non‑click triggers, using [enableKeyboardOnFocus](#enablekeyboardonfocus12).<br> - Enable or disable haptic feedback for the component using [enableHapticFeedback](#enablehapticfeedback13).<br> - Obtain preview text information using [getPreviewText](#getpreviewtext12).<br> - Specify whether to prevent the back button press from being propagated to other components or apps, using [stopBackPress](#stopbackpress18).<br>
@@ -5578,7 +5581,8 @@ struct RichEditor_example {
 
 ```
 
-![StyledString](figures/rich_editor_example24.gif)
+<!--Del-->![StyledString] (figures/rich_editor_example24.gif)
+<!--DelEnd-->
 
 ### Example 25: Obtaining the Caret's Relative Position Rectangle in the Component
 This example shows how to obtain the caret's relative position rectangle in the component using the [getCaretRect](#getcaretrect18) method of **RichEditorBaseController**, available since API version 18.
@@ -5772,7 +5776,8 @@ struct RichEditorExample {
   }
 }
 ```
-![UrlStyle](figures/example_27.gif)
+<!--Del-->![UrlStyle] (figures/example_27.gif)
+<!--DelEnd-->
 
 ### Example 28: Configuring Style Behavior for Undo Operations
 This example demonstrates how to retain original content styles upon undo operations for **RichEditor** components that do not use styled strings. You can enable this behavior by setting [undoStyle](#undostyle20) (available since API version 20) to **UndoStyle.KEEP_STYLE**.
@@ -5910,7 +5915,8 @@ struct StyledUndo {
   }
 }
 ```
-![UndoStyle](figures/richEditorStyledUndo.gif)
+<!--Del-->![UndoStyle] (figures/richEditorStyledUndo.gif)
+<!--DelEnd-->
 
 ### Example 29: Setting the Preset Paragraph Style
 This example demonstrates how to set the preset paragraph style using the [setTypingParagraphStyle](#settypingparagraphstyle20) API, available since API version 20.
@@ -6131,7 +6137,8 @@ struct Index {
   }
 }
 ```
-![Decoration](figures/decoration_thickness_scale.gif)
+<!--Del-->![Decoration] (figures/decoration_thickness_scale.gif)
+<!--DelEnd-->
 
 
 ### Example 31: Enabling Automatic Spacing Between Chinese and Western Text
@@ -6237,7 +6244,8 @@ struct AutoSpacing {
   }
 }
 ```
-![AutoSpacing](figures/richEditorAutoSpacing.gif)
+<!--Del-->![AutoSpacing] (figures/richEditorAutoSpacing.gif)
+<!--DelEnd-->
 
 ### Example 32: Setting an AI Menu for Text Selection
 This example demonstrates how to configure the AI menu for text selection using the [enableSelectedDataDetector](#enableselecteddatadetector22) API, available since API version 22.
@@ -6319,7 +6327,8 @@ struct SetOnWillAttachIME {
   }
 }
 ```
-![OnWillAttachIME](figures/richEditorOnWillAttachIME.gif)
+<!--Del-->![OnWillAttachIME] (figures/richEditorOnWillAttachIME.gif)
+<!--DelEnd-->
 
 ### Example 34: Deleting the Character at the End of the Text Box
 This example demonstrates how to call [deleteBackward](#deletebackward23) to delete the character before the caret in the editing state with a custom keyboard, available since API version 23.
@@ -6375,7 +6384,8 @@ struct RichEditorExample {
 }
 ```
 
-![DeleteBackward](figures/richEditorDeleteBackward.gif)
+<!--Del-->![DeleteBackward] (figures/richEditorDeleteBackward.gif)
+<!--DelEnd-->
 
 ### Example 35: Optimizing the Display of Minority Languages
 This example uses the [includeFontPadding](#includefontpadding23) attribute to add font padding at the top of the first line and the bottom of the last line of text. It also uses the [fallbackLineSpacing](#fallbacklinespacing23) attribute to implement adaptive line spacing which adjusts dynamically according to the actual text height.
@@ -6461,7 +6471,8 @@ struct RichEditorExample {
   }
 }
 ```
-![richEditorIncludeFontPadding](figures/richEditorIncludeFontPadding.gif)
+<!--Del-->![richEditorIncludeFontPadding] (figures/richEditorIncludeFontPadding.gif)
+<!--DelEnd-->
 
 ### Example 36: Enabling Leading Punctuation Compression
 This example demonstrates how to compress punctuation at the beginning of a line using the [compressLeadingPunctuation](#compressleadingpunctuation23) attribute.
@@ -6503,7 +6514,8 @@ struct CompressLeadingPunctuationDemo {
   }
 }
 ```
-![CompressLeadingPunctuation](figures/richEditorCompressLeadingPunctuation.gif)
+<!--Del-->![CompressLeadingPunctuation] (figures/richEditorCompressLeadingPunctuation.gif)
+<!--DelEnd-->
 
 ### Example 37: Setting the Drag Preview Style
 This example demonstrates how to set the drag preview style using the [selectedDragPreviewStyle](#selecteddragpreviewstyle23) API.
@@ -6575,7 +6587,8 @@ struct SingleLineDemo {
 }
 ```
 
-![SingleLine](figures/richEditorSingleLine.gif)
+<!--Del-->![SingleLine] (figures/richEditorSingleLine.gif)
+<!--DelEnd-->
 
 ### Example 39: Setting the Placeholder Text of the Styled String
 
@@ -6654,7 +6667,8 @@ struct RichEditorExample {
   }
 }
 ```
-![setStyledPlaceholder](figures/richEditorSetStyledPlaceholder.png)
+<!--Del-->![setStyledPlaceholder] (figures/richEditorSetStyledPlaceholder.png)
+<!--DelEnd-->
 
 ### Example 40: Enabling/Disabling Orphan Character Optimization
 
@@ -6702,7 +6716,8 @@ struct RichEditorDemo {
   }
 }
 ```
-![orphanCharOptimization](figures/richEditorOrphanCharOptimization.jpg)
+<!--Del-->![orphanCharOptimization] (figures/richEditorOrphanCharOptimization.jpg)
+<!--DelEnd-->
 
 ### Example 41: Setting Horizontal Scrolling
 
@@ -6745,6 +6760,7 @@ struct HorizontalScrollDemo {
   }
 }
 ```
-![enableHorizontalScroll](figures/richEditorHorizontalScroll.gif)
+<!--Del-->![enableHorizontalScroll] (figures/richEditorHorizontalScroll.gif)
+<!--DelEnd-->
 
 <!--no_check-->

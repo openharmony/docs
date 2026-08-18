@@ -26,7 +26,7 @@ typedef struct {...} OH_Drawing_StrutStyle
 | 名称                                                         | 描述                                                         |
 | ------------------------------------------------------------ | ------------------------------------------------------------ |
 | [OH_Drawing_FontWeight](capi-drawing-text-typography-h.md#oh_drawing_fontweight) weight | 计算支柱时使用的字体粗细。                                   |
-| [OH_Drawing_FontStyle](capi-drawing-text-typography-h.md#oh_drawing_fontstyle) style | 计算支柱时使用的字体格式。                                   |
+| [OH_Drawing_FontStyle](capi-drawing-text-typography-h.md#oh_drawing_fontstyle) style | 计算支柱时使用的字体样式。                                   |
 | double size                                                  | 逻辑像素中的上升加下降的大小。                               |
 | double heightScale                                           | 行高缩放系数。                                               |
 | bool heightOverride                                          | 是否启用高度覆盖。true表示启用，false表示不启用。            |
