@@ -555,6 +555,10 @@ ArcList() {
 
 手表设备上弧形列表在获焦的情况下可对旋转表冠做出响应，用户可通过旋转表冠的操作滑动列表，浏览列表项数据。弧形列表可通过下列[焦点控制](../reference/apis-arkui/arkui-ts/ts-universal-attributes-focus.md)相关属性成为所在页面的默认焦点。
 
+> **说明：**
+>
+> 仅设置默认焦点相关属性不能保证ArcList获焦。ArcList中还需包含可获焦的叶子节点组件，具体设置方式请参考[设置组件是否可获焦](arkts-common-events-focus-event.md#设置组件是否可获焦)。
+
 <!-- @[arcListCrown_start](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkUISample/ScrollableComponent/entry/src/main/ets/pages/arcList/ArcListCrown.ets) -->
 
 ``` TypeScript
