@@ -6,7 +6,7 @@
 <!--Designer: @andeszhang-->
 <!--Tester: @murphy84-->
 <!--Adviser: @zhang_yixin13-->
-<!-- md-trans-meta sourceCommit=681375fe8e2ad6298fc081a819f69633a55a7ca2 translatedAt=2026-08-15T06:26:05.044Z pushedAt=2026-08-18T12:15:51.465Z -->
+<!-- md-trans-meta sourceCommit=681375fe8e2ad6298fc081a819f69633a55a7ca2 translatedAt=2026-08-15T06:26:05.044Z pushedAt=2026-08-18T12:25:43.912Z -->
 
 The **@ohos.inputMethodEngine** module is a server-side API module for input method apps (including system input methods and third-party input methods). It provides interaction capabilities between input method apps and the system input method framework.
 
