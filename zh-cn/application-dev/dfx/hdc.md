@@ -2,7 +2,7 @@
 
 <!--Kit: Performance Analysis Kit-->
 <!--Subsystem: HiviewDFX-->
-<!--Owner: @kunsilva-->
+<!--Owner: @th_0927-->
 <!--Designer: @MontSaintMichel-->
 <!--Tester: @gcw_KuLfPSbe-->
 <!--Adviser: @jinqiuheng-->
@@ -742,7 +742,7 @@ hdc uninstall [-n|-k|-s|-h] bundlename
 
 | 参数名 | 说明 |
 | -------- | -------- |
-| bundlename | 应用安装包。 |
+| bundlename | 应用包名。 |
 | -n | 可选参数，指定Bundle名称卸载应用。|
 | -k | 可选参数，卸载应用时保存应用数据。默认卸载应用时不保存应用数据。 |
 | -s | 根据场景判断，卸载应用间HSP时必选参数，其他场景为可选参数。卸载指定的共享库。|
