@@ -66,6 +66,7 @@
 - 应用生命周期<!--app-lifecycle-->
   - [应用生命周期概述](application-lifecycle.md)
   - 应用启动<!--app-start-->
+    - [应用启动流程](application-startup-process.md)
     - [应用启动设置](application-startup-options.md)
     - [应用启动框架AppStartup](app-startup.md)
     - [应用预加载](preload-application.md)
