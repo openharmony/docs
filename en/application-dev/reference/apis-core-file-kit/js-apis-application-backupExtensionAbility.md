@@ -1,4 +1,4 @@
-# @ohos.application.BackupExtensionAbility (BackupExtensionAbility)
+# @ohos.application.BackupExtensionAbility (Backup and Restore Extension Capability)
 
 <!--Kit: Core File Kit-->
 <!--Subsystem: FileManagement-->
@@ -6,7 +6,7 @@
 <!--Designer: @rainlost-->
 <!--Tester: @zsyztt; @yue-ye2; @fuwei-->
 <!--Adviser: @jinqiuheng-->
-<!-- md-trans-meta sourceCommit=0547715d750965c950e08363cedf1ff726e5bd8a translatedAt=2026-08-17T09:27:56.352Z pushedAt=2026-08-18T08:06:39.722Z -->
+<!-- md-trans-meta sourceCommit=0547715d750965c950e08363cedf1ff726e5bd8a translatedAt=2026-08-17T09:27:56.352Z pushedAt=2026-08-18T09:00:33.700Z -->
 
 The **BackupExtensionAbility** module provides the extension capability for the backup and restoration service. After an app integrates this capability, the system backup and restoration framework can schedule the backup, restoration, progress reporting, and secure exit logic to meet the requirements of app data migration, version compatibility processing, and temporary file cleanup. This improves data migration continuity and simplifies management of the backup and restoration process.
 
