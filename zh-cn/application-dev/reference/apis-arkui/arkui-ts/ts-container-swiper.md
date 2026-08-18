@@ -192,6 +192,10 @@ loop(value: boolean)
 
 设置是否开启循环。在LazyForEach懒循环加载模式下，加载的组件数量建议大于5个。
 
+>  **说明：**
+>
+> 循环场景下，设置prevMargin/nextMargin属性，屏幕朗读线性遍历子组件时会触发“聚焦-滚动-暴露新子节点”的无限循环。建议在该场景下，设置loop为false或者使用[accessibilityGroup](ts-universal-attributes-accessibility.md#accessibilitygroup14)设置子组件不启用无障碍服务。
+
 **卡片能力：** 从API version 10开始，该接口支持在ArkTS卡片中使用。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
