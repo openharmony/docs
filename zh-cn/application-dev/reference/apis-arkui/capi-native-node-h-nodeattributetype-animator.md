@@ -489,7 +489,7 @@ NODE_CUSTOM_SHADOW = 29
 | .value[2]?.f32 | 阴影X轴偏移量，单位为px，默认值0.0。 |
 | .value[3]?.f32 | 阴影Y轴偏移量，单位为px，默认值0.0。 |
 | .value[4]?.i32 | 阴影类型，参数类型为[ArkUI_ShadowType](capi-native-type-visual-h.md#arkui_shadowtype)，默认值为ARKUI_SHADOW_TYPE_COLOR。 |
-| .value[5]?.u32 | 智能取色关闭（.value[1]为0）时表示阴影颜色，0xargb格式，形如0xFFFF0000表示红色，不传入时默认值为0xFF000000（黑色）；智能取色开启（.value[1]为1）时表示颜色策略，取[ArkUI_ColorStrategy](capi-native-type-visual-h.md#arkui_colorstrategy)枚举值。 |
+| .value[5]?.u32 | 智能取色关闭（.value[1]为0）时表示阴影颜色，0xARGB格式，形如0xFFFF0000表示红色，不传入时默认值为0xFF000000（黑色）；智能取色开启（.value[1]为1）时表示颜色策略，取[ArkUI_ColorStrategy](capi-native-type-visual-h.md#arkui_colorstrategy)枚举值。 |
 | .value[6]?.u32 | 阴影是否内部填充，0表示不填充，1表示填充。 |
 
 **返回：**
@@ -501,7 +501,7 @@ NODE_CUSTOM_SHADOW = 29
 | .value[2].f32 | 阴影X轴偏移量，单位为px。 |
 | .value[3].f32 | 阴影Y轴偏移量，单位为px。 |
 | .value[4].i32 | 阴影类型，参数类型为[ArkUI_ShadowType](capi-native-type-visual-h.md#arkui_shadowtype)，默认值为ARKUI_SHADOW_TYPE_COLOR。枚举值包括：ARKUI_SHADOW_TYPE_COLOR（颜色阴影）、ARKUI_SHADOW_TYPE_BLUR（模糊阴影）。 |
-| .value[5].u32 | 阴影颜色，0xAARRGGBB格式，形如0xFFFF0000表示红色。 |
+| .value[5].u32 | 阴影颜色，0xARGB格式，形如0xFFFF0000表示红色。 |
 | .value[6].u32 | 阴影是否内部填充，0表示不填充，1表示填充。 |
 
 ## NODE_BACKGROUND_BLUR_STYLE
@@ -1259,7 +1259,7 @@ NODE_BACKDROP_BLUR = 99
 | -- | -- |
 | .value[0].f32 | 表示背景模糊半径，取值范围[0,+∞)，超出范围时返回错误码[ARKUI_ERROR_CODE_PARAM_INVALID](capi-arkui-nativemodule-arkui-error-code-h.md#arkui_errorcode)。单位px，默认值0.0。 |
 | .value[1]?.f32 | 表示灰阶模糊参数，对黑色的提亮程度，取值范围为[0,127]。不传入时默认值为0，当需要精细调整模糊效果中黑色区域的提亮程度时传入此参数。 |
-| .value[2]?.f32 | 表示灰阶模糊参数，对白色的压暗程度，取值范围为[0,127]。不传入时默认值为0，当需要精细调整模糊效果中黑色区域的提亮程度时传入此参数。 |
+| .value[2]?.f32 | 表示灰阶模糊参数，对白色的压暗程度，取值范围为[0,127]。不传入时默认值为0，当需要精细调整模糊效果中白色区域的压暗程度时传入此参数。 |
 
 **返回：**
 
@@ -1395,7 +1395,7 @@ NODE_SYSTEM_MATERIAL = 127
 
 仅支持系统材质的设备可使用此属性。否则，当设置此属性时，将返回错误码[ARKUI_ERROR_CODE_ATTRIBUTE_OR_EVENT_NOT_SUPPORTED](./capi-arkui-nativemodule-arkui-error-code-h.md#arkui_errorcode)。设备是否支持系统材质可通过调用[OH_ArkUI_NativeModule_GetSystemMaterialSupported](./capi-native-material-h.md#oh_arkui_nativemodule_getsystemmaterialsupported)获取。遇到此错误码时，建议先确认设备是否支持系统材质，若不支持则不应使用此属性。设备是否支持系统材质可通过调用[OH_ArkUI_NativeModule_GetSystemMaterialSupported](capi-native-material-h.md#oh_arkui_nativemodule_getsystemmaterialsupported)获取。
 
-材质效果在不同算力的设备上表现不同。算力等级由[ArkUI_MaterialLevel](./capi-native-material-h.md#arkui_materiallevel)定义，可通过[OH_ArkUI_NativeModule_GetGlobalMaterialLevel](./capi-native-material-h.md#oh_arkui_nativemodule_getglobalmateriallevel)获取。在算力等级为[ARKUI_MATERIAL_LEVEL_SMOOTH](./capi-native-material-h.md#arkui_materiallevel)的设备上，在算力等级为ARKUI_MATERIAL_LEVEL_SMOOTH的设备上，设置NODE_SYSTEM_MATERIAL会覆盖NODE_SHADOW/NODE_CUSTOM_SHADOW的阴影效果、NODE_OUTLINE_COLOR的外描边颜色、NODE_OUTLINE_WIDTH的外描边宽度，并改变组件背景颜色。在算力等级为ARKUI_MATERIAL_LEVEL_EXQUISITE或ARKUI_MATERIAL_LEVEL_GENTLE的设备上，设置NODE_SYSTEM_MATERIAL会覆盖阴影属性并在系统材质层添加滤镜效果。在算力等级为[ARKUI_MATERIAL_LEVEL_EXQUISITE](./capi-native-material-h.md#arkui_materiallevel)或[ARKUI_MATERIAL_LEVEL_GENTLE](./capi-native-material-h.md#arkui_materiallevel)的设备上，会影响阴影属性并在系统材质层添加滤镜效果，可产生类似玻璃的效果。
+材质效果在不同算力的设备上表现不同。算力等级由[ArkUI_MaterialLevel](./capi-native-material-h.md#arkui_materiallevel)定义，可通过[OH_ArkUI_NativeModule_GetGlobalMaterialLevel](./capi-native-material-h.md#oh_arkui_nativemodule_getglobalmateriallevel)获取。在算力等级为[ARKUI_MATERIAL_LEVEL_SMOOTH](./capi-native-material-h.md#arkui_materiallevel)的设备上，设置NODE_SYSTEM_MATERIAL会覆盖NODE_SHADOW/NODE_CUSTOM_SHADOW的阴影效果、NODE_OUTLINE_COLOR的外描边颜色、NODE_OUTLINE_WIDTH的外描边宽度，并改变组件背景颜色。在算力等级为[ARKUI_MATERIAL_LEVEL_EXQUISITE](./capi-native-material-h.md#arkui_materiallevel)或[ARKUI_MATERIAL_LEVEL_GENTLE](./capi-native-material-h.md#arkui_materiallevel)的设备上，会影响阴影属性并在系统材质层添加滤镜效果，可产生类似玻璃的效果。
 
 作为属性设置方法参数、属性获取方法返回值[ArkUI_AttributeItem](capi-arkui-nativemodule-arkui-attributeitem.md)格式如下。
 

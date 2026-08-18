@@ -457,7 +457,7 @@ getLuminanceSampler(target: TargetInfo): LuminanceSampler | undefined
 
 **示例：**
 
-参考[offBackgroundLuminanceChange](arkts-apis-uicontext-luminancesampler-sys.md#offbackgroundluminancechange23)接口的示例。
+参考[offBackgroundLuminanceChange](arkts-apis-uicontext-luminancesampler-sys.md#offbackgroundluminancechange)接口的示例。
 
 ### recycleInvisibleImageMemory<sup>23+</sup>
 
