@@ -5,7 +5,7 @@
 <!--Owner: @chenkun613227-->
 <!--Designer: @yxc2-->
 <!--Tester: @xdlinc-->
-<!--Adviser: @w_Machine_cc-->
+<!--Adviser: @zzs911-->
 
 ## 实例数量超出限制时，录屏启动报错AV_SCREEN_CAPTURE_ERR_OPERATE_NOT_PERMIT
 

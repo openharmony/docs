@@ -4,7 +4,7 @@
 <!--Owner: @chenkun613227-->
 <!--Designer: @zhaoyunfei-->
 <!--Tester: @xchaosioda-->
-<!--Adviser: @w_Machine_cc-->
+<!--Adviser: @zzs911-->
 
 广告内容控制接口，用于管理广告播放控制器中的广告资源及监听广告事件，支持添加和移除广告源、跳过当前广告、禁用剩余广告等，适用于需要在视频播放过程中插入和管理广告内容的场景。通过[createAVAdsController()](arkts-apis-media-f.md#mediacreateavadscontroller)创建实例。
 
