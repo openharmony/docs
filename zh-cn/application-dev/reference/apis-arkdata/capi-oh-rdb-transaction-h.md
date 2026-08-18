@@ -100,7 +100,7 @@ OH_RDB_TransOptions *OH_RdbTrans_CreateOptions(void)
 
 | 类型                                               | 说明                                                         |
 | -------------------------------------------------- | ------------------------------------------------------------ |
-| [OH_RDB_TransOptions](capi-rdb-oh-rdb-transoptions.md) * | 执行成功时返回指向[OH_RDB_TransOptions](capi-rdb-oh-rdb-transoptions.md)实例的指针。否则返回nullptr。<br>使用完成后，必须通过[OH_RdbTrans_DestroyOptions](#oh_rdbtrans_destroyoptions)接口释放内存。 |
+| [OH_RDB_TransOptions](capi-rdb-oh-rdb-transoptions.md) * | 执行成功时返回指向[OH_RDB_TransOptions](capi-rdb-oh-rdb-transoptions.md)实例的指针。否则返回NULL。<br>使用完成后，必须通过[OH_RdbTrans_DestroyOptions](#oh_rdbtrans_destroyoptions)接口释放内存。 |
 
 ### OH_RdbTrans_DestroyOptions()
 
@@ -405,7 +405,7 @@ OH_Cursor *OH_RdbTrans_Query(OH_Rdb_Transaction *trans, const OH_Predicates *pre
 
 | 类型                           | 说明                                                         |
 | ------------------------------ | ------------------------------------------------------------ |
-| [OH_Cursor](capi-rdb-oh-cursor.md) * | 如果执行成功，则返回指向[OH_Cursor](capi-rdb-oh-cursor.md)实例的指针。如果数据库已关闭或数据库没有响应，则返回空。 |
+| [OH_Cursor](capi-rdb-oh-cursor.md) * | 如果执行成功，则返回指向[OH_Cursor](capi-rdb-oh-cursor.md)实例的指针。如果数据库已关闭或数据库没有响应，则返回NULL。 |
 
 ### OH_RdbTrans_QuerySql()
 
@@ -432,7 +432,7 @@ OH_Cursor *OH_RdbTrans_QuerySql(OH_Rdb_Transaction *trans, const char *sql, cons
 
 | 类型                           | 说明                                                         |
 | ------------------------------ | ------------------------------------------------------------ |
-| [OH_Cursor](capi-rdb-oh-cursor.md) * | 如果执行成功，则返回指向[OH_Cursor](capi-rdb-oh-cursor.md)实例的指针。如果数据库已关闭或数据库没有响应，则返回空。 |
+| [OH_Cursor](capi-rdb-oh-cursor.md) * | 如果执行成功，则返回指向[OH_Cursor](capi-rdb-oh-cursor.md)实例的指针。如果数据库已关闭或数据库没有响应，则返回NULL。 |
 
 ### OH_RdbTrans_Execute()
 
@@ -515,7 +515,7 @@ OH_Cursor *OH_RdbTrans_QueryWithoutRowCount(OH_Rdb_Transaction *trans, const OH_
 
 | 类型 | 说明 |
 | -- | -- |
-| [OH_Cursor](capi-rdb-oh-cursor.md) * | 如果执行成功，则返回指向[OH_Cursor](capi-rdb-oh-cursor.md)实例的指针。如果数据库已关闭或数据库没有响应，则返回nullptr。 |
+| [OH_Cursor](capi-rdb-oh-cursor.md) * | 如果执行成功，则返回指向[OH_Cursor](capi-rdb-oh-cursor.md)实例的指针。如果数据库已关闭或数据库没有响应，则返回NULL。 |
 
 ### OH_RdbTrans_QuerySqlWithoutRowCount()
 
@@ -541,7 +541,7 @@ OH_Cursor *OH_RdbTrans_QuerySqlWithoutRowCount(OH_Rdb_Transaction *trans, const 
 
 | 类型 | 说明 |
 | -- | -- |
-| [OH_Cursor](capi-rdb-oh-cursor.md) * | 如果执行成功，则返回指向[OH_Cursor](capi-rdb-oh-cursor.md)实例的指针。如果数据库已关闭或数据库没有响应，则返回nullptr。 |
+| [OH_Cursor](capi-rdb-oh-cursor.md) * | 如果执行成功，则返回指向[OH_Cursor](capi-rdb-oh-cursor.md)实例的指针。如果数据库已关闭或数据库没有响应，则返回NULL。 |
 
 ### OH_RdbTrans_BatchInsertWithReturning()
 
