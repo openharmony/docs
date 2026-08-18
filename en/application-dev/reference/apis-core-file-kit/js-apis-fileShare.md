@@ -6,7 +6,7 @@
 <!--Designer: @rainlost-->
 <!--Tester: @leiyuqian; @zsyztt; @yue-ye2-->
 <!--Adviser: @jinqiuheng-->
-<!-- md-trans-meta sourceCommit=b2b40ad27b0a04a8c75aa3540e06525fdca8ac20 translatedAt=2026-08-17T08:52:24.723Z pushedAt=2026-08-17T11:50:36.264Z -->
+<!-- md-trans-meta sourceCommit=b2b40ad27b0a04a8c75aa3540e06525fdca8ac20 translatedAt=2026-08-17T08:52:24.723Z pushedAt=2026-08-18T05:46:24.270Z -->
 
 This module provides APIs for sharing files, which allows a system app to grant the access permissions on a file in the public directory in the specified access mode to another app based on the file Uniform Resource Identifier (URI). It also provides APIs for managing persistent authorization, activating permissions, and querying the authorization status. The authorized app can perform operations such as open, read, and write on the file by calling the [@ohos.file.fs](js-apis-file-fs.md) APIs, implementing file sharing between apps, cross-app file editing, and document collaboration.
 
@@ -32,7 +32,7 @@ Enumerates the URI access modes for granting or activating permissions.
 | WRITE_MODE  | 0b10 | Write.|
 | CREATE_MODE<sup>20+</sup>  | 0b100 | Create. If no write permission is granted on the parent directory, the create permission of the target file or folder can be granted to create the file or folder. If the write permission is granted on the parent directory, no permission needs to be granted separately. |
 | DELETE_MODE<sup>20+</sup>  | 0b1000 | Delete. If no write permission is granted on the parent directory, the delete permission of the target file or folder can be granted to delete the file or folder. If the write permission is granted on the parent directory, no permission needs to be granted separately. |
-| RENAME_MODE<sup>20+</sup>  | 0b10000 | Rename. If no write permission is granted on the parent directory, the rename permission of the target file or folder can be granted to delete the file or folder. If the write permission is granted on the parent directory, no permission needs to be granted separately. |
+| RENAME_MODE<sup>20+</sup>  | 0b10000 | Rename. If no write permission is granted on the parent directory, the rename permission of the target file or folder can be granted to rename the file or folder. If the write permission is granted on the parent directory, no permission needs to be granted separately. |
 
 ## PolicyErrorCode<sup>11+</sup>
 
