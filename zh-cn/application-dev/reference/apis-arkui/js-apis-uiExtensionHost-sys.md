@@ -638,7 +638,7 @@ export default class EntryAbility extends UIExtensionAbility {
 
 ## 完整示例
 
-本示例展示文档中主要API在UIExtensionAbility中的基础使用方式，示例应用需采用系统签名，且`bundleName`为"com.example.uiextensiondemo", 被拉起的`UIExtensionAbility`为"ExampleUIExtensionAbility"。
+本示例展示文档中主要API在UIExtensionAbility中的基础使用方式，示例应用需采用系统签名，且`bundleName`为"com.example.uiextensiondemo"， 被拉起的`UIExtensionAbility`为"ExampleUIExtensionAbility"。
 
 - 示例应用中的EntryAbility(UIAbility)加载首页文件：`pages/Index.ets`，其中内容如下：
 
