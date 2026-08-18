@@ -1999,3 +1999,4 @@ Releases a struct instance. After the release, the handle is set to NULL. If ppS
 | Name | Description |
 | -- | -- |
 | [OH_AbilityRuntime_ModObjDispatcher_StructHandle](capi-abilityruntime-oh-abilityruntime-modularobjectdispatcher-struct8h.md)* ppStruct | Pointer to the struct handle to release. After the release, this pointer is set to NULL. |
+<!--no_check-->
