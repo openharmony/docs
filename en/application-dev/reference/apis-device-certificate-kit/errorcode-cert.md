@@ -267,7 +267,7 @@ The certificate has unidentified key extensions. All key extensions must be proc
 
 **Solution**
 
-You can ignore the error by setting [ignoreErrs](js-apis-cert.md#x509certvalidatorparams), and obtain the extension data through the certificate algorithm library APIs for verification.
+You can ignore the error by setting ignoreErrs, and obtain the extension data through the certificate algorithm library APIs for verification.
 
 ## 19030012 Host Name Mismatch
 
@@ -285,7 +285,7 @@ The subject alternative name (SAN) or common name (CN) of the certificate does n
 
 **Solution**
 
-Check whether the [hostnames](js-apis-cert.md#x509certvalidatorparams) parameter is correct. If it is correct, do not trust the certificate.
+Check whether the hostnames parameter is correct. If it is correct, do not trust the certificate.
 
 ## 19030013 Email Address Mismatch
 
@@ -303,7 +303,7 @@ The certificate does not contain the specified email address.
 
 **Solution**
 
-Check whether the [emailAddresses](js-apis-cert.md#x509certvalidatorparams) parameter is correctly set. If it is correct, do not trust the certificate.
+Check whether the emailAddresses parameter is correctly set. If it is correct, do not trust the certificate.
 
 ## 19030014 Key Usage Mismatch
 
@@ -321,7 +321,7 @@ The key usage extension of the certificate does not contain the specified key us
 
 **Solution**
 
-Check whether the [keyUsage](js-apis-cert.md#x509certvalidatorparams) parameter is correct. If it is correct, do not trust the certificate.
+Check whether the keyUsage parameter is correct. If it is correct, do not trust the certificate.
 
 ## 19030015 CRL Not Found
 
@@ -344,7 +344,7 @@ This error code is reported if the certificate revocation list (CRL) is not foun
 1. Check whether the CRL data is provided.
 2. If online CRL download is enabled, check whether the certificate contains the CDP extension.
 3. If online CRL download is enabled, check whether the Internet connection is normal and ensure normal Internet access.
-4. You can set [ignoreErrs](js-apis-cert.md#x509certvalidatorparams) to ignore the error indicating that the CRL is not found during verification of the certificate revocation status if it is allowed.
+4. You can set ignoreErrs to ignore the error indicating that the CRL is not found during verification of the certificate revocation status if it is allowed.
 
 ## 19030016 Invalid CRL
 
@@ -362,9 +362,9 @@ The effective time of the CRL is later than the current verification time.
 
 **Solution**
 
-1. You can set [ignoreErrs](js-apis-cert.md#x509certvalidatorparams) to ignore the error if the CRL effective time is allowed to be later than the current verification time.
-2. If [date](js-apis-cert.md#x509certvalidatorparams) is not set, check whether the device time is correct.
-3. If [date](js-apis-cert.md#x509certvalidatorparams) is set, check whether the parameter is set properly.
+1. You can set ignoreErrs to ignore the error if the CRL effective time is allowed to be later than the current verification time.
+2. If date is not set, check whether the device time is correct.
+3. If date is set, check whether the parameter is set properly.
 
 ## 19030017 CRL Expired
 
@@ -382,9 +382,9 @@ The expiration time of the CRL is earlier than the current verification time.
 
 **Solution**
 
-1. You can set [ignoreErrs](js-apis-cert.md#x509certvalidatorparams) to ignore the error if the CRL expiration time is allowed to be earlier than the current verification time.
-2. If [date](js-apis-cert.md#x509certvalidatorparams) is not set, check whether the device time is correct.
-3. If [date](js-apis-cert.md#x509certvalidatorparams) is set, check whether the parameter is set properly.
+1. You can set ignoreErrs to ignore the error if the CRL expiration time is allowed to be earlier than the current verification time.
+2. If date is not set, check whether the device time is correct.
+3. If date is set, check whether the parameter is set properly.
 
 ## 19030018 CRL Signature Verification Failure
 
@@ -443,7 +443,7 @@ This error code is reported if the OCSP response cannot be found.
 1. Check whether the OCSP response data is provided.
 2. If online OCSP check is enabled, check whether the certificate contains the OCSP URL.
 3. If online OCSP check is enabled, check whether the Internet connection is normal and ensure normal Internet access.
-4. You can set [ignoreErrs](js-apis-cert.md#x509certvalidatorparams) to ignore the error indicating that no OCSP is found during verification of the certificate revocation status if it is allowed.
+4. You can set ignoreErrs to ignore the error indicating that no OCSP is found during verification of the certificate revocation status if it is allowed.
 
 ## 19030021 Invalid OCSP response.
 
