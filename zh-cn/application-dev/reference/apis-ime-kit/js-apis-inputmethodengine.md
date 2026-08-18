@@ -2823,8 +2823,6 @@ setImmersiveEffect(effect: ImmersiveEffect): void
 
 **系统能力：** SystemCapability.MiscServices.InputMethodFramework
 
-**支持的设备类型：** phone, tablet
-
 **参数：**
 
 | 参数名   | 类型                   | 必填 | 说明     |
