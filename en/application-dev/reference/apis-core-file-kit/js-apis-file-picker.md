@@ -6,7 +6,7 @@
 <!--Designer: @hwzhangchuang; @Dyylll-->
 <!--Tester: @zsyztt; @yue-ye2; @fuwei-->
 <!--Adviser: @jinqiuheng-->
-<!-- md-trans-meta sourceCommit=8b6cf89b37c32b3dffd1d378ad719228fa45e034 translatedAt=2026-08-14T11:53:11.642Z pushedAt=2026-08-18T02:53:56.259Z -->
+<!-- md-trans-meta sourceCommit=8b6cf89b37c32b3dffd1d378ad719228fa45e034 translatedAt=2026-08-14T11:53:11.642Z pushedAt=2026-08-18T03:52:57.057Z -->
 
 The **Picker** module encapsulates APIs such as **DocumentViewPicker**, **AudioViewPicker**, and **PhotoViewPicker** to provide capabilities of selecting and saving files of different types. The **Picker** module can be used to start the system file selection page, where users can select or save files in a secure and controllable environment. Apps can use this module without requesting any permissions. An application can select the API as required. The APIs of this module must be called in UIAbility. Otherwise, the **FilePicker**, **AudioPicker**, or **PhotoPicker** cannot be started.
 
@@ -787,7 +787,7 @@ Enumerates the modes for saving documents.
 | Name |  Value|  Description|
 | ----- |  ---- | ---- |
 | DEFAULT  | 0  | Standard mode, which is applicable to saving common files. You can customize the saving behavior by setting parameters such as **newFileNames**, **defaultFilePathUri**, and **fileSuffixChoices**. |
-| DOWNLOAD | 1  | Download mode, which simplifies the saving process for file download. You can save files without specifying the file name and extension. <br>**Note:** The directories created in DOWNLOAD mode are used only to save files. There is no access isolation between directories. You are advised not to save sensitive appl data. |
+| DOWNLOAD | 1  | Download mode, which simplifies the saving process for file download. You can save files without specifying the file name and extension. <br>**Note:** The directories created in DOWNLOAD mode are used only to save files. There is no access isolation between directories. You are advised not to save sensitive app data. |
 
 ## MergeTypeMode<sup>15+</sup>
 
