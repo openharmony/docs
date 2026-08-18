@@ -1904,7 +1904,7 @@ startMoving(): void
 
 | 错误码ID | 错误信息                                                |
 | -------- | ------------------------------------------------------- |
-| 801 | capability not supported. [since 18] |
+| 801 | capability not supported. 适用版本：18+ |
 | 12800002 | input method engine error. Possible causes: 1.input method panel not created. 2.the input method application does not subscribe to related events. |
 | 12800013 | window manager service error. |
 | 12800017 | invalid panel type or panel flag. |
@@ -5125,7 +5125,7 @@ getAttachOptions(): AttachOptions
 
 | 错误码ID | 错误信息                                       |
 | -------- | ---------------------------------------------- |
-| 801 | Capability not supported. [since 19 - 19] |
+| 801 | Capability not supported.<br>适用版本：19-19 |
 
 > **注意：**
 >
@@ -5159,7 +5159,7 @@ on(type: 'attachOptionsDidChange', callback: Callback\<AttachOptions>): void
 
 | 错误码ID | 错误信息                                       |
 | -------- | ---------------------------------------------- |
-| 801 | Capability not supported. [since 19 - 19]. |
+| 801 | Capability not supported. 适用版本：19-19。 |
 
 > **注意：**
 >
