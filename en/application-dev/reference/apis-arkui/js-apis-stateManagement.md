@@ -1613,7 +1613,7 @@ Defines the optional parameters for [addMonitor](#addmonitor20), which are used 
 ## MonitorCallback<sup>20+</sup>
 type MonitorCallback = (monitorValue: IMonitor) => void
 
-Listener callback function of the [IMonitor](./arkui-ts/ts-state-management-watch-monitor.md#imonitor12) type.
+Listener callback function of the IMonitor type.
 
 **Atomic service API**: This API can be used in atomic services since API version 20.
 
