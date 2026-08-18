@@ -787,7 +787,8 @@ let certData: Uint8Array = new Uint8Array([
   0x30, 0x82, 0x0b, 0xc1, 0x02, 0x01
 ]);
 try {
-  let result: certificateManager.CMResult = certificateManager.installUserTrustedCertificateSync(certData, certificateManager.CertScope.CURRENT_USER);
+  let result: certificateManager.CMResult = certificateManager.installUserTrustedCertificateSync(certData,
+    certificateManager.CertScope.CURRENT_USER);
   let certUri = result.uri;
   if (certUri === undefined) {
     console.error('The result of install user trusted certificate is undefined.');
@@ -1107,7 +1108,7 @@ try {
       }
     }
   });
-} catch(error) {
+} catch (error) {
   console.error(`Failed to finish. Code: ${error.code}, message: ${error.message}`);
 }
 ```
@@ -1159,7 +1160,7 @@ try {
       console.info('Succeeded in finishing.');
     }
   });
-} catch(error) {
+} catch (error) {
   console.error(`Failed to finish. Code: ${error.code}, message: ${error.message}`);
 }
 ```
@@ -1231,7 +1232,7 @@ try {
     let err = error as BusinessError;
     console.error(`Failed to finish verification. Code: ${err.code}, message: ${err.message}`);
   });
-} catch(error) {
+} catch (error) {
   console.error(`Failed to finish. Code: ${error.code}, message: ${error.message}`);
 }
 ```
@@ -1279,7 +1280,7 @@ try {
       console.info('Succeeded in aborting.');
     }
   });
-} catch(error) {
+} catch (error) {
   console.error(`Failed to abort. Code: ${error.code}, message: ${error.message}`);
 }
 ```
@@ -1653,10 +1654,12 @@ try {
     }
   }).catch((error: Error) => {
     let err = error as BusinessError;
-    console.error(`Failed to get all private certificates installed by the application. Code: ${err.code}, message: ${err.message}`);
+    console.error(`Failed to get all private certificates installed by the application. ` +
+      `Code: ${err.code}, message: ${err.message}`);
   });
 } catch (error) {
-  console.error(`Failed to get all private certificates installed by the application. Code: ${error.code}, message: ${error.message}`);
+  console.error(`Failed to get all private certificates installed by the application. ` +
+    `Code: ${error.code}, message: ${error.message}`);
 }
 ```
 ## certificateManager.getCertificateStorePath<sup>18+</sup>

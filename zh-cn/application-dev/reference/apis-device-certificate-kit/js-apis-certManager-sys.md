@@ -906,7 +906,8 @@ let keystore: Uint8Array = new Uint8Array([
 ]);
 let keystorePwd: string = "123456";
 try {
-  certificateManager.installSystemAppCertificate(keystore, keystorePwd).then((cmResult: certificateManager.CMResult) => {
+  certificateManager.installSystemAppCertificate(keystore, keystorePwd)
+    .then((cmResult: certificateManager.CMResult) => {
     let uri: string = (cmResult?.uri == undefined) ? '' : cmResult.uri;
     console.info('Succeeded in installing system app certificate.');
   }).catch((error: Error) => {
