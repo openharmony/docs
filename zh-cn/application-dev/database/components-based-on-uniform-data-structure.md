@@ -58,9 +58,9 @@ struct Index {
       this.contentForm = {
         uniformDataType: 'general.content-form',
         title: 'Content form title',
-        thumbData: appIcon,
+        thumbData: thumbImage,
         description: 'Content form description',
-        appIcon: thumbImage,
+        appIcon: appIcon,
         appName: 'com.test.demo'
       };
     } catch (err) {
