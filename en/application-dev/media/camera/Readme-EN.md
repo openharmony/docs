@@ -1,60 +1,131 @@
 # Camera Kit
+
 <!--Kit: Camera Kit-->
 <!--Subsystem: Multimedia-->
 <!--Owner: @qano-->
 <!--Designer: @leo_ysl-->
 <!--Tester: @xchaosioda-->
 <!--Adviser: @w_Machine_cc-->
+<!-- md-trans-meta sourceCommit=2bba9ab01794224a7129c09e8cfdf2d8c563593f translatedAt=2026-08-10T09:22:53.561Z pushedAt=2026-08-10T14:22:17.928Z -->
 
 - [About This Kit](camera-overview.md)
+
 - [Requesting Camera Development Permissions](camera-preparation.md)
+
 - Mandatory Capabilities for Camera Application Development (ArkTS)<!--camera-dev-arkts-mandatory-->
+
   - [Camera Device Management (ArkTS)](camera-device-management.md)
+
   - [Device Input Management (ArkTS)](camera-device-input.md)
+
   - [Camera Session Management (ArkTS)](camera-session-management.md)
+
 - Fundamental Capabilities for Camera Application Development (ArkTS)<!--camera-dev-arkts-->
+
   - [Using the System Camera to Take Photos and Record Videos (CameraPicker)](camera-picker.md)
+
   - [Preview (ArkTS)](camera-preview.md)
+
   - [Dual-Channel Preview (ArkTS)](camera-dual-channel-preview.md)
+
   - [Photo Capture (ArkTS)](camera-shooting.md)
+
   - [Photo Capture Practices (ArkTS)](camera-shooting-case.md)
+
   - [Video Recording (ArkTS)](camera-recording.md)
+
   - [Video Recording Practices (ArkTS)](camera-recording-case.md)
-  - [Camera Metadata (ArkTS)](camera-metadata.md)
+
+  - [Metadata (ArkTS)](camera-metadata.md)
+
   - [Using the Flashlight (ArkTS)](camera-torch-use.md)
+
   - [Adapting Camera Changes in Different Fold States (ArkTS)](camera-foldable-display.md)
+
   - [Deferred Photo Delivery (ArkTS)](camera-deferred-capture.md)
+
   - [Deferred Photo Delivery Practices (ArkTS)](camera-deferred-capture-case.md)
+
   - [Moving Photos (ArkTS)](camera-moving-photo.md)
+
   - [Basic Camera Animation (ArkTS)](camera-animation.md)
+
   - [Using the Camera in the Worker Thread (ArkTS)](camera-worker.md)
+
   - [Practices for Camera Recovery from the Background (ArkTS)](camera-background-recovery.md)
+
   - [Practices for Automatic Camera Switching (ArkTS)](camera-auto-switch.md)
+
   - [White Balance Settings (ArkTS)](camera-whitebalance.md)
+
   - [Pressure Management (ArkTS)](camera-system-pressure.md)
+
   - [Camera Controller (ArkTS)](camera-control-center.md)
+
   - [Macro Photography Settings (ArkTS)](camera-macro.md)
-  - [Multi-Camera Concurrent Mode (ArkTS)](camera-concurrent-open.md)<!--RP1--><!--RP1End-->
+
+  - [Multi-Camera Concurrent Mode (ArkTS)](camera-concurrent-open.md)
+
+  - [YUV Photo Capture (ArkTS)](camera-yuv-shooting.md)<!--RP1--><!--RP1End-->
+
   <!--Del-->
+
   - [High-Performance Photo Capture (for System Applications Only) (ArkTS)](camera-deferred-photo-sys.md)
+
   - [Practices for High-Performance Photo Capture (for System Applications Only) (ArkTS)](camera-deferred-photo-case-sys.md)
+
   - [Depth Data (for System Applications Only) (ArkTS)](camera-depth-data-sys.md)
+
   - [Performance Optimization Practices (for System Applications Only) (ArkTS)](camera-performance-improvement-sys.md)
+
   <!--DelEnd-->
+
 - Mandatory Capabilities for Camera Application Development (C/C++)<!--camera-dev-native-mandatory-->
+
   - [Camera Device Management (C/C++)](native-camera-device-management.md)
+
   - [Device Input Management (C/C++)](native-camera-device-input.md)
+
   - [Camera Session Management (C/C++)](native-camera-session-management.md)
+
 - Fundamental Capabilities for Camera Application Development (C/C++)<!--camera-dev-native-->
+
   - [Preview (C/C++)](native-camera-preview.md)
+
   - [Secondary Processing of Preview Streams (C/C++)](native-camera-preview-imageReceiver.md)
+
   - [Photo Capture (C/C++)](native-camera-shooting.md)
+
   - [Photo Capture Practices (C/C++)](native-camera-shooting-case.md)
+
   - [Deferred Photo Delivery (C/C++)](native-camera-deferred-capture.md)
+
   - [Video Recording (C/C++)](native-camera-recording.md)
+
   - [Video Recording Practices (C/C++)](native-camera-recording-case.md)
+
   - [Camera Metadata (C/C++)](native-camera-metadata.md)
-  - [Using the Flashlight (C/C++)](native-camera-torch-use.md)
+
+  - [Using the Flashlight (C++)](native-camera-torch-use.md)
+
   - [Pressure Management (C/C++)](native-camera-system-pressure.md)
+
   - [Macro Photography Settings (C/C++)](native-camera-macro.md)
-  - [Multi-Camera Concurrent Mode (C/C++)](native-camera-concurrent-open.md)<!--RP2--><!--RP2End-->
+
+  - [Multi-Camera Concurrent Mode (C/C++)](native-camera-concurrent-open.md)
+
+  - [YUV Photo Capture (C/C++)](native-camera-yuv-shooting.md)<!--RP2--><!--RP2End-->
+
+- Camera Kit FAQs<!--camera-dev-faq-->
+
+  - Camera Fails to Start<!--camera-dev-faq-start-->
+
+    - [Camera API Call Sequence Issues](camera-api-faq.md)
+
+    - [Camera Preview Stream Startup Issues](camera-previewoutput-faq.md)
+
+    - [Session Configuration Issues](camera-sessionconfig-faq.md)
+
+  - [Camera Preview Rotation Issues](camera-rotation-faq.md)
+
+  - [White Balance Issues](camera-whitebalance-faq.md)

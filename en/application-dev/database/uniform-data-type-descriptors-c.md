@@ -1,22 +1,20 @@
 # UTDs (C/C++)
+
 <!--Kit: ArkData-->
 <!--Subsystem: DistributedDataManager-->
 <!--Owner: @jcwen-->
 <!--Designer: @junathuawei1; @zph000-->
 <!--Tester: @lj_liujing; @yippo; @logic42-->
 <!--Adviser: @ge-yafang-->
-<!-- md-trans-meta sourceCommit=deff468b8adbfa4199da5cbe7b6cbc33f2bddb1e translatedAt=2026-06-24T07:39:00.479Z pushedAt=2026-06-25T10:36:05.887Z -->
-
+<!-- md-trans-meta sourceCommit=814e5538573180f4836543a1c6592fa1ff24a7c3 translatedAt=2026-08-15T01:43:47.259Z pushedAt=2026-08-15T06:32:59.039Z -->
 
 ## When to Use
 
 The Unified Data Management Framework (UDMF) provides standards for data interaction across applications and devices, defines a unified data language, and improves data interaction efficiency. With secure and unified data channels, UDMF supports data access permissions and lifecycle management policies at different levels, achieving efficient data sharing.
 
-
 ## Basic Concepts
 
 - UTD<br>A uniform type descriptor (UTD) defines data of the same type to eliminate data type ambiguity. It contains the data type ID and types to which the current data type belongs. UTDs are generally used to filter or identify the data type in file preview and file sharing.
-
 
 ## Available APIs
 
@@ -28,12 +26,11 @@ For details about the APIs, see [utd.h](../reference/apis-arkdata/capi-utd-h.md)
 | void OH_Utd_Destroy(OH_Utd* pThis)                           | Destroys the pointer to an **OH_Utd** instance.                   |
 | const char** OH_Utd_GetTypesByFilenameExtension(const char* extension, unsigned int* count) | Obtains the uniform data types by file name extension.                       |
 | const char** OH_Utd_GetTypesByMimeType(const char* mimeType, unsigned int* count) | Obtains the uniform data types by MIME type.                         |
-| bool OH_Utd_Equals(OH_Utd* utd1, OH_Utd* utd2)               | Checks whether two UTDs are the same.                           |
-| void OH_Utd_DestroyStringList(const char** list, unsigned int count) | Destroys a UTD list.                                       |
-| bool OH_Utd_BelongsTo (const char *srcTypeId, const char *destTypeId) | Checks whether a UTD belongs to the target UTD.                 |
+| bool OH_Utd_Equals(OH_Utd* utd1, OH_Utd* utd2)               | Checks whether two UTDs are the same.                            |
+| void OH_Utd_DestroyStringList(const char** list, unsigned int count) | Destroys a string list.                                       |
+| bool OH_Utd_BelongsTo (const char *srcTypeId, const char *destTypeId) | Checks whether a UTD belongs to the target UTD.                  |
 | bool OH_Utd_IsLower (const char* srcTypeId, const char* destTypeId ) | Checks whether a UTD is a lower-level type of the target UTD. For example, **TYPE_SCRIPT** is a lower-level type of **SOURCE_CODE**, and **TYPE_SCRIPT** and **SOURCE_CODE** are lower-level types of **PLAIN_TEXT**.      |
 | bool OH_Utd_IsHigher (const char* srcTypeId, const char* destTypeId ) | Checks whether a UTD is a higher-level type of the target UTD. For example, **SOURCE_CODE** is a higher-level type of **TYPE_SCRIPT**, and **PLAIN_TEXT** is a higher-level type of **SOURCE_CODE** and **TYPE_SCRIPT**.      |
-
 
 ## Adding Dynamic Link Libraries
 
@@ -64,13 +61,21 @@ libudmf.so, libhilog_ndk.z.so
 ## Obtaining Different Types of Data and Comparing Their Relationships
 
 The following walks you through on how to use the UTD to obtain plaintext data.
+
 1. Obtain **typeId** of the UTD based on the file name extension **.txt**.
+
 2. Obtain **typeId** of the UTD based on the MIME type **text/plain**.
+
 3. Use the **typeId**s obtained to create two UTD instances.
+
 4. Check whether the two UTD instances are the same.
+
 5. Check whether a **typeId** belongs to another **typeId**.
+
 6. Check whether **typeIds1[0]** is a lower-level type of **typeIds2[0]**.
+
 7. Check whether **typeIds1[0]** is a higher-level type of **typeIds2[0]**.
+
 8. Destroy the pointers created.
 
 <!-- @[uniform_data_type_descriptors_c](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkData/Udmf/UniformDataTypeDescriptors_C/entry/src/main/cpp/napi_init.cpp) -->

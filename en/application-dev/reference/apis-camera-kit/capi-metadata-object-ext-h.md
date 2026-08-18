@@ -1,10 +1,12 @@
 # metadata_object_ext.h
+
 <!--Kit: Camera Kit-->
 <!--Subsystem: Multimedia-->
 <!--Owner: @qano-->
 <!--Designer: @leo_ysl-->
 <!--Tester: @xchaosioda-->
 <!--Adviser: @w_Machine_cc-->
+<!-- md-trans-meta sourceCommit=f0e09e3de648081eea4659387ebc6bc9008f04fc translatedAt=2026-08-11T02:02:06.030Z pushedAt=2026-08-12T03:21:22.184Z -->
 
 ## Overview
 
@@ -42,6 +44,7 @@ Declares the metadata object extension concepts.
 | [Camera_ErrorCode OH_MetadataObjectExt_GetRightEyeBoundingBox(const OH_Camera_MetadataObjectExt* metadataObjectExt, OH_Camera_Rect_Ext* boundingBox)](#oh_metadataobjectext_getrighteyeboundingbox) | Obtains the right eye bounding box of a metadata object (such as a face).|
 | [Camera_ErrorCode OH_MetadataObjectExt_GetEmotion(const OH_Camera_MetadataObjectExt* metadataObjectExt, OH_Camera_MetadataObjectEmotion* emotion)](#oh_metadataobjectext_getemotion) | Obtains the emotion of a metadata object (such as a face).|
 | [void OH_MetadataObjectExt_Destroy(OH_Camera_MetadataObjectExt** metadataObjectExt, uint32_t objectCount)](#oh_metadataobjectext_destroy) | Destroys an **OH_Camera_MetadataObjectExt** instance array.|
+| [bool OH_MetadataObjectExt_IsLockFocusTracked(const OH_Camera_MetadataObjectExt* metadataObjectExt)](#oh_metadataobjectext_islockfocustracked) | Checks whether the focus is locked for tracking. |
 
 ## Function Description
 
@@ -288,3 +291,27 @@ Destroys an **OH_Camera_MetadataObjectExt** instance array.
 | -- | -- |
 | [OH_Camera_MetadataObjectExt](capi-oh-camera-oh-camera-metadataobjectext.md)** metadataObjectExt | Pointer to an **OH_Camera_MetadataObjectExt** instance.|
 | uint32_t objectCount | Number of metadata objects to destroy.|
+
+### OH_MetadataObjectExt_IsLockFocusTracked()
+
+```c
+bool OH_MetadataObjectExt_IsLockFocusTracked(const OH_Camera_MetadataObjectExt* metadataObjectExt)
+```
+
+**Description**
+
+Checks whether the focus is locked for tracking.
+
+**Since**: 26.0.0
+
+**Parameters**
+
+| Name | Description |
+| -- | -- |
+| const [OH_Camera_MetadataObjectExt](capi-oh-camera-oh-camera-metadataobjectext.md)* metadataObjectExt | Pointer to an **OH_Camera_MetadataObjectExt** instance. |
+
+**Returns**
+
+| Type | Description |
+| -- | -- |
+| bool | Whether the focus is locked for tracking. The value **true** means it is locked, and **false** means it is not locked. |

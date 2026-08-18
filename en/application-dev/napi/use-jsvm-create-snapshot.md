@@ -1,10 +1,12 @@
-# Working with VM Snapshots Using JSVM-API 
-<!--Kit: NDK Development-->
+# Working with VM Snapshots Using JSVM-API
+
+<!--Kit: ArkTS-->
 <!--Subsystem: arkcompiler-->
-<!--Owner: @yuanxiaogou; @string_sz-->
+<!--Owner: @yuanxiaogou-->
 <!--Designer: @knightaoko-->
 <!--Tester: @test_lzz-->
-<!--Adviser: @fang-jinxu-->
+<!--Adviser: @k1ngqaquuu-->
+<!-- md-trans-meta sourceCommit=fa3fc214ef4b265f033bc3f0d0a2df54f511a497 translatedAt=2026-08-12T06:35:05.132Z pushedAt=2026-08-12T11:02:18.417Z -->
 
 ## Introduction
 
@@ -22,6 +24,7 @@ It helps simplify complex programming tasks and shorten the creation time of a J
 |----------------------------|-------------------------------|
 | OH_JSVM_CreateSnapshot     | Creates a VM startup snapshot.       |
 |OH_JSVM_CreateEnvFromSnapshot| Creates an environment based on the start snapshot of a VM.|
+
 ## Example
 
 ### OH_JSVM_CreateSnapshot & OH_JSVM_CreateEnvFromSnapshot
@@ -30,9 +33,11 @@ Use **OH_JSVM_CreateSnapshot** to create a VM startup snapshot.
 
 CPP code:
 
-**NOTE**<br>Register the external dependencies of the JSVM with **initOptions.externalReferences** in **OH_JSVM_Init**.
-```cpp
-// hello.cpp
+**Note:** During OH_JSVM_Init, register JSVM's external dependencies with `initOptions.externalReferences`.
+
+<!-- @[oh_jsvm_create_snapshot_and_create_env_from_snapshot](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/JSVMAPI/JsvmUsageGuide/UsageInstructionsOne/createsnapshot/src/main/cpp/hello.cpp) -->
+
+``` C++
 #include "napi/native_api.h"
 #include "ark_runtime/jsvm.h"
 #include <hilog/log.h>
@@ -69,8 +74,8 @@ static int g_aa = 0;
         }                                                                                                           \
     } while (0)
 
-// Call theCall and check whether the return value is JSVM_OK.
-// If no, call GET_AND_THROW_LAST_ERROR to process the error and return retVal.
+// Used to call theCall and check whether its return value is JSVM_OK.
+// If not, call GET_AND_THROW_LAST_ERROR to handle the error and return retVal.
 #define JSVM_CALL_BASE(env, theCall, retVal)                                                         \
     do {                                                                                             \
         JSVM_Status cond = theCall;                                                                  \
@@ -87,76 +92,76 @@ static int g_aa = 0;
         }                                                                                            \
     } while (0)
 
-// Simplified version of JSVM_CALL_BASE, which returns nullptr.
+// A simplified version of JSVM_CALL_BASE that returns nullptr.
 #define JSVM_CALL(theCall) JSVM_CALL_BASE(env, theCall, nullptr)
 
 static const int MAX_BUFFER_SIZE = 128;
-// Allow the JSVM to call the CreateHelloString() function when needs, using the callback struct and external references.
+// The CreateHelloString() function must be bound to the JSVM virtual machine for normal creation of the OH_JSVM_CreateSnapshot virtual machine snapshot.
 static JSVM_Value CreateHelloString(JSVM_Env env, JSVM_CallbackInfo info)
 {
     JSVM_Value outPut;
     OH_JSVM_CreateStringUtf8(env, "Hello world!", JSVM_AUTO_LENGTH, &outPut);
     return outPut;
 }
-// Enable the JSVM to call the bound function through external references.
+// Provides external references so that the JavaScript environment can call the bound function.
 static JSVM_CallbackStruct helloCb = {CreateHelloString, nullptr};
 
-static intptr_t externals[] = {
+static intptr_t g_externals[] = {
     (intptr_t)&helloCb,
     0,
 };
 
 static JSVM_Value RunVMScript(JSVM_Env env, std::string &src)
 {
-    // Open the handle scope.
+    // Open the handleScope scope.
     JSVM_HandleScope handleScope;
     OH_JSVM_OpenHandleScope(env, &handleScope);
     JSVM_Value jsStr = nullptr;
     OH_JSVM_CreateStringUtf8(env, src.c_str(), src.size(), &jsStr);
-    // Compile the JS code.
+    // Compile the JavaScript code.
     JSVM_Script script;
     OH_JSVM_CompileScript(env, jsStr, nullptr, 0, true, nullptr, &script);
-    // Execute the JS code.
+    // Execute the JavaScript code.
     JSVM_Value result = nullptr;
     OH_JSVM_RunScript(env, script, &result);
-    // Close the handle scope.
+    // Close the handleScope scope.
     OH_JSVM_CloseHandleScope(env, handleScope);
     return result;
 }
-// Define OH_JSVM_CreateSnapshot.
+// Sample method for OH_JSVM_CreateSnapshot.
 static void CreateVMSnapshot()
 {
-    // Create a JSVM instance and open the VM scope.
+    // Create a JavaScript virtual machine instance and open the VM scope.
     JSVM_VM vm;
     JSVM_CreateVMOptions vmOptions;
     memset(&vmOptions, 0, sizeof(vmOptions));
-    // Use isForSnapshotting to set whether the VM is used for creating snapshots.
+    // isForSnapshotting sets whether this virtual machine is used for creating snapshots.
     vmOptions.isForSnapshotting = true;
     OH_JSVM_CreateVM(&vmOptions, &vm);
     JSVM_VMScope vmScope;
     OH_JSVM_OpenVMScope(vm, &vmScope);
-    // Create a JS environment and open the environment scope.
+    // Create a JavaScript environment and open the environment scope.
     JSVM_Env env;
-    // Register the native function as a method that can be called from JS.
+    // Register the native function as a JavaScript-callable method.
     JSVM_PropertyDescriptor descriptor[] = {
         {"createHelloString", nullptr, &helloCb, nullptr, nullptr, nullptr, JSVM_DEFAULT},
     };
     OH_JSVM_CreateEnv(vm, 1, descriptor, &env);
     JSVM_EnvScope envScope;
     OH_JSVM_OpenEnvScope(env, &envScope);
-    // Use OH_JSVM_CreateSnapshot to create a VM startup snapshot.
+    // Use OH_JSVM_CreateSnapshot to create a startup snapshot of the virtual machine.
     const char *blobData = nullptr;
     size_t blobSize = 0;
     JSVM_Env envs[1] = {env};
     OH_JSVM_CreateSnapshot(vm, 1, envs, &blobData, &blobSize);
     // Save the snapshot to a file.
-    // Save the snapshot data to the /data/storage/el2/base/files/test_blob.bin directory, which is a sandbox directory.
-    // For example, the bundle name is com.example.jsvm. The snapshot file is saved in /data/app/el2/100/base/com.example.jsvm/files/test_blob.bin.
-    std::ofstream file(
-        "/data/storage/el2/base/files/test_blob.bin", std::ios::out | std::ios::binary | std::ios::trunc);
+    // Save the snapshot data. /data/storage/el2/base/files/test_blob.bin is the sandbox path.
+    // Taking the bundle name com.example.jsvm as an example, the actual file is saved to /data/app/el2/100/base/com.example.jsvm/files/test_blob.bin.
+    std::ofstream file("/data/storage/el2/base/files/test_blob.bin",
+                       std::ios::out | std::ios::binary | std::ios::trunc);
     file.write(blobData, blobSize);
     file.close();
-    // Close and destroy the environment and the VM.
+    // Close and destroy the environment and virtual machine.
     OH_JSVM_CloseEnvScope(env, envScope);
     OH_JSVM_DestroyEnv(env);
     OH_JSVM_CloseVMScope(vm, vmScope);
@@ -165,7 +170,7 @@ static void CreateVMSnapshot()
 
 static void RunVMSnapshot()
 {
-    // The lifespan of blobData cannot be shorter than that of the VM.
+    // The lifecycle of blobData must not be shorter than that of vm.
     // Read the snapshot from the file.
     std::vector<char> blobData;
     std::ifstream file("/data/storage/el2/base/files/test_blob.bin", std::ios::in | std::ios::binary | std::ios::ate);
@@ -175,7 +180,7 @@ static void RunVMSnapshot()
     file.read(blobData.data(), blobSize);
     file.close();
     OH_LOG_INFO(LOG_APP, "Test JSVM RunVMSnapshot read file blobSize = : %{public}ld", blobSize);
-    // Use the snapshot data to create a VM instance.
+    // Create a virtual machine instance using the snapshot data.
     JSVM_VM vm;
     JSVM_CreateVMOptions vmOptions;
     memset(&vmOptions, 0, sizeof(vmOptions));
@@ -184,12 +189,12 @@ static void RunVMSnapshot()
     OH_JSVM_CreateVM(&vmOptions, &vm);
     JSVM_VMScope vmScope;
     OH_JSVM_OpenVMScope(vm, &vmScope);
-    // Create an environment from the snapshot.
+    // Create the environment env from the snapshot.
     JSVM_Env env;
     OH_JSVM_CreateEnvFromSnapshot(vm, 0, &env);
     JSVM_EnvScope envScope;
     OH_JSVM_OpenEnvScope(env, &envScope);
-    // Execute the JS script. createHelloString() is defined in env of the snapshot record.
+    // Execute the JS script. createHelloString() is defined in the env recorded by the snapshot.
     std::string src = "createHelloString()";
     JSVM_Value result = RunVMScript(env, src);
     // Check the script execution result before closing the environment.
@@ -198,7 +203,7 @@ static void RunVMSnapshot()
     if (strcmp(str, "Hello world!") != 0) {
         OH_LOG_ERROR(LOG_APP, "jsvm fail file: %{public}s line: %{public}d", __FILE__, __LINE__);
     }
-    // Close and destroy the environment and the VM.
+    // Close and destroy the environment and virtual machine.
     OH_JSVM_CloseEnvScope(env, envScope);
     OH_JSVM_DestroyEnv(env);
     OH_JSVM_CloseVMScope(vm, vmScope);
@@ -208,10 +213,10 @@ static void RunVMSnapshot()
 
 static JSVM_Value AdjustExternalMemory(JSVM_Env env, JSVM_CallbackInfo info)
 {
-    // If external dependencies exist when creating a VM snapshot, register the external dependencies with initOptions.externalReferences in OH_JSVM_Init.
-    // Create a VM snapshot and save it to a file.
+    // When creating a virtual machine snapshot, if there are external dependencies, register them in initOptions.externalReferences during OH_JSVM_Init.
+    // Create a virtual machine snapshot and save it to a file.
     CreateVMSnapshot();
-    // The snapshot records the specific JS execution environment and can be used to quickly restore the JS execution context environment across processes.
+    // A snapshot can record a specific JS execution environment and can be used across processes to quickly restore the JS execution context.
     RunVMSnapshot();
     JSVM_Value result = nullptr;
     OH_JSVM_CreateInt32(env, 0, &result);
@@ -222,13 +227,13 @@ static JSVM_CallbackStruct param[] = {
     {.data = nullptr, .callback = AdjustExternalMemory},
 };
 static JSVM_CallbackStruct *method = param;
-// Set a property descriptor named adjustExternalMemory and associate it with a callback. This allows the AdjustExternalMemory callback to be called from JS.
+// Alias for the AdjustExternalMemory method, for JS invocation.
 static JSVM_PropertyDescriptor descriptor[] = {
     {"adjustExternalMemory", nullptr, method, nullptr, nullptr, nullptr, JSVM_DEFAULT},
 };
 
-// Call the C++ code from JS.
-const char *srcCallNative = R"JS(adjustExternalMemory();)JS";
+// Sample test JS.
+const char *SRC_CALL_NATIVE = R"JS(adjustExternalMemory();)JS";
 
 static int32_t TestJSVM()
 {
@@ -239,35 +244,35 @@ static int32_t TestJSVM()
     JSVM_EnvScope envScope;
     JSVM_HandleScope handleScope;
     JSVM_Value result;
-    // Initialize the JSVM instance.
+    // Initialize the JavaScript engine instance.
     if (g_aa == 0) {
         g_aa++;
-        initOptions.externalReferences = externals;
+        initOptions.externalReferences = g_externals;
         int argc = 0;
         char **argv = nullptr;
         initOptions.argc = &argc;
         initOptions.argv = argv;
         CHECK(OH_JSVM_Init(&initOptions));
     }
-    // Create a JSVM environment.
+    // Create the JSVM environment.
     CHECK(OH_JSVM_CreateVM(nullptr, &vm));
-    CHECK(OH_JSVM_CreateEnv(vm, sizeof(descriptor) / sizeof(descriptor[0]), descriptor, &env));
     CHECK(OH_JSVM_OpenVMScope(vm, &vmScope));
+    CHECK(OH_JSVM_CreateEnv(vm, sizeof(descriptor) / sizeof(descriptor[0]), descriptor, &env));
     CHECK_RET(OH_JSVM_OpenEnvScope(env, &envScope));
     CHECK_RET(OH_JSVM_OpenHandleScope(env, &handleScope));
 
     // Call the test function through the script.
     JSVM_Script script;
     JSVM_Value jsSrc;
-    CHECK_RET(OH_JSVM_CreateStringUtf8(env, srcCallNative, JSVM_AUTO_LENGTH, &jsSrc));
+    CHECK_RET(OH_JSVM_CreateStringUtf8(env, SRC_CALL_NATIVE, JSVM_AUTO_LENGTH, &jsSrc));
     CHECK_RET(OH_JSVM_CompileScript(env, jsSrc, nullptr, 0, true, nullptr, &script));
     CHECK_RET(OH_JSVM_RunScript(env, script, &result));
 
     // Destroy the JSVM environment.
     CHECK_RET(OH_JSVM_CloseHandleScope(env, handleScope));
     CHECK_RET(OH_JSVM_CloseEnvScope(env, envScope));
-    CHECK(OH_JSVM_CloseVMScope(vm, vmScope));
     CHECK(OH_JSVM_DestroyEnv(env));
+    CHECK(OH_JSVM_CloseVMScope(vm, vmScope));
     CHECK(OH_JSVM_DestroyVM(vm));
     return 0;
 }
@@ -296,14 +301,13 @@ static napi_module demoModule = {
     .nm_flags = 0,
     .nm_filename = nullptr,
     .nm_register_func = Init,
-    .nm_modname = "entry",
+    .nm_modname = "createsnapshot",
     .nm_priv = ((void *)0),
     .reserved = {0},
 };
 
 extern "C" __attribute__((constructor)) void RegisterEntryModule(void) { napi_module_register(&demoModule); }
 ```
-<!-- @[oh_jsvm_create_snapshot_and_create_env_from_snapshot](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/JSVMAPI/JsvmUsageGuide/UsageInstructionsOne/createsnapshot/src/main/cpp/hello.cpp) -->
 
 ArkTS code:
 
@@ -332,13 +336,17 @@ struct Index {
   }
 }
 ```
- 
+
+Execution Result
 
 Log output when the screen is clicked once:
+
 ```ts
 Test JSVM RunVMSnapshot read file blobSize = : 300064
 ```
+
 Log output when the screen is clicked multiple times:
+
 ```ts
 Test JSVM RunVMSnapshot read file blobSize = : 300176
 Test JSVM RunVMSnapshot read file blobSize = : 300064
@@ -347,4 +355,5 @@ Test JSVM RunVMSnapshot read file blobSize = : 300032
 Test JSVM RunVMSnapshot read file blobSize = : 300176
 Test JSVM RunVMSnapshot read file blobSize = : 300048
 ```
+
 **blobSize** is the snapshot file size obtained through **file.tellg()** when the file is read. Therefore, different values are displayed.

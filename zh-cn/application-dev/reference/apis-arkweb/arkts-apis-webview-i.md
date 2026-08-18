@@ -49,15 +49,15 @@ Web组件返回的请求/响应头对象。
 
 | 名称           | 类型       | 只读 | 可选 | 说明                         |
 | -------------- | --------- | ---- | ---- | ---------------------------- |
-| schemeName     | string    | 否   | 否   | 自定义协议名称。最大长度为32，其字符仅支持小写字母、数字、'.'、'+'、'-'，同时需要以字母开头。        |
+| schemeName     | string    | 否   | 否   | 自定义协议名称。最大长度为32，其字符仅支持小写字母、数字、'.'、'+'、'-'，同时需要以字母开头。不符合上述限制时，该自定义协议配置不生效。        |
 | isSupportCORS  | boolean   | 否   | 否   | 是否支持跨域请求。<br>true表示支持跨域请求，false表示不支持跨域请求。<br>默认值：true。    |
 | isSupportFetch | boolean   | 否   | 否   | 是否支持fetch请求。<br>true表示支持fetch请求，false表示不支持fetch请求。<br>默认值：true。           |
-| isStandard<sup>12+</sup> | boolean   | 否   | 是   | 设置了该选项的scheme是否将作为标准scheme进行处理。标准scheme需要符合RFC 1738第3.1节中定义的URL规范化和解析规则。<br>true表示设置了该选项的scheme将作为标准scheme进行处理，false表示设置了该选项的scheme不作为标准scheme进行处理。<br>默认值：true。           |
+| isStandard<sup>12+</sup> | boolean   | 否   | 是   | 设置了该选项的scheme是否将作为标准scheme进行处理。标准scheme需要符合RFC 1738第3.1节中定义的URL解析规则以及RFC 3986第6.2节中定义的URL规范化规则。<br>true表示设置了该选项的scheme将作为标准scheme进行处理，false表示设置了该选项的scheme不作为标准scheme进行处理。<br>默认值：true。           |
 | isLocal<sup>12+</sup> | boolean   | 否   | 是   | 设置了该选项的scheme是否将使用与“file”协议相同的安全规则来处理。<br>true表示设置了该选项的scheme将使用与“file”协议相同的安全规则来处理，false表示设置了该选项的scheme不使用与“file”协议相同的安全规则来处理。<br>默认值：true。           |
-| isDisplayIsolated<sup>12+</sup> | boolean   | 否   | 是   | 设置了该选项的scheme的内容是否只能从相同scheme的其他内容中显示或访问。<br>true表示设置了该选项的scheme的内容只能从相同scheme的其他内容中显示或访问，false表示设置了该选项的scheme的内容不是只能从相同scheme的其他内容中显示或访问。<br>默认值：true。           |
+| isDisplayIsolated<sup>12+</sup> | boolean   | 否   | 是   | 设置了该选项的scheme的内容是否只能从相同scheme的其他内容中显示或访问。<br>true表示设置了该选项的scheme的内容只能从相同scheme的其他内容中显示或访问，false表示设置了该选项的scheme的内容允许从其他scheme的内容中显示或访问。<br>默认值：true。           |
 | isSecure<sup>12+</sup> | boolean   | 否   | 是   | 设置了该选项的scheme是否将使用与应用于“https”的安全规则相同的安全规则来处理。true表示设置了该选项的scheme将使用与应用于“https”的安全规则相同的安全规则来处理，false表示设置了该选项的scheme不使用与应用于“https”的安全规则相同的安全规则来处理。<br>默认值：true。           |
-| isCspBypassing<sup>12+</sup> | boolean   | 否   | 是   | 设置了该选项的scheme可以绕过内容安全策略（CSP）检查。<br>true表示设置了该选项的scheme可以绕过内容安全策略（CSP）检查，false表示设置了该选项的scheme不可以绕过内容安全策略（CSP）检查。<br>默认值：true。<br>在大多数情况下，当设置isStandard为true时，不应设置此值。         |
-| isCodeCacheSupported<sup>12+</sup> | boolean   | 否   | 是   | 设置了该选项的scheme的js资源是否支持生成code cache。<br>true表示设置了该选项的scheme的js资源支持生成code cache，false表示设置了该选项的scheme的js资源不支持生成code cache。<br>默认值：false。         |
+| isCspBypassing<sup>12+</sup> | boolean   | 否   | 是   | 设置了该选项的scheme可以绕过内容安全策略（CSP）检查。<br>true表示设置了该选项的scheme可以绕过内容安全策略（CSP）检查，false表示设置了该选项的scheme不可以绕过内容安全策略（CSP）检查。<br>默认值：true。<br>当设置isStandard为true时，不应设置此值。若此时仍设置isCspBypassing为true，CSP检查绕过的行为可能不符合预期。         |
+| isCodeCacheSupported<sup>12+</sup> | boolean   | 否   | 是   | 设置了该选项的scheme的JavaScript资源是否支持生成code cache。<br>true表示设置了该选项的scheme的JavaScript资源支持生成code cache，false表示设置了该选项的scheme的JavaScript资源不支持生成code cache。<br>默认值：false。         |
 
 ## RequestInfo<sup>12+</sup>
 
@@ -161,17 +161,6 @@ Web组件预编译JavaScript生成字节码缓存的配置对象，用于控制�
 | type | [WebHitTestType](./arkts-apis-webview-e.md#webhittesttype) | 否 | 否 | 当前被点击区域的元素类型。|
 | extra | string        | 否 | 否 |点击区域的附加参数信息。若被点击区域为图片或链接，则附加参数信息为其url地址。 |
 
-## ControllerAttachState<sup>20+</sup>
-
-WebViewController与Web组件的绑定状态。
-
-**系统能力：** SystemCapability.Web.Webview.Core
-
-| 名称 | 值 | 说明 |
-| ------------------------------- | - | ---------- |
-| UNATTACHED | 0 | 未绑定状态。 |
-| ATTACHED   | 1 | 已绑定状态。 |
-
 ## BlanklessInfo<sup>20+</sup>
 
 页面首屏加载预测信息，主要包括首屏相似度预测值、首屏加载耗时预测值、预测错误码，应用需根据此信息来决策是否启用无白屏加载插帧方案。
@@ -269,11 +258,11 @@ cookie的相关字段。
 | 名称 | 类型 | 只读 | 可选 | 说明 |
 | ---- | --- | ---- | ---- | ---- |
 | samesitePolicy | [WebHttpCookieSameSitePolicy](./arkts-apis-webview-e.md#webhttpcookiesamesitepolicy23) | 否 | 否 | cookie的同站策略。 |
-| expiresDate | string | 否 | 否 | cookie的过期时间。时间格式详见[Date](https://developer.mozilla.org/zh-CN/docs/Web/HTTP/Reference/Headers/Date)。 |
+| expiresDate | string | 否 | 否 | cookie的过期时间。时间格式详见[Date](https://developer.mozilla.org/zh-CN/docs/Web/HTTP/Reference/Headers/Date)。传入不符合该格式的时间字符串时，该cookie设置不生效。 |
 | name | string | 否 | 否 | cookie的名称。 |
 | isSessionCookie | boolean | 否 | 否 | 标记该cookie是否是session cookie。<br>true表示是session cookie，false表示不是session cookie。 |
 | value | string | 否 | 否 | cookie的值。 |
 | path | string | 否 | 否 | cookie的路径。 |
-| isHttpOnly | boolean | 否 | 否 | 标记该cookie是否只能通过http请求访问。<br>true表示仅能通过http访问，不能通过JavaScript访问，false表示可以通过JavaScript访问。 |
-| isSecure | boolean | 否 | 否 | 标记该cookie是否只能通过https发送。<br>true表示仅能通过https发送，不能通过http发送，false表示可以通过http发送。 |
+| isHttpOnly | boolean | 否 | 否 | 标记该cookie是否只能通过HTTP请求访问。<br>true表示仅能通过HTTP访问，不能通过JavaScript访问，false表示可以通过JavaScript访问。 |
+| isSecure | boolean | 否 | 否 | 标记该cookie是否只能通过HTTPS发送。<br>true表示仅能通过HTTPS发送，不能通过HTTP发送，false表示可以通过HTTP发送。 |
 | domain | string | 否 | 否 | 指定哪些域名可以访问该cookie。 |

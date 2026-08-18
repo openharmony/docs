@@ -1,13 +1,16 @@
 #  Using WebGL to Draw Graphics
+
 <!--Kit: ArkGraphics 2D-->
 <!--Subsystem: Graphics-->
 <!--Owner: @samhu1989-->
 <!--Designer: @shi-yang-2012-->
 <!--Tester: @zhaoxiaoguang2-->
 <!--Adviser: @ge-yafang-->
+<!-- md-trans-meta sourceCommit=da9e8ddad7f6a944d945f3648baa90ea33d18b68 translatedAt=2026-08-14T10:11:46.587Z pushedAt=2026-08-16T01:50:35.163Z -->
+
 ## When to Use
 
-Web Graphics Library (WebGL) is used for rendering interactive 2D graphics. WebGL used in OpenHarmony is based on OpenGL for Embedded Systems (OpenGL ES). It can be used in the HTML5 **\<canvas>** element without using plug-ins and supports cross-platform. WebGL is programmed by JavaScript code. Its APIs can implement graphics rendering and acceleration by using GPU hardware provided by the user equipment. For more information, see [WebGL™](https://www.khronos.org/registry/webgl/specs/latest/1.0/).
+WebGL, which stands for Web Graphics Library, is primarily used for interactive rendering of 2D graphics. The WebGL implementation currently used in OpenHarmony is based on OpenGL ES, a subset of OpenGL, and can be used within the HTML5 **Canvas** element without the need for plugins, supporting cross‑platform deployment. WebGL programs are written in JavaScript and leverage the GPU hardware provided by the user's device for graphics rendering and acceleration through the APIs used. For more information, see [WebGL™ Specification](https://registry.khronos.org/webgl/specs/latest/1.0/).
 
 > **NOTE**
 >
@@ -23,7 +26,7 @@ The shader program, also known as WebGL program, is a JavaScript object responsi
 
 Shaders are instructions and data that run in a graphics card. In WebGL, shaders are written in the OpenGL Shading Language (GLSL).
 
-There are vertex shaders and fragment shaders. The interaction between vertex shaders and fragment shaders involves rasterization.
+A complete shader consists of a vertex shader and a fragment shader. The interaction between vertex shaders and fragment shaders involves rasterization.
 
 - The vertex shader is mainly used to receive the coordinates of a point in a 3D space, convert the coordinates into coordinates in a 2D space, and output the coordinates.
 
@@ -35,12 +38,11 @@ Rasterization is the process of converting the coordinates in a 2D space output 
 
 ### Frame Buffer
 
-The frame buffer provides an alternative rendering target for the drawing buffer. They are a collection of colors, depths, and template buffers and are usually used to render images.
+The frame buffer provides an alternative rendering target for the drawing buffer. They are a collection of colors, depths, and stencil buffers and are usually used to render images.
 
-###  Texture
+### Texture
 
 A texture is an image that can be applied to the surface of a 3D model. Textures in WebGL have many properties, including width, height, format, and type. When using a texture, load it into WebGL and bind it to a texture unit.
-
 
 ## Variables and APIs
 
@@ -71,21 +73,21 @@ A texture is an image that can be applied to the surface of a 3D model. Textures
 | webgl.createBuffer(): WebGLBuffer \| null                    | Creates and initializes a WebGL buffer.                         |
 | webgl.bindBuffer(target: GLenum, buffer: WebGLBuffer \| null): void | Binds a WebGL buffer to the target.                     |
 | webgl.bufferData(target: GLenum, srcData: ArrayBufferView, usage: GLenum, srcOffset: GLuint, length?: GLuint): void | Creates and initializes the WebGL buffer's data store.                       |
-| webgl.getAttribLocation(program: WebGLProgram, name: string): GLint | Obtains the address of the **attribute** variable in the shader from the given WebGL program.|
-| webgl.vertexAttribPointer(index GLuint, size: GLint, type: GLenum, normalized: GLboolean, stride: GLsizei, offset: GLintptr): void | Assigns a Buffer object to a variable.                              |
-| webgl.enableVertexAttribArray(index: GLuint): void           | Connects a variable to the Buffer object allocated to it.                      |
-| webgl.clearColor(red: GLclampf, green:GLclampf, blue: GLclampf, alpha: GLclampf): void | Clears the specified color on the canvas.                        |
-| webgl.clear(mask: GLbitfield): void                          | Clears the canvas.                                  |
-| webgl.drawArrays(mode: GLenum, first:;GLint, count: GLsizei): void | Draws data.                                        |
+| webgl.getAttribLocation(program: WebGLProgram, name: string): GLint | Obtains the address of the attribute variable from the given WebGL shader program. |
+| webgl.vertexAttribPointer(index GLuint, size: GLint, type: GLenum, normalized: GLboolean, stride: GLsizei, offset: GLintptr): void | Assigns a buffer object to a variable.                              |
+| webgl.enableVertexAttribArray(index: GLuint): void           | Connects a variable to the buffer object allocated to it.                      |
+| webgl.clearColor(red: GLclampf, green: GLclampf, blue: GLclampf, alpha: GLclampf): void | Clears the canvas to the specified color.                         |
+| webgl.clear(mask: GLbitfield): void                          | Clears the canvas.                                   |
+| webgl.drawArrays(mode: GLenum, first: GLint, count: GLsizei): void | Draws data.                                         |
 | webgl.flush(): void                                          | Flushes data to the GPU and clears the buffer.                           |
 | webgl.createProgram(): WebGLProgram \| null                  | Creates a WebGLProgram object.                                  |
 
 ## How to Develop
 
- The following uses a color square as an example to describe how to draw a 2D graphic using WebGL.
- 
+The following uses a colored square as an example to demonstrate the process of drawing 2D graphics using WebGL.
+
 1. Before using WebGL for 3D rendering, create a **\<canvas>** element. The following code snippet creates a **\<canvas>** element and sets an onclick event handler to initialize the WebGL context.
- 
+
    ```hml
     <div class="container">
         <canvas ref="canvas1" style="width : 400px; height : 400px; background-color : lightyellow;"></canvas>
@@ -116,12 +118,16 @@ A texture is an image that can be applied to the surface of a 3D model. Textures
      gl.clear(gl.COLOR_BUFFER_BIT);
    }
    ```
+
 3. Define the vertex shader.
 
-   The vertex shader needs to perform the necessary transformation (for example, adjustment or calculation) on the vertex coordinates, saves the new vertices in a special variable provided by GLSL, and returns the variable.
+   The vertex shader needs to perform the necessary transformations on the vertex coordinates, make other adjustments or calculations on a per‑vertex basis, and then return the transformed vertices by storing them in the special variables provided by GLSL.
 
    Before performing matrix calculations, you need to import the open-source library gl-matrix. You can download it from the [gl-matrix official website](https://glmatrix.net/) or install it using the following npm command:
    `npm install gl-matrix`
+
+   `npm install gl-matrix`
+
    ```js
    // Import mat4.
    import { mat4 } from 'gl-matrix'
@@ -137,7 +143,7 @@ A texture is an image that can be applied to the surface of a 3D model. Textures
 
 4. Define the fragment shader.
 
-   After the vertex shader processes the vertices, the fragment shader is called once by each pixel to be drawn.
+   After the vertex shader processes the vertices, the fragment shader is called once for each pixel of every graphic to be drawn.
 
    ```js
    const fsSource = `
@@ -146,6 +152,7 @@ A texture is an image that can be applied to the surface of a 3D model. Textures
        }
     `;
    ```
+
 5. Pass the shader to WebGL.
 
    Pass the vertex shader and fragment shader defined to WebGL and compile them together.
@@ -190,6 +197,7 @@ A texture is an image that can be applied to the surface of a 3D model. Textures
      return shader;
    }
    ```
+
 6. Find the input location assigned by WebGL.
 
    - After creating the shader program, find the input location allocated by WebGL. There is one property and two Uniforms.
@@ -217,7 +225,7 @@ A texture is an image that can be applied to the surface of a 3D model. Textures
 
    - Call the **createBuffer()** function of **gl** to obtain a buffer object and store it in the vertex buffer. Then call the **bindBuffer()** function to bind the context.
 
-   - Create a JavaScript array to record each vertex of the square, convert the JavaScript array into an array of the WebGL floating-point type, and pass the latter to the **bufferData()** function of **gl** to establish the vertices of the object.
+   - Create a JavaScript array to record each vertex of each square. Then convert it into a WebGL floating‑point typed array and pass it to the **bufferData()** method of the gl object to set up the object's vertices.
 
    ```js
    function initBuffers(gl) {
@@ -233,7 +241,7 @@ A texture is an image that can be applied to the surface of a 3D model. Textures
      gl.bindBuffer(gl.ARRAY_BUFFER, positionBuffer);
      // Create an array to hold the vertices of the square.
      const positions = [1.0, 1.0, -1.0, 1.0, 1.0, -1.0, -1.0, -1.0];
-     // Pass the position array to WebGL.
+     // Pass the position list to WebGL to build the shape.
      gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(positions), gl.STATIC_DRAW);
      return positionBuffer;
    }
@@ -253,7 +261,7 @@ A texture is an image that can be applied to the surface of a 3D model. Textures
      gl.depthFunc(gl.LEQUAL); 
      // Clear the canvas.
       gl.clear(gl.COLOR_BUFFER_BIT | gl.DEPTH_BUFFER_BIT);
-     // Create a perspective projection matrix to simulate perspective deformation in the camera.
+     // Create a perspective matrix to simulate the perspective distortion in a camera.
      const fieldOfView = (45 * Math.PI) / 180; 
      const aspect = gl.canvas.clientWidth / gl.canvas.clientHeight;
      const zNear = 0.1;

@@ -3,10 +3,10 @@
 <!--Kit: Localization Kit-->
 <!--Subsystem: Global-->
 <!--Owner: @yliupy-->
-<!--Designer: @sunyaozu-->
+<!--Designer: @zw_feifei-->
 <!--Tester: @lpw_work-->
 <!--Adviser: @ningningW-->
-<!-- md-trans-meta sourceCommit=9d4329aa9b07ce81fc1a2c848fb4cea93e274a8e translatedAt=2026-08-04T12:26:49.018Z pushedAt=2026-08-04T13:22:42.711Z -->
+<!-- md-trans-meta sourceCommit=1a7fdda7cb0bdacc6b1c367c8fd0def17530cd88 translatedAt=2026-08-15T01:54:09.242Z pushedAt=2026-08-15T08:42:44.833Z -->
 
 The translation results of the same content may vary greatly in different scenes and contexts. When providing UI strings for translation, clarifying the scene and context can help to avoid translation errors. Translation scene information is usually provided in two ways:
 

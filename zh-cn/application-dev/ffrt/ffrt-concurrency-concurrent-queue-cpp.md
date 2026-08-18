@@ -41,7 +41,7 @@ FFRT并发队列提供了设置任务优先级（Priority）和队列并发度�
 
 ``` C++
 
-const int SLEEP_TIME = 100 * 1000;
+const int SLEEP_TIME = 100 * 1000; // 100ms
 const int BANK_CONCURRENCY = 2;
 
 class BankQueueSystem {

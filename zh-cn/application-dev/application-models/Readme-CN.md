@@ -48,11 +48,12 @@
       - [跨端迁移](hop-cross-device-migration.md)
       - [多端协同](hop-multi-device-collaboration.md)
     <!--DelEnd-->  
-  - [进程模型](process-model-stage.md)
+  - 进程模型<!--process-model-stage-->
+    - [进程模型概述](process-model-overview.md)
+    - 扩展进程开发指导<!--extended-process-development-->
+      - [子进程开发指导（ArkTS）](arkts-child-process-development-guideline.md)
+      - [子进程开发指导（C/C++）](capi-nativechildprocess-development-guideline.md)
     - [独立进程开发指导](isolation-process-development-guideline.md)
-    - [ArkTS子进程开发指导](arkts-child-process-development-guideline.md)
-    - [Native子进程开发指导（C/C++）](capi-nativechildprocess-development-guideline.md)
-    - [获取Native子进程退出信息](capi-nativechildprocess-exit-info.md)
   - [线程模型](thread-model-stage.md)
   <!--Del-->
   - 任务（Mission）管理（仅对系统应用开放）<!--mission-management-->
@@ -65,11 +66,12 @@
 - 应用生命周期<!--app-lifecycle-->
   - [应用生命周期概述](application-lifecycle.md)
   - 应用启动<!--app-start-->
+    - [应用启动流程](application-startup-process.md)
     - [应用启动设置](application-startup-options.md)
     - [应用启动框架AppStartup](app-startup.md)
     - [应用预加载](preload-application.md)
     - [应用快启](hyperstartup-application.md)
-  - [应用退出](app-stop.md)
+  - [应用退出](app-stop.md)<!--RP2--><!--RP2End-->
   - [应用重启](app-restart.md)
   - [获取应用异常退出原因](ability-exit-info-record.md)
 - 应用间跳转<!--inter-app-redirection-->

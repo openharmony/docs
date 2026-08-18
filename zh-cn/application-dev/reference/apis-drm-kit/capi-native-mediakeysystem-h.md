@@ -2,14 +2,14 @@
 
 <!--Kit: Drm Kit-->
 <!--Subsystem: Multimedia-->
-<!--Owner: @qin_wei_jie-->
+<!--Owner: @hanzhengshi-->
 <!--Designer: @chris2981-->
 <!--Tester: @xdlinc-->
-<!--Adviser: @w_Machine_cc-->
+<!--Adviser: @qin_wei_jie-->
 
 ## 概述
 
-定义Drm MediaKeySystem API。提供以下功能：<br>查询是否支持特定的drm、创建媒体密钥会话、获取和设置配置、获取统计信息、获取内容保护级别、生成提供请求、处理提供响应、事件监听、获取内容防护级别、管理离线媒体密钥等。
+定义Drm MediaKeySystem API。提供以下功能：<br>查询是否支持特定的DRM、创建媒体密钥会话、获取和设置配置、获取统计信息、获取内容保护级别、生成提供请求、处理提供响应、事件监听、获取内容防护级别、管理离线媒体密钥等。
 
 **引用文件：** <multimedia/drm_framework/native_mediakeysystem.h>
 
@@ -160,7 +160,7 @@ Drm_ErrCode OH_MediaKeySystem_GetMediaKeySystems(DRM_MediaKeySystemDescription *
 
 | 类型 | 说明 |
 | -- | -- |
-| [Drm_ErrCode](capi-native-drm-err-h.md#drm_errcode) | DRM_ERR_OK：执行成功。<br>DRM_ERR_INVALID_VAL：可能原因：<br>                            1.输入参数descs为空指针或输入参数count为空指针。<br>                            2.输入参数descs长度不足。<br>DRM_ERR_UNKNOWN：发生内部错误，请查看日志详细信息。 |
+| [Drm_ErrCode](capi-native-drm-err-h.md#drm_errcode) | DRM_ERR_OK：执行成功。<br>DRM_ERR_INVALID_VAL：<br>输入参数descs为空指针。<br>输入参数count为空指针。<br>输入参数descs长度不足。<br>DRM_ERR_UNKNOWN：发生内部错误，请查看日志详细信息。 |
 
 ### OH_MediaKeySystem_IsSupported()
 
@@ -265,7 +265,7 @@ Drm_ErrCode OH_MediaKeySystem_Create(const char *name, MediaKeySystem **mediaKey
 
 | 类型 | 说明 |
 | -- | -- |
-| [Drm_ErrCode](capi-native-drm-err-h.md#drm_errcode) | DRM_ERR_OK：执行成功。<br>DRM_ERR_INVALID_VAL：可能原因：<br>                            1.输入参数name为空指针或长度为0。<br>                            2.输入参数mediaKeySystem为空指针。<br>DRM_ERR_UNKNOWN：发生内部错误，请查看日志详细信息。<br>DRM_ERR_SERVICE_DIED：服务死亡。<br>DRM_ERR_MAX_SYSTEM_NUM_REACHED：已创建的MediaKeySystem数量达到最大限制(64个)。 |
+| [Drm_ErrCode](capi-native-drm-err-h.md#drm_errcode) | DRM_ERR_OK：执行成功。<br>DRM_ERR_INVALID_VAL：<br>输入参数name为空指针。<br>输入参数name长度为0。<br>输入参数mediaKeySystem为空指针。<br>DRM_ERR_UNKNOWN：发生内部错误，请查看日志详细信息。<br>DRM_ERR_SERVICE_DIED：服务死亡。<br>DRM_ERR_MAX_SYSTEM_NUM_REACHED：已创建的MediaKeySystem数量达到最大限制(64个)。 |
 
 ### OH_MediaKeySystem_SetConfigurationString()
 
@@ -474,7 +474,7 @@ Drm_ErrCode OH_MediaKeySystem_CreateMediaKeySession(MediaKeySystem *mediaKeySyst
 | 参数项 | 描述 |
 | -- | -- |
 | [MediaKeySystem](capi-drm-mediakeysystem.md) *mediaKeySystem | MediaKeySystem实例。 |
-| [DRM_ContentProtectionLevel](capi-native-drm-common-h.md#drm_contentprotectionlevel) *level | 内容保护级别。 |
+| [DRM_ContentProtectionLevel](capi-native-drm-common-h.md#drm_contentprotectionlevel) *level | 内容保护级别。可通过[OH_MediaKeySystem_GetMaxContentProtectionLevel](#oh_mediakeysystem_getmaxcontentprotectionlevel)接口先获取设备支持的最大内容保护级别。 |
 | [MediaKeySession](capi-drm-mediakeysession.md) **mediaKeySession | MediaKeySession实例。 |
 
 **返回：**

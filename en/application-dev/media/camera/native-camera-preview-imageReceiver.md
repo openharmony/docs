@@ -1,32 +1,45 @@
 # Secondary Processing of Preview Streams (C/C++)
+
 <!--Kit: Camera Kit-->
 <!--Subsystem: Multimedia-->
 <!--Owner: @qano-->
 <!--Designer: @leo_ysl-->
 <!--Tester: @xchaosioda-->
 <!--Adviser: @w_Machine_cc-->
+<!-- md-trans-meta sourceCommit=92637e66fde45a3fccdf6e7082b1121eb02199b4 translatedAt=2026-08-10T09:19:58.359Z pushedAt=2026-08-10T13:23:36.095Z -->
 
 You can use the APIs in **ImageReceiver** to create a PreviewOutput instance and obtain real-time data of the preview stream for secondary processing. For example, you can add a filter algorithm to the preview stream.
 
 ## How to Develop
 
-Read [Camera](../../reference/apis-camera-kit/capi-oh-camera.md) for the API reference.
+For detailed API descriptions, refer to [OH_Camera](../../reference/apis-camera-kit/capi-oh-camera.md).
 
 1. Import the NDK, which provides camera-related properties and methods.
 
-   ```c++
-   // Include the NDK header files.
+   <!-- @[import_header](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/Media/Camera/NDKPreviewImageSample/entry/src/main/cpp/camera_manager.h) -->    
+
+   ``` C
+   #include <cstdint>
    #include <cstdlib>
-   #include <hilog/log.h>
+   #include "hilog/log.h"
    #include <memory>
    #include <new>
+   #include <map>
    #include <multimedia/image_framework/image/image_native.h>
    #include <multimedia/image_framework/image/image_receiver_native.h>
    #include "ohcamera/camera.h"
    #include "ohcamera/camera_input.h"
+   #include "ohcamera/camera_device.h"
    #include "ohcamera/capture_session.h"
+   #include "ohcamera/photo_output.h"
    #include "ohcamera/preview_output.h"
+   #include "ohcamera/video_output.h"
    #include "ohcamera/camera_manager.h"
+   
+   #include <multimedia/media_library/media_asset_manager_capi.h>
+   #include <multimedia/media_library/media_asset_change_request_capi.h>
+   #include <multimedia/media_library/media_access_helper_capi.h>
+   #include <multimedia/image_framework/image/image_packer_native.h>
    ```
 
 2. Link the dynamic library in the CMake script.
@@ -47,9 +60,12 @@ Read [Camera](../../reference/apis-camera-kit/capi-oh-camera.md) for the API ref
 
    Call **OH_ImageReceiverNative_Create** of the image module to create an OH_ImageReceiverNative instance, and call **OH_ImageReceiverNative_GetReceivingSurfaceId** of the instance to obtain a surface ID.
 
-   ```c++
-   void InitImageReceiver() {
-       OH_ImageReceiverOptions* options = nullptr;
+   <!-- @[init_image_receiver](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/Media/Camera/NDKPreviewImageSample/entry/src/main/cpp/napi_init.cpp) -->
+
+   ``` C++
+   void InitImageReceiver(uint64_t &receiverSurfaceID)
+   {
+       OH_ImageReceiverOptions *options = nullptr;
        // Capture exceptions and check whether the instance is null. This example shows only the API call process.
        // Set image parameters.
        Image_ErrorCode errCode = OH_ImageReceiverOptions_Create(&options);
@@ -58,8 +74,8 @@ Read [Camera](../../reference/apis-camera-kit/capi-oh-camera.md) for the API ref
            return;
        }
        Image_Size imgSize;
-       imgSize.width = 1080; // Width of the created preview stream.
-       imgSize.height = 1080; // Height of the created preview stream.
+       imgSize.width = PREVIEW_WIDTH; // Width of the preview stream.
+       imgSize.height = PREVIEW_HEIGHT; // Height of the preview stream.
        int32_t capacity = 8; // Maximum number of images in BufferQueue. The recommended value is 8.
        errCode = OH_ImageReceiverOptions_SetSize(options, imgSize);
        if (errCode != IMAGE_SUCCESS) {
@@ -70,14 +86,21 @@ Read [Camera](../../reference/apis-camera-kit/capi-oh-camera.md) for the API ref
            OH_LOG_ERROR(LOG_APP, "OH_ImageReceiverOptions_SetCapacity call failed");
        }
        // Create an OH_ImageReceiverNative instance.
-       OH_ImageReceiverNative* receiver = nullptr;
+       OH_ImageReceiverNative *receiver = nullptr;
        errCode = OH_ImageReceiverNative_Create(options, &receiver);
        if (errCode != IMAGE_SUCCESS || receiver == nullptr) {
            OH_LOG_ERROR(LOG_APP, "OH_ImageReceiverNative_Create call failed");
            return;
        }
+   
+       errCode = OH_ImageReceiverNative_On(receiver, CallbackReadNextImage);
+       if (errCode != IMAGE_SUCCESS) {
+           OH_LOG_ERROR(LOG_APP, "%{public}s image receiver on failed, errCode: %{public}d.", __func__, errCode);
+           OH_ImageReceiverOptions_Release(options);
+           OH_ImageReceiverNative_Release(receiver);
+           return;
+       }
        // Obtain the Surface ID of the OH_ImageReceiverNative instance.
-       uint64_t receiverSurfaceID = 0;
        errCode = OH_ImageReceiverNative_GetReceivingSurfaceId(receiver, &receiverSurfaceID);
        if (errCode != IMAGE_SUCCESS) {
            OH_LOG_ERROR(LOG_APP, "OH_ImageReceiverNative_GetReceivingSurfaceId call failed");
@@ -93,118 +116,110 @@ Read [Camera](../../reference/apis-camera-kit/capi-oh-camera.md) for the API ref
 
 6. Register an ImageReceiver callback to listen for the image content reported by each frame.
 
-   ```c++
-   OH_ImageReceiverNative* receiver; // Instance created in step 3.
+   <!-- @[image_receiver_callback_show](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/Media/Camera/NDKPreviewImageSample/entry/src/main/cpp/napi_init.cpp) -->    
 
-   // Image callback. For details, see Media/Image Kit.
-   static void OnCallback(OH_ImageReceiverNative* receiver) {
-       if (receiver == nullptr) {
-           OH_LOG_ERROR(LOG_APP, "receiver is nullptr.");
-           return;
-       }
-       OH_LOG_INFO(LOG_APP, "ImageReceiverNativeCTest buffer available.");
-       // Capture exceptions and check whether the instance is null. This example shows only the API call process.
-       OH_ImageNative* image = nullptr;
-       // Obtain the image from the bufferQueue.
-       Image_ErrorCode errCode = OH_ImageReceiverNative_ReadNextImage(receiver, &image);
-       if (errCode != IMAGE_SUCCESS || image == nullptr) {
-           OH_LOG_ERROR(LOG_APP, "OH_ImageReceiverNative_ReadNextImage call failed.");
-           return;
-       }
-       // Read the image width and height.
-       Image_Size size;
-       errCode = OH_ImageNative_GetImageSize(image, &size);
-       if (errCode != IMAGE_SUCCESS) {
-           OH_LOG_ERROR(LOG_APP, "OH_ImageNative_GetImageSize call failed.");
-           OH_ImageNative_Release(image);
-           return;
-       }
-       OH_LOG_INFO(LOG_APP, "OH_ImageNative_GetImageSize errCode:%{public}d width:%{public}d height:%{public}d", errCode,
-           size.width, size.height);
-
-       // Obtain the image's component type.
-       size_t typeSize = 0;
-       uint32_t* types = new (std::nothrow) uint32_t[typeSize];
-       if (!types) {
-           OH_LOG_ERROR(LOG_APP, "Failed to allocate memory");
-           OH_ImageNative_Release(image);
-           return;
-       }
-       errCode =  OH_ImageNative_GetComponentTypes(image, &types, &typeSize);
-       if (errCode != IMAGE_SUCCESS || typeSize == 0) {
-           OH_LOG_ERROR(LOG_APP, "typeSize is 0");
-           OH_ImageNative_Release(image);
-           delete[] types;
-           return;
-       }
-       uint32_t component = types[0];
-       // Obtain the image buffer.
-       OH_NativeBuffer* imageBuffer = nullptr;
-       errCode = OH_ImageNative_GetByteBuffer(image, component, &imageBuffer);
-       if (errCode != IMAGE_SUCCESS) {
-           OH_LOG_ERROR(LOG_APP, "OH_ImageNative_GetByteBuffer call failed.");
-           OH_ImageNative_Release(image);
-           delete[] types;
-           return;
-       }
-       size_t bufferSize = 0;
-       errCode = OH_ImageNative_GetBufferSize(image, component, &bufferSize);
-       if (errCode != IMAGE_SUCCESS) {
-           OH_LOG_ERROR(LOG_APP, "OH_ImageNative_GetBufferSize call failed.");
-           OH_ImageNative_Release(image);
-           delete[] types;
-           return;
-       }
-       OH_LOG_INFO(LOG_APP, "ImageReceiverNativeCTest buffer component: %{public}d size:%{public}zu", component, bufferSize);
-       // Obtain the row stride of the image.
-       int32_t stride = 0;
-       errCode = OH_ImageNative_GetRowStride(image, component, &stride);
-       if (errCode != IMAGE_SUCCESS) {
-           OH_LOG_ERROR(LOG_APP, "OH_ImageNative_GetRowStride call failed.");
-           OH_ImageNative_Release(image);
-           delete[] types;
-           return;
-       }
-       OH_LOG_INFO(LOG_APP, "ImageReceiverNativeCTest buffer stride: %{public}d.", stride);
-       void* srcVir = nullptr;
-       int32_t retCode = OH_NativeBuffer_Map(imageBuffer, &srcVir);
-       if (retCode != 0) {
-           OH_LOG_ERROR(LOG_APP, "OH_NativeBuffer_Map call failed.");
-           OH_ImageNative_Release(image);
-           delete[] types;
-           return;
-       }
-       uint8_t* srcBuffer = static_cast<uint8_t*>(srcVir);
-       // Check whether the row stride is the same as the width of the preview stream. If they are different, consider the impact of the stride on buffer reading.
-       if (stride == size.width) {
-           // Process the buffer by calling the API that does not support stride.
-       } else {
-           // Process the buffer by calling the API that supports stride or remove the stride data.
-           // The following uses the operation of removing the stride data as an example. Specifically, remove the stride data from the byteBuffer and obtain a new dstBuffer by means of copy.
-           size_t dstBufferSize = size.width * size.height * 1.5; // Camera preview stream in NV21 format.
-           std::unique_ptr<uint8_t[]> dstBuffer = std::make_unique<uint8_t[]>(dstBufferSize);
-           uint8_t* dstPtr = dstBuffer.get();
-           for (int j = 0; j < size.height * 1.5; j++) {
-               memcpy(dstPtr, srcBuffer, size.width);
-               dstPtr += size.width;
-               srcBuffer += stride;
-           }
-           // Process the buffer by calling the API that does not support stride.
-       }
-       // Release resources.
-       retCode = OH_NativeBuffer_Unmap(imageBuffer); // Release the buffer to ensure that the bufferQueue is rotated properly.
-       if (retCode != 0) {
-           OH_LOG_ERROR(LOG_APP, "OH_NativeBuffer_Unmap call failed.");
-       }
-       errCode = OH_ImageNative_Release(image);
-       if (errCode != IMAGE_SUCCESS) {
-           OH_LOG_ERROR(LOG_APP, "OH_ImageNative_Release call failed.");
-       }
-       delete[] types;
+   ``` C++
+   void copyBuffer(OH_NativeBuffer *srcBuffer, size_t srcSize, OHNativeWindowBuffer *dstBuffer)
+   {
+       OH_LOG_INFO(LOG_APP, "ImageReceiverNativeCTest %{public}s IN", __func__);
+       void *srcVir = nullptr;
+       OH_NativeBuffer_Map(srcBuffer, &srcVir);
+       BufferHandle *bufferHandle = OH_NativeWindow_GetBufferHandleFromNative(dstBuffer);
+       OH_LOG_INFO(LOG_APP,
+           "ImageReceiverNativeCTest %{public}s bufferHandle info fd= %{public}d , width= %{public}d, "
+           "height=%{public}d, stride= %{public}d, size= %{public}d, format= %{public}d, usage= %{public}lu",
+           __func__, bufferHandle->fd, bufferHandle->width, bufferHandle->height, bufferHandle->stride, bufferHandle->size,
+           bufferHandle->format, bufferHandle->usage);
+   
+       void *mappedAddr =
+           mmap(bufferHandle->virAddr, bufferHandle->size, PROT_READ | PROT_WRITE, MAP_SHARED, bufferHandle->fd, 0);
+       std::memcpy(static_cast<unsigned char *>(mappedAddr), static_cast<unsigned char *>(srcVir), srcSize);
+       munmap(mappedAddr, bufferHandle->size);
+   
+       OH_NativeBuffer_Unmap(srcBuffer);
+       OH_LOG_INFO(LOG_APP, "ImageReceiverNativeCTest %{public}s SUCCESS", __func__);
    }
 
-   void OnImageReceiver() {
-       // Register the callback to listen for the image content reported by each frame.
-       Image_ErrorCode errCode = OH_ImageReceiverNative_On(receiver, OnCallback);
+   void ShowImage(OH_ImageNative *image)
+   {
+       OH_LOG_INFO(LOG_APP, "ImageReceiverNativeCTest %{public}s IN", __func__);
+       uint64_t xComponentSurfaceId = std::stoull(g_xComponentSurfaceIdSlave);
+       OH_LOG_ERROR(LOG_APP, "ImageReceiverNativeCTest %{public}s XComponentId is : %{public}lu.", __func__,
+           xComponentSurfaceId);
+       OHNativeWindow *nativeWindow = nullptr;
+       int32_t res = OH_NativeWindow_CreateNativeWindowFromSurfaceId(xComponentSurfaceId, &nativeWindow);
+       if (res != 0) {
+           OH_LOG_ERROR(LOG_APP,
+               "ShowImage CreateNativeWindowFromSurfaceId failed, errCode: %{public}d.", res);
+           return;
+       }
+   
+       // Important: Adjust the nativeWindow size and format to match the size and format of the image.
+       res = OH_NativeWindow_NativeWindowHandleOpt(nativeWindow, SET_BUFFER_GEOMETRY, g_imageWidth, g_imageHeight);
+       res = OH_NativeWindow_NativeWindowHandleOpt(nativeWindow, SET_FORMAT, NATIVEBUFFER_PIXEL_FMT_YCRCB_420_SP); // NV21
+       
+       int32_t displayRotation = g_ndkCamera->GetDefaultDisplayRotation();
+       int32_t previewRotation = static_cast<int32_t>(g_ndkCamera->GetPreviewRotation(displayRotation));
+       if (g_isFront && (displayRotation == ROTATION_90 || displayRotation == ROTATION_270)) {
+           previewRotation = (previewRotation + ROTATION_180) % ROTATION_360;
+       }
+       OH_NativeBuffer_TransformType transformType = g_ndkCamera->GetNativeBufferTransformType(previewRotation, g_isFront);
+       res = OH_NativeWindow_NativeWindowHandleOpt(nativeWindow, SET_TRANSFORM, transformType);
+   
+       OH_NativeBuffer *imageBuffer = nullptr;
+       Image_ErrorCode errCode = OH_ImageNative_GetByteBuffer(image, g_jpegComponent, &imageBuffer);
+       if (errCode != IMAGE_SUCCESS) {
+           OH_LOG_ERROR(LOG_APP, "ShowImage GetByteBuffer failed, errCode: %{public}d.", errCode);
+           return;
+       }
+       Image_Size imgSize = {};
+       OH_ImageNative_GetImageSize(image, &imgSize);
+       OH_LOG_INFO(LOG_APP, "ImageReceiverNativeCTest %{public}s imgSize is : %{public}u, %{public}u.", __func__,
+           imgSize.width, imgSize.height);
+       size_t bufSize = 0;
+       OH_ImageNative_GetBufferSize(image, g_jpegComponent, &bufSize);
+
+       OHNativeWindowBuffer *nativeWindowBuffer = nullptr;
+       int fenceFd = -1;
+       res = OH_NativeWindow_NativeWindowRequestBuffer(nativeWindow, &nativeWindowBuffer, &fenceFd);
+       if (res != 0) {
+           OH_LOG_ERROR(LOG_APP, "ShowImage RequestBuffer failed, errCode: %{public}d.", res);
+           return;
+       }
+   
+       // Copy the image data to the nativeWindowBuffer.
+       copyBuffer(imageBuffer, bufSize, nativeWindowBuffer);
+   
+       Region region1{};
+       res = OH_NativeWindow_NativeWindowFlushBuffer(nativeWindow, nativeWindowBuffer, fenceFd, region1);
+       if (res != 0) {
+           OH_LOG_ERROR(LOG_APP, "ShowImage FlushBuffer failed, errCode: %{public}d.", res);
+           return;
+       }
+       OH_LOG_INFO(LOG_APP, "ImageReceiverNativeCTest %{public}s SUCCESS", __func__);
+   }
+   
+   static void CallbackReadNextImage(OH_ImageReceiverNative *receiver)
+   {
+       OH_LOG_INFO(LOG_APP, "CallbackReadNextImage %{public}s IN", __func__);
+       // Read the next image object from OH_ImageReceiverNative.
+       OH_ImageNative *image = nullptr;
+       Image_ErrorCode errCode = OH_ImageReceiverNative_ReadNextImage(receiver, &image);
+       if (errCode != IMAGE_SUCCESS) {
+           OH_LOG_ERROR(LOG_APP,
+               "CallbackReadNextImage %{public}s get image receiver next image failed, errCode: %{public}d.", __func__,
+               errCode);
+           return;
+       }
+   
+       ShowImage(image);
+   
+       // Release the OH_ImageNative instance.
+       errCode = OH_ImageNative_Release(image);
+       if (errCode != IMAGE_SUCCESS) {
+           OH_LOG_ERROR(LOG_APP, "CallbackReadNextImage %{public}s release image native failed, errCode: %{public}d.",
+               __func__, errCode);
+       }
+       OH_LOG_INFO(LOG_APP, "CallbackReadNextImage %{public}s SUCCESS", __func__);
    }
    ```

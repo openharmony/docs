@@ -1,10 +1,12 @@
 # Deprecated Interface (CaptureSession, deprecated)
+
 <!--Kit: Camera Kit-->
 <!--Subsystem: Multimedia-->
 <!--Owner: @qano-->
 <!--Designer: @leo_ysl-->
 <!--Tester: @xchaosioda-->
 <!--Adviser: @w_Machine_cc-->
+<!-- md-trans-meta sourceCommit=425e79ed59a841b19860caacc0b050f68405d43e translatedAt=2026-08-11T01:58:09.067Z pushedAt=2026-08-11T09:17:37.697Z -->
 
 **CaptureSession** implements a capture session, which saves all [CameraInput](arkts-apis-camera-CameraInput.md) and [CameraOutput](arkts-apis-camera-CameraOutput.md) instances required to run the camera and requests the camera to complete shooting or video recording.
 
@@ -647,6 +649,7 @@ Sets a flash mode.
 Before the setting, do the following checks:
 
 1. Use [hasFlash](#hasflashdeprecated) to check whether the camera device has flash.
+
 2. Use [isFlashModeSupported](#isflashmodesupporteddeprecated) to check whether the camera device supports the flash mode.
 
 > **NOTE**
@@ -1628,7 +1631,7 @@ Subscribes to focus state change events. This API uses an asynchronous callback 
 
 | Name    | Type                                     | Mandatory| Description                      |
 | -------- | ----------------------------------------- | ---- | ------------------------ |
-| type     | string                                    | Yes  | Event type. The value is fixed at **'focusStateChange'**. The event can be listened for when a session is created. This event is triggered only when the camera focus state changes in auto focus mode.|
+| type     | string                                    | Yes   | Event type. The value is fixed at **'focusStateChange'**. The event can be listened for when a session is created. This event is triggered only when the camera focus state changes in auto focus mode. |
 | callback | AsyncCallback\<[FocusState](arkts-apis-camera-e.md#focusstate)\> | Yes  | Callback used to return the focus state change. |
 
 **Example**

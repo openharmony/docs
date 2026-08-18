@@ -44,7 +44,7 @@ try {
     }).catch((err: BusinessError) => {
       hilog.error(0x0000, 'testTag', `getRunningMultiAppInfo error, code: ${err.code}, msg:${err.message}`);
     })
-} catch (err) {
+} catch (err: BusinessError) {
   hilog.error(0x0000, 'testTag', `getRunningMultiAppInfo error, code: ${err.code}, msg:${err.message}`);
 }
 ```

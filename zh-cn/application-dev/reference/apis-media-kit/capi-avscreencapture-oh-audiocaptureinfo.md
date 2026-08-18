@@ -4,7 +4,7 @@
 <!--Owner: @chenkun613227-->
 <!--Designer: @yxc2-->
 <!--Tester: @xdlinc-->
-<!--Adviser: @w_Machine_cc-->
+<!--Adviser: @zzs911-->
 
 ```c
 typedef struct OH_AudioCaptureInfo {...} OH_AudioCaptureInfo
@@ -32,6 +32,6 @@ typedef struct OH_AudioCaptureInfo {...} OH_AudioCaptureInfo
 | -- | -- |
 | int32_t audioSampleRate | 音频采样率，支持列表请查阅Audio Kit的[AudioSamplingRate](../apis-audio-kit/arkts-apis-audio-e.md#audiosamplingrate8)。单位为赫兹（Hz）。当audioSampleRate与audioChannels同时为0时，将忽略该类型音频相关参数。 |
 | int32_t audioChannels | 音频声道数，用于配置音频录制的声道数量。取值范围为1或2，1表示单声道，2表示双声道。具体支持的范围请参考相关音频设备的能力[AudioChannel](../apis-audio-kit/arkts-apis-audio-e.md#audiochannel8)。当audioSampleRate与audioChannels同时为0时，将忽略该类型音频相关参数。 |
-| [OH_AudioCaptureSourceType](capi-native-avscreen-capture-base-h.md#oh_audiocapturesourcetype) audioSource | 音频源，用于指定录制的音频来源，如内录音频或麦克风录音等。可选值请参考[OH_AudioCaptureSourceType](capi-native-avscreen-capture-base-h.md#oh_audiocapturesourcetype)。 |
+| [OH_AudioCaptureSourceType](capi-native-avscreen-capture-base-h.md#oh_audiocapturesourcetype) audioSource | 音频源，用于指定录制的音频来源，如系统音频或麦克风录音等。可选值请参考[OH_AudioCaptureSourceType](capi-native-avscreen-capture-base-h.md#oh_audiocapturesourcetype)。 |
 
 

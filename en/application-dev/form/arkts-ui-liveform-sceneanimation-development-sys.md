@@ -1,4 +1,4 @@
-# Developing a Scene-based Widget (for System Applications)
+# Developing a Scene-based Widget (for System Applications Only)
 
 <!--Kit: Form Kit-->
 <!--Subsystem: Ability-->
@@ -6,13 +6,13 @@
 <!--Designer: @cx983299475-->
 <!--Tester: @mahailong123456-->
 <!--Adviser: @HelloShuo-->
-<!-- md-trans-meta sourceCommit=f2cd623d606ddf44ee1a12cd7214615ae69df40f translatedAt=2026-08-03T02:24:23.767Z pushedAt=2026-08-03T03:10:13.362Z -->
+<!-- md-trans-meta sourceCommit=6e1d5d0ec04c528cc71226427a9be915efaa6592 translatedAt=2026-08-15T01:49:54.805Z pushedAt=2026-08-15T08:18:47.320Z -->
 
 For details about the development guidelines of scene-based widgets, see [Developing a Scene-based Widget](arkts-ui-liveform-sceneanimation-development.md). For system applications, scene-based widgets provide two extended capabilities: gesture suspension configuration and long-term widget activation.
 
 ## Gesture Suspension Configuration
 
-For [scene-based widgets](arkts-ui-liveform-sceneanimation-overview.md), operations such as long-pressing and dragging on the home screen will interrupt the current animation, causing the widget to revert to the inactive state. However, system applications can cancel this limitation by configuring [disabledDesktopBehaviors](arkts-ui-widget-configuration.md#sceneanimationparams-field) in the **form_config.json** file, ensuring smooth animations within the interactive target of the activated widget. If no configuration is performed, the system does not intercept any valid gesture operations on the home screen by default. Once gestures are intercepted, the corresponding gesture events are handled by the LiveFormExtensionAbility.
+For [scene-based widgets](arkts-ui-liveform-sceneanimation-development.md), operations such as long-pressing and dragging on the home screen will interrupt the current animation, causing the widget to revert to the inactive state. However, system applications can cancel this limitation by configuring [disabledDesktopBehaviors](arkts-ui-widget-configuration.md#sceneanimationparams-field) in the **form_config.json** file, ensuring smooth animations within the interactive target of the activated widget. If no configuration is performed, the system does not intercept any valid gesture operations on the home screen by default. Once gestures are intercepted, the corresponding gesture events are handled by the LiveFormExtensionAbility.
 
 ```ts
 // entry/src/main/resources/base/profile/form_config.json
@@ -60,7 +60,7 @@ When the system updates the key state information of a widget, it sends the widg
 
 ### Constraints
 
-In addition to [animation request constraints](arkts-ui-liveform-sceneanimation-overview.md#animation-request), the following limitations apply once an interactive widget enters the long-term activated state:
+In addition to [animation request constraints](arkts-ui-liveform-sceneanimation-development.md#animation-request), the following limitations apply once an interactive widget enters the long-term activated state:
 
 1. The system allows a maximum of five widgets in active state at a time. If more than five widgets are in active state, the widget that first switched to the active state will be deactivated.
 

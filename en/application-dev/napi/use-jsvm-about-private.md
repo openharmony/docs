@@ -1,10 +1,12 @@
 # Setting the private Property Using JSVM-API
-<!--Kit: NDK Development-->
+
+<!--Kit: ArkTS-->
 <!--Subsystem: arkcompiler-->
-<!--Owner: @yuanxiaogou; @string_sz-->
+<!--Owner: @yuanxiaogou-->
 <!--Designer: @knightaoko-->
 <!--Tester: @test_lzz-->
-<!--Adviser: @fang-jinxu-->
+<!--Adviser: @k1ngqaquuu-->
+<!-- md-trans-meta sourceCommit=fa3fc214ef4b265f033bc3f0d0a2df54f511a497 translatedAt=2026-08-12T06:33:48.027Z pushedAt=2026-08-12T10:57:00.687Z -->
 
 ## Introduction
 
@@ -19,7 +21,7 @@ JSVM-API provides the capability of creating private keys, creating and deleting
 | API                                   | Description                      |
 |----------------------------------------|--------------------------------|
 | OH_JSVM_CreateDataReference            | Creates a data reference with a specified reference count in JSVM.|
-| OH_JSVM_GetReferenceData               | Checks whether a specified reference is valid. If the reference is valid, the JavaScript data associated with the reference is returned; otherwise, **result** is set to **NULL**.|
+| OH_JSVM_GetReferenceData               | Checks whether the specified reference is valid, returns the JavaScript data associated with the reference, and sets result to NULL if the reference is invalid.|
 | OH_JSVM_CreatePrivate                  | Creates a JS private key object.  |
 | OH_JSVM_SetPrivate                     | Sets a private property for a passed-in object.  |
 | OH_JSVM_GetPrivate                     | Obtains the private property of an object based on the private key.  |
@@ -96,7 +98,8 @@ const char *srcCallNative = R"JS(privateTest();)JS";
 ```
 
 ## Expected Result
-```
+
+```txt
 private property set: 1
 private property deleted is undefined: 1
 second private property set: 2

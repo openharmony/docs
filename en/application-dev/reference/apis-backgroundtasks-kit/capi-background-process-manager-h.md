@@ -6,6 +6,7 @@
 <!--Designer: @zhouben25-->
 <!--Tester: @leetestnady-->
 <!--Adviser: @HelloCrease-->
+<!-- md-trans-meta sourceCommit=e9ccb11c7da46b7a5906c2fca9a820e7830def5f translatedAt=2026-08-11T01:56:22.482Z pushedAt=2026-08-11T03:04:30.295Z -->
 
 ## Overview
 
@@ -34,7 +35,7 @@ The **background_process_manager.h** file declares the APIs for background child
 
 | Name| Description|
 | -- | -- |
-| [int OH_BackgroundProcessManager_SetProcessPriority(int pid, BackgroundProcessManager_ProcessPriority priority)](#oh_backgroundprocessmanager_setprocesspriority) | Sets the child process priority. After a child process is suppressed, the CPU resources that can be obtained will be limited. If the scheduling policy of the main process changes, for example, from the background to the foreground, the child process changes with the main process. To suppress the child process, call this API again.|
+| [int OH_BackgroundProcessManager_SetProcessPriority(int pid, BackgroundProcessManager_ProcessPriority priority)](#oh_backgroundprocessmanager_setprocesspriority) | Sets the child process priority. After a child process is suppressed, the CPU resources that can be obtained will be limited. If the scheduling policy of the main process changes, for example, from the background to the foreground, the child process changes with the main process. To suppress the child process, call this API again. |
 | [int OH_BackgroundProcessManager_ResetProcessPriority(int pid)](#oh_backgroundprocessmanager_resetprocesspriority) | Unsuppresses the child process. In this case, the child process follows the scheduling policy of the main process. If the scheduling policy of the main process changes, for example, from the background to the foreground, the child process changes with the main process. The effect is the same as calling **resetProcessPriority**.|
 
 ## Enum Description
@@ -74,7 +75,6 @@ Enumerates the error codes used by the background child process management.
 | ERR_BACKGROUND_PROCESS_MANAGER_INVALID_PARAM = 401 | Parameter check fails.|
 | ERR_BACKGROUND_PROCESS_MANAGER_REMOTE_ERROR = 31800001 | The client process fails to obtain the system service.|
 
-
 ## Function Description
 
 ### OH_BackgroundProcessManager_SetProcessPriority()
@@ -89,19 +89,18 @@ Sets the child process priority. After a child process is suppressed, the CPU re
 
 **Since**: 17
 
-
 **Parameters**
 
 | Name| Description|
 | -- | -- |
 | int pid | ID of the child process to be suppressed, which is the value of the **pid** parameter after the child process is created through the [OH_Ability_StartNativeChildProcess](../apis-ability-kit/capi-native-child-process-h.md#oh_ability_startnativechildprocess) API.|
-| [BackgroundProcessManager_ProcessPriority](capi-background-process-manager-h.md#backgroundprocessmanager_processpriority) priority | Suppression priority.|
+| [BackgroundProcessManager_ProcessPriority](#backgroundprocessmanager_processpriority) priority | Suppression priority. |
 
 **Returns**
 
 | Type| Description|
 | -- | -- |
-| int | [ERR_BACKGROUND_PROCESS_MANAGER_SUCCESS](capi-background-process-manager-h.md#backgroundprocessmanager_errorcode) is returned if the suppression parameter is sent successfully.<br>         [ERR_BACKGROUND_PROCESS_MANAGER_INVALID_PARAM](capi-background-process-manager-h.md#backgroundprocessmanager_errorcode) is returned if the parameter check fails.|
+| int | [ERR_BACKGROUND_PROCESS_MANAGER_SUCCESS](#backgroundprocessmanager_errorcode) is returned if the suppression parameter is sent successfully.<br>         [ERR_BACKGROUND_PROCESS_MANAGER_INVALID_PARAM](#backgroundprocessmanager_errorcode) is returned if the parameter check fails. |
 
 ### OH_BackgroundProcessManager_ResetProcessPriority()
 
@@ -115,7 +114,6 @@ Unsuppresses the child process. In this case, the child process follows the sche
 
 **Since**: 17
 
-
 **Parameters**
 
 | Name| Description|
@@ -126,4 +124,4 @@ Unsuppresses the child process. In this case, the child process follows the sche
 
 | Type| Description|
 | -- | -- |
-| int | [ERR_BACKGROUND_PROCESS_MANAGER_SUCCESS](capi-background-process-manager-h.md#backgroundprocessmanager_errorcode) is returned if the suppression parameter is sent successfully.|
+| int | [ERR_BACKGROUND_PROCESS_MANAGER_SUCCESS](#backgroundprocessmanager_errorcode) is returned if the decompression is successful. |

@@ -25,3 +25,4 @@
 | docs/zh-cn/application-dev/reference/apis-performance-analysis-kit/capi-trace-h.md | [void OH_HiTrace_Tracepoint(HiTrace_Communication_Mode mode, HiTrace_Tracepoint_Type type, const HiTraceId *id, const char *fmt, ...)](#oh_hitrace_tracepoint) | Performance Analysis Kit | HiviewDFX | 是 | 2026-07-08 |
 | docs/zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-custom-env-property.md            | [CustomEnvKey\<T\>](#customenvkeys) | ArkUI Kit | ArkUI | 是 | 2026-07-15 |
 | docs/zh-cn/application-dev/reference/apis-ability-kit/js-apis-app-ability-errorManager.md | [_ErrorObserver.default](js-apis-inner-application-errorObserver.md) | Ability Kit | Ability | 是 | 2026-07-17 |
+| docs/zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-state-management.md            | [SubscribedAbstractProperty&lt;S&gt;](#subscribedabstractpropertyt9) | ArkUI Kit | ArkUI | 是 | 2026-08-14 |

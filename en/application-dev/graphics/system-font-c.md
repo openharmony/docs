@@ -6,7 +6,7 @@
 <!--Designer: @liumingxiang-->
 <!--Tester: @yhl0101-->
 <!--Adviser: @ge-yafang-->
-<!-- md-trans-meta sourceCommit=cc9ab098c82a97707ffdb5b7d7053b861bc0839c translatedAt=2026-08-03T11:23:06.614Z pushedAt=2026-08-04T07:33:33.767Z -->
+<!-- md-trans-meta sourceCommit=8e9d3b746529fedba672cd46a96d4746984bcb6c translatedAt=2026-08-15T01:51:48.027Z pushedAt=2026-08-15T08:33:42.996Z -->
 
 ## Overview
 
@@ -20,14 +20,14 @@ System fonts can be disabled when you want to ensure that only custom fonts are 
 
 The following table lists the common APIs and structs related to system fonts. For details about the APIs, see [Drawing](../reference/apis-arkgraphics2d/capi-drawing.md).
 
-| Name| Description| 
+| Name| Description|
 | -------- | -------- |
-| OH_Drawing_FontConfigInfo\* OH_Drawing_GetSystemFontConfigInfo(OH_Drawing_FontConfigInfoErrorCode\*) | Obtains the configuration about system fonts and returns the OH_Drawing_FontConfigInfo struct.| 
-| void OH_Drawing_DestroySystemFontConfigInfo(OH_Drawing_FontConfigInfo\*) | Reclaims the memory occupied by the system font configuration.| 
-| OH_Drawing_FontCollection\* OH_Drawing_CreateSharedFontCollection(void) | Creates an **OH_Drawing_FontCollection** object that is shareable.| 
-| OH_Drawing_TextStyle\* OH_Drawing_CreateTextStyle(void) | Creates a pointer to an **OH_Drawing_TextStyle** object to set the text style.| 
-| OH_Drawing_SetTextStyleFontFamilies (OH_Drawing_TextStyle \*, int, const char \*fontFamilies[]) | Sets the font families for a text style.| 
-| void OH_Drawing_DisableFontCollectionSystemFont(OH_Drawing_FontCollection\* fontCollection) | Disables the system fonts.| 
+| OH_Drawing_FontConfigInfo\* OH_Drawing_GetSystemFontConfigInfo(OH_Drawing_FontConfigInfoErrorCode\* errorCode) | Obtains the configuration about system fonts and returns the **OH_Drawing_FontConfigInfo** struct. |
+| void OH_Drawing_DestroySystemFontConfigInfo(OH_Drawing_FontConfigInfo\* drawFontCfgInfo) | Reclaims the memory occupied by the system font configuration. |
+| OH_Drawing_FontCollection\* OH_Drawing_CreateSharedFontCollection(void) | Creates an **OH_Drawing_FontCollection** object that is shareable.|
+| OH_Drawing_TextStyle\* OH_Drawing_CreateTextStyle(void) | Creates a pointer to an **OH_Drawing_TextStyle** object to set the text style.|
+| OH_Drawing_SetTextStyleFontFamilies(OH_Drawing_TextStyle\* style, int fontFamiliesNumber, const char \*fontFamilies[]) | Sets the font families for a text style. |
+| void OH_Drawing_DisableFontCollectionSystemFont(OH_Drawing_FontCollection\* fontCollection) | Disables the system fonts.|
 
 | Struct| Description| 
 | -------- | -------- |

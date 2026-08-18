@@ -131,6 +131,7 @@
 | [ArkUI_TransitionEffect* OH_ArkUI_CreateRotationTransitionEffect(ArkUI_RotationOptions* rotate)](#oh_arkui_createrotationtransitioneffect) | 创建组件转场时的旋转效果对象。 |
 | [ArkUI_TransitionEffect* OH_ArkUI_CreateMovementTransitionEffect(ArkUI_TransitionEdge edge)](#oh_arkui_createmovementtransitioneffect) | 创建组件平移效果对象，用于组件从指定边缘滑入或滑出的转场效果，适用于仅需指定滑动方向的简单场景。与[OH_ArkUI_CreateTranslationTransitionEffect](#oh_arkui_createtranslationtransitioneffect)不同：后者支持自定义x/y/z方向的精确平移参数，适用于需要指定具体位移距离的场景。 |
 | [ArkUI_TransitionEffect* OH_ArkUI_CreateAsymmetricTransitionEffect(ArkUI_TransitionEffect* appear, ArkUI_TransitionEffect* disappear)](#oh_arkui_createasymmetrictransitioneffect) | 创建非对称的转场效果对象。 |
+| [ArkUI_TransitionEffect* OH_ArkUI_CreateIdentityTransitionEffect(void)](#oh_arkui_createidentitytransitioneffect) | 创建无转场效果对象。 |
 | [void OH_ArkUI_TransitionEffect_Dispose(ArkUI_TransitionEffect* effect)](#oh_arkui_transitioneffect_dispose) | 销毁转场效果对象。 |
 | [int32_t OH_ArkUI_TransitionEffect_Combine(ArkUI_TransitionEffect* firstEffect, ArkUI_TransitionEffect* secondEffect)](#oh_arkui_transitioneffect_combine) | 设置转场效果链式组合，以形成包含多种转场效果的TransitionEffect。 |
 | [int32_t OH_ArkUI_TransitionEffect_SetAnimation(ArkUI_TransitionEffect* effect, ArkUI_AnimateOption* animation)](#oh_arkui_transitioneffect_setanimation) | 设置转场效果动画参数。 |
@@ -2382,6 +2383,26 @@ ArkUI_TransitionEffect* OH_ArkUI_CreateAsymmetricTransitionEffect(ArkUI_Transiti
 | 类型 | 说明 |
 | -- | -- |
 | [ArkUI_TransitionEffect](capi-arkui-nativemodule-arkui-transitioneffect.md)* | 非对称的转场效果对象。如果参数异常返回NULL。 |
+
+### OH_ArkUI_CreateIdentityTransitionEffect()
+
+```c
+ArkUI_TransitionEffect* OH_ArkUI_CreateIdentityTransitionEffect(void)
+```
+
+**描述：**
+
+
+创建无转场效果对象。
+
+**起始版本：** 26.0.0
+
+
+**返回：**
+
+| 类型 | 说明 |
+| -- | -- |
+| [ArkUI_TransitionEffect](capi-arkui-nativemodule-arkui-transitioneffect.md)* | 创建的无转场效果对象指针。调用者需要调用[OH_ArkUI_TransitionEffect_Dispose](#oh_arkui_transitioneffect_dispose)释放该对象。 |
 
 ### OH_ArkUI_TransitionEffect_Dispose()
 

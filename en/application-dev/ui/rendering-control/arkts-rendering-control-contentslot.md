@@ -6,7 +6,7 @@
 <!--Designer: @sunbees-->
 <!--Tester: @liuli0427-->
 <!--Adviser: @zhang_yixin13-->
-<!-- md-trans-meta sourceCommit=82cbd61bf5a97c687ddb974e4186cc744a8f06f2 translatedAt=2026-08-03T09:15:22.761Z pushedAt=2026-08-03T09:27:00.312Z -->
+<!-- md-trans-meta sourceCommit=033859cddd4818ba4c62bad26b6ee850b2b31a63 translatedAt=2026-08-14T10:11:15.090Z pushedAt=2026-08-16T01:50:37.023Z -->
 
 The **ContentSlot** component enables rendering and management of components created using C APIs on the native layer.
 
@@ -221,17 +221,17 @@ napi_value NodeManager::CreateNativeNode(napi_env env, napi_callback_info info)
   void *userData = OH_ArkUI_NodeContent_GetUserData(nodeContentHandle_);
   ```
 
-## Bind Rule Description
+## Binding Rules
 
 A **Content** object can only be bound to one **ContentSlot** component at a time. If the same **Content** object is bound to multiple **ContentSlot** components, only the last binding takes effect and displays the content.
 
 **Reason**
 
-**Content** and **ContentSlot** nodes maintain a strict one-to-one binding relationship. A **Content** node cannot be simultaneously associated with multiple **ContentSlot** nodes. When attempts are made to bind the same **Content** node to multiple **ContentSlot** nodes only the final binding remains active. Previous **ContentSlot** nodes lose their association with the **Content** node, resulting in missing component content.
+**Content** and **ContentSlot** nodes maintain a strict one-to-one binding relationship. A **Content** node cannot be simultaneously associated with multiple **ContentSlot** nodes. When attempts are made to bind the same **Content** node to multiple **ContentSlot** nodes, only the final binding remains active. Previous **ContentSlot** nodes lose their association with the **Content** node, resulting in missing component content.
 
 To display the same content in multiple **ContentSlot** nodes, create separate **Content** node instances for each slot. The following is an example:
 
-<!-- @[contentslot_two](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkUISample/RenderingControlContentslotNDK/entry/src/main/ets/pages/Index.ets) -->
+<!-- @[contentslot_two](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkUISample/RenderingControlContentslotNDK/entry/src/main/ets/pages/Index.ets) --> 
 
 ``` TypeScript
 import nativeNode from 'libentry.so'; // Developer-implemented .so file.
@@ -240,12 +240,12 @@ import { NodeContent } from '@kit.ArkUI';
 @Entry
 @Component
 struct Parent {
-  // ···
+  // ...
   private nodeContent_1: Content = new NodeContent();
   private nodeContent_2: Content = new NodeContent();
 
   aboutToAppear() {
-    // ···
+    // ...
     // Create a node through the C API and add it to nodeContent_1 and nodeContent_2.
     nativeNode.createNativeNode(this.nodeContent_1);
     nativeNode.createNativeNode(this.nodeContent_2);
@@ -253,8 +253,8 @@ struct Parent {
 
   build() {
     Column() {
-      // ···
-      ContentSlot(this.nodeContent_1);// nodeContent_1 will be mounted to the next Contentslot node and cannot be displayed here.
+      // ...
+      ContentSlot(this.nodeContent_1);// nodeContent_1 will be mounted to the next ContentSlot node and cannot be displayed here.
       ContentSlot(this.nodeContent_1); // Content is displayed properly.
       ContentSlot(this.nodeContent_2); // Content is displayed properly.
     }

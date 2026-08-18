@@ -116,7 +116,7 @@
 
 2. 创建自定义绘制组件封装对象。
 
-   <!-- @[arkUICustomNode_start](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkUISample/NativeType/NativeNodeUtilsSample/entry/src/main/cpp/ArkUICustomNode.h) --> 
+   <!-- @[arkUICustomNode_start](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkUISample/NativeType/NativeNodeUtilsSample/entry/src/main/cpp/ArkUICustomNode.h) -->  
    
    ``` C
    #ifndef MYAPPLICATION_ARKUICUSTOMNODE_H
@@ -137,7 +137,7 @@
        {
            // 注册自定义事件监听器。
            nativeModule_->addNodeCustomEventReceiver(handle_, OnStaticCustomEvent);
-           // 声明自定义事件并转递自身作为自定义数据。
+           // 声明自定义事件并传递自身作为自定义数据。
            nativeModule_->registerNodeCustomEvent(handle_, ARKUI_NODE_CUSTOM_EVENT_ON_DRAW_FRONT, 0, this);
            nativeModule_->registerNodeCustomEvent(handle_, ARKUI_NODE_CUSTOM_EVENT_ON_DRAW, 0, this);
            nativeModule_->registerNodeCustomEvent(handle_, ARKUI_NODE_CUSTOM_EVENT_ON_DRAW_BEHIND, 0, this);
@@ -266,7 +266,7 @@
 
 3. 使用自定义绘制组件和自定义容器创建示例界面。
 
-    <!-- @[arkUICustomNodeCpp_start](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkUISample/NativeType/NativeNodeUtilsSample/entry/src/main/cpp/NativeEntry.cpp) --> 
+    <!-- @[arkUICustomNodeCpp_start](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkUISample/NativeType/NativeNodeUtilsSample/entry/src/main/cpp/NativeEntry.cpp) -->  
     
     ``` C++
     #include <arkui/native_node_napi.h>
@@ -411,7 +411,7 @@
 
 2. 创建消息蒙层组件封装对象。
 
-   <!-- @[messageMaskNode_start](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkUISample/NativeType/NativeNodeUtilsSample/entry/src/main/cpp/ArkUIMessageMaskNode.h) --> 
+   <!-- @[messageMaskNode_start](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkUISample/NativeType/NativeNodeUtilsSample/entry/src/main/cpp/ArkUIMessageMaskNode.h) -->  
    
    ``` C
    #ifndef MYAPPLICATION_ARKUIMESSAGEMASKNODE_H
@@ -444,7 +444,7 @@
        {
            // 注册自定义事件监听器
            nativeModule_->addNodeCustomEventReceiver(handle_, OnStaticCustomEvent);
-           // 声明自定义事件并转递自身作为自定义数据
+           // 声明自定义事件并传递自身作为自定义数据
            nativeModule_->registerNodeCustomEvent(handle_, ARKUI_NODE_CUSTOM_EVENT_ON_DRAW_FRONT, 0, this);
            nativeModule_->registerNodeCustomEvent(handle_, ARKUI_NODE_CUSTOM_EVENT_ON_DRAW, 0, this);
            nativeModule_->registerNodeCustomEvent(handle_, ARKUI_NODE_CUSTOM_EVENT_ON_DRAW_BEHIND, 0, this);

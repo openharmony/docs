@@ -1,12 +1,14 @@
 # Image Kit Exception Handling
+
 <!--Kit: Image Kit-->
 <!--Subsystem: Multimedia-->
 <!--Owner: @aulight02-->
-<!--Designer: @liyang_bryan-->
+<!--Designer: @XiaoYao555-->
 <!--Tester: @xchaosioda-->
 <!--Adviser: @w_Machine_cc-->
+<!-- md-trans-meta sourceCommit=9329f19aa2995f079ff9cf109a20aad0033a91a3 translatedAt=2026-08-11T10:27:39.839Z pushedAt=2026-08-11T11:32:27.839Z -->
 
-Image Kit provides both ArkTS APIs and C APIs. In special circumstances (such as invalid input parameters, insufficient memory, or functions unable to process requests), the system reports errors through exceptions (for ArkTS APIs) or error codes (for C APIs). You need to properly capture and handle these errors at the application level to prevent application crashes or undefined behavior. The [Image Error Codes](../../../reference/apis-image-kit/errorcode-image.md) topic provides corresponding error messages, possible causes, and handling procedure for Image Kit error codes. However, since some scenarios have more complex causes for errors, you need to further locate issues with logs. For example, 401 parameter error may be due to invalid function parameters or lack of specific file read/write permissions, causing the failure to access or modify image files. (Image Kit does not perceive permissions, which manifests as an abnormal parameter error for the input file.)
+[Image Kit](../image-overview.md) provides **ArkTS APIs** and **C APIs**. In special cases (such as invalid input parameters, insufficient memory, or the function being unable to process the request), the system reports errors through exceptions (ArkTS) or error codes (C APIs). You need to properly catch and handle these errors at the app layer to prevent app crashes or undefined behavior. [Image Error Codes](../../../reference/apis-image-kit/errorcode-image.md) lists the error messages, possible causes, and handling steps for Image Kit error codes. However, because the causes of errors in some scenarios are complex, you may need to further locate the issue by analyzing logs. For example, error code 401 (invalid parameter) may be caused by invalid function input parameters, or by the lack of specific file read/write permissions that prevents access to or modification of image files (Image Kit is not aware of permissions, so this manifests as an invalid parameter error for the file input).
 
 ## Handling ArkTS API Exceptions
 
@@ -114,7 +116,7 @@ The C APIs uniformly use [Image Error Codes](../../../reference/apis-image-kit/e
               OH_LOG_ERROR(LOG_APP, "OH_PixelmapNative_Create failed, errCode: %{public}d.", errCode);
               return;
           }
-          OH_PixelmapNative_GetImageInfo(pixelmap, imageInfo);
+       errCode = OH_PixelmapNative_GetImageInfo(pixelmap, imageInfo);
           if (errCode != IMAGE_SUCCESS) {
               OH_LOG_ERROR(LOG_APP, "OH_PixelmapNative_GetImageInfo failed, errCode: %{public}d.", errCode);
               return;

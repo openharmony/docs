@@ -193,7 +193,7 @@ findWindow(name: string): Window
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
 | 401     | Parameter error. Possible cause: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
-| 1300002 | This window state is abnormal. Possible cause: The window is not created or destroyed. |
+| 1300002 | This window state is abnormal. Possible cause: 1. The window is not created or destroyed. |
 
 **示例：**
 
@@ -234,7 +234,7 @@ getLastWindow(ctx: BaseContext, callback: AsyncCallback&lt;Window&gt;): void
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
 | 401     | Parameter error. Possible cause: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
-| 1300002 | This window state is abnormal. Possible cause: 1. Top window or main window is null or destroyed; 2. This window context is abnormal.  |
+| 1300002 | This window state is abnormal. Possible cause: 1. Top window or main window is not created or destroyed; 2. Stage mode without context. |
 | 1300006 | This window context is abnormal. |
 
 **示例：**
@@ -315,7 +315,7 @@ getLastWindow(ctx: BaseContext): Promise&lt;Window&gt;
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
 | 401     | Parameter error. Possible cause: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
-| 1300002 | This window state is abnormal. Possible cause: 1. Top window or main window is null or destroyed; 2. This window context is abnormal.   |
+| 1300002 | This window state is abnormal. Possible cause: 1. Top window or main window is not created or destroyed; 2. Stage mode without context.  |
 | 1300006 | This window context is abnormal. |
 
 **示例：**
@@ -637,8 +637,8 @@ getWindowsByCoordinate(displayId: number, windowNumber?: number, x?: number, y?:
 | ------ | ---------- |----|---------------------------------------------------------------------------|
 | displayId   | number| 是  | 查询窗口所在的displayId，该参数应为整数，传入非整数会忽略掉小数部分，可以在窗口属性[WindowProperties](arkts-apis-window-i.md#windowproperties)中获取。 |
 | windowNumber    | number| 否  | 查询的窗口数量，该参数应为大于0的整数，传入非整数会忽略掉小数部分，未设置或小于等于0返回所有满足条件的窗口。                                  |
-| x    | number | 否  | 查询的x坐标，以屏幕左上角为原点，该参数应为非负整数，传入非整数会忽略掉小数部分，未设置或小于0返回所有可见窗口。                                         |
-| y    | number| 否  | 查询的y坐标，以屏幕左上角为原点，该参数应为非负整数，传入非整数会忽略掉小数部分，未设置或小于0返回所有可见窗口。                                         |
+| x    | number | 否  | 查询的x坐标，以屏幕左上角为原点，单位为px，该参数应为非负整数，传入非整数会忽略掉小数部分，未设置或小于0返回所有可见窗口。                                         |
+| y    | number| 否  | 查询的y坐标，以屏幕左上角为原点，单位为px，该参数应为非负整数，传入非整数会忽略掉小数部分，未设置或小于0返回所有可见窗口。                                         |
 
 **返回值：**
 
@@ -1009,7 +1009,7 @@ setStartWindowBackgroundColor(moduleName: string, abilityName: string, color: Co
 
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------------------- |
-| 801     | Capability not supported.function setStartWindowBackgroundColor can not to work correctly due to limited device capabilities. |
+| 801     | Capability not supported.function setStartWindowBackgroundColor can not work correctly due to limited device capabilities. |
 | 1300003 | This window manager service works abnormally. Possible cause: Internal task error. |
 | 1300016 | Parameter error. Possible cause: Parameter exceeds the allowed length. |
 

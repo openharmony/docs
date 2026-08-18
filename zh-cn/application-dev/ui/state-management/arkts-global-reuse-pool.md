@@ -30,7 +30,7 @@
 
 ## 基本概念
 
-**默认复用池**：使用[@Reusable](./arkts-create-custom-components.md#reusable)或[@ReusableV2](./arkts-create-custom-components.md#reusablev2)声明的复用组件，创建时会从父组件的复用池中的取出实例，销毁时会被父组件的复用池回收。这个是在未配置全局复用池时复用组件的默认行为，父组件中的复用池被称作默认复用池。
+**默认复用池**：使用[@Reusable](./arkts-create-custom-components.md#reusable)或[@ReusableV2](./arkts-create-custom-components.md#reusablev2)声明的复用组件，创建时会从父组件的复用池中取出实例，销毁时会被父组件的复用池回收。这个是在未配置全局复用池时复用组件的默认行为，父组件中的复用池被称作默认复用池。
 
 **全局复用池**：全局复用池是在任意自定义组件中声明的独立的复用池，该复用池能接纳所有该组件下的复用组件，不依赖父子组件关系，接纳复用组件类型需要单独配置。该新增复用池能力比默认复用池接纳组件的范围更广，不只局限于父子组件才能复用，所以命名为全局复用池。
 

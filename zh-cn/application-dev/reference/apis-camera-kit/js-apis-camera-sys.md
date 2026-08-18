@@ -1027,6 +1027,8 @@ enableDepthFusion(enabled: boolean): void
 
 启用深度融合功能。
 
+进行设置之前先使用[isDepthFusionSupported](#isdepthfusionsupported14)检查设备是否支持深度融合。
+
 **系统接口：** 此接口为系统接口。
 
 **系统能力：** SystemCapability.Multimedia.Camera.Core
@@ -1194,6 +1196,8 @@ function getSketchRatio(previewOutput: camera.PreviewOutput): number {
 enableSketch(enabled: boolean): void
 
 使能画中画。
+
+进行设置之前先使用[isSketchSupported](#issketchsupported11)检查设备是否支持画中画。
 
 **系统接口：** 此接口为系统接口。
 
@@ -1636,6 +1640,8 @@ function isDeferredImageDeliveryEnabled(photoOutput: camera.PhotoOutput, type: c
 deferImageDelivery(type: DeferredDeliveryImageType): void
 
 开启相关类型分段式能力。
+
+设置之前，需要调用[isDeferredImageDeliverySupported](#isdeferredimagedeliverysupported11)判断当前模式是否支持相关分段式能力。
 
 **系统接口：** 此接口为系统接口。
 
@@ -8231,6 +8237,8 @@ function getLightPaintingType(lightPaintingPhotoSession: camera.LightPaintingPho
 setLightPaintingType(type: LightPaintingType): void
 
 设置当前生效的流光快门模式类型。
+
+可以先通过[getSupportedLightPaintingTypes](#getsupportedlightpaintingtypes12)获取当前设备所支持的流光快门模式类型。
 
 **系统接口：** 此接口为系统接口。
 

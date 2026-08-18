@@ -2,7 +2,7 @@
 <!--Kit: Basic Services Kit-->
 <!--Subsystem: MiscServices-->
 <!--Owner: @yangxiaodong41-->
-<!--Designer: @guo867-->
+<!--Designer: @zhusiyuan2-->
 <!--Tester: @maxiaorong-->
 <!--Adviser: @fang-jinxu-->
 
@@ -121,7 +121,7 @@ createData(data: Record&lt;string, ValueType&gt;): PasteData
 
 | 参数名 | 类型 | 必填 | 说明  |
 | -------- |------------------------------------------------| -------- |-----------|
-| data | [Record](../../quick-start/introduction-to-arkts.md#对象字面量)&lt;string, [ValueType](#valuetype9)&gt; | 是 | Record的key为剪贴板数据对应的MIME类型。可以是[常量](#常量)中已定义的类型，包括HTML类型，WANT类型，纯文本类型，URI类型，PIXELMAP类型。也可以是自定义的MIME类型，可自定义此参数值，mimeType长度不能超过1024字节。<br/>Record的value为key中指定MIME类型对应的数据。<br/>Record中的首个key-value指定的MIME类型，会作为剪贴板内容对象中首个PasteDataRecord的默认MIME类型，非默认类型的数据在粘贴时只能使用[getData](#getdata14)接口读取。 |
+| data | [Record](../../quick-start/arkts-language-guide-collection-types.md#recordkv-类型)&lt;string, [ValueType](#valuetype9)&gt; | 是 | Record的key为剪贴板数据对应的MIME类型。可以是[常量](#常量)中已定义的类型，包括HTML类型，WANT类型，纯文本类型，URI类型，PIXELMAP类型。也可以是自定义的MIME类型，可自定义此参数值，mimeType长度不能超过1024字节。<br/>Record的value为key中指定MIME类型对应的数据。<br/>Record中的首个key-value指定的MIME类型，会作为剪贴板内容对象中首个PasteDataRecord的默认MIME类型，非默认类型的数据在粘贴时只能使用[getData](#getdata14)接口读取。 |
 
 **返回值：**
 
@@ -651,7 +651,7 @@ struct PasteboardTest {
 
 ## PasteDataRecord<sup>7+</sup>
 
-对于剪贴板中内容记录的抽象定义，称之为条目。剪贴板内容部分由一个或者多个条目构成，例如一条文本内容、一份HTML、一个URI或者一个Want。
+对于剪贴板中内容记录的抽象定义，称之为条目。剪贴板内容部分由一个或者多个条目构成，例如一条文本内容、一份HTML、一个URI或者一个Want。不支持在创建PasteDataRecord之后，修改PasteDataRecord的默认数据类型的值，应在创建PasteDataRecord时指定正确的默认数据类型的值。如需刷新PasteDataRecord的属性值，请使用[addEntry](#addentry14)。
 
 ### 属性
 
@@ -661,13 +661,13 @@ struct PasteboardTest {
 
 | 名称 | 类型 | 只读 | 可选 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
-| htmlText| string | 是 | 否 | HTML内容，需符合标准HTML格式。 |
-| want | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | 是 | 否 | Want内容。 |
-| mimeType | string | 是 | 否 | 默认数据类型。 |
-| plainText | string | 是 | 否 | 纯文本内容。 |
-| uri | string | 是 | 否 | URI内容，需符合标准URI格式。 |
-| pixelMap<sup>9+</sup> | [image.PixelMap](../apis-image-kit/arkts-apis-image-PixelMap.md) | 是 | 否 | PixelMap内容。 |
-| data<sup>9+</sup> | Record<string, ArrayBuffer> | 是 | 否 | 自定义数据内容。 |
+| htmlText| string | 否 | 否 | HTML内容，需符合标准HTML格式。对此属性的修改无效，如需刷新属性值，请使用[addEntry](#addentry14)。 |
+| want | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | 否 | 否 | Want内容。对此属性的修改无效，如需刷新属性值，请使用[addEntry](#addentry14)。 |
+| mimeType | string | 否 | 否 | 默认数据类型。对此属性的修改无效。 |
+| plainText | string | 否 | 否 | 纯文本内容。对此属性的修改无效，如需刷新属性值，请使用[addEntry](#addentry14)。|
+| uri | string | 否 | 否 | URI内容，需符合标准URI格式。对此属性的修改无效，如需刷新属性值，请使用[addEntry](#addentry14)。 |
+| pixelMap<sup>9+</sup> | [image.PixelMap](../apis-image-kit/arkts-apis-image-PixelMap.md) | 否 | 否 | PixelMap内容。对此属性的修改无效，如需刷新属性值，请使用[addEntry](#addentry14)。 |
+| data<sup>9+</sup> | Record<string, ArrayBuffer> | 否 | 否 | 自定义数据内容。对此属性的修改无效。 |
 
 ### toPlainText<sup>9+</sup>
 

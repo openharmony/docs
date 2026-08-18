@@ -565,7 +565,7 @@ Text组件支持创建自定义文本样式，以下为修改文本样式的主�
             .borderWidth(1)
             .fontSize(40)
             .contentTransition(this.numberTransition)
-          Button('chang number')
+          Button('change number')
             .onClick(() => {
               this.number++
             })

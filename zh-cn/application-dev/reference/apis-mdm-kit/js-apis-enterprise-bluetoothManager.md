@@ -77,7 +77,7 @@ try {
   // 获取蓝牙信息
   let result: bluetoothManager.BluetoothInfo = bluetoothManager.getBluetoothInfo(wantTemp);
   console.info(`Succeeded in getting bluetooth info: ${JSON.stringify(result)}`);
-} catch(err) {
+} catch (err) {
   console.error(`Failed to get bluetooth info. Code: ${err.code}, message: ${err.message}`);
 }
 ```
@@ -133,12 +133,12 @@ let wantTemp: Want = {
   abilityName: 'EnterpriseAdminAbility'
 };
 // 定义蓝牙设备MAC地址数组（需根据实际情况进行替换）
-let deviceIds: Array<string> = ["00:1A:2B:3C:4D:5E","AA:BB:CC:DD:EE:FF"];
+let deviceIds: Array<string> = ["00:1A:2B:3C:4D:5E", "AA:BB:CC:DD:EE:FF"];
 try {
   // 添加蓝牙设备允许名单
-  bluetoothManager.addAllowedBluetoothDevices(wantTemp,deviceIds);
+  bluetoothManager.addAllowedBluetoothDevices(wantTemp, deviceIds);
   console.info(`Succeeded in adding allowed bluetooth devices.`);
-} catch(err) {
+} catch (err) {
   console.error(`Failed to add allowed bluetooth devices. Code: ${err.code}, message: ${err.message}`);
 }
 ```
@@ -188,12 +188,12 @@ let wantTemp: Want = {
   abilityName: 'EnterpriseAdminAbility'
 };
 // 定义蓝牙设备MAC地址数组（需根据实际情况进行替换）
-let deviceIds: Array<string> = ["00:1A:2B:3C:4D:5E","AA:BB:CC:DD:EE:FF"];
+let deviceIds: Array<string> = ["00:1A:2B:3C:4D:5E", "AA:BB:CC:DD:EE:FF"];
 try {
   // 移除蓝牙设备允许名单
-  bluetoothManager.removeAllowedBluetoothDevices(wantTemp,deviceIds);
+  bluetoothManager.removeAllowedBluetoothDevices(wantTemp, deviceIds);
   console.info(`Succeeded in removing allowed bluetooth devices.`);
-} catch(err) {
+} catch (err) {
   console.error(`Failed to remove allowed bluetooth devices. Code: ${err.code}, message: ${err.message}`);
 }
 ```
@@ -252,7 +252,7 @@ try {
   // 获取蓝牙设备允许名单
   let result: Array<string> = bluetoothManager.getAllowedBluetoothDevices(wantTemp);
   console.info(`Succeeded in getting allowed bluetooth devices. Result: ${JSON.stringify(result)}`);
-} catch(err) {
+} catch (err) {
   console.error(`Failed to get allowed bluetooth devices. Code: ${err.code}, message: ${err.message}`);
 }
 ```
@@ -360,12 +360,12 @@ let wantTemp: Want = {
   abilityName: 'EnterpriseAdminAbility'
 };
 // 定义蓝牙设备MAC地址数组（需根据实际情况进行替换）
-let deviceIds: Array<string> = ["00:1A:2B:3C:4D:5E","AA:BB:CC:DD:EE:FF"];
+let deviceIds: Array<string> = ["00:1A:2B:3C:4D:5E", "AA:BB:CC:DD:EE:FF"];
 try {
   // 添加蓝牙设备禁用名单
   bluetoothManager.addDisallowedBluetoothDevices(wantTemp,deviceIds);
   console.info(`Succeeded in adding disallowed bluetooth devices.`);
-} catch(err) {
+} catch (err) {
   console.error(`Failed to add disallowed bluetooth devices. Code: ${err.code}, message: ${err.message}`);
 }
 ```
@@ -414,12 +414,12 @@ let wantTemp: Want = {
   abilityName: 'EnterpriseAdminAbility'
 };
 // 定义蓝牙设备MAC地址数组（需根据实际情况进行替换）
-let deviceIds: Array<string> = ["00:1A:2B:3C:4D:5E","AA:BB:CC:DD:EE:FF"];
+let deviceIds: Array<string> = ["00:1A:2B:3C:4D:5E", "AA:BB:CC:DD:EE:FF"];
 try {
   // 移除蓝牙设备禁用名单
   bluetoothManager.removeDisallowedBluetoothDevices(wantTemp,deviceIds);
   console.info(`Succeeded in removing disallowed bluetooth devices.`);
-} catch(err) {
+} catch (err) {
   console.error(`Failed to remove disallowed bluetooth devices. Code: ${err.code}, message: ${err.message}`);
 }
 ```
@@ -476,7 +476,7 @@ try {
   // 获取蓝牙设备禁用名单
   let result: Array<string> = bluetoothManager.getDisallowedBluetoothDevices(wantTemp);
   console.info(`Succeeded in getting disallowed bluetooth devices. Result: ${JSON.stringify(result)}`);
-} catch(err) {
+} catch (err) {
   console.error(`Failed to get disallowed bluetooth devices. Code: ${err.code}, message: ${err.message}`);
 }
 ```
@@ -580,7 +580,7 @@ try {
   // 开启蓝牙
   bluetoothManager.turnOnBluetooth(wantTemp);
   console.info(`Succeeded in turning on bluetooth.`);
-} catch(err) {
+} catch (err) {
   console.error(`Failed to turn on bluetooth. Code: ${err.code}, message: ${err.message}`);
 }
 ```
@@ -632,7 +632,7 @@ try {
   // 关闭蓝牙
   bluetoothManager.turnOffBluetooth(wantTemp);
   console.info('Succeeded in turning off bluetooth.');
-} catch(err) {
+} catch (err) {
   console.error(`Failed to turn off bluetooth. Code: ${err.code}, message: ${err.message}`);
 }
 ```
@@ -877,7 +877,8 @@ let protocols: Array<bluetoothManager.Protocol> = [
 
 try {
   // 添加蓝牙协议禁用名单，指定传输策略为禁止发送和接收
-  bluetoothManager.addDisallowedBluetoothProtocols(wantTemp, accountId, protocols, bluetoothManager.TransferPolicy.RECEIVE_SEND);
+  bluetoothManager.addDisallowedBluetoothProtocols(wantTemp, accountId, protocols,
+    bluetoothManager.TransferPolicy.RECEIVE_SEND);
   console.info('Succeeded in adding disallowed bluetooth protocols.');
 } catch (err) {
   console.error(`Failed to add disallowed bluetooth protocols. Code is ${err.code}, message is ${err.message}`);
@@ -949,7 +950,8 @@ let protocols: Array<bluetoothManager.Protocol> = [
 
 try {
   // 移除蓝牙协议禁用名单，指定传输策略为禁止发送和接收
-  bluetoothManager.removeDisallowedBluetoothProtocols(wantTemp, accountId, protocols, bluetoothManager.TransferPolicy.RECEIVE_SEND);
+  bluetoothManager.removeDisallowedBluetoothProtocols(wantTemp, accountId,protocols,
+    bluetoothManager.TransferPolicy.RECEIVE_SEND);
   console.info('Succeeded in removing disallowed bluetooth protocols.');
 } catch (err) {
   console.error(`Failed to remove disallowed bluetooth protocols. Code is ${err.code}, message is ${err.message}`);
@@ -1017,7 +1019,8 @@ let accountId: number = 100;
 
 try {
   // 获取指定用户指定传输策略下已禁用的蓝牙协议列表
-  let result: Array<bluetoothManager.Protocol> = bluetoothManager.getDisallowedBluetoothProtocols(wantTemp, accountId, bluetoothManager.TransferPolicy.RECEIVE_SEND);
+  let result: Array<bluetoothManager.Protocol> = bluetoothManager.getDisallowedBluetoothProtocols(wantTemp, accountId,
+    bluetoothManager.TransferPolicy.RECEIVE_SEND);
   console.info(`Succeeded in getting disallowed bluetooth protocols, result : ${JSON.stringify(result)}`);
 } catch (err) {
   console.error(`Failed to get disallowed bluetooth protocols. Code is ${err.code}, message is ${err.message}`);
@@ -1048,9 +1051,9 @@ try {
 
 | 名称                | 值  | 说明    |
 | ----------------- | ---- | ----- |
-| GATT | 0 | [GATT协议](../../connectivity/terminology.md#gatt)。 |
-| SPP | 1 | [SPP协议](../../connectivity/terminology.md#spp)。 |
-| OPP | 2 | [OPP协议](../../connectivity/terminology.md#opp)。 |
+| GATT | 0 | [GATT协议](../../connectivity/bluetooth/terminology.md#gatt)。 |
+| SPP | 1 | [SPP协议](../../connectivity/bluetooth/terminology.md#spp)。 |
+| OPP | 2 | [OPP协议](../../connectivity/bluetooth/terminology.md#opp)。 |
 
 ## TransferPolicy
 

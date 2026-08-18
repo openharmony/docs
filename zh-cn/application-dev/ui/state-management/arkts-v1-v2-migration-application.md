@@ -768,9 +768,7 @@ struct NavigationContentMsgStack {
 
 ### 多实例场景LocalStorage的迁移
 
-为了解决不同Ability之间数据的共享，LocalStorage支持跨Ability存取数据。
-
-对于该场景，V2可结合\@ObservedV2+\@Trace创建可观测的全局单例对象，定义Map类型存储不同Ability页面的数据，从而实现不同Ability之间数据共享。启动Ability可以参考[specified启动模式](../../application-models/uiability-launch-type.md#specified启动模式)。
+LocalStorage支持单个UIAbility内的页面间状态共享。对于该场景，V2可结合@ObservedV2与@Trace创建可观测的全局单例对象，定义Map类型存储不同Ability页面的数据，通过不同的key值访问对应数据，从而实现UIAbility内的数据共享。启动Ability可以参考[specified启动模式](../../application-models/uiability-launch-type.md#specified启动模式)。
 
 **主页面**
 
@@ -918,7 +916,7 @@ struct PDF {
 
 ## AppStorage->AppStorageV2
 
-上一小节中，对于创建全局\@ObservedV2和\@Trace装饰实例的改造不适用于跨Ability的数据共享，可以使用AppStorageV2替代。
+上一小节中，虽然可以通过创建全局@ObservedV2和@Trace装饰的单例对象实现跨Ability的数据共享，但AppStorageV2提供了更标准、便捷的跨Ability共享方案，推荐使用AppStorageV2替代。
 
 V1:
 

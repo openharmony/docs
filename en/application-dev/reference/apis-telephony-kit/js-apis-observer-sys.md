@@ -1,4 +1,4 @@
-# @ohos.telephony.observer (Observer) (System API)
+# @ohos.telephony.observer (Telephony Status Observer) (System API)
 <!--Kit: Telephony Kit-->
 <!--Subsystem: Telephony-->
 <!--Owner: @shao-yikai-->
@@ -12,7 +12,7 @@ The **observer** module provides event subscription management functions. With t
 >
 > The initial APIs of this module are supported since API version 6. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 >
-> This topic describes only system APIs provided by the module. For details about its public APIs, see [@ohos.telephony.observer (Observer)](js-apis-observer.md).
+> This topic describes only system APIs provided by the module. For details about its public APIs, see [@ohos.telephony.observer (Telephony Status Observer)](js-apis-observer.md).
 
 ## Modules to Import
 

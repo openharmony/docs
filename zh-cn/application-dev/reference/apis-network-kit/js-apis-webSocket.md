@@ -87,11 +87,11 @@ connect(url: string, callback: AsyncCallback\<boolean\>): void
 | --------------------- | ------------------------------------------ |
 | 401                   | Parameter error.                           |
 | 201                   | Permission denied.                         |
-| 2302001               | Websocket url error.                       |
-| 2302002               | Websocket certificate file does not exist. |
-| 2302003               | Websocket connection already exists.       |
-| 2302998               | It is not allowed to access this domain.   |
-| 2302999               | Internal error.             |
+| 2302001               | Websocket url error. <br>适用版本：12+                       |
+| 2302002               | Websocket certificate file does not exist. <br>适用版本：12+ |
+| 2302003               | Websocket connection already exists. <br>适用版本：12+       |
+| 2302998               | It is not allowed to access this domain. <br>适用版本：12+   |
+| 2302999               | Websocket other unknown error. <br>适用版本：10+             |
 
 
 **示例：**
@@ -147,11 +147,11 @@ connect(url: string, options: WebSocketRequestOptions, callback: AsyncCallback\<
 | --------------------- | ------------------------------------------ |
 | 401                   | Parameter error.                           |
 | 201                   | Permission denied.                         |
-| 2302001               | Websocket url error.                       |
-| 2302002               | Websocket certificate file does not exist. |
-| 2302003               | Websocket connection already exists.       |
-| 2302998               | It is not allowed to access this domain.   |
-| 2302999               | Internal error.             |
+| 2302001               | Websocket url error. <br>适用版本：12+                       |
+| 2302002               | Websocket certificate file does not exist. <br>适用版本：12+ |
+| 2302003               | Websocket connection already exists. <br>适用版本：12+       |
+| 2302998               | It is not allowed to access this domain. <br>适用版本：12+   |
+| 2302999               | Websocket other unknown error. <br>适用版本：10+             |
 
 **示例：**
 
@@ -236,11 +236,11 @@ connect(url: string, options?: WebSocketRequestOptions): Promise\<boolean\>
 | --------------------- | ------------------------------------------ |
 | 401                   | Parameter error.                           |
 | 201                   | Permission denied.                         |
-| 2302001               | Websocket url error.                       |
-| 2302002               | Websocket certificate file does not exist. |
-| 2302003               | Websocket connection already exists.       |
-| 2302998               | It is not allowed to access this domain.   |
-| 2302999               | Internal error.             |
+| 2302001               | Websocket url error. <br>适用版本：12+                       |
+| 2302002               | Websocket certificate file does not exist. <br>适用版本：12+ |
+| 2302003               | Websocket connection already exists. <br>适用版本：12+       |
+| 2302998               | It is not allowed to access this domain. <br>适用版本：12+   |
+| 2302999               | Websocket other unknown error. <br>适用版本：10+             |
 
 **示例：**
 
@@ -1039,7 +1039,7 @@ start(config: WebSocketServerConfig): Promise\<boolean\>
 | 2302002   | Websocket certificate file does not exist. |
 | 2302004   | Can't listen on the given NIC.            |
 | 2302005   | Can't listen on the given Port.           |
-| 2302007   | Websocket port already occupied.           |
+| 2302007   | Websocket port already occupied. <br>适用版本：24+ |
 | 2302999   | Websocket other unknown error.             |
 
 **示例：**

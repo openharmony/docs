@@ -1,10 +1,12 @@
 # Interface (AudioCapturer)
+
 <!--Kit: Audio Kit-->
 <!--Subsystem: Multimedia-->
-<!--Owner: @songshenke-->
-<!--Designer: @caixuejiang; @hao-liangfei; @zhanganxiang-->
+<!--Owner: @zyy0412-->
+<!--Designer: @weixin_41398971-->
 <!--Tester: @Filger-->
 <!--Adviser: @w_Machine_cc-->
+<!-- md-trans-meta sourceCommit=a560ca455272b87c773fafec048564b7357cd71d translatedAt=2026-08-10T01:22:21.301Z pushedAt=2026-08-10T02:59:26.429Z -->
 
 This interface provides APIs for audio capture.
 
@@ -66,7 +68,6 @@ audioCapturer.getCapturerInfo((err: BusinessError, capturerInfo: audio.AudioCapt
   }
 });
 ```
-
 
 ## getCapturerInfo<sup>8+</sup>
 
@@ -329,7 +330,6 @@ audioCapturer.start((err: BusinessError) => {
 });
 ```
 
-
 ## start<sup>8+</sup>
 
 start(): Promise<void\>
@@ -356,6 +356,40 @@ audioCapturer.start().then(() => {
   }
 }).catch((err: BusinessError) => {
   console.error(`Failed to start. Code: ${err.code}, message: ${err.message}`);
+});
+```
+
+## requestPlaybackCaptureStart
+
+requestPlaybackCaptureStart(callback: Callback\<PlaybackCaptureStartState>): void
+
+Requests to start the internal recording stream. The internal recording stream can only be started through this API. This API uses an asynchronous callback to return the result.
+
+Internal recording refers to the input type that uses system internal audio data as the audio source, abbreviated as internal recording, and the corresponding stream is called an internal recording stream. It is commonly used to record the audio sent by target device apps to the system for playback.
+
+This API is non-blocking. After the system receives an internal recording start request, it continues to process the user authorization check and start the internal recording stream, and the final result is returned through the callback function.
+
+**Since**: 26.0.0
+
+**Model restriction**: This API can be used only in the stage model.
+
+**System capability:** SystemCapability.Multimedia.Audio.PlaybackCapture
+
+**Parameters**
+
+| Name | Type | Mandatory | Description |
+| :--- | :--- | :--- | :--- |
+| callback | Callback<[PlaybackCaptureStartState](arkts-apis-audio-e.md#playbackcapturestartstate)> | Yes | Callback used to receive the final result of the internal recording start request. |
+
+**Example**
+
+```ts
+audioCapturer.requestPlaybackCaptureStart((state: audio.PlaybackCaptureStartState) => {
+  if (state === audio.PlaybackCaptureStartState.STATE_SUCCESS) {
+    console.info('Succeeded in starting Playback capture.');
+  } else {
+    console.error(`Failed to start Playback capture. State: ${state}.`);
+  }
 });
 ```
 
@@ -386,7 +420,6 @@ audioCapturer.stop((err: BusinessError) => {
   }
 });
 ```
-
 
 ## stop<sup>8+</sup>
 
@@ -445,7 +478,6 @@ audioCapturer.release((err: BusinessError) => {
 });
 ```
 
-
 ## release<sup>8+</sup>
 
 release(): Promise<void\>
@@ -474,7 +506,6 @@ audioCapturer.release().then(() => {
 });
 ```
 
-
 ## getAudioTime<sup>8+</sup>
 
 getAudioTime(callback: AsyncCallback<number\>): void
@@ -495,7 +526,7 @@ Obtains the timestamp of the current recording position, measured in nanoseconds
 import { BusinessError } from '@kit.BasicServicesKit';
 
 audioCapturer.getAudioTime((err: BusinessError, timestamp: number) => {
-  console.info(`Current timestamp: ${timestamp}`);
+  console.info(`Succeeded in getting audio time. Timestamp: ${timestamp}`);
 });
 ```
 
@@ -518,10 +549,10 @@ Obtains the timestamp of the current recording position, measured in nanoseconds
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 
-audioCapturer.getAudioTime().then((audioTime: number) => {
-  console.info(`AudioFrameworkRecLog: AudioCapturer getAudioTime : Success ${audioTime}`);
+audioCapturer.getAudioTime().then((timestamp: number) => {
+  console.info(`Succeeded in getting audio time. Timestamp: ${timestamp}`);
 }).catch((err: BusinessError) => {
-  console.error(`AudioFrameworkRecLog: AudioCapturer Created : ERROR : ${err}`);
+  console.error(`Failed to get audio time. Code: ${err.code}, message: ${err.message}`);
 });
 ```
 
@@ -545,11 +576,11 @@ Obtains the timestamp of the current recording position, measured in nanoseconds
 import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
-  let audioTime: number = audioCapturer.getAudioTimeSync();
-  console.info(`AudioFrameworkRecLog: AudioCapturer getAudioTimeSync : Success ${audioTime}`);
+  let timestamp: number = audioCapturer.getAudioTimeSync();
+  console.info(`Succeeded in getting audio time. Timestamp: ${timestamp}`);
 } catch (err) {
   let error = err as BusinessError;
-  console.error(`AudioFrameworkRecLog: AudioCapturer getAudioTimeSync : ERROR : ${error}`);
+  console.error(`Failed to get audio time. Code: ${error.code}, message: ${error.message}`);
 }
 ```
 
@@ -835,7 +866,7 @@ audioCapturer.on('audioInterrupt', (interruptEvent: audio.InterruptEvent) => {
       case audio.InterruptHint.INTERRUPT_HINT_RESUME:
         // It is recommended that the application continue capturing. (The audio stream has been forcibly paused and temporarily lost the focus. It can resume capturing now.)
         // The INTERRUPT_HINT_RESUME operation must be proactively executed by the application and cannot be forcibly executed by the system. Therefore, the INTERRUPT_HINT_RESUME event must map to INTERRUPT_SHARE.
-        console.info('Resume force paused renderer or ignore');
+        console.info('Resume force paused capturer or ignore');
         // To continue capturing, the application must perform the required operations.
         break;
       default:
@@ -908,6 +939,7 @@ audioCapturer.on('inputDeviceChange', (deviceChangeInfo: audio.AudioDeviceDescri
   console.info(`inputDevice deviceType: ${deviceChangeInfo[0].deviceType}`);
 });
 ```
+
 ## off('inputDeviceChange')<sup>11+</sup>
 
 off(type: 'inputDeviceChange', callback?: Callback\<AudioDeviceDescriptors>): void
@@ -1089,7 +1121,7 @@ on(type: 'periodReach', frame: number, callback: Callback&lt;number&gt;): void
 
 Subscribes to the period reached event, which is triggered each time the number of frames captured reaches the value of the **frame** parameter. In other words, the information is reported periodically. This API uses an asynchronous callback to return the result.
 
-For example, if **frame** is set to **10**, the callback is invoked each time 10 frames are captured, for example, when the number of frames captured reaches the 10th frame, 20th frame, and 30th frame.
+If **frame** is set to **10**, information is reported every 10 frames collected (for example, the 10th frame, the 20th frame, the 30th frame, and so on).
 
 **System capability**: SystemCapability.Multimedia.Audio.Capturer
 
@@ -1204,10 +1236,10 @@ audioCapturer.off('stateChange');
 // For the same event, if the callback parameter passed to the off API is the same as that passed to the on API, the off API cancels the subscription registered with the specified callback parameter.
 let stateChangeCallback = (state: audio.AudioState) => {
   if (state == 1) {
-    console.info('audio renderer state is: STATE_PREPARED');
+    console.info('audio capturer state is: STATE_PREPARED');
   }
   if (state == 2) {
-    console.info('audio renderer state is: STATE_RUNNING');
+    console.info('audio capturer state is: STATE_RUNNING');
   }
 };
 
@@ -1416,6 +1448,54 @@ audioCapturer.setWillMuteWhenInterrupted(true).then(() => {
 });
 ```
 
+## setMuteHint<sup>24+</sup>
+
+setMuteHint(mute: boolean): Promise&lt;void&gt;
+
+Passes the mute state of the current recording stream from the app to the system audio module.<!--RP1-->This API does not trigger muting of the recording stream. Currently, it is only used on some PC/2-in-1 devices to optimize device power consumption.<!--RP1End-->This API uses a promise to return the result.
+
+> **NOTE**
+>
+> - This API is used to report the mute state of the app itself to the system audio module, and does not change the actual mute state of the recording stream.
+> - This API can only be called when the recording stream is in the running state. Otherwise, error code 6800103 is returned.
+> - When both the stream-level mute hint API (this API) and the session-level mute hint API [AudioSessionManager.setCapturerMuteHint](arkts-apis-audio-AudioSessionManager.md#setcapturermutehint24) are set for the same recording stream, the stream-level [setMuteHint](#setmutehint24) takes precedence, and the value is based on the stream-level setting.
+
+**Model restriction**: This API can be used only in the stage model.
+
+**System capability**: SystemCapability.Multimedia.Audio.Capturer
+
+**Parameters**
+
+| Name | Type | Mandatory | Description |
+| ---------- |---------------- | ------ |---------------------------------------------------------|
+| mute | boolean | Yes | Mute state reported by the app to the system audio module. The value **true** indicates that the app mutes the current stream, and **false** indicates that the mute is canceled. |
+
+**Return value**
+
+| Type | Description |
+| ------------------- | ----------------------------- |
+| Promise&lt;void&gt; | Promise that returns no value. |
+
+**Error codes**
+
+For details about the following error codes, see [Audio Error Codes](errorcode-audio.md).
+
+| ID | Error Message |
+| ------- | --------------------------------------------|
+| 6800103 | Operation not permitted at current state, stream is not running. |
+
+**Example**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+audioCapturer.setMuteHint(true).then(() => {
+  console.info('setMuteHint Success!');
+}).catch((err: BusinessError) => {
+  console.error(`setMuteHint Fail: ${err}`);
+});
+```
+
 ## read<sup>(deprecated)</sup>
 
 read(size: number, isBlockingRead: boolean, callback: AsyncCallback<ArrayBuffer\>): void
@@ -1533,4 +1613,129 @@ let strategy: audio.AudioSessionStrategy = {
 };
 let behavior: number = audio.AudioSessionBehaviorFlags.MUTE_WHEN_INTERRUPTED;
 audioCapturer.setIndependentAudioSessionStrategy(strategy, behavior);
+```
+
+## setNoiseReductionMode
+
+setNoiseReductionMode(noiseReductionMode: NoiseReductionMode): void
+
+Sets the noise reduction mode of the current recording stream. You are advised to call [getSupportedNoiseReductionModes](#getsupportednoisereductionmodes) to obtain the noise reduction modes supported by the current recording stream before setting the mode through this API.
+
+> **NOTE**
+>
+> - Currently, only the recording stream created with [SourceType.SOURCE_TYPE_VOICE_MESSAGE](arkts-apis-audio-e.md#sourcetype8) supports noise reduction mode setting. Other recording streams support only [NoiseReductionMode.FIDELITY](arkts-apis-audio-e.md#noisereductionmode) by default.
+> - The noise reduction effect is affected by the device platform, audio device, and recording concurrency. When multiple recording streams are running simultaneously, the set noise reduction mode may not take effect.
+> - This API can only be called after the recording stream is created but before recording starts, or after recording stops. Calling it when the recording stream is in the running or released state will throw an exception.
+
+**Since**: 26.0.0
+
+**Model restriction**: This API can be used only in the stage model.
+
+**System capability**: SystemCapability.Multimedia.Audio.Capturer
+
+**Parameters**
+
+| Name | Type | Mandatory | Description |
+| :--- | :--- | :--- | :--- |
+| noiseReductionMode | [NoiseReductionMode](arkts-apis-audio-e.md#noisereductionmode) | Yes | Noise reduction mode to set. |
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Audio Error Codes](errorcode-audio.md).
+
+| ID | Error Message |
+| ------- | --------------------------------------------|
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+| 6800101 | Parameter verification failed. |
+| 6800103 | Illegal state, audio capturer is in running or released state. |
+| 6800104 | The set mode is not supported. |
+| 6800301 | Audio server process died. |
+
+**Example**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+try {
+  let supportedModes: Array<audio.NoiseReductionMode> = audioCapturer.getSupportedNoiseReductionModes();
+  if (supportedModes.includes(audio.NoiseReductionMode.PURE_VOCALS)) {
+    audioCapturer.setNoiseReductionMode(audio.NoiseReductionMode.PURE_VOCALS);
+  } else {
+    audioCapturer.setNoiseReductionMode(audio.NoiseReductionMode.FIDELITY);
+  }
+  console.info(`setNoiseReductionMode success: ${audioCapturer.getNoiseReductionMode()}`);
+} catch (err) {
+  let error = err as BusinessError;
+  console.error(`setNoiseReductionMode failed. Code: ${error.code}, message: ${error.message}`);
+}
+```
+
+## getNoiseReductionMode
+
+getNoiseReductionMode(): NoiseReductionMode
+
+Obtains the noise reduction mode of the current recording stream. The returned result reflects only the noise reduction mode of the current recording stream. The default value is [NoiseReductionMode.FIDELITY](arkts-apis-audio-e.md#noisereductionmode).
+
+**Since**: 26.0.0
+
+**Model restriction**: This API can be used only in the stage model.
+
+**System capability**: SystemCapability.Multimedia.Audio.Capturer
+
+**Return value**
+
+| Type | Description |
+| :--- | :--- |
+| [NoiseReductionMode](arkts-apis-audio-e.md#noisereductionmode) | Noise reduction mode of the current recording stream. |
+
+**Example**
+
+```ts
+let noiseReductionMode: audio.NoiseReductionMode = audioCapturer.getNoiseReductionMode();
+console.info(`getNoiseReductionMode success: ${noiseReductionMode}`);
+```
+
+## getSupportedNoiseReductionModes
+
+getSupportedNoiseReductionModes(): Array&lt;NoiseReductionMode&gt;
+
+Obtains the recording noise reduction modes supported by the current device.
+
+> **NOTE**
+>
+> - Currently, only recording streams created with [SourceType.SOURCE_TYPE_VOICE_MESSAGE](arkts-apis-audio-e.md#sourcetype8) can query the supported noise reduction modes based on the device platform. For all other recording streams, only [NoiseReductionMode.FIDELITY](arkts-apis-audio-e.md#noisereductionmode) is returned by default.
+> - The returned result takes into account only the audio format and the device platform. It does not consider the current input device or recording concurrency.
+
+**Since**: 26.0.0
+
+**Model restriction**: This API can be used only in the stage model.
+
+**System capability**: SystemCapability.Multimedia.Audio.Capturer
+
+**Return value**
+
+| Type | Description |
+| :--- | :--- |
+| Array&lt;[NoiseReductionMode](arkts-apis-audio-e.md#noisereductionmode)&gt; | Array of supported recording noise reduction modes. [NoiseReductionMode.FIDELITY](arkts-apis-audio-e.md#noisereductionmode) is supported by default. |
+
+**Error codes**
+
+For details about the following error codes, see [Audio Error Codes](errorcode-audio.md).
+
+| ID | Error Message |
+| ------- | --------------------------------------------|
+| 6800301 | Audio server process died. |
+
+**Example**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+try {
+  let supportedModes: Array<audio.NoiseReductionMode> = audioCapturer.getSupportedNoiseReductionModes();
+  console.info(`getSupportedNoiseReductionModes success: ${supportedModes}`);
+} catch (err) {
+  let error = err as BusinessError;
+  console.error(`getSupportedNoiseReductionModes failed. Code: ${error.code}, message: ${error.message}`);
+}
 ```

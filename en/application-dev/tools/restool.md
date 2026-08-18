@@ -5,7 +5,8 @@
 <!--Owner: @liule_123-->
 <!--Designer: @buda_wy-->
 <!--Tester: @lpw_work-->
-<!--Adviser: @Brilliantry_Rui-->
+<!--Adviser: @ningningW-->
+<!-- md-trans-meta sourceCommit=9d4329aa9b07ce81fc1a2c848fb4cea93e274a8e translatedAt=2026-08-13T03:17:41.501Z pushedAt=2026-08-13T06:53:21.783Z -->
 
 ## Overview
 
@@ -196,6 +197,7 @@ restool dump config entry.hap
 ## Example
 
 An example **entry** directory structure is as follows:
+
 ```text
 entry/src/main
 |    |----resource
@@ -225,6 +227,7 @@ Step 1: Generate the resource middleware.
 ```sh
 restool -x entry/src/main/resource -o out
 ```
+
 Step 2: Compile the resource middleware.
 
 ```sh
@@ -268,14 +271,17 @@ restool -i entry/src/main -j entry/src/main/module.json -p com.ohos.demo -o out 
 Step 2: Fix the resource ID. There are two ways to fix the resource ID.
 
 + Run the following command to fix the resource ID:
+
 ```sh
 restool -i entry/src/main -j entry/src/main/module.json -p com.ohos.demo -o out1 -r out1/ResourceTable.txt --defined-ids out/id_defined.json -f
 ```
 
 + Place the customized **id_defined.json** file in the **resource/base/element/** directory and then run the following command to fix the resource ID:
+
 ```sh
 restool -i entry/src/main -j entry/src/main/module.json -p com.ohos.demo -o out1 -r out1/ResourceTable.txt  -f
 ```
+
 ## Error Codes
 
 ### 11201001 Failed to Load the Dependency Library
@@ -291,13 +297,17 @@ Failed to load the dependency library.
 **Possible Causes**
 
 1. The path of the dependency library is incorrect or you do not have the permission to access the path.
+
 2. The third-party dependency library is not installed, the path is incorrect, or you do not have the permission to access the path.
+
 3. An error is reported on Windows. The files before the **xxx.dll** path in the user environment variables and system environment variables cannot be accessed. As a result, the environment variables are incorrectly searched during dependency library loading.
 
 **Solution**
 
 1. Check whether the dependency library path is correct and whether you have the access permission.
+
 2. Install the missing third-party dependency library based on the error message. Ensure that the path of the third-party dependency library is correct and you have the access permission.
+
 3. Add the **xxx/openharmony/previewer/common/bin** path of the SDK and the path of the dependent library to the first two lines of the environment variable **Path**. The sequence is not required.
 
 ### 11203001 Failed to Open the JSON File
@@ -511,11 +521,13 @@ Failed to read the file.
 **Possible Causes**
 
 1. The file path is incorrect or you do not have the permission to access the file.
+
 2. The file is empty.
 
 **Solution**
 
 1. Check whether the file path is correct and whether you have the access permission.
+
 2. Check whether the file is empty.
 
 ### 11210001 Unknown Command Option
@@ -584,7 +596,7 @@ The input path is invalid.
 
 **Possible Causes**
 
--The path specified by **i/--inputPath** is incorrect, or you do not have the access permission.
+The path specified by **-i/--inputPath** is incorrect, or you do not have the access permission.
 
 **Solution**
 
@@ -638,7 +650,7 @@ The output path is invalid.
 
 **Possible Causes**
 
--The output path specified by **-o/--outputPath** does not exist or you do not have the access permission.
+The output path specified by **-o/--outputPath** does not exist or you do not have the access permission.
 
 **Solution**
 
@@ -710,7 +722,7 @@ The module name is duplicate.
 
 **Possible Causes**
 
--The **m/--modules** option specifies a duplicate module name, for example, **-m entry,entry**.
+The **-m/--modules** option specifies a duplicate module name, for example, **-m entry,entry**.
 
 **Solution**
 
@@ -800,7 +812,7 @@ The **target-config** parameter is invalid.
 
 **Possible Causes**
 
---The format of the parameter specified in the **target-config** option is incorrect.
+The format of the parameter specified in the **--target-config** option is incorrect.
 
 **Solution**
 
@@ -832,7 +844,7 @@ Duplicated system id_defined.json path 'xxx'.
 
 **Symptom**
 
---The file path specified by **defined-sysids** is duplicate.
+The file path specified by **--defined-sysids** is duplicate.
 
 **Possible Causes**
 
@@ -948,7 +960,7 @@ The dump command does not specify the path of the HAP.
 
 **Solution**
 
-Check whether the dump command specifies the HAP path, for example, **restool dump xxx/entry.hap**.
+Check whether the dump command specifies the HAP path, for example, `restool dump xxx/entry.hap`.
 
 ### 11210025 Invalid HAP Path Specified by the dump Command
 
@@ -980,7 +992,7 @@ The number of child threads is invalid.
 
 **Possible Causes**
 
---The number of child threads specified by the **thread** option is either a negative number or a decimal.
+The number of child threads specified by the **--thread** option is either a negative number or a decimal.
 
 **Solution**
 
@@ -1053,7 +1065,9 @@ The resource start ID specified by **-e/--startId** conflicts with the **id_defi
 **Possible Causes**
 
 By default, the start resource ID is **0x01000000**. During compilation, the resource IDs increase in ascending order. In addition, restool provides two methods to customize them:
+
 1. **-e/--startId**: specifies the start resource ID in the range of [0x01000000, 0x06FFFFFF) or [0x08000000, 0xFFFFFFFF).
+
 2. [Fixing the Resource ID](#fixing-the-resource-id): specifies the resource ID in the **id_defined.json** file.
 
 If the two methods are used at the same time, the resource IDs calculated in the two methods may be different, causing conflicts.
@@ -1093,6 +1107,7 @@ The resource ID in the **id_defined.json** file is invalid.
 **Possible Causes**
 
 1. The resource ID in **id_defined.json** is not a hexadecimal number.
+
 2. The ID is not in the range of [0x01000000,0x06FFFFFF] or [0x08000000,0xFFFFFFFF].
 
 **Solution**
@@ -1100,6 +1115,7 @@ The resource ID in the **id_defined.json** file is invalid.
 Check whether the resource ID is in hexadecimal format and the value range is [0x01000000,0x06FFFFFF] or [0x08000000,0xFFFFFFFF].
 
 <!--Del-->
+
 ### 11211010 Invalid Resource Sequence in id_defined.json
 
 **Error Message**
@@ -1137,6 +1153,7 @@ Two resources are declared. The index of the **record** array starts from 0. The
 **Solution**
 
 Check whether the **order** value of is consistent with the declaration sequence in the array.
+
 <!--DelEnd-->
 
 ### 11211012 Duplicate IDs Defined in id_defined.json
@@ -1170,6 +1187,7 @@ The module name in the application configuration file is not in the module name 
 **Possible Causes**
 
 1. The module name list specified by **-m/--modules** is incorrect.
+
 2. The module name specified by **name** in the application configuration file [module.json (of stage model)](../quick-start/module-configuration-file.md) or [config.json (of FA model)](../quick-start/application-configuration-file-overview-fa.md) is incorrect.
 
 **Solution**
@@ -1189,7 +1207,9 @@ Resource scanning fails because the resource file is invalid.
 **Possible Causes**
 
 The resource file does not meet the requirements. For example:
+
 1. **rawfile** is expected to be a folder, but it is actually a file.
+
 2. **base/element** is expected to contain only JSON files, but actually contains folders.
 
 **Solution**
@@ -1281,7 +1301,9 @@ The color value is invalid.
 **Possible Causes**
 
 The color resource supports only the following formats:
+
 1. Referencing other color resources. For example, **$color:xxx** references the application's color resource, or **$ohos:color:xxx** references the system color resource.
+
 2. RGB color value starting with **#**, for example, **#rgb**, **#argb**, **#rrggbb**, and **#aarrggbb**.
 
 **Solution**
@@ -1319,6 +1341,7 @@ The **parent** value of the **theme** resource is empty.
 **Possible Causes**
 
 The **parent** property of the **theme** resource is optional. Its value must be the name of another **theme** resource and cannot be an empty string. The following is a correct example:
+
 ```json
 {
   "theme": [
@@ -1352,6 +1375,7 @@ The **parent** property of the **theme** resource is optional. Its value must be
   ]
 }
 ```
+
 Two theme resources **base** and **child** are declared. **base** does not contain the **parent** property, and the **parent** property of the **child** resource is set to **"base"**.
 
 **Solution**
@@ -1407,6 +1431,7 @@ The plural resource type is duplicate.
 **Possible Causes**
 
 The same type is declared repeatedly in the plural resource. For example, the **one** type is declared repeatedly for **eat_apple** in the following error example:
+
 ```json
 {
   "plural": [
@@ -1524,6 +1549,7 @@ The application resource ID is in the range of [0x01000000,0x06FFFFFF] or [0x080
 **Solution**
 
 1. Delete unnecessary resources.
+
 2. Specify a smaller resource start ID.
 
 ### 11211120 Referenced Resource Not Defined
@@ -1539,11 +1565,13 @@ The referenced resource is not defined.
 **Possible Causes**
 
 1. The referenced resource does not exist. For example, the resource has been deleted or renamed.
+
 2. The directory where the referenced resource is located is not specified as the input path using **-i/--inputPath**.
 
 **Solution**
 
 1. Check whether the resource reported in the error information exists.
+
 2. Check whether the parent directory of **resources** where the resource is located is specified as the input path using **-i/--inputPath**. For example, if the resource in the error information is defined in **xxx/entry/src/main/resources/base/element/string.json**, you need to specify **xxx/entry/src/main** as the input path.
 
 ### 11211124 Failed to Parse the resources.index File

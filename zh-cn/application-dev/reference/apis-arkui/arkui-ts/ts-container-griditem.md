@@ -327,7 +327,7 @@ struct GridItemExample {
       .width('60%')
       .backgroundColor(0xFAEEE0)
       .height(150)
-      .padding('4vp')
+      .padding(4)
 
       Grid() {
         ForEach(this.numbers, (rowItem: string) => {
@@ -351,7 +351,7 @@ struct GridItemExample {
       .width('60%')
       .backgroundColor(0xFAEEE0)
       .height(150)
-      .padding('4vp')
+      .padding(4)
     }.width('100%').margin({ top: 5 })
   }
 }

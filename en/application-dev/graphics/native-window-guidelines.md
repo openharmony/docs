@@ -6,7 +6,7 @@
 <!--Designer: @conan13234-->
 <!--Tester: @nobuggers-->
 <!--Adviser: @ge-yafang-->
-<!-- md-trans-meta sourceCommit=88bf88783c145d1114509372f2b0c81377879bf3 translatedAt=2026-08-03T11:21:26.109Z pushedAt=2026-08-04T07:11:51.157Z -->
+<!-- md-trans-meta sourceCommit=1f370dd3425411b659f906071e53860b94f0e2f1 translatedAt=2026-08-15T01:51:39.173Z pushedAt=2026-08-15T08:28:49.622Z -->
 
 ## Overview
 
@@ -140,7 +140,7 @@ libnative_window.so
         OH_NativeXComponent_RegisterCallback(nativeXComponent, &callback_);
         ```
 
-2. Set the attributes of an **OHNativeWindowBuffer** by using `OH_NativeWindow_NativeWindowHandleOpt`. By default, the **usage** parameter of **NATIVEBUFFER_USAGE_CPU_READ** is carried. If the CPU is not used to read and write data, you are advised to remove this parameter. For details, see [How do I proactively disable CPU access to window buffers to reduce power consumption?](https://developer.huawei.com/consumer/en/doc/harmonyos-faqs/faqs-arkgraphics-2d-14).
+2. Set the attributes of an `OHNativeWindowBuffer` by using `OH_NativeWindow_NativeWindowHandleOpt`. By default, the `NATIVEBUFFER_USAGE_CPU_READ` usage parameter is carried. If the CPU is not used to read and write data, you are advised to remove the `NATIVEBUFFER_USAGE_CPU_READ` usage parameter. For details, see [How do I proactively disable CPU access to window buffers to reduce power consumption?](https://developer.huawei.com/consumer/en/doc/harmonyos-faqs/faqs-arkgraphics-2d-14).
 
     <!-- @[set_buffer_geometry](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkGraphics2D/NdkNativeWindow/entry/src/main/cpp/NativeRender.cpp) -->
 
@@ -191,6 +191,7 @@ libnative_window.so
         close(releaseFenceFd);
     }
     uint32_t *pixel = static_cast<uint32_t *>(mappedAddr);
+    uint32_t value = flag_ ? 0xfff0000f : 0xff00ffff;
     for (uint64_t x = 0; x < bufferHandle->width; x++) {
         for (uint64_t y = 0; y < bufferHandle->height; y++) {
             *pixel++ = value;
@@ -203,9 +204,9 @@ libnative_window.so
     <!-- @[flush_buffer](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkGraphics2D/NdkNativeWindow/entry/src/main/cpp/NativeRender.cpp) -->
 
     ``` C++
-    struct Region *region = new Region();
+    struct Region region = {0};
     int acquireFenceFd = -1;
-    ret = OH_NativeWindow_NativeWindowFlushBuffer(nativeWindow, nativeWindowBuffer, acquireFenceFd, *region);
+    ret = OH_NativeWindow_NativeWindowFlushBuffer(nativeWindow, nativeWindowBuffer, acquireFenceFd, region);
     if (ret != NATIVE_ERROR_OK) {
         LOGE("flush failed");
         (void)OH_NativeWindow_NativeWindowAbortBuffer(nativeWindow, nativeWindowBuffer);

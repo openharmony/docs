@@ -19,7 +19,7 @@ OE客户端应用指嵌入其他文档的应用，通过调用OE框架层[conten
 - 在笔记应用中嵌入其他应用的文档，实现跨应用协作。
 
 ## 约束限制
-在使用接口前，需先确认设备具备SystemCapability.ContentEmbed.ObjectEditor系统能力，判断方式请参阅[canIUse()](../reference/common/init.md#caniuse)接口查询指定的系统能力是否被支持。并申请ohos.permission.CONNECT_OBJECTEDITOR_EXTENSION权限，配置方式请参阅[声明权限](../security/AccessToken/declare-permissions.md)。
+在使用接口前，需先确认设备具备SystemCapability.ContentEmbed.ObjectEditor系统能力，判断方式请参阅[canIUse()](../reference/common/syscap__ndk_8h.md#caniuse)接口查询指定的系统能力是否被支持。并申请ohos.permission.CONNECT_OBJECTEDITOR_EXTENSION权限，配置方式请参阅[声明权限](../security/AccessToken/declare-permissions.md)。
 
 ## 接口说明
 

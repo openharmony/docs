@@ -11,7 +11,7 @@ typedef struct OH_Drawing_Range OH_Drawing_Range
 
 ## 概述
 
-用于接收字体的起始位置和结束位置。
+用于接收文本的起始位置和结束位置。
 
 **起始版本：** 11
 

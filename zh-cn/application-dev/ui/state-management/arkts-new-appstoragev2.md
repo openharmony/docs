@@ -8,7 +8,7 @@
 
 为了增强状态管理框架对应用全局UI状态变量的共享能力，开发者可以使用AppStorageV2存储应用全局UI的状态变量数据。
 
-AppStorageV2提供应用级全局共享状态变量的能力，开发者可以通过connect绑定同一个key，进行跨ability的数据共享。
+AppStorageV2提供应用级全局共享状态变量的能力，开发者可以通过connect绑定同一个key，进行跨UIAbility的数据共享。
 
 在阅读本文档前，建议提前阅读：[\@ComponentV2](./arkts-create-custom-components.md#componentv2)，[\@ObservedV2和\@Trace](./arkts-new-observedV2-and-trace.md)，配合阅读：[AppStorageV2-API文档](../../reference/apis-arkui/js-apis-stateManagement.md#appstoragev2)。
 
@@ -21,7 +21,7 @@ AppStorageV2提供应用级全局共享状态变量的能力，开发者可以�
 
 AppStorageV2是在应用UI启动时会被创建的单例。它用于提供应用状态数据的中心存储，这些状态数据在应用级别都是可访问的。AppStorageV2将在应用运行过程保留其数据。数据通过唯一的键字符串值访问。需要注意的是，AppStorage与AppStorageV2之间的数据互不共享。
 
-AppStorageV2可以修改connect的返回值，实现与UI组件的同步。
+通过修改AppStorageV2的connect接口返回值，可以实现数据与UI组件的同步。
 
 AppStorageV2支持应用的[主线程](../../application-models/thread-model-stage.md)内多个UIAbility实例间的状态共享。
 
@@ -110,7 +110,7 @@ struct Index {
           this.message.userName += 'suf';
         })
       // remove key Message, 会从AppStorageV2中删除key为Message的对象
-      // remove之后，修改父组件的userId，子组件能同步变化，因为remove只是从AppStorageV2删除，不会影响组件中已存在的数据
+      // remove之后，修改父组件的userID，子组件能同步变化，因为remove只是从AppStorageV2删除，不会影响组件中已存在的数据
       Button('remove key: Message')
         .width(300)
         .margin(10)

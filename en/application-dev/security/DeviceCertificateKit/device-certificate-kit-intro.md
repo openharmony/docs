@@ -6,52 +6,43 @@
 <!--Designer: @lanming-->
 <!--Tester: @PAFT-->
 <!--Adviser: @zengyawen-->
+<!-- md-trans-meta sourceCommit=2f7da3fb5163a0f8b92171986b8396e3248a8f19 translatedAt=2026-08-11T02:02:13.526Z pushedAt=2026-08-11T07:55:56.112Z -->
 
-Device Certificate Kit provides the [certificate framework](#certificate-framework) and [certificate management](#certificate-management) capabilities for developers.
+Device Certificate Kit is used to manage and validate digital certificates for apps. Overall, Device Certificate Kit provides the following two features:
 
-## Certificate Framework
+1. [Certificate algorithm library](./certificate-framework-overview.md): parses digital certificate files, reads certificate attributes, and validates certificate chains.
 
-The certificate framework provides APIs for parsing and validating digital certificates.
+2. [Certificate management service](./certManager-overview.md): stores and manages digital certificates and private keys, including import, export, query, and signing.
 
-You can use the APIs to parse and validate a certificate, certificate extensions, and a certificate revocation list (CRL), and validate a certificate chain.
+The main purposes and target scenarios of digital certificates:
 
-The certificate framework module shields the differences between third-party algorithm libraries to enable rapid development.
+1. Trusted identity authentication: verifies the authenticity of entity identities (individuals, devices, servers, and organizations) to prevent impersonation and man-in-the-middle attacks.
 
-**Scenarios**
+2. Data transmission encryption: negotiates session keys based on certificates and asymmetric key systems to achieve end-to-end encryption on communication links (such as HTTPS).
 
-The application parses the received certificate or the certificate entered by the user, obtains the basic fields or extension fields of the certificate for display or verification, and uses the CA certificate chain and CRL to verify the certificate validity.
+3. Data integrity verification: signs data using the private key of a digital certificate to ensure that data is not tampered with during transmission or storage.
 
-### Working Principles
+4. Permission and access control: uses digital certificates for identity-based access instead of account passwords to implement fine-grained permission control.
 
-The system provides the certificate framework, which shields the differences between third-party algorithm libraries. You only need to use the APIs provided by the certificate framework to implement operations on certificates.
+Typical scenarios for processing digital certificates using Device Certificate Kit in app development:
 
-![](figures/certificate_framework_architecture.png)
+1. HTTPS network connections: validates the certificate chain of HTTPS servers, especially for custom certificate chain validation in apps.
 
-### Related Kits
+2. Mutual HTTPS authentication: the HTTPS server authenticates clients requesting connections based on certificates.
 
-During the use of certificate framework functionalities, public keys need to be generated and obtained, which depends on [Crypto Architecture Kit](../CryptoArchitectureKit/crypto-architecture-kit-intro.md).
+## Overall Architecture
 
-## Certificate Management
+Network communication services such as [ArkWeb](../../web/web-component-overview.md) and [Network Kit](../../network/net-mgmt-overview.md) provide certificate chain validation, mutual HTTPS authentication, and other functions based on Device Certificate Kit.
 
-The **certManager** module provides system-level certificate management capabilities to ensure certificate security during transmission and storage and prevent unauthorized certificate access and use.
+The certificate management service depends on the key storage and management capabilities of [Universal Keystore Kit](../UniversalKeystoreKit/huks-overview.md) when installing and using digital certificate credentials.
 
-The following capabilities are provided:
+![](figures/device-certificate-kit-framework.png)
 
-1. Install, obtain, use, and delete application certificates.
-2. Install, obtain, and uninstall user CA certificates.
-3. Manage CA certificates on the certificate management page via the provided APIs.
-
-You can use this module to manage and securely use certificates throughout their lifecycle (installation, storage, use, and destruction).
-
-**Scenarios**
-
-1. Application certificates: In the scenario of two-way network authentication, the service first installs the application certificates, uses them to sign the service data, then sends the signature together with the certificates to the peer, and finally deletes the certificates.
-2. User CA certificates: In the scenario of network connection, the service installs the user CA certificates, uses them to verify the peer identity, and deletes them when the certificates expire or are revoked.
-3. Certificate management dialog box: The service calls the provided dialog box API to directly start the certificate management UI, where you can view, install, and delete certificates and credentials.
-
-### Related Kits
-
-During the use of the certificate management functionalities, certificates need to be installed and used, which depends on [Universal Keystore Kit](../UniversalKeystoreKit/huks-overview.md).
+> **NOTE**
+>
+> It is recommended that you use higher-level APIs to process certificates first. For example, when performing HTTPS network communication and validating the server certificate chain, use the certificate chain validation and SSL Pinning capabilities of Network Kit first.
+>
+> Use Device Certificate Kit directly only when your app requires custom certificate chain validation logic (such as validating certificate subjects or certificate extension fields) or needs to access lower-level security protocol functions.
 
 ## Constraints
 

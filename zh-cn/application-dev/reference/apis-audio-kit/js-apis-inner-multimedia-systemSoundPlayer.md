@@ -6,7 +6,7 @@
 <!--Tester: @Filger-->
 <!--Adviser: @w_Machine_cc-->
 
-音效播放器提供了加载、卸载和播放系统声音的功能。
+本模块提供系统音效播放能力，包括系统声音的加载、卸载和播放等，支持拍照、录制视频等系统音效的播放。当需要在应用中集成标准的系统提示音以提升用户体验一致性时，使用本模块接口完成相关操作。
 
 SystemSoundPlayer需要和[@ohos.multimedia.systemSoundManager](js-apis-systemSoundManager.md)配合使用，才能完成管理系统音效的功能。
 
@@ -38,7 +38,7 @@ load(soundType: systemSoundManager.SystemSoundType): Promise&lt;void&gt;
 
 | 参数名     | 类型                      | 必填 | 说明             |
 | ---------- | ------------------------- | ---- | ---------------- |
-| soundType | [systemSoundManager.SystemSoundType](js-apis-systemSoundManager.md#systemsoundtype) | 是   | 系统音效类型。 |
+| soundType | [systemSoundManager.SystemSoundType](js-apis-systemSoundManager.md#systemsoundtype) | 是   | 要加载的系统音效类型。 |
 
 **返回值：**
 
@@ -62,9 +62,9 @@ load(soundType: systemSoundManager.SystemSoundType): Promise&lt;void&gt;
 import { BusinessError } from '@kit.BasicServicesKit';
 
 systemSoundPlayer?.load(systemSoundManager.SystemSoundType.PHOTO_SHUTTER).then(() => {
-  console.info('Succeeded in calling the load method.');
+  console.info('Succeeded in loading the system sound.');
 }).catch((err: BusinessError) => {
-  console.error(`Failed to call the load method. Code: ${err.code}, message: ${err.message}`);
+  console.error(`Failed to load the system sound. Code: ${err.code}, message: ${err.message}`);
 });
 ```
 
@@ -82,7 +82,7 @@ play(soundType: systemSoundManager.SystemSoundType): Promise&lt;void&gt;
 
 | 参数名     | 类型                      | 必填 | 说明             |
 | ---------- | ------------------------- | ---- | ---------------- |
-| soundType | [systemSoundManager.SystemSoundType](js-apis-systemSoundManager.md#systemsoundtype) | 是   | 系统音效类型。 |
+| soundType | [systemSoundManager.SystemSoundType](js-apis-systemSoundManager.md#systemsoundtype) | 是   | 要播放的系统音效类型。 |
 
 **返回值：**
 
@@ -106,9 +106,9 @@ play(soundType: systemSoundManager.SystemSoundType): Promise&lt;void&gt;
 import { BusinessError } from '@kit.BasicServicesKit';
 
 systemSoundPlayer?.play(systemSoundManager.SystemSoundType.PHOTO_SHUTTER).then(() => {
-  console.info('Succeeded in calling the play method.');
+  console.info('Succeeded in playing the system sound.');
 }).catch((err: BusinessError) => {
-  console.error(`Failed to call the play method. Code: ${err.code}, message: ${err.message}`);
+  console.error(`Failed to play the system sound. Code: ${err.code}, message: ${err.message}`);
 });
 ```
 
@@ -126,7 +126,7 @@ unload(soundType: systemSoundManager.SystemSoundType): Promise&lt;void&gt;
 
 | 参数名     | 类型                      | 必填 | 说明             |
 | ---------- | ------------------------- | ---- | ---------------- |
-| soundType | [systemSoundManager.SystemSoundType](js-apis-systemSoundManager.md#systemsoundtype) | 是   | 系统音效类型。 |
+| soundType | [systemSoundManager.SystemSoundType](js-apis-systemSoundManager.md#systemsoundtype) | 是   | 要卸载的系统音效类型。 |
 
 **返回值：**
 
@@ -149,9 +149,9 @@ unload(soundType: systemSoundManager.SystemSoundType): Promise&lt;void&gt;
 import { BusinessError } from '@kit.BasicServicesKit';
 
 systemSoundPlayer?.unload(systemSoundManager.SystemSoundType.PHOTO_SHUTTER).then(() => {
-  console.info('Succeeded in calling the unload method.');
+  console.info('Succeeded in unloading the system sound.');
 }).catch((err: BusinessError) => {
-  console.error(`Failed to call the unload method. Code: ${err.code}, message: ${err.message}`);
+  console.error(`Failed to unload the system sound. Code: ${err.code}, message: ${err.message}`);
 });
 ```
 
@@ -185,8 +185,8 @@ release(): Promise&lt;void&gt;
 import { BusinessError } from '@kit.BasicServicesKit';
 
 systemSoundPlayer?.release().then(() => {
-  console.info('Succeeded in calling the release method.');
+  console.info('Succeeded in releasing the system sound player.');
 }).catch((err: BusinessError) => {
-  console.error(`Failed to call the release method. Code: ${err.code}, message: ${err.message}`);
+  console.error(`Failed to release the system sound player. Code: ${err.code}, message: ${err.message}`);
 });
 ```

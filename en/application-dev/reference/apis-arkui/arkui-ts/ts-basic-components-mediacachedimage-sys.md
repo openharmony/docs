@@ -89,4 +89,5 @@ struct MediaCachedImageExample {
 }
 ```
 
-![en-us_image_0000001592882500](figures/mediacachedimage-sample-picture.gif)
+<!--Del-->![en-us_image_0000001592882500] (figures/mediacachedimage-sample-picture.gif)
+<!--DelEnd-->

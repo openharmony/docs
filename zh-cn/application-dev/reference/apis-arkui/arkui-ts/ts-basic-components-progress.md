@@ -39,15 +39,13 @@ Progress(options: ProgressOptions)
 
 进度条选项。
 
-**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
-
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 | 名称                        | 类型                                | 只读 | 可选 | 说明                                     |
 | -------------------------- | ----------------------------------- | ---- | ---------------------------------------- | ---------------------------------------- |
-| value                      | number                              | 否   | 否   | 指定当前进度值。<br>默认值：0<br>取值范围：[0, total]，设置小于0的数值时置为0，设置大于total的数值时置为total，设置非法值时按默认值处理。<br>**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。 |
-| total                      | number                              | 否   | 是   | 指定进度总长。设置小于0的数值时置为100。<br>默认值：100<br>取值范围：(0, +∞)。<br>**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。 |
-| type<sup>8+</sup>          | [ProgressType](#progresstype8枚举说明)   | 否   | 是   | 指定进度条类型。<br>默认值：ProgressType.Linear<br>**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。<br>**说明：** 不同的type需分别对应相应的[style](#style8)属性设置，详细映射关系参考[ProgressStyleMap](#progressstylemap10对象说明)。 |
+| value                      | number                              | 否   | 否   | 指定当前进度值。<br>默认值：0<br>取值范围：[0, total]，设置小于0的数值时置为0，设置大于total的数值时置为total，设置非法值时按默认值处理。<br>**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| total                      | number                              | 否   | 是   | 指定进度总长。设置小于0的数值时置为100。<br>默认值：100<br>取值范围：(0, +∞)。<br>**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| type<sup>8+</sup>          | Type   | 否   | 是   | 指定进度条类型。Type继承于[ProgressStyleMap](#progressstylemap10对象说明)。<br>默认值：ProgressType.Linear<br>**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。<br>**说明：** 不同的[ProgressType](#progresstype8枚举说明)需分别对应相应的[style](#style8)属性设置，详细映射关系参考[ProgressStyleMap](#progressstylemap10对象说明)。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | style<sup>(deprecated)</sup> | [ProgressStyle](#progressstyle枚举说明) | 否 | 是 | 指定进度条样式。<br>从API version 7开始支持，从API version 8开始废弃。建议使用[type](#progresstype8枚举说明)替代。<br>默认值：ProgressStyle.Linear |
 
 ## ProgressType<sup>8+</sup>枚举说明
@@ -81,10 +79,10 @@ Progress(options: ProgressOptions)
 | 名称        | 值 | 说明                                     |
 | --------- | - | ---------------------------------------- |
 | Linear    | 0 | 线性样式，进度条沿直线方向从一端逐渐填充至另一端。                                    |
-| Ring<sup>8+</sup>      | 1 | 环形圆环逐渐显示直至完全填充。                 |
+| Ring<sup>8+</sup>      | 1 | 环形无刻度样式，环形圆环逐渐显示直至完全填充。                 |
 | Eclipse   | 2 | 圆形样式，显示类似月圆月缺的进度展示效果，从月牙逐渐变化至满月。         |
-| ScaleRing<sup>8+</sup> | 3 | 环形有刻度样式，显示类似时钟刻度形式的进度展示效果。               |
-| Capsule<sup>8+</sup>   | 4 | 胶囊样式，头尾两端圆弧处的进度展示效果与Eclipse相同，中段的进度展示效果与Linear相同。当高度大于宽度时，自适应垂直显示。 |
+| ScaleRing<sup>8+</sup> | 3 | 环形有刻度样式，显示类似时钟刻度形式的进度展示效果。从API version 9开始，刻度外圈出现重叠时自动转换为环形无刻度进度条。               |
+| Capsule<sup>8+</sup>   | 4 | 胶囊样式，头尾两端圆弧处的进度展示效果与Eclipse相同，中段的进度展示效果与Linear相同。从API version 9开始，当高度大于宽度时，自适应垂直显示。 |
 
 ##  ProgressStyleMap<sup>10+</sup>对象说明
 
@@ -98,11 +96,11 @@ Progress(options: ProgressOptions)
 
 | 名称        | 类型                                      |
 | --------- | ---------------------------------------- |
-| ProgressType.Linear | [LinearStyleOptions<sup>10+</sup>](#linearstyleoptions10)&nbsp; \| &nbsp;[ProgressStyleOptions](#progressstyleoptions8)&nbsp; |
-| ProgressType.Ring | [RingStyleOptions<sup>10+</sup>](#ringstyleoptions10)&nbsp; \| &nbsp;[ProgressStyleOptions](#progressstyleoptions8)&nbsp; |
-| ProgressType.Eclipse | [EclipseStyleOptions<sup>10+</sup>](#eclipsestyleoptions10)&nbsp;  \| &nbsp;[ProgressStyleOptions](#progressstyleoptions8)&nbsp; |
-| ProgressType.ScaleRing| [ScaleRingStyleOptions<sup>10+</sup>](#scaleringstyleoptions10)&nbsp; \| &nbsp;[ProgressStyleOptions](#progressstyleoptions8)&nbsp; |
-| ProgressType.Capsule | [CapsuleStyleOptions<sup>10+</sup>](#capsulestyleoptions10)&nbsp; \| &nbsp;[ProgressStyleOptions](#progressstyleoptions8)&nbsp; |
+| [ProgressType.Linear] | [LinearStyleOptions](#linearstyleoptions10)&nbsp; \| &nbsp;[ProgressStyleOptions](#progressstyleoptions8)&nbsp; |
+| [ProgressType.Ring] | [RingStyleOptions](#ringstyleoptions10)&nbsp; \| &nbsp;[ProgressStyleOptions](#progressstyleoptions8)&nbsp; |
+| [ProgressType.Eclipse] | [EclipseStyleOptions](#eclipsestyleoptions10)&nbsp;  \| &nbsp;[ProgressStyleOptions](#progressstyleoptions8)&nbsp; |
+| [ProgressType.ScaleRing] | [ScaleRingStyleOptions](#scaleringstyleoptions10)&nbsp; \| &nbsp;[ProgressStyleOptions](#progressstyleoptions8)&nbsp; |
+| [ProgressType.Capsule] | [CapsuleStyleOptions](#capsulestyleoptions10)&nbsp; \| &nbsp;[ProgressStyleOptions](#progressstyleoptions8)&nbsp; |
 
 ## 属性
 
@@ -154,7 +152,7 @@ color(value: ResourceColor | LinearGradient)
 
 ### style<sup>8+</sup>
 
-style(value: ProgressStyleOptions | CapsuleStyleOptions | RingStyleOptions | LinearStyleOptions | ScaleRingStyleOptions | EclipseStyleOptions)
+style(value: Style)
 
 设置组件的样式。
 
@@ -168,7 +166,7 @@ style(value: ProgressStyleOptions | CapsuleStyleOptions | RingStyleOptions | Lin
 
 | 参数名 | 类型                                                         | 必填 | 说明                                                         |
 | ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| value  | [ProgressStyleOptions<sup>8+</sup>](#progressstyleoptions8) \| [CapsuleStyleOptions<sup>10+</sup>](#capsulestyleoptions10) \| <br>[RingStyleOptions<sup>10+</sup>](#ringstyleoptions10) \| [LinearStyleOptions<sup>10+</sup>](#linearstyleoptions10) \| <br>[ScaleRingStyleOptions<sup>10+</sup>](#scaleringstyleoptions10) \| [EclipseStyleOptions<sup>10+</sup>](#eclipsestyleoptions10) | 是   | 组件的样式。<br>**说明：** 不同的type需分别对应相应的style属性设置，详细映射关系参考[ProgressStyleMap](#progressstylemap10对象说明)。<br>- CapsuleStyleOptions：设置Capsule的样式。<br>- RingStyleOptions：设置Ring的样式。<br>- LinearStyleOptions：设置Linear的样式。<br>- ScaleRingStyleOptions：设置ScaleRing的样式。<br>- EclipseStyleOptions：设置Eclipse的样式。<br>- ProgressStyleOptions：仅可设置各类型进度条的strokeWidth、scaleCount、scaleWidth，仅对支持这些样式设置的进度条生效。 |
+| value  | Style | 是   | 组件的样式。Style继承于[ProgressStyleMap](#progressstylemap10对象说明)。<br>**说明：** 不同的[ProgressType](#progresstype8枚举说明)需分别对应相应的[style](#style8)属性设置，详细映射关系参考[ProgressStyleMap](#progressstylemap10对象说明)。<br>- [CapsuleStyleOptions](#capsulestyleoptions10)：设置Capsule的样式。<br>- [RingStyleOptions](#ringstyleoptions10)：设置Ring的样式。<br>- [LinearStyleOptions](#linearstyleoptions10)：设置Linear的样式。<br>- [ScaleRingStyleOptions](#scaleringstyleoptions10)：设置ScaleRing的样式。<br>- [EclipseStyleOptions](#eclipsestyleoptions10)：设置Eclipse的样式。<br>- [ProgressStyleOptions](#progressstyleoptions8)：仅可设置各类型进度条的strokeWidth、scaleCount、scaleWidth，仅对支持这些样式设置的进度条生效。 |
 
 ### contentModifier<sup>12+</sup>
 contentModifier(modifier:ContentModifier\<ProgressConfiguration\>)
@@ -277,21 +275,19 @@ privacySensitive(isPrivacySensitiveMode: Optional\<boolean\>)
 
 继承自[ScanEffectOptions](#scaneffectoptions10)和[CommonProgressStyleOptions](#commonprogressstyleoptions10)。
 
-**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
-
 **模型约束：** 此接口仅可在Stage模型下使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 | 名称          | 类型 | 只读 | 可选 | 说明 |
 | ------------- | ------- | ---- | -------- | -------- |
-| borderColor | [ResourceColor](ts-types.md#resourcecolor) | 否 | 是 | 内描边颜色。<br>默认值：<br>API version 10：'\#33006cde'<br>API version 11及以上：'\#33007dff' |
-| borderWidth | [Length](ts-types.md#length) | 否 | 是 | 内描边宽度。<br>默认值：1vp<br>取值范围：大于等于0的数值，不支持百分比设置。<br>超出取值范围或设置非法值时按默认值处理。|
-| content | [ResourceStr](ts-types.md#resourcestr) | 否 | 是 | 文本内容，应用可自定义。<br>当需要在Capsule进度条上显示自定义文本时传入此参数；不传入时不显示文本内容（若需显示百分比文本，可设置showDefaultPercentage为true）。<br>从API version 20开始，支持Resource类型。 |
-| font | [Font](ts-types.md#font) | 否 | 是 | 文本样式。<br>默认值：<br>文本大小（不支持百分比设置）：12fp <br>其他文本参数跟随[Text](ts-basic-components-text.md)组件的主题值。|
-| fontColor | [ResourceColor](ts-types.md#resourcecolor) | 否 | 是 | 文本颜色。<br>默认值：'\#ff182431' |
-| showDefaultPercentage | boolean | 否 | 是 | 显示百分比文本的开关。开启后，进度条上显示当前进度的百分比。设置了content属性时该属性不生效。<br>true：表示显示百分比文本；false：表示不显示百分比文本。<br>默认值：false |
-| borderRadius<sup>18+</sup> |  [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12) | 否 | 是 | Capsule进度条圆角半径（不支持百分比设置）。<br>取值范围：[0, 组件高度/2]。默认值：组件高度 / 2。<br>设置非法数值时，按照默认值处理。 |
+| borderColor | [ResourceColor](ts-types.md#resourcecolor) | 否 | 是 | 内描边颜色。<br>默认值：<br>API version 10：'\#33006cde'<br>API version 11及以上：'\#33007dff' <br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。|
+| borderWidth | [Length](ts-types.md#length) | 否 | 是 | 内描边宽度。<br>默认值：1vp<br>取值范围：大于等于0的数值，不支持百分比设置。<br>超出取值范围或设置非法值时按默认值处理。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。|
+| content | [ResourceStr](ts-types.md#resourcestr) | 否 | 是 | 文本内容，应用可自定义。<br>当需要在Capsule进度条上显示自定义文本时传入此参数；不传入时不显示文本内容（若需显示百分比文本，可设置showDefaultPercentage为true）。<br>从API version 20开始，支持Resource类型。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。|
+| font | [Font](ts-types.md#font) | 否 | 是 | 文本样式。<br>默认值：<br>文本大小（不支持百分比设置）：12fp <br>其他文本参数跟随[Text](ts-basic-components-text.md)组件的主题值。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。|
+| fontColor | [ResourceColor](ts-types.md#resourcecolor) | 否 | 是 | 文本颜色。<br>默认值：'\#ff182431' <br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。|
+| showDefaultPercentage | boolean | 否 | 是 | 显示百分比文本的开关。开启后，进度条上显示当前进度的百分比。设置了content属性时该属性不生效。<br>true：表示显示百分比文本；false：表示不显示百分比文本。<br>默认值：false <br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。|
+| borderRadius<sup>18+</sup> |  [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12) | 否 | 是 | Capsule进度条圆角半径（不支持百分比设置）。<br>取值范围：[0, 组件高度/2]。默认值：组件高度 / 2。<br>设置非法数值时，按照默认值处理。<br>**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。 |
 
 ## RingStyleOptions<sup>10+</sup>
 

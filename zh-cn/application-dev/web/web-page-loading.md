@@ -284,7 +284,7 @@ Web页面加载失败问题复杂多样，本文详细列举常见问题的排�
 
 ## 网页User-Agent适配问题定位
 网页加载异常，使用DevTools切换Android或Windows User-Agent后重新加载页面查看是否可以恢复正常。
-1. 鸿蒙的默认User-Agent：Mozilla/5.0 (Phone;OpenHarmony 6.0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/132.0.0.0 Safari/537.36 ArkWeb/6.0.0.42 Mobile。
+1. 默认User-Agent：Mozilla/5.0 (Phone;OpenHarmony 6.0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/132.0.0.0 Safari/537.36 ArkWeb/6.0.0.42 Mobile。
 2. 通过inspect打开网页，查看网络，选择任一请求链接，查看请求标头中的User-Agent信息。
 3. 对比应用的自定义User-Agent和ArkWeb默认User-Agent，查看应用自定义User-Agent是否携带OpenHarmony标识。若加载失败时未携带标识，则设置自定义User-Agent携带OpenHarmony标识查看是否能加载成功；若加载失败时携带了OpenHarmony标识，则设置自定义User-Agent携带Android等其他标识查看是否能加载成功，若加载成功则说明第三方网站未适配OpenHarmony，应推动第三方做适配。 如果需要修改User-Agent，去勾选“使用浏览器默认设置”。 选择自定义User-Agent，输入自己的User-Agent即可。
 4. 修改[UserAgent](../reference/apis-arkweb/arkts-apis-webview-WebviewController.md#setcustomuseragent10)后再观察页面是否恢复正常。

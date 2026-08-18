@@ -6,10 +6,12 @@
 <!--Designer: @HighLowWorld-->
 <!--Tester: @wxy1234564846-->
 <!--Adviser: @zengyawen-->
+<!-- md-trans-meta sourceCommit=3278ee705378631554cefba415ca42904851087c translatedAt=2026-08-13T08:23:21.162Z pushedAt=2026-08-13T10:20:24.703Z -->
 
-Hash-based Message Authentication Code (HMAC) is a specific type of message authentication code (MAC) involving a cryptographic has function and a secret cryptographic key. For details about the scenarios and supported algorithm specifications, see [HMAC Overview and Algorithm Specifications](huks-hmac-overview.md).
+Hash-based Message Authentication Code (HMAC) is a specific type of message authentication code (MAC) involving a cryptographic hash function and a secret cryptographic key. For details about the scenarios and supported algorithm specifications, see [HMAC Overview and Algorithm Specifications](huks-hmac-overview.md).
 
 ## Linking the Dynamic Library in the CMake Script
+
 ```txt
 target_link_libraries(entry PUBLIC libhuks_ndk.z.so)
 ```
@@ -33,7 +35,7 @@ You can also import a key. For details about the supported algorithms, see [Supp
 2. Obtains the data to be calculated.
 
 3. Use [OH_Huks_InitParamSet](../../reference/apis-universal-keystore-kit/capi-native-huks-param-h.md#oh_huks_initparamset) to set algorithm parameters.
-   
+
 4. Use [OH_Huks_InitSession](../../reference/apis-universal-keystore-kit/capi-native-huks-api-h.md#oh_huks_initsession) to initialize a key session and obtain the session handle.
 
 5. Call [OH_Huks_FinishSession](../../reference/apis-universal-keystore-kit/capi-native-huks-api-h.md#oh_huks_finishsession) to finish the key session and obtain the hashed data.

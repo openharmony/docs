@@ -316,11 +316,11 @@ enum OH_NativeXComponent_KeyCode
 | KEY_BRIGHTNESS_MIN = 2724 | 最小亮度键。 |
 | KEY_BRIGHTNESS_MAX = 2725 | 最大亮度键。 |
 | KEY_KBDINPUTASSIST_PREV = 2726 | 键盘输入辅助上一个候选。 |
-| KEY_KBDINPUTASSIST_NEXT = 2727 | 键盘输入Assist_Next。 |
+| KEY_KBDINPUTASSIST_NEXT = 2727 | 键盘输入辅助下一个候选。 |
 | KEY_KBDINPUTASSIST_PREVGROUP = 2728 | 键盘输入辅助上一个候选组。 |
 | KEY_KBDINPUTASSIST_NEXTGROUP = 2729 | 键盘输入辅助下一个候选组。 |
-| KEY_KBDINPUTASSIST_ACCEPT = 2730 | 键盘输入Assist_Accept。 |
-| KEY_KBDINPUTASSIST_CANCEL = 2731 | 键盘输入Assist_Cancel。 |
+| KEY_KBDINPUTASSIST_ACCEPT = 2730 | 键盘输入辅助接受。 |
+| KEY_KBDINPUTASSIST_CANCEL = 2731 | 键盘输入辅助取消。 |
 | KEY_FRONT = 2800 | 挡风玻璃除雾器开关。 |
 | KEY_SETUP = 2801 | 设置键。 |
 | KEY_WAKEUP = 2802 | 唤醒键。 |

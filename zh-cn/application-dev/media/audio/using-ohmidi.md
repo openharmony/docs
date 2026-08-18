@@ -26,7 +26,7 @@ OH_MIDI是系统提供的Native MIDI API，从API version 24开始用于在C/C++
 
 ## 系统能力检查
 
-使用MIDI进行开发前，先调用接口[canIUse](../../reference/common/init.md#caniuse)判断当前设备是否支持MIDI能力。当canIUse("SystemCapability.Multimedia.Audio.MIDI")返回值为true时，表示可以使用MIDI能力。
+使用MIDI进行开发前，先调用接口[canIUse](../../reference/common/syscap__ndk_8h.md#caniuse)判断当前设备是否支持MIDI能力。当canIUse("SystemCapability.Multimedia.Audio.MIDI")返回值为true时，表示可以使用MIDI能力。
 
 ## 接口说明
 

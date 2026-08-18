@@ -1,10 +1,12 @@
 # Interface (AutoExposure)
+
 <!--Kit: Camera Kit-->
 <!--Subsystem: Multimedia-->
 <!--Owner: @qano-->
 <!--Designer: @leo_ysl-->
 <!--Tester: @xchaosioda-->
 <!--Adviser: @w_Machine_cc-->
+<!-- md-trans-meta sourceCommit=425e79ed59a841b19860caacc0b050f68405d43e translatedAt=2026-08-11T01:58:07.759Z pushedAt=2026-08-11T09:02:39.828Z -->
 
 **AutoExposure** inherits from [AutoExposureQuery](arkts-apis-camera-AutoExposureQuery.md).
 
@@ -45,7 +47,7 @@ Obtains the exposure mode in use.
 
 For details about the error codes, see [Camera Error Codes](errorcode-camera.md).
 
-| Error Code        | Error Message       |
+| ID        | Error Message       |
 | --------------- | --------------- |
 | 7400103                |  Session not config.                                   |
 
@@ -87,7 +89,7 @@ Sets an exposure mode. Before the setting, call [isExposureModeSupported](arkts-
 
 For details about the error codes, see [Camera Error Codes](errorcode-camera.md).
 
-| Error Code        | Error Message       |
+| ID        | Error Message       |
 | --------------- | --------------- |
 | 7400102                | Operation not allowed.<br>Applicable versions: 19 and later                                |
 | 7400103                |  Session not config.                                   |
@@ -128,7 +130,7 @@ Obtains the metering point of the camera device.
 
 For details about the error codes, see [Camera Error Codes](errorcode-camera.md).
 
-| Error Code  | Error Message       |
+| ID  | Error Message       |
 |---------| --------------- |
 | 7400103 |  Session not config.                                   |
 
@@ -156,7 +158,7 @@ setMeteringPoint(point: Point): void
 
 Sets the metering point, which is the center point of the metering rectangle. The metering point must be in the coordinate system (0-1), where the top-left corner is {0, 0} and the bottom-right corner is {1, 1}.
 
-The coordinate system is based on the horizontal device direction with the device's charging port on the right. If the layout of the preview screen of an application is based on the vertical direction with the charging port on the lower side, the layout width and height are {w, h}, and the touch point is {x, y}, then the coordinate point after conversion is {y/h, 1-x/w}.
+The coordinate system is based on the horizontal device direction with the device's charging port on the right. If the layout of the preview screen of an app is based on the vertical direction with the charging port on the lower side, the layout width and height are {w, h}, and the touch point is {x, y}, then the coordinate point after conversion is {y/h, 1-x/w}.
 
 **Atomic service API**: This API can be used in atomic services since API version 19.
 
@@ -166,13 +168,13 @@ The coordinate system is based on the horizontal device direction with the devic
 
 | Name          | Type                           | Mandatory| Description                |
 | ------------- | -------------------------------| ---- | ------------------- |
-| point | [Point](arkts-apis-camera-i.md#point)                | Yes  | Metering point. The value range of x and y must be within [0, 1]. If a value less than 0 is passed, the value **0** is used. If a value greater than **1** is passed, the value **1** is used.            |
+| point | [Point](arkts-apis-camera-i.md#point)                | Yes   | Metering point. The value range of x and y must be within [0, 1]. If a value less than 0 is passed, the value **0** is used. If a value greater than **1** is passed, the value **1** is used.             |
 
 **Error codes**
 
 For details about the error codes, see [Camera Error Codes](errorcode-camera.md).
 
-| Error Code        | Error Message       |
+| ID        | Error Message       |
 | --------------- | --------------- |
 | 7400103                |  Session not config.                                   |
 
@@ -215,7 +217,7 @@ Before the setting, you are advised to use [getExposureBiasRange](arkts-apis-cam
 
 For details about the error codes, see [Camera Error Codes](errorcode-camera.md).
 
-| Error Code        | Error Message       |
+| ID        | Error Message       |
 | --------------- | --------------- |
 | 7400102                |  Operation not allowed.<br>Applicable versions: 12 and later                |
 | 7400103                |  Session not config.                                   |
@@ -259,7 +261,7 @@ Obtains the exposure value in use.
 
 For details about the error codes, see [Camera Error Codes](errorcode-camera.md).
 
-| Error Code        | Error Message       |
+| ID        | Error Message       |
 | --------------- | --------------- |
 | 7400103                |  Session not config.                                   |
 
@@ -302,7 +304,7 @@ Obtains the exposure metering mode in use.
 
 For details about the error codes, see [Camera Error Codes](errorcode-camera.md).
 
-| Error Code        | Error Message       |
+| ID        | Error Message       |
 | --------------- | --------------- |
 | 7400102                |  Operation not allowed, the inputDevice or the session is abnormal.                                   |
 | 7400103                |  Session not config, only throw in session usage.                                   |
@@ -345,7 +347,7 @@ Sets exposure metering mode.
 
 For details about the error codes, see [Camera Error Codes](errorcode-camera.md).
 
-| Error Code        | Error Message       |
+| ID        | Error Message       |
 | --------------- | --------------- |
 | 7400102                |  Operation not allowed, the inputDevice or the session is abnormal.                                   |
 | 7400103                |  Session not config, only throw in session usage.                                   |

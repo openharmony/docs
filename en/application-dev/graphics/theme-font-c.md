@@ -6,7 +6,7 @@
 <!--Designer: @liumingxiang-->
 <!--Tester: @yhl0101-->
 <!--Adviser: @ge-yafang-->
-<!-- md-trans-meta sourceCommit=748eb7fc0c90f58e584a4c9f09c054a70b75d7f4 translatedAt=2026-08-03T11:24:18.749Z pushedAt=2026-08-04T07:56:15.351Z -->
+<!-- md-trans-meta sourceCommit=8e9d3b746529fedba672cd46a96d4746984bcb6c translatedAt=2026-08-15T01:52:03.567Z pushedAt=2026-08-15T08:36:22.302Z -->
 
 ## Overview
 
@@ -31,7 +31,7 @@ The following table lists the APIs for registering and using theme fonts. For de
 | Name| Description|
 | -------- | -------- |
 | OH_Drawing_FontCollection\* OH_Drawing_GetFontCollectionGlobalInstance(void) | Obtains an **OH_Drawing_FontCollection** object.|
-| [onConfigurationUpdate()](../reference/apis-ability-kit/js-apis-app-ability-ability.md#abilityonconfigurationupdate) | Called when system configuration is updated.<br>Currently, theme applications provide only an ArkTS API to publish change events. Therefore, cross-language calling is required for your application.|
+| [onConfigurationUpdate(newConfig: Configuration): void](../reference/apis-ability-kit/js-apis-app-ability-ability.md#abilityonconfigurationupdate) | Called when system configuration is updated.<br/>Currently, theme applications provide only an ArkTS API to publish change events. Therefore, cross-language invocation is required for your app. |
 
 ## How to Develop
 
@@ -77,9 +77,6 @@ The following table lists the APIs for registering and using theme fonts. For de
 
    ``` C++
    OH_Drawing_TextStyle *myTextStyle = OH_Drawing_CreateTextStyle();
-   // const char* myFontFamilies[] = {"otherFontFamilyName"};
-   // Do not use this API to specify the font.
-   // OH_Drawing_SetTextStyleFontFamilies(textStyle, 1, myFontFamilies);
    ```
 
 6. Set the paragraph text content to "Hello World. \nThis is the theme font." In this case, the theme font is used for the paragraph text.

@@ -18,7 +18,7 @@ WebDownloadItem是ArkWeb框架中用于表示和管理单个下载任务的类�
 >
 > - 在下载过程中，下载的进度会通过WebDownloadDelegate通知给使用者，使用者可以通过参数WebDownloadItem来操作下载任务。
 >
-> - 当前WebDownloadItem支持的下载文件名最长长度为255字节<!--RP1--><!--RP1End-->。
+> - 当前WebDownloadItem支持的下载文件路径（包含文件名）最长长度为255字节<!--RP1--><!--RP1End-->。
 
 ## 导入模块
 
@@ -103,7 +103,7 @@ getCurrentSpeed(): number
 
 | 类型   | 说明                      |
 | ------ | ------------------------- |
-| number | 下载的速度（字节每秒）。 |
+| number | 下载的速度，单位：字节每秒。 |
 
 **示例：**
 
@@ -1023,7 +1023,7 @@ static deserialize(serializedData: Uint8Array): WebDownloadItem
 
 | 参数名              | 类型    | 必填   |  说明 |
 | ------------------ | ------- | ---- | ------------- |
-| serializedData | Uint8Array | 是   | 序列化后的下载。|
+| serializedData | Uint8Array | 是 | 序列化后的字节数组。 |
 
 **返回值：**
 
@@ -1193,7 +1193,7 @@ struct WebComponent {
 
 cancel(): void
 
-取消一个正在下载的下载任务。
+取消下载任务。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -1273,7 +1273,7 @@ struct WebComponent {
 
 pause(): void
 
-暂停一个正在下载的下载任务。
+暂停下载任务。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 

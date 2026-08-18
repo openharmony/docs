@@ -5,7 +5,7 @@
 <!--Owner: @chenkun613227-->
 <!--Designer: @yxc2-->
 <!--Tester: @xdlinc-->
-<!--Adviser: @w_Machine_cc-->
+<!--Adviser: @zzs911-->
 
 AVScreenCapture支持应用完成场景化的自定义配置，具体配置可参考下述指导。
 

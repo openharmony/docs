@@ -2,10 +2,10 @@
 
 <!--Kit: Accessibility Kit-->
 <!--Subsystem: BarrierFree-->
-<!--Owner: @qiiiiiiian-->
+<!--Owner: @fanzexuan-->
 <!--Designer: @z7o-->
 <!--Tester: @A_qqq-->
-<!--Adviser: @w_Machine_cc-->
+<!--Adviser: @wwwyyyhhhh-->
 
 AccessibilityExtensionContext是AccessibilityExtensionAbility上下文环境，继承自ExtensionContext。
 
@@ -957,6 +957,273 @@ export default class AccessibilityManager {
 }
 ```
 
+### updateAccessibilityElementProperty
+
+updateAccessibilityElementProperty(elementId: number, windowId: number, node: AccessibilityVirtualNode): Promise&lt;OperateVirtualNodeResult&gt;
+
+修改无障碍节点属性。使用Promise异步回调。
+
+**起始版本：** 26.0.0
+
+**模型约束：** 此接口仅可在Stage模型下使用。
+
+**系统接口：** 此接口为系统接口。
+
+**需要权限：** ohos.permission.ACCESSIBILITY_EXTENSION_ABILITY
+
+**系统能力：** SystemCapability.BarrierFree.Accessibility.Core
+
+**参数：**
+
+| 参数名 | 类型                                                                           | 必填 | 说明 |
+| -------- |------------------------------------------------------------------------------| -------- | -------- |
+| elementId | number | 是 | 表示修改无障碍节点的节点ID。 |
+| windowId | number | 是 | 表示修改无障碍节点的窗口ID。 |
+| node | [AccessibilityVirtualNode](#accessibilityvirtualnode) | 是 | 修改无障碍节点的属性值，可修改的属性包括：<br>accessibilityText，accessibilityGroup，accessibilityLevel，checkable，checked，selected，clickable，enabled，customComponentType。|
+
+**返回值：**
+
+| 类型 | 说明 |
+| -------- | -------- |
+| Promise&lt;[OperateVirtualNodeResult](./js-apis-accessibility-sys.md#operatevirtualnoderesult)&gt; | Promise对象，返回执行结果。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[无障碍子系统错误码](errorcode-accessibility.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | -------------------------------- |
+| 201 | Permission verification failed.The application does not have the permission required to call the API. |
+| 202 | Permission verification failed.A non-system application calls a system API. |
+| 9300000 | System abnormality.Possible causes: <br>1.Internal operation failed.<br>2.Failed to obtain the required service or client object (null pointer).<br>3.IPC communication failed.<br>4.Failed to obtain the accessibility service proxy.<br>5.Timed out while waiting for the result of an asynchronous operation. |
+
+**示例：**
+
+```ts
+import {
+  AccessibilityEvent, 
+  AccessibilityExtensionContext,
+  AccessibilityVirtualNode,
+  OperateVirtualNodeResult
+} from '@kit.AccessibilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+export default class AccessibilityManager {
+  private static instance: AccessibilityManager;
+  context?: AccessibilityExtensionContext;
+
+  static getInstance(): AccessibilityManager {
+    if (!AccessibilityManager.instance) {
+      AccessibilityManager.instance = new AccessibilityManager();
+    }
+    return AccessibilityManager.instance;
+  }
+
+  onStart(context: AccessibilityExtensionContext) {
+    this.context = context;
+  }
+
+  onStop() {
+    this.context = undefined;
+  }
+
+  onEvent(accessibilityEvent: AccessibilityEvent): void {
+    if (!this.context) {
+      console.error('context is not available!');
+      return;
+    }
+
+    let elementId: number = 10; // 请使用需要修改节点属性的节点ID。
+    let windowId: number = 10; // 请使用需要修改节点属性的窗口ID。
+    let accessibilityVirtualNode: AccessibilityVirtualNode = {
+      virtualNodeId: 1,
+      accessibilityText: "accessibilityTextNew"
+    }
+    this.context.updateAccessibilityElementProperty(elementId, windowId, accessibilityVirtualNode).then((data: OperateVirtualNodeResult)=>{
+      console.info(`updateAccessibilityElementProperty: elementId:${elementId} windowId:${windowId}, result:${data}`)
+    }).catch((err: BusinessError) => {
+      console.error(`failed to update accessibility element property, Code is ${err.code}, message is ${err.message}`);
+    });
+  }
+}
+```
+
+### addAccessibilityVirtualNodes
+
+addAccessibilityVirtualNodes(elementId: number, windowId: number, nodes: Array&lt;AccessibilityVirtualNode&gt;): Promise&lt;OperateVirtualNodeResult&gt;
+
+新增无障碍虚拟节点树。使用Promise异步回调。
+
+**起始版本：** 26.0.0
+
+**模型约束：** 此接口仅可在Stage模型下使用。
+
+**系统接口：** 此接口为系统接口。
+
+**需要权限：** ohos.permission.ACCESSIBILITY_EXTENSION_ABILITY
+
+**系统能力：** SystemCapability.BarrierFree.Accessibility.Core
+
+**参数：**
+
+| 参数名 | 类型                                                                           | 必填 | 说明 |
+| -------- |------------------------------------------------------------------------------| -------- | -------- |
+| elementId | number | 是 | 表示新增虚拟节点树的父节点ID。 |
+| windowId | number | 是 | 表示新增虚拟节点树的父节点窗口ID。 |
+| nodes | Array<[AccessibilityVirtualNode](#accessibilityvirtualnode)> | 是 | 新增虚拟节点数组。 数组中的虚拟节点按parentId、childNodeIds父子关系构建成一棵树。|
+
+**返回值：**
+
+| 类型 | 说明 |
+| -------- | -------- |
+| Promise&lt;[OperateVirtualNodeResult](./js-apis-accessibility-sys.md#operatevirtualnoderesult)&gt; | Promise对象，返回执行结果。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[无障碍子系统错误码](errorcode-accessibility.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | -------------------------------- |
+| 201 | Permission verification failed.The application does not have the permission required to call the API. |
+| 202 | Permission verification failed.A non-system application calls a system API. |
+| 9300000 | System abnormality.Possible causes: <br>1.Internal operation failed.<br>2.Failed to obtain the required service or client object (null pointer).<br>3.IPC communication failed.<br>4.Failed to obtain the accessibility service proxy.<br>5.Timed out while waiting for the result of an asynchronous operation. |
+
+**示例：**
+
+```ts
+import {
+  AccessibilityEvent, 
+  AccessibilityExtensionContext,
+  AccessibilityVirtualNode,
+  OperateVirtualNodeResult
+} from '@kit.AccessibilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+export default class AccessibilityManager {
+  private static instance: AccessibilityManager;
+  context?: AccessibilityExtensionContext;
+
+  static getInstance(): AccessibilityManager {
+    if (!AccessibilityManager.instance) {
+      AccessibilityManager.instance = new AccessibilityManager();
+    }
+    return AccessibilityManager.instance;
+  }
+
+  onStart(context: AccessibilityExtensionContext) {
+    this.context = context;
+  }
+
+  onStop() {
+    this.context = undefined;
+  }
+
+  onEvent(accessibilityEvent: AccessibilityEvent): void {
+    if (!this.context) {
+      console.error('context is not available!');
+      return;
+    }
+
+    let elementId: number = 10; // 请使用需要新增虚拟节点树的父节点ID。
+    let windowId: number = 10; // 请使用需要新增虚拟节点树的窗口ID。
+    let accessibilityVirtualNode: AccessibilityVirtualNode = {
+      virtualNodeId: 1,
+      accessibilityText: "accessibilityTextNew"
+    }
+    this.context.addAccessibilityVirtualNodes(elementId, windowId, [accessibilityVirtualNode]).then((data: OperateVirtualNodeResult)=>{
+      console.info(`addAccessibilityVirtualNodes: elementId:${elementId} windowId:${windowId}, result:${data}`)
+    }).catch((err: BusinessError) => {
+      console.error(`failed to add virtual nodes, Code is ${err.code}, message is ${err.message}`);
+    });
+  }
+}
+```
+
+### removeAccessibilityVirtualNodes
+
+removeAccessibilityVirtualNodes(elementId: number, windowId: number): Promise&lt;OperateVirtualNodeResult&gt;
+
+删除新增的无障碍虚拟节点树。使用Promise异步回调。
+
+**起始版本：** 26.0.0
+
+**模型约束：** 此接口仅可在Stage模型下使用。
+
+**系统接口：** 此接口为系统接口。
+
+**需要权限：** ohos.permission.ACCESSIBILITY_EXTENSION_ABILITY
+
+**系统能力：** SystemCapability.BarrierFree.Accessibility.Core
+
+**参数：**
+
+| 参数名 | 类型                                                                           | 必填 | 说明 |
+| -------- |------------------------------------------------------------------------------| -------- | -------- |
+| elementId | number | 是 | 表示待删除的虚拟节点树所在的节点ID。 |
+| windowId  | number | 是 | 表示待删除的虚拟节点树所在的窗口ID。 |
+
+**返回值：**
+
+| 类型 | 说明 |
+| -------- | -------- |
+| Promise&lt;[OperateVirtualNodeResult](./js-apis-accessibility-sys.md#operatevirtualnoderesult)&gt; | Promise对象，返回执行结果。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[无障碍子系统错误码](errorcode-accessibility.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | -------------------------------- |
+| 201 | Permission verification failed.The application does not have the permission required to call the API.  |
+| 202 | Permission verification failed.A non-system application calls a system API. |
+| 9300000 | System abnormality.Possible causes: <br>1.Internal operation failed.<br>2.Failed to obtain the required service or client object (null pointer).<br>3.IPC communication failed.<br>4.Failed to obtain the accessibility service proxy.<br>5.Timed out while waiting for the result of an asynchronous operation. |
+
+**示例：**
+
+```ts
+import {
+  AccessibilityEvent, 
+  AccessibilityExtensionContext,
+  OperateVirtualNodeResult
+} from '@kit.AccessibilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+export default class AccessibilityManager {
+  private static instance: AccessibilityManager;
+  context?: AccessibilityExtensionContext;
+
+  static getInstance(): AccessibilityManager {
+    if (!AccessibilityManager.instance) {
+      AccessibilityManager.instance = new AccessibilityManager();
+    }
+    return AccessibilityManager.instance;
+  }
+
+  onStart(context: AccessibilityExtensionContext) {
+    this.context = context;
+  }
+
+  onStop() {
+    this.context = undefined;
+  }
+
+  onEvent(accessibilityEvent: AccessibilityEvent): void {
+    if (!this.context) {
+      console.error('context is not available!');
+      return;
+    }
+
+    let elementId: number = 10; // 请使用需要删除虚拟节点树的父节点ID。
+    let windowId: number = 10; // 请使用需要删除虚拟节点树的窗口ID。
+    this.context.removeAccessibilityVirtualNodes(elementId, windowId).then((data: OperateVirtualNodeResult)=>{
+      console.info(`removeAccessibilityVirtualNodes: elementId:${elementId} windowId:${windowId}, result:${data}`)
+    }).catch((err: BusinessError) => {
+      console.error(`failed to remove virtual nodes, Code is ${err.code}, message is ${err.message}`);
+    });
+  }
+}
+```
+
 ## AccessibilityElement
 
 无障碍节点元素，提供查询父/子元素、按内容或焦点方向查找元素、执行无障碍操作等能力，适用于无障碍辅助应用需要与界面节点交互和操作的场景。
@@ -1040,6 +1307,7 @@ export default class AccessibilityManager {
 | belongTreeId             | number              | 否   | 是   | 表示元素所属的组件树ID。默认值为-1。<br>**起始版本：** 26.0.0<br>**模型约束：** 此接口仅可在Stage模型下使用。 |
 | childrenTreeId             | number              | 否   | 是   | 表示元素的子组件树ID。默认值为-1。<br>**起始版本：** 26.0.0<br>**模型约束：** 此接口仅可在Stage模型下使用。 |
 | customActions             | Array\<string>                                                             | 否  | 是  | 元素支持的自定义操作列表。<br>**起始版本：** 26.0.0<br>**模型约束：** 此接口仅可在Stage模型下使用。 |
+| sourceType             | [AccessibilitySourceType](./js-apis-accessibility-sys.md#accessibilitysourcetype) | 否  | 是  | 组件来源类型，用于区分默认组件和新增、修改的虚拟组件。<br>**起始版本：** 26.0.0<br>**模型约束：** 此接口仅可在Stage模型下使用。 |
 
 **示例：**
 
@@ -1684,6 +1952,98 @@ axContext.getAccessibilityFocusedElement().then((focus: AccessibilityElement) =>
 });
 ```
 
+### findElementByFocusDirection
+
+findElementByFocusDirection(condition: FocusDirection, type: FocusRuleType): Promise\<AccessibilityElement>
+
+根据焦点方向和聚焦类型查找元素。使用Promise异步回调。
+
+**起始版本：** 26.0.0
+
+**模型约束：** 此接口仅可在Stage模型下使用。
+
+**系统接口：** 此接口为系统接口。
+
+**需要权限：** ohos.permission.ACCESSIBILITY_EXTENSION_ABILITY
+
+**系统能力：** SystemCapability.BarrierFree.Accessibility.Core
+
+**参数：**
+
+| 名称 | 类型 | 必填 | 描述 |
+| -------- | ---- | -------- | ------------------------------------------------------------ |
+| condition | [FocusDirection](js-apis-inner-application-accessibilityExtensionContext.md#focusdirection) | 是 | 焦点方向。 |
+| type | [FocusRuleType](js-apis-accessibility-sys.md#focusruletype) | 是 | 聚焦类型。 |
+
+**返回值：**
+
+| 类型                                      | 描述                   |
+| ---------------------------------------- | --------------------- |
+| Promise\<[AccessibilityElement](#accessibilityelement)> | Promise对象，返回指定焦点方向上符合聚焦类型的元素。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[无障碍子系统错误码](errorcode-accessibility.md)。
+
+| 错误码ID  | 错误信息                                    |
+| ------- | ---------------------------------------- |
+| 201 | Permission verification failed. The application does not have the permission required to call the API. |
+| 202 | Permission verification failed. A non-system application calls a system API. |
+| 9300006 | The target application failed to connect to accessibility service. |
+
+**示例：**
+
+```ts
+// Page.ets
+// 点击“二级标题1”，使其成为无障碍焦点元素。下一个聚焦类型为标题焦点元素，是“二级标题2”。
+  build() {
+    Text('Connect')
+        .id('connect')
+        .fontSize($r('app.float.page_text_font_size'))
+        .fontWeight(FontWeight.Bold)
+        
+    SubHeader({
+      secondaryTitle: '二级标题1',
+      operationType: OperationType.BUTTON,
+      operationItem: [{
+        value: '操作',
+        action: () => {
+          Prompt.showToast({ message: 'demo' });
+        }
+      }]
+    })
+
+    TextInput({ placeholder: 'please input...' })
+        .id('text_input')
+        .fontSize($r('app.float.page_text_font_size'))
+
+    SubHeader({
+      secondaryTitle: '二级标题2',
+      operationType: OperationType.BUTTON,
+      operationItem: [{
+        value: '操作',
+        action: () => {
+          Prompt.showToast({ message: 'demo' });
+        }
+      }]
+    })
+  }
+
+// AccessibilityExtAbility.ets
+import { AccessibilityElement, FocusRuleType } from '@kit.AccessibilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+axContext.getAccessibilityFocusedElement().then((focus: AccessibilityElement) => {
+    focus.findElementByFocusDirection('forward', FocusRuleType.FOCUS_BY_TITLE).then((element: AccessibilityElement) => {
+        console.info(`findElementByFocusDirection forward componentId: ${element.componentId}`);
+    }).catch((err: BusinessError) => {
+        console.error(`Failed to findElementByFocusDirection forward. Code: ${err.code}, message: ${err.message}`);
+    });
+}).catch((err: BusinessError) => {
+  console.error(`Failed to getAccessibilityFocusedElement. Code: ${err.code}, message: ${err.message}`);
+});
+```
+
 ### findElementsByAccessibilityHintText<sup>20+</sup>
 
 findElementsByAccessibilityHintText(condition: string): Promise\<Array\<AccessibilityElement>>
@@ -1875,6 +2235,98 @@ axContext.getAccessibilityFocusedElement().then((focus: AccessibilityElement) =>
 });
 ```
 
+### findElementsByCondition
+
+findElementsByCondition(rule: FocusRule, condition: FocusCondition, type: FocusRuleType): Promise\<FocusMoveResult>
+
+根据规则和查询条件查找目标类型的可聚焦节点。使用Promise异步回调。
+
+**起始版本：** 26.0.0
+
+**模型约束：** 此接口仅可在Stage模型下使用。
+
+**系统接口：** 此接口为系统接口。
+
+**需要权限：** ohos.permission.ACCESSIBILITY_EXTENSION_ABILITY
+
+**系统能力：** SystemCapability.BarrierFree.Accessibility.Core
+
+**参数：**
+
+| 名称 | 类型 | 必填 | 描述 |
+| -------- | ---- | -------- | ------------------------------------------------------------ |
+| rule | [FocusRule](#focusrule23) | 是 | 检查当前节点及其子节点的规则。 |
+| condition | [FocusCondition](#focuscondition23) | 是 | 表示查询可聚焦节点方式。 |
+| type | [FocusRuleType](js-apis-accessibility-sys.md#focusruletype) | 是 | 聚焦类型。 |
+
+**返回值：**
+
+| 类型                                      | 描述                   |
+| ---------------------------------------- | --------------------- |
+| Promise\<[FocusMoveResult](#focusmoveresult23)> | Promise对象，返回查询结果对象。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID  | 错误信息                                    |
+| ------- | ---------------------------------------- |
+| 201 | Permission verification failed. The application does not have the permission required to call the API. |
+| 202 | Permission verification failed. A non-system application calls a system API. |
+
+**示例：**
+
+```ts
+// Page.ets
+  build() {
+    Text('Connect')
+        .id('connect')
+        .fontSize($r('app.float.page_text_font_size'))
+        .fontWeight(FontWeight.Bold)
+        
+    SubHeader({
+      secondaryTitle: '二级标题1',
+      operationType: OperationType.BUTTON,
+      operationItem: [{
+        value: '操作',
+        action: () => {
+          Prompt.showToast({ message: 'demo' });
+        }
+      }]
+    })
+
+    TextInput({ placeholder: 'please input...' })
+        .id('text_input')
+        .fontSize($r('app.float.page_text_font_size'))
+
+    SubHeader({
+      secondaryTitle: '二级标题2',
+      operationType: OperationType.BUTTON,
+      operationItem: [{
+        value: '操作',
+        action: () => {
+          Prompt.showToast({ message: 'demo' });
+        }
+      }]
+    })
+  }
+
+// AccessibilityExtAbility.ets
+
+import { AccessibilityElement, FocusRuleType } from '@kit.AccessibilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+axContext.getAccessibilityFocusedElement().then((focus: AccessibilityElement) => {
+    focus.findElementsByCondition("bypassSelf", "forward", FocusRuleType.FOCUS_BY_TITLE).then((res: FocusMoveResult) => {
+        console.info(`findElementsByCondition result: ${res.result}`);
+    }).catch((err: BusinessError) => {
+        console.error(`Failed to findElementsByCondition. Code: ${err.code}, message: ${err.message}`);
+    });
+}).catch((err: BusinessError) => {
+  console.error(`Failed to getAccessibilityFocusedElement. Code: ${err.code}, message: ${err.message}`);
+});
+```
+
 ## ElementAttributeValues
 
 节点元素具备的属性名称及属性值类型信息。
@@ -1899,3 +2351,57 @@ axContext.getAccessibilityFocusedElement().then((focus: AccessibilityElement) =>
 | accessibilityVisible             | boolean              | 否   | 是   | 表示元素是否是无障碍可见的。true表示元素是无障碍可见的，false表示元素是无障碍不可见的，默认值为true。<br>**起始版本：** 26.0.0<br>**模型约束：** 此接口仅可在Stage模型下使用。 |
 | navDestinationId             | number              | 否   | 是   | 表示元素所关联的导航目标ID。默认值为-1。<br>**起始版本：** 26.0.0<br>**模型约束：** 此接口仅可在Stage模型下使用。 |
 | customActions | Array\<string>                     | 否   | 是   | 元素支持的自定义操作列表。<br>**起始版本：** 26.0.0<br>**模型约束：** 此接口仅可在Stage模型下使用。|
+
+## AccessibilityVirtualNode
+
+无障碍虚拟节点。
+
+**起始版本：** 26.0.0
+
+**模型约束：** 此接口仅可在Stage模型下使用。
+
+**系统接口：** 此接口为系统接口。
+
+**系统能力：** SystemCapability.BarrierFree.Accessibility.Core
+
+### 属性
+
+| 名称                  | 类型                                                             | 只读 | 可选 | 描述             |
+|----------------------|--------------------------------------------------------------------|------|------|-------------------|
+| virtualNodeId | number | 否 | 否 | 自定义的元素虚拟节点ID。|
+| text | string  | 否  | 是  | 元素的文本内容。|
+| accessibilityText | string | 否 | 是 | 元素的无障碍文本信息。|
+| accessibilityGroup | boolean | 否 | 是 | 元素是否为无障碍组。true表示元素是无障碍组，false表示元素不是无障碍组。<br>默认值：true。|
+| accessibilityLevel | string | 否 | 是 | 组件的无障碍级别。<br>'auto'：当前组件由无障碍分组服务和ArkUI进行综合判断组件是否可被辅助功能识别。<br>'yes'：当前组件可被辅助功能识别。<br>'no'：当前组件不可被辅助功能识别。<br>'no-hide-descendants'：当前组件及其所有子组件不可被辅助功能识别。|
+| rect    | [Rect](js-apis-inner-application-accessibilityExtensionContext.md#rect)  | 否  | 是  | 元素的区域(父节点的相对位置)。|
+| checkable | boolean | 否 | 是 | 元素是否可勾选。true表示可勾选，false表示不可勾选。<br>默认值：false。|
+| checked | boolean | 否 | 是 | 元素是否已勾选。true表示已勾选，false表示未勾选。<br>默认值：false。|
+| clickable | boolean | 否 | 是 | 元素是否可点击。true表示可点击，false表示不可点击。<br>默认值：false。|
+| enabled | boolean | 否 | 是 | 元素是否启用。true表示启用，false表示未启用。<br>对应AccessibilityElement的isEnable属性，默认值：false。|
+| selected | boolean | 否  | 是  | 元素是否已选中。true表示已选中，false表示未选中。<br>默认值：false。|
+| customComponentType | string   | 否  | 是  | 自定义组件类型。|
+| touchPosition | [TouchPosition](#touchposition)   | 否  | 是  | 模拟触摸点击位置。|
+| accessibilityFocused | boolean | 否 | 是 | 表示元素是否因无障碍目的获得焦点。true表示已获得焦点，false表示未获得焦点。<br>默认值：false。|
+| parentId | number  | 否  | 是  | 组件的父元素ID。|
+| childNodeIds | Array\<number>  | 否  | 是  | 组件的子元素ID列表。|
+| elementId | number | 否 | 是 | 元素所属组件的ID。<br>默认值：-1。|
+| supportedActionNames | Array&lt;string&gt; | 否  | 是  | 支持的操作名称。|
+
+## TouchPosition
+
+触摸点击位置。
+
+**起始版本：** 26.0.0
+
+**模型约束：** 此接口仅可在Stage模型下使用。
+
+**系统接口：** 此接口为系统接口。
+
+**系统能力：** SystemCapability.BarrierFree.Accessibility.Core
+
+### 属性
+
+| 名称                  | 类型                                                             | 只读 | 可选 | 描述             |
+|----------------------|--------------------------------------------------------------------|------|------|-------------------|
+| x | number | 否 | 否 | 点击位置x坐标，单位为像素（px）。|
+| y | number  | 否  | 否  | 点击位置y坐标，单位为像素（px）。|

@@ -286,7 +286,7 @@
 
 ## MetadataObject
 
-相机元能力信息，[CameraInput](arkts-apis-camera-CameraInput.md)相机信息中的数据来源，通过metadataOutput.on('metadataObjectsAvailable')接口获取。
+相机元数据信息，[CameraInput](arkts-apis-camera-CameraInput.md)相机信息中的数据来源，通过metadataOutput.on('metadataObjectsAvailable')接口获取。
 
 **原子化服务API：** 从API version 19开始，该接口支持在原子化服务中使用。
 

@@ -930,7 +930,7 @@ console.info(`${baseProcessor.process(5).toString()}`);  // 15（调用子类重
 
 子类方法的访问权限必须不低于父类方法。
 
-<!-- @[override_access_permission](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/Start/LearningArkTs/ArkTSFullLanguageGuide/entry/src/main/ets/pages/Inheritance.ets) -->
+<!-- @[ts_override_access_permission](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/Start/LearningArkTs/ArkTSFullLanguageGuide/entry/src/main/ets/tsPages/Inheritance.ts) -->
 
 ``` TypeScript
 class AccessParent {
@@ -943,6 +943,12 @@ class AccessParent {
   protected protectedMethod(): void {
     console.info(`Parent protected`);
   }
+
+  // public方法（演示降低访问权限）
+  public loweredAccessMethod(): void {}
+
+  // private方法（子类不可见，不能重写）
+  private privateMethod(): void {}
 }
 
 class OverrideAccessChild extends AccessParent {
@@ -1096,7 +1102,7 @@ console.info(`${employee.getInfo()}`);  // 'Bob, 30, Engineering'
 
 ### 子类静态方法中调用父类静态成员
 
-子类静态方法通过类名调用父类静态成员，不能使用super关键字。
+子类静态方法可通过类名或super关键字调用父类静态成员。
 
 <!-- @[static_method_call](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/Start/LearningArkTs/ArkTSFullLanguageGuide/entry/src/main/ets/pages/Inheritance.ets) -->
 
@@ -1132,25 +1138,26 @@ class StaticChild extends StaticBase {
     return StaticChild.getValue();  // 继承的静态方法
   }
 
-  // 注意：静态方法中不能使用super
-  static invalidMethod(): void {
-    super.baseMethod();  // 编译错误：super不能用于静态方法
+  // 静态方法中可通过super调用父类静态方法
+  static callViaSuper(): void {
+    super.baseMethod();  // 通过super调用父类静态方法
   }
 }
 
 StaticChild.combinedMethod();       // 'Base static method', 'Base static method'
 console.info(`${StaticChild.getTotalValue()}`);       // 30
 console.info(`${StaticChild.getInheritedValue()}`);   // 10
+StaticChild.callViaSuper();         // 'Base static method'
 
 // 静态方法调用规则：
 // 通过类名调用静态成员
 // 子类名可调用继承的静态成员
-// 不能在静态方法中使用super
+// 可通过super调用父类静态方法
 ```
 
 ### super关键字的使用场景与限制
 
-super的使用场景包括：调用父类构造函数（`super()`）、调用父类方法（`super.method()`）；限制包括：`super()`必须在构造函数第一行、不能在静态方法中使用、不能通过`super`直接访问父类属性（应使用`this`）。
+super的使用场景包括：调用父类构造函数（`super()`）、调用父类方法（`super.method()`）、在静态方法中调用父类静态方法（`super.staticMethod()`）；限制包括：`super()`必须在构造函数第一行、不能通过`super`直接访问父类属性（应使用`this`）。
 
 <!-- @[ts_super_usage_limitation](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/Start/LearningArkTs/ArkTSFullLanguageGuide/entry/src/main/ets/tsPages/Inheritance.ts) -->
 

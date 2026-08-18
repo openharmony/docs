@@ -6,6 +6,7 @@
 <!--Designer: @zhouben25-->
 <!--Tester: @leetestnady-->
 <!--Adviser: @HelloCrease-->
+<!-- md-trans-meta sourceCommit=01c6962072a8f9dd5cda50c5dbc79464d7c5ca8a translatedAt=2026-08-11T01:56:10.042Z pushedAt=2026-08-11T03:04:32.211Z -->
 
 The **backgroundProcessManager** module provides APIs for background child process management. You can use these APIs to suppress and unsuppress child processes to prevent child processes from occupying too many system resources and causing system stuttering. The APIs take effect only for the child processes created through [OH_Ability_StartNativeChildProcess](../apis-ability-kit/capi-native-child-process-h.md#oh_ability_startnativechildprocess).
 
@@ -42,9 +43,9 @@ Sets the child process priority. After a child process is suppressed, the CPU re
 
 **Error codes**
 
-For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+For details about the error codes, see [Universal IDs](../errorcode-universal.md).
 
-| Error Code   | Error Message            |
+| ID   | Error Message            |
 |----------|------------------|
 | 401      | Parameter error. Possible causes: priority is out of range. |
 
@@ -56,7 +57,7 @@ import { backgroundProcessManager } from '@kit.BackgroundTasksKit';
 
 let childProcessPid = 33333;
 try {
-    backgroundProcessManager.setProcessPriority(childProcessPid,
+    await backgroundProcessManager.setProcessPriority(childProcessPid,
         backgroundProcessManager.ProcessPriority.PROCESS_INACTIVE);
 } catch (error) {
     console.error(`setProcessPriority failed, errCode: ${(error as BusinessError).code}, message: ${(error as BusinessError).message}`);
@@ -91,7 +92,7 @@ import { backgroundProcessManager } from '@kit.BackgroundTasksKit';
 
 let childProcessPid = 33333;
 try {
-    backgroundProcessManager.resetProcessPriority(childProcessPid); 
+    await backgroundProcessManager.resetProcessPriority(childProcessPid); 
 } catch (error) {
     console.error(`resetProcessPriority failed, errCode: ${(error as BusinessError).code}, message: ${(error as BusinessError).message}`);
 }
@@ -104,8 +105,11 @@ setPowerSaveMode(pid: number, powerSaveMode: PowerSaveMode): Promise&lt;void&gt;
 Sets the power saving mode for a process. This API uses a promise to return the result.
 
 You can set to enter the power saving mode when:
+
 - The application is not focused, and there are no audio operations or UI updates.
+
 - The application cannot obtain the power lock through the system framework.
+
 - The application needs to perform time-consuming computing tasks, such as compression, decompression, and compilation, which are significantly restricted by CPU resources. (In this case, the power saving mode will be enabled forcibly.)
 
 **Device behavior differences**: This API can be properly called on PCs/2-in-1 devices. If it is called on other devices, error code 801 is returned.
@@ -118,7 +122,7 @@ You can set to enter the power saving mode when:
 
 | Name     | Type     | Mandatory     | Description     |
 |-------------|-----------|-----------|-----------|
-| pid         | number    | Yes       | Process ID. |
+| pid         | number    | Yes        | Process ID.<br>The value is a positive integer.  |
 | powerSaveMode | [PowerSaveMode](#powersavemode20) | Yes| Power saving mode.|
 
 **Return value**
@@ -129,9 +133,9 @@ You can set to enter the power saving mode when:
 
 **Error codes**
 
-For details about the error codes, see [backgroundProcessManager Error Codes](errorcode-backgroundProcessManager.md) and [Universal Error Codes](../errorcode-universal.md).
+For details about the error codes, see [backgroundProcessManager IDs](errorcode-backgroundProcessManager.md) and [Universal IDs](../errorcode-universal.md).
 
-| Error Code   | Error Message            |
+| ID   | Error Message            |
 |----------|------------------|
 | 201      | Permission denied. |
 | 801      | Capability not supported. |
@@ -145,11 +149,15 @@ For details about the error codes, see [backgroundProcessManager Error Codes](er
 import { BusinessError } from '@kit.BasicServicesKit';
 import { backgroundProcessManager } from '@kit.BackgroundTasksKit';
 
-let pid = 33333;
+let pid = 33333;  // Replace the process ID with the actual one.
 try {
-    backgroundProcessManager.setPowerSaveMode(pid, backgroundProcessManager.PowerSaveMode.EFFICIENCY_MODE); 
+  backgroundProcessManager.setPowerSaveMode(pid, backgroundProcessManager.PowerSaveMode.EFFICIENCY_MODE).then(() => {
+    console.info('setPowerSaveMode promise');
+  }).catch((err: BusinessError) => {
+    console.error(`setPowerSaveMode failed, promise errCode: ${err.code}, message: ${err.message}`);
+  });
 } catch (error) {
-    console.error(`setPowerSaveMode failed, errCode: ${(error as BusinessError).code}, message: ${(error as BusinessError).message}`);
+  console.error(`setPowerSaveMode failed, errCode: ${(error as BusinessError).code}, message: ${(error as BusinessError).message}`);
 }
 ```
 
@@ -169,7 +177,7 @@ Queries whether the process is in power saving mode. This API uses a promise to 
 
 | Name     | Type     | Mandatory     | Description     |
 |-------------|-----------|-----------|-----------|
-| pid         | number    | Yes       | Process ID. |
+| pid         | number    | Yes        | Process ID.<br>The value is a positive integer.  |
 
 **Return value**
 
@@ -179,9 +187,9 @@ Queries whether the process is in power saving mode. This API uses a promise to 
 
 **Error codes**
 
-For details about the error codes, see [backgroundProcessManager Error Codes](errorcode-backgroundProcessManager.md) and [Universal Error Codes](../errorcode-universal.md).
+For details about the error codes, see [backgroundProcessManager IDs](errorcode-backgroundProcessManager.md) and [Universal IDs](../errorcode-universal.md).
 
-| Error Code   | Error Message            |
+| ID   | Error Message            |
 |----------|------------------|
 | 201      | Permission denied. |
 | 801      | Capability not supported. |
@@ -193,13 +201,15 @@ For details about the error codes, see [backgroundProcessManager Error Codes](er
 import { BusinessError } from '@kit.BasicServicesKit';
 import { backgroundProcessManager } from '@kit.BackgroundTasksKit';
 
-let pid = 33333;
+let pid = 33333;  // Replace the process ID with the actual one.
 try {
-    backgroundProcessManager.isPowerSaveMode(pid).then((result: boolean) => {
-        console.info("isPowerSaveMode: " + result.toString());
-    });
+  backgroundProcessManager.isPowerSaveMode(pid).then((result: boolean) => {
+    console.info(`isPowerSaveMode: ${result}`);
+  }).catch((err: BusinessError) => {
+    console.error(`isPowerSaveMode failed, promise errCode: ${err.code}, message: ${err.message}`);
+  });
 } catch (error) {
-    console.error(`isPowerSaveMode failed, errCode: ${(error as BusinessError).code}, message: ${(error as BusinessError).message}`);
+  console.error(`isPowerSaveMode failed, errCode: ${(error as BusinessError).code}, message: ${(error as BusinessError).message}`);
 }
 ```
 
@@ -219,7 +229,7 @@ Obtains the power saving mode of a process. This API uses a promise to return th
 
 | Name     | Type     | Mandatory     | Description     |
 |-------------|-----------|-----------|-----------|
-| pid         | number    | Yes       | Process ID.<br>Value range: any integer greater than 0. |
+| pid         | number    | Yes        | Process ID.<br>The value is a positive integer.  |
 
 **Return value**
 
@@ -229,9 +239,9 @@ Obtains the power saving mode of a process. This API uses a promise to return th
 
 **Error codes**
 
-For details about the error codes, see [backgroundProcessManager Error Codes](errorcode-backgroundProcessManager.md) and [Universal Error Codes](../errorcode-universal.md).
+For details about the error codes, see [backgroundProcessManager IDs](errorcode-backgroundProcessManager.md) and [Universal IDs](../errorcode-universal.md).
 
-| Error Code   | Error Message            |
+| ID   | Error Message            |
 |----------|------------------|
 | 201      | Permission denied. |
 | 801      | Capability not supported. |
@@ -242,14 +252,16 @@ For details about the error codes, see [backgroundProcessManager Error Codes](er
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 import { backgroundProcessManager } from '@kit.BackgroundTasksKit';
-// Replace the process ID with the actual one.
-let pid = 33333;
+
+let pid = 33333;  // Replace the process ID with the actual one.
 try {
-    backgroundProcessManager.getPowerSaveMode(pid).then((result: backgroundProcessManager.PowerSaveMode) => {
-        console.info("getPowerSaveMode: " + result.toString());
-    });
+  backgroundProcessManager.getPowerSaveMode(pid).then((result: backgroundProcessManager.PowerSaveMode) => {
+    console.info(`getPowerSaveMode: ${result}`);
+  }).catch((err: BusinessError) => {
+    console.error(`getPowerSaveMode failed, promise errCode: ${err.code}, message: ${err.message}`);
+  });
 } catch (error) {
-    console.error(`getPowerSaveMode failed, errCode: ${(error as BusinessError).code}, message: ${(error as BusinessError).message}`);
+  console.error(`getPowerSaveMode failed, errCode: ${(error as BusinessError).code}, message: ${(error as BusinessError).message}`);
 }
 ```
 

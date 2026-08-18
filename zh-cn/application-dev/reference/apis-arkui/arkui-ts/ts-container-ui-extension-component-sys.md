@@ -547,14 +547,13 @@ export default class UIExtAbility extends UIExtensionAbility {
 ```ts
 import { UIExtensionContentSession } from '@kit.AbilityKit';
 
-let storage = new LocalStorage();
 AppStorage.setOrCreate('message', 'UIExtensionAbility');
 
-@Entry(storage)
+@Entry
 @Component
 struct Extension {
   @StorageLink('message') storageLink: string = '';
-  private session: UIExtensionContentSession | undefined = storage.get<UIExtensionContentSession>('session');
+  private session: UIExtensionContentSession | undefined = undefined;
   pathStack: NavPathStack = new NavPathStack();
 
   @Builder
@@ -562,6 +561,10 @@ struct Extension {
     if (name === "hello") {
       PageOne();
     }
+  }
+
+  aboutToAppear() {
+    this.session = this.getUIContext().getLocalStorage()?.get<UIExtensionContentSession>('session');
   }
 
   onPageShow() {
@@ -592,7 +595,7 @@ struct Extension {
             if (this.session != undefined) {
               this.session.terminateSelf();
             }
-            storage.clear();
+            this.getUIContext().getLocalStorage()?.clear();
           })
           Button("terminate with result").onClick(() => {
             if (this.session != undefined) {
@@ -604,7 +607,7 @@ struct Extension {
                 }
               });
             }
-            storage.clear();
+            this.getUIContext().getLocalStorage()?.clear();
           })
 
           Button("点击跳转").onClick(() => {

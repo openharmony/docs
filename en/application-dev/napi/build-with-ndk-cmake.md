@@ -6,7 +6,6 @@
 <!--Designer: @liyiming13-->
 <!--Tester: @zsw_zhushiwei-->
 <!--Adviser: @k1ngqaquuu-->
-<!-- md-trans-meta sourceCommit=b2ce85b7434b59119d9d781b6d8f1dadc3db7fdf translatedAt=2026-07-25T03:44:07.590Z pushedAt=2026-07-25T07:08:00.798Z -->
 
 In many complex app projects, C++ source code is built via command-line build systems such as CMake. This section describes how to switch an existing CMake project to the OpenHarmony toolchain, so that you can build the project using command-line CMake.
 

@@ -7,10 +7,7 @@
 <!--Adviser: @k1ngqaquuu-->
 
 
-同步任务用于在多个线程间协调执行，确保任务按特定顺序和规则进行（如使用锁防止数据竞争）。
-
-
-同步任务的实现需要考虑多个线程之间的协作和同步，以确保数据的正确性和程序的正确执行。
+同步任务通过多个线程之间的协作和同步（如使用锁防止数据竞争），确保任务按特定顺序和规则进行，以保障数据的正确性和程序的正确执行。
 
 当同步任务之间相对独立时，推荐使用TaskPool，例如一系列导入的静态方法或单例实现的方法。如果同步任务之间有关联性，则需要使用Worker。
 
@@ -110,7 +107,7 @@ struct Index {
               .fontWeight(FontWeight.Bold)
               .onClick(async () => {
                 // ...
-                let w: worker.ThreadWorker = new worker.ThreadWorker('entry/ets/workers/MyWorker2.ts');
+                let w: worker.ThreadWorker = new worker.ThreadWorker('entry/ets/workers/MyWorker2.ets');
                 w.onmessage = (e: MessageEvents): void => {
                   // 接收Worker子线程的结果
                   console.info(`main thread onmessage, ${e.data.message}`);
@@ -152,11 +149,11 @@ struct Index {
     }
     ```
 
-    <!-- @[worker_handle_associated_sync_task](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/ArkTsConcurrent/ApplicationMultithreadingDevelopment/ApplicationMultithreading/entry/src/main/ets/workers/MyWorker2.ts) --> 
+    <!-- @[worker_handle_associated_sync_task](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/ArkTsConcurrent/ApplicationMultithreadingDevelopment/ApplicationMultithreading/entry/src/main/ets/workers/MyWorker2.ets) --> 
     
     ``` TypeScript
     import { worker, ThreadWorkerGlobalScope, MessageEvents } from '@kit.ArkTS';
-    // 返回句柄
+    // 导入句柄类型
     import Handle from './handle'; 
     
     let workerPort : ThreadWorkerGlobalScope = worker.workerPort;
@@ -168,19 +165,17 @@ struct Index {
     workerPort.onmessage = (e : MessageEvents): void => {
       switch (e.data.type as number) {
         case 0:
-          let result: boolean = false;
-          result = handler.syncSet(e.data.data);
-          console.info("worker: result is " + result);
+          let result: boolean = handler.syncSet(e.data.data);
+          console.info('worker: result is ' + result);
           workerPort.postMessage({'message': 'the result of syncSet() is ' + result, 'isTerminate': false});
           break;
         case 1:
-          let num: number = 0;
-          num = handler.syncGet();
-          console.info("worker: num is " + num);
+          let num: number = handler.syncGet();
+          console.info('worker: num is ' + num);
           workerPort.postMessage({'message': 'the result of syncGet() is ' + num, 'isTerminate': true});
           break;
         default:
-          workerPort.postMessage({ type: 'message', value: 'send message is invalid' });
+          workerPort.postMessage({ 'message': 'send message is invalid', 'isTerminate': false });
           break;
       }
     }

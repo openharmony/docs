@@ -28,7 +28,7 @@ WebNativeMessagingExtensionContext是Web原生消息扩展的上下文，包含�
 
 startAbility(want: Want, options?: StartOptions): Promise&lt;void&gt;
 
-使用Promise异步回调启动Ability。
+使用Promise异步回调启动Ability。如需获取启动的UIAbility退出时的返回结果，可以使用[startAbilityForResult](#startabilityforresult)。
 
 **系统能力:** SystemCapability.Web.Webview.Core
 
@@ -38,8 +38,8 @@ startAbility(want: Want, options?: StartOptions): Promise&lt;void&gt;
 
 | 参数名 | 类型 | 必填 | 说明 |
 |-------|-------|-------|-------|
-| want | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | 是 | 表示需要启动的Ability的信息。 |
-| options | [StartOptions](../apis-ability-kit/js-apis-app-ability-startOptions.md) | 否 | 启动选项。 |
+| want | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | 是 | 表示需要启动的Ability的信息，包含bundleName、abilityName等属性，用于指定要启动的目标Ability。 |
+| options | [StartOptions](../apis-ability-kit/js-apis-app-ability-startOptions.md) | 否 | 启动选项，用于指定目标UIAbility启动时的选项，包括但不局限于窗口模式、目标UIAbility启动时所在的屏幕等。当需要自定义启动配置时传入，不传入时使用系统默认启动配置。 |
 
 **返回值:**
 
@@ -87,16 +87,20 @@ import { BusinessError } from '@kit.BasicServicesKit';
 export class MyWebNativeMessagingExtension extends WebNativeMessagingExtensionAbility {
   onConnectNative(info: ConnectionInfo): void {
     const abilityWant: Want = {
-    bundleName: 'com.example.mybundle',
-    abilityName: 'MainAbility'
+      bundleName: 'com.example.mybundle',
+      abilityName: 'MainAbility'
     };
     try {
-        const context = this.context; // 获取 WebNativeMessagingExtensionContext 实例
-        context.startAbility(abilityWant);
+      const context = this.context; // 获取 WebNativeMessagingExtensionContext 实例
+      context.startAbility(abilityWant).then(() => {
         console.info('Ability started successfully');
+      }).catch((err: BusinessError) => {
+        console.error(`Failed to start ability. Code: ${err.code},
+          Message: ${err.message}`);
+      });
     } catch (err) {
-        console.error(`Failed to start ability. Code: ${(err as BusinessError).code},
-        Message: ${(err as BusinessError).message}`);
+      console.error(`Failed to start ability. Code: ${(err as BusinessError).code},
+      Message: ${(err as BusinessError).message}`);
     }
   }
 }
@@ -106,7 +110,7 @@ export class MyWebNativeMessagingExtension extends WebNativeMessagingExtensionAb
 
 startAbilityForResult(want: Want, options?: StartOptions): Promise&lt;AbilityResult&gt;
 
-启动一个UIAbility，开发者可以通过回调函数接收被拉起的UIAbility退出时的返回结果。使用Promise异步回调。
+启动一个UIAbility，使用Promise异步回调接收被拉起的UIAbility退出时的返回结果。
 
 UIAbility被启动后，有如下情况：
  - 正常情况下可通过调用[terminateSelfWithResult](../apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#terminateselfwithresult)接口使之终止并且返回结果给调用方。
@@ -123,8 +127,8 @@ UIAbility被启动后，有如下情况：
 
 | 参数名 | 类型 | 必填 | 说明 |
 |-------|-------|-------|-------|
-| want | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | 是 | 表示需要启动的UIAbility的信息。 |
-| options | [StartOptions](../apis-ability-kit/js-apis-app-ability-startOptions.md) | 否 | 启动选项。 |
+| want | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | 是 | 表示需要启动的UIAbility的信息，包含bundleName、abilityName等属性，用于指定要启动的目标UIAbility。 |
+| options | [StartOptions](../apis-ability-kit/js-apis-app-ability-startOptions.md) | 否 | 启动选项，用于配置UIAbility的窗口模式等。当需要自定义启动配置时传入，不传入时使用系统默认启动配置。各字段默认值参考[StartOptions](../apis-ability-kit/js-apis-app-ability-startOptions.md)说明。 |
 
 **返回值:**
 
@@ -196,7 +200,7 @@ export class MyWebNativeMessagingExtension extends WebNativeMessagingExtensionAb
 ### terminateSelf
 terminateSelf(): Promise&lt;void&gt;
 
-销毁当前Web原生消息扩展。该方法返回一个Promise对象用于异步处理。
+销毁当前Web原生消息扩展。该方法返回一个Promise对象用于异步处理，调用此方法会自动停止所有Web原生消息连接，无需再调用stopNativeConnection。
 
 **系统能力:** SystemCapability.Web.Webview.Core
 
@@ -228,8 +232,12 @@ export class MyWebNativeMessagingExtension extends WebNativeMessagingExtensionAb
   onConnectNative(info: ConnectionInfo): void {
     try {
         const context = this.context; // 获取 WebNativeMessagingExtensionContext 实例
-        context.terminateSelf();
-        console.info('Extension terminated successfully');
+        context.terminateSelf().then(() => {
+          console.info('Extension terminated successfully');
+        }).catch((err: BusinessError) => {
+          console.error(`Failed to terminate extension. Code: ${err.code},
+          Message: ${err.message}`);
+        });       
     } catch (err) {
         console.error(`Failed to terminate extension. Code: ${(err as BusinessError).code},
         Message: ${(err as BusinessError).message}`);
@@ -242,7 +250,7 @@ export class MyWebNativeMessagingExtension extends WebNativeMessagingExtensionAb
 
 stopNativeConnection(connectionId: number): Promise&lt;void&gt;
 
-停止指定的本地连接。使用Promise进行异步回调。
+停止指定的本地连接。使用Promise异步回调。
 
 **系统能力:** SystemCapability.Web.Webview.Core
 
@@ -281,8 +289,12 @@ export class MyWebNativeMessagingExtension extends WebNativeMessagingExtensionAb
     const CONNECTION_ID = 12345; // 实际的连接 ID
     try {
         const context = this.context;// 获取 WebNativeMessagingExtensionContext 实例
-        context.stopNativeConnection(CONNECTION_ID);
-        console.info('Native connection stopped successfully');
+        context.stopNativeConnection(CONNECTION_ID).then(() => {
+          console.info('Native connection stopped successfully');
+        }).catch((err: BusinessError) => {
+          console.error(`Failed to stop native connection. Code: ${err.code},
+          Message: ${err.message}`);
+        })
     } catch (err) {
         console.error(`Failed to stop native connection. Code: ${(err as BusinessError).code},
         Message: ${(err as BusinessError).message}`);

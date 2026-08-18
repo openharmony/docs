@@ -29,7 +29,7 @@
 
 | 名称 | typedef关键字 | 描述 |
 | -- | -- | -- |
-| [MediaKeySession](../apis-drm-kit/capi-drm-mediakeysession.md) | MediaKeySession | MediaKeySession字段。 |
+| [MediaKeySession](../apis-drm-kit/capi-drm-mediakeysession.md) | MediaKeySession | MediaKeySession结构。 |
 
 ### 函数
 
@@ -584,7 +584,7 @@ OH_AVErrCode OH_AudioCodec_QueryOutputBuffer(struct OH_AVCodec *codec, uint32_t 
 
 | 类型 | 说明 |
 | -- | -- |
-| [OH_AVErrCode](capi-native-averrors-h.md#oh_averrcode) | AV_ERR_OK：执行成功。<br>         AV_ERR_INVALID_VAL：执行失败，输入参数错误。<br>         AV_ERR_INVALID_STATE：执行失败，状态非法，没有启动编解码器等。<br>         AV_ERR_OPERATE_NOT_PERMIT：执行失败，不允许非同步模式下调用。<br>         AV_ERR_STREAM_CHANGED：解码输出流格式发生变化, 可以通过调用[OH_AudioCodec_GetOutputDescription](#oh_audiocodec_getoutputdescription)接口获取新的流信息。<br>         AV_ERR_TRY_AGAIN_LATER：执行失败，超时时间内获取不到可用的缓冲区。 |
+| [OH_AVErrCode](capi-native-averrors-h.md#oh_averrcode) | AV_ERR_OK：执行成功。<br>         AV_ERR_INVALID_VAL：执行失败，输入参数错误。<br>         AV_ERR_INVALID_STATE：执行失败，状态非法，没有启动编解码器等。<br>         AV_ERR_OPERATE_NOT_PERMIT：执行失败，不允许非同步模式下调用。<br>         AV_ERR_STREAM_CHANGED：解码输出流格式发生变化，可以通过调用[OH_AudioCodec_GetOutputDescription](#oh_audiocodec_getoutputdescription)接口获取新的流信息。<br>         AV_ERR_TRY_AGAIN_LATER：执行失败，超时时间内获取不到可用的缓冲区。 |
 
 ### OH_AudioCodec_GetOutputBuffer()
 

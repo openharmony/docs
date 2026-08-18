@@ -68,7 +68,7 @@ In addition to the [universal methods](js-components-common-methods.md), the fol
 | getColumns | (result: number) => void | Obtains the number of columns in the grid. **result** indicates the number of columns in the grid.|
 | getColumnWidth | (result: number) => void | Obtains the column width of the grid. **result** indicates the column width of the grid.|
 | getGutterWidth | (result: number) => void | Obtains the gutter width of the grid. **result** indicates the obtained gutter width of the grid.|
-| getSizeType | (result: number) => void | Obtains the size-responsive type of the grid (xs\|sm\|md\|lg).| | | **result** indicates the size-responsive type of the grid.|
+| getSizeType | (result: number) => void | Obtains the size-responsive type of the grid (xs\|sm\|md\|lg). **result** indicates the size-responsive type of the grid.|
 
 ## Example
 

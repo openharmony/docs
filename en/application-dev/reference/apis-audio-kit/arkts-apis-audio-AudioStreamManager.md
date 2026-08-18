@@ -1,10 +1,12 @@
 # Interface (AudioStreamManager)
+
 <!--Kit: Audio Kit-->
 <!--Subsystem: Multimedia-->
-<!--Owner: @songshenke-->
-<!--Designer: @caixuejiang; @hao-liangfei; @zhanganxiang-->
+<!--Owner: @boxwall-->
+<!--Designer: @magekkkk-->
 <!--Tester: @Filger-->
 <!--Adviser: @w_Machine_cc-->
+<!-- md-trans-meta sourceCommit=5bf9437330a0a4abc1d3dba27eb12723fbd4fd62 translatedAt=2026-08-10T01:24:26.615Z pushedAt=2026-08-10T03:18:32.240Z -->
 
 This interface implements audio stream management.
 
@@ -12,7 +14,7 @@ Before calling any API in AudioStreamManager, you must use [getStreamManager](ar
 
 > **NOTE**
 >
-> - The initial APIs of this module are supported since API version 7. Newly added APIs will be marked with a superscript to indicate their earliest API version.
+> - The initial APIs of this module are supported since API version 7. Newly added APIs in later versions are marked with a superscript to indicate their initial version.
 > - The initial APIs of this interface are supported since API version 9.
 
 ## Modules to Import
@@ -82,6 +84,7 @@ audioStreamManager.getCurrentAudioRendererInfoArray().then((audioRendererChangeI
   console.error(`Failed to get current audio renderer info array. Code: ${err.code}, message: ${err.message}`);
 });
 ```
+
 ## getCurrentAudioRendererInfoArraySync<sup>10+</sup>
 
 getCurrentAudioRendererInfoArraySync(): AudioRendererChangeInfoArray
@@ -369,7 +372,8 @@ isActive(volumeType: AudioVolumeType, callback: AsyncCallback&lt;boolean&gt;): v
 Checks whether a stream is active. This API uses an asynchronous callback to return the result.
 
 > **NOTE**
-> This API is supported since API version 9 and deprecated since API version 20. You are advised to use [isStreamActive](arkts-apis-audio-AudioStreamManager.md#isstreamactive20) instead.
+>
+> This API is supported since API version 9 and deprecated since API version 20. You are advised to use [isStreamActive](arkts-apis-audio-AudioStreamManager.md#isstreamactive20) instead. Note that the input parameters of the substitute API differ from those of the original API. For example, [StreamUsage](arkts-apis-audio-e.md#streamusage) provides more granular types such as `STREAM_USAGE_MUSIC`, `STREAM_USAGE_MOVIE`, `STREAM_USAGE_AUDIOBOOK`, and `STREAM_USAGE_GAME`, whereas in [AudioVolumeType](arkts-apis-audio-e.md#audiovolumetype) these types are all grouped under the `MEDIA` type. For the specific mapping, see the correspondence between common playback stream types and volume types in [Volume Control](../../media/audio/using-right-streamusage-for-playback.md#volume-control). Select the appropriate StreamUsage value based on your actual service scenario during migration.
 
 **System capability**: SystemCapability.Multimedia.Audio.Renderer
 
@@ -401,7 +405,8 @@ isActive(volumeType: AudioVolumeType): Promise&lt;boolean&gt;
 Checks whether a stream is active. This API uses a promise to return the result.
 
 > **NOTE**
-> This API is supported since API version 9 and deprecated since API version 20. You are advised to use [isStreamActive](arkts-apis-audio-AudioStreamManager.md#isstreamactive20) instead.
+>
+> This API is supported since API version 9 and deprecated since API version 20. You are advised to use [isStreamActive](arkts-apis-audio-AudioStreamManager.md#isstreamactive20) instead. Note that the input parameters of the substitute API differ from those of the original API. For example, [StreamUsage](arkts-apis-audio-e.md#streamusage) provides more granular types such as `STREAM_USAGE_MUSIC`, `STREAM_USAGE_MOVIE`, `STREAM_USAGE_AUDIOBOOK`, and `STREAM_USAGE_GAME`, whereas in [AudioVolumeType](arkts-apis-audio-e.md#audiovolumetype) these types are all grouped under the `MEDIA` type. For the specific mapping, see the correspondence between common playback stream types and volume types in [Volume Control](../../media/audio/using-right-streamusage-for-playback.md#volume-control). Select the appropriate StreamUsage value based on your actual service scenario during migration.
 
 **System capability**: SystemCapability.Multimedia.Audio.Renderer
 
@@ -432,7 +437,8 @@ isActiveSync(volumeType: AudioVolumeType): boolean
 Checks whether a stream is active. This API returns the result synchronously.
 
 > **NOTE**
-> This API is supported since API version 10 and deprecated since API version 20. You are advised to use [isStreamActive](arkts-apis-audio-AudioStreamManager.md#isstreamactive20) instead.
+>
+> This API is supported since API version 9 and deprecated since API version 20. You are advised to use [isStreamActive](arkts-apis-audio-AudioStreamManager.md#isstreamactive20) instead. Note that the input parameters of the substitute API differ from those of the original API. For example, [StreamUsage](arkts-apis-audio-e.md#streamusage) provides more granular types such as `STREAM_USAGE_MUSIC`, `STREAM_USAGE_MOVIE`, `STREAM_USAGE_AUDIOBOOK`, and `STREAM_USAGE_GAME`, whereas in [AudioVolumeType](arkts-apis-audio-e.md#audiovolumetype) these types are all grouped under the `MEDIA` type. For the specific mapping, see the correspondence between common playback stream types and volume types in [Volume Control](../../media/audio/using-right-streamusage-for-playback.md#volume-control). Select the appropriate StreamUsage value based on your actual service scenario during migration.
 
 **System capability**: SystemCapability.Multimedia.Audio.Renderer
 
@@ -526,7 +532,7 @@ Obtains information about the audio effect mode in use. This API uses an asynchr
 | Name   | Type                               | Mandatory    | Description                        |
 | -------- | ----------------------------------- | -------- | --------------------------- |
 | usage    | [StreamUsage](arkts-apis-audio-e.md#streamusage)                                    | Yes    |  Audio stream usage.               |
-| callback | AsyncCallback<[AudioEffectInfoArray](arkts-apis-audio-AudioStreamManager.md#getaudioeffectinfoarray10)> | Yes    | Callback used to return the result. If the operation is successful, **err** is **undefined** and **data** is the information about the audio effect mode obtained; otherwise, **err** is an error object.|
+| callback | AsyncCallback<[AudioEffectInfoArray](arkts-apis-audio-t.md#audioeffectinfoarray10)> | Yes | Callback used to return the result. If the current audio effect mode information is obtained successfully, **err** is **undefined** and **data** is the obtained information; otherwise, **err** is an error object. |
 
 **Error codes**
 
@@ -569,7 +575,7 @@ Obtains information about the audio effect mode in use. This API uses a promise 
 
 | Type                                                                     | Description                                   |
 | --------------------------------------------------------------------------| --------------------------------------- |
-| Promise<[AudioEffectInfoArray](arkts-apis-audio-AudioStreamManager.md#getaudioeffectinfoarray10)>                  | Promise used to return the information about the audio effect mode obtained.     |
+| Promise<[AudioEffectInfoArray](arkts-apis-audio-t.md#audioeffectinfoarray10)>                  | Promise used to return the result, which contains information about the current audio effect mode.      |
 
 **Error codes**
 
@@ -610,7 +616,7 @@ Obtains information about the audio effect mode in use. This API returns the res
 
 | Type                                                                     | Description                                   |
 | --------------------------------------------------------------------------| --------------------------------------- |
-| [AudioEffectInfoArray](arkts-apis-audio-AudioStreamManager.md#getaudioeffectinfoarray10)                  | Information about the audio effect mode.     |
+| [AudioEffectInfoArray](arkts-apis-audio-t.md#audioeffectinfoarray10)                  | Information about the current audio effect mode.      |
 
 **Error codes**
 
@@ -639,7 +645,7 @@ try {
 
 isAcousticEchoCancelerSupported(sourceType: SourceType): boolean
 
-Checks whether the specified audio source type supports echo cancellation.
+Checks whether the specified source type supports acoustic echo cancellation.
 
 **System capability**: SystemCapability.Multimedia.Audio.Capturer
 
@@ -748,6 +754,7 @@ For details about the error codes, see [Audio Error Codes](errorcode-audio.md).
 | 6800101 | Parameter verification failed.              |
 
 **Example**
+
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 
@@ -825,3 +832,234 @@ try {
   console.error(`isIntelligentNoiseReductionEnabledForCurrentDevice ERROR: ${error}`);
 }
 ```
+
+## isFastPlaybackSupported
+
+isFastPlaybackSupported(streamInfo: AudioStreamInfo, usage: StreamUsage): boolean
+
+Checks whether low-latency playback is supported for the specified audio stream information and usage scenario.
+
+**Since**: 26.0.0
+
+**Model restriction**: This API can be used only in the stage model.
+
+**System capability**: SystemCapability.Multimedia.Audio.Core
+
+**Parameters**
+
+| Name   | Type                               | Mandatory    | Description                        |
+| -------- | ----------------------------------- | -------- | --------------------------- |
+| streamInfo | [AudioStreamInfo](arkts-apis-audio-i.md#audiostreaminfo8) | Yes | Audio stream information, which describes the basic audio format. |
+| usage | [StreamUsage](arkts-apis-audio-e.md#streamusage) | Yes | Audio stream usage scenario, which determines the audio device and path type selection. |
+
+**Return value**
+
+| Type         | Description                                   |
+| ------------ | --------------------------------------- |
+|  boolean     | Whether low-latency playback is supported. The value **true** indicates yes and the value **false** indicates no. |
+
+**Example**
+
+```ts
+
+let streamInfo: audio.AudioStreamInfo = {
+  samplingRate: audio.AudioSamplingRate.SAMPLE_RATE_48000,
+  channels: audio.AudioChannel.CHANNEL_2,
+  sampleFormat: audio.AudioSampleFormat.SAMPLE_FORMAT_S16LE,
+  encodingType: audio.AudioEncodingType.ENCODING_TYPE_RAW,
+  channelLayout: audio.AudioChannelLayout.CH_LAYOUT_STEREO
+};
+
+try {
+  let isSupported = audioStreamManager.isFastPlaybackSupported(streamInfo, audio.StreamUsage.STREAM_USAGE_MUSIC);
+  console.info(`isFastPlaybackSupported: ${isSupported}.`);
+} catch (err) {
+  let error = err as BusinessError;
+  console.error(`Failed to use isFastPlaybackSupported function. code: ${error.code}, message: ${error.message}`);
+}
+```
+
+## isOffloadPlaybackSupported
+
+isOffloadPlaybackSupported(streamInfo: AudioStreamInfo, usage: StreamUsage): boolean
+
+Checks whether offload playback is supported for the specified audio stream information and usage scenario.
+
+**Since**: 26.0.0
+
+**Model restriction**: This API can be used only in the stage model.
+
+**System capability**: SystemCapability.Multimedia.Audio.Core
+
+**Parameters**
+
+| Name   | Type                               | Mandatory    | Description                        |
+| -------- | ----------------------------------- | -------- | --------------------------- |
+| streamInfo | [AudioStreamInfo](arkts-apis-audio-i.md#audiostreaminfo8) | Yes | Audio stream information, which describes the basic audio format. |
+| usage | [StreamUsage](arkts-apis-audio-e.md#streamusage) | Yes | Audio stream usage scenario, which determines the audio device and path type selection. |
+
+**Return value**
+
+| Type         | Description                                   |
+| ------------ | --------------------------------------- |
+|  boolean     | Whether offload playback is supported. The value **true** indicates yes and the value **false** indicates no. |
+
+**Example**
+
+```ts
+
+let streamInfo: audio.AudioStreamInfo = {
+  samplingRate: audio.AudioSamplingRate.SAMPLE_RATE_48000,
+  channels: audio.AudioChannel.CHANNEL_2,
+  sampleFormat: audio.AudioSampleFormat.SAMPLE_FORMAT_S16LE,
+  encodingType: audio.AudioEncodingType.ENCODING_TYPE_RAW,
+  channelLayout: audio.AudioChannelLayout.CH_LAYOUT_STEREO
+};
+
+try {
+  let isSupported = audioStreamManager.isOffloadPlaybackSupported(streamInfo, audio.StreamUsage.STREAM_USAGE_MUSIC);
+  console.info(`isOffloadPlaybackSupported: ${isSupported}.`);
+} catch (err) {
+  let error = err as BusinessError;
+  console.error(`Failed to use isOffloadPlaybackSupported function. code: ${error.code}, message: ${error.message}`);
+}
+```
+
+## isDirectPlaybackSupported
+
+isDirectPlaybackSupported(streamInfo: AudioStreamInfo, usage: StreamUsage): boolean
+
+Checks whether direct playback is supported for the specified audio stream information and usage scenario.
+
+**Since**: 26.0.0
+
+**Model restriction**: This API can be used only in the stage model.
+
+**System capability**: SystemCapability.Multimedia.Audio.Core
+
+**Parameters**
+
+| Name   | Type                               | Mandatory    | Description                        |
+| -------- | ----------------------------------- | -------- | --------------------------- |
+| streamInfo | [AudioStreamInfo](arkts-apis-audio-i.md#audiostreaminfo8) | Yes | Audio stream information, which describes the basic audio format. |
+| usage | [StreamUsage](arkts-apis-audio-e.md#streamusage) | Yes | Audio stream usage scenario, which determines the audio device and path type selection. |
+
+**Return value**
+
+| Type         | Description                                   |
+| ------------ | --------------------------------------- |
+|  boolean     | Whether direct playback is supported. The value **true** indicates yes and the value **false** indicates no. |
+
+**Example**
+
+```ts
+
+let streamInfo: audio.AudioStreamInfo = {
+  samplingRate: audio.AudioSamplingRate.SAMPLE_RATE_48000,
+  channels: audio.AudioChannel.CHANNEL_2,
+  sampleFormat: audio.AudioSampleFormat.SAMPLE_FORMAT_S16LE,
+  encodingType: audio.AudioEncodingType.ENCODING_TYPE_RAW,
+  channelLayout: audio.AudioChannelLayout.CH_LAYOUT_STEREO
+};
+
+try {
+  let isSupported = audioStreamManager.isDirectPlaybackSupported(streamInfo, audio.StreamUsage.STREAM_USAGE_MUSIC);
+  console.info(`isDirectPlaybackSupported: ${isSupported}.`);
+} catch (err) {
+  let error = err as BusinessError;
+  console.error(`Failed to use isDirectPlaybackSupported function. code: ${error.code}, message: ${error.message}`);
+}
+```
+
+## isFastRecordingSupported
+
+isFastRecordingSupported(streamInfo: AudioStreamInfo, source: SourceType): boolean
+
+Checks whether low-latency recording is supported for the specified audio stream information and source type.
+
+**Since**: 26.0.0
+
+**Model restriction**: This API can be used only in the stage model.
+
+**System capability**: SystemCapability.Multimedia.Audio.Core
+
+**Parameters**
+
+| Name   | Type                               | Mandatory    | Description                        |
+| -------- | ----------------------------------- | -------- | --------------------------- |
+| streamInfo | [AudioStreamInfo](arkts-apis-audio-i.md#audiostreaminfo8) | Yes | Audio stream information, which describes the basic audio format. |
+| source | [SourceType](arkts-apis-audio-e.md#sourcetype8) | Yes | Source type, which determines the audio device and path type selection. |
+
+**Return value**
+
+| Type         | Description                                   |
+| ------------ | --------------------------------------- |
+|  boolean     | Whether low-latency recording is supported. The value **true** indicates yes and the value **false** indicates no. |
+
+**Example**
+
+```ts
+
+let streamInfo: audio.AudioStreamInfo = {
+  samplingRate: audio.AudioSamplingRate.SAMPLE_RATE_48000,
+  channels: audio.AudioChannel.CHANNEL_2,
+  sampleFormat: audio.AudioSampleFormat.SAMPLE_FORMAT_S16LE,
+  encodingType: audio.AudioEncodingType.ENCODING_TYPE_RAW,
+  channelLayout: audio.AudioChannelLayout.CH_LAYOUT_STEREO
+};
+
+try {
+  let isSupported = audioStreamManager.isFastRecordingSupported(streamInfo, audio.SourceType.SOURCE_TYPE_MIC);
+  console.info(`isFastRecordingSupported: ${isSupported}.`);
+} catch (err) {
+  let error = err as BusinessError;
+  console.error(`Failed to use isFastRecordingSupported function. code: ${error.code}, message: ${error.message}`);
+}
+```
+
+## isMultichannelPlaybackSupported
+
+isMultichannelPlaybackSupported(streamInfo: AudioStreamInfo, usage: StreamUsage): boolean
+
+Checks whether multichannel playback is supported for the specified audio stream information and usage scenario.
+
+**Since**: 26.0.0
+
+**Model restriction**: This API can be used only in the stage model.
+
+**System capability**: SystemCapability.Multimedia.Audio.Core
+
+**Parameters**
+
+| Name   | Type                               | Mandatory    | Description                        |
+| -------- | ----------------------------------- | -------- | --------------------------- |
+| streamInfo | [AudioStreamInfo](arkts-apis-audio-i.md#audiostreaminfo8) | Yes | Audio stream information, which describes the basic audio format. |
+| usage | [StreamUsage](arkts-apis-audio-e.md#streamusage) | Yes | Audio stream usage scenario, which determines the audio device and path type selection. |
+
+**Return value**
+
+| Type         | Description                                   |
+| ------------ | --------------------------------------- |
+|  boolean     | Whether multichannel playback is supported. The value **true** indicates yes and the value **false** indicates no. |
+
+**Example**
+
+```ts
+
+let streamInfo: audio.AudioStreamInfo = {
+  samplingRate: audio.AudioSamplingRate.SAMPLE_RATE_48000,
+  channels: audio.AudioChannel.CHANNEL_3,
+  sampleFormat: audio.AudioSampleFormat.SAMPLE_FORMAT_S16LE,
+  encodingType: audio.AudioEncodingType.ENCODING_TYPE_RAW,
+  channelLayout: audio.AudioChannelLayout.CH_LAYOUT_2POINT1
+};
+
+try {
+  let isSupported = audioStreamManager.isMultichannelPlaybackSupported(streamInfo, audio.StreamUsage.STREAM_USAGE_MUSIC);
+  console.info(`isMultichannelPlaybackSupported: ${isSupported}.`);
+} catch (err) {
+  let error = err as BusinessError;
+  console.error(`Failed to use isMultichannelPlaybackSupported function. code: ${error.code}, message: ${error.message}`);
+}
+```
+<!--no_check-->

@@ -1,11 +1,12 @@
 # USB Serial DDK Development
+
 <!--Kit: Driver Development Kit-->
 <!--Subsystem: Driver-->
 <!--Owner: @zgene94-->
 <!--Designer: @w00373942-->
 <!--Tester: @dong-dongzhen-->
 <!--Adviser: @hu-zhiqiong-->
-<!-- md-trans-meta sourceCommit=deff468b8adbfa4199da5cbe7b6cbc33f2bddb1e translatedAt=2026-06-24T07:40:35.431Z pushedAt=2026-06-25T06:57:23.476Z -->
+<!-- md-trans-meta sourceCommit=4e2e44136e02c57f70e721649f26e12ec63e7374 translatedAt=2026-08-15T01:44:23.277Z pushedAt=2026-08-15T06:48:54.610Z -->
 
 ## Overview
 
@@ -71,8 +72,8 @@ Before you get started, make necessary preparations by following instructions in
 | OH_UsbSerial_Close(UsbSerial_Device **dev) | Closes the USB serial port device after use. Otherwise, memory leakage occurs.|
 | OH_UsbSerial_Read(UsbSerial_Device *dev, uint8_t *buff, uint32_t bufferSize, uint32_t *bytesRead) | Reads data from the USB serial port device to the buffer.|
 | OH_UsbSerial_Write(UsbSerial_Device *dev, uint8_t *buff, uint32_t bufferSize, uint32_t *bytesWritten) | Writes the data in the buffer to the USB serial port device.|
-| OH_UsbSerial_SetBaudRate(UsbSerial_DeviceHandle *dev, uint32_t baudRate) | Sets the baud rate for a USB serial port device. Call this API if the data bit of the serial port is **8**, the stop bit is **1**, and parity check is not performed.|
-| OH_UsbSerial_SetParams(UsbSerial_Device *dev, UsbSerial_Params *params) | Sets the parameters of the USB serial port device, including the baud rate, data transfer bit, stop bit, and parity check.|
+| OH_UsbSerial_SetBaudRate(UsbSerial_Device *dev, uint32_t baudRate) | Sets the baud rate for a USB serial port device. Call this API if the data bit of the serial port is **8**, the stop bit is **1**, and parity check is not performed.|
+| OH_UsbSerial_SetParams(UsbSerial_Device *dev, UsbSerial_Params *params) | Sets the parameters of the USB serial port device, including the baud rate, data bits, stop bits, and parity check. |
 | OH_UsbSerial_SetTimeout(UsbSerial_Device *dev, int timeout) | Sets the timeout interval for reading data reported by a USB serial port device. The default value is **0**.|
 | OH_UsbSerial_SetFlowControl(UsbSerial_Device *dev, UsbSerial_FlowControl flowControl) | Sets flow control parameters.|
 | OH_UsbSerial_Flush(UsbSerial_Device *dev) | Flushes the input and output buffers after the write operation is complete.|
@@ -88,11 +89,13 @@ To develop the USB serial port driver by using the USBSerialDDK, perform the fol
 **Adding Dynamic Link Libraries**
 
 Add the following libraries to **CMakeLists.txt**.
+
 ```txt
 libusb_serial_ndk.z.so
 ```
 
 **Including Header Files**
+
 ```c++
 #include <usb_serial/usb_serial_api.h>
 #include <usb_serial/usb_serial_types.h>
@@ -208,12 +211,12 @@ libusb_serial_ndk.z.so
    OH_UsbSerial_Release();
    ```
 
-
-
 ### Debugging and Verification
 
 Upon completion of driver application development, you can install the application on the OpenHarmony device. The test procedure is as follows:
 
 1. Click the driver application on the device. The application is started on the device.
+
 2. Click the set button to set serial port attributes such as the baud rate.
+
 3. Click the data read button to read the data of the serial port device.

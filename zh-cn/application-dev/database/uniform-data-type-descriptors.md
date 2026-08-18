@@ -88,7 +88,7 @@ utd.json5文件需要在类型为entry的HAP中配置。
 
 + **FilenameExtensions：** 应用自定义标准化数据类型所关联的文件后缀。可以缺省；可以为多个，每个后缀为以.开头且长度不超过127的字符串。
 
-+ **MIMETypes：** 应用自定义标准化数据类型所关联的web消息数据类型。可以缺省；可以为多个，每个类型为长度不超过127的字符串。
++ **MIMETypes：** 应用自定义标准化数据类型所关联的多用途互联网邮件扩展类型。可以缺省；可以为多个，每个类型为长度不超过127的字符串。
 
 + **Description：** 应用自定义标准化数据类型的简要说明。可以缺省；填写时，长度为不超过255的字符串。
 
@@ -241,11 +241,11 @@ utd.json5文件需要在类型为entry的HAP中配置。
         // 5.将查询到的标准数据类型“general.mp3”与表示音频数据的已知标准数据类型“general.audio”做比较查询，确认是否存在归属关系。
         if (typeObj1 != null) {
           let ret = typeObj1.belongsTo('general.audio');
-          hilog.info(0xFF00, '[Sample_Udmf]', `belongsTo, ret: + ${ret}`);
+          hilog.info(0xFF00, '[Sample_Udmf]', `belongsTo, ret: ${ret}`);
           let mediaTypeObj = uniformTypeDescriptor.getTypeDescriptor('general.media');
           // 确认是否存在归属关系
           ret = mediaTypeObj.isHigherLevelType('general.audio');
-          hilog.info(0xFF00, '[Sample_Udmf]', `isHigherLevelType, ret: + ${ret}`);
+          hilog.info(0xFF00, '[Sample_Udmf]', `isHigherLevelType, ret: ${ret}`);
         }
       } catch (err) {
         hilog.error(0xFF00, '[Sample_Udmf]', `err message: ${err.message}, err code: ${err.code}`);
@@ -303,7 +303,7 @@ utd.json5文件需要在类型为entry的HAP中配置。
     ```
 
 2. 针对“text/plain”MIMEType，使用getUniformDataTypesByMIMEType()方法获取对应UTD数据类型。
-3. 针对UTD数据类型，使用getTypeDescriptor()方法查询对应的MIMEType列表。
+3. 根据UTD数据类型，使用getTypeDescriptor()方法查询对应的文件后缀列表。
 
     <!-- @[get_filename_extension_by_mimeType](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkData/Udmf/UniformDataTypeDescriptors/entry/src/main/ets/pages/Index.ets) -->
     

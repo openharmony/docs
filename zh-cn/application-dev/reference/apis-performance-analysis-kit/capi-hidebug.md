@@ -9,7 +9,7 @@
 
 ## 概述
 
-提供调试功能。本模块函数可用于获取cpu usage、memory、heap、capture trace等。
+提供调试功能。本模块函数可用于获取CPU usage、memory、heap、capture trace等。
 
 **起始版本：** 12
 ## 文件汇总

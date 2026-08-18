@@ -101,8 +101,8 @@
 | HDMI<sup>19+</sup>        | 27 | HDMI设备（例如HDMI、ARC、eARC等）。           |
 | LINE_DIGITAL<sup>19+</sup>        | 28 | 有线数字设备（例如S/PDIF等）。           |
 | REMOTE_DAUDIO<sup>18+</sup>        | 29 | 分布式设备。<br/>**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。 |
-| HEARING_AID<sup>20+</sup>        | 30 | 助听器设备。 |
-| NEARLINK<sup>20+</sup>        | 31 | 星闪设备。 |
+| HEARING_AID<sup>20+</sup>        | 30 | 助听器设备。<br>应用调用获取设备的相关接口时，该类型默认返回匿名类型。从API版本26.0.0开始，如需获取具体设备类型，可先调用[declareDeviceTypesCompatibility](./arkts-apis-audio-AudioRoutingManager.md#declaredevicetypescompatibility)进行设备类型兼容声明。 |
+| NEARLINK<sup>20+</sup>        | 31 | 星闪设备。<br>应用调用获取设备的相关接口时，该类型默认返回匿名类型。从API版本26.0.0开始，如需获取具体设备类型，可先调用[declareDeviceTypesCompatibility](./arkts-apis-audio-AudioRoutingManager.md#declaredevicetypescompatibility)进行设备类型兼容声明。 |
 | SYSTEM_PRIVATE<sup>22+</sup> | 200 | 系统私有设备（由于该设备在系统中属于私有设备，因此应用程序可以忽略该设备）。 |
 | DEFAULT<sup>9+</sup> | 1000   | 默认设备类型。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
 
@@ -127,7 +127,7 @@
 
 **模型约束：** 此接口仅可在Stage模型下使用。
 
-**系统能力：** SystemCapability.Multimedia.Audio.Capturer
+**系统能力：** SystemCapability.Multimedia.Audio.Core
 
 | 名称 | 值 | 说明 |
 | :--- | :--- | :--- |

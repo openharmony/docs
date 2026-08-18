@@ -6,7 +6,7 @@
 <!--Designer: @junathuawei1; @zph000-->
 <!--Tester: @lj_liujing; @yippo; @logic42-->
 <!--Adviser: @ge-yafang-->
-<!-- md-trans-meta sourceCommit=05bb12367fee189c7aecbeb9ad82dabebbba21d0 translatedAt=2026-07-27T08:17:28.463Z pushedAt=2026-07-27T10:11:16.877Z -->
+<!-- md-trans-meta sourceCommit=98721b0592f0d00391dc249e0b65c6685c8906af translatedAt=2026-08-15T01:43:53.944Z pushedAt=2026-08-15T06:38:20.746Z -->
 
 ## When to Use
 
@@ -314,7 +314,7 @@ The following walks you through on how to obtain the file name extensions based 
 
 2. Use **getUniformDataTypesByMIMEType()** to obtain the UTD type ID based on the MIME type **text/plain**.
 
-3. Use **getTypeDescriptor()** to obtain the MIME types based on the UTD type ID.
+3. Use **getTypeDescriptor()** to obtain the file extensions based on the UTD type.
 
     <!-- @[get_filename_extension_by_mimeType](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkData/Udmf/UniformDataTypeDescriptors/entry/src/main/ets/pages/Index.ets) -->
 

@@ -15,7 +15,7 @@
 
 ## 概述
 
-与状态管理V1不同的是，状态管理V2修改完状态变量后不会立即[标脏](./arkts-state-management-glossary.md#mark-dirty标脏)，而是抛出一个Promise微任务，该微任务在当前宏任务（如点击事件）执行完成后才会处理自定义组件标脏，具体差异可参考[V1状态变量更新和V2状态变量更新差异](./arkts-v1-v2-update-difference.md#v1状态变量更新和v2状态变量更新差异)。而animateTo动效会立刻刷新已标脏节点来决定动效首帧。如果动效中使用了V2状态变量，并且在动效前修改了该状态变量，由于调用animateTo时状态变量的变化尚未标脏，这会导致animateTo的动效首帧不符合预期。为此，引入applySync、flushUpdates和flushUIUpdates接口，实现状态管理V2的同步标脏，确保动效达到预期效果。
+与状态管理V1不同的是，状态管理V2修改完状态变量后不会立即[标脏](./arkts-state-management-glossary.md#mark-dirty标脏)，而是抛出一个Promise微任务，该微任务在当前宏任务（如点击事件）执行完成后才会处理自定义组件标脏，具体差异可参考[V1状态变量更新和V2状态变量更新差异](./arkts-v1-v2-update-difference.md#v1状态变量更新和v2状态变量更新差异)。而animateTo动效会立刻刷新已标脏节点来决定动效首帧。如果动效中使用了V2状态变量，并且在动效前修改了该状态变量，由于调用animateTo时状态变量的变化尚未标脏，这会导致animateTo的动效首帧不符合预期。为此，引入applySync、flushUpdates和flushUIUpdates接口，实现状态管理V2的同步刷新，确保动效达到预期效果。
 
 使用applySync/flushUpdates/flushUIUpdates接口需要导入UIUtils工具。
 

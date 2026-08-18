@@ -33,6 +33,6 @@ typedef struct OH_Drawing_FontDescriptor {...} OH_Drawing_FontDescriptor
 | int weight           | 系统字体的粗细程度。                                         |
 | int width            | 系统字体的宽窄风格属性。                                     |
 | int italic           | 系统字体倾斜度。                                             |
-| bool monoSpace       | 系统字体是否紧凑。true表示字体紧凑，false表示字体非紧凑。    |
+| bool monoSpace       | 系统字体是否等宽。true表示字体等宽，false表示字体非等宽。    |
 | bool symbolic        | 系统字体是否支持符号字体。true表示支持符号字体，false表示不支持符号字体。 |
 

@@ -6,22 +6,24 @@
 <!--Designer: @lanming-->
 <!--Tester: @PAFT-->
 <!--Adviser: @zengyawen-->
+<!-- md-trans-meta sourceCommit=78d27a16851062ae03d6a51de8b99e33aec772a0 translatedAt=2026-08-11T02:00:23.228Z pushedAt=2026-08-11T07:36:05.851Z -->
 
 Certificate signing with CMS is supported since API version 18.
 
 Certificate encapsulation with CMS is supported since API version 22.
 
-PKCS #7 is a standard syntax for storing signed or encrypted data. The extension of PKCS#7, which is CMS, supports the following data types: data, signed data, encapsulated data, signed and encapsulated data, digest data, and encrypted data. It is often used to protect data integrity and confidentiality.
+PKCS #7 is a standard syntax for storing signed or encrypted data. CMS (Cryptographic Message Syntax), as an extension of PKCS #7, supports the following data types: data, signed data, encapsulated data, signed and encapsulated data, digest data, and encrypted data. This standard is commonly used to protect data integrity and confidentiality.
 
 Currently, only CMS signature data and encapsulated data are supported.
 
 ## How to Develop
 
-1. Import the [cert](../../reference/apis-device-certificate-kit/js-apis-cert.md) module.
+1. Import the [certificate module](../../reference/apis-device-certificate-kit/js-apis-cert.md).
 
    ```ts
    import { cert } from '@kit.DeviceCertificateKit';
    ```
+
 2. Call [cert.createCmsGenerator](../../reference/apis-device-certificate-kit/js-apis-cert.md#certcreatecmsgenerator18) to create a **cmsGenerator** object.
 
 3. Call [cmsGenerator.addSigner](../../reference/apis-device-certificate-kit/js-apis-cert.md#addsigner18) to add the signer information.

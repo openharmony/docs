@@ -149,6 +149,7 @@ cpp部分代码
 
 ``` C++
 // napi_call_function
+constexpr int ARG_NUM = 10;
 static napi_value CallFunction(napi_env env, napi_callback_info info)
 {
     size_t argc = 1;
@@ -158,10 +159,13 @@ static napi_value CallFunction(napi_env env, napi_callback_info info)
     // 获取全局对象，这里用global是因为napi_call_function的第二个参数是JS函数的this入参。
     napi_value global = nullptr;
     napi_get_global(env, &global);
+    // 创建数字入参
+    napi_value args[1] = {nullptr};
+    napi_create_int32(env, ARG_NUM, &args[0]);
     // 调用ArkTS方法
     napi_value result = nullptr;
-    // 调用napi_call_function时传入的argv的长度必须大于等于argc声明的数量，且被初始化成nullptr
-    napi_call_function(env, global, argv[0], argc, argv, &result);
+    // 调用napi_call_function时传入的argv的长度必须大于等于argc声明的数量
+    napi_call_function(env, global, argv[0], 1, args, &result);
     return result;
 }
 
@@ -174,8 +178,8 @@ static napi_value ObjCallFunction(napi_env env, napi_callback_info info)
     napi_get_cb_info(env, info, &argc, argv, nullptr, nullptr);
     // 调用ArkTS方法
     napi_value result = nullptr;
-    // 调用napi_call_function时传入的argv的长度必须大于等于argc声明的数量，且被初始化成nullptr
-    napi_call_function(env, argv[0], argv[1], argc, argv, &result);
+    // age方法无入参，napi_call_function的argc传0、argv传nullptr
+    napi_call_function(env, argv[0], argv[1], 0, nullptr, &result);
     return result;
 }
 ```
@@ -195,8 +199,8 @@ ArkTS 侧示例代码
 <!-- @[ark_napi_call_function_header](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIUse/NodeAPIFunction/entry/src/main/ets/pages/Index.ets) -->
 
 ``` TypeScript
-function returnNumber() {
-  return 10;
+function returnNumber(num: number) {
+  return num;
 }
 
 class Person {

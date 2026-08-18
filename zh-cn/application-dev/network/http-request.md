@@ -14,7 +14,7 @@
 
 ## 场景介绍
 
-应用通过HTTP发起一个数据请求，支持常见的GET、POST、OPTIONS、HEAD、PUT、DELETE、TRACE、CONNECT方法。当前提供了2种HTTP请求方式，若请求发送或接收的数据量较少，可使用[HttpRequest.request](../reference/apis-network-kit/js-apis-http.md#request)，若是大文件的上传或者下载，且关注数据发送和接收进度，可使用HTTP请求流式传输[HttpRequest.requestInstream](../reference/apis-network-kit/js-apis-http.md#requestinstream10)。从API version 22开始，若是需要在"HTTP请求-响应"生命周期中的关键节点插入自定义逻辑，可以使用[HTTP拦截器](#http拦截器)。
+应用通过HTTP发起一个数据请求，支持常见的GET、POST、OPTIONS、HEAD、PUT、DELETE、TRACE、CONNECT方法。当前提供了2种HTTP请求方式，若请求发送或接收的数据量较少，可使用[HttpRequest.request](../reference/apis-network-kit/js-apis-http.md#request)，若是大文件的上传或者下载，且关注数据发送和接收进度，可使用HTTP请求流式传输[HttpRequest.requestInStream](../reference/apis-network-kit/js-apis-http.md#requestinstream10)。从API version 22开始，若是需要在"HTTP请求-响应"生命周期中的关键节点插入自定义逻辑，可以使用[HTTP拦截器](#http拦截器)。
 
 <!--RP1-->
 
@@ -805,7 +805,7 @@ openssl dgst -sha256 -binary www.example.com.pubkey.der | openssl base64
     ]
   },
   "trust-global-user-ca": false,
-  "trust-current-user-ca": false,
+  "trust-current-user-ca": false
 }
 ```
 
@@ -830,10 +830,10 @@ openssl dgst -sha256 -binary www.example.com.pubkey.der | openssl base64
 
 系统默认信任系统预置的CA证书和用户安装的CA证书，可配置不信任用户安装的CA证书提升安全性。配置不信任用户安装的CA证书可以在src/main/resources/base/profile/network_config.json进行配置，更多网络连接安全相关的配置可以参考[网络连接安全配置](https://developer.huawei.com/consumer/cn/doc/best-practices/bpta-network-ca-security#section5454123841911)。
 
-``` json5
+```json5
 {
   "network-security-config": {
-    ... ...
+    // 其他网络安全配置
   },
   "trust-global-user-ca": false, // 配置是否信任企业MDM系统或设备管理员用户手动安装的CA证书，默认为true
   "trust-current-user-ca" : false // 配置是否信任当前用户安装的CA证书，默认为true
@@ -866,10 +866,10 @@ openssl dgst -sha256 -binary www.example.com.pubkey.der | openssl base64
       }
     ],
     "component-config": {
-        "Request": true // 可选，自API version 20开始支持配置该属性，默认值为true。配置为true表示支持禁止明文传输，false表示不支持禁止明文传输。
+        "Request": true, // 可选，自API version 20开始支持配置该属性，默认值为true。配置为true表示开启明文HTTP功能，配置为false表示关闭明文HTTP功能。
         "Network Kit": true, // 可选，自API version 20开始支持配置该属性。
-        "ArkWeb": false // 可选，自API version 20开始支持配置该属性。
-        "Media Kit": false // 可选，自API version 23开始支持配置该属性。
+        "ArkWeb": false, // 可选，自API version 20开始支持配置该属性。
+        "Media Kit": false, // 可选，自API version 23开始支持配置该属性。
         "Remote Communication Kit": false // 可选，自API version 23开始支持配置该属性。
     }
   }
@@ -883,14 +883,14 @@ openssl dgst -sha256 -binary www.example.com.pubkey.der | openssl base64
 |base-config                     | object          | 否| 指示应用程序范围的明文配置。优先级最低。 |
 |cleartextTrafficPermitted<sup>18+</sup>  | boolean          |否 | 明文HTTP是否允许。true表示允许，false表示不允许，默认为true。 |
 |domain-config                     | array          | 否|  指示每个域的明文配置。可以包含任意个item。每个item必须包含1个domains。若相同域存在规则冲突时，以匹配到的第一条为准。优先级次于component-config。 |
-|include-subdomains         | boolean         | 否| 指示规则是否适用于子域。true：表示规则适用于该域名及其所有子域名；false：表示规则仅适用于该域名。默认为true。注意：每增加1000条域名配置，正则匹配的延迟将增加大约10至15毫秒。当域名配置数量超过10000条时，正则匹配会带来较高耗时。默认为true。 |
+|include-subdomains         | boolean         | 否| 指示规则是否适用于子域。true表示适用于子域，false表示不适用于子域。默认为true。注意：每增加1000条域名配置，正则匹配的延迟将增加大约10至15毫秒。当域名配置数量超过10000条时，正则匹配会带来较高耗时。默认为true。 |
 |name         | string         | 否| 配置主域名。 |
 |component-config<sup>20+</sup>                    | object         |  否| 指示每个组件的明文配置。优先级最高。|
-|Request                    | boolean          |否| [Request](../reference/apis-basic-services-kit/js-apis-request.md)从API version 18开始默认支持明文HTTP功能，不可配置。从API version 20开始支持配置开启或关闭明文HTTP功能。true表示支持，false表示不支持，默认为true。|
-|Network Kit                 | boolean          |否| Network Kit从API version 18开始默认支持明文HTTP功能，不可配置。从API version 20开始支持配置开启或关闭明文HTTP功能。true表示支持，false表示不支持，默认为true。 |
-|ArkWeb                    | boolean          |否| ArkWeb从API version 20开始支持配置开启或关闭明文HTTP功能。true表示支持，false表示不支持，默认为false。 |
-|Media Kit                    | boolean          |否| Media Kit从API version 23开始支持配置开启或关闭明文HTTP功能。true表示支持，false表示不支持，默认为false。 |
-|Remote Communication Kit                    | boolean          |否| Remote Communication Kit从API version 23开始支持配置开启或关闭明文HTTP功能。true表示支持，false表示不支持，默认为false。 |
+|Request                    | boolean          |否| [Request](../reference/apis-basic-services-kit/js-apis-request.md)从API version 18开始默认支持明文HTTP功能，不可配置。从API version 20开始支持配置开启或关闭明文HTTP功能。true表示配置开启，false表示配置关闭，默认为true。|
+|Network Kit                 | boolean          |否| Network Kit从API version 18开始默认支持明文HTTP功能，不可配置。从API version 20开始支持配置开启或关闭明文HTTP功能。true表示配置开启，false表示配置关闭，默认为true。 |
+|ArkWeb                    | boolean          |否| ArkWeb从API version 20开始支持配置开启或关闭明文HTTP功能。true表示配置开启，false表示配置关闭，默认为false。 |
+|Media Kit                    | boolean          |否| Media Kit从API version 23开始支持配置开启或关闭明文HTTP功能。true表示配置开启，false表示配置关闭，默认为false。 |
+|Remote Communication Kit                    | boolean          |否| Remote Communication Kit从API version 23开始支持配置开启或关闭明文HTTP功能。true表示配置开启，false表示配置关闭，默认为false。 |
 
 ## HTTP拦截器
 

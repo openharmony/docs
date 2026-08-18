@@ -6,7 +6,7 @@
 <!--Designer: @weixin_41398971-->
 <!--Tester: @Filger-->
 <!--Adviser: @w_Machine_cc-->
-<!-- md-trans-meta sourceCommit=5e49c810f3e316a7d4bdced3e89792b3dec2f9f5 translatedAt=2026-08-06T01:45:09.513Z pushedAt=2026-08-06T07:27:34.848Z -->
+<!-- md-trans-meta sourceCommit=4dfa24a542ccee7a1c9b2c3754cdfa7d26fb53ff translatedAt=2026-08-15T01:55:38.994Z pushedAt=2026-08-15T08:47:37.454Z -->
 
 ## Selecting an Audio Recording Development Mode
 
@@ -14,7 +14,9 @@ The system provides a variety of APIs for you to develop audio recording applica
 
 - [AudioCapturer](using-audiocapturer-for-recording.md): an ArkTS/JS API for audio input. It only supports PCM format and requires the app to continuously read audio data to work. You can add data processing after audio capture, which requires basic knowledge of audio processing. It is suitable for developing more professional and diverse media recording apps.
 
-- [Using OHAudio for Audio Recording](using-ohaudio-for-recording.md): provides a set of native APIs for audio input. These APIs are normalized in design and support both common and low-latency audio channels. They support the PCM format only. They are suitable for playback applications that implement audio input at the native layer.
+- [Using OHAudio for Audio Recording](using-ohaudio-for-recording.md): provides a set of native APIs for audio input. These APIs are normalized in design and support both common and low-latency audio channels. They support the PCM format only. They are suitable for applications that implement audio input at the native layer.
+
+If you need to capture audio played by the device, refer to [Implementing System Audio Recording](implement-system-audio-recording.md).
 
 In addition to the preceding classes, you can also use **AVRecorder** in Media Kit to implement audio recording.
 

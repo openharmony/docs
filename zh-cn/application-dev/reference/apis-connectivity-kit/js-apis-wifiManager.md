@@ -505,7 +505,7 @@ WLAN设备地址（MAC/BSSID）类型。是标识WLAN设备或接入点的唯一
 | WIFI_STANDARD_11N | 4 | 802.11n WiFi标准类型。 |
 | WIFI_STANDARD_11AC | 5 | 802.11ac WiFi标准类型。 |
 | WIFI_STANDARD_11AX | 6 | 802.11ax WiFi标准类型。 |
-| WIFI_STANDARD_11BE | 7 | 802.11be WiFi标准类型。 |
+| WIFI_STANDARD_11AD | 7 | 802.11ad WiFi标准类型。 |
 
 ## WifiInfoElem
 
@@ -555,6 +555,7 @@ WLAN配置信息。
 | netId<sup>22+</sup> | number | 否 | 是 | 分配的网络ID。 |
 | eapConfig<sup>10+</sup> | [WifiEapConfig](#wifieapconfig10) | 否 | 是 | 可扩展身份验证协议配置。只有securityType为WIFI_SEC_TYPE_EAP时需要填写。 |
 | wapiConfig<sup>12+</sup> | [WifiWapiConfig](#wifiwapiconfig12) | 否 | 是 | WAPI身份验证协议配置。只有securityType为WIFI_SEC_TYPE_WAPI_CERT或WIFI_SEC_TYPE_WAPI_PSK时需要填写。 |
+| showNoInternetDialog | boolean | 否 | 是 | 当首次网络探测检测到无互联网连接时，是否显示提示框。若为false，默认网络绑定到蜂窝网络，不显示提示框；若为true，显示无互联网连接提示框，提示用户选择默认网络绑定。默认值为true。<br>**起始版本：** 26.0.0 <br>**原子化服务API：** 从API版本26.0.0开始，该接口支持在原子化服务中使用。 |
 
 ## WifiEapConfig<sup>10+</sup>
 

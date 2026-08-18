@@ -768,7 +768,7 @@ struct PreciselyModifyingDataTwo {
 使用该接口时请注意以下事项。
 
 1. 不要将`onDatasetChange`与其他操作数据的接口混用。
-2. 传入`onDatasetChange`的`operations`中，每一项`operation`的`index`均从修改前的原数组中查找。因此，`operations`中的`index`不总是与`Datasource`中的`index`一一对应，并且不能为负数。
+2. 传入`onDatasetChange`的`operations`中，每一项`operation`的`index`均从修改前的原数组中查找。因此，`operations`中的`index`不总是与`DataSource`中的`index`一一对应，并且不能为负数。
 
    第一个例子清楚地显示了这一点:
 
@@ -788,7 +788,7 @@ struct PreciselyModifyingDataTwo {
    "Hello k","Hello l" 被删除了，而 "Hello k" 在原数组中的 index=10，因此第四个 operation 为 `{ type: DataOperationType.DELETE, index: 10, count: 2 }`。
 
 3. 在同一个`onDatasetChange`批量处理数据时，如果多个`DataOperation`操作同一个`index`，只有第一个`DataOperation`生效。
-4. 部分操作由开发者传入键值，LazyForEach不再重复调用`keygenerator`获取键值，开发者需保证传入键值的正确性。
+4. 部分操作由开发者传入键值，LazyForEach不再重复调用`keyGenerator`获取键值，开发者需保证传入键值的正确性。
 5. 若操作集合中包含RELOAD操作，则其他操作均不生效。
 
 ## 高级特性

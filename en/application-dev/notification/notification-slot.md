@@ -2,10 +2,11 @@
 
 <!--Kit: Notification Kit-->
 <!--Subsystem: Notification-->
-<!--Owner: @peixu-->
-<!--Designer: @dongqingran; @wulong158-->
+<!--Owner: @HuYueRong-->
+<!--Designer: @dongqingran-->
 <!--Tester: @wanghong1997-->
 <!--Adviser: @fang-jinxu-->
+<!-- md-trans-meta sourceCommit=81f445fd08211cfc3b68579d2e6edda6177d5f3e translatedAt=2026-08-13T03:11:32.507Z pushedAt=2026-08-13T07:39:25.987Z -->
 
 The system supports a range of notification slots. Different notification slots are assigned different reminder modes. You can choose notification slots for your application and manage them as required, such as creating, querying, and deleting notification slots.
 
@@ -15,16 +16,18 @@ The following table lists the notification slots and their reminder modes. **Y**
 
 <!--RP1-->
 <!--RP1End-->
+<!--RP2-->
 
-| SlotType             | Value  | Category    | Notification Panel| Banner| Lock Screen| Alert Tone/Vibration| Status Bar Icon| Automatic Screen-on|
+| SlotType             | Value   | Classification     | Notification Center | Banner | Lock Screen | Sound/Vibration | Status Bar Icon | Screen Wake |
 | -------------------- | ------ | --------| ------- |------|------|----------|-----------|---------|
-| UNKNOWN_TYPE         | 0      | Unknown| Y | N | N | N | N | N |
-| SOCIAL_COMMUNICATION | 1      | Social communication| Y | Y | Y | Y | Y | Y |
-| SERVICE_INFORMATION  | 2      | Service notification| Y | Y | Y | Y | Y | Y |
-| CONTENT_INFORMATION  | 3      | Content and news| Y | N | N | N | N | N |
-| CUSTOMER_SERVICE     | 5      | Customer service| Y | N | N | Y | Y | N |
-| OTHER_TYPES          | 0xFFFF | Other    | Y | N | N | N | N | N |
+| SOCIAL_COMMUNICATION | 1      | Social Communication | Y | Y | Y | Y | Y | Y |
+| SERVICE_INFORMATION  | 2      | Service Reminder | Y | Y | Y | Y | Y | Y |
+| CUSTOMER_SERVICE     | 5      | Customer Service | Y | N | N | Y | Y | N |
+| CONTENT_INFORMATION  | 3      | Content Information | Y | N | N | N | N | N |
+| UNKNOWN_TYPE         | 0      | Unknown Type | Y | N | N | N | N | N |
+| OTHER_TYPES          | 0xFFFF | Other     | Y | N | N | N | N | N |
 
+<!--RP2End-->
 
 ## Available APIs
 
@@ -43,7 +46,7 @@ In addition to using **addSlot()**, you can also create a notification slot by p
 1. Import the **notificationManager** module.
 
    <!-- @[manage_notification_ways_header](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/Notification-Kit/Notification/entry/src/main/ets/filemanager/ManageNotificationWays.ets) -->
-   
+
    ``` TypeScript
    import { notificationManager } from '@kit.NotificationKit';
    import { BusinessError } from '@kit.BasicServicesKit';
@@ -56,7 +59,7 @@ In addition to using **addSlot()**, you can also create a notification slot by p
 2. Add a notification slot.
 
    <!-- @[create_type_channel](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/Notification-Kit/Notification/entry/src/main/ets/filemanager/ManageNotificationWays.ets) -->
-   
+
    ``` TypeScript
    // addSlot callback
    let addSlotCallBack = (err: BusinessError): void => {
@@ -74,7 +77,7 @@ In addition to using **addSlot()**, you can also create a notification slot by p
    Retrieve the slot's creation status and supported notification modes—for example, whether there is an alert tone, vibration, and lock screen visibility.
 
    <!-- @[get_type_channel](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/Notification-Kit/Notification/entry/src/main/ets/filemanager/ManageNotificationWays.ets) -->
-   
+
    ``` TypeScript
    // getSlot callback
    let getSlotCallback = (err: BusinessError, data: notificationManager.NotificationSlot): void => {
@@ -96,7 +99,7 @@ In addition to using **addSlot()**, you can also create a notification slot by p
 4. Remove a notification slot.
 
    <!-- @[delete_type_channel](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/Notification-Kit/Notification/entry/src/main/ets/filemanager/ManageNotificationWays.ets) -->
-   
+
    ``` TypeScript
    // removeSlot callback
    let removeSlotCallback = (err: BusinessError): void => {

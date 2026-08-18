@@ -196,15 +196,15 @@ install(hapFilePaths: Array&lt;string&gt;, installParam: InstallParam, callback:
 | 17700043 | Failed to install the HAP because of low APL in the non-system data proxy (required APL: system_basic or system_core). |
 | 17700044 | Failed to install the HAP because the isolationMode configured is not supported. |
 | 17700047 | Failed to install the HAP because the VersionCode to be updated is not greater than the current VersionCode. |
-| 17700048 | Failed to install the HAP because the code signature verification is failed. |
-| 17700050 | Failed to install the HAP because enterprise normal/MDM bundle cannot be installed on non-enterprise device. |
-| 17700052 | Failed to install the HAP because debug bundle cannot be installed under non-developer mode. |
-| 17700054 | Failed to install the HAP because the HAP requests wrong permissions.|
-| 17700058 | Failed to install the HAP because the device has been controlled. |
-| 17700066 | Failed to install the HAP because installing the native package failed. |
-| 17700073 | Failed to install the HAP because an application with the same bundle name but different signature information exists on the device. |
-| 17700076 | Failed to install the HAP or HSP because the app distribution type is not allowed. |
-| 17700077 | Failed to install the HAP and restore to preinstalled bundle. |
+| 17700048 | Failed to install the HAP because the code signature verification is failed.<br>适用版本： 10+ |
+| 17700050 | Failed to install the HAP because enterprise normal/MDM bundle cannot be installed on non-enterprise device.<br>适用版本： 10+ |
+| 17700052 | Failed to install the HAP because debug bundle cannot be installed under non-developer mode.<br>适用版本： 11+ |
+| 17700054 | Failed to install the HAP because the HAP requests wrong permissions.<br>适用版本： 11+|
+| 17700058 | Failed to install the HAP because the device has been controlled.<br>适用版本： 12+ |
+| 17700066 | Failed to install the HAP because installing the native package failed.<br>适用版本： 12+ |
+| 17700073 | Failed to install the HAP because an application with the same bundle name but different signature information exists on the device.<br>适用版本： 13+ |
+| 17700076 | Failed to install the HAP or HSP because the app distribution type is not allowed.<br>适用版本： 18+ |
+| 17700077 | Failed to install the HAP and restore to preinstalled bundle.<br>适用版本： 17+ |
 
 **示例：**
 
@@ -286,15 +286,15 @@ install(hapFilePaths: Array&lt;string&gt;, callback: AsyncCallback&lt;void&gt;):
 | 17700043 | Failed to install the HAP because of low APL in the non-system data proxy (required APL: system_basic or system_core). |
 | 17700044 | Failed to install the HAP because the isolationMode configured is not supported. |
 | 17700047 | Failed to install the HAP because the VersionCode to be updated is not greater than the current VersionCode. |
-| 17700048 | Failed to install the HAP because the code signature verification is failed. |
-| 17700050 | Failed to install the HAP because enterprise normal/MDM bundle cannot be installed on non-enterprise device. |
-| 17700052 | Failed to install the HAP because debug bundle cannot be installed under non-developer mode. |
-| 17700054 | Failed to install the HAP because the HAP requests wrong permissions.|
-| 17700058 | Failed to install the HAP because the device has been controlled. |
-| 17700066 | Failed to install the HAP because installing the native package failed. |
-| 17700073 | Failed to install the HAP because an application with the same bundle name but different signature information exists on the device. |
-| 17700076 | Failed to install the HAP or HSP because the app distribution type is not allowed. |
-| 17700077 | Failed to install the HAP and restore to preinstalled bundle. |
+| 17700048 | Failed to install the HAP because the code signature verification is failed.<br>适用版本： 10+ |
+| 17700050 | Failed to install the HAP because enterprise normal/MDM bundle cannot be installed on non-enterprise device.<br>适用版本： 10+ |
+| 17700052 | Failed to install the HAP because debug bundle cannot be installed under non-developer mode.<br>适用版本： 11+ |
+| 17700054 | Failed to install the HAP because the HAP requests wrong permissions.<br>适用版本： 11+|
+| 17700058 | Failed to install the HAP because the device has been controlled.<br>适用版本： 12+ |
+| 17700066 | Failed to install the HAP because installing the native package failed.<br>适用版本： 12+ |
+| 17700073 | Failed to install the HAP because an application with the same bundle name but different signature information exists on the device.<br>适用版本： 13+ |
+| 17700076 | Failed to install the HAP or HSP because the app distribution type is not allowed.<br>适用版本： 18+ |
+| 17700077 | Failed to install the HAP and restore to preinstalled bundle.<br>适用版本： 17+ |
 
 **示例：**
 
@@ -380,15 +380,15 @@ install(hapFilePaths: Array\<string\>, installParam?: InstallParam) : Promise\<v
 | 17700043 | Failed to install the HAP because of low APL in the non-system data proxy (required APL: system_basic or system_core). |
 | 17700044 | Failed to install the HAP because the isolationMode configured is not supported. |
 | 17700047 | Failed to install the HAP because the VersionCode to be updated is not greater than the current VersionCode. |
-| 17700048 | Failed to install the HAP because the code signature verification is failed. |
-| 17700050 | Failed to install the HAP because enterprise normal/MDM bundle cannot be installed on non-enterprise device. |
-| 17700052 | Failed to install the HAP because debug bundle cannot be installed under non-developer mode. |
-| 17700054 | Failed to install the HAP because the HAP requests wrong permissions.|
-| 17700058 | Failed to install the HAP because the device has been controlled. |
-| 17700066 | Failed to install the HAP because installing the native package failed. |
-| 17700073 | Failed to install the HAP because an application with the same bundle name but different signature information exists on the device. |
-| 17700076 | Failed to install the HAP or HSP because the app distribution type is not allowed. |
-| 17700077 | Failed to install the HAP and restore to preinstalled bundle. |
+| 17700048 | Failed to install the HAP because the code signature verification is failed.<br>适用版本： 10+ |
+| 17700050 | Failed to install the HAP because enterprise normal/MDM bundle cannot be installed on non-enterprise device.<br>适用版本： 10+ |
+| 17700052 | Failed to install the HAP because debug bundle cannot be installed under non-developer mode.<br>适用版本： 11+ |
+| 17700054 | Failed to install the HAP because the HAP requests wrong permissions.<br>适用版本： 11+|
+| 17700058 | Failed to install the HAP because the device has been controlled.<br>适用版本： 12+ |
+| 17700066 | Failed to install the HAP because installing the native package failed.<br>适用版本： 12+ |
+| 17700073 | Failed to install the HAP because an application with the same bundle name but different signature information exists on the device.<br>适用版本： 13+ |
+| 17700076 | Failed to install the HAP or HSP because the app distribution type is not allowed.<br>适用版本： 18+ |
+| 17700077 | Failed to install the HAP and restore to preinstalled bundle.<br>适用版本： 17+ |
 
 **示例：**
 
@@ -437,7 +437,7 @@ uninstall(bundleName: string, installParam: InstallParam, callback: AsyncCallbac
 | 参数名      | 类型                                                 | 必填 | 说明                                           |
 | ---------- | ---------------------------------------------------- | ---- | ---------------------------------------------- |
 | bundleName | string                                               | 是   | 待卸载应用的包名。                                           |
-| installParam      | [InstallParam](#installparam)                        | 是   | 指定安装所需的其他参数。                       |
+| installParam      | [InstallParam](#installparam)                        | 是   | 指定卸载所需的其他参数。                       |
 | callback | AsyncCallback&lt;void&gt; | 是 | [AsyncCallback](../apis-basic-services-kit/js-apis-base.md#asynccallback)，卸载应用成功，err为undefined，否则为错误对象。 |
 
 **错误码：**
@@ -454,9 +454,9 @@ uninstall(bundleName: string, installParam: InstallParam, callback: AsyncCallbac
 | 17700020 | The specified bundle is a pre-installed bundle and cannot be uninstalled. |
 | 17700040 | The specified bundle is a shared bundle and cannot be uninstalled. |
 | 17700045 | Failed to uninstall the HAP because uninstall is not allowed by the enterprise device management. |
-| 17700060 | The specified application cannot be uninstalled. |
-| 17700062 | Failed to uninstall the app because the app is locked. |
-| 17700067 | Failed to uninstall the HAP because uninstalling the native package failed. |
+| 17700060 | The specified application cannot be uninstalled.<br>适用版本： 13+ |
+| 17700062 | Failed to uninstall the app because the app is locked.<br>适用版本： 15+ |
+| 17700067 | Failed to uninstall the HAP because uninstalling the native package failed.<br>适用版本： 12+ |
 
 **示例：**
 
@@ -521,8 +521,8 @@ uninstall(bundleName: string, callback: AsyncCallback&lt;void&gt;): void
 | 17700020 | The specified bundle is a pre-installed bundle and cannot be uninstalled. |
 | 17700040 | The specified bundle is a shared bundle and cannot be uninstalled. |
 | 17700045 | Failed to uninstall the HAP because uninstall is not allowed by the enterprise device management. |
-| 17700060 | The specified application cannot be uninstalled. |
-| 17700067 | Failed to uninstall the HAP because uninstalling the native package failed. |
+| 17700060 | The specified application cannot be uninstalled.<br>适用版本： 13+ |
+| 17700067 | Failed to uninstall the HAP because uninstalling the native package failed.<br>适用版本： 12+ |
 
 **示例：**
 
@@ -566,7 +566,7 @@ uninstall(bundleName: string, installParam?: InstallParam) : Promise\<void\>
 | 参数名       | 类型                          | 必填 | 说明                                                         |
 | ------------ | ----------------------------- | ---- | ------------------------------------------------------------ |
 | bundleName | string                          | 是   | 待卸载应用的包名。                                           |
-| installParam | [InstallParam](#installparam) | 否   | 指定安装所需的其他参数，默认值：参照[InstallParam](#installparam)的默认值。                                     |
+| installParam | [InstallParam](#installparam) | 否   | 指定卸载所需的其他参数，默认值：参照[InstallParam](#installparam)的默认值。                                     |
 
 **返回值：**
 
@@ -588,9 +588,9 @@ uninstall(bundleName: string, installParam?: InstallParam) : Promise\<void\>
 | 17700020 | The specified bundle is a pre-installed bundle and cannot be uninstalled. |
 | 17700040 | The specified bundle is a shared bundle and cannot be uninstalled. |
 | 17700045 | Failed to uninstall the HAP because uninstall is not allowed by the enterprise device management. |
-| 17700060 | The specified application cannot be uninstalled. |
-| 17700062 | Failed to uninstall the app because the app is locked. |
-| 17700067 | Failed to uninstall the HAP because uninstalling the native package failed. |
+| 17700060 | The specified application cannot be uninstalled.<br>适用版本： 13+ |
+| 17700062 | Failed to uninstall the app because the app is locked.<br>适用版本： 15+ |
+| 17700067 | Failed to uninstall the HAP because uninstalling the native package failed.<br>适用版本： 12+ |
 
 **示例：**
 
@@ -639,7 +639,7 @@ recover(bundleName: string, installParam: InstallParam, callback: AsyncCallback&
 | 参数名      | 类型                                                 | 必填 | 说明                                           |
 | ---------- | ---------------------------------------------------- | ---- | ---------------------------------------------- |
 | bundleName | string                                               | 是   | 待恢复应用的包名。                                           |
-| installParam      | [InstallParam](#installparam)                        | 是   | 指定安装所需的其他参数。                       |
+| installParam      | [InstallParam](#installparam)                        | 是   | 指定恢复所需的其他参数。                       |
 | callback | AsyncCallback&lt;void&gt; | 是 | [AsyncCallback](../apis-basic-services-kit/js-apis-base.md#asynccallback)，回滚应用成功，err为undefined，否则为错误对象。 |
 
 **错误码：**
@@ -653,8 +653,8 @@ recover(bundleName: string, installParam: InstallParam, callback: AsyncCallback&
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types.|
 | 17700001 | The specified bundle name is not found. |
 | 17700004 | The specified user ID is not found. |
-| 17700058 | Failed to install the HAP because this application is prohibited from being installed on this device or by specified users. |
-| 17700073 | Failed to install the HAP because an application with the same bundle name but different signature information exists on the device. |
+| 17700058 | Failed to install the HAP because this application is prohibited from being installed on this device or by specified users.<br>适用版本： 14+ |
+| 17700073 | Failed to install the HAP because an application with the same bundle name but different signature information exists on the device.<br>适用版本： 13+ |
 
 **示例：**
 
@@ -717,8 +717,8 @@ recover(bundleName: string, callback: AsyncCallback&lt;void&gt;): void
 | 202 | Permission verification failed. A non-system application calls a system API. |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types.|
 | 17700001 | The specified bundle name is not found. |
-| 17700058 | Failed to install the HAP because this application is prohibited from being installed on this device or by specified users. |
-| 17700073 | Failed to install the HAP because an application with the same bundle name but different signature information exists on the device. |
+| 17700058 | Failed to install the HAP because this application is prohibited from being installed on this device or by specified users.<br>适用版本： 14+ |
+| 17700073 | Failed to install the HAP because an application with the same bundle name but different signature information exists on the device.<br>适用版本： 13+ |
 
 **示例：**
 
@@ -762,8 +762,8 @@ recover(bundleName: string, installParam?: InstallParam) : Promise\<void\>
 
 | 参数名       | 类型                          | 必填 | 说明                                                         |
 | ------------ | ----------------------------- | ---- | ------------------------------------------------------------ |
-| bundleName | string                          | 是   | 待卸载应用的包名。                                           |
-| installParam | [InstallParam](#installparam) | 否   | 指定安装所需的其他参数，默认值：参照[InstallParam](#installparam)的默认值。                                     |
+| bundleName | string                          | 是   | 待恢复应用的包名。                                           |
+| installParam | [InstallParam](#installparam) | 否   | 指定恢复所需的其他参数，默认值：参照[InstallParam](#installparam)的默认值。                                     |
 
 **返回值：**
 
@@ -782,8 +782,8 @@ recover(bundleName: string, installParam?: InstallParam) : Promise\<void\>
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types.|
 | 17700001 | The specified bundle name is not found. |
 | 17700004 | The specified user ID is not found. |
-| 17700058 | Failed to install the HAP because this application is prohibited from being installed on this device or by specified users. |
-| 17700073 | Failed to install the HAP because an application with the same bundle name but different signature information exists on the device. |
+| 17700058 | Failed to install the HAP because this application is prohibited from being installed on this device or by specified users.<br>适用版本： 14+ |
+| 17700073 | Failed to install the HAP because an application with the same bundle name but different signature information exists on the device.<br>适用版本： 13+ |
 
 **示例：**
 ```ts
@@ -955,7 +955,7 @@ addExtResource(bundleName: string, filePaths: Array\<string>): Promise\<void>;
 
 | 参数名         | 类型                                | 必填 | 说明                         |
 | -------------- | ----------------------------------- | ---- | ---------------------------- |
-| bundleName | string | 是   | 要添加扩展资源的应用名称。 |
+| bundleName | string | 是   | 要添加扩展资源的应用包名。 |
 | filePaths | Array\<string> | 是   | 要添加扩展资源的资源路径。 |
 
 **返回值：**
@@ -1016,7 +1016,7 @@ removeExtResource(bundleName: string, moduleNames: Array\<string>): Promise\<voi
 
 | 参数名         | 类型                                | 必填 | 说明                         |
 | -------------- | ----------------------------------- | ---- | ---------------------------- |
-| bundleName | string | 是   | 要删除扩展资源的应用名称。 |
+| bundleName | string | 是   | 要删除扩展资源的应用包名。 |
 | moduleNames | Array\<string> | 是   | 要删除扩展资源的moduleNames。 |
 
 **返回值：**
@@ -1078,8 +1078,8 @@ updateBundleForSelf(hapFilePaths: Array\<string\>, installParam: InstallParam, c
 | 参数名           | 类型                                                 | 必填 | 说明                                                         |
 | --------------- | ---------------------------------------------------- | ---- | ------------------------------------------------------------ |
 | hapFilePaths | Array&lt;string&gt;                                  | 是   | 存储应用程序包的路径。路径应该是当前应用程序中存放HAP的数据目录。当传入的路径是一个目录时， 该目录下只能放同一个应用的HAP，且这些HAP的签名需要保持一致。 |
-| installParam           | [InstallParam](#installparam)                        | 是   | 指定安装所需的其他参数。                                     |
-| callback | AsyncCallback&lt;void&gt; | 是 | [AsyncCallback](../apis-basic-services-kit/js-apis-base.md#asynccallback)，安装应用成功，err为undefined，否则为错误对象。 |
+| installParam           | [InstallParam](#installparam)                        | 是   | 指定更新所需的其他参数。                                     |
+| callback | AsyncCallback&lt;void&gt; | 是 | [AsyncCallback](../apis-basic-services-kit/js-apis-base.md#asynccallback)，更新应用成功，err为undefined，否则为错误对象。 |
 
 **错误码：**
 
@@ -1157,7 +1157,7 @@ updateBundleForSelf(hapFilePaths: Array\<string\>, callback: AsyncCallback\<void
 | 参数名           | 类型                                                 | 必填 | 说明                                                         |
 | --------------- | ---------------------------------------------------- | ---- | ------------------------------------------------------------ |
 | hapFilePaths | Array&lt;string&gt;                                  | 是   | 存储应用程序包的路径。路径应该是当前应用程序中存放HAP的数据目录。当传入的路径是一个目录时， 该目录下只能放同一个应用的HAP，且这些HAP的签名需要保持一致。 |
-| callback | AsyncCallback&lt;void&gt; | 是 | [AsyncCallback](../apis-basic-services-kit/js-apis-base.md#asynccallback)，安装应用成功，err为undefined，否则为错误对象。 |
+| callback | AsyncCallback&lt;void&gt; | 是 | [AsyncCallback](../apis-basic-services-kit/js-apis-base.md#asynccallback)，更新应用成功，err为undefined，否则为错误对象。 |
 
 **错误码：**
 
@@ -1229,7 +1229,7 @@ updateBundleForSelf(hapFilePaths: Array\<string\>, installParam?: InstallParam):
 | 参数名           | 类型                                                 | 必填 | 说明                                                         |
 | --------------- | ---------------------------------------------------- | ---- | ------------------------------------------------------------ |
 | hapFilePaths | Array&lt;string&gt;                                  | 是   | 存储应用程序包的路径。路径应该是当前应用程序中存放HAP的数据目录。当传入的路径是一个目录时， 该目录下只能放同一个应用的HAP，且这些HAP的签名需要保持一致。 |
-| installParam | [InstallParam](#installparam) | 否   | 指定安装所需的其他参数，默认值：参照[InstallParam](#installparam)的默认值。                                     |
+| installParam | [InstallParam](#installparam) | 否   | 指定更新所需的其他参数，默认值：参照[InstallParam](#installparam)的默认值。                                     |
 
 **返回值：**
 
@@ -1332,9 +1332,9 @@ uninstallUpdates(bundleName: string, installParam?: InstallParam): Promise\<void
 | 17700001 | The specified bundle name is not found. |
 | 17700045 | Failed to uninstall because enterprise device management disallow uninstall. |
 | 17700057 | Failed to uninstall updates because the HAP is not pre-installed. |
-| 17700060 | The specified application cannot be uninstalled. |
-| 17700067 | Failed to uninstall the HAP because uninstalling the native package failed. |
-| 17700073 | Failed to install the HAP because an application with the same bundle name but different signature information exists on the device. |
+| 17700060 | The specified application cannot be uninstalled.<br>适用版本： 13+ |
+| 17700067 | Failed to uninstall the HAP because uninstalling the native package failed.<br>适用版本： 13+ |
+| 17700073 | Failed to install the HAP because an application with the same bundle name but different signature information exists on the device.<br>适用版本： 13+ |
 
 **示例：**
 
@@ -1382,7 +1382,7 @@ createAppClone(bundleName: string, createAppCloneParam?: CreateAppCloneParam): P
 | 参数名        | 类型                          | 必填 | 说明                                                          |
 | ------------ | ----------------------------- | ---- | ------------------------------------------------------------ |
 | bundleName   | string                        | 是   | 待创建应用分身的包名。                                         |
-| createAppCloneParam  | [createAppCloneParam](#createappcloneparam12)   | 否   | 指定创建应用分身所需的其他参数，默认值：参照[createAppCloneParam](#createappcloneparam12)的默认值。   |
+| createAppCloneParam  | [CreateAppCloneParam](#createappcloneparam12)   | 否   | 指定创建应用分身所需的其他参数，默认值：参照[CreateAppCloneParam](#createappcloneparam12)的默认值。   |
 
 **返回值：**
 
@@ -1611,7 +1611,7 @@ installPreexistingApp(bundleName: string, userId?: number): Promise\<void\>;
 | 17700001 | The specified bundleName cannot be found or the bundle is not installed by the specified user. |
 | 17700004 | The userId is invalid. |
 | 17700071 | It is not allowed to install the enterprise bundle. |
-| 17700058 | Failed to install the HAP because this application is prohibited from being installed on this device or by specified users. |
+| 17700058 | Failed to install the HAP because this application is prohibited from being installed on this device or by specified users.<br>适用版本： 14+ |
 
 **示例：**
 ```ts

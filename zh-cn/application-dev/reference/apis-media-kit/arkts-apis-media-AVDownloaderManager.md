@@ -4,7 +4,7 @@
 <!--Owner: @chenkun613227-->
 <!--Designer: @zhaoyunfei-->
 <!--Tester: @xchaosioda-->
-<!--Adviser: @w_Machine_cc-->
+<!--Adviser: @zzs911-->
 
 离线下载任务管理接口，用于管理媒体资源的离线下载任务，包括创建、暂停、恢复、移除下载任务以及监听下载状态和进度变化事件。适用于需要在应用内支持流媒体资源离线缓存、实现无网络环境下播放等场景，可帮助用户节省流量并提升弱网或离线场景下的媒体播放体验。通过[createAVDownloaderManager()](arkts-apis-media-f.md#mediacreateavdownloadermanager)创建实例。
 
@@ -47,7 +47,7 @@ async function test() {
 
 ## setRequestTimeout
 
-setRequestTimeout(expired: number): void
+setRequestTimeout(timeout: number): void
 
 设置HTTP请求的网络超时时间。超时后下载任务将失败。
 
@@ -61,7 +61,7 @@ setRequestTimeout(expired: number): void
 
 | 参数名   | 类型     | 必填 | 说明                 |
 | -------- | -------- | ---- | -------------------- |
-| expired | number | 是   | 超时时间，单位为毫秒。<br>取值限定为整数。<br>- 如果值大于0，表示超时时间，取值范围(0, +∞)。<br>- 如果值小于等于0，表示无超时限制，建议根据业务场景设置合理的超时时间以避免任务长时间挂起。<br>- 如果不设置，使用默认超时时间，默认时间为60000毫秒。 |
+| timeout | number | 是   | 超时时间，单位为毫秒。<br>取值限定为整数。<br>- 如果值大于0，表示超时时间，取值范围(0, +∞)。<br>- 如果值小于等于0，表示无超时限制，建议根据业务场景设置合理的超时时间以避免任务长时间挂起。<br>- 如果不设置，使用默认超时时间，默认时间为60000毫秒。 |
 
 **示例：**
 

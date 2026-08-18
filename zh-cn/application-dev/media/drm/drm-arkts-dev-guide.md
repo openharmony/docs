@@ -2,10 +2,10 @@
 
 <!--Kit: Drm Kit-->
 <!--Subsystem: Multimedia-->
-<!--Owner: @qin_wei_jie-->
+<!--Owner: @hanzhengshi-->
 <!--Designer: @chris2981-->
 <!--Tester: @xdlinc-->
-<!--Adviser: @w_Machine_cc-->
+<!--Adviser: @qin_wei_jie-->
 
 开发者可以调用DRM Kit的ArkTS接口实现DRM证书管理、DRM许可证管理、DRM节目授权、DRM节目解密等数字版权保护功能。
 
@@ -13,7 +13,7 @@ DRM Kit提供MediaKeySystem实现DRM证书管理、DRM许可证管理功能，�
 
 ## 开发步骤
 
-详细的API说明请参考[@ohos.multimedia.drm(数字版权保护)](../../reference/apis-drm-kit/arkts-apis-drm.md)。
+详细的API说明请参考[@ohos.multimedia.drm](../../reference/apis-drm-kit/arkts-apis-drm.md)。
 
 1. 导入DRM Kit接口。
 
@@ -21,7 +21,7 @@ DRM Kit提供MediaKeySystem实现DRM证书管理、DRM许可证管理功能，�
    import { drm } from '@kit.DrmKit';
    ```
 
-2. 导入BusinessError模块抛出Drm Kit接口的错误码。
+2. 导入BusinessError模块抛出DRM Kit接口的错误码。
 
    ```ts
    import { BusinessError } from '@kit.BasicServicesKit';

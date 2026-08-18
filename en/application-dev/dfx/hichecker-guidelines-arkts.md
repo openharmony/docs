@@ -6,11 +6,11 @@
 <!--Designer: @martin_duan-->
 <!--Tester: @gcw_KuLfPSbe-->
 <!--Adviser: @jinqiuheng-->
-<!-- md-trans-meta sourceCommit=44da34c75e0877dd26e067a23f1dc0303066fdbb translatedAt=2026-07-31T01:28:27.885Z pushedAt=2026-07-31T06:55:39.479Z -->
+<!-- md-trans-meta sourceCommit=e7dd3a89a3290ed7a4eadac67526f33c246b623a translatedAt=2026-08-15T01:47:03.022Z pushedAt=2026-08-15T07:17:46.316Z -->
 
 ## Overview
 
-HiChecker is provided to check issues that may be easily ignored during application development. Such issues include time-consuming thread calling and ability resource leakage in application processes. The issues are recorded in logs or lead to process crashes explicitly so that you can find and rectify them.
+HiChecker is provided to check issues that may be easily ignored during app development. Such issues include time-consuming thread calling and ability resource leakage in app processes. The issues are recorded in logs or lead to process crashes explicitly so that you can find and rectify them.
 
 ## Basic Concepts
 

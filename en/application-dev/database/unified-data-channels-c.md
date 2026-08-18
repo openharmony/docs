@@ -6,7 +6,7 @@
 <!--Designer: @junathuawei1; @zph000-->
 <!--Tester: @lj_liujing; @yippo; @logic42-->
 <!--Adviser: @ge-yafang-->
-<!-- md-trans-meta sourceCommit=05bb12367fee189c7aecbeb9ad82dabebbba21d0 translatedAt=2026-07-27T08:17:33.783Z pushedAt=2026-07-27T10:05:10.793Z -->
+<!-- md-trans-meta sourceCommit=98721b0592f0d00391dc249e0b65c6685c8906af translatedAt=2026-08-15T01:42:43.625Z pushedAt=2026-08-15T06:27:51.546Z -->
 
 ## When to Use
 
@@ -40,7 +40,7 @@ The public data channel allows all applications to write data into it. When data
 
 For details about the APIs, see [udmf.h](../reference/apis-arkdata/capi-udmf-h.md).
 
-| API                                                                                   | Description                                         | 
+| API                                                                                   | Description                                         |
 |-----------------------------------------------------------------------------------------|---------------------------------------------|
 | OH_UdsHyperlink* OH_UdsHyperlink_Create()                                           | Creates a pointer to an **OH_UdsHyperlink** instance.|
 | int OH_UdsHyperlink_SetDescription(OH_UdsHyperlink* pThis, const char* description) | Sets the description parameter in an **OH_UdsHyperlink** instance.|
@@ -48,7 +48,7 @@ For details about the APIs, see [udmf.h](../reference/apis-arkdata/capi-udmf-h.m
 | int OH_UdmfRecord_AddHyperlink(OH_UdmfRecord* pThis, OH_UdsHyperlink* hyperlink) | Adds hyperlink data to an **OH_UdmfRecord** instance.            |
 | OH_UdmfData* OH_UdmfData_Create()                            | Creates a pointer to an **OH_UdmfData** instance.                |
 | int OH_UdmfData_AddRecord(OH_UdmfData* pThis, OH_UdmfRecord* record) | Adds an **OH_UdmfRecord** to an **OH_UdmfData** instance.     |
-| int OH_Udmf_SetUnifiedDataByOptions(OH_UdmfOptions* options, OH_UdmfData *unifiedData, char *key, unsigned int keyLen)        | Sets an **OH_UdmfData** instance in the UDMF database.                         |
+| int OH_Udmf_SetUnifiedDataByOptions(OH_UdmfOptions* options, OH_UdmfData* unifiedData, char* key, unsigned int keyLen)        | Writes an **OH_UdmfData** instance in the UDMF database.                          |
 | void OH_UdsHyperlink_Destroy(OH_UdsHyperlink* pThis)         | Destroys the pointer to an **OH_UdsHyperlink** instance.|
 | void OH_UdmfRecord_Destroy(OH_UdmfRecord* pThis)             | Destroys the pointer to an **OH_UdmfRecord** instance.                  |
 | void OH_UdmfData_Destroy(OH_UdmfData* pThis)                 | Destroys the pointer to an **OH_UdmfData** instance.                    |

@@ -117,7 +117,7 @@ static link&lt;T&gt;(propName: string): SubscribedAbstractProperty&lt;T&gt;
 
 | 类型                                | 说明                                                         |
 | ----------------------------------- | ------------------------------------------------------------ |
-| [SubscribedAbstractProperty&lt;T&gt;](#subscribedabstractproperty) | 返回双向绑定的数据，如果AppStorage中不存在对应的propName，则返回undefined。 |
+| [SubscribedAbstractProperty&lt;T&gt;](#subscribedabstractpropertyt9) | 返回双向绑定的数据，如果AppStorage中不存在对应的propName，则返回undefined。 |
 
 **示例：**
 ```ts
@@ -148,7 +148,7 @@ static setAndLink&lt;T&gt;(propName: string, defaultValue: T): SubscribedAbstrac
 
 | 类型                                | 说明                                                         |
 | ----------------------------------- | ------------------------------------------------------------ |
-| [SubscribedAbstractProperty&lt;T&gt;](#subscribedabstractproperty) | SubscribedAbstractProperty&lt;T&gt;的实例，为AppStorage中propName对应属性的双向绑定的数据。 |
+| [SubscribedAbstractProperty&lt;T&gt;](#subscribedabstractpropertyt9) | SubscribedAbstractProperty&lt;T&gt;的实例，为AppStorage中propName对应属性的双向绑定的数据。 |
 
 **示例：**
 ```ts
@@ -177,7 +177,7 @@ static prop&lt;T&gt;(propName: string): SubscribedAbstractProperty&lt;T&gt;
 
 | 类型                                | 说明                                                         |
 | ----------------------------------- | ------------------------------------------------------------ |
-| [SubscribedAbstractProperty&lt;T&gt;](#subscribedabstractproperty) | 返回单向绑定的数据，如果AppStorage中不存在对应的propName，则返回undefined。 |
+| [SubscribedAbstractProperty&lt;T&gt;](#subscribedabstractpropertyt9) | 返回单向绑定的数据，如果AppStorage中不存在对应的propName，则返回undefined。 |
 
 **示例：**
 
@@ -209,7 +209,7 @@ static setAndProp&lt;T&gt;(propName: string, defaultValue: T): SubscribedAbstrac
 
 | 类型                                  | 说明                                      |
 | -------------------------------------- | ------------------------------------------ |
-| [SubscribedAbstractProperty&lt;T&gt;](#subscribedabstractproperty) | SubscribedAbstractProperty&lt;T&gt;的实例，为AppStorage中propName对应属性的单向绑定的数据。 |
+| [SubscribedAbstractProperty&lt;T&gt;](#subscribedabstractpropertyt9) | SubscribedAbstractProperty&lt;T&gt;的实例，为AppStorage中propName对应属性的单向绑定的数据。 |
 
 **示例：**
 ```ts
@@ -338,7 +338,7 @@ static delete(propName: string): boolean
 
 1. [@StorageLink](../../../ui/state-management/arkts-appstorage.md#storagelink)、[@StorageProp](../../../ui/state-management/arkts-appstorage.md#storageprop)装饰的变量。
 
-2. 通过[link](#link10)、[prop](#prop10)、[setAndLink](#setandlink10)、[setAndProp](#setandprop10)接口返回的[SubscribedAbstractProperty](#subscribedabstractproperty)的实例。
+2. 通过[link](#link10)、[prop](#prop10)、[setAndLink](#setandlink10)、[setAndProp](#setandprop10)接口返回的[SubscribedAbstractProperty](#subscribedabstractpropertyt9)的实例。
 
 如需删除这些订阅者，可通过以下方式：
 
@@ -499,7 +499,7 @@ static SetAndLink&lt;T&gt;(propName: string, defaultValue: T): SubscribedAbstrac
 
 | 类型                                  | 说明                                       |
 | ----------------------------------- | ---------------------------------------- |
-| [SubscribedAbstractProperty&lt;T&gt;](#subscribedabstractproperty) | SubscribedAbstractProperty&lt;T&gt;的实例，为AppStorage中propName对应属性的双向绑定的数据。 |
+| [SubscribedAbstractProperty&lt;T&gt;](#subscribedabstractpropertyt9) | SubscribedAbstractProperty&lt;T&gt;的实例，为AppStorage中propName对应属性的双向绑定的数据。 |
 
 **示例：**
 ```ts
@@ -564,7 +564,7 @@ static SetAndProp&lt;S&gt;(propName: string, defaultValue: S): SubscribedAbstrac
 
 | 类型                                  | 说明                                      |
 | ----------------------------------- | --------------------------------------- |
-| [SubscribedAbstractProperty&lt;S&gt;](#subscribedabstractproperty) | SubscribedAbstractProperty&lt;S&gt;的实例，为AppStorage中propName对应属性的单向绑定的数据。 |
+| [SubscribedAbstractProperty&lt;S&gt;](#subscribedabstractpropertyt9) | SubscribedAbstractProperty&lt;S&gt;的实例，为AppStorage中propName对应属性的单向绑定的数据。 |
 
 **示例：**
 ```ts
@@ -1144,7 +1144,7 @@ link&lt;T&gt;(propName: string): SubscribedAbstractProperty&lt;T&gt;
 
 | 类型                                | 说明                                                         |
 | ----------------------------------- | ------------------------------------------------------------ |
-| [SubscribedAbstractProperty&lt;T&gt;](#subscribedabstractproperty) | SubscribedAbstractProperty&lt;T&gt;的实例，与LocalStorage中propName对应属性的双向绑定的数据，如果LocalStorage中不存在对应的propName，则返回undefined。 |
+| [SubscribedAbstractProperty&lt;T&gt;](#subscribedabstractpropertyt9) | SubscribedAbstractProperty&lt;T&gt;的实例，与LocalStorage中propName对应属性的双向绑定的数据，如果LocalStorage中不存在对应的propName，则返回undefined。 |
 
 **示例：**
 ```ts
@@ -1179,7 +1179,7 @@ setAndLink&lt;T&gt;(propName: string, defaultValue: T): SubscribedAbstractProper
 
 | 类型                                | 说明                                                         |
 | ----------------------------------- | ------------------------------------------------------------ |
-| [SubscribedAbstractProperty&lt;T&gt;](#subscribedabstractproperty) | SubscribedAbstractProperty&lt;T&gt;的实例，与LocalStorage中propName对应属性的双向绑定的数据。 |
+| [SubscribedAbstractProperty&lt;T&gt;](#subscribedabstractpropertyt9) | SubscribedAbstractProperty&lt;T&gt;的实例，与LocalStorage中propName对应属性的双向绑定的数据。 |
 
 **示例：**
 ```ts
@@ -1212,7 +1212,7 @@ prop&lt;S&gt;(propName: string): SubscribedAbstractProperty&lt;S&gt;
 
 | 类型                                | 说明                                                         |
 | ----------------------------------- | ------------------------------------------------------------ |
-| [SubscribedAbstractProperty&lt;S&gt;](#subscribedabstractproperty) | SubscribedAbstractProperty&lt;S&gt;的实例，为LocalStorage中propName对应属性的单向绑定的数据。如果LocalStorage中不存在对应的propName，则返回undefined。 |
+| [SubscribedAbstractProperty&lt;S&gt;](#subscribedabstractpropertyt9) | SubscribedAbstractProperty&lt;S&gt;的实例，为LocalStorage中propName对应属性的单向绑定的数据。如果LocalStorage中不存在对应的propName，则返回undefined。 |
 
 **示例：**
 ```ts
@@ -1247,7 +1247,7 @@ setAndProp&lt;S&gt;(propName: string, defaultValue: S): SubscribedAbstractProper
 
 | 类型                                | 说明                                                         |
 | ----------------------------------- | ------------------------------------------------------------ |
-| [SubscribedAbstractProperty&lt;S&gt;](#subscribedabstractproperty) | SubscribedAbstractProperty&lt;S&gt;的实例，为LocalStorage中propName对应属性的单向绑定的数据。 |
+| [SubscribedAbstractProperty&lt;S&gt;](#subscribedabstractpropertyt9) | SubscribedAbstractProperty&lt;S&gt;的实例，为LocalStorage中propName对应属性的单向绑定的数据。 |
 
 **示例：**
 
@@ -1268,7 +1268,7 @@ delete(propName: string): boolean
 
 1. [@LocalStorageLink](../../../ui/state-management/arkts-localstorage.md#localstoragelink)、[@LocalStorageProp](../../../ui/state-management/arkts-localstorage.md#localstorageprop)装饰的变量。
 
-2. 通过[link](#link9)、[prop](#prop9)、[setAndLink](#setandlink9)、[setAndProp](#setandprop9)接口返回的[SubscribedAbstractProperty](#subscribedabstractproperty)的实例。
+2. 通过[link](#link9)、[prop](#prop9)、[setAndLink](#setandlink9)、[setAndProp](#setandprop9)接口返回的[SubscribedAbstractProperty](#subscribedabstractpropertyt9)的实例。
 
 如需删除这些订阅者，可通过以下方式：
 
@@ -1510,7 +1510,7 @@ let ref1: AbstractProperty<number> | undefined = AppStorage.ref('PropA');
 ref1?.info(); // ref1.info()='PropA'
 ```
 
-## SubscribedAbstractProperty
+## SubscribedAbstractProperty\<T\><sup>9+</sup>
 
 SubscribedAbstractProperty是[AppStorage](../../../ui/state-management/arkts-appstorage.md)/[LocalStorage](../../../ui/state-management/arkts-localstorage.md)中属性的单/双向同步绑定对象，用于与AppStorage/LocalStorage中的属性建立数据同步关系。SubscribedAbstractProperty实例需要通过[aboutToBeDeleted](#abouttobedeleted10)接口手动释放，以取消同步关系并无效化实例。
 
@@ -1588,7 +1588,7 @@ prop3.set(undefined);
 
 abstract aboutToBeDeleted(): void
 
-取消[SubscribedAbstractProperty](#subscribedabstractproperty)实例对[AppStorage](../../../ui/state-management/arkts-appstorage.md)/[LocalStorage](../../../ui/state-management/arkts-localstorage.md)的单向或双向同步关系，并无效化SubscribedAbstractProperty实例。即调用aboutToBeDeleted方法之后，不能再使用SubscribedAbstractProperty实例调用[set](#set9-1)或[get](#get9-1)方法。
+取消[SubscribedAbstractProperty](#subscribedabstractpropertyt9)实例对[AppStorage](../../../ui/state-management/arkts-appstorage.md)/[LocalStorage](../../../ui/state-management/arkts-localstorage.md)的单向或双向同步关系，并无效化SubscribedAbstractProperty实例。即调用aboutToBeDeleted方法之后，不能再使用SubscribedAbstractProperty实例调用[set](#set9-1)或[get](#get9-1)方法。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 

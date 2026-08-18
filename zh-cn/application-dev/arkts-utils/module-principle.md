@@ -32,7 +32,7 @@ A文件称为入口文件，即执行起点。一些内置的加载接口，如[
 
 ECMAScript模块（ECMAScript Modules，后文称ES Module）是JavaScript自ECMAScript6.0之后，从标准层面（ECMAScript® 2025 Language Specification (tc39.es)）实现的模块功能。其模块功能由两个命令组成：export和import。
 
-ArkTS中export和import用法详见[ArkTS语言介绍](../quick-start/introduction-to-arkts.md#模块)。
+ArkTS中export和import用法详见[模块系统](../quick-start/arkts-language-guide-module-system.md)。
 
 ### CommonJS模块
 

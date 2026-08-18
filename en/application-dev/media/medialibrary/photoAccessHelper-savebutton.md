@@ -1,10 +1,12 @@
 # Saving Media Assets
+
 <!--Kit: Media Library Kit-->
 <!--Subsystem: Multimedia-->
 <!--Owner: @yixiaoff-->
 <!--Designer: @liweilu1-->
 <!--Tester: @xchaosioda-->
 <!--Adviser: @w_Machine_cc-->
+<!-- md-trans-meta sourceCommit=00d7cb908705b920a9ee7ee48de288635f9580c9 translatedAt=2026-08-11T01:57:44.603Z pushedAt=2026-08-12T03:43:55.574Z -->
 
 To save images, videos, or similar files to Gallery, it is not necessary for the application to request the ohos.permission.WRITE_IMAGEVIDEO permission. Instead, the application can use the [SaveButton](#creating-a-media-asset-using-savebutton) or [authorization pop-up](#saving-a-media-asset-using-an-authorization-pop-up) to save the media assets to Gallery.
 
@@ -19,7 +21,7 @@ The following describes how to obtain image resource formats that can be saved.
 
 Call [phAccessHelper.getSupportedPhotoFormats](../../reference/apis-media-library-kit/arkts-apis-photoAccessHelper-PhotoAccessHelper.md#getsupportedphotoformats18) to obtain the supported image formats that can be saved.
 
-<!-- @[Supported_Resource_Formats](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/MediaLibraryKit/SaveButtonSample/entry/src/main/ets/pages/Scene1.ets) -->
+<!-- @[Supported_Resource_Formats](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/MediaLibraryKit/SaveButtonSample/entry/src/main/ets/pages/Scene1.ets) -->  
 
 ``` TypeScript
 import { photoAccessHelper } from '@kit.MediaLibraryKit';
@@ -58,7 +60,7 @@ async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper): Pro
   try {
     let outputText = 'Supported formats:\n';
     // The value 1 means the supported image formats, and 2 means the supported video formats.
-    let imageFormat = await phAccessHelper.getSupportedPhotoFormats(1);
+    let imageFormat = await phAccessHelper.getSupportedPhotoFormats(photoAccessHelper.PhotoType.IMAGE);
     let result = '';
     for (let i = 0; i < imageFormat.length; i++) {
       result += imageFormat[i];
@@ -85,9 +87,13 @@ The following walks you through on how to create an image using the **SaveButton
 **How to Develop**
 
 1. Set the attributes of the security component.
+
 2. Create a button with the security component.
+
 3. Call [registerChange](../../reference/apis-media-library-kit/arkts-apis-photoAccessHelper-PhotoAccessHelper.md#registerchange) to register a listener for the default URI ([DEFAULT_PHOTO_URI](../../reference/apis-media-library-kit/arkts-apis-photoAccessHelper-e.md#defaultchangeuri)).
+
 4. Use [MediaAssetChangeRequest.createImageAssetRequest](../../reference/apis-media-library-kit/arkts-apis-photoAccessHelper-MediaAssetChangeRequest.md#createimageassetrequest11) and [PhotoAccessHelper.applyChanges](../../reference/apis-media-library-kit/arkts-apis-photoAccessHelper-PhotoAccessHelper.md#applychanges11) to create an image asset.
+
 5. Call [getAsset](../../reference/apis-media-library-kit/arkts-apis-photoAccessHelper-MediaAssetChangeRequest.md#getasset11) to obtain the saved assets and asset URI. After receiving the [NOTIFY_ADD](../../reference/apis-media-library-kit/arkts-apis-photoAccessHelper-e.md#notifytype) notification, complete the subsequent services.
 
 <!-- @[Creating_Media_Asset](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/MediaLibraryKit/SaveButtonSample/entry/src/main/ets/pages/Scene2.ets) -->
@@ -193,13 +199,16 @@ The following walks you through on how to save an image using an authorization p
 **How to Develop**
 
 1. Specify the URI of the [application file](../../file-management/app-file-access.md) to be saved to the media library. (The file must be in the application sandbox.)
+
 2. Set parameters such as the file name extension, image file type, title (optional) and image subtype (optional) of the image to save.
+
 3. Call [showAssetsCreationDialog](../../reference/apis-media-library-kit/arkts-apis-photoAccessHelper-PhotoAccessHelper.md#showassetscreationdialog12) to obtain the target [media file URI](../../file-management/user-file-uri-intro.md#media-file-uri) through an authorization pop-up.
 
    To display the application name in the dialog box, the API relies on the configuration of **label** and **icon** under **abilities** in the **module.json5** file. If they are not configured, no application name is displayed in the dialog box. If the passed URI is a sandbox path, images or videos can be saved but cannot be previewed.
+
 4. Write the image content from the application sandbox to the file specified by the target URI in the media library.
 
-<!-- @[Saving_MediaAsset_Using_Authorization_Popup](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/MediaLibraryKit/SaveButtonSample/entry/src/main/ets/pages/Scene3.ets) -->
+<!-- @[Saving_MediaAsset_Using_Authorization_Popup](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/MediaLibraryKit/SaveButtonSample/entry/src/main/ets/pages/Scene3.ets) -->  
 
 ``` TypeScript
 import { photoAccessHelper } from '@kit.MediaLibraryKit';
@@ -212,6 +221,8 @@ async function example(
   phAccessHelper: photoAccessHelper.PhotoAccessHelper,
   context: common.UIAbilityContext
 ): Promise<string> {
+  let desFile: fileIo.File | null = null;
+  let srcFile: fileIo.File | null = null;
   try {
     // Specify the URI of the image to be saved to the application sandbox directory.
     let srcFileUri = context.filesDir + '/test.jpg';
@@ -234,16 +245,21 @@ async function example(
       await phAccessHelper.showAssetsCreationDialog(srcFileUris, photoCreationConfigs);
     console.info('Destination URIs: ' + JSON.stringify(desFileUris));
     // Write the image from the sandbox directory to the file specified by the target URI in the media library.
-    let desFile: fileIo.File = await fileIo.open(desFileUris[0], fileIo.OpenMode.WRITE_ONLY);
-    let srcFile: fileIo.File = await fileIo.open(srcFileUri, fileIo.OpenMode.READ_ONLY);
+    desFile = await fileIo.open(desFileUris[0], fileIo.OpenMode.WRITE_ONLY);
+    srcFile = await fileIo.open(srcFileUri, fileIo.OpenMode.READ_ONLY);
     await fileIo.copyFile(srcFile.fd, desFile.fd);
-    fileIo.closeSync(srcFile);
-    fileIo.closeSync(desFile);
     console.info('create asset by dialog successfully');
     return 'create asset by dialog successfully';
   } catch (err) {
     console.error(`failed to create asset by dialog successfully errCode is: ${err.code}, ${err.message}`);
     return `failed to create asset by dialog successfully errCode is: ${err.code}, ${err.message}`;
+  } finally {
+    if (srcFile) {
+      fileIo.closeSync(srcFile);
+    }
+    if (desFile) {
+      fileIo.closeSync(desFile);
+    }
   }
 }
 ```

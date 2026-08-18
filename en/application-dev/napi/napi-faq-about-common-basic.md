@@ -4,7 +4,7 @@
 <!--Owner: @xliu-huanwei; @shilei123; @huanghello-->
 <!--Designer: @shilei123-->
 <!--Tester: @kirl75; @zsw_zhushiwei-->
-<!--Adviser: @fang-jinxu-->
+<!--Adviser: @k1ngqaquuu-->
 
 ## What should I do if the module fails to be loaded and the error message "Error message: is not callable" is displayed?
 
@@ -46,7 +46,7 @@ extern "C" __attribute__((constructor)) void RegisterEntryModule()
 - Question: In a scenario where a large number of ArkTS methods need to be called through C++ for communication, how to ensure the order of asynchronous tasks?
 - Answer:
 
-You can use **napi_call_threadsafe_function** to ensure the execution sequence of asynchronous tasks. Ensure that the asynchronous tasks are delivered to the ArkTS thread for execution. If the asynchronous tasks are delivered to the main thread, the application may freeze and exit if they are executed for a long time. Therefore, you are not advised to deliver long-time tasks to the main thread through thread-safe functions.  
+You can use **napi_call_threadsafe_function** to ensure the execution sequence of asynchronous tasks. Note that these asynchronous tasks are delivered to the ArkTS thread and executed in sequence. If they are delivered to the main thread, the application may freeze and exit if they run for a long time. Therefore, you are not advised to deliver long-running tasks to the main thread through thread-safe functions.
 
 [Thread Safety Development Using Node-API](use-napi-thread-safety.md)
 
@@ -184,7 +184,7 @@ If the thread is created directly in C++, it does not have the ArkTS running env
 
 No, **napi_get_value_string_utf8** always needs a copy operation.
 
-It is necessary because the string lifecycle is involved. When GC is triggered, the ArkTS object may be moved to another place or reclaimed in the VM. If an address of a char* type is returned, the memory may change after the object is moved or reclaimed. 
+It is necessary because the string lifecycle is involved. When GC is triggered, the ArkTS object may be moved to another place or reclaimed in the VM. If an address such as **char\*** is returned, the memory pointed to by the original address may change after the object is moved or reclaimed.
 
 ## What are the precautions for using napi_env in multi-thread mode
 

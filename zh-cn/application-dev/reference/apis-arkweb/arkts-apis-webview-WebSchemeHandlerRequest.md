@@ -92,7 +92,7 @@ getReferrer(): string
 
 isMainFrame(): boolean
 
-判断资源请求是否为主frame。
+判断资源请求是否为主Frame。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -100,7 +100,7 @@ isMainFrame(): boolean
 
 | 类型     | 说明            |
 | ------ | ------------- |
-| boolean | 判断资源请求是否为主frame，如果资源请求是主frame则返回true，否则返回false。 |
+| boolean | 判断资源请求是否为主Frame，如果资源请求是主Frame则返回true，否则返回false。 |
 
 **示例：**
 
@@ -118,7 +118,7 @@ hasGesture(): boolean
 
 | 类型     | 说明            |
 | ------ | ------------- |
-| boolean | 返回资源请求是否与手势（如点击）相关联，如果返回资源请求与手势相关联则返回true，否则返回false。 |
+| boolean | 返回资源请求是否与手势（如点击）相关联，如果资源请求与手势相关联则返回true，否则返回false。 |
 
 **示例：**
 

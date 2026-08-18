@@ -6,7 +6,7 @@
 <!--Designer: @andeszhang-->
 <!--Tester: @murphy84-->
 <!--Adviser: @zhang_yixin13-->
-<!-- md-trans-meta sourceCommit=b8aa633cba260f62cfd1846a2d514205881380a2 translatedAt=2026-08-04T08:29:10.496Z pushedAt=2026-08-04T08:55:04.599Z -->
+<!-- md-trans-meta sourceCommit=8e856b06a34a819612cae112a81452d688b21bcf translatedAt=2026-08-15T01:52:26.554Z pushedAt=2026-08-15T08:40:09.020Z -->
 
 ## When to Use
 
@@ -36,7 +36,7 @@ To implement consistent immersive experience, a communication mechanism between 
      .keyboardAppearance(KeyboardAppearance.NONE_IMMERSIVE)
    ```
 
-2. The input method app subscribes to the editor attribute change event [editorattributechanged](../reference/apis-ime-kit/js-apis-inputmethodengine.md#oneditorattributechanged10), and detects the immersive mode expected by the foreground app through the `immersiveMode` field in the callback parameter `EditorAttribute`. The following is the sample code.
+2. The input method app subscribes to the editor attribute change event [editorAttributeChanged](../reference/apis-ime-kit/js-apis-inputmethodengine.md#oneditorattributechanged10), and detects the immersive mode expected by the foreground app through the `immersiveMode` field in the callback parameter `EditorAttribute`. The following is the sample code.
 
    <!-- @[input_case_input_immersiveMode](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/InputMethod/KikaInputMethod/entry/src/main/ets/InputMethodExtensionAbility/pages/Index.ets) -->
 

@@ -2,10 +2,11 @@
 
 <!--Kit: Notification Kit-->
 <!--Subsystem: Notification-->
-<!--Owner: @peixu-->
-<!--Designer: @dongqingran; @wulong158-->
+<!--Owner: @HuYueRong-->
+<!--Designer: @dongqingran-->
 <!--Tester: @wanghong1997-->
 <!--Adviser: @fang-jinxu-->
+<!-- md-trans-meta sourceCommit=2d26d65ed8809e3397733f0dc440ee753e9d6e8a translatedAt=2026-08-13T03:10:51.854Z pushedAt=2026-08-13T07:31:32.698Z -->
 
 Since API version 20, you can clear repeated notifications across devices to prevent users from being disturbed by notifications published through different ways (for example, notifications sent from a mobile phone to the current device are the same as those published by Push Kit).
 
@@ -22,6 +23,7 @@ Only the first notification is displayed on the device. Duplicate notifications 
 ## Constraints
 
 - You must ensure the uniqueness of **appMessageId**. The same notification must retain the same value for this field across all device form factors.
+
 - This field is only valid within 24 hours after the notification is published. It becomes invalid after 24 hours or when the device is restarted.
 
 ## Available APIs
@@ -35,7 +37,7 @@ Only the first notification is displayed on the device. Duplicate notifications 
 1. Import the related modules.
 
    <!-- @[clear_duplicate_notifications_header](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/Notification-Kit/Notification/entry/src/main/ets/filemanager/ClearDuplicateNotifications.ets) -->
-   
+
    ``` TypeScript
    import { notificationManager } from '@kit.NotificationKit';
    import { BusinessError } from '@kit.BasicServicesKit';
@@ -43,8 +45,8 @@ Only the first notification is displayed on the device. Duplicate notifications 
 
 2. Publish a notification that contains the **appMessageId** field.
 
-   <!-- @[pub_appmsgid_notify](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/Notification-Kit/Notification/entry/src/main/ets/filemanager/ClearDuplicateNotifications.ets) -->
-   
+   <!-- @[pub_appMsgId_notify](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/Notification-Kit/Notification/entry/src/main/ets/filemanager/ClearDuplicateNotifications.ets) -->
+
    ``` TypeScript
    // publish callback
    let publishCallback = (err: BusinessError): void => {

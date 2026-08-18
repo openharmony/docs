@@ -1,8 +1,8 @@
 # Types
 <!--Kit: ArkUI-->
 <!--Subsystem: Window-->
-<!--Owner: @waterwin-->
-<!--Designer: @nyankomiya-->
+<!--Owner: @fei_1007-->
+<!--Designer: @gcw_sPCsris4-->
 <!--Tester: @qinliwen0417-->
 <!--Adviser: @ge-yafang-->
 
@@ -74,7 +74,7 @@ When the curve type is **CUBIC_BEZIER**, **WindowAnimationCurveParam** must be s
 
 ## RotationChangeCallback<sup>19+</sup>
 
-type RotationChangeCallback<T, U> = (info: T) => U
+type RotationChangeCallback&lt;T, U&gt; = (info: T) => U
 
 Describes a generic callback function for rotation event notifications.
 
@@ -88,19 +88,21 @@ In this callback function, the parameter type is [RotationChangeInfo](arkts-apis
 
 | Name| Type| Mandatory| Description|
 | ---- | ---- | ---- | -------------------------- |
-| info | T    | Yes  | Parameter of type [RotationChangeInfo](arkts-apis-window-i.md#rotationchangeinfo19) passed by the system when the callback function is called.|
+| info | T    | Yes  | Rotation event information. The system passes a parameter of the [RotationChangeInfo](arkts-apis-window-i.md#rotationchangeinfo19) type to notify you of the window information when a rotation change occurs.|
 
 **Return value**
 
 | Type| Description|
 | -------------------------------- | ------------------------------------ |
-| U | Value of type [RotationChangeResult](arkts-apis-window-i.md#rotationchangeresult19) \| void.|  |
+| U | A value of the [RotationChangeResult](arkts-apis-window-i.md#rotationchangeresult19) or void type, which is used to specify the window position after rotation. When void is returned, the system does not change the window position.|
 
-## WindowEventListener<sup>24+</sup>
+## WindowEventListener
 
 type WindowEventListener = (windowId: number, event: window.WindowEventType) => void
 
 Callback function for window lifecycle event notifications.
+
+**Since:** 26.0.0
 
 **Model restriction**: This API can be used only in the stage model.
 

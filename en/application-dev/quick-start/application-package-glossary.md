@@ -1,75 +1,73 @@
 # Application Package Glossary
+
 <!--Kit: Ability Kit-->
 <!--Subsystem: BundleManager-->
 <!--Owner: @wanghang904-->
 <!--Designer: @hanfeng6-->
-<!--Tester: @kongjing2-->
-<!--Adviser: @Brilliantry_Rui-->
+<!--Tester: @memghaiyang-->
+<!--Adviser: @HelloCrease-->
+<!-- md-trans-meta sourceCommit=e614db0ed9ef9e65ff9f340640f4a0fd5317e78d translatedAt=2026-08-13T08:49:51.005Z pushedAt=2026-08-13T11:44:37.480Z -->
 
 ## A
 
-### APP 
+### APP
 
-To release an application to AppGallery, the bundle must be packaged into an .app file, that is, an Application Package (App Pack).
+When an app is released to an app marketplace, it must be packaged into a file with the .app file extension for release. This .app file is called an App Pack (Application Package), which contains all HAP and HSP files of the app as well as the pack.info description file, and serves as the basic unit for release.
+
+## B
+
+### Bundle
+
+The collection of all HAP and HSP files in an app. Its bundleName is the unique identifier of the app. A Bundle is packaged into an App Pack before being released to an app marketplace.
+
+### Bundle Manager (bm)
+
+A command-line tool for app package management. It supports operations such as installing, uninstalling, and querying apps.
 
 ## E
 
-### ExtensionAbility 
+### Entry UIAbility
 
-A component that provides extension abilities for specific scenarios (such as service widgets and input methods) in the stage model.
-
-## F
-
-### FA 
-
-Feature Ability, an ability with a UI to interact with users in the FA model.
-
-### FA model
-
-It is the only application development model supported by API version 8 and earlier. Now, the stage model is recommended for application development.
+A UIAbility whose entities under the skills tag contain `"entity.system.home"` and whose actions contain `"ohos.want.action.home"`. It serves as the entry component of an app.
 
 ## H
 
-### HAP 
+### Harmony Ability Package (HAP)
 
-Harmony Ability Package, released with the file name extension .hap, contains all content of an application, including code, resources, third-party libraries, and an application configuration file.
+The basic unit for app installation and running. A HAP file contains all content of an app, including code, resources, third-party libraries, and configuration files, with the .hap file extension. It is classified into entry and feature types and supports independent installation and running.
 
-### HAR 
+### Harmony Archive (HAR)
 
-HarmonyOS Archive, released with the file name extension .har, is a static shared package and can be reused in the compilation state. It can contain code, C++ libraries, resources, and configuration files, and is used to share code and resources.
+A static shared package used for reuse in the compilation state. It can contain code, C++ libraries, resources, and configuration files, with the .har file extension, and is used to share code and resources. It supports sharing within an app and can also be published to OHPM for use by other apps. However, referencing it from multiple packages causes duplicate copies of code and resources.
 
-### HSP 
+### Harmony Shared Package (HSP)
 
-Harmony Shared Package, released with the file name extension .hsp, is a dynamic shared package and can be reused during runtime. It can contain code, C++ libraries, resources, and configuration files, and is used to share code and resources.
+A dynamic shared package reused during runtime. It can contain code, C++ libraries, resources, and configuration files, with the .hsp file extension, and is used to share code and resources. Referencing it from multiple packages does not cause duplicate copies, effectively controlling the app package size.
+
+## I
+
+### Integrated HSP
+
+An intermediate compilation artifact of an in-app HSP, used to resolve the strong coupling between the consumer's `bundleName` and the signature. During build and release, it is not coupled with a specific app bundle name. The toolchain supports automatically replacing the bundle name of the integrated HSP with that of the host app.
 
 ## M
 
 ### Module
 
-A module is a part of an application. Each module has an independent module.json5 configuration file. In a project, Entry, Feature, HSP, and HAR are application modules.
-
-## P
-
-### PA
-
-Particle Ability, an ability without a UI in the FA model. PAs are invoked to implement FA functionalities. For example, a PA runs in the background to provide the computing capability or acts as a data warehouse to provide the data access capability.
+A part of an app. Each module has an independent module.json5 configuration file. In a project, Entry, Feature, HSP, and HAR are all app modules and support independent compilation and feature implementation.
 
 ## S
 
-### Stage model
+### Static Library
 
-Application model available since API version 9. It provides two types of application components: UIAbility and ExtensionAbility. In this model, classes such as **AbilityStage** and **WindowStage** are provided as the stage of application components and windows. That's why it is named stage model.
+A Library-type module that generates a HAR file after compilation. Its code and resources are compiled along with the consumer and reused in the compilation state.
 
-## U
+### Shared Library
 
-### UIAbility
-
-A component in the stage model used to provide UI capabilities for user interaction. If **entities** under the **skills** tag of a UIAbility contains **"entity.system.home"** and **actions** contains **"ohos.want.action.home"**, the UIAbility is also called the entry UIAbility.
-
-<!--Del-->
-## X
+A Library-type module that generates an HSP file after compilation. Its code and resources can be compiled independently and reused by multiple modules while the app is running. <!--Del-->
 
 ### System-level HSP
 
 An HSP preset in the system by the OEM. As the underlying implementation of Kits, it is indirectly depended on by third-party applications and runs in the third-party process space.
+
 <!--DelEnd-->

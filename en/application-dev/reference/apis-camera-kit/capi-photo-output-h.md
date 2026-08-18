@@ -6,6 +6,7 @@
 <!--Designer: @leo_ysl-->
 <!--Tester: @xchaosioda-->
 <!--Adviser: @w_Machine_cc-->
+<!-- md-trans-meta sourceCommit=bbff19eea26e8c5a9fae30bb354e8040d0b91f67 translatedAt=2026-08-11T02:05:18.431Z pushedAt=2026-08-12T08:23:02.187Z -->
 
 ## Overview
 
@@ -29,6 +30,7 @@ The file declares the photo output concepts.
 | -- | -- | -- |
 | [PhotoOutput_Callbacks](capi-oh-camera-photooutput-callbacks.md) | PhotoOutput_Callbacks | Describes the callbacks related to photo output.|
 | [Camera_PhotoOutput](capi-oh-camera-camera-photooutput.md) | Camera_PhotoOutput | Describes the photo output object.<br>You can use [OH_CameraManager_CreatePhotoOutput](capi-camera-manager-h.md#oh_cameramanager_createphotooutput) to create such an object.|
+| [OH_Camera_PhotoCaptureSettingExt](capi-oh-camera-camera-photocapturesettingext.md) | OH_Camera_PhotoCaptureSettingExt | Defines a **PhotoCaptureSettingExt** object, providing basic photo settings such as mirroring and rotation and supporting continuous adjustment of image compression quality. |
 
 ### Functions
 
@@ -74,6 +76,15 @@ The file declares the photo output concepts.
 | [Camera_ErrorCode OH_PhotoOutput_EnableMovingPhoto(Camera_PhotoOutput* photoOutput, bool enabled)](#oh_photooutput_enablemovingphoto) | - | Enables moving photos.|
 | [Camera_ErrorCode OH_PhotoOutput_IsPhotoQualityPrioritizationSupported(Camera_PhotoOutput* photoOutput, Camera_PhotoQualityPrioritization qualityPrioritization, bool* isSupported)](#oh_photooutput_isphotoqualityprioritizationsupported) | - | Checks whether the specified photo quality prioritization strategy is supported.|
 | [Camera_ErrorCode OH_PhotoOutput_SetPhotoQualityPrioritization(Camera_PhotoOutput* photoOutput, Camera_PhotoQualityPrioritization qualityPrioritization)](#oh_photooutput_setphotoqualityprioritization) | - | Sets the photo quality prioritization strategy.|
+| [bool OH_PhotoOutput_IsAutoExtendedGainmapDeliverySupported(const Camera_PhotoOutput* photoOutput)](#oh_photooutput_isautoextendedgainmapdeliverysupported) | - | Checks whether the delivery of an automatically extended gain map is supported. |
+| [Camera_ErrorCode OH_PhotoOutput_EnableAutoExtendedGainmapDelivery(Camera_PhotoOutput* photoOutput, bool enabled)](#oh_photooutput_enableautoextendedgainmapdelivery) | - | Enables or disables the delivery of an automatically extended gain map. |
+| [Camera_ErrorCode OH_PhotoOutput_CreatePhotoCaptureSettingExt(Camera_PhotoOutput* photoOutput, OH_Camera_PhotoCaptureSettingExt** setting)](#oh_photooutput_createphotocapturesettingext) | - | Creates a **PhotoCaptureSettingExt** instance. |
+| [Camera_ErrorCode OH_PhotoOutput_DestroyPhotoCaptureSettingExt(OH_Camera_PhotoCaptureSettingExt* setting)](#oh_photooutput_destroyphotocapturesettingext) | - | Destroys the **PhotoCaptureSettingExt** instance. |
+| [Camera_ErrorCode OH_PhotoCaptureSettingExt_SetImageRotation(OH_Camera_PhotoCaptureSettingExt* photoCaptureSettingExt, Camera_ImageRotation rotation)](#oh_photocapturesettingext_setimagerotation) | - | Sets the image rotation angle in the photo capture setting extension. |
+| [Camera_ErrorCode OH_PhotoCaptureSettingExt_SetLocation(OH_Camera_PhotoCaptureSettingExt* photoCaptureSettingExt, Camera_Location location)](#oh_photocapturesettingext_setlocation) | - | Sets the image location information in the photo capture setting extension. |
+| [Camera_ErrorCode OH_PhotoCaptureSettingExt_SetMirror(OH_Camera_PhotoCaptureSettingExt* photoCaptureSettingExt, bool mirror)](#oh_photocapturesettingext_setmirror) | - | Sets the mirror effect in the photo capture setting extension. |
+| [Camera_ErrorCode OH_PhotoCaptureSettingExt_SetCompressionQuality(OH_Camera_PhotoCaptureSettingExt* photoCaptureSettingExt, uint8_t compressionQuality)](#oh_photocapturesettingext_setcompressionquality) | - | Sets the image compression quality in the photo capture setting extension. |
+| [Camera_ErrorCode OH_PhotoOutput_Capture_WithCaptureSettingExt(Camera_PhotoOutput* photoOutput, OH_Camera_PhotoCaptureSettingExt* setting)](#oh_photooutput_capture_withcapturesettingext) | - | Use the photo capture setting extension to take photos. |
 
 ## Function Description
 
@@ -155,7 +166,6 @@ Defines the callback defined in the [PhotoOutput_Callbacks](capi-oh-camera-photo
 **See also**
 
 [CAMERA_SERVICE_FATAL_ERROR](capi-camera-h.md#camera_errorcode)
-
 
 ### OH_PhotoOutput_CaptureEnd()
 
@@ -1012,3 +1022,226 @@ Sets the photo quality prioritization strategy.
 | Type| Description|
 | -- | -- |
 | [Camera_ErrorCode](capi-camera-h.md#camera_errorcode) | **CAMERA_OK**: The operation is successful.<br>         **CAMERA_INVALID_ARGUMENT**: A parameter is missing or the parameter type is incorrect.<br>         **CAMERA_OPERATION_NOT_ALLOWED**: The operation is not allowed.<br>         **CAMERA_SERVICE_FATAL_ERROR**: The camera service is abnormal.|
+
+### OH_PhotoOutput_IsAutoExtendedGainmapDeliverySupported()
+
+```c
+bool OH_PhotoOutput_IsAutoExtendedGainmapDeliverySupported(const Camera_PhotoOutput* photoOutput)
+```
+
+**Description**
+
+Checks whether the delivery of an automatically extended gain map is supported.
+
+**Since**: 26.0.0
+
+**Parameters**
+
+| Name | Description |
+| -- | -- |
+| [const Camera_PhotoOutput](capi-oh-camera-camera-photooutput.md)* photoOutput | **photoOutput** instance used to check whether the delivery of an automatically extended gain map is supported. |
+
+**Returns**
+
+| Type | Description |
+| -- | -- |
+| bool | Whether the delivery of an automatically extended gain map is supported. The value **true** indicates it is supported, and **false** indicates otherwise. |
+
+### OH_PhotoOutput_EnableAutoExtendedGainmapDelivery()
+
+```c
+Camera_ErrorCode OH_PhotoOutput_EnableAutoExtendedGainmapDelivery(Camera_PhotoOutput* photoOutput, bool enabled)
+```
+
+**Description**
+
+Enables or disables the delivery of an automatically extended gain map.
+
+**Since**: 26.0.0
+
+**Parameters**
+
+| Name | Description |
+| -- | -- |
+| [Camera_PhotoOutput](capi-oh-camera-camera-photooutput.md)* photoOutput | **photoOutput** instance used to enable or disable the delivery of an automatically extended gain map. |
+| bool enabled | Whether to enable the delivery of an automatically extended gain map. The value **true** indicates it is enabled, and **false** indicates it is disabled. |
+
+**Returns**
+
+| Type | Description |
+| -- | -- |
+| [Camera_ErrorCode](capi-camera-h.md#camera_errorcode) | <ul><br>         <li>**CAMERA_OK**: The operation is successful.</li><br>         <li>**CAMERA_INVALID_ARGUMENT**: A parameter is missing or the parameter type is incorrect.</li><br>         <li>**CAMERA_OPERATION_NOT_ALLOWED**: The operation is not allowed.</li><br>         <li>**CAMERA_SESSION_NOT_CONFIG**: The session is not configured.</li><br>         <li>**CAMERA_SERVICE_FATAL_ERROR**: The camera service is abnormal.</li><br>         </ul>|
+
+### OH_PhotoOutput_CreatePhotoCaptureSettingExt()
+
+```c 
+Camera_ErrorCode OH_PhotoOutput_CreatePhotoCaptureSettingExt(Camera_PhotoOutput* photoOutput, OH_Camera_PhotoCaptureSettingExt** setting) 
+``` 
+
+**Description** 
+
+Creates a **PhotoCaptureSettingExt** instance.
+
+**Since**: 26.0.0 
+
+**Parameters** 
+
+| Name | Description |
+| -- | -- |
+| [Camera_PhotoOutput](capi-oh-camera-camera-photooutput.md)* photoOutput | **photoOutput** instance. |
+| [OH_Camera_PhotoCaptureSettingExt](capi-oh-camera-camera-photocapturesettingext.md)** setting | If the method is called successfully, **setting** is a pointer to the **OH_Camera_PhotoCaptureSettingExt** instance created. |
+
+**Returns** 
+
+| Type | Description |
+| -- | -- |
+| [Camera_ErrorCode](capi-camera-h.md#camera_errorcode) | **CAMERA_OK**: The operation is successful.<br>         **CAMERA_INVALID_ARGUMENT**: A parameter is missing or the parameter type is incorrect.<br>         **CAMERA_SERVICE_FATAL_ERROR**: The camera service is abnormal. |
+
+### OH_PhotoOutput_DestroyPhotoCaptureSettingExt()
+
+```c 
+Camera_ErrorCode OH_PhotoOutput_DestroyPhotoCaptureSettingExt(OH_Camera_PhotoCaptureSettingExt* setting) 
+``` 
+
+**Description** 
+
+Destroys an instance of the extended photo capture settings object.
+
+**Since**: 26.0.0 
+
+**Parameters** 
+
+| Name | Description |
+| -- | -- |
+| [OH_Camera_PhotoCaptureSettingExt](capi-oh-camera-camera-photocapturesettingext.md)* setting | Pointer to the **PhotoCaptureSettingExt** instance. |
+
+**Returns** 
+
+| Type | Description |
+| -- | -- |
+| [Camera_ErrorCode](capi-camera-h.md#camera_errorcode) | **CAMERA_OK**: The operation is successful.<br>         **CAMERA_INVALID_ARGUMENT**: A parameter is missing or the parameter type is incorrect. |
+
+### OH_PhotoCaptureSettingExt_SetImageRotation()
+
+```c 
+Camera_ErrorCode OH_PhotoCaptureSettingExt_SetImageRotation(OH_Camera_PhotoCaptureSettingExt* photoCaptureSettingExt, Camera_ImageRotation rotation) 
+``` 
+
+**Description** 
+
+Sets the image rotation angle in the photo capture setting extension.
+
+**Since**: 26.0.0 
+
+**Parameters** 
+
+| Name | Description |
+| -- | -- |
+| [OH_Camera_PhotoCaptureSettingExt](capi-oh-camera-camera-photocapturesettingext.md)* photoCaptureSettingExt | Pointer to the **PhotoCaptureSettingExt** instance. |
+| [Camera_ImageRotation](capi-camera-h.md#camera_imagerotation) rotation | Image rotation angle, which is defined in [Camera_ImageRotation](capi-camera-h.md#camera_imagerotation). |
+
+**Returns** 
+
+| Type | Description |
+| -- | -- |
+| [Camera_ErrorCode](capi-camera-h.md#camera_errorcode) | **CAMERA_OK**: The operation is successful.<br>         **CAMERA_INVALID_ARGUMENT**: A parameter is missing or the parameter type is incorrect.<br>         **CAMERA_OPERATION_NOT_ALLOWED**: The operation is not allowed. |
+
+### OH_PhotoCaptureSettingExt_SetLocation()
+
+```c 
+Camera_ErrorCode OH_PhotoCaptureSettingExt_SetLocation(OH_Camera_PhotoCaptureSettingExt* photoCaptureSettingExt, Camera_Location location) 
+```
+
+**Description** 
+
+Sets the image location information in the photo capture setting extension.
+
+**Since**: 26.0.0 
+
+**Parameters** 
+
+| Name | Description |
+| -- | -- |
+| [OH_Camera_PhotoCaptureSettingExt](capi-oh-camera-camera-photocapturesettingext.md)* photoCaptureSettingExt | Pointer to the **PhotoCaptureSettingExt** instance. |
+| [Camera_Location](capi-oh-camera-camera-location.md) location | Image location, which is defined in **Camera_Location**. |
+
+**Returns** 
+
+| Type | Description |
+| -- | -- |
+| [Camera_ErrorCode](capi-camera-h.md#camera_errorcode) | **CAMERA_OK**: The operation is successful.<br>         **CAMERA_INVALID_ARGUMENT**: A parameter is missing or the parameter type is incorrect.<br>         **CAMERA_OPERATION_NOT_ALLOWED**: The operation is not allowed. |
+
+### OH_PhotoCaptureSettingExt_SetMirror()
+
+```c 
+Camera_ErrorCode OH_PhotoCaptureSettingExt_SetMirror(OH_Camera_PhotoCaptureSettingExt* photoCaptureSettingExt, bool mirror) 
+``` 
+
+**Description** 
+
+Sets the mirror effect in the photo capture setting extension.
+
+**Since**: 26.0.0 
+
+**Parameters** 
+
+| Name | Description |
+| -- | -- |
+| [OH_Camera_PhotoCaptureSettingExt](capi-oh-camera-camera-photocapturesettingext.md)* photoCaptureSettingExt | Pointer to the **PhotoCaptureSettingExt** instance. |
+| bool mirror | Whether to enable the mirror effect. The value **true** means it is enabled, and the value **false** means it is disabled. |
+
+**Returns** 
+
+| Type | Description |
+| -- | -- |
+| [Camera_ErrorCode](capi-camera-h.md#camera_errorcode) | **CAMERA_OK**: The operation is successful.<br>         **CAMERA_INVALID_ARGUMENT**: A parameter is missing or the parameter type is incorrect.<br>         **CAMERA_OPERATION_NOT_ALLOWED**: The operation is not allowed. |
+
+### OH_PhotoCaptureSettingExt_SetCompressionQuality()
+
+```c 
+Camera_ErrorCode OH_PhotoCaptureSettingExt_SetCompressionQuality(OH_Camera_PhotoCaptureSettingExt* photoCaptureSettingExt, uint8_t compressionQuality) 
+``` 
+
+**Description** 
+
+Sets the image compression quality in the photo capture setting extension.
+
+**Since**: 26.0.0 
+
+**Parameters** 
+
+| Name | Description |
+| -- | -- |
+| [OH_Camera_PhotoCaptureSettingExt](capi-oh-camera-camera-photocapturesettingext.md)* photoCaptureSettingExt | Pointer to the **PhotoCaptureSettingExt** instance. |
+| uint8_t compressionQuality | Image compression quality. The value range is (1, 100). A larger value indicates higher image quality. The value **1** indicates the lowest quality, and the value **100** indicates the highest quality. |
+
+**Returns** 
+
+| Type | Description |
+| -- | -- |
+| [Camera_ErrorCode](capi-camera-h.md#camera_errorcode) | **CAMERA_OK**: The operation is successful.<br>         **CAMERA_INVALID_ARGUMENT**: A parameter is missing or the parameter type is incorrect.<br>         **CAMERA_OPERATION_NOT_ALLOWED**: The operation is not allowed. |
+
+### OH_PhotoOutput_Capture_WithCaptureSettingExt()
+
+```c 
+Camera_ErrorCode OH_PhotoOutput_Capture_WithCaptureSettingExt(Camera_PhotoOutput* photoOutput, OH_Camera_PhotoCaptureSettingExt* setting) 
+``` 
+
+**Description** 
+
+Use the photo capture setting extension to take photos.
+
+**Since**: 26.0.0 
+
+**Parameters** 
+
+| Name | Description |
+| -- | -- |
+| [Camera_PhotoOutput](capi-oh-camera-camera-photooutput.md)* photoOutput | Pointer to the target **PhotoOutput** instance. |
+| [OH_Camera_PhotoCaptureSettingExt](capi-oh-camera-camera-photocapturesettingext.md)* setting | Pointer to the **PhotoCaptureSettingExt** instance. |
+
+**Returns** 
+
+| Type | Description |
+| -- | -- |
+| [Camera_ErrorCode](capi-camera-h.md#camera_errorcode) | **CAMERA_OK**: The operation is successful.<br>         **CAMERA_INVALID_ARGUMENT**: A parameter is missing or the parameter type is incorrect.<br>         **CAMERA_SESSION_NOT_RUNNING**: The capture session is not running.<br>         **CAMERA_SERVICE_FATAL_ERROR**: The camera service is abnormal. |

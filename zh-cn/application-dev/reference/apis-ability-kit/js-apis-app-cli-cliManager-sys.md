@@ -298,7 +298,6 @@ execTool(toolName: string, subCommand: string, args: Record\<string, Object\>, c
 | ------- | -------------------------------- |
 | 201 | Permission denied, interface caller does not have permission "ohos.permission.EXEC_CLI_TOOL". |
 | 202 | Not system application. Interface caller is not a system app. |
-| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 35600030 | No tool with the specified name exists. |
 | 35600031 | Maximum number of processes has been reached. |
 | 35600050  | System Error. 1. Connect to system service failed; 2. System service failed to communicate with dependency module. |
@@ -351,7 +350,7 @@ subscribeSession(sessionId: string, callback: ToolEventCallback): Promise\<void>
 
 > **说明：**
 >
-> 会话仅限创建进程管理：只有调用`execTool`创建该会话的进程可以调用本接口。其他进程即使获取到`sessionId`，调用本接口也会抛出错误码201（Permission denied）。
+> 会话仅限创建进程管理：只有调用`execTool`或`execCmd`创建该会话的进程可以调用本接口。其他进程即使获取到`sessionId`，调用本接口也会抛出错误码201（Permission denied）。
 
 **起始版本：** 26.0.0
 
@@ -419,7 +418,7 @@ clearSession(sessionId: string): Promise\<void>
 
 > **说明：**
 >
-> 会话仅限创建进程管理：只有调用`execTool`创建该会话的进程可以调用本接口。其他进程即使获取到`sessionId`，调用本接口也会抛出错误码201（Permission denied）。
+> 会话仅限创建进程管理：只有调用`execTool`或`execCmd`创建该会话的进程可以调用本接口。其他进程即使获取到`sessionId`，调用本接口也会抛出错误码201（Permission denied）。
 
 **起始版本：** 26.0.0
 
@@ -480,7 +479,7 @@ querySession(sessionId: string): Promise\<CliSessionInfo>
 
 > **说明：**
 >
-> 会话仅限创建进程管理：只有调用`execTool`创建该会话的进程可以调用本接口。其他进程即使获取到`sessionId`，调用本接口也会抛出错误码201（Permission denied）。
+> 会话仅限创建进程管理：只有调用`execTool`或`execCmd`创建该会话的进程可以调用本接口。其他进程即使获取到`sessionId`，调用本接口也会抛出错误码201（Permission denied）。
 
 **起始版本：** 26.0.0
 
@@ -654,7 +653,7 @@ sendMessage(sessionId: string, message: string): Promise\<void>
 
 > **说明：**
 >
-> 会话仅限创建进程管理：只有调用`execTool`创建该会话的进程可以调用本接口。其他进程即使获取到`sessionId`，调用本接口也会抛出错误码201（Permission denied）。
+> 会话仅限创建进程管理：只有调用`execTool`或`execCmd`创建该会话的进程可以调用本接口。其他进程即使获取到`sessionId`，调用本接口也会抛出错误码201（Permission denied）。
 
 **起始版本：** 26.0.0
 

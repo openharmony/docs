@@ -126,7 +126,7 @@ imageAccess(imageAccess: boolean)
 
 javaScriptProxy(javaScriptProxy: JavaScriptProxy)
 
-将javaScriptProxy中的ArkTS对象注册到Web组件中，该对象将使用JavaScriptProxy中指定的名称注册到网页的所有框架中，包括所有iframe，这使得JavaScript可以调用javaScriptProxy中ArkTS对象的方法。当属性没有显式调用时，默认不将javaScriptProxy中的ArkTS对象注册到Web组件中。
+将javaScriptProxy中的ArkTS对象注册到Web组件中，该对象将使用JavaScriptProxy中指定的名称注册到网页的所有框架中，包括所有iframe，这使得JavaScript可以调用javaScriptProxy中ArkTS对象的方法。
 
 > **说明：**
 >
@@ -203,7 +203,7 @@ javaScriptProxy(javaScriptProxy: JavaScriptProxy)
 
 javaScriptAccess(javaScriptAccess: boolean)
 
-设置是否允许执行JavaScript脚本。当属性没有显式调用时，默认允许执行JavaScript脚本。
+设置是否允许执行JavaScript脚本。当属性没有显式调用时，默认允许。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -211,7 +211,7 @@ javaScriptAccess(javaScriptAccess: boolean)
 
 | 参数名              | 类型    | 必填   | 说明                |
 | ---------------- | ------- | ---- | ------------------- |
-| javaScriptAccess | boolean | 是    | 是否允许执行JavaScript脚本。<br>true表示允许执行JavaScript脚本，false表示不允许执行JavaScript脚本。<br>传入undefined或null时为false。 |
+| javaScriptAccess | boolean | 是    | 是否允许执行JavaScript脚本。<br>true表示允许，false表示不允许。<br>传入undefined或null时为false。 |
 
 **示例：**
 
@@ -534,7 +534,7 @@ mediaPlayGestureAccess(access: boolean)
 
 multiWindowAccess(multiWindow: boolean)
 
-设置是否开启多窗口权限。当属性没有显式调用时，默认不开启多窗口权限。
+设置是否开启多窗口权限。当属性没有显式调用时，默认不开启。
 
 使能多窗口权限时，需要实现onWindowNew事件，示例代码参考[onWindowNew](./arkts-basic-components-web-events.md#onwindownew9)。
 
@@ -544,7 +544,7 @@ multiWindowAccess(multiWindow: boolean)
 
 | 参数名         | 类型    | 必填   | 说明         |
 | ----------- | ------- | ---- | ------------ |
-| multiWindow | boolean | 是    | 设置是否开启多窗口权限。<br>true表示设置开启多窗口权限，false表示设置不开启多窗口权限。 |
+| multiWindow | boolean | 是    | 设置是否开启多窗口权限。<br>true表示开启，false表示不开启。 |
 
 ## horizontalScrollBarAccess<sup>9+</sup>
 
@@ -4677,6 +4677,48 @@ enableFullscreenVideoOverlay(enabled: boolean)
       Column() {
         Web({ src: 'www.example.com', controller: this.controller })
         .enableFullscreenVideoOverlay(true)
+      }
+    }
+  }
+  ```
+
+## enableMediaNetworkProxy
+
+enableMediaNetworkProxy(enabled: boolean)
+
+设置Web组件是否开启媒体资源网络请求代理功能。当属性没有显式调用时，默认不开启该能力。
+
+> **说明：**
+>
+> - 当前只支持HLS流媒体视频。
+
+**起始版本：** 26.0.0
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
+**模型约束：** 此接口仅可在Stage模型下使用。
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明                         |
+| ------ | -------- | ---- | -------------------------------- |
+| enabled | boolean  | 是   | 设置Web组件是否开启媒体资源网络请求代理功能。<br>true表示开启该功能。<br>false表示不开启。 |
+
+**示例：**
+
+  ```ts
+  // xxx.ets
+  import { webview } from '@kit.ArkWeb';
+
+  @Entry
+  @Component
+  struct WebComponent {
+    controller: webview.WebviewController = new webview.WebviewController();
+
+    build() {
+      Column() {
+        Web({ src: 'www.example.com', controller: this.controller })
+        .enableMediaNetworkProxy(true)
       }
     }
   }

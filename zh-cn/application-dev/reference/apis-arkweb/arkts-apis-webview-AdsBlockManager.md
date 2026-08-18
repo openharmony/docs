@@ -34,7 +34,9 @@ static setAdsBlockRules(rulesFile: string, replace: boolean): void
 
 > **说明：**
 >
-> 此接口设置的广告过滤规则，内部解析成功后会持久化存储，应用重启后不需要重复设置。
+> - 此接口设置的广告过滤规则，内部解析成功后会持久化存储，应用重启后不需要重复设置。
+>
+> - 从API version 18开始，在不支持广告过滤功能的设备上调用该API会抛出801异常。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -46,10 +48,6 @@ static setAdsBlockRules(rulesFile: string, replace: boolean): void
 | replace   | boolean | 是   | true表示强制替换掉内置的默认规则，false表示设置的自定义规则将与内置规则共同工作。 |
 
 **错误码：**
-
-> **说明：**
->
-> 从API version 18开始，在不支持广告过滤功能的设备上调用该API会抛出801异常。
 
 以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
 
@@ -89,7 +87,7 @@ struct WebComponent {
               }
             })
           } catch (err) {
-            console.error('DocumentViewPicker.select failed with err:' + err);
+            console.error(`DocumentViewPicker.select failed, Error code: ${err.code}, message: ${err.message}`);
           }
         })
       }
@@ -106,9 +104,11 @@ static addAdsBlockDisallowedList(domainSuffixes: Array\<string\>): void
 
 > **说明：**
 >
-> 此接口设置的域名不会持久化，应用重启需要重新设置。
+> - 此接口设置的域名不会持久化，应用重启需要重新设置。
 >
-> 广告过滤特性会使用后缀匹配的方式判断domainSuffix和当前站点的url是否能匹配，例如，当前Web组件打开的网站是https://www.example.com，设置的DisallowedList中有'example.com'或者'www.example.com'，后缀匹配成功，此网站将禁用广告过滤，访问'https://m.example.com'也将禁用广告过滤。
+> - 广告过滤特性会使用后缀匹配的方式判断domainSuffix和当前站点的url是否能匹配，例如，当前Web组件打开的网站是https://www.example.com，设置的DisallowedList中有'example.com'或者'www.example.com'，后缀匹配成功，此网站将禁用广告过滤，访问'https://m.example.com'也将禁用广告过滤。
+>
+> - 从API version 18开始，在不支持广告过滤功能的设备上调用该API会抛出801异常。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -119,10 +119,6 @@ static addAdsBlockDisallowedList(domainSuffixes: Array\<string\>): void
 | domainSuffixes | Array\<string\> | 是   | 一组域名列表，例如['example.com', 'abcd.efg.com'] |
 
 **错误码：**
-
-> **说明：**
->
-> 从API version 18开始，在不支持广告过滤功能的设备上调用该API会抛出801异常。
 
 以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
 
@@ -190,7 +186,9 @@ static removeAdsBlockDisallowedList(domainSuffixes: Array\<string\>): void
 
 > **说明：**
 >
-> AdsBlockManager的DisallowedList不会持久化，应用重启需要重新设置。删除不存在的条目不会触发异常。
+> - AdsBlockManager的DisallowedList不会持久化，应用重启需要重新设置。删除不存在的条目不会触发异常。
+>
+> - 从API version 18开始，在不支持广告过滤功能的设备上调用该API会抛出801异常。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -201,10 +199,6 @@ static removeAdsBlockDisallowedList(domainSuffixes: Array\<string\>): void
 | domainSuffixes | Array\<string\> | 是   | 一组域名列表，例如['example.com', 'abcd.efg.com'] |
 
 **错误码：**
-
-> **说明：**
->
-> 从API version 18开始，在不支持广告过滤功能的设备上调用该API会抛出801异常。
 
 以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
 
@@ -270,13 +264,15 @@ static clearAdsBlockDisallowedList(): void
 
 清空AdsBlockManager的DisallowedList。
 
+> **说明：**
+>
+> - AdsBlockManager的DisallowedList不会持久化，应用重启需要重新设置。
+>
+> - 从API version 18开始，在不支持广告过滤功能的设备上调用该API会抛出801异常。
+
 **系统能力：** SystemCapability.Web.Webview.Core
 
 **错误码：**
-
-> **说明：**
->
-> 从API version 18开始，在不支持广告过滤功能的设备上调用该API会抛出801异常。
 
 以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
 
@@ -339,9 +335,11 @@ static addAdsBlockAllowedList(domainSuffixes: Array\<string\>): void
 
 > **说明：**
 >
-> 此接口设置的域名不会持久化，应用重启需要重新设置。
+> - 此接口设置的域名不会持久化，应用重启需要重新设置。
 >
-> AllowedList的优先级比DisallowedList高，例如，DisallowedList中配置了['example.com']，禁用了所有example.com域名下的网页，此时如果需要开启'news.example.com'下的广告过滤，可以使用addAdsBlockAllowedList(['news.example.com'])。
+> - AllowedList的优先级比DisallowedList高，例如，DisallowedList中配置了['example.com']，禁用了所有example.com域名下的网页，此时如果需要开启'news.example.com'下的广告过滤，可以使用addAdsBlockAllowedList(['news.example.com'])。
+>
+> - 从API version 18开始，在不支持广告过滤功能的设备上调用该API会抛出801异常。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -352,10 +350,6 @@ static addAdsBlockAllowedList(domainSuffixes: Array\<string\>): void
 | domainSuffixes | Array\<string\> | 是   | 一组域名列表，例如['example.com', 'abcd.efg.com'] |
 
 **错误码：**
-
-> **说明：**
->
-> 从API version 18开始，在不支持广告过滤功能的设备上调用该API会抛出801异常。
 
 以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
 
@@ -399,6 +393,7 @@ struct WebComponent {
 
           Button({type: ButtonType.Capsule}) { Text("addAdsBlockAllowedList") }
           .onClick(() => {
+            // 演示AllowedList优先级：先禁用example.com所有子域名，再重新启用news.example.com
             let arrDisallowDomainSuffixes = new Array<string>();
             arrDisallowDomainSuffixes.push('example.com');
             webview.AdsBlockManager.addAdsBlockDisallowedList(arrDisallowDomainSuffixes);
@@ -426,7 +421,9 @@ static removeAdsBlockAllowedList(domainSuffixes: Array\<string\>): void
 
 > **说明：**
 >
-> AdsBlockManager的AllowedList不会持久化，应用重启需要重新设置。删除不存在的条目不会触发异常。
+> - AdsBlockManager的AllowedList不会持久化，应用重启需要重新设置。删除不存在的条目不会触发异常。
+>
+> - 从API version 18开始，在不支持广告过滤功能的设备上调用该API会抛出801异常。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -437,10 +434,6 @@ static removeAdsBlockAllowedList(domainSuffixes: Array\<string\>): void
 | domainSuffixes | Array\<string\> | 是   | 一组域名列表，例如['example.com', 'abcd.efg.com'] |
 
 **错误码：**
-
-> **说明：**
->
-> 从API version 18开始，在不支持广告过滤功能的设备上调用该API会抛出801异常。
 
 以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
 
@@ -506,13 +499,15 @@ static clearAdsBlockAllowedList(): void
 
 清空AdsBlockManager的AllowedList。
 
+> **说明：**
+>
+> - AdsBlockManager的AllowedList不会持久化，应用重启需要重新设置。
+>
+> - 从API version 18开始，在不支持广告过滤功能的设备上调用该API会抛出801异常。
+
 **系统能力：** SystemCapability.Web.Webview.Core
 
 **错误码：**
-
-> **说明：**
->
-> 从API version 18开始，在不支持广告过滤功能的设备上调用该API会抛出801异常。
 
 以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
 

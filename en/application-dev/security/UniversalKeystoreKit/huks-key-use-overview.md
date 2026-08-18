@@ -6,6 +6,7 @@
 <!--Designer: @HighLowWorld-->
 <!--Tester: @wxy1234564846-->
 <!--Adviser: @zengyawen-->
+<!-- md-trans-meta sourceCommit=3780eaa820092ee975c32f64eb288f44d3471751 translatedAt=2026-08-13T08:24:48.865Z pushedAt=2026-08-13T10:20:24.718Z -->
 
 The key generated or imported can be used to perform the following operations to ensure data confidentiality and integrity:
 
@@ -14,6 +15,8 @@ The key generated or imported can be used to perform the following operations to
 - [Signing and signature verification](huks-signing-signature-verification-overview.md)
 
 - [Key agreement](huks-key-agreement-overview.md)
+
+- [Key encapsulation](huks-kem-overview.md)
 
 - [Key derivation](huks-key-derivation-overview.md)
 
@@ -27,7 +30,7 @@ HUKS operates data based on a key session. The general process is as follows:
 
 1. (Mandatory) Initialize a key session using [initSession](../../reference/apis-universal-keystore-kit/js-apis-huks.md#huksinitsession9).
 
-   You need to pass in the key alias and key operation parameters. A session handle will be returned after the initialization. The key operation parameters must contain the parameters required by the cipher algorithm, including the cipher algorithm, key size, key purpose, working mode, padding mode, hash mode, IV, NONCE, and AAD.
+You need to pass in the key alias and key operation parameters. A session handle will be returned after the initialization. The key operation parameters must contain the parameters required by the corresponding cryptographic algorithm, including the cryptographic algorithm, key size, key purpose, working mode, padding mode, digest mode, IV, NONCE, and AAD.
 
 2. (Optional) Process data by segment using [updateSession](../../reference/apis-universal-keystore-kit/js-apis-huks.md#huksupdatesession9).
 
@@ -35,7 +38,7 @@ HUKS operates data based on a key session. The general process is as follows:
 
 3. (Mandatory) Finish the key session using [finishSession](../../reference/apis-universal-keystore-kit/js-apis-huks.md#huksfinishsession9).
 
-   If the data is processes by segment, [huks.finishSession()] processes the last data segment and finishes the key session.
+   Process the last data segment and finish the key session.
 
 You can use [abortSession](../../reference/apis-universal-keystore-kit/js-apis-huks.md#huksabortsession9) to abort the session if an error occurs in any of the preceding steps or the current key operation data is not required.
 

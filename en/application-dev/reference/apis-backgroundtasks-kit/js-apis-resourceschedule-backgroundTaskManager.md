@@ -6,13 +6,13 @@
 <!--Designer: @zhouben25-->
 <!--Tester: @leetestnady-->
 <!--Adviser: @HelloCrease-->
+<!-- md-trans-meta sourceCommit=024caec7fad677e2dd0da703ca632c95f71d3579 translatedAt=2026-08-11T01:59:07.476Z pushedAt=2026-08-11T06:14:20.715Z -->
 
 The **backgroundTaskManager** module provides APIs to request background tasks. You can use the APIs to request transient tasks, continuous tasks, or efficiency resources to prevent the application process from being terminated or suspended when your application is switched to the background. For details, see [Continuous Task](../../task-management/continuous-task.md) and [Transient Task](../../task-management/transient-task.md).
 
 >  **NOTE**
 >
 > The initial APIs of this module are supported since API version 9. Newly added APIs will be marked with a superscript to indicate their earliest API version.
-
 
 ## Modules to Import
 
@@ -24,7 +24,7 @@ import { backgroundTaskManager } from '@kit.BackgroundTasksKit';
 
 requestSuspendDelay(reason: string, callback: Callback&lt;void&gt;): DelaySuspendInfo
 
-Requests a transient task.
+Requests a transient task. This API is applicable when an application is about to be moved to the background and needs to delay its suspension for a short period of time to complete key operations such as saving data or upload progress.
 
 >  **NOTE**
 >
@@ -49,7 +49,7 @@ Requests a transient task.
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [backgroundTaskManager Error Codes](errorcode-backgroundTaskMgr.md).
 
-| Error Code  | Error Message|
+| ID  | Error Message|
 | --------- | ------- |
 | 401    | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types. |
 | 9800001 | Memory operation failed. |
@@ -65,6 +65,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 import { BusinessError } from '@kit.BasicServicesKit';
 import { backgroundTaskManager } from '@kit.BackgroundTasksKit';
 
+// Reason for requesting the transient task
 let myReason = 'test requestSuspendDelay';
 try {
   let delayInfo = backgroundTaskManager.requestSuspendDelay(myReason, () => {
@@ -80,7 +81,6 @@ try {
   console.error(`requestSuspendDelay failed. code is ${(error as BusinessError).code} message is ${(error as BusinessError).message}`);
 }
 ```
-
 
 ## backgroundTaskManager.getRemainingDelayTime
 
@@ -101,7 +101,7 @@ Obtains the remaining time of a transient task. This API uses an asynchronous ca
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [backgroundTaskManager Error Codes](errorcode-backgroundTaskMgr.md).
 
-| Error Code  | Error Message|
+| ID  | Error Message|
 | --------- | ------- |
 | 401    | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types; 3. Parameter verification failed. |
 | 9800001 | Memory operation failed. |
@@ -111,13 +111,13 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | 9900001 | Caller information verification failed for a transient task. |
 | 9900002 | Transient task verification failed. |
 
-
 **Example**
 
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 import { backgroundTaskManager } from '@kit.BackgroundTasksKit';
 
+// Request ID of the transient task, which is used to query the remaining time.
 let id = 1;
 backgroundTaskManager.getRemainingDelayTime(id, (error: BusinessError, res: number) => {
   if(error) {
@@ -127,7 +127,6 @@ backgroundTaskManager.getRemainingDelayTime(id, (error: BusinessError, res: numb
   }
 })
 ```
-
 
 ## backgroundTaskManager.getRemainingDelayTime
 
@@ -153,7 +152,7 @@ Obtains the remaining time of a transient task. This API uses a promise to retur
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [backgroundTaskManager Error Codes](errorcode-backgroundTaskMgr.md).
 
-| Error Code  | Error Message|
+| ID  | Error Message|
 | --------- | ------- |
 | 401    | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types; 3. Parameter verification failed. |
 | 9800001 | Memory operation failed. |
@@ -177,12 +176,11 @@ backgroundTaskManager.getRemainingDelayTime(id).then((res: number) => {
 })
 ```
 
-
 ## backgroundTaskManager.cancelSuspendDelay
 
 cancelSuspendDelay(requestId: number): void
 
-Cancels a transient task.
+Cancels a transient task. This API is applicable when the application task is complete and background resources need to be released in advance.
 
 **System capability**: SystemCapability.ResourceSchedule.BackgroundTaskManager.TransientTask
 
@@ -196,7 +194,7 @@ Cancels a transient task.
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [backgroundTaskManager Error Codes](errorcode-backgroundTaskMgr.md).
 
-| Error Code  | Error Message|
+| ID  | Error Message|
 | --------- | ------- |
 | 401    | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types; 3. Parameter verification failed. |
 | 9800001 | Memory operation failed. |
@@ -238,7 +236,7 @@ Obtains all transient task information, including the remaining quota of the cur
 
 For details about the error codes, see [backgroundTaskManager Error Codes](errorcode-backgroundTaskMgr.md).
 
-| Error Code  | Error Message|
+| ID  | Error Message|
 | --------- | ------- |
 | 9900001 | Caller information verification failed for a transient task. |
 | 9900003 | Failed to write data into parcel. Possible reasons: 1. Invalid parameters; 2. Failed to apply for memory. |
@@ -286,7 +284,7 @@ Requests a continuous task of a specific type. This API uses an asynchronous cal
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [backgroundTaskManager Error Codes](errorcode-backgroundTaskMgr.md).
 
-| Error Code | Error Message            |
+| ID | Error Message            |
 | ---- | --------------------- |
 | 201 | Permission denied. |
 | 202 | Not System App. |
@@ -382,7 +380,7 @@ Requests a continuous task of a specific type. This API uses a promise to return
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [backgroundTaskManager Error Codes](errorcode-backgroundTaskMgr.md).
 
-| Error Code | Error Message            |
+| ID | Error Message            |
 | ---- | --------------------- |
 | 201 | Permission denied. |
 | 202 | Not System App. |
@@ -474,7 +472,7 @@ Requests continuous tasks of multiple types. This API uses a promise to return t
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [backgroundTaskManager Error Codes](errorcode-backgroundTaskMgr.md).
 
-| Error Code | Error Message            |
+| ID | Error Message            |
 | ---- | --------------------- |
 | 201 | Permission denied. |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types; 3. Parameter verification failed. |
@@ -608,7 +606,7 @@ Requests a continuous task. This API allows a UIAbility (ServiceAbility in the F
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [backgroundTaskManager Error Codes](errorcode-backgroundTaskMgr.md).
 
-| Error Code | Error Message            |
+| ID | Error Message            |
 | ---- | --------------------- |
 | 201 | Permission denied. |
 | 9800001 | Memory operation failed. |
@@ -655,6 +653,7 @@ export default class EntryAbility extends UIAbility {
           // Request a continuous task whose main type is MODE_LOCATION.
           let modeList: Array<number> = [backgroundTaskManager.BackgroundTaskMode.MODE_LOCATION];
           let subModeList: Array<number> = [backgroundTaskManager.BackgroundTaskSubmode.SUBMODE_NORMAL_NOTIFICATION];
+          // Create a continuous task request object.
           let continuousTaskRequest = new backgroundTaskManager.ContinuousTaskRequest();
           continuousTaskRequest.backgroundTaskModes =  modeList;
           continuousTaskRequest.backgroundTaskSubmodes = subModeList;
@@ -683,7 +682,7 @@ export default class EntryAbility extends UIAbility {
 
 stopBackgroundRunning(context: Context, callback: AsyncCallback&lt;void&gt;): void
 
-Cancels all continuous tasks in the current UIAbility (ServiceAbility in the FA model). This API uses an asynchronous callback to return the result. You can also call the [stopBackgroundRunning](#backgroundtaskmanagerstopbackgroundrunning21) API to cancel a continuous task with the specified ID.
+Cancels all continuous tasks in the current UIAbility (ServiceAbility in the FA model). This API uses an asynchronous callback to return the result. You can also call the [stopBackgroundRunning](#backgroundtaskmanagerstopbackgroundrunning21) API to cancel a continuous task with the specified ID. This API is applicable when the application functions are complete and the application is about to exit.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -700,8 +699,9 @@ Cancels all continuous tasks in the current UIAbility (ServiceAbility in the FA 
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [backgroundTaskManager Error Codes](errorcode-backgroundTaskMgr.md).
 
-| Error Code | Error Message            |
+| ID | Error Message            |
 | ---- | --------------------- |
+| 201 | Permission denied.<br>Applicable versions: 9-18 |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. |
 | 9800001 | Memory operation failed. |
 | 9800002 | Failed to write data into parcel. Possible reasons: 1. Invalid parameters; 2. Failed to apply for memory. |
@@ -741,7 +741,7 @@ export default class EntryAbility extends UIAbility {
 
 stopBackgroundRunning(context: Context): Promise&lt;void&gt;
 
-Cancels all continuous tasks in the current UIAbility (ServiceAbility in the FA model). This API uses a promise to return the result. You can also call the [stopBackgroundRunning](#backgroundtaskmanagerstopbackgroundrunning21) API to cancel a continuous task with the specified ID.
+Cancels all continuous tasks in the current UIAbility (ServiceAbility in the FA model). This API uses a promise to return the result. You can also call the [stopBackgroundRunning](#backgroundtaskmanagerstopbackgroundrunning21) API to cancel a continuous task with the specified ID. This API is applicable when the application functions are complete and the application is about to exit.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -763,8 +763,9 @@ Cancels all continuous tasks in the current UIAbility (ServiceAbility in the FA 
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [backgroundTaskManager Error Codes](errorcode-backgroundTaskMgr.md).
 
-| Error Code | Error Message            |
+| ID | Error Message            |
 | ---- | --------------------- |
+| 201 | Permission denied.<br>Applicable versions: 9-18 |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. |
 | 9800001 | Memory operation failed. |
 | 9800002 | Failed to write data into parcel. Possible reasons: 1. Invalid parameters; 2. Failed to apply for memory. |
@@ -802,6 +803,8 @@ stopBackgroundRunning(context: Context, continuousTaskId: number): Promise&lt;vo
 
 Cancels a continuous task with the specified ID. This API uses a promise to return the result. You can also call the [stopBackgroundRunning](#backgroundtaskmanagerstopbackgroundrunning) API to cancel all continuous tasks in the current UIAbility.
 
+This API is applicable when the application functions are complete and the application is about to exit.
+
 **Atomic service API**: This API can be used in atomic services since API version 26.0.0.
 
 **System capability**: SystemCapability.ResourceSchedule.BackgroundTaskManager.ContinuousTask
@@ -823,7 +826,7 @@ Cancels a continuous task with the specified ID. This API uses a promise to retu
 
 For details about the error codes, see [backgroundTaskManager Error Codes](errorcode-backgroundTaskMgr.md).
 
-| Error Code | Error Message            |
+| ID | Error Message            |
 | ---- | --------------------- |
 | 9800001 | Memory operation failed. |
 | 9800004 | System service operation failed. |
@@ -858,7 +861,9 @@ export default class EntryAbility extends UIAbility {
 
 updateBackgroundRunning(context: Context, bgModes: string[]): Promise&lt;ContinuousTaskNotification&gt;
 
-Updates continuous tasks of multiple types. This API uses a promise to return the result. After a continuous task is successfully updated, there will be a notification message without prompt tone.<br>Before updating a continuous task, you can call [getAllContinuousTasks](#backgroundtaskmanagergetallcontinuoustasks20) to retrieve information about all existing continuous tasks. If there are no continuous tasks, the update will fail.<br>This API can only be used to update continuous tasks that were requested via the following APIs:<br>[startBackgroundRunning(context: Context, bgMode: BackgroundMode, wantAgent: WantAgent, callback: AsyncCallback&lt;void&gt;): void](#backgroundtaskmanagerstartbackgroundrunning)<br>[startBackgroundRunning(context: Context, bgMode: BackgroundMode, wantAgent: WantAgent): Promise&lt;void&gt;](#backgroundtaskmanagerstartbackgroundrunning-1)<br>[startBackgroundRunning(context: Context, bgModes: string[], wantAgent: WantAgent): Promise&lt;ContinuousTaskNotification&gt;](#backgroundtaskmanagerstartbackgroundrunning12)
+Updates a continuous task. This API uses a promise to return the result. After the update is successful, only a notification message is displayed, and no prompt tone is played. This API is applicable to scenarios where continuous tasks need to be adjusted to match new services, such as when an application switches from audio/video playback to recording.
+
+Before updating a continuous task, you can call [getAllContinuousTasks](#backgroundtaskmanagergetallcontinuoustasks20) to retrieve information about all existing continuous tasks. If there are no continuous tasks, the update will fail.<br>This API can only be used to update continuous tasks that were requested via the following APIs:<br>[startBackgroundRunning(context: Context, bgMode: BackgroundMode, wantAgent: WantAgent, callback: AsyncCallback&lt;void&gt;): void](#backgroundtaskmanagerstartbackgroundrunning)<br>[startBackgroundRunning(context: Context, bgMode: BackgroundMode, wantAgent: WantAgent): Promise&lt;void&gt;](#backgroundtaskmanagerstartbackgroundrunning-1)<br>[startBackgroundRunning(context: Context, bgModes: string[], wantAgent: WantAgent): Promise&lt;ContinuousTaskNotification&gt;](#backgroundtaskmanagerstartbackgroundrunning12)
 
 **Required permissions**: ohos.permission.KEEP_BACKGROUND_RUNNING
 
@@ -883,7 +888,7 @@ Updates continuous tasks of multiple types. This API uses a promise to return th
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [backgroundTaskManager Error Codes](errorcode-backgroundTaskMgr.md).
 
-| Error Code | Error Message            |
+| ID | Error Message            |
 | ---- | --------------------- |
 | 201 | Permission denied. |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types; 3. Parameter verification failed. |
@@ -907,8 +912,8 @@ export default class EntryAbility extends UIAbility {
     try {
       // You must call startBackgroundRunning before updateBackgroundRunning. Here it is assumed that you have called startBackgroundRunning.
       let list: Array<string> = ["audioPlayback"];
-      backgroundTaskManager.updateBackgroundRunning(this.context, list).then(() => {
-        console.info("Operation updateBackgroundRunning succeeded");
+      backgroundTaskManager.updateBackgroundRunning(this.context, list).then((res: backgroundTaskManager.ContinuousTaskNotification) => {
+        console.info('Operation updateBackgroundRunning succeeded. Data: ' + JSON.stringify(res));
       }).catch((error: BusinessError) => {
         console.error(`Operation updateBackgroundRunning failed. code is ${error.code} message is ${error.message}`);
       });
@@ -923,11 +928,14 @@ export default class EntryAbility extends UIAbility {
 
 updateBackgroundRunning(context: Context, request: ContinuousTaskRequest): Promise&lt;ContinuousTaskNotification&gt;
 
-Updates a continuous task. This API uses a promise to return the result. After a continuous task is successfully updated, there will be a notification message without prompt tone.
+Updates a continuous task. This API uses a promise to return the result. After the update is successful, only a notification message is displayed, and no prompt tone is played. This API is applicable to scenarios where continuous tasks need to be adjusted to match new services, such as when an application switches from audio/video playback to recording.
 
 The following restrictions apply when updating a continuous task:
+
 1. This API can only update continuous tasks requested via [startBackgroundRunning(context: Context, request: ContinuousTaskRequest): Promise&lt;ContinuousTaskNotification&gt;](#backgroundtaskmanagerstartbackgroundrunning21).
+
 2. If the main type and subtype of the background tasks are the same, only the wants information (such as **abilityName**) in **ContinuousTaskRequest.wantAgent** can be updated. If the types are different, the update fails.
+
 3. If the continuous task to be updated or the specified update type contains the data transmission type, a failure message is returned.
 
 **Required permissions**: ohos.permission.KEEP_BACKGROUND_RUNNING
@@ -953,7 +961,7 @@ The following restrictions apply when updating a continuous task:
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [backgroundTaskManager Error Codes](errorcode-backgroundTaskMgr.md).
 
-| Error Code | Error Message            |
+| ID | Error Message            |
 | ---- | --------------------- |
 | 201 | Permission denied. |
 | 9800001 | Memory operation failed. |
@@ -999,6 +1007,7 @@ export default class EntryAbility extends UIAbility {
           // You must call startBackgroundRunning before updateBackgroundRunning. Apply for a continuous task in advance.
           let modeList: Array<number> = [backgroundTaskManager.BackgroundTaskMode.MODE_LOCATION];
           let subModeList: Array<number> = [backgroundTaskManager.BackgroundTaskSubmode.SUBMODE_NORMAL_NOTIFICATION];
+          // Create a continuous task request object.
           let continuousTaskRequest = new backgroundTaskManager.ContinuousTaskRequest();
           continuousTaskRequest.backgroundTaskModes = modeList;
           continuousTaskRequest.backgroundTaskSubmodes = subModeList;
@@ -1006,7 +1015,7 @@ export default class EntryAbility extends UIAbility {
           continuousTaskRequest.combinedTaskNotification = false;
           continuousTaskRequest.continuousTaskId = this.continuousTaskId; // For the update API, the continuous task ID must be passed and the ID must exist. Otherwise, the update fails.
           backgroundTaskManager.updateBackgroundRunning(this.context, continuousTaskRequest).then((res: backgroundTaskManager.ContinuousTaskNotification) => {
-            console.info("Operation updateBackgroundRunning succeeded");
+            console.info('Operation updateBackgroundRunning succeeded. Data: ' + JSON.stringify(res));
             this.notificationId = res.notificationId;
           }).catch((error: BusinessError) => {
             console.error(`Operation updateBackgroundRunning failed. code is ${error.code} message is ${error.message}`);
@@ -1048,7 +1057,7 @@ Obtains all continuous task information, including the task ID and type. This AP
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [backgroundTaskManager Error Codes](errorcode-backgroundTaskMgr.md).
 
-| Error Code  | Error Message|
+| ID  | Error Message|
 | --------- | ------- |
 | 201 | Permission denied. |
 | 9800002 | Failed to write data into parcel. Possible reasons: 1. Invalid parameters; 2. Failed to apply for memory. |
@@ -1105,7 +1114,7 @@ Obtains all continuous task information, including the task ID and type. It supp
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [backgroundTaskManager Error Codes](errorcode-backgroundTaskMgr.md).
 
-| Error Code  | Error Message|
+| ID  | Error Message|
 | --------- | ------- |
 | 201 | Permission denied. |
 | 9800002 | Failed to write data into parcel. Possible reasons: 1. Invalid parameters; 2. Failed to apply for memory. |
@@ -1150,13 +1159,13 @@ Subscribes to continuous task cancellation events. This API uses an asynchronous
 | Name      | Type                                | Mandatory  | Description                                      |
 | --------- | ---------------------------------- | ---- | ---------------------------------------- |
 | type   | string                            | Yes   | Event type. The value is fixed at **'continuousTaskCancel'**, indicating that a continuous task is canceled.|
-| callback   | Callback\<[ContinuousTaskCancelInfo](#continuoustaskcancelinfo15)>       | Yes   | Callback used to return information such as the reason for canceling a continuous task.|
+| callback   | Callback\<[ContinuousTaskCancelInfo](#continuoustaskcancelinfo15)>       | Yes    | Callback used to return information such as the reason for canceling a continuous task. This callback is triggered when a continuous task is canceled. |
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
-| Error Code | Error Message            |
+| ID | Error Message            |
 | ---- | --------------------- |
 | 201 | Permission denied. |
 | 401 | Parameter error. Possible cause: 1. Callback parameter error; 2. Register a exist callback type; 3. Parameter verification failed. |
@@ -1183,6 +1192,7 @@ export default class EntryAbility extends UIAbility {
   }
 };
 ```
+
 ## backgroundTaskManager.off('continuousTaskCancel')<sup>15+</sup>
 
 off(type: 'continuousTaskCancel', callback?: Callback&lt;ContinuousTaskCancelInfo&gt;): void
@@ -1197,14 +1207,14 @@ Unsubscribes from continuous task cancellation events. This API uses an asynchro
 
 | Name      | Type                                | Mandatory  | Description                                      |
 | --------- | ---------------------------------- | ---- | ---------------------------------------- |
-| type   | string                            | Yes   | Cancels a continuous task. The value is fixed at **'continuousTaskCancel'**.|
+| type   | string                            | Yes    | Event type. The value is fixed at **'continuousTaskCancel'**, indicating that a continuous task is canceled. |
 | callback   | Callback\<[ContinuousTaskCancelInfo](#continuoustaskcancelinfo15)>       | No   | Callback for which listening is cancelled. If this parameter is left unspecified, all registered callbacks are cancelled.|
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
-| Error Code | Error Message            |
+| ID | Error Message            |
 | ---- | --------------------- |
 | 201 | Permission denied. |
 | 401 | Parameter error. Possible cause: 1. Callback parameter error; 2. Unregister type has not register; 3. Parameter verification failed. |
@@ -1231,6 +1241,7 @@ export default class EntryAbility extends UIAbility {
   }
 };
 ```
+
 ## backgroundTaskManager.on('continuousTaskSuspend')<sup>20+</sup>
 
 on(type: 'continuousTaskSuspend', callback: Callback&lt;ContinuousTaskSuspendInfo&gt;): void
@@ -1246,19 +1257,18 @@ Registers a listener for continuous task suspension. This API uses an asynchrono
 | Name      | Type                                | Mandatory  | Description                                      |
 | --------- | ---------------------------------- | ---- | ---------------------------------------- |
 | type   | string                            | Yes   | Event type. The value is fixed at **'continuousTaskSuspend'**, indicating that the continuous task is suspended.|
-| callback   | Callback\<[ContinuousTaskSuspendInfo](#continuoustasksuspendinfo20)>       | Yes   | Callback used to return information such as the reason for suspending a continuous task.|
+| callback   | Callback\<[ContinuousTaskSuspendInfo](#continuoustasksuspendinfo20)>       | Yes    | Callback used to return information such as the reason for suspending a continuous task. This callback is triggered when a continuous task is suspended. |
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [backgroundTaskManager Error Codes](errorcode-backgroundTaskMgr.md).
 
-| Error Code | Error Message            |
+| ID | Error Message            |
 | ---- | --------------------- |
 | 201 | Permission denied. |
 | 9800005 | Continuous task verification failed. |
 
 **Example**
-
 
 ```js
 import { backgroundTaskManager } from '@kit.BackgroundTasksKit';
@@ -1281,6 +1291,7 @@ export default class EntryAbility extends UIAbility {
   }
 };
 ```
+
 ## backgroundTaskManager.off('continuousTaskSuspend')<sup>20+</sup>
 
 off(type: 'continuousTaskSuspend', callback?: Callback&lt;ContinuousTaskSuspendInfo&gt;): void
@@ -1302,7 +1313,7 @@ Unregisters from the listener for continuous task suspension. This API uses an a
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [backgroundTaskManager Error Codes](errorcode-backgroundTaskMgr.md).
 
-| Error Code | Error Message            |
+| ID | Error Message            |
 | ---- | --------------------- |
 | 201 | Permission denied. |
 | 9800005 | Continuous task verification failed. |
@@ -1330,6 +1341,7 @@ export default class EntryAbility extends UIAbility {
   }
 };
 ```
+
 ## backgroundTaskManager.on('continuousTaskActive')<sup>20+</sup>
 
 on(type: 'continuousTaskActive', callback: Callback&lt;ContinuousTaskActiveInfo&gt;): void
@@ -1345,13 +1357,13 @@ Registers a listener for continuous task activation. This API uses an asynchrono
 | Name      | Type                                | Mandatory  | Description                                      |
 | --------- | ---------------------------------- | ---- | ---------------------------------------- |
 | type   | string                            | Yes   | Event type. The value is fixed at **'continuousTaskActive'**, indicating that the continuous task is activated.|
-| callback   | Callback\<[ContinuousTaskActiveInfo](#continuoustaskactiveinfo20)>       | Yes   | Callback used to return the activation information about a continuous task.|
+| callback   | Callback\<[ContinuousTaskActiveInfo](#continuoustaskactiveinfo20)>       | Yes    | Callback used to return the activation information about a continuous task. This callback is triggered when a suspended continuous task is activated. |
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [backgroundTaskManager Error Codes](errorcode-backgroundTaskMgr.md).
 
-| Error Code | Error Message            |
+| ID | Error Message            |
 | ---- | --------------------- |
 | 201 | Permission denied. |
 | 9800005 | Continuous task verification failed. |
@@ -1377,6 +1389,7 @@ export default class EntryAbility extends UIAbility {
   }
 };
 ```
+
 ## backgroundTaskManager.off('continuousTaskActive')<sup>20+</sup>
 
 off(type: 'continuousTaskActive', callback?: Callback&lt;ContinuousTaskActiveInfo&gt;): void
@@ -1398,7 +1411,7 @@ Unregisters from the listener for continuous task activation. This API uses an a
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [backgroundTaskManager Error Codes](errorcode-backgroundTaskMgr.md).
 
-| Error Code | Error Message            |
+| ID | Error Message            |
 | ---- | --------------------- |
 | 201 | Permission denied. |
 | 9800005 | Continuous task verification failed. |
@@ -1454,6 +1467,7 @@ Defines the type of a continuous task.
 **System capability**: SystemCapability.ResourceSchedule.BackgroundTaskManager.ContinuousTask
 
 <!--Table: 30%; 10%; 60%-->
+
 | Name                    | Value | Description                   |
 | ----------------------- | ---- | --------------------- |
 | DATA_TRANSFER           | 1    | Data transfer.<br>Use scenario: upload and download in non-hosting mode, for example, uploading or downloading data in the background of a browser.<br>Note: During data transfer, the application needs to update the progress. If the progress is not updated for more than 10 minutes, the continuous task of the **DATA_TRANSFER** type will be canceled.<br>The notification type of the progress update must be live view. For details, see the example in [startBackgroundRunning()](#backgroundtaskmanagerstartbackgroundrunning12).      |
@@ -1497,6 +1511,7 @@ Describes the reason for canceling a continuous task.
 **System capability**: SystemCapability.ResourceSchedule.BackgroundTaskManager.ContinuousTask
 
 <!--Table: 40%; 10%; 50%-->
+
 | Name                    | Value | Description                   |
 | ----------------------- | ---- | --------------------- |
 | USER_CANCEL             | 1    | The task is canceled by the user.                 |
@@ -1525,8 +1540,7 @@ Describes the detailed reason for canceling a continuous task.
 | ----------------------- | ---- | --------------------- |
 | USER_CANCEL_REMOVE_NOTIFICATION           | 3    | User removal notification.|
 | SYSTEM_CANCEL_DATA_TRANSFER_LOW_SPEED     | 4    | A continuous task of the **DATA_TRANSFER** type is requested, but the data transmission rate is low.|
-| SYSTEM_CANCEL_AUDIO_PLAYBACK_NOT_USE_AVSESSION   | 5    | A continuous task of the **AUDIO_PLAYBACK** type is requested, but [AVSession](../../media/avsession/avsession-overview.md) is not accessed.  |
-| SYSTEM_CANCEL_AUDIO_PLAYBACK_NOT_RUNNING  | 6    | A continuous task of the **AUDIO_PLAYBACK** type is requested, but the audio and video are not played.  |
+| SYSTEM_CANCEL_AUDIO_PLAYBACK_NOT_RUNNING  | 6    | A continuous task of the **AUDIO_PLAYBACK** type is requested, but the audio and video are not played. <br/>Note: You need to register [on('continuousTaskSuspend')](#backgroundtaskmanageroncontinuoustasksuspend20) first. When the continuous detection fails, the system cancels the corresponding continuous task and returns the cancellation reason.   |
 | SYSTEM_CANCEL_AUDIO_RECORDING_NOT_RUNNING | 7    | A continuous task of the **AUDIO_RECORDING** type is requested, but audio recording is not in progress.      |
 | SYSTEM_CANCEL_NOT_USE_LOCATION            | 8    | A continuous task of the **LOCATION** type is requested, but the location service is not in use.     |
 | SYSTEM_CANCEL_NOT_USE_BLUETOOTH           | 9    | A continuous task of the **BLUETOOTH_INTERACTION** type is requested, but Bluetooth is not in use.|
@@ -1626,6 +1640,7 @@ Describes the continuous task information.
 **System capability**: SystemCapability.ResourceSchedule.BackgroundTaskManager.ContinuousTask
 
 <!--Table: 25%; 15%; 8%; 8%; 44%-->
+
 | Name         | Type      | Read-Only  | Optional  | Description                   |
 |-------------|----------| ---- | ---- |-----------------------|
 | abilityName | string   | No   | No   | UIAbility name.         |
@@ -1646,12 +1661,19 @@ Describes the continuous task information.
 ## ContinuousTaskRequest<sup>21+</sup>
 
 Specifies details of the continuous task being requested or updated. It is typically used as input for the [startBackgroundRunning()](#backgroundtaskmanagerstartbackgroundrunning21) and [updateBackgroundRunning()](#backgroundtaskmanagerupdatebackgroundrunning21) APIs. Note that:
+
 1. When requesting a continuous task via [startBackgroundRunning()](#backgroundtaskmanagerstartbackgroundrunning21), notifications will be combined if the main type and subtype of the continuous task to be requested are the same as those of the existing continuous task in the current application, and the **combinedTaskNotification** value is **true** for both tasks. Otherwise, notifications will not be combined.
+
 2. Notifications will not be combined if the continuous task has no notification. For details about whether notifications are sent for the continuous task, see [BackgroundTaskMode](#backgroundtaskmode21).
+
 3. Notifications cannot be combined if the continuous task includes data transmission.
+
 4. Notifications that have been combined cannot be canceled. If notifications have been combined, they cannot be updated to uncombined.
+
 5. After notifications are combined, tapping the notification will redirect to the UIAbility corresponding to the first requested continuous task. If the update API is called, the redirection will target the UIAbility corresponding to the last updated continuous task.
+
 6. When the [updateBackgroundRunning()](#backgroundtaskmanagerupdatebackgroundrunning21) API is called to update a continuous task, the input **continuousTaskId** must exist. Otherwise, the update fails.
+
 7. Continuous tasks of the [MODE_SPECIAL_SCENARIO_PROCESSING](#backgroundtaskmode21) type are supported since API version 22. This task type must be used independently and notifications cannot be combined. Specifically, when you request or update a continuous task, it must be of the **MODE_SPECIAL_SCENARIO_PROCESSING** type. Otherwise, an error is returned.
 
 ### Properties
@@ -1659,6 +1681,7 @@ Specifies details of the continuous task being requested or updated. It is typic
 **System capability**: SystemCapability.ResourceSchedule.BackgroundTaskManager.ContinuousTask
 
 <!--Table: 25%; 25%; 8%; 8%; 44%-->
+
 | Name            | Type    | Read-Only  | Optional  | Description                                      |
 | --------------- | ------ | ---- | ---- | ---------------------------------------- |
 | backgroundTaskModes       | [BackgroundTaskMode](#backgroundtaskmode21)[] | No   | No   | Main type of a continuous task.<br>**Atomic service API**: This API can be used in atomic services since API version 26.0.0.<br>Note: The main type must match the subtype.    |
@@ -1689,12 +1712,13 @@ Checks whether **BackgroundTaskMode** specified in [ContinuousTaskRequest](#cont
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [backgroundTaskManager Error Codes](errorcode-backgroundTaskMgr.md).
 
-| Error Code | Error Message            |
+| ID | Error Message            |
 | ---- | --------------------- |
 | 201 | Permission denied. |
 | 9800005 | Continuous task verification failed. |
 
 **Example**
+
 ```js
 import { backgroundTaskManager } from '@kit.BackgroundTasksKit';
 import { AbilityConstant, UIAbility, Want } from '@kit.AbilityKit';
@@ -1703,6 +1727,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 export default class EntryAbility extends UIAbility {
   onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
     let isModeSupported: boolean = false; 
+    // Create a continuous task request object.
     let continuousTaskRequest = new backgroundTaskManager.ContinuousTaskRequest();
     let modeList: Array<number> = [backgroundTaskManager.BackgroundTaskMode.MODE_TASK_KEEPING];
     continuousTaskRequest.backgroundTaskModes = modeList;
@@ -1741,13 +1766,14 @@ Requests user authorization to run tasks continuously in the background. This AP
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [backgroundTaskManager Error Codes](errorcode-backgroundTaskMgr.md).
 
-| Error Code | Error Message            |
+| ID | Error Message            |
 | ---- | --------------------- |
 | 201 | Permission denied. |
 | 9800004 | System service operation failed. |
 | 9800005 | Continuous task verification failed. |
 
 **Example**
+
 ```js
 import { backgroundTaskManager } from '@kit.BackgroundTasksKit';
 import { AbilityConstant, UIAbility, Want } from '@kit.AbilityKit';
@@ -1759,6 +1785,7 @@ function callbackAuth(authResult: backgroundTaskManager.UserAuthResult) {
 
 export default class EntryAbility extends UIAbility {
   onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
+    // Create a continuous task request object.
     let continuousTaskRequest = new backgroundTaskManager.ContinuousTaskRequest();
     let modeList: Array<number> = [backgroundTaskManager.BackgroundTaskMode.MODE_SPECIAL_SCENARIO_PROCESSING];
     continuousTaskRequest.backgroundTaskModes = modeList;
@@ -1801,13 +1828,14 @@ Requests user authorization to run tasks continuously in the background. This AP
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [backgroundTaskManager Error Codes](errorcode-backgroundTaskMgr.md).
 
-| Error Code | Error Message            |
+| ID | Error Message            |
 | ---- | --------------------- |
 | 201 | Permission denied. |
 | 9800004 | System service operation failed. |
 | 9800005 | Continuous task verification failed. |
 
 **Example**
+
 ```js
 import { backgroundTaskManager } from '@kit.BackgroundTasksKit';
 import { UIAbility } from '@kit.AbilityKit';
@@ -1825,6 +1853,7 @@ export default class EntryAbility extends UIAbility {
         return;
       }
       try {
+        // Create a continuous task request object.
         let continuousTaskRequest = new backgroundTaskManager.ContinuousTaskRequest();
         let modeList: Array<number> = [backgroundTaskManager.BackgroundTaskMode.MODE_SPECIAL_SCENARIO_PROCESSING];
         continuousTaskRequest.backgroundTaskModes = modeList;
@@ -1870,13 +1899,14 @@ Checks whether the user has authorized tasks to run continuously in the backgrou
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [backgroundTaskManager Error Codes](errorcode-backgroundTaskMgr.md).
 
-| Error Code | Error Message            |
+| ID | Error Message            |
 | ---- | --------------------- |
 | 201 | Permission denied. |
 | 9800004 | System service operation failed. |
 | 9800005 | Continuous task verification failed. |
 
 **Example**
+
 ```js
 import { backgroundTaskManager } from '@kit.BackgroundTasksKit';
 import { AbilityConstant, UIAbility, Want } from '@kit.AbilityKit';
@@ -1885,6 +1915,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 export default class EntryAbility extends UIAbility {
   onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
     try {
+      // Create a continuous task request object.
       let continuousTaskRequest = new backgroundTaskManager.ContinuousTaskRequest();
       continuousTaskRequest.checkSpecialScenarioAuth(this.context).then((res: backgroundTaskManager.UserAuthResult) => {
         console.info('Operation checkSpecialScenarioAuth succeeded. data: ' + JSON.stringify(res));
@@ -1930,13 +1961,14 @@ Checks whether the user has authorized tasks to run continuously in the backgrou
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [backgroundTaskManager Error Codes](errorcode-backgroundTaskMgr.md).
 
-| Error Code | Error Message            |
+| ID | Error Message            |
 | ---- | --------------------- |
 | 201 | Permission denied. |
 | 9800004 | System service operation failed. |
 | 9800005 | Continuous task verification failed. |
 
 **Example**
+
 ```js
 import { backgroundTaskManager } from '@kit.BackgroundTasksKit';
 import { AbilityConstant, UIAbility, Want } from '@kit.AbilityKit';
@@ -1945,6 +1977,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 export default class EntryAbility extends UIAbility {
   onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
     try {
+      // Create a continuous task request object.
       let continuousTaskRequest = new backgroundTaskManager.ContinuousTaskRequest();
       continuousTaskRequest.checkSpecialScenarioAuthResult(this.context).then((res: backgroundTaskManager.UserAuthResult) => {
         console.info('Operation checkSpecialScenarioAuthResult succeeded. data: ' + JSON.stringify(res));
@@ -1965,6 +1998,7 @@ Main type of a continuous task. It is usually used together with the subtype [Ba
 **System capability**: SystemCapability.ResourceSchedule.BackgroundTaskManager.ContinuousTask
 
 <!--Table: 40%; 10%; 50%-->
+
 | Name                    | Value | Description                   |
 | ------------------------ | ---- | --------------------- |
 | MODE_DATA_TRANSFER              | 1         | Data transfer.<br>Use scenario: upload and download in non-hosting mode, for example, uploading or downloading data in the background of a browser.<br>**NOTE**<br>1. During data transfer, the application needs to update the progress. If the progress is not updated for more than 10 minutes, the continuous task of the **DATA_TRANSFER** type will be canceled.<br>2. The notification type of the progress update must be live view. For details, see the example in [startBackgroundRunning()](#backgroundtaskmanagerstartbackgroundrunning12).                |
@@ -1974,9 +2008,9 @@ Main type of a continuous task. It is usually used together with the subtype [Ba
 | MODE_BLUETOOTH_INTERACTION      | 5         | Bluetooth-related services.<br>Use scenario: An application moves to the background while transferring files via Bluetooth.           |
 | MODE_MULTI_DEVICE_CONNECTION    | 6         | Multi-device connection.<br>Use scenario: distributed service connection and casting.<br>**Atomic service API**: This API can be used in atomic services since API version 26.0.0.          |
 | MODE_VOIP                       | 8         | Audio and video calls.<br>Use scenario: Chat applications (with audio and video services) transition into the background during audio and video calls. <!--Del--><br>Note: No notification is displayed if a system application requests or updates a continuous task.<!--DelEnd-->            |
-| MODE_TASK_KEEPING               | 9         | Computing tasks.<br>Use scenario: antivirus software.<br>**NOTE**: This capability is available only to PCs/2-in-1 devices, or non-PCs/2-in-1 devices that have obtained the ACL permission [ohos.permission.KEEP_BACKGROUND_RUNNING_SYSTEM](../../../application-dev/security/AccessToken/restricted-permissions.md#ohospermissionkeep_background_running_system).|
+| MODE_TASK_KEEPING               | 9         | Computing tasks.<br>Use scenario: antivirus software.<br>Note: This capability is available only to PCs/2-in-1 devices, or non-PCs/2-in-1 devices that have obtained the ACL permission [ohos.permission.KEEP_BACKGROUND_RUNNING_SYSTEM](../../../application-dev/security/AccessToken/restricted-permissions.md#ohospermissionkeep_background_running_system).|
 | MODE_AV_PLAYBACK_AND_RECORD<sup>22+</sup>    | 12         | Multimedia services.<br>Use scenarios: audio/video playback, recording, and audio/video calls. The scenario must match that of the subtype. You can select this task type or the corresponding main type for preceding scenarios. For example, you can request a continuous task of the **MODE_AUDIO_PLAYBACK** or **MODE_AV_PLAYBACK_AND_RECORD** type for audio/video playback.<br>**Atomic service API**: This API can be used in atomic services since API version 26.0.0.            |
-| MODE_SPECIAL_SCENARIO_PROCESSING<sup>22+</sup> | 13 | Special scenarios (available only for smartphones, tablets, PCs/2-in-1 devices).<br>Use scenarios: An application exports media files in the background or uses a third-party component to cast content in the background. The scenario must match that of the subtype.<br>**NOTE**<br>1. If an application needs to run in the background for a long time, it can request user authorization through the [requestAuthFromUser](#requestauthfromuser22) API and check the authorization result via [checkSpecialScenarioAuth](#checkspecialscenarioauth22).<br>2. Since API version 24, this capability is available only to applications that have obtained the ACL permission [ohos.permission.KEEP_BACKGROUND_RUNNING_SPECIAL_SCENARIO](../../../application-dev/security/AccessToken/restricted-permissions.md#ohospermissionkeep_background_running_special_scenario). For API version 23 and earlier, this capability is available only to applications that have obtained the ACL permission [ohos.permission.KEEP_BACKGROUND_RUNNING_SYSTEM](../../../application-dev/security/AccessToken/restricted-permissions.md#ohospermissionkeep_background_running_system). Applications that have obtained this permission are not affected for API version 24 and later.<br>3. This task type must be used independently and notifications cannot be combined. Specifically, when you request or update a continuous task, it must be of the **MODE_SPECIAL_SCENARIO_PROCESSING** type. Otherwise, an error is returned.|
+| MODE_SPECIAL_SCENARIO_PROCESSING<sup>22+</sup> | 13 | Special scenarios (available only for smartphones, tablets, PCs/2-in-1 devices).<br/>Use scenarios: An application exports media files in the background, uses a third-party component to cast content in the background, or has an indoor workout scenario in the background. The scenario must match that of the subtype.<br/>**NOTE**<br/>1. If an app needs to run in the background for a long time, it can request user authorization through the [requestAuthFromUser](#requestauthfromuser22) API and check the authorization result via [checkSpecialScenarioAuth](#checkspecialscenarioauth22).<br/>2. Since API version 24, this capability is available only to apps that have obtained the ACL permission [ohos.permission.KEEP_BACKGROUND_RUNNING_SPECIAL_SCENARIO](../../../application-dev/security/AccessToken/restricted-permissions.md#ohospermissionkeep_background_running_special_scenario). For API version 23 and earlier, this capability is available only to apps that have obtained the ACL permission [ohos.permission.KEEP_BACKGROUND_RUNNING_SYSTEM](../../../application-dev/security/AccessToken/restricted-permissions.md#ohospermissionkeep_background_running_system). Apps that have obtained this permission are not affected for API version 24 and later.<br/>3. This task type must be used independently and notifications cannot be combined. Specifically, when you request or update a continuous task, it must be of the **MODE_SPECIAL_SCENARIO_PROCESSING** type. Otherwise, an error is returned. |
 | MODE_NEARLINK | 14 | NearLink service.<br>Use scenario: An application transitions into the background during the process of file transfer using NearLink.<br>**Since**: 26.0.0<br>**Model restriction**: This API can be used only in the stage model.|
 
 ## BackgroundTaskSubmode<sup>21+</sup>
@@ -1986,6 +2020,7 @@ Defines the subtype of a continuous task. It is usually used together with the m
 **System capability**: SystemCapability.ResourceSchedule.BackgroundTaskManager.ContinuousTask
 
 <!--Table: 40%; 10%; 50%-->
+
 | Name                    | Value | Description                   |
 | ----------------------- | ---- | --------------------- |
 | SUBMODE_CAR_KEY_NORMAL_NOTIFICATION     | 1    | **CAR_KEY** type. It is of the normal text notification type.      |
@@ -2023,6 +2058,7 @@ Represents the user authorization result.
 **System capability**: SystemCapability.ResourceSchedule.BackgroundTaskManager.ContinuousTask
 
 <!--Table: 30%; 10%; 60%-->
+
 | Name          | Value| Description    |
 | ------------ |---|--------|
 | NOT_SUPPORTED | 0 | The authorization is not supported. For example, if the main type of the requested continuous task is not **MODE_SPECIAL_SCENARIO_PROCESSING**, continuous task running in the background is not supported.|

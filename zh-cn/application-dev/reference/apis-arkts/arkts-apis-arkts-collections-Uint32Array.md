@@ -182,7 +182,7 @@ constructor(buffer: ArrayBuffer, byteOffset?: number, length?: number)
 | ------- | ------ | ---- | ------------------------------------------ |
 | buffer | [ArrayBuffer](arkts-apis-arkts-collections-ArrayBuffer.md) | 是 | 用于构造ArkTS Uint32Array的[ArrayBuffer](arkts-apis-arkts-collections-ArrayBuffer.md)对象。buffer所占的字节数需是4的整数倍。|
 | byteOffset | number | 否 | 指定buffer的字节偏移，需为非负整数且为4的整数倍。默认值为0。 |
-| length | number | 否 | 指定ArkTS Uint32Array的长度，需为非负整数。默认值为0，此时表示从byteOffset开始到buffer末尾的全部元素。 |
+| length | number | 否 | 指定ArkTS Uint32Array的长度，需为非负整数。默认值为0。 |
 
 **错误码：**
 

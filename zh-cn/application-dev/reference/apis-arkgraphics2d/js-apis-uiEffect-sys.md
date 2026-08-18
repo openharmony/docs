@@ -1355,10 +1355,10 @@ distortionCollapse(distortionParam: DistortionParam): VisualEffect
 
 > **说明：**
 >
-> - 该视效支持控件范围外的绘制，但仍会受到父控件Clip的影响。
-> - 因包含前景Filter，未与[EffectComponent](../apis-arkui/arkui-ts/ts-container-effectcomponent-sys.md)组合使用时不兼容组件自身及子组件的部分视效（如[BrightnessBlender](#brightnessblender)或[systemMaterial](../apis-arkui/arkui-ts/ts-universal-attributes-image-effect-sys.md#systemmaterial23)）。
-> - 支持对系统材质进行扭曲，但是与[EffectComponent](../apis-arkui/arkui-ts/ts-container-effectcomponent-sys.md)组合使用时，会导致系统材质的背景扭曲。
-> - 调用该接口时，会创建与形变后区域等大的离屏画布，再将当前组件（含子组件）的内容绘制到离屏画布上，再对画布上的已有内容进行形变绘制。使用该实现方式时，如果不与[EffectComponent](../apis-arkui/arkui-ts/ts-container-effectcomponent-sys.md)组合使用，将导致[systemMaterial](../apis-arkui/arkui-ts/ts-universal-attributes-image-effect-sys.md#systemmaterial23)、[backgroundEffect](../apis-arkui/arkui-ts/ts-universal-attributes-background.md#backgroundeffect19)、[brightness](../apis-arkui/arkui-ts/ts-universal-attributes-image-effect.md#brightness)或[blur](../apis-arkui/arkui-ts/ts-universal-attributes-image-effect.md#blur19)等需要截屏的接口无法截取到正确的画面。
+> - 形变效果允许在组件边界之外绘制，但渲染结果仍会受到父级组件裁剪属性的影响。
+> - 调用此接口会创建一个与形变后区域大小相同的离屏渲染画布。为避免显示异常或性能开销过大，不建议将组件形变至超出屏幕尺寸。
+> - 此接口包含前景Filter，当与[systemMaterial](../apis-arkui/arkui-ts/ts-universal-attributes-image-effect-sys.md#systemmaterial23)、[backgroundEffect](../apis-arkui/arkui-ts/ts-universal-attributes-background.md#backgroundeffect19)、[brightness](../apis-arkui/arkui-ts/ts-universal-attributes-image-effect.md#brightness)、[blur](../apis-arkui/arkui-ts/ts-universal-attributes-image-effect.md#blur19)、[backgroundColorBlender](#backgroundcolorblender)等依赖背景截图的接口组合使用时，必须嵌套在[EffectComponent](../apis-arkui/arkui-ts/ts-container-effectcomponent-sys.md)中，否则可能导致部分视觉效果失效或表现异常。
+> - 当子节点调用[systemMaterial](../apis-arkui/arkui-ts/ts-universal-attributes-image-effect-sys.md#systemmaterial23)接口时，调用此接口的节点必须嵌套在[EffectComponent](../apis-arkui/arkui-ts/ts-container-effectcomponent-sys.md)中，否则会导致系统材质丢失。但应注意的是，该调用方式会额外增加系统材质的背景扭曲。
 
 **系统能力：** SystemCapability.Graphics.Drawing
 

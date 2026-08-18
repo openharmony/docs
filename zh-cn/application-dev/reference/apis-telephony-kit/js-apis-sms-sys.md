@@ -378,13 +378,13 @@ downloadMms\(context: Context, mmsParams: MmsParams\): Promise&lt;void&gt;
 | 参数名   | 类型                        | 必填 | 说明                                     |
 | -------- | --------------------------- | ---- | ---------------------------------------- |
 | context | Context          | 是   | 应用上下文。<br>FA模型的应用Context定义见[Context](../apis-ability-kit/js-apis-inner-app-context.md)。<br>Stage模型的应用Context定义见[Context](../apis-ability-kit/js-apis-inner-application-uiAbilityContext.md)。 |
-| mmsParams | [MmsParams](#mmsparams11) | 是   | 发送彩信的参数和回调，参考[MmsParams](#mmsparams11)。 |
+| mmsParams | [MmsParams](#mmsparams11) | 是   | 下载彩信的参数和回调，参考[MmsParams](#mmsparams11)。 |
 
 **返回值：**
 
 | 类型            | 说明                                                         |
 | --------------- | ------------------------------------------------------------ |
-| Promise&lt;void&gt; | 以Promise形式返回发送彩信的结果。 |
+| Promise&lt;void&gt; | 以Promise形式返回下载彩信的结果。 |
 
 **错误码：**
 

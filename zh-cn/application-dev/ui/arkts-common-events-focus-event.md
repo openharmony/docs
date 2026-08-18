@@ -374,7 +374,7 @@ Flex多行组件布局，组件大小一致，走焦正常。
 
 ![Project_Area_Focus_1](figures/Project_Area_Focus_1.gif)
 
-<!-- @[dynamic_focus_project_area_flex](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkUISample/EventProject/entry/src/main/ets/pages/focus/FrojectAreaFocusFlex.ets) -->
+<!-- @[dynamic_focus_project_area_flex](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkUISample/EventProject/entry/src/main/ets/pages/focus/ProjectAreaFocusFlex.ets) -->
 
 ``` TypeScript
 @Entry

@@ -301,7 +301,7 @@ struct PrivateBuilder {
   }
 }
 ```
-示例效果图
+示例效果图：
 
 ![arkts-builder-usage-scenario1](figures/arkts-builder-usage-scenario1.gif)
 
@@ -398,7 +398,7 @@ struct ParentDemo {
   }
 }
 ```
-示例效果图
+示例效果图：
 
 ![arkts-builder-usage-scenario2](figures/arkts-builder-usage-scenario2.gif)
 
@@ -446,7 +446,7 @@ struct ParentSample {
       Text('UI Rendered via @Builder')
         .fontSize(20)
       this.privateBuilder()
-      // 点击Button更新label，触发Text组件的刷新
+      // 点击Button更新objParam.strValue和label，触发Text组件的刷新
       Button('Update Values').onClick(() => {
         this.objParam.strValue = 'strValue Hello World';
         this.label = 'label Hello World';
@@ -457,13 +457,13 @@ struct ParentSample {
   }
 }
 ```
-示例效果图
+示例效果图：
 
 ![arkts-builder-usage-scenario3](figures/arkts-builder-usage-scenario3.gif)
 
 ### 将@Builder装饰的函数当作CustomBuilder类型使用
 
-当参数类型为[CustomBuilder](../../reference/apis-arkui/arkui-ts/ts-types.md#custombuilder8)时，可以传入定义的`@Builder`函数。因为`CustomBuilder`实际上是`Function(() => any)`或`void`类型，而`@Builder`也是`Function`类型。所以通过传入`@Builder`可以实现特定效果。
+当参数类型为[CustomBuilder](../../reference/apis-arkui/arkui-ts/ts-types.md#custombuilder8)时，可以传入定义的`@Builder`函数。因为`CustomBuilder`实际上是`(() => any)`或`void`类型，而`@Builder`也是`Function`类型。所以通过传入`@Builder`可以实现特定效果。
 
 全局`@Builder`函数当作`CustomBuilder`类型传递时需要绑定this上下文，开发者可以直接调用全局`@Builder`函数，编译工具链会自动生成绑定this上下文的代码。
 
@@ -523,7 +523,7 @@ struct customBuilderDemo {
   }
 }
 ```
-示例效果图
+示例效果图：
 
 ![arkts-builder-usage-scenario4](figures/arkts-builder-usage-scenario4.gif)
 
@@ -668,7 +668,7 @@ struct ParentExample {
   }
 }
 ```
-示例效果图
+示例效果图：
 
 ![arkts-builder-usage-scenario5](figures/arkts-builder-usage-scenario5.gif)
 
@@ -768,7 +768,7 @@ struct ParentPage {
   }
 }
 ```
-示例效果图
+示例效果图：
 
 ![arkts-builder-usage-scenario6](figures/arkts-builder-usage-scenario6.gif)
 
@@ -859,7 +859,7 @@ struct ParentLocalPage {
   }
 }
 ```
-示例效果图
+示例效果图：
 
 ![arkts-builder-usage-scenario8](figures/arkts-builder-usage-scenario8.gif)
 
@@ -964,7 +964,7 @@ struct ReusableChildTwoPage {
   }
 }
 ```
-示例效果图
+示例效果图：
 
 ![arkts-builder-usage-scenario7](figures/arkts-builder-usage-scenario7.gif)
 
@@ -1087,7 +1087,7 @@ struct Single {
   }
 }
 ```
-示例效果图
+示例效果图：
 
 ![arkts-builder-refresh](figures/arkts-builder-refresh.gif)
 

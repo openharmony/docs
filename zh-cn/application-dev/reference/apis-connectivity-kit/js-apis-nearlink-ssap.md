@@ -7,7 +7,7 @@
 <!--Adviser: @zhang_yixin13-->
 
 
-本模块提供了星闪服务交互协议（SparkLink Service Access Protocol，SSAP）连接功能。
+本模块提供了星闪服务交互协议（SparkLink Service Access Protocol，SSAP）连接功能，包括创建客户端与服务端、连接管理、服务发现、属性读写与通知、MTU协商等。
 
 **模型约束：** 此接口仅可在Stage模型下使用。
 
@@ -63,7 +63,7 @@ createClient(address: string): Client
 
 **错误码：**
 
-以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[NearLink错误码](errorcode-nearlink-service.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[星闪错误码](errorcode-nearlink-service.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
@@ -111,7 +111,7 @@ createServer(): Server
 
 **错误码：**
 
-以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[NearLink错误码](errorcode-nearlink-service.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[星闪错误码](errorcode-nearlink-service.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
@@ -137,9 +137,11 @@ try {
 
 ## Client
 
-提供和远端设备ssap数据交互操作方法，使用前需要使用[ssap.createClient](#ssapcreateclient)方法创建一个[Client](#client)实例。
+SSAP客户端类，提供了和服务端进行连接和数据传输等操作方法。
 
-一个应用针对一个远端设备只需要创建一次实例。
+使用该类的方法前，需通过[ssap.createClient](#ssapcreateclient)方法构造该类的实例。
+
+同一应用针对同一远端设备创建一个[Client](#client)实例即可，重复创建会增加不必要的资源开销。
 
 **起始版本：** 26.0.0
 
@@ -171,7 +173,7 @@ connect(): Promise&lt;void&gt;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[NearLink错误码](errorcode-nearlink-service.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[星闪错误码](errorcode-nearlink-service.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
@@ -187,10 +189,10 @@ import { BusinessError } from '@kit.BasicServicesKit';
 let addr: string = '00:11:22:33:AA:FF'; // 扫描获取到的远端设备地址
 let client: ssap.Client;
 try {
-  client = ssap.createClient(addr); // 一个应用针对一个远端设备只需要创建一次实例
+  client = ssap.createClient(addr); // 同一应用针对同一远端设备只需创建一个实例
   client.connect().then(() => {
     console.info('connect success');
-  }).catch ((err: BusinessError) => {
+  }).catch((err: BusinessError) => {
     console.error('errCode: ' + err.code + ', errMessage: ' + err.message);
   });
 } catch (err) {
@@ -221,7 +223,7 @@ disconnect(): Promise&lt;void&gt;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[NearLink错误码](errorcode-nearlink-service.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[星闪错误码](errorcode-nearlink-service.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
@@ -237,15 +239,15 @@ import { BusinessError } from '@kit.BasicServicesKit';
 let addr: string = '00:11:22:33:AA:FF'; // 扫描获取到的远端设备地址
 let client: ssap.Client;
 try {
-  client = ssap.createClient(addr); // 一个应用针对一个远端设备只需要创建一次实例
+  client = ssap.createClient(addr); // 同一应用针对同一远端设备只需创建一个实例
   client.connect().then(() => {
     console.info('connect success'); // 建立连接
-  }).catch ((err: BusinessError) => {
+  }).catch((err: BusinessError) => {
     console.error('errCode: ' + err.code + ', errMessage: ' + err.message);
   });
   client.disconnect().then(() => {
     console.info('disconnect success'); // 断开连接
-  }).catch ((err: BusinessError) => {
+  }).catch((err: BusinessError) => {
     console.error('errCode: ' + err.code + ', errMessage: ' + err.message);
   });
 } catch (err) {
@@ -258,7 +260,7 @@ try {
 
 close(): void
 
-关闭客户端。
+关闭客户端，断开与远端服务端的连接。如仅需断开当前连接而保留实例，请使用[disconnect](#disconnect)方法。
 
 **起始版本：** 26.0.0
 
@@ -270,7 +272,7 @@ close(): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[NearLink错误码](errorcode-nearlink-service.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[星闪错误码](errorcode-nearlink-service.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
@@ -286,7 +288,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 let addr: string = '00:11:22:33:AA:FF'; // 扫描获取到的远端设备地址
 let client: ssap.Client;
 try { 
-  client = ssap.createClient(addr); // 一个应用针对一个远端设备只需要创建一次实例
+  client = ssap.createClient(addr); // 同一应用针对同一远端设备只需创建一个实例
   client.close();
 } catch (err) {
   console.error('errCode: ' + (err as BusinessError).code + ', errMessage: ' + (err as BusinessError).message);
@@ -316,7 +318,7 @@ getServices(): Promise&lt;Service[]&gt;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[NearLink错误码](errorcode-nearlink-service.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[星闪错误码](errorcode-nearlink-service.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
@@ -332,17 +334,17 @@ import { BusinessError } from '@kit.BasicServicesKit';
 let addr: string = '00:11:22:33:AA:FF'; // 扫描获取到的远端设备地址
 let client: ssap.Client;
 try {
-  client = ssap.createClient(addr); // 一个应用针对一个远端设备只需要创建一次实例
+  client = ssap.createClient(addr); // 同一应用针对同一远端设备只需创建一个实例
   client.connect().then(() => {
     console.info('connect success');
-  }).catch ((err: BusinessError) => {
+  }).catch((err: BusinessError) => {
     console.error('errCode: ' + err.code + ', errMessage: ' + err.message);
   });
   // 连接耗时较长，等待连接完成才能获取服务，实际开发者根据连接速度调整定时器长度
   setTimeout(() => {
     client.getServices().then((result: ssap.Service[]) => {
       console.info('getServices successfully:' + JSON.stringify(result));
-    }).catch ((err: BusinessError) => {
+    }).catch((err: BusinessError) => {
       console.error('errCode: ' + err.code + ', errMessage: ' + err.message);
     });
   }, 3000);
@@ -380,7 +382,7 @@ readProperty(property: Property): Promise&lt;Property&gt;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[NearLink错误码](errorcode-nearlink-service.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[星闪错误码](errorcode-nearlink-service.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
@@ -398,26 +400,26 @@ import { BusinessError } from '@kit.BasicServicesKit';
 let addr: string = '00:11:22:33:AA:FF'; // 扫描获取到的远端设备地址
 let client: ssap.Client;
 try {
-  client = ssap.createClient(addr); // 一个应用针对一个远端设备只需要创建一次实例
+  client = ssap.createClient(addr); // 同一应用针对同一远端设备只需创建一个实例
   client.connect().then(() => {
     console.info('connect success');
-  }).catch ((err: BusinessError) => {
+  }).catch((err: BusinessError) => {
     console.error('errCode: ' + err.code + ', errMessage: ' + err.message);
   });
   // 创建property，实际开发时需要通过getServices接口从服务端获取
-  let arrayBufferC = new ArrayBuffer(8);
-  let properV = new Uint8Array(arrayBufferC);
-  properV[0] = 1;
+  let valueBuffer = new ArrayBuffer(8);
+  let propertyValue = new Uint8Array(valueBuffer);
+  propertyValue[0] = 1;
   let property: ssap.Property = {
     serviceUuid:'FFFFFFFF-1234-5678-ABCD-000000004386',
     propertyUuid: 'FFFFFFFF-1234-5678-ABCD-000000001234',
-    value: arrayBufferC
+    value: valueBuffer
   };
   // 连接耗时较长，等待连接完成才能获取服务，实际开发者根据连接速度调整定时器长度
-  setTimeout(()=>{
+  setTimeout(() => {
     client.readProperty(property).then((result: ssap.Property) => {
       console.info('readProperty successfully:' + JSON.stringify(result));
-    }).catch ((err: BusinessError) => {
+    }).catch((err: BusinessError) => {
       console.error('errCode: ' + err.code + ', errMessage: ' + err.message);
     });
   }, 3000);
@@ -431,7 +433,7 @@ try {
 
 writeProperty(property: Property, writeType: PropertyWriteType): Promise&lt;void&gt;
 
-写入服务端property值。使用Promise异步回调。
+写入服务端属性值。使用Promise异步回调。
 
 **起始版本：** 26.0.0
 
@@ -456,7 +458,7 @@ writeProperty(property: Property, writeType: PropertyWriteType): Promise&lt;void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[NearLink错误码](errorcode-nearlink-service.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[星闪错误码](errorcode-nearlink-service.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
@@ -474,27 +476,27 @@ import { BusinessError } from '@kit.BasicServicesKit';
 let addr: string = '00:11:22:33:AA:FF'; // 扫描获取到的远端设备地址
 let client: ssap.Client;
 try {
-  client = ssap.createClient(addr); // 一个应用针对一个远端设备只需要创建一次实例
+  client = ssap.createClient(addr); // 同一应用针对同一远端设备只需创建一个实例
   client.connect().then(() => {
     console.info('connect success');
-  }).catch ((err: BusinessError) => {
+  }).catch((err: BusinessError) => {
     console.error('errCode: ' + err.code + ', errMessage: ' + err.message);
   });
   // 创建property,实际开发时需要通过getServices接口从服务端获取
-  let arrayBufferC = new ArrayBuffer(8);
+  let valueBuffer = new ArrayBuffer(8);
   // 期望写入的property值
-  let properV = new Uint8Array(arrayBufferC);
-  properV[0] = 1;
+  let propertyValue = new Uint8Array(valueBuffer);
+  propertyValue[0] = 1;
   let property: ssap.Property = {
     serviceUuid:'FFFFFFFF-1234-5678-ABCD-000000004386',
     propertyUuid: 'FFFFFFFF-1234-5678-ABCD-000000001234',
-    value: arrayBufferC
+    value: valueBuffer
   };
   // 连接耗时较长，等待连接完成才能获取服务，实际开发者根据连接速度调整定时器长度
-  setTimeout(()=>{
+  setTimeout(() => {
     client.writeProperty(property, ssap.PropertyWriteType.WRITE_NO_RESPONSE).then(() => {
       console.info('writeProperty success');
-    }).catch ((err: BusinessError) => {
+    }).catch((err: BusinessError) => {
       console.error('errCode: ' + err.code + ', errMessage: ' + err.message);
     });
   }, 3000);
@@ -508,7 +510,7 @@ try {
 
 setPropertyNotification(property: Property, enable: boolean): Promise&lt;void&gt;
 
-设置Property变化通知。使用Promise异步回调。
+设置[Property](#property)变化通知。需在调用[connect](#connect)成功建立连接后使用。使用Promise异步回调。
 
 **起始版本：** 26.0.0
 
@@ -522,7 +524,7 @@ setPropertyNotification(property: Property, enable: boolean): Promise&lt;void&gt
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| property | [Property](#property) | 是 | 服务端属性。 |
+| property | [Property](#property) | 是 | 服务端属性。该属性需支持NOTIFY操作（即operation包含NOTIFY，详见[Operation](#operation)）。 |
 | enable | boolean | 是 | 是否打开通知功能。true: 打开通知功能。false: 关闭通知功能。 |
 
 **返回值：** 
@@ -533,7 +535,7 @@ setPropertyNotification(property: Property, enable: boolean): Promise&lt;void&gt
 
 **错误码：**
 
-以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[NearLink错误码](errorcode-nearlink-service.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[星闪错误码](errorcode-nearlink-service.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
@@ -551,26 +553,26 @@ import { BusinessError } from '@kit.BasicServicesKit';
 let addr: string = '00:11:22:33:AA:FF'; // 扫描获取到的远端设备地址
 let client: ssap.Client;
 try {
-  client = ssap.createClient(addr); // 一个应用针对一个远端设备只需要创建一次实例
+  client = ssap.createClient(addr); // 同一应用针对同一远端设备只需创建一个实例
   client.connect().then(() => {
     console.info('connect success');
-  }).catch ((err: BusinessError) => {
+  }).catch((err: BusinessError) => {
     console.error('errCode: ' + err.code + ', errMessage: ' + err.message);
   });
   // 创建property，实际开发时需要通过getServices接口从服务端获取
-  let arrayBufferC = new ArrayBuffer(8);
-  let properV = new Uint8Array(arrayBufferC);
-  properV[0] = 1;
+  let valueBuffer = new ArrayBuffer(8);
+  let propertyValue = new Uint8Array(valueBuffer);
+  propertyValue[0] = 1;
   let property: ssap.Property = {
     serviceUuid:'FFFFFFFF-1234-5678-ABCD-000000004386',
     propertyUuid: 'FFFFFFFF-1234-5678-ABCD-000000001234',
-    value: arrayBufferC
+    value: valueBuffer
   };
   // 连接耗时较长，等待连接完成才能获取服务，实际开发者根据连接速度调整定时器长度
-  setTimeout(()=>{
+  setTimeout(() => {
     client.setPropertyNotification(property, true).then(() => {
       console.info('setPropertyNotification success');
-    }).catch ((err: BusinessError) => {
+    }).catch((err: BusinessError) => {
       console.error('errCode: ' + err.code + ', errMessage: ' + err.message);
     });
   }, 3000);
@@ -608,7 +610,7 @@ requestMtuSize(mtu: number): Promise&lt;void&gt;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[NearLink错误码](errorcode-nearlink-service.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[星闪错误码](errorcode-nearlink-service.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
@@ -624,15 +626,15 @@ import { BusinessError } from '@kit.BasicServicesKit';
 let addr: string = '00:11:22:33:AA:FF'; // 扫描获取到的远端设备地址
 let client: ssap.Client;
 try {
-  client = ssap.createClient(addr); // 一个应用针对一个远端设备只需要创建一次实例
+  client = ssap.createClient(addr); // 同一应用针对同一远端设备只需创建一个实例
   client.connect().then(() => {
     console.info('connect success');
   });
   // 连接耗时较长，等待连接完成才能获取服务，实际开发者根据连接速度调整定时器长度
-  setTimeout(()=>{
+  setTimeout(() => {
     client.requestMtuSize(128).then(() => {
       console.info('requestMtuSize success');
-    }).catch ((err: BusinessError) => {
+    }).catch((err: BusinessError) => {
       console.error('errCode: ' + err.code + ', errMessage: ' + err.message);
     });
   }, 3000);
@@ -646,7 +648,7 @@ try {
 
 onPropertyChange(callback: Callback&lt;Property&gt;): void
 
-订阅Property变化事件。使用callback异步回调。
+订阅属性变化事件。使用callback异步回调。
 
 应用需具备ohos.permission.ACCESS_NEARLINK权限，方可接收此事件上报。
 
@@ -673,7 +675,7 @@ let onPropertyChange:(data: ssap.Property) => void = (data: ssap.Property) => {
 let addr: string = '00:11:22:33:AA:FF'; // 扫描获取到的远端设备地址
 let client: ssap.Client;
 try {
-  client = ssap.createClient(addr); // 一个应用针对一个远端设备只需要创建一次实例
+  client = ssap.createClient(addr); // 同一应用针对同一远端设备只需创建一个实例
   client.onPropertyChange(onPropertyChange);
 } catch (err) {
   console.error('errCode: ' + (err as BusinessError).code + ', errMessage: ' + (err as BusinessError).message);
@@ -697,7 +699,7 @@ offPropertyChange(callback?: Callback&lt;Property&gt;): void
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| callback | Callback&lt;[Property](#property)&gt; | 否 | 回调函数，返回服务的Property。<br/>填写该参数则取消当前callback订阅。不填写该参数则取消该type对应的所有回调。 |
+| callback | Callback&lt;[Property](#property)&gt; | 否 | 回调函数，返回服务的Property。<br>填写该参数则取消当前callback订阅。不填写该参数则取消该事件对应的所有回调。 |
 
 **示例：** 
 ```typescript
@@ -710,7 +712,7 @@ let onPropertyChange:(data: ssap.Property) => void = (data: ssap.Property) => {
 let addr: string = '00:11:22:33:AA:FF'; // 扫描获取到的远端设备地址
 let client: ssap.Client;
 try {
-  client = ssap.createClient(addr); // 一个应用针对一个远端设备只需要创建一次实例
+  client = ssap.createClient(addr); // 同一应用针对同一远端设备只需创建一个实例
   client.offPropertyChange(onPropertyChange);
 } catch (err) {
   console.error('errCode: ' + (err as BusinessError).code + ', errMessage: ' + (err as BusinessError).message);
@@ -749,7 +751,7 @@ let onConnectionStateChange:(data: ssap.ConnectionChangeState) => void = (data: 
 let addr: string = '00:11:22:33:AA:FF'; // 扫描获取到的远端设备地址
 let client: ssap.Client;
 try {
-  client = ssap.createClient(addr); // 一个应用针对一个远端设备只需要创建一次实例
+  client = ssap.createClient(addr); // 同一应用针对同一远端设备只需创建一个实例
   client.onConnectionStateChange(onConnectionStateChange);
 } catch (err) {
   console.error('errCode: ' + (err as BusinessError).code + ', errMessage: ' + (err as BusinessError).message);
@@ -773,7 +775,7 @@ offConnectionStateChange(callback?: Callback&lt;ConnectionChangeState&gt;): void
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| callback | Callback&lt;[ConnectionChangeState](#connectionchangestate)&gt; | 否 | 回调函数，返回连接状态上报参数。<br/>填写该参数则取消当前callback订阅。不填写该参数则取消该type对应的所有回调。 |
+| callback | Callback&lt;[ConnectionChangeState](#connectionchangestate)&gt; | 否 | 回调函数，返回连接状态上报参数。<br>填写该参数则取消当前callback订阅。不填写该参数则取消该事件对应的所有回调。 |
 
 **示例：** 
 ```typescript
@@ -786,7 +788,7 @@ let onConnectionStateChange:(data: ssap.ConnectionChangeState) => void = (data: 
 let addr: string = '00:11:22:33:AA:FF'; // 扫描获取到的远端设备地址
 let client: ssap.Client;
 try {
-  client = ssap.createClient(addr); // 一个应用针对一个远端设备只需要创建一次实例
+  client = ssap.createClient(addr); // 同一应用针对同一远端设备只需创建一个实例
   client.offConnectionStateChange(onConnectionStateChange);
 } catch (err) {
   console.error('errCode: ' + (err as BusinessError).code + ', errMessage: ' + (err as BusinessError).message);
@@ -825,7 +827,7 @@ let onMtuChange:(data: number) => void = (data: number) => {
 let addr: string = '00:11:22:33:AA:FF'; // 扫描获取到的远端设备地址
 let client: ssap.Client;
 try {
-  client = ssap.createClient(addr); // 一个应用针对一个远端设备只需要创建一次实例
+  client = ssap.createClient(addr); // 同一应用针对同一远端设备只需创建一个实例
   client.onMtuChange(onMtuChange);
 } catch (err) {
   console.error('errCode: ' + (err as BusinessError).code + ', errMessage: ' + (err as BusinessError).message);
@@ -849,7 +851,7 @@ offMtuChange(callback?: Callback&lt;number&gt;): void
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| callback | Callback&lt;number&gt; | 否 | 回调函数，返回协商后的MTU大小。<br/>填写该参数则取消当前callback订阅。不填写该参数则取消该type对应的所有回调。 |
+| callback | Callback&lt;number&gt; | 否 | 回调函数，返回协商后的MTU大小。<br>填写该参数则取消当前callback订阅。不填写该参数则取消该事件对应的所有回调。 |
 
 **示例：** 
 ```typescript
@@ -862,7 +864,7 @@ let onMtuChange:(data: number) => void = (data: number) => {
 let addr: string = '00:11:22:33:AA:FF'; // 扫描获取到的远端设备地址
 let client: ssap.Client;
 try {
-  client = ssap.createClient(addr); // 一个应用针对一个远端设备只需要创建一次实例
+  client = ssap.createClient(addr); // 同一应用针对同一远端设备只需创建一个实例
   client.offMtuChange(onMtuChange);
 } catch (err) {
   console.error('errCode: ' + (err as BusinessError).code + ', errMessage: ' + (err as BusinessError).message);
@@ -872,9 +874,11 @@ try {
 
 ## Server
 
-提供和远端设备ssap数据交互操作方法，使用前需要使用createServer方法创建一个Server实例。
+SSAP服务端类，提供了和客户端进行连接和数据交互等操作方法。
 
-一个应用针对一个远端设备只需要创建一次实例。
+使用该类的方法前，需通过[ssap.createServer](#ssapcreateserver)方法构造该类的实例。
+
+同一应用创建一个[Server](#server)实例即可，重复创建会增加不必要的资源开销。
 
 **起始版本：** 26.0.0
 
@@ -906,7 +910,7 @@ addService(service: Service): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[NearLink错误码](errorcode-nearlink-service.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[星闪错误码](errorcode-nearlink-service.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
@@ -938,8 +942,8 @@ descriptorsArray[0] = descriptor;
 // 构造properties
 let propertiesArray: ssap.Property[] = [];
 let arrayBufferProperty = new ArrayBuffer(8);
-let properValue = new Uint8Array(arrayBufferProperty);
-properValue[0] = 1;
+let propertyValue = new Uint8Array(arrayBufferProperty);
+propertyValue[0] = 1;
 let property1: ssap.Property = {
   serviceUuid:'FFFFFFFF-1234-5678-ABCD-000000004386',
   propertyUuid: 'FFFFFFFF-1234-5678-ABCD-000000001234',
@@ -988,11 +992,11 @@ removeService(serviceUuid: string): void
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| serviceUuid | string | 是 | 星闪服务UUID，长度必须为36字节，该值由36个十六进制数字和连字符（-）组成，例如： FFFFFFFF-1234-5678-ABCD-000000001234，表示一个128位标识符。 不允许使用NearLink标准UUID。 |
+| serviceUuid | string | 是 | 星闪服务UUID，长度必须为36个字符，由32个十六进制数字和4个连字符（-）组成，例如： FFFFFFFF-1234-5678-ABCD-000000001234，表示一个128位标识符。 不允许使用星闪标准UUID。 |
 
 **错误码：**
 
-以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[NearLink错误码](errorcode-nearlink-service.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[星闪错误码](errorcode-nearlink-service.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
@@ -1023,7 +1027,7 @@ try {
 
 close(): void
 
-关闭服务端。
+关闭服务端，并注销已注册的回调。
 
 **起始版本：** 26.0.0
 
@@ -1035,7 +1039,7 @@ close(): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[NearLink错误码](errorcode-nearlink-service.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[星闪错误码](errorcode-nearlink-service.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
@@ -1062,7 +1066,7 @@ try {
 
 notifyPropertyChanged(address: string, property: Property): Promise&lt;void&gt;
 
-通知客户端property值更新。使用Promise异步回调。
+通知客户端属性值更新。使用Promise异步回调。
 
 **起始版本：** 26.0.0
 
@@ -1087,7 +1091,7 @@ notifyPropertyChanged(address: string, property: Property): Promise&lt;void&gt;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[NearLink错误码](errorcode-nearlink-service.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[星闪错误码](errorcode-nearlink-service.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
@@ -1119,8 +1123,8 @@ let descriptor: ssap.PropertyDescriptor = {
 descriptorsArray[0] = descriptor;
 // 构造properties
 let arrayBufferProperty = new ArrayBuffer(8);
-let properValue = new Uint8Array(arrayBufferProperty);
-properValue[0] = 123; // 本次更新后的值
+let propertyValue = new Uint8Array(arrayBufferProperty);
+propertyValue[0] = 123; // 本次更新后的值
 let property: ssap.Property = {
   serviceUuid:'FFFFFFFF-1234-5678-ABCD-000000004386',
   propertyUuid: 'FFFFFFFF-1234-5678-ABCD-000000001234',
@@ -1133,7 +1137,7 @@ try {
   // 地址是服务端缓存的已连接的客户端设备
   server.notifyPropertyChanged('00:11:22:33:AA:FF', property).then(() => {
     console.info('notifyPropertyChanged success');
-  }).catch ((err: BusinessError) => {
+  }).catch((err: BusinessError) => {
     console.error('errCode: ' + err.code + ', errMessage: ' + err.message);
   });
 } catch (err) {
@@ -1146,7 +1150,7 @@ try {
 
 sendResponse(response: ServerResponse): void
 
-回复客户端读写请求。
+回复客户端读写请求。收到[ssap.onPropertyRead](#onpropertyread)或[ssap.onPropertyWrite](#onpropertywrite)上报的请求后，调用本接口向对应客户端回复数据。
 
 **起始版本：** 26.0.0
 
@@ -1164,7 +1168,7 @@ sendResponse(response: ServerResponse): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[NearLink错误码](errorcode-nearlink-service.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[星闪错误码](errorcode-nearlink-service.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
@@ -1253,7 +1257,7 @@ offConnectionStateChange(callback?: Callback&lt;ConnectionChangeState&gt;): void
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| callback | Callback&lt;[ConnectionChangeState](#connectionchangestate)&gt; | 否 | 回调函数，返回连接状态上报参数。<br/>填写该参数则取消当前callback订阅。不填写该参数则取消该type对应的所有回调。 |
+| callback | Callback&lt;[ConnectionChangeState](#connectionchangestate)&gt; | 否 | 回调函数，返回连接状态上报参数。<br>填写该参数则取消当前callback订阅。不填写该参数则取消该事件对应的所有回调。 |
 
 **示例：** 
 ```typescript
@@ -1327,7 +1331,7 @@ offPropertyRead(callback?: Callback&lt;PropertyReadRequest&gt;): void
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| callback | Callback&lt;[PropertyReadRequest](#propertyreadrequest)&gt; | 否 | 回调函数，返回客户端的Property读请求参数。<br/>填写该参数则取消当前callback订阅。不填写该参数则取消该type对应的所有回调。 |
+| callback | Callback&lt;[PropertyReadRequest](#propertyreadrequest)&gt; | 否 | 回调函数，返回客户端的Property读请求参数。<br>填写该参数则取消当前callback订阅。不填写该参数则取消该事件对应的所有回调。 |
 
 **示例：** 
 ```typescript
@@ -1401,7 +1405,7 @@ offPropertyWrite(callback?: Callback&lt;PropertyWriteRequest&gt;): void
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| callback | Callback&lt;[PropertyWriteRequest](#propertywriterequest)&gt; | 否 | 回调函数，返回客户端的Property写请求参数。<br/>填写该参数则取消当前callback订阅。不填写该参数则取消该type对应的所有回调。 |
+| callback | Callback&lt;[PropertyWriteRequest](#propertywriterequest)&gt; | 否 | 回调函数，返回客户端的Property写请求参数。<br>填写该参数则取消当前callback订阅。不填写该参数则取消该事件对应的所有回调。 |
 
 **示例：** 
 ```typescript
@@ -1475,7 +1479,7 @@ offMtuChange(callback?: Callback&lt;number&gt;): void
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| callback | Callback&lt;number&gt; | 否 | 回调函数，返回协商后的MTU大小。<br/>填写该参数则取消当前callback订阅。不填写该参数则取消该type对应的所有回调。 |
+| callback | Callback&lt;number&gt; | 否 | 回调函数，返回协商后的MTU大小。<br>填写该参数则取消当前callback订阅。不填写该参数则取消该事件对应的所有回调。 |
 
 **示例：** 
 ```typescript
@@ -1507,7 +1511,7 @@ try {
 
 | 名称 | 类型 | 只读 | 可选 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
-| serviceUuid | string | 否 | 否 | 星闪服务UUID，长度必须为36字节，该值由36个十六进制数字和连字符（-）组成，例如： FFFFFFFF-1234-5678-ABCD-000000001234，表示一个128位标识符。 不允许使用NearLink标准UUID。 |
+| serviceUuid | string | 否 | 否 | 星闪服务UUID，长度必须为36个字符，由32个十六进制数字和4个连字符（-）组成，例如： FFFFFFFF-1234-5678-ABCD-000000001234，表示一个128位标识符。 不允许使用星闪标准UUID。 |
 | properties | [Property](#property)[] | 否 | 否 | 表示服务的Property列表。 |
 
 
@@ -1523,11 +1527,11 @@ try {
 
 | 名称 | 类型 | 只读 | 可选 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
-| serviceUuid | string | 否 | 否 | 星闪服务UUID，长度必须为36字节，该值由36个十六进制数字和连字符（-）组成，例如： FFFFFFFF-1234-5678-ABCD-000000001234，表示一个128位标识符。 不允许使用NearLink标准UUID。|
+| serviceUuid | string | 否 | 否 | 星闪服务UUID，长度必须为36个字符，由32个十六进制数字和4个连字符（-）组成，例如： FFFFFFFF-1234-5678-ABCD-000000001234，表示一个128位标识符。 不允许使用星闪标准UUID。|
 | propertyUuid | string | 否 | 否 | 表示Property的UUID，数据格式同serviceUuid。 |
 | value | ArrayBuffer | 否 | 否 | 表示Property的数据值。 |
 | descriptors | [PropertyDescriptor](#propertydescriptor)[] | 否 | 是 | 表示当前Property的描述符列表。若未配置则默认不携带该字段。 |
-| operation | number | 否 | 是 | 表示Property支持的操作方式，默认值为READABLE\|WRITE_NO_RESPONSE，即可读并可写（以无响应方式）。如要使属性支持相应的操作，需要对该字段赋值，例如赋值为：READABLE\|WRITE_NO_RESPONSE\|NOTIFY。取值范围[0, 15]，各比特位对应的操作方式详见[Operation](#operation)。 |
+| operation | number | 否 | 是 | 表示Property支持的操作方式，默认值为READABLE\|WRITE_NO_RESPONSE，即可读并可写（以无响应方式）。如要使属性支持相应的操作，需要对该字段赋值，例如赋值为：READABLE \| WRITE_NO_RESPONSE \| NOTIFY。取值范围[0, 15]，各比特位对应的操作方式详见[Operation](#operation)。 |
 
 
 ## PropertyDescriptor
@@ -1542,7 +1546,7 @@ try {
 
 | 名称 | 类型 | 只读 | 可选 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
-| serviceUuid | string | 否 | 否 | 星闪服务UUID，长度必须为36字节，该值由36个十六进制数字和连字符（-）组成，例如： FFFFFFFF-1234-5678-ABCD-000000001234，表示一个128位标识符。 不允许使用NearLink标准UUID。 |
+| serviceUuid | string | 否 | 否 | 星闪服务UUID，长度必须为36个字符，由32个十六进制数字和4个连字符（-）组成，例如： FFFFFFFF-1234-5678-ABCD-000000001234，表示一个128位标识符。 不允许使用星闪标准UUID。 |
 | propertyUuid | string | 否 | 否 | 表示Property的UUID，数据格式同serviceUuid。 |
 | value | ArrayBuffer | 否 | 否 | 表示描述符的数据值。 |
 | descriptorType | [PropertyDescriptorType](#propertydescriptortype) | 否 | 否 | 表示Property的描述符类型。 |
@@ -1562,9 +1566,9 @@ try {
 | 名称 | 类型 | 只读 | 可选 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
 | address | string | 否 | 否 | 表示客户端设备地址。地址格式参考：11:22:33:AA:BB:FF。 |
-| serviceUuid | string | 否 | 否 | 星闪服务UUID，长度必须为36字节，该值由36个十六进制数字和连字符（-）组成，例如： FFFFFFFF-1234-5678-ABCD-000000001234，表示一个128位标识符。 不允许使用NearLink标准UUID。 |
+| serviceUuid | string | 否 | 否 | 星闪服务UUID，长度必须为36个字符，由32个十六进制数字和4个连字符（-）组成，例如： FFFFFFFF-1234-5678-ABCD-000000001234，表示一个128位标识符。 不允许使用星闪标准UUID。 |
 | propertyUuid | string | 否 | 否 | 表示Property的UUID，数据格式同serviceUuid。 |
-| requestId | number | 否 | 否 | 表示请求ID。取值范围[0, 65535]。 |
+| requestId | number | 否 | 否 | 表示请求ID。取值范围[0, 65535]。服务端回复响应时需携带该ID，以便客户端关联请求与响应。 |
 
 
 ## PropertyWriteRequest
@@ -1580,7 +1584,7 @@ try {
 | 名称 | 类型 | 只读 | 可选 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
 | address | string | 否 | 否 | 表示客户端设备地址。地址格式参考：11:22:33:AA:BB:FF。 |
-| serviceUuid | string | 否 | 否 | 星闪服务UUID，长度必须为36字节，该值由36个十六进制数字和连字符（-）组成，例如： FFFFFFFF-1234-5678-ABCD-000000001234，表示一个128位标识符。 不允许使用NearLink标准UUID。 |
+| serviceUuid | string | 否 | 否 | 星闪服务UUID，长度必须为36个字符，由32个十六进制数字和4个连字符（-）组成，例如： FFFFFFFF-1234-5678-ABCD-000000001234，表示一个128位标识符。 不允许使用星闪标准UUID。 |
 | propertyUuid | string | 否 | 否 | 表示Property的UUID，数据格式同serviceUuid。 |
 | value | ArrayBuffer | 否 | 否 | 表示客户端写入的值。 |
 | requestId | number | 否 | 否 | 表示客户端的写请求ID，服务端回复响应时需携带该ID。取值范围[0, 65535]。 |
@@ -1600,7 +1604,7 @@ try {
 | 名称 | 类型 | 只读 | 可选 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
 | address | string | 否 | 否 | 表示客户端设备地址。地址格式参考：11:22:33:AA:BB:FF。 |
-| requestId | number | 否 | 否 | 表示请求ID。取值范围[0, 65535]。 |
+| requestId | number | 否 | 否 | 表示请求ID。取值范围[0, 65535]。该ID必须与收到的[PropertyReadRequest](#propertyreadrequest)或[PropertyWriteRequest](#propertywriterequest)中的requestId一致，用于关联请求与响应。 |
 | value | ArrayBuffer | 否 | 否 | 表示回复的数据值。 |
 
 

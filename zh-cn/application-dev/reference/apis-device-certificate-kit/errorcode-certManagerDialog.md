@@ -71,7 +71,7 @@ The API is not supported on this device.
 
 **错误信息**
 
-The operation does not comply with the device security policy, such as the device does not allow users to manage the ca certificate of the global user.
+The operation does not comply with the device security policy, such as the device does not allow users to manage the CA certificate of the global user.
 
 **可能原因**
 
@@ -99,7 +99,7 @@ The input parameters validation failed.
 
 **错误信息**
 
-No Available certificate for authorization
+No available certificate for authorization.
 
 **可能原因**
 

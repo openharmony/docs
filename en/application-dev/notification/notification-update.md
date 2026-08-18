@@ -2,12 +2,13 @@
 
 <!--Kit: Notification Kit-->
 <!--Subsystem: Notification-->
-<!--Owner: @peixu-->
-<!--Designer: @dongqingran; @wulong158-->
+<!--Owner: @HuYueRong-->
+<!--Designer: @dongqingran-->
 <!--Tester: @wanghong1997-->
 <!--Adviser: @fang-jinxu-->
+<!-- md-trans-meta sourceCommit=a56d795a51f9068e61c2cc2726ea675f5d93d82a translatedAt=2026-08-13T03:11:57.597Z pushedAt=2026-08-13T07:47:14.183Z -->
 
-Starting from API version 18, applications can update only published notifications. such as the upload/download progress and IMs.
+Starting from API version 18, applications can update only published notifications, such as the upload/download progress and IMs.
 
 ## Available APIs
 
@@ -21,7 +22,6 @@ The table below lists the API for updating notifications. You can use the **upda
 | -------- | -------- |
 | [publish](../reference/apis-notification-kit/js-apis-notificationManager.md#notificationmanagerpublish)(request:&nbsp;NotificationRequest,&nbsp;callback:&nbsp;AsyncCallback&lt;void&gt;):&nbsp;void | Publishes an updated notification.                |
 
-
 ## How to Develop
 
 The following uses the progress bar notification as an example.
@@ -29,7 +29,7 @@ The following uses the progress bar notification as an example.
 1. Import modules.
 
    <!-- @[update_notification_header](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/Notification-Kit/Notification/entry/src/main/ets/filemanager/UpdateNotification.ets) -->
-   
+
    ``` TypeScript
    import { notificationManager } from '@kit.NotificationKit';
    import { BusinessError } from '@kit.BasicServicesKit';
@@ -42,7 +42,7 @@ The following uses the progress bar notification as an example.
 2. Publish the progress bar notification.
 
    <!-- @[pub_progress_bar_notify](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/Notification-Kit/Notification/entry/src/main/ets/filemanager/UpdateNotification.ets) -->
-   
+
    ``` TypeScript
    let notificationRequest: notificationManager.NotificationRequest = {
      id: 5,
@@ -75,7 +75,7 @@ The following uses the progress bar notification as an example.
 3. Update the progress bar notification using the **updateOnly** field in the [NotificationRequest](../reference/apis-notification-kit/js-apis-inner-notification-notificationRequest.md#notificationrequest-1) API.
 
    <!-- @[update_prog_only_notify](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/Notification-Kit/Notification/entry/src/main/ets/filemanager/UpdateNotification.ets) -->
-   
+
    ``` TypeScript
    let notificationRequest: notificationManager.NotificationRequest = {
      id: 5,

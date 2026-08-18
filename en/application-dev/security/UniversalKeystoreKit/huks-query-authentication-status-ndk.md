@@ -6,17 +6,19 @@
 <!--Designer: @HighLowWorld-->
 <!--Tester: @wxy1234564846-->
 <!--Adviser: @zengyawen-->
+<!-- md-trans-meta sourceCommit=affec52d3f3d5a0cc8da4d235a790bf31736419f translatedAt=2026-08-13T08:25:23.129Z pushedAt=2026-08-13T10:20:24.724Z -->
 
-From API version 22, **huksExternalCrypto** provides the API for querying the PIN authentication status. This API can be used by applications to query whether the PIN passes authentication. For details about the scenarios and specifications, see [Ukey PIN Authentication Management Overview and Specifications](huks-ukey-pin-authentication-management-overview.md).
+Starting from API 22, huksExternalCrypto provides APIs for querying the PIN authentication status. An app can use these APIs to query whether the PIN has been authenticated. For details about the scenarios and specifications, see [UKey PIN Authentication Introduction and Specifications](huks-ukey-pin-authentication-management-overview.md).
 
 ## Linking the Dynamic Library in the CMake Script
+
 ```txt
 target_link_libraries(entry PUBLIC libhuks_ndk.z.so libhuks_external_crypto.z.so)
 ```
 
 ## How to Develop
 
-1. Obtain [keyUri](../../reference/apis-device-certificate-kit/js-apis-certManagerDialog.md#certreference22) as **resourceId** by calling the [certificate selection API](../../reference/apis-device-certificate-kit/js-apis-certManagerDialog.md#certificatemanagerdialogopenauthorizedialog22) provided by the certificate management system.
+1. Call [openAuthorizeDialog](../../reference/apis-device-certificate-kit/js-apis-certManagerDialog.md#certificatemanagerdialogopenauthorizedialog22) provided by the certificate management system capability to obtain [keyUri](../../reference/apis-device-certificate-kit/js-apis-certManagerDialog.md#certreference22), and use it as `resourceId`.
 
 2. Call [OH_Huks_InitExternalCryptoParamSet](../../reference/apis-universal-keystore-kit/capi-native-huks-external-crypto-api-h.md#oh_huks_initexternalcryptoparamset) to set specified parameters.
 

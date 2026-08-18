@@ -1,27 +1,35 @@
 # About This Kit
+
 <!--Kit: Media Kit-->
 <!--Subsystem: Multimedia-->
 <!--Owner: @wang-haizhou6-->
 <!--Designer: @HmQQQ-->
 <!--Tester: @xchaosioda-->
 <!--Adviser: @w_Machine_cc-->
+<!-- md-trans-meta sourceCommit=ed32b344aeb830dfd7514a4b8bea5665a88f04b8 translatedAt=2026-08-11T01:51:25.683Z pushedAt=2026-08-11T12:35:59.805Z -->
 
 Media Kit is used to develop audio and video playback or recording features. The Media Kit development guide provides comprehensive instructions on how to develop various audio and video modules, assisting you in utilizing the system's audio and video APIs to achieve desired functionalities. For example, you can use the SoundPool to implement simple prompt tones so that a drip sound is played upon the receipt of a new message; you can use the AVPlayer to develop a music player, which can loop a piece of music.
 
 Media Kit provides the following modules:
 
 - [AVPlayer](#avplayer): plays audio and video clips.
+
 - [SoundPool](#soundpool): plays short sounds.
+
 - [AVRecorder](#avrecorder): records audio and video clips.
+
 - [AVScreenCapture](#avscreencapture): captures the screen.
+
 - [AVMetadataExtractor](#avmetadataextractor): obtains audio and video metadata.
+
 - [AVImageGenerator](#avimagegenerator): obtains video thumbnails.
+
 - [AVTranscoder](#avtranscoder): video transcoding.
 
 ## Highlights
 
 - Lightweight media engine
-  
+
    Less system resources (threads and memory) are required. Audio and video playback and recording, flexible pipeline assembly, and source, demuxer, and codec plugins are supported.
 
 - HDR video
@@ -36,7 +44,7 @@ Media Kit provides the following modules:
 
 This development guide applies only to audio and video playback or recording, which are implemented by Media Kit. The UI, image processing, media storage, or other related capabilities are not covered.
 
-Before developing features related to audio and video playback or recording, you are advised to understand the following concepts:
+Before developing features related to audio and video playback, you are advised to understand the following concepts:
 
 - Playback process: network protocol > container format > audio and video codec > graphics/audio rendering
 
@@ -116,6 +124,7 @@ The table below lists the supported audio playback formats.
 | ape | Audio format: APE |
 
 <!--Del-->
+
 > **NOTE**
 > 
 > The supported video formats are further classified into mandatory and optional ones. All vendors must support mandatory ones and can determine whether to implement optional ones based on their service requirements. You are advised to perform compatibility processing to ensure that all the application functions are compatible on different platforms.
@@ -124,6 +133,7 @@ The table below lists the supported audio playback formats.
 | -------- | -------- |
 | H265<sup>10+</sup>      | Yes|
 | H264      | Yes|
+
 <!--DelEnd-->
 
 The table below lists the supported playback formats and mainstream resolutions.
@@ -256,16 +266,17 @@ The following figure shows the interaction between the AVScreenCapture and exter
 ![AvScreenCapture interaction diagram](figures/avscreencapture-interaction-diagram.png)
 
 - Audio capture: When an application calls the AVScreenCapture APIs at the JS or native interface layer to implement audio capture, the player framework at the framework layer invokes the audio framework to capture audio data through the audio HDI. The audio data is then encoded by software and saved into a file.
+
 - Screen capture: When an application calls the AVScreenCapture APIs at the JS or native interface layer to implement screen capture, the player framework at the framework layer invokes the graphic framework to capture screen data. The screen data is then encoded by software and saved into a file.
 
 ### Supported Formats
 
 The table below lists the supported audio sources.
 
-| Type| Description| 
+| Type| Description|
 | -------- | -------- |
-| MIC | The system microphone is used as the audio source input.| 
-| ALL_PLAYBACK | Internal recording is used as the audio source input.| 
+| MIC | System microphone as the audio source input.|
+| ALL_PLAYBACK | System internal recording audio as the audio source input. |
 
 The table below lists the supported video sources.
 
@@ -321,19 +332,34 @@ The AVTranscoder provides the following services:
 The encoding parameters (format and bit rate) and container format of the source video file can be modified. The audio and video encoding and container formats of the source video are compatible with the AVCodec for decoding and demultiplexing purposes, whereas those of the target video are compatible with the AVCodec for encoding and multiplexing purposes.
 
 <!--RP1--><!--RP1End-->
+
 - The following source video formats are supported:
 
-   The source video formats supported by transcoding depend on the formats supported by the system decoder and demuxer. For details, see [AVCodec Supported Formats](../avcodec/avcodec-support-formats.md#media-data-demultiplexing).
+   The source video formats supported for transcoding depend on the formats supported by the system decoder and demuxer. For details, see [AVCodec supported formats](../avcodec/avcodec-support-formats.md#media-data-demultiplexing).
 
 - The following target video formats are supported:
 
    | Container Format | Video Encoding Type  | Audio Encoding Type  |
    | -------- | :------------------| :---------------- |
-   | mp4      | AVC (H.264)<!--RP7--><!--RP7End--> | AAC |
+   | mp4      | AVC (H.264)<!--RP7--><!--RP7End-->, HEVC (H.265) | AAC, MPEG (MP3) |
+
+- Supported target audio formats:
+
+   | Container Format | Audio Encoding Type |
+   | -------- | :---------------- |
+   | mp4      | AAC, MPEG (MP3) |
+   | m4a      | AAC              |
+   | mp3      | MPEG (MP3)      |
+   | amr      | AMR (amrnb, amrwb) |
+   | wav      | raw (pcm) |
+   | aac      | AAC               |
 
 - The support for tracks is as follows:
+
   - Subtitle tracks are not supported. If the original video has subtitle tracks, they are discarded after transcoding.
+
   - Only one video track can be output. If the original video has multiple video tracks, the first one is selected for transcoding.
+
   - Only one audio track can be output. If the original video has multiple audio tracks, the first one is selected for transcoding.
 
 <!--RP2--><!--RP2End-->

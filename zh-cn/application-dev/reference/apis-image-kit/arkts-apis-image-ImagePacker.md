@@ -164,6 +164,10 @@ packing(picture: Picture, options: PackingOption): Promise\<ArrayBuffer>
 
 将图像压缩或重新编码。使用Promise异步回调。
 
+> **说明：**
+>
+> 接口的编码对象为Picture，仅支持"image/jpeg"和"image/heic（或者image/heif）"格式。
+
 **系统能力：** SystemCapability.Multimedia.Image.ImagePacker
 
 **参数：**

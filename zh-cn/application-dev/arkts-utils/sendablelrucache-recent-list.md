@@ -264,7 +264,7 @@
              // 获取绑定的图书信息
              let value = await lruCache.get(this.books[3]);
              // 更新最近访问列表
-             taskpool.execute(updateBooks, this.books[3], value);
+             await taskpool.execute(updateBooks, this.books[3], value);
              this.getUIContext().getRouter().pushUrl({ url: 'pages/' + value });
            })
          Button(this.books[2])
@@ -275,7 +275,7 @@
              // 获取绑定的图书信息
              let value = await lruCache.get(this.books[2]);
              // 更新最近访问列表
-             taskpool.execute(updateBooks, this.books[2], value);
+             await taskpool.execute(updateBooks, this.books[2], value);
              this.getUIContext().getRouter().pushUrl({ url: 'pages/' + value });
            })
          Button(this.books[1])
@@ -286,7 +286,7 @@
              // 获取绑定的图书信息
              let value = await lruCache.get(this.books[1]);
              // 更新最近访问列表
-             taskpool.execute(updateBooks, this.books[1], value);
+             await taskpool.execute(updateBooks, this.books[1], value);
              this.getUIContext().getRouter().pushUrl({ url: 'pages/' + value });
            })
          Button(this.books[0])
@@ -297,7 +297,7 @@
              // 获取绑定的图书信息
              let value = await lruCache.get(this.books[0]);
              // 更新最近访问列表
-             taskpool.execute(updateBooks, this.books[0], value);
+             await taskpool.execute(updateBooks, this.books[0], value);
              this.getUIContext().getRouter().pushUrl({ url: 'pages/' + value });
            })
          // ...

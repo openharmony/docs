@@ -3,7 +3,7 @@
 <!--Kit: Connectivity Kit-->
 <!--Subsystem: Communication-->
 <!--Owner: @enjoy_sunshine-->
-<!--Designer: @chengguohong; @tangjia15-->
+<!--Designer: @tangjia15-->
 <!--Tester: @wangfeng517-->
 <!--Adviser: @zhang_yixin13-->
 
@@ -314,7 +314,7 @@ Operation failed. GATT character is nullptr.
 
 **错误描述**
 
-基于通用属性协议（Generic Attribute Profile，[GATT](../../connectivity/terminology.md#gatt)）的特征值为空。
+基于通用属性协议（Generic Attribute Profile，[GATT](../../connectivity/bluetooth/terminology.md#gatt)）的特征值为空。
 
 **可能原因**
 

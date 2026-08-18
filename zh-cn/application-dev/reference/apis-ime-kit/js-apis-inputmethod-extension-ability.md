@@ -6,7 +6,7 @@
 <!--Tester: @murphy84-->
 <!--Adviser: @zhang_yixin13-->
 
-@ohos.InputMethodExtensionAbility模块提供输入法ExtensionAbility的基础类定义，是开发输入法应用的入口和生命周期管理框架。
+@ohos.InputMethodExtensionAbility模块提供输入法ExtensionAbility（扩展能力基类）的基础类定义，是开发输入法应用的入口和生命周期管理框架。
 
 本模块是输入法ExtensionAbility的核心类模块，定义了`InputMethodExtensionAbility`类，作为输入法应用的Extension基类。开发者需继承该类并实现`onCreate`和`onDestroy`生命周期回调，系统在拉起和销毁输入法Extension时自动调用这些回调。
 
@@ -196,7 +196,7 @@ onDestroy(): void
 生命周期回调，在销毁输入法应用时调用，用于资源清理。
 
 - 含义/功能：系统销毁输入法ExtensionAbility时触发的清理回调。开发者在该回调中释放面板、取消事件订阅等资源清理工作。
-- 使用场景：当系统主动销毁输入法ExtensionAbility（如系统回收资源、用户切换到其他输入法）或开发者主动调用`context.destroy()`触发销毁时自动触发。
+-  使用场景：当系统主动销毁输入法ExtensionAbility（如系统回收资源、用户切换到其他输入法）或开发者主动调用`context.destroy()`触发销毁时自动触发。注意：`onDestroy`回调执行后，`context`将不可用，不应在回调中或回调后继续使用`context`对象。
 - 使用后效果：回调执行完成后，输入法ExtensionAbility进程终止，所有资源应已释放。调用后再进行其他操作将不起效。
 
 **模型约束：** 此接口仅可在Stage模型下使用。

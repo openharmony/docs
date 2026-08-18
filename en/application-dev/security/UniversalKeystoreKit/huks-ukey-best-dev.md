@@ -1,4 +1,4 @@
-# Ukey Process Example
+# UKey Process Example
 
 <!--Kit: Universal Keystore Kit-->
 <!--Subsystem: Security-->
@@ -6,6 +6,7 @@
 <!--Designer: @HighLowWorld-->
 <!--Tester: @wxy1234564846-->
 <!--Adviser: @zengyawen-->
+<!-- md-trans-meta sourceCommit=f7243bd9bbc19d6bb1c1a460201c8c6cbf7dc7b6 translatedAt=2026-08-13T08:25:48.081Z pushedAt=2026-08-13T10:20:24.725Z -->
 
 ## Development Modes
 
@@ -28,6 +29,7 @@ Currently, the following development modes are available for two-way SSL authent
 3. Perform the following operations based on the authentication result:
 
    - If the authentication is not performed, the application on the device needs to start PIN authentication. In this case, the application receives the authentication request, processes the event, and calls the certificate management capability to open the PIN authentication dialog box. After obtaining the authentication result, the application returns the result to the **Web** component and then performs the authenticated process.
+
    - If the authentication is successful, the **Web** component can directly call the [initSession](../../reference/apis-universal-keystore-kit/js-apis-huks.md#huksinitsession9)/[updateSession](../../reference/apis-universal-keystore-kit/js-apis-huks.md#huksupdatesession9)/[finishSession](../../reference/apis-universal-keystore-kit/js-apis-huks.md#huksfinishsession9) APIs of HUKS for signing.
 
 > **NOTE**
@@ -59,7 +61,7 @@ The following is an example of using the system capability for two-way SSL authe
      certificateManagerDialog.openAuthorizeDialog(context, authorizeRequest).then((certReference: certificateManagerDialog.CertReference) => {
        /* Record the keyUri obtained in the certificate selection dialog box for future use.*/
        let keyUri = certReference.keyUri;
-       console.info(`Succeeded in opening authorize dialog.`);
+       console.info('Succeeded in opening authorize dialog.');
      }).catch((err: BusinessError) => {
        console.error(`Failed to open authorize dialog. Code: ${err.code}, message: ${err.message}`);
      });
@@ -71,12 +73,12 @@ The following is an example of using the system capability for two-way SSL authe
 
 2. The **Web** component parses the certificate, calls the HUKS to open the resource, and queries the PIN authentication status.
 
-   First, call the NDK API of certificate management, OH_CertManager_GetUkeyCertificate](../../reference/apis-device-certificate-kit/capi-cm-native-api-h.md#oh_certmanager_getukeycertificate), to parse the certificate selected by the user and obtain the corresponding certificate data.
+   First, call the NDK API of certificate management, [OH_CertManager_GetUkeyCertificate](../../reference/apis-device-certificate-kit/capi-cm-native-api-h.md#oh_certmanager_getukeycertificate), to parse the certificate selected by the user and obtain the corresponding certificate data.
 
    Next, use **keyUri** selected by the user as the resource ID to call the HUKS NDK API, [OH_Huks_OpenResource](../../reference/apis-universal-keystore-kit/capi-native-huks-external-crypto-api-h.md#oh_huks_openresource) to open the resource.
-   
+
    Finally, call the HUKS NDK API [OH_Huks_GetUkeyPinAuthState](../../reference/apis-universal-keystore-kit/capi-native-huks-external-crypto-api-h.md#oh_huks_getukeypinauthstate) to query the PIN authentication status.
- 
+
    ```c
    #include "huks/native_huks_external_crypto_api.h"
    #include "huks/native_huks_param.h"
@@ -106,7 +108,7 @@ The following is an example of using the system capability for two-way SSL authe
        /* Define input parameter UkeyInfo. */
        OH_CM_UkeyInfo ukeyInfo = { OH_CM_CERT_PURPOSE_SIGN }; /* USB credential attributes. The value is omitted here. */
 
-       /* Obtain the Ukey certificate details corresponding to keyUri. */
+       /* Obtain the UKey certificate details corresponding to keyUri. */
        OH_CM_CredentialDetailList credentialList = { 0, nullptr };
        int32_t ret = OH_CertManager_GetUkeyCertificate(&keyUri, &ukeyInfo, &credentialList);
 
@@ -307,7 +309,7 @@ The following is an example of using the system capability for two-way SSL authe
    try {
      certificateManagerDialog.openUkeyAuthDialog(context, ukeyAuthRequest)
        .then(() => {
-         console.info(`Succeeded in opening ukey authorization dialog.`);
+         console.info('Succeeded in opening ukey authorization dialog.');
        }).catch((err: BusinessError) => {
          console.error(`Failed to open ukey authorization dialog. Code: ${err.code}, message: ${err.message}`);
        });

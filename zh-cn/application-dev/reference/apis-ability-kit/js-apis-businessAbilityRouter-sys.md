@@ -160,3 +160,17 @@ try {
   console.error('queryBusinessAbilityInfo failed ' + message);
 }
 ```
+
+## BusinessAbilityInfo<sup>10+</sup>
+
+type BusinessAbilityInfo = _BusinessAbilityInfo.BusinessAbilityInfo
+
+业务路由信息。
+
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
+
+**系统接口**：此接口为系统接口。
+
+| 类型 | 说明 |
+| --- | --- |
+| [_BusinessAbilityInfo.BusinessAbilityInfo](js-apis-bundleManager-businessAbilityInfo-sys.md#businessabilityinfo) | 业务路由信息。 |

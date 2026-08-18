@@ -59,7 +59,7 @@ ConsoleMessage的日志来源。
 | 名称        | 值 | 说明                                 |
 | ---------- | -- | ---------------------------------- |
 | All        | 0 | 宽松模式：允许加载HTTP和HTTPS混合内容。所有不安全的内容都可以被加载。 |
-| Compatible | 1 | 兼容模式：混合内容兼容性模式，部分不安全的内容可能被加载。           |
+| Compatible | 1 | 兼容模式：允许部分HTTP内容在HTTPS页面中加载。 |
 | None       | 2 | 严格模式：不允许加载HTTP和HTTPS混合内容。               |
 
 ## HitTestType<sup>(deprecated)</sup>
@@ -485,7 +485,7 @@ ProtectedResourceType枚举定义了Web组件需要访问的受保护资源类�
 
 ## CredentialType<sup>22+</sup>
 
-凭证类型。
+凭证类型，用于定义身份认证中使用的凭证种类。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -497,7 +497,7 @@ ProtectedResourceType枚举定义了Web组件需要访问的受保护资源类�
 
 ## PinVerifyResult<sup>22+</sup>
 
-PIN码认证结果。
+PIN码认证结果，用于标识PIN码验证的执行状态。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -532,7 +532,7 @@ PIN码认证结果。
 
 ## NavigationPolicy<sup>23+</sup>
 
-WebView中新窗口的打开方式。
+WebView中新窗口的打开方式，支持弹窗、新窗口、前台和后台标签页等多种方式。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 

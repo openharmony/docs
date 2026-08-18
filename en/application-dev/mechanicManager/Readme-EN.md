@@ -2,11 +2,11 @@
 
 <!--Kit: Mechanic Kit-->
 <!--Subsystem: Mechanic-->
-<!--Owner: @hobbycao-->
-<!--Designer: @saga2025-->
-<!--Tester: @zhaodengqi-->
+<!--Owner: @qxqxqxqxqx-->
+<!--Designer: @peter__1024-->
+<!--Tester: @Aullar-->
 <!--Adviser: @hu-zhiqiong-->
-<!-- md-trans-meta sourceCommit=04ce1326693ebf83713c05736e1db56b044ad03e translatedAt=2026-08-04T13:32:32.772Z pushedAt=2026-08-05T09:09:47.317Z -->
+<!-- md-trans-meta sourceCommit=ffaa4d217b49bbb128b0e041786b014bb575d38e translatedAt=2026-08-15T11:11:08.161Z pushedAt=2026-08-15T11:40:43.147Z -->
 
 - [About This Kit](mechanic-kit-intro.md)
 
@@ -17,3 +17,5 @@
 - [Device Rotation Control (for System Applications Only)](rotation-control-guide-sys.md)
 
 <!--DelEnd-->
+
+- [Glossary](mechanic-glossary.md)

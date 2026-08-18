@@ -10,7 +10,7 @@
 
 > **说明：**
 >
-> - 该组件从API version 11开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
+> - 该组件从API version 7开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 >
 > - 本模块接口仅可在Stage模型下使用。
 >
@@ -18,13 +18,14 @@
 
 ## 属性
 
-### pointLight
+### pointLight<sup>11+</sup>
 
 pointLight(value: PointLightStyle)
 
 设置点光源样式，用于为Stack组件添加点光源效果，影响其堆叠子组件的光照渲染。点光源是从特定位置向四周发射光线的光源类型，可用于增强UI界面的立体感和视觉层次。通过PointLightStyle可配置光源的位置、颜色、强度等参数。详细信息请参见[PointLightStyle](ts-universal-attributes-point-light-style-sys.md#pointlightstyle)对象说明。
 
 **系统接口：** 此接口为系统接口。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：** 

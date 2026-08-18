@@ -5,6 +5,7 @@
 <!--Designer: @dongqingran; @wulong158-->
 <!--Tester: @wanghong1997-->
 <!--Adviser: @huipeizi-->
+<!-- md-trans-meta sourceCommit=2845f22b3a6c7c573421bce7ff3e32f73246613d translatedAt=2026-07-20T10:50:28.764Z pushedAt=2026-07-20T10:51:10.981Z -->
 
 The Advanced Notification Manager enables you to print notifications and set notification parameters. It provides the notification debugging and testing capabilities, for example, printing published notification details, setting the number of notification caches, and enabling the notification functionality.
 
@@ -53,7 +54,7 @@ This tool can be used only in the eng version. If it is used in the user version
   # Display information about all active notifications.
   anm dump -A
   ```
-  
+
 ## setting
 
   ```bash
@@ -75,7 +76,7 @@ This tool can be used only in the eng version. If it is used in the user version
   **Example**
 
   ```bash
-  # Set the maximum number of recent notifications stored in the memory to 100.
+  # Set the maximum number of recent notifications stored in memory to 100.
   anm setting -c 100
 
   # Enable the notification through cross-device collaboration for wearable devices.

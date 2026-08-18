@@ -171,210 +171,22 @@ import { backup } from '@kit.CoreFileKit';
 
 | 名称 | 类型 | 只读 | 可选 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
+| onFileReady | AsyncCallback&lt;[File](#file)&gt; | 否 | 否 | 服务端向客户端发送文件的回调。当发送成功，err为undefined，data为[File](#file)；否则为错误对象。AsyncCallback回调中的File属于file.backup.[File](#file)类型。返回的文件归备份服务所有，客户端必须在文件操作完成后关闭文件句柄。<br>文件句柄关闭后，备份服务会在后续流程中清理该文件。<br>**错误码**：<br>以下错误码的详细介绍请参见[文件管理错误码](errorcode-filemanagement.md)。<br>- 13600001：IPC error.<br>- 13900005：I/O error.<br>- 13900011：Out of memory.<br>- 13900020：Invalid argument.<br>- 13900025：No space left on device.<br>- 13900042：Unknown error. |
+| onBundleBegin | AsyncCallback&lt;string, void \| string&gt; | 否 | 否 | 应用备份/恢复开始时触发的回调。当操作成功，err为undefined，data为当前开始备份/恢复的应用包名；否则为错误对象。<br>从API版本12开始，返回err时也会返回第二个string参数bundleName。<br>开发者可根据该返回值记录当前应用的备份/恢复开始状态、初始化进度展示或准备后续处理。<br>**错误码**：<br>以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[文件管理错误码](errorcode-filemanagement.md)。<br>- 401：Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed.<br>- 13500001：The application is not added to the backup or restore.<br>- 13500002：Failed to start application extension Procedure.<br>- 13600001：IPC error.<br>- 13900005：I/O error.<br>- 13900011：Out of memory.<br>- 13900025：No space left on device.<br>- 13900042：Unknown error. |
+| onBundleEnd | AsyncCallback&lt;string, void \| string&gt; | 否 | 否 | 应用备份/恢复结束时触发的回调。当操作成功，err为undefined，data为当前结束备份/恢复的应用包名；否则为错误对象。<br>从API版本12开始，返回err时也会返回第二个string参数bundleName。<br>开发者可根据该返回值记录当前应用的备份/恢复结束状态、更新结果展示或清理临时状态。<br>**错误码**：<br>以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[文件管理错误码](errorcode-filemanagement.md)。<br>- 401：Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed.<br>- 13500003：Backup or restore timed out.<br>- 13500004：Application extension death.<br>- 13600001：IPC error.<br>- 13900005：I/O error.<br>- 13900011：Out of memory.<br>- 13900025：No space left on device.<br>- 13900042：Unknown error. |
+| onAllBundlesEnd | AsyncCallback&lt;undefined&gt; | 否 | 否 | 所有bundle的备份/恢复过程结束时触发的回调。当操作成功，err为undefined；否则为错误对象。无返回结果。<br>**错误码**：<br>以下错误码的详细介绍请参见[文件管理错误码](errorcode-filemanagement.md)。<br>- 13600001：IPC error.<br>- 13900005：I/O error.<br>- 13900011：Out of memory.<br>- 13900020：Invalid argument.<br>- 13900025：No space left on device.<br>- 13900042：Unknown error. |
+| onBackupServiceDied | Callback&lt;undefined&gt; | 否 | 否 | 备份服务异常死亡时触发的回调，无返回结果。 |
 | onBackupSizeReport<sup>18+</sup>  | [OnBackupSizeReport](#onbackupsizereport18) | 否 | 是 |  与getBackupDataSize配套使用，返回待备份数据量信息。不设置该回调时，不接收数据量扫描结果。 |
 | onMigrateResult | AsyncCallback&lt;string, void \| string&gt; | 否 | 是 | 迁移文件流程结束的回调，返回迁移文件的结果信息。当迁移操作成功，err为undefined，data为string（应用名称）；否则为错误对象。不设置该回调时，不接收文件迁移结果。<br>**起始版本**：26.0.0<br>**模型约束**：此接口仅可在Stage模型下使用。<br>**错误码**：<br>以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[文件管理错误码](errorcode-filemanagement.md)。<br>- 202：Permission verification failed, application which is not a system application uses system API.<br>- 13600001：IPC error.<br>- 13900001：Operation not permitted.<br>- 13900005：I/O error.<br>- 13900011：Out of memory.<br>- 13900020：Invalid argument.<br>- 13900025：No space left on device. |
-
-### onFileReady
-
-onFileReady : AsyncCallback&lt;File&gt;
-
-回调函数。当服务端向客户端发送文件，如果成功触发回调，返回对应文件的[File](#file)内容。如果触发失败，则返回err错误对象。
-
-> **说明：**
->
-> AsyncCallback回调中返回的File属于file.backup.[File](#file)类型。返回的文件归备份服务所有，客户端必须在文件操作完成后关闭文件句柄。文件句柄关闭后，备份服务会在后续流程中清理该文件。
-
-**系统接口**：此接口为系统接口。
-
-**系统能力**：SystemCapability.FileManagement.StorageService.Backup
-
-**返回值：**
-
-| 参数名     | 类型          | 必填 | 说明                                                        |
-| ---------- | ------------- | ---- | ----------------------------------------------------------- |
-| file | [File](#file)     | 是   | 返回对应文件的[File](#file)内容。                       |
-
-**错误码：**
-
-以下错误码的详细介绍请参见[文件管理错误码](errorcode-filemanagement.md)。
-
-| 错误码ID | 错误信息                |
-| -------- | ----------------------- |
-| 13600001 | IPC error.               |
-| 13900005 | I/O error.               |
-| 13900011 | Out of memory.           |
-| 13900020 | Invalid argument.        |
-| 13900025 | No space left on device. |
-| 13900042 | Unknown error.           |
-
-**示例：**
-
-  ```ts
-  import { BusinessError } from '@kit.BasicServicesKit';
-  import { fileIo, backup } from '@kit.CoreFileKit';
-
-  onFileReady: (err: BusinessError, file: backup.File) => {
-    if (err) {
-      console.error(`onFileReady failed. Code: ${err.code}, message: ${err.message}`);
-      return;
-    }
-    console.info(`onFileReady success with file: ${file.bundleName}, ${file.uri}`);
-    fileIo.closeSync(file.fd);
-  }
-  ```
-
-### onBundleBegin
-
-onBundleBegin: AsyncCallback&lt;string, void | string&gt;
-
-回调函数。当应用备份/恢复开始时，如果成功触发回调，返回对应的bundleName。如果触发失败，则返回err错误对象。从API version 12开始，返回err时也会返回第二个string参数bundleName。
-
-**系统接口**：此接口为系统接口。
-
-**系统能力**：SystemCapability.FileManagement.StorageService.Backup
-
-**返回值：**
-
-| 参数名     | 类型          | 必填 | 说明                                                        |
-| ---------- | ------------- | ---- | ----------------------------------------------------------- |
-| err        | BusinessError | 否   | 当发生错误时，为错误对象，否则为undefined。 |
-| bundleName | string        | 是   | 服务返回的应用名称，表示当前开始备份/恢复的应用包名。开发者可根据该参数记录当前应用的备份/恢复开始状态、初始化进度展示或准备后续处理。                                          |
-
-**错误码：**
-
-以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[文件管理错误码](errorcode-filemanagement.md)。
-
-| 错误码ID | 错误信息                                              |
-| -------- | ----------------------------------------------------- |
-| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed.|
-| 13500001 | The application is not added to the backup or restore. |
-| 13500002 | Failed to start application extension Procedure.       |
-| 13600001 | IPC error.                                             |
-| 13900005 | I/O error.                                             |
-| 13900011 | Out of memory.                                         |
-| 13900025 | No space left on device.                               |
-| 13900042 | Unknown error.                                         |
-
-**示例：**
-
-  ```ts
-  import { BusinessError } from '@kit.BasicServicesKit';
-
-  onBundleBegin: (err: BusinessError, bundleName: string) => {
-    if (err) {
-      console.error(`onBundleBegin failed. Code: ${err.code}, message: ${err.message}`);
-      return;
-    }
-    console.info('onBundleBegin success');
-  }
-  ```
-
-### onBundleEnd
-
-onBundleEnd: AsyncCallback&lt;string, void | string&gt;
-
-回调函数。当应用备份/恢复结束后，如果成功触发回调，返回对应的bundleName。如果触发失败，则返回err错误对象。从API version 12开始，返回err的同时，将同时返回第二个string参数bundleName。
-
-**系统接口**：此接口为系统接口。
-
-**系统能力**：SystemCapability.FileManagement.StorageService.Backup
-
-**返回值：**
-
-| 参数名     | 类型          | 必填 | 说明                                                        |
-| ---------- | ------------- | ---- | ----------------------------------------------------------- |
-| err        | BusinessError | 否   | 当发生错误时，为错误对象，否则为undefined。 |
-| bundleName | string        | 是   | 服务返回的应用名称，表示当前结束备份/恢复的应用包名。开发者可根据该参数记录当前应用的备份/恢复结束状态、更新结果展示或清理临时状态。                                          |
-
-**错误码：**
-
-以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[文件管理错误码](errorcode-filemanagement.md)。
-
-| 错误码ID | 错误信息                        |
-| -------- | ------------------------------- |
-| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed.|
-| 13500003 | Backup or restore timed out.     |
-| 13500004 | Application extension death.     |
-| 13600001 | IPC error.                       |
-| 13900005 | I/O error.                      |
-| 13900011 | Out of memory.                   |
-| 13900025 | No space left on device.         |
-| 13900042 | Unknown error.                   |
-
-**示例：**
-
-  ```ts
-  import { BusinessError } from '@kit.BasicServicesKit';
-
-  onBundleEnd: (err: BusinessError, bundleName: string) => {
-    if (err) {
-      console.error(`onBundleEnd failed. Code: ${err.code}, message: ${err.message}`);
-      return;
-    }
-    console.info('onBundleEnd success');
-  }
-  ```
-
-### onAllBundlesEnd
-
-onAllBundlesEnd: AsyncCallback&lt;undefined&gt;
-
-回调函数。当所有bundle的备份/恢复过程结束成功时触发回调，如果触发失败，则返回err错误对象。
-
-**系统接口**：此接口为系统接口。
-
-**系统能力**：SystemCapability.FileManagement.StorageService.Backup
-
-**错误码：**
-
-以下错误码的详细介绍请参见[文件管理错误码](errorcode-filemanagement.md)。
-
-| 错误码ID | 错误信息                |
-| -------- | ----------------------- |
-| 13600001 | IPC error.               |
-| 13900005 | I/O error.               |
-| 13900011 | Out of memory.           |
-| 13900020 | Invalid argument.        |
-| 13900025 | No space left on device. |
-| 13900042 | Unknown error.           |
-
-**示例：**
-
-  ```ts
-  import { BusinessError } from '@kit.BasicServicesKit';
-
-  onAllBundlesEnd: (err: BusinessError) => {
-    if (err) {
-      console.error(`onAllBundlesEnd failed. Code: ${err.code}, message: ${err.message}`);
-      return;
-    }
-    console.info('onAllBundlesEnd success');
-  }
-  ```
-
-### onBackupServiceDied
-
-onBackupServiceDied: Callback&lt;undefined&gt;
-
-回调函数。备份服务死亡时触发回调。
-
-**系统接口**：此接口为系统接口。
-
-**系统能力**：SystemCapability.FileManagement.StorageService.Backup
-
-**示例：**
-
-  ```ts
-  onBackupServiceDied: () => {
-    console.info('onBackupServiceDied success');
-  }
-  ```
+| onFileReadyBatch | [OnFileReadyBatch](#onfilereadybatch) | 否 | 是 | 当一批文件准备好发送给客户端时触发的回调。<br>**起始版本**：26.0.0<br>**模型约束**：此接口仅可在Stage模型下使用。<br>**错误码**：<br>以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[文件管理错误码](errorcode-filemanagement.md)。<br>- 202：Permission verification failed, application which is not a system application uses system API.<br>- 13600001：IPC error.<br>- 13900005：I/O error.<br>- 13900011：Out of memory.<br>- 13900020：Invalid argument.<br>- 13900025：No space left on device. |
 
 ### onResultReport<sup>12+</sup>
 
-onResultReport (bundleName: string, result: string)
+onResultReport(bundleName: string, result: string): void
 
 回调函数。当应用备份/恢复结束后，如果成功触发回调，返回应用包名及应用备份/恢复信息（备份/恢复数量或异常信息等）。
+
+**模型约束**：此接口仅可在Stage模型下使用。
 
 **系统接口**：此接口为系统接口。
 
@@ -414,9 +226,11 @@ onResultReport (bundleName: string, result: string)
 
 ### onProcess<sup>12+</sup>
 
-onProcess (bundleName: string, process: string): void
+onProcess(bundleName: string, process: string): void
 
 回调函数。应用备份/恢复过程中进度信息的回调，返回应用执行业务的进度信息和异常信息等。
+
+**模型约束**：此接口仅可在Stage模型下使用。
 
 **系统接口**：此接口为系统接口。
 
@@ -957,6 +771,45 @@ type OnBackupSizeReport = (reportInfo: string) => void
     console.info('dataSizeCallback success');
     console.info('dataSizeCallback report : ' + OnBackupSizeReport);
   }
+  ```
+
+## OnFileReadyBatch
+
+type OnFileReadyBatch = (error: BusinessError&lt;void&gt;, files: Array&lt;[File](#file)&gt;) => void
+
+当服务器将文件发送回客户端时触发的回调函数。
+
+**起始版本**：26.0.0
+
+**系统接口**：此接口为系统接口。
+
+**模型约束**：此接口仅可在Stage模型下使用。
+
+**系统能力**：SystemCapability.FileManagement.StorageService.Backup
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明 |
+| ------ | ---- | ---- | ---- |
+| error | BusinessError&lt;void&gt; | 是 | 当获取文件句柄成功，error为undefined，否则为错误对象。 |
+| files | Array&lt;[File](#file)&gt; | 是 | 当获取文件句柄成功，返回获取到的文件句柄数组。 |
+
+**示例：**
+
+  ```ts
+  import { BusinessError } from '@kit.BasicServicesKit';
+  import { fileIo, backup } from '@kit.CoreFileKit';
+
+  const onFileReadyBatch: backup.OnFileReadyBatch = (error: BusinessError<void>, files: Array<backup.File>): void => {
+    if (error) {
+      console.error(`onFileReadyBatch failed. Code: ${error.code}, message: ${error.message}`);
+      return;
+    }
+    for (let file of files) {
+      console.info(`onFileReadyBatch success with file: ${file.bundleName}, ${file.uri}`);
+      fileIo.closeSync(file.fd);
+    }
+  };
   ```
 
 ## SessionBackup
@@ -3517,6 +3370,129 @@ async function testGetApkFileHandle() {
   }
 }
 ```
+
+### getFileHandles
+
+getFileHandles(fileMeta: FileMeta): Promise&lt;void&gt;
+
+从服务中获取共享文件的句柄。使用Promise异步回调。
+
+> **说明：**
+>
+> - 该接口属于零拷贝特性，可以减少不必要的内存拷贝，提升传输效率。零拷贝方法详见[@ohos.file.fs](js-apis-file-fs.md)提供的零拷贝接口，如[fileIo.copyFile](js-apis-file-fs.md#fileiocopyfile)。
+> - 使用[getFileHandles](#getfilehandles)接口前，需要先获取[SessionRestore](#sessionrestore)实例，并通过[appendBundles](#appendbundles-2)方法添加需要恢复数据的应用。
+> - 可以通过[onFileReadyBatch](#onfilereadybatch)获取文件句柄，当客户端文件操作完成后，需要使用[publishFile](#publishfile)发布文件。
+> - 根据待恢复文件数量，可多次调用getFileHandles接口。
+> - 待恢复文件不能是相对路径（../）或软链接。
+
+**起始版本**：26.0.0
+
+**需要权限**：ohos.permission.BACKUP
+
+**模型约束**：此接口仅可在Stage模型下使用。
+
+**系统能力**：SystemCapability.FileManagement.StorageService.Backup
+
+**系统接口**：此接口为系统接口。
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明 |
+| ------ | ---- | ---- | ---- |
+| fileMeta | [FileMeta](#filemeta) | 是 | 待发送文件的元数据，文件应来自备份流程或[getLocalCapabilities](#getlocalcapabilities18-1)方法。 |
+
+**返回值：**
+
+| 类型 | 说明 |
+| ---- | ---- |
+| Promise&lt;void&gt; | Promise对象，无返回结果。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[文件管理错误码](errorcode-filemanagement.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 201 | Permission verification failed, usually the result returned by VerifyAccessToken. |
+| 202 | Permission verification failed, application which is not a system application uses system API. |
+| 13600001 | IPC error. |
+| 13900001 | Operation not permitted. |
+| 13900020 | Invalid argument. |
+
+**示例：**
+
+  ```ts
+  import { fileIo, backup } from '@kit.CoreFileKit';
+  import { BusinessError } from '@kit.BasicServicesKit';
+
+  let generalCallbacks: backup.GeneralCallbacks = {
+    onFileReady: (err: BusinessError, file: backup.File) => {
+      if (err) {
+        console.error(`onFileReady failed. Code: ${err.code}, message: ${err.message}`);
+        return;
+      }
+      console.info('onFileReady success');
+      fileIo.closeSync(file.fd);
+    },
+    onFileReadyBatch: (error: BusinessError<void>, files: Array<backup.File>): void => {
+      if (error) {
+        console.error(`onFileReadyBatch failed. Code: ${error.code}, message: ${error.message}`);
+        return;
+      }
+      for (let file of files) {
+        console.info(`onFileReadyBatch success with file: ${file.bundleName}, ${file.uri}`);
+        fileIo.closeSync(file.fd);
+      }
+    },
+    onBundleBegin: (err: BusinessError<string|void>, bundleName: string) => {
+      if (err) {
+        console.error(`onBundleBegin failed. Code: ${err.code}, message: ${err.message}`);
+        return;
+      }
+      console.info('onBundleBegin success');
+    },
+    onBundleEnd: (err: BusinessError<string|void>, bundleName: string) => {
+      if (err) {
+        console.error(`onBundleEnd failed. Code: ${err.code}, message: ${err.message}`);
+        return;
+      }
+      console.info('onBundleEnd success');
+    },
+    onAllBundlesEnd: (err: BusinessError) => {
+      if (err) {
+        console.error(`onAllBundlesEnd failed. Code: ${err.code}, message: ${err.message}`);
+        return;
+      }
+      console.info('onAllBundlesEnd success');
+    },
+    onBackupServiceDied: () => {
+      console.info('service died');
+    },
+    onResultReport: (bundleName: string, result: string) => {
+      console.info(`onResultReport success, bundleName: ${bundleName}, result: ${result}`);
+    },
+    onProcess: (bundleName: string, process: string) => {
+      console.info(`onProcess success, bundleName: ${bundleName}, process: ${process}`);
+    }
+  };
+  // 创建恢复流程实例。
+  let sessionRestore = new backup.SessionRestore(generalCallbacks);
+  async function getFileHandles() {
+    let testArray: string[] = ["test1", "test2"];
+    try {
+      let fileMeta: backup.FileMeta = {
+        bundleName: "com.example.hiworld",
+        uri: "test.txt",
+        uris: testArray
+      };
+      await sessionRestore.getFileHandles(fileMeta);
+      console.info('getFileHandles success');
+    } catch (error) {
+      let err: BusinessError = error as BusinessError;
+      console.error(`getFileHandles failed. Code: ${err.code}, message: ${err.message}`);
+    }
+  }
+  ```
 
 ## IncrementalBackupSession<sup>12+</sup>
 

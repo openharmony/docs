@@ -1,125 +1,245 @@
 # Camera Kit
+
 <!--Kit: Camera Kit-->
 <!--Subsystem: Multimedia-->
 <!--Owner: @qano-->
 <!--Designer: @leo_ysl-->
 <!--Tester: @xchaosioda-->
 <!--Adviser: @w_Machine_cc-->
+<!-- md-trans-meta sourceCommit=c8ffbd9c829ae140605625a64c8182ad6cceaa74 translatedAt=2026-08-11T02:04:56.817Z pushedAt=2026-08-12T07:56:35.337Z -->
 
 - ArkTS APIs<!--camera-arkts-->
+
   - @ohos.multimedia.camera (Camera Management)<!--js-apis-camera-->
+
     - [Module Description](arkts-apis-camera.md)
+
     - [Functions](arkts-apis-camera-f.md)
+
     - [Interface (Aperture)](arkts-apis-camera-Aperture.md)
+
     - [Interface (ApertureQuery)](arkts-apis-camera-ApertureQuery.md)
+
     - [Interface (AutoDeviceSwitch)](arkts-apis-camera-AutoDeviceSwitch.md)
+
     - [Interface (AutoDeviceSwitchQuery)](arkts-apis-camera-AutoDeviceSwitchQuery.md)
+
     - [Interface (AutoExposure)](arkts-apis-camera-AutoExposure.md)
+
     - [Interface (AutoExposureQuery)](arkts-apis-camera-AutoExposureQuery.md)
+
     - [Interface (CameraInput)](arkts-apis-camera-CameraInput.md)
+
     - [Interface (CameraManager)](arkts-apis-camera-CameraManager.md)
+
     - [Interface (CameraOutput)](arkts-apis-camera-CameraOutput.md)
+
     - [Interface (CapturePhoto)](arkts-apis-camera-CapturePhoto.md)
+
     - [Interface (ColorManagement)](arkts-apis-camera-ColorManagement.md)
+
     - [Interface (ColorManagementQuery)](arkts-apis-camera-ColorManagementQuery.md)
+
     - [Interface (ControlCenter)](arkts-apis-camera-ControlCenter.md)
+
     - [Interface (ControlCenterQuery)](arkts-apis-camera-ControlCenterQuery.md)
+
     - [Interface (Flash)](arkts-apis-camera-Flash.md)
+
     - [Interface (FlashQuery)](arkts-apis-camera-FlashQuery.md)
+
     - [Interface (Focus)](arkts-apis-camera-Focus.md)
+
     - [Interface (FocusQuery)](arkts-apis-camera-FocusQuery.md)
+
     - [Interface (Macro)](arkts-apis-camera-Macro.md)
+
     - [Interface (MacroQuery)](arkts-apis-camera-MacroQuery.md)
+
     - [Interface (ManualExposure)](arkts-apis-camera-ManualExposure.md)
+
     - [Interface (ManualExposureQuery)](arkts-apis-camera-ManualExposureQuery.md)
+
     - [Interface (ManualFocus)](arkts-apis-camera-ManualFocus.md)
+
     - [Interface (ManualFocusQuery)](arkts-apis-camera-ManualFocusQuery.md)
+
     - [Interface (ManualIso)](arkts-apis-camera-ManualIso.md)
+
     - [Interface (ManualIsoQuery)](arkts-apis-camera-ManualIsoQuery.md)
+
     - [Interface (MetadataOutput)](arkts-apis-camera-MetadataOutput.md)
+
     - [Interface (OIS)](arkts-apis-camera-OIS.md)
+
     - [Interface (OISQuery)](arkts-apis-camera-OISQuery.md)
+
     - [Interface (Photo)](arkts-apis-camera-Photo.md)
+
     - [Interface (PhotoOutput)](arkts-apis-camera-PhotoOutput.md)
+
     - [Interface (PhotoSession)](arkts-apis-camera-PhotoSession.md)
+
     - [Interface (PreviewOutput)](arkts-apis-camera-PreviewOutput.md)
+
     - [Interface (SecureSession)](arkts-apis-camera-SecureSession.md)
+
     - [Interface (Session)](arkts-apis-camera-Session.md)
+
     - [Interface (Stabilization)](arkts-apis-camera-Stabilization.md)
+
     - [Interface (StabilizationQuery)](arkts-apis-camera-StabilizationQuery.md)
+
     - [Interface (VideoOutput)](arkts-apis-camera-VideoOutput.md)
+
     - [Interface (VideoSession)](arkts-apis-camera-VideoSession.md)
+
     - [Interface (WhiteBalance)](arkts-apis-camera-WhiteBalance.md)
+
     - [Interface (WhiteBalanceQuery)](arkts-apis-camera-WhiteBalanceQuery.md)
+
     - [Interface (Zoom)](arkts-apis-camera-Zoom.md)
+
     - [Interface (ZoomQuery)](arkts-apis-camera-ZoomQuery.md)
+
     - [Interfaces (Others)](arkts-apis-camera-i.md)
+
     - [Enums](arkts-apis-camera-e.md)
+
     - [Types](arkts-apis-camera-t.md)
+
     - [Deprecated Interface (CaptureSession, deprecated)](arkts-apis-camera-CaptureSession.md)
+
   - [@ohos.multimedia.cameraPicker (Camera Picker)](js-apis-cameraPicker.md)
+
   <!--Del-->
+
   - [@ohos.multimedia.camera (Camera Management) (System API)](js-apis-camera-sys.md)
+
   <!--DelEnd-->
+
 - C APIs<!--camera-c-->
+
   - Modules<!--camera-module-->
+
     - [OH_Camera](capi-oh-camera.md)
+
   - Header Files<!--camera-headerfile-->
+
     - [camera.h](capi-camera-h.md)
+
     - [camera_device.h](capi-camera-device-h.md)
+
     - [camera_input.h](capi-camera-input-h.md)
+
     - [camera_manager.h](capi-camera-manager-h.md)
+
     - [capture_session.h](capi-capture-session-h.md)
+
     - [metadata_output.h](capi-metadata-output-h.md)
+
     - [metadata_object_ext.h](capi-metadata-object-ext-h.md)
+
     - [photo_native.h](capi-photo-native-h.md)
+
     - [photo_output.h](capi-photo-output-h.md)
+
     - [preview_output.h](capi-preview-output-h.md)
+
     - [video_output.h](capi-video-output-h.md)
+
   - Structs<!--camera-struct-->
+
     - [Camera_Size](capi-oh-camera-camera-size.md)
+
     - [Camera_Profile](capi-oh-camera-camera-profile.md)
+
     - [Camera_FrameRateRange](capi-oh-camera-camera-frameraterange.md)
+
     - [Camera_VideoProfile](capi-oh-camera-camera-videoprofile.md)
+
     - [Camera_OutputCapability](capi-oh-camera-camera-outputcapability.md)
+
     - [Camera_Device](capi-oh-camera-camera-device.md)
+
     - [Camera_DeviceQueryInfo](capi-oh-camera-camera-devicequeryinfo.md)
+
     - [Camera_StatusInfo](capi-oh-camera-camera-statusinfo.md)
+
     - [Camera_Point](capi-oh-camera-camera-point.md)
+
     - [Camera_Location](capi-oh-camera-camera-location.md)
+
     - [Camera_PhotoCaptureSetting](capi-oh-camera-camera-photocapturesetting.md)
+
+    - [OH_Camera_PhotoCaptureSettingExt](capi-oh-camera-camera-photocapturesettingext.md)
+
     - [Camera_FrameShutterInfo](capi-oh-camera-camera-frameshutterinfo.md)
+
     - [Camera_CaptureEndInfo](capi-oh-camera-camera-captureendinfo.md)
+
     - [Camera_Rect](capi-oh-camera-camera-rect.md)
+
     - [OH_Camera_Rect_Ext](capi-oh-camera-oh-camera-rect-ext.md)
+
     - [Camera_MetadataObject](capi-oh-camera-camera-metadataobject.md)
+
     - [OH_Camera_MetadataObjectExt](capi-oh-camera-oh-camera-metadataobjectext.md)
+
     - [Camera_TorchStatusInfo](capi-oh-camera-camera-torchstatusinfo.md)
+
     - [Camera_SmoothZoomInfo](capi-oh-camera-camera-smoothzoominfo.md)
+
     - [Camera_CaptureStartInfo](capi-oh-camera-camera-capturestartinfo.md)
+
     - [Camera_FrameShutterEndInfo](capi-oh-camera-camera-frameshutterendinfo.md)
+
     - [Camera_FoldStatusInfo](capi-oh-camera-camera-foldstatusinfo.md)
+
     - [Camera_AutoDeviceSwitchStatusInfo](capi-oh-camera-camera-autodeviceswitchstatusinfo.md)
+
     - [Camera_ConcurrentInfo](capi-oh-camera-camera-concurrentinfo.md)
+
     - [Camera_ControlCenterStatusInfo](capi-oh-camera-camera-controlcenterstatusinfo.md)
+
     - [Camera_Manager](capi-oh-camera-camera-manager.md)
+
     - [CameraInput_Callbacks](capi-oh-camera-camerainput-callbacks.md)
+
     - [Camera_Input](capi-oh-camera-camera-input.md)
+
     - [CameraManager_Callbacks](capi-oh-camera-cameramanager-callbacks.md)
+
     - [CaptureSession_Callbacks](capi-oh-camera-capturesession-callbacks.md)
+
     - [Camera_CaptureSession](capi-oh-camera-camera-capturesession.md)
+
     - [MetadataOutput_Callbacks](capi-oh-camera-metadataoutput-callbacks.md)
+
     - [Camera_MetadataOutput](capi-oh-camera-camera-metadataoutput.md)
+
     - [OH_PhotoNative](capi-oh-camera-oh-photonative.md)
+
     - [PhotoOutput_Callbacks](capi-oh-camera-photooutput-callbacks.md)
+
     - [Camera_PhotoOutput](capi-oh-camera-camera-photooutput.md)
+
     - [PreviewOutput_Callbacks](capi-oh-camera-previewoutput-callbacks.md)
+
     - [Camera_PreviewOutput](capi-oh-camera-camera-previewoutput.md)
+
     - [VideoOutput_Callbacks](capi-oh-camera-videooutput-callbacks.md)
+
     - [Camera_VideoOutput](capi-oh-camera-camera-videooutput.md)
+
     - [Camera_OcclusionDetectionResult](capi-oh-camera-camera-occlusiondetectionresult.md)
+
     - [OH_Camera_ZoomRange](capi-oh-camera-oh-camera-zoomrange.md)
+
     - [OH_Camera_PhysicalAperture](capi-oh-camera-oh-camera-physicalaperture.md)
+
     - [OH_Camera_ZoomPointInfo](capi-oh-camera-oh-camera-zoompointinfo.md)
+
 - Error Codes<!--camera-arkts-errcode-->
+
   - [Camera Error Codes](errorcode-camera.md)

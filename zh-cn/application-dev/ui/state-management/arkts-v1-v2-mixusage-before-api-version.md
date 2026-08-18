@@ -221,7 +221,7 @@ struct IndexTwo {
 
 ### 传递简单类型状态变量
 
-在V1中使用V2组件时，V1组件中的装饰器仅支持修饰简单类型数据，包括：boolean、number、string、null、undefined。V2组件使用\@Param接收参数。
+在V1中使用V2组件时，V1组件中的装饰器仅支持修饰简单类型数据，包括：boolean、number、enum、string、null、undefined。V2组件使用\@Param接收参数。
 
 若在V1中使用V2组件时，传递了使用\@State装饰的Class类型或内置类型（Array、Map、Set、Date），会造成编译报错。以下示例代码中，info和set变量需删除\@State装饰器。\@Prop、\@Link、\@ObjectLink、\@Provide、\@Consume、\@StorageProp、\@StorageLink、\@LocalStorageProp、\@LocalStorageLink的行为和\@State保持一致。
 

@@ -379,7 +379,7 @@ try {
 
 queryAllAutoStartupApplications(callback: AsyncCallback\<Array\<AutoStartupInfo\>\>): void
 
-查询自启动应用组件信息。使用callback异步回调。
+查询所有自启动应用组件信息。使用callback异步回调。
 
 **需要权限**：ohos.permission.MANAGE_APP_BOOT
 
@@ -394,7 +394,7 @@ queryAllAutoStartupApplications(callback: AsyncCallback\<Array\<AutoStartupInfo\
 
 | 参数名        | 类型                                       | 必填   | 说明             |
 | --------- | ---------------------------------------- | ---- | -------------- |
-| callback  | AsyncCallback\<Array\<[AutoStartupInfo](js-apis-inner-application-autoStartupInfo-sys.md)\>\> | 是    | 回调函数。当查询自启动应用组件信息成功，err为undefined，data为获取到的Array\<[AutoStartupInfo](js-apis-inner-application-autoStartupInfo-sys.md)\>；否则为错误对象。      |
+| callback  | AsyncCallback\<Array\<[AutoStartupInfo](js-apis-inner-application-autoStartupInfo-sys.md)\>\> | 是    | 回调函数。当查询所有自启动应用组件信息成功，err为undefined，data为获取到的Array\<[AutoStartupInfo](js-apis-inner-application-autoStartupInfo-sys.md)\>；否则为错误对象。      |
 
 **错误码**：
 
@@ -432,7 +432,7 @@ try {
 
  queryAllAutoStartupApplications(): Promise\<Array\<AutoStartupInfo\>\>
 
-查询自启动应用组件信息。使用Promise异步回调。
+查询所有自启动应用组件信息。使用Promise异步回调。
 
 **需要权限**：ohos.permission.MANAGE_APP_BOOT
 
@@ -447,7 +447,7 @@ try {
 
 | 类型                            | 说明                                                         |
 | ------------------------------- | ------------------------------------------------------------ |
-| Promise\<Array\<[AutoStartupInfo](js-apis-inner-application-autoStartupInfo-sys.md)\>\> | Promise对象，返回自启动应用组件信息。 |
+| Promise\<Array\<[AutoStartupInfo](js-apis-inner-application-autoStartupInfo-sys.md)\>\> | Promise对象，返回所有自启动应用组件信息。 |
 
 **错误码**：
 

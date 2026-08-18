@@ -1,4 +1,4 @@
-# Global Floating Window Development Guide
+# Global Floating Window Development
 
 <!--Kit: ArkUI-->
 <!--Subsystem: Window-->
@@ -6,13 +6,13 @@
 <!--Designer: @gcw_sPCsris4; @qinliwen0417-->
 <!--Tester: @qinliwen0417-->
 <!--Adviser: @ge-yafang-->
-<!-- md-trans-meta sourceCommit=8c917bf993b2dae95f3071dcf8d84028512e2a7a translatedAt=2026-06-18T08:10:01.206Z pushedAt=2026-06-18T09:16:36.999Z -->
+<!-- md-trans-meta sourceCommit=d92a834fa37fa220b93af036aac498daf001d662 translatedAt=2026-08-11T10:10:25.452Z pushedAt=2026-08-11T10:58:39.732Z -->
 
 ## When to Use
 
 The global floating window has the ability to continue displaying in the foreground when the application's main window goes to the background, making it suitable for scenarios such as multi-person video calls and screen sharing.
 
-The global floating window has a higher level than all main windows and child windows.
+The global floating window has a higher hierarchy level than all app main windows and sub-windows.
 
 **Comparison between global floating window and float view:**
 

@@ -72,7 +72,7 @@ UnionEffectContainer(options?: UnionEffectContainerOptions)
 
 ### pointLight
 
-pointLight(value: PointLightStyle)
+pointLight(light: PointLightStyle)
 
 设置点光源样式。点光源是从指定位置发出的光源，在融合后的形状上产生光照高亮效果。该属性效果绘制在融合后的形状上，需要后代组件使用[useUnionEffect](ts-universal-attributes-use-union-effect-sys.md#useunioneffect)才能生效。通常情况下不需要在使用融合效果的后代组件中同时设置pointLight属性，避免融合效果劣化。
 
@@ -86,7 +86,7 @@ pointLight(value: PointLightStyle)
 
 | 参数名 | 类型                                                         | 必填 | 说明         |
 | ------ | ------------------------------------------------------------ | ---- | ------------ |
-| value  | [PointLightStyle](ts-universal-attributes-point-light-style-sys.md#pointlightstyle) | 是   | 点光源样式，用于设置UnionEffectContainer融合形状上的点光源效果。pointLight为与边框相关且支持融合形变效果的属性，效果绘制在融合后的形状上；不建议在使用融合效果的后代组件中同时设置pointLight，避免融合效果劣化。 |
+| light  | [PointLightStyle](ts-universal-attributes-point-light-style-sys.md#pointlightstyle) | 是   | 点光源样式，用于设置UnionEffectContainer融合形状上的点光源效果。pointLight为与边框相关且支持融合形变效果的属性，效果绘制在融合后的形状上；不建议在使用融合效果的后代组件中同时设置pointLight，避免融合效果劣化。 |
 
 ### unionMode
 

@@ -3,7 +3,7 @@
 <!--Kit: Connectivity Kit-->
 <!--Subsystem: Communication-->
 <!--Owner: @enjoy_sunshine-->
-<!--Designer: @chengguohong; @tangjia15-->
+<!--Designer: @tangjia15-->
 <!--Tester: @wangfeng517-->
 <!--Adviser: @zhang_yixin13-->
 
@@ -19,3 +19,4 @@
   - [连接和传输数据](gatt-development-guide.md)
 - 蓝牙常见问题<!--bluetooth-faq-->
   - [蓝牙接口调用报错2900099](bluetooth-faq-2900099-errorcode.md)<!--RP1--><!--RP1End-->
+  - [可选属性显式设置为undefined报401无效参数](bluetooth-faq-401-invalid-parameter.md)

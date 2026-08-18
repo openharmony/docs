@@ -12,7 +12,7 @@ typedef struct {...} ArkWeb_AnyNativeAPI
 
 ## 概述
 
-ArkWeb_AnyNativeAPI是ArkWeb Native API的基础结构体类型，用于统一表示通过[OH_ArkWeb_GetNativeAPI](capi-arkweb-interface-h.md#oh_arkweb_getnativeapi)接口获取到的各类Native API结构体指针。该结构体包含一个size_t类型的size成员，用于记录当前结构体的大小，便于在不同版本的SDK与设备ROM之间进行二进制兼容性校验。
+ArkWeb_AnyNativeAPI是ArkWeb Native API的基础结构体类型，用于统一表示通过[OH_ArkWeb_GetNativeAPI](capi-arkweb-interface-h.md#oh_arkweb_getnativeapi)接口获取到的各类Native API结构体指针。该结构体包含一个size_t类型的size成员，用于记录当前结构体的大小。
 
 **起始版本：** 12
 

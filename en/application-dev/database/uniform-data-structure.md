@@ -1,17 +1,18 @@
 # Uniform Data Structs (ArkTS)
+
 <!--Kit: ArkData-->
 <!--Subsystem: DistributedDataManager-->
 <!--Owner: @jcwen-->
 <!--Designer: @junathuawei1; @zph000-->
 <!--Tester: @lj_liujing; @yippo; @logic42-->
 <!--Adviser: @ge-yafang-->
-
+<!-- md-trans-meta sourceCommit=814e5538573180f4836543a1c6592fa1ff24a7c3 translatedAt=2026-08-15T01:43:15.419Z pushedAt=2026-08-15T06:31:52.809Z -->
 
 ## When to Use
 
-Uniform data structs are provided to define data of common [uniform data types](../reference/apis-arkdata/js-apis-data-uniformTypeDescriptor.md#uniformdatatype). For example, the data struct for the system-defined home screen icon (the uniform data type is **openharmony.app-item**) is provided to help you easily define the data.
+For some common [uniform data types](../reference/apis-arkdata/js-apis-data-uniformTypeDescriptor.md#uniformdatatype) defined by UTD, uniform data structs are provided for different data types to facilitate your use. For example, for the system-defined desktop icon type (whose uniform data type identifier is 'openharmony.app-item'), the related description of the data struct is explicitly defined.
 
-Applications can directly use the uniform data structs in certain scenarios. For example, in the drag-and-drop operation across applications, you can write the data (encapsulated in a uniform struct) to be dragged to [DragEvent](../reference/apis-arkui/arkui-ts/ts-universal-events-drag-drop.md#dragevent7). The target application (application requesting the data) reads the data from **DragEvent** and parses the data in the uniform data struct. Using uniform data structs for data interaction between applications effectively reduces the development workload in your application experience.
+In certain scenarios, apps can directly use the UTD uniform data structs that we define, for example, in cross-app drag-and-drop. The drag-out app can write the drag data into the drag event [DragEvent](../reference/apis-arkui/arkui-ts/ts-universal-events-drag-drop.md#dragevent7) according to the uniform data struct, and the drag-in app reads the drag data from the drag event and parses it according to the uniform data struct. This enables data interaction between different apps to follow the same standard definition, effectively reducing the development workload of cross-app data interaction.
 
 ## Uniform Data Structs
 
@@ -27,14 +28,14 @@ The following table lists the uniform data structs provided by the UDMF.
 
 ## How to Develop
 
-The following describes how to use the uniform data structs to define a hyperlink and a plaint text.
+The following describes how to use the uniform data structs to define a hyperlink and a plain text.
 
 The data provider can call **addRecord()** provided by the UDMF to add data records and call **getRecords()** to obtain all data records in the current data object.
 
 1. Import the required modules.
 
     <!-- @[import_module](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkData/Udmf/UniformDataStructure/entry/src/main/ets/pages/UdmfInterface.ets) -->
-    
+
     ``` TypeScript
     // 1. Import the unifiedDataChannel and uniformTypeDescriptor modules.
     import { uniformDataStruct, uniformTypeDescriptor, unifiedDataChannel } from '@kit.ArkData';
@@ -43,13 +44,13 @@ The data provider can call **addRecord()** provided by the UDMF to add data reco
 
 2. Create a data record for a hyperlink.
 
-3. Create a data record and add it to the unified data object.
+3. Create a data record for the plain text data type.
 
-4. Create a unified data object instance.
+4. Create a unified data object and record.
 
-5. Add a data record for the **plainText**.
+5. Add a data record.
 
-6. Add and obtain all data records in the current UnifiedData object.
+6. Obtain all data records in the current `UnifiedData` object.
 
 7. Traverse each record, determine the data type, and convert the data type into a child class object to obtain the original data record.
 

@@ -59,7 +59,7 @@ enum ArkUI_TextInputType
 | ARKUI_TEXTINPUT_TYPE_USER_NAME = 10 | 用户名输入模式，无特殊限制。<br>在已启用密码保险箱的情况下，支持用户名的自动保存和自动填充。 |
 | ARKUI_TEXTINPUT_TYPE_NEW_PASSWORD = 11 | 新密码输入模式。<br>默认输入文字短暂显示后变成圆点。从API version 12开始，PC/2in1设备上输入文字直接显示为圆点。<br>TV设备上输入框末尾默认不显示小眼睛图标，其他设备输入框末尾默认显示小眼睛图标。 |
 | ARKUI_TEXTINPUT_TYPE_NUMBER_DECIMAL = 12 | 带小数点的数字输入模式。<br>支持数字，小数点（只能存在一个小数点）。不支持负数（包括负数整数和负数小数）。 |
-| ARKUI_TEXTINPUT_TYPE_ONE_TIME_CODE = 14 | 验证码输入模式，无特殊限制。<br>**起始版本：** 20 |
+| ARKUI_TEXTINPUT_TYPE_ONE_TIME_CODE = 14 | 验证码输入模式，无特殊限制。该模式下组件获焦后会默认拉起系统输入法。<br>**起始版本：** 20 |
 
 ### ArkUI_CancelButtonStyle
 

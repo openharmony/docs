@@ -6,6 +6,7 @@
 <!--Designer: @zhouben25-->
 <!--Tester: @leetestnady-->
 <!--Adviser: @HelloCrease-->
+<!-- md-trans-meta sourceCommit=276864ac1aee9d6ac1e6115d16df081282882c33 translatedAt=2026-08-11T01:56:48.598Z pushedAt=2026-08-11T07:08:19.041Z -->
 
 The **WorkSchedulerExtensionAbility** module provides callbacks for deferred task scheduling. You can override the APIs provided by this module. When a deferred task is triggered, the system calls back the application through the APIs and processes the task logic in the callback.
 
@@ -20,6 +21,20 @@ The **WorkSchedulerExtensionAbility** module provides callbacks for deferred tas
 ```ts
 import { WorkSchedulerExtensionAbility } from '@kit.BackgroundTasksKit';
 ```
+
+## Constraints
+
+To ensure system security and stability and prevent **WorkSchedulerExtensionAbility** from abusing system resources, the system imposes certain restrictions. Importing the following modules is not supported:
+
+  [@ohos.resourceschedule.backgroundTaskManager (Background Task Management)](./js-apis-resourceschedule-backgroundTaskManager.md)
+
+  [@ohos.backgroundTaskManager (Background Task Management)](./js-apis-backgroundTaskManager.md)
+
+  [@ohos.multimedia.camera (Camera Management)](../apis-camera-kit/arkts-apis-camera.md)
+
+  [@ohos.multimedia.audio (Audio Management)](../apis-audio-kit/arkts-apis-audio.md)
+
+  [@ohos.multimedia.media (Media)](../apis-media-kit/arkts-apis-media.md)
 
 ## WorkSchedulerExtensionContext<sup>10+</sup>
 
@@ -43,7 +58,7 @@ Provides callbacks to be invoked when the scheduling conditions are met or the s
 
 | Name| Type| Read-Only| Optional| Description|
 | -------- | -------- | -------- | -------- | -------- |
-| context<sup>10+</sup> | [WorkSchedulerExtensionContext](js-apis-WorkSchedulerExtensionContext.md)  | No| No| Context of the **WorkSchedulerExtensionAbility**. This context inherits from **ExtensionContext**.|
+| context<sup>10+</sup> | [WorkSchedulerExtensionContext](js-apis-WorkSchedulerExtensionContext.md)  | No| No| Context of the **WorkSchedulerExtension**. This context inherits from **ExtensionContext**.|
 
 ### onWorkStart
 
@@ -86,7 +101,6 @@ Called when the system stops scheduling the deferred task. This callback is trig
 | Name | Type                                      | Mandatory  | Description            |
 | ---- | ---------------------------------------- | ---- | -------------- |
 | work | [workScheduler.WorkInfo](js-apis-resourceschedule-workScheduler.md#workinfo) | Yes   | Deferred task that stops.|
-
 
 **Example**
 

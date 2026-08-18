@@ -79,7 +79,7 @@ XComponent推荐使用两种方式获取XComponent持有Surface的生命周期�
 
 对于复杂的交互逻辑需跨语言开发，追求极致渲染性能或业务需求自主控制Surface的创建和销毁的，建议在Native侧使用[OH_ArkUI_SurfaceHolder](../reference/apis-arkui/capi-oh-nativexcomponent-native-xcomponent-oh-arkui-surfaceholder.md)管理Surface生命周期。其生命周期触发时机如下：
 
-- OnSurfaceCreated回调    
+- OnSurfaceCreated回调
 
   触发时刻：XComponent创建完成且Surface绑定生命周期回调后，满足以下任一条件时触发。
   1. 组件上树且autoInitialize = true。
@@ -98,7 +98,7 @@ XComponent推荐使用两种方式获取XComponent持有Surface的生命周期�
 
 - OnSurfaceDestroyed回调
 
-  触发时刻：组件下树且autoInitialize=true 或者调用 [OH_ArkUI_XComponent_Finalize](../reference/apis-arkui/capi-native-interface-xcomponent-h.md#oh_arkui_xcomponent_finalize)后触发。
+  触发时刻：组件下树且autoInitialize=true 或者调用[OH_ArkUI_XComponent_Finalize](../reference/apis-arkui/capi-native-interface-xcomponent-h.md#oh_arkui_xcomponent_finalize)后触发。
 
   Native侧OnSurfaceDestroyed的时序图：
 
@@ -721,7 +721,7 @@ XComponent推荐使用两种方式获取XComponent持有Surface的生命周期�
 | 接口名                                                       | 描述                                                         |
 | ------------------------------------------------------------ | ------------------------------------------------------------ |
 | OH_ArkUI_QueryModuleInterfaceByName(ArkUI_NativeAPIVariantKind type, const char* structName) | 获取指定类型的Native模块接口集合。                                         |
-| OH_ArkUI_XComponent_GetNativeWindow(OH_ArkUI_SurfaceHolder* surfaceHolder) | 获取与OH_ArkUI_SurfaceHolder实例关联的nativeWindow。                                         |
+| OH_ArkUI_XComponent_GetNativeWindow(OH_ArkUI_SurfaceHolder* surfaceHolder) | 获取与OH_ArkUI_SurfaceHolder实例关联的NativeWindow。                                         |
 | OH_ArkUI_SurfaceHolder_RemoveSurfaceCallback(OH_ArkUI_SurfaceHolder* surfaceHolder, OH_ArkUI_SurfaceCallback* callback) | 从OH_ArkUI_SurfaceHolder实例中移除先前添加的Surface生命周期回调。                                         |
 | OH_ArkUI_SurfaceCallback_Dispose(OH_ArkUI_SurfaceCallback* callback) | 释放OH_ArkUI_SurfaceCallback对象。                                         |
 | OH_ArkUI_SurfaceHolder_Dispose(OH_ArkUI_SurfaceHolder* surfaceHolder) | 释放OH_ArkUI_SurfaceHolder对象。                                         |
@@ -1706,7 +1706,7 @@ XComponent推荐使用两种方式获取XComponent持有Surface的生命周期�
 完整使用SurfaceId进行渲染绘制的示例及其主要开发场景如下：
 
 - 在ArkTS侧创建XComponent组件，并使用XComponentController来管理其持有的Surface生命周期。
-- 在OnSurfaceCreated回调内获取surfaceId并将其传递给AVPlayer。
+- 在onSurfaceCreated回调内获取surfaceId并将其传递给AVPlayer。
 - 使用surfaceId初始化AVPlayer，并为其设置必要信息，实现视频的播放。
 
 > **说明：**

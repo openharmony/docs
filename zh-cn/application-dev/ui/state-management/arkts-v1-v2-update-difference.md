@@ -89,7 +89,7 @@ Button('Change state variable')
     // 对于V1，只能观察一层的变化，即使this.obsObjA.obsObjB.propB被V1装饰器装饰（@Track），第4行Text不更新;
     // 对于V2，只要this.obsObjA.obsObjB.propB被V2装饰器装饰（@Trace），第4行的Text就能更新。
     this.obsObjA.obsObjB.propB = 'propB3';
-    // this.arr被V1装饰器或V2装饰器装饰，给该变量赋值，不论是V1装饰器变量还是V2装饰器变量，都会触发第5和6行的Text更新。
+    // this.arr被V1装饰器或V2装饰器装饰，给该变量赋值，不论是V1装饰器变量还是V2装饰器变量，都会触发第5、6和7行Text的更新。
     this.arr[0] = new ObsObjC('propC3');
     // 对于V1，this.arr被V1装饰器装饰，由于V1只能观察一层的变化，数组项的属性赋值是第二层的修改，第7行的Text不会更新；
     // 对于V2，this.arr被V2装饰器装饰，且propC被V2装饰器装饰（@Trace），给该变量赋值，第7行的Text会更新。
@@ -142,7 +142,7 @@ Button('Change state variable')
 
 ## V1状态变量更新和V2状态变量更新差异
 
-如下图所示，展示V1组件和V2状态变量更新差异的流程图，相比V1状态管理，V2状态管理在状态变量变化时，会异步标脏组件。
+如下图所示，展示V1和V2组件状态变量更新差异的流程图，相比V1状态管理，V2状态管理在状态变量变化时，会异步标脏组件。
 
 ![v1v2updatedifference](figures/v1v2update.PNG)
 

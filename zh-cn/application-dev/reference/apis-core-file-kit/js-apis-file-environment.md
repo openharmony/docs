@@ -24,6 +24,11 @@ getUserDownloadDir(): string
 
 获取当前用户的下载目录的沙箱路径。
 
+**需要权限**：
+
+- API版本12+：NA
+- API版本11：ohos.permission.READ_WRITE_DOWNLOAD_DIRECTORY
+
 **系统能力**：SystemCapability.FileManagement.File.Environment.FolderObtain
 
 **设备行为差异**：
@@ -42,6 +47,7 @@ getUserDownloadDir(): string
 
 | 错误码ID    | 错误信息       |
 |----------| --------- |
+| 201 | Permission verification failed, usually the result returned by VerifyAccessToken.<br>适用版本：11+|
 | 801      | Capability not supported. |
 | 13900042 | Unknown error. |
 
@@ -66,6 +72,11 @@ getUserDesktopDir(): string
 
 获取当前用户的桌面目录的沙箱路径。
 
+**需要权限**：
+
+- API版本12+：NA
+- API版本11：ohos.permission.READ_WRITE_DESKTOP_DIRECTORY
+
 **系统能力**：SystemCapability.FileManagement.File.Environment.FolderObtain
 
 **设备行为差异**：
@@ -84,6 +95,7 @@ getUserDesktopDir(): string
 
 | 错误码ID    | 错误信息       |
 |----------| --------- |
+| 201 | Permission verification failed, usually the result returned by VerifyAccessToken.<br>适用版本：11+|
 | 801      | Capability not supported. |
 | 13900042 | Unknown error. |
 
@@ -108,6 +120,11 @@ getUserDocumentDir(): string
 
 获取当前用户的文档目录的沙箱路径。
 
+**需要权限**：
+
+- API版本12+：NA
+- API版本11：ohos.permission.READ_WRITE_DOCUMENTS_DIRECTORY
+
 **系统能力**：SystemCapability.FileManagement.File.Environment.FolderObtain
 
 **设备行为差异**：
@@ -126,6 +143,7 @@ getUserDocumentDir(): string
 
 | 错误码ID    | 错误信息       |
 |----------| --------- |
+| 201 | Permission verification failed, usually the result returned by VerifyAccessToken.<br>适用版本：11+|
 | 801      | Capability not supported. |
 | 13900042 | Unknown error. |
 

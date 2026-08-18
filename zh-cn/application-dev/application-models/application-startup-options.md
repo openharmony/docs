@@ -10,12 +10,6 @@
 
 在应用开发中，启动应用（通常指启动UIAbility组件）是开发者的常见任务。例如，从商城应用跳转到支付应用进行付款，从聊天应用启动视频应用播放视频，或者在应用间跳转时需要指定特定的窗口模式等场景。
 
-## 应用、进程与UIAbility组件的关系
-
-一个应用可以运行在一个或多个进程中，一个进程中也可以运行单个或多个[UIAbility](./uiability-overview.md)组件实例。三方应用开发者开发的应用，必须包含至少一个[UIAbility](./uiability-overview.md)组件，否则没有界面对用户展示。
-
-对于用户而言，只有[UIAbility](./uiability-overview.md)组件是可见的，启动应用内的第一个UIAbility组件就代表启动应用。后面的章节中，启动应用就是指启动UIAbility。
-
 通过[StartOptions](../reference/apis-ability-kit/js-apis-app-ability-startOptions.md)，开发者可以在启动UIAbility时灵活控制其启动行为，包括窗口模式、窗口位置、启动动效、启动页样式、窗口尺寸限制等多个方面，从而满足不同设备形态和用户场景的需求。
 
 ## 指定窗口模式启动应用

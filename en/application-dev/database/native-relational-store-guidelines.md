@@ -6,7 +6,7 @@
 <!--Designer: @htt1997-->
 <!--Tester: @logic42-->
 <!--Adviser: @ge-yafang-->
-<!-- md-trans-meta sourceCommit=59a5ceab809aba9e57e611623996927625931d53 translatedAt=2026-07-27T08:16:28.575Z pushedAt=2026-07-27T09:48:51.280Z -->
+<!-- md-trans-meta sourceCommit=398b70abca486f675ed05232bec18d3ae2c2f9aa translatedAt=2026-08-15T01:42:39.861Z pushedAt=2026-08-15T06:23:04.907Z -->
 
 ## When to Use
 
@@ -162,7 +162,7 @@ libnative_rdb_ndk.z.so, libhilog_ndk.z.so
     }
     ```
 
-    To set a custom database path, call the **OH_Rdb_SetCustomDir** API in the preceding code. Similarly, to open the database in read-only mode, call the **OH_Rdb_SetReadOnly** API. <br>Example:
+    To set a custom database path, call **OH_Rdb_SetCustomDir** where **// ...** appears in the preceding code. To open the database in read-only mode, call **OH_Rdb_SetReadOnly** at the same location. <br>Example:
 
     <!--@[rdb_OH_Rdb_SetCustomDir_and_SetReadOnly](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkData/RelationalStore/RdbStore/entry/src/main/cpp/napi_init.cpp)-->
 
@@ -507,7 +507,7 @@ libnative_rdb_ndk.z.so, libhilog_ndk.z.so
     ret = OH_Values_PutInt(values, 1); // The value of id is 1
     ret = OH_Values_PutInt(values, 2); // The value of data2 is 2
     ret = OH_Values_PutReal(values, 1.1); // The value of data3 is 1.1
-    ret = OH_Values_PutText(values, "1"); // The value of data3 is 1
+    ret = OH_Values_PutText(values, "1"); // The value of data4 is 1
     unsigned char val[] = {1, 2};
     ret = OH_Values_PutBlob(values, val, sizeof(val) / sizeof(val[0]));
     

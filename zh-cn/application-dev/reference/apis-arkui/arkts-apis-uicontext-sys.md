@@ -21,7 +21,7 @@
 ```ts
 import {
   BackgroundLuminanceSamplingConfigs, LuminanceSampler
-} from "@kit.ArkUI";
+} from '@kit.ArkUI';
 ```
 
 **系统能力：**  SystemCapability.ArkUI.ArkUI.Full

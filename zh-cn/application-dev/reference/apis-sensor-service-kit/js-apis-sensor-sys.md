@@ -148,7 +148,7 @@ off(type: SensorId.COLOR, callback?: Callback&lt;ColorResponse&gt;): void
 | 参数名   | 类型                                                     | 必填 | 说明                                                         |
 | -------- |--------------------------------------------------------| ---- | ------------------------------------------------------------ |
 | type     | [SensorId](#sensorid9).COLOR                           | 是   | 传感器类型，该值固定为SensorId.COLOR。                       |
-| callback | Callback&lt;[ColorResponse](#colorresponse10)&gt;      | 否   | 需要取消订阅的回调函数，若无此参数，则取消订阅当前类型的所有回调函数。 |
+| callback | Callback&lt;[ColorResponse](#colorresponse10)&gt;      | 否   | 回调函数，需要取消订阅的回调函数，若无此参数，则取消订阅当前类型的所有回调函数。 |
 
 **错误码**：
 
@@ -206,7 +206,7 @@ off(type: SensorId.COLOR, sensorInfoParam?: SensorInfoParam, callback?: Callback
 | -------- |--------------------------------------------------------| ---- | ------------------------------------------------------------ |
 | type     | [SensorId](#sensorid9).COLOR                           | 是   | 传感器类型，该值固定为SensorId.COLOR。                       |
 | sensorInfoParam | [SensorInfoParam](js-apis-sensor.md#sensorinfoparam19) |  否 | 传感器传入设置参数，可指定deviceId和sensorIndex。默认值：deviceId为-1（本地设备），sensorIndex为0（默认传感器）。不传入时默认取消本地设备上的回调。 |
-| callback | Callback&lt;[ColorResponse](#colorresponse10)&gt;      | 否   | 需要取消订阅的回调函数，若无此参数，则取消订阅指定设备上当前类型的所有回调函数。 |
+| callback | Callback&lt;[ColorResponse](#colorresponse10)&gt;      | 否   | 回调函数，需要取消订阅的回调函数，若无此参数，则取消订阅指定设备上当前类型的所有回调函数。 |
 
 **错误码**：
 
@@ -294,7 +294,7 @@ off(type: SensorId.SAR, callback?: Callback&lt;SarResponse&gt;): void
 | 参数名   | 类型                                          | 必填 | 说明                                                         |
 | -------- | --------------------------------------------- | ---- | ------------------------------------------------------------ |
 | type     | [SensorId](#sensorid9).SAR                    | 是   | 传感器类型，该值固定为SensorId.SAR。                         |
-| callback | Callback&lt;[SarResponse](#sarresponse10)&gt; | 否   | 需要取消订阅的回调函数，若无此参数，则取消订阅当前类型的所有回调函数。 |
+| callback | Callback&lt;[SarResponse](#sarresponse10)&gt; | 否   | 回调函数，需要取消订阅的回调函数，若无此参数，则取消订阅当前类型的所有回调函数。 |
 
 **错误码**：
 
@@ -352,7 +352,7 @@ off(type: SensorId.SAR, sensorInfoParam?: SensorInfoParam, callback?: Callback&l
 | -------- | --------------------------------------------- | ---- | ------------------------------------------------------------ |
 | type     | [SensorId](#sensorid9).SAR                    | 是   | 传感器类型，该值固定为SensorId.SAR。                         |
 | sensorInfoParam | [SensorInfoParam](js-apis-sensor.md#sensorinfoparam19) |  否 | 传感器传入设置参数，可指定deviceId和sensorIndex。默认值：deviceId为-1（本地设备），sensorIndex为0（默认传感器）。不传入时默认取消本地设备上的回调。 |
-| callback | Callback&lt;[SarResponse](#sarresponse10)&gt; | 否   | 需要取消订阅的回调函数，若无此参数，则取消订阅指定设备上当前类型的所有回调函数。 |
+| callback | Callback&lt;[SarResponse](#sarresponse10)&gt; | 否   | 回调函数，需要取消订阅的回调函数，若无此参数，则取消订阅指定设备上当前类型的所有回调函数。 |
 
 **错误码**：
 
@@ -445,8 +445,8 @@ function sensorUnsubscribe(): Ret {
 
 | 名称             | 类型   | 只读 | 可选 | 说明                          |
 | ---------------- | ------ | ---- | ---- | ----------------------------- |
-| lightIntensity   | number | 否   | 否   | 表示光的强度。单位：勒克斯（lux）。取值范围：取值为实际上报物理量，由硬件传感器决定。典型室内环境光强度约为300-500 lux，户外阳光可达10000 lux以上。 |
-| colorTemperature | number | 否   | 否   | 表示色温。单位：开尔文（K）。取值范围：取值为实际上报物理量，由硬件传感器决定。典型值：暖白光约2700-3000K，正白光约4000-5000K，冷白光约6500K以上。     |
+| lightIntensity   | number | 否   | 否   | 表示光的强度。单位：lux（勒克斯）。取值范围：取值为实际上报物理量，由硬件传感器决定。典型室内环境光强度约为300-500 lux，户外阳光可达10000 lux以上。 |
+| colorTemperature | number | 否   | 否   | 表示色温。单位：K（开尔文）。取值范围：取值为实际上报物理量，由硬件传感器决定。典型值：暖白光约2700-3000K，正白光约4000-5000K，冷白光约6500K以上。     |
 
 ## SarResponse<sup>10+</sup>
 

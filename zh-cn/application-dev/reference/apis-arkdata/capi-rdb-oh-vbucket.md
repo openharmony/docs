@@ -41,7 +41,7 @@ typedef struct {...} OH_VBucket
 | [int (*destroy)(OH_VBucket *bucket)](#destroy)               | 销毁OH_VBucket对象，并回收该对象占用的内存。        |
 
 
-### 成员函数说明
+## 成员函数说明
 
 ### putText()
 
@@ -140,7 +140,7 @@ int (*putBlob)(OH_VBucket *bucket, const char *field, const uint8_t *value, uint
 | OH_VBucket *bucket | 表示指向OH_VBucket实例的指针。 |
 | const char *field  | 数据库表中的列名，不能为空指针。               |
 | const uint8_t *value | 数据库表中指定列名对应的值。 |
-| uint32_t size      | 表示value的长度。              |
+| uint32_t size      | 表示value的字节长度。              |
 
 **返回：**
 
@@ -181,7 +181,7 @@ int (*clear)(OH_VBucket *bucket)
 
 **描述**
 
-清空[OH_VBucket](capi-rdb-oh-vbucket.md)对象。
+清空OH_VBucket对象。
 
 **起始版本：** 10
 
@@ -205,7 +205,7 @@ int (*destroy)(OH_VBucket *bucket)
 
 **描述**
 
-销毁[OH_VBucket](capi-rdb-oh-vbucket.md)对象，并回收该对象占用的内存。
+销毁OH_VBucket对象，并回收该对象占用的内存。
 
 **起始版本：** 10
 

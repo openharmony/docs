@@ -1,0 +1,21 @@
+# ArchiveWriteCtx
+<!--Kit: Core File Kit-->
+<!--Subsystem: FileManagement-->
+<!--Owner: @rl123567-->
+<!--Designer: @selina_jiang; @RainbowLLL-->
+<!--Tester: @zheng1368-->
+<!--Adviser: @jinqiuheng-->
+
+```c
+typedef struct ArchiveWriteCtx *OH_Archive_Writer_Ctx
+```
+
+## Overview
+
+Defines the context structure of the file compressor.
+
+**Since:** 26.0.0
+
+**Related module:** [Archive](capi-archive.md)
+
+**Header file:** [oh_archive.h](capi-oh-archive-h.md)

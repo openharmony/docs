@@ -3,14 +3,14 @@
 <!--Kit: Localization Kit-->
 <!--Subsystem: Global-->
 <!--Owner: @yliupy-->
-<!--Designer: @sunyaozu-->
+<!--Designer: @zw_feifei-->
 <!--Tester: @lpw_work-->
 <!--Adviser: @ningningW-->
+<!-- md-trans-meta sourceCommit=1a7fdda7cb0bdacc6b1c367c8fd0def17530cd88 translatedAt=2026-08-15T01:52:59.927Z pushedAt=2026-08-15T08:41:36.277Z -->
 
 ## Use Cases
 
 DST is a local time system that sees manual adjustment to the time with the aim of saving energy in certain countries/regions. When DST is enabled, the time is usually advanced by a certain period compared to the standard time.
-
 
 ## How It Works
 
@@ -27,10 +27,11 @@ When the system time reaches the DST transition point, DST transition is automat
    ```
 
 2. Application scenario.
+
 - Calculate the number of hours in a day: The number of hours in a full day may change on the day when daylight saving time shifts, and is not always 24 hours. For example, in most countries, the day when daylight saving time starts has 23 hours, and the day when daylight saving time ends has 25 hours. Calculate the number of hours between wall-clock times before and after a daylight saving time shift. The sample code is as follows:
 
    <!-- @[handle_dst_transition](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/International/Internationalization/entry/src/main/ets/i18napplication/TimezoneDstSetting.ets) -->
-   
+
    ``` TypeScript
    let calendar: i18n.Calendar = i18n.getCalendar('zh-Hans');
    calendar.setTimeZone('Europe/London');

@@ -142,7 +142,7 @@ context.resourceManager.getRawFileContent("test.cer").then((value) => {
       console.info(`Succeeded in installing user certificate, result : ${JSON.stringify(result)}`);
     }).catch((err: BusinessError) => {
       console.error(`Failed to install user certificate. Code: ${err.code}, message: ${err.message}`);
-  })
+  });
 }).catch((err: BusinessError) => {
   console.error(`Failed to get raw file content. message: ${err.message}`);
   return;
@@ -375,12 +375,12 @@ let policy: securityManager.PasswordPolicy = {
   complexityRegex: '^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[!@#$%^&*])[a-zA-Z\\d!@#$%^&*]{8,}$',
   validityPeriod: 1,
   additionalDescription: '至少八个字符，至少一个大写字母，一个小写字母，一个数字和一个特殊字符',
-  passwordAlgs: securityManager.PasswordAlgs.SCRYPT_HKDF_SM4,
+  passwordAlgs: securityManager.PasswordAlgs.SCRYPT_HKDF_SM4
 };
 try {
   securityManager.setPasswordPolicy(wantTemp, policy);
   console.info(`Succeeded in setting password policy.`);
-} catch(err) {
+} catch (err) {
   console.error(`Failed to set password policy. Code: ${err.code}, message: ${err.message}`);
 }
 ```
@@ -437,7 +437,7 @@ let wantTemp: Want = {
 try {
   let result: securityManager.PasswordPolicy = securityManager.getPasswordPolicy(wantTemp);
   console.info(`Succeeded in getting password policy, result : ${JSON.stringify(result)}`);
-} catch(err) {
+} catch (err) {
   console.error(`Failed to get password policy. Code: ${err.code}, message: ${err.message}`);
 }
 ```
@@ -489,7 +489,7 @@ try {
   // 参数需根据实际情况进行替换
   let result: securityManager.PasswordPolicy = securityManager.getPasswordPolicy(null);
   console.info(`Succeeded in getting password policy, result : ${JSON.stringify(result)}`);
-} catch(err) {
+} catch (err) {
   console.error(`Failed to get password policy. Code: ${err.code}, message: ${err.message}`);
 }
 ```
@@ -554,7 +554,7 @@ let wantTemp: Want = {
 try {
   securityManager.setScreenLockDisabledForAccount(wantTemp, true);
   console.info(`Succeeded in setting screen lock disabled for account.`);
-} catch(err) {
+} catch (err) {
   console.error(`Failed to set screen lock disabled for account. Code: ${err.code}, message: ${err.message}`);
 }
 ```
@@ -612,7 +612,7 @@ let wantTemp: Want = {
 try {
   let result: boolean = securityManager.isScreenLockDisabledForAccount(wantTemp);
   console.info(`Succeeded in checking screen lock disabled for account, result : ${result}`);
-} catch(err) {
+} catch (err) {
   console.error(`Failed to check screen lock disabled for account. Code: ${err.code}, message: ${err.message}`);
 }
 ```
@@ -666,7 +666,7 @@ let tokenId: number = 586874394;
 try {
   securityManager.setAppClipboardPolicy(wantTemp, tokenId, securityManager.ClipboardPolicy.IN_APP);
   console.info(`Succeeded in setting clipboard policy.`);
-} catch(err) {
+} catch (err) {
   console.error(`Failed to set clipboard policy. Code: ${err.code}, message: ${err.message}`);
 }
 ```
@@ -725,7 +725,7 @@ let tokenId: number = 586874394;
 try {
   let result: string = securityManager.getAppClipboardPolicy(wantTemp, tokenId);
   console.info(`Succeeded in getting clipboard policy, result : ${result}`);
-} catch(err) {
+} catch (err) {
   console.error(`Failed to get clipboard policy. Code: ${err.code}, message: ${err.message}`);
 }
 ```
@@ -780,7 +780,7 @@ try {
   // 参数需根据实际情况进行替换
   let result: string = securityManager.getAppClipboardPolicy(null, tokenId);
   console.info(`Succeeded in getting clipboard policy, result : ${result}`);
-} catch(err) {
+} catch (err) {
   console.error(`Failed to get clipboard policy. Code: ${err.code}, message: ${err.message}`);
 }
 ```
@@ -834,7 +834,7 @@ let accountId: number = 100;
 try {
   securityManager.setAppClipboardPolicy(wantTemp, bundleName, accountId, securityManager.ClipboardPolicy.IN_APP);
   console.info(`Succeeded in setting clipboard policy.`);
-} catch(err) {
+} catch (err) {
   console.error(`Failed to set clipboard policy. Code: ${err.code}, message: ${err.message}`);
 }
 ```
@@ -894,7 +894,7 @@ let accountId: number = 100;
 try {
   let result: string = securityManager.getAppClipboardPolicy(wantTemp, bundleName, accountId);
   console.info(`Succeeded in getting clipboard policy, result : ${result}`);
-} catch(err) {
+} catch (err) {
   console.error(`Failed to get clipboard policy. Code: ${err.code}, message: ${err.message}`);
 }
 ```
@@ -950,7 +950,7 @@ try {
   // 参数需根据实际情况进行替换
   let result: string = securityManager.getAppClipboardPolicy(null, bundleName, accountId);
   console.info(`Succeeded in getting clipboard policy, result : ${result}`);
-} catch(err) {
+} catch (err) {
   console.error(`Failed to get clipboard policy. Code: ${err.code}, message: ${err.message}`);
 }
 ```
@@ -1011,7 +1011,7 @@ let accountId: number = 100;
 try {
   securityManager.setWatermarkImage(wantTemp, bundleName, source, accountId);
   console.info(`Succeeded in setting watermarkImage policy.`);
-} catch(err) {
+} catch (err) {
   console.error(`Failed to set watermarkImage policy. Code: ${err.code}, message: ${err.message}`);
 }
 ```
@@ -1064,7 +1064,7 @@ let accountId: number = 100;
 try {
   securityManager.cancelWatermarkImage(wantTemp, bundleName, accountId);
   console.info(`Succeeded in cancelling watermarkImage policy.`);
-} catch(err) {
+} catch (err) {
   console.error(`Failed to cancel watermarkImage policy. Code: ${err.code}, message: ${err.message}`);
 }
 ```
@@ -1123,9 +1123,10 @@ let appInstanceTemp: securityManager.ApplicationInstance = {
 };
 let permissionsTemp: Array<string> = ['ohos.permission.CAMERA', 'ohos.permission.LOCATION'];
 try {
-  securityManager.setPermissionManagedState(wantTemp, appInstanceTemp, permissionsTemp, securityManager.PermissionManagedState.GRANTED);
+  securityManager.setPermissionManagedState(wantTemp, appInstanceTemp, permissionsTemp,
+    securityManager.PermissionManagedState.GRANTED);
   console.info('Succeeded in setting permission managed state.');
-} catch(err) {
+} catch (err) {
   console.error(`Failed to set permission managed state.  Code: ${err.code}, message: ${err.message}`);
 }
 ```
@@ -1186,9 +1187,10 @@ let appInstanceTemp: securityManager.ApplicationInstance = {
 };
 let permissionTemp: string = 'ohos.permission.ENTERPRISE_MANAGE_USER_GRANT_PERMISSION';
 try {
-  let result: securityManager.PermissionManagedState = securityManager.getPermissionManagedState(wantTemp, appInstanceTemp, permissionTemp);
+  let result: securityManager.PermissionManagedState =
+    securityManager.getPermissionManagedState(wantTemp, appInstanceTemp, permissionTemp);
   console.info(`Succeeded in getting permission managed state, result : ${result}`);
-} catch(err) {
+} catch (err) {
   console.error(`Failed to get permission managed state. Code: ${err.code}, message: ${err.message}`);
 }
 ```
@@ -1255,7 +1257,7 @@ let wantTemp: Want = {
 try {
   securityManager.setExternalSourceExtensionsPolicy(wantTemp, common.ManagedPolicy.FORCE_OPEN);
   console.info(`Succeeded in setting managed policy.`);
-} catch(err) {
+} catch (err) {
   console.error(`Failed to set managed policy. Code: ${err.code}, message: ${err.message}`);
 }
 ```
@@ -1314,7 +1316,7 @@ let wantTemp: Want = {
 try {
   let result: common.ManagedPolicy = securityManager.getExternalSourceExtensionsPolicy(wantTemp);
   console.info(`Succeeded in getting managed policy, result : ${result}`);
-} catch(err) {
+} catch (err) {
   console.error(`Failed to get managed policy. Code: ${err.code}, message: ${err.message}`);
 }
 ```
@@ -1368,7 +1370,7 @@ try {
   // 参数需根据实际情况进行替换
   let result: common.ManagedPolicy = securityManager.getExternalSourceExtensionsPolicy(null);
   console.info(`Succeeded in getting managed policy, result : ${result}`);
-} catch(err) {
+} catch (err) {
   console.error(`Failed to get managed policy. Code: ${err.code}, message: ${err.message}`);
 }
 ```
@@ -1423,7 +1425,7 @@ installEnterpriseReSignatureCertificate(admin: Want, certificateAlias: string, f
 ```ts
 import { securityManager } from '@kit.MDMKit';
 import { Want } from '@kit.AbilityKit';
-import { fileIo as fs } from '@kit.CoreFileKit';
+import { fileIo } from '@kit.CoreFileKit';
 
 let wantTemp: Want = {
   // 需根据实际情况进行替换
@@ -1435,13 +1437,13 @@ let wantTemp: Want = {
 const filePath = '/test.cer';
 // 需根据实际情况进行替换
 let certificateAlias: string = 'test.cer';
-let fd: number = fs.openSync(filePath, fs.OpenMode.READ_ONLY).fd;
+let fd: number = fileIo.openSync(filePath, fileIo.OpenMode.READ_ONLY).fd;
 // 需根据实际情况进行替换
 let accountId: number = 100;
 try {
   securityManager.installEnterpriseReSignatureCertificate(
     wantTemp, certificateAlias, fd, accountId);
-  console.info('Success to install enterprise re signature certificate.');
+  console.info('Success in installing enterprise re signature certificate.');
 } catch (err) {
   console.error(`Failed to install enterprise re signature certificate.
     Code: ${err.code}, message: ${err.message}`);
@@ -1504,7 +1506,7 @@ let accountId: number = 100;
 try {
   securityManager.uninstallEnterpriseReSignatureCertificate(
     wantTemp, certificateAlias, accountId);
-  console.info('Success to uninstall enterprise re signature certificate.');
+  console.info('Success in uninstalling enterprise re signature certificate.');
 } catch (err) {
   console.error(`Failed to uninstall enterprise re signature certificate.
     Code: ${err.code}, message: ${err.message}`);
@@ -1523,7 +1525,7 @@ setScreenWatermarkImage(admin: Want, pixelMap: image.PixelMap): void
 >
 > 2.当水印图片尺寸小于屏幕时，图片会被拉伸；当水印图片尺寸大于屏幕时，图片会被压缩。该实现方式与应用级别水印的重复平铺方式不同。
 
-**起始版本**：26.0.0
+**起始版本：** 26.0.0
 
 **需要权限：** ohos.permission.ENTERPRISE_MANAGE_SECURITY
 
@@ -1574,7 +1576,7 @@ imageSource.createPixelMap().then((pixelMap: image.PixelMap) => {
   try {
     securityManager.setScreenWatermarkImage(wantTemp, pixelMap);
     console.info(`Succeeded in setting screen watermark image.`);
-  } catch(err) {
+  } catch (err) {
     console.error(`Failed to set screen watermark image. Code: ${err.code}, message: ${err.message}`);
   }
 }).catch((err: Error) => {
@@ -1588,7 +1590,7 @@ cancelScreenWatermarkImage(admin: Want): void
 
 取消屏幕水印策略，对所有用户生效。取消成功后，设备屏幕上的水印消失。当设备不再需要屏幕水印保护时，企业可调用此接口取消水印策略。只有设置屏幕水印的用户才能取消该水印，例如用户100设置的屏幕水印，用户101无法取消。
 
-**起始版本**：26.0.0
+**起始版本：** 26.0.0
 
 **需要权限：** ohos.permission.ENTERPRISE_MANAGE_SECURITY
 
@@ -1626,7 +1628,7 @@ let wantTemp: Want = {
 try {
     securityManager.cancelScreenWatermarkImage(wantTemp);
     console.info(`Succeeded in canceling screen watermark image.`);
-} catch(err) {
+} catch (err) {
     console.error(`Failed to cancel screen watermark image. Code: ${err.code}, message: ${err.message}`);
 }
 ```
@@ -1694,7 +1696,7 @@ let accountId: number = 100;
 try {
   securityManager.setDisallowedPermission(wantTemp, permission, disallow, accountId);
   console.info(`Succeeded in setting disallowed permission.`);
-} catch(err) {
+} catch (err) {
   console.error(`Failed to set disallowed permission. Code: ${err.code}, message: ${err.message}`);
 }
 ```
@@ -1753,7 +1755,7 @@ let accountId: number = 100;
 try {
   let result: Array<string> = securityManager.getDisallowedPermissions(wantTemp, accountId);
   console.info(`Succeeded in getting disallowed permissions, result : ${JSON.stringify(result)}`);
-} catch(err) {
+} catch (err) {
   console.error(`Failed to get disallowed permissions. Code: ${err.code}, message: ${err.message}`);
 }
 ```
@@ -1834,7 +1836,7 @@ try {
   // 设置指定应用可以继续使用ohos.permission.CAMERA权限
   securityManager.addAllowedPermissionBundle(wantTemp, permission, appInstance);
   console.info(`Succeeded in adding allowed permission bundle.`);
-} catch(err) {
+} catch (err) {
   console.error(`Failed to add allowed permission bundle. Code: ${err.code}, message: ${err.message}`);
 }
 ```
@@ -1900,7 +1902,7 @@ let appInstance: common.ApplicationInstance = {
 try {
   securityManager.removeAllowedPermissionBundle(wantTemp, permission, appInstance);
   console.info(`Succeeded in removing allowed permission bundle.`);
-} catch(err) {
+} catch (err) {
   console.error(`Failed to remove allowed permission bundle. Code: ${err.code}, message: ${err.message}`);
 }
 ```
@@ -1959,9 +1961,10 @@ let wantTemp: Want = {
 let permission: string = 'ohos.permission.CAMERA';
 let accountId: number = 100;
 try {
-  let result: Array<common.ApplicationInstance> = securityManager.getAllowedPermissionBundles(wantTemp, permission, accountId);
+  let result: Array<common.ApplicationInstance> =
+    securityManager.getAllowedPermissionBundles(wantTemp, permission, accountId);
   console.info(`Succeeded in getting allowed permission bundles, result : ${JSON.stringify(result)}`);
-} catch(err) {
+} catch (err) {
   console.error(`Failed to get allowed permission bundles. Code: ${err.code}, message: ${err.message}`);
 }
 ```
@@ -2030,11 +2033,11 @@ let accountId: number = 100;
 let properties: securityManager.WatermarkProperties = {
   intervalsRow: 1,
   intervalsCol: 1
-}
+};
 try {
   securityManager.setWatermarkImage(wantTemp, bundleName, source, accountId, properties);
   console.info(`Succeeded in setting watermarkImage policy.`);
-} catch(err) {
+} catch (err) {
   console.error(`Failed to set watermarkImage policy. Code: ${err.code}, message: ${err.message}`);
 }
 ```
@@ -2056,11 +2059,11 @@ let accountId: number = 100;
 let properties: securityManager.WatermarkProperties = {
   intervalsRow: 27,
   intervalsCol: 12
-}
+};
 try {
   securityManager.setWatermarkImage(wantTemp, bundleName, source, accountId, properties);
   console.info(`Succeeded in setting watermarkImage policy.`);
-} catch(err) {
+} catch (err) {
   console.error(`Failed to set watermarkImage policy. Code: ${err.code}, message: ${err.message}`);
 }
 ```
@@ -2082,11 +2085,11 @@ let accountId: number = 100;
 let properties: securityManager.WatermarkProperties = {
   intervalsRow: 28,
   intervalsCol: 12
-}
+};
 try {
   securityManager.setWatermarkImage(wantTemp, bundleName, source, accountId, properties);
   console.info(`Succeeded in setting watermarkImage policy.`);
-} catch(err) {
+} catch (err) {
   console.error(`Failed to set watermarkImage policy. Code: ${err.code}, message: ${err.message}`);
 }
 ```
@@ -2145,7 +2148,7 @@ let accountId: number = 100;
 try {
   let result: Array<string> = securityManager.getWatermarkImageApps(wantTemp, accountId);
   console.info(`Succeeded in getting watermark image apps, result : ${JSON.stringify(result)}`);
-} catch(err) {
+} catch (err) {
   console.error(`Failed to get watermark image apps. Code: ${err.code}, message: ${err.message}`);
 }
 ```
@@ -2155,6 +2158,8 @@ try {
 证书信息。
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
+
+**模型约束：** 此接口仅可在Stage模型下使用。
 
 | 名称   | 类型       | 只读 | 可选 | 说明               |
 | ------ | ---------- | ---- | ---- | ------------------ |
@@ -2166,6 +2171,8 @@ try {
 设备锁屏口令策略。
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
+
+**模型约束：** 此接口仅可在Stage模型下使用。
 
 | 名称         | 类型     | 只读 | 可选 | 说明                            |
 | ----------- | --------| ---- | ---- | --------------------------- |
@@ -2179,6 +2186,8 @@ try {
 设备剪贴板策略。
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
+
+**模型约束：** 此接口仅可在Stage模型下使用。
 
 | 名称         | 值 | 说明                            |
 | ----------- | -------- | ------------------------------- |

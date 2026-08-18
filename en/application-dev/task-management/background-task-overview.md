@@ -23,9 +23,9 @@ Background Tasks Kit provides the following types of constrained background task
 
 You can select a proper background task type to ensure that your application can continue running after switching to the background.
 
-- **Transient tasks**: suitable for tasks that have high requirements on real-time performance and can be completed in a short period of time, for example, status saving.
+- **Transient tasks**: suitable for tasks that require high real‑time performance and are short in duration, for example, quickly saving a note that the user is editing.
 
-- **Continuous tasks**: suitable for tasks that need to run in the background for a long time and can be perceived by users, such as music playback in the background, navigation, and device connection. You can use continuous tasks to prevent application processes from being suspended.
+- **Continuous task**: suitable for user‑perceivable tasks that need to run for an extended period in the background, such as background music playback, navigation, and device connection. These tasks prevent the application process from being suspended.
 
 - **Deferred tasks**: suitable for tasks that do not have high requirements on real-time performance and can be executed at a later time. The system enqueues these tasks and schedules them in a unified manner based on the memory and power consumption.
 
@@ -40,6 +40,8 @@ For system applications that provide basic capabilities, the system provides an 
 
 > **NOTE**
 >
-> - The system supports only constrained background tasks. If an application does not use a constrained background task or selects an inappropriate type of background task after switching to the background, its process will be suspended or terminated.
+> 1. The system supports only constrained background tasks. If an application does not use a constrained background task or selects an inappropriate type of background task after switching to the background, its process will be suspended or terminated.
 > 
-> - For an application that requests a constrained background task, only the priority of reclaiming the application process is increased. If system resources are severely insufficient, the application process may still be terminated.
+> 2. For an application that requests a constrained background task, only the priority of reclaiming the application process is increased. If system resources are severely insufficient, the application process may still be terminated.
+
+<!--RP4--><!--RP4End-->

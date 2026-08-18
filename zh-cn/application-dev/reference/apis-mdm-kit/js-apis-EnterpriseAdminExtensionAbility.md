@@ -9,7 +9,7 @@
 本模块提供[企业设备管理扩展能力](../../mdm/mdm-kit-term.md#enterpriseadminextensionability企业设备管理扩展能力)，是企业设备管理应用的核心组件。
 
 **主要功能**：
-- 提供设备管理应用的生命周期管理能力（激活、去激活、启动等事件）。
+- 提供设备管理应用的生命周期管理能力（激活、解除激活、启动等事件）。
 - 提供应用生命周期事件监听能力（安装、卸载、启动、停止、更新）。
 - 提供系统账号管理事件监听能力（账号新增、切换、删除）。
 - 提供Kiosk模式、按键事件、日志收集、系统更新等系统级事件回调。
@@ -34,11 +34,13 @@ import { EnterpriseAdminExtensionAbility } from '@kit.MDMKit';
 
 ## EnterpriseAdminExtensionAbility
 
-企业设备管理扩展能力组件，是设备管理应用必备组件。当开发者为企业开发设备管理应用时，需继承EnterpriseAdminExtensionAbility，在EnterpriseAdminExtensionAbility实例中实现MDM业务逻辑，EnterpriseAdminExtensionAbility实现了系统管理状态变化通知功能，并定义了管理应用激活、去激活、应用安装、卸载事件等回调接口。
+企业设备管理扩展能力组件，是设备管理应用必备组件。当开发者为企业开发设备管理应用时，需继承EnterpriseAdminExtensionAbility，在EnterpriseAdminExtensionAbility实例中实现MDM业务逻辑，EnterpriseAdminExtensionAbility实现了系统管理状态变化通知功能，并定义了管理应用激活、解除激活、应用安装、卸载事件等回调接口。
 
 ### 属性
 
-**系统能力**：SystemCapability.Customization.EnterpriseDeviceManager
+**系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
+
+**模型约束：** 此接口仅可在Stage模型下使用。
 
 | 名称 | 类型 | 只读 | 可选 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
@@ -671,6 +673,7 @@ import { EnterpriseAdminExtensionAbility } from '@kit.MDMKit';
 
 export default class EnterpriseAdminAbility extends EnterpriseAdminExtensionAbility {
   onDeviceAdminEnabled(bundleName: string) {
+    console.info(`Succeeded in calling onDeviceAdminEnabled callback, bundleName:${bundleName}`);
   }
 }
 ```
@@ -698,6 +701,7 @@ import { EnterpriseAdminExtensionAbility } from '@kit.MDMKit';
 
 export default class EnterpriseAdminAbility extends EnterpriseAdminExtensionAbility {
   onDeviceAdminDisabled(bundleName: string) {
+    console.info(`Succeeded in calling onDeviceAdminDisabled callback, bundleName:${bundleName}`);
   }
 }
 ```
@@ -769,11 +773,11 @@ export default class EnterpriseAdminAbility extends EnterpriseAdminExtensionAbil
   * 3.3 触发回调
   * 结果：同时按下（电源键先，音量+键后）
   *      onKeyEvent event:{"actionTime": 20991450446, "keyCode": 1, "keyAction": 0,
-  *   "keyItems": [{"pressed": true, "keyCode": 0, "downTime": 20991432293}，
+  *   "keyItems": [{"pressed": true, "keyCode": 0, "downTime": 20991432293},
   *   {"pressed": true, "keyCode": 1, "downTime": 20991450446}]}
   *      同时抬起 （音量+键先，电源键后）
   *      onKeyEvent event:{"actionTime": 20590590293, "keyCode": 1, "keyAction": 1,
-  *   "keyItems": [{"pressed": true, "keyCode": 0, "downTime": 28588682984}，
+  *   "keyItems": [{"pressed": true, "keyCode": 0, "downTime": 28588682984},
   *   {"pressed": false, "keyCode": 1, "downTime": 21588900860}]}
   * 
   * 4.用户按组合键触发回调2（以电源键和音量+键为例）
@@ -784,7 +788,7 @@ export default class EnterpriseAdminAbility extends EnterpriseAdminExtensionAbil
   * 4.3 触发回调
   * 结果：同时按下（音量+键先，电源键后）
   *      onKeyEvent event:{"actionTime": 28991115400, "keyCode": 0, "keyAction": 0,
-  *   "keyItems": [{"pressed": true, "keyCode": 1, "downTime": 28990731985}，
+  *   "keyItems": [{"pressed": true, "keyCode": 1, "downTime": 28990731985},
   *   {"pressed": true, "keyCode": 0, "downTime": 20991115400}]}
   *      同时抬起 （音量+键先，电源键后）
   *      onKeyEvent event:{"actionTime": 28992721560, "keyCode": 0, "keyAction": 1,
@@ -798,11 +802,11 @@ export default class EnterpriseAdminAbility extends EnterpriseAdminExtensionAbil
   * 5.3 触发回调
   * 结果：同时按下（音量+键先，电源键后）
   *      onKeyEvent event:{"actionTime": 29979014190, "keyCode": 0, "keyAction": 0,
-  *   "keyItems": [{"pressed": true, "keyCode": 1, "downTime": 29978420634}，
+  *   "keyItems": [{"pressed": true, "keyCode": 1, "downTime": 29978420634},
   *   {"pressed": true, "keyCode": 0, "downTime": 29979014190}]}
   *      同时抬起 （电源键先，音量+键后）
   *      onKeyEvent event:{"actionTime": 29982420773, "keyCode": 0, "keyAction": 1,
-  *   "keyItems": [{"pressed": true, "keyCode": 1, "downTime": 29978420634}，
+  *   "keyItems": [{"pressed": true, "keyCode": 1, "downTime": 29978420634},
   *   {"pressed": false, "keyCode": 0, "downTime": 29979014190}]}
   * 
   * 6.用户按组合键触发回调4（以电源键和导航键-最近打开为例）
@@ -848,7 +852,7 @@ onLogCollected(result: common.Result): void
 ```ts
 import { Want } from '@kit.AbilityKit';
 import { EnterpriseAdminExtensionAbility, common, systemManager } from '@kit.MDMKit';
-import { fileIo as fs } from '@kit.CoreFileKit';
+import { fileIo } from '@kit.CoreFileKit';
 
 export default class EnterpriseAdminAbility extends EnterpriseAdminExtensionAbility {
   /**
@@ -863,10 +867,10 @@ export default class EnterpriseAdminAbility extends EnterpriseAdminExtensionAbil
       // 应用沙箱路径，需根据实际情况进行替换
       let targetPath = this.context.tempDir;
       try {
-        let files: string[] = fs.listFileSync(filesDir);
+        let files: string[] = fileIo.listFileSync(filesDir);
         // 从/data/edm/log沙箱目录取走日志
         files.forEach(value => {
-          fs.copyFileSync(filesDir + '/' + value, targetPath + '/' + value);
+          fileIo.copyFileSync(filesDir + '/' + value, targetPath + '/' + value);
         });
         let wantTemp: Want = {
           // 需根据实际情况进行替换
@@ -875,11 +879,11 @@ export default class EnterpriseAdminAbility extends EnterpriseAdminExtensionAbil
         };
         systemManager.finishLogCollected(wantTemp);
       } catch (error) {
-        console.info("onLogCollected", "error: " + JSON.stringify(error))
+        console.error("onLogCollected", "error: " + JSON.stringify(error));
       }
     }
     if (result === common.Result.FAIL) {
-      console.error("onLogCollected", "Failed to collect log.")
+      console.error("onLogCollected", "Failed to collect log.");
     }
   }
 }
@@ -1059,7 +1063,7 @@ try {
 
 export default class EnterpriseAdminAbility extends EnterpriseAdminExtensionAbility {
   onAdminPolicyChanged(event: common.PolicyChangedEvent) {
-    // 例如当MDM应用调用setPasswordPolicy接口设置密码策略时，输出示例为: Policy changed, bundleName : com.example.test, functionName: setPasswordPolicy, parameters: {"policy":{"complexityRegex":"^(?=.*[a-zA-Z])(?=.*\\d).{8},$","validityPeriod":1808309786000,"additionalDescription":"至少8个字符，且包含数字和字母。"}}, time: 1776773305379.
+    // 例如当MDM应用调用setPasswordPolicy接口设置密码策略时，输出示例为： Policy changed, bundleName : com.example.test, functionName: setPasswordPolicy, parameters: {"policy":{"complexityRegex":"^(?=.*[a-zA-Z])(?=.*\\d).{8},$","validityPeriod":1808309786000,"additionalDescription":"至少8个字符，且包含数字和字母。"}}, time: 1776773305379.
     console.info(`Policy changed, bundleName : ${event.bundleName}, functionName: ${event.functionName}, parameters: ${event.parameters}, time: ${event.time}.`);
   }
 }

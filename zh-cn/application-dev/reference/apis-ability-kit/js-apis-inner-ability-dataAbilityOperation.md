@@ -29,7 +29,7 @@ import ability from '@ohos.ability.ability';
 | uri   | string | 否  |  否   | 指示待处理的DataAbility。例：'dataability:///com.example.xxx.xxxx'。  |
 | type   | [featureAbility.DataAbilityOperationType](js-apis-ability-featureAbility.md#dataabilityoperationtype7) | 否  | 否   | 指示数据操作类型。  |
 | valuesBucket   |  [rdb.ValuesBucket](../apis-arkdata/arkts-apis-data-relationalStore-t.md#valuesbucket) | 否  | 是    | 指示要操作的数据值。  |
-| valueBackReferences   | [rdb.ValuesBucket](../apis-arkdata/arkts-apis-data-relationalStore-t.md#valuesbucket) | 否  | 是    | 指示包含一组键值对的valuesBucket对象。  |
+| valueBackReferences   | [rdb.ValuesBucket](../apis-arkdata/arkts-apis-data-relationalStore-t.md#valuesbucket) | 否  | 是    | 指示数据值的反向引用，用于应用批处理中前一步操作生成的键值。 |
 | predicates   | [dataAbility.DataAbilityPredicates](../apis-arkdata/js-apis-data-ability.md#dataabilitypredicates) | 否  | 是   | 指示要设置的筛选条件。如果此参数为空，则操作所有数据记录。  |
 | predicatesBackReferences   | Map\<number, number> | 否  | 是    | 指示用作谓词中筛选条件的反向引用。  |
 | interrupted   | boolean | 否  | 是    | 指示是否可以中断批处理操作。true表示可以中断批处理操作，false表示不可中断批处理操作。 |

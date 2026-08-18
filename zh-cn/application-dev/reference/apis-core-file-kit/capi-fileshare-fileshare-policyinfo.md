@@ -14,8 +14,6 @@ typedef struct FileShare_PolicyInfo {...} FileShare_PolicyInfo
 
 需要授予或激活URI访问权限的策略信息，用于描述跨应用文件共享场景中的目标URI和访问模式。
 
-**系统能力：** SystemCapability.FileManagement.AppFileService.FolderAuthorization
-
 **起始版本：** 12
 
 **相关模块：** [fileShare](capi-fileshare.md)

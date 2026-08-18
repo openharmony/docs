@@ -6,11 +6,13 @@
 <!--Tester: @xchaosioda-->
 <!--Adviser: @w_Machine_cc-->
 
-This document describes the scenario of automatic front-camera switching on foldable devices. The system selects the appropriate front camera depending on the device's fold state.
+When adapting your application for foldable devices, for simple UX interaction scenarios (e.g., facial recognition), you are advised to use the automatic camera switching capability. On foldable devices equipped with multiple front cameras, after your application enables the automatic camera switching capability, the system automatically completes camera switching and session configuration. It can automatically switch to the currently available front camera for different fold states, preventing black screens caused by the front camera being folded inward.
 
-For example, foldable device A has three cameras: rear camera B, front camera C, and front camera D. In the unfolded state, [CameraManager.getSupportedCameras](../../reference/apis-camera-kit/arkts-apis-camera-CameraManager.md#getsupportedcameras) returns rear camera B and front camera C. In the folded state, it returns rear camera B and front camera D.
+For example, a foldable device has three cameras: rear camera A, front camera B, and front camera C. In the unfolded state, you can obtain rear camera A and front camera B via the [CameraManager.getSupportedCameras](../../reference/apis-camera-kit/arkts-apis-camera-CameraManager.md#getsupportedcameras) API; in the folded state, you can obtain rear camera A and front camera C. You can enable the front camera for the current fold state, then call [enableAutoDeviceSwitch](../../reference/apis-camera-kit/arkts-apis-camera-AutoDeviceSwitch.md#enableautodeviceswitch13) to activate automatic camera switching. This way, when the device's fold state changes next time, the system will automatically switch to the front camera corresponding to the new fold state.
 
-Enable the front camera in the current fold state, and call [enableAutoDeviceSwitch](../../reference/apis-camera-kit/arkts-apis-camera-AutoDeviceSwitch.md#enableautodeviceswitch13) to enable automatic camera switching. This ensures that when the fold state changes, the front camera corresponding to that state is automatically selected.
+> **NOTE**
+>
+> The automatic camera switching feature enables the system to automatically handle input device switching, session configuration, and parameter continuity. If the system detects a camera switch and finds that the zoom ranges of the two cameras are inconsistent, it will notify your application via the **isDeviceCapabilityChanged** field in **AutoDeviceSwitchStatus**. Your application must then handle UX changes on its own (e.g., for zoom range adjustments, you need to re-fetch data via the **getZoomRatioRange** API and update the UX accordingly). Therefore, for camera selection in complex scenarios such as photo capture or video recording, see [Adapting Camera Changes in Different Fold States (ArkTS)](./camera-foldable-display.md).
 
 Read [Camera](../../reference/apis-camera-kit/arkts-apis-camera.md) for the API reference.
 
@@ -71,15 +73,19 @@ Before calling [enableAutoDeviceSwitch](../../reference/apis-camera-kit/arkts-ap
 ```ts
 function enableAutoDeviceSwitch(session: camera.PhotoSession) {
   if (session.isAutoDeviceSwitchSupported()) {
-    session.enableAutoDeviceSwitch(true);
+    try {
+      session.enableAutoDeviceSwitch(true);
+    } catch (error) {
+      let err = error as BusinessError;
+      console.error(`The enableAutoDeviceSwitch call failed, error code: ${err.code}, error message: ${err.message}`);
+    }
   }
 }
 ```
 ## Listening for Automatic Camera Switching
-You can use [enableAutoDeviceSwitch](../../reference/apis-camera-kit/arkts-apis-camera-PhotoSession.md#onautodeviceswitchstatuschange13) to listen for automatic camera switching. A callback is invoked once the switch is complete.
+Use [on('autoDeviceSwitchStatusChange')](../../reference/apis-camera-kit/arkts-apis-camera-PhotoSession.md#onautodeviceswitchstatuschange13) to listen for automatic camera switching. A callback is invoked once the switch is complete.
 
-Do not call any session related APIs during the switching process.
-
+Do not call any [session](../../reference/apis-camera-kit/arkts-apis-camera-Session.md)-related APIs during the automatic camera switching.
 ```ts
 function callback(err: BusinessError, autoDeviceSwitchStatus: camera.AutoDeviceSwitchStatus): void {
   if (err !== undefined && err.code !== 0) {

@@ -201,7 +201,7 @@ OH_AudioConverter_Result OH_AudioConverter_SetInputCallback(OH_AudioConverter* c
 | -- | -- |
 | [OH_AudioConverter](capi-audioconverter-oh-audioconverterstruct.md)* converter | 由[OH_AudioConverter_Create](capi-native-audio-converter-h.md#oh_audioconverter_create)函数创建转换器。 |
 | [OH_AudioConverter_RequestDataCallback](capi-native-audio-converter-h.md#oh_audioconverter_requestdatacallback) callback | 回调函数用于写入音频数据。 |
-| userData | 指向将传递给回调函数的应用程序数据结构的指针。 |
+| void* userData | 指向将传递给回调函数的应用程序数据结构的指针。 |
 
 **返回：**
 
@@ -229,7 +229,7 @@ OH_AudioConverter_Result OH_AudioConverter_Process(OH_AudioConverter* converter,
 | [OH_AudioConverter](capi-audioconverter-oh-audioconverterstruct.md)* converter | 由[OH_AudioConverter_Create](capi-native-audio-converter-h.md#oh_audioconverter_create)函数创建转换器。 |
 | void* outputData | 指向调用者分配的输出缓冲区的指针。 |
 | int32_t outputCapacity | 调用者指定的输出缓冲区大小。 |
-| outputSize | 系统实际写入输出缓冲区数据的大小。 |
+| int32_t* outputSize | 系统实际写入输出缓冲区数据的大小。 |
 
 **返回：**
 

@@ -61,7 +61,7 @@ type AccessibilityCallback = (isHover: boolean, event: AccessibilityHoverEvent) 
 
 ## AccessibilityHoverEvent对象说明
 
-继承于[BaseEvent](ts-gesture-customize-judge.md#baseevent8)。
+继承于[BaseEvent](ts-universal-events-click.md#baseevent8)。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -120,7 +120,7 @@ type AccessibilityTransparentCallback = (event: TouchEvent) => void
 
 | 参数名              | 类型                                | 必填 | 说明                                                         |
 | ------------------- | ----------------------------------- | ---- | ------------------------------------------------------------ |
-| event | [TouchEvent](ts-universal-events-touch.md#touchevent对象说明)| 是   | 原始Touch事件对象，用于获取无法被无障碍悬浮识别为可聚焦组件的触摸事件的详细信息，包括触摸点坐标、触摸类型等属性。 <br>**说明：** TouchEvent对象的触摸事件的类型[TouchType](ts-appendix-enums.md#touchtype)为四种无障碍悬浮事件类型中的一种，四种无障碍悬浮事件类型为HOVER_ENTER、HOVER_MOVE、HOVER_EXIT和HOVER_CANCEL。 |
+| event | [TouchEvent](ts-universal-events-touch.md#touchevent对象说明)| 是   | 原始Touch事件对象，用于获取无法被无障碍悬浮识别为可聚焦组件的触摸事件的详细信息，包括触摸点坐标、触摸类型等属性。 <br>**说明：** TouchEvent对象的触摸事件类型[TouchType](ts-appendix-enums.md#touchtype)为四种无障碍悬浮事件类型中的一种，分别为HOVER_ENTER、HOVER_MOVE、HOVER_EXIT和HOVER_CANCEL。 |
 
 ## 示例
 

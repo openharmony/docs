@@ -96,7 +96,7 @@
     // 2.获取系统最近20个任务
     missionManager.getMissionInfos('', 20,
       (error: BusinessError, missions: Array<missionManager.MissionInfo>) => {
-        if (error.code) {
+        if (error) {
           hilog.error(DOMAIN_NUMBER, TAG,
             `getMissionInfos is called, error code: ${error.code}, err msg: ${error.message}.`);
           return;
@@ -136,7 +136,7 @@
     // 4.获取任务快照
     missionManager.getMissionSnapShot('', this.missionId,
       (error: BusinessError, snapshot: missionManager.MissionSnapshot) => {
-        if (error === null) {
+        if (!error) {
           hilog.info(DOMAIN_NUMBER, TAG, `bundleName = ${snapshot.ability.bundleName}.`);
           this.getUIContext().getPromptAction().showToast({
             message: 'obtain_snapshot_success_toast'
@@ -148,10 +148,10 @@
       });
     ```
     ```ts
-    // 5.获取低分辨任务快照
+    // 5.获取低分辨率任务快照
     missionManager.getLowResolutionMissionSnapShot('', this.missionId,
       (error: BusinessError, snapshot: missionManager.MissionSnapshot) => {
-        if (error === null) {
+        if (!error) {
           hilog.info(DOMAIN_NUMBER, TAG, `bundleName = ${snapshot.ability.bundleName}.`);
           this.getUIContext().getPromptAction().showToast({
             message: 'obtain_low_snapshot_success_toast'
@@ -204,7 +204,7 @@
     ```ts
     // 10.解注册任务变化通知
     missionManager.off('mission', this.listenerId, (error: BusinessError) => {
-      if (error === null) {
+      if (!error) {
         this.getUIContext().getPromptAction().showToast({
           message: 'unregister_success_toast'
         });

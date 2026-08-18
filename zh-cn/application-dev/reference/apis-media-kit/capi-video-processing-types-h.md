@@ -30,7 +30,7 @@
 | [OH_VideoProcessing](capi-videoprocessing-oh-videoprocessing.md) | OH_VideoProcessing | 定义视频处理对象。<br>定义一个OH_VideoProcessing空指针，用于调用[OH_VideoProcessing_Create](capi-video-processing-h.md#oh_videoprocessing_create)创建视频处理实例。用户可以对不同的处理类型创建不同的视频处理实例。 |
 | [NativeWindow](capi-videoprocessing-nativewindow.md) | OHNativeWindow | 定义NativeWindow对象。 |
 | [OH_AVFormat](capi-videoprocessing-oh-avformat.md) | OH_AVFormat | 定义OH_AVFormat对象。 |
-| [VideoProcessing_Callback](capi-videoprocessing-videoprocessing-callback.md) | VideoProcessing_Callback | 视频处理回调对象类型。<br>定义一个VideoProcessing_Callback空指针，调用[OH_VideoProcessingCallback_Create](capi-video-processing-h.md#oh_videoprocessingcallback_create)来创建一个回调对象。创建之前该指针必须为空。通过调用[OH_VideoProcessing_RegisterCallback](capi-video-processing-h.md#oh_videoprocessing_registercallback)来向视频处理实例注册回调对象。 |
+| [VideoProcessing_Callback](capi-videoprocessing-videoprocessing-callback.md) | VideoProcessing_Callback | 视频处理回调对象类型。定义视频处理回调对象类型。使用[OH_VideoProcessingCallback_Create](capi-video-processing-h.md#oh_videoprocessingcallback_create)创建回调对象前，需要将该类型的指针初始化为空指针。创建成功后，可通过调用[OH_VideoProcessing_RegisterCallback](capi-video-processing-h.md#oh_videoprocessing_registercallback)，将回调对象注册到视频处理实例中。 |
 
 ### 枚举
 

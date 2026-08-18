@@ -1,10 +1,12 @@
 # Video Recording Practices (ArkTS)
+
 <!--Kit: Camera Kit-->
 <!--Subsystem: Multimedia-->
 <!--Owner: @qano-->
 <!--Designer: @leo_ysl-->
 <!--Tester: @xchaosioda-->
 <!--Adviser: @w_Machine_cc-->
+<!-- md-trans-meta sourceCommit=425e79ed59a841b19860caacc0b050f68405d43e translatedAt=2026-08-10T09:16:21.810Z pushedAt=2026-08-10T12:02:15.498Z -->
 
 Before developing a camera application, you must [request required permissions](camera-preparation.md).
 
@@ -13,14 +15,15 @@ This topic provides sample code that covers the complete recording process to he
 Before referring to the sample code, you are advised to read [Device Input Management](camera-device-input.md), [Camera Session Management](camera-session-management.md), [Video Recording](camera-recording.md), and other related topics in [Camera Development (ArkTS)](camera-device-management.md).
 
 To save videos to the media library, follow the instructions provided in [Saving Media Assets](../medialibrary/photoAccessHelper-savebutton.md).
+
 ## Development Process
 
 After obtaining the output stream capabilities supported by the camera, create a video stream. The development process is as follows:
 
 ![Recording Development Process](figures/recording-development-process.png)
 
-
 ## Complete Sample Code
+
 For details about how to obtain the context, see [Obtaining the Context of UIAbility](../../application-models/uiability-usage.md#obtaining-the-context-of-uiability).
 
 ```ts
@@ -28,7 +31,7 @@ import { camera } from '@kit.CameraKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 import { media } from '@kit.MediaKit';
 import { common } from '@kit.AbilityKit';
-import { fileIo as fs } from '@kit.CoreFileKit';
+import { fileIo } from '@kit.CoreFileKit';
 import { JSON } from '@kit.ArkTS';
 
 interface RecordingResources {
@@ -37,7 +40,7 @@ interface RecordingResources {
   cameraInput?: camera.CameraInput;
   previewOutput?: camera.PreviewOutput;
   videoSession?: camera.VideoSession;
-  file?: fs.File;
+  file?: fileIo.File;
 }
 
 // Track global resources.
@@ -65,7 +68,7 @@ async function releaseResources(): Promise<void> {
     async () => {
       if (resources.file) {
         try {
-          await fs.close(resources.file);
+          await fileIo.close(resources.file);
         } catch (e) {
           console.error('Failure to close file');
         }
@@ -145,7 +148,7 @@ async function videoRecording(context: common.Context, surfaceId: string): Promi
   const videoProfile: camera.VideoProfile = cameraOutputCap.videoProfiles[0];
   let videoUri: string = context.filesDir + '/' + 'VIDEO_' + Date.parse(new Date().toString()) + '.mp4'; // Local sandbox path.
   try {
-    resources.file = fs.openSync(videoUri, fs.OpenMode.READ_WRITE | fs.OpenMode.CREATE);
+    resources.file = fileIo.openSync(videoUri, fileIo.OpenMode.READ_WRITE | fileIo.OpenMode.CREATE);
   } catch (error) {
     console.error(`openSync call failed, error: ${JSON.stringify(error)}`);
     return;
@@ -207,7 +210,7 @@ async function videoRecording(context: common.Context, surfaceId: string): Promi
   }
 
   // Obtain the video input surface.
-  let videoSurfaceId: string | undefined = undefined; // The surfaceID is passed in to the camera API to create a VideoOutput instance.
+  let videoSurfaceId: string | undefined = undefined; // Surface ID passed to the camera interface to create a videoOutput.
   try {
     videoSurfaceId = await resources.avRecorder.getInputSurface();
   } catch (error) {
@@ -352,7 +355,7 @@ async function videoRecording(context: common.Context, surfaceId: string): Promi
 
   // Close the file.
   try {
-    fs.closeSync(resources.file);
+    fileIo.closeSync(resources.file);
   } catch (error) {
     let err = error as BusinessError;
     console.error(`closeSync failed, error: ${err}`);

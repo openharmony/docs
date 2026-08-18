@@ -18,7 +18,7 @@ An image component in builder is not ready for taking a snapshot. The check for 
 
 **错误描述**
 
-图像加载错误。
+图像加载错误。该错误码为string类型。
 
 **可能原因**
 
@@ -36,7 +36,7 @@ Timeout.
 
 **错误描述**
 
-截图操作超时。
+截图操作超时。该错误码为string类型。
 
 **可能原因**
 
@@ -54,7 +54,7 @@ Unsupported color space or dynamic range mode in snapshot options.
 
 **错误描述**
 
-截图选项中设置的色彩空间或动态范围模式不受支持。
+截图选项中设置的色彩空间或动态范围模式不受支持。该错误码为string类型。
 
 **可能原因**
 
@@ -72,7 +72,7 @@ isAuto(true) is not supported for offscreen node snapshots.
 
 **错误描述**
 
-离屏节点截图不支持将色彩空间或动态范围模式对应的isAuto参数设置为true。
+离屏节点截图不支持将色彩空间或动态范围模式对应的isAuto参数设置为true。该错误码为string类型。
 
 **可能原因**
 

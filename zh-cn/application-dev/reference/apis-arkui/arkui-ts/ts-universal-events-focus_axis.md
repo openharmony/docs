@@ -38,7 +38,7 @@ onFocusAxisEvent(event: Callback\<FocusAxisEvent>): T
 
 ## FocusAxisEvent对象说明
 
-焦点轴事件的对象说明，继承于[BaseEvent](ts-gesture-customize-judge.md#baseevent8)。
+焦点轴事件的对象说明，继承于[BaseEvent](ts-universal-events-click.md#baseevent8)。
 
 **原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。
 

@@ -157,7 +157,7 @@ typedef void (*OH_TextEditorProxy_DeleteForwardFunc)(InputMethod_TextEditorProxy
 | 参数项 | 描述 |
 | -- | -- |
 | [InputMethod_TextEditorProxy](capi-inputmethod-inputmethod-texteditorproxy.md) *textEditorProxy | 输入指针，指向当前被回调的TextEditorProxy实例。 |
-| int32_t length | 输入参数，要删除的字符数量（单位：字符个数）。取值范围：大于0且不超过光标右侧剩余文本长度。取值原则：若length超过右侧剩余文本长度，应删除到文本末尾。 |
+| int32_t length | 输入参数，要删除的字符数量（单位：字符个数）。取值范围：大于0。取值原则：若length超过光标右侧剩余文本长度，应删除到文本末尾；否则删除指定数量的字符。 |
 
 ### OH_TextEditorProxy_DeleteBackwardFunc()
 
@@ -182,7 +182,7 @@ typedef void (*OH_TextEditorProxy_DeleteBackwardFunc)(InputMethod_TextEditorProx
 | 参数项 | 描述 |
 | -- | -- |
 | [InputMethod_TextEditorProxy](capi-inputmethod-inputmethod-texteditorproxy.md) *textEditorProxy | 输入指针，指向当前被回调的TextEditorProxy实例。 |
-| int32_t length | 输入参数，要删除的字符数量（单位：字符个数）。取值范围：大于0且不超过光标左侧已有文本长度。取值原则：若length超过左侧已有文本长度，应删除到文本开头。 |
+| int32_t length | 输入参数，要删除的字符数量（单位：字符个数）。取值范围：大于0。取值原则：若length超过光标左侧已有文本长度，应删除到文本开头；否则删除指定数量的字符。 |
 
 ### OH_TextEditorProxy_SendKeyboardStatusFunc()
 
@@ -207,7 +207,7 @@ typedef void (*OH_TextEditorProxy_SendKeyboardStatusFunc)(InputMethod_TextEditor
 | 参数项 | 描述 |
 | -- | -- |
 | [InputMethod_TextEditorProxy](capi-inputmethod-inputmethod-texteditorproxy.md) *textEditorProxy | 输入指针，指向当前被回调的TextEditorProxy实例。 |
-| [InputMethod_KeyboardStatus](capi-inputmethod-types-capi-h.md#inputmethod_keyboardstatus) keyboardStatus | 输入参数，键盘状态。取值范围：[InputMethod_KeyboardStatus](capi-inputmethod-types-capi-h.md#inputmethod_keyboardstatus)枚举值（IME_KEYBOARD_NONE=0、IME_KEYBOARD_SHOW=1、IME_KEYBOARD_HIDE=2）。使用后效果：设置为IME_KEYBOARD_SHOW时表示键盘已弹出，IME_KEYBOARD_HIDE时表示键盘已收起。 |
+| [InputMethod_KeyboardStatus](capi-inputmethod-types-capi-h.md#inputmethod_keyboardstatus) keyboardStatus | 输入参数，键盘状态。取值范围：[InputMethod_KeyboardStatus](capi-inputmethod-types-capi-h.md#inputmethod_keyboardstatus)枚举值（IME_KEYBOARD_STATUS_NONE=0、IME_KEYBOARD_STATUS_SHOW=1、IME_KEYBOARD_STATUS_HIDE=2）。使用后效果：设置为IME_KEYBOARD_STATUS_SHOW时表示键盘已弹出，IME_KEYBOARD_STATUS_HIDE时表示键盘已收起。 |
 
 ### OH_TextEditorProxy_SendEnterKeyFunc()
 
@@ -360,7 +360,7 @@ typedef void (*OH_TextEditorProxy_GetRightTextOfCursorFunc)(InputMethod_TextEdit
 | 参数项 | 描述 |
 | -- | -- |
 | [InputMethod_TextEditorProxy](capi-inputmethod-inputmethod-texteditorproxy.md) *textEditorProxy | 输入指针，指向当前被回调的TextEditorProxy实例。 |
-| int32_t number | 输入参数，要获取的字符数量（单位：字符个数）。取值范围：大于0。 |
+| int32_t number | 输入参数，要获取的字符数量（单位：字符个数）。取值范围：大于0。取值原则：若number超过光标右侧剩余文本长度，应返回右侧全部文本。 |
 | char16_t text[] | 输出指针，光标右侧指定长度的文本内容，需要在函数实现中对它赋值。采用UTF-16编码。此指针仅在回调执行期间有效，回调返回后该内存将被释放，不可再访问。 |
 | size_t *length | 输出指针，用于返回实际获取到的字符数量（单位：char16_t字符个数）。由调用者分配内存，开发者需在回调内部对*length赋值。 |
 
@@ -451,8 +451,8 @@ typedef int32_t (*OH_TextEditorProxy_SetPreviewTextFunc)(InputMethod_TextEditorP
 | [InputMethod_TextEditorProxy](capi-inputmethod-inputmethod-texteditorproxy.md) *textEditorProxy | 输入指针，指向当前被回调的TextEditorProxy实例。 |
 | const char16_t text[] | 输入指针，请求设置为预上屏样式的文本内容，采用UTF-16编码。此指针仅在回调执行期间有效，回调返回后该内存将被释放，不可再访问。开发者应在回调内部完成必要的数据拷贝。 |
 | size_t length | 输入参数，预上屏文本的字符数量（单位：char16_t字符个数）。 |
-| int32_t start | 输入参数，预上屏文本起始光标位置（单位：字符偏移量，相对于文本开头）。 |
-| int32_t end | 输入参数，预上屏文本结束光标位置（单位：字符偏移量，相对于文本开头）。 |
+| int32_t start | 输入参数，预上屏文本起始光标位置（单位：字符偏移量，相对于文本开头）。取值原则：start应大于等于0且小于等于end。 |
+| int32_t end | 输入参数，预上屏文本结束光标位置（单位：字符偏移量，相对于文本开头）。取值原则：end应大于等于start且小于文本总长度。 |
 
 **返回：**
 
@@ -573,6 +573,10 @@ InputMethod_ErrorCode OH_TextEditorProxy_SetInsertTextFunc(InputMethod_TextEdito
 
 将函数[OH_TextEditorProxy_InsertTextFunc](#oh_texteditorproxy_inserttextfunc)设置到[InputMethod_TextEditorProxy](capi-inputmethod-inputmethod-texteditorproxy.md)中。此设置须在Attach之前完成。
 
+使用场景：当应用需要注册InsertTextFunc回调以响应输入法插入文本请求时调用此函数。
+
+使用后效果：设置成功后，InsertTextFunc回调将被注册到TextEditorProxy中，Attach后当输入法请求插入文本时将自动触发此回调。
+
 **起始版本：** 12
 
 **参数：**
@@ -598,6 +602,10 @@ InputMethod_ErrorCode OH_TextEditorProxy_SetDeleteForwardFunc(InputMethod_TextEd
 
 将函数[OH_TextEditorProxy_DeleteForwardFunc](#oh_texteditorproxy_deleteforwardfunc)设置到[InputMethod_TextEditorProxy](capi-inputmethod-inputmethod-texteditorproxy.md)中。此设置须在Attach之前完成。
 
+使用场景：当应用需要注册DeleteForwardFunc回调以响应输入法删除光标右侧文本请求时调用此函数。
+
+使用后效果：设置成功后，DeleteForwardFunc回调将被注册到TextEditorProxy中，Attach后当输入法请求删除光标右侧文本时将自动触发此回调。
+
 **起始版本：** 12
 
 **参数：**
@@ -622,6 +630,10 @@ InputMethod_ErrorCode OH_TextEditorProxy_SetDeleteBackwardFunc(InputMethod_TextE
 **描述**
 
 将函数[OH_TextEditorProxy_DeleteBackwardFunc](#oh_texteditorproxy_deletebackwardfunc)设置到[InputMethod_TextEditorProxy](capi-inputmethod-inputmethod-texteditorproxy.md)中。此设置须在Attach之前完成。
+
+使用场景：当应用需要注册DeleteBackwardFunc回调以响应输入法删除光标左侧文本请求时调用此函数。
+
+使用后效果：设置成功后，DeleteBackwardFunc回调将被注册到TextEditorProxy中，Attach后当输入法请求删除光标左侧文本时将自动触发此回调。
 
 **起始版本：** 12
 
@@ -930,7 +942,7 @@ InputMethod_ErrorCode OH_TextEditorProxy_GetGetTextConfigFunc(InputMethod_TextEd
 | 参数项 | 描述 |
 | -- | -- |
 | [InputMethod_TextEditorProxy](capi-inputmethod-inputmethod-texteditorproxy.md) *proxy | 输入指针，指向被读取的TextEditorProxy实例的指针。不可为NULL。 |
-| [OH_TextEditorProxy_GetTextConfigFunc](#oh_texteditorproxy_gettextconfigfunc) *getTextConfigFunc | 输出指针，表示从proxy获取到的函数指针。由调用者分配内存，函数将把回调函数指针写入此地址。不可为NULL。 |
+| [OH_TextEditorProxy_GetTextConfigFunc](#oh_texteditorproxy_gettextconfigfunc) *getTextConfigFunc | 输出指针，表示从proxy获取到的函数指针。由调用者分配内存。不可为NULL。 |
 
 **返回：**
 
