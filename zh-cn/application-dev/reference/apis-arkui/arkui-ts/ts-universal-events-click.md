@@ -172,6 +172,42 @@ getCurrentLocalPosition?(): Coordinate2D
 | deviceId<sup>12+</sup> | number | 否 | 是 | 触发当前事件的输入设备ID。<br>默认值：0<br>取值范围：[0, +∞)<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。<br>**模型约束：** 此接口仅可在Stage模型下使用。|
 | targetDisplayId<sup>15+</sup> | number | 否 | 是 | 事件发生的屏幕ID。  <br>默认值：0<br>取值范围：[0, +∞)<br>**原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。<br>**模型约束：** 此接口仅可在Stage模型下使用。 |
 
+### getModifierKeyState<sup>12+</sup>
+
+getModifierKeyState?(keys: Array\<string>): boolean
+
+获取修饰键按压状态，可用于在手势事件处理中判断Ctrl、Alt、Shift修饰键是否被按下，以处理组合键交互逻辑。报错信息请参考以下错误码。支持修饰键'Ctrl'\|'Alt'\|'Shift'。
+
+>  **说明：**
+>
+> 此接口不支持在手写笔场景下使用。
+
+**模型约束：** 此接口仅可在Stage模型下使用。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名 | 类型                              | 必填 | 说明                 |
+| ------ | --------------------------------- | ---- | -------------------- |
+| keys  | Array&lt;string&gt; | 是   | 修饰键列表，数组元素支持 'Ctrl'、'Alt'、'Shift'，用于查询指定修饰键是否均处于按压状态。 |
+
+**返回值：**
+
+| 类型 | 说明 |
+| -------- | -------- |
+| boolean | 返回修饰键按压状态。当修饰键均处于按压状态时返回true，否则返回false。 |
+
+**错误码：**
+
+以下错误码详细介绍请参考[通用错误码](../../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | -------- |
+| 401 | Parameter error. Possible causes: 1. Incorrect parameter types. 2. Parameter verification failed. |
+
 ## EventTarget<sup>8+</sup>
 
 [BaseEvent](#baseevent8)中参数target的类型。
