@@ -1,10 +1,12 @@
 # Interface (MediaKeySession)
+
 <!--Kit: Drm Kit-->
 <!--Subsystem: Multimedia-->
-<!--Owner: @qin_wei_jie-->
+<!--Owner: @hanzhengshi-->
 <!--Designer: @chris2981-->
 <!--Tester: @xdlinc-->
-<!--Adviser: @w_Machine_cc-->
+<!--Adviser: @qin_wei_jie-->
+
 支持媒体密钥管理。在调用MediaKeySession方法之前，必须使用[createMediaKeySession](arkts-apis-drm-MediaKeySystem.md#createmediakeysession)获取一个MediaKeySession实例。
 
 > **说明：**

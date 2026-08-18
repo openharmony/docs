@@ -1,10 +1,12 @@
 # Interface (MediaKeySystem)
+
 <!--Kit: Drm Kit-->
 <!--Subsystem: Multimedia-->
-<!--Owner: @qin_wei_jie-->
+<!--Owner: @hanzhengshi-->
 <!--Designer: @chris2981-->
 <!--Tester: @xdlinc-->
-<!--Adviser: @w_Machine_cc-->
+<!--Adviser: @qin_wei_jie-->
+
 支持MediaKeySystem实例管理、设备证书申请与处理、会话创建、离线媒体密钥管理、获取DRM度量记录、设备属性等。在调用MediaKeySystem方法之前，必须使用[createMediaKeySystem](arkts-apis-drm-f.md#drmcreatemediakeysystem)创建一个MediaKeySystem实例。
 
 > **说明：**
@@ -40,7 +42,7 @@ setConfigurationString(configName: string, value: string): void
 
 | 错误码ID         | 错误信息        |
 | --------------- | --------------- |
-| 401                |  The parameter check failed. Possibly because: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. 3.Parameter verification failed.|
+| 401 | The parameter check failed. Possibly because: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed.|
 | 24700101                |  All unknown errors                  |
 | 24700201                |  Fatal service error, for example, service died                  |
 
@@ -81,7 +83,7 @@ getConfigurationString(configName: string): string
 
 | 错误码ID         | 错误信息        |
 | --------------- | --------------- |
-| 401                |  The parameter check failed. Possibly because: 1.Mandatory parameters are left unspecified. 2.Parameter verification failed, the param's length is zero or too big(exceeds 4096 Bytes).                              |
+| 401 | The parameter check failed. Possibly because: 1. Mandatory parameters are left unspecified. 2. Parameter verification failed, the param's length is zero or too big (exceeds 4096 Bytes). |
 | 24700101                |  All unknown errors                  |
 | 24700201                |  Fatal service error, for example, service died                  |
 
@@ -430,6 +432,7 @@ off(type: 'keySystemRequired', callback?: (eventInfo: EventInfo) => void): void
 
 ```ts
 import { drm } from '@kit.DrmKit';
+
 let mediaKeySystem: drm.MediaKeySystem = drm.createMediaKeySystem('com.clearplay.drm');
 mediaKeySystem.off('keySystemRequired');
 ```
@@ -462,7 +465,7 @@ createMediaKeySession(level: ContentProtectionLevel): MediaKeySession
 
 | 错误码ID         | 错误信息        |
 | --------------- | --------------- |
-| 401                |  The parameter check failed. Possibly because: 1.Mandatory parameters are left unspecified. 2.The param level exceeds reasonable range, please use value in ContentProtectionLevel.          |
+| 401 | The parameter check failed. Possibly because: 1. Mandatory parameters are left unspecified. 2. The param level exceeds reasonable range, please use value in ContentProtectionLevel. |
 | 24700101                 |  All unknown errors                  |
 | 24700104                 |  Meet max MediaKeySession num limit                  |
 | 24700201                |  Fatal service error, for example, service died                  |

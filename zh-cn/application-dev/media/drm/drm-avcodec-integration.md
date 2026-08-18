@@ -1,10 +1,12 @@
 # 基于AVCodec播放DRM节目(C/C++)
+
 <!--Kit: Drm Kit-->
 <!--Subsystem: Multimedia-->
-<!--Owner: @qin_wei_jie-->
+<!--Owner: @hanzhengshi-->
 <!--Designer: @chris2981-->
 <!--Tester: @xdlinc-->
-<!--Adviser: @w_Machine_cc-->
+<!--Adviser: @qin_wei_jie-->
+
 ## 功能介绍
 
 开发者可以调用DRM Kit的Native API，完成DRM节目播放。

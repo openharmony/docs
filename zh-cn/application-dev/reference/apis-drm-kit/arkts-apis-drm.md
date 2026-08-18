@@ -1,10 +1,12 @@
-# 模块描述
+# @ohos.multimedia.drm
+
 <!--Kit: Drm Kit-->
 <!--Subsystem: Multimedia-->
-<!--Owner: @qin_wei_jie-->
+<!--Owner: @hanzhengshi-->
 <!--Designer: @chris2981-->
 <!--Tester: @xdlinc-->
-<!--Adviser: @w_Machine_cc-->
+<!--Adviser: @qin_wei_jie-->
+
 DRM（Digital Rights Management）框架组件采用插件化架构，通过统一的插件接口对接不同的DRM方案，支持音视频媒体业务数字版权管理功能的开发。适用于在线视频播放、音乐应用、电子书等需要版权保护的业务场景，有效防止内容盗版和未授权访问，保护内容提供商的权益，确保音视频内容的安全播放。开发者可以调用系统提供的DRM插件，完成以下功能：
 - DRM证书管理：生成证书请求、设置证书响应，实现证书Provision（下载和安装）功能。使用场景：在线视频平台、音乐应用等需要获取许可证的音视频播放业务。
 - DRM媒体密钥管理：生成媒体密钥请求、设置媒体密钥响应、管理离线媒体密钥功能。
