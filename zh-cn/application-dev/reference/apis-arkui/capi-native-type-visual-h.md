@@ -201,7 +201,7 @@ enum ArkUI_AnimationCurve
 | ARKUI_CURVE_FAST_OUT_SLOW_IN = 5 | 动画标准曲线。 |
 | ARKUI_CURVE_LINEAR_OUT_SLOW_IN = 6 | 动画减速曲线。 |
 | ARKUI_CURVE_FAST_OUT_LINEAR_IN = 7 | 动画加速曲线。 |
-| ARKUI_CURVE_EXTREME_DECELERATION = 8 | 动画急缓曲线。 |
+| ARKUI_CURVE_EXTREME_DECELERATION = 8 | 动画极缓曲线。 |
 | ARKUI_CURVE_SHARP = 9 | 动画锐利曲线。 |
 | ARKUI_CURVE_RHYTHM = 10 | 动画节奏曲线。 |
 | ARKUI_CURVE_SMOOTH = 11 | 动画平滑曲线。 |
