@@ -6,7 +6,7 @@
 <!--Designer: @wendel-->
 <!--Tester: @liangchengguang-->
 <!--Adviser: @HelloCrease-->
-<!-- md-trans-meta sourceCommit=11df7ff9976718ab2707dde1cf3ce5a5dccd5e46 translatedAt=2026-08-18T01:29:13.958Z pushedAt=2026-08-18T06:37:38.792Z -->
+<!-- md-trans-meta sourceCommit=11df7ff9976718ab2707dde1cf3ce5a5dccd5e46 translatedAt=2026-08-18T01:29:13.958Z pushedAt=2026-08-18T11:59:57.037Z -->
 
 ## Overview
 
@@ -20,11 +20,13 @@ When a user performs operations such as app startup, app foreground/background s
 
     When the first process of an app is created, the app starts; when all processes of the app end, the app exits (see the following figure for details).
 
+    ![application-process-lifecycle](figures/application-process-lifecycle.png)
 
 - Relationship between app process lifecycle and UIAbility component
 
     The lifecycle of an application process directly constrains and affects the lifecycle of a UIAbility component (see the following figure for details).
 
+    ![process-ability-lifecycle](figures/process-ability-lifecycle.png)
 
     The foreground/background callbacks of the [UIAbility component lifecycle](./uiability-lifecycle.md) are closely related to the foreground/background state of the process, but the two are not exactly the same:
 
@@ -129,7 +131,7 @@ export default class LifecycleAbility extends UIAbility {
 
 ## Application Model Features of PC/2-in-1 Devices
 
-For an app whose [deviceTypes](../quick-start/module-configuration-file.md#devicetypes-tag) in the module.json5 file declares support only for PC/2-in-1 devices, the triggering mechanism of its UIAbility lifecycle callbacks differs from that on other devices.
+For an app whose [deviceTypes](../quick-start/module-configuration-file.md#devicetypes) in the module.json5 file declares support only for PC/2-in-1 devices, the triggering mechanism of its UIAbility lifecycle callbacks differs from that on other devices.
 
   1. When a user starts a UIAbility, the system sequentially triggers the onCreate(), onWindowStageCreate(), and onForeground() lifecycle callbacks to complete processes such as component creation and lifecycle driving.
 

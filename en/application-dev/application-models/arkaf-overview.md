@@ -28,7 +28,6 @@ ArkAF provides three core capability frameworks, offering developers a standardi
 
 **Figure 1** ArkAF architecture
 
-![ArkAF architecture](figures/arkaf-architecture.png)
 
 The workflow consists of four stages:
 
