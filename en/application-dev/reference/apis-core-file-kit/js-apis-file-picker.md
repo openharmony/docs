@@ -6,7 +6,7 @@
 <!--Designer: @hwzhangchuang; @Dyylll-->
 <!--Tester: @zsyztt; @yue-ye2; @fuwei-->
 <!--Adviser: @jinqiuheng-->
-<!-- md-trans-meta sourceCommit=8b6cf89b37c32b3dffd1d378ad719228fa45e034 translatedAt=2026-08-14T11:53:11.642Z pushedAt=2026-08-17T07:33:25.877Z -->
+<!-- md-trans-meta sourceCommit=8b6cf89b37c32b3dffd1d378ad719228fa45e034 translatedAt=2026-08-14T11:53:11.642Z pushedAt=2026-08-18T02:53:56.259Z -->
 
 The **Picker** module encapsulates APIs such as **DocumentViewPicker**, **AudioViewPicker**, and **PhotoViewPicker** to provide capabilities of selecting and saving files of different types. The **Picker** module can be used to start the system file selection page, where users can select or save files in a secure and controllable environment. Apps can use this module without requesting any permissions. An application can select the API as required. The APIs of this module must be called in UIAbility. Otherwise, the **FilePicker**, **AudioPicker**, or **PhotoPicker** cannot be started.
 
@@ -720,7 +720,7 @@ Starts an **audioPicker** page (currently, a **documentPicker** page is displaye
 
 | Name | Type   | Mandatory| Description                      |
 | ------- | ------- | ---- | -------------------------- |
-| callback | AsyncCallback&lt;Array&lt;string&gt;&gt;      | Yes   | Callback used to return the result set after the audioPicker saves the audio files. <br>**Note:** For details about how to use the URI array returned by this API, see [Usage of Document-Type URIs](../../file-management/user-file-uri-intro.md#document-type-uri-usage) in user file URI introduction. |
+| callback | AsyncCallback&lt;Array&lt;string&gt;&gt;      | Yes   | Callback used to return the result set after the audioPicker saves the audio files. <br>**Note:** For details about how to use the returned URIs, see [Using a Document URI](../../file-management/user-file-uri-intro.md#using-a-document-uri). |
 
 **Example**
 

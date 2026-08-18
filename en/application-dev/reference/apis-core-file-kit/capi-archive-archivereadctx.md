@@ -1,12 +1,10 @@
-# ArchiveReadCtx*
-
+# ArchiveReadCtx
 <!--Kit: Core File Kit-->
 <!--Subsystem: FileManagement-->
 <!--Owner: @rl123567-->
 <!--Designer: @selina_jiang; @RainbowLLL-->
 <!--Tester: @zheng1368-->
 <!--Adviser: @jinqiuheng-->
-<!-- md-trans-meta sourceCommit=50e1a0bdebefb9e1cc6b53db25b6c6de0b858373 translatedAt=2026-08-14T11:48:01.638Z pushedAt=2026-08-17T03:45:41.858Z -->
 
 ```c
 typedef struct ArchiveReadCtx *OH_Archive_Reader_Ctx
@@ -14,10 +12,10 @@ typedef struct ArchiveReadCtx *OH_Archive_Reader_Ctx
 
 ## Overview
 
-Defines a pointer to the file decompressor context.
+Defines the context structure of the file decompressor.
 
-**Since**: 26.0.0
+**Since:** 26.0.0
 
 **Related module:** [Archive](capi-archive.md)
 
-**File to include:** [oh_archive.h](capi-oh-archive-h.md)
+**Header file:** [oh_archive.h](capi-oh-archive-h.md)

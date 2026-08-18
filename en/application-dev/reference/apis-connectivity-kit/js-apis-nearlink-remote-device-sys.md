@@ -1,4 +1,4 @@
-# @ohos.nearlink.remoteDevice (NearLink Remote Device Connection Capability) (System API)
+# @ohos.nearlink.remoteDevice (Capability to Connect to a Remote Device) (System API)
 
 <!--Kit: Connectivity Kit-->
 <!--Subsystem: Communication-->
@@ -6,7 +6,7 @@
 <!--Designer: @lilong32; @CCCZKing-->
 <!--Tester: @zhangjiaji111-->
 <!--Adviser: @zhang_yixin13-->
-<!-- md-trans-meta sourceCommit=1f7ebf6194dca265f1a8eeefc330905f60a6cb97 translatedAt=2026-08-17T08:48:30.948Z pushedAt=2026-08-17T12:29:35.306Z -->
+<!-- md-trans-meta sourceCommit=1f7ebf6194dca265f1a8eeefc330905f60a6cb97 translatedAt=2026-08-17T08:48:30.948Z pushedAt=2026-08-18T02:35:30.906Z -->
 
 This module provides the capabilities of connecting to and managing NearLink remote devices, including connecting to and disconnecting from remote devices, pairing with a trusted device and confirmation, adjusting the connection interval, and subscribing to pairing requests.
 
