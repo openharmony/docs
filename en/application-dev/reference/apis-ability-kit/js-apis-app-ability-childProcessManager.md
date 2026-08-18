@@ -346,7 +346,7 @@ Starts a [native child process](../../application-models/ability-terminology.md#
 
 **Example**
 
-Sample code for the child process is provided below. For details, see [Native Child Process Development (C/C++) - Creating a Native Child Process That Supports Pass-by-Parameter](../../application-models/capi_nativechildprocess_development_guideline.md#creating-a-native-child-process-that-supports-pass-by-parameter).
+Sample code for the child process is provided below. For details, see [Native Child Process Development (C/C++) - Creating a Native Child Process That Supports Pass-by-Parameter](../../application-models/capi-nativechildprocess-development-guideline.md#creating-a-native-child-process-that-supports-pass-by-parameter).
 
 ```c++
 #include <AbilityKit/native_child_process.h>

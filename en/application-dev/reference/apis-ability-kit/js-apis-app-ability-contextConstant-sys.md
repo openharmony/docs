@@ -26,7 +26,7 @@ import { contextConstant } from '@kit.AbilityKit';
 
 ## ContextType
 
-Enumerates the common context types, used by the [isContextOf](./js-apis-inner-application-context.md#iscontextof) API.
+Enumerates the common context types, used by the [isContextOf](./js-apis-inner-application-context.md) API.
 
 **Since**: 26.0.0
 

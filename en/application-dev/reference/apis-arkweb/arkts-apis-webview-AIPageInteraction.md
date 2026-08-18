@@ -8,7 +8,7 @@
 <!--Adviser: @HelloShuo-->
 <!-- md-trans-meta sourceCommit=83a123fed8576a7a579f4752a2ba1d3b16228342 translatedAt=2026-08-13T13:27:10.715Z pushedAt=2026-08-17T08:38:02.802Z -->
 
-Starting from API version 26.0.0, `AIPageInteraction` defines the page interaction JSON command protocol supported by [executeAIPageCommand](./arkts-apis-webview-WebviewController.md#executeaipagecommand), including element-level input operations such as click, focus, type text, and send keyboard events, as well as operations that change the page state, such as page scrolling, dropdown option selection, file upload, and zoom control. Before calling this API, the app needs to serialize the command object into a JSON string.
+Starting from API version 26.0.0, `AIPageInteraction` defines the page interaction JSON command protocol supported by [executeAIPageCommand](./arkts-apis-webview-WebviewController.md), including element-level input operations such as click, focus, type text, and send keyboard events, as well as operations that change the page state, such as page scrolling, dropdown option selection, file upload, and zoom control. Before calling this API, the app needs to serialize the command object into a JSON string.
 
 > **NOTE**
 >

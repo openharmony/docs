@@ -69,7 +69,7 @@ In the **onWindowStageCreate()** callback, use [loadContent()](../reference/apis
 > **NOTE**
 > 
 > - The timing of the [WindowStage events](../reference/apis-arkui/arkts-apis-window-e.md#windowstageeventtype9) may vary according to the development scenario. For details about how to use WindowStage, see [Window Development](../windowmanager/application-window-stage.md).
-> - The UIAbility lifecycle varies with the product type when the main window of an application is switched from the foreground to the background. For details, see [Differentiated Lifecycle Behaviors Across Different Devices](../windowmanager/window-overview.md#differentiated-lifecycle-behaviors-across-different-devices).
+> - The UIAbility lifecycle varies with the product type when the main window of an application is switched from the foreground to the background. For details, see [Differentiated Behavior of UIAbility Lifecycle on Different Devices](../windowmanager/window-overview.md#differentiated-behavior-of-uiability-lifecycle-on-different-devices).
 
   <!-- @[onWindowStageCreate](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/Ability/UIAbilityLifecycle/entry/src/main/ets/entryability/EntryAbility.ets) -->  
   

@@ -855,7 +855,7 @@ try {
 
 getLaunchWant(): Want
 
-Obtains the **Want** parameters of the [entry UIAbility](../../quick-start/application-package-glossary.md#uiability) of the current application.
+Obtains the **Want** parameters of the [entry UIAbility](../../quick-start/application-package-glossary.md) of the current application.
 
 **Atomic service API**: This API can be used in atomic services since API version 13.
 

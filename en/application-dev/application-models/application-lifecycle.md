@@ -20,13 +20,11 @@ When a user performs operations such as app startup, app foreground/background s
 
     When the first process of an app is created, the app starts; when all processes of the app end, the app exits (see the following figure for details).
 
-    ![application-process-lifecycle](figures/application-process-lifecycle.png)
 
 - Relationship between app process lifecycle and UIAbility component
 
     The lifecycle of an application process directly constrains and affects the lifecycle of a UIAbility component (see the following figure for details).
 
-    ![process-ability-lifecycle](figures/process-ability-lifecycle.png)
 
     The foreground/background callbacks of the [UIAbility component lifecycle](./uiability-lifecycle.md) are closely related to the foreground/background state of the process, but the two are not exactly the same:
 

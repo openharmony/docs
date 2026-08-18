@@ -8,7 +8,7 @@
 <!--Adviser: @HelloShuo-->
 <!-- md-trans-meta sourceCommit=834fb8867c57c74a3b50ed24000e6570d97317a8 translatedAt=2026-08-13T13:23:44.791Z pushedAt=2026-08-17T08:14:23.346Z -->
 
-`AIPageCommand` defines the JSON command protocol supported by [executeAIPageCommand](./arkts-apis-webview-WebviewController.md#executeaipagecommand), including the input parameter format and response format of different commands. Before calling this API, the app needs to serialize the command object into a JSON string.
+`AIPageCommand` defines the JSON command protocol supported by [executeAIPageCommand](./arkts-apis-webview-WebviewController.md), including the input parameter format and response format of different commands. Before calling this API, the app needs to serialize the command object into a JSON string.
 
 > **NOTE**
 >

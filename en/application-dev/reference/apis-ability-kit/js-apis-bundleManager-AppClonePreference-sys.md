@@ -8,7 +8,7 @@
 <!--Adviser: @HelloCrease-->
 <!-- md-trans-meta sourceCommit=96c970b9ef0e5c53bb2ae27e6f2142cdd49b75d7 translatedAt=2026-08-13T13:19:37.620Z pushedAt=2026-08-17T03:15:31.801Z -->
 
-App clone preference, used to configure the selection policy between the main app and the clone app at app startup. It is obtained through [bundleManager.getAppClonePreference](js-apis-bundleManager-sys.md#bundlemanagergetappclonepreference) and set through [bundleManager.setAppClonePreference](js-apis-bundleManager-sys.md#bundlemanagersetappclonepreference).
+App clone preference, used to configure the selection policy between the main app and the clone app at app startup. It is obtained through [bundleManager.getAppClonePreference](js-apis-bundleManager-sys.md) and set through [bundleManager.setAppClonePreference](js-apis-bundleManager-sys.md).
 
 **Since**: 26.0.0
 
