@@ -507,7 +507,7 @@ makeUnique(uniqueScreen: Array&lt;number&gt;): Promise&lt;Array&lt;number&gt;&gt
 | ------- | ----------------------- |
 | 202     | Permission verification failed. A non-system application calls a system API. |
 | 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed. |
-| 801     | Capability not supported. Failed to call the API due to limited device capabilities. |
+| 801     | Capability not supported. |
 | 1400001 | Invalid display or screen. |
 | 1400003 | This display manager service works abnormally. |
 
@@ -932,7 +932,7 @@ setScreenPrivacyMaskImage(screenId:number, image?: image.PixelMap): Promise&lt;v
 | ------- | ----------------------- |
 | 202     | Permission verification failed. A non-system application calls a system API. |
 | 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
-| 801     | Capability not supported. Failed to call the API due to limited device capabilities. |
+| 801     | Capability not supported. |
 | 1400001 | Invalid display or screen. |
 | 1400003 | This display manager service works abnormally. |
 
@@ -1269,7 +1269,7 @@ resizeVirtualScreen(screenId: number, width: number, height: number): Promise&lt
 | 错误码ID | 错误信息 |
 | ------- | ----------------------- |
 | 202     | Permission verification failed. A non-system application calls a system API. |
-| 801     | Capability not supported. Failed to call the API due to limited device capabilities. |
+| 801     | Capability not supported. |
 | 1400001 | Invalid display or screen. |
 | 1400003 | This display manager service works abnormally. |
 | 1400004 | Parameter error. Possible cause: 1. Invalid parameter range. |
@@ -1618,7 +1618,7 @@ screen.stopExpand(expandScreenIds).then(() => {
 | density   | number   | 否   | 否   | 指定虚拟屏幕的密度，该参数为浮点数。 |
 | surfaceId | string   | 否   | 否   | 指定虚拟屏幕的surfaceId。        |
 | supportsFocus<sup>22+</sup> | boolean | 否 | 是  | 指定虚拟屏幕是否可获得焦点。true表示可获焦，false表示不可获焦，默认值为true。 |
-| userId<sup>24+</sup> | number | 否 | 是  | 指定虚拟屏幕的用户ID，该参数为整数。默认值为-1。<br>**设备行为差异：** 该参数仅在Car设备中生效，其他设备不生效也不报错。 |
+| userId<sup>24+</sup> | number | 否 | 是  | 指定虚拟屏幕的用户ID，该参数为整数。默认值为-1。<br>**设备行为差异：** 该参数仅在Car设备中生效，其他设备不生效也不报错。<br>**模型约束：** 此接口仅可在Stage模型下使用。 |
 
 ## Screen
 
@@ -1813,7 +1813,7 @@ setOrientation(orientation: Orientation, orientationOptions?: OrientationOptions
 
 **系统接口：** 此接口为系统接口。
 
-**系统能力：** SystemCapability.WindowManager.WindowManager.Core
+**系统能力：** SystemCapability.Window.SessionManager
 
 **设备行为差异：**
 
@@ -2240,7 +2240,7 @@ screen.createVirtualScreen(option).then((data: screen.Screen) => {
 
 **系统接口：** 此接口为系统接口。
 
-**系统能力：** SystemCapability.WindowManager.WindowManager.Core
+**系统能力：** SystemCapability.Window.SessionManager
 
 | 名称        | 类型 | 只读 | 可选 | 说明                                               |
 | ----------- | -------- | ---- | ---- | -------------------------------------------------- |
