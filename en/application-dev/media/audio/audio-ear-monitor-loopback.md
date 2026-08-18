@@ -6,7 +6,7 @@
 <!--Designer: @trytocalm-->
 <!--Tester: @Filger-->
 <!--Adviser: @w_Machine_cc-->
-<!-- md-trans-meta sourceCommit=3a7084fa36f3aa40ad1ae670f066e28c8494300a translatedAt=2026-08-06T01:42:56.896Z pushedAt=2026-08-06T03:43:43.157Z -->
+<!-- md-trans-meta sourceCommit=af789757f515ac82ed80f88daea4215033bbfe87 translatedAt=2026-08-18T11:02:15.053Z pushedAt=2026-08-18T11:38:25.237Z -->
 
 Low-latency audio monitoring is supported since API version 20.
 
@@ -324,7 +324,7 @@ The [on('statusChange')](../../reference/apis-audio-kit/arkts-apis-audio-AudioLo
 
 The following example demonstrates how to use AudioLoopback to enable low-latency audio monitoring:
 
-<!-- @[all_audioLoopback](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/Media/Audio/AudioCaptureSampleJS/entry/src/main/ets/pages/AudioLoopback.ets) -->    
+<!-- @[all_audioLoopback](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/Media/Audio/AudioCaptureSampleJS/entry/src/main/ets/pages/AudioLoopback.ets) -->
 
 ``` TypeScript
 import { audio } from '@kit.AudioKit'; // Import the audio module.
@@ -336,9 +336,24 @@ let mode: audio.AudioLoopbackMode = audio.AudioLoopbackMode.HARDWARE;
 let audioLoopback: audio.AudioLoopback | undefined = undefined;
 let currentReverbPreset: audio.AudioLoopbackReverbPreset = audio.AudioLoopbackReverbPreset.THEATER;
 let currentEqualizerPreset: audio.AudioLoopbackEqualizerPreset = audio.AudioLoopbackEqualizerPreset.FULL;
-// ...
+let statusChangeCallback = (status: audio.AudioLoopbackStatus) => {
+  if (status == audio.AudioLoopbackStatus.UNAVAILABLE_DEVICE) {
+    console.info('Audio loopback status is: UNAVAILABLE_DEVICE');
+  } else if (status == audio.AudioLoopbackStatus.UNAVAILABLE_SCENE) {
+    console.info('Audio loopback status is: UNAVAILABLE_SCENE');
+  } else if (status == audio.AudioLoopbackStatus.AVAILABLE_IDLE) {
+    console.info('Audio loopback status is: AVAILABLE_IDLE');
+  } else if (status == audio.AudioLoopbackStatus.AVAILABLE_RUNNING) {
+    console.info('Audio loopback status is: AVAILABLE_RUNNING');
+  }
+};
 
-// ...
+async function requestMicrophonePermission(context: common.UIAbilityContext): Promise<boolean> {
+  let atManager = abilityAccessCtrl.createAtManager();
+  let result: PermissionRequestResult = await atManager
+    .requestPermissionsFromUser(context, ['ohos.permission.MICROPHONE']);
+  return result.authResults[0] === 0;
+}
 
 // Query the capability and create an instance.
 function init(updateCallback?: (msg: string, isError: boolean) => void): void {
@@ -483,5 +498,3 @@ async function disable(updateCallback?: (msg: string, isError: boolean) => void)
   }
 }
 ```
-
-<!--no_check-->

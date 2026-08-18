@@ -6,11 +6,11 @@
 <!--Designer: @XiaoYao555-->
 <!--Tester: @xchaosioda-->
 <!--Adviser: @w_Machine_cc-->
-<!-- md-trans-meta sourceCommit=aa31d9fcc0b122cab31aac2ab8571a969c49cd4f translatedAt=2026-08-11T01:43:21.033Z pushedAt=2026-08-11T03:04:44.293Z -->
+<!-- md-trans-meta sourceCommit=baa6342393c04fcdac4db76418b040e6bcf63bed translatedAt=2026-08-18T11:03:44.885Z pushedAt=2026-08-18T11:39:10.039Z -->
 
 When an app performs image decoding, it needs to allocate the corresponding memory. The memory usage depends on the memory allocation type and pixel format. This guide describes different memory types, pixel formats, and how to combine them for optimal decoding performance.
 
-The app obtains a PixelMap through the decoding API and passes it to the [Image component](../../../application-dev/reference/apis-arkui/arkui-js/js-components-basic-image.md) for display.
+The app side obtains the PixelMap through the decoding API and passes it to the [Image](../../reference/apis-arkui/arkui-ts/ts-basic-components-image.md) component for display.
 
 When the PixelMap is large and uses shared memory, the RS main thread will experience a longer texture upload time, leading to lag. The graphics side provides a DMA memory zero-copy feature, which avoids texture upload time consumption when drawing images. In addition, setting an appropriate pixel format (such as YUV) can further reduce memory usage.
 

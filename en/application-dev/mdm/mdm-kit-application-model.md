@@ -6,7 +6,7 @@
 <!--Designer: @hp_guo-->
 <!--Tester: @lpw_work-->
 <!--Adviser: @zhang_yixin13-->
-<!-- md-trans-meta sourceCommit=188ff5fef3d90fc0078e4760b9813c31639f710c translatedAt=2026-08-04T13:31:34.261Z pushedAt=2026-08-05T08:56:54.117Z -->
+<!-- md-trans-meta sourceCommit=2f4b89223ea807a0581c60a9a81b8de70ba28fa9 translatedAt=2026-08-18T11:02:22.142Z pushedAt=2026-08-18T11:37:31.150Z -->
 
 ## Overview
 
@@ -18,7 +18,7 @@ The [EnterpriseAdminExtensionAbility](./mdm-kit-term.md#enterpriseadminextension
 
 ### Process Model
 
-The [process model](../application-models/process-model-stage.md#process-model) of an MDM app inherits from that of a regular app. Building on the regular app model, an MDM app includes an additional independent **EnterpriseAdmin** process. When the **EnterpriseAdminExtensionAbility** component of the MDM app is activated, the **EnterpriseAdmin** process is created. As the background process of the device administrator app, the **EnterpriseAdmin** process is used to receive callbacks for events such as MDM app activation and deactivation. The lifecycle of the **EnterpriseAdmin** process is independent of the main process and is managed by the system instead. The way the **EnterpriseAdmin** process lifecycle is [managed](#enterpriseadminextensionability-capability-differences-after-activation) varies based on how the **EnterpriseAdminExtensionAbility** component is activated.
+The process model of an MDM app inherits from that of a regular app. Building on the regular app model, an MDM app includes an additional independent **EnterpriseAdmin** process. When the **EnterpriseAdminExtensionAbility** component of the MDM app is activated, the **EnterpriseAdmin** process is created. As the background process of the device administrator app, the **EnterpriseAdmin** process is used to receive callbacks for events such as MDM app activation and deactivation. The lifecycle of the **EnterpriseAdmin** process is independent of the main process and is managed by the system instead. The way the **EnterpriseAdmin** process lifecycle is [managed](#enterpriseadminextensionability-capability-differences-after-activation) varies based on how the **EnterpriseAdminExtensionAbility** component is activated.
 
 **Figure 1** MDM app process model
 

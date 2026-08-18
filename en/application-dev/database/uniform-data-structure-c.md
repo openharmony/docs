@@ -6,7 +6,7 @@
 <!--Designer: @junathuawei1; @zph000-->
 <!--Tester: @lj_liujing; @yippo; @logic42-->
 <!--Adviser: @ge-yafang-->
-<!-- md-trans-meta sourceCommit=814e5538573180f4836543a1c6592fa1ff24a7c3 translatedAt=2026-08-15T01:43:23.525Z pushedAt=2026-08-15T06:29:40.661Z -->
+<!-- md-trans-meta sourceCommit=4b90a346c35ae86f50b36d420ba72b66b13ac32f translatedAt=2026-08-18T11:01:17.554Z pushedAt=2026-08-18T11:29:21.457Z -->
 
 ## When to Use
 
@@ -34,7 +34,7 @@ For details about the APIs, see the standardized data structure APIs defined in 
 | OH_UdsFileUri* OH_UdsFileUri_Create()                                                   | Creates an **OH_UdsFileUri** instance and a pointer to it.|
 | int OH_UdsFileUri_SetFileUri(OH_UdsFileUri* pThis, const char* fileUri)                 | Sets the URI information for an **OH_UdsFileUri** instance.|
 | int OH_UdsFileUri_SetFileType(OH_UdsFileUri* pThis, const char* fileType)               | Sets the file type for an **OH_UdsFileUri** instance.|
-| int OH_UdmfRecord_AddFileUri(OH_UdmfRecord* pThis, OH_UdsFileUri* fileUri)              | Adds **OH_UdsFileUri** data to an **OH_UdmfData** instance.|
+| int OH_UdmfRecord_AddFileUri(OH_UdmfRecord* pThis, OH_UdsFileUri* fileUri)              | Adds **OH_UdsFileUri** data to an **OH_UdmfRecord** instance.|
 | int OH_Udmf_SetUnifiedData(Udmf_Intention intention, OH_UdmfData* unifiedData,char* key, unsigned int keyLen) | Sets an **OH_UdmfData** instance in the UDMF database. |
 | void OH_UdsPlainText_Destroy(OH_UdsPlainText* pThis)                                    | Destroys an **OH_UdsPlainText** instance.|
 | void OH_UdmfData_Destroy(OH_UdmfData* pThis)                                            | Destroys an **OH_UdmfData** instance.|
@@ -145,7 +145,7 @@ OH_UdsFileUri *fileUri = OH_UdsFileUri_Create();
 if (fileUri == nullptr) {
     return Udmf_ErrCode::UDMF_ERR;
 }
-// 2. Set the URL and description for the fileUri.
+// 2. Set the URL and file type information in fileUri.
 int32_t ret = OH_UdsFileUri_SetFileUri(fileUri, uri);
 if (ret != Udmf_ErrCode::UDMF_E_OK) {
     OH_UdsFileUri_Destroy(fileUri);

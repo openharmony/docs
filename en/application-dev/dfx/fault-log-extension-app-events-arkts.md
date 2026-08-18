@@ -6,9 +6,9 @@
 <!--Designer: @Maplestory91-->
 <!--Tester: @gcw_KuLfPSbe-->
 <!--Adviser: @jinqiuheng-->
-<!-- md-trans-meta sourceCommit=69a937b04d5e1272421fd7f0f6bdacacd959a6ef translatedAt=2026-07-29T10:47:27.021Z pushedAt=2026-07-29T11:11:42.535Z -->
+<!-- md-trans-meta sourceCommit=2f4b89223ea807a0581c60a9a81b8de70ba28fa9 translatedAt=2026-08-18T11:01:57.461Z pushedAt=2026-08-18T11:35:58.242Z -->
 
-Since API version 21, you can use HiAppEvent event subscription APIs in FaultLogExtensionAbility to implement delayed notification of app fault events (only [crash events](./hiappevent-watcher-crash-events.md) and [app freeze events](./hiappevent-watcher-freeze-events.md)). When an app exits due to a crash or freeze and cannot be restarted or remains unstarted for a long time, you can receive subscription callbacks for fault event information without relying on app startup. FaultLogExtensionAbility is only used to supplement fault event processing and cannot replace fault event handling when the [main process](../application-models/process-model-stage.md#basic-process-types) starts normally.
+Since API version 21, you can use HiAppEvent event subscription APIs in FaultLogExtensionAbility to implement delayed notification of app fault events (only [crash events](./hiappevent-watcher-crash-events.md) and [app freeze events](./hiappevent-watcher-freeze-events.md)). When an app exits due to a crash or freeze and cannot be restarted or remains unstarted for a long time, you can receive subscription callbacks for fault event information without relying on app startup. FaultLogExtensionAbility is only used to supplement fault event processing and cannot replace fault event handling when the main process starts normally.
 
 The system starts the FaultLogExtensionAbility process 30 minutes after an app crash or freeze event occurs. The actual start time may be delayed due to system scheduling. The 30-minute period refers to the cumulative time while the device is not in sleep mode. During testing, keep the test device screen on to prevent the device from entering sleep mode. The device may enter sleep mode when the screen is off, which can extend the actual time before the callback is received.
 
@@ -265,5 +265,3 @@ System events are notified via HiAppEvent callbacks to all event observers that 
 Events that occur after the application starts and before the watcher is registered are lost. Check whether multiple event watchers with the same name are registered.
 
 To prevent event loss, HiAppEvent, after the app starts but before the event observer is registered, first scans the subscription filter criteria of event observers that were not removed before the app last exited, and subscribes to and saves events accordingly. When an event observer with the same name is registered again, the later registration overwrites the previous observer's information, causing the subscription filter criteria to be overwritten and events to be lost.
-
-<!--no_check-->

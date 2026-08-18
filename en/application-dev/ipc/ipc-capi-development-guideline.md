@@ -6,7 +6,7 @@
 <!--Designer: @zhaopeng_gitee-->
 <!--Tester: @Lyuxin-->
 <!--Adviser: @zhang_yixin13-->
-<!-- md-trans-meta sourceCommit=d58ce0749bd78990b688a4afdb28e2899c292224 translatedAt=2026-08-04T13:29:21.624Z pushedAt=2026-08-05T01:44:45.340Z -->
+<!-- md-trans-meta sourceCommit=2f4b89223ea807a0581c60a9a81b8de70ba28fa9 translatedAt=2026-08-18T11:02:12.038Z pushedAt=2026-08-18T11:36:51.984Z -->
 
 ## When to Use
 
@@ -16,7 +16,7 @@ The IPC C APIs do not provide the capability of obtaining the communication prox
 
 ![](./figures/_i_p_c_architecture_diagram.png)
 
-For details about how to establish an IPC channel, see [Native Child Process Development (C/C++)](../application-models/capi-nativechildprocess-development-guideline.md). This document describes how to use the IPC C APIs.
+For details about how to establish an IPC channel, see [Creating/Terminating Native Child Processes (C/C++)](../application-models/capi-nativechildprocess-development-guideline.md). This document describes how to use the IPC C APIs.
 
 ## Available APIs
 
