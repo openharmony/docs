@@ -6,7 +6,7 @@
 <!--Designer: @lilong32; @CCCZKing-->
 <!--Tester: @zhangjiaji111-->
 <!--Adviser: @zhang_yixin13-->
-<!-- md-trans-meta sourceCommit=1ea30971dd72430fd05350c54203dfeca06c3f03 translatedAt=2026-08-17T08:48:26.851Z pushedAt=2026-08-18T02:12:39.160Z -->
+<!-- md-trans-meta sourceCommit=1ea30971dd72430fd05350c54203dfeca06c3f03 translatedAt=2026-08-17T08:48:26.851Z pushedAt=2026-08-18T03:20:16.514Z -->
 
 This module provides the SparkLink Service Access Protocol (SSAP) connection capability, including creating and connecting to a client, calling server methods, reading and writing descriptors, and subscribing to event notifications.
 
@@ -28,7 +28,7 @@ Represents a SSAP client class. It provides APIs for connecting to and transmitt
 
 Before using the methods of this class, use the [ssap.createClient](js-apis-nearlink-ssap.md#ssapcreateclient) method to construct an instance of this class.
 
-An app only needs to create only one [Client](#client) instance for a remote device. Repeated creation will increase unnecessary resource overhead.
+An app only needs to create one [Client](#client) instance for a remote device. Repeated creation will increase unnecessary resource overhead.
 
 **Since**: 26.0.0
 
