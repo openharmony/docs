@@ -210,7 +210,7 @@ hdc shell "bm dump -n com.example.myapplication | grep appProvisionType"
 | RES_ARK_GLOBAL_HANDLE | ark全局句柄分配栈。 | 23 |
 | RES_VMA_ARKWEB | ArkWeb PA分配器内存跟踪。 | 23 |
 | RES_ARK_LOCAL_HANDLE | ark本地句柄分配栈。 | 23 |
-| RES_COMPOSITE_HEAP | 三合一维测日志，具体包含调用栈trace、堆快照rawheap、map映射文件。 | 26.1.0 |
+| RES_COMPOSITE_HEAP | 三合一维测日志，具体包含调用栈trace、堆快照rawheap、map映射文件。 | 26.0.0 |
 
 ### async_type参数介绍
 
@@ -1175,7 +1175,7 @@ CONFIG
 
 ### 抓取指定进程三合一维测日志
 
-从API版本26.1.0开始支持抓取指定进程三合一维测日志，具体包含调用栈trace、堆快照rawheap、map映射文件，可配合[RES_ARK_GLOBAL_HANDLE](#抓取指定进程globalhandle对象的调用栈)和[RES_ARK_LOCAL_HANDLE](#抓取指定进程localhandle对象调用栈)使用。
+从API版本26.0.0开始支持抓取指定进程三合一维测日志，具体包含调用栈trace、堆快照rawheap、map映射文件，可配合[RES_ARK_GLOBAL_HANDLE](#抓取指定进程globalhandle对象的调用栈)和[RES_ARK_LOCAL_HANDLE](#抓取指定进程localhandle对象调用栈)使用。
 
 > **说明：**
 >
