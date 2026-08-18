@@ -6,7 +6,7 @@
 <!--Designer: @ccllee1-->
 <!--Tester: @liangchengguang-->
 <!--Adviser: @HelloCrease-->
-<!-- md-trans-meta sourceCommit=249c9154cca3bfd8d247bc281ba57ee999bfbe43 translatedAt=2026-08-18T01:30:06.969Z pushedAt=2026-08-18T03:03:38.787Z -->
+<!-- md-trans-meta sourceCommit=249c9154cca3bfd8d247bc281ba57ee999bfbe43 translatedAt=2026-08-18T01:30:06.969Z pushedAt=2026-08-18T11:06:22.495Z -->
 
 [AgentCard](../reference/apis-ability-kit/js-apis-inner-application-AgentCard.md) serves as the "business card" of an Agent and is mainly used to describe the Agent's capabilities. The detailed configuration of an AgentCard is carried by the agent_config.json configuration file.
 
@@ -82,7 +82,7 @@ This tag describes the internal structure of the appInfo object.
 
 | Name | Description | Type | Whether It Can Be Omitted |
 | -------- | -------- | -------- | -------- |
-| deviceTypes | List of device types supported by the Agent. For the value range, see [deviceTypes](../quick-start/module-configuration-file.md#devicetypes-tag). The device type list configured for the Agent must be a subset of the device type list of the Module to which it belongs. Device types outside the Module are ignored by the system. | string array | Omittable. Defaults to the deviceTypes of the app. |
+| deviceTypes | List of device types supported by the Agent. For the value range, see [deviceTypes](../quick-start/module-configuration-file.md#devicetypes). The device type list configured for the Agent must be a subset of the device type list of the Module to which it belongs. Device types outside the Module are ignored by the system. | string array | Omittable. Defaults to the deviceTypes of the app. |
 | minAppVersion | Minimum app version required for running the Agent, in the semantic versioning format (for example, "1.0.0"). It specifies the minimum app version required to run the Agent. Apps with a version lower than this value cannot load and run the Agent correctly. The maximum length is 32 bytes. | string | Omittable. Defaults to empty. |
 
 ## Example of the agent_config.json Configuration File

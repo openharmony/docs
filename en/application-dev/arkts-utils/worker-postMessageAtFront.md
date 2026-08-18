@@ -111,3 +111,4 @@ The following example simulates a busy host thread to demonstrate how the Worker
      workerPort.postMessageAtFront?.('atFront high message', Priority.HIGH);
    }
    ```
+   <!--no_check-->

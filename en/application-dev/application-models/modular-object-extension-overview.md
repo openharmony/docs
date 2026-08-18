@@ -45,3 +45,4 @@ The following table lists the mapping between the abbreviations and full API nam
 | OnConnectCallback | [OH_AbilityRuntime_ConnectOptions_OnConnectCallback](../reference/apis-ability-kit/capi-connect-options-h.md#oh_abilityruntime_connectoptions_onconnectcallback) |
 | Proxy | [OHIPCRemoteProxy](../reference/apis-ipc-kit/capi-ohipcparcel-ohipcremoteproxy.md) |
 | Stub | [OHIPCRemoteStub](../reference/apis-ipc-kit/capi-ohipcparcel-ohipcremotestub.md) |
+<!--no_check-->

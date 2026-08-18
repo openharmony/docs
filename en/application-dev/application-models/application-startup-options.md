@@ -6,7 +6,7 @@
 <!--Designer: @ccllee1-->
 <!--Tester: @liangchengguang-->
 <!--Adviser: @HelloCrease-->
-<!-- md-trans-meta sourceCommit=19050225e664e6cdf992c6f93572590dc5afb573 translatedAt=2026-08-18T01:33:07.699Z pushedAt=2026-08-18T07:28:22.968Z -->
+<!-- md-trans-meta sourceCommit=19050225e664e6cdf992c6f93572590dc5afb573 translatedAt=2026-08-18T01:33:07.699Z pushedAt=2026-08-18T11:10:23.662Z -->
 
 In app development, starting an app (usually starting a UIAbility component) is a common task for developers. For example, you may need to jump from a shopping app to a payment app to make a payment, start a video app from a chat app to play a video, or specify a particular window mode when jumping between apps.
 
@@ -761,7 +761,7 @@ In some scenarios, developers want to start a UIAbility without displaying the s
 
 > **NOTE**
 >
-> For details about the introduction and specifications of the startup page, see [StartWindow](../quick-start/module-configuration-file.md#startwindow-tag).
+> For details about the introduction and specifications of the startup page, see [StartWindow](../quick-start/module-configuration-file.md#startwindow).
 
 <!-- @[startOptions_hidesplash](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/Ability/StartOptions/HideSplashScreen/src/main/ets/hidesplashscreenability/HideSplashScreenAbility.ets) -->
 
@@ -887,3 +887,4 @@ export default class SetBackgroundColorAbility extends UIAbility {
   // ...
 }
 ```
+<!--no_check-->

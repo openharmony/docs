@@ -6,7 +6,7 @@
 <!--Designer: @yzkp-->
 <!--Tester: @liangchengguang-->
 <!--Adviser: @HelloCrease-->
-<!-- md-trans-meta sourceCommit=6b23d240ae1c164f2ceb5bb9d0bf454aa0b80361 translatedAt=2026-08-18T01:31:59.882Z pushedAt=2026-08-18T09:21:46.310Z -->
+<!-- md-trans-meta sourceCommit=6b23d240ae1c164f2ceb5bb9d0bf454aa0b80361 translatedAt=2026-08-18T01:31:59.882Z pushedAt=2026-08-18T11:25:20.812Z -->
 
 Starting from API version 26.0.0, [Taihe](ability-terminology.md#taihe) can automatically generate the Proxy/Stub code and type library files required by ModularObjectExtensionAbility (for the related C API definitions, see [modular_object_extension_ability.h](../reference/apis-ability-kit/capi-modular-object-extension-ability-h.md)), shielding the underlying details of IPC communication (such as parameter serialization/deserialization and message code dispatching). This allows developers to focus on interface design and business logic, greatly simplifying the development process of ModularObjectExtensionAbility.
 
@@ -417,4 +417,5 @@ interface ITestCallbackService {
 
    The generated Proxy and Stub code can be directly used for IPC communication. On the client side, create a CalculatorProxy instance and pass in an OHIPCRemoteProxy object to call remote methods. On the server side, inherit CalculatorStub and implement the business logic interface.
 
-   For the detailed development process, see [Using ModularObjectExtensionAbility to Implement Modular Objects (C/C++)](./modular-object-extension-development.md).
+   For the detailed development process, see [Using ModularObjectExtensionAbility to Implement Modular Objects (C/C++)].
+   <!--no_check-->

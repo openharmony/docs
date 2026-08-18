@@ -6,7 +6,7 @@
 <!--Designer: @li-weifeng2024-->
 <!--Tester: @liangchengguang-->
 <!--Adviser: @HelloCrease-->
-<!-- md-trans-meta sourceCommit=29b612003cb21cb86e324a970110ab8056e0ba6c translatedAt=2026-08-18T01:30:20.981Z pushedAt=2026-08-18T08:08:12.682Z -->
+<!-- md-trans-meta sourceCommit=29b612003cb21cb86e324a970110ab8056e0ba6c translatedAt=2026-08-18T01:30:20.981Z pushedAt=2026-08-18T11:20:42.775Z -->
 
 As system agents gradually become the new entry point for users to interact with the operating system, the way users interact is shifting from "opening an app" to "directly expressing their needs." By exposing capabilities and integrating into the system agent ecosystem, apps provide users with a more natural and convenient service experience, while expanding their reach scenarios and usage frequency.
 
@@ -28,6 +28,7 @@ ArkAF provides three core capability frameworks, offering developers a standardi
 
 **Figure 1** ArkAF architecture
 
+![ArkAF architecture](figures/arkaf-architecture.png)
 
 The workflow consists of four stages:
 
@@ -47,7 +48,7 @@ The workflow consists of four stages:
 
 - Skill framework
 
-  Provides standardized Skill access and management capabilities. By publishing Skills, app developers can have their Skills recognized and invoked by the system agent. For details, see [Developing App Skills Based on ArkTS Scripts](arkts-skill-development-guide.md).
+  Provides standardized Skill access and management capabilities. By publishing Skills, app developers can have their Skills recognized and invoked by the system agent. For details, see [Developing App Skills Based on ArkTS Scripts].
 
 - On-device A2A framework
 
