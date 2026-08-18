@@ -1322,7 +1322,7 @@
 
     - [StepperItem](arkui-ts/ts-basic-components-stepperitem.md)
 
-- JS Components<!--arkui-js-comp-->
+- JavaScript Components<!--arkui-js-comp-->
 
   - [JavaScript-compatible Web-like Development Paradigm (ArkUI.Full)](arkui-js/Readme-EN.md)<!--arkui-js-full-comp-->
 
