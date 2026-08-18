@@ -326,6 +326,7 @@ Invalid panel type or panel flag. Valid values are defined in PanelType and Pane
 
 建议开发者进一步阅读接口使用说明，按要求调整当前的输入法面板类型或者面板状态。
 
+<!--Del-->
 ## 12800018 输入法未找到
 
 **错误信息**
@@ -344,7 +345,6 @@ The input method is not found.
 
 开发者可以通过接口[getAllInputMethods](js-apis-inputmethod.md#getallinputmethods11)查询所有已经安装的输入法。
 
-<!--Del-->
 ## 12800019 系统配置的默认输入法不支持此操作
 
 **错误信息**
@@ -434,6 +434,7 @@ displayId无效或不存在。
 
 开发者可以通过接口[getDisplayId](js-apis-inputmethodengine.md#getdisplayid15)获取当前窗口的所在id。
 
+<!--Del-->
 ## 12800023 指定的用户不存在
 
 **错误信息**
@@ -487,7 +488,7 @@ Cross-user operation denied. Only user 0 applications are authorized for this op
 **处理步骤**
 
 开发者确保只有用户0的应用才调用此类跨用户操作接口。
-<!--Del-->
+
 ## 12800026 输入法系统面板错误
 
 **错误信息**

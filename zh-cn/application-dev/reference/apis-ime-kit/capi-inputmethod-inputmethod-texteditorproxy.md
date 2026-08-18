@@ -16,7 +16,7 @@ typedef struct InputMethod_TextEditorProxy InputMethod_TextEditorProxy
 
 **起始版本：** 12
 
-**相关模块：** [InputMethod](capi-inputmethod.md)（输入法）
+**相关模块：** [InputMethod](capi-inputmethod.md)
 
 **所在头文件：** [inputmethod_text_editor_proxy_capi.h](capi-inputmethod-text-editor-proxy-capi-h.md)
 
