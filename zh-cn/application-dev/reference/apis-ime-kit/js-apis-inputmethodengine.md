@@ -2823,6 +2823,8 @@ setImmersiveEffect(effect: ImmersiveEffect): void
 
 **系统能力：** SystemCapability.MiscServices.InputMethodFramework
 
+**设备行为差异**：该接口仅在phone和tablet设备中可正常调用，在其他设备中返回错误码801。
+
 **参数：**
 
 | 参数名   | 类型                   | 必填 | 说明     |
