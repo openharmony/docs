@@ -139,7 +139,7 @@ onError(callback:&nbsp;PluginErrorCallback)
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 参数     | 类型               | 说明                        |
+| 参数名     | 类型               | 说明                        |
 | -------- | ------------------ | --------------------------- |
 | info     | [PluginErrorData](#pluginerrordata18类型说明)  | 发生错误时提供的数据。 |
 
