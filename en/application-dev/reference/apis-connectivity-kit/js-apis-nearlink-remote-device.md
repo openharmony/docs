@@ -1,4 +1,4 @@
-# @ohos.nearlink.remoteDevice (Capability to Connect to a Remote Device)
+# @ohos.nearlink.remoteDevice (NearLink Remote Device Connection Capability)
 
 <!--Kit: Connectivity Kit-->
 <!--Subsystem: Communication-->
@@ -6,9 +6,9 @@
 <!--Designer: @lilong32; @CCCZKing-->
 <!--Tester: @zhangjiaji111-->
 <!--Adviser: @zhang_yixin13-->
-<!-- md-trans-meta sourceCommit=41ecf77f71c02d2e6f9cd090506d7778236a93de translatedAt=2026-08-12T11:31:43.373Z pushedAt=2026-08-14T11:11:55.893Z -->
+<!-- md-trans-meta sourceCommit=aa9545020692baaf11004432a3eb3c2a031071bf translatedAt=2026-08-17T08:50:22.644Z pushedAt=2026-08-18T12:31:03.176Z -->
 
-This module provides functions such as querying remote device information and initiating pairing.
+This module provides the capability of managing remote NearLink devices, including creating remote device instances, initiating pairing, querying remote device information, and subscribing to device status change events.
 
 **System capability:** SystemCapability.Communication.NearLink.Base
 
@@ -110,7 +110,7 @@ Creates a **RemoteDevice** instance.
 
 **Error codes**
 
-For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [NearLink Error Codes](errorcode-nearlink-service.md).
+For details about the error codes, see [General Error Codes](../errorcode-universal.md) and [NearLink Error Codes](errorcode-nearlink-service.md).
 
 | ID | Error Message |
 | -------- | -------- |
@@ -137,7 +137,7 @@ try {
 
 onPairingStateChange(callback: Callback&lt;PairingStateParam&gt;): void
 
-Subscribes to the pairing request event. This API uses an asynchronous callback to return the result.
+Subscribes to pairing status change events. This API uses an asynchronous callback to return the result.
 
 The app must have the **ohos.permission.ACCESS_NEARLINK** permission to receive this event.
 
@@ -155,7 +155,7 @@ The app must have the **ohos.permission.ACCESS_NEARLINK** permission to receive 
 
 **Error codes**
 
-For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [NearLink Error Codes](errorcode-nearlink-service.md).
+For details about the error codes, see [General Error Codes](../errorcode-universal.md) and [NearLink Error Codes](errorcode-nearlink-service.md).
 
 | ID | Error Message |
 | -------- | -------- |
@@ -165,14 +165,14 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example** 
 
 ```typescript
-import { manager } from '@kit.ConnectivityKit';
+import { remoteDevice } from '@kit.ConnectivityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-let onPairingStateEvent:(data: manager.PairingStateParam) => void = (data: manager.PairingStateParam) => {
+let onPairingStateEvent:(data: remoteDevice.PairingStateParam) => void = (data: remoteDevice.PairingStateParam) => {
   console.info('onPairingStateChange addr: ' + data.address + 'state:' + data.state);
 };
 try {
-  manager.onPairingStateChange(onPairingStateEvent);
+  remoteDevice.onPairingStateChange(onPairingStateEvent);
 } catch (err) {
   console.error('errCode: ' + (err as BusinessError).code + ', errMessage: ' + (err as BusinessError).message);
 }
@@ -182,7 +182,7 @@ try {
 
 offPairingStateChange(callback?: Callback&lt;PairingStateParam&gt;): void
 
-Unsubscribes from the pairing request event. This API uses an asynchronous callback to return the result.
+Unsubscribes from pairing status change events. This API uses an asynchronous callback to return the result.
 
 **Since**: 26.0.0
 
@@ -194,11 +194,11 @@ Unsubscribes from the pairing request event. This API uses an asynchronous callb
 
 | Name | Type | Mandatory | Description |
 | -------- | -------- | -------- | -------- |
-| callback | Callback&lt;[PairingStateParam](#pairingstateparam)&gt; | No | Callback used to return the result of the pairing status change event.<br/>If this parameter is specified, the current callback is unregistered. If this parameter is not specified, all callbacks corresponding to the type are unregistered. |
+| callback | Callback&lt;[PairingStateParam](#pairingstateparam)&gt; | No | Callback used to return the result of the pairing status change event.<br>If this parameter is specified, the current callback is unregistered. If this parameter is not specified, all callbacks corresponding to the event are unregistered. |
 
 **Error codes**
 
-For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [NearLink Error Codes](errorcode-nearlink-service.md).
+For details about the error codes, see [General Error Codes](../errorcode-universal.md) and [NearLink Error Codes](errorcode-nearlink-service.md).
 
 | ID | Error Message |
 | -------- | -------- |
@@ -208,11 +208,11 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example** 
 
 ```typescript
-import { manager } from '@kit.ConnectivityKit';
+import { remoteDevice } from '@kit.ConnectivityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
-  manager.offPairingStateChange();
+  remoteDevice.offPairingStateChange();
 } catch (err) {
   console.error('errCode: ' + (err as BusinessError).code + ', errMessage: ' + (err as BusinessError).message);
 }
@@ -222,7 +222,7 @@ try {
 
 onConnectionStateChange(callback: Callback&lt;ConnectionStateParam&gt;): void
 
-Subscribes to the connection status change event. This API uses an asynchronous callback to return the result.
+Subscribes to the connection status change event. This API uses an asynchronous callback to return the result. Unlike [remoteDevice.onAcbStateChange](#remotedeviceonacbstatechange) which listens for the connection status change at the logical link level, this API listens for the connection status change at the device level.
 
 The app must have the **ohos.permission.ACCESS_NEARLINK** permission to receive this event.
 
@@ -240,7 +240,7 @@ The app must have the **ohos.permission.ACCESS_NEARLINK** permission to receive 
 
 **Error codes**
 
-For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [NearLink Error Codes](errorcode-nearlink-service.md).
+For details about the error codes, see [General Error Codes](../errorcode-universal.md) and [NearLink Error Codes](errorcode-nearlink-service.md).
 
 | ID | Error Message |
 | -------- | -------- |
@@ -250,14 +250,14 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example** 
 
 ```typescript
-import { manager } from '@kit.ConnectivityKit';
+import { remoteDevice } from '@kit.ConnectivityKit';
 import { BusinessError, Callback } from '@kit.BasicServicesKit';
 
-let callback: Callback<manager.ConnectionStateParam> = (data: manager.ConnectionStateParam) => {
+let callback: Callback<remoteDevice.ConnectionStateParam> = (data: remoteDevice.ConnectionStateParam) => {
   console.info('data:' + JSON.stringify(data));
 };
 try {
-  manager.onConnectionStateChange(callback);
+  remoteDevice.onConnectionStateChange(callback);
 } catch (err) {
   console.error('errCode: ' + (err as BusinessError).code + ', errMessage: ' + (err as BusinessError).message);
 }
@@ -279,11 +279,11 @@ Unsubscribes from the connection status change event. This API uses an asynchron
 
 | Name | Type | Mandatory | Description |
 | -------- | -------- | -------- | -------- |
-| callback | Callback&lt;[ConnectionStateParam](#connectionstateparam)&gt; | No | Callback used to return the result of the connection status change event.<br/>If this parameter is specified, the current callback is unregistered. If this parameter is not specified, all callbacks corresponding to the type are unregistered. |
+| callback | Callback&lt;[ConnectionStateParam](#connectionstateparam)&gt; | No | Callback used to return the result of the connection status change event.<br>If this parameter is specified, the current callback is unregistered. If this parameter is not specified, all callbacks corresponding to the event are unregistered. |
 
 **Error codes**
 
-For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [NearLink Error Codes](errorcode-nearlink-service.md).
+For details about the error codes, see [General Error Codes](../errorcode-universal.md) and [NearLink Error Codes](errorcode-nearlink-service.md).
 
 | ID | Error Message |
 | -------- | -------- |
@@ -293,11 +293,11 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example** 
 
 ```typescript
-import { manager } from '@kit.ConnectivityKit';
+import { remoteDevice } from '@kit.ConnectivityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
-  manager.offConnectionStateChange();
+  remoteDevice.offConnectionStateChange();
 } catch (err) {
   console.error('errCode: ' + (err as BusinessError).code + ', errMessage: ' + (err as BusinessError).message);
 }
@@ -307,7 +307,7 @@ try {
 
 onAcbStateChange(callback: Callback&lt;AcbStateParam&gt;): void
 
-Subscribes to the logical link connection status change event. This API uses an asynchronous callback to return the result.
+Subscribes to the logical link connection status change event. This API uses an asynchronous callback to return the result. This API is applicable when corresponding processing needs to be triggered when a logical link is established or disconnected, for example, checking whether the link is ready before data transfer or clearing resources after disconnection. Unlike [remoteDevice.onConnectionStateChange](#remotedeviceonconnectionstatechange) which listens for the connection status change at the device level, this API listens for the connection status change at the logical link level.
 
 The app must have the **ohos.permission.ACCESS_NEARLINK** permission to receive this event.
 
@@ -325,7 +325,7 @@ The app must have the **ohos.permission.ACCESS_NEARLINK** permission to receive 
 
 **Error codes**
 
-For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [NearLink Error Codes](errorcode-nearlink-service.md).
+For details about the error codes, see [General Error Codes](../errorcode-universal.md) and [NearLink Error Codes](errorcode-nearlink-service.md).
 
 | ID | Error Message |
 | -------- | -------- |
@@ -335,14 +335,14 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example** 
 
 ```typescript
-import { manager } from '@kit.ConnectivityKit';
+import { remoteDevice } from '@kit.ConnectivityKit';
 import { BusinessError, Callback } from '@kit.BasicServicesKit';
 
-let callback: Callback<manager.AcbStateParam> = (data: manager.AcbStateParam) => {
+let callback: Callback<remoteDevice.AcbStateParam> = (data: remoteDevice.AcbStateParam) => {
   console.info('data:' + JSON.stringify(data));
 };
 try {
-  manager.onAcbStateChange(callback);
+  remoteDevice.onAcbStateChange(callback);
 } catch (err) {
   console.error('errCode: ' + (err as BusinessError).code + ', errMessage: ' + (err as BusinessError).message);
 }
@@ -364,11 +364,11 @@ Unsubscribes from the logical link connection status change event. This API uses
 
 | Name | Type | Mandatory | Description |
 | -------- | -------- | -------- | -------- |
-| callback | Callback&lt;[AcbStateParam](#acbstateparam)&gt; | No | Callback used to return the result of the logical link connection status change event.<br/>If this parameter is specified, the current callback is unregistered. If this parameter is not specified, all callbacks corresponding to the type are unregistered. |
+| callback | Callback&lt;[AcbStateParam](#acbstateparam)&gt; | No | Callback used to return the result of the logical link connection status change event.<br>If this parameter is specified, the current callback is unregistered. If this parameter is not specified, all callbacks corresponding to the event are unregistered. |
 
 **Error codes**
 
-For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [NearLink Error Codes](errorcode-nearlink-service.md).
+For details about the error codes, see [General Error Codes](../errorcode-universal.md) and [NearLink Error Codes](errorcode-nearlink-service.md).
 
 | ID | Error Message |
 | -------- | -------- |
@@ -378,11 +378,11 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example** 
 
 ```typescript
-import { manager } from '@kit.ConnectivityKit';
+import { remoteDevice } from '@kit.ConnectivityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
-  manager.offAcbStateChange();
+  remoteDevice.offAcbStateChange();
 } catch (err) {
   console.error('errCode: ' + (err as BusinessError).code + ', errMessage: ' + (err as BusinessError).message);
 }
@@ -404,7 +404,7 @@ You need to create only one instance for a device.
 
 startPairing(): Promise&lt;void&gt;
 
-Initiates pairing with a remote device. This API uses a promise to return the result. After the pairing is initiated, different types of dialog boxes will be displayed based on the input and output capability flags of both the local and remote devices. The user will need to confirm the pairing.
+Initiates pairing with a remote device. This API uses a promise to return the result. After the pairing is initiated, different types of dialog boxes will be displayed based on the input and output capability IDs of the local and remote devices, for example, whether the devices have the display and keyboard input capabilities. The user will need to confirm the pairing.
 
 **Since**: 26.0.0
 
@@ -422,7 +422,7 @@ Initiates pairing with a remote device. This API uses a promise to return the re
 
 **Error codes**
 
-For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [NearLink Error Codes](errorcode-nearlink-service.md).
+For details about the error codes, see [General Error Codes](../errorcode-universal.md) and [NearLink Error Codes](errorcode-nearlink-service.md).
 
 | ID | Error Message |
 | -------- | -------- |
@@ -440,9 +440,9 @@ let addr: string = '00:11:22:33:AA:FF'; // Remote device address obtained throug
 let device: remoteDevice.RemoteDevice;
 try {
   device = remoteDevice.createRemoteDevice(addr);
-  device.startPairing().then(()=>{
+  device.startPairing().then(() => {
     console.info('start pairing success');
-  }).catch ((err: BusinessError) => {
+  }).catch((err: BusinessError) => {
     console.error('errCode: ' + err.code + ', errMessage: ' + err.message);
   });
 } catch (err) {
@@ -472,7 +472,7 @@ Obtains the pairing status with a remote device.
 
 **Error codes**
 
-For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [NearLink Error Codes](errorcode-nearlink-service.md).
+For details about the error codes, see [General Error Codes](../errorcode-universal.md) and [NearLink Error Codes](errorcode-nearlink-service.md).
 
 | ID | Error Message |
 | -------- | -------- |
@@ -519,7 +519,7 @@ Obtains the name of a remote device.
 
 **Error codes**
 
-For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [NearLink Error Codes](errorcode-nearlink-service.md).
+For details about the error codes, see [General Error Codes](../errorcode-universal.md) and [NearLink Error Codes](errorcode-nearlink-service.md).
 
 | ID | Error Message |
 | -------- | -------- |
@@ -566,7 +566,7 @@ Obtains the type of a remote device.
 
 **Error codes**
 
-For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [NearLink Error Codes](errorcode-nearlink-service.md).
+For details about the error codes, see [General Error Codes](../errorcode-universal.md) and [NearLink Error Codes](errorcode-nearlink-service.md).
 
 | ID | Error Message |
 | -------- | -------- |
@@ -595,7 +595,7 @@ try {
 
 getConnectionState(): ConnectionState
 
-Obtains the connection status between the local and remote devices.
+Obtains the connection status between the local and remote devices. Unlike [getAcbState](#getacbstate) which obtains the connection status at the logical link (ACB) level, this API obtains the connection status at the device level.
 
 **Since**: 26.0.0
 
@@ -613,7 +613,7 @@ Obtains the connection status between the local and remote devices.
 
 **Error codes**
 
-For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [NearLink Error Codes](errorcode-nearlink-service.md).
+For details about the error codes, see [General Error Codes](../errorcode-universal.md) and [NearLink Error Codes](errorcode-nearlink-service.md).
 
 | ID | Error Message |
 | -------- | -------- |
@@ -642,7 +642,7 @@ try {
 
 getAcbState(): AcbState
 
-Obtains the logical link connection status with a remote device.
+Obtains the logical link connection status with a remote device. This method is applicable when you need to check whether a logical link is ready, for example, checking the logical link status before data transfer or message communication. Unlike [getConnectionState](#getconnectionstate) which obtains the connection status at the device level, this API obtains the connection status at the logical link (ACB) level.
 
 **Since**: 26.0.0
 
@@ -660,7 +660,7 @@ Obtains the logical link connection status with a remote device.
 
 **Error codes**
 
-For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [NearLink Error Codes](errorcode-nearlink-service.md).
+For details about the error codes, see [General Error Codes](../errorcode-universal.md) and [NearLink Error Codes](errorcode-nearlink-service.md).
 
 | ID | Error Message |
 | -------- | -------- |
@@ -707,7 +707,7 @@ Obtains the information of a remote device.
 
 **Error codes**
 
-For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [NearLink Error Codes](errorcode-nearlink-service.md).
+For details about the error codes, see [General Error Codes](../errorcode-universal.md) and [NearLink Error Codes](errorcode-nearlink-service.md).
 
 | ID | Error Message |
 | -------- | -------- |
@@ -746,8 +746,8 @@ Represents the remote device information.
 
 | Name | Type | Read-Only | Optional | Description |
 | -------- | -------- | -------- | -------- | -------- |
-| manufacturerData | string | No | No | Manufacturer information. |
-| modelData | string | No | No | Device model. |
+| manufacturerData | string | No | No | Manufacturer information. The value is in binary format and can be parsed using methods such as **buffer.from(manufacturerData, 'binary')**. |
+| modelData | string | No | No | Device model. The value is in binary format and can be parsed using methods such as **buffer.from(modelData, 'binary')**. |
 
 ### ConnectionStateParam
 
@@ -765,7 +765,7 @@ Represents the result of the connection status change event.
 | preState | [ConnectionState](js-apis-nearlink-constant.md#connectionstate) | No | No | Connection status before this report. |
 | state | [ConnectionState](js-apis-nearlink-constant.md#connectionstate) | No | No | Current connection status. |
 | connectionReason | [ConnectionReason](#connectionreason) | No | No | Reason value. |
-| reasonMsg | string | No | Yes | Reason details. This field is used only for log information and is not used for logic processing. |
+| reasonMsg | string | No | Yes | Reason details. This field is used only for log information and should not be used for logical processing. If no reason details are available, this field is an empty string by default. |
 
 ### ConnectionReason
 
@@ -804,7 +804,7 @@ Represents the result of the pairing status change event.
 | preState | [PairingState](js-apis-nearlink-constant.md#pairingstate) | No | No | Pairing status before this report. |
 | state | [PairingState](js-apis-nearlink-constant.md#pairingstate) | No | No | Current pairing status. |
 | reason | [PairingReason](#pairingreason) | No | No | Reason value. |
-| reasonMsg | string | No | Yes | Reason details. This field is used only for log information and is not used for logic processing. |
+| reasonMsg | string | No | Yes | Reason details. This field is used only for log information and should not be used for logical processing. If no reason details are available, this field is an empty string by default. |
 
 ### PairingRequestParam
 
@@ -819,7 +819,7 @@ Represents the result of the pairing request event.
 | Name | Type | Read-Only | Optional | Description |
 | -------- | -------- | -------- | -------- | -------- |
 | address | string | No | No | Device address, indicating that the pairing request from the device is received. The address format is **11:22:33:AA:BB:FF**. |
-| passkey | string | No | No | Pairing code for interaction, which is displayed to the user for confirmation. The value is a string of six digits. |
+| passkey | string | No | No | Pairing code for interaction, which is displayed to the user for confirmation. The value is a string of six digits. This parameter is valid only when **pairingType** is set to **PAIRING_TYPE_PASSCODE** or **PAIRING_TYPE_NUMBER_COMPARE**. |
 | pairingType | [PairingType](#pairingtype) | No | No | Pairing type. |
 
 ### PairingReason
