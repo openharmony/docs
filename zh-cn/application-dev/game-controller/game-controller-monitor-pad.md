@@ -4,7 +4,7 @@
 <!--Owner: @weixin_42784160-->
 <!--Designer: @wudejun2025-->
 <!--Tester: @fei_0805-->
-<!--Adviser: @ywx1056672-->
+<!--Adviser: @yuwenliang0514-->
 
 > **说明：**<br/>
 > 须先完成[监听设备上下线](game-controller-monitor-device.md)功能的开发后，才能进行游戏手柄轴事件和按键事件的监听注册。
