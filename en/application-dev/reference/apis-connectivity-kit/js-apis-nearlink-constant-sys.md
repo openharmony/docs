@@ -6,9 +6,9 @@
 <!--Designer: @lilong32; @CCCZKing-->
 <!--Tester: @zhangjiaji111-->
 <!--Adviser: @zhang_yixin13-->
-<!-- md-trans-meta sourceCommit=777cd887ad4c87d5f44c1f9d04d5ef57d4f4c52f translatedAt=2026-08-12T11:27:44.149Z pushedAt=2026-08-14T11:26:14.031Z -->
+<!-- md-trans-meta sourceCommit=02fce05de566ce8f56f53550eea84cf8ca0dfad8 translatedAt=2026-08-17T08:47:43.806Z pushedAt=2026-08-17T11:58:14.278Z -->
 
-This module provides definitions of common constants.
+This module provides definitions of common constants for NearLink communication, including the device pairing status, device connection status, and device type.
 
 **Since**: 26.0.0
 
@@ -24,7 +24,7 @@ import { nearlinkConstant } from '@kit.ConnectivityKit';
 
 ## ConnectionInterval
 
-Enumerates the connection intervals.
+Enumerates the connection intervals. A smaller interval indicates a lower latency, higher throughput, but higher power consumption. A larger interval indicates lower power consumption but higher latency. The high-speed mode is suitable for scenarios that require high throughput and low latency, while the low-speed mode is suitable for scenarios that are sensitive to power consumption.
 
 **Since**: 26.0.0
 

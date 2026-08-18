@@ -53,6 +53,7 @@
     - [fileShare](capi-fileshare.md)
     - [fileUri](capi-fileuri.md)
     - [CloudDisk](capi-clouddisk.md)
+    - [Archive](capi-archive.md)
   - Header Files<!--core-file-headerfile-->
     - [oh_environment.h](capi-oh-environment-h.md)
     - [error_code.h](capi-error-code-h.md)
@@ -61,6 +62,8 @@
     - [oh_file_uri.h](capi-oh-file-uri-h.md)
     - [oh_cloud_disk_manager.h](capi-oh-cloud-disk-manager-h.md)
     - [cloud_disk_error_code.h](capi-cloud-disk-error-code-h.md)
+    - [oh_archive.h](capi-oh-archive-h.md)
+    - [oh_archive_errcode.h](capi-oh-archive-errcode-h.md)
   - Structs<!--core-file-struct-->
     - [FileShare_PolicyErrorResult](capi-fileshare-fileshare-policyerrorresult.md)
     - [FileShare_PolicyInfo](capi-fileshare-fileshare-policyinfo.md)
@@ -72,6 +75,12 @@
     - [CloudDisk_PathInfo](capi-clouddisk-clouddisk-pathinfo.md)
     - [CloudDisk_ResultList](capi-clouddisk-clouddisk-resultlist.md)
     - [CloudDisk_SyncFolder](capi-clouddisk-clouddisk-syncfolder.md)
+    - [OH_Archive_StreamInfo](capi-archive-oh-archive-streaminfo.md)
+    - [OH_Archive_Stream_Config](capi-archive-oh-archive-stream-config.md)
+    - [ArchiveWriteCtx](capi-archive-archivewritectx.md)
+    - [ArchiveReadCtx](capi-archive-archivereadctx.md)
+    - [ArchiveStreamWriteCtx](capi-archive-archivestreamwritectx.md)
+    - [ArchiveStreamReadCtx](capi-archive-archivestreamreadctx.md)
 - Error Codes<!--core-file-arkts-errcode-->
   - [File Management Error Codes](errorcode-filemanagement.md)
   <!--Del-->

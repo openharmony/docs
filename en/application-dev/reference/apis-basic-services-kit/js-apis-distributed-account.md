@@ -4,10 +4,11 @@
 <!--Subsystem: Account-->
 <!--Owner: @steven-q-->
 <!--Designer: @JiDong-CS1-->
-<!--Tester: @zhaimengchao-->
+<!--Tester: @pan9f-->
 <!--Adviser: @zengyawen-->
+<!-- md-trans-meta sourceCommit=3de182f5b788a3afd1b8fcd773572aaabf69c317 translatedAt=2026-08-17T09:28:42.375Z pushedAt=2026-08-18T03:02:26.973Z -->
 
-The **distributedAccount** module provides APIs for managing distributed accounts, including querying and updating account login states.
+This module provides APIs for managing distributed accounts, including querying and updating account login states. This module is applicable to multi-device collaboration, improving the consistency and user experience of cross-device account management. Typical application scenarios include multi-device collaboration, distributed data synchronization, and cross-device capability calling.
 
 > **NOTE**
 >
@@ -31,11 +32,12 @@ Obtains a **DistributedAccountAbility** instance.
 
   | Type| Description|
   | -------- | -------- |
-  | [DistributedAccountAbility](#distributedaccountability) | **DistributedAccountAbility** instance obtained. This instance provides APIs for querying and updating the login state of a distributed account.||
+  | [DistributedAccountAbility](#distributedaccountability) | **DistributedAccountAbility** instance obtained. This instance provides APIs for querying and updating the login state of a distributed account.|
 
 **Example**
 
   ```ts
+  // Obtain a DistributedAccountAbility instance.
   const accountAbility: distributedAccount.DistributedAccountAbility = distributedAccount.getDistributedAccountAbility();
   ```
 
@@ -57,7 +59,7 @@ Obtains the distributed account information. This API uses an asynchronous callb
 
   | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
-  | callback | AsyncCallback&lt;[DistributedInfo](#distributedinfo)&gt; | Yes| Callback used to return the result. If the operation is successful, **err** is **undefined** and **data** is the distributed account information obtained. Otherwise, **err** is an error object.|
+  | callback | AsyncCallback&lt;[DistributedInfo](#distributedinfo)&gt; | Yes | Callback used to return the result. If the distributed account information is obtained successfully, **err** is **undefined** and **data** is the distributed account information obtained. Otherwise, **err** is an error object. |
 
 **Error codes**
 
@@ -74,6 +76,7 @@ For details about the error codes, see [Account Management Error Codes](errorcod
   ```ts
   import { BusinessError } from '@kit.BasicServicesKit';
 
+  // Obtain a DistributedAccountAbility instance.
   const accountAbility: distributedAccount.DistributedAccountAbility = distributedAccount.getDistributedAccountAbility();
   try {
     accountAbility.getOsAccountDistributedInfo(
@@ -120,6 +123,7 @@ For details about the error codes, see [Account Management Error Codes](errorcod
   ```ts
   import { BusinessError } from '@kit.BasicServicesKit';
 
+  // Obtain a DistributedAccountAbility instance.
   const accountAbility: distributedAccount.DistributedAccountAbility = distributedAccount.getDistributedAccountAbility();
   try {
     accountAbility.getOsAccountDistributedInfo().then((data: distributedAccount.DistributedInfo) => {
@@ -140,7 +144,7 @@ queryOsAccountDistributedInfo(callback: AsyncCallback&lt;DistributedInfo&gt;): v
 Queries the distributed account information. This API uses an asynchronous callback to return the result.
 > **NOTE**
 >
-> This API is supported since API version 7 and deprecated since API version 9. Use [getOsAccountDistributedInfo](#getosaccountdistributedinfo9) instead.
+> This API is supported since API version 7 and deprecated since API version 9. You are advised to use [getOsAccountDistributedInfo](#getosaccountdistributedinfo9) instead.
 
 **System capability**: SystemCapability.Account.OsAccount
 
@@ -150,13 +154,14 @@ Queries the distributed account information. This API uses an asynchronous callb
 
   | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
-  | callback | AsyncCallback&lt;[DistributedInfo](#distributedinfo)&gt; | Yes| Callback used to return the result. If the operation is successful, **err** is **undefined** and **data** is the distributed account information obtained. Otherwise, **err** is an error object.|
+  | callback | AsyncCallback&lt;[DistributedInfo](#distributedinfo)&gt; | Yes | Callback used to return the result. If the distributed account information is obtained successfully, **err** is **undefined** and **data** is the distributed account information obtained. Otherwise, **err** is an error object. |
 
 **Example**
 
   ```ts
   import { BusinessError } from '@kit.BasicServicesKit';
 
+  // Obtain a DistributedAccountAbility instance.
   const accountAbility: distributedAccount.DistributedAccountAbility = distributedAccount.getDistributedAccountAbility();
   accountAbility.queryOsAccountDistributedInfo(
     (err: BusinessError, data: distributedAccount.DistributedInfo) => {
@@ -176,7 +181,7 @@ Queries the distributed account information. This API uses a promise to return t
 
 > **NOTE**
 >
-> This API is supported since API version 7 and deprecated since API version 9. Use [getOsAccountDistributedInfo](#getosaccountdistributedinfo9-1) instead.
+> This API is supported since API version 7 and deprecated since API version 9. You are advised to use [getOsAccountDistributedInfo](#getosaccountdistributedinfo9-1) instead.
 
 **System capability**: SystemCapability.Account.OsAccount
 
@@ -193,6 +198,7 @@ Queries the distributed account information. This API uses a promise to return t
   ```ts
   import { BusinessError } from '@kit.BasicServicesKit';
 
+  // Obtain a DistributedAccountAbility instance.
   const accountAbility: distributedAccount.DistributedAccountAbility = distributedAccount.getDistributedAccountAbility();
   accountAbility.queryOsAccountDistributedInfo().then((data: distributedAccount.DistributedInfo) => {
     console.info('distributed information: ' + JSON.stringify(data));
@@ -216,7 +222,7 @@ Sets the distributed account information. This API uses an asynchronous callback
   | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
   | accountInfo | [DistributedInfo](#distributedinfo) | Yes| Distributed account information to set.|
-  | callback | AsyncCallback&lt;void&gt; | Yes| Callback used to return the result. If the distributed account information is set successfully, **err** is **undefined**. Otherwise, **err** is an error object.|
+  | callback | AsyncCallback&lt;void&gt; | Yes | Callback used to return the result. If the distributed account information is updated successfully, **err** is **undefined**. Otherwise, **err** is an error object. |
 
 **Error codes**
 
@@ -229,13 +235,16 @@ For details about the error codes, see [Account Management Error Codes](errorcod
 | 12300001 | System service exception. |
 | 12300002 | Invalid accountInfo. |
 | 12300003 | Account not found. |
+| 12300406 | The distributed account information has already been bound to a sub-profile of the same OS account.<br>Applicable versions: 26.0.0+ |
 
 **Example**
 
   ```ts
   import { BusinessError } from '@kit.BasicServicesKit';
 
+  // Obtain a DistributedAccountAbility instance.
   const accountAbility: distributedAccount.DistributedAccountAbility = distributedAccount.getDistributedAccountAbility();
+  // This is an example. Replace it with the actual distributed account information obtained using getOsAccountDistributedInfo.
   let accountInfo: distributedAccount.DistributedInfo =
     { id: '12345', name: 'ZhangSan', event: 'Ohos.account.event.LOGIN' };
   try {
@@ -272,7 +281,7 @@ Sets the distributed account information. This API uses a promise to return the 
 
   | Type| Description|
   | -------- | -------- |
-  | Promise&lt;void&gt; | Promise that returns no value.|
+  | Promise&lt;void&gt; | Promise that returns no value. |
 
 **Error codes**
 
@@ -285,13 +294,16 @@ For details about the error codes, see [Account Management Error Codes](errorcod
 | 12300001 | System service exception. |
 | 12300002 | Invalid accountInfo. |
 | 12300003 | Account not found. |
+| 12300406 | The distributed account information has already been bound to a sub-profile of the same OS account.<br>Applicable versions: 26.0.0+ |
 
 **Example**
 
   ```ts
   import { BusinessError } from '@kit.BasicServicesKit';
 
+  // Obtain a DistributedAccountAbility instance.
   const accountAbility: distributedAccount.DistributedAccountAbility = distributedAccount.getDistributedAccountAbility();
+  // This is an example. Replace it with the actual distributed account information obtained using getOsAccountDistributedInfo.
   let accountInfo: distributedAccount.DistributedInfo =
     { id: '12345', name: 'ZhangSan', event: 'Ohos.account.event.LOGIN' };
   try {
@@ -314,7 +326,7 @@ Updates the distributed account information. This API uses an asynchronous callb
 
 > **NOTE**
 >
-> This API is supported since API version 7 and deprecated since API version 9. Use [setOsAccountDistributedInfo](#setosaccountdistributedinfo9) instead.
+> This API is supported since API version 7 and deprecated since API version 9. You are advised to use [setOsAccountDistributedInfo](#setosaccountdistributedinfo9) instead.
 
 **System capability**: SystemCapability.Account.OsAccount
 
@@ -325,14 +337,16 @@ Updates the distributed account information. This API uses an asynchronous callb
   | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
   | accountInfo | [DistributedInfo](#distributedinfo) | Yes| Distributed account information to update.|
-  | callback | AsyncCallback&lt;void&gt; | Yes| Callback used to return the result. If the distributed account information is updated successfully, **err** is **undefined**. Otherwise, **err** is an error object.|
+  | callback | AsyncCallback&lt;void&gt; | Yes | Callback used to return the result. If the distributed account information is updated successfully, **err** is **undefined**. Otherwise, **err** is an error object. |
 
 **Example**
 
   ```ts
   import { BusinessError } from '@kit.BasicServicesKit';
 
+  // Obtain a DistributedAccountAbility instance.
   const accountAbility: distributedAccount.DistributedAccountAbility = distributedAccount.getDistributedAccountAbility();
+  // This is an example. Replace it with the actual distributed account information obtained using getOsAccountDistributedInfo.
   let accountInfo: distributedAccount.DistributedInfo =
     { id: '12345', name: 'ZhangSan', event: 'Ohos.account.event.LOGIN' };
   accountAbility.updateOsAccountDistributedInfo(accountInfo, (err: BusinessError) => {
@@ -348,10 +362,10 @@ Updates the distributed account information. This API uses an asynchronous callb
 
 updateOsAccountDistributedInfo(accountInfo: DistributedInfo): Promise&lt;void&gt;
 
-Updates the distributed account information. This API uses a promise to return the result.
+Updates distributed account information. This API uses a promise to return the result.
 > **NOTE**
 >
-> This API is supported since API version 7 and deprecated since API version 9. Use [setOsAccountDistributedInfo](#setosaccountdistributedinfo9-1) instead.
+> This API is supported since API version 7 and deprecated since API version 9. You are advised to use [setOsAccountDistributedInfo](#setosaccountdistributedinfo9-1) instead.
 
 **System capability**: SystemCapability.Account.OsAccount
 
@@ -367,14 +381,16 @@ Updates the distributed account information. This API uses a promise to return t
 
   | Type| Description|
   | -------- | -------- |
-  | Promise&lt;void&gt; | Promise that returns no value.|
+  | Promise&lt;void&gt; | Promise that returns no value. |
 
 **Example**
 
   ```ts
   import { BusinessError } from '@kit.BasicServicesKit';
 
+  // Obtain a DistributedAccountAbility instance.
   const accountAbility: distributedAccount.DistributedAccountAbility = distributedAccount.getDistributedAccountAbility();
+  // This is an example. Replace it with the actual distributed account information obtained using getOsAccountDistributedInfo.
   let accountInfo: distributedAccount.DistributedInfo =
     { id: '12345', name: 'ZhangSan', event: 'Ohos.account.event.LOGIN' };
   accountAbility.updateOsAccountDistributedInfo(accountInfo).then(() => {
@@ -386,7 +402,7 @@ Updates the distributed account information. This API uses a promise to return t
 
 ## DistributedInfo
 
-Represents the distributed information about a system account.
+Represents the distributed account information about an OS account.
 
 **System capability**: SystemCapability.Account.OsAccount
 
@@ -395,10 +411,10 @@ Represents the distributed information about a system account.
 | name | string | No| No | Name of the distributed account. It must be a non-null string.|
 | id | string | No| No | UID of the distributed account. It must be a non-null string.|
 | event | string | No| No | Login state of the distributed account. The state can be login, logout, token invalid, or logoff, which correspond to the following strings respectively:<br>-&nbsp;Ohos.account.event.LOGIN<br>-&nbsp;Ohos.account.event.LOGOUT<br>-&nbsp;Ohos.account.event.TOKEN_INVALID<br>-&nbsp;Ohos.account.event.LOGOFF |
-| nickname<sup>9+</sup> | string | No| Yes | Nickname of the distributed account. By default, no value is passed in.|
-| avatar<sup>9+</sup> | string | No| Yes | Avatar of the distributed account. By default, no value is passed in.|
-| status<sup>10+</sup> | [DistributedAccountStatus](#distributedaccountstatus10) | Yes| Yes | Status of the distributed account. The value is of the enumerated type. The default status is unlogged.|
-| scalableData<sup>8+</sup> | object | No| Yes | Additional information about the distributed account, in the form of KV pairs. This parameter is left empty by default.|
+| nickname<sup>9+</sup> | string | No | Yes | Nickname of the distributed account. Set this parameter when the user nickname needs to be displayed. If this parameter is not set, it is left empty by default, which does not affect the account function. |
+| avatar<sup>9+</sup> | string | No | Yes | Avatar of the distributed account. Set this parameter when the user avatar needs to be displayed. If this parameter is not set, it is left empty by default, which does not affect the account function. |
+| status<sup>10+</sup> | [DistributedAccountStatus](#distributedaccountstatus10) | Yes | Yes | Status of the distributed account. The value is of the enumerated type. This parameter is used when the account login status needs to be queried or set. If this parameter is not set, the default value is **NOT_LOGGED_IN** (not logged in). |
+| scalableData<sup>8+</sup> | object | No | Yes | Scalable data about the distributed account. Set this parameter when customized service information needs to be passed in key-value (KV) pairs. If this parameter is not set, it is left empty by default, which does not affect the basic account function. |
 
 ## DistributedAccountStatus<sup>10+</sup>
 
