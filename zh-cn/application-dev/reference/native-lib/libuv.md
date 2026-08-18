@@ -489,7 +489,7 @@ libhilog_ndk.z.so
 
 ## libuv使用指导
 
-**重要：libuv NDK中所有依赖`uv_run`的接口在当前系统的应用主循环中无法及时生效，并且可能会导致卡顿掉帧的现象。因此不建议直接在JS主线程上使用libuv NDK接口，对于异步任务执行及与使用线程安全函数与主线程通信，开发者可以直接调用Node-API接口来实现相关功能。**
+**重要：libuv NDK中所有依赖`uv_run`的接口在当前系统的应用主循环中无法及时生效，并且可能会导致卡顿掉帧的现象。因此不建议直接在JS主线程上使用libuv NDK接口，对于异步任务执行及使用线程安全函数与主线程通信，开发者可以直接调用Node-API接口来实现相关功能。**
 
 ### libuv接口与Node-API接口对应关系
 
@@ -614,21 +614,21 @@ napi_status napi_release_threadsafe_function(napi_threadsafe_function function,
 
 |  接口类型    |  接口汇总    |
 | ---- | ---- |
-|   [loop概念及相关接口](#libuv中的事件循环)   |  uv_loop_init    |
-|   [loop概念及相关接口](#libuv中的事件循环)   |   uv_loop_close   |
-|   [loop概念及相关接口](#libuv中的事件循环)   |  uv_default_loop    |
-|   [loop概念及相关接口](#libuv中的事件循环)   |   uv_run   |
-|   [loop概念及相关接口](#libuv中的事件循环)   |    uv_loop_alive  |
-|   [loop概念及相关接口](#libuv中的事件循环)   |  uv_stop    |
-|   [Handle概念及相关接口](#libuv中的handles和requests)   |  uv_poll\_\* |
-|   [Handle概念及相关接口](#libuv中的handles和requests)   |  uv_timer\_\* |
-|   [Handle概念及相关接口](#libuv中的handles和requests)   |  uv_async\_\* |
-|   [Handle概念及相关接口](#libuv中的handles和requests)   |   uv_signal\_\*   |
-|   [Handle概念及相关接口](#libuv中的handles和requests)   |   uv_fs\_\*  |
-|   [Request概念及相关接口](#libuv中的handles和requests)   |  uv_random    |
-|   [Request概念及相关接口](#libuv中的handles和requests)   |  uv_getaddrinfo    |
-|   [Request概念及相关接口](#libuv中的handles和requests)   |  uv_getnameinfo    |
-|   [Request概念及相关接口](#libuv中的handles和requests)   |  uv_queue_work    |
+|   [libuv中的事件循环概念及相关接口](#libuv中的事件循环)   |  uv_loop_init    |
+|   [libuv中的事件循环概念及相关接口](#libuv中的事件循环)   |   uv_loop_close   |
+|   [libuv中的事件循环概念及相关接口](#libuv中的事件循环)   |  uv_default_loop    |
+|   [libuv中的事件循环概念及相关接口](#libuv中的事件循环)   |   uv_run   |
+|   [libuv中的事件循环概念及相关接口](#libuv中的事件循环)   |    uv_loop_alive  |
+|   [libuv中的事件循环概念及相关接口](#libuv中的事件循环)   |  uv_stop    |
+|   [libuv中的handles和requests概念及相关接口](#libuv中的handles和requests)   |  uv_poll\_\* |
+|   [libuv中的handles和requests概念及相关接口](#libuv中的handles和requests)   |  uv_timer\_\* |
+|   [libuv中的handles和requests概念及相关接口](#libuv中的handles和requests)   |  uv_async\_\* |
+|   [libuv中的handles和requests概念及相关接口](#libuv中的handles和requests)   |   uv_signal\_\*   |
+|   [libuv中的handles和requests概念及相关接口](#libuv中的handles和requests)   |   uv_fs\_\*  |
+|   [libuv中的handles和requests概念及相关接口](#libuv中的handles和requests)   |  uv_random    |
+|   [libuv中的handles和requests概念及相关接口](#libuv中的handles和requests)   |  uv_getaddrinfo    |
+|   [libuv中的handles和requests概念及相关接口](#libuv中的handles和requests)   |  uv_getnameinfo    |
+|   [libuv中的handles和requests概念及相关接口](#libuv中的handles和requests)   |  uv_queue_work    |
 |   [线程间通信原理及相关接口](#线程间通信)   |  uv_async_init    |
 |   [线程间通信原理及相关接口](#线程间通信)   |  uv_async_send    |
 |   [线程池概念及相关接口](#线程池)   |  uv_queue_work    |
