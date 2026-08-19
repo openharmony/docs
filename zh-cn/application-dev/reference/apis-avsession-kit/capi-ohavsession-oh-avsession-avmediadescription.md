@@ -7,7 +7,7 @@
 <!--Adviser: @w_Machine_cc-->
 
 ```c
-typedef struct OH_AVSession_AVMediaDescription OH_AVSession_AVMediaDescription;
+typedef struct OH_AVSession_AVMediaDescription OH_AVSession_AVMediaDescription
 ```
 
 ## 概述

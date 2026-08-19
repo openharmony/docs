@@ -7,7 +7,7 @@
 <!--Adviser: @w_Machine_cc-->
 
 ```c
-typedef struct OH_AVMetadataBuilderStruct OH_AVMetadataBuilder;
+typedef struct OH_AVMetadataBuilderStruct OH_AVMetadataBuilder
 ```
 
 ## 概述

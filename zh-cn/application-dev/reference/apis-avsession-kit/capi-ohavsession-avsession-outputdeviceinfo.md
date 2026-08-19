@@ -7,7 +7,7 @@
 <!--Adviser: @w_Machine_cc-->
 
 ```c
-typedef struct AVSession_OutputDeviceInfo {...} AVSession_OutputDeviceInfo;
+typedef struct AVSession_OutputDeviceInfo {...} AVSession_OutputDeviceInfo
 ```
 
 ## 概述
