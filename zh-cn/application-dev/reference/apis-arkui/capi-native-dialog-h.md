@@ -665,10 +665,10 @@ int32_t OH_ArkUI_CustomDialog_SetBorderStyle(ArkUI_CustomDialogOptions* options,
 | 参数项 | 描述 |
 | -- | -- |
 | [ArkUI_CustomDialogOptions](capi-arkui-nativemodule-arkui-customdialogoptions.md)* options | 弹窗参数。 |
-| [ArkUI_BorderStyle](capi-native-type-h.md#arkui_borderstyle) top | 弹窗上边框的样式，默认值为ARKUI_BORDER_STYLE_SOLID。 |
-| [ArkUI_BorderStyle](capi-native-type-h.md#arkui_borderstyle) right | 弹窗右边框的样式，默认值为ARKUI_BORDER_STYLE_SOLID。 |
-| [ArkUI_BorderStyle](capi-native-type-h.md#arkui_borderstyle) bottom | 弹窗下边框的样式，默认值为ARKUI_BORDER_STYLE_SOLID。 |
-| [ArkUI_BorderStyle](capi-native-type-h.md#arkui_borderstyle) left | 弹窗左边框的样式，默认值为ARKUI_BORDER_STYLE_SOLID。 |
+| int32_t top | 弹窗上边框的样式，默认值为ARKUI_BORDER_STYLE_SOLID。 |
+| int32_t right | 弹窗右边框的样式，默认值为ARKUI_BORDER_STYLE_SOLID。 |
+| int32_t bottom | 弹窗下边框的样式，默认值为ARKUI_BORDER_STYLE_SOLID。 |
+| int32_t left | 弹窗左边框的样式，默认值为ARKUI_BORDER_STYLE_SOLID。 |
 
 **返回：**
 
