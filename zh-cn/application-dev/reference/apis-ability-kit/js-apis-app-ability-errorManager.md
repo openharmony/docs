@@ -892,7 +892,7 @@ setDefaultFreezeObserver(defaultObserver?: FreezeObserver) : FreezeObserver
 
 | 类型 | 说明 |
 | -------- | -------- |
-| [FreezeObserver](#freezeobserver18) | 返回上一次注册的错误处理器。 |
+| [FreezeObserver](#freezeobserver18) | 返回上一次注册的处理器。 |
 
 **错误码**：
 
