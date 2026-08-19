@@ -4,7 +4,7 @@
 <!--Owner: @weixin_42784160-->
 <!--Designer: @wudejun2025-->
 <!--Tester: @fei_0805-->
-<!--Adviser: @luwy2025-->
+<!--Adviser: @yuwenliang0514-->
 
 - C API<!--game-controller-c-->
     - 模块<!--game-controller-module-->
