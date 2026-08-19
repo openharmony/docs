@@ -15,6 +15,12 @@
 >
 > 当前页面仅包含本模块的系统接口，其他公开接口参见[ViewData](js-apis-inner-application-viewData.md)。
 
+## 导入模块
+
+```ts
+import { autoFillManager } from '@kit.AbilityKit';
+```
+
 ## ViewData
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.AbilityCore

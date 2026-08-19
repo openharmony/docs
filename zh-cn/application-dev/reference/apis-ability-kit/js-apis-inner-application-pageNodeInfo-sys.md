@@ -15,6 +15,12 @@
 >
 > 当前页面仅包含本模块的系统接口，其他公开接口参见[PageNodeInfo](js-apis-inner-application-pageNodeInfo.md)。
 
+## 导入模块
+
+```ts
+import { autoFillManager } from '@kit.AbilityKit';
+```
+
 ## PageNodeInfo
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.AbilityCore

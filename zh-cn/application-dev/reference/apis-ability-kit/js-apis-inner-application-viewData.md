@@ -11,6 +11,12 @@
 
 **起始版本：** 26.0.0
 
+## 导入模块
+
+```ts
+import { autoFillManager } from '@kit.AbilityKit';
+```
+
 ## ViewData
 
 **起始版本：** 26.0.0
