@@ -45,7 +45,7 @@ enum Input_PointerStyle
 
 | 枚举项        | 描述     |图示 |
 | ------------ | ------ |------ |
-| DEFAULT = 0    | 默认     |![Default.png](./figures/Default.png)|
+| DEFAULT = 0    | 应用未设置时显示的光标样式。    |![Default.png](./figures/Default.png)|
 | EAST = 1    | 向东箭头   |![East.png](./figures/East.png)|
 | WEST = 2    | 向西箭头   |![West.png](./figures/West.png)|
 | SOUTH = 3    | 向南箭头   |![South.png](./figures/South.png)|
