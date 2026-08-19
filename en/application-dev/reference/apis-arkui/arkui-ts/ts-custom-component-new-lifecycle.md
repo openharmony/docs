@@ -1,32 +1,34 @@
 # Lifecycle of a Custom Component (Recommended)
+
 <!--Kit: ArkUI-->
 <!--Subsystem: ArkUI-->
-<!--Owner: @seaside_wu1; @xin11112-->
-<!--Designer: @chenbenzhi-->
+<!--Owner: @xin11112-->
+<!--Designer: @zhangboren-->
 <!--Tester: @TerryTsao-->
 <!--Adviser: @zhang_yixin13-->
+<!-- md-trans-meta sourceCommit=5b34f41bf116f7d72d70b6a8dcf29a936c5dc473 translatedAt=2026-08-18T03:08:53.590Z pushedAt=2026-08-18T09:34:20.385Z -->
 
-The lifecycle callbacks of a custom component are used to notify users of the lifecycle of the component. These callbacks are private and are invoked by the development framework at a specified time at runtime. They cannot be manually invoked from applications.
+The lifecycle callbacks of a custom component are used to notify developers of the lifecycle of the custom component. These callbacks are private and are invoked by the development framework at specific times during runtime. They cannot be manually called from an app. This lifecycle mechanism covers the initialization, appearance, building, recycling and reuse, activation and deactivation, and destruction phases of a custom component. You can perform operations such as state modification, data event reporting, and listener registration in the callbacks of the corresponding phases. In addition, you can use **CustomComponentLifecycle** to monitor and observe the lifecycle state, which is suitable for scenarios that require fine-grained management of the component lifecycle, such as component reuse and recycling, state event reporting, and activation control.
+
+For details about the development guide, see [Lifecycle of a Custom Component (Recommended)](../../../ui/state-management/arkts-custom-components-new-lifecycle.md).
 
 >**NOTE**
 >
->- The initial APIs of this module are supported since API version 23. Newly added APIs will be marked with a superscript to indicate their earliest API version.
+> - The initial APIs of this module are supported since API version 23. Newly added APIs will be marked with a superscript to indicate their earliest API version.
+>
+> - The APIs of this module can be used only in the stage model.
 
 ## \@ComponentInit
 
 ComponentInit: MethodDecorator
 
-Decorates a function that is called when the initialization of a custom component is about to complete. You can register a listener at this time.
-
-> **NOTE**
->
-> You cannot change the status variable in this callback. Otherwise, the application will break down.
+The function decorated by **\@ComponentInit** is executed when the initialization of a custom component is about to complete, and is triggered before **\@ComponentAppear**. You can register lifecycle listeners and modify state variables at this time. The difference from **\@ComponentAppear** is that **\@ComponentInit** focuses on preparation operations in the initialization phase (such as listener registration), while **\@ComponentAppear** focuses on state changes before the component is about to be displayed. The two can be used together to respectively assume the responsibilities of initialization and pre-display.
 
 **Atomic service API**: This API can be used in atomic services since API version 23.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-**Model restriction**: This API can be used only in the stage model.
+**Model restriction:** This API can be used only in the stage model.
 
 **Example**
 
@@ -42,7 +44,7 @@ Decorates a function that is called after a new instance of the custom component
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-**Model restriction**: This API can be used only in the stage model.
+**Model restriction:** This API can be used only in the stage model.
 
 **Example**
 
@@ -52,13 +54,13 @@ For details, see [Lifecycle Example](#lifecycle-example).
 
 ComponentBuilt: MethodDecorator
 
-Decorates a function that is called after the **build()** function of the custom component is executed for the first time, that is, when the component status changes from **CustomComponentLifecycleState.APPEARED** to **CustomComponentLifecycleState.BUILT**. You can use this callback for actions that do not affect the UI, such as tracking data reporting.
+The function decorated by **\@ComponentBuilt** is called after the build() function of a custom component is executed for the first time, that is, it is triggered in the stage from **CustomComponentLifecycleState.APPEARED** to **CustomComponentLifecycleState.BUILT**. You can implement functions that do not affect the actual UI, such as event data reporting, in this phase.
 
 **Atomic service API**: This API can be used in atomic services since API version 23.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-**Model restriction**: This API can be used only in the stage model.
+**Model restriction:** This API can be used only in the stage model.
 
 **Example**
 
@@ -68,45 +70,13 @@ For details, see [Lifecycle Example](#lifecycle-example).
 
 ComponentDisappear: MethodDecorator
 
-Decorates a function that is called when the custom component is destructed. You are advised not to change state variables in this function. Modifying the **\@Link** decorated variable may lead to unstable application behavior.
+The function decorated by **@ComponentDisappear** is executed before a custom component is destroyed, that is, it is triggered when the component transitions to the **CustomComponentLifecycleState.DISAPPEARED** state. It is not recommended to change state variables in this function. In particular, modifying **\@Link** variables may cause unstable app behavior.
 
 **Atomic service API**: This API can be used in atomic services since API version 23.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-**Model restriction**: This API can be used only in the stage model.
-
-**Example**
-
-For details, see [Lifecycle Example](#lifecycle-example).
-
-## \@ComponentAttach
-
-ComponentAttach: MethodDecorator
-
-Decorates a function that is called after the custom component is mounted to the main tree, that is, when the component status changes from **CustomComponentLifecycleState.MOUNTED** to **CustomComponentLifecycleState.BUILT**. You can use this callback for actions that do not affect the UI, such as event data reporting.
-
-**Atomic service API**: This API can be used in atomic services since API version 23.
-
-**System capability**: SystemCapability.ArkUI.ArkUI.Full
-
-**Model restriction**: This API can be used only in the stage model.
-
-**Example**
-
-For details, see [Lifecycle Example](#lifecycle-example).
-
-## \@ComponentDetach
-
-ComponentDetach: MethodDecorator
-
-Decorates a function that is called before the status of the custom component changes back from **CustomComponentLifecycleState.MOUNTED** to **CustomComponentLifecycleState.BUILT**. You can use this callback for actions that do not affect the UI, such as modifying non-status variables.
-
-**Atomic service API**: This API can be used in atomic services since API version 23.
-
-**System capability**: SystemCapability.ArkUI.ArkUI.Full
-
-**Model restriction**: This API can be used only in the stage model.
+**Model restriction:** This API can be used only in the stage model.
 
 **Example**
 
@@ -116,25 +86,25 @@ For details, see [Lifecycle Example](#lifecycle-example).
 
 ComponentReuse: MethodDecorator
 
-Decorates a function that is called when a reusable custom component is re-added to the node tree from the cache, that is, when the component status changes from the **CustomComponentLifecycleState.RECYCLED** to **CustomComponentLifecycleState.BUILT** phase, to receive the constructor parameters. At last, the function decorated by **\@ComponentReuse** recursively traverses all child components, and the **\@ComponentReuse** decorated function in each reused child component will be called.
+The function decorated by **\@ComponentReuse** is called when a reusable custom component is re-added to the node tree from the cache, that is, it is triggered in the stage from **CustomComponentLifecycleState.RECYCLED** to **CustomComponentLifecycleState.BUILT**, to receive the construction parameters of the component. Finally, reuse recursively traverses all child components, and for each child component that completes reuse, the function decorated by **\@ComponentReuse** in the child component is called.
 
 > **NOTE**
 >
-> -  The value of **params** is not **undefined** in the callback of the reused state management V1 component.
+> - In a state management V1 component, the function decorated by **\@ComponentReuse** can have one input parameter or no parameter. The input parameter **params** is recommended to be of the **Record\<string, Object \| undefined \| null\>** type.
 >
-> -  The value of **params** is **undefined** in the callback of the reused state management V2 component.
+> - In a state management V2 component, the function decorated by **\@ComponentReuse** has no input parameter.
 
 **Atomic service API**: This API can be used in atomic services since API version 23.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-**Model restriction**: This API can be used only in the stage model.
+**Model restriction:** This API can be used only in the stage model.
 
 **Parameters**
 
-| Parameter | Type    | Mandatory  | Description                                      |
+| Name  | Type     | Mandatory   | Description                                       |
 | ---- | ------ | ---- | ------- |
-| params   | Record\<string, Object \| undefined \| null> | No   | The value is not **undefined** in the reuse callback of the V1 component and is **undefined** in the reuse callback of the V2 component.|
+| params   | Record\<string, Object \| undefined \| null\> | No    | Construction parameters received when the component is reused. Only the reuse callback of a V1 component supports this parameter. If this parameter is not passed, the reuse callback function has no input parameter. |
 
 **Example**
 
@@ -144,33 +114,69 @@ For details, see [Lifecycle Example](#lifecycle-example).
 
 ComponentRecycle: MethodDecorator
 
-Decorates a function that is called when the necessary recycling operations defined in the application are performed. That is, this function is triggered when the component status changes from **CustomComponentLifecycleState.BUILT** to **CustomComponentLifecycleState.RECYCLED**. At last, the function decorated by **\@ComponentRecycle** recursively traverses all child components, and the **\@ComponentRecycle** decorated function in each recycled child component will be called.
+After a component is recycled, the recycling operations such as resource release defined in the app are performed first. After the recycling is complete, the function decorated by **\@ComponentRecycle** is called, that is, it is triggered in the stage from **CustomComponentLifecycleState.BUILT** to **CustomComponentLifecycleState.RECYCLED**. Then the component is frozen to avoid UI updates while the component is in the reuse pool. Finally, recycling recursively traverses all child components, and for each child component that completes recycling, the function decorated by **\@ComponentRecycle** in the child component is called.
 
 **Atomic service API**: This API can be used in atomic services since API version 23.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-**Model restriction**: This API can be used only in the stage model.
+**Model restriction:** This API can be used only in the stage model.
 
 **Example**
 
 For details, see [Lifecycle Example](#lifecycle-example).
 
+## \@ComponentActive
+
+ComponentActive: MethodDecorator
+
+After a custom component transitions from the inactive state to the active state, the function decorated by **@ComponentActive** is called. In the component reuse and recycling scenario, when a cached component is reused (that is, re-added to the node tree from the reuse pool), the component transitions from the inactive state to the active state, triggering this callback.
+
+**Since:** 26.0.0
+
+**Atomic service API:** This API can be used in atomic services since API version 26.0.0.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Model restriction:** This API can be used only in the stage model.
+
+**Example**
+
+See [Active and Inactive Lifecycle Example](#active-and-inactive-lifecycle-example).
+
+## \@ComponentInactive
+
+ComponentInactive: MethodDecorator
+
+After a custom component transitions from the active state to the inactive state, the function decorated by **@ComponentInactive** is called. In the component reuse and recycling scenario, when a component is recycled to the reuse pool, the component transitions from the active state to the inactive state, triggering this callback.
+
+**Since:** 26.0.0
+
+**Atomic service API:** This API can be used in atomic services since API version 26.0.0.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Model restriction:** This API can be used only in the stage model.
+
+**Example**
+
+See [Active and Inactive Lifecycle Example](#active-and-inactive-lifecycle-example).
+
 ## CustomComponentLifecycle
 
-**CustomComponentLifecycle** monitors the lifecycle changes of a custom component.
+**CustomComponentLifecycle** is used to monitor changes in the lifecycle of a custom component. You can obtain a **CustomComponentLifecycle** instance through [UIUtils.getLifecycle](../js-apis-stateManagement.md#getlifecycle23).
 
 ### getCurrentState
 
 getCurrentState(): CustomComponentLifecycleState
 
-The **getCurrentState** function obtains the current lifecycle status of a custom component.
+The **getCurrentState** function is used to obtain the current lifecycle state of a custom component. Before calling this method, you need to obtain a CustomComponentLifecycle instance through [UIUtils.getLifecycle](../js-apis-stateManagement.md#getlifecycle23).
 
 **Atomic service API**: This API can be used in atomic services since API version 23.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-**Model restriction**: This API can be used only in the stage model.
+**Model restriction:** This API can be used only in the stage model.
 
 **Return value**
 
@@ -179,6 +185,7 @@ The **getCurrentState** function obtains the current lifecycle status of a custo
 | [CustomComponentLifecycleState](#customcomponentlifecyclestate) | Current lifecycle status of a custom component.|
 
 **Example**
+
 ```ts
 import { UIUtils, ComponentBuilt } from '@kit.ArkUI';
 import { hilog } from '@kit.PerformanceAnalysisKit';
@@ -187,6 +194,7 @@ import { hilog } from '@kit.PerformanceAnalysisKit';
 struct Index {
   @ComponentBuilt
   myBuilt() {
+    // CustomComponentLifecycle.getCurrentState is used to obtain the current lifecycle state of a custom component.
     hilog.info(0x0000, 'testTag', 'Index Lifecycle is %{public}d', UIUtils.getLifecycle(this).getCurrentState());
   }
   build() {
@@ -203,133 +211,118 @@ struct Index {
 
 addObserver(observer: CustomComponentLifecycleObserver): void
 
-Registers a listener for the lifecycle of a custom component. Lifecycle changes will trigger the lifecycle callback in the listener.
+Registers a custom component lifecycle listener. Before calling this method, you need to obtain a CustomComponentLifecycle instance through [UIUtils.getLifecycle](../js-apis-stateManagement.md#getlifecycle23). When the lifecycle of the custom component changes, the corresponding lifecycle callback function in the listener is triggered.
+
+After calling addObserver to register a listener, you must call [removeObserver](#removeobserver) to remove the listener when the component is destroyed or when the listener is no longer needed. The two must be used in pairs. If removeObserver is not called to remove the listener, the listener may keep triggering callbacks and cause memory leaks.
 
 **Atomic service API**: This API can be used in atomic services since API version 23.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-**Model restriction**: This API can be used only in the stage model.
+**Model restriction:** This API can be used only in the stage model.
 
 **Parameters**
 
 | Parameter | Type    | Mandatory  | Description                                      |
 | ---- | ------ | ---- | ------- |
-| observer   | [CustomComponentLifecycleObserver](#customcomponentlifecycleobserver) | Yes | Listener for a custom component.|
+| observer   | [CustomComponentLifecycleObserver](#customcomponentlifecycleobserver) | Yes  | Listener for the custom component lifecycle. |
 
 ### removeObserver
 
 removeObserver(observer: CustomComponentLifecycleObserver): void
 
-Removes a listener for the lifecycle of a custom component. After the listener is removed, the lifecycle callback in the listener is not triggered even if the component status changes.
+Removes a custom component lifecycle listener. Before calling this method, you need to obtain a **CustomComponentLifecycle** instance through [UIUtils.getLifecycle](../js-apis-stateManagement.md#getlifecycle23). After unregistration, even if the lifecycle state of the custom component changes, the corresponding lifecycle callback function in the listener will not be triggered.
 
 **Atomic service API**: This API can be used in atomic services since API version 23.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-**Model restriction**: This API can be used only in the stage model.
+**Model restriction:** This API can be used only in the stage model.
 
 **Parameters**
 
 | Parameter | Type    | Mandatory  | Description                                      |
 | ---- | ------ | ---- | ------- |
-| observer   | CustomComponentLifecycleObserver | Yes | Listener for a custom component.|
+| observer   | [CustomComponentLifecycleObserver](#customcomponentlifecycleobserver) | Yes  | Listener for the custom component lifecycle. |
 
 ## CustomComponentLifecycleObserver
 
-Observes lifecycle status changes of a custom component, and triggers the lifecycle callback in the listener when detecting lifecycle status changes.
+After developers register a custom component lifecycle callback, when the lifecycle of the custom component changes, the corresponding lifecycle callback in the listener is triggered. The difference from the lifecycle decorators is that the lifecycle decorators respond to lifecycle events by the component itself, while **CustomComponentLifecycleObserver** observes component lifecycle events from the outside. If only the component itself needs to respond to lifecycle changes, use the lifecycle decorators. If you need to centrally monitor the lifecycles of multiple components, use **CustomComponentLifecycleObserver**.
 
 ### aboutToAppear
 
 aboutToAppear?(): void
 
-Called after a new instance of the custom component is created and before its **build()** function is executed. You can modify the status variables in this phase. Its function is similar to that of [aboutToAppear](./ts-custom-component-lifecycle.md#abouttoappear), but it is triggered under the constraints of the custom component state machine.
+Called after a new instance of a custom component is created and before its **build()** function is executed. Developers can modify state variables in this phase, and the changes will take effect in the subsequent execution of the build() function. Its function is similar to [aboutToAppear](./ts-custom-component-lifecycle.md#abouttoappear). It is subject to the custom component state machine and triggers the callback when the monitored custom component transitions to **CustomComponentLifecycleState.APPEARED**.
 
 **Atomic service API**: This API can be used in atomic services since API version 23.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-**Model restriction**: This API can be used only in the stage model.
+**Model restriction:** This API can be used only in the stage model.
 
 ### onDidBuild
 
 onDidBuild?(): void
 
-Called after a new instance of the custom component is created and its **build()** function is executed. You can use this callback for actions that do not affect the UI, such as event data reporting.
+Called after the **build()** function of a custom component is executed. It is subject to the custom component state machine and triggers the callback when the state of the monitored custom component transitions to **CustomComponentLifecycleState.BUILT**. Developers can implement functions that do not affect the actual UI in this phase, such as event data reporting.
 
 **Atomic service API**: This API can be used in atomic services since API version 23.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-**Model restriction**: This API can be used only in the stage model.
+**Model restriction:** This API can be used only in the stage model.
 
 ### aboutToDisappear
 
 aboutToDisappear?(): void
 
-Called before the custom component is destroyed. You are advised not to change state variables in the **aboutToDisappear** function. Modifying the **\@Link** decorated variable may lead to unstable application behavior. This function is similar to the earlier **aboutToDisappear** function, which is triggered under the constraints of the custom component state machine. Therefore, this function is added for compatibility.
+Executed before a custom component is destroyed. It is not recommended to modify state variables in the **aboutToDisappear** function. In particular, modifying **\@Link** variables may cause unstable app behavior. Its function is similar to [aboutToDisappear](./ts-custom-component-lifecycle.md#abouttodisappear). The difference is that the **aboutToDisappear** function in **CustomComponentLifecycleObserver** is subject to the state machine and triggers the callback only before the state of the monitored custom component transitions to **CustomComponentLifecycleState.DISAPPEARED**.
 
 **Atomic service API**: This API can be used in atomic services since API version 23.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-**Model restriction**: This API can be used only in the stage model.
-
-### aboutToAttach
-
-aboutToAttach?(): void
-
-Called when the custom component is attached to the main tree. You can use this callback for actions that do not affect the UI, such as event data reporting.
-
-**Atomic service API**: This API can be used in atomic services since API version 23.
-
-**System capability**: SystemCapability.ArkUI.ArkUI.Full
-
-**Model restriction**: This API can be used only in the stage model.
-
-### aboutToDetach
-
-aboutToDetach?(): void
-
-Called when a custom component is detached from the main tree. You can use this callback for actions that do not affect the UI, such as event data reporting.
-
-**Atomic service API**: This API can be used in atomic services since API version 23.
-
-**System capability**: SystemCapability.ArkUI.ArkUI.Full
-
-**Model restriction**: This API can be used only in the stage model.
+**Model restriction:** This API can be used only in the stage model.
 
 ### aboutToReuse
 
-aboutToReuse?(params?: Record<string, Object | undefined | null>): void
+aboutToReuse?(params?: Record\<string, Object \| undefined \| null\>): void
 
-Called when a reusable custom component is re-added to the node tree from the cache to receive the component constructors. The value of **params** is not **undefined** in the reuse callback of the V1 component. The value of **params** is **undefined** in the reuse callback of the V2 component.
+Called when a reusable custom component is re-added to the node tree from the cache. It is subject to the custom component state machine, that is, it triggers the callback in the stage from **CustomComponentLifecycleState.RECYCLED** to **CustomComponentLifecycleState.BUILT**. Finally, reuse recursively traverses all child components, and for each child component that completes reuse, the **aboutToReuse** function registered in the child component is called. In a state management V1 component, this function can have one input parameter or no parameter. When **params** exists, it indicates the reuse callback of a V1 component. In a state management V2 component, this function has no input parameter.
+
+> **NOTE**
+>
+> - In a state management V1 component, the **aboutToReuse** function can have one input parameter or no parameter. The input parameter **params** is recommended to be of the Record\<string, Object \| undefined \| null\> type.
+>
+> - In a state management V2 component, the **aboutToReuse** function has no input parameter.
 
 **Atomic service API**: This API can be used in atomic services since API version 23.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-**Model restriction**: This API can be used only in the stage model.
+**Model restriction:** This API can be used only in the stage model.
 
 **Parameters**
 
 | Parameter | Type    | Mandatory  | Description                                      |
 | ---- | ------ | ---- | ------- |
-| params   | Record\<string, Object \| undefined \| null> | No   | The value is not **undefined** in the reuse callback of the V1 component and is **undefined** in the reuse callback of the V2 component.|
+| params   | Record\<string, Object \| undefined \| null\> | No    | Construction parameter received during component reuse. Only the reuse callback of V1 components supports this parameter. If this parameter is not passed, the reuse callback function has no input parameter. |
 
 ### aboutToRecycle
 
 aboutToRecycle?(): void
 
-Called after necessary component recycling operations defined in the application are performed. Then, the component is frozen to prevent UI updates when the component is in the recycling pool. At last, the **aboutToRecycle** function recursively traverses all child components, and the **aboutToRecycle** function in each recycled child component will be called.
+After a component is recycled, the recycling operations such as resource release defined in the app are performed first. After the recycling is complete, the **aboutToRecycle** function is called. It is subject to the custom component state machine, that is, it triggers the callback in the stage from **CustomComponentLifecycleState.BUILT** to **CustomComponentLifecycleState.RECYCLED**. Then the component is frozen to avoid UI updates while the component is in the reuse pool. Finally, recycling recursively traverses all child components, and for each child component that completes recycling, the **aboutToRecycle** function registered in the child component is called.
 
 **Atomic service API**: This API can be used in atomic services since API version 23.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-**Model restriction**: This API can be used only in the stage model.
+**Model restriction:** This API can be used only in the stage model.
 
 **Example**
+
 ```ts
 import { ComponentInit, ComponentDisappear, UIUtils, CustomComponentLifecycleObserver, CustomComponentLifecycle } from '@kit.ArkUI';
 import { hilog } from '@kit.PerformanceAnalysisKit';
@@ -344,7 +337,7 @@ export class Message {
 @Entry
 @Component
 struct Index {
-  @State switch: boolean = true;
+  @State isChildVisible: boolean = true;
 
   build() {
     Column() {
@@ -352,9 +345,9 @@ struct Index {
         .fontSize(30)
         .fontWeight(FontWeight.Bold)
         .onClick(() => {
-          this.switch = !this.switch;
+          this.isChildVisible = !this.isChildVisible;
         })
-      if (this.switch) {
+      if (this.isChildVisible) {
         // If only one reusable component is used, reuseId is optional.
         Child({ message: new Message('Child') })
           .reuseId('Child')
@@ -369,7 +362,6 @@ struct Index {
 @Component
 struct Child {
   @State message: Message = new Message('AboutToReuse');
-  @State label: string = 'HelloWorld';
   @ComponentInit
   myInit(): void {
     registerObserver(UIUtils.getLifecycle(this));
@@ -387,27 +379,20 @@ struct Child {
 }
 
 export class MyObserver implements CustomComponentLifecycleObserver {
-  // Override the lifecycle events in CustomComponentLifecycleObserver. CustomComponentLifecycleObserver cannot listen to the aboutToInit event of the parent component.
+  // Override the lifecycle events in CustomComponentLifecycleObserver.
   aboutToAppear() {
     hilog.info(0x0000, 'testTag', 'MyObserver aboutToAppear');
   }
   onDidBuild() {
     hilog.info(0x0000, 'testTag', 'MyObserver onDidBuild');
   }
-  aboutToAttach() {
-    hilog.info(0x0000, 'testTag', 'MyObserver aboutToAttach');
-  }
-  aboutToDetach() {
-    hilog.info(0x0000, 'testTag', 'MyObserver aboutToDetach');
-  }
-  aboutToReuse(param?: ESObject) {
-    // The value of param is not undefined in the reuse callback of the V1 component and is undefined in the reuse callback of the V2 component.
+  aboutToReuse(params?: Record<string, Object | undefined | null>) {
+    // If params exists, it is V1 reuse.
     hilog.info(0x0000, 'testTag', 'MyObserver aboutToReuse');
   }
   aboutToRecycle() {
     hilog.info(0x0000, 'testTag', 'MyObserver aboutToRecycle');
   }
-  // Unregister the listener in the aboutToDelete function of the parent component. As a result, the aboutToDisappear event of the parent component cannot be listened to.
   aboutToDisappear() {
     hilog.info(0x0000, 'testTag', 'MyObserver aboutToDisappear');
   }
@@ -429,24 +414,24 @@ export function unRegisterObserver(lifeCycle: CustomComponentLifecycle) {
 
 ## CustomComponentLifecycleState
 
-Current lifecycle status of a custom component.
+Defines the current lifecycle status of a custom component.
 
 **Atomic service API**: This API can be used in atomic services since API version 23.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-**Model restriction**: This API can be used only in the stage model.
+**Model restriction:** This API can be used only in the stage model.
 
 | Name| Value| Description|
 | -- | -- | -- |
 | INIT | 0 | Initial.|
-| APPEARED | 1 | To build.|
+| APPEARED | 1 | Appeared.|
 | BUILT | 2 | Built.|
-| MOUNTED | 3 | Mounted.|
-| RECYCLED | 4 | Recycled.|
-| DISAPPEARED | 5 | Deleted.|
+| RECYCLED | 3 | Recycled. |
+| DISAPPEARED | 4 | Disappeared. |
 
 **Example**
+
 ```ts
 import { CustomComponentLifecycleState, ComponentBuilt } from '@kit.ArkUI';
 import { hilog } from '@kit.PerformanceAnalysisKit';
@@ -456,7 +441,8 @@ import { hilog } from '@kit.PerformanceAnalysisKit';
 struct Index {
   @ComponentBuilt
   myBuilt() {
-    hilog.info(0x0000, 'testTag', 'Index Lifecycle is %{public}d', CustomComponentLifecycleState.APPEARED);
+    // CustomComponentLifecycleState.BUILT indicates that the custom component is in the expanded state.
+    hilog.info(0x0000, 'testTag', 'Index Lifecycle is %{public}d', CustomComponentLifecycleState.BUILT);
   }
   build() {
     Column() {
@@ -472,14 +458,16 @@ struct Index {
 
 This example demonstrates some use cases of the lifecycle callback functions.
 
-1. Creating the custom component **Child** triggers the **\@ComponentInit** and **\@ComponentAppear** callbacks. After **build()** is executed for the **Child** component, the **\@ComponentBuilt** and **\@ComponentAttach** callbacks are triggered.
+1. When the app is started and the custom component **Child** is created, **\@ComponentInit** and **\@ComponentAppear** are triggered. After **build()** is executed for **Child**, **\@ComponentBuilt** is triggered.
 
-2. Changing **this.switch** to **false** and recycling the **Child** component trigger **\@ComponentDetach** and **\@ComponentRecycle**. Changing **this.switch** to **true** and reusing the **Child** component trigger **\@ComponentReuse** and **\@ComponentAttach**.
+2. Set **this.switchChild** to **false** to recycle the **Child** child component and trigger **\@ComponentRecycle**.
 
-3. The **\@ComponentDisappear** callback is triggered before you exit the application and the **Child** component is destroyed.
+3. Set **this.switchChild** to **true** to reuse the **Child** child component and trigger **\@ComponentReuse**.
+
+4. Exit the app to trigger **\@ComponentDisappear** before the custom component **Child** is destroyed.
 
 ```ts
-import { ComponentInit, ComponentAppear, ComponentBuilt, ComponentAttach, ComponentDetach, ComponentDisappear, ComponentReuse, ComponentRecycle } from '@kit.ArkUI';
+import { ComponentInit, ComponentAppear, ComponentBuilt, ComponentDisappear, ComponentReuse, ComponentRecycle } from '@kit.ArkUI';
 import { hilog } from '@kit.PerformanceAnalysisKit';
 
 export class Message {
@@ -491,16 +479,16 @@ export class Message {
 @Entry
 @Component
 struct Index {
-  @State switch: boolean = true;
+  @State switchChild: boolean = true;
   build() {
     Column() {
       Button('Hello')
         .fontSize(30)
         .fontWeight(FontWeight.Bold)
         .onClick(() => {
-          this.switch = !this.switch;
+          this.switchChild = !this.switchChild;
         })
-      if (this.switch) {
+      if (this.switchChild) {
         // If only one reusable component is used, reuseId is optional.
         Child({ message: new Message('Child') })
           .reuseId('Child')
@@ -516,53 +504,94 @@ struct Index {
 struct Child {
   @State message: Message = new Message('Child');
   @State label: string = 'HelloWorld';
-  @State switch: boolean = true;
   @ComponentInit
   myInit() {
+    // After the custom component is created, trigger the myInit method.
     hilog.info(0x0000, 'testTag', 'Child myInit');
   }
   @ComponentAppear
   myAppear() {
-    this.label = 'myAppear'
-    hilog.info(0x0000, 'testTag', 'Child myAppear');
+    this.label = 'myAppear';
+    hilog.info(0x0000, 'testTag', `Child ${this.label}`);
   }
   @ComponentBuilt
   myBuilt() {
-    this.label = 'myBuilt'
-    hilog.info(0x0000, 'testTag', 'Child myBuilt');
-  }
-  @ComponentAttach
-  myAttach() {
-    this.label = 'myAttach'
-    hilog.info(0x0000, 'testTag', 'Child myAttach');
-  }
-  @ComponentDetach
-  myDetach() {
-    this.label = 'myDetach'
-    hilog.info(0x0000, 'testTag', 'Child myDetach');
+    this.label = 'myBuilt';
+    hilog.info(0x0000, 'testTag', `Child ${this.label}`);
   }
   @ComponentRecycle
   myRecycle() {
-    this.label = 'myRecycle'
-    hilog.info(0x0000, 'testTag', 'Child myRecycle');
+    this.label = 'myRecycle';
+    hilog.info(0x0000, 'testTag', `Child ${this.label}`);
   }
   @ComponentDisappear
   myDisappear() {
-    this.label = 'myDisappear'
     hilog.info(0x0000, 'testTag', 'Child myDisappear');
   }
   @ComponentReuse
   myReuse() {
-    this.label = 'myReuse'
-    hilog.info(0x0000, 'testTag', 'Child myReuse');
+    this.label = 'myReuse';
+    hilog.info(0x0000, 'testTag', `Child ${this.label}`);
   }
   build() {
     Column() {
       Text(this.message.value)
         .fontSize(30)
     }
-    .borderWidth(1)
     .height(100)
+  }
+}
+```
+
+## Active and Inactive Lifecycle Example
+
+This example demonstrates how the active and inactive lifecycle callback functions of a custom component are triggered in the component reuse and recycling scenario. It is recommended to perform the following steps:
+
+1. Click **change** to create the **Child** component for the first time.
+
+2. Click **change** to trigger the recycling event of the **Child** component and the function decorated by **\@ComponentInactive**.
+
+3. Click **change** to trigger the reuse event of the **Child** component and the function decorated by **\@ComponentActive**.
+
+```ts
+import { ComponentActive, ComponentInactive } from '@kit.ArkUI';
+
+@Entry
+@Component
+struct Index {
+  @State changeChild: boolean = false;
+
+  build() {
+    Column() {
+      Button('change').onClick(() => {
+        // Switch the display state of the Child component to trigger component recycling or reuse.
+        this.changeChild = !this.changeChild;
+      })
+      if (this.changeChild) {
+        Child()
+      }
+    }
+    .width('100%')
+  }
+}
+
+@Reusable
+@Component
+struct Child {
+  @ComponentActive
+  myActive() {
+    // Triggered when the component changes from the inactive state to the active state.
+    console.info(`Child myActive`);
+  }
+
+  @ComponentInactive
+  myInactive() {
+    // Triggered when the component changes from the active state to the inactive state.
+    console.info(`Child myInactive`);
+  }
+
+  build() {
+    Text('Child')
   }
 }
 ```

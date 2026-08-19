@@ -6,7 +6,7 @@
 <!--Designer: @s10021109-->
 <!--Tester: @songyanhong-->
 <!--Adviser: @zhang_yixin13-->
-<!-- md-trans-meta sourceCommit=242f30791e1ff3fd9b4fa28a30d0fce83326a219 translatedAt=2026-08-11T01:46:24.837Z pushedAt=2026-08-13T07:04:37.438Z -->
+<!-- md-trans-meta sourceCommit=171e172f8b43fc97f5e24ca57674f467ebfe8b97 translatedAt=2026-08-18T03:07:42.809Z pushedAt=2026-08-18T09:40:37.634Z -->
 
 This component is used to obtain custom environment variables.
 
