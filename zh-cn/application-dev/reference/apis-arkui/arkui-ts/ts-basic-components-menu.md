@@ -358,7 +358,7 @@ struct Index {
 该示例通过配置subMenuExpandSymbol实现对Menu子菜单展开符号配置颜色和大小。
 
 ```ts
-import { SymbolGlyphModifier, SubMenuExpandingMode } from '@kit.ArkUI';
+import { SymbolGlyphModifier } from '@kit.ArkUI';
 
 @Entry
 @Component
