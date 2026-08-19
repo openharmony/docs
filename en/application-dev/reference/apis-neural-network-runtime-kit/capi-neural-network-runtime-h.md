@@ -1,10 +1,12 @@
 # neural_network_runtime.h
+
 <!--Kit: Neural Network Runtime Kit-->
 <!--Subsystem: AI-->
 <!--Owner: @GbuzhidaoR-->
 <!--Designer: @GbuzhidaoR-->
 <!--Tester: @GbuzhidaoR-->
 <!--Adviser: @ge-yafang-->
+<!-- md-trans-meta sourceCommit=f3beda9c29712e0a57d1e06e63d96b7a77686bee translatedAt=2026-08-17T10:29:11.508Z pushedAt=2026-08-19T08:43:54.458Z -->
 
 ## Overview
 
@@ -90,7 +92,6 @@ Sets the scaling coefficient of the [NN_QuantParam](capi-neuralnetworkruntime-nn
 
 **Since**: 11
 
-
 **Parameters**
 
 | Name| Description|
@@ -118,7 +119,6 @@ Sets the zero point of the [NN_QuantParam](capi-neuralnetworkruntime-nn-quantpar
 **quantCount** is the number of quantization parameters in the tensor. For example, for per-channel quantization, **quantCount** is the number of channels.
 
 **Since**: 11
-
 
 **Parameters**
 
@@ -148,7 +148,6 @@ Sets the quantization bit width of the [NN_QuantParam](capi-neuralnetworkruntime
 
 **Since**: 11
 
-
 **Parameters**
 
 | Name| Description|
@@ -176,7 +175,6 @@ Destroys an [NN_QuantParam](capi-neuralnetworkruntime-nn-quantparam.md) instance
 After an [NN_QuantParam](capi-neuralnetworkruntime-nn-quantparam.md) instance is no longer needed after being passed to [NN_Tensor](capi-neuralnetworkruntime-nn-tensor.md), you need to destroy it to avoid memory leak.<br>If **quantParams** or ***quantParams** is a null pointer, this API only prints warning logs but does not perform the destruction operation.
 
 **Since**: 11
-
 
 **Parameters**
 
@@ -230,7 +228,6 @@ NNRt supports input and output of dynamic shapes. When adding a data node with a
 
 **Since**: 11
 
-
 **Parameters**
 
 | Name| Description|
@@ -257,7 +254,6 @@ Sets the tensor value. For tensors with constant values (such as model weights),
 The index value of a tensor is determined by the sequence in which the tensor is added to the model. For details about how to add a tensor, see [OH_NNModel_AddTensorToModel](capi-neural-network-runtime-h.md#oh_nnmodel_addtensortomodel).
 
 **Since**: 9
-
 
 **Parameters**
 
@@ -286,7 +282,6 @@ Sets the quantization parameters of a tensor. For details, see [NN_QuantParam](c
 
 **Since**: 11
 
-
 **Parameters**
 
 | Name| Description|
@@ -312,7 +307,6 @@ OH_NN_ReturnCode OH_NNModel_SetTensorType(OH_NNModel *model, uint32_t index, OH_
 Sets the tensor type. For details, see [OH_NN_TensorType](capi-neural-network-runtime-type-h.md#oh_nn_tensortype).
 
 **Since**: 11
-
 
 **Parameters**
 
@@ -348,10 +342,9 @@ For details about the expected parameters, input attributes, and output attribut
 
 For details about how to add a tensor, see [OH_NNModel_AddTensorToModel](capi-neural-network-runtime-h.md#oh_nnmodel_addtensortomodel).
 
-If unnecessary parameters are added for adding an operator, this API returns the error code [OH_NN_INVALID_PARAMETER](capi-neural-network-runtime-type-h.md#oh_nn_returncode). If no operator parameter is set, the operator uses the default parameter value. For details about the default values, see OH_NN_OperationType](capi-neural-network-runtime-type-h.md#oh_nn_operationtype).
+If unnecessary parameters are added for adding an operator, this API returns the error code [OH_NN_INVALID_PARAMETER](capi-neural-network-runtime-type-h.md#oh_nn_returncode). If no operator parameter is set, the operator uses the default parameter value. For details about the default values, see [OH_NN_OperationType](capi-neural-network-runtime-type-h.md#oh_nn_operationtype).
 
 **Since**: 9
-
 
 **Parameters**
 
@@ -385,7 +378,6 @@ The index value of a tensor is determined by the sequence in which the tensor is
 
 **Since**: 9
 
-
 **Parameters**
 
 | Name| Description|
@@ -418,7 +410,6 @@ Before calling Before calling [OH_NNModel_GetAvailableOperations](capi-neural-ne
 
 **Since**: 9
 
-
 **Parameters**
 
 | Name| Description|
@@ -447,7 +438,6 @@ If **model** or ***model** is a null pointer, this API only prints warning logs 
 
 **Since**: 9
 
-
 **Parameters**
 
 | Name| Description|
@@ -471,7 +461,6 @@ If the *i*th operator is supported, the value of **(\*isSupported)**[*i*] is **t
 The memory corresponding to this array is managed by NNRt and is automatically destroyed after the model instance is destroyed or this API is called again.
 
 **Since**: 9
-
 
 **Parameters**
 
@@ -512,7 +501,6 @@ When adding a data node with a dynamic shape, you need to set the dimensions tha
 
 **Substitute**: [OH_NNModel_AddTensorToModel](capi-neural-network-runtime-h.md#oh_nnmodel_addtensortomodel)
 
-
 **Parameters**
 
 | Name| Description|
@@ -543,6 +531,7 @@ This API copies the data whose length is specified by **length** (in bytes) in *
 NNRt supports models with dynamical shape input. For fixed shape input and dynamic shape input scenarios, this API uses different processing policies.
 
 - Fixed shape input: The attributes of tensor must be the same as those of the tensor added by calling [OH_NNModel_AddTensor](capi-neural-network-runtime-h.md#oh_nnmodel_addtensor) in the build phase.
+
 - Dynamic shape input: In the composition phase, because the shape is not fixed, each value in **tensor.dimensions** must be greater than **0** in the API calls to determine the shape input in the computing phase. When setting the shape, you can modify only the dimension whose value is **-1**.<br>Assume that **[-1, 224, 224, 3]** is input as the the dimension of A in the composition phase. When this API is called, you can only change the size of the first dimension, for example, to [3, 224, 224, 3]. If other dimensions are adjusted, [OH_NN_INVALID_PARAMETER](capi-neural-network-runtime-type-h.md#oh_nn_returncode) is returned.
 
 **Since**: 9
@@ -550,7 +539,6 @@ NNRt supports models with dynamical shape input. For fixed shape input and dynam
 **Deprecated from**: 11
 
 **Substitute**: [OH_NNExecutor_RunSync](capi-neural-network-core-h.md#oh_nnexecutor_runsync)
-
 
 **Parameters**
 
@@ -583,6 +571,7 @@ This method binds the buffer pointed by **dataBuffer** to the output specified b
 After [OH_NNExecutor_Run](capi-neural-network-runtime-h.md#oh_nnexecutor_run) is called to complete a single model inference, NNRt compares the length of the buffer pointed by **dataBuffer** with the length of the output data and returns different results based on the actual situation. 
 
 - If the memory size is greater than or equal to the data length, the API copies the inference result to the memory and returns [OH_NN_SUCCESS](capi-neural-network-runtime-type-h.md#oh_nn_returncode). You can read the inference result from **dataBuffer**.
+
 - If the memory size is less than the data length, the [OH_NNExecutor_Run](capi-neural-network-runtime-h.md#oh_nnexecutor_run) API returns the error code [OH_NN_INVALID_PARAMETER](capi-neural-network-runtime-type-h.md#oh_nn_returncode) and generates a log indicating that the memory size is too small.
 
 **Since**: 9
@@ -590,7 +579,6 @@ After [OH_NNExecutor_Run](capi-neural-network-runtime-h.md#oh_nnexecutor_run) is
 **Deprecated from**: 11
 
 **Substitute**: [OH_NNExecutor_RunSync](capi-neural-network-core-h.md#oh_nnexecutor_runsync)
-
 
 **Parameters**
 
@@ -655,7 +643,6 @@ Based on the specified executor and input index value, this API applies for the 
 
 **Substitute**: [OH_NNTensor_CreateWithSize](capi-neural-network-core-h.md#oh_nntensor_createwithsize)
 
-
 **Parameters**
 
 | Name| Description|
@@ -689,7 +676,6 @@ Based on the specified executor and output index value, this API applies for the
 **Deprecated from**: 11
 
 **Substitute**: [OH_NNTensor_CreateWithSize](capi-neural-network-core-h.md#oh_nntensor_createwithsize)
-
 
 **Parameters**
 
@@ -725,7 +711,6 @@ The mapping between **inputIndex** and **memory** must be the same as that in me
 
 **Substitute**: [OH_NNTensor_Destroy](capi-neural-network-core-h.md#oh_nntensor_destroy)
 
-
 **Parameters**
 
 | Name| Description|
@@ -756,7 +741,6 @@ If **memory** or ***memory** is a null pointer, this API only prints the warning
 
 **Substitute**: [OH_NNTensor_Destroy](capi-neural-network-core-h.md#oh_nntensor_destroy)
 
-
 **Parameters**
 
 | Name| Description|
@@ -786,7 +770,6 @@ By using this API, you can implement concurrent execution of input setting, comp
 **Deprecated from**: 11
 
 **Substitute**: [OH_NNExecutor_RunSync](capi-neural-network-core-h.md#oh_nnexecutor_runsync)
-
 
 **Parameters**
 
@@ -824,7 +807,6 @@ By using this API, you can implement concurrent execution of input setting, comp
 **Deprecated from**: 11
 
 **Substitute**: [OH_NNExecutor_RunSync](capi-neural-network-core-h.md#oh_nnexecutor_runsync)
-
 
 **Parameters**
 
