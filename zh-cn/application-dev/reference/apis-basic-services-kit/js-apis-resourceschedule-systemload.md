@@ -100,7 +100,7 @@ try {
 
 ## systemLoad.getLevel
 
-getLevel(): Promise&lt;[SystemLoadLevel](#systemloadlevel)&gt;
+getLevel(): Promise&lt;SystemLoadLevel&gt;
 
 获取系统负载融合档位，使用promise异步回调。
 
