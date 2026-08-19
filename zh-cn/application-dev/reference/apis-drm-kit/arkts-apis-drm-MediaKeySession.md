@@ -51,8 +51,8 @@ generateMediaKeyRequest(mimeType: string, initData: Uint8Array, mediaKeyType: nu
 | 错误码ID         | 错误信息        |
 | --------------- | --------------- |
 | 401                | The parameter check failed. Possibly because: 1.Mandatory parameters are left unspecified or too many parameters. 2.Incorrect parameter types. 3.Parameter verification failed.              |
-| 24700101                | All unknown errors                  |
-| 24700201                | Fatal service error, for example, service died                  |
+| 24700101                | All unknown errors.                  |
+| 24700201                | Fatal service error, for example, service died.                  |
 
 **示例：**
 
@@ -97,8 +97,8 @@ processMediaKeyResponse(response: Uint8Array): Promise<Uint8Array\>
 | 错误码ID         | 错误信息        |
 | --------------- | --------------- |
 | 401                |  The parameter check failed. Possibly because: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. 3.Parameter verification failed.            |
-| 24700101                | All unknown errors                  |
-| 24700201                | Fatal service error, for example, service died                  |
+| 24700101                | All unknown errors.                  |
+| 24700201                | Fatal service error, for example, service died.                  |
 
 **示例：**
 
@@ -136,8 +136,8 @@ mediaKeySession.processMediaKeyResponse(mediaKeyResponse).then((mediaKeyId: Uint
 
 | 错误码ID         | 错误信息        |
 | --------------- | --------------- |
-| 24700101                | All unknown errors                  |
-| 24700201                | Fatal service error, for example, service died                  |
+| 24700101                | All unknown errors.                  |
+| 24700201                | Fatal service error, for example, service died.                  |
 
 **示例：**
 
@@ -165,8 +165,8 @@ clearMediaKeys(): void
 
 | 错误码ID         | 错误信息        |
 | --------------- | --------------- |
-| 24700101                | All unknown errors                  |
-| 24700201                | Fatal service error, for example, service died                  |
+| 24700101                | All unknown errors.                  |
+| 24700201                | Fatal service error, for example, service died.                  |
 
 **示例：**
 
@@ -212,8 +212,8 @@ generateOfflineReleaseRequest(mediaKeyId: Uint8Array): Promise<Uint8Array\>
 | 错误码ID         | 错误信息        |
 | --------------- | --------------- |
 | 401                |  The parameter check failed. Possibly because: 1.Mandatory parameters are left unspecified or too many parameters. 2.Incorrect parameter types. 3.Parameter verification failed.         |
-| 24700101                | All unknown errors                  |
-| 24700201                | Fatal service error, for example, service died                  |
+| 24700101                | All unknown errors.                  |
+| 24700201                | Fatal service error, for example, service died.                  |
 
 **示例：**
 
@@ -261,8 +261,8 @@ processOfflineReleaseResponse(mediaKeyId: Uint8Array, response: Uint8Array): Pro
 | 错误码ID         | 错误信息        |
 | --------------- | --------------- |
 | 401                |  The parameter check failed. Possibly because: 1.Mandatory parameters are left unspecified or too many parameters. 2.Incorrect parameter types. 3.Parameter verification failed.            |
-| 24700101                | All unknown errors                  |
-| 24700201                | Fatal service error, for example, service died                  |
+| 24700101                | All unknown errors.                  |
+| 24700201                | Fatal service error, for example, service died.                  |
 
 **示例：**
 
@@ -312,8 +312,8 @@ restoreOfflineMediaKeys(mediaKeyId: Uint8Array): Promise<void\>
 | 错误码ID         | 错误信息        |
 | --------------- | --------------- |
 | 401                |  The parameter check failed. Possibly because: 1.Mandatory parameters are left unspecified or too many parameters. 2.Incorrect parameter types. 3.Parameter verification failed.              |
-| 24700101                | All unknown errors                  |
-| 24700201                | Fatal service error, for example, service died                  |
+| 24700101                | All unknown errors.                  |
+| 24700201                | Fatal service error, for example, service died.                  |
 
 **示例：**
 
@@ -351,8 +351,8 @@ getContentProtectionLevel(): ContentProtectionLevel
 
 | 错误码ID         | 错误信息        |
 | --------------- | --------------- |
-| 24700101                | All unknown errors                  |
-| 24700201                | Fatal service error, for example, service died                  |
+| 24700101                | All unknown errors.                  |
+| 24700201                | Fatal service error, for example, service died.                  |
 
 **示例：**
 
@@ -394,8 +394,8 @@ requireSecureDecoderModule(mimeType: string): boolean
 | 错误码ID         | 错误信息        |
 | --------------- | --------------- |
 | 401                |  The parameter check failed. Possibly because: 1.Mandatory parameters are left unspecified or too many parameters. 2.Incorrect parameter types. 3.Parameter verification failed.      |
-| 24700101                | All unknown errors                  |
-| 24700201                | Fatal service error, for example, service died                  |
+| 24700101                | All unknown errors.                  |
+| 24700201                | Fatal service error, for example, service died.                  |
 
 **示例：**
 
@@ -431,7 +431,7 @@ on(type: 'keyRequired', callback: (eventInfo: EventInfo) => void): void
 | 错误码ID         | 错误信息        |
 | --------------- | --------------- |
 | 401                |  The parameter check failed. Possibly because: 1.Mandatory parameters are left unspecified or too many parameters. 2.Incorrect parameter types. 3.Parameter verification failed.         |
-| 24700101                | All unknown errors                  |
+| 24700101                | All unknown errors.                  |
 
 **示例：**
 
@@ -471,7 +471,7 @@ off(type: 'keyRequired', callback?: (eventInfo: EventInfo) => void): void
 | 错误码ID         | 错误信息        |
 | --------------- | --------------- |
 | 401                |  The parameter check failed. Possibly because: 1.Mandatory parameters are left unspecified or too many parameters. 2.Incorrect parameter types. 3.Parameter verification failed.             |
-| 24700101                | All unknown errors                  |
+| 24700101                | All unknown errors.                  |
 
 **示例：**
 
@@ -507,7 +507,7 @@ on(type: 'keyExpired', callback: (eventInfo: EventInfo) => void): void
 | 错误码ID         | 错误信息        |
 | --------------- | --------------- |
 | 401                |  The parameter check failed. Possibly because: 1.Mandatory parameters are left unspecified or too many parameters. 2.Incorrect parameter types. 3.Parameter verification failed.          |
-| 24700101                | All unknown errors                  |
+| 24700101                | All unknown errors.                  |
 
 **示例：**
 
@@ -545,7 +545,7 @@ off(type: 'keyExpired', callback?: (eventInfo: EventInfo) => void): void
 | 错误码ID         | 错误信息        |
 | --------------- | --------------- |
 | 401                |  The parameter check failed. Possibly because: 1.Mandatory parameters are left unspecified or too many parameters. 2.Incorrect parameter types. 3.Parameter verification failed.            |
-| 24700101                | All unknown errors                  |
+| 24700101                | All unknown errors.                  |
 
 **示例：**
 
@@ -581,7 +581,7 @@ on(type: 'vendorDefined', callback: (eventInfo: EventInfo) => void): void
 | 错误码ID         | 错误信息        |
 | --------------- | --------------- |
 | 401                |  The parameter check failed. Possibly because: 1.Mandatory parameters are left unspecified or too many parameters. 2.Incorrect parameter types. 3.Parameter verification failed.              |
-| 24700101                | All unknown errors                  |
+| 24700101                | All unknown errors.                  |
 
 **示例：**
 
@@ -619,7 +619,7 @@ off(type: 'vendorDefined', callback?: (eventInfo: EventInfo) => void): void
 | 错误码ID         | 错误信息        |
 | --------------- | --------------- |
 | 401                |  The parameter check failed. Possibly because: 1.Mandatory parameters are left unspecified or too many parameters. 2.Incorrect parameter types. 3.Parameter verification failed.      |
-| 24700101                | All unknown errors                  |
+| 24700101                | All unknown errors.                  |
 
 **示例：**
 
@@ -655,7 +655,7 @@ on(type: 'expirationUpdate', callback: (eventInfo: EventInfo) => void): void
 | 错误码ID         | 错误信息        |
 | --------------- | --------------- |
 | 401                |  The parameter check failed. Possibly because: 1.Mandatory parameters are left unspecified or too many parameters. 2.Incorrect parameter types. 3.Parameter verification failed.        |
-| 24700101                | All unknown errors                  |
+| 24700101                | All unknown errors.                  |
 
 **示例：**
 
@@ -693,7 +693,7 @@ off(type: 'expirationUpdate', callback?: (eventInfo: EventInfo) => void): void
 | 错误码ID         | 错误信息        |
 | --------------- | --------------- |
 | 401                |  The parameter check failed. Possibly because: 1.Mandatory parameters are left unspecified or too many parameters. 2.Incorrect parameter types. 3.Parameter verification failed.       |
-| 24700101                | All unknown errors                  |
+| 24700101                | All unknown errors.                  |
 
 **示例：**
 
@@ -729,7 +729,7 @@ on(type: 'keysChange', callback: (keyInfo: KeysInfo[], newKeyAvailable: boolean)
 | 错误码ID         | 错误信息        |
 | --------------- | --------------- |
 | 401                |  The parameter check failed. Possibly because: 1.Mandatory parameters are left unspecified or too many parameters. 2.Incorrect parameter types. 3.Parameter verification failed.             |
-| 24700101                | All unknown errors                  |
+| 24700101                | All unknown errors.                  |
 
 **示例：**
 
@@ -769,7 +769,7 @@ off(type: 'keysChange', callback?: (keyInfo: KeysInfo[], newKeyAvailable: boolea
 | 错误码ID         | 错误信息        |
 | --------------- | --------------- |
 | 401                |  The parameter check failed. Possibly because: 1.Mandatory parameters are left unspecified or too many parameters. 2.Incorrect parameter types. 3.Parameter verification failed.            |
-| 24700101                | All unknown errors                  |
+| 24700101                | All unknown errors.                  |
 
 **示例：**
 
@@ -797,8 +797,8 @@ destroy(): void
 
 | 错误码ID         | 错误信息        |
 | --------------- | --------------- |
-| 24700101                | All unknown errors                  |
-| 24700201                | Fatal service error, for example, service died                  |
+| 24700101                | All unknown errors.                  |
+| 24700201                | Fatal service error, for example, service died.                  |
 
 **示例：**
 
