@@ -13,11 +13,11 @@
 
 ## 通知订阅原理
 
-通知业务流程由通知子系统、通知发送端、通知订阅端组成。一条通知从通知发送端产生，通过[IPC通信](../ipc/ipc-rpc-overview.md)发送到通知子系统，再由通知子系统分发给通知订阅端。
+通知业务流程由通知子系统、通知发送端、[通知订阅](notification-glossary.md#notification-subscription通知订阅)端组成。一条通知从通知发送端产生，通过[IPC通信](../ipc/ipc-rpc-overview.md)发送到通知子系统，再由通知子系统分发给通知订阅端。
 
 * 通知发送端：可以是三方应用或系统应用。开发者重点关注。
 
-* 通知订阅端：只能为系统应用，比如通知中心。通知中心默认会订阅手机上所有应用对当前用户的通知。开发者无需关注。
+* 通知订阅端：只能为系统应用，比如[通知中心](notification-glossary.md#notification-center通知中心)。通知中心默认会订阅手机上所有应用对当前用户的通知。开发者无需关注。
 
 **图1** 通知业务流程  
 
@@ -26,7 +26,7 @@
 
 ## 接口说明
 
-通知订阅主要接口如下。详细接口介绍请参见[@ohos.notificationSubscribe (NotificationSubscribe模块)(系统接口)](../reference/apis-notification-kit/js-apis-notificationSubscribe-sys.md)。
+[通知订阅](notification-glossary.md#notification-subscription通知订阅)主要接口如下。详细接口介绍请参见[@ohos.notificationSubscribe (NotificationSubscribe模块)(系统接口)](../reference/apis-notification-kit/js-apis-notificationSubscribe-sys.md)。
 
 **表1** 通知订阅接口介绍
 
@@ -43,7 +43,7 @@
 | -------- | -------- |
 | onConsume?: (data:&nbsp;SubscribeCallbackData)&nbsp;=&gt;&nbsp;void  | 通知回调。               |
 | onCancel?: (data:&nbsp;SubscribeCallbackData)&nbsp;=&gt;&nbsp;void   | 通知取消回调。           |
-| onUpdate?: (data:&nbsp;NotificationSortingMap)&nbsp;=&gt;&nbsp;void  | 通知排序更新回调。       |
+| onUpdate?: (data:&nbsp;NotificationSortingMap)&nbsp;=&gt;&nbsp;void  | [通知排序](notification-glossary.md#notification-sorting通知排序)更新回调。       |
 | onConnect?: ()&nbsp;=&gt;&nbsp;void                                 | 订阅成功回调。           |
 | onDisconnect?: ()&nbsp;=&gt;&nbsp;void                              | 取消订阅回调。           |
 | onDestroy?: ()&nbsp;=&gt;&nbsp;void                                  | 与通知子系统断开回调。   |
@@ -54,7 +54,7 @@
 | onEnabledPriorityChanged?: (callbackData:&nbsp;EnabledPriorityNotificationCallbackData)&nbsp;=&gt;&nbsp;void                               | 通知优先级总开关状态变化回调。   |
 | onEnabledPriorityByBundleChanged?: (callbackData:&nbsp;EnabledPriorityNotificationByBundleCallbackData)&nbsp;=&gt;&nbsp;void                               | 应用通知优先级开关状态变化回调。   |
 | onSystemUpdate?: SystemUpdateCallback            | 系统属性值变化回调。   |
-| onEnabledSilentReminderChanged?: EnabledSilentReminderChangedCallback   | 应用通知静默提醒的使能状态变化回调。   |
+| onEnabledSilentReminderChanged?: EnabledSilentReminderChangedCallback   | 应用通知[静默提醒](notification-glossary.md#silent-reminder静默提醒)的使能状态变化回调。   |
 | onBadgeEnabledChanged?: BadgeEnabledChangedCallback   | 应用角标的使能状态变化回调。   |
 
 
@@ -62,7 +62,7 @@
 
 1. 申请`ohos.permission.NOTIFICATION_SYSTEM_SUBSCRIBER`权限，配置方式请参见[申请应用权限](../security/AccessToken/determine-application-mode.md#system_basic等级应用申请权限的方式)。
 
-2. 导入通知订阅模块。
+2. 导入[通知订阅](notification-glossary.md#notification-subscription通知订阅)模块。
    
    ```ts
    import { notificationSubscribe, notificationManager } from '@kit.NotificationKit';

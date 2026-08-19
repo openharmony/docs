@@ -23,7 +23,7 @@
 
 表示用户已完成引导并加载系统。
 
-在设备上指定用户已完成引导并加载系统，将会触发事件通知服务发布该系统公共事件。
+在设备上指定用户已完成引导并加载系统，将会触发事件通知服务发布该[系统公共事件](../../../basic-services/common-event/common-event-glossary.md#system-common-event系统公共事件)。
 
 **系统接口：** 此接口为系统接口。
 
@@ -156,7 +156,7 @@
 
 表示待机状态下解除资源使用限制的豁免名单出现变化，触发公共事件发布动作。
 
-待机状态下后台应用程序CPU和网络访问被限制，系统应用可以申请解除资源使用限制，将会触发公共事件服务发布该系统公共事件。
+待机状态下后台应用程序CPU和网络访问被限制，系统应用可以申请解除资源使用限制，将会触发[公共事件服务](../../../basic-services/common-event/common-event-glossary.md#common-event-service-ces公共事件服务)发布该[系统公共事件](../../../basic-services/common-event/common-event-glossary.md#system-common-event系统公共事件)。
 
 资源包括应用网络访问、Timer使用、WorkScheduler任务使用等。
 
@@ -207,7 +207,7 @@
 
 表示系统充电类型改变的公共事件的动作。
 
-当系统充电类型改变时，将会触发事件通知服务发布该系统公共事件。
+当系统充电类型改变时，将会触发事件通知服务发布该[系统公共事件](../../../basic-services/common-event/common-event-glossary.md#system-common-event系统公共事件)。
 
 **系统接口：** 此接口为系统接口。
 
@@ -237,7 +237,7 @@
 
 表示用户已添加到系统中的公共事件的动作。
 
-创建系统账号将会触发事件通知服务发布该系统公共事件，事件携带系统账号ID。
+创建系统账号将会触发事件通知服务发布该[系统公共事件](../../../basic-services/common-event/common-event-glossary.md#system-common-event系统公共事件)，事件携带系统账号ID。
 
 与这个公共事件相关的接口：createOsAccount、createOsAccountForDomain, 这些为系统API，具体参看[@ohos.account.osAccount](../js-apis-osAccount.md)。
 
@@ -331,7 +331,7 @@
 
 表示创建系统账号子身份。
 
-系统账号子身份创建成功时，会触发公共事件服务发布该事件，携带系统账号ID和子身份ID。
+系统账号子身份创建成功时，会触发[公共事件服务](../../../basic-services/common-event/common-event-glossary.md#common-event-service-ces公共事件服务)发布该事件，携带系统账号ID和子身份ID。
 
 **起始版本：** 26.0.0
 
@@ -437,7 +437,7 @@
 
 ## Core File Kit
 
-文件管理子系统面向应用发布如下系统公共事件，应用如需订阅系统公共事件，请参考公共事件[@ohos.commonEventManager](../js-apis-commonEventManager.md)。
+文件管理子系统面向应用发布如下[系统公共事件](../../../basic-services/common-event/common-event-glossary.md#system-common-event系统公共事件)，应用如需订阅系统公共事件，请参考公共事件[@ohos.commonEventManager](../js-apis-commonEventManager.md)。
 
 ### COMMON_EVENT_VOLUME_REMOVED
 
@@ -597,7 +597,7 @@
 
 提示短信接收完成。
 
-在设备接收到短信时，将会触发事件通知服务发布该系统公共事件。
+在设备接收到短信时，将会触发事件通知服务发布该[系统公共事件](../../../basic-services/common-event/common-event-glossary.md#system-common-event系统公共事件)。
 
 **系统接口：** 此接口为系统接口。
 
@@ -826,7 +826,7 @@
 
 （预留事件，暂未支持）提示STK命令。
 
-在发送STK命令时，将会触发事件通知服务发布该系统公共事件。
+在发送STK命令时，将会触发事件通知服务发布该[系统公共事件](../../../basic-services/common-event/common-event-glossary.md#system-common-event系统公共事件)。
 
 **系统接口：** 此接口为系统接口。
 

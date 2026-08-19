@@ -72,7 +72,7 @@ A third-party application cannot send system common events.
 
 **错误描述**
 
-第三方应用无法发送系统公共事件。
+第三方应用无法发送[系统公共事件](../../basic-services/common-event/common-event-glossary.md#system-common-event系统公共事件)。
 
 **可能原因**
 
@@ -145,7 +145,7 @@ Failed to initialize the common event service.
 
 **错误描述**
 
-公共事件服务端在初始化过程中发生错误。
+[公共事件服务](../../basic-services/common-event/common-event-glossary.md#common-event-service-ces公共事件服务)端在初始化过程中发生错误。
 
 **可能原因**
 

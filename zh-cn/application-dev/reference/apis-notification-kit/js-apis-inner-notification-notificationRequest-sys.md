@@ -6,7 +6,7 @@
 <!--Tester: @wanghong1997-->
 <!--Adviser: @fang-jinxu-->
 
-定义了通知请求的数据结构，用于描述一条通知的全部信息，包括通知内容、标识、展示样式、交互行为等。
+定义了[通知请求](../../notification/notification-glossary.md#notification-request通知请求)的数据结构，用于描述一条通知的全部信息，包括[通知内容](../../notification/notification-glossary.md#notification-content通知内容)、标识、展示样式、交互行为等。
 
 > **说明：**
 >
@@ -16,7 +16,7 @@
 
 ## NotificationRequest
 
-定义了通知请求的数据结构，用于描述一条通知的全部信息，包括通知内容、标识、展示样式、交互行为等。
+定义了[通知请求](../../notification/notification-glossary.md#notification-request通知请求)的数据结构，用于描述一条通知的全部信息，包括[通知内容](../../notification/notification-glossary.md#notification-content通知内容)、标识、展示样式、交互行为等。
 
 **系统能力**：SystemCapability.Notification.Notification
 
@@ -29,15 +29,15 @@
 | source<sup>8+</sup>            | number                                                   |   是  | 是  | 通知源。<br>**系统接口**：此接口为系统接口。预留能力，暂未支持。                                |
 | deviceId<sup>8+</sup>          | string                                                   |   是  | 是  | 通知源的deviceId。<br>**系统接口**：此接口为系统接口。预留能力，暂未支持。                       |
 | representativeBundle<sup>12+</sup> | [BundleOption](js-apis-inner-notification-notificationCommonDef.md#bundleoption) | 否 | 是 | 被代理的包信息。默认为空。<br>**系统接口**：此接口为系统接口。 |
-| notificationControlFlags<sup>12+</sup>       | number                                                   |   否  | 是  | 通知提醒方式管控。默认值为0。<br>可以通过此接口减少当前通知的提醒方式。与[NotificationControlFlagStatus](js-apis-notificationManager-sys.md#notificationcontrolflagstatus12)的枚举进行按位或运算得到该参数。<br>**系统接口**：此接口为系统接口。            |
-| unifiedGroupInfo<sup>12+</sup>       | [UnifiedGroupInfo](#unifiedgroupinfo12) |   否  | 是  |消息智能聚合信息字段。默认为空。 <br>**系统接口**：此接口为系统接口。|
+| notificationControlFlags<sup>12+</sup>       | number                                                   |   否  | 是  | [通知提醒方式](../../notification/notification-glossary.md#notification-reminder-mode通知提醒方式)管控。默认值为0。<br>可以通过此接口减少当前通知的提醒方式。与[NotificationControlFlagStatus](js-apis-notificationManager-sys.md#notificationcontrolflagstatus12)的枚举进行按位或运算得到该参数。<br>**系统接口**：此接口为系统接口。            |
+| unifiedGroupInfo<sup>12+</sup>       | [UnifiedGroupInfo](#unifiedgroupinfo12) |   否  | 是  |消息[智能聚合](../../notification/notification-glossary.md#notification-smart-aggregation智能聚合)信息字段。默认为空。 <br>**系统接口**：此接口为系统接口。|
 | creatorInstanceKey<sup>(deprecated)</sup>      | number |   是  | 是  | 创建者实例键值。<br>从API version 12开始支持，从API version 15开始废弃，建议使用appInstanceKey替代。<br>**系统接口**：此接口为系统接口。|
 | agentBundle<sup>12+</sup>       | [BundleOption](js-apis-inner-notification-notificationCommonDef.md#bundleoption) |   是  | 是  | 创建通知的代理包信息。默认为空。 <br>**系统接口**：此接口为系统接口。|
 | appInstanceKey<sup>15+</sup>       | string |   是  | 是  | 应用实例键值。默认为空。 <br>**系统接口**：此接口为系统接口。|
-| notDistributed<sup>18+</sup> | boolean | 否 | 是 | 通知是否不进行全场景跨设备协同显示，默认为false。<br/>**说明**:<br/>该字段与forceDistributed字段互斥，当两者同时为true时，仅notDistributed字段生效。<br/>-&nbsp;设置为true时：通知仅在本设备上显示。<br/>-&nbsp;设置为false时：通知将在所有协同设备上显示。<br>**系统接口**: 此接口为系统接口。 |
+| notDistributed<sup>18+</sup> | boolean | 否 | 是 | 通知是否不进行全场景[跨设备协同](../../notification/notification-glossary.md#cross-device-collaboration跨设备协同)显示，默认为false。<br/>**说明**:<br/>该字段与forceDistributed字段互斥，当两者同时为true时，仅notDistributed字段生效。<br/>-&nbsp;设置为true时：通知仅在本设备上显示。<br/>-&nbsp;设置为false时：通知将在所有协同设备上显示。<br>**系统接口**: 此接口为系统接口。 |
 | forceDistributed<sup>18+</sup> | boolean | 否 | 是 | 通知是否强制进行全场景跨设备协同显示，默认为false。<br/>**说明**:<br/>仅当应用在跨设备协同管控名单中且notDistributed为false时，该字段才会生效。通过读取notification_config.json文件（文件配置路径见：[notification_config_parse.h](https://gitcode.com/openharmony/notification_distributed_notification_service/blob/master/services/ans/include/notification_config_parse.h) 中的NOTIFICATION_CONFIG_FILE属性）中的collaborationFilter字段，查看是否包含应用的UID或包名。如果包含，说明是在应用跨设备协同管控名单中。<br>-&nbsp;设置为true时：通知将在所有协同设备上显示。<br/>-&nbsp;设置为false时：通知将按照协同管控名单显示。<br>**系统接口**: 此接口为系统接口。 |
 | extendInfo<sup>20+</sup> | Record<string, Object> | 否 | 是 | 系统应用发布通知时的自定义扩展参数。默认为空。<br>**系统接口**: 此接口为系统接口。 |
-| groupInfo | [GroupInfo](#groupinfo) | 否 | 是 | 组通知定制信息。默认为空。<br>**模型约束**: 此接口仅可在Stage模型下使用。<br>**起始版本**：26.0.0<br>**系统接口**: 此接口为系统接口。 |
+| groupInfo | [GroupInfo](#groupinfo) | 否 | 是 | [组通知](../../notification/notification-glossary.md#group-notification组通知)定制信息。默认为空。<br>**模型约束**: 此接口仅可在Stage模型下使用。<br>**起始版本**：26.0.0<br>**系统接口**: 此接口为系统接口。 |
 
 ## DistributedOptions<sup>8+</sup>
 
@@ -60,7 +60,7 @@
 
 | 名称            | 类型                                   | 只读 | 可选 | 说明                               |
 | ----------------| ------------------------------------- | ---- | ---- | ---------------------------------- |
-| bundle          | [BundleOption](js-apis-inner-notification-notificationCommonDef.md#bundleoption) | 否 | 否   | 实况通知的包信息。|
+| bundle          | [BundleOption](js-apis-inner-notification-notificationCommonDef.md#bundleoption) | 否 | 否   | [实况通知](../../notification/notification-glossary.md#live-view-notification实况通知)的包信息。|
 | notificationKey | [notificationSubscribe.NotificationKey](js-apis-notificationSubscribe-sys.md#notificationkey) | 否 | 否   | 通知信息，包含通知ID和通知标签。   |
 | extraInfoKeys   | Array\<string>                        | 否 |   是   | 筛选附加信息的键值列表。不填表示查询所有的附加信息。|
 
@@ -77,11 +77,11 @@
 | --------------| --------------------------------------------------------- | ---- | ---- | ----------------- |
 | contentType   | [notificationManager.ContentType](js-apis-notificationManager.md#contenttype) | 否 | 否   | 通知类型。         |
 | slotType      | [notificationManager.SlotType](js-apis-notificationManager.md#slottype)       | 否 | 否   | 渠道类型。         |
-| extraInfoKeys | Array\<string>                                            | 否 | 否 | 实况通知的附加信息。|
+| extraInfoKeys | Array\<string>                                            | 否 | 否 | [实况通知](../../notification/notification-glossary.md#live-view-notification实况通知)的附加信息。|
 
 ## UnifiedGroupInfo<sup>12+</sup>
 
-描述通知智能聚合信息字段。
+描述通知[智能聚合](../../notification/notification-glossary.md#notification-smart-aggregation智能聚合)信息字段。
 
 **系统能力**：SystemCapability.Notification.Notification
 
@@ -97,7 +97,7 @@
 
 ## MonitorEvent<sup>23+</sup>
 
-表示地理围栏的监控事件类型的枚举。
+表示[地理围栏](../../notification/notification-glossary.md#geofence地理围栏)的监控事件类型的枚举。
 
 **系统能力**：SystemCapability.Notification.Notification
 
@@ -110,7 +110,7 @@
 
 ## CoordinateSystemType<sup>23+</sup>
 
-表示地理围栏坐标系类型的枚举。
+表示[地理围栏](../../notification/notification-glossary.md#geofence地理围栏)坐标系类型的枚举。
 
 **系统能力**：SystemCapability.Notification.Notification
 
@@ -131,11 +131,11 @@
 
 | 名称         | 值  | 说明 |
 | ------------------ | ---------------- | ---- |
-| TRIGGER_TYPE_GEOFENCE | 1 | 地理围栏触发类型。 |
+| TRIGGER_TYPE_GEOFENCE | 1 | [地理围栏](../../notification/notification-glossary.md#geofence地理围栏)触发类型。 |
 
 ## Geofence<sup>23+</sup>
 
-地理围栏的配置信息。
+[地理围栏](../../notification/notification-glossary.md#geofence地理围栏)的配置信息。
 
 **系统能力**：SystemCapability.Notification.Notification
 
@@ -166,7 +166,7 @@
 
 ## GroupInfo
 
-组通知信息。
+[组通知](../../notification/notification-glossary.md#group-notification组通知)信息。
 
 **起始版本**：26.0.0
 

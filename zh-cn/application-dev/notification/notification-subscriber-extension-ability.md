@@ -6,7 +6,7 @@
 <!--Tester: @wanghong1997-->
 <!--Adviser: @fang-jinxu-->
 ## 功能简介
-此扩展能力的核心作用是让三方应用接收系统通知，应用可在此扩展能力中实现与穿戴设备之间的数据传输。应用发送通知给分布式通知服务后，该服务会把通知转发给三方应用实现的[NotificationSubscriberExtensionAbility](../reference/apis-notification-kit/js-apis-notificationSubscriberExtensionAbility.md)。若一定时间内无新通知发布，当前运行的[NotificationSubscriberExtensionAbility](../reference/apis-notification-kit/js-apis-notificationSubscriberExtensionAbility.md)会被系统自动销毁。
+此扩展能力的核心作用是让三方应用接收系统通知，应用可在此扩展能力中实现与穿戴设备之间的数据传输。应用发送通知给[分布式通知](notification-glossary.md#distributed-notification分布式通知)服务后，该服务会把通知转发给三方应用实现的[NotificationSubscriberExtensionAbility](../reference/apis-notification-kit/js-apis-notificationSubscriberExtensionAbility.md)。若一定时间内无新通知发布，当前运行的[NotificationSubscriberExtensionAbility](../reference/apis-notification-kit/js-apis-notificationSubscriberExtensionAbility.md)会被系统自动销毁。
 
 ## 前提条件
 - 用户已通过穿戴应用程序与穿戴设备配对。

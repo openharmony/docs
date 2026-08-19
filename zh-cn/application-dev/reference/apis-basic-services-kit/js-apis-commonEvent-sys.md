@@ -22,7 +22,7 @@ import commonEvent from '@ohos.commonEvent';
 
 ## Support
 
-系统公共事件是指由系统服务或系统应用发布的事件，订阅这些系统公共事件需要相应的权限。发布或订阅这些事件需要使用如下链接中的枚举定义。
+[系统公共事件](../../basic-services/common-event/common-event-glossary.md#system-common-event系统公共事件)是指由系统服务或系统应用发布的事件，订阅这些系统公共事件需要相应的权限。发布或订阅这些事件需要使用如下链接中的枚举定义。
 
 全部系统公共事件枚举定义请参见[系统公共事件定义](./common_event/commonEvent-definitions.md)。
 

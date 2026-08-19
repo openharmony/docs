@@ -311,7 +311,7 @@ subscribe(subscriber: NotificationSubscriber, info: NotificationSubscribeInfo, c
 
 | 参数名       | 类型                      | 必填 | 说明             |
 | ---------- | ------------------------- | ---- | ---------------- |
-| subscriber | [NotificationSubscriber](js-apis-inner-notification-notificationSubscriber-sys.md)    | 是   | 通知订阅对象。     |
+| subscriber | [NotificationSubscriber](js-apis-inner-notification-notificationSubscriber-sys.md)    | 是   | [通知订阅](../../notification/notification-glossary.md#notification-subscription通知订阅)对象。     |
 | info       | [NotificationSubscribeInfo](js-apis-inner-notification-notificationSubscribeInfo-sys.md#notificationsubscribeinfo) | 是   | 通知订阅信息。 |
 | callback   | AsyncCallback\<void\>     | 是   | 订阅动作回调函数。 |
 
@@ -357,7 +357,7 @@ subscribe(subscriber: NotificationSubscriber, callback: AsyncCallback\<void\>): 
 
 | 参数名       | 类型                   | 必填 | 说明             |
 | ---------- | ---------------------- | ---- | ---------------- |
-| subscriber | [NotificationSubscriber](js-apis-inner-notification-notificationSubscriber-sys.md) | 是   | 通知订阅对象。     |
+| subscriber | [NotificationSubscriber](js-apis-inner-notification-notificationSubscriber-sys.md) | 是   | [通知订阅](../../notification/notification-glossary.md#notification-subscription通知订阅)对象。     |
 | callback   | AsyncCallback\<void\>  | 是   | 订阅动作回调函数。 |
 
 **示例：**
@@ -398,7 +398,7 @@ subscribe(subscriber: NotificationSubscriber, info?: NotificationSubscribeInfo):
 
 | 参数名       | 类型                      | 必填 | 说明         |
 | ---------- | ------------------------- | ---- | ------------ |
-| subscriber | [NotificationSubscriber](js-apis-inner-notification-notificationSubscriber-sys.md)    | 是   | 通知订阅对象。 |
+| subscriber | [NotificationSubscriber](js-apis-inner-notification-notificationSubscriber-sys.md)    | 是   | [通知订阅](../../notification/notification-glossary.md#notification-subscription通知订阅)对象。 |
 | info       | [NotificationSubscribeInfo](js-apis-inner-notification-notificationSubscribeInfo-sys.md#notificationsubscribeinfo) | 否   | 通知订阅信息，默认为空。   |
 
 **返回值：**
@@ -442,7 +442,7 @@ unsubscribe(subscriber: NotificationSubscriber, callback: AsyncCallback\<void\>)
 
 | 参数名       | 类型                   | 必填 | 说明                 |
 | ---------- | ---------------------- | ---- | -------------------- |
-| subscriber | [NotificationSubscriber](js-apis-inner-notification-notificationSubscriber-sys.md) | 是   | 通知订阅对象。         |
+| subscriber | [NotificationSubscriber](js-apis-inner-notification-notificationSubscriber-sys.md) | 是   | [通知订阅](../../notification/notification-glossary.md#notification-subscription通知订阅)对象。         |
 | callback   | AsyncCallback\<void\>  | 是   | 取消订阅动作回调函数。 |
 
 **示例：**
@@ -483,7 +483,7 @@ unsubscribe(subscriber: NotificationSubscriber): Promise\<void\>
 
 | 参数名       | 类型                   | 必填 | 说明         |
 | ---------- | ---------------------- | ---- | ------------ |
-| subscriber | [NotificationSubscriber](js-apis-inner-notification-notificationSubscriber-sys.md) | 是   | 通知订阅对象。 |
+| subscriber | [NotificationSubscriber](js-apis-inner-notification-notificationSubscriber-sys.md) | 是   | [通知订阅](../../notification/notification-glossary.md#notification-subscription通知订阅)对象。 |
 
 **返回值：**
 
@@ -1993,7 +1993,7 @@ Notification.supportDoNotDisturbMode().then((data: boolean) => {
 
 enableDistributed(enable: boolean, callback: AsyncCallback\<void\>): void
 
-设置设备是否支持分布式通知（Callback形式）。
+设置设备是否支持[分布式通知](../../notification/notification-glossary.md#distributed-notification分布式通知)（Callback形式）。
 
 **系统能力**：SystemCapability.Notification.Notification
 
@@ -2030,7 +2030,7 @@ Notification.enableDistributed(enable, enabledNotificationCallback);
 
 enableDistributed(enable: boolean): Promise\<void>
 
-设置设备是否支持分布式通知（Promise形式）。
+设置设备是否支持[分布式通知](../../notification/notification-glossary.md#distributed-notification分布式通知)（Promise形式）。
 
 **系统能力**：SystemCapability.Notification.Notification
 
@@ -2061,7 +2061,7 @@ Notification.enableDistributed(enable).then(() => {
 
 enableDistributedByBundle(bundle: BundleOption, enable: boolean, callback: AsyncCallback\<void>): void
 
-设置指定应用是否支持分布式通知（Callback形式）。
+设置指定应用是否支持[分布式通知](../../notification/notification-glossary.md#distributed-notification分布式通知)（Callback形式）。
 
 **系统能力**：SystemCapability.Notification.Notification
 
@@ -2103,7 +2103,7 @@ Notification.enableDistributedByBundle(bundle, enable, enableDistributedByBundle
 
 enableDistributedByBundle(bundle: BundleOption, enable: boolean): Promise\<void>
 
-设置指定应用是否支持分布式通知（Promise形式）。
+设置指定应用是否支持[分布式通知](../../notification/notification-glossary.md#distributed-notification分布式通知)（Promise形式）。
 
 **系统能力**：SystemCapability.Notification.Notification
 
@@ -2141,7 +2141,7 @@ Notification.enableDistributedByBundle(bundle, enable).then(() => {
 
 isDistributedEnabledByBundle(bundle: BundleOption, callback: AsyncCallback\<boolean>): void
 
-根据应用的包获取应用程序是否支持分布式通知（Callback形式）。
+根据应用的包获取应用程序是否支持[分布式通知](../../notification/notification-glossary.md#distributed-notification分布式通知)（Callback形式）。
 
 **系统能力**：SystemCapability.Notification.Notification
 
@@ -2180,7 +2180,7 @@ Notification.isDistributedEnabledByBundle(bundle, isDistributedEnabledByBundleCa
 
 isDistributedEnabledByBundle(bundle: BundleOption): Promise\<boolean>
 
-查询指定应用是否支持分布式通知（Promise形式）。
+查询指定应用是否支持[分布式通知](../../notification/notification-glossary.md#distributed-notification分布式通知)（Promise形式）。
 
 **系统能力**：SystemCapability.Notification.Notification
 
@@ -2233,7 +2233,7 @@ getDeviceRemindType(callback: AsyncCallback\<DeviceRemindType\>): void
 
 | 参数名   | 类型                               | 必填 | 说明                       |
 | -------- | --------------------------------- | ---- | -------------------------- |
-| callback | AsyncCallback\<[DeviceRemindType](#deviceremindtype8)\> | 是   | 获取通知提醒方式的回调函数。 |
+| callback | AsyncCallback\<[DeviceRemindType](#deviceremindtype8)\> | 是   | 获取[通知提醒方式](../../notification/notification-glossary.md#notification-reminder-mode通知提醒方式)的回调函数。 |
 
 **示例：**
 
@@ -2267,7 +2267,7 @@ getDeviceRemindType(): Promise\<DeviceRemindType\>
 
 | 类型               | 说明            |
 | ------------------ | --------------- |
-| Promise\<[DeviceRemindType](#deviceremindtype8)\> | Promise方式返回获取通知提醒方式的结果。 |
+| Promise\<[DeviceRemindType](#deviceremindtype8)\> | Promise方式返回获取[通知提醒方式](../../notification/notification-glossary.md#notification-reminder-mode通知提醒方式)的结果。 |
 
 **示例：**
 

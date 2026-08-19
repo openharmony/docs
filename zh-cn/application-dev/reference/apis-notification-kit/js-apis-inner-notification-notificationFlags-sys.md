@@ -16,7 +16,7 @@
 
 ## NotificationFlags
 
-描述通知标志位。
+描述[通知标志位](../../notification/notification-glossary.md#notification-flags通知标志位)。
 
 **系统能力**：SystemCapability.Notification.Notification
 

@@ -32,5 +32,6 @@
 - 通知订阅扩展能力<!--notification-subscriber-extension-->
   - [通知订阅扩展能力概述](notification-subscriber-extension-ability.md)
   - [通知订阅扩展能力开发步骤](notification-subscriber-extension-ability-development-steps.md)
+- [Notification Kit术语](notification-glossary.md)
 <!--RP1--><!--RP1End-->
 <!--RP2--><!--RP2End-->

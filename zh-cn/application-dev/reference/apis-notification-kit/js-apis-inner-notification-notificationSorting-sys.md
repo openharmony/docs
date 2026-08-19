@@ -23,5 +23,5 @@
 | 名称      | 类型              | 只读   | 可选 | 说明                     |
 |-----------| ---------------- | -------|----- |-------------------------|
 | slot        | [NotificationSlot](js-apis-inner-notification-notificationSlot.md) | 是 | 否 | 通道类型。                  |
-| ranking     | number                                                             | 是 | 否 | 通知级别，不设置则根据通知渠道类型有默认值。 |
+| ranking     | number                                                             | 是 | 否 | 通知级别，不设置则根据[通知渠道](../../notification/notification-glossary.md#notification-slot通知渠道)类型有默认值。 |
 | hashCode    | string                                                             | 是 | 否 | 通知唯一标识。                |

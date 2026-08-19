@@ -20,4 +20,5 @@
     - [订阅公共事件（C/C++）](native-common-event-subscription.md)
     - [取消订阅公共事件（C/C++）](native-common-event-unsubscription.md)
     - [发布公共事件（C/C++）](native-common-event-publish.md)
+    - [Common Event Service术语](common-event-glossary.md)
 - [使用Emitter进行线程间通信](itc-with-emitter.md)
