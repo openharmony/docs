@@ -34,7 +34,7 @@ Operation failed.
 
 根据实际错误原因的不同，系统会上报不同的错误信息，具体如下。
 
-### Operation failed
+### 操作失败
 
 **错误信息**
 
@@ -66,7 +66,7 @@ Operation failed.
    - 若系统内部异常，请关闭后重新开启Wi-Fi功能；若无效，请重启设备以恢复服务。
    - 若候选配置使用WEP加密类型，请改用系统支持的加密类型后重新添加。
 
-### Flight mode is enabled
+### 飞行模式已开启
 
 **错误信息**
 
@@ -85,7 +85,7 @@ Flight mode is enabled.
 1. 关闭设备的飞行模式，然后重新执行关闭及打开Wi-Fi开关的操作。
 2. 如果步骤1无效，请尝试重启设备。
 
-### Operation failed because the service is being closed
+### 因服务正在关闭导致操作失败
 
 **错误信息**
 
@@ -104,7 +104,7 @@ p2p或热点服务正在停止，Wi-Fi服务正在被关闭或重启过程中。
 1. 重新执行关闭及打开Wi-Fi开关的操作。
 2. 如果步骤1无效，请尝试重启设备。
 
-### Scanning service is not enabled
+### 扫描服务未启用
 
 **错误信息**
 
@@ -123,7 +123,7 @@ Scanning service is not enabled.
 1. 重新执行关闭及打开Wi-Fi开关的操作。
 2. 如果步骤1无效，请尝试重启设备。
 
-### AP service is not enabled
+### AP服务未启用
 
 **错误信息**
 
@@ -142,7 +142,7 @@ AP服务未开启导致功能异常。
 1. 重新执行关闭及打开Wi-Fi开关的操作。
 2. 如果步骤1无效，请尝试重启设备。
 
-### Configuration is invalid
+### 配置无效
 
 **错误信息**
 
@@ -161,7 +161,7 @@ Configuration is invalid.
 1. 检查传入的netId，确保其有效且对应已存在的候选网络配置。
 2. 修正参数后重新调用接口。
 
-### P2P MAC address not found
+### 未找到P2P MAC地址
 
 **错误信息**
 
@@ -180,7 +180,7 @@ P2P功能未启用或P2P未初始化。
 1. 重新执行关闭及打开Wi-Fi开关的操作。
 2. 如果步骤1无效，请尝试重启设备。
 
-### P2P MAC address format error
+### P2P MAC 地址格式错误
 
 **错误信息**
 
@@ -199,7 +199,7 @@ MAC地址为空。
 1. 检查传入的P2P MAC地址，确保地址不为空且格式正确。
 2. 修正参数后重新调用接口。
 
-### P2P internal service exception
+### P2P 内部服务异常
 
 **错误信息**
 
@@ -218,7 +218,7 @@ P2P服务异常，Wi-Fi P2P内部服务进程崩溃或无响应。
 1. 重新执行关闭及打开Wi-Fi开关的操作。
 2. 如果步骤1无效，请尝试重启设备。
 
-### P2P wrong parameter size
+### P2P参数大小错误
 
 **错误信息**
 
@@ -237,7 +237,7 @@ P2P参数大小错误导致功能异常。
 1. 检查传入的网络名称，确保SSID长度不超过系统允许的最大限制。
 2. 修正参数后重新调用接口。
 
-### moving freeze scanning control
+### 静止扫描管控
 
 **错误信息**
 

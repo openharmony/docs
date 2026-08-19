@@ -31,8 +31,8 @@
   - [@ohos.FusionConnectivity.PartnerAgentExtensionContext (设备状态通知能力上下文)](js-apis-fusionConnectivity-partnerAgentExtensionContext.md)
   - [@ohos.FusionConnectivity.PartnerAgentExtensionAbility (支持设备状态通知的ExtensionAbility组件)](js-apis-fusionConnectivity-partnerAgentExtensionAbility.md)
   - [@ohos.FusionConnectivity.ranging (融合测距模块)](js-apis-fusionConnectivity-ranging.md)
-  - [@ohos.nearlink.manager (星闪开关能力)](js-apis-nearlink-manager.md)
-  - [@ohos.nearlink.remoteDevice (对端设备的连接能力)](js-apis-nearlink-remote-device.md)
+  - [@ohos.nearlink.manager (星闪基础管理能力)](js-apis-nearlink-manager.md)
+  - [@ohos.nearlink.remoteDevice (星闪远端设备连接能力)](js-apis-nearlink-remote-device.md)
   - [@ohos.nearlink.advertising (星闪广播能力)](js-apis-nearlink-advertising.md)
   - [@ohos.nearlink.scan (星闪扫描能力)](js-apis-nearlink-scan.md)
   - [@ohos.nearlink.ssap (星闪SSAP连接能力)](js-apis-nearlink-ssap.md)
@@ -59,10 +59,10 @@
   - [@ohos.wifiManager (WLAN)（系统接口）](js-apis-wifiManager-sys.md)
   - [@ohos.FusionConnectivity.partnerAgent（设备状态通知模块）(系统接口)](js-apis-fusionConnectivity-partnerAgent-sys.md)
   - [@ohos.nearlink.manager (星闪开关能力)(系统接口)](js-apis-nearlink-manager-sys.md)
-  - [@ohos.nearlink.scan (星闪扫描能力)(系统接口)](js-apis-nearlink-scan-sys.md)
+  - [@ohos.nearlink.manager (星闪基础管理能力)(系统接口)](js-apis-nearlink-manager-sys.md)
   - [@ohos.nearlink.ssap (星闪SSAP连接能力)(系统接口)](js-apis-nearlink-ssap-sys.md)
   - [@ohos.nearlink.constant (星闪公共常量定义)(系统接口)](js-apis-nearlink-constant-sys.md)
-  - [@ohos.nearlink.remoteDevice (对端设备的连接能力)(系统接口)](js-apis-nearlink-remote-device-sys.md)
+  - [@ohos.nearlink.remoteDevice (星闪远端设备连接能力)(系统接口)](js-apis-nearlink-remote-device-sys.md)
   <!--DelEnd-->
   - tag<!--connectivity-nfc-tag-arkts-->
     - [nfctech (标准NFC-Tag Nfc 技术)](js-apis-nfctech.md)
@@ -80,7 +80,7 @@
   - [NFC错误码](errorcode-nfc.md)
   - [SE(secureElement)错误码](errorcode-se.md)
   - [融合短距服务子系统错误码](errorcode-fusionConnectivity.md)
-  - [NearLink错误码](errorcode-nearlink-service.md)
+  - [星闪错误码](errorcode-nearlink-service.md)
 - 已停止维护的接口<!--connectivity-arkts-dep-->
   - [@ohos.bluetooth (蓝牙)](js-apis-bluetooth.md)
   - [@ohos.bluetoothManager (蓝牙)](js-apis-bluetoothManager.md)
