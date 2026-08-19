@@ -1103,7 +1103,7 @@ reminderAgentManager.unsubscribeReminderState(reminderStateCallback).then(() => 
 
 ## ReminderRequestCalendar
 
-日历实例对象，用于设置提醒的时间。ReminderRequestCalendar继承自[ReminderRequest](#reminderrequest)
+日历实例对象，用于设置提醒的时间。ReminderRequestCalendar继承自[ReminderRequest](#reminderrequest)。
 
 **系统能力：** SystemCapability.Notification.ReminderAgent
 
@@ -1118,7 +1118,7 @@ reminderAgentManager.unsubscribeReminderState(reminderStateCallback).then(() => 
 
 ## ReminderRequestAlarm
 
-闹钟实例对象，用于设置提醒的时间。ReminderRequestAlarm继承自[ReminderRequest](#reminderrequest)
+闹钟实例对象，用于设置提醒的时间。ReminderRequestAlarm继承自[ReminderRequest](#reminderrequest)。
 
 **系统能力：** SystemCapability.Notification.ReminderAgent
 
@@ -1131,7 +1131,7 @@ reminderAgentManager.unsubscribeReminderState(reminderStateCallback).then(() => 
 
 ## ReminderRequestTimer
 
-倒计时实例对象，用于设置提醒的时间。ReminderRequestTimer继承自[ReminderRequest](#reminderrequest)
+倒计时实例对象，用于设置提醒的时间。ReminderRequestTimer继承自[ReminderRequest](#reminderrequest)。
 
 **系统能力：** SystemCapability.Notification.ReminderAgent
 
