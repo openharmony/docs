@@ -1,7 +1,7 @@
 # @ohos.resourceschedule.systemload (性能功耗热融合档位)
 <!--Kit: Basic Services Kit-->
 <!--Subsystem: Resourceschedule-->
-<!--Owner: @baiheng-->
+<!--Owner: @xupeng_-->
 <!--Designer: @zhouben25-->
 <!--Tester: @leetestnady-->
 <!--Adviser: @fang-jinxu-->
