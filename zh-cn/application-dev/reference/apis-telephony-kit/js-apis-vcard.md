@@ -351,7 +351,7 @@ VCard版本和编码信息。
 
 | 名称         | 类型   | 只读| 可选|    说明    |
 | ------------ | ------ | ----|----| ---------- |
-| cardType     | [VCardType](#vcardtype) |  否| 是 |VCard版本类型 （默认值为VERSION_21）。     |
+| cardType     | [VCardType](#vcardtype) |  否| 是 |VCard版本类型（默认值为VERSION_21）。     |
 | charset       | string |  否|是  | VCard编码类型（默认值为'UTF-8'）。     |
 
 ## VCardType
