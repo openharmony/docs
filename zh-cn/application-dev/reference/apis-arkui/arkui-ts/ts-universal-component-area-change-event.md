@@ -181,3 +181,5 @@ struct AreaExample {
   }
 }
 ```
+
+![areaCustomIntervalChangeOptions](figures/areaCustomIntervalChangeOptions.gif)
