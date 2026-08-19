@@ -2,7 +2,7 @@
 
 <!--Kit: AVCodec Kit-->
 <!--Subsystem: Multimedia-->
-<!--Owner: @zhanghongran-->
+<!--Owner: @rchdlee-->
 <!--Designer: @dpy2650--->
 <!--Tester: @cyakee-->
 <!--Adviser: @w_Machine_cc-->
@@ -322,6 +322,6 @@ Configure 配置参数：
 
 - [视频编码开发指导](video-encoding.md) —— Surface模式/Buffer模式完整流程。
 - [视频解码开发指导](video-decoding.md) —— Surface模式/Buffer模式完整流程。
-- [Codec Base API参考](../../reference/apis-avcodec-kit/capi-native-avcodec-base-h.md) —— 所有键名定义。
-- [AVCodec Kit API Reference - VideoEncoder](../../reference/apis-avcodec-kit/capi-native-avcodec-videoencoder-h.md) —— 编码器接口。
-- [AVCodec Kit API Reference - VideoDecoder](../../reference/apis-avcodec-kit/capi-native-avcodec-videodecoder-h.md) —— 解码器接口。
+- [native_avcodec_base.h](../../reference/apis-avcodec-kit/capi-native-avcodec-base-h.md) —— 所有键名定义。
+- [native_avcodec_videoencoder.h](../../reference/apis-avcodec-kit/capi-native-avcodec-videoencoder-h.md) —— 编码器接口。
+- [native_avcodec_videodecoder.h](../../reference/apis-avcodec-kit/capi-native-avcodec-videodecoder-h.md) —— 解码器接口。

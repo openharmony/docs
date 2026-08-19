@@ -284,7 +284,7 @@ Surface模式下，相机将视频帧输出到OH_NativeImage的Surface上，开�
 
 详细开发步骤如下：
 
-1. 在CMakeList.txt中链接动态库。
+1. 在CMakeLists.txt中链接动态库。
 
    同[方式一：通过nativebuffer元数据配置（推荐）](#方式一通过nativebuffer元数据配置推荐)步骤1。
 
@@ -408,7 +408,7 @@ Buffer模式下，视频帧通过`OH_VideoEncoder_PushInputBuffer`送入编码�
 
 详细开发步骤如下：
 
-1. 在CMakeList.txt中链接动态库。
+1. 在CMakeLists.txt中链接动态库。
 
    同[方式一：通过nativebuffer元数据配置（推荐）](#方式一通过nativebuffer元数据配置推荐)步骤1。
 
