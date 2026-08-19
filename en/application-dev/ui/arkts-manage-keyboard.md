@@ -26,7 +26,7 @@ The system distinguishes between system soft keyboards and custom keyboards. The
 
 The following demonstrates soft keyboard behavior during input field tapping, double-tapping, or long-pressing.
 
-<!--Del-->![click]  (figures/click.gif)<!--DelEnd-->
+<!--Del-->  <!--DelEnd-->
 
 ### Programmatic Focus
 
@@ -57,7 +57,7 @@ struct demo {
 }
 ```
 
-<!--Del-->![getFocus]  (figures/getFocus.gif)<!--DelEnd-->
+<!--Del-->  <!--DelEnd-->
 
 ### External Keyboard Navigation
 
@@ -85,7 +85,7 @@ struct Index {
   }
 }
 ```
-<!--Del-->![keyboard_textInput_tab]  (figures/keyboard_textInput_tab.gif)<!--DelEnd-->
+<!--Del-->   <!--DelEnd-->
 
 ## Hiding the Soft Keyboard
 
@@ -161,7 +161,7 @@ struct Index {
 }
 ```
 
-<!--Del-->![keyboard_textInput_drag_1]  (figures/keyboard_textInput_drag_1.gif)<!--DelEnd-->
+<!--Del-->  <!--DelEnd-->
 
 ### Swipe Gestures
 
@@ -262,7 +262,7 @@ Create the **route_map.json** file in the **resources/base/profile** directory o
 }
 ```
 
-<!--Del-->![keyboard_textInput_navigation_page_change]  (figures/keyboard_textInput_navigation_page_change.gif)<!--DelEnd-->
+<!--Del-->  <!--DelEnd-->
 
 ### TextInputController-Based Dismissal
 
@@ -294,7 +294,7 @@ struct textInputControllerCloseKeyboard {
   }
 }
 ```
-<!--Del-->![stopEditing]  (figures/stopEditing.gif)<!--DelEnd-->
+<!--Del-->  <!--DelEnd-->
 
 ### Focus Transfer
 
@@ -331,7 +331,7 @@ struct requestFocusCloseKeyBoard {
 }
 ```
 
-<!--Del-->![changeFocus]  (figures/changeFocus.gif)<!--DelEnd-->
+<!--Del-->  <!--DelEnd-->
 
 The following example demonstrates automatic soft keyboard dismissal when scrolling begins. As the scroll container [List](../reference/apis-arkui/arkui-ts/ts-container-list.md) starts scrolling, the [clearFocus](../reference/apis-arkui/arkts-apis-uicontext-focuscontroller.md#clearfocus12) API clears current focus, transferring it to the page's root container node. Since root containers do not require soft keyboard input, the keyboard automatically hides.
 
@@ -368,7 +368,7 @@ struct Index {
 }
 ```
 
-<!--Del-->![keyboard_textInput_onScrollStart]  (figures/keyboard_textInput_onScrollStart.gif)<!--DelEnd-->
+<!--Del-->  <!--DelEnd-->
 
 ## FAQs
 
@@ -458,4 +458,4 @@ struct demo {
 }
 ```
 
-<!--Del-->![keyboard_textInput_onSubmit]  (figures/keyboard_textInput_onSubmit.gif)<!--DelEnd-->
+<!--Del-->  <!--DelEnd-->

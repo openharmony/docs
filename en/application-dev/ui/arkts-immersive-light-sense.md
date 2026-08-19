@@ -209,7 +209,7 @@ The following uses the **Column** component as an example to describe how to ena
    }
    ```
 
-   ![material-column](../reference/apis-arkui/figures/material-column.PNG)
+   ![](../reference/apis-arkui/figures/material-column.PNG)
 
    **Column interactive deformation example**
 
