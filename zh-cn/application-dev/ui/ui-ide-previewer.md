@@ -49,7 +49,7 @@ ArkTS应用/原子化服务均支持页面预览。页面预览通过在工程�
 
 ![ide_previewer_001](figures/ide_previewer_001.gif)
 
-### inspector双向预览
+### Inspector双向预览
 
 支持ets文件与预览器的双向预览。使用时，点击预览器界面图标![ide_previewer_006](figures/ide_previewer_006.png)开启双向预览功能。
 
@@ -65,7 +65,7 @@ ArkTS应用/原子化服务均支持页面预览。页面预览通过在工程�
 
 效果如图3所示：
 
-**图3** inspector双向预览演示图
+**图3** Inspector双向预览演示图
 
 ![ide_previewer_002](figures/ide_previewer_002.gif)
 

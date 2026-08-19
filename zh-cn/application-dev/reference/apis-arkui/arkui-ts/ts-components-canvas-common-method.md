@@ -1761,7 +1761,7 @@ scale(x: number, y: number): void
 
 transform(a: number, b: number, c: number, d: number, e: number, f: number): void
 
-transform方法对应一个变换矩阵，想对一个图形进行变化的时候，只要设置此变换矩阵相应的参数，对图形的各个定点的坐标分别乘以这个矩阵，就能得到新的定点的坐标。矩阵变换效果可叠加。
+transform方法对应一个变换矩阵，当需要对一个图形进行变换的时候，只要设置此变换矩阵相应的参数，对图形的各个顶点的坐标分别乘以这个矩阵，就能得到新的顶点的坐标。矩阵变换效果可叠加。
 
 **卡片能力：** 从API版本9开始，该接口支持在ArkTS卡片中使用。
 

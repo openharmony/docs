@@ -41,7 +41,7 @@ GridContainer(value?: GridContainerOptions)
 
 ## GridContainerOptions<sup>(deprecated)</sup>对象说明
 
-栅格栅格布局容器配置参数对象，用于设置GridContainer组件的列数、设备宽度类型、列间距和两侧间距。
+栅格布局容器配置参数对象，用于设置GridContainer组件的列数、设备宽度类型、列间距和两侧间距。
 
 > **说明：**
 >
