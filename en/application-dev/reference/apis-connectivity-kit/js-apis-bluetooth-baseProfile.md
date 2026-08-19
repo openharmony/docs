@@ -3,9 +3,10 @@
 <!--Kit: Connectivity Kit-->
 <!--Subsystem: Communication-->
 <!--Owner: @enjoy_sunshine-->
-<!--Designer: @chengguohong; @tangjia15-->
+<!--Designer: @tangjia15-->
 <!--Tester: @wangfeng517-->
 <!--Adviser: @zhang_yixin13-->
+<!-- md-trans-meta sourceCommit=14ca614ebb030bf413b2d8393352ad7521a1d1b9 translatedAt=2026-08-19T11:50:14.403Z pushedAt=2026-08-19T12:00:33.913Z -->
 
 The **baseProfile** module provides the basic common methods for different Bluetooth technology protocols.
 
@@ -18,9 +19,10 @@ The **baseProfile** module provides the basic common methods for different Bluet
 ```js
 import { baseProfile } from '@kit.ConnectivityKit';
 ```
+
 ## BaseProfile
 
-**BaseProfile** class, which provides public capabilities such as obtaining the connection status and listening for connection status changes. For example, [profiles](../../connectivity/terminology.md#profile) such as [A2dpSourceProfile](js-apis-bluetooth-a2dp.md#a2dpsourceprofile) and [HandsFreeAudioGatewayProfile](js-apis-bluetooth-hfp.md#handsfreeaudiogatewayprofile) are inherited from this class.
+**BaseProfile** class, which provides public capabilities such as obtaining the connection status and listening for connection status changes. For example, [profiles](../../connectivity/bluetooth/terminology.md#profile) such as [A2dpSourceProfile](js-apis-bluetooth-a2dp.md#a2dpsourceprofile) and [HandsFreeAudioGatewayProfile](js-apis-bluetooth-hfp.md#handsfreeaudiogatewayprofile) are inherited from this class.
 
 ## ProfileConnectionState
 
@@ -29,6 +31,8 @@ type ProfileConnectionState = constant.ProfileConnectionState
 Represents the profile connection status between the local and peer Bluetooth devices.
 
 **System capability**: SystemCapability.Communication.Bluetooth.Core
+
+**Model restriction**: This API can be used only in the stage model.
 
 | Type                 | Description                 |
 | ------------------- | ------------------- |
@@ -40,17 +44,22 @@ Defines the parameters for the profile connection status change between the loca
 
 **System capability**: SystemCapability.Communication.Bluetooth.Core
 
+**Model restriction**: This API can be used only in the stage model.
+
 | Name    | Type                          | Read-Only| Optional| Description                           |
 | -------- | ----------------------------- | ---- | ---- | ------------------------------- |
 | deviceId | string                        | No  | No  | Address of the peer device, for example, XX:XX:XX:XX:XX:XX.  |
 | state    | [ProfileConnectionState](js-apis-bluetooth-constant.md#profileconnectionstate)        | No  | No  | Profile connection status.|
 | cause<sup>12+</sup>| [DisconnectCause](#disconnectcause12) | No| No| Reason of profile disconnection.|
+| role| [PanRole](#panrole) | No | Yes | [PAN](../../connectivity/bluetooth/terminology.md#pan) role of the current peer device.<br> **Since:** 26.0.0|
 
 ## DisconnectCause<sup>12+</sup>
 
 Enumerates the reasons of profile disconnection.
 
 **System capability**: SystemCapability.Communication.Bluetooth.Core
+
+**Model restriction**: This API can be used only in the stage model.
 
 | Name                | Value | Description    |
 | ------------------ | ---- | ------ |
@@ -61,15 +70,36 @@ Enumerates the reasons of profile disconnection.
 | TOO_MANY_CONNECTED_DEVICES | 4    | The number of connections exceeds the limit.|
 | CONNECT_FAIL_INTERNAL      | 5    | Internal error.|
 
+## PanRole
+
+Enumerates the PAN roles.
+
+**Since:** 26.0.0
+
+**System capability**: SystemCapability.Communication.Bluetooth.Core
+
+**Model restriction**: This API can be used only in the stage model.
+
+| Name                 | Value  | Description     |
+| ------------------ | ---- | ------ |
+| ROLE_PANNAP            | 0    |[NAP](../../connectivity/bluetooth/terminology.md#nap) role. |
+| ROLE_PANU      | 1    |[PANU](../../connectivity/bluetooth/terminology.md#panu) role. |
+
 ## BaseProfile.getConnectedDevices
 
 getConnectedDevices(): Array&lt;string&gt;
 
 Obtains the list of peer devices that have connected to the profile of the local device.
 
-**Required permissions**: ohos.permission.ACCESS_BLUETOOTH
+**Required permissions**:
+
+- API versions 26.0.0+: ohos.permission.ACCESS_BLUETOOTH or (ohos.permission.ACCESS_BLUETOOTH and ohos.permission.GET_BLUETOOTH_PEERS_MAC)
+
+- API versions 10 to 24: ohos.permission.ACCESS_BLUETOOTH
 
 **System capability**: SystemCapability.Communication.Bluetooth.Core
+
+**Model restriction**: This API can be used only in the stage model.
 
 **Return value**
 
@@ -115,6 +145,8 @@ Obtains the profile connection status between the local and peer devices.
 **Required permissions**: ohos.permission.ACCESS_BLUETOOTH
 
 **System capability**: SystemCapability.Communication.Bluetooth.Core
+
+**Model restriction**: This API can be used only in the stage model.
 
 **Parameters**
 
@@ -162,9 +194,15 @@ on(type: 'connectionStateChange', callback: Callback&lt;StateChangeParam&gt;): v
 
 Enables listening for profile connection status change events. This API uses an asynchronous callback to return the result.
 
-**Required permissions**: ohos.permission.ACCESS_BLUETOOTH
+**Required permissions**:
+
+- API versions 26.0.0+: ohos.permission.ACCESS_BLUETOOTH or (ohos.permission.ACCESS_BLUETOOTH and ohos.permission.GET_BLUETOOTH_PEERS_MAC)
+
+- API versions 10 to 24: ohos.permission.ACCESS_BLUETOOTH
 
 **System capability**: SystemCapability.Communication.Bluetooth.Core
+
+**Model restriction**: This API can be used only in the stage model.
 
 **Parameters**
 
@@ -180,7 +218,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | ID| Error Message|
 | -------- | ---------------------------- |
 |201 | Permission denied.                 |
-|401 | Invalid parameter. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed.                 |
+|401 | Invalid parameter. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed.<br>Applicable versions: 10 to 24                 |
 |801 | Capability not supported.          |
 
 **Example**
@@ -209,6 +247,8 @@ Disables listening for profile connection status change events.
 **Required permissions**: ohos.permission.ACCESS_BLUETOOTH
 
 **System capability**: SystemCapability.Communication.Bluetooth.Core
+
+**Model restriction**: This API can be used only in the stage model.
 
 **Parameters**
 

@@ -3,9 +3,10 @@
 <!--Kit: Connectivity Kit-->
 <!--Subsystem: Communication-->
 <!--Owner: @enjoy_sunshine-->
-<!--Designer: @chengguohong; @tangjia15-->
+<!--Designer: @tangjia15-->
 <!--Tester: @wangfeng517-->
 <!--Adviser: @zhang_yixin13-->
+<!-- md-trans-meta sourceCommit=14ca614ebb030bf413b2d8393352ad7521a1d1b9 translatedAt=2026-08-19T09:59:03.302Z pushedAt=2026-08-19T12:01:38.551Z -->
 
 The **baseProfile** module provides APIs for managing basic Bluetooth profiles.
 
@@ -14,13 +15,11 @@ The **baseProfile** module provides APIs for managing basic Bluetooth profiles.
 > The initial APIs of this module are supported since API version 10. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 > This topic describes only the system APIs provided by the module. For details about its public APIs, see [@ohos.bluetooth.baseProfile (Bluetooth baseProfile Module)](js-apis-bluetooth-baseProfile.md).
 
-
 ## Modules to Import
 
 ```js
 import { baseProfile } from '@kit.ConnectivityKit';
 ```
-
 
 ## ConnectionStrategy
 
@@ -35,8 +34,6 @@ Enumerates the profile connection strategies.
 | CONNECTION_STRATEGY_UNSUPPORTED   | 0 | Default connection strategy to use when the device is not paired.<br>This is a system API.|
 | CONNECTION_STRATEGY_ALLOWED  | 1 |  Connection strategy to use when the device is allowed to accept or initiate pairing.<br>This is a system API.|
 | CONNECTION_STRATEGY_FORBIDDEN  | 2 | Connection strategy to use when the device is not allowed to accept or initiate pairing.<br>This is a system API. |
-
-
 
 ## baseProfile.setConnectionStrategy
 
