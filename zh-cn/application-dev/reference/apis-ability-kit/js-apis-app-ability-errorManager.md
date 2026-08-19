@@ -868,7 +868,9 @@ setDefaultFreezeObserver(defaultObserver?: FreezeObserver) : FreezeObserver
 
 > **说明：**
 > 
-> 该接口可能返回空指针，开发者在第一次注册该接口时，上一次注册的处理器为空，使用返回值前必须进行判空处理，避免空指针解引用导致应用崩溃。
+> 该接口以下场景会返回空指针，使用返回值前必须进行判空处理，避免空指针解引用导致应用崩溃：
+> 1. 开发者注册的处理器为空时。
+> 2. 首次注册时，上一次注册的处理器为空。
 > 
 > 该接口请勿与[on('freeze')](#errormanageronfreeze18)或[off('freeze')](#errormanagerofffreeze18)接口混用。
 
