@@ -76,7 +76,7 @@
 | CALL_STATE_IDLE             | 0    | 空闲状态。   |
 | CALL_STATE_INCOMING         | 1    | 来电。     |
 | CALL_STATE_ACTIVE           | 2    | 接通。     |
-| CALL_STATE_DIALING          | 3    | 响铃。     |
+| CALL_STATE_DIALING          | 3    | 拨号中。     |
 | CALL_STATE_WAITING          | 4    | 等待接通。  |
 | CALL_STATE_HOLDING          | 5    | 保持。     |
 | CALL_STATE_DISCONNECTING    | 6    | 挂断。     |
@@ -89,7 +89,7 @@
 
 | 名称                        | 值   | 说明           |
 | --------------------------  | ---- | ------------ |
-| TAG_AUDIO_VIVID             | 1    | AUDIO VIVID  |
+| TAG_AUDIO_VIVID             | 1    | 标识当前媒体资源的AUDIO VIVID属性。  |
 
 ## DecoderType<sup>19+</sup>
 
@@ -132,7 +132,7 @@
 | 名称                        | 值   | 说明         |
 | --------------------------- | ---- | ----------- |
 | CATEGORY_LOCAL      | 0    | 本地播放，默认播放设备，声音从本机或者连接的蓝牙耳机设备出声。     |
-| CATEGORY_REMOTE      | 1    | 远端播放，远端播放设备，声音从其他设备发出声音或者画面。  |
+| CATEGORY_REMOTE      | 1    | 远端播放，声音从其他设备发出或画面在其他设备上显示。  |
 
 ## DeviceType<sup>10+</sup>
 
@@ -272,9 +272,9 @@
 
 | 名称                   | 值 | 说明                     |
 | ---------------------- | -- | ----------------------- |
-| SECONDS_10             | 10 | 时间为10秒。             |
-| SECONDS_15             | 15 | 时间为15秒。             |
-| SECONDS_30             | 30 | 时间为30秒。             |
+| SECONDS_10             | 10 | 时间间隔为10s。             |
+| SECONDS_15             | 15 | 时间间隔为15s。             |
+| SECONDS_30             | 30 | 时间间隔为30s。             |
 
 ## BackgroundPlayMode<sup>24+</sup>
 
