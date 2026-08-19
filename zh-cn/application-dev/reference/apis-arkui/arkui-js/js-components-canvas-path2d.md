@@ -15,7 +15,7 @@
 
 ## addPath
 
-addPath(path: Object): void
+addPath(path: Path2D): void
 
 将另一个路径添加到当前的路径对象中。
 
@@ -23,7 +23,7 @@ addPath(path: Object): void
 
 | 参数   | 类型     | 描述             |
 | ---- | ------ | -------------- |
-| path | Object | 需要添加到当前路径的路径对象。 |
+| path | Path2D | 需要添加到当前路径的路径对象。 |
 
 **示例：** 
 

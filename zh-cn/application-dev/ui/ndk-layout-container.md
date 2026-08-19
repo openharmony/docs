@@ -114,7 +114,7 @@ inline std::shared_ptr<ArkUIFlexNode> CreateFlexWrapExample()
 
 ## 使用flexBasis、flexGrow和flexShrink控制伸缩行为
 
-Flex不仅能够控制子组件排列方向，还能够控制主轴上的剩余空间分配。通过[flexBasis](../reference/apis-arkui/arkui-ts/ts-universal-attributes-flex-layout.md#flexbasis)、[flexGrow](../reference/apis-arkui/arkui-ts/ts-universal-attributes-flex-layout.md#flexgrow)和[flexShrink](../reference/apis-arkui/arkui-ts/ts-universal-attributes-flex-layout.md#flexshrink)三个属性，可以控制子组件的在弹性容器下伸缩行为。
+Flex不仅能够控制子组件排列方向，还能够控制主轴上的剩余空间分配。通过[flexBasis](../reference/apis-arkui/arkui-ts/ts-universal-attributes-flex-layout.md#flexbasis)、[flexGrow](../reference/apis-arkui/arkui-ts/ts-universal-attributes-flex-layout.md#flexgrow)和[flexShrink](../reference/apis-arkui/arkui-ts/ts-universal-attributes-flex-layout.md#flexshrink)三个属性，可以控制子组件在弹性容器下的伸缩行为。
 
 <!-- @[flex_grow_helper](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkUISample/NDKFlexSample/entry/src/main/cpp/FlexLayoutExample.h) -->
 
