@@ -58,7 +58,7 @@
   - [@ohos.nfc.cardEmulation (标准NFC-cardEmulation)（系统接口）](js-apis-cardEmulation-sys.md)
   - [@ohos.nfc.tag (标准NFC-Tag)（系统接口）](js-apis-nfcTag-sys.md)
   - [@ohos.wifiManager (WLAN)（系统接口）](js-apis-wifiManager-sys.md)
-  - [@ohos.nearlink.manager (星闪开关能力)(系统接口)](js-apis-nearlink-manager-sys.md)
+  - [@ohos.FusionConnectivity.partnerAgent（设备状态通知模块）(系统接口)](js-apis-fusionConnectivity-partnerAgent-sys.md)
   - [@ohos.nearlink.manager (星闪基础管理能力)(系统接口)](js-apis-nearlink-manager-sys.md)
   - [@ohos.nearlink.scan (星闪扫描能力)(系统接口)](js-apis-nearlink-scan-sys.md)
   - [@ohos.nearlink.ssap (星闪SSAP连接能力)(系统接口)](js-apis-nearlink-ssap-sys.md)
