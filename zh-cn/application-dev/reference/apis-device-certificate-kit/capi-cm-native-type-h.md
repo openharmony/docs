@@ -43,10 +43,10 @@
 
 | 名称 | 描述 |
 | -- | -- |
-| OH_CM_MAX_LEN_CERTIFICATE_CHAIN   24588 | 证书链最大长度，单位：字节。<br>**起始版本：** 22 |
-| OH_CM_MAX_LEN_URI              256 | URI最大长度，单位：字节。<br>**起始版本：** 22 |
-| OH_CM_MAX_LEN_CERT_ALIAS       129 | 证书别名的最大长度，单位：字节。<br>**起始版本：** 22 |
-| OH_CM_MAX_LEN_TYPE_NAME       1025 | 证书类型最大长度，单位：字节。<br>**起始版本：** 22 |
+| OH_CM_MAX_LEN_CERTIFICATE_CHAIN   24588 | 证书链最大长度，单位：Byte。<br>**起始版本：** 22 |
+| OH_CM_MAX_LEN_URI              256 | URI最大长度，单位：Byte。<br>**起始版本：** 22 |
+| OH_CM_MAX_LEN_CERT_ALIAS       129 | 证书别名的最大长度，单位：Byte。<br>**起始版本：** 22 |
+| OH_CM_MAX_LEN_TYPE_NAME       1025 | 证书类型最大长度，单位：Byte。<br>**起始版本：** 22 |
 
 ## 枚举类型说明
 
@@ -67,7 +67,7 @@ enum OH_CM_ErrorCode
 | OH_CM_SUCCESS = 0 | 成功。 |
 | OH_CM_HAS_NO_PERMISSION = 201 | 权限校验失败。 |
 | OH_CM_CAPABILITY_NOT_SUPPORTED = 801 | 设备不支持。 |
-| OH_CM_INNER_FAILURE = 17500001 | 内部错误。可能原因：1.IPC通讯失败；2.内存操作错误；3.文件操作错误。 |
+| OH_CM_INNER_FAILURE = 17500001 | 内部错误。可能原因：1.IPC通信失败；2.内存操作错误；3.文件操作错误。 |
 | OH_CM_NOT_FOUND = 17500002 | 证书不存在。 |
 | OH_CM_INVALID_CERT_FORMAT = 17500003 | 密钥库格式无效或密钥库密码不正确。 |
 | OH_CM_MAX_CERT_COUNT_REACHED = 17500004 | 证书或凭据数量达到上限。 |
@@ -91,7 +91,7 @@ enum OH_CM_CertificatePurpose
 
 | 枚举项 | 描述 |
 | -- | -- |
-| OH_CM_CERT_PURPOSE_DEFAULT = 0 | 默认用途，用于凭据签名用途。 |
+| OH_CM_CERT_PURPOSE_DEFAULT = 0 | 默认用途，用于凭据签名。 |
 | OH_CM_CERT_PURPOSE_ALL = 1 | 所有用途，用于查询凭据功能。 |
 | OH_CM_CERT_PURPOSE_SIGN = 2 | 签名用途。 |
 | OH_CM_CERT_PURPOSE_ENCRYPT = 3 | 加密用途。 |
