@@ -1,4 +1,4 @@
-# 游戏控制器术语
+# Game Controller Kit术语
 <!--Kit: Game Controller Kit-->
 <!--Subsystem: Game-->
 <!--Owner: @weixin_42784160-->
