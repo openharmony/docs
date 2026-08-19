@@ -1,4 +1,4 @@
-# ApplicationInfo
+# applicationInfo
 <!--Kit: Ability Kit-->
 <!--Subsystem: BundleManager-->
 <!--Owner: @wanghang904-->

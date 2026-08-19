@@ -995,7 +995,7 @@ function dealTask() {
 
 ## Priority
 
-Enumerates the priorities available for created tasks. The task priority applies during task execution. The worker thread priority is updated with the task priority. For details about the mappings, see [QoS Level](../../napi/qos-guidelines.md#qos-levels).
+Enumerates the priorities available for created tasks. The task priority applies during task execution. The worker thread priority is updated with the task priority. For details about the mappings, see [QoS Level](../../kernel-enhance/qos-guidelines.md#qos-levels).
 
 **System capability**: SystemCapability.Utils.Lang
 

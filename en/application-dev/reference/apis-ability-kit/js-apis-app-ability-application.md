@@ -1,4 +1,4 @@
-# @ohos.app.ability.application (App Utility Class)
+# @ohos.app.ability.application (Application Utility Class)
 
 <!--Kit: Ability Kit-->
 <!--Subsystem: Ability-->
@@ -6,7 +6,7 @@
 <!--Designer: @li-weifeng2024-->
 <!--Tester: @liangchengguang-->
 <!--Adviser: @HelloCrease-->
-<!-- md-trans-meta sourceCommit=3eb7d58aa53b6fa741fb6f554967ffe195cc4992 translatedAt=2026-08-18T15:25:59.309Z pushedAt=2026-08-19T01:26:56.538Z -->
+<!-- md-trans-meta sourceCommit=3eb7d58aa53b6fa741fb6f554967ffe195cc4992 translatedAt=2026-08-18T15:25:59.309Z pushedAt=2026-08-19T03:38:42.635Z -->
 
 You can use this module to manage and obtain the application [context](../../application-models/application-context-stage.md) and control the application process state.
 

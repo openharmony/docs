@@ -50,7 +50,7 @@ Provides options that can be set for the Worker instance to create.
 
 ## ThreadWorkerPriority<sup>18+</sup>
 
-Enumerates the priorities available for Worker threads. For details about the mappings between priorities and QoS levels, see [QoS Level](../../napi/qos-guidelines.md#qos-levels).
+Enumerates the priorities available for Worker threads. For details about the mappings between priorities and QoS levels, see [QoS Level](../../kernel-enhance/qos-guidelines.md#qos-levels).
 
 **System capability**: SystemCapability.Utils.Lang
 
