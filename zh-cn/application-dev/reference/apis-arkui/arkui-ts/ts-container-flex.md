@@ -54,7 +54,7 @@ Flex(value?: FlexOptions)
 | justifyContent | [FlexAlign](ts-appendix-enums.md#flexalign) | 否 | 是     | 所有子组件在Flex容器主轴上的对齐格式。设置后，子组件将按照指定的对齐方式在主轴方向上分布和排列。<br>默认值：FlexAlign.Start <br>异常值按默认值处理。<br>取值包括：<br>- Start：首端对齐。<br>- Center：居中对齐。<br>- End：尾端对齐。<br>- SpaceBetween：两端对齐，子组件之间间距相等。<br>- SpaceAround：子组件两侧间距相等。<br>- SpaceEvenly：子组件之间及两端间距完全相等。<br>**说明：** 当justifyContent设置为SpaceBetween、SpaceAround、SpaceEvenly时，space参数不生效。<br>**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。  <br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。                  |
 | alignItems     | [ItemAlign](ts-appendix-enums.md#itemalign) | 否 | 是     | 所有子组件在Flex容器交叉轴上的对齐格式。设置后，子组件将按照指定的对齐方式在交叉轴方向上定位。<br>默认值：ItemAlign.Start <br>异常值按默认值处理。<br>取值包括：<br>- Auto：使用父容器的对齐方式。<br>- Start：首部对齐。<br>- Center：居中对齐。<br>- End：尾部对齐。<br>- Stretch：拉伸填充。<br>- Baseline：基线对齐。<br>**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。  <br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。               |
 | alignContent   | [FlexAlign](ts-appendix-enums.md#flexalign) | 否 | 是     | 当交叉轴存在额外空间时，多行内容之间的对齐方式。仅在wrap为Wrap或WrapReverse下生效。<br>默认值：FlexAlign.Start <br>异常值按默认值处理。<br>取值包括：<br>- Start：首端对齐。<br>- Center：居中对齐。<br>- End：尾端对齐。<br>- SpaceBetween：两端对齐，行与行之间间距相等。<br>- SpaceAround：每行两侧间距相等。<br>- SpaceEvenly：行与行之间及两端间距完全相等。<br>**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。  |
-| space<sup>12+</sup>          | [FlexSpaceOptions<sup>12+</sup>](#flexspaceoptions12) | 否 | 是   | 设置Flex容器子组件在主轴和交叉轴上的间距，包含main和cross两个属性。当需要调整子组件之间的间距时传入此参数，不传入时子组件之间无间距。<br>默认值：{main: LengthMetrics.px(0), cross: LengthMetrics.px(0)} <br>非法值：按默认值处理。 <br>当space.main或space.cross的值为负数，或者justifyContent设置为FlexAlign.SpaceBetween、FlexAlign.SpaceAround、FlexAlign.SpaceEvenly时，space参数不生效。其中main属性在单行或多行布局时均生效，cross属性仅在wrap为Wrap或WrapReverse（多行布局）时生效。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。<br>**模型约束：** 此接口仅可在Stage模型下使用。|
+| space<sup>12+</sup>          | [FlexSpaceOptions<sup>12+</sup>](#flexspaceoptions12) | 否 | 是   | 设置Flex容器子组件在主轴和交叉轴上的间距，包含main和cross两个属性。当需要调整子组件之间的间距时传入此参数，不传入时子组件之间无间距。<br>默认值：{main: LengthMetrics.px(0), cross: LengthMetrics.px(0)} <br>非法值：按默认值处理。 <br>当space.main或space.cross的值为负数，或者justifyContent设置为FlexAlign.SpaceBetween、FlexAlign.SpaceAround、FlexAlign.SpaceEvenly时，space参数不生效。其中main属性在单行或多行布局时均生效，cross属性仅在wrap为Wrap或WrapReverse（多行布局）时生效。<br>space.main和space.cross均不支持设置百分比。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。<br>**模型约束：** 此接口仅可在Stage模型下使用。|
 
 ## FlexSpaceOptions<sup>12+</sup>
 
@@ -68,8 +68,8 @@ Flex(value?: FlexOptions)
 
 | 名称          | 类型        |  只读     | 可选      | 说明      |
 | ----------- | --------- | ----------- | --------- |----------- |
-| main   | [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12)  | 否 | 是 | Flex容器主轴上相邻子组件之间的间距。设置后，主轴方向相邻子组件之间将按指定间距进行分隔，在单行或多行布局时均生效。当space.main为负数，或者justifyContent设置为FlexAlign.SpaceBetween、FlexAlign.SpaceAround、FlexAlign.SpaceEvenly时，该参数不生效。<br> 默认值：LengthMetrics.px(0) |
-| cross  | [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12) | 否 | 是 | Flex容器交叉轴上相邻行之间的间距。设置后，交叉轴方向相邻行之间将按指定间距进行分隔，仅在多行布局（wrap为Wrap或WrapReverse）时生效。当space.cross为负数，或者justifyContent设置为FlexAlign.SpaceBetween、FlexAlign.SpaceAround、FlexAlign.SpaceEvenly时，该参数不生效。<br> 默认值：LengthMetrics.px(0) |
+| main   | [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12)  | 否 | 是 | Flex容器主轴上相邻子组件之间的间距。设置后，主轴方向相邻子组件之间将按指定间距进行分隔，在单行或多行布局时均生效。当space.main为负数或设置百分比，或者justifyContent设置为FlexAlign.SpaceBetween、FlexAlign.SpaceAround、FlexAlign.SpaceEvenly时，该参数不生效。<br> 默认值：LengthMetrics.px(0) |
+| cross  | [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12) | 否 | 是 | Flex容器交叉轴上相邻行之间的间距。设置后，交叉轴方向相邻行之间将按指定间距进行分隔，仅在多行布局（wrap为Wrap或WrapReverse）时生效。当space.cross为负数或设置百分比，或者justifyContent设置为FlexAlign.SpaceBetween、FlexAlign.SpaceAround、FlexAlign.SpaceEvenly时，该参数不生效。<br> 默认值：LengthMetrics.px(0) |
 
 ## 属性
 
