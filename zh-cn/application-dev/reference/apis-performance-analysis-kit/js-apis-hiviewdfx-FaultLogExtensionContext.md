@@ -1,7 +1,7 @@
 # @ohos.hiviewdfx.FaultLogExtensionContext (故障延迟通知上下文)
 <!--Kit: Performance Analysis Kit-->
 <!--Subsystem: HiviewDFX-->
-<!--Owner: @hello_harmony-->
+<!--Owner: @chenshi51-->
 <!--Designer: @StevenLai1994-->
 <!--Tester: @gcw_KuLfPSbe-->
 <!--Adviser: @jinqiuheng-->
