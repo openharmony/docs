@@ -7,7 +7,7 @@
 <!--Tester: @fredyuan912-->
 <!--Adviser: @Brilliantry_Rui-->
 
-Provides APIs for listening for UI component behavior changes.
+The UIObserver class provides non-intrusive monitoring capabilities for UI component behavior changes. Non-intrusive monitoring means that after registering a callback, you do not need to manually poll or actively query component states; when the target component state changes, the system automatically triggers the callback and returns the updated information. UIObserver supports monitoring various UI behaviors, including Navigation page state changes (NavDestination), scroll events, route page states, screen pixel density changes, draw and layout completion, click events, gesture trigger information, text changes, and component content switching. This class is suitable for scenarios such as page lifecycle monitoring, scroll event handling, and rendering performance optimization.
 
 > **NOTE**
 >
@@ -15,15 +15,17 @@ Provides APIs for listening for UI component behavior changes.
 >
 > - The initial APIs of this class are supported since API version 11.
 >
+> - The APIs of this module can be used only in the stage model.
+>
 > - In the following API examples, you must first use [getUIObserver()](arkts-apis-uicontext-uicontext.md#getuiobserver11) in **UIContext** to obtain a **UIObserver** instance, and then call the APIs using the obtained instance.
 >
-> - UIObserver can only listen for relevant information within the current process and does not support obtaining information in cross-process scenarios<!--Del--> such as [UIExtensionComponent](../../reference/apis-arkui/arkui-ts/ts-container-ui-extension-component-sys.md)<!--DelEnd-->.
+> - UIObserver can only monitor UI component state changes within the current process. It does not support retrieving information from cross-process scenarios<!--Del-->, such as [UIExtensionComponent](../../reference/apis-arkui/arkui-ts/ts-container-ui-extension-component-sys.md)<!--DelEnd-->.
 
 ## on('navDestinationUpdate')<sup>11+</sup>
 
 on(type: 'navDestinationUpdate', callback: Callback\<observer.NavDestinationInfo\>): void
 
-Listens for [NavDestination](arkui-ts/ts-basic-components-navdestination.md) component state changes.
+Listens for [NavDestination](arkui-ts/ts-basic-components-navdestination.md) component state changes. The listener is implemented by registering a callback function. When the state of the NavDestination component changes (for example, shown, hidden, destroyed, and more), the registered callback is automatically called with the state change information.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -48,8 +50,8 @@ Listens for [NavDestination](arkui-ts/ts-basic-components-navdestination.md) com
 struct PageOne {
   build() {
     NavDestination() {
-      Text("pageOne")
-    }.title("pageOne")
+      Text('pageOne')
+    }.title('pageOne')
   }
 }
 
@@ -59,7 +61,7 @@ struct Index {
   private stack: NavPathStack = new NavPathStack();
 
   @Builder
-  PageBuilder(name: string) {
+  pageBuilder(name: string) {
     PageOne()
   }
 
@@ -78,13 +80,13 @@ struct Index {
   build() {
     Column() {
       Navigation(this.stack) {
-        Button("push").onClick(() => {
+        Button('push').onClick(() => {
           // Push the PageOne NavDestination onto the navigation stack.
-          this.stack.pushPath({ name: "pageOne" });
+          this.stack.pushPath({ name: 'pageOne' });
         })
       }
-      .title("Navigation")
-      .navDestination(this.PageBuilder)
+      .title('Navigation')
+      .navDestination(this.pageBuilder)
     }
     .width('100%')
     .height('100%')
@@ -107,7 +109,7 @@ Unregisters the listener for [NavDestination](arkui-ts/ts-basic-components-navde
 | Name  | Type                                                 | Mandatory| Description                                                        |
 | -------- | ----------------------------------------------------- | ---- | ------------------------------------------------------------ |
 | type     | string                                                | Yes  | Event type. The value is fixed at **'navDestinationUpdate'**, which indicates [NavDestination](arkui-ts/ts-basic-components-navdestination.md) component state changes.|
-| callback | Callback\<observer.[NavDestinationInfo](js-apis-arkui-observer.md#navdestinationinfo)\> | No  | Target listener to unregister. If this parameter is not provided, all [Navigation](arkui-ts/ts-basic-components-navigation.md) listeners are unregistered.                |
+| callback | Callback\<observer.[NavDestinationInfo](js-apis-arkui-observer.md#navdestinationinfo)\> | No  | Listener callback to unregister. If this parameter is not passed, all listener callbacks for [NavDestination](arkui-ts/ts-basic-components-navdestination.md) component state changes are unreigstered.                |
 
 **Example**
 
@@ -143,8 +145,8 @@ Listens for [NavDestination](arkui-ts/ts-basic-components-navdestination.md) com
 struct PageOne {
   build() {
     NavDestination() {
-      Text("pageOne")
-    }.title("pageOne")
+      Text('pageOne')
+    }.title('pageOne')
   }
 }
 
@@ -154,33 +156,33 @@ struct Index {
   private stack: NavPathStack = new NavPathStack();
 
   @Builder
-  PageBuilder(name: string) {
+  pageBuilder(name: string) {
     PageOne()
   }
 
   aboutToAppear() {
     // Register a listener with the specified Navigation component ID.
-    this.getUIContext().getUIObserver().on('navDestinationUpdate', { navigationId: "testId" }, (info) => {
+    this.getUIContext().getUIObserver().on('navDestinationUpdate', { navigationId: 'testId' }, (info) => {
       console.info('NavDestination state update', JSON.stringify(info));
     });
   }
 
   aboutToDisappear() {
     // Unregister the listener. Omitting the callback parameter removes all registered listeners.
-    this.getUIContext().getUIObserver().off('navDestinationUpdate', { navigationId: "testId" });
+    this.getUIContext().getUIObserver().off('navDestinationUpdate', { navigationId: 'testId' });
   }
 
   build() {
     Column() {
       Navigation(this.stack) {
-        Button("push").onClick(() => {
+        Button('push').onClick(() => {
           // Push the PageOne NavDestination onto the navigation stack.
-          this.stack.pushPath({ name: "pageOne" });
+          this.stack.pushPath({ name: 'pageOne' });
         })
       }
-      .id("testId")
-      .title("Navigation")
-      .navDestination(this.PageBuilder)
+      .id('testId')
+      .title('Navigation')
+      .navDestination(this.pageBuilder)
     }
     .width('100%')
     .height('100%')
@@ -204,7 +206,7 @@ Unregisters the listener for [NavDestination](arkui-ts/ts-basic-components-navde
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | type     | string                                                       | Yes  | Event type. The value is fixed at **'navDestinationUpdate'**, which indicates [NavDestination](arkui-ts/ts-basic-components-navdestination.md) component state changes.|
 | options  | { navigationId: [ResourceStr](arkui-ts/ts-types.md#resourcestr) } | Yes  | ID of the target [Navigation](arkui-ts/ts-basic-components-navigation.md) component.                                  |
-| callback | Callback\<observer.[NavDestinationInfo](js-apis-arkui-observer.md#navdestinationinfo)\>        | No  |Target listener to unregister. If this parameter is not provided, all listeners for the target [Navigation](arkui-ts/ts-basic-components-navigation.md) are unregistered.                |
+| callback | Callback\<observer.[NavDestinationInfo](js-apis-arkui-observer.md#navdestinationinfo)\>        | No  |Listener callback to unregister. If no specific callback is specified, all listeners on the [Navigation](arkui-ts/ts-basic-components-navigation.md) listeners will be canceled.                |
 
 **Example**
 
@@ -230,7 +232,7 @@ Listens for [NavDestination](arkui-ts/ts-basic-components-navdestination.md) com
 
 **Example**
 
-This example demonstrates how to trigger [NavDestination](arkui-ts/ts-basic-components-navdestination.md) component state changes using the [Navigation](arkui-ts/ts-basic-components-navigation.md) component's uniqueId.
+This example demonstrates how to listen for [NavDestination](arkui-ts/ts-basic-components-navdestination.md) component state changes using the [Navigation](arkui-ts/ts-basic-components-navigation.md) component's **uniqueId**.
 
 ```ts
 // Index.ets
@@ -240,32 +242,32 @@ This example demonstrates how to trigger [NavDestination](arkui-ts/ts-basic-comp
 @Component
 struct PageOne {
   private text = '';
-  private uniqueid = -1;
+  private uniqueId = -1;
   aboutToAppear() {
     // Obtain the uniqueId of the target Navigation component.
     let navigationUniqueId = this.queryNavigationInfo()?.uniqueId;
     if (navigationUniqueId) {
-      this.uniqueid = navigationUniqueId.valueOf();
+      this.uniqueId = navigationUniqueId.valueOf();
     }
-    this.text = JSON.stringify(this.uniqueid);
+    this.text = JSON.stringify(this.uniqueId);
     // Register a listener with the specified Navigation component uniqueId.
-    this.getUIContext().getUIObserver().on('navDestinationUpdateByUniqueId', this.uniqueid, (info) => {
+    this.getUIContext().getUIObserver().on('navDestinationUpdateByUniqueId', this.uniqueId, (info) => {
       console.info('NavDestination state update navigationId', JSON.stringify(info));
     });
   }
   aboutToDisappear() {
     // Unregister the listener. Omitting the callback parameter removes all registered listeners.
-    this.getUIContext().getUIObserver().off('navDestinationUpdateByUniqueId', this.uniqueid);
+    this.getUIContext().getUIObserver().off('navDestinationUpdateByUniqueId', this.uniqueId);
   }
   build() {
     NavDestination() {
-      Text("pageOne")
+      Text('pageOne')
       Text('navigationUniqueId: ' + this.text)
         .width('80%')
         .height(50)
         .margin(50)
         .fontSize(20)
-    }.title("pageOne")
+    }.title('pageOne')
   }
 }
 
@@ -275,21 +277,21 @@ struct Index {
   private stack: NavPathStack = new NavPathStack();
 
   @Builder
-  PageBuilder(name: string) {
+  pageBuilder(name: string) {
     PageOne()
   }
 
   build() {
     Column() {
       Navigation(this.stack) {
-        Button("push").onClick(() => {
+        Button('push').onClick(() => {
           // Push the PageOne NavDestination onto the navigation stack.
-          this.stack.pushPath({ name: "pageOne" });
+          this.stack.pushPath({ name: 'pageOne' });
         })
       }
-      .id("testId")
-      .title("Navigation")
-      .navDestination(this.PageBuilder)
+      .id('testId')
+      .title('Navigation')
+      .navDestination(this.pageBuilder)
     }
     .width('100%')
     .height('100%')
@@ -301,7 +303,7 @@ struct Index {
 
 off(type: 'navDestinationUpdateByUniqueId', navigationUniqueId: number, callback?: Callback\<observer.NavDestinationInfo\>): void
 
-Unregisters the listener for [NavDestination](arkui-ts/ts-basic-components-navdestination.md) component changes via the [Navigation](arkui-ts/ts-basic-components-navigation.md) component uniqueId.
+Unregisters the listener for [NavDestination](arkui-ts/ts-basic-components-navdestination.md) component state changes based on the [Navigation](arkui-ts/ts-basic-components-navigation.md)'s **uniqueId**.
 
 **Atomic service API**: This API can be used in atomic services since API version 20.
 
@@ -368,7 +370,7 @@ struct Index {
                 .fontSize(16)
                 .textAlign(TextAlign.Center)
                 .margin({ top: 10 })
-            }, (item: string) => item)
+            }, (item: number) => item.toString())
           }.width('100%')
         }
         .id('testId')
@@ -426,7 +428,7 @@ Unregisters the listener for the start and end of scroll events of all scrollabl
 | Name  | Type                                                 | Mandatory| Description                                                        |
 | -------- | ----------------------------------------------------- | ---- | ------------------------------------------------------------ |
 | type     | string                                                | Yes  | Event type. The value **'scrollEvent'** indicates the start and end of a scroll event.     |
-| callback | Callback\<observer.[ScrollEventInfo](js-apis-arkui-observer.md#scrolleventinfo12)\> | No  | Callback used to return the information about the scroll event. If no parameter is provided, all scroll event listeners are unregistered.  |
+| callback | Callback\<observer.[ScrollEventInfo](js-apis-arkui-observer.md#scrolleventinfo12)\> | No| Scroll event listener callback to unregister. If you need to cancel only a specific callback, pass this parameter. If this parameter is not passed, all scroll event listener callbacks are unregistered.|
 
 **Example**
 
@@ -470,7 +472,7 @@ Unregisters the listener for the start and end of scroll events of a specific sc
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | type     | string                                                       | Yes  | Event type. The value **'scrollEvent'** indicates the start and end of a scroll event.|
 | options  | observer.[ObserverOptions](js-apis-arkui-observer.md#observeroptions12) | Yes  | Observer options, including the ID of the target scrollable component.                   |
-| callback | Callback\<observer.[ScrollEventInfo](js-apis-arkui-observer.md#scrolleventinfo12)\>        | No  | Callback used to return the information about the scroll event. If no parameter is provided, all scroll event listeners are unregistered.                |
+| callback | Callback\<observer.[ScrollEventInfo](js-apis-arkui-observer.md#scrolleventinfo12)\> | No| Scroll event listener callback to unregister. Pass this parameter when you only need to cancel a specific callback on the scroll component specified by **options**. If this parameter is not passed, all scroll event listener callbacks on the scroll component specified by **options** will be unregistered.|
 
 **Example**
 
@@ -480,7 +482,7 @@ See the example for [on('scrollEvent')](#onscrollevent12).
 
 on(type: 'routerPageUpdate', callback: Callback\<observer.RouterPageInfo\>): void
 
-Listens for page state changes in the [Router](arkts-apis-uicontext-router.md).
+Listens for page state changes in the [Router](arkts-apis-uicontext-router.md). Typical use cases include page routing lifecycle management, page navigation event tracking, and page switch state monitoring.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -504,7 +506,7 @@ Listens for page state changes in the [Router](arkts-apis-uicontext-router.md).
 struct PageOne {
   build() {
     Column() {
-      Text("pageOne")
+      Text('pageOne')
     }
   }
 }
@@ -533,9 +535,9 @@ struct Index {
 
   build() {
     Column() {
-      Button("pushUrl").onClick(() => {
+      Button('pushUrl').onClick(() => {
         // Navigate to PageOne.ets using router.
-        this.getUIContext().getRouter().pushUrl({ url: 'pages/PageOne' })
+        this.getUIContext().getRouter().pushUrl({ url: 'pages/PageOne' });
       })
     }
     .width('100%')
@@ -662,7 +664,7 @@ Listens for drawing instruction dispatch in each frame.
 | Name  | Type                                                        | Mandatory| Description                                                        |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | type     | string                                                       | Yes  | Event event. The value **'willDraw'** indicates whether drawing is about to occur.|
-| callback | Callback\<void\>        | Yes  | Callback used to return the result.                |
+| callback | Callback\<void\>        | Yes  | Callback function with no input parameters and no return value. It is used to receive notifications and execute custom processing when the drawing commands of each frame are issued.                |
 
 **Example**
 
@@ -676,7 +678,7 @@ Listens for drawing instruction dispatch in each frame.
 struct Index {
   // Define callbacks for event listeners.
   willDrawCallback = () => {
-    console.info("willDraw instruction dispatched.");
+    console.info('willDraw instruction dispatched.');
   }
 
   build() {
@@ -733,7 +735,7 @@ Listens for layout completion status in each frame.
 | Name  | Type                                                        | Mandatory| Description                                                        |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | type     | string                                                       | Yes  | Event type. The value **'didLayout'** indicates whether the layout has been completed.|
-| callback | Callback\<void\>        | Yes  | Callback used to return the result.                |
+| callback | Callback\<void\> | Yes| Callback function with no input parameters and no return value. It is used to receive notifications and execute custom processing when the layout of each frame is completed.|
 
 **Example**
 
@@ -747,7 +749,7 @@ Listens for layout completion status in each frame.
 struct Index {
   // Define callbacks for event listeners.
   didLayoutCallback = () => {
-    console.info("Layout completed.");
+    console.info('Layout completed.');
   }
 
   build() {
@@ -820,13 +822,13 @@ import { uiObserver } from '@kit.ArkUI';
 struct PageOne {
   build() {
     NavDestination() {
-      Text("pageOne")
-    }.title("pageOne")
+      Text('pageOne')
+    }.title('pageOne')
   }
 }
 
 // Define callbacks for event listeners.
-function callbackFunc(info: uiObserver.NavDestinationSwitchInfo) {
+const callbackFunc = (info: uiObserver.NavDestinationSwitchInfo) => {
   console.info(`testTag navDestinationSwitch from: ${JSON.stringify(info.from)} to: ${JSON.stringify(info.to)}`);
 }
 
@@ -836,7 +838,7 @@ struct Index {
   private stack: NavPathStack = new NavPathStack();
 
   @Builder
-  PageBuilder(name: string) {
+  pageBuilder(name: string) {
     PageOne()
   }
 
@@ -855,13 +857,13 @@ struct Index {
   build() {
     Column() {
       Navigation(this.stack) {
-        Button("push").onClick(() => {
+        Button('push').onClick(() => {
           // Push the PageOne NavDestination onto the navigation stack.
-          this.stack.pushPath({ name: "pageOne" });
+          this.stack.pushPath({ name: 'pageOne' });
         })
       }
       .title("Navigation")
-      .navDestination(this.PageBuilder)
+      .navDestination(this.pageBuilder)
     }
     .width('100%')
     .height('100%')
@@ -884,7 +886,7 @@ Removes the listener for [Navigation](arkui-ts/ts-basic-components-navigation.md
 | Name  | Type                                                        | Mandatory| Description                                                        |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | type     | string                                                       | Yes  | Event type. The value is fixed at **'navDestinationSwitch'**, which indicates [Navigation](arkui-ts/ts-basic-components-navigation.md) page switch events.|
-| callback | Callback\<observer.[NavDestinationSwitchInfo](js-apis-arkui-observer.md#navdestinationswitchinfo12)\>        | No  | Target listener to unregister. If no parameter is provided, all [Navigation](arkui-ts/ts-basic-components-navigation.md) listeners are unregistered.                |
+| callback | Callback\<observer.[NavDestinationSwitchInfo](js-apis-arkui-observer.md#navdestinationswitchinfo12)\> | No| Target listener to unregister. If the parameter is not passed, all [Navigation](arkui-ts/ts-basic-components-navigation.md) page switch event listener callbacks are unregistered.|
 
 **Example**
 
@@ -905,7 +907,7 @@ Listens for [Navigation](arkui-ts/ts-basic-components-navigation.md) page switch
 | Name  | Type                                                        | Mandatory| Description                                                        |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | type     | string                                                       | Yes  | Event type. The value is fixed at **'navDestinationSwitch'**, which indicates [Navigation](arkui-ts/ts-basic-components-navigation.md) page switch events.|
-| observerOptions | observer.[NavDestinationSwitchObserverOptions](js-apis-arkui-observer.md#navdestinationswitchobserveroptions12)        | Yes  | Observer configuration options.  |
+| observerOptions | observer.[NavDestinationSwitchObserverOptions](js-apis-arkui-observer.md#navdestinationswitchobserveroptions12)        | Yes  | Page switching listening options, used to specify the [Navigation](arkui-ts/ts-basic-components-navigation.md) component to listen for. For example, you can specify the Navigation component's ID via **navigationId**.  |
 | callback | Callback\<observer.[NavDestinationSwitchInfo](js-apis-arkui-observer.md#navdestinationswitchinfo12)\>        | Yes  | Callback used to return the page switch event information using a [NavDestinationSwitchInfo](js-apis-arkui-observer.md#navdestinationswitchinfo12) object.                |
 
 **Example**
@@ -921,8 +923,8 @@ import { uiObserver } from '@kit.ArkUI';
 struct PageOne {
   build() {
     NavDestination() {
-      Text("pageOne")
-    }.title("pageOne")
+      Text('pageOne')
+    }.title('pageOne')
   }
 }
 
@@ -937,33 +939,33 @@ struct Index {
   private stack: NavPathStack = new NavPathStack();
 
   @Builder
-  PageBuilder(name: string) {
+  pageBuilder(name: string) {
     PageOne()
   }
 
   aboutToAppear() {
     let obs = this.getUIContext().getUIObserver();
     // Register a listener with the specified Navigation component ID.
-    obs.on('navDestinationSwitch', { navigationId: "myNavId" }, callbackFunc);
+    obs.on('navDestinationSwitch', { navigationId: 'myNavId' }, callbackFunc);
   }
 
   aboutToDisappear() {
     let obs = this.getUIContext().getUIObserver();
     // Remove event listeners.
-    obs.off('navDestinationSwitch', { navigationId: "myNavId" }, callbackFunc);
+    obs.off('navDestinationSwitch', { navigationId: 'myNavId' }, callbackFunc);
   }
 
   build() {
     Column() {
       Navigation(this.stack) {
-        Button("push").onClick(() => {
+        Button('push').onClick(() => {
           // Push the PageOne NavDestination onto the navigation stack.
-          this.stack.pushPath({ name: "pageOne" });
+          this.stack.pushPath({ name: 'pageOne' });
         })
       }
       .id("myNavId")
       .title("Navigation")
-      .navDestination(this.PageBuilder)
+      .navDestination(this.pageBuilder)
     }
     .width('100%')
     .height('100%')
@@ -986,7 +988,7 @@ Unregisters the listener for [Navigation](arkui-ts/ts-basic-components-navigatio
 | Name  | Type                                                        | Mandatory| Description                                                        |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | type     | string                                                       | Yes  | Event type. The value is fixed at **'navDestinationSwitch'**, which indicates [Navigation](arkui-ts/ts-basic-components-navigation.md) page switch events.|
-| observerOptions | observer.[NavDestinationSwitchObserverOptions](js-apis-arkui-observer.md#navdestinationswitchobserveroptions12)        | Yes  | Observer configuration options.  |
+| observerOptions | observer.[NavDestinationSwitchObserverOptions](js-apis-arkui-observer.md#navdestinationswitchobserveroptions12) | Yes| Page switching listening options, used to specify the [Navigation](arkui-ts/ts-basic-components-navigation.md) component for which the listener needs to be unregistered. For example, you can specify the Navigation component's ID via **navigationId**.|
 | callback | Callback\<observer.[NavDestinationSwitchInfo](js-apis-arkui-observer.md#navdestinationswitchinfo12)\>        | No  | Target listener to unregister. If no parameter is provided, all [Navigation](arkui-ts/ts-basic-components-navigation.md) listeners are unregistered.                |
 
 **Example**
@@ -997,7 +999,7 @@ See the example for [on('navDestinationSwitch')](#onnavdestinationswitch12-1).
 
 on(type: 'willClick', callback: GestureEventListenerCallback): void
 
-Listens for click event instruction dispatch. The registered callback function is triggered before the event is triggered. The callback type is [GestureEventListenerCallback](arkts-apis-uicontext-t.md#gestureeventlistenercallback12). The screen reader touch exploration mode is supported since API version 20.
+Listens for click event instruction dispatch. The registered callback function is triggered before the event is triggered. The callback type is [GestureEventListenerCallback](arkts-apis-uicontext-t.md#gestureeventlistenercallback). The screen reader touch exploration mode is supported since API version 20.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -1008,7 +1010,7 @@ Listens for click event instruction dispatch. The registered callback function i
 | Name  | Type                                                        | Mandatory| Description                                                        |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | type     | string                                                       | Yes  | Event type. The value **'willClick'** indicates the dispatch of click event instructions. The registered callback is triggered when the click event is about to occur.|
-| callback | [GestureEventListenerCallback](arkts-apis-uicontext-t.md#gestureeventlistenercallback12) | Yes  | Callback used to return the result. It provides [GestureEvent](arkui-ts/ts-gesture-common.md#gestureevent) and the target component's [FrameNode](js-apis-arkui-frameNode.md) information. |
+| callback | [GestureEventListenerCallback](arkts-apis-uicontext-t.md#gestureeventlistenercallback) | Yes  | Callback used to return the result. It provides [GestureEvent](arkui-ts/ts-gesture-common.md#gestureevent) and the target component's [FrameNode](js-apis-arkui-frameNode.md) information. |
 
 **Example**
 
@@ -1016,23 +1018,23 @@ Listens for click event instruction dispatch. The registered callback function i
 // Index.ets
 // Example usage of uiObserver.on('willClick', callback)
 // uiObserver.off('willClick', callback)
-// uiObserver.off('didClick', callback)
+// uiObserver.on('didClick', callback)
 // uiObserver.off('didClick', callback)
 
 // Define callbacks for event listeners.
-function willClickGestureCallback(event: GestureEvent, node?: FrameNode) {
+const willClickGestureCallback = (event: GestureEvent, node?: FrameNode) => {
   console.info('Example willClickCallback GestureEvent is called');
 }
 
-function willClickCallback(event: ClickEvent, node?: FrameNode) {
+const willClickCallback = (event: ClickEvent, node?: FrameNode) => {
   console.info('Example willClickCallback ClickEvent is called');
 }
 
-function didClickGestureCallback(event: GestureEvent, node?: FrameNode) {
+const didClickGestureCallback = (event: GestureEvent, node?: FrameNode) => {
   console.info('Example didClickCallback GestureEvent is called');
 }
 
-function didClickCallback(event: ClickEvent, node?: FrameNode) {
+const didClickCallback = (event: ClickEvent, node?: FrameNode) => {
   console.info('Example didClickCallback ClickEvent is called');
 }
 
@@ -1113,7 +1115,7 @@ Unregisters the click event command dispatch listener previously registered usin
 | Name  | Type                                                        | Mandatory| Description                                                 |
 | -------- | ------------------------------------------------------------ | ---- | ----------------------------------------------------- |
 | type     | string                                                       | Yes  | Event type. The value **'willClick'** indicates click event instruction dispatch.|
-| callback | [GestureEventListenerCallback](arkts-apis-uicontext-t.md#gestureeventlistenercallback12) | No  | Target listener to unregister. If no parameter is provided, all click event instruction dispatch listeners are unregistered.                               |
+| callback | [GestureEventListenerCallback](arkts-apis-uicontext-t.md#gestureeventlistenercallback) | No  | Target listener to unregister. If no parameter is provided, all click event instruction dispatch listeners are unregistered.                               |
 
 **Example**
 
@@ -1123,7 +1125,7 @@ See the example for [on('willClick')](#onwillclick12).
 
 on(type: 'didClick', callback: GestureEventListenerCallback): void
 
-Listens for click event instruction dispatch. The registered callback function is triggered after the event is triggered. The callback type is [GestureEventListenerCallback](arkts-apis-uicontext-t.md#gestureeventlistenercallback12). The screen reader touch exploration mode is supported since API version 20.
+Listens for click event instruction dispatch. The registered callback function is triggered after the event is triggered. The callback type is [GestureEventListenerCallback](arkts-apis-uicontext-t.md#gestureeventlistenercallback). The screen reader touch exploration mode is supported since API version 20.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -1134,7 +1136,7 @@ Listens for click event instruction dispatch. The registered callback function i
 | Name  | Type                                                        | Mandatory| Description                                                        |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | type     | string                                                       | Yes  | Event type. The value **'didClick'** indicates click event instruction dispatch. The registered callback is triggered after the click event occurs.|
-| callback | [GestureEventListenerCallback](arkts-apis-uicontext-t.md#gestureeventlistenercallback12) | Yes  | Callback used to return the result. It provides [GestureEvent](arkui-ts/ts-gesture-common.md#gestureevent) and the target component's [FrameNode](js-apis-arkui-frameNode.md) information. |
+| callback | [GestureEventListenerCallback](arkts-apis-uicontext-t.md#gestureeventlistenercallback) | Yes  | Callback used to return the result. It provides [GestureEvent](arkui-ts/ts-gesture-common.md#gestureevent) and the target component's [FrameNode](js-apis-arkui-frameNode.md) information. |
 
 **Example**
 
@@ -1155,7 +1157,7 @@ Unregisters the click event command dispatch listener previously registered usin
 | Name  | Type                                                        | Mandatory| Description                                                |
 | -------- | ------------------------------------------------------------ | ---- | ---------------------------------------------------- |
 | type     | string                                                       | Yes  | Event type. The value **'didClick'** indicates click event instruction dispatch.|
-| callback | [GestureEventListenerCallback](arkts-apis-uicontext-t.md#gestureeventlistenercallback12) | No  | Target listener to unregister. If no parameter is provided, all click event instruction dispatch listeners are unregistered.                              |
+| callback | [GestureEventListenerCallback](arkts-apis-uicontext-t.md#gestureeventlistenercallback) | No  | Target listener to unregister. If no parameter is provided, all click event instruction dispatch listeners are unregistered.                              |
 
 **Example**
 
@@ -1165,7 +1167,7 @@ See the example for [on('willClick')](#onwillclick12).
 
 on(type: 'willClick', callback: ClickEventListenerCallback): void
 
-Listens for click event instruction dispatch. The registered callback function is triggered before the event is triggered. The callback type is [ClickEventListenerCallback](arkts-apis-uicontext-t.md#clickeventlistenercallback12). The screen reader touch exploration mode is supported since API version 20.
+Listens for click event instruction dispatch. The registered callback function is triggered before the event is triggered. The callback type is [ClickEventListenerCallback](arkts-apis-uicontext-t.md#clickeventlistenercallback). The screen reader touch exploration mode is supported since API version 20.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -1176,7 +1178,7 @@ Listens for click event instruction dispatch. The registered callback function i
 | Name  | Type                                                       | Mandatory| Description                                                        |
 | -------- | ----------------------------------------------------------- | ---- | ------------------------------------------------------------ |
 | type     | string                                                      | Yes  | Event type. The value **'willClick'** indicates the dispatch of click event instructions. The registered callback is triggered when the click event is about to occur.|
-| callback | [ClickEventListenerCallback](arkts-apis-uicontext-t.md#clickeventlistenercallback12) | Yes  | Callback used to return the result. It provides [ClickEvent](arkui-ts/ts-universal-events-click.md#clickevent) and the target component's [FrameNode](js-apis-arkui-frameNode.md) information.   |
+| callback | [ClickEventListenerCallback](arkts-apis-uicontext-t.md#clickeventlistenercallback) | Yes  | Callback used to return the result. It provides [ClickEvent](arkui-ts/ts-universal-events-click.md#clickevent) and the target component's [FrameNode](js-apis-arkui-frameNode.md) information.   |
 
 **Example**
 
@@ -1197,7 +1199,7 @@ Unregisters the click event command dispatch listener previously registered usin
 | Name  | Type                                                       | Mandatory| Description                                                 |
 | -------- | ----------------------------------------------------------- | ---- | ----------------------------------------------------- |
 | type     | string                                                      | Yes  | Event type. The value **'willClick'** indicates click event instruction dispatch.|
-| callback | [ClickEventListenerCallback](arkts-apis-uicontext-t.md#clickeventlistenercallback12) | No  | Target listener to unregister. If no parameter is provided, all click event instruction dispatch listeners are unregistered.                               |
+| callback | [ClickEventListenerCallback](arkts-apis-uicontext-t.md#clickeventlistenercallback) | No  | Target listener to unregister. If no parameter is provided, all click event instruction dispatch listeners are unregistered.                               |
 
 **Example**
 
@@ -1207,7 +1209,7 @@ See the example for [on('willClick')](#onwillclick12).
 
 on(type: 'didClick', callback: ClickEventListenerCallback): void
 
-Listens for click event instruction dispatch. The registered callback function is triggered after the event is triggered. The callback type is [ClickEventListenerCallback](arkts-apis-uicontext-t.md#clickeventlistenercallback12). The screen reader touch exploration mode is supported since API version 20.
+Listens for click event instruction dispatch. The registered callback function is triggered after the event is triggered. The callback type is [ClickEventListenerCallback](arkts-apis-uicontext-t.md#clickeventlistenercallback). The screen reader touch exploration mode is supported since API version 20.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -1218,7 +1220,7 @@ Listens for click event instruction dispatch. The registered callback function i
 | Name  | Type                                                       | Mandatory| Description                                                        |
 | -------- | ----------------------------------------------------------- | ---- | ------------------------------------------------------------ |
 | type     | string                                                      | Yes  | Event type. The value **'didClick'** indicates click event instruction dispatch. The registered callback is triggered after the click event occurs.|
-| callback | [ClickEventListenerCallback](arkts-apis-uicontext-t.md#clickeventlistenercallback12) | Yes  | Callback used to return the result. It provides [ClickEvent](arkui-ts/ts-universal-events-click.md#clickevent) and the target component's [FrameNode](js-apis-arkui-frameNode.md) information.   |
+| callback | [ClickEventListenerCallback](arkts-apis-uicontext-t.md#clickeventlistenercallback) | Yes  | Callback used to return the result. It provides [ClickEvent](arkui-ts/ts-universal-events-click.md#clickevent) and the target component's [FrameNode](js-apis-arkui-frameNode.md) information.   |
 
 **Example**
 
@@ -1239,7 +1241,7 @@ Unregisters the click event command dispatch listener previously registered usin
 | Name  | Type                                                       | Mandatory| Description                                                |
 | -------- | ----------------------------------------------------------- | ---- | ---------------------------------------------------- |
 | type     | string                                                      | Yes  | Event type. The value **'didClick'** indicates click event instruction dispatch.|
-| callback | [ClickEventListenerCallback](arkts-apis-uicontext-t.md#clickeventlistenercallback12) | No  | Target listener to unregister. If no parameter is provided, all click event instruction dispatch listeners are unregistered.                              |
+| callback | [ClickEventListenerCallback](arkts-apis-uicontext-t.md#clickeventlistenercallback) | No  | Target listener to unregister. If no parameter is provided, all click event instruction dispatch listeners are unregistered.                              |
 
 **Example**
 
@@ -1272,7 +1274,7 @@ Listens for [TabContent](arkui-ts/ts-container-tabcontent.md) page switch events
 import { uiObserver } from '@kit.ArkUI';
 
 // Define callbacks for event listeners.
-function callbackFunc(info: uiObserver.TabContentInfo) {
+const callbackFunc = (info: uiObserver.TabContentInfo) => {
   console.info('tabContentUpdate', JSON.stringify(info));
 }
 
@@ -1335,7 +1337,7 @@ Unregisters the listener for [TabContent](arkui-ts/ts-container-tabcontent.md) p
 | Name  | Type                                                        | Mandatory| Description                                                        |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | type     | string                                                       | Yes  | Event type. The value is fixed at **'tabContentUpdate'**, indicating [TabContent](arkui-ts/ts-container-tabcontent.md) page switch events.|
-| callback | Callback\<observer.[TabContentInfo](js-apis-arkui-observer.md#tabcontentinfo12)\> | No  | Target listener to unregister. If no parameter is provided, all [Tabs](arkui-ts/ts-container-tabs.md) listeners are unregistered.|
+| callback | Callback\<observer.[TabContentInfo](js-apis-arkui-observer.md#tabcontentinfo12)\> | No  | Target listener to unregister. If the parameter is not provided, all listeners on the [Tabs](arkui-ts/ts-container-tabs.md) are canceled.|
 
 **Example**
 
@@ -1433,7 +1435,7 @@ Unregisters the listener for [TabContent](arkui-ts/ts-container-tabcontent.md) p
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | type     | string                                                       | Yes  | Event type. The value is fixed at **'tabContentUpdate'**, indicating [TabContent](arkui-ts/ts-container-tabcontent.md) page switch events.|
 | options  | observer.[ObserverOptions](js-apis-arkui-observer.md#observeroptions12) | Yes  | ID of the target [Tabs](arkui-ts/ts-container-tabs.md) component.|
-| callback | Callback\<observer.[TabContentInfo](js-apis-arkui-observer.md#tabcontentinfo12)\> | No  | Target listener to unregister. If no parameter is provided, all [Tabs](arkui-ts/ts-container-tabs.md) listeners are unregistered.|
+| callback | Callback\<observer.[TabContentInfo](js-apis-arkui-observer.md#tabcontentinfo12)\> | No  | Target listener to unregister. If the parameter is not provided, all listeners on the [Tabs](arkui-ts/ts-container-tabs.md) are canceled.|
 
 **Example**
 
@@ -1703,24 +1705,24 @@ struct TextUiObserver {
   observer: UIObserver = this.getUIContext().getUIObserver();
   build() {
     Column() {
-      TextArea({ text: "Hello World TextArea" })
+      TextArea({ text: 'Hello World TextArea' })
         .width(336)
         .height(56)
         .margin({bottom:5})
         .backgroundColor('#FFFFFF')
-        .id("TestId1")
-      TextInput({ text: "Hello World TextInput" })
+        .id('TestId1')
+      TextInput({ text: 'Hello World TextInput' })
         .width(336)
         .height(56)
         .margin({bottom:5})
         .backgroundColor('#FFFFFF')
-        .id("TestId2")
-      Search({ value: "Hello World Search" })
+        .id('TestId2')
+      Search({ value: 'Hello World Search' })
         .width(336)
         .height(56)
         .margin({bottom:5})
         .backgroundColor('#FFFFFF')
-        .id("TestId3")
+        .id('TestId3')
       Row() {
         // Enable global listening.
         Button('UIObserver on')
@@ -1739,14 +1741,14 @@ struct TextUiObserver {
       Row() {
         Button('UIObserver TestId1 on')
           .onClick(() => {
-            this.observer.on('textChange', { id: "TestId1" }, (info) => {
+            this.observer.on('textChange', { id: 'TestId1' }, (info) => {
               console.info('textChangeInfo', JSON.stringify(info));
             });
           })
 
         Button('UIObserver TestId1 off')
           .onClick(() => {
-            this.observer.off('textChange', { id: "TestId1" });
+            this.observer.off('textChange', { id: 'TestId1' });
           })
       }.margin({bottom:5})
       Row() {
@@ -1802,9 +1804,9 @@ For details, see [on('textChange')](#ontextchange22).
 
 ## on('textChange')<sup>22+</sup>
 
-on(type: 'textChange', identity: observer.ObserverOptions, callback:Callback\<observer.TextChangeEventInfo\>): void
+on(type: 'textChange', identity: observer.ObserverOptions, callback: Callback\<observer.TextChangeEventInfo\>): void
 
-Listens on the text input component with the specified ID.
+Registers a local listener for text changes in the input box with the specified ID.
 
 **Atomic service API**: This API can be used in atomic services since API version 22.
 
@@ -1826,7 +1828,7 @@ For details, see [on('textChange')](#ontextchange22).
 
 off(type: 'textChange', identity: observer.ObserverOptions, callback?: Callback\<observer.TextChangeEventInfo\>): void
 
-Disables the listener for the text input component with the specified ID.
+Unregisters the local listener for text changes in the text input box with the specified ID.
 
 **Atomic service API**: This API can be used in atomic services since API version 22.
 
@@ -1878,27 +1880,27 @@ Listens for pan gesture [onActionStart](arkui-ts/ts-basic-gestures-pangesture.md
 let TEST_TAG: string = 'node';
 
 // Define callbacks for event listeners.
-function callbackFunc() {
+const callbackFunc = () => {
   console.info('on == beforePanStart');
 }
 
-function afterPanCallBack() {
+const afterPanCallBack = () => {
   console.info('on == afterPanStart');
 }
 
-function beforeEndCallBack() {
+const beforeEndCallBack = () => {
   console.info('on == beforeEnd');
 }
 
-function afterEndCallBack() {
+const afterEndCallBack = () => {
   console.info('on == afterEnd');
 }
 
-function beforeStartCallBack() {
+const beforeStartCallBack = () => {
   console.info('on == beforeStartCallBack');
 }
 
-function panGestureCallBack(event: GestureEvent, current: GestureRecognizer, node?: FrameNode) {
+const panGestureCallBack = (event: GestureEvent, current: GestureRecognizer, node?: FrameNode) => {
   TEST_TAG = 'panGestureEvent';
   console.info('===' + TEST_TAG + '=== event.repeat is ' + event.repeat);
   console.info('===' + TEST_TAG + '=== event target is ' + event.target.id);
@@ -1940,8 +1942,8 @@ struct PanExample {
   }
 
   build() {
-    Column(){
-      Column(){
+    Column() {
+      Column() {
         Text('PanGesture :\nX: ' + this.offsetX + '\n' + 'Y: ' + this.offsetY)
       }
       .height(200)
@@ -1976,7 +1978,7 @@ struct PanExample {
 
 off(type: 'beforePanStart', callback?: PanListenerCallback): void
 
-Unregisters the listener for pan gesture [onActionStart](arkui-ts/ts-basic-gestures-pangesture.md#onactionstart) pre-execution events, canceling callbacks registered via [on('beforePanStart')](#onbeforepanstart19).
+Unregisters the listener for pan gesture [onActionStart](arkui-ts/ts-basic-gestures-pangesture.md#onactionstart) pre-execution events, canceling callbacks registered via [on('beforePanStart')](#onbeforepanstart19). It works for finger swiping, mouse dragging, mouse wheel scrolling, and touchpad movements, but not for screen reader touch mode.
 
 **Atomic service API**: This API can be used in atomic services since API version 19.
 
@@ -2018,7 +2020,7 @@ See the example for [on('beforePanStart')](#onbeforepanstart19).
 
 off(type: 'afterPanStart', callback?: PanListenerCallback): void
 
-Unregisters the listener for pan gesture [onActionStart](arkui-ts/ts-basic-gestures-pangesture.md#onactionstart) post-execution events, canceling callbacks registered via [on('afterPanStart')](#onafterpanstart19).
+Unregisters the listener for pan gesture [onActionStart](arkui-ts/ts-basic-gestures-pangesture.md#onactionstart) post-execution events, canceling callbacks registered via [on('afterPanStart')](#onafterpanstart19). It works for finger swiping, mouse dragging, mouse wheel scrolling, and touchpad movements, but not for screen reader touch mode.
 
 **Atomic service API**: This API can be used in atomic services since API version 19.
 
@@ -2060,7 +2062,7 @@ See the example for [on('beforePanStart')](#onbeforepanstart19).
 
 off(type: 'beforePanEnd', callback?: PanListenerCallback): void
 
-Unregisters the listener for pan gesture [onActionEnd](arkui-ts/ts-basic-gestures-pangesture.md#onactionend) pre-execution events, canceling callbacks registered via [on('beforePanEnd')](#onbeforepanend19).
+Unregisters the listener for pan gesture [onActionEnd](arkui-ts/ts-basic-gestures-pangesture.md#onactionend) pre-execution events, canceling callbacks registered via [on('beforePanEnd')](#onbeforepanend19). It works for finger swiping, mouse dragging, mouse wheel scrolling, and touchpad movements, but not for screen reader touch mode.
 
 **Atomic service API**: This API can be used in atomic services since API version 19.
 
@@ -2091,7 +2093,7 @@ Listens for pan gesture [onActionEnd](arkui-ts/ts-basic-gestures-pangesture.md#o
 
 | Name  | Type                                                       | Mandatory| Description                                                        |
 | -------- | ----------------------------------------------------------- | ---- | ------------------------------------------------------------ |
-| type     | string                                                      | Yes  | Event type. The value is fixed at **'beforePanEnd'**, indicating command dispatch after the execution of the pan gesture [onActionEnd](arkui-ts/ts-basic-gestures-pangesture.md#onactionend) event. The registered callback is triggered after **onActionEnd** is executed.|
+| type     | string                                                      | Yes  | Event type. The value is fixed at **'afterPanEnd'**, indicating command dispatch after the execution of the pan gesture [onActionEnd](arkui-ts/ts-basic-gestures-pangesture.md#onactionend) event. The registered callback is triggered after [onActionEnd](arkui-ts/ts-basic-gestures-pangesture.md#onactionend) is executed.|
 | callback | [PanListenerCallback](arkts-apis-uicontext-t.md#panlistenercallback19) | Yes  | Callback used to return the result. It provides [GestureEvent](arkui-ts/ts-gesture-common.md#gestureevent), [GestureRecognizer](arkui-ts/ts-gesture-common.md#gesturerecognizer12), and the target component's [FrameNode](js-apis-arkui-frameNode.md) information.  |
 
 **Example**
@@ -2102,7 +2104,7 @@ See the example for [on('beforePanStart')](#onbeforepanstart19).
 
 off(type: 'afterPanEnd', callback?: PanListenerCallback): void
 
-Unregisters the listener for pan gesture [onActionEnd](arkui-ts/ts-basic-gestures-pangesture.md#onactionend) post-execution events, canceling callbacks registered via [on('afterPanEnd')](#onafterpanend19).
+Unregisters the listener for pan gesture [onActionEnd](arkui-ts/ts-basic-gestures-pangesture.md#onactionend) post-execution events, canceling callbacks registered via [on('afterPanEnd')](#onafterpanend19). It works for finger swiping, mouse dragging, mouse wheel scrolling, and touchpad movements, but not for screen reader touch mode.
 
 **Atomic service API**: This API can be used in atomic services since API version 19.
 
@@ -2123,9 +2125,9 @@ See the example for [on('beforePanStart')](#onbeforepanstart19).
 
 on(type: 'nodeRenderState', nodeIdentity: NodeIdentity, callback: NodeRenderStateChangeCallback): void
 
-Registers a callback to be invoked when the rendering state of a specific node changes. This callback is executed immediately once upon successful registration.
+Registers a callback to listen for rendering status changes of a specific node. Once registered, the callback is executed immediately.
 
-Be mindful of node quantity limitations. For performance reasons, registering too many nodes within a single UI instance will throw an exception.
+Be mindful of node quantity limitations. For performance reasons, when the number of registered nodes exceeds the limit for node rendering state listeners in a single UI instance, exception 161001 will be thrown. For details, see the error codes below.
 
 Typically, a **RENDER_OUT** notification is received when a component moves off-screen. However, in certain scenarios, a **RENDER_OUT** notification might not be triggered even if a component has moved off-screen. For example, components with caching capabilities like [Swiper](./arkui-ts/ts-container-swiper.md) will not trigger **RENDER_OUT** notifications even when the **isShown** parameter in the [cachedCount](./arkui-ts/ts-container-swiper.md#cachedcount15) attribute is set to **true**.
 
@@ -2138,7 +2140,7 @@ Typically, a **RENDER_OUT** notification is received when a component moves off-
 | Name  | Type                                                       | Mandatory| Description                                                        |
 | -------- | ----------------------------------------------------------- | ---- | ------------------------------------------------------------ |
 | type     | string                                                      | Yes  | Event type. The value is fixed at **'nodeRenderState'**, indicating rendering state changes.|
-| nodeIdentity | [NodeIdentity](arkts-apis-uicontext-t.md#nodeidentity20) | Yes  | Node ID.  |
+| nodeIdentity | [NodeIdentity](arkts-apis-uicontext-t.md#nodeidentity20) | Yes  | Identifier of the target node whose rendering state change needs to be listened for. You can obtain the identifier using the **getUniqueId** method of the FrameNode corresponding to the target component.  |
 | callback | [NodeRenderStateChangeCallback](arkts-apis-uicontext-t.md#noderenderstatechangecallback20) | Yes  | Callback used to return the result. It provides the [NodeRenderState](arkts-apis-uicontext-e.md#noderenderstate20) of the node rendering state change event and the component's [FrameNode](js-apis-arkui-frameNode.md).  |
 
 **Error codes**
@@ -2207,7 +2209,7 @@ struct Index {
                       this.notice = "RENDER_OUT";
                     }
                     console.info("Node state changed. Current state: ", state);
-                  })
+                  });
                 }
               })
               Button("Remove Listener").margin({ top: 5 }).onClick(() => {
@@ -2278,8 +2280,8 @@ Unregisters the callback for listening for node rendering state changes.
 
 | Name  | Type                                                       | Mandatory| Description                                                |
 | -------- | ----------------------------------------------------------- | ---- | ---------------------------------------------------- |
-| type     | string                                                      | Yes  | Event type. The value is fixed at **'nodeRenderState'**.|
-| nodeIdentity | [NodeIdentity](arkts-apis-uicontext-t.md#nodeidentity20) | Yes  | Node ID.  |
+| type     | string                                                      | Yes  | Event type. The value is fixed at **'nodeRenderState'**, indicating node rendering state changes.|
+| nodeIdentity | [NodeIdentity](arkts-apis-uicontext-t.md#nodeidentity20) | Yes| Identifier of the target node whose rendering state listener is to be unregistered. The value must be the same as that passed when [on('nodeRenderState')] is called to register the listener.|
 | callback | [NodeRenderStateChangeCallback](arkts-apis-uicontext-t.md#noderenderstatechangecallback20) | No  | Target listener to unregister. If no parameter is provided, all node rendering state change listeners are unregistered.  |
 
 **Example**
@@ -2300,9 +2302,9 @@ Registers a callback to listen for gesture triggering information.
 
 | Name  | Type        | Mandatory| Description         |
 | -------- | ----------- | ---- | ----------- |
-| type     | [GestureListenerType](arkts-apis-uicontext-e.md#gesturelistenertype20)     | Yes  |Type of gesture to listen for. |
-| option | [GestureObserverConfigs](arkts-apis-uicontext-i.md#gestureobserverconfigs20) | Yes  |  Configuration options for binding the global listener. |
-| callback | [GestureListenerCallback](arkts-apis-uicontext-t.md#gesturelistenercallback20) | Yes  |  Callback triggered when the gesture state updates. |  
+| type     | [GestureListenerType](arkts-apis-uicontext-e.md#gesturelistenertype20)     | Yes  | Type of gesture to listen for. |
+| option | [GestureObserverConfigs](arkts-apis-uicontext-i.md#gestureobserverconfigs20) | Yes| Configuration options for binding the global gesture listener, used to specify information such as the gesture trigger phases to listen for. For example, you can configure the GestureActionPhase enumeration values via **actionPhases**.|
+| callback | [GestureListenerCallback](arkts-apis-uicontext-t.md#gesturelistenercallback20) | Yes  | Callback function for gesture state updates, used to receive gesture trigger information. The callback parameter includes [GestureTriggerInfo](arkts-apis-uicontext-i.md#gesturetriggerinfo20), from which you can obtain gesture events, trigger phases, and other related information. |
 
 **Example**
 
@@ -2318,7 +2320,6 @@ import { GestureListenerType, GestureActionPhase, GestureTriggerInfo, GestureLis
 @Entry
 @Component
 struct Index {
-  @State message: string = 'Global Gesture Listening';
   @State tapCount: number = 0;
   @State panCount: number = 0;
   @State longPressCount: number = 0;
@@ -2391,14 +2392,15 @@ struct Index {
 
   private removeGlobalListeners() {
     const observer = this.getUIContext().getUIObserver();
+// 0, 2, and 1 indicate the tap, pan, and long-press gesture types, respectively, which are used to remove the corresponding global listeners.
     if (this.tapCallback) {
-      observer.removeGlobalGestureListener(0, this.tapCallback);
+      observer.removeGlobalGestureListener(GestureListenerType.TAP, this.tapCallback);
     }
     if (this.panCallback) {
-      observer.removeGlobalGestureListener(2, this.panCallback);
+      observer.removeGlobalGestureListener(GestureListenerType.PAN, this.panCallback);
     }
     if (this.longPressCallback) {
-      observer.removeGlobalGestureListener(1, this.longPressCallback);
+      observer.removeGlobalGestureListener(GestureListenerType.LONG_PRESS, this.longPressCallback);
     }
   }
 
@@ -2415,7 +2417,7 @@ struct Index {
           Text(`${this.panCount}`).fontSize(24).fontColor('#7BED9F')
         }
         Column() {
-          Text('Long press count:').fontSize(16)
+          Text('Long-press count:').fontSize(16)
           Text(`${this.longPressCount}`).fontSize(24).fontColor('#70A1FF')
         }
       }
@@ -2435,7 +2437,7 @@ struct Index {
       .margin(10)
       .border({ width: 2, color: '#FF6B81' })
       .justifyContent(FlexAlign.Center)
-      .gesture(TapGesture().onAction((event: GestureEvent)=>{
+      .gesture(TapGesture().onAction((event: GestureEvent) => {
         // Implementation details.
       }))
 
@@ -2469,7 +2471,7 @@ struct Index {
       .justifyContent(FlexAlign.Center)
       .gesture(
         LongPressGesture()
-          .onAction((event: GestureEvent)=>{
+          .onAction((event: GestureEvent) => {
             // Implementation details.
           })
           .onActionEnd((event: GestureEvent) => {
@@ -2499,7 +2501,7 @@ Unregisters the specified global gesture listener.
 | Name  | Type    | Mandatory| Description      |
 | -------- | ---------- | ---- | --------- |
 | type     | [GestureListenerType](arkts-apis-uicontext-e.md#gesturelistenertype20)    | Yes  | Event type.|
-| callback | [GestureListenerCallback](arkts-apis-uicontext-t.md#gesturelistenercallback20) | No  | Callback to unregister. If this parameter is not specified, this API unregisters all callbacks for this gesture type.  |  
+| callback | [GestureListenerCallback](arkts-apis-uicontext-t.md#gesturelistenercallback20) | No  | Callback to unregister. If this parameter is not specified, this API unregisters all callbacks for this gesture type.  |
 
 **Example**
 
@@ -2507,9 +2509,9 @@ See the example for the [addGlobalGestureListener](#addglobalgesturelistener20) 
 
 ## on('windowSizeLayoutBreakpointChange')<sup>22+</sup>
 
-on(type: 'windowSizeLayoutBreakpointChange', callback: Callback<observer.WindowSizeLayoutBreakpointInfo\>): void
+on(type: 'windowSizeLayoutBreakpointChange', callback: Callback\<observer.WindowSizeLayoutBreakpointInfo\>): void
 
-Registers a callback for window size layout breakpoint changes. This enables adaptive UI layout adjustments based on window size variations. This API uses an asynchronous callback to return the result.
+Registers a callback for window size layout breakpoint changes. This enables adaptive UI layout adjustments based on window size variations.
 
 **Atomic service API**: This API can be used in atomic services since API version 22.
 
@@ -2520,7 +2522,7 @@ Registers a callback for window size layout breakpoint changes. This enables ada
 | Name      | Type                                                        | Mandatory| Description                                                        |
 | ------------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | type         | string                                                       | Yes  | Event type. The value is fixed at **'windowSizeLayoutBreakpointChange'**, indicating window size layout breakpoint changes.|
-| callback     | Callback\<observer.[WindowSizeLayoutBreakpointInfo](js-apis-arkui-observer.md#windowsizelayoutbreakpointinfo22)> | Yes  | Callback used to return the result. It provides window width and height layout breakpoint enumerations using a **WindowSizeLayoutBreakpointinfo** object.|
+| callback     | Callback\<observer.[WindowSizeLayoutBreakpointInfo](js-apis-arkui-observer.md#windowsizelayoutbreakpointinfo22)> | Yes  | Callback used to return the result. It carries **WindowSizeLayoutBreakpointInfo** that contains the layout breakpoint enumeration values for the window width and height.|
 
 **Example**
 
@@ -2536,7 +2538,7 @@ struct Index {
   private changeOrientation(isLandscape: boolean) {
     let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
     window.getLastWindow(context).then((lastWindow) => {
-      lastWindow.setPreferredOrientation(isLandscape ? window.Orientation.LANDSCAPE : window.Orientation.PORTRAIT)
+      lastWindow.setPreferredOrientation(isLandscape ? window.Orientation.LANDSCAPE : window.Orientation.PORTRAIT);
     });
   }
 
@@ -2565,10 +2567,10 @@ struct Index {
             .off('windowSizeLayoutBreakpointChange', this.winSizeLayoutBreakpointCallback);
         })
       Button("Portrait").onClick(() => {
-        this.changeOrientation(false)
+        this.changeOrientation(false);
       })
       Button("Landscape").onClick(() => {
-        this.changeOrientation(true)
+        this.changeOrientation(true);
       })
     }
   }
@@ -2577,9 +2579,9 @@ struct Index {
 
 ## off('windowSizeLayoutBreakpointChange')<sup>22+</sup>
 
-off(type: 'windowSizeLayoutBreakpointChange', callback?: Callback\<observer.WindowSizeLayoutBreakpointInfo>): void
+off(type: 'windowSizeLayoutBreakpointChange', callback?: Callback\<observer.WindowSizeLayoutBreakpointInfo\>): void
 
-Unregisters previously registered window size layout breakpoint change listeners. If no callback is specified, all listeners for the current UI context are removed. This API uses an asynchronous callback to return the result.
+Unregisters previously registered window size layout breakpoint change listeners. If no callback is specified, all listeners for the current UI context are removed.
 
 **Atomic service API**: This API can be used in atomic services since API version 22.
 
@@ -2600,7 +2602,7 @@ See the example for [on('windowSizeLayoutBreakpointChange')](#onwindowsizelayout
 
 onSwiperContentUpdate(callback: Callback\<SwiperContentInfo\>): void
 
-Listens for content switching events of the **Swiper** component. This API uses an asynchronous callback to return the result.
+Listens for content switching events of the **Swiper** component.
 
 **Atomic service API**: This API can be used in atomic services since API version 22.
 
@@ -2619,7 +2621,7 @@ Listens for content switching events of the **Swiper** component. This API uses 
 import { SwiperContentInfo } from '@kit.ArkUI';
 
 // Define callbacks for event listeners.
-function callbackFunc(info: SwiperContentInfo) {
+const callbackFunc = (info: SwiperContentInfo) => {
   console.info('swiperContentUpdate', JSON.stringify(info));
 }
 
@@ -2642,19 +2644,19 @@ struct SwiperExample {
     Column({ space: 5 }) {
       Swiper(this.swiperController) {
         Column() {
-          Text("SwiperItem1")
+          Text('SwiperItem1')
         }.width('100%').height('100%').backgroundColor('#00CB87')
 
         Column() {
-          Text("SwiperItem2")
+          Text('SwiperItem2')
         }.width('100%').height('100%').backgroundColor('#007DFF')
 
         Column() {
-          Text("SwiperItem3")
+          Text('SwiperItem3')
         }.width('100%').height('100%').backgroundColor('#FFBF00')
 
         Column() {
-          Text("SwiperItem4")
+          Text('SwiperItem4')
         }.width('100%').height('100%').backgroundColor('#E67C92')
       }
       .width(360)
@@ -2678,7 +2680,7 @@ Unregister the listener for content switching events of the **Swiper** component
 
 | Name  | Type                        | Mandatory| Description                                                        |
 | -------- | ---------------------------- | ---- | ------------------------------------------------------------ |
-| callback | Callback\<[SwiperContentInfo](./arkts-apis-uicontext-i.md#swipercontentinfo22)> | No  | Target listener to unregister. If no parameter is provided, all listeners for the **Swiper** component are unregistered.|
+| callback | Callback\<[SwiperContentInfo](./arkts-apis-uicontext-i.md#swipercontentinfo22)> | No  | Target listener to unregister. If no parameter is provided, all listeners on the **Swiper** component are canceled.|
 
 **Example**
 
@@ -2688,7 +2690,7 @@ See the example for the [onSwiperContentUpdate](#onswipercontentupdate22) API.
 
 onSwiperContentUpdate(config: observer.ObserverOptions, callback: Callback\<SwiperContentInfo\>): void
 
-Listens for content switching events of a specific **Swiper** component identified by its ID. This API uses an asynchronous callback to return the result.
+Listens for content switching events of a specific **Swiper** component identified by its ID.
 
 **Atomic service API**: This API can be used in atomic services since API version 22.
 
@@ -2698,7 +2700,7 @@ Listens for content switching events of a specific **Swiper** component identifi
 
 | Name  | Type                                                        | Mandatory| Description                                                        |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| config  | observer.[ObserverOptions](js-apis-arkui-observer.md#observeroptions12) | Yes  | Information about the target **Swiper** component.                                  |
+| config  | observer.[ObserverOptions](js-apis-arkui-observer.md#observeroptions12) | Yes  | Swiper component to be listened. This parameter identifies the Swiper component whose content switch events need to be listened for, via attributes such as **id**.                                  |
 | callback | Callback\<[SwiperContentInfo](./arkts-apis-uicontext-i.md#swipercontentinfo22)\>  | Yes  | Callback used to return the result. It provides the **Swiper** content switching information using a **SwiperContentInfo** object. |
 
 **Example**
@@ -2731,22 +2733,22 @@ struct SwiperExample {
     Column({ space: 5 }) {
       Swiper(this.swiperController) {
         Column() {
-          Text("SwiperItem1")
+          Text('SwiperItem1')
         }.width('100%').height('100%').backgroundColor('#00CB87')
 
         Column() {
-          Text("SwiperItem2")
+          Text('SwiperItem2')
         }.width('100%').height('100%').backgroundColor('#007DFF')
 
         Column() {
-          Text("SwiperItem3")
+          Text('SwiperItem3')
         }.width('100%').height('100%').backgroundColor('#FFBF00')
 
         Column() {
-          Text("SwiperItem4")
+          Text('SwiperItem4')
         }.width('100%').height('100%').backgroundColor('#E67C92')
       }
-      .id("swiperId")
+      .id('swiperId')
       .width(360)
       .height(300)
     }.width('100%')
@@ -2769,7 +2771,7 @@ Unregister the listener for content switching events of a specific **Swiper** co
 | Name  | Type                                                        | Mandatory| Description                                                        |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | config  | observer.[ObserverOptions](js-apis-arkui-observer.md#observeroptions12) | Yes  | Information about the target **Swiper** component.                                  |
-| callback | Callback\<[SwiperContentInfo](./arkts-apis-uicontext-i.md#swipercontentinfo22)\> | No  | Target listener to unregister. If no parameter is provided, all listeners for the **Swiper** component are unregistered.|
+| callback | Callback\<[SwiperContentInfo](./arkts-apis-uicontext-i.md#swipercontentinfo22)\> | No  | Target listener to unregister. If no parameter is provided, all listeners on the **Swiper** component are canceled.|
 
 **Example**
 
@@ -2796,7 +2798,7 @@ Registers a callback that is triggered when the size of the visible router page 
 ``` ts
 import { uiObserver } from '@kit.ArkUI';
 
-function myPageRouterPageSizeCallback(info: uiObserver.RouterPageInfo): void {
+const myPageRouterPageSizeCallback = (info: uiObserver.RouterPageInfo): void => {
   console.info(`testTag pageSize changeTo ${(info && info.size) ? JSON.stringify(info.size) : 'NA'}`);
 }
 
@@ -2817,7 +2819,7 @@ struct QueryRouterPageSize {
       Button('querySize').onClick(() => {
         // You can also proactively obtain the page size.
         let info = this.queryRouterPageInfo();
-        console.info(`testTag pageSize: ${info && info.size ? JSON.stringify(info.size) : "NA"}`)
+        console.info(`testTag pageSize: ${info && info.size ? JSON.stringify(info.size) : 'NA'}`);
       })
     }
     .width('100%')
@@ -2830,7 +2832,7 @@ struct QueryRouterPageSize {
 
 offRouterPageSizeChange(callback?: Callback\<observer.RouterPageInfo\>): void
 
-Removes the listener callback registered using the **onRouterPageSizeChange** API. This API uses an asynchronous callback to return the result.
+Removes the listener callback registered using the **onRouterPageSizeChange** API.
 
 **Atomic service API**: This API can be used in atomic services since API version 23.
 
@@ -2870,7 +2872,7 @@ import { uiObserver } from '@kit.ArkUI';
 @Component
 struct PageOneContent {
   destSizeCallback(info: uiObserver.NavDestinationInfo): void {
-    console.info(`testTag destSize changeTo ${(info && info.size) ? JSON.stringify(info.size) : "NA"}`)
+    console.info(`testTag destSize changeTo ${(info && info.size) ? JSON.stringify(info.size) : 'NA'}`);
   }
 
   aboutToAppear(): void {
@@ -2887,7 +2889,7 @@ struct PageOneContent {
       Button('queryDestSize').onClick(() => {
         // You can also proactively obtain the size of the navigation destination page.
         let info = this.queryNavDestinationInfo();
-        console.info(`testTag destSize: ${(info && info.size) ? JSON.stringify(info.size) : "NA"}`)
+        console.info(`testTag destSize: ${(info && info.size) ? JSON.stringify(info.size) : 'NA'}`);
       })
     }
     .width('100%')
@@ -2915,7 +2917,7 @@ struct QueryNavDestinationSize {
   }
 
   @Builder
-  MyPageMap(name: string) {
+  myPageMap(name: string) {
     PageOne()
   }
 
@@ -2924,7 +2926,7 @@ struct QueryNavDestinationSize {
     }
     .width('100%')
     .height('100%')
-    .navDestination(this.MyPageMap)
+    .navDestination(this.myPageMap)
     .hideNavBar(true)
   }
 }
@@ -2934,7 +2936,7 @@ struct QueryNavDestinationSize {
 
 offNavDestinationSizeChange(callback?: Callback\<observer.NavDestinationInfo\>): void
 
-Removes the listener callback registered using the **onNavDestinationSizeChange** API. This API uses an asynchronous callback to return the result.
+Removes the listener callback registered using the **onNavDestinationSizeChange** API.
 
 **Atomic service API**: This API can be used in atomic services since API version 23.
 
@@ -2977,7 +2979,7 @@ struct PageOneContent {
   private navUniqueId: number = 0;
 
   destSizeCallback(info: uiObserver.NavDestinationInfo): void {
-    console.info(`testTag destSize changeTo ${(info && info.size) ? JSON.stringify(info.size) : "NA"}`)
+    console.info(`testTag destSize changeTo ${(info && info.size) ? JSON.stringify(info.size) : 'NA'}`);
   }
 
   aboutToAppear(): void {
@@ -2998,7 +3000,7 @@ struct PageOneContent {
       Button('queryDestSize').onClick(() => {
         // You can also proactively obtain the size of the navigation destination page.
         let info = this.queryNavDestinationInfo();
-        console.info(`testTag destSize: ${(info && info.size) ? JSON.stringify(info.size) : "NA"}`)
+        console.info(`testTag destSize: ${(info && info.size) ? JSON.stringify(info.size) : 'NA'}`);
       })
     }
     .width('100%')
@@ -3026,7 +3028,7 @@ struct QueryNavDestinationSize {
   }
 
   @Builder
-  MyPageMap(name: string) {
+  myPageMap(name: string) {
     PageOne()
   }
 
@@ -3035,7 +3037,7 @@ struct QueryNavDestinationSize {
     }
     .width('100%')
     .height('100%')
-    .navDestination(this.MyPageMap)
+    .navDestination(this.myPageMap)
     .hideNavBar(true)
   }
 }
@@ -3045,7 +3047,7 @@ struct QueryNavDestinationSize {
 
 offNavDestinationSizeChangeByUniqueId(navigationUniqueId: number, callback?: Callback\<observer.NavDestinationInfo\>): void
 
-Removes the listener callback registered using the **onNavDestinationSizeChangeByUniqueId** API. This API uses an asynchronous callback to return the result.
+Removes the listener callback registered using the **onNavDestinationSizeChangeByUniqueId** API.
 
 **Atomic service API**: This API can be used in atomic services since API version 23.
 
@@ -3055,7 +3057,7 @@ Removes the listener callback registered using the **onNavDestinationSizeChangeB
 
 | Name  | Type                                                        | Mandatory| Description                                                        |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| navigationUniqueId | number | Yes| Unique ID of the **Navigation** component to which the **NavDestination** component to be listened belongs, which can be obtained through [queryNavigationInfo](arkui-ts/ts-custom-component-api.md#querynavigationinfo12).|
+| navigationUniqueId | number | Yes| Unique ID of the Navigation component to which the NavDestination whose listener needs to be unregistered belongs. The ID can be obtained via [queryNavigationInfo](arkui-ts/ts-custom-component-api.md#querynavigationinfo12).|
 | callback | Callback\<observer.[NavDestinationInfo](js-apis-arkui-observer.md#navdestinationinfo)\> | No  | Callback to be removed. If no parameter is passed, all callbacks with the same **navigationUniqueId** setting are removed.|
 
 **Example**
