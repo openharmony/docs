@@ -224,6 +224,8 @@ Invalid {osName} version.
 
 2、确认使用的SDK版本是否在sdkApiVersionMap.json文件的列表中。
 
+<!--RP1--><!--RP1End-->
+
 ## 11706016 @Available装饰器中的版本号无效
 
 **错误信息**
@@ -283,5 +285,3 @@ The runtime OS for the current project is {runtimeOS}. @Available is not support
 3、确认操作系统名称拼写正确，且为当前运行时所支持的名称。
 
 4、参考API文档说明：[Available](./apis-basic-services-kit/js-apis-annotation.md#available)。
-
-<!--RP1--><!--RP1End-->
