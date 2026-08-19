@@ -90,7 +90,7 @@ WindowManager_ErrorCode OH_NativeWindowManager_RegisterKeyEventFilter(int32_t wi
 
 | 类型 | 说明 |
 | -- | -- |
-| [WindowManager_ErrorCode](capi-oh-window-comm-h.md#windowmanager_errorcode) | 函数返回的执行结果。<br> 返回OK，表示接口调用成功。<br> 返回INVALID_WINDOW_ID，表示参数windowId无效。<br> 返回WINDOW_MANAGER_ERRORCODE_INVALID_PARAM，表示参数keyEventFilter无效。<br> 返回SERVICE_ERROR，表示窗口管理服务异常。|
+| [WindowManager_ErrorCode](capi-oh-window-comm-h.md#windowmanager_errorcode) | 函数返回的执行结果。<br> 返回OK，表示接口调用成功。<br> 返回INVAILD_WINDOW_ID，表示参数windowId无效。<br> 返回WINDOW_MANAGER_ERRORCODE_INVALID_PARAM，表示参数keyEventFilter无效。<br> 返回SERVICE_ERROR，表示窗口管理服务异常。|
 
 ### OH_NativeWindowManager_UnregisterKeyEventFilter()
 
@@ -115,7 +115,7 @@ WindowManager_ErrorCode OH_NativeWindowManager_UnregisterKeyEventFilter(int32_t 
 
 | 类型 | 说明 |
 | -- | -- |
-| [WindowManager_ErrorCode](capi-oh-window-comm-h.md#windowmanager_errorcode) | 函数返回的执行结果。<br> 返回OK，表示接口调用成功。<br> 返回INVALID_WINDOW_ID，表示参数windowId无效。<br> 返回SERVICE_ERROR，表示窗口管理服务异常。 |
+| [WindowManager_ErrorCode](capi-oh-window-comm-h.md#windowmanager_errorcode) | 函数返回的执行结果。<br> 返回OK，表示接口调用成功。<br> 返回INVAILD_WINDOW_ID，表示参数windowId无效。<br> 返回SERVICE_ERROR，表示窗口管理服务异常。 |
 
 ### OH_NativeWindowManager_MouseEventFilter()
 
@@ -166,7 +166,7 @@ WindowManager_ErrorCode OH_NativeWindowManager_RegisterMouseEventFilter(int32_t 
 
 | 类型 | 说明 |
 | -- | -- |
-| [WindowManager_ErrorCode](capi-oh-window-comm-h.md#windowmanager_errorcode) | 函数返回的执行结果。<br> 返回OK，表示接口调用成功。<br> 返回INVALID_WINDOW_ID，表示参数windowId无效。<br> 返回WINDOW_MANAGER_ERRORCODE_INVALID_PARAM，表示参数mouseEventFilter无效。<br> 返回SERVICE_ERROR，表示窗口管理服务异常。 |
+| [WindowManager_ErrorCode](capi-oh-window-comm-h.md#windowmanager_errorcode) | 函数返回的执行结果。<br> 返回OK，表示接口调用成功。<br> 返回INVAILD_WINDOW_ID，表示参数windowId无效。<br> 返回WINDOW_MANAGER_ERRORCODE_INVALID_PARAM，表示参数mouseEventFilter无效。<br> 返回SERVICE_ERROR，表示窗口管理服务异常。 |
 
 ### OH_NativeWindowManager_UnregisterMouseEventFilter()
 
@@ -191,7 +191,7 @@ WindowManager_ErrorCode OH_NativeWindowManager_UnregisterMouseEventFilter(int32_
 
 | 类型 | 说明 |
 | -- | -- |
-| [WindowManager_ErrorCode](capi-oh-window-comm-h.md#windowmanager_errorcode) | 函数返回的执行结果。<br> 返回OK，表示接口调用成功。<br> 返回INVALID_WINDOW_ID，表示参数windowId无效。<br> 返回SERVICE_ERROR，表示窗口管理服务异常。 |
+| [WindowManager_ErrorCode](capi-oh-window-comm-h.md#windowmanager_errorcode) | 函数返回的执行结果。<br> 返回OK，表示接口调用成功。<br> 返回INVAILD_WINDOW_ID，表示参数windowId无效。<br> 返回SERVICE_ERROR，表示窗口管理服务异常。 |
 
 ### OH_NativeWindowManager_TouchEventFilter()
 
@@ -236,7 +236,7 @@ WindowManager_ErrorCode OH_NativeWindowManager_RegisterTouchEventFilter(int32_t 
 | 参数项 | 描述 |
 | -- | -- |
 | int32_t windowId | 需要过滤触摸事件的窗口ID。 |
-| [WindowManager_ErrorCode](capi-oh-window-comm-h.md#windowmanager_errorcode) | 函数返回的执行结果。<br> 返回OK，表示接口调用成功。<br> 返回INVALID_WINDOW_ID，表示参数windowId无效。<br> 返回WINDOW_MANAGER_ERRORCODE_INVALID_PARAM，表示参数touchEventFilter无效。<br> 返回SERVICE_ERROR，表示窗口管理服务异常。 |
+| [WindowManager_ErrorCode](capi-oh-window-comm-h.md#windowmanager_errorcode) | 函数返回的执行结果。<br> 返回OK，表示接口调用成功。<br> 返回INVAILD_WINDOW_ID，表示参数windowId无效。<br> 返回WINDOW_MANAGER_ERRORCODE_INVALID_PARAM，表示参数touchEventFilter无效。<br> 返回SERVICE_ERROR，表示窗口管理服务异常。 |
 
 **返回：**
 
@@ -267,7 +267,7 @@ WindowManager_ErrorCode OH_NativeWindowManager_UnregisterTouchEventFilter(int32_
 
 | 类型 | 说明 |
 | -- | -- |
-| [WindowManager_ErrorCode](capi-oh-window-comm-h.md#windowmanager_errorcode) | 函数返回的执行结果。<br> 返回OK，表示接口调用成功。<br> 返回INVALID_WINDOW_ID，表示参数windowId无效。<br> 返回SERVICE_ERROR，表示窗口管理服务异常。|
+| [WindowManager_ErrorCode](capi-oh-window-comm-h.md#windowmanager_errorcode) | 函数返回的执行结果。<br> 返回OK，表示接口调用成功。<br> 返回INVAILD_WINDOW_ID，表示参数windowId无效。<br> 返回SERVICE_ERROR，表示窗口管理服务异常。|
 
 ### OH_NativeWindowManager_GetKeyEventFilter()
 
