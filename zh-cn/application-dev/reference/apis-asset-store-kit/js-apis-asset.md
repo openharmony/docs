@@ -939,7 +939,7 @@ import { asset } from '@kit.AssetStoreKit';
 let handle: asset.AssetMap = new Map();
 // 此处传入的new Uint8Array(32)仅作为示例，实际应传入asset.preQuerySync执行成功返回的挑战值。
 handle.set(asset.Tag.AUTH_CHALLENGE, new Uint8Array(32));
-asset.postQuerySync(handle)
+asset.postQuerySync(handle);
 ```
 
 ## asset.querySyncResult<sup>20+</sup>
@@ -1088,8 +1088,8 @@ type AssetMap = Map\<Tag, Value>
 | 名称                  | 值   | 说明                                                         |
 | --------------------- | ---- | ------------------------------------------------------------ |
 | DEVICE_POWERED_ON     | 0    | 开机后可访问。                                   |
-| DEVICE_FIRST_UNLOCKED | 1    | 首次解锁后可访问<br>**说明：** 未设置锁屏密码时，等同于开机后可访问。 |
-| DEVICE_UNLOCKED       | 2    | 解锁状态时可访问<br/>**说明：** 未设置锁屏密码时，等同于开机后可访问。 |
+| DEVICE_FIRST_UNLOCKED | 1    | 首次解锁后可访问。<br>**说明：** 未设置锁屏密码时，等同于开机后可访问。 |
+| DEVICE_UNLOCKED       | 2    | 解锁状态时可访问。<br/>**说明：** 未设置锁屏密码时，等同于开机后可访问。 |
 
 ## AuthType
 
