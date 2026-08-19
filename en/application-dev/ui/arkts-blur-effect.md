@@ -116,7 +116,7 @@ struct Index {
 }
 ```
 
-![en-us_image_0000001599813588](figures/Applying-Foreground-Blur.gif)
+<!--Del-->![en-us_image_0000001599813588]  (figures/Applying-Foreground-Blur.gif)<!--DelEnd-->
 
 ## Applying Background Blur with backgroundBlurStyle
 

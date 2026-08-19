@@ -50,7 +50,7 @@ An \@Link decorated variable in a child component shares the same value with a v
 
 - When the decorated variable is of the Boolean, string, or number type, its value change can be observed. For details, see [Using \@Link with Primitive and Class Types](#using-link-with-primitive-and-class-types).
 
-- When the decorated variable is of the class or Object type, assignment and property assignment changes can be observed, that is, all properties returned by `Object.keys(observedObject)`. For an example, see [Using \@Link with Primitive and Class Types](#using-link-with-primitive-and-class-types). \@Link can only observe changes to the object itself and its first-level properties. It cannot observe changes to nested data (such as nested objects or arrays of objects). For such scenarios, see [Usage Scenarios of \@Observed and \@ObjectLink Decorators](arkts-observed-and-objectlink.md#when-to-use).
+- When the decorated variable is of the class or Object type, assignment and property assignment changes can be observed, that is, all properties returned by `Object.keys(observedObject)`. For an example, see [Using \@Link with Primitive and Class Types](#using-link-with-primitive-and-class-types). \@Link can only observe changes to the object itself and its first-level properties. It cannot observe changes to nested data (such as nested objects or arrays of objects). For such scenarios, see [Usage Scenarios of \@Observed and \@ObjectLink Decorators](arkts-observed-and-objectlink.md#use-cases).
 
 - When the decorated variable is of the array type, the addition, deletion, and updates of array items can be observed. For details, see [Using \@Link with Array Types](#using-link-with-array-types).
 

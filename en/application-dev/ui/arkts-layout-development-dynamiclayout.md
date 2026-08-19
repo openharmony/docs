@@ -1336,20 +1336,20 @@ struct StatePreservationExample {
 
         Row({ space: 10 }) {
           Button('Increase spacing')
-            .fontSize(14)
+            .fontSize(11)
             .onClick(() => {
               // Modify the space attribute to trigger re-layout.
               const currentSpace = this.algorithm.space?.value;
               this.algorithm.space = LengthMetrics.vp(currentSpace as number + 5);
             })
           Button('Center')
-            .fontSize(14)
+            .fontSize(11)
             .onClick(() => {
               // Modify the justifyContent attribute to trigger re-layout.
               this.algorithm.justifyContent = FlexAlign.Center;
             })
           Button('Space between')
-            .fontSize(14)
+            .fontSize(11)
             .onClick(() => {
               this.algorithm.justifyContent = FlexAlign.SpaceBetween;
             })
@@ -1514,4 +1514,3 @@ struct StatePreservationExample {
   ```
 
   ![](figures/dynamiclayout_mediaquery.gif)
-<!--no_check-->
