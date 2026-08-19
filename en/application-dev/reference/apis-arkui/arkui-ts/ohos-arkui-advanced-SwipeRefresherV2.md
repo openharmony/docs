@@ -86,5 +86,4 @@ struct Index {
 }
 ```
 
-![Example 01](figures/image-swiperefresherv2-01.gif)
-<!--no_check-->
+<!--Del--> <!--DelEnd-->

@@ -516,7 +516,7 @@ struct ComposeListItemV2Example {
 }
 ```
 
-![Example 1 - ComposeListItemV2 left and right elements + text](figures/image-composelistitemv2-demo-01.jpg)
+<!--Del--> <!--DelEnd-->
 
 ### Example 2: Setting Custom Announcements for Different Right Elements of the List Item
 
@@ -608,7 +608,7 @@ struct ComposeListItemV2Example {
 }
 ```
 
-![Example 2 - ComposeListItemV2: Setting custom announcement for right elements of a list item](figures/image-composelistitemv2-demo-02.png)
+<!--Del--> <!--DelEnd-->
 
 ### Example 3: Setting Symbol Icons
 
@@ -691,5 +691,4 @@ struct ComposeListItemV2Example {
 }
 ```
 
-![Example 3 - ComposeListItemV2 with Symbol type icon](figures/image-composelistitemv2-demo-03.png)
-<!--no_check-->
+<!--Del--> <!--DelEnd-->

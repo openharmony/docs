@@ -218,7 +218,7 @@ struct Index {
 }
 ```
 
-![ExceptionPromptV2-01](figures/image-exceptionpromptv2-01.png)
+<!--Del--> <!--DelEnd-->
 
 ### Example 2 Setting an Exception Prompt of the Dialog Box Type
 
@@ -342,7 +342,7 @@ struct Index1 {
 }
 ```
 
-![ExceptionPromptV2_02](figures/image-exceptionpromptv2-02.gif)
+<!--Del--> <!--DelEnd-->
 
 ### Example 3: Setting a Symbol Icon
 
@@ -386,5 +386,4 @@ struct Index {
 }
 ```
 
-![ExceptionPromptV2_03](figures/image-exceptionpromptv2-03.png)
-<!--no_check-->
+<!--Del--> <!--DelEnd-->

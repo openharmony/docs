@@ -6,8 +6,9 @@
 <!--Designer: @HighLowWorld-->
 <!--Tester: @wxy1234564846-->
 <!--Adviser: @zengyawen-->
+<!-- md-trans-meta sourceCommit=ec7d2479b6b3839e76a32c0d9bfdf31f7c8310c8 translatedAt=2026-08-17T10:25:51.197Z pushedAt=2026-08-17T11:53:10.236Z -->
 
-Provides the functionalities such as registration and deregistration of external key management extension, PIN authentication, and acquisition of authentication state.
+This module provides capabilities such as registration and unregistration of external key management extensions, PIN authentication, and authentication status retrieval.
 
 > **Description**
 >
@@ -44,7 +45,7 @@ Enumerates the tags used to invoke parameters.
 | HUKS_EXT_CRYPTO_TAG_UID | HuksExternalCryptoTagType.HUKS_EXT_CRYPTO_TAG_TYPE_INT \| 200004    | UID of the caller.|
 | HUKS_EXT_CRYPTO_TAG_PURPOSE | HuksExternalCryptoTagType.HUKS_EXT_CRYPTO_TAG_TYPE_INT \| 200005    | Usage type of the key corresponding to the certificate chain. For details, see [CertificatePurpose](../apis-device-certificate-kit/js-apis-certManager.md#certificatepurpose22).|
 | HUKS_EXT_CRYPTO_TAG_RESOURCE_INFO | HuksExternalCryptoTagType.HUKS_EXT_CRYPTO_TAG_TYPE_BYTES \| 200007    | Information required for obtaining the resource ID. The format and content are defined by the vendor.<br>**Since**: 26.0.0<br>**Model restriction:** This API can be used only in the stage model.|
-| HUKS_EXT_CRYPTO_TAG_ABILITY_INFO | HuksExternalCryptoTagType.HUKS_EXT_CRYPTO_TAG_TYPE_BYTES \| 200008    | List of abilities related to the custom PIN dialog box of the key management extension. This list is registered together with the key management extension. For details, see [Registering and Unregistering a Provider (ArkTS)](../../security/UniversalKeystoreKit/huks-extension-registration-and-unregistration-arkts.md). If a custom dialog box is registered, it can be displayed during PIN authentication.<br>HUKS_EXT_CRYPTO_TAG_ABILITY_INFO<br> 1. **abilityName**: The value length ranges from 1 to 128 bytes.<br> 2. **index**: The value is **resourceId** and can contain a maximum of 512 bytes. The value of this field must be unique. This field can be left empty for a single **CryptoExtension**. If this field is left empty, an empty string is transferred. During the search, the **UIAbility** corresponding to the index is preferentially matched. If the **UIAbility** does not exist, the **UIAbility** with an empty index is returned.<br>**Since:** 26.0.0<br>**Model restriction:** This API can be used only in the stage model.|
+| HUKS_EXT_CRYPTO_TAG_ABILITY_INFO | HuksExternalCryptoTagType.HUKS_EXT_CRYPTO_TAG_TYPE_BYTES \| 200008    | Indicates the Ability list information related to the custom PIN dialog box of the key management extension. It is registered synchronously when the key management extension is registered. For details, see [provider registration example](../../security/UniversalKeystoreKit/huks-extension-registration-and-unregistration-arkts.md). If a custom dialog box is registered, the custom dialog box can be launched during PIN authentication to perform PIN authentication and other operations.<br>HUKS_EXT_CRYPTO_TAG_ABILITY_INFO<br> 1.abilityName: The length ranges from 1 to 128 bytes.<br> 2.index: Its value is resourceId, and the maximum length is 512 bytes. This field must be unique. It can be empty under a single CryptoExtension. When it is empty, an empty string is transmitted. During search, the UIAbility corresponding to index is matched first. If it does not exist, the UIAbility with an empty index is returned.<br>**Since:** 26.0.0<br>**Model restriction:** This API can be used only in the stage model. |
 | HUKS_EXT_CRYPTO_TAG_BUNDLE_NAME | HuksExternalCryptoTagType.HUKS_EXT_CRYPTO_TAG_TYPE_BYTES \| 200009    | Name of the HAP bundle to which the **CryptoExtensionAbility** belongs.<br>**Since**: 26.0.0<br>**Model restriction:** This API can be used only in the stage model.|
 
 ## HuksExternalCryptoParam
@@ -75,15 +76,15 @@ Defines the detailed error information returned by the key management extension 
 
 ## HuksExternalPinAuthState
 
-Enumerates the Ukey PIN authentication states.
+Enumerates the status values of UKey PIN management.
 
 **System capability**: SystemCapability.Security.Huks.CryptoExtension
 
 | Name   | Value  | Description  |
 | ------- | ---- | -------- |
-| HUKS_EXT_CRYPTO_PIN_NO_AUTH | 0 | The Ukey PIN is not authenticated.|
-| HUKS_EXT_CRYPTO_PIN_AUTH_SUCCEEDED | 1 | The Ukey PIN is authenticated successfully.|
-| HUKS_EXT_CRYPTO_PIN_LOCKED  | 2 | The Ukey PIN is locked.|
+| HUKS_EXT_CRYPTO_PIN_NO_AUTH | 0 | The UKey PIN is not authenticated. |
+| HUKS_EXT_CRYPTO_PIN_AUTH_SUCCEEDED | 1 | The UKey PIN is authenticated. |
+| HUKS_EXT_CRYPTO_PIN_LOCKED  | 2 | The UKey PIN is locked. |
 
 ## huksExternalCrypto.registerProvider
 
@@ -100,14 +101,19 @@ To use a custom PIN dialog box, you need to register the **UIAbility** when regi
 3. When the system starts the custom dialog box, it passes the following parameters to you through the **want** API:
 
     - **Action**: string type. When the custom dialog box is started, the **Action** transferred by the **want** API is **"UkeyPINAuth"**.
+
     - **appUid**: number type, transferred through **want.parameters**. The **appUid** field indicates the application ID. You can use this field to isolate applications.
-    - **keyUri**: string type. The value is **resourceId**, which is transferred through **want.parameters** and indicates the index of the Ukey certificate.
-  
+
+    - keyUri: string type. Its value is resourceId, transferred through want.parameters. Indicates the index of the UKey certificate.
+
 4. When implementing **UIAbility**, your application needs to return the corresponding error code based on the specified scenario.
 
     - If the user cancels the operation, [ERROR_OPERATION_CANCELED](../apis-device-certificate-kit/js-apis-certManagerDialog.md#certificatedialogerrorcode) is returned.
+
     - If the certificate or key specified by **keyUri** does not exist, [ERROR_OPERATION_FAILED](../apis-device-certificate-kit/js-apis-certManagerDialog.md#certificatedialogerrorcode) is returned.
+
     - If the parameter format is incorrect, [ERROR_PARAMETER_VALIDATION_FAILED](../apis-device-certificate-kit/js-apis-certManagerDialog.md#certificatedialogerrorcode) is returned.
+
     - In other failure scenarios, the error code [ERROR_GENERIC](../apis-device-certificate-kit/js-apis-certManagerDialog.md#certificatedialogerrorcode) is returned. If the operation is successful, **0** is returned.
 
 **Required permissions**: ohos.permission.CRYPTO_EXTENSION_REGISTER
@@ -148,7 +154,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 ```ts
 import { huksExternalCrypto } from '@kit.UniversalKeystoreKit';
 
-function StringToUint8Array(str: string) {
+function stringToUint8Array(str: string) {
   let arr: number[] = [];
   for (let i = 0, j = str.length; i < j; ++i) {
     arr.push(str.charCodeAt(i));
@@ -160,11 +166,11 @@ const providerName = "testProviderName";
 const extProperties: Array<huksExternalCrypto.HuksExternalCryptoParam> = [
   {
     tag: huksExternalCrypto.HuksExternalCryptoTag.HUKS_EXT_CRYPTO_TAG_ABILITY_NAME,
-    value: StringToUint8Array("CryptoExtension")
+    value: stringToUint8Array("CryptoExtension")
   }
 ];
 huksExternalCrypto.registerProvider(providerName, extProperties)
-    .then((data) => {
+    .then(() => {
         console.info('promise: registerProvider success.');
     });
 ```
@@ -211,7 +217,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 ```ts
 import { huksExternalCrypto } from '@kit.UniversalKeystoreKit';
 
-function StringToUint8Array(str: string) {
+function stringToUint8Array(str: string) {
   let arr: number[] = [];
   for (let i = 0, j = str.length; i < j; ++i) {
     arr.push(str.charCodeAt(i));
@@ -223,11 +229,11 @@ const providerName = "testProviderName";
 const extProperties: Array<huksExternalCrypto.HuksExternalCryptoParam> = [
   {
     tag: huksExternalCrypto.HuksExternalCryptoTag.HUKS_EXT_CRYPTO_TAG_ABILITY_NAME,
-    value: StringToUint8Array("CryptoExtension")
+    value: stringToUint8Array("CryptoExtension")
   }
 ];
 huksExternalCrypto.unregisterProvider(providerName, extProperties)
-    .then((data) => {
+    .then(() => {
         console.info('promise: unregisterProvider success.');
     });
 ```
@@ -291,8 +297,11 @@ Obtains a property value. This API uses a promise to return the result.
 The **propertyId** parameter indicates the ID of the property to be queried. You are advised to use SKF API names defined in GMT 0016-2023 as property IDs. The supported IDs are as follows:
 
 - SKF_EnumDev 
+
 - SKF_GetDevInfo 
+
 - SKF_EnumApplication 
+
 - SKF_EnumContainer
 
 Since API version 26.0.0, property IDs can be customized, which is provided by the [CryptoExtensionAbility](js-apis-CryptoExtensionAbility.md) implementation party.
@@ -470,7 +479,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 ```ts
 import { huksExternalCrypto } from '@kit.UniversalKeystoreKit';
 
-function StringToUint8Array(str: string) {
+function stringToUint8Array(str: string) {
   let arr: number[] = [];
   for (let i = 0, j = str.length; i < j; ++i) {
     arr.push(str.charCodeAt(i));
@@ -487,15 +496,15 @@ const resourceInfo = "vendor_defined_resource_info";
 const extProperties: Array<huksExternalCrypto.HuksExternalCryptoParam> = [
   {
     tag: huksExternalCrypto.HuksExternalCryptoTag.HUKS_EXT_CRYPTO_TAG_ABILITY_NAME,
-    value: StringToUint8Array(abilityName)
+    value: stringToUint8Array(abilityName)
   },
   {
     tag: huksExternalCrypto.HuksExternalCryptoTag.HUKS_EXT_CRYPTO_TAG_BUNDLE_NAME,
-    value: StringToUint8Array(bundleName)
+    value: stringToUint8Array(bundleName)
   },
   {
     tag: huksExternalCrypto.HuksExternalCryptoTag.HUKS_EXT_CRYPTO_TAG_RESOURCE_INFO,
-    value: StringToUint8Array(resourceInfo)
+    value: stringToUint8Array(resourceInfo)
   }
 ];
 
@@ -708,7 +717,6 @@ async function testFunction() : Promise<void>
 }
 ```
 
-
 ## huksExternalCrypto.getErrorInfo
 
 getErrorInfo(): HuksExternalErrorInfo
@@ -738,25 +746,36 @@ Obtains the detailed error information about the latest external key operation i
 ```ts
 import { huksExternalCrypto } from '@kit.UniversalKeystoreKit';
 
+function stringToUint8Array(str: string) {
+  let arr: number[] = [];
+  for (let i = 0, j = str.length; i < j; ++i) {
+    arr.push(str.charCodeAt(i));
+  }
+  return new Uint8Array(arr);
+}
+
 const resourceId = JSON.stringify({
   providerName: "testProviderName",
   bundleName: "com.example.cryptoapplication",
   abilityName: "CryptoExtension",
   index: "testKey"
 });
-
+const pin = "123456"; // This is an example. Replace it with the actual user PIN in real services.
 const params: Array<huksExternalCrypto.HuksExternalCryptoParam> = [
   {
     tag: huksExternalCrypto.HuksExternalCryptoTag.HUKS_EXT_CRYPTO_TAG_UKEY_PIN,
-    value: StringToUint8Array(pin)
+    value: stringToUint8Array(pin)
   }
 ];
 
-try {
-  await huksExternalCrypto.authUkeyPin(resourceId, params);
-} catch (error) {
-  const errorInfo = huksExternalCrypto.getErrorInfo();
-  console.info(`errno: ${errorInfo.errno}`);
-  console.info(`errorDesc: ${errorInfo.errorDesc}`);
+async function testFunction() : Promise<void>
+{
+  try {
+    await huksExternalCrypto.authUkeyPin(resourceId, params);
+  } catch (error) {
+    const errorInfo = huksExternalCrypto.getErrorInfo();
+    console.info(`errno: ${errorInfo.errno}`);
+    console.info(`errorDesc: ${errorInfo.errorDesc}`);
+  }
 }
 ```

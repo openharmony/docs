@@ -240,7 +240,7 @@ struct Index {
 }
 ```
 
-![Example 1](figures/image-composetitlebarv2-example-01.png)
+<!--Del--> <!--DelEnd-->
 
 ### Example 2: Setting a Right-side Custom Button Announcement
 
@@ -341,7 +341,7 @@ struct Index {
 }
 ```
 
-![Example 2](figures/image-composetitlebarv2-example-02.png)
+<!--Del--> <!--DelEnd-->
 
 ### Example 3: Setting a Symbol Icon
 
@@ -429,5 +429,4 @@ struct Index {
 }
 ```
 
-![Example 3](figures/image-composetitlebarv2-example-03.png)
-<!--no_check-->
+<!--Del--> <!--DelEnd-->

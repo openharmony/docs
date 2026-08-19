@@ -18,7 +18,7 @@ Defines the APIs of the HTTP global interceptor module, which includes read-only
 
 - **Supported components**:
 
-  - Read-only interceptors currently support [@ohos.net.http](../../reference/apis-network-kit/js-apis-http.md), [net_http.h](capi-net-http-h.md), [rcp](https://developer.huawei.com/consumer/cn/doc/harmonyos-references/remote-communication-rcp), and [@ohos.request.cacheDownload](../../reference/apis-basic-services-kit/js-apis-request-cacheDownload.md).
+  - Read-only interceptors currently support [@ohos.net.http](../../reference/apis-network-kit/js-apis-http.md), [net_http.h](capi-net-http-h.md), [rcp](https://developer.huawei.com/consumer/en/doc/harmonyos-references/remote-communication-rcp), and [@ohos.request.cacheDownload](../../reference/apis-basic-services-kit/js-apis-request-cacheDownload.md).
 
   - Writable interceptors currently support [@ohos.net.http](../../reference/apis-network-kit/js-apis-http.md) and [net_http.h](capi-net-http-h.md).
 
