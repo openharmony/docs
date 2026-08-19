@@ -62,7 +62,7 @@ console.info(`the esim is Supported:` + isSupported);
 
 addProfile\(profile: DownloadableProfile\): Promise\<boolean\>
 
-当用户需要激活新eSIM（如新开卡或换卡）时，调用此接口引导完成配置文件的下载与添加流程。。使用Promise异步回调。
+当用户需要激活新eSIM（如新开卡或换卡）时，调用此接口引导完成配置文件的下载与添加流程。使用Promise异步回调。
 
 **需要权限**：ohos.permission.SET_TELEPHONY_ESIM_STATE_OPEN
 
