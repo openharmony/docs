@@ -135,7 +135,7 @@ import { Component, Driver, UiWindow, ON, MatchPattern, DisplayRotation, ResizeD
 | bundleName           | string  | 否  | 是  | 窗口归属应用的包名，默认值为空，用于在多窗口场景下根据应用包名筛选目标窗口。<br />**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。                        |
 | title                | string  | 否  | 是  | 窗口的标题信息，默认值为空，用于在多窗口场景下根据窗口标题筛选目标窗口。<br />**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。                          |
 | focused              | boolean | 否  | 是   | 窗口是否处于获焦状态，true：获焦状态，false：未获焦状态，默认值为false。<br />**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
-| actived(deprecated)  | boolean | 否   | 是  | 窗口是否正与用户进行交互，true：交互状态，false：未交互状态，默认值为false。<br>从API version 9开始支持，从API version 11开始废弃，建议使用[active<sup>11+</sup>](#windowfilter9)替代。                                                |
+| actived<sup>deprecated</sup> | boolean | 否   | 是  | 窗口是否正与用户进行交互，true：交互状态，false：未交互状态，默认值为false。<br>从API version 9开始支持，从API version 11开始废弃，建议使用[active<sup>11+</sup>](#windowfilter9)替代。                                                |
 | active<sup>11+</sup> | boolean | 否  | 是  | 窗口是否正与用户进行交互，true：交互状态，false：未交互状态，默认值为false。<br />**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。                     |
 | displayId<sup>20+</sup> | number | 否   | 是  | 窗口所属的屏幕ID。取值大于或等于0的整数。默认值为设备默认屏幕ID。<br> **原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。 |
 
