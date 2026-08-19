@@ -16,7 +16,7 @@ typedef struct InputMethod_InputMethodProxy InputMethod_InputMethodProxy
 
 **起始版本：** 12
 
-**相关模块：** [InputMethod（输入法模块）](capi-inputmethod.md)
+**相关模块：** [InputMethod](capi-inputmethod.md)
 
 **所在头文件：** [inputmethod_inputmethod_proxy_capi.h](capi-inputmethod-inputmethod-proxy-capi-h.md)
 

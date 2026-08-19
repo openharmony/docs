@@ -17,48 +17,15 @@
 > **说明：**
 >
 > 本模块首批接口从API version 9开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
-> 本模块接口仅可在Stage模型下使用。
+>
 > `InputMethodExtensionAbility`仅定义了基础的`onCreate`和`onDestroy`两个生命周期回调。输入法的核心交互能力（如面板创建/销毁、键盘事件监听、客户端绑定等）需在`onCreate`回调中通过`@ohos.inputMethodEngine`模块获取`InputMethodAbility`对象来实现。`onCreate`是所有关键对象获取和面板创建的唯一入口，必须在该回调中完成初始化。
+>
+> `InputMethodExtensionAbility`的`context`属性类型为`InputMethodExtensionContext`（来自`@ohos.InputMethodExtensionContext`模块），属于关联关系——`InputMethodExtensionAbility`拥有`InputMethodExtensionContext`的上下文能力。
 
 | Class | 说明 |
 |---|---|
 | InputMethodExtensionAbility | 输入法ExtensionAbility基类，提供输入法应用的生命周期管理框架。关键成员包括：`context`属性（`InputMethodExtensionContext`上下文对象）、`onCreate(want)`方法（初始化回调）、`onDestroy()`方法（销毁回调）。开发者需继承此类并重写生命周期方法。 |
 
-> **说明：**
->
-> `InputMethodExtensionAbility`的`context`属性类型为`InputMethodExtensionContext`（来自`@ohos.InputMethodExtensionContext`模块），属于关联关系——`InputMethodExtensionAbility`拥有`InputMethodExtensionContext`的上下文能力。
-
-本模块的`InputMethodExtensionAbility`是输入法应用开发的起点，其生命周期回调与多个IME Kit模块的API组合使用，形成完整的输入法应用初始化流程。
-
-```javascript
-// 以下为阐述调用逻辑的伪代码
-
-// 1. 继承InputMethodExtensionAbility创建输入法Extension类
-class InputMethodExt extends InputMethodExtensionAbility {
-
-  // 2. 在onCreate中初始化输入法应用
-  onCreate(want) {
-    // 获取上下文对象
-    let context = this.context;
-
-    // 获取输入法核心能力对象（@ohos.inputMethodEngine模块）
-    // let ability = inputMethodEngine.getInputMethodAbility();
-
-    // 创建输入法面板（@ohos.inputMethodEngine模块）
-    // let panelInfo = { type: PanelType.SOFT_KEYBOARD, flag: PanelFlag.FLAG_FIXED };
-    // let panel = ability.createPanel(context, panelInfo);
-  }
-
-  // 3. 在onDestroy中清理资源
-  onDestroy() {
-    // 销毁面板、释放资源
-  }
-}
-```
-
-> **说明：**
->
-> `InputMethodExtensionAbility`仅定义了基础的`onCreate`和`onDestroy`两个生命周期回调。输入法的核心交互能力（如面板创建/销毁、键盘事件监听、客户端绑定等）需在`onCreate`中通过`@ohos.inputMethodEngine`模块获取`InputMethodAbility`对象来实现。`onCreate`是输入法应用初始化的核心入口，所有关键对象的获取和面板创建均应在此回调中完成。
 
 ## 约束限制
 
@@ -238,4 +205,4 @@ InputMethodExtensionAbility不支持以下模块的引用。
 | Basic Services Kit | [@ohos.account.osAccount (系统账号管理)](../apis-basic-services-kit/js-apis-osAccount.md)</br>[@ohos.account.distributedAccount (分布式账号管理)](../apis-basic-services-kit/js-apis-distributed-account.md)</br>[@ohos.wallpaper (壁纸)](../apis-basic-services-kit/js-apis-wallpaper.md) |
 | Connectivity Kit |  [@ohos.bluetooth (蓝牙)](../apis-connectivity-kit/js-apis-bluetooth.md)</br>[@ohos.bluetoothManager (蓝牙)](../apis-connectivity-kit/js-apis-bluetoothManager.md)</br>[nfctech (标准NFC-Tag Nfc 技术)](../apis-connectivity-kit/js-apis-nfctech.md)</br>[@ohos.nfc.controller (标准NFC)](../apis-connectivity-kit/js-apis-nfcController.md)</br>[@ohos.nfc.cardEmulation (标准NFC-cardEmulation)](../apis-connectivity-kit/js-apis-cardEmulation.md)</br>[@ohos.connectedTag (有源标签)](../apis-connectivity-kit/js-apis-connectedTag.md)</br>[@ohos.wifiext (WLAN扩展接口)](../apis-connectivity-kit/js-apis-wifiext.md)</br>[@ohos.wifiManager (WLAN)](../apis-connectivity-kit/js-apis-wifiManager.md)</br>[@ohos.wifiManagerExt (WLAN扩展接口)](../apis-connectivity-kit/js-apis-wifiManagerExt.md)</br>[tagSession (标准NFC-Tag TagSession)](../apis-connectivity-kit/js-apis-tagSession.md)</br> |
 | Location Kit | [@ohos.geolocation (位置服务)](../apis-location-kit/js-apis-geolocation.md)</br>[@ohos.geoLocationManager (位置服务)](../apis-location-kit/js-apis-geoLocationManager.md) |
-| Telephony Kit | [@ohos.telephony.call (拨打电话)](../apis-telephony-kit/js-apis-call.md)</br>[@ohos.telephony.data (蜂窝数据)](../apis-telephony-kit/js-apis-telephony-data.md)</br>[@ohos.telephony.observer (observer)](../apis-telephony-kit/js-apis-observer.md)</br>[@ohos.telephony.radio (网络搜索)](../apis-telephony-kit/js-apis-radio.md)</br>[@ohos.telephony.sms (短信服务)](../apis-telephony-kit/js-apis-sms.md)</br>[@ohos.telephony.sim (SIM卡管理)](../apis-telephony-kit/js-apis-sim.md) |
+| Telephony Kit | [@ohos.telephony.call (拨打电话)](../apis-telephony-kit/js-apis-call.md)</br>[@ohos.telephony.data (蜂窝数据)](../apis-telephony-kit/js-apis-telephony-data.md)</br>[@ohos.telephony.observer (电话服务状态监听)](../apis-telephony-kit/js-apis-observer.md)</br>[@ohos.telephony.radio (网络搜索)](../apis-telephony-kit/js-apis-radio.md)</br>[@ohos.telephony.sms (短信服务)](../apis-telephony-kit/js-apis-sms.md)</br>[@ohos.telephony.sim (SIM卡管理)](../apis-telephony-kit/js-apis-sim.md) |

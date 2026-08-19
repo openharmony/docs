@@ -41,12 +41,12 @@
 
 // 1. 定义模式选项（仅系统预置输入法需要）
 let patternOptions = {
-  defaultSelected: 1,                              // 默认选中的模式索引
-  patterns: [                                       // 模式选项资源数组
+  defaultSelected: 1, // 默认选中的模式索引
+  patterns: [ // 模式选项资源数组
     { icon: 手模式图标, selectedIcon: 手模式选中图标 },
     { icon: 全屏模式图标, selectedIcon: 全屏模式选中图标 }
   ],
-  action: (index) => {                              // 模式切换回调
+  action: (index) => { // 模式切换回调
     // 处理模式切换逻辑
   }
 };
@@ -130,7 +130,6 @@ InputMethodListDialog({controller: CustomDialogController, patternOptions?: Patt
 
 ```ts
 import { PatternOptions, InputMethodListDialog } from '@kit.IMEKit';
-import { CustomDialogController } from '@kit.ArkUI';
 
 @Entry
 // 设置组件
@@ -150,7 +149,7 @@ struct SettingsItem {
       },
       {
         icon: $r('app.media.hand_icon2'),
-        selectedIcon: $r('app.media.hand_icon_selected2'),
+        selectedIcon: $r('app.media.hand_icon_selected2')
       }],
     // 模式选项改变时的回调函数
     action: (index: number) => {
@@ -167,8 +166,11 @@ struct SettingsItem {
 
   build() {
     Column() {
-      Flex({ direction: FlexDirection.Column,
-        alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
+      Flex({
+        direction: FlexDirection.Column,
+        alignItems: ItemAlign.Center, 
+        justifyContent: FlexAlign.Center 
+      }) {
         Text('输入法切换列表').fontSize(20)
       }
     }

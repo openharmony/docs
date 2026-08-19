@@ -40,14 +40,6 @@ let subtypes = setting.listInputMethodSubtype(inputMethodProperty);
 
 // 2. 切换到指定子类型
 inputMethod.switchCurrentInputMethodSubtype(targetSubtype);
-
-// 3. 输入法应用侧监听子类型切换（@ohos.inputMethodEngine模块组合）
-// let ability = inputMethodEngine.getInputMethodAbility();
-// ability.on('setSubtype', (subtype) => {
-//   // subtype为InputMethodSubtype实例，根据其language/locale/mode调整键盘
-//   let lang = subtype.language;   // 如 'zh' 或 'en'
-//   let mode = subtype.mode;       // 如 'upper' 或 'lower'
-// });
 ```
 
 > **说明：**
