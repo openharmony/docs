@@ -272,7 +272,7 @@ Sets the property based on the **handle** and **propertyId** parameters. This AP
 | -------- | ----- | ---- | ------|
 | handle | string | Yes  | Resource handle.|
 | propertyId | string | Yes  | Property name for the setting operation. You are advised to use the name of the corresponding SKF API defined in GMT 0016-2023 as the property ID.|
-| params  | [HuksCryptoExtensionParam](#hukscryptoextensionparam)[] | Yes | Passed parameter, which includes the operation parameters related to **propertyId**. The application identity is carried by the [HUKS_EXT_CRYPTO_TAG_UID](js-apis-huksExternalCrypto.md#huksextensioncryptotaguid) parameter. |
+| params  | [HuksCryptoExtensionParam](#hukscryptoextensionparam)[] | Yes | Passed parameter, which includes the operation parameters related to **propertyId**. The application identity is carried by the [HUKS_EXT_CRYPTO_TAG_UID](js-apis-huksExternalCrypto.md#huksexternalcryptotag) parameter. |
 
 **Return value**
 
@@ -834,7 +834,7 @@ Imports the encrypted and encapsulated key pair. This API uses a promise to retu
 | -------- | ----- | ---- | ------|
 | handle | string | Yes  | Handle to the resource whose key is to be imported.|
 | wrappingHandle | string | Yes | Key resource handle used to unwrap the imported key. |
-| params | [HuksCryptoExtensionParam](#hukscryptoextensionparam)[] | Yes | Attribute parameters for the wrapped key import operation. Mandatory TAG: [HUKS_EXT_CRYPTO_TAG_UID](js-apis-huksExternalCrypto.md#huksextcryptotag) (caller identity). |
+| params | [HuksCryptoExtensionParam](#hukscryptoextensionparam)[] | Yes | Attribute parameters for the wrapped key import operation. Mandatory TAG: [HUKS_EXT_CRYPTO_TAG_UID](js-apis-huksExternalCrypto.md#huksexternalcryptotag) (caller identity). |
 | wrappedKey | Uint8Array | Yes  | wrapped key data. The format is defined by key extension.|
 
 **Return value**
