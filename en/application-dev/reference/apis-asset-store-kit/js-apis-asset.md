@@ -2,10 +2,11 @@
 
 <!--Kit: Asset Store Kit-->
 <!--Subsystem: Security-->
-<!--Owner: @JeremyXu-->
-<!--Designer: @skye_you-->
+<!--Owner: @HarMonkey-->
+<!--Designer: @wkr321_ent-->
 <!--Tester: @nacyli-->
 <!--Adviser: @zengyawen-->
+<!-- md-trans-meta sourceCommit=8c92e73a9c5f77cd051558427dd3b1470296ac9f translatedAt=2026-08-18T15:28:13.026Z pushedAt=2026-08-19T01:52:36.003Z -->
 
 The asset store service (ASSET) provides secure storage and management of sensitive data less than 1024 bytes in size, including passwords, app tokens, and other critical data (such as bank card numbers).
 
@@ -25,7 +26,7 @@ add(attributes: AssetMap): Promise\<void>
 
 Adds an asset. This API uses a promise to return the result.
 
-To set [IS_PERSISTENT](#tag), the application must have the ohos.permission.STORE_PERSISTENT_DATA permission.
+To set the [Tag.IS_PERSISTENT](#tag) attribute, you need to request the ohos.permission.STORE_PERSISTENT_DATA permission. For details about how to request the permission, see [Declared Permission](../../security/AccessToken/declare-permissions.md).
 
 **Atomic service API**: This API can be used in atomic services since API version 14.
 
@@ -45,7 +46,7 @@ To set [IS_PERSISTENT](#tag), the application must have the ohos.permission.STOR
 
 **Error codes**
 
-For details about the error codes, see [Asset Store Service Error Codes](errorcode-asset.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Asset Store Service Error Codes](errorcode-asset.md).
 
 | ID| Error Message                                                  |
 | -------- | ---------------------------------------------------------- |
@@ -92,7 +93,7 @@ addSync(attributes: AssetMap): void
 
 Add an asset. This API returns the result synchronously.
 
-To set [IS_PERSISTENT](#tag), the application must have the ohos.permission.STORE_PERSISTENT_DATA permission.
+To set the [Tag.IS_PERSISTENT](#tag) attribute, you need to request the ohos.permission.STORE_PERSISTENT_DATA permission. For details about how to request the permission, see [Declared Permission](../../security/AccessToken/declare-permissions.md).
 
 **Atomic service API**: This API can be used in atomic services since API version 14.
 
@@ -106,9 +107,9 @@ To set [IS_PERSISTENT](#tag), the application must have the ohos.permission.STOR
 
 **Error codes**
 
-For details about the error codes, see [Asset Store Service Error Codes](errorcode-asset.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Asset Store Service Error Codes](errorcode-asset.md).
 
-| ID| Error Message                                                  |
+| ID | Error Message                                                    |
 | -------- | ---------------------------------------------------------- |
 | 201      | The caller doesn't have the permission.                    |
 | 401      | Parameter error. Possible causes: <br> 1. Mandatory parameters are left unspecified. <br> 2. Incorrect parameter types. <br> 3. Parameter verification failed.           |
@@ -145,6 +146,83 @@ attr.set(asset.Tag.DATA_LABEL_NORMAL_1, stringToArray('demo_label'));
 asset.addSync(attr);
 ```
 
+## asset.batchAdd
+
+batchAdd(attributesArray: Array\<AssetMap>): Promise\<BatchResult>
+
+Batch inserts assets. This API uses a promise to return the result.
+
+To set the [Tag.IS_PERSISTENT](#tag) attribute, you need to request the ohos.permission.STORE_PERSISTENT_DATA permission. For details about how to request the permission, see [Declared Permission](../../security/AccessToken/declare-permissions.md).
+
+The assets to be batch inserted must have the same [Tag.GROUP_ID](#tag) and [Tag.REQUIRE_ATTR_ENCRYPTED](#tag) attributes.
+
+The maximum number of assets that can be batch inserted is 100.
+
+**Since**: 26.0.0
+
+**System capability:** SystemCapability.Security.Asset
+
+**Parameters**
+
+| Name     | Type     | Mandatory | Description                                                         |
+| ---------- | -------- | ---- | ------------------------------------------------------------ |
+| attributesArray | Array\<[AssetMap](#assetmap)> | Yes   | Array of attribute sets of the assets to be inserted, including the asset plaintext, access control attributes, custom data, and so on. The maximum length of the array is 100. |
+
+**Return value**
+
+| Type          | Description                    |
+| ------------- | ----------------------- |
+| Promise\<[BatchResult](#batchresult)> | Promise used to return the batch operation result, which contains the error information of the failed assets. |
+
+**Error codes**
+
+For details about the error codes, see [Asset Store Service Error Codes](errorcode-asset.md).
+
+| ID| Error Message                                                  |
+| -------- | ---------------------------------------------------------- |
+| 24000001 | The ASSET service is unavailable.                          |
+| 24000005 | The screen lock status does not match.                         |
+| 24000006 | Insufficient memory.                                       |
+| 24000007 | The asset is corrupted.                                    |
+| 24000008 | The database operation failed.                          |
+| 24000009 | The cryptography operation failed.                      |
+| 24000010 | IPC failed.                                |
+| 24000011 | Calling the Bundle Manager service failed. |
+| 24000012 | Calling the OS Account service failed.     |
+| 24000013 | Calling the Access Token service failed.   |
+| 24000014 | The file operation failed.                           |
+| 24000015 | Getting the system time failed.            |
+| 24000019 | Each value of [Tag.GROUP_ID](#tag) and [Tag.REQUIRE_ATTR_ENCRYPTED](#tag) in the array is not consistent. |
+
+**Example**
+
+```typescript
+import { asset } from '@kit.AssetStoreKit';
+import { util } from '@kit.ArkTS';
+
+function stringToArray(str: string): Uint8Array {
+  let textEncoder = new util.TextEncoder();
+  return textEncoder.encodeInto(str);
+}
+
+let attributesArray: Array<asset.AssetMap> = [];
+let attr1: asset.AssetMap = new Map();
+attr1.set(asset.Tag.SECRET, stringToArray('demo_pwd1'));
+attr1.set(asset.Tag.ALIAS, stringToArray('demo_alias1'));
+attr1.set(asset.Tag.ACCESSIBILITY, asset.Accessibility.DEVICE_FIRST_UNLOCKED);
+attributesArray.push(attr1);
+
+let attr2: asset.AssetMap = new Map();
+attr2.set(asset.Tag.SECRET, stringToArray('demo_pwd2'));
+attr2.set(asset.Tag.ALIAS, stringToArray('demo_alias2'));
+attr2.set(asset.Tag.ACCESSIBILITY, asset.Accessibility.DEVICE_FIRST_UNLOCKED);
+attributesArray.push(attr2);
+
+asset.batchAdd(attributesArray).then((res: asset.BatchResult) => {
+  console.info(`Succeeded in batch adding Asset, failedCount: ${res.failedCount}`);
+});
+```
+
 ## asset.remove
 
 remove(query: AssetMap): Promise\<void>
@@ -169,7 +247,7 @@ Removes one or more assets. This API uses a promise to return the result.
 
 **Error codes**
 
-For details about the error codes, see [Asset Store Service Error Codes](errorcode-asset.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Asset Store Service Error Codes](errorcode-asset.md).
 
 | ID| Error Message                                                  |
 | -------- | ---------------------------------------------------------- |
@@ -221,9 +299,9 @@ Removes one or more assets. This API returns the result synchronously.
 
 **Error codes**
 
-For details about the error codes, see [Asset Store Service Error Codes](errorcode-asset.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Asset Store Service Error Codes](errorcode-asset.md).
 
-| ID| Error Message                                                  |
+| ID | Error Message                                                    |
 | -------- | ---------------------------------------------------------- |
 | 401      | Parameter error. Possible causes: <br> 1. Incorrect parameter types.  <br> 2. Parameter verification failed. |
 | 24000001 | The ASSET service is unavailable.                          |
@@ -253,6 +331,74 @@ query.set(asset.Tag.ALIAS, stringToArray('demo_alias'));
 asset.removeSync(query);
 ```
 
+## asset.batchRemove
+
+batchRemove(assetsToBeRemoved: Array\<AssetMap>): Promise\<void>
+
+Batch deletes the assets that meet the conditions. This API uses a promise to return the result.
+
+The assets to be batch deleted must have the same [Tag.GROUP_ID](#tag) and [Tag.REQUIRE_ATTR_ENCRYPTED](#tag) attributes.
+
+The maximum number of assets that can be batch deleted is 100.
+
+**Since**: 26.0.0
+
+**System capability:** SystemCapability.Security.Asset
+
+**Parameters**
+
+| Name     | Type     | Mandatory | Description                                                         |
+| ---------- | -------- | ---- | ------------------------------------------------------------ |
+| assetsToBeRemoved | Array\<[AssetMap](#assetmap)> | Yes   | Array of search conditions of the assets to be deleted, such as the alias, access control attributes, custom data, and so on. The maximum length of the array is 100. |
+
+**Return value**
+
+| Type          | Description                    |
+| ------------- | ----------------------- |
+| Promise\<void> | Promise that returns no value. |
+
+**Error codes**
+
+For details about the error codes, see [Asset Store Service Error Codes](errorcode-asset.md).
+
+| ID| Error Message                                                  |
+| -------- | ---------------------------------------------------------- |
+| 24000001 | The ASSET service is unavailable.                          |
+| 24000006 | Insufficient memory.                                       |
+| 24000007 | The asset is corrupted.                                    |
+| 24000008 | The database operation failed.                          |
+| 24000010 | IPC failed.                                |
+| 24000011 | Calling the Bundle Manager service failed. |
+| 24000012 | Calling the OS Account service failed.     |
+| 24000013 | Calling the Access Token service failed.   |
+| 24000015 | Getting the system time failed.            |
+| 24000019 | Each value of [Tag.GROUP_ID](#tag) and [Tag.REQUIRE_ATTR_ENCRYPTED](#tag) in the array is not consistent. |
+
+**Example**
+
+```typescript
+import { asset } from '@kit.AssetStoreKit';
+import { util } from '@kit.ArkTS';
+
+function stringToArray(str: string): Uint8Array {
+  let textEncoder = new util.TextEncoder();
+  return textEncoder.encodeInto(str);
+}
+
+let assetsToBeRemoved: Array<asset.AssetMap> = [];
+let query1: asset.AssetMap = new Map();
+query1.set(asset.Tag.ALIAS, stringToArray('demo_alias1'));
+assetsToBeRemoved.push(query1);
+
+let query2: asset.AssetMap = new Map();
+query2.set(asset.Tag.ALIAS, stringToArray('demo_alias2'));
+assetsToBeRemoved.push(query2);
+
+asset.batchRemove(assetsToBeRemoved).then(() => {
+  console.info(`Succeeded in batch removing Asset.`);
+});
+```
+
 ## asset.update
 
 update(query: AssetMap, attributesToUpdate: AssetMap): Promise\<void>
@@ -278,7 +424,7 @@ Updates an asset. This API uses a promise to return the result.
 
 **Error codes**
 
-For details about the error codes, see [Asset Store Service Error Codes](errorcode-asset.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Asset Store Service Error Codes](errorcode-asset.md).
 
 | ID| Error Message                                                  |
 | -------- | ---------------------------------------------------------- |
@@ -335,9 +481,9 @@ Updates an asset. This API returns the result synchronously.
 
 **Error codes**
 
-For details about the error codes, see [Asset Store Service Error Codes](errorcode-asset.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Asset Store Service Error Codes](errorcode-asset.md).
 
-| ID| Error Message                                                  |
+| ID | Error Message                                                    |
 | -------- | ---------------------------------------------------------- |
 | 401      | Parameter error. Possible causes: <br> 1. Mandatory parameters are left unspecified. <br> 2. Incorrect parameter types. <br> 3. Parameter verification failed.           |
 | 24000001 | The ASSET service is unavailable.                          |
@@ -371,6 +517,82 @@ attrsToUpdate.set(asset.Tag.SECRET, stringToArray('demo_pwd_new'));
 asset.updateSync(query, attrsToUpdate);
 ```
 
+## asset.batchUpdate
+
+batchUpdate(sourceAttributes: Array\<AssetMap>, destAttributes: Array\<AssetMap>): Promise\<BatchResult>
+
+Batch updates the assets that meet the conditions. This API uses a promise to return the result.
+
+The assets to be batch updated must have the same [Tag.GROUP_ID](#tag) and [Tag.REQUIRE_ATTR_ENCRYPTED](#tag) attributes.
+
+The maximum number of assets that can be batch updated is 100.
+
+**Since**: 26.0.0
+
+**System capability:** SystemCapability.Security.Asset
+
+**Parameters**
+
+| Name             | Type     | Mandatory | Description                                                         |
+| ------------------ | -------- | ---- | ------------------------------------------------------------ |
+| sourceAttributes | Array\<[AssetMap](#assetmap)> | Yes   | Array of search conditions of the assets to be updated. The maximum length of the array is 100, and the values of the [Tag.GROUP_ID](#tag) and [Tag.REQUIRE_ATTR_ENCRYPTED](#tag) attributes of all elements in the array must be the same. |
+| destAttributes | Array\<[AssetMap](#assetmap)> | Yes   | Array of attribute sets of the assets to be updated. The maximum length of the array is 100, and it must be the same as the length of sourceAttributes. The values of the [Tag.GROUP_ID](#tag) and [Tag.REQUIRE_ATTR_ENCRYPTED](#tag) attributes of all elements in the array must be the same. |
+
+**Return value**
+
+| Type          | Description                    |
+| ------------- | ----------------------- |
+| Promise\<[BatchResult](#batchresult)> | Promise used to return the batch operation result, which contains the error information of the failed assets. |
+
+**Error codes**
+
+For details about the error codes, see [Asset Store Service Error Codes](errorcode-asset.md).
+
+| ID| Error Message                                                  |
+| -------- | ---------------------------------------------------------- |
+| 24000001 | The ASSET service is unavailable.                          |
+| 24000006 | Insufficient memory.                                       |
+| 24000007 | The asset is corrupted.                                    |
+| 24000008 | The database operation failed.                          |
+| 24000010 | IPC failed.                                |
+| 24000011 | Calling the Bundle Manager service failed. |
+| 24000012 | Calling the OS Account service failed.     |
+| 24000013 | Calling the Access Token service failed.   |
+| 24000015 | Getting the system time failed.            |
+| 24000019 | Each value of [Tag.GROUP_ID](#tag) and [Tag.REQUIRE_ATTR_ENCRYPTED](#tag) in the array is not consistent. |
+
+**Example**
+
+```typescript
+import { asset } from '@kit.AssetStoreKit';
+import { util } from '@kit.ArkTS';
+
+function stringToArray(str: string): Uint8Array {
+  let textEncoder = new util.TextEncoder();
+  return textEncoder.encodeInto(str);
+}
+
+let srcAttrs: Array<asset.AssetMap> = [];
+let srcAttr1: asset.AssetMap = new Map();
+srcAttr1.set(asset.Tag.ALIAS, stringToArray('demo_alias1'));
+srcAttrs.push(srcAttr1);
+let srcAttr2: asset.AssetMap = new Map();
+srcAttr2.set(asset.Tag.ALIAS, stringToArray('demo_alias2'));
+srcAttrs.push(srcAttr2);
+
+let destAttrs: Array<asset.AssetMap> = [];
+let destAttr1: asset.AssetMap = new Map();
+destAttr1.set(asset.Tag.SECRET, stringToArray('demo_pwd_new1'));
+destAttrs.push(destAttr1);
+let destAttr2: asset.AssetMap = new Map();
+destAttr2.set(asset.Tag.SECRET, stringToArray('demo_pwd_new2'));
+destAttrs.push(destAttr2);
+
+asset.batchUpdate(srcAttrs, destAttrs).then((res: asset.BatchResult) => {
+  console.info(`Succeeded in batch updating Asset, failedCount: ${res.failedCount}`);
+});
+```
+
 ## asset.preQuery
 
 preQuery(query: AssetMap): Promise\<Uint8Array>
@@ -395,7 +617,7 @@ Performs preprocessing for the asset query. This API is used when user authentic
 
 **Error codes**
 
-For details about the error codes, see [Asset Store Service Error Codes](errorcode-asset.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Asset Store Service Error Codes](errorcode-asset.md).
 
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
@@ -428,7 +650,7 @@ function stringToArray(str: string): Uint8Array {
 let query: asset.AssetMap = new Map();
 query.set(asset.Tag.ALIAS, stringToArray('demo_alias'));
 asset.preQuery(query).then((challenge: Uint8Array) => {
-  console.info(`Succeeded in pre-querying Asset.`);
+  console.info(`Succeeded in pre-querying Asset, the challenge is: `, challenge);
 });
 ```
 
@@ -456,7 +678,7 @@ Performs preprocessing for the asset query. This API is used when user authentic
 
 **Error codes**
 
-For details about the error codes, see [Asset Store Service Error Codes](errorcode-asset.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Asset Store Service Error Codes](errorcode-asset.md).
 
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
@@ -518,7 +740,7 @@ If no asset is found, an exception indicating that no asset is found is thrown i
 
 **Error codes**
 
-For details about the error codes, see [Asset Store Service Error Codes](errorcode-asset.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Asset Store Service Error Codes](errorcode-asset.md).
 
 | ID| Error Message                                                  |
 | -------- | ---------------------------------------------------------- |
@@ -588,7 +810,7 @@ If no asset is found, an exception indicating that no asset is found is thrown i
 
 **Error codes**
 
-For details about the error codes, see [Asset Store Service Error Codes](errorcode-asset.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Asset Store Service Error Codes](errorcode-asset.md).
 
 | ID| Error Message                                                  |
 | -------- | ---------------------------------------------------------- |
@@ -655,7 +877,7 @@ Performs postprocessing for the asset query. This API is used when user authenti
 
 **Error codes**
 
-For details about the error codes, see [Asset Store Service Error Codes](errorcode-asset.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Asset Store Service Error Codes](errorcode-asset.md).
 
 | ID| Error Message                                                  |
 | -------- | ---------------------------------------------------------- |
@@ -698,7 +920,7 @@ Performs postprocessing for the asset query. This API is used when user authenti
 
 **Error codes**
 
-For details about the error codes, see [Asset Store Service Error Codes](errorcode-asset.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Asset Store Service Error Codes](errorcode-asset.md).
 
 | ID| Error Message                                                  |
 | -------- | ---------------------------------------------------------- |
@@ -796,13 +1018,13 @@ Enumerate the keys of asset attributes ([AssetMap](#assetmap)), which are in key
 | SECRET                    | TagType.BYTES &#124; 0x01  | Asset plaintext.<br>**Atomic service API**: This API can be used in atomic services since API version 14.                                                |
 | ALIAS                     | TagType.BYTES &#124; 0x02 | Asset alias, which uniquely identifies an asset.<br>**Atomic service API**: This API can be used in atomic services since API version 14.                        |
 | ACCESSIBILITY             | TagType.NUMBER &#124; 0x03 | Access control based on the lock screen status.<br>**Atomic service API**: This API can be used in atomic services since API version 14.                                      |
-| REQUIRE_PASSWORD_SET      | TagType.BOOL &#124; 0x04                   | Whether the asset is accessible only when a lock screen password is set.<br>**Atomic service API**: This API can be used in atomic services since API version 14.                |
+| REQUIRE_PASSWORD_SET      | TagType.BOOL &#124; 0x04                   | Whether the Critical Asset can be accessed only when a screen lock password is set. The value **true** indicates that the Critical Asset can be accessed only when a screen lock password is set, and **false** indicates that the Critical Asset is not restricted by the screen lock password.<br>**Atomic service API:** This API can be used in atomic services since API version 14.                 |
 | AUTH_TYPE                 | TagType.NUMBER &#124; 0x05 | Type of user authentication required for accessing the asset.<br>**Atomic service API**: This API can be used in atomic services since API version 14.                              |
-| AUTH_VALIDITY_PERIOD      | TagType.NUMBER &#124; 0x06 | Validity period of the user authentication.<br>**Atomic service API**: This API can be used in atomic services since API version 14.                                            |
+| AUTH_VALIDITY_PERIOD      | TagType.NUMBER &#124; 0x06 | Validity period of user authentication, in seconds.<br>**Atomic service API:** This API can be used in atomic services since API version 14.                                             |
 | AUTH_CHALLENGE            | TagType.BYTES &#124; 0x07     | Challenge for the user authentication.<br>**Atomic service API**: This API can be used in atomic services since API version 14.                                        |
 | AUTH_TOKEN                | TagType.BYTES &#124; 0x08    | Authorization token obtained after the user authentication is successful.<br>**Atomic service API**: This API can be used in atomic services since API version 14.                                          |
 | SYNC_TYPE                 | TagType.NUMBER &#124; 0x10 | Asset sync type.<br>**Atomic service API**: This API can be used in atomic services since API version 14.                                      |
-| IS_PERSISTENT             | TagType.BOOL &#124; 0x11                         | Whether to retain the asset when the application is uninstalled.|
+| IS_PERSISTENT             | TagType.BOOL &#124; 0x11                         | Whether to retain the Critical Asset when the app is uninstalled. The value **true** indicates that the Critical Asset is retained when the app is uninstalled, and **false** indicates that the Critical Asset is not retained. |
 | DATA_LABEL_CRITICAL_1     | TagType.BYTES &#124; 0x20 | Additional asset data customized by the service with integrity protection.<br>**Atomic service API**: This API can be used in atomic services since API version 14.            |
 | DATA_LABEL_CRITICAL_2 | TagType.BYTES &#124; 0x21 | Additional asset data customized by the service with integrity protection.<br>**Atomic service API**: This API can be used in atomic services since API version 14.|
 | DATA_LABEL_CRITICAL_3 | TagType.BYTES &#124; 0x22 | Additional asset data customized by the service with integrity protection.<br>**Atomic service API**: This API can be used in atomic services since API version 14.|
@@ -816,14 +1038,14 @@ Enumerate the keys of asset attributes ([AssetMap](#assetmap)), which are in key
 | DATA_LABEL_NORMAL_LOCAL_3<sup>12+</sup> | TagType.BYTES &#124; 0x36 | Local information about the asset. The value is assigned by the service without integrity protection and will not be synced.<br>**Atomic service API**: This API can be used in atomic services since API version 14.|
 | DATA_LABEL_NORMAL_LOCAL_4<sup>12+</sup> | TagType.BYTES &#124; 0x37 | Local information about the asset. The value is assigned by the service without integrity protection and will not be synced.<br>**Atomic service API**: This API can be used in atomic services since API version 14.|
 | RETURN_TYPE               | TagType.NUMBER &#124; 0x40 | Type of the asset query result to return.<br>**Atomic service API**: This API can be used in atomic services since API version 14.                                        |
-| RETURN_LIMIT              | TagType.NUMBER &#124; 0x41                      | Maximum number of asset records to return.<br>**Atomic service API**: This API can be used in atomic services since API version 14.                                        |
+| RETURN_LIMIT              | TagType.NUMBER &#124; 0x41                      | Maximum number of results returned by a Critical Asset query.<br>**Atomic service API:** This API can be used in atomic services since API version 14.                                         |
 | RETURN_OFFSET             | TagType.NUMBER &#124; 0x42   | Offset of the asset query result.<br>**Note**: This parameter specifies the starting asset record to return in batch asset query.<br>**Atomic service API**: This API can be used in atomic services since API version 14.                                |
 | RETURN_ORDERED_BY         | TagType.NUMBER &#124; 0x43 | Sorting order of the query results. Currently, the results can be sorted only by **ASSET_TAG_DATA_LABEL**.<br>**Note**: By default, assets are returned in the order in which they are added.<br>**Atomic service API**: This API can be used in atomic services since API version 14.|
 | CONFLICT_RESOLUTION       | TagType.NUMBER &#124; 0x44 | Policy for resolving the conflict (for example, a duplicate alias).<br>**Atomic service API**: This API can be used in atomic services since API version 14.                            |
 | UPDATE_TIME<sup>12+</sup> | TagType.BYTES &#124; 0x45 | Data update time, in timestamp.<br>**Atomic service API**: This API can be used in atomic services since API version 14.|
 | OPERATION_TYPE<sup>12+</sup> | TagType.NUMBER &#124; 0x46 | Additional operation type.|
-| REQUIRE_ATTR_ENCRYPTED<sup>14+</sup> | TagType.BOOL &#124; 0x47 | Whether to encrypt the additional asset information customized by the service.<br>**Atomic service API**: This API can be used in atomic services since API version 14.|
-| GROUP_ID<sup>18+</sup> | TagType.BYTES &#124; 0x48 | Group to which the asset belongs.<br>|
+| REQUIRE_ATTR_ENCRYPTED<sup>14+</sup> | TagType.BOOL &#124; 0x47 | Whether to encrypt the business custom additional information. The value **true** indicates that the business custom additional information is encrypted, and **false** indicates that it is not encrypted.<br>**Note:** When inserting, deleting, or updating Critical Assets in batches, each item in the array must have the same REQUIRE_ATTR_ENCRYPTED attribute value.<br>**Atomic service API:** This API can be used in atomic services since API version 14. |
+| GROUP_ID<sup>18+</sup> | TagType.BYTES &#124; 0x48 | Group to which the Critical Asset belongs.<br>**Note:** When inserting, deleting, or updating Critical Assets in batches, each item in the array must have the same GROUP_ID attribute value. |
 | WRAP_TYPE<sup>18+</sup> | TagType.NUMBER &#124; 0x49 | Encrypted import/export type supported by the asset.<br>|
 
 ## Value
@@ -958,6 +1180,33 @@ Represents the sync result of an asset.
 | totalCount | number    | Yes| Yes|  Total number of assets to be synced.|
 | failedCount | number    | Yes| Yes|  Number of assets that fail to be synced.|
 
+## BatchErrInfo
+
+Error information of a single asset in a batch operation.
+
+**Since**: 26.0.0
+
+**System capability:** SystemCapability.Security.Asset
+
+| Name        | Type   | Read-Only | Optional | Description               |
+| ----------- | ---- | ---- | ---- | ------------------ |
+| index   | number    | No | No | Index of the asset. |
+| errCode | number    | No | No | Error code of the batch operation. |
+| message | string    | No | No | Error message of the batch operation. |
+
+## BatchResult
+
+Result of the [batchAdd](#assetbatchadd), [batchUpdate](#assetbatchupdate), and [batchRemove](#assetbatchremove) batch operations.
+
+**Since**: 26.0.0
+
+**System capability:** SystemCapability.Security.Asset
+
+| Name        | Type   | Read-Only | Optional | Description               |
+| ----------- | ---- | ---- | ---- | ------------------ |
+| failedCount   | number    | No | No | Number of failed batch operations. The value 0 indicates that all operations are successful. |
+| failedErrorInfos | Array\<[BatchErrInfo](#batcherrinfo)>    | No | No | Array of error information of the failed assets in the batch operation. It is an empty array when all operations are successful. |
+
 ## ErrorCode
 
 Enumerates the error codes.
@@ -972,7 +1221,7 @@ Enumerates the error codes.
 | SERVICE_UNAVAILABLE | 24000001    |The asset service is unavailable.<br>**Atomic service API**: This API can be used in atomic services since API version 14.|
 | NOT_FOUND | 24000002    |Failed to find the asset.<br>**Atomic service API**: This API can be used in atomic services since API version 14.|
 | DUPLICATED | 24000003    |The specified asset already exists.<br>**Atomic service API**: This API can be used in atomic services since API version 14.|
-| ACCESS_DENIED | 24000004    |The access to the asset is denied.<br>**Atomic service API**: This API can be used in atomic services since API version 14.|
+| ACCESS_DENIED | 24000004    |Access denied.<br>**Atomic service API:** This API can be used in atomic services since API version 14.|
 | STATUS_MISMATCH | 24000005    |The screen lock status does not match.<br>**Atomic service API**: This API can be used in atomic services since API version 14.|
 | OUT_OF_MEMORY | 24000006    |The system memory is insufficient.<br>**Atomic service API**: This API can be used in atomic services since API version 14.|
 | DATA_CORRUPTED | 24000007    |The asset is corrupted.<br>**Atomic service API**: This API can be used in atomic services since API version 14.|
@@ -980,10 +1229,11 @@ Enumerates the error codes.
 | CRYPTO_ERROR | 24000009   |The crypto operation failed.<br>**Atomic service API**: This API can be used in atomic services since API version 14.|
 | IPC_ERROR | 24000010   |IPC failed.<br>**Atomic service API**: This API can be used in atomic services since API version 14.|
 | BMS_ERROR | 24000011   |The Bundle Manager service is abnormal.<br>**Atomic service API**: This API can be used in atomic services since API version 14.|
-| ACCOUNT_ERROR | 24000012   |The account service is abnormal.<br>**Atomic service API**: This API can be used in atomic services since API version 14.|
+| ACCOUNT_ERROR | 24000012   |Account system service exception.<br>**Atomic service API:** This API can be used in atomic services since API version 14.|
 | ACCESS_TOKEN_ERROR | 24000013   |The Access Token service is abnormal.<br>**Atomic service API**: This API can be used in atomic services since API version 14.|
 | FILE_OPERATION_ERROR | 24000014   |The file operation failed.<br>**Atomic service API**: This API can be used in atomic services since API version 14.|
 | GET_SYSTEM_TIME_ERROR | 24000015   |Failed to obtain the system time.<br>**Atomic service API**: This API can be used in atomic services since API version 14.|
 | LIMIT_EXCEEDED | 24000016   |The number of cached records exceeds the upper limit.<br>**Atomic service API**: This API can be used in atomic services since API version 14.|
 | UNSUPPORTED | 24000017   |The feature is not supported.<br>**Atomic service API**: This API can be used in atomic services since API version 14.|
 | PARAM_VERIFICATION_FAILED<sup>20+</sup> | 24000018   |Parameter verification failed.<br>**Atomic service API**: This API can be used in atomic services since API version 20.|
+| INCONSISTENT_ATTRIBUTE | 24000019   |Inconsistent attribute values.<br>**Since:** 26.0.0<br>**Atomic service API:** This API can be used in atomic services since API version 26.0.0.|

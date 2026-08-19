@@ -8,7 +8,7 @@
 <!--Adviser: @HelloShuo-->
 <!-- md-trans-meta sourceCommit=0116e0570fe1e5738ff1727374a691dca24b792e translatedAt=2026-08-13T13:23:12.931Z pushedAt=2026-08-17T08:46:26.551Z -->
 
-`AIPageResult` defines the general format and result code values of the result returned by [executeAIPageCommand](./arkts-apis-webview-WebviewController.md#executeaipagecommand), which are shared by the commands in [AIPageCommand](./arkts-apis-webview-AIPageCommand.md) and [AIPageInteraction](./arkts-apis-webview-AIPageInteraction.md).
+`AIPageResult` defines the general format and result code values of the result returned by [executeAIPageCommand](./arkts-apis-webview-WebviewController.md), which are shared by the commands in [AIPageCommand](./arkts-apis-webview-AIPageCommand.md) and [AIPageInteraction](./arkts-apis-webview-AIPageInteraction.md).
 
 ## CommandResult
 

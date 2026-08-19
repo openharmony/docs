@@ -52,7 +52,7 @@ You attempted to operate a system function that has been disabled by the device 
 
 **Solution**
 
-Use [getDisallowedPolicy](./apis-mdm-kit/js-apis-enterprise-restrictions.md#restrictionsgetdisallowedpolicy) to check whether the system function is disabled, and use [setDisallowedPolicy](./apis-mdm-kit/js-apis-enterprise-restrictions.md#restrictionssetdisallowedpolicy) to enable the system function.
+Use [getDisallowedPolicy](./apis-mdm-kit/js-apis-enterprise-restrictions.md#restrictionsgetdisallowedpolicydeprecated) to check whether the system function is disabled, and use [setDisallowedPolicy](./apis-mdm-kit/js-apis-enterprise-restrictions.md#restrictionssetdisallowedpolicydeprecated) to enable the system function.
 
 <!--Del-->
 ## 204 Access Denied by User Access Control Policy

@@ -216,7 +216,7 @@ AbilityBase_ErrorCode OH_AbilityBase_AddWantFd(AbilityBase_Want* want, const cha
 
 **Description**
 
-Adds a Want file descriptor. The file descriptor can be obtained through [fs.open](../apis-core-file-kit/js-apis-file-fs.md#fsopen).
+Adds a Want file descriptor. The file descriptor can be obtained through [fileIo.open](../apis-core-file-kit/js-apis-file-fs.md#fileioopen).
 
 **Since**: 15
 
@@ -226,7 +226,7 @@ Adds a Want file descriptor. The file descriptor can be obtained through [fs.ope
 | -- | -- |
 | [AbilityBase_Want](capi-abilitybase-want.md)* want |  Pointer to Want.|
 | const char* key | Pointer to a key in Want.|
-| int32_t fd | File descriptor, which is obtained by calling [fs.open](../apis-core-file-kit/js-apis-file-fs.md#fsopen).|
+| int32_t fd | File descriptor, which is obtained by calling [fileIo.open](../apis-core-file-kit/js-apis-file-fs.md#fileioopen).|
 
 **Returns**
 

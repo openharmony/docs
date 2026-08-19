@@ -98,7 +98,7 @@ Obtains the MIME type of a file.
 
 getSuggestedName(): string
 
-Obtains the suggested file name, which corresponds to **suggestedName** in HTML's [option](../../web/web-file-upload.md#customizing-the-file-request-initiated-by-the-javascript-api).
+Obtains the suggested file name, which corresponds to **suggestedName** in HTML's [option](../../web/web-file-upload.md#custom-processing-of-file-requests-invoked-by-js-apis).
 
 **System capability**: SystemCapability.Web.Webview.Core
 
@@ -112,7 +112,7 @@ Obtains the suggested file name, which corresponds to **suggestedName** in HTML'
 
 getDefaultPath(): string
 
-Obtains the default path of the file selector, which corresponds to **startIn** in HTML's [option](../../web/web-file-upload.md#customizing-the-file-request-initiated-by-the-javascript-api).
+Obtains the default path of the file selector, which corresponds to **startIn** in HTML's [option](../../web/web-file-upload.md#custom-processing-of-file-requests-invoked-by-js-apis).
 
 **System capability**: SystemCapability.Web.Webview.Core
 
@@ -126,7 +126,7 @@ Obtains the default path of the file selector, which corresponds to **startIn** 
 
 getDescriptions(): Array\<string\>
 
-Obtains the descriptions of a group of file types, which are optional descriptions of allowed file types and correspond to **description** in HTML's [option](../../web/web-file-upload.md#customizing-the-file-request-initiated-by-the-javascript-api).
+Obtains the descriptions of a group of file types, which are optional descriptions of allowed file types and correspond to **description** in HTML's [option](../../web/web-file-upload.md#custom-processing-of-file-requests-invoked-by-js-apis).
 
 **System capability**: SystemCapability.Web.Webview.Core
 
@@ -140,7 +140,7 @@ Obtains the descriptions of a group of file types, which are optional descriptio
 
 isAcceptAllOptionExcluded(): boolean
 
-Checks whether the file selector supports the option (\*\/\*), that is, all files. This API corresponds to **excludeAcceptAllOption** in HTML's [option](../../web/web-file-upload.md#customizing-the-file-request-initiated-by-the-javascript-api).
+Checks whether the file selector supports the option (\*\/\*), that is, all files. This API corresponds to **excludeAcceptAllOption** in HTML's [option](../../web/web-file-upload.md#custom-processing-of-file-requests-invoked-by-js-apis).
 
 **System capability**: SystemCapability.Web.Webview.Core
 
@@ -154,7 +154,7 @@ Checks whether the file selector supports the option (\*\/\*), that is, all file
 
 getAcceptableFileTypes(): Array\<Array\<AcceptableFileType\>>
 
-Obtains the file types, which correspond to **types** in HTML's [option](../../web/web-file-upload.md#customizing-the-file-request-initiated-by-the-javascript-api).
+Obtains the file types, which correspond to **types** in HTML's [option](../../web/web-file-upload.md#custom-processing-of-file-requests-invoked-by-js-apis).
 
 **System capability**: SystemCapability.Web.Webview.Core
 

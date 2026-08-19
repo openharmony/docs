@@ -30,7 +30,7 @@ Describes the accessibility event information.
 | Name                           | Type                                      | Read-Only  | Optional  | Description                                      |
 | ----------------------------- | ---------------------------------------- | ---- | ---- | ---------------------------------------- |
 | eventType                     | [AccessibilityEventType](./js-apis-accessibility-sys.md#accessibilityeventtype) | No   | No   | Event type.                                |
-| target                        | [AccessibilityElement](js-apis-inner-application-accessibilityExtensionContext-sys.md#accessibilityelement12) | No   | Yes   | Target component where the event occurs.                              |
+| target                        | [AccessibilityElement](js-apis-inner-application-accessibilityExtensionContext-sys.md#accessibilityelement) | No   | Yes   | Target component where the event occurs.                              |
 | timeStamp                     | number                                   | No   | Yes   | Timestamp of the event, in milliseconds. The default value is **0**.                      |
 | extraInfo                     | string                                   | No   | Yes   | Added or deleted text content carried by the **TextArea**, **TextInput**, **SearchField**, or **RichEdit** component.|
 

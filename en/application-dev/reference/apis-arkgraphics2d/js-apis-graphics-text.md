@@ -3747,7 +3747,6 @@ Obtains the image boundaries of this text line. The image boundaries, equivalent
 >
 >The following figure shows the image boundaries of the strings "j" and "E".
 >
->![ImageBounds-Character.png](figures/ImageBounds-Character.png)
 
 
 **System capability**: SystemCapability.Graphics.Drawing
@@ -4260,7 +4259,6 @@ Obtains the image boundaries of the typographic unit. Equivalent to visual bound
 >
 >The following figure shows the image boundaries of the strings "j" and "E".
 >
->![ImageBounds-Character.png](figures/ImageBounds-Character.png)
 
 **System capability**: SystemCapability.Graphics.Drawing
 

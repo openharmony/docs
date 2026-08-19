@@ -30,7 +30,7 @@ import { systemConfiguration } from '@kit.AbilityKit';
 
 ## UpdatedCallback
 
-UpdatedCallback is a callback used to listen for system environment changes. Developers can register a custom UpdatedCallback through [ApplicationContext.onSystemConfigurationUpdated](js-apis-inner-application-applicationContext.md#applicationcontextonsystemconfigurationupdated24) to listen for system environment changes.
+UpdatedCallback is a callback used to listen for system environment changes. Developers can register a custom UpdatedCallback through [ApplicationContext.onSystemConfigurationUpdated](js-apis-inner-application-applicationContext.md) to listen for system environment changes.
 
 **Model restriction**: This API can be used only in the stage model.
 
