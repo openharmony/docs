@@ -139,7 +139,7 @@
   - 列表与网格<!--arkts-list-and-grid-->
     - [列表与网格概述](arkts-list-grid-development-overview.md)
     - [创建列表 (List)](arkts-layout-development-create-list.md)
-    - [创建弧形列表 (ArcList)](arkts-layout-development-create-arclist.md)（圆形屏幕推荐使用）
+    - [弧形列表 (ArcList)（圆形屏幕推荐使用）](arkts-layout-development-create-arclist.md)
     - [创建网格 (Grid/GridItem)](arkts-layout-development-create-grid.md)<!--RP11--><!--RP11End-->
     - [创建瀑布流 (WaterFlow)](arkts-layout-development-create-waterflow.md)<!--RP12--><!--RP12End-->
     - [创建懒加载布局 (LazyColumnLayout/LazyVGridLayout/LazyVWaterFlowLayout)](arkts-layout-development-create-lazy-layout.md)
@@ -148,7 +148,7 @@
     - [文本概述](arkts-text-introduction.md)
     - [文本显示 (Text/Span)](arkts-common-components-text-display.md)
     - [文本输入 (TextInput/TextArea/Search)](arkts-common-components-text-input.md)
-    - [富文本编辑 (RichEditor)](arkts-common-components-richeditor.md)
+    - [富文本编辑（RichEditor）](arkts-common-components-richeditor.md)
     - [图标小符号 (SymbolGlyph/SymbolSpan)](arkts-common-components-symbol.md)
     - [属性字符串 (StyledString/MutableStyledString)](arkts-styled-string.md)
     - [图文混排](arkts-text-image-layout.md)
@@ -157,11 +157,11 @@
     - [显示图片 (Image)](arkts-graphics-display.md)
     - [视频播放 (Video)](arkts-common-components-video-player.md)
     - [创建轮播 (Swiper)](arkts-layout-development-create-looping.md)
-    - [创建弧形轮播 (ArcSwiper)](arkts-layout-development-arcswiper.md)（圆形屏幕推荐使用）<!--RP14--><!--RP14End-->
+    - [创建弧形轮播 (ArcSwiper)（圆形屏幕推荐使用）](arkts-layout-development-arcswiper.md)<!--RP14--><!--RP14End-->
   - 按钮与选择<!--arkts-form-selection-->
     - [按钮与选择组件概述](arkts-forms-overview.md)
     - [按钮 (Button)](arkts-common-components-button.md)
-    - [弧形按钮 (ArcButton)](arkts-advanced-components-arcbutton.md)（圆形屏幕推荐使用）
+    - [弧形按钮 (ArcButton)(圆形屏幕推荐使用)](arkts-advanced-components-arcbutton.md)
     - [单选框 (Radio)](arkts-common-components-radio-button.md)
     - [切换按钮 (Toggle)](arkts-common-components-switch.md)
   - 添加组件<!--arkts-add-component-->
@@ -181,23 +181,23 @@
        - [弹出框蒙层控制](arkts-dialog-mask.md)
      - 菜单<!--arkts-use-menu-->
        - [菜单概述](arkts-menu-overview.md)
-       - [菜单控制 (Menu)](arkts-popup-and-menu-components-menu.md)
+       - [菜单控制（Menu）](arkts-popup-and-menu-components-menu.md)
        - [不依赖UI组件的全局菜单 (openMenu)](arkts-popup-and-menu-components-uicontext-menu.md)
      - 气泡提示<!--arkts-use-popup-->
        - [气泡提示概述](arkts-popup-overview.md)
-       - [气泡提示 (Popup)](arkts-popup-and-menu-components-popup.md)
+       - [气泡提示（Popup）](arkts-popup-and-menu-components-popup.md)
        - [不依赖UI组件的全局气泡提示 (openPopup)](arkts-popup-and-menu-components-uicontext-popup.md)
      - 绑定模态页面<!--arkts-bind-modal-->
         - [绑定模态页面概述](arkts-modal-overview.md)
-        - [绑定半模态页面 (bindSheet)](arkts-sheet-page.md)
-        - [绑定全模态页面 (bindContentCover)](arkts-contentcover-page.md)
-     - [即时反馈 (Toast)](arkts-create-toast.md)
-     - [设置浮层 (OverlayManager)](arkts-create-overlaymanager.md)<!--RP9--><!--RP9End-->
+        - [绑定半模态页面（bindSheet）](arkts-sheet-page.md)
+        - [绑定全模态页面（bindContentCover）](arkts-contentcover-page.md)
+     - [即时反馈（Toast）](arkts-create-toast.md)
+     - [设置浮层（OverlayManager）](arkts-create-overlaymanager.md)<!--RP9--><!--RP9End-->
   - [沉浸光感](arkts-immersive-light-sense.md)
   - 几何图形绘制<!--arkts-draw-graphics-->
     - [几何图形绘制概述](arkts-shape-overview.md)
     - [绘制几何图形 (Shape)](arkts-geometric-shape-drawing.md)
-    - [形状裁剪 (clipShape)](arkts-clip-shape.md)
+    - [形状裁剪（clipShape）](arkts-clip-shape.md)
   - [添加交互响应](arkts-interaction-development-guide-overview.md)
     - [交互响应概述](arkts-interaction-capability-overview.md)
     - [交互基础机制说明](arkts-interaction-basic-principles.md)
@@ -257,7 +257,7 @@
       - [使用画布绘制自定义图形 (Canvas)](arkts-drawing-customization-on-canvas.md)
       - [自定义绘制修改器 (DrawModifier)](arkts-user-defined-extension-drawModifier.md)
     - Modifier机制<!--arkts-modifier-->
-      - [自定义扩展概述](arkts-user-defined-modifier.md)
+      - [自定义扩展能力概述](arkts-user-defined-modifier.md)
       - [内容修改器 (ContentModifier)](arkts-common-attributes-content-modifier.md)
       - [属性修改器 (AttributeModifier)](arkts-user-defined-extension-attributeModifier.md)
       - [属性更新器 (AttributeUpdater)](arkts-user-defined-extension-attributeUpdater.md)
@@ -297,7 +297,7 @@
   - 使用文本<!--arkts-build-text-ndk-->
     - [使用Text组件](ndk-use-text-component.md)
     - [使用属性字符串](ndk-styled-string.md)
-    - [输入框文本事件监听](ndk-textarea-event.md)
+    - [添加输入框文本事件监听](ndk-textarea-event.md)
   - 媒体展示<!--arkts-build-media-ndk-->
     - [显示图片（Image）](ndk-image-component.md)
     - [使用滑块视图容器 (Swiper)](ndk-swiper.md)

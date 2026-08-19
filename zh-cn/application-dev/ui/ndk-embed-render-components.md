@@ -10,7 +10,7 @@
 从API version 20开始，ArkUI开发框架针对NDK接口，提供了直接构建渲染节点的能力，包括节点树操作、属性设置及含动画的自定义绘制。开发者通过调用渲染节点相关能力，可以绕过[registerNodeCustomEvent](../reference/apis-arkui/capi-arkui-nativemodule-arkui-nativenodeapi-1.md#registernodecustomevent)的测量布局过程，直接对节点进行绘制并调整其大小和位置。
 
 
-- **渲染节点树操作相关的能力** ，例如[OH_ArkUI_RenderNodeUtils_AddRenderNode](../reference/apis-arkui/capi-native-render-h.md#oh_arkui_rendernodeutils_addrendernode)、[OH_ArkUI_RenderNodeUtils_AddChild](../reference/apis-arkui/capi-native-render-h.md#oh_arkui_rendernodeutils_addchild)等接口用于编辑渲染节点树的结构。仅类型为ARKUI_NODE_CUSTOM且无其他子节点的自定义节点（加超链接到nativeNode）能够挂载渲染节点，且最多挂载一个渲染节点。即渲染节点以子树形式挂载在类型为ARKUI_NODE_CUSTOM的叶子自定义节点上。
+- **渲染节点树操作相关的能力** ，例如[OH_ArkUI_RenderNodeUtils_AddRenderNode](../reference/apis-arkui/capi-native-render-h.md#oh_arkui_rendernodeutils_addrendernode)、[OH_ArkUI_RenderNodeUtils_AddChild](../reference/apis-arkui/capi-native-render-h.md#oh_arkui_rendernodeutils_addchild)等接口用于编辑渲染节点树的结构。仅类型为ARKUI_NODE_CUSTOM且无其他子节点的自定义节点能够挂载渲染节点，且最多挂载一个渲染节点。即渲染节点以子树形式挂载在类型为ARKUI_NODE_CUSTOM的叶子自定义节点上。
 
 - **渲染节点属性设置的能力** ，详情请参考[函数](../reference/apis-arkui/capi-native-render-h.md#函数)，查看当前渲染节点支持的属性能力。
 
@@ -342,11 +342,11 @@
 ### 接纳子节点为附属节点
 
 满足以下条件的节点，可以作为[OH_ArkUI_NativeModule_AdoptChild](../reference/apis-arkui/capi-native-node-h.md#oh_arkui_nativemodule_adoptchild)接口中的父节点接纳其他节点：
-1. 父节点是CAPI侧创建的命令式节点。
+1. 父节点是C-API侧创建的命令式节点。
 2. 父节点是ArkTS侧创建的命令式节点。
 
 满足以下条件的节点，可以作为OH_ArkUI_NativeModule_AdoptChild接口中的子节点被其他父节点接纳：
-1. 子节点是CAPI侧创建的命令式节点。
+1. 子节点是C-API侧创建的命令式节点。
 2. 子节点是ArkTS侧创建的命令式节点。
 3. 子节点是BuilderNode下的根节点。
 
@@ -447,7 +447,7 @@
    }
    ```
 
-2. ArkTS侧创建节点并传递该节点至CAPI。
+2. ArkTS侧创建节点并传递该节点至C-API。
 
    <!-- @[Create_Node](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkUISample/NativeRenderNodeSample/entry/src/main/ets/pages/GetNode.ets) -->  
    
