@@ -3,9 +3,10 @@
 <!--Kit: ArkUI-->
 <!--Subsystem: ArkUI-->
 <!--Owner: @rongShao-Z; @guozejun-->
-<!--Designer: @zcdqs-->
+<!--Designer: @guozejun-->
 <!--Tester: @leiyuqian-->
 <!--Adviser: @Brilliantry_Rui-->
+<!-- md-trans-meta sourceCommit=6bb7734c15263a20cd1bc3773b5ca773f0c94f6a translatedAt=2026-08-18T03:10:11.763Z pushedAt=2026-08-18T06:56:13.651Z -->
 
 The **Grid** component consists of cells formed by rows and columns. You can specify the cells where items are located to form various layouts.
 
@@ -14,7 +15,6 @@ The **Grid** component consists of cells formed by rows and columns. You can spe
 >  This component is supported since API version 7. Updates will be marked with a superscript to indicate their earliest API version.
 >
 >  The component has been bound with gestures to implement functions such as follow-up scrolling. If you need to add custom gestures, refer to [Gesture Blocking Enhancement](ts-gesture-blocking-enhancement.md).
-
 
 ## Child Components
 
@@ -58,8 +58,8 @@ Creates a **Grid** component.
 
 | Name  | Type                                   | Mandatory| Description                                                    |
 | -------- | ------------------------------------------- | ---- | ------------------------------------------------------------ |
-| scroller | [Scroller](ts-container-scroll.md#scroller) | No  | Controller, which can be bound to scrollable components.<br>**NOTE**<br>It cannot be bound to the same scrolling control object as other scrollable components, such as [ArcList](ts-container-arclist.md), [List](ts-container-list.md), [Grid](ts-container-grid.md), [Scroll](ts-container-scroll.md), and [WaterFlow](ts-container-waterflow.md).|
-| layoutOptions<sup>10+</sup> | [GridLayoutOptions](#gridlayoutoptions10) | No| Grid layout options.|
+| scroller | [Scroller](ts-container-scroll.md#scroller) | No | Controller of the scrollable component. It is used to bind to the scrollable component. If it is not set, no external controller is bound, and the component manages the scrolling behavior by itself.<br/>**NOTE**<br/>It is not allowed to bind the same scroll control object to other scrollable components, such as [ArcList](ts-container-arclist.md), [List](ts-container-list.md), [Grid](ts-container-grid.md), [Scroll](ts-container-scroll.md), and [WaterFlow](ts-container-waterflow.md). |
+| layoutOptions<sup>10+</sup> | [GridLayoutOptions](#gridlayoutoptions10) | No | Grid layout options, used to configure layout information such as **GridItem** spanning rows and columns. If it is not passed in, the **Grid** performs layout based on regular attributes such as **rowsTemplate** and **columnsTemplate** and the attributes of **GridItem** itself, without enabling the layout options provided by **GridLayoutOptions**.<br/>**Model restriction:** This API can be used only in the stage model. |
 
 ## GridLayoutOptions<sup>10+</sup>
 
@@ -67,14 +67,17 @@ Defines the grid layout options. In this API, **irregularIndexes** and **onGetIr
 
 To improve the performance of **Grid** in scenarios such as jumps and column quantity changes, you are advised to use **GridLayoutOptions** whenever possible. Even if there are no special cross-row or cross-column nodes in **Grid**, performance during jumps can still be enhanced by using 'Grid(this.scroller, {regularSize: [1, 1]})'.  
 
+**Model restriction:** This API can be used only in the stage model.
+
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 <!--Table: 20%; 20%; 8%; 8%; 44%-->
+
 | Name   | Type     | Read Only  | Optional| Description                   |
 | ----- | ------- | ---- | --  | --------------------- |
 | regularSize  | [number, number]  | No   | No| Number of rows and columns occupied by a grid item with regular size. The only supported value is **[1, 1]**, meaning that the grid item occupies one row and one column.<br>**Atomic service API**: This API can be used in atomic services since API version 11. |
 | irregularIndexes | number[] | No   | Yes| Size of **GridItem** at the specified index in **Grid**. The size is irregular. When **onGetIrregularSizeByIndex** is not set, the grid item specified in this parameter occupies an entire row of the grid that scrolls vertically or an entire column of the grid that scrolls horizontally.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
-| onGetIrregularSizeByIndex | (index: number) => [number, number] | No   | Yes| Number of rows and columns occupied by the grid item with an irregular size. This parameter is used together with **irregularIndexes**. In versions earlier than API version 12, the vertical scrolling grid does not support grid items spanning multiple rows, and the horizontal scrolling grid does not support grid items spanning multiple columns.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
+| onGetIrregularSizeByIndex | (index: number) => [number, number] | No   | Yes| Number of rows and columns occupied by the grid item with an irregular size. This parameter is used together with **irregularIndexes**. You can set the number of rows and columns occupied by the **GridItem** corresponding to the index specified in **irregularIndexes**. In versions earlier than API version 12, the vertical scrolling grid does not support grid items spanning multiple rows, and the horizontal scrolling grid does not support grid items spanning multiple columns.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
 | onGetRectByIndex<sup>11+</sup> | (index: number) => [number, number,number,number] | No | Yes| Position and size of the grid item with the specified index, in the format of [rowStart,columnStart,rowSpan,columnSpan],<br>where **rowStart** indicates the row start position, **columnStart** indicates the column start position,<br>**rowSpan** indicates the number of rows occupied by the grid item, and **columnSpan** indicates the number of columns occupied by the grid item. Their values are unitless.<br>The values of **rowStart** and **columnStart** are natural numbers greater than or equal to 0. If a negative value is set, the default value **0** is used.<br>The values of **rowSpan** and **columnSpan** are natural numbers greater than or equal to 1. If a decimal is set, it is rounded down. If the decimal set is less than 1, the value **1** is used.<br>**NOTE**<br>Case 1: If a grid item finds that the start position specified for it is already occupied, it searches for an available start position from left to right and from top to bottom, starting from position [0,0].<br>Case 2: If any space other than the start position specified for a grid item is occupied, the grid item is displayed within the available space left.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
 
 ## Attributes
@@ -133,13 +136,15 @@ For example, the **ItemFillPolicy.BREAKPOINT_DEFAULT** component displays two co
 
 **Atomic service API**: This API can be used in atomic services since API version 22.
 
+**Model restriction:** This API can be used only in the stage model.
+
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 **Parameters**
 
 | Name| Type                                                | Mandatory| Description                                                     |
 | ------ | ---------------------------------------------------- | ---- | --------------------------------------------------------- |
-| value  | string&nbsp;\|&nbsp;[ItemFillPolicy](./ts-types.md#itemfillpolicy22) | Yes  | Number of columns in the current grid layout.|
+| value  | string&nbsp;\|&nbsp;[ItemFillPolicy](./ts-types.md#itemfillpolicy22) | Yes   | Number of columns in the current grid layout. When **value** is of the string type, it indicates a fixed number of columns or the repeat function form; when **value** is of the ItemFillPolicy type, the number of columns is automatically determined based on the breakpoint. |
 
 ### rowsTemplate
 
@@ -216,7 +221,7 @@ Sets the gap between columns. A value less than 0 evaluates to the default value
 
 | Name| Type                        | Mandatory| Description                        |
 | ------ | ---------------------------- | ---- | ---------------------------- |
-| value  | [Length](ts-types.md#length) | Yes  | Gap between columns.<br>Default value: **0**<br>Value range: [0, +∞).|
+| value  | [Length](ts-types.md#length) | Yes   | Spacing between columns.<br/>Default value: 0<br/>Value range: [0, +∞). If a value less than 0 is set, the default value 0 is used. |
 
 ### rowsGap
 
@@ -232,7 +237,7 @@ Sets the gap between rows. A value less than 0 evaluates to the default value.
 
 | Name| Type                        | Mandatory| Description                        |
 | ------ | ---------------------------- | ---- | ---------------------------- |
-| value  | [Length](ts-types.md#length) | Yes  | Gap between rows.<br>Default value: **0**<br>Value range: [0, +∞).|
+| value  | [Length](ts-types.md#length) | Yes   | Spacing between rows.<br/>Default value: 0<br/>Value range: [0, +∞). If a value less than 0 is set, the default value 0 is used. |
 
 ### scrollBar
 
@@ -274,6 +279,8 @@ Sets the scrollbar color. Compared with [scrollBarColor](#scrollbarcolor), the p
 
 **Atomic service API**: This API can be used in atomic services since API version 22.
 
+**Model restriction:** This API can be used only in the stage model.
+
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 **Parameters**
@@ -286,7 +293,7 @@ Sets the scrollbar color. Compared with [scrollBarColor](#scrollbarcolor), the p
 
 scrollBarWidth(value: number | string)
 
-Sets the scrollbar width. This attribute cannot be set in percentage. After the width is set, the scrollbar is displayed with the set width in normal state and pressed state. If the set width exceeds the height of the **Grid** component on the main axis, the scrollbar reverts to the default width.
+Sets the width of the scrollbar. Percentage values are not supported. After the width is set, the scrollbar width in both the normal state and the pressed state is the set value. If the scrollbar width exceeds the visible size of the **Grid** component along the main axis, the scrollbar width changes to the default value of 4 vp.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -296,13 +303,13 @@ Sets the scrollbar width. This attribute cannot be set in percentage. After the 
 
 | Name| Type                      | Mandatory| Description                                     |
 | ------ | -------------------------- | ---- | ----------------------------------------- |
-| value  | number&nbsp;\|&nbsp;string | Yes  | Scrollbar width.<br>Default value: **4**<br>Unit: vp<br>If this parameter is set to a value less than or equal to 0, the default value is used. The value **0** means not to show the scrollbar.|
+| value  | number&nbsp;\|&nbsp;string | Yes   | Width of the scrollbar.<br/>Default value: **4**<br/>Unit: vp<br/>Value range: [0, +∞). If the value is less than 0, the default value is used. If the value is 0, the scrollbar is not displayed. |
 
 ### scrollBarWidth
 
 scrollBarWidth(value: number | string | Resource)
 
-Sets the scrollbar width. This attribute cannot be set in percentage. After the width is set, the scrollbar is displayed with the set width in normal state and pressed state. If the set width exceeds the height of the **Grid** component on the main axis, the scrollbar reverts to 4 vp. The **Resource** type is supported.
+Sets the width of the scrollbar. Percentage values are not supported. After the width is set, the scrollbar width in both the normal state and the pressed state is the set value. If the scrollbar width exceeds the visible size of the **Grid** component along the main axis, the scrollbar width changes to the default value of 4 vp. Resource type is supported.
 
 If this attribute is not set, the scrollbar width is 4 vp.
 
@@ -320,14 +327,13 @@ If this attribute is not set, the scrollbar width is 4 vp.
 | ------ | -------------------------- | ---- | ----------------------------------------- |
 | value  | number&nbsp;\|&nbsp;string \| [Resource](ts-types.md#resource) | Yes  | Scrollbar width.<br>Unit: vp<br>The value range is [0, +∞). If this parameter is set to a value less than 0, **4vp** is used. The value **0** means not to show the scrollbar.|
 
-
 ### cachedCount
 
 cachedCount(value: number)
 
-Sets the number of grid items to be cached (preloaded). It works only in [LazyForEach](../../../ui/rendering-control/arkts-rendering-control-lazyforeach.md) and [Repeat](../../../ui/rendering-control/arkts-new-rendering-control-repeat.md) with the [virtualScroll](ts-rendering-control-repeat.md#virtualscroll) option enabled. <!--Del-->For details, see [Minimizing White Blocks During Swiping](../../../performance/arkts-performance-improvement-recommendation.md#minimizing-white-blocks-during-swiping).<!--DelEnd-->
+Sets the number of grid rows/columns to be preloaded on both sides along the main axis. This attribute takes effect only in [LazyForEach](../../../ui/rendering-control/arkts-rendering-control-lazyforeach.md) and [Repeat](../../../ui/rendering-control/arkts-new-rendering-control-repeat.md) with [virtualScroll](ts-rendering-control-repeat.md#virtualscroll) enabled.<!--Del-->For details, see [Minimizing White Blocks During Swiping](../../../performance/arkts-performance-improvement-recommendation.md#minimizing-white-blocks-during-swiping).<!--DelEnd-->
 
-The number of the grid items to be cached before and after the currently displayed one equals the value of **cachedCount** multiplied by the number of columns.
+After caching is set, **cachedCount** grid rows/columns are preloaded on both sides of the display area of the **Grid** component along the main axis. During vertical scrolling, **cachedCount** rows are preloaded on the top and bottom sides respectively. During horizontal scrolling, **cachedCount** columns are preloaded on the left and right sides respectively.
 
 [LazyForEach](../../../ui/rendering-control/arkts-rendering-control-lazyforeach.md) and [Repeat](../../../ui/rendering-control/arkts-new-rendering-control-repeat.md) with [virtualScroll](ts-rendering-control-repeat.md#virtualscroll) enabled will release **GridItem** components that are outside the display and cache range.
 
@@ -341,16 +347,17 @@ The number of the grid items to be cached before and after the currently display
 | ------ | ------ | ---- | ------------------------------------------------------------ |
 | value  | number | Yes  | Number of grid items to be cached (preloaded).<br>Default value: the number of rows visible on the screen for vertical scrolling, or the number of columns visible on the screen for horizontal scrolling. The maximum value is 16.<br>Value range: [0, +∞).<br>Values less than 0 are treated as **1**.<br>When **value** is updated using a state variable, the **Grid** component does not trigger a layout update. The number of cached nodes is updated only during the next layout.|
 
-
 ### cachedCount<sup>14+</sup>
 
 cachedCount(count: number, show: boolean)
 
-Sets the number of grid items to be cached (preloaded) and specifies whether to display the preloaded nodes.
+Sets the number of grid rows/columns to be preloaded on both sides along the main axis, and configures whether to display the preloaded nodes. This attribute takes effect only in [LazyForEach](../../../ui/rendering-control/arkts-rendering-control-lazyforeach.md) and [Repeat](../../../ui/rendering-control/arkts-new-rendering-control-repeat.md) with [virtualScroll](ts-rendering-control-repeat.md#virtualscroll) enabled.
 
-The number of the grid items to be cached before and after the currently displayed one equals the value of **cachedCount** multiplied by the number of columns. This attribute can be combined with the [clip](ts-universal-attributes-sharp-clipping.md#clip12) or [clipContent](ts-container-scrollable-common.md#clipcontent14) attributes to display the preloaded nodes.
+After caching is set, **cachedCount** grid rows/columns are preloaded on both sides of the display area of the **Grid** component along the main axis. During vertical scrolling, **cachedCount** rows are preloaded on the top and bottom sides respectively. During horizontal scrolling, **cachedCount** columns are preloaded on the left and right sides respectively. The preloaded nodes can be displayed together with the [clip](ts-universal-attributes-sharp-clipping.md#clip12) or [clipContent](ts-container-scrollable-common.md#clipcontent14) attribute.
 
 **Atomic service API**: This API can be used in atomic services since API version 14.
+
+**Model restriction:** This API can be used only in the stage model.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
@@ -361,12 +368,15 @@ The number of the grid items to be cached before and after the currently display
 | count  | number | Yes  | Number of grid items to be cached (preloaded).<br>Default value: the number of rows visible on the screen for vertical scrolling, or the number of columns visible on the screen for horizontal scrolling. The maximum value is 16.<br>Value range: [0, +∞).<br>Values less than 0 are treated as **1**.<br>When the count value is updated using the state variable, the **Grid** component does not trigger a layout update. The number of cached nodes is updated only during the next layout.|
 | show  | boolean | Yes  | Whether to display the preloaded nodes. If this parameter is set to **true**, the preloaded **GridItem** is displayed. If this parameter is set to **false**, the preloaded **GridItem** is not displayed.<br> Default value: **false**|
 
-
 ### editMode<sup>8+</sup>
 
 editMode(value: boolean)
 
 Sets whether to enable edit mode. In edit mode, the user can drag the [grid items](ts-container-griditem.md) in the **Grid** component.
+
+> **NOTE**
+>
+> This attribute takes effect only when neither **rowsTemplate** nor **columnsTemplate** is set.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -384,6 +394,10 @@ layoutDirection(value: GridDirection)
 
 Sets the main axis layout direction of the grid.
 
+> **NOTE**
+>
+> This attribute takes effect only when neither **rowsTemplate** nor **columnsTemplate** is set.
+
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
@@ -400,6 +414,10 @@ maxCount(value: number)
 
 Sets the maximum number of rows or columns that can be displayed. A value less than 1 evaluates to the default value.
 
+> **NOTE**
+>
+> This attribute takes effect only when neither **rowsTemplate** nor **columnsTemplate** is set.
+
 When **layoutDirection** is **Row** or **RowReverse**, the value indicates the maximum number of columns that can be displayed.
 
 When **layoutDirection** is **Column** or **ColumnReverse**, the value indicates the maximum number of rows that can be displayed.
@@ -414,13 +432,17 @@ If the value of **maxCount** is smaller than that of **minCount**, the default v
 
 | Name| Type  | Mandatory| Description                                         |
 | ------ | ------ | ---- | --------------------------------------------- |
-| value  | number | Yes  | Maximum number of rows or columns that can be displayed.<br>Default value: **Infinity**|
+| value  | number | Yes   | Maximum number of rows or columns that can be displayed.<br/>Default value: **Infinity**<br/>Value range: [1, +∞). If the value is set to less than 1, the default value **Infinity** is used. |
 
 ### minCount<sup>8+</sup>
 
 minCount(value: number)
 
 Sets the minimum number of rows or columns that can be displayed. A value less than 1 evaluates to the default value.
+
+> **NOTE**
+>
+> This attribute takes effect only when neither **rowsTemplate** nor **columnsTemplate** is set.
 
 When **layoutDirection** is **Row** or **RowReverse**, the value indicates the minimum number of columns that can be displayed.
 
@@ -436,13 +458,17 @@ If the value of **minCount** is greater than that of **maxCount**, both **minCou
 
 | Name| Type  | Mandatory| Description                                  |
 | ------ | ------ | ---- | -------------------------------------- |
-| value  | number | Yes  | Minimum number of rows or columns that can be displayed.<br>Default value: **1**|
+| value  | number | Mandatory   | Minimum number of rows or columns that can be displayed.<br/>Default value: **1**<br/>Value range: [1, +∞). If a value less than 1 is set, the default value **1** is used. |
 
 ### cellLength<sup>8+</sup>
 
 cellLength(value: number)
 
 Sets the height per row or width per column.
+
+> **NOTE**
+>
+> This attribute takes effect only when neither **rowsTemplate** nor **columnsTemplate** is set.
 
 When **layoutDirection** is **Row** or **RowReverse**, the value indicates the height per row.
 
@@ -456,7 +482,7 @@ When **layoutDirection** is **Column** or **ColumnReverse**, the value indicates
 
 | Name| Type  | Mandatory| Description                                                   |
 | ------ | ------ | ---- | ------------------------------------------------------- |
-| value  | number | Yes  | Height per row or width per column.<br>Default value: size of the first element<br>Unit: vp<br>Value range: (0, +∞). If the value is less than or equal to 0, the default value is used.|
+| value  | number | Yes  | Height of a row or width of a column.<br/>Default value: when **layoutDirection** is **Row**/**RowReverse**, the height of the first **GridItem**; when **layoutDirection** is **Column**/**ColumnReverse**, the width of the first **GridItem**.<br/>Unit: vp <br/>Value range: (0, +∞). If the value is set to a value less than or equal to 0, the default value is used. |
 
 ### multiSelectable<sup>8+</sup>
 
@@ -500,6 +526,8 @@ Sets the effect used when the scroll boundary is reached.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
+**Model restriction:** This API can be used only in the stage model.
+
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 **Parameters**
@@ -516,6 +544,8 @@ enableScrollInteraction(value: boolean)
 Sets whether to support the scrolling gesture.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
+
+**Model restriction:** This API can be used only in the stage model.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
@@ -537,21 +567,25 @@ Sets the nested scrolling options. Sets the nested scrolling modes for both forw
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
+**Model restriction:** This API can be used only in the stage model.
+
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 **Parameters**
 
 | Name| Type                                                        | Mandatory| Description          |
 | ------ | ------------------------------------------------------------ | ---- | -------------- |
-| value  | [NestedScrollOptions](ts-container-scrollable-common.md#nestedscrolloptions10) | Yes  | Nested scrolling options.|
+| value  | [NestedScrollOptions](ts-container-scrollable-common.md#nestedscrolloptions10) | Yes   | Nested scroll options, used to set the nested scrolling linkage behavior between the **Grid** component and its parent component. |
 
 ### friction<sup>10+</sup>
 
 friction(value: number | Resource)
 
-Sets the friction coefficient. It applies only to gestures in the scrolling area, and it affects only indirectly the scroll chaining during the inertial scrolling process.
+Sets the friction coefficient. It takes effect when the scroll area is swiped, and affects only the inertial scrolling process. It has an indirect impact on the chained effect during inertial scrolling.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
+
+**Model restriction:** This API can be used only in the stage model.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
@@ -569,6 +603,8 @@ Sets the alignment mode of grid items in the grid. For details about the usage, 
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
+**Model restriction:** This API can be used only in the stage model.
+
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 **Parameters**
@@ -585,6 +621,8 @@ Sets the focus wrap mode for cross-axis arrow keys.
 
 **Atomic service API**: This API can be used in atomic services since API version 20.
 
+**Model restriction:** This API can be used only in the stage model.
+
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 **Parameters**
@@ -600,6 +638,8 @@ syncLoad(enable: boolean)
 Sets whether to synchronously load all child components in the grid.
 
 **Atomic service API**: This API can be used in atomic services since API version 20.
+
+**Model restriction:** This API can be used only in the stage model.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
@@ -625,7 +665,7 @@ Sets whether the current **Grid** component supports the use of the if/else rend
 
 | Name| Type  | Mandatory| Description                                              |
 | ------ | ------ | ---- | -------------------------------------------------- |
-| supported  | boolean \| undefined | Yes  | Whether the current **Grid** component supports the use of the [if/else](../../../ui/rendering-control/arkts-rendering-control-ifelse.md) rendering syntax in [LazyForEach](../../../ui/rendering-control/arkts-rendering-control-lazyforeach.md) or [Repeat](../../../ui/rendering-control/arkts-new-rendering-control-repeat.md) to generate an empty branch node that contains no child component.<br>**true**: yes; **false**: no<br>If the value is **undefined**, it is processed as **false**.|
+| supported  | boolean \| undefined | Yes   | Whether the current **Grid** component supports using the [if/else](../../../ui/rendering-control/arkts-rendering-control-ifelse.md) rendering control syntax in [LazyForEach](../../../ui/rendering-control/arkts-rendering-control-lazyforeach.md) or [Repeat](../../../ui/rendering-control/arkts-new-rendering-control-repeat.md) to generate an empty branch node that contains no child nodes.<br/>The value **true** indicates that empty branch nodes are supported, and **false** indicates that empty branch nodes are not supported.<br/>If the value is **undefined**, it is processed as **false**. |
 
 ### editModeOptions<sup>23+</sup>
 
@@ -635,13 +675,15 @@ Sets the options of the edit mode.
 
 **Atomic service API**: This API can be used in atomic services since API version 23.
 
+**Model restriction:** This API can be used only in the stage model.
+
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 **Parameters**
 
 | Name| Type                                                        | Mandatory| Description                                                        |
 | ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| options   | [EditModeOptions](ts-container-scrollable-common.md#editmodeoptions23) | No  | Edit mode options.|
+| options   | [EditModeOptions](ts-container-scrollable-common.md#editmodeoptions23) | No   | Edit mode options, used to configure behaviors such as the multi-select gathering animation, preview badge, multi-select style, and two-finger swipe multi-select in Grid edit mode. Pass this parameter when the preceding behaviors need to be adjusted; if it is not passed, each option uses the default value in the EditModeOptions object description. |
 
 ### enableEditMode
 
@@ -661,7 +703,7 @@ Sets whether to enable the edit mode for the **Grid** component. After the edit 
 
 | Name| Type  | Mandatory| Description                                    |
 | ------ | ------ | ---- | ---------------------------------------- |
-| enabled  | boolean \| undefined | Yes  | Whether to enable the edit mode. **true** means to enable the edit mode and swiping to select multiple items is supported; **false** or **undefined** means to disable the edit mode and swiping to select multiple items is not supported.|
+| enabled  | boolean \| undefined | Yes   | Whether to enable the editing mode. This parameter supports two-way binding with a variable through [!!](../../../ui/state-management/arkts-new-binding.md). When set to **true**, the editing mode is enabled and multiple items can be selected by swiping. When set to **false** or **undefined**, the editing mode is disabled and multiple items cannot be selected by swiping. |
 
 ## GridItemAlignment<sup>12+</sup>
 
@@ -669,13 +711,14 @@ Enumerates the alignment modes of grid items.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
+**Model restriction:** This API can be used only in the stage model.
+
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 | Name  | Value| Description                                |
 | ------ |------| -------------------------------------- |
 | DEFAULT  |  0  | Use the default alignment mode of the grid.|
 | STRETCH |  1  | Use the height of the tallest grid item in a row as the height for all other grid items in that row.|
-
 
 > **NOTE**
 >
@@ -718,21 +761,21 @@ Triggered when the first or last item displayed in the grid changes, that is, wh
 | Name            | Type  | Mandatory| Description                            |
 | ------------------ | ------ | ---- | -------------------------------- |
 | first              | number | Yes  | Index of the first item of the grid.|
-| last<sup>10+</sup> | number | Yes  | Index of the last item of the grid.|
+| last<sup>10+</sup> | number | Yes | Index of the end position of the currently displayed grid.<br/>**Model restriction:** This API can be used only in the stage model. |
 
 ### onItemDragStart<sup>8+</sup>
 
 onItemDragStart(event: OnItemDragStartCallback)
 
-Triggered when a grid item starts to be dragged.
+Triggered when dragging of a **GridItem** starts.
 
 This event is triggered when the user long presses a grid item.
 
 Drag gesture recognition is also initiated by a long press, and the event processing mechanism prioritizes child component events. Therefore, when the grid item is bound to the [LongPressGesture](ts-basic-gestures-longpressgesture.md#longpressgesture-1), it cannot be dragged. In light of this, if both long press and drag operations are required on the grid item, you can use the universal drag event.
 
-The floating grid element being dragged can move within the application window. If it is necessary to restrict its movement range, this can be achieved through custom gestures. For details, see [Example 16: Customizing the Drag Effect for GridItem](#example-16-customizing-the-drag-effect-for-griditem).
+The dragged and lifted **GridItem** can move within the app window. To restrict the movement range, you can implement it through a custom gesture. For details, see [Example 16: Customizing the Drag Effect for GridItem](#example-16-customizing-the-drag-effect-for-griditem).
 
-Automatic scrolling is not supported when a grid item is dragged to the edge of the grid. You can use the universal drag event to implement this function. For details, see [Example 17: Dragging GridItem Components with Drag Events](#example-17-dragging-grid-items-with-drag-events).
+Automatic scrolling when dragging to the edge of the **Grid** is not supported. You can use the universal drag to implement it. For details, see [Example 17: Dragging Grid Items with Drag Events](#example-17-dragging-grid-items-with-drag-events). Since API version 26.0.0, you can use the [onMove](./ts-universal-attributes-drag-sorting.md#onmove) API of [ForEach](../../../ui/rendering-control/arkts-rendering-control-foreach.md), [LazyForEach](../../../ui/rendering-control/arkts-rendering-control-lazyforeach.md), and [Repeat](../../../ui/rendering-control/arkts-new-rendering-control-repeat.md) to implement this effect. For details, see [Example 22 (Dragging with OnMove)](#example-22-dragging-with-onmove). It also supports dragging of **GridItem** that spans rows and columns, but note that the **Grid** must be scrollable.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -742,13 +785,13 @@ Automatic scrolling is not supported when a grid item is dragged to the edge of 
 
 | Name   | Type                                 | Mandatory| Description                  |
 | --------- | ------------------------------------- | ---- | ---------------------- |
-| event     | [OnItemDragStartCallback](ts-container-scrollable-common.md#onitemdragstartcallback23) | Yes  | Callback triggered when the dragging of a grid element starts.<br>In API version 22 and earlier versions, the parameter type is **(event: ItemDragInfo, itemIndex: number) => (() => any) \| void**. For details about the **event** and **itemIndex** parameters, see [OnItemDragStartCallback](ts-container-scrollable-common.md#onitemdragstartcallback23).|
+| event     | [OnItemDragStartCallback](ts-container-scrollable-common.md#onitemdragstartcallback23) | Yes   | Callback triggered when the drag of a **GridItem** starts.<br>In API version 22 and earlier versions, the type of this parameter is **(event: ItemDragInfo, itemIndex: number) => (() => any) \| void**. For the meanings of the **event** and **itemIndex** parameters, see [OnItemDragStartCallback](ts-container-scrollable-common.md#onitemdragstartcallback23). |
 
 ### onItemDragEnter<sup>8+</sup>
 
 onItemDragEnter(event: (event: ItemDragInfo) => void)
 
-Triggered when the dragged item enters the drop target of the grid.
+Triggered when a dragged item enters the range of a **GridItem**.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -764,7 +807,7 @@ Triggered when the dragged item enters the drop target of the grid.
 
 onItemDragMove(event: (event: ItemDragInfo, itemIndex: number, insertIndex: number) => void)
 
-Triggered when the dragged item moves over the drop target of the grid.
+Triggered when a dragged item moves within the range of a **GridItem**.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -775,14 +818,14 @@ Triggered when the dragged item moves over the drop target of the grid.
 | Name     | Type                                 | Mandatory| Description          |
 | ----------- | ------------------------------------- | ---- | -------------- |
 | event       | [ItemDragInfo](ts-container-scrollable-common.md#itemdraginfo) | Yes  | Information about the drag point.|
-| itemIndex   | number                                | Yes  | Initial position of the dragged item.|
-| insertIndex | number                                | Yes  | Index of the position to which the dragged item is dropped.|
+| itemIndex   | number                                | Yes   | Drag start position, which is the index of the dragged **GridItem** in the **Grid**. |
+| insertIndex | number                                | Yes   | Current drag insertion position, which is the target insertion index of the **GridItem** during dragging. |
 
 ### onItemDragLeave<sup>8+</sup>
 
 onItemDragLeave(event: (event: ItemDragInfo, itemIndex: number) => void)
 
-Triggered when the dragged item leaves the drop target of the grid.
+Triggered when a dragged item leaves a **GridItem**.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -793,15 +836,15 @@ Triggered when the dragged item leaves the drop target of the grid.
 | Name   | Type                                 | Mandatory| Description                      |
 | --------- | ------------------------------------- | ---- | -------------------------- |
 | event     | [ItemDragInfo](ts-container-scrollable-common.md#itemdraginfo) | Yes  | Information about the drag point.            |
-| itemIndex | number                                | Yes  | Index of the dragged item.|
+| itemIndex | number                                | Yes   | Index of the **GridItem** from which the drag exits. |
 
 ### onItemDrop<sup>8+</sup>
 
 onItemDrop(event: (event: ItemDragInfo, itemIndex: number, insertIndex: number, isSuccess: boolean) => void)
 
-Triggered when the dragged grid item is dropped on the drop target of the grid.
+The **GridItem** bound with this event can serve as a drop target. This event is triggered when the **GridItem** stops being dragged.
 
-**isSuccess** returns **true** if the grid item is dropped within the grid, and returns **false** otherwise.
+When the drop position is within the **GridItem**, **isSuccess** returns **true**; when it is outside the **GridItem**, **isSuccess** returns **false**.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -813,8 +856,8 @@ Triggered when the dragged grid item is dropped on the drop target of the grid.
 | ----------- | ------------------------------------- | ---- | -------------- |
 | event       | [ItemDragInfo](ts-container-scrollable-common.md#itemdraginfo) | Yes  | Information about the drag point.|
 | itemIndex   | number                                | Yes  | Initial position of the dragged item.|
-| insertIndex | number                                | Yes  | Index of the position to which the dragged item is dropped.|
-| isSuccess   | boolean                               | Yes  | Whether the drop position is within the grid element for which the **onItemDrop** event is set.<br>**true**: yes; **false**: no |
+| insertIndex | number                                | Yes  | Position to which the dragged item is dropped.|
+| isSuccess   | boolean                               | Yes   | Whether the drop position is within the **GridItem** for which **onItemDrop** is set.<br/>The value **true** indicates that the drop position is within the **GridItem** for which **onItemDrop** is set; the value **false** indicates that the drop position is outside the **GridItem** for which **onItemDrop** is set.  |
 
 ### onScrollBarUpdate<sup>10+</sup>
 
@@ -825,6 +868,8 @@ Triggered at the end of each frame layout in the grid. You can use the callback 
 This API is intended solely for setting the scroll position of the grid. Avoid implementing service logic within this API.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
+
+**Model restriction:** This API can be used only in the stage model.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
@@ -847,9 +892,11 @@ onReachStart(event: () => void)
 
 Triggered when the grid reaches the start position.
 
-This event is triggered once when the grid is initialized and once when the grid scrolls to the start position. If the edge effect is set to a spring effect, this event is triggered once when the swipe passes the initial position, and triggered again when the swipe rebounds back to the initial position.
+This event is triggered once when the **Grid** is initialized and once when the **Grid** scrolls to the start position. When the edge effect of the **Grid** is a spring effect, this event is triggered once when the swipe passes the start position and once again when the rebound returns to the start position.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
+
+**Model restriction:** This API can be used only in the stage model.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
@@ -863,11 +910,13 @@ This event is triggered once when the grid is initialized and once when the grid
 
 onReachEnd(event: () => void)
 
-Triggered when the grid reaches the end position. This callback is triggered when the content does not fill a full screen and the end of the last child component is within the **Grid** component.
+Triggered when the grid reaches the end position. It is triggered when the grid content does not fill one screen and the end of the last child component is within the **Grid**.
 
-If the edge effect is set to a spring effect, this event is triggered once when the swipe passes the end position, and triggered again when the swipe rebounds back to the end position.
+When the edge effect of the **Grid** is a spring effect, this event is triggered once when the swipe passes the end position and once again when the rebound returns to the end position.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
+
+**Model restriction:** This API can be used only in the stage model.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
@@ -886,16 +935,22 @@ When this API is called back, the event parameter passes the scroll offset that 
 This event is triggered when either of the following conditions is met:
 
 1. Scrolling is initiated by user interaction (for example, finger swipe, keyboard, or mouse operation).
+
 2. The **Grid** component scrolls by inertia.
+
 3. Call the [fling](ts-container-scroll.md#fling12) API to trigger scrolling.
 
 This event is not triggered in the following scenarios:
 
 1. A scroll control API other than [fling](ts-container-scroll.md#fling12) is called.
+
 2. The out-of-bounds bounce effect is active.
+
 3. The scrollbar is dragged.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
+
+**Model restriction:** This API can be used only in the stage model.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
@@ -913,6 +968,8 @@ Triggered when the grid starts scrolling initiated by the user's finger dragging
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
+**Model restriction:** This API can be used only in the stage model.
+
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 **Parameters**
@@ -929,6 +986,8 @@ Triggered when the grid stops scrolling after the user's finger leaves the scree
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
+**Model restriction:** This API can be used only in the stage model.
+
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 **Parameters**
@@ -938,6 +997,7 @@ Triggered when the grid stops scrolling after the user's finger leaves the scree
 | event | () => void | Yes| Callback when the grid stops scrolling.|
 
 ### onScroll<sup>(deprecated)</sup>
+
 onScroll(event: (scrollOffset: number, scrollState: [ScrollState](ts-container-list.md#scrollstate)) => void) 
 
 Triggered when the grid scrolls.
@@ -948,6 +1008,8 @@ Triggered when the grid scrolls.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
+**Model restriction:** This API can be used only in the stage model.
+
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 **Parameters**
@@ -957,11 +1019,33 @@ Triggered when the grid scrolls.
 | scrollOffset | number | Yes| Offset relative to the previous frame. The offset is positive when the **Grid** component is scrolled up and negative when it is scrolled down.<br>Unit: vp|
 | scrollState | [ScrollState](ts-container-list.md#scrollstate) | Yes| Current scroll state.|
 
+### onEditModeChange
+
+onEditModeChange(callback: Callback\<boolean\> | undefined)
+
+Triggered when the edit mode state of [enableEditMode](#enableeditmode) changes. This API uses an asynchronous callback to return the result.
+
+**Since:** 26.0.0
+
+**Model restriction:** This API can be used only in the stage model.
+
+**Atomic service API:** This API can be used in atomic services since API version 26.0.0.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Parameters**
+
+| Name | Type   | Mandatory | Description                                     |
+| ------ | ------ | ---- | ---------------------------------------- |
+| callback  | [Callback](ts-types.md#callback12)\<boolean\> \| undefined | Yes   | Callback invoked when the edit mode state changes. The callback parameter is of the boolean type. The value **true** indicates entering the edit mode, and **false** indicates exiting the edit mode.<br>When **undefined** is passed in, the callback is canceled. |
+
 ## ComputedBarAttribute<sup>10+</sup>
 
 Provides information about the position and length of the scrollbar.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
+
+**Model restriction:** This API can be used only in the stage model.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
@@ -971,6 +1055,7 @@ Provides information about the position and length of the scrollbar.
 | totalLength   | number | No| No|  Total length of the grid content, in px.   |
 
 ## UIGridEvent<sup>19+</sup>
+
 Represents the return value of the [getEvent('Grid')](../js-apis-arkui-frameNode.md#geteventgrid19) method in **frameNode**, which can be used to set scroll events for a **Grid** node.
 
 **UIGridEvent** inherits from [UIScrollableCommonEvent](./ts-container-scrollable-common.md#uiscrollablecommonevent19).
@@ -985,13 +1070,15 @@ If the input parameter is **undefined**, the event callback is reset.
 
 **Atomic service API**: This API can be used in atomic services since API version 19.
 
+**Model restriction:** This API can be used only in the stage model.
+
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 **Parameters**
 
 | Name| Type  | Mandatory| Description                      |
 | ------ | ------ | ---- | -------------------------- |
-| callback  | [OnWillScrollCallback](./ts-container-scrollable-common.md#onwillscrollcallback12)&nbsp;\|&nbsp;undefined | Yes  | Callback for the **onWillScroll** event.|
+| callback  | [OnWillScrollCallback](./ts-container-scrollable-common.md#onwillscrollcallback12)&nbsp;\|&nbsp;undefined | Yes   | Callback for the onWillScroll event. When undefined is passed in, the event callback is reset. |
 
 ### setOnDidScroll<sup>19+</sup>
 
@@ -1003,13 +1090,15 @@ If the input parameter is **undefined**, the event callback is reset.
 
 **Atomic service API**: This API can be used in atomic services since API version 19.
 
+**Model restriction:** This API can be used only in the stage model.
+
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 **Parameters**
 
 | Name| Type  | Mandatory| Description                      |
 | ------ | ------ | ---- | -------------------------- |
-| callback  | [OnScrollCallback](./ts-container-scrollable-common.md#onscrollcallback12)&nbsp;\|&nbsp;undefined | Yes  | Callback for the **onDidScroll** event.|
+| callback  | [OnScrollCallback](./ts-container-scrollable-common.md#onscrollcallback12)&nbsp;\|&nbsp;undefined | Yes   | Callback for the onDidScroll event. When undefined is passed in, the event callback is reset. |
 
 ### setOnScrollIndex<sup>19+</sup>
 
@@ -1021,20 +1110,25 @@ If the input parameter is **undefined**, the event callback is reset.
 
 **Atomic service API**: This API can be used in atomic services since API version 19.
 
+**Model restriction:** This API can be used only in the stage model.
+
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 **Parameters**
 
 | Name| Type  | Mandatory| Description                      |
 | ------ | ------ | ---- | -------------------------- |
-| callback  | [OnGridScrollIndexCallback](#ongridscrollindexcallback19)&nbsp;\|&nbsp;undefined | Yes  | Callback for the **onScrollIndex** event.|
+| callback  | [OnGridScrollIndexCallback](#ongridscrollindexcallback19)&nbsp;\|&nbsp;undefined | Yes   | Callback for the onScrollIndex event. When undefined is passed in, the event callback is reset. |
 
 ## OnGridScrollIndexCallback<sup>19+</sup>
+
 type OnGridScrollIndexCallback = (first: number, last: number) => void
 
 Represents a callback for item changes in the visible area of the **Grid** component.
 
 **Atomic service API**: This API can be used in atomic services since API version 19.
+
+**Model restriction:** This API can be used only in the stage model.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
@@ -1129,7 +1223,7 @@ struct GridExample {
 }
 ```
 
-![grid1](figures/grid1.gif)
+<!--Del--> <!--DelEnd-->
 
 ### Example 2: Implementing a Scrollable Grid with Scroll Events
 
@@ -1138,6 +1232,7 @@ This example shows a scrollable grid with all its scrolling attributes and event
 **GridDataSource** implements the **LazyForEach** data source API [IDataSource](ts-rendering-control-lazyforeach.md#idatasource), which is used to provide child components for **Grid** through **LazyForEach**.
 
 <!--code_no_check-->
+
 ```ts
 // GridDataSource.ets
 export class GridDataSource implements IDataSource {
@@ -1194,6 +1289,7 @@ export class GridDataSource implements IDataSource {
 ```
 
 <!--code_no_check-->
+
 ```ts
 // xxx.ets
 import { GridDataSource } from './GridDataSource';
@@ -1289,6 +1385,7 @@ struct GridExample {
 For details about **GridDataSource** and the complete code, see [Example 2: Implementing a Scrollable Grid with Scroll Events](#example-2-implementing-a-scrollable-grid-with-scroll-events).
 
 <!--code_no_check-->
+
 ```ts
 // xxx.ets
 import { GridDataSource } from './GridDataSource';
@@ -1383,6 +1480,7 @@ This example demonstrates how to use [nestedScroll](#nestedscroll10) and [onScro
 For details about **GridDataSource** and the complete code, see [Example 2: Implementing a Scrollable Grid with Scroll Events](#example-2-implementing-a-scrollable-grid-with-scroll-events).
 
 <!--code_no_check-->
+
 ```ts
 import { GridDataSource } from './GridDataSource';
 
@@ -1562,8 +1660,11 @@ struct GridExample {
 ### Example 5: Implementing Dragging in a Grid
 
 1.  Set [editMode](#editmode8) to enable edit mode for a grid, where the user can drag grid items.
+
 2.  In the [onItemDragStart](#onitemdragstart8) callback, set the image to be displayed during dragging.
+
 3.  Through [onItemDrop](#onitemdrop8), obtain the initial position of the dragged item and the position to which the dragged item will be dropped. Through [onItemDrop](#onitemdrop8), complete the array position exchange logic.
+
 4.  Set the **supportAnimation(true)** attribute to support animations.
 
 > **NOTE**
@@ -1573,6 +1674,7 @@ struct GridExample {
 For details about **GridDataSource** and the complete code, see [Example 2: Implementing a Scrollable Grid with Scroll Events](#example-2-implementing-a-scrollable-grid-with-scroll-events).
 
 <!--code_no_check-->
+
 ```ts
 import { GridDataSource } from './GridDataSource';
 
@@ -1670,6 +1772,7 @@ This example demonstrates how to use [layoutDirection](#layoutdirection8), [maxC
 For details about **GridDataSource** and the complete code, see [Example 2: Implementing a Scrollable Grid with Scroll Events](#example-2-implementing-a-scrollable-grid-with-scroll-events).
 
 <!--code_no_check-->
+
 ```ts
 import { GridDataSource } from './GridDataSource';
 
@@ -1724,6 +1827,7 @@ This example demonstrates how to adjust the number of columns in the grid with a
 For details about **GridDataSource** and the complete code, see [Example 2: Implementing a Scrollable Grid with Scroll Events](#example-2-implementing-a-scrollable-grid-with-scroll-events).
 
 <!--code_no_check-->
+
 ```ts
 // xxx.ets
 import { GridDataSource } from './GridDataSource';
@@ -1805,6 +1909,7 @@ struct GridExample {
 ![pinch](figures/grid-pinch.gif)
 
 ### Example 8: Using Adaptive Column Count Settings
+
 This example shows the usage of **auto-fill**, **auto-fit**, and **auto-stretch** in [columnsTemplate](#columnstemplate).
 
 ```ts
@@ -1874,6 +1979,7 @@ struct GridColumnsTemplate {
 ![gridColumnsTemplate](figures/gridColumnsTemplate.png)
 
 ### Example 9: Setting Grid Item Heights Based on the Tallest Item in the Current Row
+
 This example implements a grid that contains two columns. The grid item in each column consists of two **Column** components with determined heights and one **Text** component with an undetermined height.
 
 By default, the heights of the left and right grid items may differ; however, after the grid's [alignItems](#alignitems12) attribute is set to **GridItemAlignment.STRETCH**, the grid item with a shorter height in a row will adopt the height of the taller grid item, aligning their heights within the same row.
@@ -1881,6 +1987,7 @@ By default, the heights of the left and right grid items may differ; however, af
 For details about **GridDataSource** and the complete code, see [Example 2: Implementing a Scrollable Grid with Scroll Events](#example-2-implementing-a-scrollable-grid-with-scroll-events).
 
 <!--code_no_check-->
+
 ```ts
 import { GridDataSource } from './GridDataSource';
 
@@ -1909,7 +2016,7 @@ struct Index {
       Text('Grid alignItems sample code')
 
       Grid() {
-        LazyForEach(this.data, (item: number) => {
+        LazyForEach(this.data, (item: string) => {
           // GridItem and Column components, when left without explicitly set heights, will by default adapt to the size of their child components. With alignItems set to STRETCH, they will instead take on the height of the tallest component in the current row.
           // If the height is explicitly set, the component maintains the defined height and will not follow the height of the tallest component in the current row.
           GridItem() {
@@ -1940,14 +2047,17 @@ struct Index {
 }
 
 ```
+
 ![gridAlignItems](figures/gridAlignItems.png)
 
 ### Example 10: Setting Edge Fading
+
 This example demonstrates how to enable the edge fading effect using [fadingEdge](ts-container-scrollable-common.md#fadingedge14).
 
 For details about **GridDataSource** and the complete code, see [Example 2: Implementing a Scrollable Grid with Scroll Events](#example-2-implementing-a-scrollable-grid-with-scroll-events).
 
 <!--code_no_check-->
+
 ```ts
 // xxx.ets
 // This example demonstrates how to implement a Grid component with an edge fading effect and set the length of the fading edge.
@@ -2005,6 +2115,7 @@ This example uses the [edgeEffect](#edgeeffect10) API to set the single-edge eff
 For details about **GridDataSource** and the complete code, see [Example 2: Implementing a Scrollable Grid with Scroll Events](#example-2-implementing-a-scrollable-grid-with-scroll-events).
 
 <!--code_no_check-->
+
 ```ts
 // xxx.ets
 import { GridDataSource } from './GridDataSource';
@@ -2233,6 +2344,7 @@ struct Index {
   }
 }
 ```
+
 ### Example 14: Scrolling to a Specified Position
 
 This example uses the [scrollToIndex](ts-container-scroll.md#scrolltoindex) API to scroll the **Grid** component to a specified position.
@@ -2240,6 +2352,7 @@ This example uses the [scrollToIndex](ts-container-scroll.md#scrolltoindex) API 
 For details about **GridDataSource** and the complete code, see [Example 2: Implementing a Scrollable Grid with Scroll Events](#example-2-implementing-a-scrollable-grid-with-scroll-events).
 
 <!--code_no_check-->
+
 ```ts
 import { GridDataSource } from './GridDataSource';
 @Entry
@@ -2251,7 +2364,7 @@ struct GridScrollToIndexSample {
     let list: string[] = [];
     for (let i = 0; i < 10; i++) {
       for (let j = 0; j < 10; j++) {
-        list.push((i * 5 + j  + 1).toString());
+        list.push((i * 5 + j + 1).toString());
       }
     }
     this.numbers =  new GridDataSource(list);
@@ -2293,8 +2406,8 @@ struct GridScrollToIndexSample {
   }
 }
 ```
-![grid_scrollToIndex](figures/gridScrollToIndex.gif)
 
+![grid_scrollToIndex](figures/gridScrollToIndex.gif)
 
 ### Example 15: Implementing Panning Selection in Grid
 
@@ -2303,6 +2416,7 @@ This example uses the [PanGesture](./ts-basic-gestures-pangesture.md#pangesture-
 For details about **GridDataSource** and the complete code, see [Example 2: Implementing a Scrollable Grid with Scroll Events](#example-2-implementing-a-scrollable-grid-with-scroll-events).
 
 <!--code_no_check-->
+
 ```ts
 // xxx.ets
 import { GridDataSource } from './GridDataSource';
@@ -2314,7 +2428,7 @@ enum SlideActionType {
   END
 }
 // Hot zone
-let HOT_AREA_LENGTH: number;
+let HOT_AREA_LENGTH: number = 0;
 try {
   HOT_AREA_LENGTH =
     Math.round(display.getDefaultDisplaySync().densityDPI * 10 / 25.4 / display.getDefaultDisplaySync().densityPixels);
@@ -2324,7 +2438,7 @@ try {
 // Scroll curve: Bezier curve
 const SLIDE_SELECT_SPEED_CURVE = curves.cubicBezierCurve(0.33, 0, 0.67, 1);
 // Scroll speed: maximum speed
-let AUTO_SPEED_MAX: number;
+let AUTO_SPEED_MAX: number = 0;
 try {
   AUTO_SPEED_MAX = Math.round(2400 / display.getDefaultDisplaySync().densityPixels);
 } catch (error) {
@@ -2613,7 +2727,6 @@ struct GridItemExample {
   @State numbers: number[] = [];
   @State dragItem: number = -1;
   @State scaleItem: number = -1;
-  @State item: number = -1;
   private dragRefOffsetX: number = 0;
   private dragRefOffsetY: number = 0;
   @State offsetX: number = 0;
@@ -2878,6 +2991,7 @@ This example demonstrates dragging **GridItem** components to the **Grid** compo
 For details about **GridDataSource** and the complete code, see [Example 2: Implementing a Scrollable Grid with Scroll Events](#example-2-implementing-a-scrollable-grid-with-scroll-events).
 
 <!--code_no_check-->
+
 ```ts
 // xxx.ets
 import { GridDataSource } from './GridDataSource';
@@ -2903,7 +3017,7 @@ struct Example {
   build() {
     Column({ space: 5 }) {
       Grid() {
-        LazyForEach(this.numbers, (item: number, index: number) => {
+        LazyForEach(this.numbers, (item: string, index: number) => {
           GridItem() {
             Text(item + '')
               .fontSize(16)
@@ -2944,11 +3058,12 @@ struct Example {
 
 ![universal-drag-drop-GridItem](figures/universal-drag-drop-GridItem.gif)
 
-### Example 18: Configuring the Number of Columns in the Grid Component Based on Breakpoints)
+### Example 18: Configuring the Number of Columns in the Grid Component Based on Breakpoints
 
 In API version 22 and later versions, this example shows how to configure the number of columns in the **Grid** component based on breakpoints.
 
 <!--code_no_check-->
+
 ```ts
 // Index.ets
 // xxx.ets
@@ -2994,6 +3109,7 @@ struct GridExample {
   }
 }
 ```
+
 When the grid width is within the breakpoint range of sm or smaller, two columns are displayed.
 
 ![sm_grid](figures/grid_itemFillPolicy_SM.png)
@@ -3013,6 +3129,7 @@ This example demonstrates how to obtain the total content size. This functionali
 For details about **GridDataSource** and the complete code, see [Example 2: Implementing a Scrollable Grid with Scroll Events](#example-2-implementing-a-scrollable-grid-with-scroll-events).
 
 <!--code_no_check-->
+
 ```ts
 import { GridDataSource } from './GridDataSource';
 import { BusinessError } from '@kit.BasicServicesKit';
@@ -3090,17 +3207,19 @@ struct GridExample {
   }
 }
 ```
+
 ![gridContentSize](figures/gridContentSize.gif)
 
 ### Example 20: Setting the Multi-selection Gather Animation
 
-This example demonstrates how to gather selected grid items in the visible area when a long press is performed on grid items using [bindContextMenu](ts-universal-attributes-menu.md#bindcontextmenu8), with the multi-selection gather animation switch enabled for **Grid**.
+This example enables the multi-select gather animation switch of the **Grid** to implement the effect of gathering the selected **GridItem** items within the display range through [bindContextMenu](ts-universal-attributes-menu.md#bindcontextmenu8) when a context menu is popped up by long pressing a **GridItem**.
 
 Since API version 23, the [editModeOptions](#editmodeoptions23) API is added to the **Grid** component to set the multi-selection gather animation switch.
 
 For details about **GridDataSource** and the complete code, see [Example 2: Implementing a Scrollable Grid with Scroll Events](#example-2-implementing-a-scrollable-grid-with-scroll-events).
 
 <!--code_no_check-->
+
 ```ts
 // xxx.ets
 import { GridDataSource } from './GridDataSource';
@@ -3199,13 +3318,14 @@ struct GridExample {
 
 ### Example 21: Implementing Swipe-based Multi-Selection
 
-This example enables the swipe-based multi-selection mode of the **Grid** component and sets the default multi-selection style by setting **enableEditMode(true)**, achieving the effect of selecting items while swiping on the **Grid** component.
+This example uses the two-way binding of `enableEditMode` and the `onEditModeChange` event to listen for the notification of entering the multi-select mode by swiping with two fingers on the **Grid**, implementing the effect of selecting while swiping on the **Grid**.
 
-Since API version 26.0.0, the **Grid** component provides the [enableEditMode](#enableeditmode) API.
+Since API version 26.0.0, the **Grid** component adds the [enableEditMode](#enableeditmode) API and the [onEditModeChange](#oneditmodechange) event.
 
 For details about **GridDataSource** and the complete code, see [Example 2: Implementing a Scrollable Grid with Scroll Events](#example-2-implementing-a-scrollable-grid-with-scroll-events).
 
 <!--code_no_check-->
+
 ```ts
 // xxx.ets
 import { GridDataSource } from './GridDataSource';
@@ -3214,6 +3334,17 @@ import { GridDataSource } from './GridDataSource';
 @Component
 struct GridExample {
   numbers: GridDataSource = new GridDataSource([]);
+  @State @Watch('onEditModeChanged') enableEditMode: boolean = false;
+  @State enableTwoFingerSelect: boolean = false;
+  @State selectedIndexes: number[] = [];
+
+  onEditModeChanged() {
+    console.info(`enableEditMode changed to: ${this.enableEditMode}`);
+    if (!this.enableEditMode) {
+      console.info('enableEditMode changed to false, clearing selectedIndexes');
+      this.selectedIndexes = [];
+    }
+  }
 
   aboutToAppear() {
     let list: string[] = [];
@@ -3239,8 +3370,17 @@ struct GridExample {
                 .textAlign(TextAlign.Center)
             }
           }
+          .selected(this.selectedIndexes.includes(index))
           .onSelect((isSelected: boolean) => {
             console.info('item ' + index.toString() + ' is ' + (isSelected ? 'selected' : 'unselected'));
+            if (isSelected) {
+              this.selectedIndexes.push(index);
+            } else {
+              let deleted = this.selectedIndexes.findIndex((value) => value === index);
+              if (deleted !== -1) {
+                this.selectedIndexes.splice(deleted, 1);
+              }
+            }
           })
         }, (index: number) => index.toString())
       }
@@ -3250,8 +3390,21 @@ struct GridExample {
       .width('90%')
       .height('50%')
       .backgroundColor(0xFAEEE0)
-      .enableEditMode(true)
-      .editModeOptions({ useDefaultMultiSelectStyle: true })
+      .enableEditMode(this.enableEditMode!!)
+      .onEditModeChange((data: boolean) => {
+        // You can also implement the business logic in onEditModeChanged here instead of using the enableEditMode two-way binding.
+        console.info(`onEditModeChange:${data}`)
+      })
+      .editModeOptions({ useDefaultMultiSelectStyle: true, enableTwoFingerMultiSelect: this.enableTwoFingerSelect })
+
+      Row() {
+        Button('EditMode: ' + this.enableEditMode).onClick(() => {
+          this.enableEditMode = !this.enableEditMode;
+        })
+        Button('TwoFinger: ' + this.enableTwoFingerSelect).onClick(() => {
+          this.enableTwoFingerSelect = !this.enableTwoFingerSelect;
+        })
+      }
       .margin({
         bottom: 30
       })
@@ -3260,4 +3413,217 @@ struct GridExample {
 }
 ```
 
-![gridEnableEditModeWithDefaultStyle](figures/gridEnableEditModeWithDefaultStyle.gif)
+![grid_two_finger_select](figures/grid_two_finger_select.gif)
+
+### Example 22: Dragging with OnMove
+
+Since API version 26.0.0, this example demonstrates the effect of drag sorting using the [onMove](./ts-universal-attributes-drag-sorting.md#onmove) API of **LazyForEach** in the **Grid**. It supports triggering automatic scrolling of the **Grid** when dragging to the edge, and the **Grid** contains nodes that span rows and columns.
+
+```ts
+// RectGridDataSource.ets
+export class Rects {
+  id: number = 0
+  // rectSize indicates the number of [rows, columns] occupied by the GridItem. The default value [1, 1] indicates a regular node.
+  rectSize: [number, number] = [1, 1]
+  constructor(id_: number) {
+    this.id = id_
+  }
+}
+
+// Data source of LazyForEach, which implements the IDataSource interface and manages data and notifies the UI to refresh.
+export class RectGridDataSource implements IDataSource {
+  private list: Array<Rects> = [];
+  private listeners: DataChangeListener[] = [];
+
+  constructor(list: Rects[]) {
+    this.list = list;
+  }
+
+  // Return the total number of data items.
+  totalCount(): number {
+    return this.list.length;
+  }
+
+  // Obtain the corresponding data item by index.
+  getData(index: number): Rects {
+    return this.list[index];
+  }
+
+  // Register a data change listener.
+  registerDataChangeListener(listener: DataChangeListener): void {
+    if (this.listeners.indexOf(listener) < 0) {
+      this.listeners.push(listener);
+    }
+  }
+
+  // Unregister the data change listener.
+  unregisterDataChangeListener(listener: DataChangeListener): void {
+    const pos = this.listeners.indexOf(listener);
+    if (pos >= 0) {
+      this.listeners.splice(pos, 1);
+    }
+  }
+
+  // Notify the controller of the data position change.
+  notifyDataMove(from: number, to: number): void {
+    this.listeners.forEach(listener => {
+      listener.onDataMove(from, to);
+    })
+  }
+
+  // Reload all data.
+  notifyDataReload(): void {
+    this.listeners.forEach(listener => {
+      listener.onDataReloaded();
+    })
+  }
+
+  // Move the element at the from position to the to position, and notify the UI to reload and refresh all data.
+  public moveItem(from: number, to: number): void {
+    let tmp = this.list.splice(from, 1);  // Remove the dragged item first.
+    this.list.splice(to, 0, tmp[0]);      // Insert the dragged item into the target position.
+    this.notifyDataReload()
+  }
+}
+```
+
+```ts
+// xxx.ets
+import { RectGridDataSource, Rects } from './RectGridDataSource';
+
+@Entry
+@Component
+struct GridOnMoveExample {
+  numbers: RectGridDataSource = new RectGridDataSource([]);
+
+  // Grid layout options (actually effective), which declare the indexes of irregular nodes and the number of rows and columns occupied by each.
+  @State layoutOptions: GridLayoutOptions = {
+    regularSize: [1, 1],
+    irregularIndexes: [4, 5, 6, 7, 8, 13],   // Set which indexes correspond to irregular GridItem nodes.
+    onGetIrregularSizeByIndex: (index: number) => {
+      return this.numbers.getData(index).rectSize
+    }
+  };
+
+  // Layout options (backup), used to trigger the refresh of layoutOptions through overall assignment during dragging.
+  layoutOptions_back: GridLayoutOptions = {
+    regularSize: [1, 1],
+    irregularIndexes: [4, 5, 6, 7, 8, 13],
+    onGetIrregularSizeByIndex: (index: number) => {
+      return this.numbers.getData(index).rectSize
+    }
+  };
+
+  build() {
+    Row() {
+      Grid(undefined, this.layoutOptions) {
+        LazyForEach(this.numbers, (item: Rects) => {
+          GridItem() {
+            Text(item.id.toString())
+              .fontSize(16)
+              .textAlign(TextAlign.Center)
+              // Set the height. A GridItem spanning rows needs extra margins (the spacing of a regular GridItem is 2*10) for UI alignment.
+              .size({ height: 100 * item.rectSize[0] + (item.rectSize[0] - 1) * 20, width: '100%'})
+          }.margin(10)
+          .borderRadius(10)
+          .backgroundColor(0xF9CF93)
+        }, (index: Rects) => index.id.toString())
+          // Triggered when the dragged item is released and its landing position differs from that before dragging. from is the start index, and to is the target index.
+          .onMove((from:number, to:number) => {
+            console.info("Grid onMove from " + from + " to " + to)
+            // Update the data source.
+            this.numbers.moveItem(from, to)
+            if (from < to) {  // The index of the dragged item is smaller than the target position index.
+              // Save the position of the dragged item in the irregularIndexes array first to avoid indexOf locating errors caused by duplicate values generated in subsequent loop updates.
+              let from_idx = -1
+              if (this.layoutOptions.irregularIndexes?.includes(from)) {
+                from_idx = this.layoutOptions.irregularIndexes.indexOf(from)
+              }
+
+              // Move the elements between the dragged item and the target position forward by one position (index -1).
+              if (this.layoutOptions.irregularIndexes != undefined) {
+                let len = this.layoutOptions.irregularIndexes.length
+                for (let i = len - 1; i >= 0; i --) {
+                  let irregularIndex = this.layoutOptions.irregularIndexes[i]
+                  if (irregularIndex > from && irregularIndex <= to) {
+                    this.layoutOptions.irregularIndexes[i] --
+                  }
+                }
+              }
+
+              // If the dragged item itself is an irregular node, update its index to the target position.
+              if (from_idx != -1 && this.layoutOptions.irregularIndexes != undefined) {
+                this.layoutOptions.irregularIndexes[from_idx] = to
+              }
+            } else {  // The index of the dragged item is greater than or equal to the target position index.
+              // Save the position of the dragged item in the irregularIndexes array first to avoid indexOf locating errors caused by duplicate values generated in subsequent loop updates.
+              let from_idx = -1
+              if (this.layoutOptions.irregularIndexes?.includes(from)) {
+                from_idx = this.layoutOptions.irregularIndexes.indexOf(from)
+              }
+
+              // Move the elements between the target position and the dragged item backward by one position (index +1).
+              if (this.layoutOptions.irregularIndexes != undefined) {
+                let len = this.layoutOptions.irregularIndexes.length
+                for (let i = 0; i < len; i ++) {
+                  let irregularIndex = this.layoutOptions.irregularIndexes[i]
+                  if (irregularIndex >= to && irregularIndex < from) {
+                    this.layoutOptions.irregularIndexes[i] ++
+                  }
+                }
+              }
+
+              // If the dragged item itself is an irregular node, update its index to the target position.
+              if (from_idx != -1 && this.layoutOptions.irregularIndexes != undefined) {
+                this.layoutOptions.irregularIndexes[from_idx] = to
+              }
+            }
+            // Force layoutOptions to refresh and take effect through overall assignment of the backup object.
+            this.layoutOptions_back.irregularIndexes = this.layoutOptions.irregularIndexes
+            this.layoutOptions = this.layoutOptions_back
+            console.info("Grid this.layoutOptions.irregularIndexes " + this.layoutOptions.irregularIndexes)
+          },
+            {
+              onLongPress: (index: number) => {
+                // Triggered when the GridItem is lifted after a long press.
+                console.info('Grid onLongPress: ' + index);
+              },
+              onDrop: (index: number) => {
+                // Triggered when the dragged GridItem is released.
+                console.info('Grid onDrop: ' + index);
+              },
+              onDragStart: (index: number) => {
+                // Triggered when the GridItem is lifted after a long press and dragging starts.
+                console.info('Grid onDragStart: ' + index);
+              },
+              onMoveThrough: (from: number, to: number) => {
+                // Triggered continuously during GridItem dragging.
+                console.info('Grid onMoveThrough From: ' + from + ' to: ' + to);
+              }
+            })
+      }
+      .columnsTemplate('1fr 1fr 1fr 1fr')   // Four-column equal-width layout.
+      .width('100%')
+      .height('100%')
+      .backgroundColor(0xFAEEE0)
+    }
+  }
+
+  aboutToAppear(): void {
+    // Initialize 100 rectangle data items and set the spanning size of each irregular node.
+    let list: Rects[] = [];
+    for (let i = 0; i < 100; i++) {
+      list.push(new Rects(i));
+    }
+    list[4].rectSize = [2, 2] // 2 rows and 2 columns.
+    list[5].rectSize = [1, 2] // 1 row and 2 columns.
+    list[6].rectSize = [1, 2] // 1 row and 2 columns.
+    list[7].rectSize = [2, 1] // 2 rows and 1 column.
+    list[8].rectSize = [2, 1] // 2 rows and 1 column.
+    list[13].rectSize = [1, 4]  // 1 row and 4 columns.
+    this.numbers = new RectGridDataSource(list);
+  }
+}
+```
+
+![grid-onmove-drag](figures/grid-onmove-drag.gif)
