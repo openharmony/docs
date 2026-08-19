@@ -7,12 +7,12 @@
 <!--Adviser: @w_Machine_cc-->
 
 ```c
-typedef struct OH_AVSession_AVMediaDescription OH_AVSession_AVMediaDescription
+typedef struct OH_AVSession_AVMediaDescription OH_AVSession_AVMediaDescription;
 ```
 
 ## 概述
 
-定义OH_AVSession_AVMediaDescription结构体，用于描述应用为当前资源设置的音视频媒体信息。
+定义OH_AVSession_AVMediaDescription类型别名，用于表示应用为当前资源设置的音视频媒体描述信息。
 
 **起始版本：** 23
 

@@ -7,7 +7,7 @@
 <!--Adviser: @w_Machine_cc-->
 
 ```c
-typedef struct OH_AVSession OH_AVSession
+typedef struct OH_AVSession OH_AVSession;
 ```
 
 ## 概述

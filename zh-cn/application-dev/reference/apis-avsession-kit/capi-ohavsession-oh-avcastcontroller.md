@@ -7,7 +7,7 @@
 <!--Adviser: @w_Machine_cc-->
 
 ```c
-typedef struct OH_AVCastController OH_AVCastController
+typedef struct OH_AVCastController OH_AVCastController;
 ```
 
 ## 概述
