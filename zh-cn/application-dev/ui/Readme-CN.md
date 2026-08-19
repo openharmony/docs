@@ -318,9 +318,9 @@
     - [自定义绘制](arkts-user-defined-draw.md)
   - [通过自绘制接入无障碍](ndk-accessibility-xcomponent.md)
   - [通过EmbeddedComponent拉起EmbeddedUIExtensionAbility](ndk-embedded-component.md)
-  - [查询和操作自定义节点](ndk-node-query-operate.md)
-  - [在NDK中保证多实例场景功能正常](ndk-scope-task.md)
-  - [使用多线程NDK接口并行化构建UI页面](ndk-build-on-multi-thread.md)
+  - [查询和操作NDK节点](ndk-node-query-operate.md)
+  - [NDK多实例场景开发](ndk-scope-task.md)
+  - [NDK多线程创建组件](ndk-build-on-multi-thread.md)
   - [构建渲染节点](ndk-embed-render-components.md)
 - UI开发 (兼容JS的类Web开发范式)<!--ui-js-dev-->
   - [UI开发 (兼容JS的类Web开发范式)概述](ui-js-overview.md)

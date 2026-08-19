@@ -1,4 +1,4 @@
-# 使用多线程NDK接口并行化构建UI页面
+# NDK多线程创建组件
 <!--Kit: ArkUI-->
 <!--Subsystem: ArkUI-->
 <!--Owner: @wangyang2022-->
