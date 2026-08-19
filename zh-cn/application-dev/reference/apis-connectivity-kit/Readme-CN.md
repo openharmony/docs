@@ -42,6 +42,7 @@
   <!--Del-->
   - [@ohos.bluetooth.a2dp (蓝牙a2dp模块)(系统接口)](js-apis-bluetooth-a2dp-sys.md)
   - [@ohos.bluetooth.access (蓝牙access模块)(系统接口)](js-apis-bluetooth-access-sys.md)
+  - [@ohos.bluetooth.bas (蓝牙bas模块)(系统接口)](js-apis-bluetooth-bas-sys.md)
   - [@ohos.bluetooth.baseProfile (蓝牙baseProfile模块)(系统接口)](js-apis-bluetooth-baseProfile-sys.md)
   - [@ohos.bluetooth.ble (蓝牙ble模块)(系统接口)](js-apis-bluetooth-ble-sys.md)
   - [@ohos.bluetooth.connection (蓝牙connection模块)(系统接口)](js-apis-bluetooth-connection-sys.md)
@@ -57,9 +58,9 @@
   - [@ohos.nfc.cardEmulation (标准NFC-cardEmulation)（系统接口）](js-apis-cardEmulation-sys.md)
   - [@ohos.nfc.tag (标准NFC-Tag)（系统接口）](js-apis-nfcTag-sys.md)
   - [@ohos.wifiManager (WLAN)（系统接口）](js-apis-wifiManager-sys.md)
-  - [@ohos.FusionConnectivity.partnerAgent（设备状态通知模块）(系统接口)](js-apis-fusionConnectivity-partnerAgent-sys.md)
   - [@ohos.nearlink.manager (星闪开关能力)(系统接口)](js-apis-nearlink-manager-sys.md)
   - [@ohos.nearlink.manager (星闪基础管理能力)(系统接口)](js-apis-nearlink-manager-sys.md)
+  - [@ohos.nearlink.scan (星闪扫描能力)(系统接口)](js-apis-nearlink-scan-sys.md)
   - [@ohos.nearlink.ssap (星闪SSAP连接能力)(系统接口)](js-apis-nearlink-ssap-sys.md)
   - [@ohos.nearlink.constant (星闪公共常量定义)(系统接口)](js-apis-nearlink-constant-sys.md)
   - [@ohos.nearlink.remoteDevice (星闪远端设备连接能力)(系统接口)](js-apis-nearlink-remote-device-sys.md)
