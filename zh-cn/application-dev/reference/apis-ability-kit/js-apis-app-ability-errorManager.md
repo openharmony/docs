@@ -867,7 +867,9 @@ setDefaultFreezeObserver(defaultObserver?: FreezeObserver) : FreezeObserver
 如果传入非法参数或在子线程调用，将抛出错误码并返回undefined，因此建议使用try-catch逻辑进行处理。
 
 > **说明：**
->
+> 
+> 该接口可能返回空指针，开发者在第一次注册该接口时，上一次注册的处理器为空，使用返回值前必须进行判空处理，避免空指针解引用导致应用崩溃。
+> 
 > 该接口请勿与[on('freeze')](#errormanageronfreeze18)或[off('freeze')](#errormanagerofffreeze18)接口混用。
 
 **起始版本：** 26.0.0
