@@ -1129,7 +1129,7 @@ finish(handle: Uint8Array, signature: Uint8Array, callback: AsyncCallback\<CMRes
 | -------- | ------------------------------------------------- | ---- | -------------------------- |
 | handle | Uint8Array                   | 是   | 表示操作句柄，需先调用[init](#certificatemanagerinit)方法获得。 |
 | signature | Uint8Array                   | 是   | 表示签名数据。 |
-| callback | AsyncCallback\<[CMResult](#cmresult)> | 是   | 回调函数。当验签成功时，err为null；否则为错误对象。 |
+| callback | AsyncCallback\<[CMResult](#cmresult)> | 是   | 回调函数。当验签成功时，err为null，data为[CMResult](#cmresult)对象中的outData属性，验签时outData属性为null；否则为错误对象。 |
 
 **错误码：**
 
