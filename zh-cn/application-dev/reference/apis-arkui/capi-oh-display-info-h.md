@@ -67,10 +67,10 @@ enum NativeDisplayManager_Rotation
 
 | 枚举项 | 描述 |
 | -- | -- |
-| DISPLAY_MANAGER_ROTATION_0 = 0 | 代表屏幕顺时针旋转角度0度。 |
-| DISPLAY_MANAGER_ROTATION_90 = 1 | 代表屏幕顺时针旋转角度90度。 |
-| DISPLAY_MANAGER_ROTATION_180 = 2 | 代表屏幕顺时针旋转角度180度。 |
-| DISPLAY_MANAGER_ROTATION_270 = 3 | 代表屏幕顺时针旋转角度270度。 |
+| DISPLAY_MANAGER_ROTATION_0 = 0 | 表示屏幕顺时针旋转角度0度。 |
+| DISPLAY_MANAGER_ROTATION_90 = 1 | 表示屏幕顺时针旋转角度90度。 |
+| DISPLAY_MANAGER_ROTATION_180 = 2 | 表示屏幕顺时针旋转角度180度。 |
+| DISPLAY_MANAGER_ROTATION_270 = 3 | 表示屏幕顺时针旋转角度270度。 |
 
 ### NativeDisplayManager_Orientation
 
@@ -90,7 +90,7 @@ enum NativeDisplayManager_Orientation
 | DISPLAY_MANAGER_LANDSCAPE = 1 | 表示设备当前以横屏方式显示。 |
 | DISPLAY_MANAGER_PORTRAIT_INVERTED = 2 | 表示设备当前以反向竖屏方式显示。 |
 | DISPLAY_MANAGER_LANDSCAPE_INVERTED = 3 | 表示设备当前以反向横屏方式显示。 |
-| DISPLAY_MANAGER_UNKNOWN | 表示显示未识别屏幕方向。 |
+| DISPLAY_MANAGER_UNKNOWN | 表示显示未识别的屏幕方向。 |
 
 ### NativeDisplayManager_ErrorCode
 
