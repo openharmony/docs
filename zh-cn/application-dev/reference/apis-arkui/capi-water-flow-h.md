@@ -457,4 +457,4 @@ void OH_ArkUI_WaterFlowSectionOption_RegisterGetItemMainSizeCallbackByIndexWithU
 | [ArkUI_WaterFlowSectionOption](capi-arkui-nativemodule-arkui-waterflowsectionoption.md)* option | [FlowItem](../apis-arkui/arkui-ts/ts-container-flowitem.md)分组配置信息。 |
 | int32_t index | 要注册回调的分组配置信息数组索引值，取值范围为0至数组长度减1。 |
 | void* userData | 传递给回调的附加数据指针，不直接表示FlowItem的主轴尺寸。WaterFlow布局时，将该参数作为回调的第二个参数传入。该指针由调用方管理，需在回调可能触发期间保持有效。 |
-| float (*callback)(int32_t itemIndex, void* userData) | 主轴尺寸回调。itemIndex为当前[FlowItem](../apis-arkui/arkui-ts/ts-container-flowitem.md)在WaterFlow中的索引；userData为传入接口的用户自定义数据；开发者通过返回值提供该FlowItem的主轴尺寸，单位：vp，返回负数时按0处理。 |
+| float (\*callback)(int32_t itemIndex, void\* userData) | 主轴尺寸回调。itemIndex为当前[FlowItem](../apis-arkui/arkui-ts/ts-container-flowitem.md)在WaterFlow中的索引；userData为传入接口的用户自定义数据；开发者通过返回值提供该FlowItem的主轴尺寸，单位：vp，返回负数时按0处理。 |

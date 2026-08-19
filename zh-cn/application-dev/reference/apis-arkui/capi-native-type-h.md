@@ -1428,7 +1428,7 @@ void OH_ArkUI_ListItemSwipeActionItem_SetOnEnterActionArea(ArkUI_ListItemSwipeAc
 | 参数项                                     | 描述 |
 |-----------------------------------------| -- |
 | [ArkUI_ListItemSwipeActionItem](capi-arkui-nativemodule-arkui-listitemswipeactionitem.md)* item | ListItemSwipeActionItem实例。 |
-| callback                                | 回调事件。 |
+| void (\*callback)()                                | 回调事件。 |
 
 ### OH_ArkUI_ListItemSwipeActionItem_SetOnEnterActionAreaWithUserData()
 
@@ -1450,7 +1450,7 @@ void OH_ArkUI_ListItemSwipeActionItem_SetOnEnterActionAreaWithUserData(ArkUI_Lis
 | -- | -- |
 | [ArkUI_ListItemSwipeActionItem](capi-arkui-nativemodule-arkui-listitemswipeactionitem.md)* item | ListItemSwipeActionItem实例。 |
 | void* userData | 用户自定义数据。 |
-| callback | 回调事件。 |
+| void (\*callback)(void\* userData) | 回调事件。 |
 
 ### OH_ArkUI_ListItemSwipeActionItem_SetOnAction()
 
@@ -1471,7 +1471,7 @@ void OH_ArkUI_ListItemSwipeActionItem_SetOnAction(ArkUI_ListItemSwipeActionItem*
 | 参数项 | 描述 |
 | -- | -- |
 | [ArkUI_ListItemSwipeActionItem](capi-arkui-nativemodule-arkui-listitemswipeactionitem.md)* item | ListItemSwipeActionItem实例。 |
-| callback | 回调事件。 |
+| void (\*callback)() | 回调事件。 |
 
 ### OH_ArkUI_ListItemSwipeActionItem_SetOnActionWithUserData()
 
@@ -1493,7 +1493,7 @@ void OH_ArkUI_ListItemSwipeActionItem_SetOnActionWithUserData(ArkUI_ListItemSwip
 | -- | -- |
 | [ArkUI_ListItemSwipeActionItem](capi-arkui-nativemodule-arkui-listitemswipeactionitem.md)* item | ListItemSwipeActionItem实例。 |
 | void* userData | 用户自定义数据。 |
-| callback | 回调事件。 |
+| void (\*callback)(void\* userData) | 回调事件。 |
 
 ### OH_ArkUI_ListItemSwipeActionItem_SetOnExitActionArea()
 
@@ -1514,7 +1514,7 @@ void OH_ArkUI_ListItemSwipeActionItem_SetOnExitActionArea(ArkUI_ListItemSwipeAct
 | 参数项 | 描述 |
 | -- | -- |
 | [ArkUI_ListItemSwipeActionItem](capi-arkui-nativemodule-arkui-listitemswipeactionitem.md)* item | ListItemSwipeActionItem实例。 |
-| callback | 回调事件。 |
+| void (\*callback)() | 回调事件。 |
 
 ### OH_ArkUI_ListItemSwipeActionItem_SetOnExitActionAreaWithUserData()
 
@@ -1536,7 +1536,7 @@ void OH_ArkUI_ListItemSwipeActionItem_SetOnExitActionAreaWithUserData(ArkUI_List
 | -- | -- |
 | [ArkUI_ListItemSwipeActionItem](capi-arkui-nativemodule-arkui-listitemswipeactionitem.md)* item | ListItemSwipeActionItem实例。 |
 | void* userData | 用户自定义数据。 |
-| callback | 回调事件。 |
+| void (\*callback)(void\* userData) | 回调事件。 |
 
 ### OH_ArkUI_ListItemSwipeActionItem_SetOnStateChange()
 
@@ -1557,7 +1557,7 @@ void OH_ArkUI_ListItemSwipeActionItem_SetOnStateChange(ArkUI_ListItemSwipeAction
 | 参数项 | 描述 |
 | -- | -- |
 | [ArkUI_ListItemSwipeActionItem](capi-arkui-nativemodule-arkui-listitemswipeactionitem.md)* item | ListItemSwipeActionItem实例。 |
-| callback | 回调事件。传入参数为swipeActionState，表示列表项滑动状态。 |
+| void (\*callback)(ArkUI_ListItemSwipeActionState swipeActionState) | 回调事件。传入参数为swipeActionState，表示列表项滑动状态。 |
 
 ### OH_ArkUI_ListItemSwipeActionItem_SetOnStateChangeWithUserData()
 
