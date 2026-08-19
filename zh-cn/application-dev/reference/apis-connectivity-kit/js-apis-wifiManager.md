@@ -506,7 +506,7 @@ WLAN设备地址（MAC/BSSID）类型。是标识WLAN设备或接入点的唯一
 | WIFI_STANDARD_11N | 4 | 802.11n WiFi标准类型。 |
 | WIFI_STANDARD_11AC | 5 | 802.11ac WiFi标准类型。 |
 | WIFI_STANDARD_11AX | 6 | 802.11ax WiFi标准类型。 |
-| WIFI_STANDARD_11BE | 7 | 802.11be WiFi标准类型。 |
+| WIFI_STANDARD_11AD | 7 | 802.11ad WiFi标准类型。 |
 
 ## WifiInfoElem
 
