@@ -361,7 +361,7 @@ export struct Pinch {
 }
 ```
 
-<!--Del-->![pinch] (figures/pinch.gif)<!--DelEnd-->
+<!--Del-->  <!--DelEnd-->
 
 ## Rotation Gesture (RotationGesture)
 
@@ -428,7 +428,7 @@ export struct Rotation {
 }
 ```
 
-<!--Del-->![rotation]  (figures/rotation-2.gif)<!--DelEnd-->
+<!--Del--> <!--DelEnd-->
 
 ## Swipe Gesture (SwipeGesture)
 

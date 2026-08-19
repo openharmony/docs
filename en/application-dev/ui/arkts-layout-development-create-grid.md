@@ -258,7 +258,7 @@ The scrollable grid layout is often used on the file list, product list, video l
 
 <!--Del-->**Figure 9** Horizontal scrollable grid layout<!--DelEnd-->
 
-<!--Del-->![en-us_image_0000001511740512] (figures/en-us_image_0000001511740512.gif)<!--DelEnd-->
+<!--Del-->  <!--DelEnd-->
 
 If **columnsTemplate** is set, the grid scrolls vertically. If **rowsTemplate** is set, the grid scrolls horizontally.
 

@@ -209,7 +209,7 @@ The following uses the **Column** component as an example to describe how to ena
    }
    ```
 
-   ![material-column](../reference/apis-arkui/figures/material-column.PNG)
+   ![](../reference/apis-arkui/figures/material-column.PNG)
 
    **Column interactive deformation example**
 
@@ -538,13 +538,13 @@ The following uses the **Column** component as an example to describe how to ena
    }
    ```
 
-   When system material is not set:
+   <!--Del-->When system material is not set:
 
    ![menuWithoutNewMaterialGif](../reference/apis-arkui/arkui-ts/figures/menuWithoutNewMaterialAnimation.gif)
 
    After setting system material:
 
-   ![menuNewMaterialGif](../reference/apis-arkui/arkui-ts/figures/menuNewMaterialAnimation.gif)
+   ![menuNewMaterialGif](../reference/apis-arkui/arkui-ts/figures/menuNewMaterialAnimation.gif)<!--DelEnd-->
 
 3. Disable the immersive system material for a component.
 
