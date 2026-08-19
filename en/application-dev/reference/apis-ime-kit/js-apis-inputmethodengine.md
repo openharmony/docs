@@ -954,7 +954,7 @@ Paired calls:
 > **NOTE**
 >
 > A single input method app can create only one [soft keyboard panel](#paneltype10) and one [status bar panel](#paneltype10).<br>
-> The input method panel does not support the creation of child windows. For example, you cannot [set an app child window](../../windowmanager/application-window-fa.md#setting-the-child-window-of-an-application) by using **window.createWindow**, or create child window dialogs by using [bindContextMenu](../apis-arkui/arkui-ts/ts-universal-attributes-menu.md#bindcontextmenu8), [CustomDialog](../apis-arkui/arkui-ts/ts-methods-custom-dialog-box.md), or other APIs. You are advised to use non-child-window alternatives, such as [dialogs](../apis-arkui/arkui-ts/ohos-arkui-advanced-Dialog.md), [bindMenu](../apis-arkui/arkui-ts/ts-universal-attributes-menu.md#bindmenu), or setting **showInSubwindow** to **false**.
+> The input method panel does not support the creation of child windows. For example, you cannot [set an app child window](../../windowmanager/application-window-fa.md#setting-an-app-subwindow) by using **window.createWindow**, or create child window dialogs by using [bindContextMenu](../apis-arkui/arkui-ts/ts-universal-attributes-menu.md#bindcontextmenu8), [CustomDialog](../apis-arkui/arkui-ts/ts-methods-custom-dialog-box.md), or other APIs. You are advised to use non-child-window alternatives, such as [dialogs](../apis-arkui/arkui-ts/ohos-arkui-advanced-Dialog.md), [bindMenu](../apis-arkui/arkui-ts/ts-universal-attributes-menu.md#bindmenu), or setting **showInSubwindow** to **false**.
 
 **System capability**: SystemCapability.MiscServices.InputMethodFramework
 
@@ -1016,7 +1016,7 @@ Creates an input method panel. This API can be called only by an input method ap
 > **NOTE**
 >
 > A single input method app can create only one [soft keyboard panel](#paneltype10) and one [status bar panel](#paneltype10).<br>
-> The input method panel does not support the creation of child windows. For example, you cannot [set an app child window](../../windowmanager/application-window-fa.md#setting-the-child-window-of-an-application) by using **window.createWindow**, or create child window dialogs by using [bindContextMenu](../apis-arkui/arkui-ts/ts-universal-attributes-menu.md#bindcontextmenu8), [CustomDialog](../apis-arkui/arkui-ts/ts-methods-custom-dialog-box.md), or other APIs. You are advised to use non-child-window alternatives, such as [dialogs](../apis-arkui/arkui-ts/ohos-arkui-advanced-Dialog.md), [bindMenu](../apis-arkui/arkui-ts/ts-universal-attributes-menu.md#bindmenu), or setting **showInSubwindow** to **false**.
+> The input method panel does not support the creation of child windows. For example, you cannot [set an app child window](../../windowmanager/application-window-fa.md#setting-an-app-subwindow) by using **window.createWindow**, or create child window dialogs by using [bindContextMenu](../apis-arkui/arkui-ts/ts-universal-attributes-menu.md#bindcontextmenu8), [CustomDialog](../apis-arkui/arkui-ts/ts-methods-custom-dialog-box.md), or other APIs. You are advised to use non-child-window alternatives, such as [dialogs](../apis-arkui/arkui-ts/ohos-arkui-advanced-Dialog.md), [bindMenu](../apis-arkui/arkui-ts/ts-universal-attributes-menu.md#bindmenu), or setting **showInSubwindow** to **false**.
 
 **System capability**: SystemCapability.MiscServices.InputMethodFramework
 
