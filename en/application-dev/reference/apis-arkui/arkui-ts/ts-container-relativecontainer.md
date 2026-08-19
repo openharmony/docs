@@ -408,7 +408,7 @@ struct Index {
 
 ### Example 4: Applying Vertical Offsets
 
-This example uses the [bias](ts-types.md#bias) API to create a vertical offset for a child component between two anchors.
+This example uses the [bias](ts-types.md#bias11) API to create a vertical offset for a child component between two anchors.
 
 ```ts
 @Entry
@@ -698,7 +698,7 @@ struct Index {
 
 ### Example 8: Creating a Chain with Offsets
 
-This example combines the [chainMode](ts-universal-attributes-location.md#chainmode12) and [bias](ts-types.md#bias) APIs to create a horizontal [PACKED chain](ts-universal-attributes-location.md#chainstyle12) with offsets.
+This example combines the [chainMode](ts-universal-attributes-location.md#chainmode12) and [bias](ts-types.md#bias11) APIs to create a horizontal [PACKED chain](ts-universal-attributes-location.md#chainstyle12) with offsets.
 
 ```ts
 @Entry
